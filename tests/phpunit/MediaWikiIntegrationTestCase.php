@@ -112,12 +112,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private $loggers = [];
 
 	/**
-	 * The CLI arguments passed through from phpunit.php
-	 * @var array
-	 */
-	private $cliArgs = [];
-
-	/**
 	 * Holds a list of services that were overridden with setService().  Used for printing an error
 	 * if overrideMwServices() overrides a service that was previously set.
 	 * @var string[]
@@ -382,9 +376,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function run( TestResult $result = null ) {
-		if ( $result instanceof MediaWikiTestResult ) {
-			$this->cliArgs = $result->getMediaWikiCliArgs();
-		}
 		$this->overrideMwServices();
 
 		if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
@@ -1939,7 +1930,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return mixed
 	 */
 	public function getCliArg( $offset ) {
-		return $this->cliArgs[$offset] ?? null;
+		return PHPUnitMaintClass::$additionalOptions[$offset] ?? null;
 	}
 
 	/**
@@ -1948,7 +1939,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param mixed $value
 	 */
 	public function setCliArg( $offset, $value ) {
-		$this->cliArgs[$offset] = $value;
+		PHPUnitMaintClass::$additionalOptions[$offset] = $value;
 	}
 
 	/**
