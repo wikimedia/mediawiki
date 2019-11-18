@@ -79,7 +79,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	 *
 	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
-	function fetchUsed( $shared ) {
+	private function fetchUsed( $shared ) {
 		$dbr = $this->getDB( DB_REPLICA );
 		$image = $dbr->tableName( 'image' );
 		$imagelinks = $dbr->tableName( 'imagelinks' );
@@ -100,7 +100,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	 *
 	 * @param bool $shared True to pass shared-dir settings to hash func
 	 */
-	function fetchLocal( $shared ) {
+	private function fetchLocal( $shared ) {
 		$dbr = $this->getDB( DB_REPLICA );
 		$result = $dbr->select( 'image',
 			[ 'img_name' ],
@@ -112,7 +112,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 		}
 	}
 
-	function outputItem( $name, $shared ) {
+	private function outputItem( $name, $shared ) {
 		$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $name );
 		if ( $file && $this->filterItem( $file, $shared ) ) {
 			$filename = $file->getLocalRefPath();
@@ -123,7 +123,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 		}
 	}
 
-	function filterItem( $file, $shared ) {
+	private function filterItem( $file, $shared ) {
 		return $shared || $file->isLocal();
 	}
 }

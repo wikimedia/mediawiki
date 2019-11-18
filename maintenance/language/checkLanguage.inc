@@ -473,7 +473,7 @@ ENDS;
 	/**
 	 * Output the checks results as wiki text.
 	 */
-	function outputWiki() {
+	private function outputWiki() {
 		$detailText = '';
 		$rows[] = '! Language !! Code !! Total !! ' .
 			implode( ' !! ', array_diff( $this->checks, $this->nonMessageChecks() ) );

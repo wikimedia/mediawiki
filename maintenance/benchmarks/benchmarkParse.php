@@ -132,7 +132,7 @@ class BenchmarkParse extends Maintenance {
 	 * @param string $timestamp
 	 * @return bool|string Revision ID, or false if not found or error
 	 */
-	function getRevIdForTime( Title $title, $timestamp ) {
+	private function getRevIdForTime( Title $title, $timestamp ) {
 		$dbr = $this->getDB( DB_REPLICA );
 
 		$id = $dbr->selectField(
@@ -156,7 +156,7 @@ class BenchmarkParse extends Maintenance {
 	 *
 	 * @param Revision $revision
 	 */
-	function runParser( Revision $revision ) {
+	private function runParser( Revision $revision ) {
 		$content = $revision->getContent();
 		$content->getParserOutput( $revision->getTitle(), $revision->getId() );
 		if ( $this->clearLinkCache ) {
@@ -174,7 +174,7 @@ class BenchmarkParse extends Maintenance {
 	 * @param string|bool &$id
 	 * @return bool
 	 */
-	function onFetchTemplate( Parser $parser, Title $title, &$skip, &$id ) {
+	private function onFetchTemplate( Parser $parser, Title $title, &$skip, &$id ) {
 		$pdbk = $title->getPrefixedDBkey();
 		if ( !isset( $this->idCache[$pdbk] ) ) {
 			$proposedId = $this->getRevIdForTime( $title, $this->templateTimestamp );

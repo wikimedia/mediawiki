@@ -113,7 +113,7 @@ class PPFuzzTester {
 		}
 	}
 
-	function makeInputText( $max = false ) {
+	public function makeInputText( $max = false ) {
 		if ( $max === false ) {
 			$max = $this->maxLength;
 		}
@@ -132,17 +132,17 @@ class PPFuzzTester {
 		return $s;
 	}
 
-	function makeTitle() {
+	public function makeTitle() {
 		return Title::newFromText( mt_rand( 0, 1000000 ), mt_rand( 0, 10 ) );
 	}
 
 	/*
-	function pickOutputType() {
+	public function pickOutputType() {
 		$count = count( $this->outputTypes );
 		return $this->outputTypes[ mt_rand( 0, $count - 1 ) ];
 	}*/
 
-	function pickEntryPoint() {
+	public function pickEntryPoint() {
 		$count = count( $this->entryPoints );
 
 		return $this->entryPoints[mt_rand( 0, $count - 1 )];
@@ -183,7 +183,7 @@ class PPFuzzTest {
 	 * @param Title $title
 	 * @return array
 	 */
-	function templateHook( $title ) {
+	public function templateHook( $title ) {
 		$titleText = $title->getPrefixedDBkey();
 
 		if ( !isset( $this->templates[$titleText] ) ) {
@@ -234,7 +234,7 @@ class PPFuzzTest {
 		return $this->output;
 	}
 
-	function getReport() {
+	public function getReport() {
 		$s = "Title: " . $this->title->getPrefixedDBkey() . "\n" .
 // 			"Output type: {$this->outputType}\n" .
 			"Entry point: {$this->entryPoint}\n" .
@@ -258,7 +258,7 @@ class PPFuzzTest {
 class PPFuzzUser extends User {
 	public $ppfz_test, $mDataLoaded;
 
-	function load( $flags = null ) {
+	public function load( $flags = null ) {
 		if ( $this->mDataLoaded ) {
 			return;
 		}
@@ -266,7 +266,7 @@ class PPFuzzUser extends User {
 		$this->loadDefaults( $this->mName );
 	}
 
-	function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
+	public function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
 		if ( $oname === 'fancysig' ) {
 			return $this->ppfz_test->fancySig;
 		} elseif ( $oname === 'nickname' ) {

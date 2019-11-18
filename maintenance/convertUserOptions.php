@@ -80,7 +80,7 @@ class ConvertUserOptions extends Maintenance {
 	 * @param IDatabase $dbw
 	 * @return null|int
 	 */
-	function convertOptionBatch( $res, $dbw ) {
+	private function convertOptionBatch( $res, $dbw ) {
 		$id = null;
 		foreach ( $res as $row ) {
 			$this->mConversionCount++;
