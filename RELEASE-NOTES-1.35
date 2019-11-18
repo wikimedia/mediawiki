@@ -297,6 +297,8 @@ because of Phabricator reports.
   true.
 * $wgMemc is deprecated, use
   MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
+* ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
+  MediaFileTrait::getImageLimitsFromOptions() instead.
 * …
 
 === Other changes in 1.35 ===

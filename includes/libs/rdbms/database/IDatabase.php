@@ -552,7 +552,7 @@ interface IDatabase {
 	/**
 	 * A SELECT wrapper which returns a list of single field values from result rows
 	 *
-	 * If no result rows are returned from the query, false is returned.
+	 * If no result rows are returned from the query, an empty array is returned.
 	 *
 	 * @param string|array $table Table name. See IDatabase::select() for details.
 	 * @param string $var The field name to select. This must be a valid SQL

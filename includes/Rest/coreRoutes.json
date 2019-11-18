@@ -70,5 +70,14 @@
 			"PermissionManager",
 			"MainConfig"
 		]
+	},
+	{
+		"path": "/coredev/v0/page/{title}/links/media",
+		"class": "MediaWiki\\Rest\\Handler\\MediaLinksHandler",
+		"services": [
+			"PermissionManager",
+			"DBLoadBalancer",
+			"RepoGroup"
+		]
 	}
 ]

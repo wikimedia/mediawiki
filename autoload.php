@@ -853,6 +853,7 @@ $wgAutoloadLocalClasses = [
 	'McTest' => __DIR__ . '/maintenance/mctest.php',
 	'McrRestoreAction' => __DIR__ . '/includes/actions/McrRestoreAction.php',
 	'McrUndoAction' => __DIR__ . '/includes/actions/McrUndoAction.php',
+	'MediaFileTrait' => __DIR__ . '/includes/filerepo/file/MediaFileTrait.php',
 	'MediaHandler' => __DIR__ . '/includes/media/MediaHandler.php',
 	'MediaHandlerFactory' => __DIR__ . '/includes/media/MediaHandlerFactory.php',
 	'MediaTransformError' => __DIR__ . '/includes/media/MediaTransformError.php',
