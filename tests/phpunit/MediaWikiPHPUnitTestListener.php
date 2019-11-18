@@ -19,7 +19,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 * @param Test $test
 	 * @return string
 	 */
-	protected function getTestName( Test $test ) {
+	protected function getTestName( Test $test ) : string {
 		$name = get_class( $test );
 
 		if ( $test instanceof TestCase ) {
@@ -29,7 +29,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 		return $name;
 	}
 
-	protected function getErrorName( Exception $exception ) {
+	protected function getErrorName( Exception $exception ) : string {
 		$name = get_class( $exception );
 		$name = "[$name] " . $exception->getMessage();
 
@@ -43,7 +43,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 * @param Exception $e
 	 * @param float $time
 	 */
-	public function addError( Test $test, Exception $e, $time ) {
+	public function addError( Test $test, Exception $e, $time ) : void {
 		wfDebugLog(
 			$this->logChannel,
 			'ERROR in ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e )
@@ -57,7 +57,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 * @param AssertionFailedError $e
 	 * @param float $time
 	 */
-	public function addFailure( Test $test, AssertionFailedError $e, $time ) {
+	public function addFailure( Test $test, AssertionFailedError $e, $time ) : void {
 		wfDebugLog(
 			$this->logChannel,
 			'FAILURE in ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e )
@@ -71,7 +71,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 * @param Exception $e
 	 * @param float $time
 	 */
-	public function addIncompleteTest( Test $test, Exception $e, $time ) {
+	public function addIncompleteTest( Test $test, Exception $e, $time ) : void {
 		wfDebugLog(
 			$this->logChannel,
 			'Incomplete test ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e )
@@ -85,7 +85,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 * @param Exception $e
 	 * @param float $time
 	 */
-	public function addSkippedTest( Test $test, Exception $e, $time ) {
+	public function addSkippedTest( Test $test, Exception $e, $time ) : void {
 		wfDebugLog(
 			$this->logChannel,
 			'Skipped test ' . $this->getTestName( $test ) . ': ' . $this->getErrorName( $e )
@@ -97,7 +97,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 *
 	 * @param TestSuite $suite
 	 */
-	public function startTestSuite( TestSuite $suite ) {
+	public function startTestSuite( TestSuite $suite ) : void {
 		wfDebugLog( $this->logChannel, 'START suite ' . $suite->getName() );
 	}
 
@@ -106,7 +106,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 *
 	 * @param TestSuite $suite
 	 */
-	public function endTestSuite( TestSuite $suite ) {
+	public function endTestSuite( TestSuite $suite ) : void {
 		wfDebugLog( $this->logChannel, 'END suite ' . $suite->getName() );
 	}
 
@@ -115,7 +115,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 *
 	 * @param Test $test
 	 */
-	public function startTest( Test $test ) {
+	public function startTest( Test $test ) : void {
 		Hooks::run( 'MediaWikiPHPUnitTest::startTest', [ $test ] );
 		wfDebugLog( $this->logChannel, 'Start test ' . $this->getTestName( $test ) );
 	}
@@ -126,7 +126,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 * @param Test $test
 	 * @param float $time
 	 */
-	public function endTest( Test $test, $time ) {
+	public function endTest( Test $test, $time ) : void {
 		Hooks::run( 'MediaWikiPHPUnitTest::endTest', [ $test, $time ] );
 		wfDebugLog( $this->logChannel, 'End test ' . $this->getTestName( $test ) );
 	}

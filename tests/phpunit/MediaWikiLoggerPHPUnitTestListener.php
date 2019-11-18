@@ -27,34 +27,34 @@ class MediaWikiLoggerPHPUnitTestListener implements TestListener {
 	 *
 	 * @param Test $test
 	 */
-	public function startTest( Test $test ) {
+	public function startTest( Test $test ) : void {
 		$this->lastTestLogs = null;
 		$this->originalSpi = LoggerFactory::getProvider();
 		$this->spi = new LogCapturingSpi( $this->originalSpi );
 		LoggerFactory::registerProvider( $this->spi );
 	}
 
-	public function addRiskyTest( Test $test, Exception $e, $time ) {
+	public function addRiskyTest( Test $test, Exception $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addIncompleteTest( Test $test, Exception $e, $time ) {
+	public function addIncompleteTest( Test $test, Exception $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addSkippedTest( Test $test, Exception $e, $time ) {
+	public function addSkippedTest( Test $test, Exception $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addError( Test $test, Exception $e, $time ) {
+	public function addError( Test $test, Exception $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addWarning( Test $test, Warning $e, $time ) {
+	public function addWarning( Test $test, Warning $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addFailure( Test $test, AssertionFailedError $e, $time ) {
+	public function addFailure( Test $test, AssertionFailedError $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
@@ -72,7 +72,7 @@ class MediaWikiLoggerPHPUnitTestListener implements TestListener {
 	 * @param Test $test
 	 * @param float $time
 	 */
-	public function endTest( Test $test, $time ) {
+	public function endTest( Test $test, $time ) : void {
 		LoggerFactory::registerProvider( $this->originalSpi );
 		$this->originalSpi = null;
 		$this->spi = null;
