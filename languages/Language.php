@@ -767,14 +767,6 @@ class Language {
 	}
 
 	/**
-	 * @param string $tog
-	 * @return string
-	 */
-	function getUserToggle( $tog ) {
-		return $this->getMessageFromDB( "tog-$tog" );
-	}
-
-	/**
 	 * Get an array of language names, indexed by code.
 	 *
 	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageNames
