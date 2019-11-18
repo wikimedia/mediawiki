@@ -3461,6 +3461,7 @@
 	"htmlform-float-invalid": "Uvedená hodnota není číslo.",
 	"htmlform-int-toolow": "Vámi zadaná hodnota je menší než dovolené minimum $1.",
 	"htmlform-int-toohigh": "Vámi zadaná hodnota je větší než dovolené maximum $1.",
+	"htmlform-multiselect-toomany": "Počet vámi zadaných položek je větší než dovolené maximum $1.",
 	"htmlform-required": "Tato položka je povinná.",
 	"htmlform-submit": "Odeslat",
 	"htmlform-reset": "Vrátit změny",

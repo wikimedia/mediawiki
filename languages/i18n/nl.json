@@ -3474,6 +3474,7 @@
 	"htmlform-float-invalid": "De waarde die u hebt opgegeven is geen getal.",
 	"htmlform-int-toolow": "De opgegeven waarde ligt onder de minimumwaarde van $1",
 	"htmlform-int-toohigh": "De opgegeven waarde ligt boven de maximumwaarde van $1",
+	"htmlform-multiselect-toomany": "Het aantal opgegeven items is meer dan het toegestane maximum $1.",
 	"htmlform-required": "Deze waarde is verplicht",
 	"htmlform-submit": "Verzenden",
 	"htmlform-reset": "Wijzigingen ongedaan maken",

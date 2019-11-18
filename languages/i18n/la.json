@@ -327,7 +327,7 @@
 	"virus-scanfailed": "scrutinium fefellit (codex $1)",
 	"virus-unknownscanner": "antivirus incognitus:",
 	"logouttext": "<strong>Secessisti a {{grammar:ablative|{{SITENAME}}}}.</strong>\n\nNota bene, paginae fortasse videantur quasi nomen tuum dedisses, priusquam navigatrum purgaveris.",
-	"cannotlogoutnow-title": "Nequitur secedere",
+	"cannotlogoutnow-title": "Nequitur secedi",
 	"welcomeuser": "Salve, $1!",
 	"welcomecreation-msg": "Tibi nomen impositum est.\nCura, ut [[Special:Preferences|modos tuos]] deligas.",
 	"yourname": "Nomen usoris:",

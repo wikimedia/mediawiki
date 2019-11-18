@@ -22,7 +22,8 @@
 			"Sayem AtVkm",
 			"Fitoschido",
 			"Vlad5250",
-			"K Messaoudi"
+			"K Messaoudi",
+			"YubaWissin"
 		]
 	},
 	"tog-underline": "Aderrer n yiseɣwan:",
@@ -176,6 +177,7 @@
 	"returnto": "Uɣal ar $1.",
 	"tagline": "Seg {{SITENAME}}",
 	"help": "Tallalt",
+	"help-mediawiki": "Tallalt ɣef MediaWiki",
 	"search": "Nadi",
 	"search-ignored-headings": " #<!-- eǧǧ izirigen-agi akken llan --><pre>\n# Izwal n tgezmiyin ad ttwazeglen deg unadi\n# Ibeddilen yettwagen dagi ad ddun ticki asebter s uzwel yettwarna ar umatar.\n# Tzemreḍ ad ḥettmeḍ tulsa n tmerna ar umatar n usebter s usnifel ilem\n# Taseddast d tagi :\n#   * Yal iziirig ibeddun s \"#\" d awennit\n#   * Yal izirig yeččuren d azwel ara tzegleḍ, ula d taṛuzi n usekkil\nTimsisɣal\nIseɣwan izɣarayen\nWali daɣen\n #</pre><!-- eǧǧ izirig-agi akken yella -->",
 	"searchbutton": "Nadi",
@@ -566,6 +568,8 @@
 	"savechanges": "Sekles asnifel",
 	"publishpage": "Suffeɣ-d asebter",
 	"publishchanges": "Suffeɣ-d asnifel",
+	"publishpage-start": "Sufeɣ-d asebter...",
+	"publishchanges-start": "Sufeɣ-d ibeddilen...",
 	"preview": "Pre-Ẓer",
 	"showpreview": "Ssken pre-timeẓriwt",
 	"showdiff": "Ssken ibeddlen",

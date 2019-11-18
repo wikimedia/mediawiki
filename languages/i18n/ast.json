@@ -3377,6 +3377,7 @@
 	"htmlform-float-invalid": "El valor que conseñasti nun ye un númberu.",
 	"htmlform-int-toolow": "El valor que conseñasti ye menor que'l mínimu de $1",
 	"htmlform-int-toohigh": "El valor que conseñasti ye mayor que'l máximu de $1",
+	"htmlform-multiselect-toomany": "El númberu d'elementos que conseñasti ye mayor que'l máximu de $1",
 	"htmlform-required": "Se requier esti valor",
 	"htmlform-submit": "Unviar",
 	"htmlform-reset": "Desfacer los cambios",

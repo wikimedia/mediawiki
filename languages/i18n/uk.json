@@ -3567,6 +3567,7 @@
 	"htmlform-float-invalid": "Вказане вами значення не є числом.",
 	"htmlform-int-toolow": "Вказане вами значення нижче за мінімальне — $1",
 	"htmlform-int-toohigh": "Зазначене вами значення вище за максимальне — $1",
+	"htmlform-multiselect-toomany": "Зазначена вами кількість елементів вища за максимальну — $1",
 	"htmlform-required": "Це значення обов'язкове",
 	"htmlform-submit": "Відправити",
 	"htmlform-reset": "Відкотити зміни",
