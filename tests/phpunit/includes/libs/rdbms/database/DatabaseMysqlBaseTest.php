@@ -23,6 +23,7 @@
  * @copyright © 2013 Wikimedia Foundation and contributors
  */
 
+use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\MySQLMasterPos;
@@ -753,5 +754,23 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			"SELECT  field  FROM `meow`    WHERE a = 'x'  ",
 			$sql
 		);
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::streamStatementEnd
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::streamStatementEnd
+	 */
+	public function testStreamStatementEnd() {
+		/** @var DatabaseMysqlBase $db */
+		$db = $this->getMockForAbstractClass( DatabaseMysqlBase::class, [], '', false );
+		$sql = '';
+
+		$newLine = "delimiter\n!! ?";
+		$this->assertFalse( $db->streamStatementEnd( $sql, $newLine ) );
+		$this->assertSame( '', $newLine );
+
+		$newLine = 'JUST A TEST!!!';
+		$this->assertTrue( $db->streamStatementEnd( $sql, $newLine ) );
+		$this->assertSame( 'JUST A TEST!', $newLine );
 	}
 }
