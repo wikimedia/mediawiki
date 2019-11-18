@@ -310,7 +310,7 @@ preview HTML.
 $editPage: the EditPage object
 &$content: the Content object for the text field from the edit page
 &$previewHTML: Text to be placed into the page for the preview
-&$parserOutput: the ParserOutput object for the preview
+$parserOutput: the ParserOutput object for the preview
 
 'AlternateUserMailer': Called before mail is sent so that mail could be logged
 (or something else) instead of using PEAR or PHP's mail(). Return false to skip
@@ -863,7 +863,7 @@ $title: title of the template
 &$id: the id of the revision being parsed
 
 'BeforeParserrenderImageGallery': Before an image gallery is rendered by Parser.
-&$parser: Parser object
+$parser: Parser object
 &$ig: ImageGallery object
 
 'BeforeWelcomeCreation': Before the welcomecreation message is displayed to a
@@ -1896,7 +1896,7 @@ $context: IContextSource object
 
 'InternalParseBeforeLinks': during Parser's internalParse method before links
 but after nowiki/noinclude/includeonly/onlyinclude and other processings.
-&$parser: Parser object
+$parser: Parser object
 &$text: string containing partially parsed text
 &$stripState: Parser's internal StripState object
 
@@ -1904,7 +1904,7 @@ but after nowiki/noinclude/includeonly/onlyinclude and other processings.
 the parser removes unwanted/dangerous HTML tags and after nowiki/noinclude/
 includeonly/onlyinclude and other processings. Ideal for syntax-extensions after
 template/parser function execution which respect nowiki and HTML-comments.
-&$parser: Parser object
+$parser: Parser object
 &$text: string containing partially parsed text
 &$stripState: Parser's internal StripState object
 
@@ -2400,7 +2400,7 @@ $out: the OutputPage object
 
 'OutputPageBeforeHTML': A page has been processed by the parser and the
 resulting HTML is about to be displayed.
-&$parserOutput: the parserOutput (object) that corresponds to the page
+$parserOutput: the parserOutput (object) that corresponds to the page
 &$text: the text that will be displayed, in HTML (string)
 
 'OutputPageBodyAttributes': Called when OutputPage::headElement is creating the
@@ -2526,38 +2526,38 @@ $user: User (object) for the user who is viewing.
 
 'ParserAfterParse': Called from Parser::parse() just after the call to
 Parser::internalParse() returns.
-&$parser: parser object
+$parser: parser object
 &$text: text being parsed
 &$stripState: stripState used (object)
 
 'ParserAfterStrip': Called at end of parsing time.
 TODO: No more strip, deprecated ?
-&$parser: parser object
+$parser: parser object
 &$text: text being parsed
 &$stripState: stripState used (object)
 
 'ParserAfterTidy': Called after Parser::tidy() in Parser::parse()
-&$parser: Parser object being used
+$parser: Parser object being used
 &$text: text that will be returned
 
 'ParserAfterUnstrip': Called after the first unstripGeneral() in
 Parser::internalParseHalfParsed()
-&$parser: Parser object being used
+$parser: Parser object being used
 &$text: text that will be returned
 
 'ParserBeforeInternalParse': Called at the beginning of Parser::internalParse().
-&$parser: Parser object
+$parser: Parser object
 &$text: text to parse
 &$stripState: StripState instance being used
 
 'ParserBeforeStrip': Called at start of parsing time.
 TODO: No more strip, deprecated ?
-&$parser: parser object
+$parser: parser object
 &$text: text being parsed
 &$stripState: stripState used (object)
 
 'ParserBeforeTidy': Called before tidy and custom tags replacements.
-&$parser: Parser object being used
+$parser: Parser object being used
 &$text: actual text
 
 'ParserCacheSaveComplete': Called after a ParserOutput has been committed to
@@ -2569,7 +2569,7 @@ $popts: ParserOptions used for generating $parserOutput
 $revId: ID of the revision that was parsed to create $parserOutput
 
 'ParserClearState': Called at the end of Parser::clearState().
-&$parser: Parser object being cleared
+$parser: Parser object being cleared
 
 'ParserCloned': Called when the parser is cloned.
 $parser: Newly-cloned Parser object
@@ -2582,7 +2582,7 @@ $rev: Revision object of the template
 &$deps: Array of template dependencies with 'title', 'page_id', 'rev_id' keys
 
 'ParserFirstCallInit': Called when the parser initialises for the first time.
-&$parser: Parser object being cleared
+$parser: Parser object being cleared
 
 'ParserGetVariableValueSwitch': Called when the parser need the value of a
 custom magic word
@@ -2595,12 +2595,12 @@ $frame: PPFrame object to use for expanding any template variables
 
 'ParserGetVariableValueTs': Use this to change the value of the time for the
 {{LOCAL...}} magic word.
-&$parser: Parser object
+$parser: Parser object
 &$time: actual time (timestamp)
 
 'ParserGetVariableValueVarCache': use this to change the value of the variable
 cache or return false to not use it.
-&$parser: Parser object
+$parser: Parser object
 &$varCache: variable cache (array)
 
 'ParserLimitReportFormat': Called for each row in the parser limit report that
