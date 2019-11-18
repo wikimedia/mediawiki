@@ -613,6 +613,8 @@ class UserTest extends MediaWikiTestCase {
 			'PerformRetroactiveAutoblock' => []
 		] );
 
+		$blockManager = MediaWikiServices::getInstance()->getBlockManager();
+
 		// 1. Log in a test user, and block them.
 		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
@@ -628,8 +630,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
 		$user1->load();
-		MediaWikiServices::getInstance()->getBlockManager()
-			->trackBlockWithCookie( $user1, $request1->response() );
+		$blockManager->trackBlockWithCookie( $user1, $request1->response() );
 
 		// Confirm that the block has been applied as required.
 		$this->assertTrue( $user1->isLoggedIn() );
@@ -642,18 +643,17 @@ class UserTest extends MediaWikiTestCase {
 		$cookies = $request1->response()->getCookies();
 		$this->assertArrayHasKey( 'wmsitetitleBlockID', $cookies );
 		$this->assertEquals( $expiryFiveHours, $cookies['wmsitetitleBlockID']['expire'] );
-		$cookieId = MediaWikiServices::getInstance()->getBlockManager()->getIdFromCookieValue(
+		$cookieId = $blockManager->getIdFromCookieValue(
 			$cookies['wmsitetitleBlockID']['value']
 		);
 		$this->assertEquals( $block->getId(), $cookieId );
 
 		// 2. Create a new request, set the cookies, and see if the (anon) user is blocked.
 		$request2 = new FauxRequest();
-		$request2->setCookie( 'BlockID', $block->getCookieValue() );
+		$request2->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
 		$user2 = User::newFromSession( $request2 );
 		$user2->load();
-		MediaWikiServices::getInstance()->getBlockManager()
-			->trackBlockWithCookie( $user2, $request2->response() );
+		$blockManager->trackBlockWithCookie( $user2, $request2->response() );
 		$this->assertNotEquals( $user1->getId(), $user2->getId() );
 		$this->assertNotEquals( $user1->getToken(), $user2->getToken() );
 		$this->assertTrue( $user2->isAnon() );
@@ -673,8 +673,7 @@ class UserTest extends MediaWikiTestCase {
 		$request3->setCookie( 'BlockID', $block->getId() );
 		$user3 = User::newFromSession( $request3 );
 		$user3->load();
-		MediaWikiServices::getInstance()->getBlockManager()
-			->trackBlockWithCookie( $user3, $request3->response() );
+		$blockManager->trackBlockWithCookie( $user3, $request3->response() );
 		$this->assertTrue( $user3->isLoggedIn() );
 		$this->assertInstanceOf( DatabaseBlock::class, $user3->getBlock() );
 		$this->assertEquals( true, $user3->getBlock()->isAutoblocking() ); // Non-strict type-check.
@@ -1481,6 +1480,8 @@ class UserTest extends MediaWikiTestCase {
 			'wgSecretKey' => MWCryptRand::generateHex( 64, true ),
 		] );
 
+		$blockManager = MediaWikiServices::getInstance()->getBlockManager();
+
 		// setup block
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -1493,7 +1494,7 @@ class UserTest extends MediaWikiTestCase {
 		$request = new FauxRequest();
 		$request->setIP( '1.2.3.4' );
 		$request->getSession()->setUser( $this->getTestUser()->getUser() );
-		$request->setCookie( 'BlockID', $block->getCookieValue() );
+		$request->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
 
 		// setup user
 		$user = User::newFromSession( $request );
