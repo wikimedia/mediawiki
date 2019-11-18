@@ -4146,17 +4146,6 @@ class Language {
 	}
 
 	/**
-	 * For languages that support multiple variants, the title of an
-	 * article may be displayed differently in different variants. this
-	 * function returns the apporiate title defined in the body of the article.
-	 *
-	 * @return string
-	 */
-	public function getParsedTitle() {
-		return $this->mConverter->getParsedTitle();
-	}
-
-	/**
 	 * Refresh the cache of conversion tables when
 	 * MediaWiki:Conversiontable* is updated.
 	 *
