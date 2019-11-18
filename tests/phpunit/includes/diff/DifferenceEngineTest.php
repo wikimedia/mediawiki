@@ -225,7 +225,7 @@ class DifferenceEngineTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetDiffBody
 	 */
 	public function testGetDiffBody(
-		RevisionRecord $oldRevision = null, RevisionRecord $newRevision = null, $expectedDiff
+		?RevisionRecord $oldRevision, ?RevisionRecord $newRevision, $expectedDiff
 	) {
 		if ( $expectedDiff instanceof Exception ) {
 			$this->expectException( get_class( $expectedDiff ) );

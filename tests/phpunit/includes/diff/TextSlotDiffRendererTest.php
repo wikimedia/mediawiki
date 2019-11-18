@@ -16,7 +16,7 @@ class TextSlotDiffRendererTest extends MediaWikiTestCase {
 	 * @throws Exception
 	 */
 	public function testGetDiff(
-		array $oldContentArgs = null, array $newContentArgs = null, $expectedResult
+		?array $oldContentArgs, ?array $newContentArgs, $expectedResult
 	) {
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
 			'testing' => DummyContentHandlerForTesting::class,
