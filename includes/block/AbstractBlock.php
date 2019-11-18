@@ -312,6 +312,7 @@ abstract class AbstractBlock {
 	 * @return bool|null Null for unrecognized rights.
 	 */
 	public function prevents( $action, $x = null ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		$config = RequestContext::getMain()->getConfig();
 		$blockDisablesLogin = $config->get( 'BlockDisablesLogin' );
 		$blockAllowsUTEdit = $config->get( 'BlockAllowsUTEdit' );
