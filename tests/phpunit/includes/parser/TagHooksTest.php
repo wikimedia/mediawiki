@@ -114,7 +114,7 @@ class TagHooksTest extends MediaWikiTestCase {
 		return str_rot13( $text );
 	}
 
-	public function functionTagCallback( &$parser, $frame, $code, $attribs ) {
+	public function functionTagCallback( $parser, $frame, $code, $attribs ) {
 		return str_rot13( $code );
 	}
 }

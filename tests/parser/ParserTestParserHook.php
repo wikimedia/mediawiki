@@ -27,7 +27,7 @@
 
 class ParserTestParserHook {
 
-	public static function setup( &$parser ) {
+	public static function setup( Parser $parser ) {
 		$parser->setHook( 'tag', [ __CLASS__, 'dumpHook' ] );
 		$parser->setHook( 'tåg', [ __CLASS__, 'dumpHook' ] );
 		$parser->setHook( 'statictag', [ __CLASS__, 'staticTagHook' ] );
