@@ -74,10 +74,10 @@ Using a hook-running strategy, we can avoid having all this option-specific
 stuff in our mainline code. Using hooks, the function becomes:
 
 	function showAnArticle( $article ) {
-		if ( Hooks::run( 'ArticleShow', [ &$article ] ) ) {
+		if ( Hooks::run( 'ArticleShow', [ $article ] ) ) {
 			# code to actually show the article goes here
 
-			Hooks::run( 'ArticleShowComplete', [ &$article ] );
+			Hooks::run( 'ArticleShowComplete', [ $article ] );
 		}
 	}
 
@@ -91,15 +91,15 @@ title-reversing if-blocks spread all over the codebase in showAnArticle,
 deleteAnArticle, exportArticle, etc., we can concentrate it all in an extension
 file:
 
-	function onArticleShow( &$article ) {
+	function onArticleShow( $article ) {
 		# ...
 	}
 
-	function onArticleDelete( &$article ) {
+	function onArticleDelete( $article ) {
 		# ...
 	}
 
-	function onArticleExport( &$article ) {
+	function onArticleExport( $article ) {
 		# ...
 	}
 
@@ -217,12 +217,9 @@ related to a particular event, like so:
 		function protect() {
 			global $wgUser;
 
-			// Avoid PHP 7.1 warning from passing $this by reference
-			$article = $this;
-
-			if ( Hooks::run( 'ArticleProtect', [ &$article, &$wgUser ] ) ) {
+			if ( Hooks::run( 'ArticleProtect', [ $this, $wgUser ] ) ) {
 				# protect the article
-				Hooks::run( 'ArticleProtectComplete', [ &$article, &$wgUser ] );
+				Hooks::run( 'ArticleProtectComplete', [ $this, $wgUser ] );
 			}
 		}
 	}
