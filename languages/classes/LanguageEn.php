@@ -27,7 +27,7 @@ class EnConverter extends LanguageConverter {
 	/**
 	 * Dummy methods required by base class.
 	 */
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'en' => new ReplacementArray(),
 			'en-x-piglatin' => new ReplacementArray(),
@@ -42,7 +42,7 @@ class EnConverter extends LanguageConverter {
 	 * @param string $toVariant
 	 * @return string
 	 */
-	function translate( $text, $toVariant ) {
+	public function translate( $text, $toVariant ) {
 		if ( $toVariant !== 'en-x-piglatin' ) {
 			return $text;
 		}

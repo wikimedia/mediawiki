@@ -888,7 +888,7 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getWeekdayAbbreviation( $key ) {
+	public function getWeekdayAbbreviation( $key ) {
 		return $this->getMessageFromDB( self::$mWeekdayAbbrevMsgs[$key - 1] );
 	}
 
@@ -896,7 +896,7 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getIranianCalendarMonthName( $key ) {
+	private function getIranianCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mIranianCalendarMonthMsgs[$key - 1] );
 	}
 
@@ -904,7 +904,7 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getHebrewCalendarMonthName( $key ) {
+	private function getHebrewCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mHebrewCalendarMonthMsgs[$key - 1] );
 	}
 
@@ -912,7 +912,7 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getHebrewCalendarMonthNameGen( $key ) {
+	private function getHebrewCalendarMonthNameGen( $key ) {
 		return $this->getMessageFromDB( self::$mHebrewCalendarMonthGenMsgs[$key - 1] );
 	}
 
@@ -920,7 +920,7 @@ class Language {
 	 * @param string $key
 	 * @return string
 	 */
-	function getHijriCalendarMonthName( $key ) {
+	private function getHijriCalendarMonthName( $key ) {
 		return $this->getMessageFromDB( self::$mHijriCalendarMonthMsgs[$key - 1] );
 	}
 
@@ -2756,7 +2756,7 @@ class Language {
 	/**
 	 * @return string
 	 */
-	function fallback8bitEncoding() {
+	public function fallback8bitEncoding() {
 		return $this->localisationCache->getItem( $this->mCode, 'fallback8bitEncoding' );
 	}
 
@@ -2768,7 +2768,7 @@ class Language {
 	 *
 	 * @return bool
 	 */
-	function hasWordBreaks() {
+	public function hasWordBreaks() {
 		return true;
 	}
 
@@ -2779,7 +2779,7 @@ class Language {
 	 * @param string $string
 	 * @return string
 	 */
-	function segmentByWord( $string ) {
+	public function segmentByWord( $string ) {
 		return $string;
 	}
 
@@ -2832,7 +2832,7 @@ class Language {
 	 * @param string[] $termsArray
 	 * @return string[]
 	 */
-	function convertForSearchResult( $termsArray ) {
+	public function convertForSearchResult( $termsArray ) {
 		# some languages, e.g. Chinese, need to do a conversion
 		# in order for search results to be displayed correctly
 		return $termsArray;
@@ -3022,7 +3022,7 @@ class Language {
 	/**
 	 * @return array
 	 */
-	function capitalizeAllNouns() {
+	public function capitalizeAllNouns() {
 		return $this->localisationCache->getItem( $this->mCode, 'capitalizeAllNouns' );
 	}
 
@@ -3033,7 +3033,7 @@ class Language {
 	 *   backwards, left, right, up, down.
 	 * @return string
 	 */
-	function getArrow( $direction = 'forwards' ) {
+	public function getArrow( $direction = 'forwards' ) {
 		switch ( $direction ) {
 			case 'forwards':
 				return $this->isRTL() ? '←' : '→';
@@ -3055,7 +3055,7 @@ class Language {
 	 *
 	 * @return bool
 	 */
-	function linkPrefixExtension() {
+	public function linkPrefixExtension() {
 		return $this->localisationCache->getItem( $this->mCode, 'linkPrefixExtension' );
 	}
 
@@ -3063,7 +3063,7 @@ class Language {
 	 * Get all magic words from cache.
 	 * @return array
 	 */
-	function getMagicWords() {
+	public function getMagicWords() {
 		return $this->localisationCache->getItem( $this->mCode, 'magicWords' );
 	}
 
@@ -3072,7 +3072,7 @@ class Language {
 	 *
 	 * @param MagicWord $mw
 	 */
-	function getMagic( $mw ) {
+	public function getMagic( $mw ) {
 		$rawEntry = $this->mMagicExtensions[$mw->mId] ??
 			$this->localisationCache->getSubitem( $this->mCode, 'magicWords', $mw->mId );
 
@@ -3104,7 +3104,7 @@ class Language {
 	 *   canonical name => array of valid names, including aliases
 	 * @return array
 	 */
-	function getSpecialPageAliases() {
+	public function getSpecialPageAliases() {
 		// Cache aliases because it may be slow to load them
 		if ( is_null( $this->mExtendedSpecialPageAliases ) ) {
 			// Initialise array
@@ -3273,28 +3273,28 @@ class Language {
 	/**
 	 * @return string
 	 */
-	function digitGroupingPattern() {
+	public function digitGroupingPattern() {
 		return $this->localisationCache->getItem( $this->mCode, 'digitGroupingPattern' );
 	}
 
 	/**
 	 * @return array
 	 */
-	function digitTransformTable() {
+	public function digitTransformTable() {
 		return $this->localisationCache->getItem( $this->mCode, 'digitTransformTable' );
 	}
 
 	/**
 	 * @return array
 	 */
-	function separatorTransformTable() {
+	public function separatorTransformTable() {
 		return $this->localisationCache->getItem( $this->mCode, 'separatorTransformTable' );
 	}
 
 	/**
 	 * @return int|null
 	 */
-	function minimumGroupingDigits() {
+	public function minimumGroupingDigits() {
 		return $this->localisationCache->getItem( $this->mCode, 'minimumGroupingDigits' );
 	}
 
@@ -3747,7 +3747,7 @@ class Language {
 	 * @return array Array of grammar forms
 	 * @since 1.20
 	 */
-	function getGrammarForms() {
+	public function getGrammarForms() {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms[$this->getCode()] )
 			&& is_array( $wgGrammarForms[$this->getCode()] )
@@ -4161,7 +4161,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function getExtraHashOptions() {
+	public function getExtraHashOptions() {
 		return $this->mConverter->getExtraHashOptions();
 	}
 
@@ -4422,7 +4422,7 @@ class Language {
 	 * @param string $talk
 	 * @return string
 	 */
-	function fixVariableInNamespace( $talk ) {
+	private function fixVariableInNamespace( $talk ) {
 		if ( strpos( $talk, '$1' ) === false ) {
 			return $talk;
 		}
@@ -4656,7 +4656,7 @@ class Language {
 	 *   language, to display text properly
 	 * @return string HTML escaped
 	 */
-	function specialList( $page, $details, $oppositedm = true ) {
+	public function specialList( $page, $details, $oppositedm = true ) {
 		if ( !$details ) {
 			return $page;
 		}

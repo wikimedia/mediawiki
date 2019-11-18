@@ -33,7 +33,7 @@ class ZhConverter extends LanguageConverter {
 	 * @param array $flags
 	 * @param array $manualLevel
 	 */
-	function __construct( Language $langobj, $maincode,
+	public function __construct( Language $langobj, $maincode,
 		$variants = [],
 		$variantfallbacks = [],
 		$flags = [],
@@ -61,7 +61,7 @@ class ZhConverter extends LanguageConverter {
 		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
 	}
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'zh-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
 			'zh-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
@@ -75,7 +75,7 @@ class ZhConverter extends LanguageConverter {
 		];
 	}
 
-	function postLoadTables() {
+	protected function postLoadTables() {
 		$this->mTables['zh-cn']->setArray(
 			$this->mTables['zh-cn']->getArray() + $this->mTables['zh-hans']->getArray()
 		);
@@ -100,7 +100,7 @@ class ZhConverter extends LanguageConverter {
 	 * @param string $key
 	 * @return string
 	 */
-	function convertCategoryKey( $key ) {
+	public function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'zh' );
 	}
 }
@@ -189,7 +189,7 @@ class LanguageZh extends LanguageZh_hans {
 	 * @param string[] $termsArray
 	 * @return string[]
 	 */
-	function convertForSearchResult( $termsArray ) {
+	public function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );
 		$terms = self::convertDoubleWidth( $terms );
 		$terms = implode( '|', $this->mConverter->autoConvertToAllVariants( $terms ) );

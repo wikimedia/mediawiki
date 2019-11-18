@@ -87,7 +87,7 @@ class IuConverter extends LanguageConverter {
 		'ɫii' => 'ᖡ', 'ɫu' => 'ᖢ', 'ɫuu' => 'ᖣ', 'ɫa' => 'ᖤ', 'ɫaa' => 'ᖥ',
 	];
 
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$this->mTables = [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
 			'ike-cans' => new ReplacementArray( $this->mToSyllabics ),
@@ -130,7 +130,7 @@ class IuConverter extends LanguageConverter {
 	 *
 	 * @return string
 	 */
-	function translate( $text, $toVariant ) {
+	public function translate( $text, $toVariant ) {
 		// If $text is empty or only includes spaces, do nothing
 		// Otherwise translate it
 		if ( trim( $text ) ) {

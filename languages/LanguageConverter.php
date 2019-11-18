@@ -936,10 +936,9 @@ class LanguageConverter {
 	 * Load default conversion tables.
 	 * This method must be implemented in derived class.
 	 *
-	 * @private
 	 * @throws MWException
 	 */
-	function loadDefaultTables() {
+	protected function loadDefaultTables() {
 		$class = static::class;
 		throw new MWException( "Must implement loadDefaultTables() method in class $class" );
 	}
@@ -949,7 +948,7 @@ class LanguageConverter {
 	 * @private
 	 * @param bool $fromCache Load from memcached? Defaults to true.
 	 */
-	function loadTables( $fromCache = true ) {
+	protected function loadTables( $fromCache = true ) {
 		global $wgLanguageConverterCacheType;
 
 		if ( $this->mTablesLoaded ) {
@@ -985,7 +984,7 @@ class LanguageConverter {
 	/**
 	 * Hook for post processing after conversion tables are loaded.
 	 */
-	function postLoadTables() {
+	protected function postLoadTables() {
 	}
 
 	/**
@@ -1024,7 +1023,7 @@ class LanguageConverter {
 	 *
 	 * @return array
 	 */
-	function parseCachedTable( $code, $subpage = '', $recursive = true ) {
+	private function parseCachedTable( $code, $subpage = '', $recursive = true ) {
 		static $parsed = [];
 
 		$key = 'Conversiontable/' . $code;
@@ -1150,7 +1149,7 @@ class LanguageConverter {
 	 *
 	 * @return string
 	 */
-	function convertCategoryKey( $key ) {
+	public function convertCategoryKey( $key ) {
 		return $key;
 	}
 
@@ -1177,7 +1176,7 @@ class LanguageConverter {
 	 * Get the cached separator pattern for ConverterRule::parseRules()
 	 * @return string
 	 */
-	function getVarSeparatorPattern() {
+	public function getVarSeparatorPattern() {
 		if ( is_null( $this->mVarSeparatorPattern ) ) {
 			// varsep_pattern for preg_split:
 			// text should be splited by ";" only if a valid variant
