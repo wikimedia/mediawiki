@@ -188,9 +188,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 
 		// Disable some if needed
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->groupHasPermission( '*', 'createpage' )
-		) {
+		if ( !$this->canAnonymousUsersCreatePages() ) {
 			unset( $filters['hideliu'] );
 		}
 		if ( !$this->getUser()->useNPPatrol() ) {
@@ -542,6 +540,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 			htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
 			"</p>\n<hr />\n<div>" .
 			nl2br( htmlspecialchars( $content->serialize() ) ) . "</div>";
+	}
+
+	private function canAnonymousUsersCreatePages() {
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		return ( $pm->groupHasPermission( '*', 'createpage' ) ||
+			$pm->groupHasPermission( '*', 'createtalk' )
+		);
 	}
 
 	protected function getGroupName() {
