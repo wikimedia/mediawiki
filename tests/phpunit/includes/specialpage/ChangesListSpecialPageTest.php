@@ -160,7 +160,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultipleAssociated() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace IN ('0','1','4','5','6','7')",
+				"rc_namespace IN (0,'1','4',5,6,'7')",
 			],
 			[
 				'namespace' => '1;4;7',
@@ -173,7 +173,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterAssociatedSpecial() {
 		$this->assertConditions(
 			[ # expected
-			  "rc_namespace IN ('-1','0','1')",
+			  "rc_namespace IN ('-1',0,'1')",
 			],
 			[
 				'namespace' => '1;-1',
@@ -186,7 +186,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultipleAssociatedInvert() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace NOT IN ('2','3','8','9')",
+				"rc_namespace NOT IN ('2','3',8,'9')",
 			],
 			[
 				'namespace' => '2;3;9',
@@ -228,7 +228,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user->getActorId( wfGetDB( DB_MASTER ) );
 		$this->assertConditions(
 			[ # expected
-				"NOT((rc_actor = '{$user->getActorId()}'))",
+				"NOT((rc_actor = {$user->getActorId()}))",
 			],
 			[
 				'hidemyself' => 1,
@@ -241,7 +241,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
 		$this->assertConditions(
 			[ # expected
-				"NOT((rc_actor = '{$user->getActorId()}'))",
+				"NOT((rc_actor = {$user->getActorId()}))",
 			],
 			[
 				'hidemyself' => 1,
@@ -256,7 +256,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$user->getActorId( wfGetDB( DB_MASTER ) );
 		$this->assertConditions(
 			[ # expected
-				"(rc_actor = '{$user->getActorId()}')",
+				"(rc_actor = {$user->getActorId()})",
 			],
 			[
 				'hidebyothers' => 1,
@@ -269,7 +269,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
 		$this->assertConditions(
 			[ # expected
-				"(rc_actor = '{$user->getActorId()}')",
+				"(rc_actor = {$user->getActorId()})",
 			],
 			[
 				'hidebyothers' => 1,
@@ -282,7 +282,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidepageedits() {
 		$this->assertConditions(
 			[ # expected
-				"rc_type != '0'",
+				"rc_type != 0",
 			],
 			[
 				'hidepageedits' => 1,
@@ -294,7 +294,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidenewpages() {
 		$this->assertConditions(
 			[ # expected
-				"rc_type != '1'",
+				"rc_type != 1",
 			],
 			[
 				'hidenewpages' => 1,
@@ -306,7 +306,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidelog() {
 		$this->assertConditions(
 			[ # expected
-				"rc_type != '3'",
+				"rc_type != 3",
 			],
 			[
 				'hidelog' => 1,
@@ -436,7 +436,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				"rc_type != '6'"
+				"rc_type != 6"
 			],
 			[
 				'hidecategorization' => 1

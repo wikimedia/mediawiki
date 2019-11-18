@@ -2759,12 +2759,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $s === null ) {
 			return 'NULL';
 		} elseif ( is_bool( $s ) ) {
-			return (int)$s;
+			return (string)(int)$s;
+		} elseif ( is_int( $s ) ) {
+			return (string)$s;
 		} else {
-			# This will also quote numeric values. This should be harmless,
-			# and protects against weird problems that occur when they really
-			# _are_ strings such as article titles and string->number->string
-			# conversion is not 1:1.
 			return "'" . $this->strencode( $s ) . "'";
 		}
 	}

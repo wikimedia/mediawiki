@@ -1286,7 +1286,9 @@ SQL;
 		if ( is_null( $s ) ) {
 			return 'NULL';
 		} elseif ( is_bool( $s ) ) {
-			return intval( $s );
+			return (string)intval( $s );
+		} elseif ( is_int( $s ) ) {
+			return (string)$s;
 		} elseif ( $s instanceof Blob ) {
 			if ( $s instanceof PostgresBlob ) {
 				$s = $s->fetch();
