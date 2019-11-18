@@ -106,6 +106,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	 * @param string|Title|WikiPage $page
 	 * @param string|Content|Content[] $content
 	 * @param int|null $model
+	 * @param User|null $user
 	 *
 	 * @return WikiPage
 	 */

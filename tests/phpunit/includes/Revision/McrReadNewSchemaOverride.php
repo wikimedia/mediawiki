@@ -29,6 +29,7 @@ trait McrReadNewSchemaOverride {
 	}
 
 	/**
+	 * @param IMaintainableDatabase $db
 	 * @return array[]
 	 */
 	protected function getSchemaOverrides( IMaintainableDatabase $db ) {

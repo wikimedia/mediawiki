@@ -1528,6 +1528,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @throws LogicException if the given database connection is not a set up to use
 	 * mock tables.
 	 *
+	 * @param IDatabase $db
 	 * @since 1.31 this is no longer private.
 	 */
 	protected function ensureMockDatabaseConnection( IDatabase $db ) {
