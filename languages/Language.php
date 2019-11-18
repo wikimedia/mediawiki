@@ -423,13 +423,6 @@ class Language {
 	}
 
 	/**
-	 * Hook which will be called if this is the content language.
-	 * Descendants can use this to register hook functions or modify globals
-	 */
-	function initContLang() {
-	}
-
-	/**
 	 * @return array
 	 * @since 1.19
 	 */
