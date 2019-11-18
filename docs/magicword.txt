@@ -49,7 +49,7 @@ function wfAddCustomMagicWordID( &$magicWords ) {
 	return true;
 }
 
-function wfGetCustomMagicWordValue( $parser, &$variableCache, &$magicWordId, &$ret ){
+function wfGetCustomMagicWordValue( $parser, &$variableCache, $magicWordId, &$ret ){
 	if( $magicWordId == 'mag_custom' ){
 		$ret = $variableCache['mag_custom'] = "Custom value";
 	}
@@ -77,12 +77,12 @@ $magicWords['es'] = [
 $wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
 $wgHooks['ParserFirstCallInit'][] = 'wfRegisterCustomMagicWord';
 
-function wfRegisterCustomMagicWord( &$parser ){
+function wfRegisterCustomMagicWord( $parser ){
 	$parser->setFunctionHook( 'mag_custom', 'wfGetCustomMagicWordValue' );
 	return true;
 }
 
-function wfGetCustomMagicWordValue( &$parser, $var1, $var2 ){
+function wfGetCustomMagicWordValue( $parser, $var1, $var2 ){
 	return "custom: var1 is $var1, var2 is $var2";
 }
 
