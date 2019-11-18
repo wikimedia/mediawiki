@@ -337,7 +337,7 @@ class ParserTestRunner {
 		$setup['wgSVGConverters'] = [ 'null' => 'echo "1">$output' ];
 
 		// Fake constant timestamp
-		Hooks::register( 'ParserGetVariableValueTs', function ( &$parser, &$ts ) {
+		Hooks::register( 'ParserGetVariableValueTs', function ( $parser, &$ts ) {
 			$ts = $this->getFakeTimestamp();
 			return true;
 		} );
