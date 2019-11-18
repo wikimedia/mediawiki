@@ -37,7 +37,6 @@
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * @cond file_level_code
@@ -7837,10 +7836,7 @@ $wgJobClasses = [
 	'refreshLinksPrioritized' => RefreshLinksJob::class,
 	'refreshLinksDynamic' => RefreshLinksJob::class,
 	'activityUpdateJob' => ActivityUpdateJob::class,
-	'categoryMembershipChange' => function ( Title $title, array $params ) {
-		$pc = MediaWikiServices::getInstance()->getParserCache();
-		return new CategoryMembershipChangeJob( $pc, $title, $params );
-	},
+	'categoryMembershipChange' => CategoryMembershipChangeJob::class,
 	'clearUserWatchlist' => ClearUserWatchlistJob::class,
 	'watchlistExpiry' => WatchlistExpiryJob::class,
 	'cdnPurge' => CdnPurgeJob::class,

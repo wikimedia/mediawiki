@@ -45,11 +45,6 @@ class CategoryMembershipChangeJob extends Job {
 	const ENQUEUE_FUDGE_SEC = 60;
 
 	/**
-	 * @var ParserCache
-	 */
-	private $parserCache;
-
-	/**
 	 * @param Title $title The title of the page for which to update category membership.
 	 * @param string $revisionTimestamp The timestamp of the new revision that triggered the job.
 	 * @return JobSpecification
@@ -72,16 +67,14 @@ class CategoryMembershipChangeJob extends Job {
 	/**
 	 * Constructor for use by the Job Queue infrastructure.
 	 * @note Don't call this when queueing a new instance, use newSpec() instead.
-	 * @param ParserCache $parserCache Cache outputs of PHP parser.
 	 * @param Title $title Title of the categorized page.
 	 * @param array $params Such latest revision instance of the categorized page.
 	 */
-	public function __construct( ParserCache $parserCache, Title $title, array $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'categoryMembershipChange', $title, $params );
 		// Only need one job per page. Note that ENQUEUE_FUDGE_SEC handles races where an
 		// older revision job gets inserted while the newer revision job is de-duplicated.
 		$this->removeDuplicates = true;
-		$this->parserCache = $parserCache;
 	}
 
 	public function run() {
@@ -268,16 +261,16 @@ class CategoryMembershipChangeJob extends Job {
 	 * @return string[] category names
 	 */
 	private function getCategoriesAtRev( WikiPage $page, RevisionRecord $rev, $parseTimestamp ) {
-		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
+		$services = MediaWikiServices::getInstance();
 		$options = $page->makeParserOptions( 'canonical' );
 		$options->setTimestamp( $parseTimestamp );
 
 		$output = $rev instanceof RevisionStoreRecord && $rev->isCurrent()
-			? $this->parserCache->get( $page, $options )
+			? $services->getParserCache()->get( $page, $options )
 			: null;
 
 		if ( !$output || $output->getCacheRevisionId() !== $rev->getId() ) {
-			$output = $renderer->getRenderedRevision( $rev, $options )
+			$output = $services->getRevisionRenderer()->getRenderedRevision( $rev, $options )
 				->getRevisionParserOutput();
 		}
 
