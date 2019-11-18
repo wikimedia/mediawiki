@@ -155,6 +155,8 @@ because of Phabricator reports.
 * The method ContentHandler::getSlotDiffRendererInternal is replaced with
   ContentHandler::getSlotDiffRendererWithOptions. This breaks consumers which
   call parent::getSlotDiffRendererInternal (no instances of which are known).
+* TextContent::getHighlightHtml, deprecated since 1.24, has been removed. Use
+  TextContent::getHtml instead.
 * …
 === Deprecations in 1.35 ===
 * The PHPUnit4And6Compat class, used to provide compatibility with PHPUnit 4, is
