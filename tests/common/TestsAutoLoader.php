@@ -145,9 +145,6 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 
-	# tests/phpunit/includes/password
-	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
-
 	# tests/phpunit/includes/resourceloader
 	'ResourceLoaderImageModuleTest' =>
 		"$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
@@ -229,6 +226,9 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
+
+	# tests/phpunit/includes/unit/password
+	'PasswordTestCase' => "$testDir/phpunit/unit/includes/password/PasswordTestCase.php",
 
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",

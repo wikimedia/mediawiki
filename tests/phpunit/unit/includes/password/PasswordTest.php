@@ -21,13 +21,7 @@
  */
 
 /**
- * @covers InvalidPassword
+ * @covers Password
  */
 class PasswordTest extends \MediaWikiUnitTestCase {
-	public function testInvalidPlaintext() {
-		$passwordFactory = new PasswordFactory();
-		$invalid = $passwordFactory->newFromPlaintext( null );
-
-		$this->assertInstanceOf( InvalidPassword::class, $invalid );
-	}
 }

@@ -23,7 +23,7 @@
 /**
  * @since 1.24
  */
-abstract class PasswordTestCase extends MediaWikiTestCase {
+abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 	/**
 	 * @var PasswordFactory
 	 */
