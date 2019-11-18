@@ -553,6 +553,7 @@ abstract class AbstractBlock {
 	 * @return array
 	 */
 	public function getBlockErrorParams( IContextSource $context ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getBlockErrorFormatter()->getMessage(
 				$this,

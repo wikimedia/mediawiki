@@ -170,7 +170,7 @@ class BlockErrorFormatterTest extends MediaWikiTestCase {
 	 */
 	public function testGetMessageCompositeBlocks( $ids, $expected ) {
 		$block = $this->getMockBuilder( CompositeBlock::class )
-			->setMethods( [ 'getIdentifier', 'getBlockErrorParams' ] )
+			->setMethods( [ 'getIdentifier' ] )
 			->getMock();
 		$block->method( 'getIdentifier' )
 			->willReturn( $ids );
