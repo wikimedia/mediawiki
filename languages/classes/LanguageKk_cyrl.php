@@ -734,7 +734,7 @@ class LanguageKk_cyrl extends Language {
 	 * @param string[] $allVowels
 	 * @return array
 	 */
-	function lastLetter( $word, $allVowels ) {
+	private function lastLetter( $word, $allVowels ) {
 		$lastLetter = [];
 
 		// Put the word in a form we can play with since we're using UTF-8

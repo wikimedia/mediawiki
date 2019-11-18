@@ -15,7 +15,7 @@ class CrhExceptions {
 
 	const WB = '\b'; # default word boundary; may be updated in the future
 
-	function __construct() {
+	public function __construct() {
 		$this->loadRegs();
 	}
 
@@ -89,7 +89,7 @@ class CrhExceptions {
 		}
 	}
 
-	function loadExceptions( $lcChars, $ucChars ) {
+	public function loadExceptions( $lcChars, $ucChars ) {
 		# init lc and uc, as needed
 		$this->initLcUc( $lcChars, $ucChars );
 
@@ -399,7 +399,7 @@ class CrhExceptions {
 	private $Cyrl2LatnRegexes = [];
 	private $Latn2CyrlRegexes = [];
 
-	function loadRegs() {
+	private function loadRegs() {
 		// Regexes as keys need to be declared in a function.
 		$this->Cyrl2LatnRegexes = [
 			############################

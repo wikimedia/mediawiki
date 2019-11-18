@@ -150,7 +150,7 @@ class CrhConverter extends LanguageConverter {
 		];
 	}
 
-	function loadExceptions() {
+	private function loadExceptions() {
 		if ( $this->mExceptionsLoaded ) {
 			return;
 		}

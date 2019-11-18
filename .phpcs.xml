@@ -20,7 +20,6 @@
 	<!-- TODO Still to be done -->
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/</exclude-pattern>
-		<exclude-pattern>languages/</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
