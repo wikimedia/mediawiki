@@ -1066,7 +1066,7 @@
 	"rcfilters-activefilters-hide-tooltip": "Гамәлдәге сөзгечләр өлкәсен яшерергә",
 	"rcfilters-activefilters-show-tooltip": "Гамәлдәге сөзгечләр өлкәсен күрсәтергә",
 	"rcfilters-advancedfilters": "Киңәйтелгән сөзгечләр",
-	"rcfilters-limit-title": "Күрсәтү өчен нәтиҗәләр",
+	"rcfilters-limit-title": "Күрсәтү өчен нәтиҗәләр исәбе",
 	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|үзгәреш}}, $2",
 	"rcfilters-date-popup-title": "Эзләү өчен вакыт арасы",
 	"rcfilters-days-title": "Соңгы көннәр",
