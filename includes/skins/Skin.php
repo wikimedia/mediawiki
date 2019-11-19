@@ -275,10 +275,12 @@ abstract class Skin extends ContextSource {
 		// Check, if the page can hold some kind of content, otherwise do nothing
 		$title = $this->getRelevantTitle();
 		if ( $title->canExist() && $title->canHaveTalkPage() ) {
+			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+
 			if ( $title->isTalkPage() ) {
-				$titles[] = $title->getSubjectPage();
+				$titles[] = $namespaceInfo->getSubjectPage( $title );
 			} else {
-				$titles[] = $title->getTalkPage();
+				$titles[] = $namespaceInfo->getTalkPage( $title );
 			}
 		}
 
