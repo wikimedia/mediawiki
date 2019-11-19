@@ -20,7 +20,7 @@
  * @file
  */
 
-use Wikimedia\Assert\Assert;
+declare( strict_types = 1 );
 
 /**
  * Represents a password hash for use in authentication
@@ -66,7 +66,7 @@ abstract class Password {
 
 	/**
 	 * String representation of the hash without the type
-	 * @var string
+	 * @var string|null
 	 */
 	protected $hash;
 
@@ -93,7 +93,7 @@ abstract class Password {
 	 * @param array $config Array of engine configuration options for hashing
 	 * @param string|null $hash The raw hash, including the type
 	 */
-	final public function __construct( PasswordFactory $factory, array $config, $hash = null ) {
+	final public function __construct( PasswordFactory $factory, array $config, string $hash = null ) {
 		if ( !$this->isSupported() ) {
 			throw new Exception( 'PHP support not found for ' . get_class( $this ) );
 		}
@@ -117,7 +117,7 @@ abstract class Password {
 	 *
 	 * @return string Password type
 	 */
-	final public function getType() {
+	final public function getType() : string {
 		return $this->config['type'];
 	}
 
@@ -126,7 +126,7 @@ abstract class Password {
 	 *
 	 * @return bool
 	 */
-	protected function isSupported() {
+	protected function isSupported() : bool {
 		return true;
 	}
 
@@ -134,10 +134,10 @@ abstract class Password {
 	 * Perform any parsing necessary on the hash to see if the hash is valid
 	 * and/or to perform logic for seeing if the hash needs updating.
 	 *
-	 * @param string $hash The hash, with the :<TYPE>: prefix stripped
+	 * @param string|null $hash The hash, with the :<TYPE>: prefix stripped
 	 * @throws PasswordError If there is an error in parsing the hash
 	 */
-	protected function parseHash( $hash ) {
+	protected function parseHash( ?string $hash ) : void {
 	}
 
 	/**
@@ -145,7 +145,7 @@ abstract class Password {
 	 *
 	 * @return bool True if needs update, false otherwise
 	 */
-	abstract public function needsUpdate();
+	abstract public function needsUpdate() : bool;
 
 	/**
 	 * Checks whether the given password matches the hash stored in this object.
@@ -153,9 +153,7 @@ abstract class Password {
 	 * @param string $password Password to check
 	 * @return bool
 	 */
-	public function verify( $password ) {
-		Assert::parameterType( 'string', $password, '$password' );
-
+	public function verify( string $password ) : bool {
 		// No need to use the factory because we're definitely making
 		// an object of the same type.
 		$obj = clone $this;
@@ -176,7 +174,7 @@ abstract class Password {
 	 * @return string
 	 * @throws PasswordError if password cannot be serialized to fit a tinyblob.
 	 */
-	public function toString() {
+	public function toString() : string {
 		$result = ':' . $this->config['type'] . ':' . $this->hash;
 		$this->assertIsSafeSize( $result );
 		return $result;
@@ -192,7 +190,7 @@ abstract class Password {
 	 * @param string $hash The hash in question.
 	 * @throws PasswordError If hash does not fit in DB.
 	 */
-	final protected function assertIsSafeSize( $hash ) {
+	final protected function assertIsSafeSize( string $hash ) : void {
 		if ( strlen( $hash ) > self::MAX_HASH_SIZE ) {
 			throw new PasswordError( "Password hash is too big" );
 		}
@@ -207,5 +205,5 @@ abstract class Password {
 	 * @param string $password Password to hash
 	 * @throws PasswordError If an internal error occurs in hashing
 	 */
-	abstract public function crypt( $password );
+	abstract public function crypt( string $password ) : void;
 }

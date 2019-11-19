@@ -20,6 +20,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 /**
  * Helper class for passwords that use another password hash underneath it
  * and encrypts that hash with a configured secret.
@@ -27,18 +29,18 @@
  * @since 1.24
  */
 class EncryptedPassword extends ParameterizedPassword {
-	protected function getDelimiter() {
+	protected function getDelimiter() : string {
 		return ':';
 	}
 
-	protected function getDefaultParams() {
+	protected function getDefaultParams() : array {
 		return [
 			'cipher' => $this->config['cipher'],
 			'secret' => count( $this->config['secrets'] ) - 1
 		];
 	}
 
-	public function crypt( $password ) {
+	public function crypt( string $password ) : void {
 		$secret = $this->config['secrets'][$this->params['secret']];
 
 		// Clear error string
@@ -77,7 +79,7 @@ class EncryptedPassword extends ParameterizedPassword {
 	 * @throws MWException If the configuration is not valid
 	 * @return bool True if the password was updated
 	 */
-	public function update() {
+	public function update() : bool {
 		if ( count( $this->args ) != 1 || $this->params == $this->getDefaultParams() ) {
 			// Hash does not need updating
 			return false;
