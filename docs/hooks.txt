@@ -3048,8 +3048,6 @@ $type: 'normal' or 'history' for old/diff views
 &$msg: overridable message; usually 'copyright' or 'history_copyright'. This
   message must be in HTML format, not wikitext!
 &$link: overridable HTML link to be passed into the message as $1
-&$forContent: DEPRECATED! overridable flag if copyright footer is shown in
-  content language.
 
 'SkinEditSectionLinks': Modify the section edit links
 $skin: Skin object rendering the UI
