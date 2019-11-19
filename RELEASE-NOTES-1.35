@@ -202,6 +202,7 @@ because of Phabricator reports.
 * Skin::makeI18nUrl() and makeNSUrl() have been deprecated, no longer used.
 * Title::countAuthorsBetween and Title::getAuthorsBetween have been deprecated.
   Use respective methods in RevisionStore instead.
+* Remove deprecated SkinCopyrightFooter &$forContent parameter
 * …
 
 === Other changes in 1.35 ===

@@ -881,13 +881,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		// Allow for site and per-namespace customization of copyright notice.
-		// @todo Remove deprecated $forContent param from hook handlers and then remove here.
-		$forContent = true;
-
-		Hooks::run(
-			'SkinCopyrightFooter',
-			[ $this->getTitle(), $type, &$msg, &$link, &$forContent ]
-		);
+		Hooks::run( 'SkinCopyrightFooter', [ $this->getTitle(), $type, &$msg, &$link ] );
 
 		return $this->msg( $msg )->rawParams( $link )->text();
 	}
