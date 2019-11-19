@@ -254,11 +254,6 @@ fieldset {
 	padding: 0 1em 1em;
 }
 
-fieldset.nested {
-	margin: 0 0 0.5em 0;
-	padding: 0 0.5em 0.5em;
-}
-
 legend {
 	padding: 0.5em;
 	font-size: 95%;
