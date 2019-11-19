@@ -185,14 +185,12 @@ class XmlTypeCheck {
 	}
 
 	private function readNext( XMLReader $reader ) {
-		set_error_handler( [ $this, 'XmlErrorHandler' ] );
+		set_error_handler( function ( $line, $file ) {
+			$this->wellFormed = false;
+		} );
 		$ret = $reader->read();
 		restore_error_handler();
 		return $ret;
-	}
-
-	public function XmlErrorHandler( $errno, $errstr ) {
-		$this->wellFormed = false;
 	}
 
 	private function validate( $reader ) {
@@ -208,7 +206,7 @@ class XmlTypeCheck {
 				$this->processingInstructionHandler( $reader->name, $reader->value );
 			}
 			if ( $reader->nodeType === XMLReader::DOC_TYPE ) {
-				$this->DTDHandler( $reader );
+				$this->dtdHandler( $reader );
 			}
 		} while ( $reader->nodeType != XMLReader::ELEMENT );
 
@@ -374,7 +372,7 @@ class XmlTypeCheck {
 	 *
 	 * @param XMLReader $reader Reader currently pointing at DOCTYPE node.
 	 */
-	private function DTDHandler( XMLReader $reader ) {
+	private function dtdHandler( XMLReader $reader ) {
 		$externalCallback = $this->parserOptions['external_dtd_handler'];
 		$generalCallback = $this->parserOptions['dtd_handler'];
 		$checkIfSafe = $this->parserOptions['require_safe_dtd'];
@@ -407,7 +405,6 @@ class XmlTypeCheck {
 			// Filter hit!
 			$this->filterMatch = true;
 			$this->filterMatchType = $callbackReturn;
-			$callbackReturn = false;
 		}
 
 		if ( $checkIfSafe && isset( $parsedDTD['internal'] ) &&
@@ -438,7 +435,6 @@ class XmlTypeCheck {
 	 * @return bool true if safe.
 	 */
 	private function checkDTDIsSafe( $internalSubset ) {
-		$offset = 0;
 		$res = preg_match(
 			'/^(?:\s*<!ENTITY\s+\S+\s+' .
 				'(?:"(?:&[^"%&;]{1,64};|(?:[^"%&]|&amp;|&quot;){0,255})"' .
