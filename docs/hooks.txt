@@ -2468,8 +2468,7 @@ $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
 $flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article (can be null for edits that change
-  nothing)
+$revision: New Revision of the article
 $status: Status object about to be returned by doEditContent()
 $originalRevId: if the edit restores or repeats an earlier revision (such as a
   rollback or a null revision), the ID of that earlier revision. False otherwise.
