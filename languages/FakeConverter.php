@@ -103,10 +103,6 @@ class FakeConverter {
 		return '';
 	}
 
-	function getParsedTitle() {
-		return '';
-	}
-
 	public function markNoConversion( $text, $noParse = false ) {
 		return $text;
 	}
