@@ -2907,5 +2907,20 @@
 	"mw-widgets-copytextlayout-copy-fail": "ߓߊߓߌߟߊߟߌ ߓߘߊ߫ ߗߌߙߏ߲߫ ߛߓߍ߫ ߞߊ߬ ߥߊ߫ ߛߓߍ߫ ߜߍ߬ߙߍ߲߬ߘߍ߬ߣߍ߲ ߘߐ߫",
 	"mw-widgets-copytextlayout-copy-success": "ߛߓߍߟߌ ߓߘߊ߫ ߓߊߓߌ߬ߟߊ߬ ߛߓߍߝߌߘߊ߫-ߜߍ߬ߙߍ߲߬ߘߍ߬ߣߍ߲ ߞߊ߲߬.",
 	"mw-widgets-dateinput-no-date": "ߕߎ߬ߡߊ߬ߘߊ߫ ߡߊ߫ ߓߊߕߐ߬ߡߐ߲߬",
-	"randomrootpage": "ߓߍ߲߬ߛߋ߲߬ߡߊ߬ ߞߐߜߍ ߓߏ߬ߞߊߘߌ"
+	"mw-widgets-mediasearch-noresults": "ߞߐߝߟߌ߫ ߡߊ߫ ߛߐ߬ߘߐ߲߬",
+	"mw-widgets-titleinput-description-new-page": "ߞߐߜߍ ߏ߬ ߡߊ߫ ߟߊߘߊ߲߫ ߝߟߐ߫",
+	"mw-widgets-titleinput-description-redirect": "ߟߊ߬ߞߎ߲߬ߛߌ߲߬ߠߌ߲ ߦߊ߲߬ $1",
+	"mw-widgets-categoryselector-add-category-placeholder": "ߦߌߟߡߊ ߘߏ߫ ߟߊߘߏ߲߬...",
+	"mw-widgets-usersmultiselect-placeholder": "ߘߏ߫ ߜߘߍ߫ ߟߎ߫ ߟߊߘߏ߲߬",
+	"mw-widgets-titlesmultiselect-placeholder": "ߘߏ߫ ߜߘߍ߫ ߟߎ߫ ߟߊߘߏ߲߬...",
+	"date-range-from": "ߞߵߊ߬ ߕߊ߬ ߕߎ߬ߡߊ߬ߘߊ:",
+	"date-range-to": "ߞߵߊ߬ ߛߌ߰ ߕߎ߬ߡߊ߬ߘߊ:",
+	"sessionprovider-generic": "$1 ߥߎ߬ߛߎ",
+	"sessionprovider-mediawiki-session-cookiesessionprovider": "ߥߎ߬ߛߎ ߡߍ߲ ߓߌ߲ߓߌ߲ߣߍ߲߫ ߦߋ߫ ߞߎ߯ߞߌߦߋ ߡߊ߬",
+	"sessionprovider-nocookies": "ߞߎ߯ߞߌߦߋ ߓߘߊ߫ ߓߐ߫ ߊ߬ ߟߊ߫. ߘߍ߲߬ߞߣߍ߬ߦߊ߬ ߞߴߌ ߓߘߊ߫ ߞߎ߯ߞߌߦߋ ߓߌ߬ߟߵߊ߬ ߟߊ߫ ߞߵߊ߬ ߘߊߡߌ߬ߣߊ߬ ߕߎ߲߯.",
+	"randomrootpage": "ߓߍ߲߬ߛߋ߲߬ߡߊ߬ ߞߐߜߍ ߓߏ߬ߞߊߘߌ",
+	"log-action-filter-block": "ߝߊ߲߬ߞߣߐ ߛߎ߯ߦߊ:",
+	"log-action-filter-delete": "Type of deletion:",
+	"log-action-filter-move": "Type of move:",
+	"log-action-filter-newusers": "Type of account creation:"
 }

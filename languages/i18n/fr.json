@@ -3660,6 +3660,7 @@
 	"htmlform-float-invalid": "La valeur que vous avez spécifiée n'est pas un nombre.",
 	"htmlform-int-toolow": "La valeur que vous avez spécifiée est plus petite que le minimum de $1",
 	"htmlform-int-toohigh": "La valeur que vous avez spécifiée est plus grande que le maximum de $1",
+	"htmlform-multiselect-toomany": "Le nombre d’éléments que vous avez spécifié est au-delà du maximum de $1.",
 	"htmlform-required": "Cette valeur est requise",
 	"htmlform-submit": "Soumettre",
 	"htmlform-reset": "Défaire les modifications",

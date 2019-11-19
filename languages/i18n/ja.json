@@ -3671,7 +3671,7 @@
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|名前空間}} $2",
 	"logentry-partialblock-block": "$1 が $3 に対して $7 の編集を $5 ブロックしました $6",
 	"logentry-partialblock-reblock": "$1 が {{GENDER:$4|$3}} に対する $7 のブロックの期限を $5 に{{GENDER:$2|変更しました}} $6",
-	"logentry-non-editing-block-block": "$1 が {{GENDER:$4|$3}} に対して編集以外の処理を $5 $6 で{{GENDER:$2||ブロックしました}}",
+	"logentry-non-editing-block-block": "$1 が {{GENDER:$4|$3}} に対して編集以外の処理を $5 $6 でブロックしました",
 	"logentry-non-editing-block-reblock": "$1 が {{GENDER:$4|$3}} に対する特定の編集以外の処理のブロックの期限を $5 $6 に{{GENDER:$2|変更しました}}",
 	"logentry-suppress-block": "$1 が {{GENDER:$4|$3}} を$5で{{GENDER:$2|ブロックしました}} $6",
 	"logentry-suppress-reblock": "$1 が {{GENDER:$4|$3}} のブロックの期限を$5に{{GENDER:$2|変更しました}} $6",
