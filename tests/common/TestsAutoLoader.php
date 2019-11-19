@@ -65,6 +65,7 @@ $wgAutoloadClasses += [
 	'MediaWikiUnitTestCase' => "$testDir/phpunit/MediaWikiUnitTestCase.php",
 	'MediaWikiIntegrationTestCase' => "$testDir/phpunit/MediaWikiIntegrationTestCase.php",
 	'PHPUnit4And6Compat' => "$testDir/phpunit/PHPUnit4And6Compat.php",
+	'PHPUnit6And8Compat' => "$testDir/phpunit/PHPUnit6And8Compat.php",
 	'ResourceLoaderFileModuleTestingSubclass' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'ResourceLoaderFileTestModule' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'ResourceLoaderTestCase' => "$testDir/phpunit/ResourceLoaderTestCase.php",
