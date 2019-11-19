@@ -1,7 +1,4 @@
 <?php
-
-use Wikimedia\Assert\Assert;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +17,8 @@ use Wikimedia\Assert\Assert;
  *
  * @file
  */
+
+declare( strict_types = 1 );
 
 /**
  * Implements Argon2, a modern key derivation algorithm designed to resist GPU cracking and
@@ -40,7 +39,7 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	protected function isSupported() {
+	protected function isSupported() : bool {
 		// It is actually possible to have a PHP build with Argon2i but not Argon2id
 		return defined( 'PASSWORD_ARGON2I' ) || defined( 'PASSWORD_ARGON2ID' );
 	}
@@ -48,7 +47,7 @@ class Argon2Password extends Password {
 	/**
 	 * @return mixed[] Array of 2nd and third parmeters to password_hash()
 	 */
-	private function prepareParams() {
+	private function prepareParams() : array {
 		switch ( $this->config['algo'] ) {
 			case 'argon2i':
 				$algo = PASSWORD_ARGON2I;
@@ -72,7 +71,7 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	public function crypt( $password ) {
+	public function crypt( string $password ) : void {
 		list( $algo, $params ) = $this->prepareParams();
 		$this->hash = password_hash( $password, $algo, $params );
 	}
@@ -80,16 +79,14 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	public function verify( $password ) {
-		Assert::parameterType( 'string', $password, '$password' );
-
+	public function verify( string $password ) : bool {
 		return password_verify( $password, $this->hash );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function toString() {
+	public function toString() : string {
 		$res = ":argon2:{$this->hash}";
 		$this->assertIsSafeSize( $res );
 		return $res;
@@ -98,7 +95,7 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	public function needsUpdate() {
+	public function needsUpdate() : bool {
 		list( $algo, $params ) = $this->prepareParams();
 		return password_needs_rehash( $this->hash, $algo, $params );
 	}

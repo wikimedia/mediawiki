@@ -18,6 +18,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 /**
  * Show an error when any operation involving passwords fails to run.
  *

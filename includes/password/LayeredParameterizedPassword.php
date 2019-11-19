@@ -20,6 +20,8 @@
  * @file
  */
 
+declare( strict_types = 1 );
+
 /**
  * This password hash type layers one or more parameterized password types
  * on top of each other.
@@ -31,11 +33,11 @@
  * @since 1.24
  */
 class LayeredParameterizedPassword extends ParameterizedPassword {
-	protected function getDelimiter() {
+	protected function getDelimiter() : string {
 		return '!';
 	}
 
-	protected function getDefaultParams() {
+	protected function getDefaultParams() : array {
 		$params = [];
 
 		foreach ( $this->config['types'] as $type ) {
@@ -53,7 +55,7 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 		return $params;
 	}
 
-	public function crypt( $password ) {
+	public function crypt( string $password ) : void {
 		$lastHash = $password;
 		foreach ( $this->config['types'] as $i => $type ) {
 			// Construct pseudo-hash based on params and arguments
