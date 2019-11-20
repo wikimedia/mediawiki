@@ -1531,6 +1531,9 @@ class DifferenceEngine extends ContextSource {
 			|| !$this->mOldPage || !$this->mNewPage
 			|| !$this->mOldPage->equals( $this->mNewPage )
 			|| $this->mOldRev->getId() === null || $this->mNewRev->getId() === null
+			// (T237709) Deleted revs might have different page IDs
+			|| $this->mNewPage->getArticleId() !== $this->mOldRev->getPage()
+			|| $this->mNewPage->getArticleId() !== $this->mNewRev->getPage()
 		) {
 			return '';
 		}
