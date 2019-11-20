@@ -449,7 +449,11 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$key,
 			$cache::TTL_INDEFINITE,
 			$checkFunc,
-			[ 'graceTTL' => $cache::TTL_WEEK, 'checkKeys' => [ $checkKey ] ] + $extOpts
+			[
+				'graceTTL' => $cache::TTL_WEEK,
+				'checkKeys' => [ $checkKey ],
+				'ageNew' => -1
+			] + $extOpts
 		);
 		$this->assertSame( 'xxx1', $v, "Cached value returned" );
 		$this->assertSame( 1, $wasSet, "Cached value returned" );
@@ -461,7 +465,11 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$key,
 			$cache::TTL_INDEFINITE,
 			$checkFunc,
-			[ 'graceTTL' => $cache::TTL_WEEK, 'checkKeys' => [ $checkKey ] ] + $extOpts
+			[
+				'graceTTL' => $cache::TTL_WEEK,
+				'checkKeys' => [ $checkKey ],
+				'ageNew' => -1,
+			] + $extOpts
 		);
 		$this->assertSame( 'xxx1', $v, "Value still returned after expired (in grace)" );
 		$this->assertSame( 1, $wasSet, "Value still returned after expired (in grace)" );
@@ -1047,7 +1055,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $value, $ret );
 		$this->assertSame( 2, $calls, 'Callback used (mutex acquired)' );
 
-		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5 ] );
+		$ret = $cache->getWithSetCallback( $key, 300, $func, [ 'lockTSE' => 5, 'lowTTL' => -1 ] );
 		$this->assertSame( $value, $ret );
 		$this->assertSame( 2, $calls, 'Callback was not used (interim value used)' );
 
