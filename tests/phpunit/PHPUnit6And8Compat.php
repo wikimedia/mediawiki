@@ -34,7 +34,6 @@ trait PHPUnit6And8Compat {
 				'parameter of assertEquals\(\)',
 				'Using assert(Not)?Contains\(\) with string haystacks',
 				'(read|getObject)Attribute\(\)',
-				'parameter of assertEquals\(\)',
 
 			];
 
