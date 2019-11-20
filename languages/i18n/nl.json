@@ -100,7 +100,8 @@
 			"Ecthelion3",
 			"RadioAzureus",
 			"LongJohn nl",
-			"Kupulak"
+			"Kupulak",
+			"Rots61"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -2894,7 +2895,7 @@
 	"tooltip-pt-login": "U wordt van harte uitgenodigd om aan te melden, maar dit is niet verplicht",
 	"tooltip-pt-login-private": "U moet zich aanmelden om gebruik te kunnen maken van deze wiki",
 	"tooltip-pt-logout": "Afmelden",
-	"tooltip-pt-createaccount": "Registreer u vooral en meld u aan. Dit is echter niet vereist.",
+	"tooltip-pt-createaccount": "Registreer u vooral en meld u aan. Dit is echter niet verplicht.",
 	"tooltip-ca-talk": "Overleg over deze pagina",
 	"tooltip-ca-edit": "Deze pagina bewerken",
 	"tooltip-ca-addsection": "Nieuw kopje toevoegen",

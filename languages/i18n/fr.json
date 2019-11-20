@@ -2641,6 +2641,8 @@
 	"sp-contributions-hideminor": "Masquer les modifications mineures",
 	"sp-contributions-submit": "Rechercher",
 	"sp-contributions-outofrange": "Impossible d’afficher un quelconque résultat. L’intervalle d’adresses IP est plus grand que la limite CIDR de /$1.",
+	"sp-contributions-concurrency-user": "Désolé, trop de requêtes ont été faites depuis votre compte utilisateur. Veuillez réessayer ultérieurement.",
+	"sp-contributions-concurrency-ip": "Désolé, trop de requêtes ont été faites depuis votre adresse IP. Veuillez réessayer ultérieurement.",
 	"whatlinkshere": "Pages liées",
 	"whatlinkshere-title": "Pages qui pointent vers « $1 »",
 	"whatlinkshere-page": "Page :",

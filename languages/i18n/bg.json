@@ -1802,7 +1802,7 @@
 	"uploadstash-bad-path-unrecognized-thumb-name": "Неразпознато име на миниатюрата.",
 	"uploadstash-bad-path-no-handler": "Няма намерен манипулатор за MIME-тип $1 на файл $2.",
 	"uploadstash-bad-path-bad-format": "Ключът „$1“ не е в подходящ формат.",
-	"uploadstash-file-not-found": "Във временното хранилище е открит ключ „$1“.",
+	"uploadstash-file-not-found": "Не е открит ключ „$1“ във временното хранилище.",
 	"uploadstash-file-not-found-no-thumb": "Миниатюрата не може да бъде получена.",
 	"uploadstash-file-not-found-no-local-path": "Няма локален път за мащабиран обект.",
 	"uploadstash-file-not-found-no-object": "Локалният файлов обект за миниатюрата не може да бъде създаден.",

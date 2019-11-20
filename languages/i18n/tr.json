@@ -3716,6 +3716,7 @@
 	"cannotauth-not-allowed": "Bu sayfayı kullanmaya izniniz yok",
 	"changecredentials-submit": "Kimlik bilgilerini değiştir",
 	"removecredentials": "Kimlik bilgilerini kaldır",
+	"removecredentials-submit": "Kimlik bilgilerini kaldır",
 	"credentialsform-account": "Hesap adı:",
 	"userjsispublic": "Lütfen dikkat: JavaScript alt sayfaları, diğer kullanıcılar tarafından görülebildiği için mahrem veriler içermemelidir.",
 	"userjsonispublic": "Lütfen dikkat: JSON alt sayfaları, diğer kullanıcılar tarafından görülebildiği için mahrem veriler içermemelidir.",
