@@ -39,5 +39,14 @@
 			"RevisionLookup",
 			"PermissionManager"
 		]
+	},
+	{
+		"path": "/v1/search/page",
+		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
+		"services": [
+			"PermissionManager",
+			"SearchEngineFactory",
+			"SearchEngineConfig"
+		]
 	}
 ]

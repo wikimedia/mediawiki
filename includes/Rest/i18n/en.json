@@ -24,5 +24,6 @@
 	"rest-compare-inaccessible": "The revision specified by the $1 parameter is not publicly accessible.",
 	"rest-compare-wrong-content": "The $1 slot of the revision specified by the $2 parameter has a content type which cannot be converted to text.",
 	"rest-compare-wikidiff2": "This endpoint requires wikidiff2 1.9.0 or later.",
-	"rest-pagehistorycount-too-many-revisions": "The specified title contains too many revisions to retrieve this count."
+	"rest-pagehistorycount-too-many-revisions": "The specified title contains too many revisions to retrieve this count.",
+	"rest-search-error": "Error when returning search results: $1"
 }
