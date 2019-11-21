@@ -2,6 +2,7 @@
 declare( strict_types = 1 );
 
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -23,7 +24,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 *     'name' and 'domainId' will be given default values if not present.
 	 *   - A nonempty indexed array or a string, interpreted as a list of methods to override.
 	 *   - An empty array, which is ignored.
-	 * @return FileBackend A mock with no methods overridden except those specified in
+	 * @return FileBackend|MockObject A mock with no methods overridden except those specified in
 	 *   $methodsToMock, and all abstract methods.
 	 */
 	private function newMockFileBackend( ...$args ) : FileBackend {
@@ -49,19 +50,10 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			$config += [ 'domainId' => '' ];
 		}
 
-		// getMockForAbstractClass has a lot of undocumented parameters that we need to set
-		// https://github.com/sebastianbergmann/phpunit-mock-objects/blob/5.0.10/src/Generator.php#L268
-		// TODO Would be better to use getMockBuilder and replace the un-overridden abstract methods
-		// with something that throws.
-		return $this->getMockForAbstractClass( FileBackend::class,
-			/* $arguments */ [ $config ],
-			/* $mockClassName */ '',
-			/* $callOriginalConstructor */ true,
-			/* $callOriginalClone */ false,
-			/* $callAutoload */ true,
-			/* $mockedMethods */ $methodsToMock,
-			/* $cloneArguments */ false
-		);
+		return $this->getMockBuilder( FileBackend::class )
+			->setConstructorArgs( [ $config ] )
+			->setMethods( $methodsToMock )
+			->getMockForAbstractClass();
 	}
 
 	/**
