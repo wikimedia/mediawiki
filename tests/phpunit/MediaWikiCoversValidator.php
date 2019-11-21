@@ -48,6 +48,10 @@ trait MediaWikiCoversValidator {
 			}
 		}
 
-		$this->assertSame( '', $bad );
+		if ( $bad ) {
+			$this->fail( $bad );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
 	}
 }
