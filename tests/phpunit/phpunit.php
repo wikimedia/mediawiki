@@ -14,17 +14,6 @@ define( 'MW_PHPUNIT_TEST', true );
 require_once dirname( dirname( __DIR__ ) ) . "/maintenance/Maintenance.php";
 
 class PHPUnitMaintClass extends Maintenance {
-	/**
-	 * @fixme This is an awful hack.
-	 */
-	public static $additionalOptions = [
-		'use-filebackend' => false,
-		'use-bagostuff' => false,
-		'use-jobqueue' => false,
-		'use-normal-tables' => false,
-		'reuse-db' => false,
-	];
-
 	public function __construct() {
 		parent::__construct();
 		$this->setAllowUnregisteredOptions( true );
@@ -78,8 +67,8 @@ class PHPUnitMaintClass extends Maintenance {
 
 		fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
 
-		foreach ( self::$additionalOptions as $option => $default ) {
-			self::$additionalOptions[$option] = $this->getOption( $option );
+		foreach ( MediaWikiCliOptions::$additionalOptions as $option => $default ) {
+			MediaWikiCliOptions::$additionalOptions[$option] = $this->getOption( $option );
 		}
 
 		$command = new MediaWikiPHPUnitCommand();

@@ -1931,7 +1931,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return mixed
 	 */
 	public function getCliArg( $offset ) {
-		return PHPUnitMaintClass::$additionalOptions[$offset] ?? null;
+		return MediaWikiCliOptions::$additionalOptions[$offset] ?? null;
 	}
 
 	/**
@@ -1940,7 +1940,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param mixed $value
 	 */
 	public function setCliArg( $offset, $value ) {
-		PHPUnitMaintClass::$additionalOptions[$offset] = $value;
+		MediaWikiCliOptions::$additionalOptions[$offset] = $value;
 	}
 
 	/**

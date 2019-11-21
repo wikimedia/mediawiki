@@ -53,6 +53,7 @@ $wgAutoloadClasses += [
 	'EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'HamcrestPHPUnitIntegration' => "$testDir/phpunit/HamcrestPHPUnitIntegration.php",
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
+	'MediaWikiCliOptions' => "$testDir/phpunit/MediaWikiCliOptions.php",
 	'MediaWikiCoversValidator' => "$testDir/phpunit/MediaWikiCoversValidator.php",
 	'MediaWikiGroupValidator' => "$testDir/phpunit/MediaWikiGroupValidator.php",
 	'MediaWikiLangTestCase' => "$testDir/phpunit/MediaWikiLangTestCase.php",
