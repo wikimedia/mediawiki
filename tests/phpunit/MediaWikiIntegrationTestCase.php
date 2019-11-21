@@ -24,7 +24,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * injection and does not access any globals.
  */
 abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
-	use PHPUnit6And8Compat;
 	use MediaWikiCoversValidator;
 	use MediaWikiGroupValidator;
 	use MediaWikiTestCaseTrait;
