@@ -1,4 +1,7 @@
 <?php
+
+use SebastianBergmann\FileIterator\Facade;
+
 /**
  * The tests here verify the structure of the code.  This is for outright bugs,
  * not just style issues.
@@ -58,6 +61,6 @@ class StructureTest extends MediaWikiTestCase {
 	}
 
 	private function recurseFiles( $dir ) {
-		return ( new File_Iterator_Facade() )->getFilesAsArray( $dir, [ '.php' ] );
+		return ( new Facade() )->getFilesAsArray( $dir, [ '.php' ] );
 	}
 }

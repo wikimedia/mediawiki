@@ -43,7 +43,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 			->with( $user, 'editmyprivateinfo' )
 			->willReturn( $canEditPrivate );
 
-		$loadBalancer = $this->getMockBuilder( ILoadBalancer::class )->getMock();
+		$loadBalancer = $this->createMock( ILoadBalancer::class );
 
 		$passwordReset = new PasswordReset(
 			$config,
@@ -239,8 +239,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 			'SpecialPasswordResetOnSubmit' => [],
 		] );
 
-		$loadBalancer = $this->getMockBuilder( ILoadBalancer::class )
-			->getMock();
+		$loadBalancer = $this->createMock( ILoadBalancer::class );
 
 		$users = $this->makeUsers();
 

@@ -15,7 +15,7 @@
 		 timeoutForLargeTests="60"
 		 beStrictAboutTestsThatDoNotTestAnything="true"
 		 beStrictAboutOutputDuringTests="true"
-		 beStrictAboutTestSize="true"
+		 enforceTimeLimit="true"
 		 verbose="false">
 	<php>
 		<ini name="memory_limit" value="512M" />
