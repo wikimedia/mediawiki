@@ -20,7 +20,8 @@
 			"RevisionStore",
 			"NameTableStoreFactory",
 			"PermissionManager",
-			"DBLoadBalancer"
+			"DBLoadBalancer",
+			"MainWANObjectCache"
 		]
 	},
 	{
