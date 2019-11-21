@@ -34,19 +34,19 @@ class MediaWikiLoggerPHPUnitTestListener implements TestListener {
 		LoggerFactory::registerProvider( $this->spi );
 	}
 
-	public function addRiskyTest( Test $test, Exception $e, $time ) : void {
+	public function addRiskyTest( Test $test, Throwable $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addIncompleteTest( Test $test, Exception $e, $time ) : void {
+	public function addIncompleteTest( Test $test, Throwable $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addSkippedTest( Test $test, Exception $e, $time ) : void {
+	public function addSkippedTest( Test $test, Throwable $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 
-	public function addError( Test $test, Exception $e, $time ) : void {
+	public function addError( Test $test, Throwable $e, $time ) : void {
 		$this->augmentTestWithLogs( $test );
 	}
 

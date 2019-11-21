@@ -1,5 +1,7 @@
 <?php
 
+use SebastianBergmann\FileIterator\Facade;
+
 class AutoLoaderStructureTest extends MediaWikiTestCase {
 	/**
 	 * Assert that there were no classes loaded that are not registered with the AutoLoader.
@@ -25,7 +27,7 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 	}
 
 	private function recurseFiles( $dir ) {
-		return ( new File_Iterator_Facade() )->getFilesAsArray( $dir, [ '.php' ] );
+		return ( new Facade() )->getFilesAsArray( $dir, [ '.php' ] );
 	}
 
 	/**

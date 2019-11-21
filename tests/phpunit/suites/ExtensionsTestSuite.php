@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestSuite;
+use SebastianBergmann\FileIterator\Facade;
 
 /**
  * This test suite runs unit tests registered by extensions.
@@ -25,7 +26,7 @@ class ExtensionsTestSuite extends TestSuite {
 				// If the path is a directory, search for test cases.
 				// @since 1.24
 				$suffixes = [ 'Test.php' ];
-				$fileIterator = new File_Iterator_Facade();
+				$fileIterator = new Facade();
 				$matchingFiles = $fileIterator->getFilesAsArray( $path, $suffixes );
 				$this->addTestFiles( $matchingFiles );
 			} elseif ( file_exists( $path ) ) {

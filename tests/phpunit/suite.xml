@@ -15,7 +15,7 @@
 	timeoutForLargeTests="60"
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutOutputDuringTests="true"
-	beStrictAboutTestSize="true"
+	enforceTimeLimit="true"
 	verbose="false">
 	<testsuites>
 		<testsuite name="includes">
