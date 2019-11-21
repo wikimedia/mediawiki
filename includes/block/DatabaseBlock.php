@@ -1396,6 +1396,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @param WebResponse $response The response on which to set the cookie.
 	 */
 	public function setCookie( WebResponse $response ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		MediaWikiServices::getInstance()->getBlockManager()->setBlockCookie( $this, $response );
 	}
 
@@ -1407,6 +1408,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @param WebResponse $response The response on which to unset the cookie.
 	 */
 	public static function clearCookie( WebResponse $response ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		MediaWikiServices::getInstance()->getBlockManager()->clearBlockCookie( $response );
 	}
 
@@ -1421,6 +1423,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string The block ID, probably concatenated with "!" and the HMAC.
 	 */
 	public function getCookieValue() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getBlockManager()->getCookieValue( $this );
 	}
 
@@ -1434,6 +1437,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return int|null The block ID, or null if the HMAC is present and invalid.
 	 */
 	public static function getIdFromCookieValue( $cookieValue ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getBlockManager()->getIdFromCookieValue( $cookieValue );
 	}
 

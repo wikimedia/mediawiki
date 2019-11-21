@@ -81,7 +81,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 		$block->insert();
 
 		$user = $options['loggedIn'] ? $this->user : new User();
-		$user->getRequest()->setCookie( 'BlockID', $block->getCookieValue() );
+		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
 
 		$this->assertSame( $expected, (bool)$blockManager->getBlockFromCookieValue(
 			$user,
@@ -111,7 +111,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 		$block->insert();
 
 		$user = $options['loggedIn'] ? $this->user : new User();
-		$user->getRequest()->setCookie( 'BlockID', $block->getCookieValue() );
+		$user->getRequest()->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
 
 		$blockManager->trackBlockWithCookie(
 			$user,

@@ -55,21 +55,31 @@ class LegacyLogger extends AbstractLogger {
 	 */
 	protected $channel;
 
+	private const LEVEL_DEBUG = 100;
+	private const LEVEL_INFO = 200;
+	private const LEVEL_NOTICE = 250;
+	private const LEVEL_WARNING = 300;
+	private const LEVEL_ERROR = 400;
+	private const LEVEL_CRITICAL = 500;
+	private const LEVEL_ALERT = 550;
+	private const LEVEL_EMERGENCY = 600;
+	private const LEVEL_INFINITY = 999;
+
 	/**
 	 * Convert \Psr\Log\LogLevel constants into int for sane comparisons
-	 * These are the same values that Monlog uses
+	 * These are the same values that Monolog uses
 	 *
 	 * @var array $levelMapping
 	 */
 	protected static $levelMapping = [
-		LogLevel::DEBUG => 100,
-		LogLevel::INFO => 200,
-		LogLevel::NOTICE => 250,
-		LogLevel::WARNING => 300,
-		LogLevel::ERROR => 400,
-		LogLevel::CRITICAL => 500,
-		LogLevel::ALERT => 550,
-		LogLevel::EMERGENCY => 600,
+		LogLevel::DEBUG => self::LEVEL_DEBUG,
+		LogLevel::INFO => self::LEVEL_INFO,
+		LogLevel::NOTICE => self::LEVEL_NOTICE,
+		LogLevel::WARNING => self::LEVEL_WARNING,
+		LogLevel::ERROR => self::LEVEL_ERROR,
+		LogLevel::CRITICAL => self::LEVEL_CRITICAL,
+		LogLevel::ALERT => self::LEVEL_ALERT,
+		LogLevel::EMERGENCY => self::LEVEL_EMERGENCY,
 	];
 
 	/**
@@ -81,10 +91,49 @@ class LegacyLogger extends AbstractLogger {
 	];
 
 	/**
+	 * Minimum level. This is just to allow faster discard of debugging
+	 * messages. Not all messages meeting the level will be logged.
+	 *
+	 * @var int
+	 */
+	private $minimumLevel;
+
+	/**
+	 * Whether the channel is a DB channel
+	 *
+	 * @var bool
+	 */
+	private $isDB;
+
+	/**
 	 * @param string $channel
 	 */
 	public function __construct( $channel ) {
+		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups, $wgDebugToolbar;
+
 		$this->channel = $channel;
+		$this->isDB = isset( self::$dbChannels[$channel] );
+
+		// Calculate minimum level, duplicating some of the logic from log() and shouldEmit()
+		if ( $wgDebugLogFile != '' || $wgDebugToolbar ) {
+			// Log all messages if there is a debug log file or debug toolbar
+			$this->minimumLevel = self::LEVEL_DEBUG;
+		} elseif ( isset( $wgDebugLogGroups[$channel] ) ) {
+			$logConfig = $wgDebugLogGroups[$channel];
+			// Log messages if the config is set, according to the configured level
+			if ( is_array( $logConfig ) && isset( $logConfig['level'] ) ) {
+				$this->minimumLevel = self::$levelMapping[$logConfig['level']];
+			} else {
+				$this->minimumLevel = self::LEVEL_DEBUG;
+			}
+		} else {
+			// No other case hit: discard all messages
+			$this->minimumLevel = self::LEVEL_INFINITY;
+		}
+		if ( $this->isDB && $wgDBerrorLog && $this->minimumLevel > self::LEVEL_ERROR ) {
+			// Log DB errors if there is a DB error log
+			$this->minimumLevel = self::LEVEL_ERROR;
+		}
 	}
 
 	/**
@@ -93,7 +142,6 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string|int $level
 	 * @param string $message
 	 * @param array $context
-	 * @return null
 	 */
 	public function log( $level, $message, array $context = [] ) {
 		global $wgDBerrorLog;
@@ -101,8 +149,12 @@ class LegacyLogger extends AbstractLogger {
 		if ( is_string( $level ) ) {
 			$level = self::$levelMapping[$level];
 		}
+		if ( $level < $this->minimumLevel ) {
+			return;
+		}
+
 		if ( $this->channel === 'DBQuery'
-			&& $level === self::$levelMapping[LogLevel::DEBUG]
+			&& $level === self::LEVEL_DEBUG
 			&& isset( $context['sql'] )
 		) {
 			// Also give the query information to the MWDebug tools
@@ -124,10 +176,7 @@ class LegacyLogger extends AbstractLogger {
 		// Likewise, if the site does not use  $wgDBerrorLog, it should
 		// configurable like any other channel via $wgDebugLogGroups
 		// or $wgMWLoggerDefaultSpi.
-		if ( isset( self::$dbChannels[$this->channel] )
-			&& $level >= self::$levelMapping[LogLevel::ERROR]
-			&& $wgDBerrorLog
-		) {
+		if ( $this->isDB && $level >= self::LEVEL_ERROR && $wgDBerrorLog ) {
 			// Format and write DB errors to the legacy locations
 			$effectiveChannel = 'wfLogDBError';
 		} else {
