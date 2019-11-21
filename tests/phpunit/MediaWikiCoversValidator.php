@@ -33,25 +33,24 @@ trait MediaWikiCoversValidator {
 	/**
 	 * Test that all methods in this class that begin
 	 * with "test" have valid covers tags.
+	 *
+	 * @dataProvider providePHPUnitTestMethodNames
 	 */
-	public function testValidCovers() {
-		$methods = get_class_methods( $this );
-		$class = static::class;
-		$bad = '';
-		foreach ( $methods as $method ) {
-			if ( strpos( $method, 'test' ) === 0 ) {
-				try {
-					Test::getLinesToBeCovered( $class, $method );
-				} catch ( CodeCoverageException $e ) {
-					$bad .= "$class::$method: {$e->getMessage()}\n";
-				}
-			}
+	public function testValidCovers( $class, $method ) {
+		try {
+			Test::getLinesToBeCovered( $class, $method );
+		} catch ( CodeCoverageException $ex ) {
+			$this->fail( "$class::$method: " . $ex->getMessage() );
 		}
 
-		if ( $bad ) {
-			$this->fail( $bad );
-		} else {
-			$this->addToAssertionCount( 1 );
+		$this->addToAssertionCount( 1 );
+	}
+
+	public function providePHPUnitTestMethodNames() {
+		foreach ( get_class_methods( $this ) as $method ) {
+			if ( strncmp( $method, 'test', 4 ) === 0 ) {
+				yield [ static::class, $method ];
+			}
 		}
 	}
 }
