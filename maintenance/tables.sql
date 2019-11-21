@@ -120,7 +120,7 @@ CREATE TABLE /*_*/user (
 
   -- Count of edits and edit-like actions.
   --
-  -- *NOT* intended to be an accurate copy of COUNT(*) WHERE rev_user=user_id
+  -- *NOT* intended to be an accurate copy of COUNT(*) WHERE rev_actor refers to a user's actor_id
   -- May contain NULL for old accounts if batch-update scripts haven't been
   -- run, as well as listing deleted edits and other myriad ways it could be
   -- out of sync.
@@ -362,27 +362,11 @@ CREATE TABLE /*_*/revision (
   -- Key to page_id. This should _never_ be invalid.
   rev_page int unsigned NOT NULL,
 
-  -- Key to text.old_id, where the actual bulk text is stored.
-  -- It's possible for multiple revisions to use the same text,
-  -- for instance revisions where only metadata is altered
-  -- or a rollback to a previous version.
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
-  -- exist, this field should be ignored (and may be 0) in favor of the
-  -- corresponding data from the slots and content tables
-  rev_text_id int unsigned NOT NULL default 0,
+  -- Key to comment.comment_id. Comment summarizing the change.
+  rev_comment_id bigint unsigned NOT NULL default 0,
 
-  -- Text comment summarizing the change. Deprecated in favor of
-  -- revision_comment_temp.revcomment_comment_id.
-  rev_comment varbinary(767) NOT NULL default '',
-
-  -- Key to user.user_id of the user who made this edit.
-  -- Stores 0 for anonymous edits and for some mass imports.
-  -- Deprecated in favor of revision_actor_temp.revactor_actor.
-  rev_user int unsigned NOT NULL default 0,
-
-  -- Text username or IP address of the editor.
-  -- Deprecated in favor of revision_actor_temp.revactor_actor.
-  rev_user_text varchar(255) binary NOT NULL default '',
+  -- Key to actor.actor_id of the user or IP who made this edit.
+  rev_actor bigint unsigned NOT NULL default 0,
 
   -- Timestamp of when revision was created
   rev_timestamp binary(14) NOT NULL default '',
@@ -402,19 +386,7 @@ CREATE TABLE /*_*/revision (
   rev_parent_id int unsigned default NULL,
 
   -- SHA-1 text content hash in base-36
-  rev_sha1 varbinary(32) NOT NULL default '',
-
-  -- content model, see CONTENT_MODEL_XXX constants
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
-  -- exist, this field should be ignored (and may be NULL) in favor of the
-  -- corresponding data from the slots and content tables
-  rev_content_model varbinary(32) DEFAULT NULL,
-
-  -- content format, see CONTENT_FORMAT_XXX constants
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = rev_id
-  -- exist, this field should be ignored (and may be NULL).
-  rev_content_format varbinary(64) DEFAULT NULL
-
+  rev_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
 
@@ -430,16 +402,12 @@ CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 -- History index
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
 
--- Logged-in user contributions index
-CREATE INDEX /*i*/user_timestamp ON /*_*/revision (rev_user,rev_timestamp);
-
--- Anonymous user countributions index
-CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision (rev_user_text,rev_timestamp);
+-- User contributions index
+CREATE INDEX /*i*/rev_actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp);
 
 -- Credits index. This is scanned in order to compile credits lists for pages,
--- in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified
--- and is a logged-in user.
-CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision (rev_page,rev_user,rev_timestamp);
+-- in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified.
+CREATE INDEX /*i*/rev_page_actor_timestamp ON /*_*/revision (rev_page,rev_actor,rev_timestamp);
 
 --
 -- Temporary table to avoid blocking on an alter of revision.
@@ -518,7 +486,7 @@ CREATE TABLE /*_*/text (
   -- Note that the 'oldid' parameter used in URLs does *not*
   -- refer to this number anymore, but to rev_id.
   --
-  -- revision.rev_text_id is a key to this column
+  -- content.content_address refers to this column
   old_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Depending on the contents of the old_flags field, the text
@@ -605,17 +573,6 @@ CREATE TABLE /*_*/archive (
   -- archive rows from before 1.5, a new rev_id is created.
   ar_rev_id int unsigned NOT NULL,
 
-  -- Copied from rev_text_id, references text.old_id.
-  -- To avoid breaking the block-compression scheme and otherwise making
-  -- storage changes harder, the actual text is *not* deleted from the
-  -- text storage. Instead, it is merely hidden from public view, by removal
-  -- of the page and revision entries.
-  --
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
-  -- exist, this field should be ignored (and may be 0) in favor of the
-  -- corresponding data from the slots and content tables
-  ar_text_id int unsigned NOT NULL DEFAULT 0,
-
   -- Copied from rev_deleted. Although this may be raised during deletion.
   -- Users with the "suppressrevision" right may "archive" and "suppress"
   -- content in a single action.
@@ -640,20 +597,7 @@ CREATE TABLE /*_*/archive (
 
   -- Copied from rev_sha1, SHA-1 text content hash in base-36
   -- @since 1.19
-  ar_sha1 varbinary(32) NOT NULL default '',
-
-  -- Copied from rev_content_model, see CONTENT_MODEL_XXX constants
-  -- @since 1.21
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
-  -- exist, this field should be ignored (and may be NULL) in favor of the
-  -- corresponding data from the slots and content tables
-  ar_content_model varbinary(32) DEFAULT NULL,
-
-  -- Copied from rev_content_format, see CONTENT_FORMAT_XXX constants
-  -- @since 1.21
-  -- @deprecated since 1.31. If rows in the slots table with slot_revision_id = ar_rev_id
-  -- exist, this field should be ignored (and may be NULL).
-  ar_content_format varbinary(64) DEFAULT NULL
+  ar_sha1 varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 -- Index for Special:Undelete to page through deleted revisions

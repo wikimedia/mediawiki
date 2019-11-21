@@ -1175,7 +1175,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			'ar_namespace' => '0',
 			'ar_title' => 'Something',
 			'ar_rev_id' => '2',
-			'ar_text_id' => '47',
 			'ar_timestamp' => '20180528192356',
 			'ar_minor_edit' => '0',
 			'ar_deleted' => '0',
@@ -1188,8 +1187,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			'ar_user' => '0',
 			'ar_user_text' => '', // this is the important bit
 			'ar_actor' => null,
-			'ar_content_format' => null,
-			'ar_content_model' => null,
 		];
 
 		\Wikimedia\suppressWarnings();
@@ -1899,9 +1896,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 		// Change the user name in the database, "behind the back" of the cache
 		$newUserName = "Renamed $userNameBefore";
-		$this->db->update( 'revision',
-			[ 'rev_user_text' => $newUserName ],
-			[ 'rev_id' => $rev->getId() ] );
 		$this->db->update( 'user',
 			[ 'user_name' => $newUserName ],
 			[ 'user_id' => $rev->getUser()->getId() ] );
@@ -2000,9 +1994,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 		// Change the user name in the database
 		$newUserName = "Renamed $userNameBefore";
-		$this->db->update( 'revision',
-			[ 'rev_user_text' => $newUserName ],
-			[ 'rev_id' => $record->getId() ] );
 		$this->db->update( 'user',
 			[ 'user_name' => $newUserName ],
 			[ 'user_id' => $record->getUser()->getId() ] );

@@ -69,12 +69,14 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'archive', 'ar_rev_id', 'patch-archive-rev_id.sql' ],
 			[ 'addField', 'page', 'page_len', 'patch-page_len.sql' ],
 			[ 'dropField', 'revision', 'inverse_timestamp', 'patch-inverse_timestamp.sql' ],
-			[ 'addField', 'revision', 'rev_text_id', 'patch-rev_text_id.sql' ],
+			[ 'ifTableNotExists', 'content',
+				'addField', 'revision', 'rev_text_id', 'patch-rev_text_id.sql' ],
 			[ 'addField', 'revision', 'rev_deleted', 'patch-rev_deleted.sql' ],
 			[ 'addField', 'image', 'img_width', 'patch-img_width.sql' ],
 			[ 'addField', 'image', 'img_metadata', 'patch-img_metadata.sql' ],
 			[ 'addField', 'user', 'user_email_token', 'patch-user_email_token.sql' ],
-			[ 'addField', 'archive', 'ar_text_id', 'patch-archive-text_id.sql' ],
+			[ 'ifTableNotExists', 'content',
+				'addField', 'archive', 'ar_text_id', 'patch-archive-text_id.sql' ],
 			[ 'doNamespaceSize' ],
 			[ 'addField', 'image', 'img_media_type', 'patch-img_media_type.sql' ],
 			[ 'doPagelinksUpdate' ],
@@ -99,9 +101,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'querycache_info', 'patch-querycacheinfo.sql' ],
 			[ 'addTable', 'filearchive', 'patch-filearchive.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_anon_only', 'patch-ipb_anon_only.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'recentchanges', 'rc_ns_usertext',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'recentchanges', 'rc_ns_usertext',
 				'patch-recentchanges-utindex.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'recentchanges', 'rc_user_text',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'recentchanges', 'rc_user_text',
 				'patch-rc_user_text-index.sql' ],
 
 			// 1.9
@@ -130,11 +132,11 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'ipblocks', 'ipb_block_email', 'patch-ipb_emailban.sql' ],
 			[ 'doCategorylinksIndicesUpdate' ],
 			[ 'addField', 'oldimage', 'oi_metadata', 'patch-oi_metadata.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'archive', 'usertext_timestamp',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'archive', 'usertext_timestamp',
 				'patch-archive-user-index.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'image', 'img_usertext_timestamp',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'image', 'img_usertext_timestamp',
 				'patch-image-user-index.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'oldimage', 'oi_usertext_timestamp',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'oldimage', 'oi_usertext_timestamp',
 				'patch-oldimage-user-index.sql' ],
 			[ 'addField', 'archive', 'ar_page_id', 'patch-archive-page_id.sql' ],
 			[ 'addField', 'image', 'img_sha1', 'patch-img_sha1.sql' ],
@@ -143,7 +145,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'protected_titles', 'patch-protected_titles.sql' ],
 
 			// 1.13
-			[ 'ifNoActorTable', 'addField', 'ipblocks', 'ipb_by_text', 'patch-ipb_by_text.sql' ],
+			[ 'ifTableNotExists', 'actor', 'addField', 'ipblocks', 'ipb_by_text', 'patch-ipb_by_text.sql' ],
 			[ 'addTable', 'page_props', 'patch-page_props.sql' ],
 			[ 'addTable', 'updatelog', 'patch-updatelog.sql' ],
 			[ 'addTable', 'category', 'patch-category.sql' ],
@@ -152,7 +154,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'user_newtalk', 'user_last_timestamp', 'patch-user_last_timestamp.sql' ],
 			[ 'doPopulateParentId' ],
 			[ 'checkBin', 'protected_titles', 'pt_title', 'patch-pt_title-encoding.sql', ],
-			[ 'ifNoActorTable', 'doFilearchiveIndicesUpdate' ],
+			[ 'ifTableNotExists', 'actor', 'doFilearchiveIndicesUpdate' ],
 
 			// 1.14
 			[ 'addField', 'site_stats', 'ss_active_users', 'patch-ss_active_users.sql' ],
@@ -165,9 +167,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.16
 			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
 			[ 'addTable', 'log_search', 'patch-log_search.sql' ],
-			[ 'ifNoActorTable', 'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
+			[ 'ifTableNotExists', 'actor',
+				'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
 			# listed separately from the previous update because 1.16 was released without this update
-			[ 'ifNoActorTable', 'doLogUsertextPopulation' ],
+			[ 'ifTableNotExists', 'actor', 'doLogUsertextPopulation' ],
 			[ 'doLogSearchPopulation' ],
 			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
 			[ 'dropIndex', 'change_tag', 'ct_rc_id', 'patch-change_tag-indexes.sql' ],
@@ -206,16 +209,21 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addfield', 'job', 'job_timestamp', 'patch-jobs-add-timestamp.sql' ],
 
 			// 1.20
-			[ 'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ],
+			[ 'ifFieldExists', 'revision', 'rev_user',
+				'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id.sql' ],
 			[ 'addIndex', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id-index.sql' ],
 			[ 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ],
 
 			// 1.21
-			[ 'addField', 'revision', 'rev_content_format', 'patch-revision-rev_content_format.sql' ],
-			[ 'addField', 'revision', 'rev_content_model', 'patch-revision-rev_content_model.sql' ],
-			[ 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ],
-			[ 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ],
+			[ 'ifFieldExists', 'revision', 'rev_text_id',
+				'addField', 'revision', 'rev_content_format', 'patch-revision-rev_content_format.sql' ],
+			[ 'ifFieldExists', 'revision', 'rev_text_id',
+				'addField', 'revision', 'rev_content_model', 'patch-revision-rev_content_model.sql' ],
+			[ 'ifFieldExists', 'archive', 'ar_text_id',
+				'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ],
+			[ 'ifFieldExists', 'archive', 'ar_text_id',
+				'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ],
 			[ 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ],
 			[ 'dropField', 'site_stats', 'ss_admins', 'patch-drop-ss_admins.sql' ],
 			[ 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ],
@@ -240,9 +248,9 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.23
 			[ 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'logging', 'log_user_text_type_time',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'logging', 'log_user_text_type_time',
 				'patch-logging_user_text_type_time_index.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'logging', 'log_user_text_time',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'logging', 'log_user_text_time',
 				'patch-logging_user_text_time_index.sql' ],
 			[ 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ],
 			[ 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ],
@@ -289,14 +297,15 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doNonUniquePlTlIl' ],
 			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_ip', 'patch-rc_ip_modify.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'archive', 'usertext_timestamp',
+			[ 'ifTableNotExists', 'actor', 'addIndex', 'archive', 'usertext_timestamp',
 				'patch-rename-ar_usertext_timestamp.sql' ],
 
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
-			[ 'ifNoActorTable', 'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
+			[ 'ifTableNotExists', 'actor',
+				'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
 
 			// 1.30
 			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
@@ -414,6 +423,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
 			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
 				'patch-ipblocks-rename-ipb_address.sql' ],
+			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
+			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 		];
 	}
 
