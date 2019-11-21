@@ -89,14 +89,10 @@ class TestFileEditor {
 
 				// Add trailing line breaks to the "end" section, to allow for neat deletions
 				$trail = '';
-				for ( $i = 0; $i < $this->numLines - $this->pos - 1; $i++ ) {
-					if ( $this->lines[$this->pos + $i] === '' ) {
-						$trail .= "\n";
-					} else {
-						break;
-					}
+				while ( $this->lines[$this->pos] === '' && $this->pos < $this->numLines - 1 ) {
+					$trail .= "\n";
+					$this->pos++;
 				}
-				$this->pos += strlen( $trail );
 
 				$test[] = [
 					'name' => 'end',
