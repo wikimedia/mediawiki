@@ -21,7 +21,7 @@
 /**
  * Temporary trait to allow migration between PHPUnit versions without breaking tests
  *
- * @since 1.35
+ * @deprecated since 1.35 Should only be used in (very) rare cases.
  */
 trait PHPUnit6And8Compat {
 	private static function getAllowedWarningsRegex() {
