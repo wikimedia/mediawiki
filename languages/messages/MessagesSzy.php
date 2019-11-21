@@ -10,7 +10,7 @@
  * @author Akamycoco
  */
 
-$fallback = 'zh-tw';
+$fallback = 'zh-tw, zh-hant, zh-hans';
 
 $namespaceNames = [
   NS_MEDIA            => 'myiti',
