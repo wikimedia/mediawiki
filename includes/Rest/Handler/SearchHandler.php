@@ -68,6 +68,10 @@ class SearchHandler extends Handler {
 		return $searchEngine;
 	}
 
+	public function needsWriteAccess() {
+		return false;
+	}
+
 	/**
 	 * Get SearchResults when results are either SearchResultSet or Status objects
 	 * @param ISearchResultSet|Status|null $results
