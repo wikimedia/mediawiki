@@ -79,6 +79,12 @@ For notes on 1.34.x and older releases, see HISTORY.
 * The defaults for $wgVirtualRestConfig['modules']['parsoid'] have been
   updated.  If you were relying on the default values, you may need to update
   your configuration.
+* Set $wgXmlDumpSchemaVersion to XML_DUMP_SCHEMA_VERSION_11, so dumps use the
+  new dump format per default. Consumers of XML dumps should not be affected if
+  they ignore any unknown tags they encounter. Also, the format is effectively
+  unchanged for revisions that only contain the main slot. The --schema-version
+  option can be used with the dumpBackup.php script to set the dump format.
+  (T238921)
 * …
 
 ==== Removed configuration ====
