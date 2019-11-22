@@ -143,11 +143,14 @@ class ConditionalHeaderUtil {
 	/**
 	 * The strong comparison function
 	 *
-	 * @param array $tag1 Parsed tag info array
-	 * @param array $tag2 Parsed tag info array
+	 * @param array|null $tag1 Parsed tag info array
+	 * @param array|null $tag2 Parsed tag info array
 	 * @return bool
 	 */
 	private function strongCompare( $tag1, $tag2 ) {
+		if ( $tag1 === null || $tag2 === null ) {
+			return false;
+		}
 		return !$tag1['weak'] && !$tag2['weak'] && $tag1['contents'] === $tag2['contents'];
 	}
 }
