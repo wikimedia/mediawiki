@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 
@@ -147,5 +148,26 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 404, $r->getStatus() );
 		$this->assertEquals( 'http-bad-status', $errorMsg );
+	}
+
+	/*
+	 * Test of POST requests header
+	 */
+	public function testPostBody() {
+		$container = [];
+		$history = Middleware::history( $container );
+		$stack = HandlerStack::create();
+		$stack->push( $history );
+		$client = new GuzzleHttpRequest( $this->exampleUrl, [
+			'method' => 'POST',
+			'handler' => $stack,
+			'post' => 'key=value',
+		] );
+		$client->execute();
+
+		$request = $container[0]['request'];
+		$this->assertEquals( 'POST', $request->getMethod() );
+		$this->assertEquals( 'application/x-www-form-urlencoded',
+			$request->getHeader( 'Content-Type' )[0] );
 	}
 }
