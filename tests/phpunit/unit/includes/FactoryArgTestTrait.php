@@ -91,7 +91,13 @@ trait FactoryArgTestTrait {
 
 		$pos = $param->getPosition();
 
-		$type = (string)$param->getType();
+		$type = $param->getType();
+		if ( !$type ) {
+			// Optimistically assume a string is okay
+			return "some unlikely string $pos";
+		}
+
+		$type = $type->getName();
 
 		if ( $type === 'array' ) {
 			return [ "some unlikely string $pos" ];
@@ -99,11 +105,6 @@ trait FactoryArgTestTrait {
 
 		if ( class_exists( $type ) || interface_exists( $type ) ) {
 			return $this->createMock( $type );
-		}
-
-		if ( $type === '' ) {
-			// Optimistically assume a string is okay
-			return "some unlikely string $pos";
 		}
 
 		$this->fail( "Unrecognized parameter type $type" );

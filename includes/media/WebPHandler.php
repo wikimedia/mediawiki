@@ -188,9 +188,9 @@ class WebPHandler extends BitmapHandler {
 		// Bytes 0-3 are 'VP8L'
 		// Bytes 4-7 are chunk stream size
 		// Byte 8 is 0x2F called the signature
-		if ( $header{8} != "\x2F" ) {
+		if ( $header[8] != "\x2F" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid signature: ' .
-				bin2hex( $header{8} ) . "\n" );
+				bin2hex( $header[8] ) . "\n" );
 			return [];
 		}
 		// Bytes 9-12 contain the image size
