@@ -109,20 +109,33 @@ abstract class Handler {
 	}
 
 	/**
+	 * Get a ConditionalHeaderUtil object.
+	 *
+	 * On the first call to this method, the object will be initialized with
+	 * validator values by calling getETag(), getLastModified() and
+	 * hasRepresentation().
+	 *
+	 * @return ConditionalHeaderUtil
+	 */
+	protected function getConditionalHeaderUtil() {
+		if ( $this->conditionalHeaderUtil === null ) {
+			$this->conditionalHeaderUtil = new ConditionalHeaderUtil;
+			$this->conditionalHeaderUtil->setValidators(
+				$this->getETag(),
+				$this->getLastModified(),
+				$this->hasRepresentation() );
+		}
+		return $this->conditionalHeaderUtil;
+	}
+
+	/**
 	 * Check the conditional request headers and generate a response if appropriate.
 	 * This is called by the Router before execute() and may be overridden.
 	 *
 	 * @return ResponseInterface|null
 	 */
 	public function checkPreconditions() {
-		if ( $this->conditionalHeaderUtil === null ) {
-			$this->conditionalHeaderUtil = new ConditionalHeaderUtil;
-		}
-		$this->conditionalHeaderUtil->setValidators(
-			$this->getETag(),
-			$this->getLastModified(),
-			$this->hasRepresentation() );
-		$status = $this->conditionalHeaderUtil->checkPreconditions( $this->getRequest() );
+		$status = $this->getConditionalHeaderUtil()->checkPreconditions( $this->getRequest() );
 		if ( $status ) {
 			$response = $this->getResponseFactory()->create();
 			$response->setStatus( $status );
@@ -140,7 +153,7 @@ abstract class Handler {
 	 * @param ResponseInterface $response
 	 */
 	public function applyConditionalResponseHeaders( ResponseInterface $response ) {
-		$this->conditionalHeaderUtil->applyResponseHeaders( $response );
+		$this->getConditionalHeaderUtil()->applyResponseHeaders( $response );
 	}
 
 	/**
