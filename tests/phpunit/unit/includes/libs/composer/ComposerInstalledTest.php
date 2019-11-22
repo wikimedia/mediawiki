@@ -263,19 +263,6 @@ class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 			],
 			'description' => 'Simple template engine.',
 		],
-		'phpunit/phpunit-mock-objects' => [
-			'version' => '5.0.6',
-			'type' => 'library',
-			'licenses' => [ 'BSD-3-Clause' ],
-			'authors' => [
-				[
-					'name' => 'Sebastian Bergmann',
-					'email' => 'sebastian@phpunit.de',
-					'role' => 'lead',
-				],
-			],
-			'description' => 'Mock Object library for PHPUnit',
-		],
 		'phpunit/php-timer' => [
 			'version' => '1.0.9',
 			'type' => 'library',
