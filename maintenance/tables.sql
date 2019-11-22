@@ -196,7 +196,8 @@ CREATE INDEX /*i*/ug_expiry ON /*_*/user_groups (ug_expiry);
 
 -- Stores the groups the user has once belonged to.
 -- The user may still belong to these groups (check user_groups).
--- Users are not autopromoted to groups from which they were removed.
+-- Autopromotion of users to groups from which they were removed can
+-- be restricted by using wgAutopromoteOnce instead of wgAutopromote.
 CREATE TABLE /*_*/user_former_groups (
   -- Key to user_id
   ufg_user int unsigned NOT NULL default 0,
