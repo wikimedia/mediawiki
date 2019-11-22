@@ -24,5 +24,6 @@
 	"rest-compare-inaccessible": "由參數$1指定的修訂不可公開存取。",
 	"rest-compare-wrong-content": "由參數$2指定的修訂部份$1，內容類型無法轉換成文字。",
 	"rest-compare-wikidiff2": "此端點需要 wikidiff2 1.9.0 或以上的版本。",
-	"rest-pagehistorycount-too-many-revisions": "指定的標題包含太多的修訂而無法取得計數。"
+	"rest-pagehistorycount-too-many-revisions": "指定的標題包含太多的修訂而無法取得計數。",
+	"rest-search-error": "當回傳搜尋結果時發生錯誤：$1"
 }

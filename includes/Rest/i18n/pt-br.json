@@ -23,5 +23,6 @@
 	"rest-compare-inaccessible": "A revisão especificada pelo parâmetro $1 não é acessível pelo público.",
 	"rest-compare-wrong-content": "O segmento $1 da revisão especificada pelo parâmetro $2 tem um tipo de conteúdo que não pode ser convertido para texto.",
 	"rest-compare-wikidiff2": "O ponto final requer wikidiff2 1.9.0 ou posterior.",
-	"rest-pagehistorycount-too-many-revisions": "O título especificado contém muitas revisões para recuperar essa contagem."
+	"rest-pagehistorycount-too-many-revisions": "O título especificado contém muitas revisões para recuperar essa contagem.",
+	"rest-search-error": "Erro ao retornar resultados da pesquisa: $1"
 }

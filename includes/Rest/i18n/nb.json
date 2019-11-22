@@ -23,5 +23,6 @@
 	"rest-compare-inaccessible": "Revisjonen angitt i parameteren $1 er ikke offentlig tilgjengelig.",
 	"rest-compare-wrong-content": "Spalten $1 i revisjonen gitt i parameter $2 har en innholdstype som ikke kan konverteres til tekst.",
 	"rest-compare-wikidiff2": "Dette endepunktet krever wikideff2 1.9.0 eller nyere.",
-	"rest-pagehistorycount-too-many-revisions": "Den gitte tittelen inneholder for mange revisjoner til å hente antallet."
+	"rest-pagehistorycount-too-many-revisions": "Den gitte tittelen inneholder for mange revisjoner til å hente antallet.",
+	"rest-search-error": "Feil under returnering av søkeresultater: $1"
 }

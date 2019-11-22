@@ -2527,6 +2527,8 @@
 	"sp-contributions-hideminor": "أخف التعديلات الطفيفة",
 	"sp-contributions-submit": "بحث",
 	"sp-contributions-outofrange": "غير قادر على عرض أي نتائج. نطاق الأيبي المطلوب هو أكبر من حد CIDR وهو /$1.",
+	"sp-contributions-concurrency-user": "عذرا، يتم تقديم الكثير من الطلبات من حساب المستخدم الخاص بك؛ الرجاء معاودة المحاولة في وقت لاحق.",
+	"sp-contributions-concurrency-ip": "عذرا، يتم تقديم الكثير من الطلبات من عنوان الآيبي الخاص بك؛ الرجاء معاودة المحاولة في وقت لاحق.",
 	"whatlinkshere": "ماذا يصل هنا",
 	"whatlinkshere-title": "الصفحات التي تصل إلى \"$1\"",
 	"whatlinkshere-page": "الصفحة:",

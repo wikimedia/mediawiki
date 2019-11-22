@@ -2444,7 +2444,7 @@
 	"month": "A partir del mense (e anterior):",
 	"year": "A partir del anno (e anterior):",
 	"date": "A partir del data (e anterior):",
-	"sp-contributions-blocklog": "Registro de blocadas",
+	"sp-contributions-blocklog": "registro de blocadas",
 	"sp-contributions-suppresslog": "contributiones supprimite del {{GENDER:$1|usator}}",
 	"sp-contributions-deleted": "contributiones delite del {{GENDER:$1|usator}}",
 	"sp-contributions-uploads": "incargamentos",

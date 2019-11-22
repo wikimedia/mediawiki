@@ -24,5 +24,6 @@
 	"rest-compare-inaccessible": "הגרסה שצוינההגרסה שצוינה בפרמטר $1 אינה נגישה באופן ציבורי.",
 	"rest-compare-wrong-content": "למשבצת $1 של הגרסה שצוינה בפרמטר $2 יש סוג תוכן שאינו יכול להיות מומר לטקסט.",
 	"rest-compare-wikidiff2": "נקודת הקצה הזאת דורשת wikidiff2 1.9.0 או גרסה חדשה יותר.",
-	"rest-pagehistorycount-too-many-revisions": "הכותרת שצוינה מכילה יותר מדי גרסאות וזה לא מאפשר לאחזר את המספר הזה."
+	"rest-pagehistorycount-too-many-revisions": "הכותרת שצוינה מכילה יותר מדי גרסאות וזה לא מאפשר לאחזר את המספר הזה.",
+	"rest-search-error": "שגיאה בהחזרת תוצאות חיפוש: $1"
 }
