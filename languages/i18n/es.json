@@ -195,7 +195,8 @@
 			"Elisardojm",
 			"Madamebiblio",
 			"Hasley",
-			"Canaan9801"
+			"Canaan9801",
+			"Andru1013"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -2653,6 +2654,8 @@
 	"sp-contributions-hideminor": "Ocultar ediciones menores",
 	"sp-contributions-submit": "Buscar",
 	"sp-contributions-outofrange": "No se pudo mostrar ningún resultado. El intervalo de IP seleccionado es mayor que el límite de CIDR de /$1.",
+	"sp-contributions-concurrency-user": "Disculpa, hay muchas solicitudes que se están haciendo desde tu usuario en este momento. Por favor intenta más tarde.",
+	"sp-contributions-concurrency-ip": "Disculpa, hay muchas solicitudes desde tu dirección IP en este momento. Por favor intenta más tarde.",
 	"whatlinkshere": "Lo que enlaza aquí",
 	"whatlinkshere-title": "Páginas que enlazan con «$1»",
 	"whatlinkshere-page": "Página:",

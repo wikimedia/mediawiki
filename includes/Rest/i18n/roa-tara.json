@@ -23,5 +23,6 @@
 	"rest-compare-inaccessible": "'A revisione specificate da 'u parametre $1 non g'è accessibbele pubblecamende.",
 	"rest-compare-wrong-content": "'U slot $1 d'a revisione specificate da 'u parametre $2 tène 'nu tipe de condenute ca non ge pò essere convertite jndr'à 'u teste.",
 	"rest-compare-wikidiff2": "Stu punde finale vole wikidiff2 1.9.0 o cchiù nuève.",
-	"rest-pagehistorycount-too-many-revisions": "'U titole specificate tène troppe revisiune pe pigghià stu cunde."
+	"rest-pagehistorycount-too-many-revisions": "'U titole specificate tène troppe revisiune pe pigghià stu cunde.",
+	"rest-search-error": "Errore quanne tuèrne le resultate de recerche: $1"
 }

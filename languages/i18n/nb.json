@@ -2499,6 +2499,8 @@
 	"sp-contributions-hideminor": "Skjul mindre endringer",
 	"sp-contributions-submit": "Søk",
 	"sp-contributions-outofrange": "Kan ikke vise resultater. Det gitte IP-intervallet er større enn CIDR-grensen på /$1.",
+	"sp-contributions-concurrency-user": "Beklager, for mange forespørsler gjøres fra brukerkontoen din. Prøv igjen senere.",
+	"sp-contributions-concurrency-ip": "Beklager, for mange forespørsler gjøres fra IP-adressa di. Prøv igjen senere.",
 	"whatlinkshere": "Lenker hit",
 	"whatlinkshere-title": "Sider som lenker til «$1»",
 	"whatlinkshere-page": "Side:",

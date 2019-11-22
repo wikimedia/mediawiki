@@ -2480,6 +2480,8 @@
 	"sp-contributions-hideminor": "Скриј ситни промени",
 	"sp-contributions-submit": "Пребарај",
 	"sp-contributions-outofrange": "Не можам да прикажам исход. Бараниот опсег на IP-адреси е поголем од допуштените /$1 во CIDR.",
+	"sp-contributions-concurrency-user": "За жал, од вашата корисничка сметка се поднесени премногу барања. Обидете се подоцна.",
+	"sp-contributions-concurrency-ip": "За жал, од вашата IP-адреса се поднесени премногу барања. Обидете се подоцна.",
 	"whatlinkshere": "Што води овде",
 	"whatlinkshere-title": "Страници со врски што водат до „$1“",
 	"whatlinkshere-page": "Страница:",
