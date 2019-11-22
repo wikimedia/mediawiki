@@ -139,6 +139,10 @@ class GuzzleHttpRequest extends MWHttpRequest {
 				$this->guzzleOptions['form_params'] = $postData;
 			} else {
 				$this->guzzleOptions['body'] = $postData;
+				// mimic CURLOPT_POST option
+				if ( !isset( $this->reqHeaders['Content-Type'] ) ) {
+					$this->reqHeaders['Content-Type'] = 'application/x-www-form-urlencoded';
+				}
 			}
 
 			// Suppress 'Expect: 100-continue' header, as some servers
