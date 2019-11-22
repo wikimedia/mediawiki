@@ -22,13 +22,13 @@ class DoctrineSchemaBuilder implements SchemaBuilder {
 	public function addTable( array $schema ) {
 		$table = $this->schema->createTable( self::TABLE_PREFIX . $schema['name'] );
 		foreach ( $schema['columns'] as $column ) {
-			$table->addColumn( $column[0], $column[1], $column[2] );
+			$table->addColumn( $column['name'], $column['type'], $column['options'] );
 		}
 		foreach ( $schema['indexes'] as $index ) {
 			if ( $index['unique'] === true ) {
-				$table->addUniqueIndex( $index[1], $index[0] );
+				$table->addUniqueIndex( $index['columns'], $index['name'] );
 			} else {
-				$table->addIndex( $index[1], $index[0] );
+				$table->addIndex( $index['columns'], $index['name'] );
 			}
 		}
 		$table->setPrimaryKey( $schema['pk'] );
