@@ -3058,21 +3058,6 @@ class Language {
 	}
 
 	/**
-	 * Add magic words to the extension array
-	 *
-	 * @param array $newWords
-	 */
-	function addMagicWordsByLang( $newWords ) {
-		$fallbackChain = $this->getFallbackLanguages();
-		$fallbackChain = array_reverse( $fallbackChain );
-		foreach ( $fallbackChain as $code ) {
-			if ( isset( $newWords[$code] ) ) {
-				$this->mMagicExtensions = $newWords[$code] + $this->mMagicExtensions;
-			}
-		}
-	}
-
-	/**
 	 * Get special page names, as an associative array
 	 *   canonical name => array of valid names, including aliases
 	 * @return array
