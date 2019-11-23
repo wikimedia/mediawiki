@@ -1084,7 +1084,7 @@ class PermissionManager {
 
 		if ( $action != 'patrol' ) {
 			$error = null;
-			// Sitewide CSS/JSON/JS changes, like all NS_MEDIAWIKI changes, also require the
+			// Sitewide CSS/JSON/JS/RawHTML changes, like all NS_MEDIAWIKI changes, also require the
 			// editinterface right. That's implemented as a restriction so no check needed here.
 			if ( $title->isSiteCssConfigPage() && !$this->userHasRight( $user, 'editsitecss' ) ) {
 				$error = [ 'sitecssprotected', $action ];
@@ -1092,13 +1092,9 @@ class PermissionManager {
 				$error = [ 'sitejsonprotected', $action ];
 			} elseif ( $title->isSiteJsConfigPage() && !$this->userHasRight( $user, 'editsitejs' ) ) {
 				$error = [ 'sitejsprotected', $action ];
-			} elseif ( $title->isRawHtmlMessage() ) {
-				// Raw HTML can be used to deploy CSS or JS so require rights for both.
-				if ( !$this->userHasRight( $user, 'editsitejs' ) ) {
-					$error = [ 'sitejsprotected', $action ];
-				} elseif ( !$this->userHasRight( $user, 'editsitecss' ) ) {
-					$error = [ 'sitecssprotected', $action ];
-				}
+			}
+			if ( $title->isRawHtmlMessage() && !$this->userCanEditRawHtmlPage( $user ) ) {
+				$error = [ 'siterawhtmlprotected', $action ];
 			}
 
 			if ( $error ) {
@@ -1584,6 +1580,18 @@ class PermissionManager {
 		}
 
 		return $usableLevels;
+	}
+
+	/**
+	 * Check if user is allowed to edit sitewide pages that contain raw HTML.
+	 * Pages listed in $wgRawHtmlMessages allow raw HTML which can be used to deploy CSS or JS
+	 * code to all users so both rights are required to edit them.
+	 *
+	 * @param UserIdentity $user
+	 * @return bool True if user has both rights
+	 */
+	private function userCanEditRawHtmlPage( UserIdentity $user ) {
+		return $this->userHasAllRights( $user, 'editsitecss', 'editsitejs' );
 	}
 
 	/**
