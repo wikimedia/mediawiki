@@ -423,13 +423,6 @@ class Language {
 	}
 
 	/**
-	 * Hook which will be called if this is the content language.
-	 * Descendants can use this to register hook functions or modify globals
-	 */
-	function initContLang() {
-	}
-
-	/**
 	 * @return array
 	 * @since 1.19
 	 */
@@ -764,14 +757,6 @@ class Language {
 	public function getExtraUserToggles() {
 		wfDeprecated( __METHOD__, '1.34' );
 		return [];
-	}
-
-	/**
-	 * @param string $tog
-	 * @return string
-	 */
-	function getUserToggle( $tog ) {
-		return $this->getMessageFromDB( "tog-$tog" );
 	}
 
 	/**
@@ -3061,21 +3046,6 @@ class Language {
 		} else {
 			$mw->mCaseSensitive = $rawEntry[0];
 			$mw->mSynonyms = array_slice( $rawEntry, 1 );
-		}
-	}
-
-	/**
-	 * Add magic words to the extension array
-	 *
-	 * @param array $newWords
-	 */
-	function addMagicWordsByLang( $newWords ) {
-		$fallbackChain = $this->getFallbackLanguages();
-		$fallbackChain = array_reverse( $fallbackChain );
-		foreach ( $fallbackChain as $code ) {
-			if ( isset( $newWords[$code] ) ) {
-				$this->mMagicExtensions = $newWords[$code] + $this->mMagicExtensions;
-			}
 		}
 	}
 
