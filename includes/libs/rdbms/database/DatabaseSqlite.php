@@ -52,6 +52,9 @@ class DatabaseSqlite extends Database {
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
+	/** @var string|null */
+	private $version;
+
 	/** @var array List of shared database already attached to this connection */
 	private $sessionAttachedDbs = [];
 
@@ -623,7 +626,7 @@ class DatabaseSqlite extends Database {
 	 */
 	protected function makeUpdateOptionsArray( $options ) {
 		$options = parent::makeUpdateOptionsArray( $options );
-		$options = self::fixIgnore( $options );
+		$options = $this->rewriteIgnoreKeyword( $options );
 
 		return $options;
 	}
@@ -632,7 +635,7 @@ class DatabaseSqlite extends Database {
 	 * @param array $options
 	 * @return array
 	 */
-	static function fixIgnore( $options ) {
+	private function rewriteIgnoreKeyword( $options ) {
 		# SQLite uses OR IGNORE not just IGNORE
 		foreach ( $options as $k => $v ) {
 			if ( $v == 'IGNORE' ) {
@@ -647,13 +650,13 @@ class DatabaseSqlite extends Database {
 	 * @param array $options
 	 * @return string
 	 */
-	function makeInsertOptions( $options ) {
-		$options = self::fixIgnore( $options );
+	protected function makeInsertOptions( $options ) {
+		$options = self::rewriteIgnoreKeyword( $options );
 
 		return parent::makeInsertOptions( $options );
 	}
 
-	function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
+	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
 		if ( !count( $rows ) ) {
 			return true;
 		}
@@ -786,10 +789,12 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return string Version information from the database
 	 */
-	function getServerVersion() {
-		$ver = $this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
+	public function getServerVersion() {
+		if ( $this->version === null ) {
+			$this->version = $this->getBindingHandle()->getAttribute( PDO::ATTR_SERVER_VERSION );
+		}
 
-		return $ver;
+		return $this->version;
 	}
 
 	/**
