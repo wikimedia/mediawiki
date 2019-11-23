@@ -10,7 +10,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	 * @covers Sanitizer::decodeCharReferences
 	 */
 	public function testDecodeCharReferences( string $expected, string $input ) {
-		$this->assertEquals( $expected, Sanitizer::decodeCharReferences( $input ) );
+		$this->assertSame( $expected, Sanitizer::decodeCharReferences( $input ) );
 	}
 
 	public function provideDecodeCharReferences() {
@@ -127,7 +127,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	 * @covers Sanitizer::checkCss
 	 */
 	public function testCssCommentsChecking( $expected, $css, $message = '' ) {
-		$this->assertEquals( $expected,
+		$this->assertSame( $expected,
 			Sanitizer::checkCss( $css ),
 			$message
 		);
@@ -183,7 +183,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	 * @covers Sanitizer::escapeHtmlAllowEntities
 	 */
 	public function testEscapeHtmlAllowEntities( $expected, $html ) {
-		$this->assertEquals(
+		$this->assertSame(
 			$expected,
 			Sanitizer::escapeHtmlAllowEntities( $html )
 		);
@@ -205,7 +205,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	 * @covers Sanitizer::escapeId
 	 */
 	public function testEscapeId( $input, $output ) {
-		$this->assertEquals(
+		$this->assertSame(
 			$output,
 			Sanitizer::escapeId( $input, [ 'noninitial', 'legacy' ] )
 		);
@@ -265,7 +265,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	 * @param string $expected
 	 */
 	public function testStripAllTags( $input, $expected ) {
-		$this->assertEquals( $expected, Sanitizer::stripAllTags( $input ) );
+		$this->assertSame( $expected, Sanitizer::stripAllTags( $input ) );
 	}
 
 	public function provideStripAllTags() {
