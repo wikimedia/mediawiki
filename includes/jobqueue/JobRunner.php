@@ -444,7 +444,7 @@ class JobRunner implements LoggerAwareInterface {
 	 * On I/O or lock acquisition failure this returns the original $backoffs.
 	 *
 	 * @param array $backoffs Map of (job type => UNIX timestamp)
-	 * @param array $deltas Map of (job type => seconds)
+	 * @param array &$deltas Map of (job type => seconds)
 	 * @param string $mode Lock wait mode - "wait" or "nowait"
 	 * @return array The new backoffs account for $backoffs and the latest file data
 	 */

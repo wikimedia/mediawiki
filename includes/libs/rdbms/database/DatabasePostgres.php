@@ -901,7 +901,7 @@ __INDEXATTR__;
 	 *
 	 * @since 1.19
 	 * @param string $text Postgreql array returned in a text form like {a,b}
-	 * @param string[] $output
+	 * @param string[] &$output
 	 * @param int|bool $limit
 	 * @param int $offset
 	 * @return string[]

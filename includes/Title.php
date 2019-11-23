@@ -4735,6 +4735,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
+	 * @param string $field
 	 * @param int $flags Bitfield of class READ_* constants
 	 * @return string|bool
 	 */

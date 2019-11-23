@@ -286,7 +286,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * is preferred, since Titles are very memory-heavy
 	 *
 	 * @param array $titles Array of strings, or Title objects
-	 * @param string $output
+	 * @param string &$output
 	 */
 	private function showTitles( $titles, &$output ) {
 		$talk = $this->msg( 'talkpagelinktext' )->text();

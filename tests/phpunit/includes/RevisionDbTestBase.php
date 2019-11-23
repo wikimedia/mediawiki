@@ -862,7 +862,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @param string $text
 	 * @param string $title
 	 * @param string $model
-	 * @param string $format
+	 * @param string|null $format
 	 *
 	 * @return Revision
 	 */

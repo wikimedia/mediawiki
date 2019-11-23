@@ -1495,7 +1495,7 @@ class PermissionManager {
 
 	/**
 	 * Determines if $user is unable to edit pages in namespace because it has been protected.
-	 * @param $index
+	 * @param int $index
 	 * @param UserIdentity $user
 	 * @return bool
 	 */

@@ -946,7 +946,7 @@ abstract class Maintenance {
 	 * whether or not it can be specified multiple times.
 	 *
 	 * @since 1.27
-	 * @param array $options
+	 * @param array &$options
 	 * @param string $option
 	 * @param mixed $value
 	 */
@@ -1469,7 +1469,7 @@ abstract class Maintenance {
 
 	/**
 	 * Lock the search index
-	 * @param IMaintainableDatabase &$db
+	 * @param IMaintainableDatabase $db
 	 */
 	private function lockSearchindex( $db ) {
 		$write = [ 'searchindex' ];
@@ -1487,7 +1487,7 @@ abstract class Maintenance {
 
 	/**
 	 * Unlock the tables
-	 * @param IMaintainableDatabase &$db
+	 * @param IMaintainableDatabase $db
 	 */
 	private function unlockSearchindex( $db ) {
 		$db->unlockTables( __CLASS__ . '-searchIndexLock' );
@@ -1496,7 +1496,7 @@ abstract class Maintenance {
 	/**
 	 * Unlock and lock again
 	 * Since the lock is low-priority, queued reads will be able to complete
-	 * @param IMaintainableDatabase &$db
+	 * @param IMaintainableDatabase $db
 	 */
 	private function relockSearchindex( $db ) {
 		$this->unlockSearchindex( $db );

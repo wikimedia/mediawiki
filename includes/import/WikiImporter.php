@@ -824,7 +824,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param array $pageInfo
+	 * @param array &$pageInfo
 	 */
 	private function handleRevision( &$pageInfo ) {
 		$this->debug( "Enter revision handler" );
@@ -942,7 +942,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param array $pageInfo
+	 * @param array &$pageInfo
 	 * @return mixed
 	 */
 	private function handleUpload( &$pageInfo ) {

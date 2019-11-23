@@ -214,7 +214,7 @@ class JobQueueMemory extends JobQueue {
 
 	/**
 	 * @param string $field
-	 * @param mixed $init
+	 * @param mixed|null $init
 	 *
 	 * @return mixed
 	 */

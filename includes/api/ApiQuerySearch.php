@@ -44,7 +44,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
@@ -211,7 +211,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/**
 	 * Assemble search result data.
 	 * @param SearchResult $result Search result
-	 * @param array        $prop Props to extract (as keys)
+	 * @param array $prop Props to extract (as keys)
 	 * @return array|null Result data or null if result is broken in some way.
 	 */
 	private function getSearchResultData( SearchResult $result, $prop ) {
@@ -279,10 +279,10 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/**
 	 * Add interwiki results as a section in query results.
 	 * @param ISearchResultSet $matches
-	 * @param ApiResult       $apiResult
-	 * @param array           $prop Props to extract (as keys)
-	 * @param string          $section Section name where results would go
-	 * @param int             $type Interwiki result type
+	 * @param ApiResult $apiResult
+	 * @param array $prop Props to extract (as keys)
+	 * @param string $section Section name where results would go
+	 * @param int $type Interwiki result type
 	 * @return int|null Number of total hits in the data or null if none was produced
 	 */
 	private function addInterwikiResults(

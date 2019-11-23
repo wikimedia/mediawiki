@@ -512,7 +512,7 @@ class NamespaceDupes extends Maintenance {
 	/**
 	 * Move a page
 	 *
-	 * @param integer $id The page_id
+	 * @param int $id The page_id
 	 * @param LinkTarget $newLinkTarget The new title link target
 	 * @return bool
 	 */
@@ -554,9 +554,9 @@ class NamespaceDupes extends Maintenance {
 	 * latest revision, but opens a can of worms -- search engine updates,
 	 * recentchanges review, etc.
 	 *
-	 * @param integer $id The page_id
+	 * @param int $id The page_id
 	 * @param LinkTarget $linkTarget The new link target
-	 * @param string $logStatus This is set to the log status message on failure
+	 * @param string &$logStatus This is set to the log status message on failure
 	 * @return bool
 	 */
 	private function canMerge( $id, LinkTarget $linkTarget, &$logStatus ) {

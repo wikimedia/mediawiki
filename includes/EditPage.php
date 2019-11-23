@@ -1850,7 +1850,7 @@ ERROR;
 	/**
 	 * Return the summary to be used for a new section.
 	 *
-	 * @param string $sectionanchor Set to the section anchor text
+	 * @param string|null &$sectionanchor Set to the section anchor text
 	 * @return string
 	 */
 	private function newSectionSummary( &$sectionanchor = null ) {
@@ -2433,7 +2433,7 @@ ERROR;
 	 *
 	 * @since 1.21
 	 *
-	 * @param Content $editContent
+	 * @param Content &$editContent
 	 *
 	 * @return bool
 	 */

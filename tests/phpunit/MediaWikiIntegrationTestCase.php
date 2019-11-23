@@ -1742,7 +1742,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Empty all tables so they can be repopulated for tests
 	 *
-	 * @param IDatabase $db|null Database to reset
+	 * @param IDatabase|null $db Database to reset
 	 * @param string[] $tablesUsed Tables to reset
 	 */
 	private function resetDB( IDatabase $db = null, array $tablesUsed ) {

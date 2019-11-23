@@ -1399,7 +1399,7 @@ MESSAGE;
 	 * - new XmlJsCode( '{}' )
 	 * - new stdClass() // (object) []
 	 *
-	 * @param array $array
+	 * @param array &$array
 	 */
 	private static function trimArray( array &$array ) {
 		$i = count( $array );
