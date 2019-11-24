@@ -81,7 +81,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * @param Language $langobj
 	 */
-	public function __construct( $langobj ) {
+	public function __construct( Language $langobj ) {
 		$this->deprecatePublicProperty( 'mUcfirst', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mConvRuleTitle', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mUserVariant', '1.35', __CLASS__ );
