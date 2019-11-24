@@ -1,5 +1,3 @@
-@ingroup FileBackend
-
 FileBackend Architecture {#filebackendarch}
 ========================
 

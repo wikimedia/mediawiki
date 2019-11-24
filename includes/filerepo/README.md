@@ -1,5 +1,3 @@
-@ingroup FileRepo
-
 FileRepo Architecture {#filerepoarch}
 =====================
 

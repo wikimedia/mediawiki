@@ -1,5 +1,3 @@
-@ingroup JobQueue
-
 JobQueue Architecture {#jobqueuearch}
 =====================
 Notes on the Job queuing system architecture.
