@@ -9000,7 +9000,7 @@ $wgInterwikiPrefixDisplayTypes = [];
  * @since 1.32
  * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */
-$wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW;
+$wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_NEW;
 
 /**
  * The schema to use per default when generating XML dumps. This allows sites to control

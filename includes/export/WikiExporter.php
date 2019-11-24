@@ -351,15 +351,6 @@ class WikiExporter {
 	 * @throws Exception
 	 */
 	protected function dumpPages( $cond, $orderRevs ) {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-		if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			// TODO: Make XmlDumpWriter use a RevisionStore! (see T198706 and T174031)
-			throw new MWException(
-				'Cannot use WikiExporter with SCHEMA_COMPAT_WRITE_OLD mode disabled!'
-				. ' Support for dumping from the new schema is not implemented yet!'
-			);
-		}
-
 		$revQuery = MediaWikiServicesAlias::getInstance()->getRevisionStore()->getQueryInfo(
 			[ 'page' ]
 		);
