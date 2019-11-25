@@ -54,6 +54,13 @@ class TextFormatterTest extends MediaWikiTestCase {
 		$this->assertSame( 'test 100 bps 200 bps', $result );
 	}
 
+	public function testFormatShortDuration() {
+		$formatter = $this->createTextFormatter( 'en' );
+		$mv = ( new MessageValue( 'test' ) )->shortDurationParams( 100, 200 );
+		$result = $formatter->format( $mv );
+		$this->assertSame( 'test 1 min 40 s 3 min 20 s', $result );
+	}
+
 	public function testFormatList() {
 		$formatter = $this->createTextFormatter( 'en' );
 		$mv = ( new MessageValue( 'test' ) )->commaListParams( [
