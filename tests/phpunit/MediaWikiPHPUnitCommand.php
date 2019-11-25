@@ -22,4 +22,8 @@ class MediaWikiPHPUnitCommand extends Command {
 			$this->arguments['printer'] = MediaWikiPHPUnitResultPrinter::class;
 		}
 	}
+
+	public function publicShowHelp() {
+		parent::showHelp();
+	}
 }
