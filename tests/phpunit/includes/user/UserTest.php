@@ -1721,6 +1721,17 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::isSystemUser
+	 */
+	public function testIsSystemUser() {
+		$user = static::getTestUser()->getUser();
+		$this->assertFalse( $user->isSystemUser(), 'Normal users are not system users' );
+
+		$user = User::newSystemUser( __METHOD__ );
+		$this->assertTrue( $user->isSystemUser(), 'Users created with newSystemUser() are system users' );
+	}
+
+	/**
 	 * @covers User::newSystemUser
 	 * @dataProvider provideNewSystemUser
 	 * @param string $exists How/whether to create the user before calling User::newSystemUser
@@ -1783,6 +1794,7 @@ class UserTest extends MediaWikiTestCase {
 					User::INVALID_TOKEN, TestingAccessWrapper::newFromObject( $origUser )->mToken
 				);
 				$this->assertNotSame( '', $origUser->getEmail() );
+				$this->assertFalse( $origUser->isSystemUser(), 'Normal users should not be system users' );
 			}
 		} else {
 			$this->assertInstanceOf( User::class, $user );
@@ -1792,6 +1804,7 @@ class UserTest extends MediaWikiTestCase {
 			}
 			$this->assertSame( User::INVALID_TOKEN, TestingAccessWrapper::newFromObject( $user )->mToken );
 			$this->assertSame( '', $user->getEmail() );
+			$this->assertTrue( $user->isSystemUser(), 'Newly created system users should be system users' );
 		}
 	}
 
