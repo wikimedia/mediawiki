@@ -611,7 +611,7 @@ class ParserOptions {
 	 * @return bool
 	 */
 	public function getIsPreview() {
-		return $this->getOption( 'isPreview' );
+		return $this->getOption( 'isPreview' ) || $this->getOption( 'isSectionPreview' );
 	}
 
 	/**
@@ -620,6 +620,9 @@ class ParserOptions {
 	 * @return bool Old value
 	 */
 	public function setIsPreview( $x ) {
+		if ( $x === false && ( $this->options['isSectionPreview'] ?? null ) === true ) {
+			$this->setOption( 'isSectionPreview', false );
+		}
 		return $this->setOptionLegacy( 'isPreview', $x );
 	}
 
@@ -637,6 +640,9 @@ class ParserOptions {
 	 * @return bool Old value
 	 */
 	public function setIsSectionPreview( $x ) {
+		if ( $x === true && ( $this->options['isPreview'] ?? null ) === false ) {
+			$this->setOption( 'isPreview', true );
+		}
 		return $this->setOptionLegacy( 'isSectionPreview', $x );
 	}
 

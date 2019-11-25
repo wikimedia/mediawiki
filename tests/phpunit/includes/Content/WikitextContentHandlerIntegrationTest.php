@@ -56,6 +56,7 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'disableContentConversion',
 			'interfaceMessage',
 			'isPreview',
+			'isSectionPreview',
 			'maxIncludeSize',
 			'suppressSectionEditLinks',
 			'useParsoid',
