@@ -1681,4 +1681,131 @@ class UserTest extends MediaWikiTestCase {
 		$defaultOptions = User::getDefaultOptions();
 		$this->assertArrayHasKey( 'search-match-redirect', $defaultOptions );
 	}
+
+	/**
+	 * @covers User::getAutomaticGroups
+	 */
+	public function testGetAutomaticGroups() {
+		$user = $this->getTestUser()->getUser();
+		$this->assertArrayEquals( [
+			'*',
+			'user',
+			'autoconfirmed'
+		], $user->getAutomaticGroups( true ) );
+		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
+		$this->assertArrayEquals( [
+			'*',
+			'user',
+			'autoconfirmed'
+		], $user->getAutomaticGroups( true ) );
+		$user->addGroup( 'something' );
+		$this->assertArrayEquals( [
+			'*',
+			'user',
+			'autoconfirmed'
+		], $user->getAutomaticGroups( true ) );
+		$user = User::newFromName( 'UTUser1' );
+		$this->assertArrayEquals( [
+			'*',
+		], $user->getAutomaticGroups( true ) );
+		$this->setMwGlobals( [
+			'wgAutopromote' => [
+				'dummy' => APCOND_EMAILCONFIRMED
+			]
+		] );
+		$user = $this->getTestUser()->getUser();
+		$user->confirmEmail();
+		$this->assertArrayEquals( [
+			'*',
+			'user',
+			'dummy'
+		], $user->getAutomaticGroups( true ) );
+		$user = $this->getTestUser( [ 'dummy' ] )->getUser();
+		$user->confirmEmail();
+		$this->assertArrayEquals( [
+			'*',
+			'user',
+			'dummy'
+		], $user->getAutomaticGroups( true ) );
+	}
+
+	/**
+	 * @covers User::getEffectiveGroups
+	 */
+	public function testGetEffectiveGroups() {
+		$user = $this->getTestUser()->getUser();
+		$this->assertArrayEquals( [
+			'*',
+			'user',
+			'autoconfirmed'
+		], $user->getEffectiveGroups( true ) );
+		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
+		$this->assertArrayEquals( [
+			'*',
+			'user',
+			'autoconfirmed',
+			'bureaucrat',
+			'test'
+		], $user->getEffectiveGroups( true ) );
+		$user = $this->getTestUser( [ 'autoconfirmed', 'test' ] )->getUser();
+		$this->assertArrayEquals( [
+			'*',
+			'user',
+			'autoconfirmed',
+			'test'
+		], $user->getEffectiveGroups( true ) );
+	}
+
+	/**
+	 * @covers User::getGroups
+	 */
+	public function testGetGroups() {
+		$user = $this->getTestUser()->getUser();
+		$reflectionClass = new ReflectionClass( 'User' );
+		$reflectionProperty = $reflectionClass->getProperty( 'mLoadedItems' );
+		$reflectionProperty->setAccessible( true );
+		$reflectionProperty->setValue( $user, true );
+		$reflectionProperty = $reflectionClass->getProperty( 'mGroupMemberships' );
+		$reflectionProperty->setAccessible( true );
+		$reflectionProperty->setValue( $user, [ 'a' => 1, 'b' => 2 ] );
+		$this->assertArrayEquals( [ 'a', 'b' ], $user->getGroups() );
+	}
+
+	/**
+	 * @covers User::getFormerGroups
+	 */
+	public function testGetFormerGroups() {
+		$user = $this->getTestUser()->getUser();
+		$reflectionClass = new ReflectionClass( 'User' );
+		$reflectionProperty = $reflectionClass->getProperty( 'mFormerGroups' );
+		$reflectionProperty->setAccessible( true );
+		$reflectionProperty->setValue( $user, [ 1, 2, 3 ] );
+		$this->assertArrayEquals( [ 1, 2, 3 ], $user->getFormerGroups() );
+		$reflectionProperty->setValue( $user, null );
+		$this->assertArrayEquals( [], $user->getFormerGroups() );
+		$user->addGroup( 'test' );
+		$user->removeGroup( 'test' );
+		$reflectionProperty->setValue( $user, null );
+		$this->assertArrayEquals( [ 'test' ], $user->getFormerGroups() );
+	}
+
+	/**
+	 * @covers User::addGroup
+	 */
+	public function testAddGroup() {
+		$user = $this->getTestUser()->getUser();
+		$this->assertArrayEquals( [], $user->getGroups() );
+		$user->addGroup( 'test' );
+		$this->assertArrayEquals( [ 'test' ], $user->getGroups() );
+	}
+
+	/**
+	 * @covers User::removeGroup
+	 */
+	public function testRemoveGroup() {
+		$user = $this->getTestUser( [ 'test' ] )->getUser();
+		$user->removeGroup( 'test' );
+		$this->assertArrayEquals( [], $user->getGroups() );
+	}
+
 }
