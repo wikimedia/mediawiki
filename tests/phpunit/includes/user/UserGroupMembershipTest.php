@@ -158,4 +158,57 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 		$this->assertEquals( $ugm->getGroup(), 'unittesters' );
 		$this->assertNull( $ugm->getExpiry() );
 	}
+
+	/**
+	 * @covers UserGroupMembership::getLink
+	 */
+	public function testGetLink() {
+		$this->setMwGlobals( [
+			'wgMetaNamespace' => 'Project'
+		] );
+		$user = $this->getMutableTestUser()->getUser();
+		$ugm = new UserGroupMembership( $user->getId(), 'unittesters' );
+		/** @var IContextSource $context */
+		$context = $this->getMockBuilder( ContextSource::class )
+						->disableOriginalConstructor()
+						->getMock();
+		$this->assertSame(
+			'unittesters',
+			UserGroupMembership::getLink( $ugm, $context, 'wiki' )
+		);
+		$this->assertSame(
+			'unittesters',
+			UserGroupMembership::getLink( $ugm, $context, 'html' )
+		);
+		$this->assertSame(
+			'unittesters',
+			UserGroupMembership::getLink( $ugm, $context, 'html', $user->getName() )
+		);
+		$this->assertSame(
+			'unittesters',
+			UserGroupMembership::getLink( $ugm, $context, 'wiki', $user->getName() )
+		);
+		$ugm = new UserGroupMembership( $user->getId(), 'sysop' );
+		$this->assertSame(
+			'[[Project:Administrators|Administrators]]',
+			UserGroupMembership::getLink( $ugm, $context, 'wiki' )
+		);
+		$this->assertSame(
+			'<a href="/index.php?title=Project:Administrators&amp;action=edit&amp;' .
+			'redlink=1" class="new" title="Project:Administrators (page does not exist)">' .
+			'Administrators</a>',
+			UserGroupMembership::getLink( $ugm, $context, 'html' )
+		);
+		$this->assertSame(
+			'[[Project:Administrators|administrator]]',
+			UserGroupMembership::getLink( $ugm, $context, 'wiki', $user->getName() )
+		);
+		$this->assertSame(
+			'<a href="/index.php?title=Project:Administrators&amp;action=edit&amp;' .
+			'redlink=1" class="new" title="Project:Administrators (page does not exist)">' .
+			'administrator</a>',
+			UserGroupMembership::getLink( $ugm, $context, 'html', $user->getName() )
+		);
+	}
+
 }
