@@ -102,7 +102,8 @@ class LanguageFactory {
 	/**
 	 * Get a cached or new language object for a given language code
 	 * @param string $code
-	 * @throws MWException
+	 * @throws MWException if the language code contains dangerous characters, e.g. HTML special
+	 *  characters or characters illegal in MediaWiki titles.
 	 * @return Language
 	 */
 	public function getLanguage( $code ) : Language {
@@ -141,7 +142,7 @@ class LanguageFactory {
 	 * Create a language object for a given language code
 	 * @param string $code
 	 * @param bool $fallback Whether we're going through language fallback chain
-	 * @throws MWException
+	 * @throws MWException if the language code or fallback sequence is invalid
 	 * @return Language
 	 */
 	private function newFromCode( $code, $fallback = false ) : Language {

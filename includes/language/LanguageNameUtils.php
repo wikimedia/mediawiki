@@ -120,7 +120,8 @@ class LanguageNameUtils {
 	 *
 	 * @param string $code
 	 *
-	 * @return bool
+	 * @return bool False if the language code contains dangerous characters, e.g. HTML special
+	 *  characters or characters illegal in MediaWiki titles.
 	 */
 	public function isValidCode( string $code ) : bool {
 		if ( !isset( $this->validCodeCache[$code] ) ) {
