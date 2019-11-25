@@ -47,7 +47,8 @@
 			"Tchoř",
 			"SimonV",
 			"MrJaroslavik",
-			"Luky001"
+			"Luky001",
+			"Juandev"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -371,6 +372,7 @@
 	"no-null-revision": "Nepodařilo se vytvořit novou prázdnou revizi stránky „$1“",
 	"badtitle": "Neplatný název",
 	"badtitletext": "Požadovaný název stránky byl neplatný, prázdný nebo obsahoval nesprávnou předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.",
+	"title-invalid": "Název dotazované stránky není platný",
 	"title-invalid-empty": "Požadovaný název stránky je prázdný nebo obsahuje pouze název jmenného prostoru.",
 	"title-invalid-utf8": "Požadovaný název stránky obsahuje neplatnou sekvenci UTF-8.",
 	"title-invalid-interwiki": "Požadovaný název stránky obsahuje interwiki odkaz, který nelze v názvech používat.",

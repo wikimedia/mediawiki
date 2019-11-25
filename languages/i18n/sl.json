@@ -2462,6 +2462,8 @@
 	"sp-contributions-hideminor": "Skrij manjša urejanja",
 	"sp-contributions-submit": "Išči",
 	"sp-contributions-outofrange": "Ne moremo prikazati nobenih rezultatov. Zahtevano IP-območje je večje kot omejitev CIDR /$1.",
+	"sp-contributions-concurrency-user": "Oprostite, z vašega računa se izvaja preveč zahtev. Prosimo, poskusite pozneje.",
+	"sp-contributions-concurrency-ip": "Oprostite, z vašega IP-naslova se izvaja preveč zahtev. Prosimo, poskusite pozneje.",
 	"whatlinkshere": "Kaj se povezuje sem",
 	"whatlinkshere-title": "Strani, ki se povezujejo na $1",
 	"whatlinkshere-page": "Stran:",

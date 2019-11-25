@@ -78,7 +78,8 @@
 			"Son77391",
 			"Jango",
 			"D6283",
-			"Ktrst"
+			"Ktrst",
+			"Gongsoonyee"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -2525,6 +2526,8 @@
 	"sp-contributions-hideminor": "사소한 편집 숨기기",
 	"sp-contributions-submit": "검색",
 	"sp-contributions-outofrange": "결과를 표시할 수 없습니다. 요청된 IP 대역은 CIDR /$1 한도보다 더 큽니다.",
+	"sp-contributions-concurrency-user": "죄송합니다. 당신의 사용자 계정에서 너무 많은 요청이 이루어지고 있습니다. 나중에 다시 시도하십시오.",
+	"sp-contributions-concurrency-ip": "죄송합니다. 당신의 IP 주소에서 너무 많은 요청이 이루어지고 있습니다. 다음에 다시 시도하십시오.",
 	"whatlinkshere": "여기를 가리키는 문서",
 	"whatlinkshere-title": "\"$1\" 문서를 가리키는 문서 목록",
 	"whatlinkshere-page": "문서:",

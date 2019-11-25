@@ -102,7 +102,8 @@
 			"MarkusRost",
 			"Mcandri13",
 			"Tobi 406",
-			"Ferdinand0101"
+			"Ferdinand0101",
+			"Schmackes"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -2550,6 +2551,8 @@
 	"sp-contributions-hideminor": "Kleine Bearbeitungen ausblenden",
 	"sp-contributions-submit": "Suchen",
 	"sp-contributions-outofrange": "Es konnten keine Ergebnisse angezeigt werden. Der angeforderte IP-Adressbereich ist größer als die CIDR-Grenze von /$1.",
+	"sp-contributions-concurrency-user": "Entschuldigung, es erfolgen zu viele Anfragen von deinem Benutzerkonto. Bitte versuche es später noch einmal.",
+	"sp-contributions-concurrency-ip": "Entschuldigung, es erfolgen zu viele Anfragen von deiner IP-Adresse. Bitte versuche es später noch einmal.",
 	"whatlinkshere": "Links auf diese Seite",
 	"whatlinkshere-title": "Seiten, die auf „$1“ verlinken",
 	"whatlinkshere-page": "Seite:",

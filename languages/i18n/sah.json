@@ -702,6 +702,7 @@
 	"nocreate-loggedin": "Эн саҥа сирэйи оҥорор кыаҕыҥ өссө суох.",
 	"sectioneditnotsupported-title": "Салаалары уларытыы манна сатаммат",
 	"sectioneditnotsupported-text": "Бу сирэйгэ салаалары уларытар кыаллыбат",
+	"modeleditnotsupported-title": "Уларытыы өйөммөт",
 	"permissionserrors": "Киирии алҕаһа",
 	"permissionserrorstext": "Маны оҥорор кыаҕыҥ суох, {{PLURAL:$1|төрүтэ|төрүттэрэ}}:",
 	"permissionserrorstext-withaction": "Бу дьайыыны ($2) оҥорор кыаҕыҥ суох.  {{PLURAL:$1|Биричиинэтэ|Биричиинэлэрэ}}:",
