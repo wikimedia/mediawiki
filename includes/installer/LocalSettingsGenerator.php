@@ -18,13 +18,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 /**
  * Class for generating LocalSettings.php file.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class LocalSettingsGenerator {

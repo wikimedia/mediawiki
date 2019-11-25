@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 use Wikimedia\Rdbms\MySQLField;
 use Wikimedia\Rdbms\IDatabase;
@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Mysql update list and mysql-specific update functions.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  * @property Wikimedia\Rdbms\DatabaseMysqlBase $db
  */

@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use Wikimedia\Rdbms\Database;
@@ -28,7 +28,7 @@ use Wikimedia\Rdbms\DBConnectionError;
 /**
  * Class for setting up the MediaWiki database using SQLLite.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class SqliteInstaller extends DatabaseInstaller {

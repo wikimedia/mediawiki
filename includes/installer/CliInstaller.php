@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use MediaWiki\Installer\InstallException;
@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Class for the core installer command line interface.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class CliInstaller extends Installer {

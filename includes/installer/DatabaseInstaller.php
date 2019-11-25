@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use MediaWiki\MediaWikiServices;
@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\DBConnectionError;
 /**
  * Base class for DBMS-specific installation helper classes.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 abstract class DatabaseInstaller {
