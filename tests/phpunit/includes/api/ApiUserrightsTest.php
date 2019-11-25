@@ -306,7 +306,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	 * @param array $expectedGroups Array of expected groups
 	 */
 	public function testAddAndRemoveGroups(
-		array $permissions = null, array $groupsToChange, array $expectedGroups
+		?array $permissions, array $groupsToChange, array $expectedGroups
 	) {
 		if ( $permissions !== null ) {
 			$this->setPermissions( $permissions[0], $permissions[1] );

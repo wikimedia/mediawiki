@@ -18,9 +18,12 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 	}
 
 	/**
+	 * @param ApiMain|null $main
+	 * @param string $format
+	 * @param array $methods
 	 * @return ApiFormatBase|\PHPUnit\Framework\MockObject\MockObject
 	 */
-	public function getMockFormatter( ApiMain $main = null, $format, $methods = [] ) {
+	public function getMockFormatter( ?ApiMain $main, $format, $methods = [] ) {
 		if ( $main === null ) {
 			$context = new RequestContext;
 			$context->setRequest( new FauxRequest( [], true ) );

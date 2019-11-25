@@ -1027,12 +1027,12 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @param array $args Array of form [ category name => sort key ]
 	 * @param array $fakeResults Array of form [ category name => value to return from mocked
 	 *   LinkBatch ]
-	 * @param callable $variantLinkCallback Callback to replace findVariantLink() call
+	 * @param callable|null $variantLinkCallback Callback to replace findVariantLink() call
 	 * @param array $expectedNormal Expected return value of getCategoryLinks['normal']
 	 * @param array $expectedHidden Expected return value of getCategoryLinks['hidden']
 	 */
 	public function testAddCategoryLinks(
-		array $args, array $fakeResults, callable $variantLinkCallback = null,
+		array $args, array $fakeResults, ?callable $variantLinkCallback,
 		array $expectedNormal, array $expectedHidden
 	) {
 		$expectedNormal = $this->extractExpectedCategories( $expectedNormal, 'add' );
@@ -1054,7 +1054,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::getCategoryLinks
 	 */
 	public function testAddCategoryLinksOneByOne(
-		array $args, array $fakeResults, callable $variantLinkCallback = null,
+		array $args, array $fakeResults, ?callable $variantLinkCallback,
 		array $expectedNormal, array $expectedHidden
 	) {
 		if ( count( $args ) <= 1 ) {
@@ -1084,7 +1084,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::getCategoryLinks
 	 */
 	public function testSetCategoryLinks(
-		array $args, array $fakeResults, callable $variantLinkCallback = null,
+		array $args, array $fakeResults, ?callable $variantLinkCallback,
 		array $expectedNormal, array $expectedHidden
 	) {
 		$expectedNormal = $this->extractExpectedCategories( $expectedNormal, 'set' );
@@ -1112,7 +1112,7 @@ class OutputPageTest extends MediaWikiTestCase {
 	 * @covers OutputPage::getCategoryLinks
 	 */
 	public function testParserOutputCategoryLinks(
-		array $args, array $fakeResults, callable $variantLinkCallback = null,
+		array $args, array $fakeResults, ?callable $variantLinkCallback,
 		array $expectedNormal, array $expectedHidden
 	) {
 		$expectedNormal = $this->extractExpectedCategories( $expectedNormal, 'pout' );
