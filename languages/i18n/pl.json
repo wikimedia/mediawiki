@@ -461,6 +461,7 @@
 	"sitecssprotected": "Nie masz uprawnień do edytowania tej strony CSS, ponieważ może to wpłynąć na wszystkich odwiedzających.",
 	"sitejsonprotected": "Nie masz uprawnień do edytowania tej strony JSON, ponieważ może to wpłynąć na wszystkich odwiedzających.",
 	"sitejsprotected": "Nie masz uprawnień do edytowania tej strony JavaScript, ponieważ może to wpłynąć na wszystkich odwiedzających.",
+	"siterawhtmlprotected": "Nie masz uprawnień do edytowania tej strony, ponieważ zawiera ona nieprzetworzony kod HTML, który może być modyfikowany aby wpływać na sesje wszystkich czytelników.",
 	"mycustomcssprotected": "Nie masz uprawnień do edytowania tej strony CSS.",
 	"mycustomjsonprotected": "Nie masz uprawnień do edytowania tej strony JSON.",
 	"mycustomjsprotected": "Nie masz uprawnień do edytowania tej strony JavaScript.",
