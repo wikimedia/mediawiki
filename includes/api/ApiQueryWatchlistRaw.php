@@ -76,17 +76,16 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			$ns = (int)$cont[0];
 			$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
 			$title = $cont[1];
-			$options['startFrom'] = new TitleValue( $ns, $title );
+			$options['startFrom'] = TitleValue::tryNew( $ns, $title );
+			$this->dieContinueUsageIf( !$options['startFrom'] );
 		}
 
 		if ( isset( $params['fromtitle'] ) ) {
-			list( $ns, $title ) = $this->prefixedTitlePartToKey( $params['fromtitle'] );
-			$options['from'] = new TitleValue( $ns, $title );
+			$options['from'] = $this->parsePrefixedTitlePart( $params['fromtitle'] );
 		}
 
 		if ( isset( $params['totitle'] ) ) {
-			list( $ns, $title ) = $this->prefixedTitlePartToKey( $params['totitle'] );
-			$options['until'] = new TitleValue( $ns, $title );
+			$options['until'] = $this->parsePrefixedTitlePart( $params['totitle'] );
 		}
 
 		$options['sort'] = WatchedItemStore::SORT_ASC;

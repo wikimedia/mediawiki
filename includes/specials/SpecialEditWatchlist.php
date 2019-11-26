@@ -446,7 +446,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				wfDebug( "User {$user->getName()} has broken watchlist item " .
 					"ns($namespace):$dbKey, $action.\n" );
 
-				$store->removeWatch( $user, new TitleValue( (int)$namespace, $dbKey ) );
+				// NOTE: We *know* that the title is invalid. TitleValue may refuse instantiation.
+				// XXX: We may need an InvalidTitleValue class that allows instantiation of
+				//      known bad title values.
+				$store->removeWatch( $user, Title::makeTitle( (int)$namespace, $dbKey ) );
 				// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
 				if ( $title ) {
 					$user->addWatch( $title );

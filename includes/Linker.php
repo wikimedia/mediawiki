@@ -914,7 +914,7 @@ class Linker {
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
-			$page = new TitleValue( NS_USER, strtr( $userName, ' ', '_' ) );
+			$page = TitleValue::tryNew( NS_USER, strtr( $userName, ' ', '_' ) );
 		}
 
 		// Wrap the output with <bdi> tags for directionality isolation
@@ -1040,13 +1040,13 @@ class Linker {
 			return wfMessage( 'empty-username' )->parse();
 		}
 
-		$userTalkPage = new TitleValue( NS_USER_TALK, strtr( $userText, ' ', '_' ) );
+		$userTalkPage = TitleValue::tryNew( NS_USER_TALK, strtr( $userText, ' ', '_' ) );
 		$moreLinkAttribs = [ 'class' => 'mw-usertoollinks-talk' ];
+		$linkText = wfMessage( 'talkpagelinktext' )->escaped();
 
-		return self::link( $userTalkPage,
-			wfMessage( 'talkpagelinktext' )->escaped(),
-			$moreLinkAttribs
-		);
+		return $userTalkPage
+			? self::link( $userTalkPage, $linkText, $moreLinkAttribs )
+			: Html::rawElement( 'span', $moreLinkAttribs, $linkText );
 	}
 
 	/**
