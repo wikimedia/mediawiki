@@ -655,6 +655,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgField', 'logging', 'log_user' ],
 			[ 'dropPgField', 'logging', 'log_user_text' ],
 			[ 'dropDefault', 'logging', 'log_actor' ],
+
+			// 1.35
+			[ 'addIndex', 'redirect', 'redirect_pkey', 'patch-redirect-pk.sql' ],
 		];
 	}
 
