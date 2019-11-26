@@ -522,21 +522,42 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Convert an input title or title prefix into a namespace constant and dbkey.
+	 * Convert an input title or title prefix into a TitleValue.
 	 *
-	 * @since 1.26
+	 * @since 1.35
 	 * @param string $titlePart Title part
 	 * @param int $defaultNamespace Default namespace if none is given
-	 * @return array (int, string) Namespace number and DBkey
+	 * @return TitleValue
 	 */
-	public function prefixedTitlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
-		$t = Title::newFromText( $titlePart . 'x', $defaultNamespace );
-		if ( !$t || $t->hasFragment() || $t->isExternal() ) {
+	protected function parsePrefixedTitlePart( $titlePart, $defaultNamespace = NS_MAIN ) {
+		try {
+			$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+			$t = $titleParser->parseTitle( $titlePart . 'X', $defaultNamespace );
+		} catch ( MalformedTitleException $e ) {
+			$t = null;
+		}
+
+		if ( !$t || $t->hasFragment() || $t->isExternal() || $t->getDBkey() === 'X' ) {
 			// Invalid title (e.g. bad chars) or contained a '#'.
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $titlePart ) ] );
 		}
 
-		return [ $t->getNamespace(), substr( $t->getDBkey(), 0, -1 ) ];
+		return new TitleValue( $t->getNamespace(), substr( $t->getDBkey(), 0, -1 ) );
+	}
+
+	/**
+	 * Convert an input title or title prefix into a namespace constant and dbkey.
+	 *
+	 * @since 1.26
+	 * @deprecated sine 1.35, use parsePrefixedTitlePart() instead.
+	 * @param string $titlePart Title part parsePrefixedTitlePart instead
+	 * @param int $defaultNamespace Default namespace if none is given
+	 * @return array (int, string) Namespace number and DBkey
+	 */
+	public function prefixedTitlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
+		wfDeprecated( __METHOD__, '1.35' );
+		$t = $this->parsePrefixedTitlePart( $titlePart, $defaultNamespace );
+		return [ $t->getNamespace(), $t->getDBkey() ];
 	}
 
 	/**

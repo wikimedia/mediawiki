@@ -503,6 +503,8 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	public static function provideMakeTitleValueSafe() {
 		$ret = [
 			'Nonexistent NS' => [ null, 942929, 'Test' ],
+			'Linebreak in title' => [ null, NS_MAIN, "Test\nthis" ],
+			'Pipe in title' => [ null, NS_MAIN, "Test|this" ],
 			'Simple page' => [ new TitleValue( NS_MAIN, 'Test' ), NS_MAIN, 'Test' ],
 
 			// Fragments

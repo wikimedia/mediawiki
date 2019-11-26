@@ -166,19 +166,29 @@ class LinkBatch {
 		$ids = [];
 		$remaining = $this->data;
 		foreach ( $res as $row ) {
-			$title = new TitleValue( (int)$row->page_namespace, $row->page_title );
-			$cache->addGoodLinkObjFromRow( $title, $row );
-			$pdbk = $titleFormatter->getPrefixedDBkey( $title );
-			$ids[$pdbk] = $row->page_id;
+			$title = TitleValue::tryNew( (int)$row->page_namespace, $row->page_title );
+			if ( $title ) {
+				$cache->addGoodLinkObjFromRow( $title, $row );
+				$pdbk = $titleFormatter->getPrefixedDBkey( $title );
+				$ids[$pdbk] = $row->page_id;
+			} else {
+				wfLogWarning( __METHOD__ . ': encountered invalid title: ' . $row->page_title );
+			}
+
 			unset( $remaining[$row->page_namespace][$row->page_title] );
 		}
 
 		// The remaining links in $data are bad links, register them as such
 		foreach ( $remaining as $ns => $dbkeys ) {
 			foreach ( $dbkeys as $dbkey => $unused ) {
-				$title = new TitleValue( (int)$ns, (string)$dbkey );
-				$cache->addBadLinkObj( $title );
-				$pdbk = $titleFormatter->getPrefixedDBkey( $title );
+				$title = TitleValue::tryNew( (int)$ns, (string)$dbkey );
+				if ( $title ) {
+					$cache->addBadLinkObj( $title );
+					$pdbk = $titleFormatter->getPrefixedDBkey( $title );
+				} else {
+					wfLogWarning( __METHOD__ . ': encountered invalid title: ' . $row->page_title );
+				}
+
 				$ids[$pdbk] = 0;
 			}
 		}

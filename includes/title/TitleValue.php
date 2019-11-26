@@ -22,6 +22,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Assert\ParameterTypeException;
 
 /**
@@ -70,6 +71,36 @@ class TitleValue implements LinkTarget {
 	public $prefixedText = null;
 
 	/**
+	 * Constructs a TitleValue, or returns null if the parameters are not valid.
+	 *
+	 * @note This does not perform any normalization, and only basic validation.
+	 * For full normalization and validation, use TitleParser::makeTitleValueSafe().
+	 *
+	 * @param int $namespace The namespace ID. This is not validated.
+	 * @param string $title The page title in either DBkey or text form. No normalization is applied
+	 *   beyond underscore/space conversion.
+	 * @param string $fragment The fragment title. Use '' to represent the whole page.
+	 *   No validation or normalization is applied.
+	 * @param string $interwiki The interwiki component.
+	 *   No validation or normalization is applied.
+	 *
+	 * @return TitleValue|null
+	 *
+	 * @throws InvalidArgumentException
+	 */
+	public static function tryNew( $namespace, $title, $fragment = '', $interwiki = '' ) {
+		if ( !is_int( $namespace ) ) {
+			throw new ParameterTypeException( '$namespace', 'int' );
+		}
+
+		try {
+			return new static( $namespace, $title, $fragment, $interwiki );
+		} catch ( ParameterAssertionException $ex ) {
+			return null;
+		}
+	}
+
+	/**
 	 * Constructs a TitleValue.
 	 *
 	 * @note TitleValue expects a valid namespace and name; typically, a TitleValue is constructed
@@ -81,7 +112,8 @@ class TitleValue implements LinkTarget {
 	 *   beyond underscore/space conversion.
 	 * @param string $fragment The fragment title. Use '' to represent the whole page.
 	 *   No validation or normalization is applied.
-	 * @param string $interwiki The interwiki component
+	 * @param string $interwiki The interwiki component.
+	 *   No validation or normalization is applied.
 	 *
 	 * @throws InvalidArgumentException
 	 */
