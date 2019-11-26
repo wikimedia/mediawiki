@@ -41,7 +41,7 @@
 		]
 	},
 	{
-		"path": "/v1/search/page",
+		"path": "/coredev/v0/search/page",
 		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
 		"services": [
 			"PermissionManager",
