@@ -57,6 +57,10 @@ class MessageBlobStore implements LoggerAwareInterface {
 	public function __construct( ResourceLoader $rl, LoggerInterface $logger = null ) {
 		$this->resourceloader = $rl;
 		$this->logger = $logger ?: new NullLogger();
+
+		// NOTE: when changing this assignment, make sure the code in the instantiator for
+		// LocalisationCache which calls MessageBlobStore::clearGlobalCacheEntry() uses the
+		// same cache object.
 		$this->wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 	}
 
@@ -169,10 +173,19 @@ class MessageBlobStore implements LoggerAwareInterface {
 
 	/**
 	 * Invalidate cache keys for all known modules.
-	 * Called by LocalisationCache after cache is regenerated.
 	 */
 	public function clear() {
-		$cache = $this->wanCache;
+		self::clearGlobalCacheEntry( $this->wanCache );
+	}
+
+	/**
+	 * Invalidate cache keys for all known modules.
+	 *
+	 * Called by LocalisationCache after cache is regenerated.
+	 *
+	 * @param WANObjectCache $cache
+	 */
+	public static function clearGlobalCacheEntry( WANObjectCache $cache ) {
 		// Disable hold-off because:
 		// - LocalisationCache is populated by messages on-disk and don't have DB lag,
 		//   thus there is no need for hold off. We only clear it after new localisation
