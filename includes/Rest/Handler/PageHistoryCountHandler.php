@@ -24,23 +24,23 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryCountHandler extends SimpleHandler {
-	/** int The maximum number of revisions to count */
-	private const LIMIT = 1000;
-
-	const ALLOWED_COUNT_TYPES = [ 'anonymous', 'bot', 'editors', 'edits', 'reverted', 'minor' ];
-
-	// These types work identically to their similarly-named synonyms, but will be removed in the
-	// next major version of the API. Callers should use the corresponding non-deprecated type.
-	const DEPRECATED_COUNT_TYPES = [
-		'anonedits', 'botedits', 'revertededits'
+	/** The maximum number of counts to return per type of revision */
+	private const COUNT_LIMITS = [
+		'anonymous' => 10000,
+		'bot' => 10000,
+		'editors' => 25000,
+		'edits' => 30000,
+		'minor' => 1000,
+		'reverted' => 30000
 	];
 
-	// The query for minor counts is inefficient for the database for pages with many revisions.
-	// If the specified title contains more revisions than allowed, we will return an error.
-	// This may be fixed with a database index, per T235572. If so, this check can be removed.
-	const MINOR_QUERY_EDIT_COUNT_LIMIT = 2000;
+	private const DEPRECATED_COUNT_TYPES = [
+		'anonedits' => 'anonymous',
+		'botedits' => 'bot',
+		'revertededits' => 'reverted'
+	];
 
-	const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
+	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -76,6 +76,10 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 		// @todo Inject this, when there is a good way to do that
 		$this->user = RequestContext::getMain()->getUser();
+	}
+
+	private function normalizeType( $type ) {
+		return self::DEPRECATED_COUNT_TYPES[$type] ?? $type;
 	}
 
 	/**
@@ -114,7 +118,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function run( $title, $type ) {
-		$this->validateParameterCombination( $type );
+		$normalizedType = $this->normalizeType( $type );
+		$this->validateParameterCombination( $normalizedType );
 		$titleObj = Title::newFromText( $title );
 		if ( !$titleObj || !$titleObj->getArticleID() ) {
 			throw new LocalizedHttpException(
@@ -133,15 +138,15 @@ class PageHistoryCountHandler extends SimpleHandler {
 				403
 			);
 		}
-
-		$count = $this->getCount( $titleObj->getArticleID(), $type );
+		$count = $this->getCount( $titleObj->getArticleID(), $normalizedType );
+		$countLimit = self::COUNT_LIMITS[$normalizedType];
 		$response = $this->getResponseFactory()->createJson( [
-				'count' => $count > self::LIMIT ? self::LIMIT : $count,
-				'limit' => $count > self::LIMIT
+				'count' => $count > $countLimit ? $countLimit : $count,
+				'limit' => $count > $countLimit
 		] );
 
 		// Inform clients who use a deprecated "type" value, so they can adjust
-		if ( in_array( $type, self::DEPRECATED_COUNT_TYPES ) ) {
+		if ( isset( self::DEPRECATED_COUNT_TYPES[$type] ) ) {
 			$docs = '<https://www.mediawiki.org/wiki/API:REST/History_API' .
 				'#Get_page_history_counts>; rel="deprecation"';
 			$response->setHeader( 'Deprecation', 'version="v1"' );
@@ -159,11 +164,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 */
 	protected function getCount( $pageId, $type ) {
 		switch ( $type ) {
-			case 'anonedits':
 			case 'anonymous':
 				return $this->getAnonCount( $pageId );
 
-			case 'botedits':
 			case 'bot':
 				return $this->getBotCount( $pageId );
 
@@ -171,21 +174,24 @@ class PageHistoryCountHandler extends SimpleHandler {
 				return $this->getEditorsCount( $pageId );
 
 			case 'edits':
-				return $this->getEditsCount( $pageId, self::LIMIT );
+				return $this->getEditsCount( $pageId, self::COUNT_LIMITS[$type] );
 
-			case 'revertededits':
 			case 'reverted':
 				return $this->getRevertedCount( $pageId );
 
 			case 'minor':
-				$editsCount = $this->getEditsCount( $pageId, self::MINOR_QUERY_EDIT_COUNT_LIMIT );
-				if ( $editsCount > self::MINOR_QUERY_EDIT_COUNT_LIMIT ) {
+				// The query for minor counts is inefficient for the database for pages with many revisions.
+				// If the specified title contains more revisions than allowed, we will return an error.
+				// This may be fixed with object caching per T237430. If so, the check below can be removed.
+				$editsCount = $this->getEditsCount( $pageId, self::COUNT_LIMITS[$type] * 2 );
+				if ( $editsCount > self::COUNT_LIMITS[$type] * 2 ) {
 					throw new LocalizedHttpException(
 						new MessageValue( 'rest-pagehistorycount-too-many-revisions' ),
 						500
 					);
 				}
 				return $this->getMinorCount( $pageId );
+
 			// Sanity check
 			default:
 				throw new LocalizedHttpException(
@@ -222,7 +228,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			'1',
 			$cond,
 			__METHOD__,
-			[ 'LIMIT' => self::LIMIT + 1 ], // extra to detect truncation
+			[ 'LIMIT' => self::COUNT_LIMITS['anonymous'] + 1 ], // extra to detect truncation
 			[
 				'revision' => [
 					'JOIN',
@@ -273,7 +279,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			'1',
 			$cond,
 			__METHOD__,
-			[ 'LIMIT' => self::LIMIT + 1 ], // extra to detect truncation
+			[ 'LIMIT' => self::COUNT_LIMITS['bot'] + 1 ], // extra to detect truncation
 			[
 				'revision' => [
 					'JOIN',
@@ -309,7 +315,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		}
 
 		return $this->revisionStore->countAuthorsBetween( $pageId, $fromRev,
-			$toRev, $this->user, self::LIMIT );
+			$toRev, $this->user, self::COUNT_LIMITS['editors'] );
 	}
 
 	/**
@@ -340,7 +346,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			[ 'rev_page' => $pageId ],
 			__METHOD__,
 			[
-				'LIMIT' => self::LIMIT + 1, // extra to detect truncation
+				'LIMIT' => self::COUNT_LIMITS['reverted'] + 1, // extra to detect truncation
 				'GROUP BY' => 'rev_id'
 			],
 			[
@@ -368,7 +374,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 				'rev_minor_edit != 0'
 			],
 			__METHOD__,
-			[ 'LIMIT' => self::LIMIT + 1 ] // extra to detect truncation
+			[ 'LIMIT' => self::COUNT_LIMITS['minor'] + 1 ] // extra to detect truncation
 		);
 
 		return $edits;
@@ -452,8 +458,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 			'type' => [
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => array_merge(
-					self::ALLOWED_COUNT_TYPES,
-					self::DEPRECATED_COUNT_TYPES
+					array_keys( self::COUNT_LIMITS ),
+					array_keys( self::DEPRECATED_COUNT_TYPES )
 				),
 				ParamValidator::PARAM_REQUIRED => true,
 			],
