@@ -183,7 +183,7 @@ TEXT
 		return is_array( $this->nsFilter ) && !in_array( $ns, $this->nsFilter );
 	}
 
-	private function reportPage( $page ) {
+	public function reportPage( $page ) {
 		$this->pageCount++;
 	}
 
