@@ -26,7 +26,7 @@
 					}
 				} ) );
 			}
-			if ( /edit.+basetimestamp=2016-01-01.+starttimestamp=2016-01-02.+text=Box%2E/.test( req.requestBody ) ) {
+			if ( /edit.+basetimestamp=2016-01-01.+starttimestamp=2016-01-02.+text=Box\./.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					edit: {
 						result: 'Success',
@@ -67,7 +67,7 @@
 					}
 				} ) );
 			}
-			if ( /edit.+basetimestamp=2016-01-01.+starttimestamp=2016-01-02.+text=Box%2E/.test( req.requestBody ) ) {
+			if ( /edit.+basetimestamp=2016-01-01.+starttimestamp=2016-01-02.+text=Box\./.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					edit: {
 						result: 'Success',
@@ -108,7 +108,7 @@
 					}
 				} ) );
 			}
-			if ( /edit.+basetimestamp=2016-02-01.+starttimestamp=2016-02-02.+text=Promise%2E/.test( req.requestBody ) ) {
+			if ( /edit.+basetimestamp=2016-02-01.+starttimestamp=2016-02-02.+text=Promise\./.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					edit: {
 						result: 'Success',

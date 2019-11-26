@@ -121,7 +121,7 @@
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.strictEqual( match( request.url, /test=([^&]+)/ ), 'true%7Cfalse%7C%7C%7C0%7C1%2E2', 'Pipe-separated value was submitted' );
+			assert.strictEqual( match( request.url, /test=([^&]+)/ ), 'true%7Cfalse%7C%7C%7C0%7C1.2', 'Pipe-separated value was submitted' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
