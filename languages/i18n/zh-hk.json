@@ -110,6 +110,10 @@
 	"botpasswords-newpassword": "用來登入<strong>$1</strong>的新密碼為<strong>$2</strong>。<em>請記錄此密碼以供未來參考使用。</em><br>（舊式機械人的登入名稱需與最終使用者名稱相同，您亦可使用<strong>$3</strong>作為使用者名稱，<strong>$4</strong>作為密碼。）",
 	"botpasswords-restriction-failed": "機械人密碼限制已拒絕是次登入。",
 	"passwordreset-username": "用戶名稱：",
+	"publishpage": "發佈頁面",
+	"publishchanges": "發佈變更",
+	"publishpage-start": "發佈頁面…",
+	"publishchanges-start": "發佈變更…",
 	"editing": "正在編輯 $1",
 	"rev-deleted-comment": "（註釋已除）",
 	"rev-deleted-event": "（日誌已除）",
@@ -170,6 +174,7 @@
 	"tooltip-t-specialpages": "特殊頁面總清單",
 	"tooltip-t-print": "這個頁面的可打印版本",
 	"tooltip-ca-nstab-user": "檢視用戶頁面",
+	"tooltip-publish": "發佈您的變更",
 	"pageinfo-toolboxlink": "頁面資訊",
 	"newimages-showbots": "顯示機械人上傳的檔案",
 	"restricted-displaytitle": "<strong>警告：</strong> 由於顯示標題與頁面實際標題不同，已忽略顯示標題 \"$1\"。",
@@ -177,5 +182,6 @@
 	"specialpages": "特殊頁面",
 	"tags-source-manual": "由使用者與機械人手動套用",
 	"logentry-managetags-activate": "$1{{GENDER:$2|已啟用}}標籤「$4」供使用者與機械人使用",
-	"searchsuggest-search": "搜尋{{SITENAME}}"
+	"searchsuggest-search": "搜尋{{SITENAME}}",
+	"api-error-publishfailed": "內部錯誤：伺服器發佈暫存檔案失敗。"
 }
