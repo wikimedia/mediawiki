@@ -300,12 +300,12 @@ class DeferredUpdates {
 		} catch ( Throwable $e ) {
 		}
 
+		$error = get_class( $e ) . ': ' . $e->getMessage();
 		$logger->error(
-			"Deferred update {type} failed to run: {exception_message}",
+			"Deferred update '$type' failed to run. $error",
 			[
-				'type' => $type,
-				'trace' => $e->getTraceAsString(),
-				'exception_message' => $e->getMessage()
+				'deferred_type' => $type,
+				'exception' => $e,
 			]
 		);
 
@@ -323,12 +323,12 @@ class DeferredUpdates {
 			} catch ( Throwable $jobEx ) {
 			}
 
+			$error = get_class( $jobEx ) . ': ' . $jobEx->getMessage();
 			$logger->error(
-				"Job enqueue of deferred update, {type}, failed: {exception_message}",
+				"Job enqueue of deferred update '$type' failed. $error",
 				[
-					'type' => $type,
-					'trace' => $jobEx->getTraceAsString(),
-					'exception_message' => $jobEx->getMessage()
+					'deferred_type' => $type,
+					'exception' => $jobEx,
 				]
 			);
 
@@ -367,9 +367,13 @@ class DeferredUpdates {
 		} catch ( Throwable $e ) {
 		}
 
+		$error = get_class( $e ) . ': ' . $e->getMessage();
 		$logger->error(
-			"Job enqueue of deferred update, {type}, failed: {exception_message}",
-			[ 'exception' => $e ]
+			"Job enqueue of deferred update '$type' failed. $error",
+			[
+				'deferred_type' => $type,
+				'exception' => $e,
+			]
 		);
 
 		$lbFactory->rollbackMasterChanges( __METHOD__ );
