@@ -1397,11 +1397,16 @@ class FormatMetadata extends ContextSource {
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
 	 *
-	 * @param int $coord Degrees, minutes and seconds
-	 * @param string $type Latitude or longitude (for if its a NWS or E)
-	 * @return mixed A floating point number or whatever we were fed
+	 * @param float|string $coord Expected to be a number or numeric string in degrees
+	 * @param string $type "latitude" or "longitude"
+	 * @return string
 	 */
 	private function formatCoords( $coord, $type ) {
+		if ( !is_numeric( $coord ) ) {
+			wfDebugLog( 'exif', __METHOD__ . ": \"$coord\" is not a number" );
+			return (string)$coord;
+		}
+
 		$ref = '';
 		if ( $coord < 0 ) {
 			$nCoord = -$coord;
@@ -1411,7 +1416,7 @@ class FormatMetadata extends ContextSource {
 				$ref = 'W';
 			}
 		} else {
-			$nCoord = $coord;
+			$nCoord = (float)$coord;
 			if ( $type === 'latitude' ) {
 				$ref = 'N';
 			} elseif ( $type === 'longitude' ) {
@@ -1420,13 +1425,14 @@ class FormatMetadata extends ContextSource {
 		}
 
 		$deg = floor( $nCoord );
-		$min = floor( ( $nCoord - $deg ) * 60.0 );
-		$sec = round( ( ( $nCoord - $deg ) - $min / 60 ) * 3600, 2 );
+		$min = floor( ( $nCoord - $deg ) * 60 );
+		$sec = round( ( ( $nCoord - $deg ) * 60 - $min ) * 60, 2 );
 
 		$deg = $this->formatNum( $deg );
 		$min = $this->formatNum( $min );
 		$sec = $this->formatNum( $sec );
 
+		// Note the default message "$1° $2′ $3″ $4" ignores the 5th parameter
 		return $this->msg( 'exif-coordinate-format', $deg, $min, $sec, $ref, $coord )->text();
 	}
 
