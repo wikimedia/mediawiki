@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Message;
 
+use MediaWiki\Message\Converter;
 use MediaWiki\Message\TextFormatter;
 use MediaWikiTestCase;
 use Message;
@@ -18,11 +19,10 @@ use Wikimedia\Message\ScalarParam;
  */
 class TextFormatterTest extends MediaWikiTestCase {
 	private function createTextFormatter( $langCode ) {
-		$formatter = $this->getMockBuilder( TextFormatter::class )
-			->setConstructorArgs( [ $langCode ] )
+		$converter = $this->getMockBuilder( Converter::class )
 			->setMethods( [ 'createMessage' ] )
 			->getMock();
-		$formatter->method( 'createMessage' )
+		$converter->method( 'createMessage' )
 			->willReturnCallback( function ( $key ) {
 				$message = $this->getMockBuilder( Message::class )
 					->setConstructorArgs( [ $key ] )
@@ -38,12 +38,11 @@ class TextFormatterTest extends MediaWikiTestCase {
 				return $message;
 			} );
 
-		/** @var TextFormatter $formatter */
-		return $formatter;
+		return new TextFormatter( $langCode, $converter );
 	}
 
 	public function testGetLangCode() {
-		$formatter = new TextFormatter( 'fr' );
+		$formatter = new TextFormatter( 'fr', new Converter );
 		$this->assertSame( 'fr', $formatter->getLangCode() );
 	}
 

@@ -3,16 +3,15 @@
 namespace MediaWiki\Message;
 
 use Wikimedia\Message\ITextFormatter;
-use Wikimedia\Message\ListParam;
-use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ParamType;
-use Message;
 
 /**
  * The MediaWiki-specific implementation of ITextFormatter
  */
 class TextFormatter implements ITextFormatter {
+	/** @var Converter */
+	private $converter;
+
 	/** @var string */
 	private $langCode;
 
@@ -25,55 +24,19 @@ class TextFormatter implements ITextFormatter {
 	 *
 	 * @internal
 	 * @param string $langCode
+	 * @param Converter $converter
 	 */
-	public function __construct( $langCode ) {
+	public function __construct( $langCode, Converter $converter ) {
 		$this->langCode = $langCode;
-	}
-
-	/**
-	 * Allow the Message class to be mocked in tests by constructing objects in
-	 * a protected method.
-	 *
-	 * @internal
-	 * @param string $key
-	 * @return Message
-	 */
-	protected function createMessage( $key ) {
-		return new Message( $key );
+		$this->converter = $converter;
 	}
 
 	public function getLangCode() {
 		return $this->langCode;
 	}
 
-	private function convertParam( MessageParam $param ) {
-		if ( $param instanceof ListParam ) {
-			$convertedElements = [];
-			foreach ( $param->getValue() as $element ) {
-				$convertedElements[] = $this->convertParam( $element );
-			}
-			return Message::listParam( $convertedElements, $param->getListType() );
-		}
-		$value = $param->getValue();
-		if ( $value instanceof MessageValue ) {
-			$mv = $value;
-			$value = $this->createMessage( $mv->getKey() );
-			foreach ( $mv->getParams() as $mvParam ) {
-				$value->params( $this->convertParam( $mvParam ) );
-			}
-		}
-
-		if ( $param->getType() === ParamType::TEXT ) {
-			return $value;
-		}
-		return [ $param->getType() => $value ];
-	}
-
 	public function format( MessageValue $mv ) {
-		$message = $this->createMessage( $mv->getKey() );
-		foreach ( $mv->getParams() as $param ) {
-			$message->params( $this->convertParam( $param ) );
-		}
+		$message = $this->converter->convertMessageValue( $mv );
 		$message->inLanguage( $this->langCode );
 		return $message->text();
 	}
