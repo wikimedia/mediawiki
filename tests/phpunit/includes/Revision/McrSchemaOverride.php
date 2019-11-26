@@ -49,7 +49,7 @@ trait McrSchemaOverride {
 			$overrides['scripts'][] = $this->getSqlPatchPath( $db, 'patch-slots' );
 		}
 
-		if ( !$this->hasPreMcrFields( $db ) ) {
+		if ( $this->hasPreMcrFields( $db ) ) {
 			$overrides['alter'][] = 'revision';
 			$overrides['scripts'][] = $this->getSqlPatchPath( $db, 'drop-pre-mcr-fields', __DIR__ );
 		}

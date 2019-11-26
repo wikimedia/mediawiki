@@ -3,7 +3,7 @@ DROP TABLE /*_*/revision;
 CREATE TABLE /*_*/revision (
   rev_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   rev_page INTEGER NOT NULL,
-  rev_comment BLOB NOT NULL,
+  rev_comment BLOB NOT NULL default '',
   rev_user INTEGER NOT NULL default 0,
   rev_user_text varchar(255) NOT NULL default '',
   rev_timestamp blob(14) NOT NULL default '',
