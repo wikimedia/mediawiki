@@ -451,7 +451,6 @@ class XmlDumpWriter {
 		$out .= $indent . Xml::element( 'format', null, strval( $contentFormat ) ) . "\n";
 
 		$textAttributes = [
-			'xml:space' => 'preserve',
 			'bytes' => $this->invokeLenient(
 				$slot,
 				'getSize',
@@ -545,6 +544,7 @@ class XmlDumpWriter {
 
 		$data = $contentHandler->exportTransform( $data, $contentFormat );
 		$textAttributes['bytes'] = $size = strlen( $data ); // make sure to use the actual size
+		$textAttributes['xml:space'] = 'preserve';
 		$out .= $indent . Xml::elementClean( 'text', $textAttributes, strval( $data ) ) . "\n";
 
 		return $out;

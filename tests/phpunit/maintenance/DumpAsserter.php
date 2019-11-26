@@ -320,9 +320,13 @@ class DumpAsserter {
 		if ( $text === false ) {
 			Assert::assertEquals( $this->xml->getAttribute( "id" ), $text_id,
 				"Text id of revision " . $id );
+			Assert::assertNull( $this->xml->getAttribute( "xml:space" ),
+				"xml:space attribute shout not be present" );
 			$this->assertEmptyNode( "text" );
 		} else {
 			// Testing for a real dump
+			Assert::assertEquals( $this->xml->getAttribute( "xml:space" ), "preserve",
+				"xml:space=preserve should be present" );
 			Assert::assertTrue( $this->xml->read(), "Skipping text start tag" );
 			Assert::assertEquals( $text, $this->xml->value, "Text of revision " . $id );
 			Assert::assertTrue( $this->xml->read(), "Skipping past text" );
