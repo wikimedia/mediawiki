@@ -224,7 +224,7 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   'mime', 'mediadtype', 'bitdepth'.
   Clients that process these fields should first check if 'filemissing' is
   set. Fields that are supported even if the file is missing include:
-  'canonicaltitle', ''archivename' (deleted files only), 'descriptionurl',
+  'canonicaltitle', 'archivename' (deleted files only), 'descriptionurl',
   'descriptionshorturl'.
 * The 'blockexpiry' result property in list=users and list=allusers will now be
   returned in the same format used by the rest of the API: ISO 8601 for
