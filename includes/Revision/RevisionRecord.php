@@ -185,7 +185,7 @@ abstract class RevisionRecord {
 	 *
 	 * @throws RevisionAccessException if the slot does not exist or slot data
 	 *        could not be lazy-loaded.
-	 * @return SlotRecord The slot meta-data. If access to the slot content is forbidden,
+	 * @return SlotRecord The slot meta-data. If access to the slot's content is forbidden,
 	 *         calling getContent() on the SlotRecord will throw an exception.
 	 */
 	public function getSlot( $role, $audience = self::FOR_PUBLIC, User $user = null ) {
@@ -221,6 +221,12 @@ abstract class RevisionRecord {
 
 	/**
 	 * Returns the slots defined for this revision.
+	 *
+	 * @note This provides access to slot content with no audience checks applied.
+	 * Calling getContent() on the RevisionSlots object returned here, or on any
+	 * SlotRecord it returns from getSlot(), will not fail due to access restrictions.
+	 * If audience checks are desired, use getSlot( $role, $audience, $user )
+	 * or getContent( $role, $audience, $user ) instead.
 	 *
 	 * @return RevisionSlots
 	 */
