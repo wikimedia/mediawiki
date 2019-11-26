@@ -1787,6 +1787,12 @@ class RevisionStore
 			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
 		}
 
+		if ( $user->getName() === '' ) {
+			// T236624: If the user name is empty, force 'Unknown user',
+			// even if the actor table has an entry for the empty user name.
+			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
+		}
+
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
 		// Legacy because $row may have come from self::selectFields()
 		$comment = $this->commentStore->getCommentLegacy( $db, 'ar_comment', $row, true );
