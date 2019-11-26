@@ -164,7 +164,9 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 	 */
 	public function testGetLink() {
 		$this->setMwGlobals( [
-			'wgMetaNamespace' => 'Project'
+			'wgMetaNamespace' => 'Project',
+			'wgScriptPath' => '/w',
+			'wgScript' => '/w/index.php'
 		] );
 		$user = $this->getMutableTestUser()->getUser();
 		$ugm = new UserGroupMembership( $user->getId(), 'unittesters' );
@@ -194,7 +196,7 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 			UserGroupMembership::getLink( $ugm, $context, 'wiki' )
 		);
 		$this->assertSame(
-			'<a href="/index.php?title=Project:Administrators&amp;action=edit&amp;' .
+			'<a href="/w/index.php?title=Project:Administrators&amp;action=edit&amp;' .
 			'redlink=1" class="new" title="Project:Administrators (page does not exist)">' .
 			'Administrators</a>',
 			UserGroupMembership::getLink( $ugm, $context, 'html' )
@@ -204,7 +206,7 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 			UserGroupMembership::getLink( $ugm, $context, 'wiki', $user->getName() )
 		);
 		$this->assertSame(
-			'<a href="/index.php?title=Project:Administrators&amp;action=edit&amp;' .
+			'<a href="/w/index.php?title=Project:Administrators&amp;action=edit&amp;' .
 			'redlink=1" class="new" title="Project:Administrators (page does not exist)">' .
 			'administrator</a>',
 			UserGroupMembership::getLink( $ugm, $context, 'html', $user->getName() )
