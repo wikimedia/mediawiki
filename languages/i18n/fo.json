@@ -14,7 +14,8 @@
 			"Macofe",
 			"Irus",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"Olavur"
 		]
 	},
 	"tog-underline": "Undirstrika leinki:",
@@ -1966,7 +1967,7 @@
 	"tooltip-ca-nstab-main": "Skoða innihaldssíðuna",
 	"tooltip-ca-nstab-user": "Skoða brúkarasíðuna",
 	"tooltip-ca-nstab-media": "Skoða miðlasíðuna",
-	"tooltip-ca-nstab-special": "Hetta er ein serlig síða. Tú kanst ikki broyta síðuna sjálv/ur.",
+	"tooltip-ca-nstab-special": "Hetta er ein serlig síða, og tað ber ikki til broyta hana.",
 	"tooltip-ca-nstab-project": "Skoða verkætlanarsíðuna",
 	"tooltip-ca-nstab-image": "Skoða myndasíðuna",
 	"tooltip-ca-nstab-mediawiki": "Skoða kervisamboðini",
