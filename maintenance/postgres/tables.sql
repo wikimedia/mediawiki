@@ -303,7 +303,7 @@ CREATE UNIQUE INDEX model_name ON content_models (model_name);
 
 
 CREATE TABLE redirect (
-  rd_from       INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  rd_from       INTEGER  NOT NULL PRIMARY KEY REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   rd_namespace  SMALLINT NOT NULL,
   rd_title      TEXT     NOT NULL,
   rd_interwiki  TEXT     NULL,
