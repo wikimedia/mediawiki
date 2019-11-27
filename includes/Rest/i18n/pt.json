@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Mansil alfalb"
 		]
 	},
 	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho raiz da API REST ($2)",
@@ -9,17 +10,20 @@
 	"rest-no-match": "O caminho relativo pedido ($1) não corresponde a nenhuma rotina de tratamento conhecida",
 	"rest-nonexistent-title": "O título especificado ($1) não existe",
 	"rest-nonexistent-title-revision": "A revisão especificada ($1) não existe para a página especificada ($2)",
-	"rest-nonexistent-revision": "A revisão pedida ($1) não existe.",
-	"rest-permission-denied-title": "O utilizador não tem o direito de ler o título ($1)",
+	"rest-nonexistent-revision": "A revisão especificada ($1) não existe.",
+	"rest-permission-denied-title": "O utilizador não tem os direitos para ler o título ($1)",
 	"rest-permission-denied-revision": "O utilizador não tem acesso à revisão pedida ($1).",
 	"rest-pagehistory-incompatible-params": "Os parâmetros \"older_than\" ''(anterior a)'' e \"newer_than\" ''(posterior a)'' não podem ser especificados em simultâneo",
 	"rest-pagehistory-param-range-error": "O identificador da revisão tem de ser maior do que 0",
 	"rest-pagehistory-timestamp-error": "Não foi possível obter a data e hora da revisão especificada ($1)",
 	"rest-pagehistorycount-type-unrecognized": "O tipo de contagem especificado ($1) não é válido",
+	"rest-pagehistorycount-parameters-invalid": "A combinação especificada de parâmetros não é suportada.",
 	"rest-compare-page-mismatch": "As revisões especificadas pertencem a páginas diferentes; a recusar a comparação.",
 	"rest-compare-permission-denied": "O utilizador não tem acesso às revisões pedidas",
 	"rest-compare-nonexistent": "A revisão especificada pelo parâmetro $1 não existe.",
 	"rest-compare-inaccessible": "A revisão especificada pelo parâmetro $1 não é acessível pelo público.",
 	"rest-compare-wrong-content": "O segmento $1 da revisão especificada pelo parâmetro $2 tem um tipo de conteúdo que não pode ser convertido para texto.",
-	"rest-compare-wikidiff2": "O ponto final requer wikidiff2 1.9.0 ou posterior."
+	"rest-compare-wikidiff2": "O ponto final requer wikidiff2 1.9.0 ou posterior.",
+	"rest-pagehistorycount-too-many-revisions": "O título especificado contém demasiadas revisões para recuperar esta contagem.",
+	"rest-search-error": "Erro ao devolver os resultados da pesquisa: $1"
 }

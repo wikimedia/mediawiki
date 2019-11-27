@@ -196,7 +196,8 @@
 			"Madamebiblio",
 			"Hasley",
 			"Canaan9801",
-			"Andru1013"
+			"Andru1013",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -558,6 +559,7 @@
 	"sitecssprotected": "No tienes permiso para editar esta página CSS porque puede afectar a todos los visitantes.",
 	"sitejsonprotected": "No tienes permiso para editar esta página JSON porque puede afectar a todos los visitantes.",
 	"sitejsprotected": "No tienes permiso para editar esta página de JavaScript porque puede afectar a todos los visitantes.",
+	"siterawhtmlprotected": "No tienes permiso para editar esta página porque tiene HTML que puede afectar a todos los visitantes.",
 	"mycustomcssprotected": "No tienes permiso para editar esta página CSS.",
 	"mycustomjsonprotected": "No tienes permiso para editar esta página JSON.",
 	"mycustomjsprotected": "No tienes permiso para editar esta página JavaScript.",

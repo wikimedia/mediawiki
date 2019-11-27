@@ -584,7 +584,7 @@
 	"botpasswords-updated-body": "„$2” felhasználó „$1” botjának jelszava módosítva.",
 	"botpasswords-deleted-title": "Botjelszó törölve",
 	"botpasswords-deleted-body": "„$2” felhasználó „$1” botjának jelszava törölve.",
-	"botpasswords-newpassword": "A bejelentkezéshez használható új felhasználóneved <strong>$1</strong>, jelszavad <strong>$2</strong>. <em>Ezeket jegyezd fel a későbbiekre.</em> <br> (Régebbi botoknál, amik megkövetelhetik, hogy a bejelentkezési név megegyezzen magával a felhasználónévvel, használhatod a(z) <strong>$3</strong> felhasználónevet is <strong>$4</strong> jelszóval.)",
+	"botpasswords-newpassword": "A bejelentkezéshez használható új felhasználóneved <strong>$1</strong>, jelszavad <strong>$2</strong>. <em>Ezeket jegyezd fel a későbbiekre.</em> <br> (Régebbi botoknál, amik megkövetelhetik, hogy a bejelentkezési név megegyezzen magával a felhasználónévvel, használhatod a(z) <strong>$3</strong> felhasználónevet is a(z) <strong>$4</strong> jelszóval.)",
 	"botpasswords-no-provider": "A BotPasswordsSessionProvider nem áll rendelkezésre.",
 	"botpasswords-restriction-failed": "A botjelszó-korlátozások megakadályozzák ezt a bejelentkezést.",
 	"botpasswords-invalid-name": "A megadott felhasználónév nem tartalmazza a botjelszó-elválasztót („$1”).",
