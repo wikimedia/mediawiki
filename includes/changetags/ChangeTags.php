@@ -813,7 +813,7 @@ class ChangeTags {
 					$filterTagIds[] = $changeTagDefStore->getId( $filterTagName );
 				} catch ( NameTableAccessException $exception ) {
 					// Return nothing.
-					$conds[] = '0';
+					$conds[] = '0=1';
 					break;
 				}
 			}
