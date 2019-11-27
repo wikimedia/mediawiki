@@ -1175,9 +1175,6 @@ more stuff
 	 * @covers WikiPage::commitRollback
 	 */
 	public function testDoRollback() {
-		// FIXME: fails under postgres
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 		// Use the confirmed group for user2 to make sure the user is different

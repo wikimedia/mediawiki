@@ -3195,7 +3195,7 @@ class WikiPage implements Page, IDBAccessObject {
 			__METHOD__,
 			[
 				'USE INDEX' => [ 'revision' => 'page_timestamp' ],
-				'ORDER BY' => 'rev_timestamp DESC'
+				'ORDER BY' => 'rev_timestamp DESC, rev_id DESC'
 			],
 			$actorWhere['joins']
 		);
