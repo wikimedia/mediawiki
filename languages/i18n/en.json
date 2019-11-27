@@ -605,7 +605,7 @@
 	"passwordreset-emailelement": "Username:\n$1\n\nTemporary password:\n$2",
 	"passwordreset-emailsentemail": "If this email address is associated with your account, then a password reset email will be sent.",
 	"passwordreset-emailsentusername": "If there is an email address associated with this username, then a password reset email will be sent.",
-	"passwordreset-emailtext-require-email": "However, if you did not generate this request and want to prevent unsolicited emails, you may want to update your email options at $1. You can require both username and email address to generate password reset emails. This may reduce the number of such incidents.",
+	"passwordreset-emailtext-require-email": "However, if you did not generate this request and want to prevent unsolicited\nemails, you may want to update your email options at\n$1.\nYou can require both username and email address to generate password reset\nemails. This may reduce the number of such incidents.",
 	"passwordreset-nocaller": "A caller must be provided",
 	"passwordreset-nosuchcaller": "Caller does not exist: $1",
 	"passwordreset-ignored": "The password reset was not handled. Maybe no provider was configured?",
