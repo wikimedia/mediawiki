@@ -3279,7 +3279,7 @@
 	"logentry-protect-unprotect": "{{GENDER:$2|Lamet eo bet}} gwarez $3 gant $1",
 	"logentry-protect-protect": "$1 {{GENDER:$2|en|he}} deus gwarezet $3 $4",
 	"logentry-protect-protect-cascade": "{{GENDER:$2|Gwarezet eo bet}} $3 $4 [dre skalierad] gant $1",
-	"logentry-protect-modify": "{{GENDER:$2|KEmmet eo bet}} live gwareziñ $3 $4 gant $1",
+	"logentry-protect-modify": "Kemmet eo bet live gwareziñ $3 $4 gant $1",
 	"logentry-protect-modify-cascade": "{{GENDER:$2|Kemmet eo bet}} live gwareziñ $3 $4 [dre skalierad] gant $1",
 	"logentry-rights-rights": "{{GENDER:$2|Kemmet eo bet}} gant $1 emezeladur {{GENDER:$6|$3}} er strollad eus $4 da $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|Kemmet eo bet}} gant $1 emezeladur $3 er strollad",
