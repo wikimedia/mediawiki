@@ -67,9 +67,11 @@ class UserTest extends MediaWikiTestCase {
 			'runtest' => true,
 		];
 
-		# For the options test
+		# For the options and watchlist tests
 		$wgGroupPermissions['*'] = [
-			'editmyoptions' => true
+			'editmyoptions' => true,
+			'editmywatchlist' => true,
+			'viewmywatchlist' => true,
 		];
 
 		# For patrol tests
@@ -1961,6 +1963,26 @@ class UserTest extends MediaWikiTestCase {
 		$user = $this->getTestUser( [ 'test' ] )->getUser();
 		$user->removeGroup( 'test' );
 		$this->assertArrayEquals( [], $user->getGroups() );
+	}
+
+	/**
+	 * @covers User::isWatched
+	 * @covers User::addWatch
+	 * @covers User::removeWatch
+	 */
+	public function testWatchlist() {
+		$user = $this->getTestUser()->getUser();
+		$specialTitle = Title::newFromText( 'Special:Version' );
+		$articleTitle = Title::newFromText( 'FooBar' );
+
+		$this->assertFalse( $user->isWatched( $specialTitle ), 'Special pages cannot be watched' );
+		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has not been watched yet' );
+
+		$user->addWatch( $articleTitle );
+		$this->assertTrue( $user->isWatched( $articleTitle ), 'The article has been watched' );
+
+		$user->removeWatch( $articleTitle );
+		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has been unwatched' );
 	}
 
 }
