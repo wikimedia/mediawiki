@@ -71,9 +71,9 @@ class ResourceFileCache extends FileCacheBase {
 		// Get all query values
 		$queryVals = $context->getRequest()->getValues();
 		foreach ( $queryVals as $query => $val ) {
-			if ( in_array( $query, [ 'modules', 'image', 'variant', 'version', '*' ] ) ) {
+			if ( in_array( $query, [ 'modules', 'image', 'variant', 'version' ] ) ) {
 				// Use file cache regardless of the value of this parameter
-				continue; // note: &* added as IE fix
+				continue;
 			} elseif ( $query === 'skin' && $val === $wgDefaultSkin ) {
 				continue;
 			} elseif ( $query === 'lang' && $val === $wgLanguageCode ) {

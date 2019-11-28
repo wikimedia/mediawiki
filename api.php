@@ -37,13 +37,8 @@ require __DIR__ . '/includes/WebStart.php';
 
 $starttime = microtime( true );
 
-// URL safety checks
-if ( !$wgRequest->checkUrlExtension() ) {
-	return;
-}
-
 // PATH_INFO can be used for stupid things. We don't support it for api.php at
-// all, so error out if it's present.
+// all, so error out if it's present. (T128209)
 if ( isset( $_SERVER['PATH_INFO'] ) && $_SERVER['PATH_INFO'] != '' ) {
 	$correctUrl = wfAppendQuery( wfScript( 'api' ), $wgRequest->getQueryValuesOnly() );
 	$correctUrl = wfExpandUrl( $correctUrl, PROTO_CANONICAL );

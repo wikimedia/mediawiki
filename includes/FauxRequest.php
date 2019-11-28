@@ -222,15 +222,6 @@ class FauxRequest extends WebRequest {
 
 	/**
 	 * @codeCoverageIgnore
-	 * @param array $extWhitelist
-	 * @return bool
-	 */
-	public function checkUrlExtension( $extWhitelist = [] ) {
-		return true;
-	}
-
-	/**
-	 * @codeCoverageIgnore
 	 * @return string
 	 */
 	protected function getRawIP() {

@@ -1131,63 +1131,16 @@ class WebRequest {
 	}
 
 	/**
-	 * Check if Internet Explorer will detect an incorrect cache extension in
-	 * PATH_INFO or QUERY_STRING. If the request can't be allowed, show an error
-	 * message or redirect to a safer URL. Returns true if the URL is OK, and
-	 * false if an error message has been shown and the request should be aborted.
+	 * This function formerly did a security check to prevent an XSS
+	 * vulnerability in IE6, as documented in T30235. Since IE6 support has
+	 * been dropped, this function now returns true unconditionally.
 	 *
+	 * @deprecated since 1.35
 	 * @param array $extWhitelist
-	 * @throws HttpError
 	 * @return bool
 	 */
 	public function checkUrlExtension( $extWhitelist = [] ) {
-		$extWhitelist[] = 'php';
-		if ( IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist ) ) {
-			if ( !$this->wasPosted() ) {
-				$newUrl = IEUrlExtension::fixUrlForIE6(
-					$this->getFullRequestURL(), $extWhitelist );
-				if ( $newUrl !== false ) {
-					$this->doSecurityRedirect( $newUrl );
-					return false;
-				}
-			}
-			throw new HttpError( 403,
-				'Invalid file extension found in the path info or query string.' );
-		}
-		return true;
-	}
-
-	/**
-	 * Attempt to redirect to a URL with a QUERY_STRING that's not dangerous in
-	 * IE 6. Returns true if it was successful, false otherwise.
-	 *
-	 * @param string $url
-	 * @return bool
-	 */
-	protected function doSecurityRedirect( $url ) {
-		header( 'Location: ' . $url );
-		header( 'Content-Type: text/html' );
-		$encUrl = htmlspecialchars( $url );
-		echo <<<HTML
-<!DOCTYPE html>
-<html>
-<head>
-<title>Security redirect</title>
-</head>
-<body>
-<h1>Security redirect</h1>
-<p>
-We can't serve non-HTML content from the URL you have requested, because
-Internet Explorer would interpret it as an incorrect and potentially dangerous
-content type.</p>
-<p>Instead, please use <a href="$encUrl">this URL</a>, which is the same as the
-URL you have requested, except that "&amp;*" is appended. This prevents Internet
-Explorer from seeing a bogus file extension.
-</p>
-</body>
-</html>
-HTML;
-		echo "\n";
+		wfDeprecated( __METHOD__, '1.35' );
 		return true;
 	}
 

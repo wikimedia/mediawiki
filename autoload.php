@@ -647,7 +647,6 @@ $wgAutoloadLocalClasses = [
 	'IDBAccessObject' => __DIR__ . '/includes/dao/IDBAccessObject.php',
 	'IDatabase' => __DIR__ . '/includes/libs/rdbms/database/IDatabase.php',
 	'IEContentAnalyzer' => __DIR__ . '/includes/libs/mime/IEContentAnalyzer.php',
-	'IEUrlExtension' => __DIR__ . '/includes/libs/IEUrlExtension.php',
 	'IExpiringStore' => __DIR__ . '/includes/libs/objectcache/IExpiringStore.php',
 	'IJobSpecification' => __DIR__ . '/includes/jobqueue/IJobSpecification.php',
 	'ILocalizedException' => __DIR__ . '/includes/exception/ILocalizedException.php',
