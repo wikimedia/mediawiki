@@ -574,6 +574,23 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers Status::getErrorMessage
+	 */
+	public function testGetErrorMessageComplexParam() {
+		$method = new ReflectionMethod( Status::class, 'getErrorMessage' );
+		$method->setAccessible( true );
+		$status = new Status();
+		$key = 'foo';
+		$params = [ 'bar', Message::numParam( 5 ) ];
+
+		/** @var Message $message */
+		$message = $method->invoke( $status, array_merge( [ $key ], $params ) );
+		$this->assertInstanceOf( Message::class, $message );
+		$this->assertEquals( $key, $message->getKey() );
+		$this->assertEquals( $params, $message->getParams() );
+	}
+
+	/**
 	 * @covers Status::getErrorMessageArray
 	 */
 	public function testGetErrorMessageArray() {
