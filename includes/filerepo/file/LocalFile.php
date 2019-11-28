@@ -998,8 +998,10 @@ class LocalFile extends File {
 		$files = [ $dir ];
 		try {
 			$iterator = $backend->getFileList( [ 'dir' => $dir ] );
-			foreach ( $iterator as $file ) {
-				$files[] = $file;
+			if ( $iterator !== null ) {
+				foreach ( $iterator as $file ) {
+					$files[] = $file;
+				}
 			}
 		} catch ( FileBackendError $e ) {
 		} // suppress (T56674)
