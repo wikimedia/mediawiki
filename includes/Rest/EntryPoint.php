@@ -25,9 +25,6 @@ class EntryPoint {
 	public static function main() {
 		// URL safety checks
 		global $wgRequest;
-		if ( !$wgRequest->checkUrlExtension() ) {
-			return;
-		}
 
 		$context = RequestContext::getMain();
 

@@ -205,6 +205,9 @@ because of Phabricator reports.
 * Title::countAuthorsBetween and Title::getAuthorsBetween have been deprecated.
   Use respective methods in RevisionStore instead.
 * Remove deprecated SkinCopyrightFooter &$forContent parameter
+* As part of dropping security support for IE 6 and IE 7,
+  WebRequest::checkUrlExtension() has been deprecated, and now always returns
+  true.
 * …
 
 === Other changes in 1.35 ===

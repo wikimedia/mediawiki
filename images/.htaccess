@@ -1,9 +1,6 @@
-# Protect against bug T30235
 <IfModule rewrite_module>
 	RewriteEngine On
 	RewriteOptions inherit
-	RewriteCond %{QUERY_STRING} \.[^\\/:*?\x22<>|%]+(#|\?|$) [nocase]
-	RewriteRule . - [forbidden]
 	# Fix for bug T64289
 	Options +FollowSymLinks
 </IfModule>

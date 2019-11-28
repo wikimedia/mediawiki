@@ -58,10 +58,6 @@ class RawAction extends FormlessAction {
 		$response = $request->response();
 		$config = $this->context->getConfig();
 
-		if ( !$request->checkUrlExtension() ) {
-			return null;
-		}
-
 		if ( $this->getOutput()->checkLastModified( $this->page->getTouched() ) ) {
 			return null; // Client cache fresh and headers sent, nothing more to do.
 		}

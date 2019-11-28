@@ -71,16 +71,6 @@ function wfImageAuthMain() {
 		$path = "/" . $path;
 	}
 
-	// Check for T30235: QUERY_STRING overriding the correct extension
-	$whitelist = [];
-	$extension = FileBackend::extensionFromPath( $path, 'rawcase' );
-	if ( $extension != '' ) {
-		$whitelist[] = $extension;
-	}
-	if ( !$request->checkUrlExtension( $whitelist ) ) {
-		return;
-	}
-
 	$user = RequestContext::getMain()->getUser();
 
 	// Various extensions may have their own backends that need access.

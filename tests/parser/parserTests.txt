@@ -18940,48 +18940,6 @@ CSS safety test (all browsers): vertical tab (T57332 / CVE-2013-4567)
 !! end
 
 !! test
-MSIE 6 CSS safety test: Fullwidth (T57332)
-!! wikitext
-<p style="font-size: 100px; color: ｅｘｐｒｅｓｓｉｏｎ((title='XSSed'),'red')">A</p>
-<div style="top:ＥＸＰＲＥＳＳＩＯＮ(alert())">B</div>
-!! html/php
-<p style="/* insecure input */">A</p>
-<div style="/* insecure input */">B</div>
-!! html/parsoid
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: ｅｘｐｒｅｓｓｉｏｎ((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>A</p>
-<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"top:ＥＸＰＲＥＳＳＩＯＮ(alert())"}}'>B</div>
-!! end
-
-!! test
-MSIE 6 CSS safety test: IPA extensions (T57332)
-!! wikitext
-<div style="background-image:uʀʟ(javascript:alert())">A</div>
-<p style="font-size: 100px; color: expʀessɪoɴ((title='XSSed'),'red')">B</p>
-!! html/php
-<div style="/* insecure input */">A</div>
-<p style="/* insecure input */">B</p>
-!! html/parsoid
-<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:uʀʟ(javascript:alert())"}}'>A</div>
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expʀessɪoɴ((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>B</p>
-!! end
-
-!! test
-MSIE 6 CSS safety test: sup/sub script (T57332)
-!! wikitext
-<div style="background-image:url⁽javascript:alert())">A</div>
-<div style="background-image:url₍javascript:alert())">B</div>
-<p style="font-size: 100px; color: expressioⁿ((title='XSSed'),'red')">C</p>
-!! html/php
-<div style="/* insecure input */">A</div>
-<div style="/* insecure input */">B</div>
-<p style="/* insecure input */">C</p>
-!! html/parsoid
-<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:url⁽javascript:alert())"}}'>A</div>
-<div style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"background-image:url₍javascript:alert())"}}'>B</div>
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expressioⁿ((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>C</p>
-!! end
-
-!! test
 Opera -o-link CSS
 !! options
 parsoid=wt2html,html2html
@@ -18993,34 +18951,6 @@ style="-o-link:attr(title);-o-link-source:current">X</div>
 <div title="data:text/html,&lt;img src=1 onerror=alert(1)&gt;" style="/* insecure input */">X</div>
 !! html/parsoid
 <div title="data:text/html,&lt;img src=1 onerror=alert(1)>" style="/* insecure input */" data-parsoid='{"stx":"html","a":{"title":"data:text/html,&lt;img src=1 onerror=alert(1)>","style":"/* insecure input */"},"sa":{"title":"&amp;#100;&amp;#97;&amp;#116;&amp;#97;&amp;#58;&amp;#116;&amp;#101;&amp;#120;&amp;#116;&amp;#47;&amp;#104;&amp;#116;&amp;#109;&amp;#108;&amp;#44;&amp;#60;&amp;#105;&amp;#109;&amp;#103;&amp;#32;&amp;#115;&amp;#114;&amp;#99;&amp;#61;&amp;#49;&amp;#32;&amp;#111;&amp;#110;&amp;#101;&amp;#114;&amp;#114;&amp;#111;&amp;#114;&amp;#61;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;&amp;#62;","style":"-o-link:attr(title);-o-link-source:current"}}'>X</div>
-!! end
-
-!! test
-MSIE 6 CSS safety test: Repetition markers (T57332)
-!! wikitext
-<p style="font-size: 100px; color: expres〱ion((title='XSSed'),'red')">A</p>
-<p style="font-size: 100px; color: expresゝion((title='XSSed'),'red')">B</p>
-<p style="font-size: 100px; color: expresーion((title='XSSed'),'red')">C</p>
-<p style="font-size: 100px; color: expresヽion((title='XSSed'),'red')">D</p>
-<p style="font-size: 100px; color: expresﹽion((title='XSSed'),'red')">E</p>
-<p style="font-size: 100px; color: expresﹼion((title='XSSed'),'red')">F</p>
-<p style="font-size: 100px; color: expresｰion((title='XSSed'),'red')">G</p>
-!! html/php
-<p style="/* insecure input */">A</p>
-<p style="/* insecure input */">B</p>
-<p style="/* insecure input */">C</p>
-<p style="/* insecure input */">D</p>
-<p style="/* insecure input */">E</p>
-<p style="/* insecure input */">F</p>
-<p style="/* insecure input */">G</p>
-!! html/parsoid
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expres〱ion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>A</p>
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expresゝion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>B</p>
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expresーion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>C</p>
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expresヽion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>D</p>
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expresﹽion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>E</p>
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expresﹼion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>F</p>
-<p style="/* insecure input */" data-parsoid='{"stx":"html","a":{"style":"/* insecure input */"},"sa":{"style":"font-size: 100px; color: expresｰion((title=&#39;XSSed&#39;),&#39;red&#39;)"}}'>G</p>
 !! end
 
 !! test

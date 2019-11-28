@@ -32,11 +32,6 @@ define( 'MW_ENTRY_POINT', 'load' );
 
 require __DIR__ . '/includes/WebStart.php';
 
-// URL safety checks
-if ( !$wgRequest->checkUrlExtension() ) {
-	return;
-}
-
 // Disable ChronologyProtector so that we don't wait for unrelated MediaWiki
 // writes when getting database connections for ResourceLoader. (T192611)
 MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->disableChronologyProtection();
