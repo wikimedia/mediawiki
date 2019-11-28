@@ -975,7 +975,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param Language|StubObject $lang Preferred language
 	 * @param string $lckey Lowercase key for the message (as for localisation cache)
 	 * @param bool $useDB Whether to include messages from the wiki database
-	 * @param bool[] $alreadyTried Contains true for each language that has been tried already
+	 * @param bool[] &$alreadyTried Contains true for each language that has been tried already
 	 * @return string|bool The message, or false if not found
 	 */
 	private function getMessageForLang( $lang, $lckey, $useDB, &$alreadyTried ) {

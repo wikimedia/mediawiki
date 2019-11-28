@@ -67,8 +67,8 @@ class ReassignEdits extends Maintenance {
 	/**
 	 * Reassign edits from one user to another
 	 *
-	 * @param User $from User to take edits from
-	 * @param User $to User to assign edits to
+	 * @param User &$from User to take edits from
+	 * @param User &$to User to assign edits to
 	 * @param bool $rc Update the recent changes table
 	 * @param bool $report Don't change things; just echo numbers
 	 * @return int Number of entries changed, or that would be changed

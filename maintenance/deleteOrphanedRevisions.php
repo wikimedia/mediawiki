@@ -85,7 +85,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 	 * Do this inside a transaction
 	 *
 	 * @param int[] $id Array of revision id values
-	 * @param IDatabase $dbw Master DB handle
+	 * @param IDatabase &$dbw Master DB handle
 	 */
 	private function deleteRevs( array $id, &$dbw ) {
 		$dbw->delete( 'revision', [ 'rev_id' => $id ], __METHOD__ );

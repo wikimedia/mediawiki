@@ -3594,7 +3594,7 @@ class Language {
 	 * truncateHtml() helper function
 	 * like strcspn() but adds the skipped chars to $ret
 	 *
-	 * @param string $ret
+	 * @param string &$ret
 	 * @param string $text
 	 * @param string $search
 	 * @param int $start

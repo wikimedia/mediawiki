@@ -93,6 +93,7 @@ class Pingback {
 	/**
 	 * Record the fact that we have sent a pingback for this MediaWiki version,
 	 * to ensure we don't submit data multiple times.
+	 * @return bool
 	 */
 	private function markSent() {
 		$dbw = wfGetDB( DB_MASTER );

@@ -134,7 +134,7 @@ class RandomImageGenerator {
 	 *
 	 * @param int $number Number of filenames to generate
 	 * @param string $extension Optional, defaults to 'jpg'
-	 * @param string $dir Optional, defaults to current working directory
+	 * @param string|null $dir Optional, defaults to current working directory
 	 * @return array Array of filenames
 	 */
 	private function getRandomFilenames( $number, $extension = 'jpg', $dir = null ) {
@@ -309,7 +309,7 @@ class RandomImageGenerator {
 	/**
 	 * Given an image specification, produce rotated version
 	 * This is used when simulating a rotated image capture with Exif orientation
-	 * @param array $spec Returned by getImageSpec
+	 * @param array &$spec Returned by getImageSpec
 	 * @param array $matrix 2x2 transformation matrix
 	 * @return array Transformed Spec
 	 */

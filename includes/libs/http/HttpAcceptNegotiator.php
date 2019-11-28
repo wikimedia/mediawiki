@@ -109,7 +109,7 @@ class HttpAcceptNegotiator {
 	 *   they match if the part before the first `/` is equal.
 	 *
 	 * @param string $accepted An accepted value (may contain wildcards)
-	 * @param string  $supported A supported value.
+	 * @param string $supported A supported value.
 	 *
 	 * @return bool Whether the given supported value matches the given accepted value.
 	 */

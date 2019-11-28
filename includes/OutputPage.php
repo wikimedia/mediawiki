@@ -1832,7 +1832,7 @@ class OutputPage extends ContextSource {
 	 * @param bool $linestart Is this the start of a line?
 	 * @param bool $interface Whether it is an interface message
 	 *   (for example disables conversion)
-	 * @param string $wrapperClass if not empty, wraps the output in
+	 * @param string|null $wrapperClass if not empty, wraps the output in
 	 *   a `<div class="$wrapperClass">`
 	 */
 	private function addWikiTextTitleInternal(

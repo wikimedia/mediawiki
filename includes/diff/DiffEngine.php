@@ -158,7 +158,7 @@ class DiffEngine {
 	 * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
 	 *
 	 * @param string[] $lines
-	 * @param string[] $changed
+	 * @param string[] &$changed
 	 * @param string[] $other_changed
 	 */
 	private function shiftBoundaries( array $lines, array &$changed, array $other_changed ) {

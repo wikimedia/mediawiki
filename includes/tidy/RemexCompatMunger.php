@@ -434,6 +434,8 @@ class RemexCompatMunger implements TreeHandler {
 	/**
 	 * Find the ancestor of $node which is a child of a p-wrapper, and
 	 * reparent that node so that it is placed after the end of the p-wrapper
+	 * @param SerializerNode $node
+	 * @param int $sourceStart
 	 */
 	private function disablePWrapper( SerializerNode $node, $sourceStart ) {
 		$nodeData = $node->snData;
