@@ -153,7 +153,7 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * @param DeferrableUpdate[] $queue
+	 * @param DeferrableUpdate[] &$queue
 	 * @param DeferrableUpdate $update
 	 */
 	private static function push( array &$queue, DeferrableUpdate $update ) {

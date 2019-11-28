@@ -387,6 +387,7 @@ class CSSMin {
 
 	/**
 	 * @codeCoverageIgnore
+	 * @return string
 	 */
 	private static function getUrlRegex() {
 		static $urlRegex;

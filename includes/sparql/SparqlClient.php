@@ -190,7 +190,7 @@ class SparqlClient {
 	 * https://www.w3.org/TR/sparql11-results-json/
 	 *
 	 * @param array $data SPARQL result
-	 * @param bool  $rawData Whether to return only values or full data objects
+	 * @param bool $rawData Whether to return only values or full data objects
 	 *
 	 * @return array List of results, one row per element.
 	 */

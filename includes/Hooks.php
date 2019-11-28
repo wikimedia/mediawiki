@@ -110,7 +110,7 @@ class Hooks {
 	 * @param array|callable $hook
 	 * @param array $args Array of parameters passed to hook functions
 	 * @param string|null $deprecatedVersion [optional]
-	 * @param string &$fname [optional] Readable name of hook [returned]
+	 * @param string|null &$fname [optional] Readable name of hook [returned]
 	 * @return null|string|bool
 	 */
 	private static function callHook( $event, $hook, array $args, $deprecatedVersion = null,

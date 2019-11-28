@@ -120,6 +120,7 @@ class SearchExactMatchRescorer {
 	 * Returns an array where the element of $array at index $key becomes
 	 * the first element.
 	 * @param int $key key to pull to the front
+	 * @param array $array
 	 * @return array $array with the item at $key pulled to the front
 	 */
 	private function pullFront( $key, array $array ) {

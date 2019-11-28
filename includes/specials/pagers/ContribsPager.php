@@ -372,9 +372,9 @@ class ContribsPager extends RangeChronologicalPager {
 
 	/**
 	 * Get SQL conditions for an IP range, if applicable
-	 * @param IDatabase      $db
-	 * @param string         $ip The IP address or CIDR
-	 * @return string|false  SQL for valid IP ranges, false if invalid
+	 * @param IDatabase $db
+	 * @param string $ip The IP address or CIDR
+	 * @return string|false SQL for valid IP ranges, false if invalid
 	 */
 	private function getIpRangeConds( $db, $ip ) {
 		// First make sure it is a valid range and they are not outside the CIDR limit

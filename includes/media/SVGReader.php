@@ -182,7 +182,7 @@ class SVGReader {
 	 * Read a textelement from an element
 	 *
 	 * @param string $name Name of the element that we are reading from
-	 * @param string $metafield Field that we will fill with the result
+	 * @param string|null $metafield Field that we will fill with the result
 	 */
 	private function readField( $name, $metafield = null ) {
 		$this->debug( "Read field $metafield" );
@@ -206,7 +206,7 @@ class SVGReader {
 	/**
 	 * Read an XML snippet from an element
 	 *
-	 * @param string $metafield Field that we will fill with the result
+	 * @param string|null $metafield Field that we will fill with the result
 	 * @throws MWException
 	 */
 	private function readXml( $metafield = null ) {

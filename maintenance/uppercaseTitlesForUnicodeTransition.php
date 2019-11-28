@@ -394,6 +394,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 	 * @param string $table
 	 * @param string|int $nsField
 	 * @param string $titleField
+	 * @param stdClass $row
 	 * @return bool|null True on success, false on error, null if skipped
 	 */
 	private function doUpdate( IDatabase $db, $table, $nsField, $titleField, $row ) {

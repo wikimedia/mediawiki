@@ -86,10 +86,10 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Add all items from $values into the result
-	 * @param array $result Output
+	 * @param array &$result Output
 	 * @param array $values Values to add
 	 * @param string[] $flags The names of boolean flags to mark this element
-	 * @param string $name If given, name of the value
+	 * @param string|null $name If given, name of the value
 	 */
 	private static function addValues( array &$result, $values, $flags = [], $name = null ) {
 		foreach ( $values as $val ) {
@@ -856,9 +856,9 @@ class ApiPageSet extends ApiBase {
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
 	 * @param IResultWrapper $res DB Query result
-	 * @param array $remaining Array of either pageID or ns/title elements (optional).
+	 * @param array|null &$remaining Array of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
-	 * @param bool $processTitles Must be provided together with $remaining.
+	 * @param bool|null $processTitles Must be provided together with $remaining.
 	 *        If true, treat $remaining as an array of [ns][title]
 	 *        If false, treat it as an array of [pageIDs]
 	 */

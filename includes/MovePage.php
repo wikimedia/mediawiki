@@ -708,7 +708,7 @@ class MovePage {
 	 * @todo This was basically directly moved from Title, it should be split into
 	 *   smaller functions
 	 * @param User $user the User doing the move
-	 * @param Title $nt The page to move to, which should be a redirect or non-existent
+	 * @param Title &$nt The page to move to, which should be a redirect or non-existent
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right

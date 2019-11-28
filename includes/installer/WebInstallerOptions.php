@@ -329,6 +329,7 @@ class WebInstallerOptions extends WebInstallerPage {
 	/**
 	 * @param string $name
 	 * @param array $screenshots
+	 * @return string HTML
 	 */
 	private function makeScreenshotsLink( $name, $screenshots ) {
 		global $wgLang;

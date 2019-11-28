@@ -516,7 +516,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/**
 	 * Normalize request information
 	 *
-	 * @param array[] $reqs the requests to normalize
+	 * @param array[] &$reqs the requests to normalize
 	 */
 	private function normalizeRequests( array &$reqs ) {
 		foreach ( $reqs as &$req ) {

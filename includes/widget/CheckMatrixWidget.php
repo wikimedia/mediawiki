@@ -96,8 +96,8 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * Get a formatted table row for the option, with
 	 * a checkbox widget.
 	 *
-	 * @param  string $label Row label (as HTML)
-	 * @param  string $tag   Row tag name
+	 * @param string $label Row label (as HTML)
+	 * @param string $tag Row tag name
 	 * @return \OOUI\Tag The resulting table row
 	 */
 	private function getTableRow( $label, $tag ) {
@@ -135,7 +135,8 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	/**
 	 * Get an individual cell tag with requested content
 	 *
-	 * @param  mixed $content Content for the <td> cell
+	 * @param mixed $content Content for the <td> cell
+	 * @param string $tagElement
 	 * @return \OOUI\Tag Resulting cell
 	 */
 	private function getCellTag( $content, $tagElement = 'td' ) {
@@ -148,8 +149,8 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * Check whether the given tag's checkbox should
 	 * be checked
 	 *
-	 * @param  string $tagName Tag name
-	 * @return boolean Tag should be checked
+	 * @param string $tagName Tag name
+	 * @return bool Tag should be checked
 	 */
 	private function isTagChecked( $tagName ) {
 		// If the tag is in the value list
@@ -162,8 +163,8 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	 * Check whether the given tag's checkbox should
 	 * be disabled
 	 *
-	 * @param  string $tagName Tag name
-	 * @return boolean Tag should be disabled
+	 * @param string $tagName Tag name
+	 * @return bool Tag should be disabled
 	 */
 	private function isTagDisabled( $tagName ) {
 		return (
@@ -178,7 +179,7 @@ class CheckMatrixWidget extends \OOUI\Widget {
 	/**
 	 * Get the tooltip help associated with this row
 	 *
-	 * @param  string $label Label name
+	 * @param string $label Label name
 	 * @return string Tooltip. Null if none is available.
 	 */
 	private function getTooltip( $label ) {

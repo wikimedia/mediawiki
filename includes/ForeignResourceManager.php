@@ -165,7 +165,10 @@ class ForeignResourceManager {
 		return rtrim( $key, '_' );
 	}
 
-	/** @return string|false */
+	/**
+	 * @param string $key
+	 * @return string|false
+	 */
 	private function cacheGet( $key ) {
 		return AtEase::quietCall( 'file_get_contents', "{$this->cacheDir}/$key.data" );
 	}

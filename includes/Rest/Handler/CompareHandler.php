@@ -183,6 +183,7 @@ class CompareHandler extends Handler {
 	}
 
 	/**
+	 * @param string $paramName
 	 * @return array
 	 */
 	private function getSectionInfo( $paramName ) {
