@@ -3451,6 +3451,7 @@
 	"htmlform-float-invalid": "지정한 값은 수가 아닙니다.",
 	"htmlform-int-toolow": "지정한 값은 최소값 $1 미만입니다.",
 	"htmlform-int-toohigh": "지정한 값은 최대값 $1 이상입니다.",
+	"htmlform-multiselect-toomany": "선택한 항목 수가 $1 최대값을 초과합니다.",
 	"htmlform-required": "이 값은 필수 항목입니다",
 	"htmlform-submit": "제출",
 	"htmlform-reset": "바뀜을 되돌리기",

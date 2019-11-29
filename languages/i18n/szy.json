@@ -4,7 +4,8 @@
 			"Akamycoco",
 			"Benel",
 			"Bunukwiki",
-			"Tokoabibi"
+			"Tokoabibi",
+			"Xiplus"
 		]
 	},
 	"tog-underline": "nu sasaan sacuzu’ masasiket:",
@@ -2738,7 +2739,7 @@
 	"watchlisttools-view": "ciwsace mahizaay a sumad",
 	"watchlisttools-edit": "ciwsace atu mikawaway-kalumyiti miazihay a piazihan-tu-sulit",
 	"watchlisttools-raw": "mikawaway-kalumyiti saayaway misisip a piazihan-tu-sulit",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1| sasukamu ]])",
+	"signature": "[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|sasukamu]]）",
 	"timezone-local": "itizaay",
 	"duplicate-defaultsort": "<strong> patalaw:</strong> pataayaw tu kawaw tu kasalaylay pecec \"$2\" matineng mitahpu nasawniay pataayaw tu kawaw nu kasalaylay pecec \"$1\".",
 	"duplicate-displaytitle": "<strong>patalaw:</strong> paazih satangahan \"$2\" mitahpu ayaway paazih satangahan \"$1\".",

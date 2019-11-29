@@ -25,5 +25,5 @@
 	"rest-compare-wrong-content": "L’emplacement $1 de la version spécifiée par le paramètre $2 a un type de contenu qui ne peut pas être converti en texte.",
 	"rest-compare-wikidiff2": "Ce point de terminaison nécessite wikidiff2 1.9.0 ou supérieur.",
 	"rest-pagehistorycount-too-many-revisions": "Le titre spécifié contient trop de versions pour en récupérer ce nombre.",
-	"rest-search-error": "Erreur en renvoyant les résultats de recherche : $1"
+	"rest-search-error": "Erreur en renvoyant les résultats de recherche : $1"
 }
