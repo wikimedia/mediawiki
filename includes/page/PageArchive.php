@@ -188,7 +188,7 @@ class PageArchive {
 		// NOTE: ordering by ar_timestamp and ar_id, to remove ambiguity.
 		// XXX: Ideally, we would be ordering by ar_timestamp and ar_rev_id, but since we
 		// don't have an index on ar_rev_id, that causes a file sort.
-		$options = [ 'ORDER BY' => 'ar_timestamp DESC, ar_id DESC' ];
+		$options = [ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ];
 
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
@@ -365,7 +365,7 @@ class PageArchive {
 			[ 'ar_namespace' => $this->title->getNamespace(),
 				'ar_title' => $this->title->getDBkey() ],
 			__METHOD__,
-			[ 'ORDER BY' => 'ar_timestamp DESC, ar_id DESC' ]
+			[ 'ORDER BY' => [ 'ar_timestamp DESC', 'ar_id DESC' ] ]
 		);
 
 		return $revId ? intval( $revId ) : false;

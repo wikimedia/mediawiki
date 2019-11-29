@@ -196,7 +196,7 @@ class RebuildRecentchanges extends Maintenance {
 				"rc_timestamp < " . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rc_cur_id,rc_timestamp' ]
+			[ 'ORDER BY' => [ 'rc_cur_id', 'rc_timestamp' ] ]
 		);
 
 		$lastCurId = 0;

@@ -79,7 +79,7 @@ class WANCacheReapUpdate implements DeferrableUpdate {
 				"rc_timestamp < $encEnd"
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rc_timestamp ASC, rc_id ASC', 'LIMIT' => $limit ]
+			[ 'ORDER BY' => [ 'rc_timestamp ASC', 'rc_id ASC' ], 'LIMIT' => $limit ]
 		);
 
 		$events = [];
