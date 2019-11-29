@@ -687,7 +687,14 @@ TXT;
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );
 		if ( $json !== false ) {
 			$logger = LoggerFactory::getInstance( "{$channel}-json" );
-			$logger->log( $level, $json, [ 'private' => true ] );
+			// Unlike the 'error' channel, the 'error-json' channel is unfiltered,
+			// and emits messages even if wikimedia/at-ease was used to suppress the
+			// error. To avoid clobbering Logstash dashboards with these, make sure
+			// those have their level casted to DEBUG so that they are excluded by
+			// level-based filteres automatically instead of requiring a dedicated filter
+			// for this channel. To be improved: T193472.
+			$unfilteredLevel = $suppressed ? LogLevel::DEBUG : $level;
+			$logger->log( $unfilteredLevel, $json, [ 'private' => true ] );
 		}
 
 		Hooks::run( 'LogException', [ $e, $suppressed ] );
