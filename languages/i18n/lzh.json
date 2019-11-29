@@ -1459,7 +1459,7 @@
 	"exbeforeblank": "清文前乃為：「$1」",
 	"delete-confirm": "刪\"$1\"",
 	"delete-legend": "刪",
-	"historywarning": "警示，此頁有誌$1：",
+	"historywarning": "<strong>警示：</strong>此頁有$1{{PLURAL:$1|誌}}：",
 	"confirmdeletetext": "欲刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。",
 	"actioncomplete": "成矣",
 	"actionfailed": "未竟",

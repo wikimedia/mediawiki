@@ -29,7 +29,8 @@
 			"Vlad5250",
 			"Athena Atterdag",
 			"Diralik",
-			"Alexander Istomin"
+			"Alexander Istomin",
+			"Amire80"
 		]
 	},
 	"config-desc": "Инсталлятор MediaWiki",
@@ -188,7 +189,7 @@
 	"config-admin-name": "Ваше имя участника:",
 	"config-admin-password": "Пароль:",
 	"config-admin-password-confirm": "Пароль ещё раз:",
-	"config-admin-help": "Введите ваше имя пользователя здесь, например, «Иван Иванов».\nЭто имя будет использоваться для входа в вики.",
+	"config-admin-help": "Введите ваше имя пользователя здесь, например, «Саша Черных».\nЭто имя будет использоваться для входа в вики.",
 	"config-admin-name-blank": "Введите имя пользователя администратора.",
 	"config-admin-name-invalid": "Указанное имя пользователя «<nowiki>$1</nowiki>» недопустимо.\nУкажите другое имя пользователя.",
 	"config-admin-password-blank": "Введите пароль для учётной записи администратора.",
