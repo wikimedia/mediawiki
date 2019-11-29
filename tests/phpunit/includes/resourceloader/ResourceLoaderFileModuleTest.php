@@ -165,9 +165,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoaderFileModule::getAllStyleFiles
-	 * @covers ResourceLoaderFileModule::getAllSkinStyleFiles
-	 * @covers ResourceLoaderFileModule::getSkinStyleFiles
+	 * @covers ResourceLoaderFileModule
 	 */
 	public function testGetAllSkinStyleFiles() {
 		$baseParams = [
@@ -262,6 +260,42 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			$expectedModule->getStyles( $contextLtr ),
 			self::stripNoflip( $testModule->getStyles( $contextRtl ) ),
 			"/*@noflip*/ with /*@embed*/ gives correct results in RTL mode"
+		);
+	}
+
+	/**
+	 * @covers ResourceLoaderFileModule
+	 */
+	public function testCssFlipping() {
+		$plain = new ResourceLoaderFileTestModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'styles' => [ 'direction.css' ],
+		] );
+		$plain->setName( 'test' );
+
+		$context = $this->getResourceLoaderContext( [ 'lang' => 'en', 'dir' => 'ltr' ] );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: left; }\n" ],
+			'Unchanged styles in LTR mode'
+		);
+		$context = $this->getResourceLoaderContext( [ 'lang' => 'he', 'dir' => 'rtl' ] );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: right; }\n" ],
+			'Flipped styles in RTL mode'
+		);
+
+		$noflip = new ResourceLoaderFileTestModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'styles' => [ 'direction.css' ],
+			'noflip' => true,
+		] );
+		$noflip->setName( 'test' );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: right; }\n" ],
+			'Unchanged styles in RTL mode with noflip at module level'
 		);
 	}
 
@@ -382,7 +416,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoaderFileModule::compileLessFile
+	 * @covers ResourceLoaderFileModule
 	 */
 	public function testLessFileCompilation() {
 		$context = $this->getResourceLoaderContext();
