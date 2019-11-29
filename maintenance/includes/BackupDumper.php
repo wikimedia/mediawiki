@@ -345,7 +345,7 @@ abstract class BackupDumper extends Maintenance {
 
 		$dbr = $this->forcedDb;
 		if ( $this->forcedDb === null ) {
-			$dbr = $this->getDB( DB_REPLICA );
+			$dbr = $this->getDB( DB_REPLICA, [ 'dump' ] );
 		}
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', __METHOD__ );
 		$this->startTime = microtime( true );
