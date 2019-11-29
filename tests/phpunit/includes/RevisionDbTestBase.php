@@ -16,7 +16,7 @@ use MediaWiki\Revision\SlotRecord;
 abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 	/**
-	 * @var WikiPage $testPage
+	 * @var WikiPage
 	 */
 	private $testPage;
 

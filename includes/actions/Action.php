@@ -41,21 +41,21 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Page on which we're performing the action
 	 * @since 1.17
-	 * @var WikiPage|Article|ImagePage|CategoryPage|Page $page
+	 * @var WikiPage|Article|ImagePage|CategoryPage|Page
 	 */
 	protected $page;
 
 	/**
 	 * IContextSource if specified; otherwise we'll use the Context from the Page
 	 * @since 1.17
-	 * @var IContextSource $context
+	 * @var IContextSource
 	 */
 	protected $context;
 
 	/**
 	 * The fields used to create the HTMLForm
 	 * @since 1.17
-	 * @var array $fields
+	 * @var array
 	 */
 	protected $fields;
 

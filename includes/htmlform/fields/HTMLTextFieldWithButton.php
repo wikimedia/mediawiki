@@ -3,7 +3,7 @@
  * Creates a text input field with a button assigned to the input field.
  */
 class HTMLTextFieldWithButton extends HTMLTextField {
-	/** @var HTMLFormFieldWithButton $mClassWithButton */
+	/** @var HTMLFormFieldWithButton */
 	protected $mClassWithButton = null;
 
 	public function __construct( $info ) {

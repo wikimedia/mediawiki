@@ -43,7 +43,7 @@ class JobRunner implements LoggerAwareInterface {
 	protected $debug;
 
 	/**
-	 * @var LoggerInterface $logger
+	 * @var LoggerInterface
 	 */
 	protected $logger;
 

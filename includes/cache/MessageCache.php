@@ -77,7 +77,7 @@ class MessageCache implements LoggerAwareInterface {
 
 	/**
 	 * Should mean that database cannot be used, but check
-	 * @var bool $mDisable
+	 * @var bool
 	 */
 	protected $mDisable;
 
@@ -90,7 +90,7 @@ class MessageCache implements LoggerAwareInterface {
 	protected $mParser;
 
 	/**
-	 * @var bool $mInParser
+	 * @var bool
 	 */
 	protected $mInParser = false;
 

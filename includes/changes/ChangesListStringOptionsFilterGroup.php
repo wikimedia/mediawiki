@@ -61,14 +61,14 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	/**
 	 * Defaul parameter value
 	 *
-	 * @var string $defaultValue
+	 * @var string
 	 */
 	protected $defaultValue;
 
 	/**
 	 * Callable used to do the actual query modification; see constructor
 	 *
-	 * @var callable $queryCallable
+	 * @var callable
 	 */
 	protected $queryCallable;
 

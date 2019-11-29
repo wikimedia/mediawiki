@@ -51,7 +51,7 @@ use UDPTransport;
 class LegacyLogger extends AbstractLogger {
 
 	/**
-	 * @var string $channel
+	 * @var string
 	 */
 	protected $channel;
 

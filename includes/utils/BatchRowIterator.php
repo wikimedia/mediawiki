@@ -55,7 +55,7 @@ class BatchRowIterator implements RecursiveIterator {
 	protected $conditions = [];
 
 	/**
-	 * @var array $joinConditions
+	 * @var array
 	 */
 	protected $joinConditions = [];
 

@@ -187,7 +187,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @deprecated since 1.31, along with self::downloadSource()
-	 * @var Config $config
+	 * @var Config
 	 */
 	private $config;
 

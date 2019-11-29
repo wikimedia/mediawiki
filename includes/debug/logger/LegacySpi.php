@@ -37,7 +37,7 @@ namespace MediaWiki\Logger;
 class LegacySpi implements Spi {
 
 	/**
-	 * @var array $singletons
+	 * @var array
 	 */
 	protected $singletons = [];
 
