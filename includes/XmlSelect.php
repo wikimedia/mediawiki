@@ -102,7 +102,7 @@ class XmlSelect {
 	 * @param string|array|false $default
 	 * @return string
 	 */
-	static function formatOptions( $options, $default = false ) {
+	public static function formatOptions( $options, $default = false ) {
 		$data = '';
 
 		foreach ( $options as $label => $value ) {

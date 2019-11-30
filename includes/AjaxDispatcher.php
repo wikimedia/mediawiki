@@ -109,7 +109,7 @@ class AjaxDispatcher {
 	 * @suppress SecurityCheck-XSS
 	 * @param User $user
 	 */
-	function performAction( User $user ) {
+	public function performAction( User $user ) {
 		if ( empty( $this->mode ) ) {
 			return;
 		}

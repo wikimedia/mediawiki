@@ -377,7 +377,7 @@ class WebRequest {
 	 *    passed on as the value of this URL parameter
 	 * @return array Array of URL variables to interpolate; empty if no match
 	 */
-	static function extractTitle( $path, $bases, $key = false ) {
+	public static function extractTitle( $path, $bases, $key = false ) {
 		foreach ( (array)$bases as $keyValue => $base ) {
 			// Find the part after $wgArticlePath
 			$base = str_replace( '$1', '', $base );
