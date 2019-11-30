@@ -180,10 +180,13 @@ class ApiUndelete extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=undelete&title=Main%20Page&token=123ABC&reason=Restoring%20main%20page'
+			"action=undelete&title={$mp}&token=123ABC&reason=Restoring%20{$mp}"
 				=> 'apihelp-undelete-example-page',
-			'action=undelete&title=Main%20Page&token=123ABC' .
+			"action=undelete&title={$mp}&token=123ABC" .
 				'&timestamps=2007-07-03T22:00:45Z|2007-07-02T19:48:56Z'
 				=> 'apihelp-undelete-example-revisions',
 		];

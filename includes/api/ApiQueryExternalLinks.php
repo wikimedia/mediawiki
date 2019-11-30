@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ExternalLinks\LinkFilter;
+use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -162,8 +163,11 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=query&prop=extlinks&titles=Main%20Page'
+			"action=query&prop=extlinks&titles={$mp}"
 				=> 'apihelp-query+extlinks-example-simple',
 		];
 	}
