@@ -75,7 +75,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, $dbDomain = false ) {
+	public function __construct( Title $title, $dbDomain = false ) {
 		$slots = new MutableRevisionSlots();
 
 		parent::__construct( $title, $slots, $dbDomain );
