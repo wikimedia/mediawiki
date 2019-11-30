@@ -22,6 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -215,14 +216,17 @@ class ApiProtect extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=protect&title=Main%20Page&token=123ABC&' .
+			"action=protect&title={$mp}&token=123ABC&" .
 				'protections=edit=sysop|move=sysop&cascade=&expiry=20070901163000|never'
 				=> 'apihelp-protect-example-protect',
-			'action=protect&title=Main%20Page&token=123ABC&' .
+			"action=protect&title={$mp}&token=123ABC&" .
 				'protections=edit=all|move=all&reason=Lifting%20restrictions'
 				=> 'apihelp-protect-example-unprotect',
-			'action=protect&title=Main%20Page&token=123ABC&' .
+			"action=protect&title={$mp}&token=123ABC&" .
 				'protections=&reason=Lifting%20restrictions'
 				=> 'apihelp-protect-example-unprotect2',
 		];

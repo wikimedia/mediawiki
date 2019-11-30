@@ -192,8 +192,11 @@ class ApiRevisionDelete extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=revisiondelete&target=Main%20Page&type=revision&ids=12345&' .
+			"action=revisiondelete&target={$mp}&type=revision&ids=12345&" .
 				'hide=content&token=123ABC'
 				=> 'apihelp-revisiondelete-example-revision',
 			'action=revisiondelete&type=logging&ids=67890&hide=content|comment|user&' .

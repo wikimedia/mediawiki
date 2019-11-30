@@ -22,6 +22,7 @@
 
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -163,8 +164,11 @@ class ApiSetPageLanguage extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=setpagelanguage&title=Main%20Page&lang=eu&token=123ABC'
+			"action=setpagelanguage&title={$mp}&lang=eu&token=123ABC"
 				=> 'apihelp-setpagelanguage-example-language',
 			'action=setpagelanguage&pageid=123&lang=default&token=123ABC'
 				=> 'apihelp-setpagelanguage-example-default',

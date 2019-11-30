@@ -169,10 +169,13 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=query&prop=images&titles=Main%20Page'
+			"action=query&prop=images&titles={$mp}"
 				=> 'apihelp-query+images-example-simple',
-			'action=query&generator=images&titles=Main%20Page&prop=info'
+			"action=query&generator=images&titles={$mp}&prop=info"
 				=> 'apihelp-query+images-example-generator',
 		];
 	}

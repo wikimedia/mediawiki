@@ -209,18 +209,21 @@ class ApiWatch extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		// Logically expiry example should go before unwatch examples.
 		$examples = [
-			'action=watch&titles=Main_Page&token=123ABC'
+			"action=watch&titles={$mp}&token=123ABC"
 				=> 'apihelp-watch-example-watch',
 		];
 		if ( $this->expiryEnabled ) {
-			$examples['action=watch&titles=Main_Page|Foo|Bar&expiry=1%20month&token=123ABC']
+			$examples["action=watch&titles={$mp}|Foo|Bar&expiry=1%20month&token=123ABC"]
 				= 'apihelp-watch-example-watch-expiry';
 		}
 
 		return array_merge( $examples, [
-			'action=watch&titles=Main_Page&unwatch=&token=123ABC'
+			"action=watch&titles={$mp}&unwatch=&token=123ABC"
 				=> 'apihelp-watch-example-unwatch',
 			'action=watch&generator=allpages&gapnamespace=0&token=123ABC'
 				=> 'apihelp-watch-example-generator',

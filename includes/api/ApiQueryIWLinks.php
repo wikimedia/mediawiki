@@ -184,8 +184,11 @@ class ApiQueryIWLinks extends ApiQueryBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=query&prop=iwlinks&titles=Main%20Page'
+			"action=query&prop=iwlinks&titles={$mp}"
 				=> 'apihelp-query+iwlinks-example-simple',
 		];
 	}

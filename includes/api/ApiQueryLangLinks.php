@@ -202,8 +202,11 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=query&prop=langlinks&titles=Main%20Page&redirects='
+			"action=query&prop=langlinks&titles={$mp}&redirects="
 				=> 'apihelp-query+langlinks-example-simple',
 		];
 	}

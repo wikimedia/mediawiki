@@ -24,6 +24,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\File\FileDeleteForm;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -309,10 +310,13 @@ class ApiDelete extends ApiBase {
 	}
 
 	protected function getExamplesMessages() {
+		$title = Title::newMainPage()->getPrefixedText();
+		$mp = rawurlencode( $title );
+
 		return [
-			'action=delete&title=Main%20Page&token=123ABC'
+			"action=delete&title={$mp}&token=123ABC"
 				=> 'apihelp-delete-example-simple',
-			'action=delete&title=Main%20Page&token=123ABC&reason=Preparing%20for%20move'
+			"action=delete&title={$mp}&token=123ABC&reason=Preparing%20for%20move"
 				=> 'apihelp-delete-example-reason',
 		];
 	}
