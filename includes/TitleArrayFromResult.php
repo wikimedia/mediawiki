@@ -34,7 +34,7 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 
 	public $current;
 
-	function __construct( $res ) {
+	public function __construct( $res ) {
 		$this->res = $res;
 		$this->key = 0;
 		$this->setCurrent( $this->res->current() );

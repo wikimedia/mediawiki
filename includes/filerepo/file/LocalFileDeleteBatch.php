@@ -59,7 +59,7 @@ class LocalFileDeleteBatch {
 	 * @param bool $suppress
 	 * @param User|null $user
 	 */
-	function __construct( File $file, $reason = '', $suppress = false, $user = null ) {
+	public function __construct( File $file, $reason = '', $suppress = false, $user = null ) {
 		$this->file = $file;
 		$this->reason = $reason;
 		$this->suppress = $suppress;

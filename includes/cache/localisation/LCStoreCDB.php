@@ -45,7 +45,7 @@ class LCStoreCDB implements LCStore {
 	/** @var string Cache directory */
 	private $directory;
 
-	function __construct( $conf = [] ) {
+	public function __construct( $conf = [] ) {
 		$this->directory = $conf['directory'];
 	}
 

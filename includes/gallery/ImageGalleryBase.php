@@ -153,7 +153,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $mode
 	 * @param IContextSource|null $context
 	 */
-	function __construct( $mode = 'traditional', IContextSource $context = null ) {
+	public function __construct( $mode = 'traditional', IContextSource $context = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}

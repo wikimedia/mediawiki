@@ -29,7 +29,7 @@ class SquidPurgeClientPool {
 	/**
 	 * @param array $options
 	 */
-	function __construct( $options = [] ) {
+	public function __construct( $options = [] ) {
 		if ( isset( $options['timeout'] ) ) {
 			$this->timeout = $options['timeout'];
 		}

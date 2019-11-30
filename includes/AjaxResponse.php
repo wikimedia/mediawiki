@@ -80,7 +80,7 @@ class AjaxResponse {
 	 * @param string|null $text
 	 * @param Config|null $config
 	 */
-	function __construct( $text = null, Config $config = null ) {
+	public function __construct( $text = null, Config $config = null ) {
 		$this->mCacheDuration = null;
 		$this->mVary = null;
 		$this->mConfig = $config ?: MediaWikiServices::getInstance()->getMainConfig();

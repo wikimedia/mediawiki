@@ -68,7 +68,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	const XDL_BDOP_CPY = 2;
 	const XDL_BDOP_INSB = 3;
 
-	function __construct() {
+	public function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {
 			throw new MWException( "Need zlib support to read or write DiffHistoryBlob\n" );
 		}

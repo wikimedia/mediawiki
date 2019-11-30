@@ -97,7 +97,7 @@ class WikiExporter {
 	 * @param null|array $limitNamespaces Comma-separated list of namespace numbers
 	 *   to limit results
 	 */
-	function __construct(
+	public function __construct(
 		$db,
 		$history = self::CURRENT,
 		$text = self::TEXT,

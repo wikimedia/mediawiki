@@ -64,7 +64,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *   - allow_tcp_nagle_delay Whether to permit Nagle's algorithm for reducing packet count
 	 * @param array $params
 	 */
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		parent::__construct( $params );
 
 		// Default class-specific parameters

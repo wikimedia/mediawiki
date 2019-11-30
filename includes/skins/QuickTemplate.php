@@ -37,7 +37,7 @@ abstract class QuickTemplate {
 	/**
 	 * @param Config|null $config
 	 */
-	function __construct( Config $config = null ) {
+	public function __construct( Config $config = null ) {
 		$this->data = [];
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' was called with no Config instance passed to it' );

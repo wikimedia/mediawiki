@@ -28,7 +28,7 @@
  * @method ChangeTagsLogItem current()
  */
 abstract class ChangeTagsList extends RevisionListBase {
-	function __construct( IContextSource $context, Title $title, array $ids ) {
+	public function __construct( IContextSource $context, Title $title, array $ids ) {
 		parent::__construct( $context, $title );
 		$this->ids = $ids;
 	}
