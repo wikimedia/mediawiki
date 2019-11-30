@@ -555,17 +555,28 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	protected function getExamplesMessages() {
-		return [
-			'action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&' .
-				'drprop=user|comment|content'
-				=> 'apihelp-query+deletedrevs-example-mode1',
+		$title = Title::newMainPage();
+		$talkTitle = $title->getTalkPageIfDefined();
+		$examples = [];
+
+		if ( $talkTitle ) {
+			$title = rawurlencode( $title->getPrefixedText() );
+			$talkTitle = rawurlencode( $talkTitle->getPrefixedText() );
+			$examples = [
+				"action=query&list=deletedrevs&titles={$title}|{$talkTitle}&" .
+					'drprop=user|comment|content'
+					=> 'apihelp-query+deletedrevs-example-mode1',
+			];
+		}
+
+		return array_merge( $examples, [
 			'action=query&list=deletedrevs&druser=Bob&drlimit=50'
 				=> 'apihelp-query+deletedrevs-example-mode2',
 			'action=query&list=deletedrevs&drdir=newer&drlimit=50'
 				=> 'apihelp-query+deletedrevs-example-mode3-main',
 			'action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique='
 				=> 'apihelp-query+deletedrevs-example-mode3-talk',
-		];
+		] );
 	}
 
 	public function getHelpUrls() {

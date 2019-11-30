@@ -470,7 +470,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$settings = self::$settings[$this->getModuleName()];
 		$name = $this->getModuleName();
 		$path = $this->getModulePath();
-		$title = $settings['exampletitle'] ?? 'Main Page';
+		$title = $settings['exampletitle'] ?? Title::newMainPage()->getPrefixedText();
 		$etitle = rawurlencode( $title );
 
 		return [
