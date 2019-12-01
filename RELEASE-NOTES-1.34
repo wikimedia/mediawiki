@@ -10,6 +10,10 @@ for use in production.
   difference engine to use. MediaWiki continues to default to automatically
   choosing the first of $wgExternalDiffEngine, wikidiff2, or php that is
   usable.
+* (T231866) SqlBlobStore no longer needs Language object.
+* (T236735) WikiExporter: Remove unnecessary check for SCHEMA_COMPAT_WRITE_OLD
+  flag.
+* (T231673) Set MCR migration stage to SCHEMA_COMPAT_NEW.
 
 == MediaWiki 1.34.0-rc.1 ==
 
@@ -92,6 +96,10 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   redirects in their userspace unless the target of the redirect is also in
   their userspace. By default, this right is given to everyone.
 * (T226733) Add rate limiter to Special:ConfirmEmail.
+* $wgDiffEngine (T237049) – This configuration can be used to specify which
+  difference engine to use. MediaWiki continues to default to automatically
+  choosing the first of $wgExternalDiffEngine, wikidiff2, or php that is
+  usable.
 
 ==== Changed configuration ====
 * $wgUseCdn, $wgCdnServers, $wgCdnServersNoPurge, and $wgCdnMaxAge – These four
@@ -224,7 +232,7 @@ $wgPasswordPolicy['policies']['default']['PasswordNotInLargeBlacklist'] = false;
   'mime', 'mediadtype', 'bitdepth'.
   Clients that process these fields should first check if 'filemissing' is
   set. Fields that are supported even if the file is missing include:
-  'canonicaltitle', ''archivename' (deleted files only), 'descriptionurl',
+  'canonicaltitle', 'archivename' (deleted files only), 'descriptionurl',
   'descriptionshorturl'.
 * The 'blockexpiry' result property in list=users and list=allusers will now be
   returned in the same format used by the rest of the API: ISO 8601 for
