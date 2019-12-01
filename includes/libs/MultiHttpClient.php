@@ -387,7 +387,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				}
 				$length = strlen( $header );
 				$matches = [];
-				if ( preg_match( "/^(HTTP\/1\.[01]) (\d{3}) (.*)/", $header, $matches ) ) {
+				if ( preg_match( "/^(HTTP\/(?:1\.[01]|2)) (\d{3}) (.*)/", $header, $matches ) ) {
 					$req['response']['code'] = (int)$matches[2];
 					$req['response']['reason'] = trim( $matches[3] );
 					return $length;
