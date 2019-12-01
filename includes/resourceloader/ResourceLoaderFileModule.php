@@ -931,15 +931,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 *
 	 * @return string CSS data in script file
-	 * @throws MWException If the file doesn't exist
+	 * @throws RuntimeException If the file doesn't exist
 	 */
 	protected function readStyleFile( $path, $flip, ResourceLoaderContext $context ) {
 		$localPath = $this->getLocalPath( $path );
 		$remotePath = $this->getRemotePath( $path );
 		if ( !file_exists( $localPath ) ) {
-			$msg = __METHOD__ . ": style file not found: \"$localPath\"";
-			wfDebugLog( 'resourceloader', $msg );
-			throw new MWException( $msg );
+			throw new RuntimeException( "Style file not found: '{$localPath}'" );
 		}
 
 		if ( $this->getStyleSheetLang( $localPath ) === 'less' ) {
@@ -1064,7 +1062,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Takes named templates by the module and returns an array mapping.
 	 * @return array Templates mapping template alias to content
-	 * @throws MWException
+	 * @throws RuntimeException If a file doesn't exist
 	 */
 	public function getTemplates() {
 		$templates = [];
@@ -1075,14 +1073,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$alias = $this->getPath( $templatePath );
 			}
 			$localPath = $this->getLocalPath( $templatePath );
-			if ( file_exists( $localPath ) ) {
-				$content = file_get_contents( $localPath );
-				$templates[$alias] = $this->stripBom( $content );
-			} else {
-				$msg = __METHOD__ . ": template file not found: \"$localPath\"";
-				wfDebugLog( 'resourceloader', $msg );
-				throw new MWException( $msg );
+			if ( !file_exists( $localPath ) ) {
+				throw new RuntimeException( "Template file not found: '{$localPath}'" );
 			}
+			$content = file_get_contents( $localPath );
+			$templates[$alias] = $this->stripBom( $content );
 		}
 		return $templates;
 	}
@@ -1104,7 +1099,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array|null
 	 * @phan-return array{main:string,files:string[][]}|null
-	 * @throws MWException If the 'packageFiles' definition is invalid.
+	 * @throws LogicException If the 'packageFiles' definition is invalid.
 	 */
 	private function expandPackageFiles( ResourceLoaderContext $context ) {
 		$hash = $context->getHash();
@@ -1117,26 +1112,28 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$expandedFiles = [];
 		$mainFile = null;
 
-		foreach ( $this->packageFiles as $fileInfo ) {
+		foreach ( $this->packageFiles as $key => $fileInfo ) {
 			if ( is_string( $fileInfo ) ) {
 				$fileInfo = [ 'name' => $fileInfo, 'file' => $fileInfo ];
-			} elseif ( !isset( $fileInfo['name'] ) ) {
-				$msg = __METHOD__ . ": invalid package file definition for module " .
-					"\"{$this->getName()}\": 'name' key is required when value is not a string";
-				wfDebugLog( 'resourceloader', $msg );
-				throw new MWException( $msg );
 			}
+			if ( !isset( $fileInfo['name'] ) ) {
+				$msg = "Missing 'name' key in package file info for module '{$this->getName()}'," .
+					" offset '{$key}'.";
+				$this->getLogger()->error( $msg );
+				throw new LogicException( $msg );
+			}
+			$fileName = $fileInfo['name'];
 
 			// Infer type from alias if needed
-			$type = $fileInfo['type'] ?? self::getPackageFileType( $fileInfo['name'] );
+			$type = $fileInfo['type'] ?? self::getPackageFileType( $fileName );
 			$expanded = [ 'type' => $type ];
 			if ( !empty( $fileInfo['main'] ) ) {
-				$mainFile = $fileInfo['name'];
+				$mainFile = $fileName;
 				if ( $type !== 'script' ) {
-					$msg = __METHOD__ . ": invalid package file definition for module " .
-						"\"{$this->getName()}\": main file \"$mainFile\" must be of type \"script\", not \"$type\"";
-					wfDebugLog( 'resourceloader', $msg );
-					throw new MWException( $msg );
+					$msg = "Main file in package must be of type 'script', module " .
+						"'{$this->getName()}', main file '{$mainFile}' is '{$type}'.";
+					$this->getLogger()->error( $msg );
+					throw new LogicException( $msg );
 				}
 			}
 
@@ -1153,15 +1150,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$expanded['callbackParam'] = $fileInfo['callbackParam'] ?? null;
 
 				if ( !is_callable( $fileInfo['callback'] ) ) {
-					$msg = __METHOD__ . ": invalid callback for package file \"{$fileInfo['name']}\"" .
-						" in module \"{$this->getName()}\"";
-					wfDebugLog( 'resourceloader', $msg );
-					throw new MWException( $msg );
+					$msg = "Invalid 'callback' for module '{$this->getName()}', file '{$fileName}'.";
+					$this->getLogger()->error( $msg );
+					throw new LogicException( $msg );
 				}
 				if ( isset( $fileInfo['versionCallback'] ) ) {
 					if ( !is_callable( $fileInfo['versionCallback'] ) ) {
-						throw new MWException( __METHOD__ . ": invalid versionCallback for file" .
-							" \"{$fileInfo['name']}\" in module \"{$this->getName()}\"" );
+						throw new LogicException( "Invalid 'versionCallback' for "
+							. "module '{$this->getName()}', file '{$fileName}'."
+						);
 					}
 
 					// Execute the versionCallback with the same arguments that
@@ -1183,10 +1180,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				}
 			} elseif ( isset( $fileInfo['config'] ) ) {
 				if ( $type !== 'data' ) {
-					$msg = __METHOD__ . ": invalid use of \"config\" for package file \"{$fileInfo['name']}\" " .
-						"in module \"{$this->getName()}\": type must be \"data\" but is \"$type\"";
-					wfDebugLog( 'resourceloader', $msg );
-					throw new MWException( $msg );
+					$msg = "Key 'config' only valid for data files. "
+						. " Module '{$this->getName()}', file '{$fileName}' is '{$type}'.";
+					$this->getLogger()->error( $msg );
+					throw new LogicException( $msg );
 				}
 				$expandedConfig = [];
 				foreach ( $fileInfo['config'] as $key => $var ) {
@@ -1195,21 +1192,20 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$expanded['content'] = $expandedConfig;
 			} elseif ( !empty( $fileInfo['main'] ) ) {
 				// [ 'name' => 'foo.js', 'main' => true ] is shorthand
-				$expanded['filePath'] = $fileInfo['name'];
+				$expanded['filePath'] = $fileName;
 			} else {
-				$msg = __METHOD__ . ": invalid package file definition for \"{$fileInfo['name']}\" " .
-					"in module \"{$this->getName()}\": one of \"file\", \"content\", \"callback\" or \"config\" " .
-					"must be set";
-				wfDebugLog( 'resourceloader', $msg );
-				throw new MWException( $msg );
+				$msg = "Incomplete definition for module '{$this->getName()}', file '{$fileName}'. "
+					. "One of 'file', 'content', 'callback', or 'config' must be set.";
+				$this->getLogger()->error( $msg );
+				throw new LogicException( $msg );
 			}
 
-			$expandedFiles[$fileInfo['name']] = $expanded;
+			$expandedFiles[$fileName] = $expanded;
 		}
 
 		if ( $expandedFiles && $mainFile === null ) {
 			// The first package file that is a script is the main file
-			foreach ( $expandedFiles as $path => &$file ) {
+			foreach ( $expandedFiles as $path => $file ) {
 				if ( $file['type'] === 'script' ) {
 					$mainFile = $path;
 					break;
@@ -1230,6 +1226,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Resolves the package files defintion and generates the content of each package file.
 	 * @param ResourceLoaderContext $context
 	 * @return array Package files data structure, see ResourceLoaderModule::getScript()
+	 * @throws RuntimeException If a file doesn't exist
 	 */
 	public function getPackageFiles( ResourceLoaderContext $context ) {
 		if ( $this->packageFiles === null ) {
@@ -1244,10 +1241,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			if ( isset( $fileInfo['filePath'] ) ) {
 				$localPath = $this->getLocalPath( $fileInfo['filePath'] );
 				if ( !file_exists( $localPath ) ) {
-					$msg = __METHOD__ . ": package file not found: \"$localPath\"" .
-						" in module \"{$this->getName()}\"";
-					wfDebugLog( 'resourceloader', $msg );
-					throw new MWException( $msg );
+					throw new RuntimeException( "Package file not found: '{$localPath}'" );
 				}
 				$content = $this->stripBom( file_get_contents( $localPath ) );
 				if ( $fileInfo['type'] === 'data' ) {

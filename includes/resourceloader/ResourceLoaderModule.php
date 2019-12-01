@@ -508,7 +508,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		} catch ( Exception $e ) {
 			// Probably a DB failure. Either the read query from getFileDependencies(),
 			// or the write query above.
-			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
+			$this->getLogger()->error( "Failed to update DB: $e", [ 'exception' => $e ] );
 		}
 	}
 

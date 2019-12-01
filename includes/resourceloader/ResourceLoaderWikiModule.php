@@ -25,6 +25,7 @@ use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -401,7 +402,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 					$titleInfo[$title->getPrefixedText()] = [
 						'page_len' => $content->getSize(),
 						'page_latest' => 'TBD', // None available
-						'page_touched' => wfTimestamp( TS_MW ),
+						'page_touched' => ConvertibleTimestamp::now( TS_MW ),
 					];
 				}
 			}

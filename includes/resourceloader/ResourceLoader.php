@@ -25,6 +25,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WrappedString;
 
 /**
@@ -898,7 +899,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( 'Pragma: no-cache' );
 		} else {
 			header( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" );
-			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $maxage + time() ) );
+			header( 'Expires: ' . ConvertibleTimestamp::convert( TS_RFC2822, time() + $maxage ) );
 		}
 		foreach ( $extra as $header ) {
 			header( $header );
@@ -961,7 +962,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			? $rlMaxage['unversioned']
 			: $rlMaxage['versioned'];
 		// Minimum timestamp the cache file must have
-		$good = $fileCache->isCacheGood( wfTimestamp( TS_MW, time() - $maxage ) );
+		$minTime = time() - $maxage;
+		$good = $fileCache->isCacheGood( ConvertibleTimestamp::convert( TS_MW, $minTime ) );
 		if ( !$good ) {
 			try { // RL always hits the DB on file cache miss...
 				wfGetDB( DB_REPLICA );
