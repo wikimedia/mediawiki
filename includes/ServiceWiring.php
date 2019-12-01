@@ -379,7 +379,10 @@ return [
 			$store,
 			$logger,
 			[ function () use ( $services ) {
-				$services->getResourceLoader()->getMessageBlobStore()->clear();
+				// NOTE: Make sure we use the same cache object that is assigned in the
+				// constructor of the MessageBlobStore class used by ResourceLoader.
+				// T231866: Avoid circular dependency via ResourceLoader.
+				MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
 			} ],
 			$services->getLanguageNameUtils()
 		);
