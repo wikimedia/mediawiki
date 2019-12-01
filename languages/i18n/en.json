@@ -1177,6 +1177,7 @@
 	"userrights-groupsmember": "Member of:",
 	"userrights-groupsmember-auto": "Implicit member of:",
 	"userrights-groupsmember-type": "$1",
+	"userrights-systemuser": "{{GENDER:$1|This user}} is a system user",
 	"userrights-groups-help": "You may alter the groups this user is in:\n* A checked box means the user is in that group.\n* An unchecked box means the user is not in that group.\n* A * indicates that you cannot remove the group once you have added it, or vice versa.\n* A # indicates that you can only put back the expiration time of this group membership; you cannot bring it forward.",
 	"userrights-reason": "Reason:",
 	"userrights-no-interwiki": "You do not have permission to edit user rights on other wikis.",
