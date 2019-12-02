@@ -98,7 +98,7 @@ abstract class RevisionRecord {
 	 *
 	 * @throws MWException
 	 */
-	function __construct( Title $title, RevisionSlots $slots, $dbDomain = false ) {
+	public function __construct( Title $title, RevisionSlots $slots, $dbDomain = false ) {
 		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
 
 		$this->mTitle = $title;
