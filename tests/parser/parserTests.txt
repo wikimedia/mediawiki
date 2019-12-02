@@ -172,7 +172,7 @@ Template:table_attribs
 Template:table_attribs_2
 !! text
 <noinclude>
-|</noinclude>style="color:red;"|Foo
+|</noinclude>data-sort-value="" style="color:red;"|Foo
 |Bar||Baz
 !! endarticle
 
@@ -309,6 +309,12 @@ Template:EmptyTRWithHTMLAttrTest
 Template:With: Colon
 !! text
 Template with colon
+!! endarticle
+
+!! article
+Template:Template with pagename
+!! text
+This is {{PAGENAME}}.
 !! endarticle
 
 ###
@@ -643,6 +649,20 @@ C</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</spa
 <h2 id="A_B
 C"><span id="A_B.0AC" typeof="mw:FallbackId"></span>A <span typeof="mw:Nowiki">B
 C</span></h2>
+!! end
+
+!! test
+Heading with nonbreaking space in prefix/suffix (T235684)
+!! options
+parsoid=wt2html,html2html
+!! config
+wgFragmentMode=[ 'html5', 'legacy' ]
+!! wikitext
+== &nbsp; A &nbsp; B &nbsp; ==
+!! html/php
+<h2><span class="mw-headline" id="_A_B">&#160; A &#160; B &#160;</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section:   A   B  ">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid
+<h2 id="_A_B"><span typeof="mw:Entity"> </span> A <span typeof="mw:Entity"> </span> B <span typeof="mw:Entity"> </span></h2>
 !! end
 
 !! test
@@ -2113,6 +2133,12 @@ c
 d e
 </p><p>
 x </p><div>foo</div><p> z</p>
+!! html/parsoid
+<div data-parsoid='{"stx":"html"}'>foo</div><p> a</p>
+<p>b
+c
+d<!--foo--> e</p>
+<p>x </p><div data-parsoid='{"stx":"html"}'>foo</div><p> z</p>
 !! end
 
 !! test
@@ -3237,7 +3263,7 @@ parsoid=html2wt,wt2wt
 
 </p>
 !! html/parsoid
-<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}}]}'}'>foo</span><span typeof="mw:Nowiki" about="#mwt1">|</span><span about="#mwt1">bar</span>
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo<nowiki>|</nowiki>bar"}},"i":0}}]}'>foo</span><span typeof="mw:Nowiki" about="#mwt1">|</span><span about="#mwt1">bar</span>
 <span typeof="mw:Transclusion mw:Nowiki" about="#mwt2" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki>&amp;lt;div&amp;gt;</nowiki>"}},"i":0}}]}'><span typeof="mw:Entity">&lt;</span>div<span typeof="mw:Entity">&gt;</span></span>
 <span typeof="mw:Transclusion mw:Nowiki" about="#mwt3" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"<nowiki></nowiki>"}},"i":0}}]}'></span>
 </p>
@@ -6988,14 +7014,14 @@ parsoid={
 !! html/php
 <table>
 <tr>
-<td style="color:red;">Foo
+<td data-sort-value="" style="color:red;">Foo
 </td>
 <td>Bar</td>
 <td>Baz
 </td></tr></table>
 !! html/parsoid
 <table>
-<tbody><tr><td about="#mwt1" typeof="mw:Transclusion" style="color:red;" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_2","href":"./Template:Table_attribs_2"},"params":{},"i":0}}]}'>Foo</td>
+<tbody><tr><td about="#mwt1" typeof="mw:Transclusion" data-sort-value="" style="color:red;" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_2","href":"./Template:Table_attribs_2"},"params":{},"i":0}}]}'>Foo</td>
 <td about="#mwt1">Bar</td><td about="#mwt1">Baz</td></tr>
 </tbody></table>
 !! end
@@ -7418,6 +7444,14 @@ parsoid=wt2html,wt2wt
 <tbody><tr>
 <td>baz
 </td></tr></tbody></table><p><b>quux</b></p>
+!! html/parsoid
+<table>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>foo</td></tr>
+</tbody></table><p> bar</p>
+
+<table>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>baz</td></tr>
+</tbody></table><p><b data-parsoid='{"stx":"html"}'>quux</b></p>
 !! end
 
 !! test
@@ -9251,7 +9285,7 @@ Template parameter named "constructor"
 !! wikitext
 {{echo|  constructor =  |hi}}
 !! html/parsoid
-<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"constructor","named":true,"spc":["  "," ","","  "]},{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"constructor":{"wt":""},"1":{"wt":"hi"}},"i":0}}]}'>hi</p>
+<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"constructor","named":true,"spc":["  "," ","","  "]},{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"hi"},"constructor":{"wt":""}},"i":0}}]}'>hi</p>
 !! end
 
 !! article
@@ -9737,6 +9771,10 @@ foo <hr
 <hr />
 <hr /><p>
 foo </p><hr /><p> bar</p>
+!! html/parsoid
+<hr data-parsoid='{"stx":"html","noClose":true}'/>
+<hr data-parsoid='{"stx":"html","noClose":true}'/><p>
+foo </p><hr data-parsoid='{"stx":"html","noClose":true}'/><p> bar</p>
 !! end
 
 !! test
@@ -9782,6 +9820,8 @@ Horizontal ruler -- Supports content following dashes on same line
 <hr /> Foo
 !! html+tidy
 <hr /><p> Foo</p>
+!! html/parsoid
+<hr data-parsoid='{"lineContent":true}'/><p> Foo</p>
 !! end
 
 ###
@@ -9984,6 +10024,10 @@ Nested lists 9 (extension interaction)
 <ul><li>foo</li>
 <li>bar</li>
 <li>baz</li></ul>
+!! html/parsoid
+<ul><li>foo</li>
+<li><!--cmt-->bar</li>
+<!--cmt--><li>baz</li></ul>
 !! end
 
 !! test
@@ -9996,14 +10040,19 @@ Nested lists 10 (list and span siblings: wt2wt regression)
 <ul><li>b <span>y</span></li></ul></li></ul>
 !! end
 
+# Parsoid handles this case differently from the legacy parser, as a side
+# effect of handling SOL state in the tokenizer.
 !! test
 2. Lists with start-of-line-transparent tokens before bullets: Template close
 !! wikitext
 *foo {{echo|bar
 }}*baz
-!! html
+!! html/php+tidy
 <ul><li>foo bar</li>
 <li>baz</li></ul>
+!! html/parsoid
+<ul about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"firstWikitextNode":"UL","pi":[[{"k":"1"}]]}' data-mw='{"parts":["*foo ",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"bar\n"}},"i":0}}]}'><li>foo bar</li><li about="#mwt1">
+baz</li></ul>
 !! end
 
 !! test
@@ -11320,6 +11369,42 @@ foo<meta property="mw:PageProp/notoc"/>bar
 !! end
 
 !! test
+Magic Word: case-insensitive (all-lowercase)
+!! wikitext
+foo
+__notoc__
+bar
+!! html/php+tidy
+<p>foo
+</p><p>bar
+</p>
+!! html/parsoid
+<p>foo
+<meta property="mw:PageProp/notoc" data-parsoid='{"src":"__notoc__","magicSrc":"__notoc__"}'/>
+bar</p>
+!! end
+
+# wt2wt,html2wt disabled because we always (unless selser) serialize
+# in a uniform case (all upper or all lower)
+!! test
+Magic Word: case-insensitive (mixed case)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+foo
+__NOtOC__
+bar
+!! html/php+tidy
+<p>foo
+</p><p>bar
+</p>
+!! html/parsoid
+<p>foo
+<meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NOtOC__","magicSrc":"__NOtOC__"}'/>
+bar</p>
+!! end
+
+!! test
 Magic Word: rt non-english wikis
 !! options
 parsoid=wt2wt
@@ -12265,6 +12350,19 @@ Un-closed <onlyinclude>
 !! html
 !! end
 
+!! test
+T236868: Un-closed <noinclude> caused bad SourceRange length
+!! wikitext
+{| <noinclude>
+|- <noinclude>
+| A
+|-</noinclude>
+|}
+!! html/parsoid
+<table about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"a":{"&lt;noinclude>\n|- &lt;noinclude>\n| A\n|-&lt;/noinclude>":null},"sa":{"&lt;noinclude>\n|- &lt;noinclude>\n| A\n|-&lt;/noinclude>":""}}' data-mw='{"attribs":[[{"txt":" A","html":"&lt;meta typeof=\"mw:Includes/NoInclude\" data-parsoid=&apos;{\"src\":\"&amp;lt;noinclude>\",\"dsr\":[3,14,null,null]}&apos;/>\n|- &amp;lt;noinclude>\n| A\n|-&lt;meta typeof=\"mw:Includes/NoInclude/End\" data-parsoid=&apos;{\"src\":\"&amp;lt;/noinclude>\",\"dsr\":[36,48,null,null]}&apos;/>"},{"html":""}]]}'>
+</table>
+!! end
+
 !!test
 Self-closed noinclude, includeonly, onlyinclude tags
 !! wikitext
@@ -12925,11 +13023,9 @@ Preprocessor precedence 14: broken language converter in comment
 <li>...extra dashes</li>
 <li>foobat...should be ok</li></ul>
 !! html/parsoid
-<ul>
-<li><!--{{foo}}-->...should be ok</li>
-<li><!--&#x2D;{{foo}}-->...extra dashes</li>
-<li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;!-- -{bar} -->bat"}},"i":0}}]}'>foo</span><span about="#mwt1"><!-- &#x2D;{bar} --></span><span about="#mwt1">bat</span>...should be ok</li>
-</ul>
+<ul><li data-parsoid="{}"><!--{{foo}}-->...should be ok</li>
+<li data-parsoid="{}"><!--&#x2D;{{foo}}-->...extra dashes</li>
+<li data-parsoid="{}"><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo&lt;!-- -{bar} -->bat"}},"i":0}}]}'>foo</span><span about="#mwt1"><!-- &#x2D;{bar} --></span><span about="#mwt1">bat</span>...should be ok</li></ul>
 !! end
 
 !! test
@@ -17330,6 +17426,28 @@ Parsoid: Defaultsort
 {{DEFAULTSORT:Foo}}
 !! html/parsoid
 <meta property="mw:PageProp/categorydefaultsort" content="Foo"/>
+!! end
+
+!! test
+Parsoid: Defaultsort variations (T236846)
+!! wikitext
+{{DEFAULTSORT}}
+{{DEFAULTSORT:}}
+{{DEFAULTSORT:DOGGIE}}
+!! html/parsoid
+<meta property="mw:PageProp/categorydefaultsort" content="" data-parsoid='{"src":"{{DEFAULTSORT}}"}'/>
+<meta property="mw:PageProp/categorydefaultsort" content="" data-parsoid='{"src":"{{DEFAULTSORT:}}"}'/>
+<meta property="mw:PageProp/categorydefaultsort" content="DOGGIE" data-parsoid='{"src":"{{DEFAULTSORT:DOGGIE}}"}'/>
+!! end
+
+!! test
+Parsoid: Defaultsort with key content being added (T236846)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<meta property="mw:PageProp/categorydefaultsort" content="BIRD" data-parsoid='{"src":"{{DEFAULTSORT}}"}'/>
+!! wikitext
+{{DEFAULTSORT:BIRD}}
 !! end
 
 # NOTE: mw:ExpandedAttrs is not the best typeof here. mw:Transclusion is better.
@@ -25545,6 +25663,19 @@ title=[[Main Page]]
 !! end
 
 !! test
+Title needed when expanding templates.
+!! options
+title=[[Main Page]]
+!! wikitext
+{{Template with pagename}}
+!! html/php+tidy
+<p>This is Main Page.
+</p>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Template with pagename","href":"./Template:Template_with_pagename"},"params":{},"i":0}}]}'>This is Main Page.</p>
+!! end
+
+!! test
 Strip marker in urlencode
 !! wikitext
 {{urlencode:x<nowiki/>y}}
@@ -27375,6 +27506,37 @@ parsoid=html2wt
 </p>
 !! end
 
+!! test
+Links 16. Link prefix using unicode \x{...} escapes (T235563)
+!! options
+language=ar
+!! wikitext
+Nominated–[[Nineteentwentythree]]
+!! html/php
+<p><a href="/index.php?title=Nineteentwentythree&amp;action=edit&amp;redlink=1" class="new" title="Nineteentwentythree (الصفحة غير موجودة)">Nominated–Nineteentwentythree</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Nineteentwentythree" title="Nineteentwentythree" data-parsoid='{"stx":"simple","a":{"href":"./Nineteentwentythree"},"sa":{"href":"Nineteentwentythree"},"prefix":"Nominated–"}'>Nominated–Nineteentwentythree</a></p>
+!! end
+
+# This example actually from lnwiki, but arwiki has the same link
+# prefix and equivalent link trail for this purpose.
+!! test
+Links 17. Link trails (T236183)
+!! options
+language=ar
+!! wikitext
+[[Likalo]]&nbsp;·
+[[Pusupúsu]]&nbsp;·
+!! html/php+tidy
+<p><a href="/index.php?title=Likalo&amp;action=edit&amp;redlink=1" class="new" title="Likalo (الصفحة غير موجودة)">Likalo</a>&#160;·
+<a href="/index.php?title=Pusup%C3%BAsu&amp;action=edit&amp;redlink=1" class="new" title="Pusupúsu (الصفحة غير موجودة)">Pusupúsu</a>&#160;·
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Likalo" title="Likalo" data-parsoid='{"stx":"simple","a":{"href":"./Likalo"},"sa":{"href":"Likalo"}}'>Likalo</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·
+<a rel="mw:WikiLink" href="./Pusupúsu" title="Pusupúsu" data-parsoid='{"stx":"simple","a":{"href":"./Pusupúsu"},"sa":{"href":"Pusupúsu"}}'>Pusupúsu</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·</p>
+!! end
+
 #### --------------- Quotes ---------------
 #### 1. Quotes inside <b> and <i>
 #### 2. Link fragments separated by <i> and <b> tags
@@ -27748,6 +27910,26 @@ parsoid=html2wt
 
 __TOC__
  bar
+!! end
+
+# last two <meta> tags test case-insensitivity
+!! test
+During serialization, escape output when given a SOL-transparent prefix
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p> x</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NOTOC__","magicSrc":"__NOTOC__"}'/> y</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NotoC__","magicSrc":"__NotoC__"}'/> z</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__notoc__","magicSrc":"__notoc__"}'/> p</p>
+!! wikitext
+<nowiki> </nowiki>x
+
+__NOTOC__<nowiki> </nowiki>y
+
+__NOTOC__<nowiki> </nowiki>z
+
+__notoc__<nowiki> </nowiki>p
 !! end
 
 #### --------------- HTML tags ---------------
@@ -31454,6 +31636,17 @@ parsoid=html2wt
 test2<span>
 <nowiki> </nowiki>test3
 </span>
+!! end
+
+# Clients like VE don't know about this property (T238721)
+!! test
+T238721: New transclusion without the "i" property for a template part should be handled properly
+!! options
+parsoid=html2wt
+!! html/parsoid
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:echo"},"params":{"1":{"wt":"foo"}}}}]}'>foo</span>
+!! wikitext
+{{echo|foo}}
 !! end
 
 # -----------------------------------------------------------------
