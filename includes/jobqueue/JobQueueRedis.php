@@ -503,7 +503,7 @@ LUA;
 				$keys[] = $this->getQueueKey( $prop );
 			}
 
-			$ok = ( $conn->delete( $keys ) !== false );
+			$ok = ( $conn->del( $keys ) !== false );
 			$conn->sRem( $this->getGlobalKey( 's-queuesWithJobs' ), $this->encodeQueueName() );
 
 			return $ok;
