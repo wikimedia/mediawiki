@@ -190,6 +190,7 @@ class SpecialPageFactory {
 		'ApiHelp' => \SpecialApiHelp::class,
 		'Blankpage' => \SpecialBlankpage::class,
 		'Diff' => \SpecialDiff::class,
+		'EditPage' => \SpecialEditPage::class,
 		'EditTags' => [
 			'class' => \SpecialEditTags::class,
 			'services' => [
@@ -202,6 +203,9 @@ class SpecialPageFactory {
 		'MyLanguage' => \SpecialMyLanguage::class,
 		'Mypage' => \SpecialMypage::class,
 		'Mytalk' => \SpecialMytalk::class,
+		'PageHistory' => \SpecialPageHistory::class,
+		'PageInfo' => \SpecialPageInfo::class,
+		'Purge' => \SpecialPurge::class,
 		'Myuploads' => \SpecialMyuploads::class,
 		'AllMyUploads' => \SpecialAllMyUploads::class,
 		'NewSection' => \SpecialNewSection::class,
