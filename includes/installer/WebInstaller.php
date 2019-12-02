@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use MediaWiki\MediaWikiServices;
@@ -26,7 +26,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Class for the core installer web interface.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class WebInstaller extends Installer {

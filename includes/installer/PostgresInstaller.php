@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use Wikimedia\Rdbms\Database;
@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\DBConnectionError;
 /**
  * Class for setting up the MediaWiki database using Postgres.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class PostgresInstaller extends DatabaseInstaller {

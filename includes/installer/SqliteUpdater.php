@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use Wikimedia\Rdbms\DatabaseSqlite;
@@ -26,7 +26,7 @@ use Wikimedia\Rdbms\DatabaseSqlite;
 /**
  * Class for handling updates to Sqlite databases.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class SqliteUpdater extends DatabaseUpdater {
