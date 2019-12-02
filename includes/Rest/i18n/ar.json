@@ -23,5 +23,6 @@
 	"rest-compare-inaccessible": "المراجعة المحددة بواسطة الوسيط $1 ليست متاحة علانية.",
 	"rest-compare-wrong-content": "تحتوي فتحة $1 للمراجعة المحددة بواسطة الوسيط $2 على نوع محتوى لا يمكن تحويله إلى نص.",
 	"rest-compare-wikidiff2": "تتطلب نقطة النهاية هذه wikidiff2 1.9.0 أو أحدث.",
-	"rest-pagehistorycount-too-many-revisions": "يحتوي العنوان المحدد على عدد كبير جدا من المراجعات لاسترداد هذا العدد."
+	"rest-pagehistorycount-too-many-revisions": "يحتوي العنوان المحدد على عدد كبير جدا من المراجعات لاسترداد هذا العدد.",
+	"rest-search-error": "خطأ عند إرجاع نتائج البحث: $1"
 }

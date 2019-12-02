@@ -13,7 +13,8 @@
 			"Matma Rex",
 			"ShimunUfesoj",
 			"Vlad5250",
-			"Brazal.dang"
+			"Brazal.dang",
+			"Kunokuno"
 		]
 	},
 	"tog-underline": "Linyahan an kilyawan:",
@@ -55,6 +56,7 @@
 	"tog-norollbackdiff": "Halion an pagkakaiba pagkatapos magbalik",
 	"tog-useeditwarning": "Patanidan ako kunsoarin na ako nagbaya sa pahinang pigliliwat na dae naitatagama an mga kaliwatan",
 	"tog-prefershttps": "Pirmeng gumamit nin sarong seguradong koneksyon kunsoarin na ika nakalaog na",
+	"tog-requireemail": "Magpadara sana nin mga password reset e-koreo pag an parehong e-koreo asin ngaran-paragamit an ipigtao",
 	"underline-always": "Pirmi",
 	"underline-never": "Dae pa lamang",
 	"underline-default": "Kublit o kilyaw na panugmad",
@@ -967,6 +969,7 @@
 	"prefs-help-email": "An e-surat na adres sarong opsyonal, alagad ini kinakaipohan para sa pagtuytoy otro kan sekretong panlaog, kun ika malingaw kan saimong sekretong panlaog.",
 	"prefs-help-email-others": "Ika kan man pumili na magtugot sa iba na makontak ka sa e-surat sa paagi nin sarong kasugponan na yaon sa saimong pahina nin paragamit o olay.\nAn saimong e-surat na adres dae ipagbuyagyag kunsoarin na an ibang paragamit makontak saimo.",
 	"prefs-help-email-required": "Kaipuhan an e-koreo.",
+	"prefs-help-requireemail": "Nagtatabang ini magi ka nin pribado asin dai makaresibe nin kaduda-dadang mga e-koreo",
 	"prefs-info": "Panuntong na impormasyon",
 	"prefs-i18n": "Internasyonalisasyon",
 	"prefs-signature": "Pirma",
