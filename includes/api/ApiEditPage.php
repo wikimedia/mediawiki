@@ -70,6 +70,20 @@ class ApiEditPage extends ApiBase {
 					];
 
 					$titleObj = $newTitle;
+
+					// T239428: Check whether the new title is valid
+					if ( $titleObj->isExternal() || !$titleObj->canExist() ) {
+						$redirValues[count( $redirValues ) - 1]['to'] = $titleObj->getFullText();
+						$this->dieWithError(
+							[
+								'apierror-edit-invalidredirect',
+								Message::plaintextParam( $oldTitle->getPrefixedText() ),
+								Message::plaintextParam( $titleObj->getFullText() ),
+							],
+							'edit-invalidredirect',
+							[ 'redirects' => $redirValues ]
+						);
+					}
 				}
 
 				ApiResult::setIndexedTagName( $redirValues, 'r' );

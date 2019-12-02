@@ -1582,6 +1582,7 @@
 	"apierror-databaseerror": "{{doc-apierror}}\n\nParameters:\n* $1 - Exception log ID code. This is meaningless to the end user, but can be used by people with access to the logs to easily find the logged error.",
 	"apierror-deletedrevs-param-not-1-2": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n\nSee also:\n* {{msg-mw|apihelp-query+deletedrevs-extended-description}}",
 	"apierror-deletedrevs-param-not-3": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n\nSee also:\n* {{msg-mw|apihelp-query+deletedrevs-extended-description}}",
+	"apierror-edit-invalidredirect": "{{doc-apierror}}\n\nParameters:\n* $1 - Redirect being edited\n* $2 - Target of the redirect that cannot be edited.",
 	"apierror-emptynewsection": "{{doc-apierror}}",
 	"apierror-emptypage": "{{doc-apierror}}",
 	"apierror-exceptioncaught": "{{doc-apierror}}\n\nParameters:\n* $1 - Exception log ID code. This is meaningless to the end user, but can be used by people with access to the logs to easily find the logged error.\n* $2 - Exception message, which may end with punctuation. Probably in English.",
