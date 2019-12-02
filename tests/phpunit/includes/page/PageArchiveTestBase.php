@@ -14,13 +14,13 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 	protected $pageId;
 
 	/**
-	 * @var PageArchive $archivedPage
+	 * @var PageArchive
 	 */
 	protected $archivedPage;
 
 	/**
 	 * A logged out user who edited the page before it was archived.
-	 * @var string $ipEditor
+	 * @var string
 	 */
 	protected $ipEditor;
 

@@ -38,7 +38,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @var string $model_id
+	 * @var string
 	 */
 	protected $model_id;
 

@@ -3,7 +3,7 @@
  * Creates a Html::namespaceSelector input field with a button assigned to the input field.
  */
 class HTMLSelectNamespaceWithButton extends HTMLSelectNamespace {
-	/** @var HTMLFormFieldWithButton $mClassWithButton */
+	/** @var HTMLFormFieldWithButton */
 	protected $mClassWithButton = null;
 
 	public function __construct( $info ) {

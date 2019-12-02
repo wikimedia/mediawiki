@@ -33,7 +33,7 @@ class UserrightsPage extends SpecialPage {
 	 * The target of the local right-adjuster's interest.  Can be gotten from
 	 * either a GET parameter or a subpage-style parameter, so have a member
 	 * variable for it.
-	 * @var null|string $mTarget
+	 * @var null|string
 	 */
 	protected $mTarget;
 	/*

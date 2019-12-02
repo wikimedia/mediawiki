@@ -14,17 +14,17 @@ use MediaWiki\MediaWikiServices;
 class PagePropsTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @var Title $title1
+	 * @var Title
 	 */
 	private $title1;
 
 	/**
-	 * @var Title $title2
+	 * @var Title
 	 */
 	private $title2;
 
 	/**
-	 * @var array $the_properties
+	 * @var array
 	 */
 	private $the_properties;
 

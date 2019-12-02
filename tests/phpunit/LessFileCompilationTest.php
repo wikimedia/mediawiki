@@ -10,7 +10,7 @@
 class LessFileCompilationTest extends ResourceLoaderTestCase {
 
 	/**
-	 * @var string $file
+	 * @var string
 	 */
 	protected $file;
 

@@ -37,12 +37,12 @@ use Monolog\Logger;
 class MwlogHandler extends SyslogUdpHandler {
 
 	/**
-	 * @var string $appprefix
+	 * @var string
 	 */
 	private $appprefix;
 
 	/**
-	 * @var string $hostname
+	 * @var string
 	 */
 	private $hostname;
 

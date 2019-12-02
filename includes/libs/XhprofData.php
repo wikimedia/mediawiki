@@ -30,25 +30,25 @@ use Wikimedia\RunningStat;
 class XhprofData {
 
 	/**
-	 * @var array $config
+	 * @var array
 	 */
 	protected $config;
 
 	/**
 	 * Hierarchical profiling data returned by xhprof.
-	 * @var array[] $hieraData
+	 * @var array[]
 	 */
 	protected $hieraData;
 
 	/**
 	 * Per-function inclusive data.
-	 * @var array[][] $inclusive
+	 * @var array[][]
 	 */
 	protected $inclusive;
 
 	/**
 	 * Per-function inclusive and exclusive data.
-	 * @var array[] $complete
+	 * @var array[]
 	 */
 	protected $complete;
 

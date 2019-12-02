@@ -28,13 +28,13 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class ApiParse extends ApiBase {
 
-	/** @var string $section */
+	/** @var string */
 	private $section = null;
 
-	/** @var Content $content */
+	/** @var Content */
 	private $content = null;
 
-	/** @var Content $pstContent */
+	/** @var Content */
 	private $pstContent = null;
 
 	/** @var bool */

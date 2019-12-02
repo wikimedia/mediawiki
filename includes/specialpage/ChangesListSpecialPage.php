@@ -85,7 +85,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * all of the filters in a group can be configured to only display on the
 	 * unstuctured UI, in which case you don't need a group title.
 	 *
-	 * @var array $filterGroupDefinitions
+	 * @var array
 	 */
 	private $filterGroupDefinitions;
 
@@ -103,7 +103,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Filter groups, and their contained filters
 	 * This is an associative array (with group name as key) of ChangesListFilterGroup objects.
 	 *
-	 * @var ChangesListFilterGroup[] $filterGroups
+	 * @var ChangesListFilterGroup[]
 	 */
 	protected $filterGroups = [];
 

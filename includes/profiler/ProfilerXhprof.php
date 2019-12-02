@@ -54,7 +54,7 @@
  */
 class ProfilerXhprof extends Profiler {
 	/**
-	 * @var XhprofData|null $xhprofData
+	 * @var XhprofData|null
 	 */
 	protected $xhprofData;
 
