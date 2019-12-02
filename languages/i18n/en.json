@@ -2738,7 +2738,7 @@
 	"ipb-prevent-user-talk-edit": "Editing their own talk page must be allowed for a partial block, unless it includes a restriction on the User Talk namespace.",
 	"ipb_expiry_invalid": "Expiry time invalid.",
 	"ipb_expiry_old": "Expiry time is in the past.",
-	"ipb_expiry_temp": "Hidden username blocks must be permanent.",
+	"ipb_expiry_temp": "Hidden username blocks must be indefinite.",
 	"ipb_hide_invalid": "Unable to suppress this account; it has more than {{PLURAL:$1|one edit|$1 edits}}.",
 	"ipb_hide_partial": "Hidden username blocks must be sitewide blocks.",
 	"ipb_already_blocked": "\"$1\" is already blocked.",
