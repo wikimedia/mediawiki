@@ -1731,6 +1731,7 @@
 	"apierror-csp-report": "Error processing CSP report: $1.",
 	"apierror-deletedrevs-param-not-1-2": "The <var>$1</var> parameter cannot be used in modes 1 or 2.",
 	"apierror-deletedrevs-param-not-3": "The <var>$1</var> parameter cannot be used in mode 3.",
+	"apierror-edit-invalidredirect": "Cannot edit <kbd>$1</kbd> while following redirects, as target <kbd>$2</kbd> is not valid.",
 	"apierror-emptynewsection": "Creating empty new sections is not possible.",
 	"apierror-emptypage": "Creating new, empty pages is not allowed.",
 	"apierror-exceptioncaught": "[$1] Exception caught: $2",
