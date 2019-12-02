@@ -702,6 +702,13 @@ class UserrightsPage extends SpecialPage {
 			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
 		}
 
+		if ( $user->isSystemUser() ) {
+			$systemusernote = $this->msg( 'userrights-systemuser' )
+				->params( $user->getName() )
+				->parse();
+			$grouplist .= '<p>' . $systemusernote . "</p>\n";
+		}
+
 		$userToolLinks = Linker::userToolLinks(
 			$user->getId(),
 			$user->getName(),
