@@ -24,5 +24,6 @@
 	"rest-compare-inaccessible": "Sidversionen som angavs av parametern $1 är inte offentligt åtkomlig.",
 	"rest-compare-wrong-content": "$1platsen för sidversionen som specificeras av parametern $2 har en innehållstyp som inte kan omvandlas till text.",
 	"rest-compare-wikidiff2": "Denna ändpunkt kräver wikidiff2 1.9.0 eller senare.",
-	"rest-pagehistorycount-too-many-revisions": "Den angivna titeln innehåller för många sidversioner för att hämta detta antal."
+	"rest-pagehistorycount-too-many-revisions": "Den angivna titeln innehåller för många sidversioner för att hämta detta antal.",
+	"rest-search-error": "Fel uppstod när sökresultaten returnerades: $1"
 }
