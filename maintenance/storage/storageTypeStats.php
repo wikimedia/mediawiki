@@ -66,15 +66,15 @@ SQL;
 				'text',
 				[
 					'old_flags',
-					"$classSql AS class",
-					'COUNT(*) as count',
+					'class' => $classSql,
+					'count' => 'COUNT(*)',
 				],
 				[
 					'old_id >= ' . intval( $rangeStart ),
 					'old_id < ' . intval( $rangeStart + $binSize )
 				],
 				__METHOD__,
-				[ 'GROUP BY' => 'old_flags, class' ]
+				[ 'GROUP BY' => [ 'old_flags', 'class' ] ]
 			);
 
 			foreach ( $res as $row ) {

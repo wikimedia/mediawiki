@@ -1002,7 +1002,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 			'*',
 			[ 'pl_from' => $pageId ],
 			__METHOD__,
-			[ 'ORDER BY' => 'pl_namespace, pl_title' ]
+			[ 'ORDER BY' => [ 'pl_namespace', 'pl_title' ] ]
 		);
 
 		$pageLinksRow = $pageLinks->fetchObject();

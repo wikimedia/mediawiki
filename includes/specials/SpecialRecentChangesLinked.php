@@ -127,8 +127,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				// To prevent this from causing query performance problems, we need to add
 				// a GROUP BY, and add rc_id to the ORDER BY.
 				$order = [
-					'GROUP BY' => 'rc_timestamp, rc_id',
-					'ORDER BY' => 'rc_timestamp DESC, rc_id DESC'
+					'GROUP BY' => [ 'rc_timestamp', 'rc_id' ],
+					'ORDER BY' => [ 'rc_timestamp DESC', 'rc_id DESC' ]
 				];
 			} else {
 				$order = [ 'ORDER BY' => 'rc_timestamp DESC' ];

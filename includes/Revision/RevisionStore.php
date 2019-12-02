@@ -2969,7 +2969,7 @@ class RevisionStore
 			],
 			__METHOD__,
 			[
-				'ORDER BY' => "rev_timestamp $sort, rev_id $sort",
+				'ORDER BY' => [ "rev_timestamp $sort", "rev_id $sort" ],
 				'IGNORE INDEX' => 'rev_timestamp', // Probably needed for T159319
 			]
 		);

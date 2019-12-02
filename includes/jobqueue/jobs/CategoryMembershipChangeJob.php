@@ -143,7 +143,7 @@ class CategoryMembershipChangeJob extends Job {
 				) . ')'
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp DESC, rev_id DESC' ]
+			[ 'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ] ]
 		);
 		// Only consider revisions newer than any such revision
 		if ( $row ) {
@@ -166,7 +166,7 @@ class CategoryMembershipChangeJob extends Job {
 					" OR (rev_timestamp = $encCutoff AND rev_id > $lastRevId)"
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC' ],
+			[ 'ORDER BY' => [ 'rev_timestamp ASC', 'rev_id ASC' ] ],
 			$revQuery['joins']
 		);
 

@@ -3916,7 +3916,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				__METHOD__,
 				array_merge(
 					[
-						'ORDER BY' => 'rev_timestamp ASC, rev_id ASC',
+						'ORDER BY' => [ 'rev_timestamp ASC', 'rev_id ASC' ],
 						'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
 					],
 					$options
