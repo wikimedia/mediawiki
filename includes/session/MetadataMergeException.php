@@ -33,7 +33,7 @@ use UnexpectedValueException;
  * @since 1.27
  */
 class MetadataMergeException extends UnexpectedValueException {
-	/** @var array $context */
+	/** @var array */
 	protected $context;
 
 	/**

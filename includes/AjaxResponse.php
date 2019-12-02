@@ -31,43 +31,43 @@ use MediaWiki\MediaWikiServices;
 class AjaxResponse {
 	/**
 	 * Number of seconds to get the response cached by a proxy
-	 * @var int $mCacheDuration
+	 * @var int
 	 */
 	private $mCacheDuration;
 
 	/**
 	 * HTTP header Content-Type
-	 * @var string $mContentType
+	 * @var string
 	 */
 	private $mContentType;
 
 	/**
 	 * Disables output. Can be set by calling $AjaxResponse->disable()
-	 * @var bool $mDisabled
+	 * @var bool
 	 */
 	private $mDisabled;
 
 	/**
 	 * Date for the HTTP header Last-modified
-	 * @var string|bool $mLastModified
+	 * @var string|bool
 	 */
 	private $mLastModified;
 
 	/**
 	 * HTTP response code
-	 * @var int|string $mResponseCode
+	 * @var int|string
 	 */
 	private $mResponseCode;
 
 	/**
 	 * HTTP Vary header
-	 * @var string $mVary
+	 * @var string
 	 */
 	private $mVary;
 
 	/**
 	 * Content of our HTTP response
-	 * @var string $mText
+	 * @var string
 	 */
 	private $mText;
 

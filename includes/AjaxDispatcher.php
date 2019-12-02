@@ -37,18 +37,18 @@ use MediaWiki\MediaWikiServices;
 class AjaxDispatcher {
 	/**
 	 * The way the request was made, either a 'get' or a 'post'
-	 * @var string $mode
+	 * @var string
 	 */
 	private $mode;
 
 	/**
 	 * Name of the requested handler
-	 * @var string $func_name
+	 * @var string
 	 */
 	private $func_name;
 
 	/** Arguments passed
-	 * @var array $args
+	 * @var array
 	 */
 	private $args;
 

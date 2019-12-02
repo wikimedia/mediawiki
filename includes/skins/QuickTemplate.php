@@ -31,7 +31,7 @@ abstract class QuickTemplate {
 	 */
 	public $data;
 
-	/** @var Config $config */
+	/** @var Config */
 	protected $config;
 
 	/**

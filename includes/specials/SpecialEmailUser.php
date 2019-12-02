@@ -32,7 +32,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	protected $mTarget;
 
 	/**
-	 * @var User|string $mTargetObj
+	 * @var User|string
 	 */
 	protected $mTargetObj;
 

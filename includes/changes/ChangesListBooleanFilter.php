@@ -32,7 +32,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	/**
 	 * Main unstructured UI i18n key
 	 *
-	 * @var string $showHide
+	 * @var string
 	 */
 	protected $showHide;
 
@@ -40,28 +40,28 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 	 * Whether there is a feature designed to replace this filter available on the
 	 * structured UI
 	 *
-	 * @var bool $isReplacedInStructuredUi
+	 * @var bool
 	 */
 	protected $isReplacedInStructuredUi;
 
 	/**
 	 * Default
 	 *
-	 * @var bool $defaultValue
+	 * @var bool
 	 */
 	protected $defaultValue;
 
 	/**
 	 * Callable used to do the actual query modification; see constructor
 	 *
-	 * @var callable $queryCallable
+	 * @var callable
 	 */
 	protected $queryCallable;
 
 	/**
 	 * Value that defined when this filter is considered active
 	 *
-	 * @var bool $activeValue
+	 * @var bool
 	 */
 	protected $activeValue;
 

@@ -32,14 +32,14 @@ class SpecialAllPages extends IncludableSpecialPage {
 	/**
 	 * Maximum number of pages to show on single subpage.
 	 *
-	 * @var int $maxPerPage
+	 * @var int
 	 */
 	protected $maxPerPage = 345;
 
 	/**
 	 * Determines, which message describes the input field 'nsfrom'.
 	 *
-	 * @var string $nsfromMsg
+	 * @var string
 	 */
 	protected $nsfromMsg = 'allpagesfrom';
 

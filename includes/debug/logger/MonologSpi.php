@@ -117,13 +117,13 @@ use Wikimedia\ObjectFactory;
 class MonologSpi implements Spi {
 
 	/**
-	 * @var array $singletons
+	 * @var array
 	 */
 	protected $singletons;
 
 	/**
 	 * Configuration for creating new loggers.
-	 * @var array[][] $config
+	 * @var array[][]
 	 */
 	protected $config;
 
