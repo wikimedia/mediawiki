@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use MediaWiki\MediaWikiServices;
@@ -31,7 +31,7 @@ use MediaWiki\MediaWikiServices;
  * quite a lot of things you could do in OutputPage that would break the installer,
  * that wouldn't be immediately obvious.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  * @private
  */

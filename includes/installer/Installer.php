@@ -21,7 +21,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use MediaWiki\Interwiki\NullInterwikiLookup;
@@ -29,9 +29,15 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 /**
- * This documentation group collects source code files with deployment functionality.
+ * The Installer helps admins create or upgrade their wiki.
  *
- * @defgroup Deployment Deployment
+ * The installer classes are exposed through these human interfaces:
+ *
+ * - The `maintenance/install.php` script, backed by CliInstaller.
+ * - The `maintenance/update.php` script, backed by DatabaseUpdater.
+ * - The `mw-config/index.php` web entry point, backed by WebInstaller.
+ *
+ * @defgroup Installer installer
  */
 
 /**
@@ -40,7 +46,7 @@ use MediaWiki\Shell\Shell;
  * This class provides the base for installation and update functionality
  * for both MediaWiki core and extensions.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 abstract class Installer {

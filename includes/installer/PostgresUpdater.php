@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Deployment
+ * @ingroup Installer
  */
 
 use Wikimedia\Rdbms\DatabasePostgres;
@@ -26,7 +26,7 @@ use Wikimedia\Rdbms\DatabasePostgres;
 /**
  * Class for handling updates to Postgres databases.
  *
- * @ingroup Deployment
+ * @ingroup Installer
  * @since 1.17
  */
 class PostgresUpdater extends DatabaseUpdater {
