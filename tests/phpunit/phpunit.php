@@ -110,6 +110,12 @@ class PHPUnitMaintClass extends Maintenance {
 		$_SERVER['argv'] = $argv;
 	}
 
+	protected function showHelp() {
+		parent::showHelp();
+		$this->output( "PHPUnit options are also accepted:\n\n" );
+		$command = new MediaWikiPHPUnitCommand();
+		$command->publicShowHelp();
+	}
 }
 
 $maintClass = 'PHPUnitMaintClass';

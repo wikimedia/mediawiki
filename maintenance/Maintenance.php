@@ -1060,14 +1060,22 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Maybe show the help.
+	 * Maybe show the help. If the help is shown, exit.
+	 *
 	 * @param bool $force Whether to force the help to show, default false
 	 */
 	protected function maybeHelp( $force = false ) {
 		if ( !$force && !$this->hasOption( 'help' ) ) {
 			return;
 		}
+		$this->showHelp();
+		die( 1 );
+	}
 
+	/**
+	 * Definitely show the help. Does not exit.
+	 */
+	protected function showHelp() {
 		$screenWidth = 80; // TODO: Calculate this!
 		$tab = "    ";
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
@@ -1172,8 +1180,6 @@ abstract class Maintenance {
 			}
 			$this->output( "\n" );
 		}
-
-		die( 1 );
 	}
 
 	/**
