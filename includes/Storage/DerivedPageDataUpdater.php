@@ -1568,6 +1568,10 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			WikiPage::onArticleCreate( $title );
 		} elseif ( $this->options['changed'] ) { // T52785
 			WikiPage::onArticleEdit( $title, $legacyRevision, $this->getTouchedSlotRoles() );
+		} elseif ( $this->options['restored'] ) {
+			MediaWikiServices::getInstance()->getMainWANObjectCache()->touchCheckKey(
+				"DerivedPageDataUpdater:restore:page:$id"
+			);
 		}
 
 		$oldRevision = $this->getParentRevision();

@@ -38,7 +38,6 @@ use InvalidArgumentException;
 use IP;
 use LogicException;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableAccessException;
@@ -3190,7 +3189,7 @@ class RevisionStore
 	 *
 	 * @return RevisionRecord|bool Returns false if missing
 	 */
-	public function getKnownCurrentRevision( Title $title, $revId ) {
+	public function getKnownCurrentRevision( Title $title, $revId = 0 ) {
 		$db = $this->getDBConnectionRef( DB_REPLICA );
 
 		$pageId = $title->getArticleID();
@@ -3280,27 +3279,6 @@ class RevisionStore
 	}
 
 	/**
-	 * Returns a bitmask for the rev_deleted field visible to the provided user.
-	 *
-	 * @param UserIdentity $user
-	 * @return int
-	 */
-	private function getRevisionDeletionBitmask( UserIdentity $user ) {
-		// TODO: We can't inject the permission manager since it would create
-		// a cyclic dependency! This RevisionRecord instead? See T233222 as well.
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$pm->userHasRight( $user, 'deletedhistory' ) ) {
-			$bitmask = RevisionRecord::DELETED_USER;
-		} elseif ( !$pm->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-		) {
-			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
-		} else {
-			$bitmask = 0;
-		}
-		return $bitmask;
-	}
-
-	/**
 	 * Converts revision limits to query conditions.
 	 *
 	 * @param IDatabase $dbr
@@ -3387,19 +3365,18 @@ class RevisionStore
 			if ( empty( $options ) ) {
 				return [];
 			} else {
-				return $user ? [ $new->getUser( RevisionRecord::FOR_THIS_USER, $user ) ] : [ $new->getUser() ];
+				return $user ? [ $new->getUser( RevisionRecord::FOR_PUBLIC, $user ) ] : [ $new->getUser() ];
 			}
 		}
 
 		$dbr = $this->getDBConnectionRef( DB_REPLICA );
 		$conds = array_merge(
-			[ 'rev_page' => $pageId ],
+			[
+				'rev_page' => $pageId,
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . " = 0"
+			],
 			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
 		);
-		$bitmask = $user ? $this->getRevisionDeletionBitmask( $user ) : 0;
-		if ( $bitmask ) {
-			$conds[] = $dbr->bitAnd( 'rev_deleted', $bitmask ) . " != $bitmask";
-		}
 
 		$queryOpts = [ 'DISTINCT' ];
 		if ( $max !== null ) {
@@ -3492,7 +3469,10 @@ class RevisionStore
 
 		$dbr = $this->getDBConnectionRef( DB_REPLICA );
 		$conds = array_merge(
-			[ 'rev_page' => $pageId ],
+			[
+				'rev_page' => $pageId,
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
+			],
 			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
 		);
 		if ( $max !== null ) {
