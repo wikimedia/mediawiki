@@ -2,14 +2,18 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use BaseDump;
 use Exception;
 use MediaWikiLangTestCase;
 use MWException;
+use TextContent;
 use TextContentHandler;
 use TextPassDumper;
 use Title;
 use WikiExporter;
 use WikiPage;
+use WikitextContent;
+use XmlDumpWriter;
 
 /**
  * Tests for TextPassDumper that rely on the database
@@ -33,7 +37,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	private $revId2_1, $textId2_1, $revId2_2, $textId2_2;
 	private $revId2_3, $textId2_3, $revId2_4, $textId2_4;
 	private $revId3_1, $textId3_1, $revId3_2, $textId3_2;
-	private $revId4_1, $textId4_1;
+	private $revId4_1, $textId4_1, $textId4_1_aux;
 	private static $numOfRevs = 8;
 
 	public function addDBData() {
@@ -52,20 +56,20 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			// Simple page
 			$title = Title::newFromText( 'BackupDumperTestP1', $ns );
 			$page = WikiPage::factory( $title );
-			list( $this->revId1_1, $this->textId1_1 ) = $this->addRevision( $page,
+			[ $this->revId1_1, $this->textId1_1 ] = $this->addRevision( $page,
 				"BackupDumperTestP1Text1", "BackupDumperTestP1Summary1" );
 			$this->pageId1 = $page->getId();
 
 			// Page with more than one revision
 			$title = Title::newFromText( 'BackupDumperTestP2', $ns );
 			$page = WikiPage::factory( $title );
-			list( $this->revId2_1, $this->textId2_1 ) = $this->addRevision( $page,
+			[ $this->revId2_1, $this->textId2_1 ] = $this->addRevision( $page,
 				"BackupDumperTestP2Text1", "BackupDumperTestP2Summary1" );
-			list( $this->revId2_2, $this->textId2_2 ) = $this->addRevision( $page,
+			[ $this->revId2_2, $this->textId2_2 ] = $this->addRevision( $page,
 				"BackupDumperTestP2Text2", "BackupDumperTestP2Summary2" );
-			list( $this->revId2_3, $this->textId2_3 ) = $this->addRevision( $page,
+			[ $this->revId2_3, $this->textId2_3 ] = $this->addRevision( $page,
 				"BackupDumperTestP2Text3", "BackupDumperTestP2Summary3" );
-			list( $this->revId2_4, $this->textId2_4 ) = $this->addRevision( $page,
+			[ $this->revId2_4, $this->textId2_4 ] = $this->addRevision( $page,
 				"BackupDumperTestP2Text4 some additional Text  ",
 				"BackupDumperTestP2Summary4 extra " );
 			$this->pageId2 = $page->getId();
@@ -73,9 +77,9 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			// Deleted page.
 			$title = Title::newFromText( 'BackupDumperTestP3', $ns );
 			$page = WikiPage::factory( $title );
-			list( $this->revId3_1, $this->textId3_1 ) = $this->addRevision( $page,
+			[ $this->revId3_1, $this->textId3_1 ] = $this->addRevision( $page,
 				"BackupDumperTestP3Text1", "BackupDumperTestP2Summary1" );
-			list( $this->revId3_2, $this->textId3_2 ) = $this->addRevision( $page,
+			[ $this->revId3_2, $this->textId3_2 ] = $this->addRevision( $page,
 				"BackupDumperTestP3Text2", "BackupDumperTestP2Summary2" );
 			$this->pageId3 = $page->getId();
 			$page->doDeleteArticle( "Testing ;)" );
@@ -91,10 +95,19 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 			$title = Title::newFromText( 'BackupDumperTestP1', NS_TALK );
 			$page = WikiPage::factory( $title );
-			list( $this->revId4_1, $this->textId4_1 ) = $this->addRevision( $page,
-				"Talk about BackupDumperTestP1 Text1",
-				"Talk BackupDumperTestP1 Summary1",
-				"BackupTextPassTestModel" );
+			[ $this->revId4_1, $textIds4_1 ] = $this->addMultiSlotRevision(
+				$page,
+				[
+					'main' => new TextContent(
+						"Talk about BackupDumperTestP1 Text1",
+						'BackupTextPassTestModel'
+					),
+					'aux' => new WikitextContent( "Talk about BackupDumperTestP1 Aux1" ),
+				],
+				"Talk BackupDumperTestP1 Summary1"
+			);
+			$this->textId4_1 = $textIds4_1['main'];
+			$this->textId4_1_aux = $textIds4_1['aux'];
 			$this->pageId4 = $page->getId();
 		} catch ( Exception $e ) {
 			// We'd love to pass $e directly. However, ... see
@@ -162,7 +175,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		// Page 4
 		$asserter->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
 		$asserter->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
-			$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
+			$this->textId4_1, false, "klympv80smh0drjo6zaxd3jh8k3bghx",
 			"TALK ABOUT BACKUPDUMPERTESTP1 TEXT1",
 			false,
 			"BackupTextPassTestModel",
@@ -239,7 +252,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		// Page 4
 		$asserter->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
 		$asserter->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
-			$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
+			$this->textId4_1, false, "klympv80smh0drjo6zaxd3jh8k3bghx",
 			"TALK ABOUT BACKUPDUMPERTESTP1 TEXT1",
 			false,
 			"BackupTextPassTestModel",
@@ -522,149 +535,231 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 * @return string Absolute filename of the stub
 	 */
 	private function setUpStub( $fname = null, $iterations = 1 ) {
+		global $wgXmlDumpSchemaVersion;
+
 		if ( $fname === null ) {
 			$fname = $this->getNewTempFile();
 		}
-		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" '
-			. 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-			. 'xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ '
-			. 'http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="en">
-  <siteinfo>
-    <sitename>wikisvn</sitename>
-    <base>http://localhost/wiki-svn/index.php/Main_Page</base>
-    <generator>MediaWiki 1.21alpha</generator>
-    <case>first-letter</case>
-    <namespaces>
-      <namespace key="-2" case="first-letter">Media</namespace>
-      <namespace key="-1" case="first-letter">Special</namespace>
-      <namespace key="0" case="first-letter" />
-      <namespace key="1" case="first-letter">Talk</namespace>
-      <namespace key="2" case="first-letter">User</namespace>
-      <namespace key="3" case="first-letter">User talk</namespace>
-      <namespace key="4" case="first-letter">Wikisvn</namespace>
-      <namespace key="5" case="first-letter">Wikisvn talk</namespace>
-      <namespace key="6" case="first-letter">File</namespace>
-      <namespace key="7" case="first-letter">File talk</namespace>
-      <namespace key="8" case="first-letter">MediaWiki</namespace>
-      <namespace key="9" case="first-letter">MediaWiki talk</namespace>
-      <namespace key="10" case="first-letter">Template</namespace>
-      <namespace key="11" case="first-letter">Template talk</namespace>
-      <namespace key="12" case="first-letter">Help</namespace>
-      <namespace key="13" case="first-letter">Help talk</namespace>
-      <namespace key="14" case="first-letter">Category</namespace>
-      <namespace key="15" case="first-letter">Category talk</namespace>
-    </namespaces>
-  </siteinfo>
-';
-		$tail = '</mediawiki>
-';
+
+		$writer = new XmlDumpWriter( XmlDumpWriter::WRITE_STUB, $wgXmlDumpSchemaVersion );
+		$header = $writer->openStream();
+		$tail = $writer->closeStream();
 
 		$content = $header;
 		$iterations = intval( $iterations );
 		$username = $this->getTestUser()->getUser()->getName();
 		$userid = $this->getTestUser()->getUser()->getId();
 		for ( $i = 0; $i < $iterations; $i++ ) {
-			$page1 = '  <page>
-    <title>BackupDumperTestP1</title>
-    <ns>0</ns>
-    <id>' . ( $this->pageId1 + $i * self::$numOfPages ) . '</id>
-    <revision>
-      <id>' . ( $this->revId1_1 + $i * self::$numOfRevs ) . '</id>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <username>' . $username . '</username>
-        <id>' . $userid . '</id>
-      </contributor>
-      <comment>BackupDumperTestP1Summary1</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId1_1 . '" bytes="23" />
-      <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
-    </revision>
-  </page>
-';
-			$page2 = '  <page>
-    <title>BackupDumperTestP2</title>
-    <ns>0</ns>
-    <id>' . ( $this->pageId2 + $i * self::$numOfPages ) . '</id>
-    <revision>
-      <id>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</id>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <username>' . $username . '</username>
-        <id>' . $userid . '</id>
-      </contributor>
-      <comment>BackupDumperTestP2Summary1</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId2_1 . '" bytes="23" />
-      <sha1>jprywrymfhysqllua29tj3sc7z39dl2</sha1>
-    </revision>
-    <revision>
-      <id>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_1 + $i * self::$numOfRevs ) . '</parentid>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <username>' . $username . '</username>
-        <id>' . $userid . '</id>
-      </contributor>
-      <comment>BackupDumperTestP2Summary2</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId2_2 . '" bytes="23" />
-      <sha1>b7vj5ks32po5m1z1t1br4o7scdwwy95</sha1>
-    </revision>
-    <revision>
-      <id>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_2 + $i * self::$numOfRevs ) . '</parentid>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <username>' . $username . '</username>
-        <id>' . $userid . '</id>
-      </contributor>
-      <comment>BackupDumperTestP2Summary3</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId2_3 . '" bytes="23" />
-      <sha1>jfunqmh1ssfb8rs43r19w98k28gg56r</sha1>
-    </revision>
-    <revision>
-      <id>' . ( $this->revId2_4 + $i * self::$numOfRevs ) . '</id>
-      <parentid>' . ( $this->revId2_3 + $i * self::$numOfRevs ) . '</parentid>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <username>' . $username . '</username>
-        <id>' . $userid . '</id>
-      </contributor>
-      <comment>BackupDumperTestP2Summary4 extra</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text id="' . $this->textId2_4 . '" bytes="44" />
-      <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
-    </revision>
-  </page>
-';
+			$pageid = $this->pageId1 + $i * self::$numOfPages;
+			$page1 = $writer->openPage( (object)[
+				'page_id' => $pageid,
+				'page_title' => 'BackupDumperTestP1',
+				'page_namespace' => NS_MAIN,
+				'page_is_redirect' => 0,
+				'page_restrictions' => 0,
+			] );
+
+			$revid = $this->revId1_1 + $i * self::$numOfRevs;
+			$page1 .= $writer->writeRevision(
+				(object)[
+					'rev_id' => $revid,
+					'rev_page' => $pageid,
+					'rev_timestamp' => '2012-04-01T16:46:05Z',
+					'rev_minor_edit' => 0,
+					'rev_deleted' => 0,
+					'rev_user' => $userid,
+					'rev_user_text' => $username,
+					'rev_comment_text' => 'BackupDumperTestP1Summary1',
+					'rev_comment_data' => null,
+				],
+				[
+					(object)[
+						'model_name' => 'wikitext',
+						'role_name' => 'main',
+						'slot_revision_id' => $revid,
+						'slot_origin' => $revid,
+						'slot_content_id' => $this->textId1_1,
+						'content_size' => 23,
+						'content_address' => 'tt:' . $this->textId1_1,
+						'content_sha1' => '0bolhl6ol7i6x0e7yq91gxgaan39j87',
+					]
+				]
+			);
+
+			$page1 .= $writer->closePage();
+
+			$pageid = $this->pageId2 + $i * self::$numOfPages;
+			$page2 = $writer->openPage( (object)[
+				'page_id' => $pageid,
+				'page_title' => 'BackupDumperTestP2',
+				'page_namespace' => NS_MAIN,
+				'page_is_redirect' => 0,
+				'page_restrictions' => 0,
+			] );
+
+			$revid1 = $this->revId2_1 + $i * self::$numOfRevs;
+			$page2 .= $writer->writeRevision(
+				(object)[
+					'rev_id' => $revid1,
+					'rev_page' => $pageid,
+					'rev_timestamp' => '2012-04-01T16:46:05Z',
+					'rev_minor_edit' => 0,
+					'rev_deleted' => 0,
+					'rev_user' => $userid,
+					'rev_user_text' => $username,
+					'rev_comment_text' => 'BackupDumperTestP2Summary1',
+					'rev_comment_data' => null,
+				],
+				[
+					(object)[
+						'model_name' => 'wikitext',
+						'role_name' => 'main',
+						'slot_revision_id' => $revid1,
+						'slot_origin' => $revid1,
+						'slot_content_id' => $this->textId2_1,
+						'content_size' => 23,
+						'content_address' => 'tt:' . $this->textId2_1,
+						'content_sha1' => 'jprywrymfhysqllua29tj3sc7z39dl2',
+					]
+				]
+			);
+
+			$revid2 = $this->revId2_2 + $i * self::$numOfRevs;
+			$page2 .= $writer->writeRevision(
+				(object)[
+					'rev_id' => $revid2,
+					'rev_page' => $pageid,
+					'rev_parent_id' => $revid1,
+					'rev_timestamp' => '2012-04-01T16:46:05Z',
+					'rev_minor_edit' => 0,
+					'rev_deleted' => 0,
+					'rev_user' => $userid,
+					'rev_user_text' => $username,
+					'rev_comment_text' => 'BackupDumperTestP2Summary2',
+					'rev_comment_data' => null,
+				],
+				[
+					(object)[
+						'model_name' => 'wikitext',
+						'role_name' => 'main',
+						'slot_revision_id' => $revid2,
+						'slot_origin' => $revid2,
+						'slot_content_id' => $this->textId2_2,
+						'content_size' => 23,
+						'content_address' => 'tt:' . $this->textId2_2,
+						'content_sha1' => 'b7vj5ks32po5m1z1t1br4o7scdwwy95',
+					]
+				]
+			);
+
+			$revid3 = $this->revId2_3 + $i * self::$numOfRevs;
+			$page2 .= $writer->writeRevision(
+				(object)[
+					'rev_id' => $revid3,
+					'rev_page' => $pageid,
+					'rev_parent_id' => $revid2,
+					'rev_timestamp' => '2012-04-01T16:46:05Z',
+					'rev_minor_edit' => 0,
+					'rev_deleted' => 0,
+					'rev_user' => $userid,
+					'rev_user_text' => $username,
+					'rev_comment_text' => 'BackupDumperTestP2Summary3',
+					'rev_comment_data' => null,
+				],
+				[
+					(object)[
+						'model_name' => 'wikitext',
+						'role_name' => 'main',
+						'slot_revision_id' => $revid3,
+						'slot_origin' => $revid3,
+						'slot_content_id' => $this->textId2_3,
+						'content_size' => 23,
+						'content_address' => 'tt:' . $this->textId2_3,
+						'content_sha1' => 'jfunqmh1ssfb8rs43r19w98k28gg56r',
+					]
+				]
+			);
+
+			$revid4 = $this->revId2_4 + $i * self::$numOfRevs;
+			$page2 .= $writer->writeRevision(
+				(object)[
+					'rev_id' => $revid4,
+					'rev_page' => $pageid,
+					'rev_parent_id' => $revid3,
+					'rev_timestamp' => '2012-04-01T16:46:05Z',
+					'rev_minor_edit' => 0,
+					'rev_deleted' => 0,
+					'rev_user' => $userid,
+					'rev_user_text' => $username,
+					'rev_comment_text' => 'BackupDumperTestP2Summary4 extra',
+					'rev_comment_data' => null,
+				],
+				[
+					(object)[
+						'model_name' => 'wikitext',
+						'role_name' => 'main',
+						'slot_revision_id' => $revid4,
+						'slot_origin' => $revid4,
+						'slot_content_id' => $this->textId2_4,
+						'content_size' => 23,
+						'content_address' => 'tt:' . $this->textId2_4,
+						'content_sha1' => '6o1ciaxa6pybnqprmungwofc4lv00wv',
+					]
+				]
+			);
+
+			$page2 .= $writer->closePage();
+
 			// page 3 not in stub
 
-			$page4 = '  <page>
-    <title>Talk:BackupDumperTestP1</title>
-    <ns>1</ns>
-    <id>' . ( $this->pageId4 + $i * self::$numOfPages ) . '</id>
-    <revision>
-      <id>' . ( $this->revId4_1 + $i * self::$numOfRevs ) . '</id>
-      <timestamp>2012-04-01T16:46:05Z</timestamp>
-      <contributor>
-        <username>' . $username . '</username>
-        <id>' . $userid . '</id>
-      </contributor>
-      <comment>Talk BackupDumperTestP1 Summary1</comment>
-      <model>BackupTextPassTestModel</model>
-      <format>text/plain</format>
-      <text id="' . $this->textId4_1 . '" bytes="35" />
-      <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
-    </revision>
-  </page>
-';
+			$pageid = $this->pageId4 + $i * self::$numOfPages;
+			$page4 = $writer->openPage( (object)[
+				'page_id' => $pageid,
+				'page_title' => 'BackupDumperTestP1',
+				'page_namespace' => NS_TALK,
+				'page_is_redirect' => 0,
+				'page_restrictions' => 0,
+			] );
+
+			$revid = $this->revId4_1 + $i * self::$numOfRevs;
+			$page4 .= $writer->writeRevision(
+				(object)[
+					'rev_id' => $revid,
+					'rev_page' => $pageid,
+					'rev_timestamp' => '2012-04-01T16:46:05Z',
+					'rev_minor_edit' => 0,
+					'rev_deleted' => 0,
+					'rev_user' => $userid,
+					'rev_user_text' => $username,
+					'rev_comment_text' => 'Talk BackupDumperTestP1 Summary1',
+					'rev_comment_data' => null,
+				],
+				[
+					(object)[
+						'model_name' => 'BackupTextPassTestModel',
+						'role_name' => 'main',
+						'slot_revision_id' => $revid,
+						'slot_origin' => $revid,
+						'slot_content_id' => $this->textId4_1,
+						'content_size' => 23,
+						'content_address' => 'tt:' . $this->textId4_1,
+						'content_sha1' => 'nktofwzd0tl192k3zfepmlzxoax1lpe',
+					],
+					(object)[
+						'model_name' => 'text',
+						'role_name' => 'aux',
+						'slot_revision_id' => $revid,
+						'slot_origin' => $revid,
+						'slot_content_id' => $this->textId4_1_aux,
+						'content_size' => 23,
+						'content_address' => 'tt:' . $this->textId4_1_aux,
+						'content_sha1' => '512zxb9pkklg7s2duhh9oa41ai0fj5z',
+					]
+				]
+			);
+
+			$page4 .= $writer->closePage();
+
 			$content .= $page1 . $page2 . $page4;
 		}
 		$content .= $tail;

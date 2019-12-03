@@ -2,9 +2,13 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use CommentStoreComment;
+use Content;
 use ContentHandler;
 use DOMDocument;
 use ExecutableFinder;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiLangTestCase;
 use User;
 use WikiExporter;
@@ -50,7 +54,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Adds a revision to a page, while returning the resuting revision's id
+	 * Adds a revision to a page, while returning the resuting revision's id text id.
 	 *
 	 * @param WikiPage $page Page to add the revision to
 	 * @param string $text Revisions text
@@ -66,24 +70,62 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$summary,
 		$model = CONTENT_MODEL_WIKITEXT
 	) {
-		$status = $page->doEditContent(
-			ContentHandler::makeContent( $text, $page->getTitle(), $model ),
-			$summary, 0, false, $this->getTestUser()->getUser()
-		);
+		$contentHandler = ContentHandler::getForModelID( $model );
+		$content = $contentHandler->unserializeContent( $text );
 
-		if ( $status->isGood() ) {
-			$value = $status->getValue();
-			$revision = $value['revision'];
+		[ $revision_id, $text_ids ] =
+			$this->addMultiSlotRevision( $page, [ 'main' => $content ], $summary );
+
+		return [ $revision_id, $text_ids['main'] ];
+	}
+
+	/**
+	 * Adds a revision to a page, while returning the resulting revision's id and text id.
+	 *
+	 * @param WikiPage $page Page to add the revision to
+	 * @param Content[] $slots A mapping of slot names to Content objects
+	 * @param string $summary Revisions summary
+	 *
+	 * @throws MWException
+	 * @return array
+	 */
+	protected function addMultiSlotRevision(
+		WikiPage $page,
+		array $slots,
+		$summary
+	) {
+		/** @var SqlBlobStore $blobStore */
+		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+
+		$updater = $page->newPageUpdater( $this->getTestUser()->getUser() );
+
+		foreach ( $slots as $role => $content ) {
+			if ( !$slotRoleRegistry->isDefinedRole( $role ) ) {
+				$slotRoleRegistry->defineRoleWithModel( $role, $content->getModel() );
+			}
+
+			$updater->setContent( $role, $content );
+		}
+
+		$updater->saveRevision( CommentStoreComment::newUnsavedComment( trim( $summary ) ) );
+		$revision = $updater->getNewRevision();
+
+		if ( $revision ) {
 			$revision_id = $revision->getId();
-			$text_id = $revision->getTextId();
+			$text_ids = [];
+			foreach ( $slots as $role => $dummy ) {
+				$addr = $revision->getSlot( $role )->getAddress();
+				$text_ids[$role] = $blobStore->getTextIdFromAddress( $addr );
+			}
 
-			if ( ( $revision_id > 0 ) && ( $text_id > 0 ) ) {
-				return [ $revision_id, $text_id ];
+			if ( ( $revision_id > 0 ) && !empty( $text_ids ) ) {
+				return [ $revision_id, $text_ids ];
 			}
 		}
 
 		throw new MWException( "Could not determine revision id ("
-			. $status->getWikiText( false, false, 'en' ) . ")" );
+			. $updater->getStatus()->getWikiText( false, false, 'en' ) . ")" );
 	}
 
 	/**

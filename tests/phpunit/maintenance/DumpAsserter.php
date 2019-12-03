@@ -237,27 +237,25 @@ class DumpAsserter {
 	}
 
 	/**
-	 * Asserts that the xml reader is at a revision and checks its representation before
-	 * skipping over it.
+	 * Checks and skips tags that represent the properties of a revision.
 	 *
 	 * @param int $id Id of the revision
 	 * @param string $summary Summary of the revision
-	 * @param int $text_id Id of the revision's text
-	 * @param int $text_bytes Number of bytes in the revision's text
 	 * @param string $text_sha1 The base36 SHA-1 of the revision's text
-	 * @param string|bool $text (optional) The revision's string, or false to check for a
-	 *            revision stub
+	 * @param string $hasEarlyText Whether a text tag is expected before the <sha1> tag.
+	 *               Must be one of 'yes', 'no', or maybe.
 	 * @param int|bool $parentid (optional) id of the parent revision
 	 * @param string $model The expected content model id (default: CONTENT_MODEL_WIKITEXT)
 	 * @param string $format The expected format model id (default: CONTENT_FORMAT_WIKITEXT)
+	 * @param bool &$foundText Output, whether a text tag was found before the SHA1 tag.
+	 *        If this returns false, the text tag should be the next tag after the method returns.
 	 */
-	public function assertRevision( $id, $summary, $text_id, $text_bytes,
-		$text_sha1, $text = false, $parentid = false,
-		$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT
+	public function assertRevisionProperties( $id, $summary,
+		$text_sha1, $hasEarlyText = 'maybe', $parentid = false,
+		$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT,
+		&$foundText = ''
 	) {
-		$this->assertNodeStart( "revision" );
 		$this->skipWhitespace();
-
 		$this->assertTextNode( "id", $id );
 		if ( $parentid !== false ) {
 			$this->assertTextNode( "parentid", $parentid );
@@ -285,15 +283,13 @@ class DumpAsserter {
 		$this->assertTextNode( "format", $format );
 		$this->skipWhitespace();
 
-		if ( $this->xml->name == "text" ) {
-			// note: <text> tag may occur here or at the very end.
-			$text_found = true;
-			$this->assertText( $id, $text_id, $text_bytes, $text );
+		if ( $hasEarlyText === 'yes' || ( $this->xml->name == "text" && $hasEarlyText === 'maybe' ) ) {
+			$foundText = true;
+			$this->assertNodeStart( "text", false );
+			$this->xml->next();
+			$this->skipWhitespace();
 		} else {
-			$text_found = false;
-			if ( $this->schemaVersion >= XML_DUMP_SCHEMA_VERSION_11 ) {
-				Assert::fail( 'Missing text node' );
-			}
+			$foundText = false;
 		}
 
 		if ( $text_sha1 ) {
@@ -301,6 +297,40 @@ class DumpAsserter {
 		} else {
 			$this->assertEmptyNode( "sha1" );
 		}
+		$this->skipWhitespace();
+	}
+
+	/**
+	 * Asserts that the xml reader is at a revision and checks its representation before
+	 * skipping over it.
+	 *
+	 * @param int $id Id of the revision
+	 * @param string $summary Summary of the revision
+	 * @param int $text_id Id of the revision's text
+	 * @param int $text_bytes Number of bytes in the revision's text
+	 * @param string $text_sha1 The base36 SHA-1 of the revision's text
+	 * @param string|bool $text (optional) The revision's string, or false to check for a
+	 *            revision stub
+	 * @param int|bool $parentid (optional) id of the parent revision
+	 * @param string $model The expected content model id (default: CONTENT_MODEL_WIKITEXT)
+	 * @param string $format The expected format model id (default: CONTENT_FORMAT_WIKITEXT)
+	 */
+	public function assertRevision( $id, $summary, $text_id, $text_bytes,
+		$text_sha1, $text = false, $parentid = false,
+		$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT
+	) {
+		$this->assertNodeStart( "revision" );
+
+		$this->assertRevisionProperties(
+			$id,
+			$summary,
+			$text_sha1,
+			'maybe',
+			$parentid,
+			$model,
+			$format,
+			$text_found
+		);
 
 		if ( !$text_found ) {
 			$this->assertText( $id, $text_id, $text_bytes, $text );
