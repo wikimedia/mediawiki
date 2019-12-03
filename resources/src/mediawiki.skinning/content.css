@@ -143,13 +143,13 @@ html .thumbcaption {
 	font-size: 94%;
 }
 
-div.magnify {
+.magnify {
 	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 	float: right;
 	margin-left: 3px;
 }
 
-div.magnify a {
+.magnify a {
 	display: block;
 	/* Hide the text… */
 	text-indent: 15px;
@@ -189,7 +189,7 @@ img.thumbborder {
 }
 
 /* @noflip */
-.mw-content-ltr div.magnify a {
+.mw-content-ltr .magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url( images/magnify-clip-ltr.png );
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
@@ -208,7 +208,7 @@ img.thumbborder {
 }
 
 /* @noflip */
-.mw-content-rtl div.magnify a {
+.mw-content-rtl .magnify a {
 	/* Use same SVG support hack as mediawiki.legacy's shared.css */
 	background-image: url( images/magnify-clip-rtl.png );
 	background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
