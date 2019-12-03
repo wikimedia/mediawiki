@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -180,6 +181,9 @@ class RevDelRevisionList extends RevDelList {
 		$this->title->purgeSquid();
 		// Extensions that require referencing previous revisions may need this
 		Hooks::run( 'ArticleRevisionVisibilitySet', [ $this->title, $this->ids, $visibilityChangeMap ] );
+		MediaWikiServices::getInstance()
+			->getMainWANObjectCache()
+			->touchCheckKey( "RevDelRevisionList:page:{$this->title->getArticleID()}}" );
 		return Status::newGood();
 	}
 }
