@@ -49,5 +49,16 @@
 			"SearchEngineFactory",
 			"SearchEngineConfig"
 		]
+	},
+	{
+		"path": "/coredev/v0/page/{title}/links/language",
+		"class": "MediaWiki\\Rest\\Handler\\LanguageLinksHandler",
+		"services": [
+			"DBLoadBalancer",
+			"LanguageNameUtils",
+			"PermissionManager",
+			"TitleFormatter",
+			"TitleParser"
+		]
 	}
 ]
