@@ -1099,6 +1099,7 @@
 	"apihelp-query+recentchanges-param-user": "Only list changes by this user.",
 	"apihelp-query+recentchanges-param-excludeuser": "Don't list changes by this user.",
 	"apihelp-query+recentchanges-param-tag": "Only list changes tagged with this tag.",
+	"apihelp-query+recentchanges-param-slot": "Only list changes that touch the named slot.",
 	"apihelp-query+recentchanges-param-prop": "Include additional pieces of information:",
 	"apihelp-query+recentchanges-paramvalue-prop-user": "Adds the user responsible for the edit and tags if they are an IP. If the user has been revision deleted, a <samp>userhidden</samp> property will be returned.",
 	"apihelp-query+recentchanges-paramvalue-prop-userid": "Adds the user ID responsible for the edit. If the user has been revision deleted, a <samp>userhidden</samp> property will be returned.",
