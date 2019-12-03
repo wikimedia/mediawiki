@@ -17,7 +17,6 @@ use WikitextContent;
  * @group RevisionStore
  * @group Storage
  * @group Database
- * @group medium
  */
 class McrWriteBothRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
