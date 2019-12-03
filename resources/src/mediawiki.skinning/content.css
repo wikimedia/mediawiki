@@ -141,6 +141,8 @@ html .thumbcaption {
 	line-height: 1.4em;
 	padding: 3px;
 	font-size: 94%;
+	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
+	text-align: left;
 }
 
 div.magnify {
