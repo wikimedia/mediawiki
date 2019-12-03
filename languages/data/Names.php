@@ -393,7 +393,7 @@ class Names {
 		'shi-tfng' => 'ⵜⴰⵛⵍⵃⵉⵜ', # Tachelhit (Tifinagh script)
 		'shi-latn' => 'Tašlḥiyt', # Tachelhit (Latin script)
 		'shn' => 'ၽႃႇသႃႇတႆး ', # Shan
-		'shy-latn' => 'tachawit', # Shawiya (Latin script) - T194047
+		'shy-latn' => 'tacawit', # Shawiya (Latin script) - T194047
 		'si' => 'සිංහල', # Sinhalese
 		'simple' => 'Simple English', # Simple English
 		'sk' => 'slovenčina', # Slovak
