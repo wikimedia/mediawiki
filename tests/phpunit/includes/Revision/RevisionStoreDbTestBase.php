@@ -78,6 +78,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'comment';
+		$this->tablesUsed[] = 'actor';
 
 		$this->tablesUsed += $this->getMcrTablesToReset();
 
@@ -1155,6 +1156,54 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			'ar_content_format' => null,
 			'ar_content_model' => null,
 		];
+
+		\Wikimedia\suppressWarnings();
+		$record = $store->newRevisionFromArchiveRow( $row );
+		\Wikimedia\suppressWarnings( true );
+
+		$this->assertInstanceOf( RevisionRecord::class, $record );
+		$this->assertInstanceOf( UserIdentityValue::class, $record->getUser() );
+		$this->assertSame( 'Unknown user', $record->getUser()->getName() );
+	}
+
+	/**
+	 * Test for T236624.
+	 *
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRow
+	 */
+	public function testNewRevisionFromArchiveRow_empty_actor() {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		$row = (object)[
+			'ar_id' => '1',
+			'ar_page_id' => '2',
+			'ar_namespace' => '0',
+			'ar_title' => 'Something',
+			'ar_rev_id' => '2',
+			'ar_text_id' => '47',
+			'ar_timestamp' => '20180528192356',
+			'ar_minor_edit' => '0',
+			'ar_deleted' => '0',
+			'ar_len' => '78',
+			'ar_parent_id' => '0',
+			'ar_sha1' => 'deadbeef',
+			'ar_comment_text' => 'whatever',
+			'ar_comment_data' => null,
+			'ar_comment_cid' => null,
+			'ar_user' => '0',
+			'ar_user_text' => '', // this is the important bit
+			'ar_actor' => null, // we will fill this in below
+			'ar_content_format' => null,
+			'ar_content_model' => null,
+		];
+
+		// create an actor row for the empty user name (see also T225469)
+		$this->db->insert( 'actor', [ [
+			'actor_user' => $row->ar_user,
+			'actor_name' => $row->ar_user_text,
+		] ] );
+
+		$row->ar_actor = $this->db->insertId();
 
 		\Wikimedia\suppressWarnings();
 		$record = $store->newRevisionFromArchiveRow( $row );

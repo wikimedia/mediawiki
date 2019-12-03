@@ -411,6 +411,53 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addJoinConds( $actorQuery['joins'] );
 		}
 
+		if ( $params['slot'] !== null ) {
+			try {
+				$slotId = MediaWikiServices::getInstance()->getSlotRoleStore()->getId(
+					$params['slot']
+				);
+			} catch ( \Exception $e ) {
+				$slotId = null;
+			}
+
+			$this->addTables( [
+				'slot' => 'slots', 'parent_slot' => 'slots'
+			] );
+			$this->addJoinConds( [
+				'slot' => [ 'LEFT JOIN', [
+					'rc_this_oldid = slot.slot_revision_id',
+					'slot.slot_role_id' => $slotId,
+				] ],
+				'parent_slot' => [ 'LEFT JOIN', [
+					'rc_last_oldid = parent_slot.slot_revision_id',
+					'parent_slot.slot_role_id' => $slotId,
+				] ]
+			] );
+			// Detecting whether the slot has been touched as follows:
+			// 1. if slot_origin=slot_revision_id then the slot has been newly created or edited
+			// with this revision
+			// 2. otherwise if the content of a slot is different to the content of its parent slot,
+			// then the content of the slot has been changed in this revision
+			// (probably by a revert)
+			$this->addWhere(
+				'slot.slot_origin = slot.slot_revision_id OR ' .
+				'slot.slot_content_id != parent_slot.slot_content_id OR ' .
+				'(slot.slot_content_id IS NULL AND parent_slot.slot_content_id IS NOT NULL) OR ' .
+				'(slot.slot_content_id IS NOT NULL AND parent_slot.slot_content_id IS NULL)'
+			);
+			// Only include changes that touch page content (i.e. RC_NEW, RC_EDIT)
+			$changeTypes = RecentChange::parseToRCType(
+				array_intersect( $params['type'], [ 'new', 'edit' ] )
+			);
+			if ( count( $changeTypes ) ) {
+				$this->addWhereFld( 'rc_type', $changeTypes );
+			} else {
+				// Calling $this->addWhere() with an empty array does nothing, so explicitly
+				// add an unsatisfiable condition
+				$this->addWhere( 'rc_type IS NULL' );
+			}
+		}
+
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$hookData = [];
@@ -679,6 +726,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
+		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleRegistry()->getKnownRoles();
+		sort( $slotRoles, SORT_STRING );
+
 		return [
 			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
@@ -768,6 +818,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
 			'generaterevisions' => false,
+			'slot' => [
+				ApiBase::PARAM_TYPE => $slotRoles
+			],
 		];
 	}
 
