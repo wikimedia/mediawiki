@@ -2899,7 +2899,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$revQuery['fields'],
 			[ 'rev_page' => $id ],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => $wgDeleteRevisionsBatchSize + 1 ],
+			[ 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC', 'LIMIT' => $wgDeleteRevisionsBatchSize + 1 ],
 			$revQuery['joins']
 		);
 
