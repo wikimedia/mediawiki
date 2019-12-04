@@ -14,6 +14,12 @@ for use in production.
 * (T236735) WikiExporter: Remove unnecessary check for SCHEMA_COMPAT_WRITE_OLD
   flag.
 * (T231673) Set MCR migration stage to SCHEMA_COMPAT_NEW.
+* (T229601) Make sure DBLoadBalancerFactory service is not disabled.
+* (T232866) Fix support for HTTP/2 in MultiHttpClient.
+* (T231866) LocalisationCache: Don't instantiate ResourceLoader.
+* (T227461) Stop calling deprecated Redis delete functions.
+* (T239561) Mark options as requiring parameters in addSite.php.
+* (T232866) Mimic CURLOPT_POST in GuzzleHttpRequest.
 
 == MediaWiki 1.34.0-rc.1 ==
 
