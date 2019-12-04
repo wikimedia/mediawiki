@@ -1604,7 +1604,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'error' => $error,
 				'sql1line' => mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 ),
 				'fname' => $fname,
-				'trace' => ( new RuntimeException() )->getTraceAsString()
+				'exception' => new RuntimeException()
 			] )
 		);
 		return $this->getQueryException( $error, $errno, $sql, $fname );
@@ -1639,7 +1639,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			"Error connecting to {db_server} as user {db_user}: {error}",
 			$this->getLogContext( [
 				'error' => $error,
-				'trace' => ( new RuntimeException() )->getTraceAsString()
+				'exception' => new RuntimeException()
 			] )
 		);
 
@@ -2457,7 +2457,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
 			$this->queryLogger->warning(
 				__METHOD__ . ": use of subqueries is not supported this way",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 
 			return $name;
@@ -4230,7 +4230,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->queryLogger->warning(
 				"$fname: Expected mass snapshot flush of all peer transactions " .
 				"in the explicit transactions round '{$this->getTransactionRoundId()}'",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 		}
 
@@ -4351,7 +4351,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$fname . ': lost connection to {dbserver}; reconnected',
 				[
 					'dbserver' => $this->getServer(),
-					'trace' => ( new RuntimeException() )->getTraceAsString()
+					'exception' => new RuntimeException()
 				]
 			);
 		} catch ( DBConnectionError $e ) {
@@ -4908,7 +4908,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function __clone() {
 		$this->connLogger->warning(
 			"Cloning " . static::class . " is not recommended; forking connection",
-			[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+			[ 'exception' => new RuntimeException() ]
 		);
 
 		if ( $this->isOpen() ) {
