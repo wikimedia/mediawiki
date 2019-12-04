@@ -286,15 +286,13 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetWhere
 	 * @param int $stage
 	 * @param string $key
-	 * @param UserIdentity[] $users
+	 * @param UserIdentity|UserIdentity[]|null|false $users
 	 * @param bool $useId
 	 * @param array $expect
 	 */
 	public function testGetWhere( $stage, $key, $users, $useId, $expect ) {
-		$expect['conds'] = '(' . implode( ') OR (', $expect['orconds'] ) . ')';
-
-		if ( count( $users ) === 1 ) {
-			$users = reset( $users );
+		if ( !isset( $expect['conds'] ) ) {
+			$expect['conds'] = '(' . implode( ') OR (', $expect['orconds'] ) . ')';
 		}
 
 		$m = new ActorMigration( $stage );
@@ -311,7 +309,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			return $u;
 		};
 
-		$genericUser = [ $makeUserIdentity( 1, 'User1', 11 ) ];
+		$genericUser = $makeUserIdentity( 1, 'User1', 11 );
 		$complicatedUsers = [
 			$makeUserIdentity( 1, 'User1', 11 ),
 			$makeUserIdentity( 2, 'User2', 12 ),
@@ -483,7 +481,45 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'joins' => [],
 				],
 			],
+
+			'Empty $users' => [
+				SCHEMA_COMPAT_NEW, 'am1_user', [], true, [
+					'tables' => [],
+					'conds' => '1=0',
+					'orconds' => [],
+					'joins' => [],
+				],
+			],
+			'Null $users' => [
+				SCHEMA_COMPAT_NEW, 'am1_user', null, true, [
+					'tables' => [],
+					'conds' => '1=0',
+					'orconds' => [],
+					'joins' => [],
+				],
+			],
+			'False $users' => [
+				SCHEMA_COMPAT_NEW, 'am1_user', false, true, [
+					'tables' => [],
+					'conds' => '1=0',
+					'orconds' => [],
+					'joins' => [],
+				],
+			],
 		];
+	}
+
+	/**
+	 * @dataProvider provideStages
+	 */
+	public function testGetWhere_exception( $stage ) {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'ActorMigration::getWhere: Value for $users must be a UserIdentity or array, got string'
+		);
+
+		$m = new ActorMigration( $stage );
+		$result = $m->getWhere( $this->db, 'am1_user', 'Foo' );
 	}
 
 	/**

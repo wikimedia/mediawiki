@@ -136,9 +136,6 @@ class CategoryMembershipChangeJob extends Job {
 					[
 						'rc_this_oldid = rev_id',
 						'rc_source' => RecentChange::SRC_CATEGORIZE,
-						// Allow rc_cur_id or rc_timestamp index usage
-						'rc_cur_id = rev_page',
-						'rc_timestamp = rev_timestamp'
 					]
 				) . ')'
 			],

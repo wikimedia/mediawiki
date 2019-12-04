@@ -352,7 +352,9 @@ class ActorMigration {
 	 * @param IDatabase $db Database to use for quoting and list-making
 	 * @param string $key A key such as "rev_user" identifying the actor
 	 *  field being fetched.
-	 * @param UserIdentity|UserIdentity[] $users Users to test for
+	 * @param UserIdentity|UserIdentity[]|null|false $users Users to test for.
+	 *  Passing null, false, or the empty array will return 'conds' that never match,
+	 *  and an empty array for 'orconds'.
 	 * @param bool $useId If false, don't try to query by the user ID.
 	 *  Intended for use with rc_user since it has an index on
 	 *  (rc_user_text,rc_timestamp) but not (rc_user,rc_timestamp).
@@ -376,6 +378,14 @@ class ActorMigration {
 
 		if ( $users instanceof UserIdentity ) {
 			$users = [ $users ];
+		} elseif ( $users === null || $users === false ) {
+			// DWIM
+			$users = [];
+		} elseif ( !is_array( $users ) ) {
+			$what = is_object( $users ) ? get_class( $users ) : gettype( $users );
+			throw new InvalidArgumentException(
+				__METHOD__ . ": Value for \$users must be a UserIdentity or array, got $what"
+			);
 		}
 
 		// Get information about all the passed users

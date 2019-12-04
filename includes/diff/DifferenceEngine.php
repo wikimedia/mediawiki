@@ -832,10 +832,8 @@ class DifferenceEngine extends ContextSource {
 			RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
 		) {
 			// Look for an unpatrolled change corresponding to this diff
-			$db = wfGetDB( DB_REPLICA );
 			$change = RecentChange::newFromConds(
 				[
-					'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
 					'rc_this_oldid' => $this->mNewid,
 					'rc_patrolled' => RecentChange::PRC_UNPATROLLED
 				],
