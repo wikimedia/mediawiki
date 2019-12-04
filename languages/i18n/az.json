@@ -2426,6 +2426,7 @@
 	"compare-rev1": "Dəyişiklik 1",
 	"compare-rev2": "Dəyişiklik 2",
 	"compare-submit": "Qarşılaşdır",
+	"purge": "təmizlə",
 	"dberr-problems": "Üzr istəyirik! Bu saytda texniki problemlər var.",
 	"dberr-info": "(Məlumat bazası ilə əlaqə yoxdur: $1)",
 	"htmlform-invalid-input": "Daxil etdiyiniz məlumatın bir qismilə əlaqədar problem var",

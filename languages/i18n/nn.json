@@ -2817,6 +2817,7 @@
 	"permanentlink": "Fast lenkje",
 	"permanentlink-revid": "Versjons-ID",
 	"permanentlink-submit": "Gå til versjon",
+	"purge": "oppfrisk",
 	"dberr-problems": "Nettstaden har tekniske problem.",
 	"dberr-again": "Venta nokre minutt og last sida inn på nytt.",
 	"dberr-info": "(Kan ikkje kontakta databasetenaren: $1)",

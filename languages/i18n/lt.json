@@ -3223,6 +3223,7 @@
 	"permanentlink-submit": "Peržiūrėti versiją",
 	"newsection": "Naujas skyrius",
 	"newsection-submit": "Eiti į puslapį",
+	"purge": "atnaujinti",
 	"dberr-problems": "Atsiprašome! Svetainei iškilo techninių problemų.",
 	"dberr-again": "Palaukite kelias minutes ir perkraukite puslapį.",
 	"dberr-info": "(Nepavyksta pasiekti duomenų bazės: $1)",

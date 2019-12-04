@@ -1207,6 +1207,7 @@
 	"comparepages": "Acumparar páiginas",
 	"diff-form": "Defréncias",
 	"permanentlink": "Lhigaçon permaniente",
+	"purge": "Purgar",
 	"logentry-delete-delete": "$1 {{GENDER:$2|botou fuora}} la páigina $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restourou}} la páigina $3 ($4)",
 	"logentry-delete-revision": "$1 {{GENDER:$2|altarou}} la besibelidade de {{PLURAL:$5|ua rebison|$5 rebisones}} na páigina $3: $4",

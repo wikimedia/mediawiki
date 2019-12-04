@@ -3369,6 +3369,7 @@
 	"permanentlink": "Enllaç permanent",
 	"permanentlink-revid": "ID de la revisó",
 	"permanentlink-submit": "Vés a la revisió",
+	"purge": "purga",
 	"dberr-problems": "Ho sentim. Aquest lloc web està experimentant dificultats tècniques.",
 	"dberr-again": "Intenteu esperar uns minuts i tornar a carregar.",
 	"dberr-info": "(No es pot accedir a la base de dades: $1)",

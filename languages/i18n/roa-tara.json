@@ -3308,6 +3308,7 @@
 	"newsection": "Seziona nove",
 	"newsection-page": "Pàggene de destinazione",
 	"newsection-submit": "Veje 'a pàgene",
+	"purge": "sdevache",
 	"dberr-problems": "Sime spiacende! Stu site stè 'ngondre de le difficoltà tecniche.",
 	"dberr-again": "Aspitte quacche minute e pò recareche.",
 	"dberr-info": "(Non ge riuscime a trasè sus a'u server d'u database: $1)",

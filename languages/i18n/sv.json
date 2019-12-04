@@ -3446,6 +3446,7 @@
 	"newsection": "Nytt avsnitt",
 	"newsection-page": "Målsida",
 	"newsection-submit": "Gå till sida",
+	"purge": "rensa",
 	"dberr-problems": "Ursäkta! Denna sajt har just nu tekniska problem.",
 	"dberr-again": "Pröva med att vänta några minuter och ladda om.",
 	"dberr-info": "(Kan inte komma åt databasen: $1)",

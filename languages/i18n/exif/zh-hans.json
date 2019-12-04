@@ -12,7 +12,8 @@
 			"神樂坂秀吉",
 			"予弦",
 			"Wenyuan Liu",
-			"A Retired User"
+			"A Retired User",
+			"Shizhao"
 		]
 	},
 	"exif-imagewidth": "宽度",
@@ -218,7 +219,7 @@
 	"exif-orientation-6": "逆时针旋转90°",
 	"exif-orientation-7": "顺时针旋转90°并垂直翻转",
 	"exif-orientation-8": "顺时针旋转90°",
-	"exif-planarconfiguration-1": "矮胖格式",
+	"exif-planarconfiguration-1": "chunky format",
 	"exif-planarconfiguration-2": "平面格式",
 	"exif-colorspace-65535": "无标定",
 	"exif-componentsconfiguration-0": "不存在",
