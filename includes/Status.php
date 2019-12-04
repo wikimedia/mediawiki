@@ -291,12 +291,14 @@ class Status extends StatusValue {
 			if ( isset( $error['message'] ) && $error['message'] instanceof Message ) {
 				$msg = $error['message'];
 			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				$msg = $this->msg( $error['message'],
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) ) );
+				$msg = $this->msg( $error['message'], array_map( function ( $param ) {
+					return is_string( $param ) ? wfEscapeWikiText( $param ) : $param;
+				}, $this->cleanParams( $error['params'] ) ) );
 			} else {
 				$msgName = array_shift( $error );
-				$msg = $this->msg( $msgName,
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ) );
+				$msg = $this->msg( $msgName, array_map( function ( $param ) {
+					return is_string( $param ) ? wfEscapeWikiText( $param ) : $param;
+				}, $this->cleanParams( $error ) ) );
 			}
 		} elseif ( is_string( $error ) ) {
 			$msg = $this->msg( $error );
