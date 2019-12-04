@@ -609,7 +609,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *
 	 * @return int Count
 	 */
-	static function getTransformCount() {
+	protected static function getTransformCount() {
 		return self::$transformCount;
 	}
 
