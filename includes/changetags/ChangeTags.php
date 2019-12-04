@@ -326,7 +326,6 @@ class ChangeTags {
 					'rc_id',
 					[
 						'rev_id' => $rev_id,
-						'rc_timestamp = rev_timestamp',
 						'rc_this_oldid = rev_id'
 					],
 					__METHOD__
