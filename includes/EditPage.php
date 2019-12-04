@@ -3314,12 +3314,12 @@ ERROR;
 					) ) {
 						$out->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-							'rev-deleted-text-permission'
+							[ 'rev-deleted-text-permission', $this->mTitle->getPrefixedText() ]
 						);
 					} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 						$out->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-							'rev-deleted-text-view'
+							[ 'rev-deleted-text-view', $this->mTitle->getPrefixedText() ]
 						);
 					}
 

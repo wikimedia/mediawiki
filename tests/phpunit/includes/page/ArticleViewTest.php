@@ -294,7 +294,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertStringContainsString( '(rev-deleted-text-permission)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'rev-deleted-text-permission', $this->getHtml( $output ) );
 
 		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
@@ -322,7 +322,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertStringContainsString( '(rev-deleted-text-view)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'rev-deleted-text-view', $this->getHtml( $output ) );
 
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );

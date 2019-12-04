@@ -437,31 +437,27 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( !$revRecord ) {
 			$out->addWikiMsg( 'undeleterevision-missing' );
-
 			return;
 		}
 
+		$titleText = $this->mTargetObj->getPrefixedText();
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			if ( !RevisionRecord::userCanBitfield(
 				$revRecord->getVisibility(),
 				RevisionRecord::DELETED_TEXT,
 				$user
 			) ) {
-				$out->wrapWikiMsg(
-					"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				$revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
-					'rev-suppressed-text-permission' : 'rev-deleted-text-permission'
-				);
-
+				$msg = $revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
+					? [ 'rev-suppressed-text-permission', $titleText ]
+					: [ 'rev-deleted-text-permission', $titleText ];
+				$out->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
 				return;
 			}
 
-			$out->wrapWikiMsg(
-				"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				$revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
-					'rev-suppressed-text-view' : 'rev-deleted-text-view'
-			);
-			$out->addHTML( '<br />' );
+			$msg = $revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
+				? [ 'rev-suppressed-text-view', $titleText ]
+				: [ 'rev-deleted-text-view', $titleText ];
+			$out->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
 			// and we are allowed to see...
 		}
 
@@ -481,7 +477,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle( $this->mTargetObj->getPrefixedDBkey() ),
-			$this->mTargetObj->getPrefixedText()
+			$titleText
 		);
 
 		$lang = $this->getLanguage();
