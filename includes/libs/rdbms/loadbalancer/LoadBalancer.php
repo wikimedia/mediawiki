@@ -1779,7 +1779,8 @@ class LoadBalancer implements ILoadBalancer {
 						"$fname: found writes pending ($fnames).",
 						[
 							'db_server' => $conn->getServer(),
-							'db_name' => $conn->getDBname()
+							'db_name' => $conn->getDBname(),
+							'exception' => new RuntimeException()
 						]
 					);
 				} elseif ( $conn->trxLevel() ) {
