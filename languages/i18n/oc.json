@@ -2999,6 +2999,7 @@
 	"compare-title-not-exists": "Lo títol qu'avètz especificat existís pas",
 	"compare-revision-not-exists": "La revision qu'avètz especificada existís pas.",
 	"diff-form": "Diferéncias",
+	"purge": "purgar",
 	"dberr-problems": "O planhèm ! Aqueste site rencontra de dificultats tecnicas.",
 	"dberr-again": "Ensajatz d'esperar qualques minutas e tornatz cargar.",
 	"dberr-info": "(Accès a la basa de donadas impossible : $1)",

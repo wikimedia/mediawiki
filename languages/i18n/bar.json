@@ -1190,6 +1190,7 @@
 	"compare-invalid-title": "Da ågeewerne Seitennåm is néd gütig",
 	"compare-title-not-exists": "Da ågeewerne Seitennåm is néd vurhånden",
 	"compare-revision-not-exists": "Dé ågeewerne Versión is néd vurhånden",
+	"purge": "in Cache laarn",
 	"dberr-problems": "Tschuidigung. Dé Seiten hod im Moment technische Próbléme.",
 	"dberr-again": "Wort a por Minuten und vasuachs dånn neich z' loon.",
 	"dberr-info": "(Kå koah Vabindung zum Daatenbånkserver herstön: $1)",

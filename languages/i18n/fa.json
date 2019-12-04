@@ -1850,6 +1850,7 @@
 	"listfiles-userdoesnotexist": "حساب کاربری «$1» ثبت نشده‌است.",
 	"imgfile": "پرونده",
 	"listfiles": "فهرست پرونده‌ها",
+	"listfiles_subpage": "بارگذاری‌های $1",
 	"listfiles_thumb": "بندانگشتی",
 	"listfiles_date": "تاریخ",
 	"listfiles_name": "نام",

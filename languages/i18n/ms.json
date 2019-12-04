@@ -3231,6 +3231,7 @@
 	"compare-title-not-exists": "Tajuk yang anda nyatakan tidak wujud.",
 	"compare-revision-not-exists": "Semakan yang anda nyatakan tidak wujud.",
 	"diff-form": "'''borang'''",
+	"purge": "singkirkan",
 	"dberr-problems": "Harap maaf. Tapak web ini dilanda masalah teknikal.",
 	"dberr-again": "Cuba tunggu selama beberapa minit dan muat semula.",
 	"dberr-info": "(Tidak dapat mengakses pangkalan data: $1)",

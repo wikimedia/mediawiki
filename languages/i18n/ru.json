@@ -147,7 +147,8 @@
 			"OlegVeliky",
 			"Saimongoltinio",
 			"Wikisaurus",
-			"Katunchik"
+			"Katunchik",
+			"Kreal39"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -3604,6 +3605,14 @@
 	"newsection": "Новый раздел",
 	"newsection-page": "Целевая страница",
 	"newsection-submit": "Перейти к странице",
+	"editpage": "Измени страницу",
+	"specialeditpage-submit": "Перейти на страницу",
+	"pageinfo": "Информация страницы",
+	"specialpageinfo-submit": "Перейти к странице",
+	"pagehistory": "История страницы",
+	"specialpagehistory-submit": "Перейти к странице",
+	"purge": "очистить",
+	"specialpurge-submit": "Перейти к странице",
 	"dberr-problems": "Извините! На данном сайте возникли технические трудности.",
 	"dberr-again": "Попробуйте обновить страницу через несколько минут.",
 	"dberr-info": "(Нет доступа к базе данных: $1)",

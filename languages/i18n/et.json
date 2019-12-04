@@ -3399,6 +3399,7 @@
 	"newsection": "Uus alaosa",
 	"newsection-page": "Sihtlehekülg",
 	"newsection-submit": "Mine leheküljele",
+	"purge": "Tühjenda",
 	"dberr-problems": "Kahjuks on sellel saidil tehnilisi probleeme",
 	"dberr-again": "Oota mõni hetk ja laadi lehekülg uuesti.",
 	"dberr-info": "(Juurdepääs andmebaasile puudub: $1)",

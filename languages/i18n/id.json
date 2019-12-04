@@ -3500,6 +3500,7 @@
 	"newsection": "Bagian baru",
 	"newsection-page": "Halaman tujuan",
 	"newsection-submit": "Tuju ke halaman",
+	"purge": "Bersihkan",
 	"dberr-problems": "Maaf! Situs ini mengalami masalah teknis.",
 	"dberr-again": "Cobalah menunggu beberapa menit dan muat ulang.",
 	"dberr-info": "(Tak dapat mengakses basis data: $1)",

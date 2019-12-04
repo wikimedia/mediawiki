@@ -3457,6 +3457,7 @@
 	"newsection": "Secção nova",
 	"newsection-page": "Página de destino",
 	"newsection-submit": "Ir para a página",
+	"purge": "purgar",
 	"dberr-problems": "Desculpe! Este sítio está com dificuldades técnicas.",
 	"dberr-again": "Experimente esperar alguns minutos e atualizar.",
 	"dberr-info": "(Não foi possível aceder ao servidor da base de dados: $1)",

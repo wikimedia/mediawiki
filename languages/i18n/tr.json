@@ -3407,6 +3407,7 @@
 	"newsection": "Yeni bölüm",
 	"newsection-page": "Hedef sayfa",
 	"newsection-submit": "Sayfaya git",
+	"purge": "Temizle",
 	"dberr-problems": "Üzgünüz! Bu site teknik zorluklar yaşıyor.",
 	"dberr-again": "Bir kaç dakika bekleyip tekrar yüklemeyi deneyin.",
 	"dberr-info": "(Veritabanı sunucusuyla irtibat kurulamıyor: $1)",

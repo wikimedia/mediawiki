@@ -3604,6 +3604,7 @@
 	"newsection": "新しい節",
 	"newsection-page": "目的のページ",
 	"newsection-submit": "ページへ移動",
+	"purge": "キャッシュを削除",
 	"dberr-problems": "申し訳ありません! このウェブサイトに技術的な障害が発生しています。",
 	"dberr-again": "数分間待った後、もう一度読み込んでください。",
 	"dberr-info": "(データベース $1 にアクセスできません)",

@@ -3357,6 +3357,7 @@
 	"newsection": "Nove section",
 	"newsection-page": "Pagina de destination",
 	"newsection-submit": "Vader al pagina",
+	"purge": "purgar",
 	"dberr-problems": "Pardono! Iste sito ha incontrate difficultates technic.",
 	"dberr-again": "Proba attender alcun minutas e recargar.",
 	"dberr-info": "(Non pote acceder al base de datos: $1)",

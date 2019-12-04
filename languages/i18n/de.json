@@ -3478,6 +3478,7 @@
 	"newsection": "Neuer Abschnitt",
 	"newsection-page": "Zielseite",
 	"newsection-submit": "Gehe zur Seite",
+	"purge": "Cache leeren",
 	"dberr-problems": "Entschuldigung. Diese Seite hat momentan technische Schwierigkeiten.",
 	"dberr-again": "Warte bitte einige Minuten und versuche dann, die Seite erneut zu laden.",
 	"dberr-info": "(Auf die Datenbank konnte nicht zugegriffen werden: $1)",

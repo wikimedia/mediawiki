@@ -3457,6 +3457,7 @@
 	"newsection": "Uusi osio",
 	"newsection-page": "Kohdesivu",
 	"newsection-submit": "Siirry sivulle",
+	"purge": "tyhjennä välimuisti",
 	"dberr-problems": "Tällä sivustolla on teknisiä ongelmia.",
 	"dberr-again": "Odota hetki ja lataa sivu uudelleen.",
 	"dberr-info": "(Tietokantaan ei saada yhteyttä: $1)",
