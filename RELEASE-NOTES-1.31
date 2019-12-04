@@ -4,6 +4,12 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.5 ===
 * (T181658) Do not insert page titles into querycache.qc_value.
+* (T206013) Suppress errors when reading invalid XML file properties.
+* (T237931) Remove references to pg_attrdef.adsrc in Postgres code.
+* Use correct value for 'sslmode' in DatabasePostgres.
+* (T232866) Fix support for HTTP/2 in MultiHttpClient.
+* (T227461) Stop calling deprecated Redis delete functions.
+* (T239561) Mark options as requiring parameters in addSite.php.
 
 == MediaWiki 1.31.5 ==
 
