@@ -106,8 +106,6 @@ class RevDelRevisionItem extends RevDelItem {
 			],
 			[
 				'rc_this_oldid' => $this->revision->getId(), // condition
-				// non-unique timestamp index
-				'rc_timestamp' => $dbw->timestamp( $this->revision->getTimestamp() ),
 			],
 			__METHOD__
 		);

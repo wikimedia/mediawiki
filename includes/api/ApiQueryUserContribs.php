@@ -415,13 +415,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->addTables( 'recentchanges' );
 			$this->addJoinConds( [ 'recentchanges' => [
 				$isFilterset ? 'JOIN' : 'LEFT JOIN',
-				[
-					// This is a crazy hack. recentchanges has no index on rc_this_oldid, so instead of adding
-					// one T19237 did a join using rc_user_text and rc_timestamp instead. Now rc_user_text is
-					// probably unavailable, so just do rc_timestamp.
-					'rc_timestamp = ' . $tsField,
-					'rc_this_oldid = ' . $idField,
-				]
+				[ 'rc_this_oldid = ' . $idField ]
 			] ] );
 		}
 

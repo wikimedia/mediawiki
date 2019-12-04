@@ -79,6 +79,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'comment';
 		$this->tablesUsed[] = 'actor';
+		$this->tablesUsed[] = 'recentchanges';
 
 		$this->tablesUsed += $this->getMcrTablesToReset();
 

@@ -1132,24 +1132,9 @@ class RevisionStore
 	 */
 	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = $this->getDBConnectionRef( $dbType );
 
-		$userIdentity = $rev->getUser( RevisionRecord::RAW );
-
-		if ( !$userIdentity ) {
-			// If the revision has no user identity, chances are it never went
-			// into the database, and doesn't have an RC entry.
-			return null;
-		}
-
-		// TODO: Select by rc_this_oldid alone - but as of Nov 2017, there is no index on that!
-		$actorWhere = $this->actorMigration->getWhere( $db, 'rc_user', $rev->getUser(), false );
 		$rc = RecentChange::newFromConds(
-			[
-				$actorWhere['conds'],
-				'rc_timestamp' => $db->timestamp( $rev->getTimestamp() ),
-				'rc_this_oldid' => $rev->getId()
-			],
+			[ 'rc_this_oldid' => $rev->getId() ],
 			__METHOD__,
 			$dbType
 		);
