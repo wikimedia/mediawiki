@@ -374,7 +374,16 @@ class XmlDumpWriter {
 		$contentMode = $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ? self::WRITE_STUB_DELETED
 			: $this->contentMode;
 
-		foreach ( $rev->getSlots()->getSlots() as $slot ) {
+		$slots = $rev->getSlots()->getSlots();
+
+		// use predictable order, put main slot first
+		ksort( $slots );
+		$out .= $this->writeSlot( $slots[SlotRecord::MAIN], $contentMode );
+
+		foreach ( $slots as $role => $slot ) {
+			if ( $role === SlotRecord::MAIN ) {
+				continue;
+			}
 			$out .= $this->writeSlot( $slot, $contentMode );
 		}
 

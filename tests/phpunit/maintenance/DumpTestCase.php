@@ -8,7 +8,9 @@ use ContentHandler;
 use DOMDocument;
 use ExecutableFinder;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 use MediaWikiLangTestCase;
 use MWException;
 use User;
@@ -73,10 +75,46 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$contentHandler = ContentHandler::getForModelID( $model );
 		$content = $contentHandler->unserializeContent( $text );
 
-		[ $revision_id, $text_ids ] =
-			$this->addMultiSlotRevision( $page, [ 'main' => $content ], $summary );
+		$rev = $this->addMultiSlotRevision( $page, [ 'main' => $content ], $summary );
 
-		return [ $revision_id, $text_ids['main'] ];
+		if ( !$rev ) {
+			throw new MWException( "Could not create revision" );
+		}
+
+		$text_id = $this->getSlotTextId( $rev->getSlot( SlotRecord::MAIN ) );
+		return [ $rev->getId(), $text_id, $rev ];
+	}
+
+	/**
+	 * @param SlotRecord $slot
+	 *
+	 * @return string|null
+	 */
+	protected function getSlotText( SlotRecord $slot ) {
+		try {
+			return $slot->getContent()->serialize();
+		} catch ( RevisionAccessException $ex ) {
+			return null;
+		}
+	}
+
+	/**
+	 * @param SlotRecord $slot
+	 *
+	 * @return int
+	 */
+	protected function getSlotTextId( SlotRecord $slot ) {
+		return (int)preg_replace( '/^tt:/', '', $slot->getAddress() );
+	}
+
+	/**
+	 * @param SlotRecord $slot
+	 *
+	 * @return string
+	 */
+	protected function getSlotFormat( SlotRecord $slot ) {
+		$contentHandler = ContentHandler::getForModelID( $slot->getModel() );
+		return $contentHandler->getDefaultFormat();
 	}
 
 	/**
@@ -87,15 +125,13 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param string $summary Revisions summary
 	 *
 	 * @throws MWException
-	 * @return array
+	 * @return RevisionRecord
 	 */
 	protected function addMultiSlotRevision(
 		WikiPage $page,
 		array $slots,
 		$summary
 	) {
-		/** @var SqlBlobStore $blobStore */
-		$blobStore = MediaWikiServices::getInstance()->getBlobStore();
 		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
 
 		$updater = $page->newPageUpdater( $this->getTestUser()->getUser() );
@@ -109,23 +145,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		}
 
 		$updater->saveRevision( CommentStoreComment::newUnsavedComment( trim( $summary ) ) );
-		$revision = $updater->getNewRevision();
-
-		if ( $revision ) {
-			$revision_id = $revision->getId();
-			$text_ids = [];
-			foreach ( $slots as $role => $dummy ) {
-				$addr = $revision->getSlot( $role )->getAddress();
-				$text_ids[$role] = $blobStore->getTextIdFromAddress( $addr );
-			}
-
-			if ( ( $revision_id > 0 ) && !empty( $text_ids ) ) {
-				return [ $revision_id, $text_ids ];
-			}
-		}
-
-		throw new MWException( "Could not determine revision id ("
-			. $updater->getStatus()->getWikiText( false, false, 'en' ) . ")" );
+		return $updater->getNewRevision();
 	}
 
 	/**
