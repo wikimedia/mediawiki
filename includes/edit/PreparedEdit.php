@@ -114,7 +114,7 @@ class PreparedEdit {
 	 * @param string $name
 	 * @return mixed
 	 */
-	function __get( $name ) {
+	public function __get( $name ) {
 		if ( $name === 'output' ) {
 			return $this->getOutput();
 		}

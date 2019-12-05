@@ -59,7 +59,7 @@ class DBConnRef implements IDatabase {
 		}
 	}
 
-	function __call( $name, array $arguments ) {
+	public function __call( $name, array $arguments ) {
 		if ( $this->conn === null ) {
 			list( $index, $groups, $wiki, $flags ) = $this->params;
 			$this->conn = $this->lb->getConnection( $index, $groups, $wiki, $flags );
@@ -788,7 +788,7 @@ class DBConnRef implements IDatabase {
 	/**
 	 * Clean up the connection when out of scope
 	 */
-	function __destruct() {
+	public function __destruct() {
 		if ( $this->conn ) {
 			$this->lb->reuseConnection( $this->conn );
 		}

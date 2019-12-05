@@ -124,7 +124,7 @@ class BacklinkCache {
 	 *
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		return [ 'partitionCache', 'fullResultCache', 'title' ];
 	}
 

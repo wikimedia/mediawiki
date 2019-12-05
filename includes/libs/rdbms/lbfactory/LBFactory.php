@@ -762,7 +762,7 @@ abstract class LBFactory implements ILBFactory {
 		}
 	}
 
-	function __destruct() {
+	public function __destruct() {
 		$this->destroy();
 	}
 }

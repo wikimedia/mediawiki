@@ -121,12 +121,12 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 	/**
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		$this->compress();
 		return [ 'mVersion', 'mCompressed', 'mItems', 'mDefaultHash' ];
 	}
 
-	function __wakeup() {
+	public function __wakeup() {
 		$this->uncompress();
 	}
 
