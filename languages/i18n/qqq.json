@@ -617,6 +617,7 @@
 	"createacct-another-username-ph": "Placeholder text in create account form field when one user creates an account for another.",
 	"createacct-helpusername": "{{Optional}} Optional message in new create account form providing guidance for username.\n\nBlank by default.",
 	"yourpassword": "In user preferences\n\n{{Identical|Password}}",
+	"prefs-help-yourpassword": "Used in [[Special:Preferences]], tab \"User profile\". Parameters:\n* $1 - is the link to [[#mw-prefsection-personal-email|{{int:prefs-email}}]] section.",
 	"userlogin-yourpassword": "In login & create account forms, label for password field.\n\nSee examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Password}}",
 	"userlogin-yourpassword-ph": "Placeholder text in login form for password field.\n\nSee examples: [[Special:UserLogin]] and [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Enter password}}",
 	"createacct-yourpassword-ph": "Placeholder text in create account form for password field.\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n{{Identical|Enter password}}",
