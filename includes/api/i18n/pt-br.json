@@ -1025,6 +1025,7 @@
 	"apihelp-query+recentchanges-param-user": "Listar apenas alterações deste usuário.",
 	"apihelp-query+recentchanges-param-excludeuser": "Não listar as alterações deste usuário.",
 	"apihelp-query+recentchanges-param-tag": "Listar apenas as alterações marcadas com esta etiqueta.",
+	"apihelp-query+recentchanges-param-slot": "Listar apenas as alterações que tocam no slot nomeado.",
 	"apihelp-query+recentchanges-param-prop": "Incluir elementos de informação adicional:",
 	"apihelp-query+recentchanges-paramvalue-prop-user": "Adiciona o usuário responsável pela edição e marca se ele é um IP. Se o usuário foi excluído da revisão, uma propriedade <samp>userhidden</samp> será retornada.",
 	"apihelp-query+recentchanges-paramvalue-prop-userid": "Adiciona o ID do usuário responsável pela edição. Se o usuário foi excluído da revisão, uma propriedade <samp>userhidden</samp> será retornada.",

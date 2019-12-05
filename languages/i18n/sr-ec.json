@@ -42,7 +42,8 @@
 			"Stalker",
 			"Vlad5250",
 			"Петар Петковић",
-			"Shirayuki"
+			"Shirayuki",
+			"Вукан Ц"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -2437,6 +2438,7 @@
 	"sp-contributions-newonly": "Прикажи само измене којима су направљене нове странице",
 	"sp-contributions-hideminor": "Сакриј мање измене",
 	"sp-contributions-submit": "Претражи",
+	"sp-contributions-concurrency-ip": "Послато је превише захтева с ваше IP адресе. Покушајте поново касније.",
 	"whatlinkshere": "Шта води овамо",
 	"whatlinkshere-title": "$1 — странице које воде овамо",
 	"whatlinkshere-page": "Страница:",
@@ -3467,7 +3469,10 @@
 	"newsection": "Нови одељак",
 	"newsection-page": "Одредишна страница",
 	"newsection-submit": "Иди на страницу",
+	"specialpageinfo-page": "Одредишна страница",
 	"pagehistory": "Историја странице",
+	"specialpagehistory-page": "Одредишна страница",
+	"specialpurge-submit": "Иди на страницу",
 	"dberr-problems": "Дошло је до техничких проблема.",
 	"dberr-again": "Сачекајте неколико минута и поново учитајте страницу.",
 	"dberr-info": "(Не могу приступити бази података: $1)",

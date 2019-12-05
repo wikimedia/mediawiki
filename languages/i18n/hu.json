@@ -2481,7 +2481,7 @@
 	"sp-contributions-hideminor": "Apró szerkesztések elrejtése",
 	"sp-contributions-submit": "Keresés",
 	"sp-contributions-outofrange": "Nem sikerült eredményt megjeleníteni. A kért IP-tartomány nagyobb, mint a CIDR korlátja ($1).",
-	"whatlinkshere": "Mi hivatkozik erre",
+	"whatlinkshere": "Mi hivatkozik erre?",
 	"whatlinkshere-title": "A(z) „$1” lapra hivatkozó lapok",
 	"whatlinkshere-page": "Lap:",
 	"linkshere": "Az alábbi lapok hivatkoznak erre: $2",

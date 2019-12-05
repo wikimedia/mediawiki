@@ -1017,6 +1017,7 @@
 	"apihelp-query+recentchanges-param-user": "Bare list opp endringer av denne brukeren.",
 	"apihelp-query+recentchanges-param-excludeuser": "Ikke list opp endringer av denne brukeren.",
 	"apihelp-query+recentchanges-param-tag": "Bare list opp endringer med denne taggen.",
+	"apihelp-query+recentchanges-param-slot": "Bare list opp endringer som gjør noe med den navngitte spalten.",
 	"apihelp-query+recentchanges-param-prop": "Inkluder ekstra deler informasjon:",
 	"apihelp-query+recentchanges-paramvalue-prop-user": "Legger til brukeren som er ansvarlig for redigeringen og tagger hvis vedkommende er en IP. Hvis fila har blitt revisjonsslettet blir egenskapen <samp>filehidden</samp> returnert.",
 	"apihelp-query+recentchanges-paramvalue-prop-userid": "Legger til bruker-ID-en som er ansvarlig for redigeringen. Hvis brukeren har blitt revisjonsslettet blir egenskapen <samp>userhidden</samp> returnert.",

@@ -1046,6 +1046,7 @@
 	"apihelp-query+recentchanges-param-user": "Lister uniquement les modifications faites par cet utilisateur.",
 	"apihelp-query+recentchanges-param-excludeuser": "Ne pas lister les modifications faites par cet utilisateur.",
 	"apihelp-query+recentchanges-param-tag": "Lister uniquement les modifications marquées avec cette balise.",
+	"apihelp-query+recentchanges-param-slot": "Lister uniquement les modifications qui touchent l’emplacement nommé.",
 	"apihelp-query+recentchanges-param-prop": "Inclure des informations supplémentaires :",
 	"apihelp-query+recentchanges-paramvalue-prop-user": "Ajoute l’utilisateur responsable de la modification, ainsi qu’un marqueur s’il s'agit d’une adresse IP. Si l'utilisateur a été supprimé d’une version, une propriété <samp>userhidden</samp> sera retournée.",
 	"apihelp-query+recentchanges-paramvalue-prop-userid": "Ajoute l’ID de l’utilisateur responsable de la modification. Si l'utilisateur a été supprimé d’une version, une propriété <samp>userhidden</samp> sera retournée.",
