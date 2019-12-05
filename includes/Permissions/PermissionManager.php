@@ -883,11 +883,6 @@ class PermissionManager {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 		if ( $rigor !== self::RIGOR_QUICK && !$title->isUserConfigPage() ) {
-			# We /could/ use the protection level on the source page, but it's
-			# fairly ugly as we have to establish a precedence hierarchy for pages
-			# included by multiple cascade-protected pages. So just restrict
-			# it to people with 'protect' permission, as they could remove the
-			# protection anyway.
 			list( $cascadingSources, $restrictions ) = $title->getCascadeProtectionSources();
 			# Cascading protection depends on more than this page...
 			# Several cascading protected pages may include this page...
