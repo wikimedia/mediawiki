@@ -428,6 +428,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 				],
 				[
 					'type' => 'new',
+					'anon' => false,
 					'user' => $user->getName(),
 				],
 			],
@@ -464,6 +465,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 				],
 				[
 					'type' => 'new',
+					'anon' => false,
 					'user' => $user->getId(),
 					'userid' => $user->getId(),
 				],
@@ -750,6 +752,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 					'ns' => $talkTarget->getNamespace(),
 					'title' => $this->getPrefixedText( $talkTarget ),
 					'user' => $otherUser->getName(),
+					'anon' => false,
 				],
 			],
 			$this->getItemsFromApiResponse( $result )
@@ -787,6 +790,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 					'ns' => $subjectTarget->getNamespace(),
 					'title' => $this->getPrefixedText( $subjectTarget ),
 					'user' => $user->getName(),
+					'anon' => false,
 				]
 			],
 			$this->getItemsFromApiResponse( $result )
