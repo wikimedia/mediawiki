@@ -2301,7 +2301,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		foreach ( $data as $base => $sub ) {
 			if ( count( $sub ) ) {
 				$conds[] = $this->makeList(
-					[ $baseKey => $base, $subKey => array_keys( $sub ) ],
+					[ $baseKey => $base, $subKey => array_map( 'strval', array_keys( $sub ) ) ],
 					self::LIST_AND );
 			}
 		}
