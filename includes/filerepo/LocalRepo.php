@@ -471,16 +471,6 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * Alias for getReplicaDB()
-	 *
-	 * @return IDatabase
-	 * @deprecated Since 1.29
-	 */
-	function getSlaveDB() {
-		return $this->getReplicaDB();
-	}
-
-	/**
 	 * Get a connection to the master DB
 	 * @return IDatabase
 	 */
