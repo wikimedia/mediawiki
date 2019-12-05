@@ -165,9 +165,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoaderFileModule::getAllStyleFiles
-	 * @covers ResourceLoaderFileModule::getAllSkinStyleFiles
-	 * @covers ResourceLoaderFileModule::getSkinStyleFiles
+	 * @covers ResourceLoaderFileModule
 	 */
 	public function testGetAllSkinStyleFiles() {
 		$baseParams = [
@@ -266,6 +264,42 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoaderFileModule
+	 */
+	public function testCssFlipping() {
+		$plain = new ResourceLoaderFileTestModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'styles' => [ 'direction.css' ],
+		] );
+		$plain->setName( 'test' );
+
+		$context = $this->getResourceLoaderContext( [ 'lang' => 'en', 'dir' => 'ltr' ] );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: left; }\n" ],
+			'Unchanged styles in LTR mode'
+		);
+		$context = $this->getResourceLoaderContext( [ 'lang' => 'he', 'dir' => 'rtl' ] );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: right; }\n" ],
+			'Flipped styles in RTL mode'
+		);
+
+		$noflip = new ResourceLoaderFileTestModule( [
+			'localBasePath' => __DIR__ . '/../../data/resourceloader',
+			'styles' => [ 'direction.css' ],
+			'noflip' => true,
+		] );
+		$noflip->setName( 'test' );
+		$this->assertEquals(
+			$plain->getStyles( $context ),
+			[ 'all' => ".example { text-align: right; }\n" ],
+			'Unchanged styles in RTL mode with noflip at module level'
+		);
+	}
+
+	/**
 	 * Test reading files from elsewhere than localBasePath using ResourceLoaderFilePath.
 	 *
 	 * This mimics modules modified by skins using 'ResourceModuleSkinStyles' and 'OOUIThemePaths'
@@ -350,7 +384,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$rl->setName( 'testing' );
 
 		if ( $expected === false ) {
-			$this->expectException( MWException::class );
+			$this->expectException( RuntimeException::class );
 			$rl->getTemplates();
 		} else {
 			$this->assertEquals( $rl->getTemplates(), $expected );
@@ -382,7 +416,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers ResourceLoaderFileModule::compileLessFile
+	 * @covers ResourceLoaderFileModule
 	 */
 	public function testLessFileCompilation() {
 		$context = $this->getResourceLoaderContext();
@@ -666,7 +700,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						[ 'file' => 'script-comment.js' ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			'package file with invalid callback' => [
 				$base + [
@@ -674,31 +708,34 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						[ 'name' => 'foo.json', 'callback' => 'functionThatDoesNotExist142857' ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			[
+				// 'config' not valid for 'script' type
 				$base + [
 					'packageFiles' => [
 						'foo.json' => [ 'type' => 'script', 'config' => [ 'Sitename' ] ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			[
+				// 'config' not valid for '*.js' file
 				$base + [
 					'packageFiles' => [
 						[ 'name' => 'foo.js', 'config' => 'Sitename' ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			[
+				// missing type/name/file.
 				$base + [
 					'packageFiles' => [
 						'foo.js' => [ 'garbage' => 'data' ]
 					]
 				],
-				false
+				LogicException::class
 			],
 			[
 				$base + [
@@ -706,16 +743,17 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						'filethatdoesnotexist142857.js'
 					]
 				],
-				false
+				RuntimeException::class
 			],
 			[
+				// JSON can't be a main file
 				$base + [
 					'packageFiles' => [
 						'script-nosemi.js',
 						[ 'name' => 'foo.json', 'content' => [ 'Hello' => 'world' ], 'main' => true ]
 					]
 				],
-				false
+				LogicException::class
 			]
 		];
 	}
@@ -732,10 +770,12 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		if ( isset( $moduleDefinition['name'] ) ) {
 			$module->setName( $moduleDefinition['name'] );
 		}
-		if ( $expected === false ) {
-			$this->expectException( MWException::class );
+		if ( is_string( $expected ) ) {
+			// Class name of expected exception
+			$this->expectException( $expected );
 			$module->getScript( $context );
 		} else {
+			// Array of expected return value
 			$this->assertEquals( $expected, $module->getScript( $context ) );
 		}
 	}
