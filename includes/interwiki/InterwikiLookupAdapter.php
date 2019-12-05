@@ -45,7 +45,7 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 	 */
 	private $interwikiMap;
 
-	function __construct(
+	public function __construct(
 		SiteLookup $siteLookup,
 		array $interwikiMap = null
 	) {

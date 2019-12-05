@@ -38,7 +38,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	 * @param string $file
 	 * @param int $cmpLevel Compression level passed to 7za command's -mx
 	 */
-	function __construct( $file, $cmpLevel = 4 ) {
+	public function __construct( $file, $cmpLevel = 4 ) {
 		$this->compressionLevel = $cmpLevel;
 		$command = $this->setup7zCommand( $file );
 		parent::__construct( $command );

@@ -47,7 +47,7 @@ class DoubleRedirectJob extends Job {
 	 *   "double-redirect-fixed-maintenance".
 	 * ]
 	 */
-	function __construct( Title $title, array $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'fixDoubleRedirect', $title, $params );
 		$this->redirTitle = Title::newFromText( $params['redirTitle'] );
 	}

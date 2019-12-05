@@ -251,7 +251,7 @@ class LocalisationCache {
 	 * @param LanguageNameUtils $langNameUtils
 	 * @throws MWException
 	 */
-	function __construct(
+	public function __construct(
 		ServiceOptions $options,
 		LCStore $store,
 		LoggerInterface $logger,

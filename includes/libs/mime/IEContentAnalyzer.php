@@ -311,7 +311,7 @@ class IEContentAnalyzer {
 	 */
 	protected $typeTable = [];
 
-	function __construct() {
+	public function __construct() {
 		// Construct versioned type arrays from the base type array plus additions
 		$types = $this->baseTypeTable;
 		foreach ( $this->versions as $version ) {

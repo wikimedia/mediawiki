@@ -35,7 +35,7 @@ class DumpFileOutput extends DumpOutput {
 	/**
 	 * @param string $file
 	 */
-	function __construct( $file ) {
+	public function __construct( $file ) {
 		$this->handle = fopen( $file, "wt" );
 		$this->filename = $file;
 	}

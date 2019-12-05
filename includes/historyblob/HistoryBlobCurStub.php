@@ -35,7 +35,7 @@ class HistoryBlobCurStub {
 	/**
 	 * @param int $curid The cur_id pointed to
 	 */
-	function __construct( $curid = 0 ) {
+	public function __construct( $curid = 0 ) {
 		$this->mCurId = $curid;
 	}
 

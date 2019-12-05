@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
  * @since 1.25
  */
 class RecentChangesUpdateJob extends Job {
-	function __construct( Title $title, array $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'recentChangesUpdate', $title, $params );
 
 		if ( !isset( $params['type'] ) ) {

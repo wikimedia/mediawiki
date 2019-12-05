@@ -32,7 +32,7 @@ final class DuplicateJob extends Job implements GenericParameterJob {
 	 *
 	 * @param array $params Job parameters
 	 */
-	function __construct( array $params ) {
+	public function __construct( array $params ) {
 		parent::__construct( 'duplicate', $params );
 	}
 

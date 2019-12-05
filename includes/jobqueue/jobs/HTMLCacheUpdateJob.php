@@ -36,7 +36,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup JobQueue
  */
 class HTMLCacheUpdateJob extends Job {
-	function __construct( Title $title, array $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'htmlCacheUpdate', $title, $params );
 		// Avoid the overhead of de-duplication when it would be pointless.
 		// Note that these jobs always set page_touched to the current time,

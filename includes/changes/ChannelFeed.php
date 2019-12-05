@@ -39,7 +39,9 @@ abstract class ChannelFeed extends FeedItem {
 	 * @param string $author Author's user name
 	 * @param string $comments
 	 */
-	function __construct( $title, $description, $url, $date = '', $author = '', $comments = '' ) {
+	public function __construct(
+		$title, $description, $url, $date = '', $author = '', $comments = ''
+	) {
 		parent::__construct( $title, $description, $url, $date, $author, $comments );
 		$this->templateParser = new TemplateParser();
 	}

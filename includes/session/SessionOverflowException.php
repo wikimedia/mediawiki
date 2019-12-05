@@ -17,7 +17,7 @@ class SessionOverflowException extends \OverflowException {
 	 * @param string $msg
 	 * @throws \InvalidArgumentException If $sessionInfos has less than 2 elements
 	 */
-	function __construct( array $sessionInfos, $msg ) {
+	public function __construct( array $sessionInfos, $msg ) {
 		if ( count( $sessionInfos ) < 2 ) {
 			throw new \InvalidArgumentException( 'Expected at least two SessionInfo objects.' );
 		}

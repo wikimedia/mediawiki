@@ -41,7 +41,7 @@ class ImportStringSource implements ImportSource {
 	/**
 	 * @param string $string
 	 */
-	function __construct( $string ) {
+	public function __construct( $string ) {
 		$this->mString = $string;
 		$this->mRead = false;
 	}

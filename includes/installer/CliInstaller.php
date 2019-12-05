@@ -54,7 +54,7 @@ class CliInstaller extends Installer {
 	 * @param array $options
 	 * @throws InstallException
 	 */
-	function __construct( $siteName, $admin = null, array $options = [] ) {
+	public function __construct( $siteName, $admin = null, array $options = [] ) {
 		global $wgContLang;
 
 		parent::__construct();

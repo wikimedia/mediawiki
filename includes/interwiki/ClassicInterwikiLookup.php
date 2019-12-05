@@ -104,7 +104,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 *    - 3: site level as well as wiki and global levels
 	 * @param string $fallbackSite The code to assume for the local site,
 	 */
-	function __construct(
+	public function __construct(
 		Language $contLang,
 		WANObjectCache $objectCache,
 		$objectCacheExpiry,

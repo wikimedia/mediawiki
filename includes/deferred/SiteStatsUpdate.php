@@ -46,7 +46,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	];
 
 	// @todo deprecate this constructor
-	function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
+	public function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
 		$this->edits = $edits;
 		$this->articles = $good;
 		$this->pages = $pages;

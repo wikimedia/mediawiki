@@ -44,7 +44,7 @@ class RefreshLinksJob extends Job {
 	/** @var int How many seconds to wait for replica DBs to catch up */
 	const LAG_WAIT_TIMEOUT = 15;
 
-	function __construct( Title $title, array $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'refreshLinks', $title, $params );
 		// Avoid the overhead of de-duplication when it would be pointless
 		$this->removeDuplicates = (

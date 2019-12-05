@@ -44,7 +44,7 @@ class DumpFilter {
 	/**
 	 * @param DumpOutput &$sink
 	 */
-	function __construct( &$sink ) {
+	public function __construct( &$sink ) {
 		$this->sink =& $sink;
 	}
 

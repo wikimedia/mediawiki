@@ -36,7 +36,7 @@ class ImportStreamSource implements ImportSource {
 	/**
 	 * @param resource $handle
 	 */
-	function __construct( $handle ) {
+	public function __construct( $handle ) {
 		$this->mHandle = $handle;
 	}
 

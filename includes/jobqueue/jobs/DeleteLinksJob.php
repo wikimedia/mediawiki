@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
  * @since 1.27
  */
 class DeleteLinksJob extends Job {
-	function __construct( Title $title, array $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'deleteLinks', $title, $params );
 		$this->removeDuplicates = true;
 	}

@@ -44,7 +44,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 * @param IContextSource $context
 	 * @param Title $title
 	 */
-	function __construct( IContextSource $context, Title $title ) {
+	public function __construct( IContextSource $context, Title $title ) {
 		$this->setContext( $context );
 		$this->title = $title;
 	}

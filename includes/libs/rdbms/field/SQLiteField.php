@@ -5,7 +5,7 @@ namespace Wikimedia\Rdbms;
 class SQLiteField implements Field {
 	private $info, $tableName;
 
-	function __construct( $info, $tableName ) {
+	public function __construct( $info, $tableName ) {
 		$this->info = $info;
 		$this->tableName = $tableName;
 	}

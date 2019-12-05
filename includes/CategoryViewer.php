@@ -85,7 +85,7 @@ class CategoryViewer extends ContextSource {
 	 * @param array $until An array with 3 keys for until of each section (since 1.17)
 	 * @param array $query
 	 */
-	function __construct( $title, IContextSource $context, $from = [],
+	public function __construct( $title, IContextSource $context, $from = [],
 		$until = [], $query = []
 	) {
 		$this->title = $title;

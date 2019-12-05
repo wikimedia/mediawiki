@@ -34,7 +34,7 @@ class ProfilerOutputText extends ProfilerOutput {
 	/** @var bool Whether to use visible text or a comment (for HTML responses) */
 	private $visible;
 
-	function __construct( Profiler $collector, array $params ) {
+	public function __construct( Profiler $collector, array $params ) {
 		parent::__construct( $collector, $params );
 		$this->thresholdMs = $params['thresholdMs'] ?? 1.0;
 		$this->visible = $params['visible'] ?? false;

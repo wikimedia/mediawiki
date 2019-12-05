@@ -107,7 +107,7 @@ class XmlTypeCheck {
 	 *        dtd_handler: Callback given the full text of the <!DOCTYPE declaration.
 	 *        require_safe_dtd: Only allow non-recursive entities in internal dtd (default true)
 	 */
-	function __construct( $input, $filterCallback = null, $isFile = true, $options = [] ) {
+	public function __construct( $input, $filterCallback = null, $isFile = true, $options = [] ) {
 		$this->filterCallback = $filterCallback;
 		$this->parserOptions = array_merge( $this->parserOptions, $options );
 		$this->validateFromInput( $input, $isFile );
