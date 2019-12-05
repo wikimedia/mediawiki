@@ -114,39 +114,91 @@ class Language {
 	 */
 	const STRICT_FALLBACKS = LanguageFallback::STRICT;
 
-	// TODO Make these const once we drop HHVM support (T192166)
-	public static $mWeekdayMsgs = [
+	/**
+	 * @since 1.35
+	 */
+	public const WEEKDAY_MESSAGES = [
 		'sunday', 'monday', 'tuesday', 'wednesday', 'thursday',
 		'friday', 'saturday'
 	];
 
-	public static $mWeekdayAbbrevMsgs = [
+	/**
+	 * @deprecated since 1.35, use the WEEKDAY_MESSAGES constant
+	 */
+	public static $mWeekdayMsgs = self::WEEKDAY_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	public const WEEKDAY_ABBREVIATED_MESSAGES = [
 		'sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'
 	];
 
-	public static $mMonthMsgs = [
+	/**
+	 * @deprecated since 1.35, use the WEEKDAY_ABBREVIATED_MESSAGES constant
+	 */
+	public static $mWeekdayAbbrevMsgs = self::WEEKDAY_ABBREVIATED_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	public const MONTH_MESSAGES = [
 		'january', 'february', 'march', 'april', 'may_long', 'june',
 		'july', 'august', 'september', 'october', 'november',
 		'december'
 	];
-	public static $mMonthGenMsgs = [
+
+	/**
+	 * @deprecated since 1.35, use the MONTH_MESSAGES constant
+	 */
+	public static $mMonthMsgs = self::MONTH_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	public const MONTH_GENITIVE_MESSAGES = [
 		'january-gen', 'february-gen', 'march-gen', 'april-gen', 'may-gen', 'june-gen',
 		'july-gen', 'august-gen', 'september-gen', 'october-gen', 'november-gen',
 		'december-gen'
 	];
-	public static $mMonthAbbrevMsgs = [
+
+	/**
+	 * @deprecated since 1.35, use the MONTH_GENITIVE_MESSAGES constant
+	 */
+	public static $mMonthGenMsgs = self::MONTH_GENITIVE_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	public const MONTH_ABBREVIATED_MESSAGES = [
 		'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug',
 		'sep', 'oct', 'nov', 'dec'
 	];
 
-	public static $mIranianCalendarMonthMsgs = [
+	/**
+	 * @deprecated since 1.35, use the MONTH_ABBREVIATED_MESSAGES constant
+	 */
+	public static $mMonthAbbrevMsgs = self::MONTH_ABBREVIATED_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	public const IRANIAN_CALENDAR_MONTHS_MESSAGES = [
 		'iranian-calendar-m1', 'iranian-calendar-m2', 'iranian-calendar-m3',
 		'iranian-calendar-m4', 'iranian-calendar-m5', 'iranian-calendar-m6',
 		'iranian-calendar-m7', 'iranian-calendar-m8', 'iranian-calendar-m9',
 		'iranian-calendar-m10', 'iranian-calendar-m11', 'iranian-calendar-m12'
 	];
 
-	public static $mHebrewCalendarMonthMsgs = [
+	/**
+	 * @deprecated since 1.35, use the IRANIAN_CALENDAR_MONTHS_MESSAGES constant
+	 */
+	public static $mIranianCalendarMonthMsgs = self::IRANIAN_CALENDAR_MONTHS_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	public const HEBREW_CALENDAR_MONTHS_MESSAGES = [
 		'hebrew-calendar-m1', 'hebrew-calendar-m2', 'hebrew-calendar-m3',
 		'hebrew-calendar-m4', 'hebrew-calendar-m5', 'hebrew-calendar-m6',
 		'hebrew-calendar-m7', 'hebrew-calendar-m8', 'hebrew-calendar-m9',
@@ -154,7 +206,15 @@ class Language {
 		'hebrew-calendar-m6a', 'hebrew-calendar-m6b'
 	];
 
-	public static $mHebrewCalendarMonthGenMsgs = [
+	/**
+	 * @deprecated since 1.35, use the HEBREW_CALENDAR_MONTHS_MESSAGES constant
+	 */
+	public static $mHebrewCalendarMonthMsgs = self::HEBREW_CALENDAR_MONTHS_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	public const HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES = [
 		'hebrew-calendar-m1-gen', 'hebrew-calendar-m2-gen', 'hebrew-calendar-m3-gen',
 		'hebrew-calendar-m4-gen', 'hebrew-calendar-m5-gen', 'hebrew-calendar-m6-gen',
 		'hebrew-calendar-m7-gen', 'hebrew-calendar-m8-gen', 'hebrew-calendar-m9-gen',
@@ -162,7 +222,15 @@ class Language {
 		'hebrew-calendar-m6a-gen', 'hebrew-calendar-m6b-gen'
 	];
 
-	public static $mHijriCalendarMonthMsgs = [
+	/**
+	 * @deprecated since 1.35, use the HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES constant
+	 */
+	public static $mHebrewCalendarMonthGenMsgs = self::HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	public const HIJRI_CALENDAR_MONTH_MESSAGES = [
 		'hijri-calendar-m1', 'hijri-calendar-m2', 'hijri-calendar-m3',
 		'hijri-calendar-m4', 'hijri-calendar-m5', 'hijri-calendar-m6',
 		'hijri-calendar-m7', 'hijri-calendar-m8', 'hijri-calendar-m9',
@@ -170,10 +238,14 @@ class Language {
 	];
 
 	/**
-	 * @since 1.20
-	 * @var array
+	 * @deprecated since 1.35, use the HIJRI_CALENDAR_MONTH_MESSAGES constant
 	 */
-	public static $durationIntervals = [
+	public static $mHijriCalendarMonthMsgs = self::HIJRI_CALENDAR_MONTH_MESSAGES;
+
+	/**
+	 * @since 1.35
+	 */
+	protected const DURATION_INTERVALS = [
 		'millennia' => 31556952000,
 		'centuries' => 3155695200,
 		'decades' => 315569520,
@@ -184,6 +256,13 @@ class Language {
 		'minutes' => 60,
 		'seconds' => 1,
 	];
+
+	/**
+	 * @deprecated since 1.35, use the DURATION_INTERVALS constant
+	 * @since 1.20
+	 * @var array
+	 */
+	public static $durationIntervals = self::DURATION_INTERVALS;
 
 	/**
 	 * Unicode directional formatting characters, for embedBidi()
@@ -820,7 +899,7 @@ class Language {
 	 * @return string
 	 */
 	public function getMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mMonthMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::MONTH_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -839,7 +918,7 @@ class Language {
 	 * @return string
 	 */
 	public function getMonthNameGen( $key ) {
-		return $this->getMessageFromDB( self::$mMonthGenMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::MONTH_GENITIVE_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -847,7 +926,7 @@ class Language {
 	 * @return string
 	 */
 	public function getMonthAbbreviation( $key ) {
-		return $this->getMessageFromDB( self::$mMonthAbbrevMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::MONTH_ABBREVIATED_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -866,7 +945,7 @@ class Language {
 	 * @return string
 	 */
 	public function getWeekdayName( $key ) {
-		return $this->getMessageFromDB( self::$mWeekdayMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::WEEKDAY_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -874,7 +953,7 @@ class Language {
 	 * @return string
 	 */
 	public function getWeekdayAbbreviation( $key ) {
-		return $this->getMessageFromDB( self::$mWeekdayAbbrevMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::WEEKDAY_ABBREVIATED_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -882,7 +961,7 @@ class Language {
 	 * @return string
 	 */
 	private function getIranianCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mIranianCalendarMonthMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::IRANIAN_CALENDAR_MONTHS_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -890,7 +969,7 @@ class Language {
 	 * @return string
 	 */
 	private function getHebrewCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mHebrewCalendarMonthMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::HEBREW_CALENDAR_MONTHS_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -898,7 +977,7 @@ class Language {
 	 * @return string
 	 */
 	private function getHebrewCalendarMonthNameGen( $key ) {
-		return $this->getMessageFromDB( self::$mHebrewCalendarMonthGenMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::HEBREW_CALENDAR_MONTH_GENITIVE_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -906,7 +985,7 @@ class Language {
 	 * @return string
 	 */
 	private function getHijriCalendarMonthName( $key ) {
-		return $this->getMessageFromDB( self::$mHijriCalendarMonthMsgs[$key - 1] );
+		return $this->getMessageFromDB( self::HIJRI_CALENDAR_MONTH_MESSAGES[$key - 1] );
 	}
 
 	/**
@@ -2252,7 +2331,7 @@ class Language {
 			];
 		}
 
-		$intervals = array_intersect_key( self::$durationIntervals, array_flip( $chosenIntervals ) );
+		$intervals = array_intersect_key( self::DURATION_INTERVALS, array_flip( $chosenIntervals ) );
 		$sortedNames = array_keys( $intervals );
 		$smallestInterval = array_pop( $sortedNames );
 
@@ -2454,7 +2533,7 @@ class Language {
 		} elseif ( $days > 1 ) {
 			// Timestamp within the past week: show the day of the week and time
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
-			$weekday = self::$mWeekdayMsgs[$ts->timestamp->format( 'w' )];
+			$weekday = self::WEEKDAY_MESSAGES[$ts->timestamp->format( 'w' )];
 			// Messages:
 			// sunday-at, monday-at, tuesday-at, wednesday-at, thursday-at, friday-at, saturday-at
 			$ts = wfMessage( "$weekday-at" )
