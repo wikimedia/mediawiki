@@ -1427,9 +1427,9 @@ return [
 		'scripts' => 'resources/src/mediawiki.language/mediawiki.language.months.js',
 		'dependencies' => 'mediawiki.language',
 		'messages' => array_merge(
-			Language::$mMonthMsgs,
-			Language::$mMonthGenMsgs,
-			Language::$mMonthAbbrevMsgs
+			Language::MONTH_MESSAGES,
+			Language::MONTH_GENITIVE_MESSAGES,
+			Language::MONTH_ABBREVIATED_MESSAGES
 		)
 	],
 
