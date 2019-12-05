@@ -3368,7 +3368,7 @@
 	"dberr-again": "Skúste niekoľko minút počkať a potom opäť načítať stránku.",
 	"dberr-info": "(Nie je možné pripojiť sa k databáze: $1)",
 	"dberr-info-hidden": "(Nie je možné pripojiť sa k databáze)",
-	"htmlform-invalid-input": "Niekotrý z údajov, ktoré ste zadali je problematický",
+	"htmlform-invalid-input": "Niektorý z údajov, ktorý ste zadali, je problematický.",
 	"htmlform-select-badoption": "Hodnota, ktorú ste uviedli nie je platná.",
 	"htmlform-int-invalid": "Hodnota, ktorú ste uviedli nie je celé číslo.",
 	"htmlform-float-invalid": "Hodnota, ktorú ste zadali nie je číslo.",
