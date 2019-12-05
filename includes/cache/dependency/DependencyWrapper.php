@@ -37,7 +37,7 @@ class DependencyWrapper {
 	 * @param CacheDependency|CacheDependency[] $deps A dependency or dependency
 	 *   array. All dependencies must be objects implementing CacheDependency.
 	 */
-	function __construct( $value = false, $deps = [] ) {
+	public function __construct( $value = false, $deps = [] ) {
 		$this->value = $value;
 
 		if ( !is_array( $deps ) ) {

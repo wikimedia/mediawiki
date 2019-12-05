@@ -122,7 +122,7 @@ class LinksUpdate extends DataUpdate {
 	 * @param bool $recursive Queue jobs for recursive updates?
 	 * @throws MWException
 	 */
-	function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
+	public function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
 		parent::__construct();
 
 		$this->mTitle = $title;

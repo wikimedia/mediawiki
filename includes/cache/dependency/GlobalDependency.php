@@ -28,7 +28,7 @@ class GlobalDependency extends CacheDependency {
 	private $name;
 	private $value;
 
-	function __construct( $name ) {
+	public function __construct( $name ) {
 		$this->name = $name;
 		$this->value = $GLOBALS[$name];
 	}

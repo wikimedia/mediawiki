@@ -68,7 +68,7 @@ class LocalFileMoveBatch {
 	 * @param File $file
 	 * @param Title $target
 	 */
-	function __construct( File $file, Title $target ) {
+	public function __construct( File $file, Title $target ) {
 		$this->file = $file;
 		$this->target = $target;
 		$this->oldHash = $this->file->repo->getHashPath( $this->file->getName() );

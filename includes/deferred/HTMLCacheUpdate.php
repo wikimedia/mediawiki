@@ -38,7 +38,7 @@ class HTMLCacheUpdate extends DataUpdate {
 	 * @param string $causeAction Triggering action
 	 * @param string $causeAgent Triggering user
 	 */
-	function __construct(
+	public function __construct(
 		Title $titleTo, $table, $causeAction = 'unknown', $causeAgent = 'unknown'
 	) {
 		$this->title = $titleTo;

@@ -48,7 +48,7 @@ class NullJob extends Job implements GenericParameterJob {
 	/**
 	 * @param array $params Job parameters (lives, usleep)
 	 */
-	function __construct( array $params ) {
+	public function __construct( array $params ) {
 		parent::__construct( 'null', $params );
 		if ( !isset( $this->params['lives'] ) ) {
 			$this->params['lives'] = 1;

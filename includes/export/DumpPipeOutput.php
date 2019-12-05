@@ -39,7 +39,7 @@ class DumpPipeOutput extends DumpFileOutput {
 	 * @param string $command
 	 * @param string|null $file
 	 */
-	function __construct( $command, $file = null ) {
+	public function __construct( $command, $file = null ) {
 		if ( !is_null( $file ) ) {
 			$command .= " > " . Shell::escape( $file );
 		}

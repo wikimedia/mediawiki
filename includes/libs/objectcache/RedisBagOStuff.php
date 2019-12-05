@@ -68,7 +68,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	 *     flap, for example if it is in swap death.
 	 * @param array $params
 	 */
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		parent::__construct( $params );
 		$redisConf = [ 'serializer' => 'none' ]; // manage that in this class
 		foreach ( [ 'connectTimeout', 'persistent', 'password' ] as $opt ) {

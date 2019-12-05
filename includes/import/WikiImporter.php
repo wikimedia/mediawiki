@@ -59,7 +59,7 @@ class WikiImporter {
 	 * @param Config $config
 	 * @throws Exception
 	 */
-	function __construct( ImportSource $source, Config $config ) {
+	public function __construct( ImportSource $source, Config $config ) {
 		if ( !class_exists( 'XMLReader' ) ) {
 			throw new Exception( 'Import requires PHP to have been compiled with libxml support' );
 		}

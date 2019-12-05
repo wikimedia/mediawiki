@@ -7,7 +7,7 @@ class MySQLField implements Field {
 		$is_pk, $is_unique, $is_multiple, $is_key, $type, $binary,
 		$is_numeric, $is_blob, $is_unsigned, $is_zerofill;
 
-	function __construct( $info ) {
+	public function __construct( $info ) {
 		$this->name = $info->name;
 		$this->tablename = $info->table;
 		$this->default = $info->def;

@@ -8,7 +8,7 @@ namespace MediaWiki\Tidy;
 abstract class TidyDriverBase {
 	protected $config;
 
-	function __construct( $config ) {
+	public function __construct( $config ) {
 		$this->config = $config;
 	}
 

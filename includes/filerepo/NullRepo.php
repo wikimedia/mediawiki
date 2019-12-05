@@ -29,7 +29,7 @@ class NullRepo extends FileRepo {
 	/**
 	 * @param array|null $info
 	 */
-	function __construct( $info ) {
+	public function __construct( $info ) {
 	}
 
 	protected function assertWritableRepo() {

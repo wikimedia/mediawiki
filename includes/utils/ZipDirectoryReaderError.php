@@ -24,7 +24,7 @@
 class ZipDirectoryReaderError extends Exception {
 	protected $errorCode;
 
-	function __construct( $code ) {
+	public function __construct( $code ) {
 		$this->errorCode = $code;
 		parent::__construct( "ZipDirectoryReader error: $code" );
 	}

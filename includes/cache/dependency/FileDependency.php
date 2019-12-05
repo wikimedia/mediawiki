@@ -40,7 +40,7 @@ class FileDependency extends CacheDependency {
 	 * created. A dependency on an existing file will be triggered when the
 	 * file is changed.
 	 */
-	function __construct( $filename, $timestamp = null ) {
+	public function __construct( $filename, $timestamp = null ) {
 		$this->filename = $filename;
 		$this->timestamp = $timestamp;
 	}

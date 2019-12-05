@@ -12,7 +12,7 @@ class MWUnknownContentModelException extends MWException {
 	private $modelId;
 
 	/** @param string $modelId */
-	function __construct( $modelId ) {
+	public function __construct( $modelId ) {
 		parent::__construct( "The content model '$modelId' is not registered on this wiki.\n" .
 			'See https://www.mediawiki.org/wiki/Content_handlers to find out which extensions ' .
 			'handle this content model.' );

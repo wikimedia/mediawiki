@@ -73,7 +73,7 @@ class ProtectionForm {
 	/** @var IContextSource */
 	private $mContext;
 
-	function __construct( Article $article ) {
+	public function __construct( Article $article ) {
 		// Set instance variables.
 		$this->mArticle = $article;
 		$this->mTitle = $article->getTitle();

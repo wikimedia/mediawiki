@@ -35,7 +35,7 @@ class DumpMultiWriter {
 	/**
 	 * @param array $sinks
 	 */
-	function __construct( $sinks ) {
+	public function __construct( $sinks ) {
 		$this->sinks = $sinks;
 		$this->count = count( $sinks );
 	}

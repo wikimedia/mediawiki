@@ -21,7 +21,7 @@ class SqlSearchResultSet extends SearchResultSet {
 	 * @param string[] $terms
 	 * @param int|null $total
 	 */
-	function __construct( IResultWrapper $resultSet, array $terms, $total = null ) {
+	public function __construct( IResultWrapper $resultSet, array $terms, $total = null ) {
 		parent::__construct();
 		$this->resultSet = $resultSet;
 		$this->terms = $terms;
