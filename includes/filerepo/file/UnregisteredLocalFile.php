@@ -133,7 +133,7 @@ class UnregisteredLocalFile extends File {
 	function getWidth( $page = 1 ) {
 		$dim = $this->cachePageDimensions( $page );
 
-		return $dim['width'];
+		return $dim['width'] ?? 0;
 	}
 
 	/**
@@ -143,7 +143,7 @@ class UnregisteredLocalFile extends File {
 	function getHeight( $page = 1 ) {
 		$dim = $this->cachePageDimensions( $page );
 
-		return $dim['height'];
+		return $dim['height'] ?? 0;
 	}
 
 	/**
