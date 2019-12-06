@@ -162,7 +162,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 			return Status::newFatal( 'invalidemailaddress' );
 		}
 
-		if ( $newaddr === $user->getEmail() ) {
+		$oldaddr = $user->getEmail();
+		if ( $newaddr === $oldaddr ) {
 			return Status::newFatal( 'changeemail-nochange' );
 		}
 
@@ -172,23 +173,23 @@ class SpecialChangeEmail extends FormSpecialPage {
 			return Status::newFatal( 'actionthrottledtext' );
 		}
 
-		$oldaddr = $user->getEmail();
-		$status = $user->setEmailWithConfirmation( $newaddr );
+		$userLatest = $user->getInstanceForUpdate();
+		$status = $userLatest->setEmailWithConfirmation( $newaddr );
 		if ( !$status->isGood() ) {
 			return $status;
 		}
 
 		LoggerFactory::getInstance( 'authentication' )->info(
 			'Changing email address for {user} from {oldemail} to {newemail}', [
-				'user' => $user->getName(),
+				'user' => $userLatest->getName(),
 				'oldemail' => $oldaddr,
 				'newemail' => $newaddr,
 			]
 		);
 
-		Hooks::run( 'PrefsEmailAudit', [ $user, $oldaddr, $newaddr ] );
+		Hooks::run( 'PrefsEmailAudit', [ $userLatest, $oldaddr, $newaddr ] );
 
-		$user->saveSettings();
+		$userLatest->saveSettings();
 
 		return $status;
 	}
