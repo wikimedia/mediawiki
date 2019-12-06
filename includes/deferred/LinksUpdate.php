@@ -389,7 +389,9 @@ class LinksUpdate extends DataUpdate {
 	 * @param array $cats
 	 */
 	private function invalidateCategories( $cats ) {
-		PurgeJobUtils::invalidatePages( $this->getDB(), NS_CATEGORY, array_keys( $cats ) );
+		PurgeJobUtils::invalidatePages(
+			$this->getDB(), NS_CATEGORY, array_map( 'strval', array_keys( $cats ) )
+		);
 	}
 
 	/**
@@ -411,13 +413,13 @@ class LinksUpdate extends DataUpdate {
 		$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 
 		foreach ( array_chunk( array_keys( $added ), $wgUpdateRowsPerQuery ) as $addBatch ) {
-			$wp->updateCategoryCounts( $addBatch, [], $this->mId );
+			$wp->updateCategoryCounts( array_map( 'strval', $addBatch ), [], $this->mId );
 			$lbf->commitAndWaitForReplication(
 				__METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 		}
 
 		foreach ( array_chunk( array_keys( $deleted ), $wgUpdateRowsPerQuery ) as $deleteBatch ) {
-			$wp->updateCategoryCounts( [], $deleteBatch, $this->mId );
+			$wp->updateCategoryCounts( [], array_map( 'strval', $deleteBatch ), $this->mId );
 			$lbf->commitAndWaitForReplication(
 				__METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 		}
@@ -427,7 +429,9 @@ class LinksUpdate extends DataUpdate {
 	 * @param array $images
 	 */
 	private function invalidateImageDescriptions( array $images ) {
-		PurgeJobUtils::invalidatePages( $this->getDB(), NS_FILE, array_keys( $images ) );
+		PurgeJobUtils::invalidatePages(
+			$this->getDB(), NS_FILE, array_map( 'strval', array_keys( $images ) )
+		);
 	}
 
 	/**
@@ -486,7 +490,10 @@ class LinksUpdate extends DataUpdate {
 
 			$deletionBatches = array_chunk( array_keys( $deletions ), $bSize );
 			foreach ( $deletionBatches as $deletionBatch ) {
-				$deleteWheres[] = [ $fromField => $this->mId, $toField => $deletionBatch ];
+				$deleteWheres[] = [
+					$fromField => $this->mId,
+					$toField => array_map( 'strval', $deletionBatch )
+				];
 			}
 		}
 
@@ -674,7 +681,7 @@ class LinksUpdate extends DataUpdate {
 
 		$arr = [];
 		foreach ( array_keys( $diffs ) as $name ) {
-			$arr[] = $this->getPagePropRowData( $name );
+			$arr[] = $this->getPagePropRowData( (string)$name );
 		}
 
 		return $arr;
@@ -1148,7 +1155,7 @@ class LinksUpdate extends DataUpdate {
 	 * Fetch external links removed by this LinksUpdate. Only available after
 	 * the update is complete.
 	 * @since 1.33
-	 * @return null|array Array of Strings
+	 * @return null|string[]
 	 */
 	public function getRemovedExternalLinks() {
 		if ( $this->externalLinkDeletions === null ) {
