@@ -1213,6 +1213,7 @@
 	"saveusergroups": "Zapisz grupy {{GENDER:$1|użytkownika|użytkowniczki}}",
 	"userrights-groupsmember": "Należy do:",
 	"userrights-groupsmember-auto": "Na stałe należy do:",
+	"userrights-systemuser": "{{GENDER:$1|Ten użytkownik jest użytkownikiem systemowym|Ta użytkowniczka jest użytkowniczką systemową}}",
 	"userrights-groups-help": "Możesz zmienić przynależność tego użytkownika do podanych grup:\n* Zaznaczone pole oznacza przynależność użytkownika do danej grupy.\n* Niezaznaczone pole oznacza, że użytkownik nie należy do danej grupy.\n* Gwiazdka * informuje, że nie możesz usunąć użytkownika z grupy po dodaniu do niej lub dodać po usunięciu.\n* Kratka # informuje, że możesz tylko skrócić czas wygaśnięcia członkostwa w danej grupie; nie możesz go wydłużać.",
 	"userrights-reason": "Powód:",
 	"userrights-no-interwiki": "Nie masz dostępu do edycji uprawnień na innych wiki.",

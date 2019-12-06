@@ -1632,6 +1632,7 @@
 	"apierror-csp-report": "خطأ في معالجة تقرير CSP: $1.",
 	"apierror-deletedrevs-param-not-1-2": "لا يمكن استخدام الوسيط <var>$1</var> في الأوضاع 1 أو 2.",
 	"apierror-deletedrevs-param-not-3": "لا يمكن استخدام الوسيط <var>$1</var> في الوضع 3.",
+	"apierror-edit-invalidredirect": "لا يمكن تعديل <kbd>$1</kbd> أثناء متابعة التحويلات؛ لأن الهدف <kbd>$2</kbd> غير صالح.",
 	"apierror-emptynewsection": "إنشاء أقسام جديدة فارغة غير ممكن.",
 	"apierror-emptypage": "لا يُسمَح بإنشاء صفحات جديدة فارغة.",
 	"apierror-exceptioncaught": "[$1] تم اكتشاف الاستثناء: $2",
