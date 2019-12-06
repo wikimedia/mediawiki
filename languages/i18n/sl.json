@@ -2865,7 +2865,7 @@
 	"tooltip-minoredit": "Označite kot manjše urejanje",
 	"tooltip-save": "Shranite vnesene spremembe (ste si jih predogledali?)",
 	"tooltip-publish": "Objavite svoje spremembe",
-	"tooltip-preview": "Pred shranjevanjem si, prosimo, predoglejte stran!",
+	"tooltip-preview": "Pred shranjevanjem si predoglejte stran!",
 	"tooltip-diff": "Preglejte spremembe, ki ste jih vnesli.",
 	"tooltip-compareselectedversions": "Preglejte razlike med izbranima redakcijama.",
 	"tooltip-watch": "Dodajte stran na svoj spisek nadzorov.",
