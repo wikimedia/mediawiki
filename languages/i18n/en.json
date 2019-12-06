@@ -411,6 +411,7 @@
 	"userlogin-yourpassword-ph": "Enter your password",
 	"createacct-yourpassword-ph": "Enter a password",
 	"yourpasswordagain": "Retype password:",
+	"createacct-useuniquepass": "It is recommended to use a unique password that you are not using on any other website.",
 	"createacct-yourpasswordagain": "Confirm password",
 	"createacct-yourpasswordagain-ph": "Enter password again",
 	"userlogin-remembermypassword": "Keep me logged in",
