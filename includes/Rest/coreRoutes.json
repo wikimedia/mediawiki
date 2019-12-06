@@ -60,5 +60,15 @@
 			"TitleFormatter",
 			"TitleParser"
 		]
+	},
+	{
+		"path": "/coredev/v0/page/{title}",
+		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
+		"services": [
+			"RevisionLookup",
+			"TitleFormatter",
+			"PermissionManager",
+			"MainConfig"
+		]
 	}
 ]

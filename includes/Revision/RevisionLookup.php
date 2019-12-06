@@ -130,7 +130,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * @return RevisionRecord|bool Returns false if missing
 	 */
-	public function getKnownCurrentRevision( Title $title, $revId );
+	public function getKnownCurrentRevision( Title $title, $revId = 0 );
 
 }
 
