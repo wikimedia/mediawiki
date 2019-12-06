@@ -969,7 +969,13 @@ interface IDatabase {
 
 	/**
 	 * Build a partial where clause from a 2-d array such as used for LinkBatch.
-	 * The keys on each level may be either integers or strings.
+	 *
+	 * The keys on each level may be either integers or strings, however it's
+	 * assumed that $baseKey is probably an integer-typed column (i.e. integer
+	 * keys are unquoted in the SQL) and $subKey is string-typed (i.e. integer
+	 * keys are quoted as strings in the SQL).
+	 *
+	 * @todo Does this actually belong in the library? It seems overly MW-specific.
 	 *
 	 * @param array $data Organized as 2-d
 	 *    [ baseKeyVal => [ subKeyVal => [ignored], ... ], ... ]
