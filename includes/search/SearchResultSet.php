@@ -107,8 +107,9 @@ class SearchResultSet extends BaseSearchResultSet {
 	}
 
 	/**
-	 * @return string|null Same as self::getQueryAfterRewrite(), but in HTML
-	 *  and with changes highlighted. Null when the query was not rewritten.
+	 * @return HtmlArmor|string|null Same as self::getQueryAfterRewrite(), but
+	 *  with changes highlighted if HtmlArmor is returned. Null when the query
+	 *  was not rewritten.
 	 */
 	public function getQueryAfterRewriteSnippet() {
 		return null;
@@ -132,7 +133,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	}
 
 	/**
-	 * @return string HTML highlighted suggested query, '' if none
+	 * @return HtmlArmor|string HTML highlighted suggested query, '' if none
 	 */
 	public function getSuggestionSnippet() {
 		return '';

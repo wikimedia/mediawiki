@@ -133,13 +133,13 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
 					'suggestion', $matches->getSuggestionQuery() );
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
-					'suggestionsnippet', $matches->getSuggestionSnippet() );
+					'suggestionsnippet', HtmlArmor::getHtml( $matches->getSuggestionSnippet() ) );
 			}
 			if ( isset( $searchInfo['rewrittenquery'] ) && $matches->hasRewrittenQuery() ) {
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
 					'rewrittenquery', $matches->getQueryAfterRewrite() );
 				$apiResult->addValue( [ 'query', 'searchinfo' ],
-					'rewrittenquerysnippet', $matches->getQueryAfterRewriteSnippet() );
+					'rewrittenquerysnippet', HtmlArmor::getHtml( $matches->getQueryAfterRewriteSnippet() ) );
 			}
 		}
 
