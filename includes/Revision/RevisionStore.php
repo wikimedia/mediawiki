@@ -1793,7 +1793,8 @@ class RevisionStore
 	 *
 	 * @param object $row A database row generated from a query based on getQueryInfo()
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param Title|null $title Preloaded title object based on Title::newFromRow from database row
+	 *   when query was build with option 'page' on getQueryInfo
 	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
 	 *   data is returned from getters, by querying the database as needed
 	 * @return RevisionRecord
