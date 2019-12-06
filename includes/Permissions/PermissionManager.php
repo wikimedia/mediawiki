@@ -48,13 +48,13 @@ use WikiPage;
 class PermissionManager {
 
 	/** @var string Does cheap permission checks from replica DBs (usable for GUI creation) */
-	const RIGOR_QUICK = 'quick';
+	public const RIGOR_QUICK = 'quick';
 
 	/** @var string Does cheap and expensive checks possibly from a replica DB */
-	const RIGOR_FULL = 'full';
+	public const RIGOR_FULL = 'full';
 
 	/** @var string Does cheap and expensive checks, using the master as needed */
-	const RIGOR_SECURE = 'secure';
+	public const RIGOR_SECURE = 'secure';
 
 	/**
 	 * @since 1.34

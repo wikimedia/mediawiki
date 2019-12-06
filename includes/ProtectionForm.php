@@ -23,6 +23,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Handles the page protection UI and backend
@@ -85,7 +86,9 @@ class ProtectionForm {
 		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors(
 			'protect',
 			$this->mContext->getUser(),
-			$this->mContext->getRequest()->wasPosted() ? 'secure' : 'full' // T92357
+			$this->mContext->getRequest()->wasPosted()
+				? PermissionManager::RIGOR_SECURE
+				: PermissionManager::RIGOR_FULL // T92357
 		);
 		if ( wfReadOnly() ) {
 			$this->mPermErrors[] = [ 'readonlytext', wfReadOnlyReason() ];

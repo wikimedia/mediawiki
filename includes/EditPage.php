@@ -25,6 +25,7 @@ use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\ScopedCallback;
 
@@ -617,7 +618,9 @@ class EditPage {
 			}
 		}
 
-		$permErrors = $this->getEditPermissionErrors( $this->save ? 'secure' : 'full' );
+		$permErrors = $this->getEditPermissionErrors(
+			$this->save ? PermissionManager::RIGOR_SECURE : PermissionManager::RIGOR_FULL
+		);
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 
@@ -703,7 +706,7 @@ class EditPage {
 	 * @param string $rigor Same format as Title::getUserPermissionErrors()
 	 * @return array
 	 */
-	protected function getEditPermissionErrors( $rigor = 'secure' ) {
+	protected function getEditPermissionErrors( $rigor = PermissionManager::RIGOR_SECURE ) {
 		$user = $this->context->getUser();
 		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $user, $rigor );
 		# Can this title be created?
