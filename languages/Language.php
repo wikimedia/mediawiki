@@ -3171,8 +3171,8 @@ class Language {
 	 * the , => . and . => , implementation.
 	 *
 	 * @todo check if it's viable to use localeconv() for the decimal separator thing.
-	 * @param int|float $number The string to be formatted, should be an integer
-	 *   or a floating point number.
+	 * @param string $number Expected to be a pre-formatted (e.g. leading zeros, number of decimal
+	 *  places) numeric string. Any non-string will be cast to string.
 	 * @param bool $nocommafy Set to true for special numbers like dates
 	 * @return string
 	 */
@@ -3234,7 +3234,9 @@ class Language {
 	/**
 	 * Adds commas to a given number
 	 * @since 1.19
-	 * @param mixed $number
+	 * @param string|null $number Expected to be a numeric string without (thousand) group
+	 *  separators. Decimal seperator, if present, must be a dot. Any non-string will be cast to
+	 *  string.
 	 * @return string
 	 */
 	function commafy( $number ) {
