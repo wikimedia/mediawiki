@@ -3622,8 +3622,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * This should only be called from deferred updates or jobs to avoid contention.
 	 *
-	 * @param array $added The names of categories that were added
-	 * @param array $deleted The names of categories that were deleted
+	 * @param string[] $added The names of categories that were added
+	 * @param string[] $deleted The names of categories that were deleted
 	 * @param int $id Page ID (this should be the original deleted page ID)
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
