@@ -808,7 +808,15 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'password' => [
 					'id' => 'wpPassword2',
 					'placeholder-message' => 'createacct-yourpassword-ph',
+					'help-message' => 'createacct-useuniquepass',
 					'hide-if' => [ '===', 'wpCreateaccountMail', '1' ],
+				],
+				// used to create empty line to separate help msg
+				'pwordbr' => [
+					'cssclass' => 'tipBr',
+					'type' => 'info',
+					'label' => '',
+					'default' => '',
 				],
 				'domain' => [],
 				'retype' => [
