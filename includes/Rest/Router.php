@@ -296,7 +296,6 @@ class Router {
 	 */
 	private function executeHandler( $handler ): ResponseInterface {
 		// Check for basic authorization, to avoid leaking data from private wikis
-		// @phan-suppress-next-line PhanAccessMethodInternal
 		$authResult = $this->basicAuth->authorize( $handler->getRequest(), $handler );
 		if ( $authResult ) {
 			return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );

@@ -3635,7 +3635,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				list( $phpCallback ) = $callback;
 				$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
 				try {
-					// @phan-suppress-next-line PhanParamTooManyCallable
 					call_user_func( $phpCallback, $trigger, $this );
 				} catch ( Exception $ex ) {
 					call_user_func( $this->errorLogger, $ex );

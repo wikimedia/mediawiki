@@ -2343,7 +2343,7 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	if ( !$h ) {
 		unlink( $oldtextName );
 		unlink( $newtextName );
-		throw new Exception( __METHOD__ . '(): popen() failed' );
+		throw new Exception( __FUNCTION__ . '(): popen() failed' );
 	}
 
 	$diff = '';
@@ -2530,7 +2530,7 @@ function wfForeignMemcKey( $db, $prefix, ...$args ) {
  * @return string
  */
 function wfGlobalCacheKey( ...$args ) {
-	wfDeprecated( __METHOD__, '1.30' );
+	wfDeprecated( __FUNCTION__, '1.30' );
 	return ObjectCache::getLocalClusterInstance()->makeGlobalKey( ...$args );
 }
 
@@ -2929,7 +2929,7 @@ function wfUnpack( $format, $data, $length = false ) {
 function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 	$services = MediaWikiServices::getInstance();
 	if ( $blacklist !== null ) {
-		wfDeprecated( __METHOD__ . ' with $blacklist parameter', '1.34' );
+		wfDeprecated( __FUNCTION__ . ' with $blacklist parameter', '1.34' );
 		return ( new BadFileLookup(
 			function () use ( $blacklist ) {
 				return $blacklist;

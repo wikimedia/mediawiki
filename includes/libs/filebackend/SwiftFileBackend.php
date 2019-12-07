@@ -1556,6 +1556,7 @@ class SwiftFileBackend extends FileBackendStore {
 		} elseif ( $rcode === 409 ) { // not empty
 			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc ); // race?
 		} else {
+			// @phan-suppress-previous-line PhanPluginDuplicateIfStatements
 			$this->onError( $status, __METHOD__, $params, $rerr, $rcode, $rdesc );
 		}
 

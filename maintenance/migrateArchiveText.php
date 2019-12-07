@@ -59,7 +59,6 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$replaceMissing = $this->hasOption( 'replace-missing' );
 		$defaultExternalStore = $this->getConfig()->get( 'DefaultExternalStore' );
-		// @phan-suppress-next-line PhanAccessMethodInternal
 		$blobStore = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()
 			->newSqlBlobStore();

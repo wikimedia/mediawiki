@@ -506,7 +506,6 @@ return [
 
 	'MessageFormatterFactory' =>
 	function ( MediaWikiServices $services ) : IMessageFormatterFactory {
-		// @phan-suppress-next-line PhanAccessMethodInternal
 		return new MessageFormatterFactory();
 	},
 
@@ -1017,7 +1016,6 @@ return [
 	},
 
 	'_SqlBlobStore' => function ( MediaWikiServices $services ) : SqlBlobStore {
-		// @phan-suppress-next-line PhanAccessMethodInternal
 		return $services->getBlobStoreFactory()->newSqlBlobStore();
 	},
 

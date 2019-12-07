@@ -1449,6 +1449,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
 			} else {
 				$finalSetOpts = [
+					// @phan-suppress-next-line PhanUselessBinaryAddRight
 					'since' => $setOpts['since'] ?? $preCallbackTime,
 					'version' => $version,
 					'staleTTL' => $staleTTL,

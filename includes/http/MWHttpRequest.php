@@ -145,7 +145,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 				// ensure that MWHttpRequest::method is always
 				// uppercased. T38137
 				if ( $o == 'method' ) {
-					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					$options[$o] = strtoupper( $options[$o] );
 				}
 				$this->$o = $options[$o];

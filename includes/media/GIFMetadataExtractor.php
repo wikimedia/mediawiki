@@ -168,6 +168,7 @@ class GIFMetadataExtractor {
 
 					$commentCount = count( $comment );
 					if ( $commentCount === 0
+						// @phan-suppress-next-line PhanTypeInvalidDimOffset
 						|| $comment[$commentCount - 1] !== $data
 					) {
 						// Some applications repeat the same comment on each
