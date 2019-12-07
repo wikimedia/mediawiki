@@ -25,6 +25,7 @@ namespace MediaWiki\Auth;
 
 use Config;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Status;
@@ -996,7 +997,9 @@ class AuthManager implements LoggerAwareInterface {
 
 		// This is awful, this permission check really shouldn't go through Title.
 		$permErrors = \SpecialPage::getTitleFor( 'CreateAccount' )
-			->getUserPermissionsErrors( 'createaccount', $creator, 'secure' );
+			->getUserPermissionsErrors(
+				'createaccount', $creator, PermissionManager::RIGOR_SECURE
+			);
 		if ( $permErrors ) {
 			$status = Status::newGood();
 			foreach ( $permErrors as $args ) {
