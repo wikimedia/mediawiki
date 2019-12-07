@@ -1,33 +1,41 @@
-scripts.txt
+Scripts
+=======
 
 MediaWiki primary scripts are in the root directory of the software. Users
-should only use these scripts to access the wiki. There are also some .php that
+should only use these scripts to access the wiki. There are also some `.php` that
 aren't primary scripts but helper files and won't work if they are accessed
 directly by the web.
 
 Primary scripts:
+----------------
 
-  index.php
+  - index.php
+
     Main access point. It handles the most of requests.
-    See https://www.mediawiki.org/wiki/Manual:Index.php
+    See <https://www.mediawiki.org/wiki/Manual:Index.php>
 
-  api.php
+  - api.php
+
     Script to provide an API for bots to fetch content and informations about
-    the site and also modify it. See https://www.mediawiki.org/wiki/API
+    the site and also modify it. See <https://www.mediawiki.org/wiki/API>
     for more information.
 
-  img_auth.php
+  - img_auth.php
+
     Script that only serve images to logged in users. To configure the wiki
-    to use that script, see https://www.mediawiki.org/wiki/Manual:Image_Authorisation.
+    to use that script, see <https://www.mediawiki.org/wiki/Manual:Image_Authorisation>.
 
-  load.php
-    Used by ResourceLoader to serve minified, concatenated and gzipped CSS and JS.
+  - load.php
 
-  opensearch_desc.php
-    Returns a OpenSearch description document (see http://www.opensearch.org/)
+    Used by `ResourceLoader` to serve minified, concatenated and gzipped CSS and JS.
+
+  - opensearch_desc.php
+
+    Returns a OpenSearch description document (see <http://www.opensearch.org/>)
     that points to the search engines of the wiki.
 
-  thumb.php
+  - thumb.php
+
     Script used to resize images if it is configured to be done when the web
     browser requests the image and not when generating the page. This script can
     be used as a 404 handler to generate image thumbs when they don't exist.
