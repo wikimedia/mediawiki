@@ -4,6 +4,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * @group Database
@@ -322,9 +323,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $check[$action][0],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
 			$this->assertEquals( $check[$action][0],
-				$this->title->getUserPermissionsErrors( $action, $this->user, 'full' ) );
+				$this->title->getUserPermissionsErrors(
+					$action, $this->user, PermissionManager::RIGOR_FULL ) );
 			$this->assertEquals( $check[$action][0],
-				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
+				$this->title->getUserPermissionsErrors(
+					$action, $this->user, PermissionManager::RIGOR_SECURE ) );
 
 			global $wgGroupPermissions;
 			$old = $wgGroupPermissions;
@@ -333,9 +336,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $check[$action][1],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
 			$this->assertEquals( $check[$action][1],
-				$this->title->getUserPermissionsErrors( $action, $this->user, 'full' ) );
+				$this->title->getUserPermissionsErrors(
+					$action, $this->user, PermissionManager::RIGOR_FULL ) );
 			$this->assertEquals( $check[$action][1],
-				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
+				$this->title->getUserPermissionsErrors(
+					$action, $this->user, PermissionManager::RIGOR_SECURE ) );
 
 			$this->setMwGlobals( 'wgGroupPermissions', $old );
 
@@ -343,9 +348,11 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $check[$action][2],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
 			$this->assertEquals( $check[$action][2],
-				$this->title->getUserPermissionsErrors( $action, $this->user, 'full' ) );
+				$this->title->getUserPermissionsErrors(
+					$action, $this->user, PermissionManager::RIGOR_FULL ) );
 			$this->assertEquals( $check[$action][2],
-				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
+				$this->title->getUserPermissionsErrors(
+					$action, $this->user, PermissionManager::RIGOR_SECURE ) );
 
 			$this->overrideUserPermissions( $this->user, $action );
 			$this->assertEquals( $check[$action][3],
