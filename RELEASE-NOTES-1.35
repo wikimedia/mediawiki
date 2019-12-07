@@ -84,6 +84,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated jakub-onderka/php-console-highlighter from v0.3.2 to v0.4 (dev-only).
 * Updated wikimedia/assert from 0.2.2 to 0.4.0.
 * Updated psy/psysh from 0.9.9 to 0.9.11 (dev-only).
+* Updated pear/net_smtp 1.8.1 from to 1.9.0.
 * …
 
 ==== Removed external libraries ====
