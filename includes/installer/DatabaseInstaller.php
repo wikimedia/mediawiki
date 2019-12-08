@@ -135,7 +135,7 @@ abstract class DatabaseInstaller {
 	 * $this->parent can be assumed to be a WebInstaller.
 	 * If the DB type has no settings beyond those already configured with
 	 * getConnectForm(), this should return false.
-	 * @return bool
+	 * @return string|bool
 	 */
 	public function getSettingsForm() {
 		return false;

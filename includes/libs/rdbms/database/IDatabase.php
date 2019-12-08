@@ -997,21 +997,21 @@ interface IDatabase {
 	public function aggregateValue( $valuedata, $valuename = 'value' );
 
 	/**
-	 * @param string $field
+	 * @param string|int $field
 	 * @return string
 	 */
 	public function bitNot( $field );
 
 	/**
-	 * @param string $fieldLeft
-	 * @param string $fieldRight
+	 * @param string|int $fieldLeft
+	 * @param string|int $fieldRight
 	 * @return string
 	 */
 	public function bitAnd( $fieldLeft, $fieldRight );
 
 	/**
-	 * @param string $fieldLeft
-	 * @param string $fieldRight
+	 * @param string|int $fieldLeft
+	 * @param string|int $fieldRight
 	 * @return string
 	 */
 	public function bitOr( $fieldLeft, $fieldRight );

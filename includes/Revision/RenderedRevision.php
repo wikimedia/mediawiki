@@ -284,7 +284,7 @@ class RenderedRevision implements SlotRenderingProvider {
 
 		if ( $this->revision->getId() ) {
 			throw new LogicException( 'RenderedRevision already has a revision with ID '
-				. $this->revision->getId(), ', can\'t update to revision with ID ' . $rev->getId() );
+				. $this->revision->getId() . ', can\'t update to revision with ID ' . $rev->getId() );
 		}
 
 		if ( !$this->revision->getSlots()->hasSameContent( $rev->getSlots() ) ) {

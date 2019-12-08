@@ -82,7 +82,7 @@ class SpecialStatistics extends SpecialPage {
 	/**
 	 * Format a row
 	 * @param string $text Description of the row
-	 * @param float $number A statistical number
+	 * @param float|string $number A statistical number
 	 * @param array $trExtraParams Params to table row, see Html::elememt
 	 * @param string $descMsg Message key
 	 * @param array|string $descMsgParam Message parameters

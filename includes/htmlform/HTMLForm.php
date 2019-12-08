@@ -935,7 +935,7 @@ class HTMLForm extends ContextSource {
 	 * Add a hidden field to the output
 	 *
 	 * @param string $name Field name.  This will be used exactly as entered
-	 * @param string $value Field value
+	 * @param mixed $value Field value
 	 * @param array $attribs
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)

@@ -436,7 +436,7 @@ class BlockLevelPass {
 	 * @param string &$before Set to everything before the ':'
 	 * @param string &$after Set to everything after the ':'
 	 * @throws MWException
-	 * @return string The position of the ':', or false if none found
+	 * @return string|false The position of the ':', or false if none found
 	 */
 	private function findColonNoLinks( $str, &$before, &$after ) {
 		if ( !preg_match( '/:|<|-\{/', $str, $m, PREG_OFFSET_CAPTURE ) ) {

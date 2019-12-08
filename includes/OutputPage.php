@@ -347,12 +347,12 @@ class OutputPage extends ContextSource {
 	 * Redirect to $url rather than displaying the normal page
 	 *
 	 * @param string $url
-	 * @param string $responsecode HTTP status code
+	 * @param string|int $responsecode HTTP status code
 	 */
 	public function redirect( $url, $responsecode = '302' ) {
 		# Strip newlines as a paranoia check for header injection in PHP<5.1.2
 		$this->mRedirect = str_replace( "\n", '', $url );
-		$this->mRedirectCode = $responsecode;
+		$this->mRedirectCode = (string)$responsecode;
 	}
 
 	/**

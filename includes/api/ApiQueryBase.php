@@ -256,7 +256,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Equivalent to addWhere( [ $field => $value ] )
 	 * @param string $field Field name
-	 * @param string|string[] $value Value; ignored if null or empty array
+	 * @param int|string|string[] $value Value; ignored if null or empty array
 	 */
 	protected function addWhereFld( $field, $value ) {
 		if ( $value !== null && !( is_array( $value ) && !$value ) ) {
@@ -345,7 +345,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Add an option such as LIMIT or USE INDEX. If an option was set
 	 * before, the old value will be overwritten
 	 * @param string $name Option name
-	 * @param string|string[]|null $value Option value
+	 * @param int|string|string[]|null $value Option value
 	 */
 	protected function addOption( $name, $value = null ) {
 		if ( is_null( $value ) ) {
@@ -487,7 +487,7 @@ abstract class ApiQueryBase extends ApiBase {
 	/**
 	 * Set a query-continue value
 	 * @param string $paramName Parameter name
-	 * @param string|array $paramValue Parameter value
+	 * @param int|string|array $paramValue Parameter value
 	 */
 	protected function setContinueEnumParameter( $paramName, $paramValue ) {
 		$this->getContinuationManager()->addContinueParam( $this, $paramName, $paramValue );

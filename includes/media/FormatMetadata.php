@@ -1220,7 +1220,7 @@ class FormatMetadata extends ContextSource {
 	 * Convenience function for getFormattedData()
 	 *
 	 * @param string $tag The tag name to pass on
-	 * @param string $val The value of the tag
+	 * @param string|int $val The value of the tag
 	 * @param string|null $arg An argument to pass ($1)
 	 * @param string|null $arg2 A 2nd argument to pass ($2)
 	 * @return string The text content of "exif-$tag-$val" message in lower case
