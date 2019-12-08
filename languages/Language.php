@@ -3171,13 +3171,15 @@ class Language {
 	 * the , => . and . => , implementation.
 	 *
 	 * @todo check if it's viable to use localeconv() for the decimal separator thing.
-	 * @param string $number Expected to be a pre-formatted (e.g. leading zeros, number of decimal
-	 *  places) numeric string. Any non-string will be cast to string.
+	 * @param string|int|float $number Expected to be a pre-formatted (e.g. leading zeros, number
+	 *  of decimal places) numeric string. Any non-string will be cast to string.
 	 * @param bool $nocommafy Set to true for special numbers like dates
 	 * @return string
 	 */
 	public function formatNum( $number, $nocommafy = false ) {
 		global $wgTranslateNumerals;
+
+		$number = (string)$number;
 		if ( !$nocommafy ) {
 			$number = $this->commafy( $number );
 			$s = $this->separatorTransformTable();
@@ -3193,7 +3195,7 @@ class Language {
 			}
 		}
 
-		return (string)$number;
+		return $number;
 	}
 
 	/**

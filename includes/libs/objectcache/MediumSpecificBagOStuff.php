@@ -896,7 +896,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Make a global cache key.
 	 *
 	 * @param string $class Key class
-	 * @param string ...$components Key components (starting with a key collection name)
+	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
 	 */
@@ -908,7 +908,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Make a cache key, scoped to this instance's keyspace.
 	 *
 	 * @param string $class Key class
-	 * @param string ...$components Key components (starting with a key collection name)
+	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 * @since 1.27
 	 */
