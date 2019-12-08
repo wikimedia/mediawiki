@@ -42,6 +42,9 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/** Use the wikidiff2 PHP module. */
 	const ENGINE_WIKIDIFF2 = 'wikidiff2';
 
+	/** Use the wikidiff2 PHP module. */
+	const ENGINE_WIKIDIFF2_INLINE = 'wikidiff2inline';
+
 	/** Use an external executable. */
 	const ENGINE_EXTERNAL = 'external';
 
@@ -56,6 +59,17 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 	/** @var string Path to an executable to be used as the diff engine. */
 	private $externalEngine;
+
+	/**
+	 * @inheritDoc
+	 * @return array
+	 */
+	public function getExtraCacheKeys() {
+		// Tell DifferenceEngine this is a different variant from the standard wikidiff2 variant
+		return $this->engine === self::ENGINE_WIKIDIFF2_INLINE ? [
+			phpversion( 'wikidiff2' ), 'inline'
+		] : [];
+	}
 
 	/**
 	 * Convenience helper to use getTextDiff without an instance.
@@ -85,7 +99,8 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 * @param string|null $executable Path to an external exectable, only when type is ENGINE_EXTERNAL.
 	 */
 	public function setEngine( $type, $executable = null ) {
-		$engines = [ self::ENGINE_PHP, self::ENGINE_WIKIDIFF2, self::ENGINE_EXTERNAL ];
+		$engines = [ self::ENGINE_PHP, self::ENGINE_WIKIDIFF2, self::ENGINE_EXTERNAL,
+			self::ENGINE_WIKIDIFF2_INLINE ];
 		Assert::parameter( in_array( $type, $engines, true ), '$type',
 			'must be one of the TextSlotDiffRenderer::ENGINE_* constants' );
 		if ( $type === self::ENGINE_EXTERNAL ) {
@@ -248,6 +263,12 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 			}
 
 			return $difftext;
+		} elseif ( $this->engine === self::ENGINE_WIKIDIFF2_INLINE ) {
+			// Note wikidiff2_inline_diff returns an element sans table.
+			// Due to the way other diffs work (return a table with before and after), we need to wrap
+			// the output in a row that spans the 4 columns that are expected, so that our diff appears in
+			// the correct place!
+			return '<tr><td colspan="4">' . wikidiff2_inline_diff( $oldText, $newText, 2 ) . '</td></tr>';
 		}
 		throw new LogicException( 'Invalid engine: ' . $this->engine );
 	}

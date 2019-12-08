@@ -8,6 +8,15 @@ use Wikimedia\Assert\ParameterTypeException;
  */
 class TextSlotDiffRendererTest extends MediaWikiTestCase {
 
+	public function testGetExtraCacheKeys() {
+		$slotDiffRenderer = $this->getTextSlotDiffRenderer();
+		$key = $slotDiffRenderer->getExtraCacheKeys();
+		$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2_INLINE );
+		$inlineKey = $slotDiffRenderer->getExtraCacheKeys();
+		$this->assertSame( $key, [] );
+		$this->assertSame( $inlineKey, [ phpversion( 'wikidiff2' ), 'inline' ] );
+	}
+
 	/**
 	 * @dataProvider provideGetDiff
 	 * @param array|null $oldContentArgs To pass to makeContent() (if not null)
