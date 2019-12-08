@@ -114,7 +114,7 @@ class ContentSecurityPolicy {
 		if ( $reportOnly === self::FULL_MODE ) {
 			return 'Content-Security-Policy';
 		}
-		throw new UnexpectedValueException( $reportOnly );
+		throw new UnexpectedValueException( "Mode '$reportOnly' not recognised" );
 	}
 
 	/**

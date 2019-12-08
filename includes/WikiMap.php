@@ -182,7 +182,7 @@ class WikiMap {
 	 * Get canonical server info for all local wikis in the map that have one
 	 *
 	 * @return array[] Map of (local wiki ID => map of (url,parts))
-	 * @phan-return array<int,array{url:string,parts:string[]|bool}>
+	 * @phan-return array<string,array{url:string,parts:string[]|bool}>
 	 * @since 1.30
 	 */
 	public static function getCanonicalServerInfoForAllWikis() {

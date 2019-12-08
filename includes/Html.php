@@ -794,7 +794,7 @@ class Html {
 	 * Convenience function to produce an input element with type=hidden
 	 *
 	 * @param string $name Name attribute
-	 * @param string $value Value attribute
+	 * @param mixed $value Value attribute
 	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
