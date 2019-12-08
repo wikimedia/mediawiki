@@ -948,6 +948,9 @@ class Article implements Page {
 			$purge,
 			$unhide
 		);
+		$de->setSlotDiffOptions( [
+			'diff-type' => $request->getVal( 'diff-type' )
+		] );
 
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->getNewid();

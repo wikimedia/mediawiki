@@ -615,10 +615,11 @@ abstract class ContentHandler {
 	 * Get an appropriate SlotDiffRenderer for this content model.
 	 * @since 1.32
 	 * @param IContextSource $context
+	 * @param array $options of the slot diff renderer (optional)
 	 * @return SlotDiffRenderer
 	 */
-	final public function getSlotDiffRenderer( IContextSource $context ) {
-		$slotDiffRenderer = $this->getSlotDiffRendererInternal( $context );
+	final public function getSlotDiffRenderer( IContextSource $context, array $options = [] ) {
+		$slotDiffRenderer = $this->getSlotDiffRendererWithOptions( $context, $options );
 		if ( get_class( $slotDiffRenderer ) === TextSlotDiffRenderer::class ) {
 			//  To keep B/C, when SlotDiffRenderer is not overridden for a given content type
 			// but DifferenceEngine is, use that instead.
@@ -639,10 +640,28 @@ abstract class ContentHandler {
 
 	/**
 	 * Return the SlotDiffRenderer appropriate for this content handler.
+	 * @deprecated use getSlotDiffRendererWithOptions instead
 	 * @param IContextSource $context
-	 * @return SlotDiffRenderer
+	 * @return SlotDiffRenderer|null
 	 */
 	protected function getSlotDiffRendererInternal( IContextSource $context ) {
+		return null;
+	}
+
+	/**
+	 * Return the SlotDiffRenderer appropriate for this content handler.
+	 * @param IContextSource $context
+	 * @param array $options
+	 * @return SlotDiffRenderer
+	 */
+	protected function getSlotDiffRendererWithOptions( IContextSource $context, $options = [] ) {
+		$internalRenderer = $this->getSlotDiffRendererInternal( $context );
+		// `getSlotDiffRendererInternal` has been overriden by a class using the deprecated method.
+		// Options will not work so exit early!
+		if ( $internalRenderer !== null ) {
+			return $internalRenderer;
+		}
+
 		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
 		$statsdDataFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$slotDiffRenderer = new TextSlotDiffRenderer();
@@ -650,11 +669,18 @@ abstract class ContentHandler {
 		// XXX using the page language would be better, but it's unclear how that should be injected
 		$slotDiffRenderer->setLanguage( $contentLanguage );
 
+		$inline = ( $options['diff-type'] ?? '' ) === 'inline';
+		$engine = 'wikidiff2';
 		$engine = DifferenceEngine::getEngine();
+
 		if ( $engine === 'php' ) {
 			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_PHP );
 		} elseif ( $engine === 'wikidiff2' ) {
-			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2 );
+			if ( $inline ) {
+				$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2_INLINE );
+			} else {
+				$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2 );
+			}
 		} else {
 			$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_EXTERNAL, $engine );
 		}
