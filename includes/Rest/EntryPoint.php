@@ -49,11 +49,9 @@ class EntryPoint {
 
 		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
 
-		// @phan-suppress-next-line PhanAccessMethodInternal
 		$authorizer = new MWBasicAuthorizer( $context->getUser(),
 			$services->getPermissionManager() );
 
-		// @phan-suppress-next-line PhanAccessMethodInternal
 		$restValidator = new Validator( $objectFactory,
 			$services->getPermissionManager(),
 			$request,

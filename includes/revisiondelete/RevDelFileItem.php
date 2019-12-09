@@ -228,6 +228,7 @@ class RevDelFileItem extends RevDelItem {
 				'url' => $file->getUrl(),
 			];
 		} elseif ( $this->canViewContent() ) {
+			// @phan-suppress-next-line PhanUselessBinaryAddRight
 			$ret += [
 				'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL(
 					[

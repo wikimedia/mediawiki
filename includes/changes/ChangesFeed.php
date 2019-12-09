@@ -67,6 +67,7 @@ class ChangesFeed {
 	 * Generate the feed items given a row from the database.
 	 * @param object $rows IDatabase resource with recentchanges rows
 	 * @return array
+	 * @suppress PhanTypeInvalidDimOffset False positives in the foreach
 	 */
 	public static function buildItems( $rows ) {
 		$items = [];

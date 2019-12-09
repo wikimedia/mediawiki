@@ -550,6 +550,7 @@ abstract class HTMLFormField {
 		} else {
 			$field = Html::rawElement(
 				'div',
+				// @phan-suppress-next-line PhanUselessBinaryAddRight
 				[ 'class' => $outerDivClass ] + $cellAttributes,
 				$inputHtml . "\n$errors"
 			);

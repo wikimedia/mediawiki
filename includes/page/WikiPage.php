@@ -41,8 +41,6 @@ use Wikimedia\Rdbms\LoadBalancer;
  *
  * Some fields are public only for backwards-compatibility. Use accessors.
  * In the past, this class was part of Article.php and everything was public.
- *
- * @phan-file-suppress PhanAccessMethodInternal Due to the use of DerivedPageDataUpdater
  */
 class WikiPage implements Page, IDBAccessObject {
 	// Constants for $mDataLoadedFrom and related

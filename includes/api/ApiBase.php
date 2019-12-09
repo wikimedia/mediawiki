@@ -912,7 +912,7 @@ abstract class ApiBase extends ContextSource {
 					function ( $p ) {
 						return '<var>' . $this->encodeParamName( $p ) . '</var>';
 					},
-					array_values( $required )
+					$required
 				) ),
 				count( $required ),
 			], 'missingparam' );
@@ -963,7 +963,7 @@ abstract class ApiBase extends ContextSource {
 					function ( $p ) {
 						return '<var>' . $this->encodeParamName( $p ) . '</var>';
 					},
-					array_values( $required )
+					$required
 				) ),
 				count( $required ),
 			], 'missingparam' );

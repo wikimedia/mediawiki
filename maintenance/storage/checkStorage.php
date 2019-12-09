@@ -143,6 +143,7 @@ class CheckStorage {
 				$id = $row->old_id;
 
 				// Create flagStats row if it doesn't exist
+				// @phan-suppress-next-line PhanSuspiciousBinaryAddLists
 				$flagStats = $flagStats + [ $flags => 0 ];
 				// Increment counter
 				$flagStats[$flags]++;
@@ -282,6 +283,7 @@ class CheckStorage {
 						continue;
 					}
 
+					// @phan-suppress-next-line PhanSuspiciousBinaryAddLists
 					$objectStats = $objectStats + [ $className => 0 ];
 					$objectStats[$className]++;
 
@@ -568,7 +570,7 @@ class CheckStorage {
 				[],
 				[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
 			);
-			// @phan-suppress-next-line PhanAccessMethodInternal
+
 			$blobStore = MediaWikiServices::getInstance()
 				->getBlobStoreFactory()
 				->newSqlBlobStore();

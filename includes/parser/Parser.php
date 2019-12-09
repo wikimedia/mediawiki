@@ -4302,11 +4302,13 @@ class Parser {
 				# Decrease TOC level, find level to jump to
 
 				for ( $i = $toclevel; $i > 0; $i-- ) {
+					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					if ( $levelCount[$i] == $level ) {
 						# Found last matching level
 						$toclevel = $i;
 						break;
 					} elseif ( $levelCount[$i] < $level ) {
+						// @phan-suppress-previous-line PhanTypeInvalidDimOffset
 						# Found first matching level below current level
 						$toclevel = $i + 1;
 						break;

@@ -125,7 +125,6 @@ class RevisionStoreFactory {
 
 		$store = new RevisionStore(
 			$this->dbLoadBalancerFactory->getMainLB( $dbDomain ),
-			// @phan-suppress-next-line PhanAccessMethodInternal
 			$this->blobStoreFactory->newSqlBlobStore( $dbDomain ),
 			$this->cache, // Pass local cache instance; Leave cache sharing to RevisionStore.
 			$this->commentStore,

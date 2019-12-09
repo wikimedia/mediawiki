@@ -81,11 +81,12 @@ class ApiAuthManagerHelper {
 				break;
 
 			case 'raw':
+				$params = $message->getParams();
 				$res[$key] = [
 					'key' => $message->getKey(),
-					'params' => $message->getParams(),
+					'params' => $params,
 				];
-				ApiResult::setIndexedTagName( $res[$key]['params'], 'param' );
+				ApiResult::setIndexedTagName( $params, 'param' );
 				break;
 		}
 	}

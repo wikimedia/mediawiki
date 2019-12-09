@@ -265,6 +265,7 @@ class BlockLevelPass {
 
 				# Close all the prefixes which aren't shared.
 				while ( $commonPrefixLength < $lastPrefixLength ) {
+					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					$output .= $this->closeList( $lastPrefix[$lastPrefixLength - 1] );
 					--$lastPrefixLength;
 				}

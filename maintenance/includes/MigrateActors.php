@@ -387,6 +387,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			$res = $dbw->select(
 				[ $table, $newTable ],
 				[ $primaryKey, $userField, $nameField, 'actor_id' => $actorIdSubquery ] + $extra,
+				// @phan-suppress-next-line PhanSuspiciousBinaryAddLists
 				[ $newPrimaryKey => null ] + $next,
 				__METHOD__,
 				[

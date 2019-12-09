@@ -4051,7 +4051,6 @@ class OutputPage extends ContextSource {
 	 * @param mixed ...$msgSpecs
 	 */
 	public function wrapWikiMsg( $wrap, ...$msgSpecs ) {
-		$msgSpecs = array_values( $msgSpecs );
 		$s = $wrap;
 		foreach ( $msgSpecs as $n => $spec ) {
 			if ( is_array( $spec ) ) {
