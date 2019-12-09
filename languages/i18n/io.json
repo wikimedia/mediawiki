@@ -2173,6 +2173,7 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|bicoko*|bicoki*}}",
 	"limitreport-expansiondepth": "Maxima profundeso di expanso",
 	"limitreport-expensivefunctioncount": "Kontado di funcioni kustoza di analizo sintaxala",
+	"limitreport-unstrip-depth": "iterala profundeso di 'unstrip'",
 	"expand_templates_output": "Rezulto",
 	"expand_templates_ok": "O.K.",
 	"expand_templates_preview": "Previdar",

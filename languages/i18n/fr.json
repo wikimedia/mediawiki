@@ -2085,7 +2085,7 @@
 	"statistics-articles": "Pages de contenu",
 	"statistics-pages": "Pages",
 	"statistics-pages-desc": "Toutes les pages du wiki, y compris les pages de discussion, les redirections, etc.",
-	"statistics-files": "Fichiers importés",
+	"statistics-files": "Fichiers téléversés",
 	"statistics-edits": "Modifications de pages depuis l’installation de {{SITENAME}}",
 	"statistics-edits-average": "Nombre moyen de modifications par page",
 	"statistics-users": "Utilisateurs inscrits",

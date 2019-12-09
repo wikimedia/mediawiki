@@ -667,6 +667,7 @@
 	"passwordreset-emailelement": "Gebruikersnaam: \n$1\n\nTijdelijk wachtwoord: \n$2",
 	"passwordreset-emailsentemail": "Als dit e-mailadres aan uw account gekoppeld is, dan wordt er een e-mail verzonden om uw wachtwoord opnieuw in te stellen.",
 	"passwordreset-emailsentusername": "Als er een e-mailadres geregistreerd is voor die gebruikersnaam, dan wordt er een e-mail verzonden om uw wachtwoord opnieuw in te stellen.",
+	"passwordreset-emailtext-require-email": "Indien u deze aanvraag niet hebt ingediend en u ongewenste e-mails\nwilt voorkomen, dan kunt u uw e-mailvoorkeuren wijzigen op $1.\n\nU kunt het opgeven van zowel een gebruikersnaam en e-mailadres verplichten\nvoordat een wachtwoordreset e-mail wordt verstuurd. Dit kan helpen het aantal van dit soort incidenten te voorkomen.",
 	"passwordreset-nocaller": "Een aanroeper moet worden opgegeven",
 	"passwordreset-nosuchcaller": "Aanroeper bestaat niet: $1",
 	"passwordreset-ignored": "Het opnieuw instellen van het wachtwoord is niet afgehandeld. Misschien is er geen provider geconfigureerd?",
