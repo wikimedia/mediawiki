@@ -19,7 +19,46 @@
 	</rule>
 	<!-- TODO Still to be done -->
 	<rule ref="Squiz.Scope.MethodScope.Missing">
-		<exclude-pattern>includes/</exclude-pattern>
+		<exclude-pattern>includes/actions/</exclude-pattern>
+		<exclude-pattern>includes/cache/</exclude-pattern>
+		<exclude-pattern>includes/changes/</exclude-pattern>
+		<exclude-pattern>includes/changetags/</exclude-pattern>
+		<exclude-pattern>includes/collation/</exclude-pattern>
+		<exclude-pattern>includes/deferred/</exclude-pattern>
+		<exclude-pattern>includes/diff/</exclude-pattern>
+		<exclude-pattern>includes/export/</exclude-pattern>
+		<exclude-pattern>includes/filerepo/</exclude-pattern>
+		<exclude-pattern>includes/gallery/</exclude-pattern>
+		<exclude-pattern>includes/historyblob/</exclude-pattern>
+		<exclude-pattern>includes/htmlform/</exclude-pattern>
+		<exclude-pattern>includes/import/</exclude-pattern>
+		<exclude-pattern>includes/installer/</exclude-pattern>
+		<exclude-pattern>includes/jobqueue/</exclude-pattern>
+		<exclude-pattern>includes/language/</exclude-pattern>
+		<exclude-pattern>includes/libs/</exclude-pattern>
+		<exclude-pattern>includes/logging/</exclude-pattern>
+		<exclude-pattern>includes/media/</exclude-pattern>
+		<exclude-pattern>includes/page/</exclude-pattern>
+		<exclude-pattern>includes/pager/</exclude-pattern>
+		<exclude-pattern>includes/parser/</exclude-pattern>
+		<exclude-pattern>includes/poolcounter/</exclude-pattern>
+		<exclude-pattern>includes/Rest/</exclude-pattern>
+		<exclude-pattern>includes/revisiondelete/</exclude-pattern>
+		<exclude-pattern>includes/revisionlist/</exclude-pattern>
+		<exclude-pattern>includes/search/</exclude-pattern>
+		<exclude-pattern>includes/skins/</exclude-pattern>
+		<exclude-pattern>includes/specialpage/</exclude-pattern>
+		<exclude-pattern>includes/specials/</exclude-pattern>
+		<exclude-pattern>includes/upload/</exclude-pattern>
+		<exclude-pattern>includes/user/</exclude-pattern>
+		<exclude-pattern>includes/utils/</exclude-pattern>
+		<exclude-pattern>includes/AjaxResponse\.php</exclude-pattern>
+		<exclude-pattern>includes/AutoLoader\.php</exclude-pattern>
+		<exclude-pattern>includes/CategoryViewer\.php</exclude-pattern>
+		<exclude-pattern>includes/ProtectionForm\.php</exclude-pattern>
+		<exclude-pattern>includes/SiteConfiguration\.php</exclude-pattern>
+		<exclude-pattern>includes/Title\.php</exclude-pattern>
+		<exclude-pattern>includes/TitleArrayFromResult\.php</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
