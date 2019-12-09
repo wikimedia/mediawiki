@@ -123,7 +123,7 @@ class RecompressTracked {
 		$this->pageBlobClass = function_exists( 'xdiff_string_bdiff' ) ?
 			DiffHistoryBlob::class : ConcatenatedGzipHistoryBlob::class;
 		$this->orphanBlobClass = ConcatenatedGzipHistoryBlob::class;
-		// @phan-suppress-next-line PhanAccessMethodInternal
+
 		$this->blobStore = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()
 			->newSqlBlobStore();

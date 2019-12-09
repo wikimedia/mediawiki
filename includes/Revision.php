@@ -90,7 +90,6 @@ class Revision implements IDBAccessObject {
 	 * @return SqlBlobStore
 	 */
 	protected static function getBlobStore( $wiki = false ) {
-		// @phan-suppress-next-line PhanAccessMethodInternal
 		$store = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()
 			->newSqlBlobStore( $wiki );

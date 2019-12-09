@@ -239,7 +239,7 @@ class CompressOld extends Maintenance {
 			/** @var ExternalStoreDB $storeObj */
 			$storeObj = $esFactory->getStore( 'DB' );
 		}
-		// @phan-suppress-next-line PhanAccessMethodInternal
+
 		$blobStore = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()
 			->newSqlBlobStore();

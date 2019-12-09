@@ -62,6 +62,7 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 					'preservedusername' => (string)$preservedReq->username,
 				];
 			} else {
+				// @phan-suppress-next-line PhanUselessBinaryAddRight
 				$ret += [
 					'haspreservedstate' => false,
 					'hasprimarypreservedstate' => false,

@@ -92,6 +92,11 @@ $cfg['exclude_analysis_directory_list'] = [
 // @todo Enable when the issue above is resolved and we update our config!
 $cfg['redundant_condition_detection'] = false;
 
+// These are too spammy for now. TODO enable
+$cfg['null_casts_as_any_type'] = true;
+$cfg['scalar_implicit_cast'] = true;
+$cfg['suppress_issue_types'][] = 'PhanTypePossiblyInvalidDimOffset';
+
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility
 $cfg['enable_class_alias_support'] = false;
