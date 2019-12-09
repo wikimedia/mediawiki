@@ -74,6 +74,15 @@ class SpecialPasswordReset extends FormSpecialPage {
 		parent::checkExecutePermissions( $user );
 	}
 
+	/**
+	 * @param string $par
+	 */
+	public function execute( $par ) {
+		$out = $this->getOutput();
+		$out->disallowUserJs();
+		parent::execute( $par );
+	}
+
 	protected function getFormFields() {
 		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
 		$a = [];
