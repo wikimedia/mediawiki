@@ -42,7 +42,7 @@ class SectionProfileCallback extends ScopedCallback {
 		$this->section = $section;
 	}
 
-	function __destruct() {
+	public function __destruct() {
 		$this->profiler->profileOutInternal( $this->section );
 	}
 }

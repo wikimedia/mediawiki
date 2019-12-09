@@ -3315,7 +3315,7 @@ ERROR;
 	 *
 	 * @return OOUI\FieldLayout OOUI FieldLayout with Label and Input
 	 */
-	function getSummaryInputWidget( $summary = "", $labelText = null, $inputAttrs = null ) {
+	public function getSummaryInputWidget( $summary = "", $labelText = null, $inputAttrs = null ) {
 		$inputAttrs = OOUI\Element::configFromHtmlAttributes(
 			$this->getSummaryInputAttributes( $inputAttrs )
 		);

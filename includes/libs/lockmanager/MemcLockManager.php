@@ -345,7 +345,7 @@ class MemcLockManager extends QuorumLockManager {
 	/**
 	 * Make sure remaining locks get cleared for sanity
 	 */
-	function __destruct() {
+	public function __destruct() {
 		while ( count( $this->locksHeld ) ) {
 			foreach ( $this->locksHeld as $path => $locks ) {
 				$this->doUnlock( [ $path ], self::LOCK_EX );

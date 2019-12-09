@@ -185,7 +185,7 @@ class TempFSFile extends FSFile {
 	/**
 	 * Cleans up after the temporary file by deleting it
 	 */
-	function __destruct() {
+	public function __destruct() {
 		if ( $this->canDelete ) {
 			$this->purge();
 		}

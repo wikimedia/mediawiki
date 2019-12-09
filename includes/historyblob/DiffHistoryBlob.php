@@ -301,7 +301,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	/**
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		$this->compress();
 		if ( $this->mItems === [] ) {
 			$info = false;
@@ -328,7 +328,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		return [ 'mCompressed' ];
 	}
 
-	function __wakeup() {
+	public function __wakeup() {
 		// addItem() doesn't work if mItems is partially filled from mDiffs
 		$this->mFrozen = true;
 		$info = unserialize( gzinflate( $this->mCompressed ) );

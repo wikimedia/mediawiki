@@ -350,7 +350,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @private
 	 */
-	function __construct( $row, $queryFlags = 0, Title $title = null ) {
+	public function __construct( $row, $queryFlags = 0, Title $title = null ) {
 		global $wgUser;
 
 		if ( $row instanceof RevisionRecord ) {
@@ -646,7 +646,7 @@ class Revision implements IDBAccessObject {
 	 * @return string|null Returns null if the specified audience does not have access to the
 	 *  comment.
 	 */
-	function getComment( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getComment( $audience = self::FOR_PUBLIC, User $user = null ) {
 		global $wgUser;
 
 		if ( $audience === self::FOR_THIS_USER && !$user ) {
@@ -1057,7 +1057,7 @@ class Revision implements IDBAccessObject {
 	 * @param int $flags
 	 * @return string|bool False if not found
 	 */
-	static function getTimestampFromId( $title, $id, $flags = 0 ) {
+	public static function getTimestampFromId( $title, $id, $flags = 0 ) {
 		return self::getRevisionStore()->getTimestampFromId( $id, $flags );
 	}
 
@@ -1068,7 +1068,7 @@ class Revision implements IDBAccessObject {
 	 * @param int $id Page id
 	 * @return int
 	 */
-	static function countByPageId( $db, $id ) {
+	public static function countByPageId( $db, $id ) {
 		return self::getRevisionStore()->countRevisionsByPageId( $db, $id );
 	}
 
@@ -1079,7 +1079,7 @@ class Revision implements IDBAccessObject {
 	 * @param Title $title
 	 * @return int
 	 */
-	static function countByTitle( $db, $title ) {
+	public static function countByTitle( $db, $title ) {
 		return self::getRevisionStore()->countRevisionsByTitle( $db, $title );
 	}
 

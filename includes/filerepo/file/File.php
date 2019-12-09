@@ -212,7 +212,7 @@ abstract class File implements IDBAccessObject {
 		return $ret;
 	}
 
-	function __get( $name ) {
+	public function __get( $name ) {
 		$function = [ $this, 'get' . ucfirst( $name ) ];
 		if ( !is_callable( $function ) ) {
 			return null;
