@@ -295,7 +295,7 @@ class RedisConnRef implements LoggerAwareInterface {
 		return $this->conn === $conn;
 	}
 
-	function __destruct() {
+	public function __destruct() {
 		$this->pool->freeConnection( $this->server, $this->conn );
 	}
 }

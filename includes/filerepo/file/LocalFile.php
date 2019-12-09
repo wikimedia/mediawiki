@@ -2278,7 +2278,7 @@ class LocalFile extends File {
 	/**
 	 * Clean up any dangling locks
 	 */
-	function __destruct() {
+	public function __destruct() {
 		$this->unlock();
 	}
 }

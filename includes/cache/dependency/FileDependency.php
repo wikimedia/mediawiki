@@ -48,7 +48,7 @@ class FileDependency extends CacheDependency {
 	/**
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		$this->loadDependencyValues();
 
 		return [ 'filename', 'timestamp' ];

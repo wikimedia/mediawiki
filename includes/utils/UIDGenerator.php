@@ -677,7 +677,7 @@ class UIDGenerator {
 		$gen->deleteCacheFiles();
 	}
 
-	function __destruct() {
+	public function __destruct() {
 		array_map( 'fclose', array_filter( $this->fileHandles ) );
 	}
 }

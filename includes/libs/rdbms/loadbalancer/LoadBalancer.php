@@ -2419,7 +2419,7 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->getServerName( $this->getWriterIndex() );
 	}
 
-	function __destruct() {
+	public function __destruct() {
 		// Avoid connection leaks for sanity
 		$this->disable( __METHOD__, $this->ownerId );
 	}

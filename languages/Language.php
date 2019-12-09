@@ -495,7 +495,7 @@ class Language {
 	 * Reduce memory usage
 	 * @suppress PhanTypeSuspiciousNonTraversableForeach
 	 */
-	function __destruct() {
+	public function __destruct() {
 		foreach ( $this as $name => $value ) {
 			unset( $this->$name );
 		}
