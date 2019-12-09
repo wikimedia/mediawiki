@@ -91,4 +91,26 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			'Multibyte words' => [ 'ТесТ 123, тест 测试 test раз-два', 'Тест 123, Тест 测试 Test Раз-Два' ],
 		];
 	}
+
+	/**
+	 * @covers ::firstChar
+	 * @dataProvider provideFirstChar
+	 */
+	public function testFirstChar( string $input, string $expected ) {
+		$lang = $this->getObj();
+		$this->assertSame( $expected, $lang->firstChar( $input ) );
+	}
+
+	public function provideFirstChar() {
+		return [
+			'Empty string' => [ '', '' ],
+			'Single Latin' => [ 'T', 'T' ],
+			'Latin' => [ 'TEST', 'T' ],
+			'Digit' => [ '123', '1' ],
+			'Russian' => [ 'Ёпт', 'Ё' ],
+			'Emoji' => [ '😂💀☢️', '😂' ],
+			// Korean is special-cased to remove single letters from syllables
+			'Korean' => [ '위키백과', 'ㅇ' ],
+		];
+	}
 }
