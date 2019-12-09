@@ -115,6 +115,8 @@ because of Phabricator reports.
 * The easy-deflate.inflate module, unused since 1.32, was removed.
 * The easy-deflate.deflate module was removed. Use the mediawiki.deflate
   module instead.
+* (T219604) The "jquery.ui.*" and "jquery.effects.*" module aliases,
+  deprecated in 1.34, have been removed. Use "jquery.ui" instead.
 * The internal variable $constructorOptions for the Parser & SpecialPageFactory,
   exposed only for integration purposes, are now each replaced by a const called
   CONSTRUCTOR_OPTIONS. This was a breaking change made without deprecation.
