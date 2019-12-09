@@ -1768,7 +1768,7 @@ class Linker {
 	 * @param string $trail
 	 * @return array
 	 */
-	static function splitTrail( $trail ) {
+	public static function splitTrail( $trail ) {
 		$regex = MediaWikiServices::getInstance()->getContentLanguage()->linkTrail();
 		$inside = '';
 		if ( $trail !== '' && preg_match( $regex, $trail, $m ) ) {

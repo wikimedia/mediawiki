@@ -1063,7 +1063,7 @@ class Html {
 	 * @param string[] $urls
 	 * @return string
 	 */
-	static function srcSet( array $urls ) {
+	public static function srcSet( array $urls ) {
 		$candidates = [];
 		foreach ( $urls as $density => $url ) {
 			// Cast density to float to strip 'x', then back to string to serve

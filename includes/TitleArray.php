@@ -39,7 +39,7 @@ abstract class TitleArray implements Iterator {
 	 *   page_latest (if those will be used).  See Title::newFromRow.
 	 * @return TitleArrayFromResult
 	 */
-	static function newFromResult( $res ) {
+	public static function newFromResult( $res ) {
 		$array = null;
 		if ( !Hooks::run( 'TitleArrayFromResult', [ &$array, $res ] ) ) {
 			return null;

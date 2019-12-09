@@ -398,7 +398,7 @@ class Status extends StatusValue {
 	 * the caller's responsibility (otherwise it will just fall back to the global request context).
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		$keys = array_keys( get_object_vars( $this ) );
 		return array_diff( $keys, [ 'cleanCallback', 'messageLocalizer' ] );
 	}
@@ -406,7 +406,7 @@ class Status extends StatusValue {
 	/**
 	 * Sanitize the callback parameter on wakeup, to avoid arbitrary execution.
 	 */
-	function __wakeup() {
+	public function __wakeup() {
 		$this->cleanCallback = false;
 		$this->messageLocalizer = null;
 	}
