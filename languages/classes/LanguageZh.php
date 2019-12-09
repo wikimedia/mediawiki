@@ -155,7 +155,7 @@ class LanguageZh extends LanguageZh_hans {
 	 * @param string $text
 	 * @return string
 	 */
-	function segmentForDiff( $text ) {
+	public function segmentForDiff( $text ) {
 		return preg_replace( '/[\xc0-\xff][\x80-\xbf]*/', ' $0', $text );
 	}
 
@@ -163,7 +163,7 @@ class LanguageZh extends LanguageZh_hans {
 	 * @param string $text
 	 * @return string
 	 */
-	function unsegmentForDiff( $text ) {
+	public function unsegmentForDiff( $text ) {
 		return preg_replace( '/ ([\xc0-\xff][\x80-\xbf]*)/', '$1', $text );
 	}
 

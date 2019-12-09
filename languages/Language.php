@@ -294,7 +294,7 @@ class Language {
 	 * @throws MWException
 	 * @return Language
 	 */
-	static function factory( $code ) {
+	public static function factory( $code ) {
 		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $code );
 	}
 
@@ -673,7 +673,7 @@ class Language {
 	 * @param string $text
 	 * @return int|bool An integer if $text is a valid value otherwise false
 	 */
-	function getLocalNsIndex( $text ) {
+	public function getLocalNsIndex( $text ) {
 		$lctext = $this->lc( $text );
 		$ids = $this->getNamespaceIds();
 		return $ids[$lctext] ?? false;
@@ -806,7 +806,7 @@ class Language {
 	/**
 	 * @return array
 	 */
-	function getDateFormats() {
+	public function getDateFormats() {
 		return $this->localisationCache->getItem( $this->mCode, 'dateFormats' );
 	}
 
@@ -1970,7 +1970,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	static function romanNumeral( $num ) {
+	public static function romanNumeral( $num ) {
 		static $table = [
 			[ '', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X' ],
 			[ '', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC', 'C' ],
@@ -2001,7 +2001,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	static function hebrewNumeral( $num ) {
+	public static function hebrewNumeral( $num ) {
 		static $table = [
 			[ '', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י' ],
 			[ '', 'י', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ', 'ק' ],
@@ -2166,7 +2166,7 @@ class Language {
 	 *   if int/string, assumed to be a format.
 	 * @return string
 	 */
-	function dateFormat( $usePrefs = true ) {
+	public function dateFormat( $usePrefs = true ) {
 		global $wgUser;
 
 		if ( is_bool( $usePrefs ) ) {
@@ -2197,7 +2197,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function getDateFormatString( $type, $pref ) {
+	public function getDateFormatString( $type, $pref ) {
 		$wasDefault = false;
 		if ( $pref == 'default' ) {
 			$wasDefault = true;
@@ -2585,7 +2585,7 @@ class Language {
 	/**
 	 * @return array
 	 */
-	function getAllMessages() {
+	public function getAllMessages() {
 		return $this->localisationCache->getItem( $this->mCode, 'messages' );
 	}
 
@@ -2699,7 +2699,7 @@ class Language {
 	 * @param string $str
 	 * @return bool
 	 */
-	function isMultibyte( $str ) {
+	private function isMultibyte( $str ) {
 		return strlen( $str ) !== mb_strlen( $str );
 	}
 
@@ -2707,7 +2707,7 @@ class Language {
 	 * @param string $str
 	 * @return mixed|string
 	 */
-	function ucwords( $str ) {
+	public function ucwords( $str ) {
 		if ( $this->isMultibyte( $str ) ) {
 			$str = $this->lc( $str );
 
@@ -2733,7 +2733,7 @@ class Language {
 	 * @param string $str
 	 * @return mixed
 	 */
-	function ucwordbreaks( $str ) {
+	public function ucwordbreaks( $str ) {
 		if ( $this->isMultibyte( $str ) ) {
 			$str = $this->lc( $str );
 
@@ -2786,7 +2786,7 @@ class Language {
 	 * @param string $s
 	 * @return string
 	 */
-	function checkTitleEncoding( $s ) {
+	public function checkTitleEncoding( $s ) {
 		if ( is_array( $s ) ) {
 			throw new MWException( 'Given array to checkTitleEncoding.' );
 		}
@@ -2888,7 +2888,7 @@ class Language {
 	 * @param string $s
 	 * @return string
 	 */
-	function firstChar( $s ) {
+	public function firstChar( $s ) {
 		$matches = [];
 		preg_match(
 			'/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
@@ -3150,7 +3150,7 @@ class Language {
 	 * @param string $text The text to be emphasized.
 	 * @return string
 	 */
-	function emphasize( $text ) {
+	public function emphasize( $text ) {
 		return "<em>$text</em>";
 	}
 
@@ -3239,7 +3239,7 @@ class Language {
 	 *  string.
 	 * @return string
 	 */
-	function commafy( $number ) {
+	public function commafy( $number ) {
 		$digitGroupingPattern = $this->digitGroupingPattern();
 		$minimumGroupingDigits = $this->minimumGroupingDigits();
 		if ( $number === null ) {

@@ -56,7 +56,7 @@ class LanguageJa extends Language {
 	 * @param string $text
 	 * @return string
 	 */
-	function emphasize( $text ) {
+	public function emphasize( $text ) {
 		return $text;
 	}
 }

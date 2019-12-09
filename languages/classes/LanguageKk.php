@@ -86,7 +86,7 @@ class KkConverter extends LanguageConverter {
 		$this->mTables['kk-cn']->merge( $this->mTables['kk-arab'] );
 	}
 
-	function loadRegs() {
+	private function loadRegs() {
 		$this->mCyrl2Latn = [
 			# # Punctuation
 			'/№/u' => 'No.',
@@ -296,7 +296,7 @@ class KkConverter extends LanguageConverter {
 	 * @param string $toVariant
 	 * @return mixed|string
 	 */
-	function regsConverter( $text, $toVariant ) {
+	private function regsConverter( $text, $toVariant ) {
 		if ( $text == '' ) {
 			return $text;
 		}
