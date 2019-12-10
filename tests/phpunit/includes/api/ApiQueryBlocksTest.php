@@ -43,8 +43,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'action' => 'query',
 			'list' => 'blocks',
 		] );
-		$this->arrayHasKey( 'query', $data );
-		$this->arrayHasKey( 'blocks', $data['query'] );
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'blocks', $data['query'] );
 		$this->assertCount( 1, $data['query']['blocks'] );
 		$subset = [
 			'id' => $block->getId(),
@@ -72,8 +72,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'action' => 'query',
 			'list' => 'blocks',
 		] );
-		$this->arrayHasKey( 'query', $data );
-		$this->arrayHasKey( 'blocks', $data['query'] );
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'blocks', $data['query'] );
 		$this->assertCount( 1, $data['query']['blocks'] );
 		$subset = [
 			'id' => $block->getId(),
@@ -135,8 +135,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'action' => 'query',
 			'list' => 'blocks',
 		] );
-		$this->arrayHasKey( 'query', $data );
-		$this->arrayHasKey( 'blocks', $data['query'] );
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'blocks', $data['query'] );
 		$this->assertCount( 1, $data['query']['blocks'] );
 		$flagSubset = array_merge( $subset, [
 			'partial' => !$block->isSitewide(),
@@ -150,8 +150,8 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'list' => 'blocks',
 			'bkprop' => 'id|user|expiry|restrictions'
 		] );
-		$this->arrayHasKey( 'query', $data );
-		$this->arrayHasKey( 'blocks', $data['query'] );
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'blocks', $data['query'] );
 		$this->assertCount( 1, $data['query']['blocks'] );
 		$restrictionsSubset = array_merge( $subset, [
 			'restrictions' => [
