@@ -767,6 +767,19 @@
 		"AutoloadClasses": {
 			"type": "object"
 		},
+		"TestAutoloadNamespaces": {
+			"type": "object",
+			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading to be used in tests",
+			"patternProperties": {
+				"^[A-Za-z0-9\\\\]+\\\\$": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
+		},
+		"TestAutoloadClasses": {
+			"type": "object"
+		},
 		"Hooks": {
 			"type": [ "string", "object" ],
 			"description": "Hooks this extension uses (mapping of hook name to callback)"

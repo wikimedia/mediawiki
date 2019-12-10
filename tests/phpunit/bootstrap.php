@@ -87,6 +87,7 @@ foreach ( $directoryToJsonMap as $directory => $jsonFile ) {
 				$info = json_decode( $json, true );
 				$dir = dirname( $jsonPath );
 				ExtensionRegistry::exportAutoloadClassesAndNamespaces( $dir, $info );
+				ExtensionRegistry::exportTestAutoloadClassesAndNamespaces( $dir, $info );
 			}
 		}
 	}
