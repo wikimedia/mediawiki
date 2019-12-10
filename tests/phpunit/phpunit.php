@@ -48,6 +48,8 @@ class PHPUnitMaintClass extends Maintenance {
 		self::requireTestsAutoloader();
 
 		TestSetup::applyInitialConfig();
+
+		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
 	}
 
 	public function execute() {
