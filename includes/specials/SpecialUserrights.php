@@ -578,6 +578,14 @@ class UserrightsPage extends SpecialPage {
 			return Status::newFatal( 'nosuchusershort', $username );
 		}
 
+		if ( $user->isHidden() && !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userHasRight( $this->getUser(), 'hideuser' )
+		) {
+			// Cannot see hidden users, pretend they don't exist
+			return Status::newFatal( 'nosuchusershort', $username );
+		}
+
 		return Status::newGood( $user );
 	}
 
