@@ -3380,7 +3380,7 @@
 	"logentry-newusers-newusers": "$1 erabiltzaile kontua {{GENDER:$2|sortu da}}",
 	"logentry-newusers-create": "$1 erabiltzaile kontua {{GENDER:$2|sortu da}}",
 	"logentry-newusers-create2": "$1 wikilariak $3 erabiltzaile kontua {{GENDER:$2|sortu}} du",
-	"logentry-newusers-byemail": "$1(e)k $3 erabiltzaile kontua {{GENDER:$2|sortu du}} eta pasahitza emailez bidali da",
+	"logentry-newusers-byemail": "$1 wikilariak $3 erabiltzaile kontua {{GENDER:$2|sortu du}}, eta pasahitza posta elektronikoz bidali da",
 	"logentry-newusers-autocreate": "$1 erabiltzaile kontua automatikoki {{GENDER:$2|sortu da}}",
 	"logentry-protect-move_prot": "$1 wikilariak babespen ezarpenak $4tik $3ra {{GENDER:$2|mugitu}} egin ditu",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|administratzaileak}} babesa kendu dio «$3» orriari",
