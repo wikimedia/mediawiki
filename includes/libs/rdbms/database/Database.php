@@ -1576,7 +1576,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'error' => $error,
 				'sql1line' => $sql1line,
 				'fname' => $fname,
-				'trace' => ( new RuntimeException() )->getTraceAsString()
+				'exception' => new RuntimeException()
 			] )
 		);
 		$this->queryLogger->debug( "SQL ERROR: " . $error . "\n" );
@@ -2433,7 +2433,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
 			$this->queryLogger->warning(
 				__METHOD__ . ": use of subqueries is not supported this way.",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 
 			return $name;
@@ -4230,7 +4230,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$fname . ': lost connection to {dbserver}; reconnected',
 				[
 					'dbserver' => $this->getServer(),
-					'trace' => ( new RuntimeException() )->getTraceAsString()
+					'exception' => new RuntimeException()
 				]
 			);
 		} catch ( DBConnectionError $e ) {
@@ -4755,8 +4755,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function __clone() {
 		$this->connLogger->warning(
-			"Cloning " . static::class . " is not recommended; forking connection:\n" .
-			( new RuntimeException() )->getTraceAsString()
+			"Cloning " . static::class . " is not recommended; forking connection",
+			[ 'exception' => new RuntimeException() ]
 		);
 
 		if ( $this->isOpen() ) {

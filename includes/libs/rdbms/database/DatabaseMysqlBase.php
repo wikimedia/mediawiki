@@ -790,7 +790,7 @@ abstract class DatabaseMysqlBase extends Database {
 					$this->getLogContext( [
 						'method' => __METHOD__,
 						'age' => $staleness,
-						'trace' => ( new RuntimeException() )->getTraceAsString()
+						'exception' => new RuntimeException()
 					] )
 				);
 			}
