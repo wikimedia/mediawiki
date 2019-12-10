@@ -95,6 +95,13 @@ class ExtensionRegistry {
 	protected $checkDev = false;
 
 	/**
+	 * Whether test classes and namespaces should be added to the auto loader
+	 *
+	 * @var bool
+	 */
+	protected $loadTestClassesAndNamespaces = false;
+
+	/**
 	 * @var ExtensionRegistry
 	 */
 	private static $instance;
@@ -117,6 +124,17 @@ class ExtensionRegistry {
 	 */
 	public function setCheckDevRequires( $check ) {
 		$this->checkDev = $check;
+	}
+
+	/**
+	 * Controls if classes and namespaces defined under the keys TestAutoloadClasses and
+	 * TestAutloadNamespaces should be added to the autoloader.
+	 *
+	 * @since 1.35
+	 * @param bool $load
+	 */
+	public function setLoadTestClassesAndNamespaces( $load ) {
+		$this->loadTestClassesAndNamespaces = $load;
 	}
 
 	/**
@@ -304,6 +322,15 @@ class ExtensionRegistry {
 				$autoloadNamespaces
 			);
 
+			if ( $this->loadTestClassesAndNamespaces ) {
+				self::exportTestAutoloadClassesAndNamespaces(
+					$dir,
+					$info,
+					$autoloadClasses,
+					$autoloadNamespaces
+				);
+			}
+
 			// get all requirements/dependencies for this extension
 			$requires = $processor->getRequirements( $info, $this->checkDev );
 
@@ -356,6 +383,29 @@ class ExtensionRegistry {
 		}
 		if ( isset( $info['AutoloadNamespaces'] ) ) {
 			$autoloadNamespaces += self::processAutoLoader( $dir, $info['AutoloadNamespaces'] );
+			AutoLoader::$psr4Namespaces += $autoloadNamespaces;
+		}
+	}
+
+	/**
+	 * Export test autoload classes and namespaces for a given directory and parsed JSON info file.
+	 *
+	 * @since 1.35
+	 * @param string $dir
+	 * @param array $info
+	 * @param array &$autoloadClasses
+	 * @param array &$autoloadNamespaces
+	 */
+	public static function exportTestAutoloadClassesAndNamespaces(
+		$dir, $info, &$autoloadClasses = [], &$autoloadNamespaces = []
+	) {
+		if ( isset( $info['TestAutoloadClasses'] ) ) {
+			$autoload = self::processAutoLoader( $dir, $info['TestAutoloadClasses'] );
+			$GLOBALS['wgAutoloadClasses'] += $autoload;
+			$autoloadClasses += $autoload;
+		}
+		if ( isset( $info['TestAutoloadNamespaces'] ) ) {
+			$autoloadNamespaces += self::processAutoLoader( $dir, $info['TestAutoloadNamespaces'] );
 			AutoLoader::$psr4Namespaces += $autoloadNamespaces;
 		}
 	}
