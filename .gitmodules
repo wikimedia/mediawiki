@@ -682,11 +682,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ProtectSite
 	branch = master
 	ignore = dirty
-[submodule "extensions/EducationProgram"]
-	path = extensions/EducationProgram
-	url = https://github.com/wikimedia/mediawiki-extensions-EducationProgram
-	branch = REL1_34
-	ignore = dirty
 [submodule "extensions/Theme"]
 	path = extensions/Theme
 	url = https://github.com/wikimedia/mediawiki-extensions-Theme
