@@ -492,24 +492,26 @@ class XmlDumpWriter {
 				$textAttributes['location'] = $slot->getAddress();
 			}
 
-			// Output the numerical text ID if possible, for backwards compatibility.
-			// Note that this is currently the ONLY reason we have a BlobStore here at all.
-			// When removing this line, check whether the BlobStore has become unused.
-			try {
-				// NOTE: this will only work for addresses of the form "tt:12345".
-				// If we want to support other kinds of addresses in the future,
-				// we will have to silently ignore failures here.
-				// For now, this fails for "tt:0", which is present in the WMF production
-				// database of of Juli 2019, due to data corruption.
-				$textId = $this->getBlobStore()->getTextIdFromAddress( $slot->getAddress() );
-			} catch ( InvalidArgumentException $ex ) {
-				MWDebug::warning( 'Bad content address for slot ' . $slot->getRole()
-					. ' of revision ' . $slot->getRevision() . ': ' . $ex->getMessage() );
-				$textId = 0;
-			}
+			if ( $isMain ) {
+				// Output the numerical text ID if possible, for backwards compatibility.
+				// Note that this is currently the ONLY reason we have a BlobStore here at all.
+				// When removing this line, check whether the BlobStore has become unused.
+				try {
+					// NOTE: this will only work for addresses of the form "tt:12345".
+					// If we want to support other kinds of addresses in the future,
+					// we will have to silently ignore failures here.
+					// For now, this fails for "tt:0", which is present in the WMF production
+					// database of of Juli 2019, due to data corruption.
+					$textId = $this->getBlobStore()->getTextIdFromAddress( $slot->getAddress() );
+				} catch ( InvalidArgumentException $ex ) {
+					MWDebug::warning( 'Bad content address for slot ' . $slot->getRole()
+						. ' of revision ' . $slot->getRevision() . ': ' . $ex->getMessage() );
+					$textId = 0;
+				}
 
-			if ( $textId ) {
-				$textAttributes['id'] = $textId;
+				if ( is_int( $textId ) ) {
+					$textAttributes['id'] = $textId;
+				}
 			}
 
 			$out .= $indent . Xml::element( 'text', $textAttributes ) . "\n";
