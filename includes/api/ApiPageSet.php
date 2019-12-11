@@ -45,7 +45,7 @@ class ApiPageSet extends ApiBase {
 	const DISABLE_GENERATORS = 1;
 
 	private $mDbSource;
-	private $mParams;
+	private $mParams = [];
 	private $mResolveRedirects;
 	private $mConvertTitles;
 	private $mAllowGenerator;
