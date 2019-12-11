@@ -24,6 +24,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Revision\SlotRecord;
+
 /**
  * Readahead helper for making large MediaWiki data dumps;
  * reads in a previous XML dump to sequentially prefetch text
@@ -62,9 +64,10 @@ class BaseDump {
 	 *
 	 * @param int $page ID number of page to read
 	 * @param int $rev ID number of revision to read
+	 * @param string $slot Role name of the slot to read
 	 * @return string|null
 	 */
-	function prefetch( $page, $rev ) {
+	function prefetch( $page, $rev, $slot = SlotRecord::MAIN ) {
 		$page = intval( $page );
 		$rev = intval( $rev );
 		while ( $this->lastPage < $page && !$this->atEnd ) {
@@ -84,6 +87,19 @@ class BaseDump {
 		}
 		if ( $this->lastRev == $rev && !$this->atEnd ) {
 			$this->debug( "BaseDump::prefetch hit on $page, $rev [$this->lastPage, $this->lastRev]" );
+
+			if ( $slot !== SlotRecord::MAIN ) {
+				$lastSlot = SlotRecord::MAIN;
+				while ( $lastSlot !== $slot ) {
+					if ( !$this->skipTo( 'content', 'revision' ) ) {
+						return null;
+					}
+					if ( !$this->skipTo( 'role', 'revision' ) ) {
+						return null;
+					}
+					$lastSlot = $this->nodeContents();
+				}
+			}
 
 			return $this->nextText();
 		} else {
@@ -138,7 +154,9 @@ class BaseDump {
 	 * @return string
 	 */
 	function nextText() {
-		$this->skipTo( 'text' );
+		if ( !$this->skipTo( 'text', 'revision' ) ) {
+			return null;
+		}
 
 		return strval( $this->nodeContents() );
 	}
