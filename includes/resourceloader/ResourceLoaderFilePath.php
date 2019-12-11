@@ -43,7 +43,7 @@ class ResourceLoaderFilePath {
 	 * @param string $localBasePath Base path to prepend when generating a local path.
 	 * @param string $remoteBasePath Base path to prepend when generating a remote path.
 	 */
-	public function __construct( $path, $localBasePath, $remoteBasePath ) {
+	public function __construct( $path, $localBasePath = '', $remoteBasePath = '' ) {
 		$this->path = $path;
 		$this->localBasePath = $localBasePath;
 		$this->remoteBasePath = $remoteBasePath;
@@ -53,14 +53,18 @@ class ResourceLoaderFilePath {
 	 * @return string
 	 */
 	public function getLocalPath() {
-		return "{$this->localBasePath}/{$this->path}";
+		return $this->localBasePath === '' ?
+			$this->path :
+			"{$this->localBasePath}/{$this->path}";
 	}
 
 	/**
 	 * @return string
 	 */
 	public function getRemotePath() {
-		return "{$this->remoteBasePath}/{$this->path}";
+		return $this->remoteBasePath === '' ?
+			$this->path :
+			"{$this->remoteBasePath}/{$this->path}";
 	}
 
 	/**

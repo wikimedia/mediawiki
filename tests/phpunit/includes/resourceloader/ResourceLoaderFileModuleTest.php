@@ -694,6 +694,50 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 					'lang' => 'fy'
 				]
 			],
+			'package file with callback that returns a file (1)' => [
+				$base + [
+					'packageFiles' => [
+						[ 'name' => 'dynamic.js', 'callback' => function ( $context ) {
+							$file = $context->getLanguage() === 'fy' ? 'script-comment.js' : 'script-nosemi.js';
+							return new ResourceLoaderFilePath( $file );
+						} ]
+					]
+				],
+				[
+					'files' => [
+						'dynamic.js' => [
+							'type' => 'script',
+							'content' => $commentScript,
+						]
+					],
+					'main' => 'dynamic.js'
+				],
+				[
+					'lang' => 'fy'
+				]
+			],
+			'package file with callback that returns a file (2)' => [
+				$base + [
+					'packageFiles' => [
+						[ 'name' => 'dynamic.js', 'callback' => function ( $context ) {
+							$file = $context->getLanguage() === 'fy' ? 'script-comment.js' : 'script-nosemi.js';
+							return new ResourceLoaderFilePath( $file );
+						} ]
+					]
+				],
+				[
+					'files' => [
+						'dynamic.js' => [
+							'type' => 'script',
+							'content' => $nosemiScript,
+						]
+					],
+					'main' => 'dynamic.js'
+				],
+				[
+					'lang' => 'nl'
+				]
+			],
 			[
 				$base + [
 					'packageFiles' => [

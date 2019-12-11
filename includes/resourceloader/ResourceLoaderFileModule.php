@@ -1172,11 +1172,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 					$expanded['callback'] = $fileInfo['callback'];
 				} else {
 					// Else go ahead invoke callback with its arguments.
-					$expanded['content'] = ( $fileInfo['callback'] )(
+					$callbackResult = ( $fileInfo['callback'] )(
 						$context,
 						$this->getConfig(),
 						$expanded['callbackParam']
 					);
+					if ( $callbackResult instanceof ResourceLoaderFilePath ) {
+						$expanded['filePath'] = $callbackResult->getPath();
+					} else {
+						$expanded['content'] = $callbackResult;
+					}
 				}
 			} elseif ( isset( $fileInfo['config'] ) ) {
 				if ( $type !== 'data' ) {
@@ -1237,7 +1242,23 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Expand file contents
 		foreach ( $expandedPackageFiles['files'] as &$fileInfo ) {
 			// Turn any 'filePath' or 'callback' key into actual 'content',
-			// and remove the key after that.
+			// and remove the key after that. The callback could return a
+			// ResourceLoaderFilePath object; if that happens, fall through
+			// to the 'filePath' handling.
+			if ( isset( $fileInfo['callback'] ) ) {
+				$callbackResult = ( $fileInfo['callback'] )(
+					$context,
+					$this->getConfig(),
+					$fileInfo['callbackParam']
+				);
+				if ( $callbackResult instanceof ResourceLoaderFilePath ) {
+					// Fall through to the filePath handling code below
+					$fileInfo['filePath'] = $callbackResult->getPath();
+				} else {
+					$fileInfo['content'] = $callbackResult;
+				}
+				unset( $fileInfo['callback'] );
+			}
 			if ( isset( $fileInfo['filePath'] ) ) {
 				$localPath = $this->getLocalPath( $fileInfo['filePath'] );
 				if ( !file_exists( $localPath ) ) {
@@ -1249,13 +1270,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				}
 				$fileInfo['content'] = $content;
 				unset( $fileInfo['filePath'] );
-			} elseif ( isset( $fileInfo['callback'] ) ) {
-				$fileInfo['content'] = ( $fileInfo['callback'] )(
-					$context,
-					$this->getConfig(),
-					$fileInfo['callbackParam']
-				);
-				unset( $fileInfo['callback'] );
 			}
 
 			// Not needed for client response, exists for use by getDefinitionSummary().
