@@ -429,10 +429,11 @@
 	 * @return {OO.ui.Error}
 	 */
 	mw.Feedback.Dialog.prototype.getErrorMessage = function () {
+		if ( this.$statusFromApi ) {
+			return new OO.ui.Error( this.$statusFromApi );
+		}
 		// The following messages can be used here:
 		// * feedback-error1
-		// * feedback-error2
-		// * feedback-error3
 		// * feedback-error4
 		return new OO.ui.Error( mw.msg( 'feedback-' + this.status ) );
 	};
@@ -465,6 +466,7 @@
 					fb.status = 'error2';
 					mw.log.warn( 'Feedback report failed with API error: ' + secondaryCode );
 				}
+				fb.$statusFromApi = ( new mw.Api() ).getErrorMessage( details );
 			} else {
 				fb.status = 'error1';
 			}

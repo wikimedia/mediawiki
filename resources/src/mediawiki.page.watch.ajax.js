@@ -195,23 +195,17 @@
 					updateWatchLink( $link, otherAction );
 					callback( $link, watchResponse.watched === true );
 				} )
-				.fail( function () {
-					var msg, link;
+				.fail( function ( code, data ) {
+					var $msg;
 
 					// Reset link to non-loading mode
 					updateWatchLink( $link, action );
 
 					// Format error message
-					link = mw.html.element(
-						'a', {
-							href: mw.util.getUrl( title ),
-							title: mwTitle.getPrefixedText()
-						}, mwTitle.getPrefixedText()
-					);
-					msg = mw.message( 'watcherrortext', link );
+					$msg = api.getErrorMessage( data );
 
 					// Report to user about the error
-					mw.notify( msg, {
+					mw.notify( $msg, {
 						tag: 'watch-self',
 						type: 'error'
 					} );
