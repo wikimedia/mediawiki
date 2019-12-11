@@ -582,6 +582,18 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers OutputPage::setRobotPolicy
+	 * @covers OutputPage::getRobotPolicy
+	 */
+	public function testGetRobotPolicy() {
+		$op = $this->newInstance();
+		$op->setRobotPolicy( 'noindex, follow' );
+
+		$policy = $op->getRobotPolicy();
+		$this->assertSame( 'noindex,follow', $policy );
+	}
+
+	/**
 	 * @covers OutputPage::setIndexPolicy
 	 * @covers OutputPage::setFollowPolicy
 	 * @covers OutputPage::getHeadLinksArray
