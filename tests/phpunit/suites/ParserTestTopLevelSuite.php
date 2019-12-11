@@ -14,6 +14,8 @@ use Wikimedia\ScopedCallback;
  * @group Database
  */
 class ParserTestTopLevelSuite extends TestSuite {
+	use SuiteEventsTrait;
+
 	/** @var ParserTestRunner */
 	private $ptRunner;
 

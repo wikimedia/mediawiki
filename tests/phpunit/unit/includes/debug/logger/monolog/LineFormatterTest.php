@@ -48,9 +48,9 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 			)
 		);
 		$out = $fixture->normalizeException( $boom );
-		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
-		$this->assertContains( "\nCaused by: [Exception LengthException]", $out );
-		$this->assertContains( "\nCaused by: [Exception LogicException]", $out );
+		$this->assertStringContainsString( "\n[Exception InvalidArgumentException]", $out );
+		$this->assertStringContainsString( "\nCaused by: [Exception LengthException]", $out );
+		$this->assertStringContainsString( "\nCaused by: [Exception LogicException]", $out );
 		$this->assertNotContains( "\n  #0", $out );
 	}
 
@@ -67,10 +67,10 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 			)
 		);
 		$out = $fixture->normalizeException( $boom );
-		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
-		$this->assertContains( "\nCaused by: [Exception LengthException]", $out );
-		$this->assertContains( "\nCaused by: [Exception LogicException]", $out );
-		$this->assertContains( "\n  #0", $out );
+		$this->assertStringContainsString( "\n[Exception InvalidArgumentException]", $out );
+		$this->assertStringContainsString( "\nCaused by: [Exception LengthException]", $out );
+		$this->assertStringContainsString( "\nCaused by: [Exception LogicException]", $out );
+		$this->assertStringContainsString( "\n  #0", $out );
 	}
 
 	/**
@@ -90,10 +90,10 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 			)
 		);
 		$out = $fixture->normalizeException( $boom );
-		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
-		$this->assertContains( "\nCaused by: [Exception LengthException]", $out );
-		$this->assertContains( "\nCaused by: [Error AssertionError]", $out );
-		$this->assertNotContains( "\n  #0", $out );
+		$this->assertStringContainsString( "\n[Exception InvalidArgumentException]", $out );
+		$this->assertStringContainsString( "\nCaused by: [Exception LengthException]", $out );
+		$this->assertStringContainsString( "\nCaused by: [Error AssertionError]", $out );
+		$this->assertStringNotContainsString( "\n  #0", $out );
 	}
 
 	/**
@@ -113,9 +113,9 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 			)
 		);
 		$out = $fixture->normalizeException( $boom );
-		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
-		$this->assertContains( "\nCaused by: [Exception LengthException]", $out );
-		$this->assertContains( "\nCaused by: [Error AssertionError]", $out );
-		$this->assertContains( "\n  #0", $out );
+		$this->assertStringContainsString( "\n[Exception InvalidArgumentException]", $out );
+		$this->assertStringContainsString( "\nCaused by: [Exception LengthException]", $out );
+		$this->assertStringContainsString( "\nCaused by: [Error AssertionError]", $out );
+		$this->assertStringContainsString( "\n  #0", $out );
 	}
 }

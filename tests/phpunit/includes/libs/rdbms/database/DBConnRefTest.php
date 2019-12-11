@@ -154,11 +154,11 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 	public function testToString() {
 		$ref = $this->getDBConnRef();
-		$this->assertInternalType( 'string', $ref->__toString() );
+		$this->assertIsString( $ref->__toString() );
 
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_MASTER, [], 'test', 0 ], DB_MASTER );
-		$this->assertInternalType( 'string', $ref->__toString() );
+		$this->assertIsString( $ref->__toString() );
 	}
 
 	/**

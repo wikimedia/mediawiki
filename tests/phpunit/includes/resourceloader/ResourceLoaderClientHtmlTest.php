@@ -346,7 +346,7 @@ Deprecation message.' ]
 
 	public function testGetDocumentAttributes() {
 		$client = new ResourceLoaderClientHtml( self::makeContext() );
-		$this->assertInternalType( 'array', $client->getDocumentAttributes() );
+		$this->assertIsArray( $client->getDocumentAttributes() );
 	}
 
 	private static function expandVariables( $text ) {

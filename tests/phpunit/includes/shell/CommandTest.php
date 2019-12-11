@@ -60,7 +60,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 			->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' )
 			->execute();
 
-		$this->assertNotContains( 'ThisIsStderr', $result->getStdout() );
+		$this->assertStringNotContainsString( 'ThisIsStderr', $result->getStdout() );
 		$this->assertEquals( "ThisIsStderr\n", $result->getStderr() );
 	}
 
