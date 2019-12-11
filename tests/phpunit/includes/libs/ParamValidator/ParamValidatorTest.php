@@ -51,7 +51,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 			->getMock();
 		$factory->method( 'createObject' )
 			->willReturnCallback( function ( $spec, $options ) use ( $callbacks ) {
-				$this->assertInternalType( 'array', $spec );
+				$this->assertIsArray( $spec );
 				$this->assertSame(
 					[ 'extraArgs' => [ $callbacks ], 'assertClass' => TypeDef::class ], $options
 				);

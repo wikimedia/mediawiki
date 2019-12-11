@@ -6,7 +6,6 @@ use Wikimedia\TestingAccessWrapper;
  * @group BagOStuff
  */
 class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
-
 	use MediaWikiCoversValidator;
 
 	/**
@@ -84,8 +83,18 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertSame( 0, $cacheInternal->bag['foo'][$cache::KEY_EXP], 'Indefinite' );
 		// 2 seconds tolerance
-		$this->assertEquals( time() + 10, $cacheInternal->bag['bar'][$cache::KEY_EXP], 'Future', 2 );
-		$this->assertEquals( time() - 10, $cacheInternal->bag['baz'][$cache::KEY_EXP], 'Past', 2 );
+		$this->assertEqualsWithDelta(
+			time() + 10,
+			$cacheInternal->bag['bar'][$cache::KEY_EXP],
+			2,
+			'Future'
+		);
+		$this->assertEqualsWithDelta(
+			time() - 10,
+			$cacheInternal->bag['baz'][$cache::KEY_EXP],
+			2,
+			'Past'
+		);
 
 		$this->assertEquals( 1, $cache->get( 'bar' ), 'Key not expired' );
 		$this->assertFalse( $cache->get( 'baz' ), 'Key expired' );

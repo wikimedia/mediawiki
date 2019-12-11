@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestSuite;
  * use parserTests.php.
  */
 class ParserTestFileSuite extends TestSuite {
+	use SuiteEventsTrait;
+
 	private $ptRunner;
 	private $ptFileName;
 	private $ptFileInfo;

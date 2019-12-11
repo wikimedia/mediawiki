@@ -12,10 +12,11 @@ use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 class DatabaseTest extends PHPUnit\Framework\TestCase {
-	/** @var DatabaseTestHelper */
-	private $db;
 
 	use MediaWikiCoversValidator;
+
+	/** @var DatabaseTestHelper */
+	private $db;
 
 	protected function setUp() : void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
@@ -647,7 +648,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$old = $this->db->tablePrefix();
 		$oldDomain = $this->db->getDomainId();
-		$this->assertInternalType( 'string', $old, 'Prefix is string' );
+		$this->assertIsString( $old, 'Prefix is string' );
 		$this->assertSame( $old, $this->db->tablePrefix(), "Prefix unchanged" );
 		$this->assertSame( $old, $this->db->tablePrefix( 'xxx_' ) );
 		$this->assertSame( 'xxx_', $this->db->tablePrefix(), "Prefix set" );
@@ -657,7 +658,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$old = $this->db->dbSchema();
 		$oldDomain = $this->db->getDomainId();
-		$this->assertInternalType( 'string', $old, 'Schema is string' );
+		$this->assertIsString( $old, 'Schema is string' );
 		$this->assertSame( $old, $this->db->dbSchema(), "Schema unchanged" );
 
 		$this->db->selectDB( 'y' );

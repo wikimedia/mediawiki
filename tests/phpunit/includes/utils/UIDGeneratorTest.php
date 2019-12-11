@@ -152,8 +152,8 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 		$id1 = UIDGenerator::newSequentialPerNodeID( 'test', 32 );
 		$id2 = UIDGenerator::newSequentialPerNodeID( 'test', 32 );
 
-		$this->assertInternalType( 'float', $id1, "ID returned as float" );
-		$this->assertInternalType( 'float', $id2, "ID returned as float" );
+		$this->assertIsFloat( $id1, "ID returned as float" );
+		$this->assertIsFloat( $id2, "ID returned as float" );
 		$this->assertGreaterThan( 0, $id1, "ID greater than 1" );
 		$this->assertGreaterThan( $id1, $id2, "IDs increasing in value" );
 	}
@@ -166,7 +166,7 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 		$ids = UIDGenerator::newSequentialPerNodeIDs( 'test', 32, 5 );
 		$lastId = null;
 		foreach ( $ids as $id ) {
-			$this->assertInternalType( 'float', $id, "ID returned as float" );
+			$this->assertIsFloat( $id, "ID returned as float" );
 			$this->assertGreaterThan( 0, $id, "ID greater than 1" );
 			if ( $lastId ) {
 				$this->assertGreaterThan( $lastId, $id, "IDs increasing in value" );
