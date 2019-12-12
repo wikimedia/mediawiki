@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ExtensionRegistry
@@ -415,5 +416,38 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		$this->expectException( Exception::class );
 		$this->expectExceptionMessage( "The attribute 'foo' has already been overridden" );
 		$reset2 = $registry->setAttributeForTest( 'foo', [ 'val2' ] );
+	}
+
+	public function testGetLazyLoadedAttribute() {
+		$registry = TestingAccessWrapper::newFromObject(
+			new ExtensionRegistry()
+		);
+		// Verify the registry is absolutely empty
+		$this->assertSame( [], $registry->getAttribute( 'FooBarBaz' ) );
+		$this->assertSame( [], $registry->getLazyLoadedAttribute( 'FooBarBaz' ) );
+		// Indicate what paths should be checked for the lazy attributes
+		$registry->loaded = [
+			'FooBar' => [
+				'path' => "{$this->dataDir}/attribute.json",
+			]
+		];
+		// Set in attribute.json
+		$this->assertEquals(
+			[ 'buzz' => true ],
+			$registry->getLazyLoadedAttribute( 'FooBarBaz' )
+		);
+		// Still return an array if nothing was set
+		$this->assertSame(
+			[],
+			$registry->getLazyLoadedAttribute( 'NotSetAtAll' )
+		);
+
+		// Test test overrides
+		$reset = $registry->setAttributeForTest( 'FooBarBaz',
+			[ 'lightyear' => true ] );
+		$this->assertEquals(
+			[ 'lightyear' => true ],
+			$registry->getLazyLoadedAttribute( 'FooBarBaz' )
+		);
 	}
 }
