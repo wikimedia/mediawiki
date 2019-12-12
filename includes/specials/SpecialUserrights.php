@@ -663,7 +663,10 @@ class UserrightsPage extends SpecialPage {
 
 		$autoList = [];
 		$autoMembersList = [];
-		if ( $user instanceof User ) {
+
+		$isUserInstance = $user instanceof User;
+
+		if ( $isUserInstance ) {
 			foreach ( Autopromote::getAutopromoteGroups( $user ) as $group ) {
 				$autoList[] = UserGroupMembership::getLink( $group, $this->getContext(), 'html' );
 				$autoMembersList[] = UserGroupMembership::getLink( $group, $this->getContext(),
@@ -702,7 +705,7 @@ class UserrightsPage extends SpecialPage {
 			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
 		}
 
-		if ( $user->isSystemUser() ) {
+		if ( $isUserInstance && $user->isSystemUser() ) {
 			$systemusernote = $this->msg( 'userrights-systemuser' )
 				->params( $user->getName() )
 				->parse();
