@@ -115,6 +115,7 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected static $notAttributes = [
 		'callback',
+		'requires',
 		'Hooks',
 		'namespaces',
 		'ResourceFileModulePaths',
