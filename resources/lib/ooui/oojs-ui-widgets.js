@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.35.0-pre (44324afb98)
+ * OOUI v0.36.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-10-10T21:22:09Z
+ * Date: 2019-12-12T00:27:42Z
  */
 ( function ( OO ) {
 
@@ -688,7 +688,7 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	} );
 	this.lookupMenu.connect( this, {
 		toggle: 'onLookupMenuToggle',
-		choose: 'onLookupMenuItemChoose'
+		choose: 'onLookupMenuChoose'
 	} );
 
 	// Initialization
@@ -788,8 +788,17 @@ OO.ui.mixin.LookupElement.prototype.onLookupMenuToggle = function ( visible ) {
  * @protected
  * @param {OO.ui.MenuOptionWidget} item Selected item
  */
-OO.ui.mixin.LookupElement.prototype.onLookupMenuItemChoose = function ( item ) {
-	this.setValue( item.getData() );
+OO.ui.mixin.LookupElement.prototype.onLookupMenuChoose = function ( item ) {
+	if ( this.onLookupMenuItemChoose ) {
+		// @since 0.35.2
+		OO.ui.warnDeprecation(
+			'onLookupMenuItemChoose is deprecated. ' +
+			'Use onLookupMenuChoose instead.'
+		);
+		this.onLookupMenuItemChoose( item );
+	} else {
+		this.setValue( item.getData() );
+	}
 };
 
 /**
@@ -1566,6 +1575,7 @@ OO.ui.StackLayout.prototype.resetScroll = function () {
 	}
 	// Reset each panel
 	this.getItems().forEach( function ( panel ) {
+		// eslint-disable-next-line no-jquery/no-class-state
 		var hidden = panel.$element.hasClass( 'oo-ui-element-hidden' );
 		// Scroll can only be reset when panel is visible
 		panel.$element.removeClass( 'oo-ui-element-hidden' );

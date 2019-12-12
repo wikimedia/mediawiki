@@ -23,6 +23,7 @@
 	"ooui-dialog-process-dismiss": "Затваряне",
 	"ooui-dialog-process-retry": "Опитайте отново",
 	"ooui-dialog-process-continue": "Продължаване",
+	"ooui-combobox-button-label": "Падащо меню",
 	"ooui-selectfile-button-select": "Избиране на файл",
 	"ooui-selectfile-not-supported": "Избраният файл не се поддържа",
 	"ooui-selectfile-placeholder": "Не е избран файл",

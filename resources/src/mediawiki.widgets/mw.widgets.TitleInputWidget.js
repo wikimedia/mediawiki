@@ -97,7 +97,11 @@
 	};
 
 	/**
-	 * @inheritdoc
+	 * Handle menu item 'choose' event, updating the text input value to the value of the clicked item.
+	 *
+	 * TODO: Replace this with an override of onLookupMenuChoose()
+	 *
+	 * @param {OO.ui.MenuOptionWidget} item Selected item
 	 */
 	mw.widgets.TitleInputWidget.prototype.onLookupMenuItemChoose = function ( item ) {
 		this.closeLookupMenu();

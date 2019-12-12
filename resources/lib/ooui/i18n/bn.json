@@ -27,6 +27,7 @@
 	"ooui-dialog-process-dismiss": "বাতিল করুন",
 	"ooui-dialog-process-retry": "আবার চেষ্টা করুন",
 	"ooui-dialog-process-continue": "অগ্রসর হোন",
+	"ooui-combobox-button-label": "কম্বোবক্সের জন্য ড্রপডাউন",
 	"ooui-selectfile-button-select": "একটি ফাইল নির্বাচন করুন",
 	"ooui-selectfile-not-supported": "চিত্র নির্বাচন সমর্থিত নয়",
 	"ooui-selectfile-placeholder": "কোন চিত্র নির্বাচিত হয়নি",
