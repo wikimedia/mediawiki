@@ -1,6 +1,6 @@
 {
 	"prefix": "oo-ui-indicator",
-	"intro": "@import '../../../../src/styles/common';",
+	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"clear": {
 			"file": "../wikimediaui/images/indicators/clear.svg"

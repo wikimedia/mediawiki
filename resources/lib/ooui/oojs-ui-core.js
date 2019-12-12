@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.35.0-pre (44324afb98)
+ * OOUI v0.36.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-10-10T21:22:09Z
+ * Date: 2019-12-12T00:27:42Z
  */
 ( function ( OO ) {
 
@@ -709,8 +709,8 @@ OO.ui.Element.static.unsafeInfuse = function ( node, config, domPromise ) {
 		}
 		throw new Error( error );
 	}
-	if ( $elem[ 0 ].oouiInfused ) {
-		$elem = $elem[ 0 ].oouiInfused;
+	if ( $elem[ 0 ].$oouiInfused ) {
+		$elem = $elem[ 0 ].$oouiInfused;
 	}
 	data = $elem.data( 'ooui-infused' );
 	if ( data ) {
@@ -810,7 +810,7 @@ OO.ui.Element.static.unsafeInfuse = function ( node, config, domPromise ) {
 	// If anyone is holding a reference to the old DOM element,
 	// let's allow them to OO.ui.infuse() it and do what they expect, see T105828.
 	// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
-	$elem[ 0 ].oouiInfused = obj.$element;
+	$elem[ 0 ].$oouiInfused = obj.$element;
 	// now replace old DOM with this new DOM.
 	if ( top ) {
 		// An efficient constructor might be able to reuse the entire DOM tree of the original
@@ -3808,6 +3808,7 @@ OO.ui.mixin.AccessKeyedElement.prototype.formatTitleWithAccessKey = function ( t
  * @cfg {string} [href] Hyperlink to visit when the button is clicked.
  * @cfg {string} [target] The frame or window in which to open the hyperlink.
  * @cfg {boolean} [noFollow] Search engine traversal hint (default: true)
+ * @cfg {string[]} [rel] Relationship attributes for the hyperlink
  */
 OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	// Configuration initialization
@@ -3836,6 +3837,7 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	this.href = null;
 	this.target = null;
 	this.noFollow = false;
+	this.rel = [];
 
 	// Events
 	this.connect( this, {
@@ -3850,7 +3852,11 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	this.setActive( config.active );
 	this.setHref( config.href );
 	this.setTarget( config.target );
-	this.setNoFollow( config.noFollow );
+	if ( config.rel ) {
+		this.setRel( config.rel );
+	} else {
+		this.setNoFollow( config.noFollow );
+	}
 };
 
 /* Setup */
@@ -3906,6 +3912,15 @@ OO.ui.ButtonWidget.prototype.getTarget = function () {
  */
 OO.ui.ButtonWidget.prototype.getNoFollow = function () {
 	return this.noFollow;
+};
+
+/**
+ * Get the relationship attribute of the hyperlink.
+ *
+ * @return {string[]} Relationship attributes that apply to the hyperlink
+ */
+OO.ui.ButtonWidget.prototype.getRel = function () {
+	return this.rel;
 };
 
 /**
@@ -3985,12 +4000,42 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
+	var rel;
+
 	noFollow = typeof noFollow === 'boolean' ? noFollow : true;
 
 	if ( noFollow !== this.noFollow ) {
-		this.noFollow = noFollow;
-		if ( noFollow ) {
-			this.$button.attr( 'rel', 'nofollow' );
+		if ( !noFollow ) {
+			rel = this.rel.concat();
+			rel.splice(
+				this.rel.indexOf( 'nofollow' ),
+				1
+			);
+			this.setRel( rel );
+		} else {
+			this.setRel( this.rel.concat( [ 'nofollow' ] ) );
+		}
+	}
+
+	return this;
+};
+
+/**
+ * Set the `rel` attribute of the the hyperlink.
+ *
+ * @param {string|string[]} rel Relationship attributes for the hyperlink
+ * @return {OO.ui.Widget} The widget, for chaining
+ */
+OO.ui.ButtonWidget.prototype.setRel = function ( rel ) {
+	rel = Array.isArray( rel ) ? rel : typeof rel === 'string' ? [ rel ] : [];
+
+	if ( rel !== this.rel ) {
+		this.rel = rel;
+		// For backwards compatibility.
+		this.noFollow = rel.indexOf( 'nofollow' ) !== -1;
+
+		if ( rel.length > 0 ) {
+			this.$button.attr( 'rel', rel.join( ' ' ) );
 		} else {
 			this.$button.removeAttr( 'rel' );
 		}

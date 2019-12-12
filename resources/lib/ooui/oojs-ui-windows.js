@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.35.0-pre (44324afb98)
+ * OOUI v0.36.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-10-10T21:22:09Z
+ * Date: 2019-12-12T00:27:42Z
  */
 ( function ( OO ) {
 
@@ -3363,7 +3363,12 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 		.text( OO.ui.msg( 'ooui-dialog-process-error' ) );
 	this.$errors
 		.addClass( 'oo-ui-processDialog-errors oo-ui-element-hidden' )
-		.append( this.$errorsTitle, this.dismissButton.$element, this.retryButton.$element );
+		.append(
+			this.$errorsTitle,
+			$( '<div>' ).addClass( 'oo-ui-processDialog-errors-actions' ).append(
+				this.dismissButton.$element, this.retryButton.$element
+			)
+		);
 	this.$content
 		.addClass( 'oo-ui-processDialog-content' )
 		.append( this.$errors );
@@ -3432,10 +3437,10 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.executeAction = function ( action ) {
-	var process = this;
+	var dialog = this;
 	return OO.ui.ProcessDialog.parent.prototype.executeAction.call( this, action )
 		.fail( function ( errors ) {
-			process.showErrors( errors || [] );
+			dialog.showErrors( errors || [] );
 		} );
 };
 
@@ -3522,7 +3527,7 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
  * @param {OO.ui.Error[]|OO.ui.Error} errors Errors to be handled
  */
 OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
-	var i, len, $item, actions,
+	var i, len, actions,
 		items = [],
 		abilities = {},
 		recoverable = true,
@@ -3539,10 +3544,10 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 		if ( errors[ i ].isWarning() ) {
 			warning = true;
 		}
-		$item = $( '<div>' )
-			.addClass( 'oo-ui-processDialog-error' )
-			.append( errors[ i ].getMessage() );
-		items.push( $item[ 0 ] );
+		items.push( new OO.ui.MessageWidget( {
+			type: 'error',
+			label: errors[ i ].getMessage()
+		} ).$element[ 0 ] );
 	}
 	this.$errorItems = $( items );
 	if ( recoverable ) {
