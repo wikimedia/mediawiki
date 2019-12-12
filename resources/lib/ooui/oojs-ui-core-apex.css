@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.35.0-pre (44324afb98)
+ * OOUI v0.36.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-10-10T21:22:17Z
+ * Date: 2019-12-12T00:27:49Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -327,8 +327,6 @@
   top: auto;
   width: 1.5625em;
   height: 1.5625em;
-  min-width: auto;
-  min-height: auto;
   margin: 0.15625em;
   opacity: 0.8;
 }
@@ -745,7 +743,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-radioOptionWidget.oo-ui-optionWidget-selected {
   background-color: transparent;
 }
-.oo-ui-radioOptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+.oo-ui-radioOptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   padding-left: 0.5em;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget {
@@ -771,12 +769,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-messageWidget .oo-ui-labelElement-label {
   display: block;
 }
-.oo-ui-messageWidget .oo-ui-iconElement-icon {
+.oo-ui-messageWidget > .oo-ui-iconElement-icon {
   display: block;
   float: left;
   margin: 0;
 }
-.oo-ui-messageWidget .oo-ui-labelElement-label {
+.oo-ui-messageWidget > .oo-ui-labelElement-label {
   margin-top: 0.15625em;
   margin-left: 2.5em;
   line-height: 1.4;
@@ -1621,7 +1619,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-checkboxMultioptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   white-space: normal;
 }
-.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+.oo-ui-checkboxMultioptionWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
   padding-left: 0.5em;
 }
 .oo-ui-checkboxMultioptionWidget .oo-ui-checkboxInputWidget {

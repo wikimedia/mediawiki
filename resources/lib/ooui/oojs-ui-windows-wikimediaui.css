@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.35.0-pre (44324afb98)
+ * OOUI v0.36.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2019 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2019-10-10T21:22:17Z
+ * Date: 2019-12-12T00:27:49Z
  */
 
 .oo-ui-window {
@@ -259,9 +259,6 @@
   padding-left: 3.14285714em;
   padding-right: 0;
 }
-.oo-ui-processDialog .oo-ui-actionWidget.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  margin-left: -0.85714286em;
-}
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement:first-child {
   margin-left: 0;
 }
@@ -269,7 +266,7 @@
   padding: 0.71428571em 12px;
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
-  padding-left: 2.64285714em;
+  padding-left: 2.42857143em;
 }
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget > .oo-ui-buttonElement-button {
   border-left-color: #c8ccd1;
@@ -312,22 +309,21 @@
 .oo-ui-processDialog-errors {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 3em 3em 0 3em;
-  text-align: center;
-}
-.oo-ui-processDialog-errors .oo-ui-buttonWidget {
-  margin: 2em 1em 2em 1em;
 }
 .oo-ui-processDialog-errors-title {
   font-size: 1.5em;
   color: #000;
   margin-bottom: 1.5em;
+  text-align: center;
 }
-.oo-ui-processDialog-error {
-  background-color: #fee7e6;
+.oo-ui-processDialog-errors > .oo-ui-messageWidget {
   margin: 1em 0 0;
-  border: 1px solid #d33;
-  padding: 16px 24px;
-  text-align: left;
+}
+.oo-ui-processDialog-errors-actions {
+  text-align: center;
+}
+.oo-ui-processDialog-errors-actions > .oo-ui-buttonWidget {
+  margin: 2em 1em;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-content .oo-ui-window-head,
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-processDialog-navigation,
@@ -352,7 +348,7 @@
   padding: 0.85714286em 12px;
 }
 .oo-ui-processDialog.oo-ui-isMobile .oo-ui-actionWidget.oo-ui-labelElement.oo-ui-iconElement > .oo-ui-buttonElement-button {
-  padding-left: 2.64285714em;
+  padding-left: 2.42857143em;
 }
 
 .oo-ui-windowManager-modal > .oo-ui-dialog {

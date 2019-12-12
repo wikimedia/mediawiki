@@ -1,4 +1,47 @@
 # OOUI Release History
+## v0.36.1 / 2019-12-11
+### Code
+* Follow-up 70e453d: Pass item param (Ed Sanders)
+* Gruntfile: Document that 'publish-build' step doesn't add -pre (James D. Forrester)
+
+
+## v0.36.0 / 2019-12-04
+### Breaking changes
+* [BREAKING CHANGE] Require PHP 7.2.9+, up from 5.6.99/HHVM (James D. Forrester)
+
+### Deprecating changes
+* [DEPRECATING CHANGE] LookupElement: Rename onLookupMenuItemChoose to onLookupMenuChoose (Ed Sanders)
+
+### Styles
+* Use child selector for label element padding in option widgets (Thalia Chan)
+* Use child selectors to style message widget labels (Ed Sanders)
+* WikimediaUI theme: Align text input/dropdown/button paddings with Design Style Guide (Volker E.)
+* WikimediaUI theme: Fix position of TextInputWidget icon (Volker E.)
+* WikimediaUI theme: Put search query input on horizontal line with close icon (Volker E.)
+* icons: Remove brand guideline opposing color variants of 'wikimedia' pack logos (Volker E.)
+
+### Code
+* Add missing '$' prefix for jQuery property (Ed Sanders)
+* Add support for setting the relationship attribute on ButtonWidget (mainframe98)
+* Apex theme: `min-width`/`min-height` should be and are defined in IconElement.less (Volker E.)
+* Follow-up I39c9234: Use an actual MessageWidget for ProcessDialog errors (Ed Sanders)
+* ProcessDialog: Remove `margin-left` override from ActionWidget (Volker E.)
+* build: Add mediawiki-phan-config (Daimona Eaytoy)
+* build: Bump devDependencies to latest (Volker E.)
+* build: Make node 10 run happy (James D. Forrester)
+* build: Update linter configuration to be more standard (Ed Sanders)
+* build: Update linters (Ed Sanders)
+* build: Upgrade grunt-stylelint from 0.11.1 to 0.12.0 (James D. Forrester)
+* build: Upgrade linters to related and make pass (James D. Forrester)
+* build: Upgrade mediawiki-codesniffer to v28.0.0 (James D. Forrester)
+* hygiene: Make LESS imports non-ambigious (Volker E.)
+
+
+## v0.35.1 / 2019-10-10
+### Code
+* Revert "Add support for setting the relationship attribute on ButtonWidget" (Volker E.)
+
+
 ## v0.35.0 / 2019-10-08
 ### Breaking changes
 * [BREAKING CHANGE] Remove deprecated infuse-by-id feature (Ed Sanders)
