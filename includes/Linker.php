@@ -56,7 +56,7 @@ class Linker {
 	 *
 	 * @param LinkTarget $target Can currently only be a LinkTarget, but this may
 	 *   change to support Images, literal URLs, etc.
-	 * @param string $html The HTML contents of the <a> element, i.e.,
+	 * @param string|null $html The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
 	 *   defaults to the prefixed text of the LinkTarget; or if the LinkTarget is just a
 	 *   fragment, the contents of the fragment.
@@ -132,7 +132,7 @@ class Linker {
 	 * @deprecated since 1.28, use MediaWiki\Linker\LinkRenderer instead
 	 * @see Linker::link
 	 * @param LinkTarget $target
-	 * @param string $html
+	 * @param string|null $html
 	 * @param array $customAttribs
 	 * @param array $query
 	 * @param string|array $options
