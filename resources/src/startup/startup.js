@@ -113,6 +113,7 @@ if ( !isCompatible( navigator.userAgent ) ) {
 	 */
 	( function () {
 		/* global mw */
+		var queue;
 
 		$CODE.registrations();
 
@@ -136,7 +137,11 @@ if ( !isCompatible( navigator.userAgent ) ) {
 		// arrivals will also be processed. Late arrival can happen because
 		// startup.js is executed asynchronously, concurrently with the streaming
 		// response of the HTML.
-		RLQ = window.RLQ || [];
+		queue = window.RLQ || [];
+		// Replace RLQ with an empty array, then process the things that were
+		// in RLQ previously. We have to do this to avoid an infinite loop:
+		// non-function items are added back to RLQ by the processing step.
+		RLQ = [];
 		RLQ.push = function ( fn ) {
 			if ( typeof fn === 'function' ) {
 				fn();
@@ -148,9 +153,9 @@ if ( !isCompatible( navigator.userAgent ) ) {
 				RLQ[ RLQ.length ] = fn;
 			}
 		};
-		while ( RLQ[ 0 ] ) {
+		while ( queue[ 0 ] ) {
 			// Process all values gathered so far
-			RLQ.push( RLQ.shift() );
+			RLQ.push( queue.shift() );
 		}
 
 		// Clear and disable the Grade C queue
