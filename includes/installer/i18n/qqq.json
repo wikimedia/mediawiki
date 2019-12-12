@@ -28,7 +28,7 @@
 		]
 	},
 	"config-desc": "Short description of the installer.",
-	"config-title": "Parameters:\n* $1 is the version of MediaWiki that is being installed.",
+	"config-title": "Parameters:\n* $1 is the version number (e.g. \"1.35.0\")  of MediaWiki that is being installed.",
 	"config-information": "{{Identical|Information}}",
 	"config-localsettings-upgrade": "{{doc-important|Do not translate <code>LocalSettings.php</code> and <code>$wgUpgradeKey</code>.}}",
 	"config-localsettings-cli-upgrade": "{{doc-important|Do not translate the <code>LocalSettings.php</code> and the <code>update.php</code> parts.}}",

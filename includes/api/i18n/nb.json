@@ -1628,6 +1628,7 @@
 	"apierror-csp-report": "Feil under prosessering av CSP-rapport: $1.",
 	"apierror-deletedrevs-param-not-1-2": "Parameteren <var>$1</var> kan ikke brukes i modus 1 eller 2.",
 	"apierror-deletedrevs-param-not-3": "Parameteren <var>$1</var> kan ikke brukes i modus 3.",
+	"apierror-edit-invalidredirect": "Kan ikke redigere <kbd>$1</kbd> og følge omdirigeringer fordi målet <kbd>$2</kbd> ikke er gyldig.",
 	"apierror-emptynewsection": "Oppretting av tomme nye seksjoner er ikke mulig.",
 	"apierror-emptypage": "Oppretting av nye, tomme sider tillates ikke.",
 	"apierror-exceptioncaught": "[$1] Unntak fanget: $2",
