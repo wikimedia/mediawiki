@@ -277,9 +277,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return string|null The url to redirect to, or null if no redirect.
 	 */
 	public function goResult( $term ) {
-		if ( !$this->redirectOnExactMatch() ) {
-			return null;
-		}
 		# If the string cannot be used to create a title
 		if ( is_null( Title::newFromText( $term ) ) ) {
 			return null;
@@ -292,6 +289,20 @@ class SpecialSearch extends SpecialPage {
 		}
 		$url = null;
 		if ( !Hooks::run( 'SpecialSearchGoResult', [ $term, $title, &$url ] ) ) {
+			return null;
+		}
+
+		if (
+			// If there is a preference set to NOT redirect on exact page match
+			// then return null (which prevents direction)
+			!$this->redirectOnExactMatch()
+			// BUT ...
+			// ... ignore no-redirect preference if the exact page match is an interwiki link
+			&& !$title->isExternal()
+			// ... ignore no-redirect preference if the exact page match is NOT in the main
+			// namespace AND there's a namespace in the search string
+			&& !( $title->getNamespace() !== NS_MAIN && strpos( $term, ':' ) > 0 )
+		) {
 			return null;
 		}
 
