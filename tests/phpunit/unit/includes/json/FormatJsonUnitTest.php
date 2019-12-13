@@ -119,14 +119,14 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testDecodeReturnType() {
-		$this->assertInternalType(
-			'object',
+		$this->assertIsObject(
+
 			FormatJson::decode( '{"Name": "Cheeso", "Rank": 7}' ),
 			'Default to object'
 		);
 
-		$this->assertInternalType(
-			'array',
+		$this->assertIsArray(
+
 			FormatJson::decode( '{"Name": "Cheeso", "Rank": 7}', true ),
 			'Optional array'
 		);

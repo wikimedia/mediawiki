@@ -1497,7 +1497,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$watchedItems = $store->getWatchedItemsForUser( $user );
 
-		$this->assertInternalType( 'array', $watchedItems );
+		$this->assertIsArray( $watchedItems );
 		$this->assertCount( 2, $watchedItems );
 		foreach ( $watchedItems as $watchedItem ) {
 			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
@@ -2498,7 +2498,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$callableCallCounter = 0;
 		$mockCallback = function ( $callable ) use ( &$callableCallCounter ) {
 			$callableCallCounter++;
-			$this->assertInternalType( 'callable', $callable );
+			$this->assertIsCallable( $callable );
 		};
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
 
@@ -2518,7 +2518,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$callableCallCounter = 0;
 		$mockCallback = function ( $callable ) use ( &$callableCallCounter ) {
 			$callableCallCounter++;
-			$this->assertInternalType( 'callable', $callable );
+			$this->assertIsCallable( $callable );
 		};
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
 
@@ -2633,7 +2633,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			new TitleValue( 0, 'SomeDbKey' ),
 			'20151212010101'
 		);
-		$this->assertInternalType( 'array', $watchers );
+		$this->assertIsArray( $watchers );
 		$this->assertEmpty( $watchers );
 	}
 

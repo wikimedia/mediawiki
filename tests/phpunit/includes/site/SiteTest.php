@@ -38,7 +38,7 @@ class SiteTest extends MediaWikiTestCase {
 	 * @covers Site::getInterwikiIds
 	 */
 	public function testGetInterwikiIds( Site $site ) {
-		$this->assertInternalType( 'array', $site->getInterwikiIds() );
+		$this->assertIsArray( $site->getInterwikiIds() );
 	}
 
 	/**
@@ -47,7 +47,7 @@ class SiteTest extends MediaWikiTestCase {
 	 * @covers Site::getNavigationIds
 	 */
 	public function testGetNavigationIds( Site $site ) {
-		$this->assertInternalType( 'array', $site->getNavigationIds() );
+		$this->assertIsArray( $site->getNavigationIds() );
 	}
 
 	/**
@@ -95,7 +95,7 @@ class SiteTest extends MediaWikiTestCase {
 	 * @covers Site::normalizePageName
 	 */
 	public function testNormalizePageName( Site $site ) {
-		$this->assertInternalType( 'string', $site->normalizePageName( 'Foobar' ) );
+		$this->assertIsString( $site->normalizePageName( 'Foobar' ) );
 	}
 
 	/**
@@ -123,7 +123,7 @@ class SiteTest extends MediaWikiTestCase {
 	 * @covers Site::getType
 	 */
 	public function testGetType( Site $site ) {
-		$this->assertInternalType( 'string', $site->getType() );
+		$this->assertIsString( $site->getType() );
 	}
 
 	/**
@@ -143,7 +143,7 @@ class SiteTest extends MediaWikiTestCase {
 	 * @covers Site::getAllPaths
 	 */
 	public function testGetAllPaths( Site $site ) {
-		$this->assertInternalType( 'array', $site->getAllPaths() );
+		$this->assertIsArray( $site->getAllPaths() );
 	}
 
 	/**
@@ -161,7 +161,7 @@ class SiteTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $count + 2, count( $site->getAllPaths() ) );
 
-		$this->assertInternalType( 'string', $site->getPath( 'foobar' ) );
+		$this->assertIsString( $site->getPath( 'foobar' ) );
 		$this->assertEquals( 'http://www.wikidata.org/foo/$1', $site->getPath( 'spam' ) );
 
 		$site->removePath( 'spam' );

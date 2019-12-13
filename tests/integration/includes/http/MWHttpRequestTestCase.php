@@ -179,7 +179,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$status = $request->execute();
 		$this->assertTrue( $status->isGood() );
 		$data = json_decode( $data, true );
-		$this->assertInternalType( 'array', $data );
+		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'origin', $data );
 	}
 
@@ -218,7 +218,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	protected function assertResponseFieldValue( $key, $expectedValue, MWHttpRequest $response ) {
 		$this->assertSame( 200, $response->getStatus(), 'response status is not 200' );
 		$data = json_decode( $response->getContent(), true );
-		$this->assertInternalType( 'array', $data, 'response is not JSON' );
+		$this->assertIsArray( $data, 'response is not JSON' );
 		$keyPath = '';
 		foreach ( (array)$key as $keySegment ) {
 			$keyPath .= ( $keyPath ? '.' : '' ) . $keySegment;

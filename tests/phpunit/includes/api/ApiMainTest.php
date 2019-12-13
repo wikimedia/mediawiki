@@ -22,7 +22,7 @@ class ApiMainTest extends ApiTestCase {
 		);
 		$api->execute();
 		$data = $api->getResult()->getResultData();
-		$this->assertInternalType( 'array', $data );
+		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'query', $data );
 	}
 
@@ -30,7 +30,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain();
 		$api->execute();
 		$data = $api->getResult()->getResultData();
-		$this->assertInternalType( 'array', $data );
+		$this->assertIsArray( $data );
 	}
 
 	/**
@@ -1167,7 +1167,7 @@ class ApiMainTest extends ApiTestCase {
 
 		// Test that the actual output is valid JSON, not just the format of the ApiResult.
 		$data = FormatJson::decode( $txt, true );
-		$this->assertInternalType( 'array', $data );
+		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'error', $data );
 		$this->assertArrayHasKey( 'code', $data['error'] );
 		$this->assertSame( 'unknown_formatversion', $data['error']['code'] );

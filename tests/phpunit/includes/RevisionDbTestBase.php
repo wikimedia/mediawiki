@@ -251,11 +251,11 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 		$revId = $rev->insertOn( wfGetDB( DB_MASTER ) );
 
-		$this->assertInternalType( 'integer', $revId );
+		$this->assertIsInt( $revId );
 		$this->assertSame( $revId, $rev->getId() );
 
 		// getTextId() must be an int!
-		$this->assertInternalType( 'integer', $rev->getTextId() );
+		$this->assertIsInt( $rev->getTextId() );
 
 		$mainSlot = $rev->getRevisionRecord()->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
 
@@ -1325,7 +1325,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 		$rev = $this->testPage->getRevision();
 
-		$this->assertInternalType( 'string', $rev->getTimestamp() );
+		$this->assertIsString( $rev->getTimestamp() );
 		$this->assertTrue( strlen( $rev->getTimestamp() ) == strlen( 'YYYYMMDDHHMMSS' ) );
 		$this->assertContains( substr( $testTimestamp, 0, 10 ), $rev->getTimestamp() );
 	}

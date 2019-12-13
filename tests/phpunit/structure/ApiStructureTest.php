@@ -176,9 +176,9 @@ class ApiStructureTest extends MediaWikiTestCase {
 
 			// If param-per-value is in use, each value's message
 			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE] ) ) {
-				$this->assertInternalType( 'array', $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE],
+				$this->assertIsArray( $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE],
 					"Parameter $name PARAM_HELP_MSG_PER_VALUE is array" );
-				$this->assertInternalType( 'array', $settings[ApiBase::PARAM_TYPE],
+				$this->assertIsArray( $settings[ApiBase::PARAM_TYPE],
 					"Parameter $name PARAM_TYPE is array for msg-per-value mode" );
 				$valueMsgs = $settings[ApiBase::PARAM_HELP_MSG_PER_VALUE];
 				foreach ( $settings[ApiBase::PARAM_TYPE] as $value ) {
@@ -193,7 +193,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 
 			// Appended messages (e.g. "disabled in miser mode")
 			if ( isset( $settings[ApiBase::PARAM_HELP_MSG_APPEND] ) ) {
-				$this->assertInternalType( 'array', $settings[ApiBase::PARAM_HELP_MSG_APPEND],
+				$this->assertIsArray( $settings[ApiBase::PARAM_HELP_MSG_APPEND],
 					"Parameter $name PARAM_HELP_MSG_APPEND is array" );
 				foreach ( $settings[ApiBase::PARAM_HELP_MSG_APPEND] as $i => $msg ) {
 					$this->checkMessage( $msg, "Parameter $name HELP_MSG_APPEND #$i" );
@@ -487,7 +487,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 				$this->assertType( $types[0], $value, "$param: $desc type" );
 			} else {
 				// Array whose values have specified types, recurse
-				$this->assertInternalType( 'array', $value, "$param: $desc type" );
+				$this->assertIsArray( $value, "$param: $desc type" );
 				foreach ( $value as $subvalue ) {
 					$this->validateType( $types[0], $subvalue, $param, "$desc value" );
 				}
@@ -553,7 +553,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 				break;
 
 			case 'integer':
-				$this->assertInternalType( 'integer', $default,
+				$this->assertIsInt( $default,
 					"$param: Default $default is not an integer" );
 				break;
 
@@ -561,7 +561,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 				if ( $default === 'max' ) {
 					break;
 				}
-				$this->assertInternalType( 'integer', $default,
+				$this->assertIsInt( $default,
 					"$param: Default $default is neither an integer nor \"max\"" );
 				break;
 
@@ -587,7 +587,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 			case 'submodule':
 			case 'tags':
 			case 'text':
-				$this->assertInternalType( 'string', $default,
+				$this->assertIsString( $default,
 					"$param: Default $default is not a string" );
 				break;
 

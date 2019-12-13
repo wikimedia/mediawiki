@@ -48,7 +48,7 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 		$magicWordFactory = $this->makeMagicWordFactory();
 		$varIds = $magicWordFactory->getVariableIDs();
 
-		$this->assertInternalType( 'array', $varIds );
+		$this->assertIsArray( $varIds );
 		$this->assertNotEmpty( $varIds );
 		$this->assertContainsOnly( 'string', $varIds );
 	}
@@ -57,7 +57,7 @@ class MagicWordFactoryTest extends MediaWikiTestCase {
 		$magicWordFactory = $this->makeMagicWordFactory();
 		$substIds = $magicWordFactory->getSubstIDs();
 
-		$this->assertInternalType( 'array', $substIds );
+		$this->assertIsArray( $substIds );
 		$this->assertNotEmpty( $substIds );
 		$this->assertContainsOnly( 'string', $substIds );
 	}

@@ -1006,18 +1006,18 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		);
 
 		$pageLinksRow = $pageLinks->fetchObject();
-		$this->assertInternalType( 'object', $pageLinksRow );
+		$this->assertIsObject( $pageLinksRow );
 		$this->assertSame( 'Main', $pageLinksRow->pl_title );
 
 		if ( $this->hasMultiSlotSupport() ) {
 			$pageLinksRow = $pageLinks->fetchObject();
-			$this->assertInternalType( 'object', $pageLinksRow );
+			$this->assertIsObject( $pageLinksRow );
 			$this->assertSame( 'Nix', $pageLinksRow->pl_title );
 		}
 
 		// parser cache update
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions() );
-		$this->assertInternalType( 'object', $cached );
+		$this->assertIsObject( $cached );
 		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
 
 		// site stats
@@ -1143,7 +1143,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		// The cached ParserOutput should not use the revision timestamp
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions(), true );
-		$this->assertInternalType( 'object', $cached );
+		$this->assertIsObject( $cached );
 		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
 
 		$this->assertSame( $rev->getTimestamp(), $cached->getCacheTime() );
@@ -1162,7 +1162,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		// The cached ParserOutput should not use the revision timestamp
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions(), true );
-		$this->assertInternalType( 'object', $cached );
+		$this->assertIsObject( $cached );
 		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
 
 		$this->assertGreaterThan( $rev->getTimestamp(), $cached->getCacheTime() );

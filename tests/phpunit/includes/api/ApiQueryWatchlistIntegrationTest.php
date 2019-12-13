@@ -536,7 +536,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		$this->assertCount( 1, $items );
 		$this->assertArrayHasKey( 'timestamp', $items[0] );
-		$this->assertInternalType( 'string', $items[0]['timestamp'] );
+		$this->assertIsString( $items[0]['timestamp'] );
 	}
 
 	public function testSizesPropParameter() {

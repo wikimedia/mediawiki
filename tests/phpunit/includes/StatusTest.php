@@ -609,7 +609,7 @@ class StatusTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		$this->assertInternalType( 'array', $messageArray );
+		$this->assertIsArray( $messageArray );
 		$this->assertCount( 2, $messageArray );
 		foreach ( $messageArray as $message ) {
 			$this->assertInstanceOf( Message::class, $message );
