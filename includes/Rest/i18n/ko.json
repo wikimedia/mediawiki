@@ -11,5 +11,6 @@
 	"rest-permission-denied-revision": "사용자는 요청된 판($1)의 접근 권한이 없습니다.",
 	"rest-pagehistory-param-range-error": "판 id는 0보다 커야 합니다",
 	"rest-pagehistorycount-parameters-invalid": "지정된 변수 조합은 지원하지 않습니다.",
-	"rest-compare-permission-denied": "사용자는 요청된 판의 접근 권한이 없습니다"
+	"rest-compare-permission-denied": "사용자는 요청된 판의 접근 권한이 없습니다",
+	"rest-search-error": "검색 결과를 반환할 때 오류가 발생했습니다: $1"
 }

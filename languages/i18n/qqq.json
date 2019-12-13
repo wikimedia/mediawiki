@@ -3994,7 +3994,7 @@
 	"specialpageinfo-page": "Label for the field for the target page in [[Special:PageInfo]]",
 	"specialpageinfo-submit": "Submit button on [[Special:PageInfo]]",
 	"pageinfo-summary": "{{doc-specialpagessummary|pageinfo}}",
-	"pagehistory": "Title of [[Special:PageHistory]]",
+	"pagehistory": "Title of [[Special:PageHistory]]\n\nThe special page redirects to a page with page name: {{msg-mw|history-title}}",
 	"specialpagehistory-page": "Label for the field for the target page in [[Special:PageHistory]]",
 	"specialpagehistory-submit": "Submit button on [[Special:PageHistory]]",
 	"pagehistory-summary": "{{doc-specialpagessummary|pagehistory}}",
