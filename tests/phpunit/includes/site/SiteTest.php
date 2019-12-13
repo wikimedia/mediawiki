@@ -76,7 +76,10 @@ class SiteTest extends MediaWikiTestCase {
 	 * @covers Site::getLanguageCode
 	 */
 	public function testGetLanguageCode( Site $site ) {
-		$this->assertTypeOrValue( 'string', $site->getLanguageCode(), null );
+		$this->assertThat(
+			$site->getLanguageCode(),
+			$this->logicalOr( $this->isNull(), $this->isType( 'string' ) )
+		);
 	}
 
 	/**
@@ -104,7 +107,10 @@ class SiteTest extends MediaWikiTestCase {
 	 * @covers Site::getGlobalId
 	 */
 	public function testGetGlobalId( Site $site ) {
-		$this->assertTypeOrValue( 'string', $site->getGlobalId(), null );
+		$this->assertThat(
+			$site->getGlobalId(),
+			$this->logicalOr( $this->isNull(), $this->isType( 'string' ) )
+		);
 	}
 
 	/**
@@ -132,9 +138,18 @@ class SiteTest extends MediaWikiTestCase {
 	 * @covers Site::getPath
 	 */
 	public function testGetPath( Site $site ) {
-		$this->assertTypeOrValue( 'string', $site->getPath( 'page_path' ), null );
-		$this->assertTypeOrValue( 'string', $site->getPath( 'file_path' ), null );
-		$this->assertTypeOrValue( 'string', $site->getPath( 'foobar' ), null );
+		$this->assertThat(
+			$site->getPath( 'page_path' ),
+			$this->logicalOr( $this->isNull(), $this->isType( 'string' ) )
+		);
+		$this->assertThat(
+			$site->getPath( 'file_path' ),
+			$this->logicalOr( $this->isNull(), $this->isType( 'string' ) )
+		);
+		$this->assertThat(
+			$site->getPath( 'foobar' ),
+			$this->logicalOr( $this->isNull(), $this->isType( 'string' ) )
+		);
 	}
 
 	/**
@@ -264,14 +279,6 @@ class SiteTest extends MediaWikiTestCase {
 		$this->assertContains( $path, $site->getPageUrl() );
 
 		$this->assertContains( $expected, $site->getPageUrl( $page ) );
-	}
-
-	protected function assertTypeOrFalse( $type, $value ) {
-		if ( $value === false ) {
-			$this->assertTrue( true );
-		} else {
-			$this->assertInternalType( $type, $value );
-		}
 	}
 
 	/**

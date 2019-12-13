@@ -13,10 +13,10 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 	 */
 	public function testGetFieldInfo( array $args ) {
 		$info = $this->getInstance( $args )->getFieldInfo();
-		$this->assertType( 'array', $info );
+		$this->assertIsArray( $info );
 
 		foreach ( $info as $field => $data ) {
-			$this->assertType( 'array', $data, "Field $field" );
+			$this->assertIsArray( $data, "Field $field" );
 			$this->assertArrayHasKey( 'type', $data, "Field $field" );
 			$this->assertArrayHasKey( 'label', $data, "Field $field" );
 			$this->assertInstanceOf( \Message::class, $data['label'], "Field $field, label" );
@@ -27,13 +27,13 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 			}
 
 			if ( isset( $data['optional'] ) ) {
-				$this->assertType( 'bool', $data['optional'], "Field $field, optional" );
+				$this->assertIsBool( $data['optional'], "Field $field, optional" );
 			}
 			if ( isset( $data['image'] ) ) {
-				$this->assertType( 'string', $data['image'], "Field $field, image" );
+				$this->assertIsString( $data['image'], "Field $field, image" );
 			}
 			if ( isset( $data['sensitive'] ) ) {
-				$this->assertType( 'bool', $data['sensitive'], "Field $field, sensitive" );
+				$this->assertIsBool( $data['sensitive'], "Field $field, sensitive" );
 			}
 			if ( $data['type'] === 'password' ) {
 				$this->assertTrue( !empty( $data['sensitive'] ),
@@ -48,7 +48,7 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 				case 'select':
 				case 'multiselect':
 					$this->assertArrayHasKey( 'options', $data, "Field $field" );
-					$this->assertType( 'array', $data['options'], "Field $field, options" );
+					$this->assertIsArray( $data['options'], "Field $field, options" );
 					foreach ( $data['options'] as $val => $msg ) {
 						$this->assertInstanceOf( \Message::class, $msg, "Field $field, option $val" );
 					}
