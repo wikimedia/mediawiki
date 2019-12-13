@@ -534,15 +534,13 @@ abstract class Module implements LoggerAwareInterface {
 	 *
 	 * These are only image files referenced by the module's stylesheet
 	 *
-	 * If neither setFileDependencies() nor setDependencyLoadCallback() was called, this
-	 * will simply return a placeholder with an empty file list
+	 * If neither setFileDependencies() nor setDependencyAccessCallbacks() was called,
+	 * this will simply return a placeholder with an empty file list
 	 *
-	 * @see ResourceLoader::setFileDependencies()
-	 * @see ResourceLoader::saveFileDependencies()
-	 *
+	 * @see Module::setFileDependencies()
+	 * @see Module::saveFileDependencies()
 	 * @param Context $context
 	 * @return string[] List of absolute file paths
-	 * @throws RuntimeException When setFileDependencies() has not yet been called
 	 */
 	protected function getFileDependencies( Context $context ) {
 		$variant = self::getVary( $context );
@@ -565,9 +563,8 @@ abstract class Module implements LoggerAwareInterface {
 	 *
 	 * These are only image files referenced by the module's stylesheet
 	 *
-	 * @see ResourceLoader::getFileDependencies()
-	 * @see ResourceLoader::saveFileDependencies()
-	 *
+	 * @see Module::getFileDependencies()
+	 * @see Module::saveFileDependencies()
 	 * @param Context $context
 	 * @param string[] $paths List of absolute file paths
 	 */

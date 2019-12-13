@@ -73,7 +73,6 @@ class Image {
 	 * @param string $basePath Directory to which paths in descriptor refer
 	 * @param array $variants
 	 * @param string|null $defaultColor of the base variant
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $name, $module, $descriptor, $basePath, array $variants,
 		$defaultColor = null
@@ -168,7 +167,6 @@ class Image {
 	 *
 	 * @param Context $context Any context
 	 * @return string
-	 * @throws MWException If no matching path is found
 	 */
 	public function getPath( Context $context ) {
 		$desc = $this->descriptor;
@@ -288,7 +286,6 @@ class Image {
 	 * @param string|false $format Format to get the data for, 'original' or 'rasterized'. Optional; if
 	 *     given, overrides the data from $context.
 	 * @return string|false Possibly binary image data, or false on failure
-	 * @throws MWException If the image file doesn't exist
 	 */
 	public function getImageData( Context $context, $variant = false, $format = false ) {
 		if ( $variant === false ) {
