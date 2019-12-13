@@ -777,7 +777,6 @@ class SqlBlobStore implements BlobStore {
 	 *
 	 * @param string $address
 	 *
-	 * @throws InvalidArgumentException
 	 * @return array [ $schema, $id, $parameters ], with $parameters being an assoc array.
 	 */
 	public static function splitBlobAddress( $address ) {

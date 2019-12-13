@@ -120,7 +120,6 @@ class HashRing {
 	 * @param int $limit Maximum number of locations to return
 	 * @param int $from One of the RING_* class constants
 	 * @return string[] List of locations
-	 * @throws InvalidArgumentException
 	 * @throws UnexpectedValueException
 	 */
 	public function getLocations( $item, $limit, $from = self::RING_ALL ) {

@@ -387,7 +387,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 *   by a prefix.  If you want to force a specific namespace even if
 	 *   $text might begin with a namespace prefix, use makeTitle() or
 	 *   makeTitleSafe().
-	 * @throws InvalidArgumentException
 	 * @return Title|null Title or null if the Title could not be parsed because
 	 *         it is invalid.
 	 */

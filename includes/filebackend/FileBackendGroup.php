@@ -160,7 +160,6 @@ class FileBackendGroup {
 	 *
 	 * @param array[] $configs
 	 * @param string|null $readOnlyReason
-	 * @throws InvalidArgumentException
 	 */
 	protected function register( array $configs, $readOnlyReason = null ) {
 		foreach ( $configs as $config ) {
@@ -192,7 +191,6 @@ class FileBackendGroup {
 	 *
 	 * @param string $name
 	 * @return FileBackend
-	 * @throws InvalidArgumentException
 	 */
 	public function get( $name ) {
 		// Lazy-load the actual backend instance
@@ -222,7 +220,6 @@ class FileBackendGroup {
 	 *
 	 * @param string $name
 	 * @return array Parameters to FileBackend::__construct()
-	 * @throws InvalidArgumentException
 	 */
 	public function config( $name ) {
 		if ( !isset( $this->backends[$name] ) ) {

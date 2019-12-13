@@ -3069,7 +3069,6 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param string $paramName
 	 * @param int $pageId
 	 * @param RevisionRecord|null $rev
-	 * @throws InvalidArgumentException
 	 */
 	private function assertRevisionParameter( $paramName, $pageId, RevisionRecord $rev = null ) {
 		if ( $rev ) {

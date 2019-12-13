@@ -190,7 +190,6 @@ class LocalSettingsGenerator {
 	 *
 	 * @param string $dir Either "extensions" or "skins"
 	 * @param string $name Name of extension/skin
-	 * @throws InvalidArgumentException
 	 * @return string
 	 */
 	private function generateExtEnableLine( $dir, $name ) {

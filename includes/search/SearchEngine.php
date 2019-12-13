@@ -352,7 +352,6 @@ abstract class SearchEngine {
 	 * SearchEngine::getValidSorts()
 	 *
 	 * @since 1.25
-	 * @throws InvalidArgumentException
 	 * @param string $sort sort direction for query result
 	 */
 	public function setSort( $sort ) {

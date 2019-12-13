@@ -297,7 +297,6 @@ abstract class BagOStuff implements
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 *
 	 * @return bool Success
-	 * @throws InvalidArgumentException
 	 */
 	abstract public function merge(
 		$key,

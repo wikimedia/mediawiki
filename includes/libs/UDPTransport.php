@@ -55,7 +55,6 @@ class UDPTransport {
 	/**
 	 * @param string $info In the format of "udp://host:port/prefix"
 	 * @return UDPTransport
-	 * @throws InvalidArgumentException
 	 */
 	public static function newFromString( $info ) {
 		if ( preg_match( '!^udp:(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $info, $m ) ) {

@@ -83,7 +83,6 @@ class TitleValue implements Stringable, LinkTarget {
 	 * @param string $interwiki The interwiki component.
 	 *   No validation or normalization is applied.
 	 * @return TitleValue|null
-	 * @throws InvalidArgumentException
 	 */
 	public static function tryNew( $namespace, $title, $fragment = '', $interwiki = '' ) {
 		if ( !is_int( $namespace ) ) {
@@ -164,7 +163,6 @@ class TitleValue implements Stringable, LinkTarget {
 	 *   No validation or normalization is applied.
 	 * @param string $interwiki The interwiki component.
 	 *   No validation or normalization is applied.
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $namespace, $title, $fragment = '', $interwiki = '' ) {
 		self::assertValidSpec( $namespace, $title, $fragment, $interwiki );

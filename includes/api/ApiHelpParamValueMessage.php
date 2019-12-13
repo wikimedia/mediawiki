@@ -51,7 +51,6 @@ class ApiHelpParamValueMessage extends Message {
 	 * @param array $params Parameters for the message.
 	 * @param bool $deprecated Whether the value is deprecated
 	 * @param bool $internal Whether the value is internal
-	 * @throws InvalidArgumentException
 	 * @since 1.30 Added the `$deprecated` parameter
 	 * @since 1.35 Added the `$internal` parameter
 	 */

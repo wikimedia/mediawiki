@@ -54,7 +54,6 @@ class Cookie {
 	 *        expires A date string
 	 *        path    The path this cookie is used on
 	 *        domain  Domain this cookie is used on
-	 * @throws InvalidArgumentException
 	 */
 	public function set( $value, $attr ) {
 		$this->value = $value;

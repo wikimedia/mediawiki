@@ -533,7 +533,6 @@ class PageUpdater {
 	 * database. If base revision and parent revision are not the same, the updates is considered
 	 * to require edit conflict resolution.
 	 *
-	 * @throws LogicException if called after saveRevision().
 	 * @return RevisionRecord|null the parent revision, or null of the page does not yet exist.
 	 */
 	public function grabParentRevision() {

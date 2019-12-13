@@ -593,9 +593,6 @@ class ExtensionRegistry {
 	 *
 	 * @param string $name
 	 * @param string $constraint The required version constraint for this dependency
-	 *
-	 * @throws LogicException if a specific constraint is asked for,
-	 *                        but the extension isn't versioned
 	 * @return bool
 	 */
 	public function isLoaded( $name, $constraint = '*' ) {

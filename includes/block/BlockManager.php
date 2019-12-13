@@ -720,11 +720,11 @@ class BlockManager {
 	 *  - If the block is a valid block, but should not be tracked by a cookie, clear the
 	 *    cookie and continue to check whether there is another block that should be tracked.
 	 *
+	 * Must be called after the User object is loaded, and before headers are sent.
+	 *
 	 * @since 1.34
 	 * @param User $user
 	 * @param WebResponse $response The response on which to set the cookie.
-	 * @throws LogicException If called before the User object was loaded.
-	 * @throws LogicException If not called pre-send.
 	 */
 	public function trackBlockWithCookie( User $user, WebResponse $response ) {
 		if ( !$this->options->get( MainConfigNames::CookieSetOnIpBlock ) &&

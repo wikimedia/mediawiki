@@ -201,7 +201,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
 	 *   - statusWrapper : Optional callback that is used to wrap returned StatusValues
-	 * @throws \InvalidArgumentException
 	 */
 	public function __construct( array $config ) {
 		if ( !array_key_exists( 'name', $config ) ) {
@@ -1641,7 +1640,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * @param string $type One of (attachment, inline)
 	 * @param string $filename Suggested file name (should not contain slashes)
-	 * @throws \InvalidArgumentException
 	 * @return string
 	 * @since 1.20
 	 */

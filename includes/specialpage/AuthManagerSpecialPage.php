@@ -335,7 +335,6 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * the caller's responsibility.
 	 * @param string $action One of the AuthManager::ACTION_* constants in static::$allowedActions
 	 * @return bool
-	 * @throws LogicException if $action is invalid
 	 */
 	protected function isActionAllowed( $action ) {
 		$authManager = $this->getAuthManager();

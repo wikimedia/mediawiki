@@ -48,8 +48,6 @@ class RawMessage extends Message {
 	 *
 	 * @param string $text Message to use.
 	 * @param array $params Parameters for the message.
-	 *
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $text, $params = [] ) {
 		if ( !is_string( $text ) ) {

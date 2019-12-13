@@ -73,7 +73,6 @@ abstract class FileOp {
 	 * @param FileBackendStore $backend
 	 * @param array $params
 	 * @param LoggerInterface $logger PSR logger instance
-	 * @throws InvalidArgumentException
 	 */
 	final public function __construct(
 		FileBackendStore $backend, array $params, LoggerInterface $logger

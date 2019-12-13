@@ -188,7 +188,6 @@ class ResponseFactory {
 	 * @param int $errorCode HTTP error code
 	 * @param array $bodyData An array of data to be included in the JSON response
 	 * @return Response
-	 * @throws InvalidArgumentException
 	 */
 	public function createHttpError( $errorCode, array $bodyData = [] ) {
 		if ( $errorCode < 400 || $errorCode >= 600 ) {

@@ -1997,6 +1997,10 @@ class HTMLForm extends ContextSource {
 	 * @todo Document
 	 * @stable to override
 	 *
+	 * Throws an exception when called on uninitialized field data, e.g. when
+	 * HTMLForm::displayForm was called without calling HTMLForm::prepareForm
+	 * first.
+	 *
 	 * @param array[]|HTMLFormField[] $fields Array of fields (either arrays or
 	 *   objects).
 	 * @param string $sectionName ID attribute of the "<table>" tag for this
@@ -2004,9 +2008,6 @@ class HTMLForm extends ContextSource {
 	 * @param string $fieldsetIDPrefix ID prefix for the "<fieldset>" tag of
 	 *   each subsection, ignored if empty.
 	 * @param bool &$hasUserVisibleFields Whether the section had user-visible fields.
-	 * @throws LogicException When called on uninitialized field data, e.g. When
-	 *  HTMLForm::displayForm was called without calling HTMLForm::prepareForm
-	 *  first.
 	 *
 	 * @return string
 	 */
