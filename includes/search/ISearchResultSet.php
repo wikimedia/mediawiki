@@ -54,7 +54,7 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	public function getQueryAfterRewrite();
 
 	/**
-	 * @return string|null Same as self::getQueryAfterRewrite(), but in HTML
+	 * @return HtmlArmor|string|null Same as self::getQueryAfterRewrite(), but in HTML
 	 *  and with changes highlighted. Null when the query was not rewritten.
 	 */
 	public function getQueryAfterRewriteSnippet();
@@ -73,7 +73,7 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	public function getSuggestionQuery();
 
 	/**
-	 * @return string HTML highlighted suggested query, '' if none
+	 * @return HtmlArmor|string HTML highlighted suggested query, '' if none
 	 */
 	public function getSuggestionSnippet();
 

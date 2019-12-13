@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Widget\Search;
 
-use HtmlArmor;
 use ISearchResultSet;
 use SpecialSearch;
 
@@ -55,9 +54,21 @@ class DidYouMeanWidget {
 
 		$linkRenderer = $this->specialSearch->getLinkRenderer();
 		$snippet = $resultSet->getQueryAfterRewriteSnippet();
+		if ( $snippet === '' || $snippet === null ) {
+			// This should never happen. But if it did happen we would render
+			// links as `Special:Search` which is even more useless. Since this
+			// was only documented but not enforced previously emit a
+			// deprecation warning and in the future we can simply fail on bad
+			// inputs
+			wfDeprecated(
+				get_class( $resultSet ) . '::getQueryAfterRewriteSnippet returning empty snippet',
+				'1.34'
+			);
+			$snippet = $resultSet->getQueryAfterRewrite();
+		}
 		$rewritten = $linkRenderer->makeKnownLink(
 			$this->specialSearch->getPageTitle(),
-			$snippet ? new HtmlArmor( $snippet ) : null,
+			$snippet,
 			[ 'id' => 'mw-search-DYM-rewritten' ],
 			$stParams
 		);
@@ -92,9 +103,21 @@ class DidYouMeanWidget {
 		$stParams = array_merge( $params, $this->specialSearch->powerSearchOptions() );
 
 		$snippet = $resultSet->getSuggestionSnippet();
+		if ( $snippet === '' || $snippet === null ) {
+			// This should never happen. But if it did happen we would render
+			// links as `Special:Search` which is even more useless. Since this
+			// was only documented but not enforced previously emit a
+			// deprecation warning and in the future we can simply fail on bad
+			// inputs
+			wfDeprecated(
+				get_class( $resultSet ) . '::getSuggestionSnippet returning empty snippet',
+				'1.34'
+			);
+			$snippet = $resultSet->getSuggestionSnippet();
+		}
 		$suggest = $this->specialSearch->getLinkRenderer()->makeKnownLink(
 			$this->specialSearch->getPageTitle(),
-			$snippet ? new HtmlArmor( $snippet ) : null,
+			$snippet,
 			[ 'id' => 'mw-search-DYM-suggestion' ],
 			$stParams
 		);
