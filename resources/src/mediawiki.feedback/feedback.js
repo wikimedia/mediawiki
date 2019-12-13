@@ -145,7 +145,7 @@
 				this.constructor.static.dialog,
 				this.thankYouDialog
 			] );
-			$( 'body' )
+			$( document.body )
 				.append( this.constructor.static.windowManager.$element );
 		}
 		// Open the dialog

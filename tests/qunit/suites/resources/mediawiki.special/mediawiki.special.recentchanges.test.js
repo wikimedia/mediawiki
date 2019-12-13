@@ -28,7 +28,7 @@
 			+ '<input type="submit" value="Go" />'
 			+ '<input type="hidden" value="Special:RecentChanges" name="title" />';
 
-		$env = $( '<div>' ).html( selectHtml ).appendTo( 'body' );
+		$env = $( '<div>' ).html( selectHtml ).appendTo( document.body );
 
 		// TODO abstract the double strictEquals
 

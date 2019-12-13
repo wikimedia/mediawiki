@@ -10,7 +10,7 @@
 	 *
 	 *     var uploadDialog = new mw.Upload.Dialog();
 	 *     var windowManager = new OO.ui.WindowManager();
-	 *     $( 'body' ).append( windowManager.$element );
+	 *     $( document.body ).append( windowManager.$element );
 	 *     windowManager.addWindows( [ uploadDialog ] );
 	 *     windowManager.openWindow( uploadDialog );
 	 *

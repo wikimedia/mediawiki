@@ -251,7 +251,7 @@
 				tokenPromise.resolve();
 			}
 
-			$( 'body' ).append( $form, $iframe );
+			$( document.body ).append( $form, $iframe );
 
 			deferred.always( function () {
 				$form.remove();

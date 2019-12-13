@@ -808,7 +808,7 @@
 			$content = $( '#mw-apisandbox' );
 
 			windowManager = new OO.ui.WindowManager();
-			$( 'body' ).append( windowManager.$element );
+			$( document.body ).append( windowManager.$element );
 			windowManager.addWindows( {
 				errorAlert: new OO.ui.MessageDialog()
 			} );
