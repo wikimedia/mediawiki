@@ -144,8 +144,6 @@ class LegacyLogger extends AbstractLogger {
 	 * @param array $context
 	 */
 	public function log( $level, $message, array $context = [] ) {
-		global $wgDBerrorLog;
-
 		if ( is_string( $level ) ) {
 			$level = self::$levelMapping[$level];
 		}
@@ -176,6 +174,7 @@ class LegacyLogger extends AbstractLogger {
 		// Likewise, if the site does not use  $wgDBerrorLog, it should
 		// configurable like any other channel via $wgDebugLogGroups
 		// or $wgMWLoggerDefaultSpi.
+		global $wgDBerrorLog;
 		if ( $this->isDB && $level >= self::LEVEL_ERROR && $wgDBerrorLog ) {
 			// Format and write DB errors to the legacy locations
 			$effectiveChannel = 'wfLogDBError';
