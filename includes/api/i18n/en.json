@@ -320,7 +320,7 @@
 	"apihelp-opensearch-param-search": "Search string.",
 	"apihelp-opensearch-param-limit": "Maximum number of results to return.",
 	"apihelp-opensearch-param-namespace": "Namespaces to search. Ignored if <var>$1search</var> begins with a valid namespace prefix.",
-	"apihelp-opensearch-param-suggest": "Do nothing if <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> is false.",
+	"apihelp-opensearch-param-suggest": "No longer used.",
 	"apihelp-opensearch-param-redirects": "How to handle redirects:\n;return:Return the redirect itself.\n;resolve:Return the target page. May return fewer than $1limit results.\nFor historical reasons, the default is \"return\" for $1format=json and \"resolve\" for other formats.",
 	"apihelp-opensearch-param-format": "The format of the output.",
 	"apihelp-opensearch-param-warningsaserror": "If warnings are raised with <kbd>format=json</kbd>, return an API error instead of ignoring them.",
