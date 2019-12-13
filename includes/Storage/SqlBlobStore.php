@@ -347,18 +347,27 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		foreach ( $blobAddresses as $blobAddress ) {
 			list( $schema, $id ) = self::splitBlobAddress( $blobAddress );
 			//TODO: MCR: also support 'ex' schema with ExternalStore URLs, plus flags encoded in the URL!
-			if ( $schema === 'tt' ) {
+			if ( $schema === 'bad' ) {
+				// Database row was marked as "known bad", no need to trigger an error.
+				wfDebug(
+					__METHOD__
+					. ": loading known-bad content ($blobAddress), returning empty string"
+				);
+				$result[$blobAddress] = '';
+				continue;
+			} elseif ( $schema === 'tt' ) {
 				$textId = intval( $id );
+
+				if ( $textId < 1 || $id !== (string)$textId ) {
+					$errors[$blobAddress] = "Bad blob address: $blobAddress";
+					$result[$blobAddress] = false;
+				}
+
 				$textIdToBlobAddress[$textId] = $blobAddress;
 			} else {
 				$errors[$blobAddress] = "Unknown blob address schema: $schema";
 				$result[$blobAddress] = false;
 				continue;
-			}
-
-			if ( !$textId || $id !== (string)$textId ) {
-				$errors[$blobAddress] = "Bad blob address: $blobAddress";
-				$result[$blobAddress] = false;
 			}
 		}
 
@@ -689,7 +698,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @return array [ $schema, $id, $parameters ], with $parameters being an assoc array.
 	 */
 	public static function splitBlobAddress( $address ) {
-		if ( !preg_match( '/^(\w+):(\w+)(\?(.*))?$/', $address, $m ) ) {
+		if ( !preg_match( '/^([-+.\w]+):([^\s?]+)(\?([^\s]*))?$/', $address, $m ) ) {
 			throw new InvalidArgumentException( "Bad blob address: $address" );
 		}
 
