@@ -3245,7 +3245,7 @@
 	"mcrundo-missingparam": "请求中缺少必需参数。",
 	"mcrundo-changed": "在您访问的差异以来，此页面已更新。请复核新的更改。",
 	"mcrundo-parse-failed": "解析新的修订版本$1失败",
-	"semicolon-separator": "",
+	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": "：",
 	"pipe-separator": "&#32;|&#32;",

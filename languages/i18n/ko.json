@@ -1185,6 +1185,7 @@
 	"saveusergroups": "{{GENDER:$1|사용자}} 권한 저장",
 	"userrights-groupsmember": "현재 권한:",
 	"userrights-groupsmember-auto": "자동으로 부여된 권한:",
+	"userrights-systemuser": "{{GENDER:$1|이 사용자}}는 시스템 사용자입니다",
 	"userrights-groups-help": "이 사용자의 권한을 바꿀 수 있습니다.\n* 사용자는 체크 표시가 있는 권한을 갖습니다.\n* 사용자는 체크 표시가 없는 권한을 갖지 않습니다.\n* * 표시는 권한을 주거나 거두는 것 중 하나만 할 수 있다는 뜻입니다.\n* # 표시는 사용자 권한의 만료일을 늦출 수만 있다는 뜻입니다; 만료일을 앞당길 수는 없습니다.",
 	"userrights-reason": "이유:",
 	"userrights-no-interwiki": "다른 위키의 사용자 권한을 바꿀 권한이 없습니다.",

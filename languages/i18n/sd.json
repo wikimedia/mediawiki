@@ -10,7 +10,8 @@
 			"Indus Asia",
 			"BukhariSaeed",
 			"Fitoschido",
-			"Tweety"
+			"Tweety",
+			"KaleemBhatti"
 		]
 	},
 	"tog-underline": "ڳنڍڻي هيٺان لڪير:",
@@ -539,6 +540,7 @@
 	"missing-revision": "صفحي \"{{FULLPAGENAME}}\" جو ورجاءُ #$1 وجود نٿو رکي.\n\nاڪثر اهو تڏهن ٿيندو آهي جڏهن اوهان ڪنھن مدي خارج پراڻي ڳنڍڻي تان اھڙي صفحي تي اچو جيڪو ڊاٿو ويو ھجي. تفصيل [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ڊاھ لاگ] ۾ لھي سگھجن ٿا.",
 	"userpage-userdoesnotexist-view": "واپرائيندڙ کاتو $1 درج ٿيل نہ آهي.",
 	"blocked-notice-logextract": "هيءُ واپرائيندڙ في‌الحال بندشيل آهي.\nتازو بندش لاگ حوالي طور پيش ڪجي ٿو:",
+	"clearyourcache": "<strong>يادگيري:</strong> محفوظ ڪرڻ کانپوءِ تازين تبديلن کي کي ڏسڻ جي لاءِ توهان کي پنهنجي برائوزر جي ڪيش کي صاف ڪرڻ جي ضرورت آهي.\n* <strong>فائرفاڪس:</strong> جڏهن <em>Reload</em> تي ڪلڪ ڪريو ته <em>Shift</em> دٻائي رکو یا <em>Ctrl-F5</em> یا <em>Ctrl-R</em> دٻايو (Mac تي <em>R-⌘</em>)\n* <strong>گوگل ڪروم:</strong> <em>Ctrl-Shift-R</em> دٻايو (Mac تي </em>Shift-R-⌘</em>)\n* <strong>انٽرنيٽ ايڪسپلورر:</strong> جڏهن <em>Refresh</em> تي ڪلڪ ڪريو ته <em>Ctrl</em> یا <em>Ctrl-F5</em> دٻايو\n* <strong>اوپيرا:</strong> <em>Tools → Preferences</em> ۾ وڃو ۽ ڪيش صاف ڪريو",
 	"updated": "(تجديديل)",
 	"note": "<strong>نوٽ:</strong>",
 	"previewnote": "<strong>ياد رکو هيءَ فقط پيش-نگاھ آهي.</strong>\nتوھان جون سنوارون اڃان نہ سانڍيون ويون آھن!",
