@@ -17,8 +17,7 @@
 				action: 'opensearch',
 				search: query,
 				namespace: namespace || searchNS,
-				limit: maxRows,
-				suggest: true
+				limit: maxRows
 			} ).done( function ( data, jqXHR ) {
 				response( data[ 1 ], {
 					type: jqXHR.getResponseHeader( 'X-OpenSearch-Type' ),

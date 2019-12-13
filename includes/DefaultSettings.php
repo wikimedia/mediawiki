@@ -6546,10 +6546,10 @@ $wgOpenSearchTemplates = [
 ];
 
 /**
- * Enable OpenSearch suggestions requested by MediaWiki. Set this to
- * false if you've disabled scripts that use api?action=opensearch and
- * want reduce load caused by cached scripts still pulling suggestions.
- * It will let the API fallback by responding with an empty array.
+ * This was previously a used to force empty responses from ApiOpenSearch
+ * with the 'suggest' parameter set.
+ *
+ * @deprecated since 1.35 No longer used
  */
 $wgEnableOpenSearchSuggest = true;
 
