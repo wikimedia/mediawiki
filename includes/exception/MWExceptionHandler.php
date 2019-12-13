@@ -317,20 +317,10 @@ TXT;
 			// phpcs:enable
 		}
 
-		// We can't just create an exception and log it, as it is likely that
-		// the interpreter has unwound the stack already. If that is true the
-		// stacktrace we would get would be functionally empty.
-		$trace = debug_backtrace();
+		$e = new ErrorException( "PHP Fatal Error: {$message}", 0, $level, $file, $line );
 		$logger = LoggerFactory::getInstance( 'fatal' );
 		$logger->error( $msg, [
-			'exception' => [
-				'class' => ErrorException::class,
-				'message' => "PHP Fatal Error: {$message}",
-				'code' => $level,
-				'file' => $file,
-				'line' => $line,
-				'trace' => self::prettyPrintTrace( self::redactTrace( $trace ) ),
-			],
+			'exception' => $e,
 			'exception_id' => WebRequest::getRequestId(),
 			'exception_url' => $url,
 			'caught_by' => self::CAUGHT_BY_HANDLER

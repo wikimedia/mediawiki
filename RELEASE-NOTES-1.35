@@ -47,6 +47,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   "versioned" key for urls that do have a version parameter, and the
   "unversioned" key for urls without a version parameter. The sub keys for
   "client" and "server" are no longer supported in MediaWiki 1.35.
+* $wgEnableOpenSearchSuggest - This boolean variable is deprecated and no longer
+  used. The OpenSearch API is now always enabled.
 * …
 
 ==== Removed configuration ====
@@ -100,6 +102,11 @@ For notes on 1.34.x and older releases, see HISTORY.
 * …
 
 === Action API changes in 1.35 ===
+* The 'suggest' parameter of action=opensearch has been deprecated.
+  The API behaves the same with and without this parameter.
+  It was previously used by $wgEnableOpenSearchSuggest to partially
+  disable the API if set to false. Specifically, it would deny internal
+  frontend requests carrying this parameter, whilst accepting other requests.
 * …
 
 === Action API internal changes in 1.35 ===
