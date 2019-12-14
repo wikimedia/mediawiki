@@ -178,10 +178,10 @@ class RevisionRendererTest extends MediaWikiTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getText();
 
-		$this->assertContains( 'page:' . __CLASS__, $html );
-		$this->assertContains( 'rev:101', $html ); // from speculativeRevIdCallback
-		$this->assertContains( 'user:Frank', $html );
-		$this->assertContains( 'time:20180101000003', $html );
+		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
+		$this->assertStringContainsString( 'rev:101', $html ); // from speculativeRevIdCallback
+		$this->assertStringContainsString( 'user:Frank', $html );
+		$this->assertStringContainsString( 'time:20180101000003', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
 	}
@@ -214,10 +214,10 @@ class RevisionRendererTest extends MediaWikiTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getText();
 
-		$this->assertContains( 'page:' . __CLASS__, $html );
-		$this->assertContains( 'rev:21', $html );
-		$this->assertContains( 'user:Frank', $html );
-		$this->assertContains( 'time:20180101000003', $html );
+		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
+		$this->assertStringContainsString( 'rev:21', $html );
+		$this->assertStringContainsString( 'user:Frank', $html );
+		$this->assertStringContainsString( 'time:20180101000003', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
 	}
@@ -247,7 +247,7 @@ class RevisionRendererTest extends MediaWikiTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getText();
 
-		$this->assertContains( 'rev:21', $html );
+		$this->assertStringContainsString( 'rev:21', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( SlotRecord::MAIN )->getText() );
 	}
@@ -308,10 +308,10 @@ class RevisionRendererTest extends MediaWikiTestCase {
 
 		$html = $rr->getRevisionParserOutput()->getText();
 
-		$this->assertContains( 'page:' . __CLASS__, $html );
-		$this->assertContains( 'rev:11', $html );
-		$this->assertContains( 'user:Frank', $html );
-		$this->assertContains( 'time:20180101000003', $html );
+		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
+		$this->assertStringContainsString( 'rev:11', $html );
+		$this->assertStringContainsString( 'user:Frank', $html );
+		$this->assertStringContainsString( 'time:20180101000003', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( 'main' )->getText() );
 	}
@@ -373,10 +373,10 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$html = $rr->getRevisionParserOutput()->getText();
 
 		// Suppressed content should be visible for sysops
-		$this->assertContains( 'page:' . __CLASS__, $html );
-		$this->assertContains( 'rev:11', $html );
-		$this->assertContains( 'user:Frank', $html );
-		$this->assertContains( 'time:20180101000003', $html );
+		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
+		$this->assertStringContainsString( 'rev:11', $html );
+		$this->assertStringContainsString( 'user:Frank', $html );
+		$this->assertStringContainsString( 'time:20180101000003', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( 'main' )->getText() );
 	}
@@ -416,10 +416,10 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$html = $rr->getRevisionParserOutput()->getText();
 
 		// Suppressed content should be visible in raw mode
-		$this->assertContains( 'page:' . __CLASS__, $html );
-		$this->assertContains( 'rev:11', $html );
-		$this->assertContains( 'user:Frank', $html );
-		$this->assertContains( 'time:20180101000003', $html );
+		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
+		$this->assertStringContainsString( 'rev:11', $html );
+		$this->assertStringContainsString( 'user:Frank', $html );
+		$this->assertStringContainsString( 'time:20180101000003', $html );
 
 		$this->assertSame( $html, $rr->getSlotParserOutput( 'main' )->getText() );
 	}
@@ -446,23 +446,27 @@ class RevisionRendererTest extends MediaWikiTestCase {
 		$mainHtml = $mainOutput->getText();
 		$auxHtml = $auxOutput->getText();
 
-		$this->assertContains( 'Kittens', $mainHtml );
-		$this->assertContains( 'Goats', $auxHtml );
-		$this->assertNotContains( 'Goats', $mainHtml );
-		$this->assertNotContains( 'Kittens', $auxHtml );
-		$this->assertContains( 'Kittens', $combinedHtml );
-		$this->assertContains( 'Goats', $combinedHtml );
-		$this->assertContains( '>aux<', $combinedHtml, 'slot header' );
-		$this->assertNotContains( '<mw:slotheader', $combinedHtml, 'slot header placeholder' );
+		$this->assertStringContainsString( 'Kittens', $mainHtml );
+		$this->assertStringContainsString( 'Goats', $auxHtml );
+		$this->assertStringNotContainsString( 'Goats', $mainHtml );
+		$this->assertStringNotContainsString( 'Kittens', $auxHtml );
+		$this->assertStringContainsString( 'Kittens', $combinedHtml );
+		$this->assertStringContainsString( 'Goats', $combinedHtml );
+		$this->assertStringContainsString( '>aux<', $combinedHtml, 'slot header' );
+		$this->assertStringNotContainsString(
+			'<mw:slotheader',
+			$combinedHtml,
+			'slot header placeholder'
+		);
 
 		// make sure output wrapping works right
-		$this->assertContains( 'class="mw-parser-output"', $mainHtml );
-		$this->assertContains( 'class="mw-parser-output"', $auxHtml );
-		$this->assertContains( 'class="mw-parser-output"', $combinedHtml );
+		$this->assertStringContainsString( 'class="mw-parser-output"', $mainHtml );
+		$this->assertStringContainsString( 'class="mw-parser-output"', $auxHtml );
+		$this->assertStringContainsString( 'class="mw-parser-output"', $combinedHtml );
 
 		// there should be only one wrapper div
 		$this->assertSame( 1, preg_match_all( '#class="mw-parser-output"#', $combinedHtml ) );
-		$this->assertNotContains( 'class="mw-parser-output"', $combinedOutput->getRawText() );
+		$this->assertStringNotContainsString( 'class="mw-parser-output"', $combinedOutput->getRawText() );
 
 		$combinedLinks = $combinedOutput->getLinks();
 		$mainLinks = $mainOutput->getLinks();

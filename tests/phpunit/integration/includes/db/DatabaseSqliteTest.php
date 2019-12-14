@@ -528,7 +528,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		$toString = (string)$db;
 
-		$this->assertContains( 'sqlite object', $toString );
+		$this->assertStringContainsString( 'sqlite object', $toString );
 	}
 
 	/**

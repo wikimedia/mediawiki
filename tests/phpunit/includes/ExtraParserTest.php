@@ -60,7 +60,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 		RequestContext::getMain()->getWikiPage()->CustomTestProp = true;
 
 		$parsed = $this->parser->parse( $text, $title, $options )->getText();
-		$this->assertContains( 'apihelp-header', $parsed );
+		$this->assertStringContainsString( 'apihelp-header', $parsed );
 
 		// Verify that this property wasn't wiped out by the parse
 		$this->assertTrue( RequestContext::getMain()->getWikiPage()->CustomTestProp );

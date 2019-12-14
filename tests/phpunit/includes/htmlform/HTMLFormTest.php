@@ -29,26 +29,26 @@ class HTMLFormTest extends MediaWikiTestCase {
 
 	public function testAutocompleteDefaultsToNull() {
 		$form = $this->newInstance();
-		$this->assertNotContains( 'autocomplete', $form->wrapForm( '' ) );
+		$this->assertStringNotContainsString( 'autocomplete', $form->wrapForm( '' ) );
 	}
 
 	public function testAutocompleteWhenSetToNull() {
 		$form = $this->newInstance();
 		$form->setAutocomplete( null );
-		$this->assertNotContains( 'autocomplete', $form->wrapForm( '' ) );
+		$this->assertStringNotContainsString( 'autocomplete', $form->wrapForm( '' ) );
 	}
 
 	public function testAutocompleteWhenSetToFalse() {
 		$form = $this->newInstance();
 		// Previously false was used instead of null to indicate the attribute should not be set
 		$form->setAutocomplete( false );
-		$this->assertNotContains( 'autocomplete', $form->wrapForm( '' ) );
+		$this->assertStringNotContainsString( 'autocomplete', $form->wrapForm( '' ) );
 	}
 
 	public function testAutocompleteWhenSetToOff() {
 		$form = $this->newInstance();
 		$form->setAutocomplete( 'off' );
-		$this->assertContains( ' autocomplete="off"', $form->wrapForm( '' ) );
+		$this->assertStringContainsString( ' autocomplete="off"', $form->wrapForm( '' ) );
 	}
 
 	public function testGetPreText() {

@@ -107,47 +107,47 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$po = new ParserOutput();
 
 		$po->setText( 'Kittens' );
-		$this->assertContains( 'Kittens', $po->getText() );
-		$this->assertNotContains( '<div', $po->getText() );
+		$this->assertStringContainsString( 'Kittens', $po->getText() );
+		$this->assertStringNotContainsString( '<div', $po->getText() );
 		$this->assertSame( 'Kittens', $po->getRawText() );
 
 		$po->addWrapperDivClass( 'foo' );
 		$text = $po->getText();
-		$this->assertContains( 'Kittens', $text );
-		$this->assertContains( '<div', $text );
-		$this->assertContains( 'class="foo"', $text );
+		$this->assertStringContainsString( 'Kittens', $text );
+		$this->assertStringContainsString( '<div', $text );
+		$this->assertStringContainsString( 'class="foo"', $text );
 
 		$po->addWrapperDivClass( 'bar' );
 		$text = $po->getText();
-		$this->assertContains( 'Kittens', $text );
-		$this->assertContains( '<div', $text );
-		$this->assertContains( 'class="foo bar"', $text );
+		$this->assertStringContainsString( 'Kittens', $text );
+		$this->assertStringContainsString( '<div', $text );
+		$this->assertStringContainsString( 'class="foo bar"', $text );
 
 		$po->addWrapperDivClass( 'bar' ); // second time does nothing, no "foo bar bar".
 		$text = $po->getText( [ 'unwrap' => true ] );
-		$this->assertContains( 'Kittens', $text );
-		$this->assertNotContains( '<div', $text );
-		$this->assertNotContains( 'class="foo bar"', $text );
+		$this->assertStringContainsString( 'Kittens', $text );
+		$this->assertStringNotContainsString( '<div', $text );
+		$this->assertStringNotContainsString( 'class="foo bar"', $text );
 
 		$text = $po->getText( [ 'wrapperDivClass' => '' ] );
-		$this->assertContains( 'Kittens', $text );
-		$this->assertNotContains( '<div', $text );
-		$this->assertNotContains( 'class="foo bar"', $text );
+		$this->assertStringContainsString( 'Kittens', $text );
+		$this->assertStringNotContainsString( '<div', $text );
+		$this->assertStringNotContainsString( 'class="foo bar"', $text );
 
 		$text = $po->getText( [ 'wrapperDivClass' => 'xyzzy' ] );
-		$this->assertContains( 'Kittens', $text );
-		$this->assertContains( '<div', $text );
-		$this->assertContains( 'class="xyzzy"', $text );
-		$this->assertNotContains( 'class="foo bar"', $text );
+		$this->assertStringContainsString( 'Kittens', $text );
+		$this->assertStringContainsString( '<div', $text );
+		$this->assertStringContainsString( 'class="xyzzy"', $text );
+		$this->assertStringNotContainsString( 'class="foo bar"', $text );
 
 		$text = $po->getRawText();
 		$this->assertSame( 'Kittens', $text );
 
 		$po->clearWrapperDivClass();
 		$text = $po->getText();
-		$this->assertContains( 'Kittens', $text );
-		$this->assertNotContains( '<div', $text );
-		$this->assertNotContains( 'class="foo bar"', $text );
+		$this->assertStringContainsString( 'Kittens', $text );
+		$this->assertStringNotContainsString( '<div', $text );
+		$this->assertStringNotContainsString( 'class="foo bar"', $text );
 	}
 
 	/**

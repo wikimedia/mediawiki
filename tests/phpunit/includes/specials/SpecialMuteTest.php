@@ -82,7 +82,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 			$targetUser->getName(), $fauxRequest, 'qqx', $loggedInUser
 		);
 
-		$this->assertContains( 'specialmute-success', $html );
+		$this->assertStringContainsString( 'specialmute-success', $html );
 		$this->assertEquals(
 			"999\n" . $targetUser->getId(),
 			$loggedInUser->getOption( 'email-blacklist' )
@@ -109,7 +109,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 			$targetUser->getName(), $fauxRequest, 'qqx', $loggedInUser
 		);
 
-		$this->assertContains( 'specialmute-success', $html );
+		$this->assertStringContainsString( 'specialmute-success', $html );
 		$this->assertEquals( "999", $loggedInUser->getOption( 'email-blacklist' ) );
 	}
 }

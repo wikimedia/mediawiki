@@ -51,7 +51,7 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 		$this->assertStringContainsString( "\n[Exception InvalidArgumentException]", $out );
 		$this->assertStringContainsString( "\nCaused by: [Exception LengthException]", $out );
 		$this->assertStringContainsString( "\nCaused by: [Exception LogicException]", $out );
-		$this->assertNotContains( "\n  #0", $out );
+		$this->assertStringNotContainsString( "\n  #0", $out );
 	}
 
 	/**

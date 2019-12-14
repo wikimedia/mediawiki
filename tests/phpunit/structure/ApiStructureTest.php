@@ -432,7 +432,7 @@ class ApiStructureTest extends MediaWikiTestCase {
 						$this->assertRegExp( '/^[^{}]+$/', $key,
 							"$param: PARAM_TEMPLATE_VARS key may not contain '{' or '}'" );
 
-						$this->assertContains( '{' . $key . '}', $param,
+						$this->assertStringContainsString( '{' . $key . '}', $param,
 							"$param: Name must contain PARAM_TEMPLATE_VARS key {" . $key . "}" );
 						$this->assertArrayHasKey( $target, $params,
 							"$param: PARAM_TEMPLATE_VARS target parameter '$target' does not exist" );

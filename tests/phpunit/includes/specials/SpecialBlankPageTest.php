@@ -24,7 +24,7 @@ class SpecialBlankPageTest extends SpecialPageTestBase {
 
 	public function testHasWikiMsg() {
 		list( $html, ) = $this->executeSpecialPage();
-		$this->assertContains( '(intentionallyblankpage)', $html );
+		$this->assertStringContainsString( '(intentionallyblankpage)', $html );
 	}
 
 }

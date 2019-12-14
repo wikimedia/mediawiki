@@ -27,8 +27,8 @@ class UnknownContentTest extends MediaWikiLangTestCase {
 		$html = $po->getText();
 		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
 
-		$this->assertNotContains( 'Horkyporky', $html );
-		$this->assertNotContains( '(unsupported-content-model)', $html );
+		$this->assertStringNotContainsString( 'Horkyporky', $html );
+		$this->assertStringNotContainsString( '(unsupported-content-model)', $html );
 	}
 
 	/**

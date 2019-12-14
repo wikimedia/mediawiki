@@ -171,8 +171,8 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 			$edit->popts,
 			"pops"
 		);
-		$this->assertContains( '</a>', $edit->output->getText(), "output" );
-		$this->assertContains(
+		$this->assertStringContainsString( '</a>', $edit->output->getText(), "output" );
+		$this->assertStringContainsString(
 			'consetetur sadipscing elitr',
 			$edit->output->getText(),
 			"output"
@@ -194,11 +194,11 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		$rev = $page->getRevision();
 		$edit2 = $page->prepareContentForEdit( $content2, null, $user, null, false );
 		$this->assertPreparedEditNotEquals( $edit, $edit2 );
-		$this->assertContains( 'At vero eos', $edit2->pstContent->serialize(), "content" );
+		$this->assertStringContainsString( 'At vero eos', $edit2->pstContent->serialize(), "content" );
 
 		// Check pre-safe transform
-		$this->assertContains( '[[gubergren]]', $edit2->pstContent->serialize() );
-		$this->assertNotContains( '~~~~', $edit2->pstContent->serialize() );
+		$this->assertStringContainsString( '[[gubergren]]', $edit2->pstContent->serialize() );
+		$this->assertStringNotContainsString( '~~~~', $edit2->pstContent->serialize() );
 
 		$edit3 = $page->prepareContentForEdit( $content2, null, $sysop, null, false );
 		$this->assertPreparedEditNotEquals( $edit2, $edit3 );
@@ -359,8 +359,8 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 
 		$retrieved = $page->getContent();
 		$newText = $retrieved->serialize();
-		$this->assertContains( '[[gubergren]]', $newText, 'New text must replace old text.' );
-		$this->assertNotContains( '~~~~', $newText, 'PST must substitute signature.' );
+		$this->assertStringContainsString( '[[gubergren]]', $newText, 'New text must replace old text.' );
+		$this->assertStringNotContainsString( '~~~~', $newText, 'PST must substitute signature.' );
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
