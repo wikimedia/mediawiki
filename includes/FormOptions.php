@@ -139,7 +139,7 @@ class FormOptions implements ArrayAccess {
 	 *
 	 * @param string $name Option name
 	 * @param bool $strict Throw an exception when the option doesn't exist instead of returning false
-	 * @throws MWException
+	 * @throws MWException When $strict is true, failure results in an exception.
 	 * @return bool True if the option exists, false otherwise
 	 */
 	public function validateName( $name, $strict = false ) {

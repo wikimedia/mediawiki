@@ -158,7 +158,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @see JobQueue::doGetAbandonedCount()
 	 * @return int
-	 * @throws MWException
+	 * @throws MWException on database error
 	 */
 	protected function doGetAbandonedCount() {
 		if ( $this->claimTTL <= 0 ) {
@@ -477,7 +477,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @see JobQueue::doAck()
 	 * @param RunnableJob $job
-	 * @throws MWException
+	 * @throws MWException When the job is invalid or on database error.
 	 */
 	protected function doAck( RunnableJob $job ) {
 		$id = $job->getMetadata( 'id' );
@@ -505,7 +505,7 @@ class JobQueueDB extends JobQueue {
 	/**
 	 * @see JobQueue::doDeduplicateRootJob()
 	 * @param IJobSpecification $job
-	 * @throws MWException
+	 * @throws MWException When a database or job error occurs.
 	 * @return bool
 	 */
 	protected function doDeduplicateRootJob( IJobSpecification $job ) {
