@@ -113,7 +113,7 @@ class MWDebugTest extends MediaWikiTestCase {
 		$xml = ApiFormatXml::recXmlPrint( 'help', $data, null );
 
 		// exception not thrown
-		$this->assertInternalType( 'string', $xml );
+		$this->assertIsString( $xml );
 	}
 
 	/**

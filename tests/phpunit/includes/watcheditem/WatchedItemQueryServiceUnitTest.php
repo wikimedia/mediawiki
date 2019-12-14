@@ -321,12 +321,12 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			$user, [ 'limit' => 2 ], $startFrom
 		);
 
-		$this->assertInternalType( 'array', $items );
+		$this->assertIsArray( $items );
 		$this->assertCount( 2, $items );
 
 		foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
 			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
-			$this->assertInternalType( 'array', $recentChangeInfo );
+			$this->assertIsArray( $recentChangeInfo );
 		}
 
 		$this->assertEquals(
@@ -481,12 +481,12 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			$user, [], $startFrom
 		);
 
-		$this->assertInternalType( 'array', $items );
+		$this->assertIsArray( $items );
 		$this->assertCount( 2, $items );
 
 		foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
 			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
-			$this->assertInternalType( 'array', $recentChangeInfo );
+			$this->assertIsArray( $recentChangeInfo );
 		}
 
 		$this->assertEquals(
@@ -1450,7 +1450,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 		$items = $queryService->getWatchedItemsForUser( $user );
 
-		$this->assertInternalType( 'array', $items );
+		$this->assertIsArray( $items );
 		$this->assertCount( 2, $items );
 		$this->assertContainsOnlyInstancesOf( WatchedItem::class, $items );
 		$this->assertEquals(

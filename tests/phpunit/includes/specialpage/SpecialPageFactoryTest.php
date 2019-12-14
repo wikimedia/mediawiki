@@ -89,7 +89,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgSpecialPages', [ 'testdummy' => SpecialAllPages::class ] );
 
 		$names = SpecialPageFactory::getNames();
-		$this->assertInternalType( 'array', $names );
+		$this->assertIsArray( $names );
 		$this->assertContains( 'testdummy', $names );
 	}
 

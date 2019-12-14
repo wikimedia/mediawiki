@@ -67,8 +67,8 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 				continue;
 			}
 			foreach ( $frame['args'] as $arg ) {
-				$this->assertNotInternalType( 'array', $arg );
-				$this->assertNotInternalType( 'object', $arg );
+				$this->assertIsNotArray( $arg );
+				$this->assertIsNotObject( $arg );
 			}
 		}
 

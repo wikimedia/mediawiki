@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 class ShellTest extends MediaWikiTestCase {
 
 	public function testIsDisabled() {
-		$this->assertInternalType( 'bool', Shell::isDisabled() ); // sanity
+		$this->assertIsBool( Shell::isDisabled() ); // sanity
 	}
 
 	/**

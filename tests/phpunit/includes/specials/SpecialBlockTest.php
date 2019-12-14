@@ -36,7 +36,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$page = $this->newSpecialPage();
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
 		$fields = $wrappedPage->getFormFields();
-		$this->assertInternalType( 'array', $fields );
+		$this->assertIsArray( $fields );
 		$this->assertArrayHasKey( 'Target', $fields );
 		$this->assertArrayHasKey( 'Expiry', $fields );
 		$this->assertArrayHasKey( 'Reason', $fields );

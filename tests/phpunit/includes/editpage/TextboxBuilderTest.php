@@ -66,7 +66,7 @@ class TextboxBuilderTest extends MediaWikiTestCase {
 			$title
 		);
 
-		$this->assertInternalType( 'array', $attribs );
+		$this->assertIsArray( $attribs );
 		// custom attrib showed up
 		$this->assertArrayHasKey( 'data-foo', $attribs );
 		// classes merged properly (string)

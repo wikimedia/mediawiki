@@ -51,6 +51,6 @@ class DatabaseIntegrationTest extends MediaWikiTestCase {
 	public function testUnknownTableCorruptsResults() {
 		$res = $this->db->select( 'page', '*', [ 'page_id' => 1 ] );
 		$this->assertFalse( $this->db->tableExists( 'foobarbaz' ) );
-		$this->assertInternalType( 'int', $res->numRows() );
+		$this->assertIsInt( $res->numRows() );
 	}
 }

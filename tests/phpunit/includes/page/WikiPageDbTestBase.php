@@ -2033,7 +2033,7 @@ more stuff
 		$result = $page->insertOn( $this->db );
 		$endTimeStamp = wfTimestampNow();
 
-		$this->assertInternalType( 'int', $result );
+		$this->assertIsInt( $result );
 		$this->assertTrue( $result > 0 );
 
 		$condition = [ 'page_id' => $result ];
@@ -2183,7 +2183,7 @@ more stuff
 		$allRestrictions = $page->getTitle()->getAllRestrictions();
 
 		$this->assertTrue( $status->isGood() );
-		$this->assertInternalType( 'int', $logId );
+		$this->assertIsInt( $logId );
 		$this->assertSame( $expectedRestrictions, $allRestrictions );
 		foreach ( $expectedRestrictionExpiries as $key => $value ) {
 			$this->assertSame( $value, $page->getTitle()->getRestrictionExpiry( $key ) );
@@ -2261,7 +2261,7 @@ more stuff
 
 		// The first entry should have a logId as it did something
 		$this->assertTrue( $status->isGood() );
-		$this->assertInternalType( 'int', $status->getValue() );
+		$this->assertIsInt( $status->getValue() );
 
 		$status = $page->doUpdateRestrictions(
 			$limit,
@@ -2295,7 +2295,7 @@ more stuff
 			[]
 		);
 		$this->assertTrue( $status->isGood() );
-		$this->assertInternalType( 'int', $status->getValue() );
+		$this->assertIsInt( $status->getValue() );
 		$this->assertSelect(
 			'logging',
 			[ 'log_type', 'log_action' ],
@@ -2313,7 +2313,7 @@ more stuff
 			[]
 		);
 		$this->assertTrue( $status->isGood() );
-		$this->assertInternalType( 'int', $status->getValue() );
+		$this->assertIsInt( $status->getValue() );
 		$this->assertSelect(
 			'logging',
 			[ 'log_type', 'log_action' ],
@@ -2331,7 +2331,7 @@ more stuff
 			[]
 		);
 		$this->assertTrue( $status->isGood() );
-		$this->assertInternalType( 'int', $status->getValue() );
+		$this->assertIsInt( $status->getValue() );
 		$this->assertSelect(
 			'logging',
 			[ 'log_type', 'log_action' ],

@@ -57,12 +57,12 @@ STR;
 	 * @return array
 	 */
 	private function validateRequestExpectedPair( $v ) {
-		$this->assertInternalType( 'array', $v, self::PARAM_ASSERT );
+		$this->assertIsArray( $v, self::PARAM_ASSERT );
 		$this->assertEquals( 2, count( $v ), self::PARAM_ASSERT );
 		$this->assertArrayHasKey( 0, $v, self::PARAM_ASSERT );
 		$this->assertArrayHasKey( 1, $v, self::PARAM_ASSERT );
-		$this->assertInternalType( 'array', $v[0], self::PARAM_ASSERT );
-		$this->assertInternalType( 'array', $v[1], self::PARAM_ASSERT );
+		$this->assertIsArray( $v[0], self::PARAM_ASSERT );
+		$this->assertIsArray( $v[1], self::PARAM_ASSERT );
 
 		return $v;
 	}
