@@ -402,7 +402,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 		$wrapper = TestingAccessWrapper::newFromObject( $cache );
 
-		$this->assertEquals( $ttl, $wrapper->bag[$key][HashBagOStuff::KEY_EXP] - time(), '', 1 );
+		$this->assertEqualsWithDelta( $ttl, $wrapper->bag[$key][HashBagOStuff::KEY_EXP] - time(), 1 );
 	}
 
 	public function signatureProvider() {

@@ -765,11 +765,11 @@ class OutputPageTest extends MediaWikiTestCase {
 		$str = OutputPage::buildBacklinkSubtitle( $title, $query )->text();
 
 		foreach ( $contains as $substr ) {
-			$this->assertContains( $substr, $str );
+			$this->assertStringContainsString( $substr, $str );
 		}
 
 		foreach ( $notContains as $substr ) {
-			$this->assertNotContains( $substr, $str );
+			$this->assertStringNotContainsString( $substr, $str );
 		}
 	}
 
@@ -791,11 +791,11 @@ class OutputPageTest extends MediaWikiTestCase {
 		$str = $op->getSubtitle();
 
 		foreach ( $contains as $substr ) {
-			$this->assertContains( $substr, $str );
+			$this->assertStringContainsString( $substr, $str );
 		}
 
 		foreach ( $notContains as $substr ) {
-			$this->assertNotContains( $substr, $str );
+			$this->assertStringNotContainsString( $substr, $str );
 		}
 	}
 
@@ -1207,10 +1207,10 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 
 		foreach ( $expectedNormal as $i => $name ) {
-			$this->assertContains( $name, $catLinks['normal'][$i] );
+			$this->assertStringContainsString( $name, $catLinks['normal'][$i] );
 		}
 		foreach ( $expectedHidden as $i => $name ) {
-			$this->assertContains( $name, $catLinks['hidden'][$i] );
+			$this->assertStringContainsString( $name, $catLinks['hidden'][$i] );
 		}
 	}
 

@@ -371,11 +371,11 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$parser->parse( $text, $title, $po, true, true, $revId );
 		$html = $parser->getOutput()->getText();
 
-		$this->assertContains( $expectedInHtml, $html, 'In HTML' );
+		$this->assertStringContainsString( $expectedInHtml, $html, 'In HTML' );
 
 		if ( $expectedInPst !== null ) {
 			$pst = $parser->preSaveTransform( $text, $title, $po->getUser(), $po );
-			$this->assertContains( $expectedInPst, $pst, 'After Pre-Safe Transform' );
+			$this->assertStringContainsString( $expectedInPst, $pst, 'After Pre-Safe Transform' );
 		}
 	}
 

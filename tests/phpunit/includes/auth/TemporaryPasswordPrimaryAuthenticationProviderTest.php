@@ -576,7 +576,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		{
 			$mailed = true;
 			$this->assertSame( $user->getEmail(), $to[0]->address );
-			$this->assertContains( $req->password, $body );
+			$this->assertStringContainsString( $req->password, $body );
 			return false;
 		} );
 		$provider->providerChangeAuthenticationData( $req );
@@ -707,7 +707,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		{
 			$mailed = true;
 			$this->assertSame( 'test@localhost.localdomain', $to[0]->address );
-			$this->assertContains( $req->password, $body );
+			$this->assertStringContainsString( $req->password, $body );
 			return false;
 		} );
 

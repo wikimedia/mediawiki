@@ -848,11 +848,11 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertArrayHasKey( 'wm_infinite_blockBlockID', $cookies );
 		$expOneDay = wfTimestamp() + ( 24 * 60 * 60 );
 		// Check for expiry dates in a 10-second window, to account for slow testing.
-		$this->assertEquals(
+		$this->assertEqualsWithDelta(
 			$expOneDay,
 			$cookies['wm_infinite_blockBlockID']['expire'],
-			'Expiry date',
-			5.0
+			5.0,
+			'Expiry date'
 		);
 
 		// 3. Change the block's expiry (to 2 hours), and the cookie's should be changed also.
