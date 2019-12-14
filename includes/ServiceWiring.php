@@ -40,7 +40,7 @@
  *
  * @since 1.27
  *
- * @see docs/injection.txt for an overview of using dependency injection in the
+ * @see docs/Injection.md for an overview of using dependency injection in the
  *      MediaWiki code base.
  */
 

@@ -123,7 +123,7 @@ use Wikimedia\Services\ServiceContainer;
  * Services are defined in the "wiring" array passed to the constructor,
  * or by calling defineService().
  *
- * @see docs/injection.txt for an overview of using dependency injection in the
+ * @see docs/Injection.md for an overview of using dependency injection in the
  *      MediaWiki code base.
  */
 class MediaWikiServices extends ServiceContainer {

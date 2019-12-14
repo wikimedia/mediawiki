@@ -7490,7 +7490,7 @@ $wgHooks = [];
  *
  * @see MediaWikiServices
  * @see ServiceContainer::loadWiringFiles() for details on loading service instantiator functions.
- * @see docs/injection.txt for an overview of dependency injection in MediaWiki.
+ * @see docs/Injection.md for an overview of dependency injection in MediaWiki.
  */
 $wgServiceWiringFiles = [
 	__DIR__ . '/ServiceWiring.php'
