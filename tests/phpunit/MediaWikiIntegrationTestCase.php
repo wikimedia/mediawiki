@@ -218,7 +218,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function getExistingTestPage( $title = null ) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing which pages, the test cases\'s needsDB()' .
+			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
@@ -254,7 +254,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function getNonexistingTestPage( $title = null ) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing which pages, the test cases\'s needsDB()' .
+			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
@@ -1222,7 +1222,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		User $user = null
 	) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing which pages, the test cases\'s needsDB()' .
+			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
@@ -2316,7 +2316,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		User $user = null
 	) {
 		if ( !$this->needsDB() ) {
-			throw new MWException( 'When testing which pages, the test cases\'s needsDB()' .
+			throw new MWException( 'When testing with pages, the test cases\'s needsDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
