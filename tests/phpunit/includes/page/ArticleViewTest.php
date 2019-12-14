@@ -363,7 +363,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains(
+		$this->assertStringContainsString(
 			wfMessage( 'mainpage' )->inContentLanguage()->parse(),
 			$this->getHtml( $output )
 		);

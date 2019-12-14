@@ -246,7 +246,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		} catch ( HttpError $e ) {
 			ob_end_clean();
 			$this->assertEquals( $expectedStatusCode, $e->getStatusCode(), 'status code' );
-			$this->assertContains( $expectedOutput, $e->getHTML(), 'error output' );
+			$this->assertStringContainsString( $expectedOutput, $e->getHTML(), 'error output' );
 		}
 
 		// We always set "Access-Control-Allow-Origin: *"
