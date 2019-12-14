@@ -396,7 +396,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
 		$this->assertTrue( $insertion, "Insertion worked" );
 
-		$this->assertInternalType( 'integer', $db->insertId(), "Actual typecheck" );
+		$this->assertIsInt( $db->insertId(), "Actual typecheck" );
 		$this->assertTrue( $db->close(), "closing database" );
 	}
 

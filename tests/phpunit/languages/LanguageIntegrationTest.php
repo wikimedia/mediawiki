@@ -653,7 +653,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$noTtl,
 			'If the caller does not set the $ttl variable, do not compute it.'
 		);
-		$this->assertInternalType( 'int', $ttl, 'TTL should have been computed.' );
+		$this->assertIsInt( $ttl, 'TTL should have been computed.' );
 	}
 
 	public static function provideSprintfDateSamples() {

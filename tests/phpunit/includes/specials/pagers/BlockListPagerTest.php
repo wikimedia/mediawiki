@@ -254,7 +254,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
 
 		$restrictions = $wrappedPager->restrictions;
-		$this->assertInternalType( 'array', $restrictions );
+		$this->assertIsArray( $restrictions );
 
 		$restriction = $restrictions[0];
 		$this->assertEquals( $page->getId(), $restriction->getValue() );

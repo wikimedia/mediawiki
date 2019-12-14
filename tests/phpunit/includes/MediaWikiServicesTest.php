@@ -343,7 +343,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		foreach ( $names as $name ) {
 			$this->assertTrue( $services->hasService( $name ) );
 			$service = $services->getService( $name );
-			$this->assertInternalType( 'object', $service );
+			$this->assertIsObject( $service );
 		}
 	}
 

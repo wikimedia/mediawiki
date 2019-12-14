@@ -124,7 +124,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$this->assertNotNull( $contLang, "Content language object validation" );
 		$namespace = $contLang->getNsText( NS_TALK );
-		$this->assertInternalType( 'string', $namespace );
+		$this->assertIsString( $namespace );
 		$this->assertGreaterThan( 0, strlen( $namespace ) );
 		$asserter->assertLogItem( $this->logId2, "BackupDumperLogUserB",
 			$this->userId2, "SomeComment", "supress", "delete",
@@ -179,7 +179,7 @@ class BackupDumperLoggerTest extends DumpTestCase {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$this->assertNotNull( $contLang, "Content language object validation" );
 		$namespace = $contLang->getNsText( NS_TALK );
-		$this->assertInternalType( 'string', $namespace );
+		$this->assertIsString( $namespace );
 		$this->assertGreaterThan( 0, strlen( $namespace ) );
 		$asserter->assertLogItem( $this->logId2, "BackupDumperLogUserB",
 			$this->userId2, "SomeComment", "supress", "delete",

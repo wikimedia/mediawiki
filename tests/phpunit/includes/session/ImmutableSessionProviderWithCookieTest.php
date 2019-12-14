@@ -229,7 +229,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		$provider->persistSession( $backend, $request );
 
 		$cookie = $request->response()->getCookieData( 'xsession' );
-		$this->assertInternalType( 'array', $cookie );
+		$this->assertIsArray( $cookie );
 		if ( isset( $cookie['expire'] ) && $cookie['expire'] > 0 ) {
 			// Round expiry so we don't randomly fail if the seconds ticked during the test.
 			$cookie['expire'] = round( $cookie['expire'] - $time, -2 );
@@ -246,7 +246,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 
 		$cookie = $request->response()->getCookieData( 'forceHTTPS' );
 		if ( $secure ) {
-			$this->assertInternalType( 'array', $cookie );
+			$this->assertIsArray( $cookie );
 			if ( isset( $cookie['expire'] ) && $cookie['expire'] > 0 ) {
 				// Round expiry so we don't randomly fail if the seconds ticked during the test.
 				$cookie['expire'] = round( $cookie['expire'] - $time, -2 );

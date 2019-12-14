@@ -774,8 +774,8 @@ class ApiParseTest extends ApiTestCase {
 		] );
 
 		// We don't bother testing the actual values here
-		$this->assertInternalType( 'array', $res[0]['parse']['limitreportdata'] );
-		$this->assertInternalType( 'string', $res[0]['parse']['limitreporthtml'] );
+		$this->assertIsArray( $res[0]['parse']['limitreportdata'] );
+		$this->assertIsString( $res[0]['parse']['limitreporthtml'] );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 

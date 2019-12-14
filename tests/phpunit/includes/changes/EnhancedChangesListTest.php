@@ -71,7 +71,7 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$recentChange = $this->getEditChange( '20131103092153' );
 		$html = $enhancedChangesList->recentChangesLine( $recentChange, false );
 
-		$this->assertInternalType( 'string', $html );
+		$this->assertIsString( $html );
 
 		$recentChange2 = $this->getEditChange( '20131103092253' );
 		$html = $enhancedChangesList->recentChangesLine( $recentChange2, false );

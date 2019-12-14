@@ -127,7 +127,7 @@ class PasswordAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		$req->action = AuthManager::ACTION_LOGIN;
 		$req->username = 'UTSysop';
 		$ret = $req->describeCredentials();
-		$this->assertInternalType( 'array', $ret );
+		$this->assertIsArray( $ret );
 		$this->assertArrayHasKey( 'provider', $ret );
 		$this->assertInstanceOf( \Message::class, $ret['provider'] );
 		$this->assertSame( 'authmanager-provider-password', $ret['provider']->getKey() );
