@@ -336,7 +336,19 @@ abstract class UploadBase {
 
 	/**
 	 * Verify whether the upload is sane.
-	 * @return mixed Const self::OK or else an array with error information
+	 *
+	 * Return a status array representing the outcome of the verification.
+	 * Possible keys are:
+	 * - 'status': set to self::OK in case of success, or to one of the error constants defined in
+	 *   this class in case of failure
+	 * - 'max': set to the maximum allowed file size ($wgMaxUploadSize) if the upload is too large
+	 * - 'details': set to error details if the file type is valid but contents are corrupt
+	 * - 'filtered': set to the sanitized file name if the requested file name is invalid
+	 * - 'finalExt': set to the file's file extension if it is not an allowed file extension
+	 * - 'blacklistedExt': set to the list of blacklisted file extensions if the current file extension
+	 *    is not allowed for uploads and the blacklist is not empty
+	 *
+	 * @return mixed[] array representing the result of the verification
 	 */
 	public function verifyUpload() {
 		/**
@@ -384,7 +396,7 @@ abstract class UploadBase {
 	/**
 	 * Verify that the name is valid and, if necessary, that we can overwrite
 	 *
-	 * @return mixed True if valid, otherwise and array with 'status'
+	 * @return array|bool True if valid, otherwise an array with 'status'
 	 * and other keys
 	 */
 	public function validateName() {
@@ -415,7 +427,7 @@ abstract class UploadBase {
 	 *  correct extension given its MIME type?" check is in verifyFile.
 	 *  in `verifyFile()` that MIME type and file extension correlate.
 	 * @param string $mime Representing the MIME
-	 * @return mixed True if the file is verified, an array otherwise
+	 * @return array|bool True if the file is verified, an array otherwise
 	 */
 	protected function verifyMimeType( $mime ) {
 		global $wgVerifyMimeType, $wgVerifyMimeTypeIE;
@@ -449,7 +461,7 @@ abstract class UploadBase {
 	/**
 	 * Verifies that it's ok to include the uploaded file
 	 *
-	 * @return mixed True of the file is verified, array otherwise.
+	 * @return array|bool True of the file is verified, array otherwise.
 	 */
 	protected function verifyFile() {
 		global $wgVerifyMimeType, $wgDisableUploadScriptChecks;
@@ -510,7 +522,7 @@ abstract class UploadBase {
 	 * Runs the blacklist checks, but not any checks that may
 	 * assume the entire file is present.
 	 *
-	 * @return mixed True for valid or array with error message key.
+	 * @return array|bool True if the file is valid, else an array with error message key.
 	 */
 	protected function verifyPartialFile() {
 		global $wgAllowJavaUploads, $wgDisableUploadScriptChecks;
@@ -599,7 +611,7 @@ abstract class UploadBase {
 	 * really checking the title + user combination.
 	 *
 	 * @param User $user User object to verify the permissions against
-	 * @return mixed An array as returned by getUserPermissionsErrors or true
+	 * @return array|bool An array as returned by getUserPermissionsErrors or true
 	 *   in case the user has proper permissions.
 	 */
 	public function verifyPermissions( $user ) {
@@ -614,7 +626,7 @@ abstract class UploadBase {
 	 * can-user-upload checking.
 	 *
 	 * @param User $user User object to verify the permissions against
-	 * @return mixed An array as returned by getUserPermissionsErrors or true
+	 * @return array|bool An array as returned by getUserPermissionsErrors or true
 	 *   in case the user has proper permissions.
 	 */
 	public function verifyTitlePermissions( $user ) {
@@ -1996,7 +2008,7 @@ abstract class UploadBase {
 	 * - The file looks like a thumbnail and the original exists
 	 *
 	 * @param File $file The File object to check
-	 * @return mixed False if the file does not exists, else an array
+	 * @return array|bool False if the file does not exist, else an array
 	 */
 	public static function getExistsWarning( $file ) {
 		if ( $file->exists() ) {
