@@ -61,7 +61,7 @@ class ShellTest extends MediaWikiTestCase {
 		$command->params( 'safe' )
 			->unsafeParams( 'unsafe' );
 
-		$this->assertType( Command::class, $command );
+		$this->assertInstanceOf( Command::class, $command );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $command );
 		$this->assertEquals( $expected, $wrapper->command );

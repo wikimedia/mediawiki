@@ -107,8 +107,8 @@ class MediaWikiPageNameNormalizerTestMockHttp extends Http {
 	public static $response;
 
 	public static function get( $url, array $options = [], $caller = __METHOD__ ) {
-		Assert::assertInternalType( 'string', $url );
-		Assert::assertInternalType( 'string', $caller );
+		Assert::assertIsString( $url );
+		Assert::assertIsString( $caller );
 
 		return self::$response;
 	}
