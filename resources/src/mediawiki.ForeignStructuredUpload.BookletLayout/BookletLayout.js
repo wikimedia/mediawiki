@@ -12,7 +12,7 @@
 	 *         }
 	 *     } );
 	 *     var windowManager = new OO.ui.WindowManager();
-	 *     $( 'body' ).append( windowManager.$element );
+	 *     $( document.body ).append( windowManager.$element );
 	 *     windowManager.addWindows( [ uploadDialog ] );
 	 *
 	 * @class mw.ForeignStructuredUpload.BookletLayout

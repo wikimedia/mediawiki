@@ -26,7 +26,7 @@
 	 *         }
 	 *       } );
 	 *
-	 *       $( 'body' ).append( swi.$element );
+	 *       $( document.body ).append( swi.$element );
 	 *     } );
 	 *
 	 * @class mw.widgets.SelectWithInputWidget

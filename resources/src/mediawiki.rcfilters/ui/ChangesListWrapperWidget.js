@@ -80,7 +80,7 @@ ChangesListWrapperWidget.prototype.onItemUpdate = function () {
  * Respond to changes list model invalidate
  */
 ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
-	$( 'body' ).addClass( 'mw-rcfilters-ui-loading' );
+	$( document.body ).addClass( 'mw-rcfilters-ui-loading' );
 };
 
 /**
@@ -172,7 +172,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 			mw.hook( 'wikipage.content' ).fire( widget.$element );
 		}
 
-		$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
+		$( document.body ).removeClass( 'mw-rcfilters-ui-loading' );
 	} );
 };
 

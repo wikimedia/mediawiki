@@ -20,7 +20,7 @@
 	 *         ]
 	 *       } );
 	 *
-	 *       $( 'body' ).append( selector.$element );
+	 *       $( document.body ).append( selector.$element );
 	 *
 	 *       selector.setSearchTypes( [ mw.widgets.CategoryMultiselectWidget.SearchType.SubCategories ] );
 	 *     } );

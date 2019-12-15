@@ -9,7 +9,7 @@
 				action: url,
 				method: 'post'
 			} )
-			.appendTo( 'body' )
+			.appendTo( document.body )
 			.trigger( 'submit' );
 	};
 

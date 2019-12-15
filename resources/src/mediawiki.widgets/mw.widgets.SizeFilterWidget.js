@@ -11,7 +11,7 @@
 	 *
 	 *     mw.loader.using( 'mediawiki.widgets.SizeFilterWidget', function () {
 	 *       var sf = new mw.widgets.SizeFilterWidget();
-	 *       $( 'body' ).append( sf.$element );
+	 *       $( document.body ).append( sf.$element );
 	 *     } );
 	 *
 	 * @class mw.widgets.SizeFilterWidget

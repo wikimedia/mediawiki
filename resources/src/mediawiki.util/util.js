@@ -583,7 +583,7 @@ function init() {
 
 		// Should never happen... well, it could if someone is not finished writing a
 		// skin and has not yet inserted bodytext yet.
-		return $( 'body' );
+		return $( document.body );
 	}() );
 }
 
