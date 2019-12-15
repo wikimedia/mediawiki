@@ -51,7 +51,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 	// Note: the name has been taken unchanged from the Revision class.
-	const TEXT_CACHE_GROUP = 'revisiontext:10';
+	public const TEXT_CACHE_GROUP = 'revisiontext:10';
 
 	/**
 	 * @var ILoadBalancer
