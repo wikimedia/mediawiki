@@ -52,6 +52,13 @@ class ExtensionRegistry {
 	public const MERGE_STRATEGY = '_merge_strategy';
 
 	/**
+	 * Attributes that should be lazy-loaded and not cached
+	 */
+	private const LAZY_LOADED_ATTRIBUTES = [
+		'QUnitTestModules',
+	];
+
+	/**
 	 * Array of loaded things, keyed by name, values are credits information
 	 *
 	 * @var array[]
@@ -86,6 +93,13 @@ class ExtensionRegistry {
 	 * @var array
 	 */
 	protected $testAttributes = [];
+
+	/**
+	 * Lazy-loaded attributes
+	 *
+	 * @var array
+	 */
+	protected $lazyAttributes = [];
 
 	/**
 	 * Whether to check dev-requires
@@ -203,16 +217,29 @@ class ExtensionRegistry {
 		} else {
 			$data = $this->readFromQueue( $this->queued );
 			$this->exportExtractedData( $data );
-			// Do this late since we don't want to extract it since we already
-			// did that, but it should be cached
-			$data['globals']['wgAutoloadClasses'] += $data['autoload'];
-			unset( $data['autoload'] );
+			$this->prepForCache( $data );
 			if ( !( $data['warnings'] && $wgDevelopmentWarnings ) ) {
 				// If there were no warnings that were shown, cache it
 				$cache->set( $key, $data, 60 * 60 * 24 );
 			}
 		}
 		$this->queued = [];
+	}
+
+	/**
+	 * Adjust data before it gets cached
+	 *
+	 * @param array &$data
+	 */
+	protected function prepForCache( array &$data ) {
+		// Do this late since we don't want to extract it since we already
+		// did that, but it should be cached
+		$data['globals']['wgAutoloadClasses'] += $data['autoload'];
+		unset( $data['autoload'] );
+		// Don't cache any lazy-loaded attributes
+		foreach ( self::LAZY_LOADED_ATTRIBUTES as $attrib ) {
+			unset( $data['attributes'][$attrib] );
+		}
 	}
 
 	/**
@@ -533,6 +560,29 @@ class ExtensionRegistry {
 	public function getAttribute( $name ) {
 		return $this->testAttributes[$name] ??
 			$this->attributes[$name] ?? [];
+	}
+
+	/**
+	 * Get an attribute value that isn't cached by reading each
+	 * extension.json file again
+	 * @since 1.35
+	 * @param string $name
+	 * @return array
+	 */
+	public function getLazyLoadedAttribute( $name ) {
+		if ( isset( $this->testAttributes[$name] ) ) {
+			return $this->testAttributes[$name];
+		}
+
+		$paths = [];
+		foreach ( $this->loaded as $info ) {
+			// mtime (array value) doesn't matter here since
+			// we're skipping cache, so use a dummy time
+			$paths[$info['path']] = 1;
+		}
+
+		$result = $this->readFromQueue( $paths );
+		return $result['attributes'][$name] ?? [];
 	}
 
 	/**
