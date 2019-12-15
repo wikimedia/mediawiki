@@ -243,22 +243,30 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		$mainSlot = $updater->getRawSlot( SlotRecord::MAIN );
 		$this->assertInstanceOf( SlotRecord::class, $mainSlot );
-		$this->assertNotContains( '~~~', $mainSlot->getContent()->serialize(), 'PST should apply.' );
-		$this->assertContains( $sysop->getName(), $mainSlot->getContent()->serialize() );
+		$this->assertStringNotContainsString(
+			'~~~',
+			$mainSlot->getContent()->serialize(),
+			'PST should apply.'
+		);
+		$this->assertStringContainsString( $sysop->getName(), $mainSlot->getContent()->serialize() );
 
 		$auxSlot = $updater->getRawSlot( 'aux' );
 		$this->assertInstanceOf( SlotRecord::class, $auxSlot );
-		$this->assertContains( '~~~', $auxSlot->getContent()->serialize(), 'No PST should apply.' );
+		$this->assertStringContainsString(
+			'~~~',
+			$auxSlot->getContent()->serialize(),
+			'No PST should apply.'
+		);
 
 		$mainOutput = $updater->getCanonicalParserOutput();
-		$this->assertContains( 'first', $mainOutput->getText() );
-		$this->assertContains( '<a ', $mainOutput->getText() );
+		$this->assertStringContainsString( 'first', $mainOutput->getText() );
+		$this->assertStringContainsString( '<a ', $mainOutput->getText() );
 		$this->assertNotEmpty( $mainOutput->getLinks() );
 
 		$canonicalOutput = $updater->getCanonicalParserOutput();
-		$this->assertContains( 'first', $canonicalOutput->getText() );
-		$this->assertContains( '<a ', $canonicalOutput->getText() );
-		$this->assertContains( 'inherited ', $canonicalOutput->getText() );
+		$this->assertStringContainsString( 'first', $canonicalOutput->getText() );
+		$this->assertStringContainsString( '<a ', $canonicalOutput->getText() );
+		$this->assertStringContainsString( 'inherited ', $canonicalOutput->getText() );
 		$this->assertNotEmpty( $canonicalOutput->getLinks() );
 	}
 
@@ -296,11 +304,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		// parser-output for null-edit uses the original author's name
 		$html = $updater1->getRenderedRevision()->getRevisionParserOutput()->getText();
-		$this->assertNotContains( $sysopName, $html, '{{REVISIONUSER}}' );
-		$this->assertNotContains( '{{REVISIONUSER}}', $html, '{{REVISIONUSER}}' );
-		$this->assertNotContains( '~~~', $html, 'signature ~~~' );
-		$this->assertContains( '(' . $userName . ')', $html, '{{REVISIONUSER}}' );
-		$this->assertContains( '>' . $userName . '<', $html, 'signature ~~~' );
+		$this->assertStringNotContainsString( $sysopName, $html, '{{REVISIONUSER}}' );
+		$this->assertStringNotContainsString( '{{REVISIONUSER}}', $html, '{{REVISIONUSER}}' );
+		$this->assertStringNotContainsString( '~~~', $html, 'signature ~~~' );
+		$this->assertStringContainsString( '(' . $userName . ')', $html, '{{REVISIONUSER}}' );
+		$this->assertStringContainsString( '>' . $userName . '<', $html, 'signature ~~~' );
 
 		// TODO: MCR: test inheritance from parent
 		$update = new RevisionSlotsUpdate();
@@ -310,10 +318,14 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		// non-null edit use the new user name in PST
 		$pstText = $updater2->getSlots()->getContent( SlotRecord::MAIN )->serialize();
-		$this->assertNotContains( '{{subst:REVISIONUSER}}', $pstText, '{{subst:REVISIONUSER}}' );
-		$this->assertNotContains( '~~~', $pstText, 'signature ~~~' );
-		$this->assertContains( '(' . $sysopName . ')', $pstText, '{{subst:REVISIONUSER}}' );
-		$this->assertContains( ':' . $sysopName . '|', $pstText, 'signature ~~~' );
+		$this->assertStringNotContainsString(
+			'{{subst:REVISIONUSER}}',
+			$pstText,
+			'{{subst:REVISIONUSER}}'
+		);
+		$this->assertStringNotContainsString( '~~~', $pstText, 'signature ~~~' );
+		$this->assertStringContainsString( '(' . $sysopName . ')', $pstText, '{{subst:REVISIONUSER}}' );
+		$this->assertStringContainsString( ':' . $sysopName . '|', $pstText, 'signature ~~~' );
 
 		$this->assertFalse( $updater2->isCreation() );
 		$this->assertTrue( $updater2->isChange() );
@@ -364,16 +376,19 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		// TODO: MCR: test multiple slots, test slot removal!
 
 		$this->assertInstanceOf( SlotRecord::class, $updater1->getRawSlot( SlotRecord::MAIN ) );
-		$this->assertNotContains( '~~~~', $updater1->getRawContent( SlotRecord::MAIN )->serialize() );
+		$this->assertStringNotContainsString(
+			'~~~~',
+			$updater1->getRawContent( SlotRecord::MAIN )->serialize()
+		);
 
 		$mainOutput = $updater1->getCanonicalParserOutput();
-		$this->assertContains( 'first', $mainOutput->getText() );
-		$this->assertContains( '<a ', $mainOutput->getText() );
+		$this->assertStringContainsString( 'first', $mainOutput->getText() );
+		$this->assertStringContainsString( '<a ', $mainOutput->getText() );
 		$this->assertNotEmpty( $mainOutput->getLinks() );
 
 		$canonicalOutput = $updater1->getCanonicalParserOutput();
-		$this->assertContains( 'first', $canonicalOutput->getText() );
-		$this->assertContains( '<a ', $canonicalOutput->getText() );
+		$this->assertStringContainsString( 'first', $canonicalOutput->getText() );
+		$this->assertStringContainsString( '<a ', $canonicalOutput->getText() );
 		$this->assertNotEmpty( $canonicalOutput->getLinks() );
 
 		$mainContent2 = new WikitextContent( 'second' );
@@ -387,7 +402,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertTrue( $updater2->isChange() );
 
 		$canonicalOutput = $updater2->getCanonicalParserOutput();
-		$this->assertContains( 'second', $canonicalOutput->getText() );
+		$this->assertStringContainsString( 'second', $canonicalOutput->getText() );
 	}
 
 	/**
@@ -454,7 +469,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 		$this->assertNotSame( $canonicalOutput, $updater->getCanonicalParserOutput() );
 
 		$html = $updater->getCanonicalParserOutput()->getText();
-		$this->assertContains( '--' . $rev->getId() . '--', $html );
+		$this->assertStringContainsString( '--' . $rev->getId() . '--', $html );
 
 		// TODO: MCR: ensure that when the main slot uses {{REVISIONID}} but another slot is
 		// updated, the main slot is still re-rendered!

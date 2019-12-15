@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Logger\LegacyLogger;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -702,7 +703,7 @@ class GlobalTest extends MediaWikiTestCase {
 	 */
 	public function testWfForeignMemcKey() {
 		$cache = ObjectCache::getLocalClusterInstance();
-		$keyspace = $this->readAttribute( $cache, 'keyspace' );
+		$keyspace = TestingAccessWrapper::newFromObject( $cache )->keyspace;
 		$this->assertEquals(
 			wfForeignMemcKey( $keyspace, '', 'foo', 'bar' ),
 			$cache->makeKey( 'foo', 'bar' )

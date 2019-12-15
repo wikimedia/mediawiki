@@ -612,10 +612,10 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$text = $rev->getContent( SlotRecord::MAIN )->serialize();
 
 		if ( $subst ) {
-			$this->assertContains( $expected, $text, 'In Wikitext' );
+			$this->assertStringContainsString( $expected, $text, 'In Wikitext' );
 		}
 
-		$this->assertContains( $expected, $html, 'In HTML' );
+		$this->assertStringContainsString( $expected, $html, 'In HTML' );
 	}
 
 }

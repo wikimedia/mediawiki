@@ -71,7 +71,8 @@ class ParserTest extends MediaWikiTestCase {
 		if ( is_array( $args[0] ) ) {
 			$svcOptionsProp = $refObject->getProperty( 'svcOptions' );
 			$svcOptionsProp->setAccessible( true );
-			$this->assertType( 'MediaWiki\Config\ServiceOptions',
+			$this->assertInstanceOf(
+				MediaWiki\Config\ServiceOptions::class,
 				$svcOptionsProp->getValue( $parser )
 			);
 			unset( $args[0] );

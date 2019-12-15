@@ -240,7 +240,7 @@ class JobQueueTest extends MediaWikiTestCase {
 
 		$j = $queue->pop();
 		// Make sure ack() of the twin did not delete the sibling data
-		$this->assertType( NullJob::class, $j );
+		$this->assertInstanceOf( NullJob::class, $j );
 	}
 
 	/**

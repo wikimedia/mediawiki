@@ -159,7 +159,7 @@ class WebRequestTest extends MediaWikiTestCase {
 		$req = $this->mockWebRequest( [], [ 'requestTime' => $now ] );
 		$this->assertGreaterThanOrEqual( 10.0, $req->getElapsedTime() );
 		// Catch common errors, but don't fail on slow hardware or VMs (T199764).
-		$this->assertEquals( 10.0, $req->getElapsedTime(), '', 60.0 );
+		$this->assertEqualsWithDelta( 10.0, $req->getElapsedTime(), 60.0 );
 	}
 
 	/**

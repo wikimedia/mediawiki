@@ -36,7 +36,7 @@ class UnsupportedSlotDiffRendererTest extends MediaWikiTestCase {
 			} );
 
 		$sdr = new UnsupportedSlotDiffRenderer( $localizer );
-		$this->assertContains( $expected, $sdr->getDiff( $oldContent, $newContent ) );
+		$this->assertStringContainsString( $expected, $sdr->getDiff( $oldContent, $newContent ) );
 	}
 
 }

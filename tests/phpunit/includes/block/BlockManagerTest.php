@@ -493,10 +493,9 @@ class BlockManagerTest extends MediaWikiTestCase {
 		$blockManager->setBlockCookie( $block, $response );
 		$cookies = $response->getCookies();
 
-		$this->assertEquals(
+		$this->assertEqualsWithDelta(
 			$now + $expectedExpiryDelta,
 			$cookies['BlockID']['expire'],
-			'',
 			60 // Allow actual to be up to 60 seconds later than expected
 		);
 	}

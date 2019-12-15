@@ -267,7 +267,19 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 		$this->assertCount( count( $struct ), $actual, $label );
 		foreach ( $struct as $key => $type ) {
 			$this->assertArrayHasKey( $key, $actual );
-			$this->assertInternalType( $type, $actual[$key] );
+			switch ( $type ) {
+				case 'int':
+					$this->assertIsInt( $actual[$key] );
+					break;
+				case 'array':
+					$this->assertIsArray( $actual[$key] );
+					break;
+				case 'numeric':
+					$this->assertIsNumeric( $actual[$key] );
+					break;
+				default:
+					throw new LogicException( "Missing handler for type '$type'" );
+			}
 		}
 	}
 }

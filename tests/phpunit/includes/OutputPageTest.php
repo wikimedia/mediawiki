@@ -280,7 +280,10 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op = $this->newInstance();
 		$op->addScript( 'some random string' );
 
-		$this->assertContains( "\nsome random string\n", "\n" . $op->getBottomScripts() . "\n" );
+		$this->assertStringContainsString(
+			"\nsome random string\n",
+			"\n" . $op->getBottomScripts() . "\n"
+		);
 	}
 
 	/**
@@ -291,7 +294,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->addScriptFile( '/somescript.js' );
 		$op->addScriptFile( '//example.com/somescript.js' );
 
-		$this->assertContains(
+		$this->assertStringContainsString(
 			"\n" . Html::linkedScript( '/somescript.js', $op->getCSP()->getNonce() ) .
 				Html::linkedScript( '//example.com/somescript.js', $op->getCSP()->getNonce() ) . "\n",
 			"\n" . $op->getBottomScripts() . "\n"
@@ -306,7 +309,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->addInlineScript( 'let foo = "bar";' );
 		$op->addInlineScript( 'alert( foo );' );
 
-		$this->assertContains(
+		$this->assertStringContainsString(
 			"\n" . Html::inlineScript( "\nlet foo = \"bar\";\n", $op->getCSP()->getNonce() ) . "\n" .
 				Html::inlineScript( "\nalert( foo );\n", $op->getCSP()->getNonce() ) . "\n",
 			"\n" . $op->getBottomScripts() . "\n"
@@ -350,7 +353,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertTrue( $op->hasHeadItem( 'e' ) );
 		$this->assertTrue( $op->hasHeadItem( '0' ) );
 
-		$this->assertContains( "\nq\n<d>&amp;\ng\nx\n",
+		$this->assertStringContainsString( "\nq\n<d>&amp;\ng\nx\n",
 			'' . $op->headElement( $op->getContext()->getSkin() ) );
 	}
 
@@ -380,7 +383,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$this->assertTrue( $op->hasHeadItem( '0' ) );
 		$this->assertFalse( $op->hasHeadItem( 'b' ) );
 
-		$this->assertContains( "\nq\n<d>&amp;\ng\nx\n",
+		$this->assertStringContainsString( "\nq\n<d>&amp;\ng\nx\n",
 			'' . $op->headElement( $op->getContext()->getSkin() ) );
 	}
 
@@ -395,7 +398,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->addBodyClasses( [ 'd', 'e' ] );
 		$op->addBodyClasses( 'a' );
 
-		$this->assertContains( '"a mediawiki b c d e ltr',
+		$this->assertStringContainsString( '"a mediawiki b c d e ltr',
 			'' . $op->headElement( $op->getContext()->getSkin() ) );
 	}
 
@@ -762,11 +765,11 @@ class OutputPageTest extends MediaWikiTestCase {
 		$str = OutputPage::buildBacklinkSubtitle( $title, $query )->text();
 
 		foreach ( $contains as $substr ) {
-			$this->assertContains( $substr, $str );
+			$this->assertStringContainsString( $substr, $str );
 		}
 
 		foreach ( $notContains as $substr ) {
-			$this->assertNotContains( $substr, $str );
+			$this->assertStringNotContainsString( $substr, $str );
 		}
 	}
 
@@ -788,11 +791,11 @@ class OutputPageTest extends MediaWikiTestCase {
 		$str = $op->getSubtitle();
 
 		foreach ( $contains as $substr ) {
-			$this->assertContains( $substr, $str );
+			$this->assertStringContainsString( $substr, $str );
 		}
 
 		foreach ( $notContains as $substr ) {
-			$this->assertNotContains( $substr, $str );
+			$this->assertStringNotContainsString( $substr, $str );
 		}
 	}
 
@@ -1204,10 +1207,10 @@ class OutputPageTest extends MediaWikiTestCase {
 		}
 
 		foreach ( $expectedNormal as $i => $name ) {
-			$this->assertContains( $name, $catLinks['normal'][$i] );
+			$this->assertStringContainsString( $name, $catLinks['normal'][$i] );
 		}
 		foreach ( $expectedHidden as $i => $name ) {
-			$this->assertContains( $name, $catLinks['hidden'][$i] );
+			$this->assertStringContainsString( $name, $catLinks['hidden'][$i] );
 		}
 	}
 
@@ -1304,14 +1307,14 @@ class OutputPageTest extends MediaWikiTestCase {
 		$op->addHelpLink( 'Manual:PHP unit testing' );
 		$indicators = $op->getIndicators();
 		$this->assertSame( [ 'mw-helplink' ], array_keys( $indicators ) );
-		$this->assertContains( 'Manual:PHP_unit_testing', $indicators['mw-helplink'] );
+		$this->assertStringContainsString( 'Manual:PHP_unit_testing', $indicators['mw-helplink'] );
 
 		$op->addHelpLink( 'https://phpunit.de', true );
 		$indicators = $op->getIndicators();
 		$this->assertSame( [ 'mw-helplink' ], array_keys( $indicators ) );
-		$this->assertContains( 'https://phpunit.de', $indicators['mw-helplink'] );
-		$this->assertNotContains( 'mediawiki', $indicators['mw-helplink'] );
-		$this->assertNotContains( 'Manual:PHP', $indicators['mw-helplink'] );
+		$this->assertStringContainsString( 'https://phpunit.de', $indicators['mw-helplink'] );
+		$this->assertStringNotContainsString( 'mediawiki', $indicators['mw-helplink'] );
+		$this->assertStringNotContainsString( 'Manual:PHP', $indicators['mw-helplink'] );
 	}
 
 	/**

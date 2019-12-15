@@ -140,7 +140,11 @@ class ActionTest extends MediaWikiTestCase {
 		$context = $this->getContext();
 		$action = Action::factory( $requestedAction, $context->getWikiPage(), $context );
 
-		$this->assertType( $expected ?: 'null', $action );
+		if ( $expected === null ) {
+			$this->assertNull( $action );
+		} else {
+			$this->assertInstanceOf( $expected, $action );
+		}
 	}
 
 	public function testNull_doesNotExist() {

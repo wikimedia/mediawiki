@@ -170,6 +170,6 @@ class ApiQueryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'export', $data[0]['query'] );
 		// This response field contains an XML document even if no pages were exported
-		$this->assertNotContains( $title->getPrefixedText(), $data[0]['query']['export'] );
+		$this->assertStringNotContainsString( $title->getPrefixedText(), $data[0]['query']['export'] );
 	}
 }
