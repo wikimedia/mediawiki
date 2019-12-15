@@ -248,7 +248,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 			$mainSlot->getContent()->serialize(),
 			'PST should apply.'
 		);
-		$this->assertContains( $sysop->getName(), $mainSlot->getContent()->serialize() );
+		$this->assertStringContainsString( $sysop->getName(), $mainSlot->getContent()->serialize() );
 
 		$auxSlot = $updater->getRawSlot( 'aux' );
 		$this->assertInstanceOf( SlotRecord::class, $auxSlot );
@@ -304,7 +304,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		// parser-output for null-edit uses the original author's name
 		$html = $updater1->getRenderedRevision()->getRevisionParserOutput()->getText();
-		$this->assertNotContains( $sysopName, $html, '{{REVISIONUSER}}' );
+		$this->assertStringNotContainsString( $sysopName, $html, '{{REVISIONUSER}}' );
 		$this->assertStringNotContainsString( '{{REVISIONUSER}}', $html, '{{REVISIONUSER}}' );
 		$this->assertStringNotContainsString( '~~~', $html, 'signature ~~~' );
 		$this->assertStringContainsString( '(' . $userName . ')', $html, '{{REVISIONUSER}}' );

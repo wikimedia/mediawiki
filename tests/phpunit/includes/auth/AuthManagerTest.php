@@ -769,9 +769,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->assertSame( AuthenticationResponse::PASS, $ret->status );
 		$this->assertSame( $user->getName(), $ret->username );
 		$this->assertSame( $user->getId(), $this->request->getSessionData( 'AuthManager:lastAuthId' ) );
-		$this->assertEquals(
-			time(), $this->request->getSessionData( 'AuthManager:lastAuthTimestamp' ),
-			'timestamp ±1', 1
+		// FIXME: Avoid relying on implicit amounts of time elapsing.
+		$this->assertEqualsWithDelta(
+			time(),
+			$this->request->getSessionData( 'AuthManager:lastAuthTimestamp' ),
+			1,
+			'timestamp ±1'
 		);
 		$this->assertNull( $this->request->getSession()->getSecret( 'AuthManager::authnState' ) );
 		$this->assertSame( $user->getId(), $this->request->getSession()->getUser()->getId() );

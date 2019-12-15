@@ -1327,7 +1327,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 		$this->assertIsString( $rev->getTimestamp() );
 		$this->assertTrue( strlen( $rev->getTimestamp() ) == strlen( 'YYYYMMDDHHMMSS' ) );
-		$this->assertContains( substr( $testTimestamp, 0, 10 ), $rev->getTimestamp() );
+		$this->assertStringContainsString( substr( $testTimestamp, 0, 10 ), $rev->getTimestamp() );
 	}
 
 	/**

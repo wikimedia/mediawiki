@@ -137,7 +137,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 		$expected = strval( $callback( $rev ) );
 		$output = $work->getParserOutput();
 
-		$this->assertContains( $expected, $output->getText() );
+		$this->assertStringContainsString( $expected, $output->getText() );
 	}
 
 	public function testDoWorkMissingPage() {
