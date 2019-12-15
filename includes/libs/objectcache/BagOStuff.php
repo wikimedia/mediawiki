@@ -444,7 +444,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 *
 	 * @since 1.27
 	 * @param string $class Key class
-	 * @param string ...$components Key components (starting with a key collection name)
+	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 */
 	abstract public function makeGlobalKey( $class, ...$components );
@@ -454,7 +454,7 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	 *
 	 * @since 1.27
 	 * @param string $class Key class
-	 * @param string ...$components Key components (starting with a key collection name)
+	 * @param string|int ...$components Key components (starting with a key collection name)
 	 * @return string Colon-delimited list of $keyspace followed by escaped components
 	 */
 	abstract public function makeKey( $class, ...$components );

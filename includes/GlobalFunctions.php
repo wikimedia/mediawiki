@@ -2495,7 +2495,7 @@ function wfGetPrecompiledData( $name ) {
  * Make a cache key for the local wiki.
  *
  * @deprecated since 1.30 Call makeKey on a BagOStuff instance
- * @param string ...$args
+ * @param string|int ...$args
  * @return string
  */
 function wfMemcKey( ...$args ) {
@@ -2509,7 +2509,7 @@ function wfMemcKey( ...$args ) {
  *
  * @param string $db
  * @param string $prefix
- * @param string ...$args
+ * @param string|int ...$args
  * @return string
  */
 function wfForeignMemcKey( $db, $prefix, ...$args ) {

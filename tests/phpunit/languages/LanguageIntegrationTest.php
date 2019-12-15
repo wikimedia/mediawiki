@@ -1670,7 +1670,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->setMwGlobals( [ 'wgTranslateNumerals' => $translateNumerals ] );
 		$lang = Language::factory( $langCode );
 		$formattedNum = $lang->formatNum( $number, $nocommafy );
-		$this->assertType( 'string', $formattedNum );
+		$this->assertIsString( $formattedNum );
 		$this->assertEquals( $expected, $formattedNum );
 	}
 

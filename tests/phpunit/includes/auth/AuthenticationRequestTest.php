@@ -12,7 +12,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 
 		$this->assertSame( get_class( $mock ), $mock->getUniqueId() );
 
-		$this->assertType( 'array', $mock->getMetadata() );
+		$this->assertIsArray( $mock->getMetadata() );
 
 		$ret = $mock->describeCredentials();
 		$this->assertIsArray( $ret );

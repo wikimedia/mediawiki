@@ -151,10 +151,10 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$this->assertTrue( $lb->isNonZeroLoad( 1 ) );
 
 		for ( $i = 0; $i < $lb->getServerCount(); ++$i ) {
-			$this->assertType( 'string', $lb->getServerName( $i ) );
-			$this->assertType( 'array', $lb->getServerInfo( $i ) );
-			$this->assertType( 'string', $lb->getServerType( $i ) );
-			$this->assertType( 'array', $lb->getServerAttributes( $i ) );
+			$this->assertIsString( $lb->getServerName( $i ) );
+			$this->assertIsArray( $lb->getServerInfo( $i ) );
+			$this->assertIsString( $lb->getServerType( $i ) );
+			$this->assertIsArray( $lb->getServerAttributes( $i ) );
 		}
 
 		$dbw = $lb->getConnection( DB_MASTER );

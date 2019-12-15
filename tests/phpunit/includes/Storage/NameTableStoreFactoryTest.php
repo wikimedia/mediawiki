@@ -104,20 +104,20 @@ class NameTableStoreFactoryTest extends MediaWikiTestCase {
 		$services = MediaWikiServices::getInstance();
 		$factory = $services->getNameTableStoreFactory();
 		$store = $factory->getChangeTagDef();
-		$this->assertType( 'array', $store->getMap() );
+		$this->assertIsArray( $store->getMap() );
 	}
 
 	public function testIntegratedGetContentModels() {
 		$services = MediaWikiServices::getInstance();
 		$factory = $services->getNameTableStoreFactory();
 		$store = $factory->getContentModels();
-		$this->assertType( 'array', $store->getMap() );
+		$this->assertIsArray( $store->getMap() );
 	}
 
 	public function testIntegratedGetSlotRoles() {
 		$services = MediaWikiServices::getInstance();
 		$factory = $services->getNameTableStoreFactory();
 		$store = $factory->getSlotRoles();
-		$this->assertType( 'array', $store->getMap() );
+		$this->assertIsArray( $store->getMap() );
 	}
 }
