@@ -980,20 +980,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist.
-	 * Defaults to 1.
-	 *
-	 * @param string $filePath File path
-	 * @return int UNIX timestamp
-	 */
-	protected static function safeFilemtime( $filePath ) {
-		AtEase::suppressWarnings();
-		$mtime = filemtime( $filePath ) ?: 1;
-		AtEase::restoreWarnings();
-		return $mtime;
-	}
-
-	/**
 	 * Compute a non-cryptographic string hash of a file's contents.
 	 * If the file does not exist or cannot be read, returns an empty string.
 	 *
