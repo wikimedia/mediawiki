@@ -29,7 +29,7 @@ class SpecialLogTest extends SpecialPageTestBase {
 			new FauxRequest( [ 'wpdate' => '2018-13-01' ] ),
 			'qqx'
 		);
-		$this->assertContains( '(log-summary)', $html );
+		$this->assertStringContainsString( '(log-summary)', $html );
 	}
 
 }

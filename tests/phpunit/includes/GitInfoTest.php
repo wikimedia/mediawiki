@@ -51,7 +51,7 @@ class GitInfoTest extends MediaWikiTestCase {
 			$gitInfo->getHeadSHA1() );
 		$this->assertEquals( '1070884800', $gitInfo->getHeadCommitDate() );
 		$this->assertEquals( 'master', $gitInfo->getCurrentBranch() );
-		$this->assertContains( '0123456789abcdef0123456789abcdef01234567',
+		$this->assertStringContainsString( '0123456789abcdef0123456789abcdef01234567',
 			$gitInfo->getHeadViewUrl() );
 	}
 

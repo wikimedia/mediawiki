@@ -228,7 +228,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
-		$this->assertContains( '(empty-username)', $logParam );
+		$this->assertStringContainsString( '(empty-username)', $logParam );
 	}
 
 	/**
@@ -276,7 +276,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$formatter->setContext( $this->context );
 
 		$element = $formatter->getPerformerElement();
-		$this->assertContains( 'User:Test', $element );
+		$this->assertStringContainsString( 'User:Test', $element );
 	}
 
 	/**

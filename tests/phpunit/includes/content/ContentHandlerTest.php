@@ -473,7 +473,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		$out = $page->getContentHandler()->getParserOutputForIndexing( $page );
 		$this->assertInstanceOf( ParserOutput::class, $out );
-		$this->assertContains( 'one who smiths', $out->getRawText() );
+		$this->assertStringContainsString( 'one who smiths', $out->getRawText() );
 	}
 
 	/**

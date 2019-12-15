@@ -199,9 +199,9 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$parser->parse( 'Hello World', $title, $po );
 		$text = $parser->getOutput()->getText();
 
-		$this->assertContains( 'Hello World', $text );
-		$this->assertContains( '<div', $text );
-		$this->assertContains( 'class="mw-parser-output"', $text );
+		$this->assertStringContainsString( 'Hello World', $text );
+		$this->assertStringContainsString( '<div', $text );
+		$this->assertStringContainsString( 'class="mw-parser-output"', $text );
 	}
 
 	/**

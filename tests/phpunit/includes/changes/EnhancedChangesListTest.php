@@ -124,14 +124,14 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$html = $this->createCategorizationLine(
 			$this->getCategorizationChange( '20150629191735', 0, 0 )
 		);
-		$this->assertNotContains( 'diffhist', strip_tags( $html ) );
+		$this->assertStringNotContainsString( 'diffhist', strip_tags( $html ) );
 	}
 
 	public function testCategorizationLineFormattingWithRevision() {
 		$html = $this->createCategorizationLine(
 			$this->getCategorizationChange( '20150629191735', 1025, 1024 )
 		);
-		$this->assertContains( 'diffhist', strip_tags( $html ) );
+		$this->assertStringContainsString( 'diffhist', strip_tags( $html ) );
 	}
 
 	/**
@@ -165,9 +165,9 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$enhancedChangesList->recentChangesLine( $recentChange3, false );
 
 		$html = $enhancedChangesList->endRecentChangesList();
-		$this->assertContains( 'data-mw-logaction="foo/bar"', $html );
-		$this->assertContains( 'data-mw-logid="25"', $html );
-		$this->assertContains( 'data-target-page="Title"', $html );
+		$this->assertStringContainsString( 'data-mw-logaction="foo/bar"', $html );
+		$this->assertStringContainsString( 'data-mw-logid="25"', $html );
+		$this->assertStringContainsString( 'data-target-page="Title"', $html );
 	}
 
 	/**

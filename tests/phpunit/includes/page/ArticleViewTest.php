@@ -104,9 +104,9 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( 'Test B', $this->getHtml( $output ) );
-		$this->assertNotContains( 'id="mw-revision-info"', $this->getHtml( $output ) );
-		$this->assertNotContains( 'id="mw-revision-nav"', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Test B', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'id="mw-revision-info"', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'id="mw-revision-nav"', $this->getHtml( $output ) );
 	}
 
 	public function testViewCached() {
@@ -123,9 +123,9 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( 'Cached Text', $this->getHtml( $output ) );
-		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertNotContains( 'Test B', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Cached Text', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 	}
 
 	/**
@@ -150,8 +150,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 		);
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( 'class="redirectText"', $this->getHtml( $output ) );
-		$this->assertContains(
+		$this->assertStringContainsString( 'class="redirectText"', $this->getHtml( $output ) );
+		$this->assertStringContainsString(
 			'>' . htmlspecialchars( $target->getPrefixedText() ) . '<',
 			$this->getHtml( $output )
 		);
@@ -222,8 +222,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( 'Structured Output', $this->getHtml( $output ) );
-		$this->assertNotContains( 'Dummy', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Structured Output', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Dummy', $this->getHtml( $output ) );
 	}
 
 	public function testViewOfOldRevision() {
@@ -236,12 +236,12 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertContains( 'id="mw-revision-info"', $output->getSubtitle() );
-		$this->assertContains( 'id="mw-revision-nav"', $output->getSubtitle() );
+		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'id="mw-revision-info"', $output->getSubtitle() );
+		$this->assertStringContainsString( 'id="mw-revision-nav"', $output->getSubtitle() );
 
-		$this->assertNotContains( 'id="revision-info-current"', $output->getSubtitle() );
-		$this->assertNotContains( 'Test B', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'id="revision-info-current"', $output->getSubtitle() );
+		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 	}
 
 	public function testViewOfCurrentRevision() {
@@ -254,9 +254,9 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( 'Test B', $this->getHtml( $output ) );
-		$this->assertContains( 'id="mw-revision-info-current"', $output->getSubtitle() );
-		$this->assertContains( 'id="mw-revision-nav"', $output->getSubtitle() );
+		$this->assertStringContainsString( 'Test B', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'id="mw-revision-info-current"', $output->getSubtitle() );
+		$this->assertStringContainsString( 'id="mw-revision-nav"', $output->getSubtitle() );
 	}
 
 	public function testViewOfMissingRevision() {
@@ -269,9 +269,9 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( 'missing-revision: ' . $badId, $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'missing-revision: ' . $badId, $this->getHtml( $output ) );
 
-		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
 	}
 
 	public function testViewOfDeletedRevision() {
@@ -292,10 +292,10 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( '(rev-deleted-text-permission)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( '(rev-deleted-text-permission)', $this->getHtml( $output ) );
 
-		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertNotContains( 'Test B', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 	}
 
 	public function testUnhiddenViewOfDeletedRevision() {
@@ -320,10 +320,10 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( '(rev-deleted-text-view)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( '(rev-deleted-text-view)', $this->getHtml( $output ) );
 
-		$this->assertContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertNotContains( 'Test B', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 	}
 
 	public function testViewMissingPage() {
@@ -334,7 +334,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( '(noarticletextanon)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( '(noarticletextanon)', $this->getHtml( $output ) );
 	}
 
 	public function testViewDeletedPage() {
@@ -346,12 +346,12 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( 'moveddeleted', $this->getHtml( $output ) );
-		$this->assertContains( 'logentry-delete-delete', $this->getHtml( $output ) );
-		$this->assertContains( '(noarticletextanon)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'moveddeleted', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'logentry-delete-delete', $this->getHtml( $output ) );
+		$this->assertStringContainsString( '(noarticletextanon)', $this->getHtml( $output ) );
 
-		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertNotContains( 'Test B', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 	}
 
 	public function testViewMessagePage() {
@@ -367,7 +367,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 			wfMessage( 'mainpage' )->inContentLanguage()->parse(),
 			$this->getHtml( $output )
 		);
-		$this->assertNotContains( '(noarticletextanon)', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( '(noarticletextanon)', $this->getHtml( $output ) );
 	}
 
 	public function testViewMissingUserPage() {
@@ -383,8 +383,11 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( '(noarticletextanon)', $this->getHtml( $output ) );
-		$this->assertNotContains( '(userpage-userdoesnotexist-view)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( '(noarticletextanon)', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString(
+			'(userpage-userdoesnotexist-view)',
+			$this->getHtml( $output )
+		);
 	}
 
 	public function testViewUserPageOfNonexistingUser() {
@@ -399,8 +402,11 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( '(noarticletextanon)', $this->getHtml( $output ) );
-		$this->assertContains( '(userpage-userdoesnotexist-view:', $this->getHtml( $output ) );
+		$this->assertStringContainsString( '(noarticletextanon)', $this->getHtml( $output ) );
+		$this->assertStringContainsString(
+			'(userpage-userdoesnotexist-view:',
+			$this->getHtml( $output )
+		);
 	}
 
 	public function testArticleViewHeaderHook() {
@@ -424,8 +430,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertContains( 'Hook Text', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
 		$this->assertSame( 'Hook Title', $output->getPageTitle() );
 	}
 
@@ -461,8 +467,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertContains( 'Hook Text', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
 	}
 
 	public function testArticleRevisionViewCustomHook() {
@@ -494,8 +500,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertContains( 'Hook Text', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
 	}
 
 	public function testArticleAfterFetchContentObjectHook() {
@@ -530,8 +536,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertNotContains( 'Test A', $this->getHtml( $output ) );
-		$this->assertContains( 'Hook Text', $this->getHtml( $output ) );
+		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
 	}
 
 	public function testShowMissingArticleHook() {
@@ -552,8 +558,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertContains( '(noarticletextanon)', $this->getHtml( $output ) );
-		$this->assertContains( 'Hook Text', $this->getHtml( $output ) );
+		$this->assertStringContainsString( '(noarticletextanon)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
 	}
 
 }

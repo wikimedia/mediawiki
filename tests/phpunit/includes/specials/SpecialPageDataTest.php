@@ -141,7 +141,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 
 		list( $output, ) = $this->executeSpecialPage( '', $request );
 
-		$this->assertContains( '(pagedata-text)', $output );
+		$this->assertStringContainsString( '(pagedata-text)', $output );
 	}
 
 }

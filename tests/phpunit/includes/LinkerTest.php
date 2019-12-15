@@ -491,7 +491,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		}
 		$this->assertEquals( [ $oldestRev->getId(), $currentRev->getId() ], $ids );
 
-		$this->assertContains( 'rollback 1 edit', $rollbackOutput );
+		$this->assertStringContainsString( 'rollback 1 edit', $rollbackOutput );
 	}
 
 	public static function provideCasesForRollbackGeneration() {
