@@ -103,7 +103,7 @@ function init() {
 		savedQueriesModel,
 		changesListModel,
 		{
-			$wrapper: $( 'body' ),
+			$wrapper: $( document.body ),
 			$topSection: $topSection,
 			$filtersContainer: $( '.mw-rcfilters-container' ),
 			$changesListContainer: $( '.mw-changeslist, .mw-changeslist-empty' ),
@@ -115,7 +115,7 @@ function init() {
 	// Remove the -loading class that may have been added on the server side.
 	// If we are in fact going to load a default saved query, this .initialize()
 	// call will do that and add the -loading class right back.
-	$( 'body' ).removeClass( 'mw-rcfilters-ui-loading' );
+	$( document.body ).removeClass( 'mw-rcfilters-ui-loading' );
 
 	controller.initialize(
 		mw.config.get( 'wgStructuredChangeFilters' ),

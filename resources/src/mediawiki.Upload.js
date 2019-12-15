@@ -19,7 +19,7 @@
 	 *       upload.upload();
 	 *     } );
 	 *
-	 *     $( 'body' ).append( file.$element, button.$element );
+	 *     $( document.body ).append( file.$element, button.$element );
 	 *
 	 * You can also choose to {@link #uploadToStash stash the upload} and
 	 * {@link #finishStashUpload finalize} it later:

@@ -62,7 +62,7 @@
 		$container = $( '<div>' ).addClass( 'postedit-container' ).append( $popup );
 		timeoutId = setTimeout( fadeOutConfirmation, 3000 );
 
-		$( 'body' ).prepend( $container );
+		$( document.body ).prepend( $container );
 	}
 
 	mw.hook( 'postEdit' ).add( showConfirmation );

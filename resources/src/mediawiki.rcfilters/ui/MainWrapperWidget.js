@@ -73,7 +73,7 @@ MainWrapperWidget = function MwRcfiltersUiMainWrapperWidget(
 
 	// Initialize
 	this.$filtersContainer.append( this.filtersWidget.$element );
-	$( 'body' )
+	$( document.body )
 		.append( this.$overlay )
 		.addClass( 'mw-rcfilters-ui-initialized' );
 };
