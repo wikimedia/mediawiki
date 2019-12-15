@@ -276,9 +276,9 @@ class SiteTest extends MediaWikiTestCase {
 		//      is true for Site but not guaranteed for subclasses.
 		//      Subclasses need to override this test case appropriately.
 		$site->setLinkPath( $path );
-		$this->assertContains( $path, $site->getPageUrl() );
+		$this->assertStringContainsString( $path, $site->getPageUrl() );
 
-		$this->assertContains( $expected, $site->getPageUrl( $page ) );
+		$this->assertStringContainsString( $expected, $site->getPageUrl( $page ) );
 	}
 
 	/**

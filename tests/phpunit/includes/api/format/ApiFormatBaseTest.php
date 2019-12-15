@@ -393,7 +393,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		ob_start();
 		$printer->closePrinter();
 		$text = ob_get_clean();
-		$this->assertContains( $expect, $text );
+		$this->assertStringContainsString( $expect, $text );
 	}
 
 	public static function provideHtmlHeader() {

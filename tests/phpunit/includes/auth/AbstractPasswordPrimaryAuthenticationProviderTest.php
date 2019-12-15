@@ -70,10 +70,9 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$this->assertNull( $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
 
 		$config->set( 'PasswordExpirationDays', 5 );
-		$this->assertEquals(
+		$this->assertEqualsWithDelta(
 			time() + 5 * 86400,
 			wfTimestamp( TS_UNIX, $providerPriv->getNewPasswordExpiry( 'UTSysop' ) ),
-			'',
 			2 /* Fuzz */
 		);
 

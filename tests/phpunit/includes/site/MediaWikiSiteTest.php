@@ -103,7 +103,7 @@ class MediaWikiSiteTest extends SiteTest {
 		$site = new MediaWikiSite();
 		$site->setLinkPath( $path );
 
-		$this->assertContains( $path, $site->getPageUrl() );
-		$this->assertContains( $expected, $site->getPageUrl( $page ) );
+		$this->assertStringContainsString( $path, $site->getPageUrl() );
+		$this->assertStringContainsString( $expected, $site->getPageUrl( $page ) );
 	}
 }

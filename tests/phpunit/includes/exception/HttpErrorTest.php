@@ -25,7 +25,7 @@ class HttpErrorTest extends MediaWikiTestCase {
 		$errorHtml = $httpError->getHTML();
 
 		foreach ( $expected as $key => $html ) {
-			$this->assertContains( $html, $errorHtml, $key );
+			$this->assertStringContainsString( $html, $errorHtml, $key );
 		}
 	}
 
