@@ -25,6 +25,6 @@ class AbstractAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider->setConfig( $obj );
 		$this->assertSame( $obj, $providerPriv->config, 'setConfig' );
 
-		$this->assertType( 'string', $provider->getUniqueId(), 'getUniqueId' );
+		$this->assertIsString( $provider->getUniqueId(), 'getUniqueId' );
 	}
 }
