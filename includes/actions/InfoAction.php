@@ -499,18 +499,19 @@ class InfoAction extends FormlessAction {
 
 		// Page protection
 		foreach ( $title->getRestrictionTypes() as $restrictionType ) {
-			$protectionLevel = implode( ', ', $title->getRestrictions( $restrictionType ) );
+			$protections = $title->getRestrictions( $restrictionType );
 
-			if ( $protectionLevel == '' ) {
+			if ( !$protections ) {
 				// Allow all users
 				$message = $this->msg( 'protect-default' )->escaped();
 			} else {
-				// Administrators only
+				// @fixme Is it really intentional to allow keys containing ", "? Instead, should
+				// we always use protect-fallback if $protections has 2 or more elements?
 				// Messages: protect-level-autoconfirmed, protect-level-sysop
-				$message = $this->msg( "protect-level-$protectionLevel" );
+				$message = $this->msg( 'protect-level-' . implode( ', ', $protections ) );
 				if ( $message->isDisabled() ) {
 					// Require "$1" permission
-					$message = $this->msg( "protect-fallback", $protectionLevel )->parse();
+					$message = $this->msg( "protect-fallback", $lang->commaList( $protections ) )->parse();
 				} else {
 					$message = $message->escaped();
 				}
