@@ -196,7 +196,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$res = $dbSecondary->select(
 				'actor',
 				[ 'actor_id', 'user_id' => 'actor_user', 'user_name' => 'actor_name' ],
-				array_merge( [ 'actor_name' => array_keys( $names ) ], $from ? [ "actor_id $from" ] : [] ),
+				array_merge(
+					[ 'actor_name' => array_map( 'strval', array_keys( $names ) ) ],
+					$from ? [ "actor_id $from" ] : []
+				),
 				__METHOD__,
 				[ 'ORDER BY' => "actor_name $sort" ]
 			);
