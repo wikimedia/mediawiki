@@ -282,32 +282,14 @@ class TextContent extends AbstractContent {
 	 * If further information is to be derived from the content (such as
 	 * categories), the fillParserOutput() method can be overridden instead.
 	 *
-	 * For backwards-compatibility, this default implementation just calls
-	 * getHighlightHtml().
-	 *
 	 * @return string An HTML representation of the content
 	 */
 	protected function getHtml() {
-		return $this->getHighlightHtml();
-	}
-
-	/**
-	 * Generates an HTML version of the content, for display.
-	 *
-	 * This default implementation returns an HTML-escaped version
-	 * of the raw text content.
-	 *
-	 * @note The functionality of this method should really be implemented
-	 * in getHtml(), and subclasses should override getHtml() if needed.
-	 * getHighlightHtml() is kept around for backward compatibility with
-	 * extensions that already override it.
-	 *
-	 * @deprecated since 1.24. Use getHtml() instead. In particular, subclasses overriding
-	 *     getHighlightHtml() should override getHtml() instead.
-	 *
-	 * @return string An HTML representation of the content
-	 */
-	protected function getHighlightHtml() {
+		// TODO: Remove in MediaWiki 1.36
+		if ( method_exists( $this, 'getHighlightHtml' ) ) {
+			wfDeprecated( 'getHighlightHtml', '1.24' );
+			throw new Exception( 'getHighlightHtml() is not called any more!' );
+		}
 		return htmlspecialchars( $this->getText() );
 	}
 
