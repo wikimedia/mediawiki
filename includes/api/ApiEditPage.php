@@ -473,7 +473,7 @@ class ApiEditPage extends ApiBase {
 							$status->fatal( 'apierror-pagedeleted' );
 							break;
 						case EditPage::AS_CONFLICT_DETECTED:
-							$status->fatal( 'editconflict' );
+							$status->fatal( 'edit-conflict' );
 							break;
 
 						// Currently shouldn't be needed, but here in case
