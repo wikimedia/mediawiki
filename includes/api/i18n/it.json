@@ -196,7 +196,7 @@
 	"apihelp-move-example-move": "Sposta <kbd>Badtitle</kbd> a <kbd>Goodtitle</kbd> senza lasciare redirect.",
 	"apihelp-opensearch-param-search": "Stringa di ricerca.",
 	"apihelp-opensearch-param-limit": "Numero massimo di risultati da restituire.",
-	"apihelp-opensearch-param-suggest": "Non fare nulla se <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> è falso.",
+	"apihelp-opensearch-param-suggest": "Non più usato.",
 	"apihelp-opensearch-param-format": "Il formato dell'output.",
 	"apihelp-opensearch-example-te": "Trova le pagine che iniziano con <kbd>Te</kbd>.",
 	"apihelp-options-param-optionvalue": "Il valore per l'opzione specificata da <var>$1optionname</var>.",

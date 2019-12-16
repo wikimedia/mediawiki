@@ -305,7 +305,7 @@
 	"apihelp-opensearch-param-search": "מחרוזת לחיפוש.",
 	"apihelp-opensearch-param-limit": "המספר המרבי של התוצאות שתוחזרנה.",
 	"apihelp-opensearch-param-namespace": "מרחבי השם שבהם יתבצע החיפוש. לשדה זה אין משמעות אם <var>$1search</var> מתחיל עם תחילית תקינה של מרחב שם.",
-	"apihelp-opensearch-param-suggest": "לא לעשות דבר אם <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> הוא false.",
+	"apihelp-opensearch-param-suggest": "כבר לא בשימוש.",
 	"apihelp-opensearch-param-redirects": "איך לטפל בהפניות:\n;return:להחזיר את ההפניה עצמה.\n;resolve:להחזיר את דף היעד. יכול להחזיר פחות מ־$1limit תוצאות.\nמסיבות היסטוריות, ברירת המחדל היא \"return\" עבור $1format=json ו־\"resolve\" עבור תסדירים אחרים.",
 	"apihelp-opensearch-param-format": "תסדיר הפלט.",
 	"apihelp-opensearch-param-warningsaserror": "אם אזהרות מוּעלות עם <kbd>format=json</kbd>, להחזיר שגיאת API במקום להתעלם מהן.",
