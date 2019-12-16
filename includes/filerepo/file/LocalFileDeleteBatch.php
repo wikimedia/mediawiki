@@ -134,7 +134,7 @@ class LocalFileDeleteBatch {
 			$res = $dbw->select(
 				'oldimage',
 				[ 'oi_archive_name', 'oi_sha1' ],
-				[ 'oi_archive_name' => array_keys( $oldRels ),
+				[ 'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) ),
 					'oi_name' => $this->file->getName() ], // performance
 				__METHOD__
 			);
@@ -244,7 +244,7 @@ class LocalFileDeleteBatch {
 				$fileQuery['fields'],
 				[
 					'oi_name' => $this->file->getName(),
-					'oi_archive_name' => array_keys( $oldRels )
+					'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) )
 				],
 				__METHOD__,
 				[ 'FOR UPDATE' ],
@@ -296,7 +296,7 @@ class LocalFileDeleteBatch {
 			$dbw->delete( 'oldimage',
 				[
 					'oi_name' => $this->file->getName(),
-					'oi_archive_name' => array_keys( $oldRels )
+					'oi_archive_name' => array_map( 'strval', array_keys( $oldRels ) )
 				], __METHOD__ );
 		}
 

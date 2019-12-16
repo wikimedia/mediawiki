@@ -221,7 +221,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			$res = $dbw->select(
 				'actor',
 				[ 'actor_id', 'actor_name' ],
-				[ 'actor_name' => array_keys( $needActors ) ],
+				[ 'actor_name' => array_map( 'strval', array_keys( $needActors ) ) ],
 				__METHOD__
 			);
 			foreach ( $res as $row ) {
