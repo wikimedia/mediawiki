@@ -61,7 +61,7 @@ abstract class SearchIndexFieldDefinition implements SearchIndexField {
 
 	/**
 	 * Get index type
-	 * @return int
+	 * @return string
 	 */
 	public function getIndexType() {
 		return $this->type;
