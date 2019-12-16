@@ -24,7 +24,8 @@
 			"C.R.",
 			"Cusolotto",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"Conky77"
 		]
 	},
 	"tog-underline": "Sotołinea i cołegamenti:",
@@ -1055,6 +1056,7 @@
 	"recentchanges-label-plusminus": "La dimension de la pagina la xe canbià de sto nùmaro de byte",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (varda anca [[Special:NewPages|l'elenco de le pagine nove]])",
+	"rcfilters-activefilters": "Filtri ativi",
 	"rcfilters-filter-reviewstatus-manual-label": "Verificà manualmente",
 	"rcfilters-filter-reviewstatus-auto-label": "Verificà en automatico.",
 	"rcnotefrom": "Qua de soto {{PLURAL:$5|xe mostrà la modifica fata|xe mostrà le modifiche fate }} da <strong>$3, $4</strong> (se ghe ne vede fin a <strong>$1</strong>).",

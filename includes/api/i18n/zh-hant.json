@@ -306,7 +306,7 @@
 	"apihelp-opensearch-param-search": "搜尋字串。",
 	"apihelp-opensearch-param-limit": "回傳的結果數量上限。",
 	"apihelp-opensearch-param-namespace": "搜尋的命名空間。若 <var>$1search</var> 以有效的命名空間前綴為開頭則會被忽略。",
-	"apihelp-opensearch-param-suggest": "若<var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var>設定為false，則不做任何事。",
+	"apihelp-opensearch-param-suggest": "不再使用。",
 	"apihelp-opensearch-param-redirects": "如何處理重定向：\n;return:傳回重定向本身。\n;resolve:傳回目標頁面，傳回的結果數目可能少於$1limit。\n由於歷史原因，$1format=json的預設值為「return」，其他格式則為「resolve」。",
 	"apihelp-opensearch-param-format": "輸出的格式。",
 	"apihelp-opensearch-param-warningsaserror": "若警告以 <kbd>format=json</kbd> 提升時，回傳 API 錯誤而非忽略掉。",

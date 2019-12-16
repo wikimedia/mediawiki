@@ -928,7 +928,7 @@
 	"creating": "Shown as page title when creating a page. Parameters:\n* $1 - the name of the page that is being created. Example: \"Creating Main Page\".\n{{Related|Editing}}\n{{Identical|Creating}}",
 	"editingsection": "This message displays at the top of the page when a user is editing a page section. Parameters:\n* $1 - page name\n{{Related|Editing}}",
 	"editingcomment": "This message displays at the top of the page when a user is creating a new section. Parameters:\n* $1 - page name\n{{Related|Editing}}",
-	"editconflict": "Alert message when saving a page causes an edit conflict",
+	"editconflict": "Alert message when saving a page causes an edit conflict. Parameters:\n* $1 - page name\n{{Related|Editing}}",
 	"editnotice-notext": "{{ignored}}\nCustom message on top of the edit page if no edit notices apply to this page.",
 	"explainconflict": "Appears at the top of a page when there is an edit conflict.\n\nParameters:\n* $1 – The label of the save button – one of {{msg-mw|savearticle}} or {{msg-mw|savechanges}} on save-labelled wiki, or {{msg-mw|publishpage}} or {{msg-mw|publishchanges}} on publish-labelled wikis.\n\nSee also:\n* {{msg-mw|Savearticle}}",
 	"yourtext": "Used in Diff Preview page. The diff is between {{msg-mw|currentrev}} and {{msg-mw|yourtext}}.\n\nAlso used in Edit Conflict page; the diff between {{msg-mw|yourtext}} and {{msg-mw|storedversion}}.",
