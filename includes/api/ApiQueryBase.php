@@ -216,13 +216,15 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Add a set of WHERE clauses to the internal array.
-	 * Clauses can be formatted as 'foo=bar' or [ 'foo' => 'bar' ],
-	 * the latter only works if the value is a constant (i.e. not another field)
 	 *
-	 * If $value is an empty array, this function does nothing.
+	 * The array should be appropriate for passing as $conds to
+	 * IDatabase::select(). Arrays from multiple calls are merged with
+	 * array_merge(). A string is treated as a single-element array.
 	 *
-	 * For example, [ 'foo=bar', 'baz' => 3, 'bla' => 'foo' ] translates
-	 * to "foo=bar AND baz='3' AND bla='foo'"
+	 * When passing `'field' => $arrayOfIDs` where the IDs are taken from user
+	 * input, consider using addWhereIDsFld() instead.
+	 *
+	 * @see IDatabase::select()
 	 * @param string|array $value
 	 */
 	protected function addWhere( $value ) {
@@ -255,8 +257,12 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Equivalent to addWhere( [ $field => $value ] )
+	 *
+	 * When $value is an array of integer IDs taken from user input,
+	 * consider using addWhereIDsFld() instead.
+	 *
 	 * @param string $field Field name
-	 * @param int|string|string[] $value Value; ignored if null or empty array
+	 * @param int|string|string[]|int[] $value Value; ignored if null or empty array
 	 */
 	protected function addWhereFld( $field, $value ) {
 		if ( $value !== null && !( is_array( $value ) && !$value ) ) {
@@ -266,6 +272,19 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Like addWhereFld for an integer list of IDs
+	 *
+	 * When passed wildly out-of-range values for integer comparison,
+	 * the database may choose a poor query plan. This method validates the
+	 * passed IDs against the range of values in the database to omit
+	 * out-of-range values.
+	 *
+	 * This should be used when the IDs are derived from arbitrary user input;
+	 * it is not necessary if the IDs are already known to be within a sensible
+	 * range.
+	 *
+	 * This should not be used when there is not a suitable index on $field to
+	 * quickly retrieve the minimum and maximum values.
+	 *
 	 * @since 1.33
 	 * @param string $table Table name
 	 * @param string $field Field name
