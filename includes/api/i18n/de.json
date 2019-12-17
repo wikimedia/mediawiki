@@ -274,7 +274,7 @@
 	"apihelp-opensearch-param-search": "Such-Zeichenfolge.",
 	"apihelp-opensearch-param-limit": "Maximale Anzahl zurückzugebender Ergebnisse.",
 	"apihelp-opensearch-param-namespace": "Zu durchsuchende Namensräume. Wird ignoriert, falls <var>$1search</var> mit einem gültigen Namensraumpräfix beginnt.",
-	"apihelp-opensearch-param-suggest": "Nichts unternehmen, falls <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> falsch ist.",
+	"apihelp-opensearch-param-suggest": "Nicht länger verwendet",
 	"apihelp-opensearch-param-redirects": "Wie mit Weiterleitungen umgegangen werden soll:\n;return:Gibt die Weiterleitung selbst zurück.\n;resolve:Gibt die Zielseite zurück. Kann weniger als $1limit Ergebnisse zurückgeben.\nAus Kompatibilitätsgründen ist für $1format=json die Vorgabe \"return\" und \"resolve\" für alle anderen Formate.",
 	"apihelp-opensearch-param-format": "Das Format der Ausgabe.",
 	"apihelp-opensearch-param-warningsaserror": "Wenn Warnungen mit <kbd>format=json</kbd> auftreten, gib einen API-Fehler zurück, anstatt ihn zu ignorieren.",

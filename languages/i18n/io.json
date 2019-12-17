@@ -1513,6 +1513,8 @@
 	"listgrouprights-removegroup": "Removar la {{PLURAL:$2|grupo|grupi}}: $1",
 	"listgrouprights-addgroup-all": "Adjuntez omna grupi",
 	"listgrouprights-removegroup-all": "Eliminar omna grupi",
+	"listgrants": "Permisi donata",
+	"listgrants-grant": "Permiso",
 	"listgrants-rights": "Yuri",
 	"trackingcategories": "Kategorii por kontrolo",
 	"trackingcategories-name": "Nomo di la mesajo",
@@ -2084,6 +2086,7 @@
 	"specialpages-group-wiki": "Dati ed utensili",
 	"specialpages-group-redirects": "Specala pagini di ridirektili",
 	"blankpage": "Pagino sen-skribura",
+	"tags": "Valida modifikuri en l'etiketi",
 	"tag-filter": "[[Special:Tags|etiketo]] filtrilo:",
 	"tag-filter-submit": "Filtrez",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiketo|Etiketi}}]]: $2",
@@ -2228,5 +2231,7 @@
 	"authpage-cannot-login-continue": "Ne povis durar l'eniro-procedi. Posible vua sesiono finis pos kelka tempo sen uzo.",
 	"changecredentials": "Modifikar identifiko",
 	"changecredentials-submit": "Modifikar identifiko",
+	"removecredentials": "Removar permisi",
+	"removecredentials-submit": "Removar permisi",
 	"interfaceadmin-info": "$1\n\nPermisi por redaktar arkivi CSS/JS/JSON en la retsituo recente separesis de la permiso <code>editinterface</code>. Se vu ne savas pro quo vu recevis ca eroro-mesajo, videz [[mw:MediaWiki_1.32/interface-admin]]."
 }
