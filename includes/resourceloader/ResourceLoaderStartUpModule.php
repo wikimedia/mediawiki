@@ -424,7 +424,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$conf = $this->getConfig();
 
 		if ( $context->getOnly() !== 'scripts' ) {
-			return '/* Requires only=script */';
+			return '/* Requires only=scripts */';
 		}
 
 		$startupCode = file_get_contents( "$IP/resources/src/startup/startup.js" );
