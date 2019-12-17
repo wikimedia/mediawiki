@@ -139,15 +139,18 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$eq_op = $invert ? '!=' : '=';
 		$bool_op = $invert ? 'AND' : 'OR';
 
+		$selectedNS = $this->mDb->addQuotes( $namespace );
 		if ( !$associated ) {
-			return [ "rc_namespace $eq_op " . $this->mDb->addQuotes( $namespace ) ];
+			return [ "rc_namespace $eq_op $selectedNS" ];
 		}
 
-		$associatedNS = MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociated( $namespace );
+		$associatedNS = $this->mDb->addQuotes(
+			MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociated( $namespace )
+		);
 		return [
-			"rc_namespace $eq_op " . $this->mDb->addQuotes( $namespace ) .
+			"rc_namespace $eq_op $selectedNS " .
 			$bool_op .
-			" rc_namespace $eq_op " . $this->mDb->addQuotes( $associatedNS )
+			" rc_namespace $eq_op $associatedNS"
 		];
 	}
 
