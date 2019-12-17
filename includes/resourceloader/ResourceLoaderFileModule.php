@@ -20,6 +20,9 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Module based on local JavaScript/CSS files.
  *
@@ -547,15 +550,21 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$files = array_merge( $files, $styleFiles );
 		}
 
-		// Extract file names for package files
+		// Extract file paths for package files
+		// Optimisation: Use foreach() and isset() instead of array_map/array_filter.
+		// This is a hot code path, called by StartupModule for thousands of modules.
 		$expandedPackageFiles = $this->expandPackageFiles( $context );
-		$packageFiles = $expandedPackageFiles ?
-			array_filter( array_map( function ( $fileInfo ) {
-				return $fileInfo['filePath'] ?? null;
-			}, $expandedPackageFiles['files'] ) ) :
-			[];
+		$packageFiles = [];
+		if ( $expandedPackageFiles ) {
+			foreach ( $expandedPackageFiles['files'] as $fileInfo ) {
+				if ( isset( $fileInfo['filePath'] ) ) {
+					$packageFiles[] = $fileInfo['filePath'];
+				}
+			}
+		}
 
-		// Final merge, this should result in a master list of dependent files
+		// Merge all the file paths we were able discover directly from the module definition.
+		// This is the master list of direct-dependent files for this module.
 		$files = array_merge(
 			$files,
 			$packageFiles,
@@ -568,18 +577,28 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $this->skipFunction ) {
 			$files[] = $this->skipFunction;
 		}
-		$files = array_map( [ $this, 'getLocalPath' ], $files );
-		// File deps need to be treated separately because they're already prefixed
-		$files = array_merge( $files, $this->getFileDependencies( $context ) );
-		// Filter out any duplicates from getFileDependencies() and others.
-		// Most commonly introduced by compileLessFile(), which always includes the
-		// entry point Less file we already know about.
-		$files = array_values( array_unique( $files ) );
 
-		// Don't include keys or file paths here, only the hashes. Including that would needlessly
-		// cause global cache invalidation when files move or if e.g. the MediaWiki path changes.
-		// Any significant ordering is already detected by the definition summary.
-		return array_map( [ __CLASS__, 'safeFileHash' ], $files );
+		// Expand these local paths into absolute file paths
+		$files = array_map( [ $this, 'getLocalPath' ], $files );
+
+		// Add any lazily discovered file dependencies from previous module builds.
+		// These are added last because they are already absolute file paths.
+		$files = array_merge( $files, $this->getFileDependencies( $context ) );
+
+		// Filter out any duplicates. Typically introduced by getFileDependencies() which
+		// may lazily re-discover a master file, and compileLessFile(), which always
+		// includes the entry point LESS file that we already have as a master file.
+		$files = array_unique( $files );
+
+		$hashes = [];
+		foreach ( $files as $file ) {
+			// Don't include array keys or any other form of file path here, only the hashes.
+			// Including file paths would needlessly cause global cache invalidation when files
+			// move on disk or if e.g. the MediaWiki directory name changes.
+			// Anything where order is significant is already detected by the definition summary.
+			$hashes[] = ResourceLoaderModule::safeFileHash( $file );
+		}
+		return $hashes;
 	}
 
 	/**
@@ -785,7 +804,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $scripts ) {
 			return $scripts;
 		}
-		$fallbacks = Language::getFallbacksFor( $lang );
+		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()
+			->getAll( $lang, LanguageFallback::MESSAGES );
 		foreach ( $fallbacks as $lang ) {
 			$scripts = self::tryForKey( $this->languageScripts, $lang );
 			if ( $scripts ) {
