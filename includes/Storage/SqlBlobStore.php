@@ -676,8 +676,9 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * The address schema for blobs stored in the text table is "tt:" followed by an integer
 	 * that corresponds to a value of the old_id field.
 	 *
-	 * @deprecated since 1.31. This method should become private once the relevant refactoring
-	 * in WikiPage is complete.
+	 * @internal
+	 * @note This method should not be used by regular application logic. It is public so
+	 *       maintenance scripts can use it for bulk operations on the text table.
 	 *
 	 * @param int $id
 	 *

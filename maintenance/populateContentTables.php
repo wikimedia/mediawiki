@@ -85,18 +85,7 @@ class PopulateContentTables extends Maintenance {
 	}
 
 	public function execute() {
-		$multiContentRevisionSchemaMigrationStage =
-			$this->getConfig()->get( 'MultiContentRevisionSchemaMigrationStage' );
-
 		$t0 = microtime( true );
-
-		if ( ( $multiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) === 0 ) {
-			$this->writeln(
-				'...cannot update while \$wgMultiContentRevisionSchemaMigrationStage '
-				. 'does not have the SCHEMA_COMPAT_WRITE_NEW bit set.'
-			);
-			return false;
-		}
 
 		$this->initServices();
 

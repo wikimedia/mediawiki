@@ -58,8 +58,6 @@ class CheckStorage {
 	];
 
 	public function check( $fix = false, $xml = '' ) {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
 		$dbr = wfGetDB( DB_REPLICA );
 		if ( $fix ) {
 			print "Checking, will fix errors if possible...\n";
@@ -87,36 +85,24 @@ class CheckStorage {
 			$dbr->ping();
 
 			// Fetch revision rows
-			if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
-				$res = $dbr->select( 'revision', [ 'rev_id', 'rev_text_id' ],
-					[ "rev_id BETWEEN $chunkStart AND $chunkEnd" ], __METHOD__ );
-				foreach ( $res as $row ) {
-					if ( !isset( $this->oldIdMap[ $row->rev_text_id ] ) ) {
-						$this->oldIdMap[ $row->rev_text_id ] = [ $row->rev_id ];
-					} elseif ( !in_array( $row->rev_id, $this->oldIdMap[ $row->rev_text_id ] ) ) {
-						$this->oldIdMap[ $row->rev_text_id ][] = $row->rev_id;
-					}
-				}
-			} else {
-				$res = $dbr->select(
-					[ 'slots', 'content' ],
-					[ 'slot_revision_id', 'content_address' ],
-					[ "slot_revision_id BETWEEN $chunkStart AND $chunkEnd" ],
-					__METHOD__,
-					[],
-					[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
-				);
-				/** @var \MediaWiki\Storage\SqlBlobStore $blobStore */
-				$blobStore = MediaWikiServices::getInstance()->getBlobStore();
-				'@phan-var \MediaWiki\Storage\SqlBlobStore $blobStore';
-				foreach ( $res as $row ) {
-					$textId = $blobStore->getTextIdFromAddress( $row->content_address );
-					if ( $textId ) {
-						if ( !isset( $this->oldIdMap[$textId] ) ) {
-							$this->oldIdMap[ $textId ] = [ $row->slot_revision_id ];
-						} elseif ( !in_array( $row->slot_revision_id, $this->oldIdMap[$textId] ) ) {
-							$this->oldIdMap[ $textId ][] = $row->slot_revision_id;
-						}
+			$res = $dbr->select(
+				[ 'slots', 'content' ],
+				[ 'slot_revision_id', 'content_address' ],
+				[ "slot_revision_id BETWEEN $chunkStart AND $chunkEnd" ],
+				__METHOD__,
+				[],
+				[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
+			);
+			/** @var \MediaWiki\Storage\SqlBlobStore $blobStore */
+			$blobStore = MediaWikiServices::getInstance()->getBlobStore();
+			'@phan-var \MediaWiki\Storage\SqlBlobStore $blobStore';
+			foreach ( $res as $row ) {
+				$textId = $blobStore->getTextIdFromAddress( $row->content_address );
+				if ( $textId ) {
+					if ( !isset( $this->oldIdMap[$textId] ) ) {
+						$this->oldIdMap[ $textId ] = [ $row->slot_revision_id ];
+					} elseif ( !in_array( $row->slot_revision_id, $this->oldIdMap[$textId] ) ) {
+						$this->oldIdMap[ $textId ][] = $row->slot_revision_id;
 					}
 				}
 			}
@@ -558,24 +544,19 @@ class CheckStorage {
 
 		// Find text row again
 		$dbr = wfGetDB( DB_REPLICA );
-		global $wgMultiContentRevisionSchemaMigrationStage;
-		if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$oldId = $dbr->selectField( 'revision', 'rev_text_id', [ 'rev_id' => $id ], __METHOD__ );
-		} else {
-			$res = $dbr->selectRow(
-				[ 'slots', 'content' ],
-				[ 'content_address' ],
-				[ 'slot_revision_id' => $id ],
-				__METHOD__,
-				[],
-				[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
-			);
+		$res = $dbr->selectRow(
+			[ 'slots', 'content' ],
+			[ 'content_address' ],
+			[ 'slot_revision_id' => $id ],
+			__METHOD__,
+			[],
+			[ 'content' => [ 'INNER JOIN', [ 'content_id = slot_content_id' ] ] ]
+		);
 
-			$blobStore = MediaWikiServices::getInstance()
-				->getBlobStoreFactory()
-				->newSqlBlobStore();
-			$oldId = $blobStore->getTextIdFromAddress( $res->content_address );
-		}
+		$blobStore = MediaWikiServices::getInstance()
+			->getBlobStoreFactory()
+			->newSqlBlobStore();
+		$oldId = $blobStore->getTextIdFromAddress( $res->content_address );
 
 		if ( !$oldId ) {
 			echo "Missing revision row for rev_id $id\n";

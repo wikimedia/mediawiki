@@ -34,8 +34,6 @@ use Wikimedia\Rdbms\MySQLField;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			[ 'disableContentHandlerUseDB' ],
-
 			// 1.2
 			[ 'addField', 'ipblocks', 'ipb_id', 'patch-ipblocks.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_expiry', 'patch-ipb_expiry.sql' ],
@@ -219,7 +217,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ],
 			[ 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ],
 			[ 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ],
-			[ 'enableContentHandlerUseDB' ],
 			[ 'dropField', 'site_stats', 'ss_admins', 'patch-drop-ss_admins.sql' ],
 			[ 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ],
 			[ 'addTable', 'sites', 'patch-sites.sql' ],

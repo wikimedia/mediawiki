@@ -357,7 +357,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+		global $wgPageLanguageUseDB;
 
 		$ret = [
 			'tables' => [ 'page' ],
@@ -373,13 +373,10 @@ class WikiPage implements Page, IDBAccessObject {
 				'page_links_updated',
 				'page_latest',
 				'page_len',
+				'page_content_model',
 			],
 			'joins' => [],
 		];
-
-		if ( $wgContentHandlerUseDB ) {
-			$ret['fields'][] = 'page_content_model';
-		}
 
 		if ( $wgPageLanguageUseDB ) {
 			$ret['fields'][] = 'page_lang';
@@ -1355,8 +1352,6 @@ class WikiPage implements Page, IDBAccessObject {
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
 		$lastRevIsRedirect = null
 	) {
-		global $wgContentHandlerUseDB;
-
 		// TODO: move into PageUpdater or PageStore
 		// NOTE: when doing that, make sure cached fields get reset in doEditContent,
 		// and in the compat stub!
@@ -1383,16 +1378,13 @@ class WikiPage implements Page, IDBAccessObject {
 		Assert::parameter( $revId > 0, '$revision->getId()', 'must be > 0' );
 
 		$row = [ /* SET */
-			'page_latest'      => $revId,
-			'page_touched'     => $dbw->timestamp( $revision->getTimestamp() ),
-			'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
-			'page_is_redirect' => $rt !== null ? 1 : 0,
-			'page_len'         => $len,
+			'page_latest'        => $revId,
+			'page_touched'       => $dbw->timestamp( $revision->getTimestamp() ),
+			'page_is_new'        => ( $lastRevision === 0 ) ? 1 : 0,
+			'page_is_redirect'   => $rt !== null ? 1 : 0,
+			'page_len'           => $len,
+			'page_content_model' => $revision->getContentModel(),
 		];
-
-		if ( $wgContentHandlerUseDB ) {
-			$row['page_content_model'] = $revision->getContentModel();
-		}
 
 		$dbw->update( 'page',
 			$row,
@@ -2827,8 +2819,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	protected function archiveRevisions( $dbw, $id, $suppress ) {
-		global $wgContentHandlerUseDB, $wgMultiContentRevisionSchemaMigrationStage,
-			$wgDeleteRevisionsBatchSize;
+		global $wgDeleteRevisionsBatchSize;
 
 		// Given the lock above, we can be confident in the title and page ID values
 		$namespace = $this->getTitle()->getNamespace();
@@ -2868,18 +2859,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$revQuery['joins']
 		);
 
-		// If SCHEMA_COMPAT_WRITE_OLD is set, also select all extra fields we still write,
-		// so we can copy it to the archive table.
-		// We know the fields exist, otherwise SCHEMA_COMPAT_WRITE_OLD could not function.
-		if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-			$revQuery['fields'][] = 'rev_text_id';
-
-			if ( $wgContentHandlerUseDB ) {
-				$revQuery['fields'][] = 'rev_content_model';
-				$revQuery['fields'][] = 'rev_content_format';
-			}
-		}
-
 		// Get as many of the page revisions as we are allowed to.  The +1 lets us recognize the
 		// unusual case where there were exactly $wgDeleteRevisionBatchSize revisions remaining.
 		$res = $dbw->select(
@@ -2914,29 +2893,12 @@ class WikiPage implements Page, IDBAccessObject {
 					'ar_minor_edit' => $row->rev_minor_edit,
 					'ar_rev_id'     => $row->rev_id,
 					'ar_parent_id'  => $row->rev_parent_id,
-					/**
-					 * ar_text_id should probably not be written to when the multi content schema has
-					 * been migrated to (wgMultiContentRevisionSchemaMigrationStage) however there is no
-					 * default for the field in WMF production currently so we must keep writing
-					 * writing until a default of 0 is set.
-					 * Task: https://phabricator.wikimedia.org/T190148
-					 * Copying the value from the revision table should not lead to any issues for now.
-					 */
 					'ar_len'        => $row->rev_len,
 					'ar_page_id'    => $id,
 					'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
 					'ar_sha1'       => $row->rev_sha1,
 				] + $commentStore->insert( $dbw, 'ar_comment', $comment )
 				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
-
-			if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$rowInsert['ar_text_id'] = $row->rev_text_id;
-
-				if ( $wgContentHandlerUseDB ) {
-					$rowInsert['ar_content_model'] = $row->rev_content_model;
-					$rowInsert['ar_content_format'] = $row->rev_content_format;
-				}
-			}
 
 			$rowsInsert[] = $rowInsert;
 			$revids[] = $row->rev_id;

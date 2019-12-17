@@ -217,18 +217,17 @@ class LinkCache {
 	 * @return array
 	 */
 	public static function getSelectFields() {
-		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+		global $wgPageLanguageUseDB;
 
 		$fields = [
 			'page_id',
 			'page_len',
 			'page_is_redirect',
 			'page_latest',
-			'page_restrictions'
+			'page_restrictions',
+			'page_content_model',
 		];
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
+
 		if ( $wgPageLanguageUseDB ) {
 			$fields[] = 'page_lang';
 		}

@@ -61,8 +61,7 @@ class MovePageFactory {
 	private $revisionStore;
 
 	public const CONSTRUCTOR_OPTIONS = [
-		'CategoryCollation',
-		'ContentHandlerUseDB',
+		'CategoryCollation'
 	];
 
 	public function __construct(

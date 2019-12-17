@@ -105,11 +105,6 @@ abstract class DatabaseUpdater {
 	protected $skipSchema = false;
 
 	/**
-	 * Hold the value of $wgContentHandlerUseDB during the upgrade.
-	 */
-	protected $holdContentHandlerUseDB = true;
-
-	/**
 	 * @param IMaintainableDatabase &$db To perform updates on
 	 * @param bool $shared Whether to perform updates on shared tables
 	 * @param Maintenance|null $maintenance Maintenance object which created us
@@ -1215,32 +1210,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Turns off content handler fields during parts of the upgrade
-	 * where they aren't available.
-	 */
-	protected function disableContentHandlerUseDB() {
-		global $wgContentHandlerUseDB;
-
-		if ( $wgContentHandlerUseDB ) {
-			$this->output( "Turning off Content Handler DB fields for this part of upgrade.\n" );
-			$this->holdContentHandlerUseDB = $wgContentHandlerUseDB;
-			$wgContentHandlerUseDB = false;
-		}
-	}
-
-	/**
-	 * Turns content handler fields back on.
-	 */
-	protected function enableContentHandlerUseDB() {
-		global $wgContentHandlerUseDB;
-
-		if ( $this->holdContentHandlerUseDB ) {
-			$this->output( "Content Handler DB fields should be usable now.\n" );
-			$wgContentHandlerUseDB = $this->holdContentHandlerUseDB;
-		}
-	}
-
-	/**
 	 * Migrate comments to the new 'comment' table
 	 * @since 1.30
 	 */
@@ -1353,10 +1322,7 @@ abstract class DatabaseUpdater {
 	 * @since 1.32
 	 */
 	protected function populateContentTables() {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) &&
-			!$this->updateRowExists( 'PopulateContentTables' )
-		) {
+		if ( !$this->updateRowExists( 'PopulateContentTables' ) ) {
 			$this->output(
 				"Migrating revision data to the MCR 'slot' and 'content' tables, printing progress markers.\n" .
 				"For large databases, you may want to hit Ctrl-C and do this manually with\n" .

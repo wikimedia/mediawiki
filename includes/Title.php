@@ -446,22 +446,18 @@ class Title implements LinkTarget, IDBAccessObject {
 
 	/**
 	 * Returns a list of fields that are to be selected for initializing Title
-	 * objects or LinkCache entries. Uses $wgContentHandlerUseDB to determine
-	 * whether to include page_content_model.
+	 * objects or LinkCache entries.
 	 *
 	 * @return array
 	 */
 	protected static function getSelectFields() {
-		global $wgContentHandlerUseDB, $wgPageLanguageUseDB;
+		global $wgPageLanguageUseDB;
 
 		$fields = [
 			'page_namespace', 'page_title', 'page_id',
 			'page_len', 'page_is_redirect', 'page_latest',
+			'page_content_model',
 		];
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
 
 		if ( $wgPageLanguageUseDB ) {
 			$fields[] = 'page_lang';

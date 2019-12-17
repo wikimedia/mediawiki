@@ -227,8 +227,6 @@ class CompressOld extends Maintenance {
 	private function compressWithConcat( $startId, $maxChunkSize, $beginDate,
 		$endDate, $extdb = "", $maxPageId = false
 	) {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
 		$dbr = $this->getDB( DB_REPLICA );
 		$dbw = $this->getDB( DB_MASTER );
 
@@ -289,20 +287,15 @@ class CompressOld extends Maintenance {
 			$conds[] = "rev_timestamp<'" . $endDate . "'";
 		}
 
-		if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$tables = [ 'revision', 'text' ];
-			$conds[] = 'rev_text_id=old_id';
-		} else {
-			$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
-			$tables = [ 'revision', 'slots', 'content', 'text' ];
-			$conds = array_merge( [
-				'rev_id=slot_revision_id',
-				'slot_role_id=' . $slotRoleStore->getId( SlotRecord::MAIN ),
-				'content_id=slot_content_id',
-				'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
-				'SUBSTRING(content_address, 4)=old_id',
-			], $conds );
-		}
+		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$tables = [ 'revision', 'slots', 'content', 'text' ];
+		$conds = array_merge( [
+			'rev_id=slot_revision_id',
+			'slot_role_id=' . $slotRoleStore->getId( SlotRecord::MAIN ),
+			'content_id=slot_content_id',
+			'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
+			'SUBSTRING(content_address, 4)=old_id',
+		], $conds );
 
 		$fields = [ 'rev_id', 'old_id', 'old_flags', 'old_text' ];
 		$revLoadOptions = 'FOR UPDATE';

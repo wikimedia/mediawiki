@@ -33,8 +33,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			[ 'disableContentHandlerUseDB' ],
-
 			// 1.14
 			[ 'addField', 'site_stats', 'ss_active_users', 'patch-ss_active_users.sql' ],
 			[ 'doActiveUsersInit' ],
@@ -95,7 +93,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ],
 			[ 'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ],
 			[ 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ],
-			[ 'enableContentHandlerUseDB' ],
 
 			[ 'dropField', 'site_stats', 'ss_admins', 'patch-drop-ss_admins.sql' ],
 			[ 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ],

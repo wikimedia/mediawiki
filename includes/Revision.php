@@ -478,9 +478,13 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @return SlotRecord
+	 * @return SlotRecord|null
 	 */
 	private function getMainSlotRaw() {
+		if ( !$this->mRecord->hasSlot( SlotRecord::MAIN ) ) {
+			return null;
+		}
+
 		return $this->mRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
 	}
 
@@ -498,7 +502,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getTextId() {
 		$slot = $this->getMainSlotRaw();
-		return $slot->hasAddress()
+		return $slot && $slot->hasAddress()
 			? self::getBlobStore()->getTextIdFromAddress( $slot->getAddress() )
 			: null;
 	}
@@ -732,7 +736,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getSerializedData() {
 		$slot = $this->getMainSlotRaw();
-		return $slot->getContent()->serialize();
+		return $slot ? $slot->getContent()->serialize() : '';
 	}
 
 	/**
@@ -748,7 +752,15 @@ class Revision implements IDBAccessObject {
 	 *     see the CONTENT_MODEL_XXX constants.
 	 */
 	public function getContentModel() {
-		return $this->getMainSlotRaw()->getModel();
+		$slot = $this->getMainSlotRaw();
+
+		if ( $slot ) {
+			return $slot->getModel();
+		} else {
+			$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+			$slotRoleHandler = $slotRoleRegistry->getRoleHandler( SlotRecord::MAIN );
+			return $slotRoleHandler->getDefaultModel( $this->getTitle() );
+		}
 	}
 
 	/**
@@ -763,7 +775,8 @@ class Revision implements IDBAccessObject {
 	 *     see the CONTENT_FORMAT_XXX constants.
 	 */
 	public function getContentFormat() {
-		$format = $this->getMainSlotRaw()->getFormat();
+		$slot = $this->getMainSlotRaw();
+		$format = $slot ? $this->getMainSlotRaw()->getFormat() : null;
 
 		if ( $format === null ) {
 			// if no format was stored along with the blob, fall back to default format
@@ -842,62 +855,27 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
 		wfDeprecated( __METHOD__, '1.32' );
-		global $wgMultiContentRevisionSchemaMigrationStage;
 
 		if ( !$row ) {
 			return false;
 		}
 
 		$textField = $prefix . 'text';
-		$flagsField = $prefix . 'flags';
 
 		if ( isset( $row->$textField ) ) {
-			if ( !( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-				// The text field was read, but it's no longer being populated!
-				// We could gloss over this by using the text when it's there and loading
-				// if when it's not, but it seems preferable to complain loudly about a
-				// query that is no longer guaranteed to work reliably.
-				throw new LogicException(
-					'Cannot use ' . __METHOD__ . ' with the ' . $textField . ' field when'
-					. ' $wgMultiContentRevisionSchemaMigrationStage does not include'
-					. ' SCHEMA_COMPAT_WRITE_OLD. The field may not be populated for all revisions!'
-				);
-			}
-
-			$text = $row->$textField;
-		} else {
-			// Missing text field, we are probably looking at the MCR-enabled DB schema.
-			$store = self::getRevisionStore( $wiki );
-			$rev = $prefix === 'ar_'
-				? $store->newRevisionFromArchiveRow( $row )
-				: $store->newRevisionFromRow( $row );
-
-			$content = $rev->getContent( SlotRecord::MAIN );
-			return $content ? $content->serialize() : false;
+			throw new LogicException(
+				'Cannot use ' . __METHOD__ . ' with the ' . $textField . ' field since 1.35.'
+			);
 		}
 
-		if ( isset( $row->$flagsField ) ) {
-			$flags = explode( ',', $row->$flagsField );
-		} else {
-			$flags = [];
-		}
+		// Missing text field, we are probably looking at the MCR-enabled DB schema.
+		$store = self::getRevisionStore( $wiki );
+		$rev = $prefix === 'ar_'
+			? $store->newRevisionFromArchiveRow( $row )
+			: $store->newRevisionFromRow( $row );
 
-		$cacheKey = isset( $row->old_id )
-			? SqlBlobStore::makeAddressFromTextId( $row->old_id )
-			: null;
-
-		$revisionText = self::getBlobStore( $wiki )->expandBlob( $text, $flags, $cacheKey );
-
-		if ( $revisionText === false ) {
-			if ( isset( $row->old_id ) ) {
-				wfLogWarning( __METHOD__ . ": Bad data in text row {$row->old_id}! " );
-			} else {
-				wfLogWarning( __METHOD__ . ": Bad data in text row! " );
-			}
-			return false;
-		}
-
-		return $revisionText;
+		$content = $rev->getContent( SlotRecord::MAIN );
+		return $content ? $content->serialize() : false;
 	}
 
 	/**

@@ -131,23 +131,11 @@ class BackupDumperPageTest extends DumpTestCase {
 	 * @param RevisionRecord $revision
 	 */
 	private function corruptRevisionData( RevisionRecord $revision ) {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
-		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
-			$this->db->update(
-				'revision',
-				[ 'rev_text_id' => 0 ],
-				[ 'rev_id' => $revision->getId() ]
-			);
-		}
-
-		if ( ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
-			$this->db->update(
-				'content',
-				[ 'content_address' => 'tt:0' ],
-				[ 'content_id' => $revision->getSlot( SlotRecord::MAIN )->getContentId() ]
-			);
-		}
+		$this->db->update(
+			'content',
+			[ 'content_address' => 'tt:0' ],
+			[ 'content_id' => $revision->getSlot( SlotRecord::MAIN )->getContentId() ]
+		);
 	}
 
 	protected function setUp() : void {
