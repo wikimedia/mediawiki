@@ -107,8 +107,7 @@ class SpecialUndelete extends SpecialPage {
 				->userHasRight( $user, 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
 
-		$block = $user->getBlock();
-		if ( $this->isAllowed( 'undelete' ) && !( $block && $block->isSitewide() ) ) {
+		if ( $this->isAllowed( 'undelete' ) ) {
 			$this->mAllowed = true; // user can restore
 			$this->mCanView = true; // user can view content
 		} elseif ( $this->isAllowed( 'deletedtext' ) ) {
@@ -151,11 +150,14 @@ class SpecialUndelete extends SpecialPage {
 	protected function isAllowed( $permission, User $user = null ) {
 		$user = $user ?: $this->getUser();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$block = $user->getBlock();
 
 		if ( $this->mTargetObj !== null ) {
 			return $permissionManager->userCan( $permission, $user, $this->mTargetObj );
 		} else {
-			return $permissionManager->userHasRight( $user, $permission );
+			$hasRight = $permissionManager->userHasRight( $user, $permission );
+			$sitewideBlock = $block && $block->isSitewide();
+			return $permission === 'undelete' ? ( $hasRight && !$sitewideBlock ) : $hasRight;
 		}
 	}
 
