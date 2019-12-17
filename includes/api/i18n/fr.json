@@ -323,7 +323,7 @@
 	"apihelp-opensearch-param-search": "Chaîne de caractères cherchée.",
 	"apihelp-opensearch-param-limit": "Nombre maximal de résultats à renvoyer.",
 	"apihelp-opensearch-param-namespace": "Espaces de nom à rechercher.  Ignoré if <var>$1search</var> commence avec le préfixe d'un espace de noms valide.",
-	"apihelp-opensearch-param-suggest": "N'est plus utilisé.",
+	"apihelp-opensearch-param-suggest": "N’est plus utilisé.",
 	"apihelp-opensearch-param-redirects": "Comment gérer les redirections :\n;return:Renvoie la redirection elle-même.\n;resolve:Renvoie la page cible. Peut renvoyer moins de $1limit résultats.\nPour des raisons historiques, la valeur par défaut est « return » pour $1format=json et « resolve » pour les autres formats.",
 	"apihelp-opensearch-param-format": "Le format de sortie.",
 	"apihelp-opensearch-param-warningsaserror": "Si des avertissements apparaissent avec <kbd>format=json</kbd>, renvoyer une erreur d’API au lieu de les ignorer.",
