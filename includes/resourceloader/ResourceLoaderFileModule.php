@@ -530,7 +530,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @see ResourceLoaderModule::getFileDependencies
 	 * @param ResourceLoaderContext $context
-	 * @return array
+	 * @return string
 	 */
 	private function getFileHashes( ResourceLoaderContext $context ) {
 		$files = [];
@@ -590,15 +590,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// includes the entry point LESS file that we already have as a master file.
 		$files = array_unique( $files );
 
-		$hashes = [];
-		foreach ( $files as $file ) {
-			// Don't include array keys or any other form of file path here, only the hashes.
-			// Including file paths would needlessly cause global cache invalidation when files
-			// move on disk or if e.g. the MediaWiki directory name changes.
-			// Anything where order is significant is already detected by the definition summary.
-			$hashes[] = ResourceLoaderModule::safeFileHash( $file );
-		}
-		return $hashes;
+		// Don't return array keys or any other form of file path here, only the hashes.
+		// Including file paths would needlessly cause global cache invalidation when files
+		// move on disk or if e.g. the MediaWiki directory name changes.
+		// Anything where order is significant is already detected by the definition summary.
+		return FileContentsHasher::getFileContentsHash( $files );
 	}
 
 	/**
@@ -640,9 +636,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			// - The 'files' array, simplied to only which files exist (the keys of
 			//   this array), and something that represents their non-file content.
 			//   For packaged files that reflect files directly from disk, the
-			//   'getFileHashes' method tracks this already.
-			//   It is important that the keys of the 'files' array are preserved,
-			//   as they affect the module output.
+			//   'getFileHashes' method tracks their content already.
+			//   It is important that the keys of the $packageFiles['files'] array
+			//   are preserved, as they do affect the module output.
 			$packageFiles['files'] = array_map( function ( $fileInfo ) {
 				return $fileInfo['definitionSummary'] ?? ( $fileInfo['content'] ?? null );
 			}, $packageFiles['files'] );
