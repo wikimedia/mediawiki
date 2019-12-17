@@ -667,7 +667,7 @@ SPARQL;
 						'cat_subcats',
 						'cat_files',
 					],
-					[ 'cat_title' => array_keys( $parentCats ) ],
+					[ 'cat_title' => array_map( 'strval', array_keys( $parentCats ) ) ],
 					__METHOD__,
 					[],
 					$joinConditions
