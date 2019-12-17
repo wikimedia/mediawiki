@@ -43,6 +43,10 @@ interface ISearchResultSet extends \Countable, \IteratorAggregate {
 	 * a better result than the provided search. Returns true if this has
 	 * occurred.
 	 *
+	 * NOTE: In practice this has only been applied when the original query
+	 * returned no results. UI messages, such as `search-rewritten`, have
+	 * this assumption baked in.
+	 *
 	 * @return bool
 	 */
 	public function hasRewrittenQuery();
