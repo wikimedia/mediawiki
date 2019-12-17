@@ -15,6 +15,12 @@ THIS IS NOT A RELEASE YET
 * (T239561) Mark options as requiring parameters in addSite.php.
 * (T219440) Skip flaky rollback test.
 * (T232866) Mimic CURLOPT_POST in GuzzleHttpRequest.
+* (T239734) Replace deprecated lSize with lLen in Redis code.
+* (T192134) SECURITY: Do not allow user scripts on Special:PasswordReset.
+* (T239428) ApiEditPage: Test for bad redirect targets.
+* (T233342) rdbms: Log debug message traces as 'exception.trace' instead of
+  'trace'.
+* (T226751) media: Log and fail gracefully on invalid EXIF coordinates.
 
 == MediaWiki 1.33.1 ==
 
