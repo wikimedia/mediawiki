@@ -2300,7 +2300,7 @@ class WikiPage implements Page, IDBAccessObject {
 				'pr_id',
 				[
 					'pr_page' => $id,
-					'pr_type' => array_keys( $limit )
+					'pr_type' => array_map( 'strval', array_keys( $limit ) )
 				],
 				__METHOD__
 			);

@@ -89,7 +89,7 @@ class FindMissingFiles extends Maintenance {
 			if ( count( $pathsByName ) ) {
 				$ores = $dbr->select( 'oldimage',
 					[ 'oi_name', 'oi_archive_name' ],
-					[ 'oi_name' => array_keys( $pathsByName ) ],
+					[ 'oi_name' => array_map( 'strval', array_keys( $pathsByName ) ) ],
 					__METHOD__
 				);
 

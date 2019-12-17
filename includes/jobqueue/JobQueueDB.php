@@ -256,7 +256,7 @@ class JobQueueDB extends JobQueue {
 				$res = $dbw->select( 'job', 'job_sha1',
 					[
 						// No job_type condition since it's part of the job_sha1 hash
-						'job_sha1' => array_keys( $rowSet ),
+						'job_sha1' => array_map( 'strval', array_keys( $rowSet ) ),
 						'job_token' => '' // unclaimed
 					],
 					$method
