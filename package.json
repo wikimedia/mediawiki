@@ -7,9 +7,9 @@
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
-    "selenium": "wdio ./tests/selenium/wdio.conf.js",
+    "selenium": "./tests/selenium/selenium.sh",
     "selenium-daily": "npm run selenium-test -- --mochaOpts.grep @daily",
-    "selenium-test": "wdio ./tests/selenium/wdio.conf.js --skip-chromedriver"
+    "selenium-test": "wdio ./tests/selenium/wdio.conf.js"
   },
   "devDependencies": {
     "@wdio/cli": "5.13.2",
@@ -21,7 +21,6 @@
     "@wdio/sauce-service": "5.13.2",
     "@wdio/sync": "5.13.2",
     "api-testing": "^1.0.2",
-    "chromedriver": "73.0.0",
     "eslint-config-wikimedia": "0.15.0",
     "grunt": "1.0.4",
     "grunt-banana-checker": "0.8.1",
@@ -40,7 +39,6 @@
     "postcss-less": "2.0.0",
     "qunit": "2.9.1",
     "stylelint-config-wikimedia": "0.7.0",
-    "wdio-chromedriver-service": "5.0.2",
     "wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
     "webdriverio": "5.13.2"
   }
