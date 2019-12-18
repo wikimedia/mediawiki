@@ -1649,7 +1649,7 @@
 	"rcfilters-preference-label": "Использовать интерфейс без JavaScript",
 	"rcfilters-preference-help": "Загружает свежие правки без поиска по фильтрам или возможностей подсветки.",
 	"rcfilters-watchlist-preference-label": "Использовать интерфейс без JavaScript",
-	"rcfilters-watchlist-preference-help": "Загружает Список наблюдения без поиска по фильтрам или возможностей подсветки.",
+	"rcfilters-watchlist-preference-help": "Загружает список наблюдения без поиска по фильтрам или возможностей подсветки.",
 	"rcfilters-filter-showlinkedfrom-label": "Показать правки на ссылаемых страницах",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Страницы, на которые ссылается</strong> выбранная",
 	"rcfilters-filter-showlinkedto-label": "Показать правки на ссылающихся страницах",

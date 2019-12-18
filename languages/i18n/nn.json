@@ -1856,7 +1856,7 @@
 	"emailccsubject": "Kopi av meldinga di til $1: $2",
 	"emailsent": "E-posten er sendt",
 	"emailsenttext": "E-posten er sendt.",
-	"emailuserfooter": "E-posten vart sendt av $1 til $2 via «Send e-post»-funksjonen på {{SITENAME}}.",
+	"emailuserfooter": "Denne e-posten vart {{GENDER:$1|send}} av $1 til {{GENDER:$2|$2}} via «{{int:emailuser}}»-funksjonen på {{SITENAME}}. Om du svarar på denne e-posten vil han sendast direkte til opphavleg avsendar, og e-postadressa di vil då vera synleg.",
 	"usermessage-summary": "Lèt att ei systemmelding.",
 	"usermessage-editor": "Systembodbringar",
 	"watchlist": "Overvakingsliste",

@@ -419,7 +419,7 @@
 	"logging-out-notify": "מתבצעת יציאה מהחשבון, נא להמתין.",
 	"logout-failed": "לא ניתן לצאת מהחשבון עכשיו: $1",
 	"cannotlogoutnow-title": "לא ניתן לצאת מהחשבון עכשיו",
-	"cannotlogoutnow-text": "היציאה מהחשבון אינה אפשרית בעת שימוש ב{{GRAMMAR:תחילית|$1}}.",
+	"cannotlogoutnow-text": "היציאה מהחשבון אינה אפשרית עם $1.",
 	"welcomeuser": "ברוך בואך, $1!",
 	"welcomecreation-msg": "חשבונך נוצר.\nבאפשרותך להתאים את ה[[Special:Preferences|העדפות]] שלך ב{{grammar:תחילית|{{SITENAME}}}}.",
 	"yourname": "שם משתמש:",

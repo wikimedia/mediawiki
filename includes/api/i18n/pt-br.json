@@ -1636,6 +1636,7 @@
 	"apierror-csp-report": "Erro ao processar o relatório CSP: $1.",
 	"apierror-deletedrevs-param-not-1-2": "O parâmetro <var>$1</var> não pode ser usado nos modos 1 ou 2.",
 	"apierror-deletedrevs-param-not-3": "O parâmetro <var>$1</var> não pode ser usado no modo 3.",
+	"apierror-edit-invalidredirect": "Não é possível editar <kbd>$1</kbd> ao seguir redirecionamentos, porque o destino <kbd>$2</kbd> não é válido.",
 	"apierror-emptynewsection": "A criação de novas seções vazias não é possível.",
 	"apierror-emptypage": "Não é permitido criar páginas novas e vazias.",
 	"apierror-exceptioncaught": "[$1] Exceção detectada: $2",

@@ -302,7 +302,7 @@
 	"apihelp-opensearch-param-search": "Buscar cadena.",
 	"apihelp-opensearch-param-limit": "Número máximo de resultados que devolver.",
 	"apihelp-opensearch-param-namespace": "Espacios de nombres que buscar. Se ignora si <var>$1search</var> comienza por un prefijo de espacio de nombre válido.",
-	"apihelp-opensearch-param-suggest": "No hacer nada si <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> es falso.",
+	"apihelp-opensearch-param-suggest": "Ya no se utiliza.",
 	"apihelp-opensearch-param-redirects": "Cómo manejar las redirecciones:\n;return: Volver a la propia redirección.\n;resolve: Volver a la página de destino. Puede devolver menos de $1limit resultados.\nPor motivos históricos, se utiliza \"return\" para $1format=json y \"resolve\" para otros formatos.",
 	"apihelp-opensearch-param-format": "El formato de salida.",
 	"apihelp-opensearch-param-warningsaserror": "Si las advertencias están planteadas con <kbd>format=json</kbd>, devolver un error de API en lugar de hacer caso omiso de ellas.",
