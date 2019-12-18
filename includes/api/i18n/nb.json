@@ -294,7 +294,7 @@
 	"apihelp-opensearch-param-search": "Søkestreng.",
 	"apihelp-opensearch-param-limit": "Maksimalt antall resultater som skal returneres.",
 	"apihelp-opensearch-param-namespace": "Navnerom det skal søkes i. Ignorert hvis <var>$1search</var> begynner med et gyldig navneromsprefiks.",
-	"apihelp-opensearch-param-suggest": "Gjør ingenting om <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> er falsk.",
+	"apihelp-opensearch-param-suggest": "Ikke lenger i bruk.",
 	"apihelp-opensearch-param-redirects": "Hvordan omdirigeringer skal håndteres:\n;return:Returner selve omdirigeringen.\n;resolve:Returner målsiden. Kan returnere færre enn $1limit resultater.\nAv historiske grunner er standarden «return» for $1format=json og «resolve» for andre formater.",
 	"apihelp-opensearch-param-format": "Resultatets format.",
 	"apihelp-opensearch-param-warningsaserror": "Hvis advarsler gis med <kbd>format=json</kbd>, returner en API-feil i stedet for å ignorere dem.",

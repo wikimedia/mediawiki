@@ -299,7 +299,7 @@
 	"apihelp-opensearch-param-search": "سطر البحث",
 	"apihelp-opensearch-param-limit": "الحد الأقصى للنتائج المُرجعة",
 	"apihelp-opensearch-param-namespace": "النطاقات للبحث، يتم التجاهل إذا بدأ <var>$1search</var> ببادئة نطاق صالحة.",
-	"apihelp-opensearch-param-suggest": "لا تفعل شيئا إذا كان <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> خاطئا.",
+	"apihelp-opensearch-param-suggest": "لم يعد مستخدما.",
 	"apihelp-opensearch-param-redirects": "كيفية التعامل مع التحويلات:\n;إرجاع: إرجاع التحويلة نفسها.\n;حل: إرجاع الصفحة الهدف، قد ترجع نتائج أقل من $1limit.\nلأسباب تاريخية; يكون الإعداد الافتراضي هو \"إرجاع\" لـ$1format=json و\"حل\" للتنسيقات الأخرى.",
 	"apihelp-opensearch-param-format": "شكل الإخراج.",
 	"apihelp-opensearch-param-warningsaserror": "إذا تم رفع التحذيرات ب<kbd>format=json</kbd>, أعد أخطاء API بدلا من تجاهلها.",
