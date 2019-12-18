@@ -20,7 +20,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-require_once __DIR__ . '/Benchmarker.php';
+require_once __DIR__ . '/../includes/Benchmarker.php';
 
 /**
  * Maintenance script that benchmarks TitleValue vs Title.
