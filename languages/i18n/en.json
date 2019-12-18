@@ -404,6 +404,7 @@
 	"createacct-another-username-ph": "Enter the username",
 	"createacct-helpusername": "",
 	"yourpassword": "Password:",
+	"prefs-help-yourpassword": "Account recovery is enabled. See $1 for more settings.",
 	"userlogin-yourpassword": "Password",
 	"userlogin-yourpassword-ph": "Enter your password",
 	"createacct-yourpassword-ph": "Enter a password",

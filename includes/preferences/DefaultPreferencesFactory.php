@@ -413,6 +413,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'label' => $context->msg( 'prefs-resetpass' )->text(),
 				] ),
 				'label-message' => 'yourpassword',
+				// email password reset feature only works for users that have an email set up
+				'help' => $this->options->get( 'AllowRequiringEmailForResets' ) && $user->getEmail()
+					? $context->msg( 'prefs-help-yourpassword',
+						'[[#mw-prefsection-personal-email|{{int:prefs-email}}]]' )->parse()
+					: '',
 				'section' => 'personal/info',
 			];
 		}
