@@ -1,6 +1,12 @@
-== MediaWiki 1.31.6 ==
+== MediaWiki 1.31.7 ==
 
 THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.31.6 ===
+
+== MediaWiki 1.31.6 ==
+
+This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.5 ===
 * (T181658) Do not insert page titles into querycache.qc_value.
@@ -16,6 +22,7 @@ THIS IS NOT A RELEASE YET
 * (T233342) rdbms: Log debug message traces as 'exception.trace' instead of
   'trace'.
 * (T226751) media: Log and fail gracefully on invalid EXIF coordinates.
+* (T212067) Work around PHP bug in parse_url.
 
 == MediaWiki 1.31.5 ==
 
