@@ -1,9 +1,6 @@
 = MediaWiki 1.34 =
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.34 is an pre-release testing branch, and is not recommended
-for use in production.
+== MediaWiki 1.34.0 ==
 
 === Changes since MediaWiki 1.34.0-rc.1 ===
 * $wgDiffEngine (T237049) – This configuration can be used to specify which
