@@ -307,7 +307,8 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		} else {
 			$mp = new MovePage( $oldTitle, $newTitle );
 			$status = $mp->isValidMove();
-			if ( !$status->isOK() && $status->hasMessage( 'articleexists' ) ) {
+			if ( !$status->isOK() && (
+				$status->hasMessage( 'articleexists' ) || $status->hasMessage( 'redirectexists' ) ) ) {
 				$munge = 'Target title exists';
 			}
 		}

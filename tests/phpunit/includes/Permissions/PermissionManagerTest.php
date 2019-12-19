@@ -1935,4 +1935,25 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->assertNotSame( $pm->getUserPermissions( $user1 ), $pm->getUserPermissions( $user2 ) );
 	}
+
+	/**
+	 * Test delete-redirect checks for Special:MovePage
+	 */
+	public function testDeleteRedirect() {
+		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent]]' );
+		$page = Title::newFromText( 'ExistentRedirect3' );
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$user = $this->getMockBuilder( User::class )
+			->setMethods( [ 'getEffectiveGroups' ] )
+			->getMock();
+		$user->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
+
+		$this->assertFalse( $pm->quickUserCan( 'delete-redirect', $user, $page ) );
+
+		$pm->overrideUserRightsForTesting( $user, 'delete-redirect' );
+
+		$this->assertTrue( $pm->quickUserCan( 'delete-redirect', $user, $page ) );
+		$this->assertArrayEquals( [], $pm->getPermissionErrors( 'delete-redirect', $user, $page ) );
+	}
 }
