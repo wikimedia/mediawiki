@@ -3135,7 +3135,7 @@
 	"editpage": "Uređivanje stranice",
 	"pageinfo": "Obavijesti o stranici",
 	"pagehistory": "Povijest stranice",
-	"purge": "očisti cache",
+	"purge": "Očisti cache",
 	"dberr-problems": "Ispričavamo se! Ova stranica ima tehničkih poteškoća.",
 	"dberr-again": "Pričekajte nekoliko minuta i ponovno učitajte.",
 	"dberr-info": "(Ne mogu pristupiti bazi podataka: $1)",

@@ -512,6 +512,7 @@
 	"userlogin-yourname-ph": "Escreva seu nome de usuário(a)",
 	"createacct-another-username-ph": "Forneça o nome de usuário",
 	"yourpassword": "Senha:",
+	"prefs-help-yourpassword": "A recuperação da conta está ativada. Veja $1 para mais configurações.",
 	"userlogin-yourpassword": "Senha",
 	"userlogin-yourpassword-ph": "Digite sua senha",
 	"createacct-yourpassword-ph": "Digite uma senha",

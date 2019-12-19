@@ -589,6 +589,7 @@
 	"userlogin-yourname-ph": "Escribe tu nombre de usuario",
 	"createacct-another-username-ph": "Escribe el nombre de usuario",
 	"yourpassword": "Contraseña:",
+	"prefs-help-yourpassword": "Se activó la recuperación de la cuenta. Consulta $1 para más opciones.",
 	"userlogin-yourpassword": "Contraseña",
 	"userlogin-yourpassword-ph": "Escribe tu contraseña",
 	"createacct-yourpassword-ph": "Escribe una contraseña",

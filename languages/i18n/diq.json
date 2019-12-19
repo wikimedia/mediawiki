@@ -3650,7 +3650,7 @@
 	"authmanager-autocreate-noperm": "Mısadey karberi otomatik vıraştışi çınyo",
 	"authmanager-autocreate-exception": "Hesabê otomatik hesaba vıraştışi seba tay probleman dewrê ra veto",
 	"authmanager-userdoesnotexist": "Hesabê karberi \"$1\" qeyd nêbiyo.",
-	"authmanager-username-help": "Seba araşt kerdışi namey karberi",
+	"authmanager-username-help": "Seba raştkerdışê nameyê karberi.",
 	"authmanager-password-help": "Seba raştkerdışê parola.",
 	"authmanager-domain-help": "Seba raştkerdışê bıngehê teberi.",
 	"authmanager-retype-help": "Parola reyna raşt ke.",
