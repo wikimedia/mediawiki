@@ -106,7 +106,7 @@ class ParamValidator {
 	 *     - 'lowlimit': The limit when high limits are not allowed.
 	 *     - 'highlimit': The limit when high limits are allowed.
 	 *  - 'unrecognizedvalues': Non-fatal. Invalid values were passed and
-	 *    PARAM_IGNORE_INVALID_VALUES was set. Data:
+	 *    PARAM_IGNORE_UNRECOGNIZED_VALUES was set. Data:
 	 *     - 'values': The unrecognized values.
 	 */
 	const PARAM_ISMULTI = 'param-ismulti';
@@ -161,14 +161,11 @@ class ParamValidator {
 	const PARAM_DEPRECATED = 'param-deprecated';
 
 	/**
-	 * (bool) Whether to ignore invalid values.
-	 *
-	 * This controls whether certain failures are considered fatal
-	 * or non-fatal. The default is false.
-	 *
+	 * (bool) Whether to downgrade "badvalue" errors to non-fatal when validating multi-valued
+	 * parameters.
 	 * @see PARAM_ISMULTI
 	 */
-	const PARAM_IGNORE_INVALID_VALUES = 'param-ignore-invalid-values';
+	const PARAM_IGNORE_UNRECOGNIZED_VALUES = 'param-ignore-unrecognized-values';
 
 	/** @} */
 
@@ -498,7 +495,9 @@ class ParamValidator {
 			try {
 				$validValues[] = $typeDef->validate( $name, $v, $settings, $options );
 			} catch ( ValidationException $ex ) {
-				if ( empty( $settings[self::PARAM_IGNORE_INVALID_VALUES] ) ) {
+				if ( $ex->getFailureMessage()->getCode() !== 'badvalue' ||
+					empty( $settings[self::PARAM_IGNORE_UNRECOGNIZED_VALUES] )
+				) {
 					throw $ex;
 				}
 				$invalidValues[] = $v;
