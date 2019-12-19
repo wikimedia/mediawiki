@@ -742,4 +742,33 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $db->getLBInfo( 'basketball' ) );
 		$this->assertEquals( [ 'King' => 'James' ], $db->getLBInfo() );
 	}
+
+	/**
+	 * @covers Wikimedia\Rdbms\Database::isWriteQuery
+	 * @param string $query
+	 * @param bool $res
+	 * @dataProvider provideIsWriteQuery
+	 */
+	public function testIsWriteQuery( string $query, bool $res ) {
+		$this->assertSame( $res, $this->db->isWriteQuery( $query ) );
+	}
+
+	/**
+	 * Provider for testIsWriteQuery
+	 * @return array
+	 */
+	public function provideWriteQuery() : array {
+		return [
+			[ 'SELECT foo', false ],
+			[ '  SELECT foo FROM bar', false ],
+			[ 'BEGIN', false ],
+			[ 'SHOW EXPLAIN FOR 12;', false ],
+			[ 'USE foobar', false ],
+			[ '(SELECT 1)', false ],
+			[ 'INSERT INTO foo', true ],
+			[ 'TRUNCATE bar', true ],
+			[ 'DELETE FROM baz', true ],
+			[ 'CREATE TABLE foobar', true ]
+		];
+	}
 }

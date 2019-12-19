@@ -1059,7 +1059,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		//   that transactions by themselves don't make changes, only actual writes
 		//   within the transaction matter, which we still detect.
 		return !preg_match(
-			'/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|USE|\(SELECT)\b/i',
+			'/^\s*(?:SELECT|BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|USE|\(SELECT)\b/i',
 			$sql
 		);
 	}
