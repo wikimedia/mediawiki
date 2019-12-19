@@ -29,7 +29,7 @@ abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 	 * @return SimpleCallbacks
 	 */
 	protected function getCallbacks( $value, array $options ) {
-		return new SimpleCallbacks( [ 'test' => $value ] );
+		return new SimpleCallbacks( $value === null ? [] : [ 'test' => $value ] );
 	}
 
 	/**

@@ -229,6 +229,11 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 			->setConstructorArgs( [ $callbacks ] )
 			->getMockForAbstractClass();
 
+		$expectOptions = $options;
+		if ( $get === [] && isset( $settings[ParamValidator::PARAM_DEFAULT] ) ) {
+			$expectOptions['is-default'] = true;
+		}
+
 		// Mock the validateValue method so we can test only getValue
 		$validator = $this->getMockBuilder( ParamValidator::class )
 			->setConstructorArgs( [
@@ -243,7 +248,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				$this->identicalTo( 'foobar' ),
 				$this->identicalTo( $value ),
 				$this->identicalTo( $settings ),
-				$this->identicalTo( $options )
+				$this->identicalTo( $expectOptions )
 			)
 			->willReturn( $dummy );
 
