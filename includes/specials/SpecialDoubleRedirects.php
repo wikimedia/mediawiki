@@ -64,7 +64,6 @@ class DoubleRedirectsPage extends QueryPage {
 			'fields' => [
 				'namespace' => 'pa.page_namespace',
 				'title' => 'pa.page_title',
-				'value' => 'pa.page_title',
 
 				'b_namespace' => 'pb.page_namespace',
 				'b_title' => 'pb.page_title',

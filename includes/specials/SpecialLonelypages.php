@@ -79,7 +79,6 @@ class LonelyPagesPage extends PageQueryPage {
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title'
 			],
 			'conds' => $conds,
 			'join_conds' => $joinConds

@@ -132,7 +132,7 @@ class JobQueueRedis extends JobQueue {
 	protected function doGetSize() {
 		$conn = $this->getConnection();
 		try {
-			return $conn->lSize( $this->getQueueKey( 'l-unclaimed' ) );
+			return $conn->lLen( $this->getQueueKey( 'l-unclaimed' ) );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
@@ -502,7 +502,7 @@ LUA;
 				$keys[] = $this->getQueueKey( $prop );
 			}
 
-			$ok = ( $conn->delete( $keys ) !== false );
+			$ok = ( $conn->del( $keys ) !== false );
 			$conn->sRem( $this->getGlobalKey( 's-queuesWithJobs' ), $this->encodeQueueName() );
 
 			return $ok;
@@ -607,7 +607,7 @@ LUA;
 		try {
 			$conn->multi( Redis::PIPELINE );
 			foreach ( $types as $type ) {
-				$conn->lSize( $this->getQueueKey( 'l-unclaimed', $type ) );
+				$conn->lLen( $this->getQueueKey( 'l-unclaimed', $type ) );
 			}
 			$res = $conn->exec();
 			if ( is_array( $res ) ) {

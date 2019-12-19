@@ -21,7 +21,6 @@ class UncategorizedCategoriesPageTest extends MediaWikiTestCase {
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
-				'value' => 'page_title',
 			],
 			'conds' => [
 				0 => 'cl_from IS NULL',
