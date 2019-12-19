@@ -1513,7 +1513,7 @@ abstract class Installer {
 
 		$registry = new ExtensionRegistry();
 		$data = $registry->readFromQueue( $queue );
-		$wgAutoloadClasses += $data['autoload'];
+		$wgAutoloadClasses += $data['globals']['wgAutoloadClasses'];
 
 		// @phan-suppress-next-line PhanUndeclaredVariable $wgHooks is set by DefaultSettings
 		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];

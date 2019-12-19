@@ -44,6 +44,8 @@ class ExtensionRegistry {
 	 */
 	private const CACHE_VERSION = 7;
 
+	private const CACHE_EXPIRY = 60 * 60 * 24;
+
 	/**
 	 * Special key that defines the merge strategy
 	 *
@@ -52,7 +54,7 @@ class ExtensionRegistry {
 	public const MERGE_STRATEGY = '_merge_strategy';
 
 	/**
-	 * Attributes that should be lazy-loaded and not cached
+	 * Attributes that should be lazy-loaded
 	 */
 	private const LAZY_LOADED_ATTRIBUTES = [
 		'QUnitTestModules',
@@ -172,12 +174,45 @@ class ExtensionRegistry {
 		$this->queued[$path] = $mtime;
 	}
 
+	private function getCache(): BagOStuff {
+		global $wgObjectCaches;
+		// We use a try/catch because we don't want to fail here
+		// if $wgObjectCaches is not configured properly for APC setup
+		try {
+			// Avoid MediaWikiServices to prevent instantiating it before extensions have loaded
+			$cacheId = ObjectCache::detectLocalServerCache();
+			return ObjectCache::newFromParams( $wgObjectCaches[$cacheId] );
+		} catch ( InvalidArgumentException $e ) {
+			// @codeCoverageIgnoreStart
+			return new EmptyBagOStuff();
+			// @codeCoverageIgnoreEnd
+		}
+	}
+
+	private function makeCacheKey( BagOStuff $cache, $component, ...$extra ) {
+		global $wgVersion;
+		// Everything we vary the cache on
+		$vary = [
+			'registration' => self::CACHE_VERSION,
+			'mediawiki' => $wgVersion,
+			'abilities' => $this->getAbilities(),
+			'checkDev' => $this->checkDev,
+			'queue' => $this->queued,
+		];
+		return $cache->makeKey(
+			"registration-$component",
+			// We vary the cache on the current queue (what will be or already was loaded)
+			// plus various versions of stuff for VersionChecker
+			md5( json_encode( $vary ) ),
+			...$extra
+		);
+	}
+
 	/**
 	 * @throws MWException If the queue is already marked as finished (no further things should
 	 *  be loaded then).
 	 */
 	public function loadFromQueue() {
-		global $wgVersion, $wgDevelopmentWarnings, $wgObjectCaches;
 		if ( !$this->queued ) {
 			return;
 		}
@@ -189,56 +224,45 @@ class ExtensionRegistry {
 			);
 		}
 
-		// A few more things to vary the cache on
-		$versions = [
-			'registration' => self::CACHE_VERSION,
-			'mediawiki' => $wgVersion,
-			'abilities' => $this->getAbilities(),
-			'checkDev' => $this->checkDev,
-		];
-
-		// We use a try/catch because we don't want to fail here
-		// if $wgObjectCaches is not configured properly for APC setup
-		try {
-			// Avoid MediaWikiServices to prevent instantiating it before extensions have loaded
-			$cacheId = ObjectCache::detectLocalServerCache();
-			$cache = ObjectCache::newFromParams( $wgObjectCaches[$cacheId] );
-		} catch ( InvalidArgumentException $e ) {
-			$cache = new EmptyBagOStuff();
-		}
+		$cache = $this->getCache();
 		// See if this queue is in APC
-		$key = $cache->makeKey(
-			'registration',
-			md5( json_encode( $this->queued + $versions ) )
-		);
+		$key = $this->makeCacheKey( $cache, 'main' );
 		$data = $cache->get( $key );
-		if ( $data ) {
-			$this->exportExtractedData( $data );
-		} else {
+		if ( !$data ) {
 			$data = $this->readFromQueue( $this->queued );
-			$this->exportExtractedData( $data );
-			$this->prepForCache( $data );
-			if ( !( $data['warnings'] && $wgDevelopmentWarnings ) ) {
-				// If there were no warnings that were shown, cache it
-				$cache->set( $key, $data, 60 * 60 * 24 );
-			}
+			$this->saveToCache( $cache, $data );
 		}
-		$this->queued = [];
+		$this->exportExtractedData( $data );
 	}
 
 	/**
-	 * Adjust data before it gets cached
+	 * Save data in the cache
 	 *
-	 * @param array &$data
+	 * @param BagOStuff $cache
+	 * @param array $data
 	 */
-	protected function prepForCache( array &$data ) {
-		// Do this late since we don't want to extract it since we already
-		// did that, but it should be cached
-		$data['globals']['wgAutoloadClasses'] += $data['autoload'];
-		unset( $data['autoload'] );
-		// Don't cache any lazy-loaded attributes
+	protected function saveToCache( BagOStuff $cache, array $data ) {
+		global $wgDevelopmentWarnings;
+		if ( $data['warnings'] && $wgDevelopmentWarnings ) {
+			// If warnings were shown, don't cache it
+			return;
+		}
+		$lazy = [];
+		// Cache lazy-loaded attributes separately
 		foreach ( self::LAZY_LOADED_ATTRIBUTES as $attrib ) {
-			unset( $data['attributes'][$attrib] );
+			if ( isset( $data['attributes'][$attrib] ) ) {
+				$lazy[$attrib] = $data['attributes'][$attrib];
+				unset( $data['attributes'][$attrib] );
+			}
+		}
+		$mainKey = $this->makeCacheKey( $cache, 'main' );
+		$cache->set( $mainKey, $data, self::CACHE_EXPIRY );
+		foreach ( $lazy as $attrib => $value ) {
+			$cache->set(
+				$this->makeCacheKey( $cache, 'lazy-attrib', $attrib ),
+				$value,
+				self::CACHE_EXPIRY
+			);
 		}
 	}
 
@@ -384,9 +408,8 @@ class ExtensionRegistry {
 			throw new ExtensionDependencyError( $incompatible );
 		}
 
-		// Need to set this so we can += to it later
-		$data['globals']['wgAutoloadClasses'] = [];
-		$data['autoload'] = $autoloadClasses;
+		// FIXME: It was a design mistake to handle autoloading separately (T240535)
+		$data['globals']['wgAutoloadClasses'] = $autoloadClasses;
 		$data['autoloaderPaths'] = $autoloaderPaths;
 		$data['autoloaderNS'] = $autoloadNamespaces;
 		return $data;
@@ -543,20 +566,34 @@ class ExtensionRegistry {
 	 * @return array
 	 */
 	public function getAttribute( $name ) {
-		return $this->testAttributes[$name] ??
-			$this->attributes[$name] ?? [];
+		if ( isset( $this->testAttributes[$name] ) ) {
+			return $this->testAttributes[$name];
+		}
+
+		if ( in_array( $name, self::LAZY_LOADED_ATTRIBUTES, true ) ) {
+			return $this->getLazyLoadedAttribute( $name );
+		}
+
+		return $this->attributes[$name] ?? [];
 	}
 
 	/**
 	 * Get an attribute value that isn't cached by reading each
 	 * extension.json file again
-	 * @since 1.35
 	 * @param string $name
 	 * @return array
 	 */
-	public function getLazyLoadedAttribute( $name ) {
+	protected function getLazyLoadedAttribute( $name ) {
 		if ( isset( $this->testAttributes[$name] ) ) {
 			return $this->testAttributes[$name];
+		}
+
+		// See if it's in the cache
+		$cache = $this->getCache();
+		$key = $this->makeCacheKey( $cache, 'lazy-attrib', $name );
+		$data = $cache->get( $key );
+		if ( $data !== false ) {
+			return $data;
 		}
 
 		$paths = [];
@@ -567,7 +604,10 @@ class ExtensionRegistry {
 		}
 
 		$result = $this->readFromQueue( $paths );
-		return $result['attributes'][$name] ?? [];
+		$data = $result['attributes'][$name] ?? [];
+		$this->saveToCache( $cache, $result );
+
+		return $data;
 	}
 
 	/**
