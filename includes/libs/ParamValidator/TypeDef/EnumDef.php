@@ -2,6 +2,7 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageParam;
@@ -33,16 +34,17 @@ class EnumDef extends TypeDef {
 	/**
 	 * (array) Associative array of deprecated values.
 	 *
-	 * Keys are the deprecated parameter values, values are included in
-	 * the failure message. If value is null, the parameter is considered
-	 * not actually deprecated.
+	 * Keys are the deprecated parameter values. Value is one of the following:
+	 *  - null: Parameter isn't actually deprecated.
+	 *  - true: Parameter is deprecated.
+	 *  - MessageValue: Parameter is deprecated, and this message (converted to a DataMessageValue)
+	 *    is used in place of the default for passing to $this->failure().
 	 *
 	 * Note that this does not add any values to the enumeration, it only
 	 * documents existing values as being deprecated.
 	 *
 	 * Failure codes: (non-fatal)
-	 *  - 'deprecated-value': A deprecated value was encountered. Data:
-	 *     - 'data': The value from the associative array.
+	 *  - 'deprecated-value': A deprecated value was encountered. No data.
 	 */
 	const PARAM_DEPRECATED_VALUES = 'param-deprecated-values';
 
@@ -54,13 +56,18 @@ class EnumDef extends TypeDef {
 			if ( empty( $options['is-default'] ) &&
 				isset( $settings[self::PARAM_DEPRECATED_VALUES][$value] )
 			) {
-				$this->failure(
-					$this->failureMessage( 'deprecated-value', [
-						'data' => $settings[self::PARAM_DEPRECATED_VALUES][$value],
-					] ),
-					$name, $value, $settings, $options,
-					false
-				);
+				$msg = $settings[self::PARAM_DEPRECATED_VALUES][$value];
+				if ( $msg instanceof MessageValue ) {
+					$message = DataMessageValue::new(
+						$msg->getKey(),
+						$msg->getParams(),
+						'deprecated-value',
+						$msg instanceof DataMessageValue ? $msg->getData() : null
+					);
+				} else {
+					$message = $this->failureMessage( 'deprecated-value' );
+				}
+				$this->failure( $message, $name, $value, $settings, $options, false );
 			}
 
 			return $value;
