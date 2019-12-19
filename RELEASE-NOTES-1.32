@@ -1,6 +1,6 @@
 == MediaWiki 1.32.6 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.32 branch.
 
 === Changes since MediaWiki 1.32.5 ===
 * (T236628) Fix for ArticleRevisionViewCustom hook in DifferenceEngine.php.
