@@ -69,7 +69,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		}
 
 		// Already validated by HTMLForm, but if not, throw
-		// and exception instead of a fatal
+		// an exception instead of a fatal
 		$titleObj = Title::newFromTextThrow( $title );
 
 		$this->oldRevision = Revision::newFromTitle( $titleObj ) ?: false;
