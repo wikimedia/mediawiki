@@ -358,7 +358,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getMutableTestUser()->getUser();
 
 		// let the user have a few (3) edits
-		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
+		$page = WikiPage::factory( Title::makeTitle( NS_HELP, 'UserTest_EditCount' ) );
 		for ( $i = 0; $i < 3; $i++ ) {
 			$page->doEditContent(
 				ContentHandler::makeContent( (string)$i, $page->getTitle() ),
@@ -1975,8 +1975,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWatchlist() {
 		$user = $this->user;
-		$specialTitle = Title::newFromText( 'Special:Version' );
-		$articleTitle = Title::newFromText( 'FooBar' );
+		$specialTitle = Title::makeTitle( NS_SPECIAL, 'Version' );
+		$articleTitle = Title::makeTitle( NS_MAIN, 'FooBar' );
 
 		$this->assertFalse( $user->isWatched( $specialTitle ), 'Special pages cannot be watched' );
 		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has not been watched yet' );
@@ -1999,6 +1999,24 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue(
 			$user->isTempWatched( $articleTitle, 'The article has been tempoarily watched' )
 		);
+	}
+
+	/**
+	 * @covers User::addWatch
+	 */
+	public function testAddSpecialPageToWatchlist() {
+		$title = Title::makeTitle( NS_SPECIAL, 'Version' );
+		$this->expectException( MWException::class );
+		$this->user->addWatch( $title );
+	}
+
+	/**
+	 * @covers User::removeWatch
+	 */
+	public function testRemoveSpecialPageFromWatchlist() {
+		$title = Title::makeTitle( NS_SPECIAL, 'Version' );
+		$this->expectException( MWException::class );
+		$this->user->removeWatch( $title );
 	}
 
 	/**
