@@ -238,11 +238,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * result sets formed from multiple DB queries.
 	 */
 	public function doQuery() {
-		# Use the child class name for profiling
-		$fname = __METHOD__ . ' (' . static::class . ')';
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$section = Profiler::instance()->scopedProfileIn( $fname );
-
 		$defaultOrder = ( $this->mDefaultDirection === self::DIR_ASCENDING )
 			? self::QUERY_ASCENDING
 			: self::QUERY_DESCENDING;
