@@ -57,6 +57,7 @@ class ExtensionRegistry {
 	 * Attributes that should be lazy-loaded
 	 */
 	private const LAZY_LOADED_ATTRIBUTES = [
+		'TrackingCategories',
 		'QUnitTestModules',
 	];
 
