@@ -51,15 +51,21 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 	 */
 	public function testDefineRole() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'foo', function ( $role ) {
+		$registry->defineRole( 'FOO', function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 
 		$this->assertTrue( $registry->isDefinedRole( 'foo' ) );
+		$this->assertTrue( $registry->isDefinedRole( 'Foo' ) );
 		$this->assertContains( 'foo', $registry->getDefinedRoles() );
 		$this->assertContains( 'foo', $registry->getKnownRoles() );
+		$this->assertNotContains( 'FOO', $registry->getDefinedRoles() );
+		$this->assertNotContains( 'FOO', $registry->getKnownRoles() );
 
 		$handler = $registry->getRoleHandler( 'foo' );
+		$this->assertSame( 'foo', $handler->getRole() );
+
+		$handler = $registry->getRoleHandler( 'Foo' );
 		$this->assertSame( 'foo', $handler->getRole() );
 
 		$title = $this->makeBlankTitleObject();
@@ -76,7 +82,7 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 		} );
 
 		$this->expectException( LogicException::class );
-		$registry->defineRole( 'foo', function ( $role ) {
+		$registry->defineRole( 'FOO', function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 	}
@@ -89,7 +95,7 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 	 */
 	public function testDefineRoleWithContentModel() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRoleWithModel( 'foo', 'FooModel' );
+		$registry->defineRoleWithModel( 'FOO', 'FooModel' );
 
 		$this->assertTrue( $registry->isDefinedRole( 'foo' ) );
 		$this->assertContains( 'foo', $registry->getDefinedRoles() );
@@ -165,7 +171,7 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 		$registry->defineRole( 'main', function ( $role ) {
 			return new MainSlotRoleHandler( [] );
 		} );
-		$registry->defineRoleWithModel( 'foo', CONTENT_MODEL_TEXT );
+		$registry->defineRoleWithModel( 'FOO', CONTENT_MODEL_TEXT );
 
 		$title = $this->makeBlankTitleObject();
 		$this->assertEquals( [ 'main', 'foo' ], $registry->getAllowedRoles( $title ) );
@@ -179,10 +185,11 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 		$registry = $this->newSlotRoleRegistry(
 			$this->makeNameTableStore( [ 1 => 'foo' ] )
 		);
-		$registry->defineRoleWithModel( 'bar', CONTENT_MODEL_TEXT );
+		$registry->defineRoleWithModel( 'BAR', CONTENT_MODEL_TEXT );
 
 		$this->assertTrue( $registry->isKnownRole( 'foo' ) );
 		$this->assertTrue( $registry->isKnownRole( 'bar' ) );
+		$this->assertTrue( $registry->isKnownRole( 'Bar' ) );
 		$this->assertFalse( $registry->isKnownRole( 'xyzzy' ) );
 
 		$title = $this->makeBlankTitleObject();
