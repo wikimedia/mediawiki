@@ -29,7 +29,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		parent::setUp();
 
 		$this->cache = new WANObjectCache( [
-			'cache' => new HashBagOStuff()
+			'cache' => new HashBagOStuff(),
+			'logger' => \MediaWiki\Logger\LoggerFactory::getInstance( 'objectcache' )
 		] );
 
 		$wanCache = TestingAccessWrapper::newFromObject( $this->cache );
