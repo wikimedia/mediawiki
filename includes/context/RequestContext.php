@@ -168,9 +168,10 @@ class RequestContext implements IContextSource, MutableContext {
 		if ( $this->title === null ) {
 			global $wgTitle; # fallback to $wg till we can improve this
 			$this->title = $wgTitle;
-			wfDebugLog(
-				'GlobalTitleFail',
-				__METHOD__ . ' called by ' . wfGetAllCallers( 5 ) . ' with no title set.'
+			$logger = LoggerFactory::getInstance( 'GlobalTitleFail' );
+			$logger->info(
+				__METHOD__ . ' called with no title set.',
+				[ 'exception' => new Exception ]
 			);
 		}
 
