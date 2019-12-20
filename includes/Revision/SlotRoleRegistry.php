@@ -82,6 +82,8 @@ class SlotRoleRegistry {
 	 *        Signature: function ( string $role ): SlotRoleHandler
 	 */
 	public function defineRole( $role, callable $instantiator ) {
+		$role = strtolower( $role );
+
 		if ( $this->isDefinedRole( $role ) ) {
 			throw new LogicException( "Role $role is already defined" );
 		}
@@ -104,6 +106,8 @@ class SlotRoleRegistry {
 	 * @param array $layout See SlotRoleHandler getOutputLayoutHints
 	 */
 	public function defineRoleWithModel( $role, $model, $layout = [] ) {
+		$role = strtolower( $role );
+
 		$this->defineRole(
 			$role,
 			function ( $role ) use ( $model, $layout ) {
@@ -122,6 +126,8 @@ class SlotRoleRegistry {
 	 *         FallbackSlotRoleHandler if the slot is "known" but not "defined".
 	 */
 	public function getRoleHandler( $role ) {
+		$role = strtolower( $role );
+
 		if ( !isset( $this->handlers[$role] ) ) {
 			if ( !$this->isDefinedRole( $role ) ) {
 				if ( $this->isKnownRole( $role ) ) {
@@ -217,6 +223,7 @@ class SlotRoleRegistry {
 	 * @return bool
 	 */
 	public function isDefinedRole( $role ) {
+		$role = strtolower( $role );
 		return in_array( $role, $this->getDefinedRoles(), true );
 	}
 
@@ -228,6 +235,7 @@ class SlotRoleRegistry {
 	 * @return bool
 	 */
 	public function isKnownRole( $role ) {
+		$role = strtolower( $role );
 		return in_array( $role, $this->getKnownRoles(), true );
 	}
 
