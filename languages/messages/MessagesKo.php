@@ -143,6 +143,7 @@ $specialPageAliases = [
 	'Mytalk'                    => [ '내사용자토론' ],
 	'Myuploads'                 => [ '내가올린파일' ],
 	'Newimages'                 => [ '새파일', '새그림' ],
+	'NewSection'                => [ '새문단' ],
 	'Newpages'                  => [ '새문서' ],
 	'PagesWithProp'             => [ '속성별문서' ],
 	'PageData'                  => [ '문서데이터' ],
