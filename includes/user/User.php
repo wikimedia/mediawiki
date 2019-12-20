@@ -2330,11 +2330,15 @@ class User implements IDBAccessObject, UserIdentity {
 			];
 			if ( $q['actor_user'] === null && self::isUsableName( $q['actor_name'] ) ) {
 				throw new CannotCreateActorException(
-					'Cannot create an actor for a usable name that is not an existing user'
+					'Cannot create an actor for a usable name that is not an existing user: ' .
+						"user_id={$this->getId()} user_name=\"{$this->getName()}\""
 				);
 			}
 			if ( $q['actor_name'] === '' ) {
-				throw new CannotCreateActorException( 'Cannot create an actor for a user with no name' );
+				throw new CannotCreateActorException(
+					'Cannot create an actor for a user with no name: ' .
+						"user_id={$this->getId()} user_name=\"{$this->getName()}\""
+				);
 			}
 			$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
 			if ( $dbw->affectedRows() ) {
@@ -2351,7 +2355,8 @@ class User implements IDBAccessObject, UserIdentity {
 				);
 				if ( !$this->mActorId ) {
 					throw new CannotCreateActorException(
-						"Cannot create actor ID for user_id={$this->getId()} user_name={$this->getName()}"
+						"Failed to create actor ID for " .
+							"user_id={$this->getId()} user_name=\"{$this->getName()}\""
 					);
 				}
 			}
