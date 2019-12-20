@@ -32,6 +32,7 @@ use IP;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use RequestContext;
@@ -435,15 +436,16 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	protected function initFromRow( $row ) {
 		$this->setTarget( $row->ipb_address );
-		$this->setBlocker( User::newFromAnyId(
-			$row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ?? null
-		) );
 
 		$this->setTimestamp( wfTimestamp( TS_MW, $row->ipb_timestamp ) );
 		$this->mAuto = $row->ipb_auto;
 		$this->setHideName( $row->ipb_deleted );
 		$this->mId = (int)$row->ipb_id;
 		$this->mParentBlockId = $row->ipb_parent_block_id;
+
+		$this->setBlocker( User::newFromAnyId(
+			$row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ?? null
+		) );
 
 		// I wish I didn't have to do this
 		$db = wfGetDB( DB_REPLICA );
@@ -1623,6 +1625,15 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		if ( $user->isAnon() && User::isUsableName( $user->getName() ) ) {
+			// Temporarily log some block details to debug T192964
+			$logger = LoggerFactory::getInstance( 'BlockManager' );
+			$logger->warning(
+				'Blocker is neither a local user nor an invalid username',
+				[
+					'blocker' => (string)$user,
+					'blockId' => $this->getId(),
+				]
+			);
 			throw new \InvalidArgumentException(
 				'Blocker must be a local user or a name that cannot be a local user'
 			);
