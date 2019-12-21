@@ -68,11 +68,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$conds[] = ActorMigration::newMigration()->getWhere(
 				$this->mDb, 'rc_user', User::newFromName( $user->getText(), false ), false
 			)['conds'];
-		} elseif ( MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->groupHasPermission( '*', 'createpage' ) &&
-			$this->opts->getValue( 'hideliu' )
-		) {
+		} elseif ( $this->canAnonymousUsersCreatePages() && $this->opts->getValue( 'hideliu' ) ) {
 			# If anons cannot make new pages, don't "exclude logged in users"!
 			$conds[] = ActorMigration::newMigration()->isAnon( $rcQuery['fields']['rc_user'] );
 		}
@@ -123,6 +119,13 @@ class NewPagesPager extends ReverseChronologicalPager {
 		);
 
 		return $info;
+	}
+
+	private function canAnonymousUsersCreatePages() {
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		return ( $pm->groupHasPermission( '*', 'createpage' ) ||
+			$pm->groupHasPermission( '*', 'createtalk' )
+		);
 	}
 
 	// Based on ContribsPager.php
