@@ -1742,7 +1742,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get a given default option value.
 	 *
 	 * @param string $opt Name of option to retrieve
-	 * @return string Default option value
+	 * @return string|null Default option value
 	 */
 	public static function getDefaultOption( $opt ) {
 		$defOpts = self::getDefaultOptions();
@@ -2964,9 +2964,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the user's current setting for a given option.
 	 *
 	 * @param string $oname The option to check
-	 * @param string|array|null $defaultOverride A default value returned if the option does not exist
+	 * @param mixed|null $defaultOverride A default value returned if the option does not exist
 	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
-	 * @return string|array|int|null User's current value for the option
+	 * @return mixed|null User's current value for the option
 	 * @see getBoolOption()
 	 * @see getIntOption()
 	 */
