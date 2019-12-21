@@ -37,7 +37,7 @@ use MediaWiki\Shell\Shell;
  * - The `maintenance/update.php` script, backed by DatabaseUpdater.
  * - The `mw-config/index.php` web entry point, backed by WebInstaller.
  *
- * @defgroup Installer installer
+ * @defgroup Installer Installer
  */
 
 /**
