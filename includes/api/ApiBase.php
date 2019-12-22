@@ -2196,6 +2196,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param bool $condition Will only die if this value is true
 	 * @throws ApiUsageException
 	 * @since 1.21
+	 * @phan-assert-false-condition $condition
 	 */
 	protected function dieContinueUsageIf( $condition ) {
 		if ( $condition ) {
