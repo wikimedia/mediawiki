@@ -148,7 +148,7 @@ class FileDeleteForm {
 	 *
 	 * @param Title &$title
 	 * @param LocalFile &$file
-	 * @param string &$oldimage Archive name
+	 * @param ?string &$oldimage Archive name
 	 * @param string $reason Reason of the deletion
 	 * @param bool $suppress Whether to mark all deleted versions as restricted
 	 * @param User|null $user User object performing the request
