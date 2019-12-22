@@ -993,7 +993,7 @@
 	"search-category": "(קטגוריה $1)",
 	"search-file-match": "(התאמה בתוכן הקובץ)",
 	"search-suggest": "האם התכוונת ל: $1",
-	"search-rewritten": "מוצגות התוצאות עבור $1. ניתן לחפש $2 במקום זאת.",
+	"search-rewritten": "מוצגות התוצאות עבור $1. לא נמצאו תוצאות עבור $2.",
 	"search-interwiki-caption": "תוצאות ממיזמי אחות",
 	"search-interwiki-default": "תוצאות מתוך $1:",
 	"search-interwiki-more": "(עוד)",

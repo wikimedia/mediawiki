@@ -1848,6 +1848,7 @@
 	"allmessagescurrent": "Nuna texti di mesajo",
 	"allmessagestext": "Yen listo pri omna sistemo-mesaji disponebla en la MediaWiki nomaro.\nVizitez [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Lokizado] e [https://translatewiki.net translatewiki.net] se vu volos kontributar ad generala MediaWiki lokizado.",
 	"allmessages-language": "Linguo:",
+	"allmessages-filter-translate": "Tradukez",
 	"thumbnail-more": "Plugrandigar",
 	"thumbnail_error": "Ne sucesas krear imajeto: $1",
 	"import": "Importacar pagini",
