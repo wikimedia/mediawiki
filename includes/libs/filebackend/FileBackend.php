@@ -691,7 +691,9 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * considered "OK" as long as no fatal errors occurred.
 	 *
 	 * @param array $ops Set of operations to execute
-	 * @phan-param array{ignoreMissingSource?:bool,headers?:bool} $ops
+	 * @codingStandardsIgnoreStart
+	 * @phan-param list<array{op:?string,src?:string,dst?:string,ignoreMissingSource?:bool,headers?:array}> $ops
+	 * @codingStandardsIgnoreEnd
 	 * @param array $opts Batch operation options
 	 * @phan-param array{bypassReadOnly?:bool} $opts
 	 * @return StatusValue
