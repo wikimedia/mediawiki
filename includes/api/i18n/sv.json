@@ -244,7 +244,7 @@
 	"apihelp-opensearch-param-search": "Söksträng.",
 	"apihelp-opensearch-param-limit": "Maximalt antal resultat att returnera.",
 	"apihelp-opensearch-param-namespace": "Namnrymder att genomsöka. Ignoreras om <var>$1search</var> börjar med ett giltigt namnrymdsprefix.",
-	"apihelp-opensearch-param-suggest": "Gör ingenting om <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> är falskt.",
+	"apihelp-opensearch-param-suggest": "Använd inte längre.",
 	"apihelp-opensearch-param-format": "Formatet för utdata.",
 	"apihelp-opensearch-example-te": "Hitta sidor som börjar med <kbd>Te</kbd>.",
 	"apihelp-options-summary": "Ändra inställningar för nuvarande användare.",

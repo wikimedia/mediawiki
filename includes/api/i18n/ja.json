@@ -1015,6 +1015,7 @@
 	"api-help-license-unknown": "ライセンス: <span class=\"apihelp-unknown\">不明</span>",
 	"api-help-parameters": "{{PLURAL:$1|パラメーター}}:",
 	"api-help-param-deprecated": "廃止予定です。",
+	"api-help-param-internal": "内部で使用。",
 	"api-help-param-required": "このパラメーターは必須です。",
 	"api-help-datatypes-header": "データ型",
 	"api-help-param-list": "{{PLURAL:$1|1=値 (次の値のいずれか1つ)|2=値 (<kbd>{{!}}</kbd>もしくは[[Special:ApiHelp/main#main/datatypes|別の文字列]]で区切る)}}: $2",
