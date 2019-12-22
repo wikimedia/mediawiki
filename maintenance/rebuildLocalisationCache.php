@@ -50,6 +50,12 @@ class RebuildLocalisationCache extends Maintenance {
 			false, true );
 		$this->addOption( 'lang', 'Only rebuild these languages, comma separated.',
 			false, true );
+		$this->addOption(
+			'store-class',
+			'Override the LC store class (normally $wgLocalisationCacheConf[\'storeClass\'])',
+			false,
+			true
+		);
 	}
 
 	public function finalSetup() {
@@ -84,6 +90,10 @@ class RebuildLocalisationCache extends Maintenance {
 		$conf['forceRecache'] = $force || !empty( $conf['forceRecache'] );
 		if ( $this->hasOption( 'outdir' ) ) {
 			$conf['storeDirectory'] = $this->getOption( 'outdir' );
+		}
+
+		if ( $this->hasOption( 'store-class' ) ) {
+			$conf['storeClass'] = $this->getOption( 'store-class' );
 		}
 		// XXX Copy-pasted from ServiceWiring.php. Do we need a factory for this one caller?
 		$lc = new LocalisationCacheBulkLoad(
