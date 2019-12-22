@@ -1076,7 +1076,7 @@
 	"search-category": "(categoria $1)",
 	"search-file-match": "(corrispondenza nel contenuto del file)",
 	"search-suggest": "Forse cercavi: $1",
-	"search-rewritten": "Mostro i risultati per $1. Altrimenti, cerca $2.",
+	"search-rewritten": "Mostro i risultati per $1. Nessun risultato trovato per $2.",
 	"search-interwiki-caption": "Risultati dai progetti fratelli",
 	"search-interwiki-default": "Risultati da $1:",
 	"search-interwiki-more": "(altro)",
