@@ -575,16 +575,6 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }
 
-if ( $wgProfileOnly ) {
-	// Hard deprecated in 1.34.
-	wfDeprecated(
-		'$wgProfileOnly set the log file in $wgDebugLogGroups[\'profileoutput\'] instead',
-		'1.23'
-	);
-	$wgDebugLogGroups['profileoutput'] = $wgDebugLogFile;
-	$wgDebugLogFile = '';
-}
-
 // Backwards compatibility with old password limits
 if ( $wgMinimalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MinimalPasswordLength'] = $wgMinimalPasswordLength;
