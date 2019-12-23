@@ -25,7 +25,11 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
-define( 'MW_ENTRY_POINT', 'thumb' );
+// T241340: thumb.php is included by thumb_handler.php which already defined
+// MW_ENTRY_POINT to 'thumb_handler'
+if ( !defined( 'MW_ENTRY_POINT ' ) ) {
+	define( 'MW_ENTRY_POINT', 'thumb' );
+}
 require __DIR__ . '/includes/WebStart.php';
 
 // Don't use fancy MIME detection, just check the file extension for jpg/gif/png
