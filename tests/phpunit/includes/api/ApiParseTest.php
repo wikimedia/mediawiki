@@ -364,6 +364,34 @@ class ApiParseTest extends ApiTestCase {
 		$this->assertParsedTo( "<p>Some <i>text</i>\n</p>", $res );
 	}
 
+	public function testNonRedirectOk() {
+		$name = ucfirst( __FUNCTION__ );
+
+		$this->editPage( $name, "Some ''text''" );
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'page' => $name,
+			'redirects' => true,
+		] );
+
+		$this->assertParsedTo( "<p>Some <i>text</i>\n</p>", $res );
+	}
+
+	public function testNonRedirectByIdOk() {
+		$name = ucfirst( __FUNCTION__ );
+
+		$id = $this->editPage( $name, "Some ''text''" )->value['revision']->getPage();
+
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'pageid' => $id,
+			'redirects' => true,
+		] );
+
+		$this->assertParsedTo( "<p>Some <i>text</i>\n</p>", $res );
+	}
+
 	public function testInvalidTitle() {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'Bad title "|".' );
