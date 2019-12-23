@@ -1698,6 +1698,9 @@ class FileRepo {
 				$path .= '/' . substr( $hexString, 0, $hexPos + 1 );
 			}
 			$iterator = $this->backend->getFileList( [ 'dir' => $path ] );
+			if ( $iterator === null ) {
+				throw new MWException( __METHOD__ . ': could not get file listing for ' . $path );
+			}
 			foreach ( $iterator as $name ) {
 				// Each item returned is a public file
 				call_user_func( $callback, "{$path}/{$name}" );
