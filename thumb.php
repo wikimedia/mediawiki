@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 // T241340: thumb.php is included by thumb_handler.php which already defined
 // MW_ENTRY_POINT to 'thumb_handler'
-if ( !defined( 'MW_ENTRY_POINT ' ) ) {
+if ( !defined( 'MW_ENTRY_POINT' ) ) {
 	define( 'MW_ENTRY_POINT', 'thumb' );
 }
 require __DIR__ . '/includes/WebStart.php';
