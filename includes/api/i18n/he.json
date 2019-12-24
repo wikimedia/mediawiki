@@ -1773,7 +1773,7 @@
 	"apierror-unknownaction": "הפעולה שניתנה, <kbd>$1</kbd>, אינה מוכרת.",
 	"apierror-unknownerror-editpage": "שגיאת EditPage בלתי־ידועה: $1.",
 	"apierror-unknownerror-nocode": "שגיאה בלתי־ידועה.",
-	"apierror-unknownerror": "שגיאה בלתי ידועה: \"$1\".",
+	"apierror-unknownerror": "שגיאה בלתי־ידועה: \"$1\".",
 	"apierror-unknownformat": "תסדיר בלתי־ידוע \"$1\".",
 	"apierror-unrecognizedparams": "{{PLURAL:$2|פרמטר בלתי־מוכר|פרמטרים בלתי־מוכרים}}: $1.",
 	"apierror-unrecognizedvalue": "לפרמטר <var>$1</var> יש ערך בלתי־מוכר: $2.",
