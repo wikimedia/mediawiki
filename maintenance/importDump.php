@@ -190,7 +190,7 @@ TEXT
 	/**
 	 * @param Revision $rev
 	 */
-	private function handleRevision( $rev ) {
+	public function handleRevision( $rev ) {
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->progress( "Got bogus revision with null title!" );
@@ -214,7 +214,7 @@ TEXT
 	 * @param Revision $revision
 	 * @return bool
 	 */
-	private function handleUpload( $revision ) {
+	public function handleUpload( $revision ) {
 		if ( $this->uploads ) {
 			if ( $this->skippedNamespace( $revision ) ) {
 				return false;
@@ -236,7 +236,7 @@ TEXT
 		return false;
 	}
 
-	private function handleLogItem( $rev ) {
+	public function handleLogItem( $rev ) {
 		if ( $this->skippedNamespace( $rev ) ) {
 			return;
 		}
