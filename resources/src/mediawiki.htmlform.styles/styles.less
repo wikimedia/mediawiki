@@ -1,4 +1,5 @@
 /* HTMLForm styles */
+@import 'mediawiki.mixins';
 
 .mw-htmlform {
 	clear: both;
@@ -46,10 +47,9 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	margin-left: 4px;
 }
 
+// Note that Hebrew does not mirror question mark.
 .mw-icon-question:lang( ar ),
 .mw-icon-question:lang( fa ),
 .mw-icon-question:lang( ur ) {
-	-webkit-transform: scaleX( -1 );
-	-ms-transform: scaleX( -1 );
-	transform: scaleX( -1 );
+	.transform( scaleX( -1 ) );
 }
