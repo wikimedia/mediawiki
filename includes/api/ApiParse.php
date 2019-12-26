@@ -124,10 +124,13 @@ class ApiParse extends ApiBase {
 					$reqParams = [
 						'redirects' => '',
 					];
+					$pageParams = [];
 					if ( !is_null( $pageid ) ) {
 						$reqParams['pageids'] = $pageid;
+						$pageParams['pageid'] = $pageid;
 					} else { // $page
 						$reqParams['titles'] = $page;
+						$pageParams['title'] = $page;
 					}
 					$req = new FauxRequest( $reqParams );
 					$main = new ApiMain( $req );
@@ -135,11 +138,9 @@ class ApiParse extends ApiBase {
 					$pageSet->execute();
 					$redirValues = $pageSet->getRedirectTitlesAsResult( $this->getResult() );
 
-					$to = $page;
 					foreach ( $pageSet->getRedirectTitles() as $title ) {
-						$to = $title->getFullText();
+						$pageParams = [ 'title' => $title->getFullText() ];
 					}
-					$pageParams = [ 'title' => $to ];
 				} elseif ( !is_null( $pageid ) ) {
 					$pageParams = [ 'pageid' => $pageid ];
 				} else { // $page
