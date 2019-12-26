@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Katunchik",
-			"Vlad5250"
+			"Vlad5250",
+			"Okras"
 		]
 	},
 	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри корневого пути REST API ($2)",
@@ -10,9 +11,10 @@
 	"rest-no-match": "Запрошенный относительный путь ($1) не соответствует ни одному известному обработчику",
 	"rest-nonexistent-title": "Указанного заголовка ($1) не существует",
 	"rest-nonexistent-title-revision": "Указанной версии ($1) не существует для указанной страницы ($2)",
-	"rest-nonexistent-revision": "Запрошенная редакция ($1) не существует.",
-	"rest-permission-denied-title": "Участник не обладает правом чтения заголовка ($1)",
-	"rest-permission-denied-revision": "Участник не имеет доступа к запрошенной версии ($1)",
+	"rest-nonexistent-revision": "Запрошенная редакция ($1) не существует",
+	"rest-permission-denied-title": "Участник не обладает правами чтения заголовка ($1)",
+	"rest-permission-denied-revision": "Участник не имеет доступа к запрошенной версии ($1).",
+	"rest-pagehistory-param-range-error": "Идентификатор версии должен быть больше 0",
 	"rest-pagehistory-timestamp-error": "Не удалось получить временную отметку для указанной версии ($1)",
 	"rest-pagehistorycount-type-unrecognized": "Указанный тип подсчета ($1) недопустим",
 	"rest-compare-page-mismatch": "Указанные версии относятся к разным страницам; сравнивать их нельзя.",

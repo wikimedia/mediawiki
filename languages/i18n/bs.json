@@ -2094,7 +2094,7 @@
 	"wlshowhidecategorization": "kategorizaciju stranica",
 	"watchlist-options": "Opcije spiska praćenja",
 	"watching": "Pratim...",
-	"unwatching": "Ne pratim...",
+	"unwatching": "Prestajem pratiti...",
 	"watcherrortext": "Desila se greška pri promjeni postavki vašeg spiska praćenja za \"$1\".",
 	"enotif_reset": "Označi sve stranice kao posjećene",
 	"enotif_impersonal_salutation": "{{SITENAME}} korisnik",

@@ -298,7 +298,7 @@
 	"apihelp-opensearch-param-search": "Texto a pesquisar.",
 	"apihelp-opensearch-param-limit": "O número máximo de resultados a serem devolvidos.",
 	"apihelp-opensearch-param-namespace": "Espaços nominais a pesquisar. Ignorados se <var>$1search</var> começar com um prefixo de espaço nominal válido.",
-	"apihelp-opensearch-param-suggest": "Não fazer nada se <var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> for falso.",
+	"apihelp-opensearch-param-suggest": "Deixou de ser utilizado.",
 	"apihelp-opensearch-param-redirects": "Como tratar redirecionamentos:\n;return:Devolver o próprio redirecionamento.\n;resolve:Devolver a página de destino. Pode devolver menos de $1limit resultados.\nPor razões históricas, o valor por omissão é \"return\" para o formato $1format=json e \"resolve\" para outros formatos.",
 	"apihelp-opensearch-param-format": "O formato do resultado.",
 	"apihelp-opensearch-param-warningsaserror": "Se forem gerados avisos com <kbd>format=json</kbd>, devolver um erro da API em vez de ignorá-los.",
