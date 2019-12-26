@@ -137,7 +137,10 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
                 foreach ( $chunks as $chunk ) {
                     $client = new SquidPurgeClient( $server );
                     foreach ( $chunk as $url ) {
-                        $client->queuePurge( self::expand( $url ) );
+			// Custom changes by SPF
+                        foreach ( array( 'desktop', 'phone-tablet' ) as $device ) {
+                            $client->queuePurge( $url, $device );
+                        }
                     }
                     $pool->addClient( $client );
                 }
