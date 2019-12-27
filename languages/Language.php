@@ -3201,7 +3201,7 @@ class Language {
 	/**
 	 * Front-end for non-commafied formatNum
 	 *
-	 * @param int|float $number The string to be formatted, should be an integer
+	 * @param string|int|float $number The string to be formatted, should be an integer
 	 *        or a floating point number.
 	 * @since 1.21
 	 * @return string
