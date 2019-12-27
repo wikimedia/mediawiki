@@ -719,7 +719,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.styles' => [
-		'styles' => 'resources/src/mediawiki.htmlform.styles/styles.css',
+		'styles' => 'resources/src/mediawiki.htmlform.styles/styles.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui.styles' => [
