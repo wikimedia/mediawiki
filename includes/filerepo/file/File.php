@@ -138,7 +138,7 @@ abstract class File implements IDBAccessObject {
 	/** @var string Relative path including trailing slash */
 	protected $hashPath;
 
-	/** @var string|false Number of pages of a multipage document, or false for
+	/** @var int|false Number of pages of a multipage document, or false for
 	 *    documents which aren't multipage documents
 	 */
 	protected $pageCount;
@@ -1988,7 +1988,7 @@ abstract class File implements IDBAccessObject {
 	 * Returns the number of pages of a multipage document, or false for
 	 * documents which aren't multipage documents
 	 *
-	 * @return string|bool|int
+	 * @return int|false
 	 */
 	function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
