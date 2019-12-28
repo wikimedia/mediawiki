@@ -183,7 +183,7 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @return bool
+	 * @return string|false
 	 */
 	function getMetadata() {
 		if ( !isset( $this->metadata ) ) {
