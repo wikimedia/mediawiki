@@ -124,7 +124,7 @@
  *      ->displayForm( '' );
  * @endcode
  * Note that you will have prepareForm and displayForm at the end. Other
- * methods call done after that would simply not be part of the form :(
+ * method calls done after that would simply not be part of the form :(
  *
  * @todo Document 'section' / 'subsection' stuff
  */
