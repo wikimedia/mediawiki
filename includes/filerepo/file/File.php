@@ -658,7 +658,7 @@ abstract class File implements IDBAccessObject {
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
-	 * @return bool|array
+	 * @return string|false
 	 */
 	public function getMetadata() {
 		return false;
