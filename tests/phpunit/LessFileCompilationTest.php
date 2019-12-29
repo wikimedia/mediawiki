@@ -34,10 +34,7 @@ class LessFileCompilationTest extends ResourceLoaderTestCase {
 
 	public function testLessFileCompilation() {
 		$thisString = $this->toString();
-		$this->assertTrue(
-			is_string( $this->file ) && is_file( $this->file ) && is_readable( $this->file ),
-			"$thisString must refer to a readable file"
-		);
+		$this->assertIsReadable( $this->file, "$thisString must refer to a readable file" );
 
 		$rlContext = $this->getResourceLoaderContext();
 

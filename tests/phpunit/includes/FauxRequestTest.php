@@ -228,7 +228,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 		$request = new FauxRequest();
 		$request->setHeader( 'Accept', $value );
 
-		$this->assertFalse( $request->getHeader( 'Nonexistent' ) );
+		$this->assertSame( false, $request->getHeader( 'Nonexistent' ) );
 		$this->assertSame( $value, $request->getHeader( 'Accept' ) );
 		$this->assertSame( $value, $request->getHeader( 'ACCEPT' ) );
 		$this->assertSame( $value, $request->getHeader( 'accept' ) );
@@ -247,7 +247,7 @@ class FauxRequestTest extends MediaWikiIntegrationTestCase {
 		$request = new FauxRequest();
 
 		$this->assertSame( [], $request->getAllHeaders() );
-		$this->assertFalse( $request->getHeader( 'test' ) );
+		$this->assertSame( false, $request->getHeader( 'test' ) );
 	}
 
 	/**

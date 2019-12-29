@@ -81,19 +81,19 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$po->setProperty( 'foo', 'val' );
 
 		$properties = $po->getProperties();
-		$this->assertEquals( $po->getProperty( 'foo' ), 'val' );
-		$this->assertEquals( $properties['foo'], 'val' );
+		$this->assertSame( 'val', $po->getProperty( 'foo' ) );
+		$this->assertSame( 'val', $properties['foo'] );
 
 		$po->setProperty( 'foo', 'second val' );
 
 		$properties = $po->getProperties();
-		$this->assertEquals( $po->getProperty( 'foo' ), 'second val' );
-		$this->assertEquals( $properties['foo'], 'second val' );
+		$this->assertSame( 'second val', $po->getProperty( 'foo' ) );
+		$this->assertSame( 'second val', $properties['foo'] );
 
 		$po->unsetProperty( 'foo' );
 
 		$properties = $po->getProperties();
-		$this->assertEquals( $po->getProperty( 'foo' ), false );
+		$this->assertSame( false, $po->getProperty( 'foo' ) );
 		$this->assertArrayNotHasKey( 'foo', $properties );
 	}
 

@@ -97,7 +97,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 			$this->markTestIncomplete( __CLASS__ . " does no yet support non-wikitext content "
 				. "in the main namespace" );
 		}
-		$this->assertTrue( is_object( $results ) );
+		$this->assertIsObject( $results );
 
 		$matches = [];
 		foreach ( $results as $row ) {

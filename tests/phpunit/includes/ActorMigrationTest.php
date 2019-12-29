@@ -678,7 +678,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$m = new ActorMigration( $stage );
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
-		$this->assertTrue( is_callable( $callback ) );
+		$this->assertIsCallable( $callback );
 	}
 
 	/**
