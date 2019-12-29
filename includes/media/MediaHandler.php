@@ -338,7 +338,7 @@ abstract class MediaHandler {
 	 * Page count for a multi-page document, false if unsupported or unknown
 	 *
 	 * @param File $file
-	 * @return bool
+	 * @return int|false
 	 */
 	public function pageCount( File $file ) {
 		return false;

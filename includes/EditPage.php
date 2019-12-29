@@ -399,7 +399,7 @@ class EditPage {
 	/** @var string */
 	public $editintro = '';
 
-	/** @var null */
+	/** @var int|null */
 	public $scrolltop = null;
 
 	/** @var bool */
