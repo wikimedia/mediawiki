@@ -1149,7 +1149,7 @@ abstract class Skin extends ContextSource {
 	/* these are used extensively in SkinTemplate, but also some other places */
 
 	/**
-	 * @param string|string[] $urlaction
+	 * @param string|array $urlaction
 	 * @return string
 	 */
 	static function makeMainPageUrl( $urlaction = '' ) {
@@ -1166,7 +1166,7 @@ abstract class Skin extends ContextSource {
 	 * URL with the protocol specified.
 	 *
 	 * @param string $name Name of the Special page
-	 * @param string|string[] $urlaction Query to append
+	 * @param string|array $urlaction Query to append
 	 * @param string|null $proto Protocol to use or null for a local URL
 	 * @return string
 	 */
@@ -1182,7 +1182,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * @param string $name
 	 * @param string $subpage
-	 * @param string|string[] $urlaction
+	 * @param string|array $urlaction
 	 * @return string
 	 */
 	static function makeSpecialUrlSubpage( $name, $subpage, $urlaction = '' ) {
@@ -1192,7 +1192,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @param string $name
-	 * @param string|string[] $urlaction
+	 * @param string|array $urlaction
 	 * @return string
 	 * @deprecated since 1.35, no longer used
 	 */
@@ -1205,7 +1205,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @param string $name
-	 * @param string|string[] $urlaction
+	 * @param string|array $urlaction
 	 * @return string
 	 */
 	static function makeUrl( $name, $urlaction = '' ) {
@@ -1232,7 +1232,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * this can be passed the NS number as defined in Language.php
 	 * @param string $name
-	 * @param string|string[] $urlaction
+	 * @param string|array $urlaction
 	 * @param int $namespace
 	 * @return string
 	 * @deprecated since 1.35, no longer used
@@ -1248,7 +1248,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * these return an array with the 'href' and boolean 'exists'
 	 * @param string $name
-	 * @param string|string[] $urlaction
+	 * @param string|array $urlaction
 	 * @return array
 	 */
 	static function makeUrlDetails( $name, $urlaction = '' ) {
@@ -1264,7 +1264,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Make URL details where the article exists (or at least it's convenient to think so)
 	 * @param string $name Article name
-	 * @param string|string[] $urlaction
+	 * @param string|array $urlaction
 	 * @return array
 	 */
 	static function makeKnownUrlDetails( $name, $urlaction = '' ) {

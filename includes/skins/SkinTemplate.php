@@ -826,6 +826,11 @@ class SkinTemplate extends Skin {
 		return $result;
 	}
 
+	/**
+	 * @param string $name
+	 * @param string|array $urlaction
+	 * @return array
+	 */
 	function makeTalkUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
 		if ( !is_object( $title ) ) {
@@ -842,7 +847,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * @todo is this even used?
 	 * @param string $name
-	 * @param string $urlaction
+	 * @param string|array $urlaction
 	 * @return array
 	 */
 	function makeArticleUrlDetails( $name, $urlaction = '' ) {
