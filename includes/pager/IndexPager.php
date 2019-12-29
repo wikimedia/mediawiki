@@ -683,7 +683,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			if ( $query !== false ) {
 				$links[$type] = $this->makeLink(
 					$linkTexts[$type],
-					$queries[$type],
+					$query,
 					$type
 				);
 			} elseif ( isset( $disabledTexts[$type] ) ) {

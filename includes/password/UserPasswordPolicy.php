@@ -198,7 +198,7 @@ class UserPasswordPolicy {
 			if ( in_array( $group, $userGroups ) ) {
 				$effectivePolicy = self::maxOfPolicies(
 					$effectivePolicy,
-					$policies[$group]
+					$policy
 				);
 			}
 		}

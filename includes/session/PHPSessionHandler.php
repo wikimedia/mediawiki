@@ -305,7 +305,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 			if ( !array_key_exists( $key, $data ) && $session->exists( $key ) &&
 				\Wikimedia\PhpSessionSerializer::encode( [ $key => true ] )
 			) {
-				if ( $cache[$key] === $session->get( $key ) ) {
+				if ( $value === $session->get( $key ) ) {
 					// Unchanged in Session, delete it
 					$session->remove( $key );
 					$changed = true;

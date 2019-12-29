@@ -776,9 +776,9 @@ class LinksUpdate extends DataUpdate {
 		$del = [];
 		foreach ( $existing as $ns => $dbkeys ) {
 			if ( isset( $this->mLinks[$ns] ) ) {
-				$del[$ns] = array_diff_key( $existing[$ns], $this->mLinks[$ns] );
+				$del[$ns] = array_diff_key( $dbkeys, $this->mLinks[$ns] );
 			} else {
-				$del[$ns] = $existing[$ns];
+				$del[$ns] = $dbkeys;
 			}
 		}
 
@@ -795,9 +795,9 @@ class LinksUpdate extends DataUpdate {
 		$del = [];
 		foreach ( $existing as $ns => $dbkeys ) {
 			if ( isset( $this->mTemplates[$ns] ) ) {
-				$del[$ns] = array_diff_key( $existing[$ns], $this->mTemplates[$ns] );
+				$del[$ns] = array_diff_key( $dbkeys, $this->mTemplates[$ns] );
 			} else {
-				$del[$ns] = $existing[$ns];
+				$del[$ns] = $dbkeys;
 			}
 		}
 
@@ -863,9 +863,9 @@ class LinksUpdate extends DataUpdate {
 		$del = [];
 		foreach ( $existing as $prefix => $dbkeys ) {
 			if ( isset( $this->mInterwikis[$prefix] ) ) {
-				$del[$prefix] = array_diff_key( $existing[$prefix], $this->mInterwikis[$prefix] );
+				$del[$prefix] = array_diff_key( $dbkeys, $this->mInterwikis[$prefix] );
 			} else {
-				$del[$prefix] = $existing[$prefix];
+				$del[$prefix] = $dbkeys;
 			}
 		}
 

@@ -439,8 +439,8 @@ class SiteConfiguration {
 		}
 
 		foreach ( $default as $name => $def ) {
-			if ( !isset( $ret[$name] ) || ( is_array( $default[$name] ) && !is_array( $ret[$name] ) ) ) {
-				$ret[$name] = $default[$name];
+			if ( !isset( $ret[$name] ) || ( is_array( $def ) && !is_array( $ret[$name] ) ) ) {
+				$ret[$name] = $def;
 			}
 		}
 

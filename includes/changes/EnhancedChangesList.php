@@ -205,7 +205,7 @@ class EnhancedChangesList extends ChangesList {
 		# Default values for RC flags
 		$collectedRcFlags = [];
 		foreach ( $recentChangesFlags as $key => $value ) {
-			$flagGrouping = ( $recentChangesFlags[$key]['grouping'] ?? 'any' );
+			$flagGrouping = $value['grouping'] ?? 'any';
 			switch ( $flagGrouping ) {
 				case 'all':
 					$collectedRcFlags[$key] = true;
