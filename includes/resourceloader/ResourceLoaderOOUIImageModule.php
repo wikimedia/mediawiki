@@ -53,14 +53,14 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 					// Images and color variants are defined per-theme, here converted to per-skin
 					case 'images':
 					case 'variants':
-						$definition[$key][$skin] = $data[$key];
+						$definition[$key][$skin] = $value;
 						break;
 
 					// Other options must be identical for each theme (or only defined in the default one)
 					default:
 						if ( !isset( $definition[$key] ) ) {
-							$definition[$key] = $data[$key];
-						} elseif ( $definition[$key] !== $data[$key] ) {
+							$definition[$key] = $value;
+						} elseif ( $definition[$key] !== $value ) {
 							throw new Exception(
 								"Mismatched OOUI theme images definition: " .
 									"key '$key' of theme '$theme' for module '$module' " .

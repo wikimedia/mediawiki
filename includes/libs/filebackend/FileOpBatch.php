@@ -154,7 +154,7 @@ class FileOpBatch {
 				foreach ( $performOpsBatch as $i => $fileOp ) {
 					$status->success[$i] = false;
 					++$status->failCount;
-					$performOpsBatch[$i]->logFailure( 'attempt_aborted' );
+					$fileOp->logFailure( 'attempt_aborted' );
 				}
 				continue;
 			}

@@ -178,7 +178,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			$content =
 				$this->getHeaderText( $key ) .
 				$this->displaySection(
-					$this->mFieldTree[$key],
+					$val,
 					"",
 					"mw-prefsection-$key-"
 				) .
