@@ -1997,7 +1997,7 @@ interface IDatabase {
 	 *
 	 * @param string|int|null $ts
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function timestampOrNull( $ts = null );
 

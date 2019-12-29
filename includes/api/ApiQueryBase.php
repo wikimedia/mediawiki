@@ -313,9 +313,9 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $field Field name
 	 * @param string $dir If 'newer', sort in ascending order, otherwise
 	 *  sort in descending order
-	 * @param string $start Value to start the list at. If $dir == 'newer'
+	 * @param string|null $start Value to start the list at. If $dir == 'newer'
 	 *  this is the lower boundary, otherwise it's the upper boundary
-	 * @param string $end Value to end the list at. If $dir == 'newer' this
+	 * @param string|null $end Value to end the list at. If $dir == 'newer' this
 	 *  is the upper boundary, otherwise it's the lower boundary
 	 * @param bool $sort If false, don't add an ORDER BY clause
 	 */
@@ -350,8 +350,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @see addWhereRange
 	 * @param string $field
 	 * @param string $dir
-	 * @param string $start
-	 * @param string $end
+	 * @param string|int|null $start
+	 * @param string|int|null $end
 	 * @param bool $sort
 	 */
 	protected function addTimestampWhereRange( $field, $dir, $start, $end, $sort = true ) {
