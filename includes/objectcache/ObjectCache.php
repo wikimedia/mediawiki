@@ -72,7 +72,7 @@ class ObjectCache {
 	/**
 	 * Get a cached instance of the specified type of cache object.
 	 *
-	 * @param string $id A key in $wgObjectCaches.
+	 * @param string|int $id A key in $wgObjectCaches.
 	 * @return BagOStuff
 	 */
 	public static function getInstance( $id ) {
@@ -86,7 +86,7 @@ class ObjectCache {
 	/**
 	 * Create a new cache object of the specified type.
 	 *
-	 * @param string $id A key in $wgObjectCaches.
+	 * @param string|int $id A key in $wgObjectCaches.
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
 	 */
