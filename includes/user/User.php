@@ -4661,7 +4661,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Set the e-mail authentication timestamp.
-	 * @param string $timestamp TS_MW timestamp
+	 * @param string|null $timestamp TS_MW timestamp
 	 */
 	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
