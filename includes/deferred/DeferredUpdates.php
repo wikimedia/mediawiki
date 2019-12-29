@@ -199,7 +199,7 @@ class DeferredUpdates {
 
 		/** @var ErrorPageError $guiEx */
 		$guiEx = null;
-		/** @var Exception|Throwable $exception */
+		/** @var Throwable $exception */
 		$exception = null;
 
 		/** @var DeferrableUpdate[] $updates Snapshot of queue */
@@ -271,14 +271,14 @@ class DeferredUpdates {
 	}
 
 	/**
-	 * Run a task and catch/log any exceptions
+	 * Run a task and catch/log any throwables
 	 *
 	 * @param DeferrableUpdate $update
 	 * @param LBFactory $lbFactory
 	 * @param LoggerInterface $logger
 	 * @param StatsdDataFactoryInterface $stats
 	 * @param string $httpMethod
-	 * @return Exception|Throwable|null
+	 * @return Throwable|null
 	 */
 	private static function run(
 		DeferrableUpdate $update,
@@ -286,7 +286,7 @@ class DeferredUpdates {
 		LoggerInterface $logger,
 		StatsdDataFactoryInterface $stats,
 		$httpMethod
-	) {
+	) : ?Throwable {
 		$suffix = ( $update instanceof DeferrableCallback ) ? "_{$update->getOrigin()}" : '';
 		$type = get_class( $update ) . $suffix;
 		$stats->increment( "deferred_updates.$httpMethod.$type" );
@@ -296,7 +296,6 @@ class DeferredUpdates {
 			self::attemptUpdate( $update, $lbFactory );
 
 			return null;
-		} catch ( Exception $e ) {
 		} catch ( Throwable $e ) {
 		}
 
@@ -319,7 +318,6 @@ class DeferredUpdates {
 				JobQueueGroup::singleton( $spec['domain'] )->push( $spec['job'] );
 
 				return $e;
-			} catch ( Exception $jobEx ) {
 			} catch ( Throwable $jobEx ) {
 			}
 
@@ -363,7 +361,6 @@ class DeferredUpdates {
 			JobQueueGroup::singleton( $spec['domain'] )->push( $spec['job'] );
 
 			return;
-		} catch ( Exception $e ) {
 		} catch ( Throwable $e ) {
 		}
 

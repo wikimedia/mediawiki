@@ -21,7 +21,6 @@
 namespace MediaWiki\Logger\Monolog;
 
 use Error;
-use Exception;
 use Monolog\Formatter\LineFormatter as MonologLineFormatter;
 use MWExceptionHandler;
 use Throwable;
@@ -68,7 +67,7 @@ class LineFormatter extends MonologLineFormatter {
 		// Drop the 'private' flag from the context
 		unset( $record['context']['private'] );
 
-		// Handle exceptions specially: pretty format and remove from context
+		// Handle throwables specially: pretty format and remove from context
 		// Will be output for a '%exception%' placeholder in format
 		$prettyException = '';
 		if ( isset( $record['context']['exception'] ) &&
@@ -77,7 +76,7 @@ class LineFormatter extends MonologLineFormatter {
 			$e = $record['context']['exception'];
 			unset( $record['context']['exception'] );
 
-			if ( $e instanceof Throwable || $e instanceof Exception ) {
+			if ( $e instanceof Throwable ) {
 				$prettyException = $this->normalizeException( $e );
 			} elseif ( is_array( $e ) ) {
 				$prettyException = $this->normalizeExceptionArray( $e );
@@ -97,20 +96,21 @@ class LineFormatter extends MonologLineFormatter {
 	/**
 	 * Convert a Throwable to a string.
 	 *
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 * @return string
 	 */
 	protected function normalizeException( $e ) {
+		// Can't use typehint. Must match Monolog\Formatter\LineFormatter::normalizeException($e)
 		return $this->normalizeExceptionArray( $this->exceptionAsArray( $e ) );
 	}
 
 	/**
 	 * Convert a throwable to an array of structured data.
 	 *
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 * @return array
 	 */
-	protected function exceptionAsArray( $e ) {
+	protected function exceptionAsArray( Throwable $e ) {
 		$out = [
 			'class' => get_class( $e ),
 			'message' => $e->getMessage(),

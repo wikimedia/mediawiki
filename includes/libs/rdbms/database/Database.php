@@ -3747,7 +3747,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function runOnAtomicSectionCancelCallbacks(
 		$trigger, array $sectionIds = null
 	) {
-		/** @var Exception|Throwable $e */
+		/** @var Throwable $e */
 		$e = null; // first exception
 
 		$notCancelled = [];
@@ -3774,7 +3774,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->trxSectionCancelCallbacks = $notCancelled;
 
 		if ( $e !== null ) {
-			throw $e; // re-throw any first Exception/Throwable
+			throw $e; // re-throw any first Throwable
 		}
 	}
 
