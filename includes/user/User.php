@@ -1698,7 +1698,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Combine the language default options with any site-specific options
 	 * and add the default language variants.
 	 *
-	 * @return array Array of String options
+	 * @return array Array of options; typically strings, possibly booleans
 	 */
 	public static function getDefaultOptions() {
 		global $wgNamespacesToBeSearchedDefault,
