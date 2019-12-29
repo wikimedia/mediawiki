@@ -68,6 +68,10 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Extensions can now specify classes and namespaces to be autoloaded by the
   test autoloader, by setting the "TestAutoloadNamespaces" and
   "TestAutoloadClasses" properties in extension.json. (T196090)
+* Added getters for OutputPage's robot, index and follow policies;
+  getRobotPolicy() returns the entire policy as a string in the form
+  <index policy>,<follow policy> while getIndexPolicy() and getFollowPolicy()
+  return their respective policies as a string.
 * …
 
 === External library changes in 1.35 ===

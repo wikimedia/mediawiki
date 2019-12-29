@@ -857,6 +857,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Get the current robot policy for the page as a string in the form
+	 * <index policy>,<follow policy>.
+	 *
+	 * @return string
+	 */
+	public function getRobotPolicy() {
+		return "{$this->mIndexPolicy},{$this->mFollowPolicy}";
+	}
+
+	/**
 	 * Set the index policy for the page, but leave the follow policy un-
 	 * touched.
 	 *
@@ -871,6 +881,15 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Get the current index policy for the page as a string.
+	 *
+	 * @return string
+	 */
+	public function getIndexPolicy() {
+		return $this->mIndexPolicy;
+	}
+
+	/**
 	 * Set the follow policy for the page, but leave the index policy un-
 	 * touched.
 	 *
@@ -882,6 +901,15 @@ class OutputPage extends ContextSource {
 		if ( in_array( $policy, [ 'follow', 'nofollow' ] ) ) {
 			$this->mFollowPolicy = $policy;
 		}
+	}
+
+	/**
+	 * Get the current follow policy for the page as a string.
+	 *
+	 * @return string
+	 */
+	public function getFollowPolicy() {
+		return $this->mFollowPolicy;
 	}
 
 	/**
