@@ -68,7 +68,10 @@ trait ApiBlockInfoTrait {
 	 * @{
 	 */
 
-	/** @see IContextSource::getLanguage */
+	/**
+	 * @see IContextSource::getLanguage
+	 * @return Language
+	 */
 	abstract public function getLanguage();
 
 	/**@}*/
