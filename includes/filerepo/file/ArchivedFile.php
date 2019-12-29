@@ -433,7 +433,7 @@ class ArchivedFile {
 	/**
 	 * Returns the number of pages of a multipage document, or false for
 	 * documents which aren't multipage documents
-	 * @return bool|int
+	 * @return int|false
 	 */
 	function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
