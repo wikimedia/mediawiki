@@ -239,10 +239,9 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Initialize the path information
 	 * @param string $name The desired destination name
-	 * @param string $tempPath The temporary path
-	 * @param int $fileSize The file size
+	 * @param string $tempPath
+	 * @param int|null $fileSize
 	 * @param bool $removeTempFile (false) remove the temporary file?
 	 * @throws MWException
 	 */
