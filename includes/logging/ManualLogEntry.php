@@ -414,14 +414,23 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getType() {
 		return $this->type;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getSubtype() {
 		return $this->subtype;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getParameters() {
 		return $this->parameters;
 	}
@@ -440,12 +449,18 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		return $this->target;
 	}
 
+	/**
+	 * @return string|false
+	 */
 	public function getTimestamp() {
 		$ts = $this->timestamp ?? wfTimestampNow();
 
 		return wfTimestamp( TS_MW, $ts );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getComment() {
 		return $this->comment;
 	}
@@ -484,6 +499,9 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		return $this->legacy;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getDeleted() {
 		return (int)$this->deleted;
 	}
