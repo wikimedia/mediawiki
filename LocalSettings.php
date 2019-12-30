@@ -161,7 +161,7 @@ wfLoadExtension( 'WikiEditor' );
 # End of automatically generated settings.
 # Add more configuration options below.
 
-// VisualEditor
+// VisualEditor 1_31
 wfLoadExtension( 'VisualEditor' );
 $wgVisualEditorEnableWikitext = true;
 $wgDefaultUserOptions['visualeditor-newwikitext'] = 1;
