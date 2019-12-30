@@ -61,7 +61,6 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 
 		$services = $this->getServiceContainer();
 
-		$this->setMwGlobals( 'wgParser', $services->getParserFactory()->create() );
 		$this->overrideConfigValue( MainConfigNames::DisableLangConversion, false );
 		$this->config = $services->getMainConfig();
 	}

@@ -259,6 +259,8 @@ because of Phabricator reports.
 * In HTMLForm HTMLAutoCompleteSelectFields, the parameters 'autocomplete' and
   'autocomplete-messages', which were deprecated in MediaWiki 1.29, were
   removed. Instead, use 'autocomplete-data' and 'autocomplete-data-messages'.
+* The global $wgParser, deprecated in 1.32, was removed. Use
+  MediaWikiServices::getInstance()->getParser() instead.
 * ParserOutput::setText will now set the ParserOutput's text to null if
   given null. Previously it did nothing if given null.
 * The default value for the first argument to the ParserOutput constructor
