@@ -895,7 +895,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	public function getMonthName( $key ) {
@@ -914,7 +914,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	public function getMonthNameGen( $key ) {
@@ -922,7 +922,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	public function getMonthAbbreviation( $key ) {
@@ -941,7 +941,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	public function getWeekdayName( $key ) {
@@ -949,7 +949,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	public function getWeekdayAbbreviation( $key ) {
@@ -957,7 +957,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	private function getIranianCalendarMonthName( $key ) {
@@ -965,7 +965,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	private function getHebrewCalendarMonthName( $key ) {
@@ -973,7 +973,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	private function getHebrewCalendarMonthNameGen( $key ) {
@@ -981,7 +981,7 @@ class Language {
 	}
 
 	/**
-	 * @param string $key
+	 * @param int $key
 	 * @return string
 	 */
 	private function getHijriCalendarMonthName( $key ) {
