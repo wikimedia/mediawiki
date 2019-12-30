@@ -976,7 +976,7 @@ class WikiPage implements Page, IDBAccessObject {
 			} else {
 				// NOTE: keep in sync with RevisionRenderer::getLinkCount
 				// NOTE: keep in sync with DerivedPageDataUpdater::isCountable
-				$hasLinks = (bool)wfGetDB( DB_REPLICA )->selectField( 'pagelinks', 1,
+				$hasLinks = (bool)wfGetDB( DB_REPLICA )->selectField( 'pagelinks', '1',
 					[ 'pl_from' => $this->getId() ], __METHOD__ );
 			}
 		}

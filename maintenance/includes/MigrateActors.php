@@ -475,7 +475,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 
 		$anyBad = $dbw->selectField(
 			'log_search',
-			1,
+			'1',
 			[ 'ls_field' => 'target_author_actor', 'ls_value' => '' ],
 			__METHOD__,
 			[ 'LIMIT' => 1 ]
