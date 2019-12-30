@@ -160,13 +160,3 @@ wfLoadExtension( 'WikiEditor' );
 
 # End of automatically generated settings.
 # Add more configuration options below.
-
-// VisualEditor 1_31
-wfLoadExtension( 'VisualEditor' );
-$wgVisualEditorEnableWikitext = true;
-$wgDefaultUserOptions['visualeditor-newwikitext'] = 1;
-$wgDefaultUserOptions['visualeditor-enable'] = 1;
-$wgDefaultUserOptions['visualeditor-editor'] = 'visualeditor';
-$wgVirtualRestConfig['modules']['parsoid'] = [
-	'url' => 'https://parsoidoliwiki.herokuapp.com/'
-];
