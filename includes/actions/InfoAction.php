@@ -760,7 +760,7 @@ class InfoAction extends FormlessAction {
 				$result['watchers'] = $watchedItemStore->countWatchers( $title );
 
 				if ( $config->get( 'ShowUpdatedMarker' ) ) {
-					$updated = wfTimestamp( TS_UNIX, $page->getTimestamp() );
+					$updated = (int)wfTimestamp( TS_UNIX, $page->getTimestamp() );
 					$result['visitingWatchers'] = $watchedItemStore->countVisitingWatchers(
 						$title,
 						$updated - $config->get( 'WatchersMaxAge' )

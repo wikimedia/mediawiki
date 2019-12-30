@@ -507,7 +507,7 @@ class IcuCollation extends Collation {
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 * @since 1.16.3
 	 */
 	public function getFirstLetterCount() {

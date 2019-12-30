@@ -55,7 +55,7 @@ class SquidPurgeClient {
 	const BUFFER_SIZE = 8192;
 
 	/**
-	 * @var resource|null The socket resource, or null for unconnected, or false
+	 * @var resource|false|null The socket resource, or null for unconnected, or false
 	 *   for disabled due to error.
 	 */
 	protected $socket;

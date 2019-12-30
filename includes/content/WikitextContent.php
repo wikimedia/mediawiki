@@ -43,7 +43,7 @@ class WikitextContent extends TextContent {
 	private $hadSignature = false;
 
 	/**
-	 * @var array|null Stack trace of the previous parse
+	 * @var string|null Stack trace of the previous parse
 	 */
 	private $previousParseStackTrace = null;
 

@@ -438,7 +438,7 @@ class DatabaseBlock extends AbstractBlock {
 		$this->setTarget( $row->ipb_address );
 
 		$this->setTimestamp( wfTimestamp( TS_MW, $row->ipb_timestamp ) );
-		$this->mAuto = $row->ipb_auto;
+		$this->mAuto = (bool)$row->ipb_auto;
 		$this->setHideName( $row->ipb_deleted );
 		$this->mId = (int)$row->ipb_id;
 		$this->mParentBlockId = $row->ipb_parent_block_id;
@@ -872,7 +872,7 @@ class DatabaseBlock extends AbstractBlock {
 		);
 		$timestamp = wfTimestampNow();
 		$autoblock->setTimestamp( $timestamp );
-		$autoblock->mAuto = 1;
+		$autoblock->mAuto = true;
 		$autoblock->isCreateAccountBlocked( $this->isCreateAccountBlocked() );
 		# Continue suppressing the name if needed
 		$autoblock->setHideName( $this->getHideName() );
@@ -1107,7 +1107,7 @@ class DatabaseBlock extends AbstractBlock {
 	public static function getAutoblockExpiry( $timestamp ) {
 		global $wgAutoblockExpiry;
 
-		return wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
+		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
 	}
 
 	/**

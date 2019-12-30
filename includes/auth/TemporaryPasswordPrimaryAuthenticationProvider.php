@@ -268,7 +268,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				if (
 					$this->passwordReminderResendTime
 					&& $row->user_newpass_time
-					&& time() < wfTimestamp( TS_UNIX, $row->user_newpass_time )
+					&& time() < (int)wfTimestamp( TS_UNIX, $row->user_newpass_time )
 						+ $this->passwordReminderResendTime * 3600
 				) {
 					// Round the time in hours to 3 d.p., in case someone is specifying
@@ -415,7 +415,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	protected function isTimestampValid( $timestamp ) {
 		$time = wfTimestampOrNull( TS_MW, $timestamp );
 		if ( $time !== null ) {
-			$expiry = wfTimestamp( TS_UNIX, $time ) + $this->newPasswordExpiry;
+			$expiry = (int)wfTimestamp( TS_UNIX, $time ) + $this->newPasswordExpiry;
 			if ( time() >= $expiry ) {
 				return false;
 			}

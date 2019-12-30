@@ -501,7 +501,7 @@ class BlockManager {
 	 */
 	public function setBlockCookie( DatabaseBlock $block, WebResponse $response ) {
 		// Calculate the default expiry time.
-		$maxExpiryTime = wfTimestamp( TS_MW, wfTimestamp() + ( 24 * 60 * 60 ) );
+		$maxExpiryTime = wfTimestamp( TS_MW, (int)wfTimestamp() + ( 24 * 60 * 60 ) );
 
 		// Use the block's expiry time only if it's less than the default.
 		$expiryTime = $block->getExpiry();
@@ -575,12 +575,12 @@ class BlockManager {
 		$id = ( $bangPos === false ) ? $cookieValue : substr( $cookieValue, 0, $bangPos );
 		if ( !$this->options->get( 'SecretKey' ) ) {
 			// If there's no secret key, just use the ID as given.
-			return $id;
+			return (int)$id;
 		}
 		$storedHmac = substr( $cookieValue, $bangPos + 1 );
 		$calculatedHmac = MWCryptHash::hmac( $id, $this->options->get( 'SecretKey' ), false );
 		if ( $calculatedHmac === $storedHmac ) {
-			return $id;
+			return (int)$id;
 		} else {
 			return null;
 		}

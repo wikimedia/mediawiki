@@ -188,7 +188,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$joins = [
 				'actor' => [ 'JOIN', 'rc_actor = actor_id' ],
 			];
-			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $activeUserSeconds );
+			$timestamp = $db->timestamp( (int)wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 			$this->addFields( [
 				'recentactions' => '(' . $db->selectSQLText(
 					$tables,
