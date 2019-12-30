@@ -4199,8 +4199,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function doRollback( $fname ) {
 		if ( $this->trxLevel() ) {
 			# Disconnects cause rollback anyway, so ignore those errors
-			$ignoreErrors = true;
-			$this->query( 'ROLLBACK', $fname, $ignoreErrors );
+			$this->query( 'ROLLBACK', $fname, IDatabase::QUERY_SILENCE_ERRORS );
 		}
 	}
 
