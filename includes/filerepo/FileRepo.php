@@ -1618,7 +1618,7 @@ class FileRepo {
 	 * Get the size of a file with a given virtual URL/storage path
 	 *
 	 * @param string $virtualUrl
-	 * @return int|bool False on failure
+	 * @return int|false
 	 */
 	public function getFileSize( $virtualUrl ) {
 		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
