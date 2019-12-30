@@ -2613,7 +2613,7 @@ $rev: Revision object of the template
 &$deps: Array of template dependencies with 'title', 'page_id', 'rev_id' keys
 
 'ParserFirstCallInit': Called when the parser initialises for the first time.
-[&]$parser: Parser object being cleared
+[&]$parser: Parser object being initialised
 
 'ParserGetVariableValueSwitch': Called when the parser needs the value of a
 custom magic word
