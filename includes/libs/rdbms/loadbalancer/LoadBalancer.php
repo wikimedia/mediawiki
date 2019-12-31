@@ -1633,7 +1633,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $limit ) {
 			// If atomic sections or explicit transactions are still open, some caller must have
 			// caught an exception but failed to properly rollback any changes. Detect that and
-			// throw and error (causing rollback).
+			// throw an error (causing rollback).
 			$conn->assertNoOpenTransactions();
 			// Assert that the time to replicate the transaction will be sane.
 			// If this fails, then all DB transactions will be rollback back together.
