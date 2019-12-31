@@ -62,7 +62,9 @@ interface RevisionFactory {
 	 * @param object $row A query result row as a raw object.
 	 *        Use RevisionStore::getQueryInfo() to build a query that yields the required fields.
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param Title|null $title
+	 * @param Title|null $title A title object for the revision.
+	 *        Use Title::newFromRow when query was built with option 'page'
+	 *        on RevisionStore::getQueryInfo for performance reason
 	 *
 	 * @return RevisionRecord
 	 */
