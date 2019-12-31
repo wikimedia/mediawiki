@@ -2268,7 +2268,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * The result obviously should not be URL-escaped, but does need to be
 	 * HTML-escaped if it's being output in HTML.
 	 *
-	 * @param string|string[] $query
+	 * @param string|array $query
 	 * @param bool $query2
 	 * @param string|int|bool $proto A PROTO_* constant on how the URL should be expanded,
 	 *                               or false (default) for no expansion
