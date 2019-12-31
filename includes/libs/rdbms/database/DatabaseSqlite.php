@@ -286,7 +286,11 @@ class DatabaseSqlite extends Database {
 		$table = 'dummy_search_test';
 
 		$db = self::newStandaloneInstance( ':memory:' );
-		if ( $db->query( "CREATE VIRTUAL TABLE $table USING FTS3(dummy_field)", __METHOD__, true ) ) {
+		if ( $db->query(
+			"CREATE VIRTUAL TABLE $table USING FTS3(dummy_field)",
+			__METHOD__,
+			IDatabase::QUERY_SILENCE_ERRORS
+		) ) {
 			$cachedResult = 'FTS3';
 		}
 		$db->close();
