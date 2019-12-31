@@ -207,7 +207,7 @@ class MWDebug {
 	 *
 	 * @since 1.19
 	 * @param string $function Function that is deprecated.
-	 * @param string|bool $version Version in which the function was deprecated.
+	 * @param string|false $version Version in which the function was deprecated.
 	 * @param string|bool $component Component to which the function belongs.
 	 *    If false, it is assumed the function is in MediaWiki core.
 	 * @param int $callerOffset How far up the callstack is the original

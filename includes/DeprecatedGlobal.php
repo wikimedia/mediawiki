@@ -30,7 +30,7 @@ class DeprecatedGlobal extends StubObject {
 	/**
 	 * @param string $name Global name
 	 * @param callable|string $callback Factory function or class name to construct
-	 * @param bool|string $version Version global was deprecated in
+	 * @param string|false $version Version global was deprecated in
 	 */
 	public function __construct( $name, $callback, $version = false ) {
 		parent::__construct( $name, $callback );
