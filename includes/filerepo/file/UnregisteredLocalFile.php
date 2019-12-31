@@ -210,7 +210,7 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @return bool|int
+	 * @return false|int
 	 */
 	function getSize() {
 		$this->assertRepoDefined();

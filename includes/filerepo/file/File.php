@@ -715,7 +715,7 @@ abstract class File implements IDBAccessObject {
 	 * Return the size of the image file, in bytes
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
-	 * @return bool
+	 * @return int|false
 	 */
 	public function getSize() {
 		return false;
