@@ -538,7 +538,7 @@ class EditPage {
 	 */
 	public function getContextTitle() {
 		if ( is_null( $this->mContextTitle ) ) {
-			wfDeprecated( __METHOD__ . ' called with no title set', '1.32' );
+			wfDeprecated( get_class( $this ) . '::getContextTitle called with no title set', '1.32' );
 			global $wgTitle;
 			return $wgTitle;
 		} else {

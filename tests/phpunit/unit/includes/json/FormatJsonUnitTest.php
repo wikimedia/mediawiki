@@ -180,8 +180,10 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 
 	public static function provideParseErrors() {
 		return [
-			[ 'aaa' ],
-			[ '{"j": 1 ] }' ],
+			[ 'aaa', 'json-error-syntax' ],
+			[ '{"j": 1 ] }', 'json-error-state-mismatch' ],
+			[ chr( 0 ), 'json-error-ctrl-char' ],
+			[ '"\ud834"', 'json-error-utf16' ],
 		];
 	}
 
@@ -189,10 +191,14 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideParseErrors
 	 * @param mixed $value
 	 */
-	public function testParseErrors( $value ) {
+	public function testParseErrors( $value, $error ) {
 		$st = FormatJson::parse( $value );
 		$this->assertInstanceOf( Status::class, $st );
 		$this->assertFalse( $st->isOK() );
+		$this->assertTrue(
+			$st->hasMessage( $error ),
+			"Does not have $error message"
+		);
 	}
 
 	public function provideStripComments() {

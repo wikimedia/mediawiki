@@ -1031,7 +1031,7 @@ function wfLogDBError( $text, array $context = [] ) {
  * Throws a warning that $function is deprecated
  *
  * @param string $function Function that is deprecated.
- * @param string|bool $version Version of MediaWiki that the function
+ * @param string|false $version Version of MediaWiki that the function
  *    was deprecated in (Added in 1.19).
  * @param string|bool $component Component to which the function belongs.
  *    If false, it is assumed the function is in MediaWiki core (Added in 1.19).
@@ -1042,11 +1042,11 @@ function wfLogDBError( $text, array $context = [] ) {
  * @throws Exception If the MediaWiki version number is not a string or boolean.
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
-	if ( is_string( $version ) || is_bool( $version ) ) {
+	if ( is_string( $version ) || $version === false ) {
 		MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
 	} else {
 		throw new Exception(
-			"MediaWiki version must either be a string or a boolean. " .
+			"MediaWiki version must either be a string or false. " .
 			"Example valid version: '1.33'"
 		);
 	}
