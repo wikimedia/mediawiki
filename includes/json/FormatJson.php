@@ -215,6 +215,9 @@ class FormatJson {
 			}
 		}
 
+		// JSON_ERROR_RECURSION, JSON_ERROR_INF_OR_NAN,
+		// JSON_ERROR_UNSUPPORTED_TYPE, JSON_ERROR_INVALID_PROPERTY_NAME,
+		// are all encode errors that we don't need to care about here.
 		switch ( $code ) {
 			case JSON_ERROR_NONE:
 				return Status::newGood( $result );
@@ -235,14 +238,8 @@ class FormatJson {
 			case JSON_ERROR_UTF8:
 				$msg = 'json-error-utf8';
 				break;
-			case JSON_ERROR_RECURSION:
-				$msg = 'json-error-recursion';
-				break;
-			case JSON_ERROR_INF_OR_NAN:
-				$msg = 'json-error-inf-or-nan';
-				break;
-			case JSON_ERROR_UNSUPPORTED_TYPE:
-				$msg = 'json-error-unsupported-type';
+			case JSON_ERROR_UTF16:
+				$msg = 'json-error-utf16';
 				break;
 		}
 		return Status::newFatal( $msg );
