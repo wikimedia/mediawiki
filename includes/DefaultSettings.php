@@ -6416,14 +6416,6 @@ $wgProfiler = [];
 $wgProfileLimit = 0.0;
 
 /**
- * Don't put non-profiling info into log file
- *
- * @deprecated since 1.23, set the log file in
- *   $wgDebugLogGroups['profileoutput'] instead.
- */
-$wgProfileOnly = false;
-
-/**
  * Destination of statsd metrics.
  *
  * A host or host:port of a statsd server. Port defaults to 8125.
