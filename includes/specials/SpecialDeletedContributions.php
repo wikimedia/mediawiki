@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Implements Special:DeletedContributions to display archived revisions
@@ -114,7 +115,7 @@ class SpecialDeletedContributions extends SpecialPage {
 
 		# If there were contributions, and it was a valid user or IP, show
 		# the appropriate "footer" message - WHOIS tools, etc.
-		$message = IP::isIPAddress( $target ) ?
+		$message = IPUtils::isIPAddress( $target ) ?
 			'sp-contributions-footer-anon' :
 			'sp-contributions-footer';
 

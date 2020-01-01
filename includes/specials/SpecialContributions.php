@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Special:Contributions, show user contributions in a paged list
@@ -112,7 +113,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 			# For IP ranges, we want the contributionsSub, but not the skin-dependent
 			# links under 'Tools', which may include irrelevant links like 'Logs'.
-			if ( !IP::isValidRange( $target ) ) {
+			if ( !IPUtils::isValidRange( $target ) ) {
 				$this->getSkin()->setRelevantUser( $userObj );
 			}
 		}
@@ -231,10 +232,10 @@ class SpecialContributions extends IncludableSpecialPage {
 				$out->addHTML( $this->getForm( $this->opts ) );
 			}
 
-			if ( IP::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
+			if ( IPUtils::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
 				// Valid range, but outside CIDR limit.
 				$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
-				$limit = $limits[ IP::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
+				$limit = $limits[ IPUtils::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
 				$out->addWikiMsg( 'sp-contributions-outofrange', $limit );
 			} elseif ( !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
@@ -276,9 +277,9 @@ class SpecialContributions extends IncludableSpecialPage {
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if ( IP::isValidRange( $target ) ) {
+			if ( IPUtils::isValidRange( $target ) ) {
 				$message = 'sp-contributions-footer-anon-range';
-			} elseif ( IP::isIPAddress( $target ) ) {
+			} elseif ( IPUtils::isIPAddress( $target ) ) {
 				$message = 'sp-contributions-footer-anon';
 			} elseif ( $userObj->isAnon() ) {
 				// No message for non-existing users
@@ -394,8 +395,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		$username = $target->getName();
 		$userpage = $target->getUserPage();
 		$talkpage = $target->getTalkPage();
-		$isIP = IP::isValid( $username );
-		$isRange = IP::isValidRange( $username );
+		$isIP = IPUtils::isValid( $username );
+		$isRange = IPUtils::isValidRange( $username );
 
 		$linkRenderer = $sp->getLinkRenderer();
 

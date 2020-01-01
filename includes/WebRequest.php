@@ -28,6 +28,7 @@ use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\IPUtils;
 
 // The point of this class is to be a wrapper around super globals
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
@@ -245,7 +246,7 @@ class WebRequest {
 				continue;
 			}
 
-			$parts = IP::splitHostAndPort( $_SERVER[$varName] );
+			$parts = IPUtils::splitHostAndPort( $_SERVER[$varName] );
 			if ( !$parts ) {
 				// Invalid, do not use
 				continue;
@@ -267,7 +268,7 @@ class WebRequest {
 			break;
 		}
 
-		return $proto . '://' . IP::combineHostAndPort( $host, $port, $stdPort );
+		return $proto . '://' . IPUtils::combineHostAndPort( $host, $port, $stdPort );
 	}
 
 	/**
@@ -1218,7 +1219,7 @@ class WebRequest {
 			$ipchain = $_SERVER['REMOTE_ADDR'];
 		}
 
-		return IP::canonicalize( $ipchain );
+		return IPUtils::canonicalize( $ipchain );
 	}
 
 	/**
@@ -1259,19 +1260,19 @@ class WebRequest {
 			# IP addresses over proxy servers controlled by this site (more sensible).
 			# Note that some XFF values might be "unknown" with Squid/Varnish.
 			foreach ( $ipchain as $i => $curIP ) {
-				$curIP = IP::sanitizeIP( IP::canonicalize( $curIP ) );
+				$curIP = IPUtils::sanitizeIP( IPUtils::canonicalize( $curIP ) );
 				if ( !$curIP || !isset( $ipchain[$i + 1] ) || $ipchain[$i + 1] === 'unknown'
 					|| !$proxyLookup->isTrustedProxy( $curIP )
 				) {
 					break; // IP is not valid/trusted or does not point to anything
 				}
 				if (
-					IP::isPublic( $ipchain[$i + 1] ) ||
+					IPUtils::isPublic( $ipchain[$i + 1] ) ||
 					$wgUsePrivateIPs ||
 					$proxyLookup->isConfiguredProxy( $curIP ) // T50919; treat IP as sane
 				) {
 					// Follow the next IP according to the proxy
-					$nextIP = IP::canonicalize( $ipchain[$i + 1] );
+					$nextIP = IPUtils::canonicalize( $ipchain[$i + 1] );
 					if ( !$nextIP && $isConfigured ) {
 						// We have not yet made it past CDN/proxy servers of this site,
 						// so either they are misconfigured or there is some IP spoofing.

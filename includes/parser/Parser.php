@@ -28,6 +28,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
 use Psr\Log\NullLogger;
+use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
 use Psr\Log\LoggerInterface;
 
@@ -2157,7 +2158,7 @@ class Parser {
 		$userinfo = '(?:[a-z0-9\-._~!$&\'()*+,;=:]|%[0-9a-f]{2})*';
 		$ipv6Host = '\\[((?:[0-9a-f:]|%3[0-A]|%[46][1-6])+)\\]';
 		if ( preg_match( "<^(?:{$scheme})?//(?:{$userinfo}@)?{$ipv6Host}(?:[:/?#].*|)$>i", $url, $m ) &&
-			IP::isValid( rawurldecode( $m[1] ) )
+			IPUtils::isValid( rawurldecode( $m[1] ) )
 		) {
 			$isIPv6 = rawurldecode( $m[1] );
 		} else {

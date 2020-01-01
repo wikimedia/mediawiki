@@ -28,7 +28,6 @@ use CommentStore;
 use DeferredUpdates;
 use Hooks;
 use Html;
-use IP;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -40,6 +39,7 @@ use stdClass;
 use Title;
 use User;
 use WebResponse;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -277,12 +277,12 @@ class DatabaseBlock extends AbstractBlock {
 
 				case self::TYPE_IP:
 					$conds['ipb_address'][] = (string)$target;
-					$conds[] = self::getRangeCond( IP::toHex( $target ) );
+					$conds[] = self::getRangeCond( IPUtils::toHex( $target ) );
 					$conds = $db->makeList( $conds, LIST_OR );
 					break;
 
 				case self::TYPE_RANGE:
-					list( $start, $end ) = IP::parseRange( $target );
+					list( $start, $end ) = IPUtils::parseRange( $target );
 					$conds['ipb_address'][] = (string)$target;
 					$conds[] = self::getRangeCond( $start, $end );
 					$conds = $db->makeList( $conds, LIST_OR );
@@ -361,8 +361,8 @@ class DatabaseBlock extends AbstractBlock {
 				# This is the number of bits that are allowed to vary in the block, give
 				# or take some floating point errors
 				$target = $block->getTarget();
-				$max = IP::isIPv6( $target ) ? 128 : 32;
-				list( $network, $bits ) = IP::parseCIDR( $target );
+				$max = IPUtils::isIPv6( $target ) ? 128 : 32;
+				list( $network, $bits ) = IPUtils::parseCIDR( $target );
 				$size = $max - $bits;
 
 				# Rank a range block covering a single IP equally with a single-IP block
@@ -805,7 +805,7 @@ class DatabaseBlock extends AbstractBlock {
 			wfDebug( "Checking $ip against $wlEntry..." );
 
 			# Is the IP in this range?
-			if ( IP::isInRange( $ip, $wlEntry ) ) {
+			if ( IPUtils::isInRange( $ip, $wlEntry ) ) {
 				wfDebug( " IP $ip matches $wlEntry, not autoblocking\n" );
 				return true;
 			} else {
@@ -972,9 +972,9 @@ class DatabaseBlock extends AbstractBlock {
 			case self::TYPE_USER:
 				return '';
 			case self::TYPE_IP:
-				return IP::toHex( $this->target );
+				return IPUtils::toHex( $this->target );
 			case self::TYPE_RANGE:
-				list( $start, /*...*/ ) = IP::parseRange( $this->target );
+				list( $start, /*...*/ ) = IPUtils::parseRange( $this->target );
 				return $start;
 			default:
 				throw new MWException( "Block with invalid type" );
@@ -991,9 +991,9 @@ class DatabaseBlock extends AbstractBlock {
 			case self::TYPE_USER:
 				return '';
 			case self::TYPE_IP:
-				return IP::toHex( $this->target );
+				return IPUtils::toHex( $this->target );
 			case self::TYPE_RANGE:
-				list( /*...*/, $end ) = IP::parseRange( $this->target );
+				list( /*...*/, $end ) = IPUtils::parseRange( $this->target );
 				return $end;
 			default:
 				throw new MWException( "Block with invalid type" );
@@ -1217,7 +1217,7 @@ class DatabaseBlock extends AbstractBlock {
 			# checking for blocks on well-formatted IP addresses (IPv4 and IPv6).
 			# Do not treat private IP spaces as special as it may be desirable for wikis
 			# to block those IP ranges in order to stop misbehaving proxies that spoof XFF.
-			if ( !IP::isValid( $ipaddr ) ) {
+			if ( !IPUtils::isValid( $ipaddr ) ) {
 				continue;
 			}
 			# Don't check trusted IPs (includes local CDNs which will be in every request)
@@ -1227,7 +1227,7 @@ class DatabaseBlock extends AbstractBlock {
 			# Check both the original IP (to check against single blocks), as well as build
 			# the clause to check for rangeblocks for the given IP.
 			$conds['ipb_address'][] = $ipaddr;
-			$conds[] = self::getRangeCond( IP::toHex( $ipaddr ) );
+			$conds[] = self::getRangeCond( IPUtils::toHex( $ipaddr ) );
 		}
 
 		if ( $conds === [] ) {
@@ -1324,7 +1324,7 @@ class DatabaseBlock extends AbstractBlock {
 			}
 
 			foreach ( $ipChain as $checkip ) {
-				$checkipHex = IP::toHex( $checkip );
+				$checkipHex = IPUtils::toHex( $checkip );
 				if ( (string)$block->getTarget() === $checkip ) {
 					if ( $block->isHardblock() ) {
 						$blocksListExact['hard'] = $blocksListExact['hard'] ?: $block;

@@ -22,6 +22,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\IPUtils;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used
@@ -910,7 +911,7 @@ class Linker {
 			if ( ExternalUserNames::isExternal( $userName ) ) {
 				$classes .= ' mw-extuserlink';
 			} elseif ( $altUserName === false ) {
-				$altUserName = IP::prettifyIP( $userName );
+				$altUserName = IPUtils::prettifyIP( $userName );
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {

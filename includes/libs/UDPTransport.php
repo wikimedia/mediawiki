@@ -18,6 +18,8 @@
  * @file
  */
 
+use Wikimedia\IPUtils;
+
 /**
  * A generic class to send a message over UDP
  *
@@ -58,7 +60,7 @@ class UDPTransport {
 			$domain = AF_INET6;
 		} elseif ( preg_match( '!^udp:(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $info, $m ) ) {
 			$host = $m[1];
-			if ( !IP::isIPv4( $host ) ) {
+			if ( !IPUtils::isIPv4( $host ) ) {
 				$host = gethostbyname( $host );
 			}
 			$port = intval( $m[2] );

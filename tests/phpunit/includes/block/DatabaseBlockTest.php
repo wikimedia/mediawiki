@@ -5,6 +5,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * @group Database
@@ -369,9 +370,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			$target = $insBlock['target'];
 
 			if ( $insBlock['type'] === DatabaseBlock::TYPE_IP ) {
-				$target = User::newFromName( IP::sanitizeIP( $target ), false )->getName();
+				$target = User::newFromName( IPUtils::sanitizeIP( $target ), false )->getName();
 			} elseif ( $insBlock['type'] === DatabaseBlock::TYPE_RANGE ) {
-				$target = IP::sanitizeRange( $target );
+				$target = IPUtils::sanitizeRange( $target );
 			}
 
 			$block = new DatabaseBlock();
