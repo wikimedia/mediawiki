@@ -178,6 +178,7 @@ because of Phabricator reports.
   TextContent::getHtml instead.
 * ExtensionRegistry::load(), deprecated in 1.34, was removed.
   Use ::queue() instead.
+* MWMessagePack class, deprecated in 1.34, was removed.
 * …
 
 === Deprecations in 1.35 ===
