@@ -25,6 +25,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -1710,18 +1711,22 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if (
+			IPUtils::isIPAddress( $value ) ||
 			// We allow ranges as well, for blocks.
-			IP::isIPAddress( $value ) ||
+			IPUtils::isValidRange( $value ) ||
 			// See comment for User::isIP.  We don't just call that function
 			// here because it also returns true for things like
 			// 300.300.300.300 that are neither valid usernames nor valid IP
 			// addresses.
 			preg_match(
-				'/^' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.' . RE_IP_BYTE . '\.xxx$/',
+				'/^' . IPUtils::RE_IP_BYTE .
+				'\.' . IPUtils::RE_IP_BYTE .
+				'\.' . IPUtils::RE_IP_BYTE .
+				'\.xxx$/',
 				$value
 			)
 		) {
-			return IP::sanitizeIP( $value );
+			return IPUtils::sanitizeIP( $value );
 		}
 
 		$this->dieWithError(
