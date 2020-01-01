@@ -167,6 +167,7 @@ class DeprecationHelperTest extends MediaWikiTestCase {
 		return [
 			[ 1, Exception::class ],
 			[ 1.33, Exception::class ],
+			[ true, Exception::class ],
 			[ null, Exception::class ]
 		];
 	}
