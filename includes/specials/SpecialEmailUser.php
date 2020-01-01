@@ -304,7 +304,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		], $this->getContext() );
 
 		$htmlForm
-			->setMethod( 'post' )
 			->setSubmitCallback( [ $this, 'sendEmailForm' ] )
 			->setFormIdentifier( 'userForm' )
 			->setId( 'askusername' )

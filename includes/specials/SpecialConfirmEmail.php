@@ -104,7 +104,6 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 			$out->addWikiMsg( 'confirmemail_text' );
 			$form = HTMLForm::factory( 'ooui', $descriptor, $this->getContext() );
 			$form
-				->setMethod( 'post' )
 				->setAction( $this->getPageTitle()->getLocalURL() )
 				->setSubmitTextMsg( 'confirmemail_send' )
 				->setSubmitCallback( [ $this, 'submitSend' ] );
