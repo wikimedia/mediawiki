@@ -888,7 +888,7 @@
 [submodule "extensions/QuizGame"]
 	path = extensions/QuizGame
 	url = https://github.com/wikimedia/mediawiki-extensions-QuizGame
-	branch = REL1_34
+	branch = master
 	ignore = dirty
 [submodule "extensions/Capiunto"]
 	path = extensions/Capiunto
