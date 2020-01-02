@@ -1,11 +1,16 @@
 jQuery.i18n
 ===========
 
+[![npm][npm]][npm-url]
+
+> NOTE: For jquery independent version of this library, see https://github.com/wikimedia/banana-i18n
+
 jQuery.i18n is a jQuery based Javascript internationalization library. It helps you to internationalize your web applications easily.
 
 This is a project by Wikimedia foundation's [Language Engineering team](https://www.mediawiki.org/wiki/Wikimedia_Language_engineering) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
 
 The jquery.i18n library uses a json based localization file format, "banana", which is used as the localization file format for  MediaWiki and other projects.
+
 
 Features
 ========
@@ -44,7 +49,7 @@ To run tests locally, run `npm test`, and this will run the tests.
 Message File Format
 ===================
 
-The message files are json formatted. As a convention you can have a folder named i18n inside your source code. For each language or locale, have a file named like languagecode.json.
+The message files are json formatted. As a convention, you can have a folder named i18n inside your source code. For each language or locale, have a file named like languagecode.json.
 
 Example:
 ```
@@ -86,7 +91,7 @@ A simple en.json file example is given below
 
 The json file should be a valid json. The ```@metadata``` holds all kind of data that are not messages. You can store author information, copyright, updated date or anything there.
 
-Messages are key value pairs. It is a good convention to prefix your appname to message keys to make the messages unique. It acts as the namespace for the message keys. It is also a good convention to have the message keys with ```-``` separated words, all in lower case.
+Messages are key-value pairs. It is a good convention to prefix your appname to message keys to make the messages unique. It acts as the namespace for the message keys. It is also a good convention to have the message keys with ```-``` separated words, all in lower case.
 
 If you are curious to see some real jquery.i18n message file from other projects:
 
@@ -95,7 +100,7 @@ If you are curious to see some real jquery.i18n message file from other projects
 
 Single message file for all languages
 -------------------------------------
-There are some alternate message file format supported for different use cases. If your application is not big, and want all the translation in a single file, you can have it as shown in the below example:
+There are some alternate message file formats supported for different use cases. If your application is not big, and want all the translation in a single file, you can have it as shown in the below example:
 
 ```json
 {
@@ -127,7 +132,7 @@ There are some alternate message file format supported for different use cases. 
 }
 ```
 
-Here the json file contains language code as key value and messagekey-message pairs as the value for all language pairs. You can choose this format or per-language file formats depending on your use case. Per-language files are more convenient for collaboration, version controlling, scalability, etc.
+Here the json file contains language code as key-value and messagekey-message pairs as the value for all language pairs. You can choose this format or per-language file formats depending on your use case. Per-language files are more convenient for collaboration, version controlling, scalability, etc.
 
 In this approach, it is also possible to give a file name as the value of language code.
 
@@ -161,7 +166,7 @@ To translate the jquery.i18n application, depending on the expertise of the tran
 
 * Editing the json files directly - Suitable for translators with technical background. Also suitable if your application is small and you want to work with only a small number of languages
 * Providing a translation interface along with your application: Suitable for proprietary or private applications with significant amount of translators
-* Using open source translation platforms like translatewiki.net. The MediaWiki and jquery.uls from previous examples use translatewiki.net for crowdsourced message translation. Translatewiki.net can update your code repo in regular intervals with updated translations. Highly recommended if your application is opensource and want localized to as many as languages possible with maximum number of translators.
+* Using open source translation platforms like translatewiki.net. The MediaWiki and jquery.uls from previous examples use translatewiki.net for crowdsourced message translation. Translatewiki.net can update your code repo at regular intervals with updated translations. Highly recommended if your application is opensource and want it to be localized to as many as languages possible with maximum number of translators.
 
 Usage
 =====
@@ -182,7 +187,7 @@ In case locale option is not given, `jquery.i18n` plugin will use the language a
 <html lang="he" dir="rtl">
 ```
 
-In this case the locale will be he(Hebrew). If that `lang` attribute is also missing, it will try to use the locale specified by the browser.
+In this case, the locale will be he(Hebrew). If that `lang` attribute is also missing, it will try to use the locale specified by the browser.
 
 It is possible to switch to another locale after plugin is initialized. See below example:
 
@@ -190,9 +195,9 @@ It is possible to switch to another locale after plugin is initialized. See belo
 $.i18n({
     locale: 'he' // Locale is Hebrew
 });
-$.i18n( 'message_hello' ); // This will give the Hebrew translation of message key `message_hello`.
+$.i18n( 'message-hello' ); // This will give the Hebrew translation of message key `message-hello`.
 $.i18n().locale = 'ml'; // Now onwards locale is 'Malayalam'
-$.i18n( 'message_hello' ); // This will give the Malayalam translation of message key `message_hello`.
+$.i18n( 'message-hello' ); // This will give the Malayalam translation of message key `message-hello`.
 ```
 
 ## Message Loading
@@ -230,8 +235,8 @@ It is also possible to refer messages from an external URL. See below example
 ```javascript
 $.i18n().load( {
 	en: {
-		message_hello: 'Hello World',
-		message_welcome: 'Welcome'
+		'message-hello': 'Hello World',
+		'message-welcome': 'Welcome'
 	},
 	hi: 'i18n/messages-hi.json', // Messages for Hindi
 	de: 'i18n/messages-de.json'
@@ -243,18 +248,18 @@ Messages for a locale can be also loaded in parts. Example
 ```javascript
 $.i18n().load( {
 	en: {
-		message_hello: 'Hello World',
-		message_welcome: 'Welcome'
+		'message-hello': 'Hello World',
+		'message-welcome': 'Welcome'
 	}
 } );
 
 $.i18n().load( {
     	// This does not remove the previous messages.
 	en: {
-		'message_header' : 'Header',
-		'message_footer' : 'Footer',
-		// This will overwrite message_welcome message
-		'message_welcome' : 'Welcome back'
+		'message-header' : 'Header',
+		'message-footer' : 'Footer',
+		// This will overwrite message-welcome message
+		'message-welcome' : 'Welcome back'
 	}
 } );
 ```
@@ -294,7 +299,10 @@ It is also possible to have the above li node with fallback text already in plac
 The framework will place the localized message corresponding to message-key as the text value of the node. Similar to $('selector').i18n( ... ).
 This will not work for dynamically created elements.
 
-Note that if data-i18n contains html markup, that html will not be used as the element content, instead, the text version will be used. $.fn.i18n is always about replacing text of the element. If you want to change the html of the element, you may want to use: ```$(selector).html($.i18n(messagekey))```
+Note that if data-i18n contains html markup, that html will not be used as the element content, instead, the text version will be used. But if the message key is prefixed with `[html]`, the element's html will be changed. For example ```<li data-i18n="[html]message-key">Fallback html</li>```, in this if the message-key has a value containing HTML markup, the `<li>` tags html will be replaced by that html.
+
+
+If you want to change the html of the element, you can also use: ```$(selector).html($.i18n(messagekey))```
 
 Examples
 ========
@@ -327,12 +335,12 @@ $.i18n(message, 4); // This gives "Found 4 results"
 ```
 Note that {{PLURAL:...}} is not case sensitive. It can be {{plural:...}} too.
 
-In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|). The number of plural forms for each language is defined in [CLDR](https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html). You need to provide all those plural forms for a language.
+In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|). The number of plural forms for each language is defined in [CLDR](https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html). You need to provide all those plural forms for a language. Please note that many languages will require the inclusion of `CLDRPluralRuleParser.js` ([from here](https://github.com/santhoshtr/CLDRPluralRuleParser/tree/8baf9aedc428924fe6ee508b3d952cb5564efb3a/src)) as well as this project's own files to work properly.
 
 For example, English has 2 plural forms and the message format will look like `{{PLURAL:$1|one|other}}`. for Arabic there are 6 plural forms and format will look like `{{PLURAL:$1|zero|one|two|few|many|other}}`.
 
-You cannot skip a plural form from the middle or beginning. However you can skip from end. For example, in arabic, if the message is like
-`{{PLURAL:$1|A|B}}`, for 0, A will be used, for numbers that fall under one,two,few,many,other categories B will be used.
+You cannot skip a plural form from the middle or beginning. However, you can skip from end. For example, in Arabic, if the message is like
+`{{PLURAL:$1|A|B}}`, for 0, A will be used, for numbers that fall under one, two, few, many, other categories B will be used.
 
 If there is an explicit plural form to be given for a specific number, it is possible with the following syntax
 
@@ -343,7 +351,7 @@ $.i18n(message, 12 ); // Gives "Box has a dozen eggs."
 ```
 
 ## Gender
-Similar to plural, depending on gender of placeholders, mostly user names, the syntax changes dynamically. An example in English is "Alice changed her profile picture" and "Bob changed his profile picture". To support this {{GENDER...}} syntax can be used as show in example
+Similar to plural, depending on gender of placeholders, mostly user names, the syntax changes dynamically. An example in English is "Alice changed her profile picture" and "Bob changed his profile picture". To support this {{GENDER...}} syntax can be used as shown in example
 
 ```javascript
 var message = "$1 changed {{GENDER:$2|his|her}} profile picture";
@@ -443,3 +451,6 @@ Example qqq.json:
 ```
 
 In MediaWiki and its hundreds of extensions, message documentation is a strictly followed practice. There is a grunt task to check whether all messages are documented or not. See https://www.npmjs.org/package/grunt-banana-checker
+
+[npm]: https://img.shields.io/npm/v/@wikimedia/jquery.i18n.svg
+[npm-url]: https://npmjs.com/package/@wikimedia/jquery.i18n
