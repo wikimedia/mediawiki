@@ -1,5 +1,7 @@
 <?php
 
+use Composer\Semver\VersionParser;
+
 require_once __DIR__ . '/Maintenance.php';
 
 class UpdateExtensionJsonSchema extends Maintenance {
@@ -38,8 +40,44 @@ class UpdateExtensionJsonSchema extends Maintenance {
 			$this->$func( $json );
 		}
 
+		$this->updateRequiredMwVersion( $json );
+
 		file_put_contents( $filename, FormatJson::encode( $json, "\t", FormatJson::ALL_OK ) . "\n" );
 		$this->output( "Updated to {$json['manifest_version']}...\n" );
+	}
+
+	/**
+	 * @param array &$json
+	 */
+	protected function updateRequiredMwVersion( &$json ) {
+		if ( !isset( $json['requires'] ) ) {
+			$json['requires'] = [];
+		}
+
+		$needNewVersion = true;
+
+		// When version is set, parse it and compare against requirement for new manifest
+		if ( isset( $json['requires'][ExtensionRegistry::MEDIAWIKI_CORE] ) ) {
+			$versionParser = new VersionParser();
+			$currentRequired = $versionParser->parseConstraints(
+				// @phan-suppress-next-line PhanTypeInvalidDimOffset isset check exists
+				$json['requires'][ExtensionRegistry::MEDIAWIKI_CORE]
+			);
+			$newRequired = $versionParser->parseConstraints(
+				// The match works only when using an equal comparision
+				str_replace( '>=', '==', ExtensionRegistry::MANIFEST_VERSION_MW_VERSION )
+			);
+			if ( !$currentRequired->matches( $newRequired ) ) {
+				$needNewVersion = false;
+			}
+		}
+
+		if ( $needNewVersion ) {
+			// Set or update a requirement on the MediaWiki version
+			// that the current MANIFEST_VERSION was introduced in.
+			$json['requires'][ExtensionRegistry::MEDIAWIKI_CORE] =
+				ExtensionRegistry::MANIFEST_VERSION_MW_VERSION;
+		}
 	}
 
 	protected function updateTo2( &$json ) {
