@@ -855,8 +855,8 @@ return [
 
 	'SiteLookup' => function ( MediaWikiServices $services ) : SiteLookup {
 		// Use SiteStore as the SiteLookup as well. This was originally separated
-		// to allow for a cacheable read-only interface (using FileBasedSiteLookup),
-		// but this was never used. SiteStore has caching (see below).
+		// to allow for a cacheable read-only interface, but this was never used.
+		// SiteStore has caching (see below).
 		return $services->getSiteStore();
 	},
 
