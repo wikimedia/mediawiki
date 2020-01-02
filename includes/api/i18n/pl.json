@@ -558,6 +558,7 @@
 	"apihelp-query+watchlist-paramvalue-type-external": "Zmiany zewnętrzne.",
 	"apihelp-resetpassword-summary": "Wyślij użytkownikowi e-mail do resetowania hasła.",
 	"apihelp-resetpassword-example-email": "Wyślij e-mail do resetowania hasła do wszystkich użytkowników posiadających adres <kbd>user@example.com</kbd>.",
+	"apihelp-revisiondelete-summary": "Usuwaj i przywracaj wersje.",
 	"apihelp-revisiondelete-param-ids": "Identyfikatory wersji do usunięcia.",
 	"apihelp-revisiondelete-param-hide": "Co ukryć w każdej z wersji.",
 	"apihelp-revisiondelete-param-show": "Co pokazać w każdej z wersji.",

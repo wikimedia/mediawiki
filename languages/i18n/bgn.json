@@ -2471,8 +2471,6 @@
 	"json-error-unknown": "مشکلی گو جی‌سن ات. خطا: $1",
 	"json-error-state-mismatch": "جن سن جووان نه اینت یا ناقض اینت",
 	"json-error-syntax": "نحوی ئین خطا",
-	"json-error-inf-or-nan": "INF یا NAN ئی مقادیر یک یا گیشتیر بی مقداری که کدگذاری ئا بیئنت",
-	"json-error-unsupported-type": "یک اندازه که نتوانت کد گذاری بیئت داته بوته",
 	"headline-anchor-title": "لینک بئ ای قیسمت ئا",
 	"special-characters-group-latin": "لاتین",
 	"special-characters-group-latinextended": "پیشرپته ئین لاتین",

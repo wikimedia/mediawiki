@@ -241,7 +241,7 @@
 	"apihelp-opensearch-param-search": "문자열 검색",
 	"apihelp-opensearch-param-limit": "반환할 결과의 최대 수",
 	"apihelp-opensearch-param-namespace": "검색할 이름공간입니다. <var>$1search</var>이 유효한 이름공간 접두사로 시작하면 무시합니다.",
-	"apihelp-opensearch-param-suggest": "<var>[[mw:Special:MyLanguage/Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var>이 거짓인 경우 아무 것도 하지 않습니다.",
+	"apihelp-opensearch-param-suggest": "더 이상 사용되지 않습니다.",
 	"apihelp-opensearch-param-redirects": "넘겨주기 관리 방법:\n;return:넘겨주기 자체를 반환합니다.\n;resolve:대상 문서를 반환합니다. $1제한 미만의 결과를 반환할 수 있습니다.\n역사적인 이유로 기본값은 $1format=json의 경우 \"return\"이며, 그 밖의 포맷의 경우 \"resolve\"입니다.",
 	"apihelp-opensearch-param-format": "출력 포맷.",
 	"apihelp-opensearch-param-warningsaserror": "<kbd>format=json</kbd>을 사용 시 경고가 발생할 경우, 이를 무시하지 않고 API 오류를 반환합니다.",
