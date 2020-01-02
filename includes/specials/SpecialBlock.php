@@ -1032,7 +1032,11 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Prepare log parameters
 		$logParams = [];
-		$logParams['5::duration'] = $data['Expiry'];
+
+		$rawExpiry = $data['Expiry'];
+		$logExpiry = wfIsInfinity( $rawExpiry ) ? 'infinity' : $rawExpiry;
+
+		$logParams['5::duration'] = $logExpiry;
 		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
 		$logParams['sitewide'] = $block->isSitewide();
 
