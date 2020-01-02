@@ -3342,11 +3342,6 @@ $wgFallbackSkin = 'fallback';
 $wgSkipSkins = [];
 
 /**
- * @deprecated since 1.23; use $wgSkipSkins instead
- */
-$wgSkipSkin = '';
-
-/**
  * Allow user Javascript page?
  * This enables a lot of neat customizations, but may
  * increase security risk to users and server load.
