@@ -3415,7 +3415,6 @@
 	"json-error-ctrl-char": "Villa í stýritákni, hugsanlega röng stafatafla (encoding)",
 	"json-error-syntax": "Formvilla í málsetningu",
 	"json-error-utf8": "Gallaðir UTF-8 stafir, líklega vitlaust kótaðir",
-	"json-error-unsupported-type": "Gildi af gerð sem ekki er hægt að kóta var gefin.",
 	"headline-anchor-title": "Tengja í þennan hluta",
 	"special-characters-group-latin": "Latneskt",
 	"special-characters-group-latinextended": "Latínuviðauki",
