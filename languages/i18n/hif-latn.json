@@ -20,7 +20,8 @@
 			"Smcnarayan",
 			"Vito Genovese",
 			"Maxí",
-			"Vlad5250"
+			"Vlad5250",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Jorr ke niche line khicho:",
@@ -3302,9 +3303,6 @@
 	"json-error-ctrl-char": "Control character error, possibly incorrectly encoded",
 	"json-error-syntax": "Syntax me galti",
 	"json-error-utf8": "Malformed UTF-8 characters, possibly incorrectly encoded",
-	"json-error-recursion": "One or more recursive references in the value to be encoded",
-	"json-error-inf-or-nan": "One or more NAN or INF values in the value to be encoded",
-	"json-error-unsupported-type": "A value of a type that cannot be encoded was given",
 	"headline-anchor-title": "Ii section pe link karo",
 	"special-characters-group-latin": "Latin",
 	"special-characters-group-latinextended": "Latin extended",
