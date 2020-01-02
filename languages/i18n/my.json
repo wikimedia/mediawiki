@@ -1757,7 +1757,7 @@
 	"modifiedarticleprotection": "\"[[$1]]\" ၏ ကာကွယ်မှု အဆင့်ကို ပြောင်းရန်",
 	"unprotectedarticle": "\"[[$1]]\" မှ ကာကွယ်မှုအား ဖယ်ရှားခဲ့သည်",
 	"movedarticleprotection": "\"[[$2]]\" မှ \"[[$1]]\" သို့ ကာကွယ်မှု အပြင်အဆင်များအား ရွေ့ပြောင်းခဲ့သည်။",
-	"protectedarticle-comment": "\"[[$1]]\" ကို {{GENDER:$2|က ကာကွယ်ခဲ့သည်}}",
+	"protectedarticle-comment": "\"[[$1]]\" ကို {{GENDER:$2|က}} ကာကွယ်ခဲ့သည်",
 	"modifiedarticleprotection-comment": "\"[[$1]]\" အတွက် ကာကွယ်မှုအဆင့်ကို {{GENDER:$2|ပြောင်းလဲခဲ့သည်}}",
 	"unprotectedarticle-comment": "\"[[$1]]\" မှ ကာကွယ်မှုကို {{GENDER:$2|ဖယ်ရှားခဲ့သည်}}",
 	"protect-title": "\"$1\" ၏ ကာကွယ်မှုအဆင့်ကို ပြောင်းလဲရန်",
