@@ -5137,21 +5137,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Add an autocreate newuser log entry for this user
-	 * Used by things like CentralAuth and perhaps other authplugins.
-	 * Consider calling addNewUserLogEntry() directly instead.
-	 *
-	 * @deprecated since 1.27, AuthManager handles logging
-	 * @return bool
-	 */
-	public function addNewUserLogEntryAutoCreate() {
-		wfDeprecated( __METHOD__, '1.27' );
-		$this->addNewUserLogEntry( 'autocreate' );
-
-		return true;
-	}
-
-	/**
 	 * Load the user options either from cache, the database or an array
 	 *
 	 * @param array|null $data Rows for the current user out of the user_properties table
