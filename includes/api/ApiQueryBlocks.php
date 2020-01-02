@@ -22,6 +22,7 @@
 
 use Wikimedia\Rdbms\IResultWrapper;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * Query module to enumerate all user blocks
@@ -115,26 +116,26 @@ class ApiQueryBlocks extends ApiQueryBase {
 		}
 		if ( isset( $params['ip'] ) ) {
 			$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
-			if ( IP::isIPv4( $params['ip'] ) ) {
+			if ( IPUtils::isIPv4( $params['ip'] ) ) {
 				$type = 'IPv4';
 				$cidrLimit = $blockCIDRLimit['IPv4'];
 				$prefixLen = 0;
-			} elseif ( IP::isIPv6( $params['ip'] ) ) {
+			} elseif ( IPUtils::isIPv6( $params['ip'] ) ) {
 				$type = 'IPv6';
 				$cidrLimit = $blockCIDRLimit['IPv6'];
-				$prefixLen = 3; // IP::toHex output is prefixed with "v6-"
+				$prefixLen = 3; // IPUtils::toHex output is prefixed with "v6-"
 			} else {
 				$this->dieWithError( 'apierror-badip', 'param_ip' );
 			}
 
 			# Check range validity, if it's a CIDR
-			list( $ip, $range ) = IP::parseCIDR( $params['ip'] );
+			list( $ip, $range ) = IPUtils::parseCIDR( $params['ip'] );
 			if ( $ip !== false && $range !== false && $range < $cidrLimit ) {
 				$this->dieWithError( [ 'apierror-cidrtoobroad', $type, $cidrLimit ] );
 			}
 
-			# Let IP::parseRange handle calculating $upper, instead of duplicating the logic here.
-			list( $lower, $upper ) = IP::parseRange( $params['ip'] );
+			# Let IPUtils::parseRange handle calculating $upper, instead of duplicating the logic here.
+			list( $lower, $upper ) = IPUtils::parseRange( $params['ip'] );
 
 			# Extract the common prefix to any rangeblock affecting this IP/CIDR
 			$prefix = substr( $lower, 0, $prefixLen + floor( $cidrLimit / 4 ) );
@@ -225,8 +226,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['reason'] = $commentStore->getComment( 'ipb_reason', $row )->text;
 			}
 			if ( $fld_range && !$row->ipb_auto ) {
-				$block['rangestart'] = IP::formatHex( $row->ipb_range_start );
-				$block['rangeend'] = IP::formatHex( $row->ipb_range_end );
+				$block['rangestart'] = IPUtils::formatHex( $row->ipb_range_start );
+				$block['rangeend'] = IPUtils::formatHex( $row->ipb_range_end );
 			}
 			if ( $fld_flags ) {
 				// For clarity, these flags use the same names as their action=block counterparts

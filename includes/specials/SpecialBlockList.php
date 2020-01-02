@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -159,7 +160,7 @@ class SpecialBlockList extends SpecialPage {
 
 				case DatabaseBlock::TYPE_IP:
 				case DatabaseBlock::TYPE_RANGE:
-					list( $start, $end ) = IP::parseRange( $target );
+					list( $start, $end ) = IPUtils::parseRange( $target );
 					$conds[] = $db->makeList(
 						[
 							'ipb_address' => $target,

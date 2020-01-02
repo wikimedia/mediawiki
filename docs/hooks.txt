@@ -1924,9 +1924,9 @@ $rc: RecentChange object that triggered url generation
 'IsFileCacheable': Override the result of Article::isFileCacheable() (if true)
 &$article: article (object) being checked
 
-'IsTrustedProxy': Override the result of IP::isTrustedProxy()
+'IsTrustedProxy': Override the result of ProxyLookup::isTrustedProxy()
 &$ip: IP being check
-&$result: Change this value to override the result of IP::isTrustedProxy()
+&$result: Change this value to override the result of ProxyLookup::isTrustedProxy()
 
 'IsUploadAllowedFromUrl': Override the result of UploadFromUrl::isAllowedUrl()
 $url: URL used to upload from

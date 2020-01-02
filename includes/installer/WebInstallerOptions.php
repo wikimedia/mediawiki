@@ -19,6 +19,8 @@
  * @ingroup Installer
  */
 
+use Wikimedia\IPUtils;
+
 class WebInstallerOptions extends WebInstallerPage {
 
 	/**
@@ -547,7 +549,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			foreach ( $memcServers as $server ) {
 				$memcParts = explode( ":", $server, 2 );
 				if ( !isset( $memcParts[0] )
-					|| ( !IP::isValid( $memcParts[0] )
+					|| ( !IPUtils::isValid( $memcParts[0] )
 						&& ( gethostbyname( $memcParts[0] ) == $memcParts[0] ) )
 				) {
 					$this->parent->showError( 'config-memcache-badip', $memcParts[0] );

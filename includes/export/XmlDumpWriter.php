@@ -29,6 +29,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Assert\Assert;
+use Wikimedia\IPUtils;
 
 /**
  * @ingroup Dump
@@ -615,7 +616,7 @@ class XmlDumpWriter {
 	 */
 	function writeContributor( $id, $text, $indent = "      " ) {
 		$out = $indent . "<contributor>\n";
-		if ( $id || !IP::isValid( $text ) ) {
+		if ( $id || !IPUtils::isValid( $text ) ) {
 			$out .= $indent . "  " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
 			$out .= $indent . "  " . Xml::element( 'id', null, strval( $id ) ) . "\n";
 		} else {

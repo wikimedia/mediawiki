@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 /**
  * This class checks if user can get extra rights
@@ -198,7 +199,7 @@ class Autopromote {
 			case APCOND_ISIP:
 				return $cond[1] == $user->getRequest()->getIP();
 			case APCOND_IPINRANGE:
-				return IP::isInRange( $user->getRequest()->getIP(), $cond[1] );
+				return IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
 				return $user->getBlock() && $user->getBlock()->isSitewide();
 			case APCOND_ISBOT:

@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\IPUtils;
+
 /**
  * Class for updating an MWRestrictions value (which is, currently, basically just an IP address
  * list).
@@ -80,7 +82,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 			// MWRestrictions::newFromArray failed; one of the IP ranges must be invalid
 			$status = Status::newGood();
 			foreach ( explode( "\n",  $value ) as $range ) {
-				if ( !\IP::isIPAddress( $range ) ) {
+				if ( !IPUtils::isIPAddress( $range ) ) {
 					$status->fatal( 'restrictionsfield-badip', $range );
 				}
 			}

@@ -23,7 +23,6 @@ namespace MediaWiki\Block;
 use DateTime;
 use DateTimeZone;
 use Hooks;
-use IP;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
@@ -35,6 +34,7 @@ use User;
 use WebRequest;
 use WebResponse;
 use Wikimedia\IPSet;
+use Wikimedia\IPUtils;
 
 /**
  * A service class for checking blocks.
@@ -215,7 +215,7 @@ class BlockManager {
 		}
 
 		// Soft blocking
-		if ( $isAnon && IP::isInRanges( $ip, $this->options->get( 'SoftBlockRanges' ) ) ) {
+		if ( $isAnon && IPUtils::isInRanges( $ip, $this->options->get( 'SoftBlockRanges' ) ) ) {
 			$blocks[] = new SystemBlock( [
 				'address' => $ip,
 				'reason' => new Message( 'softblockrangesreason', [ $ip ] ),
@@ -377,7 +377,7 @@ class BlockManager {
 	private function inDnsBlacklist( $ip, array $bases ) {
 		$found = false;
 		// @todo FIXME: IPv6 ???  (https://bugs.php.net/bug.php?id=33170)
-		if ( IP::isIPv4( $ip ) ) {
+		if ( IPUtils::isIPv4( $ip ) ) {
 			// Reverse IP, T23255
 			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
 

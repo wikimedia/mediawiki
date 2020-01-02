@@ -32,6 +32,7 @@ use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use Wikimedia\Assert\Assert;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -2953,7 +2954,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			// Keep track of IP edits, so that the corresponding rows can
 			// be deleted in the ip_changes table.
-			if ( (int)$row->rev_user === 0 && IP::isValid( $row->rev_user_text ) ) {
+			if ( (int)$row->rev_user === 0 && IPUtils::isValid( $row->rev_user_text ) ) {
 				$ipRevIds[] = $row->rev_id;
 			}
 		}

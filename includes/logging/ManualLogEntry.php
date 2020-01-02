@@ -28,6 +28,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Assert\Assert;
+use Wikimedia\IPUtils;
 
 /**
  * Class for creating new log entries and inserting them into the database.
@@ -334,7 +335,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		if ( $user->isAnon() ) {
 			// "MediaWiki default" and friends may have
 			// no IP address in their name
-			if ( IP::isIPAddress( $user->getName() ) ) {
+			if ( IPUtils::isIPAddress( $user->getName() ) ) {
 				$ip = $user->getName();
 			}
 		}

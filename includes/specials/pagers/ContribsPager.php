@@ -26,6 +26,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -382,7 +383,7 @@ class ContribsPager extends RangeChronologicalPager {
 			return false;
 		}
 
-		list( $start, $end ) = IP::parseRange( $ip );
+		list( $start, $end ) = IPUtils::parseRange( $ip );
 
 		return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
 	}
@@ -397,11 +398,11 @@ class ContribsPager extends RangeChronologicalPager {
 	public function isQueryableRange( $ipRange ) {
 		$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
 
-		$bits = IP::parseCIDR( $ipRange )[1];
+		$bits = IPUtils::parseCIDR( $ipRange )[1];
 		if (
 			( $bits === false ) ||
-			( IP::isIPv4( $ipRange ) && $bits < $limits['IPv4'] ) ||
-			( IP::isIPv6( $ipRange ) && $bits < $limits['IPv6'] )
+			( IPUtils::isIPv4( $ipRange ) && $bits < $limits['IPv4'] ) ||
+			( IPUtils::isIPv6( $ipRange ) && $bits < $limits['IPv6'] )
 		) {
 			return false;
 		}

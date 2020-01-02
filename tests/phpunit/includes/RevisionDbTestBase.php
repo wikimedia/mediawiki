@@ -6,6 +6,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\IPUtils;
 
 /**
  * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.
@@ -740,7 +741,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$res = $dbr->select( 'ip_changes', '*', [ 'ipc_rev_id' => $orig->getId() ] );
 		$row = $res->fetchObject();
 
-		$this->assertEquals( IP::toHex( $ip ), $row->ipc_hex );
+		$this->assertEquals( IPUtils::toHex( $ip ), $row->ipc_hex );
 		$this->assertEquals(
 			$orig->getTimestamp(),
 			wfTimestamp( TS_MW, $row->ipc_rev_timestamp )

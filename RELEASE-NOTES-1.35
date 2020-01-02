@@ -81,6 +81,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added doctrine/dbal 2.9.3 (dev-only).
+* Added wikimedia/ip-utils 1.0.0.
 * …
 
 ==== Changed external libraries ====
@@ -190,6 +191,11 @@ because of Phabricator reports.
   They seem to be unused. Just use get() directly, and catch any exception.
 * AbstractBlock::getPermissionsError and AbstractBlock::getBlockErrorParams are
   deprecated. Use BlockErrorFormatter::getMessage instead.
+* The IP class is deprecated. Please instead use the Wikimedia\IPUtils class
+  from the new wikimedia/ip-utils library instead. Additionally, the RE_IP_*
+  constants are also deprecated. RE_IP_BYTE can be replaced with a class
+  constant on the IPUtils class, while the others will eventually be made
+  private.
 * The following Language methods are deprecated: getFallbackFor,
   getFallbacksFor, getFallbacksIncludingSiteLanguage. Use the corresponding new
   methods on the LanguageFallback class: getFirst, getAll, and

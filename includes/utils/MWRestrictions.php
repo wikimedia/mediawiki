@@ -18,6 +18,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use Wikimedia\IPUtils;
+
 /**
  * A class to check request restrictions expressed as a JSON object
  */
@@ -86,7 +88,7 @@ class MWRestrictions {
 			throw new InvalidArgumentException( 'IPAddresses is not an array' );
 		}
 		foreach ( $restrictions['IPAddresses'] as $ip ) {
-			if ( !\IP::isIPAddress( $ip ) ) {
+			if ( !IPUtils::isIPAddress( $ip ) ) {
 				throw new InvalidArgumentException( "Invalid IP address: $ip" );
 			}
 		}
@@ -137,7 +139,7 @@ class MWRestrictions {
 	 */
 	public function checkIP( $ip ) {
 		foreach ( $this->ipAddresses as $range ) {
-			if ( \IP::isInRange( $ip, $range ) ) {
+			if ( IPUtils::isInRange( $ip, $range ) ) {
 				return true;
 			}
 		}
