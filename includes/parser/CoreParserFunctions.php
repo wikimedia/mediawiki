@@ -902,7 +902,9 @@ class CoreParserFunctions {
 	public static function language( $parser, $code = '', $inLanguage = '' ) {
 		$code = strtolower( $code );
 		$inLanguage = strtolower( $inLanguage );
-		$lang = Language::fetchLanguageName( $code, $inLanguage );
+		$lang = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageName( $code, $inLanguage );
 		return $lang !== '' ? $lang : LanguageCode::bcp47( $code );
 	}
 

@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\ScopedCallback;
 
@@ -547,7 +548,10 @@ class SvgHandler extends ImageHandler {
 			return ( $value > 0 );
 		} elseif ( $name == 'lang' ) {
 			// Validate $code
-			if ( $value === '' || !Language::isValidCode( $value ) ) {
+			if ( $value === ''
+				|| !MediaWikiServices::getInstance()->getLanguageNameUtils()
+					->isValidCode( $value )
+			) {
 				return false;
 			}
 

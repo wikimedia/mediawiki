@@ -93,7 +93,9 @@ class SkinTemplate extends Skin {
 
 			$ilInterwikiCode = $this->mapInterwikiToLanguage( $languageLinkTitle->getInterwiki() );
 
-			$ilLangName = Language::fetchLanguageName( $ilInterwikiCode );
+			$ilLangName = MediaWikiServices::getInstance()
+				->getLanguageNameUtils()
+				->getLanguageName( $ilInterwikiCode );
 
 			if ( strval( $ilLangName ) === '' ) {
 				$ilDisplayTextMsg = wfMessage( "interlanguage-link-$ilInterwikiCode" );
@@ -111,7 +113,7 @@ class SkinTemplate extends Skin {
 
 			// CLDR extension or similar is required to localize the language name;
 			// otherwise we'll end up with the autonym again.
-			$ilLangLocalName = Language::fetchLanguageName(
+			$ilLangLocalName = MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageName(
 				$ilInterwikiCode,
 				$userLang->getCode()
 			);

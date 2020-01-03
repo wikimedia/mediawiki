@@ -399,7 +399,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$params = $this->extractRequestParams();
 		$langCode = $params['inlanguagecode'] ?? '';
-		$langNames = Language::fetchLanguageNames( $langCode );
+		$langNames = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( $langCode );
 
 		$getPrefixes = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes( $local );
 		$extraLangPrefixes = $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' );
@@ -711,7 +713,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendLanguages( $property ) {
 		$params = $this->extractRequestParams();
 		$langCode = $params['inlanguagecode'] ?? '';
-		$langNames = Language::fetchLanguageNames( $langCode );
+		$langNames = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( $langCode );
 
 		$data = [];
 
@@ -777,10 +781,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = [];
 		$allowed = Skin::getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
 			$msg = $this->msg( "skinname-{$name}" );
 			$code = $this->getParameter( 'inlanguagecode' );
-			if ( $code && Language::isValidCode( $code ) ) {
+			if ( $code && $languageNameUtils->isValidCode( $code ) ) {
 				$msg->inLanguage( $code );
 			} else {
 				$msg->inContentLanguage();

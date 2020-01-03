@@ -23,6 +23,7 @@
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
@@ -2529,8 +2530,13 @@ class Parser {
 				# Interwikis
 				if (
 					$iw && $this->mOptions->getInterwikiMagic() && $nottalk && (
-						Language::fetchLanguageName( $iw, null, 'mw' ) ||
-						in_array( $iw, $this->svcOptions->get( 'ExtraInterlanguageLinkPrefixes' ) )
+						MediaWikiServices::getInstance()->getLanguageNameUtils()
+							->getLanguageName(
+								$iw,
+								LanguageNameUtils::AUTONYMS,
+								LanguageNameUtils::DEFINED
+							)
+						|| in_array( $iw, $this->svcOptions->get( 'ExtraInterlanguageLinkPrefixes' ) )
 					)
 				) {
 					# T26502: filter duplicates

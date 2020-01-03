@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Represents a single site.
  *
@@ -463,7 +465,11 @@ class Site implements Serializable {
 	 * @param string|null $languageCode
 	 */
 	public function setLanguageCode( $languageCode ) {
-		if ( $languageCode !== null && !Language::isValidCode( $languageCode ) ) {
+		if ( $languageCode !== null
+			&& !MediaWikiServices::getInstance()
+				->getLanguageNameUtils()
+				->isValidCode( $languageCode )
+		) {
 			throw new InvalidArgumentException( "$languageCode is not a valid language code." );
 		}
 		$this->languageCode = $languageCode;

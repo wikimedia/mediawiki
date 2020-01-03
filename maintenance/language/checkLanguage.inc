@@ -21,6 +21,8 @@
  * @ingroup MaintenanceLanguage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup MaintenanceLanguage
  */
@@ -509,7 +511,7 @@ ENDS;
 				# Don't list languages without problems
 				continue;
 			}
-			$language = Language::fetchLanguageName( $code );
+			$language = MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageName( $code );
 			$rows[] = "| $language || $code || $problems || " . implode( ' || ', $numbers );
 		}
 

@@ -21,6 +21,8 @@
  * @ingroup MaintenanceLanguage
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup MaintenanceLanguage
  */
@@ -66,7 +68,9 @@ class Languages {
 		Hooks::run( 'LocalisationIgnoredOptionalMessages',
 			[ &$this->mIgnoredMessages, &$this->mOptionalMessages ] );
 
-		$this->mLanguages = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+		$this->mLanguages = array_keys( MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( null, 'mwfile' ) );
 		sort( $this->mLanguages );
 	}
 
@@ -119,13 +123,14 @@ class Languages {
 		$this->mMagicWords[$code] = [];
 		$this->mSpecialPageAliases[$code] = [];
 
-		$jsonfilename = Language::getJsonMessagesFileName( $code );
+		$services = MediaWikiServices::getInstance();
+		$jsonfilename = $services->getLanguageNameUtils()->getJsonMessagesFileName( $code );
 		if ( file_exists( $jsonfilename ) ) {
-			$json = Language::getLocalisationCache()->readJSONFile( $jsonfilename );
+			$json = $services->getLocalisationCache()->readJSONFile( $jsonfilename );
 			$this->mRawMessages[$code] = $json['messages'];
 		}
 
-		$filename = Language::getMessagesFileName( $code );
+		$filename = $services->getLanguageNameUtils()->getMessagesFileName( $code );
 		if ( file_exists( $filename ) ) {
 			require $filename;
 			if ( isset( $fallback ) ) {

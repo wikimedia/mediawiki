@@ -111,7 +111,9 @@ class RebuildLocalisationCache extends Maintenance {
 			MediaWikiServices::getInstance()->getLanguageNameUtils()
 		);
 
-		$allCodes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+		$allCodes = array_keys( MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( null, 'mwfile' ) );
 		if ( $this->hasOption( 'lang' ) ) {
 			# Validate requested languages
 			$codes = array_intersect( $allCodes,

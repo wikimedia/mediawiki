@@ -517,7 +517,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 * @dataProvider languagesProvider
 	 */
 	public function testLanguages( $langCode ) {
-		$expected = Language::fetchLanguageNames( (string)$langCode );
+		$expected = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( (string)$langCode );
 
 		$expected = array_map(
 			function ( $code, $name ) {
@@ -576,12 +578,13 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$expectedAllowed = Skin::getAllowedSkins();
 		$expectedDefault = Skin::normalizeKey( 'default' );
 
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 		$i = 0;
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
 			$this->assertSame( $name, $data[$i]['code'] );
 
 			$msg = wfMessage( "skinname-$name" );
-			if ( $code && Language::isValidCode( $code ) ) {
+			if ( $code && $languageNameUtils->isValidCode( $code ) ) {
 				$msg->inLanguage( $code );
 			} else {
 				$msg->inContentLanguage();
