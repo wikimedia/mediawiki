@@ -403,11 +403,14 @@ class UserTest extends MediaWikiTestCase {
 	 * Test changing user options.
 	 * @covers User::setOption
 	 * @covers User::getOption
+	 * @covers User::getBoolOption
+	 * @covers User::getIntOption
 	 */
 	public function testOptions() {
 		$user = $this->getMutableTestUser()->getUser();
 
 		$user->setOption( 'userjs-someoption', 'test' );
+		$user->setOption( 'userjs-someintoption', '42' );
 		$user->setOption( 'rclimit', 200 );
 		$user->setOption( 'wpwatchlistdays', '0' );
 		$user->saveSettings();
@@ -415,17 +418,22 @@ class UserTest extends MediaWikiTestCase {
 		$user = User::newFromName( $user->getName() );
 		$user->load( User::READ_LATEST );
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
+		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
+		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
 
 		$user = User::newFromName( $user->getName() );
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		$this->assertEquals( 'test', $user->getOption( 'userjs-someoption' ) );
+		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
+		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
 
 		// Check that an option saved as a string '0' is returned as an integer.
 		$user = User::newFromName( $user->getName() );
 		$user->load( User::READ_LATEST );
 		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
+		$this->assertFalse( $user->getBoolOption( 'wpwatchlistdays' ) );
 	}
 
 	/**
