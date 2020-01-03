@@ -91,7 +91,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 		// Allow changes to the New Pages query
 		$tables = array_merge( $rcQuery['tables'], [ 'page' ] );
 		$fields = array_merge( $rcQuery['fields'], [
-			'length' => 'page_len', 'rev_id' => 'page_latest', 'page_namespace', 'page_title'
+			'length' => 'page_len', 'rev_id' => 'page_latest', 'page_namespace', 'page_title',
+			'page_content_model',
 		] );
 		$join_conds = [ 'page' => [ 'JOIN', 'page_id=rc_cur_id' ] ] + $rcQuery['joins'];
 
