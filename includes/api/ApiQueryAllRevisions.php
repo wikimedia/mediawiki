@@ -310,7 +310,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			'action=query&list=allrevisions&arvuser=Example&arvlimit=50'
 				=> 'apihelp-query+allrevisions-example-user',
 			'action=query&list=allrevisions&arvdir=newer&arvlimit=50'
-				=> 'apihelp-query+allrevisions-example-ns-main',
+				=> 'apihelp-query+allrevisions-example-ns-any',
 		];
 	}
 
