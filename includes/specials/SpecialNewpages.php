@@ -367,20 +367,23 @@ class SpecialNewpages extends IncludableSpecialPage {
 			[ 'class' => 'mw-newpages-pagename' ],
 			$query
 		);
-		$histLink = $linkRenderer->makeKnownLink(
+		$linkArr = [];
+		$linkArr[] = $linkRenderer->makeKnownLink(
 			$title,
 			$this->msg( 'hist' )->text(),
 			[ 'class' => 'mw-newpages-history' ],
 			[ 'action' => 'history' ]
 		);
-		$editLink = $linkRenderer->makeKnownLink(
-			$title,
-			$this->msg( 'editlink' )->text(),
-			[ 'class' => 'mw-newpages-edit' ],
-			[ 'action' => 'edit' ]
-		);
+		if ( ContentHandler::getForTitle( $title )->supportsDirectEditing() ) {
+			$linkArr[] = $linkRenderer->makeKnownLink(
+				$title,
+				$this->msg( 'editlink' )->text(),
+				[ 'class' => 'mw-newpages-edit' ],
+				[ 'action' => 'edit' ]
+			);
+		}
 		$links = $this->msg( 'parentheses' )->rawParams( $this->getLanguage()
-			->pipeList( [ $histLink, $editLink ] ) )->escaped();
+			->pipeList( $linkArr ) )->escaped();
 
 		$length = Html::rawElement(
 			'span',
