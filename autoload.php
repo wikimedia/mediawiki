@@ -519,7 +519,6 @@ $wgAutoloadLocalClasses = [
 	'FileBackendStoreShardDirIterator' => __DIR__ . '/includes/libs/filebackend/fileiteration/FileBackendStoreShardDirIterator.php',
 	'FileBackendStoreShardFileIterator' => __DIR__ . '/includes/libs/filebackend/fileiteration/FileBackendStoreShardFileIterator.php',
 	'FileBackendStoreShardListIterator' => __DIR__ . '/includes/libs/filebackend/fileiteration/FileBackendStoreShardListIterator.php',
-	'FileBasedSiteLookup' => __DIR__ . '/includes/site/FileBasedSiteLookup.php',
 	'FileCacheBase' => __DIR__ . '/includes/cache/FileCacheBase.php',
 	'FileContentHandler' => __DIR__ . '/includes/content/FileContentHandler.php',
 	'FileContentsHasher' => __DIR__ . '/includes/utils/FileContentsHasher.php',
