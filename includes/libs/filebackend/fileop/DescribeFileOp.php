@@ -44,9 +44,12 @@ class DescribeFileOp extends FileOp {
 
 			return $status;
 		}
-		// Update file existence predicates
-		$predicates['exists'][$this->params['src']] = $srcExists;
-		$predicates['sha1'][$this->params['src']] =
+
+		// Update file existence predicates since the operation is expected to be allowed to run
+		$predicates[self::ASSUMED_EXISTS][$this->params['src']] = $srcExists;
+		$predicates[self::ASSUMED_SIZE][$this->params['src']] =
+			$this->fileSize( $this->params['src'], $predicates );
+		$predicates[self::ASSUMED_SHA1][$this->params['src']] =
 			$this->fileSha1( $this->params['src'], $predicates );
 
 		return $status; // safe to call attempt()

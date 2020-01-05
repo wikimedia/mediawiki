@@ -1779,6 +1779,7 @@
 	"backend-fail-backup": "Could not backup file \"$1\".",
 	"backend-fail-notexists": "The file $1 does not exist.",
 	"backend-fail-hashes": "Could not get file hashes for comparison.",
+	"backend-fail-sizes": "Could not get file sizes for comparison.",
 	"backend-fail-notsame": "A non-identical file already exists at \"$1\".",
 	"backend-fail-invalidpath": "\"$1\" is not a valid storage path.",
 	"backend-fail-delete": "Could not delete file \"$1\".",
