@@ -1243,9 +1243,6 @@ class HTMLForm extends ContextSource {
 				) . "\n";
 		}
 
-		// IE<8 has bugs with <button>, so we'll need to avoid them.
-		$isBadIE = preg_match( '/MSIE [1-7]\./i', $this->getRequest()->getHeader( 'User-Agent' ) );
-
 		foreach ( $this->mButtons as $button ) {
 			$attrs = [
 				'type' => 'submit',
@@ -1276,11 +1273,7 @@ class HTMLForm extends ContextSource {
 				$attrs['class'][] = 'mw-ui-button';
 			}
 
-			if ( $isBadIE ) {
-				$buttons .= Html::element( 'input', $attrs ) . "\n";
-			} else {
-				$buttons .= Html::rawElement( 'button', $attrs, $label ) . "\n";
-			}
+			$buttons .= Html::rawElement( 'button', $attrs, $label ) . "\n";
 		}
 
 		if ( !$buttons ) {
