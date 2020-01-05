@@ -17,7 +17,7 @@ class ExportSites extends Maintenance {
 	public function __construct() {
 		$this->addDescription( 'Exports site definitions the sites table to XML file' );
 
-		$this->addArg( 'file', 'A file to write the XML to (see docs/sitelist.txt). ' .
+		$this->addArg( 'file', 'A file to write the XML to (see docs/sitelist.md). ' .
 			'Use "php://stdout" to write to stdout.', true
 		);
 

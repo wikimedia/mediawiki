@@ -2,7 +2,7 @@
 
 /**
  * Utility for importing site entries from XML.
- * For the expected format of the input, see docs/sitelist.txt and docs/sitelist-1.0.xsd.
+ * For the expected format of the input, see docs/sitelist.md and docs/sitelist-1.0.xsd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
