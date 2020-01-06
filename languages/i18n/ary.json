@@ -539,7 +539,7 @@
 	"histfirst": "الأقدم",
 	"histlast": "الأحدث",
 	"historysize": "({{PLURAL:$1|1 l-ḅayṫ|$1 dl-ḅayṫaṫ}})",
-	"historyempty": "(khawi)",
+	"historyempty": "خاوي",
 	"history-feed-title": "تاريخ المراجعة",
 	"history-feed-description": "تاريخ التعديل لهاد الصفحة في الويكي",
 	"history-feed-item-nocomment": "Men $1 ḫṫal $2",

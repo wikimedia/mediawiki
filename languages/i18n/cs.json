@@ -3693,6 +3693,7 @@
 	"json-error-ctrl-char": "Chybný řídicí znak, možná nesprávné kódování",
 	"json-error-syntax": "Syntaktická chyba",
 	"json-error-utf8": "Poškozené znaky UTF-8, možná nesprávné kódování",
+	"json-error-utf16": "Poškozené znaky UTF-16, možná nesprávné kódování",
 	"headline-anchor-title": "Odkaz na tuto sekci",
 	"special-characters-group-latin": "Latinka",
 	"special-characters-group-latinextended": "Rozšíření latinky",
