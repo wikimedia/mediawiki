@@ -4450,6 +4450,8 @@ $wgCentralIdLookupProvider = 'local';
  *	- MaximalPasswordLength - maximum length password a user is allowed
  *		to attempt. Prevents DoS attacks with pbkdf2.
  *	- PasswordCannotMatchUsername - Password cannot match the username.
+ *	- PasswordCannotBeSubstringInUsername - Password cannot be a substring
+ *		(contained within) the username.
  *	- PasswordCannotMatchBlacklist - Username/password combination cannot
  *		match a blacklist of default passwords used by MediaWiki in the past.
  *	- PasswordCannotBePopular - Blacklist passwords which are known to be
@@ -4493,6 +4495,10 @@ $wgPasswordPolicy = [
 		'default' => [
 			'MinimalPasswordLength' => [ 'value' => 1, 'suggestChangeOnLogin' => true ],
 			'PasswordCannotMatchUsername' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
+			'PasswordCannotBeSubstringInUsername' => [
+				'value' => true,
+				'suggestChangeOnLogin' => true
+			],
 			'PasswordCannotMatchBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 			'MaximalPasswordLength' => [ 'value' => 4096, 'suggestChangeOnLogin' => true ],
 			'PasswordNotInLargeBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
@@ -4502,6 +4508,8 @@ $wgPasswordPolicy = [
 		'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
 		'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
 		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
+		'PasswordCannotBeSubstringInUsername' =>
+			'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
 		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
 		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist',

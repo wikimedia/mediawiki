@@ -105,6 +105,26 @@ class PasswordPolicyChecks {
 	}
 
 	/**
+	 * Check if password is a (case-insensitive) substring within the username.
+	 * @param bool $policyVal true to force compliance.
+	 * @param User $user
+	 * @param string $password
+	 * @return Status error if password is a substring within username, and policy is true
+	 */
+	public static function checkPasswordCannotBeSubstringInUsername(
+		$policyVal,
+		User $user,
+		$password
+	) {
+		$status = Status::newGood();
+		$username = $user->getName();
+		if ( $policyVal && stripos( $username, $password ) !== false ) {
+			$status->error( 'password-substring-username-match' );
+		}
+		return $status;
+	}
+
+	/**
 	 * Check if username and password are on a blacklist of past MediaWiki default passwords.
 	 * @param bool $policyVal true to force compliance.
 	 * @param User $user
