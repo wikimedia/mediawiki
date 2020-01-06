@@ -19,6 +19,7 @@ foreach( $pages as $page ){
 	$titles[] = Title::newFromText( $page );
 }
 
-$batch = new LinkBatch( $titles );
+$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+$batch = $linkBatchFactory->newLinkBatch( $titles );
 $batch->execute();
 ~~~
