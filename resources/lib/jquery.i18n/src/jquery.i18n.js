@@ -35,8 +35,8 @@
 	I18N.prototype = {
 		/**
 		 * Localize a given messageKey to a locale.
-		 * @param {String} messageKey
-		 * @return {String} Localized message
+		 * @param {string} messageKey
+		 * @return {string} Localized message
 		 */
 		localize: function ( messageKey ) {
 			var localeParts, localePartIndex, locale, fallbackIndex,
@@ -62,7 +62,7 @@
 					localePartIndex--;
 				} while ( localePartIndex );
 
-				if ( locale === 'en' ) {
+				if ( locale === this.options.fallbackLocale ) {
 					break;
 				}
 
@@ -251,15 +251,9 @@
 	};
 
 	function getDefaultLocale() {
-		var nav, locale = $( 'html' ).attr( 'lang' );
-
+		var locale = $( 'html' ).attr( 'lang' );
 		if ( !locale ) {
-			if ( typeof window.navigator !== undefined ) {
-				nav = window.navigator;
-				locale = nav.language || nav.userLanguage || '';
-			} else {
-				locale = '';
-			}
+			locale = navigator.language || navigator.userLanguage || '';
 		}
 		return locale;
 	}
