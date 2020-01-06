@@ -2801,11 +2801,13 @@ class Parser {
 				}
 				break;
 			case 'revisionid':
+				$namespace = $this->getTitle()->getNamespace();
 				if (
 					$this->svcOptions->get( 'MiserMode' ) &&
 					!$this->mOptions->getInterfaceMessage() &&
 					// @TODO: disallow this word on all namespaces
-					$this->nsInfo->isContent( $this->getTitle()->getNamespace() )
+					$this->nsInfo->isSubject( $namespace ) &&
+					!in_array( $namespace, [ NS_USER, NS_PROJECT ], true )
 				) {
 					// Use a stub result instead of the actual revision ID in order to avoid
 					// double parses on page save but still allow preview detection (T137900)
