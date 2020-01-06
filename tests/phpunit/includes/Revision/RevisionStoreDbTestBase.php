@@ -30,6 +30,7 @@ use TestUserRegistry;
 use Title;
 use User;
 use WANObjectCache;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseSqlite;
@@ -557,6 +558,26 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				'timestamp' => '20171117010101',
 			],
 			new IncompleteRevisionException( 'user must not be NULL!' )
+		];
+		yield 'size mismatch' => [
+			[
+				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
+				'comment' => $this->getRandomCommentStoreComment(),
+				'timestamp' => '20171117010101',
+				'user' => true,
+				'size' => 123456
+			],
+			new PreconditionException( 'T239717' )
+		];
+		yield 'sha1 mismatch' => [
+			[
+				'slot' => SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'Chicken' ) ),
+				'comment' => $this->getRandomCommentStoreComment(),
+				'timestamp' => '20171117010101',
+				'user' => true,
+				'sha1' => 'DEADBEEF',
+			],
+			new PreconditionException( 'T239717' )
 		];
 	}
 

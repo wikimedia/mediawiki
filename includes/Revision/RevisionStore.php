@@ -467,6 +467,20 @@ class RevisionStore
 			throw new IncompleteRevisionException( 'Revision is incomplete' );
 		}
 
+		if ( $slotRoles == [ SlotRecord::MAIN ] ) {
+			// T239717: If the main slot is the only slot, make sure the revision's nominal size
+			// and hash match the main slot's nominal size and hash.
+			$mainSlot = $rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
+			Assert::precondition(
+				$mainSlot->getSize() === $rev->getSize(),
+				'The revisions\'s size must match the main slot\'s size (see T239717)'
+			);
+			Assert::precondition(
+				$mainSlot->getSha1() === $rev->getSha1(),
+				'The revisions\'s SHA1 hash must match the main slot\'s SHA1 hash (see T239717)'
+			);
+		}
+
 		// TODO: we shouldn't need an actual Title here.
 		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 		$pageId = $this->failOnEmpty( $rev->getPageId(), 'rev_page field' ); // check this early
