@@ -240,6 +240,10 @@ pre,
 	padding: 1em;
 	/* Wrap lines in overflow. T2260, T103780 */
 	white-space: pre-wrap;
+	/* Create a new block formatting context */
+	overflow-x: hidden;
+	/* Break really long words when they overflow to the next line */
+	word-wrap: break-word;
 }
 
 /* Tables */
