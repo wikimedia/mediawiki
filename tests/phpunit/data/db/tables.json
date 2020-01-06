@@ -1,0 +1,31 @@
+[
+	{
+		"name": "actor",
+		"comment": "The \"actor\" table associates user names or IP addresses with integers for the benefit of other tables that need to refer to either logged-in or logged-out users. If something can only ever be done by logged-in users, it can refer to the user table directly.",
+		"columns": [
+			{
+				"name": "actor_id",
+				"comment": "Unique ID to identify each actor",
+				"type": "bigint",
+				"options": { "Unsigned": true, "Notnull": true }
+			},
+			{
+				"name": "actor_user",
+				"comment": "Key to user.user_id, or NULL for anonymous edits",
+				"type": "integer",
+				"options": { "Unsigned": true }
+			},
+			{
+				"name": "actor_name",
+				"comment": "Text username or IP address",
+				"type": "string",
+				"options": { "Length": 255, "Notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "actor_user", "columns": [ "actor_user" ], "unique": true },
+			{ "name": "actor_name", "columns": [ "actor_name" ], "unique": true }
+		],
+		"pk": [ "actor_id" ]
+	}
+]
