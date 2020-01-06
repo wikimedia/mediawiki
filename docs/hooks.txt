@@ -3049,6 +3049,14 @@ $type: 'normal' or 'history' for old/diff views
   message must be in HTML format, not wikitext!
 &$link: overridable HTML link to be passed into the message as $1
 
+'ResourceLoaderSiteModulePages': Modify list of pages for a given skin
+$skin: string of the current skin key
+&$pages: array of pages and their types.
+
+'ResourceLoaderSiteStylesModulePages': Modify list of pages for a given skin
+$skin: string of the current skin key
+&$pages: array of pages and their types.
+
 'SkinEditSectionLinks': Modify the section edit links
 $skin: Skin object rendering the UI
 $title: Title object for the title being linked to (may not be the same as
