@@ -474,6 +474,7 @@
 				lo: '໐໑໒໓໔໕໖໗໘໙',
 				or: '୦୧୨୩୪୫୬୭୮୯',
 				kh: '០១២៣៤៥៦៧៨៩',
+				nqo: '߀߁߂߃߄߅߆߇߈߉', // Note that the digits go right to left
 				pa: '੦੧੨੩੪੫੬੭੮੯',
 				gu: '૦૧૨૩૪૫૬૭૮૯',
 				hi: '०१२३४५६७८९',
@@ -493,6 +494,6 @@
 	};
 
 	$.extend( $.i18n.languages, {
-		'default': language
+		default: language
 	} );
 }( jQuery ) );

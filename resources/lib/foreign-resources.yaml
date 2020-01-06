@@ -185,15 +185,15 @@ jquery.hoverIntent:
 
 jquery.i18n:
   type: tar
-  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/v1.0.5
-  integrity: sha384-bkmmKC2byOVjTg4di3o6sSISU49JwXynV9gNGH2zl4U9nh8vZJiauiIvoWgvhwsK
+  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/v1.0.7
+  integrity: sha384-vUuZNwEm0k4d/JGRa8uoscyxTL6e1BZ0a+fTS/jtjjS+3pOcwcMo9BjzMbe6reEv
   dest:
-    jquery.i18n-1.0.5/CODE_OF_CONDUCT.md:
-    jquery.i18n-1.0.5/CREDITS:
-    jquery.i18n-1.0.5/GPL-LICENSE:
-    jquery.i18n-1.0.5/MIT-LICENSE:
-    jquery.i18n-1.0.5/README.md:
-    jquery.i18n-1.0.5/src:
+    jquery.i18n-1.0.7/CODE_OF_CONDUCT.md:
+    jquery.i18n-1.0.7/CREDITS:
+    jquery.i18n-1.0.7/GPL-LICENSE:
+    jquery.i18n-1.0.7/MIT-LICENSE:
+    jquery.i18n-1.0.7/README.md:
+    jquery.i18n-1.0.7/src:
 
 jquery.jStorage:
   type: file
