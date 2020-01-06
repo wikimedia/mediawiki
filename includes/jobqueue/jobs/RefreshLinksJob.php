@@ -84,7 +84,7 @@ class RefreshLinksJob extends Job {
 		return $job;
 	}
 
-	function run() {
+	public function run() {
 		$ok = true;
 
 		// Job to update all (or a range of) backlink pages for a page

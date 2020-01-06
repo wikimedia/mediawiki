@@ -68,7 +68,7 @@ class HTMLCacheUpdateJob extends Job {
 		);
 	}
 
-	function run() {
+	public function run() {
 		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery;
 
 		if ( isset( $this->params['table'] ) && !isset( $this->params['pages'] ) ) {
