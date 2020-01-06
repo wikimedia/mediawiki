@@ -96,7 +96,7 @@ class DoubleRedirectJob extends Job {
 	/**
 	 * @return bool
 	 */
-	function run() {
+	public function run() {
 		if ( !$this->redirTitle ) {
 			$this->setLastError( 'Invalid title' );
 
@@ -239,7 +239,7 @@ class DoubleRedirectJob extends Job {
 	 *
 	 * @return User|bool
 	 */
-	function getUser() {
+	private function getUser() {
 		if ( !self::$user ) {
 			$username = wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text();
 			self::$user = User::newFromName( $username );

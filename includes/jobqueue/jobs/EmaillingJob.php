@@ -32,7 +32,7 @@ class EmaillingJob extends Job {
 		parent::__construct( 'sendMail', Title::newMainPage(), $params );
 	}
 
-	function run() {
+	public function run() {
 		$status = UserMailer::send(
 			$this->params['to'],
 			$this->params['from'],

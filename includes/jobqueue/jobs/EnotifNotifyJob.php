@@ -31,7 +31,7 @@ class EnotifNotifyJob extends Job {
 		parent::__construct( 'enotifNotify', $title, $params );
 	}
 
-	function run() {
+	public function run() {
 		$enotif = new EmailNotification();
 		// Get the user from ID (rename safe). Anons are 0, so defer to name.
 		if ( isset( $this->params['editorID'] ) && $this->params['editorID'] ) {

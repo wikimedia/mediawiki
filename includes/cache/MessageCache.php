@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
@@ -1261,8 +1262,11 @@ class MessageCache implements LoggerAwareInterface {
 		$popts->setTargetLanguage( $language );
 
 		if ( !$title || !$title instanceof Title ) {
-			wfDebugLog( 'GlobalTitleFail', __METHOD__ . ' called by ' .
-				wfGetAllCallers( 6 ) . ' with no title set.' );
+			$logger = LoggerFactory::getInstance( 'GlobalTitleFail' );
+			$logger->info(
+				__METHOD__ . ' called with no title set.',
+				[ 'exception' => new Exception ]
+			);
 			$title = $wgTitle;
 		}
 		// Sometimes $wgTitle isn't set either...
