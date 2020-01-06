@@ -190,6 +190,7 @@
 	"exif-copyrighted-false": "Stanje avtorske pravice ni določeno",
 	"exif-photometricinterpretation-0": "Črno in belo (belo je 0)",
 	"exif-photometricinterpretation-1": "Črno in belo (črno je 0)",
+	"exif-photometricinterpretation-3": "Paleta",
 	"exif-unknowndate": "neznan datum",
 	"exif-orientation-1": "Navadna",
 	"exif-orientation-2": "Vodoravno zrcaljeno",
