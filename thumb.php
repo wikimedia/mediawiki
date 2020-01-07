@@ -647,6 +647,15 @@ function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 
 	MediaWiki\HeaderCallback::warnIfHeadersSent();
 
+	if ( headers_sent() ) {
+		LoggerFactory::getInstance( 'thumb' )->error(
+			'Error after output had been started. Output may be corrupt or truncated. ' .
+			'Original error: ' . ( $msgText ?: $msgHtml ) . " (Status $status)",
+			$context
+		);
+		return;
+	}
+
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	if ( $status == 400 || $status == 404 || $status == 429 ) {
