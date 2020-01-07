@@ -21,6 +21,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * A query module to show basic page information.
@@ -538,7 +539,10 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 
 			$detailLevel = $this->params['testactionsdetail'];
-			$rigor = $detailLevel === 'quick' ? 'quick' : 'secure';
+			$rigor = $detailLevel === 'quick'
+				? PermissionManager::RIGOR_QUICK
+				// Not using RIGOR_SECURE here, because that results in master connection
+				: PermissionManager::RIGOR_FULL;
 			$errorFormatter = $this->getErrorFormatter();
 			if ( $errorFormatter->getFormat() === 'bc' ) {
 				// Eew, no. Use a more modern format here.
