@@ -76,7 +76,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 *     This feature also contains all `i18n-` prefixed features.
 	 */
 	private const FEATURE_FILES = [
-		'logo' => [],
+		'logo' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/logo.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
+		],
 		'content' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.css' ],
 		],
@@ -400,6 +403,28 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		// Regardless of whether the files are specified, we always
 		// provide mw-wiki-logo styles.
 		return false;
+	}
+
+	/**
+	 * Get language-specific LESS variables for this module.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	protected function getLessVars( ResourceLoaderContext $context ) {
+		$lessVars = parent::getLessVars( $context );
+		$logos = self::getAvailableLogos( $this->getConfig() );
+
+		if ( isset( $logos['wordmark'] ) ) {
+			$logo = $logos['wordmark'];
+			$lessVars[ 'logo-enabled' ] = true;
+			$lessVars[ 'logo-wordmark-url' ] = CSSMin::buildUrlValue( $logo['src'] );
+			$lessVars[ 'logo-wordmark-width' ] = intval( $logo['width'] );
+			$lessVars[ 'logo-wordmark-height' ] = intval( $logo['height'] );
+		} else {
+			$lessVars[ 'logo-enabled' ] = false;
+		}
+		return $lessVars;
 	}
 
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
