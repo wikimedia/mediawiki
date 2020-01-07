@@ -179,6 +179,12 @@ if ( $wgExtensionAssetsPath === false ) {
 	$wgExtensionAssetsPath = "$wgResourceBasePath/extensions";
 }
 
+// For backwards compatibility, the value of wgLogos is copied to wgLogo.
+// This is because some extensions/skins may be using $config->get('Logo')
+// to access the value.
+if ( $wgLogos !== false ) {
+	$wgLogo = $wgLogos['1x'];
+}
 if ( $wgLogo === false ) {
 	$wgLogo = "$wgResourceBasePath/resources/assets/wiki.png";
 }

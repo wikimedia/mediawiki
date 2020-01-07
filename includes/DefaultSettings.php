@@ -264,8 +264,30 @@ $wgFileCacheDirectory = false;
 /**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
  * Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
+ * Developers should retrieve this logo (and other variants) using
+ *   the static function ResourceLoaderSkinModule::getAvailableLogos
+ * Ignored if wgLogos is set.
  */
 $wgLogo = false;
+
+/**
+ * The URL path to various wiki logos.
+ * The `1x` logo size should be 135x135 pixels.
+ * The `1.5x` 1.5x version of square logo
+ * The `2x` 2x version of square logo
+ * The `svg` version of square logo
+ * The `wordmark` key should point to an array with the following fields
+ *  - `src` relative or absolute path to a landscape logo
+ *  - `width` defining the width of the logo in pixels.
+ *  - `height` defining the height of the logo in pixels.
+ * All values can be either an absolute or relative URI
+ * Configuration is optional provided wgLogo is used instead.
+ * Defaults to [ "1x" => $wgLogo ],
+ *   or [ "1x" => "$wgResourceBasePath/resources/assets/wiki.png" ] if $wgLogo is not set.
+ * @since 1.35
+ * @var array|false
+ */
+$wgLogos = false;
 
 /**
  * Array with URL paths to HD versions of the wiki logo. The scaled logo size
@@ -291,7 +313,11 @@ $wgLogo = false;
  * ];
  * @endcode
  *
+ * @var array|false
  * @since 1.25
+ * @deprecated since 1.35. Developers should retrieve this logo (and other variants) using
+ *   the static function ResourceLoaderSkinModule::getAvailableLogos. wgLogos should be used
+ *   instead.
  */
 $wgLogoHD = false;
 

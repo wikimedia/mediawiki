@@ -301,6 +301,52 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	}
 
 	/**
+	 * Return an array of all available logos that a skin may use.
+	 * @since 1.35
+	 * @param Config $conf
+	 * @return array with the following keys:
+	 *  - 1x: a square logo (required)
+	 *  - 2x: a square logo for HD displays (optional)
+	 *  - wordmark: a rectangle logo (wordmark) for print media and skins which desire
+	 *      horizontal logo (optional)
+	 */
+	public static function getAvailableLogos( $conf ) {
+		$logos = $conf->get( 'Logos' );
+		if ( $logos === false ) {
+			// no logos were defined... this will either
+			// 1. Load from wgLogo and wgLogoHD
+			// 2. Trigger runtime exception if those are not defined.
+			$logos = [];
+		}
+
+		// If logos['1x'] is not defined, see if we can use wgLogo
+		if ( !isset( $logos[ '1x' ] ) ) {
+			$logo = $conf->get( 'Logo' );
+			if ( $logo ) {
+				$logos['1x'] = $logo;
+			}
+		}
+
+		try {
+			$logoHD = $conf->get( 'LogoHD' );
+			// make sure not false
+			if ( $logoHD ) {
+				wfDeprecated( '$wgLogoHD', '1.35', 'Rename configuration variable to $wgLogos' );
+				$logos += $logoHD;
+			}
+		} catch ( ConfigException $e ) {
+			// no backwards compatibility changes needed.
+		}
+
+		// check the configuration is valid
+		if ( !isset( $logos['1x'] ) ) {
+			throw new \RuntimeException( "The key `1x` is required for wgLogos or wgLogo must be defined." );
+		}
+		// return the modified logos!
+		return $logos;
+	}
+
+	/**
 	 * @since 1.31
 	 * @param Config $conf
 	 * @return string|array Single url if no variants are defined,
@@ -309,12 +355,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 *  in which case variants other than "1x" are omitted.
 	 */
 	protected function getLogoData( Config $conf ) {
-		$logo = $conf->get( 'Logo' );
-		$logoHD = $conf->get( 'LogoHD' );
+		$logoHD = self::getAvailableLogos( $conf );
+		$logo = $logoHD['1x'];
 
 		$logo1Url = OutputPage::transformResourcePath( $conf, $logo );
 
-		if ( !$logoHD ) {
+		if ( count( $logoHD ) === 1 ) {
 			return $logo1Url;
 		}
 
@@ -359,8 +405,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = [
-			'logo' => $this->getConfig()->get( 'Logo' ),
-			'logoHD' => $this->getConfig()->get( 'LogoHD' ),
+			'logos' => self::getAvailableLogos( $this->getConfig() ),
 		];
 		return $summary;
 	}
