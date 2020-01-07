@@ -2286,6 +2286,7 @@
 	"mycontris": "Doprinosi",
 	"anoncontribs": "Doprinosi",
 	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
+	"contributions-subtitle": "Za {{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "Korisnički račun \"$1\" nije registriran.",
 	"nocontribs": "Nema izmjena koje odgovaraju navedenim kriterijima.",
 	"uctop": "trenutno",
