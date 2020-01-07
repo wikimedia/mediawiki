@@ -2860,8 +2860,5 @@
 	"json-error-ctrl-char": "Dabari harfu firka, a ga tee gundu hantumoo mana boori",
 	"json-error-syntax": "Nahaw firka",
 	"json-error-utf8": " UTF-8 harfu laybanteyaŋ, a ga tee gundu hantumoo mana boori",
-	"json-error-recursion": "Feeriyan foo wala hinna tana ga filla kaŋ hinna kaŋ gundu ašariyaa ga hantumandi",
-	"json-error-inf-or-nan": "NAN wala INF hinna foo wal'ibooboyaŋ goo hinnaa ra kaŋ ašariyaa ga hantumandi",
-	"json-error-unsupported-type": "Hinna noondi kaŋ dumoo ašariya ši hin ka hantumandi",
 	"randomrootpage": "Saaye linji moo"
 }
