@@ -750,14 +750,15 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideIsWriteQuery
 	 */
 	public function testIsWriteQuery( string $query, bool $res ) {
-		$this->assertSame( $res, $this->db->isWriteQuery( $query ) );
+		$db = TestingAccessWrapper::newFromObject( $this->db );
+		$this->assertSame( $res, $db->isWriteQuery( $query ) );
 	}
 
 	/**
 	 * Provider for testIsWriteQuery
 	 * @return array
 	 */
-	public function provideWriteQuery() : array {
+	public function provideIsWriteQuery() : array {
 		return [
 			[ 'SELECT foo', false ],
 			[ '  SELECT foo FROM bar', false ],
