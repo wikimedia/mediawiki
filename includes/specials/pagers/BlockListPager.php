@@ -442,6 +442,16 @@ class BlockListPager extends TablePager {
 			// need be stored in a separate store.
 			$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
 			$this->restrictions = $blockRestrictionStore->loadByBlockId( $partialBlocks );
+
+			foreach ( $this->restrictions as $restriction ) {
+				if ( $restriction->getType() === PageRestriction::TYPE ) {
+					'@phan-var PageRestriction $restriction';
+					$title = $restriction->getTitle();
+					if ( $title !== null ) {
+						$lb->addObj( $title );
+					}
+				}
+			}
 		}
 
 		$lb->execute();
