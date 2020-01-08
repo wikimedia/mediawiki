@@ -2021,37 +2021,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Assert that two arrays are equal. By default this means that both arrays need to hold
-	 * the same set of values. Using additional arguments, order and associated key can also
-	 * be set as relevant.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $expected
-	 * @param array $actual
-	 * @param bool $ordered If the order of the values should match
-	 * @param bool $named If the keys should match
-	 */
-	protected function assertArrayEquals( array $expected, array $actual,
-		$ordered = false, $named = false
-	) {
-		if ( !$ordered ) {
-			$this->objectAssociativeSort( $expected );
-			$this->objectAssociativeSort( $actual );
-		}
-
-		if ( !$named ) {
-			$expected = array_values( $expected );
-			$actual = array_values( $actual );
-		}
-
-		call_user_func_array(
-			[ $this, 'assertEquals' ],
-			array_merge( [ $expected, $actual ], array_slice( func_get_args(), 4 ) )
-		);
-	}
-
-	/**
 	 * Put each HTML element on its own line and then equals() the results
 	 *
 	 * Use for nicely formatting of PHPUnit diff output when comparing very
@@ -2068,22 +2037,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$actual = str_replace( '>', ">\n", $actual );
 
 		$this->assertEquals( $expected, $actual, $msg );
-	}
-
-	/**
-	 * Does an associative sort that works for objects.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array &$array
-	 */
-	protected function objectAssociativeSort( array &$array ) {
-		uasort(
-			$array,
-			function ( $a, $b ) {
-				return serialize( $a ) <=> serialize( $b );
-			}
-		);
 	}
 
 	/**
