@@ -1772,6 +1772,7 @@
 	"backend-fail-backup": "لا يمكن صنع نسخة أحتياطية للملف $1.",
 	"backend-fail-notexists": "الملف $1 غير موجود.",
 	"backend-fail-hashes": "لم يمكن الحصول على hashes الملفات من أجل المقارنة",
+	"backend-fail-sizes": "تعذر الحصول على أحجام الملفات للمقارنة",
 	"backend-fail-notsame": "يوجد بالفعل ملف غير متطابق في \"$1\".",
 	"backend-fail-invalidpath": "\"$1\" ليس مساراً صالحاً للتخزين.",
 	"backend-fail-delete": "لم يمكن حذف الملف \"$1\".",
