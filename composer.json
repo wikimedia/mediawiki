@@ -72,7 +72,7 @@
 		"mediawiki/mediawiki-codesniffer": "28.0.0",
 		"mediawiki/mediawiki-phan-config": "0.9.0",
 		"monolog/monolog": "~1.25.2",
-		"nikic/php-parser": "4.2.4",
+		"nikic/php-parser": "4.3.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/php-invoker": "^2.0",
 		"phpunit/phpunit": "^7.5.13",
