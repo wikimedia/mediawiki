@@ -24,6 +24,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Caches user genders when needed to use correct namespace aliases.
@@ -69,14 +70,14 @@ class GenderCache {
 
 	/**
 	 * Returns the gender for given username.
-	 * @param string|User $username
+	 * @param string|UserIdentity $username
 	 * @param string $caller The calling method
 	 * @return string
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
 		global $wgUser;
 
-		if ( $username instanceof User ) {
+		if ( $username instanceof UserIdentity ) {
 			$username = $username->getName();
 		}
 
@@ -125,7 +126,7 @@ class GenderCache {
 	 * Wrapper for doQuery that processes a title or string array.
 	 *
 	 * @since 1.20
-	 * @param array $titles Array of Title objects or strings
+	 * @param array $titles Array of LinkTarget objects or strings
 	 * @param string $caller The calling method
 	 */
 	public function doTitlesArray( $titles, $caller = '' ) {
@@ -146,7 +147,7 @@ class GenderCache {
 
 	/**
 	 * Preloads genders for given list of users.
-	 * @param array|string $users Usernames
+	 * @param string[]|string $users Usernames
 	 * @param string $caller The calling method
 	 */
 	public function doQuery( $users, $caller = '' ) {
