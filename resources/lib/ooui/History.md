@@ -1,4 +1,15 @@
 # OOUI Release History
+## v0.36.2 / 2020-01-07
+### Styles
+* icons: Add RTL versions of table column action icons (Bartosz Dziewoński)
+
+### Code
+* docs: Document that ActionFieldLayout can take a ButtonInputWidget too (Kunal Mehta)
+* build: Upgrade mediawiki/mediawiki-phan-config to 0.9.0 (Kunal Mehta)
+* build: Upgrade mediawiki/minus-x to 0.3.2 (Kunal Mehta)
+* build: Upgrade stylelint-config-wikimedia from 0.7.0 to 0.8.0 (James D. Forrester)
+
+
 ## v0.36.1 / 2019-12-11
 ### Code
 * Follow-up 70e453d: Pass item param (Ed Sanders)
