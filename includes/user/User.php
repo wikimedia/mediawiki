@@ -1824,6 +1824,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if blacklisted.
 	 */
 	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getBlockManager()
 			->isDnsBlacklisted( $ip, $checkWhitelist );
 	}
