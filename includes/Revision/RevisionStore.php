@@ -2450,7 +2450,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::loadFromTimestamp
 	 *
-	 * @note direct use is deprecated! Use getRevisionFromTimestamp instead!
+	 * @note direct use is deprecated! Use getRevisionByTimestamp instead!
 	 * @todo remove when unused!
 	 *
 	 * @param IDatabase $db
