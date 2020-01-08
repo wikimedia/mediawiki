@@ -2518,23 +2518,6 @@ function wfForeignMemcKey( $db, $prefix, ...$args ) {
 }
 
 /**
- * Make a cache key with database-agnostic prefix.
- *
- * Doesn't have a wiki-specific namespace. Uses a generic 'global' prefix
- * instead. Must have a prefix as otherwise keys that use a database name
- * in the first segment will clash with wfMemcKey/wfForeignMemcKey.
- *
- * @deprecated since 1.30 Call makeGlobalKey on a BagOStuff instance
- * @since 1.26
- * @param string ...$args
- * @return string
- */
-function wfGlobalCacheKey( ...$args ) {
-	wfDeprecated( __FUNCTION__, '1.30' );
-	return ObjectCache::getLocalClusterInstance()->makeGlobalKey( ...$args );
-}
-
-/**
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  *

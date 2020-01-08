@@ -710,18 +710,6 @@ class GlobalTest extends MediaWikiTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::wfGlobalCacheKey
-	 */
-	public function testWfGlobalCacheKey() {
-		$cache = ObjectCache::getLocalClusterInstance();
-		$this->hideDeprecated( 'wfGlobalCacheKey' );
-		$this->assertEquals(
-			$cache->makeGlobalKey( 'foo', 123, 'bar' ),
-			wfGlobalCacheKey( 'foo', 123, 'bar' )
-		);
-	}
-
 	public static function provideWfShellWikiCmdList() {
 		global $wgPhpCli;
 
