@@ -128,11 +128,19 @@ class BlockLogFormatter extends LogFormatter {
 
 	public function getPreloadTitles() {
 		$title = $this->entry->getTarget();
+		$preload = [];
 		// Preload user page for non-autoblocks
 		if ( substr( $title->getText(), 0, 1 ) !== '#' && $title->canExist() ) {
-			return [ $title->getTalkPage() ];
+			$preload[] = $title->getTalkPage();
 		}
-		return [];
+		// Preload page restriction
+		$params = $this->extractParameters();
+		if ( isset( $params[6]['pages'] ) ) {
+			foreach ( $params[6]['pages'] as $page ) {
+				$preload[] = Title::newFromText( $page );
+			}
+		}
+		return $preload;
 	}
 
 	public function getActionLinks() {
