@@ -1354,21 +1354,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 
 				return [ $curValue, $curInfo['version'], $curInfo['asOf'] ];
 			} else {
-				$reasons = function () use ( $worthRefreshExpiring, $worthRefreshPopular ) {
-					$reasons = [];
-					if ( $worthRefreshExpiring ) {
-						$reasons[] = 'expiry';
-					}
-					if ( $worthRefreshPopular ) {
-						$reasons[] = 'popularity';
-					}
-					return implode( ' and ', $reasons );
-				};
-
-				// TODO: loggers should really accept closures in the context,
-				// to allow message generation to be skipped when the logger is disabled.
-				$this->logger->debug( "fetchOrRegenerate($key): refreshing due to {reasons}",
-					[ 'reasons' => $reasons() ] );
+				$this->logger->debug( "fetchOrRegenerate($key): hit with sync refresh" );
 			}
 		}
 
