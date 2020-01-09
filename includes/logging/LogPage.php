@@ -229,7 +229,7 @@ class LogPage {
 	) {
 		global $wgLang, $wgLogActions;
 
-		if ( is_null( $skin ) ) {
+		if ( $skin === null ) {
 			$langObj = MediaWikiServices::getInstance()->getContentLanguage();
 			$langObjOrNull = null;
 		} else {
@@ -240,7 +240,7 @@ class LogPage {
 		$key = "$type/$action";
 
 		if ( isset( $wgLogActions[$key] ) ) {
-			if ( is_null( $title ) ) {
+			if ( $title === null ) {
 				$rv = wfMessage( $wgLogActions[$key] )->inLanguage( $langObj )->escaped();
 			} else {
 				$titleLink = self::getTitleLink( $type, $langObjOrNull, $title, $params );

@@ -86,7 +86,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 
 		// Hook can determine default model
 		$title = Title::newFromLinkTarget( $page );
-		if ( !Hooks::run( 'ContentHandlerDefaultModelFor', [ $title, &$model ] ) && !is_null( $model ) ) {
+		if ( !Hooks::run( 'ContentHandlerDefaultModelFor', [ $title, &$model ] ) && $model !== null ) {
 			return $model;
 		}
 
@@ -106,7 +106,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		}
 
 		// Is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
-		$isWikitext = is_null( $model ) || $model == CONTENT_MODEL_WIKITEXT;
+		$isWikitext = $model === null || $model == CONTENT_MODEL_WIKITEXT;
 		$isWikitext = $isWikitext && !$isCodePage && !$isCodeSubpage;
 
 		if ( !$isWikitext ) {

@@ -46,7 +46,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$this->params = $this->extractRequestParams();
 		$result = $this->getResult();
 
-		if ( !is_null( $this->params['prop'] ) ) {
+		if ( $this->params['prop'] !== null ) {
 			$this->prop = array_flip( $this->params['prop'] );
 		}
 
@@ -268,7 +268,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		// Now get the actual limits
 		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
 			foreach ( $categories as $cat ) {
-				if ( isset( $limits[$cat] ) && !is_null( $limits[$cat] ) ) {
+				if ( isset( $limits[$cat] ) && $limits[$cat] !== null ) {
 					$retval[$action][$cat]['hits'] = (int)$limits[$cat][0];
 					$retval[$action][$cat]['seconds'] = (int)$limits[$cat][1];
 				}

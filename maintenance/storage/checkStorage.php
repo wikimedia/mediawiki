@@ -227,7 +227,7 @@ class CheckStorage {
 
 			// Check external normal blobs for existence
 			if ( count( $externalNormalBlobs ) ) {
-				if ( is_null( $this->dbStore ) ) {
+				if ( $this->dbStore === null ) {
 					$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
 					$this->dbStore = $esFactory->getStore( 'DB' );
 				}
@@ -428,7 +428,7 @@ class CheckStorage {
 			return;
 		}
 
-		if ( is_null( $this->dbStore ) ) {
+		if ( $this->dbStore === null ) {
 			$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
 			$this->dbStore = $esFactory->getStore( 'DB' );
 		}

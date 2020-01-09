@@ -1013,7 +1013,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return bool
 	 */
 	private function parameterNotEmpty( $x ) {
-		return !is_null( $x ) && $x !== false;
+		return $x !== null && $x !== false;
 	}
 
 	/**
@@ -1108,7 +1108,7 @@ abstract class ApiBase extends ContextSource {
 					return true;
 				}
 				# If no user option was passed, use watchdefault and watchcreations
-				if ( is_null( $userOption ) ) {
+				if ( $userOption === null ) {
 					return $this->getUser()->getBoolOption( 'watchdefault' ) ||
 						$this->getUser()->getBoolOption( 'watchcreations' ) && !$titleObj->exists();
 				}
@@ -1291,14 +1291,14 @@ abstract class ApiBase extends ContextSource {
 
 						if ( is_array( $value ) ) {
 							$value = array_map( 'intval', $value );
-							if ( !is_null( $min ) || !is_null( $max ) ) {
+							if ( $min !== null || $max !== null ) {
 								foreach ( $value as &$v ) {
 									$this->validateLimit( $paramName, $v, $min, $max, null, $enforceLimits );
 								}
 							}
 						} else {
 							$value = (int)$value;
-							if ( !is_null( $min ) || !is_null( $max ) ) {
+							if ( $min !== null || $max !== null ) {
 								$this->validateLimit( $paramName, $value, $min, $max, null, $enforceLimits );
 							}
 						}
@@ -1575,7 +1575,7 @@ abstract class ApiBase extends ContextSource {
 	protected function validateLimit( $paramName, &$value, $min, $max, $botMax = null,
 		$enforceLimits = false
 	) {
-		if ( !is_null( $min ) && $value < $min ) {
+		if ( $min !== null && $value < $min ) {
 			$msg = ApiMessage::create(
 				[ 'apierror-integeroutofrange-belowminimum',
 					$this->encodeParamName( $paramName ), $min, $value ],
@@ -1595,8 +1595,8 @@ abstract class ApiBase extends ContextSource {
 
 		// Optimization: do not check user's bot status unless really needed -- skips db query
 		// assumes $botMax >= $max
-		if ( !is_null( $max ) && $value > $max ) {
-			if ( !is_null( $botMax ) && $this->getMain()->canApiHighLimits() ) {
+		if ( $max !== null && $value > $max ) {
+			if ( $botMax !== null && $this->getMain()->canApiHighLimits() ) {
 				if ( $value > $botMax ) {
 					$msg = ApiMessage::create(
 						[ 'apierror-integeroutofrange-abovebotmax',
@@ -1764,7 +1764,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return User
 	 */
 	public function getWatchlistUser( $params ) {
-		if ( !is_null( $params['owner'] ) && !is_null( $params['token'] ) ) {
+		if ( $params['owner'] !== null && $params['token'] !== null ) {
 			$user = User::newFromName( $params['owner'], false );
 			if ( !( $user && $user->getId() ) ) {
 				$this->dieWithError(

@@ -1910,7 +1910,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
 			'wgAutopromote' => []
 		] );
-		$user = is_null( $userGroups ) ? null : $this->getTestUser( $userGroups )->getUser();
+		$user = $userGroups === null ? null : $this->getTestUser( $userGroups )->getUser();
 		$this->assertSame( $expected, MediaWikiServices::getInstance()
 			->getPermissionManager()
 			->getNamespaceRestrictionLevels( $ns, $user ) );

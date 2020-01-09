@@ -184,7 +184,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$reflection_property->setAccessible( true );
 		$reflection_property->setValue( $fileMock, $handlerMock );
 
-		if ( !is_null( $data['tmpBucketedThumbCache'] ) ) {
+		if ( $data['tmpBucketedThumbCache'] !== null ) {
 			$reflection_property = $reflection->getProperty( 'tmpBucketedThumbCache' );
 			$reflection_property->setAccessible( true );
 			$reflection_property->setValue( $fileMock, $data['tmpBucketedThumbCache'] );

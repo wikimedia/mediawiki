@@ -46,7 +46,7 @@ class ApiUndelete extends ApiBase {
 		}
 
 		// Check if user can add tags
-		if ( !is_null( $params['tags'] ) ) {
+		if ( $params['tags'] !== null ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );

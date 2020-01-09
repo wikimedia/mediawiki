@@ -35,7 +35,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// We allow a subclass to override the prefix, to create a related API
 		// module. Some other parts of MediaWiki construct this with a null
 		// $prefix, which used to be ignored when this only took two arguments
-		if ( is_null( $prefix ) ) {
+		if ( $prefix === null ) {
 			$prefix = 'ii';
 		}
 		parent::__construct( $query, $moduleName, $prefix );
@@ -72,7 +72,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			asort( $titles ); // Ensure the order is always the same
 
 			$fromTitle = null;
-			if ( !is_null( $params['continue'] ) ) {
+			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$fromTitle = strval( $cont[0] );
@@ -173,8 +173,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				// Check that the current version is within the start-end boundaries
 				$gotOne = false;
 				if (
-					( is_null( $start ) || $img->getTimestamp() <= $start ) &&
-					( is_null( $params['end'] ) || $img->getTimestamp() >= $params['end'] )
+					( $start === null || $img->getTimestamp() <= $start ) &&
+					( $params['end'] === null || $img->getTimestamp() >= $params['end'] )
 				) {
 					$gotOne = true;
 
@@ -505,7 +505,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( $url ) {
 			if ( $exists ) {
-				if ( !is_null( $thumbParams ) ) {
+				if ( $thumbParams !== null ) {
 					$mto = $file->transform( $thumbParams );
 					self::$transformCount++;
 					if ( $mto && !$mto->isError() ) {

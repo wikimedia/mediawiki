@@ -1548,7 +1548,7 @@ class Sanitizer {
 		} elseif ( $matches[3] != '' ) {
 			$ret = self::hexCharReference( $matches[3] );
 		}
-		if ( is_null( $ret ) ) {
+		if ( $ret === null ) {
 			return htmlspecialchars( $matches[0] );
 		} else {
 			return $ret;

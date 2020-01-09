@@ -213,7 +213,7 @@ abstract class BackupDumper extends Maintenance {
 						$this->fatalError( 'Invalid output parameter' );
 					}
 					list( $type, $file ) = $split;
-					if ( !is_null( $sink ) ) {
+					if ( $sink !== null ) {
 						$sinks[] = $sink;
 					}
 					if ( !isset( $this->outputTypes[$type] ) ) {
@@ -228,7 +228,7 @@ abstract class BackupDumper extends Maintenance {
 
 					break;
 				case 'filter':
-					if ( is_null( $sink ) ) {
+					if ( $sink === null ) {
 						$sink = new DumpOutput();
 					}
 
@@ -272,7 +272,7 @@ abstract class BackupDumper extends Maintenance {
 			$this->server = $this->getOption( 'server' );
 		}
 
-		if ( is_null( $sink ) ) {
+		if ( $sink === null ) {
 			$sink = new DumpOutput();
 		}
 		$sinks[] = $sink;
@@ -312,7 +312,7 @@ abstract class BackupDumper extends Maintenance {
 			} else {
 				$exporter->allLogs();
 			}
-		} elseif ( is_null( $this->pages ) ) {
+		} elseif ( $this->pages === null ) {
 			# Page dumps: all or by page ID range
 			if ( $this->startId || $this->endId ) {
 				$exporter->pagesByRange( $this->startId, $this->endId, $this->orderRevs );

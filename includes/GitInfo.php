@@ -142,7 +142,7 @@ class GitInfo {
 	 * @return GitInfo
 	 */
 	public static function repo() {
-		if ( is_null( self::$repo ) ) {
+		if ( self::$repo === null ) {
 			global $IP;
 			self::$repo = new self( $IP );
 		}

@@ -182,7 +182,7 @@ class LinkHolderArray {
 
 				# Skip invalid entries.
 				# Result will be ugly, but prevents crash.
-				if ( is_null( $title ) ) {
+				if ( $title === null ) {
 					continue;
 				}
 
@@ -400,7 +400,7 @@ class LinkHolderArray {
 			foreach ( $variants as $variant ) {
 				if ( $variant !== $category ) {
 					$variantTitle = Title::makeTitleSafe( NS_CATEGORY, $variant );
-					if ( is_null( $variantTitle ) ) {
+					if ( $variantTitle === null ) {
 						continue;
 					}
 					$linkBatch->addObj( $variantTitle );

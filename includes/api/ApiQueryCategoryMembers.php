@@ -72,7 +72,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_type = isset( $prop['type'] );
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->addFields( [ 'cl_from', 'cl_sortkey', 'cl_type', 'page_namespace', 'page_title' ] );
 			$this->addFieldsIf( 'page_id', $fld_ids );
 			$this->addFieldsIf( 'cl_sortkey_prefix', $fld_sortkeyprefix );
@@ -108,7 +108,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			// Include in ORDER BY for uniqueness
 			$this->addWhereRange( 'cl_from', $dir, null, null );
 
-			if ( !is_null( $params['continue'] ) ) {
+			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$op = ( $dir === 'newer' ? '>' : '<' );
@@ -246,7 +246,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				continue;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$vals = [
 					ApiResult::META_TYPE => 'assoc',
 				];
@@ -287,7 +287,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName(
 				[ 'query', $this->getModuleName() ], 'cm' );
 		}

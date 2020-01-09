@@ -67,7 +67,7 @@ class SqlSearchResultSet extends SearchResultSet {
 	}
 
 	function getTotalHits() {
-		if ( !is_null( $this->totalHits ) ) {
+		if ( $this->totalHits !== null ) {
 			return $this->totalHits;
 		} else {
 			// Special:Search expects a number here.

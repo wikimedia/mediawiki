@@ -81,7 +81,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			// generator with batched lookup and continuation.
 			$userIter = call_user_func( function () use ( $dbSecondary, $sort, $op, $fname ) {
 				$fromName = false;
-				if ( !is_null( $this->params['continue'] ) ) {
+				if ( $this->params['continue'] !== null ) {
 					$continue = explode( '|', $this->params['continue'] );
 					$this->dieContinueUsageIf( count( $continue ) != 4 );
 					$this->dieContinueUsageIf( $continue[0] !== 'name' );
@@ -133,7 +133,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->multiUserMode = count( $ids ) > 1;
 
 			$from = $fromId = false;
-			if ( $this->multiUserMode && !is_null( $this->params['continue'] ) ) {
+			if ( $this->multiUserMode && $this->params['continue'] !== null ) {
 				$continue = explode( '|', $this->params['continue'] );
 				$this->dieContinueUsageIf( count( $continue ) != 4 );
 				$this->dieContinueUsageIf( $continue[0] !== 'id' && $continue[0] !== 'actor' );
@@ -185,7 +185,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->multiUserMode = count( $names ) > 1;
 
 			$from = $fromName = false;
-			if ( $this->multiUserMode && !is_null( $this->params['continue'] ) ) {
+			if ( $this->multiUserMode && $this->params['continue'] !== null ) {
 				$continue = explode( '|', $this->params['continue'] );
 				$this->dieContinueUsageIf( count( $continue ) != 4 );
 				$this->dieContinueUsageIf( $continue[0] !== 'name' && $continue[0] !== 'actor' );
@@ -303,7 +303,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->addWhere( $revWhere['conds'] );
 
 		// Handle continue parameter
-		if ( !is_null( $this->params['continue'] ) ) {
+		if ( $this->params['continue'] !== null ) {
 			$continue = explode( '|', $this->params['continue'] );
 			if ( $this->multiUserMode ) {
 				$this->dieContinueUsageIf( count( $continue ) != 4 );
@@ -368,7 +368,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		if ( $this->params['toponly'] ) { // deprecated/old param
 			$show[] = 'top';
 		}
-		if ( !is_null( $show ) ) {
+		if ( $show !== null ) {
 			$show = array_flip( $show );
 
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
@@ -469,7 +469,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$vals['pageid'] = (int)$row->rev_page;
 			$vals['revid'] = (int)$row->rev_id;
 
-			if ( !is_null( $row->rev_parent_id ) ) {
+			if ( $row->rev_parent_id !== null ) {
 				$vals['parentid'] = (int)$row->rev_parent_id;
 			}
 		}
@@ -485,7 +485,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		}
 
 		if ( $this->fld_flags ) {
-			$vals['new'] = $row->rev_parent_id == 0 && !is_null( $row->rev_parent_id );
+			$vals['new'] = $row->rev_parent_id == 0 && $row->rev_parent_id !== null;
 			$vals['minor'] = (bool)$row->rev_minor_edit;
 			$vals['top'] = $row->page_latest == $row->rev_id;
 		}
@@ -518,13 +518,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$vals['autopatrolled'] = $row->rc_patrolled == RecentChange::PRC_AUTOPATROLLED;
 		}
 
-		if ( $this->fld_size && !is_null( $row->rev_len ) ) {
+		if ( $this->fld_size && $row->rev_len !== null ) {
 			$vals['size'] = (int)$row->rev_len;
 		}
 
 		if ( $this->fld_sizediff
-			&& !is_null( $row->rev_len )
-			&& !is_null( $row->rev_parent_id )
+			&& $row->rev_len !== null
+			&& $row->rev_parent_id !== null
 		) {
 			$parentLen = $this->parentLens[$row->rev_parent_id] ?? 0;
 			$vals['sizediff'] = (int)$row->rev_len - $parentLen;

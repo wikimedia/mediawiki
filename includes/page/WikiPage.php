@@ -1013,7 +1013,7 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		// rd_fragment and rd_interwiki were added later, populate them if empty
-		if ( $row && !is_null( $row->rd_fragment ) && !is_null( $row->rd_interwiki ) ) {
+		if ( $row && $row->rd_fragment !== null && $row->rd_interwiki !== null ) {
 			// (T203942) We can't redirect to Media namespace because it's virtual.
 			// We don't want to modify Title objects farther down the
 			// line. So, let's fix this here by changing to File namespace.
@@ -1402,7 +1402,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$conditions = [ 'page_id' => $this->getId() ];
 
-		if ( !is_null( $lastRevision ) ) {
+		if ( $lastRevision !== null ) {
 			// An extra check against threads stepping on each other
 			$conditions['page_latest'] = $lastRevision;
 		}
@@ -1463,7 +1463,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Always update redirects (target link might have changed)
 		// Update/Insert if we don't know if the last revision was a redirect or not
 		// Delete if changing from redirect to non-redirect
-		$isRedirect = !is_null( $redirectTitle );
+		$isRedirect = $redirectTitle !== null;
 
 		if ( !$isRedirect && $lastRevIsRedirect === false ) {
 			return true;
@@ -1644,7 +1644,7 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			// T32711: always use current version when adding a new section
-			if ( is_null( $baseRevId ) || $sectionId === 'new' ) {
+			if ( $baseRevId === null || $sectionId === 'new' ) {
 				$oldContent = $this->getContent();
 			} else {
 				$rev = Revision::newFromId( $baseRevId );
@@ -2405,7 +2405,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$logEntry->setComment( $reason );
 		$logEntry->setPerformer( $user );
 		$logEntry->setParameters( $params );
-		if ( !is_null( $nullRevision ) ) {
+		if ( $nullRevision !== null ) {
 			$logEntry->setAssociatedRevId( $nullRevision->getId() );
 		}
 		$logEntry->addTags( $tags );
@@ -3156,7 +3156,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$updater = $this->newPageUpdater( $guser );
 		$current = $updater->grabParentRevision();
 
-		if ( is_null( $current ) ) {
+		if ( $current === null ) {
 			// Something wrong... no page?
 			return [ [ 'notanarticle' ] ];
 		}

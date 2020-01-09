@@ -207,7 +207,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public function setTitle( $title ) {
 		if ( is_object( $title ) ) {
 			$this->title = $title;
-		} elseif ( is_null( $title ) ) {
+		} elseif ( $title === null ) {
 			throw new MWException( "WikiRevision given a null title in import. "
 				. "You may need to adjust \$wgLegalTitleChars." );
 		} else {
@@ -440,7 +440,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
-		if ( is_null( $this->contentHandler ) ) {
+		if ( $this->contentHandler === null ) {
 			$this->contentHandler = ContentHandler::getForModelID( $this->getModel() );
 		}
 
@@ -452,7 +452,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return Content
 	 */
 	public function getContent() {
-		if ( is_null( $this->content ) ) {
+		if ( $this->content === null ) {
 			$handler = $this->getContentHandler();
 			$this->content = $handler->unserializeContent( $this->text, $this->getFormat() );
 		}
@@ -465,7 +465,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return string
 	 */
 	public function getModel() {
-		if ( is_null( $this->model ) ) {
+		if ( $this->model === null ) {
 			$this->model = $this->getTitle()->getContentModel();
 		}
 
@@ -477,7 +477,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return string
 	 */
 	public function getFormat() {
-		if ( is_null( $this->format ) ) {
+		if ( $this->format === null ) {
 			$this->format = $this->getContentHandler()->getDefaultFormat();
 		}
 

@@ -78,7 +78,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	public function __construct( $input = null, $flags = 0, $iterator_class = 'ArrayIterator' ) {
 		parent::__construct( [], $flags, $iterator_class );
 
-		if ( !is_null( $input ) ) {
+		if ( $input !== null ) {
 			foreach ( $input as $offset => $value ) {
 				$this->offsetSet( $offset, $value );
 			}
@@ -147,7 +147,7 @@ abstract class GenericArrayObject extends ArrayObject {
 			);
 		}
 
-		if ( is_null( $index ) ) {
+		if ( $index === null ) {
 			$index = $this->getNewOffset();
 		}
 

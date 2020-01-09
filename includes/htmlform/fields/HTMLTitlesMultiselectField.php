@@ -46,7 +46,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 			return true;
 		}
 
-		if ( is_null( $value ) ) {
+		if ( $value === null ) {
 			return false;
 		}
 
@@ -108,7 +108,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 			$params['input'] = $this->mParams['input'];
 		}
 
-		if ( !is_null( $value ) ) {
+		if ( $value !== null ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );
 		}

@@ -83,26 +83,26 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$mode = 'all';
 		if ( count( $titles ) > 0 ) {
 			$mode = 'revs';
-		} elseif ( !is_null( $params['user'] ) ) {
+		} elseif ( $params['user'] !== null ) {
 			$mode = 'user';
 		}
 
 		if ( $mode == 'revs' || $mode == 'user' ) {
 			// Ignore namespace and unique due to inability to know whether they were purposely set
 			foreach ( [ 'from', 'to', 'prefix', /*'namespace', 'unique'*/ ] as $p ) {
-				if ( !is_null( $params[$p] ) ) {
+				if ( $params[$p] !== null ) {
 					$this->dieWithError( [ 'apierror-deletedrevs-param-not-1-2', $p ], 'badparams' );
 				}
 			}
 		} else {
 			foreach ( [ 'start', 'end' ] as $p ) {
-				if ( !is_null( $params[$p] ) ) {
+				if ( $params[$p] !== null ) {
 					$this->dieWithError( [ 'apierror-deletedrevs-param-not-3', $p ], 'badparams' );
 				}
 			}
 		}
 
-		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
+		if ( $params['user'] !== null && $params['excludeuser'] !== null ) {
 			$this->dieWithError( 'user and excludeuser cannot be used together', 'badparams' );
 		}
 
@@ -117,7 +117,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'archive' ) ] );
 		}
 
-		if ( !is_null( $params['tag'] ) ) {
+		if ( $params['tag'] !== null ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
@@ -178,14 +178,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $params['user'] ) ) {
+		if ( $params['user'] !== null ) {
 			// Don't query by user ID here, it might be able to use the ar_usertext_timestamp index.
 			$actorQuery = ActorMigration::newMigration()
 				->getWhere( $db, 'ar_user', User::newFromName( $params['user'], false ), false );
 			$this->addTables( $actorQuery['tables'] );
 			$this->addJoinConds( $actorQuery['joins'] );
 			$this->addWhere( $actorQuery['conds'] );
-		} elseif ( !is_null( $params['excludeuser'] ) ) {
+		} elseif ( $params['excludeuser'] !== null ) {
 			// Here there's no chance of using ar_usertext_timestamp.
 			$actorQuery = ActorMigration::newMigration()
 				->getWhere( $db, 'ar_user', User::newFromName( $params['excludeuser'], false ) );
@@ -194,7 +194,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 		}
 
-		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
+		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 			// Paranoia: avoid brute force searches (T19342)
 			// (shouldn't be able to get here without 'deletedhistory', but
 			// check it again just in case)
@@ -212,7 +212,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$op = ( $dir == 'newer' ? '>' : '<' );
 			if ( $mode == 'all' || $mode == 'revs' ) {
@@ -288,7 +288,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $fld_revid ) {
 				$rev['revid'] = (int)$row->ar_rev_id;
 			}
-			if ( $fld_parentid && !is_null( $row->ar_parent_id ) ) {
+			if ( $fld_parentid && $row->ar_parent_id !== null ) {
 				$rev['parentid'] = (int)$row->ar_parent_id;
 			}
 			if ( $fld_user || $fld_userid ) {

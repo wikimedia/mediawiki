@@ -170,7 +170,7 @@ class DbTestPreviewer extends TestRecorder {
 		$changedRun = $this->db->selectField( 'testitem', 'MAX(ti_run)', $conds, __METHOD__ );
 
 		// If no record of ever having had a different result.
-		if ( is_null( $changedRun ) ) {
+		if ( $changedRun === null ) {
 			if ( $after == "f" ) {
 				return "Has never passed";
 			} else {

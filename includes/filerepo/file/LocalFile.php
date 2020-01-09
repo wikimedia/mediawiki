@@ -643,7 +643,7 @@ class LocalFile extends File {
 		}
 
 		$upgrade = false;
-		if ( is_null( $this->media_type ) || $this->mime == 'image/svg' ) {
+		if ( $this->media_type === null || $this->mime == 'image/svg' ) {
 			$upgrade = true;
 		} else {
 			$handler = $this->getHandler();
@@ -1276,7 +1276,7 @@ class LocalFile extends File {
 	public function resetHistory() {
 		$this->historyLine = 0;
 
-		if ( !is_null( $this->historyRes ) ) {
+		if ( $this->historyRes !== null ) {
 			$this->historyRes = null;
 		}
 	}
@@ -1441,7 +1441,7 @@ class LocalFile extends File {
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
-		if ( is_null( $user ) ) {
+		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
 		}

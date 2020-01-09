@@ -711,7 +711,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		$extraPages = [];
-		if ( !is_null( $conds ) ) {
+		if ( $conds !== null ) {
 			$extraPages = TitleArray::newFromResult(
 				$dbr->select( 'page',
 					[ 'page_id', 'page_namespace', 'page_title' ],

@@ -245,7 +245,7 @@ class SVGReader {
 				&& $this->reader->nodeType == XMLReader::ELEMENT
 			) {
 				$sysLang = $this->reader->getAttribute( 'systemLanguage' );
-				if ( !is_null( $sysLang ) && $sysLang !== '' ) {
+				if ( $sysLang !== null && $sysLang !== '' ) {
 					// See https://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
 					$langList = explode( ',', $sysLang );
 					foreach ( $langList as $langItem ) {

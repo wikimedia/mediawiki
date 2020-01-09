@@ -85,14 +85,14 @@ class MediaWiki {
 			$ret = Title::newFromURL( $title );
 			// Alias NS_MEDIA page URLs to NS_FILE...we only use NS_MEDIA
 			// in wikitext links to tell Parser to make a direct file link
-			if ( !is_null( $ret ) && $ret->getNamespace() == NS_MEDIA ) {
+			if ( $ret !== null && $ret->getNamespace() == NS_MEDIA ) {
 				$ret = Title::makeTitle( NS_FILE, $ret->getDBkey() );
 			}
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			// Check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
 			if (
-				$contLang->hasVariants() && !is_null( $ret ) && $ret->getArticleID() == 0
+				$contLang->hasVariants() && $ret !== null && $ret->getArticleID() == 0
 			) {
 				$contLang->findVariantLink( $title, $ret );
 			}
@@ -188,7 +188,7 @@ class MediaWiki {
 		Hooks::run( 'BeforeInitialize', [ &$title, &$unused, &$output, &$user, $request, $this ] );
 
 		// Invalid titles. T23776: The interwikis must redirect even if the page name is empty.
-		if ( is_null( $title ) || ( $title->getDBkey() == '' && !$title->isExternal() )
+		if ( $title === null || ( $title->getDBkey() == '' && !$title->isExternal() )
 			|| $title->isSpecial( 'Badtitle' )
 		) {
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );

@@ -1784,7 +1784,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 */
 	public function testGetParentLanguage( $code, $expected, $comment ) {
 		$lang = Language::factory( $code );
-		if ( is_null( $expected ) ) {
+		if ( $expected === null ) {
 			$this->assertNull( $lang->getParentLanguage(), $comment );
 		} else {
 			$this->assertEquals( $expected, $lang->getParentLanguage()->getCode(), $comment );

@@ -324,7 +324,7 @@ class DatabasePostgres extends Database {
 	public function insertId() {
 		$res = $this->query( "SELECT lastval()" );
 		$row = $this->fetchRow( $res );
-		return is_null( $row[0] ) ? null : (int)$row[0];
+		return $row[0] === null ? null : (int)$row[0];
 	}
 
 	public function dataSeek( $res, $row ) {
@@ -1283,7 +1283,7 @@ SQL;
 	public function addQuotes( $s ) {
 		$conn = $this->getBindingHandle();
 
-		if ( is_null( $s ) ) {
+		if ( $s === null ) {
 			return 'NULL';
 		} elseif ( is_bool( $s ) ) {
 			return (string)intval( $s );

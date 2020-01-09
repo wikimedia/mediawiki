@@ -137,7 +137,7 @@ class ApiEditPage extends ApiBase {
 		);
 
 		$toMD5 = $params['text'];
-		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) ) {
+		if ( $params['appendtext'] !== null || $params['prependtext'] !== null ) {
 			$content = $pageObj->getContent();
 
 			if ( !$content ) {
@@ -170,7 +170,7 @@ class ApiEditPage extends ApiBase {
 				$this->dieWithError( [ 'apierror-appendnotsupported', $modelName ] );
 			}
 
-			if ( !is_null( $params['section'] ) ) {
+			if ( $params['section'] !== null ) {
 				if ( !$contentHandler->supportsSections() ) {
 					$modelName = $contentHandler->getModelID();
 					$this->dieWithError( [ 'apierror-sectionsnotsupported', $modelName ] );
@@ -209,14 +209,14 @@ class ApiEditPage extends ApiBase {
 				$undoafterRev = Revision::newFromId( $params['undoafter'] );
 			}
 			$undoRev = Revision::newFromId( $params['undo'] );
-			if ( is_null( $undoRev ) || $undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+			if ( $undoRev === null || $undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undo'] ] );
 			}
 
 			if ( $params['undoafter'] == 0 ) {
 				$undoafterRev = $undoRev->getPrevious();
 			}
-			if ( is_null( $undoafterRev ) || $undoafterRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+			if ( $undoafterRev === null || $undoafterRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undoafter'] ] );
 			}
 
@@ -256,7 +256,7 @@ class ApiEditPage extends ApiBase {
 			// If no summary was given and we only undid one rev,
 			// use an autosummary
 
-			if ( is_null( $params['summary'] ) ) {
+			if ( $params['summary'] === null ) {
 				$nextRev = MediaWikiServices::getInstance()->getRevisionLookup()
 					->getNextRevision( $undoafterRev->getRevisionRecord() );
 				if ( $nextRev && $nextRev->getId() == $params['undo'] ) {
@@ -268,7 +268,7 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// See if the MD5 hash checks out
-		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] ) {
+		if ( $params['md5'] !== null && md5( $toMD5 ) !== $params['md5'] ) {
 			$this->dieWithError( 'apierror-badmd5' );
 		}
 
@@ -286,11 +286,11 @@ class ApiEditPage extends ApiBase {
 			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 		];
 
-		if ( !is_null( $params['summary'] ) ) {
+		if ( $params['summary'] !== null ) {
 			$requestArray['wpSummary'] = $params['summary'];
 		}
 
-		if ( !is_null( $params['sectiontitle'] ) ) {
+		if ( $params['sectiontitle'] !== null ) {
 			$requestArray['wpSectionTitle'] = $params['sectiontitle'];
 		}
 
@@ -321,7 +321,7 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpRecreate'] = '';
 		}
 
-		if ( !is_null( $params['section'] ) ) {
+		if ( $params['section'] !== null ) {
 			$section = $params['section'];
 			if ( !preg_match( '/^((T-)?\d+|new)$/', $section ) ) {
 				$this->dieWithError( 'apierror-invalidsection' );

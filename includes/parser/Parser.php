@@ -1067,7 +1067,7 @@ class Parser {
 	 * @return User
 	 */
 	public function getUser() {
-		if ( !is_null( $this->mUser ) ) {
+		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
 		return $this->mOptions->getUser();
@@ -4064,7 +4064,7 @@ class Parser {
 				}
 			}
 		} else {
-			if ( is_null( $attrText ) ) {
+			if ( $attrText === null ) {
 				$attrText = '';
 			}
 			if ( isset( $params['attributes'] ) ) {
@@ -4076,7 +4076,7 @@ class Parser {
 			if ( $content === null ) {
 				$output = "<$name$attrText/>";
 			} else {
-				$close = is_null( $params['close'] ) ? '' : $frame->expand( $params['close'] );
+				$close = $params['close'] === null ? '' : $frame->expand( $params['close'] );
 				if ( substr( $close, 0, $errorLen ) === $errorStr ) {
 					// See above
 					return $close;
@@ -4723,7 +4723,7 @@ class Parser {
 			$nickname = $user->getOption( 'nickname' );
 		}
 
-		if ( is_null( $fancySig ) ) {
+		if ( $fancySig === null ) {
 			$fancySig = $user->getBoolOption( 'fancysig' );
 		}
 
@@ -5176,7 +5176,7 @@ class Parser {
 				$matches[1] = rawurldecode( $matches[1] );
 			}
 			$title = Title::newFromText( $matches[1], NS_FILE );
-			if ( is_null( $title ) ) {
+			if ( $title === null ) {
 				# Bogus title. Ignore these so we don't bomb out later.
 				continue;
 			}
@@ -6041,7 +6041,7 @@ class Parser {
 	 * @return string User name
 	 */
 	public function getRevisionUser() {
-		if ( is_null( $this->mRevisionUser ) ) {
+		if ( $this->mRevisionUser === null ) {
 			$revObject = $this->getRevisionObject();
 
 			# if this template is subst: the revision id will be blank,
@@ -6061,7 +6061,7 @@ class Parser {
 	 * @return int|null Revision size
 	 */
 	public function getRevisionSize() {
-		if ( is_null( $this->mRevisionSize ) ) {
+		if ( $this->mRevisionSize === null ) {
 			$revObject = $this->getRevisionObject();
 
 			# if this variable is subst: the revision id will be blank,

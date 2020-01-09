@@ -61,7 +61,7 @@ class ImageListPager extends TablePager {
 
 		if ( $userName !== null && $userName !== '' ) {
 			$nt = Title::makeTitleSafe( NS_USER, $userName );
-			if ( is_null( $nt ) ) {
+			if ( $nt === null ) {
 				$this->outputUserDoesNotExist( $userName );
 			} else {
 				$this->mUserName = $nt->getText();
@@ -135,7 +135,7 @@ class ImageListPager extends TablePager {
 		$prefix = $table === 'image' ? 'img' : 'oi';
 		$conds = [];
 
-		if ( !is_null( $this->mUserName ) ) {
+		if ( $this->mUserName !== null ) {
 			// getQueryInfoReal() should have handled the tables and joins.
 			$dbr = wfGetDB( DB_REPLICA );
 			$actorWhere = ActorMigration::newMigration()->getWhere(
@@ -183,7 +183,7 @@ class ImageListPager extends TablePager {
 				'thumb' => $this->msg( 'listfiles_thumb' )->text(),
 				'img_size' => $this->msg( 'listfiles_size' )->text(),
 			];
-			if ( is_null( $this->mUserName ) ) {
+			if ( $this->mUserName === null ) {
 				// Do not show username if filtering by username
 				$this->mFieldNames['img_user_text'] = $this->msg( 'listfiles_user' )->text();
 			}
@@ -214,7 +214,7 @@ class ImageListPager extends TablePager {
 		 * In particular that means we cannot sort by timestamp when not filtering
 		 * by user and including old images in the results. Which is sad.
 		 */
-		if ( $this->getConfig()->get( 'MiserMode' ) && !is_null( $this->mUserName ) ) {
+		if ( $this->getConfig()->get( 'MiserMode' ) && $this->mUserName !== null ) {
 			// If we're sorting by user, the index only supports sorting by time.
 			if ( $field === 'img_timestamp' ) {
 				return true;
@@ -405,7 +405,7 @@ class ImageListPager extends TablePager {
 	}
 
 	function getDefaultSort() {
-		if ( $this->mShowAll && $this->getConfig()->get( 'MiserMode' ) && is_null( $this->mUserName ) ) {
+		if ( $this->mShowAll && $this->getConfig()->get( 'MiserMode' ) && $this->mUserName === null ) {
 			// Unfortunately no index on oi_timestamp.
 			return 'img_name';
 		} else {
@@ -598,7 +598,7 @@ class ImageListPager extends TablePager {
 
 	function getPagingQueries() {
 		$queries = parent::getPagingQueries();
-		if ( !is_null( $this->mUserName ) ) {
+		if ( $this->mUserName !== null ) {
 			# Append the username to the query string
 			foreach ( $queries as &$query ) {
 				if ( $query !== false ) {
@@ -612,7 +612,7 @@ class ImageListPager extends TablePager {
 
 	function getDefaultQuery() {
 		$queries = parent::getDefaultQuery();
-		if ( !isset( $queries['user'] ) && !is_null( $this->mUserName ) ) {
+		if ( !isset( $queries['user'] ) && $this->mUserName !== null ) {
 			$queries['user'] = $this->mUserName;
 		}
 

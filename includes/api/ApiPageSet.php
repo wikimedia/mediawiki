@@ -863,7 +863,7 @@ class ApiPageSet extends ApiBase {
 	 *        If false, treat it as an array of [pageIDs]
 	 */
 	private function initFromQueryResult( $res, &$remaining = null, $processTitles = null ) {
-		if ( !is_null( $remaining ) && is_null( $processTitles ) ) {
+		if ( $remaining !== null && $processTitles === null ) {
 			ApiBase::dieDebug( __METHOD__, 'Missing $processTitles parameter when $remaining is provided' );
 		}
 

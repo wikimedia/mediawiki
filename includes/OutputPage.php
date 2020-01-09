@@ -1686,7 +1686,7 @@ class OutputPage extends ContextSource {
 	 * @return mixed Previous value
 	 */
 	public function setRevisionId( $revid ) {
-		$val = is_null( $revid ) ? null : intval( $revid );
+		$val = $revid === null ? null : intval( $revid );
 		return wfSetVar( $this->mRevisionId, $val, true );
 	}
 
@@ -2131,7 +2131,7 @@ class OutputPage extends ContextSource {
 	 * @return ParserOutput
 	 */
 	private function parseInternal( $text, $title, $linestart, $tidy, $interface, $language ) {
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
 		}
 
@@ -3183,7 +3183,7 @@ class OutputPage extends ContextSource {
 	 * @return ResourceLoader
 	 */
 	public function getResourceLoader() {
-		if ( is_null( $this->mResourceLoader ) ) {
+		if ( $this->mResourceLoader === null ) {
 			// Lazy-initialise as needed
 			$this->mResourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
 		}
@@ -3881,7 +3881,7 @@ class OutputPage extends ContextSource {
 
 		if ( isset( $options['media'] ) ) {
 			$media = self::transformCssMedia( $options['media'] );
-			if ( is_null( $media ) ) {
+			if ( $media === null ) {
 				return '';
 			}
 		} else {

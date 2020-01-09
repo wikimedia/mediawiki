@@ -196,7 +196,7 @@ function wfStreamThumb( array $params ) {
 			// Since redirects are associated with pages, not versions of files,
 			// we look for the most current version to see if its a redirect.
 			$possRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $img->getName() );
-			if ( $possRedirFile && !is_null( $possRedirFile->getRedirected() ) ) {
+			if ( $possRedirFile && $possRedirFile->getRedirected() !== null ) {
 				$redirTarget = $possRedirFile->getName();
 				$targetFile = wfLocalFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
 				if ( $targetFile->exists() ) {

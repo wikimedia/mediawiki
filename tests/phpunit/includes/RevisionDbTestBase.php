@@ -987,7 +987,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			$expectedSerialization,
-			is_null( $content ) ? null : $content->serialize( $format )
+			$content === null ? null : $content->serialize( $format )
 		);
 	}
 

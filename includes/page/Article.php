@@ -328,7 +328,7 @@ class Article implements Page {
 	 *         context's WebRequest.
 	 */
 	public function getOldID() {
-		if ( is_null( $this->mOldId ) ) {
+		if ( $this->mOldId === null ) {
 			$this->mOldId = $this->getOldIDFromRequest();
 		}
 
@@ -1398,7 +1398,7 @@ class Article implements Page {
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
 			} elseif (
-				!is_null( $block ) &&
+				$block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&
 				( $block->isSitewide() || $user->isBlockedFrom( $title ) )
 			) {

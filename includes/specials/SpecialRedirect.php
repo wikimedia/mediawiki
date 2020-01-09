@@ -253,7 +253,7 @@ class SpecialRedirect extends FormSpecialPage {
 
 			return true;
 		}
-		if ( !is_null( $this->mValue ) ) {
+		if ( $this->mValue !== null ) {
 			$this->getOutput()->setStatusCode( 404 );
 
 			return $status;

@@ -270,7 +270,7 @@ class TestFileReader {
 	 * @throws MWException
 	 */
 	private function checkSection( $tokens, $fatal = true ) {
-		if ( is_null( $this->section ) ) {
+		if ( $this->section === null ) {
 			throw new MWException( __METHOD__ . " can not verify a null section!\n" );
 		}
 		if ( !is_array( $tokens ) ) {

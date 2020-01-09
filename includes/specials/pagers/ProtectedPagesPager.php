@@ -146,7 +146,7 @@ class ProtectedPagesPager extends TablePager {
 				} else {
 					$formatted = $linkRenderer->makeLink( $title );
 				}
-				if ( !is_null( $row->page_len ) ) {
+				if ( $row->page_len !== null ) {
 					$formatted .= $this->getLanguage()->getDirMark() .
 						' ' . Html::rawElement(
 							'span',
@@ -277,7 +277,7 @@ class ProtectedPagesPager extends TablePager {
 		if ( $this->level ) {
 			$conds[] = 'pr_level=' . $this->mDb->addQuotes( $this->level );
 		}
-		if ( !is_null( $this->namespace ) ) {
+		if ( $this->namespace !== null ) {
 			$conds[] = 'page_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		}
 

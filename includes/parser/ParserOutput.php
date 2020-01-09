@@ -785,7 +785,7 @@ class ParserOutput extends CacheTime {
 		if ( !isset( $this->mLinks[$ns] ) ) {
 			$this->mLinks[$ns] = [];
 		}
-		if ( is_null( $id ) ) {
+		if ( $id === null ) {
 			$id = $title->getArticleID();
 		}
 		$this->mLinks[$ns][$dbk] = $id;

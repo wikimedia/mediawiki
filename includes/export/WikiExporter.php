@@ -203,7 +203,7 @@ class WikiExporter {
 	 */
 	public function pageByName( $name ) {
 		$title = Title::newFromText( $name );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			throw new MWException( "Can't export invalid title" );
 		} else {
 			$this->pageByTitle( $title );

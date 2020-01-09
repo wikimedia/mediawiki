@@ -98,7 +98,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			// The patrol token is always the same, let's exploit that
 			static $cachedPatrolToken = null;
 
-			if ( is_null( $cachedPatrolToken ) ) {
+			if ( $cachedPatrolToken === null ) {
 				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
 			}
 
@@ -154,7 +154,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->addTables( 'recentchanges' );
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$db = $this->getDB();
@@ -177,7 +177,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 
-		if ( !is_null( $params['type'] ) ) {
+		if ( $params['type'] !== null ) {
 			try {
 				$this->addWhereFld( 'rc_type', RecentChange::parseToRCType( $params['type'] ) );
 			} catch ( Exception $e ) {
@@ -186,16 +186,16 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		$title = $params['title'];
-		if ( !is_null( $title ) ) {
+		if ( $title !== null ) {
 			$titleObj = Title::newFromText( $title );
-			if ( is_null( $titleObj ) ) {
+			if ( $titleObj === null ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
 			}
 			$this->addWhereFld( 'rc_namespace', $titleObj->getNamespace() );
 			$this->addWhereFld( 'rc_title', $titleObj->getDBkey() );
 		}
 
-		if ( !is_null( $params['show'] ) ) {
+		if ( $params['show'] !== null ) {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
@@ -269,7 +269,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
-		if ( !is_null( $params['user'] ) ) {
+		if ( $params['user'] !== null ) {
 			// Don't query by user ID here, it might be able to use the rc_user_text index.
 			$actorQuery = ActorMigration::newMigration()
 				->getWhere( $this->getDB(), 'rc_user', User::newFromName( $params['user'], false ), false );
@@ -278,7 +278,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhere( $actorQuery['conds'] );
 		}
 
-		if ( !is_null( $params['excludeuser'] ) ) {
+		if ( $params['excludeuser'] !== null ) {
 			// Here there's no chance to use the rc_user_text index, so allow ID to be used.
 			$actorQuery = ActorMigration::newMigration()
 				->getWhere( $this->getDB(), 'rc_user', User::newFromName( $params['excludeuser'], false ) );
@@ -300,7 +300,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$showRedirects = false;
 		/* Determine what properties we need to display. */
-		if ( !is_null( $params['prop'] ) ) {
+		if ( $params['prop'] !== null ) {
 			$prop = array_flip( $params['prop'] );
 
 			/* Set up internal members based upon params. */
@@ -347,7 +347,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( !is_null( $params['tag'] ) ) {
+		if ( $params['tag'] !== null ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( [ 'change_tag' => [ 'JOIN', [ 'rc_id=ct_rc_id' ] ] ] );
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
@@ -360,7 +360,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		// Paranoia: avoid brute force searches (T19342)
-		if ( !is_null( $params['user'] ) || !is_null( $params['excludeuser'] ) ) {
+		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
 			} elseif ( !$this->getPermissionManager()
@@ -403,7 +403,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addJoinConds( $commentQuery['joins'] );
 		}
 
-		if ( $this->fld_user || $this->fld_userid || !is_null( $this->token ) ) {
+		if ( $this->fld_user || $this->fld_userid || $this->token !== null ) {
 			// Token needs rc_user for RecentChange::newFromRow/User::newFromAnyId (T228425)
 			$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
 			$this->addTables( $actorQuery['tables'] );
@@ -490,7 +490,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				break;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				/* Extract the data from a single row. */
 				$vals = $this->extractRowInfo( $row );
 
@@ -511,7 +511,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			/* Format the result */
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'rc' );
 		} elseif ( $params['generaterevisions'] ) {
@@ -673,7 +673,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( !is_null( $this->token ) ) {
+		if ( $this->token !== null ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach ( $this->token as $t ) {
 				$val = call_user_func( $tokenFunctions[$t], $row->rc_cur_id,
@@ -717,7 +717,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
 		}
-		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
+		if ( $params['prop'] !== null && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		}

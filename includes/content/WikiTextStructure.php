@@ -147,7 +147,7 @@ class WikiTextStructure {
 	 * Extract parts of the text - opening, main and auxiliary.
 	 */
 	private function extractWikitextParts() {
-		if ( !is_null( $this->allText ) ) {
+		if ( $this->allText !== null ) {
 			return;
 		}
 		$text = $this->parserOutput->getText( [

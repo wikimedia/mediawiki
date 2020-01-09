@@ -4166,7 +4166,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		 */
 		Hooks::run( 'TitleIsAlwaysKnown', [ $this, &$isKnown ] );
 
-		if ( !is_null( $isKnown ) ) {
+		if ( $isKnown !== null ) {
 			return $isKnown;
 		}
 
@@ -4454,7 +4454,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		} else {
 			$where[] = 'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL';
 		}
-		if ( !is_null( $ns ) ) {
+		if ( $ns !== null ) {
 			$where['page_namespace'] = $ns;
 		}
 

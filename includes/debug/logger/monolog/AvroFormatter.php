@@ -127,7 +127,10 @@ class AvroFormatter implements FormatterInterface {
 		if ( !isset( $this->schemas[$channel] ) ) {
 			return null;
 		}
-		if ( !isset( $this->schemas[$channel]['revision'], $this->schemas[$channel]['schema'] ) ) {
+		if (
+			!isset( $this->schemas[$channel]['revision'] )
+			&& !isset( $this->schemas[$channel]['schema'] )
+		) {
 			return null;
 		}
 

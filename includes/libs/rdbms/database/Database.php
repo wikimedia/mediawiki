@@ -602,7 +602,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getLBInfo( $name = null ) {
-		if ( is_null( $name ) ) {
+		if ( $name === null ) {
 			return $this->lbInfo;
 		}
 
@@ -2090,7 +2090,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$info = $this->indexInfo( $table, $index, $fname );
-		if ( is_null( $info ) ) {
+		if ( $info === null ) {
 			return null;
 		} else {
 			return $info !== false;
@@ -4260,7 +4260,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function timestampOrNull( $ts = null ) {
-		if ( is_null( $ts ) ) {
+		if ( $ts === null ) {
 			return null;
 		} else {
 			return $this->timestamp( $ts );

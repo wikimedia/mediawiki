@@ -171,10 +171,10 @@ class LocalFileRestoreBatch {
 				$sha1 = substr( $sha1, 1 );
 			}
 
-			if ( is_null( $row->fa_major_mime ) || $row->fa_major_mime == 'unknown'
-				|| is_null( $row->fa_minor_mime ) || $row->fa_minor_mime == 'unknown'
-				|| is_null( $row->fa_media_type ) || $row->fa_media_type == 'UNKNOWN'
-				|| is_null( $row->fa_metadata )
+			if ( $row->fa_major_mime === null || $row->fa_major_mime == 'unknown'
+				|| $row->fa_minor_mime === null || $row->fa_minor_mime == 'unknown'
+				|| $row->fa_media_type === null || $row->fa_media_type == 'UNKNOWN'
+				|| $row->fa_metadata === null
 			) {
 				// Refresh our metadata
 				// Required for a new current revision; nice for older ones too. :)

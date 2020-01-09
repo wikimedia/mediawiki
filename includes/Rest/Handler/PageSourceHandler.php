@@ -173,7 +173,7 @@ class PageSourceHandler extends SimpleHandler {
 	 * @return RevisionRecord|bool latest revision or false if unable to retrieve revision
 	 */
 	private function getRevision() {
-		if ( is_null( $this->revision ) ) {
+		if ( $this->revision === null ) {
 			$title = $this->getTitle();
 			if ( $title && $title->getArticleID() ) {
 				$this->revision = $this->revisionLookup->getKnownCurrentRevision( $title );
@@ -188,7 +188,7 @@ class PageSourceHandler extends SimpleHandler {
 	 * @return Title|bool Title or false if unable to retrieve title
 	 */
 	private function getTitle() {
-		if ( is_null( $this->titleObject ) ) {
+		if ( $this->titleObject === null ) {
 			$this->titleObject = Title::newFromText( $this->getValidatedParams()['title'] ) ?? false;
 		}
 		return $this->titleObject;

@@ -887,7 +887,7 @@ class LanguageConverter {
 		foreach ( $variants as $v ) {
 			if ( $v != $link ) {
 				$varnt = Title::newFromText( $v, $ns );
-				if ( !is_null( $varnt ) ) {
+				if ( $varnt !== null ) {
 					$linkBatch->addObj( $varnt );
 					$titles[] = $varnt;
 				}
@@ -1176,7 +1176,7 @@ class LanguageConverter {
 	 * @return string
 	 */
 	public function getVarSeparatorPattern() {
-		if ( is_null( $this->mVarSeparatorPattern ) ) {
+		if ( $this->mVarSeparatorPattern === null ) {
 			// varsep_pattern for preg_split:
 			// text should be splited by ";" only if a valid variant
 			// name exist after the markup, for example:

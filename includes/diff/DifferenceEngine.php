@@ -1936,7 +1936,7 @@ class DifferenceEngine extends ContextSource {
 			}
 		} /* elseif ( $this->mOldid === false ) leave mOldRev false; */
 
-		if ( is_null( $this->mOldRev ) ) {
+		if ( $this->mOldRev === null ) {
 			return false;
 		}
 

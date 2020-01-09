@@ -39,7 +39,7 @@ trait RevisionSearchResultTrait {
 	protected function initFromTitle( $title ) {
 		$this->mTitle = $title;
 		$services = MediaWikiServices::getInstance();
-		if ( !is_null( $this->mTitle ) ) {
+		if ( $this->mTitle !== null ) {
 			$id = false;
 			Hooks::run( 'SearchResultInitFromTitle', [ $title, &$id ] );
 			$this->mRevision = Revision::newFromTitle(
@@ -56,7 +56,7 @@ trait RevisionSearchResultTrait {
 	 * @return bool
 	 */
 	public function isBrokenTitle() {
-		return is_null( $this->mTitle );
+		return $this->mTitle === null;
 	}
 
 	/**

@@ -103,12 +103,12 @@ class ApiQueryUsers extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'userids', 'users' );
 
-		if ( !is_null( $params['prop'] ) ) {
+		if ( $params['prop'] !== null ) {
 			$this->prop = array_flip( $params['prop'] );
 		} else {
 			$this->prop = [];
 		}
-		$useNames = !is_null( $params['users'] );
+		$useNames = $params['users'] !== null;
 
 		$users = (array)$params['users'];
 		$userids = (array)$params['userids'];
@@ -234,7 +234,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				if ( $row->ipb_deleted ) {
 					$data[$key]['hidden'] = true;
 				}
-				if ( isset( $this->prop['blockinfo'] ) && !is_null( $row->ipb_by_text ) ) {
+				if ( isset( $this->prop['blockinfo'] ) && $row->ipb_by_text !== null ) {
 					$data[$key] += $this->getBlockDetails( DatabaseBlock::newFromRow( $row ) );
 				}
 
@@ -256,7 +256,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					);
 				}
 
-				if ( !is_null( $params['token'] ) ) {
+				if ( $params['token'] !== null ) {
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $params['token'] as $t ) {
 						$val = call_user_func( $tokenFunctions[$t], $user );
@@ -284,7 +284,7 @@ class ApiQueryUsers extends ApiQueryBase {
 					if ( $iwUser instanceof UserRightsProxy ) {
 						$data[$u]['interwiki'] = true;
 
-						if ( !is_null( $params['token'] ) ) {
+						if ( $params['token'] !== null ) {
 							$tokenFunctions = $this->getTokenFunctions();
 
 							foreach ( $params['token'] as $t ) {

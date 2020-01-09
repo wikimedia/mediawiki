@@ -94,11 +94,11 @@ class ApiParse extends ApiBase {
 		// Return result
 		$result = $this->getResult();
 
-		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
+		if ( $oldid !== null || $pageid !== null || $page !== null ) {
 			if ( $this->section === 'new' ) {
 				$this->dieWithError( 'apierror-invalidparammix-parse-new-section', 'invalidparammix' );
 			}
-			if ( !is_null( $oldid ) ) {
+			if ( $oldid !== null ) {
 				// Don't use the parser cache
 				$rev = Revision::newFromId( $oldid );
 				if ( !$rev ) {
@@ -125,7 +125,7 @@ class ApiParse extends ApiBase {
 						'redirects' => '',
 					];
 					$pageParams = [];
-					if ( !is_null( $pageid ) ) {
+					if ( $pageid !== null ) {
 						$reqParams['pageids'] = $pageid;
 						$pageParams['pageid'] = $pageid;
 					} else { // $page
@@ -141,7 +141,7 @@ class ApiParse extends ApiBase {
 					foreach ( $pageSet->getRedirectTitles() as $title ) {
 						$pageParams = [ 'title' => $title->getFullText() ];
 					}
-				} elseif ( !is_null( $pageid ) ) {
+				} elseif ( $pageid !== null ) {
 					$pageParams = [ 'pageid' => $pageid ];
 				} else { // $page
 					$pageParams = [ 'title' => $page ];
@@ -199,7 +199,7 @@ class ApiParse extends ApiBase {
 			}
 
 			list( $popts, $reset ) = $this->makeParserOptions( $pageObj, $params );
-			$textProvided = !is_null( $text );
+			$textProvided = $text !== null;
 
 			if ( !$textProvided ) {
 				if ( $titleProvided && ( $prop || $params['generatexml'] ) ) {
@@ -215,7 +215,7 @@ class ApiParse extends ApiBase {
 
 			// If we are parsing text, do not use the content model of the default
 			// API title, but default to wikitext to keep BC.
-			if ( $textProvided && !$titleProvided && is_null( $model ) ) {
+			if ( $textProvided && !$titleProvided && $model === null ) {
 				$model = CONTENT_MODEL_WIKITEXT;
 				$this->addWarning( [ 'apiwarn-parse-nocontentmodel', $model ] );
 			}
@@ -231,7 +231,7 @@ class ApiParse extends ApiBase {
 			if ( $this->section !== false ) {
 				if ( $this->section === 'new' ) {
 					// Insert the section title above the content.
-					if ( !is_null( $params['sectiontitle'] ) && $params['sectiontitle'] !== '' ) {
+					if ( $params['sectiontitle'] !== null && $params['sectiontitle'] !== '' ) {
 						$this->content = $this->content->addSectionHeader( $params['sectiontitle'] );
 					}
 				} else {
@@ -251,8 +251,8 @@ class ApiParse extends ApiBase {
 					$result_array['wikitext'] = $this->content->serialize( $format );
 					$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'wikitext';
 				}
-				if ( !is_null( $params['summary'] ) ||
-					( !is_null( $params['sectiontitle'] ) && $this->section === 'new' )
+				if ( $params['summary'] !== null ||
+					( $params['sectiontitle'] !== null && $this->section === 'new' )
 				) {
 					$result_array['parsedsummary'] = $this->formatSummary( $titleObj, $params );
 					$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsedsummary';
@@ -331,11 +331,11 @@ class ApiParse extends ApiBase {
 			Hooks::run( 'ApiParseMakeOutputPage', [ $this, $outputPage ] );
 		}
 
-		if ( !is_null( $oldid ) ) {
+		if ( $oldid !== null ) {
 			$result_array['revid'] = (int)$oldid;
 		}
 
-		if ( $params['redirects'] && !is_null( $redirValues ) ) {
+		if ( $params['redirects'] && $redirValues !== null ) {
 			$result_array['redirects'] = $redirValues;
 		}
 
@@ -349,8 +349,8 @@ class ApiParse extends ApiBase {
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 		}
 
-		if ( !is_null( $params['summary'] ) ||
-			( !is_null( $params['sectiontitle'] ) && $this->section === 'new' )
+		if ( $params['summary'] !== null ||
+			( $params['sectiontitle'] !== null && $this->section === 'new' )
 		) {
 			$result_array['parsedsummary'] = $this->formatSummary( $titleObj, $params );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsedsummary';
@@ -466,7 +466,7 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['wikitext'] ) ) {
 			$result_array['wikitext'] = $this->content->serialize( $format );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'wikitext';
-			if ( !is_null( $this->pstContent ) ) {
+			if ( $this->pstContent !== null ) {
 				$result_array['psttext'] = $this->pstContent->serialize( $format );
 				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'psttext';
 			}

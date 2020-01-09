@@ -105,7 +105,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		if ( is_null( $this->mDb ) ) {
+		if ( $this->mDb === null ) {
 			$this->mDb = $this->getQuery()->getDB();
 		}
 
@@ -325,11 +325,11 @@ abstract class ApiQueryBase extends ApiBase {
 		$before = ( $isDirNewer ? '<=' : '>=' );
 		$db = $this->getDB();
 
-		if ( !is_null( $start ) ) {
+		if ( $start !== null ) {
 			$this->addWhere( $field . $after . $db->addQuotes( $start ) );
 		}
 
-		if ( !is_null( $end ) ) {
+		if ( $end !== null ) {
 			$this->addWhere( $field . $before . $db->addQuotes( $end ) );
 		}
 
@@ -367,7 +367,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param int|string|string[]|null $value Option value
 	 */
 	protected function addOption( $name, $value = null ) {
-		if ( is_null( $value ) ) {
+		if ( $value === null ) {
 			$this->options[] = $name;
 		} else {
 			$this->options[$name] = $value;
@@ -488,7 +488,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool Whether the element fit in the result
 	 */
 	protected function addPageSubItem( $pageId, $item, $elemname = null ) {
-		if ( is_null( $elemname ) ) {
+		if ( $elemname === null ) {
 			$elemname = $this->getModulePrefix();
 		}
 		$result = $this->getResult();

@@ -691,14 +691,14 @@ wfMemoryLimit( $wgMemoryLimit );
  * that happens whenever you use a date function without the timezone being
  * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
  */
-if ( is_null( $wgLocaltimezone ) ) {
+if ( $wgLocaltimezone === null ) {
 	Wikimedia\suppressWarnings();
 	$wgLocaltimezone = date_default_timezone_get();
 	Wikimedia\restoreWarnings();
 }
 
 date_default_timezone_set( $wgLocaltimezone );
-if ( is_null( $wgLocalTZoffset ) ) {
+if ( $wgLocalTZoffset === null ) {
 	$wgLocalTZoffset = (int)date( 'Z' ) / 60;
 }
 // The part after the System| is ignored, but rest of MW fills it

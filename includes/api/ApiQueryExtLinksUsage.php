@@ -107,7 +107,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$fld_title = isset( $prop['title'] );
 		$fld_url = isset( $prop['url'] );
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->addFields( [
 				'page_id',
 				'page_namespace',
@@ -155,7 +155,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				continue;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$vals = [
 					ApiResult::META_TYPE => 'assoc',
 				];
@@ -184,7 +184,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ],
 				$this->getModulePrefix() );
 		}

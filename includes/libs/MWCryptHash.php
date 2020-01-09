@@ -42,7 +42,7 @@ class MWCryptHash {
 	 * @return string A hash algorithm
 	 */
 	public static function hashAlgo() {
-		if ( !is_null( self::$algo ) ) {
+		if ( self::$algo !== null ) {
 			return self::$algo;
 		}
 
@@ -75,7 +75,7 @@ class MWCryptHash {
 	 */
 	public static function hashLength( $raw = true ) {
 		$raw = (bool)$raw;
-		if ( is_null( self::$hashLength[$raw] ) ) {
+		if ( self::$hashLength[$raw] === null ) {
 			self::$hashLength[$raw] = strlen( self::hash( '', $raw ) );
 		}
 

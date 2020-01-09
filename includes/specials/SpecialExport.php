@@ -135,7 +135,7 @@ class SpecialExport extends SpecialPage {
 					$history['limit'] = $limit;
 				}
 
-				if ( !is_null( $offset ) ) {
+				if ( $offset !== null ) {
 					$history['offset'] = $offset;
 				}
 
@@ -395,7 +395,7 @@ class SpecialExport extends SpecialPage {
 			foreach ( $pages as $page ) {
 				# T10824: Only export pages the user can read
 				$title = Title::newFromText( $page );
-				if ( is_null( $title ) ) {
+				if ( $title === null ) {
 					// @todo Perhaps output an <error> tag or something.
 					continue;
 				}

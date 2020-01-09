@@ -190,7 +190,7 @@ abstract class UploadBase {
 		// Give hooks the chance to handle this request
 		$className = null;
 		Hooks::run( 'UploadCreateFromRequest', [ $type, &$className ] );
-		if ( is_null( $className ) ) {
+		if ( $className === null ) {
 			$className = 'UploadFrom' . $type;
 			wfDebug( __METHOD__ . ": class name: $className\n" );
 			if ( !in_array( $type, self::$uploadHandlers ) ) {
@@ -400,7 +400,7 @@ abstract class UploadBase {
 	 */
 	public function validateName() {
 		$nt = $this->getTitle();
-		if ( is_null( $nt ) ) {
+		if ( $nt === null ) {
 			$result = [ 'status' => $this->mTitleError ];
 			if ( $this->mTitleError == self::ILLEGAL_FILENAME ) {
 				$result['filtered'] = $this->mFilteredName;
@@ -634,7 +634,7 @@ abstract class UploadBase {
 		 * to modify it by uploading a new revision.
 		 */
 		$nt = $this->getTitle();
-		if ( is_null( $nt ) ) {
+		if ( $nt === null ) {
 			return true;
 		}
 		$permErrors = $nt->getUserPermissionsErrors( 'edit', $user );
@@ -988,7 +988,7 @@ abstract class UploadBase {
 		$this->mFilteredName = wfStripIllegalFilenameChars( $this->mFilteredName );
 		/* Normalize to title form before we do any further processing */
 		$nt = Title::makeTitleSafe( NS_FILE, $this->mFilteredName );
-		if ( is_null( $nt ) ) {
+		if ( $nt === null ) {
 			$this->mTitleError = self::ILLEGAL_FILENAME;
 			$this->mTitle = null;
 
@@ -1084,9 +1084,9 @@ abstract class UploadBase {
 	 * @return LocalFile|null
 	 */
 	public function getLocalFile() {
-		if ( is_null( $this->mLocalFile ) ) {
+		if ( $this->mLocalFile === null ) {
 			$nt = $this->getTitle();
-			$this->mLocalFile = is_null( $nt ) ? null : wfLocalFile( $nt );
+			$this->mLocalFile = $nt === null ? null : wfLocalFile( $nt );
 		}
 
 		return $this->mLocalFile;
@@ -2186,7 +2186,7 @@ abstract class UploadBase {
 		global $wgMaxUploadSize;
 
 		if ( is_array( $wgMaxUploadSize ) ) {
-			if ( !is_null( $forType ) && isset( $wgMaxUploadSize[$forType] ) ) {
+			if ( $forType !== null && isset( $wgMaxUploadSize[$forType] ) ) {
 				return $wgMaxUploadSize[$forType];
 			} else {
 				return $wgMaxUploadSize['*'];

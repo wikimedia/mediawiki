@@ -67,7 +67,7 @@ class ApiQueryCategoryInfo extends ApiQueryBase {
 		] );
 		$this->addWhere( [ 'cat_title' => $cattitles ] );
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$title = $this->getDB()->addQuotes( $params['continue'] );
 			$this->addWhere( "cat_title >= $title" );
 		}

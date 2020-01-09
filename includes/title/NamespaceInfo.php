@@ -391,7 +391,7 @@ class NamespaceInfo {
 	 * @return array
 	 */
 	public function getValidNamespaces() {
-		if ( is_null( $this->validNamespaces ) ) {
+		if ( $this->validNamespaces === null ) {
 			$this->validNamespaces = [];
 			foreach ( array_keys( $this->getCanonicalNamespaces() ) as $ns ) {
 				if ( $ns >= 0 ) {

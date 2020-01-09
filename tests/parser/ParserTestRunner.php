@@ -1684,7 +1684,7 @@ class ParserTestRunner {
 		$title = Title::newFromText( $name );
 		wfDebug( __METHOD__ . ": adding $name" );
 
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			throw new MWException( "invalid title '$name' at $file:$line\n" );
 		}
 

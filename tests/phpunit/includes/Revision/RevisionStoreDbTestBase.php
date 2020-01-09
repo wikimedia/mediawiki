@@ -110,11 +110,11 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @return WikiPage
 	 */
 	protected function getTestPage( $pageTitle = null ) {
-		if ( is_null( $pageTitle ) && $this->testPage ) {
+		if ( $pageTitle === null && $this->testPage ) {
 			return $this->testPage;
 		}
 
-		$title = is_null( $pageTitle ) ? $this->getTestPageTitle() : Title::newFromText( $pageTitle );
+		$title = $pageTitle === null ? $this->getTestPageTitle() : Title::newFromText( $pageTitle );
 		$page = WikiPage::factory( $title );
 
 		if ( !$page->exists() ) {
@@ -132,7 +132,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			);
 		}
 
-		if ( is_null( $pageTitle ) ) {
+		if ( $pageTitle === null ) {
 			$this->testPage = $page;
 		}
 		return $page;

@@ -412,7 +412,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				__METHOD__
 			);
 
-			if ( !is_null( $deps ) ) {
+			if ( $deps !== null ) {
 				$this->fileDeps[$vary] = self::expandRelativePaths(
 					(array)json_decode( $deps, true )
 				);

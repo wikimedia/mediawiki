@@ -757,7 +757,7 @@ abstract class HTMLFormField {
 	 * @return string
 	 */
 	public function getHelpTextHtmlTable( $helptext ) {
-		if ( is_null( $helptext ) ) {
+		if ( $helptext === null ) {
 			return '';
 		}
 
@@ -786,7 +786,7 @@ abstract class HTMLFormField {
 	 * @return string
 	 */
 	public function getHelpTextHtmlDiv( $helptext ) {
-		if ( is_null( $helptext ) ) {
+		if ( $helptext === null ) {
 			return '';
 		}
 
@@ -833,7 +833,7 @@ abstract class HTMLFormField {
 				$msg = $this->getMessage( $msg );
 
 				if ( $msg->exists() ) {
-					if ( is_null( $helptext ) ) {
+					if ( $helptext === null ) {
 						$helptext = '';
 					} else {
 						$helptext .= $this->msg( 'word-separator' )->escaped(); // some space

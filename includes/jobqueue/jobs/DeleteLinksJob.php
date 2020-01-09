@@ -38,7 +38,7 @@ class DeleteLinksJob extends Job {
 	}
 
 	public function run() {
-		if ( is_null( $this->title ) ) {
+		if ( $this->title === null ) {
 			$this->setLastError( "deleteLinks: Invalid title" );
 			return false;
 		}

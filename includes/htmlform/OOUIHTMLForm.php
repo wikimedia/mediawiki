@@ -242,7 +242,7 @@ class OOUIHTMLForm extends HTMLForm {
 	}
 
 	public function getHeaderText( $section = null ) {
-		if ( is_null( $section ) ) {
+		if ( $section === null ) {
 			// We handle $this->mHeader elsewhere, in getBody()
 			return '';
 		} else {

@@ -252,7 +252,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function setTargetNamespace( $namespace ) {
-		if ( is_null( $namespace ) ) {
+		if ( $namespace === null ) {
 			// Don't override namespaces
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 			return true;
@@ -275,7 +275,7 @@ class WikiImporter {
 	 */
 	public function setTargetRootPage( $rootpage ) {
 		$status = Status::newGood();
-		if ( is_null( $rootpage ) ) {
+		if ( $rootpage === null ) {
 			// No rootpage
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 		} elseif ( $rootpage !== '' ) {
@@ -1079,7 +1079,7 @@ class WikiImporter {
 	 * @return array|bool
 	 */
 	private function processTitle( $text, $ns = null ) {
-		if ( is_null( $this->foreignNamespaces ) ) {
+		if ( $this->foreignNamespaces === null ) {
 			$foreignTitleFactory = new NaiveForeignTitleFactory();
 		} else {
 			$foreignTitleFactory = new NamespaceAwareForeignTitleFactory(
@@ -1093,7 +1093,7 @@ class WikiImporter {
 			$foreignTitle );
 
 		$commandLineMode = $this->config->get( 'CommandLineMode' );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			# Invalid page title? Ignore the page
 			$this->notice( 'import-error-invalid', $foreignTitle->getFullText() );
 			return false;

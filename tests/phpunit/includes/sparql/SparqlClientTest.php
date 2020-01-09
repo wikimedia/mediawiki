@@ -173,10 +173,10 @@ JSON;
 			}
 		);
 
-		if ( !is_null( $options ) ) {
+		if ( $options !== null ) {
 			$client->setClientOptions( $options );
 		}
-		if ( !is_null( $timeout ) ) {
+		if ( $timeout !== null ) {
 			$client->setTimeout( $timeout );
 		}
 

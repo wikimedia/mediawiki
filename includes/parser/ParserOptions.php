@@ -1366,7 +1366,7 @@ class ParserOptions {
 
 		// add in language specific options, if any
 		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
-		if ( !is_null( $title ) ) {
+		if ( $title !== null ) {
 			$confstr .= $title->getPageLanguage()->getExtraHashOptions();
 		} else {
 			$confstr .=

@@ -37,7 +37,7 @@ class ParserDiffTest {
 	}
 
 	public function init() {
-		if ( !is_null( $this->parsers ) ) {
+		if ( $this->parsers !== null ) {
 			return;
 		}
 		$this->parsers = [];

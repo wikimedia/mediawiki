@@ -207,7 +207,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$out = $this->getOutput();
 
-		if ( is_null( $this->mTargetObj ) ) {
+		if ( $this->mTargetObj === null ) {
 			$out->addWikiMsg( 'undelete-header' );
 
 			# Not all users can just browse every deleted page from the list
@@ -1013,7 +1013,7 @@ class SpecialUndelete extends SpecialPage {
 
 		// Revision text size
 		$size = $row->ar_len;
-		if ( !is_null( $size ) ) {
+		if ( $size !== null ) {
 			$revTextSize = Linker::formatRevisionSize( $size );
 		}
 

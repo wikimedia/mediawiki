@@ -348,7 +348,7 @@ class SpecialContributions extends IncludableSpecialPage {
 					$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
 				}
 
-				if ( !is_null( $block ) && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
+				if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
 					if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
 						$nt = MediaWikiServices::getInstance()->getNamespaceInfo()->
 							getCanonicalName( NS_USER ) . ':' . $block->getTarget();

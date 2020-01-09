@@ -102,7 +102,7 @@ class UsersPager extends AlphabeticPager {
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
 
-			if ( !is_null( $username ) ) {
+			if ( $username !== null ) {
 				$this->requestedUser = $username->getText();
 			}
 		}
@@ -241,7 +241,7 @@ class UsersPager extends AlphabeticPager {
 			$created = ' ' . $this->msg( 'parentheses' )->rawParams( $created )->escaped();
 		}
 
-		$blocked = !is_null( $row->ipb_deleted ) && $row->ipb_sitewide === '1' ?
+		$blocked = $row->ipb_deleted !== null && $row->ipb_sitewide === '1' ?
 			' ' . $this->msg( 'listusers-blocked', $userName )->escaped() :
 			'';
 

@@ -118,7 +118,7 @@ class ApiDelete extends ApiBase {
 		$title = $page->getTitle();
 
 		// Auto-generate a summary, if necessary
-		if ( is_null( $reason ) ) {
+		if ( $reason === null ) {
 			// Need to pass a throwaway variable because generateReason expects
 			// a reference
 			$hasHistory = false;
@@ -173,7 +173,7 @@ class ApiDelete extends ApiBase {
 			}
 		}
 
-		if ( is_null( $reason ) ) { // Log and RC don't like null reasons
+		if ( $reason === null ) { // Log and RC don't like null reasons
 			$reason = '';
 		}
 

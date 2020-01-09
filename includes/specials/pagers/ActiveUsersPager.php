@@ -64,7 +64,7 @@ class ActiveUsersPager extends UsersPager {
 		$un = $opts->getValue( 'username' );
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
-			if ( !is_null( $username ) ) {
+			if ( $username !== null ) {
 				$this->requestedUser = $username->getText();
 			}
 		}

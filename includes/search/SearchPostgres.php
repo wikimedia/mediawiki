@@ -173,7 +173,7 @@ class SearchPostgres extends SearchDatabase {
 				"AND $fulltext @@ to_tsquery($searchstring)";
 		}
 		# # Namespaces - defaults to 0
-		if ( !is_null( $this->namespaces ) ) { // null -> search all
+		if ( $this->namespaces !== null ) { // null -> search all
 			if ( count( $this->namespaces ) < 1 ) {
 				$query .= ' AND page_namespace = 0';
 			} else {

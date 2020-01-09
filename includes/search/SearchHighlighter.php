@@ -356,10 +356,10 @@ class SearchHighlighter {
 			$end = $this->position( $text, $end );
 		}
 
-		if ( !is_null( $posStart ) ) {
+		if ( $posStart !== null ) {
 			$posStart = $start;
 		}
-		if ( !is_null( $posEnd ) ) {
+		if ( $posEnd !== null ) {
 			$posEnd = $end;
 		}
 

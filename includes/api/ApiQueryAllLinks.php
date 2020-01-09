@@ -131,7 +131,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->addWhereFld( $pfx . 'namespace', $namespace );
 		}
 
-		$continue = !is_null( $params['continue'] );
+		$continue = $params['continue'] !== null;
 		if ( $continue ) {
 			$continueArr = explode( '|', $params['continue'] );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -215,7 +215,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				break;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$vals = [
 					ApiResult::META_TYPE => 'assoc',
 				];
@@ -247,7 +247,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], $this->indexTag );
 		} elseif ( $params['unique'] ) {
 			$resultPageSet->populateFromTitles( $titles );

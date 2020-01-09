@@ -35,7 +35,7 @@ class ApiUnblockTest extends ApiTestCase {
 		$result = $block->insert();
 		$this->assertNotFalse( $result, 'Could not insert block' );
 		$blockFromDB = DatabaseBlock::newFromID( $result['id'] );
-		$this->assertTrue( !is_null( $blockFromDB ), 'Could not retrieve block' );
+		$this->assertTrue( $blockFromDB !== null, 'Could not retrieve block' );
 	}
 
 	private function getBlockFromParams( array $params ) {

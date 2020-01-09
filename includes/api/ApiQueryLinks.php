@@ -113,7 +113,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$multiNS = $params['namespace'] === null || count( $params['namespace'] ) !== 1;
 		}
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -152,7 +152,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		$res = $this->select( __METHOD__ );
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'pl' );
 
 			$count = 0;

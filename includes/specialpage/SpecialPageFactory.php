@@ -335,7 +335,7 @@ class SpecialPageFactory {
 	 * @return array
 	 */
 	private function getAliasList() : array {
-		if ( is_null( $this->aliases ) ) {
+		if ( $this->aliases === null ) {
 			$aliases = $this->contLang->getSpecialPageAliases();
 			$pageList = $this->getPageList();
 
@@ -731,7 +731,7 @@ class SpecialPageFactory {
 				"Perhaps no aliases are defined for it?" );
 		}
 
-		if ( $subpage !== false && !is_null( $subpage ) ) {
+		if ( $subpage !== false && $subpage !== null ) {
 			// Make sure it's in dbkey form
 			$subpage = str_replace( ' ', '_', $subpage );
 			$name = "$name/$subpage";

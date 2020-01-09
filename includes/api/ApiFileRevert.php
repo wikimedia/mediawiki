@@ -73,7 +73,7 @@ class ApiFileRevert extends ApiBase {
 	protected function validateParameters() {
 		// Validate the input title
 		$title = Title::makeTitleSafe( NS_FILE, $this->params['filename'] );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			$this->dieWithError(
 				[ 'apierror-invalidtitle', wfEscapeWikiText( $this->params['filename'] ) ]
 			);

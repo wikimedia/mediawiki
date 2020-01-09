@@ -325,7 +325,7 @@ class ImagePage extends Article {
 		if ( $this->displayImg->exists() ) {
 			# image
 			$page = $request->getIntOrNull( 'page' );
-			if ( is_null( $page ) ) {
+			if ( $page === null ) {
 				$params = [];
 				$page = 1;
 			} else {
@@ -333,7 +333,7 @@ class ImagePage extends Article {
 			}
 
 			$renderLang = $this->getLanguageForRendering( $request, $this->displayImg );
-			if ( !is_null( $renderLang ) ) {
+			if ( $renderLang !== null ) {
 				$params['lang'] = $renderLang;
 			}
 
@@ -1076,7 +1076,7 @@ EOT
 			Xml::option(
 				$this->getContext()->msg( 'img-lang-default' )->text(),
 				'und',
-				is_null( $matchedRenderLang )
+				$matchedRenderLang === null
 			);
 
 		$select = Html::rawElement(

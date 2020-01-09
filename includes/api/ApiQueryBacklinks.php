@@ -125,7 +125,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private function runFirstQuery( $resultPageSet = null ) {
 		$this->addTables( [ $this->bl_table, 'page' ] );
 		$this->addWhere( "{$this->bl_from}=page_id" );
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->addFields( [ 'page_id', 'page_title', 'page_namespace' ] );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() );
@@ -197,7 +197,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$this->redirTitles[] = $t;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$a = [ 'pageid' => (int)$row->page_id ];
 				ApiQueryBase::addTitleInfo( $a, $t );
 				if ( $row->page_is_redirect ) {
@@ -220,7 +220,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addTables( [ 'page', $this->bl_table ] );
 		$this->addWhere( "{$this->bl_from}=page_id" );
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->addFields( [ 'page_id', 'page_title', 'page_namespace', 'page_is_redirect' ] );
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() );
@@ -321,7 +321,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$this->cont[] = $row->page_id;
 			}
 
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$a = [ 'pageid' => (int)$row->page_id ];
 				ApiQueryBase::addTitleInfo( $a, Title::makeTitle( $row->page_namespace, $row->page_title ) );
 				if ( $row->page_is_redirect ) {
@@ -431,7 +431,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		// Fill in any missing fields in case it's needed below
 		$this->cont += [ 0, 0, 0, '', 0, 0, 0 ];
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			// Try to add the result data in one go and pray that it fits
 			$code = $this->bl_code;
 			$data = array_map( function ( $arr ) use ( $code ) {
@@ -510,7 +510,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$this->bl_code
 			);
 		}
-		if ( !is_null( $this->continueStr ) ) {
+		if ( $this->continueStr !== null ) {
 			$this->setContinueEnumParameter( 'continue', $this->continueStr );
 		}
 	}

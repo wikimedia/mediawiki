@@ -142,7 +142,7 @@ class McTest extends Maintenance {
 
 		$time_start = microtime( true );
 		foreach ( $keys as $key ) {
-			if ( !is_null( $mcc->incr( $key, $i ) ) ) {
+			if ( $mcc->incr( $key, $i ) !== null ) {
 				$incr++;
 			}
 		}

@@ -439,7 +439,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @return int
 	 */
 	protected function minSearchLength() {
-		if ( is_null( self::$mMinSearchLength ) ) {
+		if ( self::$mMinSearchLength === null ) {
 			$sql = "SHOW GLOBAL VARIABLES LIKE 'ft\\_min\\_word\\_len'";
 
 			$dbr = $this->lb->getConnectionRef( DB_REPLICA );
