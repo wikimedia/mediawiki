@@ -1,0 +1,10 @@
+{
+	"base_uri": "http://127.0.0.1:9412/",
+	"main_page": "Main_Page",
+	"root_user":
+	{
+		"name": "WikiAdmin",
+		"password": "testwikijenkinspass"
+	},
+	"secret_key": "supercalifragilisticexpialidocious"
+}

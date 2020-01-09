@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "api-testing": "mocha --timeout 0 --recursive tests/api-testing",
     "build": "grunt minify",
     "test": "grunt lint",
     "qunit": "grunt qunit",
@@ -19,6 +20,7 @@
     "@wdio/mocha-framework": "5.13.2",
     "@wdio/sauce-service": "5.13.2",
     "@wdio/sync": "5.13.2",
+    "api-testing": "^1.0.2",
     "chromedriver": "73.0.0",
     "eslint-config-wikimedia": "0.15.0",
     "grunt": "1.0.4",
