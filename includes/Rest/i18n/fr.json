@@ -3,7 +3,8 @@
 		"authors": [
 			"Gomoko",
 			"Verdy p",
-			"Thibaut120094"
+			"Thibaut120094",
+			"Wladek92"
 		]
 	},
 	"rest-prefix-mismatch": "Le chemin requis ($1) n’était pas dans le chemin racine de l’API REST ($2)",
@@ -26,5 +27,7 @@
 	"rest-compare-wrong-content": "L’emplacement $1 de la version spécifiée par le paramètre $2 a un type de contenu qui ne peut pas être converti en texte.",
 	"rest-compare-wikidiff2": "Ce point de terminaison nécessite wikidiff2 1.9.0 ou supérieur.",
 	"rest-pagehistorycount-too-many-revisions": "Le titre spécifié contient trop de versions pour en récupérer ce nombre.",
-	"rest-search-error": "Erreur en renvoyant les résultats de recherche : $1"
+	"rest-search-error": "Erreur en renvoyant les résultats de recherche : $1",
+	"rest-page-source-type-error": "Le type de contenu de la page source demandée n'est pas pris en charge",
+	"rest-no-revision": "Impossible de récupérer la révision du titre $1"
 }
