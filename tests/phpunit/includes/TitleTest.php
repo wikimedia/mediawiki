@@ -826,8 +826,8 @@ class TitleTest extends MediaWikiTestCase {
 			$title->exists(),
 			'exists() should rely on link cache unless READ_LATEST is used'
 		);
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$title->exists( Title::READ_LATEST ),
 			'exists() should re-query database when READ_LATEST is used'
 		);
@@ -1522,8 +1522,8 @@ class TitleTest extends MediaWikiTestCase {
 	public function testGetTitleProtection() {
 		$title = $this->getNonexistingTestPage( 'UTest1' )->getTitle();
 		$title->mTitleProtection = false;
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
+
 			$title->getTitleProtection()
 		);
 	}
@@ -1540,15 +1540,15 @@ class TitleTest extends MediaWikiTestCase {
 			'wgSemiprotectedRestrictionLevels' => [ 'autoconfirmed' ],
 			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ]
 		] );
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
+
 			$title->isSemiProtected( 'edit' )
 		);
 		$title->mRestrictions = [
 			'edit' => [ 'autoconfirmed' ]
 		];
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$title->isSemiProtected( 'edit' )
 		);
 	}
@@ -1558,8 +1558,8 @@ class TitleTest extends MediaWikiTestCase {
 	 */
 	public function testDeleteTitleProtection() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
+
 			$title->getTitleProtection()
 		);
 	}
@@ -1576,15 +1576,15 @@ class TitleTest extends MediaWikiTestCase {
 		$title->mRestrictions = [
 			'edit' => [ 'sysop' ]
 		];
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
+
 			$title->isProtected( 'edit' )
 		);
 		$title->mRestrictions = [
 			'edit' => [ 'test' ]
 		];
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
+
 			$title->isProtected( 'edit' )
 		);
 	}
@@ -1597,8 +1597,8 @@ class TitleTest extends MediaWikiTestCase {
 		$this->setMwGlobals( [
 			'wgNamespaceProtection' => []
 		] );
-		$this->assertEquals(
-			false,
+		$this->assertFalse(
+
 			$title->isNamespaceProtected( $this->getTestUser()->getUser() )
 		);
 		$this->setMwGlobals( [
@@ -1606,8 +1606,8 @@ class TitleTest extends MediaWikiTestCase {
 				NS_MAIN => [ 'edit-main' ]
 			]
 		] );
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$title->isNamespaceProtected( $this->getTestUser()->getUser() )
 		);
 	}
@@ -1622,9 +1622,9 @@ class TitleTest extends MediaWikiTestCase {
 		$reflection_property = $reflection->getProperty( 'mHasCascadingRestrictions' );
 		$reflection_property->setAccessible( true );
 		$reflection_property->setValue( $title, true );
-		$this->assertEquals( true, $title->isCascadeProtected() );
+		$this->assertTrue( $title->isCascadeProtected() );
 		$reflection_property->setValue( $title, null );
-		$this->assertEquals( false, $title->isCascadeProtected() );
+		$this->assertFalse( $title->isCascadeProtected() );
 		$reflection_property->setValue( $title, null );
 		$cascade = 1;
 		$anotherPage = $this->getExistingTestPage( 'UTest2' );
@@ -1636,7 +1636,7 @@ class TitleTest extends MediaWikiTestCase {
 			'test',
 			$this->getTestSysop()->getUser()
 		);
-		$this->assertEquals( true, $title->isCascadeProtected() );
+		$this->assertTrue( $title->isCascadeProtected() );
 	}
 
 	/**

@@ -135,7 +135,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$initialUnreadNotifications = $store->countUnreadNotifications( $user );
 
 		$store->updateNotificationTimestamp( $otherUser, $title, '20150202010101' );
-		$this->assertEquals(
+		$this->assertSame(
 			'20150202010101',
 			$store->loadWatchedItem( $user, $title )->getNotificationTimestamp()
 		);
@@ -202,7 +202,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$this->assertTrue(
 			$store->setNotificationTimestampsForUser( $user, '20100202020202', [ $title ] )
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			'20100202020202',
 			$store->getWatchedItem( $user, $title )->getNotificationTimestamp()
 		);
@@ -220,7 +220,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		// Clear the cache manually
 		$wrappedStore = TestingAccessWrapper::newFromObject( $store );
 		$wrappedStore->uncacheUser( $user );
-		$this->assertEquals(
+		$this->assertSame(
 			'20110202020202',
 			$store->getWatchedItem( $user, $title )->getNotificationTimestamp()
 		);

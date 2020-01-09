@@ -231,7 +231,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 					foreach ( $oldOptions as $option => $value ) {
 						$this->assertSame( $value, $oldUserOptions[ $option ] );
 					}
-					$this->assertEquals( true, $result );
+					$this->assertTrue( $result );
 			}
 		);
 

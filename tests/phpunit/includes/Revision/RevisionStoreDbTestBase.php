@@ -2244,10 +2244,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		}
 
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->assertEquals( 0,
+		$this->assertSame( 0,
 			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[0] ),
 			'Must return 0 if the same old and new revisions provided' );
-		$this->assertEquals( 0,
+		$this->assertSame( 0,
 			$revisionStore->countRevisionsBetween( $page->getId(), $revisions[0], $revisions[1] ),
 			'Must return 0 if the consecutive old and new revisions provided' );
 		$this->assertEquals( $NUM - 3,
@@ -2300,14 +2300,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		}
 
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->assertEquals( 0,
+		$this->assertSame( 0,
 			$revisionStore->countAuthorsBetween( $page->getId(), $revisions[0], $revisions[0] ),
 			'countAuthorsBetween must return 0 if the same old and new revisions provided' );
 		$this->assertArrayEquals( [],
 			$revisionStore->getAuthorsBetween( $page->getId(), $revisions[0], $revisions[0] ),
 			'getAuthorsBetween must return [] if the same old and new revisions provided' );
 
-		$this->assertEquals( 0,
+		$this->assertSame( 0,
 			$revisionStore->countAuthorsBetween( $page->getId(), $revisions[0], $revisions[1] ),
 			'countAuthorsBetween must return 0 if the consecutive old and new revisions provided' );
 		$this->assertArrayEquals( [],

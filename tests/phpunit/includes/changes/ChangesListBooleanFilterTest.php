@@ -126,8 +126,8 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 			'priority' => 2,
 		] );
 
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$foo->isFeatureAvailableOnStructuredUi(),
 			'Same filter appears on both'
 		);
@@ -155,8 +155,8 @@ class ChangesListBooleanFilterTest extends MediaWikiTestCase {
 			'priority' => 2,
 		] );
 
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$baz->isFeatureAvailableOnStructuredUi(),
 			'Legacy filter does not appear directly in new UI, but equivalent ' .
 				'does and is marked with isReplacedInStructuredUi'

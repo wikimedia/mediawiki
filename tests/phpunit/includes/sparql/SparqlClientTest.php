@@ -66,7 +66,7 @@ JSON;
 		$this->assertCount( 2, $result );
 		$this->assertEquals( 'http://wikiba.se/ontology#Dump', $result[0]['x'] );
 		$this->assertEquals( 'http://creativecommons.org/ns#license', $result[0]['y'] );
-		$this->assertEquals( '0.1.0', $result[1]['z'] );
+		$this->assertSame( '0.1.0', $result[1]['z'] );
 		$this->assertNull( $result[1]['y'] );
 		// raw data format
 		$result = $client->query( "TEST SPARQL 2", true );
@@ -74,7 +74,7 @@ JSON;
 		$this->assertEquals( 'uri', $result[0]['x']['type'] );
 		$this->assertEquals( 'http://wikiba.se/ontology#Dump', $result[0]['x']['value'] );
 		$this->assertEquals( 'literal', $result[1]['z']['type'] );
-		$this->assertEquals( '0.1.0', $result[1]['z']['value'] );
+		$this->assertSame( '0.1.0', $result[1]['z']['value'] );
 		$this->assertNull( $result[1]['y'] );
 	}
 

@@ -85,7 +85,7 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		// But a fresh value is read from the backend
 		$backend->set( 'bar', true );
-		$this->assertEquals( true, $cache->get( 'bar' ) );
+		$this->assertTrue( $cache->get( 'bar' ) );
 	}
 
 	/**

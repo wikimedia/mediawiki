@@ -216,10 +216,10 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$indexList = $db->query( 'PRAGMA INDEX_LIST("bar")' );
 		$index = $indexList->next();
 		$this->assertEquals( 'bar_index1', $index->name );
-		$this->assertEquals( '0', $index->unique );
+		$this->assertSame( '0', $index->unique );
 		$index = $indexList->next();
 		$this->assertEquals( 'bar_index2', $index->name );
-		$this->assertEquals( '1', $index->unique );
+		$this->assertSame( '1', $index->unique );
 
 		$db->duplicateTableStructure( 'foo', 'baz', true );
 		$this->assertEquals( 'CREATE TABLE "baz"(foo, barfoo)',
@@ -229,10 +229,10 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$indexList = $db->query( 'PRAGMA INDEX_LIST("baz")' );
 		$index = $indexList->next();
 		$this->assertEquals( 'baz_index1', $index->name );
-		$this->assertEquals( '0', $index->unique );
+		$this->assertSame( '0', $index->unique );
 		$index = $indexList->next();
 		$this->assertEquals( 'baz_index2', $index->name );
-		$this->assertEquals( '1', $index->unique );
+		$this->assertSame( '1', $index->unique );
 		$this->assertSame( 0,
 			$db->selectField( 'sqlite_master', 'COUNT(*)', [ 'name' => 'baz' ] ),
 			'Create a temporary duplicate only'

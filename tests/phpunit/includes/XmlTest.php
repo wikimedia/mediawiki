@@ -412,7 +412,7 @@ class XmlTest extends MediaWikiTestCase {
 	 * @covers Xml::encodeJsVar
 	 */
 	public function testEncodeJsVarInt() {
-		$this->assertEquals(
+		$this->assertSame(
 			'123456',
 			Xml::encodeJsVar( 123456 ),
 			'encodeJsVar() with int'
@@ -423,7 +423,7 @@ class XmlTest extends MediaWikiTestCase {
 	 * @covers Xml::encodeJsVar
 	 */
 	public function testEncodeJsVarFloat() {
-		$this->assertEquals(
+		$this->assertSame(
 			'1.5',
 			Xml::encodeJsVar( 1.5 ),
 			'encodeJsVar() with float'

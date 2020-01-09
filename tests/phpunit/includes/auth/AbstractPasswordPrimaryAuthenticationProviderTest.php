@@ -82,7 +82,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 				$expires = '30001231235959';
 			} ]
 		] );
-		$this->assertEquals( '30001231235959', $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
+		$this->assertSame( '30001231235959', $providerPriv->getNewPasswordExpiry( 'UTSysop' ) );
 	}
 
 	public function testCheckPasswordValidity() {

@@ -45,11 +45,11 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 			'First job is leaf job with proper title' );
 		$this->assertEquals( $pages[8], current( $jobs[8]->params['pages'] ),
 			'Last leaf job is leaf job with proper title' );
-		$this->assertEquals( true, isset( $jobs[9]->params['recursive'] ),
+		$this->assertTrue( isset( $jobs[9]->params['recursive'] ),
 			'Last job is recursive sub-job' );
-		$this->assertEquals( true, $jobs[9]->params['recursive'],
+		$this->assertTrue( $jobs[9]->params['recursive'],
 			'Last job is recursive sub-job' );
-		$this->assertEquals( true, is_array( $jobs[9]->params['range'] ),
+		$this->assertTrue( is_array( $jobs[9]->params['range'] ),
 			'Last job is recursive sub-job' );
 		$this->assertEquals( $title->getPrefixedText(), $jobs[0]->getTitle()->getPrefixedText(),
 			'Base job title retainend in leaf job' );
@@ -72,11 +72,11 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 			'First job is leaf job with proper title' );
 		$this->assertEquals( $pages[17], current( $jobs2[8]->params['pages'] ),
 			'Last leaf job is leaf job with proper title' );
-		$this->assertEquals( true, isset( $jobs2[9]->params['recursive'] ),
+		$this->assertTrue( isset( $jobs2[9]->params['recursive'] ),
 			'Last job is recursive sub-job' );
-		$this->assertEquals( true, $jobs2[9]->params['recursive'],
+		$this->assertTrue( $jobs2[9]->params['recursive'],
 			'Last job is recursive sub-job' );
-		$this->assertEquals( true, is_array( $jobs2[9]->params['range'] ),
+		$this->assertTrue( is_array( $jobs2[9]->params['range'] ),
 			'Last job is recursive sub-job' );
 		$this->assertEquals( $extraParams['rootJobSignature'], $jobs2[0]->params['rootJobSignature'],
 			'Leaf job has root params' );

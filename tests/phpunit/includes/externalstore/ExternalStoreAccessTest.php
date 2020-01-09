@@ -39,7 +39,7 @@ class ExternalStoreAccessTest extends MediaWikiTestCase {
 		$defaults = [ 'DB://clusterX' ];
 		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );
 		$access = new ExternalStoreAccess( $esFactory );
-		$this->assertEquals( true, $access->isReadOnly() );
+		$this->assertTrue( $access->isReadOnly() );
 
 		$store->clear();
 	}
