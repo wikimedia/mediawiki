@@ -214,6 +214,8 @@ because of Phabricator reports.
 * OutputPage::parse() and OutputPage::parseInline(), deprecated in 1.32, have
   been removed.  Use ::parseAsContent() or ::parseAsInterface(), as
   appropriate.
+* ContentHandler::makeParserOptions(), deprecated in 1.32, was removed. Use
+  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 * …
 
 === Deprecations in 1.35 ===
