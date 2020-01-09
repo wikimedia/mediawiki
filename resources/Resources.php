@@ -565,7 +565,15 @@ return [
 		'dependencies' => [
 			'mediawiki.Title',
 			'mediawiki.util',
+			'mediawiki.jqueryMsg',
 			'user.tokens',
+		],
+		'messages' => [
+			'api-clientside-error-noconnect',
+			'api-clientside-error-http',
+			'api-clientside-error-timeout',
+			'api-clientside-error-aborted',
+			'api-clientside-error-invalidresponse',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -622,8 +630,6 @@ return [
 			'feedback-close',
 			'feedback-dialog-title',
 			'feedback-error1',
-			'feedback-error2',
-			'feedback-error3',
 			'feedback-error4',
 			'feedback-message',
 			'feedback-subject',
@@ -897,9 +903,6 @@ return [
 			'apierror-mustbeloggedin',
 			'apierror-permissiondenied',
 			'badaccess-groups',
-			'apierror-timeout',
-			'apierror-offline',
-			'apierror-unknownerror',
 			'api-error-unknown-warning',
 			'fileexists',
 			'filepageexists',
@@ -1401,7 +1404,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'messages' => [
-			'logout-failed',
 			'logging-out-notify'
 		]
 	],
@@ -1422,7 +1424,6 @@ return [
 		'messages' => [
 			'markedaspatrollednotify',
 			'markedaspatrollederrornotify',
-			'markedaspatrollederror-noautopatrol'
 		],
 	],
 	'mediawiki.page.watch.ajax' => [
@@ -1442,7 +1443,6 @@ return [
 			'unwatching',
 			'tooltip-ca-watch',
 			'tooltip-ca-unwatch',
-			'watcherrortext',
 			'addedwatchtext',
 			'addedwatchtext-talk',
 			'removedwatchtext',
@@ -2014,7 +2014,6 @@ return [
 			'unwatch',
 			'unwatching',
 			'watch',
-			'watcherrortext',
 			'watching',
 		],
 		'dependencies' => [

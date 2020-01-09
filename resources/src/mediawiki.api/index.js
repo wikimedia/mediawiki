@@ -427,6 +427,88 @@
 			if ( promiseGroup ) {
 				delete promiseGroup[ type + 'Token' ];
 			}
+		},
+
+		/**
+		 * Given an API response indicating an error, get a jQuery object containing a human-readable
+		 * error message that you can display somewhere on the page.
+		 *
+		 * For better quality of error messages, it's recommended to use the following options in your
+		 * API queries:
+		 *
+		 *     errorformat: 'html',
+		 *     errorlang: mw.config.get( 'wgUserLanguage' ),
+		 *     errorsuselocal: true,
+		 *
+		 * Error messages, particularly for editing pages, may consist of multiple paragraphs of text.
+		 * Your user interface should have enough space for that.
+		 *
+		 * Example usage:
+		 *
+		 *     var api = new mw.Api();
+		 *     // var title = 'Test valid title';
+		 *     var title = 'Test invalid title <>';
+		 *     api.postWithToken( 'watch', {
+		 *       action: 'watch',
+		 *       title: title
+		 *     } ).then( function ( data ) {
+		 *       mw.notify( 'Success!' );
+		 *     }, function ( code, data ) {
+		 *       mw.notify( api.getErrorMessage( data ), { type: 'error' } );
+		 *     } );
+		 *
+		 * @param {Object} data API response indicating an error
+		 * @return {jQuery} Error messages, each wrapped in a `<div>`
+		 */
+		getErrorMessage: function ( data ) {
+			if (
+				data === undefined || data === null || data === '' ||
+				// The #ajax method returns the data like this, it's not my fault...
+				data === 'OK response but empty result (check HTTP headers?)'
+			) {
+				// Server failed so horribly it did not even set a HTTP error status
+				return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
+
+			} else if ( data.xhr ) {
+				if ( data.textStatus === 'timeout' ) {
+					// Hit the timeout (as defined above in defaultOptions)
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-timeout' ).parseDom() );
+				} else if ( data.textStatus === 'abort' ) {
+					// Request cancelled by calling the abort() method on the promise
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-aborted' ).parseDom() );
+				} else if ( data.textStatus === 'parsererror' ) {
+					// Server returned invalid JSON
+					// data.exception is probably a SyntaxError exception
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
+				} else if ( data.xhr.status ) {
+					// Server HTTP error
+					// data.exception is probably the HTTP "reason phrase", e.g. "Internal Server Error"
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-http', data.xhr.status ).parseDom() );
+				} else {
+					// We don't know the status of the HTTP request. Common causes include (we have no way
+					// to distinguish these): user losing their network connection (request wasn't even sent),
+					// misconfigured CORS for cross-wiki queries.
+					return $( '<div>' ).append( mw.message( 'api-clientside-error-noconnect' ).parseDom() );
+				}
+
+			} else if ( data.error ) {
+				// errorformat: 'bc' (or not specified)
+				return $( '<div>' ).text( data.error.info );
+
+			} else if ( data.errors ) {
+				// errorformat: 'html'
+				return $( data.errors.map( function ( err ) {
+					// formatversion: 1 / 2
+					var $node = $( '<div>' ).html( err[ '*' ] || err.html );
+					return $node[ 0 ];
+				} ) );
+
+			} else {
+				// Server returned some valid but bogus JSON that probably doesn't even come from our API,
+				// or this method was called incorrectly (e.g. with a successful response)
+				mw.log.warn( 'mw.Api#getErrorMessage could not handle the response:', data );
+				return $( '<div>' ).append( mw.message( 'api-clientside-error-invalidresponse' ).parseDom() );
+			}
 		}
 	};
 
