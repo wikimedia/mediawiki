@@ -244,7 +244,7 @@ class SpecialLinkSearch extends QueryPage {
 	}
 
 	protected function getGroupName() {
-		return 'redirects';
+		return 'pages';
 	}
 
 	/**
