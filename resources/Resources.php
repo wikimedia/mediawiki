@@ -1412,6 +1412,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.page.patrol.ajax' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/mediawiki.page.patrol.ajax.js',
 		'dependencies' => [
 			'mediawiki.api',
