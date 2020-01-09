@@ -111,6 +111,6 @@ trait ApiQueryBlockInfoTrait {
 	 */
 	abstract protected function addJoinConds( $conds );
 
-	/**@}*/
+	/** @} */
 
 }

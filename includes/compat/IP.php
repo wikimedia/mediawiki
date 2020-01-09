@@ -21,55 +21,55 @@
 use Wikimedia\IPUtils;
 
 /**
-* An IPv4 address is made of 4 bytes from x00 to xFF which is d0 to d255
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_BYTE instead
-*/
+ * An IPv4 address is made of 4 bytes from x00 to xFF which is d0 to d255
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_BYTE instead
+ */
 define( 'RE_IP_BYTE', IPUtils::RE_IP_BYTE );
 /**
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_ADD instead
-*/
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_ADD instead
+ */
 define( 'RE_IP_ADD', IPUtils::RE_IP_ADD );
 /**
-* An IPv4 range is an IP address and a prefix (d1 to d32)
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_PREFIX instead
-*/
+ * An IPv4 range is an IP address and a prefix (d1 to d32)
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_PREFIX instead
+ */
 define( 'RE_IP_PREFIX', IPUtils::RE_IP_PREFIX );
 /**
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_RANGE instead
-*/
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_RANGE instead
+ */
 define( 'RE_IP_RANGE', IPUtils::RE_IP_RANGE );
 /**
-* An IPv6 address is made up of 8 words (each x0000 to xFFFF).
-* However, the "::" abbreviation can be used on consecutive x0000 words.
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_WORD instead
-*/
+ * An IPv6 address is made up of 8 words (each x0000 to xFFFF).
+ * However, the "::" abbreviation can be used on consecutive x0000 words.
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_WORD instead
+ */
 define( 'RE_IPV6_WORD', IPUtils::RE_IPV6_WORD );
 /**
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_PREFIX instead
-*/
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_PREFIX instead
+ */
 define( 'RE_IPV6_PREFIX', IPUtils::RE_IPV6_PREFIX );
 /**
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_ADD instead
-*/
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_ADD instead
+ */
 define( 'RE_IPV6_ADD', IPUtils::RE_IPV6_ADD );
 /**
-* An IPv6 range is an IP address and a prefix (d1 to d128)
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_RANGE instead
-*/
+ * An IPv6 range is an IP address and a prefix (d1 to d128)
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_RANGE instead
+ */
 define( 'RE_IPV6_RANGE', IPUtils::RE_IPV6_RANGE );
 /**
-* For IPv6 canonicalization (NOT for strict validation; these are quite lax!)
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_GAP instead
-*/
+ * For IPv6 canonicalization (NOT for strict validation; these are quite lax!)
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_GAP instead
+ */
 define( 'RE_IPV6_GAP', IPUtils::RE_IPV6_GAP );
 /**
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_V4_PREFIX instead
-*/
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IPV6_V4_PREFIX instead
+ */
 define( 'RE_IPV6_V4_PREFIX', IPUtils::RE_IPV6_V4_PREFIX );
 /**
-* This might be useful for regexps used elsewhere, matches any IPv4 or IPv6 address or network
-* @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_ADDRESS_STRING instead
-*/
+ * This might be useful for regexps used elsewhere, matches any IPv4 or IPv6 address or network
+ * @deprecated since 1.35 use Wikimedia\IPUtils::RE_IP_ADDRESS_STRING instead
+ */
 define( 'IP_ADDRESS_STRING', IPUtils::RE_IP_ADDRESS_STRING );
 
 /**

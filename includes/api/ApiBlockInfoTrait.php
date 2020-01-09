@@ -74,6 +74,6 @@ trait ApiBlockInfoTrait {
 	 */
 	abstract public function getLanguage();
 
-	/**@}*/
+	/** @} */
 
 }

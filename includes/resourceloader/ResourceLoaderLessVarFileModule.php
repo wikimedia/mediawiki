@@ -74,6 +74,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 		return json_encode( (object)$this->pluckFromMessageBlob( $blob, $this->messages ) );
 	}
 
+	// phpcs:disable MediaWiki.Commenting.DocComment.SpacingDocTag, Squiz.WhiteSpace.FunctionSpacing.Before
 	/**
 	 * Escape and wrap a message value as literal string for LESS.
 	 *
@@ -97,6 +98,8 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	private static function wrapAndEscapeMessage( $msg ) {
 		return str_replace( "'", "\'", CSSMin::serializeStringValue( $msg ) );
 	}
+
+	// phpcs:enable MediaWiki.Commenting.DocComment.SpacingDocTag, Squiz.WhiteSpace.FunctionSpacing.Before
 
 	/**
 	 * Get language-specific LESS variables for this module.
