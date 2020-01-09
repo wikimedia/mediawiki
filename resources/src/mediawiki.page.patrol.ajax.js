@@ -14,7 +14,7 @@
 	$( function () {
 		var $patrolLinks = $( '.patrollink[data-mw="interface"] a' );
 		$patrolLinks.on( 'click', function ( e ) {
-			var $spinner, rcid, apiRequest;
+			var $spinner, rcid, api;
 
 			// Preload the notification module for mw.notify
 			mw.loader.load( 'mediawiki.notification' );
@@ -27,9 +27,9 @@
 			$( this ).hide().after( $spinner );
 
 			rcid = mw.util.getParamValue( 'rcid', this.href );
-			apiRequest = new mw.Api();
+			api = new mw.Api();
 
-			apiRequest.postWithToken( 'patrol', {
+			api.postWithToken( 'patrol', {
 				formatversion: 2,
 				action: 'patrol',
 				rcid: rcid
@@ -45,17 +45,13 @@
 					// This should never happen as errors should trigger fail
 					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
 				}
-			} ).fail( function ( error ) {
+			} ).fail( function ( code, data ) {
+				var $msg = api.getErrorMessage( data );
 				$spinner.remove();
 				// Restore the patrol link. This allows the user to try again
 				// (or open it in a new window, bypassing this ajax module).
 				$patrolLinks.show();
-				if ( error === 'noautopatrol' ) {
-					// Can't patrol own
-					mw.notify( mw.msg( 'markedaspatrollederror-noautopatrol' ), { type: 'warn' } );
-				} else {
-					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
-				}
+				mw.notify( $msg, { type: code === 'noautopatrol' ? 'warn' : 'error' } );
 			} );
 
 			e.preventDefault();

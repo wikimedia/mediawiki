@@ -269,19 +269,11 @@
 			$copyElements.removeClass( 'mw-preview-copyelements-loading' );
 		} ).fail( function ( code, result ) {
 			// This just shows the error for whatever request failed first
-			var errorMsg = 'API error: ' + code;
-			if ( code === 'http' ) {
-				errorMsg = 'HTTP error: ';
-				if ( result.exception ) {
-					errorMsg += result.exception;
-				} else {
-					errorMsg += result.textStatus;
-				}
-			}
+			var $errorMsg = api.getErrorMessage( result );
 			$errorBox = $( '<div>' )
 				.addClass( 'errorbox' )
-				.html( '<strong>' + mw.message( 'previewerrortext' ).escaped() + '</strong><br>' )
-				.append( document.createTextNode( errorMsg ) );
+				.append( $( '<strong>' ).text( mw.message( 'previewerrortext' ).text() ) )
+				.append( $errorMsg );
 			$wikiDiff.hide();
 			$wikiPreview.hide().before( $errorBox );
 		} );

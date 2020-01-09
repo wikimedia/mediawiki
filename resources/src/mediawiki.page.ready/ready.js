@@ -67,9 +67,9 @@ $( function () {
 			function () {
 				location.href = url;
 			},
-			function ( err ) {
+			function ( err, data ) {
 				mw.notify(
-					mw.message( 'logout-failed', err ),
+					api.getErrorMessage( data ),
 					{ type: 'error', tag: 'logout', autoHide: false }
 				);
 			}
