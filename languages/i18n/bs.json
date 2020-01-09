@@ -3476,6 +3476,7 @@
 	"mw-widgets-titleinput-description-redirect": "preusmjerava na $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Dodaj kategoriju...",
 	"mw-widgets-usersmultiselect-placeholder": "Dodaj još...",
+	"mw-widgets-titlesmultiselect-placeholder": "Dodaj još...",
 	"date-range-from": "Od datuma:",
 	"date-range-to": "Do datuma:",
 	"sessionmanager-tie": "Ne možete istovremeno koristiti nekoliko vrsta provjera autentičnosti: $1.",

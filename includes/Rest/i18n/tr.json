@@ -25,5 +25,7 @@
 	"rest-compare-wrong-content": "$2 parametresi tarafından belirtilen revizyonun $1 slotu, metne dönüştürülemeyen bir içerik türüne sahiptir.",
 	"rest-compare-wikidiff2": "Bu son nokta, wikidiff2 1.9.0 veya daha yenisini gerektirir.",
 	"rest-pagehistorycount-too-many-revisions": "Belirtilen başlık bu sayıyı almak için çok fazla düzeltme içeriyor.",
-	"rest-search-error": "Arama sonuçlarını döndürürken hata oluştu: $1"
+	"rest-search-error": "Arama sonuçlarını döndürürken hata oluştu: $1",
+	"rest-page-source-type-error": "İstenen sayfa kaynağının içerik türü desteklenmiyor",
+	"rest-no-revision": "$1 başlık için düzeltme alınamadı"
 }
