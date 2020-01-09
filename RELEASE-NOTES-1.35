@@ -188,6 +188,11 @@ because of Phabricator reports.
 * User::addNewUserLogEntryAutoCreate, deprecated in 1.27, was removed.
 * FileBasedSiteLookup class, deprecated in 1.33, was removed.
 * The wfGlobalCacheKey global function, deprecated in 1.30, was removed.
+* CannotReplaceActiveServiceException, ContainerDisabledException,
+  DestructibleService, NoSuchServiceException, SalvageableService,
+  ServiceAlreadyDefinedException, ServiceContainer and ServiceDisabledException
+  in the global namespace, deprecated in 1.33, were removed. Use the classes in
+  the MediaWiki\\Services namespace instead.
 * …
 
 === Deprecations in 1.35 ===

@@ -44,10 +44,3 @@ class CannotReplaceActiveServiceException extends RuntimeException
 	}
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.33
- */
-class_alias( CannotReplaceActiveServiceException::class,
-	'MediaWiki\Services\CannotReplaceActiveServiceException' );

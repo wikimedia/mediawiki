@@ -44,9 +44,3 @@ class ServiceDisabledException extends RuntimeException
 	}
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.33
- */
-class_alias( ServiceDisabledException::class, 'MediaWiki\Services\ServiceDisabledException' );
