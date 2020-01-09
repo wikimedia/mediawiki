@@ -76,7 +76,7 @@
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/php-invoker": "^2.0",
 		"phpunit/phpunit": "^7.5.13",
-		"psy/psysh": "0.9.11",
+		"psy/psysh": "0.9.12",
 		"seld/jsonlint": "1.7.1",
 		"symfony/yaml": "~3.4 | 4.3.4",
 		"wikimedia/avro": "1.9.0",
