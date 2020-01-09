@@ -215,11 +215,11 @@ related to a particular event, like so:
 	class Article {
 		# ...
 		function protect() {
-			global $wgUser;
+			$user = $this->getUser();
 
-			if ( Hooks::run( 'ArticleProtect', [ $this, $wgUser ] ) ) {
+			if ( Hooks::run( 'ArticleProtect', [ $this, $user ] ) ) {
 				# protect the article
-				Hooks::run( 'ArticleProtectComplete', [ $this, $wgUser ] );
+				Hooks::run( 'ArticleProtectComplete', [ $this, $user ] );
 			}
 		}
 	}
@@ -2247,11 +2247,11 @@ $lagInfo if the new $lagInfo['lag'] is greater than the current $lagInfo['lag'].
 'MediaWikiPerformAction': Override MediaWiki::performAction(). Use this to do
 something completely different, after the basic globals have been set up, but
 before ordinary actions take place.
-$output: $wgOut
+$output: Context output
 $article: Article on which the action will be performed
 $title: Title on which the action will be performed
-$user: $wgUser
-$request: $wgRequest
+$user: Context user
+$request: Context request
 $mediaWiki: The $mediawiki object
 
 'MediaWikiServices': Called when a global MediaWikiServices instance is
