@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 use Wikimedia\Assert\Assert;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
 /**
  * Handles a simple LRU key/value map with a maximum number of entries
@@ -34,7 +35,7 @@ use Wikimedia\Assert\Assert;
  * @ingroup Cache
  * @since 1.23
  */
-class MapCacheLRU implements IExpiringStore, Serializable {
+class MapCacheLRU implements ExpirationAwareness, Serializable {
 	/** @var array Map of (key => value) */
 	private $cache = [];
 	/** @var array Map of (key => (UNIX timestamp, (field => UNIX timestamp))) */
