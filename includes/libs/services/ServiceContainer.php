@@ -486,9 +486,3 @@ class ServiceContainer implements ContainerInterface, DestructibleService {
 		return isset( $this->disabled[$name] );
 	}
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.33
- */
-class_alias( ServiceContainer::class, 'MediaWiki\Services\ServiceContainer' );
