@@ -278,6 +278,5 @@
 	"api-help-param-limit2": "Lubatud pole üle $1 (robotitele $2).",
 	"api-help-param-direction": "Loetlemise suund:\n;newer:Vanemad enne. Märkus: element $1start peab olema enne elementi $1end.\n;older:Uuemad enne (vaikimisi). Märkus: element $1start peab olema pärast elementi $1end.",
 	"api-help-param-continue": "Kui saadaval on rohkem tulemusi, kasuta seda jätkamiseks.",
-	"apierror-mustbeloggedin": "Pead olema sisse logitud, et $1.",
-	"apierror-timeout": "Server ei vastanud oodatud aja sees."
+	"apierror-mustbeloggedin": "Pead olema sisse logitud, et $1."
 }

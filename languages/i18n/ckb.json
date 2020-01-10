@@ -1821,7 +1821,6 @@
 	"watchlist-options": "ھەڵبژاردەکانی لیستی چاودێری",
 	"watching": "چاودێری...",
 	"unwatching": "لابردنی چاودێری...",
-	"watcherrortext": "کێشەیەک دروست بوو لەکاتی گۆڕینی پێڕستی چاودێریت بۆ «$1».",
 	"enotif_reset": "ھەموو پەڕەکان وەک بینراو دیاری بکە",
 	"enotif_impersonal_salutation": "بەکارهێنەری \t{{SITENAME}}",
 	"enotif_subject_deleted": "پەڕەی {{SITENAME}} $1 بە دەستی {{gender:$2|$2}} سڕایەوە.",

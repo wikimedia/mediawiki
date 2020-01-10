@@ -1154,6 +1154,5 @@
 	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Az értéknek $2 és $3 között kell lennie.|2=Az értékeknek $2 és $3 között kell lenniük.}}",
 	"api-help-param-default": "Alapértelmezett: $1",
 	"api-help-param-default-empty": "Alapértelmezett: <span class=\"apihelp-empty\">(üres)</span>",
-	"api-help-examples": "{{PLURAL:$1|Példa|Példák}}:",
-	"apierror-timeout": "A kiszolgáló nem adott választ a várt időn belül."
+	"api-help-examples": "{{PLURAL:$1|Példa|Példák}}:"
 }

@@ -501,7 +501,6 @@
 	"apierror-sectionsnotsupported-what": "Kopjes worden niet ondersteund door $1.",
 	"apierror-stashwrongowner": "Onjuiste eigenaar: $1",
 	"apierror-systemblocked": "U bent automatisch geblokkeerd door MediaWiki.",
-	"apierror-timeout": "De server heeft niet binnen de verwachte tijd geantwoord.",
 	"apierror-unknownerror-nocode": "Onbekende fout.",
 	"apierror-unknownerror": "Onbekende fout: \"$1\".",
 	"apierror-unrecognizedparams": "Niet-herkende {{PLURAL:$2|parameter|parameters}}: $1.",
