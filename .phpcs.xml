@@ -3,12 +3,6 @@
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="Generic.CodeAnalysis.EmptyPHPStatement.SemicolonWithoutCodeDetected" />
 		<exclude name="Generic.ControlStructures.InlineControlStructure" />
-		<exclude name="MediaWiki.Commenting.DocComment.NoDocStar" />
-		<exclude name="MediaWiki.Commenting.DocComment.SpacingDocStarSingleLine" />
-		<exclude name="MediaWiki.Commenting.DocComment.SpacingDocTag" />
-		<exclude name="MediaWiki.Commenting.DocComment.SpacingSingleLineCloseTag" />
-		<exclude name="MediaWiki.Commenting.DocComment.SyntaxAlignedDocClose" />
-		<exclude name="MediaWiki.Commenting.DocComment.SyntaxAlignedDocStar" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
