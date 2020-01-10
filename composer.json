@@ -26,7 +26,7 @@
 		"ext-json": "*",
 		"ext-mbstring": "*",
 		"ext-xml": "*",
-		"guzzlehttp/guzzle": "6.3.3",
+		"guzzlehttp/guzzle": "6.5.2",
 		"liuggio/statsd-php-client": "1.0.18",
 		"oojs/oojs-ui": "0.36.2",
 		"pear/mail": "1.4.1",
