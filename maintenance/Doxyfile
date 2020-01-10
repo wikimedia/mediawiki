@@ -59,11 +59,7 @@ ALIASES                = "type{1}=<b> \1 </b>:" \
                          "codeCoverageIgnore=" \
                          "codingStandardsIgnoreEnd=" \
                          "codingStandardsIgnoreStart=" \
-                         "phan-file-suppress=" \
-                         "phan-var=" \
-                         "phan-param=" \
-                         "phan-return=" \
-                         "return-taint=" \
+                         "phan=" \
                          "suppress="
 TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
