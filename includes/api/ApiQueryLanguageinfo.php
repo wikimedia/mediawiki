@@ -18,9 +18,10 @@
  * @file
  */
 
+use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\MediaWikiServices;
 
 /**
  * API module to enumerate language information.
@@ -42,21 +43,45 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	 */
 	const MAX_EXECUTE_SECONDS = 2.0;
 
+	/** @var LanguageFactory */
+	private $languageFactory;
+
+	/** @var LanguageNameUtils */
+	private $languageNameUtils;
+
+	/** @var LanguageFallback */
+	private $languageFallback;
+
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
+
 	/** @var callable|null */
 	private $microtimeFunction;
 
 	/**
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
+	 * @param LanguageFactory $languageFactory
+	 * @param LanguageNameUtils $languageNameUtils
+	 * @param LanguageFallback $languageFallback
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param callable|null $microtimeFunction Function to use instead of microtime(), for testing.
 	 * Should accept no arguments and return float seconds. (null means real microtime().)
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
 		$moduleName,
+		LanguageFactory $languageFactory,
+		LanguageNameUtils $languageNameUtils,
+		LanguageFallback $languageFallback,
+		LanguageConverterFactory $languageConverterFactory,
 		$microtimeFunction = null
 	) {
 		parent::__construct( $queryModule, $moduleName, 'li' );
+		$this->languageFactory = $languageFactory;
+		$this->languageNameUtils = $languageNameUtils;
+		$this->languageFallback = $languageFallback;
+		$this->languageConverterFactory = $languageConverterFactory;
 		$this->microtimeFunction = $microtimeFunction;
 	}
 
@@ -83,8 +108,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 
 		$targetLanguageCode = $this->getLanguage()->getCode();
 		$include = 'all';
-		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-		$availableLanguageCodes = array_keys( $languageNameUtils->getLanguageNames(
+
+		$availableLanguageCodes = array_keys( $this->languageNameUtils->getLanguageNames(
 			// MediaWiki and extensions may return different sets of language codes
 			// when asked for language names in different languages;
 			// asking for English language names is most likely to give us the full set,
@@ -152,13 +177,12 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeDir ) {
-				$dir = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $languageCode )->getDir();
+				$dir = $this->languageFactory->getLanguage( $languageCode )->getDir();
 				$info['dir'] = $dir;
 			}
 
 			if ( $includeAutonym ) {
-				$autonym = $languageNameUtils->getLanguageName(
+				$autonym = $this->languageNameUtils->getLanguageName(
 					$languageCode,
 					LanguageNameUtils::AUTONYMS,
 					$include
@@ -167,7 +191,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeName ) {
-				$name = $languageNameUtils->getLanguageName(
+				$name = $this->languageNameUtils->getLanguageName(
 					$languageCode,
 					$targetLanguageCode,
 					$include
@@ -176,7 +200,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeFallbacks ) {
-				$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll(
+				$fallbacks = $this->languageFallback->getAll(
 					$languageCode,
 					// allow users to distinguish between implicit and explicit 'en' fallbacks
 					LanguageFallback::STRICT
@@ -186,10 +210,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeVariants ) {
-				$language = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $languageCode );
-				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-					->getLanguageConverter( $language );
+				$language = $this->languageFactory->getLanguage( $languageCode );
+				$converter = $this->languageConverterFactory->getLanguageConverter( $language );
 				$variants = $converter->getVariants();
 				ApiResult::setIndexedTagName( $variants, 'var' );
 				$info['variants'] = $variants;
