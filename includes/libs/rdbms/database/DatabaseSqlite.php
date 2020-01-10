@@ -23,12 +23,12 @@
  */
 namespace Wikimedia\Rdbms;
 
+use Exception;
+use FSLockManager;
+use LockManager;
 use NullLockManager;
 use PDO;
 use PDOException;
-use Exception;
-use LockManager;
-use FSLockManager;
 use RuntimeException;
 use stdClass;
 

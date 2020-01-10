@@ -30,8 +30,8 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\ConsoleSpi;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 $optionsWithArgs = [ 'd' ];

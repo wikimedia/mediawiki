@@ -19,8 +19,8 @@
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
 /**

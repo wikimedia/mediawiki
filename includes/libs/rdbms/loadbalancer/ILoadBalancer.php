@@ -23,8 +23,8 @@
 namespace Wikimedia\Rdbms;
 
 use Exception;
-use LogicException;
 use InvalidArgumentException;
+use LogicException;
 
 /**
  * Database cluster connection, tracking, load balancing, and transaction manager interface

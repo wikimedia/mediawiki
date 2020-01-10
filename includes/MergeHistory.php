@@ -21,8 +21,8 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Timestamp\TimestampException;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Handles the backend logic of merging the histories of two

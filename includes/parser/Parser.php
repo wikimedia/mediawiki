@@ -27,10 +27,10 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Special\SpecialPageFactory;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
-use Psr\Log\LoggerInterface;
 
 /**
  * @defgroup Parser Parser

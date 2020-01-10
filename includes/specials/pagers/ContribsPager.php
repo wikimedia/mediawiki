@@ -23,13 +23,13 @@
  * Pager for Special:Contributions
  * @ingroup Pager
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 class ContribsPager extends RangeChronologicalPager {
 

@@ -22,14 +22,14 @@
  * @file
  */
 
+use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Represents a title within MediaWiki.

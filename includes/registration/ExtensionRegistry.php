@@ -1,10 +1,10 @@
 <?php
 
 use Composer\Semver\Semver;
-use Wikimedia\AtEase\AtEase;
-use Wikimedia\ScopedCallback;
 use MediaWiki\Shell\Shell;
 use MediaWiki\ShellDisabledError;
+use Wikimedia\AtEase\AtEase;
+use Wikimedia\ScopedCallback;
 
 /**
  * ExtensionRegistry class

@@ -23,13 +23,13 @@ namespace MediaWiki\Logger;
 use DateTimeZone;
 use Error;
 use Exception;
-use WikiMap;
 use MWDebug;
 use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use Throwable;
 use UDPTransport;
+use WikiMap;
 
 /**
  * PSR-3 logger that mimics the historic implementation of MediaWiki's former

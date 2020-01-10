@@ -28,13 +28,13 @@ namespace MediaWiki\Storage;
 
 use AppendIterator;
 use DBAccessObjectUtils;
+use ExternalStoreAccess;
 use IDBAccessObject;
 use IExpiringStore;
 use InvalidArgumentException;
 use MWException;
 use StatusValue;
 use WANObjectCache;
-use ExternalStoreAccess;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;

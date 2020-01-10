@@ -21,8 +21,8 @@
 namespace MediaWiki\Logger;
 
 use MediaWiki\Logger\Monolog\BufferHandler;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Wikimedia\ObjectFactory;
 
 /**

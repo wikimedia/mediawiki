@@ -23,9 +23,9 @@
  * @ingroup Installer
  */
 
-use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
+use MediaWiki\Session\SessionProvider;
 
 class InstallerSessionProvider extends SessionProvider {
 	/**

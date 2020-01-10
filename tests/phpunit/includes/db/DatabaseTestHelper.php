@@ -1,9 +1,9 @@
 <?php
 
 use Psr\Log\NullLogger;
-use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\TransactionProfiler;
 
 /**
  * Helper for testing the methods from the Database class

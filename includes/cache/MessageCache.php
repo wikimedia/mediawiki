@@ -23,10 +23,10 @@
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\Database;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\ScopedCallback;
 
 /**
  * MediaWiki message cache structure version.

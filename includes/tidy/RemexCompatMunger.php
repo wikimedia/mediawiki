@@ -7,9 +7,9 @@ use RemexHtml\Serializer\Serializer;
 use RemexHtml\Serializer\SerializerNode;
 use RemexHtml\Tokenizer\Attributes;
 use RemexHtml\Tokenizer\PlainAttributes;
+use RemexHtml\TreeBuilder\Element;
 use RemexHtml\TreeBuilder\TreeBuilder;
 use RemexHtml\TreeBuilder\TreeHandler;
-use RemexHtml\TreeBuilder\Element;
 
 /**
  * @internal

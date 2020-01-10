@@ -22,10 +22,10 @@
 
 namespace MediaWiki\Revision;
 
-use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Title;
 use User;
 

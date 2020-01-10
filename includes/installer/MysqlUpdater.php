@@ -20,9 +20,9 @@
  * @file
  * @ingroup Installer
  */
-use Wikimedia\Rdbms\MySQLField;
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\MySQLField;
 
 /**
  * Mysql update list and mysql-specific update functions.

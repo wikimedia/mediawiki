@@ -2,9 +2,9 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\ValidationException;
-use Wikimedia\Message\DataMessageValue;
 
 /**
  * @covers \Wikimedia\ParamValidator\TypeDef\BooleanDef

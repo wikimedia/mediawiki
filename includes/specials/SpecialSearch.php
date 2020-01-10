@@ -26,10 +26,10 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\Search\BasicSearchResultSetWidget;
 use MediaWiki\Widget\Search\FullSearchResultWidget;
-use MediaWiki\Widget\Search\InterwikiSearchResultWidget;
 use MediaWiki\Widget\Search\InterwikiSearchResultSetWidget;
-use MediaWiki\Widget\Search\SimpleSearchResultWidget;
+use MediaWiki\Widget\Search\InterwikiSearchResultWidget;
 use MediaWiki\Widget\Search\SimpleSearchResultSetWidget;
+use MediaWiki\Widget\Search\SimpleSearchResultWidget;
 
 /**
  * implements Special:Search - Run text & title search and display the output

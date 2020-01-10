@@ -2,9 +2,9 @@
 
 namespace Wikimedia\Rdbms;
 
-use stdClass;
-use RuntimeException;
 use InvalidArgumentException;
+use RuntimeException;
+use stdClass;
 
 /**
  * Result wrapper for grabbing data queried from an IDatabase object

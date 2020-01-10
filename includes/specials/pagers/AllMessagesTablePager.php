@@ -19,8 +19,8 @@
  * @ingroup Pager
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**

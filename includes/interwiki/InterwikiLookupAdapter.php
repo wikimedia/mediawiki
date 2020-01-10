@@ -29,9 +29,9 @@ namespace MediaWiki\Interwiki;
  */
 
 use Interwiki;
+use MediaWikiSite;
 use Site;
 use SiteLookup;
-use MediaWikiSite;
 
 class InterwikiLookupAdapter implements InterwikiLookup {
 

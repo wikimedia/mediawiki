@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Session;
 
-use Wikimedia\AtEase\AtEase;
 use Config;
 use MediaWikiTestCase;
 use User;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

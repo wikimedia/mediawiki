@@ -21,8 +21,8 @@
  * @author Daniel Kinzler
  */
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
 /**

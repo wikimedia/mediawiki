@@ -1,8 +1,8 @@
 <?php
 
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Extension mechanism for WatchedItemQueryService

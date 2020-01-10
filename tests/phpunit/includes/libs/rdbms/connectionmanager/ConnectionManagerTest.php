@@ -4,9 +4,9 @@ namespace Wikimedia\Tests\Rdbms;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\Rdbms\ConnectionManager;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\ConnectionManager;
 
 /**
  * @covers Wikimedia\Rdbms\ConnectionManager

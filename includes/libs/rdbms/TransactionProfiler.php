@@ -23,8 +23,8 @@
 
 namespace Wikimedia\Rdbms;
 
-use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 

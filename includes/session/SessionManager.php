@@ -23,13 +23,13 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\MediaWikiServices;
-use MWException;
-use Psr\Log\LoggerInterface;
 use BagOStuff;
 use CachedBagOStuff;
 use Config;
 use FauxRequest;
+use MediaWiki\MediaWikiServices;
+use MWException;
+use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
 use Wikimedia\ObjectFactory;

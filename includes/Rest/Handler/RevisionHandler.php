@@ -4,14 +4,14 @@ namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\Response;
+use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use RequestContext;
 use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use MediaWiki\Rest\SimpleHandler;
-use MediaWiki\Rest\Response;
 
 /**
  * Handler class for Core REST API endpoints that perform operations on revisions

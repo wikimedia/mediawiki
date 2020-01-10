@@ -23,15 +23,15 @@
 
 namespace Wikimedia\Rdbms;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
-use Wikimedia\ScopedCallback;
 use BagOStuff;
 use EmptyBagOStuff;
-use WANObjectCache;
 use Exception;
-use RuntimeException;
 use LogicException;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+use RuntimeException;
+use WANObjectCache;
+use Wikimedia\ScopedCallback;
 
 /**
  * An interface for generating database load balancers

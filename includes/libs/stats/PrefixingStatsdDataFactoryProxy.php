@@ -18,8 +18,8 @@
  * @file
  */
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
 /**
  * Proxy to prefix metric keys sent to a StatsdDataFactoryInterface

@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use Exception;
-use MediaWiki\MediaWikiServices;
 use DumpBackup;
+use Exception;
 use ManualLogEntry;
+use MediaWiki\MediaWikiServices;
 use Title;
 use User;
 use WikiExporter;

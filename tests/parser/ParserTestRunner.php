@@ -26,9 +26,9 @@
  * @ingroup Testing
  */
 
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tidy\TidyDriverBase;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

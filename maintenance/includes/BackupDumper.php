@@ -29,8 +29,8 @@ require_once __DIR__ . '/../Maintenance.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @ingroup Dump

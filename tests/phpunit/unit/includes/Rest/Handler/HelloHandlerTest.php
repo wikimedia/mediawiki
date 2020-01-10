@@ -11,8 +11,8 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory;
 use User;
+use Wikimedia\ObjectFactory;
 
 /**
  * @covers \MediaWiki\Rest\Handler\HelloHandler

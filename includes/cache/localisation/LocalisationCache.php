@@ -20,8 +20,8 @@
  * @file
  */
 
-use CLDRPluralRuleParser\Evaluator;
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
+use CLDRPluralRuleParser\Evaluator;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageNameUtils;
 use Psr\Log\LoggerInterface;

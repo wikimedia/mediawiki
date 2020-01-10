@@ -23,9 +23,9 @@
  * @ingroup Pager
  */
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\Restriction\Restriction;
-use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IResultWrapper;

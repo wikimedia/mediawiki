@@ -21,11 +21,11 @@
 
 namespace Wikimedia\Rdbms;
 
+use BagOStuff;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\ScopedCallback;
-use BagOStuff;
 use WANObjectCache;
+use Wikimedia\ScopedCallback;
 
 /**
  * Basic DB load monitor with no external dependencies

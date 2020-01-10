@@ -22,10 +22,10 @@
  */
 namespace Wikimedia\Rdbms;
 
+use Exception;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
-use Wikimedia\AtEase\AtEase;
-use Exception;
 
 /**
  * @ingroup Database

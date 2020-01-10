@@ -4,10 +4,10 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
-use Wikimedia\Message\MessageValue;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Validator\Validator;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory;
 
 /**

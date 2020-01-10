@@ -23,8 +23,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ILoadBalancer;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Caches user genders when needed to use correct namespace aliases.

@@ -3,10 +3,10 @@
 namespace Wikimedia\ParamValidator\TypeDef;
 
 use Wikimedia\Message\DataMessageValue;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers Wikimedia\ParamValidator\TypeDef\TimestampDef

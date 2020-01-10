@@ -23,8 +23,8 @@
 
 namespace Wikimedia\Rdbms;
 
-use InvalidArgumentException;
 use BadMethodCallException;
+use InvalidArgumentException;
 
 /**
  * An LBFactory class that always returns a single database object.

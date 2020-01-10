@@ -25,10 +25,10 @@
  * @copyright © 2011, Antoine Musso
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Class for fetching backlink lists, approximate backlink counts and

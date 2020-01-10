@@ -22,11 +22,11 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-use MediaWiki\Storage\SqlBlobStore;
-use Wikimedia\Rdbms\IMaintainableDatabase;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 $optionsWithArgs = RecompressTracked::getOptionsWithArgs();
 require __DIR__ . '/../commandLine.inc';

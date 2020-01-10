@@ -20,9 +20,9 @@
  * @file
  */
 
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 
 /**

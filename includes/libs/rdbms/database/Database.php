@@ -25,20 +25,20 @@
  */
 namespace Wikimedia\Rdbms;
 
+use BagOStuff;
+use Exception;
+use HashBagOStuff;
+use InvalidArgumentException;
+use LogicException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\ScopedCallback;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
-use Wikimedia\AtEase\AtEase;
-use BagOStuff;
-use HashBagOStuff;
-use LogicException;
-use InvalidArgumentException;
-use UnexpectedValueException;
-use Exception;
 use RuntimeException;
 use Throwable;
+use UnexpectedValueException;
+use Wikimedia\AtEase\AtEase;
+use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Relational database abstraction object

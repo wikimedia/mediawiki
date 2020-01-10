@@ -20,10 +20,10 @@
  * @file
  * @ingroup JobQueue
  */
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
 /**
  * Job to update link tables for pages

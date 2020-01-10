@@ -20,15 +20,15 @@
  * @file
  */
 
-use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\ILBFactory;
-use Wikimedia\Rdbms\LoadBalancer;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBTransactionError;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * Class for managing the deferred updates

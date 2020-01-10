@@ -18,8 +18,8 @@
  * @file
  */
 
-use Wikimedia\Http\HttpAcceptParser;
 use Wikimedia\Http\HttpAcceptNegotiator;
+use Wikimedia\Http\HttpAcceptParser;
 
 /**
  * Request handler implementing a data interface for mediawiki pages.

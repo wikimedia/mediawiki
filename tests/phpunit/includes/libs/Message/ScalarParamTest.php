@@ -4,8 +4,8 @@ namespace Wikimedia\Tests\Message;
 
 use InvalidArgumentException;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ScalarParam;
 use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 
 /**
  * @covers \Wikimedia\Message\ScalarParam

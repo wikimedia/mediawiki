@@ -2,11 +2,11 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
-use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef;
 
 /**
  * Type definition for boolean types

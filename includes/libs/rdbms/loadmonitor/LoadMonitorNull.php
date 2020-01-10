@@ -21,8 +21,8 @@
 
 namespace Wikimedia\Rdbms;
 
-use Psr\Log\LoggerInterface;
 use BagOStuff;
+use Psr\Log\LoggerInterface;
 use WANObjectCache;
 
 class LoadMonitorNull implements ILoadMonitor {

@@ -26,9 +26,9 @@
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class for creating new log entries and inserting them into the database.

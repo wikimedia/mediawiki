@@ -20,8 +20,8 @@
  * @author Florian Schmidt
  */
 
-use Composer\Semver\VersionParser;
 use Composer\Semver\Constraint\Constraint;
+use Composer\Semver\VersionParser;
 
 /**
  * Provides functions to check a set of extensions with dependencies against

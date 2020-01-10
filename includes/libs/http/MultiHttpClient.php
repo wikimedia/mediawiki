@@ -20,10 +20,10 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Class to handle multiple HTTP requests

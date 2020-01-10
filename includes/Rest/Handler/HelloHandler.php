@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Wikimedia\ParamValidator\ParamValidator;
 use MediaWiki\Rest\SimpleHandler;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Example handler

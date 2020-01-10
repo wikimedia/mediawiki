@@ -19,8 +19,8 @@
  *
  * @file
  */
-use Wikimedia\Assert\Assert;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Assert\Assert;
 
 /**
  * Class for getting statistically unique IDs

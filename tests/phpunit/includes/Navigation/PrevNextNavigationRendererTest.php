@@ -1,7 +1,7 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Navigation\PrevNextNavigationRenderer

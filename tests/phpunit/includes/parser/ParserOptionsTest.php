@@ -1,8 +1,8 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\TestingAccessWrapper;
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ParserOptions
