@@ -47,9 +47,9 @@ class GitInfoTest extends MediaWikiTestCase {
 	protected function assertValidGitInfo( GitInfo $gitInfo ) {
 		$this->assertTrue( $gitInfo->cacheIsComplete() );
 		$this->assertEquals( 'refs/heads/master', $gitInfo->getHead() );
-		$this->assertEquals( '0123456789abcdef0123456789abcdef01234567',
+		$this->assertSame( '0123456789abcdef0123456789abcdef01234567',
 			$gitInfo->getHeadSHA1() );
-		$this->assertEquals( '1070884800', $gitInfo->getHeadCommitDate() );
+		$this->assertSame( '1070884800', $gitInfo->getHeadCommitDate() );
 		$this->assertEquals( 'master', $gitInfo->getCurrentBranch() );
 		$this->assertStringContainsString( '0123456789abcdef0123456789abcdef01234567',
 			$gitInfo->getHeadViewUrl() );
@@ -83,7 +83,7 @@ class GitInfoTest extends MediaWikiTestCase {
 		$fixture = new GitInfo( $dir );
 
 		$this->assertEquals( 'refs/heads/master', $fixture->getHead() );
-		$this->assertEquals( '0123456789012345678901234567890123abcdef', $fixture->getHeadSHA1() );
+		$this->assertSame( '0123456789012345678901234567890123abcdef', $fixture->getHeadSHA1() );
 	}
 
 	public function testIndirection() {
@@ -91,7 +91,7 @@ class GitInfoTest extends MediaWikiTestCase {
 		$fixture = new GitInfo( $dir );
 
 		$this->assertEquals( 'refs/heads/master', $fixture->getHead() );
-		$this->assertEquals( '0123456789012345678901234567890123abcdef', $fixture->getHeadSHA1() );
+		$this->assertSame( '0123456789012345678901234567890123abcdef', $fixture->getHeadSHA1() );
 	}
 
 	public function testIndirection2() {
@@ -99,7 +99,7 @@ class GitInfoTest extends MediaWikiTestCase {
 		$fixture = new GitInfo( $dir );
 
 		$this->assertEquals( 'refs/heads/master', $fixture->getHead() );
-		$this->assertEquals( '0123456789012345678901234567890123abcdef', $fixture->getHeadSHA1() );
+		$this->assertSame( '0123456789012345678901234567890123abcdef', $fixture->getHeadSHA1() );
 	}
 
 	public function testReadingPackedRefs() {

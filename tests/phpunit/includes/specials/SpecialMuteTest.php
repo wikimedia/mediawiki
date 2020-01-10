@@ -110,6 +110,6 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		);
 
 		$this->assertStringContainsString( 'specialmute-success', $html );
-		$this->assertEquals( "999", $loggedInUser->getOption( 'email-blacklist' ) );
+		$this->assertSame( "999", $loggedInUser->getOption( 'email-blacklist' ) );
 	}
 }

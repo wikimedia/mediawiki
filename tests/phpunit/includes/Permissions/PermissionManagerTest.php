@@ -549,8 +549,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [],
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'bogus', $this->user, $this->title ) );
-		$this->assertEquals( true,
-			MediaWikiServices::getInstance()->getPermissionManager()
+		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()
 				->userCan( 'bogus', $this->user, $this->title ) );
 
 		$this->overrideUserPermissions( $this->user, '' );
@@ -891,8 +890,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'edit', $this->user, $this->title ) );
 
-		$this->assertEquals( true,
-			MediaWikiServices::getInstance()->getPermissionManager()
+		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()
 				->quickUserCan( 'edit', $this->user, $this->title ) );
 
 		$this->title->mRestrictions = [ "edit" => [ 'bogus', "sysop", "protect", "" ],
@@ -1004,8 +1002,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
 
-		$this->assertEquals( true,
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
+		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()->userCan(
 				'edit', $this->user, $this->title ) );
 		$this->assertEquals( [],
 			MediaWikiServices::getInstance()->getPermissionManager()->getPermissionErrors(
@@ -1046,8 +1043,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [],
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'create', $this->user, $this->title ) );
-		$this->assertEquals( true,
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
+		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()->userCan(
 				'create', $this->user, $this->title ) );
 
 		$this->overrideUserPermissions( $this->user, [ 'createpage' ] );
@@ -1071,8 +1067,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [],
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'move', $this->user, $this->title ) );
-		$this->assertEquals( true,
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
+		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()->userCan(
 				'move', $this->user, $this->title ) );
 
 		$this->title->mInterwiki = "no";
@@ -1095,8 +1090,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( [],
 			MediaWikiServices::getInstance()->getPermissionManager()
 				->getPermissionErrors( 'move-target', $this->user, $this->title ) );
-		$this->assertEquals( true,
-			MediaWikiServices::getInstance()->getPermissionManager()->userCan(
+		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()->userCan(
 				'move-target', $this->user, $this->title ) );
 
 		$this->title->mInterwiki = "no";
@@ -1155,8 +1149,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		}
 
 		// quickUserCan should ignore user blocks
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$permissionManager->quickUserCan( 'move-target', $this->user, $this->title )
 		);
 	}

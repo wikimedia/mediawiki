@@ -492,19 +492,19 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'getDBname' )->willReturn( 'unittest' );
 
 		$this->assertSame( 0, $db->trxLevel() );
-		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
-		$this->assertEquals( true, $db->lock( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->lock( 'x', __METHOD__ ) );
 		$this->assertFalse( $db->lockIsFree( 'x', __METHOD__ ) );
-		$this->assertEquals( true, $db->unlock( 'x', __METHOD__ ) );
-		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->unlock( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->lockIsFree( 'x', __METHOD__ ) );
 		$this->assertSame( 0, $db->trxLevel() );
 
 		$db->setFlag( DBO_TRX );
-		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
-		$this->assertEquals( true, $db->lock( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->lock( 'x', __METHOD__ ) );
 		$this->assertFalse( $db->lockIsFree( 'x', __METHOD__ ) );
-		$this->assertEquals( true, $db->unlock( 'x', __METHOD__ ) );
-		$this->assertEquals( true, $db->lockIsFree( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->unlock( 'x', __METHOD__ ) );
+		$this->assertTrue( $db->lockIsFree( 'x', __METHOD__ ) );
 		$db->clearFlag( DBO_TRX );
 
 		// Pending writes with DBO_TRX

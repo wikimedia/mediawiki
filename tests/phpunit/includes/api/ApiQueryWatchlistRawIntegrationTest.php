@@ -348,7 +348,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 		$firstResult = $this->doListWatchlistRawRequest( [ 'wrlimit' => 2 ] );
 		$continuationParam = $firstResult[0]['continue']['wrcontinue'];
 
-		$this->assertEquals( '0|ApiQueryWatchlistRawIntegrationTestPage3', $continuationParam );
+		$this->assertSame( '0|ApiQueryWatchlistRawIntegrationTestPage3', $continuationParam );
 
 		$continuedResult = $this->doListWatchlistRawRequest( [ 'wrcontinue' => $continuationParam ] );
 

@@ -132,13 +132,13 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			] );
 		}
 
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$provider->testForAccountCreation( $user, $creator, [] )->isOK(),
 			'attempt #1'
 		);
-		$this->assertEquals(
-			true,
+		$this->assertTrue(
+
 			$provider->testForAccountCreation( $user, $creator, [] )->isOK(),
 			'attempt #2'
 		);

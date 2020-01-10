@@ -1472,7 +1472,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$this->watchPages( $otherUser, [ $target ] );
 
 		$reloadedUser = User::newFromName( $otherUser->getName() );
-		$this->assertEquals( '1234567890', $reloadedUser->getOption( 'watchlisttoken' ) );
+		$this->assertSame( '1234567890', $reloadedUser->getOption( 'watchlisttoken' ) );
 
 		$result = $this->doListWatchlistRequest( [
 			'wlowner' => $otherUser->getName(),

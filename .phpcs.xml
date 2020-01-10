@@ -27,13 +27,6 @@
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.isset" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.Usage.IsNull.IsNull" />
-		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.False" />
-		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.FalsyString" />
-		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.Int" />
-		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.IntegerString" />
-		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.NumericString" />
-		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.True" />
-		<exclude name="MediaWiki.Usage.PHPUnitDeprecatedMethods.AssertInternalTypeGeneric" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
 		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />

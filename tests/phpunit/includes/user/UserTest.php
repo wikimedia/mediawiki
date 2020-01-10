@@ -746,8 +746,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
 		$this->assertInstanceOf( DatabaseBlock::class, $user2->getBlock() );
-		// Non-strict type-check.
-		$this->assertEquals( true, $user2->getBlock()->isAutoblocking(), 'Autoblock does not work' );
+		$this->assertTrue( (bool)$user2->getBlock()->isAutoblocking(), 'Autoblock does not work' );
 		// Can't directly compare the objects because of member type differences.
 		// One day this will work: $this->assertEquals( $block, $user2->getBlock() );
 		$this->assertEquals( $block->getId(), $user2->getBlock()->getId() );
@@ -763,7 +762,7 @@ class UserTest extends MediaWikiTestCase {
 		$blockManager->trackBlockWithCookie( $user3, $request3->response() );
 		$this->assertTrue( $user3->isLoggedIn() );
 		$this->assertInstanceOf( DatabaseBlock::class, $user3->getBlock() );
-		$this->assertEquals( true, $user3->getBlock()->isAutoblocking() ); // Non-strict type-check.
+		$this->assertTrue( (bool)$user3->getBlock()->isAutoblocking() );
 
 		// Clean up.
 		$block->delete();
@@ -998,7 +997,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user2->isAnon() );
 		$this->assertFalse( $user2->isLoggedIn() );
 		$this->assertInstanceOf( DatabaseBlock::class, $user2->getBlock() );
-		$this->assertEquals( true, $user2->getBlock()->isAutoblocking() ); // Non-strict type-check.
+		$this->assertTrue( (bool)$user2->getBlock()->isAutoblocking() );
 
 		// Clean up.
 		$block->delete();
