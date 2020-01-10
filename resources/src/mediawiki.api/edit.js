@@ -71,7 +71,7 @@
 		 *             return revision.content.replace( 'foo', 'bar' );
 		 *         } )
 		 *         .then( function () {
-		 *             console.log( 'Saved! ');
+		 *             console.log( 'Saved!' );
 		 *         } );
 		 *
 		 * Set save parameters by returning an object instead of a string:
@@ -88,7 +88,7 @@
 		 *         }
 		 *     )
 		 *     .then( function () {
-		 *         console.log( 'Saved! ');
+		 *         console.log( 'Saved!' );
 		 *     } );
 		 *
 		 * Transform asynchronously by returning a promise.
@@ -105,7 +105,7 @@
 		 *                 } );
 		 *         } )
 		 *         .then( function () {
-		 *             console.log( 'Saved! ');
+		 *             console.log( 'Saved!' );
 		 *         } );
 		 *
 		 * @since 1.28
