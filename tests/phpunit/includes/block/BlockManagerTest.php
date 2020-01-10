@@ -1,12 +1,12 @@
 <?php
 
 use MediaWiki\Block\BlockManager;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\CompositeBlock;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\TestingAccessWrapper;
 use Psr\Log\LoggerInterface;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Blocking

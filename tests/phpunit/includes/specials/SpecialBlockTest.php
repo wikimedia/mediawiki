@@ -2,10 +2,10 @@
 
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
-use Wikimedia\TestingAccessWrapper;
+use MediaWiki\Block\Restriction\PageRestriction;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Blocking

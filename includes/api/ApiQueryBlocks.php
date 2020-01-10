@@ -20,9 +20,9 @@
  * @file
  */
 
-use Wikimedia\Rdbms\IResultWrapper;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Query module to enumerate all user blocks

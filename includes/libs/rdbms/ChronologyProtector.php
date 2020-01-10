@@ -23,11 +23,11 @@
 
 namespace Wikimedia\Rdbms;
 
+use BagOStuff;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\WaitConditionLoop;
-use BagOStuff;
 
 /**
  * Helper class for mitigating DB replication lag in order to provide "session consistency"

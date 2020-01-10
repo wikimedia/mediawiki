@@ -24,8 +24,8 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 class ImageListPager extends TablePager {
 

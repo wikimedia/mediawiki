@@ -20,9 +20,9 @@
  * @file
  */
 
-use Psr\Log\LoggerInterface;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 
 /**
  * Send information about this MediaWiki instance to MediaWiki.org.

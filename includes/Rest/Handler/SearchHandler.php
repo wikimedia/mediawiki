@@ -2,20 +2,20 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use ISearchResultSet;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
+use RequestContext;
+use SearchEngine;
+use SearchEngineConfig;
+use SearchEngineFactory;
+use SearchResult;
+use Status;
+use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use MediaWiki\Rest\Handler;
-use ISearchResultSet;
-use SearchResult;
-use SearchEngineFactory;
-use SearchEngineConfig;
-use RequestContext;
-use User;
-use SearchEngine;
-use Status;
 
 /**
  * Handler class for Core REST API endpoint that handles basic search

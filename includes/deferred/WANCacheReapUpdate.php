@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 

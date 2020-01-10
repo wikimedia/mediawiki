@@ -21,12 +21,12 @@
  * @ingroup FileAbstraction
  */
 
-use Wikimedia\AtEase\AtEase;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Class to represent a local file in the wiki's own database

@@ -21,9 +21,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\NameTableAccessException;
 
 /**
  * Query module to enumerate all deleted revisions.

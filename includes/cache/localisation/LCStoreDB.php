@@ -19,8 +19,8 @@
  */
 
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * LCStore implementation which uses the standard DB functions to store data.

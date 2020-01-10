@@ -19,9 +19,9 @@
 
 namespace MediaWiki\Storage;
 
-use Wikimedia\Rdbms\ILBFactory;
-use WANObjectCache;
 use Psr\Log\LoggerInterface;
+use WANObjectCache;
+use Wikimedia\Rdbms\ILBFactory;
 
 class NameTableStoreFactory {
 	private static $info;

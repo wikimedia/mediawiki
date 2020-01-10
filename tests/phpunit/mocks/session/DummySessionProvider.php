@@ -1,8 +1,8 @@
 <?php
 
-use MediaWiki\Session\SessionProvider;
-use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionBackend;
+use MediaWiki\Session\SessionInfo;
+use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\UserInfo;
 
 /**

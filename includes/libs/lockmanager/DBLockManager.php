@@ -22,8 +22,8 @@
  */
 
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Version of LockManager based on using named/row DB locks.

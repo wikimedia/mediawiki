@@ -2,15 +2,15 @@
 // phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 
 use MediaWiki\Logger\LegacySpi;
+use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
-use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

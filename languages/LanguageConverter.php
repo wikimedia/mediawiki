@@ -18,9 +18,8 @@
  * @file
  * @ingroup Language
  */
-use MediaWiki\MediaWikiServices;
-
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**

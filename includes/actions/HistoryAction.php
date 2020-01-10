@@ -22,8 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * This class handles printing the history page for an article. In order to

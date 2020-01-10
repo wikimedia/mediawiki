@@ -21,9 +21,9 @@
  * @file
  */
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 
 /**

@@ -21,14 +21,14 @@
  * @ingroup JobQueue
  */
 
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Logger\LoggerFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use Wikimedia\ScopedCallback;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\ScopedCallback;
 
 /**
  * Job queue runner utility methods

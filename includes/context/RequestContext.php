@@ -22,11 +22,11 @@
  * @file
  */
 
-use Wikimedia\AtEase\AtEase;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\ScopedCallback;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
+use Wikimedia\ScopedCallback;
 
 /**
  * Group all the pieces relevant to the context of a request into one instance

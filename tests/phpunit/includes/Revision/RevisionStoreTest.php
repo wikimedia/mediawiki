@@ -9,14 +9,14 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\SqlBlobStore;
-use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\MaintainableDBConnRef;
 use MediaWikiTestCase;
 use MWException;
+use PHPUnit\Framework\MockObject\MockObject;
 use WANObjectCache;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\TestingAccessWrapper;
 
 /**

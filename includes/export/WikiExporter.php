@@ -29,8 +29,8 @@
 
 use MediaWiki\MediaWikiServices as MediaWikiServicesAlias;
 use MediaWiki\Revision\RevisionRecord;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * @ingroup SpecialPage Dump

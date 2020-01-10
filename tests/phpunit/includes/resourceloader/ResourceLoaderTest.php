@@ -1,7 +1,7 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 class ResourceLoaderTest extends ResourceLoaderTestCase {
 

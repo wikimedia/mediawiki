@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\Widget\NamespacesMultiselectWidget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Widget\NamespacesMultiselectWidget;
 
 /**
  * Implements a tag multiselect input field for namespaces.

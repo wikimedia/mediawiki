@@ -20,8 +20,8 @@
  * @file
  * @ingroup LockManager
  */
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LBFactory;
 
 /**

@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Revision;
 
+use Content;
 use InvalidArgumentException;
 use LogicException;
 use ParserOptions;
@@ -31,7 +32,6 @@ use Psr\Log\NullLogger;
 use Revision;
 use Title;
 use User;
-use Content;
 use Wikimedia\Assert\Assert;
 
 /**

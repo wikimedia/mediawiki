@@ -6,10 +6,10 @@ use ContentHandler;
 use DOMDocument;
 use ExecutableFinder;
 use MediaWikiLangTestCase;
+use MWException;
 use User;
 use WikiExporter;
 use WikiPage;
-use MWException;
 
 /**
  * Base TestCase for dumps

@@ -3,12 +3,12 @@
 namespace MediaWiki\Tests\Rest;
 
 use EmptyBagOStuff;
-use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\Stream;
+use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
-use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\EntryPoint;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
@@ -16,9 +16,9 @@ use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use Psr\Container\ContainerInterface;
 use RequestContext;
+use User;
 use WebResponse;
 use Wikimedia\ObjectFactory;
-use User;
 
 /**
  * @covers \MediaWiki\Rest\EntryPoint

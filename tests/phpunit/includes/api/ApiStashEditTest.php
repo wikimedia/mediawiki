@@ -2,8 +2,8 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\PageEditStash;
-use Wikimedia\TestingAccessWrapper;
 use Psr\Log\NullLogger;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ApiStashEdit

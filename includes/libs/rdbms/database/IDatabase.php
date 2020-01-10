@@ -19,10 +19,10 @@
  */
 namespace Wikimedia\Rdbms;
 
-use InvalidArgumentException;
-use Wikimedia\ScopedCallback;
 use Exception;
+use InvalidArgumentException;
 use stdClass;
+use Wikimedia\ScopedCallback;
 
 /**
  * @defgroup Database Database

@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Session;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerInterface;
 use Config;
 use Language;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
 

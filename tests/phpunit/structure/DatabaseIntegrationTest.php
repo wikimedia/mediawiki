@@ -1,7 +1,7 @@
 <?php
 
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @group Database

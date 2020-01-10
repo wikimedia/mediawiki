@@ -22,8 +22,8 @@ namespace MediaWiki\Edit;
 
 use Content;
 use ParserOptions;
-use RuntimeException;
 use ParserOutput;
+use RuntimeException;
 
 /**
  * Represents information returned by WikiPage::prepareContentForEdit()

@@ -3,8 +3,8 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MediaWikiServices;
-use Psr\Log\LogLevel;
 use MediaWikiTestCase;
+use Psr\Log\LogLevel;
 use Wikimedia\TestingAccessWrapper;
 
 /**

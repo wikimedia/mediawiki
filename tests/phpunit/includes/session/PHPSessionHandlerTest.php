@@ -3,8 +3,8 @@
 namespace MediaWiki\Session;
 
 use BadMethodCallException;
-use Psr\Log\LogLevel;
 use MediaWikiTestCase;
+use Psr\Log\LogLevel;
 use UnexpectedValueException;
 use Wikimedia\TestingAccessWrapper;
 

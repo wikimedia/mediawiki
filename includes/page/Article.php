@@ -20,14 +20,14 @@
  * @file
  */
 
-use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IDatabase;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Class for viewing MediaWiki article and history.

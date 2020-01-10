@@ -21,12 +21,12 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Abstraction for ResourceLoader modules which pull from wiki pages

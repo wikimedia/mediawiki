@@ -2,25 +2,25 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use MediaWiki\Revision\RevisionAccessException;
-use MediaWiki\Revision\SuppressedDataException;
+use Config;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\Response;
+use MediaWiki\Rest\SimpleHandler;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use Wikimedia\Message\MessageValue;
-use Wikimedia\ParamValidator\ParamValidator;
-use MediaWiki\Rest\SimpleHandler;
-use MediaWiki\Rest\Response;
+use MediaWiki\Revision\SuppressedDataException;
 use RequestContext;
-use User;
-use Config;
 use TextContent;
-use TitleFormatter;
 use Title;
-use Wikimedia\Message\ScalarParam;
+use TitleFormatter;
+use User;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Handler class for Core REST API Page Source endpoint

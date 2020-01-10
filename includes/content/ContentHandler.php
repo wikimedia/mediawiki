@@ -26,12 +26,12 @@
  * @author Daniel Kinzler
  */
 
-use MediaWiki\Revision\RevisionRecord;
-use Wikimedia\Assert\Assert;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
+use Wikimedia\Assert\Assert;
 
 /**
  * A content handler knows how do deal with a specific type of content on a wiki

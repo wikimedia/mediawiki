@@ -18,8 +18,8 @@
  * @file
  */
 
-use Psr\Http\Message\StreamInterface;
 use GuzzleHttp\Psr7\StreamDecoratorTrait;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Callback-aware stream.  Allows using a callback function to receive data in contexts where

@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Rest\BasicAccess;
 
-use MediaWiki\User\UserIdentity;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestInterface;
+use MediaWiki\User\UserIdentity;
 
 /**
  * The concrete implementation of basic read/write restrictions in MediaWiki

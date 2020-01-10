@@ -4,9 +4,9 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
-use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;

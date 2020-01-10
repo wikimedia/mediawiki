@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Storage;
 use CommentStoreComment;
 use Content;
 use ContentHandler;
+use DeferredUpdates;
 use LinksUpdate;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -24,7 +25,6 @@ use User;
 use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 use WikitextContent;
-use DeferredUpdates;
 
 /**
  * @group Database

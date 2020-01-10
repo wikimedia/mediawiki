@@ -5,8 +5,8 @@
  *
  * Represents files in a repository.
  */
-use Wikimedia\AtEase\AtEase;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Base code for files.

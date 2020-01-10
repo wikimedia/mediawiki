@@ -25,8 +25,8 @@
  */
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * This file is not a valid entry point, perform no further processing unless

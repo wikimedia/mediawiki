@@ -1,12 +1,12 @@
 <?php
 
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Rdbms\DBTransactionError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
-use Wikimedia\Rdbms\DBTransactionError;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Test the parts of the Database abstract class that deal

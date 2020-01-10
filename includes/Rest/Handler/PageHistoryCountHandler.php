@@ -4,21 +4,21 @@ namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
-use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\Response;
+use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use RequestContext;
+use Title;
 use User;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
-use Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

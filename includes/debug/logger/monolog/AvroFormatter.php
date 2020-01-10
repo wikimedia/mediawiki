@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Logger\Monolog;
 
-use AvroIODatumWriter;
 use AvroIOBinaryEncoder;
+use AvroIODatumWriter;
 use AvroIOTypeException;
 use AvroSchema;
 use AvroStringIO;

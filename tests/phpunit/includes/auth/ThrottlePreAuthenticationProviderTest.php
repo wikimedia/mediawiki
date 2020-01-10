@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Auth;
 
-use Wikimedia\TestingAccessWrapper;
 use stdClass;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group AuthManager

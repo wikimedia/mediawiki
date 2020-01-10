@@ -1,8 +1,8 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ApiBlockInfoTrait

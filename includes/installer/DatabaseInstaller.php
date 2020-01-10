@@ -22,11 +22,11 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\Rdbms\DBExpectedError;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LBFactorySingle;
 
 /**
  * Base class for DBMS-specific installation helper classes.

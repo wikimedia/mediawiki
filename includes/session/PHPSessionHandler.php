@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Session;
 
-use Psr\Log\LoggerInterface;
 use BagOStuff;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**

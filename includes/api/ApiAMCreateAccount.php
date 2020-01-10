@@ -20,8 +20,8 @@
  * @file
  */
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
 
 /**
  * Create an account with AuthManager

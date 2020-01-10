@@ -2,12 +2,12 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
-use Wikimedia\Message\ParamType;
-use Wikimedia\Message\MessageParam;
-use Wikimedia\Message\ScalarParam;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\ListType;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef;
 

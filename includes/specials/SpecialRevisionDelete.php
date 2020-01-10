@@ -21,8 +21,8 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Special page allowing users with the appropriate permissions to view

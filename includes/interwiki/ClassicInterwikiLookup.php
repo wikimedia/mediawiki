@@ -27,9 +27,9 @@ use Cdb\Reader as CdbReader;
 use Hooks;
 use Interwiki;
 use Language;
-use WikiMap;
 use MapCacheLRU;
 use WANObjectCache;
+use WikiMap;
 use Wikimedia\Rdbms\Database;
 
 /**

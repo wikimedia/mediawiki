@@ -21,18 +21,18 @@
  */
 namespace Wikimedia\Rdbms;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
-use Wikimedia\ScopedCallback;
+use ArrayUtils;
 use BagOStuff;
 use EmptyBagOStuff;
-use WANObjectCache;
-use ArrayUtils;
-use LogicException;
-use UnexpectedValueException;
-use InvalidArgumentException;
-use RuntimeException;
 use Exception;
+use InvalidArgumentException;
+use LogicException;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+use RuntimeException;
+use UnexpectedValueException;
+use WANObjectCache;
+use Wikimedia\ScopedCallback;
 
 /**
  * Database connection, tracking, load balancing, and transaction manager for a cluster

@@ -1,10 +1,10 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\IncompleteRevisionException;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\IPUtils;
 

@@ -24,11 +24,11 @@ namespace Wikimedia\Rdbms;
 
 use DateTime;
 use DateTimeZone;
-use Wikimedia\AtEase\AtEase;
-use InvalidArgumentException;
 use Exception;
+use InvalidArgumentException;
 use RuntimeException;
 use stdClass;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Database abstraction object for MySQL.

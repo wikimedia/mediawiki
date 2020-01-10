@@ -27,9 +27,9 @@ namespace MediaWiki\Revision;
 
 use ActorMigration;
 use CommentStore;
-use Psr\Log\LoggerInterface;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
+use Psr\Log\LoggerInterface;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\ILBFactory;

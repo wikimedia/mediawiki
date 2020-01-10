@@ -21,9 +21,9 @@
  * @file
  */
 use PHPUnit\Framework\Constraint\StringContains;
-use Wikimedia\Rdbms\DBError;
-use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;

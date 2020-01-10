@@ -20,14 +20,14 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
-use Psr\Log\LoggerInterface;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ILBFactory;
+use Psr\Log\LoggerInterface;
+use Wikimedia\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DBConnectionError;
-use Liuggio\StatsdClient\Sender\SocketSender;
-use Wikimedia\AtEase;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.

@@ -15,16 +15,16 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
-use MWException;
-use TestAllServiceOptionsUsed;
-use Wikimedia\ScopedCallback;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWikiLangTestCase;
+use MWException;
 use RequestContext;
 use stdClass;
+use TestAllServiceOptionsUsed;
 use Title;
 use User;
+use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**

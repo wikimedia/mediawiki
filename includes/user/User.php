@@ -20,24 +20,24 @@
  * @file
  */
 
+use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
-use MediaWiki\Auth\AuthManager;
-use MediaWiki\Auth\AuthenticationResponse;
-use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
-use Wikimedia\ScopedCallback;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\ScopedCallback;
 
 /**
  * The User object encapsulates all of the user-specific settings (user_id,

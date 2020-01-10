@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use Wikimedia\Rdbms\IMaintainableDatabase;
 use MediaWiki\DB\PatchFileLocation;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Trait providing schema overrides that allow tests to run against the intermediate MCR database

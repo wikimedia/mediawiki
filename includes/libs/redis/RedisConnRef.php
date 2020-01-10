@@ -17,8 +17,8 @@
  *
  * @file
  */
-use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Helper class to handle automatically marking connectons as reusable (via RAII pattern)

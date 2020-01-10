@@ -1,8 +1,8 @@
 <?php
 
+use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Spi;
-use MediaWiki\Logger\LogCapturingSpi;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestListener;

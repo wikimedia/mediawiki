@@ -20,8 +20,8 @@
  * @file
  */
 
-use Wikimedia\Assert\Assert;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Assert\Assert;
 
 /**
  * Handles purging the appropriate CDN objects given a list of URLs or Title instances

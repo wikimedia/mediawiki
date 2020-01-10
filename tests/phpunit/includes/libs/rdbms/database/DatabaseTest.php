@@ -1,15 +1,15 @@
 <?php
 
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqli;
+use Wikimedia\Rdbms\DatabasePostgres;
+use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\TestingAccessWrapper;
-use Wikimedia\Rdbms\DatabaseSqlite;
-use Wikimedia\Rdbms\DatabasePostgres;
-use Wikimedia\Rdbms\DBUnexpectedError;
 
 class DatabaseTest extends PHPUnit\Framework\TestCase {
 

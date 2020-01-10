@@ -3,10 +3,10 @@
 define( 'NS_UNITTEST', 5600 );
 define( 'NS_UNITTEST_TALK', 5601 );
 
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\CompositeBlock;
-use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;

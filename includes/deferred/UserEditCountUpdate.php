@@ -20,8 +20,8 @@
  * @file
  */
 
-use Wikimedia\Assert\Assert;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Assert\Assert;
 
 /**
  * Handles increment the edit count for a given set of users

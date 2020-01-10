@@ -1,8 +1,8 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Factory class for SearchEngine.

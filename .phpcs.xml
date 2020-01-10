@@ -3,7 +3,6 @@
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="Generic.CodeAnalysis.EmptyPHPStatement.SemicolonWithoutCodeDetected" />
 		<exclude name="Generic.ControlStructures.InlineControlStructure" />
-		<exclude name="MediaWiki.Classes.UnsortedUseStatements.UnsortedUse" />
 		<exclude name="MediaWiki.Commenting.DocComment.NoDocStar" />
 		<exclude name="MediaWiki.Commenting.DocComment.SpacingDocStarSingleLine" />
 		<exclude name="MediaWiki.Commenting.DocComment.SpacingDocTag" />

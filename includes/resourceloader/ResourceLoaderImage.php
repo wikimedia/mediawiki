@@ -18,8 +18,8 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 /**

@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Storage;
 
+use ExternalStoreAccess;
 use MediaWiki\Config\ServiceOptions;
 use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
-use ExternalStoreAccess;
 
 /**
  * Service for instantiating BlobStores

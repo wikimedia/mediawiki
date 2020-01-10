@@ -23,8 +23,8 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\Shell\Shell;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Shell\Shell;
 use Wikimedia\IPUtils;
 
 require_once __DIR__ . '/Maintenance.php';

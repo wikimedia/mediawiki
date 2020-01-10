@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Languages\LanguageNameUtils;
 
 /**
  * @coversDefaultClass Language

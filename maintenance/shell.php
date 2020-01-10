@@ -34,8 +34,8 @@
  * @author Gergő Tisza <tgr.huwiki@gmail.com>
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\ConsoleSpi;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';

@@ -24,16 +24,16 @@
  */
 
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LBFactoryMulti;
+use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LoadBalancer;
-use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\MySQLMasterPos;
-use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\LoadMonitorNull;
+use Wikimedia\Rdbms\MySQLMasterPos;
 
 /**
  * @group Database
