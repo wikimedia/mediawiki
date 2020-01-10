@@ -116,23 +116,23 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	/**
 	 * Get an item with the given key, regenerating and setting it if not found
 	 *
-	 * The callback can take $ttl as argument by reference and modify it.
+	 * The callback can take $exptime as argument by reference and modify it.
 	 * Nothing is stored nor deleted if the callback returns false.
 	 *
 	 * @param string $key
-	 * @param int $ttl Time-to-live (seconds)
+	 * @param int $exptime Time-to-live (seconds)
 	 * @param callable $callback Callback that derives the new value
 	 * @param int $flags Bitfield of BagOStuff::READ_* or BagOStuff::WRITE_* constants [optional]
 	 * @return mixed The cached value if found or the result of $callback otherwise
 	 * @since 1.27
 	 */
-	final public function getWithSetCallback( $key, $ttl, $callback, $flags = 0 ) {
+	final public function getWithSetCallback( $key, $exptime, $callback, $flags = 0 ) {
 		$value = $this->get( $key, $flags );
 
 		if ( $value === false ) {
-			$value = $callback( $ttl );
-			if ( $value !== false && $ttl >= 0 ) {
-				$this->set( $key, $value, $ttl, $flags );
+			$value = $callback( $exptime );
+			if ( $value !== false && $exptime >= 0 ) {
+				$this->set( $key, $value, $exptime, $flags );
 			}
 		}
 
@@ -380,8 +380,8 @@ abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwar
 	/**
 	 * Increase the value of the given key (no TTL change) if it exists or create it otherwise
 	 *
-	 * This will create the key with the value $init and TTL $ttl instead if not present.
-	 * Callers should make sure that both ($init - $value) and $ttl are invariants for all
+	 * This will create the key with the value $init and TTL $exptime instead if not present.
+	 * Callers should make sure that both ($init - $value) and $exptime are invariants for all
 	 * operations to any given key. The value of $init should be at least that of $value.
 	 *
 	 * @param string $key Key built via makeKey() or makeGlobalKey()
