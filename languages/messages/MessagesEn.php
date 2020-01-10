@@ -510,6 +510,7 @@ $specialPageAliases = [
 	'Specialpages'              => [ 'SpecialPages' ],
 	'Statistics'                => [ 'Statistics', 'Stats' ],
 	'Tags'                      => [ 'Tags' ],
+	'TalkPage'                  => [ 'TalkPage' ],
 	'TrackingCategories'        => [ 'TrackingCategories' ],
 	'Unblock'                   => [ 'Unblock' ],
 	'Uncategorizedcategories'   => [ 'UncategorizedCategories' ],
