@@ -1275,7 +1275,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			'wgAutopromote' => []
 		] );
 		$obj = $this->newObj();
-		$user = is_null( $groups ) ? null : $this->getTestUser( $groups )->getUser();
+		$user = $groups === null ? null : $this->getTestUser( $groups )->getUser();
 		$this->assertSame( $expected, $obj->getRestrictionLevels( $ns, $user ) );
 	}
 

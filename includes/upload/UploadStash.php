@@ -491,7 +491,7 @@ class UploadStash {
 			}
 		}
 
-		if ( is_null( $extension ) ) {
+		if ( $extension === null ) {
 			throw new UploadStashFileException(
 				wfMessage( 'uploadstash-no-extension' )
 			);

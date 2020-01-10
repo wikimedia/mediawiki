@@ -221,7 +221,7 @@ class RebuildRecentchanges extends Maintenance {
 				if ( $revRow ) {
 					$lastOldId = intval( $revRow->rev_id );
 					# Grab the last text size if available
-					$lastSize = !is_null( $revRow->rev_len ) ? intval( $revRow->rev_len ) : null;
+					$lastSize = $revRow->rev_len !== null ? intval( $revRow->rev_len ) : null;
 				} else {
 					# No previous edit
 					$lastOldId = 0;

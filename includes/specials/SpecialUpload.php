@@ -560,7 +560,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		$changeTags = $this->getRequest()->getVal( 'wpChangeTags' );
-		if ( is_null( $changeTags ) || $changeTags === '' ) {
+		if ( $changeTags === null || $changeTags === '' ) {
 			$changeTags = [];
 		} else {
 			$changeTags = array_filter( array_map( 'trim', explode( ',', $changeTags ) ) );

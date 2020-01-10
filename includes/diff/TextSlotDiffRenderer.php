@@ -107,7 +107,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 			Assert::parameter( is_string( $executable ) && is_executable( $executable ), '$executable',
 				'must be a path to a valid executable' );
 		} else {
-			Assert::parameter( is_null( $executable ), '$executable',
+			Assert::parameter( $executable === null, '$executable',
 				'must not be set unless $type is ENGINE_EXTERNAL' );
 		}
 		$this->engine = $type;

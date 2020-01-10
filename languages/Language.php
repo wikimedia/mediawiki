@@ -524,7 +524,7 @@ class Language {
 	 * @return string[] List of localized namespace names, indexed by numeric namespace ID.
 	 */
 	public function getNamespaces() {
-		if ( is_null( $this->namespaceNames ) ) {
+		if ( $this->namespaceNames === null ) {
 			global $wgMetaNamespace, $wgMetaNamespaceTalk, $wgExtraNamespaces;
 
 			$validNamespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
@@ -683,7 +683,7 @@ class Language {
 	 * @return array
 	 */
 	public function getNamespaceAliases() {
-		if ( is_null( $this->namespaceAliases ) ) {
+		if ( $this->namespaceAliases === null ) {
 			$aliases = $this->localisationCache->getItem( $this->mCode, 'namespaceAliases' );
 			if ( !$aliases ) {
 				$aliases = [];
@@ -735,7 +735,7 @@ class Language {
 	 * @return array
 	 */
 	public function getNamespaceIds() {
-		if ( is_null( $this->mNamespaceIds ) ) {
+		if ( $this->mNamespaceIds === null ) {
 			global $wgNamespaceAliases;
 			# Put namespace names and aliases into a hashtable.
 			# If this is too slow, then we should arrange it so that it is done
@@ -3135,7 +3135,7 @@ class Language {
 	 */
 	public function getSpecialPageAliases() {
 		// Cache aliases because it may be slow to load them
-		if ( is_null( $this->mExtendedSpecialPageAliases ) ) {
+		if ( $this->mExtendedSpecialPageAliases === null ) {
 			// Initialise array
 			$this->mExtendedSpecialPageAliases =
 				$this->localisationCache->getItem( $this->mCode, 'specialPageAliases' );
@@ -4275,7 +4275,7 @@ class Language {
 	 * @return string
 	 */
 	public function getHtmlCode() {
-		if ( is_null( $this->mHtmlCode ) ) {
+		if ( $this->mHtmlCode === null ) {
 			$this->mHtmlCode = LanguageCode::bcp47( $this->getCode() );
 		}
 		return $this->mHtmlCode;

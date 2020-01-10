@@ -73,7 +73,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addFields( $fileQuery['fields'] );
 		$this->addJoinConds( $fileQuery['joins'] );
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -211,7 +211,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_mime && $canViewFile ) {
 				$file['mime'] = "$row->fa_major_mime/$row->fa_minor_mime";
 			}
-			if ( $fld_archivename && !is_null( $row->fa_archive_name ) ) {
+			if ( $fld_archivename && $row->fa_archive_name !== null ) {
 				$file['archivename'] = $row->fa_archive_name;
 			}
 

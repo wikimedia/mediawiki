@@ -523,7 +523,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canAddTagsAccompanyingChange( array $tags, User $user = null ) {
-		if ( !is_null( $user ) ) {
+		if ( $user !== null ) {
 			if ( !MediaWikiServices::getInstance()->getPermissionManager()
 					->userHasRight( $user, 'applychangetags' )
 			) {
@@ -598,7 +598,7 @@ class ChangeTags {
 	public static function canUpdateTags( array $tagsToAdd, array $tagsToRemove,
 		User $user = null
 	) {
-		if ( !is_null( $user ) ) {
+		if ( $user !== null ) {
 			if ( !MediaWikiServices::getInstance()->getPermissionManager()
 					->userHasRight( $user, 'changetags' )
 			) {
@@ -667,10 +667,10 @@ class ChangeTags {
 	public static function updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
 		$rc_id, $rev_id, $log_id, $params, $reason, User $user
 	) {
-		if ( is_null( $tagsToAdd ) ) {
+		if ( $tagsToAdd === null ) {
 			$tagsToAdd = [];
 		}
-		if ( is_null( $tagsToRemove ) ) {
+		if ( $tagsToRemove === null ) {
 			$tagsToRemove = [];
 		}
 		if ( !$tagsToAdd && !$tagsToRemove ) {
@@ -996,7 +996,7 @@ class ChangeTags {
 		$logEntry->setComment( $reason );
 
 		$params = [ '4::tag' => $tag ];
-		if ( !is_null( $tagCount ) ) {
+		if ( $tagCount !== null ) {
 			$params['5:number:count'] = $tagCount;
 		}
 		$logEntry->setParameters( $params );
@@ -1018,7 +1018,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canActivateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) ) {
+		if ( $user !== null ) {
 			if ( !MediaWikiServices::getInstance()->getPermissionManager()
 					->userHasRight( $user, 'managechangetags' )
 			) {
@@ -1092,7 +1092,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canDeactivateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) ) {
+		if ( $user !== null ) {
 			if ( !MediaWikiServices::getInstance()->getPermissionManager()
 					->userHasRight( $user, 'managechangetags' )
 			) {
@@ -1171,7 +1171,7 @@ class ChangeTags {
 
 		// could the MediaWiki namespace description messages be created?
 		$title = Title::makeTitleSafe( NS_MEDIAWIKI, "Tag-$tag-description" );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			return Status::newFatal( 'tags-create-invalid-title-chars' );
 		}
 
@@ -1191,7 +1191,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canCreateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) ) {
+		if ( $user !== null ) {
 			if ( !MediaWikiServices::getInstance()->getPermissionManager()
 					->userHasRight( $user, 'managechangetags' )
 			) {
@@ -1314,7 +1314,7 @@ class ChangeTags {
 	public static function canDeleteTag( $tag, User $user = null, int $flags = 0 ) {
 		$tagUsage = self::tagUsageStatistics();
 
-		if ( !is_null( $user ) ) {
+		if ( $user !== null ) {
 			if ( !MediaWikiServices::getInstance()->getPermissionManager()
 					->userHasRight( $user, 'deletechangetags' )
 			) {

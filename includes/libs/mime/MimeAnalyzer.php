@@ -441,7 +441,7 @@ EOT;
 	 */
 	public function guessTypesForExtension( $ext ) {
 		$m = $this->getTypesForExtension( $ext );
-		if ( is_null( $m ) ) {
+		if ( $m === null ) {
 			return null;
 		}
 
@@ -1224,7 +1224,7 @@ EOT;
 	 * @return IEContentAnalyzer
 	 */
 	protected function getIEContentAnalyzer() {
-		if ( is_null( $this->IEAnalyzer ) ) {
+		if ( $this->IEAnalyzer === null ) {
 			$this->IEAnalyzer = new IEContentAnalyzer;
 		}
 		return $this->IEAnalyzer;

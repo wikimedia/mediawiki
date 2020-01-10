@@ -42,7 +42,7 @@ class PageArchive {
 	protected $config;
 
 	public function __construct( $title, Config $config = null ) {
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			throw new MWException( __METHOD__ . ' given a null title.' );
 		}
 		$this->title = $title;

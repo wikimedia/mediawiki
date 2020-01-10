@@ -289,7 +289,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
 		curl_setopt( $ch, CURLOPT_MAXREDIRS, 4 );
 		curl_setopt( $ch, CURLOPT_HEADER, 0 );
-		if ( !is_null( $this->caBundlePath ) ) {
+		if ( $this->caBundlePath !== null ) {
 			curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, true );
 			curl_setopt( $ch, CURLOPT_CAINFO, $this->caBundlePath );
 		}

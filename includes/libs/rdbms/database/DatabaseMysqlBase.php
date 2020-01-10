@@ -1504,7 +1504,7 @@ abstract class DatabaseMysqlBase extends Database {
 			array_push( $allViews, $row->$propertyName );
 		}
 
-		if ( is_null( $prefix ) || $prefix === '' ) {
+		if ( $prefix === null || $prefix === '' ) {
 			return $allViews;
 		}
 

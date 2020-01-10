@@ -45,7 +45,7 @@ class ApiFormatXml extends ApiFormatBase {
 		$this->mXslt = $params['xslt'];
 
 		$this->printText( '<?xml version="1.0"?>' );
-		if ( !is_null( $this->mXslt ) ) {
+		if ( $this->mXslt !== null ) {
 			$this->addXslt();
 		}
 
@@ -256,7 +256,7 @@ class ApiFormatXml extends ApiFormatBase {
 
 	protected function addXslt() {
 		$nt = Title::newFromText( $this->mXslt );
-		if ( is_null( $nt ) || !$nt->exists() ) {
+		if ( $nt === null || !$nt->exists() ) {
 			$this->addWarning( 'apiwarn-invalidxmlstylesheet' );
 
 			return;

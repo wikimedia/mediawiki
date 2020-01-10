@@ -138,7 +138,7 @@ class RandomImageGenerator {
 	 * @return array Array of filenames
 	 */
 	private function getRandomFilenames( $number, $extension = 'jpg', $dir = null ) {
-		if ( is_null( $dir ) ) {
+		if ( $dir === null ) {
 			$dir = getcwd();
 		}
 		$filenames = [];

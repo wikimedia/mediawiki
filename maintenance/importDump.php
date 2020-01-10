@@ -173,7 +173,7 @@ TEXT
 			throw new MWException( "Cannot get namespace of object in " . __METHOD__ );
 		}
 
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			// Probably a log entry
 			return false;
 		}

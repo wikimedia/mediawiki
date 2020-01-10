@@ -78,7 +78,7 @@ class MagicWordArray {
 	 * @return array
 	 */
 	public function getHash() {
-		if ( is_null( $this->hash ) ) {
+		if ( $this->hash === null ) {
 			$this->hash = [ 0 => [], 1 => [] ];
 			foreach ( $this->names as $name ) {
 				$magic = $this->factory->get( $name );
@@ -99,7 +99,7 @@ class MagicWordArray {
 	 * @return string[]
 	 */
 	public function getBaseRegex() : array {
-		if ( is_null( $this->baseRegex ) ) {
+		if ( $this->baseRegex === null ) {
 			$this->baseRegex = [ 0 => '', 1 => '' ];
 			$allGroups = [];
 			foreach ( $this->names as $name ) {
@@ -134,7 +134,7 @@ class MagicWordArray {
 	 * @suppress PhanTypeArraySuspiciousNullable False positive
 	 */
 	public function getRegex() {
-		if ( is_null( $this->regex ) ) {
+		if ( $this->regex === null ) {
 			$base = $this->getBaseRegex();
 			$this->regex = [ '', '' ];
 			if ( $this->baseRegex[0] !== '' ) {

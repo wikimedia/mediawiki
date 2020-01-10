@@ -160,7 +160,7 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function getCurrent() {
-		if ( is_null( $this->currentRevId ) ) {
+		if ( $this->currentRevId === null ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$this->currentRevId = $dbw->selectField(
 				'page', 'page_latest', $this->title->pageCond(), __METHOD__ );

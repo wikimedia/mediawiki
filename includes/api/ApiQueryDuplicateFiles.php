@@ -127,7 +127,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 					$this->setContinueEnumParameter( 'continue', $image . '|' . $dupName );
 					break;
 				}
-				if ( !is_null( $resultPageSet ) ) {
+				if ( $resultPageSet !== null ) {
 					$titles[] = $dupFile->getTitle();
 				} else {
 					$r = [
@@ -147,7 +147,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				break;
 			}
 		}
-		if ( !is_null( $resultPageSet ) ) {
+		if ( $resultPageSet !== null ) {
 			$resultPageSet->populateFromTitles( $titles );
 		}
 	}

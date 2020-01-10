@@ -743,8 +743,8 @@ class LocalisationCache {
 	 * @param mixed $fallbackValue
 	 */
 	protected function mergeItem( $key, &$value, $fallbackValue ) {
-		if ( !is_null( $value ) ) {
-			if ( !is_null( $fallbackValue ) ) {
+		if ( $value !== null ) {
+			if ( $fallbackValue !== null ) {
 				if ( in_array( $key, self::$mergeableMapKeys ) ) {
 					$value = $value + $fallbackValue;
 				} elseif ( in_array( $key, self::$mergeableListKeys ) ) {
@@ -859,11 +859,11 @@ class LocalisationCache {
 		}
 
 		# Fill in the fallback if it's not there already
-		if ( ( is_null( $coreData['fallback'] ) || $coreData['fallback'] === false ) && $code === 'en' ) {
+		if ( ( $coreData['fallback'] === null || $coreData['fallback'] === false ) && $code === 'en' ) {
 			$coreData['fallback'] = false;
 			$coreData['originalFallbackSequence'] = $coreData['fallbackSequence'] = [];
 		} else {
-			if ( !is_null( $coreData['fallback'] ) ) {
+			if ( $coreData['fallback'] !== null ) {
 				$coreData['fallbackSequence'] = array_map( 'trim', explode( ',', $coreData['fallback'] ) );
 			} else {
 				$coreData['fallbackSequence'] = [];
@@ -949,7 +949,7 @@ class LocalisationCache {
 						continue;
 					}
 
-					if ( is_null( $coreData[ $key ] ) || $this->isMergeableKey( $key ) ) {
+					if ( ( $coreData[ $key ] ) === null || $this->isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $csData[ $key ], $fbData[ $key ] );
 					}
 				}
@@ -968,7 +968,7 @@ class LocalisationCache {
 						continue;
 					}
 
-					if ( is_null( $allData[$key] ) || $this->isMergeableKey( $key ) ) {
+					if ( $allData[$key] === null || $this->isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $allData[$key], $csData[$key] );
 					}
 				}
@@ -1016,7 +1016,7 @@ class LocalisationCache {
 		$unused = true; // Used to be $purgeBlobs, removed in 1.34
 		Hooks::run( 'LocalisationCacheRecache', [ $this, $code, &$allData, &$unused ] );
 
-		if ( is_null( $allData['namespaceNames'] ) ) {
+		if ( $allData['namespaceNames'] === null ) {
 			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}

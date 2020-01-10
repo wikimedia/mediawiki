@@ -859,7 +859,7 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	 */
 	public function testIsRedirect( $title, $model, $text, $target ) {
 		$page = $this->createPage( $title, $text, $model );
-		$this->assertEquals( !is_null( $target ), $page->isRedirect() );
+		$this->assertEquals( $target !== null, $page->isRedirect() );
 	}
 
 	public function provideIsCountable() {
@@ -1484,7 +1484,7 @@ more stuff
 
 		$reason = $page->getAutoDeleteReason( $hasHistory );
 
-		if ( is_bool( $expectedResult ) || is_null( $expectedResult ) ) {
+		if ( is_bool( $expectedResult ) || $expectedResult === null ) {
 			$this->assertEquals( $expectedResult, $reason );
 		} else {
 			$this->assertTrue( (bool)preg_match( $expectedResult, $reason ),

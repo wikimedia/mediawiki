@@ -32,7 +32,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			return true;
 		}
 
-		if ( is_null( $value ) ) {
+		if ( $value === null ) {
 			return false;
 		}
 
@@ -95,7 +95,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			$params['ipRangeLimits'] = $this->mParams['iprangelimits'];
 		}
 
-		if ( !is_null( $value ) ) {
+		if ( $value !== null ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );
 		}

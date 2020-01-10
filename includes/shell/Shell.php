@@ -137,7 +137,7 @@ class Shell {
 	public static function isDisabled(): bool {
 		static $disabled = null;
 
-		if ( is_null( $disabled ) ) {
+		if ( $disabled === null ) {
 			if ( !function_exists( 'proc_open' ) ) {
 				wfDebug( "proc_open() is disabled\n" );
 				$disabled = true;

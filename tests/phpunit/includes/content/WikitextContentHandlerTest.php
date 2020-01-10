@@ -229,8 +229,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::getAutosummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
-		$oldContent = is_null( $old ) ? null : new WikitextContent( $old );
-		$newContent = is_null( $new ) ? null : new WikitextContent( $new );
+		$oldContent = $old === null ? null : new WikitextContent( $old );
+		$newContent = $new === null ? null : new WikitextContent( $new );
 
 		$summary = $this->handler->getAutosummary( $oldContent, $newContent, $flags );
 
@@ -330,8 +330,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			'mw-blank' => true,
 			'mw-replace' => true,
 		] );
-		$oldContent = is_null( $old ) ? null : new WikitextContent( $old );
-		$newContent = is_null( $new ) ? null : new WikitextContent( $new );
+		$oldContent = $old === null ? null : new WikitextContent( $old );
+		$newContent = $new === null ? null : new WikitextContent( $new );
 
 		$tag = $this->handler->getChangeTag( $oldContent, $newContent, $flags );
 

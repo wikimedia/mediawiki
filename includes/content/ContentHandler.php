@@ -85,7 +85,7 @@ abstract class ContentHandler {
 	public static function getContentText( Content $content = null ) {
 		global $wgContentHandlerTextFallback;
 
-		if ( is_null( $content ) ) {
+		if ( $content === null ) {
 			return '';
 		}
 
@@ -134,8 +134,8 @@ abstract class ContentHandler {
 	 */
 	public static function makeContent( $text, Title $title = null,
 		$modelId = null, $format = null ) {
-		if ( is_null( $modelId ) ) {
-			if ( is_null( $title ) ) {
+		if ( $modelId === null ) {
+			if ( $title === null ) {
 				throw new MWException( "Must provide a Title object or a content model ID." );
 			}
 
@@ -1025,7 +1025,7 @@ abstract class ContentHandler {
 		// Get the last revision
 		$rev = Revision::newFromTitle( $title );
 
-		if ( is_null( $rev ) ) {
+		if ( $rev === null ) {
 			return false;
 		}
 

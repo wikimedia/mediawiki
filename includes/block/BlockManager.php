@@ -284,12 +284,12 @@ class BlockManager {
 		WebRequest $request
 	) {
 		$cookieValue = $request->getCookie( 'BlockID' );
-		if ( is_null( $cookieValue ) ) {
+		if ( $cookieValue === null ) {
 			return false;
 		}
 
 		$blockCookieId = $this->getIdFromCookieValue( $cookieValue );
-		if ( !is_null( $blockCookieId ) ) {
+		if ( $blockCookieId !== null ) {
 			// TODO: remove dependency on DatabaseBlock (T221075)
 			$block = DatabaseBlock::newFromID( $blockCookieId );
 			if (

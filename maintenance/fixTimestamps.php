@@ -55,7 +55,7 @@ class FixTimestamps extends Maintenance {
 			"WHERE rev_timestamp BETWEEN '{$start}' AND '{$end}'", __METHOD__ );
 		$row = $dbw->fetchObject( $res );
 
-		if ( is_null( $row->minrev ) ) {
+		if ( $row->minrev === null ) {
 			$this->fatalError( "No revisions in search period." );
 		}
 

@@ -56,7 +56,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		$this->output( "Populating rev_parent_id column\n" );
 		$start = $db->selectField( 'revision', 'MIN(rev_id)', '', __FUNCTION__ );
 		$end = $db->selectField( 'revision', 'MAX(rev_id)', '', __FUNCTION__ );
-		if ( is_null( $start ) || is_null( $end ) ) {
+		if ( $start === null || $end === null ) {
 			$this->output( "...revision table seems to be empty, nothing to do.\n" );
 
 			return true;

@@ -141,7 +141,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->submitClicked = $request->wasPosted() && $request->getBool( 'wpSubmit' );
 		# Handle our many different possible input types.
 		$ids = $request->getVal( 'ids' );
-		if ( !is_null( $ids ) ) {
+		if ( $ids !== null ) {
 			# Allow CSV, for backwards compatibility, or a single ID for show/hide links
 			$this->ids = explode( ',', $ids );
 		} else {
@@ -382,7 +382,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * @return RevDelList
 	 */
 	protected function getList() {
-		if ( is_null( $this->revDelList ) ) {
+		if ( $this->revDelList === null ) {
 			$this->revDelList = RevisionDeleter::createList(
 				$this->typeName, $this->getContext(), $this->targetObj, $this->ids
 			);

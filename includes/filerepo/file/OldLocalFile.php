@@ -162,7 +162,7 @@ class OldLocalFile extends LocalFile {
 		parent::__construct( $title, $repo );
 		$this->requestedTime = $time;
 		$this->archive_name = $archiveName;
-		if ( is_null( $time ) && is_null( $archiveName ) ) {
+		if ( $time === null && $archiveName === null ) {
 			throw new MWException( __METHOD__ . ': must specify at least one of $time or $archiveName' );
 		}
 	}
@@ -207,7 +207,7 @@ class OldLocalFile extends LocalFile {
 			: $this->repo->getReplicaDB();
 
 		$conds = [ 'oi_name' => $this->getName() ];
-		if ( is_null( $this->requestedTime ) ) {
+		if ( $this->requestedTime === null ) {
 			$conds['oi_archive_name'] = $this->archive_name;
 		} else {
 			$conds['oi_timestamp'] = $dbr->timestamp( $this->requestedTime );
@@ -235,7 +235,7 @@ class OldLocalFile extends LocalFile {
 		$this->extraDataLoaded = true;
 		$dbr = $this->repo->getReplicaDB();
 		$conds = [ 'oi_name' => $this->getName() ];
-		if ( is_null( $this->requestedTime ) ) {
+		if ( $this->requestedTime === null ) {
 			$conds['oi_archive_name'] = $this->archive_name;
 		} else {
 			$conds['oi_timestamp'] = $dbr->timestamp( $this->requestedTime );

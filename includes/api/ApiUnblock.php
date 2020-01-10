@@ -58,7 +58,7 @@ class ApiUnblock extends ApiBase {
 		}
 
 		// Check if user can add tags
-		if ( !is_null( $params['tags'] ) ) {
+		if ( $params['tags'] !== null ) {
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
@@ -76,7 +76,7 @@ class ApiUnblock extends ApiBase {
 		}
 
 		$data = [
-			'Target' => is_null( $params['id'] ) ? $params['user'] : "#{$params['id']}",
+			'Target' => $params['id'] === null ? $params['user'] : "#{$params['id']}",
 			'Reason' => $params['reason'],
 			'Tags' => $params['tags']
 		];

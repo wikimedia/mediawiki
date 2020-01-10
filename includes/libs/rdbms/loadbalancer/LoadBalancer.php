@@ -2262,7 +2262,7 @@ class LoadBalancer implements ILoadBalancer {
 			$start = microtime( true );
 			$result = $conn->masterPosWait( $pos, $timeout );
 			$seconds = max( microtime( true ) - $start, 0 );
-			if ( $result == -1 || is_null( $result ) ) {
+			if ( $result == -1 || $result === null ) {
 				$msg = __METHOD__ . ': timed out waiting on {host} pos {pos} [{seconds}s]';
 				$this->replLogger->warning( $msg, [
 					'host' => $conn->getServer(),

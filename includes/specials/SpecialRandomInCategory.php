@@ -137,7 +137,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 		$title = $this->getRandomTitle();
 
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			$msg = $this->msg( 'randomincategory-nopages',
 				$this->category->getText() );
 

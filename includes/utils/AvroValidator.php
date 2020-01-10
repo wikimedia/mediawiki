@@ -39,7 +39,7 @@ class AvroValidator {
 	public static function getErrors( AvroSchema $schema, $datum ) {
 		switch ( $schema->type ) {
 			case AvroSchema::NULL_TYPE:
-				if ( !is_null( $datum ) ) {
+				if ( $datum !== null ) {
 					return self::wrongType( 'null', $datum );
 				}
 				return [];

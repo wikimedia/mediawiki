@@ -203,7 +203,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	 * @return SearchResult[]
 	 */
 	public function extractResults() {
-		if ( is_null( $this->results ) ) {
+		if ( $this->results === null ) {
 			$this->results = [];
 			if ( $this->numRows() == 0 ) {
 				// Don't bother if we've got empty result
@@ -223,7 +223,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	 * @return Title[]
 	 */
 	public function extractTitles() {
-		if ( is_null( $this->titles ) ) {
+		if ( $this->titles === null ) {
 			if ( $this->numRows() == 0 ) {
 				// Don't bother if we've got empty result
 				$this->titles = [];

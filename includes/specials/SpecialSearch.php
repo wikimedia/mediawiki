@@ -157,7 +157,7 @@ class SpecialSearch extends SpecialPage {
 			// No match. If it could plausibly be a title
 			// run the No go match hook.
 			$title = Title::newFromText( $term );
-			if ( !is_null( $title ) ) {
+			if ( $title !== null ) {
 				Hooks::run( 'SpecialSearchNogomatch', [ &$title ] );
 			}
 		}
@@ -278,13 +278,13 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function goResult( $term ) {
 		# If the string cannot be used to create a title
-		if ( is_null( Title::newFromText( $term ) ) ) {
+		if ( Title::newFromText( $term ) === null ) {
 			return null;
 		}
 		# If there's an exact or very near match, jump right there.
 		$title = $this->getSearchEngine()
 			->getNearMatcher( $this->getConfig() )->getNearMatch( $term );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			return null;
 		}
 		$url = null;
@@ -525,7 +525,7 @@ class SpecialSearch extends SpecialPage {
 		// show direct page/create link if applicable
 
 		// Check DBkey !== '' in case of fragment link only.
-		if ( is_null( $title ) || $title->getDBkey() === ''
+		if ( $title === null || $title->getDBkey() === ''
 			|| ( $titleMatches !== null && $titleMatches->searchContainedSyntax() )
 			|| ( $textMatches !== null && $textMatches->searchContainedSyntax() )
 		) {

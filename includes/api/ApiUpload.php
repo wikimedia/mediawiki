@@ -450,7 +450,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		// The following modules all require the filename parameter to be set
-		if ( is_null( $this->mParams['filename'] ) ) {
+		if ( $this->mParams['filename'] === null ) {
 			$this->dieWithError( [ 'apierror-missingparam', 'filename' ] );
 		}
 
@@ -761,7 +761,7 @@ class ApiUpload extends ApiBase {
 	 */
 	protected function performUpload( $warnings ) {
 		// Use comment as initial page text by default
-		if ( is_null( $this->mParams['text'] ) ) {
+		if ( $this->mParams['text'] === null ) {
 			$this->mParams['text'] = $this->mParams['comment'];
 		}
 

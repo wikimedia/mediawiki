@@ -786,18 +786,18 @@ class FileRepo {
 	 */
 	public function getDescriptionUrl( $name ) {
 		$encName = wfUrlencode( $name );
-		if ( !is_null( $this->descBaseUrl ) ) {
+		if ( $this->descBaseUrl !== null ) {
 			# "http://example.com/wiki/File:"
 			return $this->descBaseUrl . $encName;
 		}
-		if ( !is_null( $this->articleUrl ) ) {
+		if ( $this->articleUrl !== null ) {
 			# "http://example.com/wiki/$1"
 			# We use "Image:" as the canonical namespace for
 			# compatibility across all MediaWiki versions.
 			return str_replace( '$1',
 				"Image:$encName", $this->articleUrl );
 		}
-		if ( !is_null( $this->scriptDirUrl ) ) {
+		if ( $this->scriptDirUrl !== null ) {
 			# "http://example.com/w"
 			# We use "Image:" as the canonical namespace for
 			# compatibility across all MediaWiki versions,
@@ -820,7 +820,7 @@ class FileRepo {
 	 */
 	public function getDescriptionRenderUrl( $name, $lang = null ) {
 		$query = 'action=render';
-		if ( !is_null( $lang ) ) {
+		if ( $lang !== null ) {
 			$query .= '&uselang=' . urlencode( $lang );
 		}
 		if ( isset( $this->scriptDirUrl ) ) {

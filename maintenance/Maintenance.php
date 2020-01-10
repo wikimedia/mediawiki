@@ -746,7 +746,7 @@ abstract class Maintenance {
 		 */
 		$child = new $maintClass();
 		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
-		if ( !is_null( $this->mDb ) ) {
+		if ( $this->mDb !== null ) {
 			$child->setDB( $this->mDb );
 		}
 
@@ -1621,7 +1621,7 @@ abstract class Maintenance {
 	 */
 	public static function readconsole( $prompt = '> ' ) {
 		static $isatty = null;
-		if ( is_null( $isatty ) ) {
+		if ( $isatty === null ) {
 			$isatty = self::posix_isatty( 0 /*STDIN*/ );
 		}
 

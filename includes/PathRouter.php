@@ -258,7 +258,7 @@ class PathRouter {
 		$this->sortByWeight();
 
 		$matches = $this->internalParse( $path );
-		if ( is_null( $matches ) ) {
+		if ( $matches === null ) {
 			// Try with the normalized path (T100782)
 			$path = wfRemoveDotSegments( $path );
 			$path = preg_replace( '#/+#', '/', $path );
@@ -283,7 +283,7 @@ class PathRouter {
 
 		foreach ( $this->patterns as $pattern ) {
 			$matches = self::extractTitle( $path, $pattern );
-			if ( !is_null( $matches ) ) {
+			if ( $matches !== null ) {
 				break;
 			}
 		}
@@ -394,7 +394,7 @@ class PathRouter {
 
 		$replacer = function ( $m ) use ( $pathMatches, $key, &$error ) {
 			if ( $m[1] == "key" ) {
-				if ( is_null( $key ) ) {
+				if ( $key === null ) {
 					$error = true;
 
 					return '';

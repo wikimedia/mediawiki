@@ -345,7 +345,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException
 	 */
 	protected function doSetCallback( $callback ) {
-		if ( is_null( $callback ) ) {
+		if ( $callback === null ) {
 			$callback = [ $this, 'read' ];
 		} elseif ( !is_callable( $callback ) ) {
 			$this->status->fatal( 'http-internal-error' );

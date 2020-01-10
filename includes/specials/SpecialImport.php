@@ -192,9 +192,9 @@ class SpecialImport extends SpecialPage {
 			);
 		} else {
 			$importer = new WikiImporter( $source->value, $this->getConfig() );
-			if ( !is_null( $this->namespace ) ) {
+			if ( $this->namespace !== null ) {
 				$importer->setTargetNamespace( $this->namespace );
-			} elseif ( !is_null( $this->rootpage ) ) {
+			} elseif ( $this->rootpage !== null ) {
 				$statusRootPage = $importer->setTargetRootPage( $this->rootpage );
 				if ( !$statusRootPage->isGood() ) {
 					$out->wrapWikiMsg(
@@ -265,7 +265,7 @@ class SpecialImport extends SpecialPage {
 						"mw-import-mapping-$sourceName-default",
 						( $isSameSourceAsBefore ?
 							( $this->mapping === 'default' ) :
-							is_null( $defaultNamespace ) )
+							$defaultNamespace === null )
 					) .
 					"</td>
 				</tr>
@@ -281,7 +281,7 @@ class SpecialImport extends SpecialPage {
 						"mw-import-mapping-$sourceName-namespace",
 						( $isSameSourceAsBefore ?
 							( $this->mapping === 'namespace' ) :
-							!is_null( $defaultNamespace ) )
+							$defaultNamespace !== null )
 					) . ' ' .
 					Html::namespaceSelector(
 						[

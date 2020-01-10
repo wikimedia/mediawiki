@@ -138,7 +138,7 @@ class WikiFilePage extends WikiPage {
 	 */
 	public function getDuplicates() {
 		$this->loadFile();
-		if ( !is_null( $this->mDupes ) ) {
+		if ( $this->mDupes !== null ) {
 			return $this->mDupes;
 		}
 		$hash = $this->mFile->getSha1();

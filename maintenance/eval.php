@@ -81,7 +81,7 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 			": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n" );
 		continue;
 	}
-	if ( is_null( $__val ) ) {
+	if ( $__val === null ) {
 		echo "\n";
 	} elseif ( is_string( $__val ) || is_numeric( $__val ) ) {
 		echo "$__val\n";

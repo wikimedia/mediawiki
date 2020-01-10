@@ -302,7 +302,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	public function execute() {
 		$this->params = $this->extractRequestParams();
-		if ( !is_null( $this->params['prop'] ) ) {
+		if ( $this->params['prop'] !== null ) {
 			$prop = array_flip( $this->params['prop'] );
 			$this->fld_protection = isset( $prop['protection'] );
 			$this->fld_watched = isset( $prop['watched'] );
@@ -325,7 +325,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$result = $this->getResult();
 
 		uasort( $this->everything, [ Title::class, 'compare' ] );
-		if ( !is_null( $this->params['continue'] ) ) {
+		if ( $this->params['continue'] !== null ) {
 			// Throw away any titles we're gonna skip so they don't
 			// clutter queries
 			$cont = explode( '|', $this->params['continue'] );
@@ -433,7 +433,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( !is_null( $this->params['token'] ) ) {
+		if ( $this->params['token'] !== null ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			$pageInfo['starttimestamp'] = wfTimestamp( TS_ISO_8601, time() );
 			foreach ( $this->params['token'] as $t ) {
@@ -962,7 +962,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return 'private';
 		}
 
-		if ( !is_null( $params['token'] ) ) {
+		if ( $params['token'] !== null ) {
 			return 'private';
 		}
 

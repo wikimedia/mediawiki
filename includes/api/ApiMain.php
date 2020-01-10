@@ -1555,7 +1555,7 @@ class ApiMain extends ApiBase {
 
 		// See if custom printer is used
 		$this->mPrinter = $module->getCustomPrinter();
-		if ( is_null( $this->mPrinter ) ) {
+		if ( $this->mPrinter === null ) {
 			// Create an appropriate printer
 			$this->mPrinter = $this->createPrinterByName( $params['format'] );
 		}

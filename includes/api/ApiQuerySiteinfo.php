@@ -874,7 +874,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		// Messages for $wgExtraInterlanguageLinkPrefixes depend on user language
 		if (
 			count( $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' ) ) &&
-			!is_null( $params['prop'] ) &&
+			$params['prop'] !== null &&
 			in_array( 'interwikimap', $params['prop'] )
 		) {
 			return 'anon-public-user-private';

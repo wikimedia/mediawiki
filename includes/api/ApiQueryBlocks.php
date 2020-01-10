@@ -90,7 +90,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		// Include in ORDER BY for uniqueness
 		$this->addWhereRange( 'ipb_id', $params['dir'], null, null );
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$op = ( $params['dir'] == 'newer' ? '>' : '<' );
@@ -153,7 +153,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			] );
 		}
 
-		if ( !is_null( $params['show'] ) ) {
+		if ( $params['show'] !== null ) {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */

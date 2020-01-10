@@ -67,7 +67,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	) {
 		global $wgRequest, $wgUser;
 
-		if ( is_null( $session ) ) {
+		if ( $session === null ) {
 			// re-use existing global session by default
 			$session = $wgRequest->getSessionArray();
 		}

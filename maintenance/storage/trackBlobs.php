@@ -335,7 +335,7 @@ class TrackBlobs {
 				continue;
 			}
 			$table = $extDB->getLBInfo( 'blobs table' );
-			if ( is_null( $table ) ) {
+			if ( $table === null ) {
 				$table = 'blobs';
 			}
 			if ( !$extDB->tableExists( $table ) ) {

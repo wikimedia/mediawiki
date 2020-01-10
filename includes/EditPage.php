@@ -537,7 +537,7 @@ class EditPage {
 	 * @return Title
 	 */
 	public function getContextTitle() {
-		if ( is_null( $this->mContextTitle ) ) {
+		if ( $this->mContextTitle === null ) {
 			wfDeprecated( get_class( $this ) . '::getContextTitle called with no title set', '1.32' );
 			global $wgTitle;
 			return $wgTitle;
@@ -1028,7 +1028,7 @@ class EditPage {
 			$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
 
 			$changeTags = $request->getVal( 'wpChangeTags' );
-			if ( is_null( $changeTags ) || $changeTags === '' ) {
+			if ( $changeTags === null || $changeTags === '' ) {
 				$this->changeTags = [];
 			} else {
 				$this->changeTags = array_filter( array_map( 'trim', explode( ',',
@@ -1244,7 +1244,7 @@ class EditPage {
 				# Sanity check, make sure it's the right page,
 				# the revisions exist and they were not deleted.
 				# Otherwise, $content will be left as-is.
-				if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
+				if ( $undorev !== null && $oldrev !== null &&
 					!$undorev->isDeleted( RevisionRecord::DELETED_TEXT ) &&
 					!$oldrev->isDeleted( RevisionRecord::DELETED_TEXT )
 				) {
@@ -2233,7 +2233,7 @@ ERROR;
 				);
 			}
 
-			if ( is_null( $content ) ) {
+			if ( $content === null ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
 				$this->isConflict = true;
 				$content = $textbox_content; // do not try to merge here!
@@ -2448,7 +2448,7 @@ ERROR;
 		$baseRevision = $this->getBaseRevision();
 		$baseContent = $baseRevision ? $baseRevision->getContent() : null;
 
-		if ( is_null( $baseContent ) ) {
+		if ( $baseContent === null ) {
 			return false;
 		}
 
@@ -2456,7 +2456,7 @@ ERROR;
 		$currentRevision = Revision::loadFromTitle( $db, $this->mTitle );
 		$currentContent = $currentRevision ? $currentRevision->getContent() : null;
 
-		if ( is_null( $currentContent ) ) {
+		if ( $currentContent === null ) {
 			return false;
 		}
 
@@ -2658,7 +2658,7 @@ ERROR;
 				$out->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
 					[ 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) ] );
 			} elseif (
-				!is_null( $block ) &&
+				$block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&
 				( $block->isSitewide() || $user->isBlockedFrom( $this->mTitle ) )
 			) {
@@ -4097,7 +4097,7 @@ ERROR;
 	protected function getPreviewParserOptions() {
 		$parserOptions = $this->page->makeParserOptions( $this->context );
 		$parserOptions->setIsPreview( true );
-		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
+		$parserOptions->setIsSectionPreview( $this->section !== null && $this->section !== '' );
 		$parserOptions->enableLimitReport();
 
 		// XXX: we could call $parserOptions->setCurrentRevisionCallback here to force the

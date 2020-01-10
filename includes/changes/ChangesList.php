@@ -263,7 +263,7 @@ class ChangesList extends ContextSource {
 		static $map = [ 'minoredit' => 'minor', 'botedit' => 'bot' ];
 		static $flagInfos = null;
 
-		if ( is_null( $flagInfos ) ) {
+		if ( $flagInfos === null ) {
 			global $wgRecentChangesFlags;
 			$flagInfos = [];
 			foreach ( $wgRecentChangesFlags as $key => $value ) {

@@ -100,7 +100,7 @@ class MoveBatch extends Maintenance {
 			}
 			$source = Title::newFromText( $parts[0] );
 			$dest = Title::newFromText( $parts[1] );
-			if ( is_null( $source ) || is_null( $dest ) ) {
+			if ( $source === null || $dest === null ) {
 				$this->error( "Invalid title on line $linenum" );
 				continue;
 			}

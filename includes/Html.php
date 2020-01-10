@@ -481,7 +481,7 @@ class Html {
 		$ret = '';
 		foreach ( $attribs as $key => $value ) {
 			// Support intuitive [ 'checked' => true/false ] form
-			if ( $value === false || is_null( $value ) ) {
+			if ( $value === false || $value === null ) {
 				continue;
 			}
 

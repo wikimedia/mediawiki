@@ -299,7 +299,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		}
 		if ( !$munge ) {
 			return true;
-		};
+		}
 
 		if ( $this->prefix !== null ) {
 			$newTitle = Title::makeTitle(

@@ -113,7 +113,7 @@ class LCStoreCDB implements LCStore {
 	}
 
 	public function set( $key, $value ) {
-		if ( is_null( $this->writer ) ) {
+		if ( $this->writer === null ) {
 			throw new MWException( __CLASS__ . ': must call startWrite() before calling set()' );
 		}
 		try {

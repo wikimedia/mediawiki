@@ -200,7 +200,7 @@ abstract class AbstractContent implements Content {
 	 * @see Content::equals
 	 */
 	public function equals( Content $that = null ) {
-		if ( is_null( $that ) ) {
+		if ( $that === null ) {
 			return false;
 		}
 
@@ -291,7 +291,7 @@ abstract class AbstractContent implements Content {
 	public function getRedirectChain() {
 		global $wgMaxRedirects;
 		$title = $this->getRedirectTarget();
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			return null;
 		}
 		// recursive check to follow double redirects

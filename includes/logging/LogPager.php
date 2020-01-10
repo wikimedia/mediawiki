@@ -200,7 +200,7 @@ class LogPager extends ReverseChronologicalPager {
 			return;
 		}
 		$usertitle = Title::makeTitleSafe( NS_USER, $name );
-		if ( is_null( $usertitle ) ) {
+		if ( $usertitle === null ) {
 			return;
 		}
 		// Normalize username first so that non-existent users used

@@ -36,7 +36,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		if ( is_null( $params['lang'] ) ) {
+		if ( $params['lang'] === null ) {
 			$langObj = $this->getLanguage();
 		} elseif ( !Language::isValidCode( $params['lang'] ) ) {
 			$this->dieWithError(
@@ -48,7 +48,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		}
 
 		if ( $params['enableparser'] ) {
-			if ( !is_null( $params['title'] ) ) {
+			if ( $params['title'] !== null ) {
 				$title = Title::newFromText( $params['title'] );
 				if ( !$title || $title->isExternal() ) {
 					$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
@@ -126,8 +126,8 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		}
 
 		// Get all requested messages and print the result
-		$skip = !is_null( $params['from'] );
-		$useto = !is_null( $params['to'] );
+		$skip = $params['from'] !== null;
+		$useto = $params['to'] !== null;
 		$result = $this->getResult();
 		foreach ( $messages_target as $message ) {
 			// Skip all messages up to $params['from']
@@ -195,7 +195,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	}
 
 	public function getCacheMode( $params ) {
-		if ( is_null( $params['lang'] ) ) {
+		if ( $params['lang'] === null ) {
 			// Language not specified, will be fetched from preferences
 			return 'anon-public-user-private';
 		} elseif ( $params['enableparser'] ) {

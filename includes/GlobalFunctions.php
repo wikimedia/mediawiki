@@ -151,7 +151,7 @@ function wfArrayDiff2_cmp( $a, $b ) {
  * @throws MWException
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
-	if ( is_null( $changed ) ) {
+	if ( $changed === null ) {
 		throw new MWException( 'GlobalFunctions::wfAppendToArrayIfNotDefault got null' );
 	}
 	if ( $default[$key] !== $value ) {
@@ -309,13 +309,13 @@ function wfRandomString( $length = 32 ) {
 function wfUrlencode( $s ) {
 	static $needle;
 
-	if ( is_null( $s ) ) {
+	if ( $s === null ) {
 		// Reset $needle for testing.
 		$needle = null;
 		return '';
 	}
 
-	if ( is_null( $needle ) ) {
+	if ( $needle === null ) {
 		$needle = [ '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%7E' ];
 		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) ||
 			( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false )
@@ -345,13 +345,13 @@ function wfUrlencode( $s ) {
  * @return string
  */
 function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
-	if ( !is_null( $array2 ) ) {
+	if ( $array2 !== null ) {
 		$array1 = $array1 + $array2;
 	}
 
 	$cgi = '';
 	foreach ( $array1 as $key => $value ) {
-		if ( !is_null( $value ) && $value !== false ) {
+		if ( $value !== null && $value !== false ) {
 			if ( $cgi != '' ) {
 				$cgi .= '&';
 			}
@@ -722,7 +722,7 @@ function wfUrlProtocols( $includeProtocolRelative = true ) {
 	// Cache return values separately based on $includeProtocolRelative
 	static $withProtRel = null, $withoutProtRel = null;
 	$cachedValue = $includeProtocolRelative ? $withProtRel : $withoutProtRel;
-	if ( !is_null( $cachedValue ) ) {
+	if ( $cachedValue !== null ) {
 		return $cachedValue;
 	}
 
@@ -1324,7 +1324,7 @@ function wfMsgReplaceArgs( $message, $args ) {
  */
 function wfHostname() {
 	static $host;
-	if ( is_null( $host ) ) {
+	if ( $host === null ) {
 		# Hostname overriding
 		global $wgOverrideHostname;
 		if ( $wgOverrideHostname !== false ) {
@@ -1388,7 +1388,7 @@ function wfReportTime( $nonce = null ) {
 function wfDebugBacktrace( $limit = 0 ) {
 	static $disabled = null;
 
-	if ( is_null( $disabled ) ) {
+	if ( $disabled === null ) {
 		$disabled = !function_exists( 'debug_backtrace' );
 		if ( $disabled ) {
 			wfDebug( "debug_backtrace() is disabled\n" );
@@ -1605,7 +1605,7 @@ function wfEscapeWikiText( $text ) {
  */
 function wfSetVar( &$dest, $source, $force = false ) {
 	$temp = $dest;
-	if ( !is_null( $source ) || $force ) {
+	if ( $source !== null || $force ) {
 		$dest = $source;
 	}
 	return $temp;
@@ -1622,7 +1622,7 @@ function wfSetVar( &$dest, $source, $force = false ) {
  */
 function wfSetBit( &$dest, $bit, $state = true ) {
 	$temp = (bool)( $dest & $bit );
-	if ( !is_null( $state ) ) {
+	if ( $state !== null ) {
 		if ( $state ) {
 			$dest |= $bit;
 		} else {
@@ -1885,7 +1885,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
  * @return string
  */
 function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
-	if ( is_null( $ts ) ) {
+	if ( $ts === null ) {
 		return null;
 	} else {
 		return wfTimestamp( $outputtype, $ts );
@@ -1972,7 +1972,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		throw new MWException( __FUNCTION__ . " given storage path '$dir'." );
 	}
 
-	if ( !is_null( $caller ) ) {
+	if ( $caller !== null ) {
 		wfDebug( "$caller: called wfMkdirParents($dir)\n" );
 	}
 
@@ -1982,7 +1982,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 
 	$dir = str_replace( [ '\\', '/' ], DIRECTORY_SEPARATOR, $dir );
 
-	if ( is_null( $mode ) ) {
+	if ( $mode === null ) {
 		$mode = $wgDirectoryMode;
 	}
 

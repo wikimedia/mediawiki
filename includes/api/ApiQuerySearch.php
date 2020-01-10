@@ -93,7 +93,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			// for instance the Lucene-based engine we use on Wikipedia.
 			// In this case, fall back to full-text search (which will
 			// include titles in it!)
-			if ( is_null( $matches ) ) {
+			if ( $matches === null ) {
 				$what = 'text';
 				$matches = $search->searchText( $query );
 			}
@@ -115,7 +115,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			} else {
 				$this->dieStatus( $status );
 			}
-		} elseif ( is_null( $matches ) ) {
+		} elseif ( $matches === null ) {
 			$this->dieWithError( [ 'apierror-searchdisabled', $what ], "search-{$what}-disabled" );
 		}
 
@@ -244,7 +244,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		if ( isset( $prop['categorysnippet'] ) ) {
 			$vals['categorysnippet'] = $result->getCategorySnippet();
 		}
-		if ( !is_null( $result->getRedirectTitle() ) ) {
+		if ( $result->getRedirectTitle() !== null ) {
 			if ( isset( $prop['redirecttitle'] ) ) {
 				$vals['redirecttitle'] = $result->getRedirectTitle()->getPrefixedText();
 			}
@@ -252,7 +252,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$vals['redirectsnippet'] = $result->getRedirectSnippet();
 			}
 		}
-		if ( !is_null( $result->getSectionTitle() ) ) {
+		if ( $result->getSectionTitle() !== null ) {
 			if ( isset( $prop['sectiontitle'] ) ) {
 				$vals['sectiontitle'] = $result->getSectionTitle()->getFragment();
 			}

@@ -435,7 +435,7 @@ class LogFormatter {
 			// case 'suppress' --private log -- aaron  (so we know who to blame in a few years :-D)
 			// default:
 		}
-		if ( is_null( $text ) ) {
+		if ( $text === null ) {
 			$text = $this->getPlainActionText();
 		}
 

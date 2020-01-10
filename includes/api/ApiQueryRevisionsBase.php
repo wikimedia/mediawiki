@@ -124,10 +124,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		$this->limit = $params['limit'];
 
-		if ( !is_null( $params['difftotext'] ) ) {
+		if ( $params['difftotext'] !== null ) {
 			$this->difftotext = $params['difftotext'];
 			$this->difftotextpst = $params['difftotextpst'];
-		} elseif ( !is_null( $params['diffto'] ) ) {
+		} elseif ( $params['diffto'] !== null ) {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
 			}
@@ -155,8 +155,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$this->diffto = $params['diffto'];
 		}
 
-		$this->fetchContent = $this->fld_content || !is_null( $this->diffto )
-			|| !is_null( $this->difftotext ) || $this->fld_parsetree;
+		$this->fetchContent = $this->fld_content || $this->diffto !== null
+			|| $this->difftotext !== null || $this->fld_parsetree;
 
 		$smallLimit = false;
 		if ( $this->fetchContent ) {
@@ -166,7 +166,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$this->parseContent = $params['parse'];
 			if ( $this->parseContent ) {
 				// Must manually initialize unset limit
-				if ( is_null( $this->limit ) ) {
+				if ( $this->limit === null ) {
 					$this->limit = 1;
 				}
 			}
@@ -182,7 +182,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $this->limit ) ) {
+		if ( $this->limit === null ) {
 			$this->limit = 10;
 		}
 		$this->validateLimit( 'limit', $this->limit, 1, $userMax, $botMax );
@@ -231,7 +231,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_ids ) {
 			$vals['revid'] = (int)$revision->getId();
-			if ( !is_null( $revision->getParentId() ) ) {
+			if ( $revision->getParentId() !== null ) {
 				$vals['parentid'] = (int)$revision->getParentId();
 			}
 		}
@@ -590,7 +590,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $content && ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) ) {
+		if ( $content && ( $this->diffto !== null || $this->difftotext !== null ) ) {
 			static $n = 0; // Number of uncached diffs we've had
 
 			if ( $n < $this->getConfig()->get( 'APIMaxUncachedDiffs' ) ) {
@@ -599,7 +599,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				$context->setTitle( $title );
 				$handler = $content->getContentHandler();
 
-				if ( !is_null( $this->difftotext ) ) {
+				if ( $this->difftotext !== null ) {
 					$model = $title->getContentModel();
 
 					if ( $this->contentFormat

@@ -868,7 +868,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// - No version specified (shared resources, e.g. stylesheets)
 		// - There were errors (recover quickly)
 		// - Version mismatch (T117587, T47877)
-		if ( is_null( $context->getVersion() )
+		if ( $context->getVersion() === null
 			|| $errors
 			|| $context->getVersion() !== $this->makeVersionQuery( $context, $context->getModules() )
 		) {
@@ -959,7 +959,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// Buffer output to catch warnings.
 		ob_start();
 		// Get the maximum age the cache can be
-		$maxage = is_null( $context->getVersion() )
+		$maxage = $context->getVersion() === null
 			? $rlMaxage['unversioned']
 			: $rlMaxage['versioned'];
 		// Minimum timestamp the cache file must have

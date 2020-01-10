@@ -909,7 +909,7 @@ END;
 
 	protected function dropPgField( $table, $field ) {
 		$fi = $this->db->fieldInfo( $table, $field );
-		if ( is_null( $fi ) ) {
+		if ( $fi === null ) {
 			$this->output( "...$table table does not contain $field field.\n" );
 
 			return;
@@ -921,7 +921,7 @@ END;
 
 	protected function addPgField( $table, $field, $type ) {
 		$fi = $this->db->fieldInfo( $table, $field );
-		if ( !is_null( $fi ) ) {
+		if ( $fi !== null ) {
 			$this->output( "...column '$table.$field' already exists\n" );
 
 			return;
@@ -933,7 +933,7 @@ END;
 
 	protected function changeField( $table, $field, $newtype, $default ) {
 		$fi = $this->db->fieldInfo( $table, $field );
-		if ( is_null( $fi ) ) {
+		if ( $fi === null ) {
 			$this->output( "...ERROR: expected column $table.$field to exist\n" );
 			exit( 1 );
 		}
@@ -960,7 +960,7 @@ END;
 		# # For a cache table, empty it if the field needs to be changed, because the old contents
 		# # may be corrupted.  If the column is already the desired type, refrain from purging.
 		$fi = $this->db->fieldInfo( $table, $field );
-		if ( is_null( $fi ) ) {
+		if ( $fi === null ) {
 			$this->output( "...ERROR: expected column $table.$field to exist\n" );
 			exit( 1 );
 		}
@@ -1010,7 +1010,7 @@ END;
 
 	protected function changeNullableField( $table, $field, $null, $update = false ) {
 		$fi = $this->db->fieldInfo( $table, $field );
-		if ( is_null( $fi ) ) {
+		if ( $fi === null ) {
 			return;
 		}
 		if ( $fi->isNullable() ) {
@@ -1098,7 +1098,7 @@ END;
 
 	protected function dropFkey( $table, $field ) {
 		$fi = $this->db->fieldInfo( $table, $field );
-		if ( is_null( $fi ) ) {
+		if ( $fi === null ) {
 			$this->output( "WARNING! Column '$table.$field' does not exist but it should! " .
 				"Please report this.\n" );
 			return;
@@ -1116,7 +1116,7 @@ END;
 
 	protected function changeFkeyDeferrable( $table, $field, $clause ) {
 		$fi = $this->db->fieldInfo( $table, $field );
-		if ( is_null( $fi ) ) {
+		if ( $fi === null ) {
 			$this->output( "WARNING! Column '$table.$field' does not exist but it should! " .
 				"Please report this.\n" );
 

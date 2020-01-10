@@ -198,7 +198,7 @@ class Command {
 	 * @return $this
 	 */
 	public function input( ?string $inputString ): Command {
-		$this->inputString = is_null( $inputString ) ? null : (string)$inputString;
+		$this->inputString = $inputString === null ? null : (string)$inputString;
 
 		return $this;
 	}

@@ -89,7 +89,7 @@ class DeleteBatch extends Maintenance {
 				continue;
 			}
 			$title = Title::newFromText( $line );
-			if ( is_null( $title ) ) {
+			if ( $title === null ) {
 				$this->output( "Invalid title '$line' on line $linenum\n" );
 				continue;
 			}

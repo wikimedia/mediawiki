@@ -342,7 +342,7 @@ class ApiParamInfo extends ApiBase {
 				$dflt = $settings[ApiBase::PARAM_DFLT] ?? null;
 				if ( is_bool( $dflt ) ) {
 					$settings[ApiBase::PARAM_TYPE] = 'boolean';
-				} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
+				} elseif ( is_string( $dflt ) || $dflt === null ) {
 					$settings[ApiBase::PARAM_TYPE] = 'string';
 				} elseif ( is_int( $dflt ) ) {
 					$settings[ApiBase::PARAM_TYPE] = 'integer';

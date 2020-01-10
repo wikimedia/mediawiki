@@ -282,7 +282,7 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $name === 'mRights' ) {
 			MediaWikiServices::getInstance()->getPermissionManager()->overrideUserRightsForTesting(
 				$this,
-				is_null( $value ) ? [] : $value
+				$value === null ? [] : $value
 			);
 		} elseif ( !property_exists( $this, $name ) ) {
 			$this->$name = $value;
@@ -887,13 +887,13 @@ class User implements IDBAccessObject, UserIdentity {
 		// Don't explode on self::$idCacheByName[$name] if $name is not a string but e.g. a User object
 		$name = (string)$name;
 		$nt = Title::makeTitleSafe( NS_USER, $name );
-		if ( is_null( $nt ) ) {
+		if ( $nt === null ) {
 			// Illegal name
 			return null;
 		}
 
 		if ( !( $flags & self::READ_LATEST ) && array_key_exists( $name, self::$idCacheByName ) ) {
-			return is_null( self::$idCacheByName[$name] ) ? null : (int)self::$idCacheByName[$name];
+			return self::$idCacheByName[$name] === null ? null : (int)self::$idCacheByName[$name];
 		}
 
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
@@ -986,7 +986,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// Ensure that the name can't be misresolved as a different title,
 		// such as with extra namespace keys at the start.
 		$parsed = Title::newFromText( $name );
-		if ( is_null( $parsed )
+		if ( $parsed === null
 			|| $parsed->getNamespace()
 			|| strcmp( $name, $parsed->getPrefixedText() ) ) {
 			return false;
@@ -1208,7 +1208,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$t = ( $validate !== false ) ?
 			Title::newFromText( $name, NS_USER ) : Title::makeTitle( NS_USER, $name );
 		// Check for invalid titles
-		if ( is_null( $t ) || $t->getNamespace() !== NS_USER || $t->isExternal() ) {
+		if ( $t === null || $t->getNamespace() !== NS_USER || $t->isExternal() ) {
 			return false;
 		}
 
@@ -1521,7 +1521,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Load the groups from the database if they aren't already loaded.
 	 */
 	private function loadGroups() {
-		if ( is_null( $this->mGroupMemberships ) ) {
+		if ( $this->mGroupMemberships === null ) {
 			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_REPLICA );
@@ -3063,7 +3063,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->loadOptions();
 
 		// Explicitly NULL values should refer to defaults
-		if ( is_null( $val ) ) {
+		if ( $val === null ) {
 			$val = self::getDefaultOption( $oname );
 		}
 
@@ -3297,7 +3297,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function getDatePreference() {
 		// Important migration for old data rows
-		if ( is_null( $this->mDatePreference ) ) {
+		if ( $this->mDatePreference === null ) {
 			global $wgLang;
 			$value = $this->getOption( 'date' );
 			$map = $wgLang->getDatePreferenceMigrationMap();
@@ -3391,7 +3391,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return array Array of String internal group names
 	 */
 	public function getEffectiveGroups( $recache = false ) {
-		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
+		if ( $recache || $this->mEffectiveGroups === null ) {
 			$this->mEffectiveGroups = array_unique( array_merge(
 				$this->getGroups(), // explicit groups
 				$this->getAutomaticGroups( $recache ) // implicit groups
@@ -3414,7 +3414,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return array Array of String internal group names
 	 */
 	public function getAutomaticGroups( $recache = false ) {
-		if ( $recache || is_null( $this->mImplicitGroups ) ) {
+		if ( $recache || $this->mImplicitGroups === null ) {
 			$this->mImplicitGroups = [ '*' ];
 			if ( $this->getId() ) {
 				$this->mImplicitGroups[] = 'user';
@@ -3445,7 +3445,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public function getFormerGroups() {
 		$this->load();
 
-		if ( is_null( $this->mFormerGroups ) ) {
+		if ( $this->mFormerGroups === null ) {
 			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_REPLICA );
@@ -5164,7 +5164,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		// Maybe load from the object
-		if ( !is_null( $this->mOptionOverrides ) ) {
+		if ( $this->mOptionOverrides !== null ) {
 			wfDebug( "User: loading options for user " . $this->getId() . " from override cache.\n" );
 			foreach ( $this->mOptionOverrides as $key => $value ) {
 				$this->mOptions[$key] = $value;

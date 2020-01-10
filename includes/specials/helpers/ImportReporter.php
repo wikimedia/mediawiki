@@ -143,7 +143,7 @@ class ImportReporter extends ContextSource {
 			);
 
 			$nullRevId = null;
-			if ( !is_null( $nullRevision ) ) {
+			if ( $nullRevision !== null ) {
 				$nullRevId = $nullRevision->insertOn( $dbw );
 				$page = WikiPage::factory( $title );
 				# Update page record

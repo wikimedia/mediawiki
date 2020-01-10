@@ -55,7 +55,7 @@ class FileDependency extends CacheDependency {
 	}
 
 	function loadDependencyValues() {
-		if ( is_null( $this->timestamp ) ) {
+		if ( $this->timestamp === null ) {
 			Wikimedia\suppressWarnings();
 			# Dependency on a non-existent file stores "false"
 			# This is a valid concept!

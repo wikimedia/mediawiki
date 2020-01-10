@@ -1172,7 +1172,7 @@ abstract class Skin extends ContextSource {
 	 */
 	static function makeSpecialUrl( $name, $urlaction = '', $proto = null ) {
 		$title = SpecialPage::getSafeTitleFor( $name );
-		if ( is_null( $proto ) ) {
+		if ( $proto === null ) {
 			return $title->getLocalURL( $urlaction );
 		} else {
 			return $title->getFullURL( $urlaction, false, $proto );
@@ -1650,7 +1650,7 @@ abstract class Skin extends ContextSource {
 		// added to it for LTR text on RTL pages
 
 		$attribs = [];
-		if ( !is_null( $tooltip ) ) {
+		if ( $tooltip !== null ) {
 			$attribs['title'] = $this->msg( 'editsectionhint' )->rawParams( $tooltip )
 				->inLanguage( $lang )->text();
 		}

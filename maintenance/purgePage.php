@@ -49,14 +49,14 @@ class PurgePage extends Maintenance {
 	private function purge( $titleText ) {
 		$title = Title::newFromText( $titleText );
 
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			$this->error( 'Invalid page title' );
 			return;
 		}
 
 		$page = WikiPage::factory( $title );
 
-		if ( is_null( $page ) ) {
+		if ( $page === null ) {
 			$this->error( "Could not instantiate page object" );
 			return;
 		}

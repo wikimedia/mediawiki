@@ -73,7 +73,7 @@ class AttachLatest extends Maintenance {
 			}
 
 			$revision = Revision::loadFromTimestamp( $dbw, $title, $latestTime );
-			if ( is_null( $revision ) ) {
+			if ( $revision === null ) {
 				$this->output(
 					"$dbDomain $pageId [[$name]] latest time $latestTime, can't find revision id\n"
 				);

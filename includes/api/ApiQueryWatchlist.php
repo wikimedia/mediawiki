@@ -64,7 +64,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$user = $this->getUser();
 		$wlowner = $this->getWatchlistUser( $params );
 
-		if ( !is_null( $params['prop'] ) && is_null( $resultPageSet ) ) {
+		if ( $params['prop'] !== null && $resultPageSet === null ) {
 			$prop = array_flip( $params['prop'] );
 
 			$this->fld_ids = isset( $prop['ids'] );
@@ -96,7 +96,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				: WatchedItemQueryService::DIR_NEWER,
 		];
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$options['includeFields'] = $this->getFieldsToInclude();
 		} else {
 			$options['usedInGenerator'] = true;
@@ -110,7 +110,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		$startFrom = null;
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$continueTimestamp = $cont[0];
@@ -124,7 +124,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$options['watchlistOwnerToken'] = $params['token'];
 		}
 
-		if ( !is_null( $params['namespace'] ) ) {
+		if ( $params['namespace'] !== null ) {
 			$options['namespaceIds'] = $params['namespace'];
 		}
 
@@ -132,7 +132,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$options['allRevisions'] = true;
 		}
 
-		if ( !is_null( $params['show'] ) ) {
+		if ( $params['show'] !== null ) {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
@@ -152,7 +152,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$options['filters'] = array_keys( $show );
 		}
 
-		if ( !is_null( $params['type'] ) ) {
+		if ( $params['type'] !== null ) {
 			try {
 				$rcTypes = RecentChange::parseToRCType( $params['type'] );
 				if ( $rcTypes ) {
@@ -164,10 +164,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
-		if ( !is_null( $params['user'] ) ) {
+		if ( $params['user'] !== null ) {
 			$options['onlyByUser'] = $params['user'];
 		}
-		if ( !is_null( $params['excludeuser'] ) ) {
+		if ( $params['excludeuser'] !== null ) {
 			$options['notByUser'] = $params['excludeuser'];
 		}
 
@@ -201,7 +201,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
 			/** @var WatchedItem $watchedItem */
-			if ( is_null( $resultPageSet ) ) {
+			if ( $resultPageSet === null ) {
 				$vals = $this->extractOutputData( $watchedItem, $recentChangeInfo );
 				$fit = $this->getResult()->addValue( [ 'query', $this->getModuleName() ], null, $vals );
 				if ( !$fit ) {
@@ -219,7 +219,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->setContinueEnumParameter( 'continue', implode( '|', $startFrom ) );
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$this->getResult()->addIndexedTagName(
 				[ 'query', $this->getModuleName() ],
 				'item'

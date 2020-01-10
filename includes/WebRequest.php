@@ -470,7 +470,7 @@ class WebRequest {
 		} else {
 			$val = $default;
 		}
-		if ( is_null( $val ) ) {
+		if ( $val === null ) {
 			return $val;
 		} else {
 			return (string)$val;
@@ -492,7 +492,7 @@ class WebRequest {
 		if ( is_array( $val ) ) {
 			$val = $default;
 		}
-		if ( is_null( $val ) ) {
+		if ( $val === null ) {
 			return $val;
 		} else {
 			return (string)$val;
@@ -539,7 +539,7 @@ class WebRequest {
 	 */
 	public function getArray( $name, $default = null ) {
 		$val = $this->getGPCVal( $this->data, $name, $default );
-		if ( is_null( $val ) ) {
+		if ( $val === null ) {
 			return null;
 		} else {
 			return (array)$val;
@@ -678,7 +678,7 @@ class WebRequest {
 		$retVal = [];
 		foreach ( $names as $name ) {
 			$value = $this->getGPCVal( $this->data, $name, null );
-			if ( !is_null( $value ) ) {
+			if ( $value !== null ) {
 				$retVal[$name] = $value;
 			}
 		}

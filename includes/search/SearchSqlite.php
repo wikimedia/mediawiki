@@ -207,7 +207,7 @@ class SearchSqlite extends SearchDatabase {
 	 * @return string
 	 */
 	private function queryNamespaces() {
-		if ( is_null( $this->namespaces ) ) {
+		if ( $this->namespaces === null ) {
 			return '';  # search all
 		}
 		if ( $this->namespaces === [] ) {

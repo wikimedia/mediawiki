@@ -59,7 +59,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			);
 		}
 
-		if ( !is_null( $params['continue'] ) ) {
+		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
 
@@ -133,7 +133,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				break;
 			}
 
-			if ( !is_null( $resultPageSet ) ) {
+			if ( $resultPageSet !== null ) {
 				$pages[] = Title::newFromRow( $row );
 			} else {
 				$entry = [ 'pageid' => (int)$row->page_id ];
@@ -164,7 +164,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( is_null( $resultPageSet ) ) {
+		if ( $resultPageSet === null ) {
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'iw' );
 		} else {
 			$resultPageSet->populateFromTitles( $pages );
