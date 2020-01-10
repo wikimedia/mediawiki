@@ -1801,6 +1801,7 @@ class ParserTestRunner {
 	 *
 	 * - Parser::expandMagicVariable (via ParserGetVariableValueTs hook)
 	 * - Parser::preSaveTransform (via ParserOptions)
+	 * @return int Fake constant timestamp.
 	 */
 	private function getFakeTimestamp() {
 		// parsed as '1970-01-01T00:02:03Z'
