@@ -31,7 +31,7 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 			}
 		}
 		$this->assertNotNull( $dateIndex, 'Date entry exists in metadata' );
-		$this->assertEquals( '0000:01:00 00:02:27',
+		$this->assertSame( '0000:01:00 00:02:27',
 			$meta['visible'][$dateIndex]['value'],
 			'File with invalid date metadata (T31471)' );
 	}

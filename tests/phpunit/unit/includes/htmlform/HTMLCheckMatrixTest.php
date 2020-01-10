@@ -45,7 +45,7 @@ class HTMLCheckMatrixTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $this->validate( $field, true ) );
 		$this->assertFalse( $this->validate( $field, 'abc' ) );
 		$this->assertFalse( $this->validate( $field, new stdClass ) );
-		$this->assertEquals( true, $this->validate( $field, [] ) );
+		$this->assertTrue( $this->validate( $field, [] ) );
 	}
 
 	public function testValidateAllowsOnlyKnownTags() {

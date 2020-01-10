@@ -60,7 +60,7 @@ class Converter {
 
 	/**
 	 * Convert a Message parameter to a MessageParam
-	 * @return array|string|int $param
+	 * @param array|string|int $param
 	 * @return MessageParam
 	 */
 	private function convertParam( $param ) {

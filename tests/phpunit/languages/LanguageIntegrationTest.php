@@ -39,7 +39,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::normalizeForSearch
 	 */
 	public function testLanguageConvertDoubleWidthToSingleWidth() {
-		$this->assertEquals(
+		$this->assertSame(
 			"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
 			$this->getLang()->normalizeForSearch(
 				"０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"
@@ -270,7 +270,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			'truncate prefix, small ellipsis'
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			"123456789",
 			$this->getLang()->truncateForDatabase( "123456789", 5, 'XXXXXXXXXXXXXXX' ),
 			'truncate prefix, large ellipsis'
@@ -282,7 +282,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			'truncate suffix, small ellipsis'
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			"123456789",
 			$this->getLang()->truncateForDatabase( "123456789", -5, 'XXXXXXXXXXXXXXX' ),
 			'truncate suffix, large ellipsis'
@@ -1592,7 +1592,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$rle = "\u{202B}"; // U+202B RIGHT-TO-LEFT EMBEDDING
 		$pdf = "\u{202C}"; // U+202C POP DIRECTIONAL FORMATTING
 		$lang = $this->getLang();
-		$this->assertEquals(
+		$this->assertSame(
 			'123',
 			$lang->embedBidi( '123' ),
 			'embedBidi with neutral argument'
