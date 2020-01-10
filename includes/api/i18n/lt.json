@@ -403,7 +403,6 @@
 	"apierror-sectionreplacefailed": "Nepavyko sujungti atnaujinto skyriaus.",
 	"apierror-specialpage-cantexecute": "Neturite teisės peržiūrėti šio specialaus puslapio rezultatus.",
 	"apierror-stashwrongowner": "Neteisingas savininkas: $1",
-	"apierror-timeout": "Serveris neatsakė per numatytą laiką.",
 	"apierror-unknownerror-nocode": "Nežinoma klaida.",
 	"apierror-unknownerror": "Nežinoma klaida: „$1“.",
 	"apierror-unknownformat": "Neatpažintas formatas „$1“.",

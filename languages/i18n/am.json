@@ -1670,6 +1670,7 @@
 	"feedback-cancel": "ይቅር",
 	"searchsuggest-search": "{{SITENAME}} ውስጥ ፈልግ",
 	"searchsuggest-containing": "በመጣጥፎች ይዘት ለመፈልግ...",
+	"api-clientside-error-timeout": "በሚገባ ጊዜ ውስጥ አቅራቢው መልስ አልሰጠም።",
 	"api-error-badtoken": "የውስጥ ስህተት: መጥፎ ጥቅል።",
 	"api-error-stashfailed": "የውስጥ ስህተት: አቅራቢው ጊዜያዊ ፍይሉን አላስቀመጠም።",
 	"api-error-unknown-warning": "ያልታወቀ ማስጠንቀቂያ $1",

@@ -247,7 +247,6 @@
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(deskribapenik gabe)</span>",
 	"api-help-examples": "{{PLURAL:$1|Adibidea|Adibideak}}:",
 	"api-help-permissions": "{{PLURAL:$1|Baimena|Baimenak}}:",
-	"apierror-timeout": "Zerbitzariak ez du erantzun espero zitekeen denboran.",
 	"apiwarn-invalidcategory": "\"$1\" ez da kategoria.",
 	"apiwarn-invalidtitle": "\"$1\" ez da baliozko izenburua.",
 	"apiwarn-notfile": "\"$1\" ez da fitxategia.",

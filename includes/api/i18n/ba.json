@@ -423,6 +423,5 @@
 	"apihelp-query+transcludedin-param-prop": "Ниндәй үҙенсәлек алырға:",
 	"apihelp-query+transcludedin-param-limit": "Күпме һылтанмаларҙы кире ҡайтарырға.",
 	"apihelp-query+usercontribs-summary": "Ҡулланыусының бөтә төҙәтеүҙәрен алыу",
-	"apihelp-query+usercontribs-param-limit": "Кире ҡайтарылған белдереүҙәрҙең иң күп һаны",
-	"apierror-timeout": "Көтөлгән ваҡыт эсендә сервер яуып бирмәне."
+	"apihelp-query+usercontribs-param-limit": "Кире ҡайтарылған белдереүҙәрҙең иң күп һаны"
 }

@@ -333,6 +333,5 @@
 	"api-help-param-limit": "بيش از $1 مجاز نيست",
 	"api-help-param-limit2": "بيش از $1 (برای ربات‌ها $2) مجاز نيست",
 	"api-help-param-default": "پیش‌فرض: $1",
-	"apierror-timeout": "کارساز در زمان انتظار هیچ پاسخی نداد.",
 	"api-credits-header": "اعتبار"
 }

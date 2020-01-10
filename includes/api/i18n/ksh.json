@@ -1026,7 +1026,6 @@
 	"api-help-permissions-granted-to": "Jejovve aan: $2{{PLURAL:$1|}}",
 	"api-help-right-apihighlimits": "Donn de Beschängkonge vun Opdrähscht aan de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> kleiner maache (langsamme Opdrähscht: $1; flöcke Opdrähscht: $2). De Beschränkonge för lahme Opdrähscht jällde och för Parramehtere met vill Wähte.",
 	"api-help-open-in-apisandbox": "<small>[en de Sandkeß opmaache]</small>",
-	"apierror-timeout": "Dä ẞööver hät en dä jewennde Zick nit jeantwoot.",
 	"api-credits-header": "Aanäkännong för Beijdrähsch",
 	"api-credits": "Dä <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> ier Äntweklere:\n* Roan Kattouw (Aanföhrer zigg em Säptämber 2007 bes 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Bejenner un Aanföhrer vum Säptämber 2006 bes Säptämber 2007)\n* Brad Jorsch (Aanföhrer vun 2013 bes hük)\n\nDoht Ühr Aanmärkonge, Vörschlähsch un Frohre aan de Meijlengleß <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">mediawiki-api@lists.wikimedia.org</code> scheke, Ühr Vörschlähsch un Fählermälldong doht op <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">https://phabricator.wikimedia.org/</code> ennjävve."
 }
