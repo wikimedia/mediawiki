@@ -73,7 +73,7 @@ class EnumDef extends TypeDef {
 			return $value;
 		}
 
-		$isMulti = !isset( $options['values-list'] );
+		$isMulti = isset( $options['values-list'] );
 		$this->failure(
 			$this->failureMessage( 'badvalue', [], $isMulti ? 'enummulti' : 'enumnotmulti' )
 				->textListParams( array_map( function ( $v ) {
@@ -85,7 +85,7 @@ class EnumDef extends TypeDef {
 	}
 
 	public function getEnumValues( $name, array $settings, array $options ) {
-		return $settings[ParamValidator::PARAM_TYPE];
+		return array_values( $settings[ParamValidator::PARAM_TYPE] );
 	}
 
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
@@ -99,12 +99,20 @@ class EnumDef extends TypeDef {
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 
+		$info['type'] = $this->sortEnumValues(
+			$name,
+			$this->getEnumValues( $name, $settings, $options ),
+			$settings,
+			$options
+		);
+
 		if ( !empty( $settings[self::PARAM_DEPRECATED_VALUES] ) ) {
 			$deprecatedValues = array_intersect(
 				array_keys( $settings[self::PARAM_DEPRECATED_VALUES] ),
 				$this->getEnumValues( $name, $settings, $options )
 			);
 			if ( $deprecatedValues ) {
+				$deprecatedValues = $this->sortEnumValues( $name, $deprecatedValues, $settings, $options );
 				$info['deprecatedvalues'] = array_values( $deprecatedValues );
 			}
 		}
@@ -142,16 +150,17 @@ class EnumDef extends TypeDef {
 	}
 
 	/**
-	 * Return enum values formatted for the help message
+	 * Sort enum values for help/param info output
 	 *
 	 * @param string $name Parameter name being described.
+	 * @param string[] $values Values being sorted
 	 * @param array $settings Parameter settings array.
 	 * @param array $options Options array.
-	 * @return (MessageParam|string)[]
+	 * @return string[]
 	 */
-	protected function getEnumValuesForHelp( $name, array $settings, array $options ) {
-		$values = $this->getEnumValues( $name, $settings, $options );
-
+	protected function sortEnumValues(
+		string $name, array $values, array $settings, array $options
+	) : array {
 		// sort values by deprecation status and name
 		$flags = [];
 		foreach ( $values as $k => $value ) {
@@ -161,7 +170,22 @@ class EnumDef extends TypeDef {
 			}
 			$flags[$k] = $flag;
 		}
-		array_multisort( $flags, $values );
+		array_multisort( $flags, $values, SORT_NATURAL );
+
+		return $values;
+	}
+
+	/**
+	 * Return enum values formatted for the help message
+	 *
+	 * @param string $name Parameter name being described.
+	 * @param array $settings Parameter settings array.
+	 * @param array $options Options array.
+	 * @return (MessageParam|string)[]
+	 */
+	protected function getEnumValuesForHelp( $name, array $settings, array $options ) {
+		$values = $this->getEnumValues( $name, $settings, $options );
+		$values = $this->sortEnumValues( $name, $values, $settings, $options );
 
 		// @todo Indicate deprecated values in some manner. Probably that needs
 		// MessageValue and/or MessageParam to have a generic ability to wrap

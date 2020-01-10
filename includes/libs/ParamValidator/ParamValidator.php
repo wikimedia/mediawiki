@@ -386,18 +386,20 @@ class ParamValidator {
 
 		if ( $value !== null ) {
 			if ( !empty( $settings[self::PARAM_SENSITIVE] ) ) {
+				$strValue = $typeDef->stringifyValue( $name, $value, $settings, $options );
 				$this->callbacks->recordCondition(
 					DataMessageValue::new( 'paramvalidator-param-sensitive', [], 'param-sensitive' )
-						->plaintextParams( $name, $value ),
+						->plaintextParams( $name, $strValue ),
 					$name, $value, $settings, $options
 				);
 			}
 
 			// Set a warning if a deprecated parameter has been passed
 			if ( !empty( $settings[self::PARAM_DEPRECATED] ) ) {
+				$strValue = $typeDef->stringifyValue( $name, $value, $settings, $options );
 				$this->callbacks->recordCondition(
 					DataMessageValue::new( 'paramvalidator-param-deprecated', [], 'param-deprecated' )
-						->plaintextParams( $name, $value ),
+						->plaintextParams( $name, $strValue ),
 					$name, $value, $settings, $options
 				);
 			}
@@ -445,7 +447,7 @@ class ParamValidator {
 
 		// Non-multi
 		if ( empty( $settings[self::PARAM_ISMULTI] ) ) {
-			if ( substr( $value, 0, 1 ) === "\x1f" ) {
+			if ( is_string( $value ) && substr( $value, 0, 1 ) === "\x1f" ) {
 				throw new ValidationException(
 					DataMessageValue::new( 'paramvalidator-notmulti', [], 'badvalue' )
 						->plaintextParams( $name, $value ),
@@ -479,15 +481,12 @@ class ParamValidator {
 			$this->callbacks->useHighLimits( $options )
 		) ? $limit2 : $limit1;
 		if ( count( $valuesList ) > $sizeLimit ) {
-			if ( is_array( $value ) ) {
-				$value = self::implodeMultiValue( $value );
-			}
 			throw new ValidationException(
 				DataMessageValue::new( 'paramvalidator-toomanyvalues', [], 'toomanyvalues', [
 					'limit' => $sizeLimit,
 					'lowlimit' => $limit1,
 					'highlimit' => $limit2,
-				] )->plaintextParams( $name, $value )->numParams( $sizeLimit ),
+				] )->plaintextParams( $name )->numParams( $sizeLimit ),
 				$name, $valuesList, $settings
 			);
 		}
@@ -506,6 +505,9 @@ class ParamValidator {
 			}
 		}
 		if ( $invalidValues ) {
+			if ( is_array( $value ) ) {
+				$value = self::implodeMultiValue( $value );
+			}
 			$this->callbacks->recordCondition(
 				DataMessageValue::new( 'paramvalidator-unrecognizedvalues', [], 'unrecognizedvalues', [
 					'values' => $invalidValues,
@@ -620,7 +622,7 @@ class ParamValidator {
 		}
 
 		if ( !empty( $settings[self::PARAM_ISMULTI] ) ) {
-			$info[self::PARAM_ISMULTI] = MessageValue::new( 'paramvalidator-help-multi-sep' );
+			$info[self::PARAM_ISMULTI] = MessageValue::new( 'paramvalidator-help-multi-separate' );
 
 			$lowcount = $settings[self::PARAM_ISMULTI_LIMIT1] ?? $this->ismultiLimit1;
 			$highcount = max( $lowcount, $settings[self::PARAM_ISMULTI_LIMIT2] ?? $this->ismultiLimit2 );
@@ -652,9 +654,9 @@ class ParamValidator {
 		if ( isset( $settings[self::PARAM_DEFAULT] ) && $typeDef ) {
 			$value = $typeDef->stringifyValue( $name, $settings[self::PARAM_DEFAULT], $settings, $options );
 			if ( $value === '' ) {
-				$info[self::PARAM_DEFAULT] = MessageValue::new( 'paramvalidator-param-default-empty' );
+				$info[self::PARAM_DEFAULT] = MessageValue::new( 'paramvalidator-help-default-empty' );
 			} elseif ( $value !== null ) {
-				$info[self::PARAM_DEFAULT] = MessageValue::new( 'paramvalidator-param-default' )
+				$info[self::PARAM_DEFAULT] = MessageValue::new( 'paramvalidator-help-default' )
 					->plaintextParams( $value );
 			}
 		}

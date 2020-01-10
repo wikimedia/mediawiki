@@ -91,7 +91,9 @@ class EnumDefTest extends TypeDefTestCase {
 				[
 					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
 				],
-				[],
+				[
+					'type' => [ 'a', 'b', 'c', 'd' ],
+				],
 				[
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><list listType="comma"><text>a</text><text>b</text><text>c</text><text>d</text></list><num>4</num></message>',
@@ -103,7 +105,9 @@ class EnumDefTest extends TypeDefTestCase {
 					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
 					ParamValidator::PARAM_ISMULTI => true,
 				],
-				[],
+				[
+					'type' => [ 'a', 'b', 'c', 'd' ],
+				],
 				[
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>2</text><list listType="comma"><text>a</text><text>b</text><text>c</text><text>d</text></list><num>4</num></message>',
@@ -116,6 +120,7 @@ class EnumDefTest extends TypeDefTestCase {
 					EnumDef::PARAM_DEPRECATED_VALUES => [ 'b' => 'B', 'c' => false, 'x' => true ],
 				],
 				[
+					'type' => [ 'a', 'd', 'b', 'c' ],
 					'deprecatedvalues' => [ 'b', 'c' ],
 				],
 				[
@@ -129,7 +134,9 @@ class EnumDefTest extends TypeDefTestCase {
 					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
 					EnumDef::PARAM_DEPRECATED_VALUES => [ 'x' => true ],
 				],
-				[],
+				[
+					'type' => [ 'a', 'b', 'c', 'd' ],
+				],
 				[
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><list listType="comma"><text>a</text><text>b</text><text>c</text><text>d</text></list><num>4</num></message>',
@@ -140,7 +147,9 @@ class EnumDefTest extends TypeDefTestCase {
 				[
 					ParamValidator::PARAM_TYPE => [ '', 'a', 'b', 'c', 'd' ],
 				],
-				[],
+				[
+					'type' => [ '', 'a', 'b', 'c', 'd' ],
+				],
 				[
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><text><message key="paramvalidator-help-type-enum-can-be-empty"><list listType="comma"><text>a</text><text>b</text><text>c</text><text>d</text></list><num>4</num></message></text><num>5</num></message>',

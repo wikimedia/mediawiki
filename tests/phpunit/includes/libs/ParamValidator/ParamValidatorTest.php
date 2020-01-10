@@ -606,6 +606,32 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					],
 				],
 			],
+			'Ignored unrecognized values, passed as array' => [
+				[ 'a', 'b', 'c', 'd' ],
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_IGNORE_INVALID_VALUES => true,
+				],
+				false,
+				[ 'a', 'b', 'c', 'd' ],
+				[ 'a' => 'A', 'b' => null, 'c' => null, 'd' => 'D' ],
+				[ 'A', 'D' ],
+				[
+					[
+						'message' => DataMessageValue::new(
+							'paramvalidator-unrecognizedvalues', [], 'unrecognizedvalues', [ 'values' => [ 'b', 'c' ] ]
+						)
+							->plaintextParams( 'foobar', 'a|b|c|d' )
+							->commaListParams( [
+								new ScalarParam( ParamType::PLAINTEXT, 'b' ),
+								new ScalarParam( ParamType::PLAINTEXT, 'c' ),
+							] )
+							->numParams( 2 ),
+						'name' => 'foobar',
+						'value' => 'a|b|c|d',
+					],
+				],
+			],
 		];
 	}
 
@@ -781,7 +807,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_DEPRECATED => '<message key="paramvalidator-help-deprecated"></message>',
 					ParamValidator::PARAM_REQUIRED => '<message key="paramvalidator-help-required"></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
-					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-param-default"><plaintext>1234</plaintext></message>',
+					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-help-default"><plaintext>1234</plaintext></message>',
 				],
 			],
 			'Multi-value' => [
@@ -792,13 +818,14 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_DEFAULT => '',
 				],
 				[
-					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-separate"></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>50</num><num>500</num></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_ALL => '<message key="paramvalidator-help-multi-all"><plaintext>*</plaintext></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
-					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-param-default-empty"></message>',
+					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-help-default-empty"></message>',
 				],
 			],
 			'Multi-value, high limit' => [
@@ -806,7 +833,8 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_ISMULTI => true,
 				],
 				[
-					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-separate"></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>50</num><num>500</num></message>',
 				],
@@ -821,7 +849,8 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_ALL => 'all',
 				],
 				[
-					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-separate"></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>10</num><num>15</num></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
@@ -834,7 +863,8 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
 				],
 				[
-					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-separate"></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max-simple"><num>50</num></message>',
 				],
@@ -847,7 +877,8 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_ISMULTI_LIMIT2 => 2,
 				],
 				[
-					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-separate"></message>',
 				],
 			],
 			'Multi-value, enough values to meet the limit' => [
@@ -858,7 +889,8 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
 				],
 				[
-					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-separate"></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>4</num><num>10</num></message>',
 				],
@@ -872,7 +904,8 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_ALLOW_DUPLICATES => true,
 				],
 				[
-					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-sep"></message>',
+					// phpcs:ignore Generic.Files.LineLength.TooLong
+					ParamValidator::PARAM_ISMULTI => '<message key="paramvalidator-help-multi-separate"></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max-simple"><num>4</num></message>',
 				],
@@ -890,10 +923,10 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					ParamValidator::PARAM_ISMULTI_LIMIT1 => '<message key="paramvalidator-help-multi-max"><num>50</num><num>500</num></message>',
 					'foobar' => '<message key="foobaz"></message>',
 					// phpcs:ignore Generic.Files.LineLength.TooLong
-					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-param-default"><text>XX</text></message>',
+					ParamValidator::PARAM_DEFAULT => '<message key="paramvalidator-help-default"><text>XX</text></message>',
 				],
 				[
-					ParamValidator::PARAM_DEFAULT => MessageValue::new( 'paramvalidator-param-default', [ 'XX' ] ),
+					ParamValidator::PARAM_DEFAULT => MessageValue::new( 'paramvalidator-help-default', [ 'XX' ] ),
 					'foobar' => MessageValue::new( 'foobaz' ),
 					ParamValidator::PARAM_ISMULTI => null,
 					ParamValidator::PARAM_TYPE => MessageValue::new( 'paramvalidator-help-type-help' ),
