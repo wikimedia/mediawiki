@@ -71,7 +71,7 @@
 		"justinrainbow/json-schema": "~5.2",
 		"mediawiki/mediawiki-codesniffer": "29.0.0",
 		"mediawiki/mediawiki-phan-config": "0.9.0",
-		"monolog/monolog": "~1.25.2",
+		"monolog/monolog": "~1.25.3",
 		"nikic/php-parser": "4.3.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/php-invoker": "^2.0",
