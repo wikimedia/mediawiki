@@ -919,8 +919,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		return $this->getGroup() === 'private';
 	}
 
-	/** @var JSParser Lazy-initialized; use self::javaScriptParser() */
-	private static $jsParser;
 	private static $parseCacheVersion = 1;
 
 	/**
@@ -945,7 +943,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			),
 			$cache::TTL_WEEK,
 			function () use ( $contents, $fileName ) {
-				$parser = self::javaScriptParser();
+				$parser = new JSParser();
 				$err = null;
 				try {
 					AtEase::suppressWarnings();
@@ -967,16 +965,6 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 				return $contents;
 			}
 		);
-	}
-
-	/**
-	 * @return JSParser
-	 */
-	protected static function javaScriptParser() {
-		if ( !self::$jsParser ) {
-			self::$jsParser = new JSParser();
-		}
-		return self::$jsParser;
 	}
 
 	/**
