@@ -204,9 +204,7 @@ abstract class Skin extends ContextSource {
 				'mediawiki.page.ready',
 			],
 			// modules relating to search functionality
-			'search' => [
-				'mediawiki.searchSuggest',
-			],
+			'search' => [],
 			// modules relating to functionality relating to watching an article
 			'watch' => [],
 			// modules which relate to the current users preferences
