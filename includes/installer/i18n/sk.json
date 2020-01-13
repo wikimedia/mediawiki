@@ -5,7 +5,8 @@
 			"KuboF",
 			"Sudo77(new)",
 			"Hromoslav",
-			"Vlad5250"
+			"Vlad5250",
+			"Luky001"
 		]
 	},
 	"config-desc": "Inštalátor pre MediaWiki",
@@ -46,7 +47,7 @@
 	"config-db-type": "Typ databázy:",
 	"config-db-host": "Databázový server:",
 	"config-db-wiki-settings": "Identifikácia tejto wiki",
-	"config-db-name": "Názov databázy:",
+	"config-db-name": "Názov databázy (bez spojovníkov):",
 	"config-db-install-account": "Používateľský účet pre inštaláciu",
 	"config-db-username": "Databázové používateľské meno:",
 	"config-db-password": "Databázové heslo:",
@@ -81,7 +82,7 @@
 	"config-download-localsettings": "Stiahnuť <code>LocalSettings.php</code>",
 	"config-help": "nápoveda",
 	"config-nofile": "Súbor \"$1\" sa nenašiel. Bol zmazaný?",
-	"config-extension-link": "Vedeli ste, že vaša wiki podporuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozšírenia]?\nMôžete hľadať rozšírenia [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category podľa kategórie] alebo si pozrite [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] -  kompletný zoznam rozšírení.",
+	"config-extension-link": "Vedeli ste, že vaša wiki podporuje [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions rozšírenia]?\n\nRozšírenia môžete hľadať  [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category podľa kategórie].",
 	"mainpagetext": "'''Softvér MediaWiki bol úspešne nainštalovaný.'''",
-	"mainpagedocfooter": "Informácie ako používať wiki softvér nájdete v [https://meta.wikimedia.org/wiki/Help:Contents Používateľskej príručke].\n\n== Začíname ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Zoznam konfiguračných nastavení]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Časté otázky o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-poštová konferencia oznámení o MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Preklad MediaWiki do vášho jazyka]"
+	"mainpagedocfooter": "Informácie ako používať wiki softvér nájdete v [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Používateľskej príručke].\n\n== Začíname ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Zoznam konfiguračných nastavení]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Časté otázky o MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-poštová konferencia oznámení o MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Preklad MediaWiki do vášho jazyka]"
 }

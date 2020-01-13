@@ -241,7 +241,6 @@
 	"versionrequiredtext": "ھیہ صفحہو استعمال کوریکو بچے میڈیاویکیو $1 نسخہو ضرورت شیر.\n\n[[Special:Version|version page]]",
 	"ok": "ٹھیک شیر",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"retrievedfrom": "‘‘$1’’ نقل کاردو",
 	"youhavenewmessages": "تہ بچے ای $1 شیر۔ ($2)",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|آپ کے لیے}} {{PLURAL:$3|کسی دوسرے صارف|$3 صارفین}} کی جانب سے $1 ($2)۔",

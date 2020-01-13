@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tobi 406"
+		]
+	},
+	"rest-prefix-mismatch": "Der angeforderte Pfad ($1) kannte nicht innerhalb des REST-API-Root-Pfades ($2) gefunden werden",
+	"rest-wrong-method": "Die angeforderte Methode ($1) war keine {{PLURAL:$3|erlaubte Methode für diesen Pfad|der erlaubten Methoden für diesen Pfas}} ($2)",
+	"rest-no-match": "Der angeforderte relative Pfad ($1) stimmte mit keinem bekannten Handler überein",
+	"rest-nonexistent-title": "Der angegebene Titel ($1) existiert nicht",
+	"rest-nonexistent-title-revision": "Die angegebene Version ($1) existiert nicht für die angegebene Seite ($2)",
+	"rest-nonexistent-revision": "Die angegebene Version ($1) existiert nicht",
+	"rest-permission-denied-title": "Der Benutzer hat keine Rechte zum Lesen des Titels ($1)",
+	"rest-permission-denied-revision": "Der Benutzer hat keinen Zugriff auf die angeforderte Version ($1)."
+}

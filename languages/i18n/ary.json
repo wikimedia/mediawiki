@@ -217,7 +217,6 @@
 	"versionrequiredtext": "noskha $1 dyal mediawiki mtloba bach tstaaml had sfha\nchof [[Special:Version|sfht lversion]]",
 	"ok": "واخا",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"retrievedfrom": "مرجّعة من \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|عندك}} $1 ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|رسالة جديدة|999=رسائل جداد}}",

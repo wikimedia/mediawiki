@@ -14,10 +14,15 @@
 			"Cliffa fernandes",
 			"Rxy",
 			"Isidore Dantas",
-			"Abijeet Patro"
+			"Abijeet Patro",
+			"John Noronha",
+			"Prtksxna"
 		]
 	},
+	"tog-underline": "जोडणेचें अधोरेखन",
 	"tog-hideminor": "हालींच बदल केल्ल्यांतले बारीक संपादन लिपय",
+	"tog-hidepatrolled": "हालींच बदल केल्ल्यांतले पारो केल्लें संपादन लिपय",
+	"tog-newpageshidepatrolled": "नव्या पानांच्या सुचितल्यान पारो केल्लीं पानां लिपय",
 	"tog-hidecategorization": "पानांचें वर्गीकरण लिपय",
 	"tog-numberheadings": "माथाळे स्वंय क्रमांकीत कर",
 	"tog-editondblclick": "दोट्टी क्लिकाचेर पानां संपादीत कर",
@@ -118,6 +123,7 @@
 	"morenotlisted": "ही सुची पूर्ण नासूंक शक्ता.",
 	"mypage": "पान",
 	"mytalk": "चर्चा",
+	"anontalk": "चर्चा",
 	"navigation": "दिशा-नियंत्रण",
 	"and": "&#32;आनीक",
 	"faq": "परत परत विचारिल्ले प्रस्न",
@@ -261,6 +267,7 @@
 	"createacct-yourpasswordagain-ph": "गुपितउतर परत घालात",
 	"userlogin-remembermypassword": "म्हजें सत्र चालू दवर",
 	"userlogin-signwithsecure": "सुरक्षित कनेक्शन वापर",
+	"cannotcreateaccount-title": "खातीं रचूंक जायना",
 	"yourdomainname": "तुमचो डोमेन:",
 	"password-change-forbidden": "ह्या विकीचेर गुपीत उतरां बदलूंक शकनात",
 	"login": "सत्रारंभ करात",

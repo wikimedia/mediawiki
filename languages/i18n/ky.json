@@ -1255,8 +1255,6 @@
 	"feedback-cancel": "Жокко чыгаруу",
 	"feedback-close": "Даяр",
 	"feedback-error1": "Ката. API'ден белгисиз натыйжа",
-	"feedback-error2": "Ката: Оңдоо оңунан чыккан жок",
-	"feedback-error3": "Ката: API'ден жооп жок",
 	"feedback-message": "Билдирүү:",
 	"feedback-subject": "Тема:",
 	"feedback-submit": "Жөнөтүү",
