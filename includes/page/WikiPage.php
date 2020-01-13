@@ -2438,12 +2438,18 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param array $expiry Per restriction type expiration
 	 * @param int $cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
-	 * @param User|null $user
+	 * @param User|null $user User to attribute to, or null for $wgUser (deprecated since 1.35)
 	 * @return Revision|null Null on error
 	 */
 	public function insertProtectNullRevision( $revCommentMsg, array $limit,
 		array $expiry, $cascade, $reason, $user = null
 	) {
+		if ( !$user ) {
+			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			// Don't need to set to $wgUser here, handled in Revision::newNullRevision
+			// where the user is needed
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 
 		// Prepare a null revision to be added to the history

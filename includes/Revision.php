@@ -990,12 +990,13 @@ class Revision implements IDBAccessObject {
 	 * @param int $pageId ID number of the page to read from
 	 * @param string $summary Revision's summary
 	 * @param bool $minor Whether the revision should be considered as minor
-	 * @param User|null $user User object to use or null for $wgUser
+	 * @param User|null $user User object to use or null for $wgUser (deprecated since 1.35)
 	 * @return Revision|null Revision or null on error
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
-		global $wgUser;
 		if ( !$user ) {
+			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			global $wgUser;
 			$user = $wgUser;
 		}
 
