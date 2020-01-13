@@ -58,6 +58,7 @@ node_modules/
 phpunit.xml
 /tests/selenium/log
 .eslintcache
+.api-testing.config.json
 
 # Composer
 /vendor
