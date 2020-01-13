@@ -39,6 +39,10 @@ For notes on 1.34.x and older releases, see HISTORY.
   your site's default by setting $wgDefaultUserOptions['search-match-redirect'].
 * Per-user concurrency in SpecialContributions can now be limited by setting
   $wgPoolCounterConf['SpecialContributions'] appropriately.
+* Added new PasswordPolicyCheck: PasswordCannotBeSubstringInUsername.  Similar
+  to the existing PasswordCannotMatchUsername check, this check ensures that
+  a user's (case-insensitive) password cannot be a part of their username.
+  e.g. password = MyPassword, username = ThisUsersPasswordIsMyPassword.
 * …
 
 ==== Changed configuration ====

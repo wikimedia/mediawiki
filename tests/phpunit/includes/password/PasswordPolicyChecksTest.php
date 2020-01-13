@@ -115,6 +115,25 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername
+	 */
+	public function testCheckPasswordCannotBeSubstringInUsername() {
+		$statusOK = PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername(
+			1, // policy value
+			User::newFromName( 'user' ), // User
+			'password'  // password
+		);
+		$this->assertTrue( $statusOK->isGood(), 'Password is not a substring of username' );
+		$statusLong = PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername(
+			1, // policy value
+			User::newFromName( '123user123' ), // User
+			'user'  // password
+		);
+		$this->assertFalse( $statusLong->isGood(), 'Password is a substring of username' );
+		$this->assertTrue( $statusLong->isOK(), 'Password is a substring of username, not fatal' );
+	}
+
+	/**
 	 * @covers PasswordPolicyChecks::checkPasswordCannotMatchBlacklist
 	 * @dataProvider provideCheckPasswordCannotMatchBlacklist
 	 */
