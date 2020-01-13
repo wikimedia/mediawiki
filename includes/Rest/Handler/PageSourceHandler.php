@@ -212,18 +212,6 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @return bool
-	 */
-	protected function hasRepresentation() {
-		try {
-			$revision = $this->getRevision();
-			return (bool)( $revision && $this->getPageContent( $this->revision ) );
-		} catch ( LocalizedHttpException $e ) {
-			return false;
-		}
-	}
-
-	/**
 	 * @return string|null
 	 */
 	protected function getLastModified() {
