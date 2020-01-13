@@ -998,7 +998,6 @@
 	"watchlist-options": "監視列表選項",
 	"watching": "監視中...",
 	"unwatching": "停止監視中...",
-	"watcherrortext": "更改“$1”嘅監視列表設定時出現差錯。",
 	"enotif_reset": "標記所有頁面做已探訪",
 	"enotif_impersonal_salutation": "{{SITENAME}}用戶",
 	"enotif_lastvisited": "請參詳$1查看汝上次訪問後嘅所有更改。",
