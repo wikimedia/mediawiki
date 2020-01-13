@@ -310,7 +310,7 @@
 [submodule "extensions/MsCatSelect"]
 	path = extensions/MsCatSelect
 	url = https://github.com/wikimedia/mediawiki-extensions-MsCatSelect.git
-	branch = REL1_34
+	branch = master
 	ignore = dirty
 [submodule "extensions/MultiBoilerplate"]
 	path = extensions/MultiBoilerplate
