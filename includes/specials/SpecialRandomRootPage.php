@@ -26,7 +26,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @ingroup SpecialPage
  */
 
-class SpecialRandomrootpage extends RandomPage {
+class SpecialRandomRootPage extends SpecialRandomPage {
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
