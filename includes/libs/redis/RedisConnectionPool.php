@@ -171,7 +171,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 *                       If a hostname is specified but no port, port 6379 will be used.
 	 * @param LoggerInterface|null $logger PSR-3 logger intance. [optional]
 	 * @return RedisConnRef|Redis|bool Returns false on failure
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function getConnection( $server, LoggerInterface $logger = null ) {
 		// The above @return also documents 'Redis' for convenience with IDEs.
