@@ -197,7 +197,7 @@
 	"permalink": "Trajni link",
 	"print": "Štampaj",
 	"view": "Pogledaj",
-	"view-foreign": "Vidi na {{GRAMMAR:dativ|$1}}",
+	"view-foreign": "Prikaži na {{GRAMMAR:dativ|$1}}",
 	"edit": "Uredi",
 	"edit-local": "Uredi lokalni opis",
 	"create": "Napravi",
