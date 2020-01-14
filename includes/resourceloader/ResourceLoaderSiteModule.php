@@ -27,8 +27,6 @@
  * @internal
  */
 class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
-	/** @var string[] What client platforms the module targets (e.g. desktop, mobile) */
-	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * Get list of pages used by this module
