@@ -17,13 +17,6 @@ class PHPUnitMaintClass extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->setAllowUnregisteredOptions( true );
-		// TODO: does nothing, remove when Quibble stops using it
-		$this->addOption(
-			'debug-tests',
-			'Log testing activity to the PHPUnitCommand log channel (deprecated, always on).',
-			false, # not required
-			false # no arg needed
-		);
 		$this->addOption( 'use-filebackend', 'Use filebackend', false, true );
 		$this->addOption( 'use-bagostuff', 'Use bagostuff', false, true );
 		$this->addOption( 'use-jobqueue', 'Use jobqueue', false, true );
