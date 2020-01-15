@@ -1867,7 +1867,7 @@ class OutputPage extends ContextSource {
 		$text, Title $title, $linestart, $interface, $wrapperClass = null
 	) {
 		$parserOutput = $this->parseInternal(
-			$text, $title, $linestart, true, $interface, /*language*/null
+			$text, $title, $linestart, $interface
 		);
 
 		$this->addParserOutput( $parserOutput, [
@@ -2005,33 +2005,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Parse wikitext and return the HTML.
-	 *
-	 * @todo The output is wrapped in a <div> iff $interface is false; it's
-	 * probably best to always strip the wrapper.
-	 *
-	 * @param string $text
-	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $interface Use interface language (instead of content language) while parsing
-	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
-	 *   LanguageConverter.
-	 * @param Language|null $language Target language object, will override $interface
-	 * @throws MWException
-	 * @return string HTML
-	 * @deprecated since 1.32, due to untidy output and inconsistent wrapper;
-	 *  use parseAsContent() if $interface is default value or false, or else
-	 *  parseAsInterface() if $interface is true.
-	 */
-	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		return $this->parseInternal(
-			$text, $this->getTitle(), $linestart, /*tidy*/false, $interface, $language
-		)->getText( [
-			'enableSectionEditLinks' => false,
-		] );
-	}
-
-	/**
 	 * Parse wikitext *in the page content language* and return the HTML.
 	 * The result will be language-converted to the user's preferred variant.
 	 * Output will be tidy.
@@ -2044,7 +2017,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function parseAsContent( $text, $linestart = true ) {
 		return $this->parseInternal(
-			$text, $this->getTitle(), $linestart, /*tidy*/true, /*interface*/false, /*language*/null
+			$text, $this->getTitle(), $linestart, /*interface*/false
 		)->getText( [
 			'enableSectionEditLinks' => false,
 			'wrapperDivClass' => ''
@@ -2065,7 +2038,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function parseAsInterface( $text, $linestart = true ) {
 		return $this->parseInternal(
-			$text, $this->getTitle(), $linestart, /*tidy*/true, /*interface*/true, /*language*/null
+			$text, $this->getTitle(), $linestart, /*interface*/true
 		)->getText( [
 			'enableSectionEditLinks' => false,
 			'wrapperDivClass' => ''
@@ -2093,55 +2066,25 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Parse wikitext, strip paragraph wrapper, and return the HTML.
-	 *
-	 * @param string $text
-	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $interface Use interface language (instead of content language) while parsing
-	 *   language sensitive magic words like GRAMMAR and PLURAL
-	 * @return string HTML
-	 * @deprecated since 1.32, due to untidy output and confusing default
-	 *   for $interface.  Use parseInlineAsInterface() if $interface is
-	 *   the default value or false, or else use
-	 *   Parser::stripOuterParagraph($outputPage->parseAsContent(...)).
-	 */
-	public function parseInline( $text, $linestart = true, $interface = false ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		$parsed = $this->parseInternal(
-			$text, $this->getTitle(), $linestart, /*tidy*/false, $interface, /*language*/null
-		)->getText( [
-			'enableSectionEditLinks' => false,
-			'wrapperDivClass' => '', /* no wrapper div */
-		] );
-		return Parser::stripOuterParagraph( $parsed );
-	}
-
-	/**
 	 * Parse wikitext and return the HTML (internal implementation helper)
 	 *
 	 * @param string $text
 	 * @param Title $title The title to use
 	 * @param bool $linestart Is this the start of a line?
-	 * @param bool $tidy Whether the output should be tidied
 	 * @param bool $interface Use interface language (instead of content language) while parsing
 	 *   language sensitive magic words like GRAMMAR and PLURAL.  This also disables
 	 *   LanguageConverter.
-	 * @param Language|null $language Target language object, will override $interface
 	 * @throws MWException
 	 * @return ParserOutput
 	 */
-	private function parseInternal( $text, $title, $linestart, $tidy, $interface, $language ) {
+	private function parseInternal( $text, $title, $linestart, $interface ) {
 		if ( $title === null ) {
 			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
 		}
 
 		$popts = $this->parserOptions();
-		$oldTidy = $popts->setTidy( $tidy );
+		$oldTidy = $popts->setTidy( true );
 		$oldInterface = $popts->setInterfaceMessage( (bool)$interface );
-
-		if ( $language !== null ) {
-			$oldLang = $popts->setTargetLanguage( $language );
-		}
 
 		$parserOutput = MediaWikiServices::getInstance()->getParser()->getFreshParser()->parse(
 			$text, $title, $popts,
@@ -2150,10 +2093,6 @@ class OutputPage extends ContextSource {
 
 		$popts->setTidy( $oldTidy );
 		$popts->setInterfaceMessage( $oldInterface );
-
-		if ( $language !== null ) {
-			$popts->setTargetLanguage( $oldLang );
-		}
 
 		return $parserOutput;
 	}

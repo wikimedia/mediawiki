@@ -1835,89 +1835,6 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideParse
-	 * @covers OutputPage::parse
-	 * @param array $args To pass to parse()
-	 * @param string $expectedHTML Expected return value for parse()
-	 * @param string $expectedHTML Expected return value for parseInline(), if different
-	 */
-	public function testParse( array $args, $expectedHTML ) {
-		$this->hideDeprecated( 'OutputPage::parse' );
-		$op = $this->newInstance();
-		$this->assertSame( $expectedHTML, $op->parse( ...$args ) );
-	}
-
-	/**
-	 * @dataProvider provideParse
-	 * @covers OutputPage::parseInline
-	 */
-	public function testParseInline( array $args, $expectedHTML, $expectedHTMLInline = null ) {
-		if ( count( $args ) > 3 ) {
-			// $language param not supported
-			$this->assertTrue( true );
-			return;
-		}
-		$this->hideDeprecated( 'OutputPage::parseInline' );
-		$op = $this->newInstance();
-		$this->assertSame( $expectedHTMLInline ?? $expectedHTML, $op->parseInline( ...$args ) );
-	}
-
-	public function provideParse() {
-		return [
-			'List at start of line (content)' => [
-				[ '* List', true, false ],
-				"<div class=\"mw-parser-output\"><ul><li>List</li></ul></div>",
-				"<ul><li>List</li></ul>",
-			],
-			'List at start of line (interface)' => [
-				[ '* List', true, true ],
-				"<ul><li>List</li></ul>",
-			],
-			'List not at start (content)' => [
-				[ "* ''Not'' list", false, false ],
-				'<div class="mw-parser-output">* <i>Not</i> list</div>',
-				'* <i>Not</i> list',
-			],
-			'List not at start (interface)' => [
-				[ "* ''Not'' list", false, true ],
-				'* <i>Not</i> list',
-			],
-			'Interface message' => [
-				[ "''Italic''", true, true ],
-				"<p><i>Italic</i>\n</p>",
-				'<i>Italic</i>',
-			],
-			'formatnum (content)' => [
-				[ '{{formatnum:123456.789}}', true, false ],
-				"<div class=\"mw-parser-output\"><p>123,456.789\n</p></div>",
-				"123,456.789",
-			],
-			'formatnum (interface)' => [
-				[ '{{formatnum:123456.789}}', true, true ],
-				"<p>123,456.789\n</p>",
-				"123,456.789",
-			],
-			'Language (content)' => [
-				[ '{{formatnum:123456.789}}', true, false,
-					MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'is' ) ],
-				"<div class=\"mw-parser-output\"><p>123.456,789\n</p></div>",
-			],
-			'Language (interface)' => [
-				[ '{{formatnum:123456.789}}', true, true,
-					MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'is' ) ],
-				"<p>123.456,789\n</p>",
-				'123.456,789',
-			],
-			'No section edit links' => [
-				[ '== Header ==' ],
-				'<div class="mw-parser-output"><h2><span class="mw-headline" id="Header">' .
-					"Header</span></h2></div>",
-				'<h2><span class="mw-headline" id="Header">Header</span></h2>',
-			]
-		];
-	}
-
-	/**
 	 * @dataProvider provideParseAs
 	 * @covers OutputPage::parseAsContent
 	 * @param array $args To pass to parse()
@@ -1985,28 +1902,6 @@ class OutputPageTest extends MediaWikiTestCase {
 				'<h2><span class="mw-headline" id="Header">Header</span></h2>',
 			]
 		];
-	}
-
-	/**
-	 * @covers OutputPage::parse
-	 */
-	public function testParseNullTitle() {
-		$this->hideDeprecated( 'OutputPage::parse' );
-		$this->expectException( MWException::class );
-		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
-		$op = $this->newInstance( [], null, 'notitle' );
-		$op->parse( '' );
-	}
-
-	/**
-	 * @covers OutputPage::parseInline
-	 */
-	public function testParseInlineNullTitle() {
-		$this->hideDeprecated( 'OutputPage::parseInline' );
-		$this->expectException( MWException::class );
-		$this->expectExceptionMessage( 'Empty $mTitle in OutputPage::parseInternal' );
-		$op = $this->newInstance( [], null, 'notitle' );
-		$op->parseInline( '' );
 	}
 
 	/**
