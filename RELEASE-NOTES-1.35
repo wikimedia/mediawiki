@@ -209,6 +209,9 @@ because of Phabricator reports.
   ServiceAlreadyDefinedException, ServiceContainer and ServiceDisabledException
   in the global namespace, deprecated in 1.33, were removed. Use the classes in
   the MediaWiki\\Services namespace instead.
+* OutputPage::parse() and OutputPage::parseInline(), deprecated in 1.32, have
+  been removed.  Use ::parseAsContent() or ::parseAsInterface(), as
+  appropriate.
 * …
 
 === Deprecations in 1.35 ===
