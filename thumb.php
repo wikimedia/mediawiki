@@ -648,7 +648,7 @@ function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 	MediaWiki\HeaderCallback::warnIfHeadersSent();
 
 	if ( headers_sent() ) {
-		LoggerFactory::getInstance( 'thumb' )->error(
+		LoggerFactory::getInstance( 'thumbnail' )->error(
 			'Error after output had been started. Output may be corrupt or truncated. ' .
 			'Original error: ' . ( $msgText ?: $msgHtml ) . " (Status $status)",
 			$context
@@ -664,7 +664,7 @@ function wfThumbError( $status, $msgHtml, $msgText = null, $context = [] ) {
 		HttpStatus::header( 403 );
 		header( 'Vary: Cookie' );
 	} else {
-		LoggerFactory::getInstance( 'thumb' )->error( $msgText ?: $msgHtml, $context );
+		LoggerFactory::getInstance( 'thumbnail' )->error( $msgText ?: $msgHtml, $context );
 		HttpStatus::header( 500 );
 	}
 	if ( $wgShowHostnames ) {
