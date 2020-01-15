@@ -1514,6 +1514,20 @@ Bare pipe character from a template (T54363)
 </p>
 !! end
 
+!! test
+Implicit newline insertion/sol when expanding templates (T241150/T14974/T2529)
+!! wikitext
+{{echo|#foo}}{{echo|#foo}}
+!! html/php+tidy
+<ol><li>foo</li>
+<li>foo</li></ol>
+!! html/parsoid
+<ol typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"#foo"}},"i":0}},{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"#foo"}},"i":1}}]}'>
+<li>foo</li>
+<li>foo</li>
+</ol>
+!! end
+
 ###
 ### <nowiki> test cases
 ###
@@ -5944,6 +5958,34 @@ Examples from RFC 2732, section 2:
 <li><a rel="mw:ExtLink" href="http://[::192.9.5.5]/ipng" class="external free">http://[::192.9.5.5]/ipng</a></li>
 <li><a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]:80/index.html" class="external free">http://[::FFFF:129.144.52.38]:80/index.html</a></li>
 <li><a rel="mw:ExtLink" href="http://[2010:836B:4179::836B:4179]" class="external free">http://[2010:836B:4179::836B:4179]</a></li></ul>
+!! end
+
+# It might make sense to change this behavior; see
+# See https://phabricator.wikimedia.org/T238022#5665580
+!! test
+Unicode text around autolinks
+!! wikitext
+größhttps://foo.org
+
+größ https://foo.org
+
+아들 고건 사진https://foo.org
+
+💩https://foo.org
+!! html/php+tidy
+<p>größhttps://foo.org
+</p><p>größ <a rel="nofollow" class="external free" href="https://foo.org">https://foo.org</a>
+</p><p>아들 고건 사진https://foo.org
+</p><p>💩<a rel="nofollow" class="external free" href="https://foo.org">https://foo.org</a>
+</p>
+!! html/parsoid
+<p>größhttps://foo.org</p>
+
+<p>größ <a rel="mw:ExtLink" href="https://foo.org" class="external free" data-parsoid='{"stx":"url"}'>https://foo.org</a></p>
+
+<p>아들 고건 사진https://foo.org</p>
+
+<p>💩<a rel="mw:ExtLink" href="https://foo.org" class="external free" data-parsoid='{"stx":"url"}'>https://foo.org</a></p>
 !! end
 
 !! test
@@ -16016,6 +16058,19 @@ parsoid=wt2html,wt2wt,html2html
 <figure typeof="mw:Image/Frame"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a><figcaption></figcaption></figure>
 !! end
 
+!! test
+Bogus sizes during html2wt
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/10px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" width="bogus"/></a></figure-inline></p>
+<p><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/10px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" width="10px"/></a></figure-inline></p>
+!! wikitext
+[[File:Foobar.jpg]]
+
+[[File:Foobar.jpg|10x10px]]
+!! end
+
 ###################
 
 !! test
@@ -21736,6 +21791,30 @@ File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=param}}
 !! end
 
 !! test
+Gallery with wikitext incl bogus HTML tag (T237318)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<gallery>
+File:Foobar.jpg|</ref>
+</gallery>
+!! html/php+tidy
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
+			<div class="gallerytext">
+<p>&lt;/ref&gt;
+</p>
+			</div>
+		</div></li>
+</ul>
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><figure-inline typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120"/></a></figure-inline></div><div class="gallerytext" data-parsoid='{"dsr":[41,55,0,0]}'>&lt;/ref></div></li>
+</ul>
+!! end
+
+!! test
 Gallery (with showfilename option)
 !! wikitext
 <gallery showfilename="">
@@ -24120,6 +24199,40 @@ a:b=>c xyz
 </p><p>abc
 </p><p>a:b=&gt;c 0;zh-tw:bar
 </p>
+!! end
+
+!! test
+T239806: Trailing garbage in language converter rules (1)
+!! options
+language=zh variant=zh-hans
+parsoid=wt2html,html2html
+!! wikitext
+-{H|zh-cn:约翰·塞纳; zh-hk:莊·先拿; zh-tw:約翰·希南; ;}-
+-{H|zh-cn:泰瑞斯·吉布森; zh-hk:泰列斯·吉遜; zh-tw:泰瑞斯·吉布森; ;}-
+-{H|zh-cn:金·米尔福特; zh-tw:金·米爾福特; 真·米爾福特;}-
+!! html/php+tidy
+<p class="mw-empty-elt">
+
+
+</p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"约翰·塞纳"},{"l":"zh-hk","t":"莊·先拿"},{"l":"zh-tw","t":"約翰·希南"}]}'/>
+<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"泰瑞斯·吉布森"},{"l":"zh-hk","t":"泰列斯·吉遜"},{"l":"zh-tw","t":"泰瑞斯·吉布森"}]}'/>
+<meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"金·米尔福特"},{"l":"zh-tw","t":"金·米爾福特"}]}'/></p>
+!! end
+
+!! test
+T239806: Trailing garbage in language converter rules (2)
+!! options
+language=zh variant=zh-hans
+parsoid=wt2html,html2html
+!! wikitext
+-{H|zh-cn:玛格特·罗比; zh-tw:瑪格·羅比; zh-hk:瑪歌·羅比; zh-sg:玛格·罗比; ;}-
+!! html/php+tidy
+<p class="mw-empty-elt">
+</p>
+!! html/parsoid
+<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"玛格特·罗比"},{"l":"zh-tw","t":"瑪格·羅比"},{"l":"zh-hk","t":"瑪歌·羅比"},{"l":"zh-sg","t":"玛格·罗比"}]}'/></p>
 !! end
 
 !! test
@@ -33311,4 +33424,18 @@ parsoid=wt2html
 [[Disambiguation]]
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Disambiguation" title="Disambiguation" class="mw-disambig">Disambiguation</a></p>
+!! end
+
+## Note that there's a leading \r here that's necessary for the test
+!! test
+Stray carriage return in text
+!! options
+parsoid=wt2html
+!! wikitext
+hiho
+!! html/php+tidy
+<p>hiho
+</p>
+!! html/parsoid
+<p>hiho</p>
 !! end
