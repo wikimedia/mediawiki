@@ -1,3 +1,4 @@
+!! Version 2
 # MediaWiki Parser test cases
 # Some taken from https://meta.wikimedia.org/wiki/Parser_testing
 # All (C) their respective authors and released under the GPL
@@ -794,17 +795,13 @@ Italics and bold: 2-quote opening sequence: (2,4) w/ nowiki
 </p>
 !! end
 
-# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: 2-quote opening sequence: (2,5)
 !! options
 parsoid=wt2html
 !! wikitext
 ''foo'''''
-!! html/php
-<p><i>foo</i>
-</p>
-!! html/parsoid
+!! html
 <p><i>foo</i><b></b>
 </p>
 !!end
@@ -814,10 +811,7 @@ parsoid=wt2html
 Italics and bold: 2-quote opening sequence: (2,5+3) w/ nowiki
 !! wikitext
 ''foo'''''<nowiki/>'''
-!! html/php
-<p><i>foo</i>
-</p>
-!! html/parsoid
+!! html
 <p><i>foo</i><b></b>
 </p>
 !! end
@@ -831,7 +825,7 @@ Italics and bold: 2-quote opening sequence: (2,5+3) w/ nowiki
 Italics and bold: 3-quote opening sequence: (3,2)
 !! wikitext
 '''foo''
-!! html/*
+!! html
 <p>'<i>foo</i>
 </p>
 !!end
@@ -849,7 +843,7 @@ Italics and bold: 3-quote opening sequence: (3,3)
 Italics and bold: 3-quote opening sequence: (3,4)
 !! wikitext
 '''foo''''
-!! html/*
+!! html
 <p><b>foo'</b>
 </p>
 !!end
@@ -861,10 +855,10 @@ Italics and bold: 3-quote opening sequence: (3,5)
 parsoid=wt2html
 !! wikitext
 '''foo'''''
-!! html/php
+!! html/php+untidy
 <p><b>foo</b>
 </p>
-!! html/parsoid
+!! html+tidy
 <p><b>foo</b><i></i>
 </p>
 !!end
@@ -874,10 +868,10 @@ parsoid=wt2html
 Italics and bold: 3-quote opening sequence: (3,5+2) w/ nowiki
 !! wikitext
 '''foo'''''<nowiki/>''
-!! html/php
+!! html/php+untidy
 <p><b>foo</b>
 </p>
-!! html/parsoid
+!! html+tidy
 <p><b>foo</b><i></i>
 </p>
 !! end
@@ -945,10 +939,10 @@ Italics and bold: 4-quote opening sequence: (4,5)
 parsoid=wt2html
 !! wikitext
 ''''foo'''''
-!! html/php
+!! html/php+untidy
 <p>'<b>foo</b>
 </p>
-!! html/parsoid
+!! html+tidy
 <p>'<b>foo</b><i></i>
 </p>
 !!end
@@ -958,10 +952,10 @@ parsoid=wt2html
 Italics and bold: 4-quote opening sequence: (4,5+2) w/ nowiki
 !! wikitext
 '<nowiki/>'''foo'''''<nowiki/>''
-!! html/php
+!! html/php+untidy
 <p>'<b>foo</b>
 </p>
-!! html/parsoid
+!! html+tidy
 <p>'<b>foo</b><i></i>
 </p>
 !! end
@@ -1052,7 +1046,13 @@ Italics and bold: multiple quote sequences: (2,4,2)
 parsoid=wt2html
 !! wikitext
 ''foo''''bar''
-!! html/*
+!! html+untidy
+<p><i>foo'<b>bar</b></i>
+</p>
+!! html+tidy
+<p><i>foo'<b>bar</b></i><b></b>
+</p>
+!! html/parsoid
 <p><i>foo'<b>bar</b></i>
 </p>
 !! end
@@ -1109,17 +1109,13 @@ Italics and bold: multiple quote sequences: (2,4,4+2) w/ nowiki
 </p>
 !! end
 
-# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: multiple quote sequences: (3,4,2)
 !! options
 parsoid=wt2html
 !! wikitext
 '''foo''''bar''
-!! html/php
-<p><b>foo'</b>bar
-</p>
-!! html/parsoid
+!! html
 <p><b>foo'</b>bar<i></i>
 </p>
 !! end
@@ -1129,25 +1125,18 @@ parsoid=wt2html
 Italics and bold: multiple quote sequences: (3,4,2+2) w/ nowiki
 !! wikitext
 '''foo''''bar''<nowiki/>''
-!! html/php
-<p><b>foo'</b>bar
-</p>
-!! html/parsoid
+!! html
 <p><b>foo'</b>bar<i></i>
 </p>
 !! end
 
-# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
 !! test
 Italics and bold: multiple quote sequences: (3,4,3)
 !! options
 parsoid=wt2html
 !! wikitext
 '''foo''''bar'''
-!! html/php
-<p><b>foo'</b>bar
-</p>
-!! html/parsoid
+!! html
 <p><b>foo'</b>bar<b></b>
 </p>
 !! end
@@ -1157,10 +1146,7 @@ parsoid=wt2html
 Italics and bold: multiple quote sequences: (3,4,3+3) w/ nowiki
 !! wikitext
 '''foo''''bar'''<nowiki/>'''
-!! html/php
-<p><b>foo'</b>bar
-</p>
-!! html/parsoid
+!! html
 <p><b>foo'</b>bar<b></b>
 </p>
 !! end
@@ -1424,7 +1410,7 @@ Non-word characters don't terminate tag names (T19663, T42670, T54022)
 <s.foo> doesn't terminate </s.foo>
 
 <sub-ID#1>
-!! html/php
+!! html/php+untidy
 <p>&lt;blockquote|&gt;a&lt;/blockquote&gt;
 </p><p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;
 </p><p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;
@@ -1432,22 +1418,6 @@ Non-word characters don't terminate tag names (T19663, T42670, T54022)
 </p><p>&lt;s.foo&gt; doesn't terminate &lt;/s.foo&gt;
 </p><p>&lt;sub-ID#1&gt;
 </p>
-!! end
-
-!! test
-Non-word characters don't terminate tag names
-!! wikitext
-<blockquote|>a</blockquote>
-
-<b→> doesn't terminate </b→>
-
-<bä> doesn't terminate </bä>
-
-<boo> doesn't terminate </boo>
-
-<s.foo> doesn't terminate </s.foo>
-
-<sub-ID#1>
 !! html+tidy
 <p>&lt;blockquote|&gt;a
 </p><p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;
@@ -1469,8 +1439,7 @@ Non-word characters are valid in extension tags (T19663)
 !! wikitext
 <tåg>tåg</tåg>
 !! html/php
-<pre>
-'tåg'
+<pre>'tåg'
 array (
 )
 </pre>
@@ -2473,8 +2442,7 @@ Ident preformatting with inline content
 <em>
 </nowiki></pre>
 !! html
-<pre>
-&lt;b&gt;
+<pre>&lt;b&gt;
 &lt;cite&gt;
 &lt;em&gt;
 </pre>
@@ -2508,11 +2476,11 @@ T54763: Preformatted in <blockquote>
 <p> Blah
 </p>
 <table>
-<tr>
+<tbody><tr>
 <td>
 <p> indented cell (no pre-wrapping!)
 </p>
-</td></tr></table>
+</td></tr></tbody></table>
 </blockquote>
 !! end
 
@@ -2614,8 +2582,7 @@ Entities inside <pre>
 </pre>
 <pre><nowiki><nowiki></nowiki>Foo<nowiki></nowiki></nowiki></pre>
 !! html
-<pre>
-&lt;nowiki&gt;
+<pre>&lt;nowiki&gt;
 </pre>
 <pre>
 
@@ -2654,17 +2621,16 @@ parsoid=wt2html
 </pre>
 
 !! html/php
-<pre>
-&lt;nowiki&gt;
+<pre>&lt;nowiki&gt;
 </pre>
 <p>&lt;/nowiki&gt;
-&lt;/pre&gt;
-</p><p>
+</p>
+
+<p>
 &lt;pre&gt;
 &lt;nowiki&gt;
 &lt;/pre&gt;
 
-&lt;/pre&gt;
 </p>
 !! html/parsoid
 <pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n&lt;nowiki>\n"}}'>&lt;nowiki>
@@ -3402,13 +3368,13 @@ c
 !! html
 <table>
 
-<tr>
+<tbody><tr>
 <th>h1</th>
 <th>h2
 </th>
 <td>foo</td>
 <td>bar
-</td></tr></table>
+</td></tr></tbody></table>
 !!end
 
 !!test
@@ -3421,9 +3387,9 @@ c
 !! html
 <table>
 
-<tr>
+<tbody><tr>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !!end
 
 !!test
@@ -3437,9 +3403,9 @@ c
 <table>
 <caption>foo
 </caption>
-<tr>
+<tbody><tr>
 <th>bar
-</th></tr></table>
+</th></tr></tbody></table>
 !!end
 
 !!test
@@ -3453,9 +3419,9 @@ c
 <pre>a
 </pre>
 <table>
-<tr>
+<tbody><tr>
 <td>b
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <pre>a</pre>
  <table>
@@ -3507,13 +3473,13 @@ a
  </table>
 !! html
  <table>
- <tr>
+ <tbody><tr>
  <td>
 <pre>Text that should be rendered preformatted
 </pre>
  </td>
  </tr>
- </table>
+ </tbody></table>
 !! end
 
 !! test
@@ -3534,7 +3500,7 @@ parsoid=wt2html,html2html
  |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th>
 <pre>foo
 </pre>
@@ -3551,7 +3517,7 @@ parsoid=wt2html,html2html
 <td>
 <pre>bam
 </pre>
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
  <tbody><tr><th>
@@ -3642,7 +3608,6 @@ foo
 <ul><li>
   foo
 </li></ul>
-
 !! html/php
 <p>
  foo
@@ -3660,18 +3625,16 @@ foo
 </p>
 </blockquote>
 <blockquote>
-<pre>
-foo
-</pre>
-</blockquote>
-<table><tr><td>
 <pre>foo
 </pre>
-</td></tr></table>
+</blockquote>
+<table><tbody><tr><td>
+<pre>foo
+</pre>
+</td></tr></tbody></table>
 <ul><li>
   foo
 </li></ul>
-
 !! html/parsoid
 <p data-parsoid='{"stx":"html"}'>
  foo
@@ -3757,9 +3720,9 @@ Render paragraphs when indent-pre is suppressed in blocklevels
 <pre>   foo
 </pre>
 <table>
-<tr>
+<tbody><tr>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !!end
 
 ## NOTE: the leading white-space chars on empty line are significant
@@ -3992,8 +3955,7 @@ HTML-pre: 2: indented text
  foo
 </pre>
 !! html
-<pre>
- foo
+<pre> foo
 </pre>
 !!end
 
@@ -4008,8 +3970,7 @@ HTML-pre: 3: other wikitext
 [[ NoLink ]]
 </pre>
 !! html/php
-<pre>
-* foo
+<pre>* foo
 # bar
 = no-h =
 '' no-italic ''
@@ -4260,11 +4221,11 @@ this text
 should be left alone
 !! html
 <dl><dd><dl><dd><table>
-<tr>
+<tbody><tr>
 <td>foo
 </td>
 <td>bar
-</td></tr></table></dd></dl></dd></dl>
+</td></tr></tbody></table></dd></dl></dd></dl>
 <p>this text
 should be left alone
 </p>
@@ -4337,9 +4298,9 @@ Definition Lists: Hacky use to indent tables (WS-insensitive)
 |} 
 !! html/php
 <dl><dd><table>
-<tr>
+<tbody><tr>
 <td>a
-</td></tr></table></dd></dl>
+</td></tr></tbody></table></dd></dl>
 !! html/parsoid
 <dl><dd><table>
 <tbody><tr><td>a</td></tr>
@@ -4397,14 +4358,14 @@ Table / list interaction: indented table with lists in table contents
 !! html
 <dl><dd><table>
 
-<tr>
+<tbody><tr>
 <td>a
 <ul><li>b</li></ul>
 </td></tr>
 <tr>
 <td>c
 <ul><li>d</li></ul>
-</td></tr></table></dd></dl>
+</td></tr></tbody></table></dd></dl>
 !! end
 
 !!test
@@ -4423,7 +4384,7 @@ Table / list interaction: lists nested in tables nested in indented lists
 *f
 !! html
 <dl><dd><table>
-<tr>
+<tbody><tr>
 <td>
 <dl><dd>a</dd>
 <dd>b</dd></dl>
@@ -4431,7 +4392,7 @@ Table / list interaction: lists nested in tables nested in indented lists
 <td>
 <ul><li>c</li>
 <li>d</li></ul>
-</td></tr></table></dd></dl>
+</td></tr></tbody></table></dd></dl>
 <ul><li>e</li>
 <li>f</li></ul>
 !!end
@@ -4801,13 +4762,13 @@ Definition Lists: colons and tables 1
 |}
 !! html/php
 <dl><dd><table>
-<tr>
+<tbody><tr>
 <td>x
-</td></tr></table></dd></dl>
+</td></tr></tbody></table></dd></dl>
 <dl><dd><table>
-<tr>
+<tbody><tr>
 <td>y
-</td></tr></table></dd></dl>
+</td></tr></tbody></table></dd></dl>
 !! html/parsoid
 <dl><dd><table>
 <tr>
@@ -5191,7 +5152,7 @@ External image
 !! wikitext
 External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
 !! html
-<p>External image: <img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png"/>
+<p>External image: <img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" />
 </p>
 !! end
 
@@ -5200,7 +5161,7 @@ External image from https
 !! wikitext
 External image from https: https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
 !! html
-<p>External image from https: <img src="https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png"/>
+<p>External image from https: <img src="https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" />
 </p>
 !! end
 
@@ -5281,7 +5242,7 @@ External links: Clickable images
 !! wikitext
 ja-style clickable images: [http://example.com http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png]
 !! html/php
-<p>ja-style clickable images: <a rel="nofollow" class="external text" href="http://example.com"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png"/></a>
+<p>ja-style clickable images: <a rel="nofollow" class="external text" href="http://example.com"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" /></a>
 </p>
 !! html/parsoid
 <p>ja-style clickable images: <a rel="mw:ExtLink" href="http://example.com" class="external text"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" data-parsoid='{"type":"extlink"}'/></a></p>
@@ -5548,8 +5509,8 @@ parsoid=wt2html,html2html
 
 [http://example.com test [[wikilink]] embedded in ext link]
 !! html/php
-<p><a rel="nofollow" class="external text" href="http://example.com"></a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a><a rel="nofollow" class="external text" href="http://example.com"> embedded in ext link</a>
-</p><p><a rel="nofollow" class="external text" href="http://example.com">test </a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a><a rel="nofollow" class="external text" href="http://example.com"> embedded in ext link</a>
+<p><a rel="nofollow" class="external text" href="http://example.com"></a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a> embedded in ext link
+</p><p><a rel="nofollow" class="external text" href="http://example.com">test </a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a> embedded in ext link
 </p>
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="http://example.com" class="external autonumber"></a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink">wikilink</a><span> embedded in ext link</span></p>
@@ -5654,8 +5615,8 @@ Template returning pipe used in wikilink target
 !! end
 
 # Italic/link nesting is changed in this test, but the rendered result is the
-# same. Currently the result is actually an improvement over the MediaWiki
-# output.
+# same. Currently the Parsoid result is actually an improvement over
+# the legacy parser output.
 !! test
 T4702: Mismatched <i>, <b> and <a> tags are invalid
 !! wikitext
@@ -5665,11 +5626,11 @@ T4702: Mismatched <i>, <b> and <a> tags are invalid
 ''Something [http://example.com mixed''''', even bold]'''
 '''''Now [http://example.com both''''']
 !! html/php
-<p><a rel="nofollow" class="external text" href="http://example.com"><i>text</i></a>
+<p><i><a rel="nofollow" class="external text" href="http://example.com">text</a></i>
 <a rel="nofollow" class="external text" href="http://example.com"><b>text</b></a>
-<i>Something </i><a rel="nofollow" class="external text" href="http://example.com"><i>in italic</i></a>
-<i>Something </i><a rel="nofollow" class="external text" href="http://example.com"><i>mixed</i><b>, even bold</b></a>
-<i><b>Now </b></i><a rel="nofollow" class="external text" href="http://example.com"><i><b>both</b></i></a>
+<i>Something <a rel="nofollow" class="external text" href="http://example.com">in italic</a></i>
+<i>Something <a rel="nofollow" class="external text" href="http://example.com">mixed</a></i><a rel="nofollow" class="external text" href="http://example.com"><b>, even bold</b></a>
+<i><b>Now <a rel="nofollow" class="external text" href="http://example.com">both</a></b></i>
 </p>
 !! html/parsoid
 <p><i data-parsoid='{"autoInsertedEnd":true}'><a rel="mw:ExtLink" href="http://example.com" class="external text">text<i data-parsoid='{"autoInsertedEnd":true}'></i></a></i>
@@ -5820,13 +5781,19 @@ Some [http://example.com/ pretty ''italics'' and stuff]!
 </p>
 !! end
 
+# Note different rendering by Parsoid here compared to the legacy parser.
 !! test
 External link containing double-single-quotes in text embedded in italics (T6598 sanity check)
 !! wikitext
 ''Some [http://example.com/ pretty ''italics'' and stuff]!''
-!! html
+!! html+untidy
 <p><i>Some </i><a rel="nofollow" class="external text" href="http://example.com/"><i>pretty </i>italics<i> and stuff</i></a><i>!</i>
 </p>
+!! html+tidy
+<p><i>Some <a rel="nofollow" class="external text" href="http://example.com/">pretty </a></i><a rel="nofollow" class="external text" href="http://example.com/">italics<i> and stuff</i></a><i>!</i>
+</p>
+!! html/parsoid
+<p><i>Some <a rel="mw:ExtLink" href="http://example.com/" class="external text">pretty <i>italics</i> and stuff</a>!</i></p>
 !! end
 
 # Don't add the html/php section since the output is broken and there isn't any reason to spec it
@@ -6251,8 +6218,8 @@ Quotes wrapping HTML table
 <b><table data-parsoid='{"stx":"html"}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'>hi</td></tr></tbody></table></b>
 !! end
 
-# Parsoid inserts an empty bold tag pair at the end of the line, that the PHP
-# parser strips. The wikitext contains just the first half of the bold
+# Parsoid inserts an empty bold tag pair at the end of the line.
+# The wikitext contains just the first half of the bold
 # quote pair.
 !! test
 Unclosed and unmatched quotes
@@ -6281,7 +6248,7 @@ Plain ''italic'''s plain
 <p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
 </p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
 </p><p><b>Bold text..</b>
-</p><p>..spanning two paragraphs (should not work).
+</p><p>..spanning two paragraphs (should not work).<b></b>
 </p><p><b>Bold tag left open</b>
 </p><p><i>Italic tag left open</i>
 </p><p>Normal text.
@@ -6402,7 +6369,7 @@ A table with nothing but a caption
 !! html/php
 <table>
 <caption>caption
-</caption><tr><td></td></tr></table>
+</caption><tbody><tr><td></td></tr></tbody></table>
 !! html/parsoid
 <table><caption>caption</caption></table>
 !! end
@@ -6419,9 +6386,9 @@ A table with caption with default-spaced attributes and a table row
 <table>
 <caption style="color: red;">caption1
 </caption>
-<tr>
+<tbody><tr>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6439,9 +6406,9 @@ A table with captions with non-default spaced attributes and a table row
 </caption>
 <caption style="color: red;">caption3
 </caption>
-<tr>
+<tbody><tr>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6455,7 +6422,7 @@ Table td-cell syntax variations
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>baz
 </td>
 <td>foo bar foo</td>
@@ -6465,7 +6432,7 @@ Table td-cell syntax variations
 </td>
 <td>style='color:red;'</td>
 <td>baz
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6478,14 +6445,14 @@ Simple table
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>1</td>
 <td>2
 </td></tr>
 <tr>
 <td>3</td>
 <td>4
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6498,12 +6465,12 @@ Simple table but with multiple dashes for row wikitext
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>foo
 </td></tr>
 <tr>
 <td>bar
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6533,7 +6500,7 @@ Multiplication table
 <table border="1" cellpadding="2">
 <caption>Multiplication table
 </caption>
-<tr>
+<tbody><tr>
 <th>&#215;</th>
 <th>1</th>
 <th>2</th>
@@ -6573,7 +6540,7 @@ Multiplication table
 <td>5</td>
 <td>10</td>
 <td>15
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6584,10 +6551,10 @@ Accept "||" in table headings
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <th>h1</th>
 <th>h2
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !! test
@@ -6598,10 +6565,10 @@ Accept "!!" in table data
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>Foo!!</td>
 <td>
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'> Foo!! </td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'></td></tr>
@@ -6616,10 +6583,10 @@ Accept "||" in indented table headings
 |}
 !! html
 <dl><dd><table>
-<tr>
+<tbody><tr>
 <th>h1</th>
 <th>h2
-</th></tr></table></dd></dl>
+</th></tr></tbody></table></dd></dl>
 !! end
 
 !! test
@@ -6630,10 +6597,10 @@ Accept "!!" in templates
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th>a b</th>
 <th>c
-</th></tr></table>
+</th></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><th typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"pi":[[{"k":"1"}]]}' data-mw='{"parts":["!a ",{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"b!!c"}},"i":0}}]}'>a b</th><th about="#mwt1">c</th></tr>
@@ -6648,11 +6615,11 @@ b!!c
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th>a
 <p>b!!c
 </p>
-</th></tr></table>
+</th></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><th>a
@@ -6689,11 +6656,11 @@ Accept empty attributes in td/th cells (td/th cells starting with leading ||)
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <th>h1
 </th>
 <td>a
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !!test
@@ -6706,9 +6673,9 @@ Accept "| !" at start of line in tables (ignore !-attribute)
 !! html
 <table>
 
-<tr>
+<tbody><tr>
 <td>bar
-</td></tr></table>
+</td></tr></tbody></table>
 !!end
 
 !!test
@@ -6728,7 +6695,7 @@ Allow +/- in 2nd and later cells in a row, in 1st cell when td-attrs are present
 !! html
 <table>
 
-<tr>
+<tbody><tr>
 <td style="color:red;">+1
 </td>
 <td style="color:blue;">-1
@@ -6746,7 +6713,7 @@ Allow +/- in 2nd and later cells in a row, in 1st cell when td-attrs are present
 <td>+1
 </td>
 <td>-1
-</td></tr></table>
+</td></tr></tbody></table>
 !!end
 
 # Differences between Parsoid and PHP re: trailing whitespace in a
@@ -6764,7 +6731,7 @@ Table rowspan
 |}
 !! html/php
 <table border="1">
-<tr>
+<tbody><tr>
 <td>Cell 1, row 1
 </td>
 <td rowspan="2">Cell 2, row 1 (and 2)
@@ -6775,7 +6742,7 @@ Table rowspan
 <td>Cell 1, row 2
 </td>
 <td>Cell 3, row 2
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table border="1">
 <tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>Cell 1, row 1</td>
@@ -6802,20 +6769,20 @@ Nested table
 |}
 !! html
 <table border="1">
-<tr>
+<tbody><tr>
 <td>&#945;
 </td>
 <td>
 <table bgcolor="#ABCDEF" border="2">
-<tr>
+<tbody><tr>
 <td>nested
 </td></tr>
 <tr>
 <td>table
-</td></tr></table>
+</td></tr></tbody></table>
 </td>
 <td>the original table again
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6826,9 +6793,9 @@ Invalid attributes in table cell (T3830)
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>broken
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -6841,13 +6808,13 @@ Table cell attributes: Pipes protected by nowikis should be treated as a plain c
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td title="foo">bar
 </td>
 <td title="foo&#124;">bar
 </td>
 <td>title="foo|" bar
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><td title="foo">bar</td>
@@ -6868,12 +6835,12 @@ parsoid=wt2html,html2html
 | |[ftp://|x||]" onmouseover="alert(document.cookie)">test
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>[<a rel="nofollow" class="external free" href="ftp://%7Cx">ftp://%7Cx</a></td>
 <td>]" onmouseover="alert(document.cookie)"&gt;test
 </td>
 </tr>
-</table>
+</tbody></table>
 !! html/parsoid
 <table><tbody>
 <tr>
@@ -6888,9 +6855,9 @@ Element attributes with double ! should not be broken up by <th>
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th>hi <div class="!!">ha</div> ho
-</th></tr></table>
+</th></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><th>hi <div class="!!" data-parsoid='{"stx":"html"}'>ha</div> ho</th></tr>
@@ -6905,9 +6872,9 @@ Element attributes with double ! should not be broken up by <th>
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td><div style="color: red !important;" data-contrived="put this here &#124;&#124;">hi</div>
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><td><div style="color: red !important;" data-contrived="put this here ||" data-parsoid='{"stx":"html"}'>hi</div></td></tr>
@@ -6925,10 +6892,10 @@ parsoid=wt2html
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>style="color: red !important;" data-contrived="put this here</td>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><td>style="color: red !important;" data-contrived="put this here</td><td data-parsoid='{"stx":"row","a":{"\"":null},"sa":{"\"":""},"autoInsertedEnd":true}'>foo</td></tr>
@@ -6941,9 +6908,11 @@ Break on | in element attribute in template
 parsoid=wt2html,html2html
 !! wikitext
 {{echo|1=<div class="hi|ho">ha</div>}}
-!! html/php
+!! html/php+untidy
 <p>ho"&gt;ha&lt;/div&gt;
 </p>
+!! html/php+tidy
+<p>ho"&gt;ha</p>
 !! html/parsoid
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"ho\">ha&lt;/div>"}},"i":0}}]}'>ho">ha</p>
 !! end
@@ -6982,11 +6951,11 @@ parsoid=wt2html
 |}
 !! html/php
 <table style="border:1px solid black">
-<tr>
+<tbody><tr>
 <td style="color:blue">1
 </td>
 <td style="color:blue">2
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table style="border:1px solid black">
 <tr>
@@ -7031,7 +7000,7 @@ parsoid={
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td style="color:red;">Foo
 </td>
 <td style="color:red;">Foo
@@ -7044,7 +7013,7 @@ parsoid={
 <td align="center" style="color:red;">Foo
 </td>
 <td align="center" style="color:red;">Foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -7055,12 +7024,12 @@ parsoid={
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td data-sort-value="" style="color:red;">Foo
 </td>
 <td>Bar</td>
 <td>Baz
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><td about="#mwt1" typeof="mw:Transclusion" data-sort-value="" style="color:red;" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_2","href":"./Template:Table_attribs_2"},"params":{},"i":0}}]}'>Foo</td>
@@ -7078,7 +7047,7 @@ parsoid={
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th align="center" style="color:red;">Foo</th>
 <th style="color:red;"><i>Bar</i></th>
 <th style="color:brown;"><i>Foo</i> and Baz
@@ -7087,7 +7056,7 @@ parsoid={
 <td align="center" style="color:red;">Foo</td>
 <td style="color:red;"><i>Bar</i></td>
 <td style="color:brown;"><i>Foo</i> and Baz
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><th align="center" style="color:red;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["!align=center ",{"template":{"target":{"wt":"table_header_cells","href":"./Template:Table_header_cells"},"params":{},"i":0}}]}'>Foo</th><th about="#mwt1" style="color:red;"><i about="#mwt1">Bar</i></th><th about="#mwt1" style="color:brown;"><i about="#mwt1">Foo</i> and Baz</th></tr><tr>
@@ -7105,7 +7074,7 @@ parsoid={
 {{tbl-end}}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th align="center" style="color:red;">Foo</th>
 <th style="color:red;"><i>Bar</i></th>
 <th style="color:brown;"><i>Foo</i> and Baz
@@ -7114,7 +7083,7 @@ parsoid={
 <td align="center" style="color:red;">Foo</td>
 <td style="color:red;"><i>Bar</i></td>
 <td style="color:brown;"><i>Foo</i> and Baz
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[],[],[],[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n!align=center ",{"template":{"target":{"wt":"table_header_cells","href":"./Template:Table_header_cells"},"params":{},"i":1}},"\n|-\n|align=center ",{"template":{"target":{"wt":"table_cells","href":"./Template:Table_cells"},"params":{},"i":2}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":3}}]}'>
 <tbody><tr><th align="center" style="color:red;">Foo</th><th style="color:red;"><i>Bar</i></th><th style="color:brown;"><i>Foo</i> and Baz</th></tr>
@@ -7152,9 +7121,9 @@ parsoid=wt2html,html2html
 <table>
 
 
-<tr>
+<tbody><tr>
 <th>foo
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !! test
@@ -7171,9 +7140,9 @@ parsoid=wt2html,html2html
 <table>
 
 
-<tr>
+<tbody><tr>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -7186,9 +7155,9 @@ parsoid=wt2html,html2html
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td style="">hello
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><td style="">hello</td></tr>
@@ -7209,12 +7178,12 @@ Wikitext table with a lot of comments
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>foo
 </td></tr>
 <tr>
 <td>
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -7246,11 +7215,11 @@ b
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>a
 <p>b
 </p>
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -7262,11 +7231,11 @@ Table cell with a single comment
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>
 </td>
 <td>a
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -7279,11 +7248,11 @@ Table-cell after a comment-only-empty-line
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>a
 </td>
 <td>b
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'>a</td>
@@ -7303,7 +7272,7 @@ Build table with {{!}}
 {{!}}}
 !! html
 <table class="wikitable">
-<tr>
+<tbody><tr>
 <th>header
 </th>
 <th>second header
@@ -7311,7 +7280,7 @@ Build table with {{!}}
 <tr style="color:red;">
 <td>data</td>
 <td style="color:red;">second data
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -7329,7 +7298,7 @@ Build table with pipe as data
 |}
 !! html
 <table class="wikitable">
-<tr>
+<tbody><tr>
 <th>header
 </th>
 <th>second header
@@ -7345,7 +7314,7 @@ Build table with pipe as data
 <tr>
 <td>data with |</td>
 <td>second data with |
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -7360,7 +7329,7 @@ Build table with wikilink
 |}
 !! html
 <table class="wikitable">
-<tr>
+<tbody><tr>
 <th>header</th>
 <th>second header
 </th></tr>
@@ -7371,7 +7340,7 @@ Build table with wikilink
 <tr>
 <td>data</td>
 <td>second data <a href="/wiki/Main_Page" title="Main Page">link|text with pipe</a>
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 # The expected HTML structure in this test is debatable. The PHP parser does
@@ -7527,13 +7496,13 @@ parsoid=wt2html,wt2wt
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th>foo</th>
 <th>bar
 </th>
 <td>baz</td>
 <td>quux
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><th>foo</th><th>bar
@@ -8271,8 +8240,8 @@ Broken image links with HTML captions (T41700)
 [[File:Nonexistent|&lt;]]
 [[File:Nonexistent|a<i>b</i>c]]
 !! html/php
-<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">&lt;script>&lt;/script></a>
-<a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">&lt;script>&lt;/script></a>
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">&lt;script&gt;&lt;/script&gt;</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">&lt;script&gt;&lt;/script&gt;</a>
 <a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">&lt;</a>
 <a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">abc</a>
 </p>
@@ -9670,11 +9639,18 @@ parsoid=html2wt
 
 !! test
 Broken br tag sanitization
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 </br>
-!! html/php
+!! html/php+untidy
 <p>&lt;/br&gt;
 </p>
+!! html/php+tidy
+<p><br />
+</p>
+!! html/parsoid
+<p><br data-parsoid='{"stx":"html","noClose":true}'/></p>
 !! end
 
 # TODO: Fix html2html mode (T53055)!
@@ -9998,7 +9974,7 @@ Nested lists 4 (first element empty)
 **
 *bar
 !! html
-<ul><li><ul><li></li></ul></li>
+<ul><li><ul><li class="mw-empty-elt"></li></ul></li>
 <li>bar</li></ul>
 !! end
 
@@ -10008,8 +9984,8 @@ Nested lists 5 (both elements empty)
 **
 *
 !! html
-<ul><li><ul><li></li></ul></li>
-<li></li></ul>
+<ul><li><ul><li class="mw-empty-elt"></li></ul></li>
+<li class="mw-empty-elt"></li></ul>
 !! end
 
 !! test
@@ -10019,7 +9995,7 @@ Nested lists 6 (both elements empty)
 **
 !! html
 <ul><li>
-<ul><li></li></ul></li></ul>
+<ul><li class="mw-empty-elt"></li></ul></li></ul>
 !! end
 
 !! test
@@ -11659,11 +11635,15 @@ Template with invalid target containing tags
 
 !! test
 Template with invalid target containing unclosed tag
+!! options
+parsoid=wt2html
 !! wikitext
 {{a<b>|{{echo|foo}}|{{echo|a}}={{echo|b}}|a = b}}
-!! html
-<p>{{a<b>|foo|a=b|a = b}}</b>
-</p>
+!! html/php
+<p>{{a<b>|foo|a=b|a = b}}
+</b></p>
+!! html/parsoid
+<p>{{a<b data-parsoid='{"stx":"html","autoInsertedEnd":true}'>|<span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>|<span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a"}},"i":0}}]}'>a</span>=<span about="#mwt4" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"b"}},"i":0}}]}'>b</span>|a =b}}</b></p>
 !! end
 
 !! test
@@ -11968,9 +11948,9 @@ T2553: link with two variables in a piped link
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>[[{{{1}}}|{{{2}}}]]
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><td>[[<span about="#mwt5" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"1"},"params":{},"i":0}}]}'>{{{1}}}</span>|<span about="#mwt2" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"2"},"params":{},"i":0}}]}'>{{{2}}}</span>]]</td></tr>
@@ -11988,7 +11968,7 @@ Abort table cell attribute parsing on wikilink
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>testing <a href="/index.php?title=One&amp;action=edit&amp;redlink=1" class="new" title="One (page does not exist)">two</a> |three</td>
 <td>four
 </td>
@@ -11997,7 +11977,7 @@ Abort table cell attribute parsing on wikilink
 </td>
 <td>testing="<a href="/index.php?title=One&amp;action=edit&amp;redlink=1" class="new" title="One (page does not exist)">two</a>" |three</td>
 <td>four
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td data-parsoid='{"autoInsertedEnd":true}'>testing <a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"piped","a":{"href":"./One"},"sa":{"href":"one"}}'>two</a> |three</td><td data-parsoid='{"stx":"row","autoInsertedEnd":true}'>four</td>
@@ -12140,14 +12120,14 @@ foo {{table}}
 <p>foo 
 </p>
 <table>
-<tr>
+<tbody><tr>
 <td>1</td>
 <td>2
 </td></tr>
 <tr>
 <td>3</td>
 <td>4
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -12159,14 +12139,14 @@ foo
 <p>foo
 </p>
 <table>
-<tr>
+<tbody><tr>
 <td>1</td>
 <td>2
 </td></tr>
 <tr>
 <td>3</td>
 <td>4
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -12427,7 +12407,7 @@ Unbalanced includeonly and noinclude tags
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>a
 </td>
 <td>b
@@ -12435,7 +12415,7 @@ Unbalanced includeonly and noinclude tags
 <td>c&lt;/includeonly&gt;
 </td>
 <td>d&lt;/includeonly&gt;&lt;/includeonly&gt;
-</td></tr></table>
+</td></tr></tbody></table>
 !!end
 
 !! article
@@ -12451,9 +12431,12 @@ Template:Includeonly section
 T8563: Edit link generation for section shown by <includeonly>
 !! wikitext
 {{includeonly section}}
-!! html
+!! html+untidy
 <h2><span class="mw-headline" id="Includeonly_section">Includeonly section</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-1" title="Template:Includeonly section">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Section_T-1">Section T-1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-2" title="Template:Includeonly section">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html+tidy
+<h2><span class="mw-headline" id="Includeonly_section">Includeonly section</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-1" title="Edit section: ">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="Section_T-1">Section T-1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Includeonly_section&amp;action=edit&amp;section=T-2" title="Edit section: ">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! end
 
 # Uses same input as the contents of [[Template:Includeonly section]]
@@ -12692,10 +12675,10 @@ Parsoid: Merge double tds in nested transclusion content (T52603)
 <table>
 
 
-<tr>
+<tbody><tr>
 <td>a
 </td></tr>
-</table>
+</tbody></table>
 !!end
 
 ###
@@ -13592,12 +13575,12 @@ Templates: Support for templates generating attributes and content
 !! html/php
 <table style="color:red;" title="T48811">
 
-<tr>
+<tbody><tr>
 <td>foo
 </td></tr>
 <tr>
 <td>bar
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table style="color:red;" title="T48811" about="#mwt1" typeof="mw:Transclusion mw:ExpandedAttrs" data-mw='{"parts":["{| ",{"template":{"target":{"wt":"mixed_attr_content_template","href":"./Template:Mixed_attr_content_template"},"params":{},"i":0}},"\n|-\n|bar\n|}"]}'>
 <tbody><tr>
@@ -13643,9 +13626,9 @@ Table cell with attribute before expanded attribute
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td style="background:#f9f9f9;">Foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td style="background:#f9f9f9;" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"pi":[[]]}' data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_3","href":"./Template:Table_attribs_3"},"params":{},"i":0}}]}'>Foo</td></tr>
@@ -13660,9 +13643,9 @@ Table cell with attribute before expanded attribute
 {{tbl-end}}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td style="background:#f9f9f9;">Foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[],[],[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n|",{"template":{"target":{"wt":"table_attribs_3","href":"./Template:Table_attribs_3"},"params":{},"i":1}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":2}}]}'>
 <tbody><tr><td style="background:#f9f9f9;">Foo</td></tr>
@@ -13678,9 +13661,9 @@ Table cell with attribute before expanded attribute
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td style="background: red;">hi
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody><tr><td style="background:  red;" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"pi":[[]]}' data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_6","href":"./Template:Table_attribs_6"},"params":{},"i":0}}," hi"]}'> hi</td></tr>
@@ -13692,7 +13675,7 @@ Templates: HTML Tables: 1. Generating start of a HTML table
 !! wikitext
 {{echo|<table><tr><td>foo</td>}}</tr></table>
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !!end
 
 !!test
@@ -13700,7 +13683,7 @@ Templates: HTML Tables: 2a. Generating middle of a HTML table
 !! wikitext
 <table><tr>{{echo|<td>foo</td>}}</tr></table>
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !!end
 
 !!test
@@ -13708,7 +13691,7 @@ Templates: HTML Tables: 2b. Generating middle of a HTML table
 !! wikitext
 <table>{{echo|<tr><td>foo</td></tr>}}</table>
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !!end
 
 !!test
@@ -13716,7 +13699,7 @@ Templates: HTML Tables: 3. Generating end of a HTML table
 !! wikitext
 <table><tr>{{echo|<td>foo</td></tr></table>}}
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13724,7 +13707,7 @@ Templates: HTML Tables: 4a. Generating a single tag of a HTML table
 !! wikitext
 {{echo|<table>}}<tr><td>foo</td></tr></table>
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13732,7 +13715,7 @@ Templates: HTML Tables: 4b. Generating a single tag of a HTML table
 !! wikitext
 <table>{{echo|<tr>}}<td>foo</td></tr></table>
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13740,7 +13723,7 @@ Templates: HTML Tables: 4c. Generating a single tag of a HTML table
 !! wikitext
 <table><tr>{{echo|<td>}}foo</td></tr></table>
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13748,7 +13731,7 @@ Templates: HTML Tables: 4d. Generating a single tag of a HTML table
 !! wikitext
 <table><tr><td>foo{{echo|</td>}}</tr></table>
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13756,7 +13739,7 @@ Templates: HTML Tables: 4e. Generating a single tag of a HTML table
 !! wikitext
 <table><tr><td>foo</td>{{echo|</tr>}}</table>
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13764,7 +13747,7 @@ Templates: HTML Tables: 4f. Generating a single tag of a HTML table
 !! wikitext
 <table><tr><td>foo</td></tr>{{echo|</table>}}
 !! html
-<table><tr><td>foo</td></tr></table>
+<table><tbody><tr><td>foo</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13868,9 +13851,9 @@ Templates: Wiki Tables: 3. td-content via multiple templates
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>ab
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13880,7 +13863,7 @@ Templates: Wiki Tables: 4. Templated tags, no content
 {{tbl-end}}
 !! html
 <table>
-<tr><td></td></tr></table>
+<tbody><tr><td></td></tr></tbody></table>
 !! end
 
 !!test
@@ -13891,9 +13874,9 @@ Templates: Wiki Tables: 5. Templated tags, regular td-tags
 {{tbl-end}}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !!test
@@ -13904,9 +13887,9 @@ Templates: Wiki Tables: 6. Templated tags, templated td-tags
 {{tbl-end}}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 ## This test case is very specific to Parsoid's internals
@@ -13946,7 +13929,7 @@ Templates: Wiki Tables: 8. Fosterable meta-tags should get fostered
 
 <td>foo
 <meta typeof="mw:Includes/OnlyInclude/End"/></td></tr>
-</tbody></table>
+</tbody></tbody></table>
 !! end
 
 !!test
@@ -16378,7 +16361,7 @@ parsoid=wt2html,wt2wt,html2html
 |}
 and some more text.]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is an example image thumbnail caption with a table <table> <tr> <th>Foo</th> <th>Bar </th></tr> <tr> <td>Foo1</td> <td>Bar1 </td></tr></table> and some more text.</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:202px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" width="200" height="23" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/400px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is an example image thumbnail caption with a table <table> <tbody><tr> <th>Foo</th> <th>Bar </th></tr> <tr> <td>Foo1</td> <td>Bar1 </td></tr></tbody></table> and some more text.</div></div></div>
 !! html/parsoid
 <figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption>This is an example image thumbnail caption with a table
 <table>
@@ -17590,7 +17573,7 @@ Section headings with TOC
 Some text
 ===Another headline===
 !! html
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Headline 1</span></a>
 <ul>
@@ -17632,7 +17615,7 @@ __FORCETOC__
 ==Headline 2==
 ==Headline==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_2"><span class="tocnumber">1</span> <span class="toctext">Headline 2</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Headline"><span class="tocnumber">2</span> <span class="toctext">Headline</span></a></li>
@@ -17665,7 +17648,7 @@ parsoid=wt2html
 =========Level 9 Heading=========
 ==========Level 10 Heading==========
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Level_1_Heading"><span class="tocnumber">1</span> <span class="toctext">Level 1 Heading</span></a>
 <ul>
@@ -17728,7 +17711,7 @@ TOC regression (T11764)
 ==title 2==
 ===title 2.1===
 !! html
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -17762,7 +17745,7 @@ TOC for heading containing <span id="..."></span> (T96153)
 __FORCETOC__
 ==<span id="old-anchor"></span>New title==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#New_title"><span class="tocnumber">1</span> <span class="toctext">New title</span></a></li>
 </ul>
@@ -17783,7 +17766,7 @@ wgMaxTocLevel=3
 ==title 2==
 ===title 2.1===
 !! html
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -17818,7 +17801,7 @@ wgMaxTocLevel=3
 ====Section 1.1.1.1====
 ==Section 2==
 !! html
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a>
 <ul>
@@ -17873,8 +17856,8 @@ __NOTOC__
 ==Section 4==
 !! html
 <h2><span class="mw-headline" id="Section_0">Section 0</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 0">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h3><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Template:Sections">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Template:Sections">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h3><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Edit section: ">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Edit section: ">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Section_4">Section 4</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! end
 
@@ -17905,7 +17888,7 @@ __TOC__
 ===title 1.1===
 ==title 2==
 !! html
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#title_1"><span class="tocnumber">1</span> <span class="toctext">title 1</span></a>
 <ul>
@@ -17980,7 +17963,7 @@ section 5
 !! html/php
 <p>The tooltips shall not show entities to the user (ie. be double escaped)
 </p>
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#text_.3E_text"><span class="tocnumber">1</span> <span class="toctext">text &gt; text</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#text_.3C_text"><span class="tocnumber">2</span> <span class="toctext">text &lt; text</span></a></li>
@@ -18056,7 +18039,7 @@ section 6
 !! html/php
 <p>Id should not contain + for spaces
 </p>
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Space_between_Text"><span class="tocnumber">1</span> <span class="toctext">Space between Text</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Space-Entity_between_Text"><span class="tocnumber">2</span> <span class="toctext">Space-Entity&#32;between&#32;Text</span></a></li>
@@ -18132,7 +18115,7 @@ parsoid=wt2html,wt2wt,html2html
 =''italic'' heading==
 ==''italic'' heading=
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#foo.3D"><span class="tocnumber">1</span> <span class="toctext">foo=</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.3Dfoo"><span class="tocnumber">2</span> <span class="toctext">=foo</span></a></li>
@@ -18166,7 +18149,7 @@ HTML headers vs TOC (T25393)
 ==Header 2.2==
 __NOEDITSECTION__
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1"><a href="#Header_1"><span class="tocnumber">1</span> <span class="toctext">Header 1</span></a>
 <ul>
@@ -18358,9 +18341,9 @@ parsoid=wt2html,html2html
 |}
 !! html/php
 <table title="id=">
-<tr>
+<tbody><tr>
 <td>hi
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table title="id=">
 <tbody><tr><td>hi</td></tr>
@@ -18405,9 +18388,9 @@ Table multiple attributes correction
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <th class="awesome">status
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !! test
@@ -19134,9 +19117,9 @@ Table attribute legitimate extension
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <th style="color:blue">status
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !! test
@@ -19147,9 +19130,9 @@ Table attribute safety
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <th style="/* insecure input */">status
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !! test
@@ -19220,8 +19203,7 @@ Parser hook: empty input
 !! wikitext
 <tag></tag>
 !! html/php
-<pre>
-''
+<pre>''
 array (
 )
 </pre>
@@ -19237,8 +19219,7 @@ parsoid=wt2html,html2html
 !! wikitext
 <tag/>
 !! html/php
-<pre>
-NULL
+<pre>NULL
 array (
 )
 </pre>
@@ -19251,8 +19232,7 @@ Parser hook: empty input using terminated empty elements (space before)
 !! wikitext
 <tag />
 !! html/php
-<pre>
-NULL
+<pre>NULL
 array (
 )
 </pre>
@@ -19265,8 +19245,7 @@ Parser hook: basic input
 !! wikitext
 <tag>input</tag>
 !! html/php
-<pre>
-'input'
+<pre>'input'
 array (
 )
 </pre>
@@ -19282,8 +19261,7 @@ parsoid=wt2html,html2html
 !! wikitext
 <TAG>input</TAG>
 !! html/php
-<pre>
-'input'
+<pre>'input'
 array (
 )
 </pre>
@@ -19299,8 +19277,7 @@ parsoid=wt2html,html2html
 !! wikitext
 <TaG>input</TAg>
 !! html/php
-<pre>
-'input'
+<pre>'input'
 array (
 )
 </pre>
@@ -19334,13 +19311,12 @@ Parser hook: basic arguments
 !! wikitext
 <tag width="200" height="100" depth="50" square=""></tag>
 !! html/php
-<pre>
-''
+<pre>''
 array (
-  'width' => '200',
-  'height' => '100',
-  'depth' => '50',
-  'square' => '',
+  'width' =&gt; '200',
+  'height' =&gt; '100',
+  'depth' =&gt; '50',
+  'square' =&gt; '',
 )
 </pre>
 !! html/parsoid
@@ -19355,13 +19331,12 @@ parsoid=wt2html,html2html
 !! wikitext
 <tag width=200 height = "100" depth = '50' square></tag>
 !! html/php
-<pre>
-''
+<pre>''
 array (
-  'width' => '200',
-  'height' => '100',
-  'depth' => '50',
-  'square' => '',
+  'width' =&gt; '200',
+  'height' =&gt; '100',
+  'depth' =&gt; '50',
+  'square' =&gt; '',
 )
 </pre>
 !! html/parsoid
@@ -19373,10 +19348,9 @@ Parser hook: argument containing a forward slash (T7344)
 !! wikitext
 <tag filename="/tmp/bla"></tag>
 !! html/php
-<pre>
-''
+<pre>''
 array (
-  'filename' => '/tmp/bla',
+  'filename' =&gt; '/tmp/bla',
 )
 </pre>
 !! html/parsoid
@@ -19391,12 +19365,11 @@ parsoid=wt2html,html2html
 !! wikitext
 <tag foo=bar/>text
 !! html/php
-<pre>
-NULL
+<pre>NULL
 array (
-  'foo' => 'bar',
+  'foo' =&gt; 'bar',
 )
-</pre>text
+</pre><p>text</p>
 !! html/parsoid
 <pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{"foo":"bar"}}'></pre><p>text</p>
 !! end
@@ -19412,13 +19385,12 @@ parsoid=wt2html
 other stuff
 </tag>
 !! html/php
-<pre>
-NULL
+<pre>NULL
 array (
-  'width' => '200',
-  'height' => '100',
-  'depth' => '50',
-  'square' => '',
+  'width' =&gt; '200',
+  'height' =&gt; '100',
+  'depth' =&gt; '50',
+  'square' =&gt; '',
 )
 </pre>
 <p>other stuff
@@ -19457,10 +19429,9 @@ Hello
 Goodbye
 </tag>
 !! html/php
-<pre>
-'
+<pre>'
 Hello
-<hr/>
+<hr />
 Goodbye
 '
 array (
@@ -19539,13 +19510,16 @@ Sanitizer: Closing of open tags
 <p><s data-parsoid='{"stx":"html"}'></s></p><table data-parsoid='{"stx":"html"}'></table>
 !! end
 
+# Legacy parser adds an extra newline (seen as a space) which Parsoid does not
 !! test
 Sanitizer: Closing of open but not closed tags
 !! wikitext
 <s>foo
-!! html
-<p><s>foo</s>
-</p>
+!! html/php
+<p><s>foo
+</s></p>
+!! html/parsoid
+<p><s data-parsoid='{"stx":"html","autoInsertedEnd":true}'>foo</s></p>
 !! end
 
 !! test
@@ -19719,7 +19693,7 @@ language=sr variant=sr-el
 
 [[File:Foobar.jpg|alt=-{}-foAjrjvi-{}-]]
 !! html/php
-<p>
+<p class="mw-empty-elt">
 </p><p><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="image"><img alt="&quot; onload=&quot;alert(1)&quot; data-foo=&quot;" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
 !! html/parsoid
@@ -19934,12 +19908,12 @@ HTML nested ordered list, open tags (T7497)
 !! html/php
 <ol>
 <li>One
-<li>Two:
+</li><li>Two:
 <ol>
 <li>Sub-one
-<li>Sub-two
-</ol>
-</ol>
+</li><li>Sub-two
+</li></ol>
+</li></ol>
 !! html/parsoid
 <ol>
 <li>One
@@ -20006,11 +19980,11 @@ Fuzz testing: Parser13
 | http://a|
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>
 </td>
 </tr>
-</table>
+</tbody></table>
 !! end
 
 # Note that Parsoid output differs from the PHP parser here: the PHP
@@ -20090,13 +20064,13 @@ Fuzz testing: Parser21
 |
 !! html
 <table>
-<tr>
+<tbody><tr>
 <th><a rel="nofollow" class="external free" href="irc://{{ftp://a">irc://{{ftp://a</a>" onmouseover="alert('hello world');"
 </th>
 <td>
 </td>
 </tr>
-</table>
+</tbody></table>
 !! end
 
 !! test
@@ -20109,8 +20083,8 @@ http://===r:::https://b
 <p><a rel="nofollow" class="external free" href="http://===r:::https://b">http://===r:::https://b</a>
 </p>
 <table>
-<tr><td></td></tr>
-</table>
+<tbody><tr><td></td></tr>
+</tbody></table>
 !! html/parsoid
 <p><a rel="mw:ExtLink" href="http://===r:::https://b" class="external free" data-parsoid='{"stx":"url"}'>http://===r:::https://b</a></p>
 
@@ -20300,12 +20274,12 @@ Parsing optional HTML elements (T8171)
 </table>
 !! html
 <table>
-  <tr>
+  <tbody><tr>
     <td> Some tabular data</td>
     <td> More tabular data ...
     </td><td> And yet som tabular data</td>
   </tr>
-</table>
+</tbody></table>
 !! end
 
 !! test
@@ -20321,12 +20295,12 @@ Correct handling of <td>, <tr> (T8171)
 </table>
 !! html
 <table>
-  <tr>
+  <tbody><tr>
     <td> Some tabular data</td>
     <td> More tabular data ...</td>
     <td> And yet som tabular data</td>
   </tr>
-</table>
+</tbody></table>
 !! end
 
 
@@ -21323,19 +21297,19 @@ parsoid=wt2wt,html2wt
 !! wikitext
 '''''<nowiki/>'''''
 !! html/php
-<p><i></i>
+<p><i><b></b></i>
 </p>
 !! html/parsoid
 <p><b><i></i></b></p>
 !! end
 
-# same as previous, just swapping the <i> and <b>
+# same as previous, just swapping the <i> and <b> in Parsoid output
 !! test
 5 quotes, code coverage +1 line w/ nowiki (2)
 !! wikitext
 '''''<nowiki/>'''''
 !! html/php
-<p><i></i>
+<p><i><b></b></i>
 </p>
 !! html/parsoid
 <p><i><b></b></i></p>
@@ -21406,13 +21380,13 @@ title=[[Parser test]]
 <li>Talk:Parser_test</li>
 <li>Parser test</li>
 <li>Parser_test</li>
-<li></li>
-<li></li>
+<li class="mw-empty-elt"></li>
+<li class="mw-empty-elt"></li>
 <li>0</li>
 <li>Talk</li>
 <li>Talk</li>
-<li></li>
-<li></li>
+<li class="mw-empty-elt"></li>
+<li class="mw-empty-elt"></li>
 <li><a href="/index.php?title=Template:Dynamic&amp;action=edit&amp;redlink=1" class="new" title="Template:Dynamic (page does not exist)">Template:Dynamic</a></li></ul>
 !! end
 ### Note: Above tests excludes the "{{NUMBEROFADMINS}}" magic word because it generates a MySQL error when included.
@@ -21519,7 +21493,7 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional" style="max-width: 226px;_width: 226px;">
-	<li class='gallerycaption'>Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
+	<li class="gallerycaption">Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
 			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
 			<div class="gallerytext">
@@ -21579,7 +21553,7 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional" style="max-width: 226px;_width: 226px;">
-	<li class='gallerycaption'>Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
+	<li class="gallerycaption">Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
 			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
 			<div class="gallerytext">
@@ -21711,7 +21685,7 @@ File:Foobar.jpg|{{echo|ho}}
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional">
-	<li class='gallerycaption'>hi</li>
+	<li class="gallerycaption">hi</li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext">
@@ -21743,7 +21717,7 @@ File:Foobar.jpg|Image caption
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional">
-	<li class='gallerycaption'># This should not be a list item Text <b>bold</b> <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> Special <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>File in gallery caption</div></div></div></li>
+	<li class="gallerycaption"># This should not be a list item Text <b>bold</b> <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> Special <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>File in gallery caption</div></div></div></li>
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
 			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext">
@@ -22071,7 +22045,7 @@ File:Foobar.jpg|foo
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-nolines">
-	<li class='gallerycaption'>No Lines!</li>
+	<li class="gallerycaption">No Lines!</li>
 		<li class="gallerybox" style="width: 125px"><div style="width: 125px">
 			<div class="thumb" style="width: 120px;"><div style="margin:0px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext">
@@ -22135,7 +22109,7 @@ File:Foobar.jpg|foo
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-packed-overlay">
-	<li class='gallerycaption'>Packed Overlay!</li>
+	<li class="gallerycaption">Packed Overlay!</li>
 		<li class="gallerybox" style="width: 1061.3333333333px"><div style="width: 1061.3333333333px">
 			<div class="thumb" style="width: 1059.3333333333px;"><div style="margin:0px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/1589px-Foobar.jpg" decoding="async" width="1060" height="120" srcset="http://example.com/images/3/3a/Foobar.jpg 1.5x" /></a></div></div>
 			<div class="gallerytextwrapper" style="width: 1040px"><div class="gallerytext">
@@ -22159,7 +22133,7 @@ File:Foobar.jpg|foo
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-packed-hover">
-	<li class='gallerycaption'>Packed Hover!</li>
+	<li class="gallerycaption">Packed Hover!</li>
 		<li class="gallerybox" style="width: 1061.3333333333px"><div style="width: 1061.3333333333px">
 			<div class="thumb" style="width: 1059.3333333333px;"><div style="margin:0px auto;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/1589px-Foobar.jpg" decoding="async" width="1060" height="120" srcset="http://example.com/images/3/3a/Foobar.jpg 1.5x" /></a></div></div>
 			<div class="gallerytextwrapper" style="width: 1040px"><div class="gallerytext">
@@ -22475,14 +22449,11 @@ Another italics / bold test
 </pre>
 !!end
 
-# FIXME: The php output seems broken. It's interleaving some open/close tags.
 !! test
 dt/dd/dl test
 !! wikitext
 :;;;::
-!! html/php
-<dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd></dt></dl></dd></dl></dd></dl></dd></dl></dd></dl></dd></dl>
-!! html/parsoid
+!! html
 <dl><dd><dl><dt><dl><dt><dl><dt><dl><dd><dl><dd></dd></dl></dd></dl></dt></dl></dt></dl></dt></dl></dd></dl>
 !! end
 
@@ -22703,7 +22674,7 @@ Inclusion of !userCanEdit() content
 !! wikitext
 {{MediaWiki:Fake}}
 !! html
-<h2><span class="mw-headline" id="header">header</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=T-1" title="MediaWiki:Fake">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="header">header</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=MediaWiki:Fake&amp;action=edit&amp;section=T-1" title="Edit section: ">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! end
 
 
@@ -22717,7 +22688,7 @@ Out-of-order TOC heading levels
 =====5=====
 ==2==
 !! html
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#2"><span class="tocnumber">1</span> <span class="toctext">2</span></a>
 <ul>
@@ -22955,10 +22926,7 @@ bar
 Parsing of overlapping (improperly nested) inline html tags
 !! wikitext
 <span><s>x</span></s>
-!! html/php
-<p><span><s>x&lt;/span&gt;</s></span>
-</p>
-!! html/parsoid
+!! html
 <p><span><s>x</s></span>
 </p>
 !!end
@@ -23562,7 +23530,7 @@ language=zh variant=zh title=[[ZH]] showtitle
 -{T|zh-cn:CN;zh-tw:TW}-
 !! html/php
 ZH
-<p>
+<p class="mw-empty-elt">
 </p>
 !! html/parsoid
 <p><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"title":true,"twoway":[{"l":"zh-cn","t":"CN"},{"l":"zh-tw","t":"TW"}]}'/></p>
@@ -23576,7 +23544,7 @@ language=zh variant=zh title=[[ZH]] showtitle
 -{T|TW}-
 !! html/php
 ZH
-<p>
+<p class="mw-empty-elt">
 </p>
 !! html/parsoid
 <p><meta typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"TW"},"title":true}'/></p>
@@ -24088,9 +24056,9 @@ parsoid=wt2html,wt2wt,html2html
 !! html/php
 <table>
 
-<tr>
+<tbody><tr>
 <td>B
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tbody>
@@ -24279,14 +24247,14 @@ y
 <p>x
 </p>
 <table>
-<tr>
+<tbody><tr>
 <td>1</td>
 <td>2
 </td></tr>
 <tr>
 <td>3</td>
 <td>4
-</td></tr></table>
+</td></tr></tbody></table>
 <p>y
 </p>
 !! end
@@ -25157,11 +25125,10 @@ paragraphs</indicator>
 07=<pre>Preformatted
 </pre>
 08=<div>Broken tag</div>
-
 09=<table class="wikitable">
-<tr>
+<tbody><tr>
 <td>cell
-</td></tr></table>
+</td></tr></tbody></table>
 10=<p>Two
 </p><p>paragraphs
 </p>
@@ -25222,8 +25189,8 @@ Play a bit with r67090 and T5158
 <div style="border : solid;">&nbsp;</div>
 !! html/php
 <div style="width:50% !important">&#160;</div>
-<div style="width:50% !important">&#160;</div>
-<div style="width:50% !important">&#160;</div>
+<div style="width:50%&#160;!important">&#160;</div>
+<div style="width:50%&#160;!important">&#160;</div>
 <div style="border&#32;: solid;">&#160;</div>
 !! html/parsoid
 <div style="width:50% !important" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
@@ -25354,7 +25321,7 @@ T21052 U+3000 IDEOGRAPHIC SPACE should terminate external images links
 !! wikitext
 http://www.example.org/pic.png　<-- U+3000 (vim: ^Vu3000)
 !! html
-<p><img src="http://www.example.org/pic.png" alt="pic.png"/>　&lt;-- U+3000 (vim: ^Vu3000)
+<p><img src="http://www.example.org/pic.png" alt="pic.png" />　&lt;-- U+3000 (vim: ^Vu3000)
 </p>
 !! end
 
@@ -25456,7 +25423,7 @@ title=[[Main Page]]
 __TOC__
 ==''Lost'' episodes==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Lost_episodes"><span class="tocnumber">1</span> <span class="toctext"><i>Lost</i> episodes</span></a></li>
 </ul>
@@ -25476,7 +25443,7 @@ title=[[Main Page]]
 __TOC__
 =='''should be bold''' then normal text==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#should_be_bold_then_normal_text"><span class="tocnumber">1</span> <span class="toctext"><b>should be bold</b> then normal text</span></a></li>
 </ul>
@@ -25496,7 +25463,7 @@ title=[[Main Page]]
 __TOC__
 ==Image [[Image:foobar.jpg]]==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Image"><span class="tocnumber">1</span> <span class="toctext">Image</span></a></li>
 </ul>
@@ -25548,7 +25515,7 @@ __TOC__
 <small>Hanc marginis exiguitas non caperet.</small>
 QED
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Proof:_2_&lt;_3"><span class="tocnumber">1</span> <span class="toctext">Proof: 2 &lt; 3</span></a></li>
 </ul>
@@ -25611,7 +25578,7 @@ __TOC__
 
 ==<sup class="a > b">Evilbye</sup>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Hello"><span class="tocnumber">1</span> <span class="toctext"><sup>Hello</sup></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#b.22.3EEvilbye"><span class="tocnumber">2</span> <span class="toctext"><sup> b"&gt;Evilbye</sup></span></a></li>
@@ -25641,7 +25608,7 @@ __TOC__
 
 ==<span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#.D7.96.D7.91.D7.A0.D7.92.21"><span class="tocnumber">2</span> <span class="toctext"><span dir="rtl">זבנג!</span></span></a></li>
@@ -25671,7 +25638,7 @@ T74884: bdi element in ToC
 __TOC__
 ==<bdi>test</bdi>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#test"><span class="tocnumber">1</span> <span class="toctext"><bdi>test</bdi></span></a></li>
 </ul>
@@ -25689,7 +25656,7 @@ T35715: s/strike element in ToC
 __TOC__
 ==<s>test</s> test <strike>test</strike>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#test_test_test"><span class="tocnumber">1</span> <span class="toctext"><s>test</s> test <strike>test</strike></span></a></li>
 </ul>
@@ -25709,7 +25676,7 @@ styletag=1
 __TOC__
 ==<style>.foo {}</style>Style<style>.bar {}</style>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Style"><span class="tocnumber">1</span> <span class="toctext">Style</span></a></li>
 </ul>
@@ -25729,7 +25696,7 @@ wgRawHtml=1
 __TOC__
 ==<html><script>alert(1);</script></html>Script<html><script>alert(1);</script></html>==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Script"><span class="tocnumber">1</span> <span class="toctext">Script</span></a></li>
 </ul>
@@ -25747,7 +25714,7 @@ Empty <p> tag in TOC, removed by Sanitizer (T92892)
 __TOC__
 ==x==
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#x"><span class="tocnumber">1</span> <span class="toctext">x</span></a></li>
 </ul>
@@ -25840,7 +25807,7 @@ language=be-tarask
 {{formatnum:123456.78}}
 {{formatnum:123456.78|NOSEP}}
 !! html
-<p>123 456,78
+<p>123&#160;456,78
 123456.78
 </p>
 !! end
@@ -25924,12 +25891,12 @@ Ignore pipe between table row attributes
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>quux
 </td></tr>
 <tr id="foo" style="color: red">
 <td>bar
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !!test
@@ -26942,13 +26909,13 @@ parsoid=html2wt
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>foo||bar
 </td>
 <td>a<i>b||c</i>
 </td>
 <td>a<i><div>b||c</div></i>
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -26957,9 +26924,9 @@ Tables: 2c. Nested in td -- no escaping needed
 parsoid=html2wt
 !! html/*
 <table>
-<tr>
+<tbody><tr>
 <td>foo!!bar
-</td></tr></table>
+</td></tr></tbody></table>
 !! wikitext
 {|
 |foo!!bar
@@ -26972,9 +26939,9 @@ Tables: 3a. Nested in th
 parsoid=html2wt
 !! html/*
 <table>
-<tr>
+<tbody><tr>
 <th>foo!bar
-</th></tr></table>
+</th></tr></tbody></table>
 !! wikitext
 {|
 !foo!bar
@@ -27001,7 +26968,7 @@ parsoid=html2wt
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th>foo!!bar
 </th>
 <th><i>foo|bar</i>
@@ -27009,7 +26976,7 @@ parsoid=html2wt
 <th><i>foo!!bar</i>
 </th>
 <th><i><span>foo!!bar</span></i>
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !! test
@@ -27028,11 +26995,11 @@ parsoid=html2wt
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <th>foo||bar
 </th>
 <th>foo||bar
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !! test
@@ -27041,12 +27008,12 @@ Tables: 4a. Escape -
 parsoid=html2wt
 !! html/*
 <table>
-<tr>
+<tbody><tr>
 <th>-bar
 </th></tr>
 <tr>
 <td>-bar
-</td></tr></table>
+</td></tr></tbody></table>
 !! wikitext
 {|
 !-bar
@@ -27061,12 +27028,12 @@ Tables: 4b. Escape +
 parsoid=html2wt
 !! html/*
 <table>
-<tr>
+<tbody><tr>
 <th>+bar
 </th></tr>
 <tr>
 <td>+bar
-</td></tr></table>
+</td></tr></tbody></table>
 !! wikitext
 {|
 !+bar
@@ -27108,7 +27075,7 @@ bar|baz
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>foo-bar
 </td>
 <td>foo+bar
@@ -27128,7 +27095,7 @@ bar|baz
 <tr>
 <td>x
 <div>a|b</div>
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -27149,13 +27116,13 @@ parsoid=html2wt
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td><a href="/wiki/Foo" title="Foo">Foo</a>-bar
 </td>
 <td>+1
 </td>
 <td>-2
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -27175,13 +27142,13 @@ parsoid=html2wt
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>}
 </td></tr>
 <tr>
 <td>x</td>
 <td>}
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -27271,11 +27238,11 @@ parsoid=html2wt
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>&lt;foo
 </td>
 <td>bar&gt;
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 #### --------------- Links ----------------
@@ -28226,9 +28193,9 @@ parsoid=wt2html,html2html
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td title="Hello world">Foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
 <tr>
@@ -28247,11 +28214,11 @@ parsoid=wt2html,html2html
 |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td title="Hello world">Foo
 </td>
 <td style="color:red">Bar
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table><tbody>
 <tr>
@@ -28268,10 +28235,10 @@ Accept empty td cell attribute
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td align="center">foo</td>
 <td>
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !!test
@@ -28282,10 +28249,10 @@ Non-empty attributes in th-cells
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <th>Foo</th>
 <th style="color: red">Bar
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !!test
@@ -28296,10 +28263,10 @@ Accept empty attributes in th-cells
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <th>foo</th>
 <th>bar
-</th></tr></table>
+</th></tr></tbody></table>
 !! end
 
 !!test
@@ -28313,13 +28280,13 @@ Empty table rows go away
 |}
 !! html
 <table>
-<tr>
+<tbody><tr>
 <td>Hello
 </td>
 <td>there
 </td></tr>
 
-</table>
+</tbody></table>
 !! end
 
 ###
@@ -28380,11 +28347,11 @@ Empty TD followed by TD with tpl-generated attribute
 !! html
 <table>
 
-<tr>
+<tbody><tr>
 <td>
 </td>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !!test
@@ -28398,11 +28365,11 @@ Indented table with an empty td
 !! html
 <table>
 
-<tr>
+<tbody><tr>
 <td>
 </td>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! end
 
 !! test
@@ -28415,11 +28382,11 @@ Indented table with blank lines in between (T85627)
  |}
 !! html/php
 <table>
-<tr>
+<tbody><tr>
 <td>foo
 <p><br /> 
 </p>
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
  <table>
  <tbody><tr><td>foo
@@ -28438,9 +28405,9 @@ Indented block & table
 !! html/php
  <div>foo</div>
 <table>
-<tr>
+<tbody><tr>
 <td>foo
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
  <div data-parsoid='{"stx":"html"}'>foo</div>
  <table><tbody>
@@ -28458,9 +28425,9 @@ Indent and comment before table row
 !! html/php
 <table>
 
-<tr>
+<tbody><tr>
 <td>there
-</td></tr></table>
+</td></tr></tbody></table>
 !! html/parsoid
 <table>
  <!--hi--><tbody><tr data-parsoid='{"startTagSrc":"|-","autoInsertedEnd":true}'>
@@ -31970,7 +31937,7 @@ bar
 <p>A style tag, by itself or with other style/link tags, shouldn't be wrapped in a paragraph
 </p>
 <style>.foo::before { content: "<foo>"; }</style>
-<style>.foo::before { content: "<foo>"; }</style> <link rel="foo" href="bar"/><style>.foo::before { content: "<foo>"; }</style>
+<style>.foo::before { content: "<foo>"; }</style> <link rel="foo" href="bar" /><style>.foo::before { content: "<foo>"; }</style>
 <p>But if it's on a line with other content, let it be wrapped.
 </p><p><style>.foo::before { content: "<foo>"; }</style> bar
 </p><p>foo <style>.foo::before { content: "<foo>"; }</style>
@@ -32029,15 +31996,15 @@ bar
 !! html/php
 <p>A link tag, by itself or with other style/link tags, shouldn't be wrapped in a paragraph
 </p>
-<link rel="foo" href="bar"/>
-<link rel="foo" href="bar"/> <style>.foo::before { content: "<foo>"; }</style><link rel="foo" href="bar"/>
+<link rel="foo" href="bar" />
+<link rel="foo" href="bar" /> <style>.foo::before { content: "<foo>"; }</style><link rel="foo" href="bar" />
 <p>But if it's on a line with other content, let it be wrapped.
-</p><p><link rel="foo" href="bar"/> bar
-</p><p>foo <link rel="foo" href="bar"/>
-</p><p>foo <link rel="foo" href="bar"/> bar
+</p><p><link rel="foo" href="bar" /> bar
+</p><p>foo <link rel="foo" href="bar" />
+</p><p>foo <link rel="foo" href="bar" /> bar
 </p><p>And the same if we have non-paragraph-breaking whitespace
 </p><p>foo
-<link rel="foo" href="bar"/>
+<link rel="foo" href="bar" />
 bar
 </p>
 !! end
@@ -32094,7 +32061,7 @@ Decoding of HTML entities in embedded HTML tags
 !! wikitext
 <table class="1&2&amp;3&amp;amp;4&amp;amp;amp;5"><tr><td>x</td></tr></table>
 !! html/php
-<table class="1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"><tr><td>x</td></tr></table>
+<table class="1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"><tbody><tr><td>x</td></tr></tbody></table>
 !! html/parsoid
 <table class="1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5" data-parsoid='{"stx":"html","a":{"class":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"sa":{"class":"1&amp;2&amp;amp;3&amp;amp;amp;4&amp;amp;amp;amp;5"}}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'>x</td></tr></tbody></table>
 !! end
@@ -32152,7 +32119,7 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 [[#啤酒]] [[#%E5%95%A4%E9%85%92]]
 
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
@@ -32218,7 +32185,7 @@ wgFragmentMode=[ 'legacy', 'html5' ]
 [[#啤酒]] [[#%E5%95%A4%E9%85%92]]
 
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
@@ -32266,7 +32233,7 @@ wgFragmentMode=[ 'html5' ]
 [[#啤酒]] [[#%E5%95%A4%E9%85%92]]
 
 !! html/php
-<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none"/><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Foo_bar"><span class="tocnumber">1</span> <span class="toctext">Foo bar</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext">foo Bar</span></a></li>
