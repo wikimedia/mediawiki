@@ -2072,6 +2072,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string $message
 	 */
 	protected function assertType( $type, $actual, $message = '' ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( class_exists( $type ) || interface_exists( $type ) ) {
 			$this->assertInstanceOf( $type, $actual, $message );
 		} else {

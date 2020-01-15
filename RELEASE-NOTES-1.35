@@ -252,6 +252,10 @@ because of Phabricator reports.
   setMwGlobals( 'wgLanguageCode', 'xxx' ) to set a different site language
   code, or setService( 'ContentLanguage', $myObj ) to set a specific Language
   object. Service resets and $wgContLang will be handled automatically.
+* MediaWikiIntegrationTest::assertType() has been deprecated, as part of the
+  work to move to PHPUnit 8; PHPUnit's assertInternalType() was deprecated, and
+  will be removed in PHPUnit 9. MediaWikiIntegrationTest::assertTypeOrValue(),
+  a wrapper for assertType(), has been removed immediately, without deprecation.
 * AbstractBlock::getReason is deprecated, since reasons are actually stored as
   CommentStoreComments, and getReason returns a string with no caller control
   over language or formatting. Instead use AbstractBlock::getReasonComment,
