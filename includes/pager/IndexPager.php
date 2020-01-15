@@ -425,7 +425,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @note For b/c, query direction is true for ascending and false for descending
 	 *
-	 * @param string $offset Index offset, inclusive
+	 * @param int|string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return array
