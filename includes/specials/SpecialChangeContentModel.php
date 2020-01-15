@@ -60,6 +60,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 
 		// T120576
 		$form->setSubmitTextMsg( 'changecontentmodel-submit' );
+
+		if ( $this->title ) {
+			$this->getOutput()->addBacklinkSubtitle( $this->title );
+		}
 	}
 
 	public function validateTitle( $title ) {
