@@ -45,6 +45,8 @@ class TemplateParser {
 	 */
 	protected $compileFlags;
 
+	private static $cacheVersion = '1.2.4';
+
 	/**
 	 * @param string|null $templateDir
 	 * @param bool $forceRecompile
@@ -124,7 +126,7 @@ class TemplateParser {
 		if ( $secretKey ) {
 			// See if the compiled PHP code is stored in cache.
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
-			$key = $cache->makeKey( 'template', $templateName, $fastHash );
+			$key = $cache->makeKey( 'lightncandy-compiled', self::$cacheVersion, $templateName, $fastHash );
 			$code = $this->forceRecompile ? null : $cache->get( $key );
 
 			if ( $code ) {
