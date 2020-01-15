@@ -32,6 +32,8 @@
  * @ingroup MaintenanceLanguage
  */
 
+use Wikimedia\StaticArrayWriter;
+
 require_once __DIR__ . '/../Maintenance.php';
 
 class GenerateUcfirstOverrides extends Maintenance {
