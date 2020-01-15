@@ -161,6 +161,160 @@ class UserDefTest extends TypeDefTestCase {
 		];
 	}
 
+	public function provideCheckSettings() {
+		$keys = [ 'Y', UserDef::PARAM_ALLOWED_USER_TYPES, UserDef::PARAM_RETURN_OBJECT ];
+		$ismultiIssue = 'Multi-valued user-type parameters with PARAM_RETURN_OBJECT or allowing IDs '
+			. 'should set low values (<= 10) for PARAM_ISMULTI_LIMIT1 and PARAM_ISMULTI_LIMIT2.'
+			. ' (Note that "<= 10" is arbitrary. If something hits this, we can investigate a real limit '
+			. 'once we have a real use case to look at.)';
+
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
+					UserDef::PARAM_RETURN_OBJECT => true,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad types' => [
+				[
+					UserDef::PARAM_ALLOWED_USER_TYPES => 'name',
+					UserDef::PARAM_RETURN_OBJECT => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						UserDef::PARAM_RETURN_OBJECT => 'PARAM_RETURN_OBJECT must be boolean, got integer',
+						UserDef::PARAM_ALLOWED_USER_TYPES => 'PARAM_ALLOWED_USER_TYPES must be an array, got string',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALLOWED_USER_TYPES cannot be empty' => [
+				[
+					UserDef::PARAM_ALLOWED_USER_TYPES => [],
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						UserDef::PARAM_ALLOWED_USER_TYPES => 'PARAM_ALLOWED_USER_TYPES cannot be empty',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALLOWED_USER_TYPES invalid values' => [
+				[
+					UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'id', 'ssn', 'Q-number' ],
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						UserDef::PARAM_ALLOWED_USER_TYPES
+							=> 'PARAM_ALLOWED_USER_TYPES contains invalid values: ssn, Q-number',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'ISMULTI generally ok' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'ISMULTI with ID not ok (1)' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X', $ismultiIssue ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'ISMULTI with ID not ok (2)' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 11,
+					UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X', $ismultiIssue ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'ISMULTI with ID ok with low limits' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
+					UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'ISMULTI with RETURN_OBJECT also not ok' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					UserDef::PARAM_RETURN_OBJECT => true,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X', $ismultiIssue ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'ISMULTI with RETURN_OBJECT also ok with low limits' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
+					UserDef::PARAM_RETURN_OBJECT => true,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+		];
+	}
+
 	public function provideGetInfo() {
 		return [
 			'Basic test' => [

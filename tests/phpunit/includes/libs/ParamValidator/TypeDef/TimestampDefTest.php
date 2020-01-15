@@ -23,6 +23,34 @@ class TimestampDefTest extends TypeDefTestCase {
 		return new static::$testClass( $callbacks, $options );
 	}
 
+	/** @dataProvider provideConstructorOptions */
+	public function testConstructorOptions( array $options, $ok ) : void {
+		if ( $ok ) {
+			$this->assertTrue( true ); // dummy
+		} else {
+			$this->expectException( \InvalidArgumentException::class );
+		}
+		$this->getInstance( new SimpleCallbacks( [] ), $options );
+	}
+
+	public function provideConstructorOptions() : array {
+		return [
+			'Basic test' => [ [], true ],
+			'Default format ConvertibleTimestamp' => [ [ 'defaultFormat' => 'ConvertibleTimestamp' ], true ],
+			'Default format DateTime' => [ [ 'defaultFormat' => 'DateTime' ], true ],
+			'Default format TS_ISO_8601' => [ [ 'defaultFormat' => TS_ISO_8601 ], true ],
+			'Default format invalid (string)' => [ [ 'defaultFormat' => 'foobar' ], false ],
+			'Default format invalid (int)' => [ [ 'defaultFormat' => 1000 ], false ],
+			'Stringify format ConvertibleTimestamp' => [
+				[ 'stringifyFormat' => 'ConvertibleTimestamp' ], false
+			],
+			'Stringify format DateTime' => [ [ 'stringifyFormat' => 'DateTime' ], false ],
+			'Stringify format TS_ISO_8601' => [ [ 'stringifyFormat' => TS_ISO_8601 ], true ],
+			'Stringify format invalid (string)' => [ [ 'stringifyFormat' => 'foobar' ], false ],
+			'Stringify format invalid (int)' => [ [ 'stringifyFormat' => 1000 ], false ],
+		];
+	}
+
 	/** @dataProvider provideValidate */
 	public function testValidate(
 		$value, $expect, array $settings = [], array $options = [], array $expectConds = []
@@ -79,6 +107,73 @@ class TimestampDefTest extends TypeDefTestCase {
 			'=> TS_MW as default' => [ 'now', '20190605195042', [], [ 'defaultFormat' => TS_MW ] ],
 			'=> TS_MW overriding default'
 				=> [ 'now', '20190605195042', $formatMW, [ 'defaultFormat' => TS_ISO_8601 ] ],
+		];
+	}
+
+	public function provideCheckSettings() {
+		$keys = [ 'Y', TimestampDef::PARAM_TIMESTAMP_FORMAT ];
+
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with format ConvertibleTimestamp' => [
+				[ TimestampDef::PARAM_TIMESTAMP_FORMAT => 'ConvertibleTimestamp' ],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with format DateTime' => [
+				[ TimestampDef::PARAM_TIMESTAMP_FORMAT => 'DateTime' ],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with format TS_ISO_8601' => [
+				[ TimestampDef::PARAM_TIMESTAMP_FORMAT => TS_ISO_8601 ],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with invalid format (string)' => [
+				[ TimestampDef::PARAM_TIMESTAMP_FORMAT => 'foobar' ],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						TimestampDef::PARAM_TIMESTAMP_FORMAT => 'Value for PARAM_TIMESTAMP_FORMAT is not valid',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with invalid format (int)' => [
+				[ TimestampDef::PARAM_TIMESTAMP_FORMAT => 1000 ],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						TimestampDef::PARAM_TIMESTAMP_FORMAT => 'Value for PARAM_TIMESTAMP_FORMAT is not valid',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
 		];
 	}
 

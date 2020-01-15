@@ -134,6 +134,127 @@ class IntegerDefTest extends TypeDefTestCase {
 		];
 	}
 
+	public function provideCheckSettings() {
+		$keys = [
+			'Y', IntegerDef::PARAM_IGNORE_RANGE,
+			IntegerDef::PARAM_MIN, IntegerDef::PARAM_MAX, IntegerDef::PARAM_MAX2
+		];
+
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					IntegerDef::PARAM_IGNORE_RANGE => true,
+					IntegerDef::PARAM_MIN => -100,
+					IntegerDef::PARAM_MAX => -90,
+					IntegerDef::PARAM_MAX2 => -80,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad types' => [
+				[
+					IntegerDef::PARAM_IGNORE_RANGE => 1,
+					IntegerDef::PARAM_MIN => 1.0,
+					IntegerDef::PARAM_MAX => '2',
+					IntegerDef::PARAM_MAX2 => '3',
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						IntegerDef::PARAM_IGNORE_RANGE => 'PARAM_IGNORE_RANGE must be boolean, got integer',
+						IntegerDef::PARAM_MIN => 'PARAM_MIN must be integer, got double',
+						IntegerDef::PARAM_MAX => 'PARAM_MAX must be integer, got string',
+						IntegerDef::PARAM_MAX2 => 'PARAM_MAX2 must be integer, got string',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Min == max' => [
+				[
+					IntegerDef::PARAM_MIN => 1,
+					IntegerDef::PARAM_MAX => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Min > max' => [
+				[
+					IntegerDef::PARAM_MIN => 2,
+					IntegerDef::PARAM_MAX => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'PARAM_MIN must be less than or equal to PARAM_MAX, but 2 > 1',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Max2 without max' => [
+				[
+					IntegerDef::PARAM_MAX2 => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'PARAM_MAX2 cannot be used without PARAM_MAX',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Max2 == max' => [
+				[
+					IntegerDef::PARAM_MAX => 1,
+					IntegerDef::PARAM_MAX2 => 1,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Max2 < max' => [
+				[
+					IntegerDef::PARAM_MAX => -10,
+					IntegerDef::PARAM_MAX2 => -11,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'PARAM_MAX2 must be greater than or equal to PARAM_MAX, but -11 < -10',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+		];
+	}
+
 	public function provideGetInfo() {
 		return [
 			'Basic' => [

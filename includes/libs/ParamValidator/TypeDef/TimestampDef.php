@@ -2,6 +2,7 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use InvalidArgumentException;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\Callbacks;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -61,6 +62,16 @@ class TimestampDef extends TypeDef {
 
 		$this->defaultFormat = $options['defaultFormat'] ?? 'ConvertibleTimestamp';
 		$this->stringifyFormat = $options['stringifyFormat'] ?? TS_ISO_8601;
+
+		// Check values by trying to convert 0
+		if ( $this->defaultFormat !== 'ConvertibleTimestamp' && $this->defaultFormat !== 'DateTime' &&
+			ConvertibleTimestamp::convert( $this->defaultFormat, 0 ) === false
+		) {
+			throw new InvalidArgumentException( 'Invalid value for $options[\'defaultFormat\']' );
+		}
+		if ( ConvertibleTimestamp::convert( $this->stringifyFormat, 0 ) === false ) {
+			throw new InvalidArgumentException( 'Invalid value for $options[\'stringifyFormat\']' );
+		}
 	}
 
 	public function validate( $name, $value, array $settings, array $options ) {
@@ -92,6 +103,23 @@ class TimestampDef extends TypeDef {
 			default:
 				return $timestamp->getTimestamp( $format );
 		}
+	}
+
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
+			self::PARAM_TIMESTAMP_FORMAT,
+		] );
+
+		$f = $settings[self::PARAM_TIMESTAMP_FORMAT] ?? $this->defaultFormat;
+		if ( $f !== 'ConvertibleTimestamp' && $f !== 'DateTime' &&
+			ConvertibleTimestamp::convert( $f, 0 ) === false
+		) {
+			$ret['issues'][self::PARAM_TIMESTAMP_FORMAT] = 'Value for PARAM_TIMESTAMP_FORMAT is not valid';
+		}
+
+		return $ret;
 	}
 
 	public function stringifyValue( $name, $value, array $settings, array $options ) {

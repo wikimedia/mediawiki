@@ -68,6 +68,69 @@ class EnumDefTest extends TypeDefTestCase {
 		];
 	}
 
+	public function provideCheckSettings() {
+		return [
+			'Basic test' => [
+				[
+					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd', 'e' ],
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => [ 'Y', EnumDef::PARAM_DEPRECATED_VALUES ],
+					'messages' => [],
+				],
+			],
+			'Bad type for PARAM_DEPRECATED_VALUES' => [
+				[
+					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd', 'e' ],
+					EnumDef::PARAM_DEPRECATED_VALUES => false,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						EnumDef::PARAM_DEPRECATED_VALUES => 'PARAM_DEPRECATED_VALUES must be an array, got boolean',
+					],
+					'allowedKeys' => [ 'Y', EnumDef::PARAM_DEPRECATED_VALUES ],
+					'messages' => [],
+				],
+			],
+			'PARAM_DEPRECATED_VALUES value errors' => [
+				[
+					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 0, '1' ],
+					EnumDef::PARAM_DEPRECATED_VALUES => [
+						'b' => null,
+						'c' => false,
+						'd' => true,
+						'e' => MessageValue::new( 'e' ),
+						'f' => 'f',
+						'g' => $this,
+						0 => true,
+						1 => true,
+						'x' => null,
+					],
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						// phpcs:disable Generic.Files.LineLength
+						'Values in PARAM_DEPRECATED_VALUES must be null, true, or MessageValue, but value for "c" is false',
+						'Values in PARAM_DEPRECATED_VALUES must be null, true, or MessageValue, but value for "f" is string',
+						'Values in PARAM_DEPRECATED_VALUES must be null, true, or MessageValue, but value for "g" is ' . static::class,
+						// phpcs:enable
+						'PARAM_DEPRECATED_VALUES contains "x", which is not one of the enumerated values',
+					],
+					'allowedKeys' => [ 'Y', EnumDef::PARAM_DEPRECATED_VALUES ],
+					'messages' => [
+						MessageValue::new( 'e' ),
+					],
+				],
+			],
+		];
+	}
+
 	public function provideGetEnumValues() {
 		return [
 			'Basic test' => [

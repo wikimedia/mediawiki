@@ -16,6 +16,8 @@ class TypeDefTest extends \PHPUnit\Framework\TestCase {
 			->getMockForAbstractClass();
 
 		$this->assertSame( [ 'foobar' ], $typeDef->normalizeSettings( [ 'foobar' ] ) );
+		$ret = [ 'issues' => [], 'allowedKeys' => [], 'messages' => [] ];
+		$this->assertSame( $ret, $typeDef->checkSettings( 'foobar', [], [], $ret ) );
 		$this->assertNull( $typeDef->getEnumValues( 'foobar', [], [] ) );
 		$this->assertSame( '123', $typeDef->stringifyValue( 'foobar', 123, [], [] ) );
 	}

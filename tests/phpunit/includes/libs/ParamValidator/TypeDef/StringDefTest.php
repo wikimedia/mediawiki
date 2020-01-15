@@ -92,6 +92,113 @@ class StringDefTest extends TypeDefTestCase {
 		];
 	}
 
+	public function provideCheckSettings() {
+		$keys = [ 'Y', StringDef::PARAM_MAX_BYTES, StringDef::PARAM_MAX_CHARS ];
+
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					StringDef::PARAM_MAX_BYTES => 255,
+					StringDef::PARAM_MAX_CHARS => 100,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad types' => [
+				[
+					StringDef::PARAM_MAX_BYTES => '255',
+					StringDef::PARAM_MAX_CHARS => 100.0,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						StringDef::PARAM_MAX_BYTES => 'PARAM_MAX_BYTES must be an integer, got string',
+						StringDef::PARAM_MAX_CHARS => 'PARAM_MAX_CHARS must be an integer, got double',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Out of range' => [
+				[
+					StringDef::PARAM_MAX_BYTES => -1,
+					StringDef::PARAM_MAX_CHARS => -1,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						StringDef::PARAM_MAX_BYTES => 'PARAM_MAX_BYTES must be greater than or equal to 0',
+						StringDef::PARAM_MAX_CHARS => 'PARAM_MAX_CHARS must be greater than or equal to 0',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Zero not allowed when required and !allowEmptyWhenRequired' => [
+				[
+					ParamValidator::PARAM_REQUIRED => true,
+					StringDef::PARAM_MAX_BYTES => 0,
+					StringDef::PARAM_MAX_CHARS => 0,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						// phpcs:ignore Generic.Files.LineLength
+						'PARAM_REQUIRED is set, allowEmptyWhenRequired is not set, and PARAM_MAX_BYTES is 0. That\'s impossible to satisfy.',
+						// phpcs:ignore Generic.Files.LineLength
+						'PARAM_REQUIRED is set, allowEmptyWhenRequired is not set, and PARAM_MAX_CHARS is 0. That\'s impossible to satisfy.',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+				[ 'allowEmptyWhenRequired' => false ],
+			],
+			'Zero allowed when not required' => [
+				[
+					StringDef::PARAM_MAX_BYTES => 0,
+					StringDef::PARAM_MAX_CHARS => 0,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+				[ 'allowEmptyWhenRequired' => false ],
+			],
+			'Zero allowed when allowEmptyWhenRequired' => [
+				[
+					ParamValidator::PARAM_REQUIRED => true,
+					StringDef::PARAM_MAX_BYTES => 0,
+					StringDef::PARAM_MAX_CHARS => 0,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+				[ 'allowEmptyWhenRequired' => true ],
+			],
+		];
+	}
+
 	public function provideGetInfo() {
 		return [
 			'Basic test' => [

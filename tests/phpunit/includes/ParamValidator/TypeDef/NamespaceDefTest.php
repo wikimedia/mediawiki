@@ -7,6 +7,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 
@@ -91,6 +92,149 @@ class NamespaceDefTest extends TypeDefTestCase {
 			'Force PARAM_ALL (2)' => [
 				[ ParamValidator::PARAM_ISMULTI => true, ParamValidator::PARAM_ALL => 'all' ],
 				[ ParamValidator::PARAM_ISMULTI => true, ParamValidator::PARAM_ALL => true ],
+			],
+		];
+	}
+
+	public function provideCheckSettings() {
+		$keys = [ 'Y', EnumDef::PARAM_DEPRECATED_VALUES, NamespaceDef::PARAM_EXTRA_NAMESPACES ];
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => true,
+					NamespaceDef::PARAM_EXTRA_NAMESPACES => [ -1, -2 ],
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL cannot be false' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => false,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_ALL
+							=> 'PARAM_ALL cannot be false or a string for namespace-type parameters',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL cannot be a string' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => 'all',
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_ALL
+							=> 'PARAM_ALL cannot be false or a string for namespace-type parameters',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL ignored without PARAM_ISMULTI' => [
+				[
+					ParamValidator::PARAM_ALL => 'all',
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL cannot be a string, but another PARAM_ALL issue was already logged' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => 'all',
+				],
+				[
+					'issues' => [ ParamValidator::PARAM_ALL => 'XXX' ],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+				[
+					'issues' => [ ParamValidator::PARAM_ALL => 'XXX' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad type for PARAM_EXTRA_NAMESPACES' => [
+				[
+					NamespaceDef::PARAM_EXTRA_NAMESPACES => -1,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						NamespaceDef::PARAM_EXTRA_NAMESPACES
+							=> 'PARAM_EXTRA_NAMESPACES must be an integer[], got integer'
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Empty array for PARAM_EXTRA_NAMESPACES ok' => [
+				[
+					NamespaceDef::PARAM_EXTRA_NAMESPACES => [],
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad value types for PARAM_EXTRA_NAMESPACES' => [
+				[
+					NamespaceDef::PARAM_EXTRA_NAMESPACES => [ '-1' ],
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						NamespaceDef::PARAM_EXTRA_NAMESPACES
+							=> 'PARAM_EXTRA_NAMESPACES must be an integer[], got string[]'
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad value types for PARAM_EXTRA_NAMESPACES (2)' => [
+				[
+					NamespaceDef::PARAM_EXTRA_NAMESPACES => [ 0, '-1', '-2' ],
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						NamespaceDef::PARAM_EXTRA_NAMESPACES
+							=> 'PARAM_EXTRA_NAMESPACES must be an integer[], got (integer|string)[]'
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
 			],
 		];
 	}

@@ -88,6 +88,59 @@ class FloatDefTest extends TypeDefTestCase {
 		];
 	}
 
+	public function provideCheckSettings() {
+		$keys = [
+			'Y', FloatDef::PARAM_IGNORE_RANGE,
+			FloatDef::PARAM_MIN, FloatDef::PARAM_MAX, FloatDef::PARAM_MAX2
+		];
+
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					FloatDef::PARAM_IGNORE_RANGE => true,
+					FloatDef::PARAM_MIN => -100.0,
+					FloatDef::PARAM_MAX => -90.0,
+					FloatDef::PARAM_MAX2 => -80.0,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Bad types' => [
+				[
+					FloatDef::PARAM_IGNORE_RANGE => 1,
+					FloatDef::PARAM_MIN => 1,
+					FloatDef::PARAM_MAX => '2',
+					FloatDef::PARAM_MAX2 => '3',
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						FloatDef::PARAM_IGNORE_RANGE => 'PARAM_IGNORE_RANGE must be boolean, got integer',
+						FloatDef::PARAM_MIN => 'PARAM_MIN must be double, got integer',
+						FloatDef::PARAM_MAX => 'PARAM_MAX must be double, got string',
+						FloatDef::PARAM_MAX2 => 'PARAM_MAX2 must be double, got string',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+		];
+	}
+
 	public function provideStringifyValue() {
 		$digits = defined( 'PHP_FLOAT_DIG' ) ? PHP_FLOAT_DIG : 15;
 

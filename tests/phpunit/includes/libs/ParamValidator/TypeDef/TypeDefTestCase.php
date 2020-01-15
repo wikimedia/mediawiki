@@ -15,6 +15,9 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 
+	/** Standard "$ret" array for provideCheckSettings */
+	protected const STDRET = [ 'issues' => [ 'X' ], 'allowedKeys' => [ 'Y' ], 'messages' => [] ];
+
 	/** @var string|null TypeDef class name being tested */
 	protected static $testClass = null;
 
@@ -113,6 +116,32 @@ abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 	public function provideNormalizeSettings() {
 		return [
 			'Basic test' => [ [ 'param-foo' => 'bar' ], [ 'param-foo' => 'bar' ] ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideCheckSettings
+	 * @param array $settings
+	 * @param array $ret Input $ret array
+	 * @param array $expect
+	 * @param array $options Options array
+	 */
+	public function testCheckSettings(
+		array $settings,
+		array $ret,
+		array $expect,
+		array $options = []
+	) : void {
+		$typeDef = $this->getInstance( new SimpleCallbacks( [] ), $options );
+		$this->assertEquals( $expect, $typeDef->checkSettings( 'test', $settings, $options, $ret ) );
+	}
+
+	/**
+	 * @return array|Iterable
+	 */
+	public function provideCheckSettings() {
+		return [
+			'Basic test' => [ [], self::STDRET, self::STDRET ],
 		];
 	}
 

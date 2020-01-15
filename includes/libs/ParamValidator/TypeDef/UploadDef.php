@@ -122,6 +122,24 @@ class UploadDef extends TypeDef {
 		}
 	}
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		if ( isset( $settings[ParamValidator::PARAM_DEFAULT] ) ) {
+			$ret['issues'][ParamValidator::PARAM_DEFAULT] =
+				'Cannot specify a default for upload-type parameters';
+		}
+
+		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&
+			!isset( $ret['issues'][ParamValidator::PARAM_ISMULTI] )
+		) {
+			$ret['issues'][ParamValidator::PARAM_ISMULTI] =
+				'PARAM_ISMULTI cannot be used for upload-type parameters';
+		}
+
+		return $ret;
+	}
+
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
 		// Not going to happen.
 		return null;

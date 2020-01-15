@@ -48,6 +48,26 @@ class LimitDef extends IntegerDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&
+			!isset( $ret['issues'][ParamValidator::PARAM_ISMULTI] )
+		) {
+			$ret['issues'][ParamValidator::PARAM_ISMULTI] =
+				'PARAM_ISMULTI cannot be used for limit-type parameters';
+		}
+
+		if ( ( $settings[self::PARAM_MIN] ?? 0 ) < 0 ) {
+			$ret['issues'][] = 'PARAM_MIN must be greater than or equal to 0';
+		}
+		if ( !isset( $settings[self::PARAM_MAX] ) ) {
+			$ret['issues'][] = 'PARAM_MAX must be set';
+		}
+
+		return $ret;
+	}
+
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );
 

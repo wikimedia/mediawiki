@@ -59,6 +59,39 @@ class NamespaceDef extends EnumDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
+			self::PARAM_EXTRA_NAMESPACES,
+		] );
+
+		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&
+			( $settings[ParamValidator::PARAM_ALL] ?? true ) !== true &&
+			!isset( $ret['issues'][ParamValidator::PARAM_ALL] )
+		) {
+			$ret['issues'][ParamValidator::PARAM_ALL] =
+				'PARAM_ALL cannot be false or a string for namespace-type parameters';
+		}
+
+		$ns = $settings[self::PARAM_EXTRA_NAMESPACES] ?? [];
+		if ( !is_array( $ns ) ) {
+			$type = gettype( $ns );
+		} elseif ( $ns === [] ) {
+			$type = 'integer[]';
+		} else {
+			$types = array_unique( array_map( 'gettype', $ns ) );
+			$type = implode( '|', $types );
+			$type = count( $types ) > 1 ? "($type)[]" : "{$type}[]";
+		}
+		if ( $type !== 'integer[]' ) {
+			$ret['issues'][self::PARAM_EXTRA_NAMESPACES] =
+				"PARAM_EXTRA_NAMESPACES must be an integer[], got $type";
+		}
+
+		return $ret;
+	}
+
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 
