@@ -138,46 +138,22 @@ class TemplateParser {
 				}
 			}
 			if ( !$code ) {
-				$code = $this->compileForEval( $fileContents, $filename );
+				$code = $this->compile( $fileContents );
 
 				// Prefix the cached code with a keyed hash (64 hex chars) as an integrity check
 				$cache->set( $key, hash_hmac( 'sha256', $code, $secretKey ) . $code );
 			}
 		// If there is no secret key available, don't use cache
 		} else {
-			$code = $this->compileForEval( $fileContents, $filename );
+			$code = $this->compile( $fileContents );
 		}
 
-		$renderer = eval( $code );
+		$renderer = LightnCandy::prepare( $code );
 		if ( !is_callable( $renderer ) ) {
 			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
 		}
 		$this->renderers[$templateKey] = $renderer;
 		return $renderer;
-	}
-
-	/**
-	 * Wrapper for compile() function that verifies successful compilation and strips
-	 * out the '<?php' part so that the code is ready for eval()
-	 * @param string $fileContents Mustache code
-	 * @param string $filename Name of the template
-	 * @return string PHP code (without '<?php')
-	 * @throws RuntimeException
-	 */
-	protected function compileForEval( $fileContents, $filename ) {
-		// Compile the template into PHP code
-		$code = $this->compile( $fileContents );
-
-		if ( !$code ) {
-			throw new RuntimeException( "Could not compile template: {$filename}" );
-		}
-
-		// Strip the "<?php" added by lightncandy so that it can be eval()ed
-		if ( substr( $code, 0, 5 ) === '<?php' ) {
-			$code = substr( $code, 5 );
-		}
-
-		return $code;
 	}
 
 	/**
