@@ -578,6 +578,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 			$disableEmailPrefs = false;
 
+			if ( $this->options->get( 'AllowRequiringEmailForResets' ) ) {
+				$defaultPreferences['requireemail'] = [
+					'type' => 'toggle',
+					'label-message' => 'tog-requireemail',
+					'help-message' => 'prefs-help-requireemail',
+					'section' => 'personal/email',
+					'disabled' => $user->getEmail() ? false : true,
+				];
+			}
+
 			if ( $this->options->get( 'EmailAuthentication' ) ) {
 				$emailauthenticationclass = 'mw-email-not-authenticated';
 				if ( $user->getEmail() ) {
@@ -620,16 +630,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 						'cssclass' => $emailauthenticationclass,
 					];
 				}
-			}
-
-			if ( $this->options->get( 'AllowRequiringEmailForResets' ) ) {
-				$defaultPreferences['requireemail'] = [
-					'type' => 'toggle',
-					'label-message' => 'tog-requireemail',
-					'help-message' => 'prefs-help-requireemail',
-					'section' => 'personal/email',
-					'disabled' => $disableEmailPrefs,
-				];
 			}
 
 			if ( $this->options->get( 'EnableUserEmail' ) &&
