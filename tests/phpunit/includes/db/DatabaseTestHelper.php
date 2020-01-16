@@ -277,4 +277,12 @@ class DatabaseTestHelper extends Database {
 	public function setUnionSupportsOrderAndLimit( $v ) {
 		$this->unionSupportsOrderAndLimit = (bool)$v;
 	}
+
+	public function useIndexClause( $index ) {
+		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
+	}
+
+	public function ignoreIndexClause( $index ) {
+		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
+	}
 }

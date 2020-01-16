@@ -1649,6 +1649,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function freeResult( $res ) {
 	}
 
+	public function newSelectQueryBuilder() {
+		return new SelectQueryBuilder( $this );
+	}
+
 	public function selectField(
 		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {

@@ -531,6 +531,14 @@ interface IDatabase {
 	public function freeResult( $res );
 
 	/**
+	 * Create an empty SelectQueryBuilder which can be used to run queries
+	 * against this connection.
+	 *
+	 * @return SelectQueryBuilder
+	 */
+	public function newSelectQueryBuilder();
+
+	/**
 	 * A SELECT wrapper which returns a single field from a single result row
 	 *
 	 * If no result rows are returned from the query, false is returned.
@@ -653,7 +661,7 @@ interface IDatabase {
 	 * Escaping of untrusted input used in values of numeric keys should be done via
 	 * IDatabase::addQuotes()
 	 *
-	 * Use an empty array, string, or '*' to update all rows.
+	 * Use an empty array, string, or '*' to select all rows.
 	 *
 	 * @param string $fname Caller function name
 	 *
@@ -700,6 +708,12 @@ interface IDatabase {
 	 *     gives the table name (or alias), each value gives the index name to
 	 *     use for that table. All strings are SQL fragments and so should be
 	 *     validated by the caller.
+	 *
+	 *   - IGNORE INDEX: This may be either be a string giving an index name to
+	 *     ignore for the query, or an array. If it is an associative array,
+	 *     each key gives the table name (or alias), each value gives the index
+	 *     name to ignore for that table. All strings are SQL fragments and so
+	 *     should be validated by the caller.
 	 *
 	 *   - EXPLAIN: In MySQL, this causes an EXPLAIN SELECT query to be run,
 	 *     instead of SELECT.
@@ -1096,7 +1110,7 @@ interface IDatabase {
 	public function buildIntegerCast( $field );
 
 	/**
-	 * Equivalent to IDatabase::selectSQLText() except wraps the result in Subqyery
+	 * Equivalent to IDatabase::selectSQLText() except wraps the result in Subquery
 	 *
 	 * @see IDatabase::selectSQLText()
 	 *
