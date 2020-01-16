@@ -73,8 +73,6 @@
 			this.$hiddenInput.prop( 'defaultValue', this.getSelectedUsernames().join( '\n' ) );
 		}
 
-		this.menu = this.getMenu();
-
 		// Events
 		// When list of selected usernames changes, update hidden input
 		this.connect( this, {
