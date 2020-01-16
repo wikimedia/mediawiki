@@ -2634,7 +2634,7 @@
 	"ipaddressorusername": "IP address or username:",
 	"ipbreason": "Reason:",
 	"ipbreason-dropdown": "*Common block reasons\n** Inserting false information\n** Removing content from pages\n** Spamming links to external sites\n** Inserting nonsense/gibberish into pages\n** Intimidating behavior/harassment\n** Abusing multiple accounts\n** Unacceptable username",
-	"ipb-hardblock": "Prevent logged-in users from editing from this IP address",
+	"ipb-hardblock": "Apply block to logged-in users from this IP address",
 	"ipbcreateaccount": "Account creation",
 	"ipbemailban": "Sending email",
 	"ipbenableautoblock": "Automatically block the last IP address used by this user, and any subsequent IP addresses they try to edit from",
