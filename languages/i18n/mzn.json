@@ -774,12 +774,11 @@
 	"feedback-adding": "بی‌یشتن پیشنهادات و انتقادات...",
 	"feedback-cancel": "ول هاکردن",
 	"feedback-error1": "خطا: جواب‌ئون نشناسی‌یه API جه",
-	"feedback-error2": "خطا: شکست دچی‌ین سر",
-	"feedback-error3": "خطا: جواب ندائن API",
 	"feedback-message": "پیغوم:",
 	"feedback-subject": "موضوع:",
 	"feedback-submit": "ارسال پیشنهادات و انتقادات",
 	"searchsuggest-search": "چرخه‌تو {{SITENAME}}",
+	"api-clientside-error-timeout": "کارساز زمون انتظار جواب ندائه.",
 	"api-error-badtoken": "خطای داخلی: کد امنیتی اشتبائه (Bad token).",
 	"api-error-stashfailed": "خطای داخلی: کارساز نتونده پرونده موقت ره ذخیره هاکنه.",
 	"api-error-unknown-warning": "اخطار نشناسی‌یه: $1"

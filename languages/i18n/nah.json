@@ -1076,6 +1076,7 @@
 	"rightsnone": "ahtlein",
 	"feedback-cancel": "Moxitiniz",
 	"searchsuggest-search": "Tlatemoliztli",
+	"api-clientside-error-timeout": "In tlatemacani ahmo ohualnahuat quen omochixticatca.",
 	"api-error-stashfailed": "Tlahtec ihtlacahuiliztli: In tlatemacani ahhuel oqueuh in ehualpanoni.",
 	"api-error-unknown-warning": "Ahmo ixmacho tlanahuatiliztli: \"$1\".",
 	"api-error-unknownerror": "Ahmo ixmacho ihtlacahuiliztli: \"$1\".",

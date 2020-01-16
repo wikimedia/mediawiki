@@ -2032,7 +2032,6 @@
 	"watchlist-options": "監視清單選項",
 	"watching": "監視緊...",
 	"unwatching": "唔再監視緊...",
-	"watcherrortext": "更改「$1」嘅監視清單嗰陣出錯。",
 	"enotif_reset": "將所有頁面標成已視察",
 	"enotif_impersonal_salutation": "{{SITENAME}}用戶",
 	"enotif_subject_deleted": "{{SITENAME}}頁面 $1 已經畀 $2 {{GENDER:$2|刪咗}}。",

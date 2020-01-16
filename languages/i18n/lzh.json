@@ -1636,7 +1636,7 @@
 	"unblockip": "赦簿",
 	"unblockiptext": "函下赦禁。",
 	"ipusubmit": "赦此址",
-	"unblocked": "[[User:$1|$1]]赦焉",
+	"unblocked": "[[User:$1|$1]]赦焉。",
 	"unblocked-id": "禁$1赦焉",
 	"ipblocklist": "列禁簿",
 	"ipblocklist-legend": "尋禁簿",

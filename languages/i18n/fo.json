@@ -1524,7 +1524,6 @@
 	"watchlist-options": "Møguleikar í ansingarlistanum",
 	"watching": "Eftirlitir...",
 	"unwatching": "Strikar eftirlit...",
-	"watcherrortext": "Ein feilur hendi, meðan tú royndi at broyta innstillingarnar fyri tín eftirlitslista fyri \"$1\".",
 	"enotif_reset": "Markera allar síður sum vitjaðar",
 	"enotif_impersonal_salutation": "{{SITENAME}}brúkari",
 	"enotif_subject_deleted": "{{SITENAME}} síðan $1 er blivin {{GENDER:$2|slettað}} av $2",
