@@ -28,5 +28,6 @@
 	"rest-search-error": "Error when returning search results: $1",
 	"rest-page-source-type-error": "The content type of the page source requested is unsupported",
 	"rest-no-revision" : "Unable to retrieve revision for title $1",
-	"rest-media-too-many-links": "Too many media links found on title $1 ($2 allowed)"
+	"rest-media-too-many-links": "Too many media links found on title $1 ($2 allowed)",
+	"rest-html-backend-error": "Unable to fetch Parsoid HTML"
 }

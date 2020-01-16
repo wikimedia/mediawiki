@@ -65,10 +65,21 @@
 		"path": "/coredev/v0/page/{title}",
 		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter"
+		]
+	},
+	{
+		"path": "/coredev/v0/page/{title}/{html_type}",
+		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
-			"PermissionManager",
-			"MainConfig"
+			"VirtualRESTServiceClient"
 		]
 	},
 	{
