@@ -2317,6 +2317,7 @@
 	"feedback-cancel": "Болих",
 	"feedback-close": "Болсон",
 	"searchsuggest-search": "Хайх",
+	"api-clientside-error-timeout": "Сервер хариу өгөлгүй удлаа.",
 	"api-error-stashfailed": "Өөрийн алдаа: Серверт түр файл хадгалахад алдаа гарлаа.",
 	"api-error-unknown-warning": "Тодорхойгүй сануулга: $1",
 	"api-error-unknownerror": "Тодорхойгүй алдаа: $1",

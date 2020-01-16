@@ -460,6 +460,7 @@
 	"passwordtoolong": "Wagwoorde kan nie langer as {{PLURAL:$1|1 karakter|$1 karakters}} wees nie.",
 	"passwordtoopopular": "Algemene wagwoorde kan nie gebruik word nie. Kies asb. 'n wagwoord wat moeiliker is om te raai.",
 	"password-name-match": "U wagwoord mag nie dieselfde as u gebruikersnaam wees nie.",
+	"password-substring-username-match": "U wagwoord moet nie binne u gebruikersnaam verskyn nie",
 	"password-login-forbidden": "Die gebruik van hierdie gebruikersnaam en wagwoord is geweier.",
 	"mailmypassword": "E-pos nuwe wagwoord",
 	"passwordremindertitle": "Wagwoordwenk van {{SITENAME}}",
@@ -2898,5 +2899,6 @@
 	"pagedata-bad-title": "Ongeldige titel: $1.",
 	"passwordpolicies-policy-minimalpasswordlength": "Wagwoord moet ten minste $1 {{PLURAL:$1|karakter|karakters}} lank wees",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Wagwoord moet ten minste $1 {{PLURAL:$1|karakter|karakters}} lank wees om te kan aanmeld",
-	"passwordpolicies-policy-passwordcannotmatchusername": "Wagwoord mag nie dieselfde wees as gebruikernaam nie"
+	"passwordpolicies-policy-passwordcannotmatchusername": "Wagwoord mag nie dieselfde wees as gebruikernaam nie",
+	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Wagwoord kan nie 'n substring binne die gebruikersnaam wees nie"
 }

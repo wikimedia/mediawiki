@@ -564,6 +564,7 @@
 	"passwordtoopopular": "Häufig ausgewählte Passwörter können nicht verwendet werden. Bitte wähle ein Passwort aus, das schwieriger zu erraten ist.",
 	"passwordinlargeblacklist": "Das eingegebene Passwort befindet sich in einer Liste sehr häufig verwendeter Passwörter. Bitte suche dir ein individuelleres Passwort aus.",
 	"password-name-match": "Dein Passwort muss sich von deinem Benutzernamen unterscheiden.",
+	"password-substring-username-match": "Dein Passwort darf nicht innerhalb deines Benutzernamens vorkommen.",
 	"password-login-forbidden": "Die Verwendung dieses Benutzernamens und Passwortes ist nicht erlaubt.",
 	"mailmypassword": "Passwort zurücksetzen",
 	"passwordremindertitle": "Neues temporäres Passwort für dein {{SITENAME}}-Benutzerkonto",

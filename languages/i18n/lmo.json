@@ -240,7 +240,6 @@
 	"versionrequiredtext": "Per duprà quela pagina chì la ghe va la versión $1 del prugrama MediaWiki. Varda [[Special:Version]]",
 	"ok": "Va ben",
 	"pagetitle": "$1 - {{SITENAME}}",
-	"pagetitle-view-mainpage": "{{SITENAME}}",
 	"retrievedfrom": "Utegnüü de \"$1\"",
 	"youhavenewmessages": "A gh'hii di $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Te g'hét}} $1 de {{PLURAL:$3|'n óter ütènt|$3 ütèncc}} ($2).",
