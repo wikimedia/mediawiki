@@ -198,7 +198,7 @@
 	};
 
 	/**
-	 * If used inside HTML form, then update hiddenInput with list o
+	 * If used inside HTML form, then update hiddenInput with list of
 	 * newline-separated usernames.
 	 *
 	 * @private
