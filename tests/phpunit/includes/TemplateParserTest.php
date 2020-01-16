@@ -106,6 +106,12 @@ class TemplateParserTest extends MediaWikiTestCase {
 				'Exception',
 			],
 			[
+				'invalid_syntax',
+				[],
+				false,
+				'Exception'
+			],
+			[
 				'parentvars',
 				[
 					'foo' => 'f',
