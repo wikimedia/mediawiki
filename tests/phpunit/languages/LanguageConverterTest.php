@@ -150,7 +150,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$user->mOptionsLoaded = true;
 		$user->setOption( 'variant', 'tg-latn' );
 
 		$wgUser = $user;
@@ -168,7 +167,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$user->mOptionsLoaded = true;
 		$user->setOption( 'variant', 'bat-smg' );
 
 		$wgUser = $user;
@@ -186,7 +184,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$user->mOptionsLoaded = true;
 		$user->setOption( 'variant', 'en-simple' );
 
 		$wgUser = $user;
@@ -206,7 +203,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$user->mOptionsLoaded = true;
 		$user->setOption( 'variant-tg', 'tg-latn' );
 
 		$wgUser = $user;
@@ -226,7 +222,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$user->mOptionsLoaded = true;
 		$user->setOption( 'variant-tg', 'bat-smg' );
 
 		$wgUser = $user;
@@ -246,7 +241,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$user->mOptionsLoaded = true;
 		$user->setOption( 'variant-tg', 'en-simple' );
 
 		$wgUser = $user;
@@ -267,7 +261,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$user = User::newFromId( "admin" );
 		$user->setId( 1 );
 		$user->mFrom = 'defaults';
-		$user->mOptionsLoaded = true;
 		// The user's data is ignored because the variant is set in the URL.
 		$user->setOption( 'variant', 'tg-latn' );
 

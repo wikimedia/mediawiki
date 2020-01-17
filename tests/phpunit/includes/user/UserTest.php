@@ -458,8 +458,7 @@ class UserTest extends MediaWikiTestCase {
 		$user->setOption( 'userjs-usedefaultoverride', '' );
 		$user->saveSettings();
 
-		$user = User::newFromName( $user->getName() );
-		$user->load( User::READ_LATEST );
+		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
 		$this->assertSame( 'test', $user->getOption( 'userjs-someoption' ) );
 		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
@@ -475,7 +474,7 @@ class UserTest extends MediaWikiTestCase {
 			'Valid stub threshold preferences are respected'
 		);
 
-		$user = User::newFromName( $user->getName() );
+		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
 		$this->assertSame( 'test', $user->getOption( 'userjs-someoption' ) );
 		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
@@ -493,8 +492,7 @@ class UserTest extends MediaWikiTestCase {
 		);
 
 		// Check that an option saved as a string '0' is returned as an integer.
-		$user = User::newFromName( $user->getName() );
-		$user->load( User::READ_LATEST );
+		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
 		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
 		$this->assertFalse( $user->getBoolOption( 'wpwatchlistdays' ) );
 
@@ -511,7 +509,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * T39963
 	 * Make sure defaults are loaded when setOption is called.
-	 * @covers User::loadOptions
+	 * @covers User::setOption
 	 */
 	public function testAnonOptions() {
 		global $wgDefaultUserOptions;
@@ -2172,8 +2170,8 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getDefaultOption
 	 * @covers User::getDefaultOptions
 	 */
-	public function testDefaultOptions() {
-		User::resetGetDefaultOptionsForTestsOnly();
+	public function testGetDefaultOptions() {
+		$this->resetServices();
 
 		$this->setTemporaryHook( 'UserGetDefaultOptions', function ( &$defaults ) {
 			$defaults['extraoption'] = 42;

@@ -33,7 +33,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
-use Wikimedia\Assert\Assert;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
@@ -67,13 +67,14 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Version number to tag cached versions of serialized User objects. Should be increased when
 	 * {@link $mCacheVars} or one of it's members changes.
 	 */
-	const VERSION = 14;
+	const VERSION = 15;
 
 	/**
 	 * Exclude user options that are set to their default value.
+	 * @deprecated since 1.35 Use UserOptionsLookup::EXCLUDE_DEFAULTS
 	 * @since 1.25
 	 */
-	const GETOPTIONS_EXCLUDE_DEFAULTS = 1;
+	const GETOPTIONS_EXCLUDE_DEFAULTS = UserOptionsLookup::EXCLUDE_DEFAULTS;
 
 	/**
 	 * @since 1.27
@@ -107,8 +108,6 @@ class User implements IDBAccessObject, UserIdentity {
 		'mEditCount',
 		// user_groups table
 		'mGroupMemberships',
-		// user_properties table
-		'mOptionOverrides',
 		// actor table
 		'mActorId',
 	];
@@ -144,16 +143,9 @@ class User implements IDBAccessObject, UserIdentity {
 	protected $mEditCount;
 	/** @var UserGroupMembership[] Associative array of (group name => UserGroupMembership object) */
 	protected $mGroupMemberships;
-	/** @var array */
-	protected $mOptionOverrides;
 	// @}
 
 	// @{
-	/**
-	 * @var bool Whether the cache variables have been loaded.
-	 */
-	public $mOptionsLoaded;
-
 	/**
 	 * @var array|bool Array with already loaded items or true if all items have been loaded.
 	 */
@@ -211,8 +203,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @var bool
 	 */
 	public $mHideName;
-	/** @var array */
-	public $mOptions;
 
 	/** @var WebRequest */
 	private $mRequest;
@@ -263,6 +253,10 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $name === 'mRights' ) {
 			$copy = $this->getRights();
 			return $copy;
+		} elseif ( $name === 'mOptions' ) {
+			wfDeprecated( 'User::$mOptions', '1.35' );
+			$options = $this->getOptions();
+			return $options;
 		} elseif ( !property_exists( $this, $name ) ) {
 			// T227688 - do not break $u->foo['bar'] = 1
 			wfLogWarning( 'tried to get non-existent property' );
@@ -283,6 +277,12 @@ class User implements IDBAccessObject, UserIdentity {
 				$this,
 				$value === null ? [] : $value
 			);
+		} elseif ( $name === 'mOptions' ) {
+			wfDeprecated( 'User::$mOptions', '1.35' );
+			MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $this );
+			foreach ( $value as $key => $val ) {
+				$this->setOption( $key, $val );
+			}
 		} elseif ( !property_exists( $this, $name ) ) {
 			$this->$name = $value;
 		} else {
@@ -481,7 +481,6 @@ class User implements IDBAccessObject, UserIdentity {
 
 				$this->loadFromDatabase( self::READ_NORMAL );
 				$this->loadGroups();
-				$this->loadOptions();
 
 				$data = [];
 				foreach ( self::$mCacheVars as $name ) {
@@ -1163,8 +1162,6 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mActorId = $actorId;
 		$this->mRealName = '';
 		$this->mEmail = '';
-		$this->mOptionOverrides = null;
-		$this->mOptionsLoaded = false;
 
 		$loggedOut = $this->mRequest && !defined( 'MW_NO_SESSION' )
 			? $this->mRequest->getSession()->getLoggedOutTimestamp() : 0;
@@ -1409,7 +1406,9 @@ class User implements IDBAccessObject, UserIdentity {
 				}
 			}
 			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
-				$this->loadOptions( $data['user_properties'] );
+				MediaWikiServices::getInstance()
+					->getUserOptionsManager()
+					->loadUserOptions( $this, $this->queryFlagsUsed, $data['user_properties'] );
 			}
 		}
 	}
@@ -1570,8 +1569,6 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
 		$this->mGroupMemberships = null;
-		$this->mOptions = null;
-		$this->mOptionsLoaded = false;
 		$this->mEditCount = null;
 
 		// Replacement of former `$this->mRights = null` line
@@ -1579,6 +1576,7 @@ class User implements IDBAccessObject, UserIdentity {
 			MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache(
 				$this
 			);
+			MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $this );
 		}
 
 		if ( $reloadFrom ) {
@@ -1587,76 +1585,30 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 	}
 
-	/** @var array|null */
-	private static $defOpt = null;
-	/** @var string|null */
-	private static $defOptLang = null;
-
-	/**
-	 * Reset the process cache of default user options. This is only necessary
-	 * if the wiki configuration has changed since defaults were calculated,
-	 * and as such should only be performed inside the testing suite that
-	 * regularly changes wiki configuration.
-	 */
-	public static function resetGetDefaultOptionsForTestsOnly() {
-		Assert::invariant( defined( 'MW_PHPUNIT_TEST' ), 'Unit tests only' );
-		self::$defOpt = null;
-		self::$defOptLang = null;
-	}
-
 	/**
 	 * Combine the language default options with any site-specific options
 	 * and add the default language variants.
 	 *
+	 * @deprecated since 1.35 Use UserOptionsLookup::getDefaultOptions instead.
 	 * @return array Array of options; typically strings, possibly booleans
 	 */
 	public static function getDefaultOptions() {
-		global $wgNamespacesToBeSearchedDefault,
-				$wgDefaultUserOptions,
-				$wgDefaultSkin;
-
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		if ( self::$defOpt !== null && self::$defOptLang === $contLang->getCode() ) {
-			// The content language does not change (and should not change) mid-request, but the
-			// unit tests change it anyway, and expect this method to return values relevant to the
-			// current content language.
-			return self::$defOpt;
-		}
-
-		self::$defOpt = $wgDefaultUserOptions;
-		// Default language setting
-		self::$defOptLang = $contLang->getCode();
-		self::$defOpt['language'] = self::$defOptLang;
-		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
-			if ( $langCode === $contLang->getCode() ) {
-				self::$defOpt['variant'] = $langCode;
-			} else {
-				self::$defOpt["variant-$langCode"] = $langCode;
-			}
-		}
-
-		// NOTE: don't use SearchEngineConfig::getSearchableNamespaces here,
-		// since extensions may change the set of searchable namespaces depending
-		// on user groups/permissions.
-		foreach ( $wgNamespacesToBeSearchedDefault as $nsnum => $val ) {
-			self::$defOpt['searchNs' . $nsnum] = (bool)$val;
-		}
-		self::$defOpt['skin'] = Skin::normalizeKey( $wgDefaultSkin );
-
-		Hooks::run( 'UserGetDefaultOptions', [ &self::$defOpt ] );
-
-		return self::$defOpt;
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getDefaultOptions();
 	}
 
 	/**
 	 * Get a given default option value.
 	 *
+	 * @deprecated since 1.35 Use UserOptionsLookup::getDefaultOption instead.
 	 * @param string $opt Name of option to retrieve
 	 * @return string|null Default option value
 	 */
 	public static function getDefaultOption( $opt ) {
-		$defOpts = self::getDefaultOptions();
-		return $defOpts[$opt] ?? null;
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getDefaultOption( $opt );
 	}
 
 	/**
@@ -2901,25 +2853,15 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return mixed|null User's current value for the option
 	 * @see getBoolOption()
 	 * @see getIntOption()
+	 * @deprecated since 1.35 Use UserOptionsLookup::getOption instead
 	 */
 	public function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
-		global $wgHiddenPrefs;
-		$this->loadOptions();
-
-		# We want 'disabled' preferences to always behave as the default value for
-		# users, even if they have set the option explicitly in their settings (ie they
-		# set it, and then it was disabled removing their ability to change it).  But
-		# we don't want to erase the preferences in the database in case the preference
-		# is re-enabled again.  So don't touch $mOptions, just override the returned value
-		if ( !$ignoreHidden && in_array( $oname, $wgHiddenPrefs ) ) {
-			return self::getDefaultOption( $oname );
+		if ( $oname === null ) {
+			return null; // b/c
 		}
-
-		if ( array_key_exists( $oname, $this->mOptions ) ) {
-			return $this->mOptions[$oname];
-		}
-
-		return $defaultOverride;
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getOption( $this, $oname, $defaultOverride, $ignoreHidden );
 	}
 
 	/**
@@ -2929,29 +2871,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 *   User::GETOPTIONS_EXCLUDE_DEFAULTS  Exclude user options that are set
 	 *                                      to the default value. (Since 1.25)
 	 * @return array
+	 * @deprecated since 1.35 Use UserOptionsLookup::getOptions instead
 	 */
 	public function getOptions( $flags = 0 ) {
-		global $wgHiddenPrefs;
-		$this->loadOptions();
-		$options = $this->mOptions;
-
-		# We want 'disabled' preferences to always behave as the default value for
-		# users, even if they have set the option explicitly in their settings (ie they
-		# set it, and then it was disabled removing their ability to change it).  But
-		# we don't want to erase the preferences in the database in case the preference
-		# is re-enabled again.  So don't touch $mOptions, just override the returned value
-		foreach ( $wgHiddenPrefs as $pref ) {
-			$default = self::getDefaultOption( $pref );
-			if ( $default !== null ) {
-				$options[$pref] = $default;
-			}
-		}
-
-		if ( $flags & self::GETOPTIONS_EXCLUDE_DEFAULTS ) {
-			$options = array_diff_assoc( $options, self::getDefaultOptions() );
-		}
-
-		return $options;
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getOptions( $this, $flags );
 	}
 
 	/**
@@ -2960,9 +2885,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string $oname The option to check
 	 * @return bool User's current value for the option
 	 * @see getOption()
+	 * @deprecated since 1.35 Use UserOptionsLookup::getBoolOption instead
 	 */
 	public function getBoolOption( $oname ) {
-		return (bool)$this->getOption( $oname );
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getBoolOption( $this, $oname );
 	}
 
 	/**
@@ -2972,13 +2900,15 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int $defaultOverride A default value returned if the option does not exist
 	 * @return int User's current value for the option
 	 * @see getOption()
+	 * @deprecated since 1.35 Use UserOptionsLookup::getIntOption instead
 	 */
 	public function getIntOption( $oname, $defaultOverride = 0 ) {
-		$val = $this->getOption( $oname );
-		if ( $val == '' ) {
-			$val = $defaultOverride;
+		if ( $oname === null ) {
+			return null; // b/c
 		}
-		return intval( $val );
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getIntOption( $this, $oname, $defaultOverride );
 	}
 
 	/**
@@ -2988,16 +2918,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $oname The option to set
 	 * @param mixed $val New value to set
+	 * @deprecated since 1.35 Use UserOptionsManager::setOption instead
 	 */
 	public function setOption( $oname, $val ) {
-		$this->loadOptions();
-
-		// Explicitly NULL values should refer to defaults
-		if ( $val === null ) {
-			$val = self::getDefaultOption( $oname );
-		}
-
-		$this->mOptions[$oname] = $val;
+		MediaWikiServices::getInstance()
+			->getUserOptionsManager()
+			->setOption( $this, $oname, $val );
 	}
 
 	/**
@@ -3071,16 +2997,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @see User::getOptionKinds
 	 * @return array Option kinds
+	 * @deprecated since 1.35 Use UserOptionsManager::listOptionKinds instead
 	 */
 	public static function listOptionKinds() {
-		return [
-			'registered',
-			'registered-multiselect',
-			'registered-checkmatrix',
-			'userjs',
-			'special',
-			'unused'
-		];
+		return MediaWikiServices::getInstance()
+			->getUserOptionsManager()
+			->listOptionKinds();
 	}
 
 	/**
@@ -3094,76 +3016,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param array|null $options Assoc. array with options keys to check as keys.
 	 *   Defaults to $this->mOptions.
 	 * @return array The key => kind mapping data
+	 * @deprecated since 1.35 Use UserOptionsManager::getOptionKinds instead
 	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
-		$this->loadOptions();
-		if ( $options === null ) {
-			$options = $this->mOptions;
-		}
-
-		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		$prefs = $preferencesFactory->getFormDescriptor( $this, $context );
-		$mapping = [];
-
-		// Pull out the "special" options, so they don't get converted as
-		// multiselect or checkmatrix.
-		$specialOptions = array_fill_keys( $preferencesFactory->getSaveBlacklist(), true );
-		foreach ( $specialOptions as $name => $value ) {
-			unset( $prefs[$name] );
-		}
-
-		// Multiselect and checkmatrix options are stored in the database with
-		// one key per option, each having a boolean value. Extract those keys.
-		$multiselectOptions = [];
-		foreach ( $prefs as $name => $info ) {
-			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-					( isset( $info['class'] ) && $info['class'] == HTMLMultiSelectField::class ) ) {
-				$opts = HTMLFormField::flattenOptions( $info['options'] );
-				$prefix = $info['prefix'] ?? $name;
-
-				foreach ( $opts as $value ) {
-					$multiselectOptions["$prefix$value"] = true;
-				}
-
-				unset( $prefs[$name] );
-			}
-		}
-		$checkmatrixOptions = [];
-		foreach ( $prefs as $name => $info ) {
-			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
-					( isset( $info['class'] ) && $info['class'] == HTMLCheckMatrix::class ) ) {
-				$columns = HTMLFormField::flattenOptions( $info['columns'] );
-				$rows = HTMLFormField::flattenOptions( $info['rows'] );
-				$prefix = $info['prefix'] ?? $name;
-
-				foreach ( $columns as $column ) {
-					foreach ( $rows as $row ) {
-						$checkmatrixOptions["$prefix$column-$row"] = true;
-					}
-				}
-
-				unset( $prefs[$name] );
-			}
-		}
-
-		// $value is ignored
-		foreach ( $options as $key => $value ) {
-			if ( isset( $prefs[$key] ) ) {
-				$mapping[$key] = 'registered';
-			} elseif ( isset( $multiselectOptions[$key] ) ) {
-				$mapping[$key] = 'registered-multiselect';
-			} elseif ( isset( $checkmatrixOptions[$key] ) ) {
-				$mapping[$key] = 'registered-checkmatrix';
-			} elseif ( isset( $specialOptions[$key] ) ) {
-				$mapping[$key] = 'special';
-			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
-				$mapping[$key] = 'userjs';
-			} else {
-				$mapping[$key] = 'unused';
-			}
-		}
-
-		return $mapping;
+		return MediaWikiServices::getInstance()
+			->getUserOptionsManager()
+			->getOptionKinds( $this, $context, $options );
 	}
 
 	/**
@@ -3179,46 +3037,19 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param IContextSource|null $context Context source used when $resetKinds
 	 *  does not contain 'all', passed to getOptionKinds().
 	 *  Defaults to RequestContext::getMain() when null.
+	 * @deprecated since 1.35 Use UserOptionsManager::resetOptions instead.
 	 */
 	public function resetOptions(
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ],
 		IContextSource $context = null
 	) {
-		$this->load();
-		$defaultOptions = self::getDefaultOptions();
-
-		if ( !is_array( $resetKinds ) ) {
-			$resetKinds = [ $resetKinds ];
-		}
-
-		if ( in_array( 'all', $resetKinds ) ) {
-			$newOptions = $defaultOptions;
-		} else {
-			if ( $context === null ) {
-				$context = RequestContext::getMain();
-			}
-
-			$optionKinds = $this->getOptionKinds( $context );
-			$resetKinds = array_intersect( $resetKinds, self::listOptionKinds() );
-			$newOptions = [];
-
-			// Use default values for the options that should be deleted, and
-			// copy old values for the ones that shouldn't.
-			foreach ( $this->mOptions as $key => $value ) {
-				if ( in_array( $optionKinds[$key], $resetKinds ) ) {
-					if ( array_key_exists( $key, $defaultOptions ) ) {
-						$newOptions[$key] = $defaultOptions[$key];
-					}
-				} else {
-					$newOptions[$key] = $value;
-				}
-			}
-		}
-
-		Hooks::run( 'UserResetAllOptions', [ $this, &$newOptions, $this->mOptions, $resetKinds ] );
-
-		$this->mOptions = $newOptions;
-		$this->mOptionsLoaded = true;
+		MediaWikiServices::getInstance()
+			->getUserOptionsManager()
+			->resetOptions(
+				$this,
+				$context ?? RequestContext::getMain(),
+				$resetKinds
+			);
 	}
 
 	/**
@@ -3990,7 +3821,7 @@ class User implements IDBAccessObject, UserIdentity {
 		} );
 
 		$this->mTouched = $newTouched;
-		$this->saveOptions();
+		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
 
 		Hooks::run( 'UserSaveSettings', [ $this ] );
 		$this->clearSharedCache( 'changed' );
@@ -4051,7 +3882,9 @@ class User implements IDBAccessObject, UserIdentity {
 		$user->load();
 		$user->setToken(); // init token
 		if ( isset( $params['options'] ) ) {
-			$user->mOptions = $params['options'] + (array)$user->mOptions;
+			MediaWikiServices::getInstance()
+				->getUserOptionsManager()
+				->loadUserOptions( $user, $user->queryFlagsUsed, $params['options'] );
 			unset( $params['options'] );
 		}
 		$dbw = wfGetDB( DB_MASTER );
@@ -4177,7 +4010,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// Clear instance cache other than user table data and actor, which is already accurate
 		$this->clearInstanceCache();
 
-		$this->saveOptions();
+		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
 		return Status::newGood();
 	}
 
@@ -5075,149 +4908,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Load the user options either from cache, the database or an array
-	 *
-	 * @param array|null $data Rows for the current user out of the user_properties table
-	 */
-	protected function loadOptions( $data = null ) {
-		$this->load();
-
-		if ( $this->mOptionsLoaded ) {
-			return;
-		}
-
-		$this->mOptions = self::getDefaultOptions();
-
-		if ( !$this->getId() ) {
-			// For unlogged-in users, load language/variant options from request.
-			// There's no need to do it for logged-in users: they can set preferences,
-			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
-			// so don't override user's choice (especially when the user chooses site default).
-			$factory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
-			$variant = $factory->getLanguageConverter()->getDefaultVariant();
-			$this->mOptions['variant'] = $variant;
-			$this->mOptions['language'] = $variant;
-			$this->mOptionsLoaded = true;
-			return;
-		}
-
-		// Maybe load from the object
-		if ( $this->mOptionOverrides !== null ) {
-			wfDebug( "User: loading options for user " . $this->getId() . " from override cache.\n" );
-			foreach ( $this->mOptionOverrides as $key => $value ) {
-				$this->mOptions[$key] = $value;
-			}
-		} else {
-			if ( !is_array( $data ) ) {
-				wfDebug( "User: loading options for user " . $this->getId() . " from database.\n" );
-				// Load from database
-				$dbr = ( $this->queryFlagsUsed & self::READ_LATEST )
-					? wfGetDB( DB_MASTER )
-					: wfGetDB( DB_REPLICA );
-
-				$res = $dbr->select(
-					'user_properties',
-					[ 'up_property', 'up_value' ],
-					[ 'up_user' => $this->getId() ],
-					__METHOD__
-				);
-
-				$this->mOptionOverrides = [];
-				$data = [];
-				foreach ( $res as $row ) {
-					// Convert '0' to 0. PHP's boolean conversion considers them both
-					// false, but e.g. JavaScript considers the former as true.
-					// @todo: T54542 Somehow determine the desired type (string/int/bool)
-					//  and convert all values here.
-					if ( $row->up_value === '0' ) {
-						$row->up_value = 0;
-					}
-					$data[$row->up_property] = $row->up_value;
-				}
-			}
-
-			foreach ( $data as $property => $value ) {
-				$this->mOptionOverrides[$property] = $value;
-				$this->mOptions[$property] = $value;
-			}
-		}
-
-		// Replace deprecated language codes
-		$this->mOptions['language'] = LanguageCode::replaceDeprecatedCodes(
-			$this->mOptions['language']
-		);
-
-		$this->mOptionsLoaded = true;
-
-		Hooks::run( 'UserLoadOptions', [ $this, &$this->mOptions ] );
-	}
-
-	/**
-	 * Saves the non-default options for this user, as previously set e.g. via
-	 * setOption(), in the database's "user_properties" (preferences) table.
-	 * Usually used via saveSettings().
-	 */
-	protected function saveOptions() {
-		$this->loadOptions();
-
-		// Not using getOptions(), to keep hidden preferences in database
-		$saveOptions = $this->mOptions;
-
-		// Allow hooks to abort, for instance to save to a global profile.
-		// Reset options to default state before saving.
-		if ( !Hooks::run( 'UserSaveOptions', [ $this, &$saveOptions ] ) ) {
-			return;
-		}
-
-		$userId = $this->getId();
-
-		$insert_rows = []; // all the new preference rows
-		foreach ( $saveOptions as $key => $value ) {
-			// Don't bother storing default values
-			$defaultOption = self::getDefaultOption( $key );
-			if ( ( $defaultOption === null && $value !== false && $value !== null )
-				|| $value != $defaultOption
-			) {
-				$insert_rows[] = [
-					'up_user' => $userId,
-					'up_property' => $key,
-					'up_value' => $value,
-				];
-			}
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-
-		$res = $dbw->select( 'user_properties',
-			[ 'up_property', 'up_value' ], [ 'up_user' => $userId ], __METHOD__ );
-
-		// Find prior rows that need to be removed or updated. These rows will
-		// all be deleted (the latter so that INSERT IGNORE applies the new values).
-		$keysDelete = [];
-		foreach ( $res as $row ) {
-			if ( !isset( $saveOptions[$row->up_property] )
-				|| strcmp( $saveOptions[$row->up_property], $row->up_value ) != 0
-			) {
-				$keysDelete[] = $row->up_property;
-			}
-		}
-
-		if ( count( $keysDelete ) ) {
-			// Do the DELETE by PRIMARY KEY for prior rows.
-			// In the past a very large portion of calls to this function are for setting
-			// 'rememberpassword' for new accounts (a preference that has since been removed).
-			// Doing a blanket per-user DELETE for new accounts with no rows in the table
-			// caused gap locks on [max user ID,+infinity) which caused high contention since
-			// updates would pile up on each other as they are for higher (newer) user IDs.
-			// It might not be necessary these days, but it shouldn't hurt either.
-			$dbw->delete( 'user_properties',
-				[ 'up_user' => $userId, 'up_property' => $keysDelete ], __METHOD__ );
-		}
-		// Insert the new preference rows
-		$dbw->insert( 'user_properties', $insert_rows, __METHOD__, [ 'IGNORE' ] );
-	}
-
-	/**
 	 * Return the list of user fields that should be selected to create
 	 * a new user object.
 	 * @deprecated since 1.31, use self::getQueryInfo() instead.
@@ -5340,5 +5030,4 @@ class User implements IDBAccessObject, UserIdentity {
 	public function isAllowUsertalk() {
 		return $this->mAllowUsertalk;
 	}
-
 }

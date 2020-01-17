@@ -980,6 +980,10 @@ because of Phabricator reports.
 * wfGetScriptUrl() was deprecated. The script URL should be configured rather
   than detected. wfScript() can be used to get a configured script URL.
 * Action::factory() with null $action argument is hard deprecated
+* The following methods of the User class were deprecated: getDefaultOptions,
+  getDefaultOption, getOptions, getOption, getBoolOption, getIntOption,
+  setOption, listOptionKinds, getOptionKinds, resetOptions.  Use corresponding
+  methods in UserOptionsLookup or UserOptionsManager service classes instead.
 * …
 
 === Other changes in 1.35 ===
