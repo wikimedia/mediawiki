@@ -3423,7 +3423,7 @@
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|cayê nameyi|cayê nameyan}} $2",
 	"logentry-partialblock-block": "$1, karber {{GENDER:$4|$3}} $5 demi rê {{GENDER:$2|kerd men}} $6 $7",
 	"logentry-partialblock-reblock": "$1, bloqey karberê {{GENDER:$4|$3}} vurnayışa vındarne heta $7 qandê $5 roca {{GENDER:$2|vurna}} $6",
-	"logentry-non-editing-block-block": "$1, karber {{GENDER:$4|$3}} $5 demi rê {{GENDER:$2|kerd men}} $6",
+	"logentry-non-editing-block-block": "$1, karber {{GENDER:$4|$3}} $5 demi rê {{GENDER:$2|men kerd}} $6",
 	"logentry-non-editing-block-reblock": "$1, demê qediyayışi {{GENDER:$4|$3}} karê nêserraştkerdeyê asayeyi ra $5 $6 roci {{GENDER:$2|vurna}}",
 	"logentry-suppress-block": "$1, karber {{GENDER:$4|$3}} $5 demi rê {{GENDER:$2|men kerd}} $6",
 	"logentry-suppress-reblock": "$1 kılitkerdışê {{GENDER:$4|$3}} heta $5 rocan {{GENDER:$2|vurna}} $6",

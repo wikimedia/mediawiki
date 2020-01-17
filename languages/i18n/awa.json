@@ -7,7 +7,8 @@
 			"Matma Rex",
 			"Sfic",
 			"Fitoschido",
-			"Ajeetsinghawadh"
+			"Ajeetsinghawadh",
+			"Ajeetsinghawadhi"
 		]
 	},
 	"tog-underline": "कड़ि अधोरेखन:",
@@ -3326,6 +3327,9 @@
 	"newsection": "नवाँ श्रेणी",
 	"newsection-page": "टारगेट पेज",
 	"newsection-submit": "पन्ना पे जावा जाय",
+	"purge": "शुद्ध करा",
+	"specialpurge-page": "टारगेट पेज",
+	"specialpurge-submit": "पन्ना पे जावा जाय",
 	"dberr-problems": "क्षमा करें! इस जालस्थल को कुछ तकनीकी परेशानियों का सामना करना पड़ रहा है।",
 	"dberr-again": "कुछ मिन रुकि कय फिरसे लोड किन जाय",
 	"dberr-info": "(डाटाबेस से संपर्क नहीं हो पा रहा: $1)",
