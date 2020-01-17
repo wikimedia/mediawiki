@@ -31,6 +31,9 @@ class EnumDefTest extends TypeDefTestCase {
 				'b', 'b', $settings, [], [
 				[ 'code' => 'deprecated-value', 'data' => [ 'data' => [ 'not-to-be' ] ] ]
 			] ],
+			'Deprecated, from default' => [
+				'c', 'c', $settings, [ 'is-default' => true ], []
+			],
 			'Bad value, non-multi' => [
 				'x',
 				new ValidationException(

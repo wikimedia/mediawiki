@@ -59,7 +59,12 @@ class ParamValidator {
 	 * @{
 	 */
 
-	/** (mixed) Default value of the parameter. If omitted, null is the default. */
+	/**
+	 * (mixed) Default value of the parameter. If omitted, null is the default.
+	 *
+	 * TypeDef::validate() will be informed when the default value was used by the presence of
+	 * 'is-default' in $options.
+	 */
 	const PARAM_DEFAULT = 'param-default';
 
 	/**
@@ -363,6 +368,7 @@ class ParamValidator {
 	 * @param array|mixed $settings Default value or an array of settings
 	 *  using PARAM_* constants.
 	 * @param array $options Options array, passed through to the TypeDef and Callbacks.
+	 *  - An additional option, 'is-default', will be set when the value comes from PARAM_DEFAULT.
 	 * @return mixed Validated parameter value
 	 * @throws ValidationException if the value is invalid
 	 */
@@ -397,6 +403,7 @@ class ParamValidator {
 			}
 		} elseif ( isset( $settings[self::PARAM_DEFAULT] ) ) {
 			$value = $settings[self::PARAM_DEFAULT];
+			$options['is-default'] = true;
 		}
 
 		return $this->validateValue( $name, $value, $settings, $options );

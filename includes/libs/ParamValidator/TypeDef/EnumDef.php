@@ -51,7 +51,9 @@ class EnumDef extends TypeDef {
 
 		if ( in_array( $value, $values, true ) ) {
 			// Set a warning if a deprecated parameter value has been passed
-			if ( isset( $settings[self::PARAM_DEPRECATED_VALUES][$value] ) ) {
+			if ( empty( $options['is-default'] ) &&
+				isset( $settings[self::PARAM_DEPRECATED_VALUES][$value] )
+			) {
 				$this->failure(
 					$this->failureMessage( 'deprecated-value', [
 						'data' => $settings[self::PARAM_DEPRECATED_VALUES][$value],
