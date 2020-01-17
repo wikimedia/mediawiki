@@ -105,7 +105,7 @@ class TypeDefTest extends \PHPUnit\Framework\TestCase {
 		} catch ( ValidationException $ex ) {
 			$this->assertSame( $expect, $ex->getFailureMessage()->dump() );
 			$this->assertSame( $name, $ex->getParamName() );
-			$this->assertSame( $value, $ex->getParamValue() );
+			$this->assertSame( (string)$value, $ex->getParamValue() );
 			$this->assertSame( $settings, $ex->getSettings() );
 		}
 		$this->assertCount( 0, $callbacks->getRecordedConditions() );
@@ -129,7 +129,7 @@ class TypeDefTest extends \PHPUnit\Framework\TestCase {
 		$this->assertSame( [
 			'message' => $expect,
 			'name' => $name,
-			'value' => $value,
+			'value' => (string)$value,
 			'settings' => $settings,
 		], $conds[0] );
 	}

@@ -3,6 +3,7 @@
 namespace Wikimedia\ParamValidator\TypeDef;
 
 use Wikimedia\Message\DataMessageValue;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\ValidationException;
 
@@ -15,22 +16,30 @@ class EnumDefTest extends TypeDefTestCase {
 
 	public function provideValidate() {
 		$settings = [
-			ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
+			ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd', 'e' ],
 			EnumDef::PARAM_DEPRECATED_VALUES => [
-				'b' => [ 'not-to-be' ],
+				'b' => MessageValue::new( 'not-to-be', [ '??' ] ),
 				'c' => true,
+				'e' => DataMessageValue::new( 'xyz', [ '??' ], 'bogus', [ 'x' => 'y' ] ),
 			],
 		];
 
 		return [
 			'Basic' => [ 'a', 'a', $settings ],
 			'Deprecated' => [ 'c', 'c', $settings, [], [
-				[ 'code' => 'deprecated-value', 'data' => [ 'data' => true ] ]
+				[ 'code' => 'deprecated-value', 'data' => null ],
 			] ],
 			'Deprecated with message' => [
 				'b', 'b', $settings, [], [
-				[ 'code' => 'deprecated-value', 'data' => [ 'data' => [ 'not-to-be' ] ] ]
+				[ 'code' => 'deprecated-value', 'data' => null ]
 			] ],
+			'Deprecated with data message' => [
+				'e', 'e', $settings, [], [
+				[ 'code' => 'deprecated-value', 'data' => [ 'x' => 'y' ] ]
+			] ],
+			'Deprecated, from default' => [
+				'c', 'c', $settings, [ 'is-default' => true ], []
+			],
 			'Bad value, non-multi' => [
 				'x',
 				new ValidationException(
@@ -82,7 +91,9 @@ class EnumDefTest extends TypeDefTestCase {
 				[
 					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
 				],
-				[],
+				[
+					'type' => [ 'a', 'b', 'c', 'd' ],
+				],
 				[
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><list listType="comma"><text>a</text><text>b</text><text>c</text><text>d</text></list><num>4</num></message>',
@@ -94,7 +105,9 @@ class EnumDefTest extends TypeDefTestCase {
 					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
 					ParamValidator::PARAM_ISMULTI => true,
 				],
-				[],
+				[
+					'type' => [ 'a', 'b', 'c', 'd' ],
+				],
 				[
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>2</text><list listType="comma"><text>a</text><text>b</text><text>c</text><text>d</text></list><num>4</num></message>',
@@ -107,6 +120,7 @@ class EnumDefTest extends TypeDefTestCase {
 					EnumDef::PARAM_DEPRECATED_VALUES => [ 'b' => 'B', 'c' => false, 'x' => true ],
 				],
 				[
+					'type' => [ 'a', 'd', 'b', 'c' ],
 					'deprecatedvalues' => [ 'b', 'c' ],
 				],
 				[
@@ -120,7 +134,9 @@ class EnumDefTest extends TypeDefTestCase {
 					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
 					EnumDef::PARAM_DEPRECATED_VALUES => [ 'x' => true ],
 				],
-				[],
+				[
+					'type' => [ 'a', 'b', 'c', 'd' ],
+				],
 				[
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><list listType="comma"><text>a</text><text>b</text><text>c</text><text>d</text></list><num>4</num></message>',
@@ -131,7 +147,9 @@ class EnumDefTest extends TypeDefTestCase {
 				[
 					ParamValidator::PARAM_TYPE => [ '', 'a', 'b', 'c', 'd' ],
 				],
-				[],
+				[
+					'type' => [ '', 'a', 'b', 'c', 'd' ],
+				],
 				[
 					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-enum"><text>1</text><text><message key="paramvalidator-help-type-enum-can-be-empty"><list listType="comma"><text>a</text><text>b</text><text>c</text><text>d</text></list><num>4</num></message></text><num>5</num></message>',

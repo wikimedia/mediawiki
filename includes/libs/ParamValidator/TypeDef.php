@@ -43,6 +43,10 @@ abstract class TypeDef {
 	protected function failure(
 		$failure, $name, $value, array $settings, array $options, $fatal = true
 	) {
+		if ( !is_string( $value ) ) {
+			$value = (string)$this->stringifyValue( $name, $value, $settings, $options );
+		}
+
 		if ( is_string( $failure ) ) {
 			$mv = $this->failureMessage( $failure )
 				->plaintextParams( $name, $value );
@@ -110,6 +114,8 @@ abstract class TypeDef {
 	 * @param array $settings Parameter settings array.
 	 * @param array $options Options array. Note the following values that may be set
 	 *  by ParamValidator:
+	 *   - is-default: (bool) If present and true, the value was taken from PARAM_DEFAULT rather
+	 *     that being supplied by the client.
 	 *   - values-list: (string[]) If defined, values of a multi-valued parameter are being processed
 	 *     (and this array holds the full set of values).
 	 * @return mixed Validated value
