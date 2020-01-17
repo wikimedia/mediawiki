@@ -365,6 +365,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 				if ( preg_match( "/^(HTTP\/(?:1\.[01]|2)) (\d{3}) (.*)/", $header, $matches ) ) {
 					$req['response']['code'] = (int)$matches[2];
 					$req['response']['reason'] = trim( $matches[3] );
+					// After a redirect we will receive this again, but we already stored headers
+					// that belonged to a redirect response. Start over.
+					$req['response']['headers'] = [];
 					return $length;
 				}
 				if ( strpos( $header, ":" ) === false ) {
