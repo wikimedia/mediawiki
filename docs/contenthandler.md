@@ -73,7 +73,7 @@ Also, the old `Article::getContent()` (which returns text) is superceded by `Art
 
 Code that relies on a textual representation of the page content should eventually be rewritten. However, `ContentHandler::getContentText()` provides a stop-gap that can be used to get text for a page. Its behavior is controlled by `$wgContentHandlerTextFallback`; per default it will return the text for text based content, and null for any other content.
 
-For rendering page content, `Content::getParserOutput()` should be used instead of accessing the parser directly. `ContentHandler::makeParserOptions()` can be used to construct appropriate options.
+For rendering page content, `Content::getParserOutput()` should be used instead of accessing the parser directly. `WikiPage::makeParserOptions()` can be used to construct appropriate options.
 
 Besides some functions, some hooks have also been replaced by new versions (see hooks.txt for details). These hooks will now trigger a warning when used:
 

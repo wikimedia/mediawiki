@@ -1191,27 +1191,6 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Get parser options suitable for rendering and caching the article
-	 *
-	 * @deprecated since 1.32, use WikiPage::makeParserOptions() or
-	 *  ParserOptions::newCanonical() instead.
-	 * @param IContextSource|User|string $context One of the following:
-	 *        - IContextSource: Use the User and the Language of the provided
-	 *                                            context
-	 *        - User: Use the provided User object and $wgLang for the language,
-	 *                                            so use an IContextSource object if possible.
-	 *        - 'canonical': Canonical options (anonymous user with default
-	 *                                            preferences and content language).
-	 *
-	 * @throws MWException
-	 * @return ParserOptions
-	 */
-	public function makeParserOptions( $context ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		return ParserOptions::newCanonical( $context );
-	}
-
-	/**
 	 * Returns true for content models that support caching using the
 	 * ParserCache mechanism. See WikiPage::shouldCheckParserCache().
 	 *
