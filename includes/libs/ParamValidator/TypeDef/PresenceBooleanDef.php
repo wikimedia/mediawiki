@@ -21,7 +21,7 @@ use Wikimedia\ParamValidator\TypeDef;
 class PresenceBooleanDef extends TypeDef {
 
 	public function getValue( $name, array $settings, array $options ) {
-		return $this->callbacks->hasParam( $name, $options );
+		return $this->callbacks->hasParam( $name, $options ) ? true : null;
 	}
 
 	public function validate( $name, $value, array $settings, array $options ) {
