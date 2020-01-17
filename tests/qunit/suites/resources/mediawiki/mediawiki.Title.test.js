@@ -711,12 +711,6 @@
 					prefixedText: 'File:DCS0001557854455.JPG'
 				},
 				{
-					fileName: 'File:Sample.png',
-					typeOfName: 'Carrying namespace',
-					nameText: 'File-Sample',
-					prefixedText: 'File:File-Sample.png'
-				},
-				{
 					fileName: 'Treppe 2222 Test upload.jpg',
 					typeOfName: 'File name with spaces in it and lower case file extension',
 					nameText: 'Treppe 2222 Test upload',
@@ -791,6 +785,17 @@
 					typeOfName: 'String with only alphabet characters'
 				}
 			];
+
+		if ( mw.config.get( 'wgIllegalFileChars', '' ).indexOf( ':' ) > -1 ) {
+			// ":" is automatically replaced with "-". Only test this if it is present
+			// in wgIllegalFileChars
+			cases.push( {
+				fileName: 'File:Sample.png',
+				typeOfName: 'Carrying namespace',
+				nameText: 'File-Sample',
+				prefixedText: 'File:File-Sample.png'
+			} );
+		}
 
 		for ( i = 0; i < cases.length; i++ ) {
 			thisCase = cases[ i ];
