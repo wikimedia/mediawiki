@@ -2889,23 +2889,17 @@ class Language {
 	 * @return string
 	 */
 	public function firstChar( $s ) {
-		$matches = [];
-		preg_match(
-			'/^([\x00-\x7f]|[\xc0-\xdf][\x80-\xbf]|' .
-				'[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xf7][\x80-\xbf]{3})/',
-			$s,
-			$matches
-		);
+		$firstChar = mb_substr( $s, 0, 1 );
 
-		if ( isset( $matches[1] ) ) {
-			if ( strlen( $matches[1] ) != 3 ) {
-				return $matches[1];
+		if ( $firstChar !== false ) {
+			if ( strlen( $firstChar ) != 3 ) {
+				return $firstChar;
 			}
 
 			// Break down Hangul syllables to grab the first jamo
-			$code = UtfNormal\Utils::utf8ToCodepoint( $matches[1] );
+			$code = mb_ord( $firstChar );
 			if ( $code < 0xac00 || 0xd7a4 <= $code ) {
-				return $matches[1];
+				return $firstChar;
 			} elseif ( $code < 0xb098 ) {
 				return "\u{3131}";
 			} elseif ( $code < 0xb2e4 ) {
@@ -2935,9 +2929,9 @@ class Language {
 			} else {
 				return "\u{314E}";
 			}
-		} else {
-			return '';
 		}
+
+		return '';
 	}
 
 	/**
