@@ -61,14 +61,14 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 			// to try to prevent deletions or undeletions from confusing things.
 			$dbw->selectRowCount(
 				'archive',
-				1,
+				'1',
 				[ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ],
 				__METHOD__,
 				[ 'FOR UPDATE' ]
 			);
 			$dbw->selectRowCount(
 				'revision',
-				1,
+				'1',
 				[ 'rev_id >= ' . (int)$id, 'rev_id <= ' . (int)$endId ],
 				__METHOD__,
 				[ 'LOCK IN SHARE MODE' ]

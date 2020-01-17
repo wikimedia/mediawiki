@@ -656,7 +656,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		 */
 		$conn = $status->value;
 
-		$exists = $conn->selectField( '"pg_catalog"."pg_language"', 1,
+		$exists = $conn->selectField( '"pg_catalog"."pg_language"', '1',
 			[ 'lanname' => 'plpgsql' ], __METHOD__ );
 		if ( $exists ) {
 			// Already exists, nothing to do
@@ -667,7 +667,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		// should be able to create it
 		$exists = $conn->selectField(
 			[ '"pg_catalog"."pg_class"', '"pg_catalog"."pg_namespace"' ],
-			1,
+			'1',
 			[
 				'pg_namespace.oid=relnamespace',
 				'nspname' => 'pg_catalog',

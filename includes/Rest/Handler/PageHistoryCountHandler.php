@@ -372,7 +372,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			'EXISTS(' .
 				$dbr->selectSQLText(
 					'user_groups',
-					1,
+					'1',
 					[
 						'actor.actor_user = ug_user',
 						'ug_group' => $this->permissionManager->getGroupsWithPermission( 'bot' ),

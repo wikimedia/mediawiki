@@ -177,7 +177,7 @@ class PageHistoryHandler extends SimpleHandler {
 				case 'bot':
 					$cond[] = 'EXISTS(' . $dbr->selectSQLText(
 							'user_groups',
-							1,
+							'1',
 							[
 								'actor_rev_user.actor_user = ug_user',
 								'ug_group' => $this->permissionManager->getGroupsWithPermission( 'bot' ),
@@ -205,7 +205,7 @@ class PageHistoryHandler extends SimpleHandler {
 					}
 					$cond[] = 'EXISTS(' . $dbr->selectSQLText(
 							'change_tag',
-							1,
+							'1',
 							[ 'ct_rev_id = rev_id', 'ct_tag_id' => $tagIds ],
 							__METHOD__
 						) . ')';

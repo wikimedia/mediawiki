@@ -1236,7 +1236,7 @@ SQL;
 	 * @return bool
 	 */
 	public function roleExists( $roleName ) {
-		$exists = $this->selectField( '"pg_catalog"."pg_roles"', 1,
+		$exists = $this->selectField( '"pg_catalog"."pg_roles"', '1',
 			[ 'rolname' => $roleName ], __METHOD__ );
 
 		return (bool)$exists;
