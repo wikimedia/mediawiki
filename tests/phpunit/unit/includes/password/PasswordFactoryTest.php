@@ -14,7 +14,9 @@ class PasswordFactoryTest extends MediaWikiUnitTestCase {
 			'bar' => [ 'class' => 'BarPassword', 'baz' => 'boom' ],
 		], 'foo' );
 		$this->assertEquals( [ '', 'foo', 'bar' ], array_keys( $pf->getTypes() ) );
-		$this->assertArraySubset( [ 'class' => 'BarPassword', 'baz' => 'boom' ], $pf->getTypes()['bar'] );
+		$bar = $pf->getTypes()['bar'];
+		$expected = [ 'class' => 'BarPassword', 'baz' => 'boom' ];
+		$this->assertArrayEquals( $expected, array_intersect( $bar, $expected ) );
 		$this->assertEquals( 'foo', $pf->getDefaultType() );
 	}
 
