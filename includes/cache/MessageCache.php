@@ -550,7 +550,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
 			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title, $overridable ) ) {
 				try {
-					$rev = $revisionStore->newRevisionFromRow( $row );
+					$rev = $revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
 					$content = $rev->getContent( MediaWiki\Revision\SlotRecord::MAIN );
 					$text = $this->getMessageTextFromContent( $content );
 				} catch ( Exception $ex ) {
