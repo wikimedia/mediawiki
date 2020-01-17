@@ -868,7 +868,7 @@ class DatabaseBlock extends AbstractBlock {
 				'autoblocker',
 				(string)$this->getTarget(),
 				$this->getReasonComment()->text
-			)->plain()
+			)->inContentLanguage()->plain()
 		);
 		$timestamp = wfTimestampNow();
 		$autoblock->setTimestamp( $timestamp );
