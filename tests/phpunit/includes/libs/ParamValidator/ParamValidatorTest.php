@@ -580,11 +580,11 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 					'foobar', 'b', []
 				),
 			],
-			'Ignored invalid values' => [
+			'Ignored unrecognized values' => [
 				'a|b|c|d',
 				[
 					ParamValidator::PARAM_ISMULTI => true,
-					ParamValidator::PARAM_IGNORE_INVALID_VALUES => true,
+					ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES => true,
 				],
 				false,
 				[ 'a', 'b', 'c', 'd' ],
@@ -610,7 +610,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				[ 'a', 'b', 'c', 'd' ],
 				[
 					ParamValidator::PARAM_ISMULTI => true,
-					ParamValidator::PARAM_IGNORE_INVALID_VALUES => true,
+					ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES => true,
 				],
 				false,
 				[ 'a', 'b', 'c', 'd' ],
