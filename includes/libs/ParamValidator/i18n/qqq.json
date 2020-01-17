@@ -41,7 +41,7 @@
 	"paramvalidator-help-multi-all": "Used to indicate what string can be used to specify all possible values of a multi-valued parameter. \n\nParameters:\n* $1 - String to specify all possible values of the parameter",
 	"paramvalidator-help-multi-max-simple": "Used to indicate the maximum number of values accepted for a multi-valued parameter when that value is not influenced by the user being allowed high limits (otherwise {{msg-mw|paramvalidator-help-multi-max}} is used).\n\nParameters:\n* $1 - Maximum value",
 	"paramvalidator-help-multi-max": "Used to indicate the maximum number of values accepted for a multi-valued parameter when that value is influenced by the user being allowed high limits (otherwise {{msg-mw|paramvalidator-help-multi-max-simple}} is used).\n\nParameters:\n* $1 - Maximum value without high limits\n* $2 - Maximum value with high limits",
-	"paramvalidator-help-multi-sep": "Used to indicate how to separate multiple values.",
+	"paramvalidator-help-multi-separate": "Used to indicate how to separate multiple values.",
 	"paramvalidator-help-required": "Help message indicating the parameter is required.",
 	"paramvalidator-help-type-boolean": "Used to indicate that a parameter is a boolean (\"true\" or \"false\") or list of booleans. Parameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values",
 	"paramvalidator-help-type-enum-can-be-empty": "Used to indicate that one of the possible values in the list is the empty string.\n\nParameters:\n* $1 - Remainder of the list, as a comma-separated list.\n* $2 - Number of items in $1; may be 0",
@@ -66,7 +66,7 @@
 	"paramvalidator-outofrange-minmax": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - Minimum allowed value\n* $4 - Maximum allowed value.",
 	"paramvalidator-param-deprecated": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-param-sensitive": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
-	"paramvalidator-toomanyvalues": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - Number of allowed values.",
+	"paramvalidator-toomanyvalues": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Number of allowed values.",
 	"paramvalidator-unclearnowtimestamp": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-unrecognizedvalues": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - List of unrecognized values, as a comma-separated list.\n* $4 - Count of values in $3."
 
