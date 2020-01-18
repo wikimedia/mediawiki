@@ -91,7 +91,9 @@ class MovePageTest extends MediaWikiTestCase {
 			$params['nsInfo'] ?? $mockNsInfo,
 			$params['wiStore'] ?? $this->createNoOpMock( WatchedItemStore::class ),
 			$params['permMgr'] ?? $this->createNoOpMock( PermissionManager::class ),
-			$params['repoGroup'] ?? $this->getMockRepoGroup()
+			$params['repoGroup'] ?? $this->getMockRepoGroup(),
+			$params['contentHandlerFactory']
+				?? MediaWikiServices::getInstance()->getContentHandlerFactory()
 		);
 	}
 
@@ -151,7 +153,7 @@ class MovePageTest extends MediaWikiTestCase {
 			$services->getWatchedItemStore(),
 			$services->getPermissionManager(),
 			$services->getRepoGroup(),
-			$services->getTitleFormatter()
+			$services->getContentHandlerFactory()
 		);
 
 		$this->assertEquals( $obj2, $obj1 );

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Http\HttpAcceptNegotiator;
 use Wikimedia\Http\HttpAcceptParser;
 
@@ -119,8 +120,10 @@ class PageDataRequestHandler {
 		Title $title,
 		$revision = 0
 	) {
-		$contentHandler = ContentHandler::getForTitle( $title );
-		$mimeTypes = $contentHandler->getSupportedFormats();
+		$mimeTypes = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $title->getContentModel() )
+			->getSupportedFormats();
 
 		$acceptHeader = $request->getHeader( 'Accept' );
 		if ( $acceptHeader !== false ) {

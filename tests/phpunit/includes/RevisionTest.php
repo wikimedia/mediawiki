@@ -477,7 +477,8 @@ class RevisionTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			MIGRATION_OLD,
-			MediaWikiServices::getInstance()->getActorMigration()
+			MediaWikiServices::getInstance()->getActorMigration(),
+			MediaWikiServices::getInstance()->getContentHandlerFactory()
 		);
 		return $blobStore;
 	}

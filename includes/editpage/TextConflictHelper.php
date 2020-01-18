@@ -28,6 +28,9 @@ use Content;
 use ContentHandler;
 use Html;
 use IBufferingStatsdDataFactory;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MediaWikiServices;
+use MWUnknownContentModelException;
 use OutputPage;
 use Title;
 use User;
@@ -48,12 +51,12 @@ class TextConflictHelper {
 	/**
 	 * @var null|string
 	 */
-	public $contentModel = null;
+	public $contentModel;
 
 	/**
 	 * @var null|string
 	 */
-	public $contentFormat = null;
+	public $contentFormat;
 
 	/**
 	 * @var OutputPage
@@ -81,20 +84,38 @@ class TextConflictHelper {
 	protected $storedversion = '';
 
 	/**
+	 * @var IContentHandlerFactory
+	 */
+	private $contentHandlerFactory;
+
+	/**
 	 * @param Title $title
 	 * @param OutputPage $out
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param string $submitLabel
+	 * @param IContentHandlerFactory|null $contentHandlerFactory Required param with legacy support
+	 *
+	 * @throws MWUnknownContentModelException
 	 */
 	public function __construct( Title $title, OutputPage $out, IBufferingStatsdDataFactory $stats,
-		$submitLabel
+		$submitLabel, ?IContentHandlerFactory $contentHandlerFactory = null
 	) {
 		$this->title = $title;
 		$this->out = $out;
 		$this->stats = $stats;
 		$this->submitLabel = $submitLabel;
 		$this->contentModel = $title->getContentModel();
-		$this->contentFormat = ContentHandler::getForModelID( $this->contentModel )->getDefaultFormat();
+
+		if ( $contentHandlerFactory === null ) {
+			//wfDeprecated( __METHOD__, '1.35' );
+			$this->contentHandlerFactory = MediaWikiServices::getInstance()
+				->getContentHandlerFactory();
+		} else {
+			$this->contentHandlerFactory = $contentHandlerFactory;
+		}
+		$this->contentFormat = $this->contentHandlerFactory
+			->getContentHandler( $this->contentModel )
+			->getDefaultFormat();
 	}
 
 	/**
@@ -248,7 +269,7 @@ class TextConflictHelper {
 
 		$yourContent = $this->toEditContent( $this->yourtext );
 		$storedContent = $this->toEditContent( $this->storedversion );
-		$handler = ContentHandler::getForModelID( $this->contentModel );
+		$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
 		$diffEngine = $handler->createDifferenceEngine( $this->out );
 
 		$diffEngine->setContent( $yourContent, $storedContent );

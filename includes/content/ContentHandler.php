@@ -130,7 +130,8 @@ abstract class ContentHandler {
 	 *
 	 * @throws MWException If model ID or format is not supported or if the text can not be
 	 * unserialized using the format.
-	 * @return Content A Content object representing the text.
+	 * @throws MWContentSerializationException
+	 * @return Content A Content object representing the text.	 *
 	 */
 	public static function makeContent( $text, Title $title = null,
 		$modelId = null, $format = null ) {
@@ -142,9 +143,10 @@ abstract class ContentHandler {
 			$modelId = $title->getContentModel();
 		}
 
-		$handler = self::getForModelID( $modelId );
-
-		return $handler->unserializeContent( $text, $format );
+		return MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $modelId )
+			->unserializeContent( $text, $format );
 	}
 
 	/**
@@ -193,37 +195,41 @@ abstract class ContentHandler {
 	 * Returns the appropriate ContentHandler singleton for the given title.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.35, instead use
+	 *  ContentHandlerFactory::getContentHandler( $title->getContentModel() ).
 	 *
 	 * @param Title $title
 	 *
 	 * @return ContentHandler
+	 * @throws MWException
+	 * @throws MWUnknownContentModelException
 	 */
 	public static function getForTitle( Title $title ) {
-		$modelId = $title->getContentModel();
-
-		return self::getForModelID( $modelId );
+		return MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $title->getContentModel() );
 	}
 
 	/**
 	 * Returns the appropriate ContentHandler singleton for the given Content
 	 * object.
 	 *
+	 * @deprecated since 1.35, instead use
+	 *  ContentHandlerFactory::getContentHandler( $content->getModel() ).
+	 *
 	 * @since 1.21
 	 *
 	 * @param Content $content
 	 *
 	 * @return ContentHandler
+	 * @throws MWException
+	 * @throws MWUnknownContentModelException
 	 */
 	public static function getForContent( Content $content ) {
-		$modelId = $content->getModel();
-
-		return self::getForModelID( $modelId );
+		return MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $content->getModel() );
 	}
-
-	/**
-	 * @var array A Cache of ContentHandler instances by model id
-	 */
-	protected static $handlers;
 
 	/**
 	 * Returns the ContentHandler singleton for the given model ID. Use the
@@ -244,6 +250,9 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
+	 * @deprecated since 1.35, use ContentHandlerFactory::getContentHandler
+	 * @see  ContentHandlerFactory::getContentHandler()
+	 *
 	 * @param string $modelId The ID of the content model for which to get a
 	 *    handler. Use CONTENT_MODEL_XXX constants.
 	 *
@@ -252,54 +261,20 @@ abstract class ContentHandler {
 	 * @return ContentHandler The ContentHandler singleton for handling the model given by the ID.
 	 */
 	public static function getForModelID( $modelId ) {
-		global $wgContentHandlers;
-
-		if ( isset( self::$handlers[$modelId] ) ) {
-			return self::$handlers[$modelId];
-		}
-
-		if ( empty( $wgContentHandlers[$modelId] ) ) {
-			$handler = null;
-
-			Hooks::run( 'ContentHandlerForModelID', [ $modelId, &$handler ] );
-
-			if ( $handler === null ) {
-				throw new MWUnknownContentModelException( $modelId );
-			}
-
-			if ( !( $handler instanceof ContentHandler ) ) {
-				throw new MWException( "ContentHandlerForModelID must supply a ContentHandler instance" );
-			}
-		} else {
-			$classOrCallback = $wgContentHandlers[$modelId];
-
-			if ( is_callable( $classOrCallback ) ) {
-				$handler = call_user_func( $classOrCallback, $modelId );
-			} else {
-				$handler = new $classOrCallback( $modelId );
-			}
-
-			if ( !( $handler instanceof ContentHandler ) ) {
-				throw new MWException(
-					var_export( $classOrCallback, true ) . " from \$wgContentHandlers is not " .
-					"compatible with ContentHandler"
-				);
-			}
-		}
-
-		wfDebugLog( 'ContentHandler', 'Created handler for ' . $modelId
-			. ': ' . get_class( $handler ) );
-
-		self::$handlers[$modelId] = $handler;
-
-		return self::$handlers[$modelId];
+		return MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $modelId );
 	}
 
 	/**
+	 * @deprecated since 1.35 Please, use ContentHandlerFactory. Cleanup is not needed
+	 * @see ContentHandlerFactory
+	 *
 	 * Clean up handlers cache.
 	 */
 	public static function cleanupHandlersCache() {
-		self::$handlers = [];
+		// No-op: no longer needed, since the instance cache is in the
+		// ContentHandlerFactory service, and services get reset between tests
 	}
 
 	/**
@@ -328,27 +303,28 @@ abstract class ContentHandler {
 		return $msg->exists() ? $msg->plain() : $name;
 	}
 
+	/**
+	 * @deprecated since 1.35, use ContentHandlerFactory::getContentModels
+	 * @see ContentHandlerFactory::getContentModels
+	 *
+	 * @return string[]
+	 * @throws MWException
+	 * @throws MWUnknownContentModelException
+	 */
 	public static function getContentModels() {
-		global $wgContentHandlers;
-
-		$models = array_keys( $wgContentHandlers );
-		Hooks::run( 'GetContentModels', [ &$models ] );
-		return $models;
+		return MediaWikiServices::getInstance()->getContentHandlerFactory()->getContentModels();
 	}
 
+	/**
+	 * @return string[]
+	 * @throws MWException
+	 * @throws MWUnknownContentModelException
+	 *
+	 * @deprecated since 1.35, use ContentHandlerFactory::getAllContentFormats
+	 * @see ContentHandlerFactory::getAllContentFormats
+	 */
 	public static function getAllContentFormats() {
-		global $wgContentHandlers;
-
-		$formats = [];
-
-		foreach ( $wgContentHandlers as $model => $class ) {
-			$handler = self::getForModelID( $model );
-			$formats = array_merge( $formats, $handler->getSupportedFormats() );
-		}
-
-		$formats = array_unique( $formats );
-
-		return $formats;
+		return MediaWikiServices::getInstance()->getContentHandlerFactory()->getAllContentFormats();
 	}
 
 	// ------------------------------------------------------------------------
@@ -412,6 +388,7 @@ abstract class ContentHandler {
 	 * @param string|null $format The format used for serialization
 	 *
 	 * @return Content The Content object created by deserializing $blob
+	 * @throws MWContentSerializationException
 	 */
 	abstract public function unserializeContent( $blob, $format = null );
 

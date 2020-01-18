@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -76,6 +77,11 @@ class MovePage {
 	protected $repoGroup;
 
 	/**
+	 * @var IContentHandlerFactory
+	 */
+	private $contentHandlerFactory;
+
+	/**
 	 * Calling this directly is deprecated in 1.34. Use MovePageFactory instead.
 	 *
 	 * @param Title $oldTitle
@@ -86,6 +92,7 @@ class MovePage {
 	 * @param WatchedItemStoreInterface|null $watchedItems
 	 * @param PermissionManager|null $permMgr
 	 * @param RepoGroup|null $repoGroup
+	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 */
 	public function __construct(
 		Title $oldTitle,
@@ -95,7 +102,8 @@ class MovePage {
 		NamespaceInfo $nsInfo = null,
 		WatchedItemStoreInterface $watchedItems = null,
 		PermissionManager $permMgr = null,
-		RepoGroup $repoGroup = null
+		RepoGroup $repoGroup = null,
+		IContentHandlerFactory $contentHandlerFactory = null
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -109,6 +117,9 @@ class MovePage {
 			$watchedItems ?? MediaWikiServices::getInstance()->getWatchedItemStore();
 		$this->permMgr = $permMgr ?? MediaWikiServices::getInstance()->getPermissionManager();
 		$this->repoGroup = $repoGroup ?? MediaWikiServices::getInstance()->getRepoGroup();
+		$this->contentHandlerFactory = (
+			$contentHandlerFactory ?? MediaWikiServices::getInstance()->getContentHandlerFactory()
+		);
 	}
 
 	/**
@@ -205,7 +216,9 @@ class MovePage {
 				ContentHandler::getLocalizedName( $this->newTitle->getContentModel() )
 			);
 		} elseif (
-			!ContentHandler::getForTitle( $this->oldTitle )->canBeUsedOn( $this->newTitle )
+			!$this->contentHandlerFactory
+				->getContentHandler( $this->oldTitle->getContentModel() )
+				->canBeUsedOn( $this->newTitle )
 		) {
 			$status->fatal(
 				'content-not-allowed-here',
@@ -761,9 +774,12 @@ class MovePage {
 					wfMessage( 'category-move-redirect-override' )
 						->params( $nt->getPrefixedText() )->inContentLanguage()->plain() );
 			} else {
-				$contentHandler = ContentHandler::getForTitle( $this->oldTitle );
-				$redirectContent = $contentHandler->makeRedirectContent( $nt,
-					wfMessage( 'move-redirect-text' )->inContentLanguage()->plain() );
+				$redirectContent = $this->contentHandlerFactory
+					->getContentHandler( $this->oldTitle->getContentModel() )
+					->makeRedirectContent(
+						$nt,
+						wfMessage( 'move-redirect-text' )->inContentLanguage()->plain()
+					);
 			}
 
 			// NOTE: If this page's content model does not support redirects, $redirectContent will be null.

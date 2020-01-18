@@ -159,7 +159,10 @@ class SpecialDoubleRedirects extends QueryPage {
 				->getPermissionManager()
 				->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
-			ContentHandler::getForTitle( $titleA )->supportsDirectEditing()
+			MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $titleA->getContentModel() )
+				->supportsDirectEditing()
 		) {
 			$edit = $linkRenderer->makeKnownLink(
 				$titleA,

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Revision;
 use CommentStoreComment;
 use Content;
 use LogicException;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -134,7 +135,10 @@ class RevisionRendererTest extends MediaWikiTestCase {
 
 		$roleReg = new SlotRoleRegistry( $slotRoles );
 		$roleReg->defineRole( 'main', function () {
-			return new MainSlotRoleHandler( [] );
+			return new MainSlotRoleHandler(
+				[],
+				$this->createMock( IContentHandlerFactory::class )
+			);
 		} );
 		$roleReg->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
 

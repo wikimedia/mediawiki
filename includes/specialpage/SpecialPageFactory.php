@@ -313,7 +313,12 @@ class SpecialPageFactory {
 			}
 
 			if ( $this->options->get( 'ContentHandlerUseDB' ) ) {
-				$this->list['ChangeContentModel'] = \SpecialChangeContentModel::class;
+				$this->list['ChangeContentModel'] = [
+					'class' => \SpecialChangeContentModel::class,
+					'services' => [
+						'ContentHandlerFactory',
+					],
+				];
 			}
 
 			// Add extension special pages

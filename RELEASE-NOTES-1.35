@@ -100,6 +100,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   return their respective policies as a string.
 * The ResourceLoaderSiteModulePages and ResourceLoaderSiteStylesModulePages
   hooks were added to allow changing which wiki pages these modules contain.
+* ContentHandlerFactory for most ContentHandler static methods. It has been
+  added to the constructors for many classes to improve SOLID / GRASP.
 * …
 
 === External library changes in 1.35 ===
@@ -405,6 +407,14 @@ because of Phabricator reports.
 * ApiBase::validateLimit() and ApiBase::validateTimestamp() are deprecated.
   Use ApiParamValidator::validateValue() with an appropriate settings array
   instead.
+* ContentHandler (use ContentHandlerFactory):
+  - getForTitle
+  - getForContent
+  - getForModelID
+  - getContentModels
+  - getAllContentFormats
+  - protected $handler (not need anymore)
+  - cleanupHandlersCache (not need anymore)
 * $wgMemc is deprecated, use
   MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function

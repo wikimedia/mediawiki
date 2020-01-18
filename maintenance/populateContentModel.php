@@ -133,7 +133,10 @@ class PopulateContentModel extends Maintenance {
 		$key = "{$prefix}_id";
 
 		$count = count( $ids );
-		$format = ContentHandler::getForModelID( $model )->getDefaultFormat();
+		$format = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $model )
+			->getDefaultFormat();
 		$this->output( "Setting $count rows to $model / $format..." );
 		$dbw->update(
 			$table,
@@ -195,7 +198,9 @@ class PopulateContentModel extends Maintenance {
 				}
 				$lastId = $row->{$key};
 				try {
-					$handler = ContentHandler::getForTitle( $title );
+					$handler = MediaWikiServices::getInstance()
+						->getContentHandlerFactory()
+						->getContentHandler( $title->getContentModel() );
 				} catch ( MWException $e ) {
 					$this->error( "Invalid content model for $title" );
 					continue;

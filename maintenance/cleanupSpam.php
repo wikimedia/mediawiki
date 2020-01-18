@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -171,7 +172,9 @@ class CleanupSpam extends Maintenance {
 				);
 			} else {
 				// Didn't find a non-spammy revision, blank the page
-				$handler = ContentHandler::getForTitle( $title );
+				$handler = MediaWikiServices::getInstance()
+					->getContentHandlerFactory()
+					->getContentHandler( $title->getContentModel() );
 				$content = $handler->makeEmptyContent();
 
 				$this->output( "blanking\n" );

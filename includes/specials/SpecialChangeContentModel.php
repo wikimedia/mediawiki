@@ -1,11 +1,29 @@
 <?php
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 
 class SpecialChangeContentModel extends FormSpecialPage {
 
-	public function __construct() {
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/**
+	 * SpecialChangeContentModel constructor.
+	 * @param IContentHandlerFactory|null $contentHandlerFactory
+	 * @internal use @see SpecialPageFactory::getPage
+	 */
+	public function __construct( ?IContentHandlerFactory $contentHandlerFactory = null ) {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
+		$this->contentHandlerFactory = DeprecationHelper::newArgumentWithDeprecation(
+			__METHOD__,
+			'contentHandlerFactory',
+			'1.35',
+			$contentHandlerFactory,
+			function () {
+				return MediaWikiServices::getInstance()->getContentHandlerFactory();
+			}
+		);
 	}
 
 	public function doesWrites() {
@@ -141,10 +159,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	private function getOptionsForTitle( Title $title = null ) {
-		$models = ContentHandler::getContentModels();
+		$models = $this->contentHandlerFactory->getContentModels();
 		$options = [];
 		foreach ( $models as $model ) {
-			$handler = ContentHandler::getForModelID( $model );
+			$handler = $this->contentHandlerFactory->getContentHandler( $model );
 			if ( !$handler->supportsDirectEditing() ) {
 				continue;
 			}
@@ -218,7 +236,9 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			}
 		} else {
 			// Page doesn't exist, create an empty content object
-			$newContent = ContentHandler::getForModelID( $data['model'] )->makeEmptyContent();
+			$newContent = $this->contentHandlerFactory
+				->getContentHandler( $data['model'] )
+				->makeEmptyContent();
 		}
 
 		// All other checks have passed, let's check rate limits

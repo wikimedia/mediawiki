@@ -27,6 +27,7 @@ namespace MediaWiki\Revision;
 
 use ActorMigration;
 use CommentStore;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use Psr\Log\LoggerInterface;
@@ -75,6 +76,9 @@ class RevisionStoreFactory {
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
 	/**
 	 * @param ILBFactory $dbLoadBalancerFactory
 	 * @param BlobStoreFactory $blobStoreFactory
@@ -87,6 +91,7 @@ class RevisionStoreFactory {
 	 * @param LoggerInterface $logger
 	 * @param bool $contentHandlerUseDB see {@link $wgContentHandlerUseDB}. Must be the same
 	 *        for all wikis in the cluster. Will go away after MCR migration.
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
 		ILBFactory $dbLoadBalancerFactory,
@@ -98,7 +103,8 @@ class RevisionStoreFactory {
 		ActorMigration $actorMigration,
 		$migrationStage,
 		LoggerInterface $logger,
-		$contentHandlerUseDB
+		$contentHandlerUseDB,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		Assert::parameterType( 'integer', $migrationStage, '$migrationStage' );
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
@@ -111,6 +117,7 @@ class RevisionStoreFactory {
 		$this->mcrMigrationStage = $migrationStage;
 		$this->logger = $logger;
 		$this->contentHandlerUseDB = $contentHandlerUseDB;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
@@ -133,6 +140,7 @@ class RevisionStoreFactory {
 			$this->slotRoleRegistry,
 			$this->mcrMigrationStage,
 			$this->actorMigration,
+			$this->contentHandlerFactory,
 			$dbDomain
 		);
 

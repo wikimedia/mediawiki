@@ -438,10 +438,13 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	/**
 	 * @since 1.24
 	 * @return ContentHandler
+	 * @throws MWUnknownContentModelException
 	 */
 	public function getContentHandler() {
 		if ( $this->contentHandler === null ) {
-			$this->contentHandler = ContentHandler::getForModelID( $this->getModel() );
+			$this->contentHandler = MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $this->getModel() );
 		}
 
 		return $this->contentHandler;

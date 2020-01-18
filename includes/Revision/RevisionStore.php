@@ -36,6 +36,7 @@ use Hooks;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
@@ -138,6 +139,9 @@ class RevisionStore
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
 	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
@@ -155,6 +159,7 @@ class RevisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param int $mcrMigrationStage An appropriate combination of SCHEMA_COMPAT_XXX flags
 	 * @param ActorMigration $actorMigration
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
 	 */
 	public function __construct(
@@ -167,6 +172,7 @@ class RevisionStore
 		SlotRoleRegistry $slotRoleRegistry,
 		$mcrMigrationStage,
 		ActorMigration $actorMigration,
+		IContentHandlerFactory $contentHandlerFactory,
 		$dbDomain = false
 	) {
 		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
@@ -204,6 +210,7 @@ class RevisionStore
 		$this->actorMigration = $actorMigration;
 		$this->dbDomain = $dbDomain;
 		$this->logger = new NullLogger();
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
@@ -896,7 +903,9 @@ class RevisionStore
 				$this->assertCrossWikiContentLoadingIsSafe();
 
 				$defaultModel = ContentHandler::getDefaultModelFor( $title );
-				$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
+				$defaultFormat = $this->contentHandlerFactory
+					->getContentHandler( $defaultModel )
+					->getDefaultFormat();
 
 				$revisionRow['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
 				$revisionRow['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
@@ -1008,8 +1017,9 @@ class RevisionStore
 
 			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
 			$defaultModel = $roleHandler->getDefaultModel( $title );
-			$defaultHandler = ContentHandler::getForModelID( $defaultModel );
-			$defaultFormat = $defaultHandler->getDefaultFormat();
+			$defaultFormat = $this->contentHandlerFactory
+				->getContentHandler( $defaultModel )
+				->getDefaultFormat();
 
 			if ( $model != $defaultModel ) {
 				throw new MWException( "Can't save non-default content model with "
@@ -1444,11 +1454,9 @@ class RevisionStore
 			}
 		}
 
-		// Unserialize content
-		$handler = ContentHandler::getForModelID( $slot->getModel() );
-
-		$content = $handler->unserializeContent( $data, $blobFormat );
-		return $content;
+		return $this->contentHandlerFactory
+			->getContentHandler( $slot->getModel() )
+			->unserializeContent( $data, $blobFormat );
 	}
 
 	/**

@@ -133,7 +133,10 @@ class SpecialBrokenRedirects extends QueryPage {
 			// check user permissions
 			$permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
-			ContentHandler::getForTitle( $fromObj )->supportsDirectEditing()
+			MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $fromObj->getContentModel() )
+				->supportsDirectEditing()
 		) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
