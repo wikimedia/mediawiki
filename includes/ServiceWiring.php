@@ -173,7 +173,10 @@ return [
 	'ContentHandlerFactory' => function ( MediaWikiServices $services ) : IContentHandlerFactory {
 		$contentHandlerConfig = $services->getMainConfig()->get( 'ContentHandlers' );
 
-		return new ContentHandlerFactory( $contentHandlerConfig );
+		return new ContentHandlerFactory(
+			$contentHandlerConfig,
+			$services->getObjectFactory()
+		);
 	},
 
 	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
