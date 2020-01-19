@@ -88,7 +88,7 @@ use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory;
 
 return [
-	'ActorMigration' => function ( MediaWikiServices $services ) : ActorMigration {
+	'ActorMigration' => function () : ActorMigration {
 		return new ActorMigration( SCHEMA_COMPAT_NEW );
 	},
 
@@ -515,8 +515,7 @@ return [
 		);
 	},
 
-	'MessageFormatterFactory' =>
-	function ( MediaWikiServices $services ) : IMessageFormatterFactory {
+	'MessageFormatterFactory' => function () : IMessageFormatterFactory {
 		return new MessageFormatterFactory();
 	},
 
@@ -940,7 +939,7 @@ return [
 		return new TempFSFileFactory( $services->getMainConfig()->get( 'TmpDirectory' ) );
 	},
 
-	'TitleFactory' => function ( MediaWikiServices $services ) : TitleFactory {
+	'TitleFactory' => function () : TitleFactory {
 		return new TitleFactory();
 	},
 
