@@ -296,6 +296,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function profilePreferences(
 		User $user, IContextSource $context, &$defaultPreferences, $canIPUseHTTPS
 	) {
+		$services = MediaWikiServices::getInstance();
+
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
 
@@ -431,7 +433,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		$languages = Language::fetchLanguageNames( null, 'mwfile' );
+		$languages = $services->getLanguageNameUtils()->getLanguageNames( null, 'mwfile' );
 		$languageCode = $this->options->get( 'LanguageCode' );
 		if ( !array_key_exists( $languageCode, $languages ) ) {
 			$languages[$languageCode] = $languageCode;
@@ -502,7 +504,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		// show a preview of the old signature first
-		$oldsigWikiText = MediaWikiServices::getInstance()->getParser()->preSaveTransform(
+		$oldsigWikiText = $services->getParser()->preSaveTransform(
 			'~~~',
 			$context->getTitle(),
 			$user,
