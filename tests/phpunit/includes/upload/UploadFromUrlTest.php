@@ -36,6 +36,63 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertFalse( $job );
 	}
 
+	public function testIsAllowedHostEmpty() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [],
+		] );
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.bar' ) );
+	}
+
+	public function testIsAllowedHostDirectMatch() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [
+				'foo.baz',
+				'bar.example.baz',
+			],
+		] );
+
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://example.com' ) );
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://.foo.baz' ) );
+
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://example.baz' ) );
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://bar.example.baz' ) );
+	}
+
+	public function testIsAllowedHostLastWildcard() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [
+				'*.baz',
+			],
+		] );
+
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.example' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.example.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo/bar.baz' ) );
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://subdomain.foo.baz' ) );
+	}
+
+	public function testIsAllowedHostWildcardInMiddle() {
+		$this->setMwGlobals( [
+			'wgCopyUploadsDomains' => [
+				'foo.*.baz',
+			],
+		] );
+
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.bar.bar.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.bar.baz.baz' ) );
+		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.com/.baz' ) );
+
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.example.baz' ) );
+		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.bar.baz' ) );
+	}
+
 	/**
 	 * @depends testClearQueue
 	 */
