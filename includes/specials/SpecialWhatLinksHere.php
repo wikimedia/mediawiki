@@ -173,24 +173,24 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			];
 			$on['rd_namespace'] = $target->getNamespace();
 			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
-			$subQuery = $dbr->buildSelectSubquery(
-				[ $table, 'redirect' ],
-				[ $fromCol, 'rd_from', 'rd_fragment' ],
-				$conds[$table],
-				__CLASS__ . '::showIndirectLinks',
-				[ 'ORDER BY' => $fromCol, 'LIMIT' => 2 * $queryLimit, ],
-				[
-					'redirect' => [ 'LEFT JOIN', $on ]
-				]
-			);
-			return $dbr->select(
-				[ 'page', 'temp_backlink_range' => $subQuery ],
-				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'rd_fragment', 'page_is_redirect' ],
-				[],
-				__CLASS__ . '::showIndirectLinks',
-				[ 'ORDER BY' => 'page_id', 'LIMIT' => $queryLimit ],
-				[ 'page' => [ 'JOIN', "$fromCol = page_id" ] ]
-			);
+			$subQuery = $dbr->newSelectQueryBuilder()
+				->table( $table )
+				->fields( [ $fromCol, 'rd_from', 'rd_fragment' ] )
+				->conds( $conds[$table] )
+				->orderBy( $fromCol )
+				->limit( 2 * $queryLimit )
+				->leftJoin( 'redirect', 'redirect', $on )
+				->join( 'page', 'page', "$fromCol = page_id" );
+
+			return $dbr->newSelectQueryBuilder()
+				->table( $subQuery, 'temp_backlink_range' )
+				->join( 'page', 'page', "$fromCol = page_id" )
+				->fields( [ 'page_id', 'page_namespace', 'page_title',
+					'rd_from', 'rd_fragment', 'page_is_redirect' ] )
+				->orderBy( 'page_id' )
+				->limit( $queryLimit )
+				->caller( __CLASS__ . '::showIndirectLinks' )
+				->fetchResultSet();
 		};
 
 		if ( $fetchredirs ) {
