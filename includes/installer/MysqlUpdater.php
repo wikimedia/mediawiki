@@ -398,7 +398,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'ipblocks_restrictions', 'patch-ipblocks_restrictions-table.sql' ],
 			[ 'migrateImageCommentTemp' ],
 
-			// 1,33
+			// 1.33
 			[ 'dropField', 'change_tag', 'ct_tag', 'patch-drop-ct_tag.sql' ],
 			[ 'dropTable', 'valid_tag' ],
 			[ 'dropTable', 'tag_summary' ],
