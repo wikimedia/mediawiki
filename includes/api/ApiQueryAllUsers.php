@@ -49,7 +49,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
 
 		$db = $this->getDB();
-		$commentStore = CommentStore::getStore();
 
 		$prop = $params['prop'];
 		if ( $prop !== null ) {
