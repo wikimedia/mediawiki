@@ -150,13 +150,11 @@ class ForkController {
 	}
 
 	protected function prepareEnvironment() {
-		global $wgMemc;
 		// Don't share DB, storage, or memcached connections
 		MediaWikiServices::resetChildProcessServices();
 		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
 		RedisConnectionPool::destroySingletons();
-		$wgMemc = null;
 	}
 
 	/**
@@ -191,8 +189,6 @@ class ForkController {
 	}
 
 	protected function initChild() {
-		global $wgMemc, $wgMainCacheType;
-		$wgMemc = wfGetCache( $wgMainCacheType );
 		$this->children = null;
 		pcntl_signal( SIGTERM, SIG_DFL );
 	}
