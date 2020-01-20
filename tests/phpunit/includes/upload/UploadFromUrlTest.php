@@ -1,39 +1,28 @@
 <?php
 
 /**
- * @group Broken
+ * @group large
  * @group Upload
  * @group Database
  *
  * @covers UploadFromUrl
  */
 class UploadFromUrlTest extends ApiTestCase {
+	private $user;
+
 	protected function setUp() : void {
 		parent::setUp();
+		$this->user = self::$users['sysop']->getUser();
 
 		$this->setMwGlobals( [
 			'wgEnableUploads' => true,
 			'wgAllowCopyUploads' => true,
 		] );
+		$this->setGroupPermissions( 'sysop', 'upload_by_url', true );
 
 		if ( wfLocalFile( 'UploadFromUrlTest.png' )->exists() ) {
 			$this->deleteFile( 'UploadFromUrlTest.png' );
 		}
-	}
-
-	protected function doApiRequest( array $params, array $unused = null,
-		$appendModule = false, User $user = null, $tokenType = null
-	) {
-		global $wgRequest;
-
-		$req = new FauxRequest( $params, true, $wgRequest->getSession() );
-		$module = new ApiMain( $req, true );
-		$module->execute();
-
-		return [
-			$module->getResult()->getResultData( null, [ 'Strip' => 'all' ] ),
-			$req
-		];
 	}
 
 	/**
@@ -60,7 +49,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			] );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "The token parameter must be set", $e->getMessage() );
+			$this->assertEquals( 'The "token" parameter must be set.', $e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
@@ -72,7 +61,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			], $data );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "One of the parameters sessionkey, file, url is required",
+			$this->assertEquals( 'One of the parameters "filekey", "file" and "url" is required.',
 				$e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
@@ -86,7 +75,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			], $data );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "The filename parameter must be set", $e->getMessage() );
+			$this->assertEquals( 'The "filename" parameter must be set.', $e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
@@ -101,7 +90,8 @@ class UploadFromUrlTest extends ApiTestCase {
 			], $data );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
-			$this->assertEquals( "Permission denied", $e->getMessage() );
+			$this->assertStringStartsWith( "The action you have requested is limited to users in the group:",
+				$e->getMessage() );
 		}
 		$this->assertTrue( $exception, "Got exception" );
 	}
@@ -112,9 +102,6 @@ class UploadFromUrlTest extends ApiTestCase {
 	public function testSyncDownload( $data ) {
 		$token = $this->user->getEditToken();
 
-		$job = JobQueueGroup::singleton()->pop();
-		$this->assertFalse( $job, 'Starting with an empty jobqueue' );
-
 		$this->user->addGroup( 'users' );
 		$data = $this->doApiRequest( [
 			'action' => 'upload',
@@ -123,9 +110,6 @@ class UploadFromUrlTest extends ApiTestCase {
 			'ignorewarnings' => true,
 			'token' => $token,
 		], $data );
-
-		$job = JobQueueGroup::singleton()->pop();
-		$this->assertFalse( $job );
 
 		$this->assertEquals( 'Success', $data[0]['upload']['result'] );
 		$this->deleteFile( 'UploadFromUrlTest.png' );
