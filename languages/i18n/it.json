@@ -2603,7 +2603,7 @@
 	"ipaddressorusername": "Indirizzo IP o nome utente:",
 	"ipbreason": "Motivo:",
 	"ipbreason-dropdown": "*Motivazioni più comuni per i blocchi\n** Inserimento di informazioni false\n** Rimozione di contenuti dalle pagine\n** Collegamenti promozionali a siti esterni\n** Inserimento di contenuti privi di senso\n** Comportamenti intimidatori o molestie\n** Uso indebito di utenze multiple\n** Nome utente non consono",
-	"ipb-hardblock": "Impedisci agli utenti registrati di contribuire da questo indirizzo IP",
+	"ipb-hardblock": "Applica blocco agli utenti registrati da questo indirizzo IP",
 	"ipbcreateaccount": "Creazione di utenze",
 	"ipbemailban": "Invio di email",
 	"ipbenableautoblock": "Blocca automaticamente l'ultimo indirizzo IP usato dall'utente e i successivi con cui vengono tentate modifiche",

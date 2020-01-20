@@ -2586,7 +2586,7 @@
 	"ipaddressorusername": "IP 位址或使用者名稱：",
 	"ipbreason": "原因：",
 	"ipbreason-dropdown": "*常見的封鎖原因\n** 填寫不實資訊\n** 刪除頁面內容\n** 散佈外部廣告連結\n** 在頁面填寫無意義文字\n** 無禮的行為、攻擊／騷擾別人\n** 濫用多個帳號\n** 使用不受歡迎的使用者名稱",
-	"ipb-hardblock": "禁止使用此 IP 位址登入的使用者編輯",
+	"ipb-hardblock": "套用封鎖此 IP 位址做使用者登入",
 	"ipbcreateaccount": "帳號建立",
 	"ipbemailban": "傳送電子郵件",
 	"ipbenableautoblock": "自動封鎖此使用者最後使用的 IP 位址，以及所有之後嘗試編輯使用的 IP 位址",

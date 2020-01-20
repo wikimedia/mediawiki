@@ -103,7 +103,7 @@
 	"exif-gpsaltitude": "अल्टिट्यूड",
 	"exif-gpstimestamp": "GPS समय (एटोमिक क्लॉक)",
 	"exif-gpssatellites": "मापनके लिये इस्तेमाल किया हुआ सैटेलाईट",
-	"exif-gpsstatus": "प्राप्तकर्ता की स्थिती",
+	"exif-gpsstatus": "प्राप्तकर्ता की स्थिति",
 	"exif-gpsmeasuremode": "मेज़रमेंट मोड",
 	"exif-gpsdop": "मेज़रमेंट प्रिसिजन",
 	"exif-gpsspeedref": "गती एकक",
