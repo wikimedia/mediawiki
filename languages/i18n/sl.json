@@ -2494,7 +2494,7 @@
 	"ipaddressorusername": "IP-naslov ali uporabniško ime",
 	"ipbreason": "Razlog:",
 	"ipbreason-dropdown": "*Razlogi za blokado\n** vandalizem\n** dodajanje napačnih/lažnih podatkov\n** brisanje strani\n** dodajanje nepotrebnih zunanjih povezav\n** dodajanje neumnosti v besedilo\n** nadlegovanje/osebni napadi\n** neprimerno uporabniško ime",
-	"ipb-hardblock": "Prepreči prijavljenim uporabnikom urejati s tega IP-naslova",
+	"ipb-hardblock": "Uveljavi blokado prijavljenim uporabnikom s tem IP-naslovom",
 	"ipbcreateaccount": "Ustvarjanje računa",
 	"ipbemailban": "Pošiljanje e-pošte",
 	"ipbenableautoblock": "Samodejno blokiraj zadnji IP-naslov tega uporabnika in vse naslednje naslove, ki jih bodo hoteli uporabiti",

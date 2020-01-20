@@ -1753,6 +1753,7 @@
 	"ipb-sitewide": "En omna situo",
 	"ipb-partial": "Partala",
 	"ipb-sitewide-help": "Omna pagini en ca Wiki ed altra kontributaji.",
+	"ipb-partial-help": "Specifika pagini o 'namespaces'.",
 	"badipaddress": "IP-adreso ne esas valida",
 	"blockipsuccesssub": "Blokusado sucesis",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] blokusesis.<br />\nVidez [[Special:BlockList|IP-blokuslisto]] por revizor blokusadi.",

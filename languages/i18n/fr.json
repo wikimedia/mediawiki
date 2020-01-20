@@ -2674,7 +2674,7 @@
 	"ipaddressorusername": "Adresse IP ou nom d’utilisateur :",
 	"ipbreason": "Motif :",
 	"ipbreason-dropdown": "* Motifs de blocage les plus fréquents :\n** insertion de fausses informations,\n** suppression injustifiée de contenu des pages,\n** insertion répétée de liens externes publicitaires (pollupostage),\n** insertion de contenu sans aucun sens et de déchets dans les pages,\n** tentative d’intimidation ou de harcèlement,\n** abus d’utilisation de comptes multiples,\n** nom d’utilisateur inacceptable, injurieux ou diffamant.",
-	"ipb-hardblock": "Empêcher les utilisateurs connectés de modifier en utilisant cette adresse IP",
+	"ipb-hardblock": "Appliquer le blocage aux utilisateurs connectés en utilisant cette adresse IP",
 	"ipbcreateaccount": "Création de compte",
 	"ipbemailban": "Envoi de courriel",
 	"ipbenableautoblock": "Bloquer automatiquement la dernière adresse IP utilisée par cet utilisateur et toutes les adresses IP ultérieures qu’il pourrait utiliser",
