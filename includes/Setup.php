@@ -749,6 +749,10 @@ if ( $wgCommandLineMode ) {
 	wfDebug( $debug );
 }
 
+/**
+ * @var BagOStuff $wgMemc
+ * @deprecated since 1.35, use the LocalServerObjectCache service instead
+ */
 $wgMemc = ObjectCache::getLocalClusterInstance();
 $messageMemc = wfGetMessageCacheStorage();
 
