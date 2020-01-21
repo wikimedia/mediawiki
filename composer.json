@@ -74,7 +74,6 @@
 		"monolog/monolog": "~1.25.3",
 		"nikic/php-parser": "4.3.0",
 		"nmred/kafka-php": "0.1.5",
-		"phpunit/php-invoker": "^2.0",
 		"phpunit/phpunit": "^7.5.13",
 		"psy/psysh": "0.9.12",
 		"seld/jsonlint": "1.7.1",
