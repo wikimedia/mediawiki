@@ -236,6 +236,30 @@ class UIDGenerator {
 	}
 
 	/**
+	 * Get timestamp in a specified format from UUIDv1
+	 *
+	 * @param string $uuid the UUID to get the timestamp from
+	 * @param int $format the format to convert the timestamp to. Default: TS_MW
+	 * @return bool|string timestamp in requested format or false
+	 */
+	public static function getTimestampFromUUIDv1( string $uuid, int $format = TS_MW ) {
+		$components = [];
+		if ( !preg_match(
+			'/^([0-9a-f]{8})-([0-9a-f]{4})-(1[0-9a-f]{3})-([89ab][0-9a-f]{3})-([0-9a-f]{12})$/',
+			$uuid,
+			$components )
+		) {
+			throw new InvalidArgumentException( "Invalid UUIDv1 {$uuid}" );
+		}
+
+		$timestamp = hexdec( substr( $components[3], 1 ) . $components[2] . $components[1] );
+		// The 60 bit timestamp value is constructed from fields of this UUID.
+		// The timestamp is measured in 100-nanosecond units since midnight, October 15, 1582 UTC.
+		$unixTime = ( $timestamp - 0x01b21dd213814000 ) / 1e7;
+		return wfTimestamp( $format, $unixTime );
+	}
+
+	/**
 	 * @param array $info Result of UIDGenerator::getTimeAndDelay()
 	 * @return string 128 bits
 	 */
