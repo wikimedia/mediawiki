@@ -2570,7 +2570,7 @@
 	"ipaddressorusername": "Endereço IP ou nome de utilizador:",
 	"ipbreason": "Motivo:",
 	"ipbreason-dropdown": "*Razões comuns para um bloqueio\n** Inserção de informações falsas\n** Remoção de conteúdos de páginas\n** Inserção de \"spam\" para sítios externos\n** Inserção de conteúdo sem sentido/incompreensível nas páginas\n** Comportamento intimidador/inoportuno\n** Uso abusivo de contas múltiplas\n** Nome de utilizador inaceitável",
-	"ipb-hardblock": "Impedir que utilizadores autenticados editem a partir deste endereço IP",
+	"ipb-hardblock": "Aplicar bloqueio aos utilizadores autenticados deste endereço de IP",
 	"ipbcreateaccount": "Criação de contas",
 	"ipbemailban": "Enviar correio eletrónico",
 	"ipbenableautoblock": "Bloquear automaticamente o endereço IP mais recente deste utilizador e todos os endereços IP subsequentes a partir dos quais ele tente editar",
