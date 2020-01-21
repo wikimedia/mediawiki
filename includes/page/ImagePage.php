@@ -439,14 +439,15 @@ class ImagePage extends Article {
 
 				if ( $isMulti ) {
 					$count = $this->displayImg->pageCount();
+					$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 					if ( $page > 1 ) {
 						$label = $this->getContext()->msg( 'imgmultipageprev' )->text();
 						// on the client side, this link is generated in ajaxifyPageNavigation()
 						// in the mediawiki.page.image.pagination module
-						$link = Linker::linkKnown(
+						$link = $linkRenderer->makeKnownLink(
 							$this->getTitle(),
-							htmlspecialchars( $label ),
+							$label,
 							[],
 							[ 'page' => $page - 1 ]
 						);
@@ -464,9 +465,9 @@ class ImagePage extends Article {
 
 					if ( $page < $count ) {
 						$label = $this->getContext()->msg( 'imgmultipagenext' )->text();
-						$link = Linker::linkKnown(
+						$link = $linkRenderer->makeKnownLink(
 							$this->getTitle(),
-							htmlspecialchars( $label ),
+							$label,
 							[],
 							[ 'page' => $page + 1 ]
 						);
@@ -877,6 +878,8 @@ EOT
 		// Sort the list by namespace:title
 		usort( $rows, [ $this, 'compare' ] );
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		// Create links for every element
 		$currentCount = 0;
 		foreach ( $rows as $element ) {
@@ -890,7 +893,7 @@ EOT
 			if ( isset( $redirects[$element->page_title] ) ) {
 				$query['redirect'] = 'no';
 			}
-			$link = Linker::linkKnown(
+			$link = $linkRenderer->makeKnownLink(
 				Title::makeTitle( $element->page_namespace, $element->page_title ),
 				null, [], $query
 			);
@@ -911,7 +914,8 @@ EOT
 						break;
 					}
 
-					$link2 = Linker::linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
+					$link2 = $linkRenderer->makeKnownLink(
+						Title::makeTitle( $row->page_namespace, $row->page_title ) );
 					$li .= Html::rawElement(
 						'li',
 						[ 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ],
@@ -960,13 +964,15 @@ EOT
 		);
 		$out->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		/**
 		 * @var File $file
 		 */
 		foreach ( $dupes as $file ) {
 			$fromSrc = '';
 			if ( $file->isLocal() ) {
-				$link = Linker::linkKnown( $file->getTitle() );
+				$link = $linkRenderer->makeKnownLink( $file->getTitle() );
 			} else {
 				$link = Linker::makeExternalLink( $file->getDescriptionUrl(),
 					$file->getTitle()->getPrefixedText() );

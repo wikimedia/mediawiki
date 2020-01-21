@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Edit\PreparedEdit;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -127,6 +128,11 @@ class Article implements Page {
 	protected $viewIsRenderAction = false;
 
 	/**
+	 * @var LinkRenderer
+	 */
+	protected $linkRenderer;
+
+	/**
 	 * Constructor and clear the article
 	 * @param Title $title Reference to a Title object.
 	 * @param int|null $oldId Revision ID, null to fetch from request, zero for current
@@ -134,6 +140,7 @@ class Article implements Page {
 	public function __construct( Title $title, $oldId = null ) {
 		$this->mOldId = $oldId;
 		$this->mPage = $this->newPage( $title );
+		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 	}
 
 	/**
@@ -1105,7 +1112,7 @@ class Article implements Page {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
 			if ( Hooks::run( 'ArticleViewRedirect', [ &$articlePage ] ) ) {
-				$redir = Linker::linkKnown(
+				$redir = $this->linkRenderer->makeKnownLink(
 					$this->mRedirectedFrom,
 					null,
 					[],
@@ -1340,9 +1347,9 @@ class Article implements Page {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 		}
 
-		$link = Linker::linkKnown(
+		$link = $this->linkRenderer->makeKnownLink(
 			$title,
-			$markPatrolledMsg->escaped(),
+			$markPatrolledMsg->text(),
 			[],
 			[
 				'action' => 'markpatrolled',
@@ -1605,17 +1612,17 @@ class Article implements Page {
 
 		$lnk = $current
 			? $context->msg( 'currentrevisionlink' )->escaped()
-			: Linker::linkKnown(
+			: $this->linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'currentrevisionlink' )->escaped(),
+				$context->msg( 'currentrevisionlink' )->text(),
 				[],
 				$extraParams
 			);
 		$curdiff = $current
 			? $context->msg( 'diff' )->escaped()
-			: Linker::linkKnown(
+			: $this->linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'diff' )->escaped(),
+				$context->msg( 'diff' )->text(),
 				[],
 				[
 					'diff' => 'cur',
@@ -1625,9 +1632,9 @@ class Article implements Page {
 		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
 		$prevExist = (bool)$rl->getPreviousRevision( $revision->getRevisionRecord() );
 		$prevlink = $prevExist
-			? Linker::linkKnown(
+			? $this->linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'previousrevision' )->escaped(),
+				$context->msg( 'previousrevision' )->text(),
 				[],
 				[
 					'direction' => 'prev',
@@ -1636,9 +1643,9 @@ class Article implements Page {
 			)
 			: $context->msg( 'previousrevision' )->escaped();
 		$prevdiff = $prevExist
-			? Linker::linkKnown(
+			? $this->linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'diff' )->escaped(),
+				$context->msg( 'diff' )->text(),
 				[],
 				[
 					'diff' => 'prev',
@@ -1648,9 +1655,9 @@ class Article implements Page {
 			: $context->msg( 'diff' )->escaped();
 		$nextlink = $current
 			? $context->msg( 'nextrevision' )->escaped()
-			: Linker::linkKnown(
+			: $this->linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'nextrevision' )->escaped(),
+				$context->msg( 'nextrevision' )->text(),
 				[],
 				[
 					'direction' => 'next',
@@ -1659,9 +1666,9 @@ class Article implements Page {
 			);
 		$nextdiff = $current
 			? $context->msg( 'diff' )->escaped()
-			: Linker::linkKnown(
+			: $this->linkRenderer->makeKnownLink(
 				$this->getTitle(),
-				$context->msg( 'diff' )->escaped(),
+				$context->msg( 'diff' )->text(),
 				[],
 				[
 					'diff' => 'next',
@@ -1713,7 +1720,7 @@ class Article implements Page {
 	 *
 	 * @since 1.23
 	 * @param Language $lang
-	 * @param Title|array $target Destination(s) to redirect
+	 * @param Title|Title[] $target Destination(s) to redirect
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
 	 * @return string Containing HTML with redirect link
 	 */
@@ -1722,17 +1729,29 @@ class Article implements Page {
 			$target = [ $target ];
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		$html = '<ul class="redirectText">';
 		/** @var Title $title */
 		foreach ( $target as $title ) {
-			$html .= '<li>' . Linker::link(
-				$title,
-				htmlspecialchars( $title->getFullText() ),
-				[],
-				// Make sure wiki page redirects are not followed
-				$title->isRedirect() ? [ 'redirect' => 'no' ] : [],
-				( $forceKnown ? [ 'known', 'noclasses' ] : [] )
-			) . '</li>';
+			if ( $forceKnown ) {
+				$link = $linkRenderer->makeKnownLink(
+					$title,
+					$title->getFullText(),
+					[],
+					// Make sure wiki page redirects are not followed
+					$title->isRedirect() ? [ 'redirect' => 'no' ] : []
+				);
+			} else {
+				$link = $linkRenderer->makeLink(
+					$title,
+					$title->getFullText(),
+					[],
+					// Make sure wiki page redirects are not followed
+					$title->isRedirect() ? [ 'redirect' => 'no' ] : []
+				);
+			}
+			$html .= '<li>' . $link . '</li>';
 		}
 		$html .= '</ul>';
 
@@ -1900,8 +1919,9 @@ class Article implements Page {
 			$context->getOutput()->addHTML(
 				'<strong class="mw-delete-warning-revisions">' .
 				$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
-				$context->msg( 'word-separator' )->escaped() . Linker::linkKnown( $title,
-					$context->msg( 'history' )->escaped(),
+				$context->msg( 'word-separator' )->escaped() . $this->linkRenderer->makeKnownLink(
+					$title,
+					$context->msg( 'history' )->text(),
 					[],
 					[ 'action' => 'history' ] ) .
 				'</strong>'
@@ -2076,9 +2096,9 @@ class Article implements Page {
 		);
 
 		if ( $permissionManager->userHasRight( $user, 'editinterface' ) ) {
-			$link = Linker::linkKnown(
+			$link = $this->linkRenderer->makeKnownLink(
 				$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
-				wfMessage( 'delete-edit-reasonlist' )->escaped(),
+				wfMessage( 'delete-edit-reasonlist' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
