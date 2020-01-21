@@ -1,6 +1,6 @@
 <?php
 
-class ArticleTest extends MediaWikiUnitTestCase {
+class ArticleTest extends \MediaWikiTestCase {
 
 	/**
 	 * @var Title

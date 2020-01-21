@@ -114,13 +114,15 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			} elseif ( $this->mHideBadImages && MediaWikiServices::getInstance()->getBadFileLookup()
 				->isBadFile( $nt->getDBkey(), $this->getContextTitle() )
 			) {
+				if ( $this->mParser instanceof Parser ) {
+					$linkRenderer = $this->mParser->getLinkRenderer();
+				} else {
+					$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+				}
 				# The image is blacklisted, just show it as a text link.
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
 					( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
-					Linker::linkKnown(
-						$nt,
-						htmlspecialchars( $nt->getText() )
-					) .
+					$linkRenderer->makeKnownLink( $nt, $nt->getText() ) .
 					'</div>';
 			} else {
 				$thumb = $img->transform( $transformOptions );
@@ -223,14 +225,17 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * @return string HTML
 	 */
 	protected function getCaptionHtml( Title $nt, Language $lang ) {
+		if ( $this->mParser instanceof Parser ) {
+			$linkRenderer = $this->mParser->getLinkRenderer();
+		} else {
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		}
 		// Preloaded into LinkCache in toHTML
-		return Linker::linkKnown(
+		return $linkRenderer->makeKnownLink(
 			$nt,
-			htmlspecialchars(
-				is_int( $this->getCaptionLength() ) ?
-					$lang->truncateForVisual( $nt->getText(), $this->getCaptionLength() ) :
-					$nt->getText()
-			),
+			is_int( $this->getCaptionLength() ) ?
+				$lang->truncateForVisual( $nt->getText(), $this->getCaptionLength() ) :
+				$nt->getText(),
 			[
 				'class' => 'galleryfilename' .
 					( $this->getCaptionLength() === true ? ' galleryfilename-truncate' : '' )
