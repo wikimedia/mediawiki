@@ -186,4 +186,37 @@ class UIDGeneratorTest extends PHPUnit\Framework\TestCase {
 			$lastId = $id;
 		}
 	}
+
+	public function provideGetTimestampFromUUIDv1() {
+		yield [ '65d143b0-3c7a-11ea-b77f-2e728ce88125', '20200121181818' ];
+	}
+
+	/**
+	 * @param string $uuid
+	 * @param string $ts
+	 * @dataProvider provideGetTimestampFromUUIDv1
+	 * @covers UIDGenerator::getTimestampFromUUIDv1
+	 */
+	public function testGetTimestampFromUUIDv1( string $uuid, string $ts ) {
+		$this->assertEquals( $ts, UIDGenerator::getTimestampFromUUIDv1( $uuid ) );
+		$this->assertEquals(
+			MWTimestamp::convert( TS_ISO_8601, $ts ),
+			UIDGenerator::getTimestampFromUUIDv1( $uuid, TS_ISO_8601 )
+		);
+	}
+
+	public function provideGetTimestampFromUUIDv1InvalidUUIDv1() {
+		yield [ 'this_is_an_invalid_uuid_v1' ];
+		yield [ 'e5bb7f6b-0f28-4867-a93c-1b33b5c63adf' ]; // This is a UUIDv4
+	}
+
+	/**
+	 * @param string $uuid
+	 * @dataProvider provideGetTimestampFromUUIDv1InvalidUUIDv1
+	 * @covers UIDGenerator::getTimestampFromUUIDv1
+	 */
+	public function testGetTimestampFromUUIDv1InvalidUUIDv1( string $uuid ) {
+		$this->expectException( InvalidArgumentException::class );
+		UIDGenerator::getTimestampFromUUIDv1( $uuid );
+	}
 }
