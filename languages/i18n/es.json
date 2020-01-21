@@ -198,7 +198,8 @@
 			"Canaan9801",
 			"Andru1013",
 			"DannyS712",
-			"Silverie04"
+			"Silverie04",
+			"Joanmp17"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -1575,6 +1576,7 @@
 	"recentchanges-label-plusminus": "El tamaño de la página cambió esta cantidad de bytes",
 	"recentchanges-legend-heading": "<strong>Leyenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ver también la [[Special:NewPages|lista de páginas nuevas]])",
+	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-submit": "Mostrar",
 	"rcfilters-tag-remove": "Quitar «$1»",
 	"rcfilters-legend-heading": "<strong>Lista de abreviaturas:</strong>",
@@ -2049,6 +2051,7 @@
 	"uploadnewversion-linktext": "Subir una nueva versión de este archivo",
 	"shared-repo-from": "de $1",
 	"shared-repo": "un repositorio compartido",
+	"shared-repo-name-wikimediacommons": "Wikimedia Commons",
 	"filepage.css": "/* Los estilos CSS colocados aquí se incluirán en las páginas de descripción de archivos, incluso en los wikis externos que incluyan estas páginas */",
 	"upload-disallowed-here": "No puedes sobrescribir este archivo.",
 	"filerevert": "Revertir $1",

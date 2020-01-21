@@ -155,7 +155,7 @@
 	"tog-showrollbackconfirmation": "Geri alma bağlantısına tıkladığınızda bir onay istemi gösterin",
 	"tog-requireemail": "‎Parola sıfırlama e-postalarını yalnızca hem e-posta adresi hem de kullanıcı adı sağlandığında gönderin.‎",
 	"underline-always": "Her zaman",
-	"underline-never": "Hiçbir zaman",
+	"underline-never": "Asla",
 	"underline-default": "Görünüm ya da tarayıcı varsayılanı",
 	"editfont-style": "Düzenleme alanının yazı tipi biçemi:",
 	"editfont-monospace": "Tek aralıklı yazı tipi",
