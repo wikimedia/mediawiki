@@ -274,18 +274,29 @@ class Router {
 		}
 
 		$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
-		$spec = $match['userData'];
-		$objectFactorySpec = array_intersect_key( $spec,
-			[ 'factory' => true, 'class' => true, 'args' => true, 'services' => true ] );
-		/** @var $handler Handler (annotation for PHPStorm) */
-		$handler = $this->objectFactory->createObject( $objectFactorySpec );
-		$handler->init( $this, $request, $spec, $this->responseFactory );
+		$handler = $this->createHandler( $request, $match['userData'] );
 
 		try {
 			return $this->executeHandler( $handler );
 		} catch ( HttpException $e ) {
 			return $this->responseFactory->createFromException( $e );
 		}
+	}
+
+	/**
+	 * Create a handler from its spec
+	 * @param RequestInterface $request
+	 * @param array $spec
+	 * @return Handler
+	 */
+	private function createHandler( RequestInterface $request, array $spec ): Handler {
+		$objectFactorySpec = array_intersect_key( $spec,
+			[ 'factory' => true, 'class' => true, 'args' => true, 'services' => true ] );
+		/** @var $handler Handler (annotation for PHPStorm) */
+		$handler = $this->objectFactory->createObject( $objectFactorySpec );
+		$handler->init( $this, $request, $spec, $this->responseFactory );
+
+		return $handler;
 	}
 
 	/**
