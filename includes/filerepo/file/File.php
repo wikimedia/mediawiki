@@ -533,6 +533,46 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
+	 * Get the width and height to display image at.
+	 *
+	 * @param int $maxWidth Max width to display at
+	 * @param int $maxHeight Max height to display at
+	 * @param int $page
+	 * @throws MWException
+	 * @return array Array (width, height)
+	 * @since 1.35
+	 */
+	public function getDisplayWidthHeight( $maxWidth, $maxHeight, $page = 1 ) {
+		if ( !$maxWidth || !$maxHeight ) {
+			// should never happen
+			throw new MWException( 'Using a choice from $wgImageLimits that is 0x0' );
+		}
+
+		$width = $this->getWidth( $page );
+		$height = $this->getHeight( $page );
+		if ( !$width || !$height ) {
+			return [ 0, 0 ];
+		}
+
+		// Calculate the thumbnail size.
+		if ( $width <= $maxWidth && $height <= $maxHeight ) {
+			// Vectorized image, do nothing.
+		} elseif ( $width / $height >= $maxWidth / $maxHeight ) {
+			# The limiting factor is the width, not the height.
+			$height = round( $height * $maxWidth / $width );
+			$width = $maxWidth;
+			// Note that $height <= $maxHeight now.
+		} else {
+			$newwidth = floor( $width * $maxHeight / $height );
+			$height = round( $height * $newwidth / $width );
+			$width = $newwidth;
+			// Note that $height <= $maxHeight now, but might not be identical
+			// because of rounding.
+		}
+		return [ $width, $height ];
+	}
+
+	/**
 	 * Returns ID or name of user who uploaded the file
 	 * STUB
 	 *

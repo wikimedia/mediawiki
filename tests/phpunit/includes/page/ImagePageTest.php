@@ -24,51 +24,6 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 * @covers ImagePage::getDisplayWidthHeight
-	 * @dataProvider providerGetDisplayWidthHeight
-	 * @param array $dim Array [maxWidth, maxHeight, width, height]
-	 * @param array $expected Array [width, height] The width and height we expect to display at
-	 */
-	public function testGetDisplayWidthHeight( $dim, $expected ) {
-		$iPage = $this->getImagePage( 'animated.gif' );
-		$reflection = new ReflectionClass( $iPage );
-		$reflMethod = $reflection->getMethod( 'getDisplayWidthHeight' );
-		$reflMethod->setAccessible( true );
-
-		$actual = $reflMethod->invoke( $iPage, $dim[0], $dim[1], $dim[2], $dim[3] );
-		$this->assertEquals( $actual, $expected );
-	}
-
-	public function providerGetDisplayWidthHeight() {
-		return [
-			[
-				[ 1024.0, 768.0, 600.0, 600.0 ],
-				[ 600.0, 600.0 ]
-			],
-			[
-				[ 1024.0, 768.0, 1600.0, 600.0 ],
-				[ 1024.0, 384.0 ]
-			],
-			[
-				[ 1024.0, 768.0, 1024.0, 768.0 ],
-				[ 1024.0, 768.0 ]
-			],
-			[
-				[ 1024.0, 768.0, 800.0, 1000.0 ],
-				[ 614.0, 768.0 ]
-			],
-			[
-				[ 1024.0, 768.0, 0, 1000 ],
-				[ 0, 0 ]
-			],
-			[
-				[ 1024.0, 768.0, 2000, 0 ],
-				[ 0, 0 ]
-			],
-		];
-	}
-
-	/**
 	 * @covers ImagePage::getThumbSizes
 	 * @dataProvider providerGetThumbSizes
 	 * @param string $filename

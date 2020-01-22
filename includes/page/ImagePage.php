@@ -32,6 +32,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @method WikiFilePage getPage()
  */
 class ImagePage extends Article {
+	use MediaFileTrait;
+
 	/** @var File|false */
 	private $displayImg;
 
@@ -320,9 +322,9 @@ class ImagePage extends Article {
 		$dirmark = $lang->getDirMarkEntity();
 		$request = $this->getContext()->getRequest();
 
-		list( $maxWidth, $maxHeight ) = $this->getImageLimitsFromOption( $user, 'imagesize' );
-
 		if ( $this->displayImg->exists() ) {
+			list( $maxWidth, $maxHeight ) = $this->getImageLimitsFromOption( $user, 'imagesize' );
+
 			# image
 			$page = $request->getIntOrNull( 'page' );
 			if ( $page === null ) {
@@ -356,9 +358,12 @@ class ImagePage extends Article {
 				# $msgsize = $this->getContext()->msg( 'file-info-size', $width_orig, $height_orig,
 				#   Language::formatSize( $this->displayImg->getSize() ), $mime )->escaped();
 				# We'll show a thumbnail of this image
-				if ( $width > $maxWidth || $height > $maxHeight || $this->displayImg->isVectorized() ) {
-					list( $width, $height ) = $this->getDisplayWidthHeight(
-						$maxWidth, $maxHeight, $width, $height
+				if ( $width > $maxWidth ||
+					$height > $maxHeight ||
+					$this->displayImg->isVectorized()
+				) {
+					list( $width, $height ) = $this->displayImg->getDisplayWidthHeight(
+						$maxWidth, $maxHeight, $page
 					);
 					$linktext = $this->getContext()->msg( 'show-big-image' )->escaped();
 
@@ -1036,24 +1041,10 @@ EOT
 	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
 	 * @return int[]
 	 * @since 1.21
+	 * @deprecated Since 1.35 Use static function MediaFileTrait::getImageLimitsFromOption
 	 */
 	public function getImageLimitsFromOption( $user, $optionName ) {
-		global $wgImageLimits;
-
-		$option = $user->getIntOption( $optionName );
-		if ( !isset( $wgImageLimits[$option] ) ) {
-			$option = User::getDefaultOption( $optionName );
-		}
-
-		// The user offset might still be incorrect, specially if
-		// $wgImageLimits got changed (see T10858).
-		if ( !isset( $wgImageLimits[$option] ) ) {
-			// Default to the first offset in $wgImageLimits
-			$option = 0;
-		}
-
-		// if nothing is set, fallback to a hardcoded default
-		return $wgImageLimits[$option] ?? [ 800, 600 ];
+		return MediaFileTrait::getImageLimitsFromOption( $user, $optionName );
 	}
 
 	/**
@@ -1122,48 +1113,6 @@ EOT
 				$lang,
 				$selected
 			);
-	}
-
-	/**
-	 * Get the width and height to display image at.
-	 *
-	 * @note This method assumes that it is only called if one
-	 *  of the dimensions are bigger than the max, or if the
-	 *  image is vectorized.
-	 *
-	 * @param int $maxWidth Max width to display at
-	 * @param int $maxHeight Max height to display at
-	 * @param int $width Actual width of the image
-	 * @param int $height Actual height of the image
-	 * @throws MWException
-	 * @return array Array (width, height)
-	 */
-	protected function getDisplayWidthHeight( $maxWidth, $maxHeight, $width, $height ) {
-		if ( !$maxWidth || !$maxHeight ) {
-			// should never happen
-			throw new MWException( 'Using a choice from $wgImageLimits that is 0x0' );
-		}
-
-		if ( !$width || !$height ) {
-			return [ 0, 0 ];
-		}
-
-		# Calculate the thumbnail size.
-		if ( $width <= $maxWidth && $height <= $maxHeight ) {
-			// Vectorized image, do nothing.
-		} elseif ( $width / $height >= $maxWidth / $maxHeight ) {
-			# The limiting factor is the width, not the height.
-			$height = round( $height * $maxWidth / $width );
-			$width = $maxWidth;
-			# Note that $height <= $maxHeight now.
-		} else {
-			$newwidth = floor( $width * $maxHeight / $height );
-			$height = round( $height * $newwidth / $width );
-			$width = $newwidth;
-			# Note that $height <= $maxHeight now, but might not be identical
-			# because of rounding.
-		}
-		return [ $width, $height ];
 	}
 
 	/**
