@@ -189,6 +189,26 @@
 			'HTMLElement[] arrays are preserved as raw html'
 		);
 
+		mw.messages.set( 'simple-double-replace', 'Foo 1: $1 2: $1' );
+		assert.strictEqual(
+			formatParse( 'simple-double-replace', 'bar' ),
+			'Foo 1: bar 2: bar',
+			'string params can be used multiple times'
+		);
+
+		mw.messages.set( 'object-double-replace', 'Foo 1: $1 2: $1' );
+		assert.strictEqual(
+			formatParse( 'object-double-replace', $( '<div class="bar">&gt;</div>' ) ),
+			'Foo 1: <div class="bar">&gt;</div> 2: <div class="bar">&gt;</div>',
+			'jQuery objects can be used multiple times'
+		);
+
+		assert.strictEqual(
+			formatParse( 'object-double-replace', $( '<div class="bar">&gt;</div>' ).get( 0 ) ),
+			'Foo 1: <div class="bar">&gt;</div> 2: <div class="bar">&gt;</div>',
+			'HTMLElement can be used multiple times'
+		);
+
 		assert.strictEqual(
 			formatParse( 'external-link-replace', 'http://example.org/?x=y&z' ),
 			'Foo <a href="http://example.org/?x=y&amp;z">bar</a>',

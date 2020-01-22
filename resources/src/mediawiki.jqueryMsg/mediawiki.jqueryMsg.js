@@ -1059,6 +1059,22 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 		var index = parseInt( nodes[ 0 ], 10 );
 
 		if ( index < replacements.length ) {
+			if ( typeof replacements[ index ] !== 'string' ) {
+				if ( !replacements[ index ].hasAlreadyBeenUsedAsAReplacement ) {
+					// only actually clone on second use
+					replacements[ index ].hasAlreadyBeenUsedAsAReplacement = true;
+					return replacements[ index ];
+				}
+				if ( typeof replacements[ index ].clone === 'function' ) {
+					// if it is a jQuery object, use jQuery's clone method
+					return replacements[ index ].clone( true );
+				}
+				if ( typeof replacements[ index ].cloneNode === 'function' ) {
+					// if it is a Node, then use the native cloning functionality
+					return replacements[ index ].cloneNode( true );
+				}
+				return replacements[ index ];
+			}
 			return replacements[ index ];
 		} else {
 			// index not found, fallback to displaying variable
