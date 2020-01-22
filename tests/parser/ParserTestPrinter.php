@@ -129,6 +129,8 @@ class ParserTestPrinter extends TestRecorder {
 
 			print $this->term->color( '31' ) . 'FAILED!' . $this->term->reset() . "\n";
 
+			print "{$testResult->test['file']}:{$testResult->test['line']}\n";
+
 			if ( $this->showOutput ) {
 				print "--- Expected ---\n{$testResult->expected}\n";
 				print "--- Actual ---\n{$testResult->actual}\n";
