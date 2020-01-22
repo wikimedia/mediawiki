@@ -3604,7 +3604,7 @@
 	"feedback-bugnew": "Kontrol ettim. Yeni hata bildir",
 	"feedback-bugornote": "Eğer teknik bir problemi detaylarıyla açıklamaya hazırsanız lütfen [$1 bir hata raporlayın]. Diğer taraftan, aşağıdaki kolay formu kullanabilirsiniz. Yorumunuz, kullanıcı adınızla beraber \"[$3 $2]\" sayfasına eklenecektir.",
 	"feedback-cancel": "İptal",
-	"feedback-close": "Tamamlandı",
+	"feedback-close": "Yapıldı",
 	"feedback-external-bug-report-button": "Teknik hata raporu ilet",
 	"feedback-dialog-title": "Geribildirim gönder",
 	"feedback-dialog-intro": "Geribildirimde bulunmak için aşağıdaki basit formu kullanabilirsiniz. Yorumunuz kullanıcı adınızla beraber \"$1\" sayfasına eklenecektir.",
