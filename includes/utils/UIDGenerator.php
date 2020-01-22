@@ -21,6 +21,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Class for getting statistically unique IDs
@@ -240,7 +241,7 @@ class UIDGenerator {
 	 *
 	 * @param string $uuid the UUID to get the timestamp from
 	 * @param int $format the format to convert the timestamp to. Default: TS_MW
-	 * @return bool|string timestamp in requested format or false
+	 * @return string|false timestamp in requested format or false
 	 */
 	public static function getTimestampFromUUIDv1( string $uuid, int $format = TS_MW ) {
 		$components = [];
@@ -256,7 +257,7 @@ class UIDGenerator {
 		// The 60 bit timestamp value is constructed from fields of this UUID.
 		// The timestamp is measured in 100-nanosecond units since midnight, October 15, 1582 UTC.
 		$unixTime = ( $timestamp - 0x01b21dd213814000 ) / 1e7;
-		return wfTimestamp( $format, $unixTime );
+		return ConvertibleTimestamp::convert( $format, $unixTime );
 	}
 
 	/**
