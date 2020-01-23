@@ -26,6 +26,9 @@
  */
 class ConverterRule {
 	public $mText; // original text in -{text}-
+	/**
+	 * @var LanguageConverter
+	 */
 	public $mConverter; // LanguageConverter object
 	public $mRuleDisplay = '';
 	public $mRuleTitle = false;
@@ -41,7 +44,7 @@ class ConverterRule {
 	 * @param string $text The text between -{ and }-
 	 * @param LanguageConverter $converter
 	 */
-	public function __construct( $text, $converter ) {
+	public function __construct( $text, LanguageConverter $converter ) {
 		$this->mText = $text;
 		$this->mConverter = $converter;
 	}
@@ -117,7 +120,7 @@ class ConverterRule {
 			}
 			// try to find flags like "zh-hans", "zh-hant"
 			// allow syntaxes like "-{zh-hans;zh-hant|XXXX}-"
-			$variantFlags = array_intersect( array_keys( $flags ), $this->mConverter->mVariants );
+			$variantFlags = array_intersect( array_keys( $flags ), $this->mConverter->getVariants() );
 			if ( $variantFlags ) {
 				$variantFlags = array_flip( $variantFlags );
 				$flags = [];
@@ -136,7 +139,7 @@ class ConverterRule {
 		$rules = $this->mRules;
 		$bidtable = [];
 		$unidtable = [];
-		$variants = $this->mConverter->mVariants;
+		$variants = $this->mConverter->getVariants();
 		$varsep_pattern = $this->mConverter->getVarSeparatorPattern();
 
 		// Split according to $varsep_pattern, but ignore semicolons from HTML entities

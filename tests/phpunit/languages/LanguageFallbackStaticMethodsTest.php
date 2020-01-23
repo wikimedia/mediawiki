@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Language
  * @coversDefaultClass Language
  */
 class LanguageFallbackStaticMethodsTest extends MediaWikiIntegrationTestCase {

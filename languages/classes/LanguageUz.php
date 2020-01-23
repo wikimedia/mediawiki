@@ -102,6 +102,19 @@ class UzConverter extends LanguageConverter {
 		'ʼ' => 'ъ',
 	];
 
+	/**
+	 * @param Language $langobj
+	 */
+	public function __construct( Language $langobj ) {
+		$variants = [ 'uz', 'uz-latn', 'uz-cyrl' ];
+		$variantfallbacks = [
+			'uz' => 'uz-latn',
+			'uz-cyrl' => 'uz',
+			'uz-latn' => 'uz',
+		];
+		parent::__construct( $langobj, 'uz', $variants, $variantfallbacks );
+	}
+
 	protected function loadDefaultTables() {
 		$this->mTables = [
 			'uz-cyrl' => new ReplacementArray( $this->toCyrillic ),
@@ -122,22 +135,4 @@ class UzConverter extends LanguageConverter {
 		return parent::translate( $text, $toVariant );
 	}
 
-}
-
-/**
- * Uzbek
- *
- * @ingroup Language
- */
-class LanguageUz extends Language {
-	protected function newConverter() : UzConverter {
-		$variants = [ 'uz', 'uz-latn', 'uz-cyrl' ];
-		$variantfallbacks = [
-			'uz' => 'uz-latn',
-			'uz-cyrl' => 'uz',
-			'uz-latn' => 'uz',
-		];
-
-		return new UzConverter( $this, 'uz', $variants, $variantfallbacks );
-	}
 }

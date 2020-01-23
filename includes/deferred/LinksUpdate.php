@@ -621,11 +621,14 @@ class LinksUpdate extends DataUpdate {
 		global $wgCategoryCollation;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = [];
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+
+		$languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+
 		$collation = Collation::singleton();
 		foreach ( $diffs as $name => $prefix ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
-			$contLang->findVariantLink( $name, $nt, true );
+			$languageConverter->findVariantLink( $name, $nt, true );
 
 			$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
 				getCategoryLinkType( $this->mTitle->getNamespace() );

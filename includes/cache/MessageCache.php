@@ -103,6 +103,8 @@ class MessageCache implements LoggerAwareInterface {
 	protected $srvCache;
 	/** @var Language */
 	protected $contLang;
+	/** @var ILanguageConverter */
+	protected $contLangConverter;
 	/** @var LanguageFactory */
 	protected $langFactory;
 	/** @var LocalisationCache */
@@ -142,6 +144,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param BagOStuff $clusterCache
 	 * @param BagOStuff $serverCache
 	 * @param Language $contLang Content language of site
+	 * @param ILanguageConverter $contLangConverter Content language converter for site
 	 * @param LoggerInterface $logger
 	 * @param array $options
 	 *  - useDB (bool): Whether to allow message overrides from "MediaWiki:" pages.
@@ -154,6 +157,7 @@ class MessageCache implements LoggerAwareInterface {
 		BagOStuff $clusterCache,
 		BagOStuff $serverCache,
 		Language $contLang,
+		ILanguageConverter $contLangConverter,
 		LoggerInterface $logger,
 		array $options,
 		LanguageFactory $langFactory,
@@ -163,6 +167,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->clusterCache = $clusterCache;
 		$this->srvCache = $serverCache;
 		$this->contLang = $contLang;
+		$this->contLangConverter = $contLangConverter;
 		$this->logger = $logger;
 		$this->langFactory = $langFactory;
 		$this->localisationCache = $localisationCache;
@@ -1383,8 +1388,8 @@ class MessageCache implements LoggerAwareInterface {
 
 		$this->replace( $title->getDBkey(), $msgText );
 
-		if ( $this->contLang->hasVariants() ) {
-			$this->contLang->updateConversionTable( $title );
+		if ( $this->contLangConverter->hasVariants() ) {
+			$this->contLangConverter->updateConversionTable( $title );
 		}
 	}
 

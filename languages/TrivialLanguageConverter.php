@@ -22,23 +22,26 @@
  */
 
 /**
- * A fake language variant converter. Languages which do not implement variant
- * conversion, for example, English, should return a FakeConverter rather than a
- * LanguageConverter when asked for their converter. The fake converter just
+ * A trivial language converter.
+ *
+ * For Languages which do not implement variant
+ * conversion, for example, German, TrivialLanguageConverter is provided rather than a
+ * LanguageConverter when asked for their converter. The TrivialLanguageConverter just
  * returns text unchanged, i.e. it doesn't do any conversion.
  *
  * See https://www.mediawiki.org/wiki/Writing_systems#LanguageConverter.
  *
  * @ingroup Language
  */
-class FakeConverter {
+
+class TrivialLanguageConverter implements ILanguageConverter {
 	/**
 	 * @var Language
 	 */
-	public $mLang;
+	protected $language;
 
 	public function __construct( Language $langobj ) {
-		$this->mLang = $langobj;
+		$this->language = $langobj;
 	}
 
 	public function autoConvert( $text, $variant = false ) {
@@ -46,7 +49,7 @@ class FakeConverter {
 	}
 
 	public function autoConvertToAllVariants( $text ) {
-		return [ $this->mLang->getCode() => $text ];
+		return [ $this->language->getCode() => $text ];
 	}
 
 	public function convert( $t ) {
@@ -65,27 +68,27 @@ class FakeConverter {
 		return $t->getPrefixedText();
 	}
 
-	public function convertNamespace( $ns ) {
-		return $this->mLang->getFormattedNsText( $ns );
+	public function convertNamespace( $index, $variant = null ) {
+		return $this->language->getFormattedNsText( $index );
 	}
 
 	/**
 	 * @return string[]
 	 */
 	public function getVariants() {
-		return [ $this->mLang->getCode() ];
+		return [ $this->language->getCode() ];
 	}
 
 	public function getVariantFallbacks( $variant ) {
-		return $this->mLang->getCode();
+		return $this->language->getCode();
 	}
 
 	public function getPreferredVariant() {
-		return $this->mLang->getCode();
+		return $this->language->getCode();
 	}
 
 	public function getDefaultVariant() {
-		return $this->mLang->getCode();
+		return $this->language->getCode();
 	}
 
 	public function getURLVariant() {
@@ -103,6 +106,10 @@ class FakeConverter {
 		return '';
 	}
 
+	public function guessVariant( $text, $variant ) {
+		return false;
+	}
+
 	public function markNoConversion( $text, $noParse = false ) {
 		return $text;
 	}
@@ -116,7 +123,7 @@ class FakeConverter {
 			return null;
 		}
 		$variant = strtolower( $variant );
-		return $variant === $this->mLang->getCode() ? $variant : null;
+		return $variant === $this->language->getCode() ? $variant : null;
 	}
 
 	public function translate( $text, $variant ) {
@@ -133,4 +140,46 @@ class FakeConverter {
 	 */
 	private function reloadTables() {
 	}
+
+	/**
+	 * Check if this is a language with variants
+	 *
+	 * @since 1.35
+	 *
+	 * @return bool
+	 */
+	public function hasVariants() {
+		return count( $this->getVariants() ) > 1;
+	}
+
+	/**
+	 * Strict check if the language has the specific variant.
+	 *
+	 * Compare to LanguageConverter::validateVariant() which does a more
+	 * lenient check and attempts to coerce the given code to a valid one.
+	 *
+	 * @since 1.35
+	 * @param string $variant
+	 * @return bool
+	 */
+	public function hasVariant( $variant ) {
+		return $variant && ( $variant === $this->validateVariant( $variant ) );
+	}
+
+	/**
+	 * Perform output conversion on a string, and encode for safe HTML output.
+	 *
+	 * @since 1.35
+	 *
+	 * @param string $text Text to be converted
+	 * @return string
+	 */
+	public function convertHtml( $text ) {
+		return htmlspecialchars( $this->convert( $text ) );
+	}
 }
+
+/**
+ * @deprecated since 1.35 use TrivialLanguageConverter instead
+ */
+class_alias( TrivialLanguageConverter::class, 'FakeConverter' );

@@ -1,7 +1,6 @@
 <?php
 
 /**
- * @covers LanguageCrh
  * @covers CrhConverter
  * @covers MediaWiki\Languages\Data\CrhExceptions
  */

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Language
+ */
 class LanguageConverterTest extends MediaWikiLangTestCase {
 	/** @var Language */
 	protected $lang;

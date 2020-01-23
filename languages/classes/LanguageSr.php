@@ -67,6 +67,24 @@ class SrConverter extends LanguageConverter {
 		'Nj' => 'Њ', 'n!j' => 'нј', 'N!j' => 'Нј', 'N!J' => 'НЈ'
 	];
 
+	/**
+	 * @param Language $langobj
+	 */
+	public function __construct( Language $langobj ) {
+		$variants = [ 'sr', 'sr-ec', 'sr-el' ];
+		$variantfallbacks = [
+			'sr' => 'sr-ec',
+			'sr-ec' => 'sr',
+			'sr-el' => 'sr',
+		];
+
+		$flags = [
+			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
+			'W' => 'W', 'реч' => 'W', 'reč' => 'W', 'ријеч' => 'W', 'riječ' => 'W'
+		];
+		parent::__construct( $langobj, 'sr', $variants, $variantfallbacks, $flags );
+	}
+
 	protected function loadDefaultTables() {
 		$this->mTables = [
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
@@ -164,26 +182,4 @@ class SrConverter extends LanguageConverter {
 		}
 	}
 
-}
-
-/**
- * Serbian (Српски / Srpski)
- *
- * @ingroup Language
- */
-class LanguageSr extends Language {
-	protected function newConverter() : SrConverter {
-		$variants = [ 'sr', 'sr-ec', 'sr-el' ];
-		$variantfallbacks = [
-			'sr' => 'sr-ec',
-			'sr-ec' => 'sr',
-			'sr-el' => 'sr',
-		];
-
-		$flags = [
-			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
-			'W' => 'W', 'реч' => 'W', 'reč' => 'W', 'ријеч' => 'W', 'riječ' => 'W'
-		];
-		return new SrConverter( $this, 'sr', $variants, $variantfallbacks, $flags );
-	}
 }

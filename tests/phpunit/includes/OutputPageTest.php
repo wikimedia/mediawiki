@@ -1189,11 +1189,16 @@ class OutputPageTest extends MediaWikiTestCase {
 
 		if ( $variantLinkCallback ) {
 			$mockContLang = $this->getMockBuilder( Language::class )
-				->setMethods( [ 'findVariantLink' ] )
+				->setMethods( [ 'findVariantLink', 'convertHtml' ] )
 				->getMock();
 			$mockContLang->expects( $this->any() )
 				->method( 'findVariantLink' )
 				->will( $this->returnCallback( $variantLinkCallback ) );
+			$mockContLang->expects( $this->any() )
+				->method( 'convertHtml' )
+				->will( $this->returnCallback( function ( $arg ) {
+					return $arg;
+				} ) );
 			$this->setContentLang( $mockContLang );
 		}
 

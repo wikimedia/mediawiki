@@ -23,7 +23,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
- * Base class for language conversion.
+ * Base class for multi-variant language conversion.
  * @ingroup Language
  *
  * @author Zhengzhu Feng <zhengzhu@gmail.com>
@@ -31,7 +31,7 @@ use MediaWiki\Revision\RevisionRecord;
  * @author shinjiman <shinjiman@gmail.com>
  * @author PhiLiP <philip.npc@gmail.com>
  */
-class LanguageConverter {
+abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * languages supporting variants
 	 * @since 1.20
@@ -69,7 +69,11 @@ class LanguageConverter {
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
 	public $mManualLevel;
 
+	/**
+	 * @var Language
+	 */
 	public $mLangObj;
+
 	public $mFlags;
 	public $mDescCodeSep = ':', $mDescVarSep = ';';
 	public $mUcfirst = false;
@@ -561,7 +565,7 @@ class LanguageConverter {
 	 *
 	 * @param ConverterRule $convRule
 	 */
-	protected function applyManualConv( $convRule ) {
+	protected function applyManualConv( ConverterRule $convRule ) {
 		// Use syntax -{T|zh-cn:TitleCN; zh-tw:TitleTw}- to custom
 		// title conversion.
 		// T26072: $mConvRuleTitle was overwritten by other manual
@@ -651,8 +655,8 @@ class LanguageConverter {
 
 		if ( $nsVariantText === false ) {
 			// No message exists, retrieve it from the target variant's namespace names.
-			$langObj = $this->mLangObj->factory( $variant );
-			$nsVariantText = $langObj->getFormattedNsText( $index );
+			$mLangObj = $this->mLangObj->factory( $variant ); // TODO: create from services
+			$nsVariantText = $mLangObj->getFormattedNsText( $index );
 		}
 
 		$cache->set( $key, $nsVariantText, 60 );
@@ -1212,5 +1216,42 @@ class LanguageConverter {
 			$this->mVarSeparatorPattern = $pat;
 		}
 		return $this->mVarSeparatorPattern;
+	}
+
+	/**
+	 * Check if this is a language with variants
+	 *
+	 * @since 1.35
+	 *
+	 * @return bool
+	 */
+	public function hasVariants() {
+		return count( $this->getVariants() ) > 1;
+	}
+
+	/**
+	 * Strict check if the language has the specific variant.
+	 *
+	 * Compare to LanguageConverter::validateVariant() which does a more
+	 * lenient check and attempts to coerce the given code to a valid one.
+	 *
+	 * @since 1.35
+	 * @param string $variant
+	 * @return bool
+	 */
+	public function hasVariant( $variant ) {
+		return $variant && ( $variant === $this->validateVariant( $variant ) );
+	}
+
+	/**
+	 * Perform output conversion on a string, and encode for safe HTML output.
+	 *
+	 * @since 1.35
+	 *
+	 * @param string $text Text to be converted
+	 * @return string
+	 */
+	public function convertHtml( $text ) {
+		return htmlspecialchars( $this->convert( $text ) );
 	}
 }

@@ -861,6 +861,16 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Shorthand for getting a Language Converter for specific language
+	 * @param Language $language Language of converter
+	 * @return ILanguageConverter
+	 */
+	private function getLanguageConverter( Language $language ) : ILanguageConverter {
+		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $language );
+	}
+
+	/**
 	 * a structured array of links usually used for the tabs in a skin
 	 *
 	 * There are 4 standard sections
@@ -1143,14 +1153,15 @@ class SkinTemplate extends Skin {
 
 			if ( $userCanRead && !$wgDisableLangConversion ) {
 				$pageLang = $title->getPageLanguage();
+				$converter = $this->getLanguageConverter( $pageLang );
 				// Checks that language conversion is enabled and variants exist
 				// And if it is not in the special namespace
-				if ( $pageLang->hasVariants() ) {
+				if ( $converter->hasVariants() ) {
 					// Gets list of language variants
-					$variants = $pageLang->getVariants();
+					$variants = $converter->getVariants();
 					// Gets preferred variant (note that user preference is
 					// only possible for wiki content language variant)
-					$preferred = $pageLang->getPreferredVariant();
+					$preferred = $converter->getPreferredVariant();
 					if ( Action::getActionName( $this ) === 'view' ) {
 						$params = $request->getQueryValues();
 						unset( $params['title'] );

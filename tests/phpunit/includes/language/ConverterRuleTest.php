@@ -11,7 +11,7 @@ class ConverterRuleTest extends MediaWikiTestCase {
 	}
 
 	public function testParseEmpty() {
-		$converter = new LanguageConverter( new Language(), 'en' );
+		$converter = new EnConverter( new Language() );
 		$rule = new ConverterRule( '', $converter );
 		$rule->parse();
 

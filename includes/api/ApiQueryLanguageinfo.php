@@ -184,8 +184,11 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeVariants ) {
-				$variants = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $languageCode )->getVariants();
+				$language = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $languageCode );
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $language );
+				$variants = $converter->getVariants();
 				ApiResult::setIndexedTagName( $variants, 'var' );
 				$info['variants'] = $variants;
 			}

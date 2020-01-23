@@ -91,8 +91,9 @@ class SpecialWantedCategories extends WantedQueryPage {
 	 */
 	function formatResult( $skin, $result ) {
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = new HtmlArmor( MediaWikiServices::getInstance()->getContentLanguage()
-			->convert( htmlspecialchars( $nt->getText() ) ) );
+		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+		$text = new HtmlArmor( $converter->convertHtml( $nt->getText() ) );
 
 		if ( !$this->isCached() ) {
 			// We can assume the freshest data

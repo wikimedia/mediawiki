@@ -544,8 +544,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testLanguageVariants() {
 		$expectedKeys = array_filter( LanguageConverter::$languagesWithVariants,
 			function ( $langCode ) {
-				return !MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $langCode )->getConverter() instanceof FakeConverter;
+				$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $langCode );
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $lang );
+					return $converter->hasVariants();
 			}
 		);
 		sort( $expectedKeys );

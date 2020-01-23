@@ -41,10 +41,18 @@ class LinkHolderArray {
 	protected $tempIdOffset;
 
 	/**
-	 * @param Parser $parent
+	 * Current language converter
+	 * @var ILanguageConverter
 	 */
-	public function __construct( $parent ) {
+	private $languageConverter;
+
+	/**
+	 * @param Parser $parent
+	 * @param ILanguageConverter $languageConverter
+	 */
+	public function __construct( $parent, ILanguageConverter $languageConverter ) {
 		$this->parent = $parent;
+		$this->languageConverter = $languageConverter;
 	}
 
 	/**
@@ -238,7 +246,7 @@ class LinkHolderArray {
 		}
 
 		# Do a second query for different language variants of links and categories
-		if ( $this->parent->getContentLanguage()->hasVariants() ) {
+		if ( $this->languageConverter->hasVariants() ) {
 			$this->doVariants( $colours );
 		}
 
@@ -354,7 +362,7 @@ class LinkHolderArray {
 		}
 
 		// Now do the conversion and explode string to text of titles
-		$titlesAllVariants = $this->parent->getContentLanguage()->
+		$titlesAllVariants = $this->languageConverter->
 			autoConvertToAllVariants( rtrim( $titlesToBeConverted, "\0" ) );
 		$allVariantsName = array_keys( $titlesAllVariants );
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
@@ -396,7 +404,7 @@ class LinkHolderArray {
 		foreach ( $output->getCategoryLinks() as $category ) {
 			$categoryTitle = Title::makeTitleSafe( NS_CATEGORY, $category );
 			$linkBatch->addObj( $categoryTitle );
-			$variants = $this->parent->getContentLanguage()->autoConvertToAllVariants( $category );
+			$variants = $this->languageConverter->autoConvertToAllVariants( $category );
 			foreach ( $variants as $variant ) {
 				if ( $variant !== $category ) {
 					$variantTitle = Title::makeTitleSafe( NS_CATEGORY, $variant );

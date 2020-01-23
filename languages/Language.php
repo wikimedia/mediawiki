@@ -27,6 +27,7 @@
  */
 
 use CLDRPluralRuleParser\Evaluator;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
@@ -60,9 +61,19 @@ class Language {
 	const SUPPORTED = LanguageNameUtils::SUPPORTED;
 
 	/**
-	 * @var LanguageConverter|FakeConverter
+	 * Use PHP's magic __get handler to handle lazy accessing to
+	 * deprecated mConverter.
+	 *
+	 * @param string $name Field name
+	 * @return mixed
 	 */
-	public $mConverter;
+	public function __get( string $name ) {
+		if ( $name == "mConverter" ) {
+			wfDeprecated( 'Language::mConverter', '1.35' );
+			return $this->getConverter();
+		}
+		throw new RuntimeException( "Cannot get '$name' property." );
+	}
 
 	public $mVariants, $mCode, $mLoaded = false;
 	public $mMagicExtensions = [];
@@ -93,6 +104,11 @@ class Language {
 
 	/** @var array[]|null */
 	private $grammarTransformCache;
+
+	/**
+	 * @var LanguageConverterFactory
+	 */
+	private $converterFactory;
 
 	/**
 	 * @deprecated since 1.35, use LanguageFactory
@@ -454,14 +470,15 @@ class Language {
 	 * @param LocalisationCache|null $localisationCache
 	 * @param LanguageNameUtils|null $langNameUtils
 	 * @param LanguageFallback|null $langFallback
+	 * @param LanguageConverterFactory|null $converterFactory
 	 */
 	public function __construct(
 		$code = null,
 		LocalisationCache $localisationCache = null,
 		LanguageNameUtils $langNameUtils = null,
-		LanguageFallback $langFallback = null
+		LanguageFallback $langFallback = null,
+		LanguageConverterFactory $converterFactory = null
 	) {
-		$this->mConverter = $this->newConverter();
 		if ( !func_num_args() ) {
 			// Old calling convention, deprecated
 			if ( static::class === 'Language' ) {
@@ -469,10 +486,12 @@ class Language {
 			} else {
 				$this->mCode = str_replace( '_', '-', strtolower( substr( static::class, 8 ) ) );
 			}
+
 			$services = MediaWikiServices::getInstance();
 			$this->localisationCache = $services->getLocalisationCache();
 			$this->langNameUtils = $services->getLanguageNameUtils();
 			$this->langFallback = $services->getLanguageFallback();
+			$this->converterFactory = $services->getLanguageConverterFactory();
 			return;
 		}
 
@@ -484,11 +503,14 @@ class Language {
 			'Parameters cannot be null unless all are omitted' );
 		Assert::parameter( $langFallback !== null, '$langFallback',
 			'Parameters cannot be null unless all are omitted' );
+		Assert::parameter( $converterFactory !== null, '$converterFactory',
+			'Parameters cannot be null unless all are omitted' );
 
 		$this->mCode = $code;
 		$this->localisationCache = $localisationCache;
 		$this->langNameUtils = $langNameUtils;
 		$this->langFallback = $langFallback;
+		$this->converterFactory = $converterFactory;
 	}
 
 	/**
@@ -708,7 +730,7 @@ class Language {
 
 			# Also add converted namespace names as aliases, to avoid confusion.
 			$convertedNames = [];
-			foreach ( $this->getVariants() as $variant ) {
+			foreach ( $this->getConverter()->getVariants() as $variant ) {
 				if ( $variant === $this->mCode ) {
 					continue;
 				}
@@ -4016,27 +4038,22 @@ class Language {
 	}
 
 	/**
-	 * Construct a new LanguageConverter suitable for this language. Languages that support variants
-	 * need to override this method appropriately.
-	 *
-	 * @return LanguageConverter|FakeConverter
-	 */
-	protected function newConverter() {
-		return new FakeConverter( $this );
-	}
-
-	/**
 	 * Return the LanguageConverter used in the Language
 	 *
 	 * @since 1.19
-	 * @return LanguageConverter
+	 * @deprecated since 1.35 Use MediaWikiServices::getInstance()->getLanguageConverterFactory()
+	 *     ->getLanguageConverter( $language ) instead
+	 *
+	 * @return ILanguageConverter
 	 */
-	public function getConverter() {
-		return $this->mConverter;
+	public function getConverter() : ILanguageConverter {
+		return $this->converterFactory->getLanguageConverter( $this );
 	}
 
 	/**
 	 * convert text to a variant
+	 *
+	 * @deprecated since 1.35 use LanguageConverter::autoConvert
 	 *
 	 * @param string $text text to convert
 	 * @param string|bool $variant variant to convert to, or false to use the user's preferred
@@ -4044,17 +4061,19 @@ class Language {
 	 * @return string the converted string
 	 */
 	public function autoConvert( $text, $variant = false ) {
-		return $this->mConverter->autoConvert( $text, $variant );
+		return $this->getConverter()->autoConvert( $text, $variant );
 	}
 
 	/**
 	 * convert text to all supported variants
 	 *
+	 * @deprecated since 1.35 use LanguageConverter::autoConvertToAllVariants
+	 *
 	 * @param string $text
 	 * @return array
 	 */
 	public function autoConvertToAllVariants( $text ) {
-		return $this->mConverter->autoConvertToAllVariants( $text );
+		return $this->getConverter()->autoConvertToAllVariants( $text );
 	}
 
 	/**
@@ -4065,25 +4084,32 @@ class Language {
 	 *  in later calls to this method, even if the later calls have properly
 	 *  escaped the input. Never feed this method user controlled text that
 	 *  is not properly escaped!
+	 *
+	 * @deprecated since 1.35 use LanguageConverter::convert
+	 *
 	 * @param string $text Content that has been already escaped for use in HTML
 	 * @return string HTML
 	 */
 	public function convert( $text ) {
-		return $this->mConverter->convert( $text );
+		return $this->getConverter()->convert( $text );
 	}
 
 	/**
 	 * Convert a Title object to a string in the preferred variant
 	 *
+	 * @deprecated since 1.35 use LanguageConverter::convertTitle
+	 *
 	 * @param Title $title
 	 * @return string
 	 */
 	public function convertTitle( $title ) {
-		return $this->mConverter->convertTitle( $title );
+		return $this->getConverter()->convertTitle( $title );
 	}
 
 	/**
 	 * Convert a namespace index to a string in the preferred variant
+	 *
+	 * @deprecated since 1.35 use LanguageConverter::convertNamespace instead
 	 *
 	 * @param int $ns namespace index (https://www.mediawiki.org/wiki/Manual:Namespace)
 	 * @param string|null $variant variant to convert to, or null to use the user's preferred
@@ -4091,11 +4117,13 @@ class Language {
 	 * @return string a string representation of the namespace
 	 */
 	public function convertNamespace( $ns, $variant = null ) {
-		return $this->mConverter->convertNamespace( $ns, $variant );
+		return $this->getConverter()->convertNamespace( $ns, $variant );
 	}
 
 	/**
 	 * Check if this is a language with variants
+	 *
+	 * @deprecated since 1.35 use LanguageConverter::hasVariants instead
 	 *
 	 * @return bool
 	 */
@@ -4109,16 +4137,21 @@ class Language {
 	 * Compare to LanguageConverter::validateVariant() which does a more
 	 * lenient check and attempts to coerce the given code to a valid one.
 	 *
+	 * @deprecated since 1.35 use LanguageConverter::hasVariant instead
+	 *
 	 * @since 1.19
 	 * @param string $variant
 	 * @return bool
 	 */
 	public function hasVariant( $variant ) {
-		return $variant && ( $variant === $this->mConverter->validateVariant( $variant ) );
+		return $this->getConverter()->hasVariant( $variant );
 	}
 
 	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
+	 *
+	 * @deprecated since 1.35 use LanguageConverter::convertHtml instead
+	 *
 	 * @param string $text Text to be converted
 	 * @return string
 	 * @todo this should get integrated somewhere sane
@@ -4128,42 +4161,49 @@ class Language {
 	}
 
 	/**
+	 * @deprecated since 1.35 use LanguageConverter::convertCategoryKey instead
+	 *
 	 * @param string $key
 	 * @return string
 	 */
 	public function convertCategoryKey( $key ) {
-		return $this->mConverter->convertCategoryKey( $key );
+		return $this->getConverter()->convertCategoryKey( $key );
 	}
 
 	/**
 	 * Get the list of variants supported by this language
 	 * see sample implementation in LanguageZh.php
 	 *
+	 * @deprecated since 1.35  use LanguageConverter::getVariants instead
+	 *
 	 * @return string[] An array of language codes
 	 */
 	public function getVariants() {
-		return $this->mConverter->getVariants();
+		return $this->getConverter()->getVariants();
 	}
 
 	/**
+	 * @deprecated since 1.35 use LanguageConverter::getPreferredVariant instead
 	 * @return string
 	 */
 	public function getPreferredVariant() {
-		return $this->mConverter->getPreferredVariant();
+		return $this->getConverter()->getPreferredVariant();
 	}
 
 	/**
+	 * @deprecated since 1.35 use LanguageConverter::getDefaultVariant instead
 	 * @return string
 	 */
 	public function getDefaultVariant() {
-		return $this->mConverter->getDefaultVariant();
+		return $this->getConverter()->getDefaultVariant();
 	}
 
 	/**
+	 * @deprecated since 1.35 use LanguageConverter::getURLVariant instead
 	 * @return string
 	 */
 	public function getURLVariant() {
-		return $this->mConverter->getURLVariant();
+		return $this->getConverter()->getURLVariant();
 	}
 
 	/**
@@ -4173,33 +4213,39 @@ class Language {
 	 * tries to find it. See e.g. LanguageZh.php
 	 * The input parameters may be modified upon return
 	 *
+	 * @deprecated since 1.35 use LanguageConverter::findVariantLink instead
+	 *
 	 * @param string &$link The name of the link
 	 * @param Title &$nt The title object of the link
 	 * @param bool $ignoreOtherCond To disable other conditions when
 	 *   we need to transclude a template or update a category's link
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		$this->mConverter->findVariantLink( $link, $nt, $ignoreOtherCond );
+		$this->getConverter()->findVariantLink( $link, $nt, $ignoreOtherCond );
 	}
 
 	/**
 	 * returns language specific options used by User::getPageRenderHash()
 	 * for example, the preferred language variant
 	 *
+	 * @deprecated since 1.35 use LanguageConverter::getExtraHashOptions instead
+	 *
 	 * @return string
 	 */
 	public function getExtraHashOptions() {
-		return $this->mConverter->getExtraHashOptions();
+		return $this->getConverter()->getExtraHashOptions();
 	}
 
 	/**
 	 * Refresh the cache of conversion tables when
 	 * MediaWiki:Conversiontable* is updated.
 	 *
+	 * @deprecated since 1.35 use LanguageConverter::updateConversionTable instead
+	 *
 	 * @param Title $title The Title of the page being updated
 	 */
 	public function updateConversionTable( Title $title ) {
-		$this->mConverter->updateConversionTable( $title );
+		$this->getConverter()->updateConversionTable( $title );
 	}
 
 	/**
@@ -4754,10 +4800,12 @@ class Language {
 	/**
 	 * Get the conversion rule title, if any.
 	 *
+	 * @deprecated since 1.35 use LanguageConverter::getConvRuleTitle instead
+	 *
 	 * @return string
 	 */
 	public function getConvRuleTitle() {
-		return $this->mConverter->getConvRuleTitle();
+		return $this->getConverter()->getConvRuleTitle();
 	}
 
 	/**

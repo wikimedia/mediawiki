@@ -39,18 +39,21 @@ class KkConverter extends LanguageConverter {
 
 	/**
 	 * @param Language $langobj
-	 * @param string $maincode
-	 * @param array $variants
-	 * @param array $variantfallbacks
-	 * @param array $flags
 	 */
-	public function __construct( Language $langobj, $maincode,
-		$variants = [],
-		$variantfallbacks = [],
-		$flags = []
-	) {
-		parent::__construct( $langobj, $maincode,
-			$variants, $variantfallbacks, $flags );
+	public function __construct( Language $langobj ) {
+		$variants = [ 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' ];
+		$variantfallbacks = [
+			'kk' => 'kk-cyrl',
+			'kk-cyrl' => 'kk',
+			'kk-latn' => 'kk',
+			'kk-arab' => 'kk',
+			'kk-kz' => 'kk-cyrl',
+			'kk-tr' => 'kk-latn',
+			'kk-cn' => 'kk-arab'
+		];
+
+		parent::__construct( $langobj, 'kk',
+			$variants, $variantfallbacks, [] );
 
 		// No point delaying this since they're in code.
 		// Waiting until loadDefaultTables() means they never get loaded
@@ -363,21 +366,6 @@ class KkConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageKk extends LanguageKk_cyrl {
-	protected function newConverter() : KKConverter {
-		$variants = [ 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' ];
-		$variantfallbacks = [
-			'kk' => 'kk-cyrl',
-			'kk-cyrl' => 'kk',
-			'kk-latn' => 'kk',
-			'kk-arab' => 'kk',
-			'kk-kz' => 'kk-cyrl',
-			'kk-tr' => 'kk-latn',
-			'kk-cn' => 'kk-arab'
-		];
-
-		return new KkConverter( $this, 'kk', $variants, $variantfallbacks );
-	}
-
 	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
 	 *

@@ -63,6 +63,21 @@ class ShiConverter extends LanguageConverter {
 		'ẓ' => 'ⵥ', 'ʷ' => 'ⵯ', 'ɣ' => 'ⵖ', 'v' => 'ⵠ', 'p' => 'ⵒ',
 	];
 
+	/**
+	 * @param Language $langobj
+	 */
+	public function __construct( Language $langobj ) {
+		$variants = [ 'shi', 'shi-tfng', 'shi-latn' ];
+		$variantfallbacks = [
+			'shi' => 'shi-tfng',
+			'shi-tfng' => 'shi',
+			'shi-latn' => 'shi',
+		];
+
+		$flags = [];
+		parent::__construct( $langobj, 'shi', $variants, $variantfallbacks, $flags );
+	}
+
 	protected function loadDefaultTables() {
 		$this->mTables = [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
@@ -118,24 +133,5 @@ class ShiConverter extends LanguageConverter {
 			$text = $this->mTables[$toVariant]->replace( $text );
 		}
 		return $text;
-	}
-}
-
-/**
- * Tachelhit
- *
- * @ingroup Language
- */
-class LanguageShi extends Language {
-	protected function newConverter() : ShiConverter {
-		$variants = [ 'shi', 'shi-tfng', 'shi-latn' ];
-		$variantfallbacks = [
-			'shi' => 'shi-tfng',
-			'shi-tfng' => 'shi',
-			'shi-latn' => 'shi',
-		];
-
-		$flags = [];
-		return new ShiConverter( $this, 'shi', $variants, $variantfallbacks, $flags );
 	}
 }

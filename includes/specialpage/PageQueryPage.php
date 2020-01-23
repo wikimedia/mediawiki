@@ -52,10 +52,10 @@ abstract class PageQueryPage extends QueryPage {
 	 */
 	public function formatResult( $skin, $row ) {
 		$title = Title::makeTitleSafe( $row->namespace, $row->title );
-
 		if ( $title instanceof Title ) {
-			$text = MediaWikiServices::getInstance()->getContentLanguage()->
-				convert( htmlspecialchars( $title->getPrefixedText() ) );
+			$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+				->getLanguageConverter();
+			$text = $converter->convertHtml( $title->getPrefixedText() );
 			return $this->getLinkRenderer()->makeLink( $title, new HtmlArmor( $text ) );
 		} else {
 			return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ],

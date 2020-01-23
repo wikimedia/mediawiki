@@ -26,26 +26,28 @@
 class GanConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
-	 * @param string $maincode
-	 * @param array $variants
-	 * @param array $variantfallbacks
-	 * @param array $flags
-	 * @param array $manualLevel
 	 */
-	public function __construct( Language $langobj, $maincode,
-		$variants = [],
-		$variantfallbacks = [],
-		$flags = [],
-		$manualLevel = []
-	) {
+	public function __construct( Language $langobj ) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
-		parent::__construct( $langobj, $maincode,
+
+		$variants = [ 'gan', 'gan-hans', 'gan-hant' ];
+		$variantfallbacks = [
+			'gan' => [ 'gan-hans', 'gan-hant' ],
+			'gan-hans' => [ 'gan' ],
+			'gan-hant' => [ 'gan' ],
+		];
+		$ml = [
+			'gan' => 'disable',
+		];
+
+		parent::__construct( $langobj, 'gan',
 			$variants,
 			$variantfallbacks,
-			$flags,
-			$manualLevel
+			[],
+			$ml
 		);
+
 		$names = [
 			'gan' => '原文',
 			'gan-hans' => '简体',
@@ -80,24 +82,6 @@ class GanConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageGan extends LanguageZh {
-	protected function newConverter() : LanguageConverter {
-		$variants = [ 'gan', 'gan-hans', 'gan-hant' ];
-		$variantfallbacks = [
-			'gan' => [ 'gan-hans', 'gan-hant' ],
-			'gan-hans' => [ 'gan' ],
-			'gan-hant' => [ 'gan' ],
-		];
-		$ml = [
-			'gan' => 'disable',
-		];
-
-		return new GanConverter( $this, 'gan',
-			$variants, $variantfallbacks,
-			[],
-			$ml
-		);
-	}
-
 	/**
 	 * word segmentation
 	 *
