@@ -60,7 +60,7 @@
 		}
 
 		function updateTimezoneSelection() {
-			var minuteDiff, localTime,
+			var timeZone, minuteDiff, localTime, newValue,
 				type = timezoneWidget.dropdowninput.getValue();
 
 			if ( type === 'other' ) {
@@ -70,10 +70,29 @@
 			} else {
 				// Time zone not manually specified by user
 				if ( type === 'guess' ) {
-					// Get browser timezone & fill it in
+					// If available, get the named time zone from the browser.
+					// (We also support older browsers where this API is not available.)
+					try {
+						// This may return undefined
+						timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+					} catch ( err ) {
+						timeZone = null;
+					}
+
+					// Get the time offset
 					minuteDiff = -( new Date().getTimezoneOffset() );
-					timezoneWidget.textinput.setValue( minutesToHours( minuteDiff ) );
-					timezoneWidget.dropdowninput.setValue( 'other' );
+
+					if ( timeZone ) {
+						// Try to save both time zone and offset
+						newValue = 'ZoneInfo|' + minuteDiff + '|' + timeZone;
+						timezoneWidget.dropdowninput.setValue( newValue );
+					}
+					if ( !timeZone || timezoneWidget.dropdowninput.getValue() !== newValue ) {
+						// No time zone, or it's unknown to MediaWiki. Save only offset
+						timezoneWidget.dropdowninput.setValue( 'other' );
+						timezoneWidget.textinput.setValue( minutesToHours( minuteDiff ) );
+					}
+
 				} else {
 					// Grab data from the dropdown value
 					minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
