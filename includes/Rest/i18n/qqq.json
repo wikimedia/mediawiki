@@ -29,5 +29,6 @@
 	"rest-search-error": "Error message for REST API debugging, shown when an error occurs from search engine/database while searching for term. Parameters:\n* $1: The error message key.",
 	"rest-page-source-type-error": "Error message for REST API debugging, shown when trying to retrieve content for a page that has an unsupported content type",
 	"rest-no-revision": "Error message for REST API debugging, shown when fetching a revision by page ID fails. Parameters:\n* $1: The page ID we are getting revision from",
-	"rest-media-too-many-links": "Error message for REST API debugging, shown when there are too many media links on a page. Parameters:\n* $1: The page title.\n* $2: The number of links allowed."
+	"rest-media-too-many-links": "Error message for REST API debugging, shown when there are too many media links on a page. Parameters:\n* $1: The page title.\n* $2: The number of links allowed.",
+	"rest-html-backend-error": "Error message for REST API debugging, shown when fetching Parsoid HTML from backend has failed."
 }
