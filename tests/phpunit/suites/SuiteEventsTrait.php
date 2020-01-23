@@ -13,18 +13,22 @@ trait SuiteEventsTrait {
 	 * @inheritDoc
 	 */
 	public function run( TestResult $result = null ) : TestResult {
-		if ( \PHPUnit\Runner\Version::id()[0] !== '8' ) {
-			// Temporary until we upgrade to PHPUnit 8 for real
-			return parent::run( $result );
-		}
 		$calls = 0;
 		if ( is_callable( [ $this, 'setUp' ] ) ) {
-			$this->setUp();
+			try {
+				$this->setUp();
+			} catch ( \Throwable $_ ) {
+				// FIXME handle
+			}
 			$calls++;
 		}
 		$res = parent::run( $result );
 		if ( is_callable( [ $this, 'tearDown' ] ) ) {
-			$this->tearDown();
+			try {
+				$this->tearDown();
+			} catch ( \Throwable $_ ) {
+				// FIXME handle
+			}
 			$calls++;
 		}
 		if ( !$calls ) {
