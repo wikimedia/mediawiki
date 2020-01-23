@@ -2,113 +2,53 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Config;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
-use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionAccessException;
-use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
-use RequestContext;
 use TextContent;
-use Title;
-use TitleFormatter;
-use User;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Message\ParamType;
-use Wikimedia\Message\ScalarParam;
-use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Handler class for Core REST API Page Source endpoint
  */
-class PageSourceHandler extends SimpleHandler {
+class PageSourceHandler extends LatestPageContentHandler {
 	private const MAX_AGE_200 = 5;
 
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var User */
-	private $user;
-
-	/** @var Config */
-	private $config;
-
-	/** @var RevisionRecord|bool */
-	private $revision;
-
-	/** @var Title */
-	private $titleObject;
-
-	/**
-	 * @param RevisionLookup $revisionLookup
-	 * @param TitleFormatter $titleFormatter
-	 * @param PermissionManager $permissionManager
-	 * @param Config $config
-	 */
-	public function __construct(
-		RevisionLookup $revisionLookup,
-		TitleFormatter $titleFormatter,
-		PermissionManager $permissionManager,
-		Config $config
-	) {
-		$this->revisionLookup = $revisionLookup;
-		$this->titleFormatter = $titleFormatter;
-		$this->permissionManager = $permissionManager;
-		$this->config = $config;
-
-		// @todo Inject this, when there is a good way to do that
-		$this->user = RequestContext::getMain()->getUser();
-	}
-
 	// Default to main slot
-	private function getRole() {
+	private function getRole(): string {
 		return SlotRecord::MAIN;
 	}
 
 	/**
+	 * @param string $slotRole
 	 * @param RevisionRecord $revision
 	 * @return TextContent $content
 	 * @throws LocalizedHttpException slot content is not TextContent or Revision/Slot is inaccessible
 	 */
-	private function getPageContent( RevisionRecord $revision ) {
+	protected function getPageContent( string $slotRole, RevisionRecord $revision ): TextContent {
 		try {
 			$content = $revision
-				->getSlot( $this->getRole(), RevisionRecord::FOR_THIS_USER, $this->user )
+				->getSlot( $slotRole, RevisionRecord::FOR_THIS_USER, $this->user )
 				->getContent()
 				->convert( CONTENT_MODEL_TEXT );
 			if ( !( $content instanceof TextContent ) ) {
-				throw new LocalizedHttpException( new MessageValue( 'rest-page-source-type-error' ), 400 );
+				throw new LocalizedHttpException( MessageValue::new( 'rest-page-source-type-error' ), 400 );
 			}
 		} catch ( SuppressedDataException $e ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-permission-denied-revision',
-					[ new ScalarParam( ParamType::NUM, $revision->getId() ) ]
-				),
+				MessageValue::new( 'rest-permission-denied-revision' )->numParams( $revision->getId() ),
 				403
 			);
 		} catch ( RevisionAccessException $e ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-nonexistent-revision',
-					[ new ScalarParam( ParamType::NUM, $revision->getId() ) ]
-				),
+				MessageValue::new( 'rest-nonexistent-revision' )->numParams( $revision->getId() ),
 				404
 			);
 		}
 		return $content;
-	}
-
-	private function isAccessible( $titleObject ) {
-		return $this->permissionManager->userCan( 'read', $this->user, $titleObject );
 	}
 
 	/**
@@ -116,82 +56,34 @@ class PageSourceHandler extends SimpleHandler {
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
-	public function run( $title ) {
+	public function run( string $title ): Response {
 		$titleObject = $this->getTitle();
 		if ( !$titleObject || !$titleObject->getArticleID() ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-nonexistent-title',
-					[ new ScalarParam( ParamType::TEXT, $title ) ]
-				),
+				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $title ),
 				404
 			);
 		}
 		if ( !$this->isAccessible( $titleObject ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-permission-denied-title',
-					[ new ScalarParam( ParamType::TEXT, $title ) ]
-				),
+				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $title ),
 				403
 			);
 		}
-		$revision = $this->getRevision();
+		$revision = $this->getLatestRevision();
 		if ( !$revision ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'rest-no-revision',
-					[ new ScalarParam( ParamType::TEXT, $title ) ]
-				),
+				MessageValue::new( 'rest-no-revision' ),
 				404
 			);
 		}
-		$content = $this->getPageContent( $this->revision );
-		$body = [
-			'id' => $titleObject->getArticleID(),
-			'key' => $this->titleFormatter->getPrefixedDbKey( $this->titleObject ),
-			'title' => $this->titleFormatter->getPrefixedText( $this->titleObject ),
-			'latest' => [
-				'id' => $this->revision->getId(),
-				'timestamp' => wfTimestampOrNull( TS_ISO_8601, $this->revision->getTimestamp() )
-			],
-			'content_model' => $content->getModel(),
-			'license' => [
-				'url' => $this->config->get( 'RightsUrl' ),
-				'title' => $this->config->get( 'RightsText' )
-			],
-			'source' => $content->getText()
-		];
+		$content = $this->getPageContent( $this->getRole(), $revision );
+		$body = $this->constructMetadata( $titleObject, $revision );
+		$body['source'] = $content->getText();
 
 		$response = $this->getResponseFactory()->createJson( $body );
 		$response->setHeader( 'Cache-Control', 'maxage=' . self::MAX_AGE_200 );
 		return $response;
-	}
-
-	public function needsWriteAccess() {
-		return false;
-	}
-
-	/**
-	 * @return RevisionRecord|bool latest revision or false if unable to retrieve revision
-	 */
-	private function getRevision() {
-		if ( $this->revision === null ) {
-			$title = $this->getTitle();
-			if ( $title && $title->getArticleID() ) {
-				$this->revision = $this->revisionLookup->getKnownCurrentRevision( $title );
-			} else {
-				$this->revision = false;
-			}
-		}
-		return $this->revision;
-	}
-
-	/**
-	 * @return Title|bool Title or false if unable to retrieve title
-	 */
-	private function getTitle() {
-		if ( $this->titleObject === null ) {
-			$this->titleObject = Title::newFromText( $this->getValidatedParams()['title'] ) ?? false;
-		}
-		return $this->titleObject;
 	}
 
 	/**
@@ -200,8 +92,8 @@ class PageSourceHandler extends SimpleHandler {
 	 * or a newer revision exists.
 	 * @return string
 	 */
-	protected function getETag() {
-		$revision = $this->getRevision();
+	protected function getETag(): string {
+		$revision = $this->getLatestRevision();
 		$latestRevision = $revision ? $revision->getID() : 'e0';
 
 		$isAccessible = $this->isAccessible( $this->getTitle() );
@@ -214,20 +106,11 @@ class PageSourceHandler extends SimpleHandler {
 	/**
 	 * @return string|null
 	 */
-	protected function getLastModified() {
-		$revision = $this->getRevision();
+	protected function getLastModified(): ?string {
+		$revision = $this->getLatestRevision();
 		if ( $revision ) {
-			return $this->revision->getTimestamp();
+			return $revision->getTimestamp();
 		}
-	}
-
-	public function getParamSettings() {
-		return [
-			'title' => [
-				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true,
-			],
-		];
+		return null;
 	}
 }
