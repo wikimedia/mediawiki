@@ -2661,7 +2661,7 @@
 	"emailblock": "zablokowany e‐mail",
 	"blocklist-nousertalk": "nie może edytować swojej strony dyskusji",
 	"blocklist-editing": "edytowanie",
-	"blocklist-editing-sitewide": "edytowanie całej strony",
+	"blocklist-editing-sitewide": "edytowanie (wszystkich stron)",
 	"blocklist-editing-page": "strony",
 	"blocklist-editing-ns": "przestrzenie nazw",
 	"ipblocklist-empty": "Lista blokad jest pusta.",

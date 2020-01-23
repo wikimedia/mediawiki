@@ -3492,7 +3492,7 @@
 	"htmlform-title-not-creatable": "\"$1\" estas nekreebla titolo por paĝo",
 	"htmlform-title-not-exists": "$1 ne ekzistas.",
 	"htmlform-user-not-exists": "<strong>$1</strong> ne ekzistas.",
-	"htmlform-user-not-valid": "<strong>$1</strong> ne estas valida salutnomo.",
+	"htmlform-user-not-valid": "<strong>$1</strong> ne estas valida uzantnomo.",
 	"logentry-delete-delete": "$1 forigis paĝon $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|forigis}} alidirektitan $3 per anstataŭigado",
 	"logentry-delete-restore": "$1 {{GENDER:$2|restarigis}} paĝon $3 ($4)",

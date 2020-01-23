@@ -285,7 +285,7 @@
 	"delete": "Sil",
 	"undelete_short": "$1 değişikliği geri getir",
 	"viewdeleted_short": "{{PLURAL:$1|bir silinmiş değişikliği|$1 silinmiş değişikliği}} görüntüle.",
-	"protect": "Korumaya al",
+	"protect": "Koru",
 	"protect_change": "değiştir",
 	"unprotect": "Korumayı değiştir",
 	"newpage": "Yeni sayfa",
