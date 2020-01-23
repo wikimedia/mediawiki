@@ -79,5 +79,13 @@
 			"DBLoadBalancer",
 			"RepoGroup"
 		]
+	},
+	{
+		"path": "/coredev/v0/file/{title}",
+		"class": "MediaWiki\\Rest\\Handler\\MediaFileHandler",
+		"services": [
+			"PermissionManager",
+			"RepoGroup"
+		]
 	}
 ]
