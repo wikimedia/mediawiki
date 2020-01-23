@@ -151,7 +151,7 @@ class VersionChecker {
 	 *     }
 	 *
 	 * @param array $extDependencies All extensions that depend on other ones
-	 * @return array
+	 * @return array[] List of errors
 	 */
 	public function checkArray( array $extDependencies ) {
 		$errors = [];
