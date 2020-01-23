@@ -372,7 +372,7 @@
 	"missingcommenttext": "Upkar korun tuzo xero boroi.",
 	"subject-preview": "Vixoiacho purvdekhavo:",
 	"blockedtitle": "Vapurpeak addaila",
-	"blockedtext": "<strong>Tujem vaporpeachem nanv vo IP pot'to addavpant aila.</strong>\n\nAddavop $1 hannem kelam.\nKaronn dilam tem <em>$2</em>.\n\n* Addavpachi survat: $8\n* Addavop sompovpacho vell: $6\n* Addavpak ievjila: $7\n\nTujean $1-ak vo dusrea [[{{MediaWiki:Grouppage-sysop}}|karbhariak]] addavnne vixim bhasabhas korunk sompork korunk zata. Tujean \"{{int:emailuser}}\" sobhavgunn vaprunk zata ek void email pot'to tujea [[Special:Preferences|posontint]] nischit kelea ani tuka tem vaporpak addavnk na zalear. Tuzo chalont IP pot'to asa $3, ani addavnnecheo ank #$5 asa. Soglleo voileo bariksanno tum kortai tea vicharant somavex kor.",
+	"blockedtext": "<strong>Tujem vaporpeachem nanv vo IP pot'to addavpant aila.</strong>\n\nAddavop $1 hannem kelam.\nKaronn dilam tem <em>$2</em>.\n\n* Addavpachi survat: $8\n* Addavop sompovpacho vell: $6\n* Addavpak ievjila: $7\n\nTujean $1-ak vo dusrea [[{{MediaWiki:Grouppage-sysop}}|karbhariak]] addavnne vixim bhasabhas korunk sompork korunk zata. Tujean \"{{int:emailuser}}\" sobhavgunn vaprunk zata ek void email pot'to tujea [[Special:Preferences|posontint]] nischit kelea ani tuka tem vaporpak addavnk na zalear.\n\nTuzo chalont IP pot'to asa $3, ani addavnnecheo ank #$5 asa. Soglleo voileo bariksanno tum kortai tea vicharant somavex kor.",
 	"blockednoreason": "Kainch karonn diunk na",
 	"loginreqtitle": "Sotrorombh gorjechem",
 	"loginreqlink": "sotrorombh kor",

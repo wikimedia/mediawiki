@@ -2511,7 +2511,7 @@
 	"ipaddressorusername": "IP adresa alebo meno používateľa:",
 	"ipbreason": "Dôvod:",
 	"ipbreason-dropdown": "* Bežné dôvody blokovania\n** Zámerné vkladanie chybných informácií\n** Mazanie obsahu stránok\n** Spam odkazy na externé stránky\n** Vkladanie nezmyslov do stránok\n** Zastrašujúce správanie/obťažovanie\n** Zneužívanie viacerých účtov\n** Neprípustné používateľské meno",
-	"ipb-hardblock": "Zabrániť prihláseným používateľom upravovať z tejto IP adresy",
+	"ipb-hardblock": "Aplikovať blokovanie pre prihlásených používateľov z tejto IP adresy",
 	"ipbcreateaccount": "Vytváranie účtov",
 	"ipbemailban": "Posielanie e-mailov",
 	"ipbenableautoblock": "Automaticky blokovať poslednú IP adresu, ktorú tento používateľ použil, a všetky ďalšie adresy, z ktorých sa pokúsi upravovať.",
