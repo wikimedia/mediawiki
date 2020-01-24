@@ -164,7 +164,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					foreach ( $sres as $srow ) {
 						if ( $srow->log_user > 0 ) {
 							$userIds[] = intval( $srow->log_user );
-						} elseif ( IP::isIPAddress( $srow->log_user_text ) ) {
+						} elseif ( Wikimedia\IPUtils::isIPAddress( $srow->log_user_text ) ) {
 							$userIPs[] = $srow->log_user_text;
 						}
 					}
