@@ -53,7 +53,6 @@ abstract class FormattedRCFeed extends RCFeed {
 	public function notify( RecentChange $rc, $actionComment = null ) {
 		$params = $this->params;
 		/** @var RCFeedFormatter $formatter */
-		// @phan-suppress-next-line PhanTypeExpectedObjectOrClassName
 		$formatter = is_object( $params['formatter'] ) ? $params['formatter'] : new $params['formatter'];
 
 		$line = $formatter->getLine( $params, $rc, $actionComment );

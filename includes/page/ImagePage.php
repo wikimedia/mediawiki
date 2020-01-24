@@ -185,6 +185,7 @@ class ImagePage extends Article {
 		}
 
 		if ( $showmeta ) {
+			'@phan-var array $formattedMetadata';
 			$out->addHTML( Xml::element(
 				'h2',
 				[ 'id' => 'metadata' ],

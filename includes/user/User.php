@@ -4920,6 +4920,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *     'remove' => [ removablegroups ],
 	 *     'add-self' => [ addablegroups to self ],
 	 *     'remove-self' => [ removable groups from self ] ]
+	 * @suppress PhanTypeComparisonFromArray False positives with $wgGroupsAddToSelf
 	 */
 	public static function changeableByGroup( $group ) {
 		global $wgAddGroups, $wgRemoveGroups, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
