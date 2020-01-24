@@ -306,6 +306,7 @@ class ParserOutput extends CacheTime {
 	 *  - enableSectionEditLinks: (bool) Include section edit links, assuming
 	 *     section edit link tokens are present in the HTML. Default is true,
 	 *     but might be statefully overridden.
+	 *  - skin: (Skin) Skin object used for transforming section edit links.
 	 *  - unwrap: (bool) Return text without a wrapper div. Default is false,
 	 *    meaning a wrapper div will be added if getWrapperDivClass() returns
 	 *    a non-empty string.
@@ -325,6 +326,7 @@ class ParserOutput extends CacheTime {
 		$options += [
 			'allowTOC' => true,
 			'enableSectionEditLinks' => true,
+			'skin' => null,
 			'unwrap' => false,
 			'deduplicateStyles' => true,
 			'wrapperDivClass' => $this->getWrapperDivClass(),
@@ -338,9 +340,12 @@ class ParserOutput extends CacheTime {
 		}
 
 		if ( $options['enableSectionEditLinks'] ) {
+			// TODO: Passing the skin should be required
+			$skin = $options['skin'] ?: RequestContext::getMain()->getSkin();
+
 			$text = preg_replace_callback(
 				self::EDITSECTION_REGEX,
-				function ( $m ) {
+				function ( $m ) use ( $skin ) {
 					$editsectionPage = Title::newFromText( htmlspecialchars_decode( $m[1] ) );
 					$editsectionSection = htmlspecialchars_decode( $m[2] );
 					$editsectionContent = isset( $m[4] ) ? Sanitizer::decodeCharReferences( $m[3] ) : null;
@@ -349,12 +354,11 @@ class ParserOutput extends CacheTime {
 						throw new MWException( "Bad parser output text." );
 					}
 
-					$context = RequestContext::getMain();
-					return $context->getSkin()->doEditSectionLink(
+					return $skin->doEditSectionLink(
 						$editsectionPage,
 						$editsectionSection,
 						$editsectionContent,
-						$context->getLanguage()
+						$skin->getLanguage()
 					);
 				},
 				$text
