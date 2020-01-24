@@ -28,6 +28,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class BlockListPager extends TablePager {
@@ -119,7 +120,7 @@ class BlockListPager extends TablePager {
 					list( $target, $type ) = DatabaseBlock::parseTarget( $row->ipb_address );
 
 					if ( is_string( $target ) ) {
-						if ( IP::isValidRange( $target ) ) {
+						if ( IPUtils::isValidRange( $target ) ) {
 							$target = User::newFromName( $target, false );
 						} else {
 							$formatted = $target;
