@@ -27,5 +27,6 @@
 	"rest-pagehistorycount-too-many-revisions": "הכותרת שצוינה מכילה יותר מדי גרסאות וזה לא מאפשר לאחזר את המספר הזה.",
 	"rest-search-error": "שגיאה בהחזרת תוצאות חיפוש: $1",
 	"rest-page-source-type-error": "סוג התוכן של מקור הדף שהתבקש אינו נתמך",
-	"rest-no-revision": "לא ניתן לאחזר גרסה עבור הכותרת $1"
+	"rest-no-revision": "לא ניתן לאחזר גרסה עבור הכותרת $1",
+	"rest-media-too-many-links": "נמצאו יותר מדי קישורי מדיה בכותרת $1 (המספר המרבי הוא $2)"
 }

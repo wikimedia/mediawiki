@@ -1128,7 +1128,7 @@
 	"timezonelegend": "Zeitzone:",
 	"localtime": "Ortszeit:",
 	"timezoneuseserverdefault": "Standardzeit dieses Wikis nutzen ($1)",
-	"timezoneuseoffset": "Andere (unten Unterschied angeben)",
+	"timezoneuseoffset": "Andere (Zeitverschiebung von UTC)",
 	"timezone-useoffset-placeholder": "Beispielwerte: „-07:00“ oder „01:00“",
 	"servertime": "Aktuelle Zeit auf dem Server:",
 	"guesstimezone": "Vom Browser übernehmen",

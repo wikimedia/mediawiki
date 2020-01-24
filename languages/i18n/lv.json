@@ -2048,7 +2048,7 @@
 	"tooltip-namespace_association": "Atzīmē šo rūtiņu, lai iekļautu diskusijas vai temata vārdtelpu, kas saistīta ar izvēlēto vārdtelpu",
 	"blanknamespace": "(Pamatlapa)",
 	"contributions": "{{GENDER:$1|Dalībnieka|Dalībnieces|Dalībnieka}} devums",
-	"contributions-title": "Dalībnieka $1 devums",
+	"contributions-title": "{{GENDER:$1|Dalībnieka|Dalībnieces|Dalībnieka}} $1 devums",
 	"mycontris": "Devums",
 	"anoncontribs": "Devums",
 	"contribsub2": "{{GENDER:$3|Dalībnieks|Dalībniece}}: $1 ($2)",
