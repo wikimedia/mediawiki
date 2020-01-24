@@ -290,6 +290,7 @@ class ApiParse extends ApiBase {
 		}
 
 		$outputPage = null;
+		$context = null;
 		if ( $skin || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ) {
 			// Enabling the skin via 'useskin', 'headhtml', or 'categorieshtml'
 			// gets OutputPage and Skin involved, which (among others) applies
@@ -345,6 +346,7 @@ class ApiParse extends ApiBase {
 				'enableSectionEditLinks' => !$params['disableeditsection'],
 				'wrapperDivClass' => $params['wrapoutputclass'],
 				'deduplicateStyles' => !$params['disablestylededuplication'],
+				'skin' => $context ? $context->getSkin() : null,
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 		}
