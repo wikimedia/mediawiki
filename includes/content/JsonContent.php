@@ -163,7 +163,8 @@ class JsonContent extends TextContent {
 	 * @return string HTML.
 	 */
 	protected function objectRow( $key, $val ) {
-		$th = Html::element( 'th', [], $key );
+		$thContent = Html::element( 'span', [], $key );
+		$th = Html::rawElement( 'th', [], $thContent );
 		$td = $this->valueCell( $val );
 		return Html::rawElement( 'tr', [], $th . $td );
 	}
