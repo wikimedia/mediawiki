@@ -290,6 +290,7 @@ because of Phabricator reports.
   have been removed without deprecation.
 * The support for old signature for ParserFactory::__construct was deprecated in
   1.34 and now has been removed.
+* SpecialRecentChanges::filterByCategories(), deprecated in 1.31, was removed
 * …
 
 === Deprecations in 1.35 ===
