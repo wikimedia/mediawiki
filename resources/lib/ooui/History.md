@@ -1,4 +1,14 @@
 # OOUI Release History
+## v0.36.3 / 2020-01-23
+### Code
+* TagMultiselectWidget: Add tags before clearing the input (Thalia Chan)
+* TagMultiselectWidget: Avoid side effects from setValue when resizing (Thalia Chan)
+* TagMultiselectWidget: Remove unnecessary validity check (Thalia Chan)
+* build: Upgrade mediawiki-codesniffer to v29.0.0 (James D. Forrester)
+* doc: Point to gerrit, not Phabricator Diffusion (James D. Forrester)
+* doc: Update copyright statement for new year (James D. Forrester)
+
+
 ## v0.36.2 / 2020-01-07
 ### Styles
 * icons: Add RTL versions of table column action icons (Bartosz Dziewoński)
