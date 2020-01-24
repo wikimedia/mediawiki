@@ -90,18 +90,30 @@ class PHPUnitMaintClass extends Maintenance {
 	 */
 	private function forceFormatServerArgv() {
 		$argv = [];
-		foreach ( $_SERVER['argv'] as $key => $arg ) {
+		for ( $key = 0; $key < count( $_SERVER['argv'] ); $key++ ) {
+			$arg = $_SERVER['argv'][$key];
+
 			if ( $key === 0 ) {
 				$argv[0] = $arg;
-			} else {
-				$parts = explode( '=', $arg, 2 );
-				$arg = preg_replace( '/^--/', '', $parts[0] );
+				continue;
+			}
+
+			if ( preg_match( '/^--(.*)$/', $arg, $match ) ) {
+				$opt = $match[1];
+				$parts = explode( '=', $opt, 2 );
+				$opt = $parts[0];
+
 				// Avoid confusing PHPUnit with MediaWiki-specific parameters
-				if ( isset( $this->mParams[$arg] ) ) {
+				if ( isset( $this->mParams[$opt] ) ) {
+					if ( $this->mParams[$opt]['withArg'] && !isset( $parts[1] ) ) {
+						// skip the value after the option name as well
+						$key++;
+					}
 					continue;
 				}
-				$argv = array_merge( $argv, $parts );
 			}
+
+			$argv[] = $arg;
 		}
 		$_SERVER['argv'] = $argv;
 	}
