@@ -1221,6 +1221,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function escapeId( $id, $options = [] ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		$options = (array)$options;
 
 		// HTML4-style escaping
