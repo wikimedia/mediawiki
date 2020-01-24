@@ -2148,17 +2148,16 @@ abstract class ApiBase extends ContextSource {
 	 * @param array $options Additional options
 	 *   - user: (User) User to use rather than $this->getUser()
 	 *   - autoblock: (bool, default false) Whether to spread autoblocks
-	 *  For compatibility, passing a User object is treated as the value for the 'user' option.
 	 * @throws ApiUsageException if the user doesn't have all of the rights.
 	 *
 	 * @since 1.29
 	 * @since 1.33 Changed the third parameter from $user to $options.
 	 */
-	public function checkTitleUserPermissions( LinkTarget $linkTarget, $actions, $options = [] ) {
-		if ( !is_array( $options ) ) {
-			wfDeprecated( '$user as the third parameter to ' . __METHOD__, '1.33' );
-			$options = [ 'user' => $options ];
-		}
+	public function checkTitleUserPermissions(
+		LinkTarget $linkTarget,
+		$actions,
+		array $options = []
+	) {
 		$user = $options['user'] ?? $this->getUser();
 
 		$errors = [];
