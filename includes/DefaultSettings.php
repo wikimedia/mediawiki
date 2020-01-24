@@ -4113,16 +4113,14 @@ $wgInvalidRedirectTargets = [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ];
  *
  *  class             The class name
  *
- *  preprocessorClass The preprocessor class. Two classes are currently available:
+ *  preprocessorClass The preprocessor class. Only one class is currently available:
  *                    Preprocessor_Hash, which uses plain PHP arrays for temporary
- *                    storage, and Preprocessor_DOM, which uses the DOM module for
- *                    temporary storage. Preprocessor_DOM generally uses less memory;
- *                    the speed of the two is roughly the same.
+ *                    storage.
  *
  *                    If this parameter is not given, it uses Preprocessor_Hash.
  *
- * The Preprocessor_DOM class is deprecated, and will be removed in a future
- * release.
+ * Configuring the parser via preprocessorClass is deprecated, and will be
+ * removed in a future release.
  *
  * The entire associative array will be passed through to the constructor as
  * the first parameter. Note that only Setup.php can use this variable --
@@ -4155,6 +4153,9 @@ $wgMaxPPNodeCount = 1000000;
  * this default corresponds to about 155 MB.
  *
  * When the limit is exceeded, an exception is thrown.
+ *
+ * @deprecated since 1.35, Preprocessor_DOM was removed and this option no
+ *   longer has any effect.
  */
 $wgMaxGeneratedPPNodeCount = 1000000;
 

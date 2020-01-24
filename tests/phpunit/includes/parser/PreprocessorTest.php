@@ -5,15 +5,6 @@ use MediaWiki\MediaWikiServices;
 /**
  * @covers Preprocessor
  *
- * @covers Preprocessor_DOM
- * @covers PPDStack
- * @covers PPDStackElement
- * @covers PPDPart
- * @covers PPFrame_DOM
- * @covers PPTemplateFrame_DOM
- * @covers PPCustomFrame_DOM
- * @covers PPNode_DOM
- *
  * @covers Preprocessor_Hash
  * @covers PPDStack_Hash
  * @covers PPDStackElement_Hash
@@ -39,7 +30,6 @@ class PreprocessorTest extends MediaWikiTestCase {
 	protected $mPreprocessors;
 
 	protected static $classNames = [
-		Preprocessor_DOM::class,
 		Preprocessor_Hash::class
 	];
 
@@ -47,9 +37,6 @@ class PreprocessorTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User,
 			MediaWikiServices::getInstance()->getContentLanguage() );
-
-		# Suppress deprecation warning for Preprocessor_DOM while testing
-		$this->hideDeprecated( 'Preprocessor_DOM::__construct' );
 
 		$this->mPreprocessors = [];
 		foreach ( self::$classNames as $className ) {

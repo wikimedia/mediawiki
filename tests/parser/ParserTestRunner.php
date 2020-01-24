@@ -802,10 +802,6 @@ class ParserTestRunner {
 		$class = $wgParserConf['class'];
 		$parser = new $class( [ 'preprocessorClass' => $preprocessor ] + $wgParserConf );
 		if ( $preprocessor ) {
-			# Suppress deprecation warning for Preprocessor_DOM while testing
-			Wikimedia\suppressWarnings();
-			wfDeprecated( 'Preprocessor_DOM::__construct' );
-			Wikimedia\restoreWarnings();
 			$parser->getPreprocessor();
 		}
 		ParserTestParserHook::setup( $parser );
@@ -833,6 +829,9 @@ class ParserTestRunner {
 	public function runTest( $test ) {
 		wfDebug( __METHOD__ . ": running {$test['desc']}" );
 		$opts = $this->parseOptions( $test['options'] );
+		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
+			return false; // Skip test.
+		}
 		$teardownGuard = $this->perTestSetup( $test );
 
 		$context = RequestContext::getMain();
@@ -891,8 +890,7 @@ class ParserTestRunner {
 		}
 
 		$local = isset( $opts['local'] );
-		$preprocessor = $opts['preprocessor'] ?? null;
-		$parser = $this->getParser( $preprocessor );
+		$parser = $this->getParser();
 
 		if ( isset( $opts['styletag'] ) ) {
 			// For testing the behavior of <style> (including those deduplicated
