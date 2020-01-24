@@ -106,8 +106,7 @@ class ParserFactory {
 			wfDeprecated( __METHOD__ . ' with Config parameter', '1.34' );
 			$svcOptions = new ServiceOptions( Parser::CONSTRUCTOR_OPTIONS,
 				$svcOptions,
-				[ 'class' => Parser::class,
-					'preprocessorClass' => Parser::getDefaultPreprocessorClass() ],
+				[ 'class' => Parser::class ],
 				func_get_arg( 5 )
 			);
 			$linkRendererFactory = func_get_arg( 6 );
@@ -115,7 +114,7 @@ class ParserFactory {
 		}
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
-		wfDebug( __CLASS__ . ": using preprocessor: {$svcOptions->get( 'preprocessorClass' )}\n" );
+		wfDebug( __CLASS__ . ": using default preprocessor\n" );
 
 		$this->svcOptions = $svcOptions;
 		$this->magicWordFactory = $magicWordFactory;

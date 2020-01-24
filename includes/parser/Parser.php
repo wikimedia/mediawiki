@@ -315,7 +315,6 @@ class Parser {
 	public const CONSTRUCTOR_OPTIONS = [
 		// See $wgParserConf documentation
 		'class',
-		'preprocessorClass',
 		// See documentation for the corresponding config options
 		'ArticlePath',
 		'EnableScaryTranscluding',
@@ -367,9 +366,6 @@ class Parser {
 			if ( empty( $this->mConf['class'] ) ) {
 				$this->mConf['class'] = self::class;
 			}
-			if ( empty( $this->mConf['preprocessorClass'] ) ) {
-				$this->mConf['preprocessorClass'] = self::getDefaultPreprocessorClass();
-			}
 			$this->svcOptions = new ServiceOptions( self::CONSTRUCTOR_OPTIONS,
 				$this->mConf, func_num_args() > 6
 					? func_get_arg( 6 ) : MediaWikiServices::getInstance()->getMainConfig()
@@ -379,11 +375,10 @@ class Parser {
 		} else {
 			// New calling convention
 			$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-			// $this->mConf is public, so we'll keep those two options there as well for
+			// $this->mConf is public, so we'll keep the option there for
 			// compatibility until it's removed
 			$this->mConf = [
 				'class' => $svcOptions->get( 'class' ),
-				'preprocessorClass' => $svcOptions->get( 'preprocessorClass' ),
 			];
 			$this->svcOptions = $svcOptions;
 		}
@@ -454,6 +449,7 @@ class Parser {
 	 * @return string
 	 */
 	public static function getDefaultPreprocessorClass() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return Preprocessor_Hash::class;
 	}
 
@@ -1086,8 +1082,7 @@ class Parser {
 	 */
 	public function getPreprocessor() {
 		if ( !isset( $this->mPreprocessor ) ) {
-			$class = $this->svcOptions->get( 'preprocessorClass' );
-			$this->mPreprocessor = new $class( $this );
+			$this->mPreprocessor = new Preprocessor_Hash( $this );
 		}
 		return $this->mPreprocessor;
 	}
