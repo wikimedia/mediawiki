@@ -64,6 +64,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   file should instead be set using $wgDebugLogGroups['profileoutput'].
 * $wgSkipSkin - This setting, deprecated in 1.23, was removed. To disable a
   skin from being shown, use $wgSkipSkins.
+* $wgMaxGeneratedPPNodeCount - This setting was removed.  It only affected
+  Preprocessor_DOM, which was deprecated in 1.34 and removed in this release.
 * …
 
 === New user-facing features in 1.35 ===
@@ -229,6 +231,8 @@ because of Phabricator reports.
   parameter. Passing a user was deprecated in 1.33.
 * The ParserAfterUnstrip hook was removed without deprecation.
 * Preprocessor_DOM and related classes, deprecated in 1.34, have been removed.
+* ParserOptions::getMaxGeneratedPPNodeCount() and ::setMaxGeneratedPPNodeCount()
+  have been removed without deprecation.
 * …
 
 === Deprecations in 1.35 ===
