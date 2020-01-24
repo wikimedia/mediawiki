@@ -11,7 +11,7 @@ CREATE TABLE /*_*/ip_changes (
   -- The timestamp of the revision
   ipc_rev_timestamp binary(14) NOT NULL DEFAULT '',
 
-  -- Hex representation of the IP address, as returned by IP::toHex()
+  -- Hex representation of the IP address, as returned by IPUtils::toHex()
   -- For IPv4 it will resemble: ABCD1234
   -- For IPv6: v6-ABCD1234000000000000000000000000
   -- BETWEEN is then used to identify revisions within a given range

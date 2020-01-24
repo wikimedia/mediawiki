@@ -1787,7 +1787,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$sessionUser = RequestContext::getMain()->getUser();
 		$globalUserName = $sessionUser->isSafeToLoad()
 			? $sessionUser->getName()
-			: IP::sanitizeIP( $sessionUser->getRequest()->getIP() );
+			: IPUtils::sanitizeIP( $sessionUser->getRequest()->getIP() );
 
 		if ( $this->getName() === $globalUserName ) {
 			// This is the global user, so we need to pass the request
