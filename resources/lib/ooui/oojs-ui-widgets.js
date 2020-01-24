@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.36.2
+ * OOUI v0.36.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-01-07T23:06:58Z
+ * Date: 2020-01-24T00:06:24Z
  */
 ( function ( OO ) {
 
@@ -4651,10 +4651,7 @@ OO.ui.TagMultiselectWidget.prototype.onChangeTags = function () {
 	var isUnderLimit = this.isUnderLimit();
 
 	// Reset validity
-	this.toggleValid(
-		this.checkValidity() &&
-		!( this.hasInput && this.input.getValue() )
-	);
+	this.toggleValid( this.checkValidity() );
 
 	if ( this.hasInput ) {
 		this.updateInputSize();
@@ -4723,19 +4720,27 @@ OO.ui.TagMultiselectWidget.prototype.onTagNavigate = function ( item, direction 
 };
 
 /**
+ * Get data and label for a new tag from the input value
+ *
+ * @return {Object} The data and label for a tag
+ */
+OO.ui.TagMultiselectWidget.prototype.getTagInfoFromInput = function () {
+	var val = this.input.getValue();
+	return { data: val, label: val };
+};
+
+/**
  * Add tag from input value
  */
 OO.ui.TagMultiselectWidget.prototype.addTagFromInput = function () {
-	var val = this.input.getValue(),
-		isValid = this.isAllowedData( val );
+	var tagInfo = this.getTagInfoFromInput();
 
-	if ( !val ) {
+	if ( !tagInfo.data ) {
 		return;
 	}
 
-	if ( isValid || this.allowDisplayInvalidTags ) {
+	if ( this.addTag( tagInfo.data, tagInfo.label ) ) {
 		this.clearInput();
-		this.addTag( val );
 	}
 };
 
@@ -4853,7 +4858,9 @@ OO.ui.TagMultiselectWidget.prototype.setValue = function ( valueObject ) {
 };
 
 /**
- * Add tag to the display area
+ * Add tag to the display area.
+ *
+ * Performs a validation check on the tag to be added.
  *
  * @param {string|Object} data Tag data
  * @param {string} [label] Tag label. If no label is provided, the
@@ -4975,7 +4982,8 @@ OO.ui.TagMultiselectWidget.prototype.getPreviousItem = function ( item ) {
  * @private
  */
 OO.ui.TagMultiselectWidget.prototype.updateInputSize = function () {
-	var $lastItem, direction, contentWidth, currentWidth, bestWidth;
+	var $lastItem, direction, contentWidth, currentWidth, bestWidth, placeholder;
+
 	if ( this.inputPosition === 'inline' && !this.isDisabled() ) {
 		if ( this.input.$input[ 0 ].scrollWidth === 0 ) {
 			// Input appears to be attached but not visible.
@@ -4989,14 +4997,16 @@ OO.ui.TagMultiselectWidget.prototype.updateInputSize = function () {
 
 		// Get the width of the input with the placeholder text as
 		// the value and save it so that we don't keep recalculating
+		placeholder = this.input.$input.attr( 'placeholder' );
 		if (
 			this.contentWidthWithPlaceholder === undefined &&
 			this.input.getValue() === '' &&
-			this.input.$input.attr( 'placeholder' ) !== undefined
+			placeholder !== undefined
 		) {
-			this.input.setValue( this.input.$input.attr( 'placeholder' ) );
+			// Set the value directly to avoid any side effects of setValue
+			this.input.$input.val( placeholder );
 			this.contentWidthWithPlaceholder = this.input.$input[ 0 ].scrollWidth;
-			this.input.setValue( '' );
+			this.input.$input.val( '' );
 
 		}
 
@@ -5383,16 +5393,16 @@ OO.ui.MenuTagMultiselectWidget.prototype.onInputChange = function () {
  * @param {boolean} selected Item is selected
  */
 OO.ui.MenuTagMultiselectWidget.prototype.onMenuChoose = function ( menuItem, selected ) {
-	if ( this.hasInput && this.clearInputOnChoose ) {
-		this.input.setValue( '' );
-	}
-
 	if ( selected && !this.findItemFromData( menuItem.getData() ) ) {
 		// The menu item is selected, add it to the tags
 		this.addTag( menuItem.getData(), menuItem.getLabel() );
 	} else {
 		// The menu item was unselected, remove the tag
 		this.removeTagByData( menuItem.getData() );
+	}
+
+	if ( this.hasInput && this.clearInputOnChoose ) {
+		this.input.setValue( '' );
 	}
 };
 
@@ -5535,29 +5545,15 @@ OO.ui.MenuTagMultiselectWidget.prototype.initializeMenuSelection = function () {
 /**
  * @inheritdoc
  */
-OO.ui.MenuTagMultiselectWidget.prototype.addTagFromInput = function () {
+OO.ui.MenuTagMultiselectWidget.prototype.getTagInfoFromInput = function () {
 	var val = this.input.getValue(),
 		// Look for a highlighted item first
 		// Then look for the element that fits the data
 		item = this.menu.findHighlightedItem() || this.menu.findItemFromData( val ),
 		data = item ? item.getData() : val,
-		isValid = this.isAllowedData( data );
+		label = item ? item.getLabel() : val;
 
-	// Override the parent method so we add from the menu
-	// rather than directly from the input
-
-	if ( !val ) {
-		return;
-	}
-
-	if ( isValid || this.allowDisplayInvalidTags ) {
-		this.clearInput();
-		if ( item ) {
-			this.addTag( data, item.getLabel() );
-		} else {
-			this.addTag( val );
-		}
-	}
+	return { data: data, label: label };
 };
 
 /**
