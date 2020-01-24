@@ -10,11 +10,8 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testMediaWikiCheck( $coreVersion, $constraint, $expected ) {
 		$checker = new VersionChecker( $coreVersion, '7.0.0', [] );
-		$this->assertEquals( $expected, !(bool)$checker->checkArray( [
-			'FakeExtension' => [
-				'MediaWiki' => $constraint,
-			],
-		] ) );
+		$extDependencies = [ 'FakeExtension' => [ 'MediaWiki' => $constraint ] ];
+		$this->assertSame( $expected, $checker->checkArray( $extDependencies ) === [] );
 	}
 
 	public static function provideMediaWikiCheck() {
@@ -46,13 +43,8 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testPhpValidCheck( $phpVersion, $constraint, $expected ) {
 		$checker = new VersionChecker( '1.0.0', $phpVersion, [] );
-		$this->assertEquals( $expected, !(bool)$checker->checkArray( [
-			'FakeExtension' => [
-				'platform' => [
-					'php' => $constraint,
-				],
-			],
-		] ) );
+		$extDependencies = [ 'FakeExtension' => [ 'platform' => [ 'php' => $constraint ] ] ];
+		$this->assertSame( $expected, $checker->checkArray( $extDependencies ) === [] );
 	}
 
 	public static function providePhpValidCheck() {
