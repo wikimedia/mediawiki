@@ -29,5 +29,6 @@
 	"rest-pagehistorycount-too-many-revisions": "Le titre spécifié contient trop de versions pour en récupérer ce nombre.",
 	"rest-search-error": "Erreur en renvoyant les résultats de recherche : $1",
 	"rest-page-source-type-error": "Le type de contenu de la page source demandée n'est pas pris en charge",
-	"rest-no-revision": "Impossible de récupérer la révision du titre $1"
+	"rest-no-revision": "Impossible de récupérer la révision du titre $1",
+	"rest-media-too-many-links": "Trop de liens de média trouvés dans le titre $1 ($2 autorisés)"
 }

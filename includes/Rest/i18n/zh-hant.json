@@ -27,5 +27,6 @@
 	"rest-pagehistorycount-too-many-revisions": "指定的標題包含太多的修訂而無法取得計數。",
 	"rest-search-error": "當回傳搜尋結果時發生錯誤：$1",
 	"rest-page-source-type-error": "不支援請求頁面來源的內容類型",
-	"rest-no-revision": "無法取回標題$1的修訂"
+	"rest-no-revision": "無法取回標題$1的修訂",
+	"rest-media-too-many-links": "在標題$1找到太多的媒體連結（允許 $2 個）"
 }
