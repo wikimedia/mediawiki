@@ -1090,7 +1090,7 @@
 	"timezonelegend": "Time zone:",
 	"localtime": "Local time:",
 	"timezoneuseserverdefault": "Use wiki default ($1)",
-	"timezoneuseoffset": "Other (specify offset below)",
+	"timezoneuseoffset": "Other (time offset from UTC)",
 	"timezone-useoffset-placeholder": "Example values: \"-07:00\" or \"01:00\"",
 	"servertime": "Server time:",
 	"guesstimezone": "Fill in from browser",
