@@ -41,11 +41,7 @@
 				IPv4: 16,
 				IPv6: 32
 			}
-		}, config, {
-			// Because of using autocomplete (constantly changing menu), we need to
-			// allow adding usernames, which do not present in the menu.
-			allowArbitrary: true
-		} );
+		}, config );
 
 		// Parent constructor
 		mw.widgets.UsersMultiselectWidget.parent.call( this, $.extend( {}, config, {} ) );
