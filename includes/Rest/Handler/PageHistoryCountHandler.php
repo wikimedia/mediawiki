@@ -41,6 +41,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 		'revertededits' => 'reverted'
 	];
 
+	private const MAX_AGE_200 = 60;
+
 	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
 
 	/** @var RevisionStore */
@@ -60,6 +62,15 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 	/** @var User */
 	private $user;
+
+	/** @var RevisionRecord|bool */
+	private $revision;
+
+	/** @var array */
+	private $lastModifiedTimes;
+
+	/** @var Title */
+	private $titleObject;
 
 	/**
 	 * @param RevisionStore $revisionStore
@@ -119,15 +130,15 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param string $title
-	 * @param string $type
+	 * @param Title $title the title of the page to load history for
+	 * @param string $type the validated count type
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
 	public function run( $title, $type ) {
 		$normalizedType = $this->normalizeType( $type );
 		$this->validateParameterCombination( $normalizedType );
-		$titleObj = Title::newFromText( $title );
+		$titleObj = $this->getTitle();
 		if ( !$titleObj || !$titleObj->getArticleID() ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-nonexistent-title',
@@ -146,12 +157,13 @@ class PageHistoryCountHandler extends SimpleHandler {
 			);
 		}
 
-		$count = $this->getCount( $titleObj, $normalizedType );
+		$count = $this->getCount( $normalizedType );
 		$countLimit = self::COUNT_LIMITS[$normalizedType];
 		$response = $this->getResponseFactory()->createJson( [
 				'count' => $count > $countLimit ? $countLimit : $count,
 				'limit' => $count > $countLimit
 		] );
+		$response->setHeader( 'Cache-Control', 'maxage=' . self::MAX_AGE_200 );
 
 		// Inform clients who use a deprecated "type" value, so they can adjust
 		if ( isset( self::DEPRECATED_COUNT_TYPES[$type] ) ) {
@@ -165,24 +177,24 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $title the title of the page to load history for
 	 * @param string $type the validated count type
 	 * @return int the article count
 	 * @throws LocalizedHttpException
 	 */
-	private function getCount( $title, $type ) {
+	private function getCount( $type ) {
+		$pageId = $this->getTitle()->getArticleID();
 		switch ( $type ) {
 			case 'anonymous':
-				return $this->getCachedCount( $title, $type,
-					function ( RevisionRecord $fromRev = null ) use ( $title ) {
-						return $this->getAnonCount( $title->getArticleID(), $fromRev );
+				return $this->getCachedCount( $type,
+					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+						return $this->getAnonCount( $pageId, $fromRev );
 					}
 				);
 
 			case 'bot':
-				return $this->getCachedCount( $title, $type,
-					function ( RevisionRecord $fromRev = null ) use ( $title ) {
-						return $this->getBotCount( $title->getArticleID(), $fromRev );
+				return $this->getCachedCount( $type,
+					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+						return $this->getBotCount( $pageId, $fromRev );
 					}
 				);
 
@@ -191,16 +203,15 @@ class PageHistoryCountHandler extends SimpleHandler {
 				$to = $this->getValidatedParams()['to'] ?? null;
 				if ( $from || $to ) {
 					return $this->getEditorsCount(
-						$title->getArticleID(),
+						$pageId,
 						$from ? $this->getRevisionOrThrow( $from ) : null,
 						$to ? $this->getRevisionOrThrow( $to ) : null
 					);
 				} else {
-					return $this->getCachedCount( $title, $type,
-						function ( RevisionRecord $fromRev = null ) use ( $title ) {
-							return $this->getEditorsCount( $title->getArticleID(), $fromRev );
-						}, false
-					);
+					return $this->getCachedCount( $type,
+						function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+							return $this->getEditorsCount( $pageId, $fromRev );
+						} );
 				}
 
 			case 'edits':
@@ -208,31 +219,31 @@ class PageHistoryCountHandler extends SimpleHandler {
 				$to = $this->getValidatedParams()['to'] ?? null;
 				if ( $from || $to ) {
 					return $this->getEditsCount(
-						$title->getArticleID(),
+						$pageId,
 						$from ? $this->getRevisionOrThrow( $from ) : null,
 						$to ? $this->getRevisionOrThrow( $to ) : null
 					);
 				} else {
-					return $this->getCachedCount( $title, $type,
-						function ( RevisionRecord $fromRev = null ) use ( $title ) {
-							return $this->getEditsCount( $title->getArticleID(), $fromRev );
+					return $this->getCachedCount( $type,
+						function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+							return $this->getEditsCount( $pageId, $fromRev );
 						}
 					);
 				}
 
 			case 'reverted':
-				return $this->getCachedCount( $title, $type,
-					function ( RevisionRecord $fromRev = null ) use ( $title ) {
-						return $this->getRevertedCount( $title->getArticleID(), $fromRev );
+				return $this->getCachedCount( $type,
+					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+						return $this->getRevertedCount( $pageId, $fromRev );
 					}
 				);
 
 			case 'minor':
 				// The query for minor counts is inefficient for the database for pages with many revisions.
 				// If the specified title contains more revisions than allowed, we will return an error.
-				$editsCount = $this->getCachedCount( $title, 'edits',
-					function ( RevisionRecord $fromRev = null ) use ( $title ) {
-						return $this->getEditsCount( $title->getArticleID(), $fromRev );
+				$editsCount = $this->getCachedCount( 'edits',
+					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+						return $this->getEditsCount( $pageId, $fromRev );
 					}
 				);
 				if ( $editsCount > self::COUNT_LIMITS[$type] * 2 ) {
@@ -241,9 +252,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 						500
 					);
 				}
-				return $this->getCachedCount( $title, $type,
-					function ( RevisionRecord $fromRev = null ) use ( $title ) {
-						return $this->getMinorCount( $title->getArticleID(), $fromRev );
+				return $this->getCachedCount( $type,
+					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+						return $this->getMinorCount( $pageId, $fromRev );
 					}
 				);
 
@@ -259,54 +270,139 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $title
+	 * @return RevisionRecord|bool current revision or false if unable to retrieve revision
+	 */
+	private function getCurrentRevision() {
+		if ( $this->revision === null ) {
+			$title = $this->getTitle();
+			if ( $title && $title->getArticleID() ) {
+				$this->revision = $this->revisionStore->getKnownCurrentRevision( $title );
+			} else {
+				$this->revision = false;
+			}
+		}
+		return $this->revision;
+	}
+
+	/**
+	 * @return Title|bool Title or false if unable to retrieve title
+	 */
+	private function getTitle() {
+		if ( $this->titleObject === null ) {
+			$this->titleObject = Title::newFromText( $this->getValidatedParams()['title'] );
+		}
+		return $this->titleObject;
+	}
+
+	/**
+	 * Returns latest of 2 timestamps:
+	 * 1. Current revision
+	 * 2. OR entry from the DB logging table for the given page
+	 * @return int|null
+	 */
+	protected function getLastModified() {
+		$lastModifiedTimes = $this->getLastModifiedTimes();
+		if ( $lastModifiedTimes ) {
+			return max( array_values( $lastModifiedTimes ) );
+		}
+	}
+
+	/**
+	 * Returns array with 2 timestamps:
+	 * 1. Current revision
+	 * 2. OR entry from the DB logging table for the given page
+	 * @return array
+	 */
+	protected function getLastModifiedTimes() {
+		$currentRev = $this->getCurrentRevision();
+		if ( !$currentRev ) {
+			return null;
+		}
+		if ( $this->lastModifiedTimes === null ) {
+			$currentRevTime = (int)wfTimestampOrNull( TS_UNIX, $currentRev->getTimestamp() );
+			$loggingTableTime = $this->loggingTableTime( $currentRev->getPageId() );
+			$this->lastModifiedTimes = [
+				'currentRevTS' => $currentRevTime,
+				'dependencyModTS' => $loggingTableTime
+			];
+		}
+		return $this->lastModifiedTimes;
+	}
+
+	/**
+	 * Return timestamp of latest entry in logging table for given page id
+	 * @param int $pageId
+	 * @return int|null
+	 */
+	private function loggingTableTime( $pageId ) {
+		$res = $this->loadBalancer->getConnectionRef( DB_REPLICA )->selectField(
+			'logging',
+			'MAX(log_timestamp)',
+			[ 'log_page' => $pageId ],
+			__METHOD__
+		);
+		return $res ? (int)wfTimestamp( TS_UNIX, $res ) : null;
+	}
+
+	/**
+	 * Choosing to not implement etags in this handler.
+	 * Generating an etag when getting revision counts must account for things like visibility settings
+	 * (e.g. rev_deleted bit) which requires hitting the database anyway. The response for these
+	 * requests are so small that we wouldn't be gaining much efficiency.
+	 * Etags are strong validators and if provided would take precendence over
+	 * last modified time, a weak validator. We want to ensure only last modified time is used
+	 * since it is more efficient than using etags for this particular case.
+	 * @return null
+	 */
+	protected function getEtag() {
+		return null;
+	}
+
+	/**
 	 * @param string $type
 	 * @param callable $fetchCount
-	 * @param bool $incrementalUpdate
 	 * @return int
 	 */
-	private function getCachedCount( $title, $type,
-		callable $fetchCount, $incrementalUpdate = true
+	private function getCachedCount( $type,
+		callable $fetchCount
 	) {
-		$pageId = $title->getArticleID();
+		$titleObj = $this->getTitle();
+		$pageId = $titleObj->getArticleID();
 		return $this->cache->getWithSetCallback(
 			$this->cache->makeKey( 'rest', 'pagehistorycount', $pageId, $type ),
 			WANObjectCache::TTL_WEEK,
-			function ( $oldValue ) use ( $title, $fetchCount, $incrementalUpdate ) {
-				$currentRev = $this->revisionStore->getKnownCurrentRevision( $title );
-				if ( $oldValue && $incrementalUpdate ) {
-					if ( $oldValue['revision'] === $currentRev->getId() ) {
-						// Should never happen, but just in case
-						return $oldValue;
-					}
-					$rev = $this->revisionStore->getRevisionById( $oldValue['revision'] );
-					if ( $rev ) {
-						$additionalCount = $fetchCount( $rev );
-						return [
-							'revision' => $currentRev->getId(),
-							'count' => $oldValue['count'] + $additionalCount
-						];
+			function ( $oldValue ) use ( $fetchCount ) {
+				$currentRev = $this->getCurrentRevision();
+				if ( $oldValue ) {
+					// Last modified timestamp was NOT a dependency change (e.g. revdel)
+					$doIncrementalUpdate = (
+						$this->getLastModified() != $this->getLastModifiedTimes()['dependencyModTS']
+					);
+					if ( $doIncrementalUpdate ) {
+						$rev = $this->revisionStore->getRevisionById( $oldValue['revision'] );
+						if ( $rev ) {
+							$additionalCount = $fetchCount( $rev );
+							return [
+								'revision' => $currentRev->getId(),
+								'count' => $oldValue['count'] + $additionalCount,
+								'dependencyModTS' => $this->getLastModifiedTimes()['dependencyModTS']
+							];
+						}
 					}
 				}
 				// Nothing was previously stored, or incremental update was done for too long,
 				// recalculate from scratch.
 				return [
 					'revision' => $currentRev->getId(),
-					'count' => $fetchCount()
+					'count' => $fetchCount(),
+					'dependencyModTS' => $this->getLastModifiedTimes()['dependencyModTS']
 				];
 			},
 			[
-				'touchedCallback' => function () use ( $title ) {
-					return wfTimestampOrNull(
-						TS_UNIX,
-						$this->revisionStore->getKnownCurrentRevision( $title )->getTimestamp()
-					);
+				'touchedCallback' => function (){
+					return $this->getLastModified();
 				},
-				'checkKeys' => [
-					"RevDelRevisionList:page:$pageId",
-					"DerivedPageDataUpdater:restore:page:$pageId"
-				],
-				'version' => 1,
+				'version' => 2,
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5
 			]
 		)['count'];
