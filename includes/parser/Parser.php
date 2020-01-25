@@ -3138,6 +3138,7 @@ class Parser {
 	 * @param string|int|null $current Current value
 	 * @param string|int|null $max Maximum allowed, when an explicit limit has been
 	 * 	 exceeded, provide the values (optional)
+	 * @internal
 	 */
 	public function limitationWarn( $limitationType, $current = '', $max = '' ) {
 		# does no harm if $current and $max are present but are unnecessary for the message
@@ -3668,6 +3669,7 @@ class Parser {
 	 * @param Title $title
 	 * @return bool
 	 * @since 1.34
+	 * @internal
 	 */
 	public function isCurrentRevisionOfTitleCached( $title ) {
 		return (
@@ -3876,6 +3878,7 @@ class Parser {
 	 * @param string $action Usually one of (raw, render)
 	 *
 	 * @return string
+	 * @internal
 	 */
 	public function interwikiTransclude( $title, $action ) {
 		if ( !$this->svcOptions->get( 'EnableScaryTranscluding' ) ) {
@@ -3944,6 +3947,7 @@ class Parser {
 	 * @param PPFrame $frame
 	 *
 	 * @return array
+	 * @internal
 	 */
 	public function argSubstitution( $piece, $frame ) {
 		$error = false;
@@ -5108,6 +5112,7 @@ class Parser {
 	 * @param string $text
 	 * @param array $params
 	 * @return string HTML
+	 * @internal
 	 */
 	public function renderImageGallery( $text, $params ) {
 		$mode = false;
@@ -5908,6 +5913,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return array[]
+	 * @internal
 	 */
 	public function getFlatSectionInfo( $text ) {
 		$magicScopeVariable = $this->lock();
@@ -6284,6 +6290,7 @@ class Parser {
 	 * @param callable $callback
 	 *
 	 * @return string
+	 * @internal
 	 */
 	public function markerSkipCallback( $s, $callback ) {
 		$i = 0;
@@ -6327,6 +6334,7 @@ class Parser {
 	 *
 	 * @return array
 	 * @since 1.20
+	 * @internal
 	 */
 	public static function parseWidthParam( $value, $parseHeight = true ) {
 		$parsedWidthParam = [];
