@@ -227,6 +227,7 @@ because of Phabricator reports.
   MediaWikiServices).
 * ApiBase::checkTitleUserPermissions no longer accepts a User as the third
   parameter. Passing a user was deprecated in 1.33.
+* The ParserAfterUnstrip hook was removed without deprecation.
 * …
 
 === Deprecations in 1.35 ===

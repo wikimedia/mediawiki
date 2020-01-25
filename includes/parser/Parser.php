@@ -1529,10 +1529,6 @@ class Parser {
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$parser = $this;
 
-		if ( $isMain ) {
-			Hooks::run( 'ParserAfterUnstrip', [ &$parser, &$text ] );
-		}
-
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		$text = Sanitizer::armorFrenchSpaces( $text );
 
