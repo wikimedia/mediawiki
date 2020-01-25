@@ -316,6 +316,8 @@ because of Phabricator reports.
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
   MediaFileTrait::getImageLimitsFromOptions() instead.
 * Parser::setFunctionTagHook() has been deprecated.
+* Parser::fetchTemplate() is deprecated; use Parser::fetchTemplateAndTitle()
+  instead.
 * …
 
 === Other changes in 1.35 ===
