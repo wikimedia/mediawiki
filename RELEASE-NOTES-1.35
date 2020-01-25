@@ -338,6 +338,7 @@ because of Phabricator reports.
   because they will not be supported in the upcoming parser replacement:
   - doBlockLevels() (and BlockLevelPass class has been marked @internal)
   - setFunctionTagHook()
+  - attributeStripCallback()
   - fetchTemplate() - use Parser::fetchTemplateAndTitle() instead.
 * …
 
