@@ -72,7 +72,7 @@ class PreprocessDump extends DumpIterator {
 		} elseif ( isset( $wgParserConf['preprocessorClass'] ) ) {
 			$name = $wgParserConf['preprocessorClass'];
 		} else {
-			$name = Preprocessor_DOM::class;
+			$name = Preprocessor_Hash::class;
 		}
 
 		$parser = MediaWikiServices::getInstance()->getParser();

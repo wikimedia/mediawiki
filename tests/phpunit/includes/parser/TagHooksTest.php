@@ -10,15 +10,6 @@ use MediaWiki\MediaWikiServices;
  * @covers BlockLevelPass
  * @covers StripState
  *
- * @covers Preprocessor_DOM
- * @covers PPDStack
- * @covers PPDStackElement
- * @covers PPDPart
- * @covers PPFrame_DOM
- * @covers PPTemplateFrame_DOM
- * @covers PPCustomFrame_DOM
- * @covers PPNode_DOM
- *
  * @covers Preprocessor_Hash
  * @covers PPDStack_Hash
  * @covers PPDStackElement_Hash
