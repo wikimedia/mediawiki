@@ -240,15 +240,19 @@ class ImageBuilder extends Maintenance {
 		}
 		if ( !$this->dryrun ) {
 			$file = $services->getRepoGroup()->getLocalRepo()->newFile( $filename );
-			if ( !$file->recordUpload(
+			$pageText = SpecialUpload::getInitialPageText(
+				'(recovered file, missing upload log entry)'
+			);
+			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$status = $file->recordUpload2(
 				'',
 				'(recovered file, missing upload log entry)',
-				'',
-				'',
-				'',
+				$pageText,
 				false,
-				$timestamp
-			) ) {
+				$timestamp,
+				$user
+			);
+			if ( !$status->isOK() ) {
 				$this->output( "Error uploading file $fullpath\n" );
 
 				return;
