@@ -793,17 +793,13 @@ class ParserTestRunner {
 	/**
 	 * Get a Parser object
 	 *
-	 * @param string|null $preprocessor
 	 * @return Parser
 	 */
-	public function getParser( $preprocessor = null ) {
+	public function getParser() {
 		global $wgParserConf;
 
 		$class = $wgParserConf['class'];
-		$parser = new $class( [ 'preprocessorClass' => $preprocessor ] + $wgParserConf );
-		if ( $preprocessor ) {
-			$parser->getPreprocessor();
-		}
+		$parser = new $class( $wgParserConf );
 		ParserTestParserHook::setup( $parser );
 
 		return $parser;
