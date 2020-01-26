@@ -41,17 +41,36 @@ class FileDeleteForm {
 	private $file = null;
 
 	/**
+	 * @var User
+	 */
+	private $user = null;
+
+	/**
 	 * @var LocalFile
 	 */
 	private $oldfile = null;
 	private $oldimage = '';
 
 	/**
+	 * Option to pass a user added in 1.35
+	 * Constructing without passing a user is hard deprecated in 1.35
+	 *
 	 * @param LocalFile $file File object we're deleting
+	 * @param User|null $user
 	 */
-	public function __construct( $file ) {
+	public function __construct( $file, $user = null ) {
 		$this->title = $file->getTitle();
 		$this->file = $file;
+
+		if ( $user === null ) {
+			wfDeprecated(
+				__CLASS__ . ' being constructing without a $user parameter',
+				'1.35'
+			);
+			global $wgUser;
+			$user = $wgUser;
+		}
+		$this->user = $user;
 	}
 
 	/**
@@ -59,9 +78,14 @@ class FileDeleteForm {
 	 * pending authentication, confirmation, etc.
 	 */
 	public function execute() {
-		global $wgOut, $wgRequest, $wgUser, $wgUploadMaintenance;
+		global $wgOut, $wgRequest, $wgUploadMaintenance;
 
-		$permissionErrors = $this->title->getUserPermissionsErrors( 'delete', $wgUser );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$permissionErrors = $permissionManager->getPermissionErrors(
+			'delete',
+			$this->user,
+			$this->title
+		);
 		if ( count( $permissionErrors ) ) {
 			throw new PermissionsError( 'delete', $permissionErrors );
 		}
@@ -79,9 +103,8 @@ class FileDeleteForm {
 		$this->oldimage = $wgRequest->getText( 'oldimage', false );
 		$token = $wgRequest->getText( 'wpEditToken' );
 		# Flag to hide all contents of the archived revisions
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$suppress = $wgRequest->getCheck( 'wpSuppress' ) &&
-					$permissionManager->userHasRight( $wgUser, 'suppressrevision' );
+			$permissionManager->userHasRight( $this->user, 'suppressrevision' );
 
 		if ( $this->oldimage ) {
 			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
@@ -97,7 +120,7 @@ class FileDeleteForm {
 		}
 
 		// Perform the deletion if appropriate
-		if ( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->oldimage ) ) {
+		if ( $wgRequest->wasPosted() && $this->user->matchEditToken( $token, $this->oldimage ) ) {
 			$deleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
 			$deleteReason = $wgRequest->getText( 'wpReason' );
 
@@ -117,7 +140,7 @@ class FileDeleteForm {
 				$this->oldimage,
 				$reason,
 				$suppress,
-				$wgUser
+				$this->user
 			);
 
 			if ( !$status->isGood() ) {
@@ -134,7 +157,11 @@ class FileDeleteForm {
 				// file, otherwise go back to the description page
 				$wgOut->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
 
-				WatchAction::doWatchOrUnwatch( $wgRequest->getCheck( 'wpWatch' ), $this->title, $wgUser );
+				WatchAction::doWatchOrUnwatch(
+					$wgRequest->getCheck( 'wpWatch' ),
+					$this->title,
+					$this->user
+				);
 			}
 			return;
 		}
@@ -246,12 +273,13 @@ class FileDeleteForm {
 	 * Show the confirmation form
 	 */
 	private function showForm() {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgOut, $wgRequest;
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$wgOut->addModules( 'mediawiki.action.delete.file' );
 
-		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $wgUser->isWatched( $this->title );
+		$checkWatch = $this->user->getBoolOption( 'watchdeletion' ) ||
+			$this->user->isWatched( $this->title );
 
 		$wgOut->enableOOUI();
 
@@ -301,7 +329,7 @@ class FileDeleteForm {
 			]
 		);
 
-		if ( $permissionManager->userHasRight( $wgUser, 'suppressrevision' ) ) {
+		if ( $permissionManager->userHasRight( $this->user, 'suppressrevision' ) ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -317,7 +345,7 @@ class FileDeleteForm {
 			);
 		}
 
-		if ( $wgUser->isLoggedIn() ) {
+		if ( $this->user->isLoggedIn() ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpWatch',
@@ -361,7 +389,7 @@ class FileDeleteForm {
 		$form->appendContent(
 			$fieldset,
 			new OOUI\HtmlSnippet(
-				Html::hidden( 'wpEditToken', $wgUser->getEditToken( $this->oldimage ) )
+				Html::hidden( 'wpEditToken', $this->user->getEditToken( $this->oldimage ) )
 			)
 		);
 
@@ -375,7 +403,7 @@ class FileDeleteForm {
 			] )
 		);
 
-		if ( $permissionManager->userHasRight( $wgUser, 'editinterface' ) ) {
+		if ( $permissionManager->userHasRight( $this->user, 'editinterface' ) ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$link = $linkRenderer->makeKnownLink(
 				$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle(),
