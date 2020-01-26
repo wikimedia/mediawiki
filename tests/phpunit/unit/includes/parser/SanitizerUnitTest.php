@@ -205,6 +205,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	 * @covers Sanitizer::escapeId
 	 */
 	public function testEscapeId( $input, $output ) {
+		$this->hideDeprecated( 'Sanitizer::escapeId' );
 		$this->assertSame(
 			$output,
 			Sanitizer::escapeId( $input, [ 'noninitial', 'legacy' ] )
