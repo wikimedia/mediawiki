@@ -85,6 +85,7 @@ class ExternalStoreMemory extends ExternalStoreMedium {
 	 * @return array (location, ID or null)
 	 */
 	private function getURLComponents( $url ) {
+		// @phan-suppress-next-line PhanSuspiciousBinaryAddLists It's intentional
 		list( $proto, $path ) = explode( '://', $url, 2 ) + [ null, null ];
 		if ( $proto !== 'memory' ) {
 			throw new UnexpectedValueException( "Got URL of protocol '$proto', not 'memory'." );

@@ -496,6 +496,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 					if ( isset( $svErrors[0]['params'][0] ) ) {
 						if ( is_numeric( $svErrors[0]['params'][0] ) ) {
 							if ( isset( $svErrors[0]['params'][1] ) ) {
+								// @phan-suppress-next-line PhanTypeInvalidDimOffset
 								$req['response']['reason'] = $svErrors[0]['params'][1];
 							}
 						} else {

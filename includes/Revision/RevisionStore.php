@@ -2276,7 +2276,6 @@ class RevisionStore
 		$this->initializeMutableRevisionFromArray( $revision, $fields );
 
 		if ( isset( $fields['content'] ) && is_array( $fields['content'] ) ) {
-			// @phan-suppress-next-line PhanTypeNoPropertiesForeach
 			foreach ( $fields['content'] as $role => $content ) {
 				$revision->setContent( $role, $content );
 			}
@@ -2308,9 +2307,10 @@ class RevisionStore
 		) {
 			$user = $fields['user'];
 		} else {
+			$userID = isset( $fields['user'] ) && is_numeric( $fields['user'] ) ? $fields['user'] : null;
 			try {
 				$user = User::newFromAnyId(
-					$fields['user'] ?? null,
+					$userID,
 					$fields['user_text'] ?? null,
 					$fields['actor'] ?? null,
 					$this->dbDomain
