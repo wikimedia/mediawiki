@@ -145,17 +145,6 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideAttributeWhitelist
-	 * @covers Sanitizer::attributeWhitelist
-	 */
-	public function testAttributeWhitelist( $element, $attribs ) {
-		$this->hideDeprecated( 'Sanitizer::attributeWhitelist' );
-		$this->hideDeprecated( 'Sanitizer::setupAttributeWhitelist' );
-		$actual = Sanitizer::attributeWhitelist( $element );
-		$this->assertArrayEquals( $attribs, $actual );
-	}
-
-	/**
-	 * @dataProvider provideAttributeWhitelist
 	 * @covers Sanitizer::attributeWhitelistInternal
 	 */
 	public function testAttributeWhitelistInternal( $element, $attribs ) {

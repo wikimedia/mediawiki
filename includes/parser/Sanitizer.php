@@ -1715,41 +1715,12 @@ class Sanitizer {
 	 * Fetch the whitelist of acceptable attributes for a given element name.
 	 *
 	 * @param string $element
-	 * @return array A sequential array of acceptable attribute names
-	 * @deprecated since 1.34; should be private
-	 */
-	static function attributeWhitelist( $element ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$list = self::setupAttributeWhitelist();
-		return $list[$element] ?? [];
-	}
-
-	/**
-	 * Fetch the whitelist of acceptable attributes for a given element name.
-	 *
-	 * @param string $element
 	 * @return array An associative array where keys are acceptable attribute
 	 *   names
 	 */
 	private static function attributeWhitelistInternal( $element ) {
 		$list = self::setupAttributeWhitelistInternal();
 		return $list[$element] ?? [];
-	}
-
-	/**
-	 * Foreach array key (an allowed HTML element), return an array
-	 * of allowed attributes
-	 * @return array
-	 * @deprecated since 1.34; should be private
-	 */
-	static function setupAttributeWhitelist() {
-		wfDeprecated( __METHOD__, '1.34' );
-		$wlist = self::setupAttributeWhitelistInternal();
-		// This method is expected to return a sequential array as the
-		// value for each HTML element key.
-		return array_map( function ( $v ) {
-			return array_keys( $v );
-		}, $wlist );
 	}
 
 	/**

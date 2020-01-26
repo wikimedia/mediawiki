@@ -227,6 +227,8 @@ because of Phabricator reports.
   MediaWikiServices).
 * ApiBase::checkTitleUserPermissions no longer accepts a User as the third
   parameter. Passing a user was deprecated in 1.33.
+* Sanitizer::setupAttributeWhitelist() and Sanitizer::attributeWhitelist(),
+  deprecated in 1.34, have been removed.  They should not have been public.
 * The ParserAfterUnstrip hook was removed without deprecation.
 * …
 
