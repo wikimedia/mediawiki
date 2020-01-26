@@ -117,6 +117,7 @@ $magicWords = [
 	'img_framed'                => [ '1', 'چوارچێوە', 'frame', 'framed', 'enframed' ],
 	'img_frameless'             => [ '1', 'بێچوارچێوە', 'frameless' ],
 	'img_border'                => [ '1', 'سنوور', 'border' ],
+	'redirect'                  => [ '0', '#ڕەوانەکەر', '#REDIRECT' ],
 ];
 
 $digitTransformTable = [
