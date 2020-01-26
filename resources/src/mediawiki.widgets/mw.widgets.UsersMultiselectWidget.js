@@ -43,6 +43,15 @@
 			}
 		}, config );
 
+		// TODO: handle in MenuTagMultiselectWidget (T243643)
+		config.options = config.options || [];
+		config.selected.forEach( function ( title ) {
+			config.options.push( {
+				data: title,
+				label: title
+			} );
+		} );
+
 		// Parent constructor
 		mw.widgets.UsersMultiselectWidget.parent.call( this, $.extend( {}, config, {} ) );
 
