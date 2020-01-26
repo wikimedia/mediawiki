@@ -4113,15 +4113,6 @@ $wgInvalidRedirectTargets = [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ];
  *
  *  class             The class name
  *
- *  preprocessorClass The preprocessor class. Only one class is currently available:
- *                    Preprocessor_Hash, which uses plain PHP arrays for temporary
- *                    storage.
- *
- *                    If this parameter is not given, it uses Preprocessor_Hash.
- *
- * Configuring the parser via preprocessorClass is deprecated, and will be
- * removed in a future release.
- *
  * The entire associative array will be passed through to the constructor as
  * the first parameter. Note that only Setup.php can use this variable --
  * the configuration will change at runtime via Parser member functions, so
@@ -4131,7 +4122,6 @@ $wgInvalidRedirectTargets = [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ];
  */
 $wgParserConf = [
 	'class' => Parser::class,
-	# 'preprocessorClass' => Preprocessor_Hash::class,
 ];
 
 /**

@@ -1,6 +1,5 @@
 const fs = require( 'fs' );
 const path = require( 'path' );
-const startChromedriver = !process.argv.includes( '--skip-chromedriver' );
 const logPath = process.env.LOG_DIR || path.join( __dirname, '/log' );
 
 let ffmpeg;
@@ -34,9 +33,8 @@ exports.config = {
 	// Runner Configuration
 	// ==================
 	runner: 'local',
-	// The standalone chromedriver (also used by WMF CI) uses "/wd/hub".
-	// The one provided by wdio uses "/".
-	path: startChromedriver ? '/' : '/wd/hub',
+	// The standalone chromedriver uses "/wd/hub".
+	path: '/wd/hub',
 
 	// ======
 	// Sauce Labs
@@ -87,7 +85,6 @@ exports.config = {
 		process.env.MW_SCRIPT_PATH || '/w'
 	),
 	services: [
-		...( startChromedriver ? [ 'chromedriver' ] : [] ),
 		...( process.env.SAUCE_ACCESS_KEY ? [ 'sauce' ] : [] )
 	],
 	// See also: https://webdriver.io/docs/frameworks.html
