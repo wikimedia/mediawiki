@@ -19,15 +19,14 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.TitlesMultiselectWidget = function MwWidgetsTitlesMultiselectWidget( config ) {
-		config = $.extend( true, {
-			// Shouldn't this be handled by MenuTagMultiselectWidget?
-			options: config.selected ? config.selected.map( function ( title ) {
-				return {
-					data: title,
-					label: title
-				};
-			} ) : []
-		}, config );
+		// TODO: handle in MenuTagMultiselectWidget (T243643)
+		config.options = config.options || [];
+		config.selected.forEach( function ( title ) {
+			config.options.push( {
+				data: title,
+				label: title
+			} );
+		} );
 
 		// Parent constructor
 		mw.widgets.TitlesMultiselectWidget.parent.call( this, $.extend( true,
