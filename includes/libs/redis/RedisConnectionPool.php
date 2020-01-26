@@ -55,7 +55,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	/** @var int Current idle pool size */
 	protected $idlePoolSize = 0;
 
-	/** @var array (server name => ((connection info array),...) */
+	/**
+	 * @var array (server name => ((connection info array),...)
+	 * @phan-var array<string,array{conn:Redis,free:bool}[]>
+	 */
 	protected $connections = [];
 	/** @var array (server name => UNIX timestamp) */
 	protected $downServers = [];

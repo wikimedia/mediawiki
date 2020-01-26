@@ -215,7 +215,8 @@ class PageProps {
 			foreach ( $result as $row ) {
 				$pageID = $row->pp_page;
 				if ( $currentPageID != $pageID ) {
-					if ( $pageProperties != [] ) {
+					if ( $pageProperties ) {
+						// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 						$this->cacheProperties( $currentPageID, $pageProperties );
 						$values[$currentPageID] = $pageProperties;
 					}

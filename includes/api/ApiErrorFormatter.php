@@ -337,7 +337,6 @@ class ApiErrorFormatter {
 				break;
 
 			case 'wikitext':
-				// @phan-suppress-next-line PhanUselessBinaryAddRight
 				$value += [
 					'text' => $msg->text(),
 					ApiResult::META_CONTENT => 'text',
