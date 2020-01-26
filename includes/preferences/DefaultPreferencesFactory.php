@@ -352,7 +352,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultPreferences['usergroups'] = [
 			'type' => 'info',
 			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
-				count( $userGroups ) )->params( $userName )->parse(),
+				count( $userGroups ) )->params( $userName )->text(),
 			'default' => $context->msg( 'prefs-memberingroups-type' )
 				->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
 				->escaped(),
