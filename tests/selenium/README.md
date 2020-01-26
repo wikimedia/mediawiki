@@ -9,6 +9,7 @@ but you might not need to install these yourself.
 ## Prerequisites
 
 - [Chromium](https://www.chromium.org/) or [Chrome](https://www.google.com/chrome/)
+- [ChromeDriver](https://chromedriver.chromium.org/downloads)
 - [Node.js](https://nodejs.org/en/)
 
 ## Usage
