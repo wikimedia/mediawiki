@@ -827,13 +827,11 @@ class ApiParseTest extends ApiTestCase {
 			'prop' => 'parsetree',
 		] );
 
-		// Preprocessor_DOM and Preprocessor_Hash give different results here,
-		// so we'll accept either
-		$this->assertRegExp(
-			'#^<root>Some \'\'text\'\' is <template><title>nice</title>' .
+		$this->assertEquals(
+			'<root>Some \'\'text\'\' is <template><title>nice</title>' .
 				'<part><name index="1"/><value>to have</value></part>' .
-				'<part><name>i</name>(?:<equals>)?=(?:</equals>)?<value>think</value></part>' .
-				'</template></root>$#',
+				'<part><name>i</name><equals>=</equals><value>think</value></part>' .
+				'</template></root>',
 			$res[0]['parse']['parsetree']
 		);
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );

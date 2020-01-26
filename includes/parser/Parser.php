@@ -88,7 +88,7 @@ class Parser {
 	# Everything except bracket, space, or control characters
 	# \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
 	# as well as U+3000 is IDEOGRAPHIC SPACE for T21052
-	# \x{FFFD} is the Unicode replacement character, which Preprocessor_DOM
+	# \x{FFFD} is the Unicode replacement character, which the HTML5 spec
 	# uses to replace invalid HTML characters.
 	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]';
 	# Simplified expression to match an IPv4 or IPv6 address, or
@@ -201,7 +201,13 @@ class Parser {
 	public $mLinkHolders;
 
 	public $mLinkID;
-	public $mIncludeSizes, $mPPNodeCount, $mGeneratedPPNodeCount, $mHighestExpansionDepth;
+	public $mIncludeSizes, $mPPNodeCount;
+	/**
+	 * @deprecated since 1.35, Preprocessor_DOM was removed and this counter
+	 *    is no longer incremented by anything.
+	 */
+	public $mGeneratedPPNodeCount;
+	public $mHighestExpansionDepth;
 	public $mDefaultSort;
 	public $mTplRedirCache, $mHeadings, $mDoubleUnderscores;
 	public $mExpensiveFunctionCount; # number of expensive parser function calls
