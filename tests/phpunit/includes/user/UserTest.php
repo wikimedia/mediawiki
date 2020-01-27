@@ -36,7 +36,7 @@ class UserTest extends MediaWikiTestCase {
 
 		$this->setUpPermissionGlobals();
 
-		$this->user = $this->getTestUser( [ 'unittesters' ] )->getUser();
+		$this->user = $this->getTestUser( 'unittesters' )->getUser();
 
 		TestingAccessWrapper::newFromClass( User::class )->reservedUsernames = false;
 	}
@@ -231,25 +231,24 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::isNewbie
 	 */
 	public function testIsAllowed() {
-		$user = $this->getTestUser( 'unittesters' )->getUser();
 		$this->assertFalse(
-			$user->isAllowed( 'writetest' ),
+			$this->user->isAllowed( 'writetest' ),
 			'Basic isAllowed works with a group not granted a right'
 		);
 		$this->assertTrue(
-			$user->isAllowedAny( 'test', 'writetest' ),
+			$this->user->isAllowedAny( 'test', 'writetest' ),
 			'A user with only one of the rights can pass isAllowedAll'
 		);
 		$this->assertTrue(
-			$user->isAllowedAll( 'test', 'runtest' ),
+			$this->user->isAllowedAll( 'test', 'runtest' ),
 			'A user with multiple rights can pass isAllowedAll'
 		);
 		$this->assertFalse(
-			$user->isAllowedAll( 'test', 'runtest', 'writetest' ),
+			$this->user->isAllowedAll( 'test', 'runtest', 'writetest' ),
 			'A user needs all rights specified to pass isAllowedAll'
 		);
 		$this->assertTrue(
-			$user->isNewbie(),
+			$this->user->isNewbie(),
 			'Unit testers are not autoconfirmed yet'
 		);
 
@@ -280,10 +279,9 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user->useNPPatrol() );
 		$this->assertTrue( $user->useFilePatrol() );
 
-		$user = $this->getTestUser()->getUser();
-		$this->assertFalse( $user->useRCPatrol() );
-		$this->assertFalse( $user->useNPPatrol() );
-		$this->assertFalse( $user->useFilePatrol() );
+		$this->assertFalse( $this->user->useRCPatrol() );
+		$this->assertFalse( $this->user->useNPPatrol() );
+		$this->assertFalse( $this->user->useFilePatrol() );
 	}
 
 	/**
@@ -298,9 +296,8 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertArrayHasKey( 'bot', $user->getGroupMemberships() );
 		$this->assertTrue( $user->isBot() );
 
-		$user = $this->getTestUser()->getUser();
-		$this->assertArrayNotHasKey( 'bot', $user->getGroupMemberships() );
-		$this->assertFalse( $user->isBot() );
+		$this->assertArrayNotHasKey( 'bot', $this->user->getGroupMemberships() );
+		$this->assertFalse( $this->user->isBot() );
 	}
 
 	/**
@@ -571,31 +568,29 @@ class UserTest extends MediaWikiTestCase {
 			],
 		] );
 
-		$user = static::getTestUser()->getUser();
-
 		// Sanity
-		$this->assertTrue( $user->isValidPassword( 'Password1234' ) );
+		$this->assertTrue( $this->user->isValidPassword( 'Password1234' ) );
 
 		// Minimum length
-		$this->assertFalse( $user->isValidPassword( 'a' ) );
-		$this->assertFalse( $user->checkPasswordValidity( 'a' )->isGood() );
-		$this->assertTrue( $user->checkPasswordValidity( 'a' )->isOK() );
+		$this->assertFalse( $this->user->isValidPassword( 'a' ) );
+		$this->assertFalse( $this->user->checkPasswordValidity( 'a' )->isGood() );
+		$this->assertTrue( $this->user->checkPasswordValidity( 'a' )->isOK() );
 
 		// Maximum length
 		$longPass = str_repeat( 'a', 41 );
-		$this->assertFalse( $user->isValidPassword( $longPass ) );
-		$this->assertFalse( $user->checkPasswordValidity( $longPass )->isGood() );
-		$this->assertFalse( $user->checkPasswordValidity( $longPass )->isOK() );
+		$this->assertFalse( $this->user->isValidPassword( $longPass ) );
+		$this->assertFalse( $this->user->checkPasswordValidity( $longPass )->isGood() );
+		$this->assertFalse( $this->user->checkPasswordValidity( $longPass )->isOK() );
 
 		// Matches username
-		$this->assertFalse( $user->checkPasswordValidity( $user->getName() )->isGood() );
-		$this->assertTrue( $user->checkPasswordValidity( $user->getName() )->isOK() );
+		$this->assertFalse( $this->user->checkPasswordValidity( $this->user->getName() )->isGood() );
+		$this->assertTrue( $this->user->checkPasswordValidity( $this->user->getName() )->isOK() );
 
 		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
 			$result = 'isValidPassword returned false';
 			return false;
 		} );
-		$status = $user->checkPasswordValidity( 'Password1234' );
+		$status = $this->user->checkPasswordValidity( 'Password1234' );
 		$this->assertTrue( $status->isOK() );
 		$this->assertFalse( $status->isGood() );
 		$this->assertSame( $status->getErrors()[0]['message'], 'isValidPassword returned false' );
@@ -609,7 +604,7 @@ class UserTest extends MediaWikiTestCase {
 			$result = true;
 			return true;
 		} );
-		$status = $user->checkPasswordValidity( 'Password1234' );
+		$status = $this->user->checkPasswordValidity( 'Password1234' );
 		$this->assertTrue( $status->isOK() );
 		$this->assertTrue( $status->isGood() );
 		$this->assertArrayEquals( $status->getErrors(), [] );
@@ -623,7 +618,7 @@ class UserTest extends MediaWikiTestCase {
 			$result = 'isValidPassword returned true';
 			return true;
 		} );
-		$status = $user->checkPasswordValidity( 'Password1234' );
+		$status = $this->user->checkPasswordValidity( 'Password1234' );
 		$this->assertTrue( $status->isOK() );
 		$this->assertFalse( $status->isGood() );
 		$this->assertSame( $status->getErrors()[0]['message'], 'isValidPassword returned true' );
@@ -725,8 +720,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::setId
 	 */
 	public function testUserId() {
-		$user = $this->getTestUser()->getUser();
-		$this->assertGreaterThan( 0, $user->getId() );
+		$this->assertGreaterThan( 0, $this->user->getId() );
 
 		$user = User::newFromName( 'UserWithNoId' );
 		$this->assertSame( $user->getId(), 0 );
@@ -876,16 +870,15 @@ class UserTest extends MediaWikiTestCase {
 		$blockManager = MediaWikiServices::getInstance()->getBlockManager();
 
 		// 1. Log in a test user, and block them.
-		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
-		$request1->getSession()->setUser( $user1tmp );
+		$request1->getSession()->setUser( $this->user );
 		$expiryFiveHours = wfTimestamp() + ( 5 * 60 * 60 );
 		$block = new DatabaseBlock( [
 			'enableAutoblock' => true,
 			'expiry' => wfTimestamp( TS_MW, $expiryFiveHours ),
 		] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->setTarget( $user1tmp );
+		$block->setTarget( $this->user );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -926,9 +919,8 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $block->getExpiry(), $user2->getBlock()->getExpiry() );
 
 		// 3. Finally, set up a request as a new user, and the block should still be applied.
-		$user3tmp = $this->getTestUser()->getUser();
 		$request3 = new FauxRequest();
-		$request3->getSession()->setUser( $user3tmp );
+		$request3->getSession()->setUser( $this->user );
 		$request3->setCookie( 'BlockID', $block->getId() );
 		$user3 = User::newFromSession( $request3 );
 		$user3->load();
@@ -960,12 +952,11 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a test user, and block them.
-		$testUser = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
-		$request1->getSession()->setUser( $testUser );
+		$request1->getSession()->setUser( $this->user );
 		$block = new DatabaseBlock( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->setTarget( $testUser );
+		$block->setTarget( $this->user );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user = User::newFromSession( $request1 );
@@ -1006,12 +997,11 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a test user, and block them indefinitely.
-		$user1Tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
-		$request1->getSession()->setUser( $user1Tmp );
+		$request1->getSession()->setUser( $this->user );
 		$block = new DatabaseBlock( [ 'enableAutoblock' => true, 'expiry' => 'infinity' ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->setTarget( $user1Tmp );
+		$block->setTarget( $this->user );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -1041,9 +1031,8 @@ class UserTest extends MediaWikiTestCase {
 		$newExpiry = wfTimestamp() + 2 * 60 * 60;
 		$block->setExpiry( wfTimestamp( TS_MW, $newExpiry ) );
 		$block->update();
-		$user2tmp = $this->getTestUser()->getUser();
 		$request2 = new FauxRequest();
-		$request2->getSession()->setUser( $user2tmp );
+		$request2->getSession()->setUser( $this->user );
 		$user2 = User::newFromSession( $request2 );
 		$user2->load();
 		MediaWikiServices::getInstance()->getBlockManager()
@@ -1063,28 +1052,27 @@ class UserTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgSoftBlockRanges', [ '10.0.0.0/8' ] );
 
 		// IP isn't in $wgSoftBlockRanges
-		$wgUser = new User();
+		$user = new User();
 		$request = new FauxRequest();
 		$request->setIP( '192.168.0.1' );
-		$this->setSessionUser( $wgUser, $request );
-		$this->assertNull( $wgUser->getBlock() );
+		$this->setSessionUser( $user, $request );
+		$this->assertNull( $user->getBlock() );
 
 		// IP is in $wgSoftBlockRanges
-		$wgUser = new User();
+		$user = new User();
 		$request = new FauxRequest();
 		$request->setIP( '10.20.30.40' );
-		$this->setSessionUser( $wgUser, $request );
-		$block = $wgUser->getBlock();
+		$this->setSessionUser( $user, $request );
+		$block = $user->getBlock();
 		$this->assertInstanceOf( SystemBlock::class, $block );
 		$this->assertSame( 'wgSoftBlockRanges', $block->getSystemBlockType() );
 
 		// Make sure the block is really soft
-		$wgUser = $this->getTestUser()->getUser();
 		$request = new FauxRequest();
 		$request->setIP( '10.20.30.40' );
-		$this->setSessionUser( $wgUser, $request );
-		$this->assertFalse( $wgUser->isAnon(), 'sanity check' );
-		$this->assertNull( $wgUser->getBlock() );
+		$this->setSessionUser( $this->user, $request );
+		$this->assertFalse( $this->user->isAnon(), 'sanity check' );
+		$this->assertNull( $this->user->getBlock() );
 	}
 
 	/**
@@ -1105,12 +1093,11 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a blocked test user.
-		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
-		$request1->getSession()->setUser( $user1tmp );
+		$request1->getSession()->setUser( $this->user );
 		$block = new DatabaseBlock( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->setTarget( $user1tmp );
+		$block->setTarget( $this->user );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 
@@ -1147,12 +1134,11 @@ class UserTest extends MediaWikiTestCase {
 		] );
 
 		// 1. Log in a blocked test user.
-		$user1tmp = $this->getTestUser()->getUser();
 		$request1 = new FauxRequest();
-		$request1->getSession()->setUser( $user1tmp );
+		$request1->getSession()->setUser( $this->user );
 		$block = new DatabaseBlock( [ 'enableAutoblock' => true ] );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$block->setTarget( $user1tmp );
+		$block->setTarget( $this->user );
 		$res = $block->insert();
 		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 		$user1 = User::newFromSession( $request1 );
@@ -1228,7 +1214,7 @@ class UserTest extends MediaWikiTestCase {
 		$row = $db->selectRow(
 			$userQuery['tables'],
 			$userQuery['fields'],
-			[ 'user_id' => $this->getTestUser()->getUser()->getId() ],
+			[ 'user_id' => $this->user->getId() ],
 			__METHOD__,
 			[],
 			$userQuery['joins']
@@ -1289,8 +1275,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::newFromId
 	 */
 	public function testNewFromId() {
-		$user = $this->getTestUser()->getUser();
-		$userId = $user->getId();
+		$userId = $this->user->getId();
 		$this->assertGreaterThan(
 			0,
 			$userId,
@@ -1299,7 +1284,7 @@ class UserTest extends MediaWikiTestCase {
 
 		$otherUser = User::newFromId( $userId );
 		$this->assertTrue(
-			$user->equals( $otherUser ),
+			$this->user->equals( $otherUser ),
 			'User created by id should match user with that id'
 		);
 	}
@@ -1308,7 +1293,6 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::newFromActorId
 	 */
 	public function testActorId() {
-		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
 		$this->hideDeprecated( 'User::selectFields' );
 
 		// Newly-created user has an actor ID
@@ -1367,7 +1351,7 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testNewFromAnyId() {
 		// Registered user
-		$user = $this->getTestUser()->getUser();
+		$user = $this->user;
 		for ( $i = 1; $i <= 7; $i++ ) {
 			$test = User::newFromAnyId(
 				( $i & 1 ) ? $user->getId() : null,
@@ -1433,7 +1417,7 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testNewFromIdentity() {
 		// Registered user
-		$user = $this->getTestUser()->getUser();
+		$user = $this->user;
 
 		$this->assertSame( $user, User::newFromIdentity( $user ) );
 
@@ -1621,7 +1605,7 @@ class UserTest extends MediaWikiTestCase {
 			'wgBlockAllowsUTEdit' => $options['blockAllowsUTEdit'] ?? true,
 		] );
 
-		$user = $this->getTestUser()->getUser();
+		$user = $this->user;
 
 		if ( $title === self::USER_TALK_PAGE ) {
 			$title = $user->getTalkPage();
@@ -1780,18 +1764,16 @@ class UserTest extends MediaWikiTestCase {
 	 * @param bool $expected Whether the user is expected to be blocked from uploads.
 	 */
 	public function testIsBlockedFromUpload( $sitewide, $expected ) {
-		$user = $this->getTestUser()->getUser();
-
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'sitewide' => $sitewide,
 		] );
-		$block->setTarget( $user );
+		$block->setTarget( $this->user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->insert();
 
 		try {
-			$this->assertEquals( $user->isBlockedFromUpload(), $expected );
+			$this->assertEquals( $this->user->isBlockedFromUpload(), $expected );
 		} finally {
 			$block->delete();
 		}
@@ -1904,7 +1886,7 @@ class UserTest extends MediaWikiTestCase {
 		// setup request
 		$request = new FauxRequest();
 		$request->setIP( '1.2.3.4' );
-		$request->getSession()->setUser( $this->getTestUser()->getUser() );
+		$request->getSession()->setUser( $this->user );
 		$request->setCookie( 'BlockID', $blockManager->getCookieValue( $block ) );
 
 		// setup user
@@ -1927,7 +1909,7 @@ class UserTest extends MediaWikiTestCase {
 			return $clock += 1000;
 		} );
 		try {
-			$user = $this->getTestUser()->getUser();
+			$user = $this->user;
 			$firstRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'one', 'test' );
 			$secondRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'two', 'test' );
 			// Sanity check: revisions timestamp are different
@@ -1994,8 +1976,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::isSystemUser
 	 */
 	public function testIsSystemUser() {
-		$user = static::getTestUser()->getUser();
-		$this->assertFalse( $user->isSystemUser(), 'Normal users are not system users' );
+		$this->assertFalse( $this->user->isSystemUser(), 'Normal users are not system users' );
 
 		$user = User::newSystemUser( __METHOD__ );
 		$this->assertTrue( $user->isSystemUser(), 'Users created with newSystemUser() are system users' );
@@ -2121,12 +2102,12 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getAutomaticGroups
 	 */
 	public function testGetAutomaticGroups() {
-		$user = $this->getTestUser()->getUser();
 		$this->assertArrayEquals( [
 			'*',
 			'user',
 			'autoconfirmed'
-		], $user->getAutomaticGroups( true ) );
+		], $this->user->getAutomaticGroups( true ) );
+
 		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
 		$this->assertArrayEquals( [
 			'*',
@@ -2139,6 +2120,7 @@ class UserTest extends MediaWikiTestCase {
 			'user',
 			'autoconfirmed'
 		], $user->getAutomaticGroups( true ) );
+
 		$user = User::newFromName( 'UTUser1' );
 		$this->assertArrayEquals( [
 			'*',
@@ -2148,13 +2130,14 @@ class UserTest extends MediaWikiTestCase {
 				'dummy' => APCOND_EMAILCONFIRMED
 			]
 		] );
-		$user = $this->getTestUser()->getUser();
-		$user->confirmEmail();
+
+		$this->user->confirmEmail();
 		$this->assertArrayEquals( [
 			'*',
 			'user',
 			'dummy'
-		], $user->getAutomaticGroups( true ) );
+		], $this->user->getAutomaticGroups( true ) );
+
 		$user = $this->getTestUser( [ 'dummy' ] )->getUser();
 		$user->confirmEmail();
 		$this->assertArrayEquals( [
@@ -2174,6 +2157,7 @@ class UserTest extends MediaWikiTestCase {
 			'user',
 			'autoconfirmed'
 		], $user->getEffectiveGroups( true ) );
+
 		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
 		$this->assertArrayEquals( [
 			'*',
@@ -2182,6 +2166,7 @@ class UserTest extends MediaWikiTestCase {
 			'bureaucrat',
 			'test'
 		], $user->getEffectiveGroups( true ) );
+
 		$user = $this->getTestUser( [ 'autoconfirmed', 'test' ] )->getUser();
 		$this->assertArrayEquals( [
 			'*',
@@ -2195,7 +2180,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getGroups
 	 */
 	public function testGetGroups() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->user;
 		$reflectionClass = new ReflectionClass( 'User' );
 		$reflectionProperty = $reflectionClass->getProperty( 'mLoadedItems' );
 		$reflectionProperty->setAccessible( true );
@@ -2210,7 +2195,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getFormerGroups
 	 */
 	public function testGetFormerGroups() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->user;
 		$reflectionClass = new ReflectionClass( 'User' );
 		$reflectionProperty = $reflectionClass->getProperty( 'mFormerGroups' );
 		$reflectionProperty->setAccessible( true );
@@ -2353,7 +2338,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::removeWatch
 	 */
 	public function testWatchlist() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->user;
 		$specialTitle = Title::newFromText( 'Special:Version' );
 		$articleTitle = Title::newFromText( 'FooBar' );
 
@@ -2393,7 +2378,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::invalidateEmail
 	 */
 	public function testUserEmail() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->user;
 
 		$user->setEmail( 'TestEmail@mediawiki.org' );
 		$this->assertSame(
@@ -2600,7 +2585,6 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::pingLimiter
 	 */
 	public function testPingLimiter() {
-		$user = $this->getTestUser()->getUser();
 		$this->setMwGlobals( [
 			'wgRateLimits' => [
 				'edit' => [
@@ -2617,7 +2601,7 @@ class UserTest extends MediaWikiTestCase {
 			}
 		);
 		$this->assertFalse(
-			$user->pingLimiter(),
+			$this->user->pingLimiter(),
 			'Hooks that just return false leave $result false'
 		);
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
@@ -2633,7 +2617,7 @@ class UserTest extends MediaWikiTestCase {
 			}
 		);
 		$this->assertTrue(
-			$user->pingLimiter(),
+			$this->user->pingLimiter(),
 			'Hooks can set $result to true'
 		);
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
@@ -2642,7 +2626,7 @@ class UserTest extends MediaWikiTestCase {
 
 		// Unknown action
 		$this->assertFalse(
-			$user->pingLimiter( 'FakeActionWithNoRateLimit' ),
+			$this->user->pingLimiter( 'FakeActionWithNoRateLimit' ),
 			'Actions with no rate limit set do not trip the rate limiter'
 		);
 	}
