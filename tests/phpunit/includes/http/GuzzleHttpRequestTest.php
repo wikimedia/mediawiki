@@ -156,7 +156,7 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 	public function testPostBody() {
 		$container = [];
 		$history = Middleware::history( $container );
-		$stack = HandlerStack::create();
+		$stack = HandlerStack::create( new MockHandler( [ new Response() ] ) );
 		$stack->push( $history );
 		$client = new GuzzleHttpRequest( $this->exampleUrl, [
 			'method' => 'POST',
@@ -169,5 +169,49 @@ class GuzzleHttpRequestTest extends MediaWikiTestCase {
 		$this->assertEquals( 'POST', $request->getMethod() );
 		$this->assertEquals( 'application/x-www-form-urlencoded',
 			$request->getHeader( 'Content-Type' )[0] );
+	}
+
+	/*
+	 * Test that cookies from CookieJar were sent in the outgoing request.
+	 */
+	public function testCookieSent() {
+		$domain = wfParseUrl( $this->exampleUrl )['host'];
+		$expectedCookies = [ 'cookie1' => 'value1', 'anothercookie' => 'secondvalue' ];
+		$jar = new CookieJar;
+		foreach ( $expectedCookies as $key => $val ) {
+			$jar->setCookie( $key, $val, [ 'domain' => $domain ] );
+		}
+
+		$container = [];
+		$history = Middleware::history( $container );
+		$stack = HandlerStack::create( new MockHandler( [ new Response() ] ) );
+		$stack->push( $history );
+		$client = new GuzzleHttpRequest( $this->exampleUrl, [
+			'method' => 'POST',
+			'handler' => $stack,
+			'post' => 'key=value',
+		] );
+		$client->setCookieJar( $jar );
+		$client->execute();
+
+		$request = $container[0]['request'];
+		$this->assertEquals( [ 'cookie1=value1; anothercookie=secondvalue' ],
+			$request->getHeader( 'Cookie' ) );
+	}
+
+	/*
+	 * Test that cookies returned by HTTP response were added back into the CookieJar.
+	 */
+	public function testCookieReceived() {
+		$handler = HandlerStack::create( new MockHandler( [ new Response( 200, [
+			'status' => 200,
+			'Set-Cookie' => [ 'cookie1=value1', 'anothercookie=secondvalue' ]
+		] ) ] ) );
+		$r = new GuzzleHttpRequest( $this->exampleUrl, [ 'handler' => $handler ] );
+		$r->execute();
+
+		$domain = wfParseUrl( $this->exampleUrl )['host'];
+		$this->assertEquals( 'cookie1=value1; anothercookie=secondvalue',
+			$r->getCookieJar()->serializeToHttpRequest( '/', $domain ) );
 	}
 }
