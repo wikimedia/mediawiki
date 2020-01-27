@@ -584,13 +584,21 @@ class UserTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers User::getId
+	 * @covers User::setId
 	 */
-	public function testGetId() {
-		$user = static::getTestUser()->getUser();
+	public function testUserId() {
+		$user = $this->getTestUser()->getUser();
 		$this->assertTrue( $user->getId() > 0 );
 
 		$user = User::newFromName( 'UserWithNoId' );
-		$this->assertEquals( $user->getId(), 0 );
+		$this->assertSame( $user->getId(), 0 );
+
+		$user->setId( 7 );
+		$this->assertSame(
+			$user->getId(),
+			7,
+			'Manually setting a user id via ::setId is reflected in ::getId'
+		);
 	}
 
 	/**
@@ -625,11 +633,12 @@ class UserTest extends MediaWikiTestCase {
 		$realName = 'John Doe';
 
 		$user->setRealName( $realName );
-		$this->assertEquals( $realName, $user->getRealName() );
+		$this->assertSame( $realName, $user->getRealName() );
 	}
 
 	/**
 	 * @covers User::checkAndSetTouched
+	 * @covers User::getDBTouched()
 	 */
 	public function testCheckAndSetTouched() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -1280,6 +1289,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getUserPage
 	 * @covers User::getTalkPage
 	 * @covers User::getTitleKey
+	 * @covers User::whoIs
 	 * @dataProvider provideNewFromName
 	 */
 	public function testNewFromName( $name, $titleKey ) {
@@ -1288,6 +1298,10 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $user->getUserPage(), Title::makeTitle( NS_USER, $name ) );
 		$this->assertEquals( $user->getTalkPage(), Title::makeTitle( NS_USER_TALK, $name ) );
 		$this->assertEquals( $user->getTitleKey(), $titleKey );
+
+		$status = $user->addToDatabase();
+		$this->assertTrue( $status->isOK(), 'User can be added to the database' );
+		$this->assertSame( $name, User::whoIs( $user->getId() ) );
 	}
 
 	public static function provideNewFromName() {
@@ -1297,6 +1311,21 @@ class UserTest extends MediaWikiTestCase {
 			[ 'See T22281 for more', 'See_T22281_for_more' ],
 			[ 'DannyS712', 'DannyS712' ],
 		];
+	}
+
+	/**
+	 * @covers User::newFromName
+	 */
+	public function testNewFromName_extra() {
+		$user = User::newFromName( '1.2.3.4' );
+		$this->assertFalse( $user, 'IP addresses are not valid user names' );
+
+		$user = User::newFromName( 'DannyS712', true );
+		$otherUser = User::newFromName( 'DannyS712', 'valid' );
+		$this->assertTrue(
+			$user->equals( $otherUser ),
+			'true maps to valid for backwards compatibility'
+		);
 	}
 
 	/**
@@ -1994,6 +2023,86 @@ class UserTest extends MediaWikiTestCase {
 
 		$user->removeWatch( $articleTitle );
 		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has been unwatched' );
+	}
+
+	/**
+	 * @covers User::getName
+	 * @covers User::setName
+	 */
+	public function testUserName() {
+		$user = User::newFromName( 'DannyS712' );
+		$this->assertSame(
+			'DannyS712',
+			$user->getName(),
+			'Santiy check: Users created using ::newFromName should return the name used'
+		);
+
+		$user->setName( 'FooBarBaz' );
+		$this->assertSame(
+			'FooBarBaz',
+			$user->getName(),
+			'Changing a username via ::setName should be reflected in ::getName'
+		);
+	}
+
+	/**
+	 * @covers User::getEmail
+	 * @covers User::setEmail
+	 * @covers User::invalidateEmail
+	 */
+	public function testUserEmail() {
+		$user = $this->getTestUser()->getUser();
+
+		$user->setEmail( 'TestEmail@mediawiki.org' );
+		$this->assertSame(
+			'TestEmail@mediawiki.org',
+			$user->getEmail(),
+			'Setting an email via ::setEmail should be reflected in ::getEmail'
+		);
+
+		$this->setTemporaryHook( 'UserSetEmail', function ( $user, &$email ) {
+			$this->fail(
+				'UserSetEmail hook should not be called when the new email ' .
+				'is the same as the old email.'
+			);
+		} );
+		$user->setEmail( 'TestEmail@mediawiki.org' );
+
+		// Unregister failing
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'UserSetEmail' => []
+		] );
+
+		$this->setTemporaryHook( 'UserSetEmail', function ( $user, &$email ) {
+			$email = 'SettingIntercepted@mediawiki.org';
+		} );
+		$user->setEmail( 'NewEmail@mediawiki.org' );
+		$this->assertSame(
+			'SettingIntercepted@mediawiki.org',
+			$user->getEmail(),
+			'Hooks can override setting email addresses'
+		);
+
+		$this->setTemporaryHook( 'UserGetEmail', function ( $user, &$email ) {
+			$email = 'GettingIntercepted@mediawiki.org';
+		} );
+		$this->assertSame(
+			'GettingIntercepted@mediawiki.org',
+			$user->getEmail(),
+			'Hooks can override getting email address'
+		);
+
+		// Unregister hooks
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'UserSetEmail' => [],
+			'UserGetEmail' => []
+		] );
+		$user->invalidateEmail();
+		$this->assertSame(
+			'',
+			$user->getEmail(),
+			'After invalidation, a user email should be an empty string'
+		);
 	}
 
 }
