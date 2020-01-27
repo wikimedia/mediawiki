@@ -241,15 +241,18 @@ class UserTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers User::getGroups
+	 * @covers User::getGroupMemberships
 	 * @covers User::isBot
 	 */
 	public function testBot() {
 		$user = $this->getTestUser( 'bot' )->getUser();
 
 		$this->assertSame( $user->getGroups(), [ 'bot' ] );
+		$this->assertArrayHasKey( 'bot', $user->getGroupMemberships() );
 		$this->assertTrue( $user->isBot() );
 
 		$user = $this->getTestUser()->getUser();
+		$this->assertArrayNotHasKey( 'bot', $user->getGroupMemberships() );
 		$this->assertFalse( $user->isBot() );
 	}
 
@@ -405,14 +408,19 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getOption
 	 * @covers User::getBoolOption
 	 * @covers User::getIntOption
+	 * @covers User::getStubThreshold
 	 */
 	public function testOptions() {
+		$this->setMwGlobals( [
+			'wgMaxArticleSize' => 2,
+		] );
 		$user = $this->getMutableTestUser()->getUser();
 
 		$user->setOption( 'userjs-someoption', 'test' );
 		$user->setOption( 'userjs-someintoption', '42' );
 		$user->setOption( 'rclimit', 200 );
 		$user->setOption( 'wpwatchlistdays', '0' );
+		$user->setOption( 'stubthreshold', 1024 );
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -421,6 +429,11 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
 		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
+		$this->assertSame(
+			1024,
+			$user->getStubThreshold(),
+			'Valid stub threshold preferences are respected'
+		);
 
 		$user = User::newFromName( $user->getName() );
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
@@ -428,12 +441,26 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
 		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
+		$this->assertSame(
+			1024,
+			$user->getStubThreshold(),
+			'Valid stub threshold preferences are respected after cache is cleared'
+		);
 
 		// Check that an option saved as a string '0' is returned as an integer.
 		$user = User::newFromName( $user->getName() );
 		$user->load( User::READ_LATEST );
 		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
 		$this->assertFalse( $user->getBoolOption( 'wpwatchlistdays' ) );
+
+		// Check that getStubThreashold resorts to 0 if invalid
+		$user->setOption( 'stubthreshold', 4096 );
+		$user->saveSettings();
+		$this->assertSame(
+			0,
+			$user->getStubThreshold(),
+			'If a stub threashold is impossible, it defaults to 0'
+		);
 	}
 
 	/**
@@ -556,6 +583,17 @@ class UserTest extends MediaWikiTestCase {
 			'With slash' => [ 'with / slash', [ 'creatable' => false, 'usable' => false, 'valid' => false,
 				'false' => 'With / slash' ] ],
 		];
+	}
+
+	/**
+	 * @covers User::getCanonicalName()
+	 */
+	public function testGetCanonicalName_bad() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'Invalid parameter value for $validate in User::getCanonicalName'
+		);
+		User::getCanonicalName( 'ValidName', 'InvalidValidationValue' );
 	}
 
 	/**
@@ -1126,6 +1164,25 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::newFromId
+	 */
+	public function testNewFromId() {
+		$user = $this->getTestUser()->getUser();
+		$userId = $user->getId();
+		$this->assertGreaterThan(
+			0,
+			$userId,
+			'Sanity check: user has a working id'
+		);
+
+		$otherUser = User::newFromId( $userId );
+		$this->assertTrue(
+			$user->equals( $otherUser ),
+			'User created by id should match user with that id'
+		);
+	}
+
+	/**
 	 * @covers User::newFromActorId
 	 */
 	public function testActorId() {
@@ -1281,6 +1338,14 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
 		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
 		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
+	}
+
+	/**
+	 * @covers User::newFromConfirmationCode
+	 */
+	public function testNewFromConfirmationCode() {
+		$user = User::newFromConfirmationCode( 'NotARealConfirmationCode' );
+		$this->assertNull( $user, 'Invalid confirmation codes result in null users' );
 	}
 
 	/**
@@ -2102,6 +2167,86 @@ class UserTest extends MediaWikiTestCase {
 			'',
 			$user->getEmail(),
 			'After invalidation, a user email should be an empty string'
+		);
+	}
+
+	/**
+	 * @covers User::isItemLoaded
+	 * @covers User::setItemLoaded
+	 */
+	public function testItemLoaded() {
+		$user = User::newFromName( 'DannyS712' );
+		$this->assertTrue(
+			$user->isItemLoaded( 'name', 'only' ),
+			'Users created by name have user names loaded'
+		);
+		$this->assertFalse(
+			$user->isItemLoaded( 'all', 'all' ),
+			'Not everything is loaded yet'
+		);
+		$user->load();
+		$this->assertTrue(
+			$user->isItemLoaded( 'FooBar', 'all' ),
+			'All items now loaded'
+		);
+	}
+
+	/**
+	 * @covers User::requiresHTTPS
+	 * @dataProvider provideRequiresHTTPS
+	 */
+	public function testRequiresHTTPS( $preference, $hook1, $hook2, bool $expected ) {
+		$this->setMwGlobals( [
+			'wgSecureLogin' => true,
+		] );
+
+		$user = User::newFromName( 'UserWhoMayRequireHTTPS' );
+		$user->setOption( 'prefershttps', $preference );
+		$user->saveSettings();
+
+		$this->setTemporaryHook( 'UserRequiresHTTPS', function ( $user, &$https ) use ( $hook1 ) {
+			$https = $hook1;
+			return false;
+		} );
+		$this->setTemporaryHook( 'CanIPUseHTTPS', function ( $ip, &$canDo ) use ( $hook2 ) {
+			if ( $hook2 === 'notcalled' ) {
+				$this->fail( 'CanIPUseHTTPS hook should not have been called' );
+			}
+			$canDo = $hook2;
+			return false;
+		} );
+
+		$user = User::newFromName( $user->getName() );
+		$this->assertSame( $user->requiresHTTPS(), $expected );
+	}
+
+	public static function provideRequiresHTTPS() {
+		return [
+			'Wants, hook requires, can' => [ true, true, true, true ],
+			'Wants, hook requires, cannot' => [ true, true, false, false ],
+			'Wants, hook prohibits, not called' => [ true, false, 'notcalled', false ],
+			'Does not want, hook requires, can' => [ false, true, true, true ],
+			'Does not want, hook requires, cannot' => [ false, true, false, false ],
+			'Does not want, hook prohibits, not called' => [ false, false, 'notcalled', false ],
+		];
+	}
+
+	/**
+	 * @covers User::requiresHTTPS
+	 */
+	public function testRequiresHTTPS_disabled() {
+		$this->setMwGlobals( [
+			'wgSecureLogin' => false,
+		] );
+
+		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
+		$user->setOption( 'prefershttps', true );
+		$user->saveSettings();
+
+		$user = User::newFromName( $user->getName() );
+		$this->assertFalse(
+			$user->requiresHTTPS(),
+			'User preference ignored if wgSecureLogin  is false'
 		);
 	}
 
