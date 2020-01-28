@@ -67,6 +67,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * …
 
 === New user-facing features in 1.35 ===
+* (T204618) Whitelisted the aria-hidden HTML attribute for all elements in
+  wikitext.
 * (T13456) Special:EditPage, Special:PageHistory, Special:PageInfo, and
   Special:Purge have been created as shortcuts for each action.
   Special:EditPage/Foo redirects to title=foo&action=edit, with PageHistory,
