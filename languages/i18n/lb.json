@@ -973,7 +973,7 @@
 	"timezonelegend": "Zäitzon:",
 	"localtime": "Lokalzäit:",
 	"timezoneuseserverdefault": "De Standardwäert vun der Wiki ($1) benotzen",
-	"timezoneuseoffset": "Aner (Differenz hei drënner uginn)",
+	"timezoneuseoffset": "Aner (Zäitdifferenz mat UTC)",
 	"servertime": "Serverzäit:",
 	"guesstimezone": "Vum Browser iwwerhuelen",
 	"timezoneregion-africa": "Afrika",

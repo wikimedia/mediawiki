@@ -1135,7 +1135,7 @@
 	"timezonelegend": "Zaman dilimi:",
 	"localtime": "Yerel saat:",
 	"timezoneuseserverdefault": "Viki varsayılanını kullanın ($1)",
-	"timezoneuseoffset": "Diğer (aşağıdaki ofset belirtiniz)",
+	"timezoneuseoffset": "Diğer (UTC'den zaman farkı)",
 	"timezone-useoffset-placeholder": "Örnek değerler: \"-07:00\" veya \"01:00\"",
 	"servertime": "Sunucu saati:",
 	"guesstimezone": "Tarayıcınız sizin yerinize doldursun",

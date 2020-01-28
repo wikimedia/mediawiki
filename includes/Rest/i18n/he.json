@@ -28,5 +28,6 @@
 	"rest-search-error": "שגיאה בהחזרת תוצאות חיפוש: $1",
 	"rest-page-source-type-error": "סוג התוכן של מקור הדף שהתבקש אינו נתמך",
 	"rest-no-revision": "לא ניתן לאחזר גרסה עבור הכותרת $1",
-	"rest-media-too-many-links": "נמצאו יותר מדי קישורי מדיה בכותרת $1 (המספר המרבי הוא $2)"
+	"rest-media-too-many-links": "נמצאו יותר מדי קישורי מדיה בכותרת $1 (המספר המרבי הוא $2)",
+	"rest-html-backend-error": "לא ניתן לאחזר HTML של פרסואיד"
 }

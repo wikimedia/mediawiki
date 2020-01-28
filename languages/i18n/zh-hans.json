@@ -1196,7 +1196,7 @@
 	"yourrealname": "真实姓名：",
 	"yourlanguage": "语言：",
 	"yourvariant": "内容语言变种：",
-	"prefs-help-variant": "您希望用于显示该本站内容的语言变体。",
+	"prefs-help-variant": "您希望用于显示本站内容的语种或拼写语系。",
 	"yournick": "新签名：",
 	"prefs-help-signature": "讨论页上留言应该使用“<nowiki>~~~~</nowiki>”签名，它会自动转换为您的签名及时间戳。",
 	"badsig": "错误的原始签名。请检查HTML标签。",
