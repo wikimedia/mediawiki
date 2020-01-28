@@ -747,10 +747,10 @@
 					prefixedText: 'File:100% ab progress.jpg'
 				},
 				{
-					fileName: '<([>]):/#.jpg',
+					fileName: '<([>])/#.jpg',
 					typeOfName: 'File name with characters not permitted in titles that are replaced',
-					nameText: '((()))---',
-					prefixedText: 'File:((()))---.jpg'
+					nameText: '((()))--',
+					prefixedText: 'File:((()))--.jpg'
 				},
 				{
 					fileName: 'spaces\u0009\u2000\u200A\u200Bx.djvu',
@@ -788,12 +788,18 @@
 
 		if ( mw.config.get( 'wgIllegalFileChars', '' ).indexOf( ':' ) > -1 ) {
 			// ":" is automatically replaced with "-". Only test this if it is present
-			// in wgIllegalFileChars
+			// in wgIllegalFileChars. Bug: T196480
 			cases.push( {
 				fileName: 'File:Sample.png',
 				typeOfName: 'Carrying namespace',
 				nameText: 'File-Sample',
 				prefixedText: 'File:File-Sample.png'
+			} );
+			cases.push( {
+				fileName: 'Illegal:Char.png',
+				typeOfName: 'File name with : character not permitted in titles that are replaced',
+				nameText: 'Illegal-Char',
+				prefixedText: 'File:Illegal-Char.png'
 			} );
 		}
 
