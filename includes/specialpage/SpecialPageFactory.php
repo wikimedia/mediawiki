@@ -127,7 +127,12 @@ class SpecialPageFactory {
 		'Listadmins' => \SpecialListAdmins::class,
 		'Listbots' => \SpecialListBots::class,
 		'Userrights' => \UserrightsPage::class,
-		'EditWatchlist' => \SpecialEditWatchlist::class,
+		'EditWatchlist' => [
+			'class' => \SpecialEditWatchlist::class,
+			'services' => [
+				'WatchedItemStore'
+			]
+		],
 		'PasswordPolicies' => \SpecialPasswordPolicies::class,
 
 		// Recent changes and logs
