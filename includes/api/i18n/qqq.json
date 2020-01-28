@@ -558,7 +558,7 @@
 	"apihelp-query+allrevisions-param-namespace": "{{doc-apihelp-param|query+allrevisions|namespace}}",
 	"apihelp-query+allrevisions-param-generatetitles": "{{doc-apihelp-param|query+allrevisions|generatetitles}}",
 	"apihelp-query+allrevisions-example-user": "{{doc-apihelp-example|query+allrevisions}}",
-	"apihelp-query+allrevisions-example-ns-main": "{{doc-apihelp-example|query+allrevisions}}",
+	"apihelp-query+allrevisions-example-ns-any": "{{doc-apihelp-example|query+allrevisions}}",
 	"apihelp-query+mystashedfiles-summary": "{{doc-apihelp-summary|query+mystashedfiles}}",
 	"apihelp-query+mystashedfiles-param-prop": "{{doc-apihelp-param|query+mystashedfiles|prop|paramvalues=1}}",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "{{doc-apihelp-paramvalue|query+mystashedfiles|prop|size}}",
