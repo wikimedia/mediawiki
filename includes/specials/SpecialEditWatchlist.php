@@ -248,35 +248,67 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				return false;
 			}
 
-			$this->clearUserWatchedItems( $current, 'raw' );
+			$this->clearUserWatchedItems( 'raw' );
 			$this->showTitles( $current, $this->successMessage );
 		}
 
 		return true;
 	}
 
-	public function submitClear( $data ) {
-		$current = $this->getWatchlist();
-		$this->clearUserWatchedItems( $current, 'clear' );
-		$this->showTitles( $current, $this->successMessage );
+	/**
+	 * Handler for the clear form submission
+	 *
+	 * @param array $data
+	 * @return bool
+	 */
+	public function submitClear( $data ): bool {
+		$this->clearUserWatchedItems( 'clear' );
 		return true;
 	}
 
 	/**
-	 * @param array $current
+	 * Makes a decision about using the JobQueue or not for clearing a users watchlist.
+	 * Also displays the appropriate messages to the user based on that decision.
+	 *
+	 * @param string $messageFor 'raw' or 'clear'. Only used when JobQueue is not used.
+	 */
+	private function clearUserWatchedItems( string $messageFor ): void {
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+
+		if ( $watchedItemStore->mustClearWatchedItemsUsingJobQueue( $this->getUser() ) ) {
+			$this->clearUserWatchedItemsUsingJobQueue();
+		} else {
+			$this->clearUserWatchedItemsNow( $messageFor );
+		}
+	}
+
+	/**
+	 * You should call clearUserWatchedItems() instead to decide if this should use the JobQueue
+	 *
 	 * @param string $messageFor 'raw' or 'clear'
 	 */
-	private function clearUserWatchedItems( $current, $messageFor ) {
+	private function clearUserWatchedItemsNow( string $messageFor ): void {
 		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-		if ( $watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
-			$this->successMessage = $this->msg( 'watchlistedit-' . $messageFor . '-done' )->parse();
-			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-' . $messageFor . '-removed' )
-					->numParams( count( $current ) )->parse();
-			$this->getUser()->invalidateCache();
-		} else {
-			$watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
-			$this->successMessage = $this->msg( 'watchlistedit-clear-jobqueue' )->parse();
+		$current = $this->getWatchlist();
+		if ( !$watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
+			throw new LogicException(
+				__METHOD__ . ' should only be called when able to clear synchronously'
+			);
 		}
+		$this->successMessage = $this->msg( 'watchlistedit-' . $messageFor . '-done' )->parse();
+		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-' . $messageFor . '-removed' )
+				->numParams( count( $current ) )->parse();
+		$this->getUser()->invalidateCache();
+		$this->showTitles( $current, $this->successMessage );
+	}
+
+	/**
+	 * You should call clearUserWatchedItems() instead to decide if this should use the JobQueue
+	 */
+	private function clearUserWatchedItemsUsingJobQueue(): void {
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
+		$this->successMessage = $this->msg( 'watchlistedit-clear-jobqueue' )->parse();
 	}
 
 	/**

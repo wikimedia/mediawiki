@@ -253,7 +253,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @return bool true on success, false when too many items are watched
 	 */
 	public function clearUserWatchedItems( UserIdentity $user ) {
-		if ( $this->countWatchedItems( $user ) > $this->updateRowsPerQuery ) {
+		if ( $this->mustClearWatchedItemsUsingJobQueue( $user ) ) {
 			return false;
 		}
 
@@ -266,6 +266,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->uncacheAllItemsForUser( $user );
 
 		return true;
+	}
+
+	public function mustClearWatchedItemsUsingJobQueue( UserIdentity $user ): bool {
+		return $this->countWatchedItems( $user ) > $this->updateRowsPerQuery;
 	}
 
 	private function uncacheAllItemsForUser( UserIdentity $user ) {
