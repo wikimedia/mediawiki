@@ -315,6 +315,7 @@ because of Phabricator reports.
   MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
   MediaFileTrait::getImageLimitsFromOptions() instead.
+* Parser::setFunctionTagHook() has been deprecated.
 * …
 
 === Other changes in 1.35 ===
