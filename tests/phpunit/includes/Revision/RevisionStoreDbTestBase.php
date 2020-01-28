@@ -1089,7 +1089,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
 			__METHOD__, [], $arQuery['joins']
 		);
-		$this->assertTrue( is_object( $res ), 'query failed' );
+		$this->assertIsObject( $res, 'query failed' );
 
 		$row = $res->fetchObject();
 		$res->free();
@@ -1119,7 +1119,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
 			__METHOD__, [], $arQuery['joins']
 		);
-		$this->assertTrue( is_object( $res ), 'query failed' );
+		$this->assertIsObject( $res, 'query failed' );
 
 		$row = $res->fetchObject();
 		$res->free();

@@ -188,7 +188,7 @@ class SiteListTest extends MediaWikiTestCase {
 	public function testGetGlobalIdentifiers( SiteList $sites ) {
 		$identifiers = $sites->getGlobalIdentifiers();
 
-		$this->assertTrue( is_array( $identifiers ) );
+		$this->assertIsArray( $identifiers );
 
 		$expected = [];
 

@@ -952,7 +952,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$this->hideDeprecated( 'CommentStore::insertWithTempTable for ipb_reason' );
 		list( $fields, $callback ) = $store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
-		$this->assertTrue( is_callable( $callback ) );
+		$this->assertIsCallable( $callback );
 	}
 
 	public function testInsertTruncation() {

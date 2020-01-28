@@ -52,9 +52,9 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 		// Now check that that revision was actually hidden
 		$rev = Revision::newFromId( $revid );
-		$this->assertEquals( $rev->getContent( Revision::FOR_PUBLIC ), null );
-		$this->assertEquals( $rev->getComment( Revision::FOR_PUBLIC ), '' );
-		$this->assertEquals( $rev->getUser( Revision::FOR_PUBLIC ), 0 );
+		$this->assertNull( $rev->getContent( Revision::FOR_PUBLIC ) );
+		$this->assertNull( $rev->getComment( Revision::FOR_PUBLIC ) );
+		$this->assertSame( 0, $rev->getUser( Revision::FOR_PUBLIC ) );
 
 		// Now test unhiding!
 		$out2 = $this->doApiRequest( [
