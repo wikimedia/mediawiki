@@ -1755,6 +1755,7 @@ class Sanitizer {
 			# WAI-ARIA
 			'aria-describedby',
 			'aria-flowto',
+			'aria-hidden',
 			'aria-label',
 			'aria-labelledby',
 			'aria-owns',

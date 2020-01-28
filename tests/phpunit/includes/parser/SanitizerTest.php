@@ -140,6 +140,10 @@ class SanitizerTest extends MediaWikiTestCase {
 				[ 'id' => 'foo bar', 'itemprop' => 'foo', 'content' => 'bar' ],
 				[ 'itemprop' => 'foo', 'content' => 'bar' ],
 			],
+			[ 'div',
+			  [ 'role' => 'presentation', 'aria-hidden' => 'true' ],
+			  [ 'role' => 'presentation', 'aria-hidden' => 'true' ],
+			],
 		];
 	}
 
