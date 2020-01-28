@@ -1133,7 +1133,7 @@
 	"timezonelegend": "時區：",
 	"localtime": "當地時間：",
 	"timezoneuseserverdefault": "使用 Wiki 預設值 ($1)",
-	"timezoneuseoffset": "其它（以下指定時差）",
+	"timezoneuseoffset": "其它（UTC 時差偏移量）",
 	"timezone-useoffset-placeholder": "範例：\"-07:00\" 或 \"01:00\"",
 	"servertime": "伺服器時間：",
 	"guesstimezone": "使用瀏覽器設定值",

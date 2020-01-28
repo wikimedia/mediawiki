@@ -1130,7 +1130,7 @@
 	"timezonelegend": "Strefa czasowa:",
 	"localtime": "Czas lokalny:",
 	"timezoneuseserverdefault": "Użyj domyślnej dla tej wiki ($1)",
-	"timezoneuseoffset": "Inna (określ różnicę czasu)",
+	"timezoneuseoffset": "Inna (różnica czasu od UTC)",
 	"timezone-useoffset-placeholder": "Przykładowe wartości: \"-07:00\" lub \"01:00\"",
 	"servertime": "Czas serwera:",
 	"guesstimezone": "Pobierz z przeglądarki",

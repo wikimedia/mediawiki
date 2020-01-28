@@ -1042,7 +1042,7 @@
 	"timezonelegend": "Časovni pas",
 	"localtime": "Krajevni čas:",
 	"timezoneuseserverdefault": "Uporabi privzeti wiki čas ($1)",
-	"timezoneuseoffset": "Drugo (spodaj navedite odmik)",
+	"timezoneuseoffset": "Drugo (časovni odmik od UTC)",
 	"timezone-useoffset-placeholder": "Primera vrednosti: »-07:00« ali »01:00«",
 	"servertime": "Strežniški čas:",
 	"guesstimezone": "Izpolni iz brskalnika",

@@ -1153,7 +1153,7 @@
 	"timezonelegend": "Fuso orario:",
 	"localtime": "Ora locale:",
 	"timezoneuseserverdefault": "Usa ora predefinita del wiki ($1)",
-	"timezoneuseoffset": "Altro (specifica differenza sotto)",
+	"timezoneuseoffset": "Altro (differenza oraria da UTC)",
 	"timezone-useoffset-placeholder": "Valori di esempio: \"-07:00\" o \"01:00\"",
 	"servertime": "Ora del server:",
 	"guesstimezone": "Usa l'ora del browser",

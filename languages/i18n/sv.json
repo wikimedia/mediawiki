@@ -1108,7 +1108,7 @@
 	"timezonelegend": "Tidszon:",
 	"localtime": "Lokal tid:",
 	"timezoneuseserverdefault": "Använd wikins standard ($1)",
-	"timezoneuseoffset": "Annan (specificera skillnad nedan)",
+	"timezoneuseoffset": "Annan (tidsskillnad från UTC)",
 	"timezone-useoffset-placeholder": "Exempelvärden: \"-07:00\" eller \"01:00\"",
 	"servertime": "Serverns tid:",
 	"guesstimezone": "Fyll i från webbläsare",
