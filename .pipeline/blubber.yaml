@@ -1,5 +1,5 @@
 version: v4
-base: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2
+base: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-blubber
 
 lives:
   in: /var/www/html
