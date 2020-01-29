@@ -144,6 +144,7 @@ class Parser {
 	public $mTagHooks = [];
 	public $mFunctionHooks = [];
 	public $mFunctionSynonyms = [ 0 => [], 1 => [] ];
+	/** @deprecated since 1.35 */
 	public $mFunctionTagHooks = [];
 	public $mStripList = [];
 	public $mDefaultStripList = [];
@@ -5014,8 +5015,10 @@ class Parser {
 	 * @param int $flags
 	 * @throws MWException
 	 * @return null
+	 * @deprecated since 1.35
 	 */
 	public function setFunctionTagHook( $tag, callable $callback, $flags ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
