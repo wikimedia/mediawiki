@@ -343,7 +343,6 @@
 	"apihelp-query+allrevisions-param-user": "Wyświetl wersje tylko tego użytkownika.",
 	"apihelp-query+allrevisions-param-excludeuser": "Nie wyświetlaj wersji tego użytkownika.",
 	"apihelp-query+allrevisions-param-namespace": "Wyświetl tylko strony w przestrzeni głównej.",
-	"apihelp-query+allrevisions-example-ns-main": "Wyświetl pierwsze 50 wersji w przestrzeni głównej.",
 	"apihelp-query+mystashedfiles-param-limit": "Liczba plików do pobrania.",
 	"apihelp-query+alltransclusions-param-prop": "Jakie informacje dołączyć:",
 	"apihelp-query+alltransclusions-paramvalue-prop-title": "Dodaje tytuł osadzenia.",

@@ -12,7 +12,8 @@
 			"Ernác",
 			"Stephanecbisson",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Джибериулени черт:",
@@ -619,7 +620,7 @@
 	"histfirst": "эм эскиле",
 	"histlast": "эм джангыла",
 	"historysize": "($1 {{PLURAL:$1|1=байт|байт}})",
-	"historyempty": "(бош)",
+	"historyempty": "бош",
 	"history-feed-title": "Тюрлениулени тарихи",
 	"history-feed-description": "Викиде бу бетни трюрлениулерини тарихи",
 	"history-feed-item-nocomment": "$1, $2",

@@ -18,7 +18,8 @@
 			"Macofe",
 			"Fitoschido",
 			"Ghiutun",
-			"ToBeFree"
+			"ToBeFree",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Verknipfonga unterstreeicha:",
@@ -432,7 +433,7 @@
 	"history-show-deleted": "ock geläschte Versiona",
 	"histfirst": "aalteste",
 	"histlast": "neueste",
-	"historyempty": "(laar)",
+	"historyempty": "laar",
 	"history-feed-title": "Versionsgeschichtla",
 	"history-feed-description": "Versionsgeschichte dieser Seite ei {{SITENAME}}",
 	"history-feed-item-nocomment": "$1 oam $3 im $4 Seeger",

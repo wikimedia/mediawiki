@@ -8,7 +8,8 @@
 			"Saraiki",
 			"BukhariSaeed",
 			"Fitoschido",
-			"Amire80"
+			"Amire80",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ربطو خط کشیدگی",
@@ -560,7 +561,7 @@
 	"histfirst": "قدیم ترین",
 	"histlast": "تازہ ترین",
 	"historysize": "({{PLURAL:$1|1 بائٹ|$1 بائٹ}})",
-	"historyempty": "(خالی)",
+	"historyempty": "خالی",
 	"history-feed-title": "تاریخچۂ نظرثانی",
 	"history-feed-description": "ویکیپیڈیا ھیہ صفحو تاریخچۂ نظرثانی",
 	"history-feed-item-nocomment": "$1 تا $2",

@@ -11,7 +11,8 @@
 			"Amire80",
 			"Frhdkazan",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -514,7 +515,7 @@
 	"histfirst": "Elekkege",
 	"histlast": "Soñğı",
 	"historysize": "($1 {{PLURAL:$1|bayt}})",
-	"historyempty": "(buş)",
+	"historyempty": "buş",
 	"history-feed-title": "Üzgärtülär tarixı",
 	"history-feed-description": "Bu bitneñ wikidağı üzgärtülär tarixı",
 	"history-feed-item-nocomment": "$1, $2",

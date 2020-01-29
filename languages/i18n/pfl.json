@@ -8,7 +8,8 @@
 			"SPS",
 			"Xqt",
 			"아라",
-			"Purodha"
+			"Purodha",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Ling'g unnaschdraische",
@@ -395,7 +396,7 @@
 	"history-show-deleted": "Bloß gleschdi Saide zaische",
 	"histfirst": "äldschde",
 	"histlast": "naijschde",
-	"historyempty": "(lea)",
+	"historyempty": "lea",
 	"history-feed-title": "Ännarungsgschischd",
 	"history-feed-description": "Gschischd vunde Said uff {{SITENAME}}",
 	"history-feed-item-nocomment": "$1 õm $2",

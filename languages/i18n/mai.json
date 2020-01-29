@@ -26,7 +26,8 @@
 			"राम प्रसाद जोशी",
 			"Fitoschido",
 			"Haribanshi",
-			"Shirayuki"
+			"Shirayuki",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "लिङ्कके रेखाङ्कित करी:",
@@ -749,7 +750,7 @@
 	"histfirst": "सभसँ पुरान",
 	"histlast": "आइ-काल्हिक",
 	"historysize": "({{PLURAL:$1|1 अष्टक|$1 अष्टक}})",
-	"historyempty": "(रिक्त)",
+	"historyempty": "रिक्त",
 	"history-feed-title": "संशोधन इतिहास",
 	"history-feed-description": "ई पन्नाक विकीपर सम्पादन इतिहास",
 	"history-feed-item-nocomment": "$2 पर $1",

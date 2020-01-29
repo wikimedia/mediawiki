@@ -15,7 +15,8 @@
 			"Matěj Suchánek",
 			"Physicsch",
 			"FarsiNevis",
-			"Iriman"
+			"Iriman",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "خط کیشائن ژێر پیوندەل:",
@@ -749,7 +750,7 @@
 	"histfirst": "قدیمی ترین/کۆنەترین",
 	"histlast": "تازه ترین",
 	"historysize": "({{PLURAL:$1|۱ بایت|$1 بایت}})",
-	"historyempty": "(پةتی/حالی)",
+	"historyempty": "پةتی/حالی",
 	"history-feed-title": "تاریخچهٔ ویرایش‌ها",
 	"history-feed-description": "تاریخچهٔ ویرایش‌های این صفحه در ویکی",
 	"history-feed-item-nocomment": "$1 در $2",

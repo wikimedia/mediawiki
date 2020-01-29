@@ -11,7 +11,8 @@
 			"아라",
 			"Macofe",
 			"Stephanecbisson",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Lingiq ala tõmmadaq",
@@ -558,7 +559,7 @@
 	"histfirst": "Kõgõ vanõmbaq",
 	"histlast": "Kõgõ vahtsõmbaq",
 	"historysize": "({{PLURAL:$1|1 bait|$1 baiti}})",
-	"historyempty": "(tühi)",
+	"historyempty": "tühi",
 	"history-feed-title": "Muutmislugu",
 	"history-feed-description": "Seo lehe muutmislugu",
 	"history-feed-item-nocomment": "$1 ($2)",

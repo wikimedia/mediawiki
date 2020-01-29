@@ -13,7 +13,8 @@
 			"Macofe",
 			"Chuvash",
 			"Marat-avgust",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Ссылкăсене аялтан туртса палармалла:",
@@ -400,7 +401,7 @@
 	"histfirst": "киввисем",
 	"histlast": "çĕннисем",
 	"historysize": "({{PLURAL:$1|1 байт|$1 байт}})",
-	"historyempty": "(пушă)",
+	"historyempty": "пушă",
 	"history-feed-title": "Улăшăнусен историйĕ",
 	"history-feed-description": "Ку страницăна викире улаштарнин историйĕ",
 	"rev-deleted-comment": "(комментарине кăларса пăрахнă)",

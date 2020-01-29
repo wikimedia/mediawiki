@@ -20,7 +20,8 @@
 			"Otogi",
 			"Fitoschido",
 			"Vlad5250",
-			"Narazeni"
+			"Narazeni",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "რცხუეფიშ ათოღაზუა:",
@@ -662,7 +663,7 @@
 	"histfirst": "უძველესი",
 	"histlast": "უახლესი",
 	"historysize": "($1 ბაიტი)",
-	"historyempty": "(ჩოლიერი)",
+	"historyempty": "ჩოლიერი",
 	"history-feed-title": "რედაქტირებიშ ისტორია",
 	"history-feed-description": "თენა გვერდიშ რედაქტირებეფიშ ისტორია ვიკის",
 	"history-feed-item-nocomment": "$1  $2-ს",

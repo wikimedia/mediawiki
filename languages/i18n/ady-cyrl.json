@@ -13,7 +13,8 @@
 			"SamGamgee",
 			"SmartNart12",
 			"TheRossatron",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Зэпыщэхэм якIэгъэтхъын:",
@@ -492,7 +493,7 @@
 	"histfirst": "нахьыжъдэдэхэр",
 	"histlast": "кIэдэдэхэр",
 	"historysize": "({{PLURAL:$1|1 байт|$1 байтхэр}})",
-	"historyempty": "(нэкI)",
+	"historyempty": "нэкI",
 	"history-feed-title": "ЕIэзэнмэ я тарихъ",
 	"history-feed-description": "Мы нэкIубгъом и еIэзэнмэ я тарихъ викимкIэ",
 	"history-edit-tags": "ХэшыпыкIыгъэ версиемэ я тегхэр зэблэхъу",

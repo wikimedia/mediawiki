@@ -9,7 +9,8 @@
 			"아라",
 			"Macofe",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Сюлмафкснень алга китькстамс:",
@@ -516,7 +517,7 @@
 	"histfirst": "Кунардонь",
 	"histlast": "Мекольце",
 	"historysize": "({{PLURAL:$1|1 байт|$1 байтт}})",
-	"historyempty": "(шава)",
+	"historyempty": "шава",
 	"history-feed-title": "Верзиетнень историясна",
 	"history-feed-description": "Викиса тя лопать верзиетнень историясна",
 	"history-feed-item-nocomment": "$1-сь $2-са",

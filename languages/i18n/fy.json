@@ -21,7 +21,8 @@
 			"Sjoerddebruin",
 			"Ieneach fan 'e Esk",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -296,7 +297,7 @@
 	"nstab-help": "Helpside",
 	"nstab-category": "Kategory",
 	"mainpage-nstab": "Haadside",
-	"nosuchaction": "Unbekende aksje.",
+	"nosuchaction": "Unbekende aksje",
 	"nosuchactiontext": "De opdracht yn 'e URL is ûnjildich.\nMooglik hawwe jo in typflater yn 'e URL makke of in misse keppeling folge.\nIt soe likegoed in programmatuerflater fan {{GRAMMAR:lidw|{{SITENAME}}}} wêze kinne.",
 	"nosuchspecialpage": "Gjin soksoarte bysûndere side",
 	"nospecialpagetext": "<strong>Jo hawwe in ûnjildige bysûndere side opfrege.</strong>\n\nIn list fan jildige bysûndere siden stiet op [[Special:SpecialPages|{{int:specialpages}}]].",
@@ -602,7 +603,7 @@
 	"histfirst": "âldste",
 	"histlast": "nijste",
 	"historysize": "({{PLURAL:$1|1 byte|$1 bytes}})",
-	"historyempty": "(leech)",
+	"historyempty": "leech",
 	"history-feed-title": "Sideskiednis",
 	"history-feed-description": "Sideskiednis foar dizze side op de wiki",
 	"history-feed-item-nocomment": "$1 op $2",

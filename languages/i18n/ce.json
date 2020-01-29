@@ -12,7 +12,8 @@
 			"Исмаил Садуев",
 			"Macofe",
 			"Nemo bis",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "КӀел сиз хьакха хьажорган:",
@@ -702,7 +703,7 @@
 	"histfirst": "шираниш",
 	"histlast": "керланиш",
 	"historysize": "($1 {{PLURAL:$1|байт}})",
-	"historyempty": "(еса)",
+	"historyempty": "еса",
 	"history-feed-title": "Хийцаман истори",
 	"history-feed-description": "Википедин чохь хӀокху агӀона хийцаман истори",
 	"history-feed-item-nocomment": "$1 оцу $2",

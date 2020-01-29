@@ -10,7 +10,8 @@
 			"아라",
 			"Macofe",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Hanipika ny rohy:",
@@ -756,7 +757,7 @@
 	"histfirst": "antitra indrindra",
 	"histlast": "vaovao indrindra",
 	"historysize": "($1 {{PLURAL:$1|oktety|oktety}})",
-	"historyempty": "(tsy misy)",
+	"historyempty": "tsy misy",
 	"history-feed-title": "Tantara ny fanovàna",
 	"history-feed-description": "Tantaran'ity pejy ity teto amin'ity wiki ity.",
 	"history-feed-item-nocomment": "$1 tamin'ny $2",

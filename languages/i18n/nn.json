@@ -28,7 +28,8 @@
 			"Mortensson",
 			"Danmichaelo",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -739,7 +740,7 @@
 	"histfirst": "eldste",
 	"histlast": "nyaste",
 	"historysize": "({{PLURAL:$1|1 byte|$1 byte}})",
-	"historyempty": "(tom)",
+	"historyempty": "tom",
 	"history-feed-title": "Endringshistorikk",
 	"history-feed-description": "Endringshistorikk for denne sida på wikien",
 	"history-feed-item-nocomment": "$1 på $2",

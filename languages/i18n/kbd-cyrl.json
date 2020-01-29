@@ -7,7 +7,8 @@
 			"Алёшка",
 			"Тамэ Балъкъэрхэ",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ТехьэпӀэхэр щӀэтхъэн:",
@@ -489,7 +490,7 @@
 	"histfirst": "жьыдыдэхэр",
 	"histlast": "Куэд мыщIахэр",
 	"historysize": "($1 {{PLURAL:$1|байту|байтху}})",
-	"historyempty": "(нэщIщ)",
+	"historyempty": "нэщIщ",
 	"history-feed-title": "ЗэхъуэкӀыгъуэхэм я тхыдэр",
 	"history-feed-description": "Мы напэкӀуэцӀым и зэхъуэкӀыгъуэхэм я тхыдэр виким дежь",
 	"history-feed-item-nocomment": "$1-мрэ $2-мрэ",

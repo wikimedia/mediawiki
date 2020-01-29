@@ -12,7 +12,8 @@
 			"Sebranik",
 			"Ghiutun",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Jonoštada kosketused:",
@@ -542,7 +543,7 @@
 	"histfirst": "vanhembad",
 	"histlast": "udembad",
 	"historysize": "({{PLURAL:$1|1 bait|$1 baitad}})",
-	"historyempty": "(pall'az)",
+	"historyempty": "pall'az",
 	"history-feed-title": "Toižetusiden istorii",
 	"history-feed-description": "Necen lehtpolen toižetusen istorii",
 	"history-feed-item-nocomment": "$1 aigal $2",

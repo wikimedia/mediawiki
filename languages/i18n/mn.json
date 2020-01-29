@@ -17,7 +17,8 @@
 			"Macofe",
 			"Irus",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Линкүүдийн доогуур зураас зур:",
@@ -663,7 +664,7 @@
 	"histfirst": "хамгийн эхэнд",
 	"histlast": "хамгийн шинэ",
 	"historysize": "($1 байт)",
-	"historyempty": "（хоосон байна）",
+	"historyempty": "хоосон байна",
 	"history-feed-title": "Түүх",
 	"history-feed-description": "Вики дэх энэ хуудасны засварын түүх",
 	"history-feed-item-nocomment": "$2 дээрх $1",

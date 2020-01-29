@@ -554,7 +554,6 @@
 	"apihelp-query+allrevisions-param-namespace": "أدرج الصفحات في هذا النطاق فقط.",
 	"apihelp-query+allrevisions-param-generatetitles": "عندما يُستخدَم كمولد، ولد عناوين بدلا من معرفات المراجعات.",
 	"apihelp-query+allrevisions-example-user": "أدرج آخر 50 مساهمة بواسطة المستخدم <kbd>Example</kbd>.",
-	"apihelp-query+allrevisions-example-ns-main": "سرد أول 50 مراجعة في النطاق الرئيسي.",
 	"apihelp-query+mystashedfiles-summary": "احصل على قائمة بالملفات في ذاكرة التخزين المؤقت الخاص برفع المستخدم الحالي.",
 	"apihelp-query+mystashedfiles-param-prop": "أي الخصائص تريد لجلب للملفات.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "جلب حجم الملف وأبعاد الصورة.",

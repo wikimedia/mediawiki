@@ -11,7 +11,8 @@
 			"아라",
 			"Монгуш Салим",
 			"Көпек",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Холбааны шыяры:",
@@ -345,7 +346,7 @@
 	"histfirst": "Эң эрги",
 	"histlast": "Эң чаа",
 	"historysize": "({{PLURAL:$1|$1 байт}})",
-	"historyempty": "(куруг)",
+	"historyempty": "куруг",
 	"history-feed-title": "Үндүрериниң төөгүзү",
 	"history-feed-item-nocomment": "$1 {{grammar:genitive|$2}} иштинде",
 	"rev-deleted-comment": "(өскерлиишкинниң түңнелин ап каан)",

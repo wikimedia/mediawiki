@@ -8,7 +8,8 @@
 			"Macofe",
 			"Zpizza",
 			"Vlad5250",
-			"JackLantern"
+			"JackLantern",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Siltemeniñ astın sız:",
@@ -413,7 +414,7 @@
 	"histfirst": "Eñ alğaşqısına",
 	"histlast": "Eñ soñğısına",
 	"historysize": "($1 baýt)",
-	"historyempty": "(bos)",
+	"historyempty": "bos",
 	"history-feed-title": "Tüzetw tarïxı",
 	"history-feed-description": "Mına wïkïdegi bul bettiñ tüzetw tarïxı",
 	"history-feed-item-nocomment": "$2 kezindegi $1 degen",

@@ -11,7 +11,8 @@
 			"Mjbmr",
 			"Beyronvan",
 			"Isevand",
-			"Kikumoron"
+			"Kikumoron",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "هومپاٛیڤٱندٱل زیر خٱتدار",
@@ -683,7 +684,7 @@
 	"histfirst": "دینداتری",
 	"histlast": "تازاْترين",
 	"historysize": "({{PLURAL:$1|1 بایت|$1 بایتٱل}})",
-	"historyempty": "(هالی)",
+	"historyempty": "هالی",
 	"history-feed-title": "ؤیرگارکاْ آلشڌکاریٱل",
 	"history-feed-description": "ؤرگارکاْ آلشڌکاریٱل ای بٱلٛگاْ مؽن ڤیکی",
 	"history-feed-item-nocomment": "$1 میٛن $2",

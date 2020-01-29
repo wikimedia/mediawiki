@@ -17,7 +17,8 @@
 			"Macofe",
 			"Janatkg",
 			"Irus",
-			"Mouse21"
+			"Mouse21",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Шилтемелердин алдын сызуу:",
@@ -515,7 +516,7 @@
 	"histfirst": "эскирээк",
 	"histlast": "жаңыраак",
 	"historysize": "({{PLURAL:$1|1 байт}})",
-	"historyempty": "(бош)",
+	"historyempty": "бош",
 	"history-feed-title": "Өзгөртүүлөр тарыхы",
 	"history-feed-description": "Уикидеги бул барактын өзгөртүү тарыхы",
 	"history-feed-item-nocomment": "$1, $2 карата",

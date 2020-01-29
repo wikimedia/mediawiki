@@ -6,7 +6,8 @@
 			"아라",
 			"Macofe",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Zerpajvandho xat kaşida şavand:",
@@ -421,7 +422,7 @@
 	"histfirst": "Avvalin",
 	"histlast": "Oxirin",
 	"historysize": "({{PLURAL:$1|1 bajt|$1 bajt}})",
-	"historyempty": "(xolī)",
+	"historyempty": "xolī",
 	"history-feed-title": "Ta'rixi viroişho",
 	"history-feed-description": "Ta'rixi viroişhoi in sahifa dar viki",
 	"history-feed-item-nocomment": "$1 dar $2",

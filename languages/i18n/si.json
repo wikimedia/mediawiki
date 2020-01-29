@@ -35,7 +35,8 @@
 			"Sandaru",
 			1100100,
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "සබැඳි යටීර කිරීම:",
@@ -717,7 +718,7 @@
 	"histfirst": "පැරණිම",
 	"histlast": "අලුත්ම",
 	"historysize": "({{PLURAL:$1|බයිට්1 |බයිට් $1 ගණනක්}})",
-	"historyempty": "(හිස්)",
+	"historyempty": "හිස්",
 	"history-feed-title": "සංශෝධන ඉතිහාසය",
 	"history-feed-description": "විකියෙහි මෙම පිටුව සඳහා ඇති සංශෝධන ඉතිහාසය",
 	"history-feed-item-nocomment": "$1 විසින් $2 හිදී",

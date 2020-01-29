@@ -560,7 +560,6 @@
 	"apihelp-query+allrevisions-param-namespace": "לרשום רק דפים במרחב השם הזה.",
 	"apihelp-query+allrevisions-param-generatetitles": "בעת שימוש בתור מחולל, לחולל כותרת במקום מזהי גרסה.",
 	"apihelp-query+allrevisions-example-user": "לרשום את 50 התרומות האחרונות של משתמש <kbd>Example</kbd>.",
-	"apihelp-query+allrevisions-example-ns-main": "רשימת 50 הגרסאות הראשונות במרחב הראשי.",
 	"apihelp-query+mystashedfiles-summary": "קבלת רשימת קבצים בסליק ההעלאה של המשתמש הנוכחי.",
 	"apihelp-query+mystashedfiles-param-prop": "אילו מאפיינים לאחזר עבור הקבצים.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "אחזור גודל הקובץ וממדי התמונה.",

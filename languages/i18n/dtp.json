@@ -5,7 +5,8 @@
 			"FRANELYA",
 			"아라",
 			"Macofe",
-			"Tofeiku"
+			"Tofeiku",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Mangagaris pioputan:",
@@ -540,7 +541,7 @@
 	"histfirst": "Nokododori",
 	"histlast": "Poinwawagu",
 	"historysize": "({{PLURAL:$1|1 bait|$1 babait}})",
-	"historyempty": "(ingaa)",
+	"historyempty": "ingaa",
 	"history-feed-title": "Susuyan sinimakan",
 	"history-feed-description": "Susuyan sinimakan do bolikon diti id wiki",
 	"history-feed-item-nocomment": "$1 ontok $3 jaam $4",

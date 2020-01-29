@@ -14,7 +14,8 @@
 			"Redhotchili23",
 			"Macofe",
 			"Vlad5250",
-			"Pare Mo"
+			"Pare Mo",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Kuritan sa idalom ang mga tabid:",
@@ -593,7 +594,7 @@
 	"histfirst": "pinakatemprano",
 	"histlast": "pinakabag·o",
 	"historysize": "({{PLURAL:$1|1 ka bayt|$1 ka mga bayt}})",
-	"historyempty": "(wala unod)",
+	"historyempty": "wala unod",
 	"history-feed-title": "Kasaysayan sang pagbag-o",
 	"history-feed-description": "Ang kasaysayan sang pagbag-o sang sini nga panid sa wiki",
 	"history-feed-item-nocomment": "$1 sa $2",

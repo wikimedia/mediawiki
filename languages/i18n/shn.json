@@ -9,7 +9,8 @@
 			"Saosukham",
 			"Sengwan",
 			"Ninjastrikers",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ႁဵင်းၵွင်ႉ ဢၼ်ထတ်းထႅဝ်တႂ်ႈဝႆႉ:",
@@ -647,7 +648,7 @@
 	"histfirst": "ၵဝ်ႇသုတ်း",
 	"histlast": "မႂ်ႇသုတ်း",
 	"historysize": "({{PLURAL:$1|1 ပၢႆႉ|$1 ပၢႆႉ}})",
-	"historyempty": "(ပဝ်ႇ)",
+	"historyempty": "ပဝ်ႇ",
 	"history-feed-title": "ပိုၼ်းၶူၼ်ႉၶႆႈ",
 	"history-feed-description": "ပိုၼ်းၶူၼ်ႉလူ တႃႇၼႃႈလိၵ်ႈၼႆႉ ၵႃႈတီႈၼိူဝ် ဝီႇၶီႇ",
 	"history-feed-item-nocomment": "$1 တီႈ $2",

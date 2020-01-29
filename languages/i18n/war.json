@@ -13,7 +13,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Bagisa ha ilarom an mga sumpay:",
@@ -665,7 +666,7 @@
 	"histfirst": "Giunhani",
 	"histlast": "Gibag-ohi",
 	"historysize": "({{PLURAL:$1|1 nga byte|$1 ka mga byte}})",
-	"historyempty": "(waray sulod)",
+	"historyempty": "waray sulod",
 	"history-feed-title": "Kaagi han pagliwat",
 	"history-feed-description": "Kaagi han pagliwat para hini nga pakli ha wiki",
 	"history-feed-item-nocomment": "$1 ha $2",

@@ -13,7 +13,8 @@
 			"Impersonator 1",
 			"LNDDYL",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "下劃連結",
@@ -442,7 +443,7 @@
 	"histfirst": "頂早嗰版本",
 	"histlast": "頂晏嗰版本",
 	"historysize": "（{{PLURAL:$1|1 字節|$1 字節}}）",
-	"historyempty": "（空）",
+	"historyempty": "空",
 	"history-feed-title": "修改歷史",
 	"history-feed-description": "本站箇頁嗰修改歷史",
 	"history-feed-item-nocomment": "$1到$2",

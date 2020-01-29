@@ -13,7 +13,8 @@
 			"Macofe",
 			"Robin van der Vliet",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -529,7 +530,7 @@
 	"histfirst": "vönädikün",
 	"histlast": "nulikün",
 	"historysize": "({{PLURAL:$1|jölät 1|jöläts $1}})",
-	"historyempty": "(vagik)",
+	"historyempty": "vagik",
 	"history-feed-title": "Revidajenotem",
 	"history-feed-description": "Revidajenotem pada at in vük",
 	"history-feed-item-nocomment": "$1 ün $2",

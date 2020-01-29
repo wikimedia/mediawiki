@@ -34,7 +34,8 @@
 			"Anoop rao",
 			"Rakshika",
 			"Gopala Krishna A",
-			"Vikassy"
+			"Vikassy",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ಕೊಂಡಿಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ",
@@ -669,7 +670,7 @@
 	"histfirst": "ಹಳೆಯ",
 	"histlast": "ಹೊಸ",
 	"historysize": "({{PLURAL:$1|೧ ಬೈಟ್|$1 ಬೈಟ್‍ಗಳು}})",
-	"historyempty": "(ಖಾಲಿ)",
+	"historyempty": "ಖಾಲಿ",
 	"history-feed-title": "ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ",
 	"history-feed-description": "ವಿಕಿಯ ಈ ಪುಟದ ಬದಲಾವಣೆಗಳ ಇತಿಹಾಸ",
 	"history-feed-item-nocomment": "$2 ಅಲ್ಲಿ $1",

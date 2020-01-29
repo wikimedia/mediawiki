@@ -13,7 +13,8 @@
 			"Macofe",
 			"Fitoschido",
 			"Vlad5250",
-			"PiefPafPier"
+			"PiefPafPier",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Ferwiese unnerstriekje:",
@@ -513,7 +514,7 @@
 	"histfirst": "Ooldste",
 	"histlast": "Näiste",
 	"historysize": "({{PLURAL:$1|1 Byte|$1 Bytes}})",
-	"historyempty": "(loos)",
+	"historyempty": "loos",
 	"history-feed-title": "Versionsgeskichte",
 	"history-feed-description": "Versionsgeskichte foar disse Siede in {{SITENAME}}",
 	"history-feed-item-nocomment": "$1 uum $2",

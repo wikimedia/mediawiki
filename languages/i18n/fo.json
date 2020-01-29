@@ -15,7 +15,8 @@
 			"Irus",
 			"Fitoschido",
 			"Vlad5250",
-			"Olavur"
+			"Olavur",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Undirstrika leinki:",
@@ -647,7 +648,7 @@
 	"histfirst": "elsta",
 	"histlast": "nýggjasta",
 	"historysize": "({{PLURAL:$1|1 být|$1 být}})",
-	"historyempty": "(tóm)",
+	"historyempty": "tóm",
 	"history-feed-title": "Versjónssøga",
 	"history-feed-description": "Versjónssøgan fyri hesa síðu á hesum wiki",
 	"history-feed-item-nocomment": "$1 hin $2",

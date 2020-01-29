@@ -23,7 +23,8 @@
 			"Tem",
 			"Nmacu",
 			"ديفيد",
-			"Xqt"
+			"Xqt",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Folínte faoi naisc:",
@@ -493,7 +494,7 @@
 	"histfirst": "An ceann is luaithe",
 	"histlast": "An ceann is déanaí",
 	"historysize": "({{PLURAL:$1|Beart amháin|$1 bearta}})",
-	"historyempty": "(folamh)",
+	"historyempty": "folamh",
 	"history-feed-title": "Stáir leasú",
 	"history-feed-description": "Stair leasú an leathanach seo ar an vicí",
 	"history-feed-item-nocomment": "$1 ag $2",

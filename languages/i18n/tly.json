@@ -8,7 +8,8 @@
 			"아라",
 			"Baskervill",
 			"Eldarado",
-			"Patriot Kur"
+			"Patriot Kur",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Linki jintono rijə bıkəş:",
@@ -313,7 +314,7 @@
 	"history-show-deleted": "Әнҹәх рәдд кардә быән",
 	"histfirst": "Ән канә",
 	"histlast": "Охонәни",
-	"historyempty": "(тәјли)",
+	"historyempty": "тәјли",
 	"history-feed-title": "Дәгишон тарых",
 	"history-feed-description": "Ым сәһифә дәгишон тарых викиәдә",
 	"history-feed-item-nocomment": "$1 бә $2-дә",

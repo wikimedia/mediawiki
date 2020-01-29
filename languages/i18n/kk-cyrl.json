@@ -18,7 +18,8 @@
 			"Mormegil",
 			"Mirgulkali",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Сілтеменің астын сызу:",
@@ -712,7 +713,7 @@
 	"histfirst": "Ең ескісіне",
 	"histlast": "Ең жаңасына",
 	"historysize": "({{PLURAL:$1|1 байт|$1 байт}})",
-	"historyempty": "(бос)",
+	"historyempty": "бос",
 	"history-feed-title": "Өңделу тарихы",
 	"history-feed-description": "Мына уикидегі бұл беттің өңделу тарихы",
 	"history-feed-item-nocomment": "$2 кезіндегі $1 деген",

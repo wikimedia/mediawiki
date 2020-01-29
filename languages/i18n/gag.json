@@ -8,7 +8,8 @@
 			"Meisam",
 			"아라",
 			"Stephanecbisson",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Baalantıların altını çiz",
@@ -330,7 +331,7 @@
 	"histfirst": "En eski",
 	"histlast": "En eni",
 	"historysize": "({{PLURAL:$1|1 bayt|$1 bayt}})",
-	"historyempty": "(boş)",
+	"historyempty": "boş",
 	"history-feed-title": "Diişmäk istoriyası",
 	"history-feed-item-nocomment": " $2de $1",
 	"rev-deleted-comment": "(yorum silindi)",

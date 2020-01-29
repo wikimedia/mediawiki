@@ -54,7 +54,8 @@
 			"Sureshkhole",
 			"Pushkar Ekbote",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "दुव्यांचे अधोरेखन:",
@@ -804,7 +805,7 @@
 	"histfirst": "सर्वात प्राचिन",
 	"histlast": "नविनतम",
 	"historysize": "({{PLURAL:$1|1 बाइट|$1 बाइट्स}})",
-	"historyempty": "(रिकामे)",
+	"historyempty": "रिकामे",
 	"history-feed-title": "आवृत्ती इतिहास",
 	"history-feed-description": "विकिवरील या पानाच्या आवृत्त्यांचा इतिहास",
 	"history-feed-item-nocomment": "$2 वर $1",

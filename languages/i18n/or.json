@@ -17,7 +17,8 @@
 			"Matma Rex",
 			"Susant purohit",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ଲିଙ୍କତଳେ ଗାର ଟାଣିବା:",
@@ -719,7 +720,7 @@
 	"histfirst": "ସବୁଠୁ ପୁରୁଣା",
 	"histlast": "ନଗଦ",
 	"historysize": "({{PLURAL:$1|1 ବାଇଟ|$1 ବାଇଟ}})",
-	"historyempty": "(ଖାଲି)",
+	"historyempty": "ଖାଲି",
 	"history-feed-title": "ସଙ୍କଳନ ଇତିହାସ",
 	"history-feed-description": "ଉଇକିରେ ଏହି ପୃଷ୍ଠାଟିପାଇଁ ସଙ୍କଳନ ଇତିହାସ",
 	"history-feed-item-nocomment": "$2 ଠାରେ $1",

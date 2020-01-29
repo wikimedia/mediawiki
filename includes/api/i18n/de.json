@@ -508,7 +508,6 @@
 	"apihelp-query+allrevisions-param-namespace": "Nur Seiten dieses Namensraums auflisten.",
 	"apihelp-query+allrevisions-param-generatetitles": "Wenn als Generator verwendet, werden eher Titel als Bearbeitungs-IDs erzeugt.",
 	"apihelp-query+allrevisions-example-user": "Liste die letzten 50 Beiträge, sortiert nach Benutzer <kbd>Beispiel</kbd> auf.",
-	"apihelp-query+allrevisions-example-ns-main": "Liste die ersten 50 Bearbeitungen im Hauptnamensraum auf.",
 	"apihelp-query+mystashedfiles-summary": "Ruft eine Liste der Dateien im aktuellen Benutzeruploadspeicher ab.",
 	"apihelp-query+mystashedfiles-param-prop": "Welche Eigenschaften für die Dateien abgerufen werden sollen.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "Ruft die Dateigröße und Bildabmessungen ab.",

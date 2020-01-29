@@ -11,7 +11,8 @@
 			"TTO",
 			"Macofe",
 			"Amiel Guanlao",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Gulisan lang panglalam deng suglung:",
@@ -450,7 +451,7 @@
 	"histfirst": "Minunang dili",
 	"histlast": "Pekabayu",
 	"historysize": "({{PLURAL:$1|1 a byte|byte}})",
-	"historyempty": "(alang laman)",
+	"historyempty": "alang laman",
 	"history-feed-title": "Amlat ning pamanalili",
 	"history-feed-description": "Amlat ning pamagbayu/pamanalili ning bulu a ini king wiki",
 	"history-feed-item-nocomment": "$1 king $2",

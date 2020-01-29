@@ -13,7 +13,8 @@
 			"Macofe",
 			"Stephanecbisson",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Çykgytlaryň aşagyny çyz:",
@@ -489,7 +490,7 @@
 	"histfirst": "iň köne",
 	"histlast": "iň täze",
 	"historysize": "({{PLURAL:$1|1 baýt|$1 baýt}})",
-	"historyempty": "(boş)",
+	"historyempty": "boş",
 	"history-feed-title": "Wersiýa geçmişi",
 	"history-feed-description": "Wikidäki bu sahypanyň wersiýa geçmişi",
 	"history-feed-item-nocomment": "$1, $2 senesinde",

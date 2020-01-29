@@ -565,7 +565,6 @@
 	"apihelp-query+allrevisions-param-namespace": "只列出此名字空间的页面。",
 	"apihelp-query+allrevisions-param-generatetitles": "当作为生成器使用时，生成标题而不是修订ID。",
 	"apihelp-query+allrevisions-example-user": "列出由用户<kbd>Example</kbd>作出的最近50次贡献。",
-	"apihelp-query+allrevisions-example-ns-main": "列举主名字空间中的前50次修订。",
 	"apihelp-query+mystashedfiles-summary": "获取当前用户上传暂存库中的文件列表。",
 	"apihelp-query+mystashedfiles-param-prop": "要检索文件的属性。",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "检索文件大小和图片尺寸。",

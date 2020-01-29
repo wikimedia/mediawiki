@@ -7,7 +7,8 @@
 			"Teak",
 			"Urhixidur",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Squóráam linkám:",
@@ -373,7 +374,7 @@
 	"histfirst": "Xepe",
 	"histlast": "Cmaa",
 	"historysize": "($1 bytenám)",
-	"historyempty": "(döjmet)",
+	"historyempty": "döjmet",
 	"history-feed-title": "Históriade revicion",
 	"history-feed-description": "Históriade revicion jande páhina wiki zo iti",
 	"history-feed-item-nocomment": "$1 öl $2 mii",

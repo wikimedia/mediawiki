@@ -462,7 +462,6 @@
 	"apihelp-query+allrevisions-param-namespace": "Lapok listázása csak ebben a névtérben.",
 	"apihelp-query+allrevisions-param-generatetitles": "Generátorként használva címek visszaadása lapváltozat-azonosítók helyett.",
 	"apihelp-query+allrevisions-example-user": "<kbd>Example</kbd> 50 legutóbbi szerkesztésének listázása.",
-	"apihelp-query+allrevisions-example-ns-main": "A fő névtér első 50 szerkesztésének listázása.",
 	"apihelp-query+mystashedfiles-param-prop": "A fájlok lekérendő tulajdonságai.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "A fájlméret és a kép dimenziói (szélessége és magassága).",
 	"apihelp-query+mystashedfiles-paramvalue-prop-type": "A fájl MIME-típusa és médiatípusa.",

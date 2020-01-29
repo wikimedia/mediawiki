@@ -9,7 +9,8 @@
 			"Hosseinblue",
 			"Dalba",
 			"Matma Rex",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "لینکانی جهلگا خط کشیتین",
@@ -645,7 +646,7 @@
 	"histfirst": "کهنگتیرین",
 	"histlast": "نوکتیرین",
 	"historysize": "({{PLURAL:$1|۱ بایٹ|$1 بایٹ}})",
-	"historyempty": "(خالی)",
+	"historyempty": "خالی",
 	"history-feed-title": "ایڈ\tیٹانئ دپتر یا تاریخچه گ",
 	"history-feed-description": "ای تاکدیمی ایڈیٹ ئی تاریخچه بئ ویکی ئی تا",
 	"history-feed-item-nocomment": "$1 بی $2",

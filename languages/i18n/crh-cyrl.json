@@ -11,7 +11,8 @@
 			"Macofe",
 			"Danvintius Bookix",
 			"Stephanecbisson",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Багълантыларнынъ тюбюни сызув:",
@@ -518,7 +519,7 @@
 	"histfirst": "энъ эски",
 	"histlast": "энъ янъы",
 	"historysize": "({{PLURAL:$1|1=1 байт|$1 байт}})",
-	"historyempty": "(бош)",
+	"historyempty": "бош",
 	"history-feed-title": "Денъиштирмелер тарихы",
 	"history-feed-description": "Викиде бу саифенинъ денъиштирмелер тарихы",
 	"history-feed-item-nocomment": "$2 устюнде $1",
