@@ -243,7 +243,7 @@ class LogPage {
 			if ( $title === null ) {
 				$rv = wfMessage( $wgLogActions[$key] )->inLanguage( $langObj )->escaped();
 			} else {
-				$titleLink = self::getTitleLink( $type, $langObjOrNull, $title, $params );
+				$titleLink = self::getTitleLink( $title, $langObjOrNull );
 
 				if ( count( $params ) == 0 ) {
 					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $titleLink )
@@ -286,40 +286,31 @@ class LogPage {
 	}
 
 	/**
-	 * @todo Document
-	 * @param string $type
-	 * @param Language|null $lang
 	 * @param Title $title
-	 * @param array &$params
-	 * @return string
+	 * @param ?Language $lang
+	 * @return string HTML
 	 */
-	protected static function getTitleLink( $type, $lang, $title, &$params ) {
+	private static function getTitleLink( Title $title, ?Language $lang ) : string {
 		if ( !$lang ) {
 			return $title->getPrefixedText();
 		}
 
 		$services = MediaWikiServices::getInstance();
 		$linkRenderer = $services->getLinkRenderer();
-		if ( $title->isSpecialPage() ) {
-			list( $name, $par ) = $services->getSpecialPageFactory()->
-				resolveAlias( $title->getDBkey() );
 
-			# Use the language name for log titles, rather than Log/X
-			if ( $name == 'Log' ) {
+		if ( $title->isSpecialPage() ) {
+			[ $name, $par ] = $services->getSpecialPageFactory()->resolveAlias( $title->getDBkey() );
+
+			if ( $name === 'Log' ) {
 				$logPage = new LogPage( $par );
-				$titleLink = $linkRenderer->makeLink( $title, $logPage->getName()->text() );
-				$titleLink = wfMessage( 'parentheses' )
+				return wfMessage( 'parentheses' )
+					->rawParams( $linkRenderer->makeLink( $title, $logPage->getName()->text() ) )
 					->inLanguage( $lang )
-					->rawParams( $titleLink )
 					->escaped();
-			} else {
-				$titleLink = $linkRenderer->makeLink( $title );
 			}
-		} else {
-			$titleLink = $linkRenderer->makeLink( $title );
 		}
 
-		return $titleLink;
+		return $linkRenderer->makeLink( $title );
 	}
 
 	/**
