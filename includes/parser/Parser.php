@@ -142,9 +142,9 @@ class Parser {
 
 	# Persistent:
 	public $mTagHooks = [];
-	public $mTransparentTagHooks = [];
 	public $mFunctionHooks = [];
 	public $mFunctionSynonyms = [ 0 => [], 1 => [] ];
+	/** @deprecated since 1.35 */
 	public $mFunctionTagHooks = [];
 	public $mStripList = [];
 	public $mDefaultStripList = [];
@@ -1477,7 +1477,7 @@ class Parser {
 			$text,
 			[ $this, 'attributeStripCallback' ],
 			false,
-			array_keys( $this->mTransparentTagHooks ),
+			[],
 			[],
 			[ $this, 'addTrackingCategory' ]
 		);
@@ -1553,7 +1553,6 @@ class Parser {
 			Hooks::run( 'ParserBeforeTidy', [ &$parser, &$text ] );
 		}
 
-		$text = $this->replaceTransparentTags( $text );
 		$text = $this->mStripState->unstripGeneral( $text );
 
 		$text = Sanitizer::normalizeCharReferences( $text );
@@ -4915,34 +4914,6 @@ class Parser {
 	}
 
 	/**
-	 * As setHook(), but letting the contents be parsed.
-	 *
-	 * Transparent tag hooks are like regular XML-style tag hooks, except they
-	 * operate late in the transformation sequence, on HTML instead of wikitext.
-	 *
-	 * This is probably obsoleted by things dealing with parser frames?
-	 * The only extension currently using it is geoserver.
-	 *
-	 * @since 1.10
-	 * @todo better document or deprecate this
-	 *
-	 * @param string $tag The tag to use, e.g. 'hook' for "<hook>"
-	 * @param callable $callback The callback function (and object) to use for the tag
-	 * @throws MWException
-	 * @return callable|null The old value of the mTagHooks array associated with the hook
-	 */
-	public function setTransparentTagHook( $tag, callable $callback ) {
-		$tag = strtolower( $tag );
-		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
-			throw new MWException( "Invalid character {$m[0]} in setTransparentHook('$tag', ...) call" );
-		}
-		$oldVal = $this->mTransparentTagHooks[$tag] ?? null;
-		$this->mTransparentTagHooks[$tag] = $callback;
-
-		return $oldVal;
-	}
-
-	/**
 	 * Remove all tag hooks
 	 */
 	public function clearTagHooks() {
@@ -5044,8 +5015,10 @@ class Parser {
 	 * @param int $flags
 	 * @throws MWException
 	 * @return null
+	 * @deprecated since 1.35
 	 */
 	public function setFunctionTagHook( $tag, callable $callback, $flags ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
 			throw new MWException( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
@@ -5651,7 +5624,6 @@ class Parser {
 	public function getTags() {
 		$this->firstCallInit();
 		return array_merge(
-			array_keys( $this->mTransparentTagHooks ),
 			array_keys( $this->mTagHooks ),
 			array_keys( $this->mFunctionTagHooks )
 		);
@@ -5672,38 +5644,6 @@ class Parser {
 	 */
 	public function getUrlProtocols() {
 		return $this->mUrlProtocols;
-	}
-
-	/**
-	 * Replace transparent tags in $text with the values given by the callbacks.
-	 *
-	 * Transparent tag hooks are like regular XML-style tag hooks, except they
-	 * operate late in the transformation sequence, on HTML instead of wikitext.
-	 *
-	 * @param string $text
-	 *
-	 * @return string
-	 */
-	public function replaceTransparentTags( $text ) {
-		$matches = [];
-		$elements = array_keys( $this->mTransparentTagHooks );
-		$text = self::extractTagsAndParams( $elements, $text, $matches );
-		$replacements = [];
-
-		foreach ( $matches as $marker => $data ) {
-			list( $element, $content, $params, $tag ) = $data;
-			$tagName = strtolower( $element );
-			if ( isset( $this->mTransparentTagHooks[$tagName] ) ) {
-				$output = call_user_func_array(
-					$this->mTransparentTagHooks[$tagName],
-					[ $content, $params, $this ]
-				);
-			} else {
-				$output = $tag;
-			}
-			$replacements[$marker] = $output;
-		}
-		return strtr( $text, $replacements );
 	}
 
 	/**

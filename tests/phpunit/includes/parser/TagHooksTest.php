@@ -76,6 +76,7 @@ class TagHooksTest extends MediaWikiTestCase {
 	public function testFunctionTagHooks( $tag ) {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
+		$this->hideDeprecated( 'Parser::setFunctionTagHook' );
 		$parser->setFunctionTagHook( $tag, [ $this, 'functionTagCallback' ], 0 );
 		$parserOutput = $parser->parse(
 			"Foo<$tag>Bar</$tag>Baz",
@@ -94,6 +95,7 @@ class TagHooksTest extends MediaWikiTestCase {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 
 		$this->expectException( MWException::class );
+		$this->hideDeprecated( 'Parser::setFunctionTagHook' );
 		$parser->setFunctionTagHook(
 			$tag,
 			[ $this, 'functionTagCallback' ],
