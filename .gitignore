@@ -47,6 +47,7 @@ sftp-config.json
 /maintenance/dev/data
 /AdminSettings.php
 /LocalSettings.php
+/includes/PlatformSettings.php
 
 # Building & testing
 npm-debug.log
