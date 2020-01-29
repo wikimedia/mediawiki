@@ -2407,7 +2407,7 @@ $wgObjectCaches = [
 		'reportDupes' => false
 	],
 
-	'apc' => [ 'class' => APCBagOStuff::class, 'reportDupes' => false ],
+	'apc' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
 	'apcu' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
 	'wincache' => [ 'class' => WinCacheBagOStuff::class, 'reportDupes' => false ],
 	'memcached-php' => [ 'class' => MemcachedPhpBagOStuff::class, 'loggroup' => 'memcached' ],
