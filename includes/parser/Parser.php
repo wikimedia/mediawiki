@@ -671,9 +671,6 @@ class Parser {
 		$this->mOutput->setLimitReportData( 'limitreport-ppvisitednodes',
 			[ $this->mPPNodeCount, $this->mOptions->getMaxPPNodeCount() ]
 		);
-		$this->mOutput->setLimitReportData( 'limitreport-ppgeneratednodes',
-			[ $this->mGeneratedPPNodeCount, $this->mOptions->getMaxGeneratedPPNodeCount() ]
-		);
 		$this->mOutput->setLimitReportData( 'limitreport-postexpandincludesize',
 			[ $this->mIncludeSizes['post-expand'], $maxIncludeSize ]
 		);
@@ -756,10 +753,6 @@ class Parser {
 		$this->mOutput->setLimitReportData( 'cachereport-transientcontent',
 			$this->mOutput->hasDynamicContent() );
 
-		if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
-			wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
-				$this->getTitle()->getPrefixedDBkey() );
-		}
 		return $text;
 	}
 
