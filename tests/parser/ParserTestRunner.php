@@ -736,9 +736,6 @@ class ParserTestRunner {
 				case 'functionHook':
 					$ok = $this->requireFunctionHook( $requirement['name'] );
 					break;
-				case 'transparentHook':
-					$ok = $this->requireTransparentHook( $requirement['name'] );
-					break;
 			}
 			if ( !$ok ) {
 				return false;
@@ -1765,26 +1762,6 @@ class ParserTestRunner {
 		} else {
 			$this->recorder->warning( "   This test suite requires the '$name' function " .
 				"hook extension, skipping." );
-			return false;
-		}
-	}
-
-	/**
-	 * Check if a transparent tag hook is installed
-	 *
-	 * @param string $name
-	 * @return bool True if function hook is present
-	 */
-	public function requireTransparentHook( $name ) {
-		$parser = MediaWikiServices::getInstance()->getParser();
-
-		$parser->firstCallInit(); // make sure hooks are loaded.
-
-		if ( isset( $parser->mTransparentTagHooks[$name] ) ) {
-			return true;
-		} else {
-			$this->recorder->warning( "   This test suite requires the '$name' transparent " .
-				"hook extension, skipping.\n" );
 			return false;
 		}
 	}
