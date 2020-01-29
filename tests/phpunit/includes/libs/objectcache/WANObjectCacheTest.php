@@ -83,13 +83,12 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			[ 14141, 3 ],
 			[ 3535.666, 3 ],
 			[ [], 3 ],
-			// FIXME: Storing null currently doesn't work – T234583
-			// [ null, 3 ],
 			[ '0', 3 ],
 			[ (object)[ 'meow' ], 3 ],
 			[ INF, 3 ],
 			[ '', 3 ],
 			[ 'pizzacat', INF ],
+			[ null, 80 ]
 		];
 	}
 

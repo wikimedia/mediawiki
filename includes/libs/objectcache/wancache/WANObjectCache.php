@@ -357,6 +357,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$curTTLs = self::PASS_BY_REF;
 		$infoByKey = self::PASS_BY_REF;
 		$values = $this->getMulti( [ $key ], $curTTLs, $checkKeys, $infoByKey );
+
 		$curTTL = $curTTLs[$key] ?? null;
 		if ( $info === self::PASS_BY_REF ) {
 			$info = [
@@ -369,7 +370,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 			$info = $infoByKey[$key]['asOf'] ?? null; // b/c
 		}
 
-		return $values[$key] ?? false;
+		return array_key_exists( $key, $values ) ? $values[$key] : false;
 	}
 
 	/**
@@ -447,7 +448,10 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		// Get the main cache value for each key and validate them
 		foreach ( $valueKeys as $vKey ) {
 			$key = substr( $vKey, $vPrefixLen ); // unprefix
-			list( $value, $keyInfo ) = $this->unwrap( $wrappedValues[$vKey] ?? false, $now );
+			list( $value, $keyInfo ) = $this->unwrap(
+				array_key_exists( $vKey, $wrappedValues ) ? $wrappedValues[$vKey] : false,
+				$now
+			);
 			// Force dependent keys to be seen as stale for a while after purging
 			// to reduce race conditions involving stale data getting cached
 			$purgeValues = $purgeValuesForAll;
