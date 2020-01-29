@@ -34,7 +34,6 @@ class TestFileEditor {
 					break;
 				case 'hooks':
 				case 'functionhooks':
-				case 'transparenthooks':
 					$this->parseHooks();
 					break;
 				default:
