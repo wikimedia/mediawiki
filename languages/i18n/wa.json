@@ -9,7 +9,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Reptilien.19831209BE1",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Sorlignî les loyéns:",
@@ -519,7 +520,7 @@
 	"histfirst": "les pus vîs",
 	"histlast": "les dierins",
 	"historysize": "({{PLURAL:$1|1 octet|$1 octets}})",
-	"historyempty": "(vude)",
+	"historyempty": "vude",
 	"history-feed-title": "Istwere des modêyes",
 	"history-feed-description": "Istwere des candjmints di cisse pådje ci sol wiki",
 	"history-feed-item-nocomment": "$1 li $2",

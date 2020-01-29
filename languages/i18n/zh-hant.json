@@ -2756,7 +2756,7 @@
 	"movepagebtn": "移動頁面",
 	"pagemovedsub": "已成功移動",
 	"cannotmove": "由於以下{{PLURAL:$1|原因}}不能移動頁面：",
-	"movepage-moved": "<strong>已移動 \"$1\" 至 \"$2\"</strong>",
+	"movepage-moved": "<strong>已移動「$1」至「$2」</strong>",
 	"movepage-moved-redirect": "已建立重新導向頁面。",
 	"movepage-moved-noredirect": "已取消建立重新導向頁面。",
 	"movepage-delete-first": "目標頁面有太多修訂，而無法刪除作為頁面移動的部份。請先手動刪除頁面後再重試。",

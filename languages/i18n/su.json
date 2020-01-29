@@ -16,7 +16,8 @@
 			"WikiKaruhun",
 			"Dipusparaga",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Gurat-handapan tutumbu",
@@ -748,7 +749,7 @@
 	"histfirst": "pangheubeulna",
 	"histlast": "panganyarna",
 	"historysize": "($1 {{PLURAL:$1|bit|bit}})",
-	"historyempty": "(kosong)",
+	"historyempty": "kosong",
 	"history-feed-title": "Sajarah révisi",
 	"history-feed-description": "Sajarah révisi kaca ieu di wiki",
 	"history-feed-item-nocomment": "$1 dina $2",

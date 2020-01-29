@@ -7,7 +7,8 @@
 			"Node ue",
 			"Singularity",
 			"Xqt",
-			"Macofe"
+			"Macofe",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Kahalalo i nā loulou:",
@@ -494,7 +495,7 @@
 	"histfirst": "kahiko loa",
 	"histlast": "hou loa",
 	"historysize": "({{PLURAL:$1|1 ‘ai|$1 mau ‘ai}})",
-	"historyempty": "(ʻaʻohe)",
+	"historyempty": "ʻaʻohe",
 	"history-feed-title": "Mōʻaukala kāmua",
 	"history-feed-description": "Mōʻaukala kāmua no kēia ʻaoʻao ma ka wiki",
 	"history-feed-item-nocomment": "$1 ma $3 ma ka hola $4",

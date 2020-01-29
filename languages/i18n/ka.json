@@ -32,7 +32,8 @@
 			"Fitoschido",
 			"Mehman97",
 			"Vlad5250",
-			"Shirayuki"
+			"Shirayuki",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ბმულების ხაზგასმა:",
@@ -791,7 +792,7 @@
 	"histfirst": "უძველესი",
 	"histlast": "უახლესი",
 	"historysize": "({{PLURAL:$1|$1 ბაიტი|$1 ბაიტი}})",
-	"historyempty": "(ცარიელი)",
+	"historyempty": "ცარიელი",
 	"history-feed-title": "რედაქტირების ისტორია",
 	"history-feed-description": "ამ გვერდის შესწორებათა ისტორია ვიკიში",
 	"history-feed-item-nocomment": "$1 $2-ზე",

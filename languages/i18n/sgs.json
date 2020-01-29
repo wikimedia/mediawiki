@@ -8,7 +8,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Pabriežtė nūruodas:",
@@ -575,7 +576,7 @@
 	"histfirst": "paskiausė",
 	"histlast": "Vielibė̄jė",
 	"historysize": "($1 {{PLURAL:$1|baits|baitā|baitu}})",
-	"historyempty": "(nieka nier)",
+	"historyempty": "nieka nier",
 	"history-feed-title": "Versėju istuorėjė",
 	"history-feed-item-nocomment": "$1 $2",
 	"history-feed-empty": "Prašuoms poslapis nēgzėstuo.\nAns galiejė būtė ėštrėnts ėš pruojekta, aba parvardėnts.\nPamiegīkėt [[Special:Search|ėiškoutė pruojektė]] sosėjosiu naujū poslapiu.",

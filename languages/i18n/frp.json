@@ -11,7 +11,8 @@
 			"Matma Rex",
 			"Fitoschido",
 			"Vlad5250",
-			"Wladek92"
+			"Wladek92",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Solegnér los lims :",
@@ -721,7 +722,7 @@
 	"histfirst": "les més vielyes",
 	"histlast": "Les més novèles",
 	"historysize": "($1 octèt{{PLURAL:$1||s}})",
-	"historyempty": "(voueda)",
+	"historyempty": "voueda",
 	"history-feed-title": "Historico de les vèrsions",
 	"history-feed-description": "Historico de les vèrsions por cela pâge dessus lo vouiqui",
 	"history-feed-item-nocomment": "$1 lo $2",

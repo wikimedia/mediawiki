@@ -17,7 +17,8 @@
 			"Macofe",
 			"S4b1nuz E.656",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Suttalìnia li lijami:",
@@ -682,7 +683,7 @@
 	"histfirst": "li cchiù vecchî",
 	"histlast": "li cchiù novi",
 	"historysize": "({{PLURAL:$1|1 byte|$1 byte}})",
-	"historyempty": "(vacanti)",
+	"historyempty": "vacanti",
 	"history-feed-title": "Crunuluggìa dî canciamenti",
 	"history-feed-description": "Crunuluggìa dî canciamenti a sta pàggina nta sta wiki",
 	"history-feed-item-nocomment": "$1 lu $2",

@@ -21,7 +21,8 @@
 			"Vriullop",
 			"Unuaiga",
 			"Guilhelma",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -777,7 +778,7 @@
 	"histfirst": "Las mai ancianas",
 	"histlast": "Las mai recentas",
 	"historysize": "({{PLURAL:$1|1 octet|$1 octets}})",
-	"historyempty": "(void)",
+	"historyempty": "void",
 	"history-feed-title": "Istoric de las versions",
 	"history-feed-description": "Istoric per aquesta pagina sul wiki",
 	"history-feed-item-nocomment": "$1 lo $2",

@@ -13,7 +13,8 @@
 			"Sergey Ivanov",
 			"Irus",
 			"Fitoschido",
-			"Сергей Иванов"
+			"Сергей Иванов",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Кылверлам ӱлыч удыралмаш:",
@@ -312,7 +313,7 @@
 	"history-fieldset-title": "Эртымгорным ончыкташ",
 	"histfirst": "эн тошто",
 	"histlast": "эн у",
-	"historyempty": "(яра)",
+	"historyempty": "яра",
 	"history-feed-item-nocomment": "$1 $2што",
 	"rev-delundel": "ончыкташ/шылташ",
 	"rev-showdeleted": "ончыкташ",

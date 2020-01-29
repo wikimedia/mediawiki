@@ -13,7 +13,8 @@
 			"Nemo bis",
 			"Fitoschido",
 			"MusikAnimal",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -746,7 +747,7 @@
 	"histfirst": "de Ählste",
 	"histlast": "de Neuste",
 	"historysize": "({{PLURAL:$1|1 Byte|$1 Bytes|0 Byte}})",
-	"historyempty": "(leddich)",
+	"historyempty": "leddich",
 	"history-feed-title": "De Väsjohne",
 	"history-feed-description": "Ähler Versione vun dä Wikisigg",
 	"history-feed-item-nocomment": "$1 aam $3 öm $4 Uhr",

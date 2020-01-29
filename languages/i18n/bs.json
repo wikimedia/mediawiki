@@ -30,7 +30,8 @@
 			"Fitoschido",
 			"BadDog",
 			"Vlad5250",
-			"Semina x"
+			"Semina x",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -779,7 +780,7 @@
 	"histfirst": "najstarije",
 	"histlast": "najnovije",
 	"historysize": "({{PLURAL:$1|1 bajt|$1 bajta|$1 bajtova}})",
-	"historyempty": "(prazno)",
+	"historyempty": "prazno",
 	"history-feed-title": "Historija izmjena",
 	"history-feed-description": "Historija izmjena ove stranice na wikiju",
 	"history-feed-item-nocomment": "$1 u $2",

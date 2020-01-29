@@ -16,7 +16,8 @@
 			"Uzdil",
 			"چۈشكۈن",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ئۇلانما ئاستى سىزىقى:",
@@ -726,7 +727,7 @@
 	"histfirst": "ئەڭ كونا",
 	"histlast": "ئەڭ يېڭى",
 	"historysize": "$1 {{PLURAL:$1|بايت|بايت}}",
-	"historyempty": "(بوش)",
+	"historyempty": "بوش",
 	"history-feed-title": "ئۆزگەرتىش تارىخى",
 	"history-feed-description": "مەزكۇر بەتنىڭ بۇ بېكەتتىكى ئۆزگەرتىش تارىخى",
 	"history-feed-item-nocomment": "$2 دىكى $1",

@@ -572,7 +572,6 @@
 	"apihelp-query+allrevisions-param-namespace": "Перечислять только страницы этого пространства имён.",
 	"apihelp-query+allrevisions-param-generatetitles": "При использовании в качестве генератора, генерирует названия страниц вместо идентификаторов версий.",
 	"apihelp-query+allrevisions-example-user": "Перечислить последние 50 правок участника <kbd>Example</kbd>.",
-	"apihelp-query+allrevisions-example-ns-main": "Перечислить первые 50 правок в основном пространстве.",
 	"apihelp-query+mystashedfiles-summary": "Получить список файлов во временном хранилище текущего участника.",
 	"apihelp-query+mystashedfiles-param-prop": "Какие свойства файлов запрашивать.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "Запросить размер и разрешение изображения.",

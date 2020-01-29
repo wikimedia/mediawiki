@@ -41,7 +41,8 @@
 			"Dcljr",
 			"Bukhari",
 			"Sajidkhan",
-			"Hmfs.ind"
+			"Hmfs.ind",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -801,7 +802,7 @@
 	"histfirst": "قدیم ترین",
 	"histlast": "تازہ ترین",
 	"historysize": "({{PLURAL:$1|1 بائٹ|$1 بائٹ}})",
-	"historyempty": "(خالی)",
+	"historyempty": "خالی",
 	"history-feed-title": "تاریخچہ ترمیم",
 	"history-feed-description": "ویکی پر اِس صفحہ کا تاریخچۂ نظرثانی",
 	"history-feed-item-nocomment": "بہ $2 $1",

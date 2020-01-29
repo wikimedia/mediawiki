@@ -6,7 +6,8 @@
 			"Kurdbuddha",
 			"Mjbmr",
 			"Paraw2",
-			"아라"
+			"아라",
+			"DannyS712"
 		]
 	},
 	"tog-numberheadings": "ژمارەکردنی خۆدکاری سەرتیترەکان",
@@ -263,7 +264,7 @@
 	"history-show-deleted": "تەنیا سڕیاێەگان",
 	"histfirst": "کۆنەترین",
 	"histlast": "نووترین",
-	"historyempty": "(پووچ)",
+	"historyempty": "پووچ",
 	"history-feed-item-nocomment": "$1 لە $2",
 	"rev-delundel": "نیشان بدە/بشارەو",
 	"revdelete-show-file-submit": "بەڵێ",

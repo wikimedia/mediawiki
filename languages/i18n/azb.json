@@ -23,7 +23,8 @@
 			"ییلماز",
 			"Saraiki",
 			"Fitoschido",
-			"SajjadHKH"
+			"SajjadHKH",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "باغلانتی‌لارین آلتینی خطله:",
@@ -726,7 +727,7 @@
 	"histfirst": "ان اسکی",
 	"histlast": "ان یئنی",
 	"historysize": "({{PLURAL:$1|بیر|$1}} بایت)",
-	"historyempty": "(بوش)",
+	"historyempty": "بوش",
 	"history-feed-title": "دَییشیکلیکلر گئچمیشی",
 	"history-feed-description": "ویکی‌ده بو صحیفه اوچون نوسخه‌لر گئچمیشی",
 	"history-feed-item-nocomment": "$2-ده $1",

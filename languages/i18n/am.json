@@ -14,7 +14,8 @@
 			"Stephanecbisson",
 			"Yeniesil",
 			"Fitoschido",
-			"Andemta"
+			"Andemta",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -510,7 +511,7 @@
 	"histfirst": "ቀድመኞች",
 	"histlast": "ኋለኞች",
 	"historysize": "($1 byte)",
-	"historyempty": "(ባዶ)",
+	"historyempty": "ባዶ",
 	"history-feed-title": "የዕትሞች ታሪክ",
 	"history-feed-description": "በዊኪ ላይ የዕትሞች ታሪክ ለዚሁ ገጽ",
 	"history-feed-item-nocomment": "$1 በ$2",

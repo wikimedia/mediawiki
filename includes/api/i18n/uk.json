@@ -558,7 +558,6 @@
 	"apihelp-query+allrevisions-param-namespace": "Перерахувати сторінки лише в цьому просторі назв.",
 	"apihelp-query+allrevisions-param-generatetitles": "Коли використовується як генератор, генерувати заголовки замість ідентифікаторів версій.",
 	"apihelp-query+allrevisions-example-user": "Перерахувати останні 50 редагувань користувача <kbd>Example</kbd>.",
-	"apihelp-query+allrevisions-example-ns-main": "Перерахувати перші 50 версій у головному просторі назв.",
 	"apihelp-query+mystashedfiles-summary": "Отримати список файлів у сховку завантажень поточного користувача.",
 	"apihelp-query+mystashedfiles-param-prop": "Які властивості файлів отримати.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "Отримати розмір файлу та виміри зображення.",

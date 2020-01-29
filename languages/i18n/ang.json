@@ -18,7 +18,8 @@
 			"Hogweard",
 			"Amire80",
 			"Pyscowicz",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Mearc under hlencan:",
@@ -498,7 +499,7 @@
 	"history-fieldset-title": "Sēcan stǣr",
 	"histfirst": "ieldeste",
 	"histlast": "nīwoste",
-	"historyempty": "(æmettig)",
+	"historyempty": "æmettig",
 	"history-feed-title": "Ednīwunge stǣr",
 	"history-feed-description": "Ednīwunge stǣr þisses trametes on þǣre wiki",
 	"history-feed-item-nocomment": "$1 on $2",

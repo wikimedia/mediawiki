@@ -12,7 +12,8 @@
 			"Amire80",
 			"Beyronvan",
 			"Fitoschido",
-			"Lorestani"
+			"Lorestani",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "هوم پاٛڤٱن زؽرخٱت دار:",
@@ -681,7 +682,7 @@
 	"histfirst": "قاٛیمی تریݩ",
 	"histlast": "ایسنی تریݩ",
 	"historysize": "({{PLURAL:$1|1 بایت|$1 بایتؽا}})",
-	"historyempty": "(حالی)",
+	"historyempty": "حالی",
 	"history-feed-title": "ڤیرگار دوئارٱ دیئن",
 	"history-feed-description": "دوئارٱ دیئن ڤیرگار سی بٱلگٱ د ڤیکی",
 	"history-feed-item-nocomment": "$1 د\n$2",

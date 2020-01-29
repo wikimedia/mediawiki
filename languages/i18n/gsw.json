@@ -24,7 +24,8 @@
 			"Xð",
 			"Terfili",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Links unterstryche:",
@@ -726,7 +727,7 @@
 	"histfirst": "eltischti",
 	"histlast": "neischti",
 	"historysize": "({{PLURAL:$1|1 Byte|$1 Bytes}})",
-	"historyempty": "(läär)",
+	"historyempty": "läär",
 	"history-feed-title": "Versionsgschicht",
 	"history-feed-description": "Versionsgschicht fir die Syte in {{SITENAME}}",
 	"history-feed-item-nocomment": "$1 um $2",

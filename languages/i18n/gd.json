@@ -12,7 +12,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Fo-loidhneadh nan ceanglaichean:",
@@ -746,7 +747,7 @@
 	"histfirst": "as sine",
 	"histlast": "as ùire",
 	"historysize": "(%1 {{PLURAL:$1|bhaidht|bhaidht|baidhtichean|baidht}})",
-	"historyempty": "(falamh)",
+	"historyempty": "falamh",
 	"history-feed-title": "Eachdraidh nam mùthaidhean",
 	"history-feed-description": "Eachdraidh nam mùthaidhean airson na duilleige seo air an uicidh",
 	"history-feed-item-nocomment": "$1 $2",

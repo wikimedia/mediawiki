@@ -26,7 +26,8 @@
 			"రహ్మానుద్దీన్",
 			"Fitoschido",
 			"Charunandan16",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "परिसन्धेः अधो रेखाङ्कनम्:",
@@ -697,7 +698,7 @@
 	"histfirst": "पुरातनतमम्",
 	"histlast": "नूतनतमम्",
 	"historysize": "({{PLURAL:$1|1 अष्टकं|$1 अष्टकानि}})",
-	"historyempty": "(रिक्तम्)",
+	"historyempty": "रिक्तम्",
 	"history-feed-title": "संस्करणस्य इतिहासः",
 	"history-feed-description": "अस्मिन् विकि-जालस्थाने एतस्य पृष्ठस्य संस्करणेतिहासः",
 	"history-feed-item-nocomment": "$1 द्वारा $3 दिनाङ्के $4 समये",

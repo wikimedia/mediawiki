@@ -34,7 +34,8 @@
 			"BadDog",
 			"Vlad5250",
 			"Shirayuki",
-			"Agusbou2015"
+			"Agusbou2015",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Podvlačenje veza:",
@@ -816,7 +817,7 @@
 	"histfirst": "najstarije",
 	"histlast": "najnovije",
 	"historysize": "({{PLURAL:$1|1 bajt|$1 bajta|$1 bajtova}})",
-	"historyempty": "(prazno)",
+	"historyempty": "prazno",
 	"history-feed-title": "Istorija izmena",
 	"history-feed-description": "Istorija izmena ove stranice na vikiju",
 	"history-feed-item-nocomment": "$1 u $2",

@@ -5,7 +5,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Dobu ganda-žeeriyan:",
@@ -701,7 +702,7 @@
 	"histfirst": "ikul ižeenaa \\",
 	"histlast": "ikul itaagaa",
 	"historysize": "({{PLURAL:$1|cebsi $1}})",
-	"historyempty": "(koonu)",
+	"historyempty": "koonu",
 	"history-feed-title": "Filla taariki",
 	"history-feed-description": "Filla taariki moɲoo woo se wikiyoo ga",
 	"history-feed-item-nocomment": "$1 $2 hane/waate",

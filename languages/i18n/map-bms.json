@@ -11,7 +11,8 @@
 			"Mbrt",
 			"Empu",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Garisen ngisoré pranala:",
@@ -627,7 +628,7 @@
 	"histfirst": "paling lawas",
 	"histlast": "paling anyar",
 	"historysize": "($1 {{PLURAL:$1|bita|bita}})",
-	"historyempty": "(kosong)",
+	"historyempty": "kosong",
 	"history-feed-title": "Riwayat revisi",
 	"history-feed-description": "Riwayat revisi kaca kiye nang wiki",
 	"history-feed-item-nocomment": "$1 dong $2",

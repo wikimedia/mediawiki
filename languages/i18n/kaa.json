@@ -11,7 +11,8 @@
 			"아라",
 			"Macofe",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Siltewdin' astın sız:",
@@ -400,7 +401,7 @@
 	"histfirst": "en' aldıng'ısı",
 	"histlast": "en' aqırg'ısı",
 	"historysize": "({{PLURAL:$1|1 bayt|$1 bayt}})",
-	"historyempty": "(bos)",
+	"historyempty": "bos",
 	"history-feed-title": "Nusqa tariyxı",
 	"history-feed-description": "Usı bettin' wikidegi nusqa tariyxı",
 	"history-feed-item-nocomment": "$2 waqtındag'ı $1",

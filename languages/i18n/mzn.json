@@ -12,7 +12,8 @@
 			"아라",
 			"Alirezaaa",
 			"Macofe",
-			"Matma Rex"
+			"Matma Rex",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "پیوندون زیر خط دکشی بواشه",
@@ -400,7 +401,7 @@
 	"histfirst": "کـوهـنـه تـریـن",
 	"histlast": "نـو تـریـن",
 	"historysize": "({{PLURAL:$1|۱ بایت|$1 بایت}})",
-	"historyempty": "(خالی)",
+	"historyempty": "خالی",
 	"rev-delundel": "دیار بیّن/فرو بوردن",
 	"revdel-restore": "دیاری تغییر هدائن",
 	"mergehistory": "صفحه‌ئون تاریخچه ره اتا هاکردن",

@@ -12,7 +12,8 @@
 			"Baloch Khan",
 			"Fitoschido",
 			"Amjad Khan",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "کرښنې تړنې:",
@@ -733,7 +734,7 @@
 	"histfirst": "تر ټولو زاړه",
 	"histlast": "تر ټولو نوي",
 	"historysize": "({{PLURAL:$1|1 بايټ|$1 بايټونه}})",
-	"historyempty": "(تش)",
+	"historyempty": "تش",
 	"history-feed-title": "د مخکتنو پېښليک",
 	"history-feed-description": "ددي مخ د بياکتنې تاريخ په ويکي کي",
 	"history-feed-item-nocomment": "$1 په $2",

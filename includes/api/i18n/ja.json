@@ -466,7 +466,6 @@
 	"apihelp-query+allrevisions-param-namespace": "この名前空間に含まれるページのみを一覧表示します。",
 	"apihelp-query+allrevisions-param-generatetitles": "ジェネレーターとして使用する場合、版IDではなくページ名を生成します。",
 	"apihelp-query+allrevisions-example-user": "利用者 <kbd>Example</kbd> による直近の50版を一覧表示する。",
-	"apihelp-query+allrevisions-example-ns-main": "標準名前空間にある最初の50版を一覧表示する。",
 	"apihelp-query+mystashedfiles-param-prop": "ファイルのどのプロパティを取得するか。",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "ファイルサイズと画像の大きさを取得します。",
 	"apihelp-query+mystashedfiles-paramvalue-prop-type": "ファイルの MIME タイプとメディアタイプを取得します。",

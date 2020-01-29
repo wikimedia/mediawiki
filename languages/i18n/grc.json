@@ -22,7 +22,8 @@
 			"RubatoStuf",
 			"Fitoschido",
 			"Vlad5250",
-			"Michael5iLVEr"
+			"Michael5iLVEr",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Ὑπογραμμίζειν συνδέσμους:",
@@ -504,7 +505,7 @@
 	"histfirst": "ἐσχάτη",
 	"histlast": "νεωτέρα",
 	"historysize": "({{PLURAL:$1|1 δυφίον|$1 δυφία}})",
-	"historyempty": "(κενόν)",
+	"historyempty": "κενόν",
 	"history-feed-title": "Ἱστορία ἀναθεωρήσεων",
 	"history-feed-description": "Ἱστορία ἀναθεωρήσεων τῆσδε δέλτου ἐν τῷ βίκι",
 	"history-feed-item-nocomment": "$1 ἐπὶ $2",

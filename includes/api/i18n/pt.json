@@ -553,7 +553,6 @@
 	"apihelp-query+allrevisions-param-namespace": "Listar só as páginas neste espaço nominal.",
 	"apihelp-query+allrevisions-param-generatetitles": "Ao ser usado como gerador, gerar títulos em vez de identificadores de revisões.",
 	"apihelp-query+allrevisions-example-user": "Listar as últimas 50 contribuições do utilizador <kbd>Example</kbd>.",
-	"apihelp-query+allrevisions-example-ns-main": "Listar as primeiras 50 revisões no espaço nominal principal.",
 	"apihelp-query+mystashedfiles-summary": "Obter uma lista dos ficheiros que estão na área de ficheiros escondidos do utilizador atual.",
 	"apihelp-query+mystashedfiles-param-prop": "As propriedades a serem obtidas para os ficheiros.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "Obter o tamanho do ficheiro e as dimensões da imagem.",

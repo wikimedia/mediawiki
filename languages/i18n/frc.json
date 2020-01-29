@@ -10,7 +10,8 @@
 			"Zetud",
 			"Hangmanwa7id",
 			"Stisc-14",
-			"Pierpao"
+			"Pierpao",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Souligner les liens:",
@@ -475,7 +476,7 @@
 	"histlegend": "Choisir une version: Marquez les ronds pour les versions que vous voulez comparer et cliquez \"enter\" ou le bouton en bas.<br />\nClé: (cour.) = différence avec la version courante, (dernier) = différence avec la version avant, m = petit changement.",
 	"histfirst": "Premiers changements",
 	"histlast": "Derniers changements",
-	"historyempty": "(vide)",
+	"historyempty": "vide",
 	"history-feed-title": "Détails des changements",
 	"history-feed-description": "Détails des changements pour cette page sus le wiki",
 	"history-feed-item-nocomment": "$1 le $2",

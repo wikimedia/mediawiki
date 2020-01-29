@@ -7,7 +7,8 @@
 			"Yariiska",
 			"아라",
 			"Macofe",
-			"Amire80"
+			"Amire80",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Linkiga hoos ka calaamadeysan:",
@@ -481,7 +482,7 @@
 	"history-show-deleted": "la tirtiray kaliya",
 	"histfirst": "Ugu dhawaa",
 	"histlast": "Ugu cusb",
-	"historyempty": "(ebar)",
+	"historyempty": "ebar",
 	"history-feed-title": "Taariikhda bedelyada",
 	"history-feed-empty": "Beyjka aad dooneyso majiro.\nWaxaa lagayaabaa in laga tirtiray wikigan, ama magacii laga badalay.\nIskuday in aad [[Special:Search|ka raadiso wikigaan]]  Beyjajka la heli karo oo cusub.",
 	"rev-deleted-user": "(magaca isticmaalaha waa laga saaray)",

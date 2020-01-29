@@ -10,7 +10,8 @@
 			"The Thadman",
 			"아라",
 			"Macofe",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ܪܫܘܡ ܣܪܛܐ ܬܚܝܬ ܐܣܪܐ:",
@@ -387,7 +388,7 @@
 	"history-show-deleted": "ܫܝܦܬ̈ܐ ܒܠܚܘܕ",
 	"histfirst": "ܩܕܝܡ ܡܢ ܟܠ",
 	"histlast": "ܚܕܬ ܡܢ ܟܠ",
-	"historyempty": "(ܣܦܝܩܐ)",
+	"historyempty": "ܣܦܝܩܐ",
 	"history-feed-title": "ܬܫܥܝܬܐ ܕܬܢܝܬܐ",
 	"history-feed-description": "ܬܫܥܝܬܐ ܕܬܢܝܬܐ ܕܗܕܐ ܦܐܬܐ ܥܠ ܘܝܩܝ",
 	"history-feed-item-nocomment": "$1 ܒ $2",

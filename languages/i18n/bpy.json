@@ -6,7 +6,8 @@
 			"아라",
 			"Macofe",
 			"MtDu",
-			"Bodhisattwa"
+			"Bodhisattwa",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "লিঙ্কর তলে দুরগ দিক:",
@@ -467,7 +468,7 @@
 	"histfirst": "হাব্বিত্ত পুরানা",
 	"histlast": "হাব্বিত্ত নুৱা",
 	"historysize": "({{PLURAL:$1|১ বাইট|$1 বাইট}})",
-	"historyempty": "(হুদালা)",
+	"historyempty": "হুদালা",
 	"history-feed-title": "ইতিহাসহান চুমকর",
 	"history-feed-item-nocomment": "$1 খেন্তাম $2 ত",
 	"rev-deleted-comment": "(পতানির সারাংশ থেইকরলাং)",

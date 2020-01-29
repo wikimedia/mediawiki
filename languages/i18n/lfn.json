@@ -14,7 +14,8 @@
 			"Robin van der Vliet",
 			"Mafcadio",
 			"Matěj Suchánek",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Sulini de lias:",
@@ -760,7 +761,7 @@
 	"histfirst": "la plu veas",
 	"histlast": "la plu novas",
 	"historysize": "({{PLURAL:$1|1 bait|$1 baites}})",
-	"historyempty": "(vacua)",
+	"historyempty": "vacua",
 	"history-feed-title": "Istoria de revisas",
 	"history-feed-description": "Istoria de revisas per esta paje en la vici",
 	"history-feed-item-nocomment": "$1 a $2",

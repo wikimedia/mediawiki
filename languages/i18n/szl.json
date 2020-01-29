@@ -22,7 +22,8 @@
 			"Przem(1)s",
 			"Fitoschido",
 			"Matěj Suchánek",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Podkryślynie linkōw:",
@@ -610,7 +611,7 @@
 	"histfirst": "nojstarsze",
 	"histlast": "nojnowsze",
 	"historysize": "({{PLURAL:$1|1 bajt|$1 bajty|$1 bajtůw}})",
-	"historyempty": "(blank)",
+	"historyempty": "blank",
 	"history-feed-title": "Historyjŏ wersyji",
 	"history-feed-description": "Historyjo wersyji tyj strōny wiki",
 	"history-feed-item-nocomment": "$1 uo $2",

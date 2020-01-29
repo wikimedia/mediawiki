@@ -10,7 +10,8 @@
 			"Nicky.ker",
 			"Nrowe",
 			"Scryfer",
-			"아라"
+			"아라",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Islinenna kevrennow:",
@@ -436,7 +437,7 @@
 	"histfirst": "an kottha",
 	"histlast": "an nowettha",
 	"historysize": "({{PLURAL:$1|1 bayt}})",
-	"historyempty": "(gwag)",
+	"historyempty": "gwag",
 	"history-feed-title": "Istori amendya",
 	"history-feed-description": "Istori amendya rag an folen-ma war an wiki",
 	"history-feed-item-nocomment": "$1 dhe $2",

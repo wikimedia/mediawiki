@@ -28,7 +28,8 @@
 			"Slashme",
 			"Fitoschido",
 			"Vlad5250",
-			"Joris Darlington Quarshie"
+			"Joris Darlington Quarshie",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Onderstreep skakels:",
@@ -706,7 +707,7 @@
 	"histfirst": "oudste",
 	"histlast": "nuutste",
 	"historysize": "({{PLURAL:$1|1 greep|$1 grepe}})",
-	"historyempty": "(leeg)",
+	"historyempty": "leeg",
 	"history-feed-title": "Weergawegeskiedenis",
 	"history-feed-description": "Wysigingsgeskiedenis vir die bladsy op die wiki",
 	"history-feed-item-nocomment": "$1 by $2",

@@ -7,7 +7,8 @@
 			"아라",
 			"Macofe",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Autengīnsenin paglaubasnā",
@@ -436,7 +437,7 @@
 	"histfirst": "Ezze pagaūseņu",
 	"histlast": "Ezze wangai",
 	"historysize": "({{PLURAL:$1|1 bāitan|$1 bāitai}})",
-	"historyempty": "(pāustan)",
+	"historyempty": "pāustan",
 	"history-feed-title": "Wersiōnin istōrija",
 	"history-feed-description": "Wersiōnin istōrija šisses wiki pāusan",
 	"history-feed-item-nocomment": "$1 $2",

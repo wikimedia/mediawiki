@@ -29,7 +29,8 @@
 			"Vlad5250",
 			"WAN233",
 			"Xiplus",
-			"WhitePhosphorus"
+			"WhitePhosphorus",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -619,7 +620,7 @@
 	"histfirst": "初之版",
 	"histlast": "末之版",
 	"historysize": "（$1位元組）",
-	"historyempty": "（空）",
+	"historyempty": "空",
 	"history-feed-title": "誌審",
 	"history-feed-description": "維基誌審",
 	"history-feed-item-nocomment": "$1於$2",
@@ -1716,7 +1717,7 @@
 	"move-watch": "追本溯源，俱為監察",
 	"movepagebtn": "遷文",
 	"pagemovedsub": "遷成矣",
-	"movepage-moved": "'''「$1」已遷至「$2」'''",
+	"movepage-moved": "<strong>「$1」已遷至「$2」</strong>",
 	"movepage-moved-redirect": "一渡已建。",
 	"movepage-moved-noredirect": "建渡已押。",
 	"articleexists": "此題早存，或名謬焉；請更之。",

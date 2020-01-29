@@ -6,7 +6,8 @@
 			"아라",
 			"Macofe",
 			"Stephanecbisson",
-			"Fitoschido"
+			"Fitoschido",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Zawmna hnuairinna",
@@ -483,7 +484,7 @@
 	"histfirst": "Hmasa ber",
 	"histlast": "Hnuhnung ber",
 	"historysize": "({{PLURAL:$1|bait 1 |bait $1}})",
-	"historyempty": "(ruak)",
+	"historyempty": "ruak",
 	"history-feed-title": "Ennawnna chanchin",
 	"history-feed-description": "Wiki-a hemi phêk ennawnna chanchin",
 	"history-feed-item-nocomment": "$1-in $2-ah",

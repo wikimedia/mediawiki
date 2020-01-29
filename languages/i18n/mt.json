@@ -15,7 +15,8 @@
 			"MTSap",
 			"Nemo bis",
 			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Ħoloq sottolinjati:",
@@ -651,7 +652,7 @@
 	"histfirst": "l-eqdem",
 	"histlast": "l-iġded",
 	"historysize": "({{PLURAL:$1|1 byte|$1 bytes}})",
-	"historyempty": "(vojta)",
+	"historyempty": "vojta",
 	"history-feed-title": "Kronoloġija",
 	"history-feed-description": "Kronoloġija għal din il-paġna fuq dan il-wiki",
 	"history-feed-item-nocomment": "$1 fil- $2",

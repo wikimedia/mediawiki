@@ -5,7 +5,8 @@
 			"Kaztrans",
 			"아라",
 			"Macofe",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "سىلتەمەنىڭ استىن سىز:",
@@ -410,7 +411,7 @@
 	"histfirst": "ەڭ العاشقىسىنا",
 	"histlast": "ەڭ سوڭعىسىنا",
 	"historysize": "($1 بايت)",
-	"historyempty": "(بوس)",
+	"historyempty": "بوس",
 	"history-feed-title": "تۇزەتۋ تارىيحى",
 	"history-feed-description": "مىنا ۋىيكىيدەگى بۇل بەتتىڭ تۇزەتۋ تارىيحى",
 	"history-feed-item-nocomment": "$2 كەزىندەگى $1 دەگەن",

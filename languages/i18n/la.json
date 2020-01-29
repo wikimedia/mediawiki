@@ -31,7 +31,8 @@
 			"Fitoschido",
 			"LittlePuppers",
 			"Vlad5250",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Versores linea denotandi:",
@@ -515,7 +516,7 @@
 	"histfirst": "veterrima",
 	"histlast": "novissima",
 	"historysize": "({{PLURAL:$1|1 octetus|$1 octeti}})",
-	"historyempty": "(vacua)",
+	"historyempty": "vacua",
 	"history-feed-title": "Historia",
 	"history-feed-description": "Historia redactionum huius paginae",
 	"history-feed-item-nocomment": "$1 ad $2",

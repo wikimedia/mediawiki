@@ -7,7 +7,8 @@
 			"Shimmin Beg",
 			"아라",
 			"Xð",
-			"Macofe"
+			"Macofe",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Cur linnaghyn fo chianglaghyn:",
@@ -369,7 +370,7 @@
 	"history-fieldset-title": "Femblal shennaghys",
 	"histfirst": "By hoshee",
 	"histlast": "By yerree",
-	"historyempty": "(follym)",
+	"historyempty": "follym",
 	"history-feed-title": "Shennaghys yn aavriwnys",
 	"history-feed-description": "Shennaghys aavriwnys y duillag shoh er yn wiki",
 	"history-feed-item-nocomment": "$1 ec $2",

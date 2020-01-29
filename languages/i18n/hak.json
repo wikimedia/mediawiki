@@ -17,7 +17,8 @@
 			"飞舞回堂前",
 			"Macofe",
 			"Ruthven",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Lièn-chiap kâ-tái sien:",
@@ -587,7 +588,7 @@
 	"histfirst": "chui-chó",
 	"histlast": "chui-sîn",
 	"historysize": "（$1字節）",
-	"historyempty": "（空）",
+	"historyempty": "空",
 	"history-feed-title": "修訂歷史",
 	"history-feed-description": "本wiki站上邇頁嘅修訂歷史",
 	"history-feed-item-nocomment": "$1在$2",

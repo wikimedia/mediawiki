@@ -561,7 +561,7 @@
 	"apihelp-query+allrevisions-param-namespace": "僅列出此命名空間的頁面。",
 	"apihelp-query+allrevisions-param-generatetitles": "當作為產生器時使用，產生標題而非修訂 ID。",
 	"apihelp-query+allrevisions-example-user": "列出由使用者 <kbd>Example</kbd> 做出的最近 50 個貢獻。",
-	"apihelp-query+allrevisions-example-ns-main": "列出在主命名空間的前 50 個修訂。",
+	"apihelp-query+allrevisions-example-ns-any": "列出在任何命名空間的前 50 個修訂。",
 	"apihelp-query+mystashedfiles-summary": "取得在目前使用者上傳儲藏裡的檔案清單。",
 	"apihelp-query+mystashedfiles-param-prop": "要索取的檔案屬性。",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "索取檔案大小與圖片尺寸。",

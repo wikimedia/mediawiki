@@ -12,7 +12,8 @@
 			"BHARATHESHA ALASANDEMAJALU",
 			"Lokesha kunchadka",
 			"Kiranpoojary",
-			"Ravi Mundkur"
+			"Ravi Mundkur",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ಕೊಂಡಿಲೆಗ್ ಅಡಿಗೀಟ್ ಪಾಡುನು:",
@@ -787,7 +788,7 @@
 	"histfirst": "ಪರ",
 	"histlast": "ಪೊಸ",
 	"historysize": "({{PLURAL:$1|೧ ಬೈಟ್|$1 ಬೈಟ್‍ಲು}})",
-	"historyempty": "(ಖಾಲಿ)",
+	"historyempty": "ಖಾಲಿ",
 	"history-feed-title": "ಬದಲಾವಣೆಲೆನ ಇತಿಹಾಸೊ",
 	"history-feed-description": "ವಿಕಿದ ಈ ಪುಟೊತ ಬದಲಾವಣೆಲೆ ಇತಿಹಾಸೊ",
 	"history-feed-item-nocomment": "$2 ಪೊರ್ತುಡು $1",

@@ -56,7 +56,8 @@
 			"Matěj Suchánek",
 			"UY Scuti",
 			"CaptainIRS",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "அடிக்கோடிட்டத்தை இணை:",
@@ -784,7 +785,7 @@
 	"histfirst": "மிகப் பழைய",
 	"histlast": "மிகப் புதிய",
 	"historysize": "({{PLURAL:$1|1 பைட்டு|$1 பைட்டுகள்}})",
-	"historyempty": "(வெற்று)",
+	"historyempty": "வெற்று",
 	"history-feed-title": "திருத்த வரலாறு",
 	"history-feed-description": "விக்கியில் இப்பக்கத்துக்கான திருத்த வரலாறு",
 	"history-feed-item-nocomment": "$2 இல் $1",

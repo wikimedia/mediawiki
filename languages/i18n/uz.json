@@ -16,7 +16,8 @@
 			"Bmansurov",
 			"Fitoschido",
 			"ديفيد",
-			"Malikxan"
+			"Malikxan",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Havolaning tagiga chizish:",
@@ -536,7 +537,7 @@
 	"histfirst": "eng eski",
 	"histlast": "eng yangi",
 	"historysize": "({{PLURAL:$1|1 bayt|$1 bayt}})",
-	"historyempty": "(boʻsh)",
+	"historyempty": "boʻsh",
 	"history-feed-title": "Oʻzgarishlar tarixi",
 	"history-feed-description": "Vikidagi mazkur sahifaning oʻzgarishlar tarixi",
 	"history-feed-item-nocomment": "$1 $2 da",

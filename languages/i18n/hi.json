@@ -97,7 +97,8 @@
 			"Jayantanth",
 			"Gopalindians",
 			"Prong$31",
-			"Eisheeta"
+			"Eisheeta",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "कड़ी रेखांकित:",
@@ -879,7 +880,7 @@
 	"histfirst": "सबसे पुराना",
 	"histlast": "सबसे नया",
 	"historysize": "($1 {{PLURAL:$1|बाइट}})",
-	"historyempty": "(खाली)",
+	"historyempty": "खाली",
 	"history-feed-title": "अवतरण इतिहास",
 	"history-feed-description": "विकि पर उपलब्ध इस पृष्ठ का अवतरण इतिहास",
 	"history-feed-item-nocomment": "$1 $3 को $4 बजे",

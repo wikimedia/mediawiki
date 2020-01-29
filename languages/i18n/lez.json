@@ -17,7 +17,8 @@
 			"아라",
 			"Amire80",
 			"Stjn",
-			"Raa555"
+			"Raa555",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ЭлячӀунрин кӀаникай цӀар чӀугун",
@@ -349,7 +350,7 @@
 	"history-show-deleted": "Анжах алуднавайбур",
 	"histfirst": "Виридалайни цIуру",
 	"histlast": "Мукьвара хьайи",
-	"historyempty": "(ичIи)",
+	"historyempty": "ичIи",
 	"history-feed-title": "Дуьзар хъувунрин тарих",
 	"history-feed-item-nocomment": "$1  $2-аз",
 	"rev-deleted-comment": "Дуьзар хъувунин тегьерар кхьин алуднава",

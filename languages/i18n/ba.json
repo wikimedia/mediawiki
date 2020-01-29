@@ -31,7 +31,8 @@
 			"Khanmarat",
 			"Fitoschido",
 			"Amire80",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "Һылтанмалар аҫтына һыҙыу:",
@@ -773,7 +774,7 @@
 	"histfirst": "Иң иҫкеләр",
 	"histlast": "Иң һуңғылар",
 	"historysize": "($1 {{PLURAL:$1|байт}})",
-	"historyempty": "(буш)",
+	"historyempty": "буш",
 	"history-feed-title": "Үҙгәртеүҙәр тарихы",
 	"history-feed-description": "Викилағы был биттең үҙгәртеүҙәр тарихы",
 	"history-feed-item-nocomment": "$1, $2",

@@ -29,7 +29,8 @@
 			"Fitoschido",
 			"Matěj Suchánek",
 			"ਗੁਰਪ੍ਰੀਤ ਹੁੰਦਲ",
-			"Vlad5250"
+			"Vlad5250",
+			"DannyS712"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -651,7 +652,7 @@
 	"histfirst": "ਸਭ ਤੋਂ ਪੁਰਾਣੇ",
 	"histlast": "ਸਭ ਤੋਂ ਨਵੇਂ",
 	"historysize": "({{PLURAL:$1|1 ਬਾਈਟ|$1 ਬਾਈਟ}})",
-	"historyempty": "(ਖ਼ਾਲੀ)",
+	"historyempty": "ਖ਼ਾਲੀ",
 	"history-feed-title": "ਦੁਹਰਾਅ ਦਾ ਅਤੀਤ",
 	"history-feed-description": "ਵਿਕੀ ਉੱਤੇ ਇਸ ਸਫ਼ੇ ਦਾ ਦੁਹਰਾਅ ਅਤੀਤ",
 	"history-feed-item-nocomment": "$1 ਤੋਂ $2 ’ਤੇ",
