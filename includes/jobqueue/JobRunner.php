@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DBReadOnlyError;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\ScopedCallback;
 
@@ -42,15 +43,19 @@ class JobRunner implements LoggerAwareInterface {
 	/** @var callable|null Debug output handler */
 	protected $debug;
 
-	/**
-	 * @var LoggerInterface
-	 */
+	/** @var LoggerInterface */
 	protected $logger;
 
-	const MAX_ALLOWED_LAG = 3; // abort if more than this much DB lag is present
-	const LAG_CHECK_PERIOD = 1.0; // check replica DB lag this many seconds
-	const ERROR_BACKOFF_TTL = 1; // seconds to back off a queue due to errors
-	const READONLY_BACKOFF_TTL = 30; // seconds to back off a queue due to read-only errors
+	/** @var int Abort if more than this much DB lag is present */
+	private const MAX_ALLOWED_LAG = 3;
+	/** @var int An appropriate timeout to balance lag avoidance and job progress */
+	private const SYNC_TIMEOUT = self::MAX_ALLOWED_LAG;
+	/** @var float Check replica DB lag this many seconds */
+	private const LAG_CHECK_PERIOD = 1.0;
+	/** @var int Seconds to back off a queue due to errors */
+	private const ERROR_BACKOFF_TTL = 1;
+	/** @var int Seconds to back off a queue due to read-only errors */
+	private const READONLY_BACKOFF_TTL = 30;
 
 	/**
 	 * @param callable $debug Optional debug output handler
@@ -82,12 +87,12 @@ class JobRunner implements LoggerAwareInterface {
 	 * Run jobs of the specified number/type for the specified time
 	 *
 	 * The response map has a 'job' field that lists status of each job, including:
-	 *   - type   : the job type
+	 *   - type   : the job/queue type
 	 *   - status : ok/failed
 	 *   - error  : any error message string
 	 *   - time   : the job run time in ms
 	 * The response map also has:
-	 *   - backoffs : the (job type => seconds) map of backoff times
+	 *   - backoffs : the (job/queue type => seconds) map of backoff times
 	 *   - elapsed  : the total time spent running tasks in ms
 	 *   - reached  : the reason the script finished, one of (none-ready, job-limit, time-limit,
 	 *  memory-limit)
@@ -96,58 +101,53 @@ class JobRunner implements LoggerAwareInterface {
 	 * Any exceptions are caught and logged, but are not reported as output.
 	 *
 	 * @param array $options Map of parameters:
-	 *    - type     : the job type (or false for the default types)
+	 *    - type     : specified job/queue type (or false for the default types)
 	 *    - maxJobs  : maximum number of jobs to run
 	 *    - maxTime  : maximum time in seconds before stopping
 	 *    - throttle : whether to respect job backoff configuration
 	 * @return array Summary response that can easily be JSON serialized
 	 */
 	public function run( array $options ) {
+		$type = $options['type'] ?? false;
+		$maxJobs = $options['maxJobs'] ?? false;
+		$maxTime = $options['maxTime'] ?? false;
+		$throttle = $options['throttle'] ?? true;
+
+		$services = MediaWikiServices::getInstance();
 		$jobClasses = $this->config->get( 'JobClasses' );
 		$profilerLimits = $this->config->get( 'TrxProfilerLimits' );
 
 		$response = [ 'jobs' => [], 'reached' => 'none-ready' ];
 
-		$type = $options['type'] ?? false;
-		$maxJobs = $options['maxJobs'] ?? false;
-		$maxTime = $options['maxTime'] ?? false;
-		$noThrottle = isset( $options['throttle'] ) && !$options['throttle'];
-
-		// Bail if job type is invalid
 		if ( $type !== false && !isset( $jobClasses[$type] ) ) {
+			// Invalid job type specified
 			$response['reached'] = 'none-possible';
 			return $response;
 		}
 
-		// Bail out if DB is in read-only mode
-		if ( wfReadOnly() ) {
+		if ( $services->getReadOnlyMode()->isReadOnly() ) {
+			// Any jobs popped off the queue might fail to run and thus might end up lost
 			$response['reached'] = 'read-only';
 			return $response;
 		}
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		if ( $lbFactory->hasTransactionRound() ) {
-			throw new LogicException( __METHOD__ . ' called with an active transaction round.' );
-		}
-		// Bail out if there is too much DB lag.
-		// This check should not block as we want to try other wiki queues.
+		$lbFactory = $services->getDBLoadBalancerFactory();
 		list( , $maxLag ) = $lbFactory->getMainLB()->getMaxLag();
 		if ( $maxLag >= self::MAX_ALLOWED_LAG ) {
+			// DB lag is already too high; caller can immediately try other wikis if applicable
 			$response['reached'] = 'replica-lag-limit';
 			return $response;
 		}
 
-		// Use an appropriate timeout to balance lag avoidance and job progress
-		$oldTimeout = $lbFactory->setDefaultReplicationWaitTimeout( self::MAX_ALLOWED_LAG );
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$restorer = new ScopedCallback( function () use ( $lbFactory, $oldTimeout ) {
-			$lbFactory->setDefaultReplicationWaitTimeout( $oldTimeout );
-		} );
-
-		// Catch huge single updates that lead to replica DB lag
+		// Narrow DB query expectations for this HTTP request
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 		$trxProfiler->setExpectations( $profilerLimits['JobRunner'], __METHOD__ );
+
+		// Error out if an explicit DB transaction round is somehow active
+		if ( $lbFactory->hasTransactionRound() ) {
+			throw new LogicException( __METHOD__ . ' called with an active transaction round.' );
+		}
 
 		// Some jobs types should not run until a certain timestamp
 		$backoffs = []; // map of (type => UNIX expiry)
@@ -155,55 +155,51 @@ class JobRunner implements LoggerAwareInterface {
 		$wait = 'wait'; // block to read backoffs the first time
 
 		$group = JobQueueGroup::singleton();
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$stats = $services->getStatsdDataFactory();
+
+		$loopStartTime = microtime( true );
 		$jobsPopped = 0;
 		$timeMsTotal = 0;
-		$startTime = microtime( true ); // time since jobs started running
-		$lastCheckTime = 1; // timestamp of last replica DB check
+		$lastSyncTime = 1; // initialize "last sync check timestamp" to "ages ago"
+		// Keep popping and running jobs until there are no more...
 		do {
 			// Sync the persistent backoffs with concurrent runners
 			$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
-			$blacklist = $noThrottle ? [] : array_keys( $backoffs );
+			$blacklist = $throttle ? array_keys( $backoffs ) : [];
 			$wait = 'nowait'; // less important now
 
 			if ( $type === false ) {
-				$job = $group->pop(
-					JobQueueGroup::TYPE_DEFAULT,
-					JobQueueGroup::USE_CACHE,
-					$blacklist
-				);
-			} elseif ( in_array( $type, $blacklist ) ) {
-				$job = false; // requested queue in backoff state
+				// Treat the default job type queues as a single queue and pop off a job
+				$job = $group->pop( $group::TYPE_DEFAULT, $group::USE_CACHE, $blacklist );
 			} else {
-				$job = $group->pop( $type ); // job from a single queue
+				// Pop off a job from the specified job type queue unless the execution of
+				// that type of job is currently rate-limited by the back-off blacklist
+				$job = in_array( $type, $blacklist ) ? false : $group->pop( $type );
 			}
 
-			if ( $job ) { // found a job
+			if ( $job ) {
 				++$jobsPopped;
-				$popTime = time();
 				$jType = $job->getType();
-
-				WebRequest::overrideRequestId( $job->getRequestId() );
 
 				// Back off of certain jobs for a while (for throttling and for errors)
 				$ttw = $this->getBackoffTimeToWait( $job );
 				if ( $ttw > 0 ) {
 					// Always add the delta for other runners in case the time running the
 					// job negated the backoff for each individually but not collectively.
-					$backoffDeltas[$jType] = isset( $backoffDeltas[$jType] )
-						? $backoffDeltas[$jType] + $ttw
-						: $ttw;
+					$backoffDeltas[$jType] = ( $backoffDeltas[$jType] ?? 0 ) + $ttw;
 					$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
 				}
 
-				$info = $this->executeJob( $job, $lbFactory, $stats, $popTime );
+				$info = $this->executeJob( $job, $lbFactory, $stats );
+
+				// Mark completed or "one shot only" jobs as resolved
 				if ( $info['status'] !== false || !$job->allowRetries() ) {
-					$group->ack( $job ); // succeeded or job cannot be retried
+					$group->ack( $job );
 				}
 
 				// Back off of certain jobs for a while (for throttling and for errors)
 				if ( $info['status'] === false && mt_rand( 0, 49 ) == 0 ) {
-					$ttw = max( $ttw, $this->getErrorBackoffTTL( $info['error'] ) );
+					$ttw = max( $ttw, $this->getErrorBackoffTTL( $info['caught'] ) );
 					$backoffDeltas[$jType] = isset( $backoffDeltas[$jType] )
 						? $backoffDeltas[$jType] + $ttw
 						: $ttw;
@@ -217,11 +213,11 @@ class JobRunner implements LoggerAwareInterface {
 				];
 				$timeMsTotal += $info['timeMs'];
 
-				// Break out if we hit the job count or wall time limits...
+				// Break out if we hit the job count or wall time limits
 				if ( $maxJobs && $jobsPopped >= $maxJobs ) {
 					$response['reached'] = 'job-limit';
 					break;
-				} elseif ( $maxTime && ( microtime( true ) - $startTime ) > $maxTime ) {
+				} elseif ( $maxTime && ( microtime( true ) - $loopStartTime ) > $maxTime ) {
 					$response['reached'] = 'time-limit';
 					break;
 				}
@@ -229,23 +225,23 @@ class JobRunner implements LoggerAwareInterface {
 				// Don't let any of the main DB replica DBs get backed up.
 				// This only waits for so long before exiting and letting
 				// other wikis in the farm (on different masters) get a chance.
-				$timePassed = microtime( true ) - $lastCheckTime;
+				$timePassed = microtime( true ) - $lastSyncTime;
 				if ( $timePassed >= self::LAG_CHECK_PERIOD || $timePassed < 0 ) {
-					$ok = $lbFactory->waitForReplication( [ 'ifWritesSince' => $lastCheckTime ] );
-					if ( !$ok ) {
+					$opts = [ 'ifWritesSince' => $lastSyncTime, 'timeout' => self::SYNC_TIMEOUT ];
+					if ( !$lbFactory->waitForReplication( $opts ) ) {
 						$response['reached'] = 'replica-lag-limit';
 						break;
 					}
-					$lastCheckTime = microtime( true );
+					$lastSyncTime = microtime( true );
 				}
 
-				// Bail if near-OOM instead of in a job
+				// Abort if nearing OOM to avoid erroring out in the middle of a job
 				if ( !$this->checkMemoryOK() ) {
 					$response['reached'] = 'memory-limit';
 					break;
 				}
 			}
-		} while ( $job ); // stop when there are no jobs
+		} while ( $job );
 
 		// Sync the persistent backoffs for the next runJobs.php pass
 		if ( $backoffDeltas ) {
@@ -259,28 +255,61 @@ class JobRunner implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param string $error
-	 * @return int TTL in seconds
+	 * Run a specific job in a manner appropriate for mass use by job dispatchers
+	 *
+	 * Wraps the job's run() and tearDown() methods into appropriate transaction rounds.
+	 * During execution, SPI-based logging will use the ID of the HTTP request that spawned
+	 * the job (instead of the current one). Large DB write transactions will be subject to
+	 * $wgJobSerialCommitThreshold and $wgMaxJobDBWriteDuration.
+	 *
+	 * This should never be called if there are explicit transaction rounds or pending DB writes
+	 *
+	 * @param RunnableJob $job
+	 * @param LBFactory $lbFactory
+	 * @param StatsdDataFactoryInterface $stats
+	 * @return array Map of:
+	 *   - status: boolean; whether the job succeed
+	 *   - error: error string; empty if there was no error specified
+	 *   - caught: list of FQCNs corresponding to any exceptions caught
+	 *   - timeMs: float; job execution time in milliseconds
+	 * @since 1.35
 	 */
-	private function getErrorBackoffTTL( $error ) {
-		return strpos( $error, 'DBReadOnlyError' ) !== false
-			? self::READONLY_BACKOFF_TTL
-			: self::ERROR_BACKOFF_TTL;
+	public function executeJob(
+		RunnableJob $job,
+		LBFactory $lbFactory,
+		StatsdDataFactoryInterface $stats
+	) {
+		$oldRequestId = WebRequest::getRequestId();
+		// Temporarily inherit the original ID of the web request that spawned this job
+		WebRequest::overrideRequestId( $job->getRequestId() );
+		// Use an appropriate timeout to balance lag avoidance and job progress
+		$oldTimeout = $lbFactory->setDefaultReplicationWaitTimeout( self::SYNC_TIMEOUT );
+		try {
+			return $this->doExecuteJob( $job, $lbFactory, $stats );
+		} finally {
+			$lbFactory->setDefaultReplicationWaitTimeout( $oldTimeout );
+			WebRequest::overrideRequestId( $oldRequestId );
+		}
 	}
 
 	/**
 	 * @param RunnableJob $job
 	 * @param LBFactory $lbFactory
 	 * @param StatsdDataFactoryInterface $stats
-	 * @param float $popTime
-	 * @return array Map of status/error/timeMs
+	 * @return array Map of:
+	 *   - status: boolean; whether the job succeed
+	 *   - error: error string; empty if there was no error specified
+	 *   - caught: list of FQCNs corresponding to any exceptions caught
+	 *   - timeMs: float; job execution time in milliseconds
 	 */
-	private function executeJob( RunnableJob $job, LBFactory $lbFactory, $stats, $popTime ) {
+	private function doExecuteJob(
+		RunnableJob $job,
+		LBFactory $lbFactory,
+		StatsdDataFactoryInterface $stats
+	) {
 		$jType = $job->getType();
 		$msg = $job->toString() . " STARTING";
-		$this->logger->debug( $msg, [
-			'job_type' => $job->getType(),
-		] );
+		$this->logger->debug( $msg, [ 'job_type' => $job->getType() ] );
 		$this->debugCallback( $msg );
 
 		// Clear out title cache data from prior snapshots
@@ -288,6 +317,7 @@ class JobRunner implements LoggerAwareInterface {
 		MediaWikiServices::getInstance()->getLinkCache()->clear();
 
 		// Run the job...
+		$caught = [];
 		$rssStart = $this->getMaxRssKb();
 		$jobStartTime = microtime( true );
 		try {
@@ -306,15 +336,16 @@ class JobRunner implements LoggerAwareInterface {
 			$this->commitMasterChanges( $lbFactory, $job, $fnameTrxOwner );
 			// Run any deferred update tasks; doUpdates() manages transactions itself
 			DeferredUpdates::doUpdates();
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			$status = false;
 			$error = get_class( $e ) . ': ' . $e->getMessage();
+			$caught[] = get_class( $e );
 		}
 		// Always attempt to call teardown(), even if Job throws exception
 		try {
 			$job->tearDown( $status );
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			MWExceptionHandler::logException( $e );
 		}
 
@@ -324,14 +355,14 @@ class JobRunner implements LoggerAwareInterface {
 		// Record how long jobs wait before getting popped
 		$readyTs = $job->getReadyTimestamp();
 		if ( $readyTs ) {
-			$pickupDelay = max( 0, $popTime - $readyTs );
+			$pickupDelay = max( 0, $jobStartTime - $readyTs );
 			$stats->timing( 'jobqueue.pickup_delay.all', 1000 * $pickupDelay );
 			$stats->timing( "jobqueue.pickup_delay.$jType", 1000 * $pickupDelay );
 		}
 		// Record root job age for jobs being run
 		$rootTimestamp = $job->getRootJobParams()['rootJobTimestamp'];
 		if ( $rootTimestamp ) {
-			$age = max( 0, $popTime - wfTimestamp( TS_UNIX, $rootTimestamp ) );
+			$age = max( 0, $jobStartTime - wfTimestamp( TS_UNIX, $rootTimestamp ) );
 			$stats->timing( "jobqueue.pickup_root_age.$jType", 1000 * $age );
 		}
 		// Track the execution time for jobs
@@ -362,7 +393,22 @@ class JobRunner implements LoggerAwareInterface {
 			$this->debugCallback( $msg );
 		}
 
-		return [ 'status' => $status, 'error' => $error, 'timeMs' => $timeMs ];
+		return [
+			'status' => $status,
+			'error' => $error,
+			'caught' => $caught,
+			'timeMs' => $timeMs
+		];
+	}
+
+	/**
+	 * @param string[] $caught List of FQCNs corresponding to any exceptions caught
+	 * @return int TTL in seconds
+	 */
+	private function getErrorBackoffTTL( array $caught ) {
+		return in_array( DBReadOnlyError::class, $caught )
+			? self::READONLY_BACKOFF_TTL
+			: self::ERROR_BACKOFF_TTL;
 	}
 
 	/**
