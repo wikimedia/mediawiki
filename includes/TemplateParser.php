@@ -140,17 +140,17 @@ class TemplateParser {
 				}
 			}
 			if ( !$code ) {
-				$code = $this->compile( $fileContents );
+				$code = $this->compile( $fileContents, $filename );
 
 				// Prefix the cached code with a keyed hash (64 hex chars) as an integrity check
 				$cache->set( $key, hash_hmac( 'sha256', $code, $secretKey ) . $code );
 			}
 		// If there is no secret key available, don't use cache
 		} else {
-			$code = $this->compile( $fileContents );
+			$code = $this->compile( $fileContents, $filename );
 		}
 
-		$renderer = LightnCandy::prepare( $code );
+		$renderer = eval( $code );
 		if ( !is_callable( $renderer ) ) {
 			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
 		}
@@ -161,11 +161,12 @@ class TemplateParser {
 	/**
 	 * Compile the Mustache code into PHP code using LightnCandy
 	 * @param string $code Mustache code
-	 * @return string PHP code (with '<?php')
+	 * @param string $filename File name the code came from; only used for error reporting
+	 * @return string PHP code
 	 * @suppress PhanTypeMismatchArgument
 	 */
-	protected function compile( $code ) {
-		return LightnCandy::compile(
+	protected function compile( $code, $filename ) {
+		$compiled = LightnCandy::compile(
 			$code,
 			[
 				'flags' => $this->compileFlags,
@@ -187,6 +188,13 @@ class TemplateParser {
 				}
 			]
 		);
+		if ( !$compiled ) {
+			// This shouldn't happen because LightnCandy::FLAG_ERROR_EXCEPTION is set
+			// Errors should throw exceptions instead of returning false
+			// Check anyway for paranoia
+			throw new RuntimeException( "Could not compile template: {$filename}" );
+		}
+		return $compiled;
 	}
 
 	/**
