@@ -245,22 +245,6 @@ class TestFileReader {
 					continue;
 				}
 
-				if ( $this->section == 'endtransparenthooks' ) {
-					$this->checkSection( 'transparenthooks' );
-
-					foreach ( explode( "\n", $this->sectionData['transparenthooks'] ) as $line ) {
-						$line = trim( $line );
-
-						if ( $line ) {
-							$this->addRequirement( 'transparentHook', $line );
-						}
-					}
-
-					$this->clearSection();
-
-					continue;
-				}
-
 				if ( $this->section == 'end' ) {
 					$this->checkSection( 'test' );
 					$this->addCurrentTest();
