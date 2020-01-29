@@ -345,6 +345,19 @@ because of Phabricator reports.
 * The signature of DefaultPreferencesFactory::__construct has been changed:
   - LanguageConverter $languageConverter has been added.
   and its usage with old arguments is hard deprecated.
+* The public usage of the following properties of LanguageConverter have been
+  deprecated as there is no reason they should be used outside the
+  LanguageConverter class and will be changed from public to private:
+  - mLangObj
+  - mUcfirst
+  - mConvRuleTitle
+  - mURLVariant
+  - mUserVariant
+  - mHeaderVariant
+  - mMaxDepth
+  - mVarSeparatorPattern
+  changed from public to protected:
+  - mTables
 * …
 
 === Other changes in 1.35 ===

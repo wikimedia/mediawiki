@@ -1218,7 +1218,10 @@ class ParserTestRunner {
 				MediaWikiServices::getInstance()->getLanguageConverterFactory()
 					->getLanguageConverter( $context->getLanguage() )
 			);
+			Wikimedia\suppressWarnings();
 			$wrapper->reloadTables();
+			Wikimedia\restoreWarnings();
+
 			// Reset context to the restored globals
 			$context->setUser( $GLOBALS['wgUser'] );
 			$context->setLanguage( $GLOBALS['wgContLang'] );
