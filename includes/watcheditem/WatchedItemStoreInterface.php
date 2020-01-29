@@ -313,6 +313,17 @@ interface WatchedItemStoreInterface {
 	public function clearUserWatchedItems( UserIdentity $user );
 
 	/**
+	 * Does the size of the users watchlist require clearUserWatchedItemsUsingJobQueue() to be used
+	 * instead of clearUserWatchedItems()
+	 *
+	 * @since 1.35
+	 *
+	 * @param UserIdentity $user
+	 * @return bool
+	 */
+	public function mustClearWatchedItemsUsingJobQueue( UserIdentity $user ): bool;
+
+	/**
 	 * Queues a job that will clear the users watchlist using the Job Queue.
 	 *
 	 * @since 1.31

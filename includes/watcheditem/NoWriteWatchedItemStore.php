@@ -148,6 +148,10 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	public function mustClearWatchedItemsUsingJobQueue( UserIdentity $user ): bool {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
+	}
+
 	public function clearUserWatchedItemsUsingJobQueue( UserIdentity $user ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
