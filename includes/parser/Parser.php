@@ -1475,7 +1475,13 @@ class Parser {
 		Hooks::run( 'InternalParseBeforeSanitize', [ &$parser, &$text, &$this->mStripState ] );
 		$text = Sanitizer::removeHTMLtags(
 			$text,
-			[ $this, 'attributeStripCallback' ],
+			// Callback from the Sanitizer for expanding items found in
+			// HTML attribute values, so they can be safely tested and escaped.
+			function ( &$text, $frame = false ) {
+				$text = $this->replaceVariables( $text, $frame );
+				$text = $this->mStripState->unstripBoth( $text );
+				return $text;
+			},
 			false,
 			[],
 			[],
@@ -1639,7 +1645,7 @@ class Parser {
 	 * @param array $m
 	 * @return string HTML
 	 */
-	public function magicLinkCallback( $m ) {
+	private function magicLinkCallback( $m ) {
 		if ( isset( $m[1] ) && $m[1] !== '' ) {
 			# Skip anchor
 			return $m[0];
@@ -1718,7 +1724,7 @@ class Parser {
 	 * @return string HTML
 	 * @private
 	 */
-	public function makeFreeExternalLink( $url, $numPostProto ) {
+	private function makeFreeExternalLink( $url, $numPostProto ) {
 		$trail = '';
 
 		# The characters '<' and '>' (which were escaped by
@@ -5613,8 +5619,10 @@ class Parser {
 	 * @param string &$text
 	 * @param bool|PPFrame $frame
 	 * @return string
+	 * @deprecated since 1.35, internal callback should not have been public
 	 */
 	public function attributeStripCallback( &$text, $frame = false ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		return $text;
