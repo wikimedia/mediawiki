@@ -4101,7 +4101,7 @@ class Parser {
 	 * @param int $size The size of the text
 	 * @return bool False if this inclusion would take it over the maximum, true otherwise
 	 */
-	public function incrementIncludeSize( $type, $size ) {
+	private function incrementIncludeSize( $type, $size ) {
 		if ( $this->mIncludeSizes[$type] + $size > $this->mOptions->getMaxIncludeSize() ) {
 			return false;
 		} else {
