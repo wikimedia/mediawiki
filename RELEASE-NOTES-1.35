@@ -182,25 +182,43 @@ because of Phabricator reports.
 * AbstractBlock::mReason, deprecated in 1.34, is no longer public.
 * The GetBlockedStatus, deprecated in 1.34, has been removed. Instead, use the
   GetUserBlock hook.
-* Parser::disableCache(), deprecated in 1.28, has been removed.
-* Parser::serializeHalfParsedText() and the helper functions
-  Parser::unserializeHalfParsedText(), Parser::isValidHalfParsedText(),
-  StripState::getSubState() and StripState::merge(), deprecated in 1.31, have
-  been removed. The helper functions LinkHolderArray::mergeForeign() and
-  LinkHolderArray::getSubArray() were also removed.
-* Parser::getConverterLanguage(), deprecated in 1.32, was removed. Use
-  Parser::getTargetLanguage() instead.
-* Parser::getTitle() will throw a TypeError if Parser::$mTitle is
-  uninitialized.  This was deprecated in 1.34.
-* A number of public methods of Parser were exposed only for
-  historical reasons.  They were deprecated in 1.34 and have now been
-  made private or removed: doMagicLinks, doDoubleUnderscore,
-  doHeadings, doAllQuotes, replaceExternalLinks, replaceInternalLinks,
-  replaceInternalLinks2, getVariableValue, initialiseVariables,
-  formatHeadings, testPst, testPreprocess, testSrvus,
-  areSubpagesAllowed, maybeDoSubpageLink, splitWhitespace,
-  createAssocArgs, armorLinks, makeKnownLinkHolder, getImageParams,
-  parseLinkParameter, stripAltText, replaceLinkHoldersText.
+* A large number of Parser-related methods were removed or made private.
+  - disableCache(), deprecated in 1.28.
+  - serializeHalfParsedText() and the helpers unserializeHalfParsedText(),
+    isValidHalfParsedText(), and StripState::getSubState() and
+    StripState::merge(), all deprecated in 1.31. The helper functions
+    LinkHolderArray::mergeForeign() and LinkHolderArray::getSubArray()
+    were also removed.
+  - getConverterLanguage(), deprecated in 1.32. Use getTargetLanguage() instead.
+  - A large set of methods exposed only for historical reasons, deprecated in
+    1.34, have now been removed or made private:
+    - areSubpagesAllowed()
+    - armorLinks()
+    - createAssocArgs()
+    - doAllQuotes()
+    - doDoubleUnderscore()
+    - doHeadings()
+    - doMagicLinks()
+    - formatHeadings()
+    - getImageParams()
+    - getVariableValue()
+    - initialiseVariables()
+    - makeKnownLinkHolder()
+    - maybeDoSubpageLink()
+    - parseLinkParameter()
+    - replaceExternalLinks()
+    - replaceInternalLinks()
+    - replaceInternalLinks2()
+    - replaceLinkHoldersText().
+    - splitWhitespace()
+    - stripAltText()
+    - testPreprocess()
+    - testPst()
+    - testSrvus()
+  - incrementIncludeSize(), setTransparentTagHook(), replaceTransparentTags(),
+    and $mTransparentTagHooks have been removed without deprecation.
+* Parser::getTitle() will now throw a TypeError if $mTitle is uninitialized.
+  This use pattern was deprecated in 1.34.
 * MediaWikiTestCase::prepareServices(), deprecated in 1.32, has been removed
 * The method ContentHandler::getSlotDiffRendererInternal is replaced with
   ContentHandler::getSlotDiffRendererWithOptions. This breaks consumers which
@@ -240,9 +258,6 @@ because of Phabricator reports.
 * Preprocessor_DOM and related classes, deprecated in 1.34, have been removed.
 * ParserOptions::getMaxGeneratedPPNodeCount() and ::setMaxGeneratedPPNodeCount()
   have been removed without deprecation.
-* Parser::incrementIncludeSize() has been made private without deprecation.
-* Parser::setTransparentTagHook(), Parser::replaceTransparentTags(), and
-  Parser::$mTransparentTagHooks have been removed without deprecation.
 * …
 
 === Deprecations in 1.35 ===
@@ -319,11 +334,11 @@ because of Phabricator reports.
   MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
   MediaFileTrait::getImageLimitsFromOptions() instead.
-* Parser::doBlockLevels() has been deprecated, and the BlockLevelPass class
-  has been marked @internal.  These will not be supported in future parsers.
-* Parser::setFunctionTagHook() has been deprecated.
-* Parser::fetchTemplate() is deprecated; use Parser::fetchTemplateAndTitle()
-  instead.
+* A number of Parser-related methods were deprecated to simplify the API or
+  because they will not be supported in the upcoming parser replacement:
+  - doBlockLevels() (and BlockLevelPass class has been marked @internal)
+  - setFunctionTagHook()
+  - fetchTemplate() - use Parser::fetchTemplateAndTitle() instead.
 * …
 
 === Other changes in 1.35 ===
