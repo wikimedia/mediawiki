@@ -3721,6 +3721,7 @@ class Parser {
 	 * @deprecated since 1.35, use Parser::fetchTemplateAndTitle(...)[0]
 	 */
 	public function fetchTemplate( $title ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->fetchTemplateAndTitle( $title )[0];
 	}
 
