@@ -3718,6 +3718,7 @@ class Parser {
 	 * Fetch the unparsed text of a template and register a reference to it.
 	 * @param Title $title
 	 * @return string|bool
+	 * @deprecated since 1.35, use Parser::fetchTemplateAndTitle(...)[0]
 	 */
 	public function fetchTemplate( $title ) {
 		return $this->fetchTemplateAndTitle( $title )[0];
