@@ -240,6 +240,7 @@ because of Phabricator reports.
 * Preprocessor_DOM and related classes, deprecated in 1.34, have been removed.
 * ParserOptions::getMaxGeneratedPPNodeCount() and ::setMaxGeneratedPPNodeCount()
   have been removed without deprecation.
+* Parser::incrementIncludeSize() has been made private without deprecation.
 * Parser::setTransparentTagHook(), Parser::replaceTransparentTags(), and
   Parser::$mTransparentTagHooks have been removed without deprecation.
 * …
