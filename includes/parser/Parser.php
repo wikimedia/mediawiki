@@ -1526,7 +1526,7 @@ class Parser {
 		# Clean up special characters, only run once, next-to-last before doBlockLevels
 		$text = Sanitizer::armorFrenchSpaces( $text );
 
-		$text = $this->doBlockLevels( $text, $linestart );
+		$text = BlockLevelPass::doBlockLevels( $text, $linestart );
 
 		$this->replaceLinkHoldersPrivate( $text );
 
@@ -2636,8 +2636,10 @@ class Parser {
 	 * @param bool $linestart Whether or not this is at the start of a line.
 	 * @private
 	 * @return string The lists rendered as HTML
+	 * @deprecated since 1.35, will not be supported in future parsers
 	 */
 	public function doBlockLevels( $text, $linestart ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return BlockLevelPass::doBlockLevels( $text, $linestart );
 	}
 
@@ -3721,6 +3723,7 @@ class Parser {
 	 * @deprecated since 1.35, use Parser::fetchTemplateAndTitle(...)[0]
 	 */
 	public function fetchTemplate( $title ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->fetchTemplateAndTitle( $title )[0];
 	}
 

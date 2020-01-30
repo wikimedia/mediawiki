@@ -828,6 +828,93 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @dataProvider getMultiWithSetCallbackRefresh_provider
+	 * @param bool $expiring
+	 * @param bool $popular
+	 * @param array $idsByKey
+	 */
+	public function testGetMultiWithSetCallbackRefresh( $expiring, $popular, array $idsByKey ) {
+		$deferredCbs = [];
+		$bag = new HashBagOStuff();
+		$cache = $this->getMockBuilder( WANObjectCache::class )
+			->setMethods( [ 'worthRefreshExpiring', 'worthRefreshPopular' ] )
+			->setConstructorArgs( [
+				[
+					'cache' => $bag,
+					'asyncHandler' => function ( $callback ) use ( &$deferredCbs ) {
+						$deferredCbs[] = $callback;
+					}
+				]
+			] )
+			->getMock();
+
+		$cache->method( 'worthRefreshExpiring' )->willReturn( $expiring );
+		$cache->method( 'worthRefreshPopular' )->willReturn( $popular );
+
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( $idsByKey );
+		$genFunc = function ( $id, $old, &$ttl, &$opts, $asOf ) use ( &$wasSet ) {
+			++$wasSet;
+			$ttl = 20; // override with another value
+			return "@$id$";
+		};
+
+		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $genFunc );
+		$this->assertSame( count( $idsByKey ), $wasSet, "Initial sets" );
+		$this->assertSame( 0, count( $deferredCbs ), "No deferred callbacks yet" );
+		foreach ( $idsByKey as $key => $id ) {
+			$this->assertSame( "@$id$", $v[$key], "Initial cache value generation" );
+		}
+
+		$wasSet = 0;
+		$preemptiveRefresh = ( $expiring || $popular );
+		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $genFunc );
+		$this->assertSame( 0, $wasSet, "No values generated" );
+		$this->assertSame(
+			$preemptiveRefresh ? count( $idsByKey ) : 0,
+			count( $deferredCbs ),
+			"Deferred callbacks queued"
+		);
+		foreach ( $idsByKey as $key => $id ) {
+			$this->assertSame( "@$id$", $v[$key], "Cached value reused; refresh scheduled" );
+		}
+
+		// Run the deferred callbacks...
+		$deferredCbsReady = $deferredCbs;
+		$deferredCbs = []; // empty by-reference queue
+		foreach ( $deferredCbsReady as $deferredCb ) {
+			$deferredCb();
+		}
+
+		$this->assertSame(
+			( $preemptiveRefresh ? count( $idsByKey ) : 0 ),
+			$wasSet,
+			"Deferred callback regenerations"
+		);
+		$this->assertSame( 0, count( $deferredCbs ), "Deferred callbacks queue empty" );
+
+		$wasSet = 0;
+		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $genFunc );
+		$this->assertSame(
+			0,
+			$wasSet,
+			"Deferred callbacks did not run again"
+		);
+		foreach ( $idsByKey as $key => $id ) {
+			$this->assertSame( "@$id$", $v[$key], "Cached value OK after deferred refresh run" );
+		}
+	}
+
+	public static function getMultiWithSetCallbackRefresh_provider() {
+		return [
+			[ true, true, [ 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 ] ],
+			[ true, false, [ 'a' => 'x', 'b' => 'y', 'c' => 'z', 'd' => 'w' ] ],
+			[ false, true, [ 'a' => 'p', 'b' => 'q', 'c' => 'r', 'd' => 's' ] ],
+			[ false, false, [ 'a' => '%', 'b' => '^', 'c' => '&', 'd' => 'ç' ] ]
+		];
+	}
+
+	/**
 	 * @dataProvider getMultiWithUnionSetCallback_provider
 	 * @covers WANObjectCache::getMultiWithUnionSetCallback()
 	 * @covers WANObjectCache::makeMultiKeys()
@@ -973,6 +1060,96 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		return [
 			[ [], false ],
 			[ [ 'version' => 1 ], true ]
+		];
+	}
+
+	/**
+	 * @dataProvider getMultiWithUnionSetCallbackRefresh_provider
+	 * @param bool $expiring
+	 * @param bool $popular
+	 * @param array $idsByKey
+	 */
+	public function testGetMultiWithUnionSetCallbackRefresh( $expiring, $popular, array $idsByKey ) {
+		$deferredCbs = [];
+		$bag = new HashBagOStuff();
+		$cache = $this->getMockBuilder( WANObjectCache::class )
+			->setMethods( [ 'worthRefreshExpiring', 'worthRefreshPopular' ] )
+			->setConstructorArgs( [
+				[
+					'cache' => $bag,
+					'asyncHandler' => function ( $callback ) use ( &$deferredCbs ) {
+						$deferredCbs[] = $callback;
+					}
+				]
+			] )
+			->getMock();
+
+		$cache->expects( $this->any() )->method( 'worthRefreshExpiring' )->willReturn( $expiring );
+		$cache->expects( $this->any() )->method( 'worthRefreshPopular' )->willReturn( $popular );
+
+		$wasSet = 0;
+		$keyedIds = new ArrayIterator( $idsByKey );
+		$genFunc = function ( array $ids, array &$ttls, array &$setOpts ) use ( &$wasSet ) {
+			$newValues = [];
+			foreach ( $ids as $id ) {
+				++$wasSet;
+				$newValues[$id] = "@$id$";
+				$ttls[$id] = 20; // override with another value
+			}
+
+			return $newValues;
+		};
+
+		$v = $cache->getMultiWithUnionSetCallback( $keyedIds, 30, $genFunc );
+		$this->assertSame( count( $idsByKey ), $wasSet, "Initial sets" );
+		$this->assertSame( 0, count( $deferredCbs ), "No deferred callbacks yet" );
+		foreach ( $idsByKey as $key => $id ) {
+			$this->assertSame( "@$id$", $v[$key], "Initial cache value generation" );
+		}
+
+		$preemptiveRefresh = ( $expiring || $popular );
+		$v = $cache->getMultiWithUnionSetCallback( $keyedIds, 30, $genFunc );
+		$this->assertSame( count( $idsByKey ), $wasSet, "Deferred callbacks did not run yet" );
+		$this->assertSame(
+			$preemptiveRefresh ? count( $idsByKey ) : 0,
+			count( $deferredCbs ),
+			"Deferred callbacks queued"
+		);
+		foreach ( $idsByKey as $key => $id ) {
+			$this->assertSame( "@$id$", $v[$key], "Cached value reused; refresh scheduled" );
+		}
+
+		// Run the deferred callbacks...
+		$deferredCbsReady = $deferredCbs;
+		$deferredCbs = []; // empty by-reference queue
+		foreach ( $deferredCbsReady as $deferredCb ) {
+			$deferredCb();
+		}
+
+		$this->assertSame(
+			count( $idsByKey ) * ( $preemptiveRefresh ? 2 : 1 ),
+			$wasSet,
+			"Deferred callback regenerations"
+		);
+		$this->assertSame( 0, count( $deferredCbs ), "Deferred callbacks queue empty" );
+
+		$v = $cache->getMultiWithUnionSetCallback( $keyedIds, 30, $genFunc );
+		$this->assertSame(
+			count( $idsByKey ) * ( $preemptiveRefresh ? 2 : 1 ),
+			$wasSet,
+			"Deferred callbacks did not run again yet"
+		);
+		foreach ( $idsByKey as $key => $id ) {
+			$this->assertSame( "@$id$", $v[$key], "Cached value OK after deferred refresh run" );
+		}
+	}
+
+	public static function getMultiWithUnionSetCallbackRefresh_provider() {
+		return [
+			[ true, true, [ 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 ] ],
+			[ true, false, [ 'a' => 'x', 'b' => 'y', 'c' => 'z', 'd' => 'w' ] ],
+			[ false, true, [ 'a' => 'p', 'b' => 'q', 'c' => 'r', 'd' => 's' ] ],
+			[ false, false, [ 'a' => '%', 'b' => '^', 'c' => '&', 'd' => 'ç' ] ]
 		];
 	}
 
