@@ -318,6 +318,8 @@ because of Phabricator reports.
   MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
   MediaFileTrait::getImageLimitsFromOptions() instead.
+* Parser::doBlockLevels() has been deprecated, and the BlockLevelPass class
+  has been marked @internal.  These will not be supported in future parsers.
 * Parser::setFunctionTagHook() has been deprecated.
 * Parser::fetchTemplate() is deprecated; use Parser::fetchTemplateAndTitle()
   instead.
