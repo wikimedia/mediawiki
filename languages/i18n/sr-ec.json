@@ -1509,7 +1509,7 @@
 	"rcfilters-liveupdates-button": "Ажурирај уживо",
 	"rcfilters-liveupdates-button-title-on": "Искључите ажурирања уживо",
 	"rcfilters-liveupdates-button-title-off": "Прикажите нове промене уживо",
-	"rcfilters-watchlist-markseen-button": "Означи све промене као виђене",
+	"rcfilters-watchlist-markseen-button": "Означи све промене виђеним",
 	"rcfilters-watchlist-edit-watchlist-button": "Уреди списак надгледаних страница",
 	"rcfilters-watchlist-showupdated": "Промене на страницама које нисте посетили од када је измена извршена су <strong>подебљане</strong>, с испуњеним ознакама.",
 	"rcfilters-preference-label": "Користи интерфејс без јаваскрипта",

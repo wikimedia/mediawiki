@@ -27,5 +27,7 @@
 	"rest-pagehistorycount-too-many-revisions": "Den angivna titeln innehåller för många sidversioner för att hämta detta antal.",
 	"rest-search-error": "Fel uppstod när sökresultaten returnerades: $1",
 	"rest-page-source-type-error": "Innehållstypen för den begärda källsidan stöds inte",
-	"rest-no-revision": "Kunde inte hämta versionen för titeln $1"
+	"rest-no-revision": "Kunde inte hämta versionen för titeln $1",
+	"rest-media-too-many-links": "För många medialänkar hittades i titeln $1 ($2 är tillåtet)",
+	"rest-html-backend-error": "Kunde inte hämta Parsoid-HTML"
 }

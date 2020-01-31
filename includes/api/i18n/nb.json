@@ -549,6 +549,7 @@
 	"apihelp-query+allrevisions-param-namespace": "List kun opp sider i dette navnerommet.",
 	"apihelp-query+allrevisions-param-generatetitles": "Når denne brukes som generator, generer titler i stedet for revisjons-ID-er.",
 	"apihelp-query+allrevisions-example-user": "List opp de siste 50 bidragene fra brukeren <kbd>Example</kbd>.",
+	"apihelp-query+allrevisions-example-ns-any": "List opp de første 50 revisjonene i et navnerom.",
 	"apihelp-query+mystashedfiles-summary": "Hent en liste over filer i den gjeldende brukerens opplastingsstash.",
 	"apihelp-query+mystashedfiles-param-prop": "Hvilke egenskaper som skal hentes for filene.",
 	"apihelp-query+mystashedfiles-paramvalue-prop-size": "Hent filstørrelse og bildedimensjoner.",

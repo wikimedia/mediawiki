@@ -956,7 +956,7 @@
 	"undo-failure": "Cette modification ne peut pas être défaite : cela entrerait en conflit avec les modifications intermédiaires.",
 	"undo-main-slot-only": "La modification n’a pas pu être annulée car elle implique un contenu en dehors de la tranche principale.",
 	"undo-norev": "La modification n’a pas pu être défaite parce qu’elle est inexistante ou qu’elle a été supprimée.",
-	"undo-nochange": "Il semblerait que la modification ait déjà été annulée.",
+	"undo-nochange": "La modification semble avoir déjà été annulée.",
 	"undo-summary": "Annulation des modifications $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]])",
 	"undo-summary-anon": "Annuler la modification $1 de [[Special:Contributions/$2|$2]]",
 	"undo-summary-username-hidden": "Annuler la révision $1 par un utilisateur masqué",
