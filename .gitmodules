@@ -1170,7 +1170,7 @@
 [submodule "extensions/SoftRedirector"]
 	path = extensions/SoftRedirector
 	url = https://github.com/wikimedia/mediawiki-extensions-SoftRedirector
-	branch = REL1_35
+	branch = master
 [submodule "extensions/AdvancedSearch"]
 	path = extensions/AdvancedSearch
 	url = https://github.com/wikimedia/mediawiki-extensions-AdvancedSearch
