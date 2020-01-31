@@ -2080,6 +2080,7 @@
 	"version-parser-function-hooks": "Funcioni \"hooks\" dil sintaxal analizilo (parser)",
 	"version-version": "($1)",
 	"version-license": "MediaWiki Licenco",
+	"version-skin-colheader-name": "Temo",
 	"version-ext-colheader-description": "Deskripto",
 	"version-software-product": "Produkturo",
 	"version-software-version": "Versiono",

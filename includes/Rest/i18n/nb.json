@@ -27,5 +27,6 @@
 	"rest-search-error": "Feil under returnering av søkeresultater: $1",
 	"rest-page-source-type-error": "Innholdstypen til den forespurte sidekilden støttes ikke",
 	"rest-no-revision": "Kunne ikke hente revisjon for tittelen $1",
-	"rest-media-too-many-links": "For mange medielenker funnet i tittelen $1 ($2 er tillatt)"
+	"rest-media-too-many-links": "For mange medielenker funnet i tittelen $1 ($2 er tillatt)",
+	"rest-html-backend-error": "Kunne ikke hente Parsoid-HTML"
 }
