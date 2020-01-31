@@ -7,18 +7,14 @@
 			$target = $root.find( '#mw-input-wpnickname' );
 
 		if (
+			// This preference could theoretically be disabled ($wgHiddenPrefs)
 			!$target.length ||
 			$target.closest( '.mw-htmlform-autoinfuse-lazy' ).length
 		) {
 			return;
 		}
 
-		try {
-			widget = OO.ui.infuse( $target );
-		} catch ( err ) {
-			// This preference could theoretically be disabled ($wgHiddenPrefs)
-			return;
-		}
+		widget = OO.ui.infuse( $target );
 
 		// Add a visible length limit
 		mw.widgets.visibleCodePointLimit( widget );

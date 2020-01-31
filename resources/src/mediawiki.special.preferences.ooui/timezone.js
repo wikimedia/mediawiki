@@ -7,6 +7,7 @@
 			$target = $root.find( '#wpTimeCorrection' );
 
 		if (
+			// This preference could theoretically be disabled ($wgHiddenPrefs)
 			!$target.length ||
 			$target.closest( '.mw-htmlform-autoinfuse-lazy' ).length
 		) {
@@ -17,12 +18,7 @@
 		// Guesses Timezone from browser and updates fields onchange.
 
 		// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
-		try {
-			timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
-		} catch ( err ) {
-			// This preference could theoretically be disabled ($wgHiddenPrefs)
-			timezoneWidget = null;
-		}
+		timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
 
 		$localtimeHolder = $( '#wpLocalTime' );
 		servertime = parseInt( $( 'input[name="wpServerTime"]' ).val(), 10 );
@@ -108,11 +104,9 @@
 			$localtimeHolder.text( mw.language.convertNumber( minutesToHours( localTime ) ) );
 		}
 
-		if ( timezoneWidget ) {
-			timezoneWidget.dropdowninput.on( 'change', updateTimezoneSelection );
-			timezoneWidget.textinput.on( 'change', updateTimezoneSelection );
-			updateTimezoneSelection();
-		}
+		timezoneWidget.dropdowninput.on( 'change', updateTimezoneSelection );
+		timezoneWidget.textinput.on( 'change', updateTimezoneSelection );
+		updateTimezoneSelection();
 
 	} );
 }() );
