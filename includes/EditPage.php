@@ -4503,7 +4503,7 @@ ERROR;
 			# Is this page under cascading protection from some source pages?
 			/** @var Title[] $cascadeSources */
 			list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
-			$notice = "<div class='mw-cascadeprotectedwarning'>\n$1\n";
+			$notice = "<div class='warningbox mw-cascadeprotectedwarning'>\n$1\n";
 			$cascadeSourcesCount = count( $cascadeSources );
 			if ( $cascadeSourcesCount > 0 ) {
 				# Explain, and list the titles responsible
