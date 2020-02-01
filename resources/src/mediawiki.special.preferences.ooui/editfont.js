@@ -7,18 +7,14 @@
 			$target = $root.find( '#mw-input-wpeditfont' );
 
 		if (
+			// This preference could theoretically be disabled ($wgHiddenPrefs)
 			!$target.length ||
 			$target.closest( '.mw-htmlform-autoinfuse-lazy' ).length
 		) {
 			return;
 		}
 
-		try {
-			widget = OO.ui.infuse( $target );
-		} catch ( err ) {
-			// This preference could theoretically be disabled ($wgHiddenPrefs)
-			return;
-		}
+		widget = OO.ui.infuse( $target );
 
 		// Style options
 		widget.dropdownWidget.menu.items.forEach( function ( item ) {
