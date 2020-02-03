@@ -41,7 +41,7 @@
 	"apihelp-block-summary": "封鎖使用者。",
 	"apihelp-block-param-user": "要封鎖的使用者名稱、IP 位址或 IP 範圍。不能與 <var>$1userid</var> 一起使用",
 	"apihelp-block-param-userid": "要封鎖的使用者 ID。不可與 <var>$1user</var> 一同使用。",
-	"apihelp-block-param-expiry": "期限時間。可以是相對時間（例如：<kbd>5 months</kbd> 或 <kbd>2 weeks</kbd>）或是絕對時間（例如：<kbd>2014-09-18T12:34:56Z</kbd>）。如果設定成 <kbd>infinite</kbd>、<kbd>indefinite</kbd>、或 <kbd>never</kbd>，封鎖將會無期限。",
+	"apihelp-block-param-expiry": "到期時間。可以是相對時間（例如：<kbd>5 months</kbd> 或 <kbd>2 weeks</kbd>）或是絕對時間（例如：<kbd>2014-09-18T12:34:56Z</kbd>）。如果設定成<kbd>infinite</kbd>、<kbd>indefinite</kbd>或<kbd>never</kbd>，封鎖將會無期限。",
 	"apihelp-block-param-reason": "封鎖原因。",
 	"apihelp-block-param-anononly": "僅封鎖匿名使用者 (禁止這個 IP 位址的匿名使用者編輯)。",
 	"apihelp-block-param-nocreate": "禁止建立帳號。",
