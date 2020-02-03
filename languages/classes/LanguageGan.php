@@ -21,59 +21,6 @@
  */
 
 /**
- * @ingroup Language
- */
-class GanConverter extends LanguageConverter {
-	/**
-	 * @param Language $langobj
-	 */
-	public function __construct( Language $langobj ) {
-		$this->mDescCodeSep = '：';
-		$this->mDescVarSep = '；';
-
-		$variants = [ 'gan', 'gan-hans', 'gan-hant' ];
-		$variantfallbacks = [
-			'gan' => [ 'gan-hans', 'gan-hant' ],
-			'gan-hans' => [ 'gan' ],
-			'gan-hant' => [ 'gan' ],
-		];
-		$ml = [
-			'gan' => 'disable',
-		];
-
-		parent::__construct( $langobj, 'gan',
-			$variants,
-			$variantfallbacks,
-			[],
-			$ml
-		);
-
-		$names = [
-			'gan' => '原文',
-			'gan-hans' => '简体',
-			'gan-hant' => '繁體',
-		];
-		$this->mVariantNames = array_merge( $this->mVariantNames, $names );
-	}
-
-	protected function loadDefaultTables() {
-		$this->mTables = [
-			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
-			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
-			'gan' => new ReplacementArray
-		];
-	}
-
-	/**
-	 * @param string $key
-	 * @return string
-	 */
-	public function convertCategoryKey( $key ) {
-		return $this->autoConvert( $key, 'gan' );
-	}
-}
-
-/**
  * Gan Chinese
  *
  * class that handles both Traditional and Simplified Chinese
@@ -93,5 +40,4 @@ class LanguageGan extends LanguageZh {
 		// LanguageZh::normalizeForSearch
 		return parent::normalizeForSearch( $string, $autoVariant );
 	}
-
 }

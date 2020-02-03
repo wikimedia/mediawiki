@@ -1,85 +1,37 @@
 <?php
-/**
- * PHPUnit tests for the Serbian language.
- * The language can be represented using two scripts:
- *  - Latin (SR_el)
- *  - Cyrillic (SR_ec)
- * Both representations seems to be bijective, hence MediaWiki can convert
- * from one script to the other.
- *
- * @author Antoine Musso <hashar at free dot fr>
- * @copyright Copyright © 2011, Antoine Musso <hashar at free dot fr>
- * @file
- *
- * @todo methods in test class should be tidied:
- *  - Should be split into separate test methods and data providers
- *  - Tests for LanguageConverter and Language should probably be separate..
- */
-
-use MediaWiki\MediaWikiServices;
 
 /**
+ * @group Language
  * @covers SrConverter
  */
-class LanguageSrTest extends LanguageClassesTestCase {
+class SrConverterTest extends MediaWikiTestCase {
+
+	use LanguageConverterTestTrait;
+
 	/**
-	 * @covers Language::hasVariants
+	 * @covers SrConverter::hasVariants
 	 */
 	public function testHasVariants() {
-		$this->assertTrue( $this->getLang()->hasVariants(), 'sr has variants' );
+		$this->assertTrue( $this->getLanguageConverter()->hasVariants(), 'sr has variants' );
 	}
 
 	/**
-	 * @covers Language::hasVariant
-	 */
-	public function testHasVariant() {
-		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
-		$langs = [
-			'sr' => $this->getLang(),
-			'sr-ec' => $langFactory->getLanguage( 'sr-ec' ),
-			'sr-cyrl' => $langFactory->getLanguage( 'sr-cyrl' ),
-		];
-		foreach ( $langs as $code => $l ) {
-			$p = $langFactory->getParentLanguage( $l->getCode() );
-			$this->assertTrue( $p !== null, 'parent language exists' );
-			$this->assertEquals( 'sr', $p->getCode(), 'sr is parent language' );
-			// This is a valid variant of the base
-			$this->assertTrue( $p->hasVariant( $l->getCode() ) );
-			// This test should be tweaked if/when sr-ec is renamed (T117845)
-			// to swap the roles of sr-ec and sr-Cyrl
-			$this->assertTrue( $l->hasVariant( 'sr-ec' ), 'sr-ec exists' );
-			// note that sr-cyrl is an alias, not a (strict) variant name
-			foreach ( [ 'sr-EC', 'sr-Cyrl', 'sr-cyrl', 'sr-bogus' ] as $v ) {
-				$this->assertFalse( $l->hasVariant( $v ), "$v is not a variant of $code" );
-			}
-		}
-	}
-
-	/**
-	 * @covers Language::hasVariant
+	 * @covers SrConverter::hasVariant
 	 */
 	public function testHasVariantBogus() {
-		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
-		$langs = [
-			// Note that case matters when calling getLanguage(); these are all bogus language codes
-			'sr-EC' => $langFactory->getLanguage( 'sr-EC' ),
-			'sr-Cyrl' => $langFactory->getLanguage( 'sr-Cyrl' ),
-			'sr-bogus' => $langFactory->getLanguage( 'sr-bogus' ),
+		$variants = [
+			'sr-ec',
+			'sr-el',
 		];
-		foreach ( $langs as $code => $l ) {
-			$p = $langFactory->getParentLanguage( $code );
-			$this->assertTrue( $p === null, 'no parent for bogus language' );
-			$this->assertFalse( $this->getLang()->hasVariant( $code ), "$code is not a sr variant" );
-			foreach ( [ 'sr', 'sr-ec', 'sr-EC', 'sr-Cyrl', 'sr-cyrl', 'sr-bogus' ] as $v ) {
-				if ( $v !== $code ) {
-					$this->assertFalse( $l->hasVariant( $v ), "no variant $v" );
-				}
-			}
+
+		foreach ( $variants as $variant ) {
+			$this->assertTrue( $this->getLanguageConverter()->hasVariant( $variant ),
+			 "no variant for $variant language" );
 		}
 	}
 
 	/**
-	 * @covers LanguageConverter::convertTo
+	 * @covers SrConverter::convertTo
 	 */
 	public function testEasyConversions() {
 		$this->assertCyrillic(
@@ -93,7 +45,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers LanguageConverter::convertTo
+	 * @covers SrConverter::convertTo
 	 */
 	public function testMixedConversions() {
 		$this->assertCyrillic(
@@ -107,7 +59,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers LanguageConverter::convertTo
+	 * @covers SrConverter::convertTo
 	 */
 	public function testSameAmountOfLatinAndCyrillicGetConverted() {
 		$this->assertConverted(
@@ -122,7 +74,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 
 	/**
 	 * @author Nikola Smolenski
-	 * @covers LanguageConverter::convertTo
+	 * @covers SrConverter::convertTo
 	 */
 	public function testConversionToCyrillic() {
 		// A simple conversion of Latin to Cyrillic
@@ -164,7 +116,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @covers LanguageConverter::convertTo
+	 * @covers SrConverter::convertTo
 	 */
 	public function testConversionToLatin() {
 		// A simple conversion of Latin to Latin
@@ -183,58 +135,6 @@ class LanguageSrTest extends LanguageClassesTestCase {
 		$this->assertEquals( 'абцдšđžčć',
 			$this->convertToLatin( 'абцдšđžčć' )
 		);
-	}
-
-	/**
-	 * @dataProvider providePlural
-	 * @covers Language::convertPlural
-	 */
-	public function testPlural( $result, $value ) {
-		$forms = [ 'one', 'few', 'other' ];
-		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
-	}
-
-	/**
-	 * @dataProvider providePlural
-	 * @covers Language::getPluralRuleType
-	 */
-	public function testGetPluralRuleType( $result, $value ) {
-		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
-	}
-
-	public static function providePlural() {
-		return [
-			[ 'one', 1 ],
-			[ 'other', 11 ],
-			[ 'one', 91 ],
-			[ 'one', 121 ],
-			[ 'few', 2 ],
-			[ 'few', 3 ],
-			[ 'few', 4 ],
-			[ 'few', 334 ],
-			[ 'other', 5 ],
-			[ 'other', 15 ],
-			[ 'other', 120 ],
-		];
-	}
-
-	/**
-	 * @dataProvider providePluralTwoForms
-	 * @covers Language::convertPlural
-	 */
-	public function testPluralTwoForms( $result, $value ) {
-		$forms = [ 'one', 'other' ];
-		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
-	}
-
-	public static function providePluralTwoForms() {
-		return [
-			[ 'one', 1 ],
-			[ 'other', 11 ],
-			[ 'other', 4 ],
-			[ 'one', 91 ],
-			[ 'one', 121 ],
-		];
 	}
 
 	# #### HELPERS #####################################################
@@ -293,11 +193,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 
 	/** Wrapper for converter::convertTo() method */
 	protected function convertTo( $text, $variant ) {
-		return $this->getLang()
-			->getConverter()
-			->convertTo(
-				$text, $variant
-			);
+		return $this->getLanguageConverter()->convertTo( $text, $variant );
 	}
 
 	protected function convertToCyrillic( $text ) {
