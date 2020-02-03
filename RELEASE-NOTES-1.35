@@ -130,6 +130,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   to retain these styles, you will need to load these styles via a module
   using the ResourceLoaderSkinModule class. See Vector and Monobook for
   examples.
+* ParserOutput now has methods addExtraCSPStyleSrc, addExtraCSPDefaultSrc
+  addExtraCSPScriptSrc for parser tags/functions to be able to add sources
+  to the Content Security Policy.
 * …
 
 === External library changes in 1.35 ===

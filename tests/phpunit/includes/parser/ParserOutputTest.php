@@ -399,7 +399,11 @@ EOF
 		$a->addHeadItem( '<bar1>', 'bar' );
 		$a->addModules( 'test-module-a' );
 		$a->addModuleStyles( 'test-module-styles-a' );
-		$b->addJsConfigVars( 'test-config-var-a', 'a' );
+		$a->addJsConfigVars( 'test-config-var-a', 'a' );
+		$a->addExtraCSPStyleSrc( 'css.com' );
+		$a->addExtraCSPStyleSrc( 'css2.com' );
+		$a->addExtraCSPScriptSrc( 'js.com' );
+		$a->addExtraCSPDefaultSrc( 'img.com' );
 
 		$b = new ParserOutput();
 		$b->setIndexPolicy( 'noindex' );
@@ -409,6 +413,10 @@ EOF
 		$b->addModuleStyles( 'test-module-styles-b' );
 		$b->addJsConfigVars( 'test-config-var-b', 'b' );
 		$b->addJsConfigVars( 'test-config-var-a', 'X' );
+		$b->addExtraCSPStyleSrc( 'https://css.ca' );
+		$b->addExtraCSPScriptSrc( 'jscript.com' );
+		$b->addExtraCSPScriptSrc( 'vbscript.com' );
+		$b->addExtraCSPDefaultSrc( 'img.com/foo.jpg' );
 
 		yield 'head items and friends' => [ $a, $b, [
 			'getHeadItems' => [
@@ -428,6 +436,20 @@ EOF
 				'test-config-var-a' => 'X', // overwritten
 				'test-config-var-b' => 'b',
 			],
+			'getExtraCSPStyleSrcs' => [
+				'css.com',
+				'css2.com',
+				'https://css.ca'
+			],
+			'getExtraCSPScriptSrcs' => [
+				'js.com',
+				'jscript.com',
+				'vbscript.com'
+			],
+			'getExtraCSPDefaultSrcs' => [
+				'img.com',
+				'img.com/foo.jpg'
+			]
 		] ];
 
 		// TOC ------------
@@ -957,6 +979,32 @@ EOF
 		$po = unserialize( stripcslashes( $serialized ) );
 		$reserialized = serialize( $po );
 		$this->assertStringStartsWith( 'O:', $reserialized );
+	}
+
+	/**
+	 * @covers ParserOutput::addExtraCSPScriptSrc
+	 * @covers ParserOutput::addExtraCSPDefaultSrc
+	 * @covers ParserOutput::addExtraCSPStyleSrc
+	 * @covers ParserOutput::getExtraCSPScriptSrcs
+	 * @covers ParserOutput::getExtraCSPDefaultSrcs
+	 * @covers ParserOutput::getExtraCSPStyleSrcs
+	 */
+	public function testCSPSources() {
+		$po = new ParserOutput;
+
+		$this->assertEquals( $po->getExtraCSPScriptSrcs(), [], 'empty Script' );
+		$this->assertEquals( $po->getExtraCSPStyleSrcs(), [], 'empty Style' );
+		$this->assertEquals( $po->getExtraCSPDefaultSrcs(), [], 'empty Default' );
+
+		$po->addExtraCSPScriptSrc( 'foo.com' );
+		$po->addExtraCSPScriptSrc( 'bar.com' );
+		$po->addExtraCSPDefaultSrc( 'baz.com' );
+		$po->addExtraCSPStyleSrc( 'fred.com' );
+		$po->addExtraCSPStyleSrc( 'xyzzy.com' );
+
+		$this->assertEquals( $po->getExtraCSPScriptSrcs(), [ 'foo.com', 'bar.com' ], 'Script' );
+		$this->assertEquals( $po->getExtraCSPDefaultSrcs(),  [ 'baz.com' ], 'Default' );
+		$this->assertEquals( $po->getExtraCSPStyleSrcs(), [ 'fred.com', 'xyzzy.com' ], 'Style' );
 	}
 
 }
