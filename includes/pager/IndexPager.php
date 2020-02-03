@@ -740,7 +740,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * This function should be overridden to return the name of the index fi-
 	 * eld.  If the pager supports multiple orders, it may return an array of
-	 * 'querykey' => 'indexfield' pairs, so that a request with &count=querykey
+	 * 'querykey' => 'indexfield' pairs, so that a request with &order=querykey
 	 * will use indexfield to sort.  In this case, the first returned key is
 	 * the default.
 	 *
@@ -758,7 +758,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * If getIndexField() returns an array of 'querykey' => 'indexfield' pairs then
 	 * this must return a corresponding array of 'querykey' => [ fields... ] pairs
-	 * in order for a request with &count=querykey to use [ fields... ] to sort.
+	 * in order for a request with &order=querykey to use [ fields... ] to sort.
 	 *
 	 * If getIndexField() returns a string with the field to sort by, this must either:
 	 * 1 - return an associative array like above, but only the elements for the current
