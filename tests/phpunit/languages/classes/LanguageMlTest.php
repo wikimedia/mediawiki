@@ -6,6 +6,7 @@
  */
 
 /**
+ * @group Language
  * @covers LanguageMl
  */
 class LanguageMlTest extends LanguageClassesTestCase {

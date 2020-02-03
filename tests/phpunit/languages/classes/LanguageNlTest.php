@@ -5,7 +5,9 @@
  * @file
  */
 
-/** Tests for MediaWiki languages/LanguageNl.php */
+/** Tests for MediaWiki languages/LanguageNl.php
+ * @group Language
+ */
 class LanguageNlTest extends LanguageClassesTestCase {
 
 	/**
