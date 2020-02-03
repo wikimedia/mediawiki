@@ -101,6 +101,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 ==== New external libraries ====
 * Added doctrine/dbal 2.9.3 (dev-only).
 * Added wikimedia/ip-utils 1.0.0.
+* Added vuejs v2.6.11.
 * …
 
 ==== Changed external libraries ====

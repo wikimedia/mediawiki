@@ -3812,6 +3812,17 @@ $wgResourceLoaderStorageVersion = 1;
  */
 $wgAllowSiteCSSOnRestrictedPages = false;
 
+/**
+ * Whether to use the development version of Vue.js. This should be disabled
+ * for production installations. For development installations, enabling this
+ * provides useful additional warnings and checks.
+ *
+ * Even when this is disabled, using ResourceLoader's debug mode (?debug=true)
+ * will cause the development version to be loaded.
+ * @since 1.35
+ */
+$wgVueDevelopmentMode = false;
+
 /** @} */ # End of ResourceLoader settings }
 
 /*************************************************************************//**
