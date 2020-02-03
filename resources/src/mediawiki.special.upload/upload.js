@@ -6,8 +6,6 @@
  * @singleton
  */
 
-/* global Uint8Array */
-
 ( function () {
 	var uploadWarning, uploadTemplatePreview,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
