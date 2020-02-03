@@ -93,7 +93,7 @@
 	"apihelp-query+blocks-param-start": "Ajatempel, millest alates loetleda.",
 	"apihelp-query+blocks-param-end": "Ajatempel, milleni loetleda.",
 	"apihelp-query+blocks-param-prop": "Millised atribuudid hankida:",
-	"apihelp-query+blocks-param-show": "Näita ainult üksusi, mis vastavad neile kriteeriumitele.\nNäiteks, et näidata ainult IP-aadresside suhtes rakendatud tähtajatuid blokeeringuid, määra <kbd>$1show=ip|!temp</kbd>.",
+	"apihelp-query+blocks-param-show": "Näita ainult üksusi, mis vastavad neile kriteeriumitele.\nNäiteks, et näidata ainult IP-aadresside vastu rakendatud tähtajatuid blokeeringuid, määra <kbd>$1show=ip|!temp</kbd>.",
 	"apihelp-query+categories-param-prop": "Millised lisaatribuudid iga kategooria kohta hankida:",
 	"apihelp-query+categories-param-show": "Milliseid kategooriaid näidata.",
 	"apihelp-query+categories-param-limit": "Kui palju kategooriaid tagastada.",

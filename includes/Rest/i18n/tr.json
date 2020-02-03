@@ -27,5 +27,7 @@
 	"rest-pagehistorycount-too-many-revisions": "Belirtilen başlık bu sayıyı almak için çok fazla düzeltme içeriyor.",
 	"rest-search-error": "Arama sonuçlarını döndürürken hata oluştu: $1",
 	"rest-page-source-type-error": "İstenen sayfa kaynağının içerik türü desteklenmiyor",
-	"rest-no-revision": "$1 başlık için düzeltme alınamadı"
+	"rest-no-revision": "$1 başlık için düzeltme alınamadı",
+	"rest-media-too-many-links": "$1 başlığında çok fazla medya bağlantısı bulundu ($2 izin verilir)",
+	"rest-html-backend-error": "Parsoid HTML getirilemedi"
 }
