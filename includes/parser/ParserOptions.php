@@ -1348,12 +1348,12 @@ class ParserOptions {
 
 		// add in language specific options, if any
 		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
-		if ( $title !== null ) {
-			$confstr .= $title->getPageLanguage()->getExtraHashOptions();
-		} else {
-			$confstr .=
-				MediaWikiServices::getInstance()->getContentLanguage()->getExtraHashOptions();
-		}
+
+		$lang = $title ? $title->getPageLanguage() :
+			MediaWikiServices::getInstance()->getContentLanguage();
+		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $lang );
+		$confstr .= $converter->getExtraHashOptions();
 
 		$confstr .= $wgRenderHashAppend;
 

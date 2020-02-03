@@ -190,6 +190,24 @@ class Title implements LinkTarget, IDBAccessObject {
 	// @}
 
 	/**
+	 * Shorthand for getting a Language Converter for specific language
+	 * @param Language $language Language of converter
+	 * @return ILanguageConverter
+	 */
+	private function getLanguageConverter( Language $language ) : ILanguageConverter {
+		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $language );
+	}
+
+	/**
+	 * Shorthand for getting a Language Converter for page's language
+	 * @return ILanguageConverter
+	 */
+	private function getPageLanguageConverter() : ILanguageConverter {
+		return $this->getLanguageConverter( $this->getPageLanguage() );
+	}
+
+	/**
 	 * B/C kludge: provide a TitleParser for use by Title.
 	 * Ideally, Title would have no methods that need this.
 	 * Avoid usage of this singleton by using TitleValue
@@ -2219,10 +2237,10 @@ class Title implements LinkTarget, IDBAccessObject {
 					&& preg_match( '/^variant=([^&]*)$/', $query, $matches )
 					&& $this->getPageLanguage()->equals(
 						MediaWikiServices::getInstance()->getContentLanguage() )
-					&& $this->getPageLanguage()->hasVariants()
+					&& $this->getPageLanguageConverter()->hasVariants()
 				) {
 					$variant = urldecode( $matches[1] );
-					if ( $this->getPageLanguage()->hasVariant( $variant ) ) {
+					if ( $this->getPageLanguageConverter()->hasVariant( $variant ) ) {
 						// Only do the variant replacement if the given variant is a valid
 						// variant for the page's language.
 						$url = str_replace( '$2', urlencode( $variant ), $wgVariantArticlePath );
@@ -3547,9 +3565,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			$this->getInternalURL( 'action=history' )
 		];
 
-		$pageLang = $this->getPageLanguage();
-		if ( $pageLang->hasVariants() ) {
-			$variants = $pageLang->getVariants();
+		if ( $this->getPageLanguageConverter()->hasVariants() ) {
+			$variants = $this->getPageLanguageConverter()->getVariants();
 			foreach ( $variants as $vCode ) {
 				$urls[] = $this->getInternalURL( $vCode );
 			}
@@ -4069,7 +4086,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				return $user->getName();
 			}, $users );
 		} catch ( InvalidArgumentException $e ) {
-			 return null; // b/c
+			return null; // b/c
 		}
 	}
 
@@ -4621,7 +4638,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		if ( $this->isSpecialPage() ) {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
-			$variant = $wgLang->getPreferredVariant();
+			$variant = $this->getLanguageConverter( $wgLang )->getPreferredVariant();
 			if ( $wgLang->getCode() !== $variant ) {
 				return MediaWikiServices::getInstance()->getLanguageFactory()
 					->getLanguage( $variant );
@@ -4634,7 +4651,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$dbPageLanguage = $this->getDbPageLanguageCode();
 		if ( $dbPageLanguage ) {
 			$pageLang = wfGetLangObj( $dbPageLanguage );
-			$variant = $pageLang->getPreferredVariant();
+			$variant = $this->getLanguageConverter( $pageLang )->getPreferredVariant();
 			if ( $pageLang->getCode() !== $variant ) {
 				$pageLang = MediaWikiServices::getInstance()->getLanguageFactory()
 					->getLanguage( $variant );

@@ -27,26 +27,45 @@
 class ZhConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
-	 * @param string $maincode
-	 * @param array $variants
-	 * @param array $variantfallbacks
-	 * @param array $flags
-	 * @param array $manualLevel
 	 */
-	public function __construct( Language $langobj, $maincode,
-		$variants = [],
-		$variantfallbacks = [],
-		$flags = [],
-		$manualLevel = []
-	) {
+	public function __construct( Language $langobj ) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
-		parent::__construct( $langobj, $maincode,
+
+		$variants = [
+			'zh',
+			'zh-hans',
+			'zh-hant',
+			'zh-cn',
+			'zh-hk',
+			'zh-mo',
+			'zh-my',
+			'zh-sg',
+			'zh-tw'
+		];
+
+		$variantfallbacks = [
+			'zh' => [ 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ],
+			'zh-hans' => [ 'zh-cn', 'zh-sg', 'zh-my' ],
+			'zh-hant' => [ 'zh-tw', 'zh-hk', 'zh-mo' ],
+			'zh-cn' => [ 'zh-hans', 'zh-sg', 'zh-my' ],
+			'zh-sg' => [ 'zh-hans', 'zh-cn', 'zh-my' ],
+			'zh-my' => [ 'zh-hans', 'zh-sg', 'zh-cn' ],
+			'zh-tw' => [ 'zh-hant', 'zh-hk', 'zh-mo' ],
+			'zh-hk' => [ 'zh-hant', 'zh-mo', 'zh-tw' ],
+			'zh-mo' => [ 'zh-hant', 'zh-hk', 'zh-tw' ],
+		];
+		$ml = [
+			'zh' => 'disable',
+			'zh-hans' => 'unidirectional',
+			'zh-hant' => 'unidirectional',
+		];
+
+		parent::__construct( $langobj, 'zh',
 			$variants,
 			$variantfallbacks,
-			$flags,
-			$manualLevel
-		);
+			[],
+			$ml );
 		$names = [
 			'zh' => '原文',
 			'zh-hans' => '简体',
@@ -112,43 +131,6 @@ class ZhConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageZh extends LanguageZh_hans {
-	protected function newConverter() : LanguageConverter {
-		$variants = [
-			'zh',
-			'zh-hans',
-			'zh-hant',
-			'zh-cn',
-			'zh-hk',
-			'zh-mo',
-			'zh-my',
-			'zh-sg',
-			'zh-tw'
-		];
-
-		$variantfallbacks = [
-			'zh' => [ 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ],
-			'zh-hans' => [ 'zh-cn', 'zh-sg', 'zh-my' ],
-			'zh-hant' => [ 'zh-tw', 'zh-hk', 'zh-mo' ],
-			'zh-cn' => [ 'zh-hans', 'zh-sg', 'zh-my' ],
-			'zh-sg' => [ 'zh-hans', 'zh-cn', 'zh-my' ],
-			'zh-my' => [ 'zh-hans', 'zh-sg', 'zh-cn' ],
-			'zh-tw' => [ 'zh-hant', 'zh-hk', 'zh-mo' ],
-			'zh-hk' => [ 'zh-hant', 'zh-mo', 'zh-tw' ],
-			'zh-mo' => [ 'zh-hant', 'zh-hk', 'zh-tw' ],
-		];
-		$ml = [
-			'zh' => 'disable',
-			'zh-hans' => 'unidirectional',
-			'zh-hant' => 'unidirectional',
-		];
-
-		return new ZhConverter( $this, 'zh',
-			$variants, $variantfallbacks,
-			[],
-			$ml
-		);
-	}
-
 	/**
 	 * this should give much better diff info
 	 *
@@ -179,7 +161,7 @@ class LanguageZh extends LanguageZh_hans {
 		// better to use zh-hans for search, since conversion from
 		// Traditional to Simplified is less ambiguous than the
 		// other way around
-		$s = $this->mConverter->autoConvert( $string, $autoVariant );
+		$s = $this->getConverter()->autoConvert( $string, $autoVariant );
 		// LanguageZh_hans::normalizeForSearch
 		$s = parent::normalizeForSearch( $s );
 		return $s;

@@ -58,18 +58,17 @@ class CrhConverter extends LanguageConverter {
 
 	/**
 	 * @param Language $langobj
-	 * @param string $maincode
-	 * @param array $variants
-	 * @param array $variantfallbacks
-	 * @param array $flags
 	 */
-	public function __construct( Language $langobj, $maincode,
-		$variants = [],
-		$variantfallbacks = [],
-		$flags = []
-	) {
-		parent::__construct( $langobj, $maincode,
-			$variants, $variantfallbacks, $flags );
+	public function __construct( Language $langobj ) {
+		$variants = [ 'crh', 'crh-cyrl', 'crh-latn' ];
+		$variantfallbacks = [
+			'crh' => 'crh-latn',
+			'crh-cyrl' => 'crh-latn',
+			'crh-latn' => 'crh-cyrl',
+		];
+
+		parent::__construct( $langobj, 'crh',
+			$variants, $variantfallbacks, [] );
 
 		// No point delaying this since they're in code.
 		// Waiting until loadDefaultTables() means they never get loaded
@@ -282,22 +281,4 @@ class CrhConverter extends LanguageConverter {
 		}
 	}
 
-}
-
-/**
- * Crimean Tatar (Qırımtatarca)
- *
- * @ingroup Language
- */
-class LanguageCrh extends Language {
-	protected function newConverter() : CrhConverter {
-		$variants = [ 'crh', 'crh-cyrl', 'crh-latn' ];
-		$variantfallbacks = [
-			'crh' => 'crh-latn',
-			'crh-cyrl' => 'crh-latn',
-			'crh-latn' => 'crh-cyrl',
-		];
-
-		return new CrhConverter( $this, 'crh', $variants, $variantfallbacks );
-	}
 }

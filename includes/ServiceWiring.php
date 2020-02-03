@@ -58,6 +58,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -303,12 +304,20 @@ return [
 		);
 	},
 
+	'LanguageConverterFactory' => function ( MediaWikiServices $services ) : LanguageConverterFactory {
+		$usePigLatinVariant = $services->getMainConfig()->get( 'UsePigLatinVariant' );
+		return new LanguageConverterFactory( $usePigLatinVariant,  function () use ( $services ) {
+			return $services->getContentLanguage();
+		} );
+	},
+
 	'LanguageFactory' => function ( MediaWikiServices $services ) : LanguageFactory {
 		return new LanguageFactory(
 			new ServiceOptions( LanguageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getLocalisationCache(),
 			$services->getLanguageNameUtils(),
-			$services->getLanguageFallback()
+			$services->getLanguageFallback(),
+			$services->getLanguageConverterFactory()
 		);
 	},
 
@@ -508,6 +517,7 @@ return [
 			$clusterCache,
 			$srvCache,
 			$services->getContentLanguage(),
+			$services->getLanguageConverterFactory()->getLanguageConverter(),
 			$logger,
 			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ],
 			$services->getLanguageFactory(),

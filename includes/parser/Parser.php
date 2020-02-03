@@ -481,7 +481,7 @@ class Parser {
 		$this->resetOutput();
 		$this->mAutonumber = 0;
 		$this->mIncludeCount = [];
-		$this->mLinkHolders = new LinkHolderArray( $this );
+		$this->mLinkHolders = new LinkHolderArray( $this, $this->getContentLanguageConverter() );
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
 			$this->mRevisionId = $this->mRevisionUser = $this->mRevisionSize = null;
@@ -602,11 +602,11 @@ class Parser {
 			|| isset( $this->mDoubleUnderscores['notitleconvert'] )
 			|| $this->mOutput->getDisplayTitle() !== false )
 		) {
-			$convruletitle = $this->getTargetLanguage()->getConvRuleTitle();
+			$convruletitle = $this->getTargetLanguageConverter()->getConvRuleTitle();
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$titleText = $this->getTargetLanguage()->convertTitle( $title );
+				$titleText = $this->getTargetLanguageConverter()->convertTitle( $title );
 				$this->mOutput->setTitleText( $titleText );
 			}
 		}
@@ -1515,6 +1515,26 @@ class Parser {
 	}
 
 	/**
+	 * Shorthand for getting a Language Converter for Target language
+	 *
+	 * @return ILanguageConverter
+	 */
+	private function getTargetLanguageConverter() : ILanguageConverter {
+		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $this->getTargetLanguage() );
+	}
+
+	/**
+	 * Shorthand for getting a Language Converter for Content language
+	 *
+	 * @return ILanguageConverter
+	 */
+	private function getContentLanguageConverter() : ILanguageConverter {
+		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $this->getContentLanguage() );
+	}
+
+	/**
 	 * Helper function for parse() that transforms half-parsed HTML into fully
 	 * parsed HTML.
 	 *
@@ -1550,7 +1570,7 @@ class Parser {
 			# The position of the convert() call should not be changed. it
 			# assumes that the links are all replaced and the only thing left
 			# is the <nowiki> mark.
-			$text = $this->getTargetLanguage()->convert( $text );
+			$text = $this->getTargetLanguageConverter()->convert( $text );
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
@@ -1781,7 +1801,7 @@ class Parser {
 		if ( $text === false ) {
 			# Not an image, make a link
 			$text = Linker::makeExternalLink( $url,
-				$this->getTargetLanguage()->getConverter()->markNoConversion( $url ),
+				$this->getTargetLanguageConverter()->markNoConversion( $url ),
 				true, 'free',
 				$this->getExternalLinkAttribs( $url ), $this->getTitle() );
 			# Register it in the output object...
@@ -2065,7 +2085,7 @@ class Parser {
 
 			// Excluding protocol-relative URLs may avoid many false positives.
 			if ( preg_match( '/^(?:' . wfUrlProtocolsWithoutProtRel() . ')/', $text ) ) {
-				$text = $this->getTargetLanguage()->getConverter()->markNoConversion( $text );
+				$text = $this->getTargetLanguageConverter()->markNoConversion( $text );
 			}
 
 			$url = Sanitizer::cleanUrl( $url );
@@ -2306,7 +2326,7 @@ class Parser {
 			$e1_img = "/^([{$tc}]+)\\|(.*)\$/sD";
 		}
 
-		$holders = new LinkHolderArray( $this );
+		$holders = new LinkHolderArray( $this, $this->getContentLanguageConverter() );
 
 		# split the entire text string on occurrences of [[
 		$a = StringUtils::explode( '[[', ' ' . $s );
@@ -2547,7 +2567,7 @@ class Parser {
 					}
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
 					$sortkey = str_replace( "\n", '', $sortkey );
-					$sortkey = $this->getTargetLanguage()->convertCategoryKey( $sortkey );
+					$sortkey = $this->getTargetLanguageConverter()->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
 					continue;
@@ -3316,8 +3336,8 @@ class Parser {
 			if ( $title ) {
 				$titleText = $title->getPrefixedText();
 				# Check for language variants if the template is not found
-				if ( $this->getTargetLanguage()->hasVariants() && $title->getArticleID() == 0 ) {
-					$this->getTargetLanguage()->findVariantLink( $part1, $title, true );
+				if ( $this->getTargetLanguageConverter()->hasVariants() && $title->getArticleID() == 0 ) {
+					$this->getTargetLanguageConverter()->findVariantLink( $part1, $title, true );
 				}
 				# Do recursion depth check
 				$limit = $this->mOptions->getMaxTemplateDepth();

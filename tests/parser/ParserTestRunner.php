@@ -1215,7 +1215,8 @@ class ParserTestRunner {
 		$teardown[] = function () use ( $context, $oldSkin ) {
 			// Clear language conversion tables
 			$wrapper = TestingAccessWrapper::newFromObject(
-				$context->getLanguage()->getConverter()
+				MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $context->getLanguage() )
 			);
 			$wrapper->reloadTables();
 			// Reset context to the restored globals

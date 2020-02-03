@@ -469,13 +469,17 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// see if there are multiple language variants to choose from
 		if ( !$this->options->get( 'DisableLangConversion' ) ) {
+
+			$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+				->getLanguageConverter( $this->contLang );
+
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $this->contLang->getCode() ) {
-					if ( !$this->contLang->hasVariants() ) {
+					if ( !$converter->hasVariants() ) {
 						continue;
 					}
 
-					$variants = $this->contLang->getVariants();
+					$variants = $converter->getVariants();
 					$variantArray = [];
 					foreach ( $variants as $v ) {
 						$v = str_replace( '_', '-', strtolower( $v ) );

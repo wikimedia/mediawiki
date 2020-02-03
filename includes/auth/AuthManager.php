@@ -2421,8 +2421,10 @@ class AuthManager implements LoggerAwareInterface {
 		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $contLang;
 		$user->setOption( 'language', $lang->getPreferredVariant() );
 
-		if ( $contLang->hasVariants() ) {
-			$user->setOption( 'variant', $contLang->getPreferredVariant() );
+		$contLangConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+		if ( $contLangConverter->hasVariants() ) {
+			$user->setOption( 'variant', $contLangConverter->getPreferredVariant() );
 		}
 	}
 

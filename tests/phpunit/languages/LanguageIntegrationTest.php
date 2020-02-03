@@ -1,10 +1,14 @@
 <?php
 
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @group Language
+ */
 class LanguageIntegrationTest extends LanguageClassesTestCase {
 	use LanguageNameUtilsTestTrait;
 
@@ -17,7 +21,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$this->createNoOpMock( LocalisationCache::class ),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
-			$this->createNoOpMock( MapCacheLRU::class )
+			$this->createNoOpMock( LanguageConverterFactory::class )
 		);
 	}
 
@@ -1976,7 +1980,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			MediaWikiServices::getInstance()->getLocalisationCache(),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
-			$this->createNoOpMock( MapCacheLRU::class )
+			$this->createNoOpMock( LanguageConverterFactory::class )
 		);
 		$config += [
 			'wgMetaNamespace' => 'Project',

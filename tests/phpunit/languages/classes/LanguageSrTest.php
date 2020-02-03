@@ -19,7 +19,6 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * @covers LanguageSr
  * @covers SrConverter
  */
 class LanguageSrTest extends LanguageClassesTestCase {
@@ -44,7 +43,6 @@ class LanguageSrTest extends LanguageClassesTestCase {
 			$p = $langFactory->getParentLanguage( $l->getCode() );
 			$this->assertTrue( $p !== null, 'parent language exists' );
 			$this->assertEquals( 'sr', $p->getCode(), 'sr is parent language' );
-			$this->assertTrue( $p instanceof LanguageSr, 'parent is LanguageSr' );
 			// This is a valid variant of the base
 			$this->assertTrue( $p->hasVariant( $l->getCode() ) );
 			// This test should be tweaked if/when sr-ec is renamed (T117845)
@@ -297,7 +295,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 	/** Wrapper for converter::convertTo() method */
 	protected function convertTo( $text, $variant ) {
 		return $this->getLang()
-			->mConverter
+			->getConverter()
 			->convertTo(
 				$text, $variant
 			);

@@ -753,7 +753,7 @@ abstract class ContentHandler {
 		if ( $title->getNamespace() !== NS_MEDIAWIKI ) {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
-			$variant = $pageLang->getPreferredVariant();
+			$variant = $this->getLanguageConverter( $pageLang )->getPreferredVariant();
 			if ( $pageLang->getCode() !== $variant ) {
 				$pageLang = MediaWikiServices::getInstance()->getLanguageFactory()
 					->getLanguage( $variant );
@@ -816,6 +816,16 @@ abstract class ContentHandler {
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
 		return false;
+	}
+
+	/**
+	 * Shorthand for getting a Language Converter for specific language
+	 * @param Language $language Language of converter
+	 * @return ILanguageConverter
+	 */
+	private function getLanguageConverter( Language $language ) : ILanguageConverter {
+		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $language );
 	}
 
 	/**

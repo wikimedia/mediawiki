@@ -94,7 +94,9 @@ class BasicSearchResultSetWidget {
 
 		// Convert the whole thing to desired language variant
 		// TODO: Move this up to Special:Search?
-		return MediaWikiServices::getInstance()->getContentLanguage()->convert( $out );
+		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+		return $converter->convert( $out );
 	}
 
 	/**

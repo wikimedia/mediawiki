@@ -33,6 +33,7 @@ use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -665,6 +666,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup() : InterwikiLookup {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return LanguageConverterFactory
+	 */
+	public function getLanguageConverterFactory() : LanguageConverterFactory {
+		return $this->getService( 'LanguageConverterFactory' );
 	}
 
 	/**

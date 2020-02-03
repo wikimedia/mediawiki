@@ -1,7 +1,6 @@
 <?php
 
 /**
- * @covers LanguageIu
  * @covers IuConverter
  */
 class LanguageIuTest extends LanguageClassesTestCase {

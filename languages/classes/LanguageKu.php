@@ -143,6 +143,20 @@ class KuConverter extends LanguageConverter {
 */
 		];
 
+	/**
+	 * @param Language $langobj
+	 */
+	public function __construct( Language $langobj ) {
+		$variants = [ 'ku', 'ku-arab', 'ku-latn' ];
+		$variantfallbacks = [
+			'ku' => 'ku-latn',
+			'ku-arab' => 'ku-latn',
+			'ku-latn' => 'ku-arab',
+		];
+
+		parent::__construct( $langobj, 'ku', $variants, $variantfallbacks );
+	}
+
 	protected function loadDefaultTables() {
 		$this->mTables = [
 			'ku-latn' => new ReplacementArray( $this->mArabicToLatin ),
@@ -220,24 +234,5 @@ class KuConverter extends LanguageConverter {
 		}
 
 		return parent::translate( $text, $toVariant );
-	}
-}
-
-/**
- * Kurdish (Kurdî / كوردی)
- *
- * @ingroup Language
- */
-class LanguageKu extends Language {
-
-	protected function newConverter() : KuConverter {
-		$variants = [ 'ku', 'ku-arab', 'ku-latn' ];
-		$variantfallbacks = [
-			'ku' => 'ku-latn',
-			'ku-arab' => 'ku-latn',
-			'ku-latn' => 'ku-arab',
-		];
-
-		return new KuConverter( $this, 'ku', $variants, $variantfallbacks );
 	}
 }

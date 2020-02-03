@@ -85,8 +85,11 @@ class SpecialFewestRevisions extends QueryPage {
 			);
 		}
 		$linkRenderer = $this->getLinkRenderer();
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->
-			convert( htmlspecialchars( $nt->getPrefixedText() ) );
+
+		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+
+		$text = $converter->convertHtml( $nt->getPrefixedText() );
 		$plink = $linkRenderer->makeLink( $nt, new HtmlArmor( $text ) );
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->text();

@@ -18,9 +18,17 @@ class SearchNearMatcher {
 	 */
 	private $language;
 
+	/**
+	 * Current language converter
+	 * @var ILanguageConverter
+	 */
+	private $languageConverter;
+
 	public function __construct( Config $config, Language $lang ) {
 		$this->config = $config;
 		$this->language = $lang;
+		$this->languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $lang );
 	}
 
 	/**
@@ -57,10 +65,10 @@ class SearchNearMatcher {
 		$lang = $this->language;
 		$allSearchTerms = [ $searchterm ];
 
-		if ( $lang->hasVariants() ) {
+		if ( $this->languageConverter->hasVariants() ) {
 			$allSearchTerms = array_unique( array_merge(
 				$allSearchTerms,
-				$lang->autoConvertToAllVariants( $searchterm )
+				$this->languageConverter->autoConvertToAllVariants( $searchterm )
 			) );
 		}
 

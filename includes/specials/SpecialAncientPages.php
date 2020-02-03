@@ -93,10 +93,13 @@ class SpecialAncientPages extends QueryPage {
 		$d = $this->getLanguage()->userTimeAndDate( $result->value, $this->getUser() );
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$linkRenderer = $this->getLinkRenderer();
+
+		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+
 		$link = $linkRenderer->makeKnownLink(
 			$title,
-			new HtmlArmor( MediaWikiServices::getInstance()->getContentLanguage()->
-				convert( htmlspecialchars( $title->getPrefixedText() ) ) )
+			new HtmlArmor( $converter->convertHtml( $title->getPrefixedText() ) )
 		);
 
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );

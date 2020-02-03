@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 
@@ -17,7 +18,8 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			$options['code'] ?? 'en',
 			$this->createNoOpMock( LocalisationCache::class ),
 			$this->createNoOpMock( LanguageNameUtils::class ),
-			$this->createNoOpMock( LanguageFallback::class )
+			$this->createNoOpMock( LanguageFallback::class ),
+			$this->createNoOpMock( LanguageConverterFactory::class )
 		);
 	}
 

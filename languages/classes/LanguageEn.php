@@ -24,6 +24,14 @@
  * @ingroup Language
  */
 class EnConverter extends LanguageConverter {
+
+	/**
+	 * @param Language $langobj
+	 */
+	public function __construct( Language $langobj ) {
+		parent::__construct( $langobj, 'en', [ 'en', 'en-x-piglatin' ] );
+	}
+
 	/**
 	 * Dummy methods required by base class.
 	 */
@@ -74,12 +82,4 @@ class EnConverter extends LanguageConverter {
  * @ingroup Language
  */
 class LanguageEn extends Language {
-	protected function newConverter() {
-		global $wgUsePigLatinVariant;
-
-		if ( $wgUsePigLatinVariant ) {
-			return new EnConverter( $this, 'en', [ 'en', 'en-x-piglatin' ] );
-		}
-		return parent::newConverter();
-	}
 }

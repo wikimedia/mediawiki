@@ -17,7 +17,6 @@
  */
 
 /**
- * @covers LanguageUz
  * @covers UzConverter
  */
 class LanguageUzTest extends LanguageClassesTestCase {
@@ -115,7 +114,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 
 	/** Wrapper for converter::convertTo() method */
 	protected function convertTo( $text, $variant ) {
-		return $this->getLang()->mConverter->convertTo( $text, $variant );
+		return $this->getLang()->getConverter()->convertTo( $text, $variant );
 	}
 
 	protected function convertToCyrillic( $text ) {

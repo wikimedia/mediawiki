@@ -53,6 +53,9 @@ class LanguageFactory {
 	/** @var LanguageFallback */
 	private $langFallback;
 
+	/** @var LanguageConverterFactory */
+	private $langConverterFactory;
+
 	/** @var array */
 	private $langObjCache = [];
 
@@ -73,12 +76,14 @@ class LanguageFactory {
 	 * @param LocalisationCache $localisationCache
 	 * @param LanguageNameUtils $langNameUtils
 	 * @param LanguageFallback $langFallback
+	 * @param LanguageConverterFactory $langConverterFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		LocalisationCache $localisationCache,
 		LanguageNameUtils $langNameUtils,
-		LanguageFallback $langFallback
+		LanguageFallback $langFallback,
+		LanguageConverterFactory $langConverterFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -86,6 +91,7 @@ class LanguageFactory {
 		$this->localisationCache = $localisationCache;
 		$this->langNameUtils = $langNameUtils;
 		$this->langFallback = $langFallback;
+		$this->langConverterFactory = $langConverterFactory;
 	}
 
 	/**
@@ -142,7 +148,8 @@ class LanguageFactory {
 			$code,
 			$this->localisationCache,
 			$this->langNameUtils,
-			$this->langFallback
+			$this->langFallback,
+			$this->langConverterFactory,
 		];
 
 		if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {
@@ -202,7 +209,8 @@ class LanguageFactory {
 			}
 
 			$lang = $this->getLanguage( $codeBase );
-			if ( !$lang->hasVariant( $code ) ) {
+			$converter = $this->langConverterFactory->getLanguageConverter( $lang );
+			if ( !$converter->hasVariant( $code ) ) {
 				$this->parentLangCache[$code] = null;
 				return null;
 			}

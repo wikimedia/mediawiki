@@ -103,23 +103,18 @@ class TgConverter extends LanguageConverter {
 		'Ц' => 'Ts',
 	];
 
+	/**
+	 * @param Language $langobj
+	 */
+	public function __construct( Language $langobj ) {
+		$variants = [ 'tg', 'tg-latn' ];
+		parent::__construct( $langobj, 'tg', $variants );
+	}
+
 	protected function loadDefaultTables() {
 		$this->mTables = [
 			'tg-latn' => new ReplacementArray( $this->table ),
 			'tg' => new ReplacementArray()
 		];
-	}
-
-}
-
-/**
- * Tajik (Тоҷикӣ)
- *
- * @ingroup Language
- */
-class LanguageTg extends Language {
-	protected function newConverter() : TgConverter {
-		$variants = [ 'tg', 'tg-latn' ];
-		return new TgConverter( $this, 'tg', $variants );
 	}
 }

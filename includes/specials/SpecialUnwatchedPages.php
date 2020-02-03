@@ -117,8 +117,10 @@ class SpecialUnwatchedPages extends QueryPage {
 				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}
 
-		$text = MediaWikiServices::getInstance()->getContentLanguage()->
-			convert( htmlspecialchars( $nt->getPrefixedText() ) );
+		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+
+		$text = $converter->convertHtml( $nt->getPrefixedText() );
 
 		$linkRenderer = $this->getLinkRenderer();
 

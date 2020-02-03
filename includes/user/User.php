@@ -5157,7 +5157,8 @@ class User implements IDBAccessObject, UserIdentity {
 			// There's no need to do it for logged-in users: they can set preferences,
 			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
 			// so don't override user's choice (especially when the user chooses site default).
-			$variant = MediaWikiServices::getInstance()->getContentLanguage()->getDefaultVariant();
+			$factory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+			$variant = $factory->getLanguageConverter()->getDefaultVariant();
 			$this->mOptions['variant'] = $variant;
 			$this->mOptions['language'] = $variant;
 			$this->mOptionsLoaded = true;

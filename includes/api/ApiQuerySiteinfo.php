@@ -161,6 +161,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['titleconversion'] = !$config->get( 'DisableTitleConversion' );
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLangConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $contLang );
 		if ( $contLang->linkPrefixExtension() ) {
 			$linkPrefixCharset = $contLang->linkPrefixCharset();
 			$data['linkprefixcharset'] = $linkPrefixCharset;
@@ -200,9 +202,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['fallback'] = $fallbacks;
 		ApiResult::setIndexedTagName( $data['fallback'], 'lang' );
 
-		if ( $contLang->hasVariants() ) {
+		if ( $contLangConverter->hasVariants() ) {
 			$variants = [];
-			foreach ( $contLang->getVariants() as $code ) {
+			foreach ( $contLangConverter->getVariants() as $code ) {
 				$variants[] = [
 					'code' => $code,
 					'name' => $contLang->getVariantname( $code ),
@@ -739,9 +741,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( $langNames as $langCode ) {
 			$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 				->getLanguage( $langCode );
-			if ( $lang->getConverter() instanceof FakeConverter ) {
-				// Only languages which do not return instances of
-				// FakeConverter implement language conversion.
+			$langConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+				->getLanguageConverter( $lang );
+			if ( !$langConverter->hasVariants() ) {
+				// Only languages which has conversions can be processed
 				continue;
 			}
 			$data[$langCode] = [];
@@ -751,7 +754,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$variants = $lang->getVariants();
 			sort( $variants );
 			foreach ( $variants as $v ) {
-				$fallbacks = $lang->getConverter()->getVariantFallbacks( $v );
+				$fallbacks = $langConverter->getVariantFallbacks( $v );
 				if ( !is_array( $fallbacks ) ) {
 					$fallbacks = [ $fallbacks ];
 				}

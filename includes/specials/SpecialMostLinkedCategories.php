@@ -84,8 +84,11 @@ class SpecialMostLinkedCategories extends QueryPage {
 			);
 		}
 
-		$text = MediaWikiServices::getInstance()->getContentLanguage()
-			->convert( htmlspecialchars( $nt->getText() ) );
+		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+
+		$text = $converter->convertHtml( $nt->getText() );
+
 		$plink = $this->getLinkRenderer()->makeLink( $nt, new HtmlArmor( $text ) );
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 

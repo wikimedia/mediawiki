@@ -79,8 +79,10 @@ class SearchSqlite extends SearchDatabase {
 
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.
-				$convertedVariants = MediaWikiServices::getInstance()->getContentLanguage()->
-					autoConvertToAllVariants( $term );
+
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter();
+				$convertedVariants = $converter->autoConvertToAllVariants( $term );
 				if ( is_array( $convertedVariants ) ) {
 					$variants = array_unique( array_values( $convertedVariants ) );
 				} else {

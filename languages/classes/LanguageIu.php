@@ -87,6 +87,21 @@ class IuConverter extends LanguageConverter {
 		'ɫii' => 'ᖡ', 'ɫu' => 'ᖢ', 'ɫuu' => 'ᖣ', 'ɫa' => 'ᖤ', 'ɫaa' => 'ᖥ',
 	];
 
+	/**
+	 * @param Language $langobj
+	 */
+	public function __construct( Language $langobj ) {
+		$variants = [ 'iu', 'ike-cans', 'ike-latn' ];
+		$variantfallbacks = [
+			'iu' => 'ike-cans',
+			'ike-cans' => 'iu',
+			'ike-latn' => 'iu',
+		];
+		$flags = [];
+
+		parent::__construct( $langobj, 'iu', $variants, $variantfallbacks, $flags );
+	}
+
 	protected function loadDefaultTables() {
 		$this->mTables = [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
@@ -142,24 +157,5 @@ class IuConverter extends LanguageConverter {
 			$text = $this->mTables[$toVariant]->replace( $text );
 		}
 		return $text;
-	}
-}
-
-/**
- * Inuktitut
- *
- * @ingroup Language
- */
-class LanguageIu extends Language {
-	protected function newConverter() : IuConverter {
-		$variants = [ 'iu', 'ike-cans', 'ike-latn' ];
-		$variantfallbacks = [
-			'iu' => 'ike-cans',
-			'ike-cans' => 'iu',
-			'ike-latn' => 'iu',
-		];
-
-		$flags = [];
-		return new IuConverter( $this, 'iu', $variants, $variantfallbacks, $flags );
 	}
 }

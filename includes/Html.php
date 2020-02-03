@@ -865,7 +865,9 @@ class Html {
 				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMessage( 'blanknamespace' )->text();
 			} elseif ( is_int( $nsId ) ) {
-				$nsName = $lang->convertNamespace( $nsId );
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $lang );
+				$nsName = $converter->convertNamespace( $nsId );
 			}
 			$optionsOut[$nsId] = $nsName;
 		}
