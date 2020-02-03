@@ -6,6 +6,7 @@
  */
 
 /**
+ * @group Language
  * @covers LanguageKsh
  */
 class LanguageKshTest extends LanguageClassesTestCase {
