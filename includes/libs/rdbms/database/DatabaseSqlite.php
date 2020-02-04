@@ -1016,6 +1016,14 @@ class DatabaseSqlite extends Database {
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
+	public function buildGreatest( $fields, $values ) {
+		return $this->buildSuperlative( 'MAX', $fields, $values );
+	}
+
+	public function buildLeast( $fields, $values ) {
+		return $this->buildSuperlative( 'MIN', $fields, $values );
+	}
+
 	/**
 	 * @param string $oldName
 	 * @param string $newName

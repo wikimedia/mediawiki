@@ -1044,6 +1044,30 @@ interface IDatabase {
 	);
 
 	/**
+	 * Build a GREATEST function statement comparing columns/values
+	 *
+	 * Integer and float values in $values will not be quoted
+	 *
+	 * @param string|string[] $fields Name(s) of column(s) with values to compare
+	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
+	 * @return mixed
+	 * @since 1.35
+	 */
+	public function buildGreatest( $fields, $values );
+
+	/**
+	 * Build a LEAST function statement comparing columns/values
+	 *
+	 * Integer and float values in $values will not be quoted
+	 *
+	 * @param string|string[] $fields Name(s) of column(s) with values to compare
+	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
+	 * @return mixed
+	 * @since 1.35
+	 */
+	public function buildLeast( $fields, $values );
+
+	/**
 	 * Build a SUBSTRING function
 	 *
 	 * Behavior for non-ASCII values is undefined.

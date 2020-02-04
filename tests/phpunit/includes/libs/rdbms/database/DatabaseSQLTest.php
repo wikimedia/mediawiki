@@ -974,6 +974,68 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @dataProvider provideGreatest
+	 * @covers Wikimedia\Rdbms\Database::buildGreatest
+	 */
+	public function testBuildGreatest( $fields, $values, $sqlText ) {
+		$this->assertEquals( trim( $this->database->buildGreatest(
+			$fields,
+			$values
+		) ), $sqlText );
+	}
+
+	public static function provideGreatest() {
+		return [
+			[
+				'field',
+				'value',
+				"GREATEST(field,'value')"
+			],
+			[
+				[ 'field' ],
+				[ 'value' ],
+				"GREATEST(field,'value')"
+			],
+			[
+				[ 'field', 'field2' ],
+				[ 'value', 'value2' ],
+				"GREATEST(field,field2,'value','value2')"
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLeast
+	 * @covers Wikimedia\Rdbms\Database::buildLeast
+	 */
+	public function testBuildLeast( $fields, $values, $sqlText ) {
+		$this->assertEquals( trim( $this->database->buildLeast(
+			$fields,
+			$values
+		) ), $sqlText );
+	}
+
+	public static function provideLeast() {
+		return [
+			[
+				'field',
+				'value',
+				"LEAST(field,'value')"
+			],
+			[
+				[ 'field' ],
+				[ 'value' ],
+				"LEAST(field,'value')"
+			],
+			[
+				[ 'field', 'field2' ],
+				[ 'value', 'value2' ],
+				"LEAST(field,field2,'value','value2')"
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideBuildLike
 	 * @covers Wikimedia\Rdbms\Database::buildLike
 	 * @covers Wikimedia\Rdbms\Database::escapeLikeInternal

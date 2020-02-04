@@ -992,8 +992,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * Closes underlying database connection
-	 * @since 1.20
 	 * @return bool Whether connection was closed successfully
+	 * @since 1.20
 	 */
 	abstract protected function closeConnection();
 
@@ -2340,6 +2340,42 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->addQuotes( $delim ) . ')';
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
+	}
+
+	public function buildGreatest( $fields, $values ) {
+		return $this->buildSuperlative( 'GREATEST', $fields, $values );
+	}
+
+	public function buildLeast( $fields, $values ) {
+		return $this->buildSuperlative( 'LEAST', $fields, $values );
+	}
+
+	/**
+	 * Build a superlative function statement comparing columns/values
+	 *
+	 * Integer and float values in $values will not be quoted
+	 *
+	 * @param string $sqlfunc Name of a SQL function
+	 * @param string|string[] $fields Name(s) of column(s) with values to compare
+	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
+	 * @return mixed
+	 * @since 1.35
+	 */
+	protected function buildSuperlative( $sqlfunc, $fields, $values ) {
+		$fields = is_array( $fields ) ? $fields : [ $fields ];
+		$values = is_array( $values ) ? $values : [ $values ];
+
+		$encValues = [];
+		foreach ( $fields as $field ) {
+			$encValues[] = $this->addIdentifierQuotes( $field );
+		}
+		foreach ( $values as $value ) {
+			$encValues[] = ( is_int( $value ) || is_float( $value ) )
+				? $value
+				: $this->addQuotes( $value );
+		}
+
+		return $sqlfunc . '(' . implode( ',', $encValues ) . ')';
 	}
 
 	public function buildSubstring( $input, $startPosition, $length = null ) {
