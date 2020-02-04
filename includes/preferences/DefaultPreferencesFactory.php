@@ -22,6 +22,7 @@ namespace MediaWiki\Preferences;
 
 use DateTime;
 use DateTimeZone;
+use DeprecationHelper;
 use Exception;
 use Hooks;
 use Html;
@@ -144,8 +145,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->nsInfo = $nsInfo;
 		$this->permissionManager = $permissionManager;
 		$this->logger = new NullLogger();
-		$this->languageConverter = $languageConverter ??
-			MediaWikiServices::getInstance()->getLanguageConverterFactory()->getLanguageConverter();
+		$this->languageConverter = DeprecationHelper::newArgumentWithDeprecation(
+			__METHOD__,
+			'languageConverter',
+			'1.35',
+			$languageConverter,
+			function () {
+				return MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter();
+			}
+		);
 	}
 
 	/**

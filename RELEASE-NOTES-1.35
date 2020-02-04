@@ -258,6 +258,8 @@ because of Phabricator reports.
 * Preprocessor_DOM and related classes, deprecated in 1.34, have been removed.
 * ParserOptions::getMaxGeneratedPPNodeCount() and ::setMaxGeneratedPPNodeCount()
   have been removed without deprecation.
+* The support for old signature for ParserFactory::__construct was deprecated in
+  1.34 and now has been removed.
 * …
 
 === Deprecations in 1.35 ===
@@ -340,6 +342,9 @@ because of Phabricator reports.
   - setFunctionTagHook()
   - attributeStripCallback()
   - fetchTemplate() - use Parser::fetchTemplateAndTitle() instead.
+* The signature of DefaultPreferencesFactory::__construct has been changed:
+  - LanguageConverter $languageConverter has been added.
+  and its usage with old arguments is hard deprecated.
 * …
 
 === Other changes in 1.35 ===
