@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -217,7 +219,7 @@ class MigrateFileRepoLayout extends Maintenance {
 	}
 
 	protected function getRepo() {
-		return RepoGroup::singleton()->getLocalRepo();
+		return MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 	}
 
 	/**
