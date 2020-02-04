@@ -670,7 +670,9 @@ return [
 			$services->getSpecialPageFactory(),
 			$services->getLinkRendererFactory(),
 			$services->getNamespaceInfo(),
-			LoggerFactory::getInstance( 'Parser' )
+			LoggerFactory::getInstance( 'Parser' ),
+			$services->getBadFileLookup(),
+			$services->getLanguageConverterFactory()
 		);
 	},
 
@@ -723,7 +725,8 @@ return [
 			AuthManager::singleton(),
 			$services->getLinkRendererFactory()->create(),
 			$services->getNamespaceInfo(),
-			$services->getPermissionManager()
+			$services->getPermissionManager(),
+			$services->getLanguageConverterFactory()->getLanguageConverter()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 
