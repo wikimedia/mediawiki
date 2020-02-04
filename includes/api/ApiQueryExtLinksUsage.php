@@ -52,8 +52,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$query = $params['query'];
 		$protocol = self::getProtocolPrefix( $params['protocol'] );
 
-		$this->addTables( [ 'page', 'externallinks' ] );
-		$this->addWhere( 'page_id=el_from' );
+		$this->addTables( [ 'externallinks', 'page' ] );
+		$this->addJoinConds( [ 'page' => [ 'JOIN', 'page_id=el_from' ] ] );
 
 		$miser_ns = [];
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
@@ -120,6 +120,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
+
+		// T244254: Avoid MariaDB deciding to scan all of `page`.
+		$this->addOption( 'STRAIGHT_JOIN' );
 
 		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
