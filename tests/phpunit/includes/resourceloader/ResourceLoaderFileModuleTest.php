@@ -539,6 +539,13 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$base = [ 'localBasePath' => $basePath ];
 		$commentScript = file_get_contents( "$basePath/script-comment.js" );
 		$nosemiScript = file_get_contents( "$basePath/script-nosemi.js" );
+		$vueComponentDebug = trim( file_get_contents( "$basePath/vue-component-output-debug.js.txt" ) );
+		// In PHP 7.2 and below, newlines are inserted between elements even if we try to strip them
+		// Thankfully this was fixed in PHP 7.3, but it means we need different test cases for 7.2 vs 7.3+
+		$vueComponentNonDebugFile = version_compare( PHP_VERSION, '7.3' ) < 0 ?
+			"$basePath/vue-component-output-nondebug-php72.js.txt" :
+			"$basePath/vue-component-output-nondebug.js.txt";
+		$vueComponentNonDebug = trim( file_get_contents( $vueComponentNonDebugFile ) );
 		$config = RequestContext::getMain()->getConfig();
 		return [
 			[
@@ -736,6 +743,45 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 				],
 				[
 					'lang' => 'nl'
+				]
+			],
+			'.vue file in debug mode' => [
+				$base + [
+					'packageFiles' => [
+						'vue-component.vue'
+					]
+				],
+				[
+					'files' => [
+						'vue-component.vue' => [
+							'type' => 'script',
+							'content' => $vueComponentDebug
+						]
+					],
+					'main' => 'vue-component.vue',
+				],
+				[
+					'debug' => 'true'
+				]
+			],
+			'.vue file in non-debug mode' => [
+				$base + [
+					'packageFiles' => [
+						'vue-component.vue'
+					],
+					'name' => 'nondebug',
+				],
+				[
+					'files' => [
+						'vue-component.vue' => [
+							'type' => 'script',
+							'content' => $vueComponentNonDebug
+						]
+					],
+					'main' => 'vue-component.vue'
+				],
+				[
+					'debug' => 'false'
 				]
 			],
 			[
