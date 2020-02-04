@@ -421,6 +421,7 @@ class UserTest extends MediaWikiTestCase {
 		$user->setOption( 'rclimit', 200 );
 		$user->setOption( 'wpwatchlistdays', '0' );
 		$user->setOption( 'stubthreshold', 1024 );
+		$user->setOption( 'userjs-usedefaultoverride', '' );
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -429,6 +430,11 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
 		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
+		$this->assertSame(
+			123,
+			$user->getIntOption( 'userjs-usedefaultoverride', 123 ),
+			'Int options that are empty string can have a default returned'
+		);
 		$this->assertSame(
 			1024,
 			$user->getStubThreshold(),
@@ -441,6 +447,11 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
 		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
 		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
+		$this->assertSame(
+			0,
+			$user->getIntOption( 'userjs-usedefaultoverride' ),
+			'Int options that are empty string and have no default specified default to 0'
+		);
 		$this->assertSame(
 			1024,
 			$user->getStubThreshold(),
@@ -626,16 +637,24 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testUserId() {
 		$user = $this->getTestUser()->getUser();
-		$this->assertTrue( $user->getId() > 0 );
+		$this->assertGreaterThan( 0, $user->getId() );
 
 		$user = User::newFromName( 'UserWithNoId' );
 		$this->assertSame( $user->getId(), 0 );
 
 		$user->setId( 7 );
 		$this->assertSame(
-			$user->getId(),
 			7,
+			$user->getId(),
 			'Manually setting a user id via ::setId is reflected in ::getId'
+		);
+
+		$user = new User;
+		$user->setName( '1.2.3.4' );
+		$this->assertSame(
+			0,
+			$user->getId(),
+			'IPs have an id of 0'
 		);
 	}
 
@@ -706,7 +725,7 @@ class UserTest extends MediaWikiTestCase {
 		$users = User::findUsersByGroup( [] );
 		$this->assertSame( 0, iterator_count( $users ) );
 
-		$users = User::findUsersByGroup( 'foo' );
+		$users = User::findUsersByGroup( 'foo', 1, 1 );
 		$this->assertSame( 0, iterator_count( $users ) );
 
 		$user = $this->getMutableTestUser( [ 'foo' ] )->getUser();
@@ -1345,7 +1364,16 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testNewFromConfirmationCode() {
 		$user = User::newFromConfirmationCode( 'NotARealConfirmationCode' );
-		$this->assertNull( $user, 'Invalid confirmation codes result in null users' );
+		$this->assertNull(
+			$user,
+			'Invalid confirmation codes result in null users when reading from replicas'
+		);
+
+		$user = User::newFromConfirmationCode( 'OtherFakeCode', User::READ_LATEST );
+		$this->assertNull(
+			$user,
+			'Invalid confirmation codes result in null users when reading from master'
+		);
 	}
 
 	/**
@@ -1643,6 +1671,37 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::isBlockedFromUpload
+	 * @dataProvider provideIsBlockedFromUpload
+	 * @param bool $sitewide Whether to block sitewide.
+	 * @param bool $expected Whether the user is expected to be blocked from uploads.
+	 */
+	public function testIsBlockedFromUpload( $sitewide, $expected ) {
+		$user = $this->getTestUser()->getUser();
+
+		$block = new DatabaseBlock( [
+			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
+			'sitewide' => $sitewide,
+		] );
+		$block->setTarget( $user );
+		$block->setBlocker( $this->getTestSysop()->getUser() );
+		$block->insert();
+
+		try {
+			$this->assertEquals( $user->isBlockedFromUpload(), $expected );
+		} finally {
+			$block->delete();
+		}
+	}
+
+	public static function provideIsBlockedFromUpload() {
+		return [
+			'sitewide blocks block uploads' => [ true, true ],
+			'partial blocks allow uploads' => [ false, false ],
+		];
+	}
+
+	/**
 	 * Block cookie should be set for IP Blocks if
 	 * wgCookieSetOnIpBlock is set to true
 	 * @covers User::trackBlockWithCookie
@@ -1819,12 +1878,13 @@ class UserTest extends MediaWikiTestCase {
 			array_key_exists( 'NotExisitngUser', User::$idCacheByName ),
 			'Non exisitng user should not be in the id cache.'
 		);
-		$this->assertSame( null, User::idFromName( 'NotExisitngUser' ) );
+		$this->assertNull( User::idFromName( 'NotExisitngUser' ) );
 		$this->assertTrue(
 			array_key_exists( 'NotExisitngUser', User::$idCacheByName ),
 			'Username will be cached when requested once.'
 		);
-		$this->assertSame( null, User::idFromName( 'NotExisitngUser' ) );
+		$this->assertNull( User::idFromName( 'NotExistingUser' ) );
+		$this->assertNull( User::idFromName( 'Illegal|Name' ) );
 	}
 
 	/**
@@ -1936,12 +1996,22 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers User::getDefaultOption
 	 * @covers User::getDefaultOptions
 	 */
-	public function testGetDefaultOptions() {
+	public function testDefaultOptions() {
 		User::resetGetDefaultOptionsForTestsOnly();
+
+		$this->setTemporaryHook( 'UserGetDefaultOptions', function ( &$defaults ) {
+			$defaults['extraoption'] = 42;
+		} );
+
 		$defaultOptions = User::getDefaultOptions();
 		$this->assertArrayHasKey( 'search-match-redirect', $defaultOptions );
+		$this->assertArrayHasKey( 'extraoption', $defaultOptions );
+
+		$extraOption = User::getDefaultOption( 'extraoption' );
+		$this->assertSame( 42, $extraOption );
 	}
 
 	/**
@@ -2057,17 +2127,121 @@ class UserTest extends MediaWikiTestCase {
 	public function testAddGroup() {
 		$user = $this->getTestUser()->getUser();
 		$this->assertArrayEquals( [], $user->getGroups() );
-		$user->addGroup( 'test' );
+
+		$this->assertTrue( $user->addGroup( 'test', '20010115123456' ) );
 		$this->assertArrayEquals( [ 'test' ], $user->getGroups() );
+
+		$this->setTemporaryHook( 'UserAddGroup', function ( $user, &$group, &$expiry ) {
+			return false;
+		} );
+		$this->assertFalse( $user->addGroup( 'test2' ) );
+		$this->assertArrayEquals(
+			[ 'test' ],
+			$user->getGroups(),
+			'Hooks can stop addition of a group'
+		);
 	}
 
 	/**
 	 * @covers User::removeGroup
 	 */
 	public function testRemoveGroup() {
-		$user = $this->getTestUser( [ 'test' ] )->getUser();
-		$user->removeGroup( 'test' );
-		$this->assertArrayEquals( [], $user->getGroups() );
+		$user = $this->getTestUser( [ 'test', 'test3' ] )->getUser();
+
+		$this->assertTrue( $user->removeGroup( 'test' ) );
+		$this->assertArrayEquals( [ 'test3' ], $user->getGroups() );
+
+		$this->assertFalse(
+			$user->removeGroup( 'test2' ),
+			'A group membership that does not exist cannot be removed'
+		);
+
+		$this->setTemporaryHook( 'UserRemoveGroup', function ( $user, &$group ) {
+			return false;
+		} );
+
+		$this->assertFalse( $user->removeGroup( 'test3' ) );
+		$this->assertArrayEquals(
+			[ 'test3' ],
+			$user->getGroups(),
+			'Hooks can stop removal of a group'
+		);
+	}
+
+	/**
+	 * @covers User::changeableGroups
+	 */
+	public function testChangeableGroups() {
+		// todo: test changeableByGroup here as well
+		$this->setMwGlobals( [
+			'wgGroupPermissions' => [
+				'doEverything' => [
+					'userrights' => true,
+				],
+			],
+			'wgAddGroups' => [
+				'sysop' => [ 'rollback' ],
+				'bureaucrat' => [ 'sysop', 'bureaucrat' ],
+			],
+			'wgRemoveGroups' => [
+				'sysop' => [ 'rollback' ],
+				'bureaucrat' => [ 'sysop' ],
+			],
+			'wgGroupsAddToSelf' => [
+				'sysop' => [ 'flood' ],
+			],
+			'wgGroupsRemoveFromSelf' => [
+				'flood' => [ 'flood' ],
+			],
+		] );
+
+		$allGroups = User::getAllGroups();
+
+		$user = $this->getTestUser( [ 'doEverything' ] )->getUser();
+		$changeableGroups = $user->changeableGroups();
+		$this->assertGroupsEquals(
+			[
+				'add' => $allGroups,
+				'remove' => $allGroups,
+				'add-self' => [],
+				'remove-self' => [],
+			],
+			$changeableGroups
+		);
+
+		$user = $this->getTestUser( [ 'bureaucrat', 'sysop' ] )->getUser();
+		$changeableGroups = $user->changeableGroups();
+		$this->assertGroupsEquals(
+			[
+				'add' => [ 'bureaucrat', 'sysop', 'rollback' ],
+				'remove' => [ 'sysop', 'rollback' ],
+				'add-self' => [ 'flood' ],
+				'remove-self' => [],
+			],
+			$changeableGroups
+		);
+
+		$user = $this->getTestUser( [ 'flood' ] )->getUser();
+		$changeableGroups = $user->changeableGroups();
+		$this->assertGroupsEquals(
+			[
+				'add' => [],
+				'remove' => [],
+				'add-self' => [],
+				'remove-self' => [ 'flood' ],
+			],
+			$changeableGroups
+		);
+	}
+
+	private function assertGroupsEquals( $expected, $actual ) {
+		// assertArrayEquals can compare without requiring the same order,
+		// but the elements of an array are still required to be in the same order,
+		// so just compare each element
+		$this->assertArrayEquals( $expected['add'], $actual['add'] );
+		$this->assertArrayEquals( $expected['remove'], $actual['remove'] );
+		$this->assertArrayEquals( $expected['add-self'], $actual['add-self'] );
+		$this->assertArrayEquals( $expected['remove-self'], $actual['remove-self'] );
 	}
 
 	/**
@@ -2248,6 +2422,75 @@ class UserTest extends MediaWikiTestCase {
 			$user->requiresHTTPS(),
 			'User preference ignored if wgSecureLogin  is false'
 		);
+	}
+
+	/**
+	 * @covers User::isCreatableName
+	 */
+	public function testIsCreatableName() {
+		$this->setMwGlobals( [
+			'wgInvalidUsernameCharacters' => '@',
+		] );
+
+		// phpcs:ignore Generic.Files.LineLength
+		$longUserName = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
+
+		$this->assertFalse(
+			User::isCreatableName( $longUserName ),
+			'longUserName is too long'
+		);
+		$this->assertFalse(
+			User::isCreatableName( 'Foo@Bar' ),
+			'User name contains invalid character'
+		);
+		$this->assertTrue(
+			User::isCreatableName( 'FooBar' ),
+			'User names with no issues can be created'
+		);
+	}
+
+	/**
+	 * @covers User::isUsableName
+	 */
+	public function testIsUsableName() {
+		$this->setMwGlobals( [
+			'wgReservedUsernames' => [
+				'MediaWiki default',
+				'msg:reserved-user'
+			],
+			'wgForceUIMsgAsContentMsg' => [
+				'reserved-user'
+			],
+		] );
+
+		$this->assertFalse(
+			User::isUsableName( '' ),
+			'Only valid user names are creatable'
+		);
+		$this->assertFalse(
+			User::isUsableName( 'MediaWiki default' ),
+			'Reserved names cannot be used'
+		);
+		$this->assertFalse(
+			User::isUsableName( 'reserved-user' ),
+			'Names can also be reserved via msg: '
+		);
+		$this->assertTrue(
+			User::isUsableName( 'FooBar' ),
+			'User names with no issues can be used'
+		);
+	}
+
+	/**
+	 * @covers User::addToDatabase
+	 */
+	public function testAddToDatabase_bad() {
+		$user = new User();
+		$this->expectException( RuntimeException::class );
+		$this->expectExceptionMessage(
+			'User name field is not set.'
+		);
+		$user->addToDatabase();
 	}
 
 }
