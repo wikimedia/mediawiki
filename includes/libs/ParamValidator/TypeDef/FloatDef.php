@@ -28,6 +28,8 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class FloatDef extends NumericDef {
 
+	protected $valueType = 'double';
+
 	public function validate( $name, $value, array $settings, array $options ) {
 		// Use a regex so as to avoid any potential oddness PHP's default conversion might allow.
 		if ( !preg_match( '/^[+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?$/D', $value ) ) {

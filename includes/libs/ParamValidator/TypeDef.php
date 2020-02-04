@@ -133,6 +133,32 @@ abstract class TypeDef {
 	}
 
 	/**
+	 * Validate a parameter settings array
+	 *
+	 * This is intended for validation of parameter settings during unit or
+	 * integration testing, and should implement strict checks.
+	 *
+	 * The rest of the code should generally be more permissive.
+	 *
+	 * @see ParamValidator::checkSettings()
+	 * @param string $name Parameter name
+	 * @param array|mixed $settings Default value or an array of settings
+	 *  using PARAM_* constants.
+	 * @param array $options Options array, passed through to the TypeDef and Callbacks.
+	 * @param array $ret
+	 *  - 'issues': (string[]) Errors detected in $settings, as English text. If the settings
+	 *    are valid, this will be the empty array. Keys on input are ParamValidator constants,
+	 *    allowing the typedef to easily override core validation; this need not be preserved
+	 *    when returned.
+	 *  - 'allowedKeys': (string[]) ParamValidator keys that are allowed in `$settings`.
+	 *  - 'messages': (MessageValue[]) Messages to be checked for existence.
+	 * @return array $ret, with any relevant changes.
+	 */
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		return $ret;
+	}
+
+	/**
 	 * Get the values for enum-like parameters
 	 *
 	 * This is primarily intended for documentation and implementation of

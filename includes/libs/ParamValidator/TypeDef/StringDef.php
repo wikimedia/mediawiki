@@ -90,6 +90,43 @@ class StringDef extends TypeDef {
 		return $value;
 	}
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
+			self::PARAM_MAX_BYTES, self::PARAM_MAX_CHARS,
+		] );
+
+		$maxb = $settings[self::PARAM_MAX_BYTES] ?? PHP_INT_MAX;
+		if ( !is_int( $maxb ) ) {
+			$ret['issues'][self::PARAM_MAX_BYTES] = 'PARAM_MAX_BYTES must be an integer, got '
+				. gettype( $maxb );
+		} elseif ( $maxb < 0 ) {
+			$ret['issues'][self::PARAM_MAX_BYTES] = 'PARAM_MAX_BYTES must be greater than or equal to 0';
+		}
+
+		$maxc = $settings[self::PARAM_MAX_CHARS] ?? PHP_INT_MAX;
+		if ( !is_int( $maxc ) ) {
+			$ret['issues'][self::PARAM_MAX_CHARS] = 'PARAM_MAX_CHARS must be an integer, got '
+				. gettype( $maxc );
+		} elseif ( $maxc < 0 ) {
+			$ret['issues'][self::PARAM_MAX_CHARS] = 'PARAM_MAX_CHARS must be greater than or equal to 0';
+		}
+
+		if ( !$this->allowEmptyWhenRequired && !empty( $settings[ParamValidator::PARAM_REQUIRED] ) ) {
+			if ( $maxb === 0 ) {
+				$ret['issues'][] = 'PARAM_REQUIRED is set, allowEmptyWhenRequired is not set, and '
+					. 'PARAM_MAX_BYTES is 0. That\'s impossible to satisfy.';
+			}
+			if ( $maxc === 0 ) {
+				$ret['issues'][] = 'PARAM_REQUIRED is set, allowEmptyWhenRequired is not set, and '
+					. 'PARAM_MAX_CHARS is 0. That\'s impossible to satisfy.';
+			}
+		}
+
+		return $ret;
+	}
+
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 

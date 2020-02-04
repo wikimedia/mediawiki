@@ -57,6 +57,115 @@ class LimitDefTest extends TypeDefTestCase {
 		];
 	}
 
+	public function provideCheckSettings() {
+		$keys = [
+			'Y', IntegerDef::PARAM_IGNORE_RANGE,
+			IntegerDef::PARAM_MIN, IntegerDef::PARAM_MAX, IntegerDef::PARAM_MAX2
+		];
+
+		return [
+			'Basic test' => [
+				[
+					LimitDef::PARAM_MAX => 10,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					LimitDef::PARAM_IGNORE_RANGE => true,
+					LimitDef::PARAM_MIN => 0,
+					LimitDef::PARAM_MAX => 10,
+					LimitDef::PARAM_MAX2 => 100,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ISMULTI not allowed' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					LimitDef::PARAM_MAX => 10,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_ISMULTI => 'PARAM_ISMULTI cannot be used for limit-type parameters',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ISMULTI not allowed, but another ISMULTI issue was already logged' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					LimitDef::PARAM_MAX => 10,
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ISMULTI => 'XXX',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ISMULTI => 'XXX',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_MIN == 0' => [
+				[
+					LimitDef::PARAM_MIN => 0,
+					LimitDef::PARAM_MAX => 2,
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_MIN < 0' => [
+				[
+					LimitDef::PARAM_MIN => -1,
+					LimitDef::PARAM_MAX => 2,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'PARAM_MIN must be greater than or equal to 0',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+			'PARAM_MAX is required' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'PARAM_MAX must be set',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			],
+		];
+	}
+
 	public function provideGetInfo() {
 		return [
 			'Basic' => [

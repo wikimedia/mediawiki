@@ -75,6 +75,55 @@ class UserDef extends TypeDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
+			self::PARAM_ALLOWED_USER_TYPES, self::PARAM_RETURN_OBJECT,
+		] );
+
+		if ( !is_bool( $settings[self::PARAM_RETURN_OBJECT] ?? false ) ) {
+			$ret['issues'][self::PARAM_RETURN_OBJECT] = 'PARAM_RETURN_OBJECT must be boolean, got '
+				. gettype( $settings[self::PARAM_RETURN_OBJECT] );
+		}
+
+		$hasId = false;
+		if ( isset( $settings[self::PARAM_ALLOWED_USER_TYPES] ) ) {
+			if ( !is_array( $settings[self::PARAM_ALLOWED_USER_TYPES] ) ) {
+				$ret['issues'][self::PARAM_ALLOWED_USER_TYPES] = 'PARAM_ALLOWED_USER_TYPES must be an array, '
+					. 'got ' . gettype( $settings[self::PARAM_ALLOWED_USER_TYPES] );
+			} elseif ( $settings[self::PARAM_ALLOWED_USER_TYPES] === [] ) {
+				$ret['issues'][self::PARAM_ALLOWED_USER_TYPES] = 'PARAM_ALLOWED_USER_TYPES cannot be empty';
+			} else {
+				$bad = array_diff(
+					$settings[self::PARAM_ALLOWED_USER_TYPES],
+					[ 'name', 'ip', 'cidr', 'interwiki', 'id' ]
+				);
+				if ( $bad ) {
+					$ret['issues'][self::PARAM_ALLOWED_USER_TYPES] =
+						'PARAM_ALLOWED_USER_TYPES contains invalid values: ' . implode( ', ', $bad );
+				}
+
+				$hasId = in_array( 'id', $settings[self::PARAM_ALLOWED_USER_TYPES], true );
+			}
+		}
+
+		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&
+			( $hasId || !empty( $settings[self::PARAM_RETURN_OBJECT] ) ) &&
+			(
+				( $settings[ParamValidator::PARAM_ISMULTI_LIMIT1] ?? 100 ) > 10 ||
+				( $settings[ParamValidator::PARAM_ISMULTI_LIMIT2] ?? 100 ) > 10
+			)
+		) {
+			$ret['issues'][] = 'Multi-valued user-type parameters with PARAM_RETURN_OBJECT or allowing IDs '
+				. 'should set low values (<= 10) for PARAM_ISMULTI_LIMIT1 and PARAM_ISMULTI_LIMIT2.'
+				. ' (Note that "<= 10" is arbitrary. If something hits this, we can investigate a real limit '
+				. 'once we have a real use case to look at.)';
+		}
+
+		return $ret;
+	}
+
 	/**
 	 * Process $value to a UserIdentity, if possible
 	 * @param string $value

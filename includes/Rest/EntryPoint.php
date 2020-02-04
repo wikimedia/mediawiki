@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest;
 
 use ExtensionRegistry;
+use IContextSource;
 use MediaWiki;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
@@ -22,6 +23,43 @@ class EntryPoint {
 	/** @var RequestContext */
 	private $context;
 
+	/**
+	 * @param IContextSource $context
+	 * @param RequestInterface $request
+	 * @return Router
+	 */
+	private static function createRouter(
+		IContextSource $context, RequestInterface $request
+	): Router {
+		global $IP;
+
+		$services = MediaWikiServices::getInstance();
+		$conf = $services->getMainConfig();
+
+		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
+
+		$authorizer = new MWBasicAuthorizer( $context->getUser(),
+			$services->getPermissionManager() );
+
+		$objectFactory = $services->getObjectFactory();
+		$restValidator = new Validator( $objectFactory,
+			$services->getPermissionManager(),
+			$request,
+			RequestContext::getMain()->getUser()
+		);
+
+		return new Router(
+			[ "$IP/includes/Rest/coreRoutes.json" ],
+			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
+			$conf->get( 'RestPath' ),
+			$services->getLocalServerObjectCache(),
+			$responseFactory,
+			$authorizer,
+			$objectFactory,
+			$restValidator
+		);
+	}
+
 	public static function main() {
 		// URL safety checks
 		global $wgRequest;
@@ -35,7 +73,6 @@ class EntryPoint {
 
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
-		$objectFactory = $services->getObjectFactory();
 
 		if ( !$conf->get( 'EnableRestAPI' ) ) {
 			wfHttpError( 403, 'Access Denied',
@@ -47,28 +84,7 @@ class EntryPoint {
 			'cookiePrefix' => $conf->get( 'CookiePrefix' )
 		] );
 
-		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
-
-		$authorizer = new MWBasicAuthorizer( $context->getUser(),
-			$services->getPermissionManager() );
-
-		$restValidator = new Validator( $objectFactory,
-			$services->getPermissionManager(),
-			$request,
-			RequestContext::getMain()->getUser()
-		);
-
-		global $IP;
-		$router = new Router(
-			[ "$IP/includes/Rest/coreRoutes.json" ],
-			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
-			$conf->get( 'RestPath' ),
-			$services->getLocalServerObjectCache(),
-			$responseFactory,
-			$authorizer,
-			$objectFactory,
-			$restValidator
-		);
+		$router = self::createRouter( $context, $request );
 
 		$entryPoint = new self(
 			$context,

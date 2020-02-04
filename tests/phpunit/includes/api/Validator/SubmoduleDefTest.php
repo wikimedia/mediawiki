@@ -7,6 +7,7 @@ use ApiModuleManager;
 use MockApi;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\TestingAccessWrapper;
@@ -115,6 +116,85 @@ class SubmoduleDefTest extends TypeDefTestCase {
 				),
 				$map,
 				$opts,
+			],
+		];
+	}
+
+	public function provideCheckSettings() {
+		$opts = [
+			'module' => $this->mockApi(),
+		];
+		$keys = [
+			'Y', EnumDef::PARAM_DEPRECATED_VALUES,
+			SubmoduleDef::PARAM_SUBMODULE_MAP, SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX
+		];
+
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+				$opts
+			],
+			'Test with everything' => [
+				[
+					SubmoduleDef::PARAM_SUBMODULE_MAP => [
+						'foo' => 'testmod+mod1', 'bar' => 'testmod+mod2'
+					],
+					SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX => 'g',
+				],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+				$opts
+			],
+			'Bad types' => [
+				[
+					SubmoduleDef::PARAM_SUBMODULE_MAP => false,
+					SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX => true,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						SubmoduleDef::PARAM_SUBMODULE_MAP => 'PARAM_SUBMODULE_MAP must be an array, got boolean',
+						SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX
+							=> 'PARAM_SUBMODULE_PARAM_PREFIX must be a string, got boolean',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+				$opts
+			],
+			'Bad values in map' => [
+				[
+					SubmoduleDef::PARAM_SUBMODULE_MAP => [
+						'a' => 'testmod+mod1',
+						'b' => false,
+						'c' => null,
+						'd' => 'testmod+mod7',
+						'r' => 'testmod+recurse+recurse',
+					],
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						'Values for PARAM_SUBMODULE_MAP must be strings, but value for "b" is boolean',
+						'Values for PARAM_SUBMODULE_MAP must be strings, but value for "c" is NULL',
+						'PARAM_SUBMODULE_MAP contains "testmod+mod7", which is not a valid module path',
+					],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+				$opts
 			],
 		];
 	}

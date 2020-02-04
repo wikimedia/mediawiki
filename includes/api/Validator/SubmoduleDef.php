@@ -30,6 +30,49 @@ class SubmoduleDef extends EnumDef {
 	 */
 	public const PARAM_SUBMODULE_PARAM_PREFIX = 'param-submodule-param-prefix';
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$map = $settings[self::PARAM_SUBMODULE_MAP] ?? [];
+		if ( !is_array( $map ) ) {
+			$ret['issues'][self::PARAM_SUBMODULE_MAP] = 'PARAM_SUBMODULE_MAP must be an array, got '
+				. gettype( $map );
+			// Prevent errors in parent::checkSettings()
+			$settings[self::PARAM_SUBMODULE_MAP] = null;
+		}
+
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
+			self::PARAM_SUBMODULE_MAP, self::PARAM_SUBMODULE_PARAM_PREFIX,
+		] );
+
+		if ( is_array( $map ) ) {
+			$module = $options['module'];
+			foreach ( $map as $k => $v ) {
+				if ( !is_string( $v ) ) {
+					$ret['issues'][] = 'Values for PARAM_SUBMODULE_MAP must be strings, '
+						. "but value for \"$k\" is " . gettype( $v );
+					continue;
+				}
+
+				try {
+					$submod = $module->getModuleFromPath( $v );
+				} catch ( ApiUsageException $ex ) {
+					$submod = null;
+				}
+				if ( !$submod ) {
+					$ret['issues'][] = "PARAM_SUBMODULE_MAP contains \"$v\", which is not a valid module path";
+				}
+			}
+		}
+
+		if ( !is_string( $settings[self::PARAM_SUBMODULE_PARAM_PREFIX] ?? '' ) ) {
+			$ret['issues'][self::PARAM_SUBMODULE_PARAM_PREFIX] = 'PARAM_SUBMODULE_PARAM_PREFIX must be '
+				. 'a string, got ' . gettype( $settings[self::PARAM_SUBMODULE_PARAM_PREFIX] );
+		}
+
+		return $ret;
+	}
+
 	public function getEnumValues( $name, array $settings, array $options ) {
 		if ( isset( $settings[self::PARAM_SUBMODULE_MAP] ) ) {
 			$modules = array_keys( $settings[self::PARAM_SUBMODULE_MAP] );

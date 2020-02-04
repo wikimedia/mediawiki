@@ -332,12 +332,11 @@ class ParamValidator {
 	}
 
 	/**
-	 * Normalize a parameter settings array
-	 * @param array|mixed $settings Default value or an array of settings
-	 *  using PARAM_* constants.
+	 * Logic shared by normalizeSettings() and checkSettings()
+	 * @param array|mixed $settings
 	 * @return array
 	 */
-	public function normalizeSettings( $settings ) {
+	private function normalizeSettingsInternal( $settings ) {
 		// Shorthand
 		if ( !is_array( $settings ) ) {
 			$settings = [
@@ -350,12 +349,154 @@ class ParamValidator {
 			$settings[self::PARAM_TYPE] = gettype( $settings[self::PARAM_DEFAULT] ?? null );
 		}
 
+		return $settings;
+	}
+
+	/**
+	 * Normalize a parameter settings array
+	 * @param array|mixed $settings Default value or an array of settings
+	 *  using PARAM_* constants.
+	 * @return array
+	 */
+	public function normalizeSettings( $settings ) {
+		$settings = $this->normalizeSettingsInternal( $settings );
+
 		$typeDef = $this->getTypeDef( $settings[self::PARAM_TYPE] );
 		if ( $typeDef ) {
 			$settings = $typeDef->normalizeSettings( $settings );
 		}
 
 		return $settings;
+	}
+
+	/**
+	 * Validate a parameter settings array
+	 *
+	 * This is intended for validation of parameter settings during unit or
+	 * integration testing, and should implement strict checks.
+	 *
+	 * The rest of the code should generally be more permissive.
+	 *
+	 * @param string $name Parameter name
+	 * @param array|mixed $settings Default value or an array of settings
+	 *  using PARAM_* constants.
+	 * @param array $options Options array, passed through to the TypeDef and Callbacks.
+	 * @return array
+	 *  - 'issues': (string[]) Errors detected in $settings, as English text. If the settings
+	 *    are valid, this will be the empty array.
+	 *  - 'allowedKeys': (string[]) ParamValidator keys that are allowed in `$settings`.
+	 *  - 'messages': (MessageValue[]) Messages to be checked for existence.
+	 */
+	public function checkSettings( string $name, $settings, array $options ) : array {
+		$settings = $this->normalizeSettingsInternal( $settings );
+		$issues = [];
+		$allowedKeys = [
+			self::PARAM_TYPE, self::PARAM_DEFAULT, self::PARAM_REQUIRED, self::PARAM_ISMULTI,
+			self::PARAM_SENSITIVE, self::PARAM_DEPRECATED, self::PARAM_IGNORE_UNRECOGNIZED_VALUES,
+		];
+		$messages = [];
+
+		$type = $settings[self::PARAM_TYPE];
+		$typeDef = null;
+		if ( !is_string( $type ) && !is_array( $type ) ) {
+			$issues[self::PARAM_TYPE] = 'PARAM_TYPE must be a string or array, got ' . gettype( $type );
+		} else {
+			$typeDef = $this->getTypeDef( $settings[self::PARAM_TYPE] );
+			if ( !$typeDef ) {
+				if ( is_array( $type ) ) {
+					$type = 'enum';
+				}
+				$issues[self::PARAM_TYPE] = "Unknown/unregistered PARAM_TYPE \"$type\"";
+			}
+		}
+
+		if ( isset( $settings[self::PARAM_DEFAULT] ) ) {
+			try {
+				$this->validateValue(
+					$name, $settings[self::PARAM_DEFAULT], $settings, [ 'is-default' => true ] + $options
+				);
+			} catch ( ValidationException $ex ) {
+				$issues[self::PARAM_DEFAULT] = 'Value for PARAM_DEFAULT does not validate (code '
+					. $ex->getFailureMessage()->getCode() . ')';
+			}
+		}
+
+		if ( !is_bool( $settings[self::PARAM_REQUIRED] ?? false ) ) {
+			$issues[self::PARAM_REQUIRED] = 'PARAM_REQUIRED must be boolean, got '
+				. gettype( $settings[self::PARAM_REQUIRED] );
+		}
+
+		if ( !is_bool( $settings[self::PARAM_ISMULTI] ?? false ) ) {
+			$issues[self::PARAM_ISMULTI] = 'PARAM_ISMULTI must be boolean, got '
+				. gettype( $settings[self::PARAM_ISMULTI] );
+		}
+
+		if ( !empty( $settings[self::PARAM_ISMULTI] ) ) {
+			$allowedKeys = array_merge( $allowedKeys, [
+				self::PARAM_ISMULTI_LIMIT1, self::PARAM_ISMULTI_LIMIT2,
+				self::PARAM_ALL, self::PARAM_ALLOW_DUPLICATES
+			] );
+
+			$limit1 = $settings[self::PARAM_ISMULTI_LIMIT1] ?? $this->ismultiLimit1;
+			$limit2 = $settings[self::PARAM_ISMULTI_LIMIT2] ?? $this->ismultiLimit2;
+			if ( !is_int( $limit1 ) ) {
+				$issues[self::PARAM_ISMULTI_LIMIT1] = 'PARAM_ISMULTI_LIMIT1 must be an integer, got '
+					. gettype( $settings[self::PARAM_ISMULTI_LIMIT1] );
+			} elseif ( $limit1 <= 0 ) {
+				$issues[self::PARAM_ISMULTI_LIMIT1] =
+					"PARAM_ISMULTI_LIMIT1 must be greater than 0, got $limit1";
+			}
+			if ( !is_int( $limit2 ) ) {
+				$issues[self::PARAM_ISMULTI_LIMIT2] = 'PARAM_ISMULTI_LIMIT2 must be an integer, got '
+					. gettype( $settings[self::PARAM_ISMULTI_LIMIT2] );
+			} elseif ( $limit2 < $limit1 ) {
+				$issues[self::PARAM_ISMULTI_LIMIT2] =
+					'PARAM_ISMULTI_LIMIT2 must be greater than or equal to PARAM_ISMULTI_LIMIT1, but '
+					. "$limit2 < $limit1";
+			}
+
+			$all = $settings[self::PARAM_ALL] ?? false;
+			if ( !is_string( $all ) && !is_bool( $all ) ) {
+				$issues[self::PARAM_ALL] = 'PARAM_ALL must be a string or boolean, got ' . gettype( $all );
+			} elseif ( $all !== false && $typeDef ) {
+				if ( $all === true ) {
+					$all = self::ALL_DEFAULT_STRING;
+				}
+				$values = $typeDef->getEnumValues( $name, $settings, $options );
+				if ( !is_array( $values ) ) {
+					$issues[self::PARAM_ALL] = 'PARAM_ALL cannot be used with non-enumerated types';
+				} elseif ( in_array( $all, $values, true ) ) {
+					$issues[self::PARAM_ALL] = 'Value for PARAM_ALL conflicts with an enumerated value';
+				}
+			}
+
+			if ( !is_bool( $settings[self::PARAM_ALLOW_DUPLICATES] ?? false ) ) {
+				$issues[self::PARAM_ALLOW_DUPLICATES] = 'PARAM_ALLOW_DUPLICATES must be boolean, got '
+					. gettype( $settings[self::PARAM_ALLOW_DUPLICATES] );
+			}
+		}
+
+		if ( !is_bool( $settings[self::PARAM_SENSITIVE] ?? false ) ) {
+			$issues[self::PARAM_SENSITIVE] = 'PARAM_SENSITIVE must be boolean, got '
+				. gettype( $settings[self::PARAM_SENSITIVE] );
+		}
+
+		if ( !is_bool( $settings[self::PARAM_DEPRECATED] ?? false ) ) {
+			$issues[self::PARAM_DEPRECATED] = 'PARAM_DEPRECATED must be boolean, got '
+				. gettype( $settings[self::PARAM_DEPRECATED] );
+		}
+
+		if ( !is_bool( $settings[self::PARAM_IGNORE_UNRECOGNIZED_VALUES] ?? false ) ) {
+			$issues[self::PARAM_IGNORE_UNRECOGNIZED_VALUES] = 'PARAM_IGNORE_UNRECOGNIZED_VALUES must be '
+				. 'boolean, got ' . gettype( $settings[self::PARAM_IGNORE_UNRECOGNIZED_VALUES] );
+		}
+
+		$ret = [ 'issues' => $issues, 'allowedKeys' => $allowedKeys, 'messages' => $messages ];
+		if ( $typeDef ) {
+			$ret = $typeDef->checkSettings( $name, $settings, $options, $ret );
+		}
+
+		return $ret;
 	}
 
 	/**

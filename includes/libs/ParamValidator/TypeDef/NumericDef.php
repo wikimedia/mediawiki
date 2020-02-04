@@ -46,6 +46,9 @@ abstract class NumericDef extends TypeDef {
 	 */
 	const PARAM_MAX2 = 'param-max2';
 
+	/** @var string PHP type (as from `gettype()`) of values this NumericDef handles */
+	protected $valueType = 'integer';
+
 	/**
 	 * Check the range of a value
 	 * @param int|float $value Value to check.
@@ -114,6 +117,46 @@ abstract class NumericDef extends TypeDef {
 		}
 
 		return parent::normalizeSettings( $settings );
+	}
+
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
+			self::PARAM_IGNORE_RANGE, self::PARAM_MIN, self::PARAM_MAX, self::PARAM_MAX2,
+		] );
+
+		if ( !is_bool( $settings[self::PARAM_IGNORE_RANGE] ?? false ) ) {
+			$ret['issues'][self::PARAM_IGNORE_RANGE] = 'PARAM_IGNORE_RANGE must be boolean, got '
+				. gettype( $settings[self::PARAM_IGNORE_RANGE] );
+		}
+
+		$min = $settings[self::PARAM_MIN] ?? null;
+		$max = $settings[self::PARAM_MAX] ?? null;
+		$max2 = $settings[self::PARAM_MAX2] ?? null;
+		if ( $min !== null && gettype( $min ) !== $this->valueType ) {
+			$ret['issues'][self::PARAM_MIN] = "PARAM_MIN must be $this->valueType, got " . gettype( $min );
+		}
+		if ( $max !== null && gettype( $max ) !== $this->valueType ) {
+			$ret['issues'][self::PARAM_MAX] = "PARAM_MAX must be $this->valueType, got " . gettype( $max );
+		}
+		if ( $max2 !== null && gettype( $max2 ) !== $this->valueType ) {
+			$ret['issues'][self::PARAM_MAX2] = "PARAM_MAX2 must be $this->valueType, got "
+				. gettype( $max2 );
+		}
+
+		if ( $min !== null && $max !== null && $min > $max ) {
+			$ret['issues'][] = "PARAM_MIN must be less than or equal to PARAM_MAX, but $min > $max";
+		}
+		if ( $max2 !== null ) {
+			if ( $max === null ) {
+				$ret['issues'][] = 'PARAM_MAX2 cannot be used without PARAM_MAX';
+			} elseif ( $max2 < $max ) {
+				$ret['issues'][] = "PARAM_MAX2 must be greater than or equal to PARAM_MAX, but $max2 < $max";
+			}
+		}
+
+		return $ret;
 	}
 
 	public function getParamInfo( $name, array $settings, array $options ) {

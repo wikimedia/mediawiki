@@ -84,6 +84,37 @@ class EnumDef extends TypeDef {
 		);
 	}
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		$ret['allowedKeys'][] = self::PARAM_DEPRECATED_VALUES;
+
+		$dv = $settings[self::PARAM_DEPRECATED_VALUES] ?? [];
+		if ( !is_array( $dv ?? false ) ) {
+			$ret['issues'][self::PARAM_DEPRECATED_VALUES] = 'PARAM_DEPRECATED_VALUES must be an array, got '
+				. gettype( $dv );
+		} else {
+			$values = array_map( function ( $v ) use ( $name, $settings, $options ) {
+				return $this->stringifyValue( $name, $v, $settings, $options );
+			}, $this->getEnumValues( $name, $settings, $options ) );
+			foreach ( $dv as $k => $v ) {
+				$k = $this->stringifyValue( $name, $k, $settings, $options );
+				if ( !in_array( $k, $values, true ) ) {
+					$ret['issues'][] = "PARAM_DEPRECATED_VALUES contains \"$k\", which is not "
+						. 'one of the enumerated values';
+				} elseif ( $v instanceof MessageValue ) {
+					$ret['messages'][] = $v;
+				} elseif ( $v !== null && $v !== true ) {
+					$type = $v === false ? 'false' : ( is_object( $v ) ? get_class( $v ) : gettype( $v ) );
+					$ret['issues'][] = 'Values in PARAM_DEPRECATED_VALUES must be null, true, or MessageValue, '
+						. "but value for \"$k\" is $type";
+				}
+			}
+		}
+
+		return $ret;
+	}
+
 	public function getEnumValues( $name, array $settings, array $options ) {
 		return array_values( $settings[ParamValidator::PARAM_TYPE] );
 	}

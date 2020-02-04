@@ -162,6 +162,293 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		];
 	}
 
+	/** @dataProvider provideCheckSettings */
+	public function testCheckSettings( $settings, array $expect ) : void {
+		$callbacks = new SimpleCallbacks( [] );
+
+		$mb = $this->getMockBuilder( TypeDef::class )
+			->setConstructorArgs( [ $callbacks ] )
+			->setMethods( [ 'checkSettings' ] );
+		$mock1 = $mb->getMockForAbstractClass();
+		$mock1->method( 'checkSettings' )->willReturnCallback(
+			function ( string $name, $settings, array $options, array $ret ) {
+				$ret['allowedKeys'][] = 'XXX-test';
+				if ( isset( $settings['XXX-test'] ) ) {
+					$ret['issues']['XXX-test'] = 'XXX-test was ' . $settings['XXX-test'];
+				}
+				return $ret;
+			}
+		);
+		$mock2 = $mb->getMockForAbstractClass();
+		$mock2->method( 'checkSettings' )->willReturnCallback(
+			function ( string $name, $settings, array $options, array $ret ) {
+				return $ret;
+			}
+		);
+
+		$validator = new ParamValidator(
+			$callbacks,
+			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
+			[ 'typeDefs' => [ 'foo' => $mock1, 'NULL' => $mock2 ] + ParamValidator::$STANDARD_TYPES ]
+		);
+
+		$this->assertEquals( $expect, $validator->checkSettings( 'dummy', $settings, [] ) );
+	}
+
+	public function provideCheckSettings() : array {
+		$normalKeys = [
+			ParamValidator::PARAM_TYPE, ParamValidator::PARAM_DEFAULT, ParamValidator::PARAM_REQUIRED,
+			ParamValidator::PARAM_ISMULTI, ParamValidator::PARAM_SENSITIVE, ParamValidator::PARAM_DEPRECATED,
+			ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES,
+		];
+		$multiKeys = array_merge( $normalKeys, [
+			ParamValidator::PARAM_ISMULTI_LIMIT1, ParamValidator::PARAM_ISMULTI_LIMIT2,
+			ParamValidator::PARAM_ALL, ParamValidator::PARAM_ALLOW_DUPLICATES
+		] );
+		$multiEnumKeys = array_merge( $multiKeys, [ TypeDef\EnumDef::PARAM_DEPRECATED_VALUES ] );
+
+		return [
+			'Basic test' => [
+				null,
+				[
+					'issues' => [],
+					'allowedKeys' => $normalKeys,
+					'messages' => [],
+				],
+			],
+			'Basic multi-value' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+				],
+				[
+					'issues' => [],
+					'allowedKeys' => $multiKeys,
+					'messages' => [],
+				],
+			],
+			'Test with everything' => [
+				[
+					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
+					ParamValidator::PARAM_DEFAULT => 'a|b',
+					ParamValidator::PARAM_REQUIRED => true,
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_SENSITIVE => false,
+					ParamValidator::PARAM_DEPRECATED => false,
+					ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 20,
+					ParamValidator::PARAM_ALL => 'all',
+					ParamValidator::PARAM_ALLOW_DUPLICATES => true,
+				],
+				[
+					'issues' => [],
+					'allowedKeys' => $multiEnumKeys,
+					'messages' => [],
+				],
+			],
+			'Lots of bad types' => [
+				[
+					ParamValidator::PARAM_TYPE => false,
+					ParamValidator::PARAM_REQUIRED => 1,
+					ParamValidator::PARAM_ISMULTI => 1,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '10',
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => '100',
+					ParamValidator::PARAM_ALL => [],
+					ParamValidator::PARAM_ALLOW_DUPLICATES => 1,
+					ParamValidator::PARAM_SENSITIVE => 1,
+					ParamValidator::PARAM_DEPRECATED => 1,
+					ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES => 1,
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_TYPE => 'PARAM_TYPE must be a string or array, got boolean',
+						ParamValidator::PARAM_REQUIRED => 'PARAM_REQUIRED must be boolean, got integer',
+						ParamValidator::PARAM_ISMULTI => 'PARAM_ISMULTI must be boolean, got integer',
+						ParamValidator::PARAM_ISMULTI_LIMIT1 => 'PARAM_ISMULTI_LIMIT1 must be an integer, got string',
+						ParamValidator::PARAM_ISMULTI_LIMIT2 => 'PARAM_ISMULTI_LIMIT2 must be an integer, got string',
+						ParamValidator::PARAM_ALL => 'PARAM_ALL must be a string or boolean, got array',
+						ParamValidator::PARAM_ALLOW_DUPLICATES
+							=> 'PARAM_ALLOW_DUPLICATES must be boolean, got integer',
+						ParamValidator::PARAM_SENSITIVE => 'PARAM_SENSITIVE must be boolean, got integer',
+						ParamValidator::PARAM_DEPRECATED => 'PARAM_DEPRECATED must be boolean, got integer',
+						ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES
+							=> 'PARAM_IGNORE_UNRECOGNIZED_VALUES must be boolean, got integer',
+					],
+					'allowedKeys' => $multiKeys,
+					'messages' => [],
+				],
+			],
+			'Multi-value stuff is ignored without ISMULTI' => [
+				[
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => '10',
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => '100',
+					ParamValidator::PARAM_ALL => [],
+					ParamValidator::PARAM_ALLOW_DUPLICATES => 1,
+				],
+				[
+					'issues' => [],
+					'allowedKeys' => $normalKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_TYPE is not registered' => [
+				[ ParamValidator::PARAM_TYPE => 'xyz' ],
+				[
+					'issues' => [
+						ParamValidator::PARAM_TYPE => 'Unknown/unregistered PARAM_TYPE "xyz"',
+					],
+					'allowedKeys' => $normalKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_DEFAULT value doesn\'t validate' => [
+				[
+					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'c', 'd' ],
+					ParamValidator::PARAM_DEFAULT => 'a|b',
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_DEFAULT => 'Value for PARAM_DEFAULT does not validate (code badvalue)',
+					],
+					'allowedKeys' => array_merge( $normalKeys, [ TypeDef\EnumDef::PARAM_DEPRECATED_VALUES ] ),
+					'messages' => [],
+				],
+			],
+			'PARAM_ISMULTI_LIMIT1 out of range' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 0,
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ISMULTI_LIMIT1 => 'PARAM_ISMULTI_LIMIT1 must be greater than 0, got 0',
+					],
+					'allowedKeys' => $multiKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ISMULTI_LIMIT2 out of range' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 100,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
+				],
+				[
+					'issues' => [
+						// phpcs:ignore Generic.Files.LineLength.TooLong
+						ParamValidator::PARAM_ISMULTI_LIMIT2 => 'PARAM_ISMULTI_LIMIT2 must be greater than or equal to PARAM_ISMULTI_LIMIT1, but 10 < 100',
+					],
+					'allowedKeys' => $multiKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ISMULTI_LIMIT1 = LIMIT2 is ok' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
+					ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
+				],
+				[
+					'issues' => [],
+					'allowedKeys' => $multiKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL false is ok with non-enumerated type' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => false,
+				],
+				[
+					'issues' => [],
+					'allowedKeys' => $multiKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL true is not ok with non-enumerated type' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => true,
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ALL => 'PARAM_ALL cannot be used with non-enumerated types',
+					],
+					'allowedKeys' => $multiKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL string is not ok with non-enumerated type' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => 'all',
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ALL => 'PARAM_ALL cannot be used with non-enumerated types',
+					],
+					'allowedKeys' => $multiKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL true value collision' => [
+				[
+					ParamValidator::PARAM_TYPE => [ 'a', 'b', '*' ],
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => true,
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ALL => 'Value for PARAM_ALL conflicts with an enumerated value',
+					],
+					'allowedKeys' => $multiEnumKeys,
+					'messages' => [],
+				],
+			],
+			'PARAM_ALL string value collision' => [
+				[
+					ParamValidator::PARAM_TYPE => [ 'a', 'b', 'all' ],
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_ALL => 'all',
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ALL => 'Value for PARAM_ALL conflicts with an enumerated value',
+					],
+					'allowedKeys' => $multiEnumKeys,
+					'messages' => [],
+				],
+			],
+			'TypeDef is called' => [
+				[
+					ParamValidator::PARAM_TYPE => 'foo',
+					'XXX-test' => '!!!',
+				],
+				[
+					'issues' => [
+						'XXX-test' => 'XXX-test was !!!',
+					],
+					'allowedKeys' => array_merge( $normalKeys, [ 'XXX-test' ] ),
+					'messages' => [],
+				],
+			],
+		];
+	}
+
+	public function testCheckSettings_noEnum() : void {
+		$callbacks = new SimpleCallbacks( [] );
+		$validator = new ParamValidator(
+			$callbacks,
+			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
+			[ 'typeDefs' => [] ]
+		);
+
+		$this->assertEquals(
+			[ ParamValidator::PARAM_TYPE => 'Unknown/unregistered PARAM_TYPE "enum"' ],
+			$validator->checkSettings( 'dummy', [ ParamValidator::PARAM_TYPE => [ 'xyz' ] ], [] )['issues']
+		);
+	}
+
 	/** @dataProvider provideExplodeMultiValue */
 	public function testExplodeMultiValue( $value, $limit, $expect ) {
 		$this->assertSame( $expect, ParamValidator::explodeMultiValue( $value, $limit ) );

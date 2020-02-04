@@ -173,6 +173,76 @@ class UploadDefTest extends TypeDefTestCase {
 		$typeDef->validate( 'test', $value, [], [] );
 	}
 
+	public function provideCheckSettings() {
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				self::STDRET,
+			],
+			'PARAM_ISMULTI not allowed' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+				],
+				self::STDRET,
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_ISMULTI
+							=> 'PARAM_ISMULTI cannot be used for upload-type parameters',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+			],
+			'PARAM_ISMULTI not allowed, but another ISMULTI issue was already logged' => [
+				[
+					ParamValidator::PARAM_ISMULTI => true,
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ISMULTI => 'XXX',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+				[
+					'issues' => [
+						ParamValidator::PARAM_ISMULTI => 'XXX',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+			],
+			'PARAM_DEFAULT can be null' => [
+				[ ParamValidator::PARAM_DEFAULT => null ],
+				self::STDRET,
+				self::STDRET,
+			],
+			'PARAM_DEFAULT is otherwise not allowed' => [
+				[
+					ParamValidator::PARAM_DEFAULT => true,
+				],
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_DEFAULT => 'XXX',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+				[
+					'issues' => [
+						'X',
+						ParamValidator::PARAM_DEFAULT => 'Cannot specify a default for upload-type parameters',
+					],
+					'allowedKeys' => [ 'Y' ],
+					'messages' => [],
+				],
+			],
+		];
+	}
+
 	public function provideStringifyValue() {
 		return [
 			'Yeah, right' => [ $this->makeUpload(), null ],
