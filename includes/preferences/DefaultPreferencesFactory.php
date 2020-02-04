@@ -28,6 +28,7 @@ use Html;
 use HTMLForm;
 use HTMLFormField;
 use IContextSource;
+use ILanguageConverter;
 use Language;
 use LanguageCode;
 use LanguageConverter;
@@ -80,6 +81,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var PermissionManager */
 	protected $permissionManager;
 
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
 	/**
 	 * @var array
 	 * @since 1.34
@@ -114,14 +118,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	];
 
 	/**
-	 * Do not call this directly.  Get it from MediaWikiServices.
-	 *
 	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 * @param AuthManager $authManager
 	 * @param LinkRenderer $linkRenderer
 	 * @param NamespaceInfo $nsInfo
 	 * @param PermissionManager $permissionManager
+	 * @param ILanguageConverter|null $languageConverter
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -129,7 +132,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		AuthManager $authManager,
 		LinkRenderer $linkRenderer,
 		NamespaceInfo $nsInfo,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		ILanguageConverter $languageConverter = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -140,6 +144,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->nsInfo = $nsInfo;
 		$this->permissionManager = $permissionManager;
 		$this->logger = new NullLogger();
+		$this->languageConverter = $languageConverter ??
+			MediaWikiServices::getInstance()->getLanguageConverterFactory()->getLanguageConverter();
 	}
 
 	/**
@@ -470,16 +476,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// see if there are multiple language variants to choose from
 		if ( !$this->options->get( 'DisableLangConversion' ) ) {
 
-			$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-				->getLanguageConverter( $this->contLang );
-
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $this->contLang->getCode() ) {
-					if ( !$converter->hasVariants() ) {
+					if ( !$this->languageConverter->hasVariants() ) {
 						continue;
 					}
 
-					$variants = $converter->getVariants();
+					$variants = $this->languageConverter->getVariants();
 					$variantArray = [];
 					foreach ( $variants as $v ) {
 						$v = str_replace( '_', '-', strtolower( $v ) );

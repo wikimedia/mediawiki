@@ -24,6 +24,8 @@
 use MediaWiki\MediaWikiServices;
 
 /**
+ * @internal
+ *
  * @ingroup Parser
  */
 class LinkHolderArray {
@@ -48,11 +50,20 @@ class LinkHolderArray {
 
 	/**
 	 * @param Parser $parent
-	 * @param ILanguageConverter $languageConverter
+	 * @param ILanguageConverter|null $languageConverter
 	 */
-	public function __construct( $parent, ILanguageConverter $languageConverter ) {
+	public function __construct( $parent, ILanguageConverter $languageConverter = null ) {
 		$this->parent = $parent;
-		$this->languageConverter = $languageConverter;
+		$this->languageConverter = DeprecationHelper::newArgumentWithDeprecation(
+			__METHOD__,
+			'languageConverter',
+			'1.35',
+			$languageConverter,
+			function () use ( $parent ) {
+				return MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $parent->getTargetLanguage() );
+			}
+		);
 	}
 
 	/**

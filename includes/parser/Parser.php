@@ -22,6 +22,7 @@
  */
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
@@ -281,6 +282,9 @@ class Parser {
 	/** @var Language */
 	private $contLang;
 
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
+
 	/** @var ParserFactory */
 	private $factory;
 
@@ -335,6 +339,7 @@ class Parser {
 
 	/**
 	 * Constructing parsers directly is deprecated! Use a ParserFactory.
+	 * @internal
 	 *
 	 * @param ServiceOptions|null $svcOptions
 	 * @param MagicWordFactory|null $magicWordFactory
@@ -346,6 +351,7 @@ class Parser {
 	 * @param NamespaceInfo|null $nsInfo
 	 * @param LoggerInterface|null $logger
 	 * @param BadFileLookup|null $badFileLookup
+	 * @param LanguageConverterFactory|null $languageConverterFactory
 	 */
 	public function __construct(
 		$svcOptions = null,
@@ -357,7 +363,8 @@ class Parser {
 		$linkRendererFactory = null,
 		$nsInfo = null,
 		$logger = null,
-		BadFileLookup $badFileLookup = null
+		BadFileLookup $badFileLookup = null,
+		LanguageConverterFactory $languageConverterFactory = null
 	) {
 		if ( !$svcOptions || is_array( $svcOptions ) ) {
 			// Pre-1.34 calling convention is the first parameter is just ParserConf, the seventh is
@@ -402,6 +409,9 @@ class Parser {
 		$this->logger = $logger ?: new NullLogger();
 		$this->badFileLookup = $badFileLookup ??
 			MediaWikiServices::getInstance()->getBadFileLookup();
+
+		$this->languageConverterFactory = $languageConverterFactory ??
+			MediaWikiServices::getInstance()->getLanguageConverterFactory();
 	}
 
 	/**
@@ -1520,8 +1530,9 @@ class Parser {
 	 * @return ILanguageConverter
 	 */
 	private function getTargetLanguageConverter() : ILanguageConverter {
-		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter( $this->getTargetLanguage() );
+		return $this->languageConverterFactory->getLanguageConverter(
+			$this->getTargetLanguage()
+		);
 	}
 
 	/**
@@ -1530,8 +1541,9 @@ class Parser {
 	 * @return ILanguageConverter
 	 */
 	private function getContentLanguageConverter() : ILanguageConverter {
-		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter( $this->getContentLanguage() );
+		return $this->languageConverterFactory->getLanguageConverter(
+			$this->getContentLanguage()
+		);
 	}
 
 	/**

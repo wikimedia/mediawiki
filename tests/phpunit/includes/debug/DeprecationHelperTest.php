@@ -171,4 +171,42 @@ class DeprecationHelperTest extends MediaWikiTestCase {
 			[ null, Exception::class ]
 		];
 	}
+
+	/**
+	 * @covers DeprecationHelper::newArgumentWithDeprecation
+	 */
+	public function testNewArgumentWithDeprecationRaisesExceptionIfNoValue() {
+		MWDebug::clearLog();
+
+		$newArgument = DeprecationHelper::newArgumentWithDeprecation(
+			__METHOD__,
+			'NewArgument',
+			'1.35',
+			null,
+			function () {
+				return 0;
+			}
+		);
+
+		$wrapper = TestingAccessWrapper::newFromClass( MWDebug::class );
+		$this->assertNotEmpty( $wrapper->deprecationWarnings );
+		$this->assertSame( 0, $newArgument );
+	}
+
+	/**
+	 * @covers DeprecationHelper::newArgumentWithDeprecation
+	 */
+	public function testNewArgumentWithDeprecationReturnsValue() {
+		$newArgument = DeprecationHelper::newArgumentWithDeprecation(
+			__METHOD__,
+			'NewArgument',
+			'1.35',
+			0,
+			function () {
+				return 0;
+			}
+		);
+		$this->assertSame( 0, $newArgument );
+	}
+
 }
