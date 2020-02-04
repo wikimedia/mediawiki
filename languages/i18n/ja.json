@@ -1603,6 +1603,7 @@
 	"rcfilters-filter-showlinkedto-label": "指定されたページのリンク元の変更を表示",
 	"rcfilters-filter-showlinkedto-option-label": "指定されたページに<strong>リンクしているページ（リンク元）</strong>",
 	"rcfilters-target-page-placeholder": "ページ名（またはカテゴリ名）を入力",
+	"rcfilters-allcontents-label": "全ての項目",
 	"rcfilters-alldiscussions-label": "すべての議論",
 	"rcnotefrom": "以下は<strong>$3 $4</strong>以降の{{PLURAL:$5|更新です}} (最大 <strong>$1</strong> 件)。",
 	"rclistfromreset": "日時指定をリセット",

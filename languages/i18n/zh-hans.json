@@ -126,7 +126,8 @@
 			"Sunny00217",
 			"Ywang",
 			"Tiger",
-			"Josephine W."
+			"Josephine W.",
+			"Hamish"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -2437,7 +2438,7 @@
 	"cantrollback": "无法回退编辑，最后贡献者是该页面的唯一作者。",
 	"alreadyrolled": "无法回退[[User:$2|$2]]（[[User talk:$2|讨论]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）对[[:$1]]的编辑，其他人已经编辑或者回退了该页。\n\n本页最后的编辑者是[[User:$3|$3]]（[[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。",
 	"editcomment": "编辑摘要：<em>$1</em>。",
-	"revertpage": "已将[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑还原至最后由[[User:$1|$1]]修订的版本",
+	"revertpage": "已还原[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后修订版本",
 	"revertpage-anon": "已将[[Special:Contributions/$2|$2]]的编辑还原至最后由[[User:$1|$1]]修订的版本",
 	"revertpage-nouser": "已将隐藏用户的编辑还原至最后由{{GENDER:$1|[[User:$1|$1]]}}修订的版本",
 	"rollback-success": "已回退{{GENDER:$3|$1}}的编辑；更改回最后由{{GENDER:$4|$2}}修订的版本。",
