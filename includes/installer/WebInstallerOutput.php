@@ -178,7 +178,6 @@ class WebInstallerOutput {
 			$styles = array_merge( $styles, ResourceLoader::makeCombinedStyles(
 				$module->readStyleFiles(
 					$module->getStyleFiles( $rlContext ),
-					$module->getFlip( $rlContext ),
 					$rlContext
 			) ) );
 		}

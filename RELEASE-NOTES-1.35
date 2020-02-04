@@ -451,6 +451,8 @@ because of Phabricator reports.
   use the RevisionDataUpdates hook or similar instead.
 * LinkHolderArray has been deprecated for public usage and will be
   internal part of parser.
+* ResourceLoaderFileModule::compileLessFile() has been deprecated, use
+  ResourceLoaderFileModule::compileLessString() instead
 * …
 
 === Other changes in 1.35 ===
