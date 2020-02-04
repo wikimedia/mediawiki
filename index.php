@@ -1,18 +1,18 @@
-<?php
+<?php // For broken web servers: ><pre>
+
+// If you are reading this in your web browser, your server is probably
+// not configured correctly to run PHP applications!
+//
+// See the README, INSTALL, and UPGRADE files for basic setup instructions
+// and pointers to the online documentation.
+//
+// https://www.mediawiki.org/wiki/Special:MyLanguage/MediaWiki
+//
+// -------------------------------------------------
+
 /**
- * For people without PHP, close tag for easier debugging: ><pre>
- *
- * This is the main web entry point for MediaWiki.
- *
- * If you are reading this in your web browser, your server is probably
- * not configured correctly to run PHP applications!
- *
- * See the README, INSTALL, and UPGRADE files for basic setup instructions
- * and pointers to the online documentation.
- *
- * https://www.mediawiki.org/wiki/Special:MyLanguage/MediaWiki
- *
- * ----------
+ * The main web entry point for MediaWiki. It handles all web requests for
+ * navigations from web browsers.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup entrypoint
  */
 
 define( 'MW_ENTRY_POINT', 'index' );

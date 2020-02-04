@@ -1309,11 +1309,24 @@ $wgAttemptFailureEpoch = 1;
 $wgIgnoreImageErrors = false;
 
 /**
- * Allow thumbnail rendering on page view. If this is false, a valid
- * thumbnail URL is still output, but no file will be created at
- * the target location. This may save some time if you have a
- * thumb.php or 404 handler set up which is faster than the regular
- * webserver(s).
+ * Render thumbnails while parsing wikitext.
+ *
+ * If set to false, then the Parser will output valid thumbnail URLs without
+ * generating or storing the thumbnail files. This can significantly speed up
+ * processing on the web server. The site admin needs to configure a 404 handler
+ * in order for the URLs in question to regenerate the thumbnails in question
+ * on-demand. This can enable concurrency and also save computing resources
+ * as not every resolution of every image on every page is accessed between
+ * re-parses of the article. For example, re-parses triggered by bot edits,
+ * or cascading updates from template edits.
+ *
+ * If you use $wgLocalFileRepo, then you will also need to set the following:
+ *
+ * @code
+ *   $wgLocalFileRepo['transformVia404'] = true;
+ * @endcode
+ * @var bool
+ * @since 1.7.0
  */
 $wgGenerateThumbnailOnParse = true;
 
