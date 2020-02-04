@@ -206,9 +206,7 @@ class CrhConverter extends LanguageConverter {
 				return $text;
 		}
 
-		if ( !$this->mTablesLoaded ) {
-			$this->loadTables();
-		}
+		$this->loadTables();
 
 		if ( !isset( $this->mTables[$toVariant] ) ) {
 			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );

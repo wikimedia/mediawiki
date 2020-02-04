@@ -2,6 +2,7 @@
 
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group large
@@ -116,15 +117,15 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $type, get_class( $converter ) );
 
 		if ( is_a( $converter, LanguageConverter::class ) ) {
-			$this->assertSame( $lang, $converter->mLangObj, "Language should be as provided" );
-			$this->assertEquals( $code, $converter->mMainLanguageCode,
-				"mMainLanguageCode should be as $code" );
-			$this->assertEquals( $manualLevel, $converter->mManualLevel, "Manual Level" );
+			$testConverter = TestingAccessWrapper::newFromObject( $converter );
+			$this->assertSame( $lang, $testConverter->mLangObj, "Language should be as provided" );
 
-			$this->assertEquals( $variants, $converter->mVariants, "Variants" );
-			$this->assertEquals( $variantFallbacks, $converter->mVariantFallbacks, "Variant Fallbacks" );
-			// $this->assertEquals(Language::fetchLanguageNames(),
-			//	$newConverter->mVariantNames, "Variant Names");
+			$this->assertEquals( $code, $testConverter->mMainLanguageCode,
+				"mMainLanguageCode should be as $code" );
+			$this->assertEquals( $manualLevel, $testConverter->mManualLevel, "Manual Level" );
+
+			$this->assertEquals( $variants, $testConverter->mVariants, "Variants" );
+			$this->assertEquals( $variantFallbacks, $testConverter->mVariantFallbacks, "Variant Fallbacks" );
 			$defaultFlags = [
 			'A' => 'A',
 			'T' => 'T',

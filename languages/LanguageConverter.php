@@ -31,7 +31,10 @@ use MediaWiki\Revision\RevisionRecord;
  * @author shinjiman <shinjiman@gmail.com>
  * @author PhiLiP <philip.npc@gmail.com>
  */
+
 abstract class LanguageConverter implements ILanguageConverter {
+	use DeprecationHelper;
+
 	/**
 	 * languages supporting variants
 	 * @since 1.20
@@ -57,14 +60,14 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @var string[]
 	 */
 	public $mVariants;
-	public $mVariantFallbacks;
+	private $mVariantFallbacks;
 	public $mVariantNames;
-	public $mTablesLoaded = false;
+	private $mTablesLoaded = false;
 
 	/**
 	 * @var ReplacementArray[]|bool[]
 	 */
-	public $mTables;
+	protected $mTables;
 
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
 	public $mManualLevel;
@@ -72,17 +75,17 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * @var Language
 	 */
-	public $mLangObj;
-
+	private $mLangObj;
 	public $mFlags;
-	public $mDescCodeSep = ':', $mDescVarSep = ';';
-	public $mUcfirst = false;
-	public $mConvRuleTitle = false;
-	public $mURLVariant;
-	public $mUserVariant;
-	public $mHeaderVariant;
-	public $mMaxDepth = 10;
-	public $mVarSeparatorPattern;
+	public $mDescCodeSep = ':';
+	public $mDescVarSep = ';';
+	private $mUcfirst = false;
+	private $mConvRuleTitle = false;
+	private $mURLVariant;
+	private $mUserVariant;
+	private $mHeaderVariant;
+	private $mMaxDepth = 10;
+	private $mVarSeparatorPattern;
 
 	const CACHE_VERSION_KEY = 'VERSION 7';
 
@@ -98,6 +101,21 @@ abstract class LanguageConverter implements ILanguageConverter {
 								$variantfallbacks = [], $flags = [],
 								$manualLevel = [] ) {
 		global $wgDisabledVariants;
+
+		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mUcfirst', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mConvRuleTitle', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mUserVariant', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mHeaderVariant', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mMaxDepth = 10', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mVarSeparatorPattern', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mLangObj', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mVariantFallbacks', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTablesLoaded', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTables', '1.35', __CLASS__ );
+
 		$this->mLangObj = $langobj;
 		$this->mMainLanguageCode = $maincode;
 		$this->mVariants = array_diff( $variants, $wgDisabledVariants );
