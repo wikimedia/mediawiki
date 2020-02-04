@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -69,17 +70,13 @@ class ApiFeedContributions extends ApiBase {
 		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();
 		$feedTitle = $config->get( 'Sitename' ) . ' - ' . $msg .
 			' [' . $config->get( 'LanguageCode' ) . ']';
-		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
 
-		try {
-			$target = $this->titleParser
-				->parseTitle( $params['user'], NS_USER )
-				->getText();
-		} catch ( MalformedTitleException $e ) {
-			$this->dieWithError(
-				[ 'apierror-baduser', 'user', wfEscapeWikiText( $params['user'] ) ],
-				'baduser_' . $this->encodeParamName( 'user' )
-			);
+		$target = $params['user'];
+		if ( ExternalUserNames::isExternal( $target ) ) {
+			// Interwiki names make invalid titles, so put the target in the query instead.
+			$feedUrl = SpecialPage::getTitleFor( 'Contributions' )->getFullURL( [ 'target' => $target ] );
+		} else {
+			$feedUrl = SpecialPage::getTitleFor( 'Contributions', $target )->getFullURL();
 		}
 
 		$feed = new $feedClasses[$params['feedformat']] (
@@ -220,6 +217,7 @@ class ApiFeedContributions extends ApiBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id', 'interwiki' ],
 				ApiBase::PARAM_REQUIRED => true,
 			],
 			'namespace' => [

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
  * API module that facilitates the unblocking of users. Requires API write mode
@@ -109,9 +110,13 @@ class ApiUnblock extends ApiBase {
 			'id' => [
 				ApiBase::PARAM_TYPE => 'integer',
 			],
-			'user' => null,
+			'user' => [
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id' ],
+			],
 			'userid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'reason' => '',
 			'tags' => [

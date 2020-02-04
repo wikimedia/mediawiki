@@ -24,6 +24,7 @@
  * @file
  */
 
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -192,7 +193,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			// Image filters
 			if ( $params['user'] !== null ) {
 				$actorQuery = ActorMigration::newMigration()
-					->getWhere( $db, 'img_user', User::newFromName( $params['user'], false ) );
+					->getWhere( $db, 'img_user', $params['user'] );
 				$this->addTables( $actorQuery['tables'] );
 				$this->addJoinConds( $actorQuery['joins'] );
 				$this->addWhere( $actorQuery['conds'] );
@@ -372,7 +373,9 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			'sha1' => null,
 			'sha1base36' => null,
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'filterbots' => [
 				ApiBase::PARAM_DFLT => 'all',

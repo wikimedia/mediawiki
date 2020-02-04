@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -447,9 +448,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 			],
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 			],
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
@@ -510,7 +513,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => RecentChange::getChangeTypes()
 			],
 			'owner' => [
-				ApiBase::PARAM_TYPE => 'user'
+				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
 			],
 			'token' => [
 				ApiBase::PARAM_TYPE => 'string',

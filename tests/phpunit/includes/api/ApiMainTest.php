@@ -459,7 +459,7 @@ class ApiMainTest extends ApiTestCase {
 			], null, null, new User );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( self::apiExceptionHasCode( $e, 'too-many-titles' ), 'sanity check' );
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'toomanyvalues' ), 'sanity check' );
 		}
 
 		// Now test that the assert happens first
@@ -1170,6 +1170,6 @@ class ApiMainTest extends ApiTestCase {
 		$this->assertIsArray( $data );
 		$this->assertArrayHasKey( 'error', $data );
 		$this->assertArrayHasKey( 'code', $data['error'] );
-		$this->assertSame( 'unknown_formatversion', $data['error']['code'] );
+		$this->assertSame( 'badvalue', $data['error']['code'] );
 	}
 }

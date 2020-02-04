@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\ParamValidator\TypeDef\UserDef;
+
 /**
  * @ingroup API
  */
@@ -117,6 +119,8 @@ class ApiRollback extends ApiBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_REQUIRED => true
 			],
 			'summary' => '',
@@ -151,13 +155,7 @@ class ApiRollback extends ApiBase {
 			return $this->mUser;
 		}
 
-		// We need to be able to revert IPs, but getCanonicalName rejects them
-		$this->mUser = User::isIP( $params['user'] )
-			? $params['user']
-			: User::getCanonicalName( $params['user'] );
-		if ( !$this->mUser ) {
-			$this->dieWithError( [ 'apierror-invaliduser', wfEscapeWikiText( $params['user'] ) ] );
-		}
+		$this->mUser = $params['user'];
 
 		return $this->mUser;
 	}

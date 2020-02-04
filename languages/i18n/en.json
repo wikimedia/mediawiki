@@ -4278,5 +4278,12 @@
 	"mycustomjsredirectprotected": "You do not have permission to edit this JavaScript page because it is a redirect and it does not point inside your userspace.",
 	"deflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "For security reasons JavaScript cannot be loaded from unprotected pages. Please only create javascript in the MediaWiki: namespace or as a User subpage",
-	"userlogout-continue": "Do you want to log out?"
+	"userlogout-continue": "Do you want to log out?",
+	"paramvalidator-baduser": "Invalid value \"$2\" for user parameter <var>$1</var>.",
+	"paramvalidator-help-type-user": "Type: {{PLURAL:$1|1=user|2=list of users}}, {{PLURAL:$3|by|by any of}} $2",
+	"paramvalidator-help-type-user-subtype-name": "user name",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "IP range",
+	"paramvalidator-help-type-user-subtype-interwiki": "interwiki name (e.g. \"prefix>ExampleName\")",
+	"paramvalidator-help-type-user-subtype-id": "user ID (e.g. \"#12345\")"
 }

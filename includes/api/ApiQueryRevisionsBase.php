@@ -25,6 +25,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * A base class for functions common to producing a list of revisions.
@@ -182,10 +184,15 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->limit === null ) {
-			$this->limit = 10;
-		}
-		$this->validateLimit( 'limit', $this->limit, 1, $userMax, $botMax );
+		$this->limit = $this->getMain()->getParamValidator()->validateValue(
+			$this, 'limit', $this->limit ?? 10, [
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => $userMax,
+				IntegerDef::PARAM_MAX2 => $botMax,
+				IntegerDef::PARAM_IGNORE_RANGE => true,
+			]
+		);
 
 		$this->needSlots = $this->fetchContent || $this->fld_contentmodel ||
 			$this->fld_slotsize || $this->fld_slotsha1;

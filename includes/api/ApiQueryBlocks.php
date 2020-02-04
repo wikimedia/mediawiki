@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -351,6 +352,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			],
 			'users' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr' ],
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'ip' => [

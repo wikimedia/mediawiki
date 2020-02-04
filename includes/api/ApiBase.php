@@ -20,12 +20,17 @@
  * @file
  */
 
+use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\PermissionManager;
-use Wikimedia\IPUtils;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\ParamValidator\TypeDef\StringDef;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -45,98 +50,57 @@ abstract class ApiBase extends ContextSource {
 	use ApiBlockInfoTrait;
 
 	/**
-	 * @name Constants for ::getAllowedParams() arrays
-	 * These constants are keys in the arrays returned by ::getAllowedParams()
-	 * and accepted by ::getParameterFromSettings() that define how the
-	 * parameters coming in from the request are to be interpreted.
+	 * @name Old constants for ::getAllowedParams() arrays
+	 * @deprecated since 1.35, use the equivalent ParamValidator or TypeDef constants instead.
 	 * @{
 	 */
 
-	/** (null|boolean|integer|string) Default value of the parameter. */
-	public const PARAM_DFLT = 0;
-
-	/** (boolean) Accept multiple pipe-separated values for this parameter (e.g. titles)? */
-	public const PARAM_ISMULTI = 1;
-
-	/**
-	 * (string|string[]) Either an array of allowed value strings, or a string
-	 * type as described below. If not specified, will be determined from the
-	 * type of PARAM_DFLT.
-	 *
-	 * Supported string types are:
-	 * - boolean: A boolean parameter, returned as false if the parameter is
-	 *   omitted and true if present (even with a falsey value, i.e. it works
-	 *   like HTML checkboxes). PARAM_DFLT must be boolean false, if specified.
-	 *   Cannot be used with PARAM_ISMULTI.
-	 * - integer: An integer value. See also PARAM_MIN, PARAM_MAX, and
-	 *   PARAM_RANGE_ENFORCE.
-	 * - limit: An integer or the string 'max'. Default lower limit is 0 (but
-	 *   see PARAM_MIN), and requires that PARAM_MAX and PARAM_MAX2 be
-	 *   specified. Cannot be used with PARAM_ISMULTI.
-	 * - namespace: An integer representing a MediaWiki namespace. Forces PARAM_ALL = true to
-	 *   support easily specifying all namespaces.
-	 * - NULL: Any string.
-	 * - password: Any non-empty string. Input value is private or sensitive.
-	 *   <input type="password"> would be an appropriate HTML form field.
-	 * - string: Any non-empty string, not expected to be very long or contain newlines.
-	 *   <input type="text"> would be an appropriate HTML form field.
-	 * - submodule: The name of a submodule of this module, see PARAM_SUBMODULE_MAP.
-	 * - tags: A string naming an existing, explicitly-defined tag. Should usually be
-	 *   used with PARAM_ISMULTI.
-	 * - text: Any non-empty string, expected to be very long or contain newlines.
-	 *   <textarea> would be an appropriate HTML form field.
-	 * - timestamp: A timestamp in any format recognized by MWTimestamp, or the
-	 *   string 'now' representing the current timestamp. Will be returned in
-	 *   TS_MW format.
-	 * - user: A MediaWiki username or IP. Will be returned normalized but not canonicalized.
-	 * - upload: An uploaded file. Will be returned as a WebRequestUpload object.
-	 *   Cannot be used with PARAM_ISMULTI.
-	 */
-	public const PARAM_TYPE = 2;
-
-	/** (integer) Max value allowed for the parameter, for PARAM_TYPE 'integer' and 'limit'. */
-	public const PARAM_MAX = 3;
+	public const PARAM_DFLT = ParamValidator::PARAM_DEFAULT;
+	public const PARAM_ISMULTI = ParamValidator::PARAM_ISMULTI;
+	public const PARAM_TYPE = ParamValidator::PARAM_TYPE;
+	public const PARAM_MAX = IntegerDef::PARAM_MAX;
+	public const PARAM_MAX2 = IntegerDef::PARAM_MAX2;
+	public const PARAM_MIN = IntegerDef::PARAM_MIN;
+	public const PARAM_ALLOW_DUPLICATES = ParamValidator::PARAM_ALLOW_DUPLICATES;
+	public const PARAM_DEPRECATED = ParamValidator::PARAM_DEPRECATED;
+	public const PARAM_REQUIRED = ParamValidator::PARAM_REQUIRED;
+	public const PARAM_SUBMODULE_MAP = SubmoduleDef::PARAM_SUBMODULE_MAP;
+	public const PARAM_SUBMODULE_PARAM_PREFIX = SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX;
+	public const PARAM_ALL = ParamValidator::PARAM_ALL;
+	public const PARAM_EXTRA_NAMESPACES = NamespaceDef::PARAM_EXTRA_NAMESPACES;
+	public const PARAM_SENSITIVE = ParamValidator::PARAM_SENSITIVE;
+	public const PARAM_DEPRECATED_VALUES = EnumDef::PARAM_DEPRECATED_VALUES;
+	public const PARAM_ISMULTI_LIMIT1 = ParamValidator::PARAM_ISMULTI_LIMIT1;
+	public const PARAM_ISMULTI_LIMIT2 = ParamValidator::PARAM_ISMULTI_LIMIT2;
+	public const PARAM_MAX_BYTES = StringDef::PARAM_MAX_BYTES;
+	public const PARAM_MAX_CHARS = StringDef::PARAM_MAX_CHARS;
 
 	/**
-	 * (integer) Max value allowed for the parameter for users with the
-	 * apihighlimits right, for PARAM_TYPE 'limit'.
+	 * (boolean) Inverse of IntegerDef::PARAM_IGNORE_RANGE
+	 * @deprecated since 1.35
 	 */
-	public const PARAM_MAX2 = 4;
+	public const PARAM_RANGE_ENFORCE = 'api-param-range-enforce';
 
-	/** (integer) Lowest value allowed for the parameter, for PARAM_TYPE 'integer' and 'limit'. */
-	public const PARAM_MIN = 5;
-
-	/** (boolean) Allow the same value to be set more than once when PARAM_ISMULTI is true? */
-	public const PARAM_ALLOW_DUPLICATES = 6;
-
-	/** (boolean) Is the parameter deprecated (will show a warning)? */
-	public const PARAM_DEPRECATED = 7;
+	/** @} */
 
 	/**
-	 * (boolean) Is the parameter required?
-	 * @since 1.17
+	 * @name API-specific constants for ::getAllowedParams() arrays
+	 * @{
 	 */
-	public const PARAM_REQUIRED = 8;
-
-	/**
-	 * (boolean) For PARAM_TYPE 'integer', enforce PARAM_MIN and PARAM_MAX?
-	 * @since 1.17
-	 */
-	public const PARAM_RANGE_ENFORCE = 9;
 
 	/**
 	 * (string|array|Message) Specify an alternative i18n documentation message
 	 * for this parameter. Default is apihelp-{$path}-param-{$param}.
 	 * @since 1.25
 	 */
-	public const PARAM_HELP_MSG = 10;
+	public const PARAM_HELP_MSG = 'api-param-help-msg';
 
 	/**
 	 * ((string|array|Message)[]) Specify additional i18n messages to append to
 	 * the normal message for this parameter.
 	 * @since 1.25
 	 */
-	public const PARAM_HELP_MSG_APPEND = 11;
+	public const PARAM_HELP_MSG_APPEND = 'api-param-help-msg-append';
 
 	/**
 	 * (array) Specify additional information tags for the parameter. Value is
@@ -146,14 +110,14 @@ abstract class ApiBase extends ContextSource {
 	 * $1 = count, $2 = comma-joined list of values, $3 = module prefix.
 	 * @since 1.25
 	 */
-	public const PARAM_HELP_MSG_INFO = 12;
+	public const PARAM_HELP_MSG_INFO = 'api-param-help-msg-info';
 
 	/**
-	 * (string[]) When PARAM_TYPE is an array, this may be an array mapping
-	 * those values to page titles which will be linked in the help.
+	 * Deprecated and unused.
 	 * @since 1.25
+	 * @deprecated since 1.35
 	 */
-	public const PARAM_VALUE_LINKS = 13;
+	public const PARAM_VALUE_LINKS = 'api-param-value-links';
 
 	/**
 	 * ((string|array|Message)[]) When PARAM_TYPE is an array, this is an array
@@ -162,77 +126,7 @@ abstract class ApiBase extends ContextSource {
 	 * Specify an empty array to use the default message key for all values.
 	 * @since 1.25
 	 */
-	public const PARAM_HELP_MSG_PER_VALUE = 14;
-
-	/**
-	 * (string[]) When PARAM_TYPE is 'submodule', map parameter values to
-	 * submodule paths. Default is to use all modules in
-	 * $this->getModuleManager() in the group matching the parameter name.
-	 * @since 1.26
-	 */
-	public const PARAM_SUBMODULE_MAP = 15;
-
-	/**
-	 * (string) When PARAM_TYPE is 'submodule', used to indicate the 'g' prefix
-	 * added by ApiQueryGeneratorBase (and similar if anything else ever does that).
-	 * @since 1.26
-	 */
-	public const PARAM_SUBMODULE_PARAM_PREFIX = 16;
-
-	/**
-	 * (boolean|string) When PARAM_TYPE has a defined set of values and PARAM_ISMULTI is true,
-	 * this allows for an asterisk ('*') to be passed in place of a pipe-separated list of
-	 * every possible value. If a string is set, it will be used in place of the asterisk.
-	 * @since 1.29
-	 */
-	public const PARAM_ALL = 17;
-
-	/**
-	 * (int[]) When PARAM_TYPE is 'namespace', include these as additional possible values.
-	 * @since 1.29
-	 */
-	public const PARAM_EXTRA_NAMESPACES = 18;
-
-	/**
-	 * (boolean) Is the parameter sensitive? Note 'password'-type fields are
-	 * always sensitive regardless of the value of this field.
-	 * @since 1.29
-	 */
-	public const PARAM_SENSITIVE = 19;
-
-	/**
-	 * (array) When PARAM_TYPE is an array, this indicates which of the values are deprecated.
-	 * Keys are the deprecated parameter values, values define the warning
-	 * message to emit: either boolean true (to use a default message) or a
-	 * $msg for ApiBase::makeMessage().
-	 * @since 1.30
-	 */
-	public const PARAM_DEPRECATED_VALUES = 20;
-
-	/**
-	 * (integer) Maximum number of values, for normal users. Must be used with PARAM_ISMULTI.
-	 * @since 1.30
-	 */
-	public const PARAM_ISMULTI_LIMIT1 = 21;
-
-	/**
-	 * (integer) Maximum number of values, for users with the apihighimits right.
-	 * Must be used with PARAM_ISMULTI.
-	 * @since 1.30
-	 */
-	public const PARAM_ISMULTI_LIMIT2 = 22;
-
-	/**
-	 * (integer) Maximum length of a string in bytes (in UTF-8 encoding).
-	 * @since 1.31
-	 */
-	public const PARAM_MAX_BYTES = 23;
-
-	/**
-	 * (integer) Maximum length of a string in characters (unicode codepoints).
-	 * @since 1.31
-	 */
-	public const PARAM_MAX_CHARS = 24;
+	public const PARAM_HELP_MSG_PER_VALUE = 'api-param-help-msg-per-value';
 
 	/**
 	 * (array) Indicate that this is a templated parameter, and specify replacements. Keys are the
@@ -250,7 +144,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.32
 	 */
-	public const PARAM_TEMPLATE_VARS = 25;
+	public const PARAM_TEMPLATE_VARS = 'param-template-vars';
 
 	/** @} */
 
@@ -1127,318 +1021,24 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Using the settings determine the value for the given parameter
 	 *
-	 * @param string $paramName Parameter name
-	 * @param array|mixed $paramSettings Default value or an array of settings
+	 * @param string $name Parameter name
+	 * @param array|mixed $settings Default value or an array of settings
 	 *  using PARAM_* constants.
 	 * @param bool $parseLimit Whether to parse and validate 'limit' parameters
 	 * @return mixed Parameter value
 	 */
-	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
-		// Some classes may decide to change parameter names
-		$encParamName = $this->encodeParamName( $paramName );
+	protected function getParameterFromSettings( $name, $settings, $parseLimit ) {
+		$validator = $this->getMain()->getParamValidator();
+		$value = $validator->getValue( $this, $name, $settings, [
+			'parse-limit' => $parseLimit,
+		] );
 
-		// Shorthand
-		if ( !is_array( $paramSettings ) ) {
-			$paramSettings = [
-				self::PARAM_DFLT => $paramSettings,
-			];
-		}
-
-		$default = $paramSettings[self::PARAM_DFLT] ?? null;
-		$multi = $paramSettings[self::PARAM_ISMULTI] ?? false;
-		$multiLimit1 = $paramSettings[self::PARAM_ISMULTI_LIMIT1] ?? null;
-		$multiLimit2 = $paramSettings[self::PARAM_ISMULTI_LIMIT2] ?? null;
-		$type = $paramSettings[self::PARAM_TYPE] ?? null;
-		$dupes = $paramSettings[self::PARAM_ALLOW_DUPLICATES] ?? false;
-		$deprecated = $paramSettings[self::PARAM_DEPRECATED] ?? false;
-		$deprecatedValues = $paramSettings[self::PARAM_DEPRECATED_VALUES] ?? [];
-		$required = $paramSettings[self::PARAM_REQUIRED] ?? false;
-		$allowAll = $paramSettings[self::PARAM_ALL] ?? false;
-
-		// When type is not given, and no choices, the type is the same as $default
-		if ( !isset( $type ) ) {
-			if ( isset( $default ) ) {
-				$type = gettype( $default );
-			} else {
-				$type = 'NULL'; // allow everything
-			}
-		}
-
-		if ( $type == 'password' || !empty( $paramSettings[self::PARAM_SENSITIVE] ) ) {
-			$this->getMain()->markParamsSensitive( $encParamName );
-		}
-
-		if ( $type == 'boolean' ) {
-			if ( isset( $default ) && $default !== false ) {
-				// Having a default value of anything other than 'false' is not allowed
-				self::dieDebug(
-					__METHOD__,
-					"Boolean param $encParamName's default is set to '$default'. " .
-						'Boolean parameters must default to false.'
-				);
-			}
-
-			$value = $this->getMain()->getCheck( $encParamName );
-			$provided = $value;
-		} elseif ( $type == 'upload' ) {
-			if ( isset( $default ) ) {
-				// Having a default value is not allowed
-				self::dieDebug(
-					__METHOD__,
-					"File upload param $encParamName's default is set to " .
-						"'$default'. File upload parameters may not have a default." );
-			}
-			if ( $multi ) {
-				self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
-			}
-			$value = $this->getMain()->getUpload( $encParamName );
-			$provided = $value->exists();
-			if ( !$value->exists() ) {
-				// This will get the value without trying to normalize it
-				// (because trying to normalize a large binary file
-				// accidentally uploaded as a field fails spectacularly)
-				$value = $this->getMain()->getRequest()->unsetVal( $encParamName );
-				if ( $value !== null ) {
-					$this->dieWithError(
-						[ 'apierror-badupload', $encParamName ],
-						"badupload_{$encParamName}"
-					);
-				}
-			}
-		} else {
-			$value = $this->getMain()->getVal( $encParamName, $default );
-			$provided = $this->getMain()->getCheck( $encParamName );
-
-			if ( isset( $value ) && $type == 'namespace' ) {
-				$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
-					getValidNamespaces();
-				if ( isset( $paramSettings[self::PARAM_EXTRA_NAMESPACES] ) &&
-					is_array( $paramSettings[self::PARAM_EXTRA_NAMESPACES] )
-				) {
-					$type = array_merge( $type, $paramSettings[self::PARAM_EXTRA_NAMESPACES] );
-				}
-				// Namespace parameters allow ALL_DEFAULT_STRING to be used to
-				// specify all namespaces irrespective of PARAM_ALL.
-				$allowAll = true;
-			}
-			if ( isset( $value ) && $type == 'submodule' ) {
-				if ( isset( $paramSettings[self::PARAM_SUBMODULE_MAP] ) ) {
-					$type = array_keys( $paramSettings[self::PARAM_SUBMODULE_MAP] );
-				} else {
-					$type = $this->getModuleManager()->getNames( $paramName );
-				}
-			}
-
-			$request = $this->getMain()->getRequest();
-			$rawValue = $request->getRawVal( $encParamName );
-			if ( $rawValue === null ) {
-				$rawValue = $default;
-			}
-
-			// Preserve U+001F for self::parseMultiValue(), or error out if that won't be called
-			if ( isset( $value ) && substr( $rawValue, 0, 1 ) === "\x1f" ) {
-				if ( $multi ) {
-					// This loses the potential checkTitleEncoding() transformation done by
-					// WebRequest for $_GET. Let's call that a feature.
-					$value = implode( "\x1f", $request->normalizeUnicode( explode( "\x1f", $rawValue ) ) );
-				} else {
-					$this->dieWithError( 'apierror-badvalue-notmultivalue', 'badvalue_notmultivalue' );
-				}
-			}
-
-			// Check for NFC normalization, and warn
-			if ( $rawValue !== $value ) {
-				$this->handleParamNormalization( $paramName, $value, $rawValue );
-			}
-		}
-
-		$allSpecifier = ( is_string( $allowAll ) ? $allowAll : self::ALL_DEFAULT_STRING );
-		if ( $allowAll && $multi && is_array( $type ) && in_array( $allSpecifier, $type, true ) ) {
-			self::dieDebug(
-				__METHOD__,
-				"For param $encParamName, PARAM_ALL collides with a possible value" );
-		}
-		if ( isset( $value ) && ( $multi || is_array( $type ) ) ) {
-			$value = $this->parseMultiValue(
-				$encParamName,
-				$value,
-				$multi,
-				is_array( $type ) ? $type : null,
-				$allowAll ? $allSpecifier : null,
-				$multiLimit1,
-				$multiLimit2
-			);
-		}
-
-		if ( isset( $value ) ) {
-			// More validation only when choices were not given
-			// choices were validated in parseMultiValue()
-			if ( !is_array( $type ) ) {
-				switch ( $type ) {
-					case 'NULL': // nothing to do
-						break;
-					case 'string':
-					case 'text':
-					case 'password':
-						if ( $required && $value === '' ) {
-							$this->dieWithError( [ 'apierror-missingparam', $encParamName ] );
-						}
-						break;
-					case 'integer': // Force everything using intval() and optionally validate limits
-						$min = $paramSettings[self::PARAM_MIN] ?? null;
-						$max = $paramSettings[self::PARAM_MAX] ?? null;
-						$enforceLimits = $paramSettings[self::PARAM_RANGE_ENFORCE] ?? false;
-
-						if ( is_array( $value ) ) {
-							$value = array_map( 'intval', $value );
-							if ( $min !== null || $max !== null ) {
-								foreach ( $value as &$v ) {
-									$this->validateLimit( $paramName, $v, $min, $max, null, $enforceLimits );
-								}
-							}
-						} else {
-							$value = (int)$value;
-							if ( $min !== null || $max !== null ) {
-								$this->validateLimit( $paramName, $value, $min, $max, null, $enforceLimits );
-							}
-						}
-						break;
-					case 'limit':
-						// Must be a number or 'max'
-						if ( $value !== 'max' ) {
-							$value = (int)$value;
-						}
-						if ( $multi ) {
-							self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
-						}
-						if ( !$parseLimit ) {
-							// Don't do min/max validation and don't parse 'max'
-							break;
-						}
-						if ( !isset( $paramSettings[self::PARAM_MAX] )
-							|| !isset( $paramSettings[self::PARAM_MAX2] )
-						) {
-							self::dieDebug(
-								__METHOD__,
-								"MAX1 or MAX2 are not defined for the limit $encParamName"
-							);
-						}
-						if ( $value === 'max' ) {
-							$value = $this->getMain()->canApiHighLimits()
-								? $paramSettings[self::PARAM_MAX2]
-								: $paramSettings[self::PARAM_MAX];
-							$this->getResult()->addParsedLimit( $this->getModuleName(), $value );
-						} else {
-							$this->validateLimit(
-								$paramName,
-								$value,
-								$paramSettings[self::PARAM_MIN] ?? 0,
-								$paramSettings[self::PARAM_MAX],
-								$paramSettings[self::PARAM_MAX2]
-							);
-						}
-						break;
-					case 'boolean':
-						if ( $multi ) {
-							self::dieDebug( __METHOD__, "Multi-values not supported for $encParamName" );
-						}
-						break;
-					case 'timestamp':
-						if ( is_array( $value ) ) {
-							foreach ( $value as $key => $val ) {
-								$value[$key] = $this->validateTimestamp( $val, $encParamName );
-							}
-						} else {
-							$value = $this->validateTimestamp( $value, $encParamName );
-						}
-						break;
-					case 'user':
-						if ( is_array( $value ) ) {
-							foreach ( $value as $key => $val ) {
-								$value[$key] = $this->validateUser( $val, $encParamName );
-							}
-						} else {
-							$value = $this->validateUser( $value, $encParamName );
-						}
-						break;
-					case 'upload': // nothing to do
-						break;
-					case 'tags':
-						// If change tagging was requested, check that the tags are valid.
-						if ( !is_array( $value ) && !$multi ) {
-							$value = [ $value ];
-						}
-						$tagsStatus = ChangeTags::canAddTagsAccompanyingChange( $value );
-						if ( !$tagsStatus->isGood() ) {
-							$this->dieStatus( $tagsStatus );
-						}
-						break;
-					default:
-						self::dieDebug( __METHOD__, "Param $encParamName's type is unknown - $type" );
-				}
-			}
-
-			// Throw out duplicates if requested
-			if ( !$dupes && is_array( $value ) ) {
-				$value = array_unique( $value );
-			}
-
-			if ( in_array( $type, [ 'NULL', 'string', 'text', 'password' ], true ) ) {
-				foreach ( (array)$value as $val ) {
-					if ( isset( $paramSettings[self::PARAM_MAX_BYTES] )
-						&& strlen( $val ) > $paramSettings[self::PARAM_MAX_BYTES]
-					) {
-						$this->dieWithError( [ 'apierror-maxbytes', $encParamName,
-							$paramSettings[self::PARAM_MAX_BYTES] ] );
-					}
-					if ( isset( $paramSettings[self::PARAM_MAX_CHARS] )
-						&& mb_strlen( $val, 'UTF-8' ) > $paramSettings[self::PARAM_MAX_CHARS]
-					) {
-						$this->dieWithError( [ 'apierror-maxchars', $encParamName,
-							$paramSettings[self::PARAM_MAX_CHARS] ] );
-					}
-				}
-			}
-
-			// Set a warning if a deprecated parameter has been passed
-			if ( $deprecated && $provided ) {
-				$feature = $encParamName;
-				$m = $this;
-				while ( !$m->isMain() ) {
-					$p = $m->getParent();
-					$name = $m->getModuleName();
-					$param = $p->encodeParamName( $p->getModuleManager()->getModuleGroup( $name ) );
-					$feature = "{$param}={$name}&{$feature}";
-					$m = $p;
-				}
-				$this->addDeprecation( [ 'apiwarn-deprecation-parameter', $encParamName ], $feature );
-			}
-
-			// Set a warning if a deprecated parameter value has been passed
-			$usedDeprecatedValues = $deprecatedValues && $provided
-				? array_intersect( array_keys( $deprecatedValues ), (array)$value )
-				: [];
-			if ( $usedDeprecatedValues ) {
-				$feature = "$encParamName=";
-				$m = $this;
-				while ( !$m->isMain() ) {
-					$p = $m->getParent();
-					$name = $m->getModuleName();
-					$param = $p->encodeParamName( $p->getModuleManager()->getModuleGroup( $name ) );
-					$feature = "{$param}={$name}&{$feature}";
-					$m = $p;
-				}
-				foreach ( $usedDeprecatedValues as $v ) {
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-					$msg = $deprecatedValues[$v];
-					if ( $msg === true ) {
-						$msg = [ 'apiwarn-deprecation-parameter', "$encParamName=$v" ];
-					}
-					$this->addDeprecation( $msg, "$feature$v" );
-				}
-			}
-		} elseif ( $required ) {
-			$this->dieWithError( [ 'apierror-missingparam', $encParamName ] );
+		// @todo Deprecate and remove this, if possible.
+		if ( $parseLimit && isset( $settings[ParamValidator::PARAM_TYPE] ) &&
+			$settings[ParamValidator::PARAM_TYPE] === 'limit' &&
+			$this->getMain()->getVal( $this->encodeParamName( $name ) ) === 'max'
+		) {
+			$this->getResult()->addParsedLimit( $this->getModuleName(), $value );
 		}
 
 		return $value;
@@ -1447,213 +1047,14 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Handle when a parameter was Unicode-normalized
 	 * @since 1.28
-	 * @param string $paramName Unprefixed parameter name
+	 * @since 1.35 $paramName is prefixed
+	 * @internal For overriding by subclasses and use by ApiParamValidatorCallbacks only.
+	 * @param string $paramName Prefixed parameter name
 	 * @param string $value Input that will be used.
 	 * @param string $rawValue Input before normalization.
 	 */
-	protected function handleParamNormalization( $paramName, $value, $rawValue ) {
-		$encParamName = $this->encodeParamName( $paramName );
-		$this->addWarning( [ 'apiwarn-badutf8', $encParamName ] );
-	}
-
-	/**
-	 * Split a multi-valued parameter string, like explode()
-	 * @since 1.28
-	 * @param string $value
-	 * @param int $limit
-	 * @return string[]
-	 */
-	protected function explodeMultiValue( $value, $limit ) {
-		if ( substr( $value, 0, 1 ) === "\x1f" ) {
-			$sep = "\x1f";
-			$value = substr( $value, 1 );
-		} else {
-			$sep = '|';
-		}
-
-		return explode( $sep, $value, $limit );
-	}
-
-	/**
-	 * Return an array of values that were given in a 'a|b|c' notation,
-	 * after it optionally validates them against the list allowed values.
-	 *
-	 * @param string $valueName The name of the parameter (for error
-	 *  reporting)
-	 * @param mixed $value The value being parsed
-	 * @param bool $allowMultiple Can $value contain more than one value
-	 *  separated by '|'?
-	 * @param string[]|null $allowedValues An array of values to check against. If
-	 *  null, all values are accepted.
-	 * @param string|null $allSpecifier String to use to specify all allowed values, or null
-	 *  if this behavior should not be allowed
-	 * @param int|null $limit1 Maximum number of values, for normal users.
-	 * @param int|null $limit2 Maximum number of values, for users with the apihighlimits right.
-	 * @return string|string[] (allowMultiple ? an_array_of_values : a_single_value)
-	 */
-	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues,
-		$allSpecifier = null, $limit1 = null, $limit2 = null
-	) {
-		if ( ( $value === '' || $value === "\x1f" ) && $allowMultiple ) {
-			return [];
-		}
-		$limit1 = $limit1 ?: self::LIMIT_SML1;
-		$limit2 = $limit2 ?: self::LIMIT_SML2;
-
-		// This is a bit awkward, but we want to avoid calling canApiHighLimits()
-		// because it unstubs $wgUser
-		$valuesList = $this->explodeMultiValue( $value, $limit2 + 1 );
-		$sizeLimit = count( $valuesList ) > $limit1 && $this->mMainModule->canApiHighLimits()
-			? $limit2
-			: $limit1;
-
-		if ( $allowMultiple && is_array( $allowedValues ) && $allSpecifier &&
-			count( $valuesList ) === 1 && $valuesList[0] === $allSpecifier
-		) {
-			return $allowedValues;
-		}
-
-		if ( count( $valuesList ) > $sizeLimit ) {
-			$this->dieWithError(
-				[ 'apierror-toomanyvalues', $valueName, $sizeLimit ],
-				"too-many-$valueName"
-			);
-		}
-
-		if ( !$allowMultiple && count( $valuesList ) != 1 ) {
-			// T35482 - Allow entries with | in them for non-multiple values
-			if ( in_array( $value, $allowedValues, true ) ) {
-				return $value;
-			}
-
-			$values = array_map( function ( $v ) {
-				return '<kbd>' . wfEscapeWikiText( $v ) . '</kbd>';
-			}, $allowedValues );
-			$this->dieWithError( [
-				'apierror-multival-only-one-of',
-				$valueName,
-				Message::listParam( $values ),
-				count( $values ),
-			], "multival_$valueName" );
-		}
-
-		if ( is_array( $allowedValues ) ) {
-			// Check for unknown values
-			$unknown = array_map( 'wfEscapeWikiText', array_diff( $valuesList, $allowedValues ) );
-			if ( count( $unknown ) ) {
-				if ( $allowMultiple ) {
-					$this->addWarning( [
-						'apiwarn-unrecognizedvalues',
-						$valueName,
-						Message::listParam( $unknown, 'comma' ),
-						count( $unknown ),
-					] );
-				} else {
-					$this->dieWithError(
-						[ 'apierror-unrecognizedvalue', $valueName, wfEscapeWikiText( $valuesList[0] ) ],
-						"unknown_$valueName"
-					);
-				}
-			}
-			// Now throw them out
-			$valuesList = array_intersect( $valuesList, $allowedValues );
-		}
-
-		return $allowMultiple ? $valuesList : $valuesList[0];
-	}
-
-	/**
-	 * Validate the value against the minimum and user/bot maximum limits.
-	 * Prints usage info on failure.
-	 * @param string $paramName Parameter name
-	 * @param int &$value Parameter value
-	 * @param int|null $min Minimum value
-	 * @param int|null $max Maximum value for users
-	 * @param int|null $botMax Maximum value for sysops/bots
-	 * @param bool $enforceLimits Whether to enforce (die) if value is outside limits
-	 */
-	protected function validateLimit( $paramName, &$value, $min, $max, $botMax = null,
-		$enforceLimits = false
-	) {
-		if ( $min !== null && $value < $min ) {
-			$msg = ApiMessage::create(
-				[ 'apierror-integeroutofrange-belowminimum',
-					$this->encodeParamName( $paramName ), $min, $value ],
-				'integeroutofrange',
-				[ 'min' => $min, 'max' => $max, 'botMax' => $botMax ?: $max ]
-			);
-			// @phan-suppress-next-line PhanTypeMismatchArgument
-			$this->warnOrDie( $msg, $enforceLimits );
-			$value = $min;
-		}
-
-		// Minimum is always validated, whereas maximum is checked only if not
-		// running in internal call mode
-		if ( $this->getMain()->isInternalMode() ) {
-			return;
-		}
-
-		// Optimization: do not check user's bot status unless really needed -- skips db query
-		// assumes $botMax >= $max
-		if ( $max !== null && $value > $max ) {
-			if ( $botMax !== null && $this->getMain()->canApiHighLimits() ) {
-				if ( $value > $botMax ) {
-					$msg = ApiMessage::create(
-						[ 'apierror-integeroutofrange-abovebotmax',
-							$this->encodeParamName( $paramName ), $botMax, $value ],
-						'integeroutofrange',
-						[ 'min' => $min, 'max' => $max, 'botMax' => $botMax ?: $max ]
-					);
-					// @phan-suppress-next-line PhanTypeMismatchArgument
-					$this->warnOrDie( $msg, $enforceLimits );
-					$value = $botMax;
-				}
-			} else {
-				$msg = ApiMessage::create(
-					[ 'apierror-integeroutofrange-abovemax',
-						$this->encodeParamName( $paramName ), $max, $value ],
-					'integeroutofrange',
-					[ 'min' => $min, 'max' => $max, 'botMax' => $botMax ?: $max ]
-				);
-				// @phan-suppress-next-line PhanTypeMismatchArgument
-				$this->warnOrDie( $msg, $enforceLimits );
-				$value = $max;
-			}
-		}
-	}
-
-	/**
-	 * Validate and normalize parameters of type 'timestamp'
-	 * @param string $value Parameter value
-	 * @param string $encParamName Parameter name
-	 * @return string Validated and normalized parameter
-	 */
-	protected function validateTimestamp( $value, $encParamName ) {
-		// Confusing synonyms for the current time accepted by wfTimestamp()
-		// (wfTimestamp() also accepts various non-strings and the string of 14
-		// ASCII NUL bytes, but those can't get here)
-		if ( !$value ) {
-			$this->addDeprecation(
-				[ 'apiwarn-unclearnowtimestamp', $encParamName, wfEscapeWikiText( $value ) ],
-				'unclear-"now"-timestamp'
-			);
-			return wfTimestamp( TS_MW );
-		}
-
-		// Explicit synonym for the current time
-		if ( $value === 'now' ) {
-			return wfTimestamp( TS_MW );
-		}
-
-		$timestamp = wfTimestamp( TS_MW, $value );
-		if ( $timestamp === false ) {
-			$this->dieWithError(
-				[ 'apierror-badtimestamp', $encParamName, wfEscapeWikiText( $value ) ],
-				"badtimestamp_{$encParamName}"
-			);
-		}
-
-		return $timestamp;
+	public function handleParamNormalization( $paramName, $value, $rawValue ) {
+		$this->addWarning( [ 'apiwarn-badutf8', $paramName ] );
 	}
 
 	/**
@@ -1692,47 +1093,6 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Validate and normalize parameters of type 'user'
-	 * @param string $value Parameter value
-	 * @param string $encParamName Parameter name
-	 * @return string Validated and normalized parameter
-	 */
-	private function validateUser( $value, $encParamName ) {
-		if ( ExternalUserNames::isExternal( $value ) && User::newFromName( $value, false ) ) {
-			return $value;
-		}
-
-		$name = User::getCanonicalName( $value, 'valid' );
-		if ( $name !== false ) {
-			return $name;
-		}
-
-		if (
-			IPUtils::isIPAddress( $value ) ||
-			// We allow ranges as well, for blocks.
-			IPUtils::isValidRange( $value ) ||
-			// See comment for User::isIP.  We don't just call that function
-			// here because it also returns true for things like
-			// 300.300.300.300 that are neither valid usernames nor valid IP
-			// addresses.
-			preg_match(
-				'/^' . IPUtils::RE_IP_BYTE .
-				'\.' . IPUtils::RE_IP_BYTE .
-				'\.' . IPUtils::RE_IP_BYTE .
-				'\.xxx$/',
-				$value
-			)
-		) {
-			return IPUtils::sanitizeIP( $value );
-		}
-
-		$this->dieWithError(
-			[ 'apierror-baduser', $encParamName, wfEscapeWikiText( $value ) ],
-			"baduser_{$encParamName}"
-		);
 	}
 
 	/** @} */
@@ -2029,20 +1389,6 @@ abstract class ApiBase extends ContextSource {
 			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->getErrorFormatter()->getMessageFromException( $exception, $options )
 		);
-	}
-
-	/**
-	 * Adds a warning to the output, else dies
-	 *
-	 * @param ApiMessage $msg Message to show as a warning, or error message if dying
-	 * @param bool $enforceLimits Whether this is an enforce (die)
-	 */
-	private function warnOrDie( ApiMessage $msg, $enforceLimits = false ) {
-		if ( $enforceLimits ) {
-			$this->dieWithError( $msg );
-		} else {
-			$this->addWarning( $msg );
-		}
 	}
 
 	/**
@@ -2650,6 +1996,169 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/** @} */
+
+	/************************************************************************//**
+	 * @name   Deprecated methods
+	 * @{
+	 */
+
+	/**
+	 * Split a multi-valued parameter string, like explode()
+	 * @since 1.28
+	 * @deprecated since 1.35, use ParamValidator::explodeMultiValue() instead
+	 * @param string $value
+	 * @param int $limit
+	 * @return string[]
+	 */
+	protected function explodeMultiValue( $value, $limit ) {
+		wfDeprecated( __METHOD__, '1.35' );
+		return ParamValidator::explodeMultiValue( $value, $limit );
+	}
+
+	/**
+	 * Return an array of values that were given in a 'a|b|c' notation,
+	 * after it optionally validates them against the list allowed values.
+	 *
+	 * @deprecated since 1.35, no replacement
+	 * @param string $valueName The name of the parameter (for error
+	 *  reporting)
+	 * @param mixed $value The value being parsed
+	 * @param bool $allowMultiple Can $value contain more than one value
+	 *  separated by '|'?
+	 * @param string[]|null $allowedValues An array of values to check against. If
+	 *  null, all values are accepted.
+	 * @param string|null $allSpecifier String to use to specify all allowed values, or null
+	 *  if this behavior should not be allowed
+	 * @param int|null $limit1 Maximum number of values, for normal users.
+	 * @param int|null $limit2 Maximum number of values, for users with the apihighlimits right.
+	 * @return string|string[] (allowMultiple ? an_array_of_values : a_single_value)
+	 */
+	protected function parseMultiValue( $valueName, $value, $allowMultiple, $allowedValues,
+		$allSpecifier = null, $limit1 = null, $limit2 = null
+	) {
+		wfDeprecated( __METHOD__, '1.35' );
+
+		if ( ( $value === '' || $value === "\x1f" ) && $allowMultiple ) {
+			return [];
+		}
+		$limit1 = $limit1 ?: self::LIMIT_SML1;
+		$limit2 = $limit2 ?: self::LIMIT_SML2;
+
+		// This is a bit awkward, but we want to avoid calling canApiHighLimits()
+		// because it unstubs $wgUser
+		$valuesList = $this->explodeMultiValue( $value, $limit2 + 1 );
+		$sizeLimit = count( $valuesList ) > $limit1 && $this->mMainModule->canApiHighLimits()
+			? $limit2
+			: $limit1;
+
+		if ( $allowMultiple && is_array( $allowedValues ) && $allSpecifier &&
+			count( $valuesList ) === 1 && $valuesList[0] === $allSpecifier
+		) {
+			return $allowedValues;
+		}
+
+		if ( count( $valuesList ) > $sizeLimit ) {
+			$this->dieWithError(
+				[ 'apierror-toomanyvalues', $valueName, $sizeLimit ],
+				"too-many-$valueName"
+			);
+		}
+
+		if ( !$allowMultiple && count( $valuesList ) != 1 ) {
+			// T35482 - Allow entries with | in them for non-multiple values
+			if ( in_array( $value, $allowedValues, true ) ) {
+				return $value;
+			}
+
+			$values = array_map( function ( $v ) {
+				return '<kbd>' . wfEscapeWikiText( $v ) . '</kbd>';
+			}, $allowedValues );
+			$this->dieWithError( [
+				'apierror-multival-only-one-of',
+				$valueName,
+				Message::listParam( $values ),
+				count( $values ),
+			], "multival_$valueName" );
+		}
+
+		if ( is_array( $allowedValues ) ) {
+			// Check for unknown values
+			$unknown = array_map( 'wfEscapeWikiText', array_diff( $valuesList, $allowedValues ) );
+			if ( count( $unknown ) ) {
+				if ( $allowMultiple ) {
+					$this->addWarning( [
+						'apiwarn-unrecognizedvalues',
+						$valueName,
+						Message::listParam( $unknown, 'comma' ),
+						count( $unknown ),
+					] );
+				} else {
+					$this->dieWithError(
+						[ 'apierror-unrecognizedvalue', $valueName, wfEscapeWikiText( $valuesList[0] ) ],
+						"unknown_$valueName"
+					);
+				}
+			}
+			// Now throw them out
+			$valuesList = array_intersect( $valuesList, $allowedValues );
+		}
+
+		return $allowMultiple ? $valuesList : $valuesList[0];
+	}
+
+	/**
+	 * Validate the value against the minimum and user/bot maximum limits.
+	 * Prints usage info on failure.
+	 * @deprecated since 1.35, use $this->getMain()->getParamValidator()->validateValue() instead.
+	 * @param string $name Parameter name, unprefixed
+	 * @param int &$value Parameter value
+	 * @param int|null $min Minimum value
+	 * @param int|null $max Maximum value for users
+	 * @param int|null $botMax Maximum value for sysops/bots
+	 * @param bool $enforceLimits Whether to enforce (die) if value is outside limits
+	 */
+	protected function validateLimit( $name, &$value, $min, $max, $botMax = null,
+		$enforceLimits = false
+	) {
+		wfDeprecated( __METHOD__, '1.35' );
+		$value = $this->getMain()->getParamValidator()->validateValue(
+			$this, $name, $value, [
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => $min,
+				IntegerDef::PARAM_MAX => $max,
+				IntegerDef::PARAM_MAX2 => $botMax,
+				IntegerDef::PARAM_IGNORE_RANGE => !$enforceLimits,
+			]
+		);
+	}
+
+	/**
+	 * Validate and normalize parameters of type 'timestamp'
+	 * @deprecated since 1.35, use $this->getMain()->getParamValidator()->validateValue() instead.
+	 * @param string $value Parameter value
+	 * @param string $encParamName Parameter name
+	 * @return string Validated and normalized parameter
+	 */
+	protected function validateTimestamp( $value, $encParamName ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
+		// Sigh.
+		$name = $encParamName;
+		$p = (string)$this->getModulePrefix();
+		$l = strlen( $p );
+		if ( $l && substr( $name, 0, $l ) === $p ) {
+			$name = substr( $name, $l );
+		}
+
+		return $this->getMain()->getParamValidator()->validateValue(
+			$this, $name, $value, [
+				ParamValidator::PARAM_TYPE => 'timestamp',
+			]
+		);
+	}
+
+	/** @} */
+
 }
 
 /**

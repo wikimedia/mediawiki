@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
  * @ingroup API
@@ -61,6 +62,7 @@ class ApiValidatePassword extends ApiBase {
 			],
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'id' ],
 			],
 			'email' => null,
 			'realname' => null,

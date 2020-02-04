@@ -23,6 +23,8 @@
  * @file
  */
 
+use MediaWiki\ParamValidator\TypeDef\UserDef;
+
 /**
  * @ingroup API
  */
@@ -170,9 +172,12 @@ class ApiUserrights extends ApiBase {
 		$a = [
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'id' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'userid' => [
 				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'add' => [
 				ApiBase::PARAM_TYPE => $allGroups,
