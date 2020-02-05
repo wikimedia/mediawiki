@@ -1,7 +1,5 @@
 <?php
 /**
- * Arbitrary section name based PHP profiling.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,14 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Profiler
  */
 use Wikimedia\ScopedCallback;
 
 /**
- * Custom PHP profiler for parser/DB type section names that xhprof/xdebug can't handle
+ * Arbitrary section name based PHP profiling. This custom profiler can track
+ * code execution that doesn't cleanly map to a function call and thus can't be
+ * handled by Xhprof or Excimer. For example, parser invocations or DB queries.
  *
  * @since 1.25
+ * @ingroup Profiler
  */
 class SectionProfiler {
 	/** @var array Map of (mem,real,cpu) */
