@@ -43,6 +43,13 @@ For notes on 1.34.x and older releases, see HISTORY.
   to the existing PasswordCannotMatchUsername check, this check ensures that
   a user's (case-insensitive) password cannot be a part of their username.
   e.g. password = MyPassword, username = ThisUsersPasswordIsMyPassword.
+* $wgLogos – This new configuration setting combines the now-deprecated $wgLogo
+  and $wgLogoHD settings into a single, associative array. It provides support
+  for key 'svg' mapping to the path of the wiki's logo in vector form, alongside
+  the existing support provided by the legacy settings: '1x' mapping to the path
+  of the logo as a 135x135px raster image (equivalent to $wgLogo), and '1.5x',
+  '2x', and 'wordmark' operating as before. If $wgLogos is unset, $wgLogo and
+  $wgLogoHD values are read for backwards compatibility. (T232140)
 * …
 
 ==== Changed configuration ====
