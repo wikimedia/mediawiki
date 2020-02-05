@@ -257,7 +257,7 @@ class SkinTemplate extends Skin {
 	 */
 	protected function prepareQuickTemplate() {
 		global $wgScript, $wgStylePath, $wgMimeType,
-			$wgSitename, $wgLogo, $wgMaxCredits,
+			$wgSitename, $wgMaxCredits,
 			$wgShowCreditsIfMax, $wgArticlePath,
 			$wgScriptPath, $wgServer;
 
@@ -323,7 +323,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'articlepath', $wgArticlePath );
 		$tpl->set( 'scriptpath', $wgScriptPath );
 		$tpl->set( 'serverurl', $wgServer );
-		$tpl->set( 'logopath', $wgLogo );
+		$logos = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() );
+		$tpl->set( 'logopath', $logos['1x'] );
 		$tpl->set( 'sitename', $wgSitename );
 
 		$userLang = $this->getLanguage();
@@ -582,7 +583,7 @@ class SkinTemplate extends Skin {
 	 * Output a boolean indicating if buildPersonalUrls should output separate
 	 * login and create account links or output a combined link
 	 * By default we simply return a global config setting that affects most skins
-	 * This is setup as a method so that like with $wgLogo and getLogo() a skin
+	 * This is setup as a method so that like with $wgLogos and getLogo() a skin
 	 * can override this setting and always output one or the other if it has
 	 * a reason it can't output one of the two modes.
 	 * @return bool

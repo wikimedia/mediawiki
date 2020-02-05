@@ -134,9 +134,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['sitename'] = $config->get( 'Sitename' );
 		$data['mainpageisdomainroot'] = (bool)$config->get( 'MainPageIsDomainRoot' );
 
-		// wgLogo can either be a relative or an absolute path
+		// A logo can either be a relative or an absolute path
 		// make sure we always return an absolute path
-		$data['logo'] = wfExpandUrl( $config->get( 'Logo' ), PROTO_RELATIVE );
+		$logo = ResourceLoaderSkinModule::getAvailableLogos( $config );
+		$data['logo'] = wfExpandUrl( $logo['1x'], PROTO_RELATIVE );
 
 		$data['generator'] = "MediaWiki {$config->get( 'Version' )}";
 

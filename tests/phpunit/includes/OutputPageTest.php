@@ -2904,7 +2904,7 @@ class OutputPageTest extends MediaWikiTestCase {
 				[
 					'wgResourceBasePath' => '/w',
 					'wgLogo' => '/img/default.png',
-					'wgLogoHD' => [
+					'wgLogos' => [
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
 					],
@@ -2918,16 +2918,17 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[
 					'wgResourceBasePath' => '/w',
-					'wgLogo' => '/img/default.png',
-					'wgLogoHD' => false,
+					'wgLogos' => [
+						'1x' => '/img/default.png',
+					],
 				],
 				'Link: </img/default.png>;rel=preload;as=image'
 			],
 			[
 				[
 					'wgResourceBasePath' => '/w',
-					'wgLogo' => '/img/default.png',
-					'wgLogoHD' => [
+					'wgLogos' => [
+						'1x' => '/img/default.png',
 						'2x' => '/img/two-x.png',
 					],
 				],
@@ -2938,8 +2939,8 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[
 					'wgResourceBasePath' => '/w',
-					'wgLogo' => '/img/default.png',
-					'wgLogoHD' => [
+					'wgLogos' => [
+						'1x' => '/img/default.png',
 						'svg' => '/img/vector.svg',
 					],
 				],
@@ -2949,8 +2950,9 @@ class OutputPageTest extends MediaWikiTestCase {
 			[
 				[
 					'wgResourceBasePath' => '/w',
-					'wgLogo' => '/w/test.jpg',
-					'wgLogoHD' => false,
+					'wgLogos' => [
+						'1x' => '/w/test.jpg',
+					],
 					'wgUploadPath' => '/w/images',
 					'IP' => dirname( __DIR__ ) . '/data/media',
 				],
