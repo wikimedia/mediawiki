@@ -29,7 +29,6 @@ use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
@@ -59,8 +58,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/** @var bool */
 	protected $replicaOnly = false;
 
-	/** @var LoadBalancer|null */
-	protected $separateMainLB;
 	/** @var array */
 	protected $conns;
 	/** @var array UNIX timestamps */
