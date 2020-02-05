@@ -189,6 +189,16 @@ CSS
 
 	public function provideGetLogoData() {
 		return [
+			'wordmark' => [
+				'config' => [
+					'ResourceBasePath' => '/w',
+					'Logos' => [
+						'1x' => '/img/default.png',
+						'wordmark' => '/img/wordmark.png',
+					],
+				],
+				'expected' => '/img/default.png',
+			],
 			'simple' => [
 				'config' => [
 					'ResourceBasePath' => '/w',
