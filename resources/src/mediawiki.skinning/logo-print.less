@@ -1,0 +1,10 @@
+/* stylelint-disable-next-line selector-class-pattern */
+.firstHeading {
+	// Bring back the wordmark to the viewport (see logo.less for how it's rendered outside the viewport).
+	& when( @logo-enabled = 1 ) {
+		&:before {
+			left: auto;
+			position: relative;
+		}
+	}
+}
