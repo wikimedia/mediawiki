@@ -344,6 +344,27 @@ because of Phabricator reports.
   outside the Language class itself.
 * Language::clearCaches() is deprecated. Instead, reset all services and set
   Language::$mLangObjCache = [].
+* The following functions from Language class are deprecated in favour of
+  respective functions in LanguageConverter:
+  - autoConvert
+  - autoConvertToAllVariants
+  - convert
+  - convertTitle
+  - convertNamespace
+  - hasVariants
+  - hasVariant
+  - convertHtml
+  - convertCategoryKey
+  - getVariants
+  - getPreferredVariant
+  - getURLVariant
+  - findVariantLink
+  - getExtraHashOptions
+  - updateConversionTable
+* Language::classFromCode() is hard deprecated and should be removed in 1.36
+* Language::getConverter() is deprecated and should be removed in 1.36
+* Language::MESSAGES_FALLBACKS, Language::STRICT_FALLBACKS were deprecated.
+  Use LanguageFallback::MESSAGES and LanguageFallback::STRICT respectively
 * Language::$mLangObjCache is deprecated and should be removed in 1.36. Use
   MediaWikiServices instead to get a LanguageFactory.
 * Language::getMessagesFor(), getMessageFor(), and getMessageKeysFor() are
