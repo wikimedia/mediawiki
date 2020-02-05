@@ -495,11 +495,12 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * URL to the logo
+	 * URL to the default square logo (1x key)
+	 * Please use ResourceLoaderSkinModule::getAvailableLogos
 	 * @return string
 	 */
 	function getLogo() {
-		return $this->getConfig()->get( 'Logo' );
+		return ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
 	}
 
 	/**
@@ -507,7 +508,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @deprecated since 1.32 Redundant. It now happens automatically based on whether
 	 *  the skin loads a stylesheet based on ResourceLoaderSkinModule, which all
-	 *  skins that use wgLogo in CSS do, and other's would not.
+	 *  skins that use wgLogos in CSS do, and other's would not.
 	 * @since 1.29
 	 * @return bool
 	 */
