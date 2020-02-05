@@ -1,6 +1,9 @@
 <?php
 /**
- * PHP script to stream out an image thumbnail.
+ * The web entry point for retreiving media thumbnails.
+ *
+ * This script may also resize an image on-demand, if it isn't found in the
+ * configured FileBackend storage.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +22,7 @@
  *
  * @file
  * @ingroup Media
+ * @ingroup entrypoint
  */
 
 use MediaWiki\Logger\LoggerFactory;

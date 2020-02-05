@@ -1,6 +1,6 @@
 <?php
 /**
- * Image authorisation script
+ * The web entry point for serving non-public images to logged-in users.
  *
  * To use this, see https://www.mediawiki.org/wiki/Manual:Image_Authorization
  *
@@ -36,6 +36,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup entrypoint
  */
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
