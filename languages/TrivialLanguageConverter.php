@@ -40,7 +40,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	 */
 	protected $language;
 
-	public function __construct( Language $langobj ) {
+	public function __construct( $langobj ) {
 		$this->language = $langobj;
 	}
 

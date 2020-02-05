@@ -90,7 +90,7 @@ class IuConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
 	 */
-	public function __construct( Language $langobj ) {
+	public function __construct( $langobj ) {
 		$variants = [ 'iu', 'ike-cans', 'ike-latn' ];
 		$variantfallbacks = [
 			'iu' => 'ike-cans',

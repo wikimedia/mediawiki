@@ -70,7 +70,7 @@ class SrConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
 	 */
-	public function __construct( Language $langobj ) {
+	public function __construct( $langobj ) {
 		$variants = [ 'sr', 'sr-ec', 'sr-el' ];
 		$variantfallbacks = [
 			'sr' => 'sr-ec',

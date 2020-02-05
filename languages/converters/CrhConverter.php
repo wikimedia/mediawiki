@@ -59,7 +59,7 @@ class CrhConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
 	 */
-	public function __construct( Language $langobj ) {
+	public function __construct( $langobj ) {
 		$variants = [ 'crh', 'crh-cyrl', 'crh-latn' ];
 		$variantfallbacks = [
 			'crh' => 'crh-latn',

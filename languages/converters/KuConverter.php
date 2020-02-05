@@ -146,7 +146,7 @@ class KuConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
 	 */
-	public function __construct( Language $langobj ) {
+	public function __construct( $langobj ) {
 		$variants = [ 'ku', 'ku-arab', 'ku-latn' ];
 		$variantfallbacks = [
 			'ku' => 'ku-latn',

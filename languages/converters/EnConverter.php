@@ -25,7 +25,7 @@
  */
 class EnConverter extends LanguageConverter {
 
-	public function __construct( \Language $langobj ) {
+	public function __construct( $langobj ) {
 		parent::__construct( $langobj, 'en', [ 'en', 'en-x-piglatin' ] );
 	}
 
