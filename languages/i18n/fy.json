@@ -1756,7 +1756,7 @@
 	"revertmove": "werom sette",
 	"delete_and_move_text": "== Wiskjen nedich ==\nDe doelside \"[[:$1]]\" is der al.\nMoat dy wiske wurde om plak te meitsjen foar it werneamen?",
 	"delete_and_move_confirm": "Ja, wiskje de side",
-	"delete_and_move_reason": "Wiske en meitsje plak foar it werneamen fan \"[[$1]]\"",
+	"delete_and_move_reason": "Wiske en meitsje plak foar it omneamen fan \"[[$1]]\"",
 	"protectedpagemovewarning": "<strong>Warskôging: Dizze side is befeilige, dat allinne meidoggers mei beheardersrjochten it omneame kinne.</strong>\nDe lêste lochrigel is hjirûnder jûn as referinsje:",
 	"semiprotectedpagemovewarning": "<strong>Opmerking:</strong> Dizze side is befeilige, dat allinne autobefêstige meidoggers it omneame kinne.\nDe lêste lochrigel is hjirûnder jûn as referinsje:",
 	"export": "Eksportearje",

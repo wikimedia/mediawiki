@@ -330,8 +330,5 @@
 	"api-help-main-header": "پودمان اصلی",
 	"api-help-source": "منبع: $1",
 	"api-help-param-deprecated": "توصیه.",
-	"api-help-param-limit": "بيش از $1 مجاز نيست",
-	"api-help-param-limit2": "بيش از $1 (برای ربات‌ها $2) مجاز نيست",
-	"api-help-param-default": "پیش‌فرض: $1",
 	"api-credits-header": "اعتبار"
 }
