@@ -1053,7 +1053,7 @@
 	"timezonelegend": "Часовен појас:",
 	"localtime": "Месно време:",
 	"timezoneuseserverdefault": "Од викито ($1)",
-	"timezoneuseoffset": "Друго (подолу посочете отстапување)",
+	"timezoneuseoffset": "Друго (временско отстапување од UTC)",
 	"timezone-useoffset-placeholder": "Примерни вредности: „-07:00“ или „01:00“",
 	"servertime": "Време на опслужувачот:",
 	"guesstimezone": "Пополни од прелистувачот",
@@ -3985,5 +3985,12 @@
 	"mycustomjsredirectprotected": "Немате дозвола да ја уредувате оваа страница со JavaScript бидејќи претставува пренасочување и не води кон вашиот именски простор.",
 	"deflate-invaliddeflate": "Содржината не е соодветно прочистена",
 	"unprotected-js": "JavaScript не може да се вчита од незаштитени страници од безбедносни причини. Создавајте JavaScript само во именскиот простор МедијаВики: или како корисничка потстраница",
-	"userlogout-continue": "Дали сакате да се одјавите?"
+	"userlogout-continue": "Дали сакате да се одјавите?",
+	"paramvalidator-baduser": "Неважечка вредност „$2“ за корисничкиот параметар <var>$1</var>.",
+	"paramvalidator-help-type-user": "Вид: {{PLURAL:$1|1=корисник|2=список на корисници}}, {{PLURAL:$3|од|од некое од}} $2",
+	"paramvalidator-help-type-user-subtype-name": "корисничко име",
+	"paramvalidator-help-type-user-subtype-ip": "IP-адреса",
+	"paramvalidator-help-type-user-subtype-cidr": "IP-опсег",
+	"paramvalidator-help-type-user-subtype-interwiki": "меѓувики-назив (на пр. „prefix>ПримеренНазив“)",
+	"paramvalidator-help-type-user-subtype-id": "корисничка назнака (на пр. „#12345“)"
 }

@@ -103,7 +103,8 @@
 			"Mcandri13",
 			"Tobi 406",
 			"Ferdinand0101",
-			"Schmackes"
+			"Schmackes",
+			"Lucas Werkmeister"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -726,7 +727,7 @@
 	"previewerrortext": "Beim Versuch, eine Vorschau deiner Änderungen anzuzeigen, ist ein Fehler aufgetreten.",
 	"blockedtitle": "Benutzer ist gesperrt",
 	"blockedtext-partial": "<strong>Dein Benutzerkonto oder deine IP-Adresse ist für das Durchführen dieser Aktion gesperrt. Du kannst möglicherweise noch andere Sachen in diesem Wiki, wie z.B. bestimmte Seiten, bearbeiten.</strong> Du kannst die vollständigen Einzelheiten in deinen [[Special:MyContributions|Benutzerbeiträgen]] einsehen.\n\nDie Sperre wurde von $1 durchgeführt.\n\nDie angegebene Begründung lautet: <em>$2</em>.\n\n* Beginn der Sperre: $8\n* Ablauf der Sperre: $6\n* Sperre betrifft: $7\n* Sperrkennung: #$5",
-	"blockedtext": "'''Dein Benutzername oder deine IP-Adresse wurde gesperrt.'''\n\nDie Sperrung wurde vom Administrator $1 durchgeführt.\nAls Grund wurde ''$2'' angegeben.\n\n* Beginn der Sperre: $8\n* Ende der Sperre: $6\n* Sperre betrifft: $7\n\nDu kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.\nDu kannst die „{{int:emailuser}}“-Funktion nutzen, wenn eine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist und diese Funktion für dich nicht gesperrt wurde.\nDeine aktuelle IP-Adresse ist $3 und die Sperrkennung lautet $5.\nBitte füge alle Informationen jeder Anfrage hinzu, die du stellst.",
+	"blockedtext": "<strong>Dein Benutzername oder deine IP-Adresse wurde gesperrt.</strong>\n\nDie Sperrung wurde von $1 durchgeführt.\nAls Grund wurde <em>$2</em> angegeben.\n\n* Beginn der Sperre: $8\n* Ende der Sperre: $6\n* Sperre betrifft: $7\n\nDu kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.\nDu kannst die „{{int:emailuser}}“-Funktion nutzen, wenn eine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist und diese Funktion für dich nicht gesperrt wurde.\nDeine aktuelle IP-Adresse ist $3 und die Sperrkennung lautet $5.\nBitte füge alle Informationen jeder Anfrage hinzu, die du stellst.",
 	"autoblockedtext": "Deine IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der von $1 gesperrt wurde.\nAls Grund wurde angegeben:\n\n:''$2''\n\n* Beginn der Sperre: $8\n* Ende der Sperre: $6\n* Sperre betrifft: $7\n\nDu kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.\n\nDu kannst die „{{int:emailuser}}“-Funktion nutzen, wenn eine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist und diese Funktion für dich nicht gesperrt wurde.\n\nDeine aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.\nBitte füge alle Informationen jeder Anfrage hinzu, die du stellst.",
 	"systemblockedtext": "Dein Benutzername oder deine IP-Adresse wurde von MediaWiki automatisch gesperrt.\nDer angegebene Grund ist:\n\n:<em>$2</em>\n\n* Beginn der Sperre: $8\n* Ablauf der Sperre: $6\n* Sperre betrifft: $7\n\nDeine aktuelle IP-Adresse ist $3.\nBitte gib alle oben stehenden Details in jeder Anfrage an.",
 	"blockednoreason": "keine Begründung angegeben",
@@ -3962,5 +3963,12 @@
 	"mycustomjsredirectprotected": "Du hast keine Berechtigung, diese JavaScript-Seite zu bearbeiten, da sie eine Weiterleitung, die nicht in deinen Benutzernamensraum zeigt, enthält.",
 	"deflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
-	"userlogout-continue": "Möchtest du dich abmelden?"
+	"userlogout-continue": "Möchtest du dich abmelden?",
+	"paramvalidator-baduser": "Ungültiger Wert \"$2\" für den Benutzerparameter <var>$1<var>.",
+	"paramvalidator-help-type-user": "Typ: {{PLURAL:$1|1=Benutzer|2=Liste von Benutzern}}, {{PLURAL:$3|von|von einem der}} $2",
+	"paramvalidator-help-type-user-subtype-name": "Benutzername",
+	"paramvalidator-help-type-user-subtype-ip": "IP-Adresse",
+	"paramvalidator-help-type-user-subtype-cidr": "IP-Adress-Bereich",
+	"paramvalidator-help-type-user-subtype-interwiki": "Interwiki-Name (z.B. \"prefix>ExampleName\")",
+	"paramvalidator-help-type-user-subtype-id": "Benutzer-ID (z.B. \"#12345\")"
 }

@@ -3958,5 +3958,12 @@
 	"mycustomjsredirectprotected": "您無權編輯此JavaScript頁面，因為它是重新導向，且不是重新導向到您的用戶空間。",
 	"deflate-invaliddeflate": "提供的內容未被正常的壓縮",
 	"unprotected-js": "基於安全因素，JavaScript 不能從未保護的頁面來載入。請僅在 MediaWiki:命名空間或使用者子頁面中建立 JavaScript。",
-	"userlogout-continue": "您想要登出嗎？"
+	"userlogout-continue": "您想要登出嗎？",
+	"paramvalidator-baduser": "用於使用者參數 <var>$1</var> 的值「$2」無效。",
+	"paramvalidator-help-type-user": "類型：{{PLURAL:$1|1=使用者|2=使用者清單}}，{{PLURAL:$3|按|按任何}}$2",
+	"paramvalidator-help-type-user-subtype-name": "使用者名稱",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "IP 範圍",
+	"paramvalidator-help-type-user-subtype-interwiki": "跨 wiki 名稱（例如：\"prefix>ExampleName\"）",
+	"paramvalidator-help-type-user-subtype-id": "使用者 ID（例如：\"#12345\"）"
 }
