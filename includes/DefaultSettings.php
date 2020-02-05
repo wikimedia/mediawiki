@@ -52,7 +52,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 /** @endcond */
 
 /**
- * wgConf hold the site configuration.
+ * $wgConf hold the site configuration.
  * Not used for much in a default install.
  * @since 1.5
  */
@@ -266,7 +266,7 @@ $wgFileCacheDirectory = false;
  * Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
  * Developers should retrieve this logo (and other variants) using
  *   the static function ResourceLoaderSkinModule::getAvailableLogos
- * Ignored if wgLogos is set.
+ * Ignored if $wgLogos is set.
  */
 $wgLogo = false;
 
@@ -281,7 +281,7 @@ $wgLogo = false;
  *  - `width` defining the width of the logo in pixels.
  *  - `height` defining the height of the logo in pixels.
  * All values can be either an absolute or relative URI
- * Configuration is optional provided wgLogo is used instead.
+ * Configuration is optional provided $wgLogo is used instead.
  * Defaults to [ "1x" => $wgLogo ],
  *   or [ "1x" => "$wgResourceBasePath/resources/assets/wiki.png" ] if $wgLogo is not set.
  * @since 1.35
@@ -316,7 +316,7 @@ $wgLogos = false;
  * @var array|false
  * @since 1.25
  * @deprecated since 1.35. Developers should retrieve this logo (and other variants) using
- *   the static function ResourceLoaderSkinModule::getAvailableLogos. wgLogos should be used
+ *   the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos should be used
  *   instead.
  */
 $wgLogoHD = false;
@@ -1573,15 +1573,15 @@ $wgUploadThumbnailRenderMap = [];
 $wgUploadThumbnailRenderMethod = 'jobqueue';
 
 /**
- * When using the "http" wgUploadThumbnailRenderMethod, lets one specify a custom Host HTTP header.
+ * When using the "http" $wgUploadThumbnailRenderMethod, lets one specify a custom Host HTTP header.
  *
  * @since 1.25
  */
 $wgUploadThumbnailRenderHttpCustomHost = false;
 
 /**
- * When using the "http" wgUploadThumbnailRenderMethod, lets one specify a custom domain to send the
- * HTTP request to.
+ * When using the "http" $wgUploadThumbnailRenderMethod, lets one specify a custom domain to send
+ * the HTTP request to.
  *
  * @since 1.25
  */
@@ -2822,7 +2822,7 @@ $wgCdnMaxageLagged = 30;
 
 /**
  * Cache TTL for the user agent sent as max-age, for logged out users.
- * Only applies if wgUseCdn is false.
+ * Only applies if $wgUseCdn is false.
  * @see $wgUseCdn
  *
  * @since 1.35
@@ -4274,7 +4274,7 @@ $wgTidyConfig = [ 'driver' => 'RemexHtml' ];
 
 /**
  * Allow raw, unchecked HTML in "<html>...</html>" sections.
- * THIS IS VERY DANGEROUS on a publicly editable site, so USE wgGroupPermissions
+ * THIS IS VERY DANGEROUS on a publicly editable site, so USE $wgGroupPermissions
  * TO RESTRICT EDITING to only those that you trust
  */
 $wgRawHtml = false;
@@ -5275,7 +5275,7 @@ $wgGroupPermissions['suppress']['deletelogentry'] = true;
 /**
  * Permission keys revoked from users in each group.
  *
- * This acts the same way as wgGroupPermissions above, except that
+ * This acts the same way as $wgGroupPermissions above, except that
  * if the user is in a group here, the permission will be removed from them.
  *
  * Improperly setting this could mean that your users will be unable to perform
@@ -8671,7 +8671,7 @@ $wgHttpsPort = 443;
 
 /**
  * Secret for session storage.
- * This should be set in LocalSettings.php, otherwise wgSecretKey will
+ * This should be set in LocalSettings.php, otherwise $wgSecretKey will
  * be used.
  * @since 1.27
  */
@@ -8689,7 +8689,7 @@ $wgSessionInsecureSecrets = false;
 /**
  * Secret for hmac-based key derivation function (fast,
  * cryptographically secure random numbers).
- * This should be set in LocalSettings.php, otherwise wgSecretKey will
+ * This should be set in LocalSettings.php, otherwise $wgSecretKey will
  * be used.
  * See also: $wgHKDFAlgorithm
  * @since 1.24
