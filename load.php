@@ -1,6 +1,7 @@
 <?php
 /**
- * This file is the entry point for ResourceLoader.
+ * The web entry point for ResourceLoader. It serves static CSS and JavaScript
+ * assets for web browsers.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +19,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup entrypoint
+ * @ingroup ResourceLoader
  * @author Roan Kattouw
  * @author Trevor Parscal
  */

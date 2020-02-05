@@ -1,6 +1,11 @@
 <?php
 /**
- * Generate an OpenSearch description file.
+ * The web entry point for generating an OpenSearch description document.
+ *
+ * See <http://www.opensearch.org/> for the specification of the OpenSearch
+ * "description" document. In a nut shell, this tells browsers how and where
+ * to submit submit search queries to get a search results page back,
+ * as well as how to get typeahead suggestions (see ApiOpenSearch).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +23,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup entrypoint
  */
 
 // This endpoint is supposed to be independent of request cookies and other

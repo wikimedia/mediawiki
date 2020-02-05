@@ -1,6 +1,10 @@
 <?php
 /**
- * This file is the entry point for all API queries.
+ * The web entry point for all Action API queries.
+ *
+ * This is used by bots to fetch content and information about the wiki,
+ * its pages, and its users. See <https://www.mediawiki.org/wiki/API> for more
+ * information.
  *
  * It begins by constructing a new ApiMain using the parameter passed to it
  * as an argument in the URL ('?action='). It then invokes "execute()" on the
@@ -25,6 +29,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup entrypoint
  */
 
 use MediaWiki\Logger\LegacyLogger;
