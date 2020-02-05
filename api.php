@@ -30,6 +30,7 @@
  *
  * @file
  * @ingroup entrypoint
+ * @ingroup API
  */
 
 use MediaWiki\Logger\LegacyLogger;

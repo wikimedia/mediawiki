@@ -1,7 +1,5 @@
 <?php
 /**
- * Media-handling base classes and generic functionality.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,6 +19,13 @@
  * @ingroup Media
  */
 use MediaWiki\MediaWikiServices;
+
+/**
+ * @defgroup Media Media
+ *
+ * Media handlers and other classes relating to Multimedia support,
+ * with the exception of FileRepo and FileBackend, which have their own groups.
+ */
 
 /**
  * Base media handler class
