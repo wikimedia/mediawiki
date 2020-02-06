@@ -21,6 +21,7 @@
  * @ingroup Feed
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -149,7 +150,10 @@ class FeedUtils {
 		} else {
 			$rev = Revision::newFromId( $newid );
 			if ( $wgFeedDiffCutoff <= 0 || $rev === null ) {
-				$newContent = ContentHandler::getForTitle( $title )->makeEmptyContent();
+				$newContent = MediaWikiServices::getInstance()
+					->getContentHandlerFactory()
+					->getContentHandler( $title->getContentModel() )
+					->makeEmptyContent();
 			} else {
 				$newContent = $rev->getContent();
 			}

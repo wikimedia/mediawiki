@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Revision;
 
 use ActorMigration;
 use CommentStore;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -36,7 +37,8 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			ActorMigration::newMigration(),
 			MIGRATION_NEW,
 			new NullLogger(),
-			true
+			true,
+			$this->getContentHandlerFactory()
 		);
 		$this->assertTrue( true );
 	}
@@ -64,6 +66,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 		$commentStore = $this->getMockCommentStore();
 		$actorMigration = ActorMigration::newMigration();
 		$logger = new NullLogger();
+		$contentHandlerFactory = $this->getContentHandlerFactory();
 
 		$factory = new RevisionStoreFactory(
 			$lbFactory,
@@ -75,7 +78,8 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$actorMigration,
 			$mcrMigrationStage,
 			$logger,
-			$contentHandlerUseDb
+			$contentHandlerUseDb,
+			$contentHandlerFactory
 		);
 
 		$store = $factory->getRevisionStore( $dbDomain );
@@ -152,6 +156,13 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	 */
 	private function getMockSlotRoleRegistry() {
 		return $this->createMock( SlotRoleRegistry::class );
+	}
+
+	/**
+	 * @return IContentHandlerFactory|MockObject
+	 */
+	private function getContentHandlerFactory(): IContentHandlerFactory {
+		return $this->createMock( IContentHandlerFactory::class );
 	}
 
 	/**

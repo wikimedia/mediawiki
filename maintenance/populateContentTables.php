@@ -386,10 +386,7 @@ class PopulateContentTables extends Maintenance {
 
 		if ( !isset( $row->len ) ) {
 			// NOTE: The nominal size of the content may not be the length of the raw blob.
-			$handler = ContentHandler::getForModelID( $model );
-			$content = $handler->unserializeContent( $blob );
-
-			$row->len = $content->getSize();
+			$row->len = ContentHandler::makeContent( $blob, null, $model )->getSize();
 		}
 
 		if ( !isset( $row->sha1 ) || $row->sha1 === '' ) {

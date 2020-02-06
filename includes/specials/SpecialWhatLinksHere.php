@@ -421,7 +421,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				->getPermissionManager()
 				->userHasRight( $this->getUser(), 'edit' ) &&
 			// check, if the content model is editable through action=edit
-			ContentHandler::getForTitle( $target )->supportsDirectEditing()
+			MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $target->getContentModel() )
+				->supportsDirectEditing()
 		) {
 			if ( $editText !== null ) {
 				$editText = new HtmlArmor( $editText );

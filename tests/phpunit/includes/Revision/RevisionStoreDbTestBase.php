@@ -247,6 +247,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			$this->getMcrMigrationStage(),
 			MediaWikiServices::getInstance()->getActorMigration(),
+			MediaWikiServices::getInstance()->getContentHandlerFactory(),
 			$wikiId
 		);
 

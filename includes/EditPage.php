@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\Logger\LoggerFactory;
@@ -473,6 +474,11 @@ class EditPage {
 	private $editConflictHelper;
 
 	/**
+	 * @var IContentHandlerFactory
+	 */
+	private $contentHandlerFactory;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -491,8 +497,10 @@ class EditPage {
 
 		$this->contentModel = $this->mTitle->getContentModel();
 
-		$handler = ContentHandler::getForModelID( $this->contentModel );
-		$this->contentFormat = $handler->getDefaultFormat();
+		$this->contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$this->contentFormat = $this->contentHandlerFactory
+			->getContentHandler( $this->contentModel )
+			->getDefaultFormat();
 		$this->editConflictHelperFactory = [ $this, 'newTextConflictHelper' ];
 	}
 
@@ -555,7 +563,7 @@ class EditPage {
 	 */
 	public function isSupportedContentModel( $modelId ) {
 		return $this->enableApiEditOverride === true ||
-			ContentHandler::getForModelID( $modelId )->supportsDirectEditing();
+			$this->contentHandlerFactory->getContentHandler( $modelId )->supportsDirectEditing();
 	}
 
 	/**
@@ -896,8 +904,9 @@ class EditPage {
 	 * @return bool True if this edit page supports sections, false otherwise.
 	 */
 	protected function isSectionEditSupported() {
-		$contentHandler = ContentHandler::getForTitle( $this->mTitle );
-		return $contentHandler->supportsSections();
+		return $this->contentHandlerFactory
+			->getContentHandler( $this->mTitle->getContentModel() )
+			->supportsSections();
 	}
 
 	/**
@@ -1082,7 +1091,7 @@ class EditPage {
 		$this->contentFormat = $request->getText( 'format', $this->contentFormat );
 
 		try {
-			$handler = ContentHandler::getForModelID( $this->contentModel );
+			$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
 		} catch ( MWUnknownContentModelException $e ) {
 			throw new ErrorPageError(
 				'editpage-invalidcontentmodel-title',
@@ -1138,7 +1147,9 @@ class EditPage {
 		$this->edittime = $this->page->getTimestamp();
 		$this->editRevId = $this->page->getLatest();
 
-		$dummy = ContentHandler::getForModelID( $this->contentModel )->makeEmptyContent();
+		$dummy = $this->contentHandlerFactory
+			->getContentHandler( $this->contentModel )
+			->makeEmptyContent();
 		$content = $this->getContentObject( $dummy ); # TODO: track content object?!
 		if ( $content === $dummy ) { // Invalid section
 			$this->noSuchSectionPage();
@@ -1394,8 +1405,9 @@ class EditPage {
 		}
 		$revision = $this->mArticle->getRevisionFetched();
 		if ( $revision === null ) {
-			$handler = ContentHandler::getForModelID( $this->contentModel );
-			return $handler->makeEmptyContent();
+			return $this->contentHandlerFactory
+				->getContentHandler( $this->contentModel )
+				->makeEmptyContent();
 		}
 		$content = $revision->getContent( RevisionRecord::FOR_THIS_USER, $user );
 		return $content;
@@ -1434,8 +1446,9 @@ class EditPage {
 		$content = $rev ? $rev->getContent( RevisionRecord::RAW ) : null;
 
 		if ( $content === false || $content === null ) {
-			$handler = ContentHandler::getForModelID( $this->contentModel );
-			return $handler->makeEmptyContent();
+			return $this->contentHandlerFactory
+				->getContentHandler( $this->contentModel )
+				->makeEmptyContent();
 		} elseif ( !$this->undidRev ) {
 			// Content models should always be the same since we error
 			// out if they are different before this point (in ->edit()).
@@ -1495,7 +1508,7 @@ class EditPage {
 			return $this->mPreloadContent;
 		}
 
-		$handler = ContentHandler::getForModelID( $this->contentModel );
+		$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
 
 		if ( $preload === '' ) {
 			return $handler->makeEmptyContent();
@@ -2460,9 +2473,9 @@ ERROR;
 			return false;
 		}
 
-		$handler = ContentHandler::getForModelID( $baseContent->getModel() );
-
-		$result = $handler->merge3( $baseContent, $editContent, $currentContent );
+		$result = $this->contentHandlerFactory
+			->getContentHandler( $baseContent->getModel() )
+			->merge3( $baseContent, $editContent, $currentContent );
 
 		if ( $result ) {
 			$editContent = $result;
@@ -4608,13 +4621,15 @@ ERROR;
 	/**
 	 * @param string $submitButtonLabel
 	 * @return TextConflictHelper
+	 * @throws MWUnknownContentModelException
 	 */
 	private function newTextConflictHelper( $submitButtonLabel ) {
 		return new TextConflictHelper(
 			$this->getTitle(),
 			$this->getContext()->getOutput(),
 			MediaWikiServices::getInstance()->getStatsdDataFactory(),
-			$submitButtonLabel
+			$submitButtonLabel,
+			MediaWikiServices::getInstance()->getContentHandlerFactory()
 		);
 	}
 }

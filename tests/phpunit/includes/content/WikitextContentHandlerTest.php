@@ -16,7 +16,8 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
+		$this->handler = MediaWikiServices::getInstance()->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_WIKITEXT );
 	}
 
 	/**

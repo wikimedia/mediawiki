@@ -1838,7 +1838,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	private function getJavascriptRedirectRevision(
 		Title $title, Title $redirectTargetTitle, User $user
 	) {
-		$content = ContentHandler::getForModelID( CONTENT_MODEL_JAVASCRIPT )
+		$content = MediaWikiServices::getInstance()->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_JAVASCRIPT )
 			->makeRedirectContent( $redirectTargetTitle );
 		$revision = new MutableRevisionRecord( $title );
 		$revision->setContent( 'main', $content );

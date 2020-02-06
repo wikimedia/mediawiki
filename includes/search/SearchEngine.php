@@ -751,12 +751,14 @@ abstract class SearchEngine {
 	 * @return SearchIndexField[] Index field definitions for all content handlers
 	 */
 	public function getSearchIndexFields() {
-		$models = ContentHandler::getContentModels();
+		$models = MediaWikiServices::getInstance()->getContentHandlerFactory()->getContentModels();
 		$fields = [];
 		$seenHandlers = new SplObjectStorage();
 		foreach ( $models as $model ) {
 			try {
-				$handler = ContentHandler::getForModelID( $model );
+				$handler = MediaWikiServices::getInstance()
+					->getContentHandlerFactory()
+					->getContentHandler( $model );
 			}
 			catch ( MWUnknownContentModelException $e ) {
 				// If we can find no handler, ignore it

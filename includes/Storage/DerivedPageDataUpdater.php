@@ -36,6 +36,7 @@ use Language;
 use LinksDeletionUpdate;
 use LinksUpdate;
 use LogicException;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -49,6 +50,7 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\User\UserIdentity;
 use MessageCache;
 use MWCallableUpdate;
+use MWUnknownContentModelException;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
@@ -268,6 +270,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	];
 
 	/**
+	 * @var IContentHandlerFactory
+	 */
+	private $contentHandlerFactory;
+
+	/**
 	 * @param WikiPage $wikiPage ,
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
@@ -277,6 +284,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @param MessageCache $messageCache
 	 * @param Language $contLang
 	 * @param ILBFactory $loadbalancerFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
 		WikiPage $wikiPage,
@@ -287,7 +295,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
 		Language $contLang,
-		ILBFactory $loadbalancerFactory
+		ILBFactory $loadbalancerFactory,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$this->wikiPage = $wikiPage;
 
@@ -301,6 +310,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// XXX only needed for waiting for replicas to catch up; there should be a narrower
 		// interface for that.
 		$this->loadbalancerFactory = $loadbalancerFactory;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+
 		$this->logger = new NullLogger();
 	}
 
@@ -617,10 +628,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * @param string $role slot role name
 	 * @return ContentHandler
+	 * @throws MWUnknownContentModelException
 	 */
-	private function getContentHandler( $role ) {
-		// TODO: inject something like a ContentHandlerRegistry
-		return ContentHandler::getForModelID( $this->getContentModel( $role ) );
+	private function getContentHandler( $role ): ContentHandler {
+		return $this->contentHandlerFactory
+			->getContentHandler( $this->getContentModel( $role ) );
 	}
 
 	private function useMaster() {

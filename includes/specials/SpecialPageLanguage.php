@@ -23,6 +23,8 @@
  * @since 1.24
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special page for changing the content language of a page
  *
@@ -52,8 +54,11 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$defaultName = $this->par;
 		$title = $defaultName ? Title::newFromText( $defaultName ) : null;
 		if ( $title ) {
-			$defaultPageLanguage =
-				ContentHandler::getForTitle( $title )->getPageLanguage( $title );
+			$defaultPageLanguage = MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $title->getContentModel() )
+				->getPageLanguage( $title );
+
 			$hasCustomLanguageSet = !$defaultPageLanguage->equals( $title->getPageLanguage() );
 		} else {
 			$hasCustomLanguageSet = false;

@@ -789,7 +789,9 @@ class Revision implements IDBAccessObject {
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
-		return ContentHandler::getForModelID( $this->getContentModel() );
+		return MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $this->getContentModel() );
 	}
 
 	/**

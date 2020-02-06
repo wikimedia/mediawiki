@@ -4613,7 +4613,9 @@ class Title implements LinkTarget, IDBAccessObject {
 			// content to determine the page language!
 			// Checking $wgLanguageCode hasn't changed for the benefit of unit
 			// tests.
-			$contentHandler = ContentHandler::getForTitle( $this );
+			$contentHandler = MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $this->getContentModel() );
 			$langObj = $contentHandler->getPageLanguage( $this );
 			$this->mPageLanguage = [ $langObj->getCode(), $wgLanguageCode ];
 		} else {
@@ -4663,7 +4665,9 @@ class Title implements LinkTarget, IDBAccessObject {
 		// @note Can't be cached persistently, depends on user settings.
 		// @note ContentHandler::getPageViewLanguage() may need to load the
 		//   content to determine the page language!
-		$contentHandler = ContentHandler::getForTitle( $this );
+		$contentHandler = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $this->getContentModel() );
 		$pageLang = $contentHandler->getPageViewLanguage( $this );
 		return $pageLang;
 	}

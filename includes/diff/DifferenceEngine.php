@@ -21,6 +21,7 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -208,6 +209,11 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected $linkRenderer;
 
+	/**
+	 * @var IContentHandlerFactory
+	 */
+	private $contentHandlerFactory;
+
 	/** #@- */
 
 	/**
@@ -244,6 +250,7 @@ class DifferenceEngine extends ContextSource {
 		$this->mRefreshCache = $refreshCache;
 		$this->unhide = $unhide;
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$this->contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 
 	/**
@@ -1352,7 +1359,8 @@ class DifferenceEngine extends ContextSource {
 	 * @deprecated since 1.32, use a TextSlotDiffRenderer instead.
 	 */
 	public function generateTextDiffBody( $otext, $ntext ) {
-		$slotDiffRenderer = ContentHandler::getForModelID( CONTENT_MODEL_TEXT )
+		$slotDiffRenderer = $this->contentHandlerFactory
+			->getContentHandler( CONTENT_MODEL_TEXT )
 			->getSlotDiffRenderer( $this->getContext() );
 		if ( !( $slotDiffRenderer instanceof TextSlotDiffRenderer ) ) {
 			// Someone used the GetSlotDiffRenderer hook to replace the renderer.
@@ -1432,7 +1440,8 @@ class DifferenceEngine extends ContextSource {
 	 * @deprecated since 1.32, use a TextSlotDiffRenderer instead.
 	 */
 	protected function textDiff( $otext, $ntext ) {
-		$slotDiffRenderer = ContentHandler::getForModelID( CONTENT_MODEL_TEXT )
+		$slotDiffRenderer = $this->contentHandlerFactory
+			->getContentHandler( CONTENT_MODEL_TEXT )
 			->getSlotDiffRenderer( $this->getContext() );
 		if ( !( $slotDiffRenderer instanceof TextSlotDiffRenderer ) ) {
 			// Someone used the GetSlotDiffRenderer hook to replace the renderer.

@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
@@ -99,7 +100,8 @@ class ApiEditPage extends ApiBase {
 		if ( !isset( $params['contentmodel'] ) || $params['contentmodel'] == '' ) {
 			$contentHandler = $pageObj->getContentHandler();
 		} else {
-			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
+			$contentHandler = $this->getContentHandlerFactory()
+				->getContentHandler( $params['contentmodel'] );
 		}
 		$contentModel = $contentHandler->getModelID();
 
@@ -592,10 +594,10 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
 			],
 			'token' => [
 				// Standard definition automatically inserted
@@ -624,5 +626,9 @@ class ApiEditPage extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Edit';
+	}
+
+	private function getContentHandlerFactory(): IContentHandlerFactory {
+		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 }

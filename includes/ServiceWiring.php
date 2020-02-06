@@ -53,6 +53,8 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\ContentHandlerFactory;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
@@ -166,6 +168,12 @@ return [
 			$config->get( 'ReadOnly' ),
 			$config->get( 'ReadOnlyFile' )
 		);
+	},
+
+	'ContentHandlerFactory' => function ( MediaWikiServices $services ) : IContentHandlerFactory {
+		$contentHandlerConfig = $services->getMainConfig()->get( 'ContentHandlers' );
+
+		return new ContentHandlerFactory( $contentHandlerConfig );
 	},
 
 	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
@@ -594,7 +602,8 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
 			$services->getPermissionManager(),
-			$services->getRepoGroup()
+			$services->getRepoGroup(),
+			$services->getContentHandlerFactory()
 		);
 	},
 
@@ -840,7 +849,8 @@ return [
 			$services->getActorMigration(),
 			$config->get( 'MultiContentRevisionSchemaMigrationStage' ),
 			LoggerFactory::getInstance( 'RevisionStore' ),
-			$config->get( 'ContentHandlerUseDB' )
+			$config->get( 'ContentHandlerUseDB' ),
+			$services->getContentHandlerFactory()
 		);
 
 		return $store;
@@ -919,14 +929,16 @@ return [
 
 	'SlotRoleRegistry' => function ( MediaWikiServices $services ) : SlotRoleRegistry {
 		$config = $services->getMainConfig();
+		$contentHandlerFactory = $services->getContentHandlerFactory();
 
 		$registry = new SlotRoleRegistry(
 			$services->getNameTableStoreFactory()->getSlotRoles()
 		);
 
-		$registry->defineRole( 'main', function () use ( $config ) {
+		$registry->defineRole( 'main', function () use ( $config, $contentHandlerFactory ) {
 			return new MainSlotRoleHandler(
-				$config->get( 'NamespaceContentModels' )
+				$config->get( 'NamespaceContentModels' ),
+				$contentHandlerFactory
 			);
 		} );
 
