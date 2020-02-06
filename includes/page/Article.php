@@ -774,12 +774,6 @@ class Article implements Page {
 						// NOTE: sync with hooks called in DifferenceEngine::renderNewRevision()
 						// Allow extensions do their own custom view for certain pages
 						$outputDone = true;
-					} elseif ( !Hooks::run( 'ArticleContentViewCustom',
-						[ $this->fetchContentObject(), $this->getTitle(), $outputPage ], '1.32' )
-					) {
-						// NOTE: sync with hooks called in DifferenceEngine::renderNewRevision()
-						// Allow extensions do their own custom view for certain pages
-						$outputDone = true;
 					}
 					break;
 				case 4:

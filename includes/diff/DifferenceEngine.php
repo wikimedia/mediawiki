@@ -942,11 +942,6 @@ class DifferenceEngine extends ContextSource {
 			) {
 				// Handled by extension
 				// NOTE: sync with hooks called in Article::view()
-			} elseif ( !Hooks::run( 'ArticleContentViewCustom',
-				[ $this->mNewContent, $this->mNewPage, $out ], '1.32' )
-			) {
-				// Handled by extension
-				// NOTE: sync with hooks called in Article::view()
 			} else {
 				// Normal page
 				if ( $this->getTitle()->equals( $this->mNewPage ) ) {
