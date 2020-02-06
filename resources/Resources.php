@@ -107,16 +107,19 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.base' => [
-		'scripts' => array_merge(
-			[
-				// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
-				'resources/src/mediawiki.base/mediawiki.errorLogger.js',
-				'resources/src/mediawiki.base/mediawiki.base.js',
-			],
-			$GLOBALS['wgIncludeLegacyJavaScript']
-				? [ 'resources/src/mediawiki.base/legacy.wikibits.js' ]
-				: []
-		),
+		'localBasePath' => "$IP/resources/src/mediawiki.base",
+		'packageFiles' => [
+			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
+			'mediawiki.base.js',
+			'mediawiki.errorLogger.js',
+
+			// (not this though)
+			[ 'name' => 'config.json', 'callback' => 'ResourceLoader::getSiteConfigSettings' ],
+			[ 'name' => 'legacy.wikibits.js', 'callback' => function () {
+				global $wgIncludeLegacyJavaScript;
+				return $wgIncludeLegacyJavaScript ? new ResourceLoaderFilePath( 'legacy.wikibits.js' ) : '';
+			} ],
+		],
 		'dependencies' => 'jquery',
 		'targets' => [ 'desktop', 'mobile' ],
 	],

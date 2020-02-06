@@ -23,6 +23,13 @@
 		trackHandlers = [],
 		queue;
 
+	// Apply site-level config
+	mw.config.set( require( './config.json' ) );
+
+	// Load other files in the package
+	require( './mediawiki.errorLogger.js' );
+	require( './legacy.wikibits.js' );
+
 	/**
 	 * Object constructor for messages.
 	 *
