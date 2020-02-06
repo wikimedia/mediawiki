@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
@@ -139,7 +140,8 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		$this->hideDeprecated( 'SpecialPageFactory::resolveAlias' );
 		$this->hideDeprecated( 'SpecialPageFactory::getLocalNameFor' );
 		$lang = clone MediaWikiServices::getInstance()->getContentLanguage();
-		$lang->mExtendedSpecialPageAliases = $aliasesList;
+		$wrappedLang = TestingAccessWrapper::newFromObject( $lang );
+		$wrappedLang->mExtendedSpecialPageAliases = $aliasesList;
 		$this->setMwGlobals( 'wgSpecialPages',
 			array_combine( array_keys( $aliasesList ), array_keys( $aliasesList ) )
 		);

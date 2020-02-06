@@ -30,7 +30,11 @@ class LanguageArTest extends LanguageClassesTestCase {
 			throw new Exception( 'Expected output must differ.' );
 		}
 
-		$this->assertSame( $expected, $this->getLang()->normalize( $input ), 'ar-normalised form' );
+		$this->assertSame(
+			$expected,
+			$this->getLang()->normalize( $input ),
+			'ar-normalised form'
+		);
 	}
 
 	public static function provideNormalize() {
@@ -38,6 +42,14 @@ class LanguageArTest extends LanguageClassesTestCase {
 			[
 				'ﷅ',
 				'صمم',
+			],
+			[
+				'ﻴ',
+				'ي',
+			],
+			[
+				'ﻬ',
+				'ه',
 			],
 		];
 	}
