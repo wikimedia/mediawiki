@@ -1,5 +1,8 @@
 <?php
 
+use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory;
+
 /**
  * @group ResourceLoader
  */
@@ -8,14 +11,14 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$skinFactory = new SkinFactory();
-		// The return value of the closure shouldn't matter since this test should
-		// never call it
+		$skinFactory = new SkinFactory( new ObjectFactory(
+			$this->createMock( ContainerInterface::class )
+		) );
+		// The empty spec shouldn't matter since this test should never call it
 		$skinFactory->register(
 			'fakeskin',
 			'FakeSkin',
-			function () {
-			}
+			[]
 		);
 		$this->setService( 'SkinFactory', $skinFactory );
 
