@@ -77,7 +77,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 */
 	private const FEATURE_FILES = [
 		'logo' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/logo.less' ],
+			// Applies the logo and ensures it downloads prior to printing.
+			'all' => [ 'resources/src/mediawiki.skinning/logo.less' ],
+			// Reserves whitespace for the logo in a pseudo element.
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
 		'content' => [
