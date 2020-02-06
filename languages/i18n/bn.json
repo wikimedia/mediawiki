@@ -3908,5 +3908,7 @@
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "পাসওয়ার্ড ১,০০,০০০ সর্বাধিক ব্যবহৃত পাসওয়ার্ডের তালিকায় থাকতে পারবে না।",
 	"mycustomjsredirectprotected": "আপনার এই জাভাস্ক্রিপ্ট পাতাটি সম্পাদনা করার অনুমতি নেই কারণ এটি একটি পুনর্নির্দেশ এবং এটি আপনার ব্যবহারকারী নামস্থানের মধ্যে নির্দেশ করে না।",
 	"unprotected-js": "নিরাপত্তার কারণে জাভাস্ক্রিপ্ট অনিরাপদ পৃষ্ঠা থেকে লোড করা যাবে না। শুধুমাত্র মিডিয়াউইকি: নামস্থান বা ব্যবহারকারী উপপাতায় জাভাস্ক্রিপ্ট তৈরি করুন",
-	"userlogout-continue": "আপনি কি প্রস্থান করতে চান?"
+	"userlogout-continue": "আপনি কি প্রস্থান করতে চান?",
+	"paramvalidator-help-type-user-subtype-name": "ব্যবহারকারী নাম",
+	"paramvalidator-help-type-user-subtype-ip": "আইপি"
 }

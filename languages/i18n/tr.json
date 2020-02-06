@@ -1913,7 +1913,7 @@
 	"listfiles_date": "Tarih",
 	"listfiles_name": "Ad",
 	"listfiles_user": "Kullanıcı",
-	"listfiles_size": "Boyut (bayt)",
+	"listfiles_size": "Boyut",
 	"listfiles_description": "Açıklama",
 	"listfiles_count": "Sürümler",
 	"listfiles-show-all": "Dosyaların eski sürümlerini dahil et",

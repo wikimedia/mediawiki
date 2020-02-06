@@ -101,7 +101,8 @@
 			"RadioAzureus",
 			"LongJohn nl",
 			"Kupulak",
-			"Rots61"
+			"Rots61",
+			"Sumurai8"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -3946,5 +3947,12 @@
 	"mycustomjsredirectprotected": "U hebt geen rechten om deze JavaScriptpagina te bewerken omdat het een doorverwijzing is en deze niet verwijst naar een pagina in uw gebruikersruimte.",
 	"deflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
-	"userlogout-continue": "Wilt u zich afmelden?"
+	"userlogout-continue": "Wilt u zich afmelden?",
+	"paramvalidator-baduser": "Ongeldige waarde \"$2\" voor gebruikersparameter <var>$1</var>.",
+	"paramvalidator-help-type-user": "Type: {{PLURAL:$1|1=gebruiker|2=lijst van gebruikers}}, {{PLURAL:$3|met|met een van}} $2",
+	"paramvalidator-help-type-user-subtype-name": "gebruikersnaam",
+	"paramvalidator-help-type-user-subtype-ip": "IP-adres",
+	"paramvalidator-help-type-user-subtype-cidr": "IP bereik",
+	"paramvalidator-help-type-user-subtype-interwiki": "interwikinaam (bijv. \"voorvoegsel>VoorbeeldNaam\")",
+	"paramvalidator-help-type-user-subtype-id": "gebruikers-ID (bijv. \"#12345\")"
 }
