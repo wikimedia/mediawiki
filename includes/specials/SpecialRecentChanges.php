@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -714,74 +713,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		) );
 
 		return [ $nsLabel, "$nsSelect $invert $associated" ];
-	}
-
-	/**
-	 * Filter $rows by categories set in $opts
-	 *
-	 * @deprecated since 1.31
-	 *
-	 * @param IResultWrapper &$rows Database rows
-	 * @param FormOptions $opts
-	 */
-	function filterByCategories( &$rows, FormOptions $opts ) {
-		wfDeprecated( __METHOD__, '1.31' );
-
-		$categories = array_map( 'trim', explode( '|', $opts['categories'] ) );
-
-		if ( $categories === [] ) {
-			return;
-		}
-
-		# Filter categories
-		$cats = [];
-		foreach ( $categories as $cat ) {
-			$cat = trim( $cat );
-			if ( $cat == '' ) {
-				continue;
-			}
-			$cats[] = $cat;
-		}
-
-		# Filter articles
-		$articles = [];
-		$a2r = [];
-		$rowsarr = [];
-		foreach ( $rows as $k => $r ) {
-			$nt = Title::makeTitle( $r->rc_namespace, $r->rc_title );
-			$id = $nt->getArticleID();
-			if ( $id == 0 ) {
-				continue; # Page might have been deleted...
-			}
-			if ( !in_array( $id, $articles ) ) {
-				$articles[] = $id;
-			}
-			if ( !isset( $a2r[$id] ) ) {
-				$a2r[$id] = [];
-			}
-			$a2r[$id][] = $k;
-			$rowsarr[$k] = $r;
-		}
-
-		# Shortcut?
-		if ( $articles === [] || $cats === [] ) {
-			return;
-		}
-
-		# Look up
-		$catFind = new CategoryFinder;
-		$catFind->seed( $articles, $cats, $opts['categories_any'] ? 'OR' : 'AND' );
-		$match = $catFind->run();
-
-		# Filter
-		$newrows = [];
-		foreach ( $match as $id ) {
-			foreach ( $a2r[$id] as $rev ) {
-				$k = $rev;
-				$newrows[$k] = $rowsarr[$k];
-			}
-		}
-		$rows = new FakeResultWrapper( array_values( $newrows ) );
 	}
 
 	/**
