@@ -799,10 +799,10 @@ mw.loader.register([
 			'Deterministic version hash'
 		);
 
-		$this->assertNotEquals(
+		$this->assertEquals(
 			$version1,
 			$version3,
-			'Config change impacts version hash'
+			'Config change no longer impacts version hash'
 		);
 	}
 

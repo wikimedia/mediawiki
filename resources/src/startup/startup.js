@@ -4,7 +4,7 @@
  * - Beware: This file MUST parse without errors on even the most ancient of browsers!
  */
 /* eslint-disable no-implicit-globals */
-/* global $VARS, $CODE, RLQ:true, NORLQ:true */
+/* global $CODE, RLQ:true, NORLQ:true */
 
 /**
  * See <https://www.mediawiki.org/wiki/Compatibility#Browsers>
@@ -109,7 +109,7 @@ if ( !isCompatible( navigator.userAgent ) ) {
 	$CODE.defineLoader();
 
 	/**
-	 * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
+	 * The $CODE placeholder is substituted in ResourceLoaderStartUpModule.php.
 	 */
 	( function () {
 		/* global mw */
@@ -117,9 +117,8 @@ if ( !isCompatible( navigator.userAgent ) ) {
 
 		$CODE.registrations();
 
-		mw.config.set( $VARS.configuration );
 		// For the current page
-		mw.config.set( window.RLCONF || {} );
+		mw.config.set( window.RLCONF || {} ); // mw.loader needs wgCSPNonce and wgUserName
 		mw.loader.state( window.RLSTATE || {} );
 		mw.loader.load( window.RLPAGEMODULES || [] );
 
