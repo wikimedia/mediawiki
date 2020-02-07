@@ -106,6 +106,7 @@ class JobRunner implements LoggerAwareInterface {
 	 *    - maxTime  : maximum time in seconds before stopping
 	 *    - throttle : whether to respect job backoff configuration
 	 * @return array Summary response that can easily be JSON serialized
+	 * @throws JobQueueError
 	 */
 	public function run( array $options ) {
 		$type = $options['type'] ?? false;
