@@ -111,10 +111,6 @@ class NewFilesPager extends RangeChronologicalPager {
 					'rc_timestamp = img_timestamp'
 				]
 			];
-			// We're ordering by img_timestamp, so we have to make sure MariaDB queries `image` first.
-			// It sometimes decides to query `recentchanges` first and filesort the result set later
-			// to get the right ordering. T124205 / https://mariadb.atlassian.net/browse/MDEV-8880
-			$options[] = 'STRAIGHT_JOIN';
 		}
 
 		if ( $opts->getValue( 'mediatype' ) ) {
@@ -134,6 +130,11 @@ class NewFilesPager extends RangeChronologicalPager {
 				$conds[] = "LOWER(img_name) $like";
 			}
 		}
+
+		// We're ordering by img_timestamp, but MariaDB sometimes likes to query other tables first
+		// and filesort the result set later.
+		// See T124205 / https://mariadb.atlassian.net/browse/MDEV-8880, and T244533
+		$options[] = 'STRAIGHT_JOIN';
 
 		$query = [
 			'tables' => $tables,
