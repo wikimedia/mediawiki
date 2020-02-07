@@ -365,10 +365,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 
 		$logo1Url = OutputPage::transformResourcePath( $conf, $logo );
 
-		if ( count( $logoHD ) === 1 ) {
-			return $logo1Url;
-		}
-
 		$logoUrls = [
 			'1x' => $logo1Url,
 		];
@@ -378,7 +374,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				$conf,
 				$logoHD['svg']
 			);
-		} else {
+		} elseif ( isset( $logoHD['1.5x'] ) || isset( $logoHD['2x'] ) ) {
 			// Only 1.5x and 2x are supported
 			if ( isset( $logoHD['1.5x'] ) ) {
 				$logoUrls['1.5x'] = OutputPage::transformResourcePath(
@@ -392,6 +388,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 					$logoHD['2x']
 				);
 			}
+		} else {
+			// Return a string rather than a one-element array, getLogoPreloadlinks depends on this
+			return $logo1Url;
 		}
 
 		return $logoUrls;
