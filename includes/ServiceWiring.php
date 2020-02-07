@@ -350,6 +350,18 @@ return [
 		);
 	},
 
+	'JobRunner' => function ( MediaWikiServices $services ) : JobRunner {
+		return new JobRunner(
+			new ServiceOptions( JobRunner::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getDBLoadBalancerFactory(),
+			JobQueueGroup::singleton(),
+			$services->getReadOnlyMode(),
+			$services->getLinkCache(),
+			$services->getStatsdDataFactory(),
+			LoggerFactory::getInstance( 'runJobs' )
+		);
+	},
+
 	'LanguageConverterFactory' => function ( MediaWikiServices $services ) : LanguageConverterFactory {
 		$usePigLatinVariant = $services->getMainConfig()->get( 'UsePigLatinVariant' );
 		return new LanguageConverterFactory( $usePigLatinVariant,  function () use ( $services ) {

@@ -29,7 +29,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Maintenance script that runs pending jobs.
@@ -74,7 +74,7 @@ class RunJobs extends Maintenance {
 		$outputJSON = ( $this->getOption( 'result' ) === 'json' );
 		$wait = $this->hasOption( 'wait' );
 
-		$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
+		$runner = MediaWikiServices::getInstance()->getJobRunner();
 		if ( !$outputJSON ) {
 			$runner->setDebugHandler( [ $this, 'debugInternal' ] );
 		}

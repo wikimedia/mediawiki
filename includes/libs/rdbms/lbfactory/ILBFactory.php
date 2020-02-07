@@ -433,4 +433,12 @@ interface ILBFactory {
 	 * @since 1.35
 	 */
 	public function setDomainAliases( array $aliases );
+
+	/**
+	 * Get a TransactionProfiler used by this instance.
+	 *
+	 * @return TransactionProfiler
+	 * @since 1.35
+	 */
+	public function getTransactionProfiler(): TransactionProfiler;
 }

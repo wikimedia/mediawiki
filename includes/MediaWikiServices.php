@@ -18,6 +18,7 @@ use GenderCache;
 use GlobalVarConfig;
 use Hooks;
 use IBufferingStatsdDataFactory;
+use JobRunner;
 use Language;
 use LinkCache;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -693,6 +694,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup() : InterwikiLookup {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return JobRunner
+	 */
+	public function getJobRunner() : JobRunner {
+		return $this->getService( 'JobRunner' );
 	}
 
 	/**
