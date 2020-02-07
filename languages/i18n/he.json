@@ -3955,5 +3955,12 @@
 	"mycustomjsredirectprotected": "אין לך הרשאה לערוך את דף ה־JavaScript הזה, כיוון שהוא הפניה לדף שנמצא מחוץ למרחב המשתמש שלך.",
 	"deflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
 	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש.",
-	"userlogout-continue": "האם ברצונך לצאת מהחשבון?"
+	"userlogout-continue": "האם ברצונך לצאת מהחשבון?",
+	"paramvalidator-baduser": "ערך בלתי־תקין \"$2\" עבור פרמטר משתמש <var>$1</var>.",
+	"paramvalidator-help-type-user": "סוג: {{PLURAL:$1|1=משתמש|2=רשימת משתמשים}}, {{PLURAL:$3|מאת|מאת כל אחד מהבאים}} $2",
+	"paramvalidator-help-type-user-subtype-name": "שם המשתמש",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "טווח IP",
+	"paramvalidator-help-type-user-subtype-interwiki": "שם בינוויקי (למשל \"prefix>ExampleName\")",
+	"paramvalidator-help-type-user-subtype-id": "מזהה משתמש (למשל \"#12345\")"
 }

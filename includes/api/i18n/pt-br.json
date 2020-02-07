@@ -36,7 +36,7 @@
 	"apihelp-main-param-errorsuselocal": "Se for dado, os textos de erro usarão mensagens customizadas localmente a partir do espaço nominal {{ns: MediaWiki}}.",
 	"apihelp-block-summary": "Bloquear um usuário.",
 	"apihelp-block-param-user": "Nome de usuário, endereço IP ou faixa de IP para bloquear. Não pode ser usado junto com <var>$1userid</var>",
-	"apihelp-block-param-userid": "ID de usuário para bloquear. Não pode ser usado em conjunto com <var>$1user</var>.",
+	"apihelp-block-param-userid": "Especifique <kbd>$1user=#<var>ID</var></kbd>.",
 	"apihelp-block-param-expiry": "Tempo de expiração. Pode ser relativo (por exemplo <kbd>5 meses</kbd> ou <kbd>2 semanas</kbd>) ou absoluto (por exemplo <kbd>2014-09-18T12:34:56Z</kbd>). Se definido para <kbd>infinite</kbd>, <kbd>indefinite</kbd> ou <kbd>never</kbd>, o bloqueio nunca irá expirar.",
 	"apihelp-block-param-reason": "Razão do bloqueio.",
 	"apihelp-block-param-anononly": "Bloqueia apenas usuários anônimos (ou seja. desativa edições anônimas para este endereço IP).",

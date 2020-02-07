@@ -53,7 +53,8 @@
 			"Jon Harald Søby",
 			"Fitoschido",
 			"Orf3us",
-			"Pyscowicz"
+			"Pyscowicz",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -2610,7 +2611,7 @@
 	"emailblock": "e-post blokkert",
 	"blocklist-nousertalk": "kan ikke redigere sin egen diskusjonsside",
 	"blocklist-editing": "redigering",
-	"blocklist-editing-sitewide": "redigering (hele nettstedetttttttttt)",
+	"blocklist-editing-sitewide": "redigering (hele nettstedet)",
 	"blocklist-editing-page": "sider",
 	"blocklist-editing-ns": "navnerom",
 	"ipblocklist-empty": "Blokkeringslisten er tom.",

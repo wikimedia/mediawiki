@@ -4034,7 +4034,11 @@
 	"deflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
 	"unprotected-js": "Por razões de segurança o JavaScript não pode ser carregado de páginas desprotegidas. Por favor, crie apenas javascript no MediaWiki: namespace ou como uma subpágina do usuário",
 	"userlogout-continue": "Você quer sair?",
+	"paramvalidator-baduser": "Valor \"$2\" inválido para o parâmetro de usuário <var>$1</var>.",
+	"paramvalidator-help-type-user": "Tipo: {{PLURAL:$1|1=usuário|2=lista de usuário}}, {{PLURAL:$3|ór|por qualquer de}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nome de usuário",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
-	"paramvalidator-help-type-user-subtype-cidr": "Intervalo de IP"
+	"paramvalidator-help-type-user-subtype-cidr": "Intervalo de IP",
+	"paramvalidator-help-type-user-subtype-interwiki": "nome interwiki (por exemplo \"prefixo>Nomedeexemplo\")",
+	"paramvalidator-help-type-user-subtype-id": "ID de usuário (por exemplo \"#12345\")"
 }
