@@ -1488,7 +1488,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			[ &$wikiPage, &$editInfo, $this->options['changed'] ] );
 
 		// TODO: replace legacy hook! Use a listener on PageEventEmitter instead!
-		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$wikiPage ] ) ) {
+		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$wikiPage ], '1.35' ) ) {
 			// Flush old entries from the `recentchanges` table
 			if ( mt_rand( 0, 9 ) == 0 ) {
 				$this->jobQueueGroup->lazyPush( RecentChangesUpdateJob::newPurgeJob() );
