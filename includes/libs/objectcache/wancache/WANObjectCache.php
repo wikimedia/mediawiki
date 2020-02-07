@@ -147,6 +147,11 @@ class WANObjectCache implements
 	/** @var bool Whether to use Hash Tags and Hash Stops in key names */
 	protected $coalesceKeys;
 
+	/** @var int Reads/second assumed during a hypothetical cache write stampede for a key */
+	private $keyHighQps;
+	/** @var float Max tolerable bytes/second to spend on a cache write stampede for a key */
+	private $keyHighUplinkBps;
+
 	/** @var int Callback stack depth for getWithSetCallback() */
 	private $callbackDepth = 0;
 	/** @var mixed[] Temporary warm-up cache */
@@ -212,8 +217,11 @@ class WANObjectCache implements
 	/** @var float Tiny positive float to use when using "minTime" to assert an inequality */
 	private static $TINY_POSTIVE = 0.000001;
 
-	/** @var int Milliseconds of key fetch/validate/regenerate delay prone to set() stampedes */
-	private static $SET_DELAY_HIGH_MS = 50;
+	/** @var int Key value size estimate for primitive numeric value wrappers */
+	private const KEY_TINY_BYTES = 32;
+	/** @var int Pessimistic key value size estimate for non-scalar value wrappers */
+	private const KEY_HUGE_BYTES = 500000;
+
 	/** @var int Min millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
 	private static $RECENT_SET_LOW_MS = 50;
 	/** @var int Max millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
@@ -286,6 +294,13 @@ class WANObjectCache implements
 	 *   - coalesceKeys: whether to use Hash Tags and Hash Stops in key names so that related
 	 *       keys use the same cache server. This can reduce network overhead and reduce the
 	 *       chance the a single down cache server causes disruption. [default: false]
+	 *   - keyHighQps: reads/second assumed during a hypothetical cache write stampede for
+	 *       a single key. This is used to decide when the overhead of checking short-lived
+	 *       write throttling keys is worth it.
+	 *       [default: 100]
+	 *   - keyHighUplinkBps: maximum tolerable bytes/second to spend on a cache write stampede
+	 *       for a single key. This is used to decide when the overhead of checking short-lived
+	 *       write throttling keys is worth it. [default: (1/100 of a 1Gbps link)]
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
@@ -295,6 +310,9 @@ class WANObjectCache implements
 		$this->epoch = $params['epoch'] ?? 0;
 		$this->secret = $params['secret'] ?? (string)$this->epoch;
 		$this->coalesceKeys = $params['coalesceKeys'] ?? false;
+
+		$this->keyHighQps = $params['keyHighQps'] ?? 100;
+		$this->keyHighUplinkBps = $params['keyHighUplinkBps'] ?? ( 1e9 / 8 / 100 );
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
@@ -1209,8 +1227,8 @@ class WANObjectCache implements
 	 *      stampede is worth avoiding. Note that if the key falls out of cache then concurrent
 	 *      threads will all run the callback on cache miss until the value is saved in cache.
 	 *      The only stampede protection in that case is from duplicate cache sets when the
-	 *      callback takes longer than WANObjectCache::SET_DELAY_HIGH_MS milliseconds; consider
-	 *      using "busyValue" if such stampedes are a problem. Note that the higher "lockTSE" is
+	 *      callback is slow and/or yields large values; consider using "busyValue" if such
+	 *      stampedes are a problem (e.g. high query load). Note that the higher "lockTSE" is
 	 *      set, the higher the worst-case staleness of returned values can be. Also note that
 	 *      this option does not by itself handle the case of the key simply expiring on account
 	 *      of its TTL, so make sure that "lowTTL" is not disabled when using this option. Avoid
@@ -1485,7 +1503,7 @@ class WANObjectCache implements
 			// Current thread was not raced out of a regeneration lock or key is tombstoned
 			( !$useRegenerationLock || $hasLock || $isKeyTombstoned ) &&
 			// Key does not appear to be undergoing a set() stampede
-			$this->checkAndSetCooloff( $key, $kClass, $elapsed, $lockTSE, $hasLock )
+			$this->checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock )
 		) {
 			// How long it took to generate the value
 			$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
@@ -1616,41 +1634,86 @@ class WANObjectCache implements
 	}
 
 	/**
+	 * Check whether set() is rate-limited to avoid concurrent I/O spikes
+	 *
+	 * This mitigates problems caused by popular keys suddenly becoming unavailable due to
+	 * unexpected evictions or cache server outages. These cases are not handled by the usual
+	 * preemptive refresh logic.
+	 *
+	 * With a typical scale-out infrastructure, CPU and query load from getWithSetCallback()
+	 * invocations is distributed among appservers and replica DBs, but cache operations for
+	 * a given key route to a single cache server (e.g. striped consistent hashing). A set()
+	 * stampede to a key can saturate the network link to its cache server. The intensity of
+	 * the problem is proportionate to the value size and access rate. The duration of the
+	 * problem is proportionate to value regeneration time.
+	 *
 	 * @param string $key
 	 * @param string $kClass
+	 * @param mixed $value The regenerated value
 	 * @param float $elapsed Seconds spent regenerating the value
-	 * @param float $lockTSE
 	 * @param bool $hasLock
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
-	private function checkAndSetCooloff( $key, $kClass, $elapsed, $lockTSE, $hasLock ) {
+	private function checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock ) {
 		$this->stats->timing( "wanobjectcache.$kClass.regen_set_delay", 1e3 * $elapsed );
 
-		// If $lockTSE is set, the lock was bypassed because there was no stale/interim value,
-		// and $elapsed indicates that regeration is slow, then there is a risk of set()
-		// stampedes with large blobs. With a typical scale-out infrastructure, CPU and query
-		// load from $callback invocations is distributed among appservers and replica DBs,
-		// but cache operations for a given key route to a single cache server (e.g. striped
-		// consistent hashing).
-		if ( $lockTSE < 0 || $hasLock ) {
-			return true; // either not a priori hot or thread has the lock
-		} elseif ( $elapsed <= self::$SET_DELAY_HIGH_MS * 1e3 ) {
-			return true; // not enough time for threads to pile up
+		if ( $hasLock ) {
+			// No concurrent I/O risk due to mutex
+			return true;
 		}
 
-		$this->cache->clearLastError();
-		if (
-			!$this->cache->add(
-				$this->makeSisterKey( $key, self::$TYPE_COOLOFF ),
-				1,
-				self::$COOLOFF_TTL
-			) &&
-			// Don't treat failures due to I/O errors as the key being in cooloff
-			$this->cache->getLastError() === BagOStuff::ERR_NONE
-		) {
-			$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
+		// Value size (if cheap to determine) or pessimistic value size assumption (otherwise)
+		// https://www.php.net/manual/en/function.gettype.php
+		switch ( gettype( $value ) ) {
+			case 'NULL':
+			case 'boolean':
+			case 'integer':
+			case 'double':
+				$estimatedSize = self::KEY_TINY_BYTES;
+				break;
+			case 'string':
+				$estimatedSize = strlen( $value );
+				break;
+			default:
+				// @TODO: use some kind of BagOStuff::prepareValue() method instead
+				$estimatedSize = self::KEY_HUGE_BYTES;
+				break;
+		}
 
-			return false;
+		// Suppose that this cache key is very popular (KEY_HIGH_QPS reads/second).
+		// After eviction, there will be cache misses until it gets regenerated and saved.
+		// If the time window when the key is missing lasts less than one second, then the
+		// number of misses will not reach KEY_HIGH_QPS. This window largely corresponds to
+		// the key regeneration time. Estimate the count/rate of cache misses, e.g.:
+		//  - 100 QPS, 20ms regeneration => ~2 misses (< 1s)
+		//  - 100 QPS, 100ms regeneration => ~10 misses (< 1s)
+		//  - 100 QPS, 3000ms regeneration => ~300 misses (100/s for 3s)
+		$missesPerSecForHighQPS = ( min( $elapsed, 1 ) * $this->keyHighQps );
+		// Determine whether there is enough I/O stampede risk to justify throttling set().
+		// Estimate the unthrottled set() overhead, as bps, from miss count/rate and value size,
+		// comparing it to the preferred per-key uplink bps limit (KEY_HIGH_UPLINK_BPS), e.g.:
+		//  - 2 misses (< 1s), 10KB value, 1250000 bps limit => 160000 bits (low risk)
+		//  - 2 misses (< 1s), 100KB value, 1250000 bps limit => 1600000 bits (high risk)
+		//  - 10 misses (< 1s), 10KB value, 1250000 bps limit => 800000 bits (low risk)
+		//  - 10 misses (< 1s), 100KB value, 1250000 bps limit => 8000000 bits (high risk)
+		//  - 300 misses (100/s), 1KB value, 1250000 bps limit => 800000 bits/s (low risk)
+		//  - 300 misses (100/s), 10KB value, 1250000 bps limit => 8000000 bits/s (high risk)
+		//  - 300 misses (100/s), 100KB value, 1250000 bps limit => 80000000 bits/s (high risk)
+		if ( ( $missesPerSecForHighQPS * $estimatedSize ) >= $this->keyHighUplinkBps ) {
+			$this->cache->clearLastError();
+			if (
+				!$this->cache->add(
+					$this->makeSisterKey( $key, self::$TYPE_COOLOFF ),
+					1,
+					self::$COOLOFF_TTL
+				) &&
+				// Don't treat failures due to I/O errors as the key being in cooloff
+				$this->cache->getLastError() === BagOStuff::ERR_NONE
+			) {
+				$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
+
+				return false;
+			}
 		}
 
 		return true;
