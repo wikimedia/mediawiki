@@ -3637,7 +3637,10 @@ ERROR;
 				$classes[] = 'mw-textarea-oldrev';
 			}
 
-			$attribs = [ 'tabindex' => 1 ];
+			$attribs = [
+				'aria-label' => $this->context->msg( 'edit-textarea-aria-label' )->text(),
+				'tabindex' => 1
+			];
 
 			if ( is_array( $customAttribs ) ) {
 				$attribs += $customAttribs;

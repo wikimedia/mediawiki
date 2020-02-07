@@ -714,6 +714,7 @@
 	"token_suffix_mismatch": "<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.</strong>\nThe edit has been rejected to prevent corruption of the page text.\nThis sometimes happens when you are using a buggy web-based anonymous proxy service.",
 	"edit_form_incomplete": "<strong>Some parts of the edit form did not reach the server; double-check that your edits are intact and try again.</strong>",
 	"editing": "Editing $1",
+	"edit-textarea-aria-label": "Wikitext source editor",
 	"creating": "Creating $1",
 	"editingsection": "Editing $1 (section)",
 	"editingcomment": "Editing $1 (new section)",
