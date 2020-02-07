@@ -94,7 +94,7 @@ class BlockManager {
 	 * (1) The global user (and can be affected by IP blocks). The global request object
 	 * is needed for checking the IP address, the XFF header and the cookies.
 	 * (2) The global user (and exempt from IP blocks). The global request object is
-	 * needed for checking the cookies.
+	 * available.
 	 * (3) Another user (not the global user). No request object is available or needed;
 	 * just look for a block against the user account.
 	 *
@@ -120,7 +120,7 @@ class BlockManager {
 
 		// If this is the global user, they may be affected by IP blocks (case #1),
 		// or they may be exempt (case #2). If affected, look for additional blocks
-		// against the IP address.
+		// against the IP address and referenced in a cookie.
 		$checkIpBlocks = $request &&
 			!$this->permissionManager->userHasRight( $user, 'ipblock-exempt' );
 
@@ -133,16 +133,11 @@ class BlockManager {
 			$this->getAdditionalIpBlocks( $blocks, $request, !$user->isRegistered(), $fromMaster );
 			$this->getCookieBlock( $blocks, $user, $request );
 
-		} elseif ( $request ) {
-
-			// Case #2: checking the global user, but they are exempt from IP blocks
-			// TODO: remove dependency on DatabaseBlock (T221075)
-			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromMaster );
-			$this->getCookieBlock( $blocks, $user, $request );
-
 		} else {
 
-			// Case #3: checking whether a user's account is blocked
+			// Case #2: checking the global user, but they are exempt from IP blocks
+			// and cookie blocks, so we only check for a user account block.
+			// Case #3: checking whether another user's account is blocked.
 			// TODO: remove dependency on DatabaseBlock (T221075)
 			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromMaster );
 
