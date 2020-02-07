@@ -58,8 +58,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private $titleParser;
 
-	public function __construct() {
+	/**
+	 * @var WatchedItemStoreInterface
+	 */
+	private $watchedItemStore;
+
+	public function __construct( WatchedItemStoreInterface $watchedItemStore ) {
 		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
+		$this->watchedItemStore = $watchedItemStore;
 	}
 
 	/**
@@ -273,9 +279,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param string $messageFor 'raw' or 'clear'. Only used when JobQueue is not used.
 	 */
 	private function clearUserWatchedItems( string $messageFor ): void {
-		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-
-		if ( $watchedItemStore->mustClearWatchedItemsUsingJobQueue( $this->getUser() ) ) {
+		if ( $this->watchedItemStore->mustClearWatchedItemsUsingJobQueue( $this->getUser() ) ) {
 			$this->clearUserWatchedItemsUsingJobQueue();
 		} else {
 			$this->clearUserWatchedItemsNow( $messageFor );
@@ -288,9 +292,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param string $messageFor 'raw' or 'clear'
 	 */
 	private function clearUserWatchedItemsNow( string $messageFor ): void {
-		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$current = $this->getWatchlist();
-		if ( !$watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
+		if ( !$this->watchedItemStore->clearUserWatchedItems( $this->getUser() ) ) {
 			throw new LogicException(
 				__METHOD__ . ' should only be called when able to clear synchronously'
 			);
@@ -306,8 +309,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * You should call clearUserWatchedItems() instead to decide if this should use the JobQueue
 	 */
 	private function clearUserWatchedItemsUsingJobQueue(): void {
-		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
+		$this->watchedItemStore->clearUserWatchedItemsUsingJobQueue( $this->getUser() );
 		$this->successMessage = $this->msg( 'watchlistedit-clear-jobqueue' )->parse();
 	}
 
@@ -372,7 +374,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function getWatchlist() {
 		$list = [];
 
-		$watchedItems = MediaWikiServices::getInstance()->getWatchedItemStore()->getWatchedItemsForUser(
+		$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
 			$this->getUser(),
 			[ 'forWrite' => $this->getRequest()->wasPosted() ]
 		);
@@ -414,8 +416,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$titles = [];
 		$services = MediaWikiServices::getInstance();
 
-		$watchedItems = $services->getWatchedItemStore()
-			->getWatchedItemsForUser( $this->getUser(), [ 'sort' => WatchedItemStore::SORT_ASC ] );
+		$watchedItems = $this->watchedItemStore->getWatchedItemsForUser(
+			$this->getUser(), [ 'sort' => WatchedItemStore::SORT_ASC ]
+		);
 
 		$lb = new LinkBatch();
 
@@ -471,7 +474,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		$badItems = $this->badItems;
 		DeferredUpdates::addCallableUpdate( function () use ( $user, $badItems ) {
-			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			foreach ( $badItems as $row ) {
 				list( $title, $namespace, $dbKey ) = $row;
 				$action = $title ? 'cleaning up' : 'deleting';
@@ -481,7 +483,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				// NOTE: We *know* that the title is invalid. TitleValue may refuse instantiation.
 				// XXX: We may need an InvalidTitleValue class that allows instantiation of
 				//      known bad title values.
-				$store->removeWatch( $user, Title::makeTitle( (int)$namespace, $dbKey ) );
+				$this->watchedItemStore->removeWatch( $user, Title::makeTitle( (int)$namespace, $dbKey ) );
 				// Can't just do an UPDATE instead of DELETE/INSERT due to unique index
 				if ( $title ) {
 					$user->addWatch( $title );
@@ -499,9 +501,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @throws MWException
 	 */
 	private function watchTitles( array $targets ) {
-		return MediaWikiServices::getInstance()->getWatchedItemStore()
-			->addWatchBatchForUser( $this->getUser(), $this->getExpandedTargets( $targets ) )
-			&& $this->runWatchUnwatchCompleteHook( 'Watch', $targets );
+		return $this->watchedItemStore->addWatchBatchForUser(
+				$this->getUser(), $this->getExpandedTargets( $targets )
+			) && $this->runWatchUnwatchCompleteHook( 'Watch', $targets );
 	}
 
 	/**
@@ -517,9 +519,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @throws MWException
 	 */
 	private function unwatchTitles( array $targets ) {
-		return MediaWikiServices::getInstance()->getWatchedItemStore()
-			->removeWatchBatchForUser( $this->getUser(), $this->getExpandedTargets( $targets ) )
-			&& $this->runWatchUnwatchCompleteHook( 'Unwatch', $targets );
+		return $this->watchedItemStore->removeWatchBatchForUser(
+				$this->getUser(), $this->getExpandedTargets( $targets )
+			) && $this->runWatchUnwatchCompleteHook( 'Unwatch', $targets );
 	}
 
 	/**
