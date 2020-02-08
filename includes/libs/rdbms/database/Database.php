@@ -2363,6 +2363,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * Integer and float values in $values will not be quoted
 	 *
+	 * If $fields is an array, then each value with a string key is treated as an expression
+	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
+	 * descriptive aliases.
+	 *
 	 * @param string $sqlfunc Name of a SQL function
 	 * @param string|string[] $fields Name(s) of column(s) with values to compare
 	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
@@ -2374,13 +2378,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$values = is_array( $values ) ? $values : [ $values ];
 
 		$encValues = [];
-		foreach ( $fields as $field ) {
-			$encValues[] = $this->addIdentifierQuotes( $field );
+		foreach ( $fields as $alias => $field ) {
+			if ( is_int( $alias ) ) {
+				$encValues[] = $this->addIdentifierQuotes( $field );
+			} else {
+				$encValues[] = $field; // expression
+			}
 		}
 		foreach ( $values as $value ) {
-			$encValues[] = ( is_int( $value ) || is_float( $value ) )
-				? $value
-				: $this->addQuotes( $value );
+			if ( is_int( $value ) || is_float( $value ) ) {
+				$encValues[] = $value;
+			} elseif ( is_string( $value ) ) {
+				$encValues[] = $this->addQuotes( $value );
+			} elseif ( $value === null ) {
+				throw new DBUnexpectedError( $this, 'Null value in superlative' );
+			} else {
+				throw new DBUnexpectedError( $this, 'Unexpected value type in superlative' );
+			}
 		}
 
 		return $sqlfunc . '(' . implode( ',', $encValues ) . ')';
