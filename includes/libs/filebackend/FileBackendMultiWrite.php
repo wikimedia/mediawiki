@@ -144,8 +144,8 @@ class FileBackendMultiWrite extends FileBackend {
 		$mbe = $this->backends[$this->masterIndex]; // convenience
 
 		// Acquire any locks as needed
+		$scopeLock = null;
 		if ( empty( $opts['nonLocking'] ) ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
 			$scopeLock = $this->getScopedLocksForOps( $ops, $status );
 			if ( !$status->isOK() ) {
 				return $status; // abort
