@@ -144,7 +144,9 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			return Status::newFatal( $msg );
 		}
 
-		$this->getOutput()->redirect( $title->getFullURL() );
+		$query = $this->getRequest()->getValues();
+		unset( $query['title'] );
+		$this->getOutput()->redirect( $title->getFullURL( $query ) );
 	}
 
 	/**
