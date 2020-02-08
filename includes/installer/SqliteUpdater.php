@@ -278,6 +278,9 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'dropField', 'filearchive', 'fa_user', 'patch-filearchive-drop-fa_user.sql' ],
 			[ 'dropField', 'recentchanges', 'rc_user', 'patch-recentchanges-drop-rc_user.sql' ],
 			[ 'dropField', 'logging', 'log_user', 'patch-logging-drop-log_user.sql' ],
+
+			// 1.35
+			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
 		];
 	}
 

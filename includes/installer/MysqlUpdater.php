@@ -411,6 +411,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropIndex', 'archive', 'usertext_timestamp', 'patch-drop-archive-usertext_timestamp.sql' ],
 			[ 'dropField', 'logging', 'log_user', 'patch-drop-user-fields.sql' ],
 			[ 'addIndex', 'user_newtalk', 'un_user_ip', 'patch-rename-mysql-user_newtalk-indexes.sql' ],
+
+			// 1.35
+			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
 		];
 	}
 

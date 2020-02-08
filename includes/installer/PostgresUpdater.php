@@ -658,6 +658,7 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.35
 			[ 'addIndex', 'redirect', 'redirect_pkey', 'patch-redirect-pk.sql' ],
+			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
 		];
 	}
 
