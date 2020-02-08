@@ -1152,7 +1152,6 @@ class CoreParserFunctions {
 			$parserRevision = $parser->getRevisionObject();
 			if ( $parserRevision && $parserRevision->isCurrent() ) {
 				$revision = $parserRevision;
-				wfDebug( __METHOD__ . ": used current revision, setting $vary" );
 			}
 		}
 
@@ -1175,6 +1174,7 @@ class CoreParserFunctions {
 		}
 
 		if ( $isSelfReferential ) {
+			wfDebug( __METHOD__ . ": used current revision, setting $vary" );
 			// Upon page save, the result of the parser function using this might change
 			$parserOutput->setFlag( $vary );
 			if ( $vary === 'vary-revision-sha1' && $revision ) {
@@ -1246,6 +1246,23 @@ class CoreParserFunctions {
 		$t = Title::newFromText( $title );
 		if ( $t === null ) {
 			return '';
+		}
+		$services = MediaWikiServices::getInstance();
+		$namespace = $t->getNamespace();
+		if (
+			$services->getMainConfig()->get( 'MiserMode' ) &&
+			!$parser->getOptions()->getInterfaceMessage() &&
+			// @TODO: disallow this word on all namespaces (T235957)
+			$services->getNamespaceInfo()->isSubject( $namespace )
+		) {
+			// Use a stub result instead of the actual revision ID in order to avoid
+			// double parses on page save but still allow preview detection (T137900)
+			if ( $parser->getRevisionId() || $parser->getOptions()->getSpeculativeRevId() ) {
+				return '-';
+			} else {
+				$parser->getOutput()->setFlag( 'vary-revision-exists' );
+				return '';
+			}
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-id' );
