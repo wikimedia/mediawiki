@@ -98,9 +98,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 	public $mPastTheEndRow;
 
 	/**
-	 * The index to actually be used for ordering. This is a single column,
-	 * for one ordering, even if multiple orderings are supported.
-	 * @var string
+	 * The index to actually be used for ordering. This can be a single column,
+	 * an array of single columns, or an array of arrays of columns. See getIndexField
+	 * for more details.
+	 * @var string|string[]
 	 */
 	protected $mIndexField;
 	/**
@@ -187,6 +188,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$index = $this->getIndexField(); // column to sort on
 		$extraSort = $this->getExtraSortFields(); // extra columns to sort on for query planning
 		$order = $this->mRequest->getVal( 'order' );
+
 		if ( is_array( $index ) && isset( $index[$order] ) ) {
 			$this->mOrderType = $order;
 			$this->mIndexField = $index[$order];
@@ -347,38 +349,44 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
 		$numRows = $res->numRows();
+
+		$firstIndex = [];
+		$lastIndex = [];
+		$this->mPastTheEndIndex = [];
+		$this->mPastTheEndRow = null;
+
 		if ( $numRows ) {
-			# Remove any table prefix from index field
-			$parts = explode( '.', $this->mIndexField );
-			$indexColumn = end( $parts );
+			$indexColumns = array_map( function ( $v ) {
+				// Remove any table prefix from index field
+				$parts = explode( '.', $v );
+				return end( $parts );
+			}, (array)$this->mIndexField );
 
 			$row = $res->fetchRow();
-			$firstIndex = $row[$indexColumn];
+			foreach ( $indexColumns as $indexColumn ) {
+				$firstIndex[] = $row[$indexColumn];
+			}
 
 			# Discard the extra result row if there is one
 			if ( $numRows > $this->mLimit && $numRows > 1 ) {
 				$res->seek( $numRows - 1 );
 				$this->mPastTheEndRow = $res->fetchObject();
-				$this->mPastTheEndIndex = $this->mPastTheEndRow->$indexColumn;
+				foreach ( $indexColumns as $indexColumn ) {
+					$this->mPastTheEndIndex[] = $this->mPastTheEndRow->$indexColumn;
+				}
 				$res->seek( $numRows - 2 );
 				$row = $res->fetchRow();
-				$lastIndex = $row[$indexColumn];
+				foreach ( $indexColumns as $indexColumn ) {
+					$lastIndex[] = $row[$indexColumn];
+				}
 			} else {
 				$this->mPastTheEndRow = null;
-				# Setting indexes to an empty string means that they will be
-				# omitted if they would otherwise appear in URLs. It just so
-				# happens that this  is the right thing to do in the standard
-				# UI, in all the relevant cases.
-				$this->mPastTheEndIndex = '';
 				$res->seek( $numRows - 1 );
 				$row = $res->fetchRow();
-				$lastIndex = $row[$indexColumn];
+				foreach ( $indexColumns as $indexColumn ) {
+					$lastIndex[] = $row[$indexColumn];
+				}
 			}
-		} else {
-			$firstIndex = '';
-			$lastIndex = '';
-			$this->mPastTheEndRow = null;
-			$this->mPastTheEndIndex = '';
 		}
 
 		if ( $this->mIsBackwards ) {
@@ -438,7 +446,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$conds = $info['conds'] ?? [];
 		$options = $info['options'] ?? [];
 		$join_conds = $info['join_conds'] ?? [];
-		$sortColumns = array_merge( [ $this->mIndexField ], $this->mExtraSortFields );
+		$indexColumns = (array)$this->mIndexField;
+		$sortColumns = array_merge( $indexColumns, $this->mExtraSortFields );
+
 		if ( $order === self::QUERY_ASCENDING ) {
 			$options['ORDER BY'] = $sortColumns;
 			$operator = $this->mIncludeOffset ? '>=' : '>';
@@ -451,10 +461,84 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$operator = $this->mIncludeOffset ? '<=' : '<';
 		}
 		if ( $offset != '' ) {
-			$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
+			$offsets = explode( '|', $offset );
+			$conds[] = $this->buildOffsetConds(
+				$offsets,
+				$indexColumns,
+				$operator
+			);
 		}
 		$options['LIMIT'] = intval( $limit );
 		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];
+	}
+
+	/**
+	 * Build the conditions for the offset, given that we may be paginating on a
+	 * single column or multiple columns. Where we paginate on multiple columns,
+	 * the sort order is defined by the order of the columns in $mIndexField.
+	 *
+	 * Some examples, with up to three columns. Each condition consists of inner
+	 * conditions, at least one of which must be true (joined by OR):
+	 *
+	 * - column X, with offset value 'x':
+	 *     WHERE X>'x'
+	 *
+	 * - columns X and Y, with offsets 'x' and 'y':
+	 *     WHERE X>'x'
+	 *     OR ( X='x' AND Y>'y' )
+	 *
+	 * - columns X, Y and Z, with offsets 'x', 'y' and 'z':
+	 *     WHERE X>'x'
+	 *     OR ( X='x' AND Y>'y' )
+	 *     OR ( X='x' AND Y='y' AND Z>'z' )
+	 *
+	 * - and so on...
+	 *
+	 * (The examples assume we want the next page and do not want to include the
+	 * offset in the results; otherwise the operators will be slightly different,
+	 * as handled in buildQueryInfo.)
+	 *
+	 * Note that the above performs better than: WHERE (X,Y,Z)>('x','y','z').
+	 *
+	 * @param string[] $offsets The offset for each index field
+	 * @param string[] $columns The name of each index field
+	 * @param string $operator Operator for the final part of each inner
+	 *  condition. This will be '>' if the query order is ascending, or '<' if
+	 *  the query order is descending. If the offset should be included, it will
+	 *  also have '=' appended.
+	 * @return string The conditions for getting results from the offset
+	 */
+	private function buildOffsetConds( $offsets, $columns, $operator ) {
+		$innerConds = [];
+		// $offsets and $columns are the same length
+		for ( $i = 1; $i <= count( $offsets ); $i++ ) {
+			$innerConds[] = $this->buildOffsetInnerConds(
+				array_slice( $offsets, 0, $i ),
+				array_slice( $columns, 0, $i ),
+				$operator
+			);
+		}
+		return $this->mDb->makeList( $innerConds, IDatabase::LIST_OR );
+	}
+
+	/**
+	 * Build an inner part of an offset condition, consisting of inequalities
+	 * joined by AND, as described in buildOffsetConds.
+	 *
+	 * @param string[] $offsets
+	 * @param string[] $columns
+	 * @param string $operator
+	 * @return string The inner condition; to be concatenated in buildOffsetConds
+	 */
+	private function buildOffsetInnerConds( $offsets, $columns, $operator ) {
+		$conds = [];
+		while ( count( $offsets ) > 1 ) {
+			$conds[] = $columns[0] . '=' . $this->mDb->addQuotes( $offsets[0] );
+			array_shift( $columns );
+			array_shift( $offsets );
+		}
+		$conds[] = $columns[0] . $operator . $this->mDb->addQuotes( $offsets[0] );
+		return $this->mDb->makeList( $conds, IDatabase::LIST_AND );
 	}
 
 	/**
@@ -632,7 +716,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		} else {
 			$prev = [
 				'dir' => 'prev',
-				'offset' => $this->mFirstShown,
+				'offset' => implode( '|', $this->mFirstShown ),
 				'limit' => $urlLimit
 			];
 			$first = [ 'limit' => $urlLimit ];
@@ -641,9 +725,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$next = false;
 			$last = false;
 		} else {
-			$next = [ 'offset' => $this->mLastShown, 'limit' => $urlLimit ];
+			$next = [ 'offset' => implode( '|', $this->mLastShown ), 'limit' => $urlLimit ];
 			$last = [ 'dir' => 'prev', 'limit' => $urlLimit ];
 		}
+
 		return [
 			'prev' => $prev,
 			'next' => $next,
@@ -699,7 +784,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	function getLimitLinks() {
 		$links = [];
 		if ( $this->mIsBackwards ) {
-			$offset = $this->mPastTheEndIndex;
+			$offset = implode( '|', $this->mPastTheEndIndex );
 		} else {
 			$offset = $this->mOffset;
 		}
@@ -747,7 +832,32 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * Needless to say, it's really not a good idea to use a non-unique index
 	 * for this!  That won't page right.
 	 *
-	 * @return string|string[]
+	 * The pager may paginate on multiple fields in combination. If paginating
+	 * on multiple fields, they should be unique in combination (e.g. when
+	 * paginating on user and timestamp, rows may have the same user, rows may
+	 * have the same timestamp, but rows should all have a different combination
+	 * of user and timestamp).
+	 *
+	 * Examples:
+	 * - Always paginate on the user field:
+	 *   'user'
+	 * - Paginate on either the user or the timestamp field (default to user):
+	 *   [
+	 *       'name' => 'user',
+	 *       'time' => 'timestamp',
+	 *   ]
+	 * - Always paginate on the combination of user and timestamp:
+	 *   [
+	 *       [ 'user', 'timestamp' ]
+	 *   ]
+	 * - Paginate on the user then timestamp, or the timestamp then user:
+	 *   [
+	 *       'nametime' => [ 'user', 'timestamp' ],
+	 *       'timename' => [ 'timestamp', 'user' ],
+	 *   ]
+	 *
+	 *
+	 * @return string|string[]|array[]
 	 */
 	abstract function getIndexField();
 
