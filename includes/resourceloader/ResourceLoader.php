@@ -125,7 +125,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		foreach ( array_diff( $moduleNames, $modulesWithDeps ) as $name ) {
 			$module = $this->getModule( $name );
 			if ( $module ) {
-				$this->getModule( $name )->setFileDependencies( $context, [] );
+				$module->setFileDependencies( $context, [] );
 			}
 		}
 
