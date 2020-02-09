@@ -236,7 +236,7 @@ class ResourceLoaderClientHtml {
 	 * - Async external script-src.
 	 *
 	 * Reasons:
-	 * - Script execution may be blocked on preceeding stylesheets.
+	 * - Script execution may be blocked on preceding stylesheets.
 	 * - Async scripts are not blocked on stylesheets.
 	 * - Inline scripts can't be asynchronous.
 	 * - For styles, earlier is better.
@@ -381,7 +381,7 @@ JAVASCRIPT;
 	}
 
 	/**
-	 * Explicily load or embed modules on a page.
+	 * Explicitly load or embed modules on a page.
 	 *
 	 * @param ResourceLoaderContext $mainContext
 	 * @param array $modules One or more module names
