@@ -24,7 +24,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * @internal
+ * @internal for using in Parser only.
  *
  * @ingroup Parser
  */

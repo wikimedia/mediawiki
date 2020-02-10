@@ -31,6 +31,7 @@
  *
  * See https://www.mediawiki.org/wiki/Writing_systems#LanguageConverter.
  *
+ * @since 1.35
  * @ingroup Language
  */
 
