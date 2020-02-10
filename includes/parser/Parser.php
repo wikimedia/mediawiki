@@ -4658,6 +4658,9 @@ class Parser {
 		}
 		$text = $this->mStripState->unstripBoth( $text );
 
+		Hooks::run( 'ParserPreSaveTransformComplete',
+			[ $this, &$text ] );
+
 		$this->setUser( null ); # Reset
 
 		return $text;

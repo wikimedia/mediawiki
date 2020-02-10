@@ -2650,6 +2650,12 @@ $parserOutput: The ParserOutput object.
 &$text: The text being transformed, before core transformations are done.
 &$options: The options array being used for the transformation.
 
+'ParserPreSaveTransformComplete': Called from Parser::preSaveTransform() after
+processing is complete, giving the extension a chance to further modify the
+wikitext.
+$parser: the calling Parser instance
+&$text: The transformed text, which can be modified by the hook
+
 'ParserSectionCreate': Called each time the parser creates a document section
 from wikitext. Use this to apply per-section modifications to HTML (like
 wrapping the section in a DIV).  Caveat: DIVs are valid wikitext, and a DIV
