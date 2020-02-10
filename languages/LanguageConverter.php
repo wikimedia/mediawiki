@@ -190,7 +190,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		Hooks::run( 'GetLangPreferredVariant', [ &$req ] );
 
 		if ( $wgUser->isSafeToLoad() && $wgUser->isLoggedIn() && !$req ) {
-			$req = $this->getUserVariant();
+			$req = $this->getUserVariant( $wgUser );
 		} elseif ( !$req ) {
 			$req = $this->getHeaderVariant();
 		}
@@ -293,11 +293,10 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * Determine if the user has a variant set.
 	 *
+	 * @param User $user
 	 * @return mixed Variant if one found, null otherwise
 	 */
-	protected function getUserVariant() {
-		global $wgUser;
-
+	protected function getUserVariant( User $user ) {
 		// memoizing this function wreaks havoc on parserTest.php
 		/*
 		if ( $this->mUserVariant ) {
@@ -305,25 +304,25 @@ abstract class LanguageConverter implements ILanguageConverter {
 		}
 		*/
 
-		// Get language variant preference from logged in users
-		// Don't call this on stub objects because that causes infinite
-		// recursion during initialisation
-		if ( !$wgUser->isSafeToLoad() ) {
+		// This should only called when the user is known to be safe to load
+		// and logged in, but just in case...
+		if ( !$user->isSafeToLoad() ) {
 			return false;
 		}
-		if ( $wgUser->isLoggedIn() ) {
+
+		if ( $user->isLoggedIn() ) {
 			if (
 				$this->mMainLanguageCode ==
 				MediaWikiServices::getInstance()->getContentLanguage()->getCode()
 			) {
-				$ret = $wgUser->getOption( 'variant' );
+				$ret = $user->getOption( 'variant' );
 			} else {
-				$ret = $wgUser->getOption( 'variant-' . $this->mMainLanguageCode );
+				$ret = $user->getOption( 'variant-' . $this->mMainLanguageCode );
 			}
 		} else {
 			// figure out user lang without constructing wgLang to avoid
 			// infinite recursion
-			$ret = $wgUser->getOption( 'language' );
+			$ret = $user->getOption( 'language' );
 		}
 
 		$this->mUserVariant = $this->validateVariant( $ret );
