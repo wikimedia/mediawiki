@@ -1311,9 +1311,11 @@ class HTMLForm extends ContextSource {
 			if ( $status->isGood() ) {
 				$elementstr = '';
 			} else {
-				$elementstr = $this->getOutput()->parseAsInterface(
-					$status->getWikiText()
-				);
+				$elementstr = $status
+					->getMessage()
+					->setContext( $this )
+					->setInterfaceMessageFlag( true )
+					->parse();
 			}
 		} elseif ( is_array( $elements ) && $elementsType === 'error' ) {
 			$elementstr = $this->formatErrors( $elements );

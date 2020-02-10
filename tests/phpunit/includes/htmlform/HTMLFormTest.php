@@ -9,7 +9,11 @@
 class HTMLFormTest extends MediaWikiTestCase {
 
 	private function newInstance() {
-		$form = new HTMLForm( [] );
+		$context = new RequestContext();
+		$out = new OutputPage( $context );
+		$out->setTitle( Title::newMainPage() );
+		$context->setOutput( $out );
+		$form = new HTMLForm( [], $context );
 		$form->setTitle( Title::newFromText( 'Foo' ) );
 		return $form;
 	}
@@ -56,6 +60,17 @@ class HTMLFormTest extends MediaWikiTestCase {
 		$form = $this->newInstance();
 		$form->setPreText( $preText );
 		$this->assertSame( $preText, $form->getPreText() );
+	}
+
+	public function testGetErrorsOrWarningsWithRawParams() {
+		$form = $this->newInstance();
+		$msg = new RawMessage( 'message with $1' );
+		$msg->rawParams( '<a href="raw">params</a>' );
+		$status = Status::newFatal( $msg );
+
+		$result = $form->getErrorsOrWarnings( $status, 'error' );
+
+		$this->assertStringContainsString( 'message with <a href="raw">params</a>', $result );
 	}
 
 }
