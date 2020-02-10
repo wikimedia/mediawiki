@@ -53,15 +53,21 @@ class MessageBlobStore implements LoggerAwareInterface {
 	/**
 	 * @param ResourceLoader $rl
 	 * @param LoggerInterface|null $logger
+	 * @param WANObjectCache|null $wanObjectCache
 	 */
-	public function __construct( ResourceLoader $rl, LoggerInterface $logger = null ) {
+	public function __construct(
+		ResourceLoader $rl,
+		?LoggerInterface $logger,
+		?WANObjectCache $wanObjectCache
+	) {
 		$this->resourceloader = $rl;
 		$this->logger = $logger ?: new NullLogger();
 
 		// NOTE: when changing this assignment, make sure the code in the instantiator for
 		// LocalisationCache which calls MessageBlobStore::clearGlobalCacheEntry() uses the
 		// same cache object.
-		$this->wanCache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$this->wanCache = $wanObjectCache ?: MediaWikiServices::getInstance()
+			->getMainWANObjectCache();
 	}
 
 	/**

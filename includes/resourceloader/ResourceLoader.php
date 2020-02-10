@@ -221,10 +221,11 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		$this->logger = $logger ?: new NullLogger();
+		$services = MediaWikiServices::getInstance();
 
 		if ( !$config ) {
 			wfDeprecated( __METHOD__ . ' without a Config instance', '1.34' );
-			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$config = $services->getMainConfig();
 		}
 		$this->config = $config;
 
@@ -234,7 +235,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		// Special module that always exists
 		$this->register( 'startup', [ 'class' => ResourceLoaderStartUpModule::class ] );
 
-		$this->setMessageBlobStore( new MessageBlobStore( $this, $this->logger ) );
+		$this->setMessageBlobStore(
+			new MessageBlobStore( $this, $this->logger, $services->getMainWANObjectCache() )
+		);
 	}
 
 	/**
