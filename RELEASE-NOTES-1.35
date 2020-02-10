@@ -447,6 +447,8 @@ because of Phabricator reports.
   - mTables
 * The ArticleEditUpdatesDeleteFromRecentchanges hook has been deprecated. Please
   use the RecentChange_save hook or similar instead.
+* The ArticleEditUpdates hook has been deprecated. Please
+  use the RevisionDataUpdates hook or similar instead.
 * …
 
 === Other changes in 1.35 ===
