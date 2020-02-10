@@ -5,14 +5,18 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ExtensionProcessor
  */
-class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
+class ExtensionProcessorTest extends MediaWikiTestCase {
 
 	private $dir, $dirname;
 
 	public function setUp() : void {
 		parent::setUp();
-		$this->dir = __DIR__ . '/FooBar/extension.json';
+		$this->dir = $this->getCurrentDir();
 		$this->dirname = dirname( $this->dir );
+	}
+
+	private function getCurrentDir() {
+		return __DIR__ . '/FooBar/extension.json';
 	}
 
 	/**
@@ -118,7 +122,198 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 		$this->assertArrayNotHasKey( 123456, $extracted['globals']['wgNamespacesWithSubpages'] );
 	}
 
-	public static function provideRegisterHooks() {
+	public function provideDeprecatedNonLegacyHooks() {
+		// Format:
+		// Current Hooks attribute
+		// Content in extension.json
+		return [
+			[
+				[ 'ExtensionOwnedFooBaz' => [
+					[
+						'handler' => [
+							'class' => 'FooClass',
+							'services' => [],
+							'name' => $this->getCurrentDir() . '-PriorCallback',
+						]
+					]
+				] ],
+				[
+					'Hooks' => [ 'ExtensionOwnedFooBaz' => [ [ 'handler' => 'HandlerObjectCallback' ] ] ],
+					'HookHandlers' => [
+						'HandlerObjectCallback' => [ 'class' => 'FooClass', 'services' => [] ]
+					],
+					'DeprecatedHooks' => [ 'ExtensionOwnedFooBaz' => [ 'deprecatedVersion' => '1.0' ] ]
+				] + self::$default,
+			],
+		];
+	}
+
+	public function provideMixedStyleHooks() {
+		// Format:
+		// Content in extension.json
+		// Expected wgHooks
+		// Expected Hooks
+		return [
+			[
+				[
+					'Hooks' => [ 'FooBaz' => [
+						[ 'handler' => 'HandlerObjectCallback' ],
+						[ 'handler' => 'HandlerObjectCallback', 'deprecated' => true ],
+						'HandlerObjectCallback',
+						[ 'FooClass', 'FooMethod' ],
+						'GlobalLegacyFunction',
+						'FooClass',
+						"FooClass::staticMethod"
+					] ],
+					'HookHandlers' => [
+						'HandlerObjectCallback' => [ 'class' => 'FooClass', 'services' => [] ]
+					]
+				] + self::$default,
+				[
+					'FooBaz' => [
+						[ 'FooClass', 'FooMethod' ],
+						'GlobalLegacyFunction',
+						'FooClass',
+						'FooClass::staticMethod'
+					]
+				] + [ ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive' ],
+				[
+					'FooBaz' => [
+						[ 'handler' => [
+							'class' => 'FooClass',
+							'services' => [],
+							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
+						] ],
+						[ 'handler' => [
+							'class' => 'FooClass',
+							'services' => [],
+							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
+						], 'deprecated' => true ],
+						[ 'handler' => [
+							'class' => 'FooClass',
+							'services' => [],
+							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
+						] ]
+					]
+				]
+			]
+		];
+	}
+
+	public function provideNonLegacyHooks() {
+		// Format:
+		// Current Hooks attribute
+		// Content in extension.json
+		// Expected Hooks attribute
+		return [
+			// Hook for "FooBaz": object with handler attribute
+			[
+				[ 'FooBaz' => [ 'PriorCallback' ] ],
+				[
+					'Hooks' => [ 'FooBaz' => [ 'handler' => 'HandlerObjectCallback', 'deprecated' => true ] ],
+					'HookHandlers' => [
+						'HandlerObjectCallback' => [
+							'class' => 'FooClass',
+							'services' => [],
+							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
+						]
+					]
+				] + self::$default,
+				[ 'FooBaz' =>
+					[
+						'PriorCallback',
+						[
+							'handler' => [
+								'class' => 'FooClass',
+								'services' => [],
+								'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
+							],
+							'deprecated' => true
+						]
+					]
+				],
+				[]
+			],
+			// Hook for "FooBaz": string corresponding to a handler definition
+			[
+				[ 'FooBaz' => [ 'PriorCallback' ] ],
+				[
+					'Hooks' => [ 'FooBaz' => [ 'HandlerObjectCallback' ] ],
+					'HookHandlers' => [
+						'HandlerObjectCallback' => [ 'class' => 'FooClass', 'services' => [] ],
+					]
+				] + self::$default,
+				[ 'FooBaz' =>
+					[
+						'PriorCallback',
+						[ 'handler' => [
+							'class' => 'FooClass',
+							'services' => [],
+							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
+						] ],
+					]
+				],
+				[]
+			],
+			// Hook for "FooBaz", string corresponds to handler def. and object with handler attribute
+			[
+				[ 'FooBaz' => [ 'PriorCallback' ] ],
+				[
+					'Hooks' => [ 'FooBaz' => [
+						[ 'handler' => 'HandlerObjectCallback', 'deprecated' => true ],
+						'HandlerObjectCallback2'
+					] ],
+					'HookHandlers' => [
+						'HandlerObjectCallback2' => [ 'class' => 'FooClass', 'services' => [] ],
+						'HandlerObjectCallback' => [ 'class' => 'FooClass', 'services' => [] ],
+					]
+				] + self::$default,
+				[ 'FooBaz' =>
+					[
+						'PriorCallback',
+						[ 'handler' => [
+							'name' => $this->getCurrentDir() . '-HandlerObjectCallback',
+							'class' => 'FooClass',
+							'services' => []
+						], 'deprecated' => true ],
+						[ 'handler' => [
+							'name' => $this->getCurrentDir() . '-HandlerObjectCallback2',
+							'class' => 'FooClass',
+							'services' => [],
+						] ]
+					]
+				],
+				[]
+			],
+			// Hook for "FooBaz": string corresponding to a new-style handler definition
+			// and legacy style object and method array
+			[
+				[ 'FooBaz' => [ 'PriorCallback' ] ],
+				[
+					'Hooks' => [ 'FooBaz' => [
+						'HandlerObjectCallback',
+						[ 'FooClass', 'FooMethod ' ]
+					] ],
+					'HookHandlers' => [
+						'HandlerObjectCallback' => [ 'class' => 'FooClass', 'services' => [] ],
+					]
+				] + self::$default,
+				[ 'FooBaz' =>
+					[
+						'PriorCallback',
+						[ 'handler' => [
+							'name' => $this->getCurrentDir() . '-HandlerObjectCallback',
+							'class' => 'FooClass',
+							'services' => []
+						] ],
+					]
+				],
+				[ 'FooClass', 'FooMethod' ]
+			]
+		];
+	}
+
+	public function provideLegacyHooks() {
 		$merge = [ ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive' ];
 		// Format:
 		// Current $wgHooks
@@ -178,13 +373,60 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideRegisterHooks
+	 * @dataProvider provideDeprecatedNonLegacyHooks
 	 */
-	public function testRegisterHooks( $pre, $info, $expected ) {
-		$processor = new MockExtensionProcessor( [ 'wgHooks' => $pre ] );
+	public function testDeprecatedNonLegacyHooks( $pre, $info ) {
+		// Use Case: Marking a hook deprecated that has already been loaded by another extension
+		$processor = new MockExtensionProcessor( [ 'attributes' => [ 'Hooks' => $pre ] ] );
+		$this->expectDeprecation();
+		$processor->extractInfo( $this->dir, $info, 1 );
+		$processor->getExtractedInfo();
+	}
+
+	/**
+	 * @dataProvider provideNonLegacyHooks
+	 */
+	public function testNonLegacyHooks( $pre, $info, $expected ) {
+		$processor = new MockExtensionProcessor( [ 'attributes' => [ 'Hooks' => $pre ] ] );
+		$processor->extractInfo( $this->dir, $info, 1 );
+		$extracted = $processor->getExtractedInfo();
+		$this->assertEquals( $expected, $extracted['attributes']['Hooks'] );
+	}
+
+	/**
+	 * @dataProvider provideMixedStyleHooks
+	 */
+	public function testMixedStyleHooks( $info, $expectedWgHooks, $expectedNewHooks ) {
+		$processor = new MockExtensionProcessor();
+		$processor->extractInfo( $this->dir, $info, 1 );
+		$extracted = $processor->getExtractedInfo();
+		$this->assertEquals( $expectedWgHooks, $extracted['globals']['wgHooks'] );
+		$this->assertEquals( $expectedNewHooks, $extracted['attributes']['Hooks'] );
+	}
+
+	/**
+	 * @dataProvider provideLegacyHooks
+	 */
+	public function testLegacyHooks( $pre, $info, $expected ) {
+		$preset = [ 'globals' => [ 'wgHooks' => $pre ] ];
+		$processor = new MockExtensionProcessor( $preset );
 		$processor->extractInfo( $this->dir, $info, 1 );
 		$extracted = $processor->getExtractedInfo();
 		$this->assertEquals( $expected, $extracted['globals']['wgHooks'] );
+	}
+
+	public function testRegisterHandlerWithoutDefinition() {
+		$info = [
+			'Hooks' => [ 'FooBaz' => [ 'handler' => 'NoHandlerDefinition' ] ],
+			'HookHandlers' => []
+		] + self::$default;
+		$processor = new MockExtensionProcessor();
+		$this->expectException( 'UnexpectedValueException' );
+		$this->expectExceptionMessage(
+			'Missing handler definition for FooBaz in HookHandlers attribute'
+		);
+		$processor->extractInfo( $this->dir, $info, 1 );
+		$processor->getExtractedInfo();
 	}
 
 	public function testExtractConfig1() {
@@ -833,11 +1075,17 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 }
 
 /**
- * Allow overriding the default value of $this->globals
- * so we can test merging
+ * Allow overriding the default value of $this->globals and $this->attributes
+ * so we can test merging and hook extraction
  */
 class MockExtensionProcessor extends ExtensionProcessor {
-	public function __construct( $globals = [] ) {
-		$this->globals = $globals + $this->globals;
+
+	public function __construct( $preset = [] ) {
+		if ( isset( $preset['globals'] ) ) {
+			$this->globals = $preset['globals'] + $this->globals;
+		}
+		if ( isset( $preset['attributes'] ) ) {
+			$this->attributes = $preset['attributes'] + $this->attributes;
+		}
 	}
 }

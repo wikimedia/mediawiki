@@ -57,6 +57,8 @@ use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
+use MediaWiki\HookRunner\DeprecatedHooks;
+use MediaWiki\HookRunner\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -337,6 +339,17 @@ return [
 			function ( $command ) {
 				return wfShellExec( $command );
 			}
+		);
+	},
+
+	'HookContainer' => function ( MediaWikiServices $services ) : HookContainer {
+		$extRegistry = ExtensionRegistry::getInstance();
+		$extDeprecatedHooks = $extRegistry->getAttribute( 'DeprecatedHooks' );
+		$deprecatedHooks = new DeprecatedHooks( $extDeprecatedHooks );
+		return new HookContainer(
+			$extRegistry,
+			$services->getObjectFactory(),
+			$deprecatedHooks
 		);
 	},
 

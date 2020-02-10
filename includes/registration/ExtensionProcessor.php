@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\HookRunner\DeprecatedHooks;
+
 class ExtensionProcessor implements Processor {
 
 	/**
@@ -196,7 +198,7 @@ class ExtensionProcessor implements Processor {
 	 */
 	public function extractInfo( $path, array $info, $version ) {
 		$dir = dirname( $path );
-		$this->extractHooks( $info );
+		$this->extractHooks( $info, $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
@@ -258,7 +260,6 @@ class ExtensionProcessor implements Processor {
 					$this->storeToArray( $path, $key, $val, $this->attributes );
 				}
 			}
-
 		}
 	}
 
@@ -274,7 +275,39 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 
+	/**
+	 * Will throw wfDeprecated() warning if:
+	 * 1. an extension does not acknowledge deprecation and
+	 * 2. is marked deprecated
+	 */
+	private function emitDeprecatedHookWarnings() {
+		if ( !isset( $this->attributes['Hooks'] ) ) {
+			return;
+		}
+		$extDeprecatedHooks = $this->attributes['DeprecatedHooks'] ?? false;
+		if ( !$extDeprecatedHooks ) {
+			return;
+		}
+		$deprecatedHooks = new DeprecatedHooks( $extDeprecatedHooks );
+		foreach ( $this->attributes['Hooks'] as $name => $handlers ) {
+			if ( $deprecatedHooks->isHookDeprecated( $name ) ) {
+				$deprecationInfo = $deprecatedHooks->getDeprecationInfo( $name );
+				foreach ( $handlers as $handler ) {
+					if ( !isset( $handler['deprecated'] ) || !$handler['deprecated'] ) {
+						wfDeprecated(
+							"$name hook",
+							$deprecationInfo['deprecatedVersion'] ?? false,
+							$deprecationInfo['component'] ?? false
+						);
+					}
+				}
+			}
+		}
+	}
+
 	public function getExtractedInfo() {
+		$this->emitDeprecatedHookWarnings();
+
 		// Make sure the merge strategies are set
 		foreach ( $this->globals as $key => $val ) {
 			if ( isset( self::MERGE_STRATEGIES[$key] ) ) {
@@ -376,20 +409,94 @@ class ExtensionProcessor implements Processor {
 				);
 			}
 		}
-
 		return $merged;
 	}
 
-	protected function extractHooks( array $info ) {
-		if ( isset( $info['Hooks'] ) ) {
-			foreach ( $info['Hooks'] as $name => $value ) {
-				if ( is_array( $value ) ) {
-					foreach ( $value as $callback ) {
-						$this->globals['wgHooks'][$name][] = $callback;
+	/**
+	 * When handler value is an array, set $wgHooks or Hooks attribute
+	 * Could be legacy hook e.g. 'GlobalFunctionName' or non-legacy hook
+	 * referencing a handler definition from 'HookHandler' attribute
+	 *
+	 * @param array $callback Handler
+	 * @param array $hookHandlersAttr handler definitions from 'HookHandler' attribute
+	 * @param string $name
+	 * @param string $path extension.json file path
+	 * @throws UnexpectedValueException
+	 */
+	private function setArrayHookHandler(
+		array $callback,
+		array $hookHandlersAttr,
+		string $name,
+		string $path
+	) {
+		if ( isset( $callback['handler'] ) ) {
+			$handlerName = $callback['handler'];
+			$handlerDefinition = $hookHandlersAttr[$handlerName] ?? false;
+			if ( !$handlerDefinition ) {
+				throw new UnexpectedValueException(
+					"Missing handler definition for $name in HookHandlers attribute in $path"
+				);
+			}
+			$callback['handler'] = $handlerDefinition;
+			$this->attributes['Hooks'][$name][] = $callback;
+		} else {
+			foreach ( $callback as $callable ) {
+				if ( is_array( $callable ) ) {
+					if ( isset( $callable['handler'] ) ) { // Non-legacy style handler
+						$this->setArrayHookHandler( $callable, $hookHandlersAttr, $name, $path );
+					} else { // Legacy style handler array
+						$this->globals['wgHooks'][$name][] = $callable;
 					}
-				} else {
-					$this->globals['wgHooks'][$name][] = $value;
+				} elseif ( is_string( $callable ) ) {
+					$this->setStringHookHandler( $callable, $hookHandlersAttr, $name );
 				}
+			}
+		}
+	}
+
+	/**
+	 * When handler value is a string, set $wgHooks or Hooks attribute.
+	 * Could be legacy hook e.g. 'GlobalFunctionName' or non-legacy hook
+	 * referencing a handler definition from 'HookHandler' attribute
+	 *
+	 * @param string $callback Handler
+	 * @param array $hookHandlersAttr handler definitions from 'HookHandler' attribute
+	 * @param string $name
+	 */
+	private function setStringHookHandler(
+		string $callback,
+		array $hookHandlersAttr,
+		string $name
+	) {
+		if ( isset( $hookHandlersAttr[$callback] ) ) {
+			$handler = [ 'handler' => $hookHandlersAttr[$callback] ];
+			$this->attributes['Hooks'][$name][] = $handler;
+		} else { // legacy style handler
+			$this->globals['wgHooks'][$name][] = $callback;
+		}
+	}
+
+	/**
+	 * Extract hook information from Hooks and HookHandler attributes.
+	 * Store hook in $wgHooks if a legacy style handler or the 'Hooks' attribute if
+	 * a non-legacy handler
+	 *
+	 * @param array $info attributes and associated values from extension.json
+	 * @param string $path path to extension.json
+	 */
+	protected function extractHooks( array $info, string $path ) {
+		if ( !isset( $info['Hooks'] ) ) {
+			return;
+		}
+		$hookHandlersAttr = [];
+		foreach ( $info['HookHandlers'] ?? [] as $name => $def ) {
+			$hookHandlersAttr[$name] = [ 'name' => "$path-$name" ] + $def;
+		}
+		foreach ( $info['Hooks'] as $name => $callback ) {
+			if ( is_string( $callback ) ) {
+				$this->setStringHookHandler( $callback, $hookHandlersAttr, $name );
+			} elseif ( is_array( $callback ) ) {
+				$this->setArrayHookHandler( $callback, $hookHandlersAttr, $name, $path );
 			}
 		}
 	}

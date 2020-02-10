@@ -35,6 +35,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
+use MediaWiki\HookRunner\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -174,8 +175,11 @@ class MediaWikiServices extends ServiceContainer {
 			// configuration from.
 			$bootstrapConfig = new GlobalVarConfig();
 			self::$instance = self::newInstance( $bootstrapConfig, 'load' );
-		}
 
+			// Provides a traditional hook point to allow extensions to configure services.
+			// NOTE: Ideally this would be in newInstance() but it causes an infinite run loop
+			Hooks::run( 'MediaWikiServices', [ self::$instance ] );
+		}
 		return self::$instance;
 	}
 
@@ -257,6 +261,10 @@ class MediaWikiServices extends ServiceContainer {
 		$oldInstance = self::$instance;
 
 		self::$instance = self::newInstance( $bootstrapConfig, 'load' );
+
+		// Provides a traditional hook point to allow extensions to configure services.
+		Hooks::run( 'MediaWikiServices', [ self::$instance ] );
+
 		self::$instance->importWiring( $oldInstance, [ 'BootstrapConfig' ] );
 
 		if ( $quick === 'quick' ) {
@@ -319,9 +327,6 @@ class MediaWikiServices extends ServiceContainer {
 			$wiringFiles = $bootstrapConfig->get( 'ServiceWiringFiles' );
 			$instance->loadWiringFiles( $wiringFiles );
 		}
-
-		// Provide a traditional hook point to allow extensions to configure services.
-		Hooks::run( 'MediaWikiServices', [ $instance ] );
 
 		return $instance;
 	}
@@ -689,6 +694,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getGlobalIdGenerator() : GlobalIdGenerator {
 		return $this->getService( 'GlobalIdGenerator' );
+	}
+
+	/**
+	 * @return HookContainer
+	 */
+	public function getHookContainer() : HookContainer {
+		return $this->getService( 'HookContainer' );
 	}
 
 	/**
