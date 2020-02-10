@@ -30,8 +30,49 @@ class ActionTest extends MediaWikiTestCase {
 			'string' => 'NamedDummyAction',
 			'declared' => 'NonExistingClassName',
 			'callable' => [ $this, 'dummyActionCallback' ],
-			'object' => new InstantiatedDummyAction( $context->getWikiPage(), $context ),
+			'object' => new InstantiatedDummyAction(
+				$this->getArticle(),
+				$context
+			),
 		] );
+	}
+
+	/**
+	 * @param string $requestedAction
+	 * @param WikiPage|null $wikiPage
+	 * @return Action|bool|null
+	 */
+	private function getAction(
+		string $requestedAction,
+		WikiPage $wikiPage = null
+	) {
+		$context = $this->getContext( $requestedAction );
+
+		return Action::factory(
+			$requestedAction,
+			$this->getArticle( $wikiPage, $context ),
+			$context
+		);
+	}
+
+	/**
+	 * @param WikiPage|null $wikiPage
+	 * @param IContextSource|null $context
+	 * @return Article
+	 */
+	private function getArticle(
+		WikiPage $wikiPage = null,
+		IContextSource $context = null
+	) : Article {
+		$context = $context ?? $this->getContext();
+		if ( $wikiPage !== null ) {
+			$context->setWikiPage( $wikiPage );
+			$context->setTitle( $wikiPage->getTitle() );
+		} else {
+			$wikiPage = $this->getPage();
+		}
+
+		return Article::newFromWikiPage( $wikiPage, $context );
 	}
 
 	private function getPage() : WikiPage {
@@ -42,7 +83,13 @@ class ActionTest extends MediaWikiTestCase {
 		return Title::makeTitle( 0, 'Title' );
 	}
 
-	private function getContext( $requestedAction = null ) : IContextSource {
+	/**
+	 * @param string|null $requestedAction
+	 * @return IContextSource
+	 */
+	private function getContext(
+		string $requestedAction = null
+	) : IContextSource {
 		$request = new FauxRequest( [ 'action' => $requestedAction ] );
 
 		$context = new DerivativeContext( RequestContext::getMain() );
@@ -161,8 +208,7 @@ class ActionTest extends MediaWikiTestCase {
 	 * @param string|null $expected
 	 */
 	public function testActionFactory( string $requestedAction, $expected ) {
-		$context = $this->getContext();
-		$action = Action::factory( $requestedAction, $context->getWikiPage(), $context );
+		$action = $this->getAction( $requestedAction );
 
 		if ( $expected === null ) {
 			$this->assertNull( $action );
@@ -172,7 +218,7 @@ class ActionTest extends MediaWikiTestCase {
 	}
 
 	public function testNull_defaultsToView() {
-		$context = $this->getContext( null );
+		$context = $this->getContext();
 		$actionName = Action::getActionName( $context );
 
 		$this->assertEquals( 'view', $actionName );
@@ -201,29 +247,30 @@ class ActionTest extends MediaWikiTestCase {
 	}
 
 	public function testDisabledAction_factoryReturnsFalse() {
-		$page = $this->getPage();
-		$action = Action::factory( 'disabled', $page );
+		$action = $this->getAction( 'disabled' );
 
 		$this->assertFalse( $action );
 	}
 
 	public function dummyActionCallback() {
-		$context = $this->getContext();
-		return new CalledDummyAction( $context->getWikiPage(), $context );
+		$article = $this->getArticle();
+		return new CalledDummyAction(
+			$article,
+			$article->getContext()
+		);
 	}
 
 	public function testCanExecute() {
 		$user = $this->getTestUser()->getUser();
 		$this->overrideUserPermissions( $user, 'access' );
-		$action = Action::factory( 'access', $this->getPage(), $this->getContext() );
+		$action = $this->getAction( 'access' );
 		$this->assertNull( $action->canExecute( $user ) );
 	}
 
 	public function testCanExecuteNoRight() {
 		$user = $this->getTestUser()->getUser();
 		$this->overrideUserPermissions( $user, [] );
-		$action = Action::factory( 'access', $this->getPage(), $this->getContext() );
-
+		$action = $this->getAction( 'access' );
 		try {
 			$action->canExecute( $user );
 		} catch ( Exception $e ) {
@@ -236,7 +283,7 @@ class ActionTest extends MediaWikiTestCase {
 		$this->overrideUserPermissions( $user, [] );
 
 		$page = $this->getExistingTestPage();
-		$action = Action::factory( 'unblock', $page, $this->getContext() );
+		$action = $this->getAction( 'unblock', $page );
 
 		$block = new DatabaseBlock( [
 			'address' => $user,
@@ -252,6 +299,7 @@ class ActionTest extends MediaWikiTestCase {
 
 		try {
 			$action->canExecute( $user );
+			$this->assertFalse( true );
 		} catch ( Exception $e ) {
 			$this->assertInstanceOf( UserBlockedError::class, $e );
 		}
