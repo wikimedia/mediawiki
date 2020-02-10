@@ -1485,7 +1485,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// this hook whenever possible in order to avoid unnecessary additional parses.
 		$editInfo = $this->getPreparedEdit();
 		Hooks::run( 'ArticleEditUpdates',
-			[ &$wikiPage, &$editInfo, $this->options['changed'] ] );
+			[ &$wikiPage, &$editInfo, $this->options['changed'] ],
+			'1.35'
+		);
 
 		// TODO: replace legacy hook! Use a listener on PageEventEmitter instead!
 		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$wikiPage ], '1.35' ) ) {
