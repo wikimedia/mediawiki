@@ -43,7 +43,7 @@
  * Shell-style patterns are also accepted.
  *
  * This also supports Tideways-XHProf PHP extension, which is mostly a drop-in
- * replacement for Xhprof (replace XHPROF_FLAGS_* with XHPROF_TIDEWAYS_FLAGS_*),
+ * replacement for Xhprof (replace XHPROF_FLAGS_* with TIDEWAYS_XHPROF_FLAGS_*),
  * as well as the older (discontinued) Tideways extension (TIDEWAYS_FLAGS_*).
  *
  * @copyright © 2014 Wikimedia Foundation and contributors
