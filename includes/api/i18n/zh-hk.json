@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"1233qwer1234qwer4"
 		]
 	},
 	"apihelp-block-param-hidename": "隱藏封鎖日誌的用戶名稱。 (需要 \"hideuser\" 權限)。",
@@ -10,6 +11,6 @@
 	"apihelp-block-param-watchuser": "監視用戶或 IP 的用戶頁面與對話頁面。",
 	"apihelp-createaccount-summary": "建立一個新用戶戶口。",
 	"apihelp-login-param-name": "用戶名稱。",
-	"apihelp-userrights-param-user": "用戶名稱。",
+	"apihelp-userrights-param-user": "用戶。",
 	"apihelp-userrights-param-userid": "用戶 ID。"
 }

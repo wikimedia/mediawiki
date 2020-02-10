@@ -1400,7 +1400,7 @@
 	"apihelp-tokens-example-edit": "Recupera um token de edição (o padrão).",
 	"apihelp-tokens-example-emailmove": "Recupere um token de e-mail e um token de movimento.",
 	"apihelp-unblock-summary": "Desbloquear usuário.",
-	"apihelp-unblock-param-id": "ID do bloco para desbloquear (obtido através de <kbd>list=blocks</kbd>). Não pode ser usado em conjunto com <var>$1user</var> ou <var>$1userid</var>.",
+	"apihelp-unblock-param-id": "ID do bloco para desbloquear (obtido através de <kbd>list=blocks</kbd>). Não pode ser usado em conjunto com <var>$1user</var>.",
 	"apihelp-unblock-param-user": "Nome de usuário, endereço IP ou intervalo de IP para desbloquear. Não pode ser usado em conjunto com <var>$1id</var> ou <var>$1userid</var>.",
 	"apihelp-unblock-param-userid": "ID do usuário para desbloquear. Não pode ser usado em conjunto com <var>$1id</var> ou <var>$1user</var>.",
 	"apihelp-unblock-param-reason": "Motivo para o desbloqueio.",

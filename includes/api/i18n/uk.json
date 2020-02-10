@@ -16,7 +16,8 @@
 			"Choomaq",
 			"Zoranzoki21",
 			"Vlad5250",
-			"Movses"
+			"Movses",
+			"1233qwer1234qwer4"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на сторінці [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Помилки й попередження]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].</p>",
@@ -1424,7 +1425,7 @@
 	"apihelp-upload-example-url": "Завантаження з URL.",
 	"apihelp-upload-example-filekey": "Завершити завантаження, що не вдалось через попередження.",
 	"apihelp-userrights-summary": "Змінити членство користувача у групах.",
-	"apihelp-userrights-param-user": "Ім'я користувача.",
+	"apihelp-userrights-param-user": "Користувач.",
 	"apihelp-userrights-param-userid": "Ідентифікатор користувача.",
 	"apihelp-userrights-param-add": "Додати користувача до цих груп. Якщо він вже є членом групи, оновити термін дії членства.",
 	"apihelp-userrights-param-expiry": "Часові мітки, коли завершується членство. Можуть бути відносними (наприклад, <kbd>5 months</kbd> або <kbd>2 weeks</kbd>) або абсолютними (як <kbd>2014-09-18T12:34:56Z</kbd>). Якщо задано тільки оду часову мітку, вона буде стосуватися всіх груп, переданих параметром <var>$1add</var>. Використовуйте <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> або <kbd>never</kbd>, щоб задати безстрокове членство.",

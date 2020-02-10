@@ -41,7 +41,8 @@
 			"Strayblues",
 			"דויד־תמר",
 			"Steeve815",
-			"Ghsuvr"
+			"Ghsuvr",
+			"דגש חזק"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -3926,7 +3927,7 @@
 	"mute-preferences": "העדפות השתקה",
 	"revid": "גרסה $1",
 	"pageid": "מזהה דף $1",
-	"interfaceadmin-info": "$1\n\nההרשאות לעריכת קובצי CSS/JS/JSON של האתר כולו הופרדו לאחרונה מההרשאה <code>editinterface</code>. אם לא ברור לך מדוע קיבלת את הודעת השגיאה הזאת, ר' [[mw:MediaWiki_1.32/interface-admin]].",
+	"interfaceadmin-info": "$1\n\nההרשאות לעריכת קובצי CSS/JS/JSON של האתר כולו הופרדו לאחרונה מההרשאה <code>editinterface</code>. אם לא ברור לך מדוע קיבלת את הודעת השגיאה הזאת, {{GENDER:|ראה|ראי|ראו}} [[mw:MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "לא ניתן להשתמש בתגיות &lt;html&gt; מחוץ לדפים רגילים.",
 	"gotointerwiki": "עזיבת {{SITENAME}}",
 	"gotointerwiki-invalid": "הכותרת שצוינה אינה תקינה.",
@@ -3934,7 +3935,7 @@
 	"undelete-cantedit": "אין באפשרותך לשחזר דף זה, כי אין באפשרותך לערוך אותו.",
 	"undelete-cantcreate": "אין באפשרותך לשחזר דף זה, כי אין דף קיים בשם זה ואין באפשרותך ליצור אותו.",
 	"pagedata-title": "מידע על הדף",
-	"pagedata-text": "דף זה מהווה ממשק מידע לדפים. כדי להשתמש בו, כותרת הדף צריכה להופיע בכתובת ה־URL, בעזרת התחביר המתאים לדפי־משנה.\n* דף זה משתמש בשיטת \"ניתוב התוכן\" (Content negotiation) בהתבסס על כותרת ה־Accept ששולח הלקוח שלך. פירוש הדבר הוא שהמידע על הדף יישלח בפורמט שצד הלקוח (כגון דפדפן) מעדיף.",
+	"pagedata-text": "דף זה מהווה ממשק מידע לדפים. כדי להשתמש בו, כותרת הדף צריכה להופיע בכתובת ה־URL, בעזרת התחביר המתאים לדפי־משנה.\n* דף זה משתמש בשיטת \"ניתוב התוכן\" (Content negotiation) בהתבסס על כותרת ה־Accept ששולח צד הלקוח. פירוש הדבר הוא שהמידע על הדף יישלח בפורמט שצד הלקוח (כגון דפדפן) מעדיף.",
 	"pagedata-not-acceptable": "לא נמצא פורמט נתמך. סוגי MIME נתמכים: $1",
 	"pagedata-bad-title": "כותרת בלתי־תקינה: $1.",
 	"unregistered-user-config": "מסיבות אבטחה, לא ניתן לטעון דפי JavaScript‏, CSS ו־JSON בדפי משנה של משתמשים שאינם קיימים.",
@@ -3956,11 +3957,11 @@
 	"deflate-invaliddeflate": "התוכן שהועבר אינו דחוס כנדרש",
 	"unprotected-js": "מסיבות אבטחה, לא ניתן לטעון JavaScript מדפים שאינם מוגנים. ניתן ליצור סקריפטי JavaScript רק במרחב השם \"מדיה ויקי:\" או בדפי משנה של דף המשתמש.",
 	"userlogout-continue": "האם ברצונך לצאת מהחשבון?",
-	"paramvalidator-baduser": "ערך בלתי־תקין \"$2\" עבור פרמטר משתמש <var>$1</var>.",
-	"paramvalidator-help-type-user": "סוג: {{PLURAL:$1|1=משתמש|2=רשימת משתמשים}}, {{PLURAL:$3|מאת|מאת כל אחד מהבאים}} $2",
-	"paramvalidator-help-type-user-subtype-name": "שם המשתמש",
-	"paramvalidator-help-type-user-subtype-ip": "IP",
-	"paramvalidator-help-type-user-subtype-cidr": "טווח IP",
-	"paramvalidator-help-type-user-subtype-interwiki": "שם בינוויקי (למשל \"prefix>ExampleName\")",
-	"paramvalidator-help-type-user-subtype-id": "מזהה משתמש (למשל \"#12345\")"
+	"paramvalidator-baduser": "הערך \"$2\" אינו ערך תקין עבור פרמטר המשתמש <var>$1</var>.",
+	"paramvalidator-help-type-user": "סוג: {{PLURAL:$1|1=משתמש|2=רשימת משתמשים}}, {{PLURAL:$3|בצורה הבאה|בכל אחת מהצורות הבאות}}: $2",
+	"paramvalidator-help-type-user-subtype-name": "שם משתמש",
+	"paramvalidator-help-type-user-subtype-ip": "כתובת IP",
+	"paramvalidator-help-type-user-subtype-cidr": "טווח כתובות IP",
+	"paramvalidator-help-type-user-subtype-interwiki": "שם משתמש שהגיע מאתר ויקי אחר (כגון \"prefix>ExampleName\")",
+	"paramvalidator-help-type-user-subtype-id": "מספר מזהה של משתמש (כגון \"#12345\")"
 }

@@ -1066,7 +1066,7 @@
 	"timezonelegend": "Časové pásmo:",
 	"localtime": "Miestny čas:",
 	"timezoneuseserverdefault": "Použiť predvoľby wiki ($1)",
-	"timezoneuseoffset": "Iné (špecifikujte posun nižšie)",
+	"timezoneuseoffset": "Iné (časový posun od UTC)",
 	"timezone-useoffset-placeholder": "Príkladové hodnoty: „-07:00“ alebo „01:00“",
 	"servertime": "Aktuálny čas na serveri:",
 	"guesstimezone": "Prevziať z prehliadača",

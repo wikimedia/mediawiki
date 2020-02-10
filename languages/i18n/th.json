@@ -3127,7 +3127,7 @@
 	"tags": "ป้ายระบุการเปลี่ยนแปลงที่สมเหตุสมผล",
 	"tag-filter": "ตัวกรอง[[Special:Tags|ป้ายระบุ]]:",
 	"tag-filter-submit": "กรอง",
-	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ป้ายกำกับ}}]]: $2",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ป้ายระบุ|ป้ายระบุ}}]]: $2",
 	"tag-mw-new-redirect": "เปลี่ยนทางใหม่",
 	"tag-mw-new-redirect-description": "การแก้ไขที่สร้างหน้าเปลี่ยนทางใหม่หรือเปลี่ยนแปลงหน้าเป็นหน้าเปลี่ยนทาง",
 	"tag-mw-removed-redirect": "ลบหน้าเปลี่ยนทาง",
@@ -3209,6 +3209,7 @@
 	"newsection-page": "หน้าเป้าหมาย",
 	"newsection-submit": "ไปหน้า",
 	"editpage": "แก้ไขหน้า",
+	"pageinfo": "ข้อมูลหน้า",
 	"pagehistory": "ประวัติหน้า",
 	"purge": "ล้างแคช",
 	"dberr-problems": "ขออภัย เว็บไซต์นี้กำลังพบกับข้อผิดพลาดทางเทคนิค",
@@ -3487,6 +3488,10 @@
 	"authprovider-resetpass-skip-label": "ข้าม",
 	"authprovider-resetpass-skip-help": "ข้ามการตั้งรหัสผ่านใหม่",
 	"specialpage-securitylevel-not-allowed-title": "ไม่อนุญาต",
+	"changecredentials": "เปลี่ยนใบรับรอง",
+	"changecredentials-submit": "เปลี่ยนใบรับรอง",
+	"removecredentials": "นำใบรับรองออก",
+	"removecredentials-submit": "นำใบรับรองออก",
 	"credentialsform-account": "ชื่อบัญชี:",
 	"cannotlink-no-provider-title": "ไม่มีบัญชีที่โยงได้",
 	"cannotlink-no-provider": "ไม่มีบัญชีที่โยงได้",
@@ -3514,5 +3519,8 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "ห้ามรหัสผ่านตรงกับรหัสผ่านที่ขึ้นบัญชีดำโดยเจาะจง",
 	"passwordpolicies-policy-maximalpasswordlength": "รหัสผ่านจะต้องมีความยาวน้อยกว่า $1 อักขระ",
 	"passwordpolicies-policy-passwordcannotbepopular": "ห้ามรหัสผ่านเป็น{{PLURAL:$1|รหัสผ่านยอดนิยม|ติดรายการ $1 รหัสผ่านยอดนิยม}}",
-	"userlogout-continue": "คุณต้องการออกจากระบบหรือไม่"
+	"userlogout-continue": "คุณต้องการออกจากระบบหรือไม่",
+	"paramvalidator-help-type-user-subtype-name": "ชื่อผู้ใช้",
+	"paramvalidator-help-type-user-subtype-ip": "ไอพี",
+	"paramvalidator-help-type-user-subtype-cidr": "ช่วงไอพี"
 }

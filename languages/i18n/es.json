@@ -4057,7 +4057,7 @@
 	"deflate-invaliddeflate": "El contenido proporcionado no esta comprimido correctamente",
 	"unprotected-js": "Por razones de seguridad, JavaScript no se puede cargar desde páginas desprotegidas. Crea javascript solo en MediaWiki: espacio de nombres o como subpágina de usuario",
 	"userlogout-continue": "¿Quieres finalizar la sesión?",
-	"paramvalidator-baduser": "Valor \"$2\" inválido para el parámetro de usuario <var>$1</var>.",
+	"paramvalidator-baduser": "El valor «$2» no es válido para el parámetro de usuario <var>$1</var>.",
 	"paramvalidator-help-type-user": "Tipo: {{PLURAL:$1|1=usuario|2=lista de usuarios}}, {{PLURAL:$3|por|por cualquiera de}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nombre de usuario",
 	"paramvalidator-help-type-user-subtype-ip": "IP",

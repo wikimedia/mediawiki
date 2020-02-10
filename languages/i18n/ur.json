@@ -2851,6 +2851,7 @@
 	"ilsubmit": "تلاش",
 	"bydate": "بلحاظ تاریخ",
 	"sp-newimages-showfrom": "$2، $1 کے بعد اپلوڈ کی جانے والی فائلیں دکھائیں",
+	"seconds-abbrev": "$1 سیکنڈ",
 	"seconds": "{{PLURAL:$1|$1 سیکنڈ}}",
 	"minutes": "{{PLURAL:$1|$1 منٹ}}",
 	"hours": "{{PLURAL:$1|گھنٹہ|گھنٹے}}",

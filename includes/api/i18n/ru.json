@@ -39,7 +39,8 @@
 			"Diralik",
 			"DmitTrix",
 			"Марио",
-			"Katunchik"
+			"Katunchik",
+			"1233qwer1234qwer4"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -1419,7 +1420,7 @@
 	"apihelp-upload-example-url": "Загрузка через URL.",
 	"apihelp-upload-example-filekey": "Завершение загрузки, провалившейся из-за предупреждений.",
 	"apihelp-userrights-summary": "Изменение групп участника.",
-	"apihelp-userrights-param-user": "Имя участника.",
+	"apihelp-userrights-param-user": "Участник.",
 	"apihelp-userrights-param-userid": "Идентификатор участника.",
 	"apihelp-userrights-param-add": "Добавить участника в эти группы, или, если они уже являются её членами, обновить дату истечения членства в этих группах.",
 	"apihelp-userrights-param-expiry": "Временная метка истечения. Может быть относительной (например, <kbd>5 months</kbd> или <kbd>2 weeks</kbd>) или абсолютной (например, <kbd>2014-09-18T12:34:56Z</kbd>). Если задана только одна временная метка, она будет использована для всех групп, переданных в параметре <var>$1add</var>. Используйте <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> или <kbd>never</kbd> для неистекаемой группы.",

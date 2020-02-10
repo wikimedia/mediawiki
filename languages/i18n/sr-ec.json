@@ -3929,5 +3929,10 @@
 	"mycustomjsredirectprotected": "Немате дозволу да уређујете ову јаваскрипт страницу, јер је иста преусмерење и не води унутар вашег именског простора.",
 	"deflate-invaliddeflate": "Пружени садржај није исправно сабијен",
 	"unprotected-js": "Из безбедносних разлога, јаваскрипт не може да се учита са незаштићене странице. Само направите јаваскрипт у именском простору „Медијавики:” или као корисничку подстраницу",
-	"userlogout-continue": "Да ли желите да се одјавите?"
+	"userlogout-continue": "Да ли желите да се одјавите?",
+	"paramvalidator-help-type-user-subtype-name": "корисничко име",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "IP опсег",
+	"paramvalidator-help-type-user-subtype-interwiki": "међувики име (нпр. „префикс>Пример”)",
+	"paramvalidator-help-type-user-subtype-id": "ID корисника (нпр. „#12345”)"
 }

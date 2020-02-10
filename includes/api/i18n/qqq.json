@@ -14,7 +14,8 @@
 			"Purodha",
 			"Tacsipacsi",
 			"D41D8CD98F",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"1233qwer1234qwer4"
 		]
 	},
 	"apihelp-main-summary": "{{doc-apihelp-summary|main}}",
@@ -1442,7 +1443,7 @@
 	"apihelp-upload-example-url": "{{doc-apihelp-example|upload}}",
 	"apihelp-upload-example-filekey": "{{doc-apihelp-example|upload}}",
 	"apihelp-userrights-summary": "{{doc-apihelp-summary|userrights}}",
-	"apihelp-userrights-param-user": "{{doc-apihelp-param|userrights|user}}\n{{Identical|Username}}",
+	"apihelp-userrights-param-user": "{{doc-apihelp-param|userrights|user}}\n{{Identical|User}}",
 	"apihelp-userrights-param-userid": "{{doc-apihelp-param|userrights|userid}}\n{{Identical|User ID}}",
 	"apihelp-userrights-param-add": "{{doc-apihelp-param|userrights|add}}",
 	"apihelp-userrights-param-expiry": "{{doc-apihelp-param|userrights|expiry}}",

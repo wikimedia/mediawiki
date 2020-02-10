@@ -56,7 +56,7 @@
 	"apihelp-main-param-errorlang": "Idioma empleado para advertencias y errores. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> con <kbd>siprop=languages</kbd> devuelve una lista de códigos de idioma. Puedes especificar <kbd>content</kbd> para utilizar el idioma del contenido de este wiki o <kbd>uselang</kbd> para utilizar el valor del parámetro <var>uselang</var>.",
 	"apihelp-main-param-errorsuselocal": "Si se da, los textos de error emplearán mensajes localmente personalizados del espacio de nombres {{ns:MediaWiki}}.",
 	"apihelp-block-summary": "Bloquear a un usuario.",
-	"apihelp-block-param-user": "Usuario a bloquear.",
+	"apihelp-block-param-user": "Usuario que bloquear.",
 	"apihelp-block-param-userid": "ID de usuario para bloquear. No se puede utilizar junto con <var>$1user</var>.",
 	"apihelp-block-param-expiry": "Fecha de expiración. Puede ser relativa (por ejemplo, <kbd>5 months</kbd> o <kbd>2 weeks</kbd>) o absoluta (por ejemplo, <kbd>2014-09-18T12:34:56Z</kbd>). Si se establece en <kbd>infinite</kbd>, <kbd>indefinite</kbd>, o <kbd>never</kbd>, el bloqueo será permanente.",
 	"apihelp-block-param-reason": "Razón para el bloqueo.",
