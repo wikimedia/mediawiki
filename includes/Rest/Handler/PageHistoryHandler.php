@@ -374,10 +374,14 @@ class PageHistoryHandler extends SimpleHandler {
 		$wr = new \WebRequest();
 		$urlParts = wfParseUrl( $wr->getFullRequestURL() );
 		if ( $urlParts ) {
-			$queryParts = wfCgiToArray( $urlParts['query'] );
-			unset( $urlParts['query'] );
-			unset( $queryParts['older_than'] );
-			unset( $queryParts['newer_than'] );
+			if ( isset( $urlParts['query'] ) ) {
+				$queryParts = wfCgiToArray( $urlParts['query'] );
+				unset( $urlParts['query'] );
+				unset( $queryParts['older_than'] );
+				unset( $queryParts['newer_than'] );
+			} else {
+				$queryParts = [];
+			}
 
 			$uri = Uri::fromParts( $urlParts );
 			$response['latest'] = Uri::withQueryValues( $uri, $queryParts )->__toString();

@@ -357,13 +357,23 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'email' => '',
 				'usersWithEmail' => [],
 			],
-			'No user by this username' => [
-				'expectedError' => 'nosuchuser',
+			'No user by this username, pretend everything is OK' => [
+				'expectedError' => false,
 				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'permissionManager' => $permissionManager,
 				'authManager' => $this->makeAuthManager(),
 				'username' => 'Nonexistent user',
+				'email' => '',
+				'usersWithEmail' => [],
+			],
+			'Username is not valid' => [
+				'expectedError' => 'noname',
+				'config' => $defaultConfig,
+				'performingUser' => $performingUser,
+				'permissionManager' => $permissionManager,
+				'authManager' => $this->makeAuthManager(),
+				'username' => 'Invalid|username',
 				'email' => '',
 				'usersWithEmail' => [],
 			],
@@ -377,8 +387,8 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'email' => 'some@not.found.email',
 				'usersWithEmail' => [],
 			],
-			'No email for the user' => [
-				'expectedError' => 'noemail',
+			'No email for the user, pretend everything is OK' => [
+				'expectedError' => false,
 				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'permissionManager' => $permissionManager,

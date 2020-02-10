@@ -237,20 +237,27 @@ class PasswordReset implements LoggerAwareInterface {
 			}
 		}
 
+		// If the username is not valid, tell the user.
+		if ( $username && !User::getCanonicalName( $username ) ) {
+			return StatusValue::newFatal( 'noname' );
+		}
+
+		// If the username doesn't exist, don't tell the user.
+		// This is not to avoid disclosure, as this information is available elsewhere,
+		// but it simplifies the password reset UX. T238961.
 		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
-			// Don't parse username as wikitext (T67501)
-			return StatusValue::newFatal( wfMessage( 'nosuchuser', wfEscapeWikiText( $username ) ) );
+			return StatusValue::newGood();
 		}
 
-		// All the users will have the same email address
+		// The user doesn't have an email address, but pretend everything's fine to avoid
+		// disclosing this fact. Note that all the users will have the same email address (or none),
+		// so there's no need to check more than the first.
 		if ( !$firstUser->getEmail() ) {
-			// This won't be reachable from the email route, so safe to expose the username
-			return StatusValue::newFatal( wfMessage( 'noemail',
-				wfEscapeWikiText( $firstUser->getName() ) ) );
+			return StatusValue::newGood();
 		}
 
+		// Email is required but the email doesn't match: pretend everything's fine.
 		if ( $requireEmail && $firstUser->getEmail() !== $email ) {
-			// Pretend everything's fine to avoid disclosure but do not send email
 			return StatusValue::newGood();
 		}
 
