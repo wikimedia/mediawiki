@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.36.3
+ * OOUI v0.36.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-01-24T00:06:24Z
+ * Date: 2020-02-05T19:36:54Z
  */
 ( function ( OO ) {
 
@@ -6819,6 +6819,11 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 			// They can't be tabbed to, but they can be activated using access keys.
 			// OptionWidgets and focusable UI elements inside them have tabindex="-1" set.
 			item = this.findTargetItem( event );
+			if ( !( item.isHighlightable() || item.isSelectable() ) ) {
+				// The item is disabled (weirdly, disabled items can be focussed in Firefox and IE, but not
+				// in Chrome). Do nothing (do not highlight or select anything).
+				return;
+			}
 		} else {
 			// There is something actually user-focusable in one of the labels of the options, and
 			// the user focussed it (e.g. by tabbing to it). Do nothing (especially, don't change

@@ -26,6 +26,9 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Base implementation for content objects.
  *
@@ -86,7 +89,14 @@ abstract class AbstractContent implements Content {
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
-		return ContentHandler::getForContent( $this );
+		return $this->getContentHandlerFactory()->getContentHandler( $this->getModel() );
+	}
+
+	/**
+	 * @return IContentHandlerFactory
+	 */
+	protected function getContentHandlerFactory(): IContentHandlerFactory {
+		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 
 	/**

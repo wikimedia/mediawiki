@@ -28,7 +28,7 @@ class ZhConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
 	 */
-	public function __construct( Language $langobj ) {
+	public function __construct( $langobj ) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
 

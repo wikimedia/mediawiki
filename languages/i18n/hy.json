@@ -2234,5 +2234,6 @@
 	"randomrootpage": "Պատահական կենտրոնական էջ",
 	"authmanager-create-from-login": "Հաշիվ ստեղծելու համար, խնդրում ենք լրացնել ստորև դաշտերը",
 	"authprovider-resetpass-skip-label": "Բաց թողնել",
-	"passwordpolicies-group": "Խումբ"
+	"passwordpolicies-group": "Խումբ",
+	"paramvalidator-help-type-user-subtype-name": "մասնակցային անուն"
 }

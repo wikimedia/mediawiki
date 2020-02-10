@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Revision;
 
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -156,7 +157,10 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 	public function testGetRequiredRoles() {
 		$registry = $this->newSlotRoleRegistry();
 		$registry->defineRole( 'main', function ( $role ) {
-			return new MainSlotRoleHandler( [] );
+			return new MainSlotRoleHandler(
+				[],
+				$this->createMock( IContentHandlerFactory::class )
+			);
 		} );
 
 		$title = $this->makeBlankTitleObject();
@@ -169,7 +173,10 @@ class SlotRoleRegistryTest extends MediaWikiTestCase {
 	public function testGetAllowedRoles() {
 		$registry = $this->newSlotRoleRegistry();
 		$registry->defineRole( 'main', function ( $role ) {
-			return new MainSlotRoleHandler( [] );
+			return new MainSlotRoleHandler(
+				[],
+				$this->createMock( IContentHandlerFactory::class )
+			);
 		} );
 		$registry->defineRoleWithModel( 'FOO', CONTENT_MODEL_TEXT );
 

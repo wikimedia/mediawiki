@@ -2622,7 +2622,7 @@
 	"ipaddressorusername": "Endereço de IP ou nome de usuário(a):",
 	"ipbreason": "Motivo:",
 	"ipbreason-dropdown": "*Razões comuns para um bloqueio\n** Inserindo informações falsas\n** Removendo o conteúdo de páginas\n** Fazendo \"spam\" de sítios externos\n** Inserindo conteúdo sem sentido/incompreensível nas páginas\n** Comportamento intimidador/inoportuno\n** Uso abusivo de contas múltiplas\n** Nome de usuário inaceitável",
-	"ipb-hardblock": "Aplicar bloco a usuários conectados a partir deste endereço IP",
+	"ipb-hardblock": "Aplicar bloqueio a usuários conectados a partir deste endereço IP",
 	"ipbcreateaccount": "Criação de contas",
 	"ipbemailban": "Enviar e-mail",
 	"ipbenableautoblock": "Bloquear automaticamente o endereço de IP mais recente usado por este(a) usuário(a) e todos os IPs subsequentes dos quais ele(a) tentar editar",
@@ -4033,5 +4033,12 @@
 	"mycustomjsredirectprotected": "Você não tem permissão para editar esta página JavaScript porque é um redirecionamento e não aponta dentro do seu espaço do usuário.",
 	"deflate-invaliddeflate": "O conteúdo fornecido não está devidamente comprimido",
 	"unprotected-js": "Por razões de segurança o JavaScript não pode ser carregado de páginas desprotegidas. Por favor, crie apenas javascript no MediaWiki: namespace ou como uma subpágina do usuário",
-	"userlogout-continue": "Você quer sair?"
+	"userlogout-continue": "Você quer sair?",
+	"paramvalidator-baduser": "Valor \"$2\" inválido para o parâmetro de usuário <var>$1</var>.",
+	"paramvalidator-help-type-user": "Tipo: {{PLURAL:$1|1=usuário|2=lista de usuário}}, {{PLURAL:$3|ór|por qualquer de}} $2",
+	"paramvalidator-help-type-user-subtype-name": "nome de usuário",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "Intervalo de IP",
+	"paramvalidator-help-type-user-subtype-interwiki": "nome interwiki (por exemplo \"prefixo>Nomedeexemplo\")",
+	"paramvalidator-help-type-user-subtype-id": "ID de usuário (por exemplo \"#12345\")"
 }

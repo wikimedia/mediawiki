@@ -543,7 +543,11 @@ class SpecialSearch extends SpecialPage {
 			if ( $title->isKnown() ) {
 				$messageName = 'searchmenu-exists';
 				$linkClass = 'mw-search-exists';
-			} elseif ( ContentHandler::getForTitle( $title )->supportsDirectEditing()
+			} elseif (
+				MediaWikiServices::getInstance()
+					->getContentHandlerFactory()
+					->getContentHandler( $title->getContentModel() )
+					->supportsDirectEditing()
 				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'create',
 					$this->getUser(), $title )
 				&& MediaWikiServices::getInstance()->getPermissionManager()->quickUserCan( 'edit',

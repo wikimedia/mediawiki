@@ -443,7 +443,9 @@ class XmlDumpWriter {
 		}
 
 		$contentModel = $slot->getModel();
-		$contentHandler = ContentHandler::getForModelID( $contentModel );
+		$contentHandler = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $contentModel );
 		$contentFormat = $contentHandler->getDefaultFormat();
 
 		// XXX: The content format is only relevant when actually outputting serialized content.

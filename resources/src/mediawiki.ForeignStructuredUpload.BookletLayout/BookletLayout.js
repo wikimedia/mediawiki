@@ -1,4 +1,4 @@
-/* global moment, Uint8Array */
+/* global moment */
 ( function () {
 
 	/**

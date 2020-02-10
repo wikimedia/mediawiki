@@ -23,8 +23,18 @@ class PresenceBooleanDefTest extends TypeDefTestCase {
 
 	public function provideNormalizeSettings() {
 		return [
-			[ [], [ ParamValidator::PARAM_ISMULTI => false ] ],
-			[ [ ParamValidator::PARAM_ISMULTI => true ], [ ParamValidator::PARAM_ISMULTI => false ] ],
+			[
+				[],
+				[ ParamValidator::PARAM_ISMULTI => false, ParamValidator::PARAM_DEFAULT => false ],
+			],
+			[
+				[ ParamValidator::PARAM_ISMULTI => true ],
+				[ ParamValidator::PARAM_ISMULTI => false, ParamValidator::PARAM_DEFAULT => false ],
+			],
+			[
+				[ ParamValidator::PARAM_DEFAULT => null ],
+				[ ParamValidator::PARAM_DEFAULT => null, ParamValidator::PARAM_ISMULTI => false ],
+			],
 		];
 	}
 

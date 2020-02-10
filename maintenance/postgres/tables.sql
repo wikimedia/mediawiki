@@ -28,6 +28,7 @@ DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS sites_site_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS change_tag_ct_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS watchlist_expiry_we_item_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
@@ -837,3 +838,11 @@ CREATE TABLE site_identifiers (
 );
 CREATE INDEX si_site ON site_identifiers (si_site);
 CREATE INDEX si_key ON site_identifiers (si_key);
+
+CREATE SEQUENCE watchlist_expiry_we_item_seq;
+CREATE TABLE watchlist_expiry (
+  we_item   INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('watchlist_expiry_we_item_seq'),
+  we_expiry TIMESTAMPTZ NOT NULL
+);
+ALTER SEQUENCE watchlist_expiry_we_item_seq OWNED BY watchlist_expiry.we_item;
+CREATE INDEX we_expiry ON watchlist_expiry (we_expiry);

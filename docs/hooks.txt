@@ -648,7 +648,8 @@ article has been changed.
   that page after the change
 $changed: bool for if the page was changed
 
-'ArticleEditUpdatesDeleteFromRecentchanges': Before deleting old entries from
+'ArticleEditUpdatesDeleteFromRecentchanges': DEPRECATED since 1.35, use RecentChange_save
+or similar instead. Before deleting old entries from
 recentchanges table, return false to not delete old entries.
 &$wikiPage: WikiPage (object) being modified
 

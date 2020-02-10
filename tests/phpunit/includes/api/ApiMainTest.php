@@ -79,27 +79,6 @@ class ApiMainTest extends ApiTestCase {
 		$this->assertSame( 'fr', $wgLang->getCode() );
 	}
 
-	public function testNonWhitelistedCorsWithCookies() {
-		$logFile = $this->getNewTempFile();
-
-		$this->mergeMwGlobalArrayValue( '_COOKIE', [ 'forceHTTPS' => '1' ] );
-		$logger = new TestLogger( true );
-		$this->setLogger( 'cors', $logger );
-
-		$api = $this->getNonInternalApiMain( [
-			'action' => 'query',
-			'meta' => 'siteinfo',
-		// For some reason multiple origins (which are not allowed in the
-		// WHATWG Fetch spec that supersedes the RFC) are always considered to
-		// be problematic.
-		], [ 'ORIGIN' => 'https://www.example.com https://www.com.example' ] );
-
-		$this->assertSame(
-			[ [ Psr\Log\LogLevel::WARNING, 'Non-whitelisted CORS request with session cookies' ] ],
-			$logger->getBuffer()
-		);
-	}
-
 	public function testSuppressedLogin() {
 		global $wgUser;
 		$origUser = $wgUser;

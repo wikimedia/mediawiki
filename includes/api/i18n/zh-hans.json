@@ -33,7 +33,8 @@
 			"94rain",
 			"予弦",
 			"A Retired User",
-			"VulpesVulpes825"
+			"VulpesVulpes825",
+			"铁桶"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>MediaWiki API是一个成熟稳定的，不断受到支持和改进的界面。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。</p>",
@@ -54,7 +55,7 @@
 	"apihelp-main-param-errorlang": "用于警告和错误的语言。<kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>带<kbd>siprop=languages</kbd>返回语言代码的列表，或指定<kbd>content</kbd>以使用此wiki的内容语言，或指定<kbd>uselang</kbd>以使用与<var>uselang</var>参数相同的值。",
 	"apihelp-main-param-errorsuselocal": "如果指定，错误文本将使用来自{{ns:MediaWiki}}名字空间的本地自定义消息。",
 	"apihelp-block-summary": "封禁一位用户。",
-	"apihelp-block-param-user": "要封禁的用户、IP地址或IP地址段。不能与<var>$1userid</var>一起使用",
+	"apihelp-block-param-user": "要封禁的用户。",
 	"apihelp-block-param-userid": "要封禁的用户ID。不能与<var>$1user</var>一起使用。",
 	"apihelp-block-param-expiry": "到期时间。可以是相对时间（例如<kbd>5 months</kbd>或<kbd>2 weeks</kbd>）或绝对时间（例如<kbd>2014-09-18T12:34:56Z</kbd>）。如果设置为<kbd>infinite</kbd>、<kbd>indefinite</kbd>或<kbd>never</kbd>，封禁将无限期。",
 	"apihelp-block-param-reason": "封禁的原因。",
@@ -1424,7 +1425,7 @@
 	"apihelp-upload-example-url": "从URL上传。",
 	"apihelp-upload-example-filekey": "完成一次由于警告而失败的上传。",
 	"apihelp-userrights-summary": "更改一位用户的组成员。",
-	"apihelp-userrights-param-user": "用户名。",
+	"apihelp-userrights-param-user": "用户。",
 	"apihelp-userrights-param-userid": "用户ID。",
 	"apihelp-userrights-param-add": "将用户加入至这些组中，或如果其已作为成员，更新其所在用户组成员资格的终止时间。",
 	"apihelp-userrights-param-expiry": "到期时间戳。可以是相对值（例如<kbd>5 months</kbd>或<kbd>2 weeks</kbd>）或绝对值（例如<kbd>2014-09-18T12:34:56Z</kbd>）。如果只设置一个时间戳，它将被用于所有传递给<var>$1add</var>参数的组。对于永不过时的用户组，使用<kbd>infinite</kbd>、<kbd>indefinite</kbd>、<kbd>infinity</kbd>或<kbd>never</kbd>。",

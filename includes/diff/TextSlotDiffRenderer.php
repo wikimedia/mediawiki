@@ -21,6 +21,7 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Assert\Assert;
 
@@ -79,7 +80,9 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 */
 	public static function diff( $oldText, $newText ) {
 		/** @var TextSlotDiffRenderer $slotDiffRenderer */
-		$slotDiffRenderer = ContentHandler::getForModelID( CONTENT_MODEL_TEXT )
+		$slotDiffRenderer = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( CONTENT_MODEL_TEXT )
 			->getSlotDiffRenderer( RequestContext::getMain() );
 		'@phan-var TextSlotDiffRenderer $slotDiffRenderer';
 		return $slotDiffRenderer->getTextDiff( $oldText, $newText );

@@ -3673,6 +3673,7 @@
 	"usercssispublic": "ദയവായി ശ്രദ്ധിക്കുക: സി.എസ്.എസ്. ഉപതാളുകൾ മറ്റ് ഉപയോക്താക്കൾക്ക് കാണാൻ കഴിയും, അവയിൽ സ്വകാര്യവിവരങ്ങൾ ചേർക്കാതിരിക്കുക.",
 	"restrictionsfield-badip": "അസാധുവായ ഐ.പി. വിലാസം അല്ലെങ്കിൽ പരിധി:$1",
 	"restrictionsfield-label": "അനുവദിച്ചിട്ടുള്ള ഐ.പി. പരിധികൾ:",
+	"restrictionsfield-help": "ഒരു വരിയിൽ ഒരു ഐ.പി. വിലാസം അല്ലെങ്കിൽ സി.ഐ.ഡി.ആർ. പരിധി വീതം. എല്ലാം സജ്ജമാക്കാനായി, ഇങ്ങനെ ഉപയോഗിക്കുക:\n<pre>0.0.0.0/0\n::/0</pre>",
 	"edit-error-short": "പിഴവ്: $1",
 	"edit-error-long": "പിഴവുകൾ:\n\n$1",
 	"specialmute": "നിശബ്ദമാക്കുക",
@@ -3709,5 +3710,12 @@
 	"passwordpolicies-policyflag-forcechange": "ലോഗിൻ മാറ്റിയിരിക്കണം",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ലോഗിൻ മാറ്റാൻ നിർദ്ദേശിക്കുന്നു",
 	"unprotected-js": "സുരക്ഷാകാരണങ്ങളാൽ സംരക്ഷണമില്ലാത്ത താളുകളിൽ നിന്നും ജാവാസ്ക്രിപ്റ്റ് എടുത്തുപയോഗിക്കാൻ കഴിയില്ല. ജാവാസ്ക്രിപ്റ്റ് താളുകൾ മീഡിയവിക്കി: നാമമേഖലയിലോ ഉപയോക്തൃ ഉപതാളായോ മാത്രം സൃഷ്ടിക്കുക",
-	"userlogout-continue": "പുറത്തുകടക്കണോ?"
+	"userlogout-continue": "പുറത്തുകടക്കണോ?",
+	"paramvalidator-baduser": "ഉപയോക്തൃ ചരം <var>$1</var> എന്നതിന് നൽകിയിട്ടുള്ള വില \"$2\" അസാധുവാണ്.",
+	"paramvalidator-help-type-user": "തരം: $2 {{PLURAL:$3|എന്നതിലെ|എന്നതിലെ}} {{PLURAL:$1|1=ഉപയോക്താവ്|2=ഉപയോക്താക്കളുടെ പട്ടിക}}.",
+	"paramvalidator-help-type-user-subtype-name": "ഉപയോക്തൃനാമം",
+	"paramvalidator-help-type-user-subtype-ip": "ഐ.പി.",
+	"paramvalidator-help-type-user-subtype-cidr": "ഐ.പി. പരിധി",
+	"paramvalidator-help-type-user-subtype-interwiki": "അന്തർവിക്കി നാമം (ഉദാ:\"പൂർവ്വപദം>ഉദാഹരണനാമം\")",
+	"paramvalidator-help-type-user-subtype-id": "ഉപയോക്തൃ ഐ.ഡി. (ഉദാ: \"#12345\")"
 }

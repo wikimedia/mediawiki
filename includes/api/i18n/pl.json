@@ -18,7 +18,8 @@
 			"CiaPan",
 			"Vlad5250",
 			"Railfail536",
-			"Rail"
+			"Rail",
+			"1233qwer1234qwer4"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentacja]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista dyskusyjna]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Ogłoszenia dotyczące API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Błędy i propozycje]\n</div>\n<strong>Stan:</strong> Wszystkie funkcje opisane na tej stronie powinny działać, ale API nadal jest aktywnie rozwijane i mogą się zmienić w dowolnym czasie. Subskrybuj [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ listę dyskusyjną mediawiki-api-announce], aby móc na bieżąco dowiadywać się o aktualizacjach.\n\n<strong>Błędne żądania:</strong> Gdy zostanie wysłane błędne żądanie do API, zostanie wysłany w odpowiedzi nagłówek HTTP z kluczem \"MediaWiki-API-Error\" i zarówno jego wartość jak i wartość kodu błędu wysłanego w odpowiedzi będą miały taką samą wartość. Aby uzyskać więcej informacji, zobacz [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Błędy i ostrzeżenia]].\n\n<strong>Testowanie:</strong> Aby łatwo testować żądania API, zobacz [[Special:ApiSandbox]].",
@@ -579,7 +580,7 @@
 	"apihelp-upload-param-watch": "Obserwuj stronę.",
 	"apihelp-upload-param-ignorewarnings": "Ignoruj wszystkie ostrzeżenia.",
 	"apihelp-upload-param-file": "Zawartość pliku.",
-	"apihelp-userrights-param-user": "Nazwa użytkownika.",
+	"apihelp-userrights-param-user": "Użytkownik.",
 	"apihelp-userrights-param-userid": "Identyfikator użytkownika.",
 	"apihelp-userrights-param-add": "Dodaj użytkownika do tych grup, lub, jeżeli jest już ich członkiem, zmień czas wygaśnięcia członkostwa w tych grupach.",
 	"apihelp-userrights-param-remove": "Usuń użytkownika z tych grup.",

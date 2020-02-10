@@ -3956,5 +3956,9 @@
 	"mycustomjsredirectprotected": "Non si dispone dei permessi necessari a modificare questa pagina JavaScript perché si tratta di un redirect che non punta al proprio spazio utente.",
 	"deflate-invaliddeflate": "Il contenuto fornito non è compresso correttamente",
 	"unprotected-js": "Per motivi di sicurezza, non è possibile caricare JavaScript da pagine non protette. Crea javascript solo nel namespace MediaWiki o come sottopagina Utente",
-	"userlogout-continue": "Vuoi davvero uscire?"
+	"userlogout-continue": "Vuoi davvero uscire?",
+	"paramvalidator-help-type-user-subtype-name": "nome utente",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "Intervallo di IP",
+	"paramvalidator-help-type-user-subtype-id": "ID utente (ad esempio \"#12345\")"
 }

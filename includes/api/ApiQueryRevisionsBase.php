@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
@@ -610,7 +611,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$model = $title->getContentModel();
 
 					if ( $this->contentFormat
-						&& !ContentHandler::getForModelID( $model )->isSupportedFormat( $this->contentFormat )
+						&& !$this->getContentHandlerFactory()
+							->getContentHandler( $model )
+							->isSupportedFormat( $this->contentFormat )
 					) {
 						$name = wfEscapeWikiText( $title->getPrefixedText() );
 						$this->addWarning( [ 'apierror-badformat', $this->contentFormat, $model, $name ] );
@@ -755,11 +758,14 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 		];
 	}
 
+	private function getContentHandlerFactory(): IContentHandlerFactory {
+		return MediaWikiServices::getInstance()->getContentHandlerFactory();
+	}
 }

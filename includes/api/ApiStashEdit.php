@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\PageEditStash;
 
@@ -53,7 +54,8 @@ class ApiStashEdit extends ApiBase {
 		$page = $this->getTitleOrPageId( $params );
 		$title = $page->getTitle();
 
-		if ( !ContentHandler::getForModelID( $params['contentmodel'] )
+		if ( !$this->getContentHandlerFactory()
+			->getContentHandler( $params['contentmodel'] )
 			->isSupportedFormat( $params['contentformat'] )
 		) {
 			$this->dieWithError(
@@ -117,8 +119,9 @@ class ApiStashEdit extends ApiBase {
 				if ( !$baseContent || !$currentContent ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ], 'missingrev' );
 				}
-				$handler = ContentHandler::getForModelID( $baseContent->getModel() );
-				$content = $handler->merge3( $baseContent, $editContent, $currentContent );
+				$content = $this->getContentHandlerFactory()
+					->getContentHandler( $baseContent->getModel() )
+					->merge3( $baseContent, $editContent, $currentContent );
 			}
 		} else {
 			// New pages: use the user-provided content model
@@ -189,11 +192,11 @@ class ApiStashEdit extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
 				ApiBase::PARAM_REQUIRED => true
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
 				ApiBase::PARAM_REQUIRED => true
 			],
 			'baserevid' => [
@@ -217,5 +220,9 @@ class ApiStashEdit extends ApiBase {
 
 	public function isInternal() {
 		return true;
+	}
+
+	private function getContentHandlerFactory(): IContentHandlerFactory {
+		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 }

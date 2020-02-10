@@ -374,7 +374,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 			[ 'class' => 'mw-newpages-history' ],
 			[ 'action' => 'history' ]
 		);
-		if ( ContentHandler::getForTitle( $title )->supportsDirectEditing() ) {
+		if ( MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $title->getContentModel() )
+			->supportsDirectEditing()
+		) {
 			$linkArr[] = $linkRenderer->makeKnownLink(
 				$title,
 				$this->msg( 'editlink' )->text(),

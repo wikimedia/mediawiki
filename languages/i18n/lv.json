@@ -3022,5 +3022,7 @@
 	"pagedata-bad-title": "Nederīgs nosaukums: $1.",
 	"passwordpolicies": "Paroļu politika",
 	"passwordpolicies-group": "Grupa",
-	"passwordpolicies-policies": "Politikas"
+	"passwordpolicies-policies": "Politikas",
+	"paramvalidator-help-type-user-subtype-name": "lietotājvārds",
+	"paramvalidator-help-type-user-subtype-ip": "IP"
 }

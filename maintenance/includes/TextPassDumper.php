@@ -524,8 +524,10 @@ TEXT
 	 */
 	private function exportTransform( $text, $model, $format = null ) {
 		try {
-			$handler = ContentHandler::getForModelID( $model );
-			$text = $handler->exportTransform( $text, $format );
+			$text = MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $model )
+				->exportTransform( $text, $format );
 		}
 		catch ( MWException $ex ) {
 			$this->progress(

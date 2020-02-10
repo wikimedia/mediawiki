@@ -148,7 +148,7 @@ class LinkRenderer {
 	 * @param string|HtmlArmor|null $text
 	 * @param array $extraAttribs
 	 * @param array $query
-	 * @return string
+	 * @return string HTML
 	 */
 	public function makeLink(
 		LinkTarget $target, $text = null, array $extraAttribs = [], array $query = []
@@ -285,7 +285,7 @@ class LinkRenderer {
 	 * @param string|HtmlArmor|null $text
 	 * @param array $extraAttribs
 	 * @param array $query
-	 * @return string
+	 * @return string HTML
 	 */
 	public function makeKnownLink(
 		LinkTarget $target, $text = null, array $extraAttribs = [], array $query = []

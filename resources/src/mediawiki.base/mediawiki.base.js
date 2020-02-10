@@ -23,6 +23,13 @@
 		trackHandlers = [],
 		queue;
 
+	// Apply site-level config
+	mw.config.set( require( './config.json' ) );
+
+	// Load other files in the package
+	require( './mediawiki.errorLogger.js' );
+	require( './legacy.wikibits.js' );
+
 	/**
 	 * Object constructor for messages.
 	 *
@@ -359,8 +366,7 @@
 	 * Register a handler for subset of analytic events, specified by topic.
 	 *
 	 * Handlers will be called once for each tracked event, including any events that fired before the
-	 * handler was registered; 'this' is set to a plain object with a 'timeStamp' property indicating
-	 * the exact time at which the event fired, a string 'topic' property naming the event, and a
+	 * handler was registered; 'this' is set to a plain object with a topic' property naming the event, and a
 	 * 'data' property which is an object of event-specific data. The event topic and event data are
 	 * also passed to the callback as the first and second arguments, respectively.
 	 *

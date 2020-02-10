@@ -226,6 +226,14 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
+	 */
+	public function testSimpleStoreGetBlobKnownBad() {
+		$store = $this->getBlobStore();
+		$this->assertSame( '', $store->getBlob( 'bad:lost?bug=T12345' ) );
+	}
+
+	/**
 	 * @param string $blob
 	 * @dataProvider provideBlobs
 	 * @covers \MediaWiki\Storage\SqlBlobStore::storeBlob
@@ -323,10 +331,18 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	 */
 	public function testSimpleStorageNonExistentBlobBatch() {
 		$store = $this->getBlobStore();
-		$result = $store->getBlobBatch( [ 'tt:this_will_not_exist', 'tt:1000', 'bla:1001' ] );
+		$result = $store->getBlobBatch( [
+				'tt:this_will_not_exist',
+				'tt:0',
+				'tt:-1',
+				'tt:1000',
+				'bla:1001'
+		] );
 		$resultBlobs = $result->getValue();
 		$expected = [
 			'tt:this_will_not_exist' => null,
+			'tt:0' => null,
+			'tt:-1' => null,
 			'tt:1000' => null,
 			'bla:1001' => null
 		];
@@ -341,6 +357,20 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 				'message' => 'internalerror',
 				'params' => [
 					'Bad blob address: tt:this_will_not_exist'
+				]
+			],
+			[
+				'type' => 'warning',
+				'message' => 'internalerror',
+				'params' => [
+					'Bad blob address: tt:0'
+				]
+			],
+			[
+				'type' => 'warning',
+				'message' => 'internalerror',
+				'params' => [
+					'Bad blob address: tt:-1'
 				]
 			],
 			[
@@ -429,7 +459,6 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetTextIdFromAddressInvalidArgumentException() {
-		yield [ 'tt:-17' ];
 		yield [ 'tt:xy' ];
 		yield [ 'tt:0' ];
 		yield [ 'tt:' ];
@@ -447,6 +476,24 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	}
 
 	public function testMakeAddressFromTextId() {
+		$this->assertSame( 'tt:17', SqlBlobStore::makeAddressFromTextId( 17 ) );
+	}
+
+	public function providerSplitBlobAddress() {
+		yield [ 'tt:123', 'tt', '123', [] ];
+		yield [ 'bad:foo?x=y', 'bad', 'foo', [ 'x' => 'y' ] ];
+		yield [ 'http://test.com/foo/bar?a=b', 'http', 'test.com/foo/bar', [ 'a' => 'b' ] ];
+	}
+
+	/**
+	 * @dataProvider providerSplitBlobAddress
+	 *
+	 * @param $address
+	 * @param $schema
+	 * @param $id
+	 * @param $parameters
+	 */
+	public function testSplitBlobAddress( $address, $schema, $id, $parameters ) {
 		$this->assertSame( 'tt:17', SqlBlobStore::makeAddressFromTextId( 17 ) );
 	}
 

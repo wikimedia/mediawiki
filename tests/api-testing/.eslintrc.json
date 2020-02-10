@@ -9,5 +9,9 @@
 	},
 	"parserOptions": {
 		"ecmaVersion": 2018
+	},
+	"rules": {
+		"camelcase": "off",
+		"require-atomic-updates": "off"
 	}
 }

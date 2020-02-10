@@ -150,7 +150,9 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addModules( 'mediawiki.misc-authed-ooui' );
 		$this->addHelpLink( 'Help:Moving a page' );
 
-		$handlerSupportsRedirects = ContentHandler::getForTitle( $this->oldTitle )
+		$handlerSupportsRedirects = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $this->oldTitle->getContentModel() )
 			->supportsRedirects();
 
 		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) ) {
@@ -595,7 +597,9 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 		}
 
-		$handler = ContentHandler::getForTitle( $ot );
+		$handler = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $ot->getContentModel() );
 
 		if ( !$handler->supportsRedirects() ) {
 			$createRedirect = false;

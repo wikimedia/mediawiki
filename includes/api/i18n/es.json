@@ -34,7 +34,8 @@
 			"Adjen",
 			"Tiberius1701",
 			"Jelou",
-			"Agusbou2015"
+			"Agusbou2015",
+			"Ihojose"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correo]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> La API de MediaWiki es una interfaz madura y estable que se mejora y prueba activamente. Aunque tratamos de evitarlo, es posible que ocasionalmente debamos hacer cambios importantes. Suscríbete a la [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de correo mediawiki-api-announce] para recibir avisos de actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave «MediaWiki-API-Error» y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para obtener más información, consulta [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la comprobación de las solicitudes de API, consulta [[Special:ApiSandbox]].</p>",
@@ -55,7 +56,7 @@
 	"apihelp-main-param-errorlang": "Idioma empleado para advertencias y errores. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> con <kbd>siprop=languages</kbd> devuelve una lista de códigos de idioma. Puedes especificar <kbd>content</kbd> para utilizar el idioma del contenido de este wiki o <kbd>uselang</kbd> para utilizar el valor del parámetro <var>uselang</var>.",
 	"apihelp-main-param-errorsuselocal": "Si se da, los textos de error emplearán mensajes localmente personalizados del espacio de nombres {{ns:MediaWiki}}.",
 	"apihelp-block-summary": "Bloquear a un usuario.",
-	"apihelp-block-param-user": "Nombre de usuario, dirección IP o intervalo de IP que quieres bloquear. No se puede utilizar junto con <var>$1userid</var>",
+	"apihelp-block-param-user": "Usuario que bloquear.",
 	"apihelp-block-param-userid": "ID de usuario para bloquear. No se puede utilizar junto con <var>$1user</var>.",
 	"apihelp-block-param-expiry": "Fecha de expiración. Puede ser relativa (por ejemplo, <kbd>5 months</kbd> o <kbd>2 weeks</kbd>) o absoluta (por ejemplo, <kbd>2014-09-18T12:34:56Z</kbd>). Si se establece en <kbd>infinite</kbd>, <kbd>indefinite</kbd>, o <kbd>never</kbd>, el bloqueo será permanente.",
 	"apihelp-block-param-reason": "Razón para el bloqueo.",
@@ -1360,7 +1361,7 @@
 	"apihelp-upload-example-url": "Subir desde una URL.",
 	"apihelp-upload-example-filekey": "Completar una subida que falló debido a advertencias.",
 	"apihelp-userrights-summary": "Cambiar la pertenencia a grupos de un usuario.",
-	"apihelp-userrights-param-user": "Nombre de usuario.",
+	"apihelp-userrights-param-user": "Usuario.",
 	"apihelp-userrights-param-userid": "ID de usuario.",
 	"apihelp-userrights-param-add": "Agregar el usuario a estos grupos, o, si ya es miembro, actualizar la fecha de expiración de su pertenencia a ese grupo.",
 	"apihelp-userrights-param-expiry": "Marcas de tiempo de expiración. Pueden ser relativas (por ejemplo, <kbd>5 months</kbd> o <kbd>2 weeks</kbd>) o absolutas (por ejemplo, <kbd>2014-09-18T12:34:56Z</kbd>). Si sólo se fija una marca de tiempo, se utilizará para todos los grupos que se pasen al parámetro <var>$1añadir</var>. Usa <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd>, o <kbd>never</kbd> para que la pertenencia al grupo no tenga fecha de expiración.",

@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStore;
 use InvalidArgumentException;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
@@ -49,7 +50,8 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			$wgMultiContentRevisionSchemaMigrationStage,
-			MediaWikiServices::getInstance()->getActorMigration()
+			MediaWikiServices::getInstance()->getActorMigration(),
+			$this->getMockContentHandlerFactory()
 		);
 	}
 
@@ -143,11 +145,19 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$nameTables->getSlotRoles(),
 			$this->getMockSlotRoleRegistry(),
 			$migrationMode,
-			MediaWikiServices::getInstance()->getActorMigration()
+			MediaWikiServices::getInstance()->getActorMigration(),
+			$this->getMockContentHandlerFactory()
 		);
 
 		$store->setContentHandlerUseDB( $contentHandlerDb );
 		$this->assertSame( $contentHandlerDb, $store->getContentHandlerUseDB() );
+	}
+
+	/**
+	 * @return IContentHandlerFactory|MockObject
+	 */
+	public function getMockContentHandlerFactory(): IContentHandlerFactory {
+		return $this->createMock( IContentHandlerFactory::class );
 	}
 
 	/**
@@ -452,6 +462,8 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$contentModelStore = $nameTables->getContentModels();
 		$slotRoleStore = $nameTables->getSlotRoles();
 		$slotRoleRegistry = $services->getSlotRoleRegistry();
+		$contentHandlerFactory = $this->getMockContentHandlerFactory();
+
 		$store = new RevisionStore(
 			$loadBalancer,
 			$blobStore,
@@ -461,8 +473,10 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			$nameTables->getSlotRoles(),
 			$slotRoleRegistry,
 			$migration,
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			$contentHandlerFactory
 		);
+
 		if ( !$expectException ) {
 			$store = TestingAccessWrapper::newFromObject( $store );
 			$this->assertSame( $loadBalancer, $store->loadBalancer );

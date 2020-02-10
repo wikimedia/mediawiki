@@ -22,8 +22,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Media
  * @ingroup entrypoint
+ * @ingroup Media
  */
 
 define( 'THUMB_HANDLER', true );

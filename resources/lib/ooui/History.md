@@ -1,4 +1,24 @@
 # OOUI Release History
+## v0.36.4 / 2020-02-05
+### Features
+* WMUI: Remove border from all toolGroups except 'menu' (Ed Sanders)
+
+### Styles
+* Replace color literal values with @wmui- variables (Ed Sanders)
+* Use equivalent transparent backgrounds for frameless buttons (Ed Sanders)
+* icons: Add 'userContributions' (Volker E.)
+
+### Code
+* MenuTagMultiselectWidget: Add pre-selected items as options (Thalia Chan)
+* SelectWidget: Check if we can highlight/select items on focus before we do it (Bartosz Dziewoński)
+* build: Bump composer dependencies (Kunal Mehta)
+* build: Fall back to polyfill parser for people without ast (James D. Forrester)
+* build: Update all karma-related tools to latest (James D. Forrester)
+* build: Upgrade phpunit to 8.5 (like MediaWiki) and other minor bumps (James D. Forrester)
+* demos: Replace “frameless” by “quiet” and code examples (Volker E.)
+* demos: Style `code` examples (Volker E.)
+
+
 ## v0.36.3 / 2020-01-23
 ### Code
 * TagMultiselectWidget: Add tags before clearing the input (Thalia Chan)

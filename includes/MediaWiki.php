@@ -414,7 +414,11 @@ class MediaWiki {
 		$article = Article::newFromWikiPage( $page, $this->context );
 
 		// Skip some unnecessary code if the content model doesn't support redirects
-		if ( !ContentHandler::getForTitle( $title )->supportsRedirects() ) {
+		if ( !MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $title->getContentModel() )
+				->supportsRedirects()
+		) {
 			return $article;
 		}
 

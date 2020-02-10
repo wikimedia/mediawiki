@@ -53,7 +53,8 @@
 			"Jon Harald Søby",
 			"Fitoschido",
 			"Orf3us",
-			"Pyscowicz"
+			"Pyscowicz",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -2610,7 +2611,7 @@
 	"emailblock": "e-post blokkert",
 	"blocklist-nousertalk": "kan ikke redigere sin egen diskusjonsside",
 	"blocklist-editing": "redigering",
-	"blocklist-editing-sitewide": "redigering (hele nettstedetttttttttt)",
+	"blocklist-editing-sitewide": "redigering (hele nettstedet)",
 	"blocklist-editing-page": "sider",
 	"blocklist-editing-ns": "navnerom",
 	"ipblocklist-empty": "Blokkeringslisten er tom.",
@@ -3918,5 +3919,7 @@
 	"mycustomjsredirectprotected": "Du har ikke tillatelse til å redigere denne JavaScript-siden fordi den er en omdirigering og ikke peker til en annen side i ditt brukernavnerom.",
 	"deflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert",
 	"unprotected-js": "Av sikkerhetsårsaker kan ikke JavaScript lastes fra ubeskyttede sider. Bare skap JavaScript i MediaWiki-navnerommet eller som en brukerunderside",
-	"userlogout-continue": "Ønsker du å logge ut?"
+	"userlogout-continue": "Ønsker du å logge ut?",
+	"paramvalidator-help-type-user-subtype-name": "Brukernavn",
+	"paramvalidator-help-type-user-subtype-ip": "IP"
 }

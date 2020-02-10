@@ -197,37 +197,6 @@ class ApiMain extends ApiBase {
 		$config = $this->getConfig();
 
 		if ( !$this->mInternalMode ) {
-			// Log if a request with a non-whitelisted Origin header is seen
-			// with session cookies.
-			$originHeader = $request->getHeader( 'Origin' );
-			if ( $originHeader === false ) {
-				$origins = [];
-			} else {
-				$originHeader = trim( $originHeader );
-				$origins = preg_split( '/\s+/', $originHeader );
-			}
-			$sessionCookies = array_intersect(
-				array_keys( $_COOKIE ),
-				SessionManager::singleton()->getVaryCookies()
-			);
-			if ( $origins && $sessionCookies && (
-				count( $origins ) !== 1 || !self::matchOrigin(
-					$origins[0],
-					$config->get( 'CrossSiteAJAXdomains' ),
-					$config->get( 'CrossSiteAJAXdomainExceptions' )
-				)
-			) ) {
-				LoggerFactory::getInstance( 'cors' )->warning(
-					'Non-whitelisted CORS request with session cookies', [
-						'origin' => $originHeader,
-						'cookies' => $sessionCookies,
-						'ip' => $request->getIP(),
-						'userAgent' => $this->getUserAgent(),
-						'wiki' => WikiMap::getCurrentWikiDbDomain()->getId(),
-					]
-				);
-			}
-
 			// If we're in a mode that breaks the same-origin policy, strip
 			// user credentials for security.
 			if ( $this->lacksSameOriginSecurity() ) {

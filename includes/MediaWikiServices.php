@@ -29,6 +29,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Http\HttpRequestFactory;
@@ -562,6 +563,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getConfiguredReadOnlyMode() : ConfiguredReadOnlyMode {
 		return $this->getService( 'ConfiguredReadOnlyMode' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return IContentHandlerFactory
+	 */
+	public function getContentHandlerFactory() : IContentHandlerFactory {
+		return $this->getService( 'ContentHandlerFactory' );
 	}
 
 	/**

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -3087,9 +3088,12 @@ class Article implements Page {
 	 */
 	public function generateReason( &$hasHistory ) {
 		$title = $this->mPage->getTitle();
-		$handler = ContentHandler::getForTitle( $title );
+		$handler = $this->getContentHandlerFactory()->getContentHandler( $title->getContentModel() );
+
 		return $handler->getAutoDeleteReason( $title, $hasHistory );
 	}
 
-	// ******
+	private function getContentHandlerFactory(): IContentHandlerFactory {
+		return MediaWikiServices::getInstance()->getContentHandlerFactory();
+	}
 }

@@ -3055,7 +3055,7 @@
 	"tooltip-watch": "Ajouter cette page à votre liste de suivi",
 	"tooltip-watchlistedit-normal-submit": "Enlever les titres",
 	"tooltip-watchlistedit-raw-submit": "Mettre à jour la liste de suivi",
-	"tooltip-recreate": "Recréer la page même si celle-ci a été effacée",
+	"tooltip-recreate": "Recréer la page même si celle-ci a été supprimée",
 	"tooltip-upload": "Démarrer le téléversement",
 	"tooltip-rollback": "« Révoquer » annule en un clic la ou les modification(s) de cette page réalisées par son dernier contributeur",
 	"tooltip-undo": "« Annuler » rétablit la modification précédente et ouvre la fenêtre de modification en mode prévisualisation. Il est possible d’ajouter une raison dans le résumé.",
@@ -4138,5 +4138,12 @@
 	"mycustomjsredirectprotected": "Vous n’avez pas le droit de modifier cette page JavaScript parce qu’elle est une redirection et qu’elle ne pointe pas dans votre espace utilisateur.",
 	"deflate-invaliddeflate": "Le contenu fourni n'est pas correctement développé",
 	"unprotected-js": "Pour des raisons de sécurité, JavaScript ne peut pas être chargé depuis des pages non protégées. Veuillez ne créer du javascript que dans l’espace de noms MediaWiki: ou comme sous-page utilisateur",
-	"userlogout-continue": "Voulez-vous vous déconnecter ?"
+	"userlogout-continue": "Voulez-vous vous déconnecter ?",
+	"paramvalidator-baduser": "Valeur « $2 » non valide pour le paramètre utilisateur <var>$1</var>.",
+	"paramvalidator-help-type-user": "Type : {{PLURAL:$1|1=utilisateur|2=liste d’utilisateurs}}, {{PLURAL:$3|par|par un des}} $2",
+	"paramvalidator-help-type-user-subtype-name": "nom d’utilisateur",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "plage d’adresses IP",
+	"paramvalidator-help-type-user-subtype-interwiki": "nom interwiki (par ex. « prefix>ExampleName »)",
+	"paramvalidator-help-type-user-subtype-id": "ID utilisateur (par ex. « #12345 »)"
 }

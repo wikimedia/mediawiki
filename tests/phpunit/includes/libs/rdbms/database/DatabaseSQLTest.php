@@ -252,6 +252,13 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				],
 				"SELECT field FROM table      FOR UPDATE"
 			],
+			[
+				[
+					'tables' => [],
+					'fields' => [ 'field' ],
+				],
+				"SELECT field"
+			],
 		];
 	}
 

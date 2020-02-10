@@ -307,11 +307,13 @@ class MergeHistory {
 				)->inContentLanguage()->text();
 			}
 
-			$contentHandler = ContentHandler::getForTitle( $this->source );
-			$redirectContent = $contentHandler->makeRedirectContent(
-				$this->dest,
-				wfMessage( 'mergehistory-redirect-text' )->inContentLanguage()->plain()
-			);
+			$redirectContent = MediaWikiServices::getInstance()
+				->getContentHandlerFactory()
+				->getContentHandler( $this->source->getContentModel() )
+				->makeRedirectContent(
+					$this->dest,
+					wfMessage( 'mergehistory-redirect-text' )->inContentLanguage()->plain()
+				);
 
 			if ( $redirectContent ) {
 				$redirectPage = WikiPage::factory( $this->source );

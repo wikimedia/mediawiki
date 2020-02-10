@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "api-testing": "mocha --timeout 0 --recursive tests/api-testing",
+    "api-testing": "npm run api-testing-lint && mocha --timeout 0 --recursive tests/api-testing",
+    "api-testing-lint": "eslint --cache --max-warnings 0 tests/api-testing/**",
     "build": "grunt minify",
     "test": "grunt lint",
     "qunit": "grunt qunit",
@@ -20,8 +21,9 @@
     "@wdio/mocha-framework": "5.13.2",
     "@wdio/sauce-service": "5.13.2",
     "@wdio/sync": "5.13.2",
-    "api-testing": "^1.0.2",
+    "api-testing": "1.0.3",
     "eslint-config-wikimedia": "0.15.0",
+    "eslint-plugin-vue": "^6.1.2",
     "grunt": "1.0.4",
     "grunt-banana-checker": "0.8.1",
     "grunt-contrib-copy": "1.0.0",

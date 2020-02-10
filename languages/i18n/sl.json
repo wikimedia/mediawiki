@@ -3841,5 +3841,12 @@
 	"mycustomjsredirectprotected": "Nimate pravic za urejanje te strani z JavaScriptom, ker je preusmeritev in ne kaže v vaš uporabniški prostor.",
 	"deflate-invaliddeflate": "Dana vsebina ni pravilno stisnjena",
 	"unprotected-js": "Iz varnostnih razlogov JavaScripta ni možno naložiti z nezaščitenih strani. Prosimo, da JavaScript ustvarite samo v imenskem prostoru MediaWiki ali kot uporabniško podstran.",
-	"userlogout-continue": "Se želite odjaviti?"
+	"userlogout-continue": "Se želite odjaviti?",
+	"paramvalidator-baduser": "Neveljavna vrednosti »$2« za uporabniški parameter <var>$1</var>.",
+	"paramvalidator-help-type-user": "Vrsta: {{PLURAL:$1|1=uporabnik|2=seznam uporabnikov}}, {{PLURAL:$3|ki ustreza|ki ustreza kateremu koli od}} $2",
+	"paramvalidator-help-type-user-subtype-name": "uporabniško ime",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "IP-območje",
+	"paramvalidator-help-type-user-subtype-interwiki": "ime interwikija (npr. »predpona>ImePrimera«)",
+	"paramvalidator-help-type-user-subtype-id": "ID uporabnika (npr. »#12345«)"
 }

@@ -32,6 +32,9 @@ class PresenceBooleanDef extends TypeDef {
 		// Cannot be multi-valued
 		$settings[ParamValidator::PARAM_ISMULTI] = false;
 
+		// Default the default to false so ParamValidator::getValue() returns false (T244440)
+		$settings += [ ParamValidator::PARAM_DEFAULT => false ];
+
 		return parent::normalizeSettings( $settings );
 	}
 

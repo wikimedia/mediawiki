@@ -10,7 +10,8 @@
 			"Felipe L. Ewald",
 			"Athena in Wonderland",
 			"Waldir",
-			"Mansil alfalb"
+			"Mansil alfalb",
+			"1233qwer1234qwer4"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de divulgação]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Defeitos e pedidos]\n</div>\n<strong>Estado:</strong> A API do MediaWiki é uma interface consolidada e estável que é constantemente suportada e melhorada. Embora tentemos evitá-lo, podemos ocasionalmente realizar alterações disruptivas. Inscreva-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de distribuição mediawiki-api-announce] para receber notificações das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].</p>",
@@ -1436,7 +1437,7 @@
 	"apihelp-upload-example-url": "Carregar de um URL.",
 	"apihelp-upload-example-filekey": "Prosseguir um carregamento que falhou devido a avisos.",
 	"apihelp-userrights-summary": "Alterar os grupos a que um utilizador pertence.",
-	"apihelp-userrights-param-user": "O nome de utilizador.",
+	"apihelp-userrights-param-user": "Utilizador.",
 	"apihelp-userrights-param-userid": "O identificador de utilizador.",
 	"apihelp-userrights-param-add": "Adicionar o utilizador a estes grupos ou, se já for membro de um grupo, atualizar a data de expiração da sua pertença a esse grupo.",
 	"apihelp-userrights-param-expiry": "Datas e horas de expiração. Podem ser relativas (por exemplo, <kbd>5 meses</kbd> ou <kbd>2 semanas</kbd>) ou absolutas (p. ex., <kbd>2014-09-18T12:34:56Z</kbd>). Se só estiver definida uma data e hora, ela será usada para todos os grupos passados ao parâmetro <var>$1add</var>. Use <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> ou <kbd>never</kbd> quando a pertença a um grupo não tem expiração.",

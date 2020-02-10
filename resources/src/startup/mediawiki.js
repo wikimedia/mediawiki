@@ -397,7 +397,7 @@
 		trackQueue: [],
 
 		track: function ( topic, data ) {
-			mw.trackQueue.push( { topic: topic, timeStamp: mw.now(), data: data } );
+			mw.trackQueue.push( { topic: topic, data: data } );
 			// This method is extended by mediawiki.base to also fire events.
 		},
 

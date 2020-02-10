@@ -22,6 +22,7 @@
 namespace MediaWiki\Page;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MovePage;
 use NamespaceInfo;
@@ -52,6 +53,9 @@ class MovePageFactory {
 	/** @var RepoGroup */
 	private $repoGroup;
 
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
 	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation',
 		'ContentHandlerUseDB',
@@ -63,7 +67,8 @@ class MovePageFactory {
 		NamespaceInfo $nsInfo,
 		WatchedItemStoreInterface $watchedItems,
 		PermissionManager $permMgr,
-		RepoGroup $repoGroup
+		RepoGroup $repoGroup,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -73,6 +78,7 @@ class MovePageFactory {
 		$this->watchedItems = $watchedItems;
 		$this->permMgr = $permMgr;
 		$this->repoGroup = $repoGroup;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
@@ -82,6 +88,6 @@ class MovePageFactory {
 	 */
 	public function newMovePage( Title $from, Title $to ) : MovePage {
 		return new MovePage( $from, $to, $this->options, $this->loadBalancer, $this->nsInfo,
-			$this->watchedItems, $this->permMgr, $this->repoGroup );
+			$this->watchedItems, $this->permMgr, $this->repoGroup, $this->contentHandlerFactory );
 	}
 }

@@ -148,7 +148,8 @@
 			"Saimongoltinio",
 			"Wikisaurus",
 			"Katunchik",
-			"Kreal39"
+			"Kreal39",
+			"Jjjon"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -4085,5 +4086,9 @@
 	"mycustomjsredirectprotected": "У вас нет прав на редактирование этой JavaScript-страницы, так как она является перенаправлением и не указывает внутрь вашего пространства участника.",
 	"deflate-invaliddeflate": "Предоставленное содержимое не спущено надлежащим образом",
 	"unprotected-js": "По соображениям безопасности JavaScript нельзя загружать с незащищённых страниц. Пожалуйста, создавайте скрипты только в пространстве имён MediaWiki: или как подстраницы участника.",
-	"userlogout-continue": "Вы хотите выйти?"
+	"userlogout-continue": "Вы хотите выйти?",
+	"paramvalidator-baduser": "Некорректное значение «$2» параметра участника <var>$1</var>.",
+	"paramvalidator-help-type-user": "Тип: {{PLURAL:$1|1=пользователь|2=список пользователей}}, {{PLURAL:$3|из|любой из}} $2",
+	"paramvalidator-help-type-user-subtype-name": "Имя пользователя",
+	"paramvalidator-help-type-user-subtype-ip": "Ай пи адрес"
 }

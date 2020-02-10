@@ -101,7 +101,9 @@
 			"RadioAzureus",
 			"LongJohn nl",
 			"Kupulak",
-			"Rots61"
+			"Rots61",
+			"Sumurai8",
+			"Klaas van Buiten"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -2315,7 +2317,7 @@
 	"notanarticle": "Is geen pagina",
 	"notvisiblerev": "De laatste versie van een andere gebruiker is verwijderd",
 	"watchlist-details": "Er {{PLURAL:$1|staat één pagina|staan $1 pagina's}} op uw volglijst (plus overlegpagina's).",
-	"wlheader-enotif": "U wordt per e-mail gewaarschuwd.",
+	"wlheader-enotif": "Melding per e-mail is ingeschakeld.",
 	"wlheader-showupdated": "Pagina's die zijn bewerkt sinds uw laatste bezoek worden '''vet''' weergegeven.",
 	"wlnote": "Hieronder {{PLURAL:$1|staat de laaste wijziging|staan de laatste $1 wijzigingen}} in {{PLURAL:$2|het laatste uur|de laatste $2 uur}} per $3 om $4.",
 	"watchlist-hide": "Verbergen",
@@ -2346,7 +2348,7 @@
 	"enotif_lastvisited": "Voor alle wijzigingen sinds uw laatste bezoek, zie $1",
 	"enotif_lastdiff": "Om deze wijziging te bekijken, ga naar $1",
 	"enotif_anon_editor": "anonieme gebruiker $1",
-	"enotif_body": "Beste $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSamenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT\n\nContactgegevens van de auteur:\nE-mailadres: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nTenzij u deze pagina bezoekt, komen er geen verdere berichten. Als u bent aangemeld, kunt u op uw volglijst voor alle gevolgde pagina's de waarschuwingsinstellingen opschonen.\n\nGroet van uw {{SITENAME}}-waarschuwingssysteem.\n\n--\nU kunt uw e-mailinstellingen wijzigen op:\n{{canonicalurl:{{#special:Preferences}}}}\n\nU kunt uw volglijstinstellingen wijzigen op:\n{{canonicalurl:Special:Watchlist/edit}}\n\nU kunt de pagina van uw volglijst verwijderen via de volgende koppeling:\n$UNWATCHURL\n\nTerugkoppeling en verdere assistentie:\n$HELPPAGE",
+	"enotif_body": "Beste $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nSamenvatting van de wijziging: $PAGESUMMARY $PAGEMINOREDIT\n\nContactgegevens van de auteur:\nE-mailadres: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nEr komen geen andere meldingen meer in geval van verdere activiteit, tot u de pagina bezoekt als u ingelogd bent. U zou ook alle pagina's die u op uw volglijst bijhoudt als 'bezocht' kunnen markeren.\n\nGroet van uw {{SITENAME}}-meldsysteem.\n\n--\nU kunt uw e-mailinstellingen wijzigen op:\n{{canonicalurl:{{#special:Preferences}}}}\n\nU kunt uw volglijstinstellingen wijzigen op:\n{{canonicalurl:Special:Watchlist/edit}}\n\nU kunt de pagina van uw volglijst verwijderen via de volgende koppeling:\n$UNWATCHURL\n\nTerugkoppeling en verdere assistentie:\n$HELPPAGE",
 	"enotif_minoredit": "Dit is een kleine bewerking",
 	"created": "aangemaakt",
 	"changed": "gewijzigd",
@@ -3946,5 +3948,12 @@
 	"mycustomjsredirectprotected": "U hebt geen rechten om deze JavaScriptpagina te bewerken omdat het een doorverwijzing is en deze niet verwijst naar een pagina in uw gebruikersruimte.",
 	"deflate-invaliddeflate": "De opgegeven inhoud is onjuist gecomprimeerd",
 	"unprotected-js": "Vanwege veiligheidsredenen kan er geen JavaScript geladen worden vanaf onbeveiligde pagina's. Gelieve alleen JavaScript pagina's aan te maken in de MediaWiki: naamruimte of als een subpagina van een gebruikerspagina.",
-	"userlogout-continue": "Wilt u zich afmelden?"
+	"userlogout-continue": "Wilt u zich afmelden?",
+	"paramvalidator-baduser": "Ongeldige waarde \"$2\" voor gebruikersparameter <var>$1</var>.",
+	"paramvalidator-help-type-user": "Type: {{PLURAL:$1|1=gebruiker|2=lijst van gebruikers}}, {{PLURAL:$3|met|met een van}} $2",
+	"paramvalidator-help-type-user-subtype-name": "gebruikersnaam",
+	"paramvalidator-help-type-user-subtype-ip": "IP-adres",
+	"paramvalidator-help-type-user-subtype-cidr": "IP bereik",
+	"paramvalidator-help-type-user-subtype-interwiki": "interwikinaam (bijv. \"voorvoegsel>VoorbeeldNaam\")",
+	"paramvalidator-help-type-user-subtype-id": "gebruikers-ID (bijv. \"#12345\")"
 }

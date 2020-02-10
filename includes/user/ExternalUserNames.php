@@ -95,7 +95,7 @@ class ExternalUserNames {
 	 *  username), otherwise the name with the prefix prepended.
 	 */
 	public function applyPrefix( $name ) {
-		if ( !User::isUsableName( $name ) ) {
+		if ( User::getCanonicalName( $name, 'usable' ) === false ) {
 			return $name;
 		}
 

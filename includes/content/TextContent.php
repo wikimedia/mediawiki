@@ -303,6 +303,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @return Content|bool A content object with the content model $toModel, or false if that
 	 *     conversion is not supported.
+	 * @throws MWUnknownContentModelException
 	 *
 	 * @see Content::convert()
 	 */
@@ -313,7 +314,7 @@ class TextContent extends AbstractContent {
 			return $converted;
 		}
 
-		$toHandler = ContentHandler::getForModelID( $toModel );
+		$toHandler = $this->getContentHandlerFactory()->getContentHandler( $toModel );
 
 		if ( $toHandler instanceof TextContentHandler ) {
 			// NOTE: ignore content serialization format - it's just text anyway.

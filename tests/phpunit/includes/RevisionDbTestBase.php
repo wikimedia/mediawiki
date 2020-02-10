@@ -460,7 +460,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$services->getSlotRoleStore(),
 			$services->getSlotRoleRegistry(),
 			$this->getMcrMigrationStage(),
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			$services->getContentHandlerFactory()
 		);
 
 		$store->setContentHandlerUseDB( $this->getContentHandlerUseDB() );

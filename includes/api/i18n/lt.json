@@ -5,7 +5,8 @@
 			"Eitvys200",
 			"Hugo.arg",
 			"Homo",
-			"Tomasdd"
+			"Tomasdd",
+			"1233qwer1234qwer4"
 		]
 	},
 	"apihelp-main-param-action": "Kurį veiksmą atlikti.",
@@ -326,7 +327,7 @@
 	"apihelp-upload-example-url": "Įkelti iš URL.",
 	"apihelp-upload-example-filekey": "Baigti įkėlimą, kuris nepavyko dėl įspėjimų.",
 	"apihelp-userrights-summary": "Keisti vartotoju grupės narystę.",
-	"apihelp-userrights-param-user": "Vartotojo vardas.",
+	"apihelp-userrights-param-user": "Vartotojas.",
 	"apihelp-userrights-param-userid": "Vartotojo ID.",
 	"apihelp-userrights-param-add": "Pridėti vartotoją į šias grupes.",
 	"apihelp-userrights-param-remove": "Pašalinti vartotoją iš šių grupių.",

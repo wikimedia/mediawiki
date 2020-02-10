@@ -2,7 +2,8 @@
 	"extends": [
 		"wikimedia/client",
 		"wikimedia/jquery",
-		"wikimedia/mediawiki"
+		"wikimedia/mediawiki",
+		"plugin:vue/recommended"
 	],
 	"globals": {
 		"require": "readonly",
@@ -12,6 +13,7 @@
 	"rules": {
 		"quote-props": [ "error", "as-needed" ],
 		"max-len": "off",
-		"no-jquery/no-global-selector": "off"
+		"no-jquery/no-global-selector": "off",
+		"vue/html-indent": [ "warn", "tab" ]
 	}
 }

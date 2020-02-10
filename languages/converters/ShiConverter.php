@@ -66,7 +66,7 @@ class ShiConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
 	 */
-	public function __construct( Language $langobj ) {
+	public function __construct( $langobj ) {
 		$variants = [ 'shi', 'shi-tfng', 'shi-latn' ];
 		$variantfallbacks = [
 			'shi' => 'shi-tfng',

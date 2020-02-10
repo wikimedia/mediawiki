@@ -106,7 +106,7 @@ class TgConverter extends LanguageConverter {
 	/**
 	 * @param Language $langobj
 	 */
-	public function __construct( Language $langobj ) {
+	public function __construct( $langobj ) {
 		$variants = [ 'tg', 'tg-latn' ];
 		parent::__construct( $langobj, 'tg', $variants );
 	}

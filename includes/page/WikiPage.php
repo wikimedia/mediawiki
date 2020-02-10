@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Content\ContentHandlerFactory;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -254,6 +256,13 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
+	 * @return ContentHandlerFactory
+	 */
+	private function getContentHandlerFactory(): IContentHandlerFactory {
+		return MediaWikiServices::getInstance()->getContentHandlerFactory();
+	}
+
+	/**
 	 * @return ParserCache
 	 */
 	private function getParserCache() {
@@ -287,7 +296,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 */
 	public function getContentHandler() {
-		return ContentHandler::getForModelID( $this->getContentModel() );
+		return $this->getContentHandlerFactory()
+			->getContentHandler( $this->getContentModel() );
 	}
 
 	/**
@@ -1704,7 +1714,8 @@ class WikiPage implements Page, IDBAccessObject {
 			JobQueueGroup::singleton(),
 			MessageCache::singleton(),
 			MediaWikiServices::getInstance()->getContentLanguage(),
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
+			$this->getContentHandlerFactory()
 		);
 
 		$derivedDataUpdater->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
@@ -1806,7 +1817,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->getDerivedDataUpdater( $user, null, $forUpdate, true ),
 			$this->getDBLoadBalancer(),
 			$this->getRevisionStore(),
-			$this->getSlotRoleRegistry()
+			$this->getSlotRoleRegistry(),
+			$this->getContentHandlerFactory()
 		);
 
 		$pageUpdater->setUsePageCreationLog( $wgPageCreationLog );

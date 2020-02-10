@@ -127,7 +127,12 @@ class SpecialPageFactory {
 		'Listadmins' => \SpecialListAdmins::class,
 		'Listbots' => \SpecialListBots::class,
 		'Userrights' => \UserrightsPage::class,
-		'EditWatchlist' => \SpecialEditWatchlist::class,
+		'EditWatchlist' => [
+			'class' => \SpecialEditWatchlist::class,
+			'services' => [
+				'WatchedItemStore'
+			]
+		],
 		'PasswordPolicies' => \SpecialPasswordPolicies::class,
 
 		// Recent changes and logs
@@ -313,7 +318,12 @@ class SpecialPageFactory {
 			}
 
 			if ( $this->options->get( 'ContentHandlerUseDB' ) ) {
-				$this->list['ChangeContentModel'] = \SpecialChangeContentModel::class;
+				$this->list['ChangeContentModel'] = [
+					'class' => \SpecialChangeContentModel::class,
+					'services' => [
+						'ContentHandlerFactory',
+					],
+				];
 			}
 
 			// Add extension special pages

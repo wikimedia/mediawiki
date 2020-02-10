@@ -75,7 +75,7 @@ class LanguageConverterFactory {
 	 *
 	 * @return ILanguageConverter
 	 */
-	public function getLanguageConverter( Language $language = null ) : ILanguageConverter {
+	public function getLanguageConverter( $language = null ) : ILanguageConverter {
 		$lang = $language ?? ( $this->defaultLanguage )();
 		if ( isset( $this->cache[$lang->getCode()] ) ) {
 			return $this->cache[$lang->getCode()];
