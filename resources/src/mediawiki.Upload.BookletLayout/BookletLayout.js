@@ -660,7 +660,7 @@
 	 * @param {File|null} file File to select
 	 */
 	mw.Upload.BookletLayout.prototype.setFile = function ( file ) {
-		this.selectFileWidget.setValue( file );
+		this.selectFileWidget.setValue( [ file ] );
 	};
 
 	/**
