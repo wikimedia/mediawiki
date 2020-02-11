@@ -5,8 +5,11 @@ namespace MediaWiki\Content;
 use ContentHandler;
 use FatalError;
 use Hooks;
+use InvalidArgumentException;
 use MWException;
 use MWUnknownContentModelException;
+use UnexpectedValueException;
+use Wikimedia\ObjectFactory;
 
 final class ContentHandlerFactory implements IContentHandlerFactory {
 
@@ -21,14 +24,21 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	private $handlersByModel = [];
 
 	/**
+	 * @var ObjectFactory
+	 */
+	private $objectFactory;
+
+	/**
 	 * ContentHandlerFactory constructor.
 	 *
 	 * @param string[]|callable[] $handlerSpecs ClassName for resolve or Callable resolver
+	 * @param ObjectFactory $objectFactory
 	 *
 	 * @see \$wgContentHandlers
 	 */
-	public function __construct( array $handlerSpecs ) {
+	public function __construct( array $handlerSpecs, ObjectFactory $objectFactory ) {
 		$this->handlerSpecs = $handlerSpecs;
+		$this->objectFactory = $objectFactory;
 	}
 
 	/**
@@ -77,10 +87,18 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 * @throws FatalError
 	 */
 	public function getContentModels(): array {
-		$models = array_keys( $this->handlerSpecs );
-		Hooks::run( self::HOOK_NAME_GET_CONTENT_MODELS, [ &$models ] );
+		$modelsFromHook = [];
+		Hooks::run( self::HOOK_NAME_GET_CONTENT_MODELS, [ &$modelsFromHook ] );
+		$models = array_merge( // auto-registered from config and MediaServiceWiki or manual
+			array_keys( $this->handlerSpecs ),
 
-		return $models;
+			// incorrect registered and called: without  HOOK_NAME_GET_CONTENT_MODELS
+			array_keys( $this->handlersByModel ),
+
+			// correct registered: as HOOK_NAME_GET_CONTENT_MODELS
+			$modelsFromHook );
+
+		return array_unique( $models );
 	}
 
 	/**
@@ -104,21 +122,6 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 */
 	public function isDefinedModel( string $modelID ): bool {
 		return in_array( $modelID, $this->getContentModels(), true );
-	}
-
-	/**
-	 * Register ContentHandler for ModelID
-	 *
-	 * @param string $modelID
-	 * @param ContentHandler $contentHandler
-	 */
-	private function registerForModelID( string $modelID, ContentHandler $contentHandler ): void {
-		wfDebugLog(
-			__METHOD__,
-			"Registered handler for {$modelID}: " . get_class( $contentHandler )
-			. ( !empty( $this->handlersByModel[$modelID] ) ? ' (replace old)' : null )
-		);
-		$this->handlersByModel[$modelID] = $contentHandler;
 	}
 
 	/**
@@ -162,7 +165,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 		if ( !$contentHandler instanceof ContentHandler ) {
 			throw new MWException(
 				"ContentHandler for model {$modelID} must supply a ContentHandler instance, "
-				 . get_class( $contentHandler ) . 'given.'
+				. get_class( $contentHandler ) . 'given.'
 			);
 		}
 	}
@@ -178,16 +181,28 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	private function createContentHandlerFromHandlerSpec(
 		string $modelID, $handlerSpec
 	): ContentHandler {
-		$contentHandler = null;
-
-		if ( is_string( $handlerSpec ) ) {
-			$contentHandler = new $handlerSpec( $modelID );
-		} elseif ( is_callable( $handlerSpec ) ) {
-			$contentHandler = call_user_func( $handlerSpec, $modelID );
-		} else {
-			throw new MWException( "Wrong Argument HandlerSpec for ModelID: {$modelID}." );
+		try {
+			/**
+			 * @var ContentHandler $contentHandler
+			 */
+			$contentHandler = $this->objectFactory->createObject( $handlerSpec,
+				[
+					'assertClass' => ContentHandler::class,
+					'allowCallable' => true,
+					'allowClassName' => true,
+					'extraArgs' => [ $modelID ],
+				] );
 		}
-
+		catch ( InvalidArgumentException $e ) {
+			//legacy support
+			throw new MWException( "Wrong Argument HandlerSpec for ModelID: {$modelID}. " .
+				"Error: {$e->getMessage()}" );
+		}
+		catch ( UnexpectedValueException $e ) {
+			//legacy support
+			throw new MWException( "Wrong HandlerSpec class for ModelID: {$modelID}. " .
+				"Error: {$e->getMessage()}" );
+		}
 		$this->validateContentHandler( $modelID, $contentHandler );
 
 		return $contentHandler;
