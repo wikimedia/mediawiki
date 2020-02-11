@@ -55,11 +55,13 @@ class UserTest extends MediaWikiTestCase {
 			'runtest' => true,
 			'writetest' => false,
 			'nukeworld' => false,
+			'autoconfirmed' => false,
 		];
 		$wgGroupPermissions['testwriters'] = [
 			'test' => true,
 			'writetest' => true,
 			'modifytest' => true,
+			'autoconfirmed' => true,
 		];
 
 		# Data for regular $wgRevokePermissions test
@@ -85,9 +87,10 @@ class UserTest extends MediaWikiTestCase {
 			'ipblock-exempt' => true
 		];
 
-		# For bot test
+		# For bot and ratelimit tests
 		$wgGroupPermissions['bot'] = [
-			'bot' => true
+			'bot' => true,
+			'noratelimit' => true,
 		];
 	}
 
@@ -219,6 +222,50 @@ class UserTest extends MediaWikiTestCase {
 				'modifytest'
 			],
 		];
+	}
+
+	/**
+	 * @covers User::isAllowedAny
+	 * @covers User::isAllowedAll
+	 * @covers User::isAllowed
+	 * @covers User::isNewbie
+	 */
+	public function testIsAllowed() {
+		$user = $this->getTestUser( 'unittesters' )->getUser();
+		$this->assertFalse(
+			$user->isAllowed( 'writetest' ),
+			'Basic isAllowed works with a group not granted a right'
+		);
+		$this->assertTrue(
+			$user->isAllowedAny( 'test', 'writetest' ),
+			'A user with only one of the rights can pass isAllowedAll'
+		);
+		$this->assertTrue(
+			$user->isAllowedAll( 'test', 'runtest' ),
+			'A user with multiple rights can pass isAllowedAll'
+		);
+		$this->assertFalse(
+			$user->isAllowedAll( 'test', 'runtest', 'writetest' ),
+			'A user needs all rights specified to pass isAllowedAll'
+		);
+		$this->assertTrue(
+			$user->isNewbie(),
+			'Unit testers are not autoconfirmed yet'
+		);
+
+		$user = $this->getTestUser( 'testwriters' )->getUser();
+		$this->assertTrue(
+			$user->isAllowed( 'test' ),
+			'Basic isAllowed works with a group granted a right'
+		);
+		$this->assertTrue(
+			$user->isAllowed( 'writetest' ),
+			'Testwriters pass isAllowed with `writetest`'
+		);
+		$this->assertFalse(
+			$user->isNewbie(),
+			'Test writers are autoconfirmed'
+		);
 	}
 
 	/**
@@ -544,6 +591,48 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->checkPasswordValidity( $user->getName() )->isGood() );
 		$this->assertTrue( $user->checkPasswordValidity( $user->getName() )->isOK() );
 
+		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
+			$result = 'isValidPassword returned false';
+			return false;
+		} );
+		$status = $user->checkPasswordValidity( 'Password1234' );
+		$this->assertTrue( $status->isOK() );
+		$this->assertFalse( $status->isGood() );
+		$this->assertSame( $status->getErrors()[0]['message'], 'isValidPassword returned false' );
+
+		// Unregister
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'isValidPassword' => []
+		] );
+
+		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
+			$result = true;
+			return true;
+		} );
+		$status = $user->checkPasswordValidity( 'Password1234' );
+		$this->assertTrue( $status->isOK() );
+		$this->assertTrue( $status->isGood() );
+		$this->assertArrayEquals( $status->getErrors(), [] );
+
+		// Unregister
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'isValidPassword' => []
+		] );
+
+		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
+			$result = 'isValidPassword returned true';
+			return true;
+		} );
+		$status = $user->checkPasswordValidity( 'Password1234' );
+		$this->assertTrue( $status->isOK() );
+		$this->assertFalse( $status->isGood() );
+		$this->assertSame( $status->getErrors()[0]['message'], 'isValidPassword returned true' );
+
+		// Unregister
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'isValidPassword' => []
+		] );
+
 		// On the forbidden list
 		$user = User::newFromName( 'Useruser' );
 		$this->assertFalse( $user->checkPasswordValidity( 'Passpass' )->isGood() );
@@ -690,7 +779,21 @@ class UserTest extends MediaWikiTestCase {
 		$realName = 'John Doe';
 
 		$user->setRealName( $realName );
-		$this->assertSame( $realName, $user->getRealName() );
+		$this->assertSame(
+			$realName,
+			$user->getRealName(),
+			'Real name retrieved from cache'
+		);
+
+		$id = $user->getId();
+		$user->saveSettings();
+
+		$otherUser = User::newFromId( $id );
+		$this->assertSame(
+			$realName,
+			$user->getRealName(),
+			'Real name retrieved from database'
+		);
 	}
 
 	/**
@@ -2491,6 +2594,57 @@ class UserTest extends MediaWikiTestCase {
 			'User name field is not set.'
 		);
 		$user->addToDatabase();
+	}
+
+	/**
+	 * @covers User::pingLimiter
+	 */
+	public function testPingLimiter() {
+		$user = $this->getTestUser()->getUser();
+		$this->setMwGlobals( [
+			'wgRateLimits' => [
+				'edit' => [
+					'user' => [ 3, 60 ],
+				],
+			],
+		] );
+
+		// Hook leaves $result false
+		$this->setTemporaryHook(
+			'PingLimiter',
+			function ( &$user, $action, &$result, $incrBy ) {
+				return false;
+			}
+		);
+		$this->assertFalse(
+			$user->pingLimiter(),
+			'Hooks that just return false leave $result false'
+		);
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'PingLimiter' => []
+		] );
+
+		// Hook sets $result to true
+		$this->setTemporaryHook(
+			'PingLimiter',
+			function ( &$user, $action, &$result, $incrBy ) {
+				$result = true;
+				return false;
+			}
+		);
+		$this->assertTrue(
+			$user->pingLimiter(),
+			'Hooks can set $result to true'
+		);
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'PingLimiter' => []
+		] );
+
+		// Unknown action
+		$this->assertFalse(
+			$user->pingLimiter( 'FakeActionWithNoRateLimit' ),
+			'Actions with no rate limit set do not trip the rate limiter'
+		);
 	}
 
 }
