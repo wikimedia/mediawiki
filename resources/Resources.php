@@ -115,10 +115,13 @@ return [
 
 			// (not this though)
 			[ 'name' => 'config.json', 'callback' => 'ResourceLoader::getSiteConfigSettings' ],
-			[ 'name' => 'legacy.wikibits.js', 'callback' => function () {
-				global $wgIncludeLegacyJavaScript;
-				return $wgIncludeLegacyJavaScript ? new ResourceLoaderFilePath( 'legacy.wikibits.js' ) : '';
-			} ],
+			[
+				'name' => 'legacy.wikibits.js',
+				'callback' => function ( ResourceLoaderContext $context, Config $config ) {
+					return $config->get( 'IncludeLegacyJavaScript' ) ?
+						new ResourceLoaderFilePath( 'legacy.wikibits.js' ) : '';
+				}
+			],
 		],
 		'dependencies' => 'jquery',
 		'targets' => [ 'desktop', 'mobile' ],
