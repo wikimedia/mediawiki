@@ -410,7 +410,6 @@
 	"passwordreset-email": "Емэйл адрес:",
 	"passwordreset-emailtitle": "Аккаунт и гъэпсыкIэхэр, мий щыI {{SITENAME}}",
 	"passwordreset-emailelement": "НэбгырацIэ: \n$1\n\nTemporary password: \n$2",
-	"passwordreset-emailsentemail": "Мыр регистрыгъэ емэйлэу щытмэ уи аккаунтым пае, шъэфгущыIэм и зэтедз емэйл къыпфагъэхьыщт.",
 	"changeemail": "Зэблэхъу е тегъэкI емэйл адресыр",
 	"changeemail-no-info": "Мы нэкIубгъом занкIэу укIонэу уфаемэ, системэм ухэхьэгъэн фае.",
 	"changeemail-oldemail": "Джырэ емэйл адрес:",

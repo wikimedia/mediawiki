@@ -358,7 +358,6 @@
 	"passwordreset-domain": "डोमेन:",
 	"passwordreset-email": "ईमेल नामो:",
 	"passwordreset-emailelement": "वापरप्याचें नांव: \n$1\n\nतात्पुरतें गुपीत उतर: \n$2",
-	"passwordreset-emailsentemail": "हो ईमेल पत्तो तुज्या हिशोबांत जोडलोलों आसा जाल्यार, गुपीतउतर परतून थारावपाचो ईमेल धाडलेलें जातेलें.",
 	"changeemail": "ईमेल पत्तो बदल वा काड",
 	"changeemail-oldemail": "सद्याचो ईमेल नामो:",
 	"changeemail-newemail": "नवो ईमेल नामो:",

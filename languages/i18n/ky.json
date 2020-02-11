@@ -423,7 +423,6 @@
 	"passwordreset-email": "E-mail дарек:",
 	"passwordreset-emailtitle": "{{SITENAME}} сайтындагы эсеп жазуусу жөнүндөгү маалымат",
 	"passwordreset-emailelement": "Колдонуучу аты: \n$1\n\nУбактылуу сырсөз: \n$2",
-	"passwordreset-emailsentemail": "Сырсөздү алмаштыруу эмейлге жөнөтүлдү.",
 	"changeemail": "E-mail даректи өзгөртүү",
 	"changeemail-header": "Эл. почтанын дарегин өзгөртүү",
 	"changeemail-no-info": "Бул баракка түз кайрылыш үчүн, сиз системага киришиңиз керек.",

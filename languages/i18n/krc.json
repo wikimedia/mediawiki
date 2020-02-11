@@ -466,7 +466,6 @@
 	"passwordreset-email": "Электрон почтаны адреси:",
 	"passwordreset-emailtitle": "{{SITENAME}} сайтдагъы тергеу джазыуну юсюнден билгиле",
 	"passwordreset-emailelement": "Къошулуучуну аты: \n$1\n\nБолджаллы пароль: \n$2",
-	"passwordreset-emailsentemail": "Пароль бла e-mail ийилди.",
 	"changeemail": "Электрон почтаны адресин ауушдур",
 	"changeemail-header": "Электрон почтаны адресин ауушдуруу",
 	"changeemail-no-info": "Бу бетни кёрюр ючюн сиз системагъа тергеу джазыуугъуз (аккаунтугъуз) бла кирирге керексиз.",

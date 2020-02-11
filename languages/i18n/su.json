@@ -556,8 +556,6 @@
 	"passwordreset-emailtext-ip": "Aya (sigana anjeun, ti alamat IP $1) ménta nyetél ulang kecap sandi pikeun {{SITENAME}} ($4). {{PLURAL:$3|Akun}} di handap tumali jeung alamat ieu surélék:\n\n$2\n\n{{PLURAL:$3|Ieu sandi saheulaanan}} bakal kadaluwarsa dina témpo {{PLURAL:$5|sapoé|$5 poé}}.\nAnjeun kudu asup sarta milih sandi anyar ayeuna. Lamun teu rumasa nyieun ieu paménta, atawa lamun geus inget sandi aslina sarta moal dirobah, ieu surat teu kudu diwaro.",
 	"passwordreset-emailtext-user": "Pamaké $1 di {{SITENAME}} ménta nyetél ulang sandi anjeun di {{SITENAME}} ($4). {{PLURAL:$3|Akun}} di handap tumali jeung alamat surélék ieu:\n\n$2\n\n{{PLURAL:$3|Ieu sandi saheulaanan}} bakal kadaluwarsa dina témpo {{PLURAL:$5|sapoé|$5 poé}}.\nAnjeun kudu asup sarta milih sandi anyar ayeuna. Lamun henteu rumasa nyieun ieu pamundut atawa lamun geus inget sandi asli sarta moal ngarobah deui, ieu talatah teu kudu dipaliré.",
 	"passwordreset-emailelement": "Sandiasma: \n$1\n\nSandi saheulaanan: \n$2",
-	"passwordreset-emailsentemail": "Mun ieu alamat surélék patalian jeung akun anjeun, mangka surélék pikeun nyetél ulang kecap sandi bakal dikirim.",
-	"passwordreset-emailsentusername": "Mun ieu alamat surélék patalian jeung akun anjeun, mangka surélék pikeun nyetél ulang kecap sandi bakal dikirim.",
 	"passwordreset-nocaller": "Panggero kudu dibikeun",
 	"passwordreset-nosuchcaller": "Panggero can aya: $1",
 	"passwordreset-ignored": "Pamulangan kecap sandi teu kasiwer. Sugan panyadia can diatur?",

@@ -23,7 +23,8 @@
 			"Fitoschido",
 			"Vlad5250",
 			"Michael5iLVEr",
-			"DannyS712"
+			"DannyS712",
+			"PastelKos"
 		]
 	},
 	"tog-underline": "Ὑπογραμμίζειν συνδέσμους:",
@@ -601,7 +602,7 @@
 	"searchprofile-everything-tooltip": "Πανταχοῖ (καὶ τὰς δέλτους διαλέξεως) ζητεῖν.",
 	"searchprofile-advanced-tooltip": "Ζητεῖν εἰς συνήθη ὀνοματεῖα",
 	"search-result-size": "$1 ({{PLURAL:$2|1 λέξις|$2 λέξεις}})",
-	"search-redirect": "(ἀναδιευθύνειν $1)",
+	"search-redirect": "(ἀναδιευθύνειν ἐκ $1)",
 	"search-section": "(τμῆμα $1)",
 	"search-suggest": "Συνίης: $1",
 	"search-interwiki-caption": "Ἀδελφὰ σχέδια",
@@ -853,6 +854,7 @@
 	"rcshowhidebots-show": "Δεικνύναι",
 	"rcshowhidebots-hide": "Κρύπτειν",
 	"rcshowhideliu": "$1 ἐπιγεγραμμένοι χρώμενοι",
+	"rcshowhideliu-show": "Δεικνύναι",
 	"rcshowhideliu-hide": "Κρύπτειν",
 	"rcshowhideanons": "$1 χρώμενοι ἀνώνυμοι",
 	"rcshowhideanons-show": "Δεικνύναι",
@@ -1309,7 +1311,7 @@
 	"anoncontribs": "Ἔρανoς",
 	"contribsub2": "Πρὸς $1 ($2)",
 	"nocontribs": "Οὐδεμία ἀλλαγὴ ηὑρέθη προσήκουσα εἰς τάδε τὰ κριτήρια.",
-	"uctop": "ἄκρον",
+	"uctop": "Τρέχουσα",
 	"month": "Μήν:",
 	"year": "Ἔτος:",
 	"sp-contributions-blocklog": "αἱ ἀποκλῄσεις",

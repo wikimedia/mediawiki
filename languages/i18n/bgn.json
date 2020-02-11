@@ -494,7 +494,6 @@
 	"passwordreset-email": "ایمیل ادرس:",
 	"passwordreset-emailtitle": "حسابئ مئلومات بی {{SITENAME}}",
 	"passwordreset-emailelement": "کار زوروکئ نام: \n$1\n\nموقت ئین چیهرگال: \n$2",
-	"passwordreset-emailsentemail": "یک ایمیل په چیهر گالئ  پاک بوتین  خاتیرا دیم داته بوت.",
 	"changeemail": "ایمیل ادرسئ تغیر داتین یا پاک کورتین",
 	"changeemail-no-info": "په ای تاکدیمی دسترسی ئی خاتیرا داخل بئیت.",
 	"changeemail-oldemail": "انونین ایمیل ادرس:",

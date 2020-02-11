@@ -519,7 +519,7 @@
 	"passwordreset-emailtext-ip": "Quaidun (a l'é bel fé ch'a sia chiel, da l'adrëssa IP $1) a l'ha ciamà na riampostassion ëd soa ciav për {{SITENAME}} ($4). {{PLURAL:$3|Ël cont utent sì-sota a l'é|Ij cont utent sì-sota a son}} \nassocià a st'adrëssa ëd pòsta eletrònica:\n\n$2\n\n{{PLURAL:$3|Costa ciav provisòria|Coste ciav provisòrie}} a scadran da-sì {{PLURAL:$5|un di|$5 di}}.\nA dovrìa intré ant ël sistema e serne na ciav neuva adess. Se quaidun d'àutr a l'ha fàit costa arcesta, o s'a l'é arcordasse soa ciav original, e a veul pa pi cangela, a peule ignoré ës mëssagi e continué a dovré soa veja ciav.",
 	"passwordreset-emailtext-user": "L'utent $1 ansima a {{SITENAME}} a l'ha ciamà na riampostassion ëd soa ciav për {{SITENAME}} ($4). {{PLURAL:$3|Ël cont utent sì-sota a l'é|Ij cont utent sì-sota a son}} associà a st'adrëssa ëd pòsta eletrònica:\n\n$2\n\n{{PLURAL:$3|Costa ciav provisòria|Coste ciav provisòrie}} a scadran da-sì {{PLURAL:$5|un di|$5 di}}.\nA dovrìa intré ant ël sistema e serne na ciav neuva adess. Se quaidun d'àutr a l'ha fàit costa arcesta, o s'a l'é arcordasse soa ciav original, e a veul pa pi cangela, a peul ignoré ës mëssagi e continué a dovré soa veja ciav.",
 	"passwordreset-emailelement": "Stranòm: \n$1\n\nCiav provisòria: \n$2",
-	"passwordreset-emailsentemail": "Un mëssagi ëd riampostassion ëd la ciav a l'é stàit spedì.",
+	"passwordreset-success": "La ciav ëd l'utent $1 a l'é staita cambià",
 	"changeemail": "Cangé o dëscancelé l'adrëssa ëd pòsta eletrònica",
 	"changeemail-header": "Cangé l'adrëssa ëd pòsta eletrònica dël cont.",
 	"changeemail-no-info": "A dev esse intrà ant ël sistema për andé diretament a costa pàgina.",

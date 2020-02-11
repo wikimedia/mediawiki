@@ -543,8 +543,6 @@
 	"passwordreset-email": "ߢߎߡߍߙߋ߲߫ ߞߏ߲ߘߏ ߛߊ߲߬ߓߊ߬ߕߐ߮:",
 	"passwordreset-emailtitle": "ߖߊ߬ߕߋ߬ߘߊ ߝߊߙߊ߲ߝߊ߮ߛߌ  {{SITENAME}} ߘߐ߫",
 	"passwordreset-emailelement": "ߕߐ߯ ߟߊߓߊ߯ߙߕߊ:\n$1\n\nߥߊ߯ߕߌ߫ ߟߊߕߊߡߌ߲߫ ߕߊߡߌ߲ߞߊ߲:\n $2",
-	"passwordreset-emailsentemail": "ߣߌ߫ ߢߎߡߍߙߋ߲߫ ߞߏ߲ߘߏ ߣߌ߲߭ ߛߘߌ߬ߣߍ߲߬ ߞߍ߫ ߘߴߌ ߟߊ߫ ߖߊ߬ߕߋ߬ߘߊ ߟߊ߫߸ ߕߊ߬ߡߌ߲߬ߞߊ߲߬ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ ߛߘߌߜߋ߲ ߘߌ߫ ߣߊ߬ ߟߊߥߴߊ߬ ߡߊ߬.",
-	"passwordreset-emailsentusername": "ߢߎߡߍߙߋ߲߫ ߞߏ߲ߘߏ ߘߏ߫ ߛߘߌ߬ߣߍ߲߬ ߦߋ߫ ߕߐ߯ ߟߊߓߊ߯ߙߕߊ ߣߌ߲߬ ߠߊ߫߸ ߏ߬ ߘߐ߫ ߕߊ߬ߡߌ߲߬ߞߊ߲߬ ߡߊ߬ߦߟߍ߬ߡߊ߲߬ ߛߘߌߜߋ߲ ߘߌ߫ ߣߊ߬ ߟߊߥߴߊ߬ ߡߊ߬.",
 	"passwordreset-nocaller": "ߞߟߌߟߌߟߊ ߦߋ߫ ߡߊߛߐ߫ ߟߋ߬",
 	"passwordreset-nosuchcaller": "ߞߟߌߟߌߟߊ ߕߴߦߋ߲߬ $1",
 	"passwordreset-invalidemail": "ߢߎߡߍߙߋ߲߫ ߛߊ߲߬ߓߊ߬ߕߐ߮ ߓߍ߲߬ߓߊߟߌ",

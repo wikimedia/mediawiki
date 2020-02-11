@@ -574,8 +574,6 @@
 	"passwordreset-emailtext-ip": "Somebodie (likely ye, fae IP address $1) requested ae reset o yer passwaird fer {{SITENAME}} ($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}}\nassociated wi this wab-mail address:\n\n$2\n\n{{PLURAL:$3|This temperie passwaird|Thir temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.\nYe shid log in n chuise ae new passwaird nou. Gif some ither bodie makit this request, or gif ye'v mynded yer oreeginal passwaird, n ye nae longer\nwish tae chynge it, ye can ignore this message n continue uisin yer auld passwaird.",
 	"passwordreset-emailtext-user": "Uiser $1 oan {{SITENAME}} requested ae reset o yer passwaird fer {{SITENAME}}\n($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}} associated wi this wab-mail address:\n\n$2\n\n{{PLURAL:$3|This temperie passwaird|Thir temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.\nYe shid log in n chuise ae new password nou. Gif some ither bodie haes makit this request, or gif ye'v mynded yer oreeginal passwaird, n ye nae langer wish tae chynge it, ye can ignore this message n continue uisin yer auld passwaird.",
 	"passwordreset-emailelement": "Uisername: \n$1\n\nTemperie passwaird: \n$2",
-	"passwordreset-emailsentemail": "If this email address is associatit wi yer accoont, then a tryst-wird reset email will be sent.",
-	"passwordreset-emailsentusername": "If thare is an email address associatit wi this uisername, then a tryst-wird reset email will be sent.",
 	"passwordreset-nocaller": "A crier maun be providit",
 	"passwordreset-nosuchcaller": "Crier disna exeest: $1",
 	"passwordreset-ignored": "The tryst-wird reset wis nae handled. Meybe na provider wis configurt?",

@@ -370,7 +370,6 @@
 	"passwordreset-email": "E-chenhmun:",
 	"passwordreset-emailtitle": "{{SITENAME}}-a siangchan chanchin kim",
 	"passwordreset-emailelement": "Hmangtuhming: \n$1\n\nThurûk lailâwk: \n$2",
-	"passwordreset-emailsentemail": "Hriat nawntirna e-lehkha thawn fel a ni.",
 	"changeemail": "E-chenhmun thlâk rawh",
 	"changeemail-header": "Siangchan e-chenhmun thlâk rawh",
 	"changeemail-no-info": "He phêk lut mai tùr chuan i inziahluh a ngai.",

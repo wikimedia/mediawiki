@@ -574,7 +574,7 @@
 	"passwordreset-email": "E-pasta adrese:",
 	"passwordreset-emailtitle": "Konta informācija {{SITENAME}}",
 	"passwordreset-emailelement": "Lietotājvārds: \n$1\n\nPagaidu parole: \n$2",
-	"passwordreset-emailsentemail": "Paroles atiestatīšanas e-pasts ir nosūtīts.",
+	"passwordreset-success": "Parole atiestatīta lietotājam ar ID numuru $1",
 	"passwordreset-nocaller": "Jānorāda izsaucējs",
 	"passwordreset-nosuchcaller": "Izsaucējs nepastāv: $1",
 	"passwordreset-invalidemail": "Nederīga e-pasta adrese",

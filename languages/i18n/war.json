@@ -533,7 +533,6 @@
 	"passwordreset-emailtitle": "Mga detalye han akawnt ha {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Mayda gumaramit (bangin hi ikaw, tikang han IP adres nga $1) nga naghangyo hin reset han imo tigaman-pansulod han {{SITENAME}} ($4). An nasunod nga gumaramit {{PLURAL:$3|nga akawnt|nga mga akawnt}} nahanungod hini nga email nga adres: \n\n$2\n\n{{PLURAL:$3|Iní nga temporaryo nga tigaman-pansulod|Iní nga mga temporaryo nga tigaman-pansulod}} ma-waray bali hin {{PLURAL:$5|usa ka adlaw|$5 nga mga adlaw}}.\nAngay ka sumakob ngan pumílì hin bag-o nga tigaman-pansulod ha yanâ.  Kun mayda lain nga naghatag hini nga hangyo, o kun nahinumdoman mo an imo orihinal nga tigaman-pansulod, ngan nadírì ka na pagbalyo hiní, puyde mo pasagdan ini nga sumat ngan magpadayon hin paggamit han imo daan nga tigaman-pansulod.",
 	"passwordreset-emailelement": "Agnay han gumaramit: \n$1\n\nTemporaryo nga tigaman han pagsakob: \n$2",
-	"passwordreset-emailsentemail": "Kun inin nga email address in may pagkahisumpay ha imo account, papadangaton ka hin usa nga password reset email.",
 	"changeemail": "Igliwat o igtanggal an e-mail address",
 	"changeemail-header": "Kompletoha ini nga form para masalyuan an imo email address. Kun karuyag nimo tanggalun an may pagkahisumpay han bisan ano nga email address tikang ha imo account, blankoha la an bag-o nga email address kun magsusumiti ka han form.",
 	"changeemail-no-info": "Kinahanglanon mo mag-log-in para ka direkta makasakob hini nga pakli.",

@@ -560,8 +560,6 @@
 	"passwordreset-emailtext-ip": "Algun (probable tu, de adirije IP $1) ia solisita un reinisia de tua\nclave per {{SITENAME}} ($4). La {{PLURAL:$3|conta|contas}} de usor seguente es\nasosiada con esta adirije de eposta:\n\n$2\n\nEsta {{PLURAL:$3|clave|claves}} tempora va desvalidi pos {{PLURAL:$5|un dia|$5 dias}}.\nTu debe autentici aora e eleje un clave nova. Si un otra person ia fa\nesta solisita, o si tu ia recorda tua clave orijinal e no vole\naora cambia lo, tu pote iniora esta mesaje e continua usa\ntua clave vea.",
 	"passwordreset-emailtext-user": "Usor $1 en {{SITENAME}} ia solisita un reinisia de tua\nclave per {{SITENAME}} ($4). La {{PLURAL:$3|conta|contas}} de usor seguente es\nasosiada con esta adirije de eposta:\n\n$2\n\nEsta {{PLURAL:$3|clave|claves}} tempora va desvalidi pos {{PLURAL:$5|un dia|$5 dias}}.\nTu debe autentici aora e eleje un clave nova. Si un otra person ia fa\nesta solisita, o si tu ia recorda tua clave orijinal e no vole\naora cambia lo, tu pote iniora esta mesaje e continua usa\ntua clave vea.",
 	"passwordreset-emailelement": "Nom de usor:\n$1\n\nClave tempora:\n$2",
-	"passwordreset-emailsentemail": "Si esta adirije de eposta es asosiada con tua conta, alora on va envia un eposta de reinisia de clave.",
-	"passwordreset-emailsentusername": "Si un adirije de eposta es asosiada con esta nom de usor, alora on va envia un eposta de reinisia de clave.",
 	"passwordreset-nocaller": "On nesesa furni un clamor",
 	"passwordreset-nosuchcaller": "Clamor no esiste: $1",
 	"passwordreset-ignored": "La reinisia de clave no ia susede. Cisa no furnor es definida?",

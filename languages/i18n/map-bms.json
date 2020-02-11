@@ -504,7 +504,6 @@
 	"passwordreset-email": "Alamat imel:",
 	"passwordreset-emailtitle": "Detil akun nang {{SITENAME}}",
 	"passwordreset-emailelement": "Jeneng panganggo: \n$1\n\nTembung sandhi sauntara: \n$2",
-	"passwordreset-emailsentemail": "Imel nggo nyetel maning tembung sandhi uwis dikirim.",
 	"changeemail": "Ganti alamat imel",
 	"changeemail-header": "Ganti alamat imel-e akun",
 	"changeemail-no-info": "Rika kudu mlebu log kanggo ngakses kaca kiye sacara langsung.",

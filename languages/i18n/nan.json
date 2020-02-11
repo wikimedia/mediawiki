@@ -479,7 +479,6 @@
 	"passwordreset-username": "Lí ê iōng-chiá miâ-chheng:",
 	"passwordreset-email": "Tiān-chú-phoe tē-chí:",
 	"passwordreset-emailelement": "Iōng-chiá: \n$1\n\nLîm-sî ê bi̍t-bé: \n$2",
-	"passwordreset-emailsentemail": "Têng siat bi̍t-bé ê tiān-chú-phoe í-keng kià chhut-khì ah.",
 	"changeemail": "Kái tiān-chú-phoe ê tē-chí",
 	"changeemail-oldemail": "Chit-má ê E-mail tē-chí:",
 	"changeemail-newemail": "Sin E-mail ê chū-chí:",

@@ -368,6 +368,7 @@
 	"resetpass-temp-password": "Fjalëkalimi i përkohshëm:",
 	"passwordreset": "reset Fjalëkalimi",
 	"passwordreset-username": "Emri i përdoruesit:",
+	"passwordreset-success": "Fjalëkalimi ka qenë për të rivendosur ID i perdoruesit: $1",
 	"summary": "Përmbledhje:",
 	"subject": "Tema/kryetitulli:",
 	"minoredit": "Ky asht redaktim i vogël",
