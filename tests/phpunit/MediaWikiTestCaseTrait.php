@@ -1,5 +1,8 @@
 <?php
 
+use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\MockObject\MockObject;
+
 /**
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
  */
@@ -11,7 +14,7 @@ trait MediaWikiTestCaseTrait {
 	 * which will throw if any unexpected method is called.
 	 *
 	 * @param mixed ...$values Values that are not matched
-	 * @return PHPUnit_Framework_Constraint
+	 * @return Constraint
 	 */
 	protected function anythingBut( ...$values ) {
 		return $this->logicalNot( $this->logicalOr(
@@ -23,7 +26,7 @@ trait MediaWikiTestCaseTrait {
 	 * Return a PHPUnit mock that is expected to never have any methods called on it.
 	 *
 	 * @param string $type
-	 * @return object
+	 * @return object|MockObject
 	 */
 	protected function createNoOpMock( $type ) {
 		$mock = $this->createMock( $type );
