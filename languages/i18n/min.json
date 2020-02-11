@@ -583,8 +583,6 @@
 	"passwordreset-emailtext-ip": "Sasaurang (mungkin Sanak, dari alamaik IP $1) mamintak parubahan kato sandi untuak {{SITENAME}} ($4). {{PLURAL:$3|Akun}} barikuik takaik jo alamaik surel ko:\n\n$2\n\n{{PLURAL:$3|Sandi samantaro}} barikuik akan habih masonyo dalam {{PLURAL:$5|$5 ari}}.\nSanak harus masuak dan mamiliah sandi baru. Jikok urang lain mambuek pamintaan ko atau jikok Sanak ingek sandi awal dan indak nio maubahnyo, Sanak dapek mangacuahkan pasan ko dan taruih manggunoan kato sandi lamo.",
 	"passwordreset-emailtext-user": "Sasaurang (mungkin Sanak, dari alamaik IP $1) mamintak parubahan kato sandi untuak {{SITENAME}} ($4).\n{{PLURAL:$3|Akun}} barikuik takaik jo alamaik surel ko:\n\n$2\n\n{{PLURAL:$3|Sandi samantaro}} barikuik akan habih masonyo dalam {{PLURAL:$5|$5 ari}}.\nSanak harus masuak dan mamiliah sandi baru. Jikok urang lain mambuek pamintaan ko atau jikok Sanak ingek sandi awal dan indak nio maubahnyo, Sanak dapek mangacuahkan pasan ko dan taruih manggunoan kato sandi lamo.",
 	"passwordreset-emailelement": "Namo pangguno: \n$1\n\nSandi samantaro: \n$2",
-	"passwordreset-emailsentemail": "Jiko alamaik surel ko bahubuangan jo akun Sanak, surel parubahan kato sandi akan dikirim.",
-	"passwordreset-emailsentusername": "Jiko ado alamaik surel nan bahubuangan jo namo pangguno ko, surel untuak mangatua ulang kato sandi akan dikirim.",
 	"passwordreset-nocaller": "Paimbau musti disadiokan",
 	"passwordreset-nosuchcaller": "Paimbau indak ado: $1",
 	"passwordreset-ignored": "Pamuliahan kato sandi indak tatangani. Mungkin panyadio indak diatua?",

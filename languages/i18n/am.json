@@ -15,7 +15,8 @@
 			"Yeniesil",
 			"Fitoschido",
 			"Andemta",
-			"DannyS712"
+			"DannyS712",
+			"Joanmp17"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -244,6 +245,7 @@
 	"nstab-template": "መለጠፊያ",
 	"nstab-help": "የመመሪያ ገጽ",
 	"nstab-category": "ምድብ",
+	"mainpage-nstab": "ዋና ገጽ",
 	"nosuchaction": "የማይሆን ተግባር",
 	"nosuchactiontext": "በURL የተወሰነው ተግባር በዚህ ዊኪ አይታወቀም።",
 	"nosuchspecialpage": "እንዲህ የተባለ ልዩ ገጽ የለም",
@@ -390,7 +392,6 @@
 	"passwordreset-username": "የብዕር ስም:",
 	"passwordreset-email": "የኢ-ሜል አድራሻ:",
 	"passwordreset-emailelement": "የአባል ስም፦ \n$1\n\nጊዜያዊ መግቢያ ቃል፦ \n$2",
-	"passwordreset-emailsentemail": "የማስታወሻ ኢ-ሜል ተልኳል።",
 	"changeemail": "ኢ-ሜል አድራሻዎን ለመቀይር",
 	"changeemail-header": "የአባልነትዎን ኢ-ሜል አድራሻ ለመቀይር",
 	"changeemail-no-info": "ይህንን ገጽ በቀጥታ ለማግኘት አስቀድሞ መግባት ያስፈልጋል።",

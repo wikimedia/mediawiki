@@ -445,7 +445,6 @@
 	"passwordreset-email": "Indirìs e-mail:",
 	"passwordreset-emailtitle": "Detài de l'ütènsa sö {{SITENAME}}",
 	"passwordreset-emailelement": "Nòm ütènt: \n$1\n\nPassword temporànea: \n$2",
-	"passwordreset-emailsentemail": "Gh'è stat mandàt vià 'na e-mail de redefinisiù de la password.",
 	"changeemail": "Càmbia l'indirìs e-mail",
 	"changeemail-header": "Càmbia l'indirìs e-mail de l'ütènsa",
 	"changeemail-none": "(nisü)",

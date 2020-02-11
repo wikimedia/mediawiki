@@ -471,7 +471,6 @@
 	"passwordreset-username": "用戶名：",
 	"passwordreset-domain": "域名：",
 	"passwordreset-email": "電批地址：",
-	"passwordreset-emailsentemail": "如果茲萆电子郵件地址共汝其賬號有關聯，噲密碼重設电子郵件會發過去。",
 	"changeemail": "修改或者刪除電子郵件地址",
 	"changeemail-header": "Chiāng dèng lâ ciā dăng-dăng, siŭ-gāi nṳ̄ gì diêng-cṳ̄ iù-giông dê-cī, ṳ̀-guō nṳ̄ buóh siōng dṳ̀-lâi sū-iū ô liêng-ciék gáu nṳ̄ dióng-hô̤ gì diêng-cṳ̄ iù-giông dê-cī, cêu ng-sāi dèng sĭng diêng-cṳ̄ iù-giông dê-cī gì kĕ̤ng.",
 	"changeemail-oldemail": "現刻時其電批地址：",

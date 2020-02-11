@@ -562,8 +562,6 @@
 	"passwordreset-emailtext-ip": "Hoker mä det IP-Adres $1, woorskiinelk dü salew, wul hal brükerinformatsjuunen för {{SITENAME}} tusjüürd fu ($4). {{PLURAL:$3|Detdiar brükerkonto as|Jodiar brükerkontos san}} mä detdiar E-Mail-adres ferbünjen:\n\n$2\n\n{{PLURAL:$3|Detheer tidjwiis paaswurd lääpt|Joheer tidjwiis paaswurden luup}} efter {{PLURAL:$5|ään dai|$5 daar}} uf. \nDü skulst di uunmelde an en nei paaswurd iinracht. Wan hoker ööders detheer uunfraag steld hää an dü din ual paaswurd käänst, do säärst dü niks widjer onernem. Melde di ianfach widjerhen mä din ual paaswurd uun.",
 	"passwordreset-emailtext-user": "Di brüker $1 üüb {{SITENAME}} hää am brükerinformatsjuunen för {{SITENAME}} uunfraaget ($4). {{PLURAL:$3|Detdiar brükerkonto as|Jodiar brükerkontos san}} mä detdiar E-Mail-Adres ferbünjen:\n\n$2\n\n{{PLURAL:$3|Detheer tidjwiis paaswurd lääpt|Joheer tidjwiis paaswurden luup}} efter {{PLURAL:$5|ään dai|$5 daar}} uf. Dü skulst di uunmelde an en nei paaswurd iinracht. Wan hoker ööders detheer uunfraag steld hää of dü din ual paaswurd käänst, säärst dü niks widjer onernem. Melde di ianfach mä din ual paaswurd uun.",
 	"passwordreset-emailelement": "Brükernööm: \n$1\n\nTidjwiis paaswurd: \n$2",
-	"passwordreset-emailsentemail": "Diar as en E-Mail tu di onerwais, wan dü en adres uunden heest.",
-	"passwordreset-emailsentusername": "Wan diar en E-Mail-adres mä didiar brükernööm ferbünjen as, woort en E-Mail mä en nei paaswurd ferschüürd.",
 	"passwordreset-nocaller": "Diar skal en reper uunden wurd.",
 	"passwordreset-nosuchcaller": "Son reper jaft at ei: $1",
 	"passwordreset-ignored": "Det turagsaaten faan't paaswurd küd ei ferwerket wurd. Ferlicht as diar nään provider iinracht wurden?",

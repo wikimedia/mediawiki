@@ -425,7 +425,6 @@
 	"passwordreset-email": "Porikatan surat-i:",
 	"passwordreset-emailtitle": "Kointalangan takaun id {{SITENAME}}",
 	"passwordreset-emailelement": "Ngaranmoguno: \n$1\n\nKaatalib daamot: \n$2",
-	"passwordreset-emailsentemail": "Surat-i pononsorou nakaatod noh.",
 	"changeemail": "Alanai porikatan surat-i",
 	"changeemail-header": "Alanai akaun porikatan surat-i",
 	"changeemail-no-info": "Mositi sumuang log ko do mongoguno monilombus id bolikon diti.",

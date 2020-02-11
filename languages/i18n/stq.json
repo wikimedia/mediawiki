@@ -381,7 +381,7 @@
 	"passwordreset-email": "E-Mail-Adresse:",
 	"passwordreset-emailtitle": "Benutserkontoinformatione ap {{SITENAME}}",
 	"passwordreset-emailelement": "↓Benutsernoome: \n$1\n\nTemporär Paaswoud: \n$2",
-	"passwordreset-emailsentemail": "↓Ne Ärinnerenge wuud uur E-Mail fersoand.",
+	"passwordreset-success": "Paaswoud foar Benutser-ID $1 wuude touräächsät",
 	"summary": "Touhoopefoatenge:",
 	"subject": "Themoa:",
 	"minoredit": "Bloot litje Seeken wuuden ferannerd",

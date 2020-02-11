@@ -122,7 +122,6 @@
 	"user-mail-no-addy": "Versuchte, ein E-Mail ohne Angabe einer E-Mail-Adresse zu versenden",
 	"user-mail-no-body": "Es wurde versucht, ein E-Mail mit einem leeren oder zu kurzen Textkörper zu versenden.",
 	"resetpass_announce": "Um die Anmeldung abzuschliessen, musst du ein neues Passwort festlegen.",
-	"passwordreset-emailsentemail": "Ein Passwortzurücksetzungs-E-Mail wurde versandt.",
 	"missingsummary": "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf «$1» klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
 	"missingcommentheader": "'''Achtung:''' Du hast kein Betreff/Überschrift eingegeben. Wenn du erneut auf «$1» klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
 	"blockedtext": "'''Dein Benutzername oder deine IP-Adresse wurde gesperrt.'''\n\nDie Sperrung wurde von $1 durchgeführt.\nAls Grund wurde ''$2'' angegeben.\n\n* Beginn der Sperre: $8\n* Ende der Sperre: $6\n* Sperre betrifft: $7\n\nDu kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.\nDu kannst die «E-Mail an diesen Benutzer»-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist oder diese Funktion für dich gesperrt wurde.\nDeine aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.\nBitte füge alle Informationen jeder Anfrage hinzu, die du stellst.",

@@ -540,8 +540,6 @@
 	"passwordreset-email": "Էլ-փոստի հասցեն՝",
 	"passwordreset-emailtitle": "{{SITENAME}} հաշվի մանրամասները",
 	"passwordreset-emailelement": "Մասնակցային անունը՝ \n$1\n\nԺամանակավոր գաղտնաբառը՝ \n$2",
-	"passwordreset-emailsentemail": "Եթե այս էլ․ հասցեին կցված մասնակցային հաշիվ կա, ձեզ ուղարկվել է գաղտնաբառը վերականգնելու հաղորդագրություն։",
-	"passwordreset-emailsentusername": "Եթե այս մասնակցային անունին կցված է էլ․ հասցե, ձեզ ուղարկվել է գաղտնաբառը վերականգելու հաղորդագրություն։",
 	"passwordreset-invalidemail": "Անվավեր էլ․ հասցե",
 	"passwordreset-nodata": "Մասնակցային անուն կամ էլ․ հասցե նշված չէ",
 	"changeemail": "Փոխել կամ հեռացնել էլ. հասցեն",

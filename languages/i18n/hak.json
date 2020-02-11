@@ -460,7 +460,6 @@
 	"passwordreset-domain": "Vet-miàng:",
 	"passwordreset-email": "Thien-yù thi-chí:",
 	"passwordreset-emailtitle": "在{{SITENAME}}上嘅詳細信息",
-	"passwordreset-emailsentemail": "密碼重置電子郵件已發送。",
 	"changeemail": "更改電子郵件地址",
 	"changeemail-header": "更改電子郵件帳戶",
 	"changeemail-no-info": "汝必須登入後直接進入邇隻頁面。",

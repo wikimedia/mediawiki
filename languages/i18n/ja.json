@@ -101,7 +101,8 @@
 			"Yuukin0248",
 			"Reiwa period",
 			"沈澄心",
-			"ProxyMon"
+			"ProxyMon",
+			"Rootflag"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -672,8 +673,7 @@
 	"passwordreset-emailtext-ip": "誰か (おそらくあなた、IP アドレス $1) が {{SITENAME}} ($4)\nでのパスワードを再設定するよう申請しました。\n以下の利用者{{PLURAL:$3|アカウント|アカウント群}}がこのメールアドレスと紐付けられています。\n\n$2\n\n{{PLURAL:$3|この仮パスワード|これらの仮パスワード}}は {{PLURAL:$5|$5 日|$5 日間}}で有効期限が切れます。\nあなたはすぐにログインして新しいパスワードを設定する必要があります。\nこれが他の誰かによる申請である場合、あるいはあなたが自分の元のパスワードを\n覚えていてそれを変更したくない場合には、このメッセージを無視して以前のパスワードを\n使用し続けることができます。",
 	"passwordreset-emailtext-user": "{{SITENAME}} の利用者 $1 があなたの {{SITENAME}} ($4)\nでのパスワードを再設定するよう申請しました。\n以下の利用者{{PLURAL:$3|アカウント|アカウント群}}がこのメールアドレスと紐付けられています。\n\n$2\n\n{{PLURAL:$3|この仮パスワード|これらの仮パスワード}}は{{PLURAL:$5|$5日}}で有効期限が切れます。\nあなたは、すぐにログインして新しいパスワードを設定する必要があります。\nこの申請が他の誰かによるものの場合、あるいはあなたが自分の元のパスワードを\n覚えていて、変更したくない場合は、このメッセージを無視して\n以前のパスワードを使い続けることができます。",
 	"passwordreset-emailelement": "利用者名: \n$1\n\n仮パスワード: \n$2",
-	"passwordreset-emailsentemail": "このメールアドレスがあなたのアカウントに関連付けられている場合は、パスワードリセットのメールが送信されます。",
-	"passwordreset-emailsentusername": "この利用者名に関連付けられたメールアドレスがある場合は、パスワードリセットのメールが送信されます。",
+	"passwordreset-success": "利用者ID $1 のパスワードを再設定しました。",
 	"passwordreset-nocaller": "送信者の情報を提供する必要があります",
 	"passwordreset-nosuchcaller": "送信者が存在しません: $1",
 	"passwordreset-ignored": "パスワードのリセットが処理されませんでした。プロバイダーが設定されていない可能性があります。",
@@ -4090,5 +4090,6 @@
 	"deflate-invaliddeflate": "提供されたコンテンツが適切に圧縮されていません",
 	"unprotected-js": "セキュリティ上の理由から、JavaScriptは保護されていないページからは読み込みできません。MediaWiki: 名前空間内、利用者下位ページのいずれかでのみjavascriptを作成してください。",
 	"userlogout-continue": "ログアウトしますか？",
-	"paramvalidator-help-type-user-subtype-name": "利用者名"
+	"paramvalidator-help-type-user-subtype-name": "利用者名",
+	"paramvalidator-help-type-user-subtype-ip": "IP"
 }

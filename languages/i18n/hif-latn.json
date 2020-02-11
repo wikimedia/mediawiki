@@ -565,8 +565,6 @@
 	"passwordreset-emailtext-ip": "Koi (hoe sake aap, IP address $1 se) {{SITENAME}} ($4) pe aap ke account ke baare me jaankari maanga hae. Niche likha gias sadasya ii e-mail se associated hae.  {{PLURAL:$3|account hae|accounts hae}}\n\n$2\n\n{{PLURAL:$3|Ii temporary password|Ii sab temporary passwords}}  {{PLURAL:$5|ek din|$5 din}} me khalaas hoi.\nAap ke chaahi ki aap login kar ke ek nawaa password banao.  Agar aur koi ii request karis hae, nai to agae aap aapan purana paasword ke yaad kar liya hae, tab ii sandes ke baare me bhuul jaao aur purana password use karte raho.",
 	"passwordreset-emailtext-user": "\nSadasya $1 {{SITENAME}} pe aap ke account details ke {{SITENAME}} $4 ke khaatir  reminder maagis hae\n NIche ke sadasya {{PLURAL:$3|account hae|accounts hae}} ii e-mail address: $2 se associatied hae\n\n{{PLURAL:$3|Ii temporary password|Ii sab temporary passwords}}  {{PLURAL:$5|ek din|$5 din}} me khalaas hoi.\nAap ke chaahi ki aap login kar ke ek nawaa password banao.  Agar aur koi ii request karis hae, nai to agae aap aapan purana paasword ke yaad kar liya hae, tab ii sandes ke baare me bhuul jaao aur purana password use karte raho.",
 	"passwordreset-emailelement": "Sadasya ke naam: \n$1\n\nKuchh din ke khatir password: \n$2",
-	"passwordreset-emailsentemail": "Agar ii email aap ke account se associated hai tab ek password reset email ke bheja jaai.",
-	"passwordreset-emailsentusername": "Agar ii email aap ke username se associated hai tab ek password reset email ke bheja jaai.",
 	"passwordreset-nocaller": "A caller must be provided",
 	"passwordreset-nosuchcaller": "Caller exist nai hoe hai: $1",
 	"passwordreset-ignored": "Password reset ke hadle nai karaa gais hai. Saait koi provider ke nai configure karaa gais hoi?",
