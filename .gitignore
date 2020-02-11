@@ -67,9 +67,6 @@ phpunit.xml
 /composer.local.json
 /composer.phar
 
-# MediaWiki UI documentation
-/docs/kss/static
-
 # Operating systems
 ## Mac OS X
 .DS_Store
