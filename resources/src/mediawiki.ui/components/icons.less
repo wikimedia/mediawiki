@@ -13,7 +13,6 @@
 // Icons
 //
 // To use icons you must be using a browser that supports pseudo elements.
-// This includes support for IE 8.
 // https://caniuse.com/#feat=css-gencontent
 //
 // For elements that are intended to have both an icon and text, browsers that
@@ -21,8 +20,6 @@
 //
 // However, icon-only elements do not yet degrade to text-only elements in these
 // browsers.
-//
-// Styleguide 6.
 
 .mw-ui-icon {
 	position: relative;
@@ -41,8 +38,6 @@
 	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok">OK</div><br>
 	// <div class="mw-ui-icon mw-ui-icon-element mw-ui-icon-ok mw-ui-button mw-ui-progressive">OK</div><br>
 	// <button class="mw-ui-icon mw-ui-icon-ok mw-ui-icon-element mw-ui-button mw-ui-quiet" title="">Close</button>
-	//
-	// Styleguide 6.1.1.
 	&.mw-ui-icon-element {
 		@marginIcon: 2 * @iconGutterWidth;
 		@width: @iconSize + @marginIcon;
@@ -89,8 +84,6 @@
 	// Markup:
 	// <div class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ok">OK</div>
 	// <div class="mw-ui-icon mw-ui-icon-before mw-ui-icon-ok mw-ui-progressive mw-ui-button">OK</div>
-	//
-	// Styleguide 6.1.2
 	&.mw-ui-icon-before {
 		&:before {
 			position: relative;
@@ -103,8 +96,6 @@
 	//
 	// Markup:
 	// <div class="mw-ui-icon mw-ui-icon-small mw-ui-icon-help"></div>
-	//
-	// Styleguide 6.1.3
 	&.mw-ui-icon-small:before {
 		background-size: 66.67% auto; // 66.67% of 24px equals 16px
 	}
