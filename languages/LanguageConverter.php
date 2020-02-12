@@ -21,6 +21,7 @@
  * @author shinjiman <shinjiman@gmail.com>
  * @author PhiLiP <philip.npc@gmail.com>
  */
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -613,21 +614,22 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * Auto convert a Title object to a readable string in the
+	 * Auto convert a LinkTarget object to a readable string in the
 	 * preferred variant.
 	 *
-	 * @param Title $title A object of Title
+	 * @param LinkTarget $linkTarget
 	 * @return string Converted title text
 	 */
-	public function convertTitle( $title ) {
+	public function convertTitle( LinkTarget $linkTarget ) {
 		$variant = $this->getPreferredVariant();
-		$index = $title->getNamespace();
+		$index = $linkTarget->getNamespace();
 		if ( $index !== NS_MAIN ) {
 			$text = $this->convertNamespace( $index, $variant ) . ':';
 		} else {
 			$text = '';
 		}
-		$text .= $this->translate( $title->getText(), $variant );
+		$text .= $this->translate( $linkTarget->getText(), $variant );
+
 		return $text;
 	}
 
@@ -671,7 +673,9 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 		if ( $nsVariantText === false ) {
 			// No message exists, retrieve it from the target variant's namespace names.
-			$mLangObj = $this->mLangObj->factory( $variant ); // TODO: create from services
+			$mLangObj = MediaWikiServices::getInstance()
+				->getLanguageFactory()
+				->getLanguage( $variant );
 			$nsVariantText = $mLangObj->getFormattedNsText( $index );
 		}
 
@@ -1176,12 +1180,11 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * Refresh the cache of conversion tables when
 	 * MediaWiki:Conversiontable* is updated.
 	 *
-	 * @param Title $titleobj The Title of the page being updated
+	 * @param LinkTarget $linkTarget The LinkTarget of the page being updated
 	 */
-	public function updateConversionTable( Title $titleobj ) {
-		if ( $titleobj->getNamespace() == NS_MEDIAWIKI ) {
-			$title = $titleobj->getDBkey();
-			$t = explode( '/', $title, 3 );
+	public function updateConversionTable( LinkTarget $linkTarget ) {
+		if ( $linkTarget->getNamespace() == NS_MEDIAWIKI ) {
+			$t = explode( '/', $linkTarget->getDBkey(), 3 );
 			$c = count( $t );
 			if ( $c > 1 && $t[0] == 'Conversiontable' ) {
 				if ( $this->validateVariant( $t[1] ) ) {

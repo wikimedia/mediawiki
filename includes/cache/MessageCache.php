@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
@@ -1376,20 +1377,20 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * Purge message caches when a MediaWiki: page is created, updated, or deleted
 	 *
-	 * @param Title $title Message page title
+	 * @param LinkTarget $linkTarget Message page title
 	 * @param Content|null $content New content for edit/create, null on deletion
 	 * @since 1.29
 	 */
-	public function updateMessageOverride( Title $title, Content $content = null ) {
+	public function updateMessageOverride( LinkTarget $linkTarget, Content $content = null ) {
 		$msgText = $this->getMessageTextFromContent( $content );
 		if ( $msgText === null ) {
 			$msgText = false; // treat as not existing
 		}
 
-		$this->replace( $title->getDBkey(), $msgText );
+		$this->replace( $linkTarget->getDBkey(), $msgText );
 
 		if ( $this->contLangConverter->hasVariants() ) {
-			$this->contLangConverter->updateConversionTable( $title );
+			$this->contLangConverter->updateConversionTable( $linkTarget );
 		}
 	}
 

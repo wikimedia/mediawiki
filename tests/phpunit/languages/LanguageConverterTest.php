@@ -1,17 +1,20 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
+
 /**
  * @group Language
  */
 class LanguageConverterTest extends MediaWikiLangTestCase {
+
 	/** @var Language */
 	protected $lang;
-	/** @var TestConverter */
+
+	/** @var DummyConverter */
 	protected $lc;
 
 	protected function setUp() : void {
 		parent::setUp();
-
 		$this->setContentLang( 'tg' );
 
 		$this->setMwGlobals( [
@@ -27,7 +30,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		} ) );
 		$this->lang->expects( $this->never() )
 			->method( $this->anythingBut( 'factory', 'getNsText', 'ucfirst' ) );
-		$this->lc = new TestConverter(
+		$this->lc = new DummyConverter(
 			$this->lang, 'tg',
 			# Adding 'sgs' as a variant to ensure we handle deprecated codes
 			# adding 'simple' as a variant to ensure we handle non BCP 47 codes
@@ -320,24 +323,41 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 			"в converted to v despite being in attribue"
 		);
 	}
-}
 
-/**
- * Test converter (from Tajiki to latin orthography)
- */
-class TestConverter extends LanguageConverter {
-	private $table = [
-		'б' => 'b',
-		'в' => 'v',
-		'г' => 'g',
-	];
+	/**
+	 * @dataProvider provideTitlesToConvert
+	 * @covers       LanguageConverter::convertTitle
+	 *
+	 * @param LinkTarget $linkTarget LinkTarget to convert
+	 * @param string $expected
+	 */
+	public function testConvertTitle( LinkTarget $linkTarget, string $expected ) : void {
+		$actual = $this->lc->convertTitle( $linkTarget );
+		$this->assertSame( $expected, $actual );
+	}
 
-	public function loadDefaultTables() {
-		$this->mTables = [
-			'sgs' => new ReplacementArray(),
-			'simple' => new ReplacementArray(),
-			'tg-latn' => new ReplacementArray( $this->table ),
-			'tg' => new ReplacementArray()
+	public function provideTitlesToConvert() : array {
+		return [
+			'Title FromText default' => [
+				Title::newFromText( 'Dummy_title' ),
+				'Dummy title',
+			],
+			'Title FromText with NS' => [
+				Title::newFromText( 'Dummy_title', NS_FILE ),
+				'Акс:Dummy title',
+			],
+			'Title MainPage default' => [
+				Title::newMainPage(),
+				'Main Page',
+			],
+			'Title MainPage with MessageLocalizer' => [
+				Title::newMainPage( new MockMessageLocalizer() ),
+				'Main Page',
+			],
+			'TitleValue' => [
+				new TitleValue( NS_FILE, 'Dummy page' ),
+				'Акс:Dummy page',
+			],
 		];
 	}
 }
