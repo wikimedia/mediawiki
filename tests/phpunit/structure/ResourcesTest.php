@@ -185,8 +185,6 @@ class ResourcesTest extends MediaWikiTestCase {
 
 			$styleFiles = $getStyleFiles->invoke( $module, $data['context'] );
 
-			$flip = $module->getFlip( $data['context'] );
-
 			foreach ( $styleFiles as $media => $files ) {
 				if ( $media && $media !== 'all' ) {
 					foreach ( $files as $file ) {
@@ -199,7 +197,6 @@ class ResourcesTest extends MediaWikiTestCase {
 								'cssText' => $readStyleFile->invoke(
 									$module,
 									$file,
-									$flip,
 									$data['context']
 								)
 							],
@@ -283,7 +280,6 @@ class ResourcesTest extends MediaWikiTestCase {
 			// To populate missingLocalFileRefs. Not sure how sane this is inside this test...
 			$moduleProxy->readStyleFiles(
 				$module->getStyleFiles( $data['context'] ),
-				$module->getFlip( $data['context'] ),
 				$data['context']
 			);
 

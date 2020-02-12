@@ -434,7 +434,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		$styles = $this->readStyleFiles(
 			$this->getStyleFiles( $context ),
-			$this->getFlip( $context ),
 			$context
 		);
 		// Collect referenced files
@@ -586,8 +585,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$files = array_merge( $files, $this->getFileDependencies( $context ) );
 
 		// Filter out any duplicates. Typically introduced by getFileDependencies() which
-		// may lazily re-discover a master file, and compileLessFile(), which always
-		// includes the entry point LESS file that we already have as a master file.
+		// may lazily re-discover a master file.
 		$files = array_unique( $files );
 
 		// Don't return array keys or any other form of file path here, only the hashes.
@@ -916,13 +914,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @internal This is considered a private method. Exposed for internal use by WebInstallerOutput.
 	 * @param array $styles Map of media type to file paths to read, remap, and concatenate
-	 * @param bool $flip
 	 * @param ResourceLoaderContext $context
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
 	 * @throws MWException
 	 */
-	public function readStyleFiles( array $styles, $flip, ResourceLoaderContext $context ) {
+	public function readStyleFiles( array $styles, ResourceLoaderContext $context ) {
 		if ( !$styles ) {
 			return [];
 		}
@@ -930,7 +927,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$uniqueFiles = array_unique( $files, SORT_REGULAR );
 			$styleFiles = [];
 			foreach ( $uniqueFiles as $file ) {
-				$styleFiles[] = $this->readStyleFile( $file, $flip, $context );
+				$styleFiles[] = $this->readStyleFile( $file, $context );
 			}
 			$styles[$media] = implode( "\n", $styleFiles );
 		}
@@ -938,34 +935,61 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Reads a style file.
+	 * Read and process a style file. Reads a file from disk and runs it through processStyle().
 	 *
 	 * This method can be used as a callback for array_map()
 	 *
+	 * @internal
 	 * @param string $path File path of style file to read
-	 * @param bool $flip
 	 * @param ResourceLoaderContext $context
-	 *
 	 * @return string CSS data in script file
 	 * @throws RuntimeException If the file doesn't exist
 	 */
-	protected function readStyleFile( $path, $flip, ResourceLoaderContext $context ) {
+	protected function readStyleFile( $path, ResourceLoaderContext $context ) {
 		$localPath = $this->getLocalPath( $path );
-		$remotePath = $this->getRemotePath( $path );
 		if ( !file_exists( $localPath ) ) {
 			throw new RuntimeException( "Style file not found: '{$localPath}'" );
 		}
 
-		if ( $this->getStyleSheetLang( $localPath ) === 'less' ) {
-			$style = $this->compileLessFile( $localPath, $context );
+		$style = $this->stripBom( file_get_contents( $localPath ) );
+		$styleLang = $this->getStyleSheetLang( $localPath );
+
+		return $this->processStyle( $style, $styleLang, $path, $context );
+	}
+
+	/**
+	 * Process a CSS/LESS string.
+	 *
+	 * This method performs the following processing steps:
+	 * - LESS compilation (if $styleLang = 'less')
+	 * - RTL flipping with CSSJanus (if getFlip() returns true)
+	 * - Registration of references to local files in $localFileRefs and $missingLocalFileRefs
+	 * - URL remapping and data URI embedding
+	 *
+	 * @internal
+	 * @param string $style CSS/LESS string
+	 * @param string $styleLang Language of $style ('css' or 'less')
+	 * @param string $path File path where the CSS/LESS lives, used for resolving relative file paths
+	 * @param ResourceLoaderContext $context
+	 * @return string Processed CSS
+	 */
+	protected function processStyle( $style, $styleLang, $path, ResourceLoaderContext $context ) {
+		$localPath = $this->getLocalPath( $path );
+		$remotePath = $this->getRemotePath( $path );
+
+		if ( $styleLang === 'less' ) {
+			$style = $this->compileLessString( $style, $localPath, $context );
 			$this->hasGeneratedStyles = true;
-		} else {
-			$style = $this->stripBom( file_get_contents( $localPath ) );
 		}
 
-		if ( $flip ) {
-			$style = CSSJanus::transform( $style, true, false );
+		if ( $this->getFlip( $context ) ) {
+			$style = CSSJanus::transform(
+				$style,
+				/* $swapLtrRtlInURL = */ true,
+				/* $swapLeftRightInURL = */ false
+			);
 		}
+
 		$localDir = dirname( $localPath );
 		$remoteDir = dirname( $remotePath );
 		// Get and register local file references
@@ -1023,18 +1047,31 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Compile a LESS file into CSS.
+	 * @deprecated since 1.35 Use compileLessString() instead
+	 * @param string $fileName
+	 * @param ResourceLoaderContext $context
+	 * @return string
+	 * @codeCoverageIgnore
+	 */
+	protected function compileLessFile( $fileName, ResourceLoaderContext $context ) {
+		wfDeprecated( __METHOD__, '1.35' );
+		$style = $this->stripBom( file_get_contents( $fileName ) );
+		return $this->compileLessString( $style, $fileName, $context );
+	}
+
+	/**
+	 * Compile a LESS string into CSS.
 	 *
 	 * Keeps track of all used files and adds them to localFileRefs.
 	 *
-	 * @since 1.22
-	 * @since 1.27 Added $context parameter.
+	 * @since 1.35
 	 * @throws Exception If less.php encounters a parse error
-	 * @param string $fileName File path of LESS source
+	 * @param string $style LESS source to compile
+	 * @param string $fileName File path of LESS source, used for resolving relative file paths
 	 * @param ResourceLoaderContext $context Context in which to generate script
 	 * @return string CSS source
 	 */
-	protected function compileLessFile( $fileName, ResourceLoaderContext $context ) {
+	protected function compileLessString( $style, $fileName, ResourceLoaderContext $context ) {
 		static $cache;
 
 		if ( !$cache ) {
@@ -1042,11 +1079,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		$vars = $this->getLessVars( $context );
-		// Construct a cache key from the LESS file name, and a hash digest
+		// Construct a cache key from a hash of the LESS source, and a hash digest
 		// of the LESS variables used for compilation.
 		ksort( $vars );
 		$varsHash = hash( 'md4', serialize( $vars ) );
-		$cacheKey = $cache->makeGlobalKey( 'LESS', $fileName, $varsHash );
+		$styleHash = hash( 'md4', $style );
+		$cacheKey = $cache->makeGlobalKey( 'resourceloader-less', $styleHash, $varsHash );
 		$cachedCompile = $cache->get( $cacheKey );
 
 		// If we got a cached value, we have to validate it by getting a
@@ -1061,16 +1099,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 
 		$compiler = $context->getResourceLoader()->getLessCompiler( $vars );
-		$css = $compiler->parseFile( $fileName )->getCss();
+		$css = $compiler->parse( $style, $fileName )->getCss();
 		$files = $compiler->AllParsedFiles();
 		$this->localFileRefs = array_merge( $this->localFileRefs, $files );
 
-		// Cache for 24 hours (86400 seconds).
 		$cache->set( $cacheKey, [
 			'css'   => $css,
 			'files' => $files,
 			'hash'  => FileContentsHasher::getFileContentsHash( $files ),
-		], 3600 * 24 );
+		], $cache::TTL_DAY );
 
 		return $css;
 	}
