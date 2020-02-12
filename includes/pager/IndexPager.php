@@ -716,7 +716,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		} else {
 			$prev = [
 				'dir' => 'prev',
-				'offset' => implode( '|', $this->mFirstShown ),
+				'offset' => implode( '|', (array)$this->mFirstShown ),
 				'limit' => $urlLimit
 			];
 			$first = [ 'limit' => $urlLimit ];
@@ -725,7 +725,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$next = false;
 			$last = false;
 		} else {
-			$next = [ 'offset' => implode( '|', $this->mLastShown ), 'limit' => $urlLimit ];
+			$next = [ 'offset' => implode( '|', (array)$this->mLastShown ), 'limit' => $urlLimit ];
 			$last = [ 'dir' => 'prev', 'limit' => $urlLimit ];
 		}
 
@@ -784,7 +784,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	function getLimitLinks() {
 		$links = [];
 		if ( $this->mIsBackwards ) {
-			$offset = implode( '|', $this->mPastTheEndIndex );
+			$offset = implode( '|', (array)$this->mPastTheEndIndex );
 		} else {
 			$offset = $this->mOffset;
 		}
