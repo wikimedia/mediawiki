@@ -2,7 +2,6 @@
 
 namespace Wikimedia\ParamValidator\Util;
 
-use Exception;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 use Throwable;
@@ -70,9 +69,6 @@ class UploadedFileStream implements StreamInterface {
 		try {
 			$this->seek( 0 );
 			return $this->getContents();
-		} catch ( Exception $ex ) {
-			// Not allowed to throw
-			return '';
 		} catch ( Throwable $ex ) {
 			// Not allowed to throw
 			return '';

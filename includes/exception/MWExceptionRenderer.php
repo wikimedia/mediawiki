@@ -32,11 +32,11 @@ class MWExceptionRenderer {
 	const AS_PRETTY = 2; // show as HTML
 
 	/**
-	 * @param Exception|Throwable $e Original exception
+	 * @param Throwable $e Original exception
 	 * @param int $mode MWExceptionExposer::AS_* constant
-	 * @param Exception|Throwable|null $eNew New exception from attempting to show the first
+	 * @param Throwable|null $eNew New throwable from attempting to show the first
 	 */
-	public static function output( $e, $mode, $eNew = null ) {
+	public static function output( Throwable $e, $mode, Throwable $eNew = null ) {
 		global $wgMimeType, $wgShowExceptionDetails;
 
 		if ( function_exists( 'apache_setenv' ) ) {
@@ -99,10 +99,10 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param Exception|Throwable $e
-	 * @return bool Should the exception use $wgOut to output the error?
+	 * @param Throwable $e
+	 * @return bool Should the throwable use $wgOut to output the error?
 	 */
-	private static function useOutputPage( $e ) {
+	private static function useOutputPage( Throwable $e ) {
 		// Can the extension use the Message class/wfMessage to get i18n-ed messages?
 		foreach ( $e->getTrace() as $frame ) {
 			if ( isset( $frame['class'] ) && $frame['class'] === LocalisationCache::class ) {
@@ -123,11 +123,11 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * Output the exception report using HTML
+	 * Output the throwable report using HTML
 	 *
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 */
-	private static function reportHTML( $e ) {
+	private static function reportHTML( Throwable $e ) {
 		global $wgOut, $wgSitename;
 
 		if ( self::useOutputPage( $e ) ) {
@@ -171,10 +171,10 @@ class MWExceptionRenderer {
 	 * backtrace to the error, otherwise show a message to ask to set it to true
 	 * to show that information.
 	 *
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 * @return string Html to output
 	 */
-	public static function getHTML( $e ) {
+	public static function getHTML( Throwable $e ) {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
@@ -228,10 +228,10 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 * @return string
 	 */
-	private static function getText( $e ) {
+	private static function getText( Throwable $e ) {
 		global $wgShowExceptionDetails;
 
 		if ( $wgShowExceptionDetails ) {
@@ -244,10 +244,10 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 * @return string
 	 */
-	private static function getShowBacktraceError( $e ) {
+	private static function getShowBacktraceError( Throwable $e ) {
 		$var = '$wgShowExceptionDetails = true;';
 		return "Set $var at the bottom of LocalSettings.php to show detailed debugging information.";
 	}
@@ -296,9 +296,9 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 */
-	private static function reportOutageHTML( $e ) {
+	private static function reportOutageHTML( Throwable $e ) {
 		global $wgShowExceptionDetails, $wgShowHostnames, $wgSitename;
 
 		$sorry = htmlspecialchars( self::msg(

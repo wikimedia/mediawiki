@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest;
 
-use Exception;
 use HttpStatus;
 use InvalidArgumentException;
 use LanguageCode;
@@ -190,11 +189,11 @@ class ResponseFactory {
 	}
 
 	/**
-	 * Turn an exception into a JSON error response.
-	 * @param Exception|Throwable $exception
+	 * Turn a throwable into a JSON error response.
+	 * @param Throwable $exception
 	 * @return Response
 	 */
-	public function createFromException( $exception ) {
+	public function createFromException( Throwable $exception ) {
 		if ( $exception instanceof LocalizedHttpException ) {
 			$response = $this->createLocalizedHttpError( $exception->getCode(),
 				$exception->getMessageValue() );

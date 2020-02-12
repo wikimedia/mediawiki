@@ -1377,14 +1377,14 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Abort execution with an error derived from an exception
+	 * Abort execution with an error derived from a throwable
 	 *
 	 * @since 1.29
-	 * @param Exception|Throwable $exception See ApiErrorFormatter::getMessageFromException()
+	 * @param Throwable $exception See ApiErrorFormatter::getMessageFromException()
 	 * @param array $options See ApiErrorFormatter::getMessageFromException()
 	 * @throws ApiUsageException always
 	 */
-	public function dieWithException( $exception, array $options = [] ) {
+	public function dieWithException( Throwable $exception, array $options = [] ) {
 		$this->dieWithError(
 			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->getErrorFormatter()->getMessageFromException( $exception, $options )

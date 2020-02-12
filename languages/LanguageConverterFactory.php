@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 namespace MediaWiki\Languages;
@@ -37,7 +36,7 @@ use UzConverter;
 use ZhConverter;
 
 /**
- * LanguageConverterFactory provide an interface for creating language conterters.
+ * An interface for creating language converters.
  *
  * @since 1.35
  * @ingroup Language

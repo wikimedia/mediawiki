@@ -559,12 +559,12 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Handle an exception as an API response
+	 * Handle a throwable as an API response
 	 *
 	 * @since 1.23
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 */
-	protected function handleException( $e ) {
+	protected function handleException( Throwable $e ) {
 		// T65145: Rollback any open database transactions
 		if ( !$e instanceof ApiUsageException ) {
 			// ApiUsageExceptions are intentional, so don't rollback if that's the case
@@ -626,16 +626,16 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Handle an exception from the ApiBeforeMain hook.
+	 * Handle a throwable from the ApiBeforeMain hook.
 	 *
-	 * This tries to print the exception as an API response, to be more
-	 * friendly to clients. If it fails, it will rethrow the exception.
+	 * This tries to print the throwable as an API response, to be more
+	 * friendly to clients. If it fails, it will rethrow the throwable.
 	 *
 	 * @since 1.23
-	 * @param Exception|Throwable $e
-	 * @throws Exception|Throwable
+	 * @param Throwable $e
+	 * @throws Throwable
 	 */
-	public static function handleApiBeforeMainException( $e ) {
+	public static function handleApiBeforeMainException( Throwable $e ) {
 		ob_start();
 
 		try {
@@ -991,21 +991,21 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Create an error message for the given exception.
+	 * Create an error message for the given throwable.
 	 *
 	 * If an ApiUsageException, errors/warnings will be extracted from the
 	 * embedded StatusValue.
 	 *
-	 * Any other exception will be returned with a generic code and wrapper
-	 * text around the exception's (presumably English) message as a single
+	 * Any other throwable will be returned with a generic code and wrapper
+	 * text around the throwable's (presumably English) message as a single
 	 * error (no warnings).
 	 *
-	 * @param Exception|Throwable $e
+	 * @param Throwable $e
 	 * @param string $type 'error' or 'warning'
 	 * @return ApiMessage[]
 	 * @since 1.27
 	 */
-	protected function errorMessagesFromException( $e, $type = 'error' ) {
+	protected function errorMessagesFromException( Throwable $e, $type = 'error' ) {
 		$messages = [];
 		if ( $e instanceof ApiUsageException ) {
 			foreach ( $e->getStatusValue()->getErrorsByType( $type ) as $error ) {
@@ -1039,11 +1039,11 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Replace the result data with the information about an exception.
-	 * @param Exception|Throwable $e
+	 * Replace the result data with the information about a throwable.
+	 * @param Throwable $e
 	 * @return string[] Error codes
 	 */
-	protected function substituteResultWithError( $e ) {
+	protected function substituteResultWithError( Throwable $e ) {
 		$result = $this->getResult();
 		$formatter = $this->getErrorFormatter();
 		$config = $this->getConfig();
@@ -1616,9 +1616,9 @@ class ApiMain extends ApiBase {
 	/**
 	 * Log the preceding request
 	 * @param float $time Time in seconds
-	 * @param Exception|Throwable|null $e Exception caught while processing the request
+	 * @param Throwable|null $e Throwable caught while processing the request
 	 */
-	protected function logRequest( $time, $e = null ) {
+	protected function logRequest( $time, Throwable $e = null ) {
 		$request = $this->getRequest();
 
 		$logCtx = [
