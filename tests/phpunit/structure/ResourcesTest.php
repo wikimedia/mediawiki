@@ -37,6 +37,15 @@ class ResourcesTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideImageFiles
+	 */
+	public function testImageFileExistence( $filename, $module ) {
+		$this->assertFileExists( $filename,
+			"File '$filename' referenced by '$module' must exist."
+		);
+	}
+
+	/**
 	 * Verify that all modules specified as dependencies of other modules actually
 	 * exist and are not illegal.
 	 *
@@ -309,6 +318,33 @@ class ResourcesTest extends MediaWikiTestCase {
 					$file,
 					$moduleName,
 					$file,
+				];
+			}
+		}
+
+		return $cases;
+	}
+
+	/**
+	 * Get all image files from modules that are an instance of
+	 * ResourceLoaderImageModule (or one of its subclasses).
+	 */
+	public static function provideImageFiles() {
+		$data = self::getAllModules();
+		$cases = [];
+
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			if ( !$module instanceof ResourceLoaderImageModule ) {
+				continue;
+			}
+
+			$imagesFiles = $module->getImages( $data['context'] );
+
+			// Populate cases
+			foreach ( $imagesFiles as $file ) {
+				$cases[] = [
+					( $file instanceof ResourceLoaderImage ? $file->getPath( $data['context'] ) : $file ),
+					$moduleName,
 				];
 			}
 		}
