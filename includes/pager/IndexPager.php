@@ -135,11 +135,11 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/** @var bool */
 	public $mIsLast;
 
-	/** @var mixed */
+	/** @var array */
 	protected $mLastShown;
-	/** @var mixed */
+	/** @var array */
 	protected $mFirstShown;
-	/** @var mixed */
+	/** @var array */
 	protected $mPastTheEndIndex;
 	/** @var array */
 	protected $mDefaultQuery;
