@@ -45,7 +45,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 	private $groupIds = [
 		// These reserved numbers MUST start at 0 and not skip any. These are preset
-		// for forward compatiblity so that they can be safely referenced by mediawiki.js,
+		// for forward compatibility so that they can be safely referenced by mediawiki.js,
 		// even when the code is cached and the order of registrations (and implicit
 		// group ids) changes between versions of the software.
 		'user' => 0,
