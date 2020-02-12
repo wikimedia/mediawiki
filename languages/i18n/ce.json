@@ -1502,6 +1502,7 @@
 	"filerevert-defaultcomment": "Юхаерзош ю оцу $2, $1 хенахь хила верси",
 	"filerevert-submit": "Юхаяккха",
 	"filerevert-success": "Юхаерзина файл '''[[Media:$1|$1]]''' оцу [$4 верси $3, $2].",
+	"filerevert-identical": "Файлан карара верси хаьржиначух тера ю.",
 	"filedelete": "$1 — дӀаяккхар",
 	"filedelete-legend": "ДӀаяккха файл",
 	"filedelete-intro": "Хьо файл '''[[Media:$1|$1]]''' дӀаяккха гӀерта цунна массо истори цхьан.",
