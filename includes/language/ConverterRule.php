@@ -16,13 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
+ * @author fdcn <fdcn64@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 
 /**
- * Parser for rules of language conversion, parse rules in -{ }- tag.
+ * The rules used for language conversion, this processes the rules
+ * exctracted by Parser from the `-{ }-` wikitext syntax.
+ *
  * @ingroup Language
- * @author fdcn <fdcn64@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 class ConverterRule {
 	public $mText; // original text in -{text}-

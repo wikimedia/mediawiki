@@ -1,8 +1,5 @@
 <?php
 /**
- * Internationalisation code.
- * See https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation for more information.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
@@ -35,11 +31,12 @@ use MediaWikiTitleCodec;
 use MWException;
 
 /**
- * @ingroup Language
- *
  * A service that provides utilities to do with language names and codes.
  *
+ * See https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation for more information.
+ *
  * @since 1.34
+ * @ingroup Language
  */
 class LanguageNameUtils {
 	/**

@@ -16,14 +16,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
- * ILanguageConverter provide a shared interface for all language convertes.
+ * The shared interface for all language converters.
  *
  * @ingroup Language
- * @internal Shouldn't be implemented in extensions.
+ * @internal
  */
 interface ILanguageConverter {
 

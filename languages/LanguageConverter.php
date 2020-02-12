@@ -16,7 +16,10 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
+ * @author Zhengzhu Feng <zhengzhu@gmail.com>
+ * @author fdcn <fdcn64@gmail.com>
+ * @author shinjiman <shinjiman@gmail.com>
+ * @author PhiLiP <philip.npc@gmail.com>
  */
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -24,14 +27,9 @@ use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Base class for multi-variant language conversion.
- * @ingroup Language
  *
- * @author Zhengzhu Feng <zhengzhu@gmail.com>
- * @author fdcn <fdcn64@gmail.com>
- * @author shinjiman <shinjiman@gmail.com>
- * @author PhiLiP <philip.npc@gmail.com>
+ * @ingroup Language
  */
-
 abstract class LanguageConverter implements ILanguageConverter {
 	use DeprecationHelper;
 
