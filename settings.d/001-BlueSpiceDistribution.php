@@ -14,7 +14,7 @@ wfLoadExtension( 'FilterSpecialPages' );
 wfLoadExtension( 'UserMerge' );
 $wgUserMergeProtectedGroups = array();
 $wgUserMergeUnmergeable = array();
-require_once __DIR__ . "/../extensions/Variables/Variables.php";
+wfLoadExtension( 'Variables' );
 require_once __DIR__ . "/../extensions/EditNotify/EditNotify.php";
 wfLoadExtension( 'BlueSpiceEchoConnector' );
 wfLoadExtension( 'BlueSpiceDistributionConnector' );
