@@ -187,18 +187,18 @@ class ApiErrorFormatter {
 	}
 
 	/**
-	 * Get an ApiMessage from an exception
+	 * Get an ApiMessage from a throwable
 	 * @since 1.29
-	 * @param Exception|Throwable $exception
+	 * @param Throwable $exception
 	 * @param array $options
-	 *  - wrap: (string|array|MessageSpecifier) Used to wrap the exception's
-	 *    message if it's not an ILocalizedException. The exception's message
+	 *  - wrap: (string|array|MessageSpecifier) Used to wrap the throwable's
+	 *    message if it's not an ILocalizedException. The throwable's message
 	 *    will be added as the final parameter.
 	 *  - code: (string) Default code
 	 *  - data: (array) Default extra data
 	 * @return IApiMessage
 	 */
-	public function getMessageFromException( $exception, array $options = [] ) {
+	public function getMessageFromException( Throwable $exception, array $options = [] ) {
 		$options += [ 'code' => null, 'data' => [] ];
 
 		if ( $exception instanceof ILocalizedException ) {
@@ -228,14 +228,14 @@ class ApiErrorFormatter {
 	}
 
 	/**
-	 * Format an exception as an array
+	 * Format a throwable as an array
 	 * @since 1.29
-	 * @param Exception|Throwable $exception
+	 * @param Throwable $exception
 	 * @param array $options See self::getMessageFromException(), plus
 	 *  - format: (string) Format override
 	 * @return array
 	 */
-	public function formatException( $exception, array $options = [] ) {
+	public function formatException( Throwable $exception, array $options = [] ) {
 		return $this->formatMessage(
 			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->getMessageFromException( $exception, $options ),

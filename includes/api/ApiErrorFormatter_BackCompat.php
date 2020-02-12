@@ -74,14 +74,14 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 	}
 
 	/**
-	 * Format an exception as an array
+	 * Format a throwable as an array
 	 * @since 1.29
-	 * @param Exception|Throwable $exception
+	 * @param Throwable $exception
 	 * @param array $options See parent::formatException(), plus
 	 *  - bc: (bool) Return only the string, not an array
 	 * @return array|string
 	 */
-	public function formatException( $exception, array $options = [] ) {
+	public function formatException( Throwable $exception, array $options = [] ) {
 		$ret = parent::formatException( $exception, $options );
 		return empty( $options['bc'] ) ? $ret : $ret['info'];
 	}

@@ -22,7 +22,6 @@ namespace MediaWiki\Logger;
 
 use DateTimeZone;
 use Error;
-use Exception;
 use MWDebug;
 use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
@@ -313,16 +312,16 @@ class LegacyLogger extends AbstractLogger {
 			$text = self::formatAsWfDebugLog( $channel, $message, $context );
 		}
 
-		// Append stacktrace of exception if available
+		// Append stacktrace of throwable if available
 		if ( $wgLogExceptionBacktrace && isset( $context['exception'] ) ) {
 			$e = $context['exception'];
 			$backtrace = false;
 
-			if ( $e instanceof Throwable || $e instanceof Exception ) {
+			if ( $e instanceof Throwable ) {
 				$backtrace = MWExceptionHandler::getRedactedTrace( $e );
 
 			} elseif ( is_array( $e ) && isset( $e['trace'] ) ) {
-				// Exception has already been unpacked as structured data
+				// Throwable has already been unpacked as structured data
 				$backtrace = $e['trace'];
 			}
 
@@ -454,7 +453,7 @@ class LegacyLogger extends AbstractLogger {
 			return $item->format( 'c' );
 		}
 
-		if ( $item instanceof Throwable || $item instanceof Exception ) {
+		if ( $item instanceof Throwable ) {
 			$which = $item instanceof Error ? 'Error' : 'Exception';
 			return '[' . $which . ' ' . get_class( $item ) . '( ' .
 				$item->getFile() . ':' . $item->getLine() . ') ' .
