@@ -90,6 +90,9 @@
 				}
 			}
 		},
+		"home": {
+			"file": "images/icons/home.svg"
+		},
 		"key": {
 			"file": "images/icons/key.svg"
 		},
@@ -98,6 +101,12 @@
 		},
 		"lightbulb": {
 			"file": "images/icons/lightbulb.svg"
+		},
+		"logIn": {
+			"file": {
+				"ltr": "images/icons/logIn-ltr.svg",
+				"rtl": "images/icons/logIn-rtl.svg"
+			}
 		},
 		"logOut": {
 			"file": {
