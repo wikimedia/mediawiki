@@ -45,6 +45,9 @@ class ApiDisabled extends ApiBase {
 	}
 
 	protected function getExtendedDescription() {
-		return 'apihelp-disabled-extended-description';
+		return [ [
+			'apihelp-disabled-extended-description',
+			'api-help-no-extended-description',
+		] ];
 	}
 }

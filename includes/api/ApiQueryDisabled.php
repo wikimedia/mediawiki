@@ -45,6 +45,9 @@ class ApiQueryDisabled extends ApiQueryBase {
 	}
 
 	public function getExtendedDescription() {
-		return 'apihelp-query+disabled-extended-description';
+		return [ [
+			'apihelp-query+disabled-extended-description',
+			'api-help-no-extended-description',
+		] ];
 	}
 }

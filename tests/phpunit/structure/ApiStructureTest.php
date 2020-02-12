@@ -37,6 +37,11 @@ class ApiStructureTest extends MediaWikiTestCase {
 			self::$main->getContext()->setTitle(
 				Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for ApiStructureTest' )
 			);
+
+			// Inject ApiDisabled and ApiQueryDisabled so they can be tested too
+			self::$main->getModuleManager()->addModule( 'disabled', 'action', ApiDisabled::class );
+			self::$main->getModuleFromPath( 'query' )
+				->getModuleManager()->addModule( 'query-disabled', 'meta', ApiQueryDisabled::class );
 		}
 		return self::$main;
 	}
