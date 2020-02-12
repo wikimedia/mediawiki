@@ -17,6 +17,7 @@
  *
  * @file
  */
+use MediaWiki\Linker\LinkTarget;
 
 /**
  * The shared interface for all language converters.
@@ -115,13 +116,13 @@ interface ILanguageConverter {
 	public function autoConvertToAllVariants( $text );
 
 	/**
-	 * Auto convert a Title object to a readable string in the
+	 * Auto convert a LinkTarget object to a readable string in the
 	 * preferred variant.
 	 *
-	 * @param Title $title A object of Title
+	 * @param LinkTarget $linkTarget
 	 * @return string Converted title text
 	 */
-	public function convertTitle( $title );
+	public function convertTitle( LinkTarget $linkTarget );
 
 	/**
 	 * Get the namespace display name in the preferred variant.
@@ -219,9 +220,9 @@ interface ILanguageConverter {
 	 * Refresh the cache of conversion tables when
 	 * MediaWiki:Conversiontable* is updated.
 	 *
-	 * @param Title $title The Title of the page being updated
+	 * @param LinkTarget $linkTarget The LinkTarget of the page being updated
 	 */
-	public function updateConversionTable( Title $title );
+	public function updateConversionTable( LinkTarget $linkTarget );
 
 	/**
 	 * Check if this is a language with variants
