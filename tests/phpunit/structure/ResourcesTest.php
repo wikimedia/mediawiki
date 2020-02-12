@@ -16,15 +16,6 @@ use Wikimedia\TestingAccessWrapper;
 class ResourcesTest extends MediaWikiTestCase {
 
 	/**
-	 * @dataProvider provideResourceFiles
-	 */
-	public function testFileExistence( $filename, $module, $resource ) {
-		$this->assertFileExists( $filename,
-			"File '$resource' referenced by '$module' must exist."
-		);
-	}
-
-	/**
 	 * @dataProvider provideMediaStylesheets
 	 */
 	public function testStyleMedia( $moduleName, $media, $filename, $css ) {
@@ -33,15 +24,6 @@ class ResourcesTest extends MediaWikiTestCase {
 		$this->assertTrue(
 			strpos( $cssText, '@media' ) === false,
 			'Stylesheets should not both specify "media" and contain @media'
-		);
-	}
-
-	/**
-	 * @dataProvider provideImageFiles
-	 */
-	public function testImageFileExistence( $filename, $module ) {
-		$this->assertFileExists( $filename,
-			"File '$filename' referenced by '$module' must exist."
 		);
 	}
 
@@ -187,7 +169,6 @@ class ResourcesTest extends MediaWikiTestCase {
 	 */
 	public static function provideMediaStylesheets() {
 		$data = self::getAllModules();
-		$cases = [];
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( !$module instanceof ResourceLoaderFileModule ) {
@@ -209,7 +190,7 @@ class ResourcesTest extends MediaWikiTestCase {
 			foreach ( $styleFiles as $media => $files ) {
 				if ( $media && $media !== 'all' ) {
 					foreach ( $files as $file ) {
-						$cases[] = [
+						yield [
 							$moduleName,
 							$media,
 							$file,
@@ -227,17 +208,13 @@ class ResourcesTest extends MediaWikiTestCase {
 				}
 			}
 		}
-
-		return $cases;
 	}
 
 	/**
-	 * Get all resource files from modules that are an instance of
-	 * ResourceLoaderFileModule (or one of its subclasses).
+	 * Check all resource files from ResourceLoaderFileModule modules.
 	 */
-	public static function provideResourceFiles() {
+	public function testResourceFiles() {
 		$data = self::getAllModules();
-		$cases = [];
 
 		// See also ResourceLoaderFileModule::__construct
 		$filePathProps = [
@@ -295,13 +272,12 @@ class ResourcesTest extends MediaWikiTestCase {
 				}
 			}
 
-			// Populate cases
 			foreach ( $files as $file ) {
-				$cases[] = [
+				$relativePath = ( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file );
+				$this->assertFileExists(
 					$moduleProxy->getLocalPath( $file ),
-					$moduleName,
-					( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file ),
-				];
+					"File '$relativePath' referenced by '$moduleName' must exist."
+				);
 			}
 
 			// To populate missingLocalFileRefs. Not sure how sane this is inside this test...
@@ -314,24 +290,19 @@ class ResourcesTest extends MediaWikiTestCase {
 			$missingLocalFileRefs = $moduleProxy->missingLocalFileRefs;
 
 			foreach ( $missingLocalFileRefs as $file ) {
-				$cases[] = [
+				$this->assertFileExists(
 					$file,
-					$moduleName,
-					$file,
-				];
+					"File '$file' referenced by '$moduleName' must exist."
+				);
 			}
 		}
-
-		return $cases;
 	}
 
 	/**
-	 * Get all image files from modules that are an instance of
-	 * ResourceLoaderImageModule (or one of its subclasses).
+	 * Check all image files from ResourceLoaderImageModule modules.
 	 */
-	public static function provideImageFiles() {
+	public function testImageFiles() {
 		$data = self::getAllModules();
-		$cases = [];
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( !$module instanceof ResourceLoaderImageModule ) {
@@ -339,16 +310,13 @@ class ResourcesTest extends MediaWikiTestCase {
 			}
 
 			$imagesFiles = $module->getImages( $data['context'] );
-
-			// Populate cases
 			foreach ( $imagesFiles as $file ) {
-				$cases[] = [
-					( $file instanceof ResourceLoaderImage ? $file->getPath( $data['context'] ) : $file ),
-					$moduleName,
-				];
+				$relativePath = $file->getName();
+				$this->assertFileExists(
+					$file->getPath( $data['context'] ),
+					"File '$relativePath' referenced by '$moduleName' must exist."
+				);
 			}
 		}
-
-		return $cases;
 	}
 }
