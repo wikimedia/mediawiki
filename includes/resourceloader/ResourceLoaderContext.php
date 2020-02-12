@@ -157,7 +157,9 @@ class ResourceLoaderContext implements MessageLocalizer {
 			// Only support uselang values that follow built-in conventions (T102058)
 			$lang = $this->getRequest()->getRawVal( 'lang', '' );
 			// Stricter version of RequestContext::sanitizeLangCode()
-			if ( !Language::isValidBuiltInCode( $lang ) ) {
+			$validBuiltinCode = MediaWikiServices::getInstance()->getLanguageNameUtils()
+				->isValidBuiltInCode( $lang );
+			if ( !$validBuiltinCode ) {
 				// The 'lang' parameter is required. (Not yet enforced.)
 				// If omitted, localise with the dummy language code.
 				$lang = self::DEFAULT_LANG;

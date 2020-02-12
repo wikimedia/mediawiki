@@ -2835,8 +2835,7 @@ class Parser {
 					$this->svcOptions->get( 'MiserMode' ) &&
 					!$this->mOptions->getInterfaceMessage() &&
 					// @TODO: disallow this word on all namespaces
-					$this->nsInfo->isSubject( $namespace ) &&
-					!in_array( $namespace, [ NS_USER, NS_PROJECT ], true )
+					$this->nsInfo->isSubject( $namespace )
 				) {
 					// Use a stub result instead of the actual revision ID in order to avoid
 					// double parses on page save but still allow preview detection (T137900)
