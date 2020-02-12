@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\TestingAccessWrapper;
+use Psr\Log\NullLogger;
 
 /**
  * @group ResourceLoader
@@ -180,17 +180,19 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	public function testSetLoggedIsVoid() {
 		$blobStore = $this->makeBlobStore();
-		$this->assertSame( null, $blobStore->setLogger( new Psr\Log\NullLogger() ) );
+		$this->assertNull( $blobStore->setLogger( new NullLogger() ) );
 	}
 
 	private function makeBlobStore( $methods = null, $rl = null ) {
 		$blobStore = $this->getMockBuilder( MessageBlobStore::class )
-			->setConstructorArgs( [ $rl ?? $this->createMock( ResourceLoader::class ) ] )
+			->setConstructorArgs( [
+				$rl ?? $this->createMock( ResourceLoader::class ),
+				null,
+				$this->wanCache
+			] )
 			->setMethods( $methods )
 			->getMock();
 
-		$access = TestingAccessWrapper::newFromObject( $blobStore );
-		$access->wanCache = $this->wanCache;
 		return $blobStore;
 	}
 

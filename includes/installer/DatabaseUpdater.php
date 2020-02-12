@@ -1081,8 +1081,11 @@ abstract class DatabaseUpdater {
 		}
 
 		// ResourceLoader: Message cache
+		$services = MediaWikiServices::getInstance();
 		$blobStore = new MessageBlobStore(
-			MediaWikiServices::getInstance()->getResourceLoader()
+			$services->getResourceLoader(),
+			null,
+			$services->getMainWANObjectCache()
 		);
 		$blobStore->clear();
 
