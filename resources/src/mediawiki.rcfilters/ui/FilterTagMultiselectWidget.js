@@ -42,6 +42,13 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	this.collapsed = false;
 	this.isMobile = config.isMobile;
 
+	// Has to be before the parent constructor, because the parent constructor may call setValue()
+	// which causes the onChangeTags handler to run (T245073)
+	this.emptyFilterMessage = new OO.ui.LabelWidget( {
+		label: mw.msg( 'rcfilters-empty-filter' ),
+		classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-emptyFilters' ]
+	} );
+
 	// Parent
 	FilterTagMultiselectWidget.parent.call( this, $.extend( true, {
 		label: mw.msg( 'rcfilters-filterlist-title' ),
@@ -139,10 +146,6 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		} );
 	}
 
-	this.emptyFilterMessage = new OO.ui.LabelWidget( {
-		label: mw.msg( 'rcfilters-empty-filter' ),
-		classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-emptyFilters' ]
-	} );
 	this.$content.append( this.emptyFilterMessage.$element );
 
 	// Events
