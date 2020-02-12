@@ -1,7 +1,5 @@
 <?php
 /**
- * Fetching and processing of interface messages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,9 +23,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
- * The Message class provides methods which fulfil two basic services:
- *  - fetching interface messages
- *  - processing messages into a variety of formats
+ * The Message class deals with fetching and processing of interface message
+ * into a variety of formats.
  *
  * First implemented with MediaWiki 1.17, the Message class is intended to
  * replace the old wfMsg* functions that over time grew unusable.
@@ -158,6 +155,7 @@ use MediaWiki\MediaWikiServices;
  * @see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
+ * @ingroup Language
  */
 class Message implements MessageSpecifier, Serializable {
 	/** Use message text as-is */
