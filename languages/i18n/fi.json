@@ -65,7 +65,8 @@
 			"Vlad5250",
 			"Antsa",
 			"Spude",
-			"Cxz"
+			"Cxz",
+			"FinlandMan"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -3928,5 +3929,6 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ehdota vaihtamista kirjautuessa",
 	"deflate-invaliddeflate": "Annettua sisältöä ei ole tyhjennetty kunnolla",
 	"unprotected-js": "Turvallisuussyistä JavaScriptiä ei voi ladata suojaamattomilta sivuilta. Luo JavaScript-sivuja vain MediaWiki-nimiavaruuteen tai käyttäjän alasivulle.",
-	"userlogout-continue": "Haluatko kirjautua ulos?"
+	"userlogout-continue": "Haluatko kirjautua ulos?",
+	"paramvalidator-help-type-user-subtype-ip": "IP-Osoite"
 }

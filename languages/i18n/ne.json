@@ -3147,5 +3147,6 @@
 	"authmanager-email-help": "इमेल ठेगाना",
 	"authprovider-resetpass-skip-label": "छोड्नुहोस्",
 	"edit-error-short": "त्रुटि: $1",
-	"passwordpolicies": "पासवोर्ड नितिहरू"
+	"passwordpolicies": "पासवोर्ड नितिहरू",
+	"paramvalidator-help-type-user-subtype-ip": "आई पी"
 }
