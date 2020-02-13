@@ -435,42 +435,6 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$this->assertSame( 'Hook Title', $output->getPageTitle() );
 	}
 
-	public function testArticleContentViewCustomHook() {
-		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ] );
-
-		$article = new Article( $page->getTitle(), 0 );
-		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
-
-		// use ArticleViewHeader hook to bypass the parser cache
-		$this->setTemporaryHook(
-			'ArticleViewHeader',
-			function ( Article $articlePage, &$outputDone, &$useParserCache ) use ( $article ) {
-				$useParserCache = false;
-			}
-		);
-
-		$this->setTemporaryHook(
-			'ArticleContentViewCustom',
-			function ( Content $content, Title $title, OutputPage $output ) use ( $page ) {
-				$this->assertSame( $page->getTitle(), $title, '$title' );
-				$this->assertSame( 'Test A', $content->getText(), '$content' );
-
-				$output->addHTML( 'Hook Text' );
-				return false;
-			}
-		);
-
-		$this->hideDeprecated(
-			'ArticleContentViewCustom hook (used in hook-ArticleContentViewCustom-closure)'
-		);
-
-		$article->view();
-
-		$output = $article->getContext()->getOutput();
-		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
-		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
-	}
-
 	public function testArticleRevisionViewCustomHook() {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ] );
 
