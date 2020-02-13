@@ -457,7 +457,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} se stvara od ljudi poput vas.",
 	"createacct-benefit-body1": "$1 {{PLURAL:$1|izmjena|izmjene}}",
 	"createacct-benefit-body2": "$1 {{PLURAL:$1|stranica|stranice|stranica}}",
-	"createacct-benefit-body3": "nedavni {{PLURAL:$1|donator|donatora}}",
+	"createacct-benefit-body3": "{{PLURAL:$1|nedavni korisnik|nedavna korisnika|nedavnih korisnika}}",
 	"badretype": "Lozinke koje ste unijeli se ne poklapaju.",
 	"usernameinprogress": "Stvaranje računa za ovog korisnika je već u toku.\nMolimo sačekajte.",
 	"userexists": "Uneseno korisničko ime već je u upotrebi.\nUnesite neko drugo ime.",

@@ -617,8 +617,8 @@
 	"passwordreset-emailtext-ip": "Někdo (patrně vy, z IP adresy $1) zažádal na {{grammar:6sg|{{SITENAME}}}} ($4) o nastavení nového hesla k vašemu účtu. K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:\n\n$2\n\n{{PLURAL:$3|Toto dočasné heslo|Tato dočasná hesla}} vyprší za {{PLURAL:$5|jeden den|$5 dny|$5 dnů}}.\nNyní byste se měli přihlásit a zvolit si nové heslo. Pokud tento požadavek poslal někdo jiný nebo jste si na své staré heslo vzpomněli, a nechcete ho tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.",
 	"passwordreset-emailtext-user": "{{gender:$1|Uživatel|Uživatelka}} $1 na {{grammar:6sg|{{SITENAME}}}} {{gender:$1|zažádal|zažádala}} na {{grammar:6sg|{{SITENAME}}}} ($4) o nastavení nového hesla k vašemu\núčtu. K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:\n\n$2\n\n{{PLURAL:$3|Toto dočasné heslo|Tato dočasná hesla}} vyprší {{PLURAL:$5|za jeden den|za $5 dny|za $5 dnů}}.\nNyní byste se měl(a) přihlásit a zvolit si nové heslo. Pokud tento požadavek\nposlal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete ho\ntedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.",
 	"passwordreset-emailelement": "Uživatelské jméno: \n$1\n\nDočasné heslo: \n$2",
-	"passwordreset-success": "Heslo uživatele s ID $1 bylo resetováno",
-	"passwordreset-emailtext-require-email": "Pokud jste však tento požadavek nevygenerovali a chcete zabránit nevyžádaným e-mailům, můžete aktualizovat svoje nastavení e-mailů na $1. Na generování e-mailů s obnovením hesla můžete vyžadovat uživatelské jméno a e-mailovou adresu. To může snížit počet takovýchto omylů.",
+	"passwordreset-success": "Požádali jste o reset hesla.",
+	"passwordreset-emailtext-require-email": "Pokud jste však tento požadavek nevygenerovali a chcete zabránit nevyžádaným \ne-mailům, můžete aktualizovat svoje nastavení e-mailů na \n$1. \nNa generování e-mailů s obnovením hesla můžete vyžadovat uživatelské jméno a e-mailovou adresu. To může snížit počet takovýchto omylů.",
 	"passwordreset-nocaller": "Musí být uveden volající",
 	"passwordreset-nosuchcaller": "Volající neexistuje: $1",
 	"passwordreset-ignored": "Žádost o nové heslo nebyla zpracována. Možná není nakonfigurován žádný poskytovatel?",
@@ -1122,7 +1122,7 @@
 	"prefs-help-email": "Uvedení e-mailu není povinné, ale umožní zaslání nového hesla v případě, že své heslo zapomenete.",
 	"prefs-help-email-others": "Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelské stránky kontaktovat.\nVaše adresa v takovém případě není prozrazena.",
 	"prefs-help-email-required": "Je vyžadována e-mailová adresa.",
-	"prefs-help-requireemail": "Pokud je zaškrtnuto, e-mail pro obnovu hesla se zašle jen v případě, že osoba žádající o nové heslo uvede jak uživatelské jméno, tak e-mail tohoto účtu.",
+	"prefs-help-requireemail": "Toto zvyšuje soukromí a pomáhá předcházet nevyžádaným e-mailům.",
 	"prefs-info": "Základní údaje",
 	"prefs-i18n": "Lokalizace",
 	"prefs-signature": "Podpis",
@@ -1745,6 +1745,7 @@
 	"backend-fail-backup": "Soubor $1 nelze zazálohovat.",
 	"backend-fail-notexists": "Soubor $1 neexistuje.",
 	"backend-fail-hashes": "Nelze získat hashe souborů pro porovnání.",
+	"backend-fail-sizes": "Nelze získat velikosti souborů pro porovnání.",
 	"backend-fail-notsame": "Odlišný soubor $1 už existuje.",
 	"backend-fail-invalidpath": "$1 je neplatná cesta k místu uložení.",
 	"backend-fail-delete": "Soubor $1 nelze smazat.",
@@ -3938,5 +3939,7 @@
 	"mycustomjsredirectprotected": "Nemáte oprávnění editovat tuto stránku s JavaScriptem, protože je to přesměrování mimo váš uživatelský prostor.",
 	"deflate-invaliddeflate": "Poskytnutý obsah nebyl správně zkomprimován",
 	"unprotected-js": "Z bezpečnostních důvodů nelze načítat JavaScript z nechráněných stran. Vyrábějte prosím JavaScriptové skripty jen ve jmenném prostoru MediaWiki: nebo jako uživatelskou podstránku",
-	"userlogout-continue": "Chcete se odhlásit?"
+	"userlogout-continue": "Chcete se odhlásit?",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "Rozsah IP adres"
 }

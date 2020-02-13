@@ -620,7 +620,9 @@
 	"passwordreset-emailtext-ip": "Valaki (vélhetően Te, a $1 IP-címről) a jelszavad visszaállítását kérte a {{SITENAME}} ($4) oldalon felvett {{PLURAL:$3|fiókban|fiókokban}}. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:\n\n$2\n\n{{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.",
 	"passwordreset-emailtext-user": "$1 felhasználó jelszó-visszaállítást kért a {{SITENAME}} ($4) oldalon felvett {{PLURAL:$3|fiókban|fiókokban}}. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:\n\n$2\n\n{{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.",
 	"passwordreset-emailelement": "Felhasználónév: \n$1\n\nIdeiglenes jelszó: \n$2",
-	"passwordreset-success": "A(z) $1 azonosítószámú felhasználó jelszava be lett állítva",
+	"passwordreset-success": "Jelszó-helyreállítási kérelmed sikerült.",
+	"passwordreset-success-details": "Ha a megadott információk helyesek, kiküldésre kerül egy jelszó-helyreállítási e-mail. Amennyiben nem kaptál e-mailt, javasoljuk, hogy keresd fel a [[mw:Special:MyLanguage/Help:Reset_password|jelszó-helyreállítás súgóoldalát]].",
+	"passwordreset-success-info": "Általad megadott részletek a következők: $1",
 	"passwordreset-emailtext-require-email": "Ugyanakkor, ha nem Te kezdeményezted a kérést, és elejét akarod venni a kéretlen emaileknek, akkor érdemes frissíteni az email opciókat itt:\n$1.\nKérheted, hogy a felhasználói név mellett az email címet is meg kelljen adni az elfelejtett jelszó lecserélésének kezdeményezéséhez. Ez csökkentheti az ilyen incidensek számát.",
 	"passwordreset-nocaller": "A hívó megadása kötelező",
 	"passwordreset-nosuchcaller": "A hívó nem létezik: $1",
@@ -3865,5 +3867,9 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "lecserélés ajánlása bejelentkezéskor",
 	"mycustomjsredirectprotected": "Nincs jogod szerkeszteni ezt a JavaScript-lapot, mert a lap egy olyan átirányítás, ami nem szerkesztői oldaladra mutat.",
 	"unprotected-js": "Biztonsági okokból JavaScript nem tölthető be védtelen lapokról. Kérlek egyedül a MediaWiki névtérben készíts JavaScriptet, vagy szerkesztői allapként.",
-	"userlogout-continue": "Biztos ki szeretnél jelentkezni?"
+	"userlogout-continue": "Biztos ki szeretnél jelentkezni?",
+	"paramvalidator-help-type-user-subtype-name": "felhasználónév",
+	"paramvalidator-help-type-user-subtype-ip": "IP-cím",
+	"paramvalidator-help-type-user-subtype-cidr": "IP-tartomány",
+	"paramvalidator-help-type-user-subtype-id": "felhasználóazonosító (pl. \"#12345\")"
 }
