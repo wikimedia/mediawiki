@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -2462,6 +2463,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		$nonce->setValue( $out->getCSP(), 'secret' );
 		$rl = $out->getResourceLoader();
 		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
+		$rl->setDependencyStore( $this->createMock( KeyValueDependencyStore::class ) );
 		$rl->register( [
 			'test.foo' => [
 				'class' => ResourceLoaderTestModule::class,

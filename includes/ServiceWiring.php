@@ -87,6 +87,8 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory;
 
@@ -777,7 +779,10 @@ return [
 
 		$rl = new ResourceLoader(
 			$config,
-			LoggerFactory::getInstance( 'resourceloader' )
+			LoggerFactory::getInstance( 'resourceloader' ),
+			$config->get( 'ResourceLoaderUseObjectCacheForDeps' )
+				? new KeyValueDependencyStore( $services->getMainObjectStash() )
+				: new SqlModuleDependencyStore( $services->getDBLoadBalancer() )
 		);
 
 		$rl->addSource( $config->get( 'ResourceLoaderSources' ) );
