@@ -81,7 +81,7 @@ Besides some functions, some hooks have also been replaced by new versions (see 
 * `ArticleInsertComplete` was replaced by `PageContentInsertComplete`
 * `ArticleSave` was replaced by `PageContentSave`
 * `ArticleSaveComplete` was replaced by `PageContentSaveComplete`
-* `ArticleViewCustom` was replaced by `ArticleContentViewCustom` (also consider a custom implementation of the view action)
+* `ArticleViewCustom` was replaced by `ArticleContentViewCustom`, which was later removed entirely
 * `EditFilterMerged` was replaced by `EditFilterMergedContent`
 * `EditPageGetDiffText` was replaced by `EditPageGetDiffContent`
 * `EditPageGetPreviewText` was replaced by `EditPageGetPreviewContent`

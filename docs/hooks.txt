@@ -606,13 +606,6 @@ $title: title of the page
 $oldid: the requested revision id, or 0 for the currrent revision.
 $output: a ParserOutput object
 
-'ArticleContentViewCustom': DEPRECATED since 1.32, use ArticleRevisionViewCustom instead,
-or provide an appropriate ContentHandler. Allows to output the text of the article in a
-different format than wikitext.
-$content: content of the page, as a Content object
-$title: title of the page
-$output: a ParserOutput object
-
 'ArticleDelete': Before an article is deleted.
 &$wikiPage: the WikiPage (object) being deleted
 &$user: the user (object) deleting the article
