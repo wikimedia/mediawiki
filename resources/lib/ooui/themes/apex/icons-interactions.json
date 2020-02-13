@@ -65,6 +65,9 @@
 				}
 			}
 		},
+		"home": {
+			"file": "../wikimediaui/images/icons/home.svg"
+		},
 		"key": {
 			"file": "../wikimediaui/images/icons/key.svg"
 		},
@@ -73,6 +76,12 @@
 		},
 		"lightbulb": {
 			"file": "../wikimediaui/images/icons/lightbulb.svg"
+		},
+		"logIn": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/logIn-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/logIn-rtl.svg"
+			}
 		},
 		"logOut": {
 			"file": {
