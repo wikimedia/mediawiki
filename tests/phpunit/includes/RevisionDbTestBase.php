@@ -702,9 +702,12 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testNewNullRevision() {
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$orig = $this->testPage->getRevision();
+		$user = $this->getTestUser()->getUser();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$rev = Revision::newNullRevision( $dbw, $this->testPage->getId(), 'a null revision', false );
+		$rev = Revision::newNullRevision(
+			$dbw, $this->testPage->getId(), 'a null revision', false, $user
+		);
 
 		$this->assertNotEquals( $orig->getId(), $rev->getId(),
 			'new null revision should have a different id from the original revision' );
@@ -722,7 +725,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testNewNullRevision_badPage() {
 		$dbw = wfGetDB( DB_MASTER );
-		$rev = Revision::newNullRevision( $dbw, -1, 'a null revision', false );
+		$user = $this->getTestUser()->getUser();
+		$rev = Revision::newNullRevision( $dbw, -1, 'a null revision', false, $user );
 
 		$this->assertNull( $rev );
 	}
