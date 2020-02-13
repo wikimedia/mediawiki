@@ -95,6 +95,17 @@
 		]
 	},
 	{
+		"name": "Vue",
+		"groups": [
+			{
+				"name": "Plugins",
+				"classes": [
+					"Vue"
+				]
+			}
+		]
+	},
+	{
 		"name": "Upstream",
 		"groups": [
 			{

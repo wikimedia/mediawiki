@@ -532,23 +532,23 @@ return [
 	/* Vue */
 
 	'vue' => [
-		'localBasePath' => "$IP/resources/lib/vue",
-		'remoteBasePath' => "$wgResourceBasePath/resources/lib/vue",
 		'packageFiles' => [
+			'resources/src/vue/index.js',
+			'resources/src/vue/i18n.js',
 			[
-				'name' => 'vue.js',
+				'name' => 'resources/lib/vue/vue.js',
 				'callback' => function ( ResourceLoaderContext $context, Config $config ) {
 					// Use the development version if development mode is enabled, or if we're in debug mode
 					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
-						'vue.common.dev.js' :
-						'vue.common.prod.js';
+						'resources/lib/vue/vue.common.dev.js' :
+						'resources/lib/vue/vue.common.prod.js';
 					return new ResourceLoaderFilePath( $file );
 				}
-			]
+			],
+
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-
 	/* MediaWiki */
 	'mediawiki.template' => [
 		'scripts' => 'resources/src/mediawiki.template.js',
