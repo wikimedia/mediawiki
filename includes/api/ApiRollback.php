@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\User\UserIdentity;
 
 /**
  * @ingroup API
@@ -33,7 +34,7 @@ class ApiRollback extends ApiBase {
 	private $mTitleObj = null;
 
 	/**
-	 * @var User
+	 * @var UserIdentity
 	 */
 	private $mUser = null;
 
@@ -67,7 +68,7 @@ class ApiRollback extends ApiBase {
 		} );
 
 		$retval = $pageObj->doRollback(
-			$this->getRbUser( $params ),
+			$this->getRbUser( $params )->getName(),
 			$summary,
 			$params['token'],
 			$params['markbot'],
@@ -148,9 +149,9 @@ class ApiRollback extends ApiBase {
 	/**
 	 * @param array $params
 	 *
-	 * @return string
+	 * @return UserIdentity
 	 */
-	private function getRbUser( array $params ) {
+	private function getRbUser( array $params ) : UserIdentity {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
