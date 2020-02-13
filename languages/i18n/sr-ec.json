@@ -3898,7 +3898,7 @@
 	"edit-error-long": "Грешке:\n\n$1",
 	"specialmute-submit": "Потврди",
 	"specialmute-label-mute-email": "Привремено искључи имејлове овог корисника",
-	"specialmute-header": "Изаберите поставке утишавања обавештења (<b>{{BIDI:[[User:$1|$1]]}}</b>).",
+	"specialmute-header": "Изаберите поставке утишавања обавештења за корисика/цу (<b>{{BIDI:[[User:$1|$1]]}}</b>).",
 	"specialmute-error-invalid-user": "Није могуће пронаћи тражено корисничко име.",
 	"specialmute-login-required": "Пријавите се да бисте направили промене.",
 	"mute-preferences": "Подешавања за искључивање",
