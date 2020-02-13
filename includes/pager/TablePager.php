@@ -261,8 +261,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @protected
-	 * @return string
+	 * @inheritDoc
 	 */
 	function getIndexField() {
 		return $this->mSort;
