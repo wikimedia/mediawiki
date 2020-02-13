@@ -208,8 +208,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'fields' => [ 'field' ],
 					'options' => [ 'USE INDEX' => [ 'table' => 'X' ] ],
 				],
-				// No-op by default
-				"SELECT field FROM table"
+				"SELECT field FROM table FORCE INDEX (X)"
 			],
 			[
 				[
@@ -217,8 +216,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'fields' => [ 'field' ],
 					'options' => [ 'IGNORE INDEX' => [ 'table' => 'X' ] ],
 				],
-				// No-op by default
-				"SELECT field FROM table"
+				"SELECT field FROM table IGNORE INDEX (X)"
 			],
 			[
 				[
