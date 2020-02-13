@@ -11,8 +11,7 @@
 		$( '<div>' ).addClass( 'mw-navigation-hint' )
 			.text( mw.msg( 'prefs-tabs-navigation-hint' ) )
 			.attr( {
-				tabIndex: 0,
-				'aria-hidden': 'true'
+				tabIndex: 0
 			} )
 			.insertBefore( '.mw-htmlform-ooui-wrapper' );
 
