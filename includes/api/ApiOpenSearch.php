@@ -71,7 +71,8 @@ class ApiOpenSearch extends ApiBase {
 
 			case 'xml':
 				$printer = $this->getMain()->createPrinterByName( 'xml' . $this->fm );
-				'@phan-var ApiFormatXML $printer';
+				'@phan-var ApiFormatXml $printer';
+				/** @var ApiFormatXml $printer */
 				$printer->setRootElement( 'SearchSuggestion' );
 				return $printer;
 

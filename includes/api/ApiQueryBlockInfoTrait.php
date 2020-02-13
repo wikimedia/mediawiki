@@ -83,6 +83,7 @@ trait ApiQueryBlockInfoTrait {
 
 	/**
 	 * @see IContextSource::getUser
+	 * @return User
 	 */
 	abstract public function getUser();
 

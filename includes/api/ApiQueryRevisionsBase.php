@@ -421,6 +421,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				// @todo Move this into extractSlotInfo() (and remove its $content parameter)
 				// when extractDeprecatedContent() is no more.
 				if ( $content ) {
+					/** @var Content $content */
 					$vals['slots'][$role]['contentmodel'] = $content->getModel();
 					$vals['slots'][$role]['contentformat'] = $content->getDefaultFormat();
 					ApiResult::setContentValue(

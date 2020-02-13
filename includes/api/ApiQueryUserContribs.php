@@ -36,7 +36,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'uc' );
 	}
 
-	private $params, $multiUserMode, $orderBy, $parentLens, $commentStore;
+	private $params, $multiUserMode, $orderBy, $parentLens;
+
+	/** @var CommentStore */
+	private $commentStore;
 
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,

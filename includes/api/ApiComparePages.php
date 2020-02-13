@@ -38,7 +38,9 @@ class ApiComparePages extends ApiBase {
 	/** @var \MediaWiki\Revision\SlotRoleRegistry */
 	private $slotRoleRegistry;
 
-	private $guessedTitle = false, $props;
+	/** @var Title|false */
+	private $guessedTitle = false;
+	private $props;
 
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;

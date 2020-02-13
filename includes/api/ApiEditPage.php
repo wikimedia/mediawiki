@@ -387,7 +387,6 @@ class ApiEditPage extends ApiBase {
 		$ep->setApiEditOverride( true );
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
-		$content = $ep->textbox1;
 
 		// Do the actual save
 		$oldRevId = $articleObject->getRevIdFetched();

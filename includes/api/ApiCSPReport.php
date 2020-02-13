@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * Api module to receive and log CSP violation reports
@@ -29,6 +30,7 @@ use MediaWiki\Logger\LoggerFactory;
  */
 class ApiCSPReport extends ApiBase {
 
+	/** @var LoggerInterface */
 	private $log;
 
 	/**
