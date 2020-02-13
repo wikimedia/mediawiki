@@ -3753,6 +3753,14 @@ $wgResourceLoaderMaxage = [
 ];
 
 /**
+ * Use the main stash instead of the module_deps table for indirect dependency tracking
+ *
+ * @since 1.35
+ * @warning EXPERIMENTAL
+ */
+$wgResourceLoaderUseObjectCacheForDeps = false;
+
+/**
  * The default debug mode (on/off) for of ResourceLoader requests.
  *
  * This will still be overridden when the debug URL parameter is used.
