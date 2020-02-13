@@ -1,4 +1,16 @@
 # OOUI Release History
+## v0.36.5 / 2020-02-11
+### Deprecating changes
+* [DEPRECATING CHANGE] icons: Rename 'stripe-' icons to follow convention (Volker E.)
+
+### Styles
+* icons: Add 'home' in interactions pack (Volker E.)
+* icons: Add 'logIn' in interactions pack (Volker E.)
+* icons: Add 'recentChanges' to 'layout' (Volker E.)
+* icons: Re-crush SVGs with latest svgmin (Volker E.)
+* icons: Update 'userContributions' to follow all guidelines (Volker E.)
+
+
 ## v0.36.4 / 2020-02-05
 ### Features
 * WMUI: Remove border from all toolGroups except 'menu' (Ed Sanders)

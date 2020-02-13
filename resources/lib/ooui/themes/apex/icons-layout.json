@@ -3,23 +3,51 @@
 	"intro": "@import '../../../../src/styles/common.less';",
 	"images": {
 		"menu": {
-			"file": "../wikimediaui/images/icons/menu.svg" },
+			"file": "../wikimediaui/images/icons/menu.svg"
+		},
+		"recentChanges": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/recentChanges-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/recentChanges-rtl.svg"
+			}
+		},
 		"stripeFlow": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/stripeFlow-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/stripeFlow-rtl.svg"
-			}
+				"ltr": "../wikimediaui/images/icons/textFlow-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/textFlow-rtl.svg"
+			},
+			"deprecated": "Renamed since v0.36.5, use 'textFlow' instead."
 		},
 		"stripeSummary": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/stripeSummary-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/stripeSummary-rtl.svg"
-			}
+				"ltr": "../wikimediaui/images/icons/textSummary-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/textSummary-rtl.svg"
+			},
+			"deprecated": "Renamed since v0.36.5, use 'textSummary' instead."
 		},
 		"stripeToC": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/stripeToC-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/stripeToC-rtl.svg"
+				"ltr": "../wikimediaui/images/icons/toc-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/toc-rtl.svg"
+			},
+			"deprecated": "Renamed since v0.36.5, use 'toc' instead."
+		},
+		"textFlow": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/textFlow-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/textFlow-rtl.svg"
+			}
+		},
+		"textSummary": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/textSummary-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/textSummary-rtl.svg"
+			}
+		},
+		"toc": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/toc-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/toc-rtl.svg"
 			}
 		},
 		"viewCompact": {
