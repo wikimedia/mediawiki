@@ -599,8 +599,8 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		);
 
 		$this->assertNull(
-			$page->getContent( Revision::FOR_THIS_USER, null ),
-			"WikiPage::getContent should return null after the page was suppressed for user zero"
+			$page->getContent( Revision::FOR_THIS_USER, $this->getTestUser()->getUser() ),
+			"WikiPage::getContent should return null after the page was suppressed for individual users"
 		);
 
 		$this->assertNull(
