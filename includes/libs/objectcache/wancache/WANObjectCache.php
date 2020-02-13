@@ -290,7 +290,7 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$this->mcrouterAware = !empty( $params['mcrouterAware'] );
 		$this->epoch = $params['epoch'] ?? 0;
 		$this->secret = $params['secret'] ?? (string)$this->epoch;
-		$this->coalesceKeys = $params['coalesce'] ?? false;
+		$this->coalesceKeys = $params['coalesceKeys'] ?? false;
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
@@ -2763,16 +2763,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 		$warmupCache += array_fill_keys( $keysWarmUp, false );
 
 		return $warmupCache;
-	}
-
-	/**
-	 * Set/clear the mcrouter support flag for testing
-	 *
-	 * @param bool $enabled
-	 * @since 1.35
-	 */
-	public function setMcRouterAware( $enabled ) {
-		$this->mcrouterAware = $enabled;
 	}
 
 	/**
