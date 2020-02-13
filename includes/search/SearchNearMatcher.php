@@ -62,7 +62,6 @@ class SearchNearMatcher {
 	 * @return null|Title
 	 */
 	protected function getNearMatchInternal( $searchterm ) {
-		$lang = $this->language;
 		$allSearchTerms = [ $searchterm ];
 
 		if ( $this->languageConverter->hasVariants() ) {
@@ -111,25 +110,25 @@ class SearchNearMatcher {
 			}
 
 			# Now try all lower case (i.e. first letter capitalized)
-			$title = Title::newFromText( $lang->lc( $term ) );
+			$title = Title::newFromText( $this->language->lc( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try capitalized string
-			$title = Title::newFromText( $lang->ucwords( $term ) );
+			$title = Title::newFromText( $this->language->ucwords( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try all upper case
-			$title = Title::newFromText( $lang->uc( $term ) );
+			$title = Title::newFromText( $this->language->uc( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
 
 			# Now try Word-Caps-Breaking-At-Word-Breaks, for hyphenated names etc
-			$title = Title::newFromText( $lang->ucwordbreaks( $term ) );
+			$title = Title::newFromText( $this->language->ucwordbreaks( $term ) );
 			if ( $title && $title->exists() ) {
 				return $title;
 			}
@@ -169,7 +168,7 @@ class SearchNearMatcher {
 		# MediaWiki namespace? Page may be "implied" if not customized.
 		# Just return it, with caps forced as the message system likes it.
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
-			return Title::makeTitle( NS_MEDIAWIKI, $lang->ucfirst( $title->getText() ) );
+			return Title::makeTitle( NS_MEDIAWIKI, $this->language->ucfirst( $title->getText() ) );
 		}
 
 		# Quoted term? Try without the quotes...
