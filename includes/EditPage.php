@@ -479,6 +479,11 @@ class EditPage {
 	private $contentHandlerFactory;
 
 	/**
+	 * @var PermissionManager
+	 */
+	private $permManager;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -497,11 +502,13 @@ class EditPage {
 
 		$this->contentModel = $this->mTitle->getContentModel();
 
-		$this->contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$services = MediaWikiServices::getInstance();
+		$this->contentHandlerFactory = $services->getContentHandlerFactory();
 		$this->contentFormat = $this->contentHandlerFactory
 			->getContentHandler( $this->contentModel )
 			->getDefaultFormat();
 		$this->editConflictHelperFactory = [ $this, 'newTextConflictHelper' ];
+		$this->permManager = $services->getPermissionManager();
 	}
 
 	/**
@@ -711,18 +718,28 @@ class EditPage {
 	}
 
 	/**
-	 * @param string $rigor Same format as Title::getUserPermissionErrors()
+	 * @param string $rigor PermissionManager::RIGOR_ constant
 	 * @return array
 	 */
 	protected function getEditPermissionErrors( $rigor = PermissionManager::RIGOR_SECURE ) {
 		$user = $this->context->getUser();
-		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $user, $rigor );
+		$permErrors = $this->permManager->getPermissionErrors(
+			'edit',
+			$user,
+			$this->mTitle,
+			$rigor
+		);
 		# Can this title be created?
 		if ( !$this->mTitle->exists() ) {
 			$permErrors = array_merge(
 				$permErrors,
 				wfArrayDiff2(
-					$this->mTitle->getUserPermissionsErrors( 'create', $user, $rigor ),
+					$this->permManager->getPermissionErrors(
+						'create',
+						$user,
+						$this->mTitle,
+						$rigor
+					),
 					$permErrors
 				)
 			);
@@ -754,8 +771,7 @@ class EditPage {
 	 *   "View source for ..." page displaying the source code after the error message.
 	 *
 	 * @since 1.19
-	 * @param array $permErrors Array of permissions errors, as returned by
-	 *    Title::getUserPermissionsErrors().
+	 * @param array $permErrors Array of permissions errors
 	 * @throws PermissionsError
 	 */
 	protected function displayPermissionsError( array $permErrors ) {
@@ -1570,9 +1586,7 @@ class EditPage {
 	 * @throws Exception
 	 */
 	private function isPageExistingAndViewable( $title, User $user ) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
-		return $title && $title->exists() && $permissionManager->userCan( 'read', $user, $title );
+		return $title && $title->exists() && $this->permManager->userCan( 'read', $user, $title );
 	}
 
 	/**
@@ -1631,8 +1645,7 @@ class EditPage {
 		// This is needed since PageUpdater no longer checks these rights!
 
 		// Allow bots to exempt some edits from bot flagging
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$bot = $permissionManager->userHasRight( $this->context->getUser(), 'bot' ) && $this->bot;
+		$bot = $this->permManager->userHasRight( $this->context->getUser(), 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
 
 		Hooks::run( 'EditPage::attemptSave:after', [ $this, $status, $resultDetails ] );
@@ -1920,7 +1933,6 @@ ERROR;
 	public function internalAttemptSave( &$result, $bot = false ) {
 		$status = Status::newGood();
 		$user = $this->context->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( !Hooks::run( 'EditPage::attemptSave', [ $this ] ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
@@ -1969,7 +1981,7 @@ ERROR;
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
 			$textbox_content->isRedirect() &&
-			!$permissionManager->userHasRight( $user, 'upload' )
+			!$this->permManager->userHasRight( $user, 'upload' )
 		) {
 				$code = $user->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
@@ -2019,7 +2031,7 @@ ERROR;
 			return $status;
 		}
 
-		if ( $permissionManager->isBlockedFrom( $user, $this->mTitle ) ) {
+		if ( $this->permManager->isBlockedFrom( $user, $this->mTitle ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			if ( !wfReadOnly() ) {
 				$user->spreadAnyEditBlock();
@@ -2039,7 +2051,7 @@ ERROR;
 			return $status;
 		}
 
-		if ( !$permissionManager->userHasRight( $user, 'edit' ) ) {
+		if ( !$this->permManager->userHasRight( $user, 'edit' ) ) {
 			if ( $user->isAnon() ) {
 				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 				return $status;
@@ -2056,7 +2068,7 @@ ERROR;
 				$status->fatal( 'editpage-cannot-use-custom-model' );
 				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
 				return $status;
-			} elseif ( !$permissionManager->userHasRight( $user, 'editcontentmodel' ) ) {
+			} elseif ( !$this->permManager->userHasRight( $user, 'editcontentmodel' ) ) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
 				return $status;
 			}
@@ -2064,7 +2076,7 @@ ERROR;
 			$titleWithNewContentModel = clone $this->mTitle;
 			$titleWithNewContentModel->setContentModel( $this->contentModel );
 
-			$canEditModel = $permissionManager->userCan(
+			$canEditModel = $this->permManager->userCan(
 				'editcontentmodel',
 				$user,
 				$titleWithNewContentModel
@@ -2072,7 +2084,7 @@ ERROR;
 
 			if (
 				!$canEditModel
-				|| !$permissionManager->userCan( 'edit', $user, $titleWithNewContentModel )
+				|| !$this->permManager->userCan( 'edit', $user, $titleWithNewContentModel )
 			) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
 
@@ -2119,7 +2131,7 @@ ERROR;
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$permissionManager->userCan( 'create', $user, $this->mTitle ) ) {
+			if ( !$this->permManager->userCan( 'create', $user, $this->mTitle ) ) {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
@@ -4210,8 +4222,7 @@ ERROR;
 
 		$user = $this->context->getUser();
 		// don't show the minor edit checkbox if it's a new page or section
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$this->isNew && $permissionManager->userHasRight( $user, 'minoredit' ) ) {
+		if ( !$this->isNew && $this->permManager->userHasRight( $user, 'minoredit' ) ) {
 			$checkboxes['wpMinoredit'] = [
 				'id' => 'wpMinoredit',
 				'label-message' => 'minoredit',
@@ -4498,7 +4509,7 @@ ERROR;
 	protected function addPageProtectionWarningHeaders() {
 		$out = $this->context->getOutput();
 		if ( $this->mTitle->isProtected( 'edit' ) &&
-			MediaWikiServices::getInstance()->getPermissionManager()->getNamespaceRestrictionLevels(
+			$this->permManager->getNamespaceRestrictionLevels(
 				$this->getTitle()->getNamespace()
 			) !== [ '' ]
 		) {
