@@ -76,13 +76,6 @@ class CommentStore {
 	];
 
 	/**
-	 * @since 1.30
-	 * @deprecated in 1.31
-	 * @var string|null
-	 */
-	protected $key = null;
-
-	/**
 	 * @var int One of the MIGRATION_* constants, or an appropriate combination
 	 *  of SCHEMA_COMPAT_* constants.
 	 * @todo Deprecate and remove once extensions seem unlikely to need to use
@@ -116,44 +109,12 @@ class CommentStore {
 	}
 
 	/**
-	 * Static constructor for easier chaining
-	 * @deprecated in 1.31 Should not be constructed with a $key, use CommentStore::getStore
-	 * @param string $key A key such as "rev_comment" identifying the comment
-	 *  field being fetched.
-	 * @return CommentStore
-	 */
-	public static function newKey( $key ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		$store = new CommentStore(
-			MediaWikiServices::getInstance()->getContentLanguage(), MIGRATION_NEW
-		);
-		$store->key = $key;
-		return $store;
-	}
-
-	/**
 	 * @since 1.31
 	 * @deprecated in 1.31 Use DI to inject a CommentStore instance into your class.
 	 * @return CommentStore
 	 */
 	public static function getStore() {
 		return MediaWikiServices::getInstance()->getCommentStore();
-	}
-
-	/**
-	 * Compat method allowing use of self::newKey until removed.
-	 * @param string|null $methodKey
-	 * @throws InvalidArgumentException
-	 * @return string
-	 */
-	private function getKey( $methodKey = null ) {
-		$key = $this->key ?? $methodKey;
-		if ( $key === null ) {
-			// @codeCoverageIgnoreStart
-			throw new InvalidArgumentException( '$key should not be null' );
-			// @codeCoverageIgnoreEnd
-		}
-		return $key;
 	}
 
 	/**
@@ -166,14 +127,13 @@ class CommentStore {
 	 *  actually fetch the comment. If possible, use `self::getJoin()` instead.
 	 *
 	 * @since 1.30
-	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
-	 * @param string|null $key A key such as "rev_comment" identifying the comment
+	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
+	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
 	 * @return string[] to include in the `$vars` to `IDatabase->select()`. All
 	 *  fields are aliased, so `+` is safe to use.
 	 */
-	public function getFields( $key = null ) {
-		$key = $this->getKey( $key );
+	public function getFields( $key ) {
 		$fields = [];
 		if ( ( $this->stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
 			$fields["{$key}_text"] = $key;
@@ -203,8 +163,8 @@ class CommentStore {
 	 * actual comment.
 	 *
 	 * @since 1.30
-	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
-	 * @param string|null $key A key such as "rev_comment" identifying the comment
+	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
+	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
 	 * @return array[] With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
@@ -213,8 +173,7 @@ class CommentStore {
 	 *  All tables, fields, and joins are aliased, so `+` is safe to use.
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
-	public function getJoin( $key = null ) {
-		$key = $this->getKey( $key );
+	public function getJoin( $key ) {
 		if ( !array_key_exists( $key, $this->joinCache ) ) {
 			$tables = [];
 			$fields = [];
@@ -407,7 +366,7 @@ class CommentStore {
 	 * `{$key}_text` (string) and `{$key}_data` (JSON string or null).
 	 *
 	 * @since 1.30
-	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
+	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
 	 * @param object|array|null $row Result row.
@@ -415,12 +374,6 @@ class CommentStore {
 	 * @return CommentStoreComment
 	 */
 	public function getComment( $key, $row = null, $fallback = false ) {
-		// Compat for method sig change in 1.31 (introduction of $key)
-		if ( $this->key !== null ) {
-			$fallback = $row;
-			$row = $key;
-			$key = $this->getKey();
-		}
 		if ( $row === null ) {
 			// @codeCoverageIgnoreStart
 			throw new InvalidArgumentException( '$row must not be null' );
@@ -440,7 +393,7 @@ class CommentStore {
 	 * `{$key}_text` (string) and `{$key}_data` (JSON string or null).
 	 *
 	 * @since 1.30
-	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
+	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
 	 * @param IDatabase $db Database handle to use for lookup
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
@@ -449,12 +402,6 @@ class CommentStore {
 	 * @return CommentStoreComment
 	 */
 	public function getCommentLegacy( IDatabase $db, $key, $row = null, $fallback = false ) {
-		// Compat for method sig change in 1.31 (introduction of $key)
-		if ( $this->key !== null ) {
-			$fallback = $row;
-			$row = $key;
-			$key = $this->getKey();
-		}
 		if ( $row === null ) {
 			// @codeCoverageIgnoreStart
 			throw new InvalidArgumentException( '$row must not be null' );
@@ -586,7 +533,7 @@ class CommentStore {
 	 *  row insert in the same transaction.
 	 *
 	 * @since 1.30
-	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
+	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
 	 * @param IDatabase $dbw Database handle to insert on
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
@@ -595,12 +542,6 @@ class CommentStore {
 	 * @return array Fields for the insert or update
 	 */
 	public function insert( IDatabase $dbw, $key, $comment = null, $data = null ) {
-		// Compat for method sig change in 1.31 (introduction of $key)
-		if ( $this->key !== null ) {
-			$data = $comment;
-			$comment = $key;
-			$key = $this->key;
-		}
 		if ( $comment === null ) {
 			// @codeCoverageIgnoreStart
 			throw new InvalidArgumentException( '$comment can not be null' );
@@ -627,7 +568,7 @@ class CommentStore {
 	 *  row insert in the same transaction.
 	 *
 	 * @since 1.30
-	 * @since 1.31 Method signature changed, $key parameter added (with deprecated back compat)
+	 * @since 1.31 Method signature changed, $key parameter added (required since 1.35)
 	 * @param IDatabase $dbw Database handle to insert on
 	 * @param string $key A key such as "rev_comment" identifying the comment
 	 *  field being fetched.
@@ -639,12 +580,6 @@ class CommentStore {
 	 *    inserted/updated is known. Pass it that primary key.
 	 */
 	public function insertWithTempTable( IDatabase $dbw, $key, $comment = null, $data = null ) {
-		// Compat for method sig change in 1.31 (introduction of $key)
-		if ( $this->key !== null ) {
-			$data = $comment;
-			$comment = $key;
-			$key = $this->getKey();
-		}
 		if ( $comment === null ) {
 			// @codeCoverageIgnoreStart
 			throw new InvalidArgumentException( '$comment can not be null' );
