@@ -236,22 +236,6 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * This used to call a legacy AuthPlugin method, if necessary. Since that code has
-	 * been removed, it now just returns the $return parameter.
-	 *
-	 * @codeCoverageIgnore
-	 * @deprecated For backwards compatibility only, should be avoided in new code
-	 * @param string $method AuthPlugin method to call
-	 * @param array $params Parameters to pass
-	 * @param mixed $return Return value if AuthPlugin wasn't called
-	 * @return mixed Return value from the AuthPlugin method, or $return
-	 */
-	public static function callLegacyAuthPlugin( $method, array $params, $return = null ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		return $return;
-	}
-
-	/**
 	 * @name Authentication
 	 * @{
 	 */
