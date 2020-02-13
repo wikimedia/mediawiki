@@ -22,8 +22,6 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * Searches the database for files of the requested MIME type, comparing this with the
  * 'img_major_mime' and 'img_minor_mime' fields in the image table.
@@ -189,9 +187,8 @@ class SpecialMIMESearch extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter();
-		$text = $converter->convertHtml( $nt->getText() );
+
+		$text = $this->getLanguageConverter()->convertHtml( $nt->getText() );
 		$plink = $linkRenderer->makeLink(
 			Title::newFromText( $nt->getPrefixedText() ),
 			new HtmlArmor( $text )
