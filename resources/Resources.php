@@ -1002,7 +1002,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.user.js',
 		'dependencies' => [
 			'mediawiki.api',
-			'mediawiki.storage',
+			'mediawiki.cookie',
 			// The two user.* modules are not used by mediawiki.user itself,
 			// but kept as explicit dependencies because they provide part
 			// of the mw.user API that consumers of this module expect.

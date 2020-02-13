@@ -29,6 +29,17 @@ mw.cookie = {
 	 * here because it is contrary to MediaWiki's `WebResponse#setcookie()` method
 	 * in PHP.
 	 *
+	 * When using this for persistent storage of identifiers (e.g. for tracking
+	 * sessions), be aware that persistence may vary slightly across browsers and
+	 * browser versions, and can be affected by a number of factors such as
+	 * storage limits (cookie eviction) and session restore features.
+	 *
+	 * Without an expiry, this creates a session cookie. In a browser, session cookies persist
+	 * for the lifetime of the browser *process*. Including across tabs, page views, and windows,
+	 * until the browser itself is *fully* closed, or until the browser clears all storage for
+	 * a given website. An exception to this is if the user evokes a "restore previous
+	 * session" feature that some browsers have.
+	 *
 	 * @param {string} key
 	 * @param {string|null} value Value of cookie. If `value` is `null` then this method will
 	 *   instead remove a cookie by name of `key`.
