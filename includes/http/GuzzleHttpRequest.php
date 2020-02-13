@@ -207,6 +207,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 				}
 			}
 		} catch ( GuzzleHttp\Exception\GuzzleException $e ) {
+			// @phan-suppress-previous-line PhanRedefinedClassReference False positive
 			$this->status->fatal( 'http-internal-error' );
 		}
 
