@@ -336,7 +336,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 			$logoHD = $conf->get( 'LogoHD' );
 			// make sure not false
 			if ( $logoHD ) {
-				wfDeprecated( __METHOD__ . ' with $wgLogoHD set instead of $wgLogos', '1.35', false, 1 );
+				// wfDeprecated( __METHOD__ . ' with $wgLogoHD set instead of $wgLogos', '1.35', false, 1 );
 				$logos += $logoHD;
 			}
 		} catch ( ConfigException $e ) {
