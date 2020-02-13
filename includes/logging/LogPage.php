@@ -229,17 +229,18 @@ class LogPage {
 	) {
 		global $wgLang, $wgLogActions;
 
-		if ( $skin === null ) {
-			$langObj = MediaWikiServices::getInstance()->getContentLanguage();
-			$langObjOrNull = null;
-		} else {
-			$langObj = $wgLang;
-			$langObjOrNull = $wgLang;
-		}
-
 		$key = "$type/$action";
 
 		if ( isset( $wgLogActions[$key] ) ) {
+			if ( $skin === null ) {
+				$langObj = MediaWikiServices::getInstance()->getContentLanguage();
+				$langObjOrNull = null;
+			} else {
+				// TODO Is $skin->getLanguage() safe here?
+				StubUserLang::unstub( $wgLang );
+				$langObj = $wgLang;
+				$langObjOrNull = $wgLang;
+			}
 			if ( $title === null ) {
 				$rv = wfMessage( $wgLogActions[$key] )->inLanguage( $langObj )->escaped();
 			} else {
