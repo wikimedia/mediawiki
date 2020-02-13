@@ -16,6 +16,7 @@
 		"irc": "irc://irc.freenode.net/mediawiki",
 		"wiki": "https://www.mediawiki.org/"
 	},
+	"prefer-stable": true,
 	"require": {
 		"composer/semver": "1.5.0",
 		"cssjanus/cssjanus": "1.3.0",
@@ -46,6 +47,7 @@
 		"wikimedia/ip-utils": "1.0.0",
 		"wikimedia/less.php": "1.8.2",
 		"wikimedia/object-factory": "2.1.0",
+		"wikimedia/parsoid": "^0.12.0@alpha",
 		"wikimedia/password-blacklist": "0.1.4",
 		"wikimedia/php-session-serializer": "1.0.7",
 		"wikimedia/purtle": "1.0.7",
