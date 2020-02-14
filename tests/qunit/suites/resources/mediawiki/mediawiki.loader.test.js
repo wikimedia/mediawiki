@@ -1037,7 +1037,7 @@
 		} );
 	} );
 
-	QUnit.test( 'mw.loader.store.init - Invalid JSON', function ( assert ) {
+	QUnit[ mw.loader.store.enabled ? 'test' : 'skip' ]( 'mw.loader.store.init - Invalid JSON', function ( assert ) {
 		// Reset
 		this.sandbox.stub( mw.loader.store, 'enabled', null );
 		this.sandbox.stub( mw.loader.store, 'items', {} );
@@ -1053,7 +1053,7 @@
 		);
 	} );
 
-	QUnit.test( 'mw.loader.store.init - Wrong JSON', function ( assert ) {
+	QUnit[ mw.loader.store.enabled ? 'test' : 'skip' ]( 'mw.loader.store.init - Wrong JSON', function ( assert ) {
 		// Reset
 		this.sandbox.stub( mw.loader.store, 'enabled', null );
 		this.sandbox.stub( mw.loader.store, 'items', {} );
@@ -1069,7 +1069,7 @@
 		);
 	} );
 
-	QUnit.test( 'mw.loader.store.init - Expired JSON', function ( assert ) {
+	QUnit[ mw.loader.store.enabled ? 'test' : 'skip' ]( 'mw.loader.store.init - Expired JSON', function ( assert ) {
 		// Reset
 		this.sandbox.stub( mw.loader.store, 'enabled', null );
 		this.sandbox.stub( mw.loader.store, 'items', {} );
@@ -1089,7 +1089,7 @@
 		);
 	} );
 
-	QUnit.test( 'mw.loader.store.init - Good JSON', function ( assert ) {
+	QUnit[ mw.loader.store.enabled ? 'test' : 'skip' ]( 'mw.loader.store.init - Good JSON', function ( assert ) {
 		// Reset
 		this.sandbox.stub( mw.loader.store, 'enabled', null );
 		this.sandbox.stub( mw.loader.store, 'items', {} );
