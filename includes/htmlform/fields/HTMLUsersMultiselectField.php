@@ -95,6 +95,10 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			$params['ipRangeLimits'] = $this->mParams['iprangelimits'];
 		}
 
+		if ( isset( $this->mParams['input'] ) ) {
+			$params['input'] = $this->mParams['input'];
+		}
+
 		if ( $value !== null ) {
 			// $value is a string, but the widget expects an array
 			$params['default'] = $value === '' ? [] : explode( "\n", $value );
