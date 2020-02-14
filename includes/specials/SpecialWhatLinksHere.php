@@ -298,6 +298,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				->parseAsBlock();
 			$out->addHTML( $msg );
 
+			$out->addWikiMsg( 'whatlinkshere-count', Message::numParam( count( $rows ) ) );
+
 			$prevnext = $this->getPrevNext( $prevId, $nextId );
 			$out->addHTML( $prevnext );
 		}
