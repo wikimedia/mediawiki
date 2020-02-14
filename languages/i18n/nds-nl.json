@@ -21,7 +21,8 @@
 			"Fitoschido",
 			"Vlad5250",
 			"PiefPafPier",
-			"DutchTom"
+			"DutchTom",
+			"Bdijkstra"
 		]
 	},
 	"tog-underline": "Verwysingen understreapen",
@@ -137,7 +138,7 @@
 	"category-media-header": "Media in kategory \"$1\"",
 	"category-empty": "<em>In disse kategory stån up et moment noch geen syden of media.</em>",
 	"hidden-categories": "Verbörgen {{PLURAL:$1|kategory|kategoryen}}",
-	"hidden-category-category": "Verbörgen kategoryen",
+	"hidden-category-category": "Verbörgen kategorieën",
 	"category-subcat-count": "{{PLURAL:$2|Disse kategory hevt de volgende subkategory.|Disse kategory hevt de volgende {{PLURAL:$1|subkategory|$1 subkategoryen}}, van in totaal $2.}}",
 	"category-subcat-count-limited": "Disse kategory hevt de volgende {{PLURAL:$1|subkategory|$1 subkategoryen}}.",
 	"category-article-count": "{{PLURAL:$2|In disse kategory steyt allinnig de volgende syde.|De volgende {{PLURAL:$1|syde steyt|$1 syden stån}} in disse kategory, van in totaal $2.}}",
@@ -1567,6 +1568,7 @@
 	"booksources-search": "Söken",
 	"booksources-text": "Hieronder steet n lieste mit verwiezingen naor aandere websteeën die nieje of wat ouwere boeken verkopen, en daor hebben ze warschienlik meer informasie over t boek da'j zeuken:",
 	"booksources-invalid-isbn": "De op-egeven ISBN klop niet; kiek effen nao o'j gien fout emaakt hebben bie de invoer.",
+	"magiclink-tracking-pmid": "Ziejen die magiese PMID-verwiezingen gebruken",
 	"magiclink-tracking-isbn": "Ziejen die magiese ISBN-verwiezingen gebruken",
 	"specialloguserlabel": "Uutvorende gebruker:",
 	"speciallogtitlelabel": "Dool (sydname of {{ns:user}}:gebrükersname vöär gebrüker):",
