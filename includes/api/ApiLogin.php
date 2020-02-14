@@ -286,7 +286,7 @@ class ApiLogin extends ApiBase {
 			'status' => $response->status,
 		];
 		if ( $response->message ) {
-			$ret['message'] = $response->message->inLanguage( 'en' )->plain();
+			$ret['responseMessage'] = $response->message->inLanguage( 'en' )->plain();
 		}
 		$reqs = [
 			'neededRequests' => $response->neededRequests,
