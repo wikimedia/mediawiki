@@ -1589,7 +1589,7 @@ abstract class ApiBase extends ContextSource {
 			'feature' => $feature,
 			// Spaces to underscores in 'username' for historical reasons.
 			'username' => str_replace( ' ', '_', $this->getUser()->getName() ),
-			'ip' => $request->getIP(),
+			'clientip' => $request->getIP(),
 			'referer' => (string)$request->getHeader( 'Referer' ),
 			'agent' => $this->getMain()->getUserAgent(),
 		];
@@ -1597,7 +1597,7 @@ abstract class ApiBase extends ContextSource {
 		// Text string is deprecated. Remove (or replace with just $feature) in MW 1.34.
 		$s = '"' . addslashes( $ctx['feature'] ) . '"' .
 			' "' . wfUrlencode( $ctx['username'] ) . '"' .
-			' "' . $ctx['ip'] . '"' .
+			' "' . $ctx['clientip'] . '"' .
 			' "' . addslashes( $ctx['referer'] ) . '"' .
 			' "' . addslashes( $ctx['agent'] ) . '"';
 
