@@ -406,13 +406,13 @@ class LoadBalancer implements ILoadBalancer {
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
 					$this->replLogger->debug(
 						__METHOD__ .
-						": server {host} is not replicating?", [ 'host' => $host ] );
+						": server {hostname} is not replicating?", [ 'hostname' => $host ] );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
 					$this->replLogger->debug(
 						__METHOD__ .
-						": server {host} has {lag} seconds of lag (>= {maxlag})",
-						[ 'host' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
+						": server {hostname} has {lag} seconds of lag (>= {maxlag})",
+						[ 'hostname' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
 					);
 					unset( $loads[$i] );
 				}
@@ -854,9 +854,9 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( $result === null ) {
 			$this->replLogger->warning(
-				__METHOD__ . ': Errored out waiting on {host} pos {pos}',
+				__METHOD__ . ': Errored out waiting on {hostname} pos {pos}',
 				[
-					'host' => $server,
+					'hostname' => $server,
 					'pos' => $this->waitForPos,
 					'trace' => ( new RuntimeException() )->getTraceAsString()
 				]
@@ -864,9 +864,9 @@ class LoadBalancer implements ILoadBalancer {
 			$ok = false;
 		} elseif ( $result == -1 ) {
 			$this->replLogger->warning(
-				__METHOD__ . ': Timed out waiting on {host} pos {pos}',
+				__METHOD__ . ': Timed out waiting on {hostname} pos {pos}',
 				[
-					'host' => $server,
+					'hostname' => $server,
 					'pos' => $this->waitForPos,
 					'trace' => ( new RuntimeException() )->getTraceAsString()
 				]
@@ -2263,9 +2263,9 @@ class LoadBalancer implements ILoadBalancer {
 			$result = $conn->masterPosWait( $pos, $timeout );
 			$seconds = max( microtime( true ) - $start, 0 );
 			if ( $result == -1 || $result === null ) {
-				$msg = __METHOD__ . ': timed out waiting on {host} pos {pos} [{seconds}s]';
+				$msg = __METHOD__ . ': timed out waiting on {hostname} pos {pos} [{seconds}s]';
 				$this->replLogger->warning( $msg, [
-					'host' => $conn->getServer(),
+					'hostname' => $conn->getServer(),
 					'pos' => $pos,
 					'seconds' => round( $seconds, 6 ),
 					'trace' => ( new RuntimeException() )->getTraceAsString()
@@ -2278,9 +2278,9 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$ok = false; // something is misconfigured
 			$this->replLogger->error(
-				__METHOD__ . ': could not get master pos for {host}',
+				__METHOD__ . ': could not get master pos for {hostname}',
 				[
-					'host' => $conn->getServer(),
+					'hostname' => $conn->getServer(),
 					'trace' => ( new RuntimeException() )->getTraceAsString()
 				]
 			);

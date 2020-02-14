@@ -1623,7 +1623,7 @@ class AuthManager implements LoggerAwareInterface {
 		) {
 			$this->logger->debug( __METHOD__ . ': IP lacks the ability to create or autocreate accounts', [
 				'username' => $username,
-				'ip' => $anon->getName(),
+				'clientip' => $anon->getName(),
 			] );
 			$session->set( 'AuthManager::AutoCreateBlacklist', 'authmanager-autocreate-noperm' );
 			$session->persist();
