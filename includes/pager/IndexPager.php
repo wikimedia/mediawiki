@@ -799,9 +799,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
-	 * Abstract formatting function. This should return an HTML string
-	 * representing the result row $row. Rows will be concatenated and
-	 * returned by getBody()
+	 * Returns an HTML string representing the result row $row.
+	 * Rows will be concatenated and returned by getBody()
 	 *
 	 * @param array|stdClass $row Database row
 	 * @return string
@@ -809,9 +808,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	abstract function formatRow( $row );
 
 	/**
-	 * This function should be overridden to provide all parameters
-	 * needed for the main paged query. It returns an associative
-	 * array with the following elements:
+	 * Provides all parameters needed for the main paged query. It returns
+	 * an associative array with the following elements:
 	 *    tables => Table(s) for passing to Database::select()
 	 *    fields => Field(s) for passing to Database::select(), may be *
 	 *    conds => WHERE conditions
@@ -823,11 +821,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 	abstract function getQueryInfo();
 
 	/**
-	 * This function should be overridden to return the name of the index fi-
-	 * eld.  If the pager supports multiple orders, it may return an array of
-	 * 'querykey' => 'indexfield' pairs, so that a request with &order=querykey
-	 * will use indexfield to sort.  In this case, the first returned key is
-	 * the default.
+	 * Returns the name of the index field.  If the pager supports multiple
+	 * orders, it may return an array of 'querykey' => 'indexfield' pairs,
+	 * so that a request with &order=querykey will use indexfield to sort.
+	 * In this case, the first returned key is the default.
 	 *
 	 * Needless to say, it's really not a good idea to use a non-unique index
 	 * for this!  That won't page right.
@@ -862,9 +859,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	abstract function getIndexField();
 
 	/**
-	 * This function should be overridden to return the names of secondary columns
-	 * to order by in addition to the column in getIndexField(). These fields will
-	 * not be used in the pager offset or in any links for users.
+	 * Returns the names of secondary columns to order by in addition to the
+	 * column in getIndexField(). These fields will not be used in the pager
+	 * offset or in any links for users.
 	 *
 	 * If getIndexField() returns an array of 'querykey' => 'indexfield' pairs then
 	 * this must return a corresponding array of 'querykey' => [ fields... ] pairs
