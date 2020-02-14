@@ -160,6 +160,10 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
+	}
+
 	public function removeWatchBatchForUser( UserIdentity $user, array $titles ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
@@ -168,5 +172,13 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		$timestamp, UserIdentity $user, LinkTarget $target
 	) {
 		return wfTimestampOrNull( TS_MW, $timestamp );
+	}
+
+	public function countExpired(): int {
+		return $this->actualStore->countExpired();
+	}
+
+	public function removeExpired( int $limit, bool $deleteOrphans = false ): void {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 }
