@@ -655,7 +655,7 @@
 	"apihelp-query+categorymembers-paramvalue-prop-title": "Sayfanın başlığını ve ad alanı kimliğini ekler.",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkey": "Kategoride sıralama için kullanılan sıralama anahtarını ekler (onaltılık dize).",
 	"apihelp-query+categorymembers-paramvalue-prop-sortkeyprefix": "Kategoride sıralama için kullanılan sıralama anahtarı önekini ekler (sıralama anahtarının okunabilir kısmı).",
-	"apihelp-query+categorymembers-paramvalue-prop-type": "Sayfanın kategorize edildiği türü ekler (<samp>page</samp>, <örnek>subcat</samp> veya <örnek>file</samp>).",
+	"apihelp-query+categorymembers-paramvalue-prop-type": "Sayfanın kategorize edildiği türü ekler (<samp>page</samp>, <samp>subcat</samp> veya <samp>file</samp>).",
 	"apihelp-query+categorymembers-paramvalue-prop-timestamp": "Sayfanın eklendiği zaman damgasını ekler.",
 	"apihelp-query+categorymembers-param-namespace": "Yalnızca bu ad alanlarına sayfalar ekleyin. <kbd>$1namespace=14</kbd> veya <kbd>6</kbd> yerine <kbd>$1type=subcat</kbd> veya <kbd>$1type=file</kbd> kullanılabileceğini unutmayın.",
 	"apihelp-query+categorymembers-param-type": "Hangi tür kategori üyelerini ekleyeceğiniz. <kbd>$1sort=timestamp</kbd> ayarlandığında yok sayılır.",

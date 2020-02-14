@@ -4008,7 +4008,7 @@
 	"specialmute-error-no-options": "禁言功能不可用。这可能是因为：您还没有确认您的电子邮箱地址，或者Wiki管理员已禁用此Wiki的电子邮箱和/或电子邮箱黑名单功能。",
 	"specialmute-email-footer": "请访问$1管理用户{{BIDI:$2}}的电子邮件首选项",
 	"specialmute-login-required": "请登录以更改您的沉默用户提醒设置。",
-	"mute-preferences": "静音设置",
+	"mute-preferences": "屏蔽设置",
 	"revid": "修订版本$1",
 	"pageid": "页面ID$1",
 	"interfaceadmin-info": "$1\n\n编辑全站CSS/JS/JSON文件的权限刚刚从<code>editinterface</code>权限中拆分。如果您不知道为何收到此错误，请参见[[mw:MediaWiki_1.32/interface-admin]]。",
