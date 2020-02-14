@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * A special page that allows users to change page titles
@@ -60,8 +61,12 @@ class MovePageForm extends UnlistedSpecialPage {
 
 	private $watch = false;
 
+	/** @var PermissionManager */
+	private $permManager;
+
 	public function __construct() {
 		parent::__construct( 'Movepage' );
+		$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
 	}
 
 	public function doesWrites() {
@@ -104,7 +109,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$user = $this->getUser();
 
 		# Check rights
-		$permErrors = $this->oldTitle->getUserPermissionsErrors( 'move', $user );
+		$permErrors = $this->permManager->getPermissionErrors( 'move', $user, $this->oldTitle );
 		if ( count( $permErrors ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			DeferredUpdates::addCallableUpdate( function () use ( $user ) {
@@ -199,8 +204,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'articleexists'
-			&& MediaWikiServices::getInstance()->getPermissionManager()
-				 ->quickUserCan( 'delete', $user, $newTitle )
+			&& $this->permManager->quickUserCan( 'delete', $user, $newTitle )
 		) {
 			$out->wrapWikiMsg(
 				"<div class='warningbox'>\n$1\n</div>\n",
@@ -211,9 +215,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'file-exists-sharedrepo'
-			&& MediaWikiServices::getInstance()
-				 ->getPermissionManager()
-				 ->userHasRight( $user, 'reupload-shared' )
+			&& $this->permManager->userHasRight( $user, 'reupload-shared' )
 		) {
 			$out->wrapWikiMsg(
 				"<div class='warningbox'>\n$1\n</div>\n",
@@ -231,7 +233,11 @@ class MovePageForm extends UnlistedSpecialPage {
 		$oldTitleTalkSubpages = $this->oldTitle->getTalkPage()->hasSubpages();
 
 		$canMoveSubpage = ( $oldTitleSubpages || $oldTitleTalkSubpages ) &&
-			!count( $this->oldTitle->getUserPermissionsErrors( 'move-subpages', $user ) );
+			!count( $this->permManager->getPermissionErrors(
+				'move-subpages',
+				$user,
+				$this->oldTitle
+			) );
 
 		# We also want to be able to move assoc. subpage talk-pages even if base page
 		# has no associated talk page, so || with $oldTitleTalkSubpages.
@@ -379,9 +385,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'suppressredirect' )
+		if ( $this->permManager->userHasRight( $user, 'suppressredirect' )
 		) {
 			if ( $handlerSupportsRedirects ) {
 				$isChecked = $this->leaveRedirect;
@@ -528,7 +532,6 @@ class MovePageForm extends UnlistedSpecialPage {
 
 	function doSubmit() {
 		$user = $this->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( $user->pingLimiter( 'move' ) ) {
 			throw new ThrottledError;
@@ -549,7 +552,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Show a warning if the target file exists on a shared repo
 		$repoGroup = $services->getRepoGroup();
 		if ( $nt->getNamespace() == NS_FILE
-			&& !( $this->moveOverShared && $permissionManager->userHasRight( $user, 'reupload-shared' ) )
+			&& !( $this->moveOverShared && $this->permManager->userHasRight( $user, 'reupload-shared' ) )
 			&& !$repoGroup->getLocalRepo()->findFile( $nt )
 			&& $repoGroup->findFile( $nt )
 		) {
@@ -560,7 +563,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		# Delete to make way if requested
 		if ( $this->deleteAndMove ) {
-			$permErrors = $permissionManager->getPermissionErrors( 'delete', $user, $nt );
+			$permErrors = $this->permManager->getPermissionErrors( 'delete', $user, $nt );
 			if ( count( $permErrors ) ) {
 				# Only show the first error
 				$this->showForm( $permErrors, true );
@@ -603,7 +606,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		if ( !$handler->supportsRedirects() ) {
 			$createRedirect = false;
-		} elseif ( $permissionManager->userHasRight( $user, 'suppressredirect' ) ) {
+		} elseif ( $this->permManager->userHasRight( $user, 'suppressredirect' ) ) {
 			$createRedirect = $this->leaveRedirect;
 		} else {
 			$createRedirect = true;
@@ -618,7 +621,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$this->moveTalk = false;
 		}
 		if ( $this->moveSubpages ) {
-			$this->moveSubpages = $permissionManager->userCan( 'move-subpages', $user, $ot );
+			$this->moveSubpages = $this->permManager->userCan( 'move-subpages', $user, $ot );
 		}
 
 		$status = $mp->moveIfAllowed( $user, $this->reason, $createRedirect );
