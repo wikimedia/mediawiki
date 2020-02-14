@@ -307,6 +307,7 @@ because of Phabricator reports.
 * SpecialRecentChanges::filterByCategories(), deprecated in 1.31, was removed.
 * The `ArticleContentViewCustom` hook, deprecated in 1.32, was removed.
 * AuthManager::callLegacyAuthPlugin, deprecated in 1.33, was removed.
+* wfGetMessageCacheStorage was removed without deprecation.
 * …
 
 === Deprecations in 1.35 ===

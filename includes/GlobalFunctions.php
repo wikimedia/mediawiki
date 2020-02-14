@@ -2848,16 +2848,6 @@ function wfGetMainCache() {
 }
 
 /**
- * Get the cache object used by the message cache
- *
- * @return BagOStuff
- */
-function wfGetMessageCacheStorage() {
-	global $wgMessageCacheType;
-	return ObjectCache::getInstance( $wgMessageCacheType );
-}
-
-/**
  * Wrapper around php's unpack.
  *
  * @param string $format The format string (See php's docs)
