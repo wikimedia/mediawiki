@@ -16,15 +16,12 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	 */
 	public function __construct( ?IContentHandlerFactory $contentHandlerFactory = null ) {
 		parent::__construct( 'ChangeContentModel', 'editcontentmodel' );
-		$this->contentHandlerFactory = DeprecationHelper::newArgumentWithDeprecation(
-			__METHOD__,
-			'contentHandlerFactory',
-			'1.35',
-			$contentHandlerFactory,
-			function () {
-				return MediaWikiServices::getInstance()->getContentHandlerFactory();
-			}
-		);
+
+		if ( !$contentHandlerFactory ) {
+			wfDeprecated( __METHOD__ . ' without $contentHandlerFactory parameter', '1.35' );
+			$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		}
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	public function doesWrites() {

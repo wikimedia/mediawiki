@@ -137,48 +137,4 @@ trait DeprecationHelper {
 		}
 		return false;
 	}
-
-	/**
-	 * This function is used to introduce new argument into function or __construct.
-	 * It returns provided $value if it's not null.
-	 * If $value is null it raises wfDeprecated exception with name of property and returns fallback.
-	 *
-	 *
-	 * * Example usage:
-	 *     private $newVariable;
-	 *     function __construct( $oldVariable, $newVariable ) {
-	 *         ....
-	 *         $this->newVariable = DeprecationHelper::newArgumentWithDeprecation(
-	 *             __METHOD__,
-	 *             "$newVariable",
-	 *             $newVariable,
-	 *             function() { return 0; } // Any way to evaluate default value for $newVariable
-	 *         );
-	 *         ....
-	 *     }
-	 *
-	 *     $foo = new Foo;
-	 *     $foo->bar; // works but logs a warning
-	 *
-	 * @param string $method full class method
-	 * @param string $name new argument name
-	 * @param string $version version since argument was introduced
-	 * @param mixed|null $value
-	 * @param callable $fallback Closure of type (): mixed - it used if $value is null
-	 *
-	 * @return mixed
-	 */
-	public static function newArgumentWithDeprecation(
-		string $method,
-		string $name,
-		string $version,
-		$value,
-		callable $fallback
-	) {
-		if ( $value === null ) {
-			wfDeprecated( $method . " without $name parameter", $version );
-			return $fallback();
-		}
-		return $value;
-	}
 }
