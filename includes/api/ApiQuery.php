@@ -509,15 +509,14 @@ class ApiQuery extends ApiBase {
 		// parameters either. We do allow the 'rawcontinue' and 'indexpageids'
 		// parameters since frameworks might add these unconditionally and they
 		// can't expose anything here.
+		$allowedParams = [ 'rawcontinue' => 1, 'indexpageids' => 1 ];
 		$this->mParams = $this->extractRequestParams();
-		$params = array_filter(
-			array_diff_key(
-				$this->mParams + $this->getPageSet()->extractRequestParams(),
-				[ 'rawcontinue' => 1, 'indexpageids' => 1 ]
-			)
-		);
-		if ( array_keys( $params ) !== [ 'meta' ] ) {
-			return true;
+		$request = $this->getRequest();
+		foreach ( $this->mParams + $this->getPageSet()->extractRequestParams() as $param => $value ) {
+			$needed = $param === 'meta';
+			if ( !isset( $allowedParams[$param] ) && $request->getCheck( $param ) !== $needed ) {
+				return true;
+			}
 		}
 
 		// Ask each module if it requires read mode. Any true => this returns
