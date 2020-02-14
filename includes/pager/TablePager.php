@@ -464,6 +464,10 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * The database field name used as a default sort order.
 	 *
+	 * Note that this field will only be sorted on if isFieldSortable returns
+	 * true for this field. If not (e.g. paginating on multiple columns), this
+	 * should return empty string, and getIndexField should be overridden.
+	 *
 	 * @protected
 	 *
 	 * @return string
