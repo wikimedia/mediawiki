@@ -63,7 +63,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$this->tokenFunctions = [
 			'rollback' => [ self::class, 'getRollbackToken' ]
 		];
-		Hooks::run( 'APIQueryRevisionsTokens', [ &$this->tokenFunctions ] );
+		Hooks::run( 'APIQueryRevisionsTokens', [ &$this->tokenFunctions ], '1.24' );
 
 		return $this->tokenFunctions;
 	}

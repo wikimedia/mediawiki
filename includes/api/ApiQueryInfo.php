@@ -114,7 +114,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'import' => [ self::class, 'getImportToken' ],
 			'watch' => [ self::class, 'getWatchToken' ],
 		];
-		Hooks::run( 'APIQueryInfoTokens', [ &$this->tokenFunctions ] );
+		Hooks::run( 'APIQueryInfoTokens', [ &$this->tokenFunctions ], '1.24' );
 
 		return $this->tokenFunctions;
 	}
