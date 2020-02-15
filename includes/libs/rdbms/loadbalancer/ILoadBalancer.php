@@ -792,4 +792,14 @@ interface ILoadBalancer {
 	 * @since 1.31
 	 */
 	public function setIndexAliases( array $aliases );
+
+	/**
+	 * Convert certain database domains to alternative ones.
+	 *
+	 * This can be used for backwards compatibility logic.
+	 *
+	 * @param DatabaseDomain[]|string[] $aliases Map of (domain alias => domain)
+	 * @since 1.35
+	 */
+	public function setDomainAliases( array $aliases );
 }

@@ -184,7 +184,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		yield [ 'test-foo_', 'test', 'foo_' ];
 
 		yield [ false, 'dash-test', '' ];
-		yield [ 'dash-test', 'dash-test', '' ];
+		yield [ 'dash?htest', 'dash-test', '' ];
 
 		yield [ false, 'underscore_test', 'foo_' ];
 		yield [ 'underscore_test-foo_', 'underscore_test', 'foo_' ];
@@ -194,7 +194,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @dataProvider provideDomainCheck
 	 * @covers \MediaWiki\Revision\RevisionStore::checkDatabaseDomain
 	 */
-	public function testDomainCheck( $wikiId, $dbName, $dbPrefix ) {
+	public function testDomainCheck( $dbDomain, $dbName, $dbPrefix ) {
 		$this->setMwGlobals(
 			[
 				'wgDBname' => $dbName,
@@ -248,7 +248,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			$this->getMcrMigrationStage(),
 			MediaWikiServices::getInstance()->getActorMigration(),
 			MediaWikiServices::getInstance()->getContentHandlerFactory(),
-			$wikiId
+			$dbDomain
 		);
 
 		$count = $store->countRevisionsByPageId( $db, 0 );

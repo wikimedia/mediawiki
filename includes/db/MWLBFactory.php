@@ -24,6 +24,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * MediaWiki-specific class for generating database load balancers
@@ -354,6 +355,20 @@ abstract class MWLBFactory {
 		}
 
 		return $class;
+	}
+
+	/**
+	 * @param ILBFactory $lbFactory
+	 */
+	public static function setDomainAliases( ILBFactory $lbFactory ) {
+		$domain = DatabaseDomain::newFromId( $lbFactory->getLocalDomainID() );
+		// For compatibility with hyphenated $wgDBname values on older wikis, handle callers
+		// that assume corresponding database domain IDs and wiki IDs have identical values
+		$rawLocalDomain = strlen( $domain->getTablePrefix() )
+			? "{$domain->getDatabase()}-{$domain->getTablePrefix()}"
+			: (string)$domain->getDatabase();
+
+		$lbFactory->setDomainAliases( [ $rawLocalDomain => $domain ] );
 	}
 
 	/**

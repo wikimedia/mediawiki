@@ -83,9 +83,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $waitTimeout;
 	/** @var array The LoadMonitor configuration */
 	private $loadMonitorConfig;
-	/** @var string Alternate local DB domain instead of DatabaseDomain::getId() */
-	private $localDomainIdAlias;
-	/** @var int Amount of replication lag, in seconds, that is considered "high" */
+	/** @var int */
 	private $maxLag;
 	/** @var string|null Default query group to use with getConnection() */
 	private $defaultGroup;
@@ -101,6 +99,8 @@ class LoadBalancer implements ILoadBalancer {
 	private $tableAliases = [];
 	/** @var string[] Map of (index alias => index) */
 	private $indexAliases = [];
+	/** @var DatabaseDomain[]|string[] Map of (domain alias => DB domain) */
+	private $domainAliases = [];
 	/** @var callable[] Map of (name => callable) */
 	private $trxRecurringCallbacks = [];
 	/** @var bool[] Map of (domain => whether to use "temp tables only" mode) */
@@ -135,6 +135,9 @@ class LoadBalancer implements ILoadBalancer {
 	private $id;
 	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
 	private $ownerId;
+
+	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
+	private $nonLocalDomainCache = [];
 
 	private static $INFO_SERVER_INDEX = 'serverIndex';
 	private static $INFO_AUTOCOMMIT_ONLY = 'autoCommitOnly';
@@ -267,12 +270,32 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function resolveDomainID( $domain ) {
-		if ( $domain === $this->localDomainIdAlias || $domain === false ) {
-			// Local connection requested via some backwards-compatibility domain alias
-			return $this->getLocalDomainID();
+		return $this->resolveDomainInstance( $domain )->getId();
+	}
+
+	/**
+	 * @param DatabaseDomain|string|bool $domain
+	 * @return DatabaseDomain
+	 */
+	final protected function resolveDomainInstance( $domain ) {
+		if ( $domain instanceof DatabaseDomain ) {
+			return $domain; // already a domain instance
+		} elseif ( $domain === false || $domain === $this->localDomain->getId() ) {
+			return $this->localDomain;
+		} elseif ( isset( $this->domainAliases[$domain] ) ) {
+			$this->domainAliases[$domain] =
+				DatabaseDomain::newFromId( $this->domainAliases[$domain] );
+
+			return $this->domainAliases[$domain];
 		}
 
-		return (string)$domain;
+		$cachedDomain = $this->nonLocalDomainCache[$domain] ?? null;
+		if ( $cachedDomain === null ) {
+			$cachedDomain = DatabaseDomain::newFromId( $domain );
+			$this->nonLocalDomainCache = [ $domain => $cachedDomain ];
+		}
+
+		return $cachedDomain;
 	}
 
 	/**
@@ -2326,6 +2349,10 @@ class LoadBalancer implements ILoadBalancer {
 		$this->indexAliases = $aliases;
 	}
 
+	public function setDomainAliases( array $aliases ) {
+		$this->domainAliases = $aliases;
+	}
+
 	public function setLocalDomainPrefix( $prefix ) {
 		// Find connections to explicit foreign domains still marked as in-use...
 		$domainsInUse = [];
@@ -2380,14 +2407,6 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	private function setLocalDomain( DatabaseDomain $domain ) {
 		$this->localDomain = $domain;
-		// In case a caller assumes that the domain ID is simply <db>-<prefix>, which is almost
-		// always true, gracefully handle the case when they fail to account for escaping.
-		if ( $this->localDomain->getTablePrefix() != '' ) {
-			$this->localDomainIdAlias =
-				$this->localDomain->getDatabase() . '-' . $this->localDomain->getTablePrefix();
-		} else {
-			$this->localDomainIdAlias = $this->localDomain->getDatabase();
-		}
 	}
 
 	/**
