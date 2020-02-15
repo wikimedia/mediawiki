@@ -1006,6 +1006,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				[ 'value', 'value2' ],
 				"GREATEST(field,field2,'value','value2')"
 			],
+			[
+				[ 'field', 'b' => 'field2 + 1' ],
+				[ 'value', 'value2' ],
+				"GREATEST(field,field2 + 1,'value','value2')"
+			],
 		];
 	}
 
@@ -1036,6 +1041,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				[ 'field', 'field2' ],
 				[ 'value', 'value2' ],
 				"LEAST(field,field2,'value','value2')"
+			],
+			[
+				[ 'field', 'b' => 'field2 + 1' ],
+				[ 'value', 'value2' ],
+				"LEAST(field,field2 + 1,'value','value2')"
 			],
 		];
 	}

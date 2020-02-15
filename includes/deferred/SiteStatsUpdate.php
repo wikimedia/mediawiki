@@ -102,12 +102,18 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 			__METHOD__,
 			function ( IDatabase $dbw, $fname ) use ( $deltaByType ) {
 				$set = [];
-				foreach ( self::COUNTERS as $column => $type ) {
+				foreach ( self::COUNTERS as $field => $type ) {
 					$delta = (int)$deltaByType[$type];
 					if ( $delta > 0 ) {
-						$set[] = "$column=$column+" . abs( $delta );
+						$set[] = "$field=" . $dbw->buildGreatest(
+							[ $field => $dbw->addIdentifierQuotes( $field ) . '+' . abs( $delta ) ],
+							0
+						);
 					} elseif ( $delta < 0 ) {
-						$set[] = "$column=$column-" . abs( $delta );
+						$set[] = "$field=" . $dbw->buildGreatest(
+							[ 'new' => $dbw->addIdentifierQuotes( $field ) . '-' . abs( $delta ) ],
+							0
+						);
 					}
 				}
 

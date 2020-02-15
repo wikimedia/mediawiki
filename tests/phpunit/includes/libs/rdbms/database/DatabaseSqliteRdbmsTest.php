@@ -94,6 +94,11 @@ class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 				[ 'value', 'value2', 3, 7.6 ],
 				"MAX(\"field\",\"field2\",'value','value2',3,7.6)"
 			],
+			[
+				[ 'field', 'a' => "\"field2\"+1" ],
+				[ 'value', 'value2', 3, 7.6 ],
+				"MAX(\"field\",\"field2\"+1,'value','value2',3,7.6)"
+			],
 		];
 	}
 
@@ -125,6 +130,11 @@ class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 				[ 'field', 'field2' ],
 				[ 'value', 'value2', 3, 7.6 ],
 				"MIN(\"field\",\"field2\",'value','value2',3,7.6)"
+			],
+			[
+				[ 'field', 'a' => "\"field2\"+1" ],
+				[ 'value', 'value2', 3, 7.6 ],
+				"MIN(\"field\",\"field2\"+1,'value','value2',3,7.6)"
 			],
 		];
 	}

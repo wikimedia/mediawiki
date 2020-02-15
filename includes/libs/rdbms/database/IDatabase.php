@@ -1062,6 +1062,10 @@ interface IDatabase {
 	 *
 	 * Integer and float values in $values will not be quoted
 	 *
+	 * If $fields is an array, then each value with a string key is treated as an expression
+	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
+	 * descriptive aliases.
+	 *
 	 * @param string|string[] $fields Name(s) of column(s) with values to compare
 	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
 	 * @return mixed
@@ -1073,6 +1077,10 @@ interface IDatabase {
 	 * Build a LEAST function statement comparing columns/values
 	 *
 	 * Integer and float values in $values will not be quoted
+	 *
+	 * If $fields is an array, then each value with a string key is treated as an expression
+	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
+	 * descriptive aliases.
 	 *
 	 * @param string|string[] $fields Name(s) of column(s) with values to compare
 	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
