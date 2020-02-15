@@ -1488,6 +1488,11 @@ class ApiMain extends ApiBase {
 		if ( isset( $params['assert'] ) ) {
 			$user = $this->getUser();
 			switch ( $params['assert'] ) {
+				case 'anon':
+					if ( !$user->isAnon() ) {
+						$this->dieWithError( 'apierror-assertanonfailed' );
+					}
+					break;
 				case 'user':
 					if ( $user->isAnon() ) {
 						$this->dieWithError( 'apierror-assertuserfailed' );
@@ -1868,7 +1873,7 @@ class ApiMain extends ApiBase {
 				ApiBase::PARAM_DFLT => 0
 			],
 			'assert' => [
-				ApiBase::PARAM_TYPE => [ 'user', 'bot' ]
+				ApiBase::PARAM_TYPE => [ 'anon', 'user', 'bot' ]
 			],
 			'assertuser' => [
 				ApiBase::PARAM_TYPE => 'user',

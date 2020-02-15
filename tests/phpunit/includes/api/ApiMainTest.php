@@ -370,6 +370,8 @@ class ApiMainTest extends ApiTestCase {
 		return [
 			[ false, [], 'user', 'assertuserfailed' ],
 			[ true, [], 'user', false ],
+			[ false, [], 'anon', false ],
+			[ true, [], 'anon', 'assertanonfailed' ],
 			[ true, [], 'bot', 'assertbotfailed' ],
 			[ true, [ 'bot' ], 'user', false ],
 			[ true, [ 'bot' ], 'bot', false ],
