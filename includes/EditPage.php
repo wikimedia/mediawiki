@@ -3268,6 +3268,10 @@ ERROR;
 
 				$out->wrapWikiMsg( '<div class="mw-userconfigpublic">$1</div>', $warning );
 
+				if ( $isUserJsConfig ) {
+					$out->wrapWikiMsg( '<div class="mw-userconfigdangerous">$1</div>', 'userjsdangerous' );
+				}
+
 				if ( $this->formtype !== 'preview' ) {
 					$config = $this->context->getConfig();
 					if ( $isUserCssConfig && $config->get( 'AllowUserCss' ) ) {

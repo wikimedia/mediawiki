@@ -4230,6 +4230,7 @@
 	"userjsispublic": "Please note: JavaScript subpages should not contain confidential data as they are viewable by other users.",
 	"userjsonispublic": "Please note: JSON subpages should not contain confidential data as they are viewable by other users.",
 	"usercssispublic": "Please note: CSS subpages should not contain confidential data as they are viewable by other users.",
+	"userjsdangerous": "Please note: Scripts included on this page will be run any time you load a page. Malicious code added here could result in account compromise. The code will be executed when you preview your changes to this page.",
 	"restrictionsfield-badip": "Invalid IP address or range: $1",
 	"restrictionsfield-label": "Allowed IP ranges:",
 	"restrictionsfield-help": "One IP address or CIDR range per line. To enable everything, use:<pre>0.0.0.0/0\n::/0</pre>",
