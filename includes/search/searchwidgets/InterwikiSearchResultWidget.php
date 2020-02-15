@@ -1,25 +1,23 @@
 <?php
 
-namespace MediaWiki\Widget\Search;
+namespace MediaWiki\Search\SearchWidgets;
 
+use Html;
 use HtmlArmor;
 use MediaWiki\Linker\LinkRenderer;
 use SearchResult;
 use SpecialSearch;
 
 /**
- * Renders a simple one-line result
- *
- * @deprecated since 1.31. Use other result widgets.
+ * Renders an enhanced interwiki result
  */
-class SimpleSearchResultWidget implements SearchResultWidget {
+class InterwikiSearchResultWidget implements SearchResultWidget {
 	/** @var SpecialSearch */
 	protected $specialSearch;
 	/** @var LinkRenderer */
 	protected $linkRenderer;
 
 	public function __construct( SpecialSearch $specialSearch, LinkRenderer $linkRenderer ) {
-		wfDeprecated( __METHOD__, '1.31' );
 		$this->specialSearch = $specialSearch;
 		$this->linkRenderer = $linkRenderer;
 	}
@@ -32,6 +30,8 @@ class SimpleSearchResultWidget implements SearchResultWidget {
 	public function render( SearchResult $result, $position ) {
 		$title = $result->getTitle();
 		$titleSnippet = $result->getTitleSnippet();
+		$snippet = $result->getTextSnippet();
+
 		if ( $titleSnippet ) {
 			$titleSnippet = new HtmlArmor( $titleSnippet );
 		} else {
@@ -44,19 +44,21 @@ class SimpleSearchResultWidget implements SearchResultWidget {
 		$redirect = '';
 		if ( $redirectTitle !== null ) {
 			$redirectText = $result->getRedirectSnippet();
+
 			if ( $redirectText ) {
 				$redirectText = new HtmlArmor( $redirectText );
 			} else {
 				$redirectText = null;
 			}
-			$redirect =
-				"<span class='searchalttitle'>" .
-					$this->specialSearch->msg( 'search-redirect' )->rawParams(
-						$this->linkRenderer->makeLink( $redirectTitle, $redirectText )
-					)->parse() .
-				"</span>";
+
+			$redirect = Html::rawElement( 'span', [ 'class' => 'iw-result__redirect' ],
+				$this->specialSearch->msg( 'search-redirect' )->rawParams(
+					$this->linkRenderer->makeLink( $redirectTitle, $redirectText )
+				)->escaped()
+			);
 		}
 
-		return "<li>{$link} {$redirect}</li>";
+		return Html::rawElement( 'div', [ 'class' => 'iw-result__title' ], $link . ' ' . $redirect ) .
+			Html::rawElement( 'div', [ 'class' => 'iw-result__content' ], $snippet );
 	}
 }
