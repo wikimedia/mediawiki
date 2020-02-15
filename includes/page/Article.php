@@ -25,6 +25,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -134,6 +135,11 @@ class Article implements Page {
 	protected $linkRenderer;
 
 	/**
+	 * @var PermissionManager
+	 */
+	private $permManager;
+
+	/**
 	 * Constructor and clear the article
 	 * @param Title $title Reference to a Title object.
 	 * @param int|null $oldId Revision ID, null to fetch from request, zero for current
@@ -141,7 +147,10 @@ class Article implements Page {
 	public function __construct( Title $title, $oldId = null ) {
 		$this->mOldId = $oldId;
 		$this->mPage = $this->newPage( $title );
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
+		$services = MediaWikiServices::getInstance();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->permManager = $services->getPermissionManager();
 	}
 
 	/**
@@ -623,7 +632,11 @@ class Article implements Page {
 
 		$user = $this->getContext()->getUser();
 		# Another whitelist check in case getOldID() is altering the title
-		$permErrors = $this->getTitle()->getUserPermissionsErrors( 'read', $user );
+		$permErrors = $this->permManager->getPermissionErrors(
+			'read',
+			$user,
+			$this->getTitle()
+		);
 		if ( count( $permErrors ) ) {
 			wfDebug( __METHOD__ . ": denied on secondary read check\n" );
 			throw new PermissionsError( 'read', $permErrors );
@@ -662,8 +675,7 @@ class Article implements Page {
 			$parserOptions->setIsPrintable( true );
 			$poOptions['enableSectionEditLinks'] = false;
 		} elseif ( $this->viewIsRenderAction || !$this->isCurrent() ||
-			!MediaWikiServices::getInstance()->getPermissionManager()
-				->quickUserCan( 'edit', $user, $this->getTitle() )
+			!$this->permManager->quickUserCan( 'edit', $user, $this->getTitle() )
 		) {
 			$poOptions['enableSectionEditLinks'] = false;
 		}
@@ -1207,8 +1219,7 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$rc = false;
 
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->quickUserCan( 'patrol', $user, $title )
+		if ( !$this->permManager->quickUserCan( 'patrol', $user, $title )
 			|| !( $wgUseRCPatrol || $wgUseNPPatrol
 				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
 		) {
@@ -1335,10 +1346,7 @@ class Article implements Page {
 		}
 
 		$outputPage->preventClickjacking();
-		if ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'writeapi' )
-		) {
+		if ( $this->permManager->userHasRight( $user, 'writeapi' ) ) {
 			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 		}
 
@@ -1480,7 +1488,7 @@ class Article implements Page {
 
 		# Show error message
 		$oldid = $this->getOldID();
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		$pm = $this->permManager;
 		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
 			// use fake Content object for system message
 			$parserOptions = ParserOptions::newCanonical( 'canonical' );
@@ -1818,7 +1826,7 @@ class Article implements Page {
 		$request = $context->getRequest();
 
 		# Check permissions
-		$permissionErrors = $title->getUserPermissionsErrors( 'delete', $user );
+		$permissionErrors = $this->permManager->getPermissionErrors( 'delete', $user, $title );
 		if ( count( $permissionErrors ) ) {
 			throw new PermissionsError( 'delete', $permissionErrors );
 		}
@@ -1869,9 +1877,8 @@ class Article implements Page {
 		) {
 			# Flag to hide all contents of the archived revisions
 
-			$suppress = $request->getCheck( 'wpSuppress' ) && MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, 'suppressrevision' );
+			$suppress = $request->getCheck( 'wpSuppress' ) &&
+				$this->permManager->userHasRight( $user, 'suppressrevision' );
 
 			$this->doDelete( $reason, $suppress );
 
@@ -2031,8 +2038,7 @@ class Article implements Page {
 				]
 			);
 		}
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $permissionManager->userHasRight( $user, 'suppressrevision' ) ) {
+		if ( $this->permManager->userHasRight( $user, 'suppressrevision' ) ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -2090,7 +2096,7 @@ class Article implements Page {
 			] )
 		);
 
-		if ( $permissionManager->userHasRight( $user, 'editinterface' ) ) {
+		if ( $this->permManager->userHasRight( $user, 'editinterface' ) ) {
 			$link = $this->linkRenderer->makeKnownLink(
 				$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
 				wfMessage( 'delete-edit-reasonlist' )->text(),
