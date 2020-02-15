@@ -241,6 +241,13 @@ class SanitizerTest extends MediaWikiTestCase {
 			[ 'Attribute', $allNew, $text, false, Sanitizer::ID_FALLBACK ],
 			[ 'Link', $allNew, $text, $html5EncodedHref ],
 			[ 'ExternalInterwiki', $allNew, $text, $html5EncodedHref ],
+
+			// Whitespace
+			[ 'attribute', $allNew, "foo bar", 'foo_bar', Sanitizer::ID_PRIMARY ],
+			[ 'attribute', $allNew, "foo\fbar", 'foo_bar', Sanitizer::ID_PRIMARY ],
+			[ 'attribute', $allNew, "foo\nbar", 'foo_bar', Sanitizer::ID_PRIMARY ],
+			[ 'attribute', $allNew, "foo\tbar", 'foo_bar', Sanitizer::ID_PRIMARY ],
+			[ 'attribute', $allNew, "foo\rbar", 'foo_bar', Sanitizer::ID_PRIMARY ],
 		];
 	}
 
