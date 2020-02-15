@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Widget\Search;
+namespace MediaWiki\Search\SearchWidgets;
 
 use Category;
 use Hooks;
