@@ -22858,7 +22858,7 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 __NOEDITSECTION__
 !! html/php
 <h3><span id=".2B:.3A.253A_.26.26.5D.5D_x"></span><span class="mw-headline" id="+:.3A%3A_&amp;&amp;]]_x">_ +:.3A%3A _ &amp;&amp;]] x</span></h3>
-<p>+:.3A%3A_&amp;&amp;&#93;&#93;_x
+<p>+:.3A%253A_&amp;&amp;&#93;&#93;_x
 </p>
 !! html/parsoid
 <h3 id="+:.3A%3A_&amp;&amp;]]_x"><span id=".2B:.3A.253A_.26.26.5D.5D_x" typeof="mw:FallbackId"></span>_ +:.3A%3A _ &amp;<span typeof="mw:Entity" data-parsoid='{"src":"&amp;amp;","srcContent":"&amp;","dsr":[18,23,null,null]}'>&amp;</span>]] x</h3>
