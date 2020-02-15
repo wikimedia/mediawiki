@@ -47,8 +47,10 @@ if ( $logDir ) {
 	}
 	$wgDBerrorLog = "$logDir/mw-dberror.log";
 	$wgDebugLogGroups['ratelimit'] = "$logDir/mw-ratelimit.log";
-	$wgDebugLogGroups['exception'] = "$logDir/mw-exception.log";
 	$wgDebugLogGroups['error'] = "$logDir/mw-error.log";
+	$wgDebugLogGroups['exception'] = "$logDir/mw-error.log";
+	$wgDebugLogGroups['fatal'] = "$logDir/mw-error.log";
+	$wgDebugLogGroups['DeferredUpdates'] = "$logDir/mw-error.log";
 }
 unset( $logDir );
 
