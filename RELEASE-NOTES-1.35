@@ -456,6 +456,7 @@ because of Phabricator reports.
   internal part of parser.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
+* ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
 * …
 
 === Other changes in 1.35 ===
