@@ -1,8 +1,8 @@
 <?php
 /**
- * Representation of a title within %MediaWiki.
+ * Representation of a title within MediaWiki.
  *
- * See title.txt
+ * See Title.md
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

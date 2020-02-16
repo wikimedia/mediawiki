@@ -62,4 +62,4 @@ getArticleID() needs some explanation: for "internal" articles, it should return
 the "page_id" field if the article exists, else it returns 0. For all external
 articles it returns 0. All of the IDs for all instances of Title created during
 a request are cached, so they can be looked up quickly while rendering wiki text
-with lots of internal links. See linkcache.txt.
+with lots of internal links. See LinkCache.md.

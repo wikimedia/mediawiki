@@ -138,7 +138,7 @@ Assume class `Foo` has mostly non-static methods, and provides a static
 Assume class `Bar` calls `new Foo()`.
 * Add an instantiator function for `Foo` into ServiceWiring.php and add a
   `getFoo()` method to MediaWikiServices. Don't forget to add the appropriate
-  test casesin MediaWikiServicesTest.
+  test cases in MediaWikiServicesTest.
 * In the instantiator, replace any access to global state with calls
   to `$services->getXxx()` to get a service, or
   `$services->getMainConfig()->get()` to get a configuration setting.

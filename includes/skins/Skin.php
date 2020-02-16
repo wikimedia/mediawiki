@@ -31,7 +31,7 @@ use Wikimedia\WrappedStringList;
 /**
  * The main skin class which provides methods and properties for all other skins.
  *
- * See docs/skin.txt for more information.
+ * See docs/Skin.md for more information.
  *
  * @ingroup Skins
  */

@@ -8,7 +8,7 @@ Magic Words are some phrases used in the wikitext. They are used for two things:
   functions and accepts parameters.
 
 The localized arrays keys are the internal name, and the values are an array,
-whose include their case-sensitivity and their alias forms. The first form
+which include their case-sensitivity and their alias forms. The first form
 defined is used by the program, for example, when moving a page and its old name
 should include #REDIRECT.
 

@@ -89,7 +89,7 @@ use WikiPage;
  * require prepareContent or prepareUpdate to have been called first, to initialize the
  * DerivedPageDataUpdater.
  *
- * @see docs/pageupdater.txt for more information.
+ * @see docs/pageupdater.md for more information.
  *
  * MCR migration note: this replaces the relevant methods in WikiPage, and covers the use cases
  * of PreparedEdit.
@@ -231,7 +231,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * A stage identifier for managing the life cycle of this instance.
 	 * Possible stages are 'new', 'knows-current', 'has-content', 'has-revision', and 'done'.
 	 *
-	 * @see docs/pageupdater.txt for documentation of the life cycle.
+	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
 	 * @var string
 	 */
@@ -243,7 +243,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * XXX: Overkill. This is a linear order, we could just count. Names are nice though,
 	 * and constants are also overkill...
 	 *
-	 * @see docs/pageupdater.txt for documentation of the life cycle.
+	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
 	 * @var array[]
 	 */
@@ -322,7 +322,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * Transition function for managing the life cycle of this instances.
 	 *
-	 * @see docs/pageupdater.txt for documentation of the life cycle.
+	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
 	 * @param string $newStage the new stage
 	 * @return string the previous stage
@@ -342,7 +342,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * Asserts that a transition to the given stage is possible, without performing it.
 	 *
-	 * @see docs/pageupdater.txt for documentation of the life cycle.
+	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
 	 * @param string $newStage the new stage
 	 *
@@ -509,7 +509,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * Some updates are performed based on the difference between the database state at the
 	 * moment this method is first called, and the state after the edit.
 	 *
-	 * @see docs/pageupdater.txt for more information on when thie method can and should be called.
+	 * @see docs/pageupdater.md for more information on when thie method can and should be called.
 	 *
 	 * @note After prepareUpdate() was called, grabCurrentRevision() will throw an exception
 	 * to avoid confusion, since the page's current revision is then the new revision after
@@ -718,7 +718,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * The derived data prepared for revision creation may then later be re-used by doUpdates(),
 	 * without the need to re-calculate.
 	 *
-	 * @see docs/pageupdater.txt for more information on when thie method can and should be called.
+	 * @see docs/pageupdater.md for more information on when thie method can and should be called.
 	 *
 	 * @note Calling this method more than once with the same $slotsUpdate
 	 * has no effect. Calling this method multiple times with different content will cause
@@ -1051,7 +1051,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * derived data e.g. in ApiPurge, RefreshLinksJob, and the refreshLinks
 	 * script.
 	 *
-	 * @see docs/pageupdater.txt for more information on when thie method can and should be called.
+	 * @see docs/pageupdater.md for more information on when thie method can and should be called.
 	 *
 	 * @note Calling this method more than once with the same revision has no effect.
 	 * $options are only used for the first call. Calling this method multiple times with

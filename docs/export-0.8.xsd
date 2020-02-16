@@ -26,7 +26,7 @@
 	Fix type for <id> within <contributor> to "nonNegativeInteger"
 
 	Version 0.8 adds support for a <model> and a <format> tag for
-	each revision. See contenthandler.txt.
+	each revision. See contenthandler.md.
 
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.8.xsd
