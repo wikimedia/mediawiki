@@ -760,7 +760,7 @@ if ( $wgCommandLineMode ) {
  * @deprecated since 1.35, use the LocalServerObjectCache service instead
  */
 $wgMemc = ObjectCache::getLocalClusterInstance();
-$messageMemc = wfGetMessageCacheStorage();
+$messageMemc = ObjectCache::getInstance( $wgMessageCacheType );
 
 // Most of the config is out, some might want to run hooks here.
 Hooks::run( 'SetupAfterCache' );
