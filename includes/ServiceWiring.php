@@ -538,7 +538,9 @@ return [
 			$logger,
 			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ],
 			$services->getLanguageFactory(),
-			$services->getLocalisationCache()
+			$services->getLocalisationCache(),
+			$services->getLanguageNameUtils(),
+			$services->getLanguageFallback()
 		);
 	},
 
@@ -744,7 +746,8 @@ return [
 			$services->getLinkRendererFactory()->create(),
 			$services->getNamespaceInfo(),
 			$services->getPermissionManager(),
-			$services->getLanguageConverterFactory()->getLanguageConverter()
+			$services->getLanguageConverterFactory()->getLanguageConverter(),
+			$services->getLanguageNameUtils()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 

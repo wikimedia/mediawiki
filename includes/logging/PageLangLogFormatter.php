@@ -23,6 +23,8 @@
  * @since 1.24
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * This class formats language change log entries.
  *
@@ -48,9 +50,10 @@ class PageLangLogFormatter extends LogFormatter {
 		}
 
 		// Convert language codes to names in user language
-		$logOld = Language::fetchLanguageName( $oldLang, $userLang )
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$logOld = $languageNameUtils->getLanguageName( $oldLang, $userLang )
 			. ' (' . $oldLang . ')';
-		$logNew = Language::fetchLanguageName( $newLang, $userLang )
+		$logNew = $languageNameUtils->getLanguageName( $newLang, $userLang )
 			. ' (' . $newLang . ')';
 
 		// Add the default message to languages if required

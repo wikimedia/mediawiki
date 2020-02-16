@@ -23,6 +23,8 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
+use MediaWiki\MediaWikiServices;
+
 /** A general output object. Need to be overridden */
 class StatsOutput {
 	public function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
@@ -64,7 +66,9 @@ class WikiStatsOutput extends StatsOutput {
 		if ( is_array( $wgDummyLanguageCodes ) ) {
 			$dummyCodes = [];
 			foreach ( $wgDummyLanguageCodes as $dummyCode => $correctCode ) {
-				$dummyCodes[] = Language::fetchLanguageName( $dummyCode ) . ' (' . $dummyCode . ')';
+				$dummyCodes[] = MediaWikiServices::getInstance()
+					->getLanguageNameUtils()
+					->getLanguageName( $dummyCode ) . ' (' . $dummyCode . ')';
 			}
 			echo ', as well as the following languages that are not intended for ' .
 				'system message translations, usually because they redirect to other ' .

@@ -26,6 +26,9 @@
  * Output is posted from time to time on:
  * https://www.mediawiki.org/wiki/Localisation_statistics
  */
+
+use MediaWiki\MediaWikiServices;
+
 $optionsWithArgs = [ 'output' ];
 $optionsWithoutArgs = [ 'help' ];
 
@@ -101,7 +104,9 @@ foreach ( $languages->getLanguages() as $code ) {
 	}
 
 	# Calculate the numbers
-	$language = Language::fetchLanguageName( $code );
+	$language = MediaWikiServices::getInstance()
+		->getLanguageNameUtils()
+		->getLanguageName( $code );
 	$fallback = $languages->getFallback( $code );
 	$messages = $languages->getMessages( $code );
 	$messagesNumber = count( $messages['translated'] );

@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -110,6 +112,10 @@ class MessageCache implements LoggerAwareInterface {
 	protected $langFactory;
 	/** @var LocalisationCache */
 	protected $localisationCache;
+	/** @var LanguageNameUtils */
+	protected $languageNameUtils;
+	/** @var LanguageFallback */
+	protected $languageFallback;
 
 	/**
 	 * Get the singleton instance of this class
@@ -152,6 +158,8 @@ class MessageCache implements LoggerAwareInterface {
 	 *    Default: true.
 	 * @param LanguageFactory $langFactory
 	 * @param LocalisationCache $localisationCache
+	 * @param LanguageNameUtils $languageNameUtils
+	 * @param LanguageFallback $languageFallback
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
@@ -162,7 +170,9 @@ class MessageCache implements LoggerAwareInterface {
 		LoggerInterface $logger,
 		array $options,
 		LanguageFactory $langFactory,
-		LocalisationCache $localisationCache
+		LocalisationCache $localisationCache,
+		LanguageNameUtils $languageNameUtils,
+		LanguageFallback $languageFallback
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
@@ -172,6 +182,8 @@ class MessageCache implements LoggerAwareInterface {
 		$this->logger = $logger;
 		$this->langFactory = $langFactory;
 		$this->localisationCache = $localisationCache;
+		$this->languageNameUtils = $languageNameUtils;
+		$this->languageFallback = $languageFallback;
 
 		$this->cache = new MapCacheLRU( 5 ); // limit size for sanity
 
@@ -1014,7 +1026,7 @@ class MessageCache implements LoggerAwareInterface {
 
 		// Try checking the database for all of the fallback languages
 		if ( $useDB ) {
-			$fallbackChain = Language::getFallbacksFor( $langcode );
+			$fallbackChain = $this->languageFallback->getAll( $langcode );
 
 			foreach ( $fallbackChain as $code ) {
 				if ( isset( $alreadyTried[$code] ) ) {
@@ -1319,7 +1331,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * Mainly used after a mass rebuild
 	 */
 	public function clear() {
-		$langs = Language::fetchLanguageNames( null, 'mw' );
+		$langs = $this->languageNameUtils->getLanguageNames( null, 'mw' );
 		foreach ( array_keys( $langs ) as $code ) {
 			$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
 		}
@@ -1339,7 +1351,7 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		$lang = array_pop( $pieces );
-		if ( !Language::fetchLanguageName( $lang, null, 'mw' ) ) {
+		if ( !$this->languageNameUtils->getLanguageName( $lang, null, 'mw' ) ) {
 			return [ $key, $wgLanguageCode ];
 		}
 

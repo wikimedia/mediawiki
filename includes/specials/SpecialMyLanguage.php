@@ -65,6 +65,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * @return Title|null
 	 */
 	public function findTitle( $subpage ) {
+		$services = MediaWikiServices::getInstance();
 		// base = title without language code suffix
 		// provided = the title as it was given
 		$base = $provided = null;
@@ -76,7 +77,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 				$pos = strrpos( $subpage, '/' );
 				$basepage = substr( $subpage, 0, $pos );
 				$code = substr( $subpage, $pos + 1 );
-				if ( strlen( $code ) && Language::isKnownLanguageTag( $code ) ) {
+				if ( strlen( $code ) && $services->getLanguageNameUtils()->isKnownLanguageTag( $code ) ) {
 					$base = Title::newFromText( $basepage );
 				}
 			}
@@ -93,7 +94,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		}
 
 		$uiLang = $this->getLanguage();
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $services->getContentLanguage();
 
 		if ( $uiLang->equals( $contLang ) ) {
 			// Short circuit when the current UI language is the
