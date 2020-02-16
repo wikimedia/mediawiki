@@ -234,10 +234,6 @@
 					ajaxOptions.data += '&token=' + encodeURIComponent( token );
 				}
 
-				// Depending on server configuration, MediaWiki may forbid periods in URLs, due to an IE 6
-				// XSS bug. So let's escape them here. See WebRequest::checkUrlExtension() and T30235.
-				ajaxOptions.data = ajaxOptions.data.replace( /\./g, '%2E' );
-
 				if ( ajaxOptions.contentType === 'multipart/form-data' ) {
 					// We were asked to emulate but can't, so drop the Content-Type header, otherwise
 					// it'll be wrong and the server will fail to decode the POST body
