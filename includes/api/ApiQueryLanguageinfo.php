@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -81,8 +83,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 
 		$targetLanguageCode = $this->getLanguage()->getCode();
 		$include = 'all';
-
-		$availableLanguageCodes = array_keys( Language::fetchLanguageNames(
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$availableLanguageCodes = array_keys( $languageNameUtils->getLanguageNames(
 			// MediaWiki and extensions may return different sets of language codes
 			// when asked for language names in different languages;
 			// asking for English language names is most likely to give us the full set,
@@ -156,16 +158,16 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeAutonym ) {
-				$autonym = Language::fetchLanguageName(
+				$autonym = $languageNameUtils->getLanguageName(
 					$languageCode,
-					Language::AS_AUTONYMS,
+					LanguageNameUtils::AUTONYMS,
 					$include
 				);
 				$info['autonym'] = $autonym;
 			}
 
 			if ( $includeName ) {
-				$name = Language::fetchLanguageName(
+				$name = $languageNameUtils->getLanguageName(
 					$languageCode,
 					$targetLanguageCode,
 					$include
@@ -174,10 +176,10 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 			}
 
 			if ( $includeFallbacks ) {
-				$fallbacks = Language::getFallbacksFor(
+				$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll(
 					$languageCode,
 					// allow users to distinguish between implicit and explicit 'en' fallbacks
-					Language::STRICT_FALLBACKS
+					LanguageFallback::STRICT
 				);
 				ApiResult::setIndexedTagName( $fallbacks, 'fb' );
 				$info['fallbacks'] = $fallbacks;

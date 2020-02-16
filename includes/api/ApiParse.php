@@ -658,6 +658,7 @@ class ApiParse extends ApiBase {
 	}
 
 	private function formatLangLinks( $links ) {
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 		$result = [];
 		foreach ( $links as $link ) {
 			$entry = [];
@@ -668,13 +669,13 @@ class ApiParse extends ApiBase {
 			if ( $title ) {
 				$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				// localised language name in 'uselang' language
-				$entry['langname'] = Language::fetchLanguageName(
+				$entry['langname'] = $languageNameUtils->getLanguageName(
 					$title->getInterwiki(),
 					$this->getLanguage()->getCode()
 				);
 
 				// native language name
-				$entry['autonym'] = Language::fetchLanguageName( $title->getInterwiki() );
+				$entry['autonym'] = $languageNameUtils->getLanguageName( $title->getInterwiki() );
 			}
 			ApiResult::setContentValue( $entry, 'title', $bits[1] );
 			$result[] = $entry;

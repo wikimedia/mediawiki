@@ -978,7 +978,9 @@ class FormatMetadata extends ContextSource {
 						break;
 
 					case 'LanguageCode':
-						$lang = Language::fetchLanguageName( strtolower( $val ), $this->getLanguage()->getCode() );
+						$lang = MediaWikiServices::getInstance()
+							->getLanguageNameUtils()
+							->getLanguageName( strtolower( $val ), $this->getLanguage()->getCode() );
 						$val = htmlspecialchars( $lang ?: $val );
 						break;
 
@@ -1186,11 +1188,12 @@ class FormatMetadata extends ContextSource {
 		}
 
 		$lowLang = strtolower( $lang );
-		$langName = Language::fetchLanguageName( $lowLang );
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$langName = $languageNameUtils->getLanguageName( $lowLang );
 		if ( $langName === '' ) {
 			// try just the base language name. (aka en-US -> en ).
 			$langPrefix = explode( '-', $lowLang, 2 )[0];
-			$langName = Language::fetchLanguageName( $langPrefix );
+			$langName = $languageNameUtils->getLanguageName( $langPrefix );
 			if ( $langName === '' ) {
 				// give up.
 				$langName = $lang;
@@ -1893,8 +1896,9 @@ class FormatMetadata extends ContextSource {
 	 * @since 1.23
 	 */
 	protected function getPriorityLanguages() {
-		$priorityLanguages =
-			Language::getFallbacksIncludingSiteLanguage( $this->getLanguage()->getCode() );
+		$priorityLanguages = MediaWikiServices::getInstance()
+			->getLanguageFallback()
+			->getAllIncludingSiteLanguage( $this->getLanguage()->getCode() );
 		$priorityLanguages = array_merge(
 			(array)$this->getLanguage()->getCode(),
 			$priorityLanguages[0],

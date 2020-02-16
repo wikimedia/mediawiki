@@ -207,7 +207,9 @@ class Xml {
 		global $wgLanguageCode;
 
 		$include = $customisedOnly ? 'mwfile' : 'mw';
-		$languages = Language::fetchLanguageNames( $inLanguage, $include );
+		$languages = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( $inLanguage, $include );
 
 		// Make sure the site language is in the list;
 		// a custom language code might not have a defined name...

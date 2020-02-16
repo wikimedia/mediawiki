@@ -36,6 +36,7 @@ use LanguageConverter;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
@@ -69,6 +70,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 	/** @var Language The wiki's content language. */
 	protected $contLang;
+
+	/** @var LanguageNameUtils */
+	protected $languageNameUtils;
 
 	/** @var AuthManager */
 	protected $authManager;
@@ -126,6 +130,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param NamespaceInfo $nsInfo
 	 * @param PermissionManager $permissionManager
 	 * @param ILanguageConverter|null $languageConverter
+	 * @param LanguageNameUtils|null $languageNameUtils
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -134,7 +139,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		LinkRenderer $linkRenderer,
 		NamespaceInfo $nsInfo,
 		PermissionManager $permissionManager,
-		ILanguageConverter $languageConverter = null
+		ILanguageConverter $languageConverter = null,
+		LanguageNameUtils $languageNameUtils = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -144,6 +150,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->linkRenderer = $linkRenderer;
 		$this->nsInfo = $nsInfo;
 		$this->permissionManager = $permissionManager;
+		$this->languageNameUtils = $languageNameUtils ??
+			MediaWikiServices::getInstance()->getLanguageNameUtils();
 		$this->logger = new NullLogger();
 		$this->languageConverter = DeprecationHelper::newArgumentWithDeprecation(
 			__METHOD__,
@@ -448,7 +456,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		$languages = $services->getLanguageNameUtils()->getLanguageNames( null, 'mwfile' );
+		$languages = $this->languageNameUtils->getLanguageNames( null, 'mwfile' );
 		$languageCode = $this->options->get( 'LanguageCode' );
 		if ( !array_key_exists( $languageCode, $languages ) ) {
 			$languages[$languageCode] = $languageCode;

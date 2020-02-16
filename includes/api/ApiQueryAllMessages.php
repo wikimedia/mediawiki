@@ -35,16 +35,15 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-
+		$services = MediaWikiServices::getInstance();
 		if ( $params['lang'] === null ) {
 			$langObj = $this->getLanguage();
-		} elseif ( !Language::isValidCode( $params['lang'] ) ) {
+		} elseif ( !$services->getLanguageNameUtils()->isValidCode( $params['lang'] ) ) {
 			$this->dieWithError(
 				[ 'apierror-invalidlang', $this->encodeParamName( 'lang' ) ], 'invalidlang'
 			);
 		} else {
-			$langObj = MediaWikiServices::getInstance()->getLanguageFactory()
-				->getLanguage( $params['lang'] );
+			$langObj = $services->getLanguageFactory()->getLanguage( $params['lang'] );
 		}
 
 		if ( $params['enableparser'] ) {
@@ -62,7 +61,8 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 		// Determine which messages should we print
 		if ( in_array( '*', $params['messages'] ) ) {
-			$message_names = Language::getMessageKeysFor( $langObj->getCode() );
+			$message_names = $services->getLocalisationCache()
+				->getSubitemList( $langObj->getCode(), 'messages' );
 			if ( $params['includelocal'] ) {
 				$message_names = array_unique( array_merge(
 					$message_names,

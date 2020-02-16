@@ -46,7 +46,8 @@ class DeleteEqualMessages extends Maintenance {
 	 * @param array &$messageInfo
 	 */
 	protected function fetchMessageInfo( $langCode, array &$messageInfo ) {
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
 		if ( $langCode ) {
 			$this->output( "\n... fetching message info for language: $langCode" );
 			$nonContentLanguage = true;
@@ -58,7 +59,7 @@ class DeleteEqualMessages extends Maintenance {
 
 		/* Based on SpecialAllmessages::reallyDoQuery #filter=modified */
 
-		$l10nCache = Language::getLocalisationCache();
+		$l10nCache = $services->getLocalisationCache();
 		$messageNames = $l10nCache->getSubitemList( 'en', 'messages' );
 		// Normalise message names for NS_MEDIAWIKI page_title
 		$messageNames = array_map( [ $contLang, 'ucfirst' ], $messageNames );
@@ -112,7 +113,9 @@ class DeleteEqualMessages extends Maintenance {
 
 		// Load message information
 		if ( $langCode ) {
-			$langCodes = Language::fetchLanguageNames( null, 'mwfile' );
+			$langCodes = MediaWikiServices::getInstance()
+				->getLanguageNameUtils()
+				->getLanguageNames( null, 'mwfile' );
 			if ( $langCode === '*' ) {
 				// All valid lang-code subpages in NS_MEDIAWIKI that
 				// override the messsages in that language

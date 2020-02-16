@@ -1220,10 +1220,11 @@ function wfGetLangObj( $langcode = false ) {
 	}
 
 	global $wgLanguageCode;
+	$services = MediaWikiServices::getInstance();
 	if ( $langcode === true || $langcode === $wgLanguageCode ) {
 		# $langcode is the language code of the wikis content language object.
 		# or it is a boolean and value is true
-		return MediaWikiServices::getInstance()->getContentLanguage();
+		return $services->getContentLanguage();
 	}
 
 	global $wgLang;
@@ -1233,15 +1234,15 @@ function wfGetLangObj( $langcode = false ) {
 		return $wgLang;
 	}
 
-	$validCodes = array_keys( Language::fetchLanguageNames() );
+	$validCodes = array_keys( $services->getLanguageNameUtils()->getLanguageNames() );
 	if ( in_array( $langcode, $validCodes ) ) {
 		# $langcode corresponds to a valid language.
-		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langcode );
+		return $services->getLanguageFactory()->getLanguage( $langcode );
 	}
 
 	# $langcode is a string, but not a valid language code; use content language.
 	wfDebug( "Invalid language code passed to wfGetLangObj, falling back to content language.\n" );
-	return MediaWikiServices::getInstance()->getContentLanguage();
+	return $services->getContentLanguage();
 }
 
 /**

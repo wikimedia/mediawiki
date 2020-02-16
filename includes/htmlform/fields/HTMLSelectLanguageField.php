@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Language select field.
  */
@@ -15,7 +17,9 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 			$languageCode = $wgLanguageCode;
 		}
 
-		$languages = Language::fetchLanguageNames( null, 'mw' );
+		$languages = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames( null, 'mw' );
 
 		// Make sure the site language is in the list;
 		// a custom language code might not have a defined name…

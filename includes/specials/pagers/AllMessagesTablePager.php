@@ -110,7 +110,9 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	function getAllMessages( $descending ) {
-		$messageNames = Language::getLocalisationCache()->getSubitemList( 'en', 'messages' );
+		$messageNames = MediaWikiServices::getInstance()
+			->getLocalisationCache()
+			->getSubitemList( 'en', 'messages' );
 
 		// Normalise message names so they look like page titles and sort correctly - T86139
 		$messageNames = array_map( [ $this->lang, 'ucfirst' ], $messageNames );

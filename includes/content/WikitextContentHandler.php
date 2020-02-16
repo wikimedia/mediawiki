@@ -23,6 +23,7 @@
  * @ingroup Content
  */
 
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -53,16 +54,22 @@ class WikitextContentHandler extends TextContentHandler {
 	public function makeRedirectContent( Title $destination, $text = '' ) {
 		$optionalColon = '';
 
+		$services = MediaWikiServices::getInstance();
 		if ( $destination->getNamespace() == NS_CATEGORY ) {
 			$optionalColon = ':';
 		} else {
 			$iw = $destination->getInterwiki();
-			if ( $iw && Language::fetchLanguageName( $iw, null, 'mw' ) ) {
+			if ( $iw && $services
+					->getLanguageNameUtils()
+					->getLanguageName( $iw,
+						LanguageNameUtils::AUTONYMS,
+						LanguageNameUtils::DEFINED )
+			) {
 				$optionalColon = ':';
 			}
 		}
 
-		$mwRedir = MediaWikiServices::getInstance()->getMagicWordFactory()->get( 'redirect' );
+		$mwRedir = $services->getMagicWordFactory()->get( 'redirect' );
 		$redirectText = $mwRedir->getSynonym( 0 ) .
 			' [[' . $optionalColon . $destination->getFullText() . ']]';
 

@@ -119,7 +119,9 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$this->mMainLanguageCode = $maincode;
 		$this->mVariants = array_diff( $variants, $wgDisabledVariants );
 		$this->mVariantFallbacks = $variantfallbacks;
-		$this->mVariantNames = Language::fetchLanguageNames();
+		$this->mVariantNames = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageNames();
 		$defaultflags = [
 			// 'S' show converted text
 			// '+' add rules for alltext

@@ -1102,7 +1102,9 @@ EOT
 	 */
 	private function createXmlOptionStringForLanguage( $lang, $selected ) {
 		$code = LanguageCode::bcp47( $lang );
-		$name = Language::fetchLanguageName( $code, $this->getContext()->getLanguage()->getCode() );
+		$name = MediaWikiServices::getInstance()
+			->getLanguageNameUtils()
+			->getLanguageName( $code, $this->getContext()->getLanguage()->getCode() );
 		if ( $name !== '' ) {
 			$display = $this->getContext()->msg( 'img-lang-opt', $code, $name )->text();
 		} else {
