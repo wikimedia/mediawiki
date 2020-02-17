@@ -2558,6 +2558,7 @@
 	"sp-contributions-concurrency-user": "Przepraszamy, twoje konto wykonało zbyt wiele żądań. Spróbuj ponownie później.",
 	"sp-contributions-concurrency-ip": "Przepraszamy, twój adres IP wykonał zbyt wiele żądań. Spróbuj ponownie później.",
 	"whatlinkshere": "Linkujące",
+	"whatlinkshere-count": "Wyświetlono $1 {{PLURAL:$1|element|elementy|elementów}}.",
 	"whatlinkshere-title": "Strony linkujące do „$1”",
 	"whatlinkshere-page": "Strona:",
 	"linkshere": "Następujące strony odwołują się do <strong>$2</strong>:",

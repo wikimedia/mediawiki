@@ -2598,6 +2598,7 @@
 	"sp-contributions-concurrency-user": "Desculpe, muitas solicitações estão sendo feitas na sua conta de usuário. Por favor, tente novamente mais tarde.",
 	"sp-contributions-concurrency-ip": "Desculpe, muitos pedidos estão sendo feitos a partir do seu endereço IP. Por favor, tente novamente mais tarde.",
 	"whatlinkshere": "Páginas afluentes",
+	"whatlinkshere-count": "Exibido $1 {{PLURAL:$1|item|itens}}.",
 	"whatlinkshere-title": "Páginas que têm links para \"$1\"",
 	"whatlinkshere-page": "Página:",
 	"linkshere": "As seguintes páginas têm link para <strong>$2</strong>:",

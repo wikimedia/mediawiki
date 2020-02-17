@@ -2470,6 +2470,7 @@
 	"sp-contributions-concurrency-user": "Oprostite, z vašega računa se izvaja preveč zahtev. Prosimo, poskusite pozneje.",
 	"sp-contributions-concurrency-ip": "Oprostite, z vašega IP-naslova se izvaja preveč zahtev. Prosimo, poskusite pozneje.",
 	"whatlinkshere": "Kaj se povezuje sem",
+	"whatlinkshere-count": "{{PLURAL:$1|Prikazan je $1 vnos|Prikazana sta $1 vnosa|Prikazani so $1 vnosi|Prikazanih je $1 vnosov}}.",
 	"whatlinkshere-title": "Strani, ki se povezujejo na $1",
 	"whatlinkshere-page": "Stran:",
 	"linkshere": "Na '''$1''' kažejo naslednje strani:",

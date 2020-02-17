@@ -2734,7 +2734,7 @@
 	"hebrew-calendar-m11-gen": "अभ्",
 	"hebrew-calendar-m12-gen": "एलल्",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|वार्ता]])",
-	"timezone-utc": "युटिसी",
+	"timezone-utc": "नेपालको प्रमाणिक समय",
 	"timezone-local": "स्थानीय",
 	"duplicate-defaultsort": "'''चेतावनी:''' पूर्व निर्धारित छोटकरी \"$2\" ले पुरानो पूर्वनिर्धारित छोटकरी\"$1\"लाई विस्थापन गरेको छ ।",
 	"duplicate-displaytitle": "<strong>चेतावनी:</strong> शीर्षक देखाउने \"$2\" पूर्व देखाइएको शीर्षक \"$1\" मा ओभररेड गरिंदै छ।",
@@ -3148,5 +3148,6 @@
 	"authprovider-resetpass-skip-label": "छोड्नुहोस्",
 	"edit-error-short": "त्रुटि: $1",
 	"passwordpolicies": "पासवोर्ड नितिहरू",
+	"paramvalidator-help-type-user-subtype-name": "प्रयोगकर्ता नाम",
 	"paramvalidator-help-type-user-subtype-ip": "आई पी"
 }

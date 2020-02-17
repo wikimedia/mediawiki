@@ -2556,6 +2556,7 @@
 	"sp-contributions-concurrency-user": "Sorry, er worden te veel aanvragen vanaf uw gebruikersaccount gemaakt. Probeer het later opnieuw.",
 	"sp-contributions-concurrency-ip": "Sorry, er worden te veel aanvragen vanaf uw IP-adres gemaakt. Probeer het later opnieuw.",
 	"whatlinkshere": "Verwijzingen naar deze pagina",
+	"whatlinkshere-count": "Er {{PLURAL:$1|wordt $1 item|worden $1 items}} getoond.",
 	"whatlinkshere-title": "Pagina's die verwijzen naar \"$1\"",
 	"whatlinkshere-page": "Pagina:",
 	"linkshere": "De volgende pagina's verwijzen naar <strong>$2</strong>:",

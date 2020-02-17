@@ -1759,7 +1759,7 @@
 	"apierror-unknownaction": "指定的操作 <kbd>$1</kbd> 無法識別出。",
 	"apierror-unknownerror-editpage": "不明編輯頁面錯誤：$1。",
 	"apierror-unknownerror-nocode": "不明錯誤。",
-	"apierror-unknownerror": "不明錯誤：\"$1\"。",
+	"apierror-unknownerror": "不明錯誤：「$1」。",
 	"apierror-unknownformat": "無法識別的格式\"$1\"。",
 	"apierror-unrecognizedparams": "無法識別的{{PLURAL:$2|參數|參數}}：$1。",
 	"apierror-unrecognizedvalue": "無法識別參數 <var>$1</var> 的值：$2。",
