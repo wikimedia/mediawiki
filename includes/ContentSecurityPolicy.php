@@ -254,6 +254,14 @@ class ContentSecurityPolicy {
 				}
 			}
 		}
+		// Default value 'none'. true is none, false is nothing, string is single directive,
+		// array is list.
+		if ( !isset( $policyConfig['object-src'] ) || $policyConfig['object-src'] === true ) {
+			$objectSrc = [ "'none'" ];
+		} else {
+			$objectSrc = (array)( $policyConfig['object-src'] ?: [] );
+		}
+		$objectSrc = array_map( [ $this, 'escapeUrlForCSP' ], $objectSrc );
 
 		$directives = [];
 		if ( $scriptSrc ) {
@@ -267,6 +275,9 @@ class ContentSecurityPolicy {
 		}
 		if ( $imgSrc ) {
 			$directives[] = 'img-src ' . implode( ' ', array_unique( $imgSrc ) );
+		}
+		if ( $objectSrc ) {
+			$directives[] = 'object-src ' . implode( ' ', $objectSrc );
 		}
 		if ( $reportUri ) {
 			$directives[] = 'report-uri ' . $reportUri;

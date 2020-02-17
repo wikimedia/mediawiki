@@ -8838,6 +8838,8 @@ $wgMaxJobDBWriteDuration = false;
  *  'useNonces' Require nonces on all inline scripts. If disabled and 'unsafeFallback'
  *    is on, then all inline scripts will be allowed [default true].
  *  'script-src' Array of additional places that are allowed to have JS be loaded from.
+ *  'object-src' Array or string of where to load objects from. unset/true means 'none'.
+ *    False means omit. (Since 1.35)
  *  'report-uri' true to use MW api [default], false to disable, string for alternate uri
  * @warning May cause slowness on windows due to slow random number generator.
  */
