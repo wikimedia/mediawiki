@@ -306,12 +306,16 @@
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
 			var api = this,
+				assertParams = {
+					assert: params.assert,
+					assertuser: params.assertuser
+				},
 				abortedPromise = $.Deferred().reject( 'http',
 					{ textStatus: 'abort', exception: 'abort' } ).promise(),
 				abortable,
 				aborted;
 
-			return api.getToken( tokenType, params.assert ).then( function ( token ) {
+			return api.getToken( tokenType, assertParams ).then( function ( token ) {
 				params.token = token;
 				// Request was aborted while token request was running, but we
 				// don't want to unnecessarily abort token requests, so abort
@@ -328,7 +332,7 @@
 							// Try again, once
 							params.token = undefined;
 							abortable = null;
-							return api.getToken( tokenType, params.assert ).then( function ( token ) {
+							return api.getToken( tokenType, assertParams ).then( function ( token ) {
 								params.token = token;
 								if ( aborted ) {
 									return abortedPromise;
@@ -354,30 +358,31 @@
 		/**
 		 * Get a token for a certain action from the API.
 		 *
-		 * The assert parameter is only for internal use by #postWithToken.
-		 *
 		 * @since 1.22
 		 * @param {string} type Token type
-		 * @param {string} [assert]
+		 * @param {Object} [additionalParams] Additional parameters for the API (since 1.35)
 		 * @return {jQuery.Promise} Received token.
 		 */
-		getToken: function ( type, assert ) {
+		getToken: function ( type, additionalParams ) {
 			var apiPromise, promiseGroup, d, reject;
 			type = mapLegacyToken( type );
 			promiseGroup = promises[ this.defaults.ajax.url ];
 			d = promiseGroup && promiseGroup[ type + 'Token' ];
+
+			if ( typeof additionalParams === 'string' ) {
+				additionalParams = { assert: additionalParams };
+			}
 
 			if ( !promiseGroup ) {
 				promiseGroup = promises[ this.defaults.ajax.url ] = {};
 			}
 
 			if ( !d ) {
-				apiPromise = this.get( {
+				apiPromise = this.get( $.extend( {
 					action: 'query',
 					meta: 'tokens',
-					type: type,
-					assert: assert
-				} );
+					type: type
+				}, additionalParams ) );
 				reject = function () {
 					// Clear promise. Do not cache errors.
 					delete promiseGroup[ type + 'Token' ];
