@@ -215,7 +215,8 @@ class PasswordReset implements LoggerAwareInterface {
 			&& $firstUser->getBoolOption( 'requireemail' );
 		if ( $requireEmail ) {
 			if ( $email === '' ) {
-				return StatusValue::newFatal( 'passwordreset-username-email-required' );
+				// Email is required but not supplied: pretend everything's fine.
+				return StatusValue::newGood();
 			}
 
 			if ( !Sanitizer::validateEmail( $email ) ) {
@@ -231,7 +232,7 @@ class PasswordReset implements LoggerAwareInterface {
 		if ( !$users ) {
 			if ( $method === 'email' ) {
 				// Don't reveal whether or not an email address is in use
-				return StatusValue::newGood( [] );
+				return StatusValue::newGood();
 			} else {
 				return StatusValue::newFatal( 'noname' );
 			}

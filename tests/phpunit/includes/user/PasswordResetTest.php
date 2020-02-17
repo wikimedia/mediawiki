@@ -327,8 +327,8 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'email' => self::VALID_EMAIL,
 				'usersWithEmail' => [],
 			],
-			'Email required for resets, but is empty' => [
-				'expectedError' => 'passwordreset-username-email-required',
+			'Email required for resets but is empty, pretend everything is OK' => [
+				'expectedError' => false,
 				'config' => $emailRequiredConfig,
 				'performingUser' => $throttledUser,
 				'permissionManager' => $permissionManager,
