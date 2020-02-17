@@ -638,7 +638,7 @@
 	"passwordreset-emailtext-ip": "Joku (todennäköisesti sinä, IP-osoitteesta $1) pyysi salasanasi\nvaihtamista sivustolla {{SITENAME}} ($4). {{PLURAL:$3|Seuraava käyttäjätunnus on|Seuraavat käyttäjätunnukset ovat}}\nyhdistettynä tähän sähköpostiosoitteeseen:\n\n$2\n\n{{PLURAL:$3|Tämä väliaikainen salasana vanhentuu|Nämä väliaikaiset salasanat vanhentuvat}} {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.\nKirjaudu sisään nyt ja valitse uusi salasana heti. Jos joku toinen teki tämän pyynnön \ntai jos muistitkin vanhan salasanasi etkä halua enää muuttaa sitä,\nvoit jättää tämän viestin huomiotta ja jatkaa vanhan salasanasi käyttämistä.",
 	"passwordreset-emailtext-user": "Käyttäjä $1 pyysi muistutusta tunnuksesi tiedoista {{GRAMMAR:inessive|{{SITENAME}}}} ($4).\n{{PLURAL:$3|Seuraava käyttäjätunnus on|Seuraavat käyttäjätunnukset ovat}} liitetty tähän sähköpostiosoitteeseen:\n\n$2\n\n{{PLURAL:$3|Tämä väliaikainen salasana vanhentuu|Nämä väliaikaiset salasanat vanhentuvat}} {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.\nSinun kannattaa kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän\npyynnön, tai muistat sittenkin vanhan salasanasi, etkä halua muuttaa sitä,\nvoit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.",
 	"passwordreset-emailelement": "Käyttäjätunnus: \n$1\n\nVäliaikainen salasana: \n$2",
-	"passwordreset-success": "Käyttäjän numero $1 salasana on alustettu.",
+	"passwordreset-success": "Olet pyytänyt salasanan uudistamista.",
 	"passwordreset-nocaller": "Kutsuja on määriteltävä",
 	"passwordreset-nosuchcaller": "Kutsuvaa funktiota ei ole olemassa: $1",
 	"passwordreset-ignored": "Salasanan palauttamista ei käsitelty. Ehkä tarjoajaa ei ollut määritetty?",
@@ -690,7 +690,7 @@
 	"previewerrortext": "Muokkaustesi esikatselun toteuttamisessa on tapahtunut virhe.",
 	"blockedtitle": "Käyttäjä on estetty",
 	"blockedtext-partial": "<strong>Käyttäjänimesi tai IP-osoitteesi on estetty tekemästä tätä. Saatat silti voida yhä tehdä muita asioita tässä wikissä, kuten muokata yksittäisiä sivuja.</strong> Voit katsoa eston täydelliset tiedot [[Special:MyContributions|käyttäjän muokkaussivulta]].\n\nEston antoi $1.\n\nAnnettu syy on <em>$2</em>.\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Eston kohde: $7\n* Eston tunnus #$5",
-	"blockedtext": "<strong>Käyttäjätunnuksesi tai IP-osoitteesi on estetty.</strong>\n\nEston on asettanut $1.\nAnnettu syy on <em>$2</em>.\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Kohde: $7\n\nVoit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa estosta.\nVoit käyttää toimintoa \"{{int:emailuser}}\", jos olet asettanut olemassa olevan sähköpostiosoitteen [[Special:Preferences|asetuksissasi]], ja jos esto ei koske sähköpostin lähettämistä.\nIP-osoitteesi on $3 ja estotunnus on #$5.\nLiitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
+	"blockedtext": "<strong>Käyttäjätunnuksesi tai IP-osoitteesi on estetty.</strong>\n\nEston on asettanut $1.\nAnnettu syy on <em>$2</em>.\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Kohde: $7\n\nVoit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa estosta.\nVoit käyttää toimintoa \"{{int:emailuser}}\", jos olet asettanut olemassa olevan sähköpostiosoitteen [[Special:Preferences|asetuksissasi]] ja jos esto ei koske sähköpostin lähettämistä.\nIP-osoitteesi on $3 ja estotunnus on #$5.\nLiitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 	"autoblockedtext": "IP-osoitteesi on estetty automaattisesti, koska sitä on käyttänyt toinen käyttäjä, jonka on estänyt ylläpitäjä $1.\nAnnettu syy on:\n\n:<em>$2</em>\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Kohde: $7\n\nVoit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa estosta.\nVoit käyttää toimintoa \"{{int:emailuser}}\", jos olet asettanut olemassa olevan sähköpostiosoitteen [[Special:Preferences|asetuksissasi]], ja jos esto ei koske sähköpostin lähettämistä.\nIP-osoitteesi on $3 ja estotunnus on #$5.\nLiitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 	"systemblockedtext": "Käyttäjätunnuksesi tai IP-osoitteesi on automaattisesti estetty MediaWikin toimesta.\nAnnettu syy on:\n\n:<em>$2</em>\n\n* Start of block: $8\n* Expiration of block: $6\n* Intended blockee: $7\n\nTämänhetkinen IP-osoitteesi on $3.\nOle hyvä ja liitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 	"blockednoreason": "(syytä ei annettu)",
@@ -3619,6 +3619,7 @@
 	"searchsuggest-containing": "sisältää...",
 	"api-clientside-error-http": "Palvelin palautti virheen: HTTP $1.",
 	"api-clientside-error-timeout": "Palvelin ei vastannut odotetun ajan kuluessa.",
+	"api-clientside-error-aborted": "Pyyntö keskeytettiin.",
 	"api-clientside-error-invalidresponse": "Virheellinen vastaus palvelimelta.",
 	"api-error-badtoken": "Sisäinen virhe: virheellinen poletti.",
 	"api-error-emptypage": "Ei ole sallittua luoda uutta, tyhjää sivua.",
@@ -3898,6 +3899,7 @@
 	"specialmute-error-invalid-user": "Pyydettyä käyttäjänimeä ei löydy.",
 	"specialmute-email-footer": "Hallitaksesi sähköpostiasetuksia käyttäjälle {{BIDI:$2}}, käy sivulla <$1>.",
 	"specialmute-login-required": "Kirjaudu sisään muuttaaksesi vaimentamisasetuksiasi.",
+	"mute-preferences": "Vaimennusasetukset",
 	"revid": "versio $1",
 	"pageid": "sivun tunnistenumero $1",
 	"interfaceadmin-info": "$1\n\nSivustonlaajuisten CSS/JS/JSON-tiedostojen muokkaamisoikeus erotettiin äskettäin <code>editinterface</code>-oikeudesta. Jos et ymmärrä, miksi saat tämän virheen, katso [[mw:MediaWiki_1.32/interface-admin]].",
@@ -3930,5 +3932,8 @@
 	"deflate-invaliddeflate": "Annettua sisältöä ei ole tyhjennetty kunnolla",
 	"unprotected-js": "Turvallisuussyistä JavaScriptiä ei voi ladata suojaamattomilta sivuilta. Luo JavaScript-sivuja vain MediaWiki-nimiavaruuteen tai käyttäjän alasivulle.",
 	"userlogout-continue": "Haluatko kirjautua ulos?",
-	"paramvalidator-help-type-user-subtype-ip": "IP-Osoite"
+	"paramvalidator-help-type-user-subtype-name": "käyttäjänimi",
+	"paramvalidator-help-type-user-subtype-ip": "IP-osoite",
+	"paramvalidator-help-type-user-subtype-cidr": "IP-osoiteavaruus",
+	"paramvalidator-help-type-user-subtype-id": "käyttäjän tunnistenumero (esim. \"#12345\")"
 }

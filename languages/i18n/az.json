@@ -791,6 +791,7 @@
 	"rev-deleted-text-view": "Səhifənin bu versiyası''' silinib'''.\nSiz idarəçi olduğunuza görə silinən bu versiyanı nəzərdən keçirə bilərsiniz. Mümkündür ki, silinmənin səbəbi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silmə qeydlərində] göstərilmişdir.",
 	"rev-deleted-no-diff": "Siz versiyalar arasındakı fərqi nəzərdən keçirə bilməzsiniz. Belə ki, versiyalardan biri '''silinib'''.\nMümkündür ki, bununla bağlı təfərrüatlar [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silmə qeydlərində] göstərilmişdir.",
 	"rev-suppressed-no-diff": "Əvvəlki redaktələrin biri '''silinmiş''' fərqi görə bilməzsiniz.",
+	"rev-deleted-unhide-diff": "Səhifə dəyişikliyi versiyalarından biri <strong>silinmişdir</strong>.\nƏtraflı məlumatlara [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silmə qeydlərində] baxmaq mümkündür.\nİstəsəniz, bu [$1 dəyişikliyə baxa bilərsiniz].",
 	"rev-delundel": "göstər/gizlət",
 	"rev-showdeleted": "Göstər",
 	"revisiondelete": "Səhifənin versiyalarını sil/bərpa et",
