@@ -423,7 +423,6 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 			new ExtensionRegistry()
 		);
 		// Verify the registry is absolutely empty
-		$this->assertSame( [], $registry->getAttribute( 'FooBarBaz' ) );
 		$this->assertSame( [], $registry->getLazyLoadedAttribute( 'FooBarBaz' ) );
 		// Indicate what paths should be checked for the lazy attributes
 		$registry->loaded = [

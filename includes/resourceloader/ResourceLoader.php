@@ -390,7 +390,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$extRegistry = ExtensionRegistry::getInstance();
 		// In case of conflict, the deprecated hook has precedence.
 		$testModules = $testModulesMeta['qunit']
-			+ $extRegistry->getLazyLoadedAttribute( 'QUnitTestModules' );
+			+ $extRegistry->getAttribute( 'QUnitTestModules' );
 
 		$testSuiteModuleNames = [];
 		foreach ( $testModules as $name => &$module ) {
