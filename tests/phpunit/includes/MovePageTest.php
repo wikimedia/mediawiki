@@ -165,7 +165,6 @@ class MovePageTest extends MediaWikiTestCase {
 	 * @covers MovePage::isValidMoveTarget
 	 * @covers MovePage::isValidFileMove
 	 * @covers MovePage::__construct
-	 * @covers Title::isValidMoveOperation
 	 *
 	 * @param string|Title $old
 	 * @param string|Title $new
@@ -190,19 +189,8 @@ class MovePageTest extends MediaWikiTestCase {
 		if ( is_string( $new ) ) {
 			$new = Title::newFromText( $new );
 		}
-		// Can't test MovePage with a null target, only isValidMoveOperation
-		if ( $new ) {
-			$mp = $this->newMovePage( $old, $new, [ 'options' => $extraOptions ] );
-			$this->assertSame( $expectedErrors, $mp->isValidMove()->getErrorsArray() );
-		}
-
-		foreach ( $extraOptions as $key => $val ) {
-			$this->setMwGlobals( "wg$key", $val );
-		}
-		$this->setService( 'RepoGroup', $this->getMockRepoGroup() );
-		// This returns true instead of an array if there are no errors
-		$this->hideDeprecated( 'Title::isValidMoveOperation' );
-		$this->assertSame( $expectedErrors ?: true, $old->isValidMoveOperation( $new, false ) );
+		$mp = $this->newMovePage( $old, $new, [ 'options' => $extraOptions ] );
+		$this->assertSame( $expectedErrors, $mp->isValidMove()->getErrorsArray() );
 	}
 
 	public static function provideIsValidMove() {
@@ -212,11 +200,6 @@ class MovePageTest extends MediaWikiTestCase {
 				'Existent',
 				'Existent',
 				[ [ 'selfmove' ] ],
-			],
-			'Move to null' => [
-				'Existent',
-				null,
-				[ [ 'badtitletext' ] ],
 			],
 			'Move from empty name' => [
 				Title::makeTitle( NS_MAIN, '' ),
@@ -384,32 +367,6 @@ class MovePageTest extends MediaWikiTestCase {
 			$ret[$name] = $arr;
 		}
 		return $ret;
-	}
-
-	/**
-	 * Integration test to catch regressions like T74870. Taken and modified
-	 * from SemanticMediaWiki
-	 *
-	 * @covers Title::moveTo
-	 * @covers MovePage::move
-	 */
-	public function testTitleMoveCompleteIntegrationTest() {
-		$this->hideDeprecated( 'Title::moveTo' );
-
-		$oldTitle = Title::newFromText( 'Help:Some title' );
-		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
-		$newTitle = Title::newFromText( 'Help:Some other title' );
-		$this->assertNull(
-			WikiPage::factory( $newTitle )->getRevision()
-		);
-
-		$this->assertTrue( $oldTitle->moveTo( $newTitle, false, 'test1', true ) );
-		$this->assertNotNull(
-			WikiPage::factory( $oldTitle )->getRevision()
-		);
-		$this->assertNotNull(
-			WikiPage::factory( $newTitle )->getRevision()
-		);
 	}
 
 	/**

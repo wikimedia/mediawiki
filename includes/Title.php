@@ -3596,70 +3596,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Check whether a given move operation would be valid.
-	 * Returns true if ok, or a getUserPermissionsErrors()-like array otherwise
-	 *
-	 * @deprecated since 1.25, use MovePage's methods instead
-	 * @param Title &$nt The new title
-	 * @param bool $auth Whether to check user permissions (uses $wgUser)
-	 * @param string $reason Is the log summary of the move, used for spam checking
-	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
-	 */
-	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
-		wfDeprecated( __METHOD__, '1.25' );
-
-		global $wgUser;
-
-		if ( !( $nt instanceof Title ) ) {
-			// Normally we'd add this to $errors, but we'll get
-			// lots of syntax errors if $nt is not an object
-			return [ [ 'badtitletext' ] ];
-		}
-
-		$mp = MediaWikiServices::getInstance()->getMovePageFactory()->newMovePage( $this, $nt );
-		$errors = $mp->isValidMove()->getErrorsArray();
-		if ( $auth ) {
-			$errors = wfMergeErrorArrays(
-				$errors,
-				$mp->checkPermissions( $wgUser, $reason )->getErrorsArray()
-			);
-		}
-
-		return $errors ?: true;
-	}
-
-	/**
-	 * Move a title to a new location
-	 *
-	 * @deprecated since 1.25, use the MovePage class instead
-	 * @param Title &$nt The new title
-	 * @param bool $auth Indicates whether $wgUser's permissions
-	 *  should be checked
-	 * @param string $reason The reason for the move
-	 * @param bool $createRedirect Whether to create a redirect from the old title to the new title.
-	 *  Ignored if the user doesn't have the suppressredirect right.
-	 * @param array $changeTags Applied to the entry in the move log and redirect page revision
-	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
-	 */
-	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true,
-		array $changeTags = []
-	) {
-		wfDeprecated( __METHOD__, '1.25' );
-
-		global $wgUser;
-
-		$mp = MediaWikiServices::getInstance()->getMovePageFactory()->newMovePage( $this, $nt );
-		$method = $auth ? 'moveIfAllowed' : 'move';
-		/** @var Status $status */
-		$status = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
-		if ( $status->isOK() ) {
-			return true;
-		} else {
-			return $status->getErrorsArray();
-		}
-	}
-
-	/**
 	 * Locks the page row and check if this page is single revision redirect
 	 *
 	 * This updates the cached fields of this instance via Title::loadFromRow()
@@ -3695,58 +3631,6 @@ class Title implements LinkTarget, IDBAccessObject {
 		$dbw->endAtomic( __METHOD__ );
 
 		return $isSingleRevRedirect;
-	}
-
-	/**
-	 * Checks if $this can be moved to a given Title
-	 * - Selects for update, so don't call it unless you mean business
-	 *
-	 * @deprecated since 1.25, use MovePage's methods instead
-	 * @param Title $nt The new title to check
-	 * @return bool
-	 */
-	public function isValidMoveTarget( $nt ) {
-		wfDeprecated( __METHOD__, '1.25' );
-
-		# Is it an existing file?
-		if ( $nt->getNamespace() == NS_FILE ) {
-			$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
-				->newFile( $nt );
-			$file->load( File::READ_LATEST );
-			if ( $file->exists() ) {
-				wfDebug( __METHOD__ . ": file exists\n" );
-				return false;
-			}
-		}
-		# Is it a redirect with no history?
-		if ( !$nt->isSingleRevRedirect() ) {
-			wfDebug( __METHOD__ . ": not a one-rev redirect\n" );
-			return false;
-		}
-		# Get the article text
-		$rev = Revision::newFromTitle( $nt, false, Revision::READ_LATEST );
-		if ( !is_object( $rev ) ) {
-			return false;
-		}
-		$content = $rev->getContent();
-		# Does the redirect point to the source?
-		# Or is it a broken self-redirect, usually caused by namespace collisions?
-		$redirTitle = $content ? $content->getRedirectTarget() : null;
-
-		if ( $redirTitle ) {
-			if ( $redirTitle->getPrefixedDBkey() != $this->getPrefixedDBkey() &&
-				$redirTitle->getPrefixedDBkey() != $nt->getPrefixedDBkey() ) {
-				wfDebug( __METHOD__ . ": redirect points to other page\n" );
-				return false;
-			} else {
-				return true;
-			}
-		} else {
-			# Fail safe (not a redirect after all. strange.)
-			wfDebug( __METHOD__ . ": failsafe: database sais " . $nt->getPrefixedDBkey() .
-						" is a redirect, but it doesn't contain a valid redirect.\n" );
-			return false;
-		}
 	}
 
 	/**
