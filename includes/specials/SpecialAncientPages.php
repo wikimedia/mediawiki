@@ -94,12 +94,9 @@ class SpecialAncientPages extends QueryPage {
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$linkRenderer = $this->getLinkRenderer();
 
-		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter();
-
 		$link = $linkRenderer->makeKnownLink(
 			$title,
-			new HtmlArmor( $converter->convertHtml( $title->getPrefixedText() ) )
+			new HtmlArmor( $this->getLanguageConverter()->convertHtml( $title->getPrefixedText() ) )
 		);
 
 		return $this->getLanguage()->specialList( $link, htmlspecialchars( $d ) );
