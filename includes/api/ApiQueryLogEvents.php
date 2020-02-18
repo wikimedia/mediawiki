@@ -31,6 +31,7 @@ use MediaWiki\Storage\NameTableAccessException;
  */
 class ApiQueryLogEvents extends ApiQueryBase {
 
+	/** @var CommentStore */
 	private $commentStore;
 
 	public function __construct( ApiQuery $query, $moduleName ) {

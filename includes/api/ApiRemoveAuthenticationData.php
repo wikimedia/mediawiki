@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
 
 /**
@@ -61,7 +62,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 			: [];
 		$reqs = array_filter(
 			$manager->getAuthenticationRequests( $this->authAction, $this->getUser() ),
-			function ( $req ) use ( $params, $blacklist ) {
+			function ( AuthenticationRequest $req ) use ( $params, $blacklist ) {
 				return $req->getUniqueId() === $params['request'] &&
 					!isset( $blacklist[get_class( $req )] );
 			}

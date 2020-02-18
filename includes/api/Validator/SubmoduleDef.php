@@ -85,6 +85,7 @@ class SubmoduleDef extends EnumDef {
 
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
+		/** @var ApiBase $module */
 		$module = $options['module'];
 
 		if ( isset( $settings[self::PARAM_SUBMODULE_MAP] ) ) {

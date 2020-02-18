@@ -170,7 +170,6 @@ class ApiMain extends ApiBase {
 	 * @param IContextSource|WebRequest|null $context If this is an instance of
 	 *    FauxRequest, errors are thrown and no printing occurs
 	 * @param bool $enableWrite Should be set to true if the api may modify data
-	 * @suppress PhanUndeclaredMethod
 	 */
 	public function __construct( $context = null, $enableWrite = false ) {
 		if ( $context === null ) {
@@ -181,10 +180,11 @@ class ApiMain extends ApiBase {
 			$context = RequestContext::getMain();
 		}
 		// We set a derivative context so we can change stuff later
-		$this->setContext( new DerivativeContext( $context ) );
+		$derivativeContext = new DerivativeContext( $context );
+		$this->setContext( $derivativeContext );
 
 		if ( isset( $request ) ) {
-			$this->getContext()->setRequest( $request );
+			$derivativeContext->setRequest( $request );
 		} else {
 			$request = $this->getRequest();
 		}
@@ -203,7 +203,7 @@ class ApiMain extends ApiBase {
 				global $wgUser;
 				wfDebug( "API: stripping user credentials when the same-origin policy is not applied\n" );
 				$wgUser = new User();
-				$this->getContext()->setUser( $wgUser );
+				$derivativeContext->setUser( $wgUser );
 				$request->response()->header( 'MediaWiki-Login-Suppressed: true' );
 			}
 		}
@@ -226,10 +226,10 @@ class ApiMain extends ApiBase {
 				$uselang = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
 			}
 			$code = RequestContext::sanitizeLangCode( $uselang );
-			$this->getContext()->setLanguage( $code );
+			$derivativeContext->setLanguage( $code );
 			if ( !$this->mInternalMode ) {
 				global $wgLang;
-				$wgLang = $this->getContext()->getLanguage();
+				$wgLang = $derivativeContext->getLanguage();
 				RequestContext::getMain()->setLanguage( $wgLang );
 			}
 		}
@@ -677,7 +677,6 @@ class ApiMain extends ApiBase {
 		$request = $this->getRequest();
 		$response = $request->response();
 
-		$matchedOrigin = false;
 		$allowTiming = false;
 		$varyOrigin = true;
 

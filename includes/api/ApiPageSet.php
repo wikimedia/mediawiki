@@ -415,7 +415,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Title objects for good and missing titles.
-	 * @return array
+	 * @return Title[]
 	 */
 	public function getGoodAndMissingTitles() {
 		return $this->mGoodTitles + $this->mMissingTitles;
@@ -1117,6 +1117,7 @@ class ApiPageSet extends ApiBase {
 
 		if ( $this->mPendingRedirectSpecialPages ) {
 			foreach ( $this->mPendingRedirectSpecialPages as $key => list( $from, $to ) ) {
+				/** @var Title $from */
 				$fromKey = $from->getPrefixedText();
 				$this->mResolvedRedirectTitles[$fromKey] = $from;
 				$this->mRedirectTitles[$fromKey] = $to;
@@ -1163,7 +1164,6 @@ class ApiPageSet extends ApiBase {
 	 * @return LinkBatch
 	 */
 	private function processTitlesArray( $titles ) {
-		$usernames = [];
 		$linkBatch = new LinkBatch();
 		$services = MediaWikiServices::getInstance();
 		$contLang = $services->getContentLanguage();
@@ -1172,6 +1172,7 @@ class ApiPageSet extends ApiBase {
 		foreach ( $titles as $index => $title ) {
 			if ( is_string( $title ) ) {
 				try {
+					/** @var Title $titleObj */
 					$titleObj = Title::newFromTextThrow( $title, $this->mDefaultNamespace );
 				} catch ( MalformedTitleException $ex ) {
 					// Handle invalid titles gracefully

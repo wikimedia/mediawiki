@@ -77,6 +77,7 @@ class ApiParamValidatorCallbacks implements Callbacks {
 	public function recordCondition(
 		DataMessageValue $message, $name, $value, array $settings, array $options
 	) {
+		/** @var \ApiBase $module */
 		$module = $options['module'];
 
 		$code = $message->getCode();

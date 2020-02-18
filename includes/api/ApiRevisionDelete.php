@@ -125,7 +125,7 @@ class ApiRevisionDelete extends ApiBase {
 		$result->addValue( null, $this->getModuleName(), $data );
 	}
 
-	private function extractStatusInfo( $status ) {
+	private function extractStatusInfo( Status $status ) {
 		$ret = [
 			'status' => $status->isOK() ? 'Success' : 'Fail',
 		];
