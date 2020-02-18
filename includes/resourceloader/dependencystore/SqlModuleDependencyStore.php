@@ -114,8 +114,18 @@ class SqlModuleDependencyStore extends DependencyStore {
 				];
 			}
 
-			if ( $rows ) {
-				$dbw->insert( 'module_deps', $rows, __METHOD__ );
+			// @TODO: use a single query with VALUES()/aliases support in DB wrapper
+			// See https://dev.mysql.com/doc/refman/8.0/en/insert-on-duplicate.html
+			foreach ( $rows as $row ) {
+				$dbw->upsert(
+					'module_deps',
+					$row,
+					[ [ 'md_module', 'md_skin' ] ],
+					[
+						'md_deps' => $row['md_deps'],
+					],
+					__METHOD__
+				);
 			}
 		} catch ( DBError $e ) {
 			throw new DependencyStoreException( $e->getMessage() );
