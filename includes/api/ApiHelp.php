@@ -192,6 +192,7 @@ class ApiHelp extends ApiBase {
 		$doc = $formatter->getDoc();
 		$xpath = new DOMXPath( $doc );
 		$nodes = $xpath->query( '//a[@href][not(contains(@class,\'apihelp-linktrail\'))]' );
+		/** @var DOMElement $node */
 		foreach ( $nodes as $node ) {
 			$href = $node->getAttribute( 'href' );
 			do {

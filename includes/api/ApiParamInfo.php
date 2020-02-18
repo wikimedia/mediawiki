@@ -26,6 +26,8 @@
 class ApiParamInfo extends ApiBase {
 
 	private $helpFormat;
+
+	/** @var RequestContext */
 	private $context;
 
 	public function __construct( ApiMain $main, $action ) {

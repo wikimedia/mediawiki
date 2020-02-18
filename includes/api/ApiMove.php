@@ -216,6 +216,7 @@ class ApiMove extends ApiBase {
 		// At least some pages could be moved
 		// Report each of them separately
 		foreach ( $result->getValue() as $oldTitle => $status ) {
+			/** @var Status $status */
 			$r = [ 'from' => $oldTitle ];
 			if ( $status->isOK() ) {
 				$r['to'] = $status->getValue();

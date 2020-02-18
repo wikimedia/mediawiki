@@ -148,9 +148,12 @@ class ApiAuthManagerHelper {
 			$wantedRequests = [ $params['request'] => true ];
 		}
 		if ( $wantedRequests !== null ) {
-			$reqs = array_filter( $reqs, function ( $req ) use ( $wantedRequests ) {
-				return isset( $wantedRequests[$req->getUniqueId()] );
-			} );
+			$reqs = array_filter(
+				$reqs,
+				function ( AuthenticationRequest $req ) use ( $wantedRequests ) {
+					return isset( $wantedRequests[$req->getUniqueId()] );
+				}
+			);
 		}
 
 		// Collect the fields for all the requests

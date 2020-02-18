@@ -190,6 +190,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$nsInfo = $services->getNamespaceInfo();
 			$usernames = [];
 			foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
+				/** @var WatchedItem $watchedItem */
 				$linkTarget = $watchedItem->getLinkTarget();
 				if ( $nsInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
 					$usernames[] = $linkTarget->getText();

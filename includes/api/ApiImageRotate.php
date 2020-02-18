@@ -83,15 +83,7 @@ class ApiImageRotate extends ApiBase {
 			}
 
 			// Check whether we're allowed to rotate this file
-			$permError = $this->checkTitleUserPermissions( $file->getTitle(), [ 'edit', 'upload' ] );
-			if ( $permError ) {
-				$r['result'] = 'Failure';
-				$r['errors'] = $this->getErrorFormatter()->arrayFromStatus(
-					$this->errorArrayToStatus( $permError )
-				);
-				$result[] = $r;
-				continue;
-			}
+			$this->checkTitleUserPermissions( $file->getTitle(), [ 'edit', 'upload' ] );
 
 			$srcPath = $file->getLocalRefPath();
 			if ( $srcPath === false ) {
