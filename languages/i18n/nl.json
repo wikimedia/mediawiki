@@ -563,7 +563,7 @@
 	"passwordtoopopular": "Veel gekozen wachtwoorden kunnen niet worden gebruikt. Kies een wachtwoord dat lastiger kan worden geraden.",
 	"passwordinlargeblacklist": "Het ingevoerde wachtwoord bevindt zich in een lijst met gangbare wachtwoorden. Kies een origineler en derhalve veiliger wachtwoord.",
 	"password-name-match": "Uw wachtwoord en uw gebruikersnaam mogen niet overeenkomen.",
-	"password-substring-username-match": "Uw wachtwoord mag niet hetzelfde zijn als uw gebruikersnaam.",
+	"password-substring-username-match": "Uw wachtwoord mag niet voorkomen in uw gebruikersnaam.",
 	"password-login-forbidden": "Het gebruik van deze gebruikersnaam met dit wachtwoord is niet toegestaan.",
 	"mailmypassword": "Nieuw wachtwoord e-mailen",
 	"passwordremindertitle": "Nieuw tijdelijk wachtwoord voor {{SITENAME}}",

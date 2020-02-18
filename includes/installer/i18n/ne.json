@@ -7,11 +7,12 @@
 			"Ganesh Paudel",
 			"बिप्लब आनन्द",
 			"Nirjal stha",
-			"राम प्रसाद जोशी"
+			"राम प्रसाद जोशी",
+			"पर्वत सुबेदी"
 		]
 	},
 	"config-desc": "मेडियाविकिको लागि स्थापक",
-	"config-title": "मेडिया विकि $1 स्थापना",
+	"config-title": "मिडिया विकि $1 स्थापना",
 	"config-information": "जानकारी",
 	"config-localsettings-badkey": "तपाईंले दिएको कुंजी मिलेन ।",
 	"config-your-language": "तपाईंको भाषा:",
