@@ -92,12 +92,16 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	protected function loadAuth( $subPage, $authAction = null, $reset = false ) {
 		parent::loadAuth( $subPage, $authAction );
 		if ( $subPage ) {
-			$this->authRequests = array_filter( $this->authRequests, function ( $req ) use ( $subPage ) {
-				return $req->getUniqueId() === $subPage;
-			} );
-			if ( count( $this->authRequests ) > 1 ) {
+			$foundReqs = [];
+			foreach ( $this->authRequests as $req ) {
+				if ( $req->getUniqueId() === $subPage ) {
+					$foundReqs[] = $req;
+				}
+			}
+			if ( count( $foundReqs ) > 1 ) {
 				throw new LogicException( 'Multiple AuthenticationRequest objects with same ID!' );
 			}
+			$this->authRequests = $foundReqs;
 		}
 	}
 

@@ -240,9 +240,13 @@ abstract class AuthenticationRequest {
 	 * @return AuthenticationRequest[]
 	 */
 	public static function loadRequestsFromSubmission( array $reqs, array $data ) {
-		return array_values( array_filter( $reqs, function ( $req ) use ( $data ) {
-			return $req->loadFromSubmission( $data );
-		} ) );
+		$result = [];
+		foreach ( $reqs as $req ) {
+			if ( $req->loadFromSubmission( $data ) ) {
+				$result[] = $req;
+			}
+		}
+		return $result;
 	}
 
 	/**
@@ -309,19 +313,23 @@ abstract class AuthenticationRequest {
 		$merged = [];
 
 		// fields that are required by some primary providers but not others are not actually required
-		$primaryRequests = array_filter( $reqs, function ( $req ) {
-			return $req->required === AuthenticationRequest::PRIMARY_REQUIRED;
-		} );
-		$sharedRequiredPrimaryFields = array_reduce( $primaryRequests, function ( $shared, $req ) {
-			$required = array_keys( array_filter( $req->getFieldInfo(), function ( $options ) {
-				return empty( $options['optional'] );
-			} ) );
-			if ( $shared === null ) {
-				return $required;
-			} else {
-				return array_intersect( $shared, $required );
+		$sharedRequiredPrimaryFields = null;
+		foreach ( $reqs as $req ) {
+			if ( $req->required !== self::PRIMARY_REQUIRED ) {
+				continue;
 			}
-		}, null );
+			$required = [];
+			foreach ( $req->getFieldInfo() as $fieldName => $options ) {
+				if ( empty( $options['optional'] ) ) {
+					$required[] = $fieldName;
+				}
+			}
+			if ( $sharedRequiredPrimaryFields === null ) {
+				$sharedRequiredPrimaryFields = $required;
+			} else {
+				$sharedRequiredPrimaryFields = array_intersect( $sharedRequiredPrimaryFields, $required );
+			}
+		}
 
 		foreach ( $reqs as $req ) {
 			$info = $req->getFieldInfo();
