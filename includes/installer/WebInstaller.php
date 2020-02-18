@@ -389,7 +389,7 @@ class WebInstaller extends Installer {
 				array_map( 'htmlspecialchars', $params )
 			);
 		}
-		$text = $msg->useDatabase( false )->plain();
+		$text = $msg->useDatabase( false )->parse();
 		$box = Html::errorBox( $text, '', 'config-error-box' );
 		$this->output->addHTML( $box );
 	}
