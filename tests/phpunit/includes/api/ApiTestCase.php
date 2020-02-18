@@ -149,6 +149,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @deprecated since 1.31
 	 */
 	protected function doLogin( $testUser = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		global $wgUser;
 
 		if ( $testUser === null ) {
