@@ -356,7 +356,7 @@ class HistoryAction extends FormlessAction {
 
 		$page_id = $this->page->getId();
 
-		$revQuery = Revision::getQueryInfo();
+		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 		return $dbr->select(
 			$revQuery['tables'],
 			$revQuery['fields'],
