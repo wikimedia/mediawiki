@@ -64,6 +64,8 @@ class RequestFromGlobals extends RequestBase {
 					$headers[$name] = $value;
 				} elseif ( $name === 'CONTENT_LENGTH' ) {
 					$headers['content-length'] = $value;
+				} elseif ( $name === 'CONTENT_TYPE' ) {
+					$headers['content-type'] = $value;
 				}
 			}
 			$this->setHeaders( $headers );
