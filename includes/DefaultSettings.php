@@ -2433,17 +2433,17 @@ $wgObjectCaches = [
 	CACHE_MEMCACHED => [ 'class' => MemcachedPhpBagOStuff::class, 'loggroup' => 'memcached' ],
 
 	'db-replicated' => [
-		'class'       => ReplicatedBagOStuff::class,
-		'readFactory' => [
-			'class' => SqlBagOStuff::class,
-			'args'  => [ [ 'replicaOnly' => true ] ]
+		'class'        => ReplicatedBagOStuff::class,
+		'readFactory'  => [
+			'factory' => 'ObjectCache::newFromParams',
+			'args'    => [ [ 'class' => SqlBagOStuff::class, 'replicaOnly' => true ] ]
 		],
 		'writeFactory' => [
-			'class' => SqlBagOStuff::class,
-			'args'  => [ [ 'replicaOnly' => false ] ]
+			'factory' => 'ObjectCache::newFromParams',
+			'args'    => [ [ 'class' => SqlBagOStuff::class, 'replicaOnly' => false ] ]
 		],
-		'loggroup'  => 'SQLBagOStuff',
-		'reportDupes' => false
+		'loggroup'     => 'SQLBagOStuff',
+		'reportDupes'  => false
 	],
 
 	'apc' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
