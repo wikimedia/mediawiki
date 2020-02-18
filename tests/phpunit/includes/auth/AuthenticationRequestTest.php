@@ -203,6 +203,8 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 
 		// Basic combining
 
+		$this->assertEquals( [], AuthenticationRequest::mergeFieldInfo( [] ) );
+
 		$fields = AuthenticationRequest::mergeFieldInfo( [ $req1 ] );
 		$expect = $req1->getFieldInfo();
 		foreach ( $expect as $name => &$options ) {
