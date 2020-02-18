@@ -693,7 +693,7 @@ LUA;
 			// Some jobs cannot run until a "release timestamp"
 			'rtimestamp' => $job->getReleaseTimestamp() ?: 0,
 			// Additional job metadata
-			'uuid' => UIDGenerator::newRawUUIDv4( UIDGenerator::QUICK_RAND ),
+			'uuid' => $this->idGenerator->newRawUUIDv4(),
 			'sha1' => $job->ignoreDuplicates()
 				? Wikimedia\base_convert( sha1( serialize( $job->getDeduplicationInfo() ) ), 16, 36, 31 )
 				: '',

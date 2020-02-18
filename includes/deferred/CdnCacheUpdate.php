@@ -185,8 +185,9 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		}
 
 		// Get sequential trx IDs for packet loss counting
-		$ids = UIDGenerator::newSequentialPerNodeIDs(
-			'squidhtcppurge', 32, count( $urlArr ), UIDGenerator::QUICK_VOLATILE
+		$idGenerator = MediaWikiServices::getInstance()->getGlobalIdGenerator();
+		$ids = $idGenerator->newSequentialPerNodeIDs(
+			'squidhtcppurge', 32, count( $urlArr ), $idGenerator::QUICK_VOLATILE
 		);
 
 		foreach ( $urlArr as $url ) {

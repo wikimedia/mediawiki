@@ -91,6 +91,7 @@ use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 return [
 	'ActorMigration' => function () : ActorMigration {
@@ -302,6 +303,23 @@ return [
 			? null
 			: $services->getDBLoadBalancer();
 		return new GenderCache( $nsInfo, $dbLoadBalancer );
+	},
+
+	'GlobalIdGenerator' => function ( MediaWikiServices $services ) : GlobalIdGenerator {
+		$mainConfig = $services->getMainConfig();
+
+		return new GlobalIdGenerator(
+			$mainConfig->get( 'TmpDirectory' ),
+			// Ignore APC-like caches in CLI mode since there is no meaningful persistence.
+			// This avoids having counters restart with each script run. The ID generator
+			// will fallback to using the disk in those cases.
+			$mainConfig->get( 'CommandLineMode' )
+				? new EmptyBagOStuff()
+				: $services->getLocalServerObjectCache(),
+			function ( $command ) {
+				return wfShellExec( $command );
+			}
+		);
 	},
 
 	'HttpRequestFactory' =>

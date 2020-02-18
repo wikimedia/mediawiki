@@ -118,9 +118,19 @@ class JobQueueGroup {
 			$conf['readOnlyReason'] = $this->readOnlyReason;
 		}
 
+		return $this->factoryJobQueue( $conf );
+	}
+
+	/**
+	 * @param array $conf
+	 * @return JobQueue
+	 * @throws JobQueueError
+	 */
+	private function factoryJobQueue( array $conf ) {
 		$services = MediaWikiServices::getInstance();
 		$conf['stats'] = $services->getStatsdDataFactory();
 		$conf['wanCache'] = $services->getMainWANObjectCache();
+		$conf['idGenerator'] = $services->getGlobalIdGenerator();
 
 		return JobQueue::factory( $conf );
 	}
@@ -406,7 +416,7 @@ class JobQueueGroup {
 		if ( $this->coalescedQueues === null ) {
 			$this->coalescedQueues = [];
 			foreach ( $wgJobTypeConf as $type => $conf ) {
-				$queue = JobQueue::factory(
+				$queue = $this->factoryJobQueue(
 					[ 'domain' => $this->domain, 'type' => 'null' ] + $conf );
 				$loc = $queue->getCoalesceLocationInternal();
 				if ( !isset( $this->coalescedQueues[$loc] ) ) {
