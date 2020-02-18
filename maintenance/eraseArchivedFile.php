@@ -101,7 +101,7 @@ class EraseArchivedFile extends Maintenance {
 		$key = $archivedFile->getStorageKey();
 		$name = $archivedFile->getName();
 		$ts = $archivedFile->getTimestamp();
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
 		if ( $this->hasOption( 'delete' ) ) {
 			$status = $repo->getBackend()->delete( [ 'src' => $path ] );

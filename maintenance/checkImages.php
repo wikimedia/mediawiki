@@ -20,6 +20,9 @@
  * @file
  * @ingroup Maintenance
  */
+
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -42,7 +45,7 @@ class CheckImages extends Maintenance {
 		$numImages = 0;
 		$numGood = 0;
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$fileQuery = LocalFile::getQueryInfo();
 		do {
 			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'],

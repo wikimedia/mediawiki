@@ -100,7 +100,7 @@ class ImageBuilder extends Maintenance {
 	 */
 	private function getRepo() {
 		if ( $this->repo === null ) {
-			$this->repo = RepoGroup::singleton()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		}
 
 		return $this->repo;

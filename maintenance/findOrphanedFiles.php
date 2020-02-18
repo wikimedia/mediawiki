@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 class FindOrphanedFiles extends Maintenance {
@@ -35,7 +37,7 @@ class FindOrphanedFiles extends Maintenance {
 		$subdir = $this->getOption( 'subdir', '' );
 		$verbose = $this->hasOption( 'verbose' );
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		if ( $repo->hasSha1Storage() ) {
 			$this->fatalError( "Local repo uses SHA-1 file storage names; aborting." );
 		}
