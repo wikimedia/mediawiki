@@ -30,7 +30,8 @@
 			"WAN233",
 			"Xiplus",
 			"WhitePhosphorus",
-			"DannyS712"
+			"DannyS712",
+			"Rowingbohe"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -416,7 +417,7 @@
 	"login-userblocked": "此簿見錮矣。是之登未見許可。",
 	"wrongpassword": "符節不合，惠核之。",
 	"wrongpasswordempty": "缺符節，惠補之。",
-	"passwordtooshort": "符節莫逾$1字。",
+	"passwordtooshort": "符節當逾$1字。",
 	"password-name-match": "符節與簿名相異也。",
 	"password-login-forbidden": "此簿共符節之用見禁矣。",
 	"mailmypassword": "重設符節",

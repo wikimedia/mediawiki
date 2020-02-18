@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"राम प्रसाद जोशी"
+			"राम प्रसाद जोशी",
+			"पर्वत सुबेदी"
 		]
 	},
 	"config-desc": "मेडियाविकिको लागि स्थापक",
-	"config-title": "मेडिया विकि $1 स्थापना",
+	"config-title": "मिडिया विकि $1 स्थापना",
 	"config-information": "जानकारी",
 	"config-localsettings-upgrade": "<code>LocalSettings.php</code> फाइल पाइयो ।\nयै स्थापनालाई अपग्रेड गर्न, तलीखाइ दिया  बक्समी <code>$wgUpgradeKey</code>  को मान दर्ज गर ।\nतम <code>LocalSettings.php</code> मा भेट्टे हौ ।",
 	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> फाइल पाइयो ।\nयै स्थापनालाई अपग्रेड गद्द, बदलामी कृपया यैलाई चलाओ <code>update.php</code>",

@@ -27,7 +27,8 @@
 			"Fitoschido",
 			"Haribanshi",
 			"Shirayuki",
-			"DannyS712"
+			"DannyS712",
+			"पर्वत सुबेदी"
 		]
 	},
 	"tog-underline": "लिङ्कके रेखाङ्कित करी:",
@@ -2736,7 +2737,7 @@
 	"confirm-rollback-top": "ई पृष्ठ सम्पादन पूर्ववत करी?",
 	"confirm-mcrrestore-title": "संशोधन सभकेँ घुराउ",
 	"confirm-mcrundo-title": "परिवर्तन पुरान स्थिति पर आनी",
-	"mcrundofailed": "अपलाेड असक्षम",
+	"mcrundofailed": "उर्ध्वभरण असफल",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← पहिलुका पृष्ठ",
 	"imgmultipagenext": "अगुलका पृष्ठ →",
