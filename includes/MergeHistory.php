@@ -157,11 +157,12 @@ class MergeHistory {
 	 */
 	public function checkPermissions( User $user, $reason ) {
 		$status = new Status();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		// Check if user can edit both pages
 		$errors = wfMergeErrorArrays(
-			$this->source->getUserPermissionsErrors( 'edit', $user ),
-			$this->dest->getUserPermissionsErrors( 'edit', $user )
+			$permissionManager->getPermissionErrors( 'edit', $user, $this->source ),
+			$permissionManager->getPermissionErrors( 'edit', $user, $this->dest )
 		);
 
 		// Convert into a Status object
@@ -178,7 +179,6 @@ class MergeHistory {
 		}
 
 		// Check mergehistory permission
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !$permissionManager->userHasRight( $user, 'mergehistory' ) ) {
 			// User doesn't have the right to merge histories
 			$status->fatal( 'mergehistory-fail-permission' );
