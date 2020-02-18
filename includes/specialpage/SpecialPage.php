@@ -751,6 +751,17 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
+	 * Shortcut to get language's converter
+	 *
+	 * @return ILanguageConverter
+	 * @since 1.35
+	 */
+	protected function getLanguageConverter(): ILanguageConverter {
+		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter();
+	}
+
+	/**
 	 * Shortcut to get main config object
 	 * @return Config
 	 * @since 1.24

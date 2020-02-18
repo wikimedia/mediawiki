@@ -24,7 +24,6 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -117,10 +116,7 @@ class SpecialUnwatchedPages extends QueryPage {
 				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
 		}
 
-		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter();
-
-		$text = $converter->convertHtml( $nt->getPrefixedText() );
+		$text = $this->getLanguageConverter()->convertHtml( $nt->getPrefixedText() );
 
 		$linkRenderer = $this->getLinkRenderer();
 

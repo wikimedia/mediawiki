@@ -24,7 +24,6 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -84,10 +83,7 @@ class SpecialMostLinkedCategories extends QueryPage {
 			);
 		}
 
-		$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter();
-
-		$text = $converter->convertHtml( $nt->getText() );
+		$text = $this->getLanguageConverter()->convertHtml( $nt->getText() );
 
 		$plink = $this->getLinkRenderer()->makeLink( $nt, new HtmlArmor( $text ) );
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
