@@ -452,7 +452,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * Test changing user options.
 	 * @covers User::setOption
-	 * @covers User::getOption
+	 * @covers User::getOptions
 	 * @covers User::getBoolOption
 	 * @covers User::getIntOption
 	 * @covers User::getStubThreshold
@@ -751,12 +751,25 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::isRegistered
 	 * @covers User::isLoggedIn
 	 * @covers User::isAnon
+	 * @covers User::logOut
 	 */
 	public function testLoggedIn() {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->assertTrue( $user->isRegistered() );
 		$this->assertTrue( $user->isLoggedIn() );
 		$this->assertFalse( $user->isAnon() );
+
+		$this->setTemporaryHook( 'UserLogout', function ( &$user ) {
+			return false;
+		} );
+		$user->logout();
+		$this->assertTrue( $user->isLoggedIn() );
+
+		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+			'UserLogout' => []
+		] );
+		$user->logout();
+		$this->assertFalse( $user->isLoggedIn() );
 
 		// Non-existent users are perceived as anonymous
 		$user = User::newFromName( 'UTNonexistent' );
@@ -816,6 +829,31 @@ class UserTest extends MediaWikiTestCase {
 			$user->checkAndSetTouched(), "checkAndSetTouched() succedeed #2" );
 		$this->assertGreaterThan(
 			$touched, $user->getDBTouched(), "user_touched increased with casOnTouched() #2" );
+	}
+
+	/**
+	 * @covers User::validateCache
+	 * @covers User::getTouched
+	 */
+	public function testValidateCache() {
+		$user = $this->getTestUser()->getUser();
+
+		$initialTouchMW = $user->getTouched();
+		$initialTouchUnix = ( new MWTimestamp( $initialTouchMW ) )->getTimestamp();
+
+		$earlierUnix = $initialTouchUnix - 1000;
+		$earlierMW = ( new MWTimestamp( $earlierUnix ) )->getTimestamp( TS_MW );
+		$this->assertFalse(
+			$user->validateCache( $earlierMW ),
+			'Caches from before the value of getTouched() are not valid'
+		);
+
+		$laterUnix = $initialTouchUnix + 1000;
+		$laterMW = ( new MWTimestamp( $laterUnix ) )->getTimestamp( TS_MW );
+		$this->assertTrue(
+			$user->validateCache( $laterMW ),
+			'Caches from after the value of getTouched() are valid'
+		);
 	}
 
 	/**
@@ -1522,6 +1560,60 @@ class UserTest extends MediaWikiTestCase {
 			$user->equals( $otherUser ),
 			'true maps to valid for backwards compatibility'
 		);
+	}
+
+	/**
+	 * @covers User::newFromSession
+	 * @covers User::getRequest
+	 */
+	public function testSessionAndRequest() {
+		$req1 = new WebRequest;
+		$this->setMwGlobals( [
+			'wgRequest' => $req1,
+		] );
+		$user = User::newFromSession();
+		$request = $user->getRequest();
+
+		$this->assertSame(
+			$req1,
+			$request,
+			'Creating a user without a request defaults to $wgRequest'
+		);
+		$req2 = new WebRequest;
+		$this->assertNotSame(
+			$req1,
+			$req2,
+			'Sanity check: passing a request that does not match $wgRequest'
+		);
+		$user = User::newFromSession( $req2 );
+		$request = $user->getRequest();
+		$this->assertSame(
+			$req2,
+			$request,
+			'Creating a user by passing a WebRequest successfully sets the request, ' .
+				'instead of using $wgRequest'
+		);
+	}
+
+	/**
+	 * @covers User::newFromRow
+	 * @covers User::loadFromRow
+	 */
+	public function testNewFromRow() {
+		// TODO: Create real tests here for loadFromRow
+		$row = new stdClass;
+		$user = User::newFromRow( $row );
+		$this->assertInstanceOf( User::class, $user, 'newFromRow returns a user object' );
+	}
+
+	/**
+	 * @covers User::newFromRow
+	 * @covers User::loadFromRow
+	 */
+	public function testNewFromRow_bad() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$row must be an object' );
+		User::newFromRow( [] );
 	}
 
 	/**
@@ -2234,12 +2326,18 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $user->addGroup( 'test', '20010115123456' ) );
 		$this->assertArrayEquals( [ 'test' ], $user->getGroups() );
 
+		$this->assertTrue( $user->addGroup( 'test2' ) );
+		$this->assertArrayEquals( [ 'test', 'test2' ], $user->getGroups() );
+
+		$this->assertFalse( $user->addGroup( 'test2' ) );
+		$this->assertArrayEquals( [ 'test', 'test2' ], $user->getGroups() );
+
 		$this->setTemporaryHook( 'UserAddGroup', function ( $user, &$group, &$expiry ) {
 			return false;
 		} );
-		$this->assertFalse( $user->addGroup( 'test2' ) );
+		$this->assertFalse( $user->addGroup( 'test3' ) );
 		$this->assertArrayEquals(
-			[ 'test' ],
+			[ 'test', 'test2' ],
 			$user->getGroups(),
 			'Hooks can stop addition of a group'
 		);
@@ -2444,6 +2542,45 @@ class UserTest extends MediaWikiTestCase {
 			'',
 			$user->getEmail(),
 			'After invalidation, a user email should be an empty string'
+		);
+	}
+
+	/**
+	 * @covers User::setEmailWithConfirmation
+	 */
+	public function testSetEmailWithConfirmation_basic() {
+		$user = $this->getTestUser()->getUser();
+		$startingEmail = 'startingemail@mediawiki.org';
+		$user->setEmail( $startingEmail );
+
+		$this->setMwGlobals( [
+			'wgEnableEmail' => false,
+			'wgEmailAuthentication' => false
+		] );
+		$status = $user->setEmailWithConfirmation( 'test1@mediawiki.org' );
+		$this->assertSame(
+			$status->getErrors()[0]['message'],
+			'emaildisabled',
+			'Cannot set email when email is disabled'
+		);
+		$this->assertSame(
+			$user->getEmail(),
+			$startingEmail,
+			'Email has not changed'
+		);
+
+		$this->setMwGlobals( [
+			'wgEnableEmail' => true,
+		] );
+		$status = $user->setEmailWithConfirmation( $startingEmail );
+		$this->assertTrue(
+			$status->getValue(),
+			'Returns true if the email specified is the current email'
+		);
+		$this->assertSame(
+			$user->getEmail(),
+			$startingEmail,
+			'Email has not changed'
 		);
 	}
 
