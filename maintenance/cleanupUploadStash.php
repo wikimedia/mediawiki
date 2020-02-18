@@ -153,8 +153,7 @@ class CleanupUploadStash extends Maintenance {
 	protected function doOperations( FileRepo $tempRepo, array $ops ) {
 		$status = $tempRepo->getBackend()->doQuickOperations( $ops );
 		if ( !$status->isOK() ) {
-			// @phan-suppress-next-line PhanUndeclaredMethod
-			$this->error( print_r( $status->getErrorsArray(), true ) );
+			$this->error( print_r( Status::wrap( $status )->getErrorsArray(), true ) );
 		}
 	}
 }
