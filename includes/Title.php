@@ -3660,49 +3660,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Move this page's subpages to be subpages of $nt
-	 *
-	 * @deprecated since 1.34, use MovePage instead
-	 * @param Title $nt Move target
-	 * @param bool $auth Whether $wgUser's permissions should be checked
-	 * @param string $reason The reason for the move
-	 * @param bool $createRedirect Whether to create redirects from the old subpages to
-	 *     the new ones Ignored if the user doesn't have the 'suppressredirect' right
-	 * @param array $changeTags Applied to the entry in the move log and redirect page revision
-	 * @return array Array with old page titles as keys, and strings (new page titles) or
-	 *     getUserPermissionsErrors()-like arrays (errors) as values, or a
-	 *     getUserPermissionsErrors()-like error array with numeric indices if
-	 *     no pages were moved
-	 */
-	public function moveSubpages( $nt, $auth = true, $reason = '', $createRedirect = true,
-		array $changeTags = []
-	) {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		global $wgUser;
-
-		$mp = new MovePage( $this, $nt );
-		$method = $auth ? 'moveSubpagesIfAllowed' : 'moveSubpages';
-		/** @var Status $result */
-		$result = $mp->$method( $wgUser, $reason, $createRedirect, $changeTags );
-
-		if ( !$result->isOK() ) {
-			return $result->getErrorsArray();
-		}
-
-		$retval = [];
-		foreach ( $result->getValue() as $key => $status ) {
-			/** @var Status $status */
-			if ( $status->isOK() ) {
-				$retval[$key] = $status->getValue();
-			} else {
-				$retval[$key] = $status->getErrorsArray();
-			}
-		}
-		return $retval;
-	}
-
-	/**
 	 * Locks the page row and check if this page is single revision redirect
 	 *
 	 * This updates the cached fields of this instance via Title::loadFromRow()

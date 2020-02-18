@@ -682,7 +682,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		 * @todo FIXME: A specific error message should be given in this case.
 		 */
 
-		// @todo FIXME: Use Title::moveSubpages() here
+		// @todo FIXME: Use MovePage::moveSubpages() here
 		$nsInfo = $services->getNamespaceInfo();
 		$dbr = wfGetDB( DB_MASTER );
 		if ( $this->moveSubpages && (
