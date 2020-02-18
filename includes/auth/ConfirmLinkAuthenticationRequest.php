@@ -60,9 +60,11 @@ class ConfirmLinkAuthenticationRequest extends AuthenticationRequest {
 	}
 
 	public function getUniqueId() {
-		return parent::getUniqueId() . ':' . implode( '|', array_map( function ( $req ) {
-			return $req->getUniqueId();
-		}, $this->linkRequests ) );
+		$ids = [];
+		foreach ( $this->linkRequests as $req ) {
+			$ids[] = $req->getUniqueId();
+		}
+		return parent::getUniqueId() . ':' . implode( '|', $ids );
 	}
 
 	/**

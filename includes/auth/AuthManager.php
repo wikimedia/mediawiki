@@ -2031,15 +2031,21 @@ class AuthManager implements LoggerAwareInterface {
 				return is_array( $state ) ? $state['continueRequests'] : [];
 
 			case self::ACTION_LINK:
-				$providers = array_filter( $this->getPrimaryAuthenticationProviders(), function ( $p ) {
-					return $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK;
-				} );
+				$providers = [];
+				foreach ( $this->getPrimaryAuthenticationProviders() as $p ) {
+					if ( $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK ) {
+						$providers[] = $p;
+					}
+				}
 				break;
 
 			case self::ACTION_UNLINK:
-				$providers = array_filter( $this->getPrimaryAuthenticationProviders(), function ( $p ) {
-					return $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK;
-				} );
+				$providers = [];
+				foreach ( $this->getPrimaryAuthenticationProviders() as $p ) {
+					if ( $p->accountCreationType() === PrimaryAuthenticationProvider::TYPE_LINK ) {
+						$providers[] = $p;
+					}
+				}
 
 				// To providers, unlink and remove are identical.
 				$providerAction = self::ACTION_REMOVE;
