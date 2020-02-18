@@ -403,11 +403,11 @@ class BlockListPager extends TablePager {
 	}
 
 	function getIndexField() {
-		return 'ipb_timestamp';
+		return [ [ 'ipb_timestamp', 'ipb_id' ] ];
 	}
 
 	function getDefaultSort() {
-		return 'ipb_timestamp';
+		return '';
 	}
 
 	function isFieldSortable( $name ) {
