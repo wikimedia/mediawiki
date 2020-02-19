@@ -141,8 +141,12 @@ class SanitizerTest extends MediaWikiTestCase {
 				[ 'itemprop' => 'foo', 'content' => 'bar' ],
 			],
 			[ 'div',
-			  [ 'role' => 'presentation', 'aria-hidden' => 'true' ],
-			  [ 'role' => 'presentation', 'aria-hidden' => 'true' ],
+				[ 'role' => 'presentation', 'aria-hidden' => 'true' ],
+				[ 'role' => 'presentation', 'aria-hidden' => 'true' ],
+			],
+			[ 'div',
+				[ 'role' => 'menuitem', 'aria-hidden' => 'false' ],
+				[ 'role' => 'menuitem', 'aria-hidden' => 'false' ],
 			],
 		];
 	}
