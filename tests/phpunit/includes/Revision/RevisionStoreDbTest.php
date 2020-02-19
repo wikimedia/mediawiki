@@ -152,8 +152,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getDatabaseMock( array $params ) {
 		$db = $this->getMockBuilder( DatabaseSqlite::class )
-			->onlyMethods( [ 'select', 'doQuery', 'open', 'closeConnection', 'isOpen' ] )
-			->setConstructorArgs( [ $params ] )
+			->onlyMethods( [
+				'select',
+				'doSingleStatementQuery',
+				'open',
+				'closeConnection',
+				'isOpen'
+			] )->setConstructorArgs( [ $params ] )
 			->getMock();
 
 		$db->method( 'select' )->willReturn( new FakeResultWrapper( [] ) );

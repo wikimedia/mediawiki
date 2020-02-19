@@ -28,6 +28,7 @@ use LockManager;
 use NullLockManager;
 use PDO;
 use PDOException;
+use PDOStatement;
 use RuntimeException;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\SqlitePlatform;
@@ -379,18 +380,18 @@ class DatabaseSqlite extends Database {
 		);
 	}
 
-	/**
-	 * @param string $sql
-	 * @return IResultWrapper|bool
-	 */
-	protected function doQuery( $sql ) {
-		$res = $this->getBindingHandle()->query( $sql );
-		if ( $res === false ) {
-			return false;
-		}
+	protected function doSingleStatementQuery( string $sql ): QueryStatus {
+		$conn = $this->getBindingHandle();
 
-		$this->lastAffectedRowCount = $res->rowCount();
-		return new SqliteResultWrapper( $res );
+		$res = $conn->query( $sql );
+		$this->lastAffectedRowCount = $res ? $res->rowCount() : 0;
+
+		return new QueryStatus(
+			$res instanceof PDOStatement ? new SqliteResultWrapper( $res ) : $res,
+			$res ? $res->rowCount() : 0,
+			$this->lastError(),
+			$this->lastErrno()
+		);
 	}
 
 	protected function doSelectDomain( DatabaseDomain $domain ) {

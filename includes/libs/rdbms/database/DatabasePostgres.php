@@ -193,28 +193,72 @@ class DatabasePostgres extends Database {
 			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
 	}
 
-	/**
-	 * @param string $sql
-	 * @return bool|IResultWrapper
-	 */
-	public function doQuery( $sql ) {
+	public function doSingleStatementQuery( string $sql ): QueryStatus {
 		$conn = $this->getBindingHandle();
 
 		$sql = mb_convert_encoding( $sql, 'UTF-8' );
-		// Clear previously left over PQresult
-		while ( $res = pg_get_result( $conn ) ) {
-			pg_free_result( $res );
+		// Clear any previously left over result
+		while ( $priorRes = pg_get_result( $conn ) ) {
+			pg_free_result( $priorRes );
 		}
+
 		if ( pg_send_query( $conn, $sql ) === false ) {
 			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
 		}
-		$this->lastResultHandle = pg_get_result( $conn );
-		if ( pg_result_error( $this->lastResultHandle ) ) {
-			return false;
+
+		// Newer PHP versions use PgSql\Result instead of resource variables
+		// https://www.php.net/manual/en/function.pg-get-result.php
+		$pgRes = pg_get_result( $conn );
+		$this->lastResultHandle = $pgRes;
+		$res = pg_result_error( $pgRes ) ? false : $pgRes;
+
+		return new QueryStatus(
+			is_bool( $res ) ? $res : new PostgresResultWrapper( $this, $conn, $res ),
+			$this->affectedRows(),
+			$this->lastError(),
+			$this->lastErrno()
+		);
+	}
+
+	protected function doMultiStatementQuery( array $sqls ): array {
+		$qsByStatementId = [];
+
+		$conn = $this->getBindingHandle();
+		// Clear any previously left over result
+		while ( $pgResultSet = pg_get_result( $conn ) ) {
+			pg_free_result( $pgResultSet );
 		}
 
-		return $this->lastResultHandle ?
-			new PostgresResultWrapper( $this, $this->getBindingHandle(), $this->lastResultHandle ) : false;
+		$combinedSql = mb_convert_encoding( implode( ";\n", $sqls ), 'UTF-8' );
+		pg_send_query( $conn, $combinedSql );
+
+		reset( $sqls );
+		while ( ( $pgResultSet = pg_get_result( $conn ) ) !== false ) {
+			$this->lastResultHandle = $pgResultSet;
+
+			$statementId = key( $sqls );
+			if ( $statementId !== null ) {
+				if ( pg_result_error( $pgResultSet ) ) {
+					$res = false;
+				} else {
+					$res = new PostgresResultWrapper( $this, $conn, $pgResultSet );
+				}
+				$qsByStatementId[$statementId] = new QueryStatus(
+					$res,
+					pg_affected_rows( $pgResultSet ),
+					(string)pg_result_error( $pgResultSet ),
+					pg_result_error_field( $pgResultSet, PGSQL_DIAG_SQLSTATE )
+				);
+			}
+			next( $sqls );
+		}
+		// Fill in status for statements aborted due to prior statement failure
+		while ( ( $statementId = key( $sqls ) ) !== null ) {
+			$qsByStatementId[$statementId] = new QueryStatus( false, 0, 'Query aborted', 0 );
+			next( $sqls );
+		}
+
+		return $qsByStatementId;
 	}
 
 	protected function dumpError() {
@@ -510,7 +554,6 @@ __INDEXATTR__;
 			throw $e;
 		}
 		$this->endAtomic( "$fname (outer)" );
-		// Set the affected row count for the whole operation
 		$this->affectedRowCount = $affectedRowCount;
 	}
 
@@ -1264,9 +1307,9 @@ SQL;
 
 		// https://www.postgresql.org/docs/9.1/functions-admin.html
 		$sql = "pg_advisory_unlock_all()";
-		list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
-		if ( $res === false ) {
-			$this->reportQueryError( $err, $errno, $sql, $fname, true );
+		$qs = $this->executeQuery( $sql, __METHOD__, $flags, $sql );
+		if ( $qs->res === false ) {
+			$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, true );
 		}
 	}
 

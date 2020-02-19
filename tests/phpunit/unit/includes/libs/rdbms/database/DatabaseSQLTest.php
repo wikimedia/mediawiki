@@ -47,6 +47,45 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @dataProvider provideQueryMulti
+	 * @covers Wikimedia\Rdbms\Database::queryMulti
+	 */
+	public function testQueryMulti( array $sqls, string $summarySql, array $resTriples ) {
+		$lastSql = null;
+		reset( $sqls );
+		foreach ( $resTriples as [ $res, $errno, $error ] ) {
+			$this->database->forceNextResult( $res, $errno, $error );
+			if ( $lastSql !== null && $errno ) {
+				$lastSql = current( $sqls );
+			}
+			next( $sqls );
+		}
+		$lastSql = $lastSql ?? end( $sqls );
+		$this->database->queryMulti( $sqls, __METHOD__, 0, $summarySql );
+		$this->assertLastSql( implode( '; ', $sqls ) );
+	}
+
+	public static function provideQueryMulti() {
+		return [
+			[
+				[
+					'SELECT 1 AS v',
+					'UPDATE page SET page_size=0 WHERE page_id=42',
+					'DELETE FROM page WHERE page_id=999',
+					'SELECT page_id FROM page LIMIT 3'
+				],
+				'COMPOSITE page QUERY',
+				[
+					[ [ [ 'v' => 1 ] ], 0, '' ],
+					[ true, 0, '' ],
+					[ true, 0, '' ],
+					[ [ [ 'page_id' => 42 ], [ 'page_id' => 1 ], [ 'page_id' => 11 ] ], 0, '' ]
+				]
+			]
+		];
+	}
+
+	/**
 	 * @dataProvider provideSelect
 	 * @covers Wikimedia\Rdbms\Database::select
 	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::selectSQLText
@@ -2321,7 +2360,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testImplicitTransactionRollback() {
 		$doError = function () {
-			$this->database->forceNextQueryError( 666, 'Evilness' );
+			$this->database->forceNextResult( false, 666, 'Evilness' );
 			try {
 				$this->database->delete( 'error', '1', __CLASS__ . '::SomeCaller' );
 				$this->fail( 'Expected exception not thrown' );
@@ -2381,9 +2420,12 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		};
 
 		$doError = function () {
-			$this->database->forceNextQueryError( 666, 'Evilness', [
-				'isKnownStatementRollbackError' => true,
-			] );
+			$this->database->forceNextResult(
+				false,
+				666,
+				'Evilness',
+				[ 'isKnownStatementRollbackError' => true ]
+			);
 			try {
 				$this->database->delete( 'error', '1', __CLASS__ . '::SomeCaller' );
 				$this->fail( 'Expected exception not thrown' );

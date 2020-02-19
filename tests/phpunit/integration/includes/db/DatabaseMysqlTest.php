@@ -240,4 +240,187 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 
 		return $conn;
 	}
+
+	/**
+	 * @dataProvider provideQueryMulti
+	 * @covers Wikimedia\Rdbms\Database::queryMulti
+	 */
+	public function testQueryMulti(
+		array $sqls,
+		int $flags,
+		string $summarySql,
+		?array $resMap,
+		?array $exception
+	) {
+		$row = $this->conn->query( "SELECT 3 as test", __METHOD__ )->fetchObject();
+		$this->assertNotFalse( $row );
+		$this->assertSame( '3', $row->test );
+
+		if ( is_array( $resMap ) ) {
+			$qsMap = $this->conn->queryMulti( $sqls, __METHOD__, $flags, $summarySql );
+
+			reset( $resMap );
+			foreach ( $qsMap as $qs ) {
+				if ( is_iterable( $qs->res ) ) {
+					$this->assertArrayEquals( current( $resMap ), iterator_to_array( $qs->res ) );
+				} else {
+					$this->assertSame( current( $resMap ), $qs->res );
+				}
+				next( $resMap );
+			}
+		} else {
+			[ $class, $message, $code ] = $exception;
+
+			try {
+				$this->conn->queryMulti( $sqls, __METHOD__, $flags, $summarySql );
+				$this->fail( "No DBError thrown" );
+			} catch ( DBError $e ) {
+				$this->assertInstanceOf( $class, $e );
+				$this->assertStringContainsString( $message, $e->getMessage() );
+				$this->assertSame( $code, $e->errno );
+			}
+		}
+	}
+
+	public static function provideQueryMulti() {
+		return [
+			[
+				[
+					'SELECT 1 AS v, 2 AS x',
+					'(SELECT 1 AS v) UNION ALL (SELECT 2 AS v) UNION ALL (SELECT 3 AS v)',
+					'SELECT IS_FREE_LOCK("unused_lock") AS free',
+					'SELECT RELEASE_LOCK("unused_lock") AS released'
+				],
+				Database::QUERY_IGNORE_DBO_TRX,
+				'COMPOSITE QUERY 1',
+				[
+					[
+						(object)[ 'v' => '1', 'x' => '2' ]
+					],
+					[
+						(object)[ 'v' => '1' ],
+						(object)[ 'v' => '2' ],
+						(object)[ 'v' => '3' ]
+					],
+					[
+						(object)[ 'free' => '1' ]
+					],
+					[
+						(object)[ 'released' => null ]
+					]
+				],
+				null
+			],
+			[
+				[
+					'SELECT 1 AS v, 2 AS x',
+					'SELECT UNION PARSE_ERROR ()',
+					'SELECT IS_FREE_LOCK("unused_lock") AS free',
+					'SELECT RELEASE_LOCK("unused_lock") AS released'
+				],
+				0,
+				'COMPOSITE QUERY 2',
+				null,
+				[ DBQueryError::class, 'You have an error in your SQL syntax', 1064 ]
+			],
+			[
+				[
+					'SELECT UNION PARSE_ERROR ()',
+					'SELECT 1 AS v, 2 AS x',
+					'SELECT IS_FREE_LOCK("unused_lock") AS free',
+					'SELECT RELEASE_LOCK("unused_lock") AS released'
+				],
+				0,
+				'COMPOSITE QUERY 3',
+				null,
+				[ DBQueryError::class, 'You have an error in your SQL syntax', 1064 ]
+			],
+			[
+				[
+					'SELECT 1 AS v, 2 AS x',
+					'SELECT IS_FREE_LOCK("unused_lock") AS free',
+					'SELECT RELEASE_LOCK("unused_lock") AS released',
+					'SELECT UNION PARSE_ERROR ()',
+				],
+				0,
+				'COMPOSITE QUERY 4',
+				null,
+				[ DBQueryError::class, 'You have an error in your SQL syntax', 1064 ]
+			],
+			[
+				[],
+				0,
+				'COMPOSITE QUERY 5',
+				[],
+				null
+			],
+			[
+				[
+					'SELECT 1 AS v, 2 AS x',
+					'SELECT UNION PARSE_ERROR ()',
+					'SELECT IS_FREE_LOCK("unused_lock") AS free',
+					'SELECT RELEASE_LOCK("unused_lock") AS released'
+				],
+				Database::QUERY_SILENCE_ERRORS,
+				'COMPOSITE QUERY 2I',
+				[
+					[
+						(object)[ 'v' => '1', 'x' => '2' ]
+					],
+					false,
+					false,
+					false
+				],
+				null
+			],
+			[
+				[
+					'SELECT UNION PARSE_ERROR IGNORE ()',
+					'SELECT 1 AS v, 2 AS x',
+					'SELECT IS_FREE_LOCK("unused_lock") AS free',
+					'SELECT RELEASE_LOCK("unused_lock") AS released'
+				],
+				Database::QUERY_SILENCE_ERRORS,
+				'COMPOSITE QUERY 3I',
+				[
+					false,
+					false,
+					false,
+					false
+				],
+				null
+			],
+			[
+				[
+					'SELECT 1 AS v, 2 AS x',
+					'SELECT IS_FREE_LOCK("unused_lock") AS free',
+					'SELECT RELEASE_LOCK("unused_lock") AS released',
+					'SELECT UNION PARSE_ERROR ()',
+				],
+				Database::QUERY_SILENCE_ERRORS,
+				'COMPOSITE QUERY 4I',
+				[
+					[
+						(object)[ 'v' => '1', 'x' => '2' ]
+					],
+					[
+						(object)[ 'free' => '1' ]
+					],
+					[
+						(object)[ 'released' => null ]
+					],
+					false
+				],
+				null
+			],
+			[
+				[],
+				Database::QUERY_SILENCE_ERRORS,
+				'COMPOSITE QUERY 5I',
+				[],
+				null
+			]
+		];
+	}
+
 }
