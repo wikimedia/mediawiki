@@ -393,6 +393,10 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function buildExcludedValue( $column ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function buildSelectSubquery(
 		$table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []

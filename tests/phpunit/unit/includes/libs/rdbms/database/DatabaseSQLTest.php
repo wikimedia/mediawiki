@@ -688,6 +688,16 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	public function testUpsert( $sql, $sqlText ) {
 		$this->database->setNextQueryAffectedRowCounts( [ 0 ] );
 
+		foreach ( $sql['set'] as $k => $v ) {
+			$sql['set'][$k] = preg_replace_callback(
+				'/\$EXCLUDED\((\w+)\)/',
+				function ( $m ) {
+					return $this->database->buildExcludedValue( $m[1] );
+				},
+				$v
+			);
+		}
+
 		$this->database->upsert(
 			$sql['table'],
 			$sql['rows'],
@@ -703,49 +713,72 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			[
 				[
 					'table' => 'upsert_table',
-					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
-					'uniqueIndexes' => 'field',
+					'rows' => [ 'id' => 'text', 'field1' => 'text2' ],
+					'uniqueIndexes' => 'id',
 					'set' => [ 'field2' => 'set' ],
 				],
 				"BEGIN; " .
-					"UPDATE upsert_table " .
-					"SET field2 = 'set' " .
-					"WHERE (field = 'text'); " .
-					"INSERT INTO upsert_table " .
-					"(field,field2) " .
-					"VALUES ('text','text2'); " .
-					"COMMIT"
-			],
-			[
-				[
-					'table' => 'upsert_table',
-					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
-					'uniqueIndexes' => [ [ 'field' ] ],
-					'set' => [ 'field2' => 'set' ],
-				],
-				"BEGIN; " .
-				"UPDATE upsert_table " .
-				"SET field2 = 'set' " .
-				"WHERE (field = 'text'); " .
-				"INSERT INTO upsert_table " .
-				"(field,field2) " .
-				"VALUES ('text','text2'); " .
+				"UPDATE upsert_table SET field2 = 'set' " .
+				"WHERE (id = 'text'); " .
+				"INSERT INTO upsert_table (id,field1) VALUES ('text','text2'); " .
 				"COMMIT"
 			],
 			[
 				[
 					'table' => 'upsert_table',
-					'rows' => [ 'fieldA' => 'text', 'fieldB' => 'more',  'field2' => 'text2' ],
-					'uniqueIndexes' => [ [ 'fieldA', 'fieldB' ] ],
+					'rows' => [ 'id' => 'text', 'field1' => 'text2' ],
+					'uniqueIndexes' => [ [ 'id' ] ],
 					'set' => [ 'field2' => 'set' ],
 				],
 				"BEGIN; " .
-				"UPDATE upsert_table " .
-				"SET field2 = 'set' " .
-				"WHERE (fieldA = 'text' AND fieldB = 'more'); " .
-				"INSERT INTO upsert_table " .
-				"(fieldA,fieldB,field2) " .
-				"VALUES ('text','more','text2'); " .
+				"UPDATE upsert_table SET field2 = 'set' " .
+				"WHERE (id = 'text'); " .
+				"INSERT INTO upsert_table (id,field1) VALUES ('text','text2'); " .
+				"COMMIT"
+			],
+			[
+				[
+					'table' => 'upsert_table2',
+					'rows' => [ 'code' => 'text', 'name' => 'more', 'field3' => 'text2' ],
+					'uniqueIndexes' => [ [ 'code', 'name' ] ],
+					'set' => [ 'field2' => 'set' ],
+				],
+				"BEGIN; " .
+				"UPDATE upsert_table2 SET field2 = 'set' " .
+				"WHERE (code = 'text' AND name = 'more'); " .
+				"INSERT INTO upsert_table2 (code,name,field3) VALUES ('text','more','text2'); " .
+				"COMMIT"
+			],
+			[
+				[
+					'table' => 'upsert_table',
+					'rows' => [
+						[ 'id' => 1, 'field1' => 10, 'field2' => 1583464659, 'field3' => 1 ],
+						[ 'id' => 6, 'field1' => 60, 'field2' => 1583464659, 'field3' => 1 ]
+					],
+					'uniqueIndexes' => 'id',
+					'set' => [
+						'field1 = field1 + $EXCLUDED(field1)',
+						'field2 = COALESCE(field2,$EXCLUDED(field2))'
+					],
+				],
+				"BEGIN; " .
+				"WITH __VALS (__id,__field1,__field2,__field3) " .
+				"AS (VALUES (1,10,1583464659,1)) " .
+				"UPDATE upsert_table SET " .
+				"field1 = field1 + (SELECT __field1 FROM __VALS)," .
+				"field2 = COALESCE(field2,(SELECT __field2 FROM __VALS)) " .
+				"WHERE (id = 1); " .
+				"INSERT INTO upsert_table (id,field1,field2,field3) " .
+				"VALUES (1,10,1583464659,1); " .
+				"WITH __VALS (__id,__field1,__field2,__field3) " .
+				"AS (VALUES (6,60,1583464659,1)) " .
+				"UPDATE upsert_table SET " .
+				"field1 = field1 + (SELECT __field1 FROM __VALS)," .
+				"field2 = COALESCE(field2,(SELECT __field2 FROM __VALS)) " .
+				"WHERE (id = 6); " .
+				"INSERT INTO upsert_table (id,field1,field2,field3) " .
+				"VALUES (6,60,1583464659,1); " .
 				"COMMIT"
 			],
 		];
