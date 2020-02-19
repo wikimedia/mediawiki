@@ -181,7 +181,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		if ( $t->exists() ) {
 			$file = wfFindFile( $name, [ 'ignoreRedirect' => true ] );
 			$empty = "";
-			FileDeleteForm::doDelete( $t, $file, $empty, "none", true );
+			FileDeleteForm::doDelete( $t, $file, $empty, "none", true, $this->user );
 			$page = WikiPage::factory( $t );
 			$page->doDeleteArticle( "testing" );
 		}
