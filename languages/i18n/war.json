@@ -737,7 +737,7 @@
 	"difference-title-multipage": "An pagkakaiba ha butnga han mga pakli \"$1\" ngan \"$2\"",
 	"difference-multipage": "(Kaibhan ha butnga han mga pakli)",
 	"lineno": "Bagis $1:",
-	"compareselectedversions": "Igkumpara an mga pinili nga pagbabag-o",
+	"compareselectedversions": "Igtanding an mga pinili nga pagbabag-o",
 	"editundo": "Igpawara an ginbuhat",
 	"diff-empty": "(Waray pagkakaiba)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Usa nga intermediate revision|$1 mga intermediate revision}} han pareho nga gumaramit nga waray ginpakita)",

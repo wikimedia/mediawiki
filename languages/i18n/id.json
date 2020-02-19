@@ -646,7 +646,6 @@
 	"passwordreset-ignored": "Pemulihan kata sandi tidak tertangani. Mungkin penyedia tidak diatur?",
 	"passwordreset-invalidemail": "Alamat surel tidak sah",
 	"passwordreset-nodata": "Nama pengguna ataupun alamat surel tidak diberikan",
-	"passwordreset-username-email-required": "Nama pengguna dan alamat email diharuskan untuk menerima kata sandi sementara melalui email.",
 	"changeemail": "Ubah atau hapus alamat surel",
 	"changeemail-header": "Lengkapi formulir ini untuk mengubah alamat surel Anda. Jika Anda ingin menghapus seluruh alamat surel yang berkaitan dengan akun Anda, kosongkan alamat surel ketika mengirim formulir.",
 	"changeemail-no-info": "Anda harus masuk log untuk mengakses halaman ini secara langsung.",

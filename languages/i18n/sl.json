@@ -594,7 +594,6 @@
 	"passwordreset-ignored": "Ponastavitve gesla nismo izvedli. Morda ni nastavljen noben ponudnik?",
 	"passwordreset-invalidemail": "Neveljavni e-poštni naslov",
 	"passwordreset-nodata": "Navedli niste ne uporabniškega imena ne e-poštnega naslova",
-	"passwordreset-username-email-required": "Uporabniško ime in geslo sta zahtevana za prejem začasnega gesla po e-pošti.",
 	"changeemail": "Sprememba ali odstranitev e-poštnega naslova",
 	"changeemail-header": "Izpolnite obrazec za spremembo vašega e-poštnega naslova. Če želite s svojega računa odstraniti povezavo s katerim koli e-poštnim naslovom, pustite polje za nov e-poštni naslov med potrjevanje obrazca prazno.",
 	"changeemail-no-info": "Za neposredni dostop do strani morate biti prijavljeni.",

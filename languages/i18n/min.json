@@ -588,7 +588,6 @@
 	"passwordreset-ignored": "Pamuliahan kato sandi indak tatangani. Mungkin panyadio indak diatua?",
 	"passwordreset-invalidemail": "Alamaik surel indak sah",
 	"passwordreset-nodata": "Namo pangguno ataupun alamai surel indak diaagiahan",
-	"passwordreset-username-email-required": "Untuak mandapek kato kunci samantaro lewat surel, Sanak paralu punyo akun pangguno jo alamaik surel.",
 	"changeemail": "Tuka atau hapuih alamaik surel.",
 	"changeemail-header": "Langkoki formulir ko untuak maubah alamaik surel Sanak. Jiko nio mangapuih sado alah alamaik surel nan bahubuangan jo akun Sanak, kosongan alamaik surek samaso maisi formulir.",
 	"changeemail-no-info": "Sanak harus masuak log untuak mangakses laman ko.",

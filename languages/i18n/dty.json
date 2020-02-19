@@ -8,7 +8,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Nirajan pant",
-			"Fitoschido"
+			"Fitoschido",
+			"पर्वत सुबेदी"
 		]
 	},
 	"tog-underline": "सम्बन्ध निम्न रेखाङ्कन:",
@@ -1142,7 +1143,7 @@
 	"deleteprotected": "यै पानालाई सुरक्षित गर्याकोले तमी यैलाई मेटाउन सक्दाइनौ ।",
 	"rollback": "सम्पादनहरू उल्टाउन्या",
 	"rollbacklink": "पैल्लिका रुपमि फर्काउन्या",
-	"rollbacklinkcount": "रोल्ब्याक $1 {{PLURAL:$1|सम्पादन|सम्पादनहरू}}",
+	"rollbacklinkcount": "पूर्ववत $1 {{PLURAL:$1|सम्पादन|सम्पादनहरू}}",
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|कुरडी]])द्वारा [[User:$1|$1]]द्वारा गर्याको पछिल्लो संशोधनतर्फ उल्टायाका सम्पादनहरू",
 	"rollback-success": "$1द्वारा उल्टायाका सम्पादनहरू;\nपछिल्लो संशोधनमी $2द्वारा परिवर्तन गरिबर पुनः फर्कायाको।",
 	"protectlogpage": "सुरक्षण लग",

@@ -79,7 +79,7 @@
 	"config-admin-name": "Via uzantnomo:",
 	"config-admin-password": "Pasvorto:",
 	"config-admin-password-confirm": "Retajpu pasvorton:",
-	"config-admin-name-blank": "Enigu salutnomon de administranto.",
+	"config-admin-name-blank": "Enigu uzantnomon de administranto.",
 	"config-admin-password-blank": "Enigu pasvorton por la administra konto.",
 	"config-admin-password-mismatch": "La du pasvortojn enigitaj de vi ne estas egalaj.",
 	"config-admin-email": "Retpoŝtadreso:",

@@ -349,6 +349,7 @@
 	"apihelp-query+allredirects-param-namespace": "열거할 이름공간.",
 	"apihelp-query+allredirects-param-limit": "반환할 총 항목 수입니다.",
 	"apihelp-query+allrevisions-summary": "모든 판 표시.",
+	"apihelp-query+allrevisions-example-ns-any": "모든 이름공간에서 처음 50개 판을 나열합니다.",
 	"apihelp-query+mystashedfiles-param-limit": "가져올 파일의 개수입니다.",
 	"apihelp-query+alltransclusions-summary": "존재하지 않는 문서를 포함하여 끼워넣은 모든 문서(&#123;&#123;x&#125;&#125;를 사용하여 끼워넣은 문서)를 나열합니다.",
 	"apihelp-query+alltransclusions-param-prop": "포함할 정보:",

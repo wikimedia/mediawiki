@@ -594,7 +594,6 @@
 	"passwordreset-ignored": "Mijenjanje lozinke nije uspjelo. Možda nije postavljen poslužilac?",
 	"passwordreset-invalidemail": "Neispravna adresa e-pošte",
 	"passwordreset-nodata": "Niste naveli ni korisničko ime, a ni adresu e-pošte.",
-	"passwordreset-username-email-required": "Da biste dobili privremenu lozinku/zaporku, će treba navesti vaše korisničko ime i e-poštu.",
 	"changeemail": "Promeni ili ukloni e-adresu",
 	"changeemail-header": "Ispunite sljedeći formular da biste promijenili adresu e-pošte. Ako želite ukloniti postojeću adresu e-pošte s vašeg korisničkog računa, pri ispunjavanju formulara, polje nove adrese e-pošte ostavite prazno.",
 	"changeemail-no-info": "Morate biti prijavljeni da biste izravno pristupili ovoj stranici.",
