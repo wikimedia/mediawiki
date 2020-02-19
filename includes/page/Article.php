@@ -2398,27 +2398,6 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.29. Use WikiPage::doEditContent() directly instead
-	 * @see WikiPage::doEditContent
-	 * @param Content $content
-	 * @param string|CommentStoreComment $summary
-	 * @param int $flags
-	 * @param bool|int $originalRevId
-	 * @param User|null $user
-	 * @param string|null $serialFormat
-	 * @return Status
-	 */
-	public function doEditContent( Content $content, $summary, $flags = 0, $originalRevId = false,
-		User $user = null, $serialFormat = null
-	) {
-		wfDeprecated( __METHOD__, '1.29' );
-		return $this->mPage->doEditContent( $content, $summary, $flags, $originalRevId,
-			$user, $serialFormat
-		);
-	}
-
-	/**
-	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doEditUpdates
 	 * @param Revision $revision
 	 * @param User $user

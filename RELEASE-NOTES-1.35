@@ -315,6 +315,8 @@ because of Phabricator reports.
 * wfGetMessageCacheStorage was removed without deprecation.
 * Title::moveSubpages, deprecated in 1.34, was removed. Use the MovePage class
   and MovePage::moveSubpages instead.
+* Article::doEditContent, deprecated in 1.29, was removed. Instead, use
+  WikiPage::doEditContent.
 * …
 
 === Deprecations in 1.35 ===
