@@ -153,7 +153,8 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Check permissions and make sure the user has permission to edit the page
-		$errors = $title->getUserPermissionsErrors( 'edit', $this->getUser() );
+		$errors = MediaWikiServices::getInstance()->getPermissionManager()
+			->getPermissionErrors( 'edit', $this->getUser(), $title );
 
 		if ( $errors ) {
 			$out = $this->getOutput();
