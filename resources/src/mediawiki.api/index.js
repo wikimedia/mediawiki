@@ -360,7 +360,8 @@
 		 *
 		 * @since 1.22
 		 * @param {string} type Token type
-		 * @param {Object} [additionalParams] Additional parameters for the API (since 1.35)
+		 * @param {Object|string} [additionalParams] Additional parameters for the API (since 1.35).
+		 *   When given a string, it's treated as the 'assert' parameter (since 1.25).
 		 * @return {jQuery.Promise} Received token.
 		 */
 		getToken: function ( type, additionalParams ) {
