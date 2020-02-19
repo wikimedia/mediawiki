@@ -109,8 +109,7 @@ class EraseArchivedFile extends Maintenance {
 				$this->output( "Deleted version '$key' ($ts) of file '$name'\n" );
 			} else {
 				$this->output( "Failed to delete version '$key' ($ts) of file '$name'\n" );
-				// @phan-suppress-next-line PhanUndeclaredMethod
-				$this->output( print_r( $status->getErrorsArray(), true ) );
+				$this->output( print_r( Status::wrap( $status )->getErrorsArray(), true ) );
 			}
 		} else {
 			$this->output( "Would delete version '{$key}' ({$ts}) of file '$name'\n" );
