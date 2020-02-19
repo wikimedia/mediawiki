@@ -1004,7 +1004,7 @@ EOT
 		}
 		'@phan-var LocalFile $file';
 
-		$deleter = new FileDeleteForm( $file );
+		$deleter = new FileDeleteForm( $file, $this->getContext()->getUser() );
 		$deleter->execute();
 	}
 

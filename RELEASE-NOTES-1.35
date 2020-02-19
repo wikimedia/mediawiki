@@ -104,6 +104,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   hooks were added to allow changing which wiki pages these modules contain.
 * ContentHandlerFactory for most ContentHandler static methods. It has been
   added to the constructors for many classes to improve SOLID / GRASP.
+* FileDeleteForm's constructor now accepts a user as the second parameter.
+  Support for not passing a user has also been hard-deprecated and will be
+  removed in 1.36.
 * …
 
 === External library changes in 1.35 ===
@@ -462,6 +465,10 @@ because of Phabricator reports.
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
 * WebRequest::getLimitOffset is soft deprecated. Instead, use
   ::getLimitOffsetForUser and pass a User object.
+* FileDeleteForm previously did not accept a user parameter in its constructor,
+  instead relying on the global $wgUser. A user parameter has been added,
+  and //not// providing a user is deprecated. There are no known callers
+  outside of mediawiki core.
 * …
 
 === Other changes in 1.35 ===
