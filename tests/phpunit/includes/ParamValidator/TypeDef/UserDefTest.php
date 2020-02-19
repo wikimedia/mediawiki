@@ -2,7 +2,6 @@
 
 namespace MediaWiki\ParamValidator\TypeDef;
 
-use MediaWiki\User\UserIdentityValue;
 use User;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -95,7 +94,7 @@ class UserDefTest extends TypeDefTestCase {
 				[ UserDef::PARAM_ALLOWED_USER_TYPES => $types ],
 			];
 
-			$obj = $type === 'name' ? User::newFromName( $expect ) : new UserIdentityValue( 0, $expect, 0 );
+			$obj = $type === 'name' ? User::newFromName( $expect ) : User::newFromAnyId( 0, $expect, null );
 			yield "$key, returning object" => [ $input, $obj, [ UserDef::PARAM_RETURN_OBJECT => true ] ];
 		}
 
