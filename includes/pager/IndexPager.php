@@ -178,7 +178,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$this->mDefaultLimit = $this->getUser()->getIntOption( 'rclimit' );
 		if ( !$this->mLimit ) {
 			// Don't override if a subclass calls $this->setLimit() in its constructor.
-			list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset();
+			list( $this->mLimit, /* $offset */ ) = $this->mRequest
+				->getLimitOffsetForUser( $this->getUser() );
 		}
 
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
@@ -309,7 +310,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	function setLimit( $limit ) {
 		$limit = (int)$limit;
-		// WebRequest::getLimitOffset() puts a cap of 5000, so do same here.
+		// WebRequest::getLimitOffsetForUser() puts a cap of 5000, so do same here.
 		if ( $limit > 5000 ) {
 			$limit = 5000;
 		}

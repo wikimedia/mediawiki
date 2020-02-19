@@ -66,7 +66,11 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mLimitsShown = array_merge( [ 10 ], $this->mLimitsShown );
 		$this->mDefaultLimit = 10;
 		list( $this->mLimit, /* $offset */ ) =
-			$this->mRequest->getLimitOffset( $this->mDefaultLimit, '' );
+			$this->mRequest->getLimitOffsetForUser(
+				$this->getUser(),
+				$this->mDefaultLimit,
+				''
+			);
 	}
 
 	/**
