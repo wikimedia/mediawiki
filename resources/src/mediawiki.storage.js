@@ -122,6 +122,11 @@
 	 * A wrapper for the HTML5 `sessionStorage` interface
 	 * that is safe to call on all browsers.
 	 *
+	 * **Note**: Data persisted using `sessionStorage` API
+	 * persists the lifetime of the *tab*, not *window*.
+	 * For longer-lasting persistence refer to `mw.storage`
+	 * above and `mw.cookie`.
+	 *
 	 * @class
 	 * @singleton
 	 * @extends mw.SafeStorage
