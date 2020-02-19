@@ -679,7 +679,6 @@
 	"passwordreset-ignored": "Het opnieuw instellen van het wachtwoord is niet afgehandeld. Misschien is er geen provider geconfigureerd?",
 	"passwordreset-invalidemail": "Ongeldig e-mailadres",
 	"passwordreset-nodata": "Er is geen gebruikersnaam of e-mailadres opgegeven",
-	"passwordreset-username-email-required": "Zowel een gebruikersnaam als een e-mailadres moeten verplicht worden opgegeven om een tijdelijk wachtwoord per e-mail te ontvangen.",
 	"changeemail": "E-mailadres wijzigen of verwijderen",
 	"changeemail-header": "Vul dit formulier in om uw e-mailadres te wijzigen. Als u geen enkel e-mailadres aan uw account gekoppeld wilt hebben, laat het veld voor het nieuwe e-mailadres dan leeg.",
 	"changeemail-no-info": "U moet aangemeld zijn om rechtstreeks toegang te hebben tot deze pagina.",

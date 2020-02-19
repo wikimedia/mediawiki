@@ -629,7 +629,6 @@
 	"passwordreset-ignored": "A jelszó-visszaállítás nem lett kezelve. Talán nincs konfigurálva szolgáltató?",
 	"passwordreset-invalidemail": "Érvénytelen e-mail-cím",
 	"passwordreset-nodata": "Se felhasználónevet, sem e-mail-címet nem adtál meg",
-	"passwordreset-username-email-required": "A felhasználónév és e-mail-cím megadása is szükséges egy ideiglenes jelszó kéréséhez e-mailben.",
 	"changeemail": "E-mail-cím megváltoztatása vagy eltávolítása",
 	"changeemail-header": "Töltsd ki ezt az űrlapot az e-mail-címed megváltoztatásához. Ha nem szeretnél semmilyen e-mail-címet kapcsolni a fiókodhoz, hagyd üresen az új e-mail-cím mezőjét az űrlap elküldésekor.",
 	"changeemail-no-info": "A lap közvetlen eléréséhez be kell jelentkezned.",

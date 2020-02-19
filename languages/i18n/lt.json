@@ -595,7 +595,6 @@
 	"passwordreset-nosuchcaller": "Skambinantysis neegzistuoja: $1",
 	"passwordreset-invalidemail": "Neteisingas el. pašto adresas",
 	"passwordreset-nodata": "Vartotojo vardas ir el. paštas buvo nepateikti",
-	"passwordreset-username-email-required": "Ir vartotojo vardas, ir el. pašto adresas yra reikalingi tam, kad gautumėte laikiną slaptažodį el. paštu.",
 	"changeemail": "Pakeisti ar pašalinti el. pašto adresą",
 	"changeemail-header": "Užpildykite šią formą, kad pakeistumėte savo el. pašto adresą. Jeigu norite pašalinti bet kurio el. pašto adreso susiejimą su savo paskyra, palikite naujojo el. pašto adreso lauką tuščią, kai pateiksite formą.",
 	"changeemail-no-info": "Jūs turite būti prisijungęs, kad pasiektumėte puslapį tiesiogiai.",

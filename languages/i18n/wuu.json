@@ -596,7 +596,6 @@
 	"passwordreset-ignored": "密码重置没处理。可能没配置提供者？",
 	"passwordreset-invalidemail": "无效个电子邮件地址",
 	"passwordreset-nodata": "用户名搭电子邮件地址侪没提供",
-	"passwordreset-username-email-required": "若要用电子邮件接收临时密码，侬需要提供用户名搭电子邮件地址。",
 	"changeemail": "更改或删脱电子邮箱地址",
 	"changeemail-header": "完成此表格以更改侬个电子邮件地址。如果侬希望从侬个账户中移除任何关联个电子邮件地址，请拉提交表格时拿新电子邮件地址留空。",
 	"changeemail-no-info": "侬必须登录仔纔好直接访问箇只页面。",

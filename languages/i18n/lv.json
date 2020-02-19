@@ -579,7 +579,6 @@
 	"passwordreset-nosuchcaller": "Izsaucējs nepastāv: $1",
 	"passwordreset-invalidemail": "Nederīga e-pasta adrese",
 	"passwordreset-nodata": "Netika norādīts ne lietotājvārds, ne e-pasta adrese",
-	"passwordreset-username-email-required": "Lai saņemtu pagaidu paroli e-pastā, jānorāda gan lietotājvārds, gan e-pasta adrese.",
 	"changeemail": "Mainīt vai noņemt e-pasta adresi",
 	"changeemail-header": "Mainīt konta e-pasta adresi",
 	"changeemail-oldemail": "Pašreizējā e-pasta adrese:",

@@ -686,7 +686,6 @@
 	"passwordreset-ignored": "Parola sıfırlama işlenmedi. Belki herhangi bir sağlayıcı yapılandırılmamıştır?",
 	"passwordreset-invalidemail": "Geçersiz e-posta adresi",
 	"passwordreset-nodata": "Ne bir kullanıcı adı ne de bir e-posta adresi verildi.",
-	"passwordreset-username-email-required": "Hem kullanıcı adı hem de e-posta adresi, e-posta yoluyla geçici bir şifre almak için gereklidir.",
 	"changeemail": "E-posta adresini değiştir veya çıkar",
 	"changeemail-header": "E-posta adresinizi değiştirmek için bu formu doldurun. Eğer e-posta adresini hesabınızdan kaldırmak istiyorsanız formu gönderirken e-posta adresi bölümünü boş bırakın.",
 	"changeemail-no-info": "Bu sayfaya doğrudan erişmek için oturum açmanız gereklidir.",

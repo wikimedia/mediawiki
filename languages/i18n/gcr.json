@@ -561,7 +561,6 @@
 	"passwordreset-nosuchcaller": "Apélan-an pa ka ègzisté : $1",
 	"passwordreset-invalidemail": "Adrès di mésajri pa valid",
 	"passwordreset-nodata": "Pyès non d'itilizatò oben adrès di mésajri té fourni",
-	"passwordreset-username-email-required": "Non di itilizatò-a ké adrès kourilèt-a di mésajri sa obligatwè pou rousouvwè roun modipas ki tanporèr vya kourilèt.",
 	"changeemail": "Chanjé oben siprimen adrès-a di kourilèt",
 	"changeemail-no-info": "Ou divèt konnègté oukò anvan pou ganyen dirèkman lagsé di sa paj.",
 	"changeemail-oldemail": "Adrès kourilèt atchwèl :",

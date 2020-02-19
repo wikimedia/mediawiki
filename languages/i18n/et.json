@@ -605,7 +605,6 @@
 	"passwordreset-ignored": "Parooli lähtestamine jäi rahuldamata. Võimalik, et ühtegi pakkujat polnud häälestatud.",
 	"passwordreset-invalidemail": "Vigane e-posti aadress",
 	"passwordreset-nodata": "Ära toomata jäid nii kasutajanimi kui ka e-posti aadress",
-	"passwordreset-username-email-required": "Ajutise parooli saatmiseks e-kirja teel tuleb sisestada nii kasutajanimi kui ka e-posti aadress.",
 	"changeemail": "E-posti aadressi muutmine või eemaldamine",
 	"changeemail-header": "Täida see vorm, et muuta oma e-posti aadress. Kui soovid, et konto poleks enam seotud ühegi e-posti aadressiga, siis jäta vormi esitamisel e-posti aadressi väli tühjaks.",
 	"changeemail-no-info": "Otselingi kaudu sellele lehele jõudmiseks pead olema sisse loginud.",
