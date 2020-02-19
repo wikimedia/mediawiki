@@ -1562,6 +1562,7 @@
 	"apierror-allpages-generator-redirects": "{{doc-apierror}}",
 	"apierror-appendnotsupported": "{{doc-apierror}}\n\nParameters:\n* $1 - Content model",
 	"apierror-articleexists": "{{doc-apierror}}",
+	"apierror-assertanonfailed": "{{doc-apierror}}",
 	"apierror-assertbotfailed": "{{doc-apierror}}",
 	"apierror-assertnameduserfailed": "{{doc-apierror}}\n\nParameters:\n* $1 - User name passed in.",
 	"apierror-assertuserfailed": "{{doc-apierror}}",
