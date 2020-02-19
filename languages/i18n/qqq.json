@@ -4444,6 +4444,7 @@
 	"userjsispublic": "A reminder to users that Javascript subpages are not preferences but normal pages, and thus can be viewed by other users and the general public. This message is shown to a user whenever they are editing a subpage in their own user-space that ends in .js. See also {{msg-mw|usercssispublic}} and {{msg-mw|userjsonispublic}}.",
 	"userjsonispublic": "A reminder to users that JSON subpages are not preferences but normal pages, and thus can be viewed by other users and the general public. This message is shown to a user whenever they are editing a subpage in their own user-space that ends in .json. See also {{msg-mw|userjsispublic}} and {{msg-mw|usercssispublic}}",
 	"usercssispublic": "A reminder to users that CSS subpages are not preferences but normal pages, and thus can be viewed by other users and the general public. This message is shown to a user whenever they are editing a subpage in their own user-space that ends in .css. See also {{msg-mw|userjsispublic}} and {{msg-mw|userjsonispublic}}",
+	"userjsdangerous": "A reminder to users that JavaScript subpages can cause serious harm to them.",
 	"restrictionsfield-badip": "An error message shown when one entered an invalid IP address or range in a restrictions field (such as Special:BotPassword). $1 is the IP address.",
 	"restrictionsfield-label": "Field label shown for restriction fields (e.g. on Special:BotPassword).",
 	"restrictionsfield-help": "Placeholder text displayed in restriction fields (e.g. on Special:BotPassword).",
