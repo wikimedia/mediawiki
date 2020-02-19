@@ -285,7 +285,7 @@ class SpecialLog extends SpecialPage {
 					'type' => 'submit',
 					'name' => 'revisiondelete',
 					'value' => '1',
-					'class' => "deleterevision-log-submit mw-log-deleterevision-button"
+					'class' => "deleterevision-log-submit mw-log-deleterevision-button mw-ui-button"
 				],
 				$this->msg( 'showhideselectedlogentries' )->text()
 			) . "\n";
@@ -297,7 +297,7 @@ class SpecialLog extends SpecialPage {
 					'type' => 'submit',
 					'name' => 'editchangetags',
 					'value' => '1',
-					'class' => "editchangetags-log-submit mw-log-editchangetags-button"
+					'class' => "editchangetags-log-submit mw-log-editchangetags-button mw-ui-button"
 				],
 				$this->msg( 'log-edit-tags' )->text()
 			) . "\n";
