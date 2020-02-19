@@ -213,7 +213,11 @@ class SpecialSearch extends SpecialPage {
 		$this->loadStatus = new Status();
 
 		$request = $this->getRequest();
-		list( $this->limit, $this->offset ) = $request->getLimitOffset( 20, '' );
+		list( $this->limit, $this->offset ) = $request->getLimitOffsetForUser(
+			$this->getUser(),
+			20,
+			''
+		);
 		$this->mPrefix = $request->getVal( 'prefix', '' );
 		if ( $this->mPrefix !== '' ) {
 			$this->setExtraParam( 'prefix', $this->mPrefix );

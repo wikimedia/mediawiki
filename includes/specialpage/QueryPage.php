@@ -547,7 +547,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns limit and offset, as returned by $this->getRequest()->getLimitOffset().
+	 * Returns limit and offset, as returned by $this->getRequest()->getLimitOffsetForUser().
 	 * Subclasses may override this to further restrict or modify limit and offset.
 	 *
 	 * @note Restricts the offset parameter, as most query pages have inefficient paging
@@ -559,7 +559,8 @@ abstract class QueryPage extends SpecialPage {
 	 * @return int[] list( $limit, $offset )
 	 */
 	protected function getLimitOffset() {
-		list( $limit, $offset ) = $this->getRequest()->getLimitOffset();
+		list( $limit, $offset ) = $this->getRequest()
+			->getLimitOffsetForUser( $this->getUser() );
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			$maxResults = $this->getMaxResults();
 			// Can't display more than max results on a page
