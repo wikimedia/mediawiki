@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
+use Psr\Container\ContainerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -38,7 +39,9 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 		] );
 
 		if ( !$this->manager ) {
-			$this->manager = new AuthManager( new \FauxRequest(), $config );
+			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
+			$objectFactory = new \Wikimedia\ObjectFactory( $services );
+			$this->manager = new AuthManager( new \FauxRequest(), $config, $objectFactory );
 		}
 		$this->validity = \Status::newGood();
 

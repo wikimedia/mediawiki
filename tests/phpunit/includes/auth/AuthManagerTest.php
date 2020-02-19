@@ -8,10 +8,12 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use PHPUnit\Framework\Assert;
+use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use StatusValue;
 use WebRequest;
+use Wikimedia\ObjectFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -25,6 +27,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	protected $request;
 	/** @var Config */
 	protected $config;
+	/** @var ObjectFactory */
+	protected $objectFactory;
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -62,9 +66,9 @@ class AuthManagerTest extends \MediaWikiTestCase {
 
 	/**
 	 * Ensure a value is a clean Message object
-	 * @param string|Message $key
+	 * @param string|\Message $key
 	 * @param array $params
-	 * @return Message
+	 * @return \Message
 	 */
 	protected function message( $key, $params = [] ) {
 		if ( $key === null ) {
@@ -143,6 +147,10 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		if ( $regen || !$this->request ) {
 			$this->request = new \FauxRequest();
 		}
+		if ( $regen || !$this->objectFactory ) {
+			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
+			$this->objectFactory = new ObjectFactory( $services );
+		}
 		if ( !$this->logger ) {
 			$this->logger = new \TestLogger();
 		}
@@ -150,7 +158,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		if ( $regen || !$this->config->has( 'AuthManagerConfig' ) ) {
 			$this->initializeConfig();
 		}
-		$this->manager = new AuthManager( $this->request, $this->config );
+		$this->manager = new AuthManager( $this->request, $this->config, $this->objectFactory );
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );
 	}

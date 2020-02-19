@@ -24,6 +24,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
 use MagicWordFactory;
 use MediaHandlerFactory;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockRestrictionStore;
@@ -459,6 +460,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getActorMigration() : ActorMigration {
 		return $this->getService( 'ActorMigration' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return AuthManager
+	 */
+	public function getAuthManager() : AuthManager {
+		return $this->getService( 'AuthManager' );
 	}
 
 	/**

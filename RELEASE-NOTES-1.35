@@ -60,6 +60,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   "client" and "server" are no longer supported in MediaWiki 1.35.
 * $wgEnableOpenSearchSuggest - This boolean variable is deprecated and no longer
   used. The OpenSearch API is now always enabled.
+* $wgAuthManagerConfig and $wgAuthManagerAutoConfig can now use the 'services'
+  option in provider specifications.
 * …
 
 ==== Removed configuration ====
@@ -469,6 +471,8 @@ because of Phabricator reports.
   instead relying on the global $wgUser. A user parameter has been added,
   and //not// providing a user is deprecated. There are no known callers
   outside of mediawiki core.
+* AuthManager::singleton() has been deprecated. Use
+  MediaWikiServices::getInstance()->getAuthManager() instead.
 * …
 
 === Other changes in 1.35 ===
