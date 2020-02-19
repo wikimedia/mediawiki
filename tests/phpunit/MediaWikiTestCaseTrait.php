@@ -35,6 +35,23 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
+	 * Return a PHPUnit mock that is expected to never have any methods called on it.
+	 *
+	 * @param string $type
+	 * @return object
+	 */
+	protected function createNoOpAbstractMock( $type ) {
+		$mock = $this->getMockBuilder( $type )
+			->disableOriginalConstructor()
+			->disableOriginalClone()
+			->disableArgumentCloning()
+			->disallowMockingUnknownTypes()
+			->getMockForAbstractClass();
+		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
+		return $mock;
+	}
+
+	/**
 	 * Don't throw a warning if $function is deprecated and called later
 	 *
 	 * @since 1.19

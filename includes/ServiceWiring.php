@@ -98,6 +98,16 @@ return [
 		return new ActorMigration( SCHEMA_COMPAT_NEW );
 	},
 
+	'AuthManager' => function ( MediaWikiServices $services ) : AuthManager {
+		$authManager = new AuthManager(
+			RequestContext::getMain()->getRequest(),
+			$services->getMainConfig(),
+			$services->getObjectFactory()
+		);
+		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
+		return $authManager;
+	},
+
 	'BadFileLookup' => function ( MediaWikiServices $services ) : BadFileLookup {
 		return new BadFileLookup(
 			function () {
