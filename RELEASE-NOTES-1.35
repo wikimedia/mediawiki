@@ -460,6 +460,8 @@ because of Phabricator reports.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
+* WebRequest::getLimitOffset is soft deprecated. Instead, use
+  ::getLimitOffsetForUser and pass a User object.
 * …
 
 === Other changes in 1.35 ===
