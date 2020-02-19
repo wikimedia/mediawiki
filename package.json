@@ -30,7 +30,7 @@
     "grunt-contrib-watch": "1.1.0",
     "grunt-eslint": "22.0.0",
     "grunt-karma": "3.0.2",
-    "grunt-stylelint": "0.12.0",
+    "grunt-stylelint": "0.14.0",
     "grunt-svgmin": "5.0.0",
     "jpeg-js": "0.3.5",
     "karma": "4.4.1",
@@ -40,7 +40,7 @@
     "karma-qunit": "4.0.0",
     "postcss-less": "2.0.0",
     "qunit": "2.9.3",
-    "stylelint-config-wikimedia": "0.7.0",
+    "stylelint-config-wikimedia": "0.9.0",
     "wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
     "webdriverio": "5.13.2"
   }
