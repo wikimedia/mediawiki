@@ -1018,8 +1018,7 @@ CREATE TABLE /*_*/site_stats (
 ) /*$wgDBTableOptions*/;
 
 --
--- The internet is full of jerks, alas. Sometimes it's handy
--- to block a vandal or troll account.
+-- Blocks against user accounts, IP addresses and IP ranges.
 --
 CREATE TABLE /*_*/ipblocks (
   -- Primary key, introduced for privacy.
