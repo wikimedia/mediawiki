@@ -462,7 +462,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$operator = $this->mIncludeOffset ? '<=' : '<';
 		}
 		if ( $offset != '' ) {
-			$offsets = explode( '|', $offset );
+			$offsets = explode( '|', $offset, /* Limit to max of indices */ count( $indexColumns ) );
+
 			$conds[] = $this->buildOffsetConds(
 				$offsets,
 				$indexColumns,
