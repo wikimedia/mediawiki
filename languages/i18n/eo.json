@@ -1117,7 +1117,7 @@
 	"badsig": "Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!",
 	"badsiglength": "La subskribo estas tro longa.\nĜi devas esti sub $1 {{PLURAL:$1|signo|signoj}}.",
 	"yourgender": "Kiel vi preferas esti priskribata?",
-	"gender-unknown": "Menciate vin, la programaro uzos seksneŭtrajn vortojn ĉiam kiam eblas",
+	"gender-unknown": "Menciante vin, la programaro uzos seksneŭtralajn vortojn ĉiam kiam eblas",
 	"gender-male": "Li redaktas vikipaĝojn",
 	"gender-female": "Ŝi redaktas vikipaĝojn",
 	"prefs-help-gender": "Nedeviga: uzita por sekseca salutado de la programaro. Ĉi tiu informo montriĝos publike.",
@@ -1161,6 +1161,7 @@
 	"saveusergroups": "Konservi grupojn de {{GENDER:$1|uzantoj}}",
 	"userrights-groupsmember": "Membro de:",
 	"userrights-groupsmember-auto": "Implica membro de:",
+	"userrights-systemuser": "{{GENDER:$1|Ĉi tiu uzanto}} estas sistema uzanto",
 	"userrights-groups-help": "Vi povas modifi la grupojn en kiuj ĉi tiu uzanto estas.\n* Markita markbutono (kesto) signifas ke la uzanto estas en tiu grupo.\n* Nemarkita markbutono (kesto) signifas ke la uzanto ne estas en tiu grupo.\n* Steleto (*) signifas ke vi ne povas forigi la grupon post ke vi aldonis ĝin, aŭ male.",
 	"userrights-reason": "Kialo:",
 	"userrights-no-interwiki": "Vi ne rajtas redakti uzanto-rajtojn en aliaj vikioj.",
@@ -3453,6 +3454,7 @@
 	"newsection": "Nova paragrafo",
 	"newsection-page": "Cela paĝo",
 	"newsection-submit": "Iri al paĝo",
+	"editpage": "Redakti paĝon",
 	"purge": "forviŝigi",
 	"dberr-problems": "Bedaŭrinde, ĉi tiu retejo suferas pro teknikaj problemoj.",
 	"dberr-again": "Bonvolu atendi kelkajn minutojn kaj reŝargi.",
@@ -3904,5 +3906,6 @@
 	"mycustomjsredirectprotected": "Vi ne havas permeson redakti ĉi tiun JavaScript-paĝon, ĉar ĝi estas alidirektilo, kies celo ne estas en via uzantospaco.",
 	"deflate-invaliddeflate": "Provizita enhavo ne estas ĝuste densigita",
 	"unprotected-js": "Pro sekurecaj kialoj, JavaScript ne povas esti ŝargata el neprotektataj paĝoj. Bonvolu nur krei JavaScript en la nomspaco MediaWiki: aŭ kiel subpaĝo de Uzanto.",
-	"userlogout-continue": "Ĉu vi volas elsaluti?"
+	"userlogout-continue": "Ĉu vi volas elsaluti?",
+	"paramvalidator-help-type-user-subtype-name": "uzantnomo"
 }

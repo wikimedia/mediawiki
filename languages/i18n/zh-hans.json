@@ -129,7 +129,8 @@
 			"Josephine W.",
 			"Hamish",
 			"铁桶",
-			"AnnAngela"
+			"AnnAngela",
+			"Willy1018"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -321,7 +322,7 @@
 	"toolbox": "工具",
 	"tool-link-userrights": "更改{{GENDER:$1|用户}}组",
 	"tool-link-userrights-readonly": "查看{{GENDER:$1|用户}}组",
-	"tool-link-emailuser": "电邮联系该用户",
+	"tool-link-emailuser": "电邮联系该{{GENDER:$1|用户}}",
 	"imagepage": "查看文件页面",
 	"mediawikipage": "查看信息页面",
 	"templatepage": "查看模板页面",
@@ -4005,9 +4006,9 @@
 	"specialmute-label-mute-email": "屏蔽该用户的邮件",
 	"specialmute-header": "请选择您对于<b>{{BIDI:[[User:$1|$1]]}}</b>的禁言设置。",
 	"specialmute-error-invalid-user": "未找到您请求的用户名。",
-	"specialmute-error-no-options": "禁言功能不可用。这可能是因为：您还没有确认您的电子邮箱地址，或者Wiki管理员已禁用此Wiki的电子邮箱和/或电子邮箱黑名单功能。",
+	"specialmute-error-no-options": "禁言功能不可用。这可能是因为：您还没有确认您的电子邮箱地址，或者Wiki管理员已禁用此Wiki的电子邮箱功能或输入的电子邮箱地址在黑名单中。",
 	"specialmute-email-footer": "请访问$1管理用户{{BIDI:$2}}的电子邮件首选项",
-	"specialmute-login-required": "请登录以更改您的沉默用户提醒设置。",
+	"specialmute-login-required": "请登录以更改您的屏蔽用户设置。",
 	"mute-preferences": "屏蔽设置",
 	"revid": "修订版本$1",
 	"pageid": "页面ID$1",

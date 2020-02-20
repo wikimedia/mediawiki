@@ -8,7 +8,8 @@
 			"बिप्लब आनन्द",
 			"Nirjal stha",
 			"राम प्रसाद जोशी",
-			"पर्वत सुबेदी"
+			"पर्वत सुबेदी",
+			"हिमाल सुबेदी"
 		]
 	},
 	"config-desc": "मेडियाविकिको लागि स्थापक",
@@ -21,7 +22,7 @@
 	"config-back": "← पछाडी",
 	"config-continue": "जारी राख्ने →",
 	"config-page-language": "भाषा",
-	"config-page-welcome": "मिडीयाविकिमा तपाईंलाई स्वागत छ!",
+	"config-page-welcome": "मिडियाविकिमा तपाईलाई स्वागत छ!",
 	"config-page-dbconnect": "डेटाबेससँग सम्बन्ध बनाउने",
 	"config-page-dbsettings": "डेटावेस सेटिङ",
 	"config-page-name": "नाम",
