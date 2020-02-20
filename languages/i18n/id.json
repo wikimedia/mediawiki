@@ -977,7 +977,7 @@
 	"mergelog": "Log penggabungan",
 	"revertmerge": "Batal penggabungan",
 	"mergelogpagetext": "Di bawah ini adalah daftar penggabungan sejarah halaman ke halaman yang lain.",
-	"history-title": "Riwayat revisi dari \"$1\"",
+	"history-title": "Riwayat revisi \"$1\"",
 	"difference-title": "$1: Perbedaan revisi",
 	"difference-title-multipage": "Perbedaan antara halaman \"$1\" dan \"$2\"",
 	"difference-multipage": "(Perbedaan antarhalaman)",

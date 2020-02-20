@@ -20,7 +20,8 @@
 			"A2093064",
 			"WQL",
 			"Sunny00217",
-			"Xiplus"
+			"Xiplus",
+			"Ericliu1912"
 		]
 	},
 	"tog-watchlisthidebots": "隱藏監視清單中機械人的編輯",
@@ -68,7 +69,7 @@
 	"talk": "討論",
 	"views": "視圖",
 	"toolbox": "工具",
-	"tool-link-emailuser": "寄電子郵件給這位用戶",
+	"tool-link-emailuser": "電郵聯絡此{{GENDER:$1|用戶}}",
 	"jumpto": "跳到：",
 	"jumptonavigation": "導覽",
 	"jumptosearch": "搜尋",
