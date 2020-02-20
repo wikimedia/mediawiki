@@ -34,6 +34,7 @@ class PatrolLog {
 	 * @param int|RecentChange $rc Change identifier or RecentChange object
 	 * @param bool $auto Was this patrol event automatic?
 	 * @param User|null $user User performing the action or null to use $wgUser
+	 *   (null to use $wgUser is deprecated since 1.35)
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 *
@@ -53,6 +54,7 @@ class PatrolLog {
 		}
 
 		if ( !$user ) {
+			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}
