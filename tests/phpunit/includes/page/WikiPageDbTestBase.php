@@ -1840,7 +1840,6 @@ more stuff
 			[ 'edit' => '20200101040404' ],
 			false,
 			'Goat Reason',
-			true,
 			'(goat-message-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Reason(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04)))'
 		];
 		yield [
@@ -1849,7 +1848,6 @@ more stuff
 			[ 'edit' => '20200101040404', 'move' => '20210101050505' ],
 			false,
 			'Goat Goat',
-			true,
 			'(goat-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
 		];
 		// phpcs:enable
@@ -1865,7 +1863,6 @@ more stuff
 	 * @param array $expiry
 	 * @param bool $cascade
 	 * @param string $reason
-	 * @param true|null $user true if the test sysop should be used, or null
 	 * @param string $expectedComment
 	 */
 	public function testInsertProtectNullRevision(
@@ -1874,14 +1871,13 @@ more stuff
 		array $expiry,
 		$cascade,
 		$reason,
-		$user,
 		$expectedComment
 	) {
 		$this->setContentLang( 'qqx' );
 
 		$page = $this->createPage( __METHOD__, 'Goat' );
 
-		$user = $user ? $this->getTestSysop()->getUser() : null;
+		$user = $this->getTestSysop()->getUser();
 
 		$result = $page->insertProtectNullRevision(
 			$revCommentMsg,

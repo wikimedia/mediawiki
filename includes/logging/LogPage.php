@@ -322,7 +322,8 @@ class LogPage {
 	 * @param Title $target
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMessage function
-	 * @param null|int|User $doer The user doing the action. null for $wgUser
+	 * @param null|int|User $doer The user doing the action.
+	 *        null defaults $wgUser, and is deprecated since 1.35
 	 *
 	 * @return int The log_id of the inserted log entry
 	 */
@@ -344,6 +345,7 @@ class LogPage {
 		$this->params = self::makeParamBlob( $params );
 
 		if ( $doer === null ) {
+			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$doer = $wgUser;
 		} elseif ( !is_object( $doer ) ) {

@@ -527,10 +527,15 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param stdClass $row
 	 * @param int $field
-	 * @param User|null $user User to check, or null to use $wgUser
+	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	public static function userCan( $row, $field, User $user = null ) {
+		if ( !$user ) {
+			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			global $wgUser;
+			$user = $wgUser;
+		}
 		return self::userCanBitfield( $row->log_deleted, $field, $user ) &&
 			self::userCanViewLogType( $row->log_type, $user );
 	}
@@ -541,12 +546,13 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param int $bitfield Current field
 	 * @param int $field
-	 * @param User|null $user User to check, or null to use $wgUser
+	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
 		if ( $bitfield & $field ) {
 			if ( $user === null ) {
+				wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
 				global $wgUser;
 				$user = $wgUser;
 			}
@@ -569,11 +575,12 @@ class LogEventsList extends ContextSource {
 	 * field of this log row, if it's marked as restricted log type.
 	 *
 	 * @param stdClass $type
-	 * @param User|null $user User to check, or null to use $wgUser
+	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	public static function userCanViewLogType( $type, User $user = null ) {
 		if ( $user === null ) {
+			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}

@@ -35,7 +35,8 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 				$file,
 				$noOldArchive,
 				$comment,
-				$restrictDeletedVersions
+				$restrictDeletedVersions,
+				$this->getTestSysop()->getUser()
 			);
 
 			if ( !$status->isGood() ) {
