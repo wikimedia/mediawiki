@@ -489,6 +489,8 @@ because of Phabricator reports.
   - LogEventsList::userCanBitfield
   - LogEventsList::userCanViewLogType
   - LogPage::addEntry
+* Article::insertProtectNullRevision is deprecated. Instead, use
+  WikiPage::insertProtectNullRevision.
 * …
 
 === Other changes in 1.35 ===

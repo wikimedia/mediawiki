@@ -2689,6 +2689,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::insertProtectNullRevision
+	 * @deprecated since 1.35, use WikiPage::insertProtectNullRevision instead
 	 * @param string $revCommentMsg
 	 * @param array $limit
 	 * @param array $expiry
@@ -2700,6 +2701,7 @@ class Article implements Page {
 	public function insertProtectNullRevision( $revCommentMsg, array $limit,
 		array $expiry, $cascade, $reason, $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->insertProtectNullRevision( $revCommentMsg, $limit,
 			$expiry, $cascade, $reason, $user
 		);
