@@ -55,7 +55,9 @@ $mediawiki->doPostOutputShutdown();
 
 function wfImageAuthMain() {
 	global $wgImgAuthUrlPathMap;
-	$permissionManager = \MediaWiki\MediaWikiServices::getInstance()->getPermissionManager();
+
+	$services = \MediaWiki\MediaWikiServices::getInstance();
+	$permissionManager = $services->getPermissionManager();
 
 	$request = RequestContext::getMain()->getRequest();
 	$publicWiki = in_array( 'read', $permissionManager->getGroupPermissions( [ '*' ] ), true );
@@ -79,10 +81,11 @@ function wfImageAuthMain() {
 	foreach ( $wgImgAuthUrlPathMap as $prefix => $storageDir ) {
 		$prefix = rtrim( $prefix, '/' ) . '/'; // implicit trailing slash
 		if ( strpos( $path, $prefix ) === 0 ) {
-			$be = FileBackendGroup::singleton()->backendFromPath( $storageDir );
+			$be = $services->getFileBackendGroup()->backendFromPath( $storageDir );
 			$filename = $storageDir . substr( $path, strlen( $prefix ) ); // strip prefix
 			// Check basic user authorization
-			if ( !$user->isAllowed( 'read' ) ) {
+			$isAllowedUser = $permissionManager->userHasRight( $user, 'read' );
+			if ( !$isAllowedUser ) {
 				wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $path );
 				return;
 			}
@@ -98,7 +101,7 @@ function wfImageAuthMain() {
 	}
 
 	// Get the local file repository
-	$repo = RepoGroup::singleton()->getRepo( 'local' );
+	$repo = $services->getRepoGroup()->getRepo( 'local' );
 	$zone = strstr( ltrim( $path, '/' ), '/', true );
 
 	// Get the full file storage path and extract the source file name.
