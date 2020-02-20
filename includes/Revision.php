@@ -995,7 +995,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
 		if ( !$user ) {
-			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}

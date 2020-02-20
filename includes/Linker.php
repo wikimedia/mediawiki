@@ -951,7 +951,7 @@ class Linker {
 			return ' ' . wfMessage( 'empty-username' )->parse();
 		}
 
-		global $wgUser, $wgDisableAnonTalk, $wgLang;
+		global $wgDisableAnonTalk, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && $userId == 0 );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
@@ -982,13 +982,14 @@ class Linker {
 
 			$items[] = self::link( $contribsPage, wfMessage( 'contribslink' )->escaped(), $attribs );
 		}
+		$user = RequestContext::getMain()->getUser();
 		$userCanBlock = MediaWikiServices::getInstance()->getPermissionManager()
-			->userHasRight( $wgUser, 'block' );
+			->userHasRight( $user, 'block' );
 		if ( $blockable && $userCanBlock ) {
 			$items[] = self::blockLink( $userId, $userText );
 		}
 
-		if ( $addEmailLink && $wgUser->canSendEmail() ) {
+		if ( $addEmailLink && $user->canSendEmail() ) {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 

@@ -2445,7 +2445,7 @@ class WikiPage implements Page, IDBAccessObject {
 		array $expiry, $cascade, $reason, $user = null
 	) {
 		if ( !$user ) {
-			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			// Don't need to set to $wgUser here, handled in Revision::newNullRevision
 			// where the user is needed
 		}
