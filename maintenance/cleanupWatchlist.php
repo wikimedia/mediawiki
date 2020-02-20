@@ -41,7 +41,7 @@ require_once __DIR__ . '/cleanupTable.inc';
 class CleanupWatchlist extends TableCleanup {
 	protected $defaultParams = [
 		'table' => 'watchlist',
-		'index' => [ 'wl_user', 'wl_namespace', 'wl_title' ],
+		'index' => [ 'wl_id' ],
 		'conds' => [],
 		'callback' => 'processRow'
 	];
@@ -80,10 +80,8 @@ class CleanupWatchlist extends TableCleanup {
 		if ( !$this->dryrun && $this->hasOption( 'fix' ) ) {
 			$dbw = $this->getDB( DB_MASTER );
 			$dbw->delete(
-				'watchlist', [
-				'wl_user' => $row->wl_user,
-				'wl_namespace' => $row->wl_namespace,
-				'wl_title' => $row->wl_title ],
+				'watchlist',
+				[ 'wl_id' => $row->wl_id ],
 				__METHOD__
 			);
 
