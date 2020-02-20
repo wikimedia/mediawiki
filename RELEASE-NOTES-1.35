@@ -489,6 +489,7 @@ because of Phabricator reports.
   - LogEventsList::userCanBitfield
   - LogEventsList::userCanViewLogType
   - LogPage::addEntry
+  - FileDeleteForm::doDelete
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
 * …
