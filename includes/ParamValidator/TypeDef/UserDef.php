@@ -5,7 +5,6 @@ namespace MediaWiki\ParamValidator\TypeDef;
 use ExternalUserNames;
 // phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
 use Title;
 use User;
 use Wikimedia\IPUtils;
@@ -141,7 +140,7 @@ class UserDef extends TypeDef {
 			$name = User::getCanonicalName( $value, false );
 			return [
 				'interwiki',
-				is_string( $name ) ? new UserIdentityValue( 0, $value, 0 ) : null
+				is_string( $name ) ? User::newFromAnyId( 0, $value, null ) : null
 			];
 		}
 
@@ -175,12 +174,12 @@ class UserDef extends TypeDef {
 			// addresses.
 			preg_match( "/^$b\.$b\.$b\.xxx$/D", $value )
 		) {
-			return [ 'ip', new UserIdentityValue( 0, IPUtils::sanitizeIP( $value ), 0 ) ];
+			return [ 'ip', User::newFromAnyId( 0, IPUtils::sanitizeIP( $value ), null ) ];
 		}
 
 		// A range?
 		if ( IPUtils::isValidRange( $value ) ) {
-			return [ 'cidr', new UserIdentityValue( 0, IPUtils::sanitizeIP( $value ), 0 ) ];
+			return [ 'cidr', User::newFromAnyId( 0, IPUtils::sanitizeIP( $value ), null ) ];
 		}
 
 		// Fail.
