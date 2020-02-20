@@ -532,7 +532,7 @@ class LogEventsList extends ContextSource {
 	 */
 	public static function userCan( $row, $field, User $user = null ) {
 		if ( !$user ) {
-			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}
@@ -552,7 +552,7 @@ class LogEventsList extends ContextSource {
 	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
 		if ( $bitfield & $field ) {
 			if ( $user === null ) {
-				wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+				wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 				global $wgUser;
 				$user = $wgUser;
 			}
@@ -580,7 +580,7 @@ class LogEventsList extends ContextSource {
 	 */
 	public static function userCanViewLogType( $type, User $user = null ) {
 		if ( $user === null ) {
-			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}

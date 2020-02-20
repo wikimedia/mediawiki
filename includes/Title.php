@@ -4350,7 +4350,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function getNotificationTimestamp( $user = null ) {
 		// Assume current user if none given
 		if ( !$user ) {
-			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}

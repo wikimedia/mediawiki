@@ -345,7 +345,7 @@ class LogPage {
 		$this->params = self::makeParamBlob( $params );
 
 		if ( $doer === null ) {
-			wfDeprecated( __FUNCTION__ . ' without passing a $user parameter', '1.35' );
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$doer = $wgUser;
 		} elseif ( !is_object( $doer ) ) {
