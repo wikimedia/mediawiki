@@ -903,7 +903,7 @@ interface IDatabase {
 	/**
 	 * INSERT wrapper, inserts an array into a table
 	 *
-	 * $a may be either:
+	 * $rows may be either:
 	 *
 	 *   - A single associative array. The array keys are the field names, and
 	 *     the values are the values to insert. The values are treated as data
@@ -924,7 +924,7 @@ interface IDatabase {
 	 *
 	 * @param string $table Table name. This will be passed through
 	 *   Database::tableName().
-	 * @param array $rows Array of rows to insert
+	 * @param array $rows Array of rows or array of arrays of rows.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Array of options
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
