@@ -471,7 +471,7 @@ because of Phabricator reports.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
-* WebRequest::getLimitOffset is soft deprecated. Instead, use
+* WebRequest::getLimitOffset is hard deprecated. Instead, use
   ::getLimitOffsetForUser and pass a User object.
 * FileDeleteForm previously did not accept a user parameter in its constructor,
   instead relying on the global $wgUser. A user parameter has been added,
