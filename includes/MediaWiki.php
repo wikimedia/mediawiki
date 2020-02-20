@@ -205,7 +205,8 @@ class MediaWiki {
 		// We will check again in Article::view().
 		$permErrors = $title->isSpecial( 'RunJobs' )
 			? [] // relies on HMAC key signature alone
-			: $title->getUserPermissionsErrors( 'read', $user );
+			: MediaWikiServices::getInstance()->getPermissionManager()
+				->getPermissionErrors( 'read', $user, $title );
 		if ( count( $permErrors ) ) {
 			// T34276: allowing the skin to generate output with $wgTitle or
 			// $this->context->title set to the input title would allow anonymous users to

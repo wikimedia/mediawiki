@@ -637,10 +637,11 @@ abstract class UploadBase {
 		if ( $nt === null ) {
 			return true;
 		}
-		$permErrors = $nt->getUserPermissionsErrors( 'edit', $user );
-		$permErrorsUpload = $nt->getUserPermissionsErrors( 'upload', $user );
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$permErrors = $permManager->getPermissionErrors( 'edit', $user, $nt );
+		$permErrorsUpload = $permManager->getPermissionErrors( 'upload', $user, $nt );
 		if ( !$nt->exists() ) {
-			$permErrorsCreate = $nt->getUserPermissionsErrors( 'create', $user );
+			$permErrorsCreate = $permManager->getPermissionErrors( 'create', $user, $nt );
 		} else {
 			$permErrorsCreate = [];
 		}

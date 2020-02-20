@@ -102,7 +102,8 @@ return [
 		$authManager = new AuthManager(
 			RequestContext::getMain()->getRequest(),
 			$services->getMainConfig(),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getPermissionManager()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;
