@@ -962,8 +962,9 @@ class WebRequest {
 	 * @return int[] First element is limit, second is offset
 	 */
 	public function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
-		global $wgUser;
+		wfDeprecated( __METHOD__, '1.35' );
 
+		global $wgUser;
 		return $this->getLimitOffsetForUser( $wgUser, $deflimit, $optionname );
 	}
 
