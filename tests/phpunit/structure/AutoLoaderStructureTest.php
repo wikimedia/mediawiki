@@ -115,14 +115,19 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 				$classesInFile[$class] = true;
 			} elseif ( !empty( $match['original'] ) ) {
 				// 'class_alias( "Foo", "Bar" );'
-				$aliasesInFile[$match['alias']] = $match['original'];
+				$aliasesInFile[self::removeSlashes( $match['alias'] )] = $match['original'];
 			} else {
 				// 'class_alias( Foo::class, "Bar" );'
-				$aliasesInFile[$match['aliasString']] = $fileNamespace . $match['originalStatic'];
+				$aliasesInFile[self::removeSlashes( $match['aliasString'] )] =
+					$fileNamespace . $match['originalStatic'];
 			}
 		}
 
 		return [ $classesInFile, $aliasesInFile ];
+	}
+
+	private static function removeSlashes( $str ) {
+		return str_replace( '\\\\', '\\', $str );
 	}
 
 	protected static function checkAutoLoadConf() {

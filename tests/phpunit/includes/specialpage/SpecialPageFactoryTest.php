@@ -21,7 +21,7 @@ use Wikimedia\ScopedCallback;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @covers \MediaWiki\Special\SpecialPageFactory
+ * @covers \MediaWiki\SpecialPage\SpecialPageFactory
  * @group SpecialPage
  */
 class SpecialPageFactoryTest extends MediaWikiTestCase {
@@ -269,7 +269,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Special\SpecialPageFactory::getPage
+	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::getPage
 	 */
 	public function testSpecialPageCreationThatRequiresService() {
 		$type = null;
@@ -291,6 +291,6 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 
 		SpecialPageFactory::getPage( 'TestPage' );
 
-		$this->assertEquals( \MediaWiki\Special\SpecialPageFactory::class, $type );
+		$this->assertEquals( \MediaWiki\SpecialPage\SpecialPageFactory::class, $type );
 	}
 }

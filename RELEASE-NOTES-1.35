@@ -494,6 +494,9 @@ because of Phabricator reports.
   - FileDeleteForm::doDelete
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
+* The SpecialPageFactory class was moved from the MediaWiki\Special namespace
+  to the MediaWiki\SpecialPage namespace. The old location remains as a
+  deprecated alias.
 * …
 
 === Other changes in 1.35 ===

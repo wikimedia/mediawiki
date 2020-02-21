@@ -21,7 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Special\SpecialPageFactory;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
  * Query module to get the results of a QueryPage-based special page
