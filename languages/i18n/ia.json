@@ -3789,6 +3789,7 @@
 	"userjsispublic": "Nota ben: Subpaginas JavaScript non debe continer datos confidential perque altere usatores pote vider los.",
 	"userjsonispublic": "Nota ben: Subpaginas JSON non debe continer datos confidential perque altere usatores pote vider los.",
 	"usercssispublic": "Nota ben: Subpaginas CSS non debe continer datos confidential perque altere usatores pote vider los.",
+	"userjsdangerous": "Nota ben: Le scripts includite in iste pagina se executara cata vice que tu carga un pagina. Si alcun codice malitiose es addite hic, tu conto pote esser compromittite. Le codice essera executate quando tu previsualisa le modificationes de iste pagina.",
 	"restrictionsfield-badip": "Adresse o intervallo IP non valide: $1",
 	"restrictionsfield-label": "Intervallos IP permittite:",
 	"restrictionsfield-help": "Un adresse IP o intervallo CIDR per linea. Pro activar toto, usa:<pre>0.0.0.0/0\n::/0</pre>",

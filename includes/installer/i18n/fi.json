@@ -99,7 +99,7 @@
 	"config-suhosin-max-value-length": "Suhosin on asennettu ja se rajoittaa GET-parametrin <code>length</code> $1 tavuun.\nMediaWikin ResourceLoader-komponentti pystyy toimimaan tämän kanssa, mutta ohjelmiston suorituskyky heikkenee.\nMikäli mahdollista, aseta muuttuja <code>suhosin.get.max_value_length</code> arvoon 1024 (tai suurempaan) tiedostossa <code>php.ini</code> ja aseta myös <code>$wgResourceLoaderMaxQueryLength</code> samaksi arvoksi tiedostossa <code>LocalSettings.php</code>.",
 	"config-db-type": "Tietokannan tyyppi:",
 	"config-db-host": "Tietokantapalvelin:",
-	"config-db-host-help": "Jos tietokantapalvelimesi sijaitsee eri palvelimella, syötä palvelimen nimi tai ip-osoite tähän.\n\nJos käytössäsi on ulkoinen palveluntarjoaja, pitäisi palvelimen nimen löytyä yrityksen ohjesivuilta.\n\nJos käytät MySQL:ää, ei palvelimen nimi \"localhost\" välttämättä toimi. Tässä tapauksessa koita käyttää osoitetta 127.0.0.1.\n\nJos käytät PostgreSQL:ää jätä tämä kenttä tyhjäksi.",
+	"config-db-host-help": "Jos tietokantapalvelimesi sijaitsee eri palvelimella, syötä palvelimen nimi tai ip-osoite tähän.\n\nJos käytössäsi on ulkoinen palveluntarjoaja, pitäisi palvelimen nimen löytyä yrityksen ohjesivuilta.\n\nJos käytät MySQL:ää, ei palvelimen nimi \"localhost\" välttämättä toimi. Tässä tapauksessa koita käyttää osoitetta 127.0.0.1.\n\nJos käytät PostgreSQL:ää, jätä tämä kenttä tyhjäksi.",
 	"config-db-wiki-settings": "Identifioi tämä wiki",
 	"config-db-name": "Tietokannan nimi (ei väliviivoja):",
 	"config-db-name-help": "Valitse wikiäsi kuvaava nimi.\nNimessä ei saa olla välilyöntejä.\n\nMikäli et pysty itse hallitsemaan tietokantojasi, pyydä palveluntarjoajaasi luomaan tietokanta tai tee se palveluntarjoajasi hallintapaneelissa.",

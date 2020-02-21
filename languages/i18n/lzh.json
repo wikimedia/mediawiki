@@ -667,7 +667,7 @@
 	"revdelete-log": "因：",
 	"revdelete-submit": "擇{{PLURAL:$1|審}}使之",
 	"revdelete-success": "'''見審已更也。'''",
-	"revdelete-failure": "'''見審無更也：'''\n$1",
+	"revdelete-failure": "見審無更也：\n$1",
 	"logdelete-success": "'''見事已設也。'''",
 	"logdelete-failure": "'''見事無設也：'''\n$1",
 	"revdel-restore": "動見之",
