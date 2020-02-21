@@ -178,9 +178,9 @@ $dateFormats = [
  * Default list of book sources
  */
 $bookstoreList = [
-	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
-	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com' => 'https://www.amazon.com/gp/search/?field-isbn=$1'
+	'BWB' => 'https://www.betterworldbooks.com/product/detail/-$1',
+	'OpenLibrary' => 'https://openlibrary.org/isbn/$1',
+	'Worldcat' => 'https://www.worldcat.org/search?q=isbn:$1',
 ];
 
 /**
