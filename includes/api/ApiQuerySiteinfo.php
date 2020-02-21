@@ -181,8 +181,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['invalidusernamechars'] = $config->get( 'InvalidUsernameCharacters' );
 
 		$data['allunicodefixes'] = (bool)$config->get( 'AllUnicodeFixes' );
-		$data['fixarabicunicode'] = (bool)$config->get( 'FixArabicUnicode' );
-		$data['fixmalayalamunicode'] = (bool)$config->get( 'FixMalayalamUnicode' );
+		$data['fixarabicunicode'] = true; // Config removed in 1.35, always true
+		$data['fixmalayalamunicode'] = true; // Config removed in 1.35, always true
 
 		global $IP;
 		$git = SpecialVersion::getGitHeadSha1( $IP );
