@@ -873,7 +873,9 @@ class LoadBalancer implements ILoadBalancer {
 			[ 'dbserver' => $server ]
 		);
 
+		$start = microtime( true );
 		$result = $conn->masterPosWait( $this->waitForPos, $timeout );
+		$seconds = max( microtime( true ) - $start, 0 );
 
 		if ( $result === null ) {
 			$this->replLogger->warning(
@@ -887,10 +889,11 @@ class LoadBalancer implements ILoadBalancer {
 			$ok = false;
 		} elseif ( $result == -1 ) {
 			$this->replLogger->warning(
-				__METHOD__ . ': Timed out waiting on {hostname} pos {pos}',
+				__METHOD__ . ': timed out waiting on {hostname} pos {pos} [{seconds}s]',
 				[
 					'hostname' => $server,
 					'pos' => $this->waitForPos,
+					'seconds' => round( $seconds, 6 ),
 					'trace' => ( new RuntimeException() )->getTraceAsString()
 				]
 			);
@@ -2286,13 +2289,15 @@ class LoadBalancer implements ILoadBalancer {
 			$result = $conn->masterPosWait( $pos, $timeout );
 			$seconds = max( microtime( true ) - $start, 0 );
 			if ( $result == -1 || $result === null ) {
-				$msg = __METHOD__ . ': timed out waiting on {hostname} pos {pos} [{seconds}s]';
-				$this->replLogger->warning( $msg, [
-					'hostname' => $conn->getServer(),
-					'pos' => $pos,
-					'seconds' => round( $seconds, 6 ),
-					'trace' => ( new RuntimeException() )->getTraceAsString()
-				] );
+				$this->replLogger->warning(
+					__METHOD__ . ': timed out waiting on {hostname} pos {pos} [{seconds}s]',
+					[
+						'hostname' => $conn->getServer(),
+						'pos' => $pos,
+						'seconds' => round( $seconds, 6 ),
+						'trace' => ( new RuntimeException() )->getTraceAsString()
+					]
+				);
 				$ok = false;
 			} else {
 				$this->replLogger->debug( __METHOD__ . ': done waiting' );
