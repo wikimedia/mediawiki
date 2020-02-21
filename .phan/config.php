@@ -24,7 +24,7 @@ $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
 	function_exists( 'wikidiff2_do_diff' ) ? [] : [ '.phan/stubs/wikidiff.php' ],
 	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],
-	defined( 'PASSWORD_ARGON2I' ) ? [] : [ '.phan/stubs/password.php' ],
+	defined( 'PASSWORD_ARGON2ID' ) ? [] : [ '.phan/stubs/password.php' ],
 	class_exists( ProfilerExcimer::class ) ? [] : [ '.phan/stubs/excimer.php' ],
 	[
 		// This makes constants and globals known to Phan before processing all other files.
@@ -70,7 +70,7 @@ $cfg['directory_list'] = [
 	'mw-config/',
 	'resources/',
 	'vendor/',
-	'.phan/stubs/',
+	// Do NOT add .phan/stubs/ here: stubs are conditionally loaded in file_list
 ];
 
 $cfg['exclude_analysis_directory_list'] = [
