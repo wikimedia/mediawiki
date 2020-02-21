@@ -30,12 +30,7 @@ class LanguageArTest extends LanguageClassesTestCase {
 			throw new Exception( 'Expected output must differ.' );
 		}
 
-		$this->setMwGlobals( 'wgFixArabicUnicode', true );
 		$this->assertSame( $expected, $this->getLang()->normalize( $input ), 'ar-normalised form' );
-
-		$this->setMwGlobals( 'wgFixArabicUnicode', false );
-		$this->hideDeprecated( '$wgFixArabicUnicode = false' );
-		$this->assertSame( $input, $this->getLang()->normalize( $input ), 'regular normalised form' );
 	}
 
 	public static function provideNormalize() {
