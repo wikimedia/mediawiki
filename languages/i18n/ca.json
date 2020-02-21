@@ -3864,5 +3864,6 @@
 	"passwordpolicies-policyflag-suggestchangeonlogin": "suggereix canvi a l'inici de sessió",
 	"deflate-invaliddeflate": "El contingut proporcionat no està deflactat adequadament",
 	"unprotected-js": "Per motius de seguretat, el JavaScript no es pot carregar de les pàgines desprotegides. Creeu javascript en l'espai de noms MediaWiki o en una subpàgina d'usuari",
-	"userlogout-continue": "Voleu finalitzar la sessió?"
+	"userlogout-continue": "Voleu finalitzar la sessió?",
+	"paramvalidator-help-type-user-subtype-ip": "IP"
 }

@@ -1554,6 +1554,7 @@
 	"apierror-allpages-generator-redirects": "Use <kbd>gapfilterredir=nonredirects</kbd> em vez de <var>redirects</var> ao usar <kbd>allpages</kbd> como um gerador.",
 	"apierror-appendnotsupported": "Não é possível anexar páginas usando o modelo de conteúdo $1.",
 	"apierror-articleexists": "O artigo que você tentou criar já foi criado.",
+	"apierror-assertanonfailed": "Falha na afirmação de que o usuário não entrou.",
 	"apierror-assertbotfailed": "Afirmação de que o usuário tem o direito <code>bot</code> falhou.",
 	"apierror-assertnameduserfailed": "Afirmação de que o usuário é \"$1\" falhou.",
 	"apierror-assertuserfailed": "Afirmação de que o usuário está logado falhou.",

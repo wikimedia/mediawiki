@@ -3796,6 +3796,7 @@
 	"userjsispublic": "Pomnite: Podstrani JavaScript naj ne vsebujejo zaupnih podatkov, saj so vidne tudi drugim uporabnikom.",
 	"userjsonispublic": "Pomnite: podstrani JSON naj ne vsebujejo zaupnih podatkov, saj so vidne drugih uporabnikom.",
 	"usercssispublic": "Pomnite: Podstrani CSS naj ne vsebujejo zaupnih podatkov, saj so vidne tudi drugim uporabnikom.",
+	"userjsdangerous": "Pomnite: Skripti, vključeni na to stran, se bodo pognali vsakič, ko naložite stran. Zlovešča koda, dodana na to stran, lahko ogrozi vaš račun. Koda bo izvedena, ko boste predogledovali spremembe te strani.",
 	"restrictionsfield-badip": "Neveljaven IP-naslov ali obseg: $1",
 	"restrictionsfield-label": "Dovoljeni IP-obsegi:",
 	"restrictionsfield-help": "En IP-naslov ali CIDR-območje na vrstico. Da omogočite vse, uporabite:\n<pre>0.0.0.0/0\n::/0</pre>",

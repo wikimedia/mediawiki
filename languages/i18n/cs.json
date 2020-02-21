@@ -435,7 +435,7 @@
 	"userlogin-yourname-ph": "Zadejte své uživatelské jméno",
 	"createacct-another-username-ph": "Zadejte uživatelské jméno",
 	"yourpassword": "Heslo:",
-	"prefs-help-yourpassword": "Obnova účtu je zakázána. Viz $1 pro více nastavení.",
+	"prefs-help-yourpassword": "Obnova účtu je povolena. Viz $1 pro více nastavení.",
 	"userlogin-yourpassword": "Heslo",
 	"userlogin-yourpassword-ph": "Zadejte své heslo",
 	"createacct-yourpassword-ph": "Zadejte heslo",
