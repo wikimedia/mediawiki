@@ -924,6 +924,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Search\\SearchWidgets\\SimpleSearchResultWidget' => __DIR__ . '/includes/search/searchwidgets/SimpleSearchResultWidget.php',
 	'MediaWiki\\ShellDisabledError' => __DIR__ . '/includes/exception/ShellDisabledError.php',
 	'MediaWiki\\Site\\MediaWikiPageNameNormalizer' => __DIR__ . '/includes/site/MediaWikiPageNameNormalizer.php',
+	'MediaWiki\\SpecialPage\\SpecialPageFactory' => __DIR__ . '/includes/specialpage/SpecialPageFactory.php',
 	'MediaWiki\\Special\\SpecialPageFactory' => __DIR__ . '/includes/specialpage/SpecialPageFactory.php',
 	'MediaWiki\\Storage\\IncompleteRevisionException' => __DIR__ . '/includes/Revision/IncompleteRevisionException.php',
 	'MediaWiki\\Storage\\MutableRevisionRecord' => __DIR__ . '/includes/Revision/MutableRevisionRecord.php',

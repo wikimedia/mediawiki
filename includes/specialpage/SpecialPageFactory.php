@@ -22,7 +22,7 @@
  * @defgroup SpecialPage SpecialPage
  */
 
-namespace MediaWiki\Special;
+namespace MediaWiki\SpecialPage;
 
 use Hooks;
 use IContextSource;
@@ -765,3 +765,6 @@ class SpecialPageFactory {
 		return null;
 	}
 }
+
+/** @deprecated since 1.35, use MediaWiki\\SpecialPage\\SpecialPageFactory */
+class_alias( SpecialPageFactory::class, 'MediaWiki\\Special\\SpecialPageFactory' );
