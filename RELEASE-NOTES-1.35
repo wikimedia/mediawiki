@@ -321,6 +321,8 @@ because of Phabricator reports.
 * Article::doEditContent, deprecated in 1.29, was removed. Instead, use
   WikiPage::doEditContent.
 * CommentStore::newKey, deprecated in 1.31, was removed.
+* Title::isValidMoveOperation, ::moveTo, and ::isValidMoveTarget, deprecated
+  in 1.25, were removed. Use the MovePage class and its methods instead.
 * …
 
 === Deprecations in 1.35 ===
@@ -489,6 +491,7 @@ because of Phabricator reports.
   - LogEventsList::userCanBitfield
   - LogEventsList::userCanViewLogType
   - LogPage::addEntry
+  - FileDeleteForm::doDelete
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
 * …
