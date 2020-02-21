@@ -1028,7 +1028,7 @@ function wfLogDBError( $text, array $context = [] ) {
 }
 
 /**
- * Throws a warning that $function is deprecated
+ * Logs a warning that $function is deprecated.
  *
  * @param string $function Function that is deprecated.
  * @param string|false $version Version of MediaWiki that the function
@@ -1039,7 +1039,8 @@ function wfLogDBError( $text, array $context = [] ) {
  *    caller. 2 = function that called the function that called
  *    wfDeprecated (Added in 1.20).
  *
- * @throws Exception If the MediaWiki version number is not a string or boolean.
+ * @throws Exception If the MediaWiki version number specified by $version is neither a string nor
+ *    false, an exception is thrown to indicate invalid arguments.
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
 	if ( is_string( $version ) || $version === false ) {
