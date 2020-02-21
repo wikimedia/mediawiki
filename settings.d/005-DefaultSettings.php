@@ -23,6 +23,7 @@ $GLOBALS['wgRestrictDisplayTitle'] = false; //Otherwise only titles that normali
 $GLOBALS['wgUrlProtocols'][] = "file://";
 $GLOBALS['wgVerifyMimeType'] = false;
 $GLOBALS['wgAllowJavaUploads'] = true;
+$GLOBALS['wgParserCacheType'] = CACHE_NONE;
 
 /*
 * Allow authentication extensions like "Auth_remoteuser", "SimpleSAMLphp" or
