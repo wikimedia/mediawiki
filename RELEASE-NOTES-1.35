@@ -204,6 +204,9 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
+* The default targets for the ISBN search from Special:BookSources in English
+  have been updated for better international suppport. They will now be
+  BetterWorldBooks.com, OpenLibrary.org and Worldcat.org.
 * …
 
 === Breaking changes in 1.35 ===
