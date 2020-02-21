@@ -376,7 +376,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * Get the request base parameters, omitting any defaults.
 	 *
 	 * @internal For use by ResourceLoaderStartUpModule only
-	 * @return array
+	 * @return string[]
 	 */
 	public function getReqBase() : array {
 		$reqBase = [];
