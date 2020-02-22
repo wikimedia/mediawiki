@@ -1,6 +1,5 @@
 <?php
 
-
 namespace MediaWiki\Rest\Handler;
 
 use Config;
