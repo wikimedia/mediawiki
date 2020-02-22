@@ -2386,7 +2386,13 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 */
 	public function quickUserCan( $action, $user = null ) {
-		return $this->userCan( $action, $user, false );
+		wfDeprecated( __METHOD__, '1.33' );
+		if ( !$user instanceof User ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		return MediaWikiServices::getInstance()->getPermissionManager()
+			->quickUserCan( $action, $user, $this );
 	}
 
 	/**
@@ -2405,6 +2411,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 */
 	public function userCan( $action, $user = null, $rigor = PermissionManager::RIGOR_SECURE ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		if ( !$user instanceof User ) {
 			global $wgUser;
 			$user = $wgUser;
