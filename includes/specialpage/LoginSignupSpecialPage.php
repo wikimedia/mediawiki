@@ -877,18 +877,18 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'validation-callback' => function ( $value, $alldata ) {
 						// if the user sets an email address as the user creation reason, confirm that
 						// that was their intent
-							if ( $value && Sanitizer::validateEmail( $value ) ) {
-								if ( $this->reasonValidatorResult !== null ) {
-									return $this->reasonValidatorResult;
-								}
-								$this->reasonValidatorResult = true;
-								if ( !AuthManager::singleton()->getAuthenticationSessionData( 'reason-retry', false ) ) {
-									AuthManager::singleton()->setAuthenticationSessionData( 'reason-retry', true );
-									$this->reasonValidatorResult = $this->msg( 'createacct-reason-confirm' );
-								}
+						if ( $value && Sanitizer::validateEmail( $value ) ) {
+							if ( $this->reasonValidatorResult !== null ) {
 								return $this->reasonValidatorResult;
 							}
-							return true;
+							$this->reasonValidatorResult = true;
+							if ( !AuthManager::singleton()->getAuthenticationSessionData( 'reason-retry', false ) ) {
+								AuthManager::singleton()->setAuthenticationSessionData( 'reason-retry', true );
+								$this->reasonValidatorResult = $this->msg( 'createacct-reason-confirm' );
+							}
+							return $this->reasonValidatorResult;
+						}
+						return true;
 					},
 					'placeholder-message' => 'createacct-reason-ph',
 				],
