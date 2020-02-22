@@ -1483,11 +1483,6 @@ return [
 			'logging-out-notify'
 		]
 	],
-	'mediawiki.page.startup' => [
-		// TODO: Keep for HTML cache compat until 2020-08-21.
-		'dependencies' => [ 'mediawiki.page.ready' ],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.page.watch.ajax' => [
 		'localBasePath' => "$IP/resources/src",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
