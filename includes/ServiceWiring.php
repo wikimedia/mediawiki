@@ -426,7 +426,7 @@ return [
 
 		$store = LocalisationCache::getStoreFromConf(
 			$conf, $services->getMainConfig()->get( 'CacheDirectory' ) );
-		$logger->debug( 'LocalisationCache: using store ' . get_class( $store ) );
+		$logger->debug( 'LocalisationCache using store ' . get_class( $store ) );
 
 		return new $conf['class'](
 			new ServiceOptions(
