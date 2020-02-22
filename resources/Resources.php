@@ -1495,7 +1495,8 @@ return [
 		]
 	],
 	'mediawiki.page.startup' => [
-		'scripts' => 'resources/src/mediawiki.page.startup.js',
+		// TODO: Keep for HTML cache compat until 2020-08-21.
+		'dependencies' => [ 'mediawiki.page.ready' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.page.watch.ajax' => [
