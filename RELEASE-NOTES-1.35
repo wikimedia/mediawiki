@@ -502,6 +502,8 @@ because of Phabricator reports.
 * The SpecialPageFactory class was moved from the MediaWiki\Special namespace
   to the MediaWiki\SpecialPage namespace. The old location remains as a
   deprecated alias.
+* Title::userCan and ::quickUserCan, deprecated in 1.33, were hard deprecated.
+  Instead, use PermissionManager::userCan and ::quickUserCan.
 * …
 
 === Other changes in 1.35 ===

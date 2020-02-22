@@ -99,6 +99,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkQuickPermissions
 	 */
 	public function testQuickPermissions() {
+		$this->hideDeprecated( 'Title::userCan' );
+		$this->hideDeprecated( 'Title::quickUserCan' );
+
 		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
 			getFormattedNsText( NS_PROJECT );
 
@@ -407,6 +410,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkSpecialsAndNSPermissions
 	 */
 	public function testSpecialsAndNSPermissions() {
+		$this->hideDeprecated( 'Title::userCan' );
+
 		$this->setUser( $this->userName );
 
 		$this->setTitle( NS_SPECIAL );
@@ -699,6 +704,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkPageRestrictions
 	 */
 	public function testPageRestrictions() {
+		$this->hideDeprecated( 'Title::quickUserCan' );
+
 		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
 			getFormattedNsText( NS_PROJECT );
 
@@ -791,6 +798,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkCascadingSourcesRestrictions
 	 */
 	public function testCascadingSourcesRestrictions() {
+		$this->hideDeprecated( 'Title::userCan' );
+
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->overrideUserPermissions( $this->user, [ "edit", "bogus" ] );
 
@@ -821,6 +830,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkActionPermissions
 	 */
 	public function testActionPermissions() {
+		$this->hideDeprecated( 'Title::userCan' );
+
 		$this->overrideUserPermissions( $this->user, [ "createpage" ] );
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->title->mTitleProtection['permission'] = '';
@@ -892,6 +903,9 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock
 	 */
 	public function testUserBlock() {
+		$this->hideDeprecated( 'Title::userCan' );
+		$this->hideDeprecated( 'Title::quickUserCan' );
+
 		$this->setMwGlobals( [
 			'wgEmailConfirmToEdit' => true,
 			'wgEmailAuthentication' => true,

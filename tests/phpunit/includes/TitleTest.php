@@ -295,6 +295,8 @@ class TitleTest extends MediaWikiTestCase {
 	 * @dataProvider dataWgWhitelistReadRegexp
 	 */
 	public function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
+		$this->hideDeprecated( 'Title::userCan' );
+
 		// $wgWhitelistReadRegexp must be an array. Since the provided test cases
 		// usually have only one regex, it is more concise to write the lonely regex
 		// as a string. Thus we cast to a [] to honor $wgWhitelistReadRegexp
