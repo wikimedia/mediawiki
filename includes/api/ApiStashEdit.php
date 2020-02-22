@@ -165,7 +165,7 @@ class ApiStashEdit extends ApiBase {
 	public function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {
 		$editStash = MediaWikiServices::getInstance()->getPageEditStash();
 
-		return $editStash->parseAndCache( $page, $content, $user, $summary );
+		return $editStash->parseAndCache( $page, $content, $user, $summary ?? '' );
 	}
 
 	public function getAllowedParams() {
@@ -190,6 +190,7 @@ class ApiStashEdit extends ApiBase {
 			],
 			'summary' => [
 				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_DFLT => ''
 			],
 			'contentmodel' => [
 				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
