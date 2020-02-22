@@ -41,6 +41,17 @@
 			$searchInput = $( '#searchInput' ),
 			previousSearchText = $searchInput.val();
 
+		function serializeObject( fields ) {
+			var i,
+				obj = {};
+
+			for ( i = 0; i < fields.length; i++ ) {
+				obj[ fields[ i ].name ] = fields[ i ].value;
+			}
+
+			return obj;
+		}
+
 		// Compute form data for search suggestions functionality.
 		function getFormData( context ) {
 			var $form, baseHref, linkParams;
@@ -52,7 +63,7 @@
 				baseHref = $form.attr( 'action' );
 				baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
 
-				linkParams = $form.serializeObject();
+				linkParams = serializeObject( $form.serializeArray() );
 
 				context.formData = {
 					textParam: context.data.$textbox.attr( 'name' ),

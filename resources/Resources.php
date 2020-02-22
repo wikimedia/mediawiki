@@ -828,7 +828,6 @@ return [
 		],
 		'dependencies' => [
 			'jquery.suggestions',
-			'jquery.getAttrs',
 			'mediawiki.api',
 			'user.options',
 		],
