@@ -449,6 +449,7 @@
 	"createacct-reason": "Reason (publicly logged)",
 	"createacct-reason-ph": "Why you are creating another account",
 	"createacct-reason-help": "Message shown in the account creation log",
+	"createacct-reason-confirm": "The reason you entered was an email address. If this is intended, please click \"create account\" again",
 	"createacct-imgcaptcha-help": "",
 	"createacct-submit": "Create your account",
 	"createacct-another-submit": "Create account",

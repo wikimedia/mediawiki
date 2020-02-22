@@ -49,6 +49,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $mLoaded = false;
 	protected $mLoadedRequest = false;
 	protected $mSecureLoginUrl;
+	private $reasonValidatorResult = null;
 
 	/** @var string */
 	protected $securityLevel;
@@ -873,6 +874,22 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'cssclass' => 'loginText',
 					'id' => 'wpReason',
 					'size' => '20',
+					'validation-callback' => function ( $value, $alldata ) {
+						// if the user sets an email address as the user creation reason, confirm that
+						// that was their intent
+							if ( $value && Sanitizer::validateEmail( $value ) ) {
+								if ( $this->reasonValidatorResult !== null ) {
+									return $this->reasonValidatorResult;
+								}
+								$this->reasonValidatorResult = true;
+								if ( !AuthManager::singleton()->getAuthenticationSessionData( 'reason-retry', false ) ) {
+									AuthManager::singleton()->setAuthenticationSessionData( 'reason-retry', true );
+									$this->reasonValidatorResult = $this->msg( 'createacct-reason-confirm' );
+								}
+								return $this->reasonValidatorResult;
+							}
+							return true;
+					},
 					'placeholder-message' => 'createacct-reason-ph',
 				],
 				'createaccount' => [
