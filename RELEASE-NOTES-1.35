@@ -158,6 +158,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * phpunit/php-invoker (dev-only).
   Removing this unbreaks development on Windows systems, in exchange for losing
   time limits in running unit tests.
+* The jquery.getAttrs module was removed.
 * …
 
 === Bug fixes in 1.35 ===
