@@ -1540,6 +1540,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::userCanBitfield
 	 */
 	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
+		$this->hideDeprecated( 'Revision::userCanBitfield' );
 		$title = Title::newFromText( $title );
 
 		$this->setGroupPermissions(

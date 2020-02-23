@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Class representing a row of the 'filearchive' table
@@ -578,13 +579,24 @@ class ArchivedFile {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
 	 * @param int $field
-	 * @param null|User $user User object to check, or null to use $wgUser
+	 * @param null|User $user User object to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {
 		$this->load();
-
 		$title = $this->getTitle();
-		return Revision::userCanBitfield( $this->deleted, $field, $user, $title ?: null );
+
+		if ( !$user ) {
+			// TODO check callers and hard deprecate
+			global $wgUser;
+			$user = $wgUser;
+		}
+
+		return RevisionRecord::userCanBitfield(
+			$this->deleted,
+			$field,
+			$user,
+			$title ?: null
+		);
 	}
 }
