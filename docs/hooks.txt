@@ -3581,8 +3581,7 @@ $props: (array|null) File properties, as returned by
   MessageSpecifier instance (you might want to use ApiMessage to provide machine
   -readable details for the API).
 
-'UploadVerifyFile': extra file verification, based on MIME type, etc. Preferred
-in most cases over UploadVerification.
+'UploadVerifyFile': extra file verification, based on MIME type, etc.
 $upload: (object) an instance of UploadBase, with all info about the upload
 $mime: (string) The uploaded file's MIME type, as detected by MediaWiki.
   Handlers will typically only apply for specific MIME types.
