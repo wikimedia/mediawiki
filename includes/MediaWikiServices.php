@@ -59,6 +59,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\User\UserNameUtils;
 use MessageCache;
 use MimeAnalyzer;
 use MWException;
@@ -1185,6 +1186,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUploadRevisionImporter() : UploadRevisionImporter {
 		return $this->getService( 'UploadRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return UserNameUtils
+	 */
+	public function getUserNameUtils() : UserNameUtils {
+		return $this->getService( 'UserNameUtils' );
 	}
 
 	/**
