@@ -1778,19 +1778,38 @@
 				 * @private
 				 */
 				work: function () {
-					var implementations, sourceModules,
-						batch = [],
-						q = 0;
+					var q, module, implementation,
+						storedImplementations = [],
+						storedNames = [],
+						requestNames = [],
+						batch = new StringSet();
 
-					// Appends a list of modules from the queue to the batch
-					for ( ; q < queue.length; q++ ) {
-						// Only load modules which are registered
-						if ( queue[ q ] in registry && registry[ queue[ q ] ].state === 'registered' ) {
-							// Prevent duplicate entries
-							if ( batch.indexOf( queue[ q ] ) === -1 ) {
-								batch.push( queue[ q ] );
-								// Mark registered modules as loading
-								registry[ queue[ q ] ].state = 'loading';
+					mw.loader.store.init();
+
+					// Iterate the list of requested modules, and do one of three things:
+					// - 1) Nothing (if already loaded or being loaded).
+					// - 2) Eval the cached implementation from the module store.
+					// - 3) Request from network.
+					q = queue.length;
+					while ( q-- ) {
+						module = queue[ q ];
+						// Only consider modules which are the initial 'registered' state
+						if ( module in registry && registry[ module ].state === 'registered' ) {
+							// Ignore duplicates
+							if ( !batch.has( module ) ) {
+								// Progress the state machine
+								registry[ module ].state = 'loading';
+								batch.add( module );
+
+								implementation = mw.loader.store.get( module );
+								if ( implementation ) {
+									// Module store enabled and contains this module/version
+									storedImplementations.push( implementation );
+									storedNames.push( module );
+								} else {
+									// Module store disabled or doesn't have this module/version
+									requestNames.push( module );
+								}
 							}
 						}
 					}
@@ -1802,50 +1821,32 @@
 					// which are already loaded.
 					queue = [];
 
-					if ( !batch.length ) {
-						return;
-					}
+					asyncEval( storedImplementations, function ( err ) {
+						var failed;
+						// Not good, the cached mw.loader.implement calls failed! This should
+						// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
+						// Depending on how corrupt the string is, it is likely that some
+						// modules' implement() succeeded while the ones after the error will
+						// never run and leave their modules in the 'loading' state forever.
+						mw.loader.store.stats.failed++;
 
-					mw.loader.store.init();
-					if ( mw.loader.store.enabled ) {
-						implementations = [];
-						sourceModules = [];
-						batch = batch.filter( function ( module ) {
-							var implementation = mw.loader.store.get( module );
-							if ( implementation ) {
-								implementations.push( implementation );
-								sourceModules.push( module );
-								return false;
-							}
-							return true;
+						// Since this is an error not caused by an individual module but by
+						// something that infected the implement call itself, don't take any
+						// risks and clear everything in this cache.
+						mw.loader.store.clear();
+
+						mw.trackError( 'resourceloader.exception', {
+							exception: err,
+							source: 'store-eval'
 						} );
-						asyncEval( implementations, function ( err ) {
-							var failed;
-							// Not good, the cached mw.loader.implement calls failed! This should
-							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
-							// Depending on how corrupt the string is, it is likely that some
-							// modules' implement() succeeded while the ones after the error will
-							// never run and leave their modules in the 'loading' state forever.
-							mw.loader.store.stats.failed++;
-
-							// Since this is an error not caused by an individual module but by
-							// something that infected the implement call itself, don't take any
-							// risks and clear everything in this cache.
-							mw.loader.store.clear();
-
-							mw.trackError( 'resourceloader.exception', {
-								exception: err,
-								source: 'store-eval'
-							} );
-							// Re-add the failed ones that are still pending back to the batch
-							failed = sourceModules.filter( function ( module ) {
-								return registry[ module ].state === 'loading';
-							} );
-							batchRequest( failed );
+						// For any failed ones, fallback to requesting from network
+						failed = storedNames.filter( function ( module ) {
+							return registry[ module ].state === 'loading';
 						} );
-					}
+						batchRequest( failed );
+					} );
 
-					batchRequest( batch );
+					batchRequest( requestNames );
 				},
 
 				/**
@@ -2236,17 +2237,16 @@
 					get: function ( module ) {
 						var key;
 
-						if ( !this.enabled ) {
-							return false;
+						if ( this.enabled ) {
+							key = getModuleKey( module );
+							if ( key in this.items ) {
+								this.stats.hits++;
+								return this.items[ key ];
+							}
+
+							this.stats.misses++;
 						}
 
-						key = getModuleKey( module );
-						if ( key in this.items ) {
-							this.stats.hits++;
-							return this.items[ key ];
-						}
-
-						this.stats.misses++;
 						return false;
 					},
 
@@ -2257,11 +2257,10 @@
 					 * @param {string} module Module name
 					 */
 					add: function ( module ) {
-						if ( !this.enabled ) {
-							return;
+						if ( this.enabled ) {
+							this.queue.push( module );
+							this.requestUpdate();
 						}
-						this.queue.push( module );
-						this.requestUpdate();
 					},
 
 					/**
