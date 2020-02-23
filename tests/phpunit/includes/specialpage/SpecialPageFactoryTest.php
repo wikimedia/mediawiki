@@ -73,6 +73,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @dataProvider specialPageProvider
 	 */
 	public function testGetPage( $spec, $shouldReuseInstance ) {
+		$this->hideDeprecated( 'SpecialPageFactory::getPage' );
 		$this->mergeMwGlobalArrayValue( 'wgSpecialPages', [ 'testdummy' => $spec ] );
 
 		$page = SpecialPageFactory::getPage( 'testdummy' );
@@ -86,6 +87,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers SpecialPageFactory::getNames
 	 */
 	public function testGetNames() {
+		$this->hideDeprecated( 'SpecialPageFactory::getNames' );
 		$this->mergeMwGlobalArrayValue( 'wgSpecialPages', [ 'testdummy' => SpecialAllPages::class ] );
 
 		$names = SpecialPageFactory::getNames();
@@ -97,6 +99,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers SpecialPageFactory::resolveAlias
 	 */
 	public function testResolveAlias() {
+		$this->hideDeprecated( 'SpecialPageFactory::resolveAlias' );
 		$this->setContentLang( 'de' );
 
 		list( $name, $param ) = SpecialPageFactory::resolveAlias( 'Spezialseiten/Foo' );
@@ -108,6 +111,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers SpecialPageFactory::getLocalNameFor
 	 */
 	public function testGetLocalNameFor() {
+		$this->hideDeprecated( 'SpecialPageFactory::getLocalNameFor' );
 		$this->setContentLang( 'de' );
 
 		$name = SpecialPageFactory::getLocalNameFor( 'Specialpages', 'Foo' );
@@ -118,6 +122,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers SpecialPageFactory::getTitleForAlias
 	 */
 	public function testGetTitleForAlias() {
+		$this->hideDeprecated( 'SpecialPageFactory::getTitleForAlias' );
 		$this->setContentLang( 'de' );
 
 		$title = SpecialPageFactory::getTitleForAlias( 'Specialpages/Foo' );
@@ -131,6 +136,8 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	public function testConflictResolution(
 		$test, $aliasesList, $alias, $expectedName, $expectedAlias, $expectWarnings
 	) {
+		$this->hideDeprecated( 'SpecialPageFactory::resolveAlias' );
+		$this->hideDeprecated( 'SpecialPageFactory::getLocalNameFor' );
 		$lang = clone MediaWikiServices::getInstance()->getContentLanguage();
 		$lang->mExtendedSpecialPageAliases = $aliasesList;
 		$this->setMwGlobals( 'wgSpecialPages',
@@ -255,6 +262,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	}
 
 	public function testGetAliasListRecursion() {
+		$this->hideDeprecated( 'SpecialPageFactory::getLocalNameFor' );
 		$called = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'SpecialPage_initList' => [
@@ -272,6 +280,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::getPage
 	 */
 	public function testSpecialPageCreationThatRequiresService() {
+		$this->hideDeprecated( 'SpecialPageFactory::getPage' );
 		$type = null;
 
 		$this->setMwGlobals( 'wgSpecialPages',
