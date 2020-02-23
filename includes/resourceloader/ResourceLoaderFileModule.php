@@ -632,7 +632,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $packageFiles ) {
 			// Extract the minimum needed:
 			// - The 'main' pointer (included as-is).
-			// - The 'files' array, simplied to only which files exist (the keys of
+			// - The 'files' array, simplified to only which files exist (the keys of
 			//   this array), and something that represents their non-file content.
 			//   For packaged files that reflect files directly from disk, the
 			//   'getFileHashes' method tracks their content already.
@@ -1217,11 +1217,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 					// Execute the versionCallback with the same arguments that
 					// would be given to the callback
-					$expanded['definitionSummary'] = ( $fileInfo['versionCallback'] )(
+					$callbackResult = ( $fileInfo['versionCallback'] )(
 						$context,
 						$this->getConfig(),
 						$expanded['callbackParam']
 					);
+					if ( $callbackResult instanceof ResourceLoaderFilePath ) {
+						$expanded['filePath'] = $callbackResult->getPath();
+					} else {
+						$expanded['definitionSummary'] = $callbackResult;
+					}
 					// Don't invoke 'callback' here as it may be expensive (T223260).
 					$expanded['callback'] = $fileInfo['callback'];
 				} else {
@@ -1313,7 +1318,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				}
 				unset( $fileInfo['callback'] );
 			}
-			if ( isset( $fileInfo['filePath'] ) ) {
+			// Only interpret 'filePath' if 'content' hasn't been set already.
+			// This can happen if 'versionCallback' provided 'filePath',
+			// while 'callback' provides 'content'. In that case both are set
+			// at this point. The 'filePath' from 'versionCallback' in that case is
+			// only to inform getDefinitionSummary().
+			if ( !isset( $fileInfo['content'] ) && isset( $fileInfo['filePath'] ) ) {
 				$localPath = $this->getLocalPath( $fileInfo['filePath'] );
 				if ( !file_exists( $localPath ) ) {
 					throw new RuntimeException( "Package file not found: '{$localPath}'" );

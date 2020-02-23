@@ -992,10 +992,32 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Uri' => [
-		'scripts' => 'resources/src/mediawiki.Uri/Uri.js',
-		'templates' => [
-			'strict.regexp' => 'resources/src/mediawiki.Uri/strict.regexp',
-			'loose.regexp' => 'resources/src/mediawiki.Uri/loose.regexp',
+		'localBasePath' => "$IP/resources/src/mediawiki.Uri",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.Uri",
+		'packageFiles' => [
+			'Uri.js',
+			[ 'name' => 'loose.regexp.js',
+				'callback' => function () {
+					global $IP;
+					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
+						file_get_contents( "$IP/resources/src/mediawiki.Uri/loose.regexp" )
+					);
+				},
+				'versionCallback' => function () {
+					return new ResourceLoaderFilePath( 'loose.regexp' );
+				},
+			],
+			[ 'name' => 'strict.regexp.js',
+				'callback' => function () {
+					global $IP;
+					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
+						file_get_contents( "$IP/resources/src/mediawiki.Uri/strict.regexp" )
+					);
+				},
+				'versionCallback' => function () {
+					return new ResourceLoaderFilePath( 'strict.regexp' );
+				},
+			],
 		],
 		'dependencies' => 'mediawiki.util',
 		'targets' => [ 'desktop', 'mobile' ],
