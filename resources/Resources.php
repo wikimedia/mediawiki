@@ -169,10 +169,6 @@ return [
 	'jquery.fullscreen' => [
 		'scripts' => 'resources/lib/jquery.fullscreen/jquery.fullscreen.js',
 	],
-	'jquery.getAttrs' => [
-		'scripts' => 'resources/src/jquery/jquery.getAttrs.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.highlightText' => [
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
 		'dependencies' => [
