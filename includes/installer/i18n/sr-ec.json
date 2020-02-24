@@ -50,7 +50,7 @@
 	"config-help-restart": "Желите ли да обришете све сачуване податке које сте унели и поново покренете процес инсталације?",
 	"config-restart": "Да, покрени поново",
 	"config-welcome": "=== Провера окружења ===\nСада ће се извршити основна провера како би се утврдило да ли је ово окружење погодно за инсталацију MediaWiki-ја.\nНе заборавите да укључите ове информације ако тражите подршку како завршити инсталацију.",
-	"config-sidebar": "* [https://www.mediawiki.org Почетна страна MediaWiki-ја]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Водич за администраторе]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ЧПП]",
+	"config-sidebar": "* [https://www.mediawiki.org Почетна страница MediaWiki-ја]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Водич за администраторе]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Честа питања]",
 	"config-env-good": "Окружење је проверено.\nМожете да инсталирате Медијавики.",
 	"config-env-bad": "Окружење је проверено.\nНе можете да инсталирате Медијавики.",
 	"config-env-php": "PHP $1 је инсталиран.",
@@ -270,5 +270,5 @@
 	"config-extension-not-found": "Није могуће пронаћи датотеку регистрације за додатак „$1”",
 	"config-extension-dependency": "Дошло је до грешке зависности при инсталирању додатка „$1”: $2",
 	"mainpagetext": "<strong>MediaWiki је инсталиран.</strong>",
-	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике] за информације о томе како користити вики софтвер.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Листа поставки конфигурације]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ЧПП]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о MediaWiki издањима]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Научите како да се борите против непожељног садржаја на свом викију]"
+	"mainpagedocfooter": "Погледајте [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Водич за кориснике] за више информација о томе како користити вики софтвер.\n\n== Увод ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Списак поставки конфигурације]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Честа питања о MediaWiki-ју]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Дописна листа о издањима софтвера MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Локализујте MediaWiki на ваш језик]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Сазнајте како да се борите против непожељног садржаја на свом викију]"
 }

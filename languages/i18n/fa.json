@@ -2503,6 +2503,7 @@
 	"sp-contributions-submit": "جستجو",
 	"sp-contributions-outofrange": "قادر به نمایش نتیجه‌ای نیست. محدوده IP درخواست شده بزرگتر از حد CIDR /$1 است.",
 	"whatlinkshere": "پیوندها به این صفحه",
+	"whatlinkshere-count": "$1 {{PLURAL:$1|مورد}} نمایش یافت.",
 	"whatlinkshere-title": "صفحه‌هایی که به «$1» پیوند دارند",
 	"whatlinkshere-page": "صفحه:",
 	"linkshere": "صفحه‌های زیر به '''$2''' پیوند دارند:",

@@ -445,6 +445,7 @@
 	"createacct-reason": "Razlog (javno zabeležen)",
 	"createacct-reason-ph": "Zakaj ustvarjate drug račun",
 	"createacct-reason-help": "Sporočilo, prikazano v dnevniku ustvarjanja računov",
+	"createacct-reason-confirm": "Kot razlog ste navedli e-poštni naslov. Če namerno, prosimo ponovno kliknite »Ustvari račun«.",
 	"createacct-submit": "Ustvarite svoj račun",
 	"createacct-another-submit": "Ustvarite račun",
 	"createacct-continue-submit": "Nadaljuj z ustvarjanjem računa",

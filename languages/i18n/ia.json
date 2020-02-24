@@ -444,6 +444,7 @@
 	"createacct-reason": "Motivo (visibile publicamente)",
 	"createacct-reason-ph": "Proque crea tu un altere conto?",
 	"createacct-reason-help": "Message pro le registro de creation de contos",
+	"createacct-reason-confirm": "Le motivo que tu ha scribite es un adresse de e-mail. Si isto es intentional, per favor re-clicca sur \"Crear conto\".",
 	"createacct-submit": "Crear tu conto",
 	"createacct-another-submit": "Crear conto",
 	"createacct-continue-submit": "Continuar creation de conto",

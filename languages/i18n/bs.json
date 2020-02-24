@@ -1332,6 +1332,7 @@
 	"rcfilters-clear-all-filters": "Ukloni sve filtere",
 	"rcfilters-show-new-changes": "Prikaži najnovije izmjene",
 	"rcfilters-search-placeholder": "Filtriraj nedavne izmjene (prelistajte ili počnite kucati)",
+	"rcfilters-search-placeholder-mobile": "Filteri",
 	"rcfilters-invalid-filter": "Neispravan filter",
 	"rcfilters-empty-filter": "Nema aktivnih filtera. Prikazani su svi doprinosi.",
 	"rcfilters-filterlist-title": "Filteri",

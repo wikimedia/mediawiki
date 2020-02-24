@@ -120,7 +120,8 @@
 			"Tks4Fish",
 			"Luig",
 			"Piotrex43",
-			"Waldyrious"
+			"Waldyrious",
+			"Dr03ramos"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -553,6 +554,7 @@
 	"createacct-reason": "Motivo (entrado publicamente)",
 	"createacct-reason-ph": "Por que você está criando outra conta",
 	"createacct-reason-help": "Mensagem mostrada no registro de criação de conta",
+	"createacct-reason-confirm": "O motivo pelo qual você inseriu um endereço de e-mail. Se foi proposital, clique \"criar conta\" novamente",
 	"createacct-submit": "Crie sua conta",
 	"createacct-another-submit": "Criar conta",
 	"createacct-continue-submit": "Continuar criação de conta",

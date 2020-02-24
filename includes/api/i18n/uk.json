@@ -17,7 +17,8 @@
 			"Zoranzoki21",
 			"Vlad5250",
 			"Movses",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Alexander Yukal"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на сторінці [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Помилки й попередження]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].</p>",
@@ -1537,6 +1538,7 @@
 	"apierror-allpages-generator-redirects": "Використовуйте <kbd>gapfilterredir=nonredirects</kbd> замість <var>redirects</var> при використанні <kbd>allpages</kbd> як генератора.",
 	"apierror-appendnotsupported": "Не вдається додавати до сторінок, що використовують контентну модель $1.",
 	"apierror-articleexists": "Статтю, яку Ви намагались створити, вже було створено.",
+	"apierror-assertanonfailed": "Перевірка сумісності на неавторизованого користувача, невдала",
 	"apierror-assertbotfailed": "Твердження, що користувач має право <code>bot</code>, виявилося хибним.",
 	"apierror-assertnameduserfailed": "Твердження, що ім'я користувача — «$1», виявилося хибним.",
 	"apierror-assertuserfailed": "Твердження, що користувач перебуває в системі, виявилося хибним.",

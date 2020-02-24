@@ -530,6 +530,7 @@
 	"createacct-reason": "Reden (door iedereen te zien)",
 	"createacct-reason-ph": "Waarom u een ander account aanmaakt",
 	"createacct-reason-help": "Weergegeven bericht in het logbestand van aangemaakte gebruikers",
+	"createacct-reason-confirm": "De opgegeven reden is een e-mail adres. Klik nogmaals op \"account aanmaken\" als dit uw bedoeling was",
 	"createacct-submit": "Uw account aanmaken",
 	"createacct-another-submit": "Account aanmaken",
 	"createacct-continue-submit": "Doorgaan met het aanmaken van een account",

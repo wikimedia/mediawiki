@@ -14,7 +14,8 @@
 			"J. 'mach' wust",
 			"Macofe",
 			"Marcell0",
-			"L*E*D"
+			"L*E*D",
+			"Doc Taxon"
 		]
 	},
 	"tog-hideminor": "Kleine Änderungen in den «Letzten Änderungen» ausblenden",
@@ -372,5 +373,6 @@
 	"feedback-thanks": "Vielen Dank. Deine Rückmeldung wurde auf der Seite «[$2 $1]» gespeichert.",
 	"searchsuggest-search": "{{SITENAME}} durchsuchen",
 	"api-error-unknown-warning": "Unbekannte Warnung: «$1»",
-	"api-error-unknownerror": "Unbekannter Fehler: «$1»"
+	"api-error-unknownerror": "Unbekannter Fehler: «$1»",
+	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>."
 }

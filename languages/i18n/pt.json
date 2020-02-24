@@ -82,7 +82,8 @@
 			"CaiusSPQR",
 			"Waldyrious",
 			"Mansil alfalb",
-			"Dianakc"
+			"Dianakc",
+			"Albertoleoncio"
 		]
 	},
 	"tog-underline": "Sublinhar hiperligações:",
@@ -2543,6 +2544,7 @@
 	"sp-contributions-concurrency-user": "Desculpe, estão a ser efetuados demasiados pedidos da sua conta de utilizador. Por favor, tente novamente mais tarde.",
 	"sp-contributions-concurrency-ip": "Desculpe, estão a ser efetuados demasiados pedidos a partir do seu endereço IP. Por favor, tente novamente mais tarde.",
 	"whatlinkshere": "Páginas afluentes",
+	"whatlinkshere-count": "{{PLURAL:$1|Exibido|Exibidos}} $1 {{PLURAL:$1|item|itens}}.",
 	"whatlinkshere-title": "Páginas com hiperligações para \"$1\"",
 	"whatlinkshere-page": "Página:",
 	"linkshere": "As seguintes páginas têm hiperligações para <strong>$2</strong>:",
