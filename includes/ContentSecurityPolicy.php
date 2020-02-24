@@ -157,7 +157,7 @@ class ContentSecurityPolicy {
 
 		$cssSrc = false;
 		$imgSrc = false;
-		$scriptSrc = [ "'unsafe-eval'", "'self'" ];
+		$scriptSrc = [ "'unsafe-eval'", "blob:", "'self'" ];
 		if ( !isset( $policyConfig['useNonces'] ) || $policyConfig['useNonces'] ) {
 			$scriptSrc[] = "'nonce-" . $this->getNonce() . "'";
 		}
