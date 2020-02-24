@@ -189,7 +189,9 @@ class SpecialTags extends SpecialPage {
 			$disp .= ' ';
 			$editLink = $linkRenderer->makeLink(
 				$this->msg( "tag-$tag" )->inContentLanguage()->getTitle(),
-				$this->msg( 'tags-edit' )->text()
+				$this->msg( 'tags-edit' )->text(),
+				[],
+				[ 'action' => 'edit' ]
 			);
 			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
 		}
@@ -201,7 +203,9 @@ class SpecialTags extends SpecialPage {
 			$desc .= ' ';
 			$editDescLink = $linkRenderer->makeLink(
 				$this->msg( "tag-$tag-description" )->inContentLanguage()->getTitle(),
-				$this->msg( 'tags-edit' )->text()
+				$this->msg( 'tags-edit' )->text(),
+				[],
+				[ 'action' => 'edit' ]
 			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
