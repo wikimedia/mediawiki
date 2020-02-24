@@ -512,6 +512,9 @@ because of Phabricator reports.
   deprecated alias.
 * Title::userCan and ::quickUserCan, deprecated in 1.33, were hard deprecated.
   Instead, use PermissionManager::userCan and ::quickUserCan.
+* All methods of the old SpecialPageFactory, deprecated in 1.32, were hard
+  deprecated. Instead, get a SpecialPageFactory from MediaWikiServices and
+  use its methods.
 * …
 
 === Other changes in 1.35 ===

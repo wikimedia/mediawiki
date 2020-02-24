@@ -33,32 +33,39 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialPageFactory {
 	public static function getNames() : array {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()->getNames();
 	}
 
 	public static function resolveAlias( $alias ) : array {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()->resolveAlias( $alias );
 	}
 
 	public static function exists( $name ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()->exists( $name );
 	}
 
 	public static function getPage( $name ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()->getPage( $name );
 	}
 
 	public static function getUsablePages( User $user = null ) : array {
+		wfDeprecated( __METHOD__, '1.32' );
 		global $wgUser;
 		$user = $user ?? $wgUser;
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()->getUsablePages( $user );
 	}
 
 	public static function getRegularPages() : array {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()->getRegularPages();
 	}
 
 	public static function getRestrictedPages( User $user = null ) : array {
+		wfDeprecated( __METHOD__, '1.32' );
 		global $wgUser;
 		$user = $user ?? $wgUser;
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()->getRestrictedPages( $user );
@@ -67,6 +74,7 @@ class SpecialPageFactory {
 	public static function executePath( Title &$title, IContextSource &$context, $including = false,
 		LinkRenderer $linkRenderer = null
 	) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()
 			->executePath( $title, $context, $including, $linkRenderer );
 	}
@@ -74,16 +82,19 @@ class SpecialPageFactory {
 	public static function capturePath(
 		Title $title, IContextSource $context, LinkRenderer $linkRenderer = null
 	) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()
 			->capturePath( $title, $context, $linkRenderer );
 	}
 
 	public static function getLocalNameFor( $name, $subpage = false ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()
 			->getLocalNameFor( $name, $subpage );
 	}
 
 	public static function getTitleForAlias( $alias ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()
 			->getTitleForAlias( $alias );
 	}
@@ -92,5 +103,6 @@ class SpecialPageFactory {
 	 * No-op since 1.32, call overrideMwServices() instead
 	 */
 	public static function resetList() {
+		wfDeprecated( __METHOD__, '1.32' );
 	}
 }
