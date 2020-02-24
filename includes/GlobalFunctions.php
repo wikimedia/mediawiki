@@ -912,24 +912,12 @@ function wfMatchesDomainList( $url, $domains ) {
  */
 function wfDebug( $text, $dest = 'all', array $context = [] ) {
 	global $wgDebugRawPage, $wgDebugLogPrefix;
-	global $wgDebugTimestamps;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
 	}
 
 	$text = trim( $text );
-
-	if ( $wgDebugTimestamps ) {
-		$context['seconds_elapsed'] = sprintf(
-			'%6.4f',
-			microtime( true ) - $_SERVER['REQUEST_TIME_FLOAT']
-		);
-		$context['memory_used'] = sprintf(
-			'%5.1fM',
-			( memory_get_usage( true ) / ( 1024 * 1024 ) )
-		);
-	}
 
 	if ( $wgDebugLogPrefix !== '' ) {
 		$context['prefix'] = $wgDebugLogPrefix;
