@@ -30,7 +30,6 @@ return [
 		'dependencies' => [
 			// Test runner configures QUnit but can't have it as dependency,
 			// see SpecialJavaScriptTest::viewQUnit.
-			'jquery.getAttrs',
 			'mediawiki.page.ready',
 			'mediawiki.page.startup',
 			'test.sinonjs',

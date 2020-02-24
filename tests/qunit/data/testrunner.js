@@ -259,9 +259,13 @@
 					timers = $.timers.length;
 					// eslint-disable-next-line no-jquery/no-each-util
 					$.each( $.timers, function ( i, timer ) {
-						var node = timer.elem;
+						var node = timer.elem, attribs = {};
+						// eslint-disable-next-line no-jquery/no-each-util
+						$.each( node.attributes, function ( i, attrib ) {
+							attribs[ attrib.name ] = attrib.value;
+						} );
 						mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +
-							mw.html.element( node.nodeName.toLowerCase(), $( node ).getAttrs() )
+							mw.html.element( node.nodeName.toLowerCase(), attribs )
 						);
 					} );
 					// Force animations to stop to give the next test a clean start
@@ -305,7 +309,6 @@
 	QUnit.whenPromisesComplete = function () {
 		var altPromises = [];
 
-		// When we have ES6 support we'll be able to use Array.from here
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( arguments, function ( i, arg ) {
 			var alt = $.Deferred();
@@ -328,26 +331,29 @@
 	 * @return {Object|string} Plain JavaScript value representing the node.
 	 */
 	function getDomStructure( node ) {
-		var $node, $children, processedChildren, i, len, el;
-		$node = $( node );
+		var processedChildren, attribs;
 		if ( node.nodeType === Node.ELEMENT_NODE ) {
-			$children = $node.contents();
 			processedChildren = [];
-			for ( i = 0, len = $children.length; i < len; i++ ) {
-				el = $children[ i ];
+			$( node ).contents().each( function ( i, el ) {
 				if ( el.nodeType === Node.ELEMENT_NODE || el.nodeType === Node.TEXT_NODE ) {
 					processedChildren.push( getDomStructure( el ) );
 				}
-			}
+			} );
+
+			attribs = {};
+			// eslint-disable-next-line no-jquery/no-each-util
+			$.each( node.attributes, function ( i, attrib ) {
+				attribs[ attrib.name ] = attrib.value;
+			} );
 
 			return {
 				tagName: node.tagName,
-				attributes: $node.getAttrs(),
+				attributes: attribs,
 				contents: processedChildren
 			};
 		} else {
 			// Should be text node
-			return $node.text();
+			return node.textContent;
 		}
 	}
 
