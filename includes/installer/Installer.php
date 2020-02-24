@@ -668,9 +668,7 @@ abstract class Installer {
 		# posix_getegid() *not* getmygid() because we want the group of the webserver,
 		# not whoever owns the current script.
 		$gid = posix_getegid();
-		$group = posix_getpwuid( $gid )['name'];
-
-		return $group;
+		return posix_getpwuid( $gid )['name'] ?? null;
 	}
 
 	/**
