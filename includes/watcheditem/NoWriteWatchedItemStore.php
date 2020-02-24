@@ -105,11 +105,15 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function addWatch( UserIdentity $user, LinkTarget $target ) {
+	public function addWatch( UserIdentity $user, LinkTarget $target, ?string $expiry = null ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function addWatchBatchForUser( UserIdentity $user, array $targets ) {
+	public function addWatchBatchForUser(
+		UserIdentity $user,
+		array $targets,
+		?string $expiry = null
+	) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 

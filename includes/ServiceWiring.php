@@ -1063,7 +1063,8 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getMainConfig()->get( 'UpdateRowsPerQuery' ),
 			$services->getNamespaceInfo(),
-			$services->getRevisionLookup()
+			$services->getRevisionLookup(),
+			$services->getMainConfig()->get( 'WatchlistExpiry' )
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 

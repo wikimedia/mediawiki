@@ -3735,12 +3735,19 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param Title $title Title of the article to look at
 	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 */
-	public function addWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+	public function addWatch(
+		$title,
+		$checkRights = self::CHECK_USER_RIGHTS,
+		?string $expiry = null
+	) {
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
 			MediaWikiServices::getInstance()->getWatchedItemStore()->addWatchBatchForUser(
 				$this,
-				[ $title->getSubjectPage(), $title->getTalkPage() ]
+				[ $title->getSubjectPage(), $title->getTalkPage() ],
+				$expiry
 			);
 		}
 		$this->invalidateCache();
