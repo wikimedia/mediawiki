@@ -1019,11 +1019,16 @@ class Revision implements IDBAccessObject {
 	 * @param int $field One of self::DELETED_TEXT,
 	 *                              self::DELETED_COMMENT,
 	 *                              self::DELETED_USER
-	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @param User|null $user User object to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {
-		return self::userCanBitfield( $this->getVisibility(), $field, $user );
+		if ( !$user ) {
+			// TODO check callers and hard deprecate
+			global $wgUser;
+			$user = $wgUser;
+		}
+		return RevisionRecord::userCanBitfield( $this->getVisibility(), $field, $user );
 	}
 
 	/**
@@ -1043,9 +1048,9 @@ class Revision implements IDBAccessObject {
 	public static function userCanBitfield( $bitfield, $field, User $user = null,
 		Title $title = null
 	) {
-		global $wgUser;
-
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( !$user ) {
+			global $wgUser;
 			$user = $wgUser;
 		}
 

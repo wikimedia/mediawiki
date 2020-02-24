@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Class to represent a file in the oldimage table
@@ -353,13 +354,22 @@ class OldLocalFile extends LocalFile {
 	 * field of this image file, if it's marked as deleted.
 	 *
 	 * @param int $field
-	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @param User|null $user User object to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	function userCan( $field, User $user = null ) {
 		$this->load();
 
-		return Revision::userCanBitfield( $this->deleted, $field, $user );
+		if ( !$user ) {
+			// TODO check callers and hard deprecate
+			global $wgUser;
+			$user = $wgUser;
+		}
+		return RevisionRecord::userCanBitfield(
+			$this->deleted,
+			$field,
+			$user
+		);
 	}
 
 	/**

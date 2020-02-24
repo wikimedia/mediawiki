@@ -495,7 +495,8 @@ because of Phabricator reports.
 * AuthManager::singleton() has been deprecated. Use
   MediaWikiServices::getInstance()->getAuthManager() instead.
 * The following functions all accept an optional user parameter. Not passing a
-  user is deprecated, and support for not passing a user will be remove in 1.36:
+  user is hard deprecated, and support for calling them without passing a user
+  will be removed in 1.36:
   - Title::getNotificationTimestamp
   - Revision::newNullRevision
   - WikiPage::insertProtectNullRevision
@@ -505,6 +506,10 @@ because of Phabricator reports.
   - LogEventsList::userCanViewLogType
   - LogPage::addEntry
   - FileDeleteForm::doDelete
+  Additionally, not passing a user to the following is soft deprecated:
+  - Revision::userCan
+  - ArchivedFile::userCan
+  - OldLocalFile::userCan
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
 * The SpecialPageFactory class was moved from the MediaWiki\Special namespace
@@ -515,6 +520,9 @@ because of Phabricator reports.
 * All methods of the old SpecialPageFactory, deprecated in 1.32, were hard
   deprecated. Instead, get a SpecialPageFactory from MediaWikiServices and
   use its methods.
+* Revision::userCanBitfield was soft deprecated along with the whole Revision
+  class in 1.31. ::userCanBitfield was individually hard deprecated; use
+  RevisionRecord::userCanBitfield instead.
 * …
 
 === Other changes in 1.35 ===
