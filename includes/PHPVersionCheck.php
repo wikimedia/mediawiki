@@ -78,7 +78,7 @@ class PHPVersionCheck {
 	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
-		$minimumVersion = '7.2.9';
+		$minimumVersion = '7.2.22';
 
 		if ( version_compare( PHP_VERSION, $minimumVersion ) < 0 ) {
 			$shortText = "MediaWiki $this->mwVersion requires at least PHP version $minimumVersion; "
