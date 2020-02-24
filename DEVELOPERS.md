@@ -21,7 +21,7 @@ and on Wikimedia Phabricator at [#MediaWiki-Docker][mw-docker-phab].
 
 [mw-docker]: https://www.mediawiki.org/wiki/Docker
 [mw-docker-recipes]: https://www.mediawiki.org/wiki/Docker/Recipes
-[mw-docker-phab]: https://phabricator.wikimedia.org/project/profile/3094/)
+[mw-docker-phab]: https://phabricator.wikimedia.org/project/profile/3094/
 [freenode]: https://freenode.net/
 
 ### Requirements
