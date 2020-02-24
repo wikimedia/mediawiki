@@ -217,8 +217,8 @@ mustache:
 
 oojs:
   type: tar
-  src: https://registry.npmjs.org/oojs/-/oojs-3.0.0.tgz
-  integrity: sha256-cNQ5UOHczNGzfEvm6jKM5zcmg3tqFxnJ2UnEOSt9/1M=
+  src: https://registry.npmjs.org/oojs/-/oojs-3.0.1.tgz
+  integrity: sha256-bfrCCMyCsIssXuGHpb1FCejo8dwkOEuV5bu/ujRDkpI=
   dest:
     package/dist/oojs.jquery.js:
     package/AUTHORS.txt:
