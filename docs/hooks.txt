@@ -857,6 +857,14 @@ $title: title of the template
 $parser: Parser object
 &$ig: ImageGallery object
 
+'BeforeResetNotificationTimestamp': Before the notification timestamp of a
+watched item is reset.
+&$userObj: User object
+&$titleObj: Title object
+$force: If this is the string "force", then the reset will be done even if the
+  page is not watched.
+&$oldid: The revision ID
+
 'BeforeWelcomeCreation': Before the welcomecreation message is displayed to a
 newly created user.
 &$welcome_creation_msg: MediaWiki message name to display on the welcome screen
@@ -2247,6 +2255,13 @@ $title: Title on which the action will be performed
 $user: Context user
 $request: Context request
 $mediaWiki: The $mediawiki object
+
+'MediaWikiPHPUnitTest::startTest': Before each PHPUnit test starts
+$test: PHPUnit\Framework\Test object
+
+'MediaWikiPHPUnitTest::endTest': After each PHPUnit test completes
+$test: PHPUnit\Framework\Test object
+$time: The execution time in seconds
 
 'MediaWikiServices': Called when a global MediaWikiServices instance is
 initialized. Extensions may use this to define, replace, or wrap services.
