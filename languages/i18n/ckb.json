@@ -2011,6 +2011,7 @@
 	"sp-contributions-hideminor": "شاردنەوەی دەستکارییە بچووکەکان",
 	"sp-contributions-submit": "بگەڕێ",
 	"whatlinkshere": "بەستەرەکان بە ئێرەوە",
+	"whatlinkshere-count": "$1 دانە {{PLURAL:$1|پیشان درا|پیشان دران}}.",
 	"whatlinkshere-title": "ئەو پەڕانەی بەستەریان ھەیە بۆ «$1»",
 	"whatlinkshere-page": "پەڕە:",
 	"linkshere": "پەڕەکانی ژێرەوە بەستەر دراون بۆ <strong>$2</strong>:",

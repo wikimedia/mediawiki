@@ -40,7 +40,8 @@
 			"DmitTrix",
 			"Марио",
 			"Katunchik",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Alexander Yukal"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -49,7 +50,7 @@
 	"apihelp-main-param-maxlag": "Значение максимального отставания может использоваться, когда MediaWiki установлена на кластер из реплицируемых баз данных. Чтобы избежать ухудшения ситуации с отставанием репликации сайта, этот параметр может заставить клиента ждать, когда задержка репликации станет ниже указанного значения. В случае чрезмерной задержки возвращается код ошибки «<samp>maxlag</samp>» с сообщением «<samp>Waiting for $host: $lag seconds lagged</samp>».<br>См. подробнее на странице с описанием [[mw:Special:MyLanguage/Manual:Maxlag_parameter|Manual: параметра Maxlag]].",
 	"apihelp-main-param-smaxage": "Установить значение HTTP-заголовка Cache-Control <code>s-maxage</code> в заданное число секунд. Ошибки никогда не кэшируются.",
 	"apihelp-main-param-maxage": "Установить значение HTTP-заголовка Cache-Control <code>max-age</code> в заданное число секунд. Ошибки никогда не кэшируются.",
-	"apihelp-main-param-assert": "Проверить, что участник авторизован, если задано <kbd>user</kbd>, или что он имеет права бота, если задано <kbd>bot</kbd>.",
+	"apihelp-main-param-assert": "Проверить, авторизован ли участник, если задано <kbd>user</kbd>, <em>not</em> авторизирован если задано <kbd>anon</kbd> или что он имеет права бота, если задано <kbd>bot</kbd>.",
 	"apihelp-main-param-assertuser": "Проверить, что ник текущего участника совпадает с заданным.",
 	"apihelp-main-param-requestid": "Любое заданное здесь значение будет включено в ответ. Может быть использовано для различения запросов.",
 	"apihelp-main-param-servedby": "Включить в результаты имя хоста, обработавшего запрос.",
@@ -1532,6 +1533,7 @@
 	"apierror-allpages-generator-redirects": "Используйте <kbd>gaifilterredir=nonredirects</kbd> вместо <var>redirects</var> при использовании <kbd>allpages</kbd> в качестве генератора.",
 	"apierror-appendnotsupported": "Невозможно дописать страницы, использующие модель содержимого $1.",
 	"apierror-articleexists": "Статья, которую вы пытаетесь создать, уже создана.",
+	"apierror-assertanonfailed": "Проверка того, что пользователь не авторизирован, не удалась",
 	"apierror-assertbotfailed": "Проверка того, что у участника есть право <code>bot</code>, провалилась.",
 	"apierror-assertnameduserfailed": "Проверка того, что участник — «$1», провалилась.",
 	"apierror-assertuserfailed": "Проверка того, что участник авторизован, провалилась.",

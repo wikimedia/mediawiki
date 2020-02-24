@@ -104,7 +104,8 @@
 			"Tobi 406",
 			"Ferdinand0101",
 			"Schmackes",
-			"Lucas Werkmeister"
+			"Lucas Werkmeister",
+			"Doc Taxon"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -532,6 +533,7 @@
 	"createacct-reason": "Begründung (öffentlich geloggt)",
 	"createacct-reason-ph": "Warum erstellst du ein anderes Benutzerkonto?",
 	"createacct-reason-help": "Im Neuanmeldungs-Logbuch angezeigte Nachricht",
+	"createacct-reason-confirm": "Der eingegebene Grund war eine E-Mail-Adresse. Wenn dies beabsichtigt ist, klicke bitte erneut auf \"Konto erstellen\".",
 	"createacct-submit": "Benutzerkonto erstellen",
 	"createacct-another-submit": "Benutzerkonto erstellen",
 	"createacct-continue-submit": "Benutzerkontenerstellung fortfahren",
@@ -3931,7 +3933,7 @@
 	"specialmute-header": "Bitte wähle deine Stummschaltungseinstellungen für Benutzer <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Der gesuchte Benutzername konnte nicht gefunden werden.",
 	"specialmute-error-no-options": "Stummschaltungs-Funktionen sind nicht verfügbar. Gründe dafür könnten sein: du hast deine E-Mail-Adresse nicht bestätigt oder ein Administrator hat die E-Mail-Funktionen deaktiviert oder eine E-Mail-Blacklist in diesem Wiki eingerichtet.",
-	"specialmute-email-footer": "Um deine E-Mail Einstellungen für Benutzer {{BIDI:$2}} zu verwalten besuche bitte <$1>.",
+	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>.",
 	"specialmute-login-required": "Bitte melde dich an um deine Stummschaltungseinstellungen zu ändern.",
 	"mute-preferences": "Stummschaltungs-Einstellungen",
 	"revid": "Version $1",

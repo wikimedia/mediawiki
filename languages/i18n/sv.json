@@ -2537,7 +2537,7 @@
 	"sp-contributions-concurrency-user": "Tyvärr, för många begäran görs från ditt användarkonto. Försök igen senare.",
 	"sp-contributions-concurrency-ip": "Tyvärr, för många begäran görs från din IP-adress. Försök igen senare.",
 	"whatlinkshere": "Vad som länkar hit",
-	"whatlinkshere-count": "Visade $1 {{PLURAL:$1|objekt}}.",
+	"whatlinkshere-count": "Visade $1 {{PLURAL:$1|sida|sidor}}.",
 	"whatlinkshere-title": "Sidor som länkar till \"$1\"",
 	"whatlinkshere-page": "Sida:",
 	"linkshere": "Följande sidor länkar till <strong>$1</strong>:",

@@ -38,7 +38,7 @@
 	"apihelp-main-param-errorlang": "De voor waarschuwingen en fouten te gebruiken taal. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> met <kbd>siprop=languages</kbd> geeft een lijst van taalcodes, of stel <kbd>content</kbd> in om de taal van de inhoud van deze wiki te gebruiken, of stel <kbd>uselang</kbd> in om dezelfde waarde als de parameter <var>uselang</var> te gebruiken.",
 	"apihelp-main-param-errorsuselocal": "Indien ingesteld maken foutmeldingen gebruik van lokaal-aangepaste berichten in de {{ns:MediaWiki}}-naamruimte.",
 	"apihelp-block-summary": "Gebruiker blokkeren.",
-	"apihelp-block-param-user": "Te blokkeren gebruikersnaam, IP-adres of IP-range. Kan niet in combinatie met <var>$1userid</var> gebruikt worden.",
+	"apihelp-block-param-user": "Te blokkeren gebruiker.",
 	"apihelp-block-param-userid": "Te blokkeren gebruikers-ID. Kan niet in combinatie met <var>$1user</var> gebruikt worden.",
 	"apihelp-block-param-expiry": "Vervaldatum. Kan relatief zijn (bijv. <kbd>5 months</kbd> of <kbd>2 weeks</kbd>) of absoluut (bijv. <kbd>2014-09-18T12:34:56Z</kbd>). Indien ingesteld op <kbd>infinite</kbd>, <kbd>indefinite</kbd> of <kbd>never</kbd> zal de blokkade nooit verlopen.",
 	"apihelp-block-param-reason": "Reden voor blokkade.",

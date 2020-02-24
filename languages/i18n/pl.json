@@ -533,6 +533,7 @@
 	"createacct-reason": "Powód (podawany publicznie)",
 	"createacct-reason-ph": "Dlaczego zakładasz kolejne konto",
 	"createacct-reason-help": "Komunikat wyświetlany w rejestrze tworzenia kont",
+	"createacct-reason-confirm": "Podany przez ciebie powód to adres e-mail. Jeśli jest to zamierzone, kliknij „utwórz konto” ponownie",
 	"createacct-submit": "Utwórz konto",
 	"createacct-another-submit": "Utwórz konto",
 	"createacct-continue-submit": "Kontynuuj tworzenie konta",

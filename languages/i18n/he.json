@@ -471,6 +471,7 @@
 	"createacct-reason": "סיבה (שתופיע ביומן ציבורי)",
 	"createacct-reason-ph": "סיבה ליצירת חשבון נוסף",
 	"createacct-reason-help": "הודעה שמוצגת ביומן רישום המשתמשים",
+	"createacct-reason-confirm": "הסיבה שהכנסת הייתה כתובת דואר אלקטרוני. אם זה היה מכוון, נא ללחוץ שוב על \"יצירת חשבון\".",
 	"createacct-submit": "יצירת החשבון שלך",
 	"createacct-another-submit": "יצירת חשבון",
 	"createacct-continue-submit": "המשך יצירת החשבון",

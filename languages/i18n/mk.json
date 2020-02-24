@@ -456,6 +456,7 @@
 	"createacct-reason": "Причина (јавно заведена)",
 	"createacct-reason-ph": "Зошто правите друга сметка",
 	"createacct-reason-help": "Порака што се прикажува во дневникот на создадени сметки",
+	"createacct-reason-confirm": "Внесената причина е е-поштенска адреса. Ако ова е намерно, тогаш повторно стиснете на „создај сметка“",
 	"createacct-submit": "Направи ја сметката",
 	"createacct-another-submit": "Создај сметка",
 	"createacct-continue-submit": "Продолжи со создавањето на сметката",

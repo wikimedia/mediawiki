@@ -931,7 +931,7 @@
 	"history-feed-item-nocomment": "$1 il $2",
 	"history-feed-empty": "La pagina richiesta non esiste; potrebbe essere stata cancellata dal sito o rinominata. Verificare con la [[Special:Search|pagina di ricerca]] se vi sono nuove pagine.",
 	"history-edit-tags": "Modifica le etichette delle versioni selezionate",
-	"rev-deleted-comment": "(Oggetto della modifica rimosso)",
+	"rev-deleted-comment": "(oggetto della modifica nascosto)",
 	"rev-deleted-user": "(nome utente rimosso)",
 	"rev-deleted-event": "(dettagli del registro rimossi)",
 	"rev-deleted-user-contribs": "[nome utente o indirizzo IP rimosso - edit nascosto dalla cronologia]",
