@@ -15,9 +15,8 @@ class MediaWikiVersionFetcherTest extends MediaWikiTestCase {
 	use MediaWikiCoversValidator;
 
 	public function testReturnsResult() {
-		global $wgVersion;
 		$versionFetcher = new MediaWikiVersionFetcher();
-		$this->assertSame( $wgVersion, $versionFetcher->fetchVersion() );
+		$this->assertSame( MW_VERSION, $versionFetcher->fetchVersion() );
 	}
 
 }
