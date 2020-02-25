@@ -335,7 +335,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testUpgrades() {
-		global $IP, $wgVersion;
+		global $IP;
 
 		// Versions tested
 		$versions = [
@@ -364,7 +364,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		sort( $currentTables );
 
 		foreach ( $versions as $version ) {
-			$versions = "upgrading from $version to $wgVersion";
+			$versions = "upgrading from $version to " . MW_VERSION;
 			$db = $this->prepareTestDB( $version );
 			$tables = $this->getTables( $db );
 			$this->assertEquals( $currentTables, $tables, "Different tables $versions" );

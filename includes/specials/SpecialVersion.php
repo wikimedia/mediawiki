@@ -287,14 +287,14 @@ class SpecialVersion extends SpecialPage {
 	 * @return mixed
 	 */
 	public static function getVersion( $flags = '', $lang = null ) {
-		global $wgVersion, $IP;
+		global $IP;
 
 		$gitInfo = self::getGitHeadSha1( $IP );
 		if ( !$gitInfo ) {
-			$version = $wgVersion;
+			$version = MW_VERSION;
 		} elseif ( $flags === 'nodb' ) {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
-			$version = "$wgVersion ($shortSha1)";
+			$version = MW_VERSION . " ($shortSha1)";
 		} else {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
 			$msg = wfMessage( 'parentheses' );
@@ -302,7 +302,7 @@ class SpecialVersion extends SpecialPage {
 				$msg->inLanguage( $lang );
 			}
 			$shortSha1 = $msg->params( $shortSha1 )->escaped();
-			$version = "$wgVersion $shortSha1";
+			$version = MW_VERSION . ' ' . $shortSha1;
 		}
 
 		return $version;
@@ -311,18 +311,16 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Return a wikitext-formatted string of the MediaWiki version with a link to
 	 * the Git SHA1 of head if available.
-	 * The fallback is just $wgVersion
+	 * The fallback is just MW_VERSION.
 	 *
 	 * @return mixed
 	 */
 	public static function getVersionLinked() {
-		global $wgVersion;
-
 		$gitVersion = self::getVersionLinkedGit();
 		if ( $gitVersion ) {
 			$v = $gitVersion;
 		} else {
-			$v = $wgVersion; // fallback
+			$v = MW_VERSION; // fallback
 		}
 
 		return $v;
@@ -331,21 +329,20 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * @return string
 	 */
-	private static function getwgVersionLinked() {
-		global $wgVersion;
+	private static function getMWVersionLinked() {
 		$versionUrl = "";
-		if ( Hooks::run( 'SpecialVersionVersionUrl', [ $wgVersion, &$versionUrl ] ) ) {
+		if ( Hooks::run( 'SpecialVersionVersionUrl', [ MW_VERSION, &$versionUrl ] ) ) {
 			$versionParts = [];
-			preg_match( "/^(\d+\.\d+)/", $wgVersion, $versionParts );
+			preg_match( "/^(\d+\.\d+)/", MW_VERSION, $versionParts );
 			$versionUrl = "https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]}";
 		}
 
-		return "[$versionUrl $wgVersion]";
+		return '[' . $versionUrl . ' ' . MW_VERSION . ']';
 	}
 
 	/**
-	 * @since 1.22 Returns the HEAD date in addition to the sha1 and link
-	 * @return bool|string Global wgVersion + HEAD sha1 stripped to the first 7 chars
+	 * @since 1.22 Includes the date of the Git HEAD commit
+	 * @return bool|string MW version and Git HEAD (SHA1 stripped to the first 7 chars)
 	 *   with link and date, or false on failure
 	 */
 	private static function getVersionLinkedGit() {
@@ -369,7 +366,7 @@ class SpecialVersion extends SpecialPage {
 			$shortSHA1 .= Html::element( 'br' ) . $wgLang->timeanddate( $gitHeadCommitDate, true );
 		}
 
-		return self::getwgVersionLinked() . " $shortSHA1";
+		return self::getMWVersionLinked() . " $shortSHA1";
 	}
 
 	/**

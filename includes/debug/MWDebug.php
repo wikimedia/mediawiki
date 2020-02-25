@@ -540,7 +540,6 @@ class MWDebug {
 			return [];
 		}
 
-		global $wgVersion;
 		$request = $context->getRequest();
 
 		$branch = GitInfo::currentBranch();
@@ -551,7 +550,7 @@ class MWDebug {
 		}
 
 		return [
-			'mwVersion' => $wgVersion,
+			'mwVersion' => MW_VERSION,
 			'phpEngine' => 'PHP',
 			'phpVersion' => PHP_VERSION,
 			'gitRevision' => GitInfo::headSHA1(),

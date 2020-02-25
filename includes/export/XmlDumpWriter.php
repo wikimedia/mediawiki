@@ -175,8 +175,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	function generator() {
-		global $wgVersion;
-		return Xml::element( 'generator', [], "MediaWiki $wgVersion" );
+		return Xml::element( 'generator', [], 'MediaWiki ' . MW_VERSION );
 	}
 
 	/**

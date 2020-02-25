@@ -16,7 +16,7 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 
 	public static function provideMediaWikiCheck() {
 		return [
-			// [ $wgVersion, constraint, expected ]
+			// [ MediaWiki version, constraint, expected ]
 			[ '1.25alpha', '>= 1.26', false ],
 			[ '1.25.0', '>= 1.26', false ],
 			[ '1.26alpha', '>= 1.26', true ],

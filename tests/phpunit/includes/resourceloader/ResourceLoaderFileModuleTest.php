@@ -625,7 +625,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						],
 						[ 'name' => 'config.json', 'config' => [
 							'Sitename',
-							'wgVersion' => 'Version',
+							'server' => 'ServerName',
 						] ],
 					]
 				],
@@ -651,7 +651,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 							'type' => 'data',
 							'content' => [
 								'Sitename' => $config->get( 'Sitename' ),
-								'wgVersion' => $config->get( 'Version' ),
+								'server' => $config->get( 'ServerName' ),
 							]
 						]
 					],

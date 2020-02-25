@@ -3360,7 +3360,7 @@ Special:Upload.
 &$form: The SpecialUpload object
 
 'SpecialVersionVersionUrl': Called when building the URL for Special:Version.
-$wgVersion: Current $wgVersion for you to use
+$version: Current MediaWiki version
 &$versionUrl: Raw url to link to (eg: release notes)
 
 'SpecialWatchlistGetNonRevisionTypes': Called when building sql query for
