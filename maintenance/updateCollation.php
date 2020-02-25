@@ -44,12 +44,11 @@ class UpdateCollation extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$categoryCollation = $this->getConfig()->get( 'CategoryCollation' );
 		$this->addDescription( <<<TEXT
 This script will find all rows in the categorylinks table whose collation is
-out-of-date (cl_collation != '$categoryCollation') and repopulate cl_sortkey
-using the page title and cl_sortkey_prefix.  If all collations are
-up-to-date, it will do nothing.
+out-of-date (cl_collation is not the same as \$wgCategoryCollation) and
+repopulate cl_sortkey using the page title and cl_sortkey_prefix. If all
+collations are up-to-date, it will do nothing.
 TEXT
 		);
 
