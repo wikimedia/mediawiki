@@ -50,14 +50,14 @@ version: '3.7'
 services:
   mediawiki:
     # On Linux, these lines ensure file ownership is set to your host user/group
-    user: "${UID}:${GID}"
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
 ```
 
-Next, ensure that `$UID` and `$GID` are set in your environment:
+Next, ensure that `$MW_DOCKER_UID` and `$MW_DOCKER_GID` are set in your environment:
 
 ```
-export UID=$(id -u)
-export GID=$(id -g)
+export MW_DOCKER_UID=$(id -u)
+export MW_DOCKER_GID=$(id -g)
 ```
 
 The above lines may be added to your `.bashrc` or other shell configuration.
