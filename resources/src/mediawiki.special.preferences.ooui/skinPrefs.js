@@ -7,7 +7,8 @@
 	function invalidateSkinPrefsDisplay( $root ) {
 		var
 			// The skin preferences section. Skins with preferences should specify this section ID when
-			// adding preferences in their onGetPreferences() hook.
+			// adding preferences in their onGetPreferences() hook. At time of writing, this
+			// functionality is only used by Vector.
 			$skinPrefs = $root.find( '#mw-prefsection-rendering-skin-prefs' ),
 			// oo-ui-fieldLayout is the wrapper class name for each preference. When all wrappers are
 			// disabled by hide-if (oo-ui-fieldLayout-disabled), the whole section should be hidden.
