@@ -74,6 +74,8 @@
 
 			'formatnum-msg': '{{formatnum:$1}}',
 
+			'bidi-msg': 'Welcome {{BIDI:$1}}!',
+
 			'portal-url': 'Project:Community portal',
 			'see-portal-url': '{{Int:portal-url}} is an important community page.',
 
@@ -379,6 +381,11 @@
 
 		mw.messages.set( 'grammar-msg-wrong-syntax', 'Przeszukaj {{GRAMMAR:grammar_case_xyz}}' );
 		assert.strictEqual( formatParse( 'grammar-msg-wrong-syntax' ), 'Przeszukaj ', 'Grammar Test with wrong grammar template syntax' );
+	} );
+
+	QUnit.test( 'Bi-di', function ( assert ) {
+		assert.strictEqual( formatParse( 'bidi-msg', 'Bob' ), 'Welcome \u202ABob\u202C!', 'Bidi test (LTR)' );
+		assert.strictEqual( formatParse( 'bidi-msg', 'בוב' ), 'Welcome \u202Bבוב\u202C!', 'Bidi test (RTL)' );
 	} );
 
 	QUnit.test( 'Match PHP parser', function ( assert ) {
