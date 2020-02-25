@@ -196,7 +196,7 @@ class FileDeleteForm {
 
 		if ( $oldimage ) {
 			$page = null;
-			$status = $file->deleteOld( $oldimage, $reason, $suppress, $user );
+			$status = $file->deleteOldFile( $oldimage, $reason, $user, $suppress );
 			if ( $status->isOK() ) {
 				// Need to do a log item
 				$logComment = wfMessage( 'deletedrevision', $oldimage )->inContentLanguage()->text();

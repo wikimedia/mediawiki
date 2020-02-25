@@ -1921,6 +1921,8 @@ class LocalFile extends File {
 	/**
 	 * Delete all versions of the file.
 	 *
+	 * @deprecated since 1.35, use deleteFile
+	 *
 	 * Moves the files into an archive directory (or deletes them)
 	 * and removes the database rows.
 	 *
@@ -1932,11 +1934,35 @@ class LocalFile extends File {
 	 * @return Status
 	 */
 	function delete( $reason, $suppress = false, $user = null ) {
+		// TODO check callers and hard deprecate
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		return $this->deleteFile( $reason, $user, $suppress );
+	}
+
+	/**
+	 * Delete all versions of the file.
+	 *
+	 * @since 1.35
+	 *
+	 * Moves the files into an archive directory (or deletes them)
+	 * and removes the database rows.
+	 *
+	 * Cache purging is done; logging is caller's responsibility.
+	 *
+	 * @param string $reason
+	 * @param User $user
+	 * @param bool $suppress
+	 * @return Status
+	 */
+	function deleteFile( $reason, User $user, $suppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress, $user );
+		$batch = new LocalFileDeleteBatch( $this, $user, $reason, $suppress );
 
 		$this->lock();
 		$batch->addCurrent();
@@ -1977,6 +2003,8 @@ class LocalFile extends File {
 	/**
 	 * Delete an old version of the file.
 	 *
+	 * @deprecated since 1.35, use deleteOldFile
+	 *
 	 * Moves the file into an archive directory (or deletes it)
 	 * and removes the database row.
 	 *
@@ -1990,11 +2018,37 @@ class LocalFile extends File {
 	 * @return Status
 	 */
 	function deleteOld( $archiveName, $reason, $suppress = false, $user = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		return $this->deleteOldFile( $archiveName, $reason, $user, $suppress );
+	}
+
+	/**
+	 * Delete an old version of the file.
+	 *
+	 * @since 1.35
+	 *
+	 * Moves the file into an archive directory (or deletes it)
+	 * and removes the database row.
+	 *
+	 * Cache purging is done; logging is caller's responsibility.
+	 *
+	 * @param string $archiveName
+	 * @param string $reason
+	 * @param User $user
+	 * @param bool $suppress
+	 * @throws MWException Exception on database or file store failure
+	 * @return Status
+	 */
+	function deleteOldFile( $archiveName, $reason, User $user, $suppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress, $user );
+		$batch = new LocalFileDeleteBatch( $this, $user, $reason, $suppress );
 
 		$this->lock();
 		$batch->addOld( $archiveName );

@@ -1980,6 +1980,8 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * Delete all versions of the file.
 	 *
+	 * @deprecated since 1.35, use deleteFile instead
+	 *
 	 * Moves the files into an archive directory (or deletes them)
 	 * and removes the database rows.
 	 *
@@ -1993,6 +1995,27 @@ abstract class File implements IDBAccessObject {
 	 * Overridden by LocalFile
 	 */
 	function delete( $reason, $suppress = false, $user = null ) {
+		$this->readOnlyError();
+	}
+
+	/**
+	 * Delete all versions of the file.
+	 *
+	 * @since 1.35
+	 *
+	 * Moves the files into an archive directory (or deletes them)
+	 * and removes the database rows.
+	 *
+	 * Cache purging is done; logging is caller's responsibility.
+	 *
+	 * @param string $reason
+	 * @param User $user
+	 * @param bool $suppress Hide content from sysops?
+	 * @return Status
+	 * STUB
+	 * Overridden by LocalFile
+	 */
+	function deleteFile( $reason, User $user, $suppress = false ) {
 		$this->readOnlyError();
 	}
 
