@@ -25,7 +25,7 @@ $cfg['file_list'] = array_merge(
 	function_exists( 'wikidiff2_do_diff' ) ? [] : [ '.phan/stubs/wikidiff.php' ],
 	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],
 	defined( 'PASSWORD_ARGON2ID' ) ? [] : [ '.phan/stubs/password.php' ],
-	class_exists( ProfilerExcimer::class ) ? [] : [ '.phan/stubs/excimer.php' ],
+	class_exists( ExcimerProfiler::class ) ? [] : [ '.phan/stubs/excimer.php' ],
 	[
 		// This makes constants and globals known to Phan before processing all other files.
 		// You can check the parser order with --dump-parsed-file-list
