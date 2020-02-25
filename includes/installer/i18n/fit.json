@@ -18,7 +18,7 @@
 	"config-db-host": "Taattapaasipalvelin:",
 	"config-db-host-help": "Jos tietokantapalvelimesi sijaitsee eri palvelimella, syötä palvelimen nimi tai ip-atressi tähän.\n\nJos käytössäsi on ulkonen palveluntarjoaja, pitäisi palvelimen nimen löytyä yrityksen ohjesivuilta.\n\nJos käytät MySQL:ää, ei palvelimen nimi \"localhost\" välttämättä toimi. Tässä tapauksessa koita käythää atressia 127.0.0.1.\n\nJos käytät PostgreSQL:ää, jätä tämä kenttä tyhjäksi.",
 	"config-db-name": "Taattapaasin nimi (ei väliviivoja):",
-	"config-db-name-help": "Valitse wikiäsi kuvaava nimi.\nNimessä ei saa olla välilyöntejä.\n\nMikäli et pysty itse hallitsemaan taattapaasejasi, pyyä palveluntarjoajaasi luomaan taattapaasi tai tee se palveluntarjoajasi hallintapaneelissa.",
+	"config-db-name-help": "Valitte wikiäsi kuvaava nimi.\nNimessä ei saa olla välilyöntejä.\n\nMikäli et pysty itse hallitsemaan taattapaasejasi, pyyä palveluntarjoajaasi luomaan taattapaasi tai tee se palveluntarjoajasi hallintapaneelissa.",
 	"config-db-username": "Taattapaasin käyttäjäkonttu:",
 	"config-db-password": "Taattapaasi-salasana:",
 	"config-db-install-username": "Syötä käyttäjänimi, jota käytethään muodostettaessa yhteys taattapaasiin asennuksen aikana.\nTämä ei ole MeetiaWiki-tunnuksen käyttäjänimi; tämä on taattapaasin käyttäjänimi.",
