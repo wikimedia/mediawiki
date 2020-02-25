@@ -29,6 +29,8 @@ DatePopupWidget = function MwRcfiltersUiDatePopupWidget( model, config ) {
 			itemFilter: function ( itemModel ) { return Number( itemModel.getParamName() ) < 1; }
 		}
 	);
+	this.hoursValuePicker.selectWidget.$element.attr( 'aria-label', mw.msg( 'rcfilters-hours-title' ) );
+
 	this.daysValuePicker = new ValuePickerWidget(
 		this.model,
 		{
@@ -37,6 +39,7 @@ DatePopupWidget = function MwRcfiltersUiDatePopupWidget( model, config ) {
 			itemFilter: function ( itemModel ) { return Number( itemModel.getParamName() ) >= 1; }
 		}
 	);
+	this.daysValuePicker.selectWidget.$element.attr( 'aria-label', mw.msg( 'rcfilters-days-title' ) );
 
 	// Events
 	this.hoursValuePicker.connect( this, { choose: [ 'emit', 'days' ] } );

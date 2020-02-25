@@ -51,6 +51,7 @@ ChangesLimitPopupWidget = function MwRcfiltersUiChangesLimitPopupWidget( limitMo
 					}
 				).$element
 		);
+	this.valuePicker.selectWidget.$element.attr( 'aria-label', mw.msg( 'rcfilters-limit-title' ) );
 };
 
 /* Initialization */
