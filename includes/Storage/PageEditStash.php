@@ -96,7 +96,7 @@ class PageEditStash {
 	 * @param string $summary Edit summary
 	 * @return string Class ERROR_* constant
 	 */
-	public function parseAndCache( WikiPage $page, Content $content, User $user, $summary ) {
+	public function parseAndCache( WikiPage $page, Content $content, User $user, string $summary ) {
 		$logger = $this->logger;
 
 		$title = $page->getTitle();
