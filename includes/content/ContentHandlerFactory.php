@@ -118,7 +118,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 */
 	public function getContentModels(): array {
 		$modelsFromHook = [];
-		Hooks::run( self::HOOK_NAME_GET_CONTENT_MODELS, [ &$modelsFromHook ] );
+		Hooks::run( 'GetContentModels', [ &$modelsFromHook ] );
 		$models = array_merge( // auto-registered from config and MediaServiceWiki or manual
 			array_keys( $this->handlerSpecs ),
 
@@ -247,7 +247,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 */
 	private function createContentHandlerFromHook( string $modelID ): ContentHandler {
 		$contentHandler = null;
-		Hooks::run( self::HOOK_NAME_BY_MODEL_NAME, [ $modelID, &$contentHandler ] );
+		Hooks::run( 'ContentHandlerForModelID', [ $modelID, &$contentHandler ] );
 		$this->validateContentHandler( $modelID, $contentHandler );
 
 		'@phan-var ContentHandler $contentHandler';

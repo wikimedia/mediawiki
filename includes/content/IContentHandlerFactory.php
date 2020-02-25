@@ -9,10 +9,6 @@ use MWUnknownContentModelException;
 
 interface IContentHandlerFactory {
 
-	public const HOOK_NAME_BY_MODEL_NAME = 'ContentHandlerForModelID';
-
-	public const HOOK_NAME_GET_CONTENT_MODELS = 'GetContentModels';
-
 	/**
 	 * Returns a ContentHandler instance for the given $modelID.
 	 *
