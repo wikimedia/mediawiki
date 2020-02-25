@@ -173,6 +173,10 @@
 		var w = this.$imgContainer.width(),
 			h = Math.min( $( window ).height() * ( 3 / 4 ), this.$imgContainer.width() ) - this.getChromeHeight();
 
+		// Round values in case the user's browser is returning non-integer values.
+		w = Math.round( w );
+		h = Math.round( h );
+
 		// Only update and flush the cache if the size changed
 		if ( w !== this.imageWidth || h !== this.imageHeight ) {
 			this.imageWidth = w;
