@@ -451,6 +451,7 @@ because of Phabricator reports.
   - getAllContentFormats
   - protected $handler (not need anymore)
   - cleanupHandlersCache (not need anymore)
+* (T212738) The $wgVersion global is deprecated; instead, use MW_VERSION.
 * $wgMemc is deprecated, use
   MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
