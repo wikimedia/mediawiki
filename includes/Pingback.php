@@ -57,7 +57,7 @@ class Pingback {
 	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		$this->config = $config ?: RequestContext::getMain()->getConfig();
 		$this->logger = $logger ?: LoggerFactory::getInstance( __CLASS__ );
-		$this->key = 'Pingback-' . $this->config->get( 'Version' );
+		$this->key = 'Pingback-' . MW_VERSION;
 	}
 
 	/**
@@ -144,7 +144,7 @@ class Pingback {
 	public function getSystemInfo() {
 		$event = [
 			'database'   => $this->config->get( 'DBtype' ),
-			'MediaWiki'  => $this->config->get( 'Version' ),
+			'MediaWiki'  => MW_VERSION,
 			'PHP'        => PHP_VERSION,
 			'OS'         => PHP_OS . ' ' . php_uname( 'r' ),
 			'arch'       => PHP_INT_SIZE === 8 ? 64 : 32,

@@ -31,12 +31,12 @@ use Composer\Semver\VersionParser;
  */
 class VersionChecker {
 	/**
-	 * @var Constraint|bool representing $wgVersion
+	 * @var Constraint|bool representing MediaWiki core
 	 */
 	private $coreVersion = false;
 
 	/**
-	 * @var Constraint|bool representing PHP version
+	 * @var Constraint|bool representing the PHP engine
 	 */
 	private $phpVersion = false;
 

@@ -39,8 +39,6 @@ class DumpMessages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgVersion;
-
 		$messages = [];
 		foreach ( array_keys( MediaWikiServices::getInstance()
 			->getLocalisationCache()
@@ -48,7 +46,7 @@ class DumpMessages extends Maintenance {
 		) {
 			$messages[$key] = wfMessage( $key )->text();
 		}
-		$this->output( "MediaWiki $wgVersion language file\n" );
+		$this->output( "MediaWiki " . MW_VERSION . " language file\n" );
 		$this->output( serialize( $messages ) );
 	}
 }

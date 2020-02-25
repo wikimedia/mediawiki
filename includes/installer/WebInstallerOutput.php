@@ -346,8 +346,7 @@ class WebInstallerOutput {
 	}
 
 	public function outputTitle() {
-		global $wgVersion;
-		echo wfMessage( 'config-title', $wgVersion )->escaped();
+		echo wfMessage( 'config-title', MW_VERSION )->escaped();
 	}
 
 	/**

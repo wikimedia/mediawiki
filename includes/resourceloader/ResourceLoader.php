@@ -1948,7 +1948,7 @@ MESSAGE;
 			'wgServerName' => $conf->get( 'ServerName' ),
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $contLang->getCode(),
-			'wgVersion' => $conf->get( 'Version' ),
+			'wgVersion' => MW_VERSION,
 			'wgEnableAPI' => true, // Deprecated since MW 1.32
 			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
 			'wgFormattedNamespaces' => $contLang->getFormattedNamespaces(),

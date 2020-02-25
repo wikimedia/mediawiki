@@ -12,7 +12,7 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 	 * @coversNothing
 	 */
 	public function testReleaseNotesFilesExistAndAreNotMalformed() {
-		global $wgVersion, $IP;
+		global $IP;
 
 		$notesFiles = glob( "$IP/RELEASE-NOTES-*" );
 
@@ -22,11 +22,11 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 			'Repo has at least one Release Notes file.'
 		);
 
-		$versionParts = explode( '.', explode( '-', $wgVersion )[0] );
+		$versionParts = explode( '.', explode( '-', MW_VERSION )[0] );
 		$this->assertContains(
 			"$IP/RELEASE-NOTES-$versionParts[0].$versionParts[1]",
 			$notesFiles,
-			'Repo has a Release Notes file for the current $wgVersion.'
+			'Repo has a Release Notes file for the current MW_VERSION.'
 		);
 
 		foreach ( $notesFiles as $index => $fileName ) {

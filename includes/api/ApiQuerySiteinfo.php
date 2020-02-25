@@ -139,7 +139,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$logo = ResourceLoaderSkinModule::getAvailableLogos( $config );
 		$data['logo'] = wfExpandUrl( $logo['1x'], PROTO_RELATIVE );
 
-		$data['generator'] = "MediaWiki {$config->get( 'Version' )}";
+		$data['generator'] = 'MediaWiki ' . MW_VERSION;
 
 		$data['phpversion'] = PHP_VERSION;
 		$data['phpsapi'] = PHP_SAPI;

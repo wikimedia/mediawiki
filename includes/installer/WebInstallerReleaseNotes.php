@@ -26,10 +26,8 @@ class WebInstallerReleaseNotes extends WebInstallerDocument {
 	 * @return string
 	 */
 	protected function getFileName() {
-		global $wgVersion;
-
-		if ( !preg_match( '/^(\d+)\.(\d+).*/i', $wgVersion, $result ) ) {
-			throw new MWException( 'Variable $wgVersion has an invalid value.' );
+		if ( !preg_match( '/^(\d+)\.(\d+).*/i', MW_VERSION, $result ) ) {
+			throw new MWException( 'Constant MW_VERSION has an invalid value.' );
 		}
 
 		return 'RELEASE-NOTES-' . $result[1] . '.' . $result[2];

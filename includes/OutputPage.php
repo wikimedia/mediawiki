@@ -3412,8 +3412,6 @@ class OutputPage extends ContextSource {
 	 * @return array Array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
-		global $wgVersion;
-
 		$tags = [];
 		$config = $this->getConfig();
 
@@ -3421,7 +3419,7 @@ class OutputPage extends ContextSource {
 
 		$tags['meta-generator'] = Html::element( 'meta', [
 			'name' => 'generator',
-			'content' => "MediaWiki $wgVersion",
+			'content' => 'MediaWiki ' . MW_VERSION,
 		] );
 
 		if ( $config->get( 'ReferrerPolicy' ) !== false ) {
