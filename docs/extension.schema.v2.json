@@ -295,7 +295,10 @@
 								},
 								"templates": {
 									"type": ["object", "array"],
-									"description": "Templates to be loaded for client-side usage"
+									"description": "Templates to be loaded for client-side usage",
+									"items": {
+										"type": "string"
+									}
 								},
 								"targets": {
 									"type": ["string", "array"],
@@ -479,8 +482,8 @@
 					}
 				},
 				"templates": {
-					"type": ["object"],
-					"description": "templates to load",
+					"type": ["object", "array"],
+					"description": "Templates to be loaded for client-side usage",
 					"items": {
 						"type": "string"
 					}
