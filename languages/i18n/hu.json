@@ -865,7 +865,7 @@
 	"rev-deleted-text-view": "A lap ezen változatát '''törölték'''.\nTe megnézheted. További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 	"rev-suppressed-text-view": "A lap ezen változatát '''elrejtették'''.\nTe megtekintheted. További részleteket az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplóban] találhatsz.",
 	"rev-deleted-no-diff": "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.\nTovábbi részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-	"rev-suppressed-no-diff": "Nem nézheted meg ezt a változtatást, mert az egyik változatot '''törölték'''.",
+	"rev-suppressed-no-diff": "Nem nézheted meg ezt a változtatást, mert az egyik változatot <strong>törölték</strong>.",
 	"rev-deleted-unhide-diff": "A változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.\nTovábbi részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.\nTe még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
 	"rev-suppressed-unhide-diff": "A változatok közötti eltéréshez kiválasztott változatok egyike '''el lett rejtve'''.\nRészleteket az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplójában találhatsz].\nTe még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
 	"rev-deleted-diff-view": "A változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.\nTe még mindig megtekintheted a változatok közötti eltérést. További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
