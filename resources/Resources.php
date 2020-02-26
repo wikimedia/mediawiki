@@ -560,11 +560,6 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => 'mediawiki.template',
 	],
-	'mediawiki.template.regexp' => [
-		'scripts' => 'resources/src/mediawiki.template.regexp.js',
-		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => 'mediawiki.template',
-	],
 	'mediawiki.apipretty' => [
 		'styles' => [
 			'resources/src/mediawiki.apipretty/apipretty.css',
