@@ -219,6 +219,7 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.35 ===
+* MediaWiki now requires PHP 7.2.22 or above, to avoid segfaults (T228346).
 * ResourceLoader::getLessVars(), deprecated in 1.32, was removed.
   Use ResourceLoaderModule::getLessVars() instead.
 * The jquery.tabIndex module, deprecated in 1.34, has been removed.
@@ -532,7 +533,7 @@ because of Phabricator reports.
 * …
 
 == Compatibility ==
-MediaWiki 1.35 requires PHP 7.2.9 or later, and the following PHP extensions:
+MediaWiki 1.35 requires PHP 7.2.22 or later, and the following PHP extensions:
 
 * ctype
 * dom
