@@ -1251,14 +1251,6 @@ $wgSVGMaxSize = 5120;
 $wgSVGMetadataCutoff = 262144;
 
 /**
- * Obsolete, no longer used.
- * SVG file uploads now always allow <title> elements.
- *
- * @deprecated 1.34
- */
-$wgAllowTitlesInSVG = true;
-
-/**
  * Whether thumbnails should be generated in target language (usually, same as
  * page language), if available.
  * Currently, applies only to SVG images that use the systemLanguage attribute
