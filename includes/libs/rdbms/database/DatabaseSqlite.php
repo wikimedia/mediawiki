@@ -61,6 +61,14 @@ class DatabaseSqlite extends Database {
 	/** @var string[] See https://www.sqlite.org/lang_transaction.html */
 	private static $VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
 
+	/** @var string[][] */
+	private static $VALID_PRAGMAS = [
+		// Optimizations or requirements regarding fsync() usage
+		'synchronous' => [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ],
+		// Optimizations for TEMPORARY tables
+		'temp_store' => [ 'FILE', 'MEMORY' ]
+	];
+
 	/**
 	 * Additional params include:
 	 *   - dbDirectory : directory containing the DB and the lock file directory
@@ -183,10 +191,13 @@ class DatabaseSqlite extends Database {
 			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY;
 			// Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1', __METHOD__, $flags );
-			// Apply optimizations or requirements regarding fsync() usage
-			$sync = $this->connectionVariables['synchronous'] ?? null;
-			if ( in_array( $sync, [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ], true ) ) {
-				$this->query( "PRAGMA synchronous = $sync", __METHOD__, $flags );
+			// Set any connection-level custom PRAGMA options
+			$pragmas = array_intersect_key( $this->connectionVariables, self::$VALID_PRAGMAS );
+			foreach ( $pragmas as $name => $value ) {
+				$allowed = self::$VALID_PRAGMAS[$name];
+				if ( in_array( $value, $allowed, true ) ) {
+					$this->query( "PRAGMA $name = $value", __METHOD__, $flags );
+				}
 			}
 			$this->attachDatabasesFromTableAliases();
 		} catch ( Exception $e ) {
