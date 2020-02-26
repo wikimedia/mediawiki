@@ -524,6 +524,7 @@ because of Phabricator reports.
 * Revision::userCanBitfield was soft deprecated along with the whole Revision
   class in 1.31. ::userCanBitfield was individually hard deprecated; use
   RevisionRecord::userCanBitfield instead.
+* RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
 * …
 
 === Other changes in 1.35 ===
