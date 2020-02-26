@@ -95,7 +95,9 @@ class TemplateParser {
 	 * Returns a given template function if found, otherwise throws an exception.
 	 * @param string $templateName The name of the template (without file suffix)
 	 * @return callable
-	 * @throws RuntimeException
+	 * @throws RuntimeException When the template file cannot be found
+	 * @throws RuntimeException When the compiled template isn't callable. This is indicative of a
+	 *  bug in LightnCandy
 	 */
 	protected function getTemplate( $templateName ) {
 		$templateKey = $templateName . '|' . $this->compileFlags;
@@ -110,7 +112,7 @@ class TemplateParser {
 		$filename = $this->getTemplateFilename( $templateName );
 
 		if ( !file_exists( $filename ) ) {
-			throw new RuntimeException( "Could not locate template: {$filename}" );
+			throw new RuntimeException( "Could not find template `{$templateName}` at {$filename}" );
 		}
 
 		// Read the template file
@@ -152,7 +154,7 @@ class TemplateParser {
 
 		$renderer = eval( $code );
 		if ( !is_callable( $renderer ) ) {
-			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
+			throw new RuntimeException( "Compiled template `{$templateName}` is not callable" );
 		}
 		$this->renderers[$templateKey] = $renderer;
 		return $renderer;
@@ -163,6 +165,9 @@ class TemplateParser {
 	 * @param string $code Mustache code
 	 * @param string $filename File name the code came from; only used for error reporting
 	 * @return string PHP code
+	 * @throws Exception Thrown by LightnCandy if it could not compile the Mustache code
+	 * @throws RuntimeException If LightnCandy could not compile the Mustache code but did not throw
+	 *  an exception. This exception is indicative of a bug in LightnCandy
 	 * @suppress PhanTypeMismatchArgument
 	 */
 	protected function compile( $code, $filename ) {
@@ -175,13 +180,17 @@ class TemplateParser {
 				'partialresolver' => function ( $cx, $name ) {
 					$filePath = "{$this->templateDir}/{$name}.mustache";
 					if ( !file_exists( $filePath ) ) {
-						throw new RuntimeException( "Failed to find partial `{$name}`" );
+						throw new RuntimeException(
+							"Could not find partial `{$name}` at {$filePath}"
+						);
 					}
 
 					$fileContents = file_get_contents( $filePath );
 
 					if ( $fileContents === false ) {
-						throw new RuntimeException( "Failed to read partial `{$name}`" );
+						throw new RuntimeException(
+							"Could not read partial `{$name}` at {$filePath}"
+						);
 					}
 
 					return $fileContents;
@@ -192,7 +201,7 @@ class TemplateParser {
 			// This shouldn't happen because LightnCandy::FLAG_ERROR_EXCEPTION is set
 			// Errors should throw exceptions instead of returning false
 			// Check anyway for paranoia
-			throw new RuntimeException( "Could not compile template: {$filename}" );
+			throw new RuntimeException( "Could not compile template `{$filename}`" );
 		}
 		return $compiled;
 	}
