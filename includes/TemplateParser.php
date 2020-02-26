@@ -45,7 +45,7 @@ class TemplateParser {
 	 */
 	protected $compileFlags;
 
-	private static $cacheVersion = '1.2.4';
+	private static $cacheVersion = '2.0.0';
 
 	/**
 	 * @param string|null $templateDir
@@ -109,50 +109,61 @@ class TemplateParser {
 			return $this->renderers[$templateKey];
 		}
 
-		$filename = $this->getTemplateFilename( $templateName );
-
-		if ( !file_exists( $filename ) ) {
-			throw new RuntimeException( "Could not find template `{$templateName}` at {$filename}" );
-		}
-
-		// Read the template file
-		$fileContents = file_get_contents( $filename );
-
-		// Generate a quick hash for cache invalidation
-		$fastHash = md5( $this->compileFlags . '|' . $fileContents );
-
 		// Fetch a secret key for building a keyed hash of the PHP code
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$secretKey = $config->get( 'SecretKey' );
 
 		if ( $secretKey ) {
-			// See if the compiled PHP code is stored in cache.
+			// See if the compiled PHP code is stored in the server-local cache.
 			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
-			$key = $cache->makeKey( 'lightncandy-compiled', self::$cacheVersion, $templateName, $fastHash );
-			$code = $this->forceRecompile ? null : $cache->get( $key );
+			$key = $cache->makeKey(
+				'lightncandy-compiled',
+				self::$cacheVersion,
+				$this->compileFlags,
+				$templateName
+			);
+			$compiledTemplate = $this->forceRecompile ? null : $cache->get( $key );
 
-			if ( $code ) {
-				// Verify the integrity of the cached PHP code
-				$keyedHash = substr( $code, 0, 64 );
-				$code = substr( $code, 64 );
-				if ( $keyedHash !== hash_hmac( 'sha256', $code, $secretKey ) ) {
-					// If the integrity check fails, don't use the cached code
-					// We'll update the invalid cache below
-					$code = null;
+			// 1. Has the template changed since the compiled template was cached? If so, don't use
+			// the cached code.
+			if ( $compiledTemplate ) {
+				$fileHash = FileContentsHasher::getFileContentsHash( $compiledTemplate['filename'] );
+
+				if ( $fileHash !== $compiledTemplate['fileHash'] ) {
+					$compiledTemplate = null;
 				}
 			}
-			if ( !$code ) {
-				$code = $this->compile( $fileContents, $filename );
 
-				// Prefix the cached code with a keyed hash (64 hex chars) as an integrity check
-				$cache->set( $key, hash_hmac( 'sha256', $code, $secretKey ) . $code );
+			// 2. Is the integrity of the cached PHP code compromised? If so, don't use the cached
+			// code.
+			if ( $compiledTemplate ) {
+				$integrityHash = hash_hmac( 'sha256', $compiledTemplate['phpCode'], $secretKey );
+
+				if ( $integrityHash !== $compiledTemplate['integrityHash'] ) {
+					$compiledTemplate = null;
+				}
 			}
+
+			// We're not using the cached code for whathever reason. Recompile the template and
+			// cache it.
+			if ( !$compiledTemplate ) {
+				$compiledTemplate = $this->compile( $templateName );
+
+				$compiledTemplate['integrityHash'] = hash_hmac(
+					'sha256',
+					$compiledTemplate['phpCode'],
+					$secretKey
+				);
+
+				$cache->set( $key, $compiledTemplate );
+			}
+
 		// If there is no secret key available, don't use cache
 		} else {
-			$code = $this->compile( $fileContents, $filename );
+			$compiledTemplate = $this->compile( $templateName );
 		}
 
-		$renderer = eval( $code );
+		$renderer = eval( $compiledTemplate['phpCode'] );
 		if ( !is_callable( $renderer ) ) {
 			throw new RuntimeException( "Compiled template `{$templateName}` is not callable" );
 		}
@@ -161,36 +172,67 @@ class TemplateParser {
 	}
 
 	/**
-	 * Compile the Mustache code into PHP code using LightnCandy
-	 * @param string $code Mustache code
-	 * @param string $filename File name the code came from; only used for error reporting
-	 * @return string PHP code
+	 * Compile the Mustache template into PHP code using LightnCandy.
+	 *
+	 * The compilation step generates both PHP code and metadata, which is also returned in the
+	 * result. An example result looks as follows:
+	 *
+	 *  ```php
+	 *  [
+	 *    'phpCode' => '...',
+	 *    'filename' => '/path/to/template.mustache',
+	 *    'fileHash' => '...'
+	 *  ]
+	 *  ```
+	 *
+	 * The `filename` entry is the fully-qualified name of the template file, i.e. it includes path
+	 * information.
+	 *
+	 * The `fileHash` entry can be used to determine whether the template has changed since it was
+	 * last compiled without compiling the template again. Currently, the `fileHash` entry is
+	 * generated with FileContentsHasher::getFileContentsHash.
+	 *
+	 * @param string $templateName The name of the template
+	 * @return array An associative array containing the PHP code and metadata about its compilation
 	 * @throws Exception Thrown by LightnCandy if it could not compile the Mustache code
 	 * @throws RuntimeException If LightnCandy could not compile the Mustache code but did not throw
 	 *  an exception. This exception is indicative of a bug in LightnCandy
 	 * @suppress PhanTypeMismatchArgument
 	 */
-	protected function compile( $code, $filename ) {
+	protected function compile( $templateName ) {
+		$filename = $this->getTemplateFilename( $templateName );
+
+		if ( !file_exists( $filename ) ) {
+			throw new RuntimeException( "Could not find template `{$templateName}` at {$filename}" );
+		}
+
+		$contents = file_get_contents( $filename );
 		$compiled = LightnCandy::compile(
-			$code,
+			$contents,
 			[
 				'flags' => $this->compileFlags,
 				'basedir' => $this->templateDir,
 				'fileext' => '.mustache',
-				'partialresolver' => function ( $cx, $name ) {
-					$filePath = "{$this->templateDir}/{$name}.mustache";
-					if ( !file_exists( $filePath ) ) {
-						throw new RuntimeException(
-							"Could not find partial `{$name}` at {$filePath}"
-						);
+				'partialresolver' => function ( $cx, $partialName ) use ( $templateName ) {
+					$filename = "{$this->templateDir}/{$partialName}.mustache";
+					if ( !file_exists( $filename ) ) {
+						throw new RuntimeException( sprintf(
+							'Could not compile template `%s`: Could not find partial `%s` at %s',
+							$templateName,
+							$partialName,
+							$filename
+						) );
 					}
 
-					$fileContents = file_get_contents( $filePath );
+					$fileContents = file_get_contents( $filename );
 
 					if ( $fileContents === false ) {
-						throw new RuntimeException(
-							"Could not read partial `{$name}` at {$filePath}"
-						);
+						throw new RuntimeException( sprintf(
+							'Could not compile template `%s`: Could not find partial `%s` at %s',
+							$templateName,
+							$partialName,
+							$filename
+						) );
 					}
 
 					return $fileContents;
@@ -203,7 +245,12 @@ class TemplateParser {
 			// Check anyway for paranoia
 			throw new RuntimeException( "Could not compile template `{$filename}`" );
 		}
-		return $compiled;
+
+		return [
+			'phpCode' => $compiled,
+			'filename' => $filename,
+			'fileHash' => FileContentsHasher::getFileContentsHash( $filename ),
+		];
 	}
 
 	/**
