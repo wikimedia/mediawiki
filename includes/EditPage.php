@@ -3803,7 +3803,7 @@ ERROR;
 		$out->addHTML( "<div class='editButtons'>\n" );
 		$out->addHTML( implode( "\n", $this->getEditButtons( $tabindex ) ) . "\n" );
 
-		$cancel = $this->getCancelLink();
+		$cancel = $this->getCancelLink( $tabindex++ );
 
 		$message = $this->context->msg( 'edithelppage' )->inContentLanguage()->text();
 		$edithelpurl = Skin::makeInternalOrExternalUrl( $message );
@@ -3845,9 +3845,10 @@ ERROR;
 	}
 
 	/**
+	 * @param int $tabindex Current tabindex
 	 * @return string
 	 */
-	public function getCancelLink() {
+	public function getCancelLink( $tabindex = 0 ) {
 		$cancelParams = [];
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
@@ -3857,6 +3858,7 @@ ERROR;
 
 		return new OOUI\ButtonWidget( [
 			'id' => 'mw-editform-cancel',
+			'tabIndex' => $tabindex,
 			'href' => $this->getContextTitle()->getLinkURL( $cancelParams ),
 			'label' => new OOUI\HtmlSnippet( $this->context->msg( 'cancel' )->parse() ),
 			'framed' => false,
