@@ -2455,7 +2455,7 @@
 	"revdelete-restricted": "məhdudiyyətlər idarəçilərə tətbiq olunur",
 	"revdelete-unrestricted": "idarəçilər üçün götürülmüş məhdudiyyətlər",
 	"logentry-move-move": "$1 $3 səhifəsinin adını $4 olaraq {{GENDER:$1|dəyişdi|dəyişdi}}.",
-	"logentry-move-move_redir": "$1 $3 səhifəsinin adını yönləndirmənin əksinə dəyişərək, $4 {{GENDER:$2|adlandırdı}}",
+	"logentry-move-move_redir": "$1 $3 səhifəsinin adını yönləndirmənin əksinə dəyişərək $4 {{GENDER:$2|adlandırdı}}",
 	"logentry-move-move_redir-noredirect": "$1 $3 səhifəsinin adını istiqamətləndirmə qoymadan $4 olaraq {{GENDER:$2|dəyişdi}}",
 	"logentry-newusers-newusers": "$1 istifadəçi hesabı yaradıldı",
 	"logentry-newusers-create": "$1 istifadəçi hesabı yaradıldı",

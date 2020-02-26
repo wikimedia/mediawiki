@@ -1262,6 +1262,7 @@
 	"rcfilters-tag-remove": "'$1' हटाउनुहोस्",
 	"rcfilters-activefilters-hide": "लुकाउने",
 	"rcfilters-activefilters-show": "देखाउने",
+	"rcfilters-days-title": "हालसालैका दिनहरू",
 	"rcfilters-days-show-days": "$1 {{PLURAL:$1|दिन|दिनहरू}}",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|घण्टा|घण्टाहरू}}",
 	"rcfilters-savedqueries-rename": "पुन:नामकरण",
