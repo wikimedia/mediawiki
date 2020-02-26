@@ -308,7 +308,8 @@ abstract class Action implements MessageLocalizer {
 	protected function checkCanExecute( User $user ) {
 		$right = $this->getRestriction();
 		if ( $right !== null ) {
-			$errors = $this->getTitle()->getUserPermissionsErrors( $right, $user );
+			$errors = MediaWikiServices::getInstance()->getPermissionManager()
+				->getPermissionErrors( $right, $user, $this->getTitle() );
 			if ( count( $errors ) ) {
 				throw new PermissionsError( $right, $errors );
 			}

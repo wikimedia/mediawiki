@@ -3385,7 +3385,8 @@ class OutputPage extends ContextSource {
 		}
 
 		$title = $this->getTitle();
-		$errors = $title->getUserPermissionsErrors( 'edit', $user );
+		$errors = MediaWikiServices::getInstance()->getPermissionManager()
+			->getPermissionErrors( 'edit', $user, $title );
 		if ( count( $errors ) !== 0 ) {
 			return false;
 		}

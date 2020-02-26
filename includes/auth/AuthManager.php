@@ -137,6 +137,9 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var PermissionManager */
+	private $permManager;
+
 	/** @var AuthenticationProvider[] */
 	private $allAuthenticationProviders = [];
 
@@ -165,11 +168,18 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param WebRequest $request
 	 * @param Config $config
 	 * @param ObjectFactory $objectFactory
+	 * @param PermissionManager $permManager
 	 */
-	public function __construct( WebRequest $request, Config $config, ObjectFactory $objectFactory ) {
+	public function __construct(
+		WebRequest $request,
+		Config $config,
+		ObjectFactory $objectFactory,
+		PermissionManager $permManager
+	) {
 		$this->request = $request;
 		$this->config = $config;
 		$this->objectFactory = $objectFactory;
+		$this->permManager = $permManager;
 		$this->setLogger( new NullLogger() );
 	}
 
@@ -980,11 +990,11 @@ class AuthManager implements LoggerAwareInterface {
 			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
 		}
 
-		// This is awful, this permission check really shouldn't go through Title.
-		$permErrors = \SpecialPage::getTitleFor( 'CreateAccount' )
-			->getUserPermissionsErrors(
-				'createaccount', $creator, PermissionManager::RIGOR_SECURE
-			);
+		$permErrors = $this->permManager->getPermissionErrors(
+			'createaccount',
+			$creator,
+			\SpecialPage::getTitleFor( 'CreateAccount' )
+		);
 		if ( $permErrors ) {
 			$status = Status::newGood();
 			foreach ( $permErrors as $args ) {
