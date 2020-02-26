@@ -160,7 +160,7 @@ function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
 }
 
 /**
- * Merge arrays in the style of getUserPermissionsErrors, with duplicate removal
+ * Merge arrays in the style of PermissionManager::getPermissionErrors, with duplicate removal
  * e.g.
  *     wfMergeErrorArrays(
  *       [ [ 'x' ] ],

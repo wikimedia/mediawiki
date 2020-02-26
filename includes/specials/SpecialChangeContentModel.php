@@ -197,15 +197,16 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$titleWithNewContentModel->setContentModel( $data['model'] );
 		$user = $this->getUser();
 		// Check permissions and make sure the user has permission to:
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$errors = wfMergeErrorArrays(
 			// edit the contentmodel of the page
-			$this->title->getUserPermissionsErrors( 'editcontentmodel', $user ),
+			$permManager->getPermissionErrors( 'editcontentmodel', $user, $this->title ),
 			// edit the page under the old content model
-			$this->title->getUserPermissionsErrors( 'edit', $user ),
+			$permManager->getPermissionErrors( 'edit', $user, $this->title ),
 			// edit the contentmodel under the new content model
-			$titleWithNewContentModel->getUserPermissionsErrors( 'editcontentmodel', $user ),
+			$permManager->getPermissionErrors( 'editcontentmodel', $user, $titleWithNewContentModel ),
 			// edit the page under the new content model
-			$titleWithNewContentModel->getUserPermissionsErrors( 'edit', $user )
+			$permManager->getPermissionErrors( 'edit', $user, $titleWithNewContentModel )
 		);
 		if ( $errors ) {
 			$out = $this->getOutput();

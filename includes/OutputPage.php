@@ -2772,7 +2772,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Format a list of error messages
 	 *
-	 * @param array $errors Array of arrays returned by Title::getUserPermissionsErrors
+	 * @param array $errors Array of arrays returned by PermissionManager::getPermissionErrors
 	 * @param string|null $action Action that was denied or null if unknown
 	 * @return string The wikitext error-messages, formatted into a list.
 	 */

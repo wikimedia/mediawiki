@@ -2452,6 +2452,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function getUserPermissionsErrors(
 		$action, $user, $rigor = PermissionManager::RIGOR_SECURE, $ignoreErrors = []
 	) {
+		wfDeprecated( __METHOD__, '1.33' );
+
 		// TODO: this is for b/c, eventually will be removed
 		if ( $rigor === true ) {
 			$rigor = PermissionManager::RIGOR_SECURE; // b/c

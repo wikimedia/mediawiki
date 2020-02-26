@@ -101,6 +101,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	public function testQuickPermissions() {
 		$this->hideDeprecated( 'Title::userCan' );
 		$this->hideDeprecated( 'Title::quickUserCan' );
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
 
 		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
 			getFormattedNsText( NS_PROJECT );
@@ -367,6 +368,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	}
 
 	protected function runGroupPermissions( $action, $result, $result2 = null ) {
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
 		if ( $result2 === null ) {
 			$result2 = $result;
 		}
@@ -411,6 +413,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 */
 	public function testSpecialsAndNSPermissions() {
 		$this->hideDeprecated( 'Title::userCan' );
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
 
 		$this->setUser( $this->userName );
 
@@ -657,6 +660,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$resultUserJs,
 		$resultPatrol
 	) {
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
+
 		$this->overrideUserPermissions( $this->user );
 		$result = $this->title->getUserPermissionsErrors( 'bogus', $this->user );
 		$this->assertEquals( $resultNone, $result );
@@ -705,6 +710,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 */
 	public function testPageRestrictions() {
 		$this->hideDeprecated( 'Title::quickUserCan' );
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
 
 		$prefix = MediaWikiServices::getInstance()->getContentLanguage()->
 			getFormattedNsText( NS_PROJECT );
@@ -799,6 +805,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 */
 	public function testCascadingSourcesRestrictions() {
 		$this->hideDeprecated( 'Title::userCan' );
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
 
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->overrideUserPermissions( $this->user, [ "edit", "bogus" ] );
@@ -831,6 +838,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 */
 	public function testActionPermissions() {
 		$this->hideDeprecated( 'Title::userCan' );
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
 
 		$this->overrideUserPermissions( $this->user, [ "createpage" ] );
 		$this->setTitle( NS_MAIN, "test page" );
@@ -905,6 +913,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	public function testUserBlock() {
 		$this->hideDeprecated( 'Title::userCan' );
 		$this->hideDeprecated( 'Title::quickUserCan' );
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
 
 		$this->setMwGlobals( [
 			'wgEmailConfirmToEdit' => true,
@@ -1068,6 +1077,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 * an action of the same name.
 	 */
 	public function testUserBlockAction() {
+		$this->hideDeprecated( 'Title::getUserPermissionsErrors' );
+
 		global $wgLang;
 
 		$tester = $this->getMockBuilder( Action::class )

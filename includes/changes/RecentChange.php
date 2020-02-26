@@ -536,10 +536,12 @@ class RecentChange implements Taggable {
 	 * @param bool $auto For automatic patrol
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
+	 * @return array Array of permissions errors, see PermissionManager::getPermissionErrors()
 	 */
 	public function doMarkPatrolled( User $user, $auto = false, $tags = null ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
+
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		// Fix up $tags so that the MarkPatrolled hook below always gets an array
 		if ( $tags === null ) {
@@ -558,7 +560,10 @@ class RecentChange implements Taggable {
 		}
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
 		$right = $auto ? 'autopatrol' : 'patrol';
-		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $user ) );
+		$errors = array_merge(
+			$errors,
+			$permManager->getPermissionErrors( $right, $user, $this->getTitle() )
+		);
 		if ( !Hooks::run( 'MarkPatrolled',
 					[ $this->getAttribute( 'rc_id' ), &$user, false, $auto, &$tags ] )
 		) {
@@ -567,8 +572,7 @@ class RecentChange implements Taggable {
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
 		if ( $user->getName() === $this->getAttribute( 'rc_user_text' ) &&
-				!MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $user, 'autopatrol' )
+			!$permManager->userHasRight( $user, 'autopatrol' )
 		) {
 			$errors[] = [ 'markedaspatrollederror-noautopatrol' ];
 		}

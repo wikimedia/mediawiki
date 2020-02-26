@@ -3118,8 +3118,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$resultDetails = null;
 
 		// Check permissions
-		$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $user );
-		$rollbackErrors = $this->mTitle->getUserPermissionsErrors( 'rollback', $user );
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$editErrors = $permManager->getPermissionErrors( 'edit', $user, $this->mTitle );
+		$rollbackErrors = $permManager->getPermissionErrors( 'rollback', $user, $this->mTitle );
 		$errors = array_merge( $editErrors, wfArrayDiff2( $rollbackErrors, $editErrors ) );
 
 		if ( !$user->matchEditToken( $token, 'rollback' ) ) {
