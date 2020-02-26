@@ -1429,6 +1429,8 @@ because of Phabricator reports.
   Note that archive.ar_user, archive.ar_user_text, and archive.ar_comment
   had already been removed in previous releases.
 * The printableversion has been marked as deprecated per T167956.
+* (T30162, T245387) The installer supports using a Postgres server running
+  on a custom port other than 5432.
 
 == Compatibility ==
 MediaWiki 1.35 requires PHP 7.2.22 or later, and the following PHP extensions:
