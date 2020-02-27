@@ -1061,7 +1061,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$parsed[$key] = true;
 
 		if ( $subpage === '' ) {
-			$txt = MessageCache::singleton()->getMsgFromNamespace( $key, $code );
+			$messageCache = MediaWikiServices::getInstance()->getMessageCache();
+			$txt = $messageCache->getMsgFromNamespace( $key, $code );
 		} else {
 			$txt = false;
 			$title = Title::makeTitleSafe( NS_MEDIAWIKI, $key );
