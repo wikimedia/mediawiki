@@ -212,6 +212,7 @@ $wgAutoloadLocalClasses = [
 	'BlockLevelPass' => __DIR__ . '/includes/parser/BlockLevelPass.php',
 	'BlockListPager' => __DIR__ . '/includes/specials/pagers/BlockListPager.php',
 	'BlockLogFormatter' => __DIR__ . '/includes/logging/BlockLogFormatter.php',
+	'BlockUsers' => __DIR__ . '/maintenance/blockUsers.php',
 	'BmpHandler' => __DIR__ . '/includes/media/BmpHandler.php',
 	'BotPassword' => __DIR__ . '/includes/user/BotPassword.php',
 	'BufferingStatsdDataFactory' => __DIR__ . '/includes/libs/stats/BufferingStatsdDataFactory.php',
