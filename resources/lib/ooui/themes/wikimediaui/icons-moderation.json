@@ -77,10 +77,6 @@
 			"file": "images/icons/trash.svg",
 			"variants": [ "destructive" ]
 		},
-		"unTrash": {
-			"file": "images/icons/restore.svg",
-			"deprecated": "Changed and renamed since v0.31.1, use 'restore' instead."
-		},
 		"pushPin": {
 			"file": "images/icons/pushPin.svg"
 		},

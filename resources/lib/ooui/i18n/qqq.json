@@ -35,7 +35,7 @@
 	"ooui-dialog-process-dismiss": "Label for process dialog dismiss error button, visible when describing errors\n{{Identical|Dismiss}}",
 	"ooui-dialog-process-retry": "Label for process dialog retry action button, visible when describing recoverable errors\n{{Identical|Try again}}",
 	"ooui-dialog-process-continue": "Label for process dialog retry action button, visible when describing only warnings\n{{Identical|Continue}}",
-	"ooui-combobox-button-label": "Label for button in combobox input that triggers its dropdown",
+	"ooui-combobox-button-label": "Label of the button in a combobox that opens the dropdown with preset options. This is a screenreader-only message.",
 	"ooui-selectfile-button-select": "Label for the file selection widget's select file button",
 	"ooui-selectfile-not-supported": "Label for the file selection widget if file selection is not supported",
 	"ooui-selectfile-placeholder": "Label for the file selection widget when no file is currently selected",

@@ -1,4 +1,30 @@
 # OOUI Release History
+## v0.37.0 / 2020-02-26
+### Breaking changes
+* [BREAKING CHANGE] Require oojs v3.0.1, up from v3.0.0 (James D. Forrester)
+* [BREAKING CHANGE] icons: Remove 'beaker', deprecated in v0.34.1 (James D. Forrester)
+* [BREAKING CHANGE] icons: Remove 'unTrash', deprecated in v0.31.1 (James D. Forrester)
+
+### Deprecating changes
+* [DEPRECATING CHANGE] icons: Deprecate 'toc' from 'icons-layout' (Volker E.)
+
+### Styles
+* themes: Unify padded PanelLayout padding (Volker E.)
+* WikimediaUI theme: Add horizontal padding to MessageDialog buttons (Ed Sanders)
+* WikimediaUI theme: Avoid wrapping problems with negative margins (Bartosz Dziewoński)
+
+### Code
+* FieldLayout: Break overlong words in labels of inline FieldLayouts (Volker E.)
+* FieldLayout: Use 'aria-labelledby' for accessibility of non-form elements (Bartosz Dziewoński)
+* FieldLayout: Word-break overlong words in left & right aligned ActionFieldLayouts (Volker E.)
+* ComboboxInputWidget: Improve 'ooui-combobox-button-label' message (Bartosz Dziewoński)
+* MenuTagMultiselectWidget: Don't call `setValue()` if `config.selected` is empty (Roan Kattouw)
+* README.md: Drop DavidDM badges, we use LibraryUpgrader now (James D. Forrester)
+* build: Updating npm dependencies (James D. Forrester)
+* build: Follow-up bfcfc3eddf3: Drop .travis.yml reference from .gitattributes, never used (James D. Forrester)
+* demos: Make selector more specific to avoid breaking widgets (Ed Sanders)
+
+
 ## v0.36.5 / 2020-02-11
 ### Deprecating changes
 * [DEPRECATING CHANGE] icons: Rename 'stripe-' icons to follow convention (Volker E.)

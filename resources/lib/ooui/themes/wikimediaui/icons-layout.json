@@ -50,10 +50,10 @@
 		},
 		"stripeToC": {
 			"file": {
-				"ltr": "images/icons/toc-ltr.svg",
-				"rtl": "images/icons/toc-rtl.svg"
+				"ltr": "images/icons/listBullet-ltr.svg",
+				"rtl": "images/icons/listBullet-rtl.svg"
 			},
-			"deprecated": "Renamed since v0.36.5, use 'toc' instead."
+			"deprecated": "Deprecated since v0.36.5, use 'listBullet' instead."
 		},
 		"textFlow": {
 			"file": {
@@ -69,8 +69,9 @@
 		},
 		"toc": {
 			"file": {
-				"ltr": "images/icons/toc-ltr.svg",
-				"rtl": "images/icons/toc-rtl.svg"
+				"ltr": "images/icons/listBullet-ltr.svg",
+				"rtl": "images/icons/listBullet-rtl.svg",
+				"deprecated": "Deprecated since v0.37.0, use 'listBullet' from 'editing-list' pack."
 			}
 		},
 		"viewCompact": {
