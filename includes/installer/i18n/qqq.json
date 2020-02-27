@@ -281,6 +281,7 @@
 	"config-install-user-grant-failed": "Parameters:\n* $1 is the database username for which granting rights failed\n* $2 is the error message",
 	"config-install-user-missing": "Used as PostgreSQL error message. Parameters:\n* $1 - database username\nSee also:\n* {{msg-mw|Config-install-user-missing-create}}",
 	"config-install-user-missing-create": "Used as PostgreSQL error message. Parameters:\n* $1 - database username\nSee also:\n* {{msg-mw|Config-install-user-missing}}",
+	"config-install-logo-blank": "Error text in the MediaWiki installer when the logo URL is invalid.",
 	"config-install-restore-services": "Message indicates that MediaWiki services overridden during installation are being restored",
 	"config-install-tables": "Message indicates that some of the tables are being created\n\nSee also:\n*{{msg-mw|Config-install-database}}\n*{{msg-mw|Config-install-tables}}\n*{{msg-mw|Config-install-interwiki}}\n*{{msg-mw|Config-install-stats}}\n*{{msg-mw|Config-install-keys}}\n*{{msg-mw|Config-install-updates}}\n*{{msg-mw|Config-install-schema}}\n*{{msg-mw|Config-install-user}}\n*{{msg-mw|Config-install-sysop}}\n*{{msg-mw|Config-install-mainpage}}",
 	"config-install-tables-exist": "Error notice during the installation saying that the database already seems set up for MediaWiki, so it's continuing without taking that step.",
