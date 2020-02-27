@@ -2406,7 +2406,7 @@ $out: the OutputPage object
 
 'OutputPageBeforeHTML': A page has been processed by the parser and the
 resulting HTML is about to be displayed.
-$parserOutput: the parserOutput (object) that corresponds to the page
+$out: the OutputPage (object) that corresponds to the page
 &$text: the text that will be displayed, in HTML (string)
 
 'OutputPageBodyAttributes': Called when OutputPage::headElement is creating the
