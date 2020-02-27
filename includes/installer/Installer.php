@@ -222,10 +222,9 @@ abstract class Installer {
 		'_MemCachedServers' => '',
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
+		// Single quotes are intentional, LocalSettingsGenerator must output this unescaped.
+		'_Logo' => '$wgResourceBasePath/resources/assets/wiki.png',
 
-		// $wgLogo is probably wrong (T50084); set something that will work.
-		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
-		'wgLogo' => '$wgResourceBasePath/resources/assets/wiki.png',
 		'wgAuthenticationTokenVersion' => 1,
 	];
 
