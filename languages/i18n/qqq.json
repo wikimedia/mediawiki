@@ -1046,6 +1046,8 @@
 	"undo-nochange": "Message appears if an attempt to revert an edit by clicking the \"undo\" link results in an edit making no change to the current version of the page.\n\nSee also:\n* {{msg-mw|Undo-failure}}\n* {{msg-mw|Undo-norev}}",
 	"undo-summary": "Edit summary for an undo action. Parameters:\n* $1 - revision ID\n* $2 - username\n{{Identical|Undo}}\nSee also:\n* {{msg-mw|Undo-summary-anon}}",
 	"undo-summary-anon": "Edit summary for an undo action, when undoing an edit by an anonymous user and $wgDisableAnonTalk is activated. Parameters:\n* $1 - revision ID\n* $2 - username\nSee also:\n* {{msg-mw|Undo-summary}}",
+	"undo-summary-import": "Edit summary for an undo action, when undoing an edit by a foreign user (usually via imported edits). Parameters:\n* $1 - revision ID\n* $2 - interwiki prefix of the source wiki\n* $3 - link to userpage \n* $4 - username with the prefix\nSee also:\n* {{msg-mw|undo-summary-import2}}",
+	"undo-summary-import2": "Edit summary for an undo action, when undoing an edit by a foreign user whose valid interwiki prefix of the source could not be ascertained. Parameters:\n* $1 - revision ID\n* $2 - username\nSee also:\n* {{msg-mw|undo-summary-import}}",
 	"undo-summary-username-hidden": "Edit summary for an undo action where the username of the old revision is hidden.\n\nParameters:\n* $1 - the revision ID being undone\nSee also:\n* {{msg-mw|Undo-summary}}",
 	"createaccount-hook-aborted": "Placeholder message to return with API errors on account create; passes through the message from a hook {{notranslate}}",
 	"viewpagelogs": "Link displayed in history of pages",
