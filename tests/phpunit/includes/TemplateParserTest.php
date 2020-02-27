@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group Templates
  * @covers TemplateParser
@@ -137,4 +139,36 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$tp->processTemplate( 'recurse', $data );
 	}
 
+	/**
+	 * @covers TemplateParser::compile
+	 */
+	public function testCompileReturnsPHPCodeAndMetadata() {
+		// Code Under Test
+		$templateParser = TestingAccessWrapper::newFromObject(
+			new TemplateParser( $this->templateDir )
+		);
+
+		$compiledTemplate = $templateParser->compile( 'has_partial' );
+
+		$this->assertArrayHasKey( 'phpCode', $compiledTemplate );
+
+		// ---
+		$expectedFiles = [
+			"{$this->templateDir}/has_partial.mustache",
+			"{$this->templateDir}/foobar_args.mustache",
+		];
+
+		$this->assertEquals(
+			$expectedFiles,
+			$compiledTemplate['files'],
+			'::compile returns all files read during the compilation of the template.'
+		);
+
+		// ---
+		$this->assertEquals(
+			FileContentsHasher::getFileContentsHash( $expectedFiles ),
+			$compiledTemplate[ 'filesHash' ],
+			'::compile returns the hash of all files read during the compilation of the template.'
+		);
+	}
 }
