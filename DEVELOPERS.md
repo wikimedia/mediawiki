@@ -191,6 +191,20 @@ services:
       XDEBUG_CONFIG: remote_enable=1 remote_host=172.17.0.1 remote_log=/tmp/xdebug.log remote_port=9009
 ```
 
+#### Use Vector skin
+
+Clone the skin to `skins/Vector`:
+
+```sh
+git clone "https://gerrit.wikimedia.org/r/mediawiki/skins/Vector" skins/Vector
+```
+
+Configure MediaWiki to use the skin:
+
+```sh
+echo "wfLoadSkin( 'Vector' );" >> LocalSettings.php
+```
+
 ##### Troubleshooting
 
 ###### Port conflicts
