@@ -24,8 +24,6 @@ namespace Wikimedia\DependencyStore;
  * Class for tracking per-entity dependency path lists that are expensive to mass compute
  *
  * @internal This should not be used outside of ResourceLoader and ResourceLoaderModule
- *
- * @since 1.35
  */
 abstract class DependencyStore {
 	/** @var string */

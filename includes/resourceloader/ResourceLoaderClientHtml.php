@@ -35,19 +35,19 @@ class ResourceLoaderClientHtml {
 	/** @var ResourceLoader */
 	private $resourceLoader;
 
-	/** @var array */
+	/** @var array<string,string|null|false> */
 	private $options;
 
-	/** @var array */
+	/** @var array<string,mixed> */
 	private $config = [];
 
-	/** @var array */
+	/** @var string[] */
 	private $modules = [];
 
-	/** @var array */
+	/** @var string[] */
 	private $moduleStyles = [];
 
-	/** @var array */
+	/** @var array<string,string> */
 	private $exemptStates = [];
 
 	/** @var array */
@@ -84,7 +84,7 @@ class ResourceLoaderClientHtml {
 	/**
 	 * Ensure one or more modules are loaded.
 	 *
-	 * @param array $modules Array of module names
+	 * @param string[] $modules Array of module names
 	 */
 	public function setModules( array $modules ) {
 		$this->modules = $modules;
@@ -93,7 +93,7 @@ class ResourceLoaderClientHtml {
 	/**
 	 * Ensure the styles of one or more modules are loaded.
 	 *
-	 * @param array $modules Array of module names
+	 * @param string[] $modules Array of module names
 	 */
 	public function setModuleStyles( array $modules ) {
 		$this->moduleStyles = $modules;
@@ -104,16 +104,13 @@ class ResourceLoaderClientHtml {
 	 *
 	 * See OutputPage::buildExemptModules() for use cases.
 	 *
-	 * @param array $states Module state keyed by module name
+	 * @param array<string,string> $states Module state keyed by module name
 	 */
 	public function setExemptStates( array $states ) {
 		$this->exemptStates = $states;
 	}
 
-	/**
-	 * @return array
-	 */
-	private function getData() {
+	private function getData() : array {
 		if ( $this->data ) {
 			// @codeCoverageIgnoreStart
 			return $this->data;
@@ -223,7 +220,7 @@ class ResourceLoaderClientHtml {
 	}
 
 	/**
-	 * @return array Attribute key-value pairs for the HTML document element
+	 * @return array<string,string> Attributes pairs for the HTML document element
 	 */
 	public function getDocumentAttributes() {
 		return [ 'class' => 'client-nojs' ];
