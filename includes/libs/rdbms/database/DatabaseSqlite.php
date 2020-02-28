@@ -382,7 +382,7 @@ class DatabaseSqlite extends Database {
 		$cur = current( $resource );
 		if ( is_array( $cur ) ) {
 			next( $resource );
-			$obj = new stdClass;
+			$obj = (object)[];
 			foreach ( $cur as $k => $v ) {
 				if ( !is_numeric( $k ) ) {
 					$obj->$k = $v;

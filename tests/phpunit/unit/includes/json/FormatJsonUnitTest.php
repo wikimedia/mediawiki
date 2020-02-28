@@ -22,7 +22,7 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testEncoderPrettyPrinting( $pretty, $expectedIndent ) {
 		$obj = [
-			'emptyObject' => new stdClass,
+			'emptyObject' => (object)[],
 			'emptyArray' => [],
 			'string' => 'foobar\\',
 			'filledArray' => [
@@ -111,8 +111,8 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 
 	public function testEncodeFail() {
 		// Set up a recursive object that can't be encoded.
-		$a = new stdClass;
-		$b = new stdClass;
+		$a = (object)[];
+		$b = (object)[];
 		$a->b = $b;
 		$b->a = $a;
 		$this->assertFalse( FormatJson::encode( $a ) );

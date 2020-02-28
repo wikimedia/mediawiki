@@ -27,7 +27,7 @@ trait TempFSFileTestTrait {
 		$file = $this->newFile();
 		$path = $file->getPath();
 		$this->assertTrue( file_exists( $path ) );
-		$obj = new stdclass;
+		$obj = (object)[];
 		$file->bind( $obj );
 		unset( $file );
 		$this->assertTrue( file_exists( $path ) );

@@ -1587,7 +1587,7 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testNewFromRow() {
 		// TODO: Create real tests here for loadFromRow
-		$row = new stdClass;
+		$row = (object)[];
 		$user = User::newFromRow( $row );
 		$this->assertInstanceOf( User::class, $user, 'newFromRow returns a user object' );
 	}

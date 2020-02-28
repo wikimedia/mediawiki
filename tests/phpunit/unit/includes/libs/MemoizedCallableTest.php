@@ -112,7 +112,7 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 		$memoized = new MemoizedCallable( 'gettype' );
 		$this->expectExceptionMessage( "non-scalar argument" );
 		$this->expectException( InvalidArgumentException::class );
-		$memoized->invoke( new stdClass() );
+		$memoized->invoke( (object)[] );
 	}
 
 	public function testNotCallable() {

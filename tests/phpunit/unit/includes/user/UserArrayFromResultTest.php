@@ -22,9 +22,7 @@ class UserArrayFromResultTest extends \MediaWikiUnitTestCase {
 	}
 
 	private function getRowWithUsername( $username = 'fooUser' ) {
-		$row = new stdClass();
-		$row->user_name = $username;
-		return $row;
+		return (object)[ 'user_name' => $username ];
 	}
 
 	/**

@@ -9,7 +9,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
-use stdClass;
 use TitleValue;
 use WANObjectCache;
 
@@ -189,8 +188,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 	 */
 	public function testCompressRevisionTextUtf8() {
 		$store = $this->getBlobStore();
-		$row = new stdClass;
-		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
+		$row = (object)[ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !" ];
 		$row->old_flags = $store->compressData( $row->old_text );
 		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
 			"Flags should contain 'utf-8'" );
@@ -208,8 +206,7 @@ class SqlBlobStoreTest extends MediaWikiTestCase {
 		$store->setCompressBlobs( true );
 		$this->checkPHPExtension( 'zlib' );
 
-		$row = new stdClass;
-		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
+		$row = (object)[ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !" ];
 		$row->old_flags = $store->compressData( $row->old_text );
 		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
 			"Flags should contain 'utf-8'" );

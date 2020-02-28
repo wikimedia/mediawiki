@@ -11,7 +11,7 @@ class ServiceOptionsTest extends \MediaWikiUnitTestCase {
 	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 
-		self::$testObj = new stdclass();
+		self::$testObj = (object)[];
 	}
 
 	/**

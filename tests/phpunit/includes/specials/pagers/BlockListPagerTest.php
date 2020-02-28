@@ -40,7 +40,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 		$value = $name === 'ipb_timestamp' ? MWTimestamp::time() : '';
 		$expected = $expected ?? MWTimestamp::getInstance()->format( 'H:i, j F Y' );
 
-		$row = $row ?: new stdClass;
+		$row = $row ?: (object)[];
 		$pager = new BlockListPager( new SpecialPage(),  [], $this->linkRenderer );
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
 		$wrappedPager->mCurrentRow = $row;
