@@ -15,12 +15,12 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWikiLangTestCase;
 use MWException;
 use RequestContext;
-use stdClass;
 use TestAllServiceOptionsUsed;
 use Title;
 use User;
@@ -1638,7 +1638,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertContains( 'nukeworld', $rights );
 
 		// Add a Session that limits rights
-		$mock = $this->getMockBuilder( stdClass::class )
+		$mock = $this->getMockBuilder( Session::class )
 			->setMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
 			->getMock();
 		$mock->method( 'getAllowedUserRights' )->willReturn( [ 'test', 'writetest' ] );
