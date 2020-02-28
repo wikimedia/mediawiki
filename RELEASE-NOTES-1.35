@@ -510,6 +510,8 @@ because of Phabricator reports.
   - LogEventsList::userCan
   - LogEventsList::userCanBitfield
   - LogEventsList::userCanViewLogType
+  - LogEventsList::getExcludeClause (only used when the 'audience' parameter
+     is set to something other than the default of 'public')
   - LogPage::addEntry
   - FileDeleteForm::doDelete
   Additionally, not passing a user to the following is soft deprecated:
