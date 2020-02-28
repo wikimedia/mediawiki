@@ -2584,6 +2584,7 @@
 	"whatlinkshere-hidelinks": "Bağlantıları $1",
 	"whatlinkshere-hideimages": "$1 dosya bağlantısı",
 	"whatlinkshere-filters": "Süzgeçler",
+	"whatlinkshere-sectionredir": "\"$1\" bölümüne yönlendir",
 	"whatlinkshere-submit": "Getir",
 	"autoblockid": "Otomatik engelleme #$1",
 	"block": "Kullanıcıyı engelle",

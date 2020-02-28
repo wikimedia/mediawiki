@@ -1208,6 +1208,7 @@
 	"badsiglength": "签名过长。请不超过$1个字符。",
 	"yourgender": "您希望使用什么性别称呼？",
 	"gender-unknown": "当提及您时，软件将尽可能使用性别中性的词法",
+	"gender-notknown": "此人编辑了Wiki页面",
 	"gender-male": "他",
 	"gender-female": "她",
 	"prefs-help-gender": "该设置为可选项。软件会使用您选择的方式来称呼您，对他人提及您时也会使用适当语法称呼。该信息会公开。",

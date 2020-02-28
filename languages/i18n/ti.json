@@ -400,7 +400,7 @@
 	"undelete-search-submit": "ምድላይ",
 	"undelete-show-file-submit": "እወ",
 	"blanknamespace": "(መበገሲ)",
-	"contributions": "{{GENDER:$1|User}} ኣበርክቶታት",
+	"contributions": "{{GENDER:$1|ናይ ተጠቃሚ}} ኣበርክቶታት",
 	"mycontris": "ኣበርክቶታት",
 	"anoncontribs": "ኣበርክቶታት",
 	"contribsub2": "ን {{GENDER:$3|$1}} ($2)",
