@@ -783,13 +783,18 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param IDatabase $db
 	 * @param string $audience Public/user
-	 * @param User|null $user User to check, or null to use $wgUser
+	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return string|bool String on success, false on failure.
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', User $user = null ) {
 		global $wgLogRestrictions;
 
 		if ( $audience != 'public' && $user === null ) {
+			wfDeprecated(
+				__METHOD__ .
+				' using a non-public audience without passing a $user parameter',
+				'1.35'
+			);
 			global $wgUser;
 			$user = $wgUser;
 		}
