@@ -4073,8 +4073,7 @@ ERROR;
 				$content = $content->addSectionHeader( $this->summary );
 			}
 
-			$hook_args = [ $this, &$content ];
-			Hooks::run( 'EditPageGetPreviewContent', $hook_args );
+			Hooks::run( 'EditPageGetPreviewContent', [ $this, &$content ] );
 
 			$parserResult = $this->doPreviewParse( $content );
 			$parserOutput = $parserResult['parserOutput'];
