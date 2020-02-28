@@ -22,6 +22,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 require_once __DIR__ . '/../Maintenance.php';
@@ -40,7 +41,7 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgContLang, $IP;
+		global $IP;
 
 		$data = [];
 
@@ -65,7 +66,7 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 				continue;
 			}
 			$char = \UtfNormal\Utils::codepointToUtf8( $i );
-			$phpUpper = $wgContLang->ucfirst( $char );
+			$phpUpper = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $char );
 			$jsUpper = $jsUpperChars[$i];
 			if ( $jsUpper !== $phpUpper ) {
 				if ( $char === $phpUpper ) {
