@@ -223,7 +223,7 @@ class WatchActionTest extends MediaWikiTestCase {
 
 		$this->assertFalse( $status->isGood() );
 		$errors = $status->getErrors();
-		$this->assertEquals( 1, count( $errors ) );
+		$this->assertCount( 1, $errors );
 		$this->assertEquals( 'hookaborted', $errors[0]['message'] );
 	}
 

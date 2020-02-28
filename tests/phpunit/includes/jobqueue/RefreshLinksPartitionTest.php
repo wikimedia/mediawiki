@@ -40,7 +40,7 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 		$extraParams = $job->getRootJobParams();
 		$jobs = BacklinkJobUtils::partitionBacklinkJob( $job, 9, 1, [ 'params' => $extraParams ] );
 
-		$this->assertEquals( 10, count( $jobs ), 'Correct number of sub-jobs' );
+		$this->assertCount( 10, $jobs, 'Correct number of sub-jobs' );
 		$this->assertEquals( $pages[0], current( $jobs[0]->params['pages'] ),
 			'First job is leaf job with proper title' );
 		$this->assertEquals( $pages[8], current( $jobs[8]->params['pages'] ),
@@ -67,7 +67,7 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 			[ 'params' => $extraParams ]
 		);
 
-		$this->assertEquals( 10, count( $jobs2 ), 'Correct number of sub-jobs' );
+		$this->assertCount( 10, $jobs2, 'Correct number of sub-jobs' );
 		$this->assertEquals( $pages[9], current( $jobs2[0]->params['pages'] ),
 			'First job is leaf job with proper title' );
 		$this->assertEquals( $pages[17], current( $jobs2[8]->params['pages'] ),
@@ -90,7 +90,7 @@ class RefreshLinksPartitionTest extends MediaWikiTestCase {
 			[ 'params' => $extraParams ]
 		);
 
-		$this->assertEquals( 2, count( $jobs3 ), 'Correct number of sub-jobs' );
+		$this->assertCount( 2, $jobs3, 'Correct number of sub-jobs' );
 		$this->assertEquals( $pages[18], current( $jobs3[0]->params['pages'] ),
 			'First job is leaf job with proper title' );
 		$this->assertEquals( $extraParams['rootJobSignature'], $jobs3[0]->params['rootJobSignature'],

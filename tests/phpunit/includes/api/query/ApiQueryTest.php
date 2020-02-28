@@ -71,7 +71,7 @@ class ApiQueryTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$this->assertEquals( 2, count( $data[0]['query']['pages'] ) );
+		$this->assertCount( 2, $data[0]['query']['pages'] );
 
 		$this->assertArrayHasKey( -2, $data[0]['query']['pages'] );
 		$this->assertArrayHasKey( -1, $data[0]['query']['pages'] );
@@ -88,7 +88,7 @@ class ApiQueryTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
-		$this->assertEquals( 1, count( $data[0]['query']['pages'] ) );
+		$this->assertCount( 1, $data[0]['query']['pages'] );
 		$this->assertArrayHasKey( -1, $data[0]['query']['pages'] );
 		$this->assertArrayHasKey( 'invalid', $data[0]['query']['pages'][-1] );
 	}

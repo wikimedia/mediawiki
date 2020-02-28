@@ -1779,7 +1779,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 
 		Language::clearCaches();
 
-		$this->assertCount( 0, Language::$mLangObjCache );
+		$this->assertSame( [], Language::$mLangObjCache );
 	}
 
 	/**

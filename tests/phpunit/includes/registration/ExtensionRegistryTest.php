@@ -32,13 +32,13 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 			$registry->getQueue()
 		);
 		$registry->clearQueue();
-		$this->assertEmpty( $registry->getQueue() );
+		$this->assertSame( [], $registry->getQueue() );
 	}
 
 	public function testLoadFromQueue_empty() {
 		$registry = new ExtensionRegistry();
 		$registry->loadFromQueue();
-		$this->assertEmpty( $registry->getAllThings() );
+		$this->assertSame( [], $registry->getAllThings() );
 	}
 
 	public function testLoadFromQueue_late() {

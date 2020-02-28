@@ -1757,7 +1757,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertGoodStatus( $status, "Operation batch succeeded" );
 		$this->assertTrue( $status->isOK(), "Operation batch succeeded" );
-		$this->assertEquals( 14, count( $status->success ),
+		$this->assertCount( 14, $status->success,
 			"Operation batch has correct success array" );
 
 		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileA ] ),
@@ -1853,7 +1853,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertGoodStatus( $status, "Operation batch succeeded" );
 		$this->assertTrue( $status->isOK(), "Operation batch succeeded" );
-		$this->assertEquals( 16, count( $status->success ),
+		$this->assertCount( 16, $status->success,
 			"Operation batch has correct success array" );
 
 		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileA ] ),
@@ -1927,7 +1927,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotEquals( [], $status->getErrors(), "Operation had warnings" );
 		$this->assertTrue( $status->isOK(), "Operation batch succeeded" );
-		$this->assertEquals( 8, count( $status->success ),
+		$this->assertCount( 8, $status->success,
 			"Operation batch has correct success array" );
 
 		$this->assertFalse( $this->backend->fileExists( [ 'src' => $fileB ] ),

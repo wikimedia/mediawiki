@@ -110,7 +110,7 @@ class TypeDefTest extends \PHPUnit\Framework\TestCase {
 			$this->assertSame( (string)$value, $ex->getParamValue() );
 			$this->assertSame( $settings, $ex->getSettings() );
 		}
-		$this->assertCount( 0, $callbacks->getRecordedConditions() );
+		$this->assertSame( [], $callbacks->getRecordedConditions() );
 	}
 
 	/** @dataProvider provideFailure */

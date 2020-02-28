@@ -367,7 +367,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertFalse( $block->isSitewide() );
-		$this->assertCount( 0, $block->getRestrictions() );
+		$this->assertSame( [], $block->getRestrictions() );
 
 		// Change to sitewide.
 		$data['EditingRestriction'] = 'sitewide';
@@ -379,7 +379,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
 		$this->assertTrue( $block->isSitewide() );
-		$this->assertCount( 0, $block->getRestrictions() );
+		$this->assertSame( [], $block->getRestrictions() );
 
 		// Ensure that there are no restrictions where the blockId is 0.
 		$count = $this->db->selectRowCount(

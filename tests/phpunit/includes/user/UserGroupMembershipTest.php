@@ -109,7 +109,7 @@ class UserGroupMembershipTest extends MediaWikiTestCase {
 
 		// check that the user in no groups has no group memberships
 		$ugms = UserGroupMembership::getMembershipsForUser( $this->userNoGroups->getId() );
-		$this->assertEmpty( $ugms );
+		$this->assertSame( [], $ugms );
 
 		// check that the user in 2 groups has 2 group memberships
 		$testerUserId = $this->userTester->getId();

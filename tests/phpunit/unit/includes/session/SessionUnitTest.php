@@ -141,7 +141,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 
 		$backend->data = [ 'a', 'b', '?' => 'c' ];
 		$this->assertSame( 3, $session->count() );
-		$this->assertSame( 3, count( $session ) );
+		$this->assertCount( 3, $session );
 		$this->assertFalse( $backend->dirty );
 
 		$data = [];

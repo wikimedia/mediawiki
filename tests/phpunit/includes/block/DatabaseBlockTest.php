@@ -443,7 +443,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 		$list = array_map( 'trim', explode( ',', $xff ) );
 		$xffblocks = DatabaseBlock::getBlocksForIPList( $list, true );
-		$this->assertEquals( $exCount, count( $xffblocks ), 'Number of blocks for ' . $xff );
+		$this->assertCount( $exCount, $xffblocks, 'Number of blocks for ' . $xff );
 		$block = DatabaseBlock::chooseBlock( $xffblocks, $list );
 		$this->assertEquals(
 			$exResult, $block->getReasonComment()->text, 'Correct block type for XFF header ' . $xff

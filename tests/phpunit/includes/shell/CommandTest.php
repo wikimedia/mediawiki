@@ -147,14 +147,14 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		$command->setLogger( $logger );
 		$command->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' );
 		$command->execute();
-		$this->assertEmpty( $logger->getBuffer() );
+		$this->assertSame( [], $logger->getBuffer() );
 
 		$command = new Command();
 		$command->setLogger( $logger );
 		$command->logStderr();
 		$command->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' );
 		$command->execute();
-		$this->assertSame( 1, count( $logger->getBuffer() ) );
+		$this->assertCount( 1, $logger->getBuffer() );
 		$this->assertSame( trim( $logger->getBuffer()[0][2]['error'] ), 'ThisIsStderr' );
 	}
 
