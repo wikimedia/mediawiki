@@ -1676,6 +1676,7 @@ return [
 			'rcfilters-tag-prefix-tags',
 			'rcfilters-exclude-button-off',
 			'rcfilters-exclude-button-on',
+			'rcfilters-view-filter-select-widget-aria-label',
 			'rcfilters-view-tags',
 			'rcfilters-view-namespaces-tooltip',
 			'rcfilters-view-tags-tooltip',
