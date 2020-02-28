@@ -305,10 +305,10 @@ class CategoryViewer extends ContextSource {
 			# the collation in the database differs from the one
 			# set in $wgCategoryCollation, pagination might go totally haywire.
 			$extraConds = [ 'cl_type' => $type ];
-			if ( isset( $this->from[$type] ) && $this->from[$type] !== null ) {
+			if ( isset( $this->from[$type] ) ) {
 				$extraConds[] = 'cl_sortkey >= '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->from[$type] ) );
-			} elseif ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
+			} elseif ( isset( $this->until[$type] ) ) {
 				$extraConds[] = 'cl_sortkey < '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->until[$type] ) );
 				$this->flip[$type] = true;
@@ -487,7 +487,7 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML output, possibly empty if there are no other pages
 	 */
 	private function getSectionPagingLinks( $type ) {
-		if ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
+		if ( isset( $this->until[$type] ) ) {
 			// The new value for the until parameter should be pointing to the first
 			// result displayed on the page which is the second last result retrieved
 			// from the database.The next link should have a from parameter pointing
@@ -499,9 +499,7 @@ class CategoryViewer extends ContextSource {
 				// and therefore the previous link should be disabled.
 				return $this->pagingLinks( null, $this->until[$type], $type );
 			}
-		} elseif ( $this->nextPage[$type] !== null
-			|| ( isset( $this->from[$type] ) && $this->from[$type] !== null )
-		) {
+		} elseif ( $this->nextPage[$type] !== null || isset( $this->from[$type] ) ) {
 			return $this->pagingLinks( $this->from[$type], $this->nextPage[$type], $type );
 		} else {
 			return '';
@@ -715,9 +713,7 @@ class CategoryViewer extends ContextSource {
 		}
 
 		$fromOrUntil = false;
-		if ( ( isset( $this->from[$pagingType] ) && $this->from[$pagingType] !== null ) ||
-			( isset( $this->until[$pagingType] ) && $this->until[$pagingType] !== null )
-		) {
+		if ( isset( $this->from[$pagingType] ) || isset( $this->until[$pagingType] ) ) {
 			$fromOrUntil = true;
 		}
 

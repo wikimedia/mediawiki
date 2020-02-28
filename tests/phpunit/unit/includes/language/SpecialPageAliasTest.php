@@ -52,10 +52,7 @@ class SpecialPageAliasTest extends \MediaWikiUnitTestCase {
 
 		if ( is_readable( $file ) ) {
 			include $file;
-
-			if ( isset( $specialPageAliases ) && $specialPageAliases !== null ) {
-				return $specialPageAliases;
-			}
+			return $specialPageAliases ?? [];
 		}
 
 		return [];

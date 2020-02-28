@@ -593,6 +593,6 @@ class WikiExporter {
 			$output = $this->writer->writeLogItem( $row );
 			$this->sink->writeLogItem( $row, $output );
 		}
-		return isset( $row ) ? $row->log_id : null;
+		return $row->log_id ?? null;
 	}
 }

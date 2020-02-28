@@ -5013,7 +5013,7 @@ class Parser {
 	 * @return string|callable The old callback function for this name, if any
 	 */
 	public function setFunctionHook( $id, callable $callback, $flags = 0 ) {
-		$oldVal = isset( $this->mFunctionHooks[$id] ) ? $this->mFunctionHooks[$id][0] : null;
+		$oldVal = $this->mFunctionHooks[$id][0] ?? null;
 		$this->mFunctionHooks[$id] = [ $callback, $flags ];
 
 		# Add to function cache
