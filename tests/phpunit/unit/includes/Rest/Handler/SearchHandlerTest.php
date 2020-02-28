@@ -25,6 +25,11 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
 
+	/**
+	 * @var SearchEngine|MockObject|null
+	 */
+	private $searchEngine = null;
+
 	private function newHandler(
 		$query,
 		$titleResult,
@@ -49,18 +54,18 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 			} );
 
 		/** @var SearchEngine|MockObject $searchEngine */
-		$searchEngine = $this->createMock( SearchEngine::class );
-		$searchEngine->method( 'searchTitle' )
+		$this->searchEngine = $this->createMock( SearchEngine::class );
+		$this->searchEngine->method( 'searchTitle' )
 			->with( $query )
 			->willReturn( $titleResult );
-		$searchEngine->method( 'searchText' )
+		$this->searchEngine->method( 'searchText' )
 			->with( $query )
 			->willReturn( $textResult );
 
 		/** @var SearchEngineFactory|MockObject $searchEngineFactory */
 		$searchEngineFactory = $this->createNoOpMock( SearchEngineFactory::class, [ 'create' ] );
 		$searchEngineFactory->method( 'create' )
-			->willReturn( $searchEngine ); // TODO
+			->willReturn( $this->searchEngine );
 
 		return new SearchHandler(
 			$permissionManager,
@@ -122,6 +127,81 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'one', $data['pages'][2]['excerpt'] );
 		$this->assertSame( 'Xyzzy', $data['pages'][3]['title'] );
 		$this->assertSame( 'three', $data['pages'][3]['excerpt'] );
+	}
+
+	public function testExecute_limit() {
+		$titleResults = new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Foo' ),
+			$this->makeMockSearchResult( 'FooBar' ),
+		] );
+		$textResults = new MockSearchResultSet( [] );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query, 'limit' => 7 ] ] );
+
+		$handler = $this->newHandler( $query, $titleResults, $textResults );
+
+		// Limits are enforced by the SearchEngine, which we mock.
+		// So we have to do assertions on the mock, not on the result data.
+		$this->searchEngine
+			->expects( $this->atLeastOnce() )
+			->method( 'setLimitOffset' )
+			->with( 7, 0 );
+
+		$this->executeHandler( $handler, $request );
+	}
+
+	public function testExecute_limit_default() {
+		$titleResults = new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Foo' ),
+			$this->makeMockSearchResult( 'FooBar' ),
+		] );
+		$textResults = new MockSearchResultSet( [] );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$handler = $this->newHandler( $query, $titleResults, $textResults );
+
+		// Limits are enforced by the SearchEngine, which we mock.
+		// So we have to do assertions on the mock, not on the result data.
+		$this->searchEngine
+			->expects( $this->atLeastOnce() )
+			->method( 'setLimitOffset' )
+			->with( 50, 0 );
+
+		$this->executeHandler( $handler, $request );
+	}
+
+	public function provideExecute_limit_error() {
+		yield [ 0, 'paramvalidator-outofrange-minmax' ];
+		yield [ 123, 'paramvalidator-outofrange-minmax' ];
+		yield [ 'xyz', 'paramvalidator-badinteger' ];
+	}
+
+	/**
+	 * @dataProvider provideExecute_limit_error
+	 * @param int $requestedLimit
+	 * @param string $error
+	 */
+	public function testExecute_limit_error( $requestedLimit, $error ) {
+		$titleResults = new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Foo' ),
+			$this->makeMockSearchResult( 'FooBar' ),
+		] );
+		$textResults = new MockSearchResultSet( [] );
+
+		$query = 'foo';
+		$request =
+			new RequestData( [ 'queryParams' => [ 'q' => $query, 'limit' => $requestedLimit ] ] );
+
+		$handler = $this->newHandler( $query, $titleResults, $textResults );
+
+		$this->expectExceptionObject(
+			new LocalizedHttpException( new MessageValue( $error ), 400 )
+		);
+
+		$this->executeHandler( $handler, $request );
 	}
 
 	public function testExecute_status() {
