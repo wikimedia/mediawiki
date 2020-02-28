@@ -96,7 +96,7 @@ class ArchivedFile {
 	protected $title; # image title
 
 	/** @var bool */
-	private $exists;
+	protected $exists;
 
 	/**
 	 * @throws MWException
@@ -105,7 +105,7 @@ class ArchivedFile {
 	 * @param string $key
 	 * @param string $sha1
 	 */
-	function __construct( $title, $id = 0, $key = '', $sha1 = '' ) {
+	public function __construct( $title, $id = 0, $key = '', $sha1 = '' ) {
 		$this->id = -1;
 		$this->title = false;
 		$this->name = false;
