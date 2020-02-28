@@ -406,7 +406,7 @@ class EditPage {
 	public $scrolltop = null;
 
 	/** @var bool */
-	public $bot = true;
+	public $markAsBot = true;
 
 	/** @var string */
 	public $contentModel;
@@ -1106,7 +1106,7 @@ class EditPage {
 		$this->oldid = $request->getInt( 'oldid' );
 		$this->parentRevId = $request->getInt( 'parentRevId' );
 
-		$this->bot = $request->getBool( 'bot', true );
+		$this->markAsBot = $request->getBool( 'bot', true );
 		$this->nosummary = $request->getBool( 'nosummary' );
 
 		// May be overridden by revision.
@@ -1648,13 +1648,15 @@ class EditPage {
 	 * @return Status The resulting status object.
 	 */
 	public function attemptSave( &$resultDetails = false ) {
-		// TODO: MCR: treat $this->minoredit like $this->bot and check isAllowed( 'minoredit' )!
-		// Also, add $this->autopatrol like $this->bot and check isAllowed( 'autopatrol' )!
+		// TODO: MCR:
+		// * treat $this->minoredit like $this->markAsBot and check isAllowed( 'minoredit' )!
+		// * add $this->autopatrol like $this->markAsBot and check isAllowed( 'autopatrol' )!
 		// This is needed since PageUpdater no longer checks these rights!
 
 		// Allow bots to exempt some edits from bot flagging
-		$bot = $this->permManager->userHasRight( $this->context->getUser(), 'bot' ) && $this->bot;
-		$status = $this->internalAttemptSave( $resultDetails, $bot );
+		$markAsBot = $this->markAsBot
+			&& $this->permManager->userHasRight( $this->context->getUser(), 'bot' );
+		$status = $this->internalAttemptSave( $resultDetails, $markAsBot );
 
 		Hooks::run( 'EditPage::attemptSave:after', [ $this, $status, $resultDetails ] );
 
@@ -1926,7 +1928,8 @@ ERROR;
 	 *     false otherwise.
 	 *   - redirect (bool): Set if doEditContent is OK. True if resulting
 	 *     revision is a redirect.
-	 * @param bool $bot True if edit is being made under the bot right.
+	 * @param bool $markAsBot True if edit is being made under the bot right
+	 *     and the bot wishes the edit to be marked as such.
 	 *
 	 * @return Status Status object, possibly with a message, but always with
 	 *   one of the AS_* constants in $status->value,
@@ -1938,7 +1941,7 @@ ERROR;
 	 *   AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some
 	 * time.
 	 */
-	public function internalAttemptSave( &$result, $bot = false ) {
+	public function internalAttemptSave( &$result, $markAsBot = false ) {
 		$status = Status::newGood();
 		$user = $this->context->getUser();
 
@@ -2372,7 +2375,7 @@ ERROR;
 		$flags = EDIT_AUTOSUMMARY |
 			( $new ? EDIT_NEW : EDIT_UPDATE ) |
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
-			( $bot ? EDIT_FORCE_BOT : 0 );
+			( $markAsBot ? EDIT_FORCE_BOT : 0 );
 
 		$doEditStatus = $this->page->doEditContent(
 			$content,
