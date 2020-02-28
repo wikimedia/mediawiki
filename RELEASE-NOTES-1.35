@@ -536,6 +536,8 @@ because of Phabricator reports.
 * JobRunner::setLogger has been deprecated, thus using JobRunner as a
   LoggerAwareInterface is deprecated as well. Rely on the logger passed in the
   constructor instead.
+* LogEventsList::typeAction accepts an optional right to check against as
+  the fourth parameter. Specifying such a right is deprecated.
 * …
 
 === Other changes in 1.35 ===
