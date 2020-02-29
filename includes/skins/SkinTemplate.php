@@ -1422,6 +1422,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Generate strings used for xml 'id' names
+	 * @deprecated since 1.35, use Title::getNamespaceKey() instead
 	 * @return string
 	 */
 	protected function getNameSpaceKey() {
