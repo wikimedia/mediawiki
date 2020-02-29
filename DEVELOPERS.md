@@ -12,15 +12,13 @@ Docker Compose.
 The default environment provides PHP, Apache, XDebug and a SQLite database.
 (**Do not run this stack in production! Bad things might happen!**)
 
-More documentation is available at [mediawiki.org/wiki/Docker][mw-docker]
-and example overrides and configuration recipes are available at
-[mediawiki.org/wiki/Docker/Recipes][mw-docker-recipes].
+More documentation as well as example overrides and configuration recipes
+are available at [mediawiki.org/wiki/MediaWiki-Docker][mw-docker].
 
 Support is available on the [Freenode IRC network][freenode] at `#mediawiki`
 and on Wikimedia Phabricator at [#MediaWiki-Docker][mw-docker-phab].
 
-[mw-docker]: https://www.mediawiki.org/wiki/Docker
-[mw-docker-recipes]: https://www.mediawiki.org/wiki/Docker/Recipes
+[mw-docker]: https://www.mediawiki.org/wiki/MediaWiki-Docker
 [mw-docker-phab]: https://phabricator.wikimedia.org/project/profile/3094/
 [freenode]: https://freenode.net/
 
@@ -166,8 +164,8 @@ npm run api-testing
 
 You can override the default services with a `docker-compose.override.yml`
 file, and configure those overrides with changes to `LocalSettings.php`.
-Example overrides and configurations can be found at
-https://www.mediawiki.org/wiki/Docker
+
+Example overrides and configurations can be found at [MediaWiki-Docker](https://www.mediawiki.org/wiki/MediaWiki-Docker)
 
 After updating `docker-compose.override.yml`, run `docker-compose down`
 followed by `docker-compose up -d` for changes to take effect.
