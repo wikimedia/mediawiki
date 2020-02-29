@@ -400,7 +400,7 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	public static function getDynamicStylesheetQuery() {
-		wfDeprecated( __METHOD__, '1.35' );
+		wfDeprecated( __METHOD__, '1.32' );
 		return [
 				'action' => 'raw',
 				'ctype' => 'text/css',
