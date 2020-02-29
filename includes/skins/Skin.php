@@ -60,20 +60,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Fetch the skinname messages for available skins.
-	 * @deprecated since 1.34, no longer used.
-	 * @return string[]
-	 */
-	static function getSkinNameMessages() {
-		wfDeprecated( __METHOD__, '1.34' );
-		$messages = [];
-		foreach ( self::getSkinNames() as $skinKey => $skinName ) {
-			$messages[] = "skinname-$skinKey";
-		}
-		return $messages;
-	}
-
-	/**
 	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
 	 * only want to show skins users _can_ use.

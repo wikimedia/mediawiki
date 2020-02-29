@@ -343,6 +343,7 @@ because of Phabricator reports.
 * StringUtils::explodeMarkup() was removed without deprecation.
 * AjaxResponse::checkLastModified(), AjaxResponse::loadFromMemcached(), and
   AjaxResponse::storeInMemcached() have been removed.
+* Skin::getSkinNameMessages() deprecated in 1.34, has been removed.
 * …
 
 === Deprecations in 1.35 ===

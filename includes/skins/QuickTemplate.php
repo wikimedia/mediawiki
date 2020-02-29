@@ -74,7 +74,7 @@ abstract class QuickTemplate {
 	 * @since 1.22
 	 * @param string $name Key for the data
 	 * @param mixed|null $default Optional default (or null)
-	 * @return mixed The value of the data requested or the deafult
+	 * @return mixed The value of the data requested or the default
 	 * @return-taint onlysafefor_htmlnoent
 	 */
 	public function get( $name, $default = null ) {
