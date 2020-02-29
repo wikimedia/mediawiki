@@ -1175,6 +1175,8 @@ more stuff
 	 * @covers WikiPage::commitRollback
 	 */
 	public function testDoRollback() {
+		$this->hideDeprecated( 'Revision::countByPageId' );
+
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 		// Use the confirmed group for user2 to make sure the user is different

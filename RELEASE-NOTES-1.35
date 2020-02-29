@@ -533,6 +533,7 @@ because of Phabricator reports.
   have now been individually hard deprecated:
   - ::userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
+  - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
 * The JobRunner class has been converted to a service class.
   Direct construction is deprecated, use MediaWikiServices::getJobRunner.
