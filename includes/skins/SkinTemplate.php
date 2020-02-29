@@ -848,12 +848,13 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * @todo is this even used?
+	 * @deprecated since 1.35, no longer used
 	 * @param string $name
 	 * @param string|array $urlaction
 	 * @return array
 	 */
 	function makeArticleUrlDetails( $name, $urlaction = '' ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$title = Title::newFromText( $name );
 		$title = $title->getSubjectPage();
 		self::checkTitle( $title, $name );

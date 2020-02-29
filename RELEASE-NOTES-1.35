@@ -549,6 +549,7 @@ because of Phabricator reports.
 * LogEventsList::typeAction accepts an optional right to check against as
   the fourth parameter. Specifying such a right is deprecated.
 * RevisionStore::loadRevisionFromTitle was deprecated.
+* SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
 * …
 
 === Other changes in 1.35 ===
