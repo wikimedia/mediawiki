@@ -1371,6 +1371,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::loadRevisionFromTitle
 	 */
 	public function testLoadRevisionFromTitle() {
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 		$title = Title::newFromText( __METHOD__ );
 		$page = WikiPage::factory( $title );
 		/** @var Revision $rev */

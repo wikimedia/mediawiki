@@ -598,6 +598,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitle() {
+		$this->hideDeprecated( 'Revision::loadFromTitle' );
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 		$title = $this->getMockTitle();
 
 		$conditions = [

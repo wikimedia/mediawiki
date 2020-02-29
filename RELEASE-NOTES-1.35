@@ -529,9 +529,10 @@ because of Phabricator reports.
 * All methods of the old SpecialPageFactory, deprecated in 1.32, were hard
   deprecated. Instead, get a SpecialPageFactory from MediaWikiServices and
   use its methods.
-* Revision::userCanBitfield was soft deprecated along with the whole Revision
-  class in 1.31. ::userCanBitfield was individually hard deprecated; use
-  RevisionRecord::userCanBitfield instead.
+* The Revision class was soft deprecated entirely in 1.31. Specific methods
+  have now been individually hard deprecated:
+  - ::userCanBitfield - use RevisionRecord::userCanBitfield instead
+  - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
 * The JobRunner class has been converted to a service class.
   Direct construction is deprecated, use MediaWikiServices::getJobRunner.
@@ -540,6 +541,7 @@ because of Phabricator reports.
   constructor instead.
 * LogEventsList::typeAction accepts an optional right to check against as
   the fourth parameter. Specifying such a right is deprecated.
+* RevisionStore::loadRevisionFromTitle was deprecated.
 * …
 
 === Other changes in 1.35 ===

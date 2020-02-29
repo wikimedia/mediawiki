@@ -269,6 +269,7 @@ class Revision implements IDBAccessObject {
 	 * to that page, will return null.
 	 *
 	 * @deprecated since 1.31, use RevisionStore::getRevisionByTitle() instead.
+	 * Hard deprecated in 1.35
 	 *
 	 * @param IDatabase $db
 	 * @param Title $title
@@ -276,6 +277,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromTitle( $db, $title, $id = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$rec = self::getRevisionStore()->loadRevisionFromTitle( $db, $title, $id );
 		return $rec ? new Revision( $rec ) : null;
 	}

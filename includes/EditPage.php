@@ -28,6 +28,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -484,6 +486,11 @@ class EditPage {
 	private $permManager;
 
 	/**
+	 * @var RevisionStore
+	 */
+	private $revisionStore;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
@@ -509,6 +516,7 @@ class EditPage {
 			->getDefaultFormat();
 		$this->editConflictHelperFactory = [ $this, 'newTextConflictHelper' ];
 		$this->permManager = $services->getPermissionManager();
+		$this->revisionStore = $services->getRevisionStore();
 	}
 
 	/**
@@ -2466,8 +2474,6 @@ ERROR;
 	 * @return bool
 	 */
 	private function mergeChangesIntoContent( &$editContent ) {
-		$db = wfGetDB( DB_MASTER );
-
 		// This is the revision that was current at the time editing was initiated on the client,
 		// even if the edit was based on an old revision.
 		$baseRevision = $this->getBaseRevision();
@@ -2478,8 +2484,14 @@ ERROR;
 		}
 
 		// The current state, we want to merge updates into it
-		$currentRevision = Revision::loadFromTitle( $db, $this->mTitle );
-		$currentContent = $currentRevision ? $currentRevision->getContent() : null;
+		$currentRevisionRecord = $this->revisionStore->getRevisionByTitle(
+			$this->mTitle,
+			0,
+			IDBAccessObject::READ_LATEST
+		);
+		$currentContent = $currentRevisionRecord
+			? $currentRevisionRecord->getContent( SlotRecord::MAIN )
+			: null;
 
 		if ( $currentContent === null ) {
 			return false;
@@ -2492,7 +2504,7 @@ ERROR;
 		if ( $result ) {
 			$editContent = $result;
 			// Update parentRevId to what we just merged.
-			$this->parentRevId = $currentRevision->getId();
+			$this->parentRevId = $currentRevisionRecord->getId();
 			return true;
 		}
 

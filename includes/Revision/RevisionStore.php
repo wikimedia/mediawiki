@@ -2439,6 +2439,7 @@ class RevisionStore
 	 *
 	 * @note direct use is deprecated!
 	 * @todo remove when unused!
+	 * @deprecated since 1.35
 	 *
 	 * @param IDatabase $db
 	 * @param Title $title
@@ -2447,6 +2448,7 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function loadRevisionFromTitle( IDatabase $db, $title, $id = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $id ) {
 			$matchId = intval( $id );
 		} else {
