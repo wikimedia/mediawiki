@@ -3792,7 +3792,7 @@ class User implements IDBAccessObject, UserIdentity {
 			}
 
 			// Try to update the DB post-send and only if needed...
-			DeferredUpdates::addCallableUpdate( function () use ( $title, $oldid ) {
+			DeferredUpdates::addCallableUpdate( function () use ( $oldid ) {
 				if ( !$this->getNewtalk() ) {
 					return; // no notifications to clear
 				}

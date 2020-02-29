@@ -3235,7 +3235,7 @@ class RevisionStore
 			$this->getRevisionRowCacheKey( $db, $pageId, $revId ),
 			WANObjectCache::TTL_WEEK,
 			function ( $curValue, &$ttl, array &$setOpts ) use (
-				$db, $pageId, $revId, &$fromCache
+				$db, $revId, &$fromCache
 			) {
 				$setOpts += Database::getCacheSetOptions( $db );
 				$row = $this->fetchRevisionRowFromConds( $db, [ 'rev_id' => intval( $revId ) ] );
