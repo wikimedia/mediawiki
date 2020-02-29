@@ -42,7 +42,7 @@ class RCCacheEntry extends RecentChange {
 	 * @param RecentChange $rc
 	 * @return RCCacheEntry
 	 */
-	static function newFromParent( $rc ) {
+	public static function newFromParent( $rc ) {
 		$rc2 = new RCCacheEntry;
 		$rc2->mAttribs = $rc->mAttribs;
 		$rc2->mExtra = $rc->mExtra;

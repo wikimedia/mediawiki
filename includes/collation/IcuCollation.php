@@ -536,7 +536,7 @@ class IcuCollation extends Collation {
 	 * @since 1.21
 	 * @return string|bool
 	 */
-	static function getUnicodeVersionForICU() {
+	public static function getUnicodeVersionForICU() {
 		$icuVersion = INTL_ICU_VERSION;
 		if ( !$icuVersion ) {
 			return false;
