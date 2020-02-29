@@ -314,6 +314,7 @@ util = {
 		link = document.createElement( 'a' );
 		link.href = href;
 		link.textContent = text;
+
 		if ( tooltip ) {
 			link.title = tooltip;
 		}
@@ -326,6 +327,7 @@ util = {
 		$portlet.removeClass( 'emptyPortlet' );
 
 		item = $( '<li>' ).append( link )[ 0 ];
+
 		if ( id ) {
 			item.id = id;
 		}
@@ -369,6 +371,9 @@ util = {
 			$( link ).updateTooltipAccessKeys();
 		}
 
+		mw.hook( 'util.addPortletLink' ).fire( item, {
+			id: id
+		} );
 		return item;
 	},
 
