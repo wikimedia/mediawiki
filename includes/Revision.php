@@ -1088,11 +1088,14 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param IDatabase $db
 	 * @param Title $title
 	 * @return int
 	 */
 	public static function countByTitle( $db, $title ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return self::getRevisionStore()->countRevisionsByTitle( $db, $title );
 	}
 
