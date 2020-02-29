@@ -174,7 +174,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 					'ctd_user_defined' => 0,
 					'ctd_count' => $row->hitcount
 				],
-				[ 'ctd_name' ],
+				'ctd_name',
 				[ 'ctd_count' => $row->hitcount ],
 				__METHOD__
 			);

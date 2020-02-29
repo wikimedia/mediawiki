@@ -1094,7 +1094,7 @@ class WikiPage implements Page, IDBAccessObject {
 					'rd_fragment' => $truncatedFragment,
 					'rd_interwiki' => $rt->getInterwiki(),
 				],
-				[ 'rd_from' ],
+				'rd_from',
 				[
 					'rd_namespace' => $rt->getNamespace(),
 					'rd_title' => $rt->getDBkey(),
@@ -3692,7 +3692,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$dbw->upsert(
 					'category',
 					$insertRows,
-					[ 'cat_title' ],
+					'cat_title',
 					$addFields,
 					__METHOD__
 				);
