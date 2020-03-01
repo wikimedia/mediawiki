@@ -275,34 +275,6 @@ class LegacyLogger extends AbstractLogger {
 		} elseif ( $channel === 'wfLogDBError' ) {
 			$text = self::formatAsWfLogDBError( $channel, $message, $context );
 
-		} elseif ( $channel === 'profileoutput' ) {
-			// Legacy wfLogProfilingData formatitng
-			$forward = '';
-			if ( isset( $context['forwarded_for'] ) ) {
-				$forward = " forwarded for {$context['forwarded_for']}";
-			}
-			if ( isset( $context['client_ip'] ) ) {
-				$forward .= " client IP {$context['client_ip']}";
-			}
-			if ( isset( $context['from'] ) ) {
-				$forward .= " from {$context['from']}";
-			}
-			if ( $forward ) {
-				$forward = "\t(proxied via {$context['proxy']}{$forward})";
-			}
-			if ( $context['anon'] ) {
-				$forward .= ' anon';
-			}
-			if ( !isset( $context['url'] ) ) {
-				$context['url'] = 'n/a';
-			}
-
-			$log = sprintf( "%s\t%04.3f\t%s%s\n",
-				gmdate( 'YmdHis' ), $context['elapsed'], $context['url'], $forward );
-
-			$text = self::formatAsWfDebugLog(
-				$channel, $log . $context['output'], $context );
-
 		} elseif ( !isset( $wgDebugLogGroups[$channel] ) ) {
 			$text = self::formatAsWfDebug(
 				$channel, "[{$channel}] {$message}", $context );

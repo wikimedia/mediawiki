@@ -1073,8 +1073,6 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * @todo Move logic to MediaWiki.php
  */
 function wfLogProfilingData() {
-	global $wgDebugLogGroups, $wgDebugRawPage;
-
 	$context = RequestContext::getMain();
 	$request = $context->getRequest();
 
@@ -1087,56 +1085,6 @@ function wfLogProfilingData() {
 		MediaWikiServices::getInstance()->getStatsdDataFactory(),
 		$context->getConfig()
 	);
-
-	// Profiling must actually be enabled...
-	if ( $profiler instanceof ProfilerStub ) {
-		return;
-	}
-
-	if ( isset( $wgDebugLogGroups['profileoutput'] )
-		&& $wgDebugLogGroups['profileoutput'] === false
-	) {
-		// Explicitly disabled
-		return;
-	}
-	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
-		return;
-	}
-
-	$ctx = [ 'elapsed' => $request->getElapsedTime() ];
-	if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-		$ctx['forwarded_for'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	}
-	if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-		$ctx['client_ip'] = $_SERVER['HTTP_CLIENT_IP'];
-	}
-	if ( !empty( $_SERVER['HTTP_FROM'] ) ) {
-		$ctx['from'] = $_SERVER['HTTP_FROM'];
-	}
-	if ( isset( $ctx['forwarded_for'] ) ||
-		isset( $ctx['client_ip'] ) ||
-		isset( $ctx['from'] ) ) {
-		$ctx['proxy'] = $_SERVER['REMOTE_ADDR'];
-	}
-
-	// Don't load $wgUser at this late stage just for statistics purposes
-	// @todo FIXME: We can detect some anons even if it is not loaded.
-	// See User::getId()
-	$user = $context->getUser();
-	$ctx['anon'] = $user->isItemLoaded( 'id' ) && $user->isAnon();
-
-	// Command line script uses a FauxRequest object which does not have
-	// any knowledge about an URL and throw an exception instead.
-	try {
-		$ctx['url'] = urldecode( $request->getRequestURL() );
-	} catch ( Exception $ignored ) {
-		// no-op
-	}
-
-	$ctx['output'] = $profiler->getOutput();
-
-	$log = LoggerFactory::getInstance( 'profileoutput' );
-	$log->info( "Elapsed: {elapsed}; URL: <{url}>\n{output}", $ctx );
 }
 
 /**
