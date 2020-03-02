@@ -140,55 +140,52 @@ class ObjectCache {
 	 * @throws InvalidArgumentException
 	 */
 	public static function newFromParams( $params ) {
-		$params['logger'] = $params['logger'] ??
-			LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
-		if ( !isset( $params['keyspace'] ) ) {
-			$params['keyspace'] = self::getDefaultKeyspace();
-		}
+		// Apply default parameters and resolve the logger instance
+		$params += [
+			'logger' => LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' ),
+			'keyspace' => self::getDefaultKeyspace(),
+			'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
+			'reportDupes' => true
+		];
+
 		if ( isset( $params['factory'] ) ) {
 			return call_user_func( $params['factory'], $params );
-		} elseif ( isset( $params['class'] ) ) {
-			$class = $params['class'];
-			// Automatically set the 'async' update handler
-			$params['asyncHandler'] = $params['asyncHandler']
-				?? [ DeferredUpdates::class, 'addCallableUpdate' ];
-			// Enable reportDupes by default
-			$params['reportDupes'] = $params['reportDupes'] ?? true;
-			// Do b/c logic for SqlBagOStuff
-			if ( is_a( $class, SqlBagOStuff::class, true ) ) {
-				if ( isset( $params['server'] ) && !isset( $params['servers'] ) ) {
-					$params['servers'] = [ $params['server'] ];
-					unset( $params['server'] );
-				}
-				// In the past it was not required to set 'dbDirectory' in $wgObjectCaches
-				if ( isset( $params['servers'] ) ) {
-					foreach ( $params['servers'] as &$server ) {
-						if ( $server['type'] === 'sqlite' && !isset( $server['dbDirectory'] ) ) {
-							$server['dbDirectory'] = MediaWikiServices::getInstance()
-								->getMainConfig()->get( 'SQLiteDataDir' );
-						}
+		}
+
+		if ( !isset( $params['class'] ) ) {
+			throw new InvalidArgumentException(
+				'No "factory" nor "class" provided; got "' . print_r( $params, true ) . '"'
+			);
+		}
+
+		$class = $params['class'];
+
+		// Do b/c logic for SqlBagOStuff
+		if ( is_a( $class, SqlBagOStuff::class, true ) ) {
+			if ( isset( $params['server'] ) && !isset( $params['servers'] ) ) {
+				$params['servers'] = [ $params['server'] ];
+				unset( $params['server'] );
+			}
+			// In the past it was not required to set 'dbDirectory' in $wgObjectCaches
+			if ( isset( $params['servers'] ) ) {
+				foreach ( $params['servers'] as &$server ) {
+					if ( $server['type'] === 'sqlite' && !isset( $server['dbDirectory'] ) ) {
+						$server['dbDirectory'] = $GLOBALS['wgSQLiteDataDir'];
 					}
 				}
 			}
-
-			// Do b/c logic for MemcachedBagOStuff
-			if ( is_subclass_of( $class, MemcachedBagOStuff::class ) ) {
-				if ( !isset( $params['servers'] ) ) {
-					$params['servers'] = $GLOBALS['wgMemCachedServers'];
-				}
-				if ( !isset( $params['persistent'] ) ) {
-					$params['persistent'] = $GLOBALS['wgMemCachedPersistent'];
-				}
-				if ( !isset( $params['timeout'] ) ) {
-					$params['timeout'] = $GLOBALS['wgMemCachedTimeout'];
-				}
-			}
-			return new $class( $params );
-		} else {
-			throw new InvalidArgumentException( "The definition of cache type \""
-				. print_r( $params, true ) . "\" lacks both "
-				. "factory and class parameters." );
 		}
+
+		// Do b/c logic for MemcachedBagOStuff
+		if ( is_subclass_of( $class, MemcachedBagOStuff::class ) ) {
+			$params += [
+				'servers' => $GLOBALS['wgMemCachedServers'],
+				'persistent' => $GLOBALS['wgMemCachedPersistent'],
+				'timeout' => $GLOBALS['wgMemCachedTimeout']
+			];
+		}
+
+		return new $class( $params );
 	}
 
 	/**
