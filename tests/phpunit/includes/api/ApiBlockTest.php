@@ -244,10 +244,6 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithoutRestrictions() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
-
 		$this->doBlock();
 
 		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
@@ -257,10 +253,6 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithRestrictions() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
-
 		$title = 'Foo';
 		$page = $this->getExistingTestPage( $title );
 		$namespace = NS_TALK;
@@ -316,10 +308,6 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockingTooManyPageRestrictions() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
-
 		$tokens = $this->getTokens();
 
 		$this->expectException( ApiUsageException::class );

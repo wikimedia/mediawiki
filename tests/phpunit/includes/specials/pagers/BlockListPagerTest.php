@@ -31,9 +31,6 @@ class BlockListPagerTest extends MediaWikiTestCase {
 	 * @param string $expected
 	 */
 	public function testFormatValue( $name, $expected = null, $row = null ) {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
 		// Set the time to now so it does not get off during the test.
 		MWTimestamp::setFakeTime( MWTimestamp::time() );
 

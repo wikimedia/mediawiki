@@ -95,19 +95,17 @@ class SpecialBlockList extends SpecialPage {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
-			$fields['BlockType'] = [
-				'type' => 'select',
-				'label-message' => 'blocklist-type',
-				'options' => [
-					$this->msg( 'blocklist-type-opt-all' )->escaped() => '',
-					$this->msg( 'blocklist-type-opt-sitewide' )->escaped() => 'sitewide',
-					$this->msg( 'blocklist-type-opt-partial' )->escaped() => 'partial',
-				],
-				'name' => 'blockType',
-				'cssclass' => 'mw-field-block-type',
-			];
-		}
+		$fields['BlockType'] = [
+			'type' => 'select',
+			'label-message' => 'blocklist-type',
+			'options' => [
+				$this->msg( 'blocklist-type-opt-all' )->escaped() => '',
+				$this->msg( 'blocklist-type-opt-sitewide' )->escaped() => 'sitewide',
+				$this->msg( 'blocklist-type-opt-partial' )->escaped() => 'partial',
+			],
+			'name' => 'blockType',
+			'cssclass' => 'mw-field-block-type',
+		];
 
 		$fields['Limit'] = [
 			'type' => 'limitselect',
@@ -115,9 +113,7 @@ class SpecialBlockList extends SpecialPage {
 			'options' => $pager->getLimitSelectList(),
 			'name' => 'limit',
 			'default' => $pager->getLimit(),
-			'cssclass' => $this->getConfig()->get( 'EnablePartialBlocks' ) ?
-				'mw-field-limit mw-has-field-block-type' :
-				'mw-field-limit',
+			'cssclass' => 'mw-field-limit mw-has-field-block-type',
 		];
 
 		$context = new DerivativeContext( $this->getContext() );
