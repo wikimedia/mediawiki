@@ -145,7 +145,7 @@ class DatabasePostgresTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\DatabasePostgres::nativeInsertSelect
+	 * @covers Wikimedia\Rdbms\DatabasePostgres::doInsertSelectNative
 	 */
 	public function testInsertSelectIgnoreOld() {
 		if ( !$this->db instanceof DatabasePostgres ) {
@@ -167,7 +167,7 @@ class DatabasePostgresTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\DatabasePostgres::nativeInsertSelect
+	 * @covers Wikimedia\Rdbms\DatabasePostgres::doInsertSelectNative
 	 */
 	public function testInsertSelectIgnoreNew() {
 		if ( !$this->db instanceof DatabasePostgres ) {

@@ -661,18 +661,15 @@ class DatabaseSqlite extends Database {
 		return $options;
 	}
 
-	/**
-	 * @param array $options
-	 * @return string
-	 */
-	protected function makeInsertOptions( $options ) {
-		$options = self::rewriteIgnoreKeyword( $options );
-
-		return parent::makeInsertOptions( $options );
+	protected function makeInsertNonConflictingVerbAndOptions() {
+		return [ 'INSERT OR IGNORE INTO', '' ];
 	}
 
-	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
-		$this->nativeReplace( $table, $rows, $fname );
+	protected function doReplace( $table, array $uniqueKeys, array $rows, $fname ) {
+		$encTable = $this->tableName( $table );
+		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		// https://sqlite.org/lang_insert.html
+		$this->query( "REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples", $fname );
 	}
 
 	/**
