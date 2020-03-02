@@ -279,6 +279,7 @@
 			} else {
 				collapsibleId = $collapsible.attr( 'id' ) || '';
 				if ( collapsibleId.indexOf( 'mw-customcollapsible-' ) === 0 ) {
+					collapsibleId = $.escapeSelector( collapsibleId );
 					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) )
 						.addClass( 'mw-customtoggle' );
 				}
