@@ -30,6 +30,7 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
@@ -210,6 +211,7 @@ class SpecialExport extends SpecialPage {
 			wfResetOutputBuffers();
 			$request->response()->header( 'Content-type: application/xml; charset=utf-8' );
 			$request->response()->header( 'X-Robots-Tag: noindex,nofollow' );
+			ContentSecurityPolicy::sendRestrictiveHeader();
 
 			if ( $request->getCheck( 'wpDownload' ) ) {
 				// Provide a sensible filename suggestion

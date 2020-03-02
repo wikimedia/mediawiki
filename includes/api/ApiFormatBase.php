@@ -28,6 +28,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -228,6 +229,9 @@ abstract class ApiFormatBase extends ApiBase {
 			return; // skip any initialization
 		}
 
+		if ( $mime !== 'text/html' ) {
+			ContentSecurityPolicy::sendRestrictiveHeader();
+		}
 		$this->getMain()->getRequest()->response()->header( "Content-Type: $mime; charset=utf-8" );
 
 		// Set X-Frame-Options API results (T41180)

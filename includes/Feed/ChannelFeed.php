@@ -101,6 +101,9 @@ abstract class ChannelFeed extends FeedItem {
 		$wgOut->disable();
 		$mimetype = $this->contentType();
 		header( "Content-type: $mimetype; charset=UTF-8" );
+		// @todo Maybe set a CSP header here at some point as defense in depth.
+		// need to figure out how that interacts with browser display of article
+		// snippets.
 
 		// Set a sensible filename
 		$mimeAnalyzer = MediaWikiServices::getInstance()->getMimeAnalyzer();

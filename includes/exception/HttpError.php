@@ -22,6 +22,7 @@ namespace MediaWiki\Exception;
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
+use MediaWiki\Request\ContentSecurityPolicy;
 use Wikimedia\Http\HttpStatus;
 
 /**
@@ -88,6 +89,7 @@ class HttpError extends MWException {
 
 		HttpStatus::header( $this->httpCode );
 		header( 'Content-type: text/html; charset=utf-8' );
+		ContentSecurityPolicy::sendRestrictiveHeader();
 
 		print $this->getHTML();
 	}

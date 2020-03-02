@@ -25,6 +25,7 @@ use MediaWiki\Deferred\TransactionRoundDefiningUpdate;
 use MediaWiki\JobQueue\JobRunner;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use Wikimedia\Http\HttpStatus;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -58,6 +59,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->getOutput()->disable();
+		ContentSecurityPolicy::sendRestrictiveHeader();
 
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			wfHttpError( 423, 'Locked', 'Wiki is in read-only mode.' );

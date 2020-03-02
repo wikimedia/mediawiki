@@ -598,6 +598,7 @@ class ContentSecurityPolicy {
 	 * @note Only used in img_auth.php & thumb.php. Normal image serving
 	 * handled by a .htaccess file
 	 *
+	 * @since 1.45
 	 * @param string $filename
 	 * @return string|null CSP header (Without header name prefix)
 	 */
@@ -613,5 +614,24 @@ class ContentSecurityPolicy {
 			return self::UPLOAD_CSP_PDF;
 		}
 		return self::UPLOAD_CSP;
+	}
+
+	/**
+	 * Output a very restrictive CSP header to disallow all active content
+	 *
+	 * This is meant for endpoints that don't output normal wiki content and
+	 * should never have any sort of javascript on them. For example, exceptions
+	 * if output page cannot be used. In the future this might be used for things
+	 * that output non-html mime types like api.php, load.php, etc.
+	 *
+	 * @since 1.45
+	 */
+	public static function sendRestrictiveHeader() {
+		// Intentionally don't use WebResponse, since we want to use this in
+		// exception handler, so avoid unnecessary dependencies. Still allow
+		// default-src of 'self' for favicon and whatnot. This doesn't include
+		// default-src data or style-src 'unsafe-inline', which would be fairly
+		// safe, but we are trying to be minimal here.
+		header( "Content-Security-Policy: default-src 'self'; script-src 'none'; object-src 'none'" );
 	}
 }

@@ -28,6 +28,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Title\Title;
@@ -1254,6 +1255,7 @@ function wfHttpError( $code, $label, $desc ) {
 
 	\MediaWiki\Request\HeaderCallback::warnIfHeadersSent();
 	header( 'Content-type: text/html; charset=utf-8' );
+	ContentSecurityPolicy::sendRestrictiveHeader();
 	ob_start();
 	print '<!DOCTYPE html>' .
 		'<html><head><title>' .
