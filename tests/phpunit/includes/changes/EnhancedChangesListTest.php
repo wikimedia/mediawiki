@@ -58,7 +58,7 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$enhancedChangesList = $this->newEnhancedChangesList();
 		$html = $enhancedChangesList->beginRecentChangesList();
 
-		$this->assertEquals( '<div class="mw-changeslist">', $html );
+		$this->assertEquals( '<div class="mw-changeslist" aria-live="polite">', $html );
 	}
 
 	/**
