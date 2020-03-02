@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Movses",
-			"Ата"
+			"Ата",
+			"Piramidion"
 		]
 	},
 	"rest-prefix-mismatch": "Зазначений шлях ($1) не знайдено всередині кореневого шляху REST API ($2)",
@@ -17,10 +18,17 @@
 	"rest-pagehistory-param-range-error": "Ідентифікатор версії має бути більшим за 0",
 	"rest-pagehistory-timestamp-error": "Не вдалося отримати часової мітки для вказаної версії ($1)",
 	"rest-pagehistorycount-type-unrecognized": "Вказаний тип підрахунку ($1) недопустимий",
+	"rest-pagehistorycount-parameters-invalid": "Вказана комбінація параметрів не підтримується.",
 	"rest-compare-page-mismatch": "Вказані версії відносяться до різних сторінок; їх не можна порівняти.",
 	"rest-compare-permission-denied": "Користувач не має доступу до запитуваних версій",
 	"rest-compare-nonexistent": "Версія, вказана параметром $1, не існує.",
 	"rest-compare-inaccessible": "Версія, вказана параметром $1, публічно не доступна.",
 	"rest-compare-wrong-content": "Слот $1 версії, вказаної параметром $2, має тип контенту, що не може бути конвертований у текст.",
-	"rest-compare-wikidiff2": "Для цієї кінцевої точки необхідна версія wikidiff2 1.9.0 чи новіша."
+	"rest-compare-wikidiff2": "Для цієї кінцевої точки необхідна версія wikidiff2 1.9.0 чи новіша.",
+	"rest-pagehistorycount-too-many-revisions": "Вказана назва містить надто багато версій, щоб можна було отримати цей підрахунок.",
+	"rest-search-error": "Сталася помилка при поверненні пошукових результатів: $1",
+	"rest-page-source-type-error": "Тип контенту запитаної сторінки-джерела не підтримується",
+	"rest-no-revision": "Не вдалося отримати версію для назви $1",
+	"rest-media-too-many-links": "Знайдено надто багато посилань на медіафайли на сторінці з назвою $1 (дозволено $2)",
+	"rest-html-backend-error": "Не вдалося отримати Parsoid HTML"
 }

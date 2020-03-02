@@ -1189,6 +1189,7 @@
 	"prefs-edits": "Cantidad de ediciones:",
 	"prefsnologintext2": "Es necesario acceder para cambiar las preferencias del usuario.",
 	"prefs-skin": "Apariencia",
+	"prefs-skin-prefs": "Preferencias de apariencia",
 	"skin-preview": "Previsualizar",
 	"datedefault": "Ninguno en particular",
 	"prefs-labs": "Características de Labs",
@@ -1273,8 +1274,9 @@
 	"prefs-help-signature": "Deberías firmar tus comentarios en páginas de discusión con «<nowiki>~~~~</nowiki>», que se convertirá en tu firma acompañada de la fecha y hora.",
 	"badsig": "El código de tu firma no es válido; comprueba las etiquetas HTML.",
 	"badsiglength": "Tu firma es muy larga.\nDebe contener un máximo de {{PLURAL:$1|un carácter|$1 caracteres}}.",
-	"yourgender": "Sexo:",
-	"gender-unknown": "Al mencionarte, el software usará palabras de género neutro siempre que sea posible",
+	"yourgender": "¿Cuál es tu identidad?",
+	"gender-unknown": "Al mencionarte, el software usará palabras sin marcación de género siempre que sea posible",
+	"gender-notknown": "No binario",
 	"gender-male": "Masculino",
 	"gender-female": "Femenino",
 	"prefs-help-gender": "Este campo es opcional. El software lo utiliza para dirigirse a ti con el género gramatical apropiado. Esta información será pública.",
@@ -2680,6 +2682,7 @@
 	"whatlinkshere-hidelinks": "$1 enlaces",
 	"whatlinkshere-hideimages": "$1 enlaces a archivos",
 	"whatlinkshere-filters": "Filtros",
+	"whatlinkshere-sectionredir": "redirige a la sección «$1»",
 	"whatlinkshere-submit": "Ir",
 	"autoblockid": "Bloqueo automático n.º $1",
 	"block": "Bloquear usuario",
@@ -4062,5 +4065,5 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "Intervalo de IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nombre interwiki (p. ej. \"prefijo>NombreDeEjemplo\")",
-	"paramvalidator-help-type-user-subtype-id": "ID de usuario (p. ej. \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "identificador de usuario (p. ej., «#12345»)"
 }

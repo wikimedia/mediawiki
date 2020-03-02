@@ -105,7 +105,8 @@
 			"Ferdinand0101",
 			"Schmackes",
 			"Lucas Werkmeister",
-			"Doc Taxon"
+			"Doc Taxon",
+			"Tacsipacsi"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -135,7 +136,7 @@
 	"tog-oldsig": "Die genutzte Signatur:",
 	"tog-fancysig": "Signatur als Wikitext behandeln (ohne automatische Verlinkung)",
 	"tog-uselivepreview": "Vorschau ohne Neuladen der Seite anzeigen",
-	"tog-forceeditsummary": "Warnen, sofern beim Speichern die Zusammenfassung fehlt (oder es sich um die Standard-Zuücksetzen-Zusammenfassung handelt)",
+	"tog-forceeditsummary": "Warnen, sofern beim Speichern die Zusammenfassung fehlt (oder es sich um die Standard-Zurücksetzen-Zusammenfassung handelt)",
 	"tog-watchlisthideown": "Eigene Bearbeitungen in der Beobachtungsliste ausblenden",
 	"tog-watchlisthidebots": "Bearbeitungen durch Bots in der Beobachtungsliste ausblenden",
 	"tog-watchlisthideminor": "Kleine Bearbeitungen in der Beobachtungsliste ausblenden",
@@ -1089,6 +1090,7 @@
 	"prefs-edits": "Anzahl der Bearbeitungen:",
 	"prefsnologintext2": "Bitte anmelden, um deine Benutzereinstellungen festzulegen.",
 	"prefs-skin": "Benutzeroberfläche",
+	"prefs-skin-prefs": "Einstellungen für die Benutzeroberfläche",
 	"skin-preview": "Vorschau",
 	"datedefault": "Standard",
 	"prefs-labs": "Alpha-Funktionen",
@@ -2581,7 +2583,7 @@
 	"whatlinkshere-hidelinks": "Links $1",
 	"whatlinkshere-hideimages": "Dateilinks $1",
 	"whatlinkshere-filters": "Filter",
-	"whatlinkshere-sectionredir": "Weiterleitung zum Abschnitt \"$1\"",
+	"whatlinkshere-sectionredir": "Weiterleitung zum Abschnitt „$1“",
 	"whatlinkshere-submit": "Los",
 	"autoblockid": "Automatische Sperrung #$1",
 	"block": "Benutzer sperren",

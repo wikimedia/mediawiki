@@ -1194,7 +1194,7 @@
 	"badsiglength": "La firma scelta è troppo lunga, non deve superare $1 {{PLURAL:$1|carattere|caratteri}}.",
 	"yourgender": "Come riferirsi a te?",
 	"gender-unknown": "Nel menzionarti, quando possibile, il software userà espressioni neutrali rispetto al genere",
-	"gender-notknown": "È registrato/a su translatewiki.net",
+	"gender-notknown": "È registrato/a su {{SITENAME}}",
 	"gender-male": "È registrato su {{SITENAME}}",
 	"gender-female": "È registrata su {{SITENAME}}",
 	"prefs-help-gender": "L'impostazione di questa preferenza è opzionale.\nIl software utilizza questo valore per rivolgersi a te e menzionarti agli altri usando il genere grammaticale appropriato.\nQuesta informazione sarà pubblica.",
