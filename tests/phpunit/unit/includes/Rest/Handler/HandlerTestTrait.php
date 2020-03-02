@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
@@ -11,6 +12,7 @@ use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCaseTrait;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
 use Wikimedia\Message\ITextFormatter;
@@ -110,6 +112,29 @@ trait HandlerTestTrait {
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
 
 		return $data;
+	}
+
+	/**
+	 * Executes the given Handler on the given request, and returns the HttpException thrown.
+	 * Fails if no HttpException is thrown.
+	 *
+	 * @param Handler $handler
+	 * @param RequestInterface $request
+	 * @param array $config
+	 *
+	 * @return HttpException
+	 */
+	private function executeHandlerAndGetHttpException(
+		Handler $handler,
+		RequestInterface $request,
+		$config = []
+	) {
+		try {
+			$this->executeHandler( $handler, $request, $config );
+			Assert::fail( 'Expected a HttpException to be thrown' );
+		} catch ( HttpException $ex ) {
+			return $ex;
+		}
 	}
 
 	/**

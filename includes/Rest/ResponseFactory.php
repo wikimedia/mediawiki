@@ -180,12 +180,22 @@ class ResponseFactory {
 
 	/**
 	 * Create an HTTP 4xx or 5xx response with error message localisation
+	 *
 	 * @param int $errorCode
 	 * @param MessageValue $messageValue
+	 * @param array $extraData An array of additional data to be included in the JSON response
+	 *
 	 * @return Response
 	 */
-	public function createLocalizedHttpError( $errorCode, MessageValue $messageValue ) {
-		return $this->createHttpError( $errorCode, $this->formatMessage( $messageValue ) );
+	public function createLocalizedHttpError(
+		$errorCode,
+		MessageValue $messageValue,
+		array $extraData = []
+	) {
+		return $this->createHttpError(
+			$errorCode,
+			array_merge( $extraData, $this->formatMessage( $messageValue ) )
+		);
 	}
 
 	/**
@@ -195,8 +205,11 @@ class ResponseFactory {
 	 */
 	public function createFromException( Throwable $exception ) {
 		if ( $exception instanceof LocalizedHttpException ) {
-			$response = $this->createLocalizedHttpError( $exception->getCode(),
-				$exception->getMessageValue() );
+			$response = $this->createLocalizedHttpError(
+				$exception->getCode(),
+				$exception->getMessageValue(),
+				(array)$exception->getErrorData()
+			);
 		} elseif ( $exception instanceof HttpException ) {
 			// FIXME can HttpException represent 2xx or 3xx responses?
 			$response = $this->createHttpError(
