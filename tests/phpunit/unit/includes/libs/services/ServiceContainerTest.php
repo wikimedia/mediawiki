@@ -19,8 +19,7 @@ class ServiceContainerTest extends PHPUnit\Framework\TestCase {
 		$services = $this->newServiceContainer();
 		$names = $services->getServiceNames();
 
-		$this->assertIsArray( $names );
-		$this->assertEmpty( $names );
+		$this->assertSame( [], $names );
 
 		$name = 'TestService92834576';
 		$services->defineService( $name, function () {

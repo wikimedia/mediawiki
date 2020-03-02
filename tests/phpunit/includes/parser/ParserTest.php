@@ -93,7 +93,7 @@ class ParserTest extends MediaWikiTestCase {
 			}
 		}
 
-		$this->assertCount( 0, $args, 'Not all arguments to the Parser constructor were ' .
+		$this->assertSame( [], $args, 'Not all arguments to the Parser constructor were ' .
 			'found on the Parser object' );
 	}
 }

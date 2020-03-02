@@ -52,7 +52,7 @@ class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testBinaryCommentStripped() {
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-comment-binary.jpg' );
-		$this->assertEmpty( $res['COM'] );
+		$this->assertSame( [], $res['COM'] );
 	}
 
 	/* Very rarely a file can have multiple comments.

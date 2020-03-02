@@ -81,7 +81,7 @@ class ApiWatchTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'protect', $data[0] );
 		$this->assertArrayHasKey( 'protections', $data[0]['protect'] );
-		$this->assertEquals( 1, count( $data[0]['protect']['protections'] ) );
+		$this->assertCount( 1, $data[0]['protect']['protections'] );
 		$this->assertArrayHasKey( 'edit', $data[0]['protect']['protections'][0] );
 	}
 

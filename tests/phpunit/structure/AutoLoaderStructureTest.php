@@ -62,7 +62,7 @@ class AutoLoaderStructureTest extends MediaWikiTestCase {
 		} else {
 			// Dummy assertion so this test isn't marked in risky
 			// if the file has no classes nor aliases in it
-			$this->assertCount( 0, $classes );
+			$this->assertSame( [], $classes );
 		}
 
 		if ( $aliasesInFile ) {

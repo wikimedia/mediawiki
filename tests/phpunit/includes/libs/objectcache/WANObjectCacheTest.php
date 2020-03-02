@@ -619,7 +619,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$v = $cache->getWithSetCallback( $key, 300, $func, $opts );
 		$this->assertSame( $value, $v, "Value returned" );
 		$this->assertSame( 1, $wasSet, "Stale value used" );
-		$this->assertSame( 1, count( $asycList ), "Refresh deferred." );
+		$this->assertCount( 1, $asycList, "Refresh deferred." );
 		$value = 'NewCatsInTown'; // change callback return value
 		$asycList[0](); // run the refresh callback
 		$asycList = [];
@@ -865,7 +865,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $genFunc );
 		$this->assertSame( count( $idsByKey ), $wasSet, "Initial sets" );
-		$this->assertSame( 0, count( $deferredCbs ), "No deferred callbacks yet" );
+		$this->assertSame( [], $deferredCbs, "No deferred callbacks yet" );
 		foreach ( $idsByKey as $key => $id ) {
 			$this->assertSame( "@$id$", $v[$key], "Initial cache value generation" );
 		}
@@ -895,7 +895,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$wasSet,
 			"Deferred callback regenerations"
 		);
-		$this->assertSame( 0, count( $deferredCbs ), "Deferred callbacks queue empty" );
+		$this->assertSame( [], $deferredCbs, "Deferred callbacks queue empty" );
 
 		$wasSet = 0;
 		$v = $cache->getMultiWithSetCallback( $keyedIds, 30, $genFunc );
@@ -1114,7 +1114,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$v = $cache->getMultiWithUnionSetCallback( $keyedIds, 30, $genFunc );
 		$this->assertSame( count( $idsByKey ), $wasSet, "Initial sets" );
-		$this->assertSame( 0, count( $deferredCbs ), "No deferred callbacks yet" );
+		$this->assertSame( [], $deferredCbs, "No deferred callbacks yet" );
 		foreach ( $idsByKey as $key => $id ) {
 			$this->assertSame( "@$id$", $v[$key], "Initial cache value generation" );
 		}
@@ -1143,7 +1143,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$wasSet,
 			"Deferred callback regenerations"
 		);
-		$this->assertSame( 0, count( $deferredCbs ), "Deferred callbacks queue empty" );
+		$this->assertSame( [], $deferredCbs, "Deferred callbacks queue empty" );
 
 		$v = $cache->getMultiWithUnionSetCallback( $keyedIds, 30, $genFunc );
 		$this->assertSame(
@@ -1450,7 +1450,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			'Result array populated'
 		);
 
-		$this->assertSame( 2, count( $curTTLs ), "Two current TTLs in array" );
+		$this->assertCount( 2, $curTTLs, "Two current TTLs in array" );
 		$this->assertGreaterThan( 0, $curTTLs[$key1], "Key 1 has current TTL > 0" );
 		$this->assertGreaterThan( 0, $curTTLs[$key2], "Key 2 has current TTL > 0" );
 
@@ -1469,7 +1469,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertGreaterThanOrEqual( $priorTime, $t1, 'Check key 1 generated on miss' );
 		$t2 = $cache->getCheckKeyTime( $cKey2 );
 		$this->assertGreaterThanOrEqual( $priorTime, $t2, 'Check key 2 generated on miss' );
-		$this->assertSame( 2, count( $curTTLs ), "Current TTLs array set" );
+		$this->assertCount( 2, $curTTLs, "Current TTLs array set" );
 		$this->assertLessThanOrEqual( 0, $curTTLs[$key1], 'Key 1 has current TTL <= 0' );
 		$this->assertLessThanOrEqual( 0, $curTTLs[$key2], 'Key 2 has current TTL <= 0' );
 
@@ -1481,7 +1481,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$cache->getMulti( [ $key1, $key2, $key3 ], $curTTLs, [ $cKey1, $cKey2 ] ),
 			"Result array still populated even with new check keys"
 		);
-		$this->assertSame( 2, count( $curTTLs ), "Current TTLs still array set" );
+		$this->assertCount( 2, $curTTLs, "Current TTLs still array set" );
 		$this->assertLessThan( 0, $curTTLs[$key1], 'Key 1 has negative current TTL' );
 		$this->assertLessThan( 0, $curTTLs[$key2], 'Key 2 has negative current TTL' );
 	}

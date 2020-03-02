@@ -663,7 +663,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$array = $status->getWarningsArray(); // We use getWarningsArray to access getStatusArray
 
-		$this->assertEquals( 1, count( $array ) );
+		$this->assertCount( 1, $array );
 		$this->assertEquals( $nonObjMsg, $array[0] );
 	}
 

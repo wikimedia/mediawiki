@@ -253,7 +253,7 @@ class ApiBlockTest extends ApiTestCase {
 		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
 
 		$this->assertTrue( $block->isSitewide() );
-		$this->assertCount( 0, $block->getRestrictions() );
+		$this->assertSame( [], $block->getRestrictions() );
 	}
 
 	public function testBlockWithRestrictions() {

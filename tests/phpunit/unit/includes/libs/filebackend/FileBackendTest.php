@@ -473,7 +473,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$status = $backend->$method( ...array_merge( $args, [ [ 'bypassReadOnly' => true ] ] ) );
 
 		$this->assertTrue( $status->isOK() );
-		$this->assertEmpty( $status->getErrors() );
+		$this->assertSame( [], $status->getErrors() );
 		$this->assertSame( 'myvalue', $status->getValue() );
 	}
 
@@ -492,7 +492,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$status = $backend->$method( [] );
 		$this->assertTrue( $status->isOK() );
-		$this->assertEmpty( $status->getErrors() );
+		$this->assertSame( [], $status->getErrors() );
 	}
 
 	public static function provideDoMultipleOperations() : array {
@@ -603,7 +603,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$status = $backend->$method( [ 'foo' => 'bar' ] );
 
 		$this->assertTrue( $status->isOK() );
-		$this->assertEmpty( $status->getErrors() );
+		$this->assertSame( [], $status->getErrors() );
 		$this->assertSame( 'myvalue', $status->getValue() );
 	}
 
@@ -697,7 +697,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$status = $backend->$backendMethod( ...array_merge( $args, (array)$timeout ) );
 
 		$this->assertTrue( $status->isOK() );
-		$this->assertEmpty( $status->getErrors() );
+		$this->assertSame( [], $status->getErrors() );
 		$this->assertSame( 'myvalue', $status->getValue() );
 	}
 
@@ -1137,7 +1137,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$status = $backend->$method( $op );
 
 		$this->assertTrue( $status->isOK() );
-		$this->assertEmpty( $status->getErrors() );
+		$this->assertSame( [], $status->getErrors() );
 	}
 
 	/**

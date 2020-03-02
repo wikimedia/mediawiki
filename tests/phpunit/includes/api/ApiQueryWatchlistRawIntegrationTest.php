@@ -461,7 +461,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 
 		$result = $this->doListWatchlistRawRequest( $params );
 
-		$this->assertEmpty( $this->getItemsFromApiResponse( $result ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $result ) );
 		$this->assertArrayNotHasKey( 'continue', $result[0] );
 	}
 

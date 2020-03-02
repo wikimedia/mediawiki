@@ -47,6 +47,6 @@ class FileContentHandlerTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $name, $field->getName() );
 			unset( $expect[$name] );
 		}
-		$this->assertEmpty( $expect );
+		$this->assertSame( [], $expect );
 	}
 }

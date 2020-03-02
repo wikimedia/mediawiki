@@ -63,7 +63,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	public function testWithNoRestrictions() {
 		$block = $this->insertBlock();
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
-		$this->assertEmpty( $restrictions );
+		$this->assertSame( [], $restrictions );
 	}
 
 	/**
@@ -73,7 +73,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	 */
 	public function testWithEmptyParam() {
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( [] );
-		$this->assertEmpty( $restrictions );
+		$this->assertSame( [], $restrictions );
 	}
 
 	/**
@@ -382,7 +382,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 
 		// Ensure that the restrictions on the autoblock have been updated.
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
-		$this->assertCount( 0, $restrictions );
+		$this->assertSame( [], $restrictions );
 	}
 
 	/**
@@ -427,7 +427,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertTrue( $result );
 
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
-		$this->assertCount( 0, $restrictions );
+		$this->assertSame( [], $restrictions );
 	}
 
 	/**
@@ -447,7 +447,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertNotFalse( $result );
 
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $block->getId() );
-		$this->assertCount( 0, $restrictions );
+		$this->assertSame( [], $restrictions );
 	}
 
 	/**
@@ -481,7 +481,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 
 		// Ensure that the restrictions on the autoblock have been removed.
 		$restrictions = $this->blockRestrictionStore->loadByBlockId( $autoblockId );
-		$this->assertCount( 0, $restrictions );
+		$this->assertSame( [], $restrictions );
 	}
 
 	/**

@@ -233,7 +233,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$title = SpecialPage::getTitleFor( 'Contributions' );
 		$parserOutput = $this->parser->parse( "[[file:nonexistent]]", $title, $this->options );
 		$result = $parserOutput->getCategoryLinks();
-		$this->assertEmpty( $result );
+		$this->assertSame( [], $result );
 	}
 
 	/**
