@@ -136,16 +136,17 @@ class ObjectCache {
 	 *  - class: BagOStuff subclass constructed with $params.
 	 *  - loggroup: Alias to set 'logger' key with LoggerFactory group.
 	 *  - .. Other parameters passed to factory or class.
+	 * @param Config|null $conf (Since 1.35)
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
 	 */
-	public static function newFromParams( $params ) {
+	public static function newFromParams( array $params, Config $conf = null ) {
 		// Apply default parameters and resolve the logger instance
 		$params += [
 			'logger' => LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' ),
 			'keyspace' => self::getDefaultKeyspace(),
 			'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
-			'reportDupes' => true
+			'reportDupes' => true,
 		];
 
 		if ( isset( $params['factory'] ) ) {
@@ -159,6 +160,21 @@ class ObjectCache {
 		}
 
 		$class = $params['class'];
+		// Not passing $conf is deprecated since 1.35
+		// NOTE: We cannot use MediaWikiServices::getMainConfig here as fallback,
+		// because ObjectCache::newFromParams is used for service wiring and
+		// in the ExtensionRegistry, and must not itself cause MediaWikiServices
+		// to be initialised. In particular, doing so would break the
+		// GlobalPreferences extension, which is overriding a service and then
+		// hard-requiring their additional methods to exist on the service object
+		// (T210449, T238466).
+		// TODO: Hard-deprecate before 1.35 gets cut, and remove in 1.36.
+		$conf = $conf ?? new HashConfig( [
+			'SQLiteDataDir' => $GLOBALS['wgSQLiteDataDir'],
+			'MemCachedServers' => $GLOBALS['wgMemCachedServers'],
+			'MemCachedPersistent' => $GLOBALS['wgMemCachedPersistent'],
+			'MemCachedTimeout' => $GLOBALS['wgMemCachedTimeout'],
+		] );
 
 		// Do b/c logic for SqlBagOStuff
 		if ( is_a( $class, SqlBagOStuff::class, true ) ) {
@@ -170,7 +186,7 @@ class ObjectCache {
 			if ( isset( $params['servers'] ) ) {
 				foreach ( $params['servers'] as &$server ) {
 					if ( $server['type'] === 'sqlite' && !isset( $server['dbDirectory'] ) ) {
-						$server['dbDirectory'] = $GLOBALS['wgSQLiteDataDir'];
+						$server['dbDirectory'] = $conf->get( 'SQLiteDataDir' );
 					}
 				}
 			}
@@ -179,9 +195,9 @@ class ObjectCache {
 		// Do b/c logic for MemcachedBagOStuff
 		if ( is_subclass_of( $class, MemcachedBagOStuff::class ) ) {
 			$params += [
-				'servers' => $GLOBALS['wgMemCachedServers'],
-				'persistent' => $GLOBALS['wgMemCachedPersistent'],
-				'timeout' => $GLOBALS['wgMemCachedTimeout']
+				'servers' => $conf->get( 'MemCachedServers' ),
+				'persistent' => $conf->get( 'MemCachedPersistent' ),
+				'timeout' => $conf->get( 'MemCachedTimeout' ),
 			];
 		}
 

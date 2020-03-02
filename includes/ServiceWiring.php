@@ -470,7 +470,7 @@ return [
 		$config = $services->getMainConfig();
 		$cacheId = ObjectCache::detectLocalServerCache();
 
-		return ObjectCache::newFromParams( $config->get( 'ObjectCaches' )[$cacheId] );
+		return ObjectCache::newFromParams( $config->get( 'ObjectCaches' )[$cacheId], $config );
 	},
 
 	'LockManagerGroupFactory' => function ( MediaWikiServices $services ) : LockManagerGroupFactory {
@@ -500,10 +500,9 @@ return [
 		}
 
 		$params = $mainConfig->get( 'ObjectCaches' )[$id];
-		$logger = $params['logger'] = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
 
-		$store = ObjectCache::newFromParams( $params );
-		$logger->debug( 'MainObjectStash using store {class}', [
+		$store = ObjectCache::newFromParams( $params, $mainConfig );
+		$store->getLogger()->debug( 'MainObjectStash using store {class}', [
 			'class' => get_class( $store )
 		] );
 
@@ -521,15 +520,14 @@ return [
 
 		$params = $mainConfig->get( 'WANObjectCaches' )[$id];
 
-		$logger = LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' );
-
 		$objectCacheId = $params['cacheId'];
 		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$objectCacheId] ) ) {
 			throw new UnexpectedValueException(
 				"Cache type \"$objectCacheId\" is not present in \$wgObjectCaches." );
 		}
 		$storeParams = $mainConfig->get( 'ObjectCaches' )[$objectCacheId];
-		$store = ObjectCache::newFromParams( $storeParams );
+		$store = ObjectCache::newFromParams( $storeParams, $mainConfig );
+		$logger = $store->getLogger();
 		$logger->debug( 'MainWANObjectCache using store {class}', [
 			'class' => get_class( $store )
 		] );
