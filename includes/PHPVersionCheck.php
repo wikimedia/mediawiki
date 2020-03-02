@@ -81,15 +81,18 @@ class PHPVersionCheck {
 		$minimumVersion = '7.2.22';
 
 		if ( version_compare( PHP_VERSION, $minimumVersion ) < 0 ) {
-			$shortText = "MediaWiki $this->mwVersion requires at least PHP version $minimumVersion; "
+			$cliText = "Error: You might be using an older PHP version (PHP " . PHP_VERSION . ").\n"
+			. "MediaWiki $this->mwVersion needs PHP $minimumVersion or higher.\n\nCheck if you "
+			. "have a newer PHP executable with a different name.\n\n";
+
+			$web = array();
+			$web['intro'] = "MediaWiki $this->mwVersion requires at least PHP version $minimumVersion; "
 				. "you are using PHP " . PHP_VERSION . ".";
 
-			$longText = "Error: You might be using an older PHP version (PHP " . PHP_VERSION . ").\n"
-				. "MediaWiki $this->mwVersion needs PHP $minimumVersion or higher.\n\nCheck if you "
-				. "have a newer PHP executable with a different name.\n\n";
-
+			$web['longTitle'] = "Supported PHP versions";
 			// phpcs:disable Generic.Files.LineLength
-			$longHtml = <<<HTML
+			$web['longHtml'] = <<<HTML
+		<p>
 			Please consider <a href="https://www.php.net/downloads.php">upgrading your copy of PHP</a>.
 			PHP versions less than v7.2.0 are no longer supported by the PHP Group and will not receive
 			security or bugfix updates.
@@ -100,13 +103,12 @@ class PHPVersionCheck {
 			MediaWiki from our website. See our
 			<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
 			for details of which versions are compatible with prior versions of PHP.
+		</p>
 HTML;
 			// phpcs:enable Generic.Files.LineLength
 			$this->triggerError(
-				"Supported PHP versions",
-				$shortText,
-				$longText,
-				$longHtml
+				$web,
+				$cliText
 			);
 		}
 	}
@@ -116,24 +118,27 @@ HTML;
 	 */
 	function checkVendorExistence() {
 		if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
-			$shortText = "Installing some external dependencies (e.g. via composer) is required.";
-
-			$longText = "Error: You are missing some external dependencies. \n"
+			$cliText = "Error: You are missing some external dependencies. \n"
 				. "MediaWiki also has some external dependencies that need to be installed\n"
 				. "via composer or from a separate git repo. Please see\n"
 				. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
 				. "for help on installing the required components.";
 
+			$web = array();
+			$web['intro'] = "Installing some external dependencies (e.g. via composer) is required.";
+			$web['longTitle'] = 'External dependencies';
 			// phpcs:disable Generic.Files.LineLength
-			$longHtml = <<<HTML
+			$web['longHtml'] = <<<HTML
+		<p>
 		MediaWiki also has some external dependencies that need to be installed via
 		composer or from a separate git repo. Please see
 		<a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a>
 		for help on installing the required components.
+		</p>
 HTML;
 			// phpcs:enable Generic.Files.LineLength
 
-			$this->triggerError( 'External dependencies', $shortText, $longText, $longHtml );
+			$this->triggerError( $web, $cliText );
 		}
 	}
 
@@ -149,8 +154,6 @@ HTML;
 		}
 
 		if ( $missingExtensions ) {
-			$shortText = "Installing some PHP extensions is required.";
-
 			$missingExtText = '';
 			$missingExtHtml = '';
 			$baseUrl = 'https://www.php.net';
@@ -164,15 +167,20 @@ HTML;
 				. "You are missing a required extension to PHP that MediaWiki needs.\n"
 				. "Please install:\n" . $missingExtText;
 
-			$longHtml = <<<HTML
+			$web = array();
+			$web['intro'] = "Installing some PHP extensions is required.";
+			$web['longTitle'] = 'Required components';
+			$web['longHtml'] = <<<HTML
+		<p>
 		You are missing a required extension to PHP that MediaWiki
 		requires to run. Please install:
+		</p>
 		<ul>
 		$missingExtHtml
 		</ul>
 HTML;
 
-			$this->triggerError( 'Required components', $shortText, $cliText, $longHtml );
+			$this->triggerError( $web, $cliText );
 		}
 	}
 
@@ -191,16 +199,18 @@ HTML;
 	/**
 	 * Returns an error page, which is suitable for output to the end user via a web browser.
 	 *
-	 * @param string $title
+	 * @param string $introText
+	 * @param string $longTitle
 	 * @param string $longHtml
-	 * @param string $shortText
 	 * @return string
 	 */
-	function getIndexErrorOutput( $title, $longHtml, $shortText ) {
+	function getIndexErrorOutput( $introText, $longTitle, $longHtml ) {
 		$encLogo =
 			htmlspecialchars( str_replace( '//', '/', $this->scriptPath . '/' ) .
 				'resources/assets/mediawiki.png' );
-		$shortHtml = htmlspecialchars( $shortText );
+
+		$introHtml = htmlspecialchars( $introText );
+		$longTitleHtml = htmlspecialchars( $longTitle );
 
 		header( 'Content-type: text/html; charset=UTF-8' );
 
@@ -233,15 +243,11 @@ HTML;
 	<body>
 		<img src="{$encLogo}" alt="The MediaWiki logo" />
 		<h1>MediaWiki {$this->mwVersion} internal error</h1>
-		<div class="error">
 		<p>
-			{$shortHtml}
+			{$introHtml}
 		</p>
-		<h2>{$title}</h2>
-		<p>
-			{$longHtml}
-		</p>
-		</div>
+		<h2>{$longTitleHtml}</h2>
+		{$longHtml}
 	</body>
 </html>
 HTML;
@@ -255,21 +261,26 @@ HTML;
 	 * Safe for PHP4 (and putting this here means that WebStart.php and GlobalSettings.php
 	 * no longer need to be).
 	 *
-	 * Calling this function kills execution immediately.
+	 * This function immediately terminates the PHP process.
 	 *
-	 * @param string $title HTML code to be put within an <h2> tag
-	 * @param string $shortText
-	 * @param string $longText
-	 * @param string $longHtml
+	 * @param string[] $web
+	 *  - (string) intro: Short error message, displayed on top.
+	 *  - (string) longTitle: Title for the longer message.
+	 *  - (string) longHtml: The longer message, as raw HTML.
+	 * @param string $cliText
 	 */
-	function triggerError( $title, $shortText, $longText, $longHtml ) {
+	function triggerError( $web, $cliText ) {
 		if ( $this->format === 'html' ) {
 			// Used by index.php and mw-config/index.php
 			$this->outputHTMLHeader();
-			$finalOutput = $this->getIndexErrorOutput( $title, $longHtml, $shortText );
+			$finalOutput = $this->getIndexErrorOutput(
+				$web['intro'],
+				$web['longTitle'],
+				$web['longHtml']
+			);
 		} else {
 			// Used by Maintenance.php (CLI)
-			$finalOutput = $longText;
+			$finalOutput = $cliText;
 		}
 
 		echo "$finalOutput\n";
