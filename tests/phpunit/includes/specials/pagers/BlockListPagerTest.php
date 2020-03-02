@@ -32,7 +32,7 @@ class BlockListPagerTest extends MediaWikiTestCase {
 	 */
 	public function testFormatValue( $name, $expected = null, $row = null ) {
 		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => false,
+			'wgEnablePartialBlocks' => true,
 		] );
 		// Set the time to now so it does not get off during the test.
 		MWTimestamp::setFakeTime( MWTimestamp::time() );
@@ -113,7 +113,8 @@ class BlockListPagerTest extends MediaWikiTestCase {
 			],
 			[
 				'ipb_params',
-				'<ul><li>account creation disabled</li><li>cannot edit own talk page</li></ul>',
+				'<ul><li>editing (sitewide)</li>' .
+					'<li>account creation disabled</li><li>cannot edit own talk page</li></ul>',
 				$row,
 			]
 		];

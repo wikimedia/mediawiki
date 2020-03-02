@@ -30,7 +30,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testGetFormFields() {
 		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => false,
+			'wgEnablePartialBlocks' => true,
 			'wgBlockAllowsUTEdit' => true,
 		] );
 		$page = $this->newSpecialPage();
@@ -46,23 +46,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertArrayHasKey( 'HardBlock', $fields );
 		$this->assertArrayHasKey( 'PreviousTarget', $fields );
 		$this->assertArrayHasKey( 'Confirm', $fields );
-
-		$this->assertArrayNotHasKey( 'EditingRestriction', $fields );
-		$this->assertArrayNotHasKey( 'PageRestrictions', $fields );
-		$this->assertArrayNotHasKey( 'NamespaceRestrictions', $fields );
-	}
-
-	/**
-	 * @covers ::getFormFields()
-	 */
-	public function testGetFormFieldsPartialBlocks() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
-		$page = $this->newSpecialPage();
-		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
-		$fields = $wrappedPage->getFormFields();
-
 		$this->assertArrayHasKey( 'EditingRestriction', $fields );
 		$this->assertArrayHasKey( 'PageRestrictions', $fields );
 		$this->assertArrayHasKey( 'NamespaceRestrictions', $fields );
@@ -73,7 +56,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testMaybeAlterFormDefaults() {
 		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => false,
+			'wgEnablePartialBlocks' => true,
 			'wgBlockAllowsUTEdit' => true,
 		] );
 
@@ -153,7 +136,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testProcessForm() {
 		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => false,
+			'wgEnablePartialBlocks' => true,
 		] );
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
@@ -190,7 +173,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testProcessFormExisting() {
 		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => false,
+			'wgEnablePartialBlocks' => true,
 		] );
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();

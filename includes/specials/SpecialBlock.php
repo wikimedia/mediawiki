@@ -919,7 +919,7 @@ class SpecialBlock extends FormSpecialPage {
 		$pageRestrictions = [];
 		$namespaceRestrictions = [];
 		if ( $enablePartialBlocks ) {
-			if ( $data['PageRestrictions'] !== '' ) {
+			if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
 				$pageRestrictions = array_map( function ( $text ) {
 					$title = Title::newFromText( $text );
 					// Use the link cache since the title has already been loaded when
@@ -929,7 +929,7 @@ class SpecialBlock extends FormSpecialPage {
 					return $restriction;
 				}, explode( "\n", $data['PageRestrictions'] ) );
 			}
-			if ( $data['NamespaceRestrictions'] !== '' ) {
+			if ( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) {
 				$namespaceRestrictions = array_map( function ( $id ) {
 					return new NamespaceRestriction( 0, $id );
 				}, explode( "\n", $data['NamespaceRestrictions'] ) );
