@@ -91,7 +91,7 @@ class PHPVersionCheck {
 			// phpcs:disable Generic.Files.LineLength
 			$longHtml = <<<HTML
 			Please consider <a href="https://www.php.net/downloads.php">upgrading your copy of PHP</a>.
-			PHP versions less than v7.1.0 are no longer supported by the PHP Group and will not receive
+			PHP versions less than v7.2.0 are no longer supported by the PHP Group and will not receive
 			security or bugfix updates.
 		</p>
 		<p>
