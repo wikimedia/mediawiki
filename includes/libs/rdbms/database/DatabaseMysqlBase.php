@@ -448,7 +448,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return in_array( $errno, [ 2062, 3024 ] );
 	}
 
-	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$this->nativeReplace( $table, $rows, $fname );
 	}
 
@@ -1322,7 +1322,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	public function upsert(
-		$table, array $rows, $uniqueIndexes, array $set, $fname = __METHOD__
+		$table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__
 	) {
 		if ( $rows === [] ) {
 			return true; // nothing to do

@@ -703,7 +703,7 @@ class DatabaseSqlite extends Database {
 		return true;
 	}
 
-	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		if ( version_compare( $this->getServerVersion(), '3.7.11', '>=' ) ) {
 			// REPLACE is an alias for "INSERT OR REPLACE" in sqlite
 			// Batch support for INSERT per http://www.sqlite.org/releaselog/3_7_11.html

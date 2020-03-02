@@ -2151,10 +2151,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$multi = $this->isMultiRowArray( $rows );
 		if ( $multi ) {
-			$multi = true;
 			$keys = array_keys( $rows[0] );
 		} else {
-			$multi = false;
 			$keys = array_keys( $rows );
 		}
 
@@ -2212,10 +2210,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return implode( ' ', $opts );
 	}
 
-	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
+	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
-		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, self::LIST_SET );
+		$sql = "UPDATE $opts $table SET " . $this->makeList( $set, self::LIST_SET );
 
 		// @phan-suppress-next-line PhanTypeComparisonFromArray
 		if ( $conds !== [] && $conds !== '*' ) {
@@ -2920,12 +2918,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return '';
 	}
 
-	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		if ( count( $rows ) == 0 ) {
 			return;
 		}
 
-		$uniqueIndexes = (array)$uniqueIndexes;
+		$uniqueKeys = (array)$uniqueKeys;
 		// Single row case
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
@@ -2937,7 +2935,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			foreach ( $rows as $row ) {
 				// Delete rows which collide with this one
 				$indexWhereClauses = [];
-				foreach ( $uniqueIndexes as $index ) {
+				foreach ( $uniqueKeys as $index ) {
 					$indexColumns = (array)$index;
 					$indexRowValues = array_intersect_key( $row, array_flip( $indexColumns ) );
 					if ( count( $indexRowValues ) != count( $indexColumns ) ) {
@@ -3005,23 +3003,21 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->query( $sql, $fname );
 	}
 
-	public function upsert( $table, array $rows, $uniqueIndexes, array $set,
-		$fname = __METHOD__
-	) {
+	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
 		if ( $rows === [] ) {
 			return true; // nothing to do
 		}
 
-		$uniqueIndexes = (array)$uniqueIndexes;
+		$uniqueKeys = (array)$uniqueKeys;
 		if ( !is_array( reset( $rows ) ) ) {
 			$rows = [ $rows ];
 		}
 		'@phan-var array[] $rows';
 
-		if ( count( $uniqueIndexes ) ) {
+		if ( count( $uniqueKeys ) ) {
 			$clauses = []; // list WHERE clauses that each identify a single row
 			foreach ( $rows as $row ) {
-				foreach ( $uniqueIndexes as $index ) {
+				foreach ( $uniqueKeys as $index ) {
 					$index = is_array( $index ) ? $index : [ $index ]; // columns
 					$rowKey = []; // unique key to this row
 					foreach ( $index as $column ) {

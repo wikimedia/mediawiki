@@ -378,7 +378,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] ) {
+	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
@@ -499,14 +499,14 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function upsert(
-		$table, array $rows, $uniqueIndexes, array $set, $fname = __METHOD__
+		$table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__
 	) {
 		$this->assertRoleAllowsWrites();
 
