@@ -103,7 +103,8 @@
 			"Kupulak",
 			"Rots61",
 			"Sumurai8",
-			"Klaas van Buiten"
+			"Klaas van Buiten",
+			"Encycloon"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -1086,6 +1087,7 @@
 	"prefs-edits": "Aantal bewerkingen:",
 	"prefsnologintext2": "U moet aanmelden om voorkeuren in te stellen.",
 	"prefs-skin": "Vormgeving",
+	"prefs-skin-prefs": "Vormgevingsvoorkeuren",
 	"skin-preview": "Voorvertoning",
 	"datedefault": "Geen voorkeur",
 	"prefs-labs": "Alphafunctionaliteit",
@@ -1170,6 +1172,7 @@
 	"badsiglength": "Uw ondertekening is te lang.\nDeze moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten.",
 	"yourgender": "Hoe wilt u beschreven worden?",
 	"gender-unknown": "De software gebruikt waar mogelijk geslachtsneutrale woorden als het over u gaat",
+	"gender-notknown": "De gebruiker bewerkt wikipagina's",
 	"gender-male": "Hij bewerkt pagina's",
 	"gender-female": "Zij bewerkt pagina's",
 	"prefs-help-gender": "Deze voorkeur instellen is optioneel.\nDe software gebruikt deze waarde om u met het toepasselijke grammaticale geslacht aan te spreken en te vermelden aan anderen.\nDeze informatie is openbaar.",
@@ -2573,6 +2576,7 @@
 	"whatlinkshere-hidelinks": "koppelingen $1",
 	"whatlinkshere-hideimages": "$1 bestandskoppelingen",
 	"whatlinkshere-filters": "Filters",
+	"whatlinkshere-sectionredir": "doorverwijzing naar het kopje \"$1\"",
 	"whatlinkshere-submit": "OK",
 	"autoblockid": "Automatische blokkade #$1",
 	"block": "Gebruiker blokkeren",

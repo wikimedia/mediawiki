@@ -859,6 +859,7 @@
 	"revdelete-show-no-access": "Virhe näyttäessä kohtaa $2 kello $1: kohta on merkitty ”rajoitetuksi”.\nSinula ei ole oikeutta siiheen.",
 	"revdelete-edit-reasonlist": "Mookkaa poistosyitä",
 	"mergehistory-from": "Lähesivu:",
+	"mergehistory-fail-invalid-source": "Lähesivu ei ole kelvollinen.",
 	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Yhistämisloki",
 	"revertmerge": "Pane takashiin yhistäminen",

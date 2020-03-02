@@ -23,7 +23,8 @@
 			"Épine",
 			"Fitoschido",
 			"Vlad5250",
-			"ئارام بکر"
+			"ئارام بکر",
+			"Arya sarhan"
 		]
 	},
 	"tog-underline": "ھێڵھێنان بەژێر بەستەرەکان:",
@@ -1695,7 +1696,7 @@
 	"showhideselectedlogentries": "دیاریکردنی بابەتە ھەڵبژێردراوەکانی لۆگ بگۆڕە",
 	"checkbox-select": "ھەڵبژاردنی: $1",
 	"checkbox-all": "ھەموو",
-	"checkbox-none": "هیچ",
+	"checkbox-none": "ھیچیان",
 	"checkbox-invert": "پێچەوانەکردنەوە",
 	"allpages": "ھەموو پەڕەکان",
 	"nextpage": "پەڕەی پاشەوە ($1)",
@@ -2783,6 +2784,7 @@
 	"logentry-rights-rights": "$1 ئەندامێتیی {{GENDER:$6|$3}}ی لە $4 بۆ $5 {{GENDER:$2|گۆڕی}}",
 	"logentry-upload-upload": "$1 $3ی {{GENDER:$2|بار کرد}}",
 	"logentry-upload-overwrite": "$1 وەشانێکی نوێی $3ی {{GENDER:$2|بار کرد}}",
+	"log-name-managetags": "لۆگی بەڕێوەبردنی تاگ",
 	"logentry-managetags-create": "$1 تاگی \"$4\"ی دروست کرد",
 	"log-name-tag": "لۆگی تاگ",
 	"rightsnone": "(ھیچ)",
