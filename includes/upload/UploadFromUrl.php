@@ -163,14 +163,14 @@ class UploadFromUrl extends UploadBase {
 	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
-		global $wgUser;
+		$user = RequestContext::getMain()->getUser();
 
 		$url = $request->getVal( 'wpUploadFileURL' );
 
 		return !empty( $url )
 			&& MediaWikiServices::getInstance()
 				   ->getPermissionManager()
-				   ->userHasRight( $wgUser, 'upload_by_url' );
+				   ->userHasRight( $user, 'upload_by_url' );
 	}
 
 	/**
