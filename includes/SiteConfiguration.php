@@ -203,7 +203,7 @@ class SiteConfiguration {
 	protected function getSetting( $settingName, $wiki, array $params ) {
 		$retval = null;
 		if ( array_key_exists( $settingName, $this->settings ) ) {
-			$thisSetting =& $this->settings[$settingName];
+			$thisSetting = $this->settings[$settingName];
 			do {
 				// Do individual wiki settings
 				if ( array_key_exists( $wiki, $thisSetting ) ) {
@@ -261,34 +261,31 @@ class SiteConfiguration {
 			} while ( false );
 		}
 
-		if ( $retval !== null && count( $params['params'] ) ) {
-			foreach ( $params['params'] as $key => $value ) {
-				$retval = $this->doReplace( '$' . $key, $value, $retval );
-			}
+		if ( $retval !== null ) {
+			$retval = $this->doReplace( $retval, $params['replacements'] );
 		}
 		return $retval;
 	}
 
 	/**
 	 * Type-safe string replace; won't do replacements on non-strings
-	 * private?
 	 *
-	 * @param string $from
-	 * @param string $to
 	 * @param string|array $in
+	 * @param string[] $replacements As provided by self::mergeParams()
 	 * @return string|array
 	 */
-	function doReplace( $from, $to, $in ) {
+	private function doReplace( $in, array $replacements ) {
 		if ( is_string( $in ) ) {
-			return str_replace( $from, $to, $in );
+			$in = strtr( $in, $replacements );
 		} elseif ( is_array( $in ) ) {
 			foreach ( $in as $key => $val ) {
-				$in[$key] = $this->doReplace( $from, $to, $val );
+				if ( is_string( $val ) ) {
+					$in[$key] = strtr( $val, $replacements );
+				}
 			}
-			return $in;
-		} else {
-			return $in;
 		}
+
+		return $in;
 	}
 
 	/**
@@ -476,6 +473,14 @@ class SiteConfiguration {
 		}
 		if ( !isset( $ret['params']['site'] ) && $ret['suffix'] !== null ) {
 			$ret['params']['site'] = $ret['suffix'];
+		}
+
+		// Optimisation for getAll() and extractAllGlobals():
+		// Precompute the replacements once when we process the params,
+		// instead separately for each of the thousands of variables.
+		$ret['replacements'] = [];
+		foreach ( $ret['params'] as $key => $value ) {
+			$ret['replacements'][ '$' . $key ] = $value;
 		}
 
 		return $ret;
