@@ -59,7 +59,6 @@ class SkinTemplateTest extends MediaWikiTestCase {
 
 	public function provideGetDefaultModules() {
 		$defaultStyles = [
-			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
 		];
 		$buttonStyle = 'mediawiki.ui.button';

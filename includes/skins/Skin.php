@@ -175,7 +175,6 @@ abstract class Skin extends ContextSource {
 				// Unlike other keys in $modules, this is an associative array
 				// where each key is its own group pointing to a list of modules
 				'core' => [
-					'mediawiki.legacy.shared',
 					'mediawiki.legacy.commonPrint',
 				],
 				'content' => [],

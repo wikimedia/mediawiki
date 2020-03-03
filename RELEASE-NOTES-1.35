@@ -124,6 +124,12 @@ For notes on 1.34.x and older releases, see HISTORY.
   Support for not passing a user has also been hard-deprecated and will be
   removed in 1.36.
 * The ParserPreSaveTransformComplete hook was added.
+* The ResourceLoaderSkinModule class now has a "legacy" feature that loads
+  the stylesheets previously part of the "mediawiki.legacy.shared" module.
+  The latter is now deprecated and no longer loaded by skins. For skins needing
+  to retain these styles, you will need to load these styles via a module
+  using the ResourceLoaderSkinModule class. See Vector and Monobook for
+  examples.
 * …
 
 === External library changes in 1.35 ===
@@ -370,6 +376,11 @@ because of Phabricator reports.
 * Revision::loadFromId and RevisionStore::loadRevisionFromId have been
   removed.
 * OutputPage::parserOptions doesn't accept an $options parameter anymore.
+* The Skin no loader loads the "mediawiki.legacy.shared" module. The legacy
+  shared styles must now be loaded by the skin explicitly, either inherited via
+  the "mediawiki.skinning.*" modules, or by making your skin's main styles
+  module use the ResourceLoaderSkinModule class with the "legacy" attribute.
+  See Vector and Monobook for examples.
 * …
 
 === Deprecations in 1.35 ===
@@ -576,6 +587,8 @@ because of Phabricator reports.
   the fourth parameter. Specifying such a right is deprecated.
 * RevisionStore::loadRevisionFromTitle was deprecated.
 * SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
+* The "mediawiki.legacy.shared" module has been deprecated.
+  Use the "mediawiki.skinning.*" modules, or ResourceLoaderSkinModule instead.
 * …
 
 === Other changes in 1.35 ===
