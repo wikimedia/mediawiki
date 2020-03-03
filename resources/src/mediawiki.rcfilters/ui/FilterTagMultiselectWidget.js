@@ -105,6 +105,8 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		}
 	}, config ) );
 
+	this.input.$input.attr( 'aria-label', mw.msg( 'rcfilters-search-placeholder' ) );
+
 	this.savedQueryTitle = new OO.ui.LabelWidget( {
 		label: '',
 		classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-savedQueryTitle' ]
@@ -259,7 +261,7 @@ OO.inheritClass( FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
  * @return {OO.ui.ButtonSelectWidget}
  */
 FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
-	return new OO.ui.ButtonSelectWidget( {
+	var viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
 		classes: this.isMobile ?
 			[
 				'mw-rcfilters-ui-table',
@@ -286,6 +288,13 @@ FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
 			} )
 		]
 	} );
+
+	viewsSelectWidget.$element.attr( 'aria-label', mw.msg( 'rcfilters-view-filter-select-widget-aria-label' ) );
+	viewsSelectWidget.items.forEach( function ( item ) {
+		item.$element.attr( 'aria-label', item.title );
+	} );
+
+	return viewsSelectWidget;
 };
 
 /**

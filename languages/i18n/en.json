@@ -1565,6 +1565,7 @@
 	"rcfilters-tag-prefix-tags": "#$1",
 	"rcfilters-exclude-button-off": "Exclude selected",
 	"rcfilters-exclude-button-on": "Excluding selected",
+	"rcfilters-view-filter-select-widget-aria-label": "Select filter results changes filters",
 	"rcfilters-view-tags": "Tagged edits",
 	"rcfilters-view-namespaces-tooltip": "Filter results by namespace",
 	"rcfilters-view-tags-tooltip": "Filter results using edit tags",
