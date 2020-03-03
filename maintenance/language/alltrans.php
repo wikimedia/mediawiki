@@ -32,16 +32,19 @@ require_once __DIR__ . '/../Maintenance.php';
  * @ingroup MaintenanceLanguage
  */
 class AllTrans extends Maintenance {
+
+	/** @var LocalisationCache */
+	private $localisationCache;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Get all messages as defined by the English language file' );
+		$this->localisationCache = MediaWikiServices::getInstance()->getLocalisationCache();
 	}
 
 	public function execute() {
-		$englishMessages = array_keys( MediaWikiServices::getInstance()
-			->getLocalisationCache()
-			->getItem( 'en', 'messages' ) );
-		foreach ( $englishMessages as $key ) {
+		$englishMessages = $this->localisationCache->getItem( 'en', 'messages' );
+		foreach ( array_keys( $englishMessages ) as $key ) {
 			$this->output( "$key\n" );
 		}
 	}
