@@ -231,22 +231,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Load a page revision from a given revision ID number.
-	 * Returns null if no such revision can be found.
-	 *
-	 * @deprecated since 1.31, use RevisionStore::getRevisionById() instead.
-	 *
-	 * @param IDatabase $db
-	 * @param int $id
-	 * @return Revision|null
-	 */
-	public static function loadFromId( $db, $id ) {
-		wfDeprecated( __METHOD__, '1.31' ); // no known callers
-		$rec = self::getRevisionStore()->loadRevisionFromId( $db, $id );
-		return $rec ? new Revision( $rec ) : null;
-	}
-
-	/**
 	 * Load either the current, or a specified, revision
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.

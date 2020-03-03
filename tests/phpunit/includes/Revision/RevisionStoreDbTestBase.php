@@ -1338,21 +1338,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Revision\RevisionStore::loadRevisionFromId
-	 */
-	public function testLoadRevisionFromId() {
-		$title = Title::newFromText( __METHOD__ );
-		$page = WikiPage::factory( $title );
-		/** @var Revision $rev */
-		$rev = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
-			->value['revision'];
-
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$result = $store->loadRevisionFromId( wfGetDB( DB_MASTER ), $rev->getId() );
-		$this->assertRevisionRecordMatchesRevision( $rev, $result );
-	}
-
-	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::loadRevisionFromPageId
 	 */
 	public function testLoadRevisionFromPageId() {

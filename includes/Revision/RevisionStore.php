@@ -2388,24 +2388,6 @@ class RevisionStore
 	}
 
 	/**
-	 * Load a page revision from a given revision ID number.
-	 * Returns null if no such revision can be found.
-	 *
-	 * MCR migration note: this corresponds to Revision::loadFromId
-	 *
-	 * @note direct use is deprecated!
-	 * @todo remove when unused! there seem to be no callers of Revision::loadFromId
-	 *
-	 * @param IDatabase $db
-	 * @param int $id
-	 *
-	 * @return RevisionRecord|null
-	 */
-	public function loadRevisionFromId( IDatabase $db, $id ) {
-		return $this->loadRevisionFromConds( $db, [ 'rev_id' => intval( $id ) ] );
-	}
-
-	/**
 	 * Load either the current, or a specified, revision
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.

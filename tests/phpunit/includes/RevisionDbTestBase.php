@@ -1105,18 +1105,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Revision::loadFromId
-	 */
-	public function testLoadFromId() {
-		$rev = $this->testPage->getRevision();
-		$this->hideDeprecated( 'Revision::loadFromId' );
-		$this->assertRevEquals(
-			$rev,
-			Revision::loadFromId( wfGetDB( DB_MASTER ), $rev->getId() )
-		);
-	}
-
-	/**
 	 * @covers Revision::loadFromPageId
 	 */
 	public function testLoadFromPageId() {
