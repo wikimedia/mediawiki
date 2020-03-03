@@ -45,7 +45,7 @@ class TemplateParser {
 	 */
 	protected $compileFlags;
 
-	private static $cacheVersion = '2.0.0';
+	private static $cacheVersion = '2.1.0';
 
 	/**
 	 * @param string|null $templateDir
@@ -127,9 +127,9 @@ class TemplateParser {
 			// 1. Has the template changed since the compiled template was cached? If so, don't use
 			// the cached code.
 			if ( $compiledTemplate ) {
-				$fileHash = FileContentsHasher::getFileContentsHash( $compiledTemplate['filename'] );
+				$filesHash = FileContentsHasher::getFileContentsHash( $compiledTemplate['files'] );
 
-				if ( $fileHash !== $compiledTemplate['fileHash'] ) {
+				if ( $filesHash !== $compiledTemplate['filesHash'] ) {
 					$compiledTemplate = null;
 				}
 			}
@@ -180,16 +180,19 @@ class TemplateParser {
 	 *  ```php
 	 *  [
 	 *    'phpCode' => '...',
-	 *    'filename' => '/path/to/template.mustache',
-	 *    'fileHash' => '...'
+	 *    'files' => [
+	 *      '/path/to/template.mustache',
+	 *      '/path/to/partial1.mustache',
+	 *      '/path/to/partial2.mustache',
+	 *    'filesHash' => '...'
 	 *  ]
 	 *  ```
 	 *
-	 * The `filename` entry is the fully-qualified name of the template file, i.e. it includes path
-	 * information.
+	 * The `files` entry is a list of the files read during the compilation of the template. Each
+	 * entry is the fully-qualified filename, i.e. it includes path information.
 	 *
-	 * The `fileHash` entry can be used to determine whether the template has changed since it was
-	 * last compiled without compiling the template again. Currently, the `fileHash` entry is
+	 * The `filesHash` entry can be used to determine whether the template has changed since it was
+	 * last compiled without compiling the template again. Currently, the `filesHash` entry is
 	 * generated with FileContentsHasher::getFileContentsHash.
 	 *
 	 * @param string $templateName The name of the template
@@ -206,6 +209,7 @@ class TemplateParser {
 			throw new RuntimeException( "Could not find template `{$templateName}` at {$filename}" );
 		}
 
+		$files = [ $filename ];
 		$contents = file_get_contents( $filename );
 		$compiled = LightnCandy::compile(
 			$contents,
@@ -213,7 +217,7 @@ class TemplateParser {
 				'flags' => $this->compileFlags,
 				'basedir' => $this->templateDir,
 				'fileext' => '.mustache',
-				'partialresolver' => function ( $cx, $partialName ) use ( $templateName ) {
+				'partialresolver' => function ( $cx, $partialName ) use ( $templateName, &$files ) {
 					$filename = "{$this->templateDir}/{$partialName}.mustache";
 					if ( !file_exists( $filename ) ) {
 						throw new RuntimeException( sprintf(
@@ -235,6 +239,8 @@ class TemplateParser {
 						) );
 					}
 
+					$files[] = $filename;
+
 					return $fileContents;
 				}
 			]
@@ -248,8 +254,8 @@ class TemplateParser {
 
 		return [
 			'phpCode' => $compiled,
-			'filename' => $filename,
-			'fileHash' => FileContentsHasher::getFileContentsHash( $filename ),
+			'files' => $files,
+			'filesHash' => FileContentsHasher::getFileContentsHash( $files ),
 		];
 	}
 
