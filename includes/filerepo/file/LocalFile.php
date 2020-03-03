@@ -1627,7 +1627,7 @@ class LocalFile extends File {
 				$nullRevision->insertOn( $dbw );
 				Hooks::run(
 					'NewRevisionFromEditComplete',
-					[ $wikiPage, $nullRevision, $nullRevision->getParentId(), $user ]
+					[ $wikiPage, $nullRevision, $nullRevision->getParentId(), $user, &$tags ]
 				);
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
 				// Associate null revision id

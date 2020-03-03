@@ -538,10 +538,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				Title::newFromTitleValue( $target ) :
 				Title::newFromText( $target );
 			$page = WikiPage::factory( $title );
+			$user = $this->getUser();
 			if ( $action === 'Watch' ) {
-				Hooks::run( 'WatchArticleComplete', [ $this->getUser(), &$page ] );
+				Hooks::run( 'WatchArticleComplete', [ &$user, &$page ] );
 			} else {
-				Hooks::run( 'UnwatchArticleComplete', [ $this->getUser(), &$page ] );
+				Hooks::run( 'UnwatchArticleComplete', [ &$user, &$page ] );
 			}
 		}
 		return true;
