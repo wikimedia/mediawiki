@@ -1950,7 +1950,7 @@ MESSAGE;
 			'wgContentNamespaces' => $nsInfo->getContentNamespaces(),
 			'wgSiteName' => $conf->get( 'Sitename' ),
 			'wgDBname' => $conf->get( 'DBname' ),
-			'wgWikiID' => WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() ),
+			'wgWikiID' => WikiMap::getCurrentWikiId(),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgCommentByteLimit' => null,
 			'wgCommentCodePointLimit' => CommentStore::COMMENT_CHARACTER_LIMIT,

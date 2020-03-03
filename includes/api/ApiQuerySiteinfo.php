@@ -237,7 +237,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data[ApiResult::META_BC_BOOLS][] = 'variantarticlepath';
 		$data['server'] = $config->get( 'Server' );
 		$data['servername'] = $config->get( 'ServerName' );
-		$data['wikiid'] = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+		$data['wikiid'] = WikiMap::getCurrentWikiId();
 		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
 
 		$data['misermode'] = (bool)$config->get( 'MiserMode' );
