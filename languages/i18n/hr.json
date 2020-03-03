@@ -1068,6 +1068,7 @@
 	"badsiglength": "Vaš je potpis predugačak.\nNe smije biti duži od $1 {{PLURAL:$1|znaka|znakova}}.",
 	"yourgender": "Na koji način želite da Vam se ostali suradnici obraćaju?",
 	"gender-unknown": "Kad Vas se spominje, programska će oprema pokušati upotrijebiti srednji rod kad god je to moguće.",
+	"gender-notknown": "Uređivači/uređivačice ste wikistranica.",
 	"gender-male": "Uređivač sam wikistranica.",
 	"gender-female": "Uređivačica sam wikistranica.",
 	"prefs-help-gender": "Postavljanje ove mogućnosti je opcionalno.\nProgramska oprema koristi danu vrijednost kako bi Vam se obratila i spomenula Vas drugima rabeći odgovarajući gramatički rod.\nOvaj podatak bit će javno dostupan.",

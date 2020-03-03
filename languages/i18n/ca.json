@@ -2525,7 +2525,7 @@
 	"sp-contributions-concurrency-user": "Ho sentim. Hi ha massa sol·licituds fetes des del vostre compte. Torneu-ho a provar més endavant.",
 	"sp-contributions-concurrency-ip": "Ho sentim. Hi ha massa sol·licituds fetes des de la vostra adreça IP. Torneu-ho a provar més endavant.",
 	"whatlinkshere": "Què hi enllaça",
-	"whatlinkshere-count": "{{PLURAL:$1|S'ha mostrat $1 element|S'han mostrat $1 elements}}.",
+	"whatlinkshere-count": "Hi ha $1 {{PLURAL:$1|element|elements}}.",
 	"whatlinkshere-title": "Pàgines que enllacen amb «$1»",
 	"whatlinkshere-page": "Pàgina:",
 	"linkshere": "Les següents pàgines enllacen amb '''$2''':",
