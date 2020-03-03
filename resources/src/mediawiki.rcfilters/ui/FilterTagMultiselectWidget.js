@@ -201,7 +201,8 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	this.restructureViewsSelectWidget();
 
 	// Event
-	this.viewsSelectWidget.connect( this, { choose: 'onViewsSelectWidgetChoose' } );
+	this.viewsSelectWidget.aggregate( { click: 'buttonClick' } );
+	this.viewsSelectWidget.connect( this, { buttonClick: 'onViewsSelectWidgetButtonClick' } );
 
 	$rcFiltersRow.append(
 		$( '<div>' )
@@ -256,12 +257,12 @@ OO.inheritClass( FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 /* Methods */
 
 /**
- * Create a OOUI ButtonSelectWidget. The buttons are framed and have additional CSS
+ * Create a OOUI ButtonGroupWidget. The buttons are framed and have additional CSS
  * classes applied on mobile.
- * @return {OO.ui.ButtonSelectWidget}
+ * @return {OO.ui.ButtonGroupWidget}
  */
 FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
-	var viewsSelectWidget = new OO.ui.ButtonSelectWidget( {
+	var viewsSelectWidget = new OO.ui.ButtonGroupWidget( {
 		classes: this.isMobile ?
 			[
 				'mw-rcfilters-ui-table',
@@ -271,14 +272,15 @@ FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
 				'mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget'
 			],
 		items: [
-			new OO.ui.ButtonOptionWidget( {
+			new OO.ui.ButtonWidget( {
 				framed: !!this.isMobile,
 				data: 'namespaces',
 				icon: 'article',
 				label: mw.msg( 'namespaces' ),
+				title: mw.msg( 'rcfilters-view-namespaces-tooltip' ),
 				classes: this.isMobile ? [ 'mw-rcfilters-ui-cell' ] : []
 			} ),
-			new OO.ui.ButtonOptionWidget( {
+			new OO.ui.ButtonWidget( {
 				framed: !!this.isMobile,
 				data: 'tags',
 				icon: 'tag',
@@ -289,9 +291,8 @@ FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
 		]
 	} );
 
-	viewsSelectWidget.$element.attr( 'aria-label', mw.msg( 'rcfilters-view-filter-select-widget-aria-label' ) );
 	viewsSelectWidget.items.forEach( function ( item ) {
-		item.$element.attr( 'aria-label', item.title );
+		item.$button.attr( 'aria-label', item.title );
 	} );
 
 	return viewsSelectWidget;
@@ -335,13 +336,12 @@ FilterTagMultiselectWidget.prototype.restructureViewsSelectWidget = function () 
 };
 
 /**
- * Respond to view select widget choose event
+ * Respond to button click event
  *
- * @param {OO.ui.ButtonOptionWidget} buttonOptionWidget Chosen widget
+ * @param {OO.ui.ButtonWidget} buttonWidget Clicked widget
  */
-FilterTagMultiselectWidget.prototype.onViewsSelectWidgetChoose = function ( buttonOptionWidget ) {
-	this.controller.switchView( buttonOptionWidget.getData() );
-	this.viewsSelectWidget.selectItem( null );
+FilterTagMultiselectWidget.prototype.onViewsSelectWidgetButtonClick = function ( buttonWidget ) {
+	this.controller.switchView( buttonWidget.getData() );
 	this.focus();
 };
 
