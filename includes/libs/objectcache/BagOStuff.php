@@ -29,6 +29,8 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -60,7 +62,12 @@ use Wikimedia\ScopedCallback;
  *
  * @ingroup Cache
  */
-abstract class BagOStuff implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInterface {
+abstract class BagOStuff implements
+	ExpirationAwareness,
+	StorageAwareness,
+	IStoreKeyEncoder,
+	LoggerAwareInterface
+{
 	/** @var LoggerInterface */
 	protected $logger;
 
