@@ -195,6 +195,7 @@
 			any new occurrences.
 		-->
 		<exclude-pattern>*/maintenance/dumpIterator\.php</exclude-pattern>
+		<exclude-pattern>*/maintenance/Maintenance\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
