@@ -2459,7 +2459,7 @@ function wfForeignMemcKey( $db, $prefix, ...$args ) {
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  *
- * @deprecated since 1.35 Use WikiMap::getCurrentWikiDbDomain()/WikiMap::getWikiIdFromDbDomain()
+ * @deprecated since 1.35 Use WikiMap::getCurrentWikiId()
  * @return string
  */
 function wfWikiID() {

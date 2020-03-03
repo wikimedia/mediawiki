@@ -2440,7 +2440,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
 		return [
 			[
-				'wiki' => WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() ),
+				'wiki' => WikiMap::getCurrentWikiId(),
 				'link' => $utp->getLocalURL(),
 				'rev' => $rev
 			]
