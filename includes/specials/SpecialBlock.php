@@ -816,6 +816,11 @@ class SpecialBlock extends FormSpecialPage {
 			return [ 'badipaddress' ];
 		}
 
+		// Reason, to be passed to the block object. For default values of reason, see
+		// HTMLSelectAndOtherField::getDefault
+		// @phan-suppress-next-line PhanPluginDuplicateConditionalNullCoalescing
+		$blockReason = isset( $data['Reason'][0] ) ? $data['Reason'][0] : '';
+
 		$expiryTime = self::parseExpiryInput( $data['Expiry'] );
 
 		if (
@@ -893,7 +898,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block = new DatabaseBlock();
 		$block->setTarget( $target );
 		$block->setBlocker( $performer );
-		$block->setReason( $data['Reason'][0] );
+		$block->setReason( $blockReason );
 		$block->setExpiry( $expiryTime );
 		$block->isCreateAccountBlocked( $data['CreateAccount'] );
 		$block->isUsertalkEditAllowed( $userTalkEditAllowed );
@@ -1054,7 +1059,7 @@ class SpecialBlock extends FormSpecialPage {
 		$log_type = $data['HideUser'] ? 'suppress' : 'block';
 		$logEntry = new ManualLogEntry( $log_type, $logaction );
 		$logEntry->setTarget( Title::makeTitle( NS_USER, $target ) );
-		$logEntry->setComment( $data['Reason'][0] );
+		$logEntry->setComment( $blockReason );
 		$logEntry->setPerformer( $performer );
 		$logEntry->setParameters( $logParams );
 		# Relate log ID to block ID (T27763)
