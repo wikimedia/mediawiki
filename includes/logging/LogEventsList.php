@@ -501,12 +501,12 @@ class LogEventsList extends ContextSource {
 	 * @param stdClass $row
 	 * @param string|array $type
 	 * @param string|array $action
-	 * @param string $right
+	 * @param string $right (deprecated since 1.35)
 	 * @return bool
 	 */
 	public static function typeAction( $row, $type, $action, $right = '' ) {
 		if ( $right !== '' ) {
-			wfDeprecated( __METHOD__ . ' with a right specified' );
+			wfDeprecated( __METHOD__ . ' with a right specified', '1.35' );
 		}
 		$match = is_array( $type ) ?
 			in_array( $row->log_type, $type ) : $row->log_type == $type;
