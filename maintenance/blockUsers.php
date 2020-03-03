@@ -61,19 +61,20 @@ class BlockUsers extends Maintenance {
 	}
 
 	public function execute() {
-		$performer = User::newFromName( $this->getOption( 'performer' ) );
+		$performerName = $this->getOption( 'performer' );
+		$performer = User::newFromName( $performerName );
 
 		if ( !$performer ) {
-			$this->fatalError( "Username '{$performer}' isn't valid.\n" );
+			$this->fatalError( "Username '{$performerName}' isn't valid.\n" );
 		}
 
 		if ( !$performer->getId() ) {
-			$this->fatalError( "User '{$performer}' doesn't exist.\n" );
+			$this->fatalError( "User '{$performerName}' doesn't exist.\n" );
 		}
 
 		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$permManager->userHasAnyRight( $performer, 'block' ) ) {
-			$this->fatalError( "User '{$performer}' doesn't have blocking rights.\n" );
+		if ( !$permManager->userHasRight( $performer, 'block' ) ) {
+			$this->fatalError( "User '{$performerName}' doesn't have blocking rights.\n" );
 		}
 
 		$users = null;
