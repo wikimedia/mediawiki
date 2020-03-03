@@ -2590,14 +2590,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @since 1.19
+	 * @since 1.35 Signature changed, user moved to second parameter to prepare for requiring
+	 *             a user to be passed
 	 *
 	 * @param string $reason Delete reason for deletion log
-	 * @param bool $suppress Suppress all revisions and log the deletion in
+	 * @param user|bool $user The deleting user
+	 * @param bool|null $suppress Suppress all revisions and log the deletion in
 	 *   the suppression log instead of the deletion log
-	 * @param int|null $u1 Unused
 	 * @param bool|null $u2 Unused
 	 * @param array|string &$error Array of errors to append to
-	 * @param User|null $deleter The deleting user
+	 * @param User|null $deleter The deleting user in the old signature, unused in the new
 	 * @param array $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @param bool $immediate false allows deleting over time via the job queue
@@ -2608,21 +2610,26 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @throws MWException
 	 */
 	public function doDeleteArticleReal(
-		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $deleter = null,
+		$reason, $user = false, $suppress = false, $u2 = null, &$error = '', User $deleter = null,
 		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
-		global $wgUser;
-
 		wfDebug( __METHOD__ . "\n" );
+
+		if ( $user instanceof User ) {
+			$deleter = $user;
+		} else {
+			$suppress = $user;
+			if ( $deleter === null ) {
+				global $wgUser;
+				$deleter = $wgUser;
+			}
+		}
+		unset( $user );
 
 		$status = Status::newGood();
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$wikiPage = $this;
-
-		if ( !$deleter ) {
-			$deleter = $wgUser;
-		}
 		if ( !Hooks::run( 'ArticleDelete',
 			[ &$wikiPage, &$deleter, &$reason, &$error, &$status, $suppress ]
 		) ) {

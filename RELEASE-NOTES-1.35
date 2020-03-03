@@ -619,6 +619,10 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.35 ===
+* The signature of WikiPage::doDeleteArticleReal was changed to make the user
+  the second parameter, and the suppression option the third parameter.
+  Previously, the third parameter was unused. The old signature is still
+  supported, and is not (yet) deprecated.
 * …
 
 == Compatibility ==
