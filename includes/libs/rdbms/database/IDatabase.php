@@ -817,7 +817,7 @@ interface IDatabase {
 	 *
 	 * Takes the same arguments as IDatabase::select().
 	 *
-	 * @param array|string $tables Table names
+	 * @param string|string[] $tables Table name(s)
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
@@ -839,7 +839,7 @@ interface IDatabase {
 	 *
 	 * @since 1.27 Added $join_conds parameter
 	 *
-	 * @param array|string $tables Table names
+	 * @param string|string[] $tables Table name(s)
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
@@ -855,7 +855,7 @@ interface IDatabase {
 	/**
 	 * Lock all rows meeting the given conditions/options FOR UPDATE
 	 *
-	 * @param array|string $table Table names
+	 * @param string|string[] $table Table name(s)
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select ("FOR UPDATE" is added automatically)
@@ -901,58 +901,48 @@ interface IDatabase {
 	public function tableExists( $table, $fname = __METHOD__ );
 
 	/**
-	 * INSERT wrapper, inserts an array into a table
+	 * Insert the given row(s) into a table
 	 *
-	 * $rows may be either:
-	 *
-	 *   - A single associative array. The array keys are the field names, and
-	 *     the values are the values to insert. The values are treated as data
-	 *     and will be quoted appropriately. If NULL is inserted, this will be
-	 *     converted to a database NULL.
-	 *   - An array with numeric keys, holding a list of associative arrays.
-	 *     This causes a multi-row INSERT on DBMSs that support it. The keys in
-	 *     each subarray must be identical to each other, and in the same order.
-	 *
-	 * $options is an array of options, with boolean options encoded as values
-	 * with numeric keys, in the same style as $options in
-	 * IDatabase::select(). Supported options are:
-	 *
-	 *   - IGNORE: Boolean: if present, duplicate key errors are ignored, and
-	 *     any rows which cause duplicate key errors are not inserted. It's
-	 *     possible to determine how many rows were successfully inserted using
-	 *     IDatabase::affectedRows().
-	 *
-	 * @param string $table Table name. This will be passed through
-	 *   Database::tableName().
-	 * @param array $rows Array of rows or array of arrays of rows.
+	 * @param string $table Table name
+	 * @param array|array[] $rows Row(s) to insert, as either:
+	 *   - A string-keyed map of (column name => value) defining a new row. Values are
+	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
+	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
+	 *     The keys in each map must be identical to each other and in the same order.
+	 *     The rows must not collide with each other.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
-	 * @param array $options Array of options
+	 * @param string|array $options Combination map/list where each string-keyed entry maps a
+	 *   non-boolean option to the option parameters and each integer-keyed value is the
+	 *   name of a boolean option. Supported options are:
+	 *     - IGNORE: Boolean: skip insertion of rows that would cause unique key conflicts.
+	 *       IDatabase::affectedRows() can be used to determine how many rows were inserted.
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, see IDatabase::query()
 	 */
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] );
 
 	/**
-	 * UPDATE wrapper. Takes a condition array and a SET array.
+	 * Update all rows in a table that match a given condition
 	 *
-	 * @param string $table Name of the table to UPDATE. This will be passed through
-	 *   Database::tableName().
-	 * @param array $values An array of values to SET. For each array element,
-	 *   the key gives the field name, and the value gives the data to set
-	 *   that field to. The data will be quoted by IDatabase::addQuotes().
-	 *   Values with integer keys form unquoted SET statements, which can be used for
-	 *   things like "field = field + 1" or similar computed values.
-	 * @param array|string $conds An array of conditions (WHERE). See
-	 *   IDatabase::select() for the details of the format of condition
-	 *   arrays. Use '*' to update all rows.
-	 * @param string $fname The function name of the caller (from __METHOD__),
-	 *   for logging and profiling.
-	 * @param array $options An array of UPDATE options, can be:
-	 *   - IGNORE: Ignore unique key conflicts
+	 * @param string $table Table name
+	 * @param array $set Combination map/list where each string-keyed entry maps a column
+	 *   to a literal assigned value and each integer-keyed value is a SQL expression in the
+	 *   format of a column assignment within UPDATE...SET. The (column => value) entries are
+	 *   convenient due to automatic value quoting and conversion of null to NULL. The SQL
+	 *   assignment format is useful for updates like "column = column + X". All assignments
+	 *   have no defined execution order, so they should not depend on each other. Do not
+	 *   modify AUTOINCREMENT or UUID columns in assignments.
+	 * @param array|string $conds Condition in the format of IDatabase::select() conditions.
+	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param string|array $options Combination map/list where each string-keyed entry maps a
+	 *   non-boolean option to the option parameters and each integer-keyed value is the
+	 *   name of a boolean option. Supported options are:
+	 *     - IGNORE: Boolean: skip insertion of rows that would cause unique key conflicts.
+	 *       IDatabase::affectedRows() can be used to determine how many rows were inserted.
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, see IDatabase::query()
 	 */
-	public function update( $table, $values, $conds, $fname = __METHOD__, $options = [] );
+	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] );
 
 	/**
 	 * Makes an encoded list of strings from an array
@@ -1285,69 +1275,68 @@ interface IDatabase {
 	public function nextSequenceValue( $seqName );
 
 	/**
-	 * REPLACE query wrapper
+	 * Insert row(s) into a table, deleting all conflicting rows beforehand
 	 *
-	 * REPLACE is a very handy MySQL extension, which functions like an INSERT
-	 * except that when there is a duplicate key error, the old row is deleted
-	 * and the new row is inserted in its place.
+	 * Note some important implications of the deletion semantics:
+	 *   - If the table has an AUTOINCREMENT column and $rows omit that column, then any
+	 *     conflicting existing rows will be replaced with newer having higher values for
+	 *     that column, even if nothing else changed.
+	 *   - There might be worse contention than upsert() due to the use of gap-locking.
+	 *     This does not apply to RDBMS types that use predicate locking nor those that
+	 *     just lock the whole table or databases anyway.
 	 *
-	 * We simulate this with standard SQL with a DELETE followed by INSERT. To
-	 * perform the delete, we need to know what the unique indexes are so that
-	 * we know how to find the conflicting rows.
-	 *
-	 * It may be more efficient to leave off unique indexes which are unlikely
-	 * to collide. However if you do this, you run the risk of encountering
-	 * errors which wouldn't have occurred in MySQL.
-	 *
-	 * @param string $table The table to replace the row(s) in.
-	 * @param array[]|string[]|string $uniqueIndexes All unique indexes. One of the following:
-	 *   a) the one unique field in the table (when no composite unique key exist)
-	 *   b) a list of all unique fields in the table (when no composite unique key exist)
-	 *   c) a list of all unique indexes in the table (each as a list of the indexed fields)
-	 * @param array $rows Can be either a single row to insert, or multiple rows,
-	 *   in the same format as for IDatabase::insert()
+	 * @param string $table The table name
+	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
+	 *   name lists that define all applicable unique keys on the table. Each unique key on the
+	 *   table is "applicable" unless either:
+	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
+	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
+	 * @param array|array[] $rows Row(s) to insert, in the form of either:
+	 *   - A string-keyed map of (column name => value) defining a new row. Values are
+	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
+	 *     Columns belonging to a key in $uniqueIndexes must be defined here and non-null.
+	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
+	 *     The keys in each map must be identical to each other and in the same order.
+	 *     The rows must not collide with each other.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @throws DBError If an error occurs, see IDatabase::query()
 	 */
-	public function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ );
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ );
 
 	/**
-	 * INSERT ON DUPLICATE KEY UPDATE wrapper, upserts an array into a table.
+	 * Upsert the given row(s) into a table
 	 *
-	 * This updates any conflicting rows (according to the unique indexes) using
-	 * the provided SET clause and inserts any remaining (non-conflicted) rows.
+	 * This updates any existing rows that conflict with the provided rows and inserts
+	 * any of the provided rows that do not conflict with existing rows. Conflicts are
+	 * determined by the provided unique indexes.
 	 *
-	 * $rows may be either:
-	 *   - A single associative array. The array keys are the field names, and
-	 *     the values are the values to insert. The values are treated as data
-	 *     and will be quoted appropriately. If NULL is inserted, this will be
-	 *     converted to a database NULL.
-	 *   - An array with numeric keys, holding a list of associative arrays.
-	 *     This causes a multi-row INSERT on DBMSs that support it. The keys in
-	 *     each subarray must be identical to each other, and in the same order.
-	 *
-	 * It may be more efficient to leave off unique indexes which are unlikely
-	 * to collide. However if you do this, you run the risk of encountering
-	 * errors which wouldn't have occurred in MySQL.
-	 *
-	 * @param string $table Table name. This will be passed through Database::tableName().
-	 * @param array|array[] $rows A single row or list of rows to insert
-	 * @param array[]|string[]|string $uniqueIndexes All unique indexes. One of the following:
-	 *   a) the one unique field in the table (when no composite unique key exist)
-	 *   b) a list of all unique fields in the table (when no composite unique key exist)
-	 *   c) a list of all unique indexes in the table (each as a list of the indexed fields)
-	 * @param array $set An array of values to SET. For each array element, the
-	 *   key gives the field name, and the value gives the data to set that
-	 *   field to. The data will be quoted by IDatabase::addQuotes().
-	 *   Values with integer keys form unquoted SET statements, which can be used for
-	 *   things like "field = field + 1" or similar computed values.
+	 * @param string $table Table name
+	 * @param array|array[] $rows Row(s) to insert, in the form of either:
+	 *   - A string-keyed map of (column name => value) defining a new row. Values are
+	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
+	 *     Columns belonging to a key in $uniqueIndexes must be defined here and non-null.
+	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
+	 *     The keys in each map must be identical to each other and in the same order.
+	 *     The rows must not collide with each other.
+	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
+	 *   name lists that define all applicable unique keys on the table. Each unique key on the
+	 *   table is "applicable" unless either:
+	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
+	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
+	 * @param array $set Combination map/list where each string-keyed entry maps a column
+	 *   to a literal assigned value and each integer-keyed value is a SQL expression in the
+	 *   format of a column assignment within UPDATE...SET. The (column => value) entries are
+	 *   convenient due to automatic value quoting and conversion of null to NULL. The SQL
+	 *   assignment format is useful for updates like "column = column + X". All assignments
+	 *   have no defined execution order, so they should not depend on each other. Do not
+	 *   modified AUTOINCREMENT or UUID columns in assignments.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, see IDatabase::query()
 	 * @since 1.22
 	 */
 	public function upsert(
-		$table, array $rows, $uniqueIndexes, array $set, $fname = __METHOD__
+		$table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__
 	);
 
 	/**
@@ -1380,7 +1369,7 @@ interface IDatabase {
 	);
 
 	/**
-	 * DELETE query wrapper
+	 * Delete all rows in a table that match a condition
 	 *
 	 * @param string $table Table name
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
