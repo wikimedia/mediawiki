@@ -7,6 +7,7 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\ScopedCallback;
 
@@ -90,6 +91,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $stats;
 
 	/**
+	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
+	 */
+	private $expiryEnabled;
+
+	/**
 	 * @param ILBFactory $lbFactory
 	 * @param JobQueueGroup $queueGroup
 	 * @param BagOStuff $stash
@@ -98,6 +104,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param int $updateRowsPerQuery
 	 * @param NamespaceInfo $nsInfo
 	 * @param RevisionLookup $revisionLookup
+	 * @param bool $expiryEnabled
 	 */
 	public function __construct(
 		ILBFactory $lbFactory,
@@ -107,7 +114,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		ReadOnlyMode $readOnlyMode,
 		$updateRowsPerQuery,
 		NamespaceInfo $nsInfo,
-		RevisionLookup $revisionLookup
+		RevisionLookup $revisionLookup,
+		bool $expiryEnabled
 	) {
 		$this->lbFactory = $lbFactory;
 		$this->loadBalancer = $lbFactory->getMainLB();
@@ -121,6 +129,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->updateRowsPerQuery = $updateRowsPerQuery;
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
+		$this->expiryEnabled = $expiryEnabled;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -214,23 +223,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	private function getCached( UserIdentity $user, LinkTarget $target ) {
 		return $this->cache->get( $this->getCacheKey( $user, $target ) );
-	}
-
-	/**
-	 * Return an array of conditions to select or update the appropriate database
-	 * row.
-	 *
-	 * @param UserIdentity $user
-	 * @param LinkTarget $target
-	 *
-	 * @return array
-	 */
-	private function dbCond( UserIdentity $user, LinkTarget $target ) {
-		return [
-			'wl_user' => $user->getId(),
-			'wl_namespace' => $target->getNamespace(),
-			'wl_title' => $target->getDBkey(),
-		];
 	}
 
 	/**
@@ -413,12 +405,32 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		foreach ( $rows as $namespace => $namespaceTitles ) {
 			$rowBatches = array_chunk( $namespaceTitles, $this->updateRowsPerQuery );
 			foreach ( $rowBatches as $toDelete ) {
-				$dbw->delete( 'watchlist', [
+				// First fetch the wl_ids.
+				$wlIds = $dbw->selectField( 'watchlist', 'wl_id', [
 					'wl_user' => $user->getId(),
 					'wl_namespace' => $namespace,
 					'wl_title' => $toDelete
-				], __METHOD__ );
-				$affectedRows += $dbw->affectedRows();
+				] );
+
+				if ( $wlIds ) {
+					// Delete rows from both the watchlist and watchlist_expiry tables.
+					$dbw->delete(
+						'watchlist',
+						[ 'wl_id' => $wlIds ],
+						__METHOD__
+					);
+					$affectedRows += $dbw->affectedRows();
+
+					if ( $this->expiryEnabled ) {
+						$dbw->delete(
+							'watchlist_expiry',
+							[ 'we_item' => $wlIds ],
+							__METHOD__
+						);
+						$affectedRows += $dbw->affectedRows();
+					}
+				}
+
 				if ( $ticket ) {
 					$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 				}
@@ -564,7 +576,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$cached = $this->getCached( $user, $target );
-		if ( $cached ) {
+		if ( $cached && !$cached->isExpired() ) {
 			$this->stats->increment( 'WatchedItemStore.getWatchedItem.cached' );
 			return $cached;
 		}
@@ -586,22 +598,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 
-		$row = $dbr->selectRow(
-			'watchlist',
-			'wl_notificationtimestamp',
-			$this->dbCond( $user, $target ),
-			__METHOD__
+		$row = $this->fetchWatchedItems(
+			$dbr,
+			$user,
+			[ 'wl_notificationtimestamp' ],
+			[],
+			$target
 		);
 
 		if ( !$row ) {
 			return false;
 		}
 
-		$item = new WatchedItem(
-			$user,
-			$target,
-			$this->getLatestNotificationTimestamp( $row->wl_notificationtimestamp, $user, $target )
-		);
+		$item = $this->getWatchedItemFromRow( $user, $target, $row );
 		$this->cache( $item );
 
 		return $item;
@@ -630,11 +639,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 		$db = $this->getConnectionRef( $options['forWrite'] ? DB_MASTER : DB_REPLICA );
 
-		$res = $db->select(
-			'watchlist',
+		$res = $this->fetchWatchedItems(
+			$db,
+			$user,
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-			[ 'wl_user' => $user->getId() ],
-			__METHOD__,
 			$dbOptions
 		);
 
@@ -642,15 +650,84 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		foreach ( $res as $row ) {
 			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
 			// @todo: Should we add these to the process cache?
-			$watchedItems[] = new WatchedItem(
-				$user,
-				$target,
-				$this->getLatestNotificationTimestamp(
-					$row->wl_notificationtimestamp, $user, $target )
-			);
+			$watchedItems[] = $this->getWatchedItemFromRow( $user, $target, $row );
 		}
 
 		return $watchedItems;
+	}
+
+	/**
+	 * Construct a new WatchedItem given a row from watchlist/watchlist_expiry.
+	 * @param UserIdentity $user
+	 * @param LinkTarget $target
+	 * @param stdClass $row
+	 * @return WatchedItem
+	 */
+	private function getWatchedItemFromRow(
+		UserIdentity $user,
+		LinkTarget $target,
+		stdClass $row
+	): WatchedItem {
+		return new WatchedItem(
+			$user,
+			$target,
+			$this->getLatestNotificationTimestamp(
+				$row->wl_notificationtimestamp, $user, $target ),
+			wfTimestampOrNull( TS_MW, $row->we_expiry ?? null )
+		);
+	}
+
+	/**
+	 * Fetches either a single or all watched items for the given user.
+	 * If a $target is given, IDatabase::selectRow() is called, otherwise select().
+	 * If $wgWatchlistExpiry is enabled, expired items are not returned.
+	 *
+	 * @param IDatabase $db
+	 * @param UserIdentity $user
+	 * @param array $vars we_expiry is added when $wgWatchlistExpiry is enabled.
+	 * @param array $options
+	 * @param LinkTarget|null $target null if selecting all watched items.
+	 * @return IResultWrapper|stdClass|false
+	 */
+	private function fetchWatchedItems(
+		IDatabase $db,
+		UserIdentity $user,
+		array $vars,
+		array $options = [],
+		?LinkTarget $target = null
+	) {
+		$dbMethod = 'select';
+		$conds = [ 'wl_user' => $user->getId() ];
+
+		if ( $target ) {
+			$dbMethod = 'selectRow';
+			$conds = array_merge( $conds, [
+				'wl_namespace' => $target->getNamespace(),
+				'wl_title' => $target->getDBkey(),
+			] );
+		}
+
+		if ( $this->expiryEnabled ) {
+			$vars[] = 'we_expiry';
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $db->addQuotes( $db->timestamp() );
+
+			return $db->{$dbMethod}(
+				[ 'watchlist', 'watchlist_expiry' ],
+				$vars,
+				$conds,
+				__METHOD__,
+				$options,
+				[ 'watchlist_expiry' => [ 'LEFT JOIN', [ 'wl_id = we_item' ] ] ]
+			);
+		}
+
+		return $db->{$dbMethod}(
+			'watchlist',
+			$vars,
+			$conds,
+			__METHOD__,
+			$options
+		);
 	}
 
 	/**
@@ -718,21 +795,34 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @since 1.27
+	 * @since 1.27 Method added.
+	 * @since 1.35 Accepts $expiry parameter.
 	 * @param UserIdentity $user
 	 * @param LinkTarget $target
+	 * @param string|null $expiry Optional expiry in any format acceptable to wfTimestamp().
+	 *   null will not create an expiry, or leave it unchanged should one already exist.
 	 */
-	public function addWatch( UserIdentity $user, LinkTarget $target ) {
-		$this->addWatchBatchForUser( $user, [ $target ] );
+	public function addWatch( UserIdentity $user, LinkTarget $target, ?string $expiry = null ) {
+		$this->addWatchBatchForUser( $user, [ $target ], $expiry );
 	}
 
 	/**
-	 * @since 1.27
+	 * Add multiple items to the user's watchlist.
+	 * If adding a single item, use self::addWatch() where you can optionally provide an expiry.
+	 *
+	 * @since 1.27 Method added.
+	 * @since 1.35 Accepts $expiry parameter.
 	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
-	 * @return bool
+	 * @param string|null $expiry Optional expiry in a format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 * @return bool Whether database transactions were performed.
 	 */
-	public function addWatchBatchForUser( UserIdentity $user, array $targets ) {
+	public function addWatchBatchForUser(
+		UserIdentity $user,
+		array $targets,
+		?string $expiry = null
+	) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
@@ -757,7 +847,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$items[] = new WatchedItem(
 				$user,
 				$target,
-				null
+				null,
+				$expiry
 			);
 			$this->uncache( $user, $target );
 		}
@@ -772,6 +863,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			// if there's already an entry for this page
 			$dbw->insert( 'watchlist', $toInsert, __METHOD__, [ 'IGNORE' ] );
 			$affectedRows += $dbw->affectedRows();
+
+			if ( $this->expiryEnabled ) {
+				$affectedRows += $this->updateOrDeleteExpiries( $dbw, $user->getId(), $toInsert, $expiry );
+			}
+
 			if ( $ticket ) {
 				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 			}
@@ -784,6 +880,100 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		return (bool)$affectedRows;
+	}
+
+	/**
+	 * Insert/update expiries, or delete them if the expiry is 'infinity'.
+	 *
+	 * @param IDatabase $dbw
+	 * @param int $userId
+	 * @param array $rows
+	 * @param string|null $expiry
+	 * @return int Number of affected rows.
+	 */
+	private function updateOrDeleteExpiries(
+		IDatabase $dbw,
+		int $userId,
+		array $rows,
+		?string $expiry = null
+	): int {
+		if ( null === $expiry ) {
+			// null expiry means do nothing, 0 rows affected.
+			return 0;
+		}
+
+		// Build the giant `(...) OR (...)` part to be used with WHERE.
+		$conds = [];
+		foreach ( $rows as $row ) {
+			$conds[] = $dbw->makeList(
+				[
+					'wl_user' => $userId,
+					'wl_namespace' => $row['wl_namespace'],
+					'wl_title' => $row['wl_title']
+				],
+				$dbw::LIST_AND
+			);
+		}
+		$cond = $dbw->makeList( $conds, $dbw::LIST_OR );
+
+		if ( wfIsInfinity( $expiry ) ) {
+			// Rows should be deleted rather than updated.
+			$dbw->deleteJoin(
+				'watchlist_expiry',
+				'watchlist',
+				'we_item',
+				'wl_id',
+				[ $cond ],
+				__METHOD__
+			);
+
+			return $dbw->affectedRows();
+		}
+
+		// TODO: Refactor with Special:Userrights::expiryToTimestamp() ?
+		//   Difference here is we need to accept null as being 'no changes'.
+		//   Validation of the expiry should probably happen before this method is called, too.
+		$unix = strtotime( $expiry );
+		if ( !$unix || $unix === -1 ) {
+			// Invalid expiry, 0 rows effected.
+			return 0;
+		}
+		$expiry = wfTimestamp( TS_MW, $expiry );
+
+		return $this->updateExpiries( $dbw, $expiry, $cond );
+	}
+
+	/**
+	 * Update the expiries for items found with the given $cond.
+	 * @param IDatabase $dbw
+	 * @param string $expiry
+	 * @param string $cond
+	 * @return int Number of affected rows.
+	 */
+	private function updateExpiries( IDatabase $dbw, string $expiry, string $cond ): int {
+		// First fetch the wl_ids from the watchlist table.
+		// We'd prefer to do a INSERT/SELECT in the same query with IDatabase::insertSelect(),
+		// but it doesn't allow us to use the "ON DUPLICATE KEY UPDATE" clause.
+		$wlIds = (array)$dbw->selectFieldValues( 'watchlist', 'wl_id', $cond, __METHOD__ );
+
+		$expiry = $dbw->timestamp( $expiry );
+
+		$weRows = array_map( function ( $wlId ) use ( $expiry, $dbw ) {
+			return [
+				'we_item' => $wlId,
+				'we_expiry' => $expiry
+			];
+		}, $wlIds );
+
+		// Insert into watchlist_expiry, updating the expiry for duplicate rows.
+		$dbw->upsert(
+			'watchlist_expiry',
+			$weRows,
+			'we_item',
+			[ 'we_expiry' => $expiry ]
+		);
+
+		return $dbw->affectedRows();
 	}
 
 	/**

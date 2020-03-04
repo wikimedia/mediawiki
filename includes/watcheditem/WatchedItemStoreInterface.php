@@ -177,22 +177,28 @@ interface WatchedItemStoreInterface {
 	/**
 	 * Must be called separately for Subject & Talk namespaces
 	 *
-	 * @since 1.31
+	 * @since 1.31 Method added.
+	 * @since 1.35 Accepts $expiry parameter.
 	 *
 	 * @param UserIdentity $user
 	 * @param LinkTarget $target
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp().
+	 *   null will not create an expiry, or leave it unchanged should one already exist.
 	 */
-	public function addWatch( UserIdentity $user, LinkTarget $target );
+	public function addWatch( UserIdentity $user, LinkTarget $target, ?string $expiry = null );
 
 	/**
-	 * @since 1.31
+	 * @since 1.31 Method added.
+	 * @since 1.35 Accepts $expiry parameter.
 	 *
 	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 *
 	 * @return bool success
 	 */
-	public function addWatchBatchForUser( UserIdentity $user, array $targets );
+	public function addWatchBatchForUser( UserIdentity $user, array $targets, ?string $expiry = null );
 
 	/**
 	 * Removes an entry for the UserIdentity watching the LinkTarget

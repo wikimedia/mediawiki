@@ -47,18 +47,26 @@ class WatchedItem {
 	private $notificationTimestamp;
 
 	/**
+	 * @var string|null When to automatically unwatch the page
+	 */
+	private $expiry;
+
+	/**
 	 * @param UserIdentity $user
 	 * @param LinkTarget $linkTarget
 	 * @param null|string $notificationTimestamp the value of the wl_notificationtimestamp field
+	 * @param null|string $expiry Optional expiry timestamp in any format acceptable to wfTimestamp()
 	 */
 	public function __construct(
 		UserIdentity $user,
 		LinkTarget $linkTarget,
-		$notificationTimestamp
+		$notificationTimestamp,
+		?string $expiry = null
 	) {
 		$this->user = $user;
 		$this->linkTarget = $linkTarget;
 		$this->notificationTimestamp = $notificationTimestamp;
+		$this->expiry = $expiry;
 	}
 
 	/**
@@ -90,5 +98,32 @@ class WatchedItem {
 	 */
 	public function getNotificationTimestamp() {
 		return $this->notificationTimestamp;
+	}
+
+	/**
+	 * When the watched item will expire.
+	 *
+	 * @since 1.35
+	 *
+	 * @return string|null null or in a format acceptable to wfTimestamp().
+	 */
+	public function getExpiry(): ?string {
+		return $this->expiry;
+	}
+
+	/**
+	 * Has the watched item expired?
+	 *
+	 * @since 1.35
+	 *
+	 * @return bool
+	 */
+	public function isExpired(): bool {
+		if ( null === $this->getExpiry() ) {
+			return false;
+		}
+
+		$unix = MWTimestamp::convert( TS_UNIX, $this->getExpiry() );
+		return $unix < wfTimestamp();
 	}
 }

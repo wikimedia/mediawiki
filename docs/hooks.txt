@@ -3921,6 +3921,7 @@ used to alter the SQL query which gets the list of wanted pages.
 [&]$user: user that will watch
 [&]$page: WikiPage object to be watched
 &$status: Status object to be returned if the hook returns false
+$expiry: Optional expiry timestamp in any format acceptable to wfTimestamp()
 
 'WatchArticleComplete': After a watch is added to an article.
 [&]$user: user that watched

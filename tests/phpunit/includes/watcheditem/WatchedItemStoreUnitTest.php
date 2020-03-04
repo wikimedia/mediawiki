@@ -5,6 +5,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -169,6 +170,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 *     * readOnlyMode
 	 *     * nsInfo
 	 *     * revisionLookup
+	 *     * expiryEnabled
+	 * @return WatchedItemStore
 	 */
 	private function newWatchedItemStore( array $mocks = [] ) : WatchedItemStore {
 		return new WatchedItemStore(
@@ -180,7 +183,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$mocks['readOnlyMode'] ?? $this->getMockReadOnlyMode(),
 			1000,
 			$mocks['nsInfo'] ?? $this->getMockNsInfo(),
-			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup()
+			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
+			$mocks['expiryEnabled'] ?? true
 		);
 	}
 
@@ -1147,18 +1151,25 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testLoadWatchedItem_existingItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue(
-				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
+				$this->getFakeRow( [
+					'wl_notificationtimestamp' => '20151212010101',
+					'we_expiry' => '20300101000000'
+				] )
 			) );
 
 		$mockCache = $this->getMockCache();
@@ -1177,20 +1188,25 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
+		$this->assertSame( '20300101000000', $watchedItem->getExpiry() );
 		$this->assertSame( 0, $watchedItem->getLinkTarget()->getNamespace() );
 	}
 
 	public function testLoadWatchedItem_noItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue( [] ) );
@@ -1231,26 +1247,21 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testRemoveWatch_existingItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'selectField' )
+			->willReturn( [ 1, 2 ] );
+		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'delete' )
 			->withConsecutive(
 				[
 					'watchlist',
-					[
-						'wl_user' => 1,
-						'wl_namespace' => 0,
-						'wl_title' => [ 'SomeDbKey' ],
-					],
+					[ 'wl_id' => [ 1, 2 ] ]
 				],
 				[
-					'watchlist',
-					[
-						'wl_user' => 1,
-						'wl_namespace' => 1,
-						'wl_title' => [ 'SomeDbKey' ],
-					]
+					'watchlist_expiry',
+					[ 'we_item' => [ 1, 2 ] ]
 				]
 			);
-		$mockDb->expects( $this->exactly( 1 ) )
+		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'affectedRows' )
 			->willReturn( 2 );
 
@@ -1276,29 +1287,12 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testRemoveWatch_noItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
-			->method( 'delete' )
-			->withConsecutive(
-				[
-					'watchlist',
-					[
-						'wl_user' => 1,
-						'wl_namespace' => 0,
-						'wl_title' => [ 'SomeDbKey' ],
-					]
-				],
-				[
-					'watchlist',
-					[
-						'wl_user' => 1,
-						'wl_namespace' => 1,
-						'wl_title' => [ 'SomeDbKey' ],
-					]
-				]
-			);
-
-		$mockDb->expects( $this->once() )
-			->method( 'affectedRows' )
-			->willReturn( 0 );
+			->method( 'selectField' )
+			->willReturn( null );
+		$mockDb->expects( $this->never() )
+			->method( 'delete' );
+		$mockDb->expects( $this->never() )
+			->method( 'affectedRows' );
 
 		$mockCache = $this->getMockCache();
 		$mockCache->expects( $this->never() )->method( 'get' );
@@ -1342,18 +1336,25 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testGetWatchedItem_existingItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue(
-				$this->getFakeRow( [ 'wl_notificationtimestamp' => '20151212010101' ] )
+				$this->getFakeRow( [
+					'wl_notificationtimestamp' => '20151212010101',
+					'we_expiry' => '20300101000000'
+				] )
 			) );
 
 		$mockCache = $this->getMockCache();
@@ -1379,6 +1380,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
+		$this->assertSame( '20300101000000', $watchedItem->getExpiry() );
 		$this->assertSame( 0, $watchedItem->getLinkTarget()->getNamespace() );
 	}
 
@@ -1415,14 +1417,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testGetWatchedItem_noItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue( [] ) );
@@ -1468,17 +1474,21 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testGetWatchedItemsForUser() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
-				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-				[ 'wl_user' => 1 ]
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
+				[ 'wl_user' => 1, 'we_expiry IS NULL OR we_expiry > 20200101000000' ]
 			)
 			->will( $this->returnValue( [
 				$this->getFakeRow( [
 					'wl_namespace' => 0,
 					'wl_title' => 'Foo1',
 					'wl_notificationtimestamp' => '20151212010101',
+					'we_expiry' => '20300101000000'
 				] ),
 				$this->getFakeRow( [
 					'wl_namespace' => 1,
@@ -1503,7 +1513,12 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 		}
 		$this->assertEquals(
-			new WatchedItem( $user, new TitleValue( 0, 'Foo1' ), '20151212010101' ),
+			new WatchedItem(
+				$user,
+				new TitleValue( 0, 'Foo1' ),
+				'20151212010101',
+				'20300101000000'
+			),
 			$watchedItems[0]
 		);
 		$this->assertEquals(
@@ -1529,11 +1544,14 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$user = new UserIdentityValue( 1, 'MockUser', 0 );
 
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
-				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-				[ 'wl_user' => 1 ],
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp', 'we_expiry' ],
+				[ 'wl_user' => 1, 'we_expiry IS NULL OR we_expiry > 20200101000000' ],
 				$this->isType( 'string' ),
 				[ 'ORDER BY' => [ 'wl_namespace ASC', 'wl_title ASC' ] ]
 			)
@@ -1562,14 +1580,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testIsWatchedItem_existingItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue(
@@ -1601,14 +1623,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testIsWatchedItem_noItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue( [] ) );
@@ -1904,14 +1930,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testResetNotificationTimestamp_noItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue( [] ) );
@@ -1937,14 +1967,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue(
@@ -2142,14 +2176,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue(
@@ -2227,14 +2265,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue( false ) );
@@ -2312,14 +2354,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue(
@@ -2401,14 +2447,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(
-				'watchlist',
-				'wl_notificationtimestamp',
+				[ 'watchlist', 'watchlist_expiry' ],
+				[ 'wl_notificationtimestamp', 'we_expiry' ],
 				[
 					'wl_user' => 1,
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				]
 			)
 			->will( $this->returnValue(
