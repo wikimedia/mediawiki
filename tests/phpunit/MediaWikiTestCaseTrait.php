@@ -26,11 +26,13 @@ trait MediaWikiTestCaseTrait {
 	 * Return a PHPUnit mock that is expected to never have any methods called on it.
 	 *
 	 * @param string $type
+	 * @param string[] $allow methods to allow
+	 *
 	 * @return object|MockObject
 	 */
-	protected function createNoOpMock( $type ) {
+	protected function createNoOpMock( $type, $allow = [] ) {
 		$mock = $this->createMock( $type );
-		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
+		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct', ...$allow ) );
 		return $mock;
 	}
 

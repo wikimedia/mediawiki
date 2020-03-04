@@ -233,6 +233,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/unit/password
 	'PasswordTestCase' => "$testDir/phpunit/unit/includes/password/PasswordTestCase.php",
 
+	# tests/phpunit/unit/includes/Rest/Handler
+	'MediaWiki\Tests\Rest\Handler\HandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/HandlerTestTrait.php",
+
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParserTestTopLevelSuite' => "$testDir/phpunit/suites/ParserTestTopLevelSuite.php",
