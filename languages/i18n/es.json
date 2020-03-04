@@ -632,6 +632,7 @@
 	"createacct-reason": "Motivo (registrado públicamente)",
 	"createacct-reason-ph": "Por qué estás creando otra cuenta",
 	"createacct-reason-help": "Mensaje que se muestra en el registro de creación de cuentas",
+	"createacct-reason-confirm": "El motivo introducido es una dirección de correo electrónico. Si es eso lo que pretendías, pulsa de nuevo en «Crear cuenta»",
 	"createacct-submit": "Crea tu cuenta",
 	"createacct-another-submit": "Crear cuenta",
 	"createacct-continue-submit": "Continuar con la creación de la cuenta",

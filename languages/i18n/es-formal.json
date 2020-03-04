@@ -245,6 +245,7 @@
 	"createacct-email-ph": "Escriba su dirección de correo electrónico",
 	"createacct-another-email-ph": "Escriba la dirección de correo electrónico",
 	"createacct-reason-ph": "Por qué está creando otra cuenta",
+	"createacct-reason-confirm": "El motivo introducido es una dirección de correo electrónico. Si es eso lo que pretendía, pulse de nuevo en «Crear cuenta»",
 	"createacct-submit": "Cree su cuenta",
 	"createacct-benefit-heading": "Personas como usted son las que construyen {{SITENAME}}.",
 	"badretype": "Las contraseñas que usted ha introducido no coinciden.",
