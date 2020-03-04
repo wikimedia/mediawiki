@@ -166,7 +166,7 @@ class RevisionTest extends MediaWikiTestCase {
 		];
 
 		yield 'with bad content object (class)' => [
-			[ 'content' => new stdClass() ],
+			[ 'content' => (object)[] ],
 			new MWException( 'content field must contain a Content object' )
 		];
 		yield 'with bad content object (string)' => [
@@ -556,8 +556,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::compressRevisionText
 	 */
 	public function testCompressRevisionTextUtf8() {
-		$row = new stdClass;
-		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
+		$row = (object)[ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !" ];
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
 			"Flags should contain 'utf-8'" );
@@ -580,8 +579,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$blobStore->setCompressBlobs( true );
 		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
 
-		$row = new stdClass;
-		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
+		$row = (object)[ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !" ];
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
 			"Flags should contain 'utf-8'" );

@@ -24,7 +24,7 @@ class ComposerVersionNormalizerTest extends MediaWikiUnitTestCase {
 			[ null ],
 			[ 42 ],
 			[ [] ],
-			[ new stdClass() ],
+			[ (object)[] ],
 			[ true ],
 		];
 	}

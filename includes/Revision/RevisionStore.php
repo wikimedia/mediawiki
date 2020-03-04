@@ -55,7 +55,6 @@ use RecentChange;
 use Revision;
 use RuntimeException;
 use StatusValue;
-use stdClass;
 use Title;
 use Traversable;
 use User;
@@ -1204,7 +1203,7 @@ class RevisionStore
 			'ar_content_model'  => 'rev_content_model',
 		];
 
-		$revRow = new stdClass();
+		$revRow = (object)[];
 		foreach ( $fieldMap as $arKey => $revKey ) {
 			if ( property_exists( $archiveRow, $arKey ) ) {
 				$revRow->$revKey = $archiveRow->$arKey;
@@ -1225,12 +1224,13 @@ class RevisionStore
 	 * @throws MWException
 	 */
 	private function emulateMainSlot_1_29( $row, $queryFlags, Title $title ) {
-		$mainSlotRow = new stdClass();
-		$mainSlotRow->role_name = SlotRecord::MAIN;
-		$mainSlotRow->model_name = null;
-		$mainSlotRow->slot_revision_id = null;
-		$mainSlotRow->slot_content_id = null;
-		$mainSlotRow->content_address = null;
+		$mainSlotRow = (object)[
+			'role_name' => SlotRecord::MAIN,
+			'model_name' => null,
+			'slot_revision_id' => null,
+			'slot_content_id' => null,
+			'content_address' => null,
+		];
 
 		$content = null;
 		$blobData = null;

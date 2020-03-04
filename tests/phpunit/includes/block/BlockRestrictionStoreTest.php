@@ -155,7 +155,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$pageBar = $this->getExistingTestPage( 'Bar' );
 
 		$restrictions = [
-			new \stdClass(),
+			(object)[],
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 			new NamespaceRestriction( $block->getId(), NS_USER )
@@ -165,7 +165,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertTrue( $result );
 
 		$restrictions = [
-			new \stdClass(),
+			(object)[],
 		];
 
 		$result = $this->blockRestrictionStore->insert( $restrictions );
@@ -193,7 +193,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			] );
 
 		$restrictions = [
-			new \stdClass(),
+			(object)[],
 			new PageRestriction( $block->getId(), $pageFoo->getId() ),
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 			new NamespaceRestriction( $block->getId(), NS_USER ),
@@ -221,7 +221,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		] );
 
 		$this->blockRestrictionStore->update( [
-			new \stdClass(),
+			(object)[],
 			new PageRestriction( $block->getId(), $pageBar->getId() ),
 			new NamespaceRestriction( $block->getId(), NS_USER ),
 		] );
@@ -422,7 +422,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertCount( 1, $restrictions );
 
 		$result = $this->blockRestrictionStore->delete(
-			array_merge( $restrictions, [ new \stdClass() ] )
+			array_merge( $restrictions, [ (object)[] ] )
 		);
 		$this->assertTrue( $result );
 
@@ -500,11 +500,11 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		return [
 			[
 				[
-					new \stdClass(),
+					(object)[],
 					new PageRestriction( 1, 1 ),
 				],
 				[
-					new \stdClass(),
+					(object)[],
 					new PageRestriction( 1, 2 )
 				],
 				false,
@@ -563,7 +563,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	 */
 	public function testSetBlockId() {
 		$restrictions = [
-			new \stdClass(),
+			(object)[],
 			new PageRestriction( 1, 1 ),
 			new PageRestriction( 1, 2 ),
 			new NamespaceRestriction( 1, NS_USER ),

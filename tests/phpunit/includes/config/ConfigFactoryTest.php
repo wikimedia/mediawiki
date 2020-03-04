@@ -28,7 +28,7 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 	public function testRegisterInvalidInstance() {
 		$factory = new ConfigFactory();
 		$this->expectException( InvalidArgumentException::class );
-		$factory->register( 'invalidInstance', new stdClass );
+		$factory->register( 'invalidInstance', (object)[] );
 	}
 
 	/**

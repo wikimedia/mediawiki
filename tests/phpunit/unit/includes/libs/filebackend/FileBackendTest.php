@@ -171,7 +171,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'Function' => [ function () {
 			} ],
 			'Float' => [ -13.402 ],
-			'Object' => [ new stdclass ],
+			'Object' => [ (object)[] ],
 			'Array' => [ [] ],
 		];
 	}

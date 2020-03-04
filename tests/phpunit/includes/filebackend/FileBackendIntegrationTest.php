@@ -1398,7 +1398,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			);
 		}
 
-		$obj = new stdClass();
+		$obj = (object)[];
 		$tmpFile->bind( $obj );
 	}
 

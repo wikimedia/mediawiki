@@ -153,7 +153,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	}
 
 	private function getFakeRow( array $rowValues ) {
-		$fakeRow = new stdClass();
+		$fakeRow = (object)[];
 		foreach ( $rowValues as $valueName => $value ) {
 			$fakeRow->$valueName = $value;
 		}

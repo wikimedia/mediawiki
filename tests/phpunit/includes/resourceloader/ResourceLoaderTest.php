@@ -114,7 +114,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$resourceLoader = new EmptyResourceLoader();
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid module info' );
-		$resourceLoader->register( [ 'test' => new stdClass() ] );
+		$resourceLoader->register( [ 'test' => (object)[] ] );
 	}
 
 	/**

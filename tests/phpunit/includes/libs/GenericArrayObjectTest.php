@@ -180,7 +180,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 
 		$elementClass = $list->getObjectType();
 
-		foreach ( [ 42, 'foo', [], new stdClass(), 4.2 ] as $element ) {
+		foreach ( [ 42, 'foo', [], (object)[], 4.2 ] as $element ) {
 			$validValid = $element instanceof $elementClass;
 
 			try {
