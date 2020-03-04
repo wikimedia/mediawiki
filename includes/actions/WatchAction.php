@@ -111,12 +111,15 @@ class WatchAction extends FormAction {
 	 * @param User $user User who is watching/unwatching
 	 * @param bool $checkRights Passed through to $user->addWatch()
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 * @return Status
 	 */
 	public static function doWatch(
 		Title $title,
 		User $user,
-		$checkRights = User::CHECK_USER_RIGHTS
+		$checkRights = User::CHECK_USER_RIGHTS,
+		?string $expiry = null
 	) {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( $checkRights && !$permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
@@ -126,9 +129,9 @@ class WatchAction extends FormAction {
 		$page = WikiPage::factory( $title );
 
 		$status = Status::newFatal( 'hookaborted' );
-		if ( Hooks::run( 'WatchArticle', [ &$user, &$page, &$status ] ) ) {
+		if ( Hooks::run( 'WatchArticle', [ &$user, &$page, &$status, $expiry ] ) ) {
 			$status = Status::newGood();
-			$user->addWatch( $title, $checkRights );
+			$user->addWatch( $title, $checkRights, $expiry );
 			Hooks::run( 'WatchArticleComplete', [ &$user, &$page ] );
 		}
 

@@ -16,6 +16,10 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		parent::setUp();
 		self::$users['WatchedItemStoreIntegrationTestUser']
 			= new TestUser( 'WatchedItemStoreIntegrationTestUser' );
+
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
 	}
 
 	private function getUser() {
@@ -104,6 +108,76 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			[ $title->getNamespace() => [ $title->getDBkey() => false ] ],
 			$store->getNotificationTimestampsBatch( $user, [ $title ] )
+		);
+	}
+
+	public function testWatchAndUnWatchItemWithExpiry(): void {
+		$user = $this->getUser();
+		$title = Title::newFromText( 'WatchedItemStoreIntegrationTestPage' );
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+
+		$store->addWatch( $user, $title, '20300101000000' );
+		$this->assertSame(
+			'20300101000000',
+			$store->loadWatchedItem( $user, $title )->getExpiry()
+		);
+
+		// Invalid expiry, nothing should change.
+		$store->addWatch( $user, $title, 'invalid expiry' );
+		$this->assertSame(
+			'20300101000000',
+			$store->loadWatchedItem( $user, $title )->getExpiry()
+		);
+
+		// Changed to infinity, so expiry row should be removed.
+		$store->addWatch( $user, $title, 'infinity' );
+		$this->assertNull(
+			$store->loadWatchedItem( $user, $title )->getExpiry()
+		);
+
+		// Updating to a valid expiry.
+		$store->addWatch( $user, $title, '20500101000000' );
+		$this->assertSame(
+			'20500101000000',
+			$store->loadWatchedItem( $user, $title )->getExpiry()
+		);
+
+		// Expiry in the past, should not be considered watched.
+		$store->addWatch( $user, $title, '20090101000000' );
+
+		// Test isWatch(), which would normally pull from the cache. In this case
+		// the cache should bust and return false since the item has expired.
+		$this->assertFalse(
+			$store->isWatched( $user, $title )
+		);
+	}
+
+	public function testWatchAndUnwatchMultipleWithExpiry(): void {
+		$user = $this->getUser();
+		$title1 = Title::newFromText( 'WatchedItemStoreIntegrationTestPage1' );
+		$title2 = Title::newFromText( 'WatchedItemStoreIntegrationTestPage1' );
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+
+		$timestamp = '20500101000000';
+		$store->addWatchBatchForUser( $user, [ $title1, $title2 ], $timestamp );
+
+		$this->assertSame(
+			$timestamp,
+			$store->loadWatchedItem( $user, $title1 )->getExpiry()
+		);
+		$this->assertSame(
+			$timestamp,
+			$store->loadWatchedItem( $user, $title2 )->getExpiry()
+		);
+
+		// Clear expiries.
+		$store->addWatchBatchForUser( $user, [ $title1, $title2 ], 'infinity' );
+
+		$this->assertNull(
+			$store->loadWatchedItem( $user, $title1 )->getExpiry()
+		);
+		$this->assertNull(
+			$store->loadWatchedItem( $user, $title2 )->getExpiry()
 		);
 	}
 

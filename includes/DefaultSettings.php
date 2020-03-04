@@ -9096,6 +9096,14 @@ $wgNativeImageLazyLoading = false;
 $wgMainPageIsDomainRoot = false;
 
 /**
+ * Whether to enable the watchlist expiry feature.
+ *
+ * @since 1.35
+ * @var bool
+ */
+$wgWatchlistExpiry = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
