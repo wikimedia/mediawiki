@@ -24,6 +24,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -82,6 +84,11 @@ class MovePage {
 	private $contentHandlerFactory;
 
 	/**
+	 * @var RevisionStore
+	 */
+	private $revisionStore;
+
+	/**
 	 * Calling this directly is deprecated in 1.34. Use MovePageFactory instead.
 	 *
 	 * @param Title $oldTitle
@@ -93,6 +100,7 @@ class MovePage {
 	 * @param PermissionManager|null $permMgr
 	 * @param RepoGroup|null $repoGroup
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
+	 * @param RevisionStore|null $revisionStore
 	 */
 	public function __construct(
 		Title $oldTitle,
@@ -103,7 +111,8 @@ class MovePage {
 		WatchedItemStoreInterface $watchedItems = null,
 		PermissionManager $permMgr = null,
 		RepoGroup $repoGroup = null,
-		IContentHandlerFactory $contentHandlerFactory = null
+		IContentHandlerFactory $contentHandlerFactory = null,
+		RevisionStore $revisionStore = null
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -120,6 +129,8 @@ class MovePage {
 		$this->contentHandlerFactory = (
 			$contentHandlerFactory ?? MediaWikiServices::getInstance()->getContentHandlerFactory()
 		);
+		$this->revisionStore =
+			$revisionStore ?? MediaWikiServices::getInstance()->getRevisionStore();
 	}
 
 	/**
@@ -294,11 +305,15 @@ class MovePage {
 			return false;
 		}
 		# Get the article text
-		$rev = Revision::newFromTitle( $this->newTitle, false, Revision::READ_LATEST );
+		$rev = $this->revisionStore->getRevisionByTitle(
+			$this->newTitle,
+			0,
+			RevisionStore::READ_LATEST
+		);
 		if ( !is_object( $rev ) ) {
 			return false;
 		}
-		$content = $rev->getContent();
+		$content = $rev->getContent( SlotRecord::MAIN );
 		# Does the redirect point to the source?
 		# Or is it a broken self-redirect, usually caused by namespace collisions?
 		$redirTitle = $content ? $content->getRedirectTarget() : null;
@@ -656,10 +671,11 @@ class MovePage {
 			}
 		}
 
+		$nullRevisionObj = new Revision( $nullRevision );
 		Hooks::run(
 			'TitleMoveCompleting',
 			[ $this->oldTitle, $this->newTitle,
-				$user, $pageid, $redirid, $reason, $nullRevision ]
+				$user, $pageid, $redirid, $reason, $nullRevisionObj ]
 		);
 
 		$dbw->endAtomic( __METHOD__ );
@@ -669,7 +685,7 @@ class MovePage {
 			new AtomicSectionUpdate(
 				$dbw,
 				__METHOD__,
-				function () use ( $user, $pageid, $redirid, $reason, $nullRevision ) {
+				function () use ( $user, $pageid, $redirid, $reason, $nullRevisionObj ) {
 					Hooks::run( 'TitleMoveComplete', [
 						&$this->oldTitle,
 						&$this->newTitle,
@@ -677,7 +693,7 @@ class MovePage {
 						$pageid,
 						$redirid,
 						$reason,
-						$nullRevision
+						$nullRevisionObj
 					] );
 				}
 			)
@@ -725,7 +741,7 @@ class MovePage {
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return Revision the revision created by the move
+	 * @return RevisionRecord the revision created by the move
 	 * @throws MWException
 	 */
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true,
@@ -831,14 +847,20 @@ class MovePage {
 		);
 
 		# Save a null revision in the page's history notifying of the move
-		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $user );
+		$nullRevision = $this->revisionStore->newNullRevision(
+			$dbw,
+			$this->oldTitle,
+			CommentStoreComment::newUnsavedComment( $comment ),
+			true,
+			$user
+		);
 		if ( !is_object( $nullRevision ) ) {
 			throw new MWException( 'Failed to create null revision while moving page ID '
 				. $oldid . ' to ' . $nt->getPrefixedDBkey() );
 		}
 
-		$nullRevId = $nullRevision->insertOn( $dbw );
-		$logEntry->setAssociatedRevId( $nullRevId );
+		$nullRevision = $this->revisionStore->insertRevisionOn( $nullRevision, $dbw );
+		$logEntry->setAssociatedRevId( $nullRevision->getId() );
 
 		/**
 		 * T163966
@@ -856,13 +878,14 @@ class MovePage {
 		$nt->resetArticleID( $oldid );
 		$newpage->loadPageData( WikiPage::READ_LOCKING ); // T48397
 
-		$newpage->updateRevisionOn( $dbw, $nullRevision );
+		$nullRevisionObj = new Revision( $nullRevision );
+		$newpage->updateRevisionOn( $dbw, $nullRevisionObj );
 
 		$fakeTags = [];
 		Hooks::run( 'NewRevisionFromEditComplete',
-			[ $newpage, $nullRevision, $nullRevision->getParentId(), $user, &$fakeTags ] );
+			[ $newpage, $nullRevisionObj, $nullRevision->getParentId(), $user, &$fakeTags ] );
 
-		$newpage->doEditUpdates( $nullRevision, $user,
+		$newpage->doEditUpdates( $nullRevisionObj, $user,
 			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
 
 		// If the default content model changes, we need to populate rev_content_model
