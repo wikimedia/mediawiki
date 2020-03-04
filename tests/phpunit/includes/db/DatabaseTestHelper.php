@@ -61,6 +61,7 @@ class DatabaseTestHelper extends Database {
 			'trxProfiler' => new TransactionProfiler(),
 			'connLogger' => new NullLogger(),
 			'queryLogger' => new NullLogger(),
+			'replLogger' => new NullLogger(),
 			'errorLogger' => function ( Exception $e ) {
 				wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
 			},

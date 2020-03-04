@@ -53,11 +53,11 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var TransactionProfiler */
 	private $trxProfiler;
 	/** @var LoggerInterface */
-	private $replLogger;
-	/** @var LoggerInterface */
 	private $connLogger;
 	/** @var LoggerInterface */
 	private $queryLogger;
+	/** @var LoggerInterface */
+	private $replLogger;
 	/** @var LoggerInterface */
 	private $perfLogger;
 	/** @var callable Exception logger */
@@ -873,34 +873,10 @@ class LoadBalancer implements ILoadBalancer {
 			[ 'dbserver' => $server ]
 		);
 
-		$start = microtime( true );
 		$result = $conn->masterPosWait( $this->waitForPos, $timeout );
-		$seconds = max( microtime( true ) - $start, 0 );
 
-		if ( $result === null ) {
-			$this->replLogger->warning(
-				__METHOD__ . ': Errored out waiting on {hostname} pos {pos}',
-				[
-					'hostname' => $server,
-					'pos' => $this->waitForPos,
-					'trace' => ( new RuntimeException() )->getTraceAsString()
-				]
-			);
-			$ok = false;
-		} elseif ( $result == -1 ) {
-			$this->replLogger->warning(
-				__METHOD__ . ': timed out waiting on {hostname} pos {pos} [{seconds}s]',
-				[
-					'hostname' => $server,
-					'pos' => $this->waitForPos,
-					'seconds' => round( $seconds, 6 ),
-					'trace' => ( new RuntimeException() )->getTraceAsString()
-				]
-			);
-			$ok = false;
-		} else {
-			$this->replLogger->debug( __METHOD__ . ": done waiting" );
-			$ok = true;
+		$ok = ( $result !== null && $result != -1 );
+		if ( $ok ) {
 			// Remember that the DB reached this point
 			$this->srvCache->set( $key, $this->waitForPos, BagOStuff::TTL_DAY );
 		}
@@ -1325,6 +1301,7 @@ class LoadBalancer implements ILoadBalancer {
 				'srvCache' => $this->srvCache,
 				'connLogger' => $this->connLogger,
 				'queryLogger' => $this->queryLogger,
+				'replLogger' => $this->replLogger,
 				'errorLogger' => $this->errorLogger,
 				'deprecationLogger' => $this->deprecationLogger,
 				'profiler' => $this->profiler,
@@ -2288,7 +2265,9 @@ class LoadBalancer implements ILoadBalancer {
 			$start = microtime( true );
 			$result = $conn->masterPosWait( $pos, $timeout );
 			$seconds = max( microtime( true ) - $start, 0 );
-			if ( $result == -1 || $result === null ) {
+
+			$ok = ( $result !== null && $result != -1 );
+			if ( $ok ) {
 				$this->replLogger->warning(
 					__METHOD__ . ': timed out waiting on {hostname} pos {pos} [{seconds}s]',
 					[
@@ -2298,10 +2277,8 @@ class LoadBalancer implements ILoadBalancer {
 						'trace' => ( new RuntimeException() )->getTraceAsString()
 					]
 				);
-				$ok = false;
 			} else {
 				$this->replLogger->debug( __METHOD__ . ': done waiting' );
-				$ok = true;
 			}
 		} else {
 			$ok = false; // something is misconfigured

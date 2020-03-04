@@ -457,6 +457,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$wdb->trxProfiler = new TransactionProfiler();
 		$wdb->connLogger = new \Psr\Log\NullLogger();
 		$wdb->queryLogger = new \Psr\Log\NullLogger();
+		$wdb->replLogger = new \Psr\Log\NullLogger();
 		$wdb->currentDomain = DatabaseDomain::newUnspecified();
 		return $db;
 	}
