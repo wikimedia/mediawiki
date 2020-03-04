@@ -408,4 +408,27 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 			'extractAllGlobals(): merging setting'
 		);
 	}
+
+	/**
+	 * @covers SiteConfiguration
+	 */
+	public function testSuffixAndTagConflict() {
+		$conf = new SiteConfiguration;
+
+		$conf->suffixes = [ 'foo', 'bar', 'baz' ];
+		$conf->wikis = [ 'aabar', 'bbbar', 'ccbar' ];
+		$conf->settings = [
+			'MyVariable' => [
+				'default' => [ 'x' ],
+				'+bar' => [ 'y' ],
+			],
+		];
+
+		$this->assertSame(
+			// FIXME: This is broken (T246858)
+			[ 'y', 'y', 'x' ],
+			$conf->get( 'MyVariable', 'bbbar', 'bar', [], [ 'alpha', 'bar' ] ),
+			'get(): variable with +merge for a tag that is also a suffix'
+		);
+	}
 }
