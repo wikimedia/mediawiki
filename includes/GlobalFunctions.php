@@ -1716,16 +1716,27 @@ function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) 
 
 /**
  * wfMerge attempts to merge differences between three texts.
- * Returns true for a clean merge and false for failure or a conflict.
  *
- * @param string $old
- * @param string $mine
- * @param string $yours
- * @param string &$result
- * @param string|null &$mergeAttemptResult
- * @return bool
+ * @param string $old Common base revision
+ * @param string $mine The edit we wish to store but which potentially conflicts with another edit
+ *     which happened since we started editing.
+ * @param string $yours The most recent stored revision of the article. Note that "mine" and "yours"
+ *     might have another meaning depending on the specific use case.
+ * @param string|null &$simplisticMergeAttempt Automatically merged text, with overlapping edits
+ *     falling back to "my" text.
+ * @param string|null &$mergeLeftovers Optional out parameter containing an "ed" script with the
+ *     remaining bits of "your" text that could not be merged into $simplisticMergeAttempt.
+ *     The "ed" file format is documented here:
+ *     https://www.gnu.org/software/diffutils/manual/html_node/Detailed-ed.html
+ * @return bool true for a clean merge and false for failure or a conflict.
  */
-function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
+function wfMerge(
+	string $old,
+	string $mine,
+	string $yours,
+	?string &$simplisticMergeAttempt,
+	string &$mergeLeftovers = null
+): bool {
 	global $wgDiff3;
 
 	# This check may also protect against code injection in
@@ -1757,40 +1768,40 @@ function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
 	fclose( $yourtextFile );
 
 	# Check for a conflict
-	$cmd = Shell::escape( $wgDiff3, '-a', '--overlap-only', $mytextName,
+	$cmd = Shell::escape( $wgDiff3, '--text', '--overlap-only', $mytextName,
 		$oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
 
-	$mergeAttemptResult = '';
+	$mergeLeftovers = '';
 	do {
 		$data = fread( $handle, 8192 );
 		if ( strlen( $data ) == 0 ) {
 			break;
 		}
-		$mergeAttemptResult .= $data;
+		$mergeLeftovers .= $data;
 	} while ( true );
 	pclose( $handle );
 
-	$conflict = $mergeAttemptResult !== '';
+	$conflict = $mergeLeftovers !== '';
 
-	# Merge differences
-	$cmd = Shell::escape( $wgDiff3, '-a', '-e', '--merge', $mytextName,
+	# Merge differences automatically where possible, preferring "my" text for conflicts.
+	$cmd = Shell::escape( $wgDiff3, '--text', '--ed', '--merge', $mytextName,
 		$oldtextName, $yourtextName );
 	$handle = popen( $cmd, 'r' );
-	$result = '';
+	$simplisticMergeAttempt = '';
 	do {
 		$data = fread( $handle, 8192 );
 		if ( strlen( $data ) == 0 ) {
 			break;
 		}
-		$result .= $data;
+		$simplisticMergeAttempt .= $data;
 	} while ( true );
 	pclose( $handle );
 	unlink( $mytextName );
 	unlink( $oldtextName );
 	unlink( $yourtextName );
 
-	if ( $result === '' && $old !== '' && !$conflict ) {
+	if ( $simplisticMergeAttempt === '' && $old !== '' && !$conflict ) {
 		wfDebug( "Unexpected null result from diff3. Command: $cmd" );
 		$conflict = true;
 	}
