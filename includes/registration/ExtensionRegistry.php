@@ -175,19 +175,10 @@ class ExtensionRegistry {
 		$this->queued[$path] = $mtime;
 	}
 
-	private function getCache(): BagOStuff {
-		global $wgObjectCaches;
-		// We use a try/catch because we don't want to fail here
-		// if $wgObjectCaches is not configured properly for APC setup
-		try {
-			// Avoid MediaWikiServices to prevent instantiating it before extensions have loaded
-			$cacheId = ObjectCache::detectLocalServerCache();
-			return ObjectCache::newFromParams( $wgObjectCaches[$cacheId] );
-		} catch ( InvalidArgumentException $e ) {
-			// @codeCoverageIgnoreStart
-			return new EmptyBagOStuff();
-			// @codeCoverageIgnoreEnd
-		}
+	private function getCache() : BagOStuff {
+		// Can't call MediaWikiServices here, as we must not cause services
+		// to be instantiated before extensions have loaded.
+		return ObjectCache::makeLocalServerCache();
 	}
 
 	private function makeCacheKey( BagOStuff $cache, $component, ...$extra ) {

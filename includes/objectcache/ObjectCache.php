@@ -136,16 +136,17 @@ class ObjectCache {
 	 *  - class: BagOStuff subclass constructed with $params.
 	 *  - loggroup: Alias to set 'logger' key with LoggerFactory group.
 	 *  - .. Other parameters passed to factory or class.
+	 * @param Config|null $conf (Since 1.35)
 	 * @return BagOStuff
 	 * @throws InvalidArgumentException
 	 */
-	public static function newFromParams( $params ) {
+	public static function newFromParams( array $params, Config $conf = null ) {
 		// Apply default parameters and resolve the logger instance
 		$params += [
 			'logger' => LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' ),
 			'keyspace' => self::getDefaultKeyspace(),
 			'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
-			'reportDupes' => true
+			'reportDupes' => true,
 		];
 
 		if ( isset( $params['factory'] ) ) {
@@ -159,6 +160,21 @@ class ObjectCache {
 		}
 
 		$class = $params['class'];
+		// Not passing $conf is deprecated since 1.35
+		// NOTE: We cannot use MediaWikiServices::getMainConfig here as fallback,
+		// because ObjectCache::newFromParams is used for service wiring and
+		// in the ExtensionRegistry, and must not itself cause MediaWikiServices
+		// to be initialised. In particular, doing so would break the
+		// GlobalPreferences extension, which is overriding a service and then
+		// hard-requiring their additional methods to exist on the service object
+		// (T210449, T238466).
+		// TODO: Hard-deprecate before 1.35 gets cut, and remove in 1.36.
+		$conf = $conf ?? new HashConfig( [
+			'SQLiteDataDir' => $GLOBALS['wgSQLiteDataDir'],
+			'MemCachedServers' => $GLOBALS['wgMemCachedServers'],
+			'MemCachedPersistent' => $GLOBALS['wgMemCachedPersistent'],
+			'MemCachedTimeout' => $GLOBALS['wgMemCachedTimeout'],
+		] );
 
 		// Do b/c logic for SqlBagOStuff
 		if ( is_a( $class, SqlBagOStuff::class, true ) ) {
@@ -170,7 +186,7 @@ class ObjectCache {
 			if ( isset( $params['servers'] ) ) {
 				foreach ( $params['servers'] as &$server ) {
 					if ( $server['type'] === 'sqlite' && !isset( $server['dbDirectory'] ) ) {
-						$server['dbDirectory'] = $GLOBALS['wgSQLiteDataDir'];
+						$server['dbDirectory'] = $conf->get( 'SQLiteDataDir' );
 					}
 				}
 			}
@@ -179,9 +195,9 @@ class ObjectCache {
 		// Do b/c logic for MemcachedBagOStuff
 		if ( is_subclass_of( $class, MemcachedBagOStuff::class ) ) {
 			$params += [
-				'servers' => $GLOBALS['wgMemCachedServers'],
-				'persistent' => $GLOBALS['wgMemCachedPersistent'],
-				'timeout' => $GLOBALS['wgMemCachedTimeout']
+				'servers' => $conf->get( 'MemCachedServers' ),
+				'persistent' => $conf->get( 'MemCachedPersistent' ),
+				'timeout' => $conf->get( 'MemCachedTimeout' ),
 			];
 		}
 
@@ -275,12 +291,40 @@ class ObjectCache {
 	}
 
 	/**
-	 * Detects which local server cache library is present and returns a configuration for it
-	 * @since 1.32
+	 * Create a new BagOStuff instance for local-server caching.
 	 *
+	 * Only use this if you explicitly require the creation of
+	 * a fresh instance. Whenever possible, use or inject the object
+	 * from MediaWikiServices::getLocalServerObjectCache() instead.
+	 *
+	 * @since 1.35
+	 * @return BagOStuff
+	 */
+	public static function makeLocalServerCache() : BagOStuff {
+		$params = [ 'reportDupes' => false ];
+		if ( function_exists( 'apcu_fetch' ) ) {
+			// Make sure the APCu methods actually store anything
+			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
+				return new APCUBagOStuff( $params );
+			}
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
+			return new WinCacheBagOStuff( $params );
+		}
+
+		return new EmptyBagOStuff( $params );
+	}
+
+	/**
+	 * Detects which local server cache library is present and returns a configuration for it.
+	 *
+	 * @since 1.32
+	 * @deprecated since 1.35 Use MediaWikiServices::getLocalServerObjectCache() or
+	 * ObjectCache::makeLocalServerCache() instead.
 	 * @return int|string Index to cache in $wgObjectCaches
 	 */
 	public static function detectLocalServerCache() {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		if ( function_exists( 'apcu_fetch' ) ) {
 			// Make sure the APCu methods actually store anything
 			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {

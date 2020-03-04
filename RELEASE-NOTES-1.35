@@ -464,8 +464,11 @@ because of Phabricator reports.
   - protected $handler (not need anymore)
   - cleanupHandlersCache (not need anymore)
 * (T212738) The $wgVersion global is deprecated; instead, use MW_VERSION.
-* $wgMemc is deprecated, use
-  MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
+* $wgMemc is deprecated, use MediaWikiServices::getLocalServerObjectCache()
+  instead.
+* ObjectCache::detectLocalServerCache() is deprecated, instead use
+  MediaWikiServices::getLocalServerObjectCache() or
+  ObjectCache::makeLocalServerCache().
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
   MediaFileTrait::getImageLimitsFromOptions() instead.
 * A number of Parser-related methods were deprecated to simplify the API or
