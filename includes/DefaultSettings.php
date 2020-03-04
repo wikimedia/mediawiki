@@ -70,8 +70,9 @@ $wgConfigRegistry = [
 /**
  * MediaWiki version number
  * @since 1.2
+ * @deprecated since 1.35; use the MW_VERSION constant instead
  */
-$wgVersion = '1.31.6';
+$wgVersion = MW_VERSION;
 
 /**
  * Name of the site. It must be changed in LocalSettings.php

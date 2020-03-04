@@ -16,7 +16,7 @@ class MediaWikiVersionFetcherTest extends PHPUnit\Framework\TestCase {
 
 	public function testReturnsResult() {
 		$versionFetcher = new MediaWikiVersionFetcher();
-		$this->assertInternalType( 'string', $versionFetcher->fetchVersion() );
+		$this->assertSame( MW_VERSION, $versionFetcher->fetchVersion() );
 	}
 
 }

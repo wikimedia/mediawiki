@@ -4,6 +4,8 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.6 ===
 
+* (T212738) Add the MW_VERSION constant, global $wgVersion is soft deprecated.
+
 == MediaWiki 1.31.6 ==
 
 This is a security and maintenance release of the MediaWiki 1.31 branch.
