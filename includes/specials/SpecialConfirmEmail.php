@@ -21,7 +21,7 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Special page allows users to request email confirmation message, and handles
@@ -32,8 +32,17 @@ use MediaWiki\MediaWikiServices;
  * @author Rob Church <robchur@gmail.com>
  */
 class SpecialConfirmEmail extends UnlistedSpecialPage {
-	public function __construct() {
+
+	/** @var PermissionManager $permManager */
+	private $permManager;
+
+	/**
+	 * @param PermissionManager $permManager
+	 */
+	public function __construct( PermissionManager $permManager ) {
 		parent::__construct( 'Confirmemail', 'editmyprivateinfo' );
+
+		$this->permManager = $permManager;
 	}
 
 	public function doesWrites() {
@@ -59,10 +68,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'viewmyprivateinfo' )
-		) {
+		if ( !$this->permManager->userHasRight( $this->getUser(), 'viewmyprivateinfo' ) ) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 

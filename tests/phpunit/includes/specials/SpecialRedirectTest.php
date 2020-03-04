@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Test class for SpecialRedirect class
  *
@@ -23,7 +25,10 @@ class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
 	 * @covers SpecialRedirect::dispatchLog()
 	 */
 	public function testDispatch( $method, $type, $value, $expectedStatus ) {
-		$page = new SpecialRedirect();
+		$page = new SpecialRedirect(
+			MediaWikiServices::getInstance()->getPermissionManager(),
+			MediaWikiServices::getInstance()->getRepoGroup()
+		);
 
 		// setup the user object
 		if ( $value === self::CREATE_USER ) {

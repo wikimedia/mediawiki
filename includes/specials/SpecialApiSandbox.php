@@ -21,15 +21,24 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * @ingroup SpecialPage
  * @since 1.27
  */
 class SpecialApiSandbox extends SpecialPage {
-	public function __construct() {
+
+	/** @var PermissionManager */
+	private $permManager;
+
+	/**
+	 * @param PermissionManager $permManager
+	 */
+	public function __construct( PermissionManager $permManager ) {
 		parent::__construct( 'ApiSandbox' );
+
+		$this->permManager = $permManager;
 	}
 
 	public function execute( $par ) {
@@ -37,9 +46,9 @@ class SpecialApiSandbox extends SpecialPage {
 		$out = $this->getOutput();
 		$this->addHelpLink( 'Help:ApiSandbox' );
 
-		$out->addJsConfigVars( 'apihighlimits', MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $this->getUser(), 'apihighlimits' )
+		$out->addJsConfigVars(
+			'apihighlimits',
+			$this->permManager->userHasRight( $this->getUser(), 'apihighlimits' )
 		);
 		$out->addModuleStyles( [
 			'mediawiki.special',
