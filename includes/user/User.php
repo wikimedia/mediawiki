@@ -2432,7 +2432,15 @@ class User implements IDBAccessObject, UserIdentity {
 			'MIN(user_last_timestamp)',
 			$this->isAnon() ? [ 'user_ip' => $this->getName() ] : [ 'user_id' => $this->getId() ],
 			__METHOD__ );
-		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
+		$rev = null;
+		if ( $timestamp ) {
+			$revRecord = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionByTimestamp( $utp, $timestamp );
+			if ( $revRecord ) {
+				$rev = new Revision( $revRecord );
+			}
+		}
 		return [
 			[
 				'wiki' => WikiMap::getCurrentWikiId(),

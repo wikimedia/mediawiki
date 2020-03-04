@@ -1214,6 +1214,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::loadFromTimestamp()
 	 */
 	public function testLoadFromTimestamp() {
+		$this->hideDeprecated( Revision::class . '::loadFromTimestamp' );
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTimestamp' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromTimestamp(

@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionLookup;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -72,12 +73,16 @@ class AttachLatest extends Maintenance {
 				continue;
 			}
 
-			$revision = Revision::loadFromTimestamp( $dbw, $title, $latestTime );
-			if ( $revision === null ) {
+			$revRecord = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionByTimestamp( $title, $latestTime, RevisionLookup::READ_LATEST );
+			if ( $revRecord === null ) {
 				$this->output(
 					"$dbDomain $pageId [[$name]] latest time $latestTime, can't find revision id\n"
 				);
 				continue;
+			} else {
+				$revision = new Revision( $revRecord );
 			}
 			$id = $revision->getId();
 			$this->output( "$dbDomain $pageId [[$name]] latest time $latestTime, rev id $id\n" );

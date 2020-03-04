@@ -632,6 +632,7 @@ because of Phabricator reports.
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
   - ::loadFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead
+  - ::loadFromTimestamp - use RevisionStore::getRevisionByTimestamp instead
   - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
   - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
   - ::newFromRow - use RevisionStore::newRevisionFromRow instead
@@ -645,8 +646,8 @@ because of Phabricator reports.
   constructor instead.
 * LogEventsList::typeAction accepts an optional right to check against as
   the fourth parameter. Specifying such a right is deprecated.
-* RevisionStore::loadRevisionFromTitle, ::loadRevisionFromPageId and
-  ::listRevisionSizes were deprecated.
+* RevisionStore::loadRevisionFromTitle, ::loadRevisionFromTimestamp,
+  ::loadRevisionFromPageId, and ::listRevisionSizes were deprecated.
 * SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
 * Passing a Revision object into CategoryMembershipChange constructor is
   deprecated. Pass a RevisionRecord instead.

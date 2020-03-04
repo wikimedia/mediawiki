@@ -1347,6 +1347,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTimestamp' );
 		$this->assertNull(
 			$store->loadRevisionFromTimestamp( wfGetDB( DB_MASTER ), $title, '20150101010101' )
 		);

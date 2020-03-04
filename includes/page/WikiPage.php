@@ -1561,8 +1561,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$baseRevId = null;
 		if ( $edittime && $sectionId !== 'new' ) {
 			$lb = $this->getDBLoadBalancer();
-			$dbr = $lb->getConnectionRef( DB_REPLICA );
-			$rev = Revision::loadFromTimestamp( $dbr, $this->mTitle, $edittime );
+			$rev = $this->getRevisionStore()->getRevisionByTimestamp( $this->mTitle, $edittime );
 			// Try the master if this thread may have just added it.
 			// This could be abstracted into a Revision method, but we don't want
 			// to encourage loading of revisions by timestamp.
@@ -1570,8 +1569,8 @@ class WikiPage implements Page, IDBAccessObject {
 				&& $lb->getServerCount() > 1
 				&& $lb->hasOrMadeRecentMasterChanges()
 			) {
-				$dbw = $lb->getConnectionRef( DB_MASTER );
-				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+				$rev = $this->getRevisionStore()->getRevisionByTimestamp(
+					$this->mTitle, $edittime, RevisionStore::READ_LATEST );
 			}
 			if ( $rev ) {
 				$baseRevId = $rev->getId();
