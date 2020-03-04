@@ -1968,8 +1968,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::loadFromPageId
 	 *
-	 * @note direct use is deprecated!
-	 * @todo remove when unused!
+	 * @deprecated since 1.35 Use RevisionStore::getRevisionByPageId instead.
 	 *
 	 * @param IDatabase $db
 	 * @param int $pageid
@@ -1977,6 +1976,7 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function loadRevisionFromPageId( IDatabase $db, $pageid, $id = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$conds = [ 'rev_page' => intval( $pageid ), 'page_id' => intval( $pageid ) ];
 		if ( $id ) {
 			$conds['rev_id'] = intval( $id );

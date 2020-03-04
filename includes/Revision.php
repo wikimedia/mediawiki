@@ -241,6 +241,7 @@ class Revision implements IDBAccessObject {
 	 * to that page, will return null.
 	 *
 	 * @deprecated since 1.31, use RevisionStore::getRevisionByPageId() instead.
+	 * Hard deprecated since 1.35
 	 *
 	 * @param IDatabase $db
 	 * @param int $pageid
@@ -248,6 +249,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromPageId( $db, $pageid, $id = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$rec = self::getRevisionStore()->loadRevisionFromPageId( $db, $pageid, $id );
 		return $rec ? new Revision( $rec ) : null;
 	}

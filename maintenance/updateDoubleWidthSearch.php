@@ -62,8 +62,8 @@ class UpdateDoubleWidthSearch extends Maintenance {
 		$this->output( "Done\n" );
 	}
 
-	public function searchIndexUpdateCallback( $dbw, $row ) {
-		return $this->updateSearchIndexForPage( $dbw, $row->si_page );
+	public function searchIndexUpdateCallback( $row ) {
+		return $this->updateSearchIndexForPage( $row->si_page );
 	}
 
 	private function findRows( $dbw ) {
