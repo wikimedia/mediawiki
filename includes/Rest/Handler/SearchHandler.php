@@ -16,6 +16,7 @@ use Status;
 use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * Handler class for Core REST API endpoint that handles basic search
@@ -34,8 +35,11 @@ class SearchHandler extends Handler {
 	/** @var User */
 	private $user;
 
-	/** Limit results to 50 pages */
+	/** Limit results to 50 pages per default */
 	private const LIMIT = 50;
+
+	/** Hard limit results to 100 pages */
+	private const MAX_LIMIT = 100;
 
 	/** Default to first page */
 	private const OFFSET = 0;
@@ -62,9 +66,11 @@ class SearchHandler extends Handler {
 	 * @return SearchEngine
 	 */
 	private function createSearchEngine() {
+		$limit = $this->getValidatedParams()['limit'];
+
 		$searchEngine = $this->searchEngineFactory->create();
 		$searchEngine->setNamespaces( $this->searchEngineConfig->defaultNamespaces() );
-		$searchEngine->setLimitOffset( self::LIMIT, self::OFFSET );
+		$searchEngine->setLimitOffset( $limit, self::OFFSET );
 		return $searchEngine;
 	}
 
@@ -167,6 +173,14 @@ class SearchHandler extends Handler {
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+			],
+			'limit' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => self::LIMIT,
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => self::MAX_LIMIT,
 			],
 		];
 	}
