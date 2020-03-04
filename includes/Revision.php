@@ -1046,12 +1046,15 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get rev_timestamp from rev_id, without loading the rest of the row
 	 *
+	 * @deprecated since 1.35
+	 *
 	 * @param Title $title (ignored since 1.34)
 	 * @param int $id
 	 * @param int $flags
 	 * @return string|bool False if not found
 	 */
 	public static function getTimestampFromId( $title, $id, $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return self::getRevisionStore()->getTimestampFromId( $id, $flags );
 	}
 

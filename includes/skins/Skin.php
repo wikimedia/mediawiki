@@ -923,8 +923,9 @@ abstract class Skin extends ContextSource {
 
 		# No cached timestamp, load it from the database
 		if ( $timestamp === null ) {
-			$timestamp = Revision::getTimestampFromId( $this->getTitle(),
-				$this->getOutput()->getRevisionId() );
+			$timestamp = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getTimestampFromId( $this->getOutput()->getRevisionId() );
 		}
 
 		if ( $timestamp ) {

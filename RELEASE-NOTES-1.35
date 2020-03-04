@@ -540,6 +540,7 @@ because of Phabricator reports.
   have now been individually hard deprecated:
   - ::userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
+  - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead
   - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
   - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
