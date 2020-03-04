@@ -291,12 +291,40 @@ class ObjectCache {
 	}
 
 	/**
-	 * Detects which local server cache library is present and returns a configuration for it
-	 * @since 1.32
+	 * Create a new BagOStuff instance for local-server caching.
 	 *
+	 * Only use this if you explicitly require the creation of
+	 * a fresh instance. Whenever possible, use or inject the object
+	 * from MediaWikiServices::getLocalServerObjectCache() instead.
+	 *
+	 * @since 1.35
+	 * @return BagOStuff
+	 */
+	public static function makeLocalServerCache() : BagOStuff {
+		$params = [ 'reportDupes' => false ];
+		if ( function_exists( 'apcu_fetch' ) ) {
+			// Make sure the APCu methods actually store anything
+			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
+				return new APCUBagOStuff( $params );
+			}
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
+			return new WinCacheBagOStuff( $params );
+		}
+
+		return new EmptyBagOStuff( $params );
+	}
+
+	/**
+	 * Detects which local server cache library is present and returns a configuration for it.
+	 *
+	 * @since 1.32
+	 * @deprecated since 1.35 Use MediaWikiServices::getLocalServerObjectCache() or
+	 * ObjectCache::makeLocalServerCache() instead.
 	 * @return int|string Index to cache in $wgObjectCaches
 	 */
 	public static function detectLocalServerCache() {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		if ( function_exists( 'apcu_fetch' ) ) {
 			// Make sure the APCu methods actually store anything
 			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
