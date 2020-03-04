@@ -34,14 +34,25 @@ You'll need a locally running Docker and Docker Compose:
 
 ### Quickstart
 
-#### MacOS & Windows prerequisites
+Create a `.env` file for defining environment variables for the development environment: 
 
-Hopefully, this should Just Work™.
+```bash
+echo "MW_DOCKER_PORT=8080
+MW_DOCKER_UID=$(id -u)
+MW_DOCKER_GID=$(id -g)
+MW_SCRIPT_PATH=/
+MW_SERVER=http://localhost:8080
+MEDIAWIKI_USER=Admin
+MEDIAWIKI_PASSWORD=dockerpass
+XDEBUG_CONFIG=''" > .env
+```
 
-#### Linux prerequisites
+#### Linux users
 
-If you are developing on a Linux system, first create a
+If you are on a Linux system, first create a
+
 `docker-compose.override.yml` containing the following:
+
 
 ```yaml
 version: '3.7'
@@ -50,15 +61,6 @@ services:
     # On Linux, these lines ensure file ownership is set to your host user/group
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
 ```
-
-Next, ensure that `$MW_DOCKER_UID` and `$MW_DOCKER_GID` are set in your environment:
-
-```
-export MW_DOCKER_UID=$(id -u)
-export MW_DOCKER_GID=$(id -g)
-```
-
-The above lines may be added to your `.bashrc` or other shell configuration.
 
 #### Start environment and install MediaWiki
 
@@ -193,14 +195,10 @@ echo "wfLoadSkin( 'Vector' );" >> LocalSettings.php
 #### XDebug
 
 You can override the XDebug configuration included with the default image by
-passing `XDEBUG_CONFIG={your config}` in `environment`:
+passing `XDEBUG_CONFIG={your config}` in the `.env` file at the root of the MediaWiki repository:
 
-``` yaml
-version: '3.7'
-services:
-  mediawiki:
-    environment:
-      XDEBUG_CONFIG: remote_enable=1 remote_host=172.17.0.1 remote_log=/tmp/xdebug.log remote_port=9009
+```
+XDEBUG_CONFIG=remote_enable=1 remote_host=172.17.0.1 remote_log=/tmp/xdebug.log remote_port=9009
 ```
 
 ##### Troubleshooting
@@ -210,7 +208,7 @@ services:
 If you installed php-fpm on your host, that is listening on port 9000 and
 will conflict with XDebug. The workaround is to tell your IDE to listen on a
 different port (e.g. 9009) and to set the configuration in your
-`docker-compose.override.yml` file: `XDEBUG_CONFIG: remote_port=9009`
+`.env` file: `XDEBUG_CONFIG=remote_port=9009`
 
 ###### Linux desktop, host not found
 
@@ -218,10 +216,9 @@ The image uses `host.docker.internal` as the `remote_host` value which
 should work for Docker for Mac/Windows. On Linux hosts, you need to specify
 the hostname or IP address of your host. The IP address works more reliably.
 You can obtain it by running e.g. `ip -4 addr show docker0` and copying the
-IP address into the config, like `XDEBUG_CONFIG: remote_host=172.17.0.1`
+IP address into the config, like `XDEBUG_CONFIG=remote_host=172.17.0.1`
 
 ###### Generating logs
 
 Switching on the remote log for XDebug comes at a performance cost so only
-use it while troubleshooting. You can enable it like so: `XDEBUG_CONFIG:
-remote_log=/tmp/xdebug.log`
+use it while troubleshooting. You can enable it like so: `XDEBUG_CONFIG=remote_log=/tmp/xdebug.log`
