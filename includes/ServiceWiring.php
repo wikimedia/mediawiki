@@ -467,10 +467,7 @@ return [
 	},
 
 	'LocalServerObjectCache' => function ( MediaWikiServices $services ) : BagOStuff {
-		$config = $services->getMainConfig();
-		$cacheId = ObjectCache::detectLocalServerCache();
-
-		return ObjectCache::newFromParams( $config->get( 'ObjectCaches' )[$cacheId], $config );
+		return ObjectCache::makeLocalServerCache();
 	},
 
 	'LockManagerGroupFactory' => function ( MediaWikiServices $services ) : LockManagerGroupFactory {
