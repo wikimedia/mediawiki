@@ -33,22 +33,23 @@ require_once __DIR__ . '/../Maintenance.php';
  * @ingroup MaintenanceLanguage
  */
 class DumpMessages extends Maintenance {
+
+	/** @var LocalisationCache */
+	private $localisationCache;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Dump an entire language, using the keys from English' );
+		$this->localisationCache = MediaWikiServices::getInstance()->getLocalisationCache();
 	}
 
 	public function execute() {
-		global $wgVersion;
-
 		$messages = [];
-		foreach ( array_keys( MediaWikiServices::getInstance()
-			->getLocalisationCache()
-			->getItem( 'en', 'messages' ) ) as $key
-		) {
+		$localisationMessagesEn = $this->localisationCache->getItem( 'en', 'messages' );
+		foreach ( array_keys( $localisationMessagesEn ) as $key ) {
 			$messages[$key] = wfMessage( $key )->text();
 		}
-		$this->output( "MediaWiki $wgVersion language file\n" );
+		$this->output( "MediaWiki " . MW_VERSION . " language file\n" );
 		$this->output( serialize( $messages ) );
 	}
 }

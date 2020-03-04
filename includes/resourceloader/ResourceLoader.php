@@ -154,7 +154,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * @param string $filter Name of filter to run
 	 * @param string $data Text to filter, such as JavaScript or CSS text
-	 * @param array $options Keys:
+	 * @param array<string,bool> $options Keys:
 	 *  - (bool) cache: Whether to allow caching this data. Default: true.
 	 * @return string Filtered data, or a comment containing an error message
 	 */
@@ -193,6 +193,11 @@ class ResourceLoader implements LoggerAwareInterface {
 		return $result;
 	}
 
+	/**
+	 * @param string $filter
+	 * @param string $data
+	 * @return string
+	 */
 	private static function applyFilter( $filter, $data ) {
 		$data = trim( $data );
 		if ( $data ) {
@@ -296,11 +301,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *  keyed by name.
 	 * @param array|null $info Module info array. When using the first parameter to register
 	 *  multiple modules at once, this parameter is optional.
-	 * @throws MWException If a duplicate module registration is attempted
-	 * @throws MWException If a module name contains illegal characters (pipes or commas)
+	 * @throws InvalidArgumentException If a module name contains illegal characters (pipes or commas)
 	 * @throws InvalidArgumentException If the module info is not an array
 	 */
-	public function register( $name, $info = null ) {
+	public function register( $name, array $info = null ) {
 		$moduleSkinStyles = $this->config->get( 'ResourceModuleSkinStyles' );
 
 		// Allow multiple modules to be registered in one call
@@ -317,7 +321,7 @@ class ResourceLoader implements LoggerAwareInterface {
 
 			// Check validity
 			if ( !self::isValidModuleName( $name ) ) {
-				throw new MWException( "ResourceLoader module name '$name' is invalid, "
+				throw new InvalidArgumentException( "ResourceLoader module name '$name' is invalid, "
 					. "see ResourceLoader::isValidModuleName()" );
 			}
 			if ( !is_array( $info ) ) {
@@ -371,7 +375,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @internal For use by ServiceWiring only
 	 * @codeCoverageIgnore
 	 */
-	public function registerTestModules() {
+	public function registerTestModules() : void {
 		global $IP;
 
 		if ( $this->config->get( 'EnableJavaScriptTest' ) !== true ) {
@@ -419,40 +423,31 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * Source IDs are typically the same as the Wiki ID or database name (e.g. lowercase a-z).
 	 *
-	 * @param array|string $id Source ID (string), or [ id1 => loadUrl, id2 => loadUrl, ... ]
+	 * @param array|string $sources Source ID (string), or [ id1 => loadUrl, id2 => loadUrl, ... ]
 	 * @param string|array|null $loadUrl load.php url (string), or array with loadUrl key for
 	 *  backwards-compatibility.
-	 * @throws MWException
+	 * @throws InvalidArgumentException If array-form $loadUrl lacks a 'loadUrl' key.
 	 */
-	public function addSource( $id, $loadUrl = null ) {
-		// Allow multiple sources to be registered in one call
-		if ( is_array( $id ) ) {
-			foreach ( $id as $key => $value ) {
-				$this->addSource( $key, $value );
-			}
-			return;
+	public function addSource( $sources, $loadUrl = null ) {
+		if ( !is_array( $sources ) ) {
+			$sources = [ $sources => $loadUrl ];
 		}
-
-		// Disallow duplicates
-		if ( isset( $this->sources[$id] ) ) {
-			throw new MWException(
-				'ResourceLoader duplicate source addition error. ' .
-				'Another source has already been registered as ' . $id
-			);
-		}
-
-		// Pre 1.24 backwards-compatibility
-		if ( is_array( $loadUrl ) ) {
-			if ( !isset( $loadUrl['loadScript'] ) ) {
-				throw new MWException(
-					__METHOD__ . ' was passed an array with no "loadScript" key.'
-				);
+		foreach ( $sources as $id => $source ) {
+			// Disallow duplicates
+			if ( isset( $this->sources[$id] ) ) {
+				throw new RuntimeException( 'Cannot register source ' . $id . ' twice' );
 			}
 
-			$loadUrl = $loadUrl['loadScript'];
-		}
+			// Support: MediaWiki 1.24 and earlier
+			if ( is_array( $source ) ) {
+				if ( !isset( $source['loadScript'] ) ) {
+					throw new InvalidArgumentException( 'Each source must have a "loadScript" key' );
+				}
+				$source = $source['loadScript'];
+			}
 
-		$this->sources[$id] = $loadUrl;
+			$this->sources[$id] = $source;
+		}
 	}
 
 	/**
@@ -527,10 +522,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @internal Exposed for letting getModule() pass the callable to DependencyStore
 	 * @param string $moduleName Module name
 	 * @param string $variant Language/skin variant
 	 * @return string[] List of absolute file paths
-	 * @private
 	 */
 	public function loadModuleDependenciesInternal( $moduleName, $variant ) {
 		$deps = $this->depStore->retrieve( self::RL_DEP_STORE_PREFIX, "$moduleName|$variant" );
@@ -539,11 +534,11 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @internal Exposed for letting getModule() pass the callable to DependencyStore
 	 * @param string $moduleName Module name
 	 * @param string $variant Language/skin variant
 	 * @param string[] $paths List of relative paths referenced during computation
 	 * @param string[] $priorPaths List of relative paths tracked in the dependency store
-	 * @private
 	 */
 	public function saveModuleDependenciesInternal( $moduleName, $variant, $paths, $priorPaths ) {
 		$hasPendingUpdate = (bool)$this->depStoreUpdateBuffer;
@@ -595,7 +590,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Whether the module is a ResourceLoaderFileModule (including subclasses).
+	 * Whether the module is a ResourceLoaderFileModule or subclass thereof.
 	 *
 	 * @param string $name Module name
 	 * @return bool
@@ -624,17 +619,16 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the URL to the load.php endpoint for the given
-	 * ResourceLoader source
+	 * Get the URL to the load.php endpoint for the given ResourceLoader source.
 	 *
 	 * @since 1.24
-	 * @param string $source
-	 * @throws MWException On an invalid $source name
+	 * @param string $source Source ID
 	 * @return string
+	 * @throws UnexpectedValueException If the source ID was not registered
 	 */
 	public function getLoadScript( $source ) {
 		if ( !isset( $this->sources[$source] ) ) {
-			throw new MWException( "The $source source was never registered in ResourceLoader." );
+			throw new UnexpectedValueException( "Unknown source '$source'" );
 		}
 		return $this->sources[$source];
 	}
@@ -720,7 +714,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Add an error to the 'errors' array and log it.
 	 *
-	 * @private For internal use by ResourceLoader and ResourceLoaderStartUpModule.
+	 * @internal For use by ResourceLoaderStartUpModule.
 	 * @since 1.29
 	 * @param Exception $e
 	 * @param string $msg
@@ -942,11 +936,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param string $etag ETag header value
 	 * @param bool $errors Whether there are errors in the response
 	 * @param string[] $extra Array of extra HTTP response headers
-	 * @return void
 	 */
 	protected function sendResponseHeaders(
 		ResourceLoaderContext $context, $etag, $errors, array $extra = []
-	) {
+	) : void {
 		HeaderCallback::warnIfHeadersSent();
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// Use a short cache expiry so that updates propagate to clients quickly, if:
@@ -1294,7 +1287,7 @@ MESSAGE;
 	 * Get names of modules that use a certain message.
 	 *
 	 * @param string $messageKey
-	 * @return array List of module names
+	 * @return string[] List of module names
 	 */
 	public function getModulesByMessage( $messageKey ) {
 		$moduleNames = [];
@@ -1322,7 +1315,6 @@ MESSAGE;
 	 *   the same data, wrapped in an XmlJsCode object.
 	 * @param array $templates Keys are name of templates and values are the source of
 	 *   the template.
-	 * @throws MWException
 	 * @return string JavaScript code
 	 */
 	private static function makeLoaderImplementScript(
@@ -1357,7 +1349,7 @@ MESSAGE;
 				'files' => XmlJsCode::encodeObject( $files, $context->getDebug() )
 			], $context->getDebug() );
 		} elseif ( !is_string( $scripts ) && !is_array( $scripts ) ) {
-			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
+			throw new InvalidArgumentException( 'Script must be a string or an array of URLs' );
 		}
 
 		// mw.loader.implement requires 'styles', 'messages' and 'templates' to be objects (not
@@ -1391,8 +1383,8 @@ MESSAGE;
 	 * Combines an associative array mapping media type to CSS into a
 	 * single stylesheet with "@media" blocks.
 	 *
-	 * @param array $stylePairs Array keyed by media type containing (arrays of) CSS strings
-	 * @return array
+	 * @param array<string,string|string[]> $stylePairs Map from media type to CSS string(s)
+	 * @return string[] CSS strings
 	 */
 	public static function makeCombinedStyles( array $stylePairs ) {
 		$out = [];
@@ -1425,7 +1417,7 @@ MESSAGE;
 	 * Wrapper around json_encode that avoids needless escapes,
 	 * and pretty-prints in debug mode.
 	 *
-	 * @internal
+	 * @internal For use within ResourceLoader classes only
 	 * @since 1.32
 	 * @param mixed $data
 	 * @return string|false JSON string, false on error
@@ -1457,9 +1449,9 @@ MESSAGE;
 	 *    - ResourceLoader::makeLoaderStateScript( $context, [ $name => $state, ... ] ):
 	 *         Set the state of modules with the given names to the given states
 	 *
-	 * @internal
+	 * @internal For use by ResourceLoaderStartUpModule
 	 * @param ResourceLoaderContext $context
-	 * @param array $states
+	 * @param array<string,string> $states
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderStateScript(
@@ -1505,8 +1497,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns JS code which calls mw.loader.register with the given
-	 * parameter.
+	 * Format JS code which calls `mw.loader.register()` with the given parameters.
 	 *
 	 * @par Example
 	 * @code
@@ -1562,8 +1553,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns JS code which calls mw.loader.addSource() with the given
-	 * parameters.
+	 * Format JS code which calls `mw.loader.addSource()` with the given parameters.
 	 *
 	 *   - ResourceLoader::makeLoaderSourcesScript( $context,
 	 *         [ $id1 => $loadUrl, $id2 => $loadUrl, ... ]
@@ -1572,7 +1562,7 @@ MESSAGE;
 	 *
 	 * @internal For use by ResourceLoaderStartUpModule only
 	 * @param ResourceLoaderContext $context
-	 * @param array $sources
+	 * @param array<string,string> $sources
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderSourcesScript(
@@ -1584,7 +1574,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Wraps JavaScript code to run after the startup module.
+	 * Wrap JavaScript code to run after the startup module.
 	 *
 	 * @param string $script JavaScript code
 	 * @return string JavaScript code
@@ -1596,7 +1586,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Wraps JavaScript code to run after a required module.
+	 * Wrap JavaScript code to run after a required module.
 	 *
 	 * @since 1.32
 	 * @param string|string[] $modules Module name(s)
@@ -1612,14 +1602,14 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns an HTML script tag that runs given JS code after startup and base modules.
+	 * Make an HTML script that runs given JS code after startup and base modules.
 	 *
 	 * The code will be wrapped in a closure, and it will be executed by ResourceLoader's
 	 * startup module if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
-	 * @param string|null $nonce [optional] Content-Security-Policy nonce
-	 *  (from OutputPage->getCSP()->getNonce())
+	 * @param string|null $nonce Content-Security-Policy nonce
+	 *  (from `OutputPage->getCSP()->getNonce()`)
 	 * @return string|WrappedString HTML
 	 */
 	public static function makeInlineScript( $script, $nonce = null ) {
@@ -1642,7 +1632,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns JS code which will set the MediaWiki configuration array to
+	 * Return JS code which will set the MediaWiki configuration array to
 	 * the given value.
 	 *
 	 * @param array $configuration List of configuration values keyed by variable name
@@ -1672,7 +1662,7 @@ MESSAGE;
 	 * See also mw.loader#buildModulesString() which is a port of this, used
 	 * on the client-side.
 	 *
-	 * @param array $modules List of module names (strings)
+	 * @param string[] $modules List of module names (strings)
 	 * @return string Packed query string
 	 */
 	public static function makePackedModulesString( array $modules ) {
@@ -1701,7 +1691,7 @@ MESSAGE;
 	 *
 	 * @since 1.33
 	 * @param string $modules Packed module name list
-	 * @return array Array of module names
+	 * @return string[] Array of module names
 	 */
 	public static function expandModuleNames( $modules ) {
 		$retval = [];
@@ -1731,8 +1721,13 @@ MESSAGE;
 	}
 
 	/**
-	 * Determine whether debug mode was requested
-	 * Order of priority is 1) request param, 2) cookie, 3) $wg setting
+	 * Determine whether debug mode is on.
+	 *
+	 * Order of priority is:
+	 * - 1) Request parameter,
+	 * - 2) Cookie,
+	 * - 3) Site configuration.
+	 *
 	 * @return bool
 	 */
 	public static function inDebugMode() {
@@ -1807,7 +1802,7 @@ MESSAGE;
 	 * Build a query array (array representation of query string) for load.php. Helper
 	 * function for createLoaderURL().
 	 *
-	 * @param array $modules
+	 * @param string[] $modules
 	 * @param string $lang
 	 * @param string $skin
 	 * @param string|null $user
@@ -1875,7 +1870,7 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns LESS compiler set up for use with MediaWiki
+	 * Return a LESS compiler that is set up for use with MediaWiki.
 	 *
 	 * @since 1.27
 	 * @param array $vars Associative array of variables that should be used
@@ -1904,7 +1899,8 @@ MESSAGE;
 	}
 
 	/**
-	 * Get site configuration settings (for mw.config)
+	 * Get site configuration settings to expose to JavaScript on all pages via `mw.config`.
+	 *
 	 * @internal Exposed for use from Resources.php
 	 * @param ResourceLoaderContext $context
 	 * @param Config $conf
@@ -1913,11 +1909,9 @@ MESSAGE;
 	public static function getSiteConfigSettings(
 		ResourceLoaderContext $context, Config $conf
 	) : array {
-		/**
-		 * Namespace related preparation
-		 * - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
-		 * - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.
-		 */
+		// Namespace related preparation
+		// - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
+		// - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$namespaceIds = $contLang->getNamespaceIds();
 		$caseSensitiveNamespaces = [];
@@ -1948,7 +1942,7 @@ MESSAGE;
 			'wgServerName' => $conf->get( 'ServerName' ),
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $contLang->getCode(),
-			'wgVersion' => $conf->get( 'Version' ),
+			'wgVersion' => MW_VERSION,
 			'wgEnableAPI' => true, // Deprecated since MW 1.32
 			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
 			'wgFormattedNamespaces' => $contLang->getFormattedNamespaces(),
@@ -1956,7 +1950,7 @@ MESSAGE;
 			'wgContentNamespaces' => $nsInfo->getContentNamespaces(),
 			'wgSiteName' => $conf->get( 'Sitename' ),
 			'wgDBname' => $conf->get( 'DBname' ),
-			'wgWikiID' => WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() ),
+			'wgWikiID' => WikiMap::getCurrentWikiId(),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgCommentByteLimit' => null,
 			'wgCommentCodePointLimit' => CommentStore::COMMENT_CHARACTER_LIMIT,

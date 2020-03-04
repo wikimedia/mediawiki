@@ -74,13 +74,26 @@ class Language {
 		throw new RuntimeException( "Cannot get '$name' property." );
 	}
 
-	public $mVariants, $mCode, $mLoaded = false;
-	public $mMagicExtensions = [];
-	private $mHtmlCode = null;
-	/** @var Language|false */
-	private $mParentLanguage = false;
+	public $mCode;
 
+	/**
+	 * @deprecated since 1.35, use LocalisationCache with custom language config
+	 */
+	public $mMagicExtensions = [];
+
+	private $mHtmlCode = null;
+
+	/**
+	 * memoize
+	 * @deprecated since 1.35, must be private
+	 */
 	public $dateFormatStrings = [];
+
+	/**
+	 * memoize
+	 * @var array[]
+	 * @deprecated since 1.35, must be protected
+	 */
 	public $mExtendedSpecialPageAliases;
 
 	/** @var array|null */
@@ -88,7 +101,8 @@ class Language {
 	protected $mNamespaceIds, $namespaceAliases;
 
 	/**
-	 * ReplacementArray object caches
+	 * ReplacementArray object memoize
+	 * @deprecated since 1.35, must be private
 	 */
 	public $transformData = [];
 
@@ -463,7 +477,7 @@ class Language {
 	}
 
 	/**
-	 * Calling this directly is deprecated. Use LanguageFactory instead.
+	 * @internal Calling this directly is deprecated. Use LanguageFactory instead.
 	 *
 	 * @param string|null $code Which code to use. Passing null is deprecated in 1.35.
 	 * @param LocalisationCache|null $localisationCache
@@ -2967,11 +2981,12 @@ class Language {
 	 * @return string
 	 */
 	public function normalize( $s ) {
-		global $wgAllUnicodeFixes;
+		global $wgAllUnicodeFixes, $IP;
+
 		$s = UtfNormal\Validator::cleanUp( $s );
 		if ( $wgAllUnicodeFixes ) {
-			$s = $this->transformUsingPairFile( 'normalize-ar.php', $s );
-			$s = $this->transformUsingPairFile( 'normalize-ml.php', $s );
+			$s = $this->transformUsingPairFile( 'normalize-ar.php', $s, $IP );
+			$s = $this->transformUsingPairFile( 'normalize-ml.php', $s, $IP );
 		}
 
 		return $s;
@@ -2987,17 +3002,40 @@ class Language {
 	 *
 	 * @param string $file
 	 * @param string $string
+	 * @param string|null $basePath
 	 *
 	 * @throws MWException
 	 * @return string
 	 */
-	protected function transformUsingPairFile( $file, $string ) {
-		if ( !isset( $this->transformData[$file] ) ) {
-			global $IP;
-			$data = require "$IP/languages/data/{$file}";
-			$this->transformData[$file] = new ReplacementArray( $data );
+	protected function transformUsingPairFile( $file, $string, $basePath = null ) {
+		if ( isset( $this->transformData[$file] ) ) {
+			wfDeprecated(
+				__METHOD__ . ' structure of $transformData is changed',
+				'1.35'
+			);
+			return $this->transformData[$file]->replace( $string );
 		}
-		return $this->transformData[$file]->replace( $string );
+
+		if ( $basePath === null ) {
+			wfDeprecated( __METHOD__ . ' $basePath is required', '1.35' );
+			global $IP;
+			$basePath = $IP;
+		}
+
+		if (
+			$basePath === null
+			|| $basePath === ''
+			|| !file_exists( "{$basePath}/languages/data/{$file}" )
+		) {
+			return $string;
+		}
+
+		if ( !isset( $this->transformData[$basePath][$file] ) ) {
+			$data = require "{$basePath}/languages/data/{$file}";
+			$this->transformData[$basePath][$file] = new ReplacementArray( $data );
+		}
+
+		return $this->transformData[$basePath][$file]->replace( $string );
 	}
 
 	/**
@@ -4776,6 +4814,8 @@ class Language {
 	/**
 	 * Helper function for viewPrevNext() that generates links
 	 *
+	 * @deprecated since 1.35, used with {@link viewPrevNext} only
+	 *
 	 * @param Title $title Title object to link
 	 * @param int $offset
 	 * @param int $limit
@@ -4815,8 +4855,8 @@ class Language {
 	public function getCompiledPluralRules() {
 		$pluralRules =
 			$this->localisationCache->getItem( strtolower( $this->mCode ), 'compiledPluralRules' );
-		$fallbacks = $this->langFallback->getAll( $this->mCode );
 		if ( !$pluralRules ) {
+			$fallbacks = $this->getFallbackLanguages();
 			foreach ( $fallbacks as $fallbackCode ) {
 				$pluralRules = $this->localisationCache
 					->getItem( strtolower( $fallbackCode ), 'compiledPluralRules' );
@@ -4836,8 +4876,8 @@ class Language {
 	public function getPluralRules() {
 		$pluralRules =
 			$this->localisationCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
-		$fallbacks = $this->langFallback->getAll( $this->mCode );
 		if ( !$pluralRules ) {
+			$fallbacks = $this->getFallbackLanguages();
 			foreach ( $fallbacks as $fallbackCode ) {
 				$pluralRules = $this->localisationCache
 					->getItem( strtolower( $fallbackCode ), 'pluralRules' );
@@ -4857,8 +4897,8 @@ class Language {
 	public function getPluralRuleTypes() {
 		$pluralRuleTypes =
 			$this->localisationCache->getItem( strtolower( $this->mCode ), 'pluralRuleTypes' );
-		$fallbacks = $this->langFallback->getAll( $this->mCode );
 		if ( !$pluralRuleTypes ) {
+			$fallbacks = $this->getFallbackLanguages();
 			foreach ( $fallbacks as $fallbackCode ) {
 				$pluralRuleTypes = $this->localisationCache
 					->getItem( strtolower( $fallbackCode ), 'pluralRuleTypes' );

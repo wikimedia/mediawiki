@@ -45,16 +45,14 @@
 		 * @return {jQuery.Promise} API response
 		 */
 		create: function ( title, params, content ) {
-			return this.postWithEditToken( $.extend( {
+			return this.postWithEditToken( $.extend( this.assertCurrentUser( {
 				action: 'edit',
 				title: String( title ),
 				text: content,
 				formatversion: '2',
-
-				// Protect against errors and conflicts
-				assert: mw.config.get( 'wgUserName' ) ? 'user' : undefined,
+				// Protect against conflicts
 				createonly: true
-			}, params ) ).then( function ( data ) {
+			} ), params ) ).then( function ( data ) {
 				return data.edit;
 			} );
 		},

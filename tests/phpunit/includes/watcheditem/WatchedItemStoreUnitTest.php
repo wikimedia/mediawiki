@@ -2633,8 +2633,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			new TitleValue( 0, 'SomeDbKey' ),
 			'20151212010101'
 		);
-		$this->assertIsArray( $watchers );
-		$this->assertEmpty( $watchers );
+		$this->assertSame( [], $watchers );
 	}
 
 	public function testUpdateNotificationTimestamp_clearsCachedItems() {

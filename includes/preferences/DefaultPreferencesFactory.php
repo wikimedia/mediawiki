@@ -476,13 +476,19 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'yourlanguage',
 		];
 
+		$neutralGenderMessage = $context->msg( 'gender-notknown' )->escaped() . (
+			!$context->msg( 'gender-unknown' )->isDisabled()
+				? "<br>" . $context->msg( 'parentheses' )
+					->params( $context->msg( 'gender-unknown' )->plain() )
+					->escaped()
+				: ''
+		);
+
 		$defaultPreferences['gender'] = [
 			'type' => 'radio',
 			'section' => 'personal/i18n',
 			'options' => [
-				$context->msg( 'parentheses' )
-					->params( $context->msg( 'gender-unknown' )->plain() )
-					->escaped() => 'unknown',
+				$neutralGenderMessage => 'unknown',
 				$context->msg( 'gender-female' )->escaped() => 'female',
 				$context->msg( 'gender-male' )->escaped() => 'male',
 			],

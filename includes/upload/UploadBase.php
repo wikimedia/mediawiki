@@ -610,7 +610,7 @@ abstract class UploadBase {
 	 * really checking the title + user combination.
 	 *
 	 * @param User $user User object to verify the permissions against
-	 * @return array|bool An array as returned by getUserPermissionsErrors or true
+	 * @return array|bool An array as returned by getPermissionErrors or true
 	 *   in case the user has proper permissions.
 	 */
 	public function verifyPermissions( $user ) {
@@ -625,7 +625,7 @@ abstract class UploadBase {
 	 * can-user-upload checking.
 	 *
 	 * @param User $user User object to verify the permissions against
-	 * @return array|bool An array as returned by getUserPermissionsErrors or true
+	 * @return array|bool An array as returned by getPermissionErrors or true
 	 *   in case the user has proper permissions.
 	 */
 	public function verifyTitlePermissions( $user ) {
@@ -637,10 +637,11 @@ abstract class UploadBase {
 		if ( $nt === null ) {
 			return true;
 		}
-		$permErrors = $nt->getUserPermissionsErrors( 'edit', $user );
-		$permErrorsUpload = $nt->getUserPermissionsErrors( 'upload', $user );
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$permErrors = $permManager->getPermissionErrors( 'edit', $user, $nt );
+		$permErrorsUpload = $permManager->getPermissionErrors( 'upload', $user, $nt );
 		if ( !$nt->exists() ) {
-			$permErrorsCreate = $nt->getUserPermissionsErrors( 'create', $user );
+			$permErrorsCreate = $permManager->getPermissionErrors( 'create', $user, $nt );
 		} else {
 			$permErrorsCreate = [];
 		}

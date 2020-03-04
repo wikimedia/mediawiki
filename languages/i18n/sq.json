@@ -1675,7 +1675,7 @@
 	"unusedtemplatestext": "Kjo faqe radhitë të gjitha faqet në {{ns:template}} që nuk janë të përfshira në faqe tjera.\nMos harroni të shihni nyje tjera të stampave para grisjes së tyre.",
 	"unusedtemplateswlh": "lidhje",
 	"randompage": "Faqe e rastit",
-	"randompage-nopages": "Nuk ka faqe në {{PLURLA:$2|hapësirën|hapësirat}} në vijim: $1",
+	"randompage-nopages": "Nuk ka faqe në {{PLURAL:$2|hapësirën|hapësirat}} në vijim: $1",
 	"randomincategory": "Faqe rasti në kategori",
 	"randomincategory-invalidcategory": "\"$1\" nuk është emër i vlefshëm kategorie.",
 	"randomincategory-nopages": "Nuk ka faqe në kategorinë [[:Category:$1|$1]].",

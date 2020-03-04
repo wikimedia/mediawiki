@@ -307,7 +307,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['userhidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_USER, $user ) ) {
+				if ( RevisionRecord::userCanBitfield(
+					$row->ar_deleted,
+					RevisionRecord::DELETED_USER,
+					$user
+				) ) {
 					if ( $fld_user ) {
 						$rev['user'] = $row->ar_user_text;
 					}
@@ -322,7 +326,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['commenthidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_COMMENT, $user ) ) {
+				if ( RevisionRecord::userCanBitfield(
+					$row->ar_deleted,
+					RevisionRecord::DELETED_COMMENT,
+					$user
+				) ) {
 					$comment = $commentStore->getComment( 'ar_comment', $row )->text;
 					if ( $fld_comment ) {
 						$rev['comment'] = $comment;
@@ -345,7 +353,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['sha1hidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_TEXT, $user ) ) {
+				if ( RevisionRecord::userCanBitfield(
+					$row->ar_deleted,
+					RevisionRecord::DELETED_TEXT,
+					$user
+				) ) {
 					if ( $row->ar_sha1 != '' ) {
 						$rev['sha1'] = Wikimedia\base_convert( $row->ar_sha1, 36, 16, 40 );
 					} else {
@@ -358,7 +370,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$rev['texthidden'] = true;
 					$anyHidden = true;
 				}
-				if ( Revision::userCanBitfield( $row->ar_deleted, RevisionRecord::DELETED_TEXT, $user ) ) {
+				if ( RevisionRecord::userCanBitfield(
+					$row->ar_deleted,
+					RevisionRecord::DELETED_TEXT,
+					$user
+				) ) {
 					ApiResult::setContentValue( $rev, 'text',
 						$revisionStore->newRevisionFromArchiveRow( $row )
 							->getContent( SlotRecord::MAIN )->serialize() );

@@ -100,6 +100,7 @@ class SearchFormWidget {
 			'id' => 'searchText',
 			'name' => 'search',
 			'autofocus' => trim( $term ) === '',
+			'title' => $this->specialSearch->msg( 'searchsuggest-search' )->text(),
 			'value' => $term,
 			'dataLocation' => 'content',
 			'infusable' => true,

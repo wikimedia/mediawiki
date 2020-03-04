@@ -970,6 +970,7 @@
 	"badsiglength": "Paraksts ir pārāk garš.\nTam ir jābūt īsākam par  $1 {{PLURAL:$1|simboliem|simbolu|simboliem}}.",
 	"yourgender": "Kā tevi labāk aprakstīt?",
 	"gender-unknown": "Pieminot tevi, ja iespējams, programmatūra izmantos dzimumam neitrālus vārdus",
+	"gender-notknown": "Viņi labo viki lapas",
 	"gender-male": "Viņš labo viki lapas",
 	"gender-female": "Viņa labo viki lapas",
 	"prefs-help-gender": "Dzimums nav obligāti jānorāda (šo parametru programmatūra izmanto, lai ģenerētu paziņojumus, kas atkarīgi no dalībnieka dzimuma). Šī informācija būs publiski pieejama.",

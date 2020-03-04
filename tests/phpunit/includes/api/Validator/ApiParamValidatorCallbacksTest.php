@@ -196,7 +196,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 			$this->assertSame( $expect->getApiCode(), $warnings[0][1] );
 			$this->assertSame( $expect->getApiData(), $warnings[0][2] );
 		} else {
-			$this->assertEmpty( $warnings );
+			$this->assertSame( [], $warnings );
 		}
 
 		$this->assertSame(

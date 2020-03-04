@@ -1118,6 +1118,7 @@
 	"badsiglength": "La subskribo estas tro longa.\nĜi devas esti sub $1 {{PLURAL:$1|signo|signoj}}.",
 	"yourgender": "Kiel vi preferas esti priskribata?",
 	"gender-unknown": "Menciante vin, la programaro uzos seksneŭtralajn vortojn ĉiam kiam eblas",
+	"gender-notknown": "Ri redaktas vikipaĝojn",
 	"gender-male": "Li redaktas vikipaĝojn",
 	"gender-female": "Ŝi redaktas vikipaĝojn",
 	"prefs-help-gender": "Nedeviga: uzita por sekseca salutado de la programaro. Ĉi tiu informo montriĝos publike.",

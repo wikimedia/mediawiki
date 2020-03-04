@@ -74,6 +74,9 @@ class ProtectionForm {
 	/** @var IContextSource */
 	private $mContext;
 
+	/** @var PermissionManager */
+	private $permManager;
+
 	public function __construct( Article $article ) {
 		// Set instance variables.
 		$this->mArticle = $article;
@@ -81,11 +84,14 @@ class ProtectionForm {
 		$this->mApplicableTypes = $this->mTitle->getRestrictionTypes();
 		$this->mContext = $article->getContext();
 
+		$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
-		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors(
+		$this->mPermErrors = $this->permManager->getPermissionErrors(
 			'protect',
 			$this->mContext->getUser(),
+			$this->mTitle,
 			$this->mContext->getRequest()->wasPosted()
 				? PermissionManager::RIGOR_SECURE
 				: PermissionManager::RIGOR_FULL // T92357
@@ -105,7 +111,7 @@ class ProtectionForm {
 	 * Loads the current state of protection into the object.
 	 */
 	function loadData() {
-		$levels = MediaWikiServices::getInstance()->getPermissionManager()->getNamespaceRestrictionLevels(
+		$levels = $this->permManager->getNamespaceRestrictionLevels(
 			$this->mTitle->getNamespace(), $this->mContext->getUser()
 		);
 		$this->mCascade = $this->mTitle->areRestrictionsCascading();
@@ -195,7 +201,7 @@ class ProtectionForm {
 	 */
 	function execute() {
 		if (
-			MediaWikiServices::getInstance()->getPermissionManager()->getNamespaceRestrictionLevels(
+			$this->permManager->getNamespaceRestrictionLevels(
 				$this->mTitle->getNamespace()
 			) === [ '' ]
 		) {

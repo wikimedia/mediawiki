@@ -71,8 +71,9 @@ $wgConfigRegistry = [
 /**
  * MediaWiki version number
  * @since 1.2
+ * @deprecated since 1.35; use the MW_VERSION constant instead
  */
-$wgVersion = '1.35.0-alpha';
+$wgVersion = MW_VERSION;
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -1248,14 +1249,6 @@ $wgSVGMaxSize = 5120;
  * Default is 1024*256 bytes
  */
 $wgSVGMetadataCutoff = 262144;
-
-/**
- * Obsolete, no longer used.
- * SVG file uploads now always allow <title> elements.
- *
- * @deprecated 1.34
- */
-$wgAllowTitlesInSVG = true;
 
 /**
  * Whether thumbnails should be generated in target language (usually, same as
@@ -6287,12 +6280,6 @@ $wgMWLoggerDefaultSpi = [
  * Useful for developers and technical users trying to working on a closed wiki.
  */
 $wgShowDebug = false;
-
-/**
- * Prefix debug messages with relative timestamp. Very-poor man's profiler.
- * Since 1.19 also includes memory usage.
- */
-$wgDebugTimestamps = false;
 
 /**
  * Show the contents of $wgHooks in Special:Version

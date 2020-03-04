@@ -224,7 +224,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		// Check that each item in $actualItems contains all of keys specified in $requiredKeys
 		$actualItemsKeysOnly = array_map( 'array_keys', $actualItems );
 		foreach ( $actualItemsKeysOnly as $keysOfTheItem ) {
-			$this->assertEmpty( array_diff( $requiredKeys, $keysOfTheItem ) );
+			$this->assertSame( [], array_diff( $requiredKeys, $keysOfTheItem ) );
 		}
 	}
 
@@ -829,7 +829,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			[ 'minor' ]
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotMinor ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotMinor ) );
 	}
 
 	public function testShowBotParams() {
@@ -857,7 +857,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			[ 'bot' ]
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotBot ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotBot ) );
 	}
 
 	public function testShowAnonParams() {
@@ -886,7 +886,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			[ 'anon' ]
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotAnon ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotAnon ) );
 	}
 
 	public function testShowUnreadParams() {
@@ -971,7 +971,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			$this->getItemsFromApiResponse( $resultPatrolled )
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotPatrolled ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotPatrolled ) );
 	}
 
 	public function testNewAndEditTypeParameters() {
@@ -1389,7 +1389,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			],
 			$this->getItemsFromApiResponse( $resultStart )
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultEnd ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultEnd ) );
 	}
 
 	public function testContinueParam() {

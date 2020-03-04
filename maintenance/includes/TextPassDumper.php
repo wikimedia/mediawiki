@@ -765,7 +765,7 @@ TEXT
 	protected function openSpawn() {
 		global $IP;
 
-		$wiki = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+		$wiki = WikiMap::getCurrentWikiId();
 		if ( count( $this->php ) == 2 ) {
 			$mwscriptpath = $this->php[1];
 		} else {

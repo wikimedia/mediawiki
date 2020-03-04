@@ -231,22 +231,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Load a page revision from a given revision ID number.
-	 * Returns null if no such revision can be found.
-	 *
-	 * @deprecated since 1.31, use RevisionStore::getRevisionById() instead.
-	 *
-	 * @param IDatabase $db
-	 * @param int $id
-	 * @return Revision|null
-	 */
-	public static function loadFromId( $db, $id ) {
-		wfDeprecated( __METHOD__, '1.31' ); // no known callers
-		$rec = self::getRevisionStore()->loadRevisionFromId( $db, $id );
-		return $rec ? new Revision( $rec ) : null;
-	}
-
-	/**
 	 * Load either the current, or a specified, revision
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.
@@ -269,6 +253,7 @@ class Revision implements IDBAccessObject {
 	 * to that page, will return null.
 	 *
 	 * @deprecated since 1.31, use RevisionStore::getRevisionByTitle() instead.
+	 * Hard deprecated in 1.35
 	 *
 	 * @param IDatabase $db
 	 * @param Title $title
@@ -276,6 +261,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromTitle( $db, $title, $id = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$rec = self::getRevisionStore()->loadRevisionFromTitle( $db, $title, $id );
 		return $rec ? new Revision( $rec ) : null;
 	}
@@ -1019,11 +1005,16 @@ class Revision implements IDBAccessObject {
 	 * @param int $field One of self::DELETED_TEXT,
 	 *                              self::DELETED_COMMENT,
 	 *                              self::DELETED_USER
-	 * @param User|null $user User object to check, or null to use $wgUser
+	 * @param User|null $user User object to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {
-		return self::userCanBitfield( $this->getVisibility(), $field, $user );
+		if ( !$user ) {
+			// TODO check callers and hard deprecate
+			global $wgUser;
+			$user = $wgUser;
+		}
+		return RevisionRecord::userCanBitfield( $this->getVisibility(), $field, $user );
 	}
 
 	/**
@@ -1043,9 +1034,9 @@ class Revision implements IDBAccessObject {
 	public static function userCanBitfield( $bitfield, $field, User $user = null,
 		Title $title = null
 	) {
-		global $wgUser;
-
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( !$user ) {
+			global $wgUser;
 			$user = $wgUser;
 		}
 
@@ -1067,22 +1058,28 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param IDatabase $db
 	 * @param int $id Page id
 	 * @return int
 	 */
 	public static function countByPageId( $db, $id ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return self::getRevisionStore()->countRevisionsByPageId( $db, $id );
 	}
 
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param IDatabase $db
 	 * @param Title $title
 	 * @return int
 	 */
 	public static function countByTitle( $db, $title ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return self::getRevisionStore()->countRevisionsByTitle( $db, $title );
 	}
 

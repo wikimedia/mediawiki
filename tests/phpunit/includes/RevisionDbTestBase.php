@@ -1105,18 +1105,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Revision::loadFromId
-	 */
-	public function testLoadFromId() {
-		$rev = $this->testPage->getRevision();
-		$this->hideDeprecated( 'Revision::loadFromId' );
-		$this->assertRevEquals(
-			$rev,
-			Revision::loadFromId( wfGetDB( DB_MASTER ), $rev->getId() )
-		);
-	}
-
-	/**
 	 * @covers Revision::loadFromPageId
 	 */
 	public function testLoadFromPageId() {
@@ -1159,6 +1147,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitle() {
+		$this->hideDeprecated( 'Revision::loadFromTitle' );
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromTitle( wfGetDB( DB_MASTER ), $this->testPage->getTitle() )
@@ -1169,6 +1159,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitleWithLatestRevId() {
+		$this->hideDeprecated( 'Revision::loadFromTitle' );
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromTitle(
@@ -1183,6 +1175,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::loadFromTitle
 	 */
 	public function testLoadFromTitleWithNotLatestRevId() {
+		$this->hideDeprecated( 'Revision::loadFromTitle' );
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$this->assertRevEquals(
 			$this->testPage->getRevision()->getPrevious(),
@@ -1540,6 +1534,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::userCanBitfield
 	 */
 	public function testUserCanBitfield( $bitField, $field, $userGroups, $title, $expected ) {
+		$this->hideDeprecated( 'Revision::userCanBitfield' );
 		$title = Title::newFromText( $title );
 
 		$this->setGroupPermissions(

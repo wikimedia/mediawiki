@@ -139,7 +139,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$logo = ResourceLoaderSkinModule::getAvailableLogos( $config );
 		$data['logo'] = wfExpandUrl( $logo['1x'], PROTO_RELATIVE );
 
-		$data['generator'] = "MediaWiki {$config->get( 'Version' )}";
+		$data['generator'] = 'MediaWiki ' . MW_VERSION;
 
 		$data['phpversion'] = PHP_VERSION;
 		$data['phpsapi'] = PHP_SAPI;
@@ -237,7 +237,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data[ApiResult::META_BC_BOOLS][] = 'variantarticlepath';
 		$data['server'] = $config->get( 'Server' );
 		$data['servername'] = $config->get( 'ServerName' );
-		$data['wikiid'] = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+		$data['wikiid'] = WikiMap::getCurrentWikiId();
 		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
 
 		$data['misermode'] = (bool)$config->get( 'MiserMode' );

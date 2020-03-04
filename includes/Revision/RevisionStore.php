@@ -2388,24 +2388,6 @@ class RevisionStore
 	}
 
 	/**
-	 * Load a page revision from a given revision ID number.
-	 * Returns null if no such revision can be found.
-	 *
-	 * MCR migration note: this corresponds to Revision::loadFromId
-	 *
-	 * @note direct use is deprecated!
-	 * @todo remove when unused! there seem to be no callers of Revision::loadFromId
-	 *
-	 * @param IDatabase $db
-	 * @param int $id
-	 *
-	 * @return RevisionRecord|null
-	 */
-	public function loadRevisionFromId( IDatabase $db, $id ) {
-		return $this->loadRevisionFromConds( $db, [ 'rev_id' => intval( $id ) ] );
-	}
-
-	/**
 	 * Load either the current, or a specified, revision
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.
@@ -2439,6 +2421,7 @@ class RevisionStore
 	 *
 	 * @note direct use is deprecated!
 	 * @todo remove when unused!
+	 * @deprecated since 1.35
 	 *
 	 * @param IDatabase $db
 	 * @param Title $title
@@ -2447,6 +2430,7 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function loadRevisionFromTitle( IDatabase $db, $title, $id = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $id ) {
 			$matchId = intval( $id );
 		} else {
@@ -3233,7 +3217,7 @@ class RevisionStore
 			$this->getRevisionRowCacheKey( $db, $pageId, $revId ),
 			WANObjectCache::TTL_WEEK,
 			function ( $curValue, &$ttl, array &$setOpts ) use (
-				$db, $pageId, $revId, &$fromCache
+				$db, $revId, &$fromCache
 			) {
 				$setOpts += Database::getCacheSetOptions( $db );
 				$row = $this->fetchRevisionRowFromConds( $db, [ 'rev_id' => intval( $revId ) ] );

@@ -499,7 +499,7 @@
 						}
 					} );
 					pi.min = pi.min || 0;
-					pi.apiSandboxMax = mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max;
+					pi.apiSandboxMax = ( mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max ) || pi.max;
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
 					multiModeAllowed = true;

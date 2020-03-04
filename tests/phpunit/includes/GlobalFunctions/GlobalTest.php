@@ -313,8 +313,6 @@ class GlobalTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( [
 			'wgDebugLogFile' => $debugLogFile,
-			#  @todo FIXME: $wgDebugTimestamps should be tested
-			'wgDebugTimestamps' => false,
 		] );
 		$this->setLogger( 'wfDebug', new LegacyLogger( 'wfDebug' ) );
 

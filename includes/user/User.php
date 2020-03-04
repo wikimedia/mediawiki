@@ -2440,7 +2440,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
 		return [
 			[
-				'wiki' => WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() ),
+				'wiki' => WikiMap::getCurrentWikiId(),
 				'link' => $utp->getLocalURL(),
 				'rev' => $rev
 			]
@@ -3792,7 +3792,7 @@ class User implements IDBAccessObject, UserIdentity {
 			}
 
 			// Try to update the DB post-send and only if needed...
-			DeferredUpdates::addCallableUpdate( function () use ( $title, $oldid ) {
+			DeferredUpdates::addCallableUpdate( function () use ( $oldid ) {
 				if ( !$this->getNewtalk() ) {
 					return; // no notifications to clear
 				}

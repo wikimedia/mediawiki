@@ -30,7 +30,6 @@ return [
 		'dependencies' => [
 			// Test runner configures QUnit but can't have it as dependency,
 			// see SpecialJavaScriptTest::viewQUnit.
-			'jquery.getAttrs',
 			'mediawiki.page.ready',
 			'mediawiki.page.startup',
 			'test.sinonjs',
@@ -49,7 +48,6 @@ return [
 			'tests/qunit/suites/resources/jquery/jquery.accessKeyLabel.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.color.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.colorUtil.test.js',
-			'tests/qunit/suites/resources/jquery/jquery.getAttrs.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.highlightText.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.lengthLimit.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.makeCollapsible.test.js',
@@ -104,7 +102,6 @@ return [
 		],
 		'dependencies' => [
 			'jquery.color',
-			'jquery.getAttrs',
 			'jquery.highlightText',
 			'jquery.lengthLimit',
 			'jquery.makeCollapsible',

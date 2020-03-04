@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group API
  * @group medium
@@ -46,9 +48,14 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 						[
 							'class' => ApiQueryLanguageinfo::class,
 							'factory' => function ( $parent, $name ) use ( $microtimeFunction ) {
+								$services = MediaWikiServices::getInstance();
 								return new ApiQueryLanguageinfo(
 									$parent,
 									$name,
+									$services->getLanguageFactory(),
+									$services->getLanguageNameUtils(),
+									$services->getLanguageFallback(),
+									$services->getLanguageConverterFactory(),
 									$microtimeFunction
 								);
 							}
@@ -170,7 +177,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 	public function testResponseHasModulePathEvenIfEmpty() {
 		list( $response, $continue ) = $this->doQuery( [ 'licode' => '' ] );
-		$this->assertEmpty( $response );
+		$this->assertSame( [], $response );
 		// the real test is that $res[0]['query']['languageinfo'] in doQuery() didn’t fail
 	}
 

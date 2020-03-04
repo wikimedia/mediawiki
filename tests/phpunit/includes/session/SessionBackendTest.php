@@ -197,7 +197,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 
 		$this->assertInstanceOf( Session::class, $session1 );
 		$this->assertInstanceOf( Session::class, $session2 );
-		$this->assertSame( 2, count( $priv->requests ) );
+		$this->assertCount( 2, $priv->requests );
 
 		$index = TestingAccessWrapper::newFromObject( $session1 )->index;
 
@@ -207,7 +207,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		$this->assertSame( 'Example', $backend->suggestLoginUsername( $index ) );
 
 		$session1 = null;
-		$this->assertSame( 1, count( $priv->requests ) );
+		$this->assertCount( 1, $priv->requests );
 		$this->assertArrayHasKey( $backend->getId(), $manager->allSessionBackends );
 		$this->assertSame( $backend, $manager->allSessionBackends[$backend->getId()] );
 		try {

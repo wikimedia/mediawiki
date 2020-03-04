@@ -102,7 +102,8 @@ return [
 		$authManager = new AuthManager(
 			RequestContext::getMain()->getRequest(),
 			$services->getMainConfig(),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getPermissionManager()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;
@@ -346,6 +347,18 @@ return [
 			$config->get( 'InterwikiCache' ),
 			$config->get( 'InterwikiScopes' ),
 			$config->get( 'InterwikiFallbackSite' )
+		);
+	},
+
+	'JobRunner' => function ( MediaWikiServices $services ) : JobRunner {
+		return new JobRunner(
+			new ServiceOptions( JobRunner::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getDBLoadBalancerFactory(),
+			JobQueueGroup::singleton(),
+			$services->getReadOnlyMode(),
+			$services->getLinkCache(),
+			$services->getStatsdDataFactory(),
+			LoggerFactory::getInstance( 'runJobs' )
 		);
 	},
 

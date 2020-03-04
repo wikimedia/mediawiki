@@ -268,7 +268,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		// Now get the actual limits
 		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
 			foreach ( $categories as $cat ) {
-				if ( isset( $limits[$cat] ) && $limits[$cat] !== null ) {
+				if ( isset( $limits[$cat] ) ) {
 					$retval[$action][$cat]['hits'] = (int)$limits[$cat][0];
 					$retval[$action][$cat]['seconds'] = (int)$limits[$cat][1];
 				}

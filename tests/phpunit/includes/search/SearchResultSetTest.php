@@ -51,7 +51,7 @@ class SearchResultSetTest extends MediaWikiTestCase {
 	public function testHasMoreResults() {
 		$result = SearchResult::newFromTitle( Title::newMainPage() );
 		$resultSet = new MockSearchResultSet( array_fill( 0, 3, $result ) );
-		$this->assertEquals( 3, count( $resultSet ) );
+		$this->assertCount( 3, $resultSet );
 		$this->assertFalse( $resultSet->hasMoreResults() );
 		$resultSet->shrink( 3 );
 		$this->assertFalse( $resultSet->hasMoreResults() );

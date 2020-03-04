@@ -37,10 +37,6 @@
 		"attachment": {
 			"file": "images/icons/attachment.svg"
 		},
-		"beaker": {
-			"file": "images/icons/labFlask.svg",
-			"deprecated": "Renamed since v0.34.1, use 'labFlask' instead."
-		},
 		"calendar": {
 			"file": "images/icons/calendar.svg"
 		},

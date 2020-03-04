@@ -58,7 +58,7 @@ STR;
 	 */
 	private function validateRequestExpectedPair( $v ) {
 		$this->assertIsArray( $v, self::PARAM_ASSERT );
-		$this->assertEquals( 2, count( $v ), self::PARAM_ASSERT );
+		$this->assertCount( 2, $v, self::PARAM_ASSERT );
 		$this->assertArrayHasKey( 0, $v, self::PARAM_ASSERT );
 		$this->assertArrayHasKey( 1, $v, self::PARAM_ASSERT );
 		$this->assertIsArray( $v[0], self::PARAM_ASSERT );

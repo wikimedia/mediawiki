@@ -501,10 +501,13 @@ class LogEventsList extends ContextSource {
 	 * @param stdClass $row
 	 * @param string|array $type
 	 * @param string|array $action
-	 * @param string $right
+	 * @param string $right (deprecated since 1.35)
 	 * @return bool
 	 */
 	public static function typeAction( $row, $type, $action, $right = '' ) {
+		if ( $right !== '' ) {
+			wfDeprecated( __METHOD__ . ' with a right specified', '1.35' );
+		}
 		$match = is_array( $type ) ?
 			in_array( $row->log_type, $type ) : $row->log_type == $type;
 		if ( $match ) {
@@ -783,13 +786,18 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param IDatabase $db
 	 * @param string $audience Public/user
-	 * @param User|null $user User to check, or null to use $wgUser
+	 * @param User|null $user User to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return string|bool String on success, false on failure.
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', User $user = null ) {
 		global $wgLogRestrictions;
 
 		if ( $audience != 'public' && $user === null ) {
+			wfDeprecated(
+				__METHOD__ .
+				' using a non-public audience without passing a $user parameter',
+				'1.35'
+			);
 			global $wgUser;
 			$user = $wgUser;
 		}

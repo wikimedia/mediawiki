@@ -928,7 +928,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options, $startFrom );
 
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 		$this->assertNull( $startFrom );
 	}
 
@@ -966,7 +966,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			[ 'filters' => [ $filtersOption ] ]
 		);
 
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function mysqlIndexOptimizationProvider() {
@@ -1026,7 +1026,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options );
 
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function userPermissionRelatedExtraChecksProvider() {
@@ -1141,7 +1141,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$queryService = $this->newService( $mockDb, $permissionManager );
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options );
 
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function testGetWatchedItemsWithRecentChangeInfo_allRevisionsOptionAndEmptyResult() {
@@ -1183,7 +1183,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo( $user, [ 'allRevisions' => true ] );
 
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function getWatchedItemsWithRecentChangeInfoInvalidOptionsProvider() {
@@ -1314,7 +1314,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			[ 'usedInGenerator' => true ]
 		);
 
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function testGetWatchedItemsWithRecentChangeInfo_usedInGeneratorAllRevisionsOptions() {
@@ -1356,7 +1356,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			[ 'usedInGenerator' => true, 'allRevisions' => true, ]
 		);
 
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function testGetWatchedItemsWithRecentChangeInfo_watchlistOwnerOptionAndEmptyResult() {
@@ -1389,7 +1389,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			[ 'watchlistOwner' => $otherUser, 'watchlistOwnerToken' => '0123456789abcdef' ]
 		);
 
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function invalidWatchlistTokenProvider() {
@@ -1548,7 +1548,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$queryService = $this->newService( $mockDb );
 
 		$items = $queryService->getWatchedItemsForUser( $user, $options );
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function provideGetWatchedItemsForUser_fromUntilStartFromOptions() {
@@ -1661,7 +1661,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 		$queryService = $this->newService( $mockDb );
 
 		$items = $queryService->getWatchedItemsForUser( $user, $options );
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 	public function getWatchedItemsForUserInvalidOptionsProvider() {
@@ -1713,7 +1713,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 
 		$items = $queryService->getWatchedItemsForUser(
 			new UserIdentityValue( 0, 'AnonUser', 0 ) );
-		$this->assertEmpty( $items );
+		$this->assertSame( [], $items );
 	}
 
 }

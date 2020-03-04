@@ -935,7 +935,7 @@ class ChangeTags {
 		$dbw->upsert(
 			'change_tag_def',
 			$tagDef,
-			[ 'ctd_name' ],
+			'ctd_name',
 			[ 'ctd_user_defined' => 1 ],
 			__METHOD__
 		);

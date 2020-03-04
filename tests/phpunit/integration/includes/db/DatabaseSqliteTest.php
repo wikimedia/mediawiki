@@ -49,11 +49,14 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'flags' => DBO_DEFAULT,
 				'variables' => [],
 				'profiler' => null,
+				'topologyRole' => Database::ROLE_STREAMING_MASTER,
+				'topologicalMaster' => null,
 				'trxProfiler' => new TransactionProfiler(),
 				'connLogger' => new NullLogger(),
 				'queryLogger' => new NullLogger(),
 				'errorLogger' => null,
-				'deprecationLogger' => null,
+				'deprecationLogger' => new NullLogger(),
+				'srvCache' => new HashBagOStuff(),
 			] ] )->setMethods( array_merge(
 				[ 'query' ],
 				$version ? [ 'getServerVersion' ] : []
@@ -257,7 +260,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$index = $indexList->next();
 		$this->assertEquals( 'baz_index2', $index->name );
 		$this->assertSame( '1', $index->unique );
-		$this->assertSame( 0,
+		$this->assertSame( '0',
 			$db->selectField( 'sqlite_master', 'COUNT(*)', [ 'name' => 'baz' ] ),
 			'Create a temporary duplicate only'
 		);
@@ -335,7 +338,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testUpgrades() {
-		global $IP, $wgVersion;
+		global $IP;
 
 		// Versions tested
 		$versions = [
@@ -364,7 +367,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		sort( $currentTables );
 
 		foreach ( $versions as $version ) {
-			$versions = "upgrading from $version to $wgVersion";
+			$versions = "upgrading from $version to " . MW_VERSION;
 			$db = $this->prepareTestDB( $version );
 			$tables = $this->getTables( $db );
 			$this->assertEquals( $currentTables, $tables, "Different tables $versions" );
@@ -587,13 +590,13 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'3.7.11',
 				'a',
 				[ 'a_1' => 1 ],
-				'INSERT  INTO a (a_1) VALUES (\'1\');'
+				'INSERT  INTO a (a_1) VALUES (1);'
 			],
 			[
 				'3.7.10',
 				'a',
 				[ 'a_1' => 1 ],
-				'INSERT  INTO a (a_1) VALUES (\'1\');'
+				'INSERT  INTO a (a_1) VALUES (1);'
 			],
 			[
 				'3.7.11',
@@ -602,7 +605,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 					[ 'a_1' => 2 ],
 					[ 'a_1' => 3 ]
 				],
-				'INSERT  INTO a (a_1) VALUES (\'2\'),(\'3\');'
+				'INSERT  INTO a (a_1) VALUES (2),(3);'
 			],
 			[
 				'3.7.10',
@@ -612,8 +615,69 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 					[ 'a_1' => 3 ]
 				],
 				'BEGIN;' .
-				'INSERT  INTO a (a_1) VALUES (\'2\');' .
-				'INSERT  INTO a (a_1) VALUES (\'3\');' .
+				'INSERT  INTO a (a_1) VALUES (2);' .
+				'INSERT  INTO a (a_1) VALUES (3);' .
+				'COMMIT;'
+			]
+		];
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::replace()
+	 * @param string $version
+	 * @param string $table
+	 * @param array $ukeys
+	 * @param array $rows
+	 * @param string $expectedSql
+	 * @dataProvider provideNativeReplaces
+	 */
+	public function testNativeReplaceSupport( $version, $table, $ukeys, $rows, $expectedSql ) {
+		$sqlDump = '';
+		$db = $this->newMockDb( $version, $sqlDump );
+		$db->query( 'CREATE TABLE a ( a_1 PRIMARY KEY, a_2 )', __METHOD__ );
+
+		$sqlDump = '';
+		$db->replace( $table, $ukeys, $rows, __METHOD__ );
+		$this->assertEquals( $expectedSql, $sqlDump );
+	}
+
+	public function provideNativeReplaces() {
+		return [
+			[
+				'3.7.11',
+				'a',
+				[ 'a_1' ],
+				[ 'a_1' => 1, 'a_2' => 'x' ],
+				'REPLACE INTO a (a_1,a_2) VALUES (\'1\',\'x\');'
+			],
+			[
+				'3.7.10',
+				'a',
+				[ 'a_1' ],
+				[ 'a_1' => 1, 'a_2' => 'x' ],
+				'REPLACE INTO a (a_1,a_2) VALUES (\'1\',\'x\');'
+			],
+			[
+				'3.7.11',
+				'a',
+				[ 'a_1' ],
+				[
+					[ 'a_1' => 2, 'a_2' => 'x' ],
+					[ 'a_1' => 3, 'a_2' => 'y' ]
+				],
+				'REPLACE INTO a (a_1,a_2) VALUES (\'2\',\'x\'),(\'3\',\'y\');'
+			],
+			[
+				'3.7.10',
+				'a',
+				[ 'a_1' ],
+				[
+					[ 'a_1' => 2, 'a_2' => 'x' ],
+					[ 'a_1' => 3, 'a_2' => 'y' ]
+				],
+				'BEGIN;' .
+				'REPLACE INTO a (a_1,a_2) VALUES (\'2\',\'x\');' .
+				'REPLACE INTO a (a_1,a_2) VALUES (\'3\',\'y\');' .
 				'COMMIT;'
 			]
 		];

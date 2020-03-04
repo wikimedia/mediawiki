@@ -118,9 +118,9 @@ class BlockManagerTest extends MediaWikiTestCase {
 			$user->getRequest()->response()
 		);
 
-		$this->assertSame(
+		$this->assertCount(
 			$expectKeepCookie ? 0 : 1,
-			count( $user->getRequest()->response()->getCookies() )
+			$user->getRequest()->response()->getCookies()
 		);
 
 		$block->delete();
@@ -343,7 +343,7 @@ class BlockManagerTest extends MediaWikiTestCase {
 
 		$blocks = [ $block, $block, $autoblock, new SystemBlock() ];
 
-		$this->assertSame( 2, count( $blockManager->getUniqueBlocks( $blocks ) ) );
+		$this->assertCount( 2, $blockManager->getUniqueBlocks( $blocks ) );
 	}
 
 	/**

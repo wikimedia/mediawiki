@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.36.5
+ * OOUI v0.37.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-02-12T17:46:21Z
+ * Date: 2020-02-27T02:12:37Z
  */
 ( function ( OO ) {
 
@@ -5361,7 +5361,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 	this.menu.$focusOwner.removeAttr( 'aria-expanded' );
 	// TagMultiselectWidget already does this, but it doesn't work right because this.menu is
 	// not yet set up while the parent constructor runs, and #getAllowedValues rejects everything.
-	if ( config.selected ) {
+	if ( config.selected.length > 0 ) {
 		this.setValue( config.selected );
 	}
 };

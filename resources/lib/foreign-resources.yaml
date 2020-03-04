@@ -217,8 +217,8 @@ mustache:
 
 oojs:
   type: tar
-  src: https://registry.npmjs.org/oojs/-/oojs-3.0.0.tgz
-  integrity: sha256-cNQ5UOHczNGzfEvm6jKM5zcmg3tqFxnJ2UnEOSt9/1M=
+  src: https://registry.npmjs.org/oojs/-/oojs-3.0.1.tgz
+  integrity: sha256-bfrCCMyCsIssXuGHpb1FCejo8dwkOEuV5bu/ujRDkpI=
   dest:
     package/dist/oojs.jquery.js:
     package/AUTHORS.txt:
@@ -237,8 +237,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.36.5.tgz
-  integrity: sha384-DAGUJFv4JpfepO4fURWbCZWSnwtk2OjNNbVHH/6lVJ8srtU4wNrTeL/0cVH9OT2E
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.37.0.tgz
+  integrity: sha384-YAB86eMIPiae5I/0LpdzOYQ7uobp5exSkZ0Pzswyq84rpoGkKgRHD11DL4gnHrUI
 
   dest:
     # Main stuff

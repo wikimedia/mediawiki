@@ -1578,7 +1578,7 @@
 	"apierror-allpages-generator-redirects": "Utiliser <kbd>gapfilterredir=nonredirects</kbd> au lieu de <var>redirects</var> quand <kbd>allpages</kbd> est utilisé comme un générateur.",
 	"apierror-appendnotsupported": "Impossible d’ajouter aux pages utilisant le modèle de contenu $1.",
 	"apierror-articleexists": "L’article que vous essayez de créer l’a déjà été.",
-	"apierror-assertanonfailed": "La vérification que l’utilisateur n’est pas connecté a échoué.",
+	"apierror-assertanonfailed": "La vérification de l'état non-connecté de l’utilisateur a échoué.",
 	"apierror-assertbotfailed": "La vérification que l’utilisateur a le droit <code>bot</code> a échoué.",
 	"apierror-assertnameduserfailed": "La vérification que l’utilisateur est « $1 » a échoué.",
 	"apierror-assertuserfailed": "La vérification que l’utilisateur est connecté a échoué.",

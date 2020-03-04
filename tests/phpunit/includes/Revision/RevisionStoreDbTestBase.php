@@ -1338,21 +1338,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Revision\RevisionStore::loadRevisionFromId
-	 */
-	public function testLoadRevisionFromId() {
-		$title = Title::newFromText( __METHOD__ );
-		$page = WikiPage::factory( $title );
-		/** @var Revision $rev */
-		$rev = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
-			->value['revision'];
-
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$result = $store->loadRevisionFromId( wfGetDB( DB_MASTER ), $rev->getId() );
-		$this->assertRevisionRecordMatchesRevision( $rev, $result );
-	}
-
-	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::loadRevisionFromPageId
 	 */
 	public function testLoadRevisionFromPageId() {
@@ -1371,6 +1356,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::loadRevisionFromTitle
 	 */
 	public function testLoadRevisionFromTitle() {
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 		$title = Title::newFromText( __METHOD__ );
 		$page = WikiPage::factory( $title );
 		/** @var Revision $rev */
@@ -2060,7 +2046,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->getContentBlobsForBatch( [ $rev1->getId(), $rev2->getId() ], $slots );
 		$this->assertTrue( $result->isGood() );
-		$this->assertEmpty( $result->getErrors() );
+		$this->assertSame( [], $result->getErrors() );
 
 		$rowSetsByRevId = $result->getValue();
 		$this->assertArrayHasKey( $rev1->getId(), $rowSetsByRevId );
@@ -2097,8 +2083,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$result = MediaWikiServices::getInstance()->getRevisionStore()
 			->getContentBlobsForBatch( $rows );
 		$this->assertTrue( $result->isGood() );
-		$this->assertEmpty( $result->getValue() );
-		$this->assertEmpty( $result->getErrors() );
+		$this->assertSame( [], $result->getValue() );
+		$this->assertSame( [], $result->getErrors() );
 	}
 
 	public function provideNewRevisionsFromBatchOptions() {
@@ -2178,7 +2164,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			$options
 		);
 		$this->assertTrue( $result->isGood() );
-		$this->assertEmpty( $result->getErrors() );
+		$this->assertSame( [], $result->getErrors() );
 		/** @var RevisionRecord[] $records */
 		$records = $result->getValue();
 		$this->assertRevisionRecordMatchesRevision( $rev1, $records[$rev1->getId()] );
@@ -2208,8 +2194,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				]
 			);
 		$this->assertTrue( $result->isGood() );
-		$this->assertEmpty( $result->getValue() );
-		$this->assertEmpty( $result->getErrors() );
+		$this->assertSame( [], $result->getValue() );
+		$this->assertSame( [], $result->getErrors() );
 	}
 
 	/**
@@ -2341,7 +2327,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			'countAuthorsBetween is non-inclusive on both ends if both beginning and end are provided' );
 		$result = $revisionStore->getAuthorsBetween( $page->getId(),
 			$revisions[0], $revisions[$NUM - 2] );
-		$this->assertEquals( 2, count( $result ),
+		$this->assertCount( 2, $result,
 			'getAuthorsBetween provides right number of users' );
 	}
 

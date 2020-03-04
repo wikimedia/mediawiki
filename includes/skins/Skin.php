@@ -60,20 +60,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Fetch the skinname messages for available skins.
-	 * @deprecated since 1.34, no longer used.
-	 * @return string[]
-	 */
-	static function getSkinNameMessages() {
-		wfDeprecated( __METHOD__, '1.34' );
-		$messages = [];
-		foreach ( self::getSkinNames() as $skinKey => $skinName ) {
-			$messages[] = "skinname-$skinKey";
-		}
-		return $messages;
-	}
-
-	/**
 	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
 	 * only want to show skins users _can_ use.
@@ -414,7 +400,7 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	public static function getDynamicStylesheetQuery() {
-		wfDeprecated( __METHOD__, '1.35' );
+		wfDeprecated( __METHOD__, '1.32' );
 		return [
 				'action' => 'raw',
 				'ctype' => 'text/css',
@@ -830,15 +816,6 @@ abstract class Skin extends ContextSource {
 	function getSearchLink() {
 		$searchPage = SpecialPage::getTitleFor( 'Search' );
 		return $searchPage->getLocalURL();
-	}
-
-	/**
-	 * @deprecated since 1.34, use getSearchLink() instead.
-	 * @return string
-	 */
-	function escapeSearchLink() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return htmlspecialchars( $this->getSearchLink() );
 	}
 
 	/**

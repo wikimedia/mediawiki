@@ -5,6 +5,7 @@ namespace MediaWiki\Auth;
 use Config;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use PHPUnit\Framework\Assert;
@@ -29,6 +30,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	protected $config;
 	/** @var ObjectFactory */
 	protected $objectFactory;
+	/** @var PermissionManager */
+	protected $permManager;
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -151,6 +154,9 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 			$this->objectFactory = new ObjectFactory( $services );
 		}
+		if ( $regen || !$this->permManager ) {
+			$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		}
 		if ( !$this->logger ) {
 			$this->logger = new \TestLogger();
 		}
@@ -158,7 +164,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		if ( $regen || !$this->config->has( 'AuthManagerConfig' ) ) {
 			$this->initializeConfig();
 		}
-		$this->manager = new AuthManager( $this->request, $this->config, $this->objectFactory );
+		$this->manager = new AuthManager(
+			$this->request,
+			$this->config,
+			$this->objectFactory,
+			$this->permManager
+		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );
 	}
@@ -1420,6 +1431,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$this->initializeManager( true );
 
 		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->initializeManager( true );
 		$this->assertEquals(
 			\Status::newGood(),
 			$this->manager->checkAccountCreatePermissions( new \User )
@@ -1434,10 +1446,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$readOnlyMode->setReason( false );
 
 		$this->setGroupPermissions( '*', 'createaccount', false );
+		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'badaccess-groups' ) );
 		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->initializeManager( true );
 
 		$user = \User::newFromName( 'UTBlockee' );
 		if ( $user->getID() == 0 ) {
@@ -1461,6 +1475,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$block = new DatabaseBlock( $blockOptions );
 		$block->insert();
 		$this->resetServices();
+		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( $user );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'blockedtext' ) );
@@ -1488,10 +1503,12 @@ class AuthManagerTest extends \MediaWikiTestCase {
 			],
 			'wgProxyWhitelist' => [],
 		] );
+		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'sorbs_create_account_reason' ) );
 		$this->setMwGlobals( 'wgProxyWhitelist', [ '127.0.0.1' ] );
+		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
 		$this->assertTrue( $status->isGood() );
 	}

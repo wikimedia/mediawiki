@@ -214,7 +214,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	private function getInterwikiCacheEntry( $prefix ) {
 		wfDebug( __METHOD__ . "( $prefix )\n" );
 
-		$wikiId = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+		$wikiId = WikiMap::getCurrentWikiId();
 
 		$value = false;
 		try {
@@ -339,7 +339,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	private function getAllPrefixesCached( $local ) {
 		wfDebug( __METHOD__ . "()\n" );
 
-		$wikiId = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+		$wikiId = WikiMap::getCurrentWikiId();
 
 		$data = [];
 		try {

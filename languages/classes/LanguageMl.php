@@ -42,8 +42,9 @@ class LanguageMl extends Language {
 	 * @return string
 	 */
 	public function normalize( $s ) {
+		global $IP;
 		$s = parent::normalize( $s );
-		$s = $this->transformUsingPairFile( 'normalize-ml.php', $s );
+		$s = $this->transformUsingPairFile( 'normalize-ml.php', $s, $IP );
 		return $s;
 	}
 }

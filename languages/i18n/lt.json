@@ -229,7 +229,7 @@
 	"views": "Peržiūros",
 	"toolbox": "Įrankiai",
 	"tool-link-userrights": "Keisti {{GENDER:$1|naudotojo|naudotojos}} grupes",
-	"tool-link-userrights-readonly": "Žiūrėti {{GENDER:$1|vartotojo|vartotojos}} grupes",
+	"tool-link-userrights-readonly": "Žiūrėti {{GENDER:$1|naudotojo|naudotojos}} grupes",
 	"tool-link-emailuser": "Siųsti {{GENDER:$1|šiam naudotojui|šiai naudotojai}} el. laišką",
 	"imagepage": "Žiūrėti failo puslapį",
 	"mediawikipage": "Rodyti pranešimo puslapį",

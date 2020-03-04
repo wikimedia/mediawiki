@@ -205,7 +205,8 @@ class MediaWiki {
 		// We will check again in Article::view().
 		$permErrors = $title->isSpecial( 'RunJobs' )
 			? [] // relies on HMAC key signature alone
-			: $title->getUserPermissionsErrors( 'read', $user );
+			: MediaWikiServices::getInstance()->getPermissionManager()
+				->getPermissionErrors( 'read', $user, $title );
 		if ( count( $permErrors ) ) {
 			// T34276: allowing the skin to generate output with $wgTitle or
 			// $this->context->title set to the input title would allow anonymous users to
@@ -622,10 +623,10 @@ class MediaWiki {
 				if ( !$invokedWithSuccess ) {
 					// Fall back to blocking on running the job(s)
 					$logger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
-					$this->triggerSyncJobs( $n, $logger );
+					$this->triggerSyncJobs( $n );
 				}
 			} else {
-				$this->triggerSyncJobs( $n, $logger );
+				$this->triggerSyncJobs( $n );
 			}
 		} );
 	}
@@ -1127,10 +1128,10 @@ class MediaWiki {
 				if ( !$invokedWithSuccess ) {
 					// Fall back to blocking on running the job(s)
 					$logger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
-					$this->triggerSyncJobs( $n, $logger );
+					$this->triggerSyncJobs( $n );
 				}
 			} else {
-				$this->triggerSyncJobs( $n, $logger );
+				$this->triggerSyncJobs( $n );
 			}
 		} catch ( JobQueueError $e ) {
 			// Do not make the site unavailable (T88312)
@@ -1140,13 +1141,12 @@ class MediaWiki {
 
 	/**
 	 * @param int $n Number of jobs to try to run
-	 * @param LoggerInterface $runJobsLogger
 	 */
-	private function triggerSyncJobs( $n, LoggerInterface $runJobsLogger ) {
+	private function triggerSyncJobs( $n ) {
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$old = $trxProfiler->setSilenced( true );
 		try {
-			$runner = new JobRunner( $runJobsLogger );
+			$runner = MediaWikiServices::getInstance()->getJobRunner();
 			$runner->run( [ 'maxJobs' => $n ] );
 		} finally {
 			$trxProfiler->setSilenced( $old );

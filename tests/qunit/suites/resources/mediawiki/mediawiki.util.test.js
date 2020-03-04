@@ -301,7 +301,7 @@
 	 */
 	QUnit.test( 'addPortletLink', function ( assert ) {
 		var tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo, listPortletItem,
-			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery;
+			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery, link;
 
 		$( '#qunit-fixture' ).append(
 			'<div class="portlet" id="p-test-tb">' +
@@ -332,14 +332,13 @@
 		assert.strictEqual( tbRL.nodeType, 1, 'returns a DOM Node' );
 		assert.strictEqual( tbRL.nodeName, 'LI', 'returns a list item element' );
 
-		tbMW = util.addPortletLink( 'p-test-tb', '//example.org/',
+		tbMW = util.addPortletLink( 'p-test-tb', 'https://example.org/',
 			'Example.org', 't-xmp', 'Go to Example', 'x', tbRL );
 		$tbMW = $( tbMW );
+		link = $tbMW.children( 'a' )[ 0 ];
 		assert.propEqual(
-			$tbMW.getAttrs(),
-			{
-				id: 't-xmp'
-			},
+			{ id: $tbMW[ 0 ].id },
+			{ id: 't-xmp' },
 			'List item attributes'
 		);
 		assert.propEqual(
@@ -348,9 +347,13 @@
 			'List item children'
 		);
 		assert.propEqual(
-			$tbMW.children( 'a' ).getAttrs(),
 			{
-				href: '//example.org/',
+				href: link.href,
+				title: link.title,
+				accesskey: link.accessKey
+			},
+			{
+				href: 'https://example.org/',
 				title: 'Go to Example [test-x]',
 				accesskey: 'x'
 			},

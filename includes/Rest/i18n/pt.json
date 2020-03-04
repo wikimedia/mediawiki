@@ -27,5 +27,7 @@
 	"rest-pagehistorycount-too-many-revisions": "O título especificado contém demasiadas revisões para recuperar esta contagem.",
 	"rest-search-error": "Erro ao devolver os resultados da pesquisa: $1",
 	"rest-page-source-type-error": "O tipo de conteúdo da fonte da página pedida não é suportado",
-	"rest-no-revision": "Não foi possível obter a revisão do título $1"
+	"rest-no-revision": "Não foi possível obter a revisão do título $1",
+	"rest-media-too-many-links": "Forma encontradas demasiadas hiperligações para conteúdos multimédia no título $1 (são permitidas $2)",
+	"rest-html-backend-error": "Não foi possível obter o HTML do Parsoid"
 }

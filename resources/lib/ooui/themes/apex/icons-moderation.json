@@ -50,10 +50,6 @@
 		"trash": {
 			"file": "../wikimediaui/images/icons/trash.svg"
 		},
-		"unTrash": {
-			"file": "../wikimediaui/images/icons/restore.svg",
-			"deprecated": "Changed and renamed since v0.31.1, use 'restore' instead."
-		},
 		"pushPin": {
 			"file": "../wikimediaui/images/icons/pushPin.svg"
 		},

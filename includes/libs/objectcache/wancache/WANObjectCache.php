@@ -23,6 +23,8 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\LightweightObjectStore\StorageAwareness;
 
 /**
  * Multi-datacenter aware caching interface
@@ -113,7 +115,12 @@ use Psr\Log\NullLogger;
  * @ingroup Cache
  * @since 1.26
  */
-class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInterface {
+class WANObjectCache implements
+	ExpirationAwareness,
+	StorageAwareness,
+	IStoreKeyEncoder,
+	LoggerAwareInterface
+{
 	/** @var BagOStuff The local datacenter cache */
 	protected $cache;
 	/** @var MapCacheLRU[] Map of group PHP instance caches */
@@ -156,9 +163,6 @@ class WANObjectCache implements IExpiringStore, IStoreKeyEncoder, LoggerAwareInt
 	const MAX_READ_LAG = 7;
 	/** @var int Seconds to tombstone keys on delete() and treat as volatile after invalidation */
 	const HOLDOFF_TTL = self::MAX_COMMIT_DELAY + self::MAX_READ_LAG + 1;
-
-	/** @var int Idiom for getWithSetCallback() meaning "do not store the callback result" */
-	const TTL_UNCACHEABLE = -1;
 
 	/** @var int Consider regeneration if the key will expire within this many seconds */
 	const LOW_TTL = 30;

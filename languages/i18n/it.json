@@ -130,7 +130,8 @@
 			"Titore",
 			"GiorgioHerbie",
 			"Tizven",
-			"Dansita"
+			"Dansita",
+			"Ontsed"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -997,7 +998,7 @@
 	"revdelete-otherreason": "Altri motivi/dettagli:",
 	"revdelete-reasonotherlist": "Altra motivazione",
 	"revdelete-edit-reasonlist": "Modifica le motivazioni per la cancellazione",
-	"revdelete-edit-reasonlist-suppress": "Modifica le ragioni di cancellazione",
+	"revdelete-edit-reasonlist-suppress": "Modifica le motivazioni per la soppressione",
 	"revdelete-offender": "Autore della versione:",
 	"suppressionlog": "Soppressioni",
 	"suppressionlogtext": "Di seguito sono elencate le cancellazioni e i blocchi con del contenuto nascosto agli amministratori.\nVedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blocchi attivi al momento.",
@@ -1192,7 +1193,8 @@
 	"badsig": "Errore nella firma non standard, verificare i tag HTML.",
 	"badsiglength": "La firma scelta è troppo lunga, non deve superare $1 {{PLURAL:$1|carattere|caratteri}}.",
 	"yourgender": "Come riferirsi a te?",
-	"gender-unknown": "Nel menzionarti, il software utilizzerà parole di genere neutrale ogni volta che sarà possibile",
+	"gender-unknown": "Nel menzionarti, quando possibile, il software userà espressioni neutrali rispetto al genere",
+	"gender-notknown": "È registrato/a su {{SITENAME}}",
 	"gender-male": "È registrato su {{SITENAME}}",
 	"gender-female": "È registrata su {{SITENAME}}",
 	"prefs-help-gender": "L'impostazione di questa preferenza è opzionale.\nIl software utilizza questo valore per rivolgersi a te e menzionarti agli altri usando il genere grammaticale appropriato.\nQuesta informazione sarà pubblica.",
@@ -1690,7 +1692,7 @@
 	"upload_directory_read_only": "Il server web non è in grado di scrivere nella directory di upload ($1).",
 	"uploaderror": "Errore nel caricamento",
 	"upload-recreate-warning": "<strong>Attenzione: un file con questo nome è stato cancellato o spostato.</strong>\nIl registro delle cancellazioni e degli spostamenti di questa pagina viene qui riportato per comodità:",
-	"uploadtext": "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:FileList|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].\n\nPer inserire un file all'interno di una pagina, fare un collegamento di questo tipo:\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' per usare la versione completa del file\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></code>''' per usare una versione larga 200 pixel inserita in un box, allineata a sinistra e con 'testo alternativo' come didascalia\n* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' per generare un collegamento diretto al file senza visualizzarlo",
+	"uploadtext": "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o cercare i file già caricati, consultare il [[Special:FileList|log dei file caricati]]. I caricamenti di file e di nuove versioni di file già presenti sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nel [[Special:Log/delete|log delle cancellazioni]].\n\nPer inserire un file all'interno di una pagina, usare un collegamento di questo tipo:\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' per usare la versione completa del file\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></code>''' per usare una versione larga 200 pixel inserita in un box, allineata a sinistra e con 'testo alternativo' come didascalia\n* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' per generare un collegamento diretto al file senza visualizzarlo",
 	"upload-permitted": "{{PLURAL:$2|Tipo di file consentito|Tipi di file consentiti}}: $1.",
 	"upload-preferred": "{{PLURAL:$2|Tipo di file consigliato|Tipi di file consigliati}}: $1.",
 	"upload-prohibited": "{{PLURAL:$2|Tipo di file non consentito|Tipi di file non consentiti}}: $1.",

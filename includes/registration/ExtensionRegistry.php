@@ -18,7 +18,7 @@ use Wikimedia\ScopedCallback;
 class ExtensionRegistry {
 
 	/**
-	 * "requires" key that applies to MediaWiki core/$wgVersion
+	 * "requires" key that applies to MediaWiki core
 	 */
 	public const MEDIAWIKI_CORE = 'MediaWiki';
 
@@ -191,11 +191,10 @@ class ExtensionRegistry {
 	}
 
 	private function makeCacheKey( BagOStuff $cache, $component, ...$extra ) {
-		global $wgVersion;
 		// Everything we vary the cache on
 		$vary = [
 			'registration' => self::CACHE_VERSION,
-			'mediawiki' => $wgVersion,
+			'mediawiki' => MW_VERSION,
 			'abilities' => $this->getAbilities(),
 			'checkDev' => $this->checkDev,
 			'queue' => $this->queued,
@@ -310,7 +309,6 @@ class ExtensionRegistry {
 	 * @return VersionChecker
 	 */
 	private function buildVersionChecker() {
-		global $wgVersion;
 		// array to optionally specify more verbose error messages for
 		// missing abilities
 		$abilityErrors = [
@@ -318,7 +316,7 @@ class ExtensionRegistry {
 		];
 
 		return new VersionChecker(
-			$wgVersion,
+			MW_VERSION,
 			PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION . '.' . PHP_RELEASE_VERSION,
 			get_loaded_extensions(),
 			$this->getAbilities(),

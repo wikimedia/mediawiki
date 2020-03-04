@@ -177,6 +177,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @covers Sanitizer::escapeIdForLink()
 	 * @covers Sanitizer::escapeIdForExternalInterwiki()
 	 * @covers Sanitizer::escapeIdInternal()
+	 * @covers Sanitizer::escapeIdInternalUrl()
 	 *
 	 * @param string $stuff
 	 * @param string[] $config
@@ -197,10 +198,11 @@ class SanitizerTest extends MediaWikiTestCase {
 
 	public function provideEscapeIdForStuff() {
 		// Test inputs and outputs
-		$text = 'foo тест_#%!\'()[]:<>&&amp;&amp;amp;';
+		$text = 'foo тест_#%!\'()[]:<>&&amp;&amp;amp;%F0';
 		$legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E' .
-			'.26.26amp.3B.26amp.3Bamp.3B';
-		$html5Encoded = 'foo_тест_#%!\'()[]:<>&&amp;&amp;amp;';
+			'.26.26amp.3B.26amp.3Bamp.3B.25F0';
+		$html5EncodedId = 'foo_тест_#%!\'()[]:<>&&amp;&amp;amp;%F0';
+		$html5EncodedHref = 'foo_тест_#%!\'()[]:<>&&amp;&amp;amp;%25F0';
 
 		// Settings: last element is $wgExternalInterwikiFragmentMode, the rest is $wgFragmentMode
 		$legacy = [ 'legacy', 'legacy' ];
@@ -218,27 +220,27 @@ class SanitizerTest extends MediaWikiTestCase {
 
 			// Transition to a new world: legacy links with HTML5 fallback
 			[ 'Attribute', $legacyNew, $text, $legacyEncoded, Sanitizer::ID_PRIMARY ],
-			[ 'Attribute', $legacyNew, $text, $html5Encoded, Sanitizer::ID_FALLBACK ],
+			[ 'Attribute', $legacyNew, $text, $html5EncodedId, Sanitizer::ID_FALLBACK ],
 			[ 'Link', $legacyNew, $text, $legacyEncoded ],
 			[ 'ExternalInterwiki', $legacyNew, $text, $legacyEncoded ],
 
 			// New world: HTML5 links, legacy fallbacks
-			[ 'Attribute', $newLegacy, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $newLegacy, $text, $html5EncodedId, Sanitizer::ID_PRIMARY ],
 			[ 'Attribute', $newLegacy, $text, $legacyEncoded, Sanitizer::ID_FALLBACK ],
-			[ 'Link', $newLegacy, $text, $html5Encoded ],
+			[ 'Link', $newLegacy, $text, $html5EncodedHref ],
 			[ 'ExternalInterwiki', $newLegacy, $text, $legacyEncoded ],
 
 			// Distant future: no legacy fallbacks, but still linking to leagacy wikis
-			[ 'Attribute', $new, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $new, $text, $html5EncodedId, Sanitizer::ID_PRIMARY ],
 			[ 'Attribute', $new, $text, false, Sanitizer::ID_FALLBACK ],
-			[ 'Link', $new, $text, $html5Encoded ],
+			[ 'Link', $new, $text, $html5EncodedHref ],
 			[ 'ExternalInterwiki', $new, $text, $legacyEncoded ],
 
 			// Just before the heat death of universe: external interwikis are also HTML5 \m/
-			[ 'Attribute', $allNew, $text, $html5Encoded, Sanitizer::ID_PRIMARY ],
+			[ 'Attribute', $allNew, $text, $html5EncodedId, Sanitizer::ID_PRIMARY ],
 			[ 'Attribute', $allNew, $text, false, Sanitizer::ID_FALLBACK ],
-			[ 'Link', $allNew, $text, $html5Encoded ],
-			[ 'ExternalInterwiki', $allNew, $text, $html5Encoded ],
+			[ 'Link', $allNew, $text, $html5EncodedHref ],
+			[ 'ExternalInterwiki', $allNew, $text, $html5EncodedHref ],
 		];
 	}
 

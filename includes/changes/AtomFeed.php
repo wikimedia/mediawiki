@@ -44,7 +44,6 @@ class AtomFeed extends ChannelFeed {
 	 * Outputs a basic header for Atom 1.0 feeds.
 	 */
 	function outHeader() {
-		global $wgVersion;
 		$this->outXmlHeader();
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
@@ -56,7 +55,7 @@ class AtomFeed extends ChannelFeed {
 			'selfUrl' => $this->getSelfUrl(),
 			'timestamp' => $this->xmlEncode( $this->formatTime( wfTimestampNow() ) ),
 			'description' => $this->getDescription(),
-			'version' => $this->xmlEncode( $wgVersion ),
+			'version' => $this->xmlEncode( MW_VERSION ),
 		];
 		print $this->templateParser->processTemplate( 'AtomHeader', $templateParams );
 	}

@@ -2653,8 +2653,7 @@ class UserTest extends MediaWikiTestCase {
 			'wgInvalidUsernameCharacters' => '@',
 		] );
 
-		// phpcs:ignore Generic.Files.LineLength
-		$longUserName = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
+		$longUserName = str_repeat( 'x', 260 );
 
 		$this->assertFalse(
 			User::isCreatableName( $longUserName ),

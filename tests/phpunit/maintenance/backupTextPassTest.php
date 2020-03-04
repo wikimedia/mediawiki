@@ -478,7 +478,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 		// Assuring we completely read all files ...
 		$this->assertFalse( $fileOpened, "Currently read file still open?" );
-		$this->assertEmpty( $files, "Remaining unchecked files" );
+		$this->assertSame( [], $files, "Remaining unchecked files" );
 
 		// ... and have dealt with more than one checkpoint file
 		$this->assertGreaterThan(

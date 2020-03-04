@@ -399,7 +399,7 @@ class Category {
 					'cat_subcats' => $result->subcats,
 					'cat_files' => $result->files
 				],
-				[ 'cat_title' ],
+				'cat_title',
 				[
 					'cat_pages' => $result->pages,
 					'cat_subcats' => $result->subcats,

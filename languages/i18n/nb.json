@@ -622,7 +622,9 @@
 	"passwordreset-emailtext-ip": "Noen (sannsynligvis deg fra IP-adressen $1) ba om en tilbakestilling av passordet ditt for {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er\ntilknyttet denne e-postadressen:\n\n$2\n\n{{PLURAL:$3|Dette midlertidige passordet|Disse midlertidige passordene}} utløper om {{PLURAL:$5|én dag|$5 dager}}.\nDu bør logge på og velge et nytt passord nå. Dersom noen andre kom med denne\nforespørselen, eller du har kommet på det opprinnelige passordet ditt og ikke lenger\nønsker å endre det, kan du ignorere denne meldingen og fortsette å bruke det gamle\npassordet.",
 	"passwordreset-emailtext-user": "Brukeren $1 på {{SITENAME}} ba om en tilbakestilling av passordet ditt for {{SITENAME}}\n($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er tilknyttet denne e-postadressen:\n\n$2\n\n{{PLURAL:$3|Dette midlertidige passordet|Disse midlertidige passordene}} utløper om {{én dag|$5 dager}}.\nDu bør logge på og velge et nytt passord nå. Dersom noen andre kom med denne\nforespørselen, eller du har kommet på det opprinnelige passordet ditt og ikke lenger\nønsker å endre det, kan du ignorere denne meldingen og fortsette å bruke det gamle\npassordet.",
 	"passwordreset-emailelement": "Brukernavn: \n$1\n\nMidlertidig passord: \n$2",
-	"passwordreset-success": "Passordet for brukeren «$1» har blitt resatt.",
+	"passwordreset-success": "Du har bedt om tilbakestilling av passordet ditt.",
+	"passwordreset-success-details": "Hvis informasjonen som gis er gyldig vil en epost om tilbakestilling av passord sendes til deg. Hvis du ikke har mottatt en epost, anbefaler vi at du besøker [[mw:Special:MyLanguage/Help:Reset_password|hjelpesiden for tilbakestilling av passord]].",
+	"passwordreset-success-info": "Detaljene du sendte inn er: $1",
 	"passwordreset-emailtext-require-email": "Hvis det ikke var du som gjorde denne forespørselen, og vil unngå uønskede eposter,\nkan du oppdatere epostinnstillingene dine på\n$1.\nDu kan kreve at både brukernavn og epostadresse angis for å generere\neposter for tilbakestilling av passord. Dette kan redusere risikoen for at dette skjer igjen.",
 	"passwordreset-nocaller": "En bruker må angis",
 	"passwordreset-nosuchcaller": "Brukeren finnes ikke: $1",
@@ -2505,6 +2507,7 @@
 	"sp-contributions-concurrency-user": "Beklager, for mange forespørsler gjøres fra brukerkontoen din. Prøv igjen senere.",
 	"sp-contributions-concurrency-ip": "Beklager, for mange forespørsler gjøres fra IP-adressa di. Prøv igjen senere.",
 	"whatlinkshere": "Lenker hit",
+	"whatlinkshere-count": "Viste {{PLURAL:$1|ett element|$1 elementer}}.",
 	"whatlinkshere-title": "Sider som lenker til «$1»",
 	"whatlinkshere-page": "Side:",
 	"linkshere": "Følgende sider lenker til <strong>$2</strong>:",
@@ -3918,6 +3921,11 @@
 	"deflate-invaliddeflate": "Det gitte innholdet er ikke riktig komprimert",
 	"unprotected-js": "Av sikkerhetsårsaker kan ikke JavaScript lastes fra ubeskyttede sider. Bare skap JavaScript i MediaWiki-navnerommet eller som en brukerunderside",
 	"userlogout-continue": "Ønsker du å logge ut?",
+	"paramvalidator-baduser": "Ugyldig verdi «$2» for parameteren <var>$1</var>.",
+	"paramvalidator-help-type-user": "Type: {{PLURAL:$1|1=bruker|2=liste over brukere}}, {{PLURAL:$3|av|av en av}} $2",
 	"paramvalidator-help-type-user-subtype-name": "Brukernavn",
-	"paramvalidator-help-type-user-subtype-ip": "IP"
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "IP-intervall",
+	"paramvalidator-help-type-user-subtype-interwiki": "interwikinavn (f.eks. \"prefiks>Eksempelnavn\")",
+	"paramvalidator-help-type-user-subtype-id": "bruker-ID (f.eks. «#12345»)"
 }

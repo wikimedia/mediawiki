@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.36.5
+ * OOUI v0.37.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-02-12T17:46:21Z
+ * Date: 2020-02-27T02:12:37Z
  */
 ( function ( OO ) {
 
@@ -539,7 +539,7 @@ OO.ui.msg.messages = {
 	"ooui-dialog-process-dismiss": "Dismiss",
 	"ooui-dialog-process-retry": "Try again",
 	"ooui-dialog-process-continue": "Continue",
-	"ooui-combobox-button-label": "Dropdown for combobox",
+	"ooui-combobox-button-label": "Toggle options",
 	"ooui-selectfile-button-select": "Select a file",
 	"ooui-selectfile-not-supported": "File selection is not supported",
 	"ooui-selectfile-placeholder": "No file is selected",
@@ -12180,6 +12180,8 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * @throws {Error} An error is thrown if no widget is specified
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
+	var id;
+
 	// Allow passing positional parameters inside the config object
 	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
 		config = fieldWidget;
@@ -12231,6 +12233,12 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 			this.$help.attr( 'for', this.fieldWidget.getInputId() );
 		}
 	} else {
+		// We can't use `label for` with non-form elements, use `aria-labelledby` instead
+		id = OO.ui.generateElementId();
+		this.$label.attr( 'id', id );
+		this.fieldWidget.$element.attr( 'aria-labelledby', id );
+
+		// Forward clicks on the label to the widget, like `label for` would do
 		this.$label.on( 'click', function () {
 			this.fieldWidget.simulateLabelClick();
 		}.bind( this ) );

@@ -496,7 +496,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$items = $this->getItemsFromApiResponse( $resultAnon );
 		$this->assertCount( 1, $items );
 		$this->assertArraySubset( [ 'anon' => true ], $items[0] );
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultNotAnon ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultNotAnon ) );
 	}
 
 	public function testNewAndEditTypeParameters() {
@@ -939,7 +939,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			],
 			$this->getItemsFromApiResponse( $resultStart )
 		);
-		$this->assertEmpty( $this->getItemsFromApiResponse( $resultEnd ) );
+		$this->assertSame( [], $this->getItemsFromApiResponse( $resultEnd ) );
 	}
 
 	public function testContinueParam() {

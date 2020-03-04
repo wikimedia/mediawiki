@@ -509,12 +509,13 @@ class DifferenceEngine extends ContextSource {
 	public function getPermissionErrors( User $user ) {
 		$this->loadRevisionData();
 		$permErrors = [];
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( $this->mNewPage ) {
-			$permErrors = $this->mNewPage->getUserPermissionsErrors( 'read', $user );
+			$permErrors = $permManager->getPermissionErrors( 'read', $user, $this->mNewPage );
 		}
 		if ( $this->mOldPage ) {
 			$permErrors = wfMergeErrorArrays( $permErrors,
-				$this->mOldPage->getUserPermissionsErrors( 'read', $user ) );
+				$permManager->getPermissionErrors( 'read', $user, $this->mOldPage ) );
 		}
 		return $permErrors;
 	}

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.36.5
+ * OOUI v0.37.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-02-12T17:46:42Z
+ * Date: 2020-02-27T02:13:00Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -1025,7 +1025,7 @@
 }
 .oo-ui-searchWidget-query {
   height: 4em;
-  padding: 0 16px;
+  padding: 0 12px 16px 16px;
   border-bottom: 1px solid #c8ccd1;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
@@ -1034,6 +1034,6 @@
 }
 .oo-ui-searchWidget-results {
   top: 4em;
-  padding: 16px;
+  padding: 12px 16px 16px;
   line-height: 0;
 }

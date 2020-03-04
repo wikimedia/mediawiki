@@ -86,6 +86,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 	// Initialization
 	this.$element
 		.addClass( 'mw-rcfilters-ui-menuSelectWidget' )
+		.attr( 'aria-label', mw.msg( 'rcfilters-filterlist-title' ) )
 		.append( config.isMobile ? undefined : header.$element )
 		.append(
 			this.$body

@@ -27,10 +27,10 @@
 		},
 		"stripeToC": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/toc-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/toc-rtl.svg"
+				"ltr": "../wikimediaui/images/icons/listBullet-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/listBullet-rtl.svg"
 			},
-			"deprecated": "Renamed since v0.36.5, use 'toc' instead."
+			"deprecated": "Deprecated since v0.36.5, use 'listBullet' instead."
 		},
 		"textFlow": {
 			"file": {
@@ -46,9 +46,10 @@
 		},
 		"toc": {
 			"file": {
-				"ltr": "../wikimediaui/images/icons/toc-ltr.svg",
-				"rtl": "../wikimediaui/images/icons/toc-rtl.svg"
-			}
+				"ltr": "../wikimediaui/images/icons/listBullet-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/listBullet-rtl.svg"
+			},
+			"deprecated": "Deprecated since v0.37.0, use 'listBullet' from 'editing-list' pack."
 		},
 		"viewCompact": {
 			"file": "../wikimediaui/images/icons/viewCompact.svg"

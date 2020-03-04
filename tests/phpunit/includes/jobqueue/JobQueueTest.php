@@ -122,7 +122,7 @@ class JobQueueTest extends MediaWikiTestCase {
 		$this->assertEquals( 2, $queue->getSize(), "Queue size is correct ($desc)" );
 		$this->assertSame( 0, $queue->getAcquiredCount(), "No jobs active ($desc)" );
 		$jobs = iterator_to_array( $queue->getAllQueuedJobs() );
-		$this->assertEquals( 2, count( $jobs ), "Queue iterator size is correct ($desc)" );
+		$this->assertCount( 2, $jobs, "Queue iterator size is correct ($desc)" );
 
 		$job1 = $queue->pop();
 		$this->assertFalse( $queue->isEmpty(), "Queue is not empty ($desc)" );
@@ -299,7 +299,7 @@ class JobQueueTest extends MediaWikiTestCase {
 			}
 		} while ( $job );
 
-		$this->assertEquals( 10, count( $jobs ), "Correct number of jobs popped ($desc)" );
+		$this->assertCount( 10, $jobs, "Correct number of jobs popped ($desc)" );
 		$this->assertEquals( 5, $dupcount, "Correct number of duplicate jobs popped ($desc)" );
 	}
 

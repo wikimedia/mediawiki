@@ -2772,7 +2772,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Format a list of error messages
 	 *
-	 * @param array $errors Array of arrays returned by Title::getUserPermissionsErrors
+	 * @param array $errors Array of arrays returned by PermissionManager::getPermissionErrors
 	 * @param string|null $action Action that was denied or null if unknown
 	 * @return string The wikitext error-messages, formatted into a list.
 	 */
@@ -3385,7 +3385,8 @@ class OutputPage extends ContextSource {
 		}
 
 		$title = $this->getTitle();
-		$errors = $title->getUserPermissionsErrors( 'edit', $user );
+		$errors = MediaWikiServices::getInstance()->getPermissionManager()
+			->getPermissionErrors( 'edit', $user, $title );
 		if ( count( $errors ) !== 0 ) {
 			return false;
 		}
@@ -3412,8 +3413,6 @@ class OutputPage extends ContextSource {
 	 * @return array Array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
-		global $wgVersion;
-
 		$tags = [];
 		$config = $this->getConfig();
 
@@ -3421,7 +3420,7 @@ class OutputPage extends ContextSource {
 
 		$tags['meta-generator'] = Html::element( 'meta', [
 			'name' => 'generator',
-			'content' => "MediaWiki $wgVersion",
+			'content' => 'MediaWiki ' . MW_VERSION,
 		] );
 
 		if ( $config->get( 'ReferrerPolicy' ) !== false ) {

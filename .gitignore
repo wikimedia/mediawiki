@@ -88,6 +88,9 @@ Thumbs.db
 /tests/phan/issues
 *.rej
 
+# Docker
+docker-compose.override.yml
+
 #bluespice free
 /images/bluespice
 /settings.d/*.local.php

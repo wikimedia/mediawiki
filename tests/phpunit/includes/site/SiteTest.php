@@ -174,7 +174,7 @@ class SiteTest extends MediaWikiTestCase {
 		$site->setPath( 'spam', 'http://www.wikidata.org/foo/$1' );
 		$site->setPath( 'foobar', 'http://www.wikidata.org/bar/$1' );
 
-		$this->assertEquals( $count + 2, count( $site->getAllPaths() ) );
+		$this->assertCount( $count + 2, $site->getAllPaths() );
 
 		$this->assertIsString( $site->getPath( 'foobar' ) );
 		$this->assertEquals( 'http://www.wikidata.org/foo/$1', $site->getPath( 'spam' ) );
@@ -182,7 +182,7 @@ class SiteTest extends MediaWikiTestCase {
 		$site->removePath( 'spam' );
 		$site->removePath( 'foobar' );
 
-		$this->assertEquals( $count, count( $site->getAllPaths() ) );
+		$this->assertCount( $count, $site->getAllPaths() );
 
 		$this->assertNull( $site->getPath( 'foobar' ) );
 		$this->assertNull( $site->getPath( 'spam' ) );

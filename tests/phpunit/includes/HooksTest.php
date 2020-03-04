@@ -132,9 +132,7 @@ class HooksTest extends MediaWikiTestCase {
 		);
 
 		Hooks::register( 'MediaWikiHooksTest001', $b );
-		$this->assertEquals(
-			2,
-			count( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
+		$this->assertCount( 2, Hooks::getHandlers( 'MediaWikiHooksTest001' ),
 			'Hooks::getHandlers() should return hooks registered via wgHooks as well as Hooks::register'
 		);
 

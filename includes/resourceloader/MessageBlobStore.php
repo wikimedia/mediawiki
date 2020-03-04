@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\Database;
  */
 class MessageBlobStore implements LoggerAwareInterface {
 
-	/* @var ResourceLoader */
+	/** @var ResourceLoader */
 	private $resourceloader;
 
 	/**
@@ -97,7 +97,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 * @since 1.27
 	 * @param ResourceLoaderModule[] $modules Array of module objects keyed by name
 	 * @param string $lang Language code
-	 * @return array An array mapping module names to message blobs
+	 * @return string[] An array mapping module names to message blobs
 	 */
 	public function getBlobs( array $modules, $lang ) {
 		// Each cache key for a message blob by module name and language code also has a generic

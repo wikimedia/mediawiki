@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -38,7 +39,13 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		if ( !$this->manager ) {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 			$objectFactory = new \Wikimedia\ObjectFactory( $services );
-			$this->manager = new AuthManager( new \FauxRequest(), $config, $objectFactory );
+			$permManager = $this->createNoOpMock( PermissionManager::class );
+			$this->manager = new AuthManager(
+				new \FauxRequest(),
+				$config,
+				$objectFactory,
+				$permManager
+			);
 		}
 		$this->validity = \Status::newGood();
 		$provider = $this->getMockBuilder( LocalPasswordPrimaryAuthenticationProvider::class )

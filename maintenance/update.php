@@ -77,7 +77,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgVersion, $wgLang, $wgAllowSchemaUpdates, $wgMessagesDirs;
+		global $wgLang, $wgAllowSchemaUpdates, $wgMessagesDirs;
 
 		if ( !$wgAllowSchemaUpdates
 			&& !( $this->hasOption( 'force' )
@@ -113,7 +113,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		define( 'MW_UPDATER', true );
 
-		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
+		$this->output( 'MediaWiki ' . MW_VERSION . " Updater\n\n" );
 
 		wfWaitForSlaves();
 

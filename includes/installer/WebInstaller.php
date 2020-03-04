@@ -372,7 +372,7 @@ class WebInstaller extends Installer {
 		return md5( serialize( [
 			'local path' => dirname( __DIR__ ),
 			'url' => $url,
-			'version' => $GLOBALS['wgVersion']
+			'version' => MW_VERSION
 		] ) );
 	}
 

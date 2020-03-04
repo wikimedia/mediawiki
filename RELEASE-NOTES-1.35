@@ -72,14 +72,17 @@ For notes on 1.34.x and older releases, see HISTORY.
   sysops block email access, use $wgGroupPermissions['sysop']['blockemail'].
 * $wgDBWindowsAuthentication — This setting had no effect anymore after support
   for SQL Server was removed in 1.34. (T230418)
-* $wgProfileOnly — This setting, deprecated in 1.23, was removed. The log
-  file should instead be set using $wgDebugLogGroups['profileoutput'].
+* $wgProfileOnly — This setting, deprecated in 1.23, was removed. The profiler
+  output should instead be configured via $wgProfiler['output'].
+* $wgDebugTimestamps - This setting was removed. It affected the text output
+  produced via $wgDebugComments, if enabled.
 * $wgSkipSkin - This setting, deprecated in 1.23, was removed. To disable a
   skin from being shown, use $wgSkipSkins.
 * $wgMaxGeneratedPPNodeCount - This setting was removed.  It only affected
   Preprocessor_DOM, which was deprecated in 1.34 and removed in this release.
 * $wgFixArabicUnicode and $wgFixMalayalamUnicode, deprecated in 1.33, were
   removed. The fixes are now always enabled for their respective languages.
+* $wgAllowTitlesInSVG, unused and deprecated since 1.34, was removed.
 * …
 
 === New user-facing features in 1.35 ===
@@ -97,6 +100,9 @@ For notes on 1.34.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.35 ===
+* A Docker based local development develpoment environment configuration is
+  included (T238224) and DEVELOPERS.md has been added with usage documentation
+  and links to further help.
 * If CSP is enabled, extensions can now add additional sources using the
   ContentSecurityPolicy::addDefaultSource, ::addStyleSrc and ::addScriptSrc
   methods (e.g. $context->getOutput()->getCSP()->addDefaultSrc( 'example.com' ))
@@ -130,7 +136,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * symfony/yaml was upgraded from 3.4.28 to 4.3.4
 * pear/mail_mime was upgraded from 1.10.2 to 1.10.6.
 * wikimedia/less.php was upgrade from 1.8.0 to 1.8.2
-* Updated OOUI from 0.35.1 to 0.36.5.
+* Updated oojs from 3.0.0 to 3.0.1.
+* Updated OOUI from 0.35.1 to 0.37.0.
 * zordius/lightncandy was upgraded from 0.23.0 to 1.2.4
 * Updated nikic/php-parser from 3.1.5 to 4.3.0 (dev-only).
 * Updated jQuery from v3.3.1 to v3.4.1.
@@ -155,6 +162,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * phpunit/php-invoker (dev-only).
   Removing this unbreaks development on Windows systems, in exchange for losing
   time limits in running unit tests.
+* The jquery.getAttrs module was removed.
 * …
 
 === Bug fixes in 1.35 ===
@@ -215,6 +223,7 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.35 ===
+* MediaWiki now requires PHP 7.2.22 or above, to avoid segfaults (T228346).
 * ResourceLoader::getLessVars(), deprecated in 1.32, was removed.
   Use ResourceLoaderModule::getLessVars() instead.
 * The jquery.tabIndex module, deprecated in 1.34, has been removed.
@@ -331,6 +340,14 @@ because of Phabricator reports.
 * CommentStore::newKey, deprecated in 1.31, was removed.
 * Title::isValidMoveOperation, ::moveTo, and ::isValidMoveTarget, deprecated
   in 1.25, were removed. Use the MovePage class and its methods instead.
+* StringUtils::explodeMarkup() was removed without deprecation.
+* AjaxResponse::checkLastModified(), AjaxResponse::loadFromMemcached(), and
+  AjaxResponse::storeInMemcached() have been removed.
+* Skin::getSkinNameMessages() deprecated in 1.34, has been removed.
+* Skin::escapeSearchLink() deprecated in 1.34, has been removed, use
+  Skin::getSearchLink() instead.
+* Revision::loadFromId and RevisionStore::loadRevisionFromId have been
+  removed.
 * …
 
 === Deprecations in 1.35 ===
@@ -446,6 +463,7 @@ because of Phabricator reports.
   - getAllContentFormats
   - protected $handler (not need anymore)
   - cleanupHandlersCache (not need anymore)
+* (T212738) The $wgVersion global is deprecated; instead, use MW_VERSION.
 * $wgMemc is deprecated, use
   MediaWikiServices::getInstance()->getLocalServerObjectCache() instead.
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
@@ -490,7 +508,8 @@ because of Phabricator reports.
 * AuthManager::singleton() has been deprecated. Use
   MediaWikiServices::getInstance()->getAuthManager() instead.
 * The following functions all accept an optional user parameter. Not passing a
-  user is deprecated, and support for not passing a user will be remove in 1.36:
+  user is hard deprecated, and support for calling them without passing a user
+  will be removed in 1.36:
   - Title::getNotificationTimestamp
   - Revision::newNullRevision
   - WikiPage::insertProtectNullRevision
@@ -498,22 +517,48 @@ because of Phabricator reports.
   - LogEventsList::userCan
   - LogEventsList::userCanBitfield
   - LogEventsList::userCanViewLogType
+  - LogEventsList::getExcludeClause (only used when the 'audience' parameter
+     is set to something other than the default of 'public')
   - LogPage::addEntry
   - FileDeleteForm::doDelete
+  Additionally, not passing a user to the following is soft deprecated:
+  - Revision::userCan
+  - ArchivedFile::userCan
+  - OldLocalFile::userCan
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
 * The SpecialPageFactory class was moved from the MediaWiki\Special namespace
   to the MediaWiki\SpecialPage namespace. The old location remains as a
   deprecated alias.
-* Title::userCan and ::quickUserCan, deprecated in 1.33, were hard deprecated.
-  Instead, use PermissionManager::userCan and ::quickUserCan.
+* Title::userCan, ::quickUserCan, and ::getUserPermissionsErrors, which
+  were deprecated in 1.33, were hard deprecated. Instead, use
+  PermissionManager::userCan, ::quickUserCan, and ::getPermissionErrors.
+* All methods of the old SpecialPageFactory, deprecated in 1.32, were hard
+  deprecated. Instead, get a SpecialPageFactory from MediaWikiServices and
+  use its methods.
+* The Revision class was soft deprecated entirely in 1.31. Specific methods
+  have now been individually hard deprecated:
+  - ::userCanBitfield - use RevisionRecord::userCanBitfield instead
+  - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
+  - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
+  - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
+* RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
+* The JobRunner class has been converted to a service class.
+  Direct construction is deprecated, use MediaWikiServices::getJobRunner.
+* JobRunner::setLogger has been deprecated, thus using JobRunner as a
+  LoggerAwareInterface is deprecated as well. Rely on the logger passed in the
+  constructor instead.
+* LogEventsList::typeAction accepts an optional right to check against as
+  the fourth parameter. Specifying such a right is deprecated.
+* RevisionStore::loadRevisionFromTitle was deprecated.
+* SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
 * …
 
 === Other changes in 1.35 ===
 * …
 
 == Compatibility ==
-MediaWiki 1.35 requires PHP 7.2.9 or later, and the following PHP extensions:
+MediaWiki 1.35 requires PHP 7.2.22 or later, and the following PHP extensions:
 
 * ctype
 * dom

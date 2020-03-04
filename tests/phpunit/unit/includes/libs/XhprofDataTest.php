@@ -55,7 +55,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 		$this->assertArrayHasKey( 'main()', $raw );
 		$this->assertArrayHasKey( 'main()==>foo', $raw );
 		$this->assertArrayHasKey( 'main()==>xhprof_disable', $raw );
-		$this->assertSame( 3, count( $raw ) );
+		$this->assertCount( 3, $raw );
 	}
 
 	/**

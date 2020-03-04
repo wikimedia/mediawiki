@@ -105,7 +105,12 @@ class FeedUtils {
 		//       No "privileged" version should end up in the cache.
 		//       Most feed readers will not log in anyway.
 		$anon = new User();
-		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
+		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$accErrors = $permManager->getPermissionErrors(
+			'read',
+			$anon,
+			$title
+		);
 
 		// Can't diff special pages, unreadable pages or pages with no new revision
 		// to compare against: just return the text.

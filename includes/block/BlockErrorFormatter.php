@@ -201,7 +201,7 @@ class BlockErrorFormatter {
 
 		// Display the CompositeBlock identifier as a message containing relevant block IDs
 		if ( $block instanceof CompositeBlock ) {
-			$ids = implode( ', ', array_map(
+			$ids = $language->commaList( array_map(
 				function ( $id ) {
 					return '#' . $id;
 				},

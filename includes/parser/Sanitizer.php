@@ -1291,7 +1291,7 @@ class Sanitizer {
 
 		$mode = $wgFragmentMode[self::ID_PRIMARY];
 
-		$id = self::escapeIdInternal( $id, $mode );
+		$id = self::escapeIdInternalUrl( $id, $mode );
 
 		return $id;
 	}
@@ -1308,8 +1308,25 @@ class Sanitizer {
 	public static function escapeIdForExternalInterwiki( $id ) {
 		global $wgExternalInterwikiFragmentMode;
 
-		$id = self::escapeIdInternal( $id, $wgExternalInterwikiFragmentMode );
+		$id = self::escapeIdInternalUrl( $id, $wgExternalInterwikiFragmentMode );
 
+		return $id;
+	}
+
+	/**
+	 * Do percent encoding of percent signs for href (but not id) attributes
+	 *
+	 * @since 1.35
+	 * @see https://phabricator.wikimedia.org/T238385
+	 * @param string $id String to escape
+	 * @param string $mode One of modes from $wgFragmentMode
+	 * @return string
+	 */
+	private static function escapeIdInternalUrl( $id, $mode ) {
+		$id = self::escapeIdInternal( $id, $mode );
+		if ( $mode === 'html5' ) {
+			$id = preg_replace( '/%([a-fA-F0-9]{2})/', '%25$1', $id );
+		}
 		return $id;
 	}
 

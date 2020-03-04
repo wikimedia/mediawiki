@@ -169,10 +169,6 @@ return [
 	'jquery.fullscreen' => [
 		'scripts' => 'resources/lib/jquery.fullscreen/jquery.fullscreen.js',
 	],
-	'jquery.getAttrs' => [
-		'scripts' => 'resources/src/jquery/jquery.getAttrs.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'jquery.highlightText' => [
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
 		'dependencies' => [
@@ -561,11 +557,6 @@ return [
 			'resources/lib/mustache/mustache.js',
 			'resources/src/mediawiki.template.mustache.js',
 		],
-		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => 'mediawiki.template',
-	],
-	'mediawiki.template.regexp' => [
-		'scripts' => 'resources/src/mediawiki.template.regexp.js',
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => 'mediawiki.template',
 	],
@@ -991,10 +982,32 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Uri' => [
-		'scripts' => 'resources/src/mediawiki.Uri/Uri.js',
-		'templates' => [
-			'strict.regexp' => 'resources/src/mediawiki.Uri/strict.regexp',
-			'loose.regexp' => 'resources/src/mediawiki.Uri/loose.regexp',
+		'localBasePath' => "$IP/resources/src/mediawiki.Uri",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.Uri",
+		'packageFiles' => [
+			'Uri.js',
+			[ 'name' => 'loose.regexp.js',
+				'callback' => function () {
+					global $IP;
+					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
+						file_get_contents( "$IP/resources/src/mediawiki.Uri/loose.regexp" )
+					);
+				},
+				'versionCallback' => function () {
+					return new ResourceLoaderFilePath( 'loose.regexp' );
+				},
+			],
+			[ 'name' => 'strict.regexp.js',
+				'callback' => function () {
+					global $IP;
+					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
+						file_get_contents( "$IP/resources/src/mediawiki.Uri/strict.regexp" )
+					);
+				},
+				'versionCallback' => function () {
+					return new ResourceLoaderFilePath( 'strict.regexp' );
+				},
+			],
 		],
 		'dependencies' => 'mediawiki.util',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1956,6 +1969,7 @@ return [
 			'resources/src/mediawiki.special.preferences.ooui/confirmClose.js',
 			'resources/src/mediawiki.special.preferences.ooui/convertmessagebox.js',
 			'resources/src/mediawiki.special.preferences.ooui/editfont.js',
+			'resources/src/mediawiki.special.preferences.ooui/skinPrefs.js',
 			'resources/src/mediawiki.special.preferences.ooui/signature.js',
 			'resources/src/mediawiki.special.preferences.ooui/tabs.js',
 			'resources/src/mediawiki.special.preferences.ooui/timezone.js',

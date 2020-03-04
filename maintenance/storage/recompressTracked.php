@@ -225,7 +225,7 @@ class RecompressTracked {
 	 * writing are all slow.
 	 */
 	private function startChildProcs() {
-		$wiki = WikiMap::getWikiIdFromDbDomain( WikiMap::getCurrentWikiDbDomain() );
+		$wiki = WikiMap::getCurrentWikiId();
 
 		$cmd = 'php ' . Shell::escape( __FILE__ );
 		foreach ( self::$cmdLineOptionMap as $cmdOption => $classOption ) {

@@ -28,9 +28,9 @@ use Wikimedia\ScopedCallback;
  * @ingroup Profiler
  */
 class SectionProfiler {
-	/** @var array Map of (mem,real,cpu) */
+	/** @var array|null Map of (mem,real,cpu) */
 	protected $start;
-	/** @var array Map of (mem,real,cpu) */
+	/** @var array|null Map of (mem,real,cpu) */
 	protected $end;
 	/** @var array[] List of resolved profile calls with start/end data */
 	protected $stack = [];
@@ -96,7 +96,7 @@ class SectionProfiler {
 	public function getFunctionStats() {
 		$this->collateData();
 
-		if ( is_array( $this->start ) ) {
+		if ( is_array( $this->start ) && is_array( $this->end ) ) {
 			$totalCpu = max( $this->end['cpu'] - $this->start['cpu'], 0 );
 			$totalReal = max( $this->end['real'] - $this->start['real'], 0 );
 			$totalMem = max( $this->end['memory'] - $this->start['memory'], 0 );

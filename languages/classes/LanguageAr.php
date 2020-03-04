@@ -41,8 +41,9 @@ class LanguageAr extends Language {
 	 * @return string
 	 */
 	public function normalize( $s ) {
+		global $IP;
 		$s = parent::normalize( $s );
-		$s = $this->transformUsingPairFile( 'normalize-ar.php', $s );
+		$s = $this->transformUsingPairFile( 'normalize-ar.php', $s, $IP );
 		return $s;
 	}
 }

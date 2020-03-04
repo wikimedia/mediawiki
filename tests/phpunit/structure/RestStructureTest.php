@@ -67,7 +67,7 @@ class RestStructureTest extends MediaWikiTestCase {
 			if ( ( $settings[Handler::PARAM_SOURCE] ?? null ) === 'path' &&
 				!isset( $pathParams[$param] )
 			) {
-				$this->assertEmpty( $settings[ParamValidator::PARAM_REQUIRED] ?? false,
+				$this->assertFalse( $settings[ParamValidator::PARAM_REQUIRED] ?? false,
 					"$dataName, parameter $param: PARAM_REQUIRED cannot be true for a path parameter "
 					. 'not in the path'
 				);

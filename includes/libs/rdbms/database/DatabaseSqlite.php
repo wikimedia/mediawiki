@@ -61,6 +61,14 @@ class DatabaseSqlite extends Database {
 	/** @var string[] See https://www.sqlite.org/lang_transaction.html */
 	private static $VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
 
+	/** @var string[][] */
+	private static $VALID_PRAGMAS = [
+		// Optimizations or requirements regarding fsync() usage
+		'synchronous' => [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ],
+		// Optimizations for TEMPORARY tables
+		'temp_store' => [ 'FILE', 'MEMORY' ]
+	];
+
 	/**
 	 * Additional params include:
 	 *   - dbDirectory : directory containing the DB and the lock file directory
@@ -183,10 +191,13 @@ class DatabaseSqlite extends Database {
 			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY;
 			// Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1', __METHOD__, $flags );
-			// Apply optimizations or requirements regarding fsync() usage
-			$sync = $this->connectionVariables['synchronous'] ?? null;
-			if ( in_array( $sync, [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ], true ) ) {
-				$this->query( "PRAGMA synchronous = $sync", __METHOD__, $flags );
+			// Set any connection-level custom PRAGMA options
+			$pragmas = array_intersect_key( $this->connectionVariables, self::$VALID_PRAGMAS );
+			foreach ( $pragmas as $name => $value ) {
+				$allowed = self::$VALID_PRAGMAS[$name];
+				if ( in_array( $value, $allowed, true ) ) {
+					$this->query( "PRAGMA $name = $value", __METHOD__, $flags );
+				}
 			}
 			$this->attachDatabasesFromTableAliases();
 		} catch ( Exception $e ) {
@@ -692,19 +703,19 @@ class DatabaseSqlite extends Database {
 		return true;
 	}
 
-	/**
-	 * @param string $table
-	 * @param array $uniqueIndexes Unused
-	 * @param string|array $rows
-	 * @param string $fname
-	 */
-	function replace( $table, $uniqueIndexes, $rows, $fname = __METHOD__ ) {
-		if ( !count( $rows ) ) {
+	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
+		if ( version_compare( $this->getServerVersion(), '3.7.11', '>=' ) ) {
+			// REPLACE is an alias for "INSERT OR REPLACE" in sqlite
+			// Batch support for INSERT per http://www.sqlite.org/releaselog/3_7_11.html
+			$this->nativeReplace( $table, $rows, $fname );
 			return;
 		}
 
-		# SQLite can't handle multi-row replaces, so divide up into multiple single-row queries
-		if ( isset( $rows[0] ) && is_array( $rows[0] ) ) {
+		if ( !$rows ) {
+			return;
+		}
+
+		if ( $this->isMultiRowArray( $rows ) ) {
 			$affectedRowCount = 0;
 			try {
 				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );

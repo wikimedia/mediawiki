@@ -49,7 +49,11 @@ class LanguageMlTest extends LanguageClassesTestCase {
 			throw new Exception( 'Expected output must differ.' );
 		}
 
-		$this->assertSame( $expected, $this->getLang()->normalize( $input ), 'ml-normalised form' );
+		$this->assertSame(
+			$expected,
+			$this->getLang()->normalize( $input ),
+			'ml-normalised form'
+		);
 	}
 
 	public static function provideNormalize() {
@@ -57,6 +61,14 @@ class LanguageMlTest extends LanguageClassesTestCase {
 			[
 				'ല്‍',
 				'ൽ',
+			],
+			[
+				'ര്‍',
+				'ർ',
+			],
+			[
+				'ള്‍',
+				'ൾ',
 			],
 		];
 	}
