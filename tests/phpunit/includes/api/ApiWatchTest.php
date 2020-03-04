@@ -1,16 +1,112 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group API
  * @group Database
  * @group medium
- * @todo This test suite is severly broken and need a full review
+ * @todo This test suite is severely broken and need a full review
  *
  * @covers ApiWatch
  */
 class ApiWatchTest extends ApiTestCase {
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
+	}
+
 	protected function getTokens() {
 		return $this->getTokenList( self::$users['sysop'] );
+	}
+
+	public function testWatch() {
+		$data = $this->doApiRequestWithToken( [
+			'action' => 'watch',
+			'titles' => 'Talk:Test page',
+			'expiry' => '99990101000000',
+			'formatversion' => 2
+		] );
+
+		$res = $data[0]['watch'][0];
+		$this->assertSame( 'Talk:Test page', $res['title'] );
+		$this->assertSame( 1, $res['ns'] );
+		$this->assertSame( '9999-01-01T00:00:00Z', $res['expiry'] );
+		$this->assertTrue( $res['watched'] );
+
+		// Re-watch, changing the expiry to indefinite.
+		$data = $this->doApiRequestWithToken( [
+			'action' => 'watch',
+			'titles' => 'Talk:Test page',
+			'expiry' => 'indefinite',
+			'formatversion' => 2
+		] );
+		$res = $data[0]['watch'][0];
+		$this->assertSame( 'infinity', $res['expiry'] );
+	}
+
+	public function testWatchWithExpiry() {
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$user = $this->getTestUser()->getUser();
+
+		// First watch without expiry (indefinite).
+		$this->doApiRequestWithToken( [
+			'action' => 'watch',
+			'titles' => 'UTPage',
+		], null, $user );
+
+		// Ensure page was added to the user's watchlist, and expiry is null (not set).
+		[ $item ] = $store->getWatchedItemsForUser( $user );
+		$this->assertSame( 'UTPage', $item->getLinkTarget()->getDBkey() );
+		$this->assertNull( $item->getExpiry() );
+
+		// Re-watch, setting an expiry.
+		$expiry = '2 weeks';
+		$expectedExpiry = strtotime( $expiry );
+		$this->doApiRequestWithToken( [
+			'action' => 'watch',
+			'titles' => 'UTPage',
+			'expiry' => $expiry,
+		], null, $user );
+		[ $item ] = $store->getWatchedItemsForUser( $user );
+		$this->assertGreaterThanOrEqual(
+			$expectedExpiry,
+			wfTimestamp( TS_UNIX, $item->getExpiry() )
+		);
+
+		// Re-watch again, providing no expiry parameter, so expiry should remain unchanged.
+		$oldExpiry = $item->getExpiry();
+		$this->doApiRequestWithToken( [
+			'action' => 'watch',
+			'titles' => 'UTPage',
+		], null, $user );
+		[ $item ] = $store->getWatchedItemsForUser( $user );
+		$this->assertSame( $oldExpiry, $item->getExpiry() );
+	}
+
+	public function testWatchInvalidExpiry() {
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Invalid expiry time "invalid expiry".' );
+		$this->doApiRequestWithToken( [
+			'action' => 'watch',
+			'titles' => 'Talk:Test page',
+			'expiry' => 'invalid expiry',
+			'formatversion' => 2
+		] );
+	}
+
+	public function testWatchExpiryInPast() {
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'Expiry time "20010101000000" is in the past.' );
+		$this->doApiRequestWithToken( [
+			'action' => 'watch',
+			'titles' => 'Talk:Test page',
+			'expiry' => '20010101000000',
+			'formatversion' => 2
+		] );
 	}
 
 	public function testWatchEdit() {
