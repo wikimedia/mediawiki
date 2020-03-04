@@ -2438,13 +2438,23 @@ $wgObjectCaches = [
 		'loggroup'     => 'SQLBagOStuff',
 		'reportDupes'  => false
 	],
-
-	'apc' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
-	'apcu' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
-	'wincache' => [ 'class' => WinCacheBagOStuff::class, 'reportDupes' => false ],
 	'memcached-php' => [ 'class' => MemcachedPhpBagOStuff::class, 'loggroup' => 'memcached' ],
 	'memcached-pecl' => [ 'class' => MemcachedPeclBagOStuff::class, 'loggroup' => 'memcached' ],
 	'hash' => [ 'class' => HashBagOStuff::class, 'reportDupes' => false ],
+
+	// Deprecated since 1.35.
+	// - To configure a wg*CacheType variable to use the local server cache,
+	//   use CACHE_ACCEL instead, which will select these automatically.
+	// - To access the object for the local server cache at run-time,
+	//   use MediaWikiServices::getLocalServerObjectCache()
+	//   instead of e.g. ObjectCache::getInstance( 'apcu' ).
+	// - To instantiate a new one of these explicitly, do so directly
+	//   by using `new APCUBagOStuff( [ … ] )`
+	// - To instantiate a new one of these including auto-detection and fallback,
+	//   use ObjectCache::makeLocalServerCache().
+	'apc' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
+	'apcu' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
+	'wincache' => [ 'class' => WinCacheBagOStuff::class, 'reportDupes' => false ],
 ];
 
 /**
