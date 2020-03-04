@@ -22,10 +22,10 @@ class TitleArrayFromResultTest extends MediaWikiUnitTestCase {
 	}
 
 	private function getRowWithTitle( $namespace = 3, $title = 'foo' ) {
-		$row = new stdClass();
-		$row->page_namespace = $namespace;
-		$row->page_title = $title;
-		return $row;
+		return (object)[
+			'page_namespace' => $namespace,
+			'page_title' => $title,
+		];
 	}
 
 	/**

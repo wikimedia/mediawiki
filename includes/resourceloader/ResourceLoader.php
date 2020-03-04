@@ -1477,7 +1477,8 @@ MESSAGE;
 	 * - null
 	 * - []
 	 * - new XmlJsCode( '{}' )
-	 * - new stdClass() // (object) []
+	 * - new stdClass()
+	 * - (object)[]
 	 *
 	 * @param array &$array
 	 */

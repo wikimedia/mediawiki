@@ -85,7 +85,7 @@ class ProcessCacheLRUTest extends PHPUnit\Framework\TestCase {
 		return [
 			[ null ],
 			[ [] ],
-			[ new stdClass() ],
+			[ (object)[] ],
 			[ 0 ],
 			[ '5' ],
 			[ -1 ],

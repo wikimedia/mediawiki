@@ -176,19 +176,6 @@ If you need root on the container to install packages for troubleshooting,
 you can open a shell as root with `docker-compose exec --user root mediawiki
 bash`.
 
-#### XDebug
-
-You can override the XDebug configuration included with the default image by
-passing `XDEBUG_CONFIG={your config}` in `environment`:
-
-``` yaml
-version: '3.7'
-services:
-  mediawiki:
-    environment:
-      XDEBUG_CONFIG: remote_enable=1 remote_host=172.17.0.1 remote_log=/tmp/xdebug.log remote_port=9009
-```
-
 #### Use Vector skin
 
 Clone the skin to `skins/Vector`:
@@ -201,6 +188,19 @@ Configure MediaWiki to use the skin:
 
 ```sh
 echo "wfLoadSkin( 'Vector' );" >> LocalSettings.php
+```
+
+#### XDebug
+
+You can override the XDebug configuration included with the default image by
+passing `XDEBUG_CONFIG={your config}` in `environment`:
+
+``` yaml
+version: '3.7'
+services:
+  mediawiki:
+    environment:
+      XDEBUG_CONFIG: remote_enable=1 remote_host=172.17.0.1 remote_log=/tmp/xdebug.log remote_port=9009
 ```
 
 ##### Troubleshooting
