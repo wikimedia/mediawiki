@@ -246,7 +246,7 @@ class SiteConfiguration {
 						$retval = self::arrayMerge( $retval, $thisSetting[$tag] );
 					} else {
 						// Found a non-mergable override by Tag.
-						// This could in theory replaces a "+wiki" match, but it should never happen
+						// This could in theory replace a "+wiki" match, but it should never happen
 						// that a setting uses both mergable array values and non-array values.
 						$retval = $thisSetting[$tag];
 					}
@@ -278,31 +278,18 @@ class SiteConfiguration {
 			}
 		}
 
-		if ( $retval !== null ) {
-			$retval = $this->doReplace( $retval, $params['replacements'] );
-		}
-		return $retval;
-	}
-
-	/**
-	 * Type-safe string replace; won't do replacements on non-strings
-	 *
-	 * @param string|array $in
-	 * @param string[] $replacements As provided by self::mergeParams()
-	 * @return string|array
-	 */
-	private function doReplace( $in, array $replacements ) {
-		if ( is_string( $in ) ) {
-			$in = strtr( $in, $replacements );
-		} elseif ( is_array( $in ) ) {
-			foreach ( $in as $key => $val ) {
+		// Type-safe string replacemens, don't do replacements on non-strings.
+		if ( is_string( $retval ) ) {
+			$retval = strtr( $retval, $params['replacements'] );
+		} elseif ( is_array( $retval ) ) {
+			foreach ( $retval as $key => $val ) {
 				if ( is_string( $val ) ) {
-					$in[$key] = strtr( $val, $replacements );
+					$retval[$key] = strtr( $val, $params['replacements'] );
 				}
 			}
 		}
 
-		return $in;
+		return $retval;
 	}
 
 	/**
@@ -499,9 +486,8 @@ class SiteConfiguration {
 			$ret['params']['site'] = $ret['suffix'];
 		}
 
-		// Optimisation for getAll() and extractAllGlobals():
-		// Precompute the replacements once when we process the params,
-		// instead separately for each of the thousands of variables.
+		// Precompute the replacements to allow re-use over hundreds of processSetting()
+		// calls, as optimisation for getAll() and extractAllGlobals().
 		$ret['replacements'] = [];
 		foreach ( $ret['params'] as $key => $value ) {
 			$ret['replacements'][ '$' . $key ] = $value;
@@ -611,23 +597,35 @@ class SiteConfiguration {
 	 * which is not fun
 	 *
 	 * @param array $array1
-	 * @param array ...$arrays
-	 *
+	 * @param array $array2
 	 * @return array
 	 */
-	static function arrayMerge( array $array1, ...$arrays ) {
+	private static function arrayMerge( array $array1, array $array2 ) {
 		$out = $array1;
-		foreach ( $arrays as $array ) {
-			foreach ( $array as $key => $value ) {
-				if ( isset( $out[$key] ) && is_array( $out[$key] ) && is_array( $value ) ) {
+		foreach ( $array2 as $key => $value ) {
+			if ( isset( $out[$key] ) ) {
+				if ( is_array( $out[$key] ) && is_array( $value ) ) {
+					// Merge the new array into the existing one
 					$out[$key] = self::arrayMerge( $out[$key], $value );
-				} elseif ( !isset( $out[$key] ) || !$out[$key] && !is_numeric( $key ) ) {
-					// Values that evaluate to true given precedence, for the
-					// primary purpose of merging permissions arrays.
-					$out[$key] = $value;
 				} elseif ( is_numeric( $key ) ) {
+					// A numerical key is taken, append the value at the end instead.
+					// It is important that we generally preserve numerical keys and only
+					// fallback to appending values if there are conflicts. This is needed
+					// by configuration variables that hold associative arrays with
+					// meaningul numerical keys, such as $wgNamespacesWithSubpages,
+					// $wgNamespaceProtection, $wgNamespacesToBeSearchedDefault, etc.
 					$out[] = $value;
+				} elseif ( $out[$key] === false ) {
+					// A non-numerical key is taken and holds a false value,
+					// allow it to be overridden always. This exists mainly for the purpose
+					// merging permissions arrays, such as $wgGroupPermissions.
+					$out[$key] = $value;
 				}
+				// Else: The key is already taken and we keep the current value
+
+			} else {
+				// Add a new key.
+				$out[$key] = $value;
 			}
 		}
 
