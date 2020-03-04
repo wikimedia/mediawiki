@@ -226,7 +226,7 @@ class Parser {
 	# These are variables reset at least once per parse regardless of $clearState
 
 	/**
-	 * @var ParserOptions
+	 * @var ParserOptions|null
 	 */
 	public $mOptions;
 
@@ -952,8 +952,6 @@ class Parser {
 	}
 
 	/**
-	 * Accessor for the Title object
-	 *
 	 * @return Title
 	 */
 	public function getTitle() : Title {
@@ -971,9 +969,7 @@ class Parser {
 	}
 
 	/**
-	 * Set the output type
-	 *
-	 * @param int $ot New value
+	 * @param int $ot One of the Parser::OT_… constants
 	 */
 	public function setOutputType( $ot ) {
 		$this->mOutputType = $ot;
@@ -997,8 +993,6 @@ class Parser {
 	}
 
 	/**
-	 * Get the ParserOutput object
-	 *
 	 * @return ParserOutput
 	 */
 	public function getOutput() {
@@ -1006,9 +1000,7 @@ class Parser {
 	}
 
 	/**
-	 * Get the ParserOptions object
-	 *
-	 * @return ParserOptions
+	 * @return ParserOptions|null
 	 */
 	public function getOptions() {
 		return $this->mOptions;
