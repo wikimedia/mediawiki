@@ -100,11 +100,11 @@ class ApiEditPage extends ApiBase {
 			}
 		}
 
-		if ( !isset( $params['contentmodel'] ) || $params['contentmodel'] == '' ) {
-			$contentHandler = $pageObj->getContentHandler();
-		} else {
+		if ( $params['contentmodel'] ) {
 			$contentHandler = $this->getContentHandlerFactory()
 				->getContentHandler( $params['contentmodel'] );
+		} else {
+			$contentHandler = $pageObj->getContentHandler();
 		}
 		$contentModel = $contentHandler->getModelID();
 
@@ -117,11 +117,7 @@ class ApiEditPage extends ApiBase {
 			$this->dieWithError( [ 'apierror-no-direct-editing', $model, $name ] );
 		}
 
-		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
-			$contentFormat = $contentHandler->getDefaultFormat();
-		} else {
-			$contentFormat = $params['contentformat'];
-		}
+		$contentFormat = $params['contentformat'] ?: $contentHandler->getDefaultFormat();
 
 		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
 			$this->dieWithError( [ 'apierror-badformat', $contentFormat, $model, $name ] );
@@ -244,9 +240,7 @@ class ApiEditPage extends ApiBase {
 			if ( !$newContent ) {
 				$this->dieWithError( 'undo-failure', 'undofailure' );
 			}
-			if ( empty( $params['contentmodel'] )
-				&& empty( $params['contentformat'] )
-			) {
+			if ( !$params['contentmodel'] && !$params['contentformat'] ) {
 				// If we are reverting content model, the new content model
 				// might not support the current serialization format, in
 				// which case go back to the old serialization format,

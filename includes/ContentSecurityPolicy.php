@@ -160,7 +160,7 @@ class ContentSecurityPolicy {
 		$cssSrc = false;
 		$imgSrc = false;
 		$scriptSrc = [ "'unsafe-eval'", "blob:", "'self'" ];
-		if ( !isset( $policyConfig['useNonces'] ) || $policyConfig['useNonces'] ) {
+		if ( $policyConfig['useNonces'] ?? true ) {
 			$scriptSrc[] = "'nonce-" . $this->getNonce() . "'";
 		}
 
@@ -173,9 +173,7 @@ class ContentSecurityPolicy {
 			}
 		}
 		// Note: default on if unspecified.
-		if ( !isset( $policyConfig['unsafeFallback'] )
-			|| $policyConfig['unsafeFallback']
-		) {
+		if ( $policyConfig['unsafeFallback'] ?? true ) {
 			// unsafe-inline should be ignored on browsers
 			// that support 'nonce-foo' sources.
 			// Some older versions of firefox don't follow this
@@ -201,7 +199,7 @@ class ContentSecurityPolicy {
 			}
 		}
 
-		if ( !isset( $policyConfig['includeCORS'] ) || $policyConfig['includeCORS'] ) {
+		if ( $policyConfig['includeCORS'] ?? true ) {
 			$CORSUrls = $this->getCORSSources();
 			if ( !in_array( '*', $defaultSrc ) ) {
 				$defaultSrc = array_merge( $defaultSrc, $CORSUrls );
