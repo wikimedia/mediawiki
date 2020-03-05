@@ -671,67 +671,8 @@ class DatabaseSqlite extends Database {
 		return parent::makeInsertOptions( $options );
 	}
 
-	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
-		if ( version_compare( $this->getServerVersion(), '3.7.11', '>=' ) ) {
-			// Batch INSERT support per http://www.sqlite.org/releaselog/3_7_11.html
-			return parent::insert( $table, $rows, $fname, $options );
-		}
-
-		if ( !$rows ) {
-			return true;
-		}
-
-		$multi = $this->isMultiRowArray( $rows );
-		if ( $multi ) {
-			$affectedRowCount = 0;
-			try {
-				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
-				foreach ( $rows as $row ) {
-					parent::insert( $table, $row, "$fname/multi-row", $options );
-					$affectedRowCount += $this->affectedRows();
-				}
-				$this->endAtomic( $fname );
-			} catch ( Exception $e ) {
-				$this->cancelAtomic( $fname );
-				throw $e;
-			}
-			$this->affectedRowCount = $affectedRowCount;
-		} else {
-			parent::insert( $table, $rows, "$fname/single-row", $options );
-		}
-
-		return true;
-	}
-
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
-		if ( version_compare( $this->getServerVersion(), '3.7.11', '>=' ) ) {
-			// REPLACE is an alias for "INSERT OR REPLACE" in sqlite
-			// Batch support for INSERT per http://www.sqlite.org/releaselog/3_7_11.html
-			$this->nativeReplace( $table, $rows, $fname );
-			return;
-		}
-
-		if ( !$rows ) {
-			return;
-		}
-
-		if ( $this->isMultiRowArray( $rows ) ) {
-			$affectedRowCount = 0;
-			try {
-				$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
-				foreach ( $rows as $v ) {
-					$this->nativeReplace( $table, $v, "$fname/multi-row" );
-					$affectedRowCount += $this->affectedRows();
-				}
-				$this->endAtomic( $fname );
-			} catch ( Exception $e ) {
-				$this->cancelAtomic( $fname );
-				throw $e;
-			}
-			$this->affectedRowCount = $affectedRowCount;
-		} else {
-			$this->nativeReplace( $table, $rows, "$fname/single-row" );
-		}
+		$this->nativeReplace( $table, $rows, $fname );
 	}
 
 	/**
