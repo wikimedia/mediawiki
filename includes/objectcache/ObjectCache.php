@@ -160,21 +160,7 @@ class ObjectCache {
 		}
 
 		$class = $params['class'];
-		// Not passing $conf is deprecated since 1.35
-		// NOTE: We cannot use MediaWikiServices::getMainConfig here as fallback,
-		// because ObjectCache::newFromParams is used for service wiring and
-		// in the ExtensionRegistry, and must not itself cause MediaWikiServices
-		// to be initialised. In particular, doing so would break the
-		// GlobalPreferences extension, which is overriding a service and then
-		// hard-requiring their additional methods to exist on the service object
-		// (T210449, T238466).
-		// TODO: Hard-deprecate before 1.35 gets cut, and remove in 1.36.
-		$conf = $conf ?? new HashConfig( [
-			'SQLiteDataDir' => $GLOBALS['wgSQLiteDataDir'],
-			'MemCachedServers' => $GLOBALS['wgMemCachedServers'],
-			'MemCachedPersistent' => $GLOBALS['wgMemCachedPersistent'],
-			'MemCachedTimeout' => $GLOBALS['wgMemCachedTimeout'],
-		] );
+		$conf = $conf ?? MediaWikiServices::getInstance()->getMainConfig();
 
 		// Do b/c logic for SqlBagOStuff
 		if ( is_a( $class, SqlBagOStuff::class, true ) ) {
