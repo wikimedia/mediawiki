@@ -115,11 +115,8 @@ use MediaWiki\Shell\Shell;
  *  same for all wikis or can be correctly determined by the logic in
  *  Setup.php.
  *
- * @todo Give examples for,
- * suffixes:
+ * @todo Give examples for suffixes:
  * $conf->suffixes = [ 'wiki' ];
- * localVHosts
- * callbacks!
  */
 class SiteConfiguration {
 
@@ -137,13 +134,6 @@ class SiteConfiguration {
 	 * The whole array of settings
 	 */
 	public $settings = [];
-
-	/**
-	 * Array of domains that are local and can be handled by the same server
-	 *
-	 * @deprecated since 1.25; use $wgLocalVirtualHosts instead.
-	 */
-	public $localVHosts = [];
 
 	/**
 	 * Optional callback to load full configuration data.
