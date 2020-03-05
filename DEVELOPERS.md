@@ -157,7 +157,7 @@ npm ci
 npm run api-testing
 ```
 
-[fresh]: (https://github.com/wikimedia/fresh
+[fresh]: https://github.com/wikimedia/fresh
 [api-dedicated]: https://www.mediawiki.org/wiki/MediaWiki_API_integration_tests
 
 ### Modifying the development environment
