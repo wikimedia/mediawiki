@@ -431,7 +431,8 @@ class WikiImporter {
 			}
 		}
 
-		return Hooks::run( 'AfterImportPage', func_get_args() );
+		return Hooks::run( 'AfterImportPage', [ $title, $foreignTitle, $revCount,
+			$sRevCount, $pageInfo ] );
 	}
 
 	/**

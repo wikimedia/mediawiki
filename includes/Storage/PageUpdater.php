@@ -740,10 +740,10 @@ class PageUpdater {
 		$hookStatus = Status::newGood( [] );
 		// TODO: replace legacy hook!
 		// TODO: avoid pass-by-reference, see T193950
-		$hook_args = [ &$wikiPage, &$user, &$mainContent, &$summary,
-			$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ];
 		// Check if the hook rejected the attempted save
-		if ( !Hooks::run( 'PageContentSave', $hook_args ) ) {
+		if ( !Hooks::run( 'PageContentSave', [ &$wikiPage, &$user, &$mainContent, &$summary,
+			$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ] )
+		) {
 			if ( $hookStatus->isOK() ) {
 				// Hook returned false but didn't call fatal(); use generic message
 				$hookStatus->fatal( 'edit-hook-aborted' );
@@ -1237,16 +1237,16 @@ class PageUpdater {
 
 				if ( $hints['created'] ?? false ) {
 					// Trigger post-create hook
-					$params = [ &$wikiPage, &$user, $mainContent, $summary->text,
-						$flags & EDIT_MINOR, null, null, &$flags, $newLegacyRevision ];
-					Hooks::run( 'PageContentInsertComplete', $params );
+					Hooks::run( 'PageContentInsertComplete', [ &$wikiPage, &$user,
+						$mainContent, $summary->text, $flags & EDIT_MINOR, null, null,
+						&$flags, $newLegacyRevision ] );
 				}
 
 				// Trigger post-save hook
-				$params = [ &$wikiPage, &$user, $mainContent, $summary->text,
-						$flags & EDIT_MINOR, null, null, &$flags, $newLegacyRevision,
-						&$status, $this->getOriginalRevisionId(), $this->undidRevId ];
-				Hooks::run( 'PageContentSaveComplete', $params );
+				Hooks::run( 'PageContentSaveComplete', [ &$wikiPage, &$user,
+					$mainContent, $summary->text, $flags & EDIT_MINOR, null, null,
+					&$flags, $newLegacyRevision,
+					&$status, $this->getOriginalRevisionId(), $this->undidRevId ] );
 			}
 		);
 	}
