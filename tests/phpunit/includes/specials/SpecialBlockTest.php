@@ -30,7 +30,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testGetFormFields() {
 		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
 			'wgBlockAllowsUTEdit' => true,
 		] );
 		$page = $this->newSpecialPage();
@@ -56,7 +55,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testMaybeAlterFormDefaults() {
 		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
 			'wgBlockAllowsUTEdit' => true,
 		] );
 
@@ -84,10 +82,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::maybeAlterFormDefaults()
 	 */
 	public function testMaybeAlterFormDefaultsPartial() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
-
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
@@ -135,9 +129,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm()
 	 */
 	public function testProcessForm() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
 
@@ -172,9 +163,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm()
 	 */
 	public function testProcessFormExisting() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 		$context = RequestContext::getMain();
@@ -222,9 +210,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm()
 	 */
 	public function testProcessFormRestrictions() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
 
@@ -275,9 +260,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm()
 	 */
 	public function testProcessFormRestrictionsChange() {
-		$this->setMwGlobals( [
-			'wgEnablePartialBlocks' => true,
-		] );
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
 
@@ -380,7 +362,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testProcessFormErrors( $data, $expected, $config = [] ) {
 		$defaultConfig = [
-			'wgEnablePartialBlocks' => true,
 			'wgBlockAllowsUTEdit' => true,
 		];
 
