@@ -146,7 +146,6 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected function getFormFields() {
 		$conf = $this->getConfig();
-		$enablePartialBlocks = $conf->get( 'EnablePartialBlocks' );
 		$blockAllowsUTEdit = $conf->get( 'BlockAllowsUTEdit' );
 
 		$this->getOutput()->enableOOUI();
@@ -174,51 +173,50 @@ class SpecialBlock extends FormSpecialPage {
 			'label-message' => 'block-prevent-edit',
 			'default' => true,
 			'section' => 'actions',
-			'disabled' => $enablePartialBlocks ? false : true,
 		];
 
-		if ( $enablePartialBlocks ) {
-			$a['EditingRestriction'] = [
-				'type' => 'radio',
-				'cssclass' => 'mw-block-editing-restriction',
-				'options' => [
-					$this->msg( 'ipb-sitewide' )->escaped() .
-						new \OOUI\LabelWidget( [
-							'classes' => [ 'oo-ui-inline-help' ],
-							'label' => $this->msg( 'ipb-sitewide-help' )->text(),
-						] ) => 'sitewide',
-					$this->msg( 'ipb-partial' )->escaped() .
-						new \OOUI\LabelWidget( [
-							'classes' => [ 'oo-ui-inline-help' ],
-							'label' => $this->msg( 'ipb-partial-help' )->text(),
-						] ) => 'partial',
-				],
-				'section' => 'actions',
-			];
-			$a['PageRestrictions'] = [
-				'type' => 'titlesmultiselect',
-				'label' => $this->msg( 'ipb-pages-label' )->text(),
-				'exists' => true,
-				'max' => 10,
-				'cssclass' => 'mw-block-restriction',
-				'showMissing' => false,
-				'excludeDynamicNamespaces' => true,
-				'input' => [
-					'autocomplete' => false
-				],
-				'section' => 'actions',
-			];
-			$a['NamespaceRestrictions'] = [
-				'type' => 'namespacesmultiselect',
-				'label' => $this->msg( 'ipb-namespaces-label' )->text(),
-				'exists' => true,
-				'cssclass' => 'mw-block-restriction',
-				'input' => [
-					'autocomplete' => false
-				],
-				'section' => 'actions',
-			];
-		}
+		$a['EditingRestriction'] = [
+			'type' => 'radio',
+			'cssclass' => 'mw-block-editing-restriction',
+			'options' => [
+				$this->msg( 'ipb-sitewide' )->escaped() .
+					new \OOUI\LabelWidget( [
+						'classes' => [ 'oo-ui-inline-help' ],
+						'label' => $this->msg( 'ipb-sitewide-help' )->text(),
+					] ) => 'sitewide',
+				$this->msg( 'ipb-partial' )->escaped() .
+					new \OOUI\LabelWidget( [
+						'classes' => [ 'oo-ui-inline-help' ],
+						'label' => $this->msg( 'ipb-partial-help' )->text(),
+					] ) => 'partial',
+			],
+			'section' => 'actions',
+		];
+
+		$a['PageRestrictions'] = [
+			'type' => 'titlesmultiselect',
+			'label' => $this->msg( 'ipb-pages-label' )->text(),
+			'exists' => true,
+			'max' => 10,
+			'cssclass' => 'mw-block-restriction',
+			'showMissing' => false,
+			'excludeDynamicNamespaces' => true,
+			'input' => [
+				'autocomplete' => false
+			],
+			'section' => 'actions',
+		];
+
+		$a['NamespaceRestrictions'] = [
+			'type' => 'namespacesmultiselect',
+			'label' => $this->msg( 'ipb-namespaces-label' )->text(),
+			'exists' => true,
+			'cssclass' => 'mw-block-restriction',
+			'input' => [
+				'autocomplete' => false
+			],
+			'section' => 'actions',
+		];
 
 		$a['CreateAccount'] = [
 			'type' => 'check',
@@ -426,45 +424,43 @@ class SpecialBlock extends FormSpecialPage {
 			$this->preErrors[] = [ 'ipb-blockingself', 'ipb-confirmaction' ];
 		}
 
-		if ( $this->getConfig()->get( 'EnablePartialBlocks' ) ) {
-			if ( $block instanceof DatabaseBlock && !$block->isSitewide() ) {
-				$fields['EditingRestriction']['default'] = 'partial';
-			} else {
-				$fields['EditingRestriction']['default'] = 'sitewide';
+		if ( $block instanceof DatabaseBlock && !$block->isSitewide() ) {
+			$fields['EditingRestriction']['default'] = 'partial';
+		} else {
+			$fields['EditingRestriction']['default'] = 'sitewide';
+		}
+
+		if ( $block instanceof DatabaseBlock ) {
+			$pageRestrictions = [];
+			$namespaceRestrictions = [];
+			foreach ( $block->getRestrictions() as $restriction ) {
+				switch ( $restriction->getType() ) {
+					case PageRestriction::TYPE:
+						/** @var PageRestriction $restriction */
+						'@phan-var PageRestriction $restriction';
+						if ( $restriction->getTitle() ) {
+							$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
+						}
+						break;
+					case NamespaceRestriction::TYPE:
+						$namespaceRestrictions[] = $restriction->getValue();
+						break;
+				}
 			}
 
-			if ( $block instanceof DatabaseBlock ) {
-				$pageRestrictions = [];
-				$namespaceRestrictions = [];
-				foreach ( $block->getRestrictions() as $restriction ) {
-					switch ( $restriction->getType() ) {
-						case PageRestriction::TYPE:
-							/** @var PageRestriction $restriction */
-							'@phan-var PageRestriction $restriction';
-							if ( $restriction->getTitle() ) {
-								$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
-							}
-							break;
-						case NamespaceRestriction::TYPE:
-							$namespaceRestrictions[] = $restriction->getValue();
-							break;
-					}
-				}
-
-				if (
-					!$block->isSitewide() &&
-					empty( $pageRestrictions ) &&
-					empty( $namespaceRestrictions )
-				) {
-					$fields['Editing']['default'] = false;
-				}
-
-				// Sort the restrictions so they are in alphabetical order.
-				sort( $pageRestrictions );
-				$fields['PageRestrictions']['default'] = implode( "\n", $pageRestrictions );
-				sort( $namespaceRestrictions );
-				$fields['NamespaceRestrictions']['default'] = implode( "\n", $namespaceRestrictions );
+			if (
+				!$block->isSitewide() &&
+				empty( $pageRestrictions ) &&
+				empty( $namespaceRestrictions )
+			) {
+				$fields['Editing']['default'] = false;
 			}
+
+			// Sort the restrictions so they are in alphabetical order.
+			sort( $pageRestrictions );
+			$fields['PageRestrictions']['default'] = implode( "\n", $pageRestrictions );
+			sort( $namespaceRestrictions );
+			$fields['NamespaceRestrictions']['default'] = implode( "\n", $namespaceRestrictions );
 		}
 	}
 
@@ -776,9 +772,7 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
 		$performer = $context->getUser();
-		$enablePartialBlocks = $context->getConfig()->get( 'EnablePartialBlocks' );
-		$isPartialBlock = $enablePartialBlocks &&
-			isset( $data['EditingRestriction'] ) &&
+		$isPartialBlock = isset( $data['EditingRestriction'] ) &&
 			$data['EditingRestriction'] === 'partial';
 
 		# This might have been a hidden field or a checkbox, so interesting data
@@ -918,26 +912,24 @@ class SpecialBlock extends FormSpecialPage {
 
 		$pageRestrictions = [];
 		$namespaceRestrictions = [];
-		if ( $enablePartialBlocks ) {
-			if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
-				$pageRestrictions = array_map( function ( $text ) {
-					$title = Title::newFromText( $text );
-					// Use the link cache since the title has already been loaded when
-					// the field was validated.
-					$restriction = new PageRestriction( 0, $title->getArticleID() );
-					$restriction->setTitle( $title );
-					return $restriction;
-				}, explode( "\n", $data['PageRestrictions'] ) );
-			}
-			if ( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) {
-				$namespaceRestrictions = array_map( function ( $id ) {
-					return new NamespaceRestriction( 0, $id );
-				}, explode( "\n", $data['NamespaceRestrictions'] ) );
-			}
-
-			$restrictions = ( array_merge( $pageRestrictions, $namespaceRestrictions ) );
-			$block->setRestrictions( $restrictions );
+		if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
+			$pageRestrictions = array_map( function ( $text ) {
+				$title = Title::newFromText( $text );
+				// Use the link cache since the title has already been loaded when
+				// the field was validated.
+				$restriction = new PageRestriction( 0, $title->getArticleID() );
+				$restriction->setTitle( $title );
+				return $restriction;
+			}, explode( "\n", $data['PageRestrictions'] ) );
 		}
+		if ( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) {
+			$namespaceRestrictions = array_map( function ( $id ) {
+				return new NamespaceRestriction( 0, $id );
+			}, explode( "\n", $data['NamespaceRestrictions'] ) );
+		}
+
+		$restrictions = ( array_merge( $pageRestrictions, $namespaceRestrictions ) );
+		$block->setRestrictions( $restrictions );
 
 		$priorBlock = null;
 		# Try to insert block. Is there a conflicting block?
@@ -982,17 +974,15 @@ class SpecialBlock extends FormSpecialPage {
 				$currentBlock->isUsertalkEditAllowed( $block->isUsertalkEditAllowed() );
 				$currentBlock->setReason( $block->getReasonComment() );
 
-				if ( $enablePartialBlocks ) {
-					// Maintain the sitewide status. If partial blocks is not enabled,
-					// saving the block will result in a sitewide block.
-					$currentBlock->isSitewide( $block->isSitewide() );
+				// Maintain the sitewide status. If partial blocks is not enabled,
+				// saving the block will result in a sitewide block.
+				$currentBlock->isSitewide( $block->isSitewide() );
 
-					// Set the block id of the restrictions.
-					$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
-					$currentBlock->setRestrictions(
-						$blockRestrictionStore->setBlockId( $currentBlock->getId(), $restrictions )
-					);
-				}
+				// Set the block id of the restrictions.
+				$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
+				$currentBlock->setRestrictions(
+					$blockRestrictionStore->setBlockId( $currentBlock->getId(), $restrictions )
+				);
 
 				$status = $currentBlock->update();
 				// TODO handle failure
@@ -1045,7 +1035,7 @@ class SpecialBlock extends FormSpecialPage {
 		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
 		$logParams['sitewide'] = $block->isSitewide();
 
-		if ( $enablePartialBlocks && !$block->isSitewide() ) {
+		if ( !$block->isSitewide() ) {
 			if ( $data['PageRestrictions'] !== '' ) {
 				$logParams['7::restrictions']['pages'] = explode( "\n", $data['PageRestrictions'] );
 			}

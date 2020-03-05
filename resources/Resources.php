@@ -1856,7 +1856,6 @@ return [
 		'packageFiles' => [
 			'mediawiki.special.block.js',
 			[ 'name' => 'config.json', 'config' => [
-				'EnablePartialBlocks',
 				'BlockAllowsUTEdit',
 			] ],
 		],
