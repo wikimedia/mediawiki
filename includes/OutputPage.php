@@ -2568,9 +2568,8 @@ class OutputPage extends ContextSource {
 			$response->header( "Feature-Policy-Report-Only: $featurePolicyReportOnly" );
 		}
 
-		$this->CSP->sendHeaders();
-
 		if ( $this->mArticleBodyOnly ) {
+			$this->CSP->sendHeaders();
 			echo $this->mBodytext;
 		} else {
 			// Enable safe mode if requested (T152169)
@@ -2586,8 +2585,10 @@ class OutputPage extends ContextSource {
 			// Avoid PHP 7.1 warning of passing $this by reference
 			$outputPage = $this;
 			// Hook that allows last minute changes to the output page, e.g.
-			// adding of CSS or Javascript by extensions.
+			// adding of CSS or Javascript by extensions, adding CSP sources.
 			Hooks::runWithoutAbort( 'BeforePageDisplay', [ &$outputPage, &$sk ] );
+
+			$this->CSP->sendHeaders();
 
 			try {
 				$sk->outputPage();
