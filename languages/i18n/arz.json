@@ -414,7 +414,7 @@
 	"resetpass-temp-password": "باسورد مؤقته:",
 	"passwordreset": "تمت إعادة ضبط كلمة السر",
 	"passwordreset-username": "اسم اليوزر:",
-	"passwordreset-success": "كلمة السر تم ضبطها ل user_id: $1",
+	"passwordreset-success": "انت طلبت تغيير الباسوورد.",
 	"summary": "ملخص:",
 	"subject": "راس الموضوع/موضوع:",
 	"minoredit": "التعديل ده تعديل صغير",
