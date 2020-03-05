@@ -332,7 +332,43 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 	}
 
-	public function testEditConflict() {
+	public function testEditConflict_revid() {
+		static $count = 0;
+		$count++;
+
+		// assume NS_HELP defaults to wikitext
+		$name = "Help:ApiEditPageTest_testEditConflict_$count";
+		$title = Title::newFromText( $name );
+
+		$page = WikiPage::factory( $title );
+
+		// base edit
+		$page->doEditContent( new WikitextContent( "Foo" ),
+			"testing 1", EDIT_NEW, false, self::$users['sysop']->getUser() );
+		$this->forceRevisionDate( $page, '20120101000000' );
+		$baseId = $page->getRevision()->getId();
+
+		// conflicting edit
+		$page->doEditContent( new WikitextContent( "Foo bar" ),
+			"testing 2", EDIT_UPDATE, $page->getLatest(), self::$users['uploader']->getUser() );
+		$this->forceRevisionDate( $page, '20120101020202' );
+
+		// try to save edit, expect conflict
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'edit',
+				'title' => $name,
+				'text' => 'nix bar!',
+				'baserevid' => $baseId,
+			], null, self::$users['sysop']->getUser() );
+
+			$this->fail( 'edit conflict expected' );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertTrue( self::apiExceptionHasCode( $ex, 'editconflict' ) );
+		}
+	}
+
+	public function testEditConflict_timestamp() {
 		static $count = 0;
 		$count++;
 

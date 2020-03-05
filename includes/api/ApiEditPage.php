@@ -301,11 +301,18 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpUndidRevision'] = $params['undo'];
 		}
 
+		// Skip for baserevid == null or '' or '0' or 0
+		if ( !empty( $params['baserevid'] ) ) {
+			$requestArray['editRevId'] = $params['baserevid'];
+		}
+
 		// Watch out for basetimestamp == '' or '0'
 		// It gets treated as NOW, almost certainly causing an edit conflict
 		if ( $params['basetimestamp'] !== null && (bool)$this->getMain()->getVal( 'basetimestamp' ) ) {
 			$requestArray['wpEdittime'] = $params['basetimestamp'];
-		} else {
+		} elseif ( empty( $params['baserevid'] ) ) {
+			// Only set if baserevid is not set. Otherwise, conflicts would be ignored,
+			// due to the way userWasLastToEdit() works.
 			$requestArray['wpEdittime'] = $pageObj->getTimestamp();
 		}
 
@@ -545,6 +552,9 @@ class ApiEditPage extends ApiBase {
 			'minor' => false,
 			'notminor' => false,
 			'bot' => false,
+			'baserevid' => [
+				ApiBase::PARAM_TYPE => 'integer',
+			],
 			'basetimestamp' => [
 				ApiBase::PARAM_TYPE => 'timestamp',
 			],
@@ -612,7 +622,7 @@ class ApiEditPage extends ApiBase {
 	protected function getExamplesMessages() {
 		return [
 			'action=edit&title=Test&summary=test%20summary&' .
-				'text=article%20content&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
+				'text=article%20content&baserevid=1234567&token=123ABC'
 				=> 'apihelp-edit-example-edit',
 			'action=edit&title=Test&summary=NOTOC&minor=&' .
 				'prependtext=__NOTOC__%0A&basetimestamp=2007-08-24T12:34:54Z&token=123ABC'
