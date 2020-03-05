@@ -8,6 +8,7 @@
  * optimizes for the uncommon case at the cost of bloating the size of render-
  * blocking CSS common to all pages.
  */
+@import 'mediawiki.mixins';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -41,6 +42,10 @@
 }
 
 .mw-userlink {
+	// Word-break overlong user names, see T237230.
+	// FIXME: This property is introduced now, but will be separated in a follow-up
+	// caring about 'i18n-directionality', see T247033.
+	.hyphens( auto );
 	unicode-bidi: embed;
 }
 
