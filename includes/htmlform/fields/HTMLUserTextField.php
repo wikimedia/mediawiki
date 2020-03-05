@@ -33,9 +33,14 @@ class HTMLUserTextField extends HTMLTextField {
 	}
 
 	public function validate( $value, $alldata ) {
-		// Default value (from getDefault()) is null, User::newFromName() expects a string
+		// If the value is null, reset it to an empty string which is what is expected by the parent.
 		if ( $value === null ) {
 			$value = '';
+		}
+
+		// If the value is empty, there are no additional checks that can be performed.
+		if ( $value === '' ) {
+			return parent::validate( $value, $alldata );
 		}
 
 		// check, if a user exists with the given username
