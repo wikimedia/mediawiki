@@ -907,7 +907,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertNotEmpty( $dataUpdates );
 
 		$updateNames = array_map( static function ( $du ) {
-			return isset( $du->_name ) ? $du->_name : get_class( $du );
+			return $du->_name ?? get_class( $du );
 		}, $dataUpdates );
 
 		$this->assertContains( LinksDeletionUpdate::class, $updateNames );
