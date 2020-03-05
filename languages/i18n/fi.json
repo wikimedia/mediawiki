@@ -1928,7 +1928,7 @@
 	"filedelete-comment": "Syy:",
 	"filedelete-submit": "Poista",
 	"filedelete-success": "Tiedosto '''$1''' on poistettu.",
-	"filedelete-success-old": "Tiedoston '''[[Media:$1|$1]]''' $2 kello $3 luotu versio on poistettu.",
+	"filedelete-success-old": "Tiedoston <strong>[[Media:$1|$1]]</strong> $2 kello $3 luotu versio on poistettu.",
 	"filedelete-nofile": "Tiedostoa '''$1''' ei ole.",
 	"filedelete-nofile-old": "Tiedostosta '''$1''' ei ole olemassa arkistossa olevaa versiota, jolla on annetut ominaisuudet.",
 	"filedelete-otherreason": "Muu syy tai tarkennus:",

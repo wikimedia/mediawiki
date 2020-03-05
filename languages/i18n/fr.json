@@ -2669,7 +2669,7 @@
 	"whatlinkshere-hidelinks": "$1 les liens",
 	"whatlinkshere-hideimages": "$1 les liens vers le fichier",
 	"whatlinkshere-filters": "Filtres",
-	"whatlinkshere-sectionredir": "redirigé vers la section « $1 »",
+	"whatlinkshere-sectionredir": "redirigé vers la section « $1 »",
 	"whatlinkshere-submit": "Lister",
 	"autoblockid": "Blocage automatique nº $1",
 	"block": "Bloquer l’utilisateur",
