@@ -664,22 +664,21 @@ class MovePage {
 
 		$dbw->endAtomic( __METHOD__ );
 
-		$params = [
-			&$this->oldTitle,
-			&$this->newTitle,
-			&$user,
-			$pageid,
-			$redirid,
-			$reason,
-			$nullRevision
-		];
 		// Keep each single hook handler atomic
 		DeferredUpdates::addUpdate(
 			new AtomicSectionUpdate(
 				$dbw,
 				__METHOD__,
-				function () use ( $params ) {
-					Hooks::run( 'TitleMoveComplete', $params );
+				function () use ( $user, $pageid, $redirid, $reason, $nullRevision ) {
+					Hooks::run( 'TitleMoveComplete', [
+						&$this->oldTitle,
+						&$this->newTitle,
+						&$user,
+						$pageid,
+						$redirid,
+						$reason,
+						$nullRevision
+					] );
 				}
 			)
 		);
