@@ -120,8 +120,7 @@ class WikiPage implements Page, IDBAccessObject {
 	private $derivedDataUpdater = null;
 
 	/**
-	 * Constructor and clear the article
-	 * @param Title $title Reference to a Title object.
+	 * @param Title $title
 	 */
 	public function __construct( Title $title ) {
 		$this->mTitle = $title;

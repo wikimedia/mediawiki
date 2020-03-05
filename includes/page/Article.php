@@ -153,8 +153,7 @@ class Article implements Page {
 	private $mRevisionRecord = null;
 
 	/**
-	 * Constructor and clear the article
-	 * @param Title $title Reference to a Title object.
+	 * @param Title $title
 	 * @param int|null $oldId Revision ID, null to fetch from request, zero for current
 	 */
 	public function __construct( Title $title, $oldId = null ) {
