@@ -28,19 +28,6 @@
 	direction: rtl;
 }
 
-/* Most input fields should be in site direction */
-.sitedir-ltr textarea,
-.sitedir-ltr input {
-	/* @noflip */
-	direction: ltr;
-}
-
-.sitedir-rtl textarea,
-.sitedir-rtl input {
-	/* @noflip */
-	direction: rtl;
-}
-
 .mw-userlink {
 	// Word-break overlong user names, see T237230.
 	// FIXME: This property is introduced now, but will be separated in a follow-up
@@ -70,15 +57,19 @@ input[ type='file' ] {
 	direction: ltr;
 }
 
-/* Override default values */
+/* Most input fields should be in site direction */
 textarea[ dir='ltr' ],
-input[ dir='ltr' ] {
+input[ dir='ltr' ],
+.sitedir-ltr textarea,
+.sitedir-ltr input {
 	/* @noflip */
 	direction: ltr;
 }
 
 textarea[ dir='rtl' ],
-input[ dir='rtl' ] {
+input[ dir='rtl' ],
+.sitedir-rtl textarea,
+.sitedir-rtl input {
 	/* @noflip */
 	direction: rtl;
 }
