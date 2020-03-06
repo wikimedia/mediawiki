@@ -1340,7 +1340,11 @@ class Sanitizer {
 	private static function escapeIdInternal( $id, $mode ) {
 		switch ( $mode ) {
 			case 'html5':
-				$id = str_replace( ' ', '_', $id );
+				// html5 spec says ids must not have any of the following:
+				// U+0009 TAB, U+000A LF, U+000C FF, U+000D CR, or U+0020 SPACE
+				// In practice, in wikitext, only tab, LF, CR (and SPACE) are
+				// possible using either Lua or html entities.
+				$id = str_replace( [ "\t", "\n", "\f", "\r", " " ], '_', $id );
 				break;
 			case 'legacy':
 				// This corresponds to 'noninitial' mode of the old escapeId()
