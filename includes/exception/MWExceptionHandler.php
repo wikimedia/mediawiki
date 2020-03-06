@@ -41,8 +41,8 @@ class MWExceptionHandler {
 	 * These error types may be thrown as Error objects, which implement Throwable (but not Exception).
 	 *
 	 * The user will be shown an HTTP 500 Internal Server Error.
-	 * As such, these should be sent to MediaWiki's "fatal" or "exception"
-	 * channel. Normally, the error handler logs them to the "error" channel.
+	 * As such, these should be sent to MediaWiki's "exception" channel.
+	 * Normally, the error handler logs them to the "error" channel.
 	 *
 	 * @var array $fatalErrorTypes
 	 */
@@ -76,7 +76,7 @@ class MWExceptionHandler {
 		//   (e.g. argument TypeError, division by zero, etc.)
 		set_exception_handler( 'MWExceptionHandler::handleUncaughtException' );
 
-		// This catches non-fatal errors (e.g. PHP Notice, PHP Warning, PHP Error) that do not
+		// This catches recoverable errors (e.g. PHP Notice, PHP Warning, PHP Error) that do not
 		// interrupt execution in any way. We log these in the background and then continue execution.
 		set_error_handler( 'MWExceptionHandler::handleError' );
 
@@ -260,8 +260,11 @@ class MWExceptionHandler {
 	}
 
 	/**
-	 * Callback used as a registered shutdown function. Receive a callback from the interpreter
-	 * for a system shutdown, check for a fatal error, and log to the 'fatal' logging channel.
+	 * Callback used as a registered shutdown function.
+	 *
+	 * This is used as callback from the interpreter at system shutdown.
+	 * If the last error was not a recoverable error that we already reported,
+	 * and log as fatal exception.
 	 *
 	 * Special handling is included for missing class errors as they may
 	 * indicate that the user needs to install 3rd-party libraries via
@@ -318,7 +321,7 @@ TXT;
 		}
 
 		$e = new ErrorException( "PHP Fatal Error: {$message}", 0, $level, $file, $line );
-		$logger = LoggerFactory::getInstance( 'fatal' );
+		$logger = LoggerFactory::getInstance( 'exception' );
 		$logger->error( $msg, [
 			'exception' => $e,
 			'exception_id' => WebRequest::getRequestId(),

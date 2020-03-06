@@ -299,9 +299,9 @@ class DeferredUpdates {
 		} catch ( Throwable $e ) {
 		}
 
-		$error = get_class( $e ) . ': ' . $e->getMessage();
+		MWExceptionHandler::logException( $e );
 		$logger->error(
-			"Deferred update '$type' failed to run. $error",
+			"Deferred update '$type' failed to run.",
 			[
 				'deferred_type' => $type,
 				'exception' => $e,
@@ -321,9 +321,9 @@ class DeferredUpdates {
 			} catch ( Throwable $jobEx ) {
 			}
 
-			$error = get_class( $jobEx ) . ': ' . $jobEx->getMessage();
+			MWExceptionHandler::logException( $jobEx );
 			$logger->error(
-				"Job enqueue of deferred update '$type' failed. $error",
+				"Deferred update '$type' failed to enqueue as a job.",
 				[
 					'deferred_type' => $type,
 					'exception' => $jobEx,
@@ -355,21 +355,21 @@ class DeferredUpdates {
 		$type = get_class( $update );
 		$stats->increment( "deferred_updates.$httpMethod.$type" );
 
-		$e = null;
+		$jobEx = null;
 		try {
 			$spec = $update->getAsJobSpecification();
 			JobQueueGroup::singleton( $spec['domain'] )->push( $spec['job'] );
 
 			return;
-		} catch ( Throwable $e ) {
+		} catch ( Throwable $jobEx ) {
 		}
 
-		$error = get_class( $e ) . ': ' . $e->getMessage();
+		MWExceptionHandler::logException( $jobEx );
 		$logger->error(
-			"Job enqueue of deferred update '$type' failed. $error",
+			"Deferred update '$type' failed to enqueue as a job.",
 			[
 				'deferred_type' => $type,
-				'exception' => $e,
+				'exception' => $jobEx,
 			]
 		);
 
