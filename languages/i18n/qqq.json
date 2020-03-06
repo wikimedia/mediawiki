@@ -1079,6 +1079,7 @@
 	"history-feed-item-nocomment": "Title for each revision when viewing the RSS/Atom [[:w:en:web feed|feed]] for a page history.\n\nParameters:\n* $1 - username\n* $2 - date/time\n* $3 - (Optional) date\n* $4 - (Optional) time",
 	"history-feed-empty": "Used as summary of the RSS/Atom feed for a page history when the feed is empty.\nSee [{{canonicalurl:x|feed=atom&action=history}} example].",
 	"history-edit-tags": "Text of button used to access change tagging interface. For more information on tags see [[mw:Manual:Tags]].",
+	"history-empty": "Text shown to user when no revision is returned by the query.",
 	"rev-deleted-comment": "Apparently this can also be about the reason of a log action, not only an edit summary. See also:\n*{{msg-mw|revdelete-hide-comment}}",
 	"rev-deleted-user": "See also:\n* {{msg-mw|Rev-deleted-event}}",
 	"rev-deleted-event": "See also:\n* {{msg-mw|Rev-deleted-user}}",

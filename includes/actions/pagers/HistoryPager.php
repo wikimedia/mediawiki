@@ -172,6 +172,14 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	/**
+	 * Returns message when query returns no revisions
+	 * @return string escaped message
+	 */
+	protected function getEmptyBody() {
+		return $this->msg( 'history-empty' )->escaped();
+	}
+
+	/**
 	 * Creates begin of history list with a submit button
 	 *
 	 * @return string HTML output
@@ -181,17 +189,19 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
-
-		$this->getOutput()->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
-		$s = Html::openElement( 'form', [ 'action' => wfScript(),
-			'id' => 'mw-history-compare' ] ) . "\n";
-		$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
-		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
-		$s .= Html::hidden( 'type', 'revision' ) . "\n";
-
+		$s = '';
 		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '';
 		if ( $this->getNumRows() > 0 ) {
+			$this->getOutput()->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
+			$s = Html::openElement( 'form', [
+				'action' => wfScript(),
+				'id' => 'mw-history-compare'
+			] ) . "\n";
+			$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
+			$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
+			$s .= Html::hidden( 'type', 'revision' ) . "\n";
+
 			$this->buttons .= Html::openElement(
 				'div', [ 'class' => 'mw-history-compareselectedversions' ] );
 			$className = 'historysubmit mw-history-compareselectedversions-button mw-ui-button';
@@ -223,8 +233,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->buttons .= '</div>';
 
 			$s .= $this->buttons;
+			$s .= '<ul id="pagehistory">' . "\n";
 		}
-		$s .= '<ul id="pagehistory">' . "\n";
 
 		return $s;
 	}
@@ -245,6 +255,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	protected function getEndBody() {
+		if ( $this->getNumRows() == 0 ) {
+			return '';
+		}
+
 		if ( $this->lastRow ) {
 			$firstInList = $this->counter == 1;
 			if ( $this->mIsBackwards ) {
@@ -274,7 +288,6 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= $this->buttons;
 		}
 		$s .= '</form>';
-
 		return $s;
 	}
 

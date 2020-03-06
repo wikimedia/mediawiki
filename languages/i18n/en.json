@@ -864,6 +864,7 @@
 	"history-feed-item-nocomment": "$1 at $2",
 	"history-feed-empty": "The requested page does not exist.\nIt may have been deleted from the wiki, or renamed.\nTry [[Special:Search|searching on the wiki]] for relevant new pages.",
 	"history-edit-tags": "Edit tags of selected revisions",
+	"history-empty": "No matching revisions were found.",
 	"rev-deleted-comment": "(edit summary removed)",
 	"rev-deleted-user": "(username removed)",
 	"rev-deleted-event": "(log details removed)",
