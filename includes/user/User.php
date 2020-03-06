@@ -2240,11 +2240,6 @@ class User implements IDBAccessObject, UserIdentity {
 			return (bool)$this->mHideName;
 		}
 		$this->getBlockedStatus();
-		if ( !$this->mHideName ) {
-			// Reset for hook
-			$this->mHideName = false;
-			Hooks::run( 'UserIsHidden', [ $this, &$this->mHideName ], '1.34' );
-		}
 		return (bool)$this->mHideName;
 	}
 
