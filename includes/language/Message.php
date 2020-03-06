@@ -289,7 +289,13 @@ class Message implements MessageSpecifier, Serializable {
 			'parameters' => $this->parameters,
 			'format' => $this->format,
 			'useDatabase' => $this->useDatabase,
-			'titlestr' => $this->title ? $this->title->getFullText() : null,
+			// Optimisation: Avoid cost of TitleFormatter on serialize,
+			// and especially cost of TitleParser (via Title::newFromText)
+			// on retrieval.
+			'titlevalue' => ( $this->title
+				? [ 0 => $this->title->getNamespace(), 1 => $this->title->getDBkey() ]
+				: null
+			),
 		] );
 	}
 
@@ -315,11 +321,11 @@ class Message implements MessageSpecifier, Serializable {
 				->getLanguage( $data['language'] )
 			: false;
 
-		if ( isset( $data['titlestr'] ) ) {
+		// Since 1.35, the key 'titlevalue' is set, instead of 'titlestr'.
+		if ( isset( $data['titlevalue'] ) ) {
+			$this->title = Title::makeTitle( $data['titlevalue'][0], $data['titlevalue'][1] );
+		} elseif ( isset( $data['titlestr'] ) ) {
 			$this->title = Title::newFromText( $data['titlestr'] );
-		} elseif ( isset( $data['title'] ) && $data['title'] instanceof Title ) {
-			// Old serializations from before December 2018
-			$this->title = $data['title'];
 		} else {
 			$this->title = null; // Explicit for sanity
 		}
