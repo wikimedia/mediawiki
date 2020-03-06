@@ -643,8 +643,7 @@ wgFragmentMode=[ 'html5', 'legacy' ]
 ==A <nowiki>B
 C</nowiki>==
 !! html/php
-<h2><span id="A_B.0AC"></span><span class="mw-headline" id="A_B
-C">A B
+<h2><span id="A_B.0AC"></span><span class="mw-headline" id="A_B_C">A B
 C</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A B&#10;C">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
 <h2 id="A_B
