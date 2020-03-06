@@ -136,10 +136,13 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		);
 
 		// Updating to a valid expiry.
-		$store->addWatch( $user, $title, '20500101000000' );
-		$this->assertSame(
-			'20500101000000',
-			$store->loadWatchedItem( $user, $title )->getExpiry()
+		$store->addWatch( $user, $title, '1 month' );
+		$this->assertLessThanOrEqual(
+			strtotime( '1 month' ),
+			wfTimestamp(
+				TS_UNIX,
+				$store->loadWatchedItem( $user, $title )->getExpiry()
+			)
 		);
 
 		// Expiry in the past, should not be considered watched.

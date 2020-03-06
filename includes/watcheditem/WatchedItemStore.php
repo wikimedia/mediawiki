@@ -406,7 +406,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$rowBatches = array_chunk( $namespaceTitles, $this->updateRowsPerQuery );
 			foreach ( $rowBatches as $toDelete ) {
 				// First fetch the wl_ids.
-				$wlIds = $dbw->selectField( 'watchlist', 'wl_id', [
+				$wlIds = $dbw->selectFieldValues( 'watchlist', 'wl_id', [
 					'wl_user' => $user->getId(),
 					'wl_namespace' => $namespace,
 					'wl_title' => $toDelete
@@ -938,7 +938,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			// Invalid expiry, 0 rows effected.
 			return 0;
 		}
-		$expiry = wfTimestamp( TS_MW, $expiry );
+		$expiry = wfTimestamp( TS_MW, $unix );
 
 		return $this->updateExpiries( $dbw, $expiry, $cond );
 	}

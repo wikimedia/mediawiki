@@ -1247,7 +1247,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testRemoveWatch_existingItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
-			->method( 'selectField' )
+			->method( 'selectFieldValues' )
 			->willReturn( [ 1, 2 ] );
 		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'delete' )
@@ -1287,7 +1287,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testRemoveWatch_noItem() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
-			->method( 'selectField' )
+			->method( 'selectFieldValues' )
 			->willReturn( null );
 		$mockDb->expects( $this->never() )
 			->method( 'delete' );
