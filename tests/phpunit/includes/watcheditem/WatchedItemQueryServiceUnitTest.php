@@ -77,7 +77,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			$this->getMockCommentStore(),
 			$this->getMockActorMigration(),
 			$this->getMockWatchedItemStore(),
-			$mockPM ?: $this->getMockPermissionManager()
+			$mockPM ?: $this->getMockPermissionManager(),
+			false
 		);
 	}
 

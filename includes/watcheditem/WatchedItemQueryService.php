@@ -74,18 +74,25 @@ class WatchedItemQueryService {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/**
+	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
+	 */
+	private $expiryEnabled;
+
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
 		WatchedItemStoreInterface $watchedItemStore,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		bool $expiryEnabled
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->permissionManager = $permissionManager;
+		$this->expiryEnabled = $expiryEnabled;
 	}
 
 	/**
@@ -313,12 +320,24 @@ class WatchedItemQueryService {
 		$conds = $this->getWatchedItemsForUserQueryConds( $db, $user, $options );
 		$dbOptions = $this->getWatchedItemsForUserQueryDbOptions( $options );
 
+		$tables = 'watchlist';
+		$joinConds = [];
+		if ( $this->expiryEnabled ) {
+			// If expiries are enabled, join with the watchlist_expiry table and exclude expired items.
+			$tables = [ 'watchlist', 'watchlist_expiry' ];
+			$conds[] = $db->makeList(
+				[ 'we_expiry' => null, 'we_expiry > ' . $db->addQuotes( $db->timestamp() ) ],
+				$db::LIST_OR
+			);
+			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+		}
 		$res = $db->select(
-			'watchlist',
+			$tables,
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 			$conds,
 			__METHOD__,
-			$dbOptions
+			$dbOptions,
+			$joinConds
 		);
 
 		$watchedItems = [];
