@@ -76,7 +76,10 @@ trait HandlerTestTrait {
 		$validator = new Validator( $objectFactory, $permissionManager, $request, $user );
 
 		/** @var Router|MockObject $router */
-		$router = $this->createNoOpMock( Router::class );
+		$router = $this->createNoOpMock( Router::class, [ 'getRouteUrl' ] );
+		$router->method( 'getRouteUrl' )->willReturnCallback( function ( $route, $query = [] ) {
+			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
+		} );
 
 		$handler->init( $router, $request, $config, $responseFactory );
 		$handler->validate( $validator );
@@ -105,7 +108,7 @@ trait HandlerTestTrait {
 	) {
 		$response = $this->executeHandler( $handler, $request, $config );
 
-		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertTrue( $response->getStatusCode() >= 200 && $response->getStatusCode() < 300 );
 		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
 
 		$data = json_decode( $response->getBody(), true );

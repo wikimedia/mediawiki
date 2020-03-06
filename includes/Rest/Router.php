@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
+use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Validator\Validator;
@@ -27,6 +28,9 @@ class Router {
 
 	/** @var int[]|null */
 	private $routeFileTimestamps;
+
+	/** @var string */
+	private $baseUrl;
 
 	/** @var string */
 	private $rootPath;
@@ -53,22 +57,25 @@ class Router {
 	private $restValidator;
 
 	/**
+	 * @internal
 	 * @param string[] $routeFiles List of names of JSON files containing routes
 	 * @param array $extraRoutes Extension route array
-	 * @param string $rootPath The base URL path
+	 * @param string $baseUrl The base URL
+	 * @param string $rootPath The base path for routes, relative to the base URL
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
 	 * @param ResponseFactory $responseFactory
 	 * @param BasicAuthorizerInterface $basicAuth
 	 * @param ObjectFactory $objectFactory
 	 * @param Validator $restValidator
 	 */
-	public function __construct( $routeFiles, $extraRoutes, $rootPath,
+	public function __construct( $routeFiles, $extraRoutes, $baseUrl, $rootPath,
 		BagOStuff $cacheBag, ResponseFactory $responseFactory,
 		BasicAuthorizerInterface $basicAuth, ObjectFactory $objectFactory,
 		Validator $restValidator
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
+		$this->baseUrl = $baseUrl;
 		$this->rootPath = $rootPath;
 		$this->cacheBag = $cacheBag;
 		$this->responseFactory = $responseFactory;
@@ -215,6 +222,27 @@ class Router {
 			return false;
 		}
 		return substr( $path, strlen( $this->rootPath ) );
+	}
+
+	/**
+	 * Returns a full URL for the given route.
+	 * Intended for use in redirects.
+	 *
+	 * @param string $route the route, with any necessary URL encoding already applied
+	 * @param array $query
+	 *
+	 * @return false|string
+	 */
+	public function getRouteUrl( $route, $query = [] ) {
+		$url = $this->baseUrl . $this->rootPath . $route;
+
+		if ( $query ) {
+			$uri = new Uri( $url );
+			$uri = Uri::withQueryValues( $uri, $query );
+			$url = "$uri";
+		}
+
+		return $url;
 	}
 
 	/**

@@ -38,6 +38,7 @@ class EntryPointTest extends \MediaWikiTestCase {
 		return new Router(
 			[ "$IP/tests/phpunit/unit/includes/Rest/testRoutes.json" ],
 			[],
+			'http://wiki.example.com',
 			'/rest',
 			new EmptyBagOStuff(),
 			new ResponseFactory( [] ),

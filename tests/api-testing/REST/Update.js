@@ -14,7 +14,7 @@ describe( 'PUT /page/{title}', () => {
 	} );
 
 	const checkEditResponse = function ( title, reqBody, body ) {
-		assert.containsAllKeys( body, [ 'latest', 'id', 'license', 'content_model' ] );
+		assert.containsAllKeys( body, [ 'title', 'key', 'source', 'latest', 'id', 'license', 'content_model' ] );
 		assert.containsAllKeys( body.latest, [ 'id', 'timestamp' ] );
 		assert.nestedPropertyVal( body, 'source', reqBody.source );
 		assert.nestedPropertyVal( body, 'title', title );
@@ -47,7 +47,7 @@ describe( 'PUT /page/{title}', () => {
 			};
 
 			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
-			assert.equal( editStatus, 200 );
+			assert.equal( editStatus, 201 );
 			checkEditResponse( title, reqBody, editBody );
 
 			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${title}` );
@@ -68,7 +68,7 @@ describe( 'PUT /page/{title}', () => {
 			};
 
 			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
-			assert.equal( editStatus, 200 );
+			assert.equal( editStatus, 201 );
 			checkEditResponse( title, reqBody, editBody );
 
 			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${title}` );
@@ -124,7 +124,7 @@ describe( 'PUT /page/{title}', () => {
 		} );
 	} );
 
-	describe( 'request body validation', async () => {
+	describe( 'request validation', async () => {
 		const title = utils.title( 'Edit Test ' );
 
 		const reqBody = {
@@ -187,6 +187,32 @@ describe( 'PUT /page/{title}', () => {
 				content_model: 'THIS DOES NOT EXIST!'
 			};
 			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+
+			assert.equal( editStatus, 400 );
+			assert.nestedProperty( editBody, 'messageTranslations' );
+		} );
+
+		it( 'should fail if a bad title is given', async () => {
+			const title = '_|_'; // not a valid page title
+
+			const reqBody = {
+				source: 'Lörem Ipsüm',
+				comment: 'tästing',
+				content_model: 'wikitext'
+			};
+			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+
+			assert.equal( editStatus, 400 );
+			assert.nestedProperty( editBody, 'messageTranslations' );
+		} );
+
+		it( 'should fail if no title is given', async () => {
+			const reqBody = {
+				source: 'Lörem Ipsüm',
+				comment: 'tästing',
+				content_model: 'wikitext'
+			};
+			const { status: editStatus, body: editBody } = await client.put( '/page/', reqBody );
 
 			assert.equal( editStatus, 400 );
 			assert.nestedProperty( editBody, 'messageTranslations' );
