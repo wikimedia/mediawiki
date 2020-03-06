@@ -382,6 +382,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$row = $res->fetchObject();
 		$res->free();
 
+		$this->hideDeprecated( Revision::class . '::newFromRow' );
 		$rev = Revision::newFromRow( $row );
 
 		$this->assertRevEquals( $orig, $rev );

@@ -633,6 +633,7 @@ because of Phabricator reports.
   - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead
   - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
   - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
+  - ::newFromRow - use RevisionStore::newRevisionFromRow instead
   - ::newKnownCurrent - use RevisionStore::getKnownCurrentRevision instead
   - ::getParentLengths - use RevisionStore::getRevisionSizes instead
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
@@ -646,6 +647,8 @@ because of Phabricator reports.
 * RevisionStore::loadRevisionFromTitle was deprecated.
 * RevisionStore::listRevisionSizes was deprecated.
 * SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
+* Passing a Revision object into CategoryMembershipChange constructor is
+  deprecated. Pass a RevisionRecord instead.
 * The "mediawiki.legacy.oldshared" module has been deprecated.
   Skins and extensions that are using this should copy its necessary CSS rules
   to their own styles module. CologneBlue and Nostalgia skins serve as examples.

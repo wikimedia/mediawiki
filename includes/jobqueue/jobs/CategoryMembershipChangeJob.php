@@ -20,6 +20,9 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStoreRecord;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -153,7 +156,8 @@ class CategoryMembershipChangeJob extends Job {
 		// Find revisions to this page made around and after this revision which lack category
 		// notifications in recent changes. This lets jobs pick up were the last one left off.
 		$encCutoff = $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) );
-		$revQuery = Revision::getQueryInfo();
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revQuery = $revisionStore->getQueryInfo();
 		$res = $dbr->select(
 			$revQuery['tables'],
 			$revQuery['fields'],
@@ -169,7 +173,7 @@ class CategoryMembershipChangeJob extends Job {
 
 		// Apply all category updates in revision timestamp order
 		foreach ( $res as $row ) {
-			$this->notifyUpdatesForRevision( $lbFactory, $page, Revision::newFromRow( $row ) );
+			$this->notifyUpdatesForRevision( $lbFactory, $page, $revisionStore->newRevisionFromRow( $row ) );
 		}
 
 		return true;
@@ -178,25 +182,27 @@ class CategoryMembershipChangeJob extends Job {
 	/**
 	 * @param LBFactory $lbFactory
 	 * @param WikiPage $page
-	 * @param Revision $newRev
+	 * @param RevisionRecord $newRev
 	 * @throws MWException
 	 */
 	protected function notifyUpdatesForRevision(
-		LBFactory $lbFactory, WikiPage $page, Revision $newRev
+		LBFactory $lbFactory, WikiPage $page, RevisionRecord $newRev
 	) {
 		$config = RequestContext::getMain()->getConfig();
 		$title = $page->getTitle();
 
 		// Get the new revision
-		if ( !$newRev->getContent() ) {
-			return; // deleted?
+		if ( $newRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+			return;
 		}
 
 		// Get the prior revision (the same for null edits)
 		if ( $newRev->getParentId() ) {
-			$oldRev = Revision::newFromId( $newRev->getParentId(), Revision::READ_LATEST );
-			if ( !$oldRev || !$oldRev->getContent() ) {
-				return; // deleted?
+			$oldRev = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionById( $newRev->getParentId(), RevisionLookup::READ_LATEST );
+			if ( !$oldRev || $oldRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+				return;
 			}
 		} else {
 			$oldRev = null;
@@ -233,7 +239,7 @@ class CategoryMembershipChangeJob extends Job {
 	}
 
 	private function getExplicitCategoriesChanges(
-		WikiPage $page, Revision $newRev, Revision $oldRev = null
+		WikiPage $page, RevisionRecord $newRev, RevisionRecord $oldRev = null
 	) {
 		// Inject the same timestamp for both revision parses to avoid seeing category changes
 		// due to time-based parser functions. Inject the same page title for the parses too.
@@ -256,20 +262,22 @@ class CategoryMembershipChangeJob extends Job {
 
 	/**
 	 * @param WikiPage $page
-	 * @param Revision $rev
+	 * @param RevisionRecord $rev
 	 * @param string $parseTimestamp TS_MW
 	 *
 	 * @return string[] category names
 	 */
-	private function getCategoriesAtRev( WikiPage $page, Revision $rev, $parseTimestamp ) {
+	private function getCategoriesAtRev( WikiPage $page, RevisionRecord $rev, $parseTimestamp ) {
 		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 		$options = $page->makeParserOptions( 'canonical' );
 		$options->setTimestamp( $parseTimestamp );
 
-		$output = $rev->isCurrent() ? $this->parserCache->get( $page, $options ) : null;
+		$output = $rev instanceof RevisionStoreRecord && $rev->isCurrent()
+			? $this->parserCache->get( $page, $options )
+			: null;
 
 		if ( !$output || $output->getCacheRevisionId() !== $rev->getId() ) {
-			$output = $renderer->getRenderedRevision( $rev->getRevisionRecord(), $options )
+			$output = $renderer->getRenderedRevision( $rev, $options )
 				->getRevisionParserOutput();
 		}
 
