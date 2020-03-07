@@ -97,22 +97,6 @@ class AjaxResponse {
 	}
 
 	/**
-	 * Set the number of seconds to get the response cached by a proxy
-	 * @param int $duration
-	 */
-	function setCacheDuration( $duration ) {
-		$this->mCacheDuration = $duration;
-	}
-
-	/**
-	 * Set the HTTP Vary header
-	 * @param string $vary
-	 */
-	function setVary( $vary ) {
-		$this->mVary = $vary;
-	}
-
-	/**
 	 * Set the HTTP response code
 	 * @param int|string $code
 	 */

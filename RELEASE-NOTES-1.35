@@ -345,8 +345,12 @@ because of Phabricator reports.
 * Title::isValidMoveOperation, ::moveTo, and ::isValidMoveTarget, deprecated
   in 1.25, were removed. Use the MovePage class and its methods instead.
 * StringUtils::explodeMarkup() was removed without deprecation.
-* AjaxResponse::checkLastModified(), AjaxResponse::loadFromMemcached(), and
-  AjaxResponse::storeInMemcached() have been removed.
+* AjaxResponse methods that were unused have been removed without deprecation:
+  - checkLastModified
+  - loadFromMemcached
+  - storeInMemcached
+  - setCacheDuration
+  - setVary
 * Skin::getSkinNameMessages() deprecated in 1.34, has been removed.
 * Skin::escapeSearchLink() deprecated in 1.34, has been removed, use
   Skin::getSearchLink() instead.
