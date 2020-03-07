@@ -1769,7 +1769,7 @@ class EditPage {
 				return false;
 
 			case self::AS_SPAM_ERROR:
-				$this->spamPageWithContent( $resultDetails['spam'] );
+				$this->spamPageWithContent( $resultDetails['spam'] ?? false );
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
