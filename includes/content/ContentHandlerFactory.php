@@ -122,7 +122,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 		$models = array_merge( // auto-registered from config and MediaServiceWiki or manual
 			array_keys( $this->handlerSpecs ),
 
-			// incorrect registered and called: without  HOOK_NAME_GET_CONTENT_MODELS
+			// incorrect registered and called: without HOOK_NAME_GET_CONTENT_MODELS
 			array_keys( $this->handlersByModel ),
 
 			// correct registered: as HOOK_NAME_GET_CONTENT_MODELS
