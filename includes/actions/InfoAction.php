@@ -539,15 +539,17 @@ class InfoAction extends FormlessAction {
 		// Edit history
 		$pageInfo['header-edits'] = [];
 
-		$firstRev = $this->page->getOldestRevision();
+		$firstRev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getFirstRevision( $this->page->getTitle() );
 		$lastRev = $this->page->getRevision();
 		$batch = new LinkBatch;
 
 		if ( $firstRev ) {
-			$firstRevUser = $firstRev->getUserText( RevisionRecord::FOR_THIS_USER, $user );
-			if ( $firstRevUser !== '' ) {
-				$batch->add( NS_USER, $firstRevUser );
-				$batch->add( NS_USER_TALK, $firstRevUser );
+			$firstRevUser = $firstRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			if ( $firstRevUser ) {
+				$batch->add( NS_USER, $firstRevUser->getName() );
+				$batch->add( NS_USER_TALK, $firstRevUser->getName() );
 			}
 		}
 
@@ -565,7 +567,7 @@ class InfoAction extends FormlessAction {
 			// Page creator
 			$pageInfo['header-edits'][] = [
 				$this->msg( 'pageinfo-firstuser' ),
-				Linker::revUserTools( $firstRev )
+				Linker::revUserTools( new Revision( $firstRev ) )
 			];
 
 			// Date of page creation

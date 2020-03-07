@@ -650,6 +650,11 @@ because of Phabricator reports.
   - ApiTokensGetTokenTypes
 * LESS `.background-image-svg-quick()` mixin from 'mediawiki.mixins.less' is
   deprecated and should be removed in 1.36.
+* The following methods were deprecated:
+  - Title::getFirstRevision
+  - Title::getEarliestRevTime
+  - WikiPage::getOldestRevision
+  Use RevisionStore::getFirstRevision instead.
 * …
 
 === Other changes in 1.35 ===

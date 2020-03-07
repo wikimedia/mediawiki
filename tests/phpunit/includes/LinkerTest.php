@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  */
@@ -474,20 +476,21 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$rollbackOutput = Linker::generateRollback( $page->getRevision(), $context );
 		$modules = $context->getOutput()->getModules();
 		$currentRev = $page->getRevision();
-		$oldestRev = $page->getOldestRevision();
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$oldestRev = $revisionLookup->getFirstRevision( $page->getTitle() );
 
 		$this->assertEquals( $expectedModules, $modules );
 		$this->assertEquals( $user->getName(), $currentRev->getUserText() );
 		$this->assertEquals(
 			static::getTestSysop()->getUser(),
-			$oldestRev->getUserText()
+			$oldestRev->getUser()->getName()
 		);
 
 		$ids = [];
 		$r = $oldestRev;
 		while ( $r ) {
 			$ids[] = $r->getId();
-			$r = $r->getNext();
+			$r = $revisionLookup->getNextRevision( $r );
 		}
 		$this->assertEquals( [ $oldestRev->getId(), $currentRev->getId() ], $ids );
 

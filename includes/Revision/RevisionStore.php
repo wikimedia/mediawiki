@@ -2495,13 +2495,19 @@ class RevisionStore
 	 *
 	 * @param array $conditions
 	 * @param int $flags (optional)
-	 * @param Title|null $title
+	 * @param Title|null $title (optional)
+	 * @param array $options (optional) additional query options
 	 *
 	 * @return RevisionRecord|null
 	 */
-	private function newRevisionFromConds( $conditions, $flags = 0, Title $title = null ) {
+	private function newRevisionFromConds(
+		array $conditions,
+		int $flags = IDBAccessObject::READ_NORMAL,
+		Title $title = null,
+		array $options = []
+	) {
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
-		$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $title );
+		$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $title, $options );
 
 		$lb = $this->getDBLoadBalancer();
 
@@ -2514,7 +2520,7 @@ class RevisionStore
 		) {
 			$flags = self::READ_LATEST;
 			$dbw = $this->getDBConnectionRef( DB_MASTER );
-			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $title );
+			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $title, $options );
 		}
 
 		return $rev;
@@ -2529,17 +2535,19 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
-	 * @param Title|null $title
+	 * @param Title|null $title (optional) additional query options
+	 * @param array $options (optional) additional query options
 	 *
 	 * @return RevisionRecord|null
 	 */
 	private function loadRevisionFromConds(
 		IDatabase $db,
-		$conditions,
-		$flags = 0,
-		Title $title = null
+		array $conditions,
+		int $flags = IDBAccessObject::READ_NORMAL,
+		Title $title = null,
+		array $options = []
 	) {
-		$row = $this->fetchRevisionRowFromConds( $db, $conditions, $flags );
+		$row = $this->fetchRevisionRowFromConds( $db, $conditions, $flags, $options );
 		if ( $row ) {
 			$rev = $this->newRevisionFromRow( $row, $flags, $title );
 
@@ -2575,14 +2583,19 @@ class RevisionStore
 	 * @param IDatabase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
+	 * @param array $options (optional) additional query options
 	 *
 	 * @return object|false data row as a raw object
 	 */
-	private function fetchRevisionRowFromConds( IDatabase $db, $conditions, $flags = 0 ) {
+	private function fetchRevisionRowFromConds(
+		IDatabase $db,
+		array $conditions,
+		int $flags = IDBAccessObject::READ_NORMAL,
+		array $options = []
+	) {
 		$this->checkDatabaseDomain( $db );
 
 		$revQuery = $this->getQueryInfo( [ 'page', 'user' ] );
-		$options = [];
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
@@ -3242,6 +3255,33 @@ class RevisionStore
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Get the first revision of a given page.
+	 *
+	 * @since 1.35
+	 * @param LinkTarget $title
+	 * @param int $flags
+	 * @return RevisionRecord|null
+	 */
+	public function getFirstRevision(
+		LinkTarget $title,
+		int $flags = IDBAccessObject::READ_NORMAL
+	): ?RevisionRecord {
+		$titleObj = Title::newFromLinkTarget( $title ); //TODO: eventually we shouldn't need a title
+		return $this->newRevisionFromConds(
+			[
+				'page_namespace' => $title->getNamespace(),
+				'page_title' => $title->getDBkey()
+			],
+			$flags,
+			$titleObj,
+			[
+				'ORDER BY' => [ 'rev_timestamp ASC', 'rev_id ASC' ],
+				'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
+			]
+		);
 	}
 
 	/**

@@ -692,15 +692,13 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Get the Revision object of the oldest revision
+	 * @deprecated since 1.35 Use RevisionStore::getFirstRevision for the
+	 *   corresponding title instead.
 	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
-		// Try using the replica DB first, then try the master
-		$rev = $this->mTitle->getFirstRevision();
-		if ( !$rev ) {
-			$rev = $this->mTitle->getFirstRevision( Title::READ_LATEST );
-		}
-		return $rev;
+		$rev = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
+		return $rev ? new Revision( $rev ) : null;
 	}
 
 	/**
