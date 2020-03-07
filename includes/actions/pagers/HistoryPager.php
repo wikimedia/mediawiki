@@ -88,7 +88,8 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		$revQuery = Revision::getQueryInfo( [ 'user' ] );
+		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()
+			->getQueryInfo( [ 'user' ] );
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
