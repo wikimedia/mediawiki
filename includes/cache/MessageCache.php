@@ -213,7 +213,7 @@ class MessageCache implements LoggerAwareInterface {
 				return $po;
 			}
 
-			$this->mParserOptions = new ParserOptions;
+			$this->mParserOptions = new ParserOptions( $wgUser );
 			// Messages may take parameters that could come
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
