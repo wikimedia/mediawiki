@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 
 /**
  * @ingroup Pager
@@ -50,6 +51,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var string */
 	private $tagFilter;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
 	/**
 	 * @param HistoryAction $historyPage
 	 * @param string $year
@@ -72,6 +76,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->getDateCond( $year, $month, $day );
 		$this->conds = $conds;
 		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
+		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 	}
 
 	// For hook compatibility...
@@ -88,8 +93,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()
-			->getQueryInfo( [ 'user' ] );
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'user' ] );
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
@@ -162,7 +166,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$batch->add( NS_USER_TALK, $row->rev_user_text );
 			}
 		}
-		$this->parentLens = Revision::getParentLengths( $this->mDb, $revIds );
+		$this->parentLens = $this->revisionStore->getRevisionSizes( $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
 	}
