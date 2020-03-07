@@ -2436,7 +2436,7 @@ changes to languages because of Phabricator reports.
 
 * (T180052) Mirandese (mwl) now supports gendered NS_USER/NS_USER_TALK.
 * (T182305) New language support: Nyungar (nys).
-* (T186359) New language support: Siberian Tatar [cебертатар] (sty).
+* (T186359) New language support: Siberian Tatar [себертатар] (sty).
 * (T186635) New language support: Guianan Creole (gcr).
 * (T186647) New language support: Kumyk [къумукъ] (kum).
 * (T187750) New language support: Spanish formal address (es-formal).
