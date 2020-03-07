@@ -1206,6 +1206,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::getParentLengths
 	 */
 	public function testGetParentLengths_noRevIds() {
+		$this->hideDeprecated( Revision::class . '::getParentLengths' );
 		$this->assertSame(
 			[],
 			Revision::getParentLengths(
@@ -1225,6 +1226,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->testPage->doEditContent( new WikitextContent( $text ), __METHOD__ );
 		$rev[1] = $this->testPage->getLatest();
 
+		$this->hideDeprecated( Revision::class . '::getParentLengths' );
 		$this->assertSame(
 			[ $rev[1] => $textLength ],
 			Revision::getParentLengths(
@@ -1248,6 +1250,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->testPage->doEditContent( new WikitextContent( $textTwo ), __METHOD__ );
 		$rev[2] = $this->testPage->getLatest();
 
+		$this->hideDeprecated( Revision::class . '::getParentLengths' );
 		$this->assertSame(
 			[ $rev[1] => $textOneLength, $rev[2] => $textTwoLength ],
 			Revision::getParentLengths(

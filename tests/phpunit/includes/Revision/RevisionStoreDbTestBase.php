@@ -1407,7 +1407,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Revision\RevisionStore::listRevisionSizes
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionSizes
 	 */
 	public function testGetParentLengths() {
 		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
@@ -1425,20 +1425,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			[
 				$revOne->getId() => strlen( __METHOD__ ),
 			],
-			$store->listRevisionSizes(
-				wfGetDB( DB_MASTER ),
-				[ $revOne->getId() ]
-			)
+			$store->getRevisionSizes( [ $revOne->getId() ] )
 		);
 		$this->assertSame(
 			[
 				$revOne->getId() => strlen( __METHOD__ ),
 				$revTwo->getId() => strlen( __METHOD__ ) + 1,
 			],
-			$store->listRevisionSizes(
-				wfGetDB( DB_MASTER ),
-				[ $revOne->getId(), $revTwo->getId() ]
-			)
+			$store->getRevisionSizes( [ $revOne->getId(), $revTwo->getId() ] )
 		);
 	}
 
