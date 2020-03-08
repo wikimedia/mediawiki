@@ -309,6 +309,7 @@ because of Phabricator reports.
 * The APCBagOStuff class was removed. MediaWiki requires PHP 7.2+ (support
   for HHVM was dropped) and these versions of PHP only support apcu. The default
   "apc" entry in $wgObjectCaches now refers to APCUBagOStuff.
+* Database::bufferResults(), deprecated in 1.34, has been removed.
 * CannotReplaceActiveServiceException, ContainerDisabledException,
   DestructibleService, NoSuchServiceException, SalvageableService,
   ServiceAlreadyDefinedException, ServiceContainer and ServiceDisabledException
