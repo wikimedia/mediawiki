@@ -3950,13 +3950,6 @@ $wgNamespaceAliases = [];
 $wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
 
 /**
- * The interwiki prefix of the current wiki, or false if it doesn't have one.
- *
- * @deprecated since 1.23; use $wgLocalInterwikis instead
- */
-$wgLocalInterwiki = false;
-
-/**
  * Array for multiple $wgLocalInterwiki values, in case there are several
  * interwiki prefixes that point to the current wiki. If $wgLocalInterwiki is
  * set, its value is prepended to this array, for backwards compatibility.
