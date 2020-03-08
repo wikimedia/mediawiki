@@ -1630,27 +1630,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
-	 * @param ParserOptions|null $options Either the ParserOption to use or null to only get the
-	 *   current ParserOption object. This parameter is deprecated since 1.31.
 	 * @return ParserOptions
 	 * @suppress PhanUndeclaredProperty For isBogus
 	 */
-	public function parserOptions( $options = null ) {
-		if ( $options !== null ) {
-			wfDeprecated( __METHOD__ . ' with non-null $options', '1.31' );
-		}
-
-		if ( $options !== null && !empty( $options->isBogus ) ) {
-			// Someone is trying to set a bogus pre-$wgUser PO. Check if it has
-			// been changed somehow, and keep it if so.
-			$anonPO = ParserOptions::newFromAnon();
-			$anonPO->setAllowUnsafeRawHtml( false );
-			if ( !$options->matches( $anonPO ) ) {
-				wfLogWarning( __METHOD__ . ': Setting a changed bogus ParserOptions: ' . wfGetAllCallers( 5 ) );
-				$options->isBogus = false;
-			}
-		}
-
+	public function parserOptions() {
 		if ( !$this->mParserOptions ) {
 			if ( !$this->getUser()->isSafeToLoad() ) {
 				// $wgUser isn't unstubbable yet, so don't try to get a
@@ -1659,9 +1642,6 @@ class OutputPage extends ContextSource {
 				$po = ParserOptions::newFromAnon();
 				$po->setAllowUnsafeRawHtml( false );
 				$po->isBogus = true;
-				if ( $options !== null ) {
-					$this->mParserOptions = empty( $options->isBogus ) ? $options : null;
-				}
 				return $po;
 			}
 
@@ -1669,13 +1649,7 @@ class OutputPage extends ContextSource {
 			$this->mParserOptions->setAllowUnsafeRawHtml( false );
 		}
 
-		if ( $options !== null && !empty( $options->isBogus ) ) {
-			// They're trying to restore the bogus pre-$wgUser PO. Do the right
-			// thing.
-			return wfSetVar( $this->mParserOptions, null, true );
-		} else {
-			return wfSetVar( $this->mParserOptions, $options );
-		}
+		return $this->mParserOptions;
 	}
 
 	/**
