@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Templates
  * @coversDefaultClass TemplateParser
  */
-class TemplateParserTest extends MediaWikiIntegrationTestCase {
+class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private const TEMPLATE_NAME = 'foobar';
 
