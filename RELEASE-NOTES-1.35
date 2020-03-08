@@ -346,6 +346,7 @@ because of Phabricator reports.
 * CommentStore::newKey, deprecated in 1.31, was removed.
 * Title::isValidMoveOperation, ::moveTo, and ::isValidMoveTarget, deprecated
   in 1.25, were removed. Use the MovePage class and its methods instead.
+* Title::getUserCaseDBKey(), deprecated in 1.33, was removed. Use ::getDBKey().
 * StringUtils::explodeMarkup() was removed without deprecation.
 * AjaxResponse methods that were unused have been removed without deprecation:
   - checkLastModified
