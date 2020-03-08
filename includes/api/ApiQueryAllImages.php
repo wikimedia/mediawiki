@@ -24,6 +24,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -37,7 +38,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ai' );
-		$this->mRepo = RepoGroup::singleton()->getLocalRepo();
+		$this->mRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 	}
 
 	/**
