@@ -98,7 +98,7 @@ TEXT
 
 	protected function doWork() {
 		$this->output( "Finding up to {$this->getBatchSize()} drifted rows " .
-			"starting at cat_id {$this->getBatchSize()}...\n" );
+			"greater than cat_id {$this->minimumId}...\n" );
 
 		$countingConds = [ 'cl_to = cat_title' ];
 		if ( $this->mode === 'subcats' ) {
