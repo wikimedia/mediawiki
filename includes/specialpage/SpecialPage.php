@@ -81,7 +81,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @throws MWException
 	 */
 	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
-		return Title::newFromTitleValue(
+		return Title::newFromLinkTarget(
 			self::getTitleValueFor( $name, $subpage, $fragment )
 		);
 	}
