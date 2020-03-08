@@ -58,10 +58,8 @@ class RevertAction extends FormAction {
 			throw new ErrorPageError( 'internalerror', 'unexpected', [ 'oldimage', $oldimage ] );
 		}
 
-		$this->oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
-			$this->getTitle(),
-			$oldimage
-		);
+		$this->oldFile = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->newFromArchiveName( $this->getTitle(), $oldimage );
 
 		if ( !$this->oldFile->exists() ) {
 			throw new ErrorPageError( '', 'filerevert-badversion' );

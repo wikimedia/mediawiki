@@ -178,7 +178,7 @@ class LocalFileRestoreBatch {
 			) {
 				// Refresh our metadata
 				// Required for a new current revision; nice for older ones too. :)
-				$props = RepoGroup::singleton()->getFileProps( $deletedUrl );
+				$props = MediaWikiServices::getInstance()->getRepoGroup()->getFileProps( $deletedUrl );
 			} else {
 				$props = [
 					'minor_mime' => $row->fa_minor_mime,

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @covers RepoGroup
  */
@@ -7,12 +9,12 @@ class RepoGroupTest extends MediaWikiTestCase {
 
 	public function testHasForeignRepoNegative() {
 		$this->setMwGlobals( 'wgForeignFileRepos', [] );
-		$this->assertFalse( RepoGroup::singleton()->hasForeignRepos() );
+		$this->assertFalse( MediaWikiServices::getInstance()->getRepoGroup()->hasForeignRepos() );
 	}
 
 	public function testHasForeignRepoPositive() {
 		$this->setUpForeignRepo();
-		$this->assertTrue( RepoGroup::singleton()->hasForeignRepos() );
+		$this->assertTrue( MediaWikiServices::getInstance()->getRepoGroup()->hasForeignRepos() );
 	}
 
 	public function testForEachForeignRepo() {
@@ -48,7 +50,7 @@ class RepoGroupTest extends MediaWikiTestCase {
 }
 
 /**
- * Quick helper class to use as a mock callback for RepoGroup::singleton()->forEachForeignRepo.
+ * Quick helper class to use as a mock callback for RepoGroup::forEachForeignRepo.
  */
 class RepoGroupTestHelper {
 	public function callback( FileRepo $repo, array $foo ) {

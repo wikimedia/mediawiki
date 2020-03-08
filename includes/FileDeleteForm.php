@@ -107,7 +107,8 @@ class FileDeleteForm {
 			$permissionManager->userHasRight( $this->user, 'suppressrevision' );
 
 		if ( $this->oldimage ) {
-			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName(
+			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
+			$this->oldfile = $repoGroup->getLocalRepo()->newFromArchiveName(
 				$this->title,
 				$this->oldimage
 			);
