@@ -145,23 +145,11 @@ class ApiResult implements ApiSerializable {
 	private $data, $size, $maxSize;
 	private $errorFormatter;
 
-	// Deprecated fields
-	private $checkingSize, $mainForContinuation;
-
 	/**
 	 * @param int|bool $maxSize Maximum result "size", or false for no limit
-	 * @since 1.25 Takes an integer|bool rather than an ApiMain
 	 */
 	public function __construct( $maxSize ) {
-		if ( $maxSize instanceof ApiMain ) {
-			wfDeprecated( 'ApiMain to ' . __METHOD__, '1.25' );
-			$this->errorFormatter = $maxSize->getErrorFormatter();
-			$this->mainForContinuation = $maxSize;
-			$maxSize = $maxSize->getConfig()->get( 'APIMaxResultSize' );
-		}
-
 		$this->maxSize = $maxSize;
-		$this->checkingSize = true;
 		$this->reset();
 	}
 
@@ -405,7 +393,7 @@ class ApiResult implements ApiSerializable {
 	public function addValue( $path, $name, $value, $flags = 0 ) {
 		$arr = &$this->path( $path, ( $flags & self::ADD_ON_TOP ) ? 'prepend' : 'append' );
 
-		if ( $this->checkingSize && !( $flags & self::NO_SIZE_CHECK ) ) {
+		if ( !( $flags & self::NO_SIZE_CHECK ) ) {
 			// self::size needs the validated value. Then flag
 			// to not re-validate later.
 			$value = self::validateValue( $value );
@@ -459,7 +447,7 @@ class ApiResult implements ApiSerializable {
 			$name = array_pop( $path );
 		}
 		$ret = self::unsetValue( $this->path( $path, 'dummy' ), $name );
-		if ( $this->checkingSize && !( $flags & self::NO_SIZE_CHECK ) ) {
+		if ( !( $flags & self::NO_SIZE_CHECK ) ) {
 			$newsize = $this->size - self::size( $ret );
 			$this->size = max( $newsize, 0 );
 		}
