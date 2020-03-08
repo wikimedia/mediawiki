@@ -320,6 +320,7 @@ because of Phabricator reports.
   appropriate.
 * ContentHandler::makeParserOptions(), deprecated in 1.32, was removed. Use
   WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
+* WikiPage::selectFields, deprecated in 1.31, was removed. Use ::getQueryInfo.
 * The remaining static methods for MagicWord, deprecated in 1.32, were removed.
   These were MagicWord::get(), ::getSubstIDs(), ::getDoubleUnderscoreArray(),
   ::getVariableIDs(), and ::getCacheTTL(). Instead, use MagicWordFactory (via
