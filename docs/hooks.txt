@@ -586,11 +586,6 @@ a chance to hide their (unrelated) log entries.
   AND in the final query)
 $logTypes: Array of log types being queried
 
-'ArticleAfterFetchContentObject': DEPRECATED since 1.32, use ArticleRevisionViewCustom
-to control output. After fetching content of an article from the database.
-[&]$article: the article (object) being loaded from the database
-&$content: the content of the article, as a Content object
-
 'ArticleConfirmDelete': Before writing the confirmation form for article
 deletion.
 $article: the article (object) being deleted
