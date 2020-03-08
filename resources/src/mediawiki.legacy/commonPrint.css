@@ -205,7 +205,6 @@ div.floatright,
 div.tright {
 	float: right;
 	clear: right;
-	position: relative;
 }
 
 /* @noflip */
@@ -214,7 +213,6 @@ div.floatleft,
 div.tleft {
 	float: left;
 	clear: left;
-	position: relative;
 }
 
 /* @noflip */
