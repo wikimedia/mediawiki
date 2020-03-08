@@ -1489,7 +1489,8 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $this->getTitle()->getNamespace() == NS_FILE ) {
-			RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $this->getTitle() );
+			MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+				->invalidateImageRedirect( $this->getTitle() );
 		}
 
 		return $success;
@@ -3455,7 +3456,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$title->touchLinks();
 		$title->purgeSquid();
 
-		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
+		$services = MediaWikiServices::getInstance();
+		$services->getLinkCache()->invalidateTitle( $title );
 
 		// File cache
 		HTMLFileCache::clearFileCache( $title );
@@ -3485,7 +3487,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Image redirects
-		RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $title );
+		$services->getRepoGroup()->getLocalRepo()->invalidateImageRedirect( $title );
 
 		// Purge cross-wiki cache entities referencing this page
 		self::purgeInterwikiCheckKey( $title );

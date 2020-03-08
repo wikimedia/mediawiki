@@ -3895,10 +3895,13 @@ class Parser {
 	protected function fetchFileNoRegister( $title, $options = [] ) {
 		if ( isset( $options['broken'] ) ) {
 			$file = false; // broken thumbnail forced by hook
-		} elseif ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
-			$file = RepoGroup::singleton()->findFileFromKey( $options['sha1'], $options );
-		} else { // get by (name,timestamp)
-			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title, $options );
+		} else {
+			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
+			if ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
+				$file = $repoGroup->findFileFromKey( $options['sha1'], $options );
+			} else { // get by (name,timestamp)
+				$file = $repoGroup->findFile( $title, $options );
+			}
 		}
 		return $file;
 	}
