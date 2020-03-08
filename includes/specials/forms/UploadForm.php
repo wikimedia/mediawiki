@@ -257,7 +257,8 @@ class UploadForm extends HTMLForm {
 	protected function getDescriptionSection() {
 		$config = $this->getConfig();
 		if ( $this->mSessionKey ) {
-			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
+			$stash = MediaWikiServices::getInstance()->getRepoGroup()
+				->getLocalRepo()->getUploadStash( $this->getUser() );
 			try {
 				$file = $stash->getFile( $this->mSessionKey );
 			} catch ( Exception $e ) {

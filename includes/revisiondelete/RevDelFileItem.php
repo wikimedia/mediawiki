@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -43,7 +44,8 @@ class RevDelFileItem extends RevDelItem {
 	 * @return mixed
 	 */
 	protected static function initFile( $list, $row ) {
-		return RepoGroup::singleton()->getLocalRepo()->newFileFromRow( $row );
+		return MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->newFileFromRow( $row );
 	}
 
 	public function getIdField() {

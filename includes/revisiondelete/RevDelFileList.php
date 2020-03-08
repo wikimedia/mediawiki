@@ -87,7 +87,7 @@ class RevDelFileList extends RevDelList {
 
 	public function doPreCommitUpdates() {
 		$status = Status::newGood();
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		if ( $this->storeBatch ) {
 			$status->merge( $repo->storeBatch( $this->storeBatch, FileRepo::OVERWRITE_SAME ) );
 		}

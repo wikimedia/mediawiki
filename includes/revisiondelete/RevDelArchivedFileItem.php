@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -33,7 +34,8 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 
 	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
-		$this->lockFile = RepoGroup::singleton()->getLocalRepo()->newFile( $row->fa_name );
+		$this->lockFile = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->newFile( $row->fa_name );
 	}
 
 	protected static function initFile( $list, $row ) {

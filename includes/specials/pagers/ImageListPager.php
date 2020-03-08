@@ -443,7 +443,7 @@ class ImageListPager extends TablePager {
 		switch ( $field ) {
 			case 'thumb':
 				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
-				$file = RepoGroup::singleton()->getLocalRepo()->findFile( $value, $opt );
+				$file = $services->getRepoGroup()->getLocalRepo()->findFile( $value, $opt );
 				// If statement for paranoia
 				if ( $file ) {
 					$thumb = $file->transform( [ 'width' => 180, 'height' => 360 ] );

@@ -79,7 +79,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * @return bool
 	 */
 	protected function likelyToHaveFalsePositives() {
-		return RepoGroup::singleton()->hasForeignRepos();
+		return MediaWikiServices::getInstance()->getRepoGroup()->hasForeignRepos();
 	}
 
 	/**
