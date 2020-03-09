@@ -3599,12 +3599,13 @@ $wgMangleFlashPolicy = true;
 $wgResourceModules = [];
 
 /**
- * Skin-specific styles for resource modules.
+ * Add extra skin-specific styles to a resource module.
  *
- * These are later added to the 'skinStyles' list of the existing module. The 'styles' list can
- * not be modified or disabled.
+ * These are automatically added by ResourceLoader to the the 'skinStyles' list of
+ * the existing module. The 'styles' list cannot be modified or disabled.
  *
- * For example, here is a module "bar" and how skin Foo would provide additional styles for it.
+ * For example, below a module "bar" is defined and skin Foo provides additional
+ * styles for it:
  *
  * @par Example:
  * @code
@@ -3618,7 +3619,7 @@ $wgResourceModules = [];
  *   ];
  * @endcode
  *
- * This is mostly equivalent to:
+ * This is effectively equivalent to:
  *
  * @par Equivalent:
  * @code
@@ -3635,7 +3636,7 @@ $wgResourceModules = [];
  * $wgResourceModuleSkinStyles is ignored.
  *
  * If a module defines a `skinStyles['default']` the skin may want to extend that instead
- * of replacing them. This can be done using the `+` prefix.
+ * of replacing it. This can be done using the `+` prefix.
  *
  * @par Example:
  * @code
@@ -3652,7 +3653,7 @@ $wgResourceModules = [];
  *   ];
  * @endcode
  *
- * This is mostly equivalent to:
+ * This is effectively equivalent to:
  *
  * @par Equivalent:
  * @code
@@ -3673,8 +3674,8 @@ $wgResourceModules = [];
  * disabled by a skin. To provide default styles that may be extended or replaced,
  * use `skinStyles['default']`.
  *
- * As with $wgResourceModules, paths default to being relative to the MediaWiki root.
- * You should always provide a localBasePath and remoteBasePath (or remoteExtPath/remoteSkinPath).
+ * As with $wgResourceModules, always set the localBasePath and remoteBasePath
+ * keys (or one of remoteExtPath/remoteSkinPath).
  *
  * @par Example:
  * @code
