@@ -42,6 +42,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Mail\IEmailer;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -630,6 +631,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancerFactory() : LBFactory {
 		return $this->getService( 'DBLoadBalancerFactory' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return IEmailer
+	 */
+	public function getEmailer() : IEmailer {
+		return $this->getService( 'Emailer' );
 	}
 
 	/**
