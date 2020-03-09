@@ -351,7 +351,7 @@
 	 * well-defined purpose.
 	 *
 	 * Data handlers are registered via `mw.trackSubscribe`, and receive the full set of
-	 * events that match their subcription, including those that fired before the handler was
+	 * events that match their subscription, including those that fired before the handler was
 	 * bound.
 	 *
 	 * @param {string} topic Topic name
