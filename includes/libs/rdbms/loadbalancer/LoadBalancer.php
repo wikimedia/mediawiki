@@ -429,13 +429,13 @@ class LoadBalancer implements ILoadBalancer {
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
 					$this->replLogger->debug(
 						__METHOD__ .
-						": server {hostname} is not replicating?", [ 'hostname' => $host ] );
+						": server {dbserver} is not replicating?", [ 'dbserver' => $host ] );
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
 					$this->replLogger->debug(
 						__METHOD__ .
-						": server {hostname} has {lag} seconds of lag (>= {maxlag})",
-						[ 'hostname' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
+						": server {dbserver} has {lag} seconds of lag (>= {maxlag})",
+						[ 'dbserver' => $host, 'lag' => $lag, 'maxlag' => $maxServerLag ]
 					);
 					unset( $loads[$i] );
 				}
@@ -2269,9 +2269,9 @@ class LoadBalancer implements ILoadBalancer {
 			$ok = ( $result !== null && $result != -1 );
 			if ( $ok ) {
 				$this->replLogger->warning(
-					__METHOD__ . ': timed out waiting on {hostname} pos {pos} [{seconds}s]',
+					__METHOD__ . ': timed out waiting on {dbserver} pos {pos} [{seconds}s]',
 					[
-						'hostname' => $conn->getServer(),
+						'dbserver' => $conn->getServer(),
 						'pos' => $pos,
 						'seconds' => round( $seconds, 6 ),
 						'trace' => ( new RuntimeException() )->getTraceAsString()
@@ -2283,9 +2283,9 @@ class LoadBalancer implements ILoadBalancer {
 		} else {
 			$ok = false; // something is misconfigured
 			$this->replLogger->error(
-				__METHOD__ . ': could not get master pos for {hostname}',
+				__METHOD__ . ': could not get master pos for {dbserver}',
 				[
-					'hostname' => $conn->getServer(),
+					'dbserver' => $conn->getServer(),
 					'trace' => ( new RuntimeException() )->getTraceAsString()
 				]
 			);
