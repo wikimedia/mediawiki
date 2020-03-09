@@ -74,19 +74,15 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		return apcu_store(
-			$key . self::KEY_SUFFIX,
-			$this->nativeSerialize ? $value : $this->serialize( $value ),
-			$exptime
-		);
+		$blob = $this->nativeSerialize ? $value : $this->serialize( $value );
+		$success = apcu_store( $key . self::KEY_SUFFIX, $blob, $exptime );
+		return $success;
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
-		return apcu_add(
-			$key . self::KEY_SUFFIX,
-			$this->nativeSerialize ? $value : $this->serialize( $value ),
-			$exptime
-		);
+		$blob = $this->nativeSerialize ? $value : $this->serialize( $value );
+		$success = apcu_add( $key . self::KEY_SUFFIX, $blob, $exptime );
+		return $success;
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
@@ -96,19 +92,22 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function incr( $key, $value = 1, $flags = 0 ) {
+		$result = false;
+
 		// https://github.com/krakjoe/apcu/issues/166
 		for ( $i = 0; $i < self::$CAS_MAX_ATTEMPTS; ++$i ) {
 			$oldCount = apcu_fetch( $key . self::KEY_SUFFIX );
 			if ( !is_int( $oldCount ) ) {
-				return false;
+				break;
 			}
 			$count = $oldCount + (int)$value;
 			if ( apcu_cas( $key . self::KEY_SUFFIX, $oldCount, $count ) ) {
-				return $count;
+				$result = $count;
+				break;
 			}
 		}
 
-		return false;
+		return $result;
 	}
 
 	public function decr( $key, $value = 1, $flags = 0 ) {
@@ -135,26 +134,29 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		// https://www.php.net/manual/en/function.apcu-inc.php
 		if ( $value === $init && $this->useIncrTTLArg ) {
 			/** @noinspection PhpMethodParametersCountMismatchInspection */
-			return apcu_inc( $key . self::KEY_SUFFIX, $value, $success, $exptime );
-		}
-
-		for ( $i = 0; $i < self::$CAS_MAX_ATTEMPTS; ++$i ) {
-			$oldCount = apcu_fetch( $key . self::KEY_SUFFIX );
-			if ( $oldCount === false ) {
-				$count = (int)$init;
-				if ( apcu_add( $key . self::KEY_SUFFIX, $count, $exptime ) ) {
-					return $count;
-				}
-			} elseif ( !is_int( $oldCount ) ) {
-				return false;
-			} else {
-				$count = $oldCount + (int)$value;
-				if ( apcu_cas( $key . self::KEY_SUFFIX, $oldCount, $count ) ) {
-					return $count;
+			$result = apcu_inc( $key . self::KEY_SUFFIX, $value, $success, $exptime );
+		} else {
+			$result = false;
+			for ( $i = 0; $i < self::$CAS_MAX_ATTEMPTS; ++$i ) {
+				$oldCount = apcu_fetch( $key . self::KEY_SUFFIX );
+				if ( $oldCount === false ) {
+					$count = (int)$init;
+					if ( apcu_add( $key . self::KEY_SUFFIX, $count, $exptime ) ) {
+						$result = $count;
+						break;
+					}
+				} elseif ( is_int( $oldCount ) ) {
+					$count = $oldCount + (int)$value;
+					if ( apcu_cas( $key . self::KEY_SUFFIX, $oldCount, $count ) ) {
+						$result = $count;
+						break;
+					}
+				} else {
+					break;
 				}
 			}
 		}
 
-		return false;
+		return $result;
 	}
 }
