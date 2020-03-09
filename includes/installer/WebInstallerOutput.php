@@ -149,8 +149,8 @@ class WebInstallerOutput {
 			$data = $registry->readFromQueue( [
 				"$wgStyleDirectory/Vector/skin.json" => 1,
 			] );
-			if ( isset( $data['globals']['wgResourceModules'] ) ) {
-				$resourceLoader->register( $data['globals']['wgResourceModules'] );
+			if ( isset( $data['attributes']['ResourceModules'] ) ) {
+				$resourceLoader->register( $data['attributes']['ResourceModules'] );
 			}
 
 			$moduleNames[] = 'skins.vector.styles';

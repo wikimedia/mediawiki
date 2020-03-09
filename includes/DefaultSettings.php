@@ -3580,10 +3580,10 @@ $wgMangleFlashPolicy = true;
  */
 
 /**
- * Client-side resource modules.
+ * Define extra client-side modules to be registered with ResourceLoader.
  *
- * Extensions should add their ResourceLoader module definitions
- * to the $wgResourceModules variable.
+ * NOTE: It is recommended to define modules in extension.json or skin.json
+ * whenever possible.
  *
  * @par Example:
  * @code
