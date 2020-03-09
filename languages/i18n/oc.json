@@ -22,7 +22,8 @@
 			"Unuaiga",
 			"Guilhelma",
 			"Matěj Suchánek",
-			"DannyS712"
+			"DannyS712",
+			"Quentí"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -955,6 +956,7 @@
 	"prefs-edits": "Nombre d’edicions :",
 	"prefsnologintext2": "Connectatz-vos per modificar vòstras preferéncias.",
 	"prefs-skin": "Aparéncia",
+	"prefs-skin-prefs": "Preferéncias de l'aparéncia",
 	"skin-preview": "Previsualizar",
 	"datedefault": "Pas cap de preferéncia",
 	"prefs-labs": "Foncionalitats « labs »",

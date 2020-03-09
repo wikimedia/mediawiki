@@ -1038,7 +1038,7 @@
 	"apierror-missingparam": "パラメーター <var>$1</var> を設定してください。",
 	"apierror-mustbeloggedin": "$1にログインしている必要があります。",
 	"apierror-noimageredirect": "画像のリダイレクトを作成する権限がありません。",
-	"apierror-nosuchpageid": "ID $1のページはありません。",
+	"apierror-nosuchpageid": "ID $1 のページはありません。",
 	"apierror-pagelang-disabled": "このウィキではページの言語は変更できません。",
 	"apierror-permissiondenied": "$1に必要な権限がありません。",
 	"apierror-permissiondenied-generic": "アクセスが拒否されました。",

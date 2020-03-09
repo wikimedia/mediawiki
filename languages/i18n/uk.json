@@ -625,7 +625,7 @@
 	"botpasswords-deleted-body": "Пароль бота з ім'ям «$1» {{GENDER:$2|користувача|користувачки}} «$2» було вилучено",
 	"botpasswords-newpassword": "Новий пароль для входу під <strong>$1</strong> — <strong>$2</strong>. <em>Запишіть його для подальшого використання.</em> <br> (Для старих ботів, які вимагають, щоб логін був такий же, як і ім'я користувача, Ви також можете використовувати <strong>$3</strong> як ім'я користувача і <strong>$4</strong> як пароль.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider не доступний.",
-	"botpasswords-restriction-failed": "Вхід не було здійснено через обмеження для паролю бота.",
+	"botpasswords-restriction-failed": "Вхід не було здійснено через обмеження для пароля бота.",
 	"botpasswords-invalid-name": "Вказане ім'я користувача не містить роздільник для пароля бота («$1»).",
 	"botpasswords-not-exist": "У користувача «$1» нема пароля для бота «$2».",
 	"botpasswords-needs-reset": "Пароль бота з ім'ям «$2» {{GENDER:$1|користувача|користувачки}} «$1» необхідно скинути.",

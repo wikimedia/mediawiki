@@ -1115,6 +1115,7 @@
 	"badsiglength": "Az aláírásod túl hosszú.\n{{PLURAL:$1|Egy|$1}} karakternél rövidebbnek kell lennie.",
 	"yourgender": "Milyen neműként hivatkozzunk rád?",
 	"gender-unknown": "Amikor rólad van szó, a szoftver semleges szavakat fog használni, ha lehetséges",
+	"gender-notknown": "Amikor rólad van szó, a szoftver semleges szavakat fog használni, ha lehetséges",
 	"gender-male": "Férfiként",
 	"gender-female": "Nőként",
 	"prefs-help-gender": "Nem kötelező: a szoftver használja a nemtől függő üzenetek megjelenítéséhez. Az információ mindenki számára látható.",
