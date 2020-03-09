@@ -314,6 +314,8 @@ because of Phabricator reports.
   ServiceAlreadyDefinedException, ServiceContainer and ServiceDisabledException
   in the global namespace, deprecated in 1.33, were removed. Use the classes in
   the MediaWiki\\Services namespace instead.
+* The following methods in the Interwiki class were removed: ::fetch(),
+  ::isValidInterwiki(), ::invalidateCache(), and ::getAllPrefixes().
 * The UsersMultiselectWidget config 'allowArbitrary' is now false by default. To
   accept arbitrary entries, pass in true for this config.
 * OutputPage::parse() and OutputPage::parseInline(), deprecated in 1.32, have
