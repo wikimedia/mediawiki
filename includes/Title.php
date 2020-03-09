@@ -1034,18 +1034,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Same as getDBkey()
-	 *
-	 * @deprecated since 1.33; please use Title::getDBKey() instead
-	 * @return string DB key
-	 */
-	function getUserCaseDBKey() {
-		wfDeprecated( __METHOD__, '1.33' );
-
-		return $this->getDBkey();
-	}
-
-	/**
 	 * Get the namespace index, i.e. one of the NS_xxxx constants.
 	 *
 	 * @return int Namespace index

@@ -314,6 +314,8 @@ because of Phabricator reports.
   ServiceAlreadyDefinedException, ServiceContainer and ServiceDisabledException
   in the global namespace, deprecated in 1.33, were removed. Use the classes in
   the MediaWiki\\Services namespace instead.
+* The following methods in the Interwiki class were removed: ::fetch(),
+  ::isValidInterwiki(), ::invalidateCache(), and ::getAllPrefixes().
 * The UsersMultiselectWidget config 'allowArbitrary' is now false by default. To
   accept arbitrary entries, pass in true for this config.
 * OutputPage::parse() and OutputPage::parseInline(), deprecated in 1.32, have
@@ -321,6 +323,7 @@ because of Phabricator reports.
   appropriate.
 * ContentHandler::makeParserOptions(), deprecated in 1.32, was removed. Use
   WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
+* WikiPage::selectFields, deprecated in 1.31, was removed. Use ::getQueryInfo.
 * The remaining static methods for MagicWord, deprecated in 1.32, were removed.
   These were MagicWord::get(), ::getSubstIDs(), ::getDoubleUnderscoreArray(),
   ::getVariableIDs(), and ::getCacheTTL(). Instead, use MagicWordFactory (via
@@ -346,6 +349,7 @@ because of Phabricator reports.
 * CommentStore::newKey, deprecated in 1.31, was removed.
 * Title::isValidMoveOperation, ::moveTo, and ::isValidMoveTarget, deprecated
   in 1.25, were removed. Use the MovePage class and its methods instead.
+* Title::getUserCaseDBKey(), deprecated in 1.33, was removed. Use ::getDBKey().
 * StringUtils::explodeMarkup() was removed without deprecation.
 * AjaxResponse methods that were unused have been removed without deprecation:
   - checkLastModified

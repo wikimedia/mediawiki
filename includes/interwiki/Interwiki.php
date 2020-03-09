@@ -19,7 +19,6 @@
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
 
 /**
  * Value object for representing interwiki records.
@@ -55,57 +54,6 @@ class Interwiki {
 		$this->mWikiID = $wikiId;
 		$this->mLocal = (bool)$local;
 		$this->mTrans = (bool)$trans;
-	}
-
-	/**
-	 * Check whether an interwiki prefix exists
-	 *
-	 * @deprecated since 1.28, use InterwikiLookup instead
-	 *
-	 * @param string $prefix Interwiki prefix to use
-	 * @return bool Whether it exists
-	 */
-	public static function isValidInterwiki( $prefix ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		return MediaWikiServices::getInstance()->getInterwikiLookup()->isValidInterwiki( $prefix );
-	}
-
-	/**
-	 * Fetch an Interwiki object
-	 *
-	 * @deprecated since 1.28, use InterwikiLookup instead
-	 *
-	 * @param string $prefix Interwiki prefix to use
-	 * @return Interwiki|null|bool
-	 */
-	public static function fetch( $prefix ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		return MediaWikiServices::getInstance()->getInterwikiLookup()->fetch( $prefix );
-	}
-
-	/**
-	 * Purge the cache (local and persistent) for an interwiki prefix.
-	 *
-	 * @param string $prefix
-	 * @since 1.26
-	 */
-	public static function invalidateCache( $prefix ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		MediaWikiServices::getInstance()->getInterwikiLookup()->invalidateCache( $prefix );
-	}
-
-	/**
-	 * Returns all interwiki prefix definitions.
-	 *
-	 * @deprecated since 1.28, unused. Use InterwikiLookup instead.
-	 *
-	 * @param string|null $local If set, limits output to local/non-local interwikis
-	 * @return array[] List of interwiki rows
-	 * @since 1.19
-	 */
-	public static function getAllPrefixes( $local = null ) {
-		wfDeprecated( __METHOD__, '1.28' );
-		return MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes( $local );
 	}
 
 	/**
