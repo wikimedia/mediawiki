@@ -2471,6 +2471,7 @@
 	"whatlinkshere-hidelinks": "$1 veze",
 	"whatlinkshere-hideimages": "$1 veze do datoteke",
 	"whatlinkshere-filters": "Filteri",
+	"whatlinkshere-sectionredir": "preusmjerenje do sekcije \"$1\"",
 	"whatlinkshere-submit": "Daj",
 	"autoblockid": "Automatska blokada #$1",
 	"block": "Blokiraj korisnika",

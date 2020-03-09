@@ -2464,6 +2464,7 @@
 	"whatlinkshere-hidelinks": "$1 везе",
 	"whatlinkshere-hideimages": "$1 веза до датотеке",
 	"whatlinkshere-filters": "Филтери",
+	"whatlinkshere-sectionredir": "преусмерење до одељка „$1”",
 	"whatlinkshere-submit": "Иди",
 	"autoblockid": "Аутоматска блокада #$1",
 	"block": "Блокирање корисника",
