@@ -39,6 +39,10 @@ class ViewCLI extends Maintenance {
 		$title = Title::newFromText( $this->getArg() );
 		if ( !$title ) {
 			$this->fatalError( "Invalid title" );
+		} elseif ( $title->isSpecialPage() ) {
+			$this->fatalError( "Special Pages not supported" );
+		} elseif ( !$title->exists() ) {
+			$this->fatalError( "Page does not exist" );
 		}
 
 		$page = WikiPage::factory( $title );
