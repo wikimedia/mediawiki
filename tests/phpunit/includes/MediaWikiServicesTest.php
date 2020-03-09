@@ -310,14 +310,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 			}
 
 			$returnType = $fun->getReturnType();
-
-			// ReflectionType::__toString() generates deprecation notices in PHP 7.4 and above
-			// TODO: T228342 - remove this check after MediaWiki only supports PHP 7.1+
-			if ( is_callable( [ $returnType, 'getName' ] ) ) {
-				$ret[$name] = [ $name, $returnType->getName() ];
-			} else {
-				$ret[$name] = [ $name, $fun->getReturnType()->__toString() ];
-			}
+			$ret[$name] = [ $name, $returnType->getName() ];
 		}
 		return $ret;
 	}
