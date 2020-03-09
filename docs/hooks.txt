@@ -312,7 +312,7 @@ preview HTML.
 $editPage: the EditPage object
 &$content: the Content object for the text field from the edit page
 &$previewHTML: Text to be placed into the page for the preview
-$parserOutput: the ParserOutput object for the preview
+&$parserOutput: the ParserOutput object for the preview
 
 'AlternateUserMailer': Called before mail is sent so that mail could be logged
 (or something else) instead of using PEAR or PHP's mail(). Return false to skip
@@ -1210,7 +1210,7 @@ known about. This hook is used by extensions that have dynamically-named
 preferences that should not be deleted in the usual cleanup process. For
 example, the Gadgets extension creates preferences prefixed with 'gadget-', and
 so anything with that prefix is excluded from the deletion.
-&where: An array that will be passed as the $cond parameter to
+&$where: An array that will be passed as the $cond parameter to
   IDatabase::select() to determine what will be deleted from the user_properties
   table.
 $db: The IDatabase object, useful for accessing $db->buildLike() etc.
@@ -2111,6 +2111,7 @@ cache.
 $cache: The LocalisationCache object
 $code: language code
 &$alldata: The localisation data from core and extensions
+[&]$unused: Used to be $purgeBlobs, removed in 1.34
 
 'LocalisationCacheRecacheFallback': Called for each language when merging
 fallback data into the cache.
@@ -2360,14 +2361,15 @@ $row: the database row for this page (the recentchanges record and a few extras
   (see Sanitizer::isReservedDataAttribute).
 
 'NewRevisionFromEditComplete': Called when a revision was inserted due to an
-edit.
+edit, file upload, import or page move.
 $wikiPage: the WikiPage edited
 $rev: the new revision
 $originalRevId: if the edit restores or repeats an earlier revision (such as a
   rollback or a null revision), the ID of that earlier revision. False otherwise.
   (Used to be called $baseID.)
 $user: the editing user
-&$tags: tags to apply to the edit and recent change
+&$tags: tags to apply to the edit and recent change. This is empty, and
+  replacement is ignored, in the case of import or page move.
 
 'OldChangesListRecentChangesLine': Customize entire recent changes line, or
 return false to omit the line from RecentChanges and Watchlist special pages.
@@ -2442,14 +2444,14 @@ $categories: associative array, keys are category names, values are category
 $parserOutput: parserOutput instance being added in $out
 
 'PageContentInsertComplete': After a new article is created.
-$wikiPage: WikiPage created
-$user: User creating the article
+[&]$wikiPage: WikiPage created
+[&]$user: User creating the article
 $content: New content as a Content object
 $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
+[&]$flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
 
 'PageContentLanguage': Allows changing the language in which the content of a
@@ -2468,22 +2470,24 @@ $userLang: the user language (Language object)
 $isminor: Boolean flag specifying if the edit was marked as minor.
 $iswatch: Previously a watch flag. Currently unused, always null.
 $section: Previously the section number being edited. Currently unused, always null.
-$flags: All EDIT_… flags (including EDIT_MINOR) as an integer number. See WikiPage::doEditContent
+[&]$flags: All EDIT_… flags (including EDIT_MINOR) as an integer number. See WikiPage::doEditContent
   documentation for flags' definition.
-$status: StatusValue object for the hook handlers resulting status. Either set $status->fatal() or
+[&]$status: StatusValue object for the hook handlers resulting status. Either set $status->fatal() or
   return false to abort the save action.
 
 'PageContentSaveComplete': After an article has been updated.
-$wikiPage: WikiPage modified
-$user: User performing the modification
+[&]$wikiPage: WikiPage modified
+[&]$user: User performing the modification
 $content: New content, as a Content object
 $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
+[&]$flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
-$status: Status object about to be returned by doEditContent()
+[&]$status: Status object about to be returned by doEditContent(). Since
+  MediaWiki 1.32, replacing the Status object by assigning through the reference
+  has had no effect.
 $originalRevId: if the edit restores or repeats an earlier revision (such as a
   rollback or a null revision), the ID of that earlier revision. False otherwise.
   (Used to be called $baseRevId.)
@@ -2596,7 +2600,7 @@ custom magic word
   same magic word
 &$magicWordId: index (string) of the magic word
 &$ret: value of the magic word (the hook should set it)
-$frame: PPFrame object to use for expanding any template variables
+[&]$frame: PPFrame object to use for expanding any template variables
 
 'ParserGetVariableValueTs': Use this to change the value of the time for the
 {{LOCAL...}} magic word.

@@ -858,8 +858,9 @@ class MovePage {
 
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
+		$fakeTags = [];
 		Hooks::run( 'NewRevisionFromEditComplete',
-			[ $newpage, $nullRevision, $nullRevision->getParentId(), $user ] );
+			[ $newpage, $nullRevision, $nullRevision->getParentId(), $user, &$fakeTags ] );
 
 		$newpage->doEditUpdates( $nullRevision, $user,
 			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
@@ -893,8 +894,9 @@ class MovePage {
 				$redirectRevId = $redirectRevision->insertOn( $dbw );
 				$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 
+				$fakeTags = [];
 				Hooks::run( 'NewRevisionFromEditComplete',
-					[ $redirectArticle, $redirectRevision, false, $user ] );
+					[ $redirectArticle, $redirectRevision, false, $user, &$fakeTags ] );
 
 				$redirectArticle->doEditUpdates( $redirectRevision, $user, [ 'created' => true ] );
 

@@ -148,9 +148,10 @@ class ImportReporter extends ContextSource {
 				$page = WikiPage::factory( $title );
 				# Update page record
 				$page->updateRevisionOn( $dbw, $nullRevision );
+				$fakeTags = [];
 				Hooks::run(
 					'NewRevisionFromEditComplete',
-					[ $page, $nullRevision, $latest, $this->getUser() ]
+					[ $page, $nullRevision, $latest, $this->getUser(), &$fakeTags ]
 				);
 			}
 
