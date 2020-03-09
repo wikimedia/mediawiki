@@ -2363,7 +2363,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$wikiPage = $this;
 
 			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $nullRevision, $latest, $user ] );
+				[ $this, $nullRevision, $latest, $user, &$tags ] );
 			Hooks::run( 'ArticleProtectComplete', [ &$wikiPage, &$user, $limit, $reason ] );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
