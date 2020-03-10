@@ -64,6 +64,10 @@ global $wgRateLimits;
 // in CI and for devs locally (T225796)
 $wgRateLimits = [];
 
+// Enable Special:JavaScriptTest and allow `npm run qunit` to work
+// https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
+$wgEnableJavaScriptTest = true;
+
 /**
  * Experimental changes that may later become the default.
  * (Must reference a Phabricator ticket)
