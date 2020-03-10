@@ -775,7 +775,7 @@
 	"botpasswords-label-cancel": "Button label for a button to cancel the creation or edit of a bot password.\n{{Identical|Cancel}}",
 	"botpasswords-label-delete": "Button label for the button to delete a bot password.\n{{Identical|Delete}}",
 	"botpasswords-label-resetpassword": "Label for the checkbox to reset the actual password for the current bot password.",
-	"botpasswords-label-grants": "Label for the checkmatrix for selecting grants allowed when the bot password is used.\n\ngrant: Vidu http://komputeko.net/index_en.php?vorto=grant sed \"konced/i\" egale funkcius.",
+	"botpasswords-label-grants": "Label for the checkmatrix for selecting grants allowed when the bot password is used.",
 	"botpasswords-help-grants": "Help text for the grant selection checkmatrix.\n\nIdentical:\n* {{msg-mw|Mwoauth-consumer-grantshelp}}",
 	"botpasswords-label-grants-column": "Label for the checkbox column on the checkmatrix for selecting grants allowed when the bot password is used.",
 	"botpasswords-bad-appid": "Used as an error message when an invalid \"bot name\" is supplied on [[Special:BotPasswords]]. Parameters:\n* $1 - The rejected bot name.",
