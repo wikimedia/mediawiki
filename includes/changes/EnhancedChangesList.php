@@ -89,7 +89,7 @@ class EnhancedChangesList extends ChangesList {
 			'jquery.makeCollapsible',
 		] );
 
-		return '<div class="mw-changeslist">';
+		return '<div class="mw-changeslist" aria-live="polite">';
 	}
 
 	/**
