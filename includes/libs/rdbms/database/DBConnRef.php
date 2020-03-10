@@ -88,15 +88,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	/**
-	 * @param bool|null $buffer
-	 * @return bool
-	 * @deprecated Since 1.34 Use query batching
-	 */
-	public function bufferResults( $buffer = null ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function trxLevel() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
