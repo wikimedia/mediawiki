@@ -502,7 +502,7 @@ class UploadStash {
 			// The file should already be checked for being evil.
 			// However, if somehow we got here, we definitely
 			// don't want to give it an extension of .php and
-			// put it in a web accesible directory.
+			// put it in a web accessible directory.
 			return '';
 		}
 
