@@ -279,7 +279,7 @@ class WikiMap {
 			// meaning that the schema portion must be accounted for to disambiguate wikis.
 			return "{$domain->getDatabase()}-{$domain->getSchema()}-{$domain->getTablePrefix()}";
 		}
-		// Note that if this wiki ID is passed a a domain ID to LoadBalancer, then it can
+		// Note that if this wiki ID is passed as a domain ID to LoadBalancer, then it can
 		// handle the schema by assuming the generic "mediawiki" schema if needed.
 		return strlen( $domain->getTablePrefix() )
 			? "{$domain->getDatabase()}-{$domain->getTablePrefix()}"
