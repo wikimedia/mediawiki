@@ -278,7 +278,15 @@ class PasswordReset implements LoggerAwareInterface {
 			$req->username = $user->getName();
 			$req->mailpassword = true;
 			$req->caller = $performingUser->getName();
+
 			$status = $this->authManager->allowsAuthenticationDataChange( $req, true );
+			// If status is good and the value is 'throttled-mailpassword', we want to pretend
+			// that the request was a good to avoid displaying an error message and disclose
+			// if a reset password was previously sent.
+			if ( $status->isGood() && $status->getValue() === 'throttled-mailpassword' ) {
+				return StatusValue::newGood();
+			}
+
 			if ( $status->isGood() && $status->getValue() !== 'ignored' ) {
 				$reqs[] = $req;
 			} elseif ( $result->isGood() ) {
