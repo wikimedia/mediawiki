@@ -12,6 +12,8 @@ THIS IS NOT A RELEASE YET
 * Added $wgUseSameSiteLegacyCookies, which adds a compatibility hack to
   SameSite=None cookies for browsers which implemented an incompatible draft
   version of the specification.
+* (T263455 T247285) Set EnableJavaScriptTest to true in
+  includes/DevelopmentSettings.php.
 
 == MediaWiki 1.31.8 ==
 
