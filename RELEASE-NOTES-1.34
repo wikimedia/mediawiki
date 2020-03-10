@@ -17,6 +17,8 @@ THIS IS NOT A RELEASE YET
   version of the specification.
 * (T246135) Give the "remember me" checkbox a specific CSS class so skins
   like Minerva can only hide that checkbox.
+* (T263455 T247285) Set EnableJavaScriptTest to true in
+  includes/DevelopmentSettings.php.
 
 == MediaWiki 1.34.2 ==
 
