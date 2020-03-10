@@ -591,13 +591,13 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'3.7.11',
 				'a',
 				[ 'a_1' => 1 ],
-				'INSERT  INTO a (a_1) VALUES (1);'
+				'INSERT INTO a (a_1) VALUES (1);'
 			],
 			[
 				'3.7.10',
 				'a',
 				[ 'a_1' => 1 ],
-				'INSERT  INTO a (a_1) VALUES (1);'
+				'INSERT INTO a (a_1) VALUES (1);'
 			],
 			[
 				'3.7.11',
@@ -606,7 +606,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 					[ 'a_1' => 2 ],
 					[ 'a_1' => 3 ]
 				],
-				'INSERT  INTO a (a_1) VALUES (2),(3);'
+				'INSERT INTO a (a_1) VALUES (2),(3);'
 			],
 			[
 				'3.7.10',
@@ -616,8 +616,8 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 					[ 'a_1' => 3 ]
 				],
 				'BEGIN;' .
-				'INSERT  INTO a (a_1) VALUES (2);' .
-				'INSERT  INTO a (a_1) VALUES (3);' .
+				'INSERT INTO a (a_1) VALUES (2);' .
+				'INSERT INTO a (a_1) VALUES (3);' .
 				'COMMIT;'
 			]
 		];

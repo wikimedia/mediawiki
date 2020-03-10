@@ -542,93 +542,53 @@ __INDEXATTR__;
 		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 	}
 
-	/** @inheritDoc */
-	public function insert( $table, $args, $fname = __METHOD__, $options = [] ) {
-		if ( !count( $args ) ) {
-			return true;
+	protected function makeInsertNonConflictingVerbAndOptions() {
+		return [ 'INSERT INTO', 'ON CONFLICT DO NOTHING' ];
+	}
+
+	public function doInsertNonConflicting( $table, array $rows, $fname ) {
+		// Postgres 9.5 supports "ON CONFLICT"
+		if ( $this->getServerVersion() >= 9.5 ) {
+			parent::doInsertNonConflicting( $table, $rows, $fname );
+
+			return;
 		}
 
-		$table = $this->tableName( $table );
-		if ( !isset( $this->numericVersion ) ) {
-			$this->getServerVersion();
-		}
-
-		if ( !is_array( $options ) ) {
-			$options = [ $options ];
-		}
-
-		if ( isset( $args[0] ) && is_array( $args[0] ) ) {
-			$rows = $args;
-			$keys = array_keys( $args[0] );
-		} else {
-			$rows = [ $args ];
-			$keys = array_keys( $args );
-		}
-
-		$ignore = in_array( 'IGNORE', $options );
-
-		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
-
-		if ( $this->numericVersion >= 9.5 || !$ignore ) {
-			// No IGNORE or our PG has "ON CONFLICT DO NOTHING"
-			$first = true;
+		$affectedRowCount = 0;
+		// Emulate INSERT IGNORE via savepoints/rollback
+		$tok = $this->startAtomic( "$fname (outer)", self::ATOMIC_CANCELABLE );
+		try {
+			$encTable = $this->tableName( $table );
 			foreach ( $rows as $row ) {
-				if ( $first ) {
-					$first = false;
-				} else {
-					$sql .= ',';
-				}
-				$sql .= '(' . $this->makeList( $row ) . ')';
-			}
-			if ( $ignore ) {
-				$sql .= ' ON CONFLICT DO NOTHING';
-			}
-			$this->query( $sql, $fname );
-		} else {
-			// Emulate IGNORE by doing each row individually, with savepoints
-			// to roll back as necessary.
-			$numrowsinserted = 0;
+				list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( [ $row ] );
+				$tempsql = "INSERT INTO $encTable ($sqlColumns) VALUES ($sqlTuples)";
 
-			$tok = $this->startAtomic( "$fname (outer)", self::ATOMIC_CANCELABLE );
-			try {
-				foreach ( $rows as $row ) {
-					$tempsql = $sql;
-					$tempsql .= '(' . $this->makeList( $row ) . ')';
-
-					$this->startAtomic( "$fname (inner)", self::ATOMIC_CANCELABLE );
-					try {
-						$this->query( $tempsql, $fname );
-						$this->endAtomic( "$fname (inner)" );
-						$numrowsinserted++;
-					} catch ( DBQueryError $e ) {
-						$this->cancelAtomic( "$fname (inner)" );
-						// Our IGNORE is supposed to ignore duplicate key errors, but not others.
-						// (even though MySQL's version apparently ignores all errors)
-						if ( $e->errno !== '23505' ) {
-							throw $e;
-						}
+				$this->startAtomic( "$fname (inner)", self::ATOMIC_CANCELABLE );
+				try {
+					$this->query( $tempsql, $fname );
+					$this->endAtomic( "$fname (inner)" );
+					$affectedRowCount++;
+				} catch ( DBQueryError $e ) {
+					$this->cancelAtomic( "$fname (inner)" );
+					// Our IGNORE is supposed to ignore duplicate key errors, but not others.
+					// (even though MySQL's version apparently ignores all errors)
+					if ( $e->errno !== '23505' ) {
+						throw $e;
 					}
 				}
-			} catch ( Exception $e ) {
-				$this->cancelAtomic( "$fname (outer)", $tok );
-				throw $e;
 			}
-			$this->endAtomic( "$fname (outer)" );
-
-			// Set the affected row count for the whole operation
-			$this->affectedRowCount = $numrowsinserted;
+		} catch ( Exception $e ) {
+			$this->cancelAtomic( "$fname (outer)", $tok );
+			throw $e;
 		}
-
-		return true;
+		$this->endAtomic( "$fname (outer)" );
+		// Set the affected row count for the whole operation
+		$this->affectedRowCount = $affectedRowCount;
 	}
 
 	protected function makeUpdateOptionsArray( $options ) {
-		if ( !is_array( $options ) ) {
-			$options = [ $options ];
-		}
-
-		// PostgreSQL doesn't support anything like "ignore" for
-		// UPDATE.
+		$options = $this->normalizeOptions( $options );
+		// PostgreSQL doesn't support anything like "ignore" for UPDATE.
 		$options = array_diff( $options, [ 'IGNORE' ] );
 
 		return parent::makeUpdateOptionsArray( $options );
@@ -652,9 +612,15 @@ __INDEXATTR__;
 	 * @param array $selectOptions
 	 * @param array $selectJoinConds
 	 */
-	protected function nativeInsertSelect(
-		$destTable, $srcTable, $varMap, $conds, $fname = __METHOD__,
-		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
+	protected function doInsertSelectNative(
+		$destTable,
+		$srcTable,
+		array $varMap,
+		$conds,
+		$fname,
+		array $insertOptions,
+		array $selectOptions,
+		$selectJoinConds
 	) {
 		if ( !is_array( $insertOptions ) ) {
 			$insertOptions = [ $insertOptions ];
@@ -662,7 +628,7 @@ __INDEXATTR__;
 
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
 			if ( $this->getServerVersion() >= 9.5 ) {
-				// Use ON CONFLICT DO NOTHING if we have it for IGNORE
+				// Use "ON CONFLICT DO" if we have it for IGNORE
 				$destTable = $this->tableName( $destTable );
 
 				$selectSql = $this->selectSQLText(
@@ -680,13 +646,13 @@ __INDEXATTR__;
 				$this->query( $sql, $fname );
 			} else {
 				// IGNORE and we don't have ON CONFLICT DO NOTHING, so just use the non-native version
-				$this->nonNativeInsertSelect(
+				$this->doInsertSelectGeneric(
 					$destTable, $srcTable, $varMap, $conds, $fname,
 					$insertOptions, $selectOptions, $selectJoinConds
 				);
 			}
 		} else {
-			parent::nativeInsertSelect( $destTable, $srcTable, $varMap, $conds, $fname,
+			parent::doInsertSelectNative( $destTable, $srcTable, $varMap, $conds, $fname,
 				$insertOptions, $selectOptions, $selectJoinConds );
 		}
 	}

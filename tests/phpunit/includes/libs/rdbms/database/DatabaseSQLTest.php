@@ -499,6 +499,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::upsert
 	 */
 	public function testUpsert( $sql, $sqlText ) {
+		$this->database->setNextQueryAffectedRowCounts( [ 0 ] );
+
 		$this->database->upsert(
 			$sql['table'],
 			$sql['rows'],
@@ -515,17 +517,49 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 				[
 					'table' => 'upsert_table',
 					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
-					'uniqueIndexes' => [ 'field' ],
+					'uniqueIndexes' => 'field',
 					'set' => [ 'field' => 'set' ],
 				],
 				"BEGIN; " .
 					"UPDATE upsert_table " .
 					"SET field = 'set' " .
-					"WHERE ((field = 'text')); " .
-					"INSERT IGNORE INTO upsert_table " .
+					"WHERE (field = 'text'); " .
+					"INSERT INTO upsert_table " .
 					"(field,field2) " .
 					"VALUES ('text','text2'); " .
 					"COMMIT"
+			],
+			[
+				[
+					'table' => 'upsert_table',
+					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
+					'uniqueIndexes' => [ [ 'field' ] ],
+					'set' => [ 'field' => 'set' ],
+				],
+				"BEGIN; " .
+				"UPDATE upsert_table " .
+				"SET field = 'set' " .
+				"WHERE (field = 'text'); " .
+				"INSERT INTO upsert_table " .
+				"(field,field2) " .
+				"VALUES ('text','text2'); " .
+				"COMMIT"
+			],
+			[
+				[
+					'table' => 'upsert_table',
+					'rows' => [ 'fieldA' => 'text', 'fieldB' => 'more',  'field2' => 'text2' ],
+					'uniqueIndexes' => [ [ 'fieldA', 'fieldB' ] ],
+					'set' => [ 'field2' => 'set' ],
+				],
+				"BEGIN; " .
+				"UPDATE upsert_table " .
+				"SET field2 = 'set' " .
+				"WHERE (fieldA = 'text' AND fieldB = 'more'); " .
+				"INSERT INTO upsert_table " .
+				"(fieldA,fieldB,field2) " .
+				"VALUES ('text','more','text2'); " .
+				"COMMIT"
 			],
 		];
 	}
@@ -580,7 +614,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideInsert
 	 * @covers Wikimedia\Rdbms\Database::insert
-	 * @covers Wikimedia\Rdbms\Database::makeInsertOptions
 	 */
 	public function testInsert( $sql, $sqlText ) {
 		$this->database->insert(
@@ -634,7 +667,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideInsertSelect
 	 * @covers Wikimedia\Rdbms\Database::insertSelect
-	 * @covers Wikimedia\Rdbms\Database::nativeInsertSelect
+	 * @covers Wikimedia\Rdbms\Database::doInsertSelectNative
 	 */
 	public function testInsertSelect( $sql, $sqlTextNative, $sqlSelect, $sqlInsert ) {
 		$this->database->insertSelect(
@@ -746,7 +779,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Wikimedia\Rdbms\Database::insertSelect
-	 * @covers Wikimedia\Rdbms\Database::nativeInsertSelect
+	 * @covers Wikimedia\Rdbms\Database::doInsertSelectNative
 	 */
 	public function testInsertSelectBatching() {
 		$dbWeb = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => false ] );
@@ -860,12 +893,12 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					],
 				],
 				"BEGIN; DELETE FROM module_deps " .
-					"WHERE (md_module = 'module') OR (md_skin = 'skin'); " .
+					"WHERE ((md_module = 'module') OR (md_skin = 'skin')); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module','skin','deps'); " .
 					"DELETE FROM module_deps " .
-					"WHERE (md_module = 'module2') OR (md_skin = 'skin2'); " .
+					"WHERE ((md_module = 'module2') OR (md_skin = 'skin2')); " .
 					"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
 					"VALUES ('module2','skin2','deps2'); COMMIT"
@@ -880,36 +913,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 						'md_deps' => 'deps',
 					],
 				],
-				"BEGIN; INSERT INTO module_deps " .
+				"INSERT INTO module_deps " .
 					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module','skin','deps'); COMMIT"
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideNativeReplace
-	 * @covers Wikimedia\Rdbms\Database::nativeReplace
-	 */
-	public function testNativeReplace( $sql, $sqlText ) {
-		$this->database->nativeReplace(
-			$sql['table'],
-			$sql['rows'],
-			__METHOD__
-		);
-		$this->assertLastSql( $sqlText );
-	}
-
-	public static function provideNativeReplace() {
-		return [
-			[
-				[
-					'table' => 'replace_table',
-					'rows' => [ 'field' => 'text', 'field2' => 'text2' ],
-				],
-				"REPLACE INTO replace_table " .
-					"(field,field2) " .
-					"VALUES ('text','text2')"
+					"VALUES ('module','skin','deps')"
 			],
 		];
 	}

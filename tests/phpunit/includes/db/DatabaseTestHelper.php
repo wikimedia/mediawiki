@@ -43,6 +43,9 @@ class DatabaseTestHelper extends Database {
 	 */
 	protected $unionSupportsOrderAndLimit = true;
 
+	/** @var int[] */
+	protected $forcedAffectedCountQueue = [];
+
 	public function __construct( $testName, array $opts = [] ) {
 		parent::__construct( $opts + [
 			'host' => null,
@@ -166,11 +169,6 @@ class DatabaseTestHelper extends Database {
 		return in_array( $table, (array)$this->tablesExists );
 	}
 
-	// Redeclare parent method to make it public
-	public function nativeReplace( $table, $rows, $fname ) {
-		parent::nativeReplace( $table, $rows, $fname );
-	}
-
 	public function getType() {
 		return 'test';
 	}
@@ -254,6 +252,10 @@ class DatabaseTestHelper extends Database {
 		return true;
 	}
 
+	public function setNextQueryAffectedRowCounts( array $counts ) {
+		$this->forcedAffectedCountQueue = $counts;
+	}
+
 	protected function doQuery( $sql ) {
 		$sql = preg_replace( '< /\* .+?  \*/>', '', $sql );
 		$this->addSql( $sql );
@@ -267,6 +269,10 @@ class DatabaseTestHelper extends Database {
 		$res = $this->nextResult;
 		$this->nextResult = [];
 		$this->lastError = null;
+
+		if ( $this->forcedAffectedCountQueue ) {
+			$this->affectedRowCount = array_shift( $this->forcedAffectedCountQueue );
+		}
 
 		return new FakeResultWrapper( $res );
 	}

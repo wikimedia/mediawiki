@@ -448,10 +448,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return in_array( $errno, [ 2062, 3024 ] );
 	}
 
-	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
-		$this->nativeReplace( $table, $rows, $fname );
-	}
-
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
 		$row = $this->getReplicationSafetyInfo();
 		// For row-based-replication, the resulting changes will be relayed, not the query
@@ -1324,31 +1320,25 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->query( $sql, $fname );
 	}
 
-	public function upsert(
-		$table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__
-	) {
-		if ( $rows === [] ) {
-			return true; // nothing to do
-		}
+	protected function doUpsert( $table, array $rows, array $uniqueKeys, array $set, $fname ) {
+		$encTable = $this->tableName( $table );
+		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
 
-		if ( !is_array( reset( $rows ) ) ) {
-			$rows = [ $rows ];
-		}
-
-		$table = $this->tableName( $table );
-		$columns = array_keys( $rows[0] );
-
-		$sql = "INSERT INTO $table (" . implode( ',', $columns ) . ') VALUES ';
-		$rowTuples = [];
-		foreach ( $rows as $row ) {
-			$rowTuples[] = '(' . $this->makeList( $row ) . ')';
-		}
-		$sql .= implode( ',', $rowTuples );
-		$sql .= " ON DUPLICATE KEY UPDATE " . $this->makeList( $set, self::LIST_SET );
+		$sql =
+			"INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples " .
+			"ON DUPLICATE KEY UPDATE $sqlColumnAssignments";
 
 		$this->query( $sql, $fname );
+	}
 
-		return true;
+	protected function doReplace( $table, array $uniqueKeys, array $rows, $fname ) {
+		$encTable = $this->tableName( $table );
+		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+
+		$sql = "REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples";
+
+		$this->query( $sql, $fname );
 	}
 
 	/**

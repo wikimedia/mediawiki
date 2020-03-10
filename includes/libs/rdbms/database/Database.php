@@ -1653,10 +1653,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "Cannot use a * field: got '$var'" );
 		}
 
-		if ( !is_array( $options ) ) {
-			$options = [ $options ];
-		}
-
+		$options = $this->normalizeOptions( $options );
 		$options['LIMIT'] = 1;
 
 		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
@@ -1681,10 +1678,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "Cannot use an array of fields" );
 		}
 
-		if ( !is_array( $options ) ) {
-			$options = [ $options ];
-		}
-
+		$options = $this->normalizeOptions( $options );
 		$res = $this->select( $table, [ 'value' => $var ], $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			throw new DBUnexpectedError( $this, "Got false from select()" );
@@ -2020,9 +2014,35 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @param array $rowOrRows A single (field => value) map or a list of such maps
+	 * @return array[] List of (field => value) maps
+	 * @since 1.35
+	 */
+	final protected function normalizeRowArray( array $rowOrRows ) {
+		if ( !$rowOrRows ) {
+			$rows = [];
+		} elseif ( isset( $rowOrRows[0] ) ) {
+			$rows = $rowOrRows;
+		} else {
+			$rows = [ $rowOrRows ];
+		}
+
+		foreach ( $rows as $row ) {
+			if ( !is_array( $row ) ) {
+				throw new DBUnexpectedError( $this, "Got non-array in row array" );
+			} elseif ( !$row ) {
+				throw new DBUnexpectedError( $this, "Got empty array in row array" );
+			}
+		}
+
+		return $rows;
+	}
+
+	/**
 	 * @param array|string $conds
 	 * @param string $fname
 	 * @return array
+	 * @since 1.31
 	 */
 	final protected function normalizeConditions( $conds, $fname ) {
 		if ( $conds === null || $conds === false ) {
@@ -2032,20 +2052,100 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				. $fname
 				. ' with incorrect parameters: $conds must be a string or an array'
 			);
-			$conds = '';
+			return [];
+		} elseif ( $conds === '' ) {
+			return [];
 		}
 
-		if ( !is_array( $conds ) ) {
-			$conds = ( $conds === '' ) ? [] : [ $conds ];
+		return is_array( $conds ) ? $conds : [ $conds ];
+	}
+
+	/**
+	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (first is identity key)
+	 * @return string[][] Unique indexes as column lists (first index is the identity key)
+	 * @since 1.35
+	 */
+	final protected function normalizeUpsertKeys( $uniqueKeys ) {
+		if ( is_string( $uniqueKeys ) ) {
+			return [ [ $uniqueKeys ] ];
 		}
 
-		return $conds;
+		if ( !is_array( $uniqueKeys ) || !$uniqueKeys ) {
+			throw new DBUnexpectedError( $this, 'Invalid or empty unique key array' );
+		}
+
+		$oldStyle = false;
+		$uniqueColumnSets = [];
+		foreach ( $uniqueKeys as $i => $uniqueKey ) {
+			if ( !is_int( $i ) ) {
+				throw new DBUnexpectedError( $this, 'Unique key array should be a list' );
+			} elseif ( is_string( $uniqueKey ) ) {
+				$oldStyle = true;
+				$uniqueColumnSets[] = [ $uniqueKey ];
+			} elseif ( is_array( $uniqueKey ) && $uniqueKey ) {
+				$uniqueColumnSets[] = $uniqueKey;
+			} else {
+				throw new DBUnexpectedError( $this, 'Invalid unique key array entry' );
+			}
+		}
+
+		if ( count( $uniqueColumnSets ) > 1 ) {
+			// If an existing row conflicts with new row X on key A and new row Y on key B,
+			// it is not well defined how many UPDATEs should apply to the existing row and
+			// in what order the new rows are checked
+			$this->queryLogger->warning(
+				__METHOD__ . " called with multiple unique keys",
+				[ 'exception' => new RuntimeException() ]
+			);
+		}
+
+		if ( $oldStyle ) {
+			// Passing a list of strings for single-column unique keys is too
+			// easily confused with passing the columns of composite unique key
+			$this->queryLogger->warning(
+				__METHOD__ . " called with deprecated parameter style: " .
+				"the unique key array should be a string or array of string arrays",
+				[ 'exception' => new RuntimeException() ]
+			);
+		}
+
+		return $uniqueColumnSets;
+	}
+
+	/**
+	 * @param string|array $options
+	 * @return array Combination option/value map and boolean option list
+	 * @since 1.35
+	 */
+	final protected function normalizeOptions( $options ) {
+		if ( is_array( $options ) ) {
+			return $options;
+		} elseif ( is_string( $options ) ) {
+			return ( $options === '' ) ? [] : [ $options ];
+		} else {
+			throw new DBUnexpectedError( $this, __METHOD__ . ': expected string or array' );
+		}
+	}
+
+	/**
+	 * @param string $option Query option flag (e.g. "IGNORE" or "FOR UPDATE")
+	 * @param array $options Combination option/value map and boolean option list
+	 * @return bool Whether the option appears as an integer-keyed value in the options
+	 * @since 1.35
+	 */
+	final protected function isFlagInOptions( $option, array $options ) {
+		foreach ( array_keys( $options, $option, true ) as $k ) {
+			if ( is_int( $k ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
 	 * @param array|string $var Field parameter in the style of select()
 	 * @return string|null Column name or null; ignores aliases
-	 * @throws DBUnexpectedError Errors out if multiple columns are given
 	 */
 	final protected function extractSingleFieldFromList( $var ) {
 		if ( is_array( $var ) ) {
@@ -2110,65 +2210,100 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return !$indexInfo[0]->Non_unique;
 	}
 
-	/**
-	 * Helper for Database::insert().
-	 *
-	 * @param array $options
-	 * @return string
-	 */
-	protected function makeInsertOptions( $options ) {
-		return implode( ' ', $options );
-	}
-
-	/**
-	 * @param array $a A single (field => value) map or a list of such maps
-	 * @return bool
-	 */
-	final protected function isMultiRowArray( array $a ) {
-		return ( isset( $a[0] ) && is_array( $a[0] ) );
-	}
-
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
-		# No rows to insert, easy just return now
-		if ( !count( $rows ) ) {
+		$rows = $this->normalizeRowArray( $rows );
+		if ( !$rows ) {
 			return true;
 		}
 
-		$table = $this->tableName( $table );
-
-		if ( !is_array( $options ) ) {
-			$options = [ $options ];
-		}
-
-		$options = $this->makeInsertOptions( $options );
-
-		$multi = $this->isMultiRowArray( $rows );
-		if ( $multi ) {
-			$keys = array_keys( $rows[0] );
+		$options = $this->normalizeOptions( $options );
+		if ( $this->isFlagInOptions( 'IGNORE', $options ) ) {
+			$this->doInsertNonConflicting( $table, $rows, $fname );
 		} else {
-			$keys = array_keys( $rows );
+			$this->doInsert( $table, $rows, $fname );
 		}
-
-		$sql = 'INSERT ' . $options .
-			" INTO $table (" . implode( ',', $keys ) . ') VALUES ';
-
-		if ( $multi ) {
-			$first = true;
-			foreach ( $rows as $row ) {
-				if ( $first ) {
-					$first = false;
-				} else {
-					$sql .= ',';
-				}
-				$sql .= '(' . $this->makeList( $row ) . ')';
-			}
-		} else {
-			$sql .= '(' . $this->makeList( $rows ) . ')';
-		}
-
-		$this->query( $sql, $fname );
 
 		return true;
+	}
+
+	/**
+	 * @see Database::insert()
+	 * @param string $table
+	 * @param array $rows Non-empty list of rows
+	 * @param string $fname
+	 * @since 1.35
+	 */
+	protected function doInsert( $table, array $rows, $fname ) {
+		$encTable = $this->tableName( $table );
+		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+
+		$sql = "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
+
+		$this->query( $sql, $fname );
+	}
+
+	/**
+	 * @see Database::insert()
+	 * @param string $table
+	 * @param array $rows Non-empty list of rows
+	 * @param string $fname
+	 * @since 1.35
+	 */
+	protected function doInsertNonConflicting( $table, array $rows, $fname ) {
+		$encTable = $this->tableName( $table );
+		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		list( $sqlVerb, $sqlOpts ) = $this->makeInsertNonConflictingVerbAndOptions();
+
+		$sql = rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES $sqlTuples $sqlOpts" );
+
+		$this->query( $sql, $fname );
+	}
+
+	/**
+	 * @return string[] ("INSERT"-style SQL verb, "ON CONFLICT"-style clause or "")
+	 * @since 1.35
+	 */
+	protected function makeInsertNonConflictingVerbAndOptions() {
+		return [ 'INSERT IGNORE INTO', '' ];
+	}
+
+	/**
+	 * Make SQL lists of columns, row tuples for INSERT/VALUES expressions
+	 *
+	 * The tuple column order is that of the columns of the first provided row.
+	 * The provided rows must have exactly the same keys and ordering thereof.
+	 *
+	 * @param array[] $rows Non-empty list of (column => value) maps
+	 * @return array (comma-separated columns, comma-separated tuples)
+	 * @since 1.35
+	 */
+	protected function makeInsertLists( array $rows ) {
+		$firstRow = $rows[0];
+		if ( !is_array( $firstRow ) || !$firstRow ) {
+			throw new DBUnexpectedError( $this, 'Got an empty row list or empty row' );
+		}
+		// List of columns that define the value tuple ordering
+		$tupleColumns = array_keys( $firstRow );
+
+		$valueTuples = [];
+		foreach ( $rows as $row ) {
+			$rowColumns = array_keys( $row );
+			// VALUES(...) requires a uniform correspondance of (column => value)
+			if ( $rowColumns !== $tupleColumns ) {
+				throw new DBUnexpectedError(
+					$this,
+					'Got row columns (' . implode( ', ', $rowColumns ) . ') ' .
+					'instead of expected (' . implode( ', ', $tupleColumns ) . ')'
+				);
+			}
+			// Make the value tuple that defines this row
+			$valueTuples[] = '(' . $this->makeList( $row, self::LIST_COMMA ) . ')';
+		}
+
+		return [
+			$this->makeList( $tupleColumns, self::LIST_NAMES ),
+			implode( ',', $valueTuples )
+		];
 	}
 
 	/**
@@ -2178,9 +2313,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return array
 	 */
 	protected function makeUpdateOptionsArray( $options ) {
-		if ( !is_array( $options ) ) {
-			$options = [ $options ];
-		}
+		$options = $this->normalizeOptions( $options );
 
 		$opts = [];
 
@@ -2894,137 +3027,164 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
-		if ( count( $rows ) == 0 ) {
+		$rows = $this->normalizeRowArray( $rows );
+		if ( !$rows ) {
 			return;
 		}
 
-		$uniqueKeys = (array)$uniqueKeys;
-		// Single row case
-		if ( !is_array( reset( $rows ) ) ) {
-			$rows = [ $rows ];
+		if ( $uniqueKeys ) {
+			$uniqueKeys = $this->normalizeUpsertKeys( $uniqueKeys );
+			$this->doReplace( $table, $uniqueKeys, $rows, $fname );
+		} else {
+			$this->queryLogger->warning(
+				__METHOD__ . " called with no unique keys",
+				[ 'exception' => new RuntimeException() ]
+			);
+			$this->doInsert( $table, $rows, $fname );
 		}
+	}
 
+	/**
+	 * @see Database::replace()
+	 * @param string $table
+	 * @param string[][] $uniqueKeys Non-empty list of unique keys
+	 * @param array $rows Non-empty list of rows
+	 * @param string $fname
+	 * @since 1.35
+	 */
+	protected function doReplace( $table, array $uniqueKeys, array $rows, $fname ) {
+		$affectedRowCount = 0;
+		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
-			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
-			$affectedRowCount = 0;
 			foreach ( $rows as $row ) {
-				// Delete rows which collide with this one
-				$indexWhereClauses = [];
-				foreach ( $uniqueKeys as $index ) {
-					$indexColumns = (array)$index;
-					$indexRowValues = array_intersect_key( $row, array_flip( $indexColumns ) );
-					if ( count( $indexRowValues ) != count( $indexColumns ) ) {
-						throw new DBUnexpectedError(
-							$this,
-							'New record does not provide all values for unique key (' .
-							implode( ', ', $indexColumns ) . ')'
-						);
-					} elseif ( in_array( null, $indexRowValues, true ) ) {
-						throw new DBUnexpectedError(
-							$this,
-							'New record has a null value for unique key (' .
-							implode( ', ', $indexColumns ) . ')'
-						);
-					}
-					$indexWhereClauses[] = $this->makeList( $indexRowValues, LIST_AND );
-				}
-
-				if ( $indexWhereClauses ) {
-					$this->delete( $table, $this->makeList( $indexWhereClauses, LIST_OR ), $fname );
-					$affectedRowCount += $this->affectedRows();
-				}
-
+				// Delete any conflicting rows (including ones inserted from $rows)
+				$sqlCondition = $this->makeConditionCollidesUponKeys( [ $row ], $uniqueKeys );
+				$this->delete( $table, [ $sqlCondition ], $fname );
+				$affectedRowCount += $this->affectedRows();
 				// Now insert the row
 				$this->insert( $table, $row, $fname );
 				$affectedRowCount += $this->affectedRows();
 			}
 			$this->endAtomic( $fname );
-			$this->affectedRowCount = $affectedRowCount;
 		} catch ( Exception $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
+		$this->affectedRowCount = $affectedRowCount;
 	}
 
 	/**
-	 * REPLACE query wrapper for MySQL and SQLite, which have a native REPLACE
-	 * statement.
-	 *
-	 * @param string $table Table name
-	 * @param array|string $rows Row(s) to insert
-	 * @param string $fname Caller function name
+	 * @param array[] $rows Non-empty list of rows
+	 * @param string[] $uniqueKey List of columns that define a single unique index
+	 * @return string SQL conditions to filter existing rows to those with counterparts in $rows
 	 */
-	protected function nativeReplace( $table, $rows, $fname ) {
-		$table = $this->tableName( $table );
-
-		# Single row case
-		if ( !is_array( reset( $rows ) ) ) {
-			$rows = [ $rows ];
+	private function makeConditionCollidesUponKey( array $rows, array $uniqueKey ) {
+		if ( !$rows ) {
+			throw new DBUnexpectedError( $this, "Empty row array" );
+		} elseif ( !$uniqueKey ) {
+			throw new DBUnexpectedError( $this, "Empty unique key array" );
 		}
 
-		$sql = "REPLACE INTO $table (" . implode( ',', array_keys( $rows[0] ) ) . ') VALUES ';
-		$first = true;
-
-		foreach ( $rows as $row ) {
-			if ( $first ) {
-				$first = false;
-			} else {
-				$sql .= ',';
+		if ( count( $uniqueKey ) == 1 ) {
+			// Use a simple IN(...) clause
+			$column = reset( $uniqueKey );
+			$values = array_column( $rows, $column );
+			if ( count( $values ) !== count( $rows ) ) {
+				throw new DBUnexpectedError( $this, "Missing values for unique key ($column)" );
 			}
 
-			$sql .= '(' . $this->makeList( $row ) . ')';
+			return $this->makeList( [ $column => $values ], self::LIST_AND );
 		}
 
-		$this->query( $sql, $fname );
+		$disjunctions = [];
+		foreach ( $rows as $row ) {
+			$rowKeyMap = array_intersect_key( $row, array_flip( $uniqueKey ) );
+			if ( count( $rowKeyMap ) != count( $uniqueKey ) ) {
+				throw new DBUnexpectedError(
+					$this,
+					"Missing values for unique key (" . implode( ',', $uniqueKey ) . ")"
+				);
+			}
+			$disjunctions[] = $this->makeList( $rowKeyMap, self::LIST_AND );
+		}
+
+		return count( $disjunctions ) > 1
+			? $this->makeList( $disjunctions, self::LIST_OR )
+			: $disjunctions[0];
+	}
+
+	/**
+	 * @param array[] $rows Non-empty list of rows
+	 * @param string[][] $uniqueKeys List of column lists that each define a unique index
+	 * @return string SQL conditions to filter existing rows to those with counterparts in $rows
+	 * @since 1.35
+	 */
+	final protected function makeConditionCollidesUponKeys( array $rows, array $uniqueKeys ) {
+		if ( !$uniqueKeys ) {
+			throw new DBUnexpectedError( $this, "Empty unique key array" );
+		}
+
+		$disjunctions = [];
+		foreach ( $uniqueKeys as $uniqueKey ) {
+			$disjunctions[] = $this->makeConditionCollidesUponKey( $rows, $uniqueKey );
+		}
+
+		return count( $disjunctions ) > 1
+			? $this->makeList( $disjunctions, self::LIST_OR )
+			: $disjunctions[0];
 	}
 
 	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
-		if ( $rows === [] ) {
-			return true; // nothing to do
+		$rows = $this->normalizeRowArray( $rows );
+		if ( !$rows ) {
+			return true;
 		}
 
-		$uniqueKeys = (array)$uniqueKeys;
-		if ( !is_array( reset( $rows ) ) ) {
-			$rows = [ $rows ];
+		if ( $uniqueKeys ) {
+			$uniqueKeys = $this->normalizeUpsertKeys( $uniqueKeys );
+			$this->doUpsert( $table, $rows, $uniqueKeys, $set, $fname );
+		} else {
+			$this->queryLogger->warning(
+				__METHOD__ . " called with no unique keys",
+				[ 'exception' => new RuntimeException() ]
+			);
+			$this->doInsert( $table, $rows, $fname );
 		}
-		'@phan-var array[] $rows';
 
-		if ( count( $uniqueKeys ) ) {
-			$clauses = []; // list WHERE clauses that each identify a single row
+		return true;
+	}
+
+	/**
+	 * @see Database::upsert()
+	 * @param string $table
+	 * @param array[] $rows Non-empty list of rows
+	 * @param string[][] $uniqueKeys Non-empty list of unique keys
+	 * @param array $set
+	 * @param string $fname
+	 * @since 1.35
+	 */
+	protected function doUpsert( $table, array $rows, array $uniqueKeys, array $set, $fname ) {
+		$affectedRowCount = 0;
+		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
+		try {
 			foreach ( $rows as $row ) {
-				foreach ( $uniqueKeys as $index ) {
-					$index = is_array( $index ) ? $index : [ $index ]; // columns
-					$rowKey = []; // unique key to this row
-					foreach ( $index as $column ) {
-						$rowKey[$column] = $row[$column];
-					}
-					$clauses[] = $this->makeList( $rowKey, self::LIST_AND );
+				// Update any existing conflicting rows (including ones inserted from $rows)
+				$sqlConditions = $this->makeConditionCollidesUponKeys( [ $row ], $uniqueKeys );
+				$this->update( $table, $set, [ $sqlConditions ], $fname );
+				$rowsUpdated = $this->affectedRows();
+				$affectedRowCount += $rowsUpdated;
+				if ( $rowsUpdated <= 0 ) {
+					// Now insert the row if there are no conflicts
+					$this->insert( $table, $row, $fname );
+					$affectedRowCount += $this->affectedRows();
 				}
 			}
-			$where = [ $this->makeList( $clauses, self::LIST_OR ) ];
-		} else {
-			$where = false;
-		}
-
-		$affectedRowCount = 0;
-		try {
-			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
-			# Update any existing conflicting row(s)
-			if ( $where !== false ) {
-				$this->update( $table, $set, $where, $fname );
-				$affectedRowCount += $this->affectedRows();
-			}
-			# Now insert any non-conflicting row(s)
-			$this->insert( $table, $rows, $fname, [ 'IGNORE' ] );
-			$affectedRowCount += $this->affectedRows();
 			$this->endAtomic( $fname );
-			$this->affectedRowCount = $affectedRowCount;
 		} catch ( Exception $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
-
-		return true;
+		$this->affectedRowCount = $affectedRowCount;
 	}
 
 	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
@@ -3083,18 +3243,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function insertSelect(
-		$destTable, $srcTable, $varMap, $conds,
-		$fname = __METHOD__, $insertOptions = [], $selectOptions = [], $selectJoinConds = []
+		$destTable,
+		$srcTable,
+		$varMap,
+		$conds,
+		$fname = __METHOD__,
+		$insertOptions = [],
+		$selectOptions = [],
+		$selectJoinConds = []
 	) {
 		static $hints = [ 'NO_AUTO_COLUMNS' ];
 
-		$insertOptions = (array)$insertOptions;
-		$selectOptions = (array)$selectOptions;
+		$insertOptions = $this->normalizeOptions( $insertOptions );
+		$selectOptions = $this->normalizeOptions( $selectOptions );
 
 		if ( $this->cliMode && $this->isInsertSelectSafe( $insertOptions, $selectOptions ) ) {
 			// For massive migrations with downtime, we don't want to select everything
 			// into memory and OOM, so do all this native on the server side if possible.
-			$this->nativeInsertSelect(
+			$this->doInsertSelectNative(
 				$destTable,
 				$srcTable,
 				$varMap,
@@ -3105,7 +3271,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$selectJoinConds
 			);
 		} else {
-			$this->nonNativeInsertSelect(
+			$this->doInsertSelectGeneric(
 				$destTable,
 				$srcTable,
 				$varMap,
@@ -3134,7 +3300,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Implementation of insertSelect() based on select() and insert()
 	 *
 	 * @see IDatabase::insertSelect()
-	 * @since 1.30
 	 * @param string $destTable
 	 * @param string|array $srcTable
 	 * @param array $varMap
@@ -3143,10 +3308,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @param array $selectJoinConds
+	 * @since 1.35
 	 */
-	protected function nonNativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
-		$fname = __METHOD__,
-		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
+	protected function doInsertSelectGeneric(
+		$destTable,
+		$srcTable,
+		array $varMap,
+		$conds,
+		$fname,
+		array $insertOptions,
+		array $selectOptions,
+		$selectJoinConds
 	) {
 		// For web requests, do a locking SELECT and then INSERT. This puts the SELECT burden
 		// on only the master (without needing row-based-replication). It also makes it easy to
@@ -3155,48 +3327,37 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		foreach ( $varMap as $dstColumn => $sourceColumnOrSql ) {
 			$fields[] = $this->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
 		}
-		$selectOptions[] = 'FOR UPDATE';
 		$res = $this->select(
-			$srcTable, implode( ',', $fields ), $conds, $fname, $selectOptions, $selectJoinConds
+			$srcTable,
+			implode( ',', $fields ),
+			$conds,
+			$fname,
+			array_merge( $selectOptions, [ 'FOR UPDATE' ] ),
+			$selectJoinConds
 		);
 		if ( !$res ) {
 			return;
 		}
 
+		$affectedRowCount = 0;
+		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
-			$affectedRowCount = 0;
-			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 			$rows = [];
-			$ok = true;
 			foreach ( $res as $row ) {
 				$rows[] = (array)$row;
-
-				// Avoid inserts that are too huge
-				if ( count( $rows ) >= $this->nonNativeInsertSelectBatchSize ) {
-					$ok = $this->insert( $destTable, $rows, $fname, $insertOptions );
-					if ( !$ok ) {
-						break;
-					}
-					$affectedRowCount += $this->affectedRows();
-					$rows = [];
-				}
 			}
-			if ( $rows && $ok ) {
-				$ok = $this->insert( $destTable, $rows, $fname, $insertOptions );
-				if ( $ok ) {
-					$affectedRowCount += $this->affectedRows();
-				}
-			}
-			if ( $ok ) {
-				$this->endAtomic( $fname );
-				$this->affectedRowCount = $affectedRowCount;
-			} else {
-				$this->cancelAtomic( $fname );
+			// Avoid inserts that are too huge
+			$rowBatches = array_chunk( $rows, $this->nonNativeInsertSelectBatchSize );
+			foreach ( $rowBatches as $rows ) {
+				$this->insert( $destTable, $rows, $fname, $insertOptions );
+				$affectedRowCount += $this->affectedRows();
 			}
 		} catch ( Exception $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
+		$this->endAtomic( $fname );
+		$this->affectedRowCount = $affectedRowCount;
 	}
 
 	/**
@@ -3212,19 +3373,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @param array $selectJoinConds
+	 * @since 1.35
 	 */
-	protected function nativeInsertSelect( $destTable, $srcTable, $varMap, $conds,
-		$fname = __METHOD__,
-		$insertOptions = [], $selectOptions = [], $selectJoinConds = []
+	protected function doInsertSelectNative(
+		$destTable,
+		$srcTable,
+		array $varMap,
+		$conds,
+		$fname,
+		array $insertOptions,
+		array $selectOptions,
+		$selectJoinConds
 	) {
-		$destTable = $this->tableName( $destTable );
-
-		if ( !is_array( $insertOptions ) ) {
-			$insertOptions = [ $insertOptions ];
-		}
-
-		$insertOptions = $this->makeInsertOptions( $insertOptions );
-
+		list( $sqlVerb, $sqlOpts ) = $this->isFlagInOptions( 'IGNORE', $insertOptions )
+			? $this->makeInsertNonConflictingVerbAndOptions()
+			: [ 'INSERT INTO', '' ];
+		$encDstTable = $this->tableName( $destTable );
+		$sqlDstColumns = implode( ',', array_keys( $varMap ) );
 		$selectSql = $this->selectSQLText(
 			$srcTable,
 			array_values( $varMap ),
@@ -3234,9 +3399,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$selectJoinConds
 		);
 
-		$sql = "INSERT $insertOptions" .
-			" INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ') ' .
-			$selectSql;
+		$sql = rtrim( "$sqlVerb $encDstTable ($sqlDstColumns) $selectSql $sqlOpts" );
 
 		$this->query( $sql, $fname );
 	}
