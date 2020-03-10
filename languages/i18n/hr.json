@@ -2316,7 +2316,7 @@
 	"whatlinkshere-hidelinks": "$1 poveznice",
 	"whatlinkshere-hideimages": "$1 poveznica prema datoteci",
 	"whatlinkshere-filters": "Filtri",
-	"whatlinkshere-sectionredir": "preusmjerenje do sekcije \"$1\"",
+	"whatlinkshere-sectionredir": "preusmjerenje do odlomka »$1«",
 	"whatlinkshere-submit": "Idi",
 	"autoblockid": "Automatsko blokiranje #$1",
 	"block": "Blokiraj suradnika",
