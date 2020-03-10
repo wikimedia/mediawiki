@@ -55,6 +55,10 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		// The extension serializer is still buggy, unlike "php" and "igbinary"
 		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
 		$this->useIncrTTLArg = version_compare( phpversion( 'apcu' ), '5.1.12', '>=' );
+		// Avoid back-dated values that expire too soon. In particular, regenerating a hot
+		// key before it expires should never have the end-result of purging that key. Using
+		// the web request time becomes increasingly problematic the longer the request lasts.
+		ini_set( 'apc.use_request_time', '0' );
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
