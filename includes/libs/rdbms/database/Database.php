@@ -540,17 +540,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->topologyRootMaster;
 	}
 
-	/**
-	 * Backwards-compatibility no-op method for disabling query buffering
-	 *
-	 * @param null|bool $buffer Whether to buffer queries (ignored)
-	 * @return bool Whether buffering was already enabled (always true)
-	 * @deprecated Since 1.34 Use query batching; this no longer does anything
-	 */
-	public function bufferResults( $buffer = null ) {
-		return true;
-	}
-
 	final public function trxLevel() {
 		return ( $this->trxShortId != '' ) ? 1 : 0;
 	}
@@ -2649,24 +2638,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			return $quotedTable . ' ' . $this->addIdentifierQuotes( $alias );
 		}
-	}
-
-	/**
-	 * Gets an array of aliased table names
-	 *
-	 * @param array $tables [ [alias] => table ]
-	 * @return string[] See tableNameWithAlias()
-	 */
-	protected function tableNamesWithAlias( $tables ) {
-		$retval = [];
-		foreach ( $tables as $alias => $table ) {
-			if ( is_numeric( $alias ) ) {
-				$alias = $table;
-			}
-			$retval[] = $this->tableNameWithAlias( $table, $alias );
-		}
-
-		return $retval;
 	}
 
 	/**
