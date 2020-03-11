@@ -69,12 +69,14 @@ class InfoAction extends FormlessAction {
 	 * @param int|null $revid Revision id to clear
 	 */
 	public static function invalidateCache( Title $title, $revid = null ) {
+		$services = MediaWikiServices::getInstance();
 		if ( !$revid ) {
-			$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
+			$revision = $services->getRevisionLookup()
+				->getRevisionByTitle( $title, 0, IDBAccessObject::READ_LATEST );
 			$revid = $revision ? $revision->getId() : null;
 		}
 		if ( $revid !== null ) {
-			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+			$cache = $services->getMainWANObjectCache();
 			$key = self::getCacheKey( $cache, $title, $revid );
 			$cache->delete( $key );
 		}

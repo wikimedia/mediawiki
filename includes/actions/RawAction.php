@@ -28,6 +28,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * A simple method to retrieve the plain source of an article,
@@ -184,13 +185,15 @@ class RawAction extends FormlessAction {
 		$request = $this->getRequest();
 
 		// Get it from the DB
-		$rev = Revision::newFromTitle( $title, $this->getOldId() );
+		$rev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $title, $this->getOldId() );
 		if ( $rev ) {
 			$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 			$request->response()->header( "Last-modified: $lastmod" );
 
 			// Public-only due to cache headers
-			$content = $rev->getContent();
+			$content = $rev->getContent( SlotRecord::MAIN );
 
 			if ( $content === null ) {
 				// revision not found (or suppressed)
