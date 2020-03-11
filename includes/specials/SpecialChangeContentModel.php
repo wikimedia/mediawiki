@@ -192,22 +192,18 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			throw new RuntimeException( "Form submission was not POSTed" );
 		}
 
-		$this->title = Title::newFromText( $data['pagetitle'] );
-		$titleWithNewContentModel = clone $this->title;
-		$titleWithNewContentModel->setContentModel( $data['model'] );
 		$user = $this->getUser();
-		// Check permissions and make sure the user has permission to:
-		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$errors = wfMergeErrorArrays(
-			// edit the contentmodel of the page
-			$permManager->getPermissionErrors( 'editcontentmodel', $user, $this->title ),
-			// edit the page under the old content model
-			$permManager->getPermissionErrors( 'edit', $user, $this->title ),
-			// edit the contentmodel under the new content model
-			$permManager->getPermissionErrors( 'editcontentmodel', $user, $titleWithNewContentModel ),
-			// edit the page under the new content model
-			$permManager->getPermissionErrors( 'edit', $user, $titleWithNewContentModel )
+		$this->title = Title::newFromText( $data['pagetitle'] );
+		$page = WikiPage::factory( $this->title );
+
+		$changer = new ContentModelChange(
+			$user,
+			MediaWikiServices::getInstance()->getPermissionManager(),
+			$page,
+			$data['model']
 		);
+
+		$errors = $changer->checkPermissions();
 		if ( $errors ) {
 			$out = $this->getOutput();
 			$wikitext = $out->formatPermissionsErrorMessage( $errors );
@@ -215,92 +211,12 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
 		}
 
-		$page = WikiPage::factory( $this->title );
-		if ( $this->oldRevision === null ) {
-			$this->oldRevision = $page->getRevision() ?: false;
-		}
-		$oldModel = $this->title->getContentModel();
-		if ( $this->oldRevision ) {
-			$oldContent = $this->oldRevision->getContent();
-			try {
-				$newContent = ContentHandler::makeContent(
-					$oldContent->serialize(), $this->title, $data['model']
-				);
-			} catch ( MWException $e ) {
-				return Status::newFatal(
-					$this->msg( 'changecontentmodel-cannot-convert' )
-						->params(
-							$this->title->getPrefixedText(),
-							ContentHandler::getLocalizedName( $data['model'] )
-						)
-				);
-			}
-		} else {
-			// Page doesn't exist, create an empty content object
-			$newContent = $this->contentHandlerFactory
-				->getContentHandler( $data['model'] )
-				->makeEmptyContent();
-		}
-
-		// All other checks have passed, let's check rate limits
-		if ( $user->pingLimiter( 'editcontentmodel' ) ) {
-			throw new ThrottledError();
-		}
-
-		$flags = $this->oldRevision ? EDIT_UPDATE : EDIT_NEW;
-		$flags |= EDIT_INTERNAL;
-		if ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'bot' )
-		) {
-			$flags |= EDIT_FORCE_BOT;
-		}
-
-		$log = new ManualLogEntry( 'contentmodel', $this->oldRevision ? 'change' : 'new' );
-		$log->setPerformer( $user );
-		$log->setTarget( $this->title );
-		$log->setComment( $data['reason'] );
-		$log->setParameters( [
-			'4::oldmodel' => $oldModel,
-			'5::newmodel' => $data['model']
-		] );
-
-		$formatter = LogFormatter::newFromEntry( $log );
-		$formatter->setContext( RequestContext::newExtraneousContext( $this->title ) );
-		$reason = $formatter->getPlainActionText();
-		if ( $data['reason'] !== '' ) {
-			$reason .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $data['reason'];
-		}
-
-		// Run edit filters
-		$derivativeContext = new DerivativeContext( $this->getContext() );
-		$derivativeContext->setTitle( $this->title );
-		$derivativeContext->setWikiPage( $page );
-		$status = new Status();
-		if ( !Hooks::run( 'EditFilterMergedContent',
-				[ $derivativeContext, $newContent, $status, $reason,
-				$user, false ] )
-		) {
-			if ( $status->isGood() ) {
-				// TODO: extensions should really specify an error message
-				$status->fatal( 'hookaborted' );
-			}
-			return $status;
-		}
-
-		$status = $page->doEditContent(
-			$newContent,
-			$reason,
-			$flags,
-			$this->oldRevision ? $this->oldRevision->getId() : false,
-			$user
+		// Can also throw a ThrottledError, don't catch it
+		$status = $changer->doContentModelChange(
+			$this->getContext(),
+			$data['reason'],
+			true
 		);
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-
-		$logid = $log->insert();
-		$log->publish( $logid );
 
 		return $status;
 	}
