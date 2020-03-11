@@ -296,6 +296,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'Target' => [
 				'type' => 'user',
 				'exists' => true,
+				'required' => true,
 				'label' => $this->msg( 'emailusername' )->text(),
 				'id' => 'emailusertarget',
 				'autofocus' => true,
