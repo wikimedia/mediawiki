@@ -418,7 +418,11 @@ class ChangesList extends ContextSource {
 	public static function revDateLink( Revision $rev, User $user, Language $lang, $title = null ) {
 		$ts = $rev->getTimestamp();
 		$date = $lang->userTimeAndDate( $ts, $user );
-		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
+		if ( RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			RevisionRecord::DELETED_TEXT,
+			$user
+		) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				$title ?? $rev->getTitle(),
 				$date,

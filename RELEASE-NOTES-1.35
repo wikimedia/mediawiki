@@ -541,7 +541,6 @@ because of Phabricator reports.
   - LogPage::addEntry
   - FileDeleteForm::doDelete
   Additionally, not passing a user to the following is soft deprecated:
-  - Revision::userCan
   - ArchivedFile::userCan
   - OldLocalFile::userCan
 * Article::insertProtectNullRevision is deprecated. Instead, use
@@ -557,7 +556,7 @@ because of Phabricator reports.
   use its methods.
 * The Revision class was soft deprecated entirely in 1.31. Specific methods
   have now been individually hard deprecated:
-  - ::userCanBitfield - use RevisionRecord::userCanBitfield instead
+  - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
   - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
   - ::countByTitle - use RevisionStore::countRevisionsByTitle instead

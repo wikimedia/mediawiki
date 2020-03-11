@@ -67,14 +67,18 @@ class RevDelRevisionItem extends RevDelItem {
 	}
 
 	public function canView() {
-		return $this->revision->userCan(
-			RevisionRecord::DELETED_RESTRICTED, $this->list->getUser()
+		return RevisionRecord::userCanBitfield(
+			$this->revision->getVisibility(),
+			RevisionRecord::DELETED_RESTRICTED,
+			$this->list->getUser()
 		);
 	}
 
 	public function canViewContent() {
-		return $this->revision->userCan(
-			RevisionRecord::DELETED_TEXT, $this->list->getUser()
+		return RevisionRecord::userCanBitfield(
+			$this->revision->getVisibility(),
+			RevisionRecord::DELETED_TEXT,
+			$this->list->getUser()
 		);
 	}
 
@@ -213,13 +217,21 @@ class RevDelRevisionItem extends RevDelItem {
 			'commenthidden' => (bool)$rev->isDeleted( RevisionRecord::DELETED_COMMENT ),
 			'texthidden' => (bool)$rev->isDeleted( RevisionRecord::DELETED_TEXT ),
 		];
-		if ( $rev->userCan( RevisionRecord::DELETED_USER, $user ) ) {
+		if ( RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			RevisionRecord::DELETED_USER,
+			$user
+		) ) {
 			$ret += [
 				'userid' => $rev->getUser( RevisionRecord::FOR_THIS_USER ),
 				'user' => $rev->getUserText( RevisionRecord::FOR_THIS_USER ),
 			];
 		}
-		if ( $rev->userCan( RevisionRecord::DELETED_COMMENT, $user ) ) {
+		if ( RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			RevisionRecord::DELETED_COMMENT,
+			$user
+		) ) {
 			$ret += [
 				'comment' => $rev->getComment( RevisionRecord::FOR_THIS_USER ),
 			];

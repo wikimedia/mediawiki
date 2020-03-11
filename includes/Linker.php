@@ -1101,9 +1101,16 @@ class Linker {
 	 * @return string HTML fragment
 	 */
 	public static function revUserLink( $rev, $isPublic = false ) {
+		// TODO inject a user
+		$user = RequestContext::getMain()->getUser();
+
 		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) && $isPublic ) {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
-		} elseif ( $rev->userCan( RevisionRecord::DELETED_USER ) ) {
+		} elseif ( RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			 RevisionRecord::DELETED_USER,
+			$user
+		) ) {
 			$link = self::userLink( $rev->getUser( RevisionRecord::FOR_THIS_USER ),
 				$rev->getUserText( RevisionRecord::FOR_THIS_USER ) );
 		} else {
@@ -1124,7 +1131,14 @@ class Linker {
 	 * @return string HTML
 	 */
 	public static function revUserTools( $rev, $isPublic = false, $useParentheses = true ) {
-		if ( $rev->userCan( RevisionRecord::DELETED_USER ) &&
+		// TODO inject a user
+		$user = RequestContext::getMain()->getUser();
+
+		if ( RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			RevisionRecord::DELETED_USER,
+			$user
+		) &&
 			( !$rev->isDeleted( RevisionRecord::DELETED_USER ) || !$isPublic )
 		) {
 			$userId = $rev->getUser( RevisionRecord::FOR_THIS_USER );
@@ -1575,12 +1589,19 @@ class Linker {
 	public static function revComment( Revision $rev, $local = false, $isPublic = false,
 		$useParentheses = true
 	) {
+		// TODO inject a user
+		$user = RequestContext::getMain()->getUser();
+
 		if ( $rev->getComment( RevisionRecord::RAW ) == "" ) {
 			return "";
 		}
 		if ( $rev->isDeleted( RevisionRecord::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
-		} elseif ( $rev->userCan( RevisionRecord::DELETED_COMMENT ) ) {
+		} elseif ( RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			RevisionRecord::DELETED_COMMENT,
+			$user
+		) ) {
 			$block = self::commentBlock( $rev->getComment( RevisionRecord::FOR_THIS_USER ),
 				$rev->getTitle(), $local, null, $useParentheses );
 		} else {
@@ -2113,7 +2134,11 @@ class Linker {
 			return '';
 		}
 
-		if ( !$rev->userCan( RevisionRecord::DELETED_RESTRICTED, $user ) ) {
+		if ( !RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			RevisionRecord::DELETED_RESTRICTED,
+			$user
+		) ) {
 			return self::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 		}
 		$prefixedDbKey = MediaWikiServices::getInstance()->getTitleFormatter()->

@@ -337,12 +337,17 @@ class HistoryPager extends ReverseChronologicalPager {
 		$canRevDelete = $permissionManager->userHasRight( $user, 'deleterevision' );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
+		$visibility = $rev->getVisibility();
 		if ( $canRevDelete || $this->showTagEditUI ) {
 			$this->preventClickjacking();
 			// If revision was hidden from sysops and we don't need the checkbox
 			// for anything else, disable it
 			if ( !$this->showTagEditUI
-				&& !$rev->userCan( RevisionRecord::DELETED_RESTRICTED, $user )
+				&& !RevisionRecord::userCanBitfield(
+					$visibility,
+					RevisionRecord::DELETED_RESTRICTED,
+					$user
+				)
 			) {
 				$del = Xml::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
 			// Otherwise, enable the checkbox...
@@ -351,10 +356,13 @@ class HistoryPager extends ReverseChronologicalPager {
 					[ 'name' => 'ids[' . $rev->getId() . ']' ] );
 			}
 		// User can only view deleted revisions...
-		} elseif ( $rev->getVisibility() &&
-				   $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		} elseif ( $visibility && $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
-			if ( !$rev->userCan( RevisionRecord::DELETED_RESTRICTED, $user ) ) {
+			if ( !RevisionRecord::userCanBitfield(
+				$visibility,
+				RevisionRecord::DELETED_RESTRICTED,
+				$user
+			) ) {
 				$del = Linker::revDeleteLinkDisabled( false );
 			// Otherwise, show the link...
 			} else {
@@ -501,7 +509,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		$cur = $this->historyPage->message['cur'];
 		$latest = $this->getWikiPage()->getLatest();
 		if ( $latest === $rev->getId()
-			|| !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
+			|| !RevisionRecord::userCanBitfield(
+				$rev->getVisibility(),
+				RevisionRecord::DELETED_TEXT,
+				$this->getUser()
+			)
 		) {
 			return $cur;
 		} else {
@@ -550,8 +562,15 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$nextRev = new Revision( $next, 0, $this->getTitle() );
 
-		if ( !$prevRev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
-			|| !$nextRev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
+		if ( !RevisionRecord::userCanBitfield(
+				$prevRev->getVisibility(),
+				RevisionRecord::DELETED_TEXT,
+				$this->getUser()
+			) || !RevisionRecord::userCanBitfield(
+				$nextRev->getVisibility(),
+				RevisionRecord::DELETED_TEXT,
+				$this->getUser()
+			)
 		) {
 			return $last;
 		}
@@ -590,7 +609,11 @@ class HistoryPager extends ReverseChronologicalPager {
 				$checkmark = [ 'checked' => 'checked' ];
 			} else {
 				# Check visibility of old revisions
-				if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
+				if ( !RevisionRecord::userCanBitfield(
+					$rev->getVisibility(),
+					RevisionRecord::DELETED_TEXT,
+					$this->getUser()
+				) ) {
 					$radio['disabled'] = 'disabled';
 					$checkmark = []; // We will check the next possible one
 				} elseif ( !$this->oldIdChecked ) {

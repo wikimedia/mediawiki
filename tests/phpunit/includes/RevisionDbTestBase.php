@@ -1589,6 +1589,8 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::userCan
 	 */
 	public function testUserCan( $bitField, $field, $userGroups, $expected ) {
+		$this->hideDeprecated( 'Revision::userCan' );
+
 		$this->setGroupPermissions(
 			[
 				'sysop' => [

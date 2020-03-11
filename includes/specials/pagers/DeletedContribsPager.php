@@ -344,7 +344,11 @@ class DeletedContribsPager extends IndexPager {
 		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
 
 		if ( !$permissionManager->userHasRight( $user, 'undelete' ) ||
-			 !$rev->userCan( RevisionRecord::DELETED_TEXT, $user )
+			 !RevisionRecord::userCanBitfield(
+				$rev->getVisibility(),
+				RevisionRecord::DELETED_TEXT,
+				$user
+			)
 		) {
 			$link = htmlspecialchars( $date ); // unusable link
 		} else {
