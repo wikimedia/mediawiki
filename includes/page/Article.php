@@ -489,9 +489,11 @@ class Article implements Page {
 		$this->mRevIdFetched = $this->mRevision->getId();
 		$this->fetchResult = Status::newGood( $this->mRevision );
 
-		if (
-			!$this->mRevision->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getUser() )
-		) {
+		if ( !RevisionRecord::userCanBitfield(
+			$this->mRevision->getVisibility(),
+			RevisionRecord::DELETED_TEXT,
+			$this->getContext()->getUser()
+		) ) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
 				$this->mRevision->getId() . "\n" );
 
@@ -1530,7 +1532,11 @@ class Article implements Page {
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		// If the user is not allowed to see it...
-		if ( !$this->mRevision->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
+		if ( !RevisionRecord::userCanBitfield(
+			$this->mRevision->getVisibility(),
+			RevisionRecord::DELETED_TEXT,
+			$user
+		) ) {
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				'rev-deleted-text-permission' );
 

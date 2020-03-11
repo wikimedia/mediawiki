@@ -611,7 +611,13 @@ class ContribsPager extends RangeChronologicalPager {
 				}
 			}
 			# Is there a visible previous revision?
-			if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
+			if ( $rev->getParentId() !== 0 &&
+				RevisionRecord::userCanBitfield(
+					$rev->getVisibility(),
+					RevisionRecord::DELETED_TEXT,
+					$user
+				)
+			) {
 				$difftext = $linkRenderer->makeKnownLink(
 					$page,
 					new HtmlArmor( $this->messages['diff'] ),

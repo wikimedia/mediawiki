@@ -548,9 +548,17 @@ class DifferenceEngine extends ContextSource {
 		$this->loadRevisionData();
 		// $this->mNewRev will only be falsy if a loading error occurred
 		// (in which case the user is allowed to see).
-		$allowed = !$this->mNewRev || $this->mNewRev->userCan( RevisionRecord::DELETED_TEXT, $user );
+		$allowed = !$this->mNewRev || RevisionRecord::userCanBitfield(
+			$this->mNewRev->getVisibility(),
+			RevisionRecord::DELETED_TEXT,
+			$user
+		);
 		if ( $this->mOldRev &&
-			!$this->mOldRev->userCan( RevisionRecord::DELETED_TEXT, $user )
+			!RevisionRecord::userCanBitfield(
+				$this->mOldRev->getVisibility(),
+				RevisionRecord::DELETED_TEXT,
+				$user
+			)
 		) {
 			$allowed = false;
 		}
@@ -1090,11 +1098,19 @@ class DifferenceEngine extends ContextSource {
 			if ( !$this->loadRevisionData() ) {
 				return false;
 			} elseif ( $this->mOldRev &&
-				!$this->mOldRev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
+				!RevisionRecord::userCanBitfield(
+					$this->mOldRev->getVisibility(),
+					RevisionRecord::DELETED_TEXT,
+					$this->getUser()
+				)
 			) {
 				return false;
 			} elseif ( $this->mNewRev &&
-				!$this->mNewRev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() )
+				!RevisionRecord::userCanBitfield(
+					$this->mNewRev->getVisibility(),
+					RevisionRecord::DELETED_TEXT,
+					$this->getUser()
+				)
 			) {
 				return false;
 			}
@@ -1627,7 +1643,11 @@ class DifferenceEngine extends ContextSource {
 	private function userCanEdit( Revision $rev ) {
 		$user = $this->getUser();
 
-		if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
+		if ( !RevisionRecord::userCanBitfield(
+			$rev->getVisibility(),
+			RevisionRecord::DELETED_TEXT,
+			$user
+		) ) {
 			return false;
 		}
 

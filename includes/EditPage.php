@@ -3216,7 +3216,11 @@ ERROR;
 				if ( $revision ) {
 					// Let sysop know that this will make private content public if saved
 
-					if ( !$revision->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
+					if ( !RevisionRecord::userCanBitfield(
+						$revision->getVisibility(),
+						RevisionRecord::DELETED_TEXT,
+						$user
+					) ) {
 						$out->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 							'rev-deleted-text-permission'

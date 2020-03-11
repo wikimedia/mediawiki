@@ -1002,6 +1002,8 @@ class Revision implements IDBAccessObject {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this revision, if it's marked as deleted.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param int $field One of self::DELETED_TEXT,
 	 *                              self::DELETED_COMMENT,
 	 *                              self::DELETED_USER
@@ -1009,8 +1011,8 @@ class Revision implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function userCan( $field, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( !$user ) {
-			// TODO check callers and hard deprecate
 			global $wgUser;
 			$user = $wgUser;
 		}

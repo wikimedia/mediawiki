@@ -107,7 +107,11 @@ class ApiParse extends ApiBase {
 				}
 
 				$this->checkTitleUserPermissions( $rev->getTitle(), 'read' );
-				if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getUser() ) ) {
+				if ( !RevisionRecord::userCanBitfield(
+					$rev->getVisibility(),
+					RevisionRecord::DELETED_TEXT,
+					$this->getUser()
+				) ) {
 					$this->dieWithError(
 						[ 'apierror-permissiondenied', $this->msg( 'action-deletedtext' ) ]
 					);
