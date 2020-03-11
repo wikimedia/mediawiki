@@ -40,6 +40,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 		$this->assertNull( $provider->getRememberUserDuration() );
 
 		$this->assertNull( $provider->whyNoSession() );
+		$this->assertFalse( $provider->safeAgainstCsrf() );
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'id' => 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
