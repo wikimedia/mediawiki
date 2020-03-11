@@ -23,6 +23,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * A module that allows for editing and creating pages.
@@ -45,6 +46,7 @@ class ApiEditPage extends ApiBase {
 		$pageObj = $this->getTitleOrPageId( $params );
 		$titleObj = $pageObj->getTitle();
 		$apiResult = $this->getResult();
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
 		if ( $params['redirect'] ) {
 			if ( $params['prependtext'] === null && $params['appendtext'] === null
@@ -55,8 +57,9 @@ class ApiEditPage extends ApiBase {
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
 
-				$titles = Revision::newFromTitle( $oldTitle, false, Revision::READ_LATEST )
-					->getContent( RevisionRecord::FOR_THIS_USER, $user )
+				$titles = $revisionLookup
+					->getRevisionByTitle( $oldTitle, 0, IDBAccessObject::READ_LATEST )
+					->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user )
 					->getRedirectChain();
 				// array_shift( $titles );
 				'@phan-var Title[] $titles';
@@ -208,33 +211,34 @@ class ApiEditPage extends ApiBase {
 					list( $params['undo'], $params['undoafter'] ) =
 						[ $params['undoafter'], $params['undo'] ];
 				}
-				$undoafterRev = Revision::newFromId( $params['undoafter'] );
+				$undoafterRev = $revisionLookup->getRevisionById( $params['undoafter'] );
 			}
-			$undoRev = Revision::newFromId( $params['undo'] );
+			$undoRev = $revisionLookup->getRevisionById( $params['undo'] );
 			if ( $undoRev === null || $undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undo'] ] );
 			}
 
 			if ( $params['undoafter'] == 0 ) {
-				$undoafterRev = $undoRev->getPrevious();
+				$undoafterRev = $revisionLookup->getPreviousRevision( $undoRev );
 			}
 			if ( $undoafterRev === null || $undoafterRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undoafter'] ] );
 			}
 
-			if ( $undoRev->getPage() != $pageObj->getId() ) {
+			if ( $undoRev->getPageId() != $pageObj->getId() ) {
 				$this->dieWithError( [ 'apierror-revwrongpage', $undoRev->getId(),
 					$titleObj->getPrefixedText() ] );
 			}
-			if ( $undoafterRev->getPage() != $pageObj->getId() ) {
+			if ( $undoafterRev->getPageId() != $pageObj->getId() ) {
 				$this->dieWithError( [ 'apierror-revwrongpage', $undoafterRev->getId(),
 					$titleObj->getPrefixedText() ] );
 			}
 
 			$newContent = $contentHandler->getUndoContent(
-				$pageObj->getRevision(),
-				$undoRev,
-				$undoafterRev
+				$pageObj->getRevisionRecord()->getContent( SlotRecord::MAIN ),
+				$undoRev->getContent( SlotRecord::MAIN ),
+				$undoafterRev->getContent( SlotRecord::MAIN ),
+				$pageObj->getRevisionRecord()->getId() === $undoRev->getId()
 			);
 
 			if ( !$newContent ) {
@@ -249,7 +253,19 @@ class ApiEditPage extends ApiBase {
 				// but only if the user hasn't specified a format/model
 				// parameter.
 				if ( !$newContent->isSupportedFormat( $contentFormat ) ) {
-					$contentFormat = $undoafterRev->getContentFormat();
+					$undoafterRevMainSlot = $undoafterRev->getSlot(
+						SlotRecord::MAIN,
+						RevisionRecord::RAW
+					);
+					$contentFormat = $undoafterRevMainSlot->getFormat();
+					if ( !$contentFormat ) {
+						// fall back to default content format for the model
+						// of $undoafterRev
+						$contentFormat = MediaWikiServices::getInstance()
+							->getContentHandlerFactory()
+							->getContentHandler( $undoafterRevMainSlot->getModel() )
+							->getDefaultFormat();
+					}
 				}
 				// Override content model with model of undid revision.
 				$contentModel = $newContent->getModel();
@@ -259,11 +275,11 @@ class ApiEditPage extends ApiBase {
 			// use an autosummary
 
 			if ( $params['summary'] === null ) {
-				$nextRev = MediaWikiServices::getInstance()->getRevisionLookup()
-					->getNextRevision( $undoafterRev->getRevisionRecord() );
+				$nextRev = $revisionLookup->getNextRevision( $undoafterRev );
 				if ( $nextRev && $nextRev->getId() == $params['undo'] ) {
+					$undoRevUser = $undoRev->getUser();
 					$params['summary'] = wfMessage( 'undo-summary' )
-						->params( $params['undo'], $undoRev->getUserText() )
+						->params( $params['undo'], $undoRevUser ? $undoRevUser->getName() : '' )
 						->inContentLanguage()->text();
 				}
 			}

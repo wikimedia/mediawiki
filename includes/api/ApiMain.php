@@ -108,6 +108,7 @@ class ApiMain extends ApiBase {
 		'tag' => ApiTag::class,
 		'mergehistory' => ApiMergeHistory::class,
 		'setpagelanguage' => ApiSetPageLanguage::class,
+		'changecontentmodel' => ApiChangeContentModel::class,
 	];
 
 	/**
