@@ -496,6 +496,15 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	}
 
 	/**
+	 * Most session providers require protection against CSRF attacks (usually via CSRF tokens)
+	 *
+	 * @return bool false
+	 */
+	public function safeAgainstCsrf() {
+		return false;
+	}
+
+	/**
 	 * Hash data as a session ID
 	 *
 	 * Generally this will only be used when self::persistsSessionId() is false and
