@@ -101,6 +101,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 *              * wpEditToken: the edit token (will be inserted if not provided)
 	 *              * wpEdittime: timestamp of the edit's base revision (will be inserted
 	 *                if not provided)
+	 *              * editRevId: revision ID of the edit's base revision (optional)
 	 *              * wpStarttime: timestamp when the edit started (will be inserted if not provided)
 	 *              * wpSectionTitle: the section to edit
 	 *              * wpMinorEdit: mark as minor edit
@@ -156,7 +157,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$edit['wpEditToken'] = $user->getEditToken();
 		}
 
-		if ( !isset( $edit['wpEdittime'] ) ) {
+		if ( !isset( $edit['wpEdittime'] ) && !isset( $edit['editRevId'] ) ) {
 			$edit['wpEdittime'] = $page->exists() ? $page->getTimestamp() : '';
 		}
 
@@ -172,6 +173,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$article = new Article( $title );
 		$article->getContext()->setTitle( $title );
+		$article->getContext()->setUser( $user );
 		$ep = new EditPage( $article );
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
@@ -543,6 +545,104 @@ hello
 			"expected successful update of section" );
 	}
 
+	public static function provideConflictDetection() {
+		yield 'no conflict detected' => [
+			'Adam',
+			[
+				'wpEdittime' => 2, // use the second edit's time
+				'editRevId' => 2, // use the second edit's revision ID
+			],
+			EditPage::AS_SUCCESS_UPDATE,
+			'successful update expected'
+		];
+
+		yield 'conflict detected based on wpEdittime' => [
+			'Adam',
+			[
+				'wpEdittime' => 1, // use the first edit's time
+			],
+			EditPage::AS_CONFLICT_DETECTED,
+			'conflict expected'
+		];
+
+		yield 'conflict detected based on editRevId' => [
+			'Adam',
+			[
+				'editRevId' => 1, // use the first edit's revision ID
+			],
+			EditPage::AS_CONFLICT_DETECTED,
+			'conflict expected'
+		];
+
+		yield 'conflict based on wpEdittime ignored for same user' => [
+			'Berta',
+			[
+				'wpEdittime' => 1, // use the first edit's time
+			],
+			EditPage::AS_SUCCESS_UPDATE,
+			'successful update expected'
+		];
+
+		yield 'conflict detected based on editRevId even for same user' => [
+			'Berta',
+			[
+				'editRevId' => 1, // use the first edit's revision ID
+			],
+			EditPage::AS_CONFLICT_DETECTED,
+			'conflict expected'
+		];
+	}
+
+	/**
+	 * @dataProvider provideConflictDetection
+	 * @covers EditPage
+	 */
+	public function testConflictDetection( $editUser, $newEdit, $expectedCode, $message ) {
+		// create page
+		$ns = $this->getDefaultWikitextNS();
+		$title = Title::newFromText( __METHOD__, $ns );
+		$page = WikiPage::factory( $title );
+
+		if ( $page->exists() ) {
+			$page->doDeleteArticle( "clean slate for testing" );
+		}
+
+		$elmosEdit['wpTextbox1'] = 'Elmo\'s text';
+		$bertasEdit['wpTextbox1'] = 'Berta\'s text';
+		$newEdit['wpTextbox1'] = 'new text';
+
+		$elmosEdit['wpSummary'] = 'Elmo\'s edit';
+		$bertasEdit['wpSummary'] = 'Bertas\'s edit';
+		$newEdit['wpSummary'] = $newEdit['wpSummary'] ?? 'new edit';
+
+		// first edit: Elmo
+		$page = $this->assertEdit( __METHOD__, null, 'Elmo', $elmosEdit,
+			EditPage::AS_SUCCESS_NEW_ARTICLE, null, 'expected successful creation' );
+
+		$this->forceRevisionDate( $page, '20120101000000' );
+		$rev1 = $page->getRevisionRecord();
+
+		// second edit: Berta
+		$page = $this->assertEdit( __METHOD__, null, 'Berta', $bertasEdit,
+			EditPage::AS_SUCCESS_UPDATE, null, 'expected successful update' );
+
+		$this->forceRevisionDate( $page, '20120101111111' );
+		$rev2 = $page->getRevisionRecord();
+
+		if ( !empty( $newEdit['editRevId'] ) ) {
+			$newEdit['editRevId'] = $newEdit['editRevId'] === 1 ? $rev1->getId() : $rev2->getId();
+		}
+
+		if ( !empty( $newEdit['wpEdittime'] ) ) {
+			$newEdit['wpEdittime'] =
+				$newEdit['wpEdittime'] === 1 ? $rev1->getTimestamp() : $rev2->getTimestamp();
+		}
+
+		// third edit
+		$this->assertEdit( __METHOD__, null, $editUser, $newEdit,
+			$expectedCode, null, $message );
+	}
+
 	public static function provideAutoMerge() {
 		$tests = [];
 
@@ -550,11 +650,9 @@ hello
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
 			[ # adam's edit
-				'wpStarttime' => 1,
 				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
 			],
 			[ # berta's edit
-				'wpStarttime' => 2,
 				'wpTextbox1' => "(one)\n\ntwo\n\nthree\n",
 			],
 			EditPage::AS_CONFLICT_DETECTED, # expected code
@@ -594,12 +692,10 @@ hello
 			"Elmo", # base edit user
 			$text,
 			[ # adam's edit
-				'wpStarttime' => 1,
 				'wpTextbox1' => str_replace( 'one', 'ONE', $section ),
 				'wpSection' => '1'
 			],
 			[ # berta's edit
-				'wpStarttime' => 2,
 				'wpTextbox1' => str_replace( 'three', 'THREE', $section ),
 				'wpSection' => '1'
 			],
@@ -650,34 +746,16 @@ hello
 		$this->forceRevisionDate( $page, '20120101000000' );
 
 		$edittime = $page->getTimestamp();
-
-		// start timestamps for conflict detection
-		if ( !isset( $adamsEdit['wpStarttime'] ) ) {
-			$adamsEdit['wpStarttime'] = 1;
-		}
-
-		if ( !isset( $bertasEdit['wpStarttime'] ) ) {
-			$bertasEdit['wpStarttime'] = 2;
-		}
-
-		$starttime = wfTimestampNow();
-		$adamsTime = wfTimestamp(
-			TS_MW,
-			(int)wfTimestamp( TS_UNIX, $starttime ) + (int)$adamsEdit['wpStarttime']
-		);
-		$bertasTime = wfTimestamp(
-			TS_MW,
-			(int)wfTimestamp( TS_UNIX, $starttime ) + (int)$bertasEdit['wpStarttime']
-		);
-
-		$adamsEdit['wpStarttime'] = $adamsTime;
-		$bertasEdit['wpStarttime'] = $bertasTime;
+		$revId = $page->getLatest();
 
 		$adamsEdit['wpSummary'] = 'Adam\'s edit';
 		$bertasEdit['wpSummary'] = 'Bertas\'s edit';
 
 		$adamsEdit['wpEdittime'] = $edittime;
 		$bertasEdit['wpEdittime'] = $edittime;
+
+		$adamsEdit['editRevId'] = $revId;
+		$bertasEdit['editRevId'] = $revId;
 
 		// first edit
 		$this->assertEdit( 'EditPageTest_testAutoMerge', null, 'Adam', $adamsEdit,
@@ -699,6 +777,7 @@ hello
 			'wpTextbox1' => serialize( 'non-text content' ),
 			'wpEditToken' => $user->getEditToken(),
 			'wpEdittime' => '',
+			'editRevId' => 0,
 			'wpStarttime' => wfTimestampNow(),
 			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 		];
@@ -727,6 +806,7 @@ hello
 			'wpTextbox1' => 'some text',
 			'wpEditToken' => $user->getEditToken(),
 			'wpEdittime' => '',
+			'editRevId' => 0,
 			'wpStarttime' => wfTimestampNow(),
 			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 			'model' => CONTENT_MODEL_WIKITEXT,
@@ -753,6 +833,7 @@ hello
 			'wpTextbox1' => 'some text',
 			'wpEditToken' => $user->getEditToken(),
 			'wpEdittime' => '',
+			'editRevId' => 0,
 			'wpStarttime' => wfTimestampNow(),
 			'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 			'model' => CONTENT_MODEL_WIKITEXT,
