@@ -2195,12 +2195,13 @@ ERROR;
 			$latest = $this->page->getLatest();
 
 			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
+			wfDebug( "revision: {$latest}, editRevId: {$this->editRevId}\n" );
 
 			// An edit conflict is detected if the current revision is different from the
 			// revision that was current when editing was initiated on the client.
 			// This is checked based on the timestamp and revision ID.
 			// TODO: the timestamp based check can probably go away now.
-			if ( $timestamp != $this->edittime
+			if ( ( $this->edittime !== null && $this->edittime != $timestamp )
 				|| ( $this->editRevId !== null && $this->editRevId != $latest )
 			) {
 				$this->isConflict = true;
@@ -2219,6 +2220,7 @@ ERROR;
 						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
 					}
 				} elseif ( $this->section == ''
+					&& $this->edittime
 					&& Revision::userWasLastToEdit(
 						DB_MASTER, $this->mTitle->getArticleID(),
 						$user->getId(), $this->edittime

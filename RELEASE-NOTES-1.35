@@ -194,6 +194,10 @@ For notes on 1.34.x and older releases, see HISTORY.
 * The 'assert' parameter used by all API modules now supports the value 'anon'.
   When specified, the API will return the 'assertanonfailed' error if the user
   is logged in.
+* action=edit now supports  the 'baserevid' parameter for edit conflict
+  detection, as an alternative to 'basetimestamp'. Note that self-conflicts
+  will continue to be ignored if 'basetimestamp' is set, but not if only
+  'baserevid' is set.
 * …
 
 === Action API internal changes in 1.35 ===
