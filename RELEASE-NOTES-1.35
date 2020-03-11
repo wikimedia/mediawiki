@@ -573,9 +573,9 @@ because of Phabricator reports.
      is set to something other than the default of 'public')
   - LogPage::addEntry
   - FileDeleteForm::doDelete
+  - OldLocalFile::userCan
   Additionally, not passing a user to the following is soft deprecated:
   - ArchivedFile::userCan
-  - OldLocalFile::userCan
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
 * The SpecialPageFactory class was moved from the MediaWiki\Special namespace
