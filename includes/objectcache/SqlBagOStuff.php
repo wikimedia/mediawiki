@@ -838,6 +838,40 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
+	 * Construct a cache key.
+	 *
+	 * @since 1.35
+	 * @param string $keyspace
+	 * @param array $args
+	 * @return string
+	 */
+	public function makeKeyInternal( $keyspace, $args ) {
+		// SQL schema for 'objectcache' specifies keys as varchar(255). From that,
+		// subtract the number of characters we need for the keyspace and for
+		// the separator character needed for each argument. To handle some
+		// custom prefixes used by thing like WANObjectCache, limit to 205.
+		$keyspace = strtr( $keyspace, ' ', '_' );
+		$charsLeft = 205 - strlen( $keyspace ) - count( $args );
+		foreach ( $args as &$arg ) {
+			$arg = strtr( $arg, [
+				' ' => '_', // Avoid unnecessary misses from pre-1.35 code
+				':' => '%3A',
+			] );
+
+			// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
+			if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
+				$arg = '#' . md5( $arg );
+			}
+			$charsLeft -= strlen( $arg );
+		}
+
+		if ( $charsLeft < 0 ) {
+			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
+		}
+		return $keyspace . ':' . implode( ':', $args );
+	}
+
+	/**
 	 * Serialize an object and, if possible, compress the representation.
 	 * On typical message and page data, this can provide a 3X decrease
 	 * in storage requirements.
