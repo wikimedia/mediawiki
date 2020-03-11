@@ -327,6 +327,7 @@
 	"cannotdelete": "Koe de oantsjutte side of it oantsjutte ôfbyld \"$1\" net fuorthelje. (Faaks hat in oar dat al dien.)",
 	"badtitle": "Misse titel",
 	"badtitletext": "De opfrege sidetitel wie ûnjildich, leech, of in miskeppele yntertaal of ynterwiki titel.",
+	"title-invalid-characters": "De opfrege sidetitel befettet ûnjildige tekens: \"$1\".",
 	"perfcached": "Dit is bewarre ynformaasje dy't mooglik ferâldere is. In maksimum fan {{PLURAL:$1|ien resultaat is|$1 resultaten binne}} beskikber yn de cache.",
 	"perfcachedts": "It neikommende is bewarre data, dy't it lêst bywurke is op $2 om $3. In maksimum fan {{PLURAL:$4|ien resultaat is|$4 resultaten binne}} beskikber yn 'e oerslach.",
 	"querypage-no-updates": "Dizze side kin net bywurke wurde. Dizze gegevens wurde net ferfarske.",
@@ -2314,5 +2315,6 @@
 	"changecredentials": "Oanmeldgegevens feroarje",
 	"changecredentials-submit": "Oanmeldgegevens feroarje",
 	"credentialsform-provider": "Soarte oanmeldgegevens:",
-	"credentialsform-account": "Akkountnamme:"
+	"credentialsform-account": "Akkountnamme:",
+	"userlogout-continue": "Wolle jo jo ôfmelde?"
 }

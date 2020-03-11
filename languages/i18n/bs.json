@@ -770,7 +770,7 @@
 	"currentrev": "Trenutna verzija",
 	"currentrev-asof": "Trenutna verzija na dan $2 u $3",
 	"revisionasof": "Verzija na dan $2 u $3",
-	"revision-info": "Izmjena od $1 od {{GENDER:$6|$2}}$7",
+	"revision-info": "Datum izmjene: $4 u $5; {{GENDER:$6|autor}}: $2$7",
 	"previousrevision": "← Starija izmjena",
 	"nextrevision": "Novija izmjena →",
 	"currentrevisionlink": "Trenutna verzija",
