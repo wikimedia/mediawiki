@@ -505,8 +505,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	private function getFileContents( $localPath, $type ) {
-		if ( !file_exists( $localPath ) ) {
-			throw new RuntimeException( __METHOD__ . ": $type file not found: \"$localPath\"" );
+		if ( !is_file( $localPath ) ) {
+			throw new RuntimeException(
+				__METHOD__ . ": $type file not found, or is not a file: \"$localPath\""
+			);
 		}
 		return $this->stripBom( file_get_contents( $localPath ) );
 	}
