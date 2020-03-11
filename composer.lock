@@ -2842,17 +2842,18 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.5.11.4",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://gerrit.wikimedia.org/r/wikimedia/fundraising/SmashPig.git",
-                "reference": "99264123a8b20a76a0a4c328790db1b6791a6af8"
+                "reference": "c5b83e222ba9399ba3bb9f348cd78e05b35c50e1"
             },
             "require": {
                 "amzn/login-and-pay-with-amazon-sdk-php": "dev-master",
                 "coderkungfu/php-queue": "^1.0",
                 "corneltek/getoptionkit": "^2.5",
-                "php": ">=5.6",
+                "ext-json": "*",
+                "php": ">=7.0",
                 "phpmailer/phpmailer": "^5.2",
                 "predis/predis": "^1.1",
                 "psr/cache": "^1.0",
@@ -2865,7 +2866,7 @@
                 "ext-sqlite3": "*",
                 "jakub-onderka/php-parallel-lint": "^0.9",
                 "mediawiki/mediawiki-codesniffer": "0.11.0",
-                "phpunit/phpunit": "^5.6"
+                "phpunit/phpunit": "^6"
             },
             "type": "library",
             "autoload": {
@@ -2897,6 +2898,18 @@
                 {
                     "name": "Maggie Epps",
                     "email": "mepps@wikimedia.org"
+                },
+                {
+                    "name": "Jack Gleeson",
+                    "email": "jgleeson@wikimedia.org"
+                },
+                {
+                    "name": "Christine Stone",
+                    "email": "cstone@wikimedia.org"
+                },
+                {
+                    "name": "Andrew Russell Green",
+                    "email": "agreen@wikimedia.org"
                 }
             ],
             "description": "The open source PHP flexible payments library and frontend/backend mediator.",
@@ -2905,7 +2918,7 @@
                 "donations",
                 "payments"
             ],
-            "time": "2020-02-26T00:42:25+00:00"
+            "time": "2020-03-06T22:45:13+00:00"
         },
         {
             "name": "wikimedia/timestamp",
