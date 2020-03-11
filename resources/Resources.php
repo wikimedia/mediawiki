@@ -604,6 +604,9 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.confirmCloseWindow.js',
 		],
+		'messages' => [
+			'confirmleave-warning',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.debug' => [
