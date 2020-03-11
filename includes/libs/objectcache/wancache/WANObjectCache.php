@@ -609,7 +609,7 @@ class WANObjectCache implements
 	 *      Default: false
 	 *   - version: Integer version number signifiying the format of the value.
 	 *      Default: null
-	 *   - walltime: How long the value took to generate in seconds. Default: 0.0
+	 *   - walltime: How long the value took to generate in seconds. Default: null
 	 * @codingStandardsIgnoreStart
 	 * @phan-param array{lag?:int,since?:int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:?string,walltime?:int|float} $opts
 	 * @codingStandardsIgnoreEnd
@@ -627,10 +627,10 @@ class WANObjectCache implements
 		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
 		$creating = $opts['creating'] ?? false;
 		$version = $opts['version'] ?? null;
-		$walltime = $opts['walltime'] ?? 0.0;
+		$walltime = $opts['walltime'] ?? null;
 
 		if ( $ttl < 0 ) {
-			return true;
+			return true; // not cacheable
 		}
 
 		// Do not cache potentially uncommitted data as it might get rolled back
@@ -643,53 +643,72 @@ class WANObjectCache implements
 			return true; // no-op the write for being unsafe
 		}
 
-		$logicalTTL = null; // logical TTL override
-		// Check if there's a risk of writing stale data after the purge tombstone expired
-		if ( $lag === false || ( $lag + $age ) > self::MAX_READ_LAG ) {
-			// Case A: any long-running transaction
-			if ( $age > self::MAX_READ_LAG ) {
-				if ( $lockTSE >= 0 ) {
-					// Store value as *almost* stale to avoid cache and mutex stampedes
-					$logicalTTL = self::TTL_SECOND;
-					$this->logger->info(
-						'Lowered set() TTL for {cachekey} due to snapshot lag.',
-						[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
-					);
-				} else {
-					$this->logger->info(
-						'Rejected set() for {cachekey} due to snapshot lag.',
-						[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
-					);
-
-					return true; // no-op the write for being unsafe
-				}
-			// Case B: high replication lag; lower TTL instead of ignoring all set()s
-			} elseif ( $lag === false || $lag > self::MAX_READ_LAG ) {
-				if ( $lockTSE >= 0 ) {
-					$logicalTTL = min( $ttl ?: INF, self::TTL_LAGGED );
-				} else {
-					$ttl = min( $ttl ?: INF, self::TTL_LAGGED );
-				}
-				$this->logger->warning(
-					'Lowered set() TTL for {cachekey} due to replication lag.',
-					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
-				);
-			// Case C: medium length request with medium replication lag
-			} elseif ( $lockTSE >= 0 ) {
-				// Store value as *almost* stale to avoid cache and mutex stampedes
-				$logicalTTL = self::TTL_SECOND;
-				$this->logger->info(
-					'Lowered set() TTL for {cachekey} due to high read lag.',
-					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
-				);
+		// Check if there is a risk of caching (stale) data that predates the last delete()
+		// tombstone due to the tombstone having expired. If so, then the behavior should depend
+		// on whether the problem is specific to this regeneration attempt or systemically affects
+		// attempts to regenerate this key. For systemic cases, the cache writes should set a low
+		// TTL so that the value at least remains cacheable. For non-systemic cases, the cache
+		// write can simply be rejected.
+		if ( $age > self::MAX_READ_LAG ) {
+			// Case A: high snapshot lag
+			if ( $walltime === null ) {
+				// Case A0: high snapshot lag without regeneration wall time info.
+				// Probably systemic; use a low TTL to avoid stampedes/uncacheability.
+				$mitigated = 'snapshot lag';
+				$mitigationTTL = self::TTL_SECOND;
+			} elseif ( ( $age - $walltime ) > self::MAX_READ_LAG ) {
+				// Case A1: value regeneration during an already long-running transaction.
+				// Probably non-systemic; rely on a less problematic regeneration attempt.
+				$mitigated = 'snapshot lag (late regeneration)';
+				$mitigationTTL = self::TTL_UNCACHEABLE;
 			} else {
-				$this->logger->info(
-					'Rejected set() for {cachekey} due to high read lag.',
-					[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age ]
-				);
-
-				return true; // no-op the write for being unsafe
+				// Case A2: value regeneration takes a long time.
+				// Probably systemic; use a low TTL to avoid stampedes/uncacheability.
+				$mitigated = 'snapshot lag (high regeneration time)';
+				$mitigationTTL = self::TTL_SECOND;
 			}
+		} elseif ( $lag === false || $lag > self::MAX_READ_LAG ) {
+			// Case B: high replication lag without high snapshot lag
+			// Probably systemic; use a low TTL to avoid stampedes/uncacheability
+			$mitigated = 'replication lag';
+			$mitigationTTL = self::TTL_LAGGED;
+		} elseif ( ( $lag + $age ) > self::MAX_READ_LAG ) {
+			// Case C: medium length request with medium replication lag
+			// Probably non-systemic; rely on a less problematic regeneration attempt
+			$mitigated = 'read lag';
+			$mitigationTTL = self::TTL_UNCACHEABLE;
+		} else {
+			// New value generated with recent enough data
+			$mitigated = null;
+			$mitigationTTL = null;
+		}
+
+		if ( $mitigationTTL === self::TTL_UNCACHEABLE ) {
+			$this->logger->warning(
+				"Rejected set() for {cachekey} due to $mitigated.",
+				[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age, 'walltime' => $walltime ]
+			);
+
+			return true; // no-op the write for being unsafe
+		}
+
+		// TTL to use in staleness checks (does not effect persistence layer TTL)
+		$logicalTTL = null;
+
+		if ( $mitigationTTL !== null ) {
+			// New value generated from data that is old enough to be risky
+			if ( $lockTSE >= 0 ) {
+				// Value will have the normal expiry but will be seen as stale sooner
+				$logicalTTL = min( $ttl ?: INF, $mitigationTTL );
+			} else {
+				// Value expires sooner (leaving enough TTL for preemptive refresh)
+				$ttl = min( $ttl ?: INF, max( $mitigationTTL, self::LOW_TTL ) );
+			}
+
+			$this->logger->warning(
+				"Lowered set() TTL for {cachekey} due to $mitigated.",
+				[ 'cachekey' => $key, 'lag' => $lag, 'age' => $age, 'walltime' => $walltime ]
+			);
 		}
 
 		// Wrap that value with time/TTL/version metadata
@@ -2610,7 +2629,7 @@ class WANObjectCache implements
 	 * @param int $ttl Seconds to live or zero for "indefinite"
 	 * @param int|null $version Value version number or null if not versioned
 	 * @param float $now Unix Current timestamp just before calling set()
-	 * @param float $walltime How long it took to generate the value in seconds
+	 * @param float|null $walltime How long it took to generate the value in seconds
 	 * @return array
 	 */
 	private function wrap( $value, $ttl, $version, $now, $walltime ) {
