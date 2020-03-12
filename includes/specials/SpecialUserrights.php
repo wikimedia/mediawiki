@@ -705,18 +705,21 @@ class UserrightsPage extends SpecialPage {
 			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
 		}
 
-		if ( $isUserInstance && $user->isSystemUser() ) {
+		$systemUser = $isUserInstance && $user->isSystemUser();
+		if ( $systemUser ) {
 			$systemusernote = $this->msg( 'userrights-systemuser' )
 				->params( $user->getName() )
 				->parse();
 			$grouplist .= '<p>' . $systemusernote . "</p>\n";
 		}
 
+		// Only add an email link if the user is not a system user
+		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
 		$userToolLinks = Linker::userToolLinks(
 			$user->getId(),
 			$user->getName(),
 			false, /* default for redContribsWhenNoEdits */
-			Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
+			$flags
 		);
 
 		list( $groupCheckboxes, $canChangeAny ) =
