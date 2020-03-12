@@ -25,7 +25,6 @@ namespace MediaWiki\Storage;
 use CategoryMembershipChangeJob;
 use Content;
 use ContentHandler;
-use DataUpdate;
 use DeferrableUpdate;
 use DeferredUpdates;
 use Hooks;
@@ -49,7 +48,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\User\UserIdentity;
 use MessageCache;
-use MWCallableUpdate;
 use MWUnknownContentModelException;
 use ParserCache;
 use ParserOptions;
@@ -58,6 +56,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RecentChangesUpdateJob;
+use RefreshSecondaryDataUpdate;
 use ResourceLoaderWikiModule;
 use Revision;
 use SearchUpdate;
@@ -1449,19 +1448,12 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			} );
 		}
 
-		// Defer the getCannonicalParserOutput() call triggered by getSecondaryDataUpdates()
-		// by wrapping the code that schedules the secondary updates in a callback itself
-		$wrapperUpdate = new MWCallableUpdate(
-			function () {
-				$this->doSecondaryDataUpdates( [
-					// T52785 do not update any other pages on a null edit
-					'recursive' => $this->options['changed']
-				] );
-			},
-			__METHOD__
-		);
-		$wrapperUpdate->setTransactionRoundRequirement( $wrapperUpdate::TRX_ROUND_ABSENT );
-		DeferredUpdates::addUpdate( $wrapperUpdate );
+		$this->doSecondaryDataUpdates( [
+			// T52785 do not update any other pages on a null edit
+			'recursive' => $this->options['changed'],
+			// Defer the getCannonicalParserOutput() call made by getSecondaryDataUpdates()
+			'defer' => DeferredUpdates::POSTSEND
+		] );
 
 		// TODO: MCR: check if *any* changed slot supports categories!
 		if ( $this->rcWatchCategoryMembership
@@ -1603,7 +1595,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
-	 * Do secondary data updates (such as updating link tables).
+	 * Do secondary data updates (e.g. updating link tables) or schedule them as deferred updates
 	 *
 	 * MCR note: this method is temporarily exposed via WikiPage::doSecondaryDataUpdates.
 	 *
@@ -1621,7 +1613,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		if ( !in_array( $options['defer'], $deferValues, true ) ) {
 			throw new InvalidArgumentException( 'Invalid value for defer: ' . $options['defer'] );
 		}
-		$updates = $this->getSecondaryDataUpdates( $options['recursive'] );
 
 		$triggeringUser = $this->options['triggeringUser'] ?? $this->user;
 		if ( !$triggeringUser instanceof User ) {
@@ -1629,28 +1620,25 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		}
 		$causeAction = $this->options['causeAction'] ?? 'unknown';
 		$causeAgent = $this->options['causeAgent'] ?? 'unknown';
-		$legacyRevision = new Revision( $this->revision );
 
-		foreach ( $updates as $update ) {
-			if ( $update instanceof DataUpdate ) {
-				$update->setCause( $causeAction, $causeAgent );
-			}
-			if ( $update instanceof LinksUpdate ) {
-				$update->setRevision( $legacyRevision );
-				$update->setTriggeringUser( $triggeringUser );
-			}
-		}
+		// Bundle all of the data updates into a single deferred update wrapper so that
+		// any failure will cause at most one refreshLinks job to be enqueued by
+		// DeferredUpdates::doUpdates(). This is hard to do when there are many separate
+		// updates that are not defined as being related.
+		$update = new RefreshSecondaryDataUpdate(
+			$this->loadbalancerFactory,
+			$triggeringUser,
+			$this->wikiPage,
+			$this->revision,
+			$this,
+			[ 'recursive' => $options['recursive'] ]
+		);
+		$update->setCause( $causeAction, $causeAgent );
 
 		if ( $options['defer'] === false ) {
-			// T221577: flush any transaction; each update needs outer transaction scope
-			$this->loadbalancerFactory->commitMasterChanges( __METHOD__ );
-			foreach ( $updates as $update ) {
-				DeferredUpdates::attemptUpdate( $update, $this->loadbalancerFactory );
-			}
+			DeferredUpdates::attemptUpdate( $update, $this->loadbalancerFactory );
 		} else {
-			foreach ( $updates as $update ) {
-				DeferredUpdates::addUpdate( $update, $options['defer'] );
-			}
+			DeferredUpdates::addUpdate( $update, $options['defer'] );
 		}
 	}
 
