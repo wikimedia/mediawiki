@@ -3508,5 +3508,6 @@
 	"paramvalidator-baduser": "Pogrješna vrijednost »$2« suraničkoga parametra <var>$1</var>.",
 	"paramvalidator-help-type-user-subtype-name": "suradničko ime",
 	"paramvalidator-help-type-user-subtype-ip": "IP-adresa",
-	"paramvalidator-help-type-user-subtype-cidr": "IP-opseg"
+	"paramvalidator-help-type-user-subtype-cidr": "IP-opseg",
+	"paramvalidator-help-type-user-subtype-id": "suradnički ID (npr. »#123«)"
 }
