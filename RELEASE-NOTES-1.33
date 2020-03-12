@@ -3,8 +3,12 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.33.2 ===
-
+* (T245072) mediawiki.language: Rename languageData back to languageNames.
+* Use proper SemVer comparison in CheckComposerLockUpToDate.
 * (T212738) Add the MW_VERSION constant, global $wgVersion is soft deprecated.
+* Update comment about PHP versions supported by The PHP Group.
+* (T247215) Fix output of RecountCategories::doWork().
+* Add check for page existence to view.php maintenance script.
 
 == MediaWiki 1.33.2 ==
 
