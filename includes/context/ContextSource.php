@@ -24,6 +24,8 @@ use MediaWiki\MediaWikiServices;
  * The simplest way of implementing IContextSource is to hold a RequestContext as a
  * member variable and provide accessors to it.
  *
+ * @stable for subclassing
+ *
  * @since 1.18
  */
 abstract class ContextSource implements IContextSource {
@@ -35,6 +37,7 @@ abstract class ContextSource implements IContextSource {
 	/**
 	 * Get the base IContextSource object
 	 * @since 1.18
+	 * @stable for overriding
 	 * @return IContextSource
 	 */
 	public function getContext() {
@@ -50,6 +53,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.18
+	 * @stable for overriding
 	 * @param IContextSource $context
 	 */
 	public function setContext( IContextSource $context ) {
@@ -58,6 +62,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.23
+	 * @stable for overriding
 	 * @return Config
 	 */
 	public function getConfig() {
@@ -66,6 +71,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.18
+	 * @stable for overriding
 	 * @return WebRequest
 	 */
 	public function getRequest() {
@@ -74,6 +80,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.18
+	 * @stable for overriding
 	 * @return Title|null
 	 */
 	public function getTitle() {
@@ -86,6 +93,7 @@ abstract class ContextSource implements IContextSource {
 	 * if this method returns false.
 	 *
 	 * @since 1.19
+	 * @stable for overriding
 	 * @return bool
 	 */
 	public function canUseWikiPage() {
@@ -99,6 +107,7 @@ abstract class ContextSource implements IContextSource {
 	 * canUseWikiPage() to check whether this method can be called safely.
 	 *
 	 * @since 1.19
+	 * @stable for overriding
 	 * @return WikiPage
 	 */
 	public function getWikiPage() {
@@ -107,6 +116,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.18
+	 * @stable for overriding
 	 * @return OutputPage
 	 */
 	public function getOutput() {
@@ -115,6 +125,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.18
+	 * @stable for overriding
 	 * @return User
 	 */
 	public function getUser() {
@@ -123,6 +134,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.19
+	 * @stable for overriding
 	 * @return Language
 	 */
 	public function getLanguage() {
@@ -131,6 +143,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.18
+	 * @stable for overriding
 	 * @return Skin
 	 */
 	public function getSkin() {
@@ -139,6 +152,7 @@ abstract class ContextSource implements IContextSource {
 
 	/**
 	 * @since 1.27
+	 * @stable for overriding
 	 * @return Timing
 	 */
 	public function getTiming() {
@@ -149,6 +163,7 @@ abstract class ContextSource implements IContextSource {
 	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
 	 *
 	 * @since 1.25
+	 * @stable for overriding
 	 * @return IBufferingStatsdDataFactory
 	 */
 	public function getStats() {
@@ -160,6 +175,7 @@ abstract class ContextSource implements IContextSource {
 	 * Parameters are the same as wfMessage()
 	 *
 	 * @since 1.18
+	 * @stable for overriding
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of keys,
 	 *   or a MessageSpecifier.
 	 * @param mixed ...$params
@@ -173,8 +189,9 @@ abstract class ContextSource implements IContextSource {
 	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
 	 * The result will be reasonably sized to allow for serialization.
 	 *
-	 * @return array
 	 * @since 1.21
+	 * @stable for overriding
+	 * @return array
 	 */
 	public function exportSession() {
 		return $this->getContext()->exportSession();

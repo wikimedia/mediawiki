@@ -19,6 +19,7 @@ use Wikimedia\ParamValidator\ValidationException;
  *     - 'max': Normal maximum allowed, or null if there is no limit.
  *     - 'highmax': High limits maximum allowed, or null if there is no limit.
  *
+ * @stable for subclassing
  * @since 1.35
  * @unstable
  */
@@ -105,6 +106,10 @@ abstract class NumericDef extends TypeDef {
 		return $value;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function normalizeSettings( array $settings ) {
 		if ( !isset( $settings[self::PARAM_MAX] ) ) {
 			unset( $settings[self::PARAM_MAX2] );
@@ -119,6 +124,10 @@ abstract class NumericDef extends TypeDef {
 		return parent::normalizeSettings( $settings );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
@@ -159,6 +168,10 @@ abstract class NumericDef extends TypeDef {
 		return $ret;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getParamInfo( $name, array $settings, array $options ) {
 		$info = parent::getParamInfo( $name, $settings, $options );
 
@@ -172,6 +185,10 @@ abstract class NumericDef extends TypeDef {
 		return $info;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getHelpInfo( $name, array $settings, array $options ) {
 		$info = parent::getHelpInfo( $name, $settings, $options );
 

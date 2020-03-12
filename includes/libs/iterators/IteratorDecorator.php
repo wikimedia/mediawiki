@@ -18,32 +18,58 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @stable for subclassing
  * @file
  * @ingroup Maintenance
  */
 abstract class IteratorDecorator implements Iterator {
 	protected $iterator;
 
+	/**
+	 * @stable for calling
+	 *
+	 * @param Iterator $iterator
+	 */
 	public function __construct( Iterator $iterator ) {
 		$this->iterator = $iterator;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function current() {
 		return $this->iterator->current();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function key() {
 		return $this->iterator->key();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function next() {
 		$this->iterator->next();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function rewind() {
 		$this->iterator->rewind();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function valid() {
 		return $this->iterator->valid();
 	}

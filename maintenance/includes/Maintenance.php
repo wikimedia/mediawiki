@@ -47,6 +47,8 @@ use Wikimedia\Rdbms\LBFactory;
  * bar is the option value of the option for param foo
  * baz is the arg value at index 0 in the arg list
  *
+ * @stable for subclassing
+ *
  * @since 1.16
  * @ingroup Maintenance
  */
@@ -168,6 +170,8 @@ abstract class Maintenance {
 	/**
 	 * Default constructor. Children should call this *first* if implementing
 	 * their own constructors
+	 *
+	 * @stable for calling
 	 */
 	public function __construct() {
 		$this->addDefaultParams();
@@ -423,6 +427,7 @@ abstract class Maintenance {
 	/**
 	 * Throw some output to the user. Scripts can call this with no fears,
 	 * as we handle all --quiet stuff here
+	 * @stable for overriding
 	 * @param string $out The text to show to the user
 	 * @param mixed|null $channel Unique identifier for the channel. See function outputChanneled.
 	 */
@@ -451,6 +456,7 @@ abstract class Maintenance {
 	/**
 	 * Throw an error to the user. Doesn't respect --quiet, so don't use
 	 * this for non-error output
+	 * @stable for overriding
 	 * @param string $err The error to display
 	 * @param int $die Deprecated since 1.31, use Maintenance::fatalError() instead
 	 */
@@ -473,6 +479,7 @@ abstract class Maintenance {
 	/**
 	 * Output a message and terminate the current script.
 	 *
+	 * @stable for overriding
 	 * @param string $msg Error message
 	 * @param int $exitCode PHP exit status. Should be in range 1-254.
 	 * @since 1.31
@@ -534,6 +541,7 @@ abstract class Maintenance {
 	 *    Maintenance::DB_NONE  -  For no DB access at all
 	 *    Maintenance::DB_STD   -  For normal DB access, default
 	 *    Maintenance::DB_ADMIN -  For admin DB access
+	 * @stable for overriding
 	 * @return int
 	 */
 	public function getDbType() {
@@ -582,6 +590,7 @@ abstract class Maintenance {
 
 	/**
 	 * @since 1.24
+	 * @stable for overriding
 	 * @return Config
 	 */
 	public function getConfig() {
@@ -776,6 +785,7 @@ abstract class Maintenance {
 	 * to allow sysadmins to explicitly set one if they'd prefer to override
 	 * defaults (or for people using Suhosin which yells at you for trying
 	 * to disable the limits)
+	 * @stable for overriding
 	 * @return string
 	 */
 	public function memoryLimit() {
@@ -978,6 +988,7 @@ abstract class Maintenance {
 
 	/**
 	 * Run some validation checks on the params, etc
+	 * @stable for overriding
 	 */
 	public function validateParamsAndArgs() {
 		$die = false;
@@ -1010,6 +1021,7 @@ abstract class Maintenance {
 
 	/**
 	 * Handle the special variables that are global to all scripts
+	 * @stable for overriding
 	 */
 	protected function loadSpecialVars() {
 		if ( $this->hasOption( 'dbuser' ) ) {
@@ -1151,6 +1163,7 @@ abstract class Maintenance {
 
 	/**
 	 * Handle some last-minute setup here.
+	 * @stable for overriding
 	 */
 	public function finalSetup() {
 		global $wgCommandLineMode, $wgServer, $wgShowExceptionDetails, $wgShowHostnames;
@@ -1225,6 +1238,7 @@ abstract class Maintenance {
 
 	/**
 	 * Execute a callback function at the end of initialisation
+	 * @stable for overriding
 	 */
 	protected function afterFinalSetup() {
 		if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
@@ -1342,6 +1356,8 @@ abstract class Maintenance {
 	 *
 	 * This function has the same parameters as LoadBalancer::getConnection().
 	 *
+	 * @stable for overriding
+	 *
 	 * @param int $db DB index (DB_REPLICA/DB_MASTER)
 	 * @param string|string[] $groups default: empty array
 	 * @param string|bool $dbDomain default: current wiki
@@ -1360,6 +1376,7 @@ abstract class Maintenance {
 
 	/**
 	 * Sets database object to be returned by getDB().
+	 * @stable for overriding
 	 *
 	 * @param IMaintainableDatabase $db
 	 */
