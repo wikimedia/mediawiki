@@ -26,7 +26,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->context->setUser( $user );
 
 		$this->setMwGlobals( [
-			'wgUser' => $user,
 			'wgTextModelsToParse' => [
 				CONTENT_MODEL_WIKITEXT,
 				CONTENT_MODEL_CSS,

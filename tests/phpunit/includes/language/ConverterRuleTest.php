@@ -5,11 +5,6 @@
  */
 class ConverterRuleTest extends MediaWikiTestCase {
 
-	public function setUp() : void {
-		parent::setUp();
-		$this->setMwGlobals( 'wgUser', new User );
-	}
-
 	public function testParseEmpty() {
 		$converter = new EnConverter( new Language() );
 		$rule = new ConverterRule( '', $converter );

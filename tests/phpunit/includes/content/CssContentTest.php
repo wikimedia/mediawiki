@@ -12,12 +12,7 @@ class CssContentTest extends JavaScriptContentTest {
 	protected function setUp() : void {
 		parent::setUp();
 
-		// Anon user
-		$user = new User();
-		$user->setName( '127.0.0.1' );
-
 		$this->setMwGlobals( [
-			'wgUser' => $user,
 			'wgTextModelsToParse' => [
 				CONTENT_MODEL_CSS,
 			]
