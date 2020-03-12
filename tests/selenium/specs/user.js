@@ -21,7 +21,8 @@ describe( 'User', function () {
 		password = Math.random().toString();
 	} );
 
-	it( 'should be able to create account', function () {
+	// Disable due to broken/flakiness (T247580)
+	it.skip( 'should be able to create account', function () {
 
 		// create
 		CreateAccountPage.createAccount( username, password );
@@ -31,7 +32,8 @@ describe( 'User', function () {
 
 	} );
 
-	it( 'should be able to log in', function () {
+	// Disable due to broken/flakiness (T247580)
+	it.skip( 'should be able to log in', function () {
 
 		// create
 		browser.call( function () {
