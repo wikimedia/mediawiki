@@ -164,10 +164,21 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 	 * @return string
 	 */
 	protected function getActionModuleToken() {
-		// TODO: if the request is known to be safe, return $this->getUser()->getEditToken();
-
 		$body = $this->getValidatedBody();
-		return $body['token'] ?? '';
+
+		if ( $this->getSession()->getProvider()->safeAgainstCsrf() ) {
+			if ( !empty( $body['token'] ) ) {
+				throw new LocalizedHttpException(
+					new MessageValue( 'rest-extraneous-csrf-token' ),
+					400
+				);
+			}
+
+			// Since the session is safe against CSRF, just use a known-good token.
+			return $this->getUser()->getEditToken();
+		} else {
+			return $body['token'] ?? '';
+		}
 	}
 
 	protected function mapActionModuleResponse(
