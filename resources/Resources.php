@@ -56,18 +56,18 @@ return [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
 			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements' ],
+		'features' => [ 'elements', 'legacy' ],
 	],
 	'mediawiki.skinning.content' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
 			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements', 'content' ],
+		'features' => [ 'elements', 'content', 'legacy' ],
 	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => [
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements', 'content', 'interface', 'logo' ],
+		'features' => [ 'elements', 'content', 'interface', 'logo', 'legacy' ],
 	],
 	'jquery.makeCollapsible.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2186,6 +2186,8 @@ return [
 	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.shared' => [
+		'deprecated' => 'Your default skin ResourceLoader class should use '
+			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
 		'features' => [ 'legacy' ],
 		'targets' => [ 'desktop', 'mobile' ],

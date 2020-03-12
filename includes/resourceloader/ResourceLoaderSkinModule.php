@@ -114,7 +114,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$remoteBasePath = null
 	) {
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
-		$this->features = $options['features'] ?? [ 'logo' ];
+		$this->features = $options['features'] ?? [ 'logo', 'legacy' ];
 	}
 
 	/**
