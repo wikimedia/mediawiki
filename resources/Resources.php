@@ -2177,8 +2177,9 @@ return [
 	/* MediaWiki Legacy */
 
 	'mediawiki.legacy.commonPrint' => [
+		'deprecated' => 'Use ResourceLoaderSkinModule',
 		'styles' => [
-			'resources/src/mediawiki.legacy/commonPrint.css' => [ 'media' => 'print' ]
+			'resources/src/mediawiki.skinning/commonPrint.css' => [ 'media' => 'print' ]
 		],
 	],
 	'mediawiki.legacy.protect' => [

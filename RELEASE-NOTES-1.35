@@ -125,11 +125,12 @@ For notes on 1.34.x and older releases, see HISTORY.
   removed in 1.36.
 * The ParserPreSaveTransformComplete hook was added.
 * The ResourceLoaderSkinModule class now has a "legacy" feature that loads
-  the stylesheets previously part of the "mediawiki.legacy.shared" module.
-  The latter is now deprecated and no longer loaded by skins. For skins needing
-  to retain these styles, you will need to load these styles via a module
-  using the ResourceLoaderSkinModule class. See Vector and Monobook for
-  examples.
+  the stylesheets previously part of the "mediawiki.legacy.shared" and
+  "mediawiki.legacy.commonPrint" module.
+  Those modules are now deprecated and no longer loaded by skins.
+  For skins needing to retain these styles, you will need to load these
+  styles via a module using the ResourceLoaderSkinModule class.
+  See Vector and Monobook for examples.
 * ParserOutput now has methods addExtraCSPStyleSrc, addExtraCSPDefaultSrc
   addExtraCSPScriptSrc for parser tags/functions to be able to add sources
   to the Content Security Policy.
@@ -384,9 +385,10 @@ because of Phabricator reports.
 * OutputPage::parserOptions doesn't accept an $options parameter anymore.
 * MessageCache::getParserOptions previously did not have a visibility set.
   It has been made private.
-* The Skin no loader loads the "mediawiki.legacy.shared" module. The legacy
-  shared styles must now be loaded by the skin explicitly, either inherited via
-  the "mediawiki.skinning.*" modules, or by making your skin's main styles
+* The Skin no longer loads the "mediawiki.legacy.shared" or
+  "mediawiki.legacy.commonPrint" modules. The legacy shared styles must now
+  be loaded by the skin explicitly, either inherited via the
+  "mediawiki.skinning.*" modules, or by making your skin's main styles
   module use the ResourceLoaderSkinModule class with the "legacy" attribute.
   See Vector and Monobook for examples.
 * …
