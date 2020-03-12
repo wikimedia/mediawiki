@@ -497,21 +497,33 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Helper method for getting a file.
+	 *
+	 * @param string $localPath The path to the resource to load
+	 * @param string $type The type of resource being loaded (for error reporting only)
+	 * @throws RuntimeException If the supplied path is not found, or not a path
+	 * @return string
+	 */
+	private function getFileContents( $localPath, $type ) {
+		if ( !is_file( $localPath ) ) {
+			throw new RuntimeException(
+				__METHOD__ . ": $type file not found, or is not a file: \"$localPath\""
+			);
+		}
+		return $this->stripBom( file_get_contents( $localPath ) );
+	}
+
+	/**
 	 * Get the skip function.
 	 * @return null|string
-	 * @throws MWException
+	 * @throws RuntimeException If the file doesn't exist
 	 */
 	public function getSkipFunction() {
 		if ( !$this->skipFunction ) {
 			return null;
 		}
-
 		$localPath = $this->getLocalPath( $this->skipFunction );
-		if ( !file_exists( $localPath ) ) {
-			throw new MWException( __METHOD__ . ": skip function file not found: \"$localPath\"" );
-		}
-		$contents = $this->stripBom( file_get_contents( $localPath ) );
-		return $contents;
+		return $this->getFileContents( $localPath, 'skip function' );
 	}
 
 	/**
@@ -892,7 +904,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @param array $scripts List of file paths to scripts to read, remap and concetenate
 	 * @return string Concatenated JavaScript data from $scripts
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	private function readScriptFiles( array $scripts ) {
 		if ( empty( $scripts ) ) {
@@ -901,10 +913,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$js = '';
 		foreach ( array_unique( $scripts, SORT_REGULAR ) as $fileName ) {
 			$localPath = $this->getLocalPath( $fileName );
-			if ( !file_exists( $localPath ) ) {
-				throw new MWException( __METHOD__ . ": script file not found: \"$localPath\"" );
-			}
-			$contents = $this->stripBom( file_get_contents( $localPath ) );
+			$contents = $this->getFileContents( $localPath, 'script' );
 			$js .= $contents . "\n";
 		}
 		return $js;
@@ -918,7 +927,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array List of concatenated and remapped CSS data from $styles,
 	 *     keyed by media type
-	 * @throws MWException
+	 * @throws RuntimeException
 	 */
 	public function readStyleFiles( array $styles, ResourceLoaderContext $context ) {
 		if ( !$styles ) {
@@ -948,11 +957,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function readStyleFile( $path, ResourceLoaderContext $context ) {
 		$localPath = $this->getLocalPath( $path );
-		if ( !file_exists( $localPath ) ) {
-			throw new RuntimeException( "Style file not found: '{$localPath}'" );
-		}
-
-		$style = $this->stripBom( file_get_contents( $localPath ) );
+		$style = $this->getFileContents( $localPath, 'style' );
 		$styleLang = $this->getStyleSheetLang( $localPath );
 
 		return $this->processStyle( $style, $styleLang, $path, $context );
@@ -1056,7 +1061,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected function compileLessFile( $fileName, ResourceLoaderContext $context ) {
 		wfDeprecated( __METHOD__, '1.35' );
-		$style = $this->stripBom( file_get_contents( $fileName ) );
+
+		$style = $this->getFileContents( $fileName, 'LESS' );
 		return $this->compileLessString( $style, $fileName, $context );
 	}
 
@@ -1127,10 +1133,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$alias = $this->getPath( $templatePath );
 			}
 			$localPath = $this->getLocalPath( $templatePath );
-			if ( !file_exists( $localPath ) ) {
-				throw new RuntimeException( "Template file not found: '{$localPath}'" );
-			}
-			$content = file_get_contents( $localPath );
+			$content = $this->getFileContents( $localPath, 'template' );
+
 			$templates[$alias] = $this->stripBom( $content );
 		}
 		return $templates;
@@ -1325,10 +1329,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			// only to inform getDefinitionSummary().
 			if ( !isset( $fileInfo['content'] ) && isset( $fileInfo['filePath'] ) ) {
 				$localPath = $this->getLocalPath( $fileInfo['filePath'] );
-				if ( !file_exists( $localPath ) ) {
-					throw new RuntimeException( "Package file not found: '{$localPath}'" );
-				}
-				$content = $this->stripBom( file_get_contents( $localPath ) );
+				$content = $this->getFileContents( $localPath, 'package' );
 				if ( $fileInfo['type'] === 'data' ) {
 					$content = json_decode( $content );
 				}
