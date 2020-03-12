@@ -368,6 +368,7 @@ because of Phabricator reports.
   Skin::getSearchLink() instead.
 * Revision::loadFromId and RevisionStore::loadRevisionFromId have been
   removed.
+* OutputPage::parserOptions doesn't accept an $options parameter anymore.
 * …
 
 === Deprecations in 1.35 ===
