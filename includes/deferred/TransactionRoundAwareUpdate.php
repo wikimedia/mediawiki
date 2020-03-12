@@ -7,9 +7,9 @@
  * @since 1.34
  */
 interface TransactionRoundAwareUpdate {
-	/** @var int No transaction round should be used */
+	/** @var int No explicit transaction round should be used */
 	const TRX_ROUND_ABSENT = 1;
-	/** @var int A transaction round owned by self::doUpdate should be used */
+	/** @var int An explicit transaction round owned by self::doUpdate should be used */
 	const TRX_ROUND_PRESENT = 2;
 
 	/**
