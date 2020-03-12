@@ -116,6 +116,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	private $expandedPackageFiles = [];
 
 	/**
+	 * @var array Further expanded versions of $expandedPackageFiles, lazy-computed by
+	 *   getPackageFiles(); keyed by context hash
+	 */
+	private $fullyExpandedPackageFiles = [];
+
+	/**
 	 * @var array List of modules this module depends on
 	 * @par Usage:
 	 * @code
@@ -169,6 +175,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Used in tests to detect missing dependencies.
 	 */
 	protected $missingLocalFileRefs = [];
+
+	/**
+	 * @var VueComponentParser Lazy-created by getVueComponentParser()
+	 */
+	protected $vueComponentParser = null;
 
 	/**
 	 * Constructs a new module from an options array.
@@ -390,6 +401,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$deprecationScript = $this->getDeprecationInformation( $context );
 		if ( $this->packageFiles !== null ) {
 			$packageFiles = $this->getPackageFiles( $context );
+			foreach ( $packageFiles['files'] as &$file ) {
+				if ( $file['type'] === 'script+style' ) {
+					$file['content'] = $file['content']['script'];
+					$file['type'] = 'script';
+				}
+			}
 			if ( $deprecationScript ) {
 				$mainFile =& $packageFiles['files'][$packageFiles['main']];
 				$mainFile['content'] = $deprecationScript . $mainFile['content'];
@@ -436,6 +453,21 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->getStyleFiles( $context ),
 			$context
 		);
+
+		if ( $this->packageFiles !== null ) {
+			$packageFiles = $this->getPackageFiles( $context );
+			foreach ( $packageFiles['files'] as $fileName => $file ) {
+				if ( $file['type'] === 'script+style' ) {
+					$style = $this->processStyle(
+						$file['content']['style'],
+						$file['content']['styleLang'],
+						$fileName,
+						$context
+					);
+					$styles['all'] = ( $styles['all'] ?? '' ) . "\n" . $style;
+				}
+			}
+		}
 
 		// Track indirect file dependencies so that ResourceLoaderStartUpModule can check for
 		// on-disk file changes to any of this files without having to recompute the file list
@@ -671,6 +703,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @return VueComponentParser
+	 */
+	protected function getVueComponentParser() {
+		if ( $this->vueComponentParser === null ) {
+			$this->vueComponentParser = new VueComponentParser;
+		}
+		return $this->vueComponentParser;
+	}
+
+	/**
 	 * @param string|ResourceLoaderFilePath $path
 	 * @return string
 	 */
@@ -720,11 +762,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Infer the file type from a package file path.
 	 * @param string $path
-	 * @return string 'script' or 'data'
+	 * @return string 'script', 'script-vue', or 'data'
 	 */
 	public static function getPackageFileType( $path ) {
 		if ( preg_match( '/\.json$/i', $path ) ) {
 			return 'data';
+		}
+		if ( preg_match( '/\.vue$/i', $path ) ) {
+			return 'script-vue';
 		}
 		return 'script';
 	}
@@ -1187,7 +1232,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$expanded = [ 'type' => $type ];
 			if ( !empty( $fileInfo['main'] ) ) {
 				$mainFile = $fileName;
-				if ( $type !== 'script' ) {
+				if ( $type !== 'script' && $type !== 'script-vue' ) {
 					$msg = "Main file in package must be of type 'script', module " .
 						"'{$this->getName()}', main file '{$mainFile}' is '{$type}'.";
 					$this->getLogger()->error( $msg );
@@ -1274,7 +1319,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $expandedFiles && $mainFile === null ) {
 			// The first package file that is a script is the main file
 			foreach ( $expandedFiles as $path => $file ) {
-				if ( $file['type'] === 'script' ) {
+				if ( $file['type'] === 'script' || $file['type'] === 'script-vue' ) {
 					$mainFile = $path;
 					break;
 				}
@@ -1294,16 +1339,20 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Resolves the package files defintion and generates the content of each package file.
 	 * @param ResourceLoaderContext $context
 	 * @return array Package files data structure, see ResourceLoaderModule::getScript()
-	 * @throws RuntimeException If a file doesn't exist
+	 * @throws RuntimeException If a file doesn't exist, or parsing a .vue file fails
 	 */
 	public function getPackageFiles( ResourceLoaderContext $context ) {
 		if ( $this->packageFiles === null ) {
 			return null;
 		}
+		$hash = $context->getHash();
+		if ( isset( $this->fullyExpandedPackageFiles[ $hash ] ) ) {
+			return $this->fullyExpandedPackageFiles[ $hash ];
+		}
 		$expandedPackageFiles = $this->expandPackageFiles( $context );
 
 		// Expand file contents
-		foreach ( $expandedPackageFiles['files'] as &$fileInfo ) {
+		foreach ( $expandedPackageFiles['files'] as $fileName => &$fileInfo ) {
 			// Turn any 'filePath' or 'callback' key into actual 'content',
 			// and remove the key after that. The callback could return a
 			// ResourceLoaderFilePath object; if that happens, fall through
@@ -1336,6 +1385,34 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				$fileInfo['content'] = $content;
 				unset( $fileInfo['filePath'] );
 			}
+			if ( $fileInfo['type'] === 'script-vue' ) {
+				try {
+					$parsedComponent = $this->getVueComponentParser()->parse( $fileInfo['content'] );
+				} catch ( Exception $e ) {
+					$msg = "Error parsing file '$fileName' in module '{$this->getName()}': " .
+						$e->getMessage();
+					$this->getLogger()->error( $msg );
+					throw new RuntimeException( $msg );
+				}
+				$template = $context->getDebug() ?
+					$parsedComponent['rawTemplate'] :
+					$parsedComponent['template'];
+				$encodedTemplate = json_encode( $template );
+				if ( $context->getDebug() ) {
+					// Replace \n (backslash-n) with space + backslash-newline in debug mode
+					// We only replace \n if not preceded by a backslash, to avoid breaking '\\n'
+					$encodedTemplate = preg_replace( '/(?<!\\\\)\\\\n/', " \\\n", $encodedTemplate );
+					// Expand \t to real tabs in debug mode
+					$encodedTemplate = strtr( $encodedTemplate, [ "\\t" => "\t" ] );
+				}
+				$fileInfo['content'] = [
+					'script' => $parsedComponent['script'] .
+						";\nmodule.exports.template = $encodedTemplate;",
+					'style' => $parsedComponent['style'] ?? '',
+					'styleLang' => $parsedComponent['styleLang'] ?? 'css'
+				];
+				$fileInfo['type'] = 'script+style';
+			}
 
 			// Not needed for client response, exists for use by getDefinitionSummary().
 			unset( $fileInfo['definitionSummary'] );
@@ -1343,6 +1420,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			unset( $fileInfo['callbackParam'] );
 		}
 
+		$this->fullyExpandedPackageFiles[ $hash ] = $expandedPackageFiles;
 		return $expandedPackageFiles;
 	}
 

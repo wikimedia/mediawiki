@@ -1526,6 +1526,7 @@ $wgAutoloadLocalClasses = [
 	'ViewCLI' => __DIR__ . '/maintenance/view.php',
 	'VirtualRESTService' => __DIR__ . '/includes/libs/virtualrest/VirtualRESTService.php',
 	'VirtualRESTServiceClient' => __DIR__ . '/includes/libs/virtualrest/VirtualRESTServiceClient.php',
+	'VueComponentParser' => __DIR__ . '/includes/resourceloader/VueComponentParser.php',
 	'WANCacheReapUpdate' => __DIR__ . '/includes/deferred/WANCacheReapUpdate.php',
 	'WANObjectCache' => __DIR__ . '/includes/libs/objectcache/wancache/WANObjectCache.php',
 	'WANObjectCacheReaper' => __DIR__ . '/includes/libs/objectcache/wancache/WANObjectCacheReaper.php',
