@@ -46,8 +46,8 @@ describe( 'User', function () {
 
 	} );
 
-	it( 'should be able to change preferences', function () {
-
+	// Disabled due to flakiness (T199446)
+	it.skip( 'should be able to change preferences', function () {
 		var realName = Math.random().toString();
 
 		// create
