@@ -27,7 +27,8 @@ describe( 'Page', function () {
 		name = getTestString();
 	} );
 
-	it( 'should be creatable', function () {
+	// Disable due to broken/flakiness (T247580)
+	it.skip( 'should be creatable', function () {
 
 		// create
 		EditPage.edit( name, content );
@@ -38,7 +39,8 @@ describe( 'Page', function () {
 
 	} );
 
-	it( 'should be re-creatable', function () {
+	// Disable due to broken/flakiness (T247580)
+	it.skip( 'should be re-creatable', function () {
 		let initialContent = getTestString();
 
 		// create
@@ -60,7 +62,8 @@ describe( 'Page', function () {
 
 	} );
 
-	it( 'should be editable', function () {
+	// Disable due to broken/flakiness (T247580)
+	it.skip( 'should be editable', function () {
 
 		// create
 		browser.call( function () {
@@ -89,7 +92,8 @@ describe( 'Page', function () {
 
 	} );
 
-	it( 'should be deletable', function () {
+	// Disable due to broken/flakiness (T247580)
+	it.skip( 'should be deletable', function () {
 
 		// login
 		UserLoginPage.loginAdmin();
@@ -110,7 +114,8 @@ describe( 'Page', function () {
 
 	} );
 
-	it( 'should be restorable', function () {
+	// Disable due to broken/flakiness (T247580)
+	it.skip( 'should be restorable', function () {
 
 		// login
 		UserLoginPage.loginAdmin();
