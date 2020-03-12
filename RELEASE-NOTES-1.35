@@ -595,6 +595,9 @@ because of Phabricator reports.
   the fourth parameter. Specifying such a right is deprecated.
 * RevisionStore::loadRevisionFromTitle was deprecated.
 * SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
+* The "mediawiki.legacy.oldshared" module has been deprecated.
+  Skins and extensions that are using this should copy its necessary CSS rules
+  to their own styles module. CologneBlue and Nostalgia skins serve as examples.
 * The "mediawiki.legacy.shared" module has been deprecated.
   Use the "mediawiki.skinning.*" modules, or ResourceLoaderSkinModule instead.
 * …

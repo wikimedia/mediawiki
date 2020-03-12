@@ -2200,6 +2200,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.legacy.oldshared' => [
+		'deprecated' => 'Please copy the CSS needed in this module to the associated skin',
 		'styles' => [
 			'resources/src/mediawiki.legacy/oldshared.css' => [ 'media' => 'screen' ]
 		],
