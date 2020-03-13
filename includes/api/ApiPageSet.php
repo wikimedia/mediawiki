@@ -1229,7 +1229,8 @@ class ApiPageSet extends ApiBase {
 							$special = $spFactory->getPage( $dbkey );
 							if ( $special instanceof RedirectSpecialArticle ) {
 								// Only RedirectSpecialArticle is intended to redirect to an article, other kinds of
-								// RedirectSpecialPage are probably applying weird URL parameters we don't want to handle.
+								// RedirectSpecialPage are probably applying weird URL parameters we don't want to
+								// handle.
 								$context = new DerivativeContext( $this );
 								$context->setTitle( $titleObj );
 								$context->setRequest( new FauxRequest );

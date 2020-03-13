@@ -134,7 +134,8 @@ class ApiComparePages extends ApiBase {
 					if ( !$toRev ) {
 						$title = Title::newFromLinkTarget( $title );
 						$this->dieWithError(
-							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ], 'nosuchrevid'
+							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ],
+							'nosuchrevid'
 						);
 					}
 					$toRelRev = $toRev;
@@ -406,7 +407,8 @@ class ApiComparePages extends ApiBase {
 				if ( !$suppliedContent ) {
 					if ( $title->exists() ) {
 						$this->dieWithError(
-							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ], 'nosuchrevid'
+							[ 'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() ) ],
+							'nosuchrevid'
 						);
 					} else {
 						$this->dieWithError(

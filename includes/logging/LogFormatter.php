@@ -302,7 +302,9 @@ class LogFormatter {
 				switch ( $entry->getSubtype() ) {
 					case 'protect':
 						$text = wfMessage( 'protectedarticle' )
-							->rawParams( $target . ' ' . $parameters['4::description'] )->inContentLanguage()->escaped();
+							->rawParams( $target . ' ' . $parameters['4::description'] )
+							->inContentLanguage()
+							->escaped();
 						break;
 					case 'unprotect':
 						$text = wfMessage( 'unprotectedarticle' )
@@ -310,7 +312,9 @@ class LogFormatter {
 						break;
 					case 'modify':
 						$text = wfMessage( 'modifiedarticleprotection' )
-							->rawParams( $target . ' ' . $parameters['4::description'] )->inContentLanguage()->escaped();
+							->rawParams( $target . ' ' . $parameters['4::description'] )
+							->inContentLanguage()
+							->escaped();
 						break;
 					case 'move_prot':
 						$text = wfMessage( 'movedarticleprotection' )
