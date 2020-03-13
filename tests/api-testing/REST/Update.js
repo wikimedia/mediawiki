@@ -98,6 +98,30 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
+
+		it( 'should automatically solve merge conflicts', async () => {
+			// XXX: this test may fail if the diff3 utility is not found on the web host
+
+			const title = utils.title( 'Edit Test ' );
+
+			// create
+			const firstRev = await mindy.edit( title, { text: 'first line\nlorem ipsum\nsecond line' } );
+			await mindy.edit( title, { text: 'FIRST LINE\nlorem ipsum\nsecond line' } );
+
+			const reqBody = {
+				token: anonToken,
+				source: 'first line\nlorem ipsum\nSECOND LINE',
+				comment: 'tästing',
+				content_model: 'wikitext',
+				latest: { id: firstRev.newrevid }
+			};
+			const { status: editStatus, body: editBody } = await client.put( `/page/${title}`, reqBody );
+
+			assert.equal( editStatus, 200 );
+			const expectedText = 'FIRST LINE\nlorem ipsum\nSECOND LINE';
+
+			assert.nestedPropertyVal( editBody, 'source', expectedText );
+		} );
 	} );
 
 	describe( 'request body validation', async () => {
