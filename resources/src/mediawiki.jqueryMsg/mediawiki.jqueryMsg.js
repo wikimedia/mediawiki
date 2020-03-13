@@ -1094,6 +1094,12 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 * if the specified parameter is not found return the same string
 	 * (e.g. "$99" -> parameter 98 -> not found -> return "$99" )
 	 *
+	 * If the replacement at the index is an object, then a special property
+	 * is is added to it (if it does not exist already).
+	 * If the special property was already set, then we try to clone (instead of append)
+	 * the replacement object. This allows allow using a jQuery or HTMLElement object
+	 * multiple times within a single interface message.
+	 *
 	 * TODO: Throw error if nodes.length > 1 ?
 	 *
 	 * @param {Array} nodes List of one element, integer, n >= 0
@@ -1104,10 +1110,20 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 		var index = parseInt( nodes[ 0 ], 10 );
 
 		if ( index < replacements.length ) {
-			if ( typeof replacements[ index ] !== 'string' ) {
-				if ( !replacements[ index ].hasAlreadyBeenUsedAsAReplacement ) {
-					// only actually clone on second use
-					replacements[ index ].hasAlreadyBeenUsedAsAReplacement = true;
+			if ( typeof replacements[ index ] === 'object' ) {
+				// Only actually clone on second use
+				if ( !replacements[ index ].mwJQueryMsgHasAlreadyBeenUsedAsAReplacement ) {
+					// Add our special property to the foreign object
+					// in the least invasive way
+					Object.defineProperty(
+						replacements[ index ],
+						'mwJQueryMsgHasAlreadyBeenUsedAsAReplacement',
+						{
+							value: true,
+							enumerable: false,
+							writable: false
+						}
+					);
 					return replacements[ index ];
 				}
 				if ( typeof replacements[ index ].clone === 'function' ) {
