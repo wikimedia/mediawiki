@@ -3304,7 +3304,12 @@ class OutputPage extends ContextSource {
 			// Get the revision ID of the oldest new message on the user's talk
 			// page. This can be used for constructing new message alerts on
 			// the client side.
-			$vars['wgUserNewMsgRevisionId'] = $user->getNewMessageRevisionId();
+			$userNewMsgRevId = $user->getNewMessageRevisionId();
+			// Only occupy precious space in the <head> when it is non-null (T53640)
+			// mw.config.get returns null by default.
+			if ( $userNewMsgRevId ) {
+				$vars['wgUserNewMsgRevisionId'] = $$userNewMsgRevId;
+			}
 		}
 		$contLang = $services->getContentLanguage();
 		if ( $contLang->hasVariants() ) {
