@@ -110,7 +110,8 @@
 			"Xiplus",
 			"A-lú-mih",
 			"Cdip150",
-			"Ericliu1912"
+			"Ericliu1912",
+			"铁桶"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -138,7 +139,7 @@
 	"tog-enotifrevealaddr": "在通知郵件中顯示我的電子郵件地址",
 	"tog-shownumberswatching": "顯示監視使用者數量",
 	"tog-oldsig": "您現有的簽名：",
-	"tog-fancysig": "將簽名視為 wikitext (不自動產生連結)",
+	"tog-fancysig": "將簽名設為wiki語法（不自動產生連結）",
 	"tog-uselivepreview": "顯示預覽時不重新載入頁面",
 	"tog-forceeditsummary": "未填寫編輯摘要（或預設回退摘要）時提醒我",
 	"tog-watchlisthideown": "隱藏監視清單中我自己的編輯",

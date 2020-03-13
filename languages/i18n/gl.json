@@ -2502,6 +2502,7 @@
 	"sp-contributions-concurrency-user": "Sentímolo, están a ser realizadas demasiadas peticións dende a súa conta de usuario. Por favor, ténteo de novo máis tarde.",
 	"sp-contributions-concurrency-ip": "Sentímolo, están a ser realizadas demasiadas peticións dende o seu enderezo IP. Por favor, ténteo de novo máis tarde.",
 	"whatlinkshere": "Páxinas que ligan con esta",
+	"whatlinkshere-count": "{{PLURAL:$1|Amósase $1 elemento|Amósanse $1 elementos}}.",
 	"whatlinkshere-title": "Páxinas que ligan con \"$1\"",
 	"whatlinkshere-page": "Páxina:",
 	"linkshere": "As seguintes páxinas ligan con <strong>$2</strong>:",
