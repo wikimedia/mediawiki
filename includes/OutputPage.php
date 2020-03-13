@@ -3267,7 +3267,6 @@ class OutputPage extends ContextSource {
 			'wgDigitTransformTable' => $compactDigitTransTable,
 			'wgDefaultDateFormat' => $lang->getDefaultDateFormat(),
 			'wgMonthNames' => $lang->getMonthNamesArray(),
-			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 
 			// @internal For debugging purposes
 			'wgRequestId' => WebRequest::getRequestId(),
