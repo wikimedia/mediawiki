@@ -29,14 +29,18 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
- * This file is not a valid entry point, perform no further processing unless
- * MEDIAWIKI is defined
+ * Environment checks
+ *
+ * These are inline checks done before we include any source files,
+ * and thus these conditions may be assumed by all source code.
  */
+
+// This file must be included from a valid entry point (e.g. WebStart.php, Maintenance.php)
 if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
 
-// Check to see if we are at the file scope
+// This file must have global scope.
 $wgScopeTest = 'MediaWiki Setup.php scope test';
 if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTest ) {
 	echo "Error, Setup.php must be included from the file scope.\n";
@@ -44,17 +48,15 @@ if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTe
 }
 unset( $wgScopeTest );
 
-/**
- * Pre-config setup: Before loading LocalSettings.php
- */
-
-// Sanity check (T5782, T122807)
+// PHP must not be configured to overload mbstring functions. (T5782, T122807)
+// This was deprecated by upstream in PHP 7.2, likely to be removed in PHP 8.0.
 if ( ini_get( 'mbstring.func_overload' ) ) {
 	die( 'MediaWiki does not support installations where mbstring.func_overload is non-zero.' );
 }
 
-// Define MW_ENTRY_POINT if it's not already, so that config code can check the
-// value without using defined()
+// The MW_ENTRY_POINT constant must always exists, to make it safe to access.
+// For compat, we do support older and custom MW entryoints that don't set this,
+// in which case we assign a default here.
 if ( !defined( 'MW_ENTRY_POINT' ) ) {
 	/**
 	 * The entry point, which may be either the script filename without the
@@ -64,16 +66,15 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
 	define( 'MW_ENTRY_POINT', 'unknown' );
 }
 
-// Start the autoloader, so that extensions can derive classes from core files
+/**
+ * Pre-config setup: Before loading LocalSettings.php
+ *
+ * These are changes and additions to runtime that don't vary on site configuration.
+ */
+
 require_once "$IP/includes/AutoLoader.php";
-
-// Load global constants
 require_once "$IP/includes/Defines.php";
-
-// Load default settings
 require_once "$IP/includes/DefaultSettings.php";
-
-// Load global functions
 require_once "$IP/includes/GlobalFunctions.php";
 
 // Load composer's autoloader if present
@@ -98,11 +99,6 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	die( 1 );
 }
 
-/**
- * Changes to the PHP environment that don't vary on configuration.
- */
-
-// Install a header callback
 MediaWiki\HeaderCallback::register();
 
 // Set the encoding used by PHP for reading HTTP input, and writing output.
