@@ -1274,6 +1274,19 @@
 			'Passing a jQuery object as a parameter to a message without wikitext works correctly'
 		);
 
+		( function () {
+			var $messageArgument,
+				$message;
+
+			mw.messages.set( 'object-double-replace', 'Foo 1: $1 2: $1' );
+			$messageArgument = $( '<div class="bar">&gt;</div>' );
+			$message = $( '<span>' ).msg( 'object-double-replace', $messageArgument );
+			assert.ok(
+				$message[ 0 ].contains( $messageArgument[ 0 ] ),
+				'The original jQuery object is actually in the DOM'
+			);
+		}() );
+
 		assert.strictEqual(
 			mw.message( 'param-test', $( '<span>' ).text( 'World' ).get( 0 ) ).parse(),
 			'Hello <span>World</span>',
