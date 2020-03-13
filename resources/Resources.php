@@ -47,10 +47,12 @@ return [
 	'user' => [ 'class' => ResourceLoaderUserModule::class ],
 	'user.styles' => [ 'class' => ResourceLoaderUserStylesModule::class ],
 
-	// Populate mediawiki.user placeholders with information about the current user
 	'user.defaults' => [ 'class' => ResourceLoaderUserDefaultsModule::class ],
 	'user.options' => [ 'class' => ResourceLoaderUserOptionsModule::class ],
-	'user.tokens' => [ 'class' => ResourceLoaderUserTokensModule::class ],
+	'user.tokens' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => 'user.options'
+	],
 
 	'mediawiki.skinning.elements' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
@@ -589,7 +591,7 @@ return [
 			'mediawiki.Title',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
-			'user.tokens',
+			'user.options',
 		],
 		'messages' => [
 			'api-clientside-error-noconnect',
@@ -1028,7 +1030,6 @@ return [
 			// but kept as explicit dependencies because they provide part
 			// of the mw.user API that consumers of this module expect.
 			'user.options',
-			'user.tokens',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1469,7 +1470,7 @@ return [
 			'mediawiki.Title',
 			'mediawiki.notify',
 			'jquery.spinner',
-			'user.tokens'
+			'user.options'
 		],
 		'messages' => [
 			'markedaspatrollednotify',

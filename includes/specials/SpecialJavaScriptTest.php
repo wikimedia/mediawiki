@@ -135,7 +135,6 @@ JAVASCRIPT;
 			// Embed private modules as they're not allowed to be loaded dynamically
 			. $rl->makeModuleResponse( $embedContext, [
 				'user.options' => $rl->getModule( 'user.options' ),
-				'user.tokens' => $rl->getModule( 'user.tokens' ),
 			] )
 			// Load all the test suites
 			. Xml::encodeJsCall( 'mw.loader.load', [ $modules ] )
