@@ -389,6 +389,24 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
+	 */
+	public function testCSPParserOutput() {
+		$this->setMwGlobals( [ 'wgCSPHeader' => [] ] );
+		foreach ( [ 'Default', 'Script', 'Style' ] as $type ) {
+			$op = $this->newInstance();
+			$ltype = strtolower( $type );
+			$stubPO1 = $this->createParserOutputStub( "getExtraCSP{$type}Srcs", [ "{$ltype}src.com" ] );
+			$op->addParserOutputMetadata( $stubPO1 );
+			$csp = TestingAccessWrapper::newFromObject( $op->getCSP() );
+			$actual = $csp->makeCSPDirectives( [ 'default-src' => [] ], false );
+			$regex = '/(^|;)\s*' . $ltype . '-src\s[^;]*' . $ltype . 'src\.com[\s;]/';
+			$this->assertRegExp( $regex, $actual, $type );
+		}
+	}
+
+	/**
 	 * @covers OutputPage::addBodyClasses
 	 */
 	public function testAddBodyClasses() {
@@ -1462,6 +1480,9 @@ class OutputPageTest extends MediaWikiTestCase {
 			'getLanguageLinks',
 			'getOutputHooks',
 			'getTemplateIds',
+			'getExtraCSPDefaultSrcs',
+			'getExtraCSPStyleSrcs',
+			'getExtraCSPScriptSrcs',
 		];
 
 		foreach ( $arrayReturningMethods as $method ) {

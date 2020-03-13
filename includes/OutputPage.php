@@ -1876,6 +1876,18 @@ class OutputPage extends ContextSource {
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
 		$this->mPreventClickjacking = $this->mPreventClickjacking
 			|| $parserOutput->preventClickjacking();
+		$scriptSrcs = $parserOutput->getExtraCSPScriptSrcs();
+		foreach ( $scriptSrcs as $src ) {
+			$this->getCSP()->addScriptSrc( $src );
+		}
+		$defaultSrcs = $parserOutput->getExtraCSPDefaultSrcs();
+		foreach ( $defaultSrcs as $src ) {
+			$this->getCSP()->addDefaultSrc( $src );
+		}
+		$styleSrcs = $parserOutput->getExtraCSPStyleSrcs();
+		foreach ( $styleSrcs as $src ) {
+			$this->getCSP()->addStyleSrc( $src );
+		}
 
 		// Template versioning...
 		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {
