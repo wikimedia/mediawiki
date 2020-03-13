@@ -379,9 +379,6 @@ $wgDefaultUserOptions['watchlistdays'] = min(
 );
 unset( $rcMaxAgeDays );
 
-$wgSkipSkins[] = 'fallback';
-$wgSkipSkins[] = 'apioutput';
-
 // Set default shared prefix
 if ( $wgSharedPrefix === false ) {
 	$wgSharedPrefix = $wgDBprefix;
