@@ -207,6 +207,21 @@ class ParserOutput extends CacheTime {
 	private $mPreventClickjacking = false;
 
 	/**
+	 * @var array $mExtraScriptSrcs Extra script-src for CSP
+	 */
+	private $mExtraScriptSrcs = [];
+
+	/**
+	 * @var array $mExtraDefaultSrcs Extra default-src for CSP [Everything but script and style]
+	 */
+	private $mExtraDefaultSrcs = [];
+
+	/**
+	 * @var array $mExtraStyleSrcs Extra style-src for CSP
+	 */
+	private $mExtraStyleSrcs = [];
+
+	/**
 	 * @var array $mFlags Generic flags.
 	 */
 	private $mFlags = [];
@@ -640,6 +655,33 @@ class ParserOutput extends CacheTime {
 
 	public function getEnableOOUI() {
 		return $this->mEnableOOUI;
+	}
+
+	/**
+	 * Get extra Content-Security-Policy 'default-src' directives
+	 * @since 1.35
+	 * @return array
+	 */
+	public function getExtraCSPDefaultSrcs() {
+		return $this->mExtraDefaultSrcs;
+	}
+
+	/**
+	 * Get extra Content-Security-Policy 'script-src' directives
+	 * @since 1.35
+	 * @return array
+	 */
+	public function getExtraCSPScriptSrcs() {
+		return $this->mExtraScriptSrcs;
+	}
+
+	/**
+	 * Get extra Content-Security-Policy 'style-src' directives
+	 * @since 1.35
+	 * @return array
+	 */
+	public function getExtraCSPStyleSrcs() {
+		return $this->mExtraStyleSrcs;
 	}
 
 	public function setText( $text ) {
@@ -1306,6 +1348,41 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+	 * Add an extra value to Content-Security-Policy default-src directive
+	 *
+	 * Call this if you are including a resource (e.g. image) from a third party domain.
+	 * This is used for all source types except style and script.
+	 *
+	 * @since 1.35
+	 * @param string $src CSP source e.g. example.com
+	 */
+	public function addExtraCSPDefaultSrc( $src ) {
+		$this->mExtraDefaultSrcs[] = $src;
+	}
+
+	/**
+	 * Add an extra value to Content-Security-Policy style-src directive
+	 *
+	 * @since 1.35
+	 * @param string $src CSP source e.g. example.com
+	 */
+	public function addExtraCSPStyleSrc( $src ) {
+		$this->mExtraStyleSrcs[] = $src;
+	}
+
+	/**
+	 * Add an extra value to Content-Security-Policy script-src directive
+	 *
+	 * Call this if you are loading third-party Javascript
+	 *
+	 * @since 1.35
+	 * @param string $src CSP source e.g. example.com
+	 */
+	public function addExtraCSPScriptSrc( $src ) {
+		$this->mExtraScriptSrcs[] = $src;
+	}
+
+	/**
 	 * Call this when parsing is done to lower the TTL based on low parse times
 	 *
 	 * @since 1.28
@@ -1396,6 +1473,18 @@ class ParserOutput extends CacheTime {
 		$this->mModuleStyles = self::mergeList( $this->mModuleStyles, $source->getModuleStyles() );
 		$this->mJsConfigVars = self::mergeMap( $this->mJsConfigVars, $source->getJsConfigVars() );
 		$this->mMaxAdaptiveExpiry = min( $this->mMaxAdaptiveExpiry, $source->mMaxAdaptiveExpiry );
+		$this->mExtraStyleSrcs = self::mergeList(
+			$this->mExtraStyleSrcs,
+			$source->getExtraCSPStyleSrcs()
+		);
+		$this->mExtraScriptSrcs = self::mergeList(
+			$this->mExtraScriptSrcs,
+			$source->getExtraCSPScriptSrcs()
+		);
+		$this->mExtraDefaultSrcs = self::mergeList(
+			$this->mExtraDefaultSrcs,
+			$source->getExtraCSPDefaultSrcs()
+		);
 
 		// "noindex" always wins!
 		if ( $this->mIndexPolicy === 'noindex' || $source->mIndexPolicy === 'noindex' ) {
