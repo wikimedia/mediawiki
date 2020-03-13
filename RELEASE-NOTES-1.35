@@ -382,6 +382,8 @@ because of Phabricator reports.
 * Revision::loadFromId and RevisionStore::loadRevisionFromId have been
   removed.
 * OutputPage::parserOptions doesn't accept an $options parameter anymore.
+* MessageCache::getParserOptions previously did not have a visibility set.
+  It has been made private.
 * The Skin no loader loads the "mediawiki.legacy.shared" module. The legacy
   shared styles must now be loaded by the skin explicitly, either inherited via
   the "mediawiki.skinning.*" modules, or by making your skin's main styles
