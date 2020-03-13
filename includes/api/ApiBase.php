@@ -735,7 +735,11 @@ abstract class ApiBase extends ContextSource {
 						$newName = str_replace( $placeholder, $value, $name );
 						if ( !$targets ) {
 							try {
-								$results[$newName] = $this->getParameterFromSettings( $newName, $settings, $parseLimit );
+								$results[$newName] = $this->getParameterFromSettings(
+									$newName,
+									$settings,
+									$parseLimit
+								);
 							} catch ( ApiUsageException $ex ) {
 								$results[$newName] = $ex;
 							}
