@@ -77,6 +77,11 @@ abstract class File implements IDBAccessObject {
 	 */
 	public const RENDER_FORCE = 2;
 
+	/**
+	 * Rendering thumbnail without saving to storage
+	 */
+	public const RENDER_TMP = 4;
+
 	public const DELETE_SOURCE = 1;
 
 	// Audience options for File::getDescription()
@@ -1233,6 +1238,9 @@ abstract class File implements IDBAccessObject {
 		// Actually render the thumbnail...
 		$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
 		$tmpFile->bind( $thumb ); // keep alive with $thumb
+		if ( $flags & self::RENDER_TMP ) {
+			return $thumb;
+		}
 
 		$statTiming = microtime( true ) - $starttime;
 		$stats->timing( 'media.thumbnail.generate.transform', 1000 * $statTiming );
