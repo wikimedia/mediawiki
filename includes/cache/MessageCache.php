@@ -199,7 +199,7 @@ class MessageCache implements LoggerAwareInterface {
 	 *
 	 * @return ParserOptions
 	 */
-	function getParserOptions() {
+	private function getParserOptions() {
 		global $wgUser;
 
 		if ( !$this->mParserOptions ) {
