@@ -14,7 +14,8 @@
 			"Matěj Suchánek",
 			"Reke",
 			"LNDDYL",
-			"A-lú-mih"
+			"A-lú-mih",
+			"Asd1346"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -25,7 +26,7 @@
 	"tog-extendwatchlist": "thián-khui kàm-sī-toaⁿ, khoàⁿ choân-pō͘  kái ê, m̄-nā choè-kīn niā.",
 	"tog-usenewrc": "共文章最近有改的佮監視列表囥做伙",
 	"tog-numberheadings": "Phiau-tê chū-tōng pian-hō",
-	"tog-editondblclick": "連揤兩个就通編輯",
+	"tog-editondblclick": "Liân-sòa chhi̍h nn̄g ê tio̍h thang pian-chi̍p",
 	"tog-editsectiononrightclick": "Chiàⁿ ji̍h toāⁿ-lo̍h phiau-tê to̍h ē-tàng pian-chi̍p toāⁿ-lo̍h",
 	"tog-watchcreations": "Kā goá khui ê ia̍h kah chiūⁿ-chái ê tóng-àn ka-ji̍p kàm-sī-toaⁿ lāi-té",
 	"tog-watchdefault": "Kā goá pian-chi̍p kòe ê ia̍h kah tóng-àn ka-ji̍p kàm-sī-toaⁿ lāi-té",
@@ -375,6 +376,7 @@
 	"virus-scanfailed": "Sáu pēⁿ-to̍k bô sêng-kong (tāi-bé: $1)",
 	"virus-unknownscanner": "M̄-chai siáⁿ pēⁿ-to̍k:",
 	"logouttext": "'''Lí í-keng teng-chhut.'''\nChhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iáu teng-ji̍p tī leh; che chi-iàu piàⁿ tiāu liû-lám-khì ê khoài-chhú-khu, tiō ē chèng-siông.",
+	"cannotlogoutnow-title": "Chit-má bô-hoat-tō͘ teng-chhut",
 	"welcomeuser": "Hoan-gêng, $1!",
 	"welcomecreation-msg": "你的口座以經開好矣，\n你若有需要，會使去改你佇{{SITENAME}}的設定。",
 	"yourname": "Lí ê iōng-chiá miâ-chheng:",
@@ -390,6 +392,7 @@
 	"createacct-yourpasswordagain-ph": "Koh phah chi̍t-pái bi̍t-bé",
 	"userlogin-remembermypassword": "Kì-lo̍k goá teng-ji̍p--ê chu-liāu",
 	"userlogin-signwithsecure": "用安全連線",
+	"cannotlogin-text": "Bô-khó-lêng teng-ji̍p.",
 	"yourdomainname": "你的網域：",
 	"password-change-forbidden": "Tī chit--ê wiki, lí boē-tàng kái bi̍t-bé.",
 	"externaldberror": "這可能是資料庫驗證錯誤，抑是無允准你改外部的口座。",

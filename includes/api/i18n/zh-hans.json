@@ -34,7 +34,8 @@
 			"予弦",
 			"A Retired User",
 			"VulpesVulpes825",
-			"铁桶"
+			"铁桶",
+			"Xiplus"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>MediaWiki API是一个成熟稳定的，不断受到支持和改进的界面。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。</p>",
@@ -43,7 +44,7 @@
 	"apihelp-main-param-maxlag": "最大延迟可被用于MediaWiki安装于数据库复制集中。要保存导致更多网站复制延迟的操作，此参数可使客户端等待直到复制延迟少于指定值时。万一发生过多延迟，错误代码<samp>maxlag</samp>会返回消息，例如<samp>等待$host中：延迟$lag秒</samp>。<br />参见[[mw:Special:MyLanguage/Manual:Maxlag_parameter|手册:Maxlag参数]]以获取更多信息。",
 	"apihelp-main-param-smaxage": "设置<code>s-maxage</code> HTTP缓存控制头至这些秒。错误不会缓存。",
 	"apihelp-main-param-maxage": "设置<code>max-age</code> HTTP缓存控制头至这些秒。错误不会缓存。",
-	"apihelp-main-param-assert": "如果设置为<kbd>user</kbd>就验证用户是否登录，或如果设置为<kbd>bot</kbd>就验证是否有机器人用户权限。",
+	"apihelp-main-param-assert": "如果设置为<kbd>user</kbd>就验证用户已登录；如果设置为<kbd>anon</kbd>就验证用户未登录；如果设置为<kbd>bot</kbd>就验证是否有机器人用户权限。",
 	"apihelp-main-param-assertuser": "验证当前用户是命名用户。",
 	"apihelp-main-param-requestid": "任何在此提供的值将包含在响应中。可以用以区别请求。",
 	"apihelp-main-param-servedby": "包含保存结果请求的主机名。",
@@ -56,7 +57,7 @@
 	"apihelp-main-param-errorsuselocal": "如果指定，错误文本将使用来自{{ns:MediaWiki}}名字空间的本地自定义消息。",
 	"apihelp-block-summary": "封禁一位用户。",
 	"apihelp-block-param-user": "要封禁的用户。",
-	"apihelp-block-param-userid": "要封禁的用户ID。不能与<var>$1user</var>一起使用。",
+	"apihelp-block-param-userid": "改成指定<kbd>$1user=#<var>ID</var></kbd>。",
 	"apihelp-block-param-expiry": "到期时间。可以是相对时间（例如<kbd>5 months</kbd>或<kbd>2 weeks</kbd>）或绝对时间（例如<kbd>2014-09-18T12:34:56Z</kbd>）。如果设置为<kbd>infinite</kbd>、<kbd>indefinite</kbd>或<kbd>never</kbd>，封禁将无限期。",
 	"apihelp-block-param-reason": "封禁的原因。",
 	"apihelp-block-param-anononly": "只封禁匿名用户（也就是说禁止此 IP 地址的匿名编辑）。",
@@ -75,6 +76,7 @@
 	"apihelp-block-example-user-complex": "有原因地将用户<kbd>Vandal</kbd>永久封禁，并阻止新账户创建和电子邮件发送。",
 	"apihelp-changeauthenticationdata-summary": "更改当前用户的身份验证数据。",
 	"apihelp-changeauthenticationdata-example-password": "尝试更改当前用户的密码至<kbd>ExamplePassword</kbd>。",
+	"apihelp-changecontentmodel-summary": "变更页面的内容模型",
 	"apihelp-checktoken-summary": "从<kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>检查令牌有效性。",
 	"apihelp-checktoken-param-type": "已开始测试的令牌类型。",
 	"apihelp-checktoken-param-token": "要测试的令牌。",
