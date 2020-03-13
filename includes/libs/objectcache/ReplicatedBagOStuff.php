@@ -211,6 +211,10 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->writeStore->addBusyCallback( $workCallback );
 	}
 
+	public function setNewPreparedValues( array $valuesByKey ) {
+		return $this->writeStore->setNewPreparedValues( $valuesByKey );
+	}
+
 	public function setMockTime( &$time ) {
 		parent::setMockTime( $time );
 		$this->writeStore->setMockTime( $time );

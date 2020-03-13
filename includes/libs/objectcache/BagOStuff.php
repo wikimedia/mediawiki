@@ -531,6 +531,24 @@ abstract class BagOStuff implements
 	}
 
 	/**
+	 * Prepare values for storage and get their serialized sizes, or, estimate those sizes
+	 *
+	 * This is only useful if the caller needs an estimate of the serialized object sizes.
+	 * The caller cannot know the serialization format and even if it did, it could be expensive
+	 * to serialize complex values twice just to get the size information before writing them to
+	 * cache. This method solves both problems by making the cache instance do the serialization
+	 * and having it reuse the result when the cache write happens.
+	 *
+	 * When using this method, the caller must invoke it for each value, in order, that will
+	 * be passed to the next write cache instance. All previously prepared values are cleared.
+	 *
+	 * @param array $valuesByKey Map of (cache key => PHP variable value to serialize)
+	 * @return int[]|null[] Corresponding serialized value size list (null for invalid values)
+	 * @since 1.35
+	 */
+	abstract public function setNewPreparedValues( array $valuesByKey );
+
+	/**
 	 * @internal For testing only
 	 * @return float UNIX timestamp
 	 * @codeCoverageIgnore
