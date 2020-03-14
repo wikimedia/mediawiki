@@ -1343,7 +1343,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$mptitle = Title::newMainPage();
 		$previewtext = $context->msg( 'skin-preview' )->escaped();
 
-		# Only show skins that aren't disabled in $wgSkipSkins
+		// Only show skins that aren't disabled
 		$validSkinNames = Skin::getAllowedSkins();
 		$allInstalledSkins = Skin::getSkinNames();
 

@@ -3350,8 +3350,13 @@ $wgFallbackSkin = 'fallback';
 
 /**
  * Specify the names of skins that should not be presented in the list of
- * available skins in user preferences. If you want to remove a skin entirely,
- * remove it from the skins/ directory and its entry from LocalSettings.php.
+ * available skins in user preferences.
+ *
+ * NOTE: This does not uninstall the skin, and it will still be accessible
+ * via the `useskin` query parameter. To uninstall a skin, remove its inclusion
+ * from LocalSettings.php.
+ *
+ * @see Skin::getAllowedSkins
  */
 $wgSkipSkins = [];
 

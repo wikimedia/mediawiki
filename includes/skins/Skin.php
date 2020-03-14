@@ -71,6 +71,10 @@ abstract class Skin extends ContextSource {
 
 		$allowedSkins = self::getSkinNames();
 
+		// Internal skins not intended for general use
+		unset( $allowedSkins['fallback'] );
+		unset( $allowedSkins['apioutput'] );
+
 		foreach ( $wgSkipSkins as $skip ) {
 			unset( $allowedSkins[$skip] );
 		}
