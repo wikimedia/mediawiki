@@ -92,6 +92,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
 		],
 		'legacy' => [
+			'print' => [ 'resources/src/mediawiki.skinning/commonPrint.css' ],
 			'screen' => [ 'resources/src/mediawiki.skinning/legacy.less' ],
 		],
 		'i18n-ordered-lists' => [

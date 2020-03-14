@@ -174,13 +174,11 @@ abstract class Skin extends ContextSource {
 		// for ALL users, on ALL pages, in ALL skins.
 		// Keep this list as small as possible!
 		$modules = [
+			// The 'styles' key sets render-blocking style modules
+			// Unlike other keys in $modules, this is an associative array
+			// where each key is its own group pointing to a list of modules
 			'styles' => [
-				// The 'styles' key sets render-blocking style modules
-				// Unlike other keys in $modules, this is an associative array
-				// where each key is its own group pointing to a list of modules
-				'core' => [
-					'mediawiki.legacy.commonPrint',
-				],
+				'core' => [],
 				'content' => [],
 				'syndicate' => [],
 			],

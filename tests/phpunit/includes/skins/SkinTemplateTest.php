@@ -58,9 +58,7 @@ class SkinTemplateTest extends MediaWikiTestCase {
 	}
 
 	public function provideGetDefaultModules() {
-		$defaultStyles = [
-			'mediawiki.legacy.commonPrint',
-		];
+		$defaultStyles = [];
 		$buttonStyle = 'mediawiki.ui.button';
 		$feedStyle = 'mediawiki.feedlink';
 		return [
