@@ -1343,6 +1343,8 @@ class AuthManagerTest extends \MediaWikiTestCase {
 		$okFromSecondary = StatusValue::newGood();
 		$okFromSecondary->warning( 'warning-from-secondary' );
 
+		$throttledMailPassword = \StatusValue::newFatal( 'throttled-mailpassword' );
+
 		return [
 			[
 				StatusValue::newGood(),
@@ -1384,6 +1386,11 @@ class AuthManagerTest extends \MediaWikiTestCase {
 				$okFromSecondary,
 				\Status::wrap( $okFromSecondary ),
 			],
+			[
+				StatusValue::newGood(),
+				$throttledMailPassword,
+				\Status::newGood( 'throttled-mailpassword' ),
+			]
 		];
 	}
 
