@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group GlobalFunctions
  * @group Database
@@ -38,7 +40,7 @@ class GlobalWithDBTest extends MediaWikiTestCase {
 		$this->editPage( 'MediaWiki:Bad image list', BadFileLookupTest::BLACKLIST );
 		$this->resetServices();
 		// Enable messages from MediaWiki namespace
-		MessageCache::singleton()->enable();
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 
 		$this->assertEquals( $expected, wfIsBadImage( $name, $title ) );
 	}

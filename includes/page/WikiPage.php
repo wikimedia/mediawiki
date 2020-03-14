@@ -1285,8 +1285,8 @@ class WikiPage implements Page, IDBAccessObject {
 		);
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			$messageCache = MessageCache::singleton();
-			$messageCache->updateMessageOverride( $this->mTitle, $this->getContent() );
+			MediaWikiServices::getInstance()->getMessageCache()
+				->updateMessageOverride( $this->mTitle, $this->getContent() );
 		}
 
 		return true;
@@ -1668,6 +1668,7 @@ class WikiPage implements Page, IDBAccessObject {
 	private function newDerivedDataUpdater() {
 		global $wgRCWatchCategoryMembership, $wgArticleCountMethod;
 
+		$services = MediaWikiServices::getInstance();
 		$derivedDataUpdater = new DerivedPageDataUpdater(
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getRevisionStore(),
@@ -1675,9 +1676,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->getSlotRoleRegistry(),
 			$this->getParserCache(),
 			JobQueueGroup::singleton(),
-			MessageCache::singleton(),
-			MediaWikiServices::getInstance()->getContentLanguage(),
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory(),
+			$services->getMessageCache(),
+			$services->getContentLanguage(),
+			$services->getDBLoadBalancerFactory(),
 			$this->getContentHandlerFactory()
 		);
 
@@ -3418,7 +3419,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$title->touchLinks();
 		$title->purgeSquid();
 
-		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
+		$services = MediaWikiServices::getInstance();
+		$services->getLinkCache()->invalidateTitle( $title );
 
 		// File cache
 		HTMLFileCache::clearFileCache( $title );
@@ -3426,7 +3428,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Messages
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
-			MessageCache::singleton()->updateMessageOverride( $title, null );
+			$services->getMessageCache()->updateMessageOverride( $title, null );
 		}
 
 		// Images

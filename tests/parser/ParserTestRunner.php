@@ -1319,10 +1319,11 @@ class ParserTestRunner {
 
 		// Wipe some DB query result caches on setup and teardown
 		$reset = function () {
-			MediaWikiServices::getInstance()->getLinkCache()->clear();
+			$services = MediaWikiServices::getInstance();
+			$services->getLinkCache()->clear();
 
 			// Clear the message cache
-			MessageCache::singleton()->clear();
+			$services->getMessageCache()->clear();
 		};
 		$reset();
 		$teardown[] = $reset;
@@ -1704,7 +1705,7 @@ class ParserTestRunner {
 		// But initialise the MessageCache clone first, don't let MessageCache
 		// get a reference to the mock object.
 		if ( $this->disableSaveParse ) {
-			MessageCache::singleton()->getParser();
+			MediaWikiServices::getInstance()->getMessageCache()->getParser();
 			$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
 		} else {
 			$restore = false;

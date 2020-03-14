@@ -1359,6 +1359,7 @@ abstract class Skin extends ContextSource {
 		$config = $this->getConfig();
 		$messageTitle = $config->get( 'EnableSidebarCache' )
 			? Title::newMainPage() : $this->getTitle();
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 
 		foreach ( $lines as $line ) {
 			if ( strpos( $line, '*' ) !== 0 ) {
@@ -1375,7 +1376,7 @@ abstract class Skin extends ContextSource {
 				$line = trim( $line, '* ' );
 
 				if ( strpos( $line, '|' ) !== false ) { // sanity check
-					$line = MessageCache::singleton()->transform( $line, false, null, $messageTitle );
+					$line = $messageCache->transform( $line, false, null, $messageTitle );
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					if ( count( $line ) !== 2 ) {
 						// Second sanity check, could be hit by people doing
