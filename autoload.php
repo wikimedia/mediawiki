@@ -229,7 +229,6 @@ $wgAutoloadLocalClasses = [
 	'CategoriesRdf' => __DIR__ . '/includes/CategoriesRdf.php',
 	'Category' => __DIR__ . '/includes/Category.php',
 	'CategoryChangesAsRdf' => __DIR__ . '/maintenance/categoryChangesAsRdf.php',
-	'CategoryFinder' => __DIR__ . '/includes/CategoryFinder.php',
 	'CategoryMembershipChange' => __DIR__ . '/includes/changes/CategoryMembershipChange.php',
 	'CategoryMembershipChangeJob' => __DIR__ . '/includes/jobqueue/jobs/CategoryMembershipChangeJob.php',
 	'CategoryPage' => __DIR__ . '/includes/page/CategoryPage.php',
