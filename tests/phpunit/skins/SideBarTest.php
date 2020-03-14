@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Skin
  */
@@ -26,10 +28,11 @@ class SideBarTest extends MediaWikiLangTestCase {
 			'helppage',
 		];
 
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 		# We're assuming that isValidURI works as advertised: it's also
 		# tested separately, in tests/phpunit/includes/HttpTest.php.
 		foreach ( $URL_messages as $m ) {
-			$titleName = MessageCache::singleton()->get( $m );
+			$titleName = $messageCache->get( $m );
 			if ( Http::isValidURI( $titleName ) ) {
 				$this->messages[$m]['href'] = $titleName;
 			} else {

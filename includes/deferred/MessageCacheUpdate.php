@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -52,7 +53,7 @@ class MessageCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	public function doUpdate() {
-		$messageCache = MessageCache::singleton();
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 		foreach ( $this->replacements as $code => $replacements ) {
 			$messageCache->refreshAndReplaceInternal( $code, $replacements );
 		}
