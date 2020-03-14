@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Web access for files temporarily stored by UploadStash.
  *
@@ -66,7 +68,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	public function execute( $subPage ) {
 		$this->useTransactionalTimeLimit();
 
-		$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
+		$this->stash = MediaWikiServices::getInstance()->getRepoGroup()
+			->getLocalRepo()->getUploadStash( $this->getUser() );
 		$this->checkPermissions();
 
 		if ( $subPage === null || $subPage === '' ) {
@@ -373,7 +376,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 */
 	public static function tryClearStashedUploads( $formData, $form ) {
 		if ( isset( $formData['Clear'] ) ) {
-			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $form->getUser() );
+			$stash = MediaWikiServices::getInstance()->getRepoGroup()
+				->getLocalRepo()->getUploadStash( $form->getUser() );
 			wfDebug( 'stash has: ' . print_r( $stash->listFiles(), true ) . "\n" );
 
 			if ( !$stash->clear() ) {

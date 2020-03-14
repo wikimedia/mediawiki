@@ -739,7 +739,7 @@ class SpecialUndelete extends SpecialPage {
 		$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
 		$response->header( 'Pragma: no-cache' );
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
 		$repo->streamFileWithStatus( $path );
 	}

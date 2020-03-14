@@ -70,6 +70,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var RepoGroup */
+	private $repoGroup;
+
 	/**
 	 * UI labels for each type.
 	 */
@@ -115,11 +118,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * @inheritDoc
 	 *
 	 * @param PermissionManager $permissionManager
+	 * @param RepoGroup $repoGroup
 	 */
-	public function __construct( PermissionManager $permissionManager ) {
+	public function __construct( PermissionManager $permissionManager, RepoGroup $repoGroup ) {
 		parent::__construct( 'Revisiondelete', 'deleterevision' );
 
 		$this->permissionManager = $permissionManager;
+		$this->repoGroup = $repoGroup;
 	}
 
 	public function doesWrites() {
@@ -322,7 +327,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * @throws PermissionsError
 	 */
 	protected function tryShowFile( $archiveName ) {
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = $this->repoGroup->getLocalRepo();
 		$oimage = $repo->newFromArchiveName( $this->targetObj, $archiveName );
 		$oimage->load();
 		// Check if user is allowed to see this file
