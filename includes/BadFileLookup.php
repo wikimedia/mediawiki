@@ -59,8 +59,8 @@ class BadFileLookup {
 	 * @return bool
 	 */
 	public function isBadFile( $name, LinkTarget $contextTitle = null ) {
-		// Handle redirects; callers almost always hit wfFindFile() anyway, so just use that method
-		// because it has a fast process cache.
+		// Handle redirects; callers almost always hit RepoGroup::findFile() anyway,
+		// so just use that method because it has a fast process cache.
 		$file = $this->repoGroup->findFile( $name );
 		// XXX If we don't find the file we also don't replace spaces by underscores or otherwise
 		// validate or normalize the title, is this right?

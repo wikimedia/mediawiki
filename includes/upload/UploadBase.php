@@ -316,7 +316,7 @@ abstract class UploadBase {
 	 * @return string|bool The real path if it was a virtual URL Returns false on failure
 	 */
 	public function getRealPath( $srcPath ) {
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		if ( FileRepo::isVirtualUrl( $srcPath ) ) {
 			/** @todo Just make uploads work with storage paths UploadFromStash
 			 *  loads files via virtual URLs.
@@ -849,7 +849,7 @@ abstract class UploadBase {
 	 * @return File[] Duplicate files, if found.
 	 */
 	private function checkAgainstExistingDupes( $hash, $ignoreLocalDupes ) {
-		$dupes = RepoGroup::singleton()->findBySha1( $hash );
+		$dupes = MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $hash );
 		$title = $this->getTitle();
 		foreach ( $dupes as $key => $dupe ) {
 			if (
@@ -1050,7 +1050,8 @@ abstract class UploadBase {
 
 		// Windows may be broken with special characters, see T3780
 		if ( !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() )
-			&& !RepoGroup::singleton()->getLocalRepo()->backendSupportsUnicodePaths()
+			&& !MediaWikiServices::getInstance()->getRepoGroup()
+				->getLocalRepo()->backendSupportsUnicodePaths()
 		) {
 			$this->mTitleError = self::WINDOWS_NONASCII_FILENAME;
 			$this->mTitle = null;
@@ -1087,7 +1088,9 @@ abstract class UploadBase {
 	public function getLocalFile() {
 		if ( $this->mLocalFile === null ) {
 			$nt = $this->getTitle();
-			$this->mLocalFile = $nt === null ? null : wfLocalFile( $nt );
+			$this->mLocalFile = $nt === null
+				? null
+				: MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->newFile( $nt );
 		}
 
 		return $this->mLocalFile;
@@ -1172,7 +1175,8 @@ abstract class UploadBase {
 	 * @return UploadStashFile Stashed file
 	 */
 	protected function doStashFile( User $user = null ) {
-		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $user );
+		$stash = MediaWikiServices::getInstance()->getRepoGroup()
+			->getLocalRepo()->getUploadStash( $user );
 		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType() );
 		$this->mStashFile = $file;
 
@@ -1961,12 +1965,13 @@ abstract class UploadBase {
 			}
 		}
 
+		$services = MediaWikiServices::getInstance();
+
 		/* Check shared conflicts: if the local file does not exist, but
-		 * wfFindFile finds a file, it exists in a shared repository.
+		 * RepoGroup::findFile finds a file, it exists in a shared repository.
 		 */
-		$file = wfFindFile( $this->getTitle(), [ 'latest' => true ] );
-		if ( $file && !MediaWikiServices::getInstance()
-				->getPermissionManager()
+		$file = $services->getRepoGroup()->findFile( $this->getTitle(), [ 'latest' => true ] );
+		if ( $file && !$services->getPermissionManager()
 				->userHasRight( $user, 'reupload-shared' )
 		) {
 			return [ 'fileexists-shared-forbidden', $file->getName() ];
@@ -2028,6 +2033,7 @@ abstract class UploadBase {
 			$partname = substr( $file->getName(), 0, $n );
 		}
 		$normalizedExtension = File::normalizeExtension( $extension );
+		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
 		if ( $normalizedExtension != $extension ) {
 			// We're not using the normalized form of the extension.
@@ -2036,7 +2042,7 @@ abstract class UploadBase {
 
 			// Check for another file using the normalized form...
 			$nt_lc = Title::makeTitle( NS_FILE, "{$partname}.{$normalizedExtension}" );
-			$file_lc = wfLocalFile( $nt_lc );
+			$file_lc = $localRepo->newFile( $nt_lc );
 
 			if ( $file_lc->exists() ) {
 				return [
@@ -2048,8 +2054,7 @@ abstract class UploadBase {
 		}
 
 		// Check for files with the same name but a different extension
-		$similarFiles = RepoGroup::singleton()->getLocalRepo()->findFilesByPrefix(
-			"{$partname}.", 1 );
+		$similarFiles = $localRepo->findFilesByPrefix( "{$partname}.", 1 );
 		if ( count( $similarFiles ) ) {
 			return [
 				'warning' => 'exists-normalized',
@@ -2064,7 +2069,7 @@ abstract class UploadBase {
 				substr( $partname, strpos( $partname, '-' ) + 1 ) . '.' . $extension,
 				NS_FILE
 			);
-			$file_thb = wfLocalFile( $nt_thb );
+			$file_thb = $localRepo->newFile( $nt_thb );
 			if ( $file_thb->exists() ) {
 				return [
 					'warning' => 'thumb',

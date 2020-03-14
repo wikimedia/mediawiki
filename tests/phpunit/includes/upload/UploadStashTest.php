@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Database
  *
@@ -44,7 +46,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	public function testT31408() {
 		$this->setMwGlobals( 'wgUser', self::$users['uploader']->getUser() );
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$stash = new UploadStash( $repo );
 
 		// Throws exception caught by PHPUnit on failure

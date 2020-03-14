@@ -63,7 +63,7 @@ function wfThumbHandle404() {
 	# Set action base paths so that WebRequest::getPathInfo()
 	# recognizes the "X" as the 'title' in ../thumb_handler.php/X urls.
 	# Note: If Custom per-extension repo paths are set, this may break.
-	$repo = RepoGroup::singleton()->getLocalRepo();
+	$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 	$oldArticlePath = $wgArticlePath;
 	$wgArticlePath = $repo->getZoneUrl( 'thumb' ) . '/$1';
 
@@ -129,10 +129,11 @@ function wfStreamThumb( array $params ) {
 
 	// Some basic input validation
 	$fileName = strtr( $fileName, '\\/', '__' );
+	$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
 	// Actually fetch the image. Method depends on whether it is archived or not.
 	if ( $isTemp ) {
-		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
+		$repo = $localRepo->getTempRepo();
 		$img = new UnregisteredLocalFile( null, $repo,
 			# Temp files are hashed based on the name without the timestamp.
 			# The thumbnails will be hashed based on the entire name however.
@@ -151,9 +152,9 @@ function wfStreamThumb( array $params ) {
 			wfThumbError( 404, wfMessage( 'badtitletext' )->parse() );
 			return;
 		}
-		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
+		$img = $localRepo->newFromArchiveName( $title, $fileName );
 	} else {
-		$img = wfLocalFile( $fileName );
+		$img = $localRepo->newFile( $fileName );
 	}
 
 	// Check the source file title
@@ -199,10 +200,10 @@ function wfStreamThumb( array $params ) {
 			// Check for file redirect
 			// Since redirects are associated with pages, not versions of files,
 			// we look for the most current version to see if its a redirect.
-			$possRedirFile = RepoGroup::singleton()->getLocalRepo()->findFile( $img->getName() );
+			$possRedirFile = $localRepo->findFile( $img->getName() );
 			if ( $possRedirFile && $possRedirFile->getRedirected() !== null ) {
 				$redirTarget = $possRedirFile->getName();
-				$targetFile = wfLocalFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
+				$targetFile = $localRepo->newFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
 				if ( $targetFile->exists() ) {
 					$newThumbName = $targetFile->thumbName( $params );
 					if ( $isOld ) {
@@ -545,7 +546,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
  * @return array|null Associative params array or null
  */
 function wfExtractThumbRequestInfo( $thumbRel ) {
-	$repo = RepoGroup::singleton()->getLocalRepo();
+	$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
 	$hashDirReg = $subdirReg = '';
 	$hashLevels = $repo->getHashLevels();

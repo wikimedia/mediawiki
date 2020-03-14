@@ -58,7 +58,7 @@ class UploadFromChunks extends UploadFromFile {
 		if ( $repo ) {
 			$this->repo = $repo;
 		} else {
-			$this->repo = RepoGroup::singleton()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		}
 
 		if ( $stash ) {
