@@ -1,10 +1,21 @@
 <?php
 /**
- * Include most things that are needed to make MediaWiki work.
+ * The setup for all MediaWiki processes (both web-based and CLI).
  *
- * This file is included by WebStart.php and doMaintenance.php so that both
- * web and maintenance scripts share a final set up phase to include necessary
- * files and create global object variables.
+ * This file is included by WebStart.php and doMaintenance.php.
+ *
+ * It does:
+ * - run-time environment checks,
+ * - load autoloaders, constants, default settings, and global functions,
+ * - load the site configuration (e.g. LocalSettings.php),
+ * - load the enabled extensions (via ExtensionRegistry),
+ * - expand any dynamic site configuration defaults and shortcuts
+ * - initialization of:
+ *   - PHP run-time (setlocale, memory limit, default date timezone)
+ *   - the debug logger (MWDebug)
+ *   - the service container (MediaWikiServices)
+ *   - the exception handler (MWExceptionHandler)
+ *   - the session manager (SessionManager)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -130,19 +141,22 @@ if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 }
 
 /**
- * Main setup
+ * Load queued extensions
  */
 
-// Load queued extensions
 ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
 ExtensionRegistry::getInstance()->finish();
 
-// Set the configured locale on all requests for consisteny
+// Set the configured locale on all requests for consistency
+// This must be after LocalSettings.php (and is informed by the installer).
 putenv( "LC_ALL=$wgShellLocale" );
 setlocale( LC_ALL, $wgShellLocale );
 
-// Set various default paths sensibly...
+/**
+ * Expand dynamic defaults and shortcuts
+ */
+
 if ( $wgScript === false ) {
 	$wgScript = "$wgScriptPath/index.php";
 }
@@ -152,7 +166,6 @@ if ( $wgLoadScript === false ) {
 if ( $wgRestPath === false ) {
 	$wgRestPath = "$wgScriptPath/rest.php";
 }
-
 if ( $wgArticlePath === false ) {
 	if ( $wgUsePathInfo ) {
 		$wgArticlePath = "$wgScript/$1";
@@ -160,7 +173,6 @@ if ( $wgArticlePath === false ) {
 		$wgArticlePath = "$wgScript?title=$1";
 	}
 }
-
 if ( $wgResourceBasePath === null ) {
 	$wgResourceBasePath = $wgScriptPath;
 }
@@ -200,10 +212,21 @@ if ( $wgFileCacheDirectory === false ) {
 if ( $wgDeletedDirectory === false ) {
 	$wgDeletedDirectory = "{$wgUploadDirectory}/deleted";
 }
-
 if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
 	$wgGitInfoCacheDirectory = "{$wgCacheDirectory}/gitinfo";
 }
+if ( $wgSharedPrefix === false ) {
+	$wgSharedPrefix = $wgDBprefix;
+}
+if ( $wgSharedSchema === false ) {
+	$wgSharedSchema = $wgDBmwschema;
+}
+if ( $wgMetaNamespace === false ) {
+	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
+}
+
+// Blacklisted file extensions shouldn't appear on the "allowed" list
+$wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
 // Fix path to icon images after they were moved in 1.24
 if ( $wgRightsIcon ) {
@@ -371,16 +394,6 @@ $wgDefaultUserOptions['watchlistdays'] = min(
 );
 unset( $rcMaxAgeDays );
 
-// Set default shared prefix
-if ( $wgSharedPrefix === false ) {
-	$wgSharedPrefix = $wgDBprefix;
-}
-
-// Set default shared schema
-if ( $wgSharedSchema === false ) {
-	$wgSharedSchema = $wgDBmwschema;
-}
-
 if ( !$wgCookiePrefix ) {
 	if ( $wgSharedDB && $wgSharedPrefix && in_array( 'user', $wgSharedTables ) ) {
 		$wgCookiePrefix = $wgSharedDB . '_' . $wgSharedPrefix;
@@ -414,10 +427,6 @@ if ( $wgEnableEmail ) {
 	$wgUseEnotif = false;
 	$wgUserEmailUseReplyTo = false;
 	$wgUsersNotifiedOnAllChanges = [];
-}
-
-if ( $wgMetaNamespace === false ) {
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
 // Ensure the minimum chunk size is less than PHP upload limits or the maximum
@@ -465,9 +474,6 @@ foreach ( LanguageCode::getNonstandardLanguageCodeMapping() as $code => $bcp47 )
 // These are now the same, always
 // To determine the user language, use $wgLang->getCode()
 $wgContLanguageCode = $wgLanguageCode;
-
-// Blacklisted file extensions shouldn't appear on the "allowed" list
-$wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 	Wikimedia\suppressWarnings();
