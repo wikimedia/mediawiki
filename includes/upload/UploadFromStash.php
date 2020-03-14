@@ -21,6 +21,8 @@
  * @ingroup Upload
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Implements uploading from previously stored file.
  *
@@ -48,7 +50,7 @@ class UploadFromStash extends UploadBase {
 		if ( $repo ) {
 			$this->repo = $repo;
 		} else {
-			$this->repo = RepoGroup::singleton()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		}
 
 		if ( $stash ) {

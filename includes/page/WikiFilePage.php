@@ -146,7 +146,7 @@ class WikiFilePage extends WikiPage {
 			$this->mDupes = [];
 			return $this->mDupes;
 		}
-		$dupes = RepoGroup::singleton()->findBySha1( $hash );
+		$dupes = MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $hash );
 		// Remove duplicates with self and non matching file sizes
 		$self = $this->mFile->getRepoName() . ':' . $this->mFile->getName();
 		$size = $this->mFile->getSize();

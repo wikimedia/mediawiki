@@ -65,7 +65,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 * @return array Array of File objects
 	 */
 	function getDupes() {
-		return RepoGroup::singleton()->findBySha1( $this->hash );
+		return MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $this->hash );
 	}
 
 	/**

@@ -220,6 +220,7 @@ class SpecialPageFactory {
 			'class' => \SpecialRevisionDelete::class,
 			'services' => [
 				'PermissionManager',
+				'RepoGroup',
 			],
 		],
 		'RunJobs' => \SpecialRunJobs::class,
