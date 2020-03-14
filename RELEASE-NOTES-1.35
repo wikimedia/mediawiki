@@ -276,6 +276,9 @@ because of Phabricator reports.
   deprecated in 1.34, was removed.
 * SiteConfiguration->localVHosts, deprecated in 1.25, was removed.
   Use $wgLocalVirtualHosts instead.
+* The $wgContLanguageCode read-only variable was removed.
+  It has been a non-configurable copy of $wgLanguageCode since MW 1.8 (2006).
+  Use $wgLanguageCode directly instead.
 * ApiQueryUserInfo::getBlockInfo, deprecated in 1.34, was removed. Use
   ApiBlockInfoTrait::getBlockDetails instead.
 * Password::equals(), deprecated in 1.33, was removed. Use Password::verify().

@@ -471,10 +471,6 @@ foreach ( LanguageCode::getNonstandardLanguageCodeMapping() as $code => $bcp47 )
 	}
 }
 
-// These are now the same, always
-// To determine the user language, use $wgLang->getCode()
-$wgContLanguageCode = $wgLanguageCode;
-
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 	Wikimedia\suppressWarnings();
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( "$IP/LocalSettings.php" ) ) );
