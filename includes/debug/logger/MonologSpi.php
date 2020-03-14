@@ -257,7 +257,10 @@ class MonologSpi implements Spi {
 		if ( !isset( $this->singletons['handlers'][$name] ) ) {
 			$spec = $this->config['handlers'][$name];
 			$handler = ObjectFactory::getObjectFromSpec( $spec );
-			if ( isset( $spec['formatter'] ) ) {
+			if (
+				isset( $spec['formatter'] ) &&
+				is_subclass_of( $handler, 'Monolog\Handler\FormattableHandlerInterface' )
+			) {
 				$handler->setFormatter(
 					$this->getFormatter( $spec['formatter'] )
 				);
