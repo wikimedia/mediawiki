@@ -357,6 +357,16 @@ class PasswordResetTest extends MediaWikiTestCase {
 				'email' => '',
 				'usersWithEmail' => [],
 			],
+			'Password email already sent within 24 hours, pretend everything is ok' => [
+				'expectedError' => false,
+				'config' => $defaultConfig,
+				'performingUser' => $performingUser,
+				'permissionManager' => $permissionManager,
+				'authManager' => $this->makeAuthManager( [ 'User1' ], 0, [], [ 'User1' ] ),
+				'username' => 'User1',
+				'email' => '',
+				'usersWithEmail' => [ 'User1' ],
+			],
 			'No user by this username, pretend everything is OK' => [
 				'expectedError' => false,
 				'config' => $defaultConfig,
@@ -578,25 +588,37 @@ class PasswordResetTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param string[] $allowed
-	 * @param int $numUsersToAuth
-	 * @param string[] $ignored
+	 * @param string[] $allowed Usernames that are allowed to send password reset email
+	 *  by AuthManager's allowsAuthenticationDataChange method.
+	 * @param int $numUsersToAuth Number of users that will receive email
+	 * @param string[] $ignored Usernames that are allowed but ignored by AuthManager's
+	 *  allowsAuthenticationDataChange method and will not receive password reset email.
+	 * @param string[] $mailThrottledLimited Usernames that have already
+	 *  received the password reset email within a given time, and AuthManager
+	 *  changeAuthenticationData method will mark them as 'throttled-mailpassword.'
 	 * @return AuthManager
 	 */
 	private function makeAuthManager(
 		array $allowed = [],
 		$numUsersToAuth = 0,
-		array $ignored = []
+		array $ignored = [],
+		array $mailThrottledLimited = []
 	) : AuthManager {
 		$authManager = $this->getMockBuilder( AuthManager::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$authManager->method( 'allowsAuthenticationDataChange' )
 			->willReturnCallback(
-				function ( TemporaryPasswordAuthenticationRequest $req ) use ( $allowed, $ignored ) {
+				function ( TemporaryPasswordAuthenticationRequest $req )
+						use ( $allowed, $ignored, $mailThrottledLimited ) {
+					if ( in_array( $req->username, $mailThrottledLimited, true ) ) {
+						return Status::newGood( 'throttled-mailpassword' );
+					}
+
 					$value = in_array( $req->username, $ignored, true )
 						? 'ignored'
 						: 'okie dokie';
+
 					return in_array( $req->username, $allowed, true )
 						? Status::newGood( $value )
 						: Status::newFatal( 'rejected by test mock' );

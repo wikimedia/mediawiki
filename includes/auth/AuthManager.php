@@ -859,10 +859,16 @@ class AuthManager implements LoggerAwareInterface {
 		$any = false;
 		$providers = $this->getPrimaryAuthenticationProviders() +
 			$this->getSecondaryAuthenticationProviders();
+
 		foreach ( $providers as $provider ) {
 			$status = $provider->providerAllowsAuthenticationDataChange( $req, $checkData );
 			if ( !$status->isGood() ) {
-				return Status::wrap( $status );
+				// If status is not good because reset email password last attempt was within
+				// $wgPasswordReminderResendTime then return good status with throttled-mailpassword value;
+				// otherwise, return the $status wrapped.
+				return $status->hasMessage( 'throttled-mailpassword' )
+					? Status::newGood( 'throttled-mailpassword' )
+					: Status::wrap( $status );
 			}
 			$any = $any || $status->value !== 'ignored';
 		}
