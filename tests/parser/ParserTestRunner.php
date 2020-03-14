@@ -1351,8 +1351,9 @@ class ParserTestRunner {
 		$user = User::createNew( 'WikiSysop' );
 
 		// Register the uploads in the database
+		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
+		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
 		# note that the size/width/height/bits/etc of the file
 		# are actually set by inspecting the file itself; the arguments
 		# to recordUpload2 have no effect.  That said, we try to make things
@@ -1369,7 +1370,7 @@ class ParserTestRunner {
 			'fileExists' => true
 		], $this->db->timestamp( '20010115123500' ), $user );
 
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Thumb.png' ) );
+		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Thumb.png' ) );
 		# again, note that size/width/height below are ignored; see above.
 		$image->recordUpload2( '', 'Upload of some lame thumbnail', 'Some lame thumbnail', [
 			'size' => 22589,
@@ -1383,7 +1384,7 @@ class ParserTestRunner {
 			'fileExists' => true
 		], $this->db->timestamp( '20130225203040' ), $user );
 
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.svg' ) );
+		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Foobar.svg' ) );
 		$image->recordUpload2( '', 'Upload of some lame SVG', 'Some lame SVG', [
 				'size'        => 12345,
 				'width'       => 240,
@@ -1407,7 +1408,7 @@ class ParserTestRunner {
 		], $this->db->timestamp( '20010115123500' ), $user );
 
 		# This image will be blacklisted in [[MediaWiki:Bad image list]]
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
+		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
 		$image->recordUpload2( '', 'zomgnotcensored', 'Borderline image', [
 			'size' => 12345,
 			'width' => 320,
@@ -1420,7 +1421,7 @@ class ParserTestRunner {
 			'fileExists' => true
 		], $this->db->timestamp( '20010115123500' ), $user );
 
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Video.ogv' ) );
+		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Video.ogv' ) );
 		$image->recordUpload2( '', 'A pretty movie', 'Will it play', [
 			'size' => 12345,
 			'width' => 320,
@@ -1433,7 +1434,7 @@ class ParserTestRunner {
 			'fileExists' => true
 		], $this->db->timestamp( '20010115123500' ), $user );
 
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Audio.oga' ) );
+		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Audio.oga' ) );
 		$image->recordUpload2( '', 'An awesome hitsong', 'Will it play', [
 			'size' => 12345,
 			'width' => 0,
@@ -1447,7 +1448,7 @@ class ParserTestRunner {
 		], $this->db->timestamp( '20010115123500' ), $user );
 
 		# A DjVu file
-		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
 		$image->recordUpload2( '', 'Upload a DjVu', 'A DjVu', [
 			'size' => 3249,
 			'width' => 2480,
@@ -1526,7 +1527,7 @@ class ParserTestRunner {
 	private function setupUploadBackend() {
 		global $IP;
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$base = $repo->getZonePath( 'public' );
 		$backend = $repo->getBackend();
 		$backend->prepare( [ 'dir' => "$base/3/3a" ] );
@@ -1577,8 +1578,8 @@ class ParserTestRunner {
 			return;
 		}
 
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		$public = $repo->getZonePath( 'public' );
+		$public = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+			->getZonePath( 'public' );
 
 		$this->deleteFiles(
 			[
@@ -1599,7 +1600,7 @@ class ParserTestRunner {
 	 */
 	private function deleteFiles( $files ) {
 		// Delete the files
-		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
+		$backend = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->getBackend();
 		foreach ( $files as $file ) {
 			$backend->delete( [ 'src' => $file ], [ 'force' => 1 ] );
 		}
@@ -1727,7 +1728,7 @@ class ParserTestRunner {
 
 		// The RepoGroup cache is invalidated by the creation of file redirects
 		if ( $title->inNamespace( NS_FILE ) ) {
-			RepoGroup::singleton()->clearCache( $title );
+			MediaWikiServices::getInstance()->getRepoGroup()->clearCache( $title );
 		}
 	}
 
