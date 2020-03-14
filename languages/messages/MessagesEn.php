@@ -88,9 +88,20 @@ $namespaceNames = [
 ];
 
 /**
- * Array of namespace aliases, mapping from name to NS_xxx index
+ * Array of namespace aliases, mapping from name to NS_xxx index.
+ *
+ * Note that 'namespaceAliases' is a mergable language attribute,
+ * which means it is combined with other languages in the fallback chain.
  */
-$namespaceAliases = [];
+$namespaceAliases = [
+	// The canonical names of namespaces 6 and 7 are, as of MediaWik 1.14,
+	// "File" and "File_talk".  The old names "Image" and "Image_talk" are
+	// retained as aliases for backwards compatibility.
+	// This must apply regardless of site language (and does, given 'en' is at
+	// the end of all fallback chains.)
+	'Image' => NS_FILE,
+	'Image_talk' => NS_FILE_TALK,
+];
 
 /**
  * Array of gender specific. namespace aliases.

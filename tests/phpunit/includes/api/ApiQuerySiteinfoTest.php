@@ -122,12 +122,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testNamespaceAliases() {
-		global $wgNamespaceAliases;
-
-		$expected = array_merge(
-			$wgNamespaceAliases,
-			MediaWikiServices::getInstance()->getContentLanguage()->getNamespaceAliases()
-		);
+		$expected = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaceAliases();
 		$expected = array_map(
 			function ( $key, $val ) {
 				return [ 'id' => $val, 'alias' => strtr( $key, '_', ' ' ) ];
@@ -135,9 +130,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			array_keys( $expected ),
 			$expected
 		);
-
-		// Test that we don't list duplicates
-		$this->mergeMwGlobalArrayValue( 'wgNamespaceAliases', [ 'Talk' => NS_TALK ] );
 
 		$this->assertSame( $expected, $this->doQuery( 'namespacealiases' ) );
 	}

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -1807,28 +1808,57 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetNamespaceAliases
-	 * @covers Language::getNamespaceAliases
+	 * Example of the real localisation files being loaded.
+	 *
+	 * This might be a bit cumbersome to maintain long-term,
+	 * but still valueable to have as integration test.
+	 *
+	 * @covers Language
+	 * @covers LocalisationCache
 	 */
-	public function testGetNamespaceAliases( $languageCode, $subset ) {
-		$language = Language::factory( $languageCode );
+	public function testGetNamespaceAliasesReal() {
+		$language = Language::factory( 'zh' );
 		$aliases = $language->getNamespaceAliases();
-		foreach ( $subset as $alias => $nsId ) {
-			$this->assertEquals( $nsId, $aliases[$alias] );
-		}
+		$this->assertSame( NS_FILE, $aliases['文件'] );
+		$this->assertSame( NS_FILE, $aliases['檔案'] );
 	}
 
-	public static function provideGetNamespaceAliases() {
-		// TODO: Add tests for NS_PROJECT_TALK and GenderNamespaces
-		return [
+	/**
+	 * @covers Language::getNamespaceAliases
+	 */
+	public function testGetNamespaceAliasesFullLogic() {
+		$langNameUtils = $this->getMockBuilder( LanguageNameUtils::class )
+			->setConstructorArgs( [ new ServiceOptions( LanguageNameUtils::CONSTRUCTOR_OPTIONS, [
+				'ExtraLanguageNames' => [],
+				'UsePigLatinVariant' => false,
+			] ) ] )
+			->setMethods( [ 'getMessagesFileName' ] )
+			->getMock();
+		$langNameUtils->method( 'getMessagesFileName' )->will(
+			$this->returnCallback( function ( $code ) {
+				return __DIR__ . '/../data/messages/Messages_' . $code . '.php';
+			} )
+		);
+		$this->setMwGlobals( 'wgNamespaceAliases', [
+			'Mouse' => NS_SPECIAL,
+		] );
+		$this->setService( 'LanguageNameUtils', $langNameUtils );
+
+		$language = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'x-bar' );
+
+		$this->assertEquals(
 			[
-				'zh',
-				[
-					'文件' => NS_FILE,
-					'檔案' => NS_FILE,
-				],
+				// from x-bar
+				'Cat' => NS_FILE,
+				'Cat_toots' => NS_FILE_TALK,
+				// inherited from x-foo
+				'Dog' => NS_USER,
+				'Dog' => NS_USER_TALK,
+				// add from site configuration
+				'Mouse' => NS_SPECIAL,
 			],
-		];
+			$language->getNamespaceAliases()
+		);
 	}
 
 	/**

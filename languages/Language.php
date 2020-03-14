@@ -715,7 +715,8 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return array<string,int> Map from names to namespace IDs. Note that each
+	 * namepace ID can have multiple alias.
 	 */
 	public function getNamespaceAliases() {
 		if ( $this->namespaceAliases === null ) {
@@ -754,6 +755,11 @@ class Language {
 
 			$this->namespaceAliases = $aliases + $convertedNames;
 
+			// In the case of conflicts between $wgNamespaceAliases and other sources
+			// of aliasing, $wgNamespaceAliases wins.
+			global $wgNamespaceAliases;
+			$this->namespaceAliases = $wgNamespaceAliases + $this->namespaceAliases;
+
 			# Filter out aliases to namespaces that don't exist, e.g. from extensions
 			# that aren't loaded here but are included in the l10n cache.
 			# (array_intersect preserves keys from its first argument)
@@ -771,7 +777,6 @@ class Language {
 	 */
 	public function getNamespaceIds() {
 		if ( $this->mNamespaceIds === null ) {
-			global $wgNamespaceAliases;
 			# Put namespace names and aliases into a hashtable.
 			# If this is too slow, then we should arrange it so that it is done
 			# before caching. The catch is that at pre-cache time, the above
@@ -782,11 +787,6 @@ class Language {
 			}
 			foreach ( $this->getNamespaceAliases() as $name => $index ) {
 				$this->mNamespaceIds[$this->lc( $name )] = $index;
-			}
-			if ( $wgNamespaceAliases ) {
-				foreach ( $wgNamespaceAliases as $name => $index ) {
-					$this->mNamespaceIds[$this->lc( $name )] = $index;
-				}
 			}
 		}
 		return $this->mNamespaceIds;
