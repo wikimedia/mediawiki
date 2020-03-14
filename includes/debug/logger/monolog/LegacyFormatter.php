@@ -39,7 +39,7 @@ class LegacyFormatter extends NormalizerFormatter {
 		parent::__construct( 'c' );
 	}
 
-	public function format( array $record ) {
+	public function format( array $record ): string {
 		$normalized = parent::format( $record );
 		return LegacyLogger::format(
 			$normalized['channel'], $normalized['message'], $normalized

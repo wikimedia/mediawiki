@@ -8,8 +8,6 @@ namespace MediaWiki\Logger\Monolog;
  * This class modifies the standard LogstashFormatter to rename such fields and flag the message.
  * Also changes exception JSON-ification which is done poorly by the standard class.
  *
- * Compatible with Monolog 1.x only.
- *
  * @since 1.29
  */
 class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
@@ -26,39 +24,87 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 	];
 
 	/**
-	 * Prevent key conflicts
-	 * @param array $record
-	 * @return array
+	 * Constructor exists to keep the default values for $extraKey and $contextKey as they were
+	 * in monolog/monolog 1.25.3 (null), rather than the populated default string that they are
+	 * in >=2.0. See T247675 for removing this override.
+	 *
+	 * @param string $applicationName The application that sends the data, used as the "type"
+	 * field of logstash
+	 * @param string|null $systemName The system/machine name, used as the "source" field of
+	 * logstash, defaults to the hostname of the machine
+	 * @param string $extraKey The key for extra keys inside logstash "fields", defaults to ''
+	 * @param string $contextKey The key for context keys inside logstash "fields", defaults
+	 * to ''
 	 */
-	protected function formatV0( array $record ) {
-		if ( $this->contextPrefix ) {
-			return parent::formatV0( $record );
-		}
-
-		$context = !empty( $record['context'] ) ? $record['context'] : [];
-		$record['context'] = [];
-		$formatted = parent::formatV0( $record );
-
-		$formatted['@fields'] = $this->fixKeyConflicts( $formatted['@fields'], $context );
-		return $formatted;
+	public function __construct( string $applicationName, ?string $systemName = null,
+		string $extraKey = '', string $contextKey = ''
+	) {
+		parent::__construct( $applicationName, $systemName, $extraKey, $contextKey );
 	}
 
 	/**
 	 * Prevent key conflicts
 	 * @param array $record
-	 * @return array
+	 * @return string
 	 */
-	protected function formatV1( array $record ) {
-		if ( $this->contextPrefix ) {
-			return parent::formatV1( $record );
+	public function format( array $record ): string {
+		if ( $this->contextKey !== '' ) {
+			return $this->toJson( $this->formatV1( $record ) ) . "\n";
 		}
 
 		$context = !empty( $record['context'] ) ? $record['context'] : [];
 		$record['context'] = [];
-		$formatted = parent::formatV1( $record );
 
-		$formatted = $this->fixKeyConflicts( $formatted, $context );
-		return $formatted;
+		$formatted = $this->formatV1( $record );
+
+		return $this->toJson( $this->fixKeyConflicts( $formatted, $context ) ) . "\n";
+	}
+
+	/**
+	 * Borrowed from monolog/monolog 1.25.3
+	 * https://github.com/Seldaek/monolog/blob/1.25.3/src/Monolog/Formatter/LogstashFormatter.php#L130-L165
+	 * https://github.com/Seldaek/monolog/blob/2.0.0/src/Monolog/Formatter/LogstashFormatter.php#L86-L88
+	 *
+	 * @param array $record
+	 * @return array
+	 */
+	protected function formatV1( array $record ) {
+		if ( empty( $record['datetime'] ) ) {
+			$record['datetime'] = gmdate( 'c' );
+		}
+		$message = [
+			'@timestamp' => $record['datetime'],
+			'@version' => 1,
+			'host' => $this->systemName,
+		];
+		if ( isset( $record['message'] ) ) {
+			$message['message'] = $record['message'];
+		}
+		if ( isset( $record['channel'] ) ) {
+			$message['type'] = $record['channel'];
+			$message['channel'] = $record['channel'];
+		}
+		if ( isset( $record['level_name'] ) ) {
+			$message['level'] = $record['level_name'];
+		}
+		if ( isset( $record['level'] ) ) {
+			$message['monolog_level'] = $record['level'];
+		}
+		if ( $this->applicationName ) {
+			$message['type'] = $this->applicationName;
+		}
+		if ( !empty( $record['extra'] ) ) {
+			foreach ( $record['extra'] as $key => $val ) {
+				$message[$this->extraKey . $key] = $val;
+			}
+		}
+		if ( !empty( $record['context'] ) ) {
+			foreach ( $record['context'] as $key => $val ) {
+				$message[$this->contextKey . $key] = $val;
+			}
+		}
+
+		return $message;
 	}
 
 	/**
@@ -85,14 +131,10 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 	/**
 	 * Use a more user-friendly trace format than NormalizerFormatter
 	 * @param \Throwable $e
+	 * @param int $depth
 	 * @return array
 	 */
-	protected function normalizeException( $e ) {
-		if ( !$e instanceof \Throwable ) {
-			throw new \InvalidArgumentException( 'Throwable expected, got '
-				. gettype( $e ) . ' / ' . get_class( $e ) );
-		}
-
+	protected function normalizeException( \Throwable $e, int $depth = 0 ) {
 		$data = [
 			'class' => get_class( $e ),
 			'message' => $e->getMessage(),
