@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Generic operation result class
  * Has warning/error list, boolean status and arbitrary value
@@ -322,7 +324,8 @@ class Status extends StatusValue {
 	 */
 	public function getHTML( $shortContext = false, $longContext = false, $lang = null ) {
 		$text = $this->getWikiText( $shortContext, $longContext, $lang );
-		$out = MessageCache::singleton()->parse( $text, null, true, true, $lang );
+		$out = MediaWikiServices::getInstance()->getMessageCache()
+			->parse( $text, null, true, true, $lang );
 		return $out instanceof ParserOutput
 			? $out->getText( [ 'enableSectionEditLinks' => false ] )
 			: $out;

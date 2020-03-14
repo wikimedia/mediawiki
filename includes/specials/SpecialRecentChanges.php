@@ -569,11 +569,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	function setTopText( FormOptions $opts ) {
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
-			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+			$services = MediaWikiServices::getInstance();
+			$contLang = $services->getContentLanguage();
 			// Parse the message in this weird ugly way to preserve the ability to include interlanguage
 			// links in it (T172461). In the future when T66969 is resolved, perhaps we can just use
 			// $message->parse() instead. This code is copied from Message::parseText().
-			$parserOutput = MessageCache::singleton()->parse(
+			$parserOutput = $services->getMessageCache()->parse(
 				$message->plain(),
 				$this->getPageTitle(),
 				/*linestart*/true,

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -323,7 +324,7 @@ class MWExceptionRenderer {
 			) );
 		}
 
-		MessageCache::singleton()->disable(); // no DB access
+		MediaWikiServices::getInstance()->getMessageCache()->disable(); // no DB access
 		$html = "<!DOCTYPE html>\n" .
 				'<html><head>' .
 				'<title>' .

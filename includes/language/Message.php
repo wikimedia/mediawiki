@@ -1251,7 +1251,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Wikitext parsed into HTML.
 	 */
 	protected function parseText( $string ) {
-		$out = MessageCache::singleton()->parse(
+		$out = MediaWikiServices::getInstance()->getMessageCache()->parse(
 			$string,
 			$this->title,
 			/*linestart*/true,
@@ -1281,7 +1281,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Wikitext with {{-constructs replaced with their values.
 	 */
 	protected function transformText( $string ) {
-		return MessageCache::singleton()->transform(
+		return MediaWikiServices::getInstance()->getMessageCache()->transform(
 			$string,
 			$this->interface,
 			$this->getLanguage(),
@@ -1299,7 +1299,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	protected function fetchMessage() {
 		if ( $this->message === null ) {
-			$cache = MessageCache::singleton();
+			$cache = MediaWikiServices::getInstance()->getMessageCache();
 
 			foreach ( $this->keysToTry as $key ) {
 				$message = $cache->get( $key, $this->useDatabase, $this->getLanguage() );

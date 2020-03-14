@@ -195,7 +195,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		] );
 		$this->resetServices();
 
-		MessageCache::singleton()->enable();
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 
 		$this->editPage( 'MediaWiki:Interlanguage-link-self', 'Self!' );
 		$this->editPage( 'MediaWiki:Interlanguage-link-sitename-self', 'Circular logic' );

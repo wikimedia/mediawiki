@@ -9,7 +9,8 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 	protected function setUp() : void {
 		global $wgLanguageCode;
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
 		if ( $wgLanguageCode != $contLang->getCode() ) {
 			throw new MWException( "Error in MediaWikiLangTestCase::setUp(): " .
 				"\$wgLanguageCode ('$wgLanguageCode') is different from content language code (" .
@@ -22,6 +23,6 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 		// For mainpage to be 'Main Page'
 		$this->setContentLang( 'en' );
 
-		MessageCache::singleton()->disable();
+		$services->getMessageCache()->disable();
 	}
 }

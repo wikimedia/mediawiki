@@ -657,7 +657,8 @@ class MediaWiki {
 		$config = $context->getConfig();
 		$request = $context->getRequest();
 		$output = $context->getOutput();
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 
 		// Try to make sure that all RDBMs, session, and other storage updates complete
 		ignore_user_abort( true );
@@ -734,7 +735,7 @@ class MediaWiki {
 			}
 
 			// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
-			if ( MessageCache::singleton()->isDisabled() ) {
+			if ( $services->getMessageCache()->isDisabled() ) {
 				$maxAge = $config->get( 'CdnMaxageSubstitute' );
 				$output->lowerCdnMaxage( $maxAge );
 				$request->response()->header( "X-Response-Substitute: true" );
@@ -752,7 +753,7 @@ class MediaWiki {
 				// EditPage), or when the HTTP response is personalised for other reasons (e.g. viewing
 				// articles within the same browsing session after making an edit).
 				$user = $context->getUser();
-				MediaWikiServices::getInstance()->getBlockManager()
+				$services->getBlockManager()
 					->trackBlockWithCookie( $user, $request->response() );
 			}
 		}

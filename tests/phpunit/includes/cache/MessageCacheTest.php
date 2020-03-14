@@ -13,7 +13,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 		$this->configureLanguages();
-		MessageCache::singleton()->enable();
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 	}
 
 	/**
@@ -85,7 +85,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideMessagesForFallback
 	 */
 	public function testMessageFallbacks( $message, $lang, $expectedContent ) {
-		$result = MessageCache::singleton()->get( $message, true, $lang );
+		$result = MediaWikiServices::getInstance()->getMessageCache()->get( $message, true, $lang );
 		$this->assertEquals( $expectedContent, $result, "Message fallback failed." );
 	}
 
@@ -107,7 +107,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public function testReplaceMsg() {
-		$messageCache = MessageCache::singleton();
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 		$message = 'go';
 		$uckey = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $message );
 		$oldText = $messageCache->get( $message ); // "Ausführen"
@@ -150,7 +150,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			]
 		] );
 
-		$messageCache = MessageCache::singleton();
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 		$messageCache->enable();
 
 		// Populate one key
@@ -206,12 +206,13 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 		$dbr = wfGetDB( DB_REPLICA );
 
-		MessageCache::singleton()->getMsgFromNamespace( 'allpages', $wgContLanguageCode );
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
+		$messageCache->getMsgFromNamespace( 'allpages', $wgContLanguageCode );
 
 		$this->assertSame( 0, $dbr->trxLevel() );
 		$dbr->setFlag( DBO_TRX, $dbr::REMEMBER_PRIOR ); // make queries trigger TRX
 
-		MessageCache::singleton()->getMsgFromNamespace( 'go', $wgContLanguageCode );
+		$messageCache->getMsgFromNamespace( 'go', $wgContLanguageCode );
 
 		$dbr->restoreFlags();
 
@@ -221,12 +222,13 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	public function testNoDBAccessNonContentLanguage() {
 		$dbr = wfGetDB( DB_REPLICA );
 
-		MessageCache::singleton()->getMsgFromNamespace( 'allpages/nl', 'nl' );
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
+		$messageCache->getMsgFromNamespace( 'allpages/nl', 'nl' );
 
 		$this->assertSame( 0, $dbr->trxLevel() );
 		$dbr->setFlag( DBO_TRX, $dbr::REMEMBER_PRIOR ); // make queries trigger TRX
 
-		MessageCache::singleton()->getMsgFromNamespace( 'go/nl', 'nl' );
+		$messageCache->getMsgFromNamespace( 'go/nl', 'nl' );
 
 		$dbr->restoreFlags();
 
@@ -257,7 +259,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$importer->import( $importRevision );
 
 		// Now, load the message from the wiki page
-		$messageCache = MessageCache::singleton();
+		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 		$messageCache->enable();
 		$messageCache = TestingAccessWrapper::newFromObject( $messageCache );
 

@@ -4075,12 +4075,13 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		if ( $this->mNamespace == NS_MEDIAWIKI ) {
+			$services = MediaWikiServices::getInstance();
 			// If the page doesn't exist but is a known system message, default
 			// message content will be displayed, same for language subpages-
 			// Use always content language to avoid loading hundreds of languages
 			// to get the link color.
-			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-			list( $name, ) = MessageCache::singleton()->figureMessage(
+			$contLang = $services->getContentLanguage();
+			list( $name, ) = $services->getMessageCache()->figureMessage(
 				$contLang->lcfirst( $this->getText() )
 			);
 			$message = wfMessage( $name )->inLanguage( $contLang )->useDatabase( false );
@@ -4132,7 +4133,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			return false;
 		}
 
-		list( $name, $lang ) = MessageCache::singleton()->figureMessage(
+		list( $name, $lang ) = MediaWikiServices::getInstance()->getMessageCache()->figureMessage(
 			MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $this->getText() )
 		);
 		$message = wfMessage( $name )->inLanguage( $lang )->useDatabase( false );

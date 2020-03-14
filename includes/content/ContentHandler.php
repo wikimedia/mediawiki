@@ -686,13 +686,13 @@ abstract class ContentHandler {
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
 		global $wgLang;
-		$pageLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$services = MediaWikiServices::getInstance();
+		$pageLang = $services->getContentLanguage();
 
 		if ( $title->inNamespace( NS_MEDIAWIKI ) ) {
 			// Parse mediawiki messages with correct target language
-			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
-			$pageLang = MediaWikiServices::getInstance()->getLanguageFactory()
-				->getLanguage( $lang );
+			list( /* $unused */, $lang ) = $services->getMessageCache()->figureMessage( $title->getText() );
+			$pageLang = $services->getLanguageFactory()->getLanguage( $lang );
 		}
 
 		// Simplify hook handlers by only passing objects of one type, in case nothing
