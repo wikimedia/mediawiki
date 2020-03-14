@@ -29,8 +29,8 @@ use Monolog\Logger;
 class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 
 	protected function setUp() : void {
-		if ( !class_exists( 'Monolog\Handler\AbstractProcessingHandler' )
-			|| !class_exists( 'Kafka\Produce' )
+		if ( !class_exists( \Monolog\Handler\AbstractProcessingHandler::class )
+			|| !class_exists( \Kafka\Produce::class )
 		) {
 			$this->markTestSkipped( 'Monolog and Kafka are required for the KafkaHandlerTest' );
 		}
