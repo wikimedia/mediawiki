@@ -1046,7 +1046,7 @@ abstract class DatabaseUpdater {
 	 * Some zones (e.g. "temp") used to be public and may have been initialized as such
 	 */
 	public function setFileAccess() {
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$zonePath = $repo->getZonePath( 'temp' );
 		if ( $repo->getBackend()->directoryExists( [ 'dir' => $zonePath ] ) ) {
 			// If the directory was never made, then it will have the right ACLs when it is made

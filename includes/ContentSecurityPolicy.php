@@ -24,6 +24,9 @@
  * @since 1.32
  * @file
  */
+
+use MediaWiki\MediaWikiServices;
+
 class ContentSecurityPolicy {
 	const REPORT_ONLY_MODE = 1;
 	const FULL_MODE = 2;
@@ -408,9 +411,10 @@ class ContentSecurityPolicy {
 			$urls[] = $repo->getZoneUrl( 'thumb' );
 			$urls[] = $repo->getDescriptionStylesheetUrl();
 		};
-		$localRepo = RepoGroup::singleton()->getRepo( 'local' );
+		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
+		$localRepo = $repoGroup->getRepo( 'local' );
 		$callback( $localRepo, $pathUrls );
-		RepoGroup::singleton()->forEachForeignRepo( $callback, [ &$pathUrls ] );
+		$repoGroup->forEachForeignRepo( $callback, [ &$pathUrls ] );
 
 		// Globals that might point to a different domain
 		$pathGlobals = [ 'LoadScript', 'ExtensionAssetsPath', 'StylePath', 'ResourceBasePath' ];
