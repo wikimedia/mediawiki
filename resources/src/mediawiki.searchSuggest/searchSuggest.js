@@ -89,6 +89,10 @@
 					action: 'session-start'
 				} );
 			}
+			// TypeContent error on console was resolved for chrome
+			// Inspected the searchSuggest.js
+			// inspected the backend
+			// T105637 issue
 			previousSearchText = searchText;
 		}
 
