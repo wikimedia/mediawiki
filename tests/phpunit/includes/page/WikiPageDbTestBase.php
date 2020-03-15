@@ -1461,8 +1461,6 @@ more stuff
 	 * @covers WikiPage::getAutoDeleteReason
 	 */
 	public function testGetAutoDeleteReason( $edits, $expectedResult, $expectedHistory ) {
-		global $wgUser;
-
 		// NOTE: assume Help namespace to contain wikitext
 		$page = $this->newPage( "Help:WikiPageTest_testGetAutoDeleteReason" );
 
@@ -1474,7 +1472,7 @@ more stuff
 			if ( !empty( $edit[1] ) ) {
 				$user->setName( $edit[1] );
 			} else {
-				$user = $wgUser;
+				$user = new User;
 			}
 
 			$content = ContentHandler::makeContent( $edit[0], $page->getTitle(), $page->getContentModel() );
