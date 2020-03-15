@@ -331,8 +331,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendNamespaceAliases( $property ) {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$aliases = array_merge( $this->getConfig()->get( 'NamespaceAliases' ),
-			$contLang->getNamespaceAliases() );
+		$aliases = $contLang->getNamespaceAliases();
 		$namespaces = $contLang->getNamespaces();
 		$data = [];
 		foreach ( $aliases as $title => $ns ) {

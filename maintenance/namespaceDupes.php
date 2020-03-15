@@ -127,9 +127,6 @@ class NamespaceDupes extends Maintenance {
 				$spaces[$name] = $ns;
 			}
 		}
-		foreach ( $this->getConfig()->get( 'NamespaceAliases' ) as $name => $ns ) {
-			$spaces[$name] = $ns;
-		}
 		foreach ( $contLang->getNamespaceAliases() as $name => $ns ) {
 			$spaces[$name] = $ns;
 		}

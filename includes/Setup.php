@@ -247,14 +247,6 @@ if ( isset( $wgFooterIcons['poweredby'] )
 $wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 
 /**
- * The canonical names of namespaces 6 and 7 are, as of v1.14, "File"
- * and "File_talk".  The old names "Image" and "Image_talk" are
- * retained as aliases for backwards compatibility.
- */
-$wgNamespaceAliases['Image'] = NS_FILE;
-$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
-
-/**
  * Initialise $wgLockManagers to include basic FS version
  */
 $wgLockManagers[] = [
