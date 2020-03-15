@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+# Called via "npm run selenium", see /package.json.
+
 set -euo pipefail
 
 # Manually check if chromedriver is installed and let it fail early with a descriptive
