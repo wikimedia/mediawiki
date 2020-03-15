@@ -3909,7 +3909,7 @@ $wgExtraNamespaces = [];
 $wgExtraGenderNamespaces = [];
 
 /**
- * Namespace aliases.
+ * Define extra namespace aliases.
  *
  * These are alternate names for the primary localised namespace names, which
  * are defined by $wgExtraNamespaces and the language file. If a page is
@@ -3925,6 +3925,9 @@ $wgExtraGenderNamespaces = [];
  *        'Help' => 100,
  *    ];
  * @endcode
+ *
+ * @see Language::getNamespaceAliases for accessing the full list of aliases,
+ * including those defined by other means.
  */
 $wgNamespaceAliases = [];
 

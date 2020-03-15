@@ -78,6 +78,12 @@ For notes on 1.34.x and older releases, see HISTORY.
   produced via $wgDebugComments, if enabled.
 * $wgSkipSkin - This setting, deprecated in 1.23, was removed. To disable a
   skin from being shown, use $wgSkipSkins.
+* $wgUseSquid, $wgSquidServers, $wgSquidServersNoPurge, and $wgSquidMaxage,
+  deprecated in 1.34, have been removed. Use $wgUseCdn, $wgCdnServers,
+  $wgCdnServersNoPurge, or $wgCdnMaxAge instead.
+* $wgDisableCounters, deprecated in 1.25, was removed. The feature that it
+  controlled was already removed in 1.26, but the variable remained existent
+  with a value of `false` for backward-compatibility.
 * $wgMaxGeneratedPPNodeCount - This setting was removed.  It only affected
   Preprocessor_DOM, which was deprecated in 1.34 and removed in this release.
 * $wgFixArabicUnicode and $wgFixMalayalamUnicode, deprecated in 1.33, were

@@ -1,11 +1,11 @@
 <?php
 /**
- * This does the initial set up for a web request.
+ * The set up for all MediaWiki web requests.
  *
- * It does some security checks, loads autoloaders, constants, and
- * global functions, starts the profiler, loads the configuration,
- * and loads Setup.php, which loads extensions using the extension
- * registration system and initializes the application's global state.
+ * It does:
+ * - web-related security checks,
+ * - decide how and from where to load site configuration (LocalSettings.php),
+ * - load Setup.php.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
