@@ -329,7 +329,7 @@ class SiteConfiguration {
 	 *
 	 * @return array
 	 */
-	function &getLocalDatabases() {
+	public function getLocalDatabases() {
 		return $this->wikis;
 	}
 
