@@ -1780,6 +1780,8 @@ abstract class Installer {
 		$GLOBALS['wgUseDatabaseMessages'] = false;
 		// Don't cache langconv tables
 		$GLOBALS['wgLanguageConverterCacheType'] = CACHE_NONE;
+		// Don't try to cache ResourceLoader dependencies in the database
+		$GLOBALS['wgResourceLoaderUseObjectCacheForDeps'] = true;
 		// Debug-friendly
 		$GLOBALS['wgShowExceptionDetails'] = true;
 		$GLOBALS['wgShowHostnames'] = true;
