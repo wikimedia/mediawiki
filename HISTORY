@@ -1172,7 +1172,7 @@ because of Phabricator reports.
 * wfSplitWikiId() is now deprecated. Cache key generation should have the wiki
   domain ID as a key component and use makeGlobalKey().
 * (T202094) Title::getUserCaseDBKey() is deprecated; instead, please use
-  Title::getDBKey(), which doesn't vary case.
+  Title::getDBkey(), which doesn't vary case.
 * User::getPasswordValidity() is now deprecated. User::checkPasswordValidity()
   returns the same information in a more useful format.
 * For Linker::generateTOC() and Linker::tocList(), passing strings or booleans
