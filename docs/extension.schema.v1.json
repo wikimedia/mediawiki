@@ -357,6 +357,10 @@
 								"class": {
 									"enum": ["ResourceLoaderImageModule"]
 								},
+								"localBasePath": {
+									"type": "string",
+									"description": "Base path to prepend to all local paths. Defaults to $IP"
+								},
 								"defaultColor": {
 									"type": "string"
 								},
