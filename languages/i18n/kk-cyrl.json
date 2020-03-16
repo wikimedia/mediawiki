@@ -2992,6 +2992,8 @@
 	"mw-widgets-dateinput-no-date": "Ай-күн таңдалмаған",
 	"mw-widgets-dateinput-placeholder-day": "ЖЖЖЖ-АА-КК",
 	"mw-widgets-dateinput-placeholder-month": "ЖЖЖЖ-АА",
+	"mw-widgets-mediasearch-input-placeholder": "Медиа іздеу",
+	"mw-widgets-mediasearch-noresults": "Ешбір нәтиже табылмады",
 	"mw-widgets-titleinput-description-new-page": "бет жоқ екен",
 	"mw-widgets-titleinput-description-redirect": "$1 дегенге бағыттату",
 	"log-action-filter-protect": "Қорғау түрі"

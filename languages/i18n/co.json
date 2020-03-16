@@ -7,7 +7,8 @@
 			"Paulu",
 			"아라",
 			"Jun Misugi",
-			"Jumpy01"
+			"Jumpy01",
+			"Matma Rex"
 		]
 	},
 	"tog-hideminor": "Piattà e mudifiche minore in l'ultime mudifiche",
@@ -626,5 +627,6 @@
 	"logentry-newusers-create": "U participante $3 hè statu creatu da $1",
 	"rightsnone": "(nessunu)",
 	"searchsuggest-search": "Circà in {{SITENAME}}",
-	"expand_templates_output": "Risultatu"
+	"expand_templates_output": "Risultatu",
+	"mw-widgets-mediasearch-input-placeholder": "Ricerca di media"
 }

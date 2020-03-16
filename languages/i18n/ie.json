@@ -18,7 +18,8 @@
 			"Fanjiayi",
 			"Fitoschido",
 			"RWMuc",
-			"OIS"
+			"OIS",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Ultracatenun:",
@@ -1236,5 +1237,6 @@
 	"duration-weeks": "$1 {{PLURAL:$1|semane|semanes}}",
 	"duration-years": "$1 {{PLURAL:$1|annu|annus}}",
 	"mw-widgets-abandonedit": "Esque tu es cert, que tu vole commutar al vis-modo sin conservation?",
+	"mw-widgets-mediasearch-input-placeholder": "Serchar medies",
 	"paramvalidator-help-type-user-subtype-ip": "IP"
 }

@@ -21,7 +21,8 @@
 			"Fitoschido",
 			"Vlad5250",
 			"Narazeni",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "რცხუეფიშ ათოღაზუა:",
@@ -2063,5 +2064,7 @@
 	"special-characters-title-endash": "საშუალო ტირე",
 	"special-characters-title-emdash": "გრძელი ტირე",
 	"special-characters-title-minus": "მინუსის ნიშანი",
+	"mw-widgets-mediasearch-input-placeholder": "მულტიმედიაშ გორუა",
+	"mw-widgets-mediasearch-noresults": "შედეგი ვერ მოიძებნა",
 	"passwordpolicies-policyflag-forcechange": "მიშულაშ ბორჯის ითირას ოკო"
 }

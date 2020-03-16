@@ -2705,5 +2705,7 @@
 	"mw-widgets-abandonedit-discard": "সম্পাদনাসমূহ বাতিল কৰক",
 	"mw-widgets-abandonedit-keep": "সম্পাদনা অব্যাহত ৰাখক",
 	"mw-widgets-abandonedit-title": "আপুনি নিশ্চিতনে?",
+	"mw-widgets-mediasearch-input-placeholder": "মিডিয়া সন্ধান কৰক",
+	"mw-widgets-mediasearch-noresults": "কোনো ফলাফল পোৱা নগ'ল।",
 	"randomrootpage": "যাদৃচ্ছিক মূল পৃষ্ঠা"
 }

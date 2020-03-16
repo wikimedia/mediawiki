@@ -9,7 +9,8 @@
 			"Xqt",
 			"아라",
 			"Purodha",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Ling'g unnaschdraische",
@@ -1025,5 +1026,7 @@
 	"duration-centuries": "$1 {{PLURAL:$1|Jaahunnad|Jaahunnade}}",
 	"duration-millennia": "$1 {{PLURAL:$1|Jaadausnd|Jaadausnde}}",
 	"mw-widgets-abandonedit": "Bischda sischa, dassde uffde Onsischdmodus geje megschd, ohne dvoa zu schbaischare?",
-	"mw-widgets-abandonedit-keep": "Waida schaffe"
+	"mw-widgets-abandonedit-keep": "Waida schaffe",
+	"mw-widgets-mediasearch-input-placeholder": "Gugg nochde Medije",
+	"mw-widgets-mediasearch-noresults": "Kä Eagewnis gfunne"
 }

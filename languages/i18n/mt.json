@@ -2703,5 +2703,6 @@
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Khmer",
 	"mw-widgets-dateinput-placeholder-day": "SSSS-XX-ĠĠ",
-	"mw-widgets-dateinput-placeholder-month": "SSSS-XX"
+	"mw-widgets-dateinput-placeholder-month": "SSSS-XX",
+	"mw-widgets-mediasearch-noresults": "L-ebda riżultat ma nstab."
 }

@@ -31,7 +31,8 @@
 			"Xiplus",
 			"WhitePhosphorus",
 			"DannyS712",
-			"Rowingbohe"
+			"Rowingbohe",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -2139,5 +2140,6 @@
 	"special-characters-group-greek": "希臘字母",
 	"special-characters-group-cyrillic": "西里爾字母",
 	"special-characters-group-arabic": "阿拉伯字母",
-	"special-characters-group-arabicextended": "阿拉伯擴字"
+	"special-characters-group-arabicextended": "阿拉伯擴字",
+	"mw-widgets-mediasearch-noresults": "無所獲"
 }

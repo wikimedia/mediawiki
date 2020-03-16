@@ -28,7 +28,8 @@
 			"Martinsdzerve",
 			"Nixiéoffset",
 			"Fitoschido",
-			"Mailman"
+			"Mailman",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Pasvītrot saites:",
@@ -2971,6 +2972,7 @@
 	"mw-widgets-abandonedit-title": "Vai esi pārliecināts?",
 	"mw-widgets-copytextlayout-copy": "Kopēt",
 	"mw-widgets-dateinput-no-date": "Nav izvēlēts datums",
+	"mw-widgets-mediasearch-input-placeholder": "Meklēt medijus",
 	"mw-widgets-mediasearch-noresults": "Nav atrasts neviens rezultāts.",
 	"mw-widgets-titleinput-description-new-page": "lapa vēl nepastāv",
 	"mw-widgets-titleinput-description-redirect": "pāradresēt uz $1",

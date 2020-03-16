@@ -13,7 +13,8 @@
 			"Stephanecbisson",
 			"Fitoschido",
 			"Vlad5250",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Джибериулени черт:",
@@ -2436,6 +2437,8 @@
 	"mw-widgets-abandonedit-discard": "Тюрлениулени ызына ал",
 	"mw-widgets-abandonedit-keep": "Редакторлукъ этиуню бардыр",
 	"mw-widgets-abandonedit-title": "Ишексизмисе?",
+	"mw-widgets-mediasearch-input-placeholder": "Мультимедиа изле",
+	"mw-widgets-mediasearch-noresults": "Джукъ да табылмады.",
 	"mw-widgets-titleinput-description-new-page": "Быллай бет алкъын джокъду",
 	"mw-widgets-titleinput-description-redirect": "$1 бетге редирект"
 }

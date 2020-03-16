@@ -24,7 +24,8 @@
 			"Fitoschido",
 			"Vlad5250",
 			"ئارام بکر",
-			"Arya sarhan"
+			"Arya sarhan",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "ھێڵھێنان بەژێر بەستەرەکان:",
@@ -955,6 +956,7 @@
 	"badsiglength": "واژووەکەت زۆر درێژە.\nواژوو نابێ لە $1 {{PLURAL:$1|نووسە}} درێژتر بێت.",
 	"yourgender": "پێت خۆشە چۆن وەسف بکرێیت؟",
 	"gender-unknown": "لەکاتی ئاماژەدان بەتۆ، نەرمامێرەکە وشەی ڕەگەزھاوتا بەکار دەبات بەپێی توانا",
+	"gender-notknown": "ئەوان دەستکاریی ویکی پەڕەکانیان کرد",
 	"gender-male": "نێر",
 	"gender-female": "مێ",
 	"prefs-help-gender": "ئەم ھەڵبژاردەیە دڵخوازانەیە.\nبۆ بانگکردن و ئاماژەپێکردن بە شێوەیەکی دروست لەلایەن نەرمامێرەوە بەکاردێت.\nئەم زانیارییە گشتی دەبێت.",
@@ -2862,6 +2864,8 @@
 	"special-characters-group-khmer": "خمێری",
 	"mw-widgets-abandonedit-title": "دڵنیایت؟",
 	"mw-widgets-dateinput-no-date": "ڕێکەوت ھەڵنەبژێردراوە",
+	"mw-widgets-mediasearch-input-placeholder": "گەڕان بۆ میدیا",
+	"mw-widgets-mediasearch-noresults": "ھیچ ئەنجامێک نەدۆزرایەوە.",
 	"mw-widgets-categoryselector-add-category-placeholder": "زیادکردنی پۆل...",
 	"mw-widgets-usersmultiselect-placeholder": "زیادکردن...",
 	"mw-widgets-titlesmultiselect-placeholder": "زیادکردنی زیاتر...",

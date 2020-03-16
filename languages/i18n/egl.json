@@ -8,7 +8,8 @@
 			"Shirayuki",
 			"Gloria sah",
 			"Macofe",
-			"Vlad5250"
+			"Vlad5250",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Tîra 'na rîga sòta i colegamèint.",
@@ -1526,5 +1527,7 @@
 	"feedback-message": "Mesâg",
 	"feedback-subject": "Argomèint:",
 	"searchsuggest-search": "Sērca dèinter ed {{SITENAME}}",
-	"mw-widgets-abandonedit": "Ét sicûr ed vrèir lasêr còl che t'é mudifichê sèinsa préma salvêr?"
+	"mw-widgets-abandonedit": "Ét sicûr ed vrèir lasêr còl che t'é mudifichê sèinsa préma salvêr?",
+	"mw-widgets-mediasearch-input-placeholder": "Sērca file multimediêl",
+	"mw-widgets-mediasearch-noresults": "Mìa catê nisùn risultê."
 }

@@ -34,7 +34,8 @@
 			"Fitoschido",
 			"Սահակ",
 			"ديفيد",
-			"Azniv Stepanian"
+			"Azniv Stepanian",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "ընդգծել հղումները՝",
@@ -2226,6 +2227,7 @@
 	"mw-widgets-abandonedit-keep": "Շարունակել խմբագրելը",
 	"mw-widgets-abandonedit-title": "Համոզվա՞ծ եք:",
 	"mw-widgets-dateinput-no-date": "Ամսաթիվն ընտրված չէ",
+	"mw-widgets-mediasearch-input-placeholder": "Որոնել մեդիա",
 	"mw-widgets-mediasearch-noresults": "Ոչինչ չի գտնվել",
 	"date-range-from": "Սկսած՝",
 	"date-range-to": "Մինչև՝",

@@ -563,7 +563,7 @@
 	"passwordreset-emailtext-user": "Nisy mpikambana mitondra anarana $1 eo amin'i {{SITENAME}} nangataka fampatsiahivana mikasika ny kaontinao eo amin'i {{SITENAME}} ($4). Manana io adiresy imailaka {{PLURAL:$3|io kaontim-pikambana io|ireo kaontim-pikambana ireo}} :\n\n$2\n\nHitsahatra afaka {{PLURAL:$5|iray|$5}} andro {{PLURAL:$3|io|ireo}} tenimiafina {{PLURAL:$3|io|ireo}}. Mila miditra dien'izao ianao izao ary mifidy tenimiafina vaovao. Raha tsy avy aminao ity hataka ity na efa nahatadidy ny tenimiafinao taloha ianao, ary raha tsy tianao hovaina intsony ilay tenimiafinao, dia azonao tsy raharahiana ity hafatra ity ary mampiasa ny tenimiafinao taloha.",
 	"passwordreset-emailelement": "Anaram-pikambana : \n$1\n\nTenimiafina miserana : \n$2",
 	"passwordreset-success": "Nangataka famerenan-tenimiafina ianao.",
-	"passwordreset-success-details": "Rehefa azo raisina ny torohay nalefa, dia hisy mailaka famerenana tenimiafina. Raha tsy mahazo ianao dia mandehana eo amin'ny [[mw:Special:MyLanguage/Help:Reset_password|pejy fanoroana momba ny famerenana tenimiafina]].",
+	"passwordreset-success-details-generic": "Rehefa azo raisina ny torohay nalefa, dia hisy mailaka famerenana tenimiafina. Raha tsy mahazo ianao dia mandehana eo amin'ny [[mw:Special:MyLanguage/Help:Reset_password|pejy fanoroana momba ny famerenana tenimiafina]].",
 	"passwordreset-success-info": "Ny antsipirahan-torohay nalefanao dia: $1",
 	"passwordreset-nocaller": "Mila manitsy mpiantso",
 	"passwordreset-nosuchcaller": "Tsy misy ilay mpiantso: $1",

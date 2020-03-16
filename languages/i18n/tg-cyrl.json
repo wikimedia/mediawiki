@@ -18,7 +18,8 @@
 			"Fitoschido",
 			"TajikMaterialist",
 			"Vlad5250",
-			"Amire80"
+			"Amire80",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Пайвандҳо хаткашида:",
@@ -2148,6 +2149,7 @@
 	"pagelang-name": "Саҳифа",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 байт}} ($2; $3%)",
 	"special-characters-group-cyrillic": "Сириллик",
+	"mw-widgets-mediasearch-input-placeholder": "Ҷустуҷӯи расона",
 	"randomrootpage": "Саҳифаи решавии тасодуфӣ",
 	"changecredentials-submit": "Тағйири ҳисоби корбарӣ",
 	"removecredentials-submit": "Хориҷи эътиборнома",

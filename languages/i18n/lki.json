@@ -16,7 +16,8 @@
 			"Physicsch",
 			"FarsiNevis",
 			"Iriman",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "خط کیشائن ژێر پیوندەل:",
@@ -3022,6 +3023,8 @@
 	"mw-widgets-abandonedit-keep": "ادامه دادن به ویرایش",
 	"mw-widgets-abandonedit-title": "آیا مطمئن هستید؟",
 	"mw-widgets-dateinput-no-date": "هیچ داده‌ای انتخاب نشده",
+	"mw-widgets-mediasearch-input-placeholder": "جستجو برای رسانه‌ها",
+	"mw-widgets-mediasearch-noresults": "نتیجه‌ای یافت نشد.",
 	"mw-widgets-titleinput-description-new-page": "اێ وەڵگە هەنی(هالی)وجود نِئرێ",
 	"mw-widgets-titleinput-description-redirect": "گؤەڕانن/تغییر مسیر به $1"
 }

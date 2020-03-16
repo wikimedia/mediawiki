@@ -22,7 +22,8 @@
 			"Ieneach fan 'e Esk",
 			"Fitoschido",
 			"Vlad5250",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -2306,6 +2307,8 @@
 	"mw-widgets-abandonedit-title": "Binne jo wis?",
 	"mw-widgets-dateinput-no-date": "Gjin datum keazen",
 	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-DD",
+	"mw-widgets-mediasearch-input-placeholder": "Media sykje",
+	"mw-widgets-mediasearch-noresults": "Gjin resultaten fûn.",
 	"mw-widgets-titleinput-description-new-page": "side bestiet noch net",
 	"mw-widgets-usersmultiselect-placeholder": "Mear tafoegje...",
 	"mw-widgets-titlesmultiselect-placeholder": "Mear tafoegje...",

@@ -4,7 +4,8 @@
 			"Deepak D'Souza",
 			"Isidore Dantas",
 			"The Discoverer",
-			"아라"
+			"아라",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Duvyenche odhorekhon:",
@@ -1158,6 +1159,8 @@
 	"mw-widgets-dateinput-no-date": "Tarikh nivddunk na",
 	"mw-widgets-dateinput-placeholder-day": "VVVV-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "VVVV-MM",
+	"mw-widgets-mediasearch-input-placeholder": "Madheoman sod",
+	"mw-widgets-mediasearch-noresults": "Kainch porinaman mellunk-nan",
 	"date-range-from": "Tarkhe savn:",
 	"date-range-to": "Tarkhe poriant:",
 	"randomrootpage": "Khoincheim mull pan",

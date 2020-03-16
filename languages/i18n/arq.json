@@ -10,7 +10,8 @@
 			"Mekakem",
 			"Vikoula5",
 			"Qchmqs",
-			"Meno25"
+			"Meno25",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "تسطار الوصيلات:",
@@ -1004,5 +1005,6 @@
 	"duration-days": "$1 {{PLURAL:$1|يوم|يامات}}",
 	"mediastatistics-header-bitmap": "تصويرة Bitmap",
 	"mw-widgets-abandonedit-keep": "إكمال التعديل",
-	"mw-widgets-abandonedit-title": "راك متأكد ؟"
+	"mw-widgets-abandonedit-title": "راك متأكد ؟",
+	"mw-widgets-mediasearch-noresults": "ما كانش نتائج"
 }
