@@ -2,21 +2,13 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use GenderCache;
-use Language;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler\LanguageLinksHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
-use MediaWikiTitleCodec;
-use NamespaceInfo;
-use PHPUnit\Framework\MockObject\MockObject;
-use User;
+use Title;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -52,15 +44,6 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	private function newHandler() {
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'userCan' ]
-		);
-		$permissionManager->method( 'userCan' )
-			->willReturnCallback( function ( $action, User $user, LinkTarget $page ) {
-				return !preg_match( '/Forbidden/', $page->getText() );
-			} );
-
 		$services = MediaWikiServices::getInstance();
 
 		$languageNameUtils = new LanguageNameUtils(
@@ -70,27 +53,12 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 			)
 		);
 
-		$language = $this->createNoOpMock( Language::class, [ 'ucfirst' ] );
-		$language->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
-
-		$genderCache = $this->createNoOpMock( GenderCache::class );
-
-		$interwikiLookup = $this->createNoOpMock( InterwikiLookup::class );
-		$namespaceInfo = $this->createNoOpMock( NamespaceInfo::class, [ 'isCapitalized' ] );
-		$namespaceInfo->method( 'isCapitalized' )->willReturn( true );
-
-		$titleCodec = new MediaWikiTitleCodec(
-			$language,
-			$genderCache,
-			[ 'en' ],
-			$interwikiLookup,
-			$namespaceInfo
-		);
+		$titleCodec = $this->makeMockTitleCodec();
 
 		return new LanguageLinksHandler(
 			$services->getDBLoadBalancer(),
 			$languageNameUtils,
-			$permissionManager,
+			$this->makeMockPermissionManager(),
 			$titleCodec,
 			$titleCodec
 		);
@@ -99,7 +67,7 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 	private function assertLink( $expected, $actual ) {
 		foreach ( $expected as $key => $value ) {
 			$this->assertArrayHasKey( $key, $actual );
-			$this->assertSame( $value, $actual[$key] );
+			$this->assertSame( $value, $actual[$key], $key );
 		}
 	}
 
@@ -133,6 +101,34 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 			'title' => 'Fou baux',
 			'key' => 'Fou_baux',
 		], $links['fr'] );
+	}
+
+	public function testCacheControl() {
+		$title = Title::newFromText( __METHOD__ );
+		$this->editPage( $title->getPrefixedDBkey(), 'First' );
+
+		$request = new RequestData( [ 'pathParams' => [ 'title' => $title->getPrefixedDBkey() ] ] );
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler( $handler, $request );
+
+		$firstETag = $response->getHeaderLine( 'ETag' );
+		$this->assertSame(
+			wfTimestamp( TS_RFC2822, $title->getTouched() ),
+			$response->getHeaderLine( 'Last-Modified' )
+		);
+
+		$this->editPage( $title->getPrefixedDBkey(), 'Second' );
+
+		Title::clearCaches();
+		$handler = $this->newHandler();
+		$response = $this->executeHandler( $handler, $request );
+
+		$this->assertNotEquals( $response->getHeaderLine( 'ETag' ), $firstETag );
+		$this->assertSame(
+			wfTimestamp( TS_RFC2822, $title->getTouched() ),
+			$response->getHeaderLine( 'Last-Modified' )
+		);
 	}
 
 	public function testExecute_notFound() {
