@@ -46,7 +46,7 @@ abstract class Profiler {
 	private static $instance = null;
 
 	/**
-	 * @param array $params
+	 * @param array $params See $wgProfiler.
 	 */
 	public function __construct( array $params ) {
 		if ( isset( $params['profileID'] ) ) {
