@@ -574,7 +574,6 @@ because of Phabricator reports.
   - LogPage::addEntry
   - FileDeleteForm::doDelete
   - OldLocalFile::userCan
-  Additionally, not passing a user to the following is soft deprecated:
   - ArchivedFile::userCan
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
