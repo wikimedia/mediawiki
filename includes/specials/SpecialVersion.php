@@ -574,7 +574,12 @@ class SpecialVersion extends SpecialPage {
 			// We can safely assume that the libraries' names and descriptions
 			// are written in English and aren't going to be translated,
 			// so set appropriate lang and dir attributes
-			$out .= Html::openElement( 'tr' )
+			$out .= Html::openElement( 'tr', [
+				// Add an anchor so docs can link easily to the version of
+				// this specific library
+				'id' => Sanitizer::escapeIdForAttribute(
+					"mw-version-library-$name"
+				) ] )
 				. Html::rawElement(
 					'td',
 					[],
