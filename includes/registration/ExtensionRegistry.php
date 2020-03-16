@@ -500,8 +500,15 @@ class ExtensionRegistry {
 		}
 
 		foreach ( $info['defines'] as $name => $val ) {
-			define( $name, $val );
+			if ( !defined( $name ) ) {
+				define( $name, $val );
+			} elseif ( constant( $name ) !== $val ) {
+				throw new UnexpectedValueException(
+					"$name cannot be re-defined with $val it has already been set with " . constant( $name )
+				);
+			}
 		}
+
 		foreach ( $info['autoloaderPaths'] as $path ) {
 			if ( file_exists( $path ) ) {
 				require_once $path;

@@ -97,6 +97,17 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testExportExtractedDataNamespaceAlreadyDefined() {
+		define( 'FOO_VALUE', 123 ); // Emulates overriding a namespace set in LocalSettings.php
+		$registry = new ExtensionRegistry();
+		$info = [ 'defines' => [ 'FOO_VALUE' => 456 ], 'globals' => [] ];
+		$this->expectException( Exception::class );
+		$this->expectExceptionMessage(
+			"FOO_VALUE cannot be re-defined with 456 it has already been set with 123"
+		);
+		TestingAccessWrapper::newFromObject( $registry )->exportExtractedData( $info );
+	}
+
 	/**
 	 * @dataProvider provideExportExtractedDataGlobals
 	 */
@@ -122,10 +133,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 			'autoloaderPaths' => []
 		];
 		$registry = new ExtensionRegistry();
-		$class = new ReflectionClass( ExtensionRegistry::class );
-		$method = $class->getMethod( 'exportExtractedData' );
-		$method->setAccessible( true );
-		$method->invokeArgs( $registry, [ $info ] );
+		TestingAccessWrapper::newFromObject( $registry )->exportExtractedData( $info );
 		foreach ( $expected as $name => $value ) {
 			$this->assertArrayHasKey( $name, $GLOBALS, $desc );
 			$this->assertEquals( $value, $GLOBALS[$name], $desc );

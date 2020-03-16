@@ -51,7 +51,7 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testExtractNamespaces() {
-		// Test that namespace IDs can be overwritten
+		// Test that namespace IDs defined in extension.json can be overwritten locally
 		if ( !defined( 'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X' ) ) {
 			define( 'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X', 123456 );
 		}
@@ -87,9 +87,14 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 			'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_A',
 			$extracted['defines']
 		);
-		$this->assertArrayNotHasKey(
+		$this->assertArrayHasKey(
 			'MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X',
 			$extracted['defines']
+		);
+
+		$this->assertSame(
+			$extracted['defines']['MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X'],
+			123456
 		);
 
 		$this->assertSame(
