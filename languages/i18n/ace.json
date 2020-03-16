@@ -14,7 +14,8 @@
 			"Macofe",
 			"Rachmat04",
 			"Martin Urbanec",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Bôh garéh yup peunawôt:",
@@ -1328,5 +1329,6 @@
 	"duration-centuries": "{{PLURAL:$1|abad}}",
 	"duration-millennia": "{{PLURAL:$1|milenium}}",
 	"pagelang-reason": "Alasan",
-	"mw-widgets-abandonedit-keep": "Peusaneut lom"
+	"mw-widgets-abandonedit-keep": "Peusaneut lom",
+	"mw-widgets-mediasearch-input-placeholder": "Mita mèdia"
 }

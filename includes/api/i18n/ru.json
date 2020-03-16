@@ -1581,6 +1581,7 @@
 	"apierror-cantview-deleted-metadata": "У вас нет разрешения на просмотр метаданных удаленных файлов.",
 	"apierror-cantview-deleted-revision-content": "У вас нет разрешения на просмотр содержимого удаленных редакций.",
 	"apierror-changeauth-norequest": "Попытка создать запрос правки провалилась.",
+	"apierror-changecontentmodel-cannotbeused": "Модель содержимого <code>$1</code> не может использоваться на $2",
 	"apierror-chunk-too-small": "Минимальный размер кусочка — $1 {{PLURAL:$1|байт|байта|байт}}, если кусочек не является последним.",
 	"apierror-cidrtoobroad": "Диапазоны $1 CIDR, шире /$2, не разрешены.",
 	"apierror-compare-no-title": "Невозможно выполнить преобразование перед записью правки без заголовка. Попробуйте задать <var>fromtitle</var> или <var>totitle</var>.",

@@ -17,7 +17,8 @@
 			"Algentem",
 			"Joao Xavier",
 			"Fitoschido",
-			"Idojc"
+			"Idojc",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Sub-strekizez ligili:",
@@ -2237,6 +2238,7 @@
 	"mw-widgets-abandonedit-title": "Ka vu esas certa?",
 	"mw-widgets-dateinput-no-date": "Nula dato selektita",
 	"mw-widgets-dateinput-placeholder-day": "YYYY-MM-DD",
+	"mw-widgets-mediasearch-noresults": "Nula rezulti trovita.",
 	"mw-widgets-titleinput-description-redirect": "Ridirektar ad $1",
 	"mw-widgets-usersmultiselect-placeholder": "Adjuntez pluse...",
 	"mw-widgets-titlesmultiselect-placeholder": "Adjuntez pluse...",

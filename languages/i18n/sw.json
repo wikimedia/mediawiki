@@ -22,7 +22,8 @@
 			"Fitoschido",
 			"Rance",
 			"Vlad5250",
-			"Yasen igra"
+			"Yasen igra",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -2446,5 +2447,6 @@
 	"special-characters-group-thai": "Kitai",
 	"special-characters-group-lao": "Kilao",
 	"special-characters-group-khmer": "Kikhmeri",
-	"special-characters-title-minus": "alama ya kutoa"
+	"special-characters-title-minus": "alama ya kutoa",
+	"mw-widgets-mediasearch-input-placeholder": "Tafuta mafaili"
 }

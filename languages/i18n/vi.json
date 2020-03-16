@@ -617,7 +617,7 @@
 	"passwordreset-emailtext-user": "Thành viên $1 tại {{SITENAME}} đã yêu cầu tái tạo mật khẩu tại {{SITENAME}} \n($4). {{PLURAL:$3|Tài khoản|Các tài khoản}} dưới đây gắn liền với địa chỉ thư điện tử này:\n\n$2\n\n{{PLURAL:$3|Mật khẩu|Các mật khẩu}} tạm này sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}. Bạn nên đăng nhập\nngay bây giờ để chọn mật khẩu mới. Nếu bạn không phải là người yêu cầu hoặc đã nhớ lại mật khẩu hiện hành, và bạn không còn\nmuốn thay đổi nó, xin vui lòng bỏ qua thông điệp này và tiếp tục sử dụng\nmật khẩu cũ.",
 	"passwordreset-emailelement": "Tên người dùng: \n$1\n\nMật khẩu tạm: \n$2",
 	"passwordreset-success": "Bạn đã yêu cầu đặt lại mật khẩu.",
-	"passwordreset-success-details": "Nếu thông tin bạn cung cấp là đúng, bạn sẽ nhận được email để thiết lập lại mật khẩu. Nếu bạn không thấy email, chúng tôi khuyên bạn xem [[mw:Special:MyLanguage/Help:Reset_password|trang trợ giúp thiết lập lại mật khẩu]].",
+	"passwordreset-success-details-generic": "Nếu thông tin bạn cung cấp là đúng, bạn sẽ nhận được email để thiết lập lại mật khẩu. Nếu bạn không thấy email, chúng tôi khuyên bạn xem [[mw:Special:MyLanguage/Help:Reset_password|trang trợ giúp thiết lập lại mật khẩu]].",
 	"passwordreset-success-info": "Chi tiết bạn gửi: $1",
 	"passwordreset-emailtext-require-email": "Tuy nhiên, nếu bạn không thực hiện yêu cầu này và muốn ngăn những email không \nmong muốn, bạn có thể cập nhật tùy chọn email của bạn tại\n$1.\nBạn có thể thay đổi để bắt buộc phải nhập cả tên người dùng và địa chỉ email\nkhi cần nhận thư thiết lập lại mật khẩu. Điều đó có thể giúp giảm những sự\nviệc như thế này.",
 	"passwordreset-nocaller": "Yêu cầu hàm gọi",

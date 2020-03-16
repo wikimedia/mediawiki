@@ -3482,7 +3482,7 @@
 	"tags-update-blocked": "لا يمكنك إضافة أو إزالة وسوم التغيير أثناء {{GENDER:$1|منعك}}.",
 	"tags-update-add-not-allowed-one": "الوسم \"$1\" غير مسموح أن تتم إضافته يدويا.",
 	"tags-update-add-not-allowed-multi": "The following {{PLURAL:$2|الوسم|الوسوم}} التالية غير مسموح أن تتم إضافتها يدويا: $1",
-	"tags-update-remove-not-allowed-one": "من غير المسموح بإزالة وسم \"$1\".",
+	"tags-update-remove-not-allowed-one": "من غير المسموح إزالة الوسم \"$1\".",
 	"tags-update-remove-not-allowed-multi": "{{PLURAL:$2|الوسم|الوسوم}} التالية غير مسموح أن تتم إزالتها يدويا: $1",
 	"tags-edit-title": "تعديل الوسوم",
 	"tags-edit-manage-link": "التحكم بالوسوم",

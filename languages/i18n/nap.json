@@ -18,7 +18,8 @@
 			"Ruthven",
 			"Fitoschido",
 			"Sannita",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -3347,6 +3348,8 @@
 	"mw-widgets-abandonedit-keep": "Cuntinuà a cagnà",
 	"mw-widgets-abandonedit-title": "Site sicuro/a?",
 	"mw-widgets-dateinput-no-date": "Nisciuna data scigliuta",
+	"mw-widgets-mediasearch-input-placeholder": "Ricerca file multimediale",
+	"mw-widgets-mediasearch-noresults": "Nisciuno risultato.",
 	"mw-widgets-titleinput-description-new-page": "'a pàggene nun esiste ancore",
 	"mw-widgets-titleinput-description-redirect": "redirezionate ncopp' a $1",
 	"sessionmanager-tie": "Nun se ponno cumbinà 'e tipe 'e richiesta 'autenticaziona: $1.",

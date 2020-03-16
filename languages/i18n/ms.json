@@ -3461,6 +3461,8 @@
 	"mw-widgets-abandonedit-keep": "Teruskan menyunting",
 	"mw-widgets-abandonedit-title": "Adakah anda pasti?",
 	"mw-widgets-dateinput-no-date": "Tarik belum dipilih",
+	"mw-widgets-mediasearch-input-placeholder": "Cari media",
+	"mw-widgets-mediasearch-noresults": "Tiada hasil carian.",
 	"mw-widgets-titleinput-description-new-page": "laman belum wujud",
 	"mw-widgets-titleinput-description-redirect": "melencong ke $1",
 	"date-range-from": "Dari tarikh:",

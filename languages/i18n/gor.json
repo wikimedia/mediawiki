@@ -906,5 +906,6 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|mopodetohu}} versi bohu lo $3",
 	"searchsuggest-search": "Lolohe {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|huyi}}",
+	"mw-widgets-mediasearch-noresults": "Diya'a hasili yilotapu",
 	"randomrootpage": "Halaman totonulalo"
 }

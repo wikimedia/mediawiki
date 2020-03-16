@@ -16,7 +16,8 @@
 			"Fitoschido",
 			"Vlad5250",
 			"Olavur",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Undirstrika leinki:",
@@ -2218,5 +2219,7 @@
 	"mw-widgets-abandonedit": "Ert tú vís/ur í at tú ynskir at venda aftur til sýningarstøðu uttan at goyma fyrst?",
 	"mw-widgets-dateinput-placeholder-day": "ÁÁÁÁ-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "ÁÁÁÁ-MM",
+	"mw-widgets-mediasearch-input-placeholder": "Leita eftir miðli",
+	"mw-widgets-mediasearch-noresults": "Ongi úrslit funnin.",
 	"mw-widgets-titleinput-description-new-page": "síðan er ikki til enn"
 }

@@ -675,7 +675,7 @@
 	"passwordreset-emailtext-user": "{{SITENAME}} の利用者 $1 があなたの {{SITENAME}} ($4)\nでのパスワードを再設定するよう申請しました。\n以下の利用者{{PLURAL:$3|アカウント|アカウント群}}がこのメールアドレスと紐付けられています。\n\n$2\n\n{{PLURAL:$3|この仮パスワード|これらの仮パスワード}}は{{PLURAL:$5|$5日}}で有効期限が切れます。\nあなたは、すぐにログインして新しいパスワードを設定する必要があります。\nこの申請が他の誰かによるものの場合、あるいはあなたが自分の元のパスワードを\n覚えていて、変更したくない場合は、このメッセージを無視して\n以前のパスワードを使い続けることができます。",
 	"passwordreset-emailelement": "利用者名: \n$1\n\n仮パスワード: \n$2",
 	"passwordreset-success": "パスワードの再設定をリクエストしました。",
-	"passwordreset-success-details": "送信された情報が正しい場合は、パスワードリセット用の電子メールが送信されます。電子メールを受信できない場合は、[[mw:Special:MyLanguage/Help:Reset_password|パスワードリセットに関するヘルプページ]]をご覧になることをお勧めします。",
+	"passwordreset-success-details-generic": "送信された情報が正しい場合は、パスワードリセット用の電子メールが送信されます。電子メールを受信できない場合は、[[mw:Special:MyLanguage/Help:Reset_password|パスワードリセットに関するヘルプページ]]をご覧になることをお勧めします。",
 	"passwordreset-success-info": "あなたが送信した情報は次の通りです: $1",
 	"passwordreset-nocaller": "送信者の情報を提供する必要があります",
 	"passwordreset-nosuchcaller": "送信者が存在しません: $1",

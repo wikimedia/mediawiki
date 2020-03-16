@@ -13,7 +13,8 @@
 			"Macofe",
 			"Nemo bis",
 			"Vlad5250",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "КӀел сиз хьакха хьажорган:",
@@ -2931,6 +2932,8 @@
 	"mw-widgets-dateinput-no-date": "Терахь хаьржина дац",
 	"mw-widgets-dateinput-placeholder-day": "ШШШШ-ББ-ДД",
 	"mw-widgets-dateinput-placeholder-month": "ШШШШ-ББ",
+	"mw-widgets-mediasearch-input-placeholder": "Лаха мультимедиа",
+	"mw-widgets-mediasearch-noresults": "ХӀума ца карийна",
 	"mw-widgets-titleinput-description-redirect": "ДӀасхьажорг $1 тӀе",
 	"mw-widgets-usersmultiselect-placeholder": "Кхин тӀетоха…",
 	"mw-widgets-titlesmultiselect-placeholder": "Кхин тӀетоха...",

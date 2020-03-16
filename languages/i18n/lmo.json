@@ -22,7 +22,8 @@
 			"V6rg",
 			"C.R.",
 			"Fitoschido",
-			"DannyS712"
+			"DannyS712",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Sutulinia i ligam",
@@ -1365,5 +1366,6 @@
 	"tags-edit": "mudìfica",
 	"rightsnone": "(nisü)",
 	"expand_templates_ok": "OK",
-	"mw-widgets-abandonedit": "Sét sigür che te ölet turnà 'ndré a la modalità de vizualizasiù sènsa salvà le mudìfiche prima?"
+	"mw-widgets-abandonedit": "Sét sigür che te ölet turnà 'ndré a la modalità de vizualizasiù sènsa salvà le mudìfiche prima?",
+	"mw-widgets-mediasearch-input-placeholder": "Sérca archivi multimediài"
 }
