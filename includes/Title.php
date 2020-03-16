@@ -231,10 +231,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		return MediaWikiServices::getInstance()->getInterwikiLookup();
 	}
 
-	/**
-	 * @protected
-	 */
-	function __construct() {
+	private function __construct() {
 	}
 
 	/**
