@@ -32,6 +32,15 @@ You'll need a locally running Docker and Docker Compose:
 [docker-install]: https://docs.docker.com/install/
 [docker-compose]: https://docs.docker.com/compose/install/
 
+---
+
+**Linux users**
+
+We recommend installing `docker-compose` by [downloading the binary release](https://docs.docker.com/compose/install/#install-compose-on-linux-systems).
+You can also use `pip`, your OS package manager, or even run it in a container, but downloading the binary release is the easiest method.
+
+---
+
 ### Quickstart
 
 #### MacOS & Windows prerequisites
