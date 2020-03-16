@@ -2,21 +2,25 @@
 
 namespace MediaWiki\Hook;
 
+use Article;
+use Title;
+use WebRequest;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface InitializeArticleMaybeRedirectHook {
 	/**
-	 * MediaWiki check to see if title is a redirect.
+	 * Use this hook to check whether a title is a redirect.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title Title object for the current page
-	 * @param ?mixed $request WebRequest
-	 * @param ?mixed &$ignoreRedirect boolean to skip redirect check
-	 * @param ?mixed &$target Title/string of redirect target
-	 * @param ?mixed &$article Article object
+	 * @param Title $title Title object for the current page
+	 * @param WebRequest $request
+	 * @param bool &$ignoreRedirect Boolean to skip redirect check
+	 * @param Title|string &$target Title/string of redirect target
+	 * @param Article &$article
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onInitializeArticleMaybeRedirect( $title, $request,

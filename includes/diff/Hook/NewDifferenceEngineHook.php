@@ -2,21 +2,23 @@
 
 namespace MediaWiki\Diff\Hook;
 
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface NewDifferenceEngineHook {
 	/**
-	 * Called when a new DifferenceEngine object is made
+	 * This hook is called when a new DifferenceEngine object is made.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title the diff page title (nullable)
-	 * @param ?mixed &$oldId the actual old Id to use in the diff
-	 * @param ?mixed &$newId the actual new Id to use in the diff (0 means current)
-	 * @param ?mixed $old the ?old= param value from the url
-	 * @param ?mixed $new the ?new= param value from the url
+	 * @param Title|null $title Diff page title
+	 * @param int &$oldId Actual old ID to use in the diff
+	 * @param int &$newId Actual new Id to use in the diff (0 means current)
+	 * @param int $old ?old= param value from the URL
+	 * @param int $new ?new= param value from the URL
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onNewDifferenceEngine( $title, &$oldId, &$newId, $old, $new );

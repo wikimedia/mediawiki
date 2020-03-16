@@ -2,23 +2,28 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki;
+use OutputPage;
+use Title;
+use User;
+use WebRequest;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface BeforeInitializeHook {
 	/**
-	 * Before anything is initialized in
-	 * MediaWiki::performRequest().
+	 * This hook is called before anything is initialized in MediaWiki::performRequest().
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title Title being used for request
-	 * @param ?mixed $unused null
-	 * @param ?mixed $output OutputPage object
-	 * @param ?mixed $user User
-	 * @param ?mixed $request WebRequest object
-	 * @param ?mixed $mediaWiki Mediawiki object
+	 * @param Title $title Title being used for request
+	 * @param ?mixed $unused Null
+	 * @param OutputPage $output
+	 * @param User $user
+	 * @param WebRequest $request
+	 * @param MediaWiki $mediaWiki
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onBeforeInitialize( $title, $unused, $output, $user, $request,

@@ -2,23 +2,28 @@
 
 namespace MediaWiki\Hook;
 
+use ChangesList;
+use ChangesListFilterGroup;
+use Skin;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface FetchChangesListHook {
 	/**
-	 * When fetching the ChangesList derivative for a particular
-	 * user.
+	 * This hook is called when fetching the ChangesList derivative for a particular user.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $user User the list is being fetched for
-	 * @param ?mixed $skin Skin object to be used with the list
-	 * @param ?mixed &$list List object (defaults to NULL, change it to an object instance and
-	 *   return false override the list derivative used)
-	 * @param ?mixed $groups Array of ChangesListFilterGroup objects (added in 1.34)
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param User $user User the list is being fetched for
+	 * @param Skin $skin Skin object to be used with the list
+	 * @param ChangesList|null &$list Defaults to NULL. Change it to an object instance and
+	 *   return false to override the list derivative used.
+	 * @param ChangesListFilterGroup[] $groups Added in 1.34
+	 * @return bool|void True or no return value to continue, or false to to override the list
+	 *   derivative used
 	 */
 	public function onFetchChangesList( $user, $skin, &$list, $groups );
 }

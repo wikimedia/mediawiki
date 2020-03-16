@@ -8,11 +8,11 @@ namespace MediaWiki\Hook;
  */
 interface MagicWordwgVariableIDsHook {
 	/**
-	 * When defining new magic words IDs.
+	 * This hook is called when defining new magic words IDs.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$variableIDs array of strings
+	 * @param string[] &$variableIDs
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onMagicWordwgVariableIDs( &$variableIDs );

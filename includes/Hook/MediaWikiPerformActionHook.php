@@ -2,24 +2,31 @@
 
 namespace MediaWiki\Hook;
 
+use Article;
+use MediaWiki;
+use OutputPage;
+use Title;
+use User;
+use WebRequest;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface MediaWikiPerformActionHook {
 	/**
-	 * Override MediaWiki::performAction(). Use this to do
+	 * Use this hook to override MediaWiki::performAction(). Use this to do
 	 * something completely different, after the basic globals have been set up, but
 	 * before ordinary actions take place.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $output Context output
-	 * @param ?mixed $article Article on which the action will be performed
-	 * @param ?mixed $title Title on which the action will be performed
-	 * @param ?mixed $user Context user
-	 * @param ?mixed $request Context request
-	 * @param ?mixed $mediaWiki The $mediawiki object
+	 * @param OutputPage $output Context output
+	 * @param Article $article Article on which the action will be performed
+	 * @param Title $title Title on which the action will be performed
+	 * @param User $user Context user
+	 * @param WebRequest $request Context request
+	 * @param MediaWiki $mediaWiki
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onMediaWikiPerformAction( $output, $article, $title, $user,

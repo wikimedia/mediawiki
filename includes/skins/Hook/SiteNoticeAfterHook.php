@@ -2,19 +2,21 @@
 
 namespace MediaWiki\Hook;
 
+use Skin;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface SiteNoticeAfterHook {
 	/**
-	 * After the sitenotice/anonnotice is composed.
+	 * This hook is called after the sitenotice/anonnotice is composed.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$siteNotice HTML sitenotice. Alter the contents of $siteNotice to add to/alter
+	 * @param string &$siteNotice HTML sitenotice. Alter the contents of $siteNotice to add to/alter
 	 *   the sitenotice/anonnotice.
-	 * @param ?mixed $skin Skin object
+	 * @param Skin $skin
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSiteNoticeAfter( &$siteNotice, $skin );

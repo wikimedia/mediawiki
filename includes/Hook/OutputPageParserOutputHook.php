@@ -2,19 +2,22 @@
 
 namespace MediaWiki\Hook;
 
+use OutputPage;
+use ParserOutput;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface OutputPageParserOutputHook {
 	/**
-	 * after adding a parserOutput to $wgOut
+	 * This hook is called after adding a parserOutput to $wgOut.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $out OutputPage instance (object)
-	 * @param ?mixed $parserOutput parserOutput instance being added in $out
-	 * @return bool|void This hook must not abort, it must return true or null.
+	 * @param OutputPage $out
+	 * @param ParserOutput $parserOutput ParserOutput instance being added in $out
+	 * @return bool|void This hook must not abort, it must return true or no return value
 	 */
 	public function onOutputPageParserOutput( $out, $parserOutput );
 }

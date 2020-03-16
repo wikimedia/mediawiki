@@ -8,12 +8,12 @@ namespace MediaWiki\Hook;
  */
 interface GetDoubleUnderscoreIDsHook {
 	/**
-	 * Modify the list of behavior switch (double
-	 * underscore) magic words. Called by MagicWord.
+	 * Use this hook to modify the list of behavior switch (double
+	 * underscore) magic words. This hook is called by MagicWord.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$doubleUnderscoreIDs array of strings
+	 * @param string[] &$doubleUnderscoreIDs Array of strings
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onGetDoubleUnderscoreIDs( &$doubleUnderscoreIDs );

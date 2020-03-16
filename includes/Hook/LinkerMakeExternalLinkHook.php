@@ -8,16 +8,15 @@ namespace MediaWiki\Hook;
  */
 interface LinkerMakeExternalLinkHook {
 	/**
-	 * At the end of Linker::makeExternalLink() just
-	 * before the return.
+	 * This hook is called at the end of Linker::makeExternalLink() just before the return.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$url the link url
-	 * @param ?mixed &$text the link text
-	 * @param ?mixed &$link the new link HTML (if returning false)
-	 * @param ?mixed &$attribs the attributes to be applied.
-	 * @param ?mixed $linkType The external link type
+	 * @param string &$url Link URL
+	 * @param string &$text Link text
+	 * @param string &$link New link HTML (if returning false)
+	 * @param array &$attribs Attributes to be applied
+	 * @param string $linkType External link type
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLinkerMakeExternalLink( &$url, &$text, &$link, &$attribs,

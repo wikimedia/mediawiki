@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Hook;
 
+use HistoryPager;
+use Wikimedia\Rdbms\ResultWrapper;
+
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
  * @stable for implementation
@@ -9,16 +12,15 @@ namespace MediaWiki\Hook;
  */
 interface PageHistoryPager__doBatchLookupsHook {
 	/**
-	 * Called after the pager query was run, before
-	 * any output is generated, to allow batch lookups for prefetching information
-	 * needed for display. If the hook handler returns false, the regular behavior of
-	 * doBatchLookups() is skipped.
+	 * This hook is called after the pager query was run, before any output is generated,
+	 * to allow batch lookups for prefetching information needed for display.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $pager the PageHistoryPager
-	 * @param ?mixed $result a ResultWrapper representing the query result
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param HistoryPager $pager
+	 * @param ResultWrapper $result A ResultWrapper representing the query result
+	 * @return bool|void True or no return value to continue. False to skip the
+	 *   regular behavior of doBatchLookups().
 	 */
 	public function onPageHistoryPager__doBatchLookups( $pager, $result );
 }

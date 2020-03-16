@@ -2,21 +2,25 @@
 
 namespace MediaWiki\Hook;
 
+use EmailNotification;
+use Title;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface SendWatchlistEmailNotificationHook {
 	/**
-	 * Return true to send watchlist email
-	 * notification
+	 * Use this hook to cancel watchlist email notifications (enotifwatchlist) for an edit.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $targetUser the user whom to send watchlist email notification
-	 * @param ?mixed $title the page title
-	 * @param ?mixed $enotif EmailNotification object
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param User $targetUser User whom to send watchlist email notification
+	 * @param Title $title Page title
+	 * @param EmailNotification $enotif
+	 * @return bool|void True or no return value to send watchlist email
+	 *   notification, or false to abort
 	 */
 	public function onSendWatchlistEmailNotification( $targetUser, $title, $enotif );
 }

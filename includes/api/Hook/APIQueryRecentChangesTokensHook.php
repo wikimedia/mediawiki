@@ -3,13 +3,11 @@
 namespace MediaWiki\Api\Hook;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.24 Use ApiQueryTokensRegisterTypes instead.
  * @ingroup Hooks
  */
 interface APIQueryRecentChangesTokensHook {
 	/**
-	 * DEPRECATED since 1.24! Use
-	 * ApiQueryTokensRegisterTypes instead.
 	 * Use this hook to add custom tokens to list=recentchanges. Every token has an
 	 * action, which will be used in the rctoken parameter and in the output
 	 * (actiontoken="..."), and a callback function which should return the token, or
@@ -17,13 +15,13 @@ interface APIQueryRecentChangesTokensHook {
 	 * function is func($pageid, $title, $rc), where $pageid is the page ID of the
 	 * page associated to the revision the token is requested for, $title the
 	 * associated Title object and $rc the associated RecentChange object. In the
-	 * hook, just add your callback to the $tokenFunctions array and return true
+	 * hook, add your callback to the $tokenFunctions array and return true
 	 * (returning false makes no sense).
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$tokenFunctions [ action => callback ]
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param array &$tokenFunctions [ action => callback ]
+	 * @return bool|void True or no return value
 	 */
 	public function onAPIQueryRecentChangesTokens( &$tokenFunctions );
 }

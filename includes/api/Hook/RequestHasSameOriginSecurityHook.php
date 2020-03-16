@@ -2,21 +2,23 @@
 
 namespace MediaWiki\Api\Hook;
 
+use WebRequest;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface RequestHasSameOriginSecurityHook {
 	/**
-	 * Called to determine if the request is somehow
-	 * flagged to lack same-origin security. Return false to indicate the lack. Note
-	 * if the "somehow" involves HTTP headers, you'll probably need to make sure
+	 * Use this hook to determine if the request is somehow flagged to lack same-origin security.
+	 * Note that if the "somehow" involves HTTP headers, you'll probably need to make sure
 	 * the header is varied on.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $request The WebRequest object.
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param WebRequest $request
+	 * @return bool|void True or no return value to continue, or false to indicate a lack of
+	 *   same-origin security
 	 */
 	public function onRequestHasSameOriginSecurity( $request );
 }

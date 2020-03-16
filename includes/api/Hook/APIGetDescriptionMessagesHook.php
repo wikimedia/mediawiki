@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Api\Hook;
 
+use ApiBase;
+use Message;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
@@ -12,8 +15,8 @@ interface APIGetDescriptionMessagesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $module ApiBase Module object
-	 * @param ?mixed &$msg Array of Message objects
+	 * @param ApiBase $module Module object
+	 * @param Message[] &$msg Array of Message objects
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAPIGetDescriptionMessages( $module, &$msg );

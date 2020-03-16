@@ -3,19 +3,20 @@
 namespace MediaWiki\Cache\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
+use IContextSource;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface HTMLFileCache__useFileCacheHook {
 	/**
-	 * Override whether a page should be cached in file
-	 * cache.
+	 * Use this hook to override whether a page should be cached in file cache.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $context An IContextSource object with information about the request being
-	 *   served.
+	 * @param IContextSource $context IContextSource object with information about the request
+	 *   being served
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onHTMLFileCache__useFileCache( $context );

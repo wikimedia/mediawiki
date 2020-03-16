@@ -2,17 +2,19 @@
 
 namespace MediaWiki\Page\Hook;
 
+use WikiPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ArticlePurgeHook {
 	/**
-	 * Before executing "&action=purge".
+	 * This hook is called before executing "&action=purge".
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $wikiPage WikiPage (object) to purge
+	 * @param WikiPage $wikiPage WikiPage to purge
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticlePurge( $wikiPage );

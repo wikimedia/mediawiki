@@ -8,12 +8,12 @@ namespace MediaWiki\Hook;
  */
 interface UploadCreateFromRequestHook {
 	/**
-	 * When UploadBase::createFromRequest has been called.
+	 * This hook is called when UploadBase::createFromRequest has been called.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $type (string) the requested upload type
-	 * @param ?mixed &$className the class name of the Upload instance to be created
+	 * @param string $type Requested upload type
+	 * @param string &$className Class name of the Upload instance to be created
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUploadCreateFromRequest( $type, &$className );

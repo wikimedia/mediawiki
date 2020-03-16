@@ -8,14 +8,13 @@ namespace MediaWiki\Hook;
  */
 interface ImportHandleUnknownUserHook {
 	/**
-	 * When a user doesn't exist locally, this hook is
-	 * called to give extensions an opportunity to auto-create it. If the auto-creation
-	 * is successful, return false.
+	 * When a user doesn't exist locally, use this hook to auto-create it.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $name User name
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param string $name Username
+	 * @return bool|void True or no return value to continue. If the auto-creation is successful,
+	 *   return false.
 	 */
 	public function onImportHandleUnknownUser( $name );
 }

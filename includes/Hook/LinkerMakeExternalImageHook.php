@@ -8,14 +8,13 @@ namespace MediaWiki\Hook;
  */
 interface LinkerMakeExternalImageHook {
 	/**
-	 * At the end of Linker::makeExternalImage() just
-	 * before the return.
+	 * This hook is called at the end of Linker::makeExternalImage() just before the return.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$url the image url
-	 * @param ?mixed &$alt the image's alt text
-	 * @param ?mixed &$img the new image HTML (if returning false)
+	 * @param string &$url Image URL
+	 * @param string &$alt Image's alt text
+	 * @param string &$img New image HTML (if returning false)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLinkerMakeExternalImage( &$url, &$alt, &$img );

@@ -8,11 +8,11 @@ namespace MediaWiki\Search\Hook;
  */
 interface SearchableNamespacesHook {
 	/**
-	 * An option to modify which namespaces are searchable.
+	 * Use this hook to modify which namespaces are searchable.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$arr Array of namespaces ($nsId => $name) which will be used.
+	 * @param array &$arr Array of namespaces ($nsId => $name) which will be used
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSearchableNamespaces( &$arr );
