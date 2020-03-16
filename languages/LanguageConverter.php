@@ -190,7 +190,10 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 		Hooks::run( 'GetLangPreferredVariant', [ &$req ] );
 
-		if ( $wgUser->isSafeToLoad() && $wgUser->isLoggedIn() && !$req ) {
+		// NOTE: For calls from Setup.php, wgUser or the session might not be set yet (T235360)
+		// Use case: During autocreation, User::isUsableName is called which uses interface
+		// messages for reserved usernames.
+		if ( $wgUser && $wgUser->isSafeToLoad() && $wgUser->isLoggedIn() && !$req ) {
 			$req = $this->getUserVariant( $wgUser );
 		} elseif ( !$req ) {
 			$req = $this->getHeaderVariant();
@@ -298,20 +301,14 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return mixed Variant if one found, null otherwise
 	 */
 	protected function getUserVariant( User $user ) {
-		// memoizing this function wreaks havoc on parserTest.php
-		/*
-		if ( $this->mUserVariant ) {
-			return $this->mUserVariant;
-		}
-		*/
-
-		// This should only called when the user is known to be safe to load
-		// and logged in, but just in case...
+		// This should only be called within the class after the user is known to be
+		// safe to load and and logged in, but check just in case.
 		if ( !$user->isSafeToLoad() ) {
 			return false;
 		}
 
 		if ( $user->isLoggedIn() ) {
+			// Get language variant preference from logged in users
 			if (
 				$this->mMainLanguageCode ==
 				MediaWikiServices::getInstance()->getContentLanguage()->getCode()
