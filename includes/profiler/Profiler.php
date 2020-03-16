@@ -62,17 +62,14 @@ abstract class Profiler {
 	 */
 	final public static function instance() {
 		if ( self::$instance === null ) {
-			global $wgProfiler, $wgProfileLimit;
+			global $wgProfiler;
 
-			$params = [
+			$params = $wgProfiler + [
 				'class'     => ProfilerStub::class,
 				'sampling'  => 1,
-				'threshold' => $wgProfileLimit,
+				'threshold' => 0.0,
 				'output'    => [],
 			];
-			if ( is_array( $wgProfiler ) ) {
-				$params = array_merge( $params, $wgProfiler );
-			}
 
 			$inSample = mt_rand( 0, $params['sampling'] - 1 ) === 0;
 			// wfIsCLI() is not available yet
