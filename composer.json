@@ -77,7 +77,7 @@
 		"nikic/php-parser": "4.3.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "^8.5",
-		"psy/psysh": "0.9.12",
+		"psy/psysh": "0.10.2",
 		"seld/jsonlint": "1.7.1",
 		"symfony/yaml": "5.0.5",
 		"wikimedia/avro": "1.9.0",
