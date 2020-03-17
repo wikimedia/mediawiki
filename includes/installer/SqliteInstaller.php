@@ -55,7 +55,6 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 *
 	 * @return Status
 	 */
 	public function checkPrerequisites() {

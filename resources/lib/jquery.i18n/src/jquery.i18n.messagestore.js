@@ -109,7 +109,6 @@
 		},
 
 		/**
-		 *
 		 * @param {string} locale
 		 * @param {string} messageKey
 		 * @return {boolean}

@@ -1,4 +1,5 @@
 <?php
+
 namespace Wikimedia\Rdbms;
 
 use Doctrine\DBAL\Platforms\MySqlPlatform;

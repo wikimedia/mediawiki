@@ -271,7 +271,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 *
 	 * @since 1.19
 	 *
 	 * @param string $tableName
@@ -283,7 +282,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 *
 	 * @since 1.20
 	 *
 	 * @param string $tableName
@@ -308,7 +306,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 *
 	 * @since 1.20
 	 *
 	 * @param string $tableName
@@ -366,7 +363,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 *
 	 * @since 1.20
 	 *
 	 * @param string $tableName

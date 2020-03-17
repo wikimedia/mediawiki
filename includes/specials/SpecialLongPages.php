@@ -22,7 +22,6 @@
  */
 
 /**
- *
  * @ingroup SpecialPage
  */
 class SpecialLongPages extends SpecialShortPages {

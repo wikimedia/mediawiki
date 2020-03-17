@@ -57,7 +57,6 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	private $objectFactory;
 
 	/**
-	 * ContentHandlerFactory constructor.
 	 * @since 1.35
 	 * @internal Use @see MediaWikiServices::getContentHandlerFactory
 	 *

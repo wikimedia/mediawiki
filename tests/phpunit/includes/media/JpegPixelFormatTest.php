@@ -22,7 +22,6 @@ class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 	}
 
 	/**
-	 *
 	 * @dataProvider providePixelFormats
 	 * @covers BitmapHandler::imageMagickSubsampling
 	 */

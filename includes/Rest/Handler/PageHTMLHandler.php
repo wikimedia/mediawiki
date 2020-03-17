@@ -42,7 +42,6 @@ class PageHTMLHandler extends LatestPageContentHandler {
 	private $htmlResponse;
 
 	/**
-	 * PageHTMLHandler constructor.
 	 * @param Config $config
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionLookup $revisionLookup
