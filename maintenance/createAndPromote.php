@@ -52,7 +52,7 @@ class CreateAndPromote extends Maintenance {
 		);
 
 		$this->addArg( "username", "Username of new user" );
-		$this->addArg( "password", "Password to set (not required if --force is used)", false );
+		$this->addArg( "password", "Password to set", false );
 	}
 
 	public function execute() {
