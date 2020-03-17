@@ -82,6 +82,17 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
+	 * @param string $reason
+	 * @param User $user
+	 * @param bool $suppress
+	 * @return Status
+	 * @throws MWException
+	 */
+	function deleteFile( $reason, User $user, $suppress = false ) {
+		$this->readOnlyError();
+	}
+
+	/**
 	 * @param Title $target
 	 * @return Status
 	 * @throws MWException
