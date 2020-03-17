@@ -955,25 +955,25 @@ return [
 		return new CachingSiteStore( $rawSiteStore, $cache );
 	},
 
+	/** @suppress PhanTypeInvalidCallableArraySize - https://github.com/phan/phan/issues/1648 */
 	'SkinFactory' => function ( MediaWikiServices $services ) : SkinFactory {
-		$factory = new SkinFactory();
+		$factory = new SkinFactory( $services->getObjectFactory() );
 
 		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
 
 		foreach ( $names as $name => $skin ) {
-			$factory->register( $name, $skin, function () use ( $name, $skin ) {
-				$class = "Skin$skin";
-				return new $class( $name );
-			} );
+			$factory->register( $name, $skin, [
+				'class' => "Skin$skin"
+			] );
 		}
 		// Register a hidden "fallback" skin
-		$factory->register( 'fallback', 'Fallback', function () {
-			return new SkinFallback;
-		} );
+		$factory->register( 'fallback', 'Fallback', [
+			'class' => SkinFallback::class
+		] );
 		// Register a hidden skin for api output
-		$factory->register( 'apioutput', 'ApiOutput', function () {
-			return new SkinApi;
-		} );
+		$factory->register( 'apioutput', 'ApiOutput', [
+			'class' => SkinApi::class
+		] );
 
 		return $factory;
 	},

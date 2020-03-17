@@ -124,6 +124,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   return their respective policies as a string.
 * The ResourceLoaderSiteModulePages and ResourceLoaderSiteStylesModulePages
   hooks were added to allow changing which wiki pages these modules contain.
+* The SkinFactory now allows skins to be specified as an ObjectFactory spec,
+  allowing the construction of skins with services injected.
 * ContentHandlerFactory for most ContentHandler static methods. It has been
   added to the constructors for many classes to improve SOLID / GRASP.
 * FileDeleteForm's constructor now accepts a user as the second parameter.
