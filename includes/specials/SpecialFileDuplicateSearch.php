@@ -69,7 +69,6 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	}
 
 	/**
-	 *
 	 * @param array $dupes Array of File objects
 	 */
 	function showList( $dupes ) {
@@ -202,7 +201,6 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	}
 
 	/**
-	 *
 	 * @param Skin $skin
 	 * @param File $result
 	 * @return string HTML

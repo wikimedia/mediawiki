@@ -46,7 +46,6 @@ class ContentSecurityPolicy {
 	private $extraStyleSrc = [];
 
 	/**
-	 *
 	 * @note As a general rule, you would not construct this class directly
 	 *  but use the instance from OutputPage::getCSP()
 	 * @internal

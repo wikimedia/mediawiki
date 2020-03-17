@@ -77,8 +77,6 @@ class XmlDumpWriter {
 	private $contentMode;
 
 	/**
-	 * XmlDumpWriter constructor.
-	 *
 	 * @param int $contentMode WRITE_CONTENT or WRITE_STUB.
 	 * @param string $schemaVersion which schema version the generated XML should comply to.
 	 * One of the values from self::$supportedSchemas, using the XML_DUMP_SCHEMA_VERSION_XX

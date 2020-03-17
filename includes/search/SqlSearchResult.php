@@ -27,7 +27,6 @@ class SqlSearchResult extends RevisionSearchResult {
 	private $terms;
 
 	/**
-	 * SqlSearchResult constructor.
 	 * @param Title $title
 	 * @param string[] $terms list of parsed terms
 	 */

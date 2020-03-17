@@ -132,7 +132,6 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 
 	/**
-	 *
 	 * @param array $data
 	 * @return Status
 	 */

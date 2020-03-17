@@ -25,8 +25,6 @@ class DumpAsserter {
 	protected $schemaVersion;
 
 	/**
-	 * DumpAsserts constructor.
-	 *
 	 * @param string $schemaVersion see XML_DUMP_SCHEMA_VERSION_XX
 	 */
 	public function __construct( $schemaVersion ) {

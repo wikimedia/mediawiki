@@ -8063,7 +8063,6 @@ $wgExemptFromUserRobotsControl = null;
  */
 
 /**
- *
  *     WARNING: SECURITY THREAT - debug use only
  *
  * Disables many security checks in the API for debugging purposes.
