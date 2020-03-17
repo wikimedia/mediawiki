@@ -587,7 +587,7 @@ class ArchivedFile {
 		$title = $this->getTitle();
 
 		if ( !$user ) {
-			// TODO check callers and hard deprecate
+			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}
