@@ -3584,7 +3584,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function purgeSquid() {
 		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $this->getCdnUrls() ),
+			new CdnCacheUpdate( [ $this ] ),
 			DeferredUpdates::PRESEND
 		);
 	}

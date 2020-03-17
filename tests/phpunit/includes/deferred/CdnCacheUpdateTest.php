@@ -22,6 +22,7 @@ class CdnCacheUpdateTest extends MediaWikiTestCase {
 		$urls2[] = $title->getCanonicalURL( '?x=2' );
 		$urls2[] = $title->getCanonicalURL( '?x=3' );
 		$urls2[] = $title->getCanonicalURL( '?x=4' );
+		$urls2[] = $title;
 		$update2 = $this->newCdnCacheUpdate( $urls2 );
 		DeferredUpdates::addUpdate( $update2 );
 

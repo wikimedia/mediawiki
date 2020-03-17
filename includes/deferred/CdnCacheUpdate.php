@@ -28,11 +28,11 @@ use Wikimedia\Assert\Assert;
  * @ingroup Cache
  */
 class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
-	/** @var string[] Collection of URLs to purge */
+	/** @var (string|Title)[] Collection of URLs or Titles to purge */
 	private $urls = [];
 
 	/**
-	 * @param string[] $urlArr Collection of URLs to purge
+	 * @param (string|Title)[] $urlArr Collection of URLs or Titles to purge
 	 */
 	public function __construct( array $urlArr ) {
 		$this->urls = $urlArr;
@@ -54,13 +54,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @return CdnCacheUpdate
 	 */
 	public static function newFromTitles( $titles, $urlArr = [] ) {
-		( new LinkBatch( $titles ) )->execute();
-		/** @var Title $title */
-		foreach ( $titles as $title ) {
-			$urlArr = array_merge( $urlArr, $title->getCdnUrls() );
-		}
-
-		return new CdnCacheUpdate( $urlArr );
+		return new CdnCacheUpdate( array_merge( $titles, $urlArr ) );
 	}
 
 	/**
@@ -69,11 +63,29 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	public function doUpdate() {
 		global $wgCdnReboundPurgeDelay;
 
-		self::purge( $this->urls );
+		$urls = [];
+		$titles = [];
+		foreach ( $this->urls as $u ) {
+			if ( $u instanceof Title ) {
+				$titles[] = $u;
+			} else {
+				$urls[] = $u;
+			}
+		}
+
+		if ( $titles ) {
+			( new LinkBatch( $titles ) )->execute();
+			/** @var Title $title */
+			foreach ( $titles as $title ) {
+				$urls = array_merge( $urls, $title->getCdnUrls() );
+			}
+		}
+
+		self::purge( $urls );
 
 		if ( $wgCdnReboundPurgeDelay > 0 ) {
 			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob( [
-				'urls' => $this->urls,
+				'urls' => $urls,
 				'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
 			] ) );
 		}
