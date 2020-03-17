@@ -67,6 +67,8 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Mail\Emailer;
+use MediaWiki\Mail\IEmailer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Page\MovePageFactory;
@@ -247,6 +249,10 @@ return [
 		MWLBFactory::setDomainAliases( $instance );
 
 		return $instance;
+	},
+
+	'Emailer' => function ( MediaWikiServices $services ) : IEmailer {
+		return new Emailer();
 	},
 
 	'EventRelayerGroup' => function ( MediaWikiServices $services ) : EventRelayerGroup {
