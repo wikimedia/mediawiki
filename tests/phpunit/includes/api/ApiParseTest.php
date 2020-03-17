@@ -1,5 +1,8 @@
 <?php
 
+use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory;
+
 /**
  * @group API
  * @group Database
@@ -129,7 +132,7 @@ class ApiParseTest extends ApiTestCase {
 	 * @todo Should this code be in MediaWikiTestCase or something?
 	 */
 	protected function setupSkin() {
-		$factory = new SkinFactory();
+		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ) );
 		$factory->register( 'testing', 'Testing', function () {
 			$skin = $this->getMockBuilder( SkinFallback::class )
 				->setMethods( [ 'getDefaultModules', 'setupSkinUserCss' ] )

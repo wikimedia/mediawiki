@@ -1,5 +1,8 @@
 <?php
 
+use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory;
+
 class SkinTest extends MediaWikiTestCase {
 
 	/**
@@ -23,7 +26,9 @@ class SkinTest extends MediaWikiTestCase {
 			->setMethods( [ 'outputPage' ] )
 			->getMock();
 
-		$this->setService( 'SkinFactory', new SkinFactory() );
+		$this->setService( 'SkinFactory', new SkinFactory(
+			new ObjectFactory( $this->createMock( ContainerInterface::class ) )
+		) );
 		$this->setMwGlobals( 'wgSkipSkins', [] );
 
 		$this->assertEquals( [], $skin->getAllowedSkins() );
@@ -39,7 +44,9 @@ class SkinTest extends MediaWikiTestCase {
 		$noop = function () {
 		};
 
-		$sf = new SkinFactory();
+		$sf = new SkinFactory(
+			new ObjectFactory( $this->createMock( ContainerInterface::class ) )
+		);
 		$sf->register( 'foo', 'Foo', $noop );
 		$sf->register( 'apioutput', 'ApiOutput', $noop );
 		$sf->register( 'quux', 'Quux', $noop );
