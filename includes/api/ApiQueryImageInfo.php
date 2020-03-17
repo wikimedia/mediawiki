@@ -614,7 +614,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	/**
-	 *
 	 * @param array $metadata
 	 * @param ApiResult $result
 	 * @return array

@@ -9,7 +9,6 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	private $contentHandlerFactory;
 
 	/**
-	 * SpecialChangeContentModel constructor.
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @internal use @see SpecialPageFactory::getPage
 	 */

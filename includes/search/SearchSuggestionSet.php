@@ -30,7 +30,6 @@ class SearchSuggestionSet {
 	private $suggestions = [];
 
 	/**
-	 *
 	 * @var array
 	 */
 	private $pageMap = [];

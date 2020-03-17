@@ -103,7 +103,6 @@ abstract class ChangesListFilter {
 	protected $priority;
 
 	/**
-	 *
 	 * @var string
 	 */
 	protected $defaultHighlightColor;
