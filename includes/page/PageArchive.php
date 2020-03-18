@@ -395,8 +395,10 @@ class PageArchive {
 	 * Once restored, the items will be removed from the archive tables.
 	 * The deletion log will be updated with an undeletion notice.
 	 *
-	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
-	 * (depending what operations are attempted).
+	 * Within ::undeleteAsUser, this also sets Status objects, $this->fileStatus and
+	 * $this->revisionStatus (depending what operations are attempted).
+	 *
+	 * @deprecated since 1.35, use ::undeleteAsUser
 	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
@@ -411,6 +413,50 @@ class PageArchive {
 	 */
 	public function undelete( $timestamps, $comment = '', $fileVersions = [],
 		$unsuppress = false, User $user = null, $tags = null
+	) {
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		$result = $this->undeleteAsUser(
+			$timestamps,
+			$user,
+			$comment,
+			$fileVersions,
+			$unsuppress,
+			$tags
+		);
+		return $result;
+	}
+
+	/**
+	 * Restore the given (or all) text and file revisions for the page.
+	 * Once restored, the items will be removed from the archive tables.
+	 * The deletion log will be updated with an undeletion notice.
+	 *
+	 * This also sets Status objects, $this->fileStatus and $this->revisionStatus
+	 * (depending what operations are attempted).
+	 *
+	 * @since 1.35
+	 *
+	 * @param array $timestamps Pass an empty array to restore all revisions,
+	 *   otherwise list the ones to undelete.
+	 * @param User $user
+	 * @param string $comment
+	 * @param array $fileVersions
+	 * @param bool $unsuppress
+	 * @param string|string[]|null $tags Change tags to add to log entry
+	 *   ($user should be able to add the specified tags before this is called)
+	 * @return array|bool [ number of file revisions restored, number of image revisions
+	 *   restored, log message ] on success, false on failure.
+	 */
+	public function undeleteAsUser(
+		$timestamps,
+		User $user,
+		$comment = '',
+		$fileVersions = [],
+		$unsuppress = false,
+		$tags = null
 	) {
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
@@ -450,11 +496,6 @@ class PageArchive {
 			wfDebug( "Undelete: nothing undeleted...\n" );
 
 			return false;
-		}
-
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
 		}
 
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );
