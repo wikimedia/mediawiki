@@ -588,19 +588,13 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	public function provideNativeInserts() {
 		return [
 			[
-				'3.7.11',
+				'3.8.0',
 				'a',
 				[ 'a_1' => 1 ],
 				'INSERT INTO a (a_1) VALUES (1);'
 			],
 			[
-				'3.7.10',
-				'a',
-				[ 'a_1' => 1 ],
-				'INSERT INTO a (a_1) VALUES (1);'
-			],
-			[
-				'3.7.11',
+				'3.8.0',
 				'a',
 				[
 					[ 'a_1' => 2 ],
@@ -608,18 +602,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				],
 				'INSERT INTO a (a_1) VALUES (2),(3);'
 			],
-			[
-				'3.7.10',
-				'a',
-				[
-					[ 'a_1' => 2 ],
-					[ 'a_1' => 3 ]
-				],
-				'BEGIN;' .
-				'INSERT INTO a (a_1) VALUES (2);' .
-				'INSERT INTO a (a_1) VALUES (3);' .
-				'COMMIT;'
-			]
 		];
 	}
 
@@ -645,42 +627,22 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	public function provideNativeReplaces() {
 		return [
 			[
-				'3.7.11',
+				'3.8.0',
 				'a',
 				[ 'a_1' ],
 				[ 'a_1' => 1, 'a_2' => 'x' ],
-				'REPLACE INTO a (a_1,a_2) VALUES (\'1\',\'x\');'
+				'REPLACE INTO a (a_1,a_2) VALUES (1,\'x\');'
 			],
 			[
-				'3.7.10',
-				'a',
-				[ 'a_1' ],
-				[ 'a_1' => 1, 'a_2' => 'x' ],
-				'REPLACE INTO a (a_1,a_2) VALUES (\'1\',\'x\');'
-			],
-			[
-				'3.7.11',
+				'3.8.0',
 				'a',
 				[ 'a_1' ],
 				[
 					[ 'a_1' => 2, 'a_2' => 'x' ],
 					[ 'a_1' => 3, 'a_2' => 'y' ]
 				],
-				'REPLACE INTO a (a_1,a_2) VALUES (\'2\',\'x\'),(\'3\',\'y\');'
+				'REPLACE INTO a (a_1,a_2) VALUES (2,\'x\'),(3,\'y\');'
 			],
-			[
-				'3.7.10',
-				'a',
-				[ 'a_1' ],
-				[
-					[ 'a_1' => 2, 'a_2' => 'x' ],
-					[ 'a_1' => 3, 'a_2' => 'y' ]
-				],
-				'BEGIN;' .
-				'REPLACE INTO a (a_1,a_2) VALUES (\'2\',\'x\');' .
-				'REPLACE INTO a (a_1,a_2) VALUES (\'3\',\'y\');' .
-				'COMMIT;'
-			]
 		];
 	}
 }
