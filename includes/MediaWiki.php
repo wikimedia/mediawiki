@@ -615,7 +615,7 @@ class MediaWiki {
 		}
 
 		// Note that DeferredUpdates will catch and log an errors (T88312)
-		DeferredUpdates::addCallableUpdate( function () use ( $n ) {
+		DeferredUpdates::addUpdate( new TransactionRoundDefiningUpdate( function () use ( $n ) {
 			$logger = LoggerFactory::getInstance( 'runJobs' );
 			if ( $this->config->get( 'RunJobsAsync' ) ) {
 				// Send an HTTP request to the job RPC entry point if possible
@@ -628,7 +628,7 @@ class MediaWiki {
 			} else {
 				$this->triggerSyncJobs( $n );
 			}
-		} );
+		}, __METHOD__ ) );
 	}
 
 	/**
