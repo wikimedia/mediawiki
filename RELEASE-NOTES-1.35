@@ -399,6 +399,8 @@ because of Phabricator reports.
   "mediawiki.skinning.*" modules, or by making your skin's main styles
   module use the ResourceLoaderSkinModule class with the "legacy" attribute.
   See Vector and Monobook for examples.
+* Passing an ApiMain to the constructor of ApiResult is no longer supported.
+  This was deprecated in 1.25.
 * …
 
 === Deprecations in 1.35 ===
