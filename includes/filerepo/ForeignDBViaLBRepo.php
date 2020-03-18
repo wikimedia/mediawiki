@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -53,16 +52,10 @@ class ForeignDBViaLBRepo extends LocalRepo {
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}
 
-	/**
-	 * @return IDatabase
-	 */
 	function getMasterDB() {
 		return $this->getDBLoadBalancer()->getConnectionRef( DB_MASTER, [], $this->wiki );
 	}
 
-	/**
-	 * @return IDatabase
-	 */
 	function getReplicaDB() {
 		return $this->getDBLoadBalancer()->getConnectionRef( DB_REPLICA, [], $this->wiki );
 	}

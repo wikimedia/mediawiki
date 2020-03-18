@@ -97,6 +97,13 @@ class ForeignAPIFile extends File {
 		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype|extmetadata';
 	}
 
+	/**
+	 * @return ForeignAPIRepo|bool
+	 */
+	public function getRepo() {
+		return $this->repo;
+	}
+
 	// Dummy functions...
 
 	/**
