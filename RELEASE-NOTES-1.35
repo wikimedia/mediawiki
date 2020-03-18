@@ -609,6 +609,7 @@ because of Phabricator reports.
   - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
   - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
   - ::newKnownCurrent - use RevisionStore::getKnownCurrentRevision instead
+  - ::getParentLengths - use RevisionStore::getRevisionSizes instead
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
 * The JobRunner class has been converted to a service class.
   Direct construction is deprecated, use MediaWikiServices::getJobRunner.
@@ -618,6 +619,7 @@ because of Phabricator reports.
 * LogEventsList::typeAction accepts an optional right to check against as
   the fourth parameter. Specifying such a right is deprecated.
 * RevisionStore::loadRevisionFromTitle was deprecated.
+* RevisionStore::listRevisionSizes was deprecated.
 * SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
 * The "mediawiki.legacy.oldshared" module has been deprecated.
   Skins and extensions that are using this should copy its necessary CSS rules

@@ -242,7 +242,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 					}
 				}
 				$this->parentLens = MediaWikiServices::getInstance()->getRevisionStore()
-					->listRevisionSizes( $dbSecondary, $revIds );
+					->getRevisionSizes( $revIds );
 			}
 
 			foreach ( $res as $row ) {
