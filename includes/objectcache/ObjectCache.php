@@ -283,11 +283,19 @@ class ObjectCache {
 	 * a fresh instance. Whenever possible, use or inject the object
 	 * from MediaWikiServices::getLocalServerObjectCache() instead.
 	 *
+	 * NOTE: This method is called very early via Setup.php by ExtensionRegistry,
+	 * and thus must remain fairly standalone so as to not cause initialization
+	 * of the MediaWikiServices singleton.
+	 *
 	 * @since 1.35
 	 * @return BagOStuff
 	 */
 	public static function makeLocalServerCache() : BagOStuff {
-		$params = [ 'reportDupes' => false ];
+		$params = [
+			'reportDupes' => false,
+			// Even simple caches must use a keyspace (T247562)
+			'keyspace' => self::getDefaultKeyspace(),
+		];
 		if ( function_exists( 'apcu_fetch' ) ) {
 			// Make sure the APCu methods actually store anything
 			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
