@@ -616,6 +616,12 @@ because of Phabricator reports.
   to their own styles module. CologneBlue and Nostalgia skins serve as examples.
 * The "mediawiki.legacy.shared" module has been deprecated.
   Use the "mediawiki.skinning.*" modules, or ResourceLoaderSkinModule instead.
+* The following hooks, soft deprecated in 1.24, have been hard deprecated:
+  - APIQueryInfoTokens
+  - APIQueryRecentChangesTokens
+  - APIQueryRevisionsTokens
+  - APIQueryUsersTokens
+  - ApiTokensGetTokenTypes
 * …
 
 === Other changes in 1.35 ===
