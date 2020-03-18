@@ -26,6 +26,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\Database;
@@ -535,8 +536,10 @@ class MessageCache implements LoggerAwareInterface {
 			$cache['EXCESSIVE'][$row->page_title] = $row->page_latest;
 		}
 
-		// Set the text for small software-defined messages in the main cache map
+		// Can not inject the RevisionStore as it would break the installer since
+		// it instantiates MessageCache before the DB.
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		// Set the text for small software-defined messages in the main cache map
 		$revQuery = $revisionStore->getQueryInfo( [ 'page', 'user' ] );
 
 		// T231196: MySQL/MariaDB (10.1.37) can sometimes irrationally decide that querying `actor` then
@@ -1161,17 +1164,20 @@ class MessageCache implements LoggerAwareInterface {
 					self::WAN_TTL,
 					function ( $oldValue, &$ttl, &$setOpts ) use ( $dbKey, $code, $fname ) {
 						// Try loading the message from the database
-						$dbr = wfGetDB( DB_REPLICA );
-						$setOpts += Database::getCacheSetOptions( $dbr );
+						$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 						// Use newKnownCurrent() to avoid querying revision/user tables
 						$title = Title::makeTitle( NS_MEDIAWIKI, $dbKey );
-						$revision = Revision::newKnownCurrent( $dbr, $title );
+						// Injecting RevisionStore breaks installer since it
+						// instantiates MessageCache before DB.
+						$revision = MediaWikiServices::getInstance()
+							->getRevisionLookup()
+							->getKnownCurrentRevision( $title );
 						if ( !$revision ) {
 							// The wiki doesn't have a local override page. Cache absence with normal TTL.
 							// When overrides are created, self::replace() takes care of the cache.
 							return '!NONEXISTENT';
 						}
-						$content = $revision->getContent();
+						$content = $revision->getContent( SlotRecord::MAIN );
 						if ( $content ) {
 							$message = $this->getMessageTextFromContent( $content );
 						} else {

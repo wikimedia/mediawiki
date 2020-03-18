@@ -23,6 +23,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -216,11 +217,13 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 				return null;
 			}
 		} else {
-			$revision = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title );
+			$revision = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getKnownCurrentRevision( $title );
 			if ( !$revision ) {
 				return null;
 			}
-			$content = $revision->getContent( RevisionRecord::RAW );
+			$content = $revision->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 
 			if ( !$content ) {
 				$this->getLogger()->error(

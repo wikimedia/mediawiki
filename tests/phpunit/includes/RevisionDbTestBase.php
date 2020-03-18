@@ -1471,6 +1471,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		++$now;
 
 		// Get the new revision and make sure it is in the cache and correct
+		$this->hideDeprecated( 'Revision::newKnownCurrent' );
 		$newRev = Revision::newKnownCurrent( $db, $rev->getPage(), $rev->getId() );
 		$this->assertRevEquals( $rev, $newRev );
 
@@ -1487,13 +1488,14 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 		$pageId = $this->testPage->getId();
 
+		$this->hideDeprecated( 'Revision::newKnownCurrent' );
 		$newRev = Revision::newKnownCurrent( $db, $pageId, $rev->getId() );
 		$this->assertRevEquals( $rev, $newRev );
 	}
 
 	public function testNewKnownCurrent_returnsFalseWhenTitleDoesntExist() {
 		$db = wfGetDB( DB_MASTER );
-
+		$this->hideDeprecated( 'Revision::newKnownCurrent' );
 		$this->assertFalse( Revision::newKnownCurrent( $db, 0 ) );
 	}
 
