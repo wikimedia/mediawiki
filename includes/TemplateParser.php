@@ -45,7 +45,7 @@ class TemplateParser {
 	 */
 	protected $compileFlags;
 
-	private static $cacheVersion = '2.1.0';
+	private static $cacheVersion = '2.2.0';
 
 	/**
 	 * @param string|null $templateDir
@@ -120,6 +120,7 @@ class TemplateParser {
 				'lightncandy-compiled',
 				self::$cacheVersion,
 				$this->compileFlags,
+				$this->templateDir,
 				$templateName
 			);
 			$compiledTemplate = $this->forceRecompile ? null : $cache->get( $key );
