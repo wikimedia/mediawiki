@@ -21,11 +21,12 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 			'lightncandy-compiled',
 
 			// See TemplateParser::$cacheVersion
-			'2.1.0',
+			'2.2.0',
 
 			// See TemplateParser::__construct and TemplateParser::$compileFlags
 			LightnCandy::FLAG_ERROR_EXCEPTION | LightnCandy::FLAG_MUSTACHELOOKUP,
 
+			$this->templateDir,
 			self::TEMPLATE_NAME
 		);
 	}
