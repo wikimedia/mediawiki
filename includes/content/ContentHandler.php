@@ -1357,9 +1357,10 @@ abstract class ContentHandler {
 
 		if ( empty( $parserOutput ) ) {
 			$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
+			$revision = $this->latestRevision( $page );
 			$parserOutput =
 				$renderer->getRenderedRevision(
-					$page->getRevision()->getRevisionRecord(),
+					$revision->getRevisionRecord(),
 					$parserOptions
 				)->getRevisionParserOutput();
 			if ( $cache ) {
@@ -1367,6 +1368,22 @@ abstract class ContentHandler {
 			}
 		}
 		return $parserOutput;
+	}
+
+	private function latestRevision( WikiPage $page ): Revision {
+		$revision = $page->getRevision();
+		if ( $revision == null ) {
+			// If the content represents a brand new page it's possible
+			// we need to fetch it from the master.
+			$page->loadPageData( WikiPage::READ_LATEST );
+			$revision = $page->getRevision();
+			if ( $revision == null ) {
+				$text = $page->getTitle()->getPrefixedText();
+				throw new MWException(
+					"No revision could be loaded for page: $text" );
+			}
+		}
+		return $revision;
 	}
 
 	/**
