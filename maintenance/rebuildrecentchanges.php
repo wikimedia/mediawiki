@@ -374,7 +374,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * @param ILBFactory $lbFactory
 	 */
 	private function rebuildRecentChangesTablePass4( ILBFactory $lbFactory ) {
-		global $wgUseRCPatrol, $wgMiserMode;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgMiserMode;
 
 		$dbw = $this->getDB( DB_MASTER );
 
@@ -384,8 +384,8 @@ class RebuildRecentchanges extends Maintenance {
 		# @NOTE: users with 'bot' rights choose when edits are bot edits or not. That information
 		# may be lost at this point (aside from joining on the patrol log table entries).
 		$botgroups = [ 'bot' ];
-		$autopatrolgroups = $wgUseRCPatrol ? MediaWikiServices::getInstance()
-			->getPermissionManager()
+		$autopatrolgroups = ( $wgUseRCPatrol || $wgUseNPPatrol ) ?
+			MediaWikiServices::getInstance()->getPermissionManager()
 			->getGroupsWithPermission( 'autopatrol' ) : [];
 
 		# Flag our recent bot edits
@@ -463,15 +463,21 @@ class RebuildRecentchanges extends Maintenance {
 			if ( $patrolusers ) {
 				$actorQuery = ActorMigration::newMigration()->getWhere( $dbw, 'rc_user', $patrolusers, false );
 				foreach ( $actorQuery['orconds'] as $cond ) {
+					$conds = [
+						$cond,
+						'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
+						'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
+						'rc_patrolled' => 0
+					];
+
+					if ( !$wgUseRCPatrol ) {
+						$conds['rc_source'] = RecentChange::SRC_NEW;
+					}
+
 					$dbw->update(
 						'recentchanges',
 						[ 'rc_patrolled' => 2 ],
-						[
-							$cond,
-							'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
-							'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
-							'rc_patrolled' => 0
-						],
+						$conds,
 						__METHOD__
 					);
 					$lbFactory->waitForReplication();
