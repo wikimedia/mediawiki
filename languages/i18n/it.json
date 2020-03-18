@@ -947,7 +947,7 @@
 	"rev-suppressed-no-diff": "Non è possibile visualizzare questo confronto tra versioni perché una delle versioni è stata '''cancellata'''.",
 	"rev-deleted-unhide-diff": "Una delle versioni di questo confronto tra versioni è stata <strong>cancellata</strong>.\nConsulta il [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} registro delle cancellazioni] per ulteriori dettagli.\nAgli amministratori è ancora consentito [$1 visualizzare il confronto] se necessario.",
 	"rev-suppressed-unhide-diff": "Una delle versioni di questo confronto di versioni è stata '''rimossa'''.\nPotrebbero esserci dettagli nel [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log delle rimozioni].\nIn quanto amministratore puoi ancora [$1 visualizzare questo confronto di versioni], se vuoi procedere.",
-	"rev-deleted-diff-view": "Una delle due versioni in questo confronto è stata '''cancellata'''.\nIn quanto amministratore, puoi visualizzare questo confronto di versioni; potrebbero esserci dettagli nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log delle cancellazioni].",
+	"rev-deleted-diff-view": "Una delle due versioni in questo confronto è stata <strong>cancellata</strong>.\nPuoi visualizzare questo confronto di versioni; potrebbero esserci dettagli nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log delle cancellazioni].",
 	"rev-suppressed-diff-view": "Una delle versioni di questo confronto di versioni è stata '''rimossa'''.\nIn quanto amministratore puoi visualizzare questo confronto di versioni; potrebbero esserci dettagli nel [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log delle rimozioni].",
 	"rev-delundel": "mostra/nascondi",
 	"rev-showdeleted": "mostra",

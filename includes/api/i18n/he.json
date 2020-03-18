@@ -146,7 +146,7 @@
 	"apihelp-edit-param-minor": "סימון העריכה בתור משנית.",
 	"apihelp-edit-param-notminor": "לא לסמן את העריכה הזאת בתור משנית אפילו כשמופעלת ההעדפה \"{{int:tog-minordefault}}\".",
 	"apihelp-edit-param-bot": "סימון עריכה זו כעריכת בוט.",
-	"apihelp-edit-param-baserevid": "מזהה גרסת הבסיס, משמש לזיהוי התנגשויות עריכה. אפשר להשיג אותו באמצעות [Special:ApiHelp/query+revisions|action=query&prop=revisions]]. התנגשויות עצמיות גורמות לעריכה להיכשל אלא אם מוגדר basetimestamp.",
+	"apihelp-edit-param-baserevid": "מזהה גרסת הבסיס, משמש לזיהוי התנגשויות עריכה. אפשר להשיג אותו באמצעות [[Special:ApiHelp/query+revisions|action=query&prop=revisions]]. התנגשויות עצמיות גורמות לעריכה להיכשל אלא אם מוגדר basetimestamp.",
 	"apihelp-edit-param-basetimestamp": "חותם־זמן של גרסת הבסיס, משמש לזיהוי התנגשויות עריכה. אפשר לקבל אותו באמצעות [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]]. התנגשויות עצמיות אינן בשימוש.",
 	"apihelp-edit-param-starttimestamp": "חותם־הזמן של תחילת תהליך העריכה, משמש לזיהוי התנגשויות. אפשר לקבל ערך מתאים באמצעות <var>[[Special:ApiHelp/main|curtimestamp]]</var> בעת תחילת תהליך העריכה (למשל בזמן טעינת תוכן הדף לעריכה).",
 	"apihelp-edit-param-recreate": "לעקוף את כל השגיאות על כך שהדף נמחק בינתיים.",
