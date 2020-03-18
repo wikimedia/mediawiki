@@ -52,7 +52,7 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 	}
 
 	public function testReadDenied() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/user/joe/hello' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/hello' ) ] );
 		$router = $this->createRouter( [ 'read' => false ], $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 403, $response->getStatusCode() );
@@ -64,7 +64,7 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 	}
 
 	public function testReadAllowed() {
-		$request = new RequestData( [ 'uri' => new Uri( '/rest/user/joe/hello' ) ] );
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/hello' ) ] );
 		$router = $this->createRouter( [ 'read' => true ], $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );

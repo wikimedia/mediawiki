@@ -1,9 +1,5 @@
 [
 	{
-		"path": "/user/{name}/hello",
-		"class": "MediaWiki\\Rest\\Handler\\HelloHandler"
-	},
-	{
 		"path": "/v1/page/{title}/history",
 		"class": "MediaWiki\\Rest\\Handler\\PageHistoryHandler",
 		"services": [

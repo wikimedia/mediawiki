@@ -47,7 +47,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 
 	public function testWrongMethod() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/user/joe/hello' ),
+			'uri' => new Uri( '/rest/mock/RouterTest/hello' ),
 			'method' => 'OPTIONS'
 		] );
 		$router = $this->createRouter( $request );
@@ -59,7 +59,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 
 	public function testHeadToGet() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/user/joe/hello' ),
+			'uri' => new Uri( '/rest/mock/RouterTest/hello' ),
 			'method' => 'HEAD'
 		] );
 		$router = $this->createRouter( $request );
