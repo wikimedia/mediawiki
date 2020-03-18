@@ -23,6 +23,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * @ingroup API
@@ -95,21 +96,24 @@ class ApiParse extends ApiBase {
 		// Return result
 		$result = $this->getResult();
 
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		if ( $oldid !== null || $pageid !== null || $page !== null ) {
 			if ( $this->section === 'new' ) {
 				$this->dieWithError( 'apierror-invalidparammix-parse-new-section', 'invalidparammix' );
 			}
 			if ( $oldid !== null ) {
 				// Don't use the parser cache
-				$rev = Revision::newFromId( $oldid );
+				$rev = $revisionLookup->getRevisionById( $oldid );
 				if ( !$rev ) {
 					$this->dieWithError( [ 'apierror-nosuchrevid', $oldid ] );
 				}
 
-				$this->checkTitleUserPermissions( $rev->getTitle(), 'read' );
-				if ( !RevisionRecord::userCanBitfield(
-					$rev->getVisibility(),
+				$revLinkTarget = $rev->getPageAsLinkTarget();
+				$this->checkTitleUserPermissions( $revLinkTarget, 'read' );
+
+				if ( !$rev->audienceCan(
 					RevisionRecord::DELETED_TEXT,
+					RevisionRecord::FOR_THIS_USER,
 					$this->getUser()
 				) ) {
 					$this->dieWithError(
@@ -117,7 +121,7 @@ class ApiParse extends ApiBase {
 					);
 				}
 
-				$titleObj = $rev->getTitle();
+				$titleObj = Title::newFromLinkTarget( $revLinkTarget );
 				$wgTitle = $titleObj;
 				$pageObj = WikiPage::factory( $titleObj );
 				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
@@ -177,12 +181,12 @@ class ApiParse extends ApiBase {
 			}
 			$revid = $params['revid'];
 			if ( $revid !== null ) {
-				$rev = Revision::newFromId( $revid );
+				$rev = $revisionLookup->getRevisionById( $revid );
 				if ( !$rev ) {
 					$this->dieWithError( [ 'apierror-nosuchrevid', $revid ] );
 				}
 				$pTitleObj = $titleObj;
-				$titleObj = $rev->getTitle();
+				$titleObj = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 				if ( $titleProvided ) {
 					if ( !$titleObj->equals( $pTitleObj ) ) {
 						$this->addWarning( [ 'apierror-revwrongpage', $rev->getId(),
@@ -564,7 +568,7 @@ class ApiParse extends ApiBase {
 	 * @param ParserOptions $popts
 	 * @param bool $suppressCache
 	 * @param int $pageId
-	 * @param Revision|null $rev
+	 * @param RevisionRecord|null $rev
 	 * @param bool $getContent
 	 * @return ParserOutput
 	 */
@@ -576,7 +580,9 @@ class ApiParse extends ApiBase {
 
 		if ( $getContent || $this->section !== false || $isDeleted ) {
 			if ( $rev ) {
-				$this->content = $rev->getContent( RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				$this->content = $rev->getContent(
+					SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $this->getUser()
+				);
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-revid', $revId ] );
 				}
