@@ -889,6 +889,11 @@ class Sanitizer {
 				}
 			}
 
+			if ( $attribute === 'tabindex' && $value !== '0' ) {
+				// Only allow tabindex of 0, which is useful for accessibility.
+				continue;
+			}
+
 			// If this attribute was previously set, override it.
 			// Output should only have one attribute of each name.
 			$out[$attribute] = $value;
@@ -1772,6 +1777,7 @@ class Sanitizer {
 			'lang',
 			'dir',
 			'title',
+			'tabindex',
 
 			# WAI-ARIA
 			'aria-describedby',
