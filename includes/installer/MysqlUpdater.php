@@ -414,6 +414,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.35
 			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
+			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
 		];
 	}
 
