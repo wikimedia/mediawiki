@@ -11,6 +11,17 @@ use Wikimedia\ObjectFactory;
 class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	use FileBackendGroupTestTrait;
 
+	protected function setUp() : void {
+		parent::setUp();
+		// This config var is not yet dependency-injected.
+		// FileBackendGroup has a default option 'profiler', that holds a closure
+		// that calls Profiler::instance(), which doesn't use service wiring yet.
+		// Without this, the variable would be undefined there.
+		// TODO: Remove this once Profiler uses service wiring and is injected
+		// into FileBackendGroup.
+		$GLOBALS['wgProfiler'] = [];
+	}
+
 	private static function getWikiID() {
 		return 'mywiki';
 	}
