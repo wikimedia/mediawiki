@@ -61,5 +61,5 @@ $wgParser
 $wgRequest
 	WebRequest object, to get request data
 
-$wgMemc, $messageMemc
+$wgMemc
 	Object caches
