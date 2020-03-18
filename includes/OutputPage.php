@@ -2941,7 +2941,6 @@ class OutputPage extends ContextSource {
 			$this->addModules( [
 				'user',
 				'user.options',
-				'user.tokens',
 			] );
 			$this->addModuleStyles( [
 				'site.styles',

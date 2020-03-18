@@ -177,7 +177,7 @@ class WatchAction extends FormAction {
 		if ( $action != 'unwatch' ) {
 			$action = 'watch';
 		}
-		// Match ApiWatch and ResourceLoaderUserTokensModule
+		// This must match ApiWatch and ResourceLoaderUserOptionsModule
 		return $user->getEditToken( $action );
 	}
 
