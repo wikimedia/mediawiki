@@ -1118,6 +1118,7 @@
 	"badsiglength": "Din signatur er for lang. Den må højst indeholde $1 {{PLURAL:$1|tegn}}.",
 	"yourgender": "Hvordan foretrækker du at blive beskrevet?",
 	"gender-unknown": "Når du nævnes, vil softwaren bruge kønsneutrale ord, når det er muligt",
+	"gender-notknown": "De redigerer wikisider",
 	"gender-male": "Han redigerer wikisider",
 	"gender-female": "Hun redigerer wikisider",
 	"prefs-help-gender": "Angivelse af denne indstilling er valgfri.\nDet bruges af programmet til at lave kønskorrekte tekster på nogle sprog.\nInformationen vil være offentlig.",

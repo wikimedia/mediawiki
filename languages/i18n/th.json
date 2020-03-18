@@ -1778,7 +1778,7 @@
 	"filehist-filesize": "ขนาดไฟล์",
 	"filehist-comment": "ความเห็น",
 	"imagelinks": "การใช้ไฟล์",
-	"linkstoimage": "{{PLURAL:$1|หน้า|$1 หน้า}}ต่อไปนี้ใช้ไฟล์นี้:",
+	"linkstoimage": "{{PLURAL:$1|$1 หน้า}}ต่อไปนี้ใช้ไฟล์นี้:",
 	"linkstoimage-more": "มีหน้าที่ใช้ไฟล์นี้มากกว่า $1 หน้า\nรายการต่อไปนี้แสดงหน้าที่ใช้ไฟล์นี้ $1 หน้าแรกเท่านั้น\nมี[[Special:WhatLinksHere/$2|รายการเต็ม]]",
 	"nolinkstoimage": "ไม่มีหน้าที่ใช้ไฟล์นี้",
 	"morelinkstoimage": "ดู[[Special:WhatLinksHere/$1|การเชื่อมโยง]]มายังไฟล์นี้เพิ่มเติม",
