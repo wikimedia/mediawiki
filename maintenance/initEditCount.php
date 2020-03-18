@@ -30,12 +30,10 @@ class InitEditCount extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'quick', 'Force the update to be done in a single query' );
-		$this->addOption( 'background', 'Force replication-friendly mode; may be inefficient but
-		avoids locking tables or lagging replica DBs with large updates;
-		calculates counts on a replica DB if possible.
-
-Background mode will be automatically used if multiple servers are listed
-in the load balancer, usually indicating a replication environment.' );
+		$this->addOption( 'background', 'Force replication-friendly mode; may be inefficient but avoids'
+		. 'locking tables or lagging replica DBs with large updates; calculates counts on a replica DB'
+		. 'if possible. Background mode will be automatically used if multiple servers are listed in the'
+		. 'load balancer, usually indicating a replication environment.' );
 		$this->addDescription( 'Batch-recalculate user_editcount fields from the revision table' );
 	}
 
