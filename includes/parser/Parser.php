@@ -3728,9 +3728,10 @@ class Parser {
 	 * @return Revision|bool False if missing
 	 */
 	public static function statelessFetchRevision( Title $title, $parser = false ) {
-		$rev = Revision::newKnownCurrent( wfGetDB( DB_REPLICA ), $title );
-
-		return $rev;
+		$revRecord = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getKnownCurrentRevision( $title );
+		return $revRecord ? new Revision( $revRecord ) : false;
 	}
 
 	/**

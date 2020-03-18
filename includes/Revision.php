@@ -1121,8 +1121,10 @@ class Revision implements IDBAccessObject {
 	 * @param int $revId Known current revision of this page. Determined automatically if not given.
 	 * @return Revision|bool Returns false if missing
 	 * @since 1.28
+	 * @deprecated since 1.31 and hard deprecated since 1.35
 	 */
 	public static function newKnownCurrent( IDatabase $db, $pageIdOrTitle, $revId = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$title = $pageIdOrTitle instanceof Title
 			? $pageIdOrTitle
 			: Title::newFromID( $pageIdOrTitle );
