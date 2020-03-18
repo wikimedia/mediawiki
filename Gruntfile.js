@@ -1,7 +1,5 @@
 /* eslint-env node */
-
 module.exports = function ( grunt ) {
-
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
 		karmaProxy = {};
@@ -103,12 +101,8 @@ module.exports = function ( grunt ) {
 					ChromeCustom: {
 						base: 'ChromeHeadless',
 						// Chrome requires --no-sandbox in Docker/CI.
-						// Newer CI images expose CHROMIUM_FLAGS which sets this (and
-						// anything else it might need) automatically. Older CI images,
-						// (including Quibble for MW) don't set it yet.
-						flags: ( process.env.CHROMIUM_FLAGS ||
-							( process.env.ZUUL_PROJECT ? '--no-sandbox' : '' )
-						).split( ' ' )
+						// WMF CI images expose CHROMIUM_FLAGS which sets that.
+						flags: ( process.env.CHROMIUM_FLAGS || '' ).split( ' ' )
 					}
 				},
 				proxies: karmaProxy,
@@ -149,16 +143,19 @@ module.exports = function ( grunt ) {
 	} );
 
 	grunt.registerTask( 'assert-mw-env', function () {
+		var ok = true;
 		if ( !process.env.MW_SERVER ) {
 			grunt.log.error( 'Environment variable MW_SERVER must be set.\n' +
 				'Set this like $wgServer, e.g. "http://localhost"'
 			);
+			ok = false;
 		}
 		if ( !process.env.MW_SCRIPT_PATH ) {
 			grunt.log.error( 'Environment variable MW_SCRIPT_PATH must be set.\n' +
 				'Set this like $wgScriptPath, e.g. "/w"' );
+			ok = false;
 		}
-		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
+		return ok;
 	} );
 
 	grunt.registerTask( 'minify', 'svgmin' );
