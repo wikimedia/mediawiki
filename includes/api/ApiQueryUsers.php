@@ -78,7 +78,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$this->tokenFunctions = [
 			'userrights' => [ self::class, 'getUserrightsToken' ],
 		];
-		Hooks::run( 'APIQueryUsersTokens', [ &$this->tokenFunctions ] );
+		Hooks::run( 'APIQueryUsersTokens', [ &$this->tokenFunctions ], '1.24' );
 
 		return $this->tokenFunctions;
 	}

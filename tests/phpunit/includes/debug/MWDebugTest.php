@@ -91,9 +91,7 @@ class MWDebugTest extends MediaWikiTestCase {
 		$context = new RequestContext();
 		$context->setRequest( $request );
 
-		$apiMain = new ApiMain( $context );
-
-		$result = new ApiResult( $apiMain );
+		$result = new ApiResult( false );
 
 		MWDebug::appendDebugInfoToApiResult( $context, $result );
 
