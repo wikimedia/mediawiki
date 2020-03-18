@@ -57,7 +57,6 @@
 		<exclude-pattern>includes/AutoLoader\.php</exclude-pattern>
 		<exclude-pattern>includes/CategoryViewer\.php</exclude-pattern>
 		<exclude-pattern>includes/ProtectionForm\.php</exclude-pattern>
-		<exclude-pattern>includes/SiteConfiguration\.php</exclude-pattern>
 		<exclude-pattern>includes/Title\.php</exclude-pattern>
 		<exclude-pattern>includes/TitleArrayFromResult\.php</exclude-pattern>
 	</rule>
