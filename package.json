@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "grunt minify",
-    "test": "grunt lint",
+    "test": "grunt lint && npm run doc",
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
