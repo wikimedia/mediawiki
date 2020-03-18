@@ -20,6 +20,7 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageEditStash;
 
 /**
@@ -91,11 +92,13 @@ class ApiStashEdit extends ApiBase {
 		$page = WikiPage::factory( $title );
 		if ( $page->exists() ) {
 			// Page exists: get the merged content with the proposed change
-			$baseRev = Revision::newFromPageId( $page->getId(), $params['baserevid'] );
+			$baseRev = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionByPageId( $page->getId(), $params['baserevid'] );
 			if ( !$baseRev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['baserevid'] ] );
 			}
-			$currentRev = $page->getRevision();
+			$currentRev = $page->getRevisionRecord();
 			if ( !$currentRev ) {
 				$this->dieWithError( [ 'apierror-missingrev-pageid', $page->getId() ], 'missingrev' );
 			}
@@ -114,8 +117,8 @@ class ApiStashEdit extends ApiBase {
 				$content = $editContent;
 			} else {
 				// Merge the edit into the current version
-				$baseContent = $baseRev->getContent();
-				$currentContent = $currentRev->getContent();
+				$baseContent = $baseRev->getContent( SlotRecord::MAIN );
+				$currentContent = $currentRev->getContent( SlotRecord::MAIN );
 				if ( !$baseContent || !$currentContent ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ], 'missingrev' );
 				}
