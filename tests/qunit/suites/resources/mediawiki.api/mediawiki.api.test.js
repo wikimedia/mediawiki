@@ -167,9 +167,9 @@
 			'{ "query": { "tokens": { "testuncachedtoken": "good" } } }'
 		] );
 
-		// Get a token of a type that isn't prepopulated by user.tokens.
+		// Get a token of a type that isn't prepopulated by mw.user.tokens.
 		// Could use "block" or "delete" here, but those could in theory
-		// be added to user.tokens, use a fake one instead.
+		// be added to mw.user.tokens, so use a fake one instead.
 		api.getToken( 'testuncached' )
 			.done( function ( token ) {
 				assert.strictEqual( token, 'good', 'The token' );

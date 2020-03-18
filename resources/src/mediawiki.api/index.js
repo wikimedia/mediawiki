@@ -50,12 +50,12 @@
 		return action;
 	}
 
-	// Pre-populate with fake ajax promises to save http requests for tokens
-	// we already have on the page via the user.tokens module (T36733).
+	// Pre-populate with fake ajax promises to avoid HTTP requests for tokens that
+	// we already have on the page from the embedded user.options module (T36733).
 	promises[ defaultOptions.ajax.url ] = {};
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( mw.user.tokens.get(), function ( key, value ) {
-		// This requires #getToken to use the same key as user.tokens.
+		// This requires #getToken to use the same key as mw.user.tokens.
 		// Format: token-type + "Token" (eg. csrfToken, patrolToken, watchToken).
 		promises[ defaultOptions.ajax.url ][ key ] = $.Deferred()
 			.resolve( value )

@@ -7,8 +7,7 @@
  */
 ( function () {
 	if ( !mw.user.tokens.exists( 'patrolToken' ) ) {
-		// Current user has no patrol right, or an old cached version of user.tokens
-		// that didn't have patrolToken yet.
+		// Current user has no patrol right.
 		return;
 	}
 	$( function () {
