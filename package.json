@@ -4,7 +4,7 @@
     "api-testing": "npm run api-testing-lint && mocha --timeout 0 --recursive tests/api-testing",
     "api-testing-lint": "eslint --cache --max-warnings 0 tests/api-testing/**",
     "build": "grunt minify",
-    "test": "grunt lint",
+    "test": "grunt lint && npm run doc",
     "qunit": "grunt qunit",
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck",
