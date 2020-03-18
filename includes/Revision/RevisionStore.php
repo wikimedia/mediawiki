@@ -2885,30 +2885,13 @@ class RevisionStore
 	 *         of the corresponding revision.
 	 */
 	public function getRevisionSizes( array $revIds ) {
-		return $this->listRevisionSizes( $this->getDBConnectionRef( DB_REPLICA ), $revIds );
-	}
-
-	/**
-	 * Do a batched query for the sizes of a set of revisions.
-	 *
-	 * MCR migration note: this replaces Revision::getParentLengths
-	 *
-	 * @deprecated use RevisionStore::getRevisionSizes instead.
-	 *
-	 * @param IDatabase $db
-	 * @param int[] $revIds
-	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
-	 *         of the corresponding revision.
-	 */
-	public function listRevisionSizes( IDatabase $db, array $revIds ) {
-		$this->checkDatabaseDomain( $db );
-
+		$dbr = $this->getDBConnectionRef( DB_REPLICA );
 		$revLens = [];
 		if ( !$revIds ) {
 			return $revLens; // empty
 		}
 
-		$res = $db->select(
+		$res = $dbr->select(
 			'revision',
 			[ 'rev_id', 'rev_len' ],
 			[ 'rev_id' => $revIds ],
@@ -2920,6 +2903,23 @@ class RevisionStore
 		}
 
 		return $revLens;
+	}
+
+	/**
+	 * Do a batched query for the sizes of a set of revisions.
+	 *
+	 * MCR migration note: this replaces Revision::getParentLengths
+	 *
+	 * @deprecated since 1.35 use RevisionStore::getRevisionSizes instead.
+	 *
+	 * @param IDatabase $db
+	 * @param int[] $revIds
+	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
+	 *         of the corresponding revision.
+	 */
+	public function listRevisionSizes( IDatabase $db, array $revIds ) {
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getRevisionSizes( $revIds );
 	}
 
 	/**

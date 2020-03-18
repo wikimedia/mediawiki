@@ -320,13 +320,15 @@ class Revision implements IDBAccessObject {
 	 * Do a batched query to get the parent revision lengths
 	 *
 	 * @deprecated in 1.31, use RevisionStore::getRevisionSizes instead.
+	 * Hard deprecated since 1.35.
 	 *
 	 * @param IDatabase $db
 	 * @param array $revIds
 	 * @return array
 	 */
 	public static function getParentLengths( $db, array $revIds ) {
-		return self::getRevisionStore()->listRevisionSizes( $db, $revIds );
+		wfDeprecated( __METHOD__, '1.31' );
+		return self::getRevisionStore()->getRevisionSizes( $revIds );
 	}
 
 	/**

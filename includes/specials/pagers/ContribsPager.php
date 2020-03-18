@@ -86,9 +86,6 @@ class ContribsPager extends RangeChronologicalPager {
 
 	private $preventClickjacking = false;
 
-	/** @var IDatabase */
-	private $mDbSecondary;
-
 	/**
 	 * @var array
 	 */
@@ -141,9 +138,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
 
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
-		// with extra user based indexes or partioning by user. The additional metadata
-		// queries should use a regular replica DB since the lookup pattern is not all by user.
-		$this->mDbSecondary = wfGetDB( DB_REPLICA ); // any random replica DB
+		// with extra user based indexes or partioning by user.
 		$this->mDb = wfGetDB( DB_REPLICA, 'contributions' );
 		$this->templateParser = new TemplateParser();
 	}
@@ -508,10 +503,9 @@ class ContribsPager extends RangeChronologicalPager {
 			}
 		}
 		# Fetch rev_len for revisions not already scanned above
-		$this->mParentLens += Revision::getParentLengths(
-			$this->mDbSecondary,
-			array_diff( $parentRevIds, array_keys( $this->mParentLens ) )
-		);
+		$this->mParentLens += MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->getRevisionSizes( array_diff( $parentRevIds, array_keys( $this->mParentLens ) ) );
 		$batch->execute();
 		$this->mResult->seek( 0 );
 	}
