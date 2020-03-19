@@ -24,6 +24,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -151,5 +152,23 @@ class Hooks {
 		$options = $deprecatedVersion ? [ 'deprecatedVersion' => $deprecatedVersion ] : [];
 		$options[ 'abortable' ] = false;
 		return $hookContainer->run( $event, $args, $options );
+	}
+
+	/**
+	 * Get a HookRunner instance for calling hooks using the new interfaces.
+	 *
+	 * Classes using dependency injection should instead receive a HookContainer
+	 * and construct a private HookRunner from it.
+	 *
+	 * Classes without dependency injection may alternatively use
+	 * ProtectedHookAccessorTrait, a trait which provides getHookRunner() as a
+	 * protected method.
+	 *
+	 * @since 1.35
+	 *
+	 * @return HookRunner
+	 */
+	public static function runner() {
+		return new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 	}
 }
