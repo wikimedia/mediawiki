@@ -1860,7 +1860,7 @@ class HTMLForm extends ContextSource {
 	 * @return string Plain text (not HTML-escaped)
 	 */
 	public function getLegend( $key ) {
-		return $this->msg( "{$this->mMessagePrefix}-$key" )->text();
+		return $this->msg( $this->mMessagePrefix ? "{$this->mMessagePrefix}-$key" : $key )->text();
 	}
 
 	/**
