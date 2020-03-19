@@ -114,7 +114,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 *
 	 * @return WikiPage The page that was just edited, useful for getting the edit's rev_id, etc.
 	 */
-	protected function assertEdit( $title, $baseText, $user = null, array $edit,
+	protected function assertEdit( $title, $baseText, $user, array $edit,
 		$expectedCode = null, $expectedText = null, $message = null
 	) {
 		if ( is_string( $title ) ) {

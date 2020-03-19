@@ -56,7 +56,7 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	 * @param string $wikiLangCode Wiki language code
 	 * @param string|null $lang lang=... URL parameter
 	 */
-	public function testGetLanguageForRendering( $expected = null, $wikiLangCode, $lang = null ) {
+	public function testGetLanguageForRendering( $expected, $wikiLangCode, $lang = null ) {
 		$params = [];
 		if ( $lang !== null ) {
 			$params['lang'] = $lang;

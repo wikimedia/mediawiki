@@ -352,7 +352,7 @@ trait FileBackendGroupTestTrait {
 	 * @param string|null $expected Name of backend that will be returned from 'get', or null
 	 * @param string $storagePath
 	 */
-	public function testBackendFromPath( $expected = null, $storagePath ) {
+	public function testBackendFromPath( $expected, $storagePath ) {
 		$obj = $this->newObj( [ 'FileBackends' => [
 			[ 'name' => '', 'class' => stdclass::class, 'lockManager' => 'fsLockManager' ],
 			[ 'name' => 'a', 'class' => stdclass::class, 'lockManager' => 'fsLockManager' ],
