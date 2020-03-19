@@ -137,6 +137,7 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 	 */
 	public function testUndeleteRevisions() {
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
+		// TODO: Hide deprecated ArchivedPage::undelete, later replace with ::undeleteAsUser
 
 		// First make sure old revisions are archived
 		$dbr = wfGetDB( DB_REPLICA );
