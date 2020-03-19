@@ -74,6 +74,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   for SQL Server was removed in 1.34. (T230418)
 * $wgProfileOnly — This setting, deprecated in 1.23, was removed. The profiler
   output should instead be configured via $wgProfiler['output'].
+* $wgProfileLimit - This setting, deprecated in 1.25, was removed.
+  Set $wgProfiler['threshold'] instead.
 * $wgDebugTimestamps - This setting was removed. It affected the text output
   produced via $wgDebugComments, if enabled.
 * $wgSkipSkin - This setting, deprecated in 1.23, was removed. To disable a

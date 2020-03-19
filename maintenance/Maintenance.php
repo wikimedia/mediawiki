@@ -834,20 +834,20 @@ abstract class Maintenance {
 	 * Activate the profiler (assuming $wgProfiler is set)
 	 */
 	protected function activateProfiler() {
-		global $wgProfiler, $wgProfileLimit, $wgTrxProfilerLimits;
+		global $wgProfiler, $wgTrxProfilerLimits;
 
 		$output = $this->getOption( 'profiler' );
 		if ( !$output ) {
 			return;
 		}
 
-		if ( is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
+		if ( isset( $wgProfiler['class'] ) ) {
 			$class = $wgProfiler['class'];
 			/** @var Profiler $profiler */
 			$profiler = new $class(
 				[ 'sampling' => 1, 'output' => [ $output ] ]
 					+ $wgProfiler
-					+ [ 'threshold' => $wgProfileLimit ]
+					+ [ 'threshold' => 0.0 ]
 			);
 			$profiler->setAllowOutput();
 			Profiler::replaceStubInstance( $profiler );

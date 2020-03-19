@@ -6368,46 +6368,48 @@ $wgDeprecationReleaseLimit = false;
  *
  * To use a profiler, set $wgProfiler in LocalSetings.php.
  *
- * Example:
+ * Options:
+ *
+ * - class        The Profiler subclass to use. `string`
+ *                Default: ProfilerStub.
+ * - sampling     Only enable the profiler on one in this many requests. `int`
+ *                For requests that are not in the sampling,
+ *                the 'class' option will be replaced with ProfilerStub.
+ *                Default: 1.
+ * - threshold    Only process the recorded data if the total ellapsed
+ *                time for a request is more than this number of seconds. `float`
+ *                Default: 0.0.
+ * - output       ProfilerOutput subclass or subclasess to use. `string|string[]`
+ *
+ *                The output classes available in MediaWiki core are:
+ *                ProfilerOutputText, ProfilerOutputStats, and ProfilerOutputDump.
+ *
+ *                ProfilerOutputText: outputs profiling data in the web page body as
+ *                a comment.  You can make the profiling data in HTML render visibly
+ *                instead by setting the 'visible' configuration flag.
+ *
+ *                ProfilerOutputStats: outputs profiling data as StatsD metrics.
+ *                It expects that $wgStatsdServer is set to the host (or host:port)
+ *                of a statsd server.
+ *
+ *                ProfilerOutputDump: outputs dump files that are compatible
+ *                with the XHProf gui. It expects that `$wgProfiler['outputDir']`
+ *                is set as well.
+ *
+ *                Default: [].
+ *
+ * Examples:
  *
  * @code
  *  $wgProfiler['class'] = ProfilerXhprof::class;
+ *  $wgProfiler['output'] = ProfilerOutputText::class;
  * @endcode
  *
- * For output, set the 'output' key to an array of class names, one for each
- * output type you want the profiler to generate. For example:
- *
  * @code
- *  $wgProfiler['output'] = [ ProfilerOutputText::class ];
- * @endcode
- *
- * The output classes available to you by default are ProfilerOutputDump,
- * ProfilerOutputStats, ProfilerOutputText, and ProfilerOutputUdp.
- *
- * ProfilerOutputStats outputs profiling data as StatsD metrics. It expects
- * that you have set the $wgStatsdServer configuration variable to the host (or
- * host:port) of your statsd server.
- *
- * ProfilerOutputText will output profiling data in the page body as a comment.
- * You can make the profiling data in HTML render as part of the page content
- * by setting the 'visible' configuration flag:
- *
- * @code
- *  $wgProfiler['visible'] = true;
- * @endcode
- *
- * 'ProfilerOutputDump' expects a $wgProfiler['outputDir'] telling it where to
- * write dump files. The files produced are compatible with the XHProf gui.
- * For a rudimentary sampling profiler:
- *
- * @code
- *   $wgProfiler['class'] = 'ProfilerXhprof';
- *   $wgProfiler['output'] = [ 'ProfilerOutputText' ];
+ *   $wgProfiler['class'] = ProfilerXhprof:class;
+ *   $wgProfiler['output'] = [ ProfilerOutputText::class ];
  *   $wgProfiler['sampling'] = 50; // one every 50 requests
  * @endcode
- *
- * When using the built-in `sampling` option, the `class` will changed to
- * ProfilerStub for non-sampled cases.
  *
  * For performance, the profiler is always disabled for CLI scripts as they
  * could be long running and the data would accumulate. Use the '--profiler'
@@ -6416,12 +6418,6 @@ $wgDeprecationReleaseLimit = false;
  * @since 1.17.0
  */
 $wgProfiler = [];
-
-/**
- * Only record profiling info for pages that took longer than this
- * @deprecated since 1.25: set $wgProfiler['threshold'] instead.
- */
-$wgProfileLimit = 0.0;
 
 /**
  * Destination of statsd metrics.
