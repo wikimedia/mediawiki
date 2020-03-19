@@ -764,11 +764,11 @@ class MovePage {
 			$errs = [];
 			$status = $newpage->doDeleteArticleReal(
 				$overwriteMessage,
-				/* $suppress */ false,
-				$nt->getArticleID(),
-				/* $commit */ false,
-				$errs,
 				$user,
+				/* $suppress */ false,
+				/* unused */ null,
+				$errs,
+				/* unused */ null,
 				$changeTags,
 				'delete_redir'
 			);

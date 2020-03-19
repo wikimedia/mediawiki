@@ -79,8 +79,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		);
 
 		// Now delete the template
-		$error = '';
-		$template->doDeleteArticleReal( 'Delete the template', false, 0, true, $error, $user );
+		$template->doDeleteArticleReal( 'Delete the template', $user );
 
 		// Run the job queue
 		JobQueueGroup::destroySingletons();

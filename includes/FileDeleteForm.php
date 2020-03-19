@@ -226,8 +226,15 @@ class FileDeleteForm {
 			$dbw->startAtomic( __METHOD__ );
 			// delete the associated article first
 			$error = '';
-			$deleteStatus = $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error,
-				$user, $tags );
+			$deleteStatus = $page->doDeleteArticleReal(
+				$reason,
+				$user,
+				$suppress,
+				null,
+				$error,
+				null,
+				$tags
+			);
 			// doDeleteArticleReal() returns a non-fatal error status if the page
 			// or revision is missing, so check for isOK() rather than isGood()
 			if ( $deleteStatus->isOK() ) {

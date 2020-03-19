@@ -104,7 +104,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	private function deletePage( LinkTarget $target, $reason ) {
 		$title = Title::newFromLinkTarget( $target );
 		$page = WikiPage::factory( $title );
-		$page->doDeleteArticleReal( $reason );
+		$page->doDeleteArticleReal( $reason, $this->getTestSysop()->getUser() );
 	}
 
 	/**
