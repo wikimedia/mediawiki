@@ -67,7 +67,7 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['pageG'] = Title::newFromText( 'ApiComparePagesTest G' )->getArticleID();
 
 		WikiPage::factory( Title::newFromText( 'ApiComparePagesTest C' ) )
-			->doDeleteArticleReal( 'Test for ApiComparePagesTest' );
+			->doDeleteArticleReal( 'Test for ApiComparePagesTest', $user );
 
 		RevisionDeleter::createList(
 			'revision',

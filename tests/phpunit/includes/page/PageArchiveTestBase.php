@@ -126,7 +126,7 @@ abstract class PageArchiveTestBase extends MediaWikiTestCase {
 		$this->ipRev = $revisionStore->insertRevisionOn( $rev, $dbw );
 
 		// Delete the page
-		$page->doDeleteArticleReal( 'Just a test deletion' );
+		$page->doDeleteArticleReal( 'Just a test deletion', $user );
 
 		$this->archivedPage = new PageArchive( $page->getTitle() );
 	}
