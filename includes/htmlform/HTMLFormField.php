@@ -1136,14 +1136,14 @@ abstract class HTMLFormField {
 				}
 			}
 
-			return Html::rawElement( 'ul', [ 'class' => 'error' ], implode( "\n", $lines ) );
+			$errors = Html::rawElement( 'ul', [], implode( "\n", $lines ) );
 		} else {
 			if ( $errors instanceof Message ) {
 				$errors = $errors->parse();
 			}
-
-			return Html::rawElement( 'span', [ 'class' => 'error' ], $errors );
 		}
+
+		return Html::rawElement( 'div', [ 'class' => 'errorbox' ], $errors );
 	}
 
 	/**
