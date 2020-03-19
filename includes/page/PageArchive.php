@@ -414,6 +414,7 @@ class PageArchive {
 	public function undelete( $timestamps, $comment = '', $fileVersions = [],
 		$unsuppress = false, User $user = null, $tags = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;

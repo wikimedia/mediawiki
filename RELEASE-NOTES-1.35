@@ -567,7 +567,7 @@ because of Phabricator reports.
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
 * WebRequest::getLimitOffset is hard deprecated. Instead, use
   ::getLimitOffsetForUser and pass a User object.
-* PageArchive::undelete is soft deprecated. Instead, use ::undeleteAsUser
+* PageArchive::undelete is hard deprecated. Instead, use ::undeleteAsUser
   and pass a User object.
 * FileDeleteForm previously did not accept a user parameter in its constructor,
   instead relying on the global $wgUser. A user parameter has been added,
