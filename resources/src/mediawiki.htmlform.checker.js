@@ -23,9 +23,9 @@
 		this.validator = validator;
 		this.$element = $element;
 
-		this.$errorBox = $element.next( '.error' );
+		this.$errorBox = $element.next( '.errorbox' );
 		if ( !this.$errorBox.length ) {
-			this.$errorBox = $( '<span>' );
+			this.$errorBox = $( '<div>' );
 			this.$errorBox.hide();
 			$element.after( this.$errorBox );
 		}
@@ -103,15 +103,15 @@
 	/**
 	 * Display errors associated with the form element
 	 * @param {boolean} valid Whether the input is still valid regardless of the messages
-	 * @param {Array} errors Error messages. Each error message will be appended to a
-	 *  `<span>` or `<li>`, as with jQuery.append().
+	 * @param {Array} errors Errorbox messages. Each errorbox message will be appended to a
+	 *  `<div>` or `<li>`, as with jQuery.append().
 	 * @param {boolean} [forceReplacement] Set true to force a visual replacement even
 	 *  if the errors are the same. Ignored if errors are empty.
 	 * @return {mw.htmlform.Checker}
 	 * @chainable
 	 */
 	mw.htmlform.Checker.prototype.setErrors = function ( valid, errors, forceReplacement ) {
-		var $oldErrorBox, tagName, showFunc, $text, replace,
+		var $oldErrorBox, showFunc, $text, replace,
 			$errorBox = this.$errorBox;
 
 		if ( errors.length === 0 ) {
@@ -123,24 +123,21 @@
 					.empty();
 			} );
 		} else {
-			// Match behavior of HTMLFormField::formatErrors(), <span> or <ul>
-			// depending on the count.
-			tagName = errors.length === 1 ? 'span' : 'ul';
-
-			// We have to animate the replacement if we're changing the tag. We
-			// also want to if told to by the caller (i.e. to make it visually
-			// obvious that the changed field value gives the same error) or if
-			// the error text changes (because it makes more sense than
+			// Animate the replacement if told to by the caller (i.e. to make it visually
+			// obvious that the changed field value gives the same errorbox) or if
+			// the errorbox text changes (because it makes more sense than
 			// changing the text with no animation).
-			replace = (
-				forceReplacement || $errorBox.length > 1 ||
-				$errorBox[ 0 ].tagName.toLowerCase() !== tagName
-			);
+			replace = forceReplacement;
 			if ( !replace ) {
-				$text = $( '<' + tagName + '>' )
-					.append( errors.map( function ( e ) {
-						return errors.length === 1 ? e : $( '<li>' ).append( e );
-					} ) );
+				$text = $( '<div>' );
+				// Match behavior of HTMLFormField::formatErrors()
+				if ( errors.length === 1 ) {
+					$text.append( errors[ 0 ] );
+				} else {
+					$text.append( $( '<ul>' ).append( errors.map( function ( e ) {
+						return $( '<li>' ).append( e );
+					} ) ) );
+				}
 				if ( $text.text() !== $errorBox.text() ) {
 					replace = true;
 				}
@@ -148,7 +145,7 @@
 
 			$oldErrorBox = $errorBox;
 			if ( replace ) {
-				this.$errorBox = $errorBox = $( '<' + tagName + '>' );
+				this.$errorBox = $errorBox = $( '<div>' );
 				$errorBox.hide();
 				$oldErrorBox.after( this.$errorBox );
 			}
@@ -159,20 +156,25 @@
 						.removeAttr( 'class' )
 						.detach();
 				}
+				$errorBox
+					.attr( 'class', valid ? 'warningbox' : 'errorbox' )
+					.empty();
+				// Match behavior of HTMLFormField::formatErrors()
+				if ( errors.length === 1 ) {
+					$errorBox.append( errors[ 0 ] );
+				} else {
+					$errorBox.append( $( '<ul>' ).append( errors.map( function ( e ) {
+						return $( '<li>' ).append( e );
+					} ) ) );
+				}
 				// FIXME: Use CSS transition
 				// eslint-disable-next-line no-jquery/no-slide
-				$errorBox
-					.attr( 'class', valid ? 'warning' : 'error' )
-					.empty()
-					.append( errors.map( function ( e ) {
-						return errors.length === 1 ? e : $( '<li>' ).append( e );
-					} ) )
-					.slideDown();
+				$errorBox.slideDown();
 			};
 			if (
 				$oldErrorBox !== $errorBox &&
 				// eslint-disable-next-line no-jquery/no-class-state
-				( $oldErrorBox.hasClass( 'error' ) || $oldErrorBox.hasClass( 'warning' ) )
+				( $oldErrorBox.hasClass( 'errorbox' ) || $oldErrorBox.hasClass( 'warningbox' ) )
 			) {
 				// eslint-disable-next-line no-jquery/no-slide
 				$oldErrorBox.slideUp( showFunc );
