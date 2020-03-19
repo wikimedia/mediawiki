@@ -51,7 +51,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'user' => $badActor->getName(),
 			'expiry' => $block->getExpiry(),
 		];
-		$this->assertArraySubset( $subset, $data['query']['blocks'][0] );
+		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );
 	}
 
 	public function testExecuteSitewide() {
@@ -81,7 +81,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'expiry' => $block->getExpiry(),
 			'partial' => !$block->isSitewide(),
 		];
-		$this->assertArraySubset( $subset, $data['query']['blocks'][0] );
+		$this->assertArraySubmapSame( $subset, $data['query']['blocks'][0] );
 	}
 
 	public function testExecuteRestrictions() {
@@ -141,7 +141,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$flagSubset = array_merge( $subset, [
 			'partial' => !$block->isSitewide(),
 		] );
-		$this->assertArraySubset( $flagSubset, $data['query']['blocks'][0] );
+		$this->assertArraySubmapSame( $flagSubset, $data['query']['blocks'][0] );
 		$this->assertArrayNotHasKey( 'restrictions', $data['query']['blocks'][0] );
 
 		// Test requesting the restrictions.
@@ -167,7 +167,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 				],
 			],
 		] );
-		$this->assertArraySubset( $restrictionsSubset, $data['query']['blocks'][0] );
+		$this->assertArraySubmapSame( $restrictionsSubset, $data['query']['blocks'][0] );
 		$this->assertArrayNotHasKey( 'partial', $data['query']['blocks'][0] );
 	}
 }

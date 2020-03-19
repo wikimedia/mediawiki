@@ -127,16 +127,19 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			$this->assertEquals( $variants, $testConverter->mVariants, "Variants" );
 			$this->assertEquals( $variantFallbacks, $testConverter->mVariantFallbacks, "Variant Fallbacks" );
 			$defaultFlags = [
-			'A' => 'A',
-			'T' => 'T',
-			'R' => 'R',
-			'D' => 'D',
-			'-' => '-',
-			'H' => 'H',
-			'N' => 'N',
+				'A' => 'A',
+				'T' => 'T',
+				'R' => 'R',
+				'D' => 'D',
+				'-' => '-',
+				'H' => 'H',
+				'N' => 'N',
 			];
-			$this->assertArraySubset( array_merge( $defaultFlags, $flags ),
-				$converter->mFlags, false, "Flags" );
+			$this->assertArraySubmapSame(
+				array_merge( $defaultFlags, $flags ),
+				$converter->mFlags,
+				"Flags"
+			);
 		}
 	}
 
