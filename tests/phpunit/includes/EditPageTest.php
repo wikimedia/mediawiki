@@ -305,7 +305,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
-			$page->doDeleteArticleReal( $pageTitle );
+			$page->doDeleteArticleReal( $pageTitle, $this->getTestSysop()->getUser() );
 
 			$this->assertGreaterThan( 0, $latest, "Page revision ID updated in object" );
 			$this->assertEquals( $latest, $checkId, "Revision in Status for hook" );
@@ -357,13 +357,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
-			$page->doDeleteArticleReal( $pageTitle );
+			$page->doDeleteArticleReal( $pageTitle, $this->getTestSysop()->getUser() );
 
 			$this->assertGreaterThan( 0, $latest, "Page #1 revision ID updated in object" );
 			$this->assertEquals( $latest, $checkIds[0], "Revision #1 in Status for hook" );
 
 			$latest2 = $page2->getLatest();
-			$page2->doDeleteArticleReal( $pageTitle2 );
+			$page2->doDeleteArticleReal( $pageTitle2, $this->getTestSysop()->getUser() );
 
 			$this->assertGreaterThan( 0, $latest2, "Page #2 revision ID updated in object" );
 			$this->assertEquals( $latest2, $checkIds[1], "Revision #2 in Status for hook" );

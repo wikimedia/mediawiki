@@ -591,8 +591,11 @@ class MovePageForm extends UnlistedSpecialPage {
 				}
 			}
 
-			$error = ''; // passed by ref
-			$deleteStatus = $page->doDeleteArticleReal( $reason, false, 0, true, $error, $user );
+			$deleteStatus = $page->doDeleteArticleReal(
+				$reason,
+				$user,
+				/* suppress */ false
+			);
 			if ( !$deleteStatus->isGood() ) {
 				$this->showForm( $deleteStatus->getErrorsArray() );
 
