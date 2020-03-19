@@ -656,7 +656,8 @@ return [
 			$services->getWatchedItemStore(),
 			$services->getPermissionManager(),
 			$services->getRepoGroup(),
-			$services->getContentHandlerFactory()
+			$services->getContentHandlerFactory(),
+			$services->getRevisionStore()
 		);
 	},
 
