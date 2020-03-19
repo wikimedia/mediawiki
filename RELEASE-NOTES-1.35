@@ -632,6 +632,8 @@ because of Phabricator reports.
   - APIQueryRevisionsTokens
   - APIQueryUsersTokens
   - ApiTokensGetTokenTypes
+* LESS `.background-image-svg-quick()` mixin from 'mediawiki.mixins.less' is
+  deprecated and should be removed in 1.36.
 * …
 
 === Other changes in 1.35 ===
