@@ -408,8 +408,8 @@ class ExtensionProcessor implements Processor {
 					$id = constant( $ns['constant'] );
 				} else {
 					$id = $ns['id'];
-					$this->defines[ $ns['constant'] ] = $id;
 				}
+				$this->defines[ $ns['constant'] ] = $id;
 
 				if ( !( isset( $ns['conditional'] ) && $ns['conditional'] ) ) {
 					// If it is not conditional, register it
