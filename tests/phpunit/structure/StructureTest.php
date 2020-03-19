@@ -17,22 +17,7 @@ class StructureTest extends MediaWikiTestCase {
 		// realpath() also normalizes directory separator on windows for prefix compares
 		$rootPath = realpath( __DIR__ . '/..' );
 		$suitesPath = realpath( __DIR__ . '/../suites/' );
-		$testClassRegex = implode( '|', [
-			'ApiFormatTestBase',
-			'ApiTestCase',
-			'ApiQueryTestBase',
-			'ApiQueryContinueTestBase',
-			'MediaWikiLangTestCase',
-			'MediaWikiMediaTestCase',
-			'MediaWikiTestCase',
-			'ResourceLoaderTestCase',
-			'PHPUnit_Framework_TestCase',
-			'\\?PHPUnit\\Framework\\TestCase',
-			'TestCase', // \PHPUnit\Framework\TestCase with appropriate use statement
-			'DumpTestCase',
-			'SpecialPageTestBase',
-		] );
-		$testClassRegex = "/^class .* extends ($testClassRegex)/m";
+		$testClassRegex = '/^(final )?class .* extends [\S]*(TestCase|TestBase)\\b/m';
 
 		$results = $this->recurseFiles( $rootPath );
 
@@ -53,6 +38,10 @@ class StructureTest extends MediaWikiTestCase {
 		foreach ( $results as $k => $v ) {
 			$results[$k] = substr( $v, $strip );
 		}
+
+		// Normalize indexes to make failure output less confusing
+		$results = array_values( $results );
+
 		$this->assertEquals(
 			[],
 			$results,

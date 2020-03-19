@@ -6,7 +6,7 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Wikimedia\AtEase\AtEase;
 
-class UploadedFileTestBase extends \PHPUnit\Framework\TestCase {
+abstract class UploadedFileTestBase extends \PHPUnit\Framework\TestCase {
 
 	/** @var string|null */
 	protected static $tmpdir;
