@@ -74,7 +74,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 
 		// Perform the removal
 		$status = $manager->allowsAuthenticationDataChange( $req, true );
-		Hooks::run( 'ChangeAuthenticationDataAudit', [ $req, $status ] );
+		$this->getHookRunner()->onChangeAuthenticationDataAudit( $req, $status );
 		if ( !$status->isGood() ) {
 			$this->dieStatus( $status );
 		}

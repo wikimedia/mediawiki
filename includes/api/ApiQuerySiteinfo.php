@@ -276,7 +276,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['categorycollation'] = $config->get( 'CategoryCollation' );
 
-		Hooks::run( 'APIQuerySiteInfoGeneralInfo', [ $this, &$data ] );
+		$this->getHookRunner()->onAPIQuerySiteInfoGeneralInfo( $this, $data );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
@@ -503,7 +503,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['admins'] = (int)SiteStats::numberingroup( 'sysop' );
 		$data['jobs'] = (int)SiteStats::jobs();
 
-		Hooks::run( 'APIQuerySiteInfoStatisticsInfo', [ &$data ] );
+		$this->getHookRunner()->onAPIQuerySiteInfoStatisticsInfo( $data );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}

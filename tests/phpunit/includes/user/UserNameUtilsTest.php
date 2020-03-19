@@ -58,12 +58,15 @@ class UserNameUtilsTest extends MediaWikiTestCase {
 			$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
 		}
 
+		$hookContainer = $this->createHookContainer();
+
 		$utils = new UserNameUtils(
 			$serviceOptions,
 			$contentLang,
 			$logger,
 			$titleFactory,
-			$textFormatter
+			$textFormatter,
+			$hookContainer
 		);
 		return $utils;
 	}

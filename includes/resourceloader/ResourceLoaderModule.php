@@ -20,6 +20,8 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -69,6 +71,16 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 
 	/** @var string|bool Deprecation string or true if deprecated; false otherwise */
 	protected $deprecated = false;
+
+	/**
+	 * @var HookContainer|null
+	 */
+	private $hookContainer;
+
+	/**
+	 * @var HookRunner|null
+	 */
+	private $hookRunner;
 
 	/** @var string Scripts only */
 	public const TYPE_SCRIPTS = 'scripts';
@@ -241,6 +253,38 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 			$this->logger = new NullLogger();
 		}
 		return $this->logger;
+	}
+
+	/**
+	 * @since 1.35
+	 * @internal
+	 * @param HookContainer $hookContainer
+	 */
+	public function setHookContainer( HookContainer $hookContainer ) {
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
+	}
+
+	/**
+	 * Get a HookContainer, for running extension hooks or for hook metadata.
+	 *
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() : HookContainer {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * Get a HookRunner for running core hooks.
+	 *
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() : HookRunner {
+		return $this->hookRunner;
 	}
 
 	/**

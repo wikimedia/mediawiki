@@ -19,6 +19,8 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -306,6 +308,24 @@ abstract class Action implements MessageLocalizer {
 	 */
 	final public function msg( $key, ...$params ) {
 		return $this->getContext()->msg( $key, ...$params );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		return MediaWikiServices::getInstance()->getHookContainer();
+	}
+
+	/**
+	 * @since 1.35
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() {
+		return new HookRunner( $this->getHookContainer() );
 	}
 
 	/**

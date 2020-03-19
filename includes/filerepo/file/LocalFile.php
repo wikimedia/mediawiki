@@ -1056,7 +1056,7 @@ class LocalFile extends File {
 		$files = $this->getThumbnails( $archiveName );
 
 		// Purge any custom thumbnail caches
-		Hooks::run( 'LocalFilePurgeThumbnails', [ $this, $archiveName ] );
+		$this->hookRunner->onLocalFilePurgeThumbnails( $this, $archiveName );
 
 		// Delete thumbnails
 		$dir = array_shift( $files );
@@ -1095,7 +1095,7 @@ class LocalFile extends File {
 		}
 
 		// Purge any custom thumbnail caches
-		Hooks::run( 'LocalFilePurgeThumbnails', [ $this, false ] );
+		$this->getHookRunner()->onLocalFilePurgeThumbnails( $this, false );
 
 		// Delete thumbnails
 		$dir = array_shift( $files );
@@ -1215,10 +1215,8 @@ class LocalFile extends File {
 		$opts['ORDER BY'] = "oi_timestamp $order";
 		$opts['USE INDEX'] = [ 'oldimage' => 'oi_name_timestamp' ];
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$localFile = $this;
-		Hooks::run( 'LocalFile::getHistory', [ &$localFile, &$tables, &$fields,
-			&$conds, &$opts, &$join_conds ] );
+		$this->getHookRunner()->onLocalFile__getHistory( $this, $tables, $fields,
+			$conds, $opts, $join_conds );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
 		$r = [];
@@ -1646,28 +1644,22 @@ class LocalFile extends File {
 				if ( $nullRevRecord ) {
 					$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
 
-					Hooks::run(
-						'RevisionFromEditComplete',
-						[
-							$wikiPage,
-							$inserted,
-							$inserted->getParentId(),
-							$user,
-							&$tags
-						]
+					$this->getHookRunner()->onRevisionFromEditComplete(
+						$wikiPage,
+						$inserted,
+						$inserted->getParentId(),
+						$user,
+						$tags
 					);
 
 					// TODO hard deprecate
 					$nullRevision = new Revision( $inserted );
-					Hooks::run(
-						'NewRevisionFromEditComplete',
-						[
-							$wikiPage,
-							$nullRevision,
-							$inserted->getParentId(),
-							$user,
-							&$tags
-						]
+					$this->getHookRunner()->onNewRevisionFromEditComplete(
+						$wikiPage,
+						$nullRevision,
+						$inserted->getParentId(),
+						$user,
+						$tags
 					);
 					$wikiPage->updateRevisionOn( $dbw, $inserted );
 					// Associate null revision id
@@ -1774,7 +1766,7 @@ class LocalFile extends File {
 					$logEntry->publish( $logId );
 
 					# Run hook for other updates (typically more cache purging)
-					Hooks::run( 'FileUpload', [ $this, $reupload, !$newPageContent ] );
+					$this->getHookRunner()->onFileUpload( $this, $reupload, !$newPageContent );
 
 					if ( $reupload ) {
 						# Delete old thumbnails

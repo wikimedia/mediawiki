@@ -386,7 +386,7 @@ class ApiParse extends ApiBase {
 				$outputPage->loadSkinModules( $skin );
 			}
 
-			Hooks::run( 'ApiParseMakeOutputPage', [ $this, $outputPage ] );
+			$this->getHookRunner()->onApiParseMakeOutputPage( $this, $outputPage );
 		}
 
 		if ( $oldid !== null ) {
@@ -425,7 +425,7 @@ class ApiParse extends ApiBase {
 				// one hook of OutputPage::addParserOutputMetadata here.
 				if ( $params['effectivelanglinks'] ) {
 					$linkFlags = [];
-					Hooks::run( 'LanguageLinks', [ $titleObj, &$langlinks, &$linkFlags ] );
+					$this->getHookRunner()->onLanguageLinks( $titleObj, $langlinks, $linkFlags );
 				}
 			}
 
@@ -600,8 +600,8 @@ class ApiParse extends ApiBase {
 
 		$reset = null;
 		$suppressCache = false;
-		Hooks::run( 'ApiMakeParserOptions',
-			[ $popts, $pageObj->getTitle(), $params, $this, &$reset, &$suppressCache ] );
+		$this->getHookRunner()->onApiMakeParserOptions( $popts, $pageObj->getTitle(),
+			$params, $this, $reset, $suppressCache );
 
 		// Force cache suppression when $popts aren't cacheable.
 		$suppressCache = $suppressCache || !$popts->isSafeToCache();

@@ -20,10 +20,11 @@
 
 namespace MediaWiki\User;
 
-use Hooks;
 use Language;
 use LanguageConverter;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use Skin;
 use Wikimedia\Assert\Assert;
 
@@ -48,17 +49,23 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	/** @var array|null Cached default options */
 	private $defaultOptions = null;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param Language $contentLang
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		Language $contentLang
+		Language $contentLang,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
 		$this->contentLang = $contentLang;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -89,7 +96,7 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		}
 		$this->defaultOptions['skin'] = Skin::normalizeKey( $this->serviceOptions->get( 'DefaultSkin' ) );
 
-		Hooks::run( 'UserGetDefaultOptions', [ &$this->defaultOptions ] );
+		$this->hookRunner->onUserGetDefaultOptions( $this->defaultOptions );
 
 		return $this->defaultOptions;
 	}

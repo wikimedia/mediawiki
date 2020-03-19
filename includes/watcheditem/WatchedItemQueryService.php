@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
@@ -74,6 +76,9 @@ class WatchedItemQueryService {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
 	 */
@@ -85,6 +90,7 @@ class WatchedItemQueryService {
 		ActorMigration $actorMigration,
 		WatchedItemStoreInterface $watchedItemStore,
 		PermissionManager $permissionManager,
+		HookContainer $hookContainer,
 		bool $expiryEnabled = false
 	) {
 		$this->loadBalancer = $loadBalancer;
@@ -92,6 +98,7 @@ class WatchedItemQueryService {
 		$this->actorMigration = $actorMigration;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->permissionManager = $permissionManager;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->expiryEnabled = $expiryEnabled;
 	}
 
@@ -101,7 +108,7 @@ class WatchedItemQueryService {
 	private function getExtensions() {
 		if ( $this->extensions === null ) {
 			$this->extensions = [];
-			Hooks::run( 'WatchedItemQueryServiceExtensions', [ &$this->extensions, $this ] );
+			$this->hookRunner->onWatchedItemQueryServiceExtensions( $this->extensions, $this );
 		}
 		return $this->extensions;
 	}

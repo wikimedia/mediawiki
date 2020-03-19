@@ -44,7 +44,8 @@ class EntryPointTest extends \MediaWikiTestCase {
 			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer(),
 			$objectFactory,
-			new Validator( $objectFactory, $permissionManager, $request, new User )
+			new Validator( $objectFactory, $permissionManager, $request, new User ),
+			$this->createHookContainer()
 		);
 	}
 

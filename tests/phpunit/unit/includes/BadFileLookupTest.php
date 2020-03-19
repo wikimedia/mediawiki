@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\BadFileLookup;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @coversDefaultClass MediaWiki\BadFileLookup
@@ -104,6 +105,14 @@ WIKITEXT;
 		return $mock;
 	}
 
+	private function getHookContainer() {
+		// FIXME: unit tests should not depend on the global HookContainer.
+		// Once the facilities are available, this should create a new
+		// HookContainer and register the hook directly into it, instead of using
+		// setTemporaryHook()
+		return MediaWikiServices::getInstance()->getHookContainer();
+	}
+
 	public function setUp() : void {
 		parent::setUp();
 
@@ -122,7 +131,8 @@ WIKITEXT;
 			},
 			new EmptyBagOStuff,
 			$this->getMockRepoGroup(),
-			$this->getMockTitleParser()
+			$this->getMockTitleParser(),
+			$this->getHookContainer()
 		);
 
 		$this->assertSame( $expected, $bfl->isBadFile( $name, $title ) );
@@ -140,7 +150,8 @@ WIKITEXT;
 			},
 			new EmptyBagOStuff,
 			$this->getMockRepoGroupNull(),
-			$this->getMockTitleParser()
+			$this->getMockTitleParser(),
+			$this->getHookContainer()
 		);
 
 		// Hack -- these expectations are reversed if the repo group returns null. In that case 1)

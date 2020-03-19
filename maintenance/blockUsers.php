@@ -156,7 +156,7 @@ class BlockUsers extends Maintenance {
 
 			if ( $success ) {
 				// Fire any post block hooks
-				Hooks::run( 'BlockIpComplete', [ $block, $performer, $priorBlock ] );
+				$this->getHookRunner()->onBlockIpComplete( $block, $performer, $priorBlock );
 				// Log it only if the block was successful
 				$flags = [
 					'nocreate',

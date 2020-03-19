@@ -132,10 +132,8 @@ class ApiFeedContributions extends ApiBase {
 		// ContributionsLineEnding hook. Hook implementers may cancel
 		// the hook to signal the user is not allowed to read this item.
 		$feedItem = null;
-		$hookResult = Hooks::run(
-			'ApiFeedContributions::feedItem',
-			[ $row, $this->getContext(), &$feedItem ]
-		);
+		$hookResult = $this->getHookRunner()->onApiFeedContributions__feedItem(
+			$row, $this->getContext(), $feedItem );
 		// Hook returned a valid feed item
 		if ( $feedItem instanceof FeedItem ) {
 			return $feedItem;

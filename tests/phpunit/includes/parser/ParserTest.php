@@ -14,7 +14,7 @@ class ParserTest extends MediaWikiTestCase {
 		// function hooks when it is created.
 		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'get' ] )
+			->setMethods( [ 'get', 'getVariableIDs' ] )
 			->getMock();
 		$mwFactory
 			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
@@ -25,6 +25,8 @@ class ParserTest extends MediaWikiTestCase {
 				$mw->method( 'getSynonyms' )->willReturn( [] );
 				return $mw;
 			} ) );
+		$mwFactory
+			->method( 'getVariableIDs' )->willReturn( [] );
 
 		$newArgs = [
 			$this->createMock( 'MediaWiki\Config\ServiceOptions' ),

@@ -72,7 +72,7 @@ class UploadForm extends HTMLForm {
 			+ $this->getDescriptionSection()
 			+ $this->getOptionsSection();
 
-		Hooks::run( 'UploadFormInitDescriptor', [ &$descriptor ] );
+		$this->getHookRunner()->onUploadFormInitDescriptor( $descriptor );
 		parent::__construct( $descriptor, $context, 'upload' );
 
 		# Add a link to edit MediaWiki:Licenses
@@ -190,7 +190,8 @@ class UploadForm extends HTMLForm {
 				'checked' => $selectedSourceType == 'url',
 			];
 		}
-		Hooks::run( 'UploadFormSourceDescriptors', [ &$descriptor, &$radio, $selectedSourceType ] );
+		$this->getHookRunner()->onUploadFormSourceDescriptors(
+			$descriptor, $radio, $selectedSourceType );
 
 		$descriptor['Extensions'] = [
 			'type' => 'info',

@@ -3,6 +3,8 @@
 namespace MediaWiki\Session;
 
 use Config;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use User;
 use Wikimedia\AtEase\AtEase;
@@ -31,6 +33,14 @@ class SessionBackendTest extends MediaWikiTestCase {
 	protected $onSessionMetadataCalled = false;
 
 	/**
+	 * @return HookContainer
+	 */
+	private function getHookContainer() {
+		// Need a real HookContainer to support modification of $wgHooks in the test
+		return MediaWikiServices::getInstance()->getHookContainer();
+	}
+
+	/**
 	 * Returns a non-persistent backend that thinks it has at least one session active
 	 * @param User|null $user
 	 * @param string $id
@@ -55,12 +65,15 @@ class SessionBackendTest extends MediaWikiTestCase {
 			] );
 		}
 
+		$hookContainer = $this->getHookContainer();
+
 		if ( !$this->provider ) {
 			$this->provider = new \DummySessionProvider();
 		}
 		$this->provider->setLogger( $logger );
 		$this->provider->setConfig( $this->config );
 		$this->provider->setManager( $this->manager );
+		$this->provider->setHookContainer( $hookContainer );
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $this->provider,
@@ -71,7 +84,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		] );
 		$id = new SessionId( $info->getId() );
 
-		$backend = new SessionBackend( $id, $info, $this->store, $logger, 10 );
+		$backend = new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 		$priv = TestingAccessWrapper::newFromObject( $backend );
 		$priv->persist = false;
 		$priv->requests = [ 100 => new \FauxRequest() ];
@@ -99,8 +112,9 @@ class SessionBackendTest extends MediaWikiTestCase {
 		] );
 		$id = new SessionId( $info->getId() );
 		$logger = new \Psr\Log\NullLogger();
+		$hookContainer = $this->getHookContainer();
 		try {
-			new SessionBackend( $id, $info, $this->store, $logger, 10 );
+			new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -116,7 +130,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		] );
 		$id = new SessionId( $info->getId() );
 		try {
-			new SessionBackend( $id, $info, $this->store, $logger, 10 );
+			new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \InvalidArgumentException $ex ) {
 			$this->assertSame( 'Cannot create session without a provider', $ex->getMessage() );
@@ -131,7 +145,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 		] );
 		$id = new SessionId( '!' . $info->getId() );
 		try {
-			new SessionBackend( $id, $info, $this->store, $logger, 10 );
+			new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -148,7 +162,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		] );
 		$id = new SessionId( $info->getId() );
-		$backend = new SessionBackend( $id, $info, $this->store, $logger, 10 );
+		$backend = new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 		$this->assertSame( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $id, $backend->getSessionId() );
 		$this->assertSame( $this->provider, $backend->getProvider() );
@@ -170,7 +184,7 @@ class SessionBackendTest extends MediaWikiTestCase {
 			'idIsSafe' => true,
 		] );
 		$id = new SessionId( $info->getId() );
-		$backend = new SessionBackend( $id, $info, $this->store, $logger, 10 );
+		$backend = new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 		$this->assertSame( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $id, $backend->getSessionId() );
 		$this->assertSame( $this->provider, $backend->getProvider() );

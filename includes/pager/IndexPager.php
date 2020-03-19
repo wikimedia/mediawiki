@@ -21,6 +21,7 @@
  * @ingroup Pager
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
@@ -70,6 +71,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup Pager
  */
 abstract class IndexPager extends ContextSource implements Pager {
+	use ProtectedHookAccessorTrait;
+
 	/** Backwards-compatible constant for $mDefaultDirection field (do not change) */
 	public const DIR_ASCENDING = false;
 	/** Backwards-compatible constant for $mDefaultDirection field (do not change) */

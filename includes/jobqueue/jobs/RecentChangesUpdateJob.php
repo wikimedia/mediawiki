@@ -101,7 +101,7 @@ class RecentChangesUpdateJob extends Job {
 			}
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', [ 'rc_id' => $rcIds ], __METHOD__ );
-				Hooks::run( 'RecentChangesPurgeRows', [ $rows ] );
+				Hooks::runner()->onRecentChangesPurgeRows( $rows );
 				// There might be more, so try waiting for replica DBs
 				if ( !$factory->commitAndWaitForReplication(
 					__METHOD__, $ticket, [ 'timeout' => 3 ]

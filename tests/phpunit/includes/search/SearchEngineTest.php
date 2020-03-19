@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\LoadBalancerSingle;
 
 /**
@@ -43,6 +44,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		$lb = LoadBalancerSingle::newFromConnection( $this->db );
 		$this->search = new $searchType( $lb );
+		$this->search->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 	}
 
 	protected function tearDown() : void {
@@ -310,6 +312,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 					$mockFieldBuilder( "testField", SearchIndexField::INDEX_TYPE_TEXT );
 				return true;
 			} );
+		$mockEngine->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 
 		$fields = $mockEngine->getSearchIndexFields();
 		$this->assertArrayHasKey( 'language', $fields );
@@ -381,6 +384,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		$engine = new MockCompletionSearchEngine();
 		$engine->setLimitOffset( 10, 0 );
+		$engine->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 		$results = $engine->completionSearch( 'foo' );
 		$this->assertEquals( 5, $results->getSize() );
 		$this->assertTrue( $results->hasMoreResults() );

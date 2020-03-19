@@ -42,7 +42,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 			$skin = $context->getSkin();
 			$pages['MediaWiki:Common.js'] = [ 'type' => 'script' ];
 			$pages['MediaWiki:' . ucfirst( $skin ) . '.js'] = [ 'type' => 'script' ];
-			Hooks::run( 'ResourceLoaderSiteModulePages', [ $skin, &$pages ] );
+			$this->getHookRunner()->onResourceLoaderSiteModulePages( $skin, $pages );
 		}
 		return $pages;
 	}

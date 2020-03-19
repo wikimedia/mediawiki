@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\HeaderCallback;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -61,6 +63,12 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/** @var LoggerInterface */
 	private $logger;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var ResourceLoaderModule[] Map of (module name => ResourceLoaderModule) */
 	protected $modules = [];
@@ -244,6 +252,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 		$this->config = $config;
 
+		$this->hookContainer = $services->getHookContainer();
+		$this->hookRunner = new HookRunner( $this->hookContainer );
+
 		// Add 'local' source first
 		$this->addSource( 'local', $config->get( 'LoadScript' ) );
 
@@ -404,10 +415,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		// This has a 'qunit' key for compat with the below hook.
 		$testModulesMeta = [ 'qunit' => [] ];
 
-		// Get test suites from extensions
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$rl = $this;
-		Hooks::run( 'ResourceLoaderTestModules', [ &$testModulesMeta, &$rl ] );
+		$this->hookRunner->onResourceLoaderTestModules( $testModulesMeta, $this );
 		$extRegistry = ExtensionRegistry::getInstance();
 		// In case of conflict, the deprecated hook has precedence.
 		$testModules = $testModulesMeta['qunit']
@@ -527,6 +535,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 			$object->setConfig( $this->getConfig() );
 			$object->setLogger( $this->logger );
+			$object->setHookContainer( $this->hookContainer );
 			$object->setName( $name );
 			$object->setDependencyAccessCallbacks(
 				[ $this, 'loadModuleDependenciesInternal' ],
@@ -2002,7 +2011,7 @@ MESSAGE;
 			'wgEnableUploads' => $conf->get( 'EnableUploads' ),
 		];
 
-		Hooks::run( 'ResourceLoaderGetConfigVars', [ &$vars, $skin, $conf ] );
+		Hooks::runner()->onResourceLoaderGetConfigVars( $vars, $skin, $conf );
 
 		return $vars;
 	}

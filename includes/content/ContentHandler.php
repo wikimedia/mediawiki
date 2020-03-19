@@ -26,6 +26,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -54,6 +55,8 @@ use Wikimedia\Assert\Assert;
  * @ingroup Content
  */
 abstract class ContentHandler {
+	use ProtectedHookAccessorTrait;
+
 	/**
 	 * Convenience function for getting flat text from a Content object. This
 	 * should only be used in the context of backwards compatibility with code
@@ -584,8 +587,8 @@ abstract class ContentHandler {
 	) {
 		$diffEngineClass = $this->getDiffEngineClass();
 		$differenceEngine = new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
-		Hooks::run( 'GetDifferenceEngine', [ $context, $old, $new, $refreshCache, $unhide,
-			&$differenceEngine ] );
+		$this->getHookRunner()->onGetDifferenceEngine(
+			$context, $old, $new, $refreshCache, $unhide, $differenceEngine );
 		return $differenceEngine;
 	}
 
@@ -612,7 +615,7 @@ abstract class ContentHandler {
 				$slotDiffRenderer = new DifferenceEngineSlotDiffRenderer( $differenceEngine );
 			}
 		}
-		Hooks::run( 'GetSlotDiffRenderer', [ $this, &$slotDiffRenderer, $context ] );
+		$this->getHookRunner()->onGetSlotDiffRenderer( $this, $slotDiffRenderer, $context );
 		return $slotDiffRenderer;
 	}
 
@@ -700,7 +703,7 @@ abstract class ContentHandler {
 		// else has unstubbed the StubUserLang object by now.
 		StubObject::unstub( $wgLang );
 
-		Hooks::run( 'PageContentLanguage', [ $title, &$pageLang, $wgLang ] );
+		$this->getHookRunner()->onPageContentLanguage( $title, $pageLang, $wgLang );
 
 		return wfGetLangObj( $pageLang );
 	}
@@ -762,7 +765,7 @@ abstract class ContentHandler {
 	public function canBeUsedOn( Title $title ) {
 		$ok = true;
 
-		Hooks::run( 'ContentModelCanBeUsedOn', [ $this->getModelID(), $title, &$ok ] );
+		$this->getHookRunner()->onContentModelCanBeUsedOn( $this->getModelID(), $title, $ok );
 
 		return $ok;
 	}
@@ -1341,7 +1344,7 @@ abstract class ContentHandler {
 			$fieldData['content_model'] = $content->getModel();
 		}
 
-		Hooks::run( 'SearchDataForIndex', [ &$fieldData, $this, $page, $output, $engine ] );
+		$this->getHookRunner()->onSearchDataForIndex( $fieldData, $this, $page, $output, $engine );
 		return $fieldData;
 	}
 

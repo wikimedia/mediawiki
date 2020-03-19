@@ -90,8 +90,8 @@ class ApiExpandTemplates extends ApiBase {
 
 		$reset = null;
 		$suppressCache = false;
-		Hooks::run( 'ApiMakeParserOptions',
-			[ $options, $titleObj, $params, $this, &$reset, &$suppressCache ] );
+		$this->getHookRunner()->onApiMakeParserOptions(
+			$options, $titleObj, $params, $this, $reset, $suppressCache );
 
 		$retval = [];
 

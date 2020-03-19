@@ -403,7 +403,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$props[] = $msgcache['isimage'];
 		}
 
-		Hooks::run( 'WhatLinksHereProps', [ $row, $nt, $target, &$props ] );
+		$this->getHookRunner()->onWhatLinksHereProps( $row, $nt, $target, $props );
 
 		if ( count( $props ) ) {
 			$propsText = $this->msg( 'parentheses' )

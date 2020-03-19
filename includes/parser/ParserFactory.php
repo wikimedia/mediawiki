@@ -21,6 +21,7 @@
 
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -70,6 +71,9 @@ class ParserFactory {
 	 */
 	public static $inParserFactory = 0;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/**
 	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
@@ -81,6 +85,7 @@ class ParserFactory {
 	 * @param LoggerInterface $logger
 	 * @param BadFileLookup $badFileLookup
 	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param HookContainer $hookContainer
 	 * @since 1.32
 	 */
 	public function __construct(
@@ -93,7 +98,8 @@ class ParserFactory {
 		NamespaceInfo $nsInfo,
 		LoggerInterface $logger,
 		BadFileLookup $badFileLookup,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
+		HookContainer $hookContainer
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -109,6 +115,7 @@ class ParserFactory {
 		$this->logger = $logger;
 		$this->badFileLookup = $badFileLookup;
 		$this->languageConverterFactory = $languageConverterFactory;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
@@ -131,7 +138,8 @@ class ParserFactory {
 				$this->nsInfo,
 				$this->logger,
 				$this->badFileLookup,
-				$this->languageConverterFactory
+				$this->languageConverterFactory,
+				$this->hookContainer
 			);
 		} finally {
 			self::$inParserFactory--;

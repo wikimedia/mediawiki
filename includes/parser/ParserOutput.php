@@ -348,7 +348,7 @@ class ParserOutput extends CacheTime {
 		];
 		$text = $this->getRawText();
 
-		Hooks::runWithoutAbort( 'ParserOutputPostCacheTransform', [ $this, &$text, &$options ] );
+		Hooks::runner()->onParserOutputPostCacheTransform( $this, $text, $options );
 
 		if ( $options['wrapperDivClass'] !== '' && !$options['unwrap'] ) {
 			$text = Html::rawElement( 'div', [ 'class' => $options['wrapperDivClass'] ], $text );

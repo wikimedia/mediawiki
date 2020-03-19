@@ -22,10 +22,11 @@
 
 namespace MediaWiki\User;
 
-use Hooks;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use Psr\Log\LoggerInterface;
 use TitleFactory;
 use Wikimedia\IPUtils;
@@ -81,18 +82,25 @@ class UserNameUtils {
 	private $reservedUsernames = false;
 
 	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
+
+	/**
 	 * @param ServiceOptions $options
 	 * @param Language $contentLang
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
 	 * @param ITextFormatter $textFormatter the text formatter for the current content language
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contentLang,
 		LoggerInterface $logger,
 		TitleFactory $titleFactory,
-		ITextFormatter $textFormatter
+		ITextFormatter $textFormatter,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -100,6 +108,7 @@ class UserNameUtils {
 		$this->logger = $logger;
 		$this->titleFactory = $titleFactory;
 		$this->textFormatter = $textFormatter;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -169,7 +178,7 @@ class UserNameUtils {
 
 		if ( !$this->reservedUsernames ) {
 			$reservedUsernames = $this->options->get( 'ReservedUsernames' );
-			Hooks::run( 'UserGetReservedNames', [ &$reservedUsernames ] );
+			$this->hookRunner->onUserGetReservedNames( $reservedUsernames );
 			$this->reservedUsernames = $reservedUsernames;
 		}
 

@@ -62,6 +62,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 			MediaWikiServices::getInstance()->getMainConfig()
 		] ) );
 		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'ResetPasswordExpiration' => [] ] );
@@ -122,11 +123,13 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 			'InvalidPasswordReset' => true,
 		] );
 
+		$services = MediaWikiServices::getInstance();
 		$manager = new AuthManager(
 			new \FauxRequest(),
-			MediaWikiServices::getInstance()->getMainConfig(),
-			MediaWikiServices::getInstance()->getObjectFactory(),
-			MediaWikiServices::getInstance()->getPermissionManager()
+			$services->getMainConfig(),
+			$services->getObjectFactory(),
+			$services->getPermissionManager(),
+			$services->getHookContainer()
 		);
 
 		$provider = $this->getMockForAbstractClass(
@@ -135,6 +138,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCa
 		$provider->setConfig( $config );
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$provider->setManager( $manager );
+		$provider->setHookContainer( $services->getHookContainer() );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$manager->removeAuthenticationSessionData( null );

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -26,6 +27,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Media
  */
 class ImageHistoryList extends ContextSource {
+	use ProtectedHookAccessorTrait;
 
 	/**
 	 * @var Title
@@ -283,7 +285,7 @@ class ImageHistoryList extends ContextSource {
 		}
 
 		$rowClass = null;
-		Hooks::run( 'ImagePageFileHistoryLine', [ $this, $file, &$row, &$rowClass ] );
+		$this->getHookRunner()->onImagePageFileHistoryLine( $this, $file, $row, $rowClass );
 		$classAttr = $rowClass ? " class='$rowClass'" : '';
 
 		return "<tr{$classAttr}>{$row}</tr>\n";

@@ -169,7 +169,7 @@ class UserMailer {
 		// target differently to split up the address list
 		if ( count( $to ) > 1 ) {
 			$oldTo = $to;
-			Hooks::run( 'UserMailerSplitTo', [ &$to ] );
+			Hooks::runner()->onUserMailerSplitTo( $to );
 			if ( $oldTo != $to ) {
 				$splitTo = array_diff( $oldTo, $to );
 				$to = array_diff( $oldTo, $splitTo ); // ignore new addresses added in the hook
@@ -251,7 +251,7 @@ class UserMailer {
 
 		// Allow transformation of content, such as encrypting/signing
 		$error = false;
-		if ( !Hooks::run( 'UserMailerTransformContent', [ $to, $from, &$body, &$error ] ) ) {
+		if ( !Hooks::runner()->onUserMailerTransformContent( $to, $from, $body, $error ) ) {
 			if ( $error ) {
 				return Status::newFatal( 'php-mail-error', $error );
 			} else {
@@ -293,7 +293,7 @@ class UserMailer {
 		$extraParams = $wgAdditionalMailParams;
 
 		// Hook to generate custom VERP address for 'Return-Path'
-		Hooks::run( 'UserMailerChangeReturnPath', [ $to, &$returnPath ] );
+		Hooks::runner()->onUserMailerChangeReturnPath( $to, $returnPath );
 		// Add the envelope sender address using the -f command line option when PHP mail() is used.
 		// Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
 		// generated VERP address when the hook runs effectively.
@@ -357,8 +357,8 @@ class UserMailer {
 		}
 
 		// allow transformation of MIME-encoded message
-		if ( !Hooks::run( 'UserMailerTransformMessage',
-			[ $to, $from, &$subject, &$headers, &$body, &$error ] )
+		if ( !Hooks::runner()->onUserMailerTransformMessage(
+			$to, $from, $subject, $headers, $body, $error )
 		) {
 			if ( $error ) {
 				return Status::newFatal( 'php-mail-error', $error );
@@ -367,7 +367,7 @@ class UserMailer {
 			}
 		}
 
-		$ret = Hooks::run( 'AlternateUserMailer', [ $headers, $to, $from, $subject, $body ] );
+		$ret = Hooks::runner()->onAlternateUserMailer( $headers, $to, $from, $subject, $body );
 		if ( $ret === false ) {
 			// the hook implementation will return false to skip regular mail sending
 			return Status::newGood();

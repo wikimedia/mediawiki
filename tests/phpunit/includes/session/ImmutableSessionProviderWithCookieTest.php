@@ -31,6 +31,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 		$provider->setLogger( new \TestLogger() );
 		$provider->setConfig( $config );
 		$provider->setManager( new SessionManager() );
+		$provider->setHookContainer( $this->createHookContainer() );
 
 		return $provider;
 	}
@@ -210,6 +211,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
 			] ),
 			new TestBagOStuff(),
 			new \Psr\Log\NullLogger(),
+			$this->createHookContainer(),
 			10
 		);
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;

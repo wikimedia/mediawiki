@@ -64,17 +64,19 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$mockNsInfo->expects( $this->never() )
 			->method( $this->anythingBut( 'getValidNamespaces', '__destruct' ) );
 
+		$services = MediaWikiServices::getInstance();
+
 		return new DefaultPreferencesFactory(
 			new LoggedServiceOptions( self::$serviceOptionsAccessLog,
 				DefaultPreferencesFactory::CONSTRUCTOR_OPTIONS, $this->config ),
 			$language,
 			AuthManager::singleton(),
-			MediaWikiServices::getInstance()->getLinkRenderer(),
+			$services->getLinkRenderer(),
 			$mockNsInfo,
 			$mockPM,
-			MediaWikiServices::getInstance()->getLanguageConverterFactory()
-				->getLanguageConverter( $language ),
-			MediaWikiServices::getInstance()->getLanguageNameUtils()
+			$services->getLanguageConverterFactory()->getLanguageConverter( $language ),
+			$services->getLanguageNameUtils(),
+			$services->getHookContainer()
 		);
 	}
 

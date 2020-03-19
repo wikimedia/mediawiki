@@ -290,7 +290,7 @@ class SkinTemplate extends Skin {
 		];
 		foreach ( $data as $key => $existingItems ) {
 			$newItems = [];
-			Hooks::run( 'SkinAddFooterLinks', [ $this->getSkin(), $key, &$newItems ] );
+			$this->getHookRunner()->onSkinAddFooterLinks( $this->getSkin(), $key, $newItems );
 			$data[$key] = $existingItems + $newItems;
 		}
 		return $data;
@@ -444,10 +444,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
 		$tpl->set( 'reporttime', wfReportTime( $out->getCSP()->getNonce() ) );
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$skinTemplate = $this;
 		// original version by hansm
-		if ( !Hooks::run( 'SkinTemplateOutputPageBeforeExec', [ &$skinTemplate, &$tpl ] ) ) {
+		if ( !$this->getHookRunner()->onSkinTemplateOutputPageBeforeExec( $this, $tpl ) ) {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
 
@@ -689,7 +687,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		Hooks::runWithoutAbort( 'PersonalUrls', [ &$personal_urls, &$title, $this ] );
+		$this->getHookRunner()->onPersonalUrls( $personal_urls, $title, $this );
 		return $personal_urls;
 	}
 
@@ -741,12 +739,10 @@ class SkinTemplate extends Skin {
 				);
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$skinTemplate = $this;
 		$result = [];
-		if ( !Hooks::run( 'SkinTemplateTabAction', [ &$skinTemplate,
-				$title, $message, $selected, $checkEdit,
-				&$classes, &$query, &$text, &$result ] ) ) {
+		if ( !$this->getHookRunner()->onSkinTemplateTabAction( $this, $title, $message,
+			$selected, $checkEdit, $classes, $query, $text, $result )
+		) {
 			return $result;
 		}
 
@@ -890,10 +886,8 @@ class SkinTemplate extends Skin {
 
 		$userCanRead = $permissionManager->quickUserCan( 'read', $user, $title );
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$skinTemplate = $this;
 		$preventActiveTabs = false;
-		Hooks::run( 'SkinTemplatePreventOtherActiveTabs', [ &$skinTemplate, &$preventActiveTabs ] );
+		$this->getHookRunner()->onSkinTemplatePreventOtherActiveTabs( $this, $preventActiveTabs );
 
 		// Checks if page is some kind of content
 		if ( $title->canExist() ) {
@@ -1102,12 +1096,7 @@ class SkinTemplate extends Skin {
 				}
 			}
 
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$skinTemplate = $this;
-			Hooks::runWithoutAbort(
-				'SkinTemplateNavigation',
-				[ &$skinTemplate, &$content_navigation ]
-			);
+			$this->getHookRunner()->onSkinTemplateNavigation( $this, $content_navigation );
 
 			if ( $userCanRead && !$this->getConfig()->get( 'DisableLangConversion' ) ) {
 				$pageLang = $title->getPageLanguage();
@@ -1152,17 +1141,13 @@ class SkinTemplate extends Skin {
 				'context' => 'subject'
 			];
 
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$skinTemplate = $this;
-			Hooks::runWithoutAbort( 'SkinTemplateNavigation::SpecialPage',
-				[ &$skinTemplate, &$content_navigation ] );
+			$this->getHookRunner()->onSkinTemplateNavigation__SpecialPage(
+				$this, $content_navigation );
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$skinTemplate = $this;
 		// Equiv to SkinTemplateContentActions
-		Hooks::runWithoutAbort( 'SkinTemplateNavigation::Universal',
-			[ &$skinTemplate, &$content_navigation ] );
+		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
+			$this, $content_navigation );
 
 		// Setup xml ids and tooltip info
 		foreach ( $content_navigation as $section => &$links ) {
@@ -1255,20 +1240,15 @@ class SkinTemplate extends Skin {
 		if ( !$out->isArticle() ) {
 			return $navUrls;
 		}
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$modifiedNavUrls = [];
 		foreach ( $navUrls as $key => $url ) {
 			$modifiedNavUrls[$key] = $url;
 			if ( $key === 'permalink' ) {
-				// Avoid PHP 7.1 warning of passing $this by reference
-				$skinTemplate = $this;
 				$revid = $out->getRevisionId();
 				// Use the copy of revision ID in case this undocumented,
 				// shady hook tries to mess with internals.
-				$hookContainer->run(
-					'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
-					[ &$skinTemplate, &$modifiedNavUrls, &$revid, &$revid ],
-					[]
+				$this->getHookRunner()->onSkinTemplateBuildNavUrlsNav_urlsAfterPermalink(
+					$this, $modifiedNavUrls, $revid, $revid
 				);
 			}
 		}

@@ -27,6 +27,8 @@ use BagOStuff;
 use CachedBagOStuff;
 use Config;
 use FauxRequest;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use Psr\Log\LoggerInterface;
@@ -59,6 +61,12 @@ final class SessionManager implements SessionManagerInterface {
 
 	/** @var LoggerInterface */
 	private $logger;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var Config */
 	private $config;
@@ -167,6 +175,12 @@ final class SessionManager implements SessionManagerInterface {
 			$this->setLogger( \MediaWiki\Logger\LoggerFactory::getInstance( 'session' ) );
 		}
 
+		if ( isset( $options['hookContainer'] ) ) {
+			$this->setHookContainer( $options['hookContainer'] );
+		} else {
+			$this->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+		}
+
 		if ( isset( $options['store'] ) ) {
 			if ( !$options['store'] instanceof BagOStuff ) {
 				throw new \InvalidArgumentException(
@@ -177,6 +191,7 @@ final class SessionManager implements SessionManagerInterface {
 		} else {
 			$store = \ObjectCache::getInstance( $this->config->get( 'SessionCacheType' ) );
 		}
+
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
 
@@ -185,6 +200,15 @@ final class SessionManager implements SessionManagerInterface {
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	/**
+	 * @internal
+	 * @param HookContainer $hookContainer
+	 */
+	public function setHookContainer( HookContainer $hookContainer ) {
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	public function getSessionForRequest( WebRequest $request ) {
@@ -412,6 +436,7 @@ final class SessionManager implements SessionManagerInterface {
 				$provider->setLogger( $this->logger );
 				$provider->setConfig( $this->config );
 				$provider->setManager( $this );
+				$provider->setHookContainer( $this->hookContainer );
 				if ( isset( $this->sessionProviders[(string)$provider] ) ) {
 					// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 					throw new \UnexpectedValueException( "Duplicate provider name \"$provider\"" );
@@ -793,10 +818,9 @@ final class SessionManager implements SessionManagerInterface {
 		// hook, this can allow for tying a session to an IP address or the
 		// like.
 		$reason = 'Hook aborted';
-		if ( !\Hooks::run(
-			'SessionCheckInfo',
-			[ &$reason, $info, $request, $metadata, $data ]
-		) ) {
+		if ( !$this->hookRunner->onSessionCheckInfo(
+			$reason, $info, $request, $metadata, $data )
+		) {
 			$this->logger->warning( 'Session "{session}": ' . $reason, [
 				'session' => $info,
 			] );
@@ -840,6 +864,7 @@ final class SessionManager implements SessionManagerInterface {
 				$info,
 				$this->store,
 				$this->logger,
+				$this->hookContainer,
 				$this->config->get( 'ObjectCacheSessionExpiry' )
 			);
 			$this->allSessionBackends[$id] = $backend;

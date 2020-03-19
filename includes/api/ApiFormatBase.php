@@ -292,7 +292,7 @@ abstract class ApiFormatBase extends ApiBase {
 				}
 			}
 
-			if ( Hooks::run( 'ApiFormatHighlight', [ $context, $result, $mime, $format ] ) ) {
+			if ( $this->getHookRunner()->onApiFormatHighlight( $context, $result, $mime, $format ) ) {
 				$out->addHTML(
 					Html::element( 'pre', [ 'class' => 'api-pretty-content' ], $result )
 				);

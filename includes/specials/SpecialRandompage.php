@@ -108,10 +108,10 @@ class RandomPage extends SpecialPage {
 		$randstr = wfRandom();
 		$title = null;
 
-		if ( !Hooks::run(
-			'SpecialRandomGetRandomTitle',
-			[ &$randstr, &$this->isRedir, &$this->namespaces, &$this->extra, &$title ]
-		) ) {
+		if ( !$this->getHookRunner()->onSpecialRandomGetRandomTitle(
+			$randstr, $this->isRedir, $this->namespaces,
+			$this->extra, $title )
+		) {
 			return $title;
 		}
 
@@ -146,7 +146,7 @@ class RandomPage extends SpecialPage {
 		$joinConds = [];
 
 		// Allow extensions to modify the query
-		Hooks::run( 'RandomPageQuery', [ &$tables, &$conds, &$joinConds ] );
+		$this->getHookRunner()->onRandomPageQuery( $tables, $conds, $joinConds );
 
 		return [
 			'tables' => $tables,

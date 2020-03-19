@@ -28,6 +28,7 @@ use Language;
 use LanguageConverter;
 use LocalisationCache;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MWException;
 
@@ -54,6 +55,9 @@ class LanguageFactory {
 	/** @var LanguageConverterFactory */
 	private $langConverterFactory;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/** @var array */
 	private $langObjCache = [];
 
@@ -75,13 +79,15 @@ class LanguageFactory {
 	 * @param LanguageNameUtils $langNameUtils
 	 * @param LanguageFallback $langFallback
 	 * @param LanguageConverterFactory $langConverterFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		LocalisationCache $localisationCache,
 		LanguageNameUtils $langNameUtils,
 		LanguageFallback $langFallback,
-		LanguageConverterFactory $langConverterFactory
+		LanguageConverterFactory $langConverterFactory,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -90,6 +96,7 @@ class LanguageFactory {
 		$this->langNameUtils = $langNameUtils;
 		$this->langFallback = $langFallback;
 		$this->langConverterFactory = $langConverterFactory;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
@@ -148,6 +155,7 @@ class LanguageFactory {
 			$this->langNameUtils,
 			$this->langFallback,
 			$this->langConverterFactory,
+			$this->hookContainer
 		];
 
 		if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {

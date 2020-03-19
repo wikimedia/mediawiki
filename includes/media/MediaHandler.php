@@ -145,7 +145,7 @@ abstract class MediaHandler {
 	 */
 	public static function getMetadataVersion() {
 		$version = [ '2' ]; // core metadata version
-		Hooks::run( 'GetMetadataVersion', [ &$version ] );
+		Hooks::runner()->onGetMetadataVersion( $version );
 
 		return implode( ';', $version );
 	}

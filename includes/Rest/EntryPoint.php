@@ -67,7 +67,8 @@ class EntryPoint {
 			$responseFactory,
 			$authorizer,
 			$objectFactory,
-			$restValidator
+			$restValidator,
+			$services->getHookContainer()
 		);
 	}
 

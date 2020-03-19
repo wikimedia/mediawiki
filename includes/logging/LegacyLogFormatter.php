@@ -119,8 +119,8 @@ class LegacyLogFormatter extends LogFormatter {
 
 		$params = $this->entry->getParameters();
 
-		Hooks::run( 'LogLine', [ $type, $subtype, $title, $params,
-			&$this->comment, &$this->revert, $this->entry->getTimestamp() ] );
+		Hooks::runner()->onLogLine( $type, $subtype, $title, $params, $this->comment,
+			$this->revert, $this->entry->getTimestamp() );
 
 		return $this->revert;
 	}

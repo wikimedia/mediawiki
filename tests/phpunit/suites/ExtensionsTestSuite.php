@@ -20,7 +20,7 @@ class ExtensionsTestSuite extends TestSuite {
 			$paths[] = dirname( $info['path'] ) . '/tests/phpunit';
 		}
 		// Extensions can return a list of files or directories
-		Hooks::run( 'UnitTestsList', [ &$paths ] );
+		Hooks::runner()->onUnitTestsList( $paths );
 		foreach ( array_unique( $paths ) as $path ) {
 			if ( is_dir( $path ) ) {
 				// If the path is a directory, search for test cases.

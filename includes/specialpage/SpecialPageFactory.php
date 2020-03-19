@@ -24,10 +24,11 @@
 
 namespace MediaWiki\SpecialPage;
 
-use Hooks;
 use IContextSource;
 use Language;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use Profiler;
 use RequestContext;
@@ -254,6 +255,12 @@ class SpecialPageFactory {
 	/** @var ObjectFactory */
 	private $objectFactory;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @var array
 	 * @since 1.35
@@ -272,16 +279,20 @@ class SpecialPageFactory {
 	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 * @param ObjectFactory $objectFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contLang,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->objectFactory = $objectFactory;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -333,8 +344,7 @@ class SpecialPageFactory {
 
 			// This hook can be used to disable unwanted core special pages
 			// or conditionally register special pages.
-			Hooks::run( 'SpecialPage_initList', [ &$this->list ] );
-
+			$this->hookRunner->onSpecialPage_initList( $this->list );
 		}
 
 		return $this->list;
@@ -465,6 +475,7 @@ class SpecialPageFactory {
 			}
 
 			if ( $page instanceof SpecialPage ) {
+				$page->setHookContainer( $this->hookContainer );
 				return $page;
 			}
 

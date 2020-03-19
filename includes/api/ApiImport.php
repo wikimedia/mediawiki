@@ -114,7 +114,7 @@ class ApiImport extends ApiBase {
 	 */
 	public function getAllowedImportSources() {
 		$importSources = $this->getConfig()->get( 'ImportSources' );
-		Hooks::run( 'ImportSources', [ &$importSources ] );
+		$this->getHookRunner()->onImportSources( $importSources );
 
 		$result = [];
 		foreach ( $importSources as $key => $value ) {

@@ -22,9 +22,10 @@ namespace MediaWiki\Permissions;
 use Action;
 use Article;
 use Exception;
-use Hooks;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -89,6 +90,9 @@ class PermissionManager {
 
 	/** @var BlockErrorFormatter */
 	private $blockErrorFormatter;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = null;
@@ -197,13 +201,15 @@ class PermissionManager {
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $nsInfo
 	 * @param BlockErrorFormatter $blockErrorFormatter
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		SpecialPageFactory $specialPageFactory,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $nsInfo,
-		BlockErrorFormatter $blockErrorFormatter
+		BlockErrorFormatter $blockErrorFormatter,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -211,6 +217,7 @@ class PermissionManager {
 		$this->revisionLookup = $revisionLookup;
 		$this->nsInfo = $nsInfo;
 		$this->blockErrorFormatter = $blockErrorFormatter;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -330,7 +337,7 @@ class PermissionManager {
 		$allowUsertalk = $user->isAllowUsertalk();
 
 		// Allow extensions to let a blocked user access a particular page
-		Hooks::run( 'UserIsBlockedFrom', [ $user, $title, &$blocked, &$allowUsertalk ] );
+		$this->hookRunner->onUserIsBlockedFrom( $user, $title, $blocked, $allowUsertalk );
 
 		return $blocked;
 	}
@@ -437,18 +444,19 @@ class PermissionManager {
 		$title = Title::newFromLinkTarget( $page );
 		// Use getUserPermissionsErrors instead
 		$result = '';
-		if ( !Hooks::run( 'userCan', [ &$title, &$user, $action, &$result ] ) ) {
+		if ( !$this->hookRunner->onUserCan( $title, $user, $action, $result ) ) {
 			return $result ? [] : [ [ 'badaccess-group0' ] ];
 		}
 		// Check getUserPermissionsErrors hook
-		if ( !Hooks::run( 'getUserPermissionsErrors', [ &$title, &$user, $action, &$result ] ) ) {
+		if ( !$this->hookRunner->onGetUserPermissionsErrors( $title, $user, $action, $result ) ) {
 			$errors = $this->resultToError( $errors, $result );
 		}
 		// Check getUserPermissionsErrorsExpensive hook
 		if (
 			$rigor !== self::RIGOR_QUICK
 			&& !( $short && count( $errors ) > 0 )
-			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', [ &$title, &$user, $action, &$result ] )
+			&& !$this->hookRunner->onGetUserPermissionsErrorsExpensive(
+				$title, $user, $action, $result )
 		) {
 			$errors = $this->resultToError( $errors, $result );
 		}
@@ -571,7 +579,7 @@ class PermissionManager {
 
 		if ( !$whitelisted ) {
 			# If the title is not whitelisted, give extensions a chance to do so...
-			Hooks::run( 'TitleReadWhitelist', [ $title, $user, &$whitelisted ] );
+			$this->hookRunner->onTitleReadWhitelist( $title, $user, $whitelisted );
 			if ( !$whitelisted ) {
 				$errors[] = $this->missingPermissionError( $action, $short );
 			}
@@ -742,8 +750,8 @@ class PermissionManager {
 		// TODO: remove when LinkTarget usage will expand further
 		$title = Title::newFromLinkTarget( $page );
 
-		if ( !Hooks::run( 'TitleQuickPermissions',
-			[ $title, $user, $action, &$errors, ( $rigor !== self::RIGOR_QUICK ), $short ] )
+		if ( !$this->hookRunner->onTitleQuickPermissions( $title, $user, $action,
+			$errors, $rigor !== self::RIGOR_QUICK, $short )
 		) {
 			return $errors;
 		}
@@ -1282,7 +1290,7 @@ class PermissionManager {
 			$this->usersRights[ $rightsCacheKey ] = $this->getGroupPermissions(
 				$user->getEffectiveGroups()
 			);
-			Hooks::run( 'UserGetRights', [ $user, &$this->usersRights[ $rightsCacheKey ] ] );
+			$this->hookRunner->onUserGetRights( $user, $this->usersRights[ $rightsCacheKey ] );
 
 			// Deny any rights denied by the user's session, unless this
 			// endpoint has no sessions.
@@ -1297,7 +1305,8 @@ class PermissionManager {
 				}
 			}
 
-			Hooks::run( 'UserGetRightsRemove', [ $user, &$this->usersRights[ $rightsCacheKey ] ] );
+			$this->hookRunner->onUserGetRightsRemove(
+				$user, $this->usersRights[ $rightsCacheKey ] );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->usersRights[ $rightsCacheKey ] = array_values(
 				array_unique( $this->usersRights[ $rightsCacheKey ] )
@@ -1466,7 +1475,7 @@ class PermissionManager {
 		}
 
 		// Allow extensions to say false
-		if ( !Hooks::run( 'UserIsEveryoneAllowed', [ $right ] ) ) {
+		if ( !$this->hookRunner->onUserIsEveryoneAllowed( $right ) ) {
 			$this->cachedRights[$right] = false;
 			return false;
 		}
@@ -1492,7 +1501,7 @@ class PermissionManager {
 			} else {
 				$this->allRights = $this->coreRights;
 			}
-			Hooks::run( 'UserGetAllRights', [ &$this->allRights ] );
+			$this->hookRunner->onUserGetAllRights( $this->allRights );
 		}
 		return $this->allRights;
 	}

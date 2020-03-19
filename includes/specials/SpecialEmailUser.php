@@ -276,8 +276,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$hookErr = false;
 
-		Hooks::run( 'UserCanSendEmail', [ &$user, &$hookErr ] );
-		Hooks::run( 'EmailUserPermissionsErrors', [ $user, $editToken, &$hookErr ] );
+		Hooks::runner()->onUserCanSendEmail( $user, $hookErr );
+		Hooks::runner()->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
 
 		if ( $hookErr ) {
 			return $hookErr;
@@ -336,7 +336,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			->setWrapperLegendMsg( 'email-legend' )
 			->loadData();
 
-		if ( !Hooks::run( 'EmailUserForm', [ &$htmlForm ] ) ) {
+		if ( !$this->getHookRunner()->onEmailUserForm( $htmlForm ) ) {
 			return false;
 		}
 
@@ -393,7 +393,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		$error = false;
-		if ( !Hooks::run( 'EmailUser', [ &$to, &$from, &$subject, &$text, &$error ] ) ) {
+		if ( !Hooks::runner()->onEmailUser( $to, $from, $subject, $text, $error ) ) {
 			if ( $error instanceof Status ) {
 				return $error;
 			} elseif ( $error === false || $error === '' || $error === [] ) {
@@ -470,7 +470,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 					$target->getName(), $subject )->text();
 				$ccText = $text;
 
-				Hooks::run( 'EmailUserCC', [ &$ccTo, &$ccFrom, &$ccSubject, &$ccText ] );
+				Hooks::runner()->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
 
 				if ( $config->get( 'UserEmailUseReplyTo' ) ) {
 					$mailFrom = new MailAddress(
@@ -490,7 +490,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$status->merge( $ccStatus );
 			}
 
-			Hooks::run( 'EmailUserComplete', [ $to, $from, $subject, $text ] );
+			Hooks::runner()->onEmailUserComplete( $to, $from, $subject, $text );
 
 			return $status;
 		}

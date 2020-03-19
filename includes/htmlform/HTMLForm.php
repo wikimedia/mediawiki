@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+
 /**
  * Object handling generic submission, CSRF protection, layout and
  * other logic for UI forms in a reusable manner.
@@ -129,6 +131,8 @@
  * @todo Document 'section' / 'subsection' stuff
  */
 class HTMLForm extends ContextSource {
+	use ProtectedHookAccessorTrait;
+
 	// A mapping of 'type' inputs onto standard HTMLFormField subclasses
 	public static $typeMappings = [
 		'api' => HTMLApiField::class,

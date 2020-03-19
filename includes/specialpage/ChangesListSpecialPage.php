@@ -111,7 +111,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		parent::__construct( $name, $restriction );
 
 		$nonRevisionTypes = [ RC_LOG ];
-		Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
+		$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes( $nonRevisionTypes );
 
 		$this->filterGroupDefinitions = [
 			[
@@ -1071,7 +1071,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			);
 		}
 
-		Hooks::run( 'ChangesListSpecialPageStructuredFilters', [ $this ] );
+		$this->getHookRunner()->onChangesListSpecialPageStructuredFilters( $this );
 
 		$this->registerFiltersFromDefinitions( [] );
 
@@ -1621,10 +1621,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected function runMainQueryHook( &$tables, &$fields, &$conds,
 		&$query_options, &$join_conds, $opts
 	) {
-		return Hooks::run(
-			'ChangesListSpecialPageQuery',
-			[ $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ]
-		);
+		return $this->getHookRunner()->onChangesListSpecialPageQuery(
+			$this->getName(), $tables, $fields, $conds, $query_options, $join_conds, $opts );
 	}
 
 	/**

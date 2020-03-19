@@ -21,7 +21,6 @@
 namespace MediaWiki\User;
 
 use DBAccessObjectUtils;
-use Hooks;
 use HTMLCheckMatrix;
 use HTMLFormField;
 use HTMLMultiSelectField;
@@ -29,6 +28,8 @@ use IContextSource;
 use IDBAccessObject;
 use LanguageCode;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
@@ -67,19 +68,24 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	/** @var array Cached original user options fetched from database */
 	private $originalOptionsCache = [];
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param DefaultOptionsLookup $defaultOptionsLookup
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LoggerInterface $logger
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		DefaultOptionsLookup $defaultOptionsLookup,
 		LanguageConverterFactory $languageConverterFactory,
 		ILoadBalancer $loadBalancer,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
@@ -87,6 +93,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->loadBalancer = $loadBalancer;
 		$this->logger = $logger;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -219,9 +226,9 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		}
 
 		// TODO: Deprecate passing full user to the hook
-		Hooks::run( 'UserResetAllOptions', [
-			User::newFromIdentity( $user ), &$newOptions, $oldOptions, $resetKinds
-		] );
+		$this->hookRunner->onUserResetAllOptions(
+			User::newFromIdentity( $user ), $newOptions, $oldOptions, $resetKinds
+		);
 
 		$this->optionsCache[$this->getCacheKey( $user )] = $newOptions;
 	}
@@ -370,10 +377,9 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
 		// TODO: Deprecate passing User to the hook.
-		if ( !Hooks::run(
-			'UserSaveOptions',
-			[ User::newFromIdentity( $user ), &$saveOptions, $originalOptions ]
-		) ) {
+		if ( !$this->hookRunner->onUserSaveOptions(
+			User::newFromIdentity( $user ), $saveOptions, $originalOptions )
+		) {
 			return;
 		}
 		// In case options were modified by the hook
@@ -522,9 +528,8 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		// infinite recursion if the hook attempts to reload options
 		$this->originalOptionsCache[$userKey] = $options;
 		// TODO: Deprecate passing full User object into the hook.
-		Hooks::run(
-			'UserLoadOptions',
-			[ User::newFromIdentity( $user ), &$options ]
+		$this->hookRunner->onUserLoadOptions(
+			User::newFromIdentity( $user ), $options
 		);
 
 		$this->originalOptionsCache[$userKey] = $options;

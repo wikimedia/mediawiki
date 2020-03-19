@@ -48,7 +48,8 @@ class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
 			new ResponseFactory( [] ),
 			new MWBasicAuthorizer( $user, $permissionManager ),
 			$objectFactory,
-			new Validator( $objectFactory, $permissionManager, $request, $user )
+			new Validator( $objectFactory, $permissionManager, $request, $user ),
+			$this->createHookContainer()
 		);
 	}
 

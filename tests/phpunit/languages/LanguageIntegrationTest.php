@@ -22,7 +22,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$this->createNoOpMock( LocalisationCache::class ),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
-			$this->createNoOpMock( LanguageConverterFactory::class )
+			$this->createNoOpMock( LanguageConverterFactory::class ),
+			$this->createHookContainer()
 		);
 	}
 
@@ -1828,10 +1829,13 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 */
 	public function testGetNamespaceAliasesFullLogic() {
 		$langNameUtils = $this->getMockBuilder( LanguageNameUtils::class )
-			->setConstructorArgs( [ new ServiceOptions( LanguageNameUtils::CONSTRUCTOR_OPTIONS, [
-				'ExtraLanguageNames' => [],
-				'UsePigLatinVariant' => false,
-			] ) ] )
+			->setConstructorArgs( [
+				new ServiceOptions( LanguageNameUtils::CONSTRUCTOR_OPTIONS, [
+					'ExtraLanguageNames' => [],
+					'UsePigLatinVariant' => false,
+				] ),
+				$this->createHookContainer()
+			] )
 			->setMethods( [ 'getMessagesFileName' ] )
 			->getMock();
 		$langNameUtils->method( 'getMessagesFileName' )->will(
@@ -2010,7 +2014,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			MediaWikiServices::getInstance()->getLocalisationCache(),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
-			$this->createNoOpMock( LanguageConverterFactory::class )
+			$this->createNoOpMock( LanguageConverterFactory::class ),
+			$this->createHookContainer()
 		);
 		$config += [
 			'wgMetaNamespace' => 'Project',

@@ -258,6 +258,8 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			->method( 'getNearMatcher' )
 			->willReturn( $nearMatcherMock );
 
+		$mock->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+
 		return $mock;
 	}
 

@@ -157,7 +157,7 @@ function wfImageAuthMain() {
 		// Run hook for extension authorization plugins
 		/** @var array $result */
 		$result = null;
-		if ( !Hooks::run( 'ImgAuthBeforeStream', [ &$title, &$path, &$name, &$result ] ) ) {
+		if ( !Hooks::runner()->onImgAuthBeforeStream( $title, $path, $name, $result ) ) {
 			wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
 			return;
 		}
@@ -183,7 +183,7 @@ function wfImageAuthMain() {
 	}
 
 	// Allow modification of headers before streaming a file
-	Hooks::run( 'ImgAuthModifyHeaders', [ $title->getTitleValue(), &$headers ] );
+	Hooks::runner()->onImgAuthModifyHeaders( $title->getTitleValue(), $headers );
 
 	// Stream the requested file
 	list( $headers, $options ) = HTTPFileStreamer::preprocessHeaders( $headers );

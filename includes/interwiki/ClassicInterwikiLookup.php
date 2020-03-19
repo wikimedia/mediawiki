@@ -24,10 +24,11 @@ namespace MediaWiki\Interwiki;
 
 use Cdb\Exception as CdbException;
 use Cdb\Reader as CdbReader;
-use Hooks;
 use Interwiki;
 use Language;
 use MapCacheLRU;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use WANObjectCache;
 use WikiMap;
 use Wikimedia\Rdbms\Database;
@@ -91,9 +92,13 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 */
 	private $thisSite = null;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @param Language $contLang Language object used to convert prefixes to lower case
 	 * @param WANObjectCache $objectCache Cache for interwiki info retrieved from the database
+	 * @param HookContainer $hookContainer
 	 * @param int $objectCacheExpiry Expiry time for $objectCache, in seconds
 	 * @param bool|array|string $cdbData The path of a CDB file, or
 	 *        an array resembling the contents of a CDB file,
@@ -107,6 +112,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	public function __construct(
 		Language $contLang,
 		WANObjectCache $objectCache,
+		HookContainer $hookContainer,
 		$objectCacheExpiry,
 		$cdbData,
 		$interwikiScopes,
@@ -116,6 +122,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 
 		$this->contLang = $contLang;
 		$this->objectCache = $objectCache;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->objectCacheExpiry = $objectCacheExpiry;
 		$this->cdbData = $cdbData;
 		$this->interwikiScopes = $interwikiScopes;
@@ -272,7 +279,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 */
 	private function load( $prefix ) {
 		$iwData = [];
-		if ( !Hooks::run( 'InterwikiLoadPrefix', [ $prefix, &$iwData ] ) ) {
+		if ( !$this->hookRunner->onInterwikiLoadPrefix( $prefix, $iwData ) ) {
 			return $this->loadFromArray( $iwData );
 		}
 

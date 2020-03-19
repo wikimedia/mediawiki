@@ -24,6 +24,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
@@ -49,8 +50,8 @@ use Wikimedia\ScopedCallback;
  * headaches, which may be fatal.
  */
 class EditPage {
-
 	use DeprecationHelper;
+	use ProtectedHookAccessorTrait;
 
 	/**
 	 * Used for Unicode support checks
@@ -627,7 +628,7 @@ class EditPage {
 	 */
 	public function edit() {
 		// Allow extensions to modify/prevent this form or submission
-		if ( !Hooks::run( 'AlternateEdit', [ $this ] ) ) {
+		if ( !$this->getHookRunner()->onAlternateEdit( $this ) ) {
 			return;
 		}
 
@@ -749,9 +750,9 @@ class EditPage {
 			}
 
 			if ( !$this->mTitle->getArticleID() ) {
-				Hooks::run( 'EditFormPreloadText', [ &$this->textbox1, &$this->mTitle ] );
+				$this->getHookRunner()->onEditFormPreloadText( $this->textbox1, $this->mTitle );
 			} else {
-				Hooks::run( 'EditFormInitialText', [ $this ] );
+				$this->getHookRunner()->onEditFormInitialText( $this );
 			}
 
 		}
@@ -848,7 +849,7 @@ class EditPage {
 	 */
 	protected function displayViewSourcePage( Content $content, $errorMessage = '' ) {
 		$out = $this->context->getOutput();
-		Hooks::run( 'EditPage::showReadOnlyForm:initial', [ $this, &$out ] );
+		$this->getHookRunner()->onEditPage__showReadOnlyForm_initial( $this, $out );
 
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setPageTitle( $this->context->msg(
@@ -1180,7 +1181,7 @@ class EditPage {
 			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
 
 		// Allow extensions to modify form data
-		Hooks::run( 'EditPage::importFormData', [ $this, $request ] );
+		$this->getHookRunner()->onEditPage__importFormData( $this, $request );
 	}
 
 	/**
@@ -1757,7 +1758,7 @@ class EditPage {
 			&& $this->permManager->userHasRight( $this->context->getUser(), 'bot' );
 		$status = $this->internalAttemptSave( $resultDetails, $markAsBot );
 
-		Hooks::run( 'EditPage::attemptSave:after', [ $this, $status, $resultDetails ] );
+		$this->getHookRunner()->onEditPage__attemptSave_after( $this, $status, $resultDetails );
 
 		return $status;
 	}
@@ -1851,10 +1852,8 @@ class EditPage {
 				$sectionanchor = $resultDetails['sectionanchor'];
 
 				// Give extensions a chance to modify URL query on update
-				Hooks::run(
-					'ArticleUpdateBeforeRedirect',
-					[ $this->mArticle, &$sectionanchor, &$extraQuery ]
-				);
+				$this->getHookRunner()->onArticleUpdateBeforeRedirect( $this->mArticle,
+					$sectionanchor, $extraQuery );
 
 				if ( $resultDetails['redirect'] ) {
 					if ( $extraQuery !== '' ) {
@@ -1936,9 +1935,8 @@ class EditPage {
 		}
 
 		// Run new style post-section-merge edit filter
-		if ( !Hooks::run( 'EditFilterMergedContent',
-				[ $this->context, $content, $status, $this->summary,
-				$user, $this->minoredit ] )
+		if ( !$this->getHookRunner()->onEditFilterMergedContent( $this->context, $content,
+			$status, $this->summary, $user, $this->minoredit )
 		) {
 			# Error messages etc. could be handled within the hook...
 			if ( $status->isGood() ) {
@@ -2049,7 +2047,7 @@ ERROR;
 		$status = Status::newGood();
 		$user = $this->context->getUser();
 
-		if ( !Hooks::run( 'EditPage::attemptSave', [ $this ] ) ) {
+		if ( !$this->getHookRunner()->onEditPage__attemptSave( $this ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
@@ -2132,9 +2130,8 @@ ERROR;
 			$status->value = self::AS_SPAM_ERROR;
 			return $status;
 		}
-		if ( !Hooks::run(
-			'EditFilter',
-			[ $this, $this->textbox1, $this->section, &$this->hookError, $this->summary ] )
+		if ( !$this->getHookRunner()->onEditFilter( $this, $this->textbox1, $this->section,
+			$this->hookError, $this->summary )
 		) {
 			# Error messages etc. could be handled within the hook...
 			$status->fatal( 'hookaborted' );
@@ -2994,9 +2991,7 @@ ERROR;
 
 		$out = $this->context->getOutput();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPage::showEditForm:initial', [ &$editPage, &$out ] );
+		$this->getHookRunner()->onEditPage__showEditForm_initial( $this, $out );
 
 		$this->setHeaders();
 
@@ -3071,9 +3066,7 @@ ERROR;
 			. Xml::closeElement( 'div' )
 		);
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPage::showEditForm:fields', [ &$editPage, &$out ] );
+		$this->getHookRunner()->onEditPage__showEditForm_fields( $this, $out );
 
 		// Put these up at the top to ensure they aren't lost on early form submission
 		$this->showFormBeforeText();
@@ -3726,7 +3719,7 @@ ERROR;
 		# This hook seems slightly odd here, but makes things more
 		# consistent for extensions.
 		$out = $this->context->getOutput();
-		Hooks::run( 'OutputPageBeforeHTML', [ &$out, &$text ] );
+		$this->getHookRunner()->onOutputPageBeforeHTML( $out, $text );
 		$out->addHTML( $text );
 		if ( $this->mArticle instanceof CategoryPage ) {
 			$this->mArticle->closeShowCategory();
@@ -3767,7 +3760,7 @@ ERROR;
 		}
 
 		if ( $newContent ) {
-			Hooks::run( 'EditPageGetDiffContent', [ $this, &$newContent ] );
+			$this->getHookRunner()->onEditPageGetDiffContent( $this, $newContent );
 
 			$user = $this->context->getUser();
 			$popts = ParserOptions::newFromUserAndLang( $user,
@@ -3820,7 +3813,7 @@ ERROR;
 	 */
 	protected function showTosSummary() {
 		$msg = 'editpage-tos-summary';
-		Hooks::run( 'EditPageTosSummary', [ $this->mTitle, &$msg ] );
+		$this->getHookRunner()->onEditPageTosSummary( $this->mTitle, $msg );
 		if ( !$this->context->msg( $msg )->isDisabled() ) {
 			$out = $this->context->getOutput();
 			$out->addHTML( '<div class="mw-tos-summary">' );
@@ -3868,7 +3861,7 @@ ERROR;
 				'[[' . wfMessage( 'copyrightpage' )->inContentLanguage()->text() . ']]' ];
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
-		Hooks::run( 'EditPageCopyrightWarning', [ $title, &$copywarnMsg ] );
+		Hooks::runner()->onEditPageCopyrightWarning( $title, $copywarnMsg );
 
 		$msg = wfMessage( ...$copywarnMsg )->title( $title );
 		if ( $langcode ) {
@@ -3905,9 +3898,7 @@ ERROR;
 			Html::openElement( 'tbody' );
 
 		foreach ( $output->getLimitReportData() as $key => $value ) {
-			if ( Hooks::run( 'ParserLimitReportFormat',
-				[ $key, &$value, &$limitReport, true, true ]
-			) ) {
+			if ( Hooks::runner()->onParserLimitReportFormat( $key, $value, $limitReport, true, true ) ) {
 				$keyMsg = wfMessage( $key );
 				$valueMsg = wfMessage( [ "$key-value-html", "$key-value" ] );
 				if ( !$valueMsg->exists() ) {
@@ -3972,7 +3963,7 @@ ERROR;
 		$out->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
 		$out->addHTML( "</div><!-- editButtons -->\n" );
 
-		Hooks::run( 'EditPage::showStandardInputs:options', [ $this, $out, &$tabindex ] );
+		$this->getHookRunner()->onEditPage__showStandardInputs_options( $this, $out, $tabindex );
 
 		$out->addHTML( "</div><!-- editOptions -->\n" );
 	}
@@ -3985,7 +3976,7 @@ ERROR;
 		$out = $this->context->getOutput();
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;
-		if ( Hooks::run( 'EditPageBeforeConflictDiff', [ &$editPage, &$out ] ) ) {
+		if ( $this->getHookRunner()->onEditPageBeforeConflictDiff( $editPage, $out ) ) {
 			$this->incrementConflictStats();
 
 			$this->getEditConflictHelper()->showEditFormTextAfterFooters();
@@ -4139,9 +4130,8 @@ ERROR;
 			$content = $this->toEditContent( $this->textbox1 );
 
 			$previewHTML = '';
-			if ( !Hooks::run(
-				'AlternateEditPreview',
-				[ $this, &$content, &$previewHTML, &$this->mParserOutput ] )
+			if ( !$this->getHookRunner()->onAlternateEditPreview(
+				$this, $content, $previewHTML, $this->mParserOutput )
 			) {
 				return $previewHTML;
 			}
@@ -4213,7 +4203,7 @@ ERROR;
 				$content = $content->addSectionHeader( $this->summary );
 			}
 
-			Hooks::run( 'EditPageGetPreviewContent', [ $this, &$content ] );
+			$this->getHookRunner()->onEditPageGetPreviewContent( $this, $content );
 
 			$parserResult = $this->doPreviewParse( $content );
 			$parserOutput = $parserResult['parserOutput'];
@@ -4349,7 +4339,7 @@ ERROR;
 		$startingToolbar = '<div id="toolbar"></div>';
 		$toolbar = $startingToolbar;
 
-		if ( !Hooks::run( 'EditPageBeforeEditToolbar', [ &$toolbar ] ) ) {
+		if ( !Hooks::runner()->onEditPageBeforeEditToolbar( $toolbar ) ) {
 			return null;
 		}
 		// Don't add a pointless `<div>` to the page unless a hook caller populated it
@@ -4403,8 +4393,7 @@ ERROR;
 			];
 		}
 
-		$editPage = $this;
-		Hooks::run( 'EditPageGetCheckboxesDefinition', [ $editPage, &$checkboxes ] );
+		$this->getHookRunner()->onEditPageGetCheckboxesDefinition( $this, $checkboxes );
 
 		return $checkboxes;
 	}
@@ -4547,9 +4536,7 @@ ERROR;
 			'accessKey' => Linker::accesskey( 'diff' ),
 		] );
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPageBeforeEditButtons', [ &$editPage, &$buttons, &$tabindex ] );
+		$this->getHookRunner()->onEditPageBeforeEditButtons( $this, $buttons, $tabindex );
 
 		return $buttons;
 	}
@@ -4564,9 +4551,7 @@ ERROR;
 
 		$res = $this->context->msg( 'nosuchsectiontext', $this->section )->parseAsBlock();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$editPage = $this;
-		Hooks::run( 'EditPageNoSuchSection', [ &$editPage, &$res ] );
+		$this->getHookRunner()->onEditPageNoSuchSection( $this, $res );
 		$out->addHTML( $res );
 
 		$out->returnToMain( false, $this->mTitle );

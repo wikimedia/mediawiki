@@ -22,9 +22,10 @@ namespace MediaWiki\Block;
 
 use DateTime;
 use DateTimeZone;
-use Hooks;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -68,20 +69,26 @@ class BlockManager {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param PermissionManager $permissionManager
 	 * @param LoggerInterface $logger
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		PermissionManager $permissionManager,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->permissionManager = $permissionManager;
 		$this->logger = $logger;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -159,7 +166,7 @@ class BlockManager {
 			}
 		}
 
-		Hooks::run( 'GetUserBlock', [ clone $user, $ip, &$block ] );
+		$this->hookRunner->onGetUserBlock( clone $user, $ip, $block );
 
 		return $block;
 	}

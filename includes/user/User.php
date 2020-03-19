@@ -26,6 +26,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -52,6 +53,7 @@ use Wikimedia\ScopedCallback;
  * of the database.
  */
 class User implements IDBAccessObject, UserIdentity {
+	use ProtectedHookAccessorTrait;
 
 	/**
 	 * Number of characters required for the user_token field.
@@ -391,7 +393,7 @@ class User implements IDBAccessObject, UserIdentity {
 					// Loading from session failed. Load defaults.
 					$this->loadDefaults();
 				}
-				Hooks::run( 'UserLoadAfterLoadFromSession', [ $this ] );
+				$this->getHookRunner()->onUserLoadAfterLoadFromSession( $this );
 				break;
 			default:
 				throw new UnexpectedValueException(
@@ -1089,7 +1091,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$status = Status::newGood( [] );
 		$result = false; // init $result to false for the internal checks
 
-		if ( !Hooks::run( 'isValidPassword', [ $password, &$result, $this ] ) ) {
+		if ( !$this->getHookRunner()->onIsValidPassword( $password, $result, $this ) ) {
 			$status->error( $result );
 			return $status;
 		}
@@ -1176,7 +1178,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mRegistration = wfTimestamp( TS_MW );
 		$this->mGroupMemberships = [];
 
-		Hooks::run( 'UserLoadDefaults', [ $this, $name ] );
+		$this->getHookRunner()->onUserLoadDefaults( $this, $name );
 	}
 
 	/**
@@ -1273,7 +1275,7 @@ class User implements IDBAccessObject, UserIdentity {
 		);
 
 		$this->queryFlagsUsed = $flags;
-		Hooks::run( 'UserLoadFromDatabase', [ $this, &$s ] );
+		$this->getHookRunner()->onUserLoadFromDatabase( $this, $s );
 
 		if ( $s !== false ) {
 			// Initialise user table data
@@ -1475,7 +1477,8 @@ class User implements IDBAccessObject, UserIdentity {
 		$newUGMs = $this->getGroupMemberships();
 
 		// update groups in external authentication database
-		Hooks::run( 'UserGroupsChanged', [ $this, $toPromote, [], false, false, $oldUGMs, $newUGMs ] );
+		$this->getHookRunner()->onUserGroupsChanged( $this, $toPromote, [],
+			false, false, $oldUGMs, $newUGMs );
 
 		$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
 		$logEntry->setPerformer( $this );
@@ -1820,11 +1823,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if a rate limiter was tripped
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$user = $this;
 		// Call the 'PingLimiter' hook
 		$result = false;
-		if ( !Hooks::run( 'PingLimiter', [ &$user, $action, &$result, $incrBy ] ) ) {
+		if ( !$this->getHookRunner()->onPingLimiter( $this, $action, $result, $incrBy ) ) {
 			return $result;
 		}
 
@@ -2058,11 +2059,9 @@ class User implements IDBAccessObject, UserIdentity {
 		} elseif ( !$ip ) {
 			$ip = $this->getRequest()->getIP();
 		}
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$user = $this;
 		$blocked = false;
 		$block = null;
-		Hooks::run( 'UserIsBlockedGlobally', [ &$user, $ip, &$blocked, &$block ] );
+		$this->getHookRunner()->onUserIsBlockedGlobally( $this, $ip, $blocked, $block );
 
 		if ( $blocked && $block === null ) {
 			// back-compat: UserIsBlockedGlobally didn't have $block param first
@@ -2087,7 +2086,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 		// Reset for hook
 		$this->mLocked = false;
-		Hooks::run( 'UserIsLocked', [ $this, &$this->mLocked ] );
+		$this->getHookRunner()->onUserIsLocked( $this, $this->mLocked );
 		return $this->mLocked;
 	}
 
@@ -2258,10 +2257,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return array[]
 	 */
 	public function getNewMessageLinks() {
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$user = $this;
 		$talks = [];
-		if ( !Hooks::run( 'UserRetrieveNewTalks', [ &$user, &$talks ], '1.35' ) ) {
+		if ( !$this->getHookRunner()->onUserRetrieveNewTalks( $this, $talks ) ) {
 			return $talks;
 		}
 
@@ -2630,7 +2627,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function getEmail() {
 		$this->load();
-		Hooks::run( 'UserGetEmail', [ $this, &$this->mEmail ] );
+		$this->getHookRunner()->onUserGetEmail( $this, $this->mEmail );
 		return $this->mEmail;
 	}
 
@@ -2640,7 +2637,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function getEmailAuthenticationTimestamp() {
 		$this->load();
-		Hooks::run( 'UserGetEmailAuthenticationTimestamp', [ $this, &$this->mEmailAuthenticated ] );
+		$this->getHookRunner()->onUserGetEmailAuthenticationTimestamp(
+			$this, $this->mEmailAuthenticated );
 		return $this->mEmailAuthenticated;
 	}
 
@@ -2655,7 +2653,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 		$this->invalidateEmail();
 		$this->mEmail = $str;
-		Hooks::run( 'UserSetEmail', [ $this, &$this->mEmail ] );
+		$this->getHookRunner()->onUserSetEmail( $this, $this->mEmail );
 	}
 
 	/**
@@ -2975,7 +2973,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		$https = $this->getBoolOption( 'prefershttps' );
-		Hooks::run( 'UserRequiresHTTPS', [ $this, &$https ] );
+		$this->getHookRunner()->onUserRequiresHTTPS( $this, $https );
 		if ( $https ) {
 			$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
 		}
@@ -3049,10 +3047,8 @@ class User implements IDBAccessObject, UserIdentity {
 				$this->getGroups(), // explicit groups
 				$this->getAutomaticGroups( $recache ) // implicit groups
 			) );
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$user = $this;
 			// Hook for additional groups
-			Hooks::run( 'UserEffectiveGroups', [ &$user, &$this->mEffectiveGroups ] );
+			$this->getHookRunner()->onUserEffectiveGroups( $this, $this->mEffectiveGroups );
 			// Force reindexation of groups when a hook has unset one of them
 			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
 		}
@@ -3162,7 +3158,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$expiry = wfTimestamp( TS_MW, $expiry );
 		}
 
-		if ( !Hooks::run( 'UserAddGroup', [ $this, &$group, &$expiry ] ) ) {
+		if ( !$this->getHookRunner()->onUserAddGroup( $this, $group, $expiry ) ) {
 			return false;
 		}
 
@@ -3192,7 +3188,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public function removeGroup( $group ) {
 		$this->load();
 
-		if ( !Hooks::run( 'UserRemoveGroup', [ $this, &$group ] ) ) {
+		if ( !$this->getHookRunner()->onUserRemoveGroup( $this, $group ) ) {
 			return false;
 		}
 
@@ -3253,7 +3249,7 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		$isBot = false;
-		Hooks::run( "UserIsBot", [ $this, &$isBot ] );
+		$this->getHookRunner()->onUserIsBot( $this, $isBot );
 
 		return $isBot;
 	}
@@ -3462,9 +3458,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// If we're working on user's talk page, we should update the talk page message indicator
 		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$user = $this;
-			if ( !Hooks::run( 'UserClearNewTalkNotification', [ &$user, $oldid ] ) ) {
+			if ( !$this->getHookRunner()->onUserClearNewTalkNotification( $this, $oldid ) ) {
 				return;
 			}
 
@@ -3629,7 +3623,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public function logout() {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$user = $this;
-		if ( Hooks::run( 'UserLogout', [ &$user ] ) ) {
+		if ( $this->getHookRunner()->onUserLogout( $user ) ) {
 			$this->doLogout();
 		}
 	}
@@ -3737,7 +3731,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mTouched = $newTouched;
 		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
 
-		Hooks::run( 'UserSaveSettings', [ $this ] );
+		$this->getHookRunner()->onUserSaveSettings( $this );
 		$this->clearSharedCache( 'changed' );
 		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		$hcu->purgeTitleUrls( $this->getUserPage(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
@@ -4204,7 +4198,7 @@ class User implements IDBAccessObject, UserIdentity {
 			'expiration' => $expiration
 		];
 
-		Hooks::run( 'UserSendConfirmationMail', [ $this, &$mail, $info ] );
+		$this->getHookRunner()->onUserSendConfirmationMail( $this, $mail, $info );
 		return $this->sendMail( $mail['subject'], $mail['body'], $mail['from'], $mail['replyTo'] );
 	}
 
@@ -4308,7 +4302,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// and fire the ConfirmEmailComplete hook on redundant confirmations.
 		if ( !$this->isEmailConfirmed() ) {
 			$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
-			Hooks::run( 'ConfirmEmailComplete', [ $this ] );
+			$this->getHookRunner()->onConfirmEmailComplete( $this );
 		}
 		return true;
 	}
@@ -4326,7 +4320,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mEmailTokenExpires = null;
 		$this->setEmailAuthenticationTimestamp( null );
 		$this->mEmail = '';
-		Hooks::run( 'InvalidateEmailComplete', [ $this ] );
+		$this->getHookRunner()->onInvalidateEmailComplete( $this );
 		return true;
 	}
 
@@ -4337,7 +4331,8 @@ class User implements IDBAccessObject, UserIdentity {
 	public function setEmailAuthenticationTimestamp( $timestamp ) {
 		$this->load();
 		$this->mEmailAuthenticated = $timestamp;
-		Hooks::run( 'UserSetEmailAuthenticationTimestamp', [ $this, &$this->mEmailAuthenticated ] );
+		$this->getHookRunner()->onUserSetEmailAuthenticationTimestamp(
+			$this, $this->mEmailAuthenticated );
 	}
 
 	/**
@@ -4351,9 +4346,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return false;
 		}
 		$canSend = $this->isEmailConfirmed();
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$user = $this;
-		Hooks::run( 'UserCanSendEmail', [ &$user, &$canSend ] );
+		$this->getHookRunner()->onUserCanSendEmail( $this, $canSend );
 		return $canSend;
 	}
 
@@ -4382,7 +4375,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$user = $this;
 		$confirmed = true;
-		if ( Hooks::run( 'EmailConfirmed', [ &$user, &$confirmed ] ) ) {
+		if ( $this->getHookRunner()->onEmailConfirmed( $user, $confirmed ) ) {
 			if ( $this->isAnon() ) {
 				return false;
 			}

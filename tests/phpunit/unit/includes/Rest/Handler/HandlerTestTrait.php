@@ -57,8 +57,11 @@ trait HandlerTestTrait {
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
+	 * @param array $hooks Hook overrides
 	 */
-	private function initHandler( Handler $handler, RequestInterface $request, $config = [] ) {
+	private function initHandler( Handler $handler, RequestInterface $request,
+		$config = [], $hooks = []
+	) {
 		$formatter = $this->createMock( ITextFormatter::class );
 		$formatter->method( 'format' )->willReturnCallback( function ( MessageValue $msg ) {
 			return $msg->dump();
@@ -73,7 +76,9 @@ trait HandlerTestTrait {
 			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
 		} );
 
-		$handler->init( $router, $request, $config, $responseFactory );
+		$hookContainer = $this->createHookContainer( $hooks );
+
+		$handler->init( $router, $request, $config, $responseFactory, $hookContainer );
 	}
 
 	/**
@@ -106,11 +111,14 @@ trait HandlerTestTrait {
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
+	 * @param array $hooks Hook overrides
 	 *
 	 * @return ResponseInterface
 	 */
-	private function executeHandler( Handler $handler, RequestInterface $request, $config = [] ) {
-		$this->initHandler( $handler, $request, $config );
+	private function executeHandler( Handler $handler, RequestInterface $request,
+		$config = [], $hooks = []
+	) {
+		$this->initHandler( $handler, $request, $config, $hooks );
 		$this->validateHandler( $handler );
 
 		// Check conditional request headers
@@ -137,15 +145,17 @@ trait HandlerTestTrait {
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
+	 * @param array $hooks
 	 *
 	 * @return array
 	 */
 	private function executeHandlerAndGetBodyData(
 		Handler $handler,
 		RequestInterface $request,
-		$config = []
+		$config = [],
+		$hooks = []
 	) {
-		$response = $this->executeHandler( $handler, $request, $config );
+		$response = $this->executeHandler( $handler, $request, $config, $hooks );
 
 		$this->assertTrue( $response->getStatusCode() >= 200 && $response->getStatusCode() < 300 );
 		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
@@ -163,16 +173,18 @@ trait HandlerTestTrait {
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
+	 * @param array $hooks
 	 *
 	 * @return HttpException
 	 */
 	private function executeHandlerAndGetHttpException(
 		Handler $handler,
 		RequestInterface $request,
-		$config = []
+		$config = [],
+		$hooks = []
 	) {
 		try {
-			$this->executeHandler( $handler, $request, $config );
+			$this->executeHandler( $handler, $request, $config, $hooks );
 			Assert::fail( 'Expected a HttpException to be thrown' );
 		} catch ( HttpException $ex ) {
 			return $ex;

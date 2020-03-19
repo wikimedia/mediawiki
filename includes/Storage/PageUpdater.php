@@ -30,11 +30,12 @@ use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
-use Hooks;
 use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
@@ -110,6 +111,16 @@ class PageUpdater {
 	private $contentHandlerFactory;
 
 	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
+
+	/**
+	 * @var HookContainer
+	 */
+	private $hookContainer;
+
+	/**
 	 * @var boolean see $wgUseAutomaticEditSummaries
 	 * @see $wgUseAutomaticEditSummaries
 	 */
@@ -163,6 +174,7 @@ class PageUpdater {
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		User $user,
@@ -171,7 +183,8 @@ class PageUpdater {
 		ILoadBalancer $loadBalancer,
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		HookContainer $hookContainer
 	) {
 		$this->user = $user;
 		$this->wikiPage = $wikiPage;
@@ -181,6 +194,8 @@ class PageUpdater {
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
 	}
@@ -735,22 +750,20 @@ class PageUpdater {
 		// Trigger pre-save hook (using provided edit summary)
 		$renderedRevision = $this->derivedDataUpdater->getRenderedRevision();
 		$hookStatus = Status::newGood( [] );
-		$allowedByHook = Hooks::run( 'MultiContentSave', [
+		$allowedByHook = $this->hookRunner->onMultiContentSave(
 			$renderedRevision, $user, $summary, $flags, $hookStatus
-		] );
-		if ( $allowedByHook && Hooks::isRegistered( 'PageContentSave' ) ) {
+		);
+		if ( $allowedByHook && $this->hookContainer->isRegistered( 'PageContentSave' ) ) {
 			// Also run the legacy hook.
-			// TODO: avoid pass-by-reference, see T193950
 			// NOTE: WikiPage should only be used for the legacy hook,
 			// and only if something uses the legacy hook.
 			$mainContent = $this->derivedDataUpdater->getSlots()->getContent( SlotRecord::MAIN );
-			$wikiPage = $this->getWikiPage();
 
 			// Deprecated since 1.35.
-			$allowedByHook = Hooks::run( 'PageContentSave', [
-				&$wikiPage, &$user, &$mainContent, &$summary,
-				$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus
-			] );
+			$allowedByHook = $this->hookRunner->onPageContentSave(
+				$this->getWikiPage(), $user, $mainContent, $summary,
+				$flags & EDIT_MINOR, null, null, $flags, $hookStatus
+			);
 		}
 
 		if ( !$allowedByHook ) {
@@ -1034,17 +1047,14 @@ class PageUpdater {
 			}
 
 			$tags = $this->computeEffectiveTags( $flags );
-			Hooks::run(
-				'RevisionFromEditComplete',
-				[ $wikiPage, $newRevisionRecord, $this->getOriginalRevisionId(), $user, &$tags ]
+			$this->hookRunner->onRevisionFromEditComplete(
+				$wikiPage, $newRevisionRecord, $this->getOriginalRevisionId(), $user, $tags
 			);
 
 			// TODO: replace legacy hook!
 			$newLegacyRevision = new Revision( $newRevisionRecord );
-			Hooks::run(
-				'NewRevisionFromEditComplete',
-				[ $wikiPage, $newLegacyRevision, $this->getOriginalRevisionId(), $user, &$tags ]
-			);
+			$this->hookRunner->onNewRevisionFromEditComplete(
+				$wikiPage, $newLegacyRevision, $this->getOriginalRevisionId(), $user, $tags );
 
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1173,17 +1183,14 @@ class PageUpdater {
 		}
 
 		$tags = $this->computeEffectiveTags( $flags );
-		Hooks::run(
-			'RevisionFromEditComplete',
-			[ $wikiPage, $newRevisionRecord, false, $user, &$tags ]
+		$this->hookRunner->onRevisionFromEditComplete(
+			$wikiPage, $newRevisionRecord, false, $user, $tags
 		);
 
 		// TODO: replace legacy hook!
 		$newLegacyRevision = new Revision( $newRevisionRecord );
-		Hooks::run(
-			'NewRevisionFromEditComplete',
-			[ $wikiPage, $newLegacyRevision, false, $user, &$tags ]
-		);
+		$this->hookRunner->onNewRevisionFromEditComplete(
+			$wikiPage, $newLegacyRevision, false, $user, $tags );
 
 		// Update recentchanges
 		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1274,20 +1281,19 @@ class PageUpdater {
 				$this->derivedDataUpdater->doUpdates();
 
 				// TODO: replace legacy hook!
-				// TODO: avoid pass-by-reference, see T193950
 
 				if ( $hints['created'] ?? false ) {
 					// Trigger post-create hook
-					Hooks::run( 'PageContentInsertComplete', [ &$wikiPage, &$user,
-						$mainContent, $summary->text, $flags & EDIT_MINOR, null, null,
-						&$flags, $newLegacyRevision ] );
+					$this->hookRunner->onPageContentInsertComplete( $wikiPage, $user,
+						$mainContent, $summary->text, $flags & EDIT_MINOR,
+						null, null, $flags, $newLegacyRevision );
 				}
 
 				// Trigger post-save hook
-				Hooks::run( 'PageContentSaveComplete', [ &$wikiPage, &$user,
-					$mainContent, $summary->text, $flags & EDIT_MINOR, null, null,
-					&$flags, $newLegacyRevision,
-					&$status, $this->getOriginalRevisionId(), $this->undidRevId ] );
+				$this->hookRunner->onPageContentSaveComplete( $wikiPage, $user, $mainContent,
+					$summary->text, $flags & EDIT_MINOR, null,
+					null, $flags, $newLegacyRevision, $status,
+					$this->getOriginalRevisionId(), $this->undidRevId );
 			}
 		);
 	}

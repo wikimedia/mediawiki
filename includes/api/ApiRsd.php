@@ -100,7 +100,7 @@ class ApiRsd extends ApiBase {
 				]
 			],
 		];
-		Hooks::run( 'ApiRsdServiceApis', [ &$apis ] );
+		$this->getHookRunner()->onApiRsdServiceApis( $apis );
 
 		return $apis;
 	}

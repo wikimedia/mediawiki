@@ -439,7 +439,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		}
 		// @codeCoverageIgnoreEnd
 
-		\Hooks::run( 'User::mailPasswordInternal', [ &$creatingUser, &$ip, &$user ] );
+		$this->getHookRunner()->onUser__mailPasswordInternal( $creatingUser, $ip, $user );
 
 		$mainPageUrl = \Title::newMainPage()->getCanonicalURL();
 		$userLanguage = $user->getOption( 'language' );

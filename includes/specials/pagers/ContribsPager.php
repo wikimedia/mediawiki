@@ -200,10 +200,8 @@ class ContribsPager extends RangeChronologicalPager {
 		$data = [ $this->mDb->select(
 			$tables, $fields, $conds, $fname, $options, $join_conds
 		) ];
-		Hooks::run(
-			'ContribsPager::reallyDoQuery',
-			[ &$data, $this, $offset, $limit, $order ]
-		);
+		$this->getHookRunner()->onContribsPager__reallyDoQuery(
+			$data, $this, $offset, $limit, $order );
 
 		$result = [];
 
@@ -338,9 +336,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$this->tagFilter
 		);
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$pager = $this;
-		Hooks::run( 'ContribsPager::getQueryInfo', [ &$pager, &$queryInfo ] );
+		$this->getHookRunner()->onContribsPager__getQueryInfo( $this, $queryInfo );
 
 		return $queryInfo;
 	}
@@ -730,7 +726,8 @@ class ContribsPager extends RangeChronologicalPager {
 			);
 			$classes = array_merge( $classes, $newClasses );
 
-			Hooks::run( 'SpecialContributions::formatRow::flags', [ $this->getContext(), $row, &$flags ] );
+			$this->getHookRunner()->onSpecialContributions__formatRow__flags(
+				$this->getContext(), $row, $flags );
 
 			$templateParams = [
 				'del' => $del,
@@ -758,7 +755,7 @@ class ContribsPager extends RangeChronologicalPager {
 		}
 
 		// Let extensions add data
-		Hooks::run( 'ContributionsLineEnding', [ $this, &$ret, $row, &$classes, &$attribs ] );
+		$this->getHookRunner()->onContributionsLineEnding( $this, $ret, $row, $classes, $attribs );
 		$attribs = array_filter( $attribs,
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY

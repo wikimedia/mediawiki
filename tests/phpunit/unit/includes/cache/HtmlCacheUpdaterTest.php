@@ -7,7 +7,9 @@
 class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 
 	public function testGetCdnUrls() {
-		$htmlCache = new HtmlCacheUpdater( 0, false, 86400 );
+		$htmlCache = new HtmlCacheUpdater(
+			$this->createHookContainer(),
+			0, false, 86400 );
 		$title = $this->createMock( Title::class );
 		$title->method( 'getInternalURL' )->will( $this->returnCallback( function ( $query = '' ) {
 			return 'https://test/?title=Example' . ( $query !== '' ? "&$query" : '' );

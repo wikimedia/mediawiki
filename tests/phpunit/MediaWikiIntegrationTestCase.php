@@ -1024,7 +1024,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		// Provide a traditional hook point to allow extensions to configure services.
-		Hooks::run( 'MediaWikiServices', [ $newServices ] );
+		Hooks::runner()->onMediaWikiServices( $newServices );
 
 		// Use bootstrap config for all configuration.
 		// This allows config overrides via global variables to take effect.
@@ -1403,7 +1403,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			return;
 		}
 
-		Hooks::run( 'UnitTestsBeforeDatabaseTeardown' );
+		Hooks::runner()->onUnitTestsBeforeDatabaseTeardown();
 
 		foreach ( $wgJobClasses as $type => $class ) {
 			// Delete any jobs under the clone DB (or old prefix in other stores)
@@ -1528,7 +1528,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			return;
 		}
 
-		Hooks::run( 'UnitTestsAfterDatabaseSetup', [ $db, $prefix ] );
+		Hooks::runner()->onUnitTestsAfterDatabaseSetup( $db, $prefix );
 	}
 
 	/**

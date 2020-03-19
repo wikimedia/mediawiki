@@ -22,6 +22,8 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -94,6 +96,11 @@ class MovePage {
 	 */
 	private $spamChecker;
 
+	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
+
 	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation'
 	];
@@ -112,6 +119,7 @@ class MovePage {
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @param RevisionStore|null $revisionStore
 	 * @param SpamChecker|null $spamChecker
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		Title $oldTitle,
@@ -124,7 +132,8 @@ class MovePage {
 		RepoGroup $repoGroup = null,
 		IContentHandlerFactory $contentHandlerFactory = null,
 		RevisionStore $revisionStore = null,
-		SpamChecker $spamChecker = null
+		SpamChecker $spamChecker = null,
+		HookContainer $hookContainer = null
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -145,6 +154,8 @@ class MovePage {
 
 		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
 		$this->spamChecker = $spamChecker ?? $services->getSpamChecker();
+		$this->hookRunner = new HookRunner(
+			$hookContainer ?? $services->getHookContainer() );
 	}
 
 	/**
@@ -183,9 +194,8 @@ class MovePage {
 			$status->fatal( 'cantmove-titleprotected' );
 		}
 
-		Hooks::run( 'MovePageCheckPermissions',
-			[ $this->oldTitle, $this->newTitle, $user, $reason, $status ]
-		);
+		$this->hookRunner->onMovePageCheckPermissions(
+			$this->oldTitle, $this->newTitle, $user, $reason, $status );
 
 		return $status;
 	}
@@ -262,7 +272,7 @@ class MovePage {
 		}
 
 		// Hook for extensions to say a title can't be moved for technical reasons
-		Hooks::run( 'MovePageIsValidMove', [ $this->oldTitle, $this->newTitle, $status ] );
+		$this->hookRunner->onMovePageIsValidMove( $this->oldTitle, $this->newTitle, $status );
 
 		return $status;
 	}
@@ -540,7 +550,7 @@ class MovePage {
 	 */
 	private function moveUnsafe( User $user, $reason, $createRedirect, array $changeTags ) {
 		$status = Status::newGood();
-		Hooks::run( 'TitleMove', [ $this->oldTitle, $this->newTitle, $user, $reason, &$status ] );
+		$this->hookRunner->onTitleMove( $this->oldTitle, $this->newTitle, $user, $reason, $status );
 		if ( !$status->isOK() ) {
 			// Move was aborted by the hook
 			return $status;
@@ -549,7 +559,7 @@ class MovePage {
 		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
-		Hooks::run( 'TitleMoveStarting', [ $this->oldTitle, $this->newTitle, $user ] );
+		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $user );
 
 		$pageid = $this->oldTitle->getArticleID( Title::READ_LATEST );
 		$protected = $this->oldTitle->isProtected();
@@ -685,11 +695,9 @@ class MovePage {
 		}
 
 		$nullRevisionObj = new Revision( $nullRevision );
-		Hooks::run(
-			'TitleMoveCompleting',
-			[ $this->oldTitle, $this->newTitle,
-				$user, $pageid, $redirid, $reason, $nullRevisionObj ]
-		);
+		$this->hookRunner->onTitleMoveCompleting(
+			$this->oldTitle, $this->newTitle,
+			$user, $pageid, $redirid, $reason, $nullRevisionObj );
 
 		$dbw->endAtomic( __METHOD__ );
 
@@ -699,15 +707,13 @@ class MovePage {
 				$dbw,
 				__METHOD__,
 				function () use ( $user, $pageid, $redirid, $reason, $nullRevisionObj ) {
-					Hooks::run( 'TitleMoveComplete', [
-						&$this->oldTitle,
-						&$this->newTitle,
-						&$user,
-						$pageid,
+					$this->hookRunner->onTitleMoveComplete(
+						$this->oldTitle,
+						$this->newTitle,
+						$user, $pageid,
 						$redirid,
 						$reason,
-						$nullRevisionObj
-					] );
+						$nullRevisionObj );
 				}
 			)
 		);
@@ -890,13 +896,13 @@ class MovePage {
 		// TODO cleanup hooks and use of $nullRevisionObj
 		$nullRevisionObj = new Revision( $nullRevision );
 		$fakeTags = [];
-		Hooks::run( 'RevisionFromEditComplete',
-			[ $newpage, $nullRevision, $nullRevision->getParentId(), $user, &$fakeTags ] );
+		$this->hookRunner->onRevisionFromEditComplete(
+			$newpage, $nullRevision, $nullRevision->getParentId(), $user, $fakeTags );
 
 		// TODO hard deprecate hook
 		$nullRevisionObj = new Revision( $nullRevision );
-		Hooks::run( 'NewRevisionFromEditComplete',
-			[ $newpage, $nullRevisionObj, $nullRevision->getParentId(), $user, &$fakeTags ] );
+		$this->hookRunner->onNewRevisionFromEditComplete(
+			$newpage, $nullRevisionObj, $nullRevision->getParentId(), $user, $fakeTags );
 
 		$newpage->doEditUpdates( $nullRevisionObj, $user,
 			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
@@ -925,18 +931,18 @@ class MovePage {
 				$redirectArticle->updateRevisionOn( $dbw, $inserted, 0 );
 
 				$fakeTags = [];
-				Hooks::run( 'RevisionFromEditComplete', [
+				$this->hookRunner->onRevisionFromEditComplete(
 					$redirectArticle,
 					$inserted,
 					false,
 					$user,
-					&$fakeTags
-				] );
+					$fakeTags
+				);
 
 				// TODO hard deprecate hook
 				$redirectRevisionObj = new Revision( $inserted );
-				Hooks::run( 'NewRevisionFromEditComplete',
-					[ $redirectArticle, $redirectRevisionObj, false, $user, &$fakeTags ] );
+				$this->hookRunner->onNewRevisionFromEditComplete(
+					$redirectArticle, $redirectRevisionObj, false, $user, $fakeTags );
 
 				// TODO WikiPage::doEditUpdates is deprecated
 				$redirectArticle->doEditUpdates(

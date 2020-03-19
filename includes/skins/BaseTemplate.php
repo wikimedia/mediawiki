@@ -62,9 +62,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox = array_merge( $toolbox, $this->data['sidebar']['TOOLBOX'] ?? [] );
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$template = $this;
-		Hooks::run( 'BaseTemplateToolbox', [ &$template, &$toolbox ] );
+		$this->getHookRunner()->onBaseTemplateToolbox( $this, $toolbox );
 		return $toolbox;
 	}
 
@@ -157,9 +155,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			ob_start();
 			// We pass an extra 'true' at the end so extensions using BaseTemplateToolbox
 			// can abort and avoid outputting double toolbox links
-			// Avoid PHP 7.1 warning from passing $this by reference
-			$template = $this;
-			Hooks::run( 'SkinTemplateToolboxEnd', [ &$template, true ] );
+			$this->getHookRunner()->onSkinTemplateToolboxEnd( $this, true );
 			$hookContents = ob_get_contents();
 			ob_end_clean();
 			if ( !trim( $hookContents ) ) {
@@ -227,7 +223,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	protected function getAfterPortlet( $name ) {
 		$html = '';
 		$content = '';
-		Hooks::run( 'BaseTemplateAfterPortlet', [ $this, $name, &$content ] );
+		$this->getHookRunner()->onBaseTemplateAfterPortlet( $this, $name, $content );
 
 		if ( $content !== '' ) {
 			$html = Html::rawElement(

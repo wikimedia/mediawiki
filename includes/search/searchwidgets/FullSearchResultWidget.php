@@ -3,8 +3,9 @@
 namespace MediaWiki\Search\SearchWidgets;
 
 use Category;
-use Hooks;
 use HtmlArmor;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use SearchResult;
@@ -23,10 +24,15 @@ class FullSearchResultWidget implements SearchResultWidget {
 	protected $specialPage;
 	/** @var LinkRenderer */
 	protected $linkRenderer;
+	/** @var HookRunner */
+	private $hookRunner;
 
-	public function __construct( SpecialSearch $specialPage, LinkRenderer $linkRenderer ) {
+	public function __construct( SpecialSearch $specialPage, LinkRenderer $linkRenderer,
+		HookContainer $hookContainer
+	) {
 		$this->specialPage = $specialPage;
 		$this->linkRenderer = $linkRenderer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -82,11 +88,10 @@ class FullSearchResultWidget implements SearchResultWidget {
 			// TODO: remove this instanceof and always pass [], let implementors do the cast if
 			// they want to be SearchDatabase specific
 			$terms = $result instanceof \SqlSearchResult ? $result->getTermMatches() : [];
-			if ( !Hooks::run( 'ShowSearchHit', [
-				$this->specialPage, $result, $terms,
-				&$link, &$redirect, &$section, &$extract,
-				&$score, &$desc, &$date, &$related, &$html
-			] ) ) {
+			if ( !$this->hookRunner->onShowSearchHit( $this->specialPage, $result,
+				$terms, $link, $redirect, $section, $extract, $score,
+				$desc, $date, $related, $html )
+			) {
 				return $html;
 			}
 		}
@@ -139,10 +144,9 @@ class FullSearchResultWidget implements SearchResultWidget {
 		$query = [];
 
 		$attributes = [ 'data-serp-pos' => $position ];
-		Hooks::run( 'ShowSearchHitTitle',
-			[ &$title, &$snippet, $result,
-			  $result instanceof \SqlSearchResult ? $result->getTermMatches() : [],
-			  $this->specialPage, &$query, &$attributes ] );
+		$this->hookRunner->onShowSearchHitTitle( $title, $snippet, $result,
+			$result instanceof \SqlSearchResult ? $result->getTermMatches() : [],
+			$this->specialPage, $query, $attributes );
 
 		$link = $this->linkRenderer->makeLink(
 			$title,

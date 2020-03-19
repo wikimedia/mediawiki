@@ -164,7 +164,7 @@ class Linker {
 	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
 		$nt = Title::newFromLinkTarget( $nt );
 		$ret = "<a class=\"mw-selflink selflink\">{$prefix}{$html}</a>{$trail}";
-		if ( !Hooks::run( 'SelfLinkBegin', [ $nt, &$html, &$trail, &$prefix, &$ret ] ) ) {
+		if ( !Hooks::runner()->onSelfLinkBegin( $nt, $html, $trail, $prefix, $ret ) ) {
 			return $ret;
 		}
 
@@ -245,7 +245,7 @@ class Linker {
 			$alt = self::fnamePart( $url );
 		}
 		$img = '';
-		$success = Hooks::run( 'LinkerMakeExternalImage', [ &$url, &$alt, &$img ] );
+		$success = Hooks::runner()->onLinkerMakeExternalImage( $url, $alt, $img );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalImage changed the output of external image "
 				. "with url {$url} and alt text {$alt} to {$img}\n", true );
@@ -303,10 +303,10 @@ class Linker {
 		$title = Title::newFromLinkTarget( $title );
 		$res = null;
 		$dummy = new DummyLinker;
-		if ( !Hooks::run( 'ImageBeforeProduceHTML', [ &$dummy, &$title,
-			&$file, &$frameParams, &$handlerParams, &$time, &$res,
-			$parser, &$query, &$widthOption
-		] ) ) {
+		if ( !Hooks::runner()->onImageBeforeProduceHTML( $dummy, $title,
+			$file, $frameParams, $handlerParams, $time, $res,
+			$parser, $query, $widthOption )
+		) {
 			return $res;
 		}
 
@@ -796,8 +796,9 @@ class Linker {
 			'title' => $alt
 		];
 
-		if ( !Hooks::run( 'LinkerMakeMediaLinkFile',
-			[ Title::castFromLinkTarget( $title ), $file, &$html, &$attribs, &$ret ] ) ) {
+		if ( !Hooks::runner()->onLinkerMakeMediaLinkFile(
+			Title::castFromLinkTarget( $title ), $file, $html, $attribs, $ret )
+		) {
 			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link "
 				. "with url {$url} and text {$html} to {$ret}\n", true );
 			return $ret;
@@ -873,8 +874,8 @@ class Linker {
 			$attribs['rel'] = implode( ' ', $combined );
 		}
 		$link = '';
-		$success = Hooks::run( 'LinkerMakeExternalLink',
-			[ &$url, &$text, &$link, &$attribs, $linktype ] );
+		$success = Hooks::runner()->onLinkerMakeExternalLink(
+			$url, $text, $link, $attribs, $linktype );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalLink changed the output of link "
 				. "with url {$url} and text {$text} to {$link}\n", true );
@@ -989,7 +990,7 @@ class Linker {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
-		Hooks::run( 'UserToolLinksEdit', [ $userId, $userText, &$items ] );
+		Hooks::runner()->onUserToolLinksEdit( $userId, $userText, $items );
 
 		if ( !$items ) {
 			return '';
@@ -1252,11 +1253,9 @@ class Linker {
 				$post = $match[3] !== '';
 				$comment = null;
 
-				Hooks::run(
-					'FormatAutocomments',
-					[ &$comment, $pre, $auto, $post, Title::castFromLinkTarget( $title ), $local,
-					$wikiId ]
-				);
+				Hooks::runner()->onFormatAutocomments(
+					$comment, $pre, $auto, $post, Title::castFromLinkTarget( $title ), $local,
+					$wikiId );
 
 				if ( $comment === null ) {
 					if ( $title ) {

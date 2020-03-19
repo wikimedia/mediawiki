@@ -21,6 +21,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -49,10 +51,18 @@ class LinkHolderArray {
 	private $languageConverter;
 
 	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
+
+	/**
 	 * @param Parser $parent
 	 * @param ILanguageConverter|null $languageConverter
+	 * @param HookContainer|null $hookContainer
 	 */
-	public function __construct( $parent, ILanguageConverter $languageConverter = null ) {
+	public function __construct( $parent, ILanguageConverter $languageConverter = null,
+		HookContainer $hookContainer = null
+	) {
 		$this->parent = $parent;
 
 		if ( !$languageConverter ) {
@@ -62,6 +72,10 @@ class LinkHolderArray {
 				->getLanguageConverter( $parent->getTargetLanguage() );
 		}
 		$this->languageConverter = $languageConverter;
+		if ( !$hookContainer ) {
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -251,7 +265,7 @@ class LinkHolderArray {
 		}
 		if ( count( $linkcolour_ids ) ) {
 			// pass an array of page_ids to an extension
-			Hooks::run( 'GetLinkColours', [ $linkcolour_ids, &$colours, $this->parent->getTitle() ] );
+			$this->hookRunner->onGetLinkColours( $linkcolour_ids, $colours, $this->parent->getTitle() );
 		}
 
 		# Do a second query for different language variants of links and categories
@@ -481,7 +495,7 @@ class LinkHolderArray {
 					}
 				}
 			}
-			Hooks::run( 'GetLinkColours', [ $linkcolour_ids, &$colours, $this->parent->getTitle() ] );
+			$this->hookRunner->onGetLinkColours( $linkcolour_ids, $colours, $this->parent->getTitle() );
 
 			// rebuild the categories in original order (if there are replacements)
 			if ( count( $varCategories ) > 0 ) {

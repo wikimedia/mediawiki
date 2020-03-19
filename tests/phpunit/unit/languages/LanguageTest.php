@@ -19,7 +19,9 @@ class LanguageTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( LocalisationCache::class ),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
-			$this->createNoOpMock( LanguageConverterFactory::class )
+			$this->createNoOpMock( LanguageConverterFactory::class ),
+			$this->createHookContainer()
+
 		);
 	}
 

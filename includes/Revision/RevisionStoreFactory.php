@@ -28,6 +28,7 @@ namespace MediaWiki\Revision;
 use ActorMigration;
 use CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use Psr\Log\LoggerInterface;
@@ -72,6 +73,9 @@ class RevisionStoreFactory {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/**
 	 * @param ILBFactory $dbLoadBalancerFactory
 	 * @param BlobStoreFactory $blobStoreFactory
@@ -82,6 +86,7 @@ class RevisionStoreFactory {
 	 * @param ActorMigration $actorMigration
 	 * @param LoggerInterface $logger
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ILBFactory $dbLoadBalancerFactory,
@@ -92,7 +97,8 @@ class RevisionStoreFactory {
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
 		LoggerInterface $logger,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		HookContainer $hookContainer
 	) {
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->blobStoreFactory = $blobStoreFactory;
@@ -103,6 +109,7 @@ class RevisionStoreFactory {
 		$this->actorMigration = $actorMigration;
 		$this->logger = $logger;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
@@ -125,6 +132,7 @@ class RevisionStoreFactory {
 			$this->slotRoleRegistry,
 			$this->actorMigration,
 			$this->contentHandlerFactory,
+			$this->hookContainer,
 			$dbDomain
 		);
 

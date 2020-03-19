@@ -1180,11 +1180,11 @@ class ParserOptions {
 				'speculativePageId' => null,
 			];
 
-			Hooks::run( 'ParserOptionsRegister', [
-				&self::$defaults,
-				&self::$inCacheKey,
-				&self::$lazyOptions,
-			] );
+			Hooks::runner()->onParserOptionsRegister(
+				self::$defaults,
+				self::$inCacheKey,
+				self::$lazyOptions
+			);
 
 			ksort( self::$inCacheKey );
 		}
@@ -1431,7 +1431,7 @@ class ParserOptions {
 
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
-		Hooks::run( 'PageRenderingHash', [ &$confstr, $this->getUser(), &$forOptions ] );
+		Hooks::runner()->onPageRenderingHash( $confstr, $this->getUser(), $forOptions );
 
 		// Make it a valid memcached key fragment
 		$confstr = str_replace( ' ', '_', $confstr );

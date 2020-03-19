@@ -90,8 +90,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				if ( $resolveFilesViaParser ) {
 					# Give extensions a chance to select the file revision for us
 					$options = [];
-					Hooks::run( 'BeforeParserFetchFileAndTitle',
-						[ $this->mParser, $nt, &$options, &$descQuery ] );
+					Hooks::runner()->onBeforeParserFetchFileAndTitle(
+						$this->mParser, $nt, $options, $descQuery );
 					# Fetch and register the file (file title may be different via hooks)
 					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
 				} else {

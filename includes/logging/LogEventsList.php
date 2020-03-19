@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
@@ -55,6 +56,9 @@ class LogEventsList extends ContextSource {
 	 */
 	private $linkRenderer;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * The first two parameters used to be $skin and $out, but now only a context
 	 * is needed, that's why there's a second unused parameter.
@@ -78,6 +82,7 @@ class LogEventsList extends ContextSource {
 		if ( $linkRenderer instanceof LinkRenderer ) {
 			$this->linkRenderer = $linkRenderer;
 		}
+		$this->hookRunner = Hooks::runner();
 	}
 
 	/**
@@ -312,7 +317,7 @@ class LogEventsList extends ContextSource {
 				// This could be an array or string. See T199495.
 				$input = ''; // Deprecated
 				$formDescriptor = [];
-				Hooks::run( 'LogEventsListGetExtraInputs', [ $types[0], $this, &$input, &$formDescriptor ] );
+				$this->hookRunner->onLogEventsListGetExtraInputs( $types[0], $this, $input, $formDescriptor );
 
 				return empty( $formDescriptor ) ? $input : $formDescriptor;
 			}
@@ -416,7 +421,7 @@ class LogEventsList extends ContextSource {
 		$ret = "$del $time $action $comment $revert $tagDisplay";
 
 		// Let extensions add data
-		Hooks::run( 'LogEventsListLineEnding', [ $this, &$ret, $entry, &$classes, &$attribs ] );
+		$this->hookRunner->onLogEventsListLineEnding( $this, $ret, $entry, $classes, $attribs );
 		$attribs = array_filter( $attribs,
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY
@@ -769,7 +774,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		/* hook can return false, if we don't want the message to be emitted (Wikia BugId:7093) */
-		if ( Hooks::run( 'LogEventsListShowLogExtract', [ &$s, $types, $page, $user, $param ] ) ) {
+		if ( Hooks::runner()->onLogEventsListShowLogExtract( $s, $types, $page, $user, $param ) ) {
 			// $out can be either an OutputPage object or a String-by-reference
 			if ( $out instanceof OutputPage ) {
 				$out->addHTML( $s );

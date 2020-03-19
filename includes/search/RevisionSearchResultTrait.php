@@ -44,7 +44,7 @@ trait RevisionSearchResultTrait {
 		if ( $title !== null ) {
 			$services = MediaWikiServices::getInstance();
 			$id = false;
-			Hooks::run( 'SearchResultInitFromTitle', [ $title, &$id ] );
+			Hooks::runner()->onSearchResultInitFromTitle( $title, $id );
 
 			$this->mRevisionRecord = $services->getRevisionLookup()->getRevisionByTitle(
 				$title,

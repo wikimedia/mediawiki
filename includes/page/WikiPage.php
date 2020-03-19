@@ -23,6 +23,7 @@
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\PreparedEdit;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -46,6 +47,8 @@ use Wikimedia\Rdbms\LoadBalancer;
  * In the past, this class was part of Article.php and everything was public.
  */
 class WikiPage implements Page, IDBAccessObject {
+	use ProtectedHookAccessorTrait;
+
 	// Constants for $mDataLoadedFrom and related
 
 	/**
@@ -150,7 +153,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$page = null;
-		if ( !Hooks::run( 'WikiPageFactory', [ $title, &$page ] ) ) {
+		if ( !Hooks::runner()->onWikiPageFactory( $title, $page ) ) {
 			return $page;
 		}
 
@@ -395,12 +398,8 @@ class WikiPage implements Page, IDBAccessObject {
 	protected function pageData( $dbr, $conditions, $options = [] ) {
 		$pageQuery = self::getQueryInfo();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-
-		Hooks::run( 'ArticlePageDataBefore', [
-			&$wikiPage, &$pageQuery['fields'], &$pageQuery['tables'], &$pageQuery['joins']
-		] );
+		$this->getHookRunner()->onArticlePageDataBefore(
+			$this, $pageQuery['fields'], $pageQuery['tables'], $pageQuery['joins'] );
 
 		$row = $dbr->selectRow(
 			$pageQuery['tables'],
@@ -411,7 +410,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$pageQuery['joins']
 		);
 
-		Hooks::run( 'ArticlePageDataAfter', [ &$wikiPage, &$row ] );
+		$this->getHookRunner()->onArticlePageDataAfter( $this, $row );
 
 		return $row;
 	}
@@ -1290,7 +1289,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Avoid outage if the master is not reachable by using a deferred updated
 		DeferredUpdates::addCallableUpdate(
 			function () use ( $user, $oldid ) {
-				Hooks::run( 'PageViewUpdates', [ $this, $user ] );
+				$this->getHookRunner()->onPageViewUpdates( $this, $user );
 
 				$user->clearNotification( $this->mTitle, $oldid );
 			},
@@ -1305,10 +1304,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *  controlled how much purging was done.
 	 */
 	public function doPurge() {
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-
-		if ( !Hooks::run( 'ArticlePurge', [ &$wikiPage ] ) ) {
+		if ( !$this->getHookRunner()->onArticlePurge( $this ) ) {
 			return false;
 		}
 
@@ -1738,7 +1734,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$services->getMessageCache(),
 			$services->getContentLanguage(),
 			$services->getDBLoadBalancerFactory(),
-			$this->getContentHandlerFactory()
+			$this->getContentHandlerFactory(),
+			$this->getHookContainer()
 		);
 
 		$derivedDataUpdater->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
@@ -1841,7 +1838,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->getDBLoadBalancer(),
 			$this->getRevisionStore(),
 			$this->getSlotRoleRegistry(),
-			$this->getContentHandlerFactory()
+			$this->getContentHandlerFactory(),
+			$this->getHookContainer()
 		);
 
 		$pageUpdater->setUsePageCreationLog( $wgPageCreationLog );
@@ -2278,10 +2276,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$nullRevision = null;
 
 		if ( $id ) { // Protection of existing page
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$wikiPage = $this;
-
-			if ( !Hooks::run( 'ArticleProtect', [ &$wikiPage, &$user, $limit, $reason ] ) ) {
+			if ( !$this->getHookRunner()->onArticleProtect( $this, $user, $limit, $reason ) ) {
 				return Status::newGood();
 			}
 
@@ -2382,17 +2377,15 @@ class WikiPage implements Page, IDBAccessObject {
 				__METHOD__
 			);
 
-			Hooks::run( 'RevisionFromEditComplete',
-				[ $this, $nullRevisionRecord, $latest, $user, &$tags ] );
+			$this->getHookRunner()->onRevisionFromEditComplete(
+				$this, $nullRevisionRecord, $latest, $user, $tags );
 
 			// TODO hard deprecate
 			$nullRevision = new Revision( $nullRevisionRecord );
-			Hooks::run( 'NewRevisionFromEditComplete',
-				[ $this, $nullRevision, $latest, $user, &$tags ] );
+			$this->getHookRunner()->onNewRevisionFromEditComplete(
+				$this, $nullRevision, $latest, $user, $tags );
 
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$wikiPage = $this;
-			Hooks::run( 'ArticleProtectComplete', [ &$wikiPage, &$user, $limit, $reason ] );
+			$this->getHookRunner()->onArticleProtectComplete( $this, $user, $limit, $reason );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
 			$cascade = false;
@@ -2742,11 +2735,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$status = Status::newGood();
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$wikiPage = $this;
-		if ( !Hooks::run( 'ArticleDelete',
-			[ &$wikiPage, &$deleter, &$reason, &$error, &$status, $suppress ]
-		) ) {
+		if ( !$this->getHookRunner()->onArticleDelete(
+			$this, $deleter, $reason, $error, $status, $suppress )
+		) {
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status
 				$status->fatal( 'delete-hook-aborted' );
@@ -2917,15 +2908,15 @@ class WikiPage implements Page, IDBAccessObject {
 				$deleter
 			);
 
-			Hooks::run( 'ArticleDeleteComplete', [
-				&$wikiPageBeforeDelete,
-				&$deleter,
+			$this->getHookRunner()->onArticleDeleteComplete(
+				$wikiPageBeforeDelete,
+				$deleter,
 				$reason,
 				$id,
 				$content,
 				$logEntry,
 				$archivedRevisionCount
-			] );
+			);
 			$status->value = $logid;
 
 			// Show log excerpt on 404 pages rather than just a link
@@ -3449,9 +3440,10 @@ class WikiPage implements Page, IDBAccessObject {
 		$revId = $rev->getId();
 
 		// Soft deprecated in 1.35
-		Hooks::run( 'ArticleRollbackComplete', [ $this, $guser, $legacyTarget, $legacyCurrent ] );
+		$this->getHookRunner()->onArticleRollbackComplete( $this, $guser,
+			$legacyTarget, $legacyCurrent );
 
-		Hooks::run( 'RollbackComplete', [ $this, $guser, $target, $current ] );
+		$this->getHookRunner()->onRollbackComplete( $this, $guser, $target, $current );
 
 		$resultDetails = [
 			'summary' => $summary,
@@ -3784,12 +3776,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 		foreach ( $added as $catName ) {
 			$cat = Category::newFromName( $catName );
-			Hooks::run( 'CategoryAfterPageAdded', [ $cat, $this ] );
+			$this->getHookRunner()->onCategoryAfterPageAdded( $cat, $this );
 		}
 
 		foreach ( $deleted as $catName ) {
 			$cat = Category::newFromName( $catName );
-			Hooks::run( 'CategoryAfterPageRemoved', [ $cat, $this, $id ] );
+			$this->getHookRunner()->onCategoryAfterPageRemoved( $cat, $this, $id );
 			// Refresh counts on categories that should be empty now (after commit, T166757)
 			DeferredUpdates::addCallableUpdate( function () use ( $cat ) {
 				$cat->refreshCountsIfEmpty();
@@ -3808,9 +3800,9 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
-		if ( !Hooks::run( 'OpportunisticLinksUpdate',
-			[ $this, $this->mTitle, $parserOutput ]
-		) ) {
+		if ( !$this->getHookRunner()->onOpportunisticLinksUpdate( $this,
+			$this->mTitle, $parserOutput )
+		) {
 			return;
 		}
 
@@ -3910,10 +3902,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$allUpdates = array_merge( $allUpdates, $legacyUpdates );
 		}
 
-		Hooks::run( 'PageDeletionDataUpdates', [ $this->getTitle(), $rev, &$allUpdates ] );
+		$this->getHookRunner()->onPageDeletionDataUpdates(
+			$this->getTitle(), $rev, $allUpdates );
 
 		// TODO: hard deprecate old hook in 1.33
-		Hooks::run( 'WikiPageDeletionUpdates', [ $this, $content, &$allUpdates ] );
+		$this->getHookRunner()->onWikiPageDeletionUpdates( $this, $content, $allUpdates );
 		return $allUpdates;
 	}
 

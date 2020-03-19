@@ -22,6 +22,8 @@
  *
  * @file
  */
+
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -76,6 +78,9 @@ class XmlDumpWriter {
 	 */
 	private $contentMode;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @param int $contentMode WRITE_CONTENT or WRITE_STUB.
 	 * @param string $schemaVersion which schema version the generated XML should comply to.
@@ -101,6 +106,7 @@ class XmlDumpWriter {
 
 		$this->contentMode = $contentMode;
 		$this->schemaVersion = $schemaVersion;
+		$this->hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 	}
 
 	/**
@@ -258,7 +264,7 @@ class XmlDumpWriter {
 				strval( $row->page_restrictions ) ) . "\n";
 		}
 
-		Hooks::run( 'XmlDumpWriterOpenPage', [ $this, &$out, $row, $this->currentTitle ] );
+		$this->hookRunner->onXmlDumpWriterOpenPage( $this, $out, $row, $this->currentTitle );
 
 		return $out;
 	}
@@ -415,7 +421,7 @@ class XmlDumpWriter {
 
 			$text = $content ? $content->serialize() : '';
 		}
-		Hooks::run( 'XmlDumpWriterWriteRevision', [ &$writer, &$out, $row, $text, $rev ] );
+		$this->hookRunner->onXmlDumpWriterWriteRevision( $writer, $out, $row, $text, $rev );
 
 		$out .= "    </revision>\n";
 

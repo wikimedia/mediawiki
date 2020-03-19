@@ -51,10 +51,7 @@ class CategoryPage extends Article {
 			return;
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$categoryPage = $this;
-
-		if ( !Hooks::run( 'CategoryPageView', [ &$categoryPage ] ) ) {
+		if ( !$this->getHookRunner()->onCategoryPageView( $this ) ) {
 			return;
 		}
 

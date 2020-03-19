@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Rest;
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
@@ -35,6 +37,12 @@ abstract class Handler {
 	/** @var ConditionalHeaderUtil */
 	private $conditionalHeaderUtil;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * Initialise with dependencies from the Router. This is called after construction.
 	 * @internal
@@ -42,14 +50,17 @@ abstract class Handler {
 	 * @param RequestInterface $request
 	 * @param array $config
 	 * @param ResponseFactory $responseFactory
+	 * @param HookContainer $hookContainer
 	 */
 	final public function init( Router $router, RequestInterface $request, array $config,
-		ResponseFactory $responseFactory
+		ResponseFactory $responseFactory, HookContainer $hookContainer
 	) {
 		$this->router = $router;
 		$this->request = $request;
 		$this->config = $config;
 		$this->responseFactory = $responseFactory;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->postInitSetup();
 	}
 
@@ -200,6 +211,28 @@ abstract class Handler {
 	 */
 	public function getValidatedBody() {
 		return $this->validatedBody;
+	}
+
+	/**
+	 * Get a HookContainer, for running extension hooks or for hook metadata.
+	 *
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * Get a HookRunner for running core hooks.
+	 *
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() {
+		return $this->hookRunner;
 	}
 
 	/**

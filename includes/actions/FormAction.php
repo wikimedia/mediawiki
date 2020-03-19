@@ -74,13 +74,10 @@ abstract class FormAction extends Action {
 		$this->fields = $this->getFormFields();
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run(
-			'ActionModifyFormFields',
-			[
-				$this->getName(),
-				&$this->fields,
-				$this->getArticle()
-			]
+		$this->getHookRunner()->onActionModifyFormFields(
+			$this->getName(),
+			$this->fields,
+			$this->getArticle()
 		);
 
 		if ( $this->usesOOUI() ) {
@@ -106,11 +103,11 @@ abstract class FormAction extends Action {
 		$this->alterForm( $form );
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		Hooks::run( 'ActionBeforeFormDisplay', [
+		$this->getHookRunner()->onActionBeforeFormDisplay(
 			$this->getName(),
-			&$form,
+			$form,
 			$this->getArticle()
-		] );
+		);
 
 		return $form;
 	}

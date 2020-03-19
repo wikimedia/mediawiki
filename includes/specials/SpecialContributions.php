@@ -214,7 +214,9 @@ class SpecialContributions extends IncludableSpecialPage {
 		// Add RSS/atom links
 		$this->addFeedLinks( $feedParams );
 
-		if ( Hooks::run( 'SpecialContributionsBeforeMainOutput', [ $id, $userObj, $this ] ) ) {
+		if ( $this->getHookRunner()->onSpecialContributionsBeforeMainOutput(
+			$id, $userObj, $this )
+		) {
 			$pager = new ContribsPager( $this->getContext(), [
 				'target' => $target,
 				'namespace' => $this->opts['namespace'],
@@ -500,7 +502,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			);
 		}
 
-		Hooks::run( 'ContributionsToolLinks', [ $id, $userpage, &$tools, $sp ] );
+		Hooks::runner()->onContributionsToolLinks( $id, $userpage, $tools, $sp );
 
 		return $tools;
 	}
@@ -642,11 +644,8 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		// Allow additions at this point to the filters.
 		$rawFilters = [];
-		Hooks::run(
-			'SpecialContributions::getForm::filters',
-			[ $this, &$rawFilters ]
-		);
-		// @phan-suppress-next-line PhanEmptyForeach False positive
+		$this->getHookRunner()->onSpecialContributions__getForm__filters(
+			$this, $rawFilters );
 		foreach ( $rawFilters as $filter ) {
 			// Backwards compatibility support for previous hook function signature.
 			if ( is_string( $filter ) ) {

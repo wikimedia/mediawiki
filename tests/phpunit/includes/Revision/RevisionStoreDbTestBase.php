@@ -229,6 +229,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			MediaWikiServices::getInstance()->getActorMigration(),
 			MediaWikiServices::getInstance()->getContentHandlerFactory(),
+			MediaWikiServices::getInstance()->getHookContainer(),
 			$dbDomain
 		);
 
@@ -794,6 +795,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			$services->getSlotRoleRegistry(),
 			$services->getActorMigration(),
 			$services->getContentHandlerFactory(),
+			$services->getHookContainer(),
 			$dbDomain
 		);
 

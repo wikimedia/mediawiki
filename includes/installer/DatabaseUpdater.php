@@ -132,7 +132,7 @@ abstract class DatabaseUpdater {
 	private function loadExtensionSchemaUpdates() {
 		$this->initOldGlobals();
 		$this->loadExtensions();
-		Hooks::run( 'LoadExtensionSchemaUpdates', [ $this ] );
+		Hooks::runner()->onLoadExtensionSchemaUpdates( $this );
 	}
 
 	/**

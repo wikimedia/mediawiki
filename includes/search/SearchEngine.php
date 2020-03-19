@@ -25,6 +25,8 @@
  * @defgroup Search Search
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -58,6 +60,12 @@ abstract class SearchEngine {
 
 	/** @var array Feature values */
 	protected $features = [];
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** Profile type for completionSearch */
 	public const COMPLETION_PROFILE_TYPE = 'completionSearchProfile';
@@ -245,7 +253,9 @@ abstract class SearchEngine {
 	 */
 	public function getNearMatcher( Config $config ) {
 		return new SearchNearMatcher( $config,
-			MediaWikiServices::getInstance()->getContentLanguage() );
+			MediaWikiServices::getInstance()->getContentLanguage(),
+			$this->getHookContainer()
+		);
 	}
 
 	/**
@@ -415,7 +425,7 @@ abstract class SearchEngine {
 			} elseif ( $withPrefixSearchExtractNamespaceHook ) {
 				$hookNamespaces = [ NS_MAIN ];
 				$hookQuery = $query;
-				Hooks::run( 'PrefixSearchExtractNamespace', [ &$hookNamespaces, &$hookQuery ] );
+				Hooks::runner()->onPrefixSearchExtractNamespace( $hookNamespaces, $hookQuery );
 				if ( $hookQuery !== $query ) {
 					$parsed = $hookQuery;
 					$extractedNamespace = $hookNamespaces;
@@ -551,9 +561,9 @@ abstract class SearchEngine {
 		$search = trim( $search );
 
 		if ( !in_array( NS_SPECIAL, $this->namespaces ) && // We do not run hook on Special: search
-			 !Hooks::run( 'PrefixSearchBackend',
-				[ $this->namespaces, $search, $this->limit, &$results, $this->offset ]
-		) ) {
+			!$this->getHookRunner()->onPrefixSearchBackend(
+				$this->namespaces, $search, $this->limit, $results, $this->offset )
+		) {
 			// False means hook worked.
 			// FIXME: Yes, the API is weird. That's why it is going to be deprecated.
 
@@ -785,7 +795,7 @@ abstract class SearchEngine {
 			}
 		}
 		// Hook to allow extensions to produce search mapping fields
-		Hooks::run( 'SearchIndexFields', [ &$fields, $this ] );
+		$this->getHookRunner()->onSearchIndexFields( $fields, $this );
 		return $fields;
 	}
 
@@ -797,7 +807,7 @@ abstract class SearchEngine {
 	public function augmentSearchResults( ISearchResultSet $resultSet ) {
 		$setAugmentors = [];
 		$rowAugmentors = [];
-		Hooks::run( "SearchResultsAugment", [ &$setAugmentors, &$rowAugmentors ] );
+		$this->getHookRunner()->onSearchResultsAugment( $setAugmentors, $rowAugmentors );
 		if ( !$setAugmentors && !$rowAugmentors ) {
 			// We're done here
 			return;
@@ -822,4 +832,43 @@ abstract class SearchEngine {
 			}
 		}
 	}
+
+	/**
+	 * @since 1.35
+	 * @internal
+	 * @param HookContainer $hookContainer
+	 */
+	public function setHookContainer( HookContainer $hookContainer ) {
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
+	}
+
+	/**
+	 * Get a HookContainer, for running extension hooks or for hook metadata.
+	 *
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() : HookContainer {
+		if ( !$this->hookContainer ) {
+			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		return $this->hookContainer;
+	}
+
+	/**
+	 * Get a HookRunner for running core hooks.
+	 *
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() : HookRunner {
+		if ( !$this->hookRunner ) {
+			$this->hookRunner = new HookRunner( $this->getHookContainer() );
+		}
+		return $this->hookRunner;
+	}
+
 }

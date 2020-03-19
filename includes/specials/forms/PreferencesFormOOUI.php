@@ -229,7 +229,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 */
 	public function getLegend( $key ) {
 		$legend = parent::getLegend( $key );
-		Hooks::run( 'PreferencesGetLegend', [ $this, $key, &$legend ] );
+		$this->getHookRunner()->onPreferencesGetLegend( $this, $key, $legend );
 		return $legend;
 	}
 

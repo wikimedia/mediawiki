@@ -50,7 +50,8 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 			new ServiceOptions(
 				LanguageNameUtils::CONSTRUCTOR_OPTIONS,
 				[ 'ExtraLanguageNames' => [], 'UsePigLatinVariant' => false ]
-			)
+			),
+			$services->getHookContainer()
 		);
 
 		$titleCodec = $this->makeMockTitleCodec();

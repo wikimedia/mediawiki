@@ -3,7 +3,6 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
-use Hooks;
 use InvalidArgumentException;
 use ISearchResultSet;
 use MediaWiki\Permissions\PermissionManager;
@@ -290,7 +289,7 @@ class SearchHandler extends Handler {
 	private function buildDescriptionsFromPageIdentities( array $pageIdentities ) {
 		$descriptions = array_fill_keys( array_keys( $pageIdentities ), null );
 
-		Hooks::run( 'SearchResultProvideDescription', [ $pageIdentities, &$descriptions ] );
+		$this->getHookRunner()->onSearchResultProvideDescription( $pageIdentities, $descriptions );
 
 		return array_map( function ( $description ) {
 			return [ 'description' => $description ];
@@ -311,7 +310,7 @@ class SearchHandler extends Handler {
 	private function buildThumbnailsFromPageIdentities( array $pageIdentities ) {
 		$thumbnails = array_fill_keys( array_keys( $pageIdentities ), null );
 
-		Hooks::run( 'SearchResultProvideThumbnail', [ $pageIdentities, &$thumbnails ] );
+		$this->getHookRunner()->onSearchResultProvideThumbnail( $pageIdentities, $thumbnails );
 
 		return array_map( function ( $thumbnail ) {
 			return [ 'thumbnail' => $this->serializeThumbnail( $thumbnail ) ];

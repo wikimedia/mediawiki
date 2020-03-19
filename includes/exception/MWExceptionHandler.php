@@ -664,7 +664,7 @@ TXT;
 				$logger->error( $json, [ 'private' => true ] );
 			}
 
-			Hooks::run( 'LogException', [ $e, false ] );
+			Hooks::runner()->onLogException( $e, false );
 		}
 	}
 
@@ -709,6 +709,6 @@ TXT;
 			$logger->log( $unfilteredLevel, $json, [ 'private' => true ] );
 		}
 
-		Hooks::run( 'LogException', [ $e, $suppressed ] );
+		Hooks::runner()->onLogException( $e, $suppressed );
 	}
 }

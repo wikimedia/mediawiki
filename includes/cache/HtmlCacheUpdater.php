@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+
 /**
  * Class to invalidate the CDN and HTMLFileCache entries associated with URLs/titles
  *
@@ -31,6 +34,9 @@ class HtmlCacheUpdater {
 	private $useFileCache;
 	/** @var int Max seconds for CDN to served cached objects without revalidation */
 	private $cdnMaxAge;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var int Issue purge immediately and do not schedule a rebound purge */
 	public const PURGE_NAIVE = 0;
@@ -75,12 +81,16 @@ class HtmlCacheUpdater {
 	public const UNLESS_CACHE_MTIME_AFTER = 'unless-timestamp-exceeds';
 
 	/**
+	 * @param HookContainer $hookContainer
 	 * @param int $reboundDelay $wgCdnReboundPurgeDelay
 	 * @param bool $useFileCache $wgUseFileCache
 	 * @param int $cdnMaxAge $wgCdnMaxAge
 	 * @internal For use with MediaWikiServices->getHtmlCacheUpdater()
 	 */
-	public function __construct( $reboundDelay, $useFileCache, $cdnMaxAge ) {
+	public function __construct( HookContainer $hookContainer, $reboundDelay,
+		$useFileCache, $cdnMaxAge
+	) {
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->reboundDelay = $reboundDelay;
 		$this->useFileCache = $useFileCache;
 		$this->cdnMaxAge = $cdnMaxAge;
@@ -192,16 +202,16 @@ class HtmlCacheUpdater {
 		// Extensions may add novel ways to access this content
 		$append = [];
 		$mode = $flags & self::PURGE_URLS_LINKSUPDATE_ONLY;
-		Hooks::run( 'HtmlCacheUpdaterAppendUrls', [ $title, $mode, &$append ] );
+		$this->hookRunner->onHtmlCacheUpdaterAppendUrls( $title, $mode, $append );
 		$urls = array_merge( $urls, $append );
 
 		// Extensions may add novel ways to access the site overall
 		$append = [];
-		Hooks::run( 'HtmlCacheUpdaterVaryUrls', [ $urls, &$append ] );
+		$this->hookRunner->onHtmlCacheUpdaterVaryUrls( $urls, $append );
 		$urls = array_merge( $urls, $append );
 
 		// Legacy. TODO: Deprecate this
-		Hooks::run( 'TitleSquidURLs', [ $title, &$urls ] );
+		$this->hookRunner->onTitleSquidURLs( $title, $urls );
 
 		return $urls;
 	}

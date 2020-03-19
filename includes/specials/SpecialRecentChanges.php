@@ -656,7 +656,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		// Don't fire the hook for subclasses. (Or should we?)
 		if ( $this->getName() === 'Recentchanges' ) {
-			Hooks::run( 'SpecialRecentChangesPanel', [ &$extraOpts, $opts ] );
+			$this->getHookRunner()->onSpecialRecentChangesPanel( $extraOpts, $opts );
 		}
 
 		return $extraOpts;

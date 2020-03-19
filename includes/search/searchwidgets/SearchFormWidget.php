@@ -2,8 +2,9 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use Hooks;
 use Html;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\SearchInputWidget;
 use SearchEngineConfig;
@@ -17,19 +18,27 @@ class SearchFormWidget {
 	protected $searchConfig;
 	/** @var array */
 	protected $profiles;
+	/** @var HookContainer $hookContainer */
+	private $hookContainer;
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * @param SpecialSearch $specialSearch
 	 * @param SearchEngineConfig $searchConfig
+	 * @param HookContainer $hookContainer
 	 * @param array $profiles
 	 */
 	public function __construct(
 		SpecialSearch $specialSearch,
 		SearchEngineConfig $searchConfig,
+		HookContainer $hookContainer,
 		array $profiles
 	) {
 		$this->specialSearch = $specialSearch;
 		$this->searchConfig = $searchConfig;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->profiles = $profiles;
 	}
 
@@ -233,9 +242,8 @@ class SearchFormWidget {
 			$html .= $this->powerSearchBox( $term, [] );
 		} else {
 			$form = '';
-			Hooks::run( 'SpecialSearchProfileForm', [
-				$this->specialSearch, &$form, $profile, $term, []
-			] );
+			$this->getHookRunner()->onSpecialSearchProfileForm(
+				$this->specialSearch, $form, $profile, $term, [] );
 			$html .= $form;
 		}
 
@@ -289,7 +297,7 @@ class SearchFormWidget {
 		$showSections = [
 			'namespaceTables' => "<table>" . implode( '</table><table>', $namespaceTables ) . '</table>',
 		];
-		Hooks::run( 'SpecialSearchPowerBox', [ &$showSections, $term, &$opts ] );
+		$this->getHookRunner()->onSpecialSearchPowerBox( $showSections, $term, $opts );
 
 		$hidden = '';
 		foreach ( $opts as $key => $value ) {
@@ -335,5 +343,23 @@ class SearchFormWidget {
 			$hidden .
 			$remember .
 		"</fieldset>";
+	}
+
+	/**
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() {
+		return $this->hookRunner;
 	}
 }

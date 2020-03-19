@@ -277,7 +277,7 @@ class FileDeleteForm {
 		}
 
 		if ( $status->isOK() ) {
-			Hooks::run( 'FileDeleteComplete', [ &$file, &$oldimage, &$page, &$user, &$reason ] );
+			Hooks::runner()->onFileDeleteComplete( $file, $oldimage, $page, $user, $reason );
 		}
 
 		return $status;

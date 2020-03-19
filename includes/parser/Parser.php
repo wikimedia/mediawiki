@@ -22,6 +22,8 @@
  */
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -348,6 +350,12 @@ class Parser {
 	/** @var BadFileLookup */
 	private $badFileLookup;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @var array
 	 * @since 1.35
@@ -388,6 +396,7 @@ class Parser {
 	 * @param LoggerInterface|null $logger
 	 * @param BadFileLookup|null $badFileLookup
 	 * @param LanguageConverterFactory|null $languageConverterFactory
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		$svcOptions = null,
@@ -400,7 +409,8 @@ class Parser {
 		$nsInfo = null,
 		$logger = null,
 		BadFileLookup $badFileLookup = null,
-		LanguageConverterFactory $languageConverterFactory = null
+		LanguageConverterFactory $languageConverterFactory = null,
+		HookContainer $hookContainer = null
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser is deprecated; use a ParserFactory
@@ -454,6 +464,10 @@ class Parser {
 		$this->languageConverterFactory = $languageConverterFactory ??
 			MediaWikiServices::getInstance()->getLanguageConverterFactory();
 
+		$this->hookContainer = $hookContainer ??
+			MediaWikiServices::getInstance()->getHookContainer();
+		$this->hookRunner = new HookRunner( $this->hookContainer );
+
 		// T250444: This will eventually be inlined here and the
 		// standalone method removed.
 		$this->firstCallInit();
@@ -493,7 +507,7 @@ class Parser {
 			unset( $tmp );
 		}
 
-		Hooks::run( 'ParserCloned', [ $this ] );
+		$this->hookRunner->onParserCloned( $this );
 	}
 
 	/**
@@ -511,9 +525,7 @@ class Parser {
 		CoreTagHooks::register( $this );
 		$this->initializeVariables();
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserFirstCallInit', [ &$parser ] );
+		$this->hookRunner->onParserFirstCallInit( $this );
 	}
 
 	/**
@@ -525,7 +537,11 @@ class Parser {
 		$this->firstCallInit();
 		$this->resetOutput();
 		$this->mAutonumber = 0;
-		$this->mLinkHolders = new LinkHolderArray( $this, $this->getContentLanguageConverter() );
+		$this->mLinkHolders = new LinkHolderArray(
+			$this,
+			$this->getContentLanguageConverter(),
+			$this->getHookContainer()
+		);
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
 			$this->mRevisionId = $this->mRevisionUser = $this->mRevisionSize = null;
@@ -561,9 +577,7 @@ class Parser {
 
 		$this->mProfiler = new SectionProfiler();
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserClearState', [ &$parser ] );
+		$this->hookRunner->onParserClearState( $this );
 	}
 
 	/**
@@ -627,13 +641,11 @@ class Parser {
 			$this->mRevisionSize = null;
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
+		$this->hookRunner->onParserBeforeStrip( $this, $text, $this->mStripState );
 		# No more strip!
-		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
+		$this->hookRunner->onParserAfterStrip( $this, $text, $this->mStripState );
 		$text = $this->internalParse( $text );
-		Hooks::run( 'ParserAfterParse', [ &$parser, &$text, &$this->mStripState ] );
+		$this->hookRunner->onParserAfterParse( $this, $text, $this->mStripState );
 
 		$text = $this->internalParseHalfParsed( $text, true, $linestart );
 
@@ -736,7 +748,7 @@ class Parser {
 			$this->mOutput->setLimitReportData( $key, $value );
 		}
 
-		Hooks::run( 'ParserLimitReportPrepare', [ $this, $this->mOutput ] );
+		$this->hookRunner->onParserLimitReportPrepare( $this, $this->mOutput );
 
 		$limitReport = "NewPP limit report\n";
 		if ( $this->svcOptions->get( 'ShowHostnames' ) ) {
@@ -750,9 +762,9 @@ class Parser {
 		$limitReport .= 'Complications: [' . implode( ', ', $this->mOutput->getAllFlags() ) . "]\n";
 
 		foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
-			if ( Hooks::run( 'ParserLimitReportFormat',
-				[ $key, &$value, &$limitReport, false, false ]
-			) ) {
+			if ( $this->hookRunner->onParserLimitReportFormat(
+				$key, $value, $limitReport, false, false )
+			) {
 				$keyMsg = wfMessage( $key )->inLanguage( 'en' )->useDatabase( false );
 				$valueMsg = wfMessage( [ "$key-value-text", "$key-value" ] )
 					->inLanguage( 'en' )->useDatabase( false );
@@ -829,10 +841,8 @@ class Parser {
 	 * @return-taint escaped
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
-		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
+		$this->hookRunner->onParserBeforeStrip( $this, $text, $this->mStripState );
+		$this->hookRunner->onParserAfterStrip( $this, $text, $this->mStripState );
 		$text = $this->internalParse( $text, false, $frame );
 		return $text;
 	}
@@ -883,8 +893,7 @@ class Parser {
 	 */
 	public function parseExtensionTagAsTopLevelDoc( $text ) {
 		$text = $this->recursiveTagParse( $text );
-		$parser = $this;
-		Hooks::run( 'ParserAfterParse', [ &$parser, &$text, &$this->mStripState ] );
+		$this->hookRunner->onParserAfterParse( $this, $text, $this->mStripState );
 		$text = $this->internalParseHalfParsed( $text, true );
 		return $text;
 	}
@@ -908,11 +917,9 @@ class Parser {
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
-		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
-		Hooks::run( 'ParserBeforePreprocess', [ $parser, &$text, $this->mStripState ] );
+		$this->hookRunner->onParserBeforeStrip( $this, $text, $this->mStripState );
+		$this->hookRunner->onParserAfterStrip( $this, $text, $this->mStripState );
+		$this->hookRunner->onParserBeforePreprocess( $this, $text, $this->mStripState );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		return $text;
@@ -1524,11 +1531,8 @@ class Parser {
 	public function internalParse( $text, $isMain = true, $frame = false ) {
 		$origText = $text;
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-
 		# Hook to suspend the parser in this state
-		if ( !Hooks::run( 'ParserBeforeInternalParse', [ &$parser, &$text, &$this->mStripState ] ) ) {
+		if ( !$this->hookRunner->onParserBeforeInternalParse( $this, $text, $this->mStripState ) ) {
 			return $text;
 		}
 
@@ -1548,7 +1552,7 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
-		Hooks::run( 'InternalParseBeforeSanitize', [ &$parser, &$text, &$this->mStripState ], '1.35' );
+		$this->hookRunner->onInternalParseBeforeSanitize( $this, $text, $this->mStripState );
 		$text = Sanitizer::removeHTMLtags(
 			$text,
 			// Callback from the Sanitizer for expanding items found in
@@ -1562,7 +1566,7 @@ class Parser {
 			[],
 			[]
 		);
-		Hooks::run( 'InternalParseBeforeLinks', [ &$parser, &$text, &$this->mStripState ] );
+		$this->hookRunner->onInternalParseBeforeLinks( $this, $text, $this->mStripState );
 
 		# Tables need to come after variable replacement for things to work
 		# properly; putting them before other transformations should keep
@@ -1612,6 +1616,29 @@ class Parser {
 	}
 
 	/**
+	 * Get a HookContainer capable of returning metadata about hooks or running
+	 * extension hooks.
+	 *
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * Get a HookRunner for calling core hooks
+	 *
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() {
+		return $this->hookRunner;
+	}
+
+	/**
 	 * Helper function for parse() that transforms half-parsed HTML into fully
 	 * parsed HTML.
 	 *
@@ -1622,9 +1649,6 @@ class Parser {
 	 */
 	private function internalParseHalfParsed( $text, $isMain = true, $linestart = true ) {
 		$text = $this->mStripState->unstripGeneral( $text );
-
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
 
 		$text = BlockLevelPass::doBlockLevels( $text, $linestart );
 
@@ -1653,7 +1677,7 @@ class Parser {
 		$text = $this->mStripState->unstripNoWiki( $text );
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserBeforeTidy', [ &$parser, &$text ], '1.35' );
+			$this->hookRunner->onParserBeforeTidy( $this, $text );
 		}
 
 		$text = $this->mStripState->unstripGeneral( $text );
@@ -1663,7 +1687,7 @@ class Parser {
 		$text = MWTidy::tidy( $text );
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserAfterTidy', [ &$parser, &$text ] );
+			$this->hookRunner->onParserAfterTidy( $this, $text );
 		}
 
 		return $text;
@@ -2371,7 +2395,10 @@ class Parser {
 			$e1_img = "/^([{$tc}]+)\\|(.*)\$/sD";
 		}
 
-		$holders = new LinkHolderArray( $this, $this->getContentLanguageConverter() );
+		$holders = new LinkHolderArray(
+			$this,
+			$this->getContentLanguageConverter(),
+			$this->getHookContainer() );
 
 		# split the entire text string on occurrences of [[
 		$a = StringUtils::explode( '[[', ' ' . $s );
@@ -2638,8 +2665,8 @@ class Parser {
 				# Give extensions a chance to select the file revision for us
 				$options = [];
 				$descQuery = false;
-				Hooks::run( 'BeforeParserFetchFileAndTitle',
-					[ $this, $nt, &$options, &$descQuery ] );
+				$this->hookRunner->onBeforeParserFetchFileAndTitle(
+					$this, $nt, $options, $descQuery );
 				# Fetch and register the file (file title may be different via hooks)
 				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $options );
 				# Cloak with NOPARSE to avoid replacement in handleExternalLinks
@@ -2728,48 +2755,41 @@ class Parser {
 	 * @return string
 	 */
 	private function expandMagicVariable( $index, $frame = false ) {
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-
 		/**
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
 		if (
-			// Using this hook to override the magic word cache is deprecated.
-			Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ], '1.35' ) &&
+			$this->hookRunner->onParserGetVariableValueVarCache( $this, $this->mVarCache ) &&
 			isset( $this->mVarCache[$index] )
 		) {
 			return $this->mVarCache[$index];
 		}
 
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
-		Hooks::run( 'ParserGetVariableValueTs', [ &$parser, &$ts ] );
+		$this->hookRunner->onParserGetVariableValueTs( $this, $ts );
 
 		$value = CoreMagicWords::expand(
-			$parser, $index, $ts, $this->nsInfo, $this->svcOptions, $this->logger
+			$this, $index, $ts, $this->nsInfo, $this->svcOptions, $this->logger
 		);
 
 		if ( $value === null ) {
 			// Not a defined core magic word
 			$ret = null;
 			$originalIndex = $index;
-			Hooks::run(
-				'ParserGetVariableValueSwitch',
-				[ &$parser, &$this->mVarCache, &$index, &$ret, &$frame ]
-			);
-			if ( $index !== $originalIndex ) {
-				wfDeprecated(
-					'ParserGetVariableValueSwitch modifying $index', '1.35'
-				);
-			}
-			if ( !isset( $this->mVarCache[$originalIndex] ) ||
-				 $this->mVarCache[$originalIndex] !== $ret ) {
-				wfDeprecated(
-					'ParserGetVariableValueSwitch bypassing cache', '1.35'
-				);
-			}
-			// FIXME: in the future, don't give this hook unrestricted
+			$this->hookRunner->onParserGetVariableValueSwitch( $this,
+				$this->mVarCache, $index, $ret, $frame );
+				if ( $index !== $originalIndex ) {
+					wfDeprecated(
+						'ParserGetVariableValueSwitch modifying $index', '1.35'
+					);
+				}
+				if ( !isset( $this->mVarCache[$originalIndex] ) ||
+					$this->mVarCache[$originalIndex] !== $ret ) {
+					wfDeprecated(
+						'ParserGetVariableValueSwitch bypassing cache', '1.35'
+					);
+				}// FIXME: in the future, don't give this hook unrestricted
 			// access to mVarCache; we can cache it ourselves by falling
 			// through here.
 			return $ret;
@@ -3282,10 +3302,7 @@ class Parser {
 
 		list( $callback, $flags ) = $this->mFunctionHooks[$function];
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-
-		$allArgs = [ &$parser ];
+		$allArgs = [ $this ];
 		if ( $flags & self::SFH_OBJECT_ARGS ) {
 			# Convert arguments to PPNodes and collect for appending to $allArgs
 			$funcArgs = [];
@@ -3554,8 +3571,8 @@ class Parser {
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$id = false; # Assume current
-			Hooks::run( 'BeforeParserFetchTemplateAndtitle',
-				[ $parser, $title, &$skip, &$id ] );
+			Hooks::runner()->onBeforeParserFetchTemplateAndtitle(
+				$parser, $title, $skip, $id );
 
 			if ( $skip ) {
 				$text = false;
@@ -3602,8 +3619,7 @@ class Parser {
 				$content = $rev->getContent();
 				$text = $content ? $content->getWikitextForTransclusion() : null;
 
-				Hooks::run( 'ParserFetchTemplate',
-					[ $parser, $title, $rev, &$text, &$deps ], '1.35' );
+				Hooks::runner()->onParserFetchTemplate( $parser, $title, $rev, $text, $deps );
 
 				if ( $text === false || $text === null ) {
 					$text = false;
@@ -3858,9 +3874,7 @@ class Parser {
 			} elseif ( isset( $this->mFunctionTagHooks[$name] ) ) {
 				list( $callback, ) = $this->mFunctionTagHooks[$name];
 
-				// Avoid PHP 7.1 warning from passing $this by reference
-				$parser = $this;
-				$output = call_user_func_array( $callback, [ &$parser, $frame, $content, $attributes ] );
+				$output = $callback( $this, $frame, $content, $attributes );
 			} else {
 				$output = '<span class="error">Invalid tag extension name: ' .
 					htmlspecialchars( $name ) . '</span>';
@@ -4384,7 +4398,7 @@ class Parser {
 			 * &$sectionContent : ref to the content of the section
 			 * $maybeShowEditLinks : boolean describing whether this section has an edit link
 			 */
-			Hooks::run( 'ParserSectionCreate', [ $this, $i, &$sections[$i], $maybeShowEditLink ], '1.35' );
+			$this->hookRunner->onParserSectionCreate( $this, $i, $sections[$i], $maybeShowEditLink );
 
 			$i++;
 		}
@@ -4437,8 +4451,7 @@ class Parser {
 		}
 		$text = $this->mStripState->unstripBoth( $text );
 
-		Hooks::run( 'ParserPreSaveTransformComplete',
-			[ $this, &$text ], '1.35' );
+		$this->hookRunner->onParserPreSaveTransformComplete( $this, $text );
 
 		$this->setUser( null ); # Reset
 
@@ -4946,9 +4959,7 @@ class Parser {
 		}
 		$ig->setAdditionalOptions( $params );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$parser = $this;
-		Hooks::run( 'BeforeParserrenderImageGallery', [ &$parser, &$ig ], '1.35' );
+		$this->hookRunner->onBeforeParserrenderImageGallery( $this, $ig );
 
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
@@ -4975,8 +4986,8 @@ class Parser {
 			# file (which potentially could be of a different type and have different handler).
 			$options = [];
 			$descQuery = false;
-			Hooks::run( 'BeforeParserFetchFileAndTitle',
-				[ $this, $title, &$options, &$descQuery ] );
+			$this->hookRunner->onBeforeParserFetchFileAndTitle(
+				$this, $title, $options, $descQuery );
 			# Don't register it now, as TraditionalImageGallery does that later.
 			$file = $this->fetchFileNoRegister( $title, $options );
 			$handler = $file ? $file->getHandler() : false;
@@ -5058,7 +5069,7 @@ class Parser {
 			$ig->add( $title, $label, $alt, $link, $handlerOptions );
 		}
 		$html = $ig->toHTML();
-		Hooks::run( 'AfterParserFetchFileAndTitle', [ $this, $ig, &$html ] );
+		$this->hookRunner->onAfterParserFetchFileAndTitle( $this, $ig, $html );
 		return $html;
 	}
 
@@ -5155,8 +5166,8 @@ class Parser {
 		# Give extensions a chance to select the file revision for us
 		$options = [];
 		$descQuery = false;
-		Hooks::run( 'BeforeParserFetchFileAndTitle',
-			[ $this, $title, &$options, &$descQuery ] );
+		$this->hookRunner->onBeforeParserFetchFileAndTitle(
+			$this, $title, $options, $descQuery );
 		# Fetch and register the file (file title may be different via hooks)
 		list( $file, $title ) = $this->fetchFileAndTitle( $title, $options );
 
@@ -5307,7 +5318,7 @@ class Parser {
 		}
 		$params['handler']['targetlang'] = $this->getTargetLanguage()->getCode();
 
-		Hooks::run( 'ParserMakeImageParams', [ $title, $file, &$params, $this ] );
+		$this->hookRunner->onParserMakeImageParams( $title, $file, $params, $this );
 
 		# Linker does the rest
 		$time = $options['time'] ?? false;

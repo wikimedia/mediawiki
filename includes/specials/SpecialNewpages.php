@@ -68,7 +68,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'size', 0 );
 
 		$this->customFilters = [];
-		Hooks::run( 'SpecialNewPagesFilters', [ $this, &$this->customFilters ] );
+		$this->getHookRunner()->onSpecialNewPagesFilters( $this, $this->customFilters );
 		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $this->customFilters as $key => $params ) {
 			$opts->add( $key, $params['default'] );
@@ -449,7 +449,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			. "{$tagDisplay} {$oldTitleText}";
 
 		// Let extensions add data
-		Hooks::run( 'NewPagesLineEnding', [ $this, &$ret, $result, &$classes, &$attribs ] );
+		$this->getHookRunner()->onNewPagesLineEnding(
+			$this, $ret, $result, $classes, $attribs );
 		$attribs = array_filter( $attribs,
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY

@@ -198,7 +198,7 @@ class WebRequest {
 				);
 			}
 
-			Hooks::run( 'WebRequestPathInfoRouter', [ $router ] );
+			Hooks::runner()->onWebRequestPathInfoRouter( $router );
 
 			$matches = $router->parse( $path );
 		} else {
@@ -1305,7 +1305,7 @@ class WebRequest {
 		}
 
 		# Allow extensions to improve our guess
-		Hooks::run( 'GetIP', [ &$ip ] );
+		Hooks::runner()->onGetIP( $ip );
 
 		if ( !$ip ) {
 			throw new MWException( "Unable to determine IP." );

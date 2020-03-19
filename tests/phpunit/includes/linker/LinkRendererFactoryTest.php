@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MediaWikiServices;
@@ -31,6 +32,11 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 */
 	private $specialPageFactory;
 
+	/**
+	 * @var HookContainer
+	 */
+	private $hookContainer;
+
 	public function setUp() : void {
 		parent::setUp();
 
@@ -39,6 +45,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 		$this->linkCache = $services->getLinkCache();
 		$this->nsInfo = $services->getNamespaceInfo();
 		$this->specialPageFactory = $services->getSpecialPageFactory();
+		$this->hookContainer = $services->getHookContainer();
 	}
 
 	public static function provideCreateFromLegacyOptions() {
@@ -71,7 +78,8 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 */
 	public function testCreateFromLegacyOptions( $options, $func, $val ) {
 		$factory = new LinkRendererFactory(
-				$this->titleFormatter, $this->linkCache, $this->nsInfo, $this->specialPageFactory
+				$this->titleFormatter, $this->linkCache, $this->nsInfo,
+				$this->specialPageFactory, $this->hookContainer
 			);
 		$linkRenderer = $factory->createFromLegacyOptions(
 			$options
@@ -82,7 +90,8 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 
 	public function testCreate() {
 		$factory = new LinkRendererFactory(
-			$this->titleFormatter, $this->linkCache, $this->nsInfo, $this->specialPageFactory
+			$this->titleFormatter, $this->linkCache, $this->nsInfo,
+			$this->specialPageFactory, $this->hookContainer
 		);
 		$this->assertInstanceOf( LinkRenderer::class, $factory->create() );
 	}
@@ -95,7 +104,8 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 			->method( 'getStubThreshold' )
 			->willReturn( 15 );
 		$factory = new LinkRendererFactory(
-			$this->titleFormatter, $this->linkCache, $this->nsInfo, $this->specialPageFactory
+			$this->titleFormatter, $this->linkCache, $this->nsInfo,
+			$this->specialPageFactory, $this->hookContainer
 		);
 		$linkRenderer = $factory->createForUser( $user );
 		$this->assertInstanceOf( LinkRenderer::class, $linkRenderer );

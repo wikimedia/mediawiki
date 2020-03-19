@@ -16,7 +16,6 @@ use ExternalStoreFactory;
 use FileBackendGroup;
 use GenderCache;
 use GlobalVarConfig;
-use Hooks;
 use HtmlCacheUpdater;
 use IBufferingStatsdDataFactory;
 use JobRunner;
@@ -37,6 +36,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -183,7 +183,8 @@ class MediaWikiServices extends ServiceContainer {
 
 			// Provides a traditional hook point to allow extensions to configure services.
 			// NOTE: Ideally this would be in newInstance() but it causes an infinite run loop
-			Hooks::run( 'MediaWikiServices', [ self::$instance ] );
+			$runner = new HookRunner( self::$instance->getHookContainer() );
+			$runner->onMediaWikiServices( self::$instance );
 		}
 		return self::$instance;
 	}
@@ -268,7 +269,8 @@ class MediaWikiServices extends ServiceContainer {
 		self::$instance = self::newInstance( $bootstrapConfig, 'load' );
 
 		// Provides a traditional hook point to allow extensions to configure services.
-		Hooks::run( 'MediaWikiServices', [ self::$instance ] );
+		$runner = new HookRunner( self::$instance->getHookContainer() );
+		$runner->onMediaWikiServices( self::$instance );
 
 		self::$instance->importWiring( $oldInstance, [ 'BootstrapConfig' ] );
 

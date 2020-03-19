@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
@@ -130,6 +132,12 @@ abstract class Maintenance {
 	 * @var resource
 	 */
 	public $fileHandle;
+
+	/** @var HookContainer|null */
+	private $hookContainer;
+
+	/** @var HookRunner|null */
+	private $hookRunner;
 
 	/**
 	 * Accessible via getConfig()
@@ -1654,5 +1662,33 @@ abstract class Maintenance {
 	 */
 	public static function requireTestsAutoloader() {
 		require_once __DIR__ . '/../../tests/common/TestsAutoLoader.php';
+	}
+
+	/**
+	 * Get a HookContainer, for running extension hooks or for hook metadata.
+	 *
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		if ( !$this->hookContainer ) {
+			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		return $this->hookContainer;
+	}
+
+	/**
+	 * Get a HookRunner for running core hooks.
+	 *
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() {
+		if ( !$this->hookRunner ) {
+			$this->hookRunner = new HookRunner( $this->getHookContainer() );
+		}
+		return $this->hookRunner;
 	}
 }

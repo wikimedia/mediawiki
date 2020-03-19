@@ -27,7 +27,6 @@ use Content;
 use ContentHandler;
 use DeferrableUpdate;
 use DeferredUpdates;
-use Hooks;
 use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
@@ -37,6 +36,8 @@ use LinksUpdate;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\PreparedEdit;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RenderedRevision;
@@ -140,6 +141,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @var ILBFactory
 	 */
 	private $loadbalancerFactory;
+
+	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
 
 	/**
 	 * @var LoggerInterface
@@ -285,6 +291,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @param Language $contLang
 	 * @param ILBFactory $loadbalancerFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		WikiPage $wikiPage,
@@ -296,7 +303,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		MessageCache $messageCache,
 		Language $contLang,
 		ILBFactory $loadbalancerFactory,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		HookContainer $hookContainer
 	) {
 		$this->wikiPage = $wikiPage;
 
@@ -311,6 +319,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// interface for that.
 		$this->loadbalancerFactory = $loadbalancerFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->logger = new NullLogger();
 	}
@@ -780,7 +789,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		}
 
 		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contLang );
-		Hooks::run( 'ArticlePrepareTextForEdit', [ $wikiPage, $userPopts ] );
+		$this->hookRunner->onArticlePrepareTextForEdit( $wikiPage, $userPopts );
 
 		$this->user = $user;
 		$this->slotsUpdate = $slotsUpdate;
@@ -1402,10 +1411,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		}
 
 		// TODO: hard deprecate SecondaryDataUpdates in favor of RevisionDataUpdates in 1.33!
-		Hooks::run(
-			'RevisionDataUpdates',
-			[ $this->getTitle(), $renderedRevision, &$allUpdates ]
-		);
+		$this->hookRunner->onRevisionDataUpdates(
+			$this->getTitle(), $renderedRevision, $allUpdates );
 
 		return $allUpdates;
 	}
@@ -1476,13 +1483,10 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// @note: Extensions should *avoid* calling getCannonicalParserOutput() when using
 		// this hook whenever possible in order to avoid unnecessary additional parses.
 		$editInfo = $this->getPreparedEdit();
-		Hooks::run( 'ArticleEditUpdates',
-			[ &$wikiPage, &$editInfo, $this->options['changed'] ],
-			'1.35'
-		);
+		$this->hookRunner->onArticleEditUpdates( $wikiPage, $editInfo, $this->options['changed'] );
 
 		// TODO: replace legacy hook! Use a listener on PageEventEmitter instead!
-		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', [ &$wikiPage ], '1.35' ) ) {
+		if ( $this->hookRunner->onArticleEditUpdatesDeleteFromRecentchanges( $wikiPage ) ) {
 			// Flush old entries from the `recentchanges` table
 			if ( mt_rand( 0, 9 ) == 0 ) {
 				$this->jobQueueGroup->lazyPush( RecentChangesUpdateJob::newPurgeJob() );
@@ -1548,7 +1552,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				// Allow extensions to prevent user notification
 				// when a new message is added to their talk page
 				// TODO: replace legacy hook!  Use a listener on PageEventEmitter instead!
-				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ &$wikiPage, $recipient ] ) ) {
+				if ( $this->hookRunner->onArticleEditUpdateNewTalk( $wikiPage, $recipient ) ) {
 					$revRecord = $legacyRevision->getRevisionRecord();
 					$talkPageNotificationManager = MediaWikiServices::getInstance()
 						->getTalkPageNotificationManager();

@@ -5,6 +5,8 @@ namespace MediaWiki\Rest;
 use AppendIterator;
 use BagOStuff;
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Validator\Validator;
@@ -56,6 +58,9 @@ class Router {
 	/** @var Validator */
 	private $restValidator;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/**
 	 * @internal
 	 * @param string[] $routeFiles List of names of JSON files containing routes
@@ -67,11 +72,12 @@ class Router {
 	 * @param BasicAuthorizerInterface $basicAuth
 	 * @param ObjectFactory $objectFactory
 	 * @param Validator $restValidator
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct( $routeFiles, $extraRoutes, $baseUrl, $rootPath,
 		BagOStuff $cacheBag, ResponseFactory $responseFactory,
 		BasicAuthorizerInterface $basicAuth, ObjectFactory $objectFactory,
-		Validator $restValidator
+		Validator $restValidator, HookContainer $hookContainer = null
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
@@ -82,6 +88,12 @@ class Router {
 		$this->basicAuth = $basicAuth;
 		$this->objectFactory = $objectFactory;
 		$this->restValidator = $restValidator;
+
+		if ( !$hookContainer ) {
+			// b/c for OAuth extension
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
@@ -322,7 +334,7 @@ class Router {
 			[ 'factory' => true, 'class' => true, 'args' => true, 'services' => true ] );
 		/** @var $handler Handler (annotation for PHPStorm) */
 		$handler = $this->objectFactory->createObject( $objectFactorySpec );
-		$handler->init( $this, $request, $spec, $this->responseFactory );
+		$handler->init( $this, $request, $spec, $this->responseFactory, $this->hookContainer );
 
 		return $handler;
 	}

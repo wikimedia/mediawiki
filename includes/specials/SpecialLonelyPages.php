@@ -75,7 +75,7 @@ class SpecialLonelyPages extends PageQueryPage {
 		];
 
 		// Allow extensions to modify the query
-		Hooks::run( 'LonelyPagesQuery', [ &$tables, &$conds, &$joinConds ] );
+		$this->getHookRunner()->onLonelyPagesQuery( $tables, $conds, $joinConds );
 
 		return [
 			'tables' => $tables,

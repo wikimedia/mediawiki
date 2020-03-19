@@ -21,10 +21,11 @@
 namespace MediaWiki\Linker;
 
 use DummyLinker;
-use Hooks;
 use Html;
 use HtmlArmor;
 use LinkCache;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use NamespaceInfo;
@@ -82,6 +83,12 @@ class LinkRenderer {
 	 */
 	private $runLegacyBeginHook = true;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @var SpecialPageFactory
 	 */
@@ -93,17 +100,21 @@ class LinkRenderer {
 	 * @param LinkCache $linkCache
 	 * @param NamespaceInfo $nsInfo
 	 * @param SpecialPageFactory $specialPageFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		LinkCache $linkCache,
 		NamespaceInfo $nsInfo,
-		SpecialPageFactory $specialPageFactory
+		SpecialPageFactory $specialPageFactory,
+		HookContainer $hookContainer
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
 		$this->nsInfo = $nsInfo;
 		$this->specialPageFactory = $specialPageFactory;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -197,8 +208,8 @@ class LinkRenderer {
 
 	private function runBeginHook( LinkTarget $target, &$text, &$extraAttribs, &$query, $isKnown ) {
 		$ret = null;
-		if ( !Hooks::run( 'HtmlPageLinkRendererBegin',
-			[ $this, $target, &$text, &$extraAttribs, &$query, &$ret ] )
+		if ( !$this->hookRunner->onHtmlPageLinkRendererBegin(
+			$this, $target, $text, $extraAttribs, $query, $ret )
 		) {
 			return $ret;
 		}
@@ -210,7 +221,7 @@ class LinkRenderer {
 	private function runLegacyBeginHook( LinkTarget $target, &$text, &$extraAttribs, &$query,
 		$isKnown
 	) {
-		if ( !$this->runLegacyBeginHook || !Hooks::isRegistered( 'LinkBegin' ) ) {
+		if ( !$this->runLegacyBeginHook || !$this->hookContainer->isRegistered( 'LinkBegin' ) ) {
 			// Disabled, or nothing registered
 			return null;
 		}
@@ -224,8 +235,8 @@ class LinkRenderer {
 		} else {
 			$realHtml = $html = null;
 		}
-		if ( !Hooks::run( 'LinkBegin',
-			[ $dummy, $title, &$html, &$extraAttribs, &$query, &$options, &$ret ], '1.28' )
+		if ( !$this->hookRunner->onLinkBegin(
+			$dummy, $title, $html, $extraAttribs, $query, $options, $ret )
 		) {
 			return $ret;
 		}
@@ -380,8 +391,8 @@ class LinkRenderer {
 	 */
 	private function buildAElement( LinkTarget $target, $text, array $attribs, $isKnown ) {
 		$ret = null;
-		if ( !Hooks::run( 'HtmlPageLinkRendererEnd',
-			[ $this, $target, $isKnown, &$text, &$attribs, &$ret ] )
+		if ( !$this->hookRunner->onHtmlPageLinkRendererEnd(
+			$this, $target, $isKnown, $text, $attribs, $ret )
 		) {
 			return $ret;
 		}
@@ -389,12 +400,12 @@ class LinkRenderer {
 		$html = HtmlArmor::getHtml( $text );
 
 		// Run legacy hook
-		if ( Hooks::isRegistered( 'LinkEnd' ) ) {
+		if ( $this->hookContainer->isRegistered( 'LinkEnd' ) ) {
 			$dummy = new DummyLinker();
 			$title = Title::newFromLinkTarget( $target );
 			$options = $this->getLegacyOptions( $isKnown );
-			if ( !Hooks::run( 'LinkEnd',
-				[ $dummy, $title, $options, &$html, &$attribs, &$ret ], '1.28' )
+			if ( !$this->hookRunner->onLinkEnd(
+				$dummy, $title, $options, $html, $attribs, $ret )
 			) {
 				return $ret;
 			}

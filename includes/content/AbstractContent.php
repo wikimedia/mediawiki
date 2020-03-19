@@ -286,7 +286,7 @@ abstract class AbstractContent implements Content {
 			new LinksUpdate( $title, $parserOutput, $recursive )
 		];
 
-		Hooks::run( 'SecondaryDataUpdates', [ $title, $old, $recursive, $parserOutput, &$updates ] );
+		Hooks::runner()->onSecondaryDataUpdates( $title, $old, $recursive, $parserOutput, $updates );
 
 		return $updates;
 	}
@@ -520,7 +520,7 @@ abstract class AbstractContent implements Content {
 		$lossy = ( $lossy === 'lossy' ); // string flag, convert to boolean for convenience
 		$result = false;
 
-		Hooks::run( 'ConvertContent', [ $this, $toModel, $lossy, &$result ] );
+		Hooks::runner()->onConvertContent( $this, $toModel, $lossy, $result );
 
 		return $result;
 	}
@@ -555,8 +555,8 @@ abstract class AbstractContent implements Content {
 		$po = new ParserOutput();
 		$options->registerWatcher( [ $po, 'recordOption' ] );
 
-		if ( Hooks::run( 'ContentGetParserOutput',
-			[ $this, $title, $revId, $options, $generateHtml, &$po ] )
+		if ( Hooks::runner()->onContentGetParserOutput(
+			$this, $title, $revId, $options, $generateHtml, $po )
 		) {
 			// Save and restore the old value, just in case something is reusing
 			// the ParserOptions object in some weird way.
@@ -566,7 +566,7 @@ abstract class AbstractContent implements Content {
 			$options->setRedirectTarget( $oldRedir );
 		}
 
-		Hooks::run( 'ContentAlterParserOutput', [ $this, $title, $po ] );
+		Hooks::runner()->onContentAlterParserOutput( $this, $title, $po );
 		$options->registerWatcher( null );
 
 		return $po;

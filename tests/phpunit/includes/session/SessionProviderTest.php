@@ -17,6 +17,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 		$manager = new SessionManager();
 		$logger = new \TestLogger();
 		$config = new \HashConfig();
+		$hookContainer = $this->createHookContainer();
 
 		$provider = $this->getMockForAbstractClass( SessionProvider::class );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
@@ -28,6 +29,8 @@ class SessionProviderTest extends MediaWikiTestCase {
 		$provider->setManager( $manager );
 		$this->assertSame( $manager, $priv->manager );
 		$this->assertSame( $manager, $provider->getManager() );
+		$provider->setHookContainer( $hookContainer );
+		$this->assertSame( $hookContainer, $priv->getHookContainer() );
 
 		$provider->invalidateSessionsForUser( new \User );
 

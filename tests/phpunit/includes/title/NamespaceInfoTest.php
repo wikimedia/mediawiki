@@ -6,7 +6,9 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 
 class NamespaceInfoTest extends MediaWikiTestCase {
 	use TestAllServiceOptionsUsed;
@@ -59,12 +61,22 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 		'NonincludableNamespaces' => [],
 	];
 
+	/**
+	 * @return HookContainer
+	 */
+	private function getHookContainer() {
+		return MediaWikiServices::getInstance()->getHookContainer();
+	}
+
 	private function newObj( array $options = [] ) : NamespaceInfo {
-		return new NamespaceInfo( new LoggedServiceOptions(
-			self::$serviceOptionsAccessLog,
-			NamespaceInfo::CONSTRUCTOR_OPTIONS,
-			$options, self::DEFAULT_OPTIONS
-		) );
+		return new NamespaceInfo(
+			new LoggedServiceOptions(
+				self::$serviceOptionsAccessLog,
+				NamespaceInfo::CONSTRUCTOR_OPTIONS,
+				$options, self::DEFAULT_OPTIONS
+			),
+			$this->getHookContainer()
+		);
 	}
 
 	// %} End shared code
@@ -85,7 +97,7 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 			$this->expectException( \Wikimedia\Assert\PreconditionException::class );
 			$this->expectExceptionMessage( $expectedExceptionText );
 		}
-		new NamespaceInfo( $options );
+		new NamespaceInfo( $options, $this->getHookContainer() );
 		$this->assertTrue( true );
 	}
 

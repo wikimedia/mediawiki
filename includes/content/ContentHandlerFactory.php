@@ -26,8 +26,9 @@ namespace MediaWiki\Content;
 
 use ContentHandler;
 use FatalError;
-use Hooks;
 use InvalidArgumentException;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MWException;
 use MWUnknownContentModelException;
 use UnexpectedValueException;
@@ -57,6 +58,11 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	private $objectFactory;
 
 	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
+
+	/**
 	 * @since 1.35
 	 * @internal Use @see MediaWikiServices::getContentHandlerFactory
 	 *
@@ -64,10 +70,14 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 *   content model to the ObjectFactory spec used to construct its ContentHandler.
 	 *   This array typically comes from $wgContentHandlers.
 	 * @param ObjectFactory $objectFactory
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( array $handlerSpecs, ObjectFactory $objectFactory ) {
+	public function __construct( array $handlerSpecs, ObjectFactory $objectFactory,
+		HookContainer $hookContainer
+	) {
 		$this->handlerSpecs = $handlerSpecs;
 		$this->objectFactory = $objectFactory;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -117,7 +127,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 */
 	public function getContentModels(): array {
 		$modelsFromHook = [];
-		Hooks::run( 'GetContentModels', [ &$modelsFromHook ] );
+		$this->hookRunner->onGetContentModels( $modelsFromHook );
 		$models = array_merge( // auto-registered from config and MediaServiceWiki or manual
 			array_keys( $this->handlerSpecs ),
 
@@ -246,7 +256,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 */
 	private function createContentHandlerFromHook( string $modelID ): ContentHandler {
 		$contentHandler = null;
-		Hooks::run( 'ContentHandlerForModelID', [ $modelID, &$contentHandler ] );
+		$this->hookRunner->onContentHandlerForModelID( $modelID, $contentHandler );
 		$this->validateContentHandler( $modelID, $contentHandler );
 
 		'@phan-var ContentHandler $contentHandler';

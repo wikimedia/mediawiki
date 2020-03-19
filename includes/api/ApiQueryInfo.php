@@ -112,7 +112,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'import' => [ self::class, 'getImportToken' ],
 			'watch' => [ self::class, 'getWatchToken' ],
 		];
-		Hooks::run( 'APIQueryInfoTokens', [ &$this->tokenFunctions ], '1.24' );
+		$this->getHookRunner()->onAPIQueryInfoTokens( $this->tokenFunctions );
 
 		return $this->tokenFunctions;
 	}
@@ -512,7 +512,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['preload'] = '';
 			} else {
 				$text = null;
-				Hooks::run( 'EditFormPreloadText', [ &$text, &$title ] );
+				$this->getHookRunner()->onEditFormPreloadText( $text, $title );
 
 				$pageInfo['preload'] = $text;
 			}

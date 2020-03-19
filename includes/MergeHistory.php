@@ -431,7 +431,7 @@ class MergeHistory {
 		$logId = $logEntry->insert();
 		$logEntry->publish( $logId );
 
-		Hooks::run( 'ArticleMergeComplete', [ $this->source, $this->dest ] );
+		Hooks::runner()->onArticleMergeComplete( $this->source, $this->dest );
 
 		$this->dbw->endAtomic( __METHOD__ );
 

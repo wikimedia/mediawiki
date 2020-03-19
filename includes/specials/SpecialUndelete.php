@@ -421,7 +421,9 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		if ( !Hooks::run( 'UndeleteForm::showRevision', [ &$archive, $this->mTargetObj ] ) ) {
+		if ( !$this->getHookRunner()->onUndeleteForm__showRevision(
+			$archive, $this->mTargetObj )
+		) {
 			return;
 		}
 		$rev = $archive->getRevision( $timestamp );
@@ -524,7 +526,7 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( '</div>' );
 
 		// Hook needs a Revision, but its deprecated, so that is fine
-		if ( !Hooks::run( 'UndeleteShowRevision', [ $this->mTargetObj, $rev ], '1.35' ) ) {
+		if ( !$this->getHookRunner()->onUndeleteShowRevision( $this->mTargetObj, $rev ) ) {
 			return;
 		}
 
@@ -783,7 +785,7 @@ class SpecialUndelete extends SpecialPage {
 		);
 
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		Hooks::run( 'UndeleteForm::showHistory', [ &$archive, $this->mTargetObj ] );
+		$this->getHookRunner()->onUndeleteForm__showHistory( $archive, $this->mTargetObj );
 
 		$out->addHTML( '<div class="mw-undelete-history">' );
 		if ( $this->mAllowed ) {
@@ -1257,7 +1259,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$out = $this->getOutput();
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
-		Hooks::run( 'UndeleteForm::undelete', [ &$archive, $this->mTargetObj ] );
+		$this->getHookRunner()->onUndeleteForm__undelete( $archive, $this->mTargetObj );
 		$ok = $archive->undeleteAsUser(
 			$this->mTargetTimestamp,
 			$this->getUser(),
@@ -1268,9 +1270,8 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( is_array( $ok ) ) {
 			if ( $ok[1] ) { // Undeleted file count
-				Hooks::run( 'FileUndeleteComplete', [
-					$this->mTargetObj, $this->mFileVersions,
-					$this->getUser(), $this->mComment ] );
+				$this->getHookRunner()->onFileUndeleteComplete(
+					$this->mTargetObj, $this->mFileVersions, $this->getUser(), $this->mComment );
 			}
 
 			$link = $this->getLinkRenderer()->makeKnownLink( $this->mTargetObj );

@@ -53,7 +53,7 @@ class EditAction extends FormlessAction {
 		}
 
 		$article = $this->getArticle();
-		if ( Hooks::run( 'CustomEditor', [ $article, $this->getUser() ] ) ) {
+		if ( $this->getHookRunner()->onCustomEditor( $article, $this->getUser() ) ) {
 			$editor = new EditPage( $article );
 			$editor->setContextTitle( $this->getTitle() );
 			$editor->edit();

@@ -143,6 +143,9 @@ trait FactoryArgTestTrait {
 			$this->createInstanceFromFactory( new $factoryClass( ...array_values( $mocks ) ) );
 
 		foreach ( $mocks as $name => $mock ) {
+			if ( $name === 'hookContainer' ) {
+				continue;
+			}
 			$this->assertInstanceReceivedParam( $instance, $name, $mock );
 		}
 	}

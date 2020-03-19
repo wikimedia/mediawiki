@@ -672,9 +672,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$newLink )->params( $oldText, $newText )->parseAsBlock() );
 		$out->addWikiMsg( $msgName );
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$movePage = $this;
-		Hooks::run( 'SpecialMovepageAfterMove', [ &$movePage, &$ot, &$nt ] );
+		$this->getHookRunner()->onSpecialMovepageAfterMove( $this, $ot, $nt );
 
 		/*
 		 * Now we move extra pages we've been asked to move: subpages and talk

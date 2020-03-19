@@ -25,18 +25,20 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 		// Stub out a MagicWordFactory so the Parser can initialize its
 		// function hooks when it is created.
 		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
-		->disableOriginalConstructor()
-		->setMethods( [ 'get' ] )
-		->getMock();
-		$mwFactory
-		->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
-			$mw = $this->getMockBuilder( MagicWord::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getSynonyms' ] )
+			->setMethods( [ 'get', 'getVariableIDs' ] )
 			->getMock();
-			$mw->method( 'getSynonyms' )->willReturn( [] );
-			return $mw;
-		} ) );
+		$mwFactory
+			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
+				$mw = $this->getMockBuilder( MagicWord::class )
+				->disableOriginalConstructor()
+				->setMethods( [ 'getSynonyms' ] )
+				->getMock();
+				$mw->method( 'getSynonyms' )->willReturn( [] );
+				return $mw;
+			} ) );
+		$mwFactory
+			->method( 'getVariableIDs' )->willReturn( [] );
 
 		$factory = new ParserFactory(
 			$options,
@@ -48,7 +50,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( NamespaceInfo::class ),
 			$this->createNoOpMock( LoggerInterface::class ),
 			$this->createNoOpMock( BadFileLookup::class ),
-			$this->createNoOpMock( LanguageConverterFactory::class )
+			$this->createNoOpMock( LanguageConverterFactory::class ),
+			$this->createHookContainer()
 		);
 		return $factory;
 	}

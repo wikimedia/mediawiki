@@ -116,7 +116,7 @@ class SpecialAutoblockList extends SpecialPage {
 
 		# Check for other blocks, i.e. global/tor blocks
 		$otherAutoblockLink = [];
-		Hooks::run( 'OtherAutoblockLogLink', [ &$otherAutoblockLink ] );
+		$this->getHookRunner()->onOtherAutoblockLogLink( $otherAutoblockLink );
 
 		# Show additional header for the local block only when other blocks exists.
 		# Not necessary in a standard installation without such extensions enabled
@@ -143,7 +143,6 @@ class SpecialAutoblockList extends SpecialPage {
 				) . "\n"
 			);
 			$list = '';
-			// @phan-suppress-next-line PhanEmptyForeach False positive
 			foreach ( $otherAutoblockLink as $link ) {
 				$list .= Html::rawElement( 'li', [], $link ) . "\n";
 			}

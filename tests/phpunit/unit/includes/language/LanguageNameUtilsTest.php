@@ -2,21 +2,25 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MediaWikiServices;
 
 class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param array $optionsArray
 	 */
 	private static function newObj( array $optionsArray = [] ) : LanguageNameUtils {
-		return new LanguageNameUtils( new ServiceOptions(
-			LanguageNameUtils::CONSTRUCTOR_OPTIONS,
-			$optionsArray,
-			[
-				'ExtraLanguageNames' => [],
-				'LanguageCode' => 'en',
-				'UsePigLatinVariant' => false,
-			]
-		) );
+		return new LanguageNameUtils(
+			new ServiceOptions(
+				LanguageNameUtils::CONSTRUCTOR_OPTIONS,
+				$optionsArray,
+				[
+					'ExtraLanguageNames' => [],
+					'LanguageCode' => 'en',
+					'UsePigLatinVariant' => false,
+				]
+			),
+			MediaWikiServices::getInstance()->getHookContainer()
+		);
 	}
 
 	use LanguageNameUtilsTestTrait;

@@ -74,7 +74,7 @@ abstract class Collation {
 
 				# Provide a mechanism for extensions to hook in.
 				$collationObject = null;
-				Hooks::run( 'Collation::factory', [ $collationName, &$collationObject ] );
+				Hooks::runner()->onCollation__factory( $collationName, $collationObject );
 
 				if ( $collationObject instanceof self ) {
 					return $collationObject;

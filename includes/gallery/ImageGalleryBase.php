@@ -144,7 +144,7 @@ abstract class ImageGalleryBase extends ContextSource {
 				'slideshow' => SlideshowImageGallery::class,
 			];
 			// Allow extensions to make a new gallery format.
-			Hooks::run( 'GalleryGetModes', [ &self::$modeMapping ] );
+			Hooks::runner()->onGalleryGetModes( self::$modeMapping );
 		}
 	}
 

@@ -25,6 +25,7 @@
  * @copyright © 2011, Antoine Musso
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -44,6 +45,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Introduced by r47317
  */
 class BacklinkCache {
+	use ProtectedHookAccessorTrait;
+
 	/** @var BacklinkCache */
 	protected static $instance;
 
@@ -256,7 +259,7 @@ class BacklinkCache {
 			return $prefixes[$table];
 		} else {
 			$prefix = null;
-			Hooks::run( 'BacklinkCacheGetPrefix', [ $table, &$prefix ] );
+			$this->getHookRunner()->onBacklinkCacheGetPrefix( $table, $prefix );
 			if ( $prefix ) {
 				return $prefix;
 			} else {
@@ -304,7 +307,7 @@ class BacklinkCache {
 				break;
 			default:
 				$conds = null;
-				Hooks::run( 'BacklinkCacheGetConditions', [ $table, $this->title, &$conds ] );
+				$this->getHookRunner()->onBacklinkCacheGetConditions( $table, $this->title, $conds );
 				if ( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 				}

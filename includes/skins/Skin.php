@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use Wikimedia\WrappedString;
@@ -37,6 +38,8 @@ use Wikimedia\WrappedStringList;
  * @ingroup Skins
  */
 abstract class Skin extends ContextSource {
+	use ProtectedHookAccessorTrait;
+
 	/**
 	 * @var string|null
 	 */
@@ -281,7 +284,7 @@ abstract class Skin extends ContextSource {
 			);
 		}
 
-		Hooks::run( 'SkinPreloadExistence', [ &$titles, $this ] );
+		$this->getHookRunner()->onSkinPreloadExistence( $titles, $this );
 
 		if ( $titles ) {
 			$lb = new LinkBatch( $titles );
@@ -639,7 +642,7 @@ abstract class Skin extends ContextSource {
 	protected function afterContentHook() {
 		$data = '';
 
-		if ( Hooks::run( 'SkinAfterContent', [ &$data, $this ] ) ) {
+		if ( $this->getHookRunner()->onSkinAfterContent( $data, $this ) ) {
 			// adding just some spaces shouldn't toggle the output
 			// of the whole <div/>, so we use trim() here
 			if ( trim( $data ) != '' ) {
@@ -680,7 +683,7 @@ abstract class Skin extends ContextSource {
 		// Keep the hook appendage separate to preserve WrappedString objects.
 		// This enables BaseTemplate::getTrail() to merge them where possible.
 		$extraHtml = '';
-		Hooks::run( 'SkinAfterBottomScripts', [ $this, &$extraHtml ] );
+		$this->getHookRunner()->onSkinAfterBottomScripts( $this, $extraHtml );
 		if ( $extraHtml !== '' ) {
 			$chunks[] = $extraHtml;
 		}
@@ -739,7 +742,8 @@ abstract class Skin extends ContextSource {
 
 				// Allow extensions to add more links
 				$links = [];
-				Hooks::run( 'UndeletePageToolLinks', [ $this->getContext(), $linkRenderer, &$links ] );
+				$this->getHookRunner()->onUndeletePageToolLinks(
+					$this->getContext(), $linkRenderer, $links );
 
 				if ( $links ) {
 					$subtitle .= ''
@@ -765,7 +769,7 @@ abstract class Skin extends ContextSource {
 		$title = $out->getTitle();
 		$subpages = '';
 
-		if ( !Hooks::run( 'SkinSubPageSubtitle', [ &$subpages, $this, $out ] ) ) {
+		if ( !$this->getHookRunner()->onSkinSubPageSubtitle( $subpages, $this, $out ) ) {
 			return $subpages;
 		}
 
@@ -860,7 +864,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		// Allow for site and per-namespace customization of copyright notice.
-		Hooks::run( 'SkinCopyrightFooter', [ $this->getTitle(), $type, &$msg, &$link ] );
+		$this->getHookRunner()->onSkinCopyrightFooter( $this->getTitle(), $type, $msg, $link );
 
 		return $this->msg( $msg )->rawParams( $link )->text();
 	}
@@ -912,7 +916,7 @@ abstract class Skin extends ContextSource {
 		$text = '<a href="https://www.mediawiki.org/"><img src="' . $url1
 			. '" srcset="' . $url1_5 . ' 1.5x, ' . $url2 . ' 2x" '
 			. 'height="31" width="88" alt="Powered by MediaWiki" loading="lazy" /></a>';
-		Hooks::run( 'SkinGetPoweredBy', [ &$text, $this ] );
+		$this->getHookRunner()->onSkinGetPoweredBy( $text, $this );
 		return $text;
 	}
 
@@ -1610,7 +1614,7 @@ abstract class Skin extends ContextSource {
 		$callback = function ( $old = null, &$ttl = null ) {
 			$bar = [];
 			$this->addToSidebar( $bar, 'sidebar' );
-			Hooks::run( 'SkinBuildSidebar', [ $this, &$bar ] );
+			$this->getHookRunner()->onSkinBuildSidebar( $this, $bar );
 			$msgCache = MediaWikiServices::getInstance()->getMessageCache();
 			if ( $msgCache->isDisabled() ) {
 				$ttl = WANObjectCache::TTL_UNCACHEABLE; // bug T133069
@@ -1646,7 +1650,7 @@ abstract class Skin extends ContextSource {
 		);
 		$sidebar['LANGUAGES'] = $this->getLanguages();
 		// Apply post-processing to the cached value
-		Hooks::run( 'SidebarBeforeOutput', [ $this, &$sidebar ] );
+		$this->getHookRunner()->onSidebarBeforeOutput( $this, $sidebar );
 
 		return $sidebar;
 	}
@@ -1786,7 +1790,9 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 
 		// Allow extensions to disable or modify the new messages alert
-		if ( !Hooks::run( 'GetNewMessagesAlert', [ &$newMessagesAlert, $newtalks , $user, $out ] ) ) {
+		if ( !$this->getHookRunner()->onGetNewMessagesAlert(
+			$newMessagesAlert, $newtalks, $user, $out )
+		) {
 			return '';
 		}
 		if ( $newMessagesAlert ) {
@@ -1922,7 +1928,7 @@ abstract class Skin extends ContextSource {
 	public function getSiteNotice() {
 		$siteNotice = '';
 
-		if ( Hooks::run( 'SiteNoticeBefore', [ &$siteNotice, $this ] ) ) {
+		if ( $this->getHookRunner()->onSiteNoticeBefore( $siteNotice, $this ) ) {
 			if ( $this->getUser()->isLoggedIn() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
@@ -1938,7 +1944,7 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
-		Hooks::run( 'SiteNoticeAfter', [ &$siteNotice, $this ] );
+		$this->getHookRunner()->onSiteNoticeAfter( $siteNotice, $this );
 		return $siteNotice;
 	}
 
@@ -1974,7 +1980,7 @@ abstract class Skin extends ContextSource {
 			]
 		];
 
-		Hooks::run( 'SkinEditSectionLinks', [ $this, $nt, $section, $tooltip, &$links, $lang ] );
+		$this->getHookRunner()->onSkinEditSectionLinks( $this, $nt, $section, $tooltip, $links, $lang );
 
 		$result = '<span class="mw-editsection"><span class="mw-editsection-bracket">[</span>';
 

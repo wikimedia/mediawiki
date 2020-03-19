@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+
 /**
  * Configuration handling class for SearchEngine.
  * Provides added service over plain configuration.
@@ -30,10 +33,24 @@ class SearchEngineConfig {
 	 */
 	private $engineMappings;
 
-	public function __construct( Config $config, Language $lang, array $mappings ) {
+	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
+
+	/**
+	 * @param Config $config
+	 * @param Language $lang
+	 * @param HookContainer $hookContainer
+	 * @param array $mappings
+	 */
+	public function __construct( Config $config, Language $lang,
+		HookContainer $hookContainer, array $mappings
+	) {
 		$this->config = $config;
 		$this->language = $lang;
 		$this->engineMappings = $mappings;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -57,7 +74,7 @@ class SearchEngineConfig {
 			}
 		}
 
-		Hooks::run( 'SearchableNamespaces', [ &$arr ] );
+		$this->hookRunner->onSearchableNamespaces( $arr );
 		return $arr;
 	}
 

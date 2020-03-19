@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
@@ -65,6 +67,11 @@ class SpecialPage implements MessageLocalizer {
 	 * @var \MediaWiki\Linker\LinkRenderer|null
 	 */
 	private $linkRenderer;
+
+	/** @var HookContainer|null */
+	private $hookContainer;
+	/** @var HookRunner|null */
+	private $hookRunner;
 
 	/**
 	 * Get a localised Title object for a specified special page name
@@ -563,16 +570,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @param string|null $subPage
 	 */
 	final public function run( $subPage ) {
-		/**
-		 * Gets called before @see SpecialPage::execute.
-		 * Return false to prevent calling execute() (since 1.27+).
-		 *
-		 * @since 1.20
-		 *
-		 * @param SpecialPage $this
-		 * @param string|null $subPage
-		 */
-		if ( !Hooks::run( 'SpecialPageBeforeExecute', [ $this, $subPage ] ) ) {
+		if ( !$this->getHookRunner()->onSpecialPageBeforeExecute( $this, $subPage ) ) {
 			return;
 		}
 
@@ -582,15 +580,7 @@ class SpecialPage implements MessageLocalizer {
 		$this->execute( $subPage );
 		$this->afterExecute( $subPage );
 
-		/**
-		 * Gets called after @see SpecialPage::execute.
-		 *
-		 * @since 1.20
-		 *
-		 * @param SpecialPage $this
-		 * @param string|null $subPage
-		 */
-		Hooks::run( 'SpecialPageAfterExecute', [ $this, $subPage ] );
+		$this->getHookRunner()->onSpecialPageAfterExecute( $this, $subPage );
 	}
 
 	/**
@@ -952,5 +942,39 @@ class SpecialPage implements MessageLocalizer {
 		$prevNext = new PrevNextNavigationRenderer( $this );
 
 		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query,  $atend );
+	}
+
+	/**
+	 * @since 1.35
+	 * @internal
+	 * @param HookContainer $hookContainer
+	 */
+	public function setHookContainer( HookContainer $hookContainer ) {
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		if ( !$this->hookContainer ) {
+			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		return $this->hookContainer;
+	}
+
+	/**
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() {
+		if ( !$this->hookRunner ) {
+			$this->hookRunner = new HookRunner( $this->getHookContainer() );
+		}
+		return $this->hookRunner;
 	}
 }
