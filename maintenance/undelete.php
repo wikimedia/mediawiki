@@ -53,7 +53,7 @@ class Undelete extends Maintenance {
 		}
 		$archive = new PageArchive( $title, RequestContext::getMain()->getConfig() );
 		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...' );
-		$archive->undelete( [], $reason );
+		$archive->undeleteAsUser( [], $wgUser, $reason );
 		$this->output( "done\n" );
 	}
 }

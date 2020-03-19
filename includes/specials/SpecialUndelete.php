@@ -1229,12 +1229,12 @@ class SpecialUndelete extends SpecialPage {
 		$out = $this->getOutput();
 		$archive = new PageArchive( $this->mTargetObj, $this->getConfig() );
 		Hooks::run( 'UndeleteForm::undelete', [ &$archive, $this->mTargetObj ] );
-		$ok = $archive->undelete(
+		$ok = $archive->undeleteAsUser(
 			$this->mTargetTimestamp,
+			$this->getUser(),
 			$this->mComment,
 			$this->mFileVersions,
-			$this->mUnsuppress,
-			$this->getUser()
+			$this->mUnsuppress
 		);
 
 		if ( is_array( $ok ) ) {
