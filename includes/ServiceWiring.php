@@ -1065,7 +1065,8 @@ return [
 			$services->getCommentStore(),
 			$services->getActorMigration(),
 			$services->getWatchedItemStore(),
-			$services->getPermissionManager()
+			$services->getPermissionManager(),
+			$services->getMainConfig()->get( 'WatchlistExpiry' )
 		);
 	},
 
