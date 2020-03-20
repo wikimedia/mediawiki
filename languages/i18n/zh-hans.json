@@ -2621,6 +2621,7 @@
 	"whatlinkshere-hidelinks": "$1链接",
 	"whatlinkshere-hideimages": "$1文件链接",
 	"whatlinkshere-filters": "过滤器",
+	"whatlinkshere-sectionredir": "重定向至章节“$1”",
 	"whatlinkshere-submit": "提交",
 	"autoblockid": "自动封禁#$1",
 	"block": "封禁用户",
