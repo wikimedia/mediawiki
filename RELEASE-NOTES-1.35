@@ -392,6 +392,8 @@ because of Phabricator reports.
   - storeInMemcached
   - setCacheDuration
   - setVary
+* ApiDelete::delete and ::deleteFile, both of which were protected methods,
+  have been made private to allow a signature change.
 * Skin::getSkinNameMessages() deprecated in 1.34, has been removed.
 * Skin::escapeSearchLink() deprecated in 1.34, has been removed, use
   Skin::getSearchLink() instead.
