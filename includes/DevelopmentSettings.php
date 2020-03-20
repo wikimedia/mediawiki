@@ -66,6 +66,9 @@ $wgRateLimits = [];
 // https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
 $wgEnableJavaScriptTest = true;
 
+// Enable development/experimental endpoints
+$wgRestAPIAdditionalRouteFiles = [ 'includes/Rest/coreDevelopmentRoutes.json' ];
+
 /**
  * Experimental changes that may later become the default.
  * (Must reference a Phabricator ticket)
