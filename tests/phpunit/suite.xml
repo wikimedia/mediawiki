@@ -52,6 +52,9 @@
 		<testsuite name="unit">
 			<directory>unit</directory>
 		</testsuite>
+		<testsuite name="integration">
+			<directory>integration</directory>
+		</testsuite>
 	</testsuites>
 	<groups>
 		<exclude>
