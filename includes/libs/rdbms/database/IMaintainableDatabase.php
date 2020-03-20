@@ -159,14 +159,14 @@ interface IMaintainableDatabase extends IDatabase {
 	public function dropTable( $table, $fname = __METHOD__ );
 
 	/**
-	 * Delete all data in a table and reset any sequences owned by that table
+	 * Delete all data in a table(s) and reset any sequences owned by that table(s)
 	 *
-	 * @param string $table
+	 * @param string|string[] $tables
 	 * @param string $fname
 	 * @throws DBError If an error occurs
 	 * @since 1.35
 	 */
-	public function truncateTable( $table, $fname = __METHOD__ );
+	public function truncate( $tables, $fname = __METHOD__ );
 
 	/**
 	 * Perform a deadlock-prone transaction.

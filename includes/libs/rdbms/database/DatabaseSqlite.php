@@ -1108,14 +1108,26 @@ class DatabaseSqlite extends Database {
 		return true;
 	}
 
-	protected function resetSequencesForTable( $table, $fname ) {
-		$encTable = $this->addIdentifierQuotes( 'sqlite_sequence' );
-		$encName = $this->addQuotes( $this->tableName( $table, 'raw' ) );
+	protected function doTruncate( array $tables, $fname ) {
+		$this->startAtomic( $fname );
+
+		$encSeqNames = [];
+		foreach ( $tables as $table ) {
+			// Use "truncate" optimization; https://www.sqlite.org/lang_delete.html
+			$sql = "DELETE FROM " . $this->tableName( $table );
+			$this->query( $sql, $fname );
+
+			$encSeqNames[] = $this->addQuotes( $this->tableName( $table, 'raw' ) );
+		}
+
+		$encMasterTable = $this->addIdentifierQuotes( 'sqlite_sequence' );
 		$this->query(
-			"DELETE FROM $encTable WHERE name = $encName",
+			"DELETE FROM $encMasterTable WHERE name IN(" . implode( ',', $encSeqNames ) . ")",
 			$fname,
 			self::QUERY_IGNORE_DBO_TRX
 		);
+
+		$this->endAtomic( $fname );
 	}
 
 	public function setTableAliases( array $aliases ) {
