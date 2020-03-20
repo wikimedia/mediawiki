@@ -335,7 +335,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * Runs upgrades of older databases and compares results with current schema
-	 * @todo Currently only checks list of tables
 	 * @coversNothing
 	 */
 	public function testUpgrades() {
