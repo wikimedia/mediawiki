@@ -65,10 +65,10 @@ class LocalFileMoveBatch {
 	protected $newRel;
 
 	/**
-	 * @param File $file
+	 * @param LocalFile $file
 	 * @param Title $target
 	 */
-	public function __construct( File $file, Title $target ) {
+	public function __construct( LocalFile $file, Title $target ) {
 		$this->file = $file;
 		$this->target = $target;
 		$this->oldHash = $this->file->repo->getHashPath( $this->file->getName() );

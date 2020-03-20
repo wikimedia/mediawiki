@@ -78,9 +78,6 @@ class ForeignDBRepo extends LocalRepo {
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}
 
-	/**
-	 * @return IDatabase
-	 */
 	function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
 			$func = $this->getDBFactory();
@@ -90,9 +87,6 @@ class ForeignDBRepo extends LocalRepo {
 		return $this->dbConn;
 	}
 
-	/**
-	 * @return IDatabase
-	 */
 	function getReplicaDB() {
 		return $this->getMasterDB();
 	}

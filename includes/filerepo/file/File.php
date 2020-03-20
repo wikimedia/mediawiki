@@ -1914,9 +1914,9 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * Returns the repository
 	 *
-	 * @return FileRepo|LocalRepo|bool
+	 * @return FileRepo|bool
 	 */
-	function getRepo() {
+	public function getRepo() {
 		return $this->repo;
 	}
 
