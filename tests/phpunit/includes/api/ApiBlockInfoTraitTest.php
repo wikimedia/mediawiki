@@ -22,7 +22,7 @@ class ApiBlockInfoTraitTest extends MediaWikiTestCase {
 			'blockreason' => '',
 			'blockexpiry' => 'infinite',
 		], $expectedInfo );
-		$this->assertArraySubset( $subset, $info );
+		$this->assertArraySubmapSame( $subset, $info, "Matching block details" );
 	}
 
 	public static function provideGetBlockDetails() {

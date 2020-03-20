@@ -6,8 +6,10 @@ use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\MonologSpi;
 use MediaWiki\MediaWikiServices;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
+use SebastianBergmann\Comparator\ComparisonFailure;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -1998,6 +2000,49 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		self::stripStringKeys( $r );
 
 		$this->assertFalse( $r, "found extra row (after #$i)" );
+	}
+
+	/**
+	 * Assert that the key-based intersection of the two arrays matches the expected subset
+	 *
+	 * Order does not matter. Strict type and object identity will be checked.
+	 *
+	 * @param array $expectedSubset
+	 * @param array $actualSuperset
+	 * @param string $description
+	 * @since 1.35
+	 */
+	protected function assertArraySubmapSame(
+		array $expectedSubset,
+		array $actualSuperset,
+		$description = ''
+	) {
+		$patched = array_replace_recursive( $actualSuperset, $expectedSubset );
+
+		ksort( $patched );
+		ksort( $actualSuperset );
+		$result = ( $actualSuperset === $patched );
+
+		if ( !$result ) {
+			$comparisonFailure = new ComparisonFailure(
+				$patched,
+				$actualSuperset,
+				var_export( $patched, true ),
+				var_export( $actualSuperset, true )
+			);
+
+			$failureDescription = 'Failed asserting that array contains the expected submap.';
+			if ( $description != '' ) {
+				$failureDescription = $description . "\n" . $failureDescription;
+			}
+
+			throw new ExpectationFailedException(
+				$failureDescription,
+				$comparisonFailure
+			);
+		} else {
+			$this->assertTrue( true, $description );
+		}
 	}
 
 	/**
