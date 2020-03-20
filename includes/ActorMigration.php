@@ -319,7 +319,7 @@ class ActorMigration {
 					$dbw->upsert(
 						$t['table'],
 						[ $t['pk'] => $pk ] + $set,
-						[ $t['pk'] ],
+						[ [ $t['pk'] ] ],
 						$set,
 						$func
 					);
