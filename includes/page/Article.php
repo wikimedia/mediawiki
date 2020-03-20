@@ -503,29 +503,6 @@ class Article implements Page {
 			return null;
 		}
 
-		if ( Hooks::isRegistered( 'ArticleAfterFetchContentObject' ) ) {
-			$contentObject = $this->mRevision->getContent(
-				RevisionRecord::FOR_THIS_USER,
-				$this->getContext()->getUser()
-			);
-
-			$hookContentObject = $contentObject;
-
-				// Avoid PHP 7.1 warning of passing $this by reference
-			$articlePage = $this;
-
-			Hooks::run(
-				'ArticleAfterFetchContentObject',
-				[ &$articlePage, &$hookContentObject ],
-				'1.32'
-			);
-
-			if ( $hookContentObject !== $contentObject ) {
-				// A hook handler is trying to override the content
-				$this->applyContentOverride( $hookContentObject );
-			}
-		}
-
 		// For B/C only
 		$this->mContentObject = $this->mRevision->getContent(
 			RevisionRecord::FOR_THIS_USER,
@@ -553,9 +530,8 @@ class Article implements Page {
 	 * Applies a content override by constructing a fake Revision object and assigning
 	 * it to mRevision. The fake revision will not have a user, timestamp or summary set.
 	 *
-	 * This mechanism exists mainly to accommodate extensions that use the
-	 * ArticleAfterFetchContentObject. Once that hook has been removed, there should no longer
-	 * be a need for a fake revision object. fetchRevisionRecord() presently also uses this mechanism
+	 * @todo This mechanism was created mainly to accommodate extensions that use the
+	 * ArticleAfterFetchContentObject. fetchRevisionRecord() presently also uses this mechanism
 	 * to report errors, but that could be changed to use $this->fetchResult instead.
 	 *
 	 * @param Content $override Content to be used instead of the actual page content,

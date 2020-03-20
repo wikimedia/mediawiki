@@ -406,6 +406,8 @@ because of Phabricator reports.
   See Vector and Monobook for examples.
 * Passing an ApiMain to the constructor of ApiResult is no longer supported.
   This was deprecated in 1.25.
+* The ArticleAfterFetchContentObject hook, deprecated in 1.32, was removed.
+  Use ArticleRevisionViewCustom to control output.
 * …
 
 === Deprecations in 1.35 ===
