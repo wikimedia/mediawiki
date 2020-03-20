@@ -398,9 +398,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$params = $this->extractRequestParams();
 		$langCode = $params['inlanguagecode'] ?? '';
-		$langNames = MediaWikiServices::getInstance()
-			->getLanguageNameUtils()
-			->getLanguageNames( $langCode );
+		$interwikiMagic = $this->getConfig()->get( 'InterwikiMagic' );
+
+		if ( $interwikiMagic ) {
+			$langNames = MediaWikiServices::getInstance()
+				->getLanguageNameUtils()
+				->getLanguageNames( $langCode );
+		}
 
 		$getPrefixes = MediaWikiServices::getInstance()->getInterwikiLookup()->getAllPrefixes( $local );
 		$extraLangPrefixes = $this->getConfig()->get( 'ExtraInterlanguageLinkPrefixes' );
@@ -418,13 +422,13 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				$val['trans'] = true;
 			}
 
-			if ( isset( $langNames[$prefix] ) ) {
+			if ( $interwikiMagic && isset( $langNames[$prefix] ) ) {
 				$val['language'] = $langNames[$prefix];
 			}
 			if ( in_array( $prefix, $localInterwikis ) ) {
 				$val['localinterwiki'] = true;
 			}
-			if ( in_array( $prefix, $extraLangPrefixes ) ) {
+			if ( $interwikiMagic && in_array( $prefix, $extraLangPrefixes ) ) {
 				$val['extralanglink'] = true;
 
 				$linktext = wfMessage( "interlanguage-link-$prefix" );
