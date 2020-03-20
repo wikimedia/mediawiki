@@ -265,6 +265,13 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @return LocalRepo|bool
+	 */
+	public function getRepo() {
+		return $this->repo;
+	}
+
+	/**
 	 * Get the memcached key for the main data for this file, or false if
 	 * there is no access to the shared cache.
 	 * @return string|bool
@@ -888,7 +895,6 @@ class LocalFile extends File {
 	 * Get short description URL for a file based on the page ID.
 	 *
 	 * @return string|null
-	 * @throws MWException
 	 * @since 1.27
 	 */
 	public function getDescriptionShortUrl() {

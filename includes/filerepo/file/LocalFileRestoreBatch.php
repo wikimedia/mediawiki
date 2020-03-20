@@ -44,10 +44,10 @@ class LocalFileRestoreBatch {
 	private $unsuppress = false;
 
 	/**
-	 * @param File $file
+	 * @param LocalFile $file
 	 * @param bool $unsuppress
 	 */
-	public function __construct( File $file, $unsuppress = false ) {
+	public function __construct( LocalFile $file, $unsuppress = false ) {
 		$this->file = $file;
 		$this->cleanupBatch = [];
 		$this->ids = [];

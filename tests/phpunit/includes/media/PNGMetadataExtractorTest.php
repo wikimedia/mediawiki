@@ -88,7 +88,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 		$this->assertEquals( 20, $meta['frameCount'] );
 		// Note loop count of 0 = infinity
 		$this->assertSame( 0, $meta['loopCount'] );
-		$this->assertEquals( 1.5, $meta['duration'], '', 0.00001 );
+		$this->assertEqualsWithDelta( 1.5, $meta['duration'], 0.00001, '' );
 	}
 
 	public function testPngBitDepth8() {

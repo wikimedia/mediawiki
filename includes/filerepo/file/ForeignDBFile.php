@@ -33,6 +33,13 @@ use Wikimedia\Rdbms\DBUnexpectedError;
 class ForeignDBFile extends LocalFile {
 
 	/**
+	 * @return ForeignDBRepo|bool
+	 */
+	public function getRepo() {
+		return $this->repo;
+	}
+
+	/**
 	 * @param string $srcPath
 	 * @param int $flags
 	 * @param array $options
