@@ -556,7 +556,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Deleted all unclaimed and delayed jobs from the queue
+	 * Delete all unclaimed and delayed jobs from the queue
 	 *
 	 * @throws JobQueueError
 	 * @since 1.22
