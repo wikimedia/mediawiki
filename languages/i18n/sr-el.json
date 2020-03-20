@@ -2431,7 +2431,7 @@
 	"sp-contributions-hideminor": "Sakrij manje izmene",
 	"sp-contributions-submit": "Pretraži",
 	"whatlinkshere": "Šta vodi ovde",
-	"whatlinkshere-count": "{{PLURAL:$1|Prikazana|Prikazane|Prikazano}} $1 {{PLURAL:$1|stavka|stavke|stavki}}.",
+	"whatlinkshere-count": "{{PLURAL:$1|Prikazuje|Prikazuju|Prikazuje}} se $1 {{PLURAL:$1|stavka|stavke|stavki}}.",
 	"whatlinkshere-title": "Stranice koje vode na stranicu „$1”",
 	"whatlinkshere-page": "Stranica:",
 	"linkshere": "Sledeće stranice vode na stranicu <strong>$2</strong>:",

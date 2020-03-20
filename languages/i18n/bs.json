@@ -3212,7 +3212,7 @@
 	"tags-edit-success": "Izmjene su primijenjene.",
 	"tags-edit-failure": "Nije bilo moguće primijeniti izmjene:\n$1",
 	"tags-edit-nooldid-title": "Neispravna odredišna verzija",
-	"tags-edit-nooldid-text": "Niste izabrali odredišnu verziju na koju treba primijeniti ovu funkciju, ili odredišna verzija na postoji.",
+	"tags-edit-nooldid-text": "Niste izabrali odredišnu verziju na koju treba primijeniti ovu funkciju, ili odredišna verzija ne postoji.",
 	"tags-edit-none-selected": "Izaberite bar jednu oznaku koju treba dodati ili ukloniti.",
 	"comparepages": "Uporedi stranice",
 	"compare-page1": "Stranica 1",

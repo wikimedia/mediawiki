@@ -2447,7 +2447,7 @@
 	"sp-contributions-submit": "Претражи",
 	"sp-contributions-concurrency-ip": "Послато је превише захтева с ваше IP адресе. Покушајте поново касније.",
 	"whatlinkshere": "Шта води овамо",
-	"whatlinkshere-count": "{{PLURAL:$1|Приказује|Приказују}} се $1 {{PLURAL:$1|ставка|ставке|ставки}}.",
+	"whatlinkshere-count": "{{PLURAL:$1|Приказује|Приказују|Приказује}} се $1 {{PLURAL:$1|ставка|ставке|ставки}}.",
 	"whatlinkshere-title": "$1 — странице које воде овамо",
 	"whatlinkshere-page": "Страница:",
 	"linkshere": "Следеће странице воде на страницу <strong>$2</strong>:",

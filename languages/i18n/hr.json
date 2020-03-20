@@ -3143,7 +3143,7 @@
 	"tags-edit-success": "Izmjene su primijenjene.",
 	"tags-edit-failure": "Nije bilo moguće primijeniti izmjene:\n$1",
 	"tags-edit-nooldid-title": "Odredišna inačica nije valjana",
-	"tags-edit-nooldid-text": "Niste izabrali odredišnu inačicu na koju treba primijeniti ovu funkciju, ili odredišna inačica na postoji.",
+	"tags-edit-nooldid-text": "Niste izabrali odredišnu inačicu na koju treba primijeniti ovu funkciju, ili odredišna inačica ne postoji.",
 	"tags-edit-none-selected": "Molimo Vas, izaberite bar jednu oznaku koju treba dodati ili ukloniti.",
 	"comparepages": "Usporedite stranice",
 	"compare-page1": "Stranica 1",

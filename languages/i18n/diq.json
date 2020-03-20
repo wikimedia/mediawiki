@@ -2268,7 +2268,7 @@
 	"deletepage": "Pele bestere",
 	"confirm": "Tesdiq ke",
 	"excontent": "Zerreko verén: '$1'",
-	"excontentauthor": "Zerreko kehan: '$1' u teyna yew iştirakwan  \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|mesac]])",
+	"excontentauthor": "zerreko kehan: '$1' u teyna yew iştırakwan \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|mesac]]) bi",
 	"exbeforeblank": "behsê verê esteriyayişi: '$1'",
 	"delete-confirm": "\"$1\" bestere",
 	"delete-legend": "Bestere",
