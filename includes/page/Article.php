@@ -2348,6 +2348,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doDeleteArticleReal
+	 * @deprecated since 1.35
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param int|null $u1
@@ -2362,6 +2363,7 @@ class Article implements Page {
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
 		$tags = [], $immediate = false
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->doDeleteArticleReal(
 			$reason, $suppress, $u1, $u2, $error, $user, $tags, 'delete', $immediate
 		);
