@@ -166,7 +166,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		// Information messages.
 		$output->addWikiMsg( 'passwordreset-success' );
-		$output->addWikiMsg( 'passwordreset-success-details-generic' );
+		$output->addWikiMsg( 'passwordreset-success-details-generic',
+			$this->getConfig()->get( 'PasswordReminderResendTime' ) );
 
 		// Confirmation of what the user has just submitted.
 		$info = "\n";
