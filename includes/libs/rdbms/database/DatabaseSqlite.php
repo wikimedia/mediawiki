@@ -345,8 +345,8 @@ class DatabaseSqlite extends Database {
 		);
 	}
 
-	protected function isWriteQuery( $sql ) {
-		return parent::isWriteQuery( $sql ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
+	protected function isWriteQuery( $sql, $flags ) {
+		return parent::isWriteQuery( $sql, $flags ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
 	}
 
 	protected function isTransactableQuery( $sql ) {
@@ -1115,7 +1115,7 @@ class DatabaseSqlite extends Database {
 		foreach ( $tables as $table ) {
 			// Use "truncate" optimization; https://www.sqlite.org/lang_delete.html
 			$sql = "DELETE FROM " . $this->tableName( $table );
-			$this->query( $sql, $fname );
+			$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 
 			$encSeqNames[] = $this->addQuotes( $this->tableName( $table, 'raw' ) );
 		}
@@ -1124,7 +1124,7 @@ class DatabaseSqlite extends Database {
 		$this->query(
 			"DELETE FROM $encMasterTable WHERE name IN(" . implode( ',', $encSeqNames ) . ")",
 			$fname,
-			self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_CHANGE_SCHEMA
 		);
 
 		$this->endAtomic( $fname );

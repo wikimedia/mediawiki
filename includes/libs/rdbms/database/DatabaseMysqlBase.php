@@ -168,7 +168,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$this->query(
 					'SET ' . implode( ', ', $set ),
 					__METHOD__,
-					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY
+					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
 				);
 			}
 		} catch ( RuntimeException $e ) {
@@ -545,12 +545,18 @@ abstract class DatabaseMysqlBase extends Database {
 		// If the database has been specified (such as for shared tables), use "FROM"
 		if ( $database !== '' ) {
 			$encDatabase = $this->addIdentifierQuotes( $database );
-			$query = "SHOW TABLES FROM $encDatabase LIKE '$encLike'";
+			$sql = "SHOW TABLES FROM $encDatabase LIKE '$encLike'";
 		} else {
-			$query = "SHOW TABLES LIKE '$encLike'";
+			$sql = "SHOW TABLES LIKE '$encLike'";
 		}
 
-		return $this->query( $query, $fname )->numRows() > 0;
+		$res = $this->query(
+			$sql,
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
+
+		return $res->numRows() > 0;
 	}
 
 	/**
@@ -559,9 +565,11 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool|MySQLField
 	 */
 	public function fieldInfo( $table, $field ) {
-		$table = $this->tableName( $table );
-		$flags = self::QUERY_SILENCE_ERRORS;
-		$res = $this->query( "SELECT * FROM $table LIMIT 1", __METHOD__, $flags );
+		$res = $this->query(
+			"SELECT * FROM " . $this->tableName( $table ) . " LIMIT 1",
+			__METHOD__,
+			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		if ( !$res ) {
 			return false;
 		}
@@ -595,14 +603,14 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool|array|null False or null on failure
 	 */
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
-		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
-		# SHOW INDEX should work for 3.x and up:
 		# https://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
-		$table = $this->tableName( $table );
 		$index = $this->indexName( $index );
 
-		$sql = 'SHOW INDEX FROM ' . $table;
-		$res = $this->query( $sql, $fname );
+		$res = $this->query(
+			'SHOW INDEX FROM ' . $this->tableName( $table ),
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 
 		if ( !$res ) {
 			return null;
@@ -672,8 +680,11 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return bool|int
 	 */
 	protected function getLagFromSlaveStatus() {
-		$flags = self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX;
-		$res = $this->query( 'SHOW SLAVE STATUS', __METHOD__, $flags );
+		$res = $this->query(
+			'SHOW SLAVE STATUS',
+			__METHOD__,
+			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $res ? $res->fetchObject() : false;
 		// If the server is not replicating, there will be no row
 		if ( $row && strval( $row->Seconds_Behind_Master ) !== '' ) {
@@ -773,9 +784,9 @@ abstract class DatabaseMysqlBase extends Database {
 					return false; // something is misconfigured
 				}
 
+				$flags = self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				// Connect to and query the master; catch errors to avoid outages
 				try {
-					$flags = self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX;
 					$res = $conn->query( 'SELECT @@server_id AS id', $fname, $flags );
 					$row = $res ? $res->fetchObject() : false;
 					$id = $row ? (int)$row->id : 0;
@@ -804,7 +815,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->query(
 			"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1",
 			__METHOD__,
-			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		$row = $res ? $res->fetchObject() : false;
 
@@ -896,7 +907,8 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		$start = microtime( true );
-		$res = $this->query( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
+		$res = $this->query( $sql, __METHOD__, $flags );
 		$row = $this->fetchRow( $res );
 		$seconds = max( microtime( true ) - $start, 0 );
 
@@ -1020,7 +1032,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->srvCache->makeGlobalKey( 'mysql-server-id', $this->getServer() ),
 			self::SERVER_ID_CACHE_TTL,
 			function () use ( $fname ) {
-				$flags = self::QUERY_IGNORE_DBO_TRX;
+				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				$res = $this->query( "SELECT @@server_id AS id", $fname, $flags );
 
 				return intval( $this->fetchObject( $res )->id );
@@ -1037,7 +1049,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->srvCache->makeGlobalKey( 'mysql-server-uuid', $this->getServer() ),
 			self::SERVER_ID_CACHE_TTL,
 			function () use ( $fname ) {
-				$flags = self::QUERY_IGNORE_DBO_TRX;
+				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'server_uuid'", $fname, $flags );
 				$row = $this->fetchObject( $res );
 
@@ -1053,7 +1065,8 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getServerGTIDs( $fname = __METHOD__ ) {
 		$map = [];
 
-		$flags = self::QUERY_IGNORE_DBO_TRX;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
+
 		// Get global-only variables like gtid_executed
 		$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_%'", $fname, $flags );
 		foreach ( $res as $row ) {
@@ -1074,14 +1087,15 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string[] Latest available server status row
 	 */
 	protected function getServerRoleStatus( $role, $fname = __METHOD__ ) {
-		$flags = self::QUERY_IGNORE_DBO_TRX;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
+		$res = $this->query( "SHOW $role STATUS", $fname, $flags );
 
-		return $this->query( "SHOW $role STATUS", $fname, $flags )->fetchRow() ?: [];
+		return $res->fetchRow() ?: [];
 	}
 
 	public function serverIsReadOnly() {
 		// Avoid SHOW to avoid internal temporary tables
-		$flags = self::QUERY_IGNORE_DBO_TRX;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( "SELECT @@GLOBAL.read_only AS Value", __METHOD__, $flags );
 		$row = $this->fetchObject( $res );
 
@@ -1146,7 +1160,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function setSessionOptions( array $options ) {
 		if ( isset( $options['connTimeout'] ) ) {
-			$flags = self::QUERY_IGNORE_DBO_TRX;
+			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX;
 			$timeout = (int)$options['connTimeout'];
 			$this->query( "SET net_read_timeout=$timeout", __METHOD__, $flags );
 			$this->query( "SET net_write_timeout=$timeout", __METHOD__, $flags );
@@ -1182,7 +1196,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 
-		$flags = self::QUERY_IGNORE_DBO_TRX;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( "SELECT IS_FREE_LOCK($encName) AS lockstatus", $method, $flags );
 		$row = $this->fetchObject( $res );
 
@@ -1198,7 +1212,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 
-		$flags = self::QUERY_IGNORE_DBO_TRX;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS;
 		$res = $this->query( "SELECT GET_LOCK($encName, $timeout) AS lockstatus", $method, $flags );
 		$row = $this->fetchObject( $res );
 
@@ -1223,7 +1237,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function unlock( $lockName, $method ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 
-		$flags = self::QUERY_IGNORE_DBO_TRX;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS;
 		$res = $this->query( "SELECT RELEASE_LOCK($encName) as lockstatus", $method, $flags );
 		$row = $this->fetchObject( $res );
 
@@ -1260,14 +1274,21 @@ abstract class DatabaseMysqlBase extends Database {
 			$items[] = $this->tableName( $table ) . ' READ';
 		}
 
-		$sql = "LOCK TABLES " . implode( ',', $items );
-		$this->query( $sql, $method, self::QUERY_IGNORE_DBO_TRX );
+		$this->query(
+			"LOCK TABLES " . implode( ',', $items ),
+			$method,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
+		);
 
 		return true;
 	}
 
 	protected function doUnlockTables( $method ) {
-		$this->query( "UNLOCK TABLES", $method, self::QUERY_IGNORE_DBO_TRX );
+		$this->query(
+			"UNLOCK TABLES",
+			$method,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
+		);
 
 		return true;
 	}
@@ -1287,8 +1308,12 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->defaultBigSelects =
 				(bool)$this->selectField( false, '@@sql_big_selects', '', __METHOD__ );
 		}
-		$encValue = $value ? '1' : '0';
-		$this->query( "SET sql_big_selects=$encValue", __METHOD__, self::QUERY_IGNORE_DBO_TRX );
+
+		$this->query(
+			"SET sql_big_selects=" . ( $value ? '1' : '0' ),
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX
+		);
 	}
 
 	/**
@@ -1316,7 +1341,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$sql .= ' AND ' . $this->makeList( $conds, self::LIST_AND );
 		}
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
 	protected function doUpsert( $table, array $rows, array $uniqueKeys, array $set, $fname ) {
@@ -1328,7 +1353,7 @@ abstract class DatabaseMysqlBase extends Database {
 			"INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples " .
 			"ON DUPLICATE KEY UPDATE $sqlColumnAssignments";
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
 	protected function doReplace( $table, array $uniqueKeys, array $rows, $fname ) {
@@ -1337,7 +1362,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		$sql = "REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples";
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
 	/**
@@ -1420,7 +1445,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return $this->query(
 			"CREATE $tmp TABLE $newName (LIKE $oldName)",
 			$fname,
-			self::QUERY_PSEUDO_PERMANENT | self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA
 		);
 	}
 
@@ -1432,7 +1457,11 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
-		$result = $this->query( "SHOW TABLES", $fname, self::QUERY_IGNORE_DBO_TRX );
+		$result = $this->query(
+			"SHOW TABLES",
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 
 		$endArray = [];
 
@@ -1455,10 +1484,13 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	private function getMysqlStatus( $which = "%" ) {
-		$flags = self::QUERY_IGNORE_DBO_TRX;
-		$res = $this->query( "SHOW STATUS LIKE '{$which}'", __METHOD__, $flags );
-		$status = [];
+		$res = $this->query(
+			"SHOW STATUS LIKE '{$which}'",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 
+		$status = [];
 		foreach ( $res as $row ) {
 			$status[$row->Variable_name] = $row->Value;
 		}
@@ -1480,7 +1512,12 @@ abstract class DatabaseMysqlBase extends Database {
 		$propertyName = 'Tables_in_' . $this->getDBname();
 
 		// Query for the VIEWS
-		$res = $this->query( 'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"' );
+		$res = $this->query(
+			'SHOW FULL TABLES WHERE TABLE_TYPE = "VIEW"',
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
+
 		$allViews = [];
 		foreach ( $res as $row ) {
 			array_push( $allViews, $row->$propertyName );

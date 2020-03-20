@@ -109,20 +109,28 @@ interface IDatabase {
 	const DBO_COMPRESS = 512;
 
 	/** @var int Idiom for "no special flags" */
-	const QUERY_NORMAL = 0;
+	public const QUERY_NORMAL = 0;
 	/** @var int Ignore query errors and return false when they happen */
-	const QUERY_SILENCE_ERRORS = 1; // b/c for 1.32 query() argument; note that (int)true = 1
+	public const QUERY_SILENCE_ERRORS = 1; // b/c for 1.32 query() argument; (int)true = 1
 	/**
 	 * @var int Treat the TEMPORARY table from the given CREATE query as if it is
 	 *   permanent as far as write tracking is concerned. This is useful for testing.
 	 */
-	const QUERY_PSEUDO_PERMANENT = 2;
+	public const QUERY_PSEUDO_PERMANENT = 2;
 	/** @var int Enforce that a query does not make effective writes */
-	const QUERY_REPLICA_ROLE = 4;
+	public const QUERY_REPLICA_ROLE = 4;
 	/** @var int Ignore the current presence of any DBO_TRX flag */
-	const QUERY_IGNORE_DBO_TRX = 8;
+	public const QUERY_IGNORE_DBO_TRX = 8;
 	/** @var int Do not try to retry the query if the connection was lost */
-	const QUERY_NO_RETRY = 16;
+	public const QUERY_NO_RETRY = 16;
+	/** @var int Query is known to be a read-only Data Query Language query */
+	public const QUERY_CHANGE_NONE = 32;
+	/** @var int Query is known to be a Transaction Control Language command */
+	public const QUERY_CHANGE_TRX = 64 | self::QUERY_IGNORE_DBO_TRX;
+	/** @var int Query is known to be a Data Manipulation Language command */
+	public const QUERY_CHANGE_ROWS = 128;
+	/** @var int Query is known to be a Data Definition Language command */
+	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
 
 	/** @var bool Parameter to unionQueries() for UNION ALL */
 	const UNION_ALL = true;
