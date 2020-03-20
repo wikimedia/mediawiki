@@ -408,6 +408,9 @@ because of Phabricator reports.
   This was deprecated in 1.25.
 * The ArticleAfterFetchContentObject hook, deprecated in 1.32, was removed.
   Use ArticleRevisionViewCustom to control output.
+* HTMLUserTextField and HTMLUsersMultiselectField previously implied
+  required=true when exists=true. Form fields that use exists=true should also
+  set required=true if they are required.
 * …
 
 === Deprecations in 1.35 ===
