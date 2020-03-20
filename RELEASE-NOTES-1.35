@@ -108,6 +108,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   manually.
 * (T139221) The generated table of contents is now a navigation landmark role
   for assistive technologies.
+* (T245931) interwiki map API doesn't report foreign language if
+  $wgInterwikiMagic=false
 * …
 
 === New developer features in 1.35 ===
@@ -208,8 +210,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   * "1e1" (formerly interpreted as "1" or "10", depending on the PHP version)
   * "1foobar" (formerly interpreted as "1")
   * "foobar" (formerly intepreted as "0")
-* Error codes for many parameter validation failures are changing.
-* action=paraminfo no longer returns "enforcerange" for numeric-typed
   parameters. Ranges should be assumed to be enforced.
 * Many user-type parameters now accept a user ID, formatted like "#12345".
 * The 'assert' parameter used by all API modules now supports the value 'anon'.
@@ -243,6 +243,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Maximum limits are no longer ignored in "internal mode".
 * The $paramName to ApiBase::handleParamNormalization() should now include the
   prefix.
+* (T245931) meta=siteinfo&siprop=interwikimap no longer reports language or
+  extralanglink when $wgInterwikiMagic is false.
 * …
 
 === Languages updated in 1.35 ===
@@ -567,7 +569,7 @@ because of Phabricator reports.
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
 * WebRequest::getLimitOffset is hard deprecated. Instead, use
   ::getLimitOffsetForUser and pass a User object.
-* PageArchive::undelete is soft deprecated. Instead, use ::undeleteAsUser
+* PageArchive::undelete is hard deprecated. Instead, use ::undeleteAsUser
   and pass a User object.
 * FileDeleteForm previously did not accept a user parameter in its constructor,
   instead relying on the global $wgUser. A user parameter has been added,
