@@ -238,7 +238,7 @@ class FileDeleteForm {
 			// doDeleteArticleReal() returns a non-fatal error status if the page
 			// or revision is missing, so check for isOK() rather than isGood()
 			if ( $deleteStatus->isOK() ) {
-				$status = $file->delete( $reason, $suppress, $user );
+				$status = $file->deleteFile( $reason, $user, $suppress );
 				if ( $status->isOK() ) {
 					if ( $deleteStatus->value === null ) {
 						// No log ID from doDeleteArticleReal(), probably
