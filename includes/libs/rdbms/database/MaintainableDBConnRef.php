@@ -47,7 +47,13 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function dropTable( $tableName, $fName = __METHOD__ ) {
+	public function dropTable( $table, $fname = __METHOD__ ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function truncateTable( $table, $fname = __METHOD__ ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );

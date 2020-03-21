@@ -1812,26 +1812,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param IDatabase|null $db
 	 */
 	protected function truncateTable( $tableName, IDatabase $db = null ) {
-		if ( !$db ) {
-			$db = $this->db;
-		}
+		$dbw = $db ?: $this->db;
 
-		if ( !$db->tableExists( $tableName ) ) {
+		if ( !$dbw->tableExists( $tableName ) ) {
 			return;
 		}
 
-		$truncate = in_array( $db->getType(), [ 'mysql' ] );
-
-		if ( $truncate ) {
-			$db->query( 'TRUNCATE TABLE ' . $db->tableName( $tableName ), __METHOD__ );
-		} else {
-			$db->delete( $tableName, '*', __METHOD__ );
-		}
-
-		if ( $db instanceof DatabasePostgres || $db instanceof DatabaseSqlite ) {
-			// Reset the table's sequence too.
-			$db->resetSequenceForTable( $tableName, __METHOD__ );
-		}
+		$dbw->truncateTable( $tableName, __METHOD__ );
 
 		// re-initialize site_stats table
 		if ( $tableName === 'site_stats' ) {

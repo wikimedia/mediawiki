@@ -150,11 +150,23 @@ interface IMaintainableDatabase extends IDatabase {
 
 	/**
 	 * Delete a table
-	 * @param string $tableName
-	 * @param string $fName
-	 * @return bool|IResultWrapper
+	 *
+	 * @param string $table
+	 * @param string $fname
+	 * @return bool Whether the table already existed
+	 * @throws DBError If an error occurs
 	 */
-	public function dropTable( $tableName, $fName = __METHOD__ );
+	public function dropTable( $table, $fname = __METHOD__ );
+
+	/**
+	 * Delete all data in a table and reset any sequences owned by that table
+	 *
+	 * @param string $table
+	 * @param string $fname
+	 * @throws DBError If an error occurs
+	 * @since 1.35
+	 */
+	public function truncateTable( $table, $fname = __METHOD__ );
 
 	/**
 	 * Perform a deadlock-prone transaction.

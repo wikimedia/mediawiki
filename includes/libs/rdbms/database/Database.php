@@ -4971,20 +4971,40 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
-	/**
-	 * Delete a table
-	 * @param string $tableName
-	 * @param string $fName
-	 * @return bool|IResultWrapper
-	 * @since 1.18
-	 */
-	public function dropTable( $tableName, $fName = __METHOD__ ) {
-		if ( !$this->tableExists( $tableName, $fName ) ) {
+	public function dropTable( $table, $fname = __METHOD__ ) {
+		if ( !$this->tableExists( $table, $fname ) ) {
 			return false;
 		}
-		$sql = "DROP TABLE " . $this->tableName( $tableName ) . " CASCADE";
 
-		return $this->query( $sql, $fName );
+		// https://mariadb.com/kb/en/drop-table/
+		// https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
+		// https://www.postgresql.org/docs/9.2/sql-truncate.html
+		$sql = "DROP TABLE " . $this->tableName( $table ) . " CASCADE";
+		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+
+		return true;
+	}
+
+	public function truncateTable( $table, $fname = __METHOD__ ) {
+		$this->startAtomic( $fname );
+
+		$sql = "DELETE FROM " . $this->tableName( $table );
+		$this->query( $sql, $fname );
+
+		$this->resetSequencesForTable( $table, $fname );
+
+		$this->endAtomic( $fname );
+	}
+
+	/**
+	 * Reset all sequences owned by a table
+	 *
+	 * @param string $table
+	 * @param string $fname
+	 * @since 1.35
+	 */
+	protected function resetSequencesForTable( $table, $fname ) {
+		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
 	public function getInfinity() {

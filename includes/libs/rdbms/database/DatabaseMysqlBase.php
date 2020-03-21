@@ -1273,6 +1273,18 @@ abstract class DatabaseMysqlBase extends Database {
 		return true;
 	}
 
+	public function truncateTable( $table, $fname = __METHOD__ ) {
+		// No need to explicitly reset AUTO_INCREMENT counters with MySQL
+		$sql = "TRUNCATE TABLE " . $this->tableName( $table );
+		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+	}
+
+	protected function resetSequencesForTable( $table, $fname ) {
+		// Note that this is a no-op if there is no AUTO_INCREMENT field
+		$sql = 'ALTER TABLE ' . $this->tableName( $table ) . ' AUTO_INCREMENT = 1';
+		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+	}
+
 	/**
 	 * @param bool $value
 	 */
@@ -1444,19 +1456,6 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		return $endArray;
-	}
-
-	/**
-	 * @param string $tableName
-	 * @param string $fName
-	 * @return bool|IResultWrapper
-	 */
-	public function dropTable( $tableName, $fName = __METHOD__ ) {
-		if ( !$this->tableExists( $tableName, $fName ) ) {
-			return false;
-		}
-
-		return $this->query( "DROP TABLE IF EXISTS " . $this->tableName( $tableName ), $fName );
 	}
 
 	/**

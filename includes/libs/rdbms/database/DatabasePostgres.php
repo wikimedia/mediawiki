@@ -790,39 +790,54 @@ __INDEXATTR__;
 		return $ret;
 	}
 
-	public function resetSequenceForTable( $table, $fname = __METHOD__ ) {
-		$table = $this->tableName( $table, 'raw' );
-		foreach ( $this->getCoreSchemas() as $schema ) {
-			$res = $this->query(
-				'SELECT c.oid FROM pg_class c JOIN pg_namespace n ON (n.oid = c.relnamespace)'
-				. ' WHERE relkind = \'r\''
-				. ' AND nspname = ' . $this->addQuotes( $schema )
-				. ' AND relname = ' . $this->addQuotes( $table ),
-				$fname
-			);
-			if ( !$res || !$this->numRows( $res ) ) {
-				continue;
-			}
+	public function truncateTable( $table, $fname = __METHOD__ ) {
+		$sql = "TRUNCATE TABLE " . $this->tableName( $table ) . " CASCADE";
+		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
 
-			$oid = $this->fetchObject( $res )->oid;
-			$res = $this->query( 'SELECT pg_get_expr(adbin, adrelid) AS adsrc FROM pg_attribute a'
-				. ' JOIN pg_attrdef d ON (a.attrelid=d.adrelid and a.attnum=d.adnum)'
-				. " WHERE a.attrelid = $oid"
-				. ' AND pg_get_expr(adbin, adrelid) LIKE \'nextval(%\'',
-				$fname
-			);
-			$row = $this->fetchObject( $res );
+		$this->resetSequencesForTable( $table, $fname );
+	}
+
+	protected function resetSequencesForTable( $table, $fname ) {
+		$oid = null;
+		foreach ( $this->getCoreSchemas() as $schema ) {
+			$encSchema = $this->addQuotes( $schema );
+			$encRelName = $this->addQuotes( $this->tableName( $table, 'raw' ) );
+
+			$sql =
+				"SELECT c.oid " .
+				"FROM pg_class c " .
+				"JOIN pg_namespace n ON (n.oid = c.relnamespace) " .
+				"WHERE relkind ='r' AND nspname = $encSchema AND relname = $encRelName";
+
+			$row = $this->query( $sql, $fname )->fetchObject();
 			if ( $row ) {
-				$this->query(
-					'SELECT ' . preg_replace( '/^nextval\((.+)\)$/', 'setval($1,1,false)', $row->adsrc ),
-					$fname
-				);
-				return true;
+				$oid = $row->oid;
+				break;
 			}
-			return false;
 		}
 
-		return false;
+		if ( $oid === null ) {
+			throw new DBError( $this, "Could not find table '$table' in pg_class" );
+		}
+
+		$sql =
+			"SELECT pg_get_expr(adbin, adrelid) AS adsrc " .
+			"FROM pg_attribute a " .
+			"JOIN pg_attrdef d ON (a.attrelid=d.adrelid and a.attnum=d.adnum) " .
+			"WHERE a.attrelid = $oid AND pg_get_expr(adbin, adrelid) LIKE 'nextval(%' ";
+
+		$fields = [];
+		foreach ( $this->query( $sql, $fname ) as $row ) {
+			$fields[] = preg_replace( '/^nextval\((.+)\)$/', 'setval($1,1,false)', $row->adsrc );
+		}
+
+		if ( $fields ) {
+			$this->query(
+				'SELECT ' . implode( ',', $fields ),
+				$fname,
+				self::QUERY_IGNORE_DBO_TRX
+			);
+		}
 	}
 
 	/**

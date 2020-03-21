@@ -1086,21 +1086,26 @@ class DatabaseSqlite extends Database {
 		return $endArray;
 	}
 
-	/**
-	 * Override due to no CASCADE support
-	 *
-	 * @param string $tableName
-	 * @param string $fName
-	 * @return bool|IResultWrapper
-	 * @throws DBReadOnlyError
-	 */
-	public function dropTable( $tableName, $fName = __METHOD__ ) {
-		if ( !$this->tableExists( $tableName, $fName ) ) {
+	public function dropTable( $table, $fname = __METHOD__ ) {
+		if ( !$this->tableExists( $table, $fname ) ) {
 			return false;
 		}
-		$sql = "DROP TABLE " . $this->tableName( $tableName );
 
-		return $this->query( $sql, $fName, self::QUERY_IGNORE_DBO_TRX );
+		// No CASCADE support; https://www.sqlite.org/lang_droptable.html
+		$sql = "DROP TABLE " . $this->tableName( $table );
+		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+
+		return true;
+	}
+
+	protected function resetSequencesForTable( $table, $fname ) {
+		$encTable = $this->addIdentifierQuotes( 'sqlite_sequence' );
+		$encName = $this->addQuotes( $this->tableName( $table, 'raw' ) );
+		$this->query(
+			"DELETE FROM $encTable WHERE name = $encName",
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX
+		);
 	}
 
 	public function setTableAliases( array $aliases ) {
@@ -1123,16 +1128,6 @@ class DatabaseSqlite extends Database {
 				$this->sessionAttachedDbs[$params['dbname']] = true;
 			}
 		}
-	}
-
-	public function resetSequenceForTable( $table, $fname = __METHOD__ ) {
-		$encTable = $this->addIdentifierQuotes( 'sqlite_sequence' );
-		$encName = $this->addQuotes( $this->tableName( $table, 'raw' ) );
-		$this->query(
-			"DELETE FROM $encTable WHERE name = $encName",
-			$fname,
-			self::QUERY_IGNORE_DBO_TRX
-		);
 	}
 
 	public function databasesAreIndependent() {
