@@ -1995,6 +1995,7 @@ abstract class File implements IDBAccessObject {
 	 * Overridden by LocalFile
 	 */
 	function delete( $reason, $suppress = false, $user = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->readOnlyError();
 	}
 

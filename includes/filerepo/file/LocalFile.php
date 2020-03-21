@@ -1940,7 +1940,7 @@ class LocalFile extends File {
 	 * @return Status
 	 */
 	function delete( $reason, $suppress = false, $user = null ) {
-		// TODO check callers and hard deprecate
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
