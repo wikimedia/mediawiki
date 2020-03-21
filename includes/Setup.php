@@ -765,6 +765,8 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 
 /**
  * @var User $wgUser
+ * @deprecated since 1.35, use an available context source when possible, or, as a backup,
+ * RequestContext::getMain()
  */
 $wgUser = RequestContext::getMain()->getUser(); // BackCompat
 
