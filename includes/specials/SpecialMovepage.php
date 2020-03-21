@@ -587,7 +587,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				$file = $repoGroup->getLocalRepo()->newFile( $nt );
 				$file->load( File::READ_LATEST );
 				if ( $file->exists() ) {
-					$file->delete( $reason, false, $user );
+					$file->deleteFile( $reason, $user, false );
 				}
 			}
 
