@@ -1220,7 +1220,7 @@ class WebRequest {
 	 * @since 1.19
 	 *
 	 * @throws MWException
-	 * @return string
+	 * @return string|null
 	 */
 	protected function getRawIP() {
 		if ( !isset( $_SERVER['REMOTE_ADDR'] ) ) {
