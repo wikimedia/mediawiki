@@ -103,7 +103,7 @@ class DeleteBatch extends Maintenance {
 				$img = MediaWikiServices::getInstance()->getRepoGroup()->findFile(
 					$title, [ 'ignoreRedirect' => true ]
 				);
-				if ( $img && $img->isLocal() && !$img->delete( $reason ) ) {
+				if ( $img && $img->isLocal() && !$img->deleteFile( $reason, $user ) ) {
 					$this->output( " FAILED to delete associated file... " );
 				}
 			}

@@ -78,6 +78,7 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
+	 * @deprecated since 1.35, use deleteFile instead
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param User|null $user
@@ -85,6 +86,7 @@ class ForeignDBFile extends LocalFile {
 	 * @throws MWException
 	 */
 	function delete( $reason, $suppress = false, $user = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->readOnlyError();
 	}
 
