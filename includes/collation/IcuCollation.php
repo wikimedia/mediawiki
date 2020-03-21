@@ -545,6 +545,10 @@ class IcuCollation extends Collation {
 		$versionPrefix = substr( $icuVersion, 0, 3 );
 		// Source: http://site.icu-project.org/download
 		$map = [
+			'67.' => '13.0',
+			'66.' => '13.0',
+			'65.' => '12.0',
+			'64.' => '12.0',
 			'63.' => '11.0',
 			'62.' => '11.0',
 			'61.' => '10.0',
