@@ -52,15 +52,12 @@ class MWException extends Exception {
 	 * @return bool
 	 */
 	public function useMessageCache() {
-		global $wgLang;
-
 		foreach ( $this->getTrace() as $frame ) {
 			if ( isset( $frame['class'] ) && $frame['class'] === LocalisationCache::class ) {
 				return false;
 			}
 		}
-
-		return $wgLang instanceof Language;
+		return true;
 	}
 
 	/**
