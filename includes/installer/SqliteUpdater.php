@@ -283,7 +283,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
 			[ 'modifyfield', 'filearchive', 'fa_actor', 'patch-filearchive-drop-fa_actor-DEFAULT.sql' ],
 			[ 'modifyfield', 'recentchanges', 'rc_actor', 'patch-recentchanges-drop-rc_actor-DEFAULT.sql' ],
-			[ 'modifyfield', 'logging', 'log_actor', 'patch-logging-drop-log_actor-DEFAULT.sql' ]
+			[ 'modifyfield', 'logging', 'log_actor', 'patch-logging-drop-log_actor-DEFAULT.sql' ],
+			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
 		];
 	}
 

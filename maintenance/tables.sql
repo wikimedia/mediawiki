@@ -293,7 +293,7 @@ CREATE TABLE /*_*/page (
 
   -- Comma-separated set of permission keys indicating who
   -- can move or edit the page.
-  page_restrictions tinyblob NOT NULL,
+  page_restrictions tinyblob NULL,
 
   -- 1 indicates the article is a redirect.
   page_is_redirect tinyint unsigned NOT NULL default 0,
