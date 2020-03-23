@@ -21,13 +21,18 @@ use Wikimedia\ObjectFactory;
  */
 class RouterTest extends \MediaWikiUnitTestCase {
 	/** @return Router */
-	private function createRouter( RequestInterface $request, $authError = null ) {
+	private function createRouter(
+		RequestInterface $request,
+		$authError = null,
+		$additionalRouteFiles = []
+	) {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
 		$permissionManager = $this->createMock( PermissionManager::class );
+		$routeFiles = array_merge( [ __DIR__ . '/testRoutes.json' ], $additionalRouteFiles );
 		return new Router(
-			[ __DIR__ . '/testRoutes.json' ],
+			$routeFiles,
 			[],
 			'/rest',
 			new \EmptyBagOStuff(),
@@ -97,12 +102,35 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	public function testBasicAccess() {
 		// Using the throwing handler is a way to assert that the handler is not executed
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/RouterTest/throw' ) ] );
-		$router = $this->createRouter( $request, 'test-error' );
+		$router = $this->createRouter( $request, 'test-error', [] );
 		$response = $router->execute( $request );
 		$this->assertSame( 403, $response->getStatusCode() );
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
 		$this->assertSame( 'test-error', $data['error'] );
+	}
+
+	/**
+	 * @dataProvider providePaths
+	 */
+	public function testAdditionalEndpoints( $path ) {
+		$request = new RequestData( [
+			'uri' => new Uri( $path )
+		] );
+		$router = $this->createRouter(
+			$request,
+			null,
+			[ __DIR__ . '/testAdditionalRoutes.json' ]
+		);
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
+	}
+
+	public static function providePaths() {
+		return [
+			[ '/rest/mock/RouterTest/hello' ],
+			[ '/rest/mock/RouterTest/hello/two' ],
+		];
 	}
 }

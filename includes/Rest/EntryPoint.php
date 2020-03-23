@@ -48,8 +48,18 @@ class EntryPoint {
 			RequestContext::getMain()->getUser()
 		);
 
+		// Always include the "official" routes. Include additional routes if specified.
+		$routeFiles = array_merge(
+			[ 'includes/Rest/coreRoutes.json' ],
+			$conf->get( 'RestAPIAdditionalRouteFiles' )
+		);
+		array_walk( $routeFiles, function ( &$val, $key ) {
+			global $IP;
+			$val = "$IP/$val";
+		} );
+
 		return new Router(
-			[ "$IP/includes/Rest/coreRoutes.json" ],
+			$routeFiles,
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			$conf->get( 'RestPath' ),
 			$services->getLocalServerObjectCache(),
