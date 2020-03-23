@@ -56,5 +56,17 @@
 			"PermissionManager",
 			"RepoGroup"
 		]
+	},
+	{
+		"method": "PUT",
+		"path": "/coredev/v0/page/{title}",
+		"class": "MediaWiki\\Rest\\Handler\\UpdateHandler",
+		"services": [
+			"MainConfig",
+			"ContentHandlerFactory",
+			"TitleParser",
+			"TitleFormatter",
+			"RevisionStore"
+		]
 	}
 ]
