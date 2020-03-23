@@ -258,9 +258,7 @@ class DatabaseBlock extends AbstractBlock {
 		$db = wfGetDB( $fromMaster ? DB_MASTER : DB_REPLICA );
 
 		if ( $specificType !== null ) {
-			$conds = [
-				'ipb_address' => [ (string)$specificTarget ],
-			];
+			$conds = [ 'ipb_address' => [ (string)$specificTarget ] ];
 		} else {
 			$conds = [ 'ipb_address' => [] ];
 		}
@@ -277,6 +275,7 @@ class DatabaseBlock extends AbstractBlock {
 
 				case self::TYPE_IP:
 					$conds['ipb_address'][] = (string)$target;
+					$conds['ipb_address'] = array_unique( $conds['ipb_address'] );
 					$conds[] = self::getRangeCond( IPUtils::toHex( $target ) );
 					$conds = $db->makeList( $conds, LIST_OR );
 					break;
@@ -295,7 +294,12 @@ class DatabaseBlock extends AbstractBlock {
 
 		$blockQuery = self::getQueryInfo();
 		$res = $db->select(
-			$blockQuery['tables'], $blockQuery['fields'], $conds, __METHOD__, [], $blockQuery['joins']
+			$blockQuery['tables'],
+			$blockQuery['fields'],
+			$conds,
+			__METHOD__,
+			[],
+			$blockQuery['joins']
 		);
 
 		$blocks = [];
