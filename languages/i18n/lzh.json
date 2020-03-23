@@ -32,7 +32,8 @@
 			"WhitePhosphorus",
 			"DannyS712",
 			"Rowingbohe",
-			"Matma Rex"
+			"Matma Rex",
+			"沈澄心"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -837,7 +838,8 @@
 	"badsig": "無效之自畫。\n查HTML籤之。",
 	"badsiglength": "署名宜簡，勿逾$1字。",
 	"yourgender": "性別︰",
-	"gender-unknown": "未",
+	"gender-unknown": "以性別中立之代詞相稱",
+	"gender-notknown": "不明或非二元",
 	"gender-male": "男",
 	"gender-female": "女",
 	"email": "郵",

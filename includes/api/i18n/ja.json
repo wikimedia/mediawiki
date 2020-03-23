@@ -35,7 +35,7 @@
 	"apihelp-main-param-errorsuselocal": "指定された場合、エラーテキストは{{ns:MediaWiki}}名前空間からローカルにカスタマイズされたメッセージを使用します。",
 	"apihelp-block-summary": "利用者をブロックします。",
 	"apihelp-block-param-user": "ブロックする利用者。",
-	"apihelp-block-param-userid": "ブロックする利用者のID。<var>$1user</var>とは同時に使用できません。",
+	"apihelp-block-param-userid": "代わりに <kbd>$1user=#<var>ID</var></kbd> を指定してください。",
 	"apihelp-block-param-expiry": "有効期限。相対的 (例: <kbd>5 months</kbd> または <kbd>2 weeks</kbd>) または絶対的 (e.g. <kbd>2014-09-18T12:34:56Z</kbd>) どちらでも構いません。<kbd>infinite</kbd>, <kbd>indefinite</kbd>, もしくは <kbd>never</kbd> と設定した場合, 無期限ブロックとなります。",
 	"apihelp-block-param-reason": "ブロックの理由。",
 	"apihelp-block-param-anononly": "匿名利用者のみブロックします（つまり、このIPアドレスからの匿名での編集を不可能にします）。",

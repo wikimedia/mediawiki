@@ -241,7 +241,7 @@
 	"config-advanced-settings": "Gelişmiş yapılandırma",
 	"config-cache-options": "Nesne önbelleğe alma ayarları:",
 	"config-cache-help": "Nesne önbelleğe alma, sık kullanılan verileri önbelleğe alarak MediaWiki'nin hızını artırmak için kullanılır.\nOrta ve büyük ölçekli siteler bunu mümkün kılmaya teşvik edilmektedir ve küçük siteler de fayda görecektir.",
-	"config-cache-none": "Önbelleğe alma yok (işlevsellik kaldırılmaz, ancak daha büyük wiki sitelerinde hız etkilenebilir)",
+	"config-cache-none": "Önbelleğe alma yok (işlevsellik kaldırılmaz, ancak daha büyük viki sitelerinde hız etkilenebilir)",
 	"config-cache-accel": "PHP nesne önbelleğe alma (APC, APCu veya WinCache)",
 	"config-cache-memcached": "Memcached kullanın (ek kurulum ve yapılandırma gerektirir)",
 	"config-memcached-servers": "Memcached sunucuları:",
