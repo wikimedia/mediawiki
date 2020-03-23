@@ -1111,8 +1111,10 @@ class Linker {
 			 RevisionRecord::DELETED_USER,
 			$user
 		) ) {
-			$link = self::userLink( $rev->getUser( RevisionRecord::FOR_THIS_USER ),
-				$rev->getUserText( RevisionRecord::FOR_THIS_USER ) );
+			$link = self::userLink(
+				$rev->getUser( RevisionRecord::FOR_THIS_USER, $user ),
+				$rev->getUserText( RevisionRecord::FOR_THIS_USER, $user )
+			);
 		} else {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
@@ -1141,8 +1143,8 @@ class Linker {
 		) &&
 			( !$rev->isDeleted( RevisionRecord::DELETED_USER ) || !$isPublic )
 		) {
-			$userId = $rev->getUser( RevisionRecord::FOR_THIS_USER );
-			$userText = $rev->getUserText( RevisionRecord::FOR_THIS_USER );
+			$userId = $rev->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			$userText = $rev->getUserText( RevisionRecord::FOR_THIS_USER, $user );
 			if ( $userId || (string)$userText !== '' ) {
 				$link = self::userLink( $userId, $userText )
 					. self::userToolLinks( $userId, $userText, false, 0, null,
@@ -1602,8 +1604,10 @@ class Linker {
 			RevisionRecord::DELETED_COMMENT,
 			$user
 		) ) {
-			$block = self::commentBlock( $rev->getComment( RevisionRecord::FOR_THIS_USER ),
-				$rev->getTitle(), $local, null, $useParentheses );
+			$block = self::commentBlock(
+				$rev->getComment( RevisionRecord::FOR_THIS_USER, $user ),
+				$rev->getTitle(), $local, null, $useParentheses
+			);
 		} else {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
