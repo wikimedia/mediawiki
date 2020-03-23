@@ -8260,6 +8260,13 @@ $wgCrossSiteAJAXdomainExceptions = [];
  */
 $wgEnableRestAPI = false;
 
+/**
+ * Additional REST API Route files.
+ *
+ * A common usage is to enable development/experimental endpoints only on test wikis.
+ */
+$wgRestAPIAdditionalRouteFiles = [];
+
 /** @} */ # End AJAX and API }
 
 /************************************************************************//**
