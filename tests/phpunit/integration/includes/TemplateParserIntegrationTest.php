@@ -20,7 +20,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		return $this->cache->makeKey(
 			'lightncandy-compiled',
 
-			// See TemplateParser::$cacheVersion
+			// See TemplateParser::CACHE_VERSION
 			'2.2.0',
 
 			// See TemplateParser::__construct and TemplateParser::$compileFlags

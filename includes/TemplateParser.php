@@ -25,6 +25,15 @@ use MediaWiki\MediaWikiServices;
  * @since 1.25
  */
 class TemplateParser {
+
+	private const CACHE_VERSION = '2.2.0';
+	private const CACHE_TTL = BagOStuff::TTL_WEEK;
+
+	/**
+	 * @var BagOStuff
+	 */
+	private $cache;
+
 	/**
 	 * @var string The path to the Mustache templates
 	 */
@@ -36,24 +45,22 @@ class TemplateParser {
 	protected $renderers;
 
 	/**
-	 * @var bool Always compile template files
-	 */
-	protected $forceRecompile = false;
-
-	/**
 	 * @var int Compilation flags passed to LightnCandy
 	 */
 	protected $compileFlags;
 
-	private static $cacheVersion = '2.2.0';
-
 	/**
 	 * @param string|null $templateDir
-	 * @param bool $forceRecompile
+	 * @param BagOStuff|null|true $cache Read-write cache
+	 *  If set to true, caching is disabled (deprecated since 1.35).
 	 */
-	public function __construct( $templateDir = null, $forceRecompile = false ) {
+	public function __construct( $templateDir = null, $cache = null ) {
 		$this->templateDir = $templateDir ?: __DIR__ . '/templates';
-		$this->forceRecompile = $forceRecompile;
+		if ( $cache === true ) {
+			wfDeprecated( __CLASS__ . ' with $forceRecompile', '1.35' );
+			$cache = new EmptyBagOStuff();
+		}
+		$this->cache = $cache ?: ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 
 		// Do not add more flags here without discussion.
 		// If you do add more flags, be sure to update unit tests as well.
@@ -115,15 +122,14 @@ class TemplateParser {
 
 		if ( $secretKey ) {
 			// See if the compiled PHP code is stored in the server-local cache.
-			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
-			$key = $cache->makeKey(
+			$key = $this->cache->makeKey(
 				'lightncandy-compiled',
-				self::$cacheVersion,
+				self::CACHE_VERSION,
 				$this->compileFlags,
 				$this->templateDir,
 				$templateName
 			);
-			$compiledTemplate = $this->forceRecompile ? null : $cache->get( $key );
+			$compiledTemplate = $this->cache->get( $key );
 
 			// 1. Has the template changed since the compiled template was cached? If so, don't use
 			// the cached code.
@@ -156,7 +162,7 @@ class TemplateParser {
 					$secretKey
 				);
 
-				$cache->set( $key, $compiledTemplate );
+				$this->cache->set( $key, $compiledTemplate, self::CACHE_TTL );
 			}
 
 		// If there is no secret key available, don't use cache
