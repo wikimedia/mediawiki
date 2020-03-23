@@ -544,7 +544,7 @@ class InfoAction extends FormlessAction {
 		$batch = new LinkBatch;
 
 		if ( $firstRev ) {
-			$firstRevUser = $firstRev->getUserText( RevisionRecord::FOR_THIS_USER );
+			$firstRevUser = $firstRev->getUserText( RevisionRecord::FOR_THIS_USER, $user );
 			if ( $firstRevUser !== '' ) {
 				$batch->add( NS_USER, $firstRevUser );
 				$batch->add( NS_USER_TALK, $firstRevUser );
@@ -552,7 +552,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		if ( $lastRev ) {
-			$lastRevUser = $lastRev->getUserText( RevisionRecord::FOR_THIS_USER );
+			$lastRevUser = $lastRev->getUserText( RevisionRecord::FOR_THIS_USER, $user );
 			if ( $lastRevUser !== '' ) {
 				$batch->add( NS_USER, $lastRevUser );
 				$batch->add( NS_USER_TALK, $lastRevUser );

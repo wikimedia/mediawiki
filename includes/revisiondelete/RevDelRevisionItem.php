@@ -223,8 +223,8 @@ class RevDelRevisionItem extends RevDelItem {
 			$user
 		) ) {
 			$ret += [
-				'userid' => $rev->getUser( RevisionRecord::FOR_THIS_USER ),
-				'user' => $rev->getUserText( RevisionRecord::FOR_THIS_USER ),
+				'userid' => $rev->getUser( RevisionRecord::FOR_THIS_USER, $user ),
+				'user' => $rev->getUserText( RevisionRecord::FOR_THIS_USER, $user ),
 			];
 		}
 		if ( RevisionRecord::userCanBitfield(
@@ -233,7 +233,7 @@ class RevDelRevisionItem extends RevDelItem {
 			$user
 		) ) {
 			$ret += [
-				'comment' => $rev->getComment( RevisionRecord::FOR_THIS_USER ),
+				'comment' => $rev->getComment( RevisionRecord::FOR_THIS_USER, $user ),
 			];
 		}
 
