@@ -26,7 +26,7 @@ class LimitDef extends IntegerDef {
 	 */
 	public function validate( $name, $value, array $settings, array $options ) {
 		if ( $value === 'max' ) {
-			if ( !isset( $options['parse-limit'] ) || $options['parse-limit'] ) {
+			if ( $options['parse-limit'] ?? true ) {
 				$value = $this->callbacks->useHighLimits( $options )
 					? $settings[self::PARAM_MAX2] ?? $settings[self::PARAM_MAX] ?? PHP_INT_MAX
 					: $settings[self::PARAM_MAX] ?? PHP_INT_MAX;

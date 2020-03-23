@@ -140,7 +140,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doCreateInternal( $params );
 			$this->clearCache( [ $params['dst'] ] );
-			if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+			if ( $params['dstExists'] ?? true ) {
 				$this->deleteFileCache( $params['dst'] ); // persistent cache
 			}
 		}
@@ -183,7 +183,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( [ $params['dst'] ] );
-			if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+			if ( $params['dstExists'] ?? true ) {
 				$this->deleteFileCache( $params['dst'] ); // persistent cache
 			}
 		}
@@ -223,7 +223,7 @@ abstract class FileBackendStore extends FileBackend {
 
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( [ $params['dst'] ] );
-		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+		if ( $params['dstExists'] ?? true ) {
 			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
 
@@ -294,7 +294,7 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( [ $params['src'], $params['dst'] ] );
 		$this->deleteFileCache( $params['src'] ); // persistent cache
-		if ( !isset( $params['dstExists'] ) || $params['dstExists'] ) {
+		if ( $params['dstExists'] ?? true ) {
 			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
 
@@ -1986,7 +1986,7 @@ abstract class FileBackendStore extends FileBackend {
 	final protected function setConcurrencyFlags( array $opts ) {
 		$opts['concurrency'] = 1; // off
 		if ( $this->parallelize === 'implicit' ) {
-			if ( !isset( $opts['parallelize'] ) || $opts['parallelize'] ) {
+			if ( $opts['parallelize'] ?? true ) {
 				$opts['concurrency'] = $this->concurrency;
 			}
 		} elseif ( $this->parallelize === 'explicit' ) {
