@@ -398,15 +398,19 @@ class UserGroupMembership {
 		// link to the group description page, if it exists
 		$linkTitle = self::getGroupPage( $group );
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		if ( $linkTitle ) {
-			if ( $format === 'wiki' ) {
+		if ( $format === 'wiki' ) {
+			if ( $linkTitle ) {
 				$linkPage = $linkTitle->getFullText();
 				$groupLink = "[[$linkPage|$groupName]]";
 			} else {
-				$groupLink = $linkRenderer->makeLink( $linkTitle, $groupName );
+				$groupLink = $groupName;
 			}
 		} else {
-			$groupLink = htmlspecialchars( $groupName );
+			if ( $linkTitle ) {
+				$groupLink = $linkRenderer->makeLink( $linkTitle, $groupName );
+			} else {
+				$groupLink = htmlspecialchars( $groupName );
+			}
 		}
 
 		if ( $expiry ) {
@@ -416,11 +420,15 @@ class UserGroupMembership {
 			$expiryDT = $uiLanguage->userTimeAndDate( $expiry, $uiUser );
 			$expiryD = $uiLanguage->userDate( $expiry, $uiUser );
 			$expiryT = $uiLanguage->userTime( $expiry, $uiUser );
-			if ( $format === 'html' ) {
+
+			if ( $format === 'wiki' ) {
+				return $context->msg( 'group-membership-link-with-expiry' )
+					->params( $groupLink, $expiryDT, $expiryD, $expiryT )->text();
+			} else {
 				$groupLink = Message::rawParam( $groupLink );
+				return $context->msg( 'group-membership-link-with-expiry' )
+					->params( $groupLink, $expiryDT, $expiryD, $expiryT )->escaped();
 			}
-			return $context->msg( 'group-membership-link-with-expiry' )
-				->params( $groupLink, $expiryDT, $expiryD, $expiryT )->text();
 		}
 		return $groupLink;
 	}
