@@ -680,7 +680,7 @@
 	"passwordreset-emailtext-user": "使用者$1請求重設在{{SITENAME}}（$4）的密碼，下列是與此電子郵件地址有關的使用者{{PLURAL:$3|帳號}}：\n\n$2\n\n{{PLURAL:$3|這個臨時密碼|這些臨時密碼}}將會在{{PLURAL:$5|1天|$5天}}內到期，您應立即登入並更改新的密碼。如果不是您請求重設密碼，或您已想起密碼，並不準備修改，您可以忽略此訊息並且繼續使用您原本的密碼。",
 	"passwordreset-emailelement": "使用者名稱：\n$1\n\n臨時密碼：\n$2",
 	"passwordreset-success": "您已請求密碼重新設定。",
-	"passwordreset-success-details-generic": "若提交的資訊有效，會發送密碼重新設定用郵件。若您已收到郵件，我們建議您查看[[mw:Special:MyLanguage/Help:Reset_password|重新設定密碼說明頁面]]。請留意為了預防濫用情況，<strong>各有效帳號的密碼重新設定郵件僅會在每 24 小時內發送一封</strong>。",
+	"passwordreset-success-details-generic": "若提交的資訊有效，會發送密碼重新設定用郵件。若您已收到郵件，我們建議您查看[[mw:Special:MyLanguage/Help:Reset_password|重新設定密碼說明頁面]]。請留意為了預防濫用情況，<strong>各有效帳號的密碼重新設定郵件僅會在每{{PLURAL:$1|小時| $1 小時}}內發送一封</strong>。",
 	"passwordreset-success-info": "您提交的詳情為：$1",
 	"passwordreset-emailtext-require-email": "但是如果您沒有產生此請求，並希望阻止不請自來的電子郵件，您需要在$1更新電子郵件選項。您可以要求同時需要使用者名稱和電子郵件地址才能產生重設密碼電子郵件，這可以減少此類事件發生。",
 	"passwordreset-nocaller": "必須提供 caller",

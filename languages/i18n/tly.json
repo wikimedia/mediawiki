@@ -189,7 +189,7 @@
 	"retrievedfrom": "Сәвон \"$1\"",
 	"youhavenewmessages": "Шымә сәјоне $1 ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|1=tojə mesoj|999=tojə mesoj}}",
-	"newmessagesdifflinkplural": "$1 {{PLURAL:$1|охонә дәгиши|охонә дәгишон}}",
+	"newmessagesdifflinkplural": "axiriminci {{PLURAL:$1|oxonə dəqişon|999=oxonə dəqişon}}",
 	"editsection": "Sərost kardey",
 	"editold": "Сәрост кардеј",
 	"viewsourceold": "бешемонә коди дијә кардеј",

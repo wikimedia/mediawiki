@@ -1208,7 +1208,7 @@
 	"badsiglength": "签名过长。请不超过$1个字符。",
 	"yourgender": "您希望使用什么性别称呼？",
 	"gender-unknown": "当提及您时，本软件会尽可能使用性别中性词汇",
-	"gender-notknown": "他/她们",
+	"gender-notknown": "其",
 	"gender-male": "他",
 	"gender-female": "她",
 	"prefs-help-gender": "此设置为可选项。\n软件会使用您选择的方式来称呼您，对他人提及您时也会使用适当语法称呼。\n此项信息会被公开。",
