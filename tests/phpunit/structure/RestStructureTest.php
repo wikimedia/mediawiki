@@ -80,10 +80,12 @@ class RestStructureTest extends MediaWikiTestCase {
 
 	public static function providePathParameters() : Iterator {
 		$router = TestingAccessWrapper::newFromObject( self::getRouter() );
-		$request = new RequestData();
 
 		foreach ( $router->getAllRoutes() as $spec ) {
-			yield "Handler {$spec['path']}" => [ $spec ];
+			$method = $spec['method'] ?? 'GET';
+			$method = implode( ",", (array)$method );
+
+			yield "Handler {$method} {$spec['path']}" => [ $spec ];
 		}
 	}
 
@@ -151,7 +153,28 @@ class RestStructureTest extends MediaWikiTestCase {
 			$handler = $router->createHandler( $request, $spec );
 			$params = $handler->getParamSettings();
 			foreach ( $params as $param => $settings ) {
-				yield "Handler {$spec['path']}, parameter $param" => [ $spec, $param, $settings ];
+				$method = $spec['method'] ?? 'GET';
+				$method = implode( ",", (array)$method );
+
+				yield "Handler {$method} {$spec['path']}, parameter $param" => [ $spec, $param, $settings ];
+			}
+		}
+	}
+
+	public function testRoutePathAndMethodForDuplicates() {
+		$router = TestingAccessWrapper::newFromObject( self::getRouter() );
+		$routes = [];
+
+		foreach ( $router->getAllRoutes() as $spec ) {
+			$method = $spec['method'] ?? 'GET';
+			$method = (array)$method;
+
+			foreach ( $method as $m ) {
+				$key = "{$m} {$spec['path']}";
+
+				$this->assertFalse( array_key_exists( $key, $routes ), "{$key} already exists in routes" );
+
+				$routes[$key] = true;
 			}
 		}
 	}
