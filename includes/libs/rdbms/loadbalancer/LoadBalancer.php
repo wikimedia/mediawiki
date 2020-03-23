@@ -1171,22 +1171,24 @@ class LoadBalancer implements ILoadBalancer {
 			$this->connLogger->debug( __METHOD__ . ": reusing free connection $i/$domain" );
 		} elseif ( !empty( $this->conns[$connFreeKey][$i] ) ) {
 			// Reuse a free connection from another domain if possible
-			foreach ( $this->conns[$connFreeKey][$i] as $oldDomain => $conn ) {
+			foreach ( $this->conns[$connFreeKey][$i] as $oldDomain => $oldConn ) {
 				if ( $domainInstance->getDatabase() !== null ) {
 					// Check if changing the database will require a new connection.
 					// In that case, leave the connection handle alone and keep looking.
 					// This prevents connections from being closed mid-transaction and can
 					// also avoid overhead if the same database will later be requested.
 					if (
-						$conn->databasesAreIndependent() &&
-						$conn->getDBname() !== $domainInstance->getDatabase()
+						$oldConn->databasesAreIndependent() &&
+						$oldConn->getDBname() !== $domainInstance->getDatabase()
 					) {
 						continue;
 					}
 					// Select the new database, schema, and prefix
+					$conn = $oldConn;
 					$conn->selectDomain( $domainInstance );
 				} else {
 					// Stay on the current database, but update the schema/prefix
+					$conn = $oldConn;
 					$conn->dbSchema( $domainInstance->getSchema() );
 					$conn->tablePrefix( $domainInstance->getTablePrefix() );
 				}
