@@ -1539,7 +1539,7 @@
 	"apierror-appendnotsupported": "不能使用内容模型$1附加在页面上。",
 	"apierror-articleexists": "您尝试创建的条目已刚刚被创建。",
 	"apierror-assertbotfailed": "主张用户有<code>bot</code>权限失败。",
-	"apierror-assertnameduserfailed": "主张用户为“$1”失败。",
+	"apierror-assertnameduserfailed": "您不再以“$1”身份登录，因此该操作无法完成。",
 	"apierror-assertuserfailed": "主张用户已登录失败。",
 	"apierror-autoblocked": "您的IP地址已被自动封禁，因为它曾被一位已封禁用户使用。",
 	"apierror-badconfig-resulttoosmall": "此wiki上<code>$wgAPIMaxResultSize</code>的值太小，不能获得基础结果信息。",
