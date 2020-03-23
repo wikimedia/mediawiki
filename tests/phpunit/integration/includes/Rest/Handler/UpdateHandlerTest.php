@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use ApiUsageException;
+use FormatJson;
 use HashConfig;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Rest\Handler\UpdateHandler;
@@ -15,10 +16,12 @@ use MediaWiki\Storage\SlotRecord;
 use MediaWikiTitleCodec;
 use PHPUnit\Framework\MockObject\MockObject;
 use Status;
+use Title;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use WikitextContent;
+use WikitextContentHandler;
 
 /**
  * @covers \MediaWiki\Rest\Handler\UpdateHandler
@@ -35,13 +38,20 @@ class UpdateHandlerTest extends \MediaWikiIntegrationTestCase {
 
 		/** @var IContentHandlerFactory|MockObject $contentHandlerFactory */
 		$contentHandlerFactory =
-			$this->createNoOpMock( IContentHandlerFactory::class, [ 'isDefinedModel' ] );
+			$this->createNoOpMock(
+				IContentHandlerFactory::class,
+				[ 'isDefinedModel', 'getContentHandler' ]
+			);
 
 		$contentHandlerFactory
 			->method( 'isDefinedModel' )
 			->willReturnMap( [
 				[ CONTENT_MODEL_WIKITEXT, true ],
 			] );
+
+		$contentHandlerFactory
+			->method( 'getContentHandler' )
+			->willReturn( new WikitextContentHandler() );
 
 		/** @var MockObject|MediaWikiTitleCodec $titleCodec */
 		$titleCodec = $this->getMockBuilder( MediaWikiTitleCodec::class )
@@ -64,13 +74,23 @@ class UpdateHandlerTest extends \MediaWikiIntegrationTestCase {
 			} );
 
 		/** @var RevisionLookup|MockObject $revisionLookup */
-		$revisionLookup = $this->createNoOpMock( RevisionLookup::class, [ 'getRevisionById' ] );
+		$revisionLookup = $this->createNoOpMock(
+			RevisionLookup::class,
+			[ 'getRevisionById', 'getRevisionByTitle' ]
+		);
 		$revisionLookup->method( 'getRevisionById' )
 			->willReturnCallback( function ( $id ) {
 				$title = $this->makeMockTitle( __CLASS__ );
 				$rev = new MutableRevisionRecord( $title );
 				$rev->setId( $id );
 				$rev->setContent( SlotRecord::MAIN, new WikitextContent( "Content of revision $id" ) );
+				return $rev;
+			} );
+		$revisionLookup->method( 'getRevisionByTitle' )
+			->willReturnCallback( function ( $title ) {
+				$rev = new MutableRevisionRecord( Title::castFromLinkTarget( $title ) );
+				$rev->setId( 1234 );
+				$rev->setContent( SlotRecord::MAIN, new WikitextContent( "Current content of $title" ) );
 				return $rev;
 			} );
 
@@ -505,6 +525,57 @@ class UpdateHandlerTest extends \MediaWikiIntegrationTestCase {
 				$exception->getMessageValue()
 			);
 		}
+	}
+
+	public function testConflictOutput() {
+		$requestData = [ // Request data received by UpdateHandler
+			'method' => 'POST',
+			'pathParams' => [ 'title' => 'Foo' ],
+			'headers' => [
+				'Content-Type' => 'application/json',
+			],
+			'bodyContents' => json_encode( [
+				'latest' => [
+					'id' => 17,
+				],
+				'source' => 'Lorem Ipsum',
+				'comment' => 'Testing'
+			] ),
+		];
+		$request = new RequestData( $requestData );
+
+		$apiUsageException = new ApiUsageException( null, Status::newFatal( 'apierror-editconflict' ) );
+		$handler = $this->newHandler( [], $apiUsageException );
+		$handler->setJsonDiffFunction( [ $this, 'fakeJsonDiff' ] );
+
+		$exception = $this->executeHandlerAndGetHttpException( $handler, $request );
+
+		$this->assertSame( 409, $exception->getCode(), 'HTTP status' );
+
+		$expectedData = [
+			'local' => [
+				'from' => 'Content of revision 17',
+				'to' => 'Lorem Ipsum',
+			],
+			'remote' => [
+				'from' => 'Content of revision 17',
+				'to' => 'Current content of 0:Foo',
+			],
+			'base' => 17,
+			'current' => 1234
+		];
+
+		$errorData = $exception->getErrorData();
+		foreach ( $expectedData as $key => $value ) {
+			$this->assertSame( $value, $errorData[$key], 'Error data key $key' );
+		}
+	}
+
+	public function fakeJsonDiff( $fromText, $toText ) {
+		return FormatJson::encode( [
+			'from' => $fromText,
+			'to' => $toText
+		] );
 	}
 
 }

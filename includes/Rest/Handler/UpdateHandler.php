@@ -3,13 +3,16 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use FormatJson;
 use IApiMessage;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use TextContent;
 use TitleFormatter;
 use TitleParser;
 use Wikimedia\Message\MessageValue;
@@ -44,6 +47,13 @@ class UpdateHandler extends ActionModuleBasedHandler {
 	private $revisionLookup;
 
 	/**
+	 * Function for generating a JSON diff
+	 *
+	 * @var callable
+	 */
+	private $jsonDiffFunction = 'wikidiff2_inline_json_diff';
+
+	/**
 	 * @param Config $config
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param TitleParser $titleParser
@@ -62,6 +72,15 @@ class UpdateHandler extends ActionModuleBasedHandler {
 		$this->titleParser = $titleParser;
 		$this->titleFormatter = $titleFormatter;
 		$this->revisionLookup = $revisionLookup;
+	}
+
+	/**
+	 * Sets the function to use for JSON diffs, for testing.
+	 *
+	 * @param callable $jsonDiffFunction
+	 */
+	public function setJsonDiffFunction( callable $jsonDiffFunction ) {
+		$this->jsonDiffFunction = $jsonDiffFunction;
 	}
 
 	public function needsWriteAccess() {
@@ -222,7 +241,8 @@ class UpdateHandler extends ActionModuleBasedHandler {
 		}
 
 		if ( $code === 'editconflict' ) {
-			throw new LocalizedHttpException( $this->makeMessageValue( $msg ), 409 );
+			$data = $this->getConflictData();
+			throw new LocalizedHttpException( $this->makeMessageValue( $msg ), 409, $data );
 		}
 
 		if ( $code === 'ratelimited' ) {
@@ -254,5 +274,88 @@ class UpdateHandler extends ActionModuleBasedHandler {
 
 		$body = $this->getValidatedBody();
 		return $body['token'] ?? '';
+	}
+
+	/**
+	 * Returns an associative array to be used in the response in the event of edit conflicts.
+	 *
+	 * The resulting array contains the following keys:
+	 * - base: revision ID of the base revision
+	 * - current: revision ID of the current revision (new base after resolving the conflict)
+	 * - local: the difference between the content submitted and the base revision
+	 * - remote: the difference between the latest revision of the page and the base revision
+	 *
+	 * If the differences cannot be determined, an empty array is returned.
+	 *
+	 * @return array
+	 */
+	private function getConflictData() {
+		$body = $this->getValidatedBody();
+		$baseRevId = $body['latest']['id'] ?? 0;
+		$title = $this->titleParser->parseTitle( $this->getValidatedParams()['title'] );
+
+		$baseRev = $this->revisionLookup->getRevisionById( $baseRevId );
+		$currentRev = $this->revisionLookup->getRevisionByTitle( $title );
+
+		if ( !$baseRev || !$currentRev ) {
+			return [];
+		}
+
+		$baseContent = $baseRev->getContent(
+			SlotRecord::MAIN,
+			RevisionRecord::FOR_THIS_USER,
+			$this->getUser()
+		);
+		$currentContent = $currentRev->getContent(
+			SlotRecord::MAIN,
+			RevisionRecord::FOR_THIS_USER,
+			$this->getUser()
+		);
+
+		if ( !$baseContent || !$currentContent ) {
+			return [];
+		}
+
+		$model = $body['content_model'] ?: $baseContent->getModel();
+		$contentHandler = $this->contentHandlerFactory->getContentHandler( $model );
+		$newContent = $contentHandler->unserializeContent( $body['source'] );
+
+		if ( !$baseContent instanceof TextContent
+			|| !$currentContent instanceof TextContent
+			|| !$newContent instanceof TextContent
+		) {
+			return [];
+		}
+
+		$localDiff = $this->getDiff( $baseContent, $newContent );
+		$remoteDiff = $this->getDiff( $baseContent, $currentContent );
+
+		if ( !$localDiff || !$remoteDiff ) {
+			return [];
+		}
+
+		return [
+			'base' => $baseRev->getId(),
+			'current' => $currentRev->getId(),
+			'local' => $localDiff,
+			'remote' => $remoteDiff,
+		];
+	}
+
+	/**
+	 * Returns a text diff encoded as an array, to be included in the response data.
+	 *
+	 * @param TextContent $from
+	 * @param TextContent $to
+	 *
+	 * @return array|null
+	 */
+	private function getDiff( TextContent $from, TextContent $to ) {
+		if ( !is_callable( $this->jsonDiffFunction ) ) {
+			return null;
+		}
+
+		$json = ( $this->jsonDiffFunction )( $from->getText(), $to->getText(), 2 );
+		return FormatJson::decode( $json, FormatJson::FORCE_ASSOC );
 	}
 }
