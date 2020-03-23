@@ -261,7 +261,6 @@ abstract class Skin extends ContextSource {
 		$title = $this->getRelevantTitle();
 		if ( $title->canExist() && $title->canHaveTalkPage() ) {
 			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-
 			if ( $title->isTalkPage() ) {
 				$titles[] = $namespaceInfo->getSubjectPage( $title );
 			} else {
@@ -270,14 +269,15 @@ abstract class Skin extends ContextSource {
 		}
 
 		// Footer links (used by SkinTemplate::prepareQuickTemplate)
-		foreach ( [
-			$this->footerLinkTitle( 'privacy', 'privacypage' ),
-			$this->footerLinkTitle( 'aboutsite', 'aboutpage' ),
-			$this->footerLinkTitle( 'disclaimers', 'disclaimerpage' ),
-		] as $title ) {
-			if ( $title ) {
-				$titles[] = $title;
-			}
+		if ( $this->getConfig()->get( 'FooterLinkCacheExpiry' ) <= 0 ) {
+			$titles = array_merge(
+				$titles,
+				array_filter( [
+					$this->footerLinkTitle( 'privacy', 'privacypage' ),
+					$this->footerLinkTitle( 'aboutsite', 'aboutpage' ),
+					$this->footerLinkTitle( 'disclaimers', 'disclaimerpage' ),
+				] )
+			);
 		}
 
 		Hooks::run( 'SkinPreloadExistence', [ &$titles, $this ] );
@@ -1043,6 +1043,43 @@ abstract class Skin extends ContextSource {
 		$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
 
 		return $title ?: null;
+	}
+
+	/**
+	 * Gets the link to the wiki's privacy policy, about page, and disclaimer page
+	 *
+	 * @internal For use by SkinTemplate
+	 * @return string[] Map of (key => HTML) for 'privacy', 'about', 'disclaimer'
+	 */
+	public function getSiteFooterLinks() {
+		$callback = function () {
+			return [
+				'privacy' => $this->privacyLink(),
+				'about' => $this->aboutLink(),
+				'disclaimer' => $this->disclaimerLink()
+			];
+		};
+
+		$services = MediaWikiServices::getInstance();
+		$msgCache = $services->getMessageCache();
+		$wanCache = $services->getMainWANObjectCache();
+		$config = $this->getConfig();
+
+		return ( $config->get( 'FooterLinkCacheExpiry' ) > 0 )
+			? $wanCache->getWithSetCallback(
+				$wanCache->makeKey( 'footer-links' ),
+				$config->get( 'FooterLinkCacheExpiry' ),
+				$callback,
+				[
+					'checkKeys' => [
+						// Unless there is both no exact $code override nor an i18n definition
+						// in the software, the only MediaWiki page to check is for $code.
+						$msgCache->getCheckKey( $this->getLanguage()->getCode() )
+					],
+					'lockTSE' => 30
+				]
+			)
+			: $callback();
 	}
 
 	/**

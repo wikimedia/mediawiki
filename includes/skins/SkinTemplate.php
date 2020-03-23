@@ -395,9 +395,11 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'copyrightico', $this->getCopyrightIcon() );
 		$tpl->set( 'poweredbyico', $this->getPoweredBy() );
-		$tpl->set( 'disclaimer', $this->disclaimerLink() );
-		$tpl->set( 'privacy', $this->privacyLink() );
-		$tpl->set( 'about', $this->aboutLink() );
+
+		$footerLinks = $this->getSiteFooterLinks();
+		$tpl->set( 'disclaimer', $footerLinks['disclaimer'] );
+		$tpl->set( 'privacy', $footerLinks['privacy'] );
+		$tpl->set( 'about', $footerLinks['about'] );
 
 		$tpl->set( 'footerlinks', [
 			'info' => [

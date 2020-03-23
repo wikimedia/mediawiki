@@ -2724,6 +2724,13 @@ $wgEnableSidebarCache = false;
 $wgSidebarCacheExpiry = 86400;
 
 /**
+ * Expiry time for the footer link cache, in seconds, or 0 if disabled
+ *
+ * @since 1.35
+ */
+$wgFooterLinkCacheExpiry = 0;
+
+/**
  * When using the file cache, we can store the cached HTML gzipped to save disk
  * space. Pages will then also be served compressed to clients that support it.
  *
