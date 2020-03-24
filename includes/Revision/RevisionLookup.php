@@ -80,6 +80,27 @@ interface RevisionLookup extends IDBAccessObject {
 	public function getRevisionByPageId( $pageId, $revId = 0, $flags = 0 );
 
 	/**
+	 * Load the revision for the given title with the given timestamp.
+	 * WARNING: Timestamps may in some circumstances not be unique,
+	 * so this isn't the best key to use.
+	 *
+	 * MCR migration note: this replaces Revision::loadFromTimestamp
+	 *
+	 * @param LinkTarget $title
+	 * @param string $timestamp
+	 * @param int $flags Bitfield (optional) include:
+	 *      RevisionLookup::READ_LATEST: Select the data from the master
+	 *      RevisionLookup::READ_LOCKING: Select & lock the data from the master
+	 *      Default: RevisionLookup::READ_NORMAL
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionByTimestamp(
+		LinkTarget $title,
+		string $timestamp,
+		int $flags = RevisionLookup::READ_NORMAL
+	): ?RevisionRecord;
+
+	/**
 	 * Get previous revision for this title
 	 *
 	 * MCR migration note: this replaces Revision::getPrevious

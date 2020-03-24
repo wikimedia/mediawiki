@@ -1571,20 +1571,28 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::loadFromTimestamp
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 * @param string $timestamp
+	 * @param int $flags Bitfield (optional) include:
+	 *      IDBAccessObject::READ_LATEST: Select the data from the master
+	 *      IDBAccessObject::READ_LOCKING: Select & lock the data from the master
+	 *      Default: IDBAccessObject::READ_NORMAL
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionByTimestamp( $title, $timestamp ) {
-		$db = $this->getDBConnectionRef( DB_REPLICA );
+	public function getRevisionByTimestamp(
+		LinkTarget $title,
+		string $timestamp,
+		int $flags = IDBAccessObject::READ_NORMAL
+	): ?RevisionRecord {
+		$db = $this->getDBConnectionRefForQueryFlags( $flags );
 		return $this->newRevisionFromConds(
 			[
 				'rev_timestamp' => $db->timestamp( $timestamp ),
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey()
 			],
-			0,
-			$title
+			$flags,
+			Title::newFromLinkTarget( $title )
 		);
 	}
 
