@@ -2373,4 +2373,39 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		MediaWikiServices::getInstance()->getRevisionStore()->{$method}(
 			$this->getTestPage()->getId(), $rev1, $rev2 );
 	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getFirstRevision
+	 */
+	public function testGetFirstRevision() {
+		$pageTitle = Title::newFromText( 'Test_Get_First_Revision' );
+		$editStatus = $this->editPage( $pageTitle->getPrefixedDBkey(), 'First Revision' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create first revision' );
+		$firstRevId = $editStatus->getValue()['revision']->getRevisionRecord()->getID();
+		$editStatus = $this->editPage( $pageTitle->getPrefixedText(), 'New Revision' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create new revision' );
+		$this->assertNotSame(
+			$firstRevId,
+			$editStatus->getValue()['revision']->getRevisionRecord()->getID(),
+			'Sanity: new revision must have different id'
+		);
+		$this->assertSame(
+			$firstRevId,
+			MediaWikiServices::getInstance()
+				->getRevisionStore()
+				->getFirstRevision( $pageTitle )
+				->getId()
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getFirstRevision
+	 */
+	public function testGetFirstRevision_nonexistent_page() {
+		$this->assertNull(
+			MediaWikiServices::getInstance()
+				->getRevisionStore()
+				->getFirstRevision( $this->getNonexistingTestPage( __METHOD__ )->getTitle() )
+		);
+	}
 }

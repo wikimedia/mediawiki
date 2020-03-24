@@ -153,6 +153,19 @@ interface RevisionLookup extends IDBAccessObject {
 	 */
 	public function getKnownCurrentRevision( Title $title, $revId = 0 );
 
+	/**
+	 * Get the first revision of the page.
+	 *
+	 * @since 1.35
+	 * @param LinkTarget $title the title of the page fetch the first revision for.
+	 * @param int $flags bit field, see IDBAccessObject::READ_* constants.
+	 * @return RevisionRecord|null
+	 */
+	public function getFirstRevision(
+		LinkTarget $title,
+		int $flags = IDBAccessObject::READ_NORMAL
+	): ?RevisionRecord;
+
 }
 
 /**

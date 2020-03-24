@@ -3753,43 +3753,29 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get the first revision of the page
 	 *
+	 * @deprecated since 1.35. Use RevisionLookup::getFirstRevision instead.
 	 * @param int $flags Bitfield of class READ_* constants
 	 * @return Revision|null If page doesn't exist
 	 */
 	public function getFirstRevision( $flags = 0 ) {
-		$pageId = $this->getArticleID( $flags );
-		if ( $pageId ) {
-			$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
-			list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-			$revQuery = Revision::getQueryInfo();
-			$row = wfGetDB( $index )->selectRow(
-				$revQuery['tables'], $revQuery['fields'],
-				[ 'rev_page' => $pageId ],
-				__METHOD__,
-				array_merge(
-					[
-						'ORDER BY' => [ 'rev_timestamp ASC', 'rev_id ASC' ],
-						'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
-					],
-					$options
-				),
-				$revQuery['joins']
-			);
-			if ( $row ) {
-				return new Revision( $row, 0, $this );
-			}
-		}
-		return null;
+		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
+		$rev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getFirstRevision( $this, $flags );
+		return $rev ? new Revision( $rev ) : null;
 	}
 
 	/**
 	 * Get the oldest revision timestamp of this page
 	 *
+	 * @deprecated since 1.35. Use RevisionLookup::getFirstRevision instead.
 	 * @param int $flags Bitfield of class READ_* constants
 	 * @return string|null MW timestamp
 	 */
 	public function getEarliestRevTime( $flags = 0 ) {
-		$rev = $this->getFirstRevision( $flags );
+		$rev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getFirstRevision( $this, $flags );
 		return $rev ? $rev->getTimestamp() : null;
 	}
 
