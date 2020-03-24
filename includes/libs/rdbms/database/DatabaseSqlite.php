@@ -193,6 +193,7 @@ class DatabaseSqlite extends Database {
 			$this->query( 'PRAGMA case_sensitive_like = 1', __METHOD__, $flags );
 			// Set any connection-level custom PRAGMA options
 			$pragmas = array_intersect_key( $this->connectionVariables, self::$VALID_PRAGMAS );
+			$pragmas += $this->getDefaultPragmas();
 			foreach ( $pragmas as $name => $value ) {
 				$allowed = self::$VALID_PRAGMAS[$name];
 				if ( in_array( $value, $allowed, true ) ) {
@@ -203,6 +204,19 @@ class DatabaseSqlite extends Database {
 		} catch ( Exception $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
+	}
+
+	/**
+	 * @return array Map of (name => value) for default values to set via PRAGMA
+	 */
+	private function getDefaultPragmas() {
+		$variables = [];
+
+		if ( !$this->cliMode ) {
+			$variables['temp_store'] = 'MEMORY';
+		}
+
+		return $variables;
 	}
 
 	/**
