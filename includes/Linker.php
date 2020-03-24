@@ -1789,7 +1789,7 @@ class Linker {
 	 * Split a link trail, return the "inside" portion and the remainder of the trail
 	 * as a two-element array
 	 * @param string $trail
-	 * @return array
+	 * @return string[]
 	 */
 	public static function splitTrail( $trail ) {
 		$regex = MediaWikiServices::getInstance()->getContentLanguage()->linkTrail();

@@ -302,7 +302,7 @@ abstract class Action implements MessageLocalizer {
 	 * must throw subclasses of ErrorPageError
 	 * @since 1.17
 	 *
-	 * @param User $user The user to check, or null to use the context user
+	 * @param User $user
 	 * @throws UserBlockedError|ReadOnlyError|PermissionsError
 	 */
 	protected function checkCanExecute( User $user ) {

@@ -6,6 +6,12 @@ namespace MediaWiki\Auth;
  * @group AuthManager
  */
 abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
+
+	/**
+	 * @param array $args
+	 *
+	 * @return AuthenticationRequest
+	 */
 	abstract protected function getInstance( array $args = [] );
 
 	/**
