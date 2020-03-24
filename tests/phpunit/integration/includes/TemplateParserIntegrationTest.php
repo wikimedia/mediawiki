@@ -1,133 +1,326 @@
 <?php
 
-use LightnCandy\LightnCandy;
-use Wikimedia\TestingAccessWrapper;
-
 /**
  * @group Templates
  * @coversDefaultClass TemplateParser
  */
 class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
-	private const TEMPLATE_NAME = 'foobar';
-
-	private $secretKey;
-	private $cache;
-	private $templateDir;
-	private $templateParser;
-
-	private function makeKey() : string {
-		return $this->cache->makeKey(
-			'lightncandy-compiled',
-
-			// See TemplateParser::CACHE_VERSION
-			'2.2.0',
-
-			// See TemplateParser::__construct and TemplateParser::$compileFlags
-			LightnCandy::FLAG_ERROR_EXCEPTION | LightnCandy::FLAG_MUSTACHELOOKUP,
-
-			$this->templateDir,
-			self::TEMPLATE_NAME
-		);
-	}
-
-	private function getTemplate() {
-		//
-		// NOTE: Deliberately destroy the per-instance cache every time we render a template in
-		// order to test interactions with the server-local cache.
-		$templateParser = TestingAccessWrapper::newFromObject(
-			new TemplateParser( $this->templateDir )
-		);
-
-		return $templateParser->getTemplate( self::TEMPLATE_NAME );
-	}
-
-	// Tests
-	// =====
+	private const NAME = 'foobar';
+	private const RESULT = "hello world!\n";
+	private const DIR = __DIR__ . '/../../data/templates';
+	private const SECRET_KEY = 'foo';
 
 	protected function setUp() : void {
 		parent::setUp();
 
-		// Data
-		$this->secretKey = 'foo';
 		$this->setMwGlobals( [
-			'wgSecretKey' => $this->secretKey,
+			'wgSecretKey' => self::SECRET_KEY,
 		] );
-		$this->templateDir = __DIR__ . '/../../data/templates';
+	}
 
-		// Stubs
-		$this->cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
+	/**
+	 * @covers ::getTemplate
+	 */
+	public function testGetTemplateNeverCacheWithoutSecretKey() {
+		$this->setMwGlobals( 'wgSecretKey', false );
+
+		// Expect no cache interaction
+		$cache = $this->createMock( BagOStuff::class );
+		$cache->expects( $this->never() )->method( 'get' );
+		$cache->expects( $this->never() )->method( 'set' );
+
+		$tp = new TemplateParser( self::DIR, $cache );
+		$this->assertEquals( self::RESULT, $tp->processTemplate( self::NAME, [] ) );
 	}
 
 	/**
 	 * @covers ::getTemplate
 	 */
 	public function testGetTemplateCachesCompilationResult() {
-		$this->getTemplate();
+		$store = null;
 
-		$value = $this->cache->get( $this->makeKey() );
+		// 1. Expect a cache miss, compile, and cache set
+		$cache1 = $this->createMock( BagOStuff::class );
+		$cache1->expects( $this->once() )->method( 'get' )->willReturn( false );
+		$cache1->expects( $this->once() )->method( 'set' )
+			->will( $this->returnCallback( function ( $key, $val ) use ( &$store ) {
+				$store = [ 'key' => $key, 'val' => $val ];
+			} ) );
 
-		$this->assertIsArray( $value );
-		$this->assertArrayHasKey( 'phpCode', $value );
-		$this->assertArrayHasKey( 'files', $value );
-		$this->assertArrayHasKey( 'filesHash', $value );
+		$tp1 = new TemplateParser( self::DIR, $cache1 );
+		$this->assertEquals( self::RESULT, $tp1->processTemplate( self::NAME, [] ) );
 
-		// ---
-
+		// Inspect cache
 		$this->assertEquals(
-			hash_hmac( 'sha256', $value['phpCode'], $this->secretKey ),
-			$value['integrityHash'],
-			'::getTemplate adds an integrity hash to the compiled template before caching it.'
+			[
+				'phpCode',
+				'files',
+				'filesHash',
+				'integrityHash',
+			],
+			array_keys( $store['val'] ),
+			'keys of the cached array'
 		);
+		$this->assertEquals(
+			FileContentsHasher::getFileContentsHash( [
+				self::DIR . '/' . self::NAME . '.mustache'
+			] ),
+			$store['val']['filesHash'],
+			'content hash for the compiled template'
+		);
+		$this->assertEquals(
+			hash_hmac( 'sha256', $store['val']['phpCode'], self::SECRET_KEY ),
+			$store['val']['integrityHash'],
+			'integrity hash for the compiled template'
+		);
+
+		// 2. Expect a cache hit that passes validation checks, and no compilation
+		$cache2 = $this->createMock( BagOStuff::class );
+		$cache2->expects( $this->once() )->method( 'get' )
+			->will( $this->returnCallback( function ( $key ) use ( &$store ) {
+				return $key === $store['key'] ? $store['val'] : false;
+			} ) );
+		$cache2->expects( $this->never() )->method( 'set' );
+
+		$tp2 = $this->getMockBuilder( TemplateParser::class )
+			->setConstructorArgs( [ self::DIR, $cache2 ] )
+			->setMethods( [ 'compile' ] )
+			->getMock();
+		$tp2->expects( $this->never() )->method( 'compile' );
+
+		$this->assertEquals( self::RESULT, $tp2->processTemplate( self::NAME, [] ) );
 	}
 
 	/**
 	 * @covers ::getTemplate
 	 */
 	public function testGetTemplateInvalidatesCacheWhenFilesHashIsInvalid() {
-		$key = $this->makeKey();
-		$this->cache->set( $key, [
-			'phpCode' => 'foo',
-			'files' => [ 'bar' ],
-			'filesHash' => 'baz',
-		] );
+		$store = null;
 
-		$this->getTemplate();
+		// 1. Expect a cache miss, compile, and cache set
+		$cache1 = $this->createMock( BagOStuff::class );
+		$cache1->expects( $this->once() )->method( 'get' )->willReturn( false );
+		$cache1->expects( $this->once() )->method( 'set' )
+			->will( $this->returnCallback( function ( $key, $val ) use ( &$store ) {
+				$store = [ 'key' => $key, 'val' => $val ];
+			} ) );
 
-		$expectedFiles = [ $this->templateDir . '/' . self::TEMPLATE_NAME . '.mustache' ];
-		$expectedFilesHash = FileContentsHasher::getFileContentsHash( $expectedFiles );
+		$tp1 = new TemplateParser( self::DIR, $cache1 );
+		$this->assertEquals( self::RESULT, $tp1->processTemplate( self::NAME, [] ) );
 
-		$value = $this->cache->get( $this->makeKey() );
+		// Invalidate file hash
+		$store['val']['filesHash'] = 'baz';
 
-		$this->assertNotEquals( 'foo', $value['phpCode'] );
-		$this->assertEquals( $expectedFiles, $value['files'] );
-		$this->assertEquals(
-			$expectedFilesHash,
-			$value['filesHash'],
-			'The cached compiled template was invalidated.'
-		);
+		// 2. Expect a cache hit that fails validation, and a re-compilation
+		$cache2 = $this->createMock( BagOStuff::class );
+		$cache2->expects( $this->once() )->method( 'get' )
+			->will( $this->returnCallback( function ( $key ) use ( &$store ) {
+				return $key === $store['key'] ? $store['val'] : false;
+			} ) );
+		$cache2->expects( $this->once() )->method( 'set' );
+
+		$tp2 = $this->getMockBuilder( TemplateParser::class )
+			->setConstructorArgs( [ self::DIR, $cache2 ] )
+			->setMethods( [ 'compile' ] )
+			->getMock();
+		$tp2->expects( $this->once() )->method( 'compile' )
+			->willReturn( $store['val'] );
+
+		$this->assertEquals( self::RESULT, $tp2->processTemplate( self::NAME, [] ) );
 	}
 
 	/**
 	 * @covers ::getTemplate
 	 */
 	public function testGetTemplateInvalidatesCacheWhenIntegrityHashIsInvalid() {
-		$this->getTemplate();
+		$store = null;
 
-		$key = $this->makeKey();
-		$value = $this->cache->get( $key );
+		// 1. Cache miss, expect a compile and cache set
+		$cache1 = $this->createMock( BagOStuff::class );
+		$cache1->expects( $this->once() )->method( 'get' )->willReturn( false );
+		$cache1->expects( $this->once() )->method( 'set' )
+			->will( $this->returnCallback( function ( $key, $val ) use ( &$store ) {
+				$store = [ 'key' => $key, 'val' => $val ];
+			} ) );
 
-		$value['integrityHash'] = 'foo';
-		$this->cache->set( $key, $value );
+		$tp1 = new TemplateParser( self::DIR, $cache1 );
+		$this->assertEquals( self::RESULT, $tp1->processTemplate( self::NAME, [] ) );
 
-		$this->getTemplate();
+		// Invalidate integrity hash
+		$store['val']['integrityHash'] = 'foo';
 
-		$newValue = $this->cache->get( $key );
+		// 2. Expect a cache hit that fails validation, and a re-compilation
+		$cache2 = $this->createMock( BagOStuff::class );
+		$cache2->expects( $this->once() )->method( 'get' )
+			->will( $this->returnCallback( function ( $key ) use ( &$store ) {
+				return $key === $store['key'] ? $store['val'] : false;
+			} ) );
+		$cache2->expects( $this->once() )->method( 'set' );
 
-		$this->assertNotEquals(
-			$newValue['integrityHash'],
-			$value['integrityHash'],
-			'The cached compiled template was invalidated.'
+		$tp2 = $this->getMockBuilder( TemplateParser::class )
+			->setConstructorArgs( [ self::DIR, $cache2 ] )
+			->setMethods( [ 'compile' ] )
+			->getMock();
+		$tp2->expects( $this->once() )->method( 'compile' )
+			->willReturn( $store['val'] );
+
+		$this->assertEquals( self::RESULT, $tp2->processTemplate( self::NAME, [] ) );
+	}
+
+	/**
+	 * @dataProvider provideProcessTemplate
+	 * @covers TemplateParser
+	 */
+	public function testProcessTemplate( $name, $args, $result, $exception = false ) {
+		$tp = new TemplateParser( self::DIR, new EmptyBagOStuff );
+		if ( $exception ) {
+			$this->expectException( $exception );
+		}
+		$this->assertEquals( $result, $tp->processTemplate( $name, $args ) );
+	}
+
+	public static function provideProcessTemplate() {
+		return [
+			[
+				'foobar',
+				[],
+				"hello world!\n"
+			],
+			[
+				'foobar_args',
+				[
+					'planet' => 'world',
+				],
+				self::RESULT,
+			],
+			[
+				'../foobar',
+				[],
+				false,
+				UnexpectedValueException::class
+			],
+			[
+				"\000../foobar",
+				[],
+				false,
+				UnexpectedValueException::class
+			],
+			[
+				'/',
+				[],
+				false,
+				UnexpectedValueException::class
+			],
+			[
+				// Allegedly this can strip ext in windows.
+				'baz<',
+				[],
+				false,
+				UnexpectedValueException::class
+			],
+			[
+				'\\foo',
+				[],
+				false,
+				UnexpectedValueException::class
+			],
+			[
+				'C:\bar',
+				[],
+				false,
+				UnexpectedValueException::class
+			],
+			[
+				"foo\000bar",
+				[],
+				false,
+				UnexpectedValueException::class
+			],
+			[
+				'nonexistenttemplate',
+				[],
+				false,
+				RuntimeException::class,
+			],
+			[
+				'has_partial',
+				[
+					'planet' => 'world',
+				],
+				"Partial hello world!\n in here\n",
+			],
+			[
+				'bad_partial',
+				[],
+				false,
+				Exception::class,
+			],
+			[
+				'invalid_syntax',
+				[],
+				false,
+				Exception::class
+			],
+			[
+				'parentvars',
+				[
+					'foo' => 'f',
+					'bar' => [
+						[ 'baz' => 'x' ],
+						[ 'baz' => 'y' ]
+					]
+				],
+				"f\n\tf x\n\tf y\n"
+			]
+		];
+	}
+
+	/**
+	 * @covers ::enableRecursivePartials
+	 */
+	public function testEnableRecursivePartials() {
+		$tp = new TemplateParser( self::DIR, new EmptyBagOStuff );
+		$data = [ 'r' => [ 'r' => [ 'r' => [] ] ] ];
+
+		$tp->enableRecursivePartials( true );
+		$this->assertEquals( 'rrr', $tp->processTemplate( 'recurse', $data ) );
+
+		$tp->enableRecursivePartials( false );
+		$this->expectException( Exception::class );
+		$tp->processTemplate( 'recurse', $data );
+	}
+
+	/**
+	 * @covers TemplateParser::compile
+	 */
+	public function testCompileReturnsPHPCodeAndMetadata() {
+		$store = null;
+
+		// 1. Expect a compile and cache set
+		$cache = $this->createMock( BagOStuff::class );
+		$cache->expects( $this->once() )->method( 'get' )->willReturn( false );
+		$cache->expects( $this->once() )->method( 'set' )
+			->will( $this->returnCallback( function ( $key, $val ) use ( &$store ) {
+				$store = [ 'key' => $key, 'val' => $val ];
+			} ) );
+		$tp = new TemplateParser( self::DIR, $cache );
+		$tp->processTemplate( 'has_partial', [] );
+
+		// 2. Inspect cache
+		$expectedFiles = [
+			self::DIR . '/has_partial.mustache',
+			self::DIR . '/foobar_args.mustache',
+		];
+		$this->assertEquals(
+			$expectedFiles,
+			$store['val']['files'],
+			'track all files read during the compilation'
+		);
+		$this->assertEquals(
+			FileContentsHasher::getFileContentsHash( $expectedFiles ),
+			$store['val'][ 'filesHash' ],
+			'hash of all files read during the compilation'
 		);
 	}
 }
