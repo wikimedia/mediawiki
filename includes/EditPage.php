@@ -1334,6 +1334,24 @@ class EditPage {
 										'undo-summary-username-hidden',
 										$undo
 									)->inContentLanguage()->text();
+								// Handle external users (imported revisions)
+								} elseif ( ExternalUserNames::isExternal( $userText ) ) {
+									$userLinkTitle = ExternalUserNames::getUserLinkTitle( $userText );
+									if ( $userLinkTitle ) {
+										$userLink = $userLinkTitle->getPrefixedText();
+										$undoSummary = $this->context->msg(
+											'undo-summary-import',
+											$undo,
+											$userLink,
+											$userText
+										)->inContentLanguage()->text();
+									} else {
+										$undoSummary = $this->context->msg(
+											'undo-summary-import2',
+											$undo,
+											$userText
+										)->inContentLanguage()->text();
+									}
 								} else {
 									$undoMessage = ( $undorev->getUser() === 0 && $wgDisableAnonTalk ) ?
 										'undo-summary-anon' :
