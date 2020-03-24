@@ -54,6 +54,7 @@ abstract class MWLBFactory {
 		'DBuser',
 		'DebugDumpSql',
 		'DebugLogFile',
+		'DebugToolbar',
 		'ExternalServers',
 		'SQLiteDataDir',
 		'SQLMode',
@@ -197,7 +198,10 @@ abstract class MWLBFactory {
 		}
 
 		$flags = $server['flags'] ?? DBO_DEFAULT;
-		if ( $options->get( 'DebugDumpSql' ) || $options->get( 'DebugLogFile' ) ) {
+		if ( $options->get( 'DebugDumpSql' )
+			|| $options->get( 'DebugLogFile' )
+			|| $options->get( 'DebugToolbar' )
+		) {
 			$flags |= DBO_DEBUG;
 		}
 		$server['flags'] = $flags;
