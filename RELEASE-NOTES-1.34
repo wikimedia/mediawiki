@@ -16,6 +16,8 @@ THIS IS NOT A RELEASE YET
 * Update comment about PHP versions supported by The PHP Group.
 * (T247215) Fix output of RecountCategories::doWork().
 * Add check for page existence to view.php maintenance script.
+* (T245149) Fix fetching login token from action=query&meta=tokens on private
+  wikis.
 
 == MediaWiki 1.34.0 ==
 
