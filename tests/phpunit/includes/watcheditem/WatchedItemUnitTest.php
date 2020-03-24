@@ -20,4 +20,16 @@ class WatchedItemUnitTest extends MediaWikiTestCase {
 		$expired = new WatchedItem( $user, $target, null, '20010101000000' );
 		$this->assertTrue( $expired->isExpired() );
 	}
+
+	public function testNormalizeExpiry() {
+		$this->assertNull( WatchedItem::normalizeExpiry( null ) );
+		$this->assertSame(
+			'infinity',
+			WatchedItem::normalizeExpiry( 'indefinite' )
+		);
+		$this->assertSame(
+			'20500101000000',
+			WatchedItem::normalizeExpiry( '2050-01-01 00:00' )
+		);
+	}
 }

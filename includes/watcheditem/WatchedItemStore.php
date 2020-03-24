@@ -897,8 +897,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		array $rows,
 		?string $expiry = null
 	): int {
-		if ( null === $expiry ) {
-			// null expiry means do nothing, 0 rows affected.
+		$expiry = WatchedItem::normalizeExpiry( $expiry );
+
+		if ( !$expiry ) {
+			// Either expiry was invalid or null (shouldn't change), 0 rows affected.
 			return 0;
 		}
 
@@ -929,16 +931,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 			return $dbw->affectedRows();
 		}
-
-		// TODO: Refactor with Special:Userrights::expiryToTimestamp() ?
-		//   Difference here is we need to accept null as being 'no changes'.
-		//   Validation of the expiry should probably happen before this method is called, too.
-		$unix = strtotime( $expiry );
-		if ( !$unix || $unix === -1 ) {
-			// Invalid expiry, 0 rows effected.
-			return 0;
-		}
-		$expiry = wfTimestamp( TS_MW, $unix );
 
 		return $this->updateExpiries( $dbw, $expiry, $cond );
 	}
