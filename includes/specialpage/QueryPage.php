@@ -609,11 +609,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		$user = $this->getUser();
-		if ( !$this->userCanExecute( $user ) ) {
-			$this->displayRestrictionError();
-			return;
-		}
+		$this->checkPermissions();
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -645,6 +641,7 @@ abstract class QueryPage extends SpecialPage {
 				$maxResults = $lang->formatNum( $this->getConfig()->get( 'QueryCacheLimit' ) );
 
 				if ( $ts ) {
+					$user = $this->getUser();
 					$updated = $lang->userTimeAndDate( $ts, $user );
 					$updateddate = $lang->userDate( $ts, $user );
 					$updatedtime = $lang->userTime( $ts, $user );
