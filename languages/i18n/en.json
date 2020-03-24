@@ -831,6 +831,8 @@
 	"undo-nochange": "The edit appears to have already been undone.",
 	"undo-summary": "Undo revision $1 by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])",
 	"undo-summary-anon": "Undo revision $1 by [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Undo imported revision $1 by user [[:$2|$3]]",
+	"undo-summary-import2": "Undo imported revision $1 by user $2",
 	"undo-summary-username-hidden": "Undo revision $1 by a hidden user",
 	"createaccount-hook-aborted": "$1",
 	"viewpagelogs": "View logs for this page",
