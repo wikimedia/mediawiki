@@ -384,5 +384,5 @@ class PopulateContentTables extends Maintenance {
 	}
 }
 
-$maintClass = 'PopulateContentTables';
+$maintClass = PopulateContentTables::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

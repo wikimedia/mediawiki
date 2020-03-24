@@ -484,5 +484,5 @@ class ParserEditTests extends Maintenance {
 	}
 }
 
-$maintClass = 'ParserEditTests';
+$maintClass = ParserEditTests::class;
 require RUN_MAINTENANCE_IF_MAIN;

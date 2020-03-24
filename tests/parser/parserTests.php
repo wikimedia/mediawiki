@@ -196,5 +196,5 @@ class ParserTestsMaintenance extends Maintenance {
 	}
 }
 
-$maintClass = 'ParserTestsMaintenance';
+$maintClass = ParserTestsMaintenance::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

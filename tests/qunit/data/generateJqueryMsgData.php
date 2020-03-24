@@ -144,5 +144,5 @@ class GenerateJqueryMsgData extends Maintenance {
 	}
 }
 
-$maintClass = "GenerateJqueryMsgData";
+$maintClass = GenerateJqueryMsgData::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
