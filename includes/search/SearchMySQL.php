@@ -343,13 +343,16 @@ class SearchMySQL extends SearchDatabase {
 	 */
 	function update( $id, $title, $text ) {
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
-		$dbw->replace( 'searchindex',
-			[ 'si_page' ],
+		$dbw->replace(
+			'searchindex',
+			'si_page',
 			[
 				'si_page' => $id,
 				'si_title' => $this->normalizeText( $title ),
 				'si_text' => $this->normalizeText( $text )
-			], __METHOD__ );
+			],
+			__METHOD__
+		);
 	}
 
 	/**

@@ -442,7 +442,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					'exptime' => $dbExpiry
 				];
 			}
-			$db->replace( $table, [ 'keyname' ], $rows, __METHOD__ );
+			$db->replace( $table, 'keyname', $rows, __METHOD__ );
 		} elseif ( $op === self::$OP_DELETE ) {
 			$db->delete( $table, [ 'keyname' => $tableKeys ], __METHOD__ );
 		} elseif ( $op === self::$OP_TOUCH ) {
