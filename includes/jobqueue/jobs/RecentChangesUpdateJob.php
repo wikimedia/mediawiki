@@ -221,8 +221,9 @@ class RecentChangesUpdateJob extends Job {
 		$asOfTimestamp = min( $eTimestamp, (int)$dbw->trxTimestamp() );
 
 		// Touch the data freshness timestamp
-		$dbw->replace( 'querycache_info',
-			[ 'qci_type' ],
+		$dbw->replace(
+			'querycache_info',
+			'qci_type',
 			[ 'qci_type' => 'activeusers',
 				'qci_timestamp' => $dbw->timestamp( $asOfTimestamp ) ], // not always $now
 			__METHOD__

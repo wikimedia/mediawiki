@@ -258,9 +258,11 @@ class UserRightsProxy {
 				'up_value' => $value,
 			];
 		}
-		$this->db->replace( 'user_properties',
+		$this->db->replace(
+			'user_properties',
 			[ [ 'up_user', 'up_property' ] ],
-			$rows, __METHOD__
+			$rows,
+			__METHOD__
 		);
 		$this->invalidateCache();
 	}
