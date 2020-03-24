@@ -2707,7 +2707,9 @@ return [
 	],
 	'oojs-ui-core.icons' => [
 		'class' => ResourceLoaderOOUIIconPackModule::class,
-		'icons' => [ 'add', 'alert', 'notice', 'error', 'check', 'close', 'info', 'search', 'subtract' ],
+		'icons' => [
+			'add', 'alert', 'infoFilled', 'error', 'check', 'close', 'info', 'search', 'subtract'
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// Additional widgets and layouts module.
