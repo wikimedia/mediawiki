@@ -2,7 +2,7 @@
 
 == MediaWiki 1.34.1 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.34 branch.
 
 === Changes since MediaWiki 1.34.0 ===
 * (T211450) User: better error message when getActorId fails.
@@ -18,6 +18,11 @@ THIS IS NOT A RELEASE YET
 * Add check for page existence to view.php maintenance script.
 * (T245149) Fix fetching login token from action=query&meta=tokens on private
   wikis.
+* (T236509) SECURITY: Fix HTML escaping in UserGroupMembership::getLink().
+* (T232932) SECURITY: User content can redirect the logout button to different
+  URL.
+* (T246602) SECURITY: jquery.makeCollapsible allows applying event handler to
+  any CSS selector.
 
 == MediaWiki 1.34.0 ==
 

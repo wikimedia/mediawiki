@@ -34,9 +34,9 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * This replaces the the $wgVersion global found in earlier versions.
  *
- * @since 1.35
+ * @since 1.34.1
  */
-define( 'MW_VERSION', '1.34.0' );
+define( 'MW_VERSION', '1.34.1' );
 
 # Obsolete aliases
 
