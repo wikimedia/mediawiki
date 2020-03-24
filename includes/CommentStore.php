@@ -52,7 +52,7 @@ class CommentStore {
 
 	/**
 	 * Define fields that use temporary tables for transitional purposes
-	 * @var array Keys are '$key', values are arrays with these possible fields:
+	 * @var array[] Keys are '$key', values are arrays with these possible fields:
 	 *  - table: Temporary table name
 	 *  - pk: Temporary table column referring to the main table's primary key
 	 *  - field: Temporary table column referring comment.comment_id
@@ -60,7 +60,7 @@ class CommentStore {
 	 *  - stage: Migration stage
 	 *  - deprecatedIn: Version when using insertWithTempTable() was deprecated
 	 */
-	protected $tempTables = [
+	private $tempTables = [
 		'rev_comment' => [
 			'table' => 'revision_comment_temp',
 			'pk' => 'revcomment_rev',
@@ -81,13 +81,13 @@ class CommentStore {
 	 * @todo Deprecate and remove once extensions seem unlikely to need to use
 	 *  it for migration anymore.
 	 */
-	protected $stage;
+	private $stage;
 
 	/** @var array[] Cache for `self::getJoin()` */
-	protected $joinCache = [];
+	private $joinCache = [];
 
 	/** @var Language Language to use for comment truncation */
-	protected $lang;
+	private $lang;
 
 	/**
 	 * @param Language $lang Language to use for comment truncation. Defaults
@@ -606,7 +606,7 @@ class CommentStore {
 	 * @param Message $msg
 	 * @return array
 	 */
-	protected static function encodeMessage( Message $msg ) {
+	private static function encodeMessage( Message $msg ) {
 		$key = count( $msg->getKeysToTry() ) > 1 ? $msg->getKeysToTry() : $msg->getKey();
 		$params = $msg->getParams();
 		foreach ( $params as &$param ) {
@@ -625,7 +625,7 @@ class CommentStore {
 	 * @param array $data
 	 * @return Message
 	 */
-	protected static function decodeMessage( $data ) {
+	private static function decodeMessage( $data ) {
 		$key = array_shift( $data );
 		foreach ( $data as &$param ) {
 			if ( is_object( $param ) ) {
