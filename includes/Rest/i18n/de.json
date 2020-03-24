@@ -28,5 +28,10 @@
 	"rest-page-source-type-error": "Der Inhaltstyp der angeforderten Seitenquelle wird nicht unterstützt",
 	"rest-no-revision": "Version für Titel $1 kann nicht abgerufen werden",
 	"rest-media-too-many-links": "Zu viele Medienlinks auf Titel $1 gefunden ($2 erlaubt)",
-	"rest-html-backend-error": "Parsoid-HTML kann nicht abgerufen werden"
+	"rest-html-backend-error": "Parsoid-HTML kann nicht abgerufen werden",
+	"rest-bad-json-body": "Schlechter Hauptteil der Anfrage, muss ein JSON-Objekt sein.",
+	"rest-json-body-parse-error": "Parsen des Hauptteils der Anfrage als JSON fehlgeschlagen: $1",
+	"rest-missing-body-field": "Pflichtfeld „$1“ fehlt im Hauptteil der Anfrage.",
+	"rest-bad-content-model": "Schlechtes Inhaltsmodell: $1",
+	"rest-update-cannot-create-page": "Die Seite „$1“ kann nicht erstellt werden, da sie bereits existiert. Um die bestehende Seite zu aktualisieren, gib die Basis-Versions-ID in der Struktur unter dem Schlüssel „latest“ im Hauptteil der Anfrage an."
 }

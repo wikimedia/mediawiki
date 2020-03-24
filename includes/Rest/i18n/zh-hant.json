@@ -29,5 +29,10 @@
 	"rest-page-source-type-error": "不支援請求頁面來源的內容類型",
 	"rest-no-revision": "無法取回標題$1的修訂",
 	"rest-media-too-many-links": "在標題$1找到太多的媒體連結（允許 $2 個）",
-	"rest-html-backend-error": "無法取得 Parsoid HTML"
+	"rest-html-backend-error": "無法取得 Parsoid HTML",
+	"rest-bad-json-body": "錯誤的請求正文，必須是 JSON 物件。",
+	"rest-json-body-parse-error": "將請求正文解析成 JSON 失敗：$1",
+	"rest-missing-body-field": "請求正文中缺少必要欄位「$1」。",
+	"rest-bad-content-model": "錯誤內容模組：$1",
+	"rest-update-cannot-create-page": "頁面「$1」已存在，因此無法建立。要更新現有的頁面，請在請求正文中「latest」鍵的結構裡提供基本修訂 ID。"
 }

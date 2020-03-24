@@ -1551,7 +1551,7 @@
 	"rcfilters-liveupdates-button-title-off": "نمایش تغییرات جدید همچنان که رخ می‌دهند",
 	"rcfilters-watchlist-markseen-button": "نشانه‌گذاری تمام تغییرات به‌عنوان خوانده‌شده",
 	"rcfilters-watchlist-edit-watchlist-button": "ویرایش فهرست صفحه‌های پی‌گیری‌هایتان",
-	"rcfilters-watchlist-showupdated": "تغییرات صفحاتی که شما از زمانی که تغییر بازدیدشان نکرده‌اید به صورت <strong>پررنگ</strong> و با نشانگر توپر نمایش می‌یابد.",
+	"rcfilters-watchlist-showupdated": "تغییرات صفحاتی که شما از زمانی که تغییر یافتند بازدیدشان نکرده‌اید به صورت <strong>پررنگ</strong> و با نشانگر توپر نمایش می‌یابد.",
 	"rcfilters-preference-label": "استفاده واسط بدون جاوااسکریپت",
 	"rcfilters-preference-help": "نمایش تغییرات اخیر بدون پالایه‌های جستجو یا قابلیت پررنگ کردن.",
 	"rcfilters-watchlist-preference-label": "استفاده واسط بدون جاوااسکریپت",
