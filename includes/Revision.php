@@ -149,12 +149,15 @@ class Revision implements IDBAccessObject {
 	 *      Revision::READ_LATEST  : Select the data from the master (since 1.20)
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
+	 * @deprecated since 1.31 together with the class. Hard deprecated since 1.35
+	 *
 	 * @param int $pageId
 	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
 	 * @return Revision|null
 	 */
 	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$rec = self::getRevisionLookup()->getRevisionByPageId( $pageId, $revId, $flags );
 		return $rec ? new Revision( $rec, $flags ) : null;
 	}

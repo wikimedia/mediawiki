@@ -557,8 +557,11 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function canMerge( $id, LinkTarget $linkTarget, &$logStatus ) {
-		$latestDest = Revision::newFromTitle( $linkTarget, 0, Revision::READ_LATEST );
-		$latestSource = Revision::newFromPageId( $id, 0, Revision::READ_LATEST );
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$latestDest = $revisionLookup->getRevisionByTitle( $linkTarget, 0,
+			IDBAccessObject::READ_LATEST );
+		$latestSource = $revisionLookup->getRevisionByPageId( $id, 0,
+			IDBAccessObject::READ_LATEST );
 		if ( $latestSource->getTimestamp() > $latestDest->getTimestamp() ) {
 			$logStatus = 'cannot merge since source is later';
 			return false;
