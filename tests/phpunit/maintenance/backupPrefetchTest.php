@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use BaseDump;
+use MediaWiki\Storage\SlotRecord;
 use MediaWikiTestCase;
 
 /**
@@ -34,9 +35,10 @@ class BaseDumpTest extends MediaWikiTestCase {
 	 * @param string|null $expected The exepcted result of the prefetch
 	 * @param int $page The page number to prefetch the text for
 	 * @param int $revision The revision number to prefetch the text for
+	 * @param string $slot The role name of the slot to fetch
 	 */
-	private function assertPrefetchEquals( $expected, $page, $revision ) {
-		$this->assertEquals( $expected, $this->dump->prefetch( $page, $revision ),
+	private function assertPrefetchEquals( $expected, $page, $revision, $slot = SlotRecord::MAIN ) {
+		$this->assertEquals( $expected, $this->dump->prefetch( $page, $revision, $slot ),
 			"Prefetch of page $page revision $revision" );
 	}
 
@@ -45,9 +47,21 @@ class BaseDumpTest extends MediaWikiTestCase {
 		$this->dump = new BaseDump( $fname );
 
 		$this->assertPrefetchEquals( "BackupDumperTestP1Text1", 1, 1 );
+		$this->assertPrefetchEquals( "BackupDumperTestP1Text1aux", 1, 1, 'aux' );
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
 		$this->assertPrefetchEquals( "BackupDumperTestP2Text4 some additional Text", 2, 5 );
 		$this->assertPrefetchEquals( "Talk about BackupDumperTestP1 Text1", 4, 8 );
+	}
+
+	public function testSynchronizeSlotMissToRevision() {
+		$fname = $this->setUpPrefetch();
+		$this->dump = new BaseDump( $fname );
+
+		$this->assertPrefetchEquals( "BackupDumperTestP1Text1aux", 1, 1, 'aux' );
+		$this->assertPrefetchEquals( null, 1, 1, 'xyzzy' );
+		$this->assertPrefetchEquals( "BackupDumperTestP2Text1", 2, 2 );
+		$this->assertPrefetchEquals( null, 2, 2, 'aux' );
+		$this->assertPrefetchEquals( "BackupDumperTestP2Text4 some additional Text", 2, 5 );
 	}
 
 	public function testSynchronizeRevisionMissToRevision() {
@@ -153,7 +167,7 @@ class BaseDumpTest extends MediaWikiTestCase {
 
 		// The header of every prefetch file
 		// phpcs:ignore Generic.Files.LineLength
-		$header = '<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.7/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.7/ http://www.mediawiki.org/xml/export-0.7.xsd" version="0.7" xml:lang="en">
+		$header = '<mediawiki>
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>
@@ -197,10 +211,17 @@ class BaseDumpTest extends MediaWikiTestCase {
         <ip>127.0.0.1</ip>
       </contributor>
       <comment>BackupDumperTestP1Summary1</comment>
-      <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
       <text xml:space="preserve">BackupDumperTestP1Text1</text>
       <model name="wikitext">1</model>
       <format mime="text/x-wiki">1</format>
+		<content>
+			<role>aux</role>
+			<origin>2</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text sha1="deadbeef" xml:space="preserve">BackupDumperTestP1Text1aux</text>
+		</content>
+      <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
     </revision>
   </page>
 ';
