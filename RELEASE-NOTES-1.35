@@ -622,6 +622,7 @@ because of Phabricator reports.
   - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
+  - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead
   - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
   - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
   - ::newKnownCurrent - use RevisionStore::getKnownCurrentRevision instead
