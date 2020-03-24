@@ -1575,6 +1575,7 @@
 	"searchsuggest-search": "Hae {{GRAMMAR:elative|{{SITENAME}}}}",
 	"duration-hours": "$1 {{PLURAL:$1|tiima|$1 tiimaa}}",
 	"duration-days": "$1 {{PLURAL:$1|päivä|päivää}}",
+	"expand_templates_preview_fail_html_anon": "<em>Koska {{GRAMMAR:inessive|{{SITENAME}}}} oon käytössä puhas HTML-kooti ja et ole lokannu sisäle, esikattelu oon piilotettu JavaScript-hyökkäyksien torjumiseksi.</em>\n\n<strong>Jos olet oikealla asialla, [[Special:UserLogin|lokkaa sisäle]] ja yritä uuesti.</strong>",
 	"mediastatistics-header-total": "Kaikki fiilit",
 	"mw-widgets-abandonedit-keep": "Jatka mookkaamista",
 	"mw-widgets-dateinput-placeholder-day": "VVVV-KK-PP",

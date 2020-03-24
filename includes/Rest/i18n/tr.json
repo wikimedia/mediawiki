@@ -29,5 +29,10 @@
 	"rest-page-source-type-error": "İstenen sayfa kaynağının içerik türü desteklenmiyor",
 	"rest-no-revision": "$1 başlık için düzeltme alınamadı",
 	"rest-media-too-many-links": "$1 başlığında çok fazla medya bağlantısı bulundu ($2 izin verilir)",
-	"rest-html-backend-error": "Parsoid HTML getirilemedi"
+	"rest-html-backend-error": "Parsoid HTML getirilemedi",
+	"rest-bad-json-body": "Bozuk istek gövdesi, bir JSON nesnesi olmalıdır.",
+	"rest-json-body-parse-error": "İstek gövdesi JSON olarak ayrıştırılamadı: $1",
+	"rest-missing-body-field": "İstek gövdesinde `$1` zorunlu alanı eksik.",
+	"rest-bad-content-model": "Kötü içerik modeli: $1",
+	"rest-update-cannot-create-page": "`$1` sayfası zaten mevcut olduğundan oluşturulamıyor. Mevcut sayfayı güncellemek için, istek gövdesinde `en son` tuşu altındaki yapıda temel düzeltme kimliğini girin."
 }

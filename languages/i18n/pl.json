@@ -2184,6 +2184,7 @@
 	"logeventslist-more-filters": "Pokaż dodatkowe rejestry:",
 	"logeventslist-patrol-log": "Rejestr patrolowania",
 	"logeventslist-tag-log": "Rejestr znaczników",
+	"logeventslist-newusers-log": "Nowi użytkownicy",
 	"all-logs-page": "Wszystkie publiczne operacje",
 	"alllogstext": "Wspólny rejestr wszystkich typów operacji dla {{GRAMMAR:D.lp|{{SITENAME}}}}.\nMożesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytkownika lub tytułu strony.",
 	"logempty": "W rejestrze nie znaleziono pozycji odpowiadających zapytaniu.",
