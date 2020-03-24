@@ -536,6 +536,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::newFromPageId
 	 */
 	public function testNewFromPageId() {
+		$this->hideDeprecated( Revision::class . '::newFromPageId' );
 		$rev = Revision::newFromPageId( $this->testPage->getId() );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
@@ -547,6 +548,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 * @covers Revision::newFromPageId
 	 */
 	public function testNewFromPageIdWithLatestId() {
+		$this->hideDeprecated( Revision::class . '::newFromPageId' );
 		$rev = Revision::newFromPageId(
 			$this->testPage->getId(),
 			$this->testPage->getLatest()
@@ -563,6 +565,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	public function testNewFromPageIdWithNotLatestId() {
 		$content = new WikitextContent( __METHOD__ );
 		$this->testPage->doEditContent( $content, __METHOD__ );
+		$this->hideDeprecated( Revision::class . '::newFromPageId' );
 		$rev = Revision::newFromPageId(
 			$this->testPage->getId(),
 			$this->testPage->getRevision()->getPrevious()->getId()
