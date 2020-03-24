@@ -1,6 +1,6 @@
 == MediaWiki 1.33.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.33 branch.
 
 === Changes since MediaWiki 1.33.2 ===
 * (T245072) mediawiki.language: Rename languageData back to languageNames.
@@ -9,6 +9,9 @@ THIS IS NOT A RELEASE YET
 * Update comment about PHP versions supported by The PHP Group.
 * (T247215) Fix output of RecountCategories::doWork().
 * Add check for page existence to view.php maintenance script.
+* (T236509) SECURITY: Fix HTML escaping in UserGroupMembership::getLink().
+* (T246602) SECURITY: jquery.makeCollapsible allows applying event handler to
+  any CSS selector.
 
 == MediaWiki 1.33.2 ==
 
