@@ -1084,7 +1084,7 @@ class Revision implements IDBAccessObject {
 	 * 50 revisions for the sake of performance.
 	 *
 	 * @since 1.20
-	 * @deprecated since 1.24
+	 * @deprecated since 1.24 (soft), 1.35 (hard)
 	 *
 	 * @param IDatabase|int $db The Database to perform the check on. May be given as a
 	 *        Database object or a database identifier usable with wfGetDB.
@@ -1095,6 +1095,7 @@ class Revision implements IDBAccessObject {
 	 * @return bool True if the given user was the only one to edit since the given timestamp
 	 */
 	public static function userWasLastToEdit( $db, $pageId, $userId, $since ) {
+		wfDeprecated( __METHOD__, '1.24' );
 		if ( is_int( $db ) ) {
 			$db = wfGetDB( $db );
 		}
