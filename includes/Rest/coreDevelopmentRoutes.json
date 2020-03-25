@@ -3,6 +3,7 @@
 		"path": "/coredev/v0/search/page",
 		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
 		"services": [
+			"MainConfig",
 			"PermissionManager",
 			"SearchEngineFactory",
 			"SearchEngineConfig"
@@ -13,6 +14,7 @@
 		"path": "/coredev/v0/search/title",
 		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
 		"services": [
+			"MainConfig",
 			"PermissionManager",
 			"SearchEngineFactory",
 			"SearchEngineConfig"

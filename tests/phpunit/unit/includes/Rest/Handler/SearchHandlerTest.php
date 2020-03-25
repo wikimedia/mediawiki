@@ -51,6 +51,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 			'SearchType' => 'test',
 			'SearchTypeAlternatives' => [],
 			'NamespacesToBeSearchedDefault' => [ NS_MAIN => true ],
+			'SearchSuggestCacheExpiry' => 1200,
 		] );
 
 		/** @var Language|MockObject $language */
@@ -87,6 +88,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 			->willReturn( $this->searchEngine );
 
 		return new SearchHandler(
+			$config,
 			$permissionManager,
 			$searchEngineFactory,
 			$searchEngineConfig
@@ -189,7 +191,14 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$handler = $this->newHandler( $query, $titleResults, $textResults, $completionResults );
 		$config = [ 'mode' => SearchHandler::COMPLETION_MODE ];
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
+		$response = $this->executeHandler( $handler, $request, $config );
+
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
+		$this->assertSame( 'public, max-age=1200', $response->getHeaderLine( 'Cache-Control' ) );
+
+		$data = json_decode( $response->getBody(), true );
+		$this->assertIsArray( $data, 'Body must be a JSON array' );
 
 		$this->assertArrayHasKey( 'pages', $data );
 		$this->assertCount( 2, $data['pages'] );
