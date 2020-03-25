@@ -117,8 +117,8 @@ class UpdateSearchIndex extends Maintenance {
 		$this->output( "Done\n" );
 	}
 
-	public function searchIndexUpdateCallback( $dbw, $row ) {
-		$this->updateSearchIndexForPage( $dbw, $row->rc_cur_id );
+	public function searchIndexUpdateCallback( $row ) {
+		$this->updateSearchIndexForPage( $row->rc_cur_id );
 	}
 }
 

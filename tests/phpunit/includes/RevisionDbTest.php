@@ -175,7 +175,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 		// Delete the article if it already exists
 		if ( $wikipage->exists() ) {
-			$wikipage->doDeleteArticle( "done" );
+			$wikipage->doDeleteArticleReal( "done", $this->getTestSysop()->getUser() );
 		}
 
 		$content = ContentHandler::makeContent( $text, $title, $model );
@@ -458,7 +458,10 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 		$orig = $page->getRevision();
-		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
+		$page->doDeleteArticleReal(
+			'test Revision::newFromArchiveRow',
+			$this->getTestSysop()->getUser()
+		);
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$arQuery = Revision::getArchiveQueryInfo();
@@ -489,7 +492,10 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 		$orig = $page->getRevision();
-		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
+		$page->doDeleteArticleReal(
+			'test Revision::newFromArchiveRow',
+			$this->getTestSysop()->getUser()
+		);
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$arQuery = Revision::getArchiveQueryInfo();
@@ -1124,6 +1130,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::loadFromPageId
 	 */
 	public function testLoadFromPageId() {
+		$this->hideDeprecated( Revision::class . '::loadFromPageId' );
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromPageId( wfGetDB( DB_MASTER ), $this->testPage->getId() )
@@ -1134,6 +1142,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::loadFromPageId
 	 */
 	public function testLoadFromPageIdWithLatestRevId() {
+		$this->hideDeprecated( Revision::class . '::loadFromPageId' );
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromPageId(
@@ -1149,6 +1159,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testLoadFromPageIdWithNotLatestRevId() {
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
+		$this->hideDeprecated( Revision::class . '::loadFromPageId' );
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision()->getPrevious(),
 			Revision::loadFromPageId(

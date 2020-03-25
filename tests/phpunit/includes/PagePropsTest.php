@@ -247,7 +247,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		}
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticle( "done" );
+			$page->doDeleteArticleReal( "done", $this->getTestSysop()->getUser() );
 		}
 
 		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );

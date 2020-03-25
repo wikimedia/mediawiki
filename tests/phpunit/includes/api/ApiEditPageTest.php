@@ -1284,7 +1284,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->editPage( $name, 'Some text' );
 
 		$pageObj = new WikiPage( Title::newFromText( $name ) );
-		$pageObj->doDeleteArticle( 'Bye-bye' );
+		$pageObj->doDeleteArticleReal( 'Bye-bye', $this->getTestSysop()->getUser() );
 
 		$this->assertFalse( $pageObj->exists() );
 
@@ -1325,7 +1325,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->editPage( $name, 'Some text' );
 
 		$pageObj = new WikiPage( Title::newFromText( $name ) );
-		$pageObj->doDeleteArticle( 'Bye-bye' );
+		$pageObj->doDeleteArticleReal( 'Bye-bye', $this->getTestSysop()->getUser() );
 
 		$this->assertFalse( $pageObj->exists() );
 
