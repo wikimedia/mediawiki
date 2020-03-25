@@ -605,7 +605,8 @@ because of Phabricator reports.
   - ArchivedFile::userCan
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
-* Article::doDeleteArticleReal is deprecated. Instead, use
+* Article::doDeleteArticle, Article::doDeleteArticleReal, and
+  WikiPage::doDeleteArticle are all deprecated. Instead, use
   WikiPage::doDeleteArticleReal.
 * Article::getComment is deprecated. Instead, use WikiPage::getComment.
 * LocalFileDeleteBatch was migrated to a new constructor signature with the
