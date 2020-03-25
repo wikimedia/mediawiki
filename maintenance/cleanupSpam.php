@@ -112,7 +112,12 @@ class CleanupSpam extends Maintenance {
 				$count = $dbr->numRows( $res );
 				$this->output( "Found $count articles containing $spec\n" );
 				foreach ( $res as $row ) {
-					$this->cleanupArticle( $row->el_from, $spec, $prot );
+					$this->cleanupArticle(
+						$row->el_from,
+						$spec,
+						$prot,
+						$wgUser
+					);
 				}
 			}
 			if ( $count ) {
@@ -125,9 +130,10 @@ class CleanupSpam extends Maintenance {
 	 * @param int $id
 	 * @param string $domain
 	 * @param string $protocol
+	 * @param User $deleter
 	 * @throws MWException
 	 */
-	private function cleanupArticle( $id, $domain, $protocol ) {
+	private function cleanupArticle( $id, $domain, $protocol, User $deleter ) {
 		$title = Title::newFromID( $id );
 		if ( !$title ) {
 			$this->error( "Internal error: no page for ID $id" );
@@ -167,8 +173,9 @@ class CleanupSpam extends Maintenance {
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "deleting\n" );
-				$page->doDeleteArticle(
-					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text()
+				$page->doDeleteArticleReal(
+					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text(),
+					$deleter
 				);
 			} else {
 				// Didn't find a non-spammy revision, blank the page

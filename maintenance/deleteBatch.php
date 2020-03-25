@@ -109,8 +109,18 @@ class DeleteBatch extends Maintenance {
 			}
 			$page = WikiPage::factory( $title );
 			$error = '';
-			$success = $page->doDeleteArticle( $reason, false, null, null, $error, $user, true );
-			if ( $success ) {
+			$status = $page->doDeleteArticleReal(
+				$reason,
+				$user,
+				false,
+				null,
+				$error,
+				null,
+				[],
+				'delete',
+				true
+			);
+			if ( $status->isOK() ) {
 				$this->output( " Deleted!\n" );
 			} else {
 				$this->output( " FAILED to delete article\n" );

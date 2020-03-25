@@ -63,9 +63,8 @@ class SkinTemplate extends Skin {
 	 *
 	 * @param string $classname
 	 * @return QuickTemplate
-	 * @private
 	 */
-	function setupTemplate( $classname ) {
+	protected function setupTemplate( $classname ) {
 		return new $classname( $this->getConfig() );
 	}
 

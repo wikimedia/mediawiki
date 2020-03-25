@@ -185,19 +185,19 @@ class DeleteEqualMessages extends Maintenance {
 			$title = Title::makeTitle( NS_MEDIAWIKI, $result['title'] );
 			$this->output( "\n* [[$title]]" );
 			$page = WikiPage::factory( $title );
-			$error = ''; // Passed by ref
-			$success = $page->doDeleteArticle( 'No longer required', false, 0, true, $error, $user );
-			if ( !$success ) {
+			$status = $page->doDeleteArticleReal( 'No longer required', $user );
+			if ( !$status->isOK() ) {
 				$this->output( " (Failed!)" );
 			}
 			if ( $result['hasTalk'] && $doDeleteTalk ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI_TALK, $result['title'] );
 				$this->output( "\n* [[$title]]" );
 				$page = WikiPage::factory( $title );
-				$error = ''; // Passed by ref
-				$success = $page->doDeleteArticle( 'Orphaned talk page of no longer required message',
-					false, 0, true, $error, $user );
-				if ( !$success ) {
+				$status = $page->doDeleteArticleReal(
+					'Orphaned talk page of no longer required message',
+					$user
+				);
+				if ( !$status->isOK() ) {
 					$this->output( " (Failed!)" );
 				}
 			}
