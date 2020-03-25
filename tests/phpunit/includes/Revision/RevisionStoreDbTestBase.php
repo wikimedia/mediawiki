@@ -1065,7 +1065,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		/** @var Revision $orig */
 		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
 			->value['revision'];
-		$page->doDeleteArticle( __METHOD__ );
+		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
 
 		$db = wfGetDB( DB_MASTER );
 		$arQuery = $store->getArchiveQueryInfo();
@@ -1095,7 +1095,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		/** @var Revision $orig */
 		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
 			->value['revision'];
-		$page->doDeleteArticle( __METHOD__ );
+		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
 
 		$db = wfGetDB( DB_MASTER );
 		$arQuery = $store->getArchiveQueryInfo();
@@ -1254,7 +1254,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$origRev = $page->doEditContent( new WikitextContent( "Foo" ), __METHOD__ )
 			->value['revision'];
 		$orig = $origRev->getRevisionRecord();
-		$page->doDeleteArticle( __METHOD__ );
+		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
 
 		// re-create page, so we can later load revisions for it
 		$page->doEditContent( new WikitextContent( 'Two' ), __METHOD__ );

@@ -188,7 +188,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			$empty = "";
 			FileDeleteForm::doDelete( $t, $file, $empty, "none", true, $this->user );
 			$page = WikiPage::factory( $t );
-			$page->doDeleteArticle( "testing" );
+			$page->doDeleteArticleReal( "testing", $this->user );
 		}
 		$t = Title::newFromText( $name, NS_FILE );
 

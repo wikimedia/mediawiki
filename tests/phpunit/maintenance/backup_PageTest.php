@@ -100,7 +100,7 @@ class BackupDumperPageTest extends DumpTestCase {
 			list( $this->revId3_2, $this->textId3_2 ) = $this->addRevision( $page,
 				"BackupDumperTestP3Text2", "BackupDumperTestP2Summary2" );
 			$this->pageId3 = $page->getId();
-			$page->doDeleteArticle( "Testing ;)" );
+			$page->doDeleteArticleReal( "Testing ;)", $this->getTestSysop()->getUser() );
 
 			$this->pageTitle4 = Title::newFromText( 'BackupDumperTestP1', $this->talk_namespace );
 			$page = WikiPage::factory( $this->pageTitle4 );

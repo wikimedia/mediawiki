@@ -265,7 +265,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$page = WikiPage::factory( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticle( 'Testing' );
+			$page->doDeleteArticleReal( 'Testing', $this->getTestSysop()->getUser() );
 		}
 
 		return $page;
