@@ -32,7 +32,7 @@
 	"rest-no-revision": "Impossible de récupérer la révision du titre $1",
 	"rest-media-too-many-links": "Trop de liens de média trouvés dans le titre $1 ($2 autorisés)",
 	"rest-html-backend-error": "Impossible de récupérer le HTML de Parsoid",
-	"rest-bad-json-body": "Mauvais corps de requête, ce doit être un objet JSON.",
+	"rest-bad-json-body": "Mauvais corps de requête, doit être un objet JSON.",
 	"rest-json-body-parse-error": "Échec de l’analyse du corps de la requête en JSON : $1",
 	"rest-missing-body-field": "Champ obligatoire `$1` absent du corps de la requête.",
 	"rest-bad-content-model": "Mauvais modèle de contenu : $1",

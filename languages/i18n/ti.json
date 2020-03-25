@@ -258,6 +258,7 @@
 	"prefs-advancedsearchoptions": "ዝለዓሉ ኣማራጽታት",
 	"userrights-reason": "ምኽንያት፥",
 	"group": "ብሓበር:",
+	"group-user": "ተጠቀምቲ",
 	"group-bot": "ቦትታት",
 	"group-sysop": "አማሓደርቲ",
 	"group-sysop-member": "{{GENDER:$1|ኣመሓዳሪ}}",
