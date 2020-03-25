@@ -609,6 +609,7 @@ because of Phabricator reports.
   WikiPage::doDeleteArticle are all deprecated. Instead, use
   WikiPage::doDeleteArticleReal.
 * Article::getComment is deprecated. Instead, use WikiPage::getComment.
+* Article::getCreator is deprecated. Instead, use WikiPage::getCreator.
 * LocalFileDeleteBatch was migrated to a new constructor signature with the
   user as the second parameter. Support for the old signature is hard
   deprecated, and once removed the user parameter will be required. At the
