@@ -945,10 +945,12 @@ class Revision implements IDBAccessObject {
 
 	/**
 	 * Get the base 36 SHA-1 value for a string of text
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 * @param string $text
 	 * @return string
 	 */
 	public static function base36Sha1( $text ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return SlotRecord::base36Sha1( $text );
 	}
 

@@ -628,6 +628,7 @@ because of Phabricator reports.
   use its methods.
 * The Revision class was soft deprecated entirely in 1.31. Specific methods
   have now been individually hard deprecated:
+  - ::base36Sha1 - use SlotRecord::base36Sha1 instead
   - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
