@@ -33,6 +33,7 @@ use MediaWiki\MediaWikiServices;
  * - getStyles / ResourceLoaderModule::saveFileDependencies.
  *
  * @ingroup ResourceLoader
+ * @see $wgResourceModules
  * @since 1.17
  */
 class ResourceLoaderFileModule extends ResourceLoaderModule {
@@ -184,72 +185,13 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Constructs a new module from an options array.
 	 *
-	 * @param array $options List of options; if not given or empty, an empty module will be
-	 *     constructed
+	 * @param array $options See $wgResourceModules for the available options.
 	 * @param string|null $localBasePath Base path to prepend to all local paths in $options.
 	 *     Defaults to $IP
 	 * @param string|null $remoteBasePath Base path to prepend to all remote paths in $options.
 	 *     Defaults to $wgResourceBasePath
-	 *
-	 * Below is a description for the $options array:
 	 * @throws InvalidArgumentException
-	 * @par Construction options:
-	 * @code
-	 *     [
-	 *         // Base path to prepend to all local paths in $options. Defaults to $IP
-	 *         'localBasePath' => [base path],
-	 *         // Base path to prepend to all remote paths in $options. Defaults to $wgResourceBasePath
-	 *         'remoteBasePath' => [base path],
-	 *         // Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath
-	 *         'remoteExtPath' => [base path],
-	 *         // Equivalent of remoteBasePath, but relative to $wgStylePath
-	 *         'remoteSkinPath' => [base path],
-	 *         // Scripts to always include (cannot be set if 'packageFiles' is also set, see below)
-	 *         'scripts' => [file path string or array of file path strings],
-	 *         // Scripts to include in specific language contexts
-	 *         'languageScripts' => [
-	 *             [language code] => [file path string or array of file path strings],
-	 *         ],
-	 *         // Scripts to include in specific skin contexts
-	 *         'skinScripts' => [
-	 *             [skin name] => [file path string or array of file path strings],
-	 *         ],
-	 *         // Scripts to include in debug contexts
-	 *         'debugScripts' => [file path string or array of file path strings],
-	 *         // For package modules: files to be made available for internal require() do not
-	 *         // need to have 'type' defined; it will be inferred from the file name extension
-	 *         // if omitted. 'config' can only be used when 'type' is 'data'; the variables are
-	 *         // resolved with Config::get(). The first entry in 'packageFiles' is always the
-	 *         // module entry point. If 'packageFiles' is set, 'scripts' cannot also be set.
-	 *         'packageFiles' => [
-	 *             [file path string], // or:
-	 *             [ 'name' => [file name], 'file' => [file path], 'type' => 'script'|'data' ], // or:
-	 *             [ 'name' => [name], 'content' => [string], 'type' => 'script'|'data' ], // or:
-	 *             [ 'name' => [name], 'callback' => [callable], 'type' => 'script'|'data' ],
-	 *             [ 'name' => [name], 'config' => [ [config var name], ... ], 'type' => 'data' ],
-	 *             [ 'name' => [name], 'config' => [ [JS name] => [PHP name] ], 'type' => 'data' ],
-	 *         ],
-	 *         // Modules which must be loaded before this module
-	 *         'dependencies' => [module name string or array of module name strings],
-	 *         'templates' => [
-	 *             [template alias with file.ext] => [file path to a template file],
-	 *         ],
-	 *         // Styles to always load
-	 *         'styles' => [file path string or array of file path strings],
-	 *         // Styles to include in specific skin contexts
-	 *         'skinStyles' => [
-	 *             [skin name] => [file path string or array of file path strings],
-	 *         ],
-	 *         // Messages to always load
-	 *         'messages' => [array of message key strings],
-	 *         // Group which this module should be loaded together with
-	 *         'group' => [group name string],
-	 *         // Function that, if it returns true, makes the loader skip this module.
-	 *         // The file must contain valid JavaScript for execution in a private function.
-	 *         // The file must not contain the "function () {" and "}" wrapper though.
-	 *         'skipFunction' => [file path]
-	 *     ]
-	 * @endcode
+	 * @see $wgResourceModules
 	 */
 	public function __construct(
 		array $options = [],

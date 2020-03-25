@@ -3597,14 +3597,284 @@ $wgMangleFlashPolicy = true;
  * Extensions should add their ResourceLoader module definitions
  * to the $wgResourceModules variable.
  *
+ * ## Using resource modules
+ *
+ * By default modules are registered as an instance of ResourceLoaderFileModule.
+ * You find the relevant code in resources/Resources.php. These are the options:
+ *
+ * ### class
+ *
+ * Alternate subclass of ResourceLoaderModule (rather than default ResourceLoaderFileModule).
+ * If this is used, some of the other properties may not apply, and you can specify your
+ * own arguments. Since MediaWiki 1.30, it may now specify a callback function as an
+ * alternative to a plain class name, using the factory key in the module description array.
+ * This allows dependency injection to be used for %ResourceLoader modules.
+ *
+ * Class name of alternate subclass
+ *
  * @par Example:
  * @code
  *   $wgResourceModules['ext.myExtension'] = [
- *      'scripts' => 'myExtension.js',
- *      'styles' => 'myExtension.css',
- *      'dependencies' => [ 'jquery.cookie', 'mediawiki.util' ],
- *      'localBasePath' => __DIR__,
- *      'remoteExtPath' => 'MyExtension',
+ *     'class' => ResourceLoaderWikiModule::class,
+ *   ];
+ * @endcode
+ *
+ * ### debugScripts
+ *
+ * Scripts to include in debug contexts.
+ *
+ * %File path string or array of file path strings.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'debugScripts' => 'resources/MyExtension/debugMyExt.js',
+ *   ];
+ * @endcode
+ *
+ * ### dependencies
+ *
+ * Modules which must be loaded before this module.
+ *
+ * Module name string or array of module name strings.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'dependencies' => [ 'jquery.cookie', 'mediawiki.util' ],
+ *   ];
+ * @endcode
+ *
+ * ### deprecated
+ *
+ * Whether the module is deprecated and usage is discouraged.
+ *
+ * Either a boolean, or a string or an object with key message can be used to customise
+ * deprecation message.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'deprecated' => 'You should use ext.myExtension2 instead',
+ *   ];
+ * @endcode
+ *
+ * ### group
+ *
+ * Group which this module should be loaded together with.
+ *
+ * Group name string.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'group' => 'myExtGroup',
+ *   ];
+ * @endcode
+ *
+ * See also
+ * [Groups](https://www.mediawiki.org/wiki/Special:MyLanguage/ResourceLoader/Features#Groups)
+ * on mediawiki.org.
+ *
+ * ### languageScripts
+ *
+ * Scripts to include in specific language contexts. See the scripts option below for an
+ * example.
+ *
+ * Array keyed by language code containing file path string or array of file path strings.
+ *
+ * ### localBasePath
+ *
+ * Base path to prepend to all local paths in $options. Defaults to $IP.
+ *
+ * Base path string
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'localBasePath' => __DIR__,
+ *   ];
+ * @endcode
+ *
+ * ### messages
+ *
+ * Messages to always load
+ *
+ * Array of message key strings.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'messages' => [
+ *       'searchsuggest-search',
+ *       'searchsuggest-containing',
+ *     ],
+ *   ];
+ * @endcode
+ *
+ * ### noflip
+ *
+ * Whether to skip CSSJanus LTR-to-RTL flipping for this module. Recommended for styles
+ * imported from libraries that already properly handle their RTL styles. Default is false,
+ * meaning CSSJanus will be applied on RTL-mode output.
+ *
+ * Boolean.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'noflip' => true,
+ *   ];
+ * @endcode
+ *
+ * ### packageFiles
+ *
+ * Package files that can be require()d. 'packageFiles' cannot be combined with any of the
+ * scripts options: 'scripts', 'languageScripts' and 'debugScripts'.
+ *
+ * String or array of package file.
+ *
+ * ### remoteBasePath
+ *
+ * Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath.
+ * Cannot be combined with remoteExtPath.
+ *
+ * Base path string
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'remoteBasePath' => '/w/extensions/MyExtension',
+ *   ];
+ * @endcode
+ *
+ * ### remoteExtPath
+ *
+ * Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath. Cannot be
+ * combined with remoteBasePath
+ *
+ * Base path string
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'remoteExtPath' => 'MyExtension',
+ *   ];
+ * @endcode
+ *
+ * ### scripts
+ *
+ * Scripts to always include.
+ *
+ * %File path string or array of file path strings.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'languageScripts' => [
+ *       'bs' => 'extensions/MyExtension/languages/bs.js',
+ *       'fi' => 'extensions/MyExtension/languages/fi.js',
+ *     ],
+ *     'scripts' => [
+ *       'extensions/MyExtension/myExtension.js',
+ *       'extensions/MyExtension/utils.js',
+ *     ],
+ *   ];
+ * @endcode
+ *
+ * ### skinScripts
+ *
+ * Scripts to include in specific skin contexts.
+ *
+ * Array keyed by skin name containing file path string or array of file path strings.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'skinScripts' => [
+ *       'default' => 'extensions/MyExtension/default-skin-overrides.js',
+ *     ],
+ *   ];
+ * @endcode
+ *
+ * ### skinStyles
+ *
+ * Styles to include in specific skin contexts. (mapping of skin name to style(s))
+ * See $wgResourceModuleSkinStyles below for an example.
+ *
+ * Array keyed by skin name containing file path string or array of file path strings.
+ *
+ * ### skipFunction
+ *
+ * Function that returns true when the module should be skipped. Intended for when the
+ * module provides a polyfill that is not required in modern browsers
+ *
+ * Filename of a JavaScript file with a top-level return (it should not be wrapped in a
+ * function).
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'skipFunction' => 'myext-polyfill-needed.js',
+ *   ];
+ * @endcode
+ *
+ * ### styles
+ *
+ * Styles to always include in the module.
+ *
+ * %File path string or list of file path strings. The included file can be automatically
+ * wrapped in a @media query by specifying the file path as the key in an object, with
+ * the value specifying the media query.
+ *
+ * See $wgResourceModuleSkinStyles below for additional examples.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['example'] = [
+ *     'styles' => [
+ *       'foo.css',
+ *       'bar.css',
+ *     ],
+ *   ];
+ *   $wgResourceModules['example.media'] = [
+ *     'styles' => [
+ *       'foo.css' => [ 'media' => 'print' ],
+ *   ];
+ *   $wgResourceModules['example.mixed'] = [
+ *     'styles' => [
+ *       'foo.css',
+ *       'bar.css' => [ 'media' => 'print' ],
+ *     ],
+ *   ];
+ * @endcode
+ *
+ * ### targets
+ *
+ * %ResourceLoader target the module can run on.
+ *
+ * String or array of targets.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'targets' => [ 'desktop', 'mobile' ],
+ *   ];
+ * @endcode
+ *
+ * ### templates
+ *
+ * Templates to be loaded for client-side usage.
+ *
+ * Object or array of templates.
+ *
+ * @par Example:
+ * @code
+ *   $wgResourceModules['ext.myExtension'] = [
+ *     'templates' => [
+ *       'templates/template.html',
+ *       'templates/template2.html',
+ *     ],
  *   ];
  * @endcode
  */
