@@ -175,7 +175,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 		// Delete the article if it already exists
 		if ( $wikipage->exists() ) {
-			$wikipage->doDeleteArticle( "done" );
+			$wikipage->doDeleteArticleReal( "done", $this->getTestSysop()->getUser() );
 		}
 
 		$content = ContentHandler::makeContent( $text, $title, $model );
@@ -458,7 +458,10 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 		$orig = $page->getRevision();
-		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
+		$page->doDeleteArticleReal(
+			'test Revision::newFromArchiveRow',
+			$this->getTestSysop()->getUser()
+		);
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$arQuery = Revision::getArchiveQueryInfo();
@@ -489,7 +492,10 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 		$orig = $page->getRevision();
-		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
+		$page->doDeleteArticleReal(
+			'test Revision::newFromArchiveRow',
+			$this->getTestSysop()->getUser()
+		);
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$arQuery = Revision::getArchiveQueryInfo();

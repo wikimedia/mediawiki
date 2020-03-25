@@ -604,7 +604,10 @@ hello
 		$page = WikiPage::factory( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticle( "clean slate for testing" );
+			$page->doDeleteArticleReal(
+				"clean slate for testing",
+				$this->getTestSysop()->getUser()
+			);
 		}
 
 		$elmosEdit['wpTextbox1'] = 'Elmo\'s text';
@@ -733,7 +736,10 @@ hello
 		$page = WikiPage::factory( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticle( "clean slate for testing" );
+			$page->doDeleteArticleReal(
+				"clean slate for testing",
+				$this->getTestSysop()->getUser()
+			);
 		}
 
 		$baseEdit = [

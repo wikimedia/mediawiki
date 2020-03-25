@@ -100,7 +100,7 @@ more stuff
 			}
 		}
 
-		$page->doDeleteArticle( '' );
+		$page->doDeleteArticleReal( '', $this->getTestSysop()->getUser() );
 	}
 
 	public static function dataGetSection() {

@@ -339,7 +339,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 
 	public function testViewDeletedPage() {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ] );
-		$page->doDeleteArticle( 'Test' );
+		$page->doDeleteArticleReal( 'Test', $this->getTestSysop()->getUser() );
 
 		$article = new Article( $page->getTitle() );
 		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
