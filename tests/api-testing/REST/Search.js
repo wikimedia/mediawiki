@@ -2,8 +2,9 @@ const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'Search', () => {
 	const client = new REST( 'rest.php/coredev/v0' );
-	const pageWithBothTerms = utils.title( 'XXX' );
-	const pageWithOneTerm = utils.title( 'YYY' );
+	const sharedTitleTerm = 'X' + utils.uniq(); // NOTE: must start with upper-case letter
+	const pageWithBothTerms = utils.title( `${sharedTitleTerm}XXX` );
+	const pageWithOneTerm = utils.title( `${sharedTitleTerm}YYY` );
 	const pageWithOwnTitle = utils.title( 'ZZZ' );
 	const searchTerm = utils.uniq();
 	const searchTerm2 = utils.uniq();
@@ -57,7 +58,8 @@ describe( 'Search', () => {
 			const { body } = await client.get( `/search/page?q=${searchTerm2}` );
 			assert.lengthOf( body.pages, 2 );
 			const returnedPages = [ body.pages[ 0 ].title, body.pages[ 1 ].title ];
-			assert.sameMembers( returnedPages, [ pageWithBothTerms, pageWithOneTerm ] );
+			const expectedPages = [ pageWithBothTerms, pageWithOneTerm ];
+			assert.equal( expectedPages.sort().join( '|' ), returnedPages.sort().join( '|' ) );
 		} );
 		it( 'should return only one page when two pages match but limit is 1', async () => {
 			const { body } = await client.get( `/search/page?q=${searchTerm2}&limit=1` );
@@ -73,6 +75,50 @@ describe( 'Search', () => {
 				token: await mindy.token( 'csrf' )
 			}, 'POST' );
 			const { body } = await client.get( `/search/page?q=${deleteTerm}` );
+			assert.lengthOf( body.pages, 0 );
+		} );
+	} );
+
+	describe( 'GET /search/title?q={term}', () => {
+		it( 'should return empty array when search term has no title matches', async () => {
+			const nonExistentTerm = utils.uniq();
+			const { body } = await client.get( `/search/title?q=${nonExistentTerm}` );
+			assert.lengthOf( body.pages, 0 );
+		} );
+		it( 'should not return pages when there is only a text match', async () => {
+			const { body } = await client.get( `/search/title?q=${searchTerm}` );
+			assert.lengthOf( body.pages, 0 );
+		} );
+		it( 'should return array of pages when there is a title match', async () => {
+			const { body } = await client.get( `/search/title?q=${pageWithBothTerms}` );
+			assert.lengthOf( body.pages, 1 );
+			const returnPage = body.pages[ 0 ];
+			assert.nestedProperty( returnPage, 'title' );
+			assert.nestedProperty( returnPage, 'id' );
+			assert.nestedProperty( returnPage, 'key' );
+			assert.nestedProperty( returnPage, 'excerpt' );
+		} );
+		it( 'should return two pages when both pages match', async () => {
+			const { body } = await client.get( `/search/title?q=${sharedTitleTerm}` );
+			assert.lengthOf( body.pages, 2 );
+			const returnedPages = [ body.pages[ 0 ].title, body.pages[ 1 ].title ];
+			const expectedPages = [ pageWithBothTerms, pageWithOneTerm ];
+			assert.equal( expectedPages.sort().join( '|' ), returnedPages.sort().join( '|' ) );
+		} );
+		it( 'should return only one page when two pages match but limit is 1', async () => {
+			const { body } = await client.get( `/search/title?q=${sharedTitleTerm}&limit=1` );
+			assert.lengthOf( body.pages, 1 );
+		} );
+		it( 'should not return deleted page', async () => {
+			const deleteTerm = utils.uniq();
+			const pageToDelete = utils.title( `${deleteTerm}_test_` );
+			const { title } = await alice.edit( pageToDelete, { text: deleteTerm } );
+			await mindy.action( 'delete', {
+				title,
+				summary: 'testing',
+				token: await mindy.token( 'csrf' )
+			}, 'POST' );
+			const { body } = await client.get( `/search/title?q=${deleteTerm}` );
 			assert.lengthOf( body.pages, 0 );
 		} );
 	} );

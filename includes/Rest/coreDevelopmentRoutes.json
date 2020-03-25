@@ -6,7 +6,18 @@
 			"PermissionManager",
 			"SearchEngineFactory",
 			"SearchEngineConfig"
-		]
+		],
+		"mode": "fulltext"
+	},
+	{
+		"path": "/coredev/v0/search/title",
+		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
+		"services": [
+			"PermissionManager",
+			"SearchEngineFactory",
+			"SearchEngineConfig"
+		],
+		"mode": "completion"
 	},
 	{
 		"path": "/coredev/v0/page/{title}/links/language",
