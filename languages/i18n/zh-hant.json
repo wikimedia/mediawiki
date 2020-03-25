@@ -891,6 +891,8 @@
 	"undo-nochange": "此編輯已被還原。",
 	"undo-summary": "取消由[[Special:Contributions/$2|$2]]（[[User talk:$2|討論]]）所作出的修訂$1",
 	"undo-summary-anon": "取消由[[Special:Contributions/$2|$2]]所作出的修訂$1",
+	"undo-summary-import": "回退由[[:$2|$3]]做出的匯入修訂$1",
+	"undo-summary-import2": "回退由$2做出的匯入修訂$1",
 	"undo-summary-username-hidden": "還原隱藏使用者的修訂 $1",
 	"viewpagelogs": "檢視此頁面的日誌",
 	"nohistory": "此頁沒有任何的修訂記錄。",

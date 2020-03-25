@@ -889,6 +889,8 @@
 	"undo-nochange": "Düzeltme zaten geri alınmış.",
 	"undo-summary": "$1 değişikliği [[Special:Contributions/$2|$2]] ([[User talk:$2|mesaj]]) tarafından geri alındı.",
 	"undo-summary-anon": "[[Special:Contributions/$2|$2]] tarafından yapılan değişiklik $1'i geri al",
+	"undo-summary-import": "[[:$2|$3]] kullanıcı tarafından içe aktarılan $1 düzeltmesini geri alındı",
+	"undo-summary-import2": "$1 içe aktarılan düzeltme $2 kullanıcısı tarafından geri alın",
 	"undo-summary-username-hidden": "Gizli bir kullanıcı tarafından $1 sürümü geri alınıyor",
 	"viewpagelogs": "Bu sayfa için günlükleri gör",
 	"nohistory": "Bu sayfanın geçmiş sürümü yok.",
