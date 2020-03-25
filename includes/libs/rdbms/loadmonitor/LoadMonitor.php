@@ -273,7 +273,7 @@ class LoadMonitor implements ILoadMonitor {
 				);
 			} elseif ( $lagTimes[$i] > $this->lagWarnThreshold ) {
 				$this->replLogger->warning(
-					"Server {host} has {lag} seconds of lag (>= {maxlag})",
+					"Server {dbserver} has {lag} seconds of lag (>= {maxlag})",
 					[
 						'dbserver' => $host,
 						'lag' => $lagTimes[$i],

@@ -88,3 +88,9 @@ $wgLocalisationCacheConf['store'] = 'array';
 // Experimental Book Referencing feature (T236255)
 global $wgCiteBookReferencing;
 $wgCiteBookReferencing = true;
+
+// The default value is false, but for development it is useful to set this to the system temp
+// directory by default (T218207)
+$wgCacheDirectory = TempFSFile::getUsableTempDirectory() .
+	DIRECTORY_SEPARATOR .
+	rawurlencode( WikiMap::getCurrentWikiId() );
