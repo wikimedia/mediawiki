@@ -72,8 +72,8 @@ class ArrayDiffFormatter extends DiffFormatter {
 					}
 					break;
 				case 'copy':
-					$oldline += count( $edit->getOrig() );
-					$newline += count( $edit->getOrig() );
+					$oldline += $edit->norig();
+					$newline += $edit->norig();
 			}
 		}
 
