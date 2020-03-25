@@ -565,10 +565,12 @@ class Revision implements IDBAccessObject {
 	 * Set the title of the revision
 	 *
 	 * @deprecated since 1.31, this is now a noop. Pass the Title to the constructor instead.
+	 * hard deprecated since 1.35
 	 *
 	 * @param Title $title
 	 */
 	public function setTitle( $title ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( !$title->equals( $this->getTitle() ) ) {
 			throw new InvalidArgumentException(
 				$title->getPrefixedText()
