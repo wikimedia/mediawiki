@@ -15,6 +15,8 @@ THIS IS NOT A RELEASE YET
 * Added $wgUseSameSiteLegacyCookies, which adds a compatibility hack to
   SameSite=None cookies for browsers which implemented an incompatible draft
   version of the specification.
+* (T246135) Give the "remember me" checkbox a specific CSS class so skins
+  like Minerva can only hide that checkbox.
 
 == MediaWiki 1.34.2 ==
 
