@@ -220,10 +220,12 @@ class Revision implements IDBAccessObject {
 	 * RevisionStore::newMutableRevisionFromArray() can be used as a temporary replacement,
 	 * but should be avoided.
 	 *
+	 * @deprecated since 1.31 together with the Revision class. Hard deprecated since 1.35
 	 * @param object|array $row
 	 * @return Revision
 	 */
 	public static function newFromRow( $row ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( is_array( $row ) ) {
 			$rec = self::getRevisionFactory()->newMutableRevisionFromArray( $row );
 		} else {
