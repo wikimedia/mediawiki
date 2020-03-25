@@ -320,9 +320,7 @@ class ApiPageSet extends ApiBase {
 			$pageFlds['page_is_redirect'] = null;
 		}
 
-		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
-			$pageFlds['page_content_model'] = null;
-		}
+		$pageFlds['page_content_model'] = null;
 
 		if ( $this->getConfig()->get( 'PageLanguageUseDB' ) ) {
 			$pageFlds['page_lang'] = null;

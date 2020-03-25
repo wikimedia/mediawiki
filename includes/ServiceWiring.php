@@ -897,6 +897,23 @@ return [
 
 	'RevisionStoreFactory' => function ( MediaWikiServices $services ) : RevisionStoreFactory {
 		$config = $services->getMainConfig();
+
+		if ( $config->has( 'MultiContentRevisionSchemaMigrationStage' ) ) {
+			if ( $config->get( 'MultiContentRevisionSchemaMigrationStage' ) !== SCHEMA_COMPAT_NEW ) {
+				throw new UnexpectedValueException(
+					'The MultiContentRevisionSchemaMigrationStage setting is no longer supported!'
+				);
+			}
+		}
+
+		if ( $config->has( 'ContentHandlerUseDB' ) ) {
+			if ( $config->get( 'ContentHandlerUseDB' ) !== true ) {
+				throw new UnexpectedValueException(
+					'The ContentHandlerUseDB setting is no longer supported!'
+				);
+			}
+		}
+
 		$store = new RevisionStoreFactory(
 			$services->getDBLoadBalancerFactory(),
 			$services->getBlobStoreFactory(),
@@ -905,9 +922,7 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getCommentStore(),
 			$services->getActorMigration(),
-			$config->get( 'MultiContentRevisionSchemaMigrationStage' ),
 			LoggerFactory::getInstance( 'RevisionStore' ),
-			$config->get( 'ContentHandlerUseDB' ),
 			$services->getContentHandlerFactory()
 		);
 

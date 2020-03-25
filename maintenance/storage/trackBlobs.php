@@ -131,8 +131,6 @@ class TrackBlobs {
 	 *  Scan the revision table for rows stored in the specified clusters
 	 */
 	private function trackRevisions() {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-
 		$dbw = wfGetDB( DB_MASTER );
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -153,22 +151,15 @@ class TrackBlobs {
 			$textClause,
 			'old_flags ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
 		];
-		if ( $wgMultiContentRevisionSchemaMigrationStage & SCHEMA_COMPAT_READ_OLD ) {
-			$tables = [ 'revision', 'text' ];
-			$conds = array_merge( [
-				'rev_text_id=old_id',
-			], $conds );
-		} else {
-			$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
-			$tables = [ 'revision', 'slots', 'content', 'text' ];
-			$conds = array_merge( [
-				'rev_id=slot_revision_id',
-				'slot_role_id=' . $slotRoleStore->getId( SlotRecord::MAIN ),
-				'content_id=slot_content_id',
-				'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
-				'SUBSTRING(content_address, 4)=old_id',
-			], $conds );
-		}
+		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
+		$tables = [ 'revision', 'slots', 'content', 'text' ];
+		$conds = array_merge( [
+			'rev_id=slot_revision_id',
+			'slot_role_id=' . $slotRoleStore->getId( SlotRecord::MAIN ),
+			'content_id=slot_content_id',
+			'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
+			'SUBSTRING(content_address, 4)=old_id',
+		], $conds );
 
 		while ( true ) {
 			$res = $dbr->select( $tables,

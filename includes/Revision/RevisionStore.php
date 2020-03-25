@@ -35,12 +35,10 @@ use DBAccessObjectUtils;
 use Hooks;
 use IDBAccessObject;
 use InvalidArgumentException;
-use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
-use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\UserIdentity;
@@ -92,12 +90,6 @@ class RevisionStore
 	private $dbDomain;
 
 	/**
-	 * @var boolean
-	 * @see $wgContentHandlerUseDB
-	 */
-	private $contentHandlerUseDB = true;
-
-	/**
 	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
@@ -132,9 +124,6 @@ class RevisionStore
 	 */
 	private $slotRoleStore;
 
-	/** @var int An appropriate combination of SCHEMA_COMPAT_XXX flags. */
-	private $mcrMigrationStage;
-
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
@@ -156,7 +145,6 @@ class RevisionStore
 	 * @param NameTableStore $contentModelStore
 	 * @param NameTableStore $slotRoleStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param int $mcrMigrationStage An appropriate combination of SCHEMA_COMPAT_XXX flags
 	 * @param ActorMigration $actorMigration
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
@@ -169,34 +157,11 @@ class RevisionStore
 		NameTableStore $contentModelStore,
 		NameTableStore $slotRoleStore,
 		SlotRoleRegistry $slotRoleRegistry,
-		$mcrMigrationStage,
 		ActorMigration $actorMigration,
 		IContentHandlerFactory $contentHandlerFactory,
 		$dbDomain = false
 	) {
 		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
-		Assert::parameterType( 'integer', $mcrMigrationStage, '$mcrMigrationStage' );
-		Assert::parameter(
-			( $mcrMigrationStage & SCHEMA_COMPAT_READ_BOTH ) !== SCHEMA_COMPAT_READ_BOTH,
-			'$mcrMigrationStage',
-			'Reading from the old and the new schema at the same time is not supported.'
-		);
-		Assert::parameter(
-			( $mcrMigrationStage & SCHEMA_COMPAT_READ_BOTH ) !== 0,
-			'$mcrMigrationStage',
-			'Reading needs to be enabled for the old or the new schema.'
-		);
-		Assert::parameter(
-			( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) !== 0,
-			'$mcrMigrationStage',
-			'Writing needs to be enabled for the new schema.'
-		);
-		Assert::parameter(
-			( $mcrMigrationStage & SCHEMA_COMPAT_READ_OLD ) === 0
-			|| ( $mcrMigrationStage & SCHEMA_COMPAT_WRITE_OLD ) !== 0,
-			'$mcrMigrationStage',
-			'Cannot read the old schema when not also writing it.'
-		);
 
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
@@ -205,34 +170,10 @@ class RevisionStore
 		$this->contentModelStore = $contentModelStore;
 		$this->slotRoleStore = $slotRoleStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
-		$this->mcrMigrationStage = $mcrMigrationStage;
 		$this->actorMigration = $actorMigration;
 		$this->dbDomain = $dbDomain;
 		$this->logger = new NullLogger();
 		$this->contentHandlerFactory = $contentHandlerFactory;
-	}
-
-	/**
-	 * @param int $flags A combination of SCHEMA_COMPAT_XXX flags.
-	 * @return bool True if all the given flags were set in the $mcrMigrationStage
-	 *         parameter passed to the constructor.
-	 */
-	private function hasMcrSchemaFlags( $flags ) {
-		return ( $this->mcrMigrationStage & $flags ) === $flags;
-	}
-
-	/**
-	 * Throws a RevisionAccessException if this RevisionStore is configured for cross-wiki loading
-	 * and still reading from the old DB schema.
-	 *
-	 * @throws RevisionAccessException
-	 */
-	private function assertCrossWikiContentLoadingIsSafe() {
-		if ( $this->dbDomain !== false && $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
-			throw new RevisionAccessException(
-				"Cross-wiki content loading is not supported by the pre-MCR schema"
-			);
-		}
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -244,31 +185,6 @@ class RevisionStore
 	 */
 	public function isReadOnly() {
 		return $this->blobStore->isReadOnly();
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function getContentHandlerUseDB() {
-		return $this->contentHandlerUseDB;
-	}
-
-	/**
-	 * @see $wgContentHandlerUseDB
-	 * @param bool $contentHandlerUseDB
-	 * @throws MWException
-	 */
-	public function setContentHandlerUseDB( $contentHandlerUseDB ) {
-		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW )
-			|| $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW )
-		) {
-			if ( !$contentHandlerUseDB ) {
-				throw new MWException(
-					'Content model must be stored in the database for multi content revision migration.'
-				);
-			}
-		}
-		$this->contentHandlerUseDB = $contentHandlerUseDB;
 	}
 
 	/**
@@ -424,7 +340,6 @@ class RevisionStore
 	 * @param RevisionRecord $rev
 	 * @param IDatabase $dbw (master connection)
 	 *
-	 * @throws InvalidArgumentException
 	 * @return RevisionRecord the new revision record.
 	 */
 	public function insertRevisionOn( RevisionRecord $rev, IDatabase $dbw ) {
@@ -435,26 +350,8 @@ class RevisionStore
 
 		// Make sure the main slot is always provided throughout migration
 		if ( !in_array( SlotRecord::MAIN, $slotRoles ) ) {
-			throw new InvalidArgumentException(
+			throw new IncompleteRevisionException(
 				'main slot must be provided'
-			);
-		}
-
-		// If we are not writing into the new schema, we can't support extra slots.
-		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW )
-			&& $slotRoles !== [ SlotRecord::MAIN ]
-		) {
-			throw new InvalidArgumentException(
-				'Only the main slot is supported when not writing to the MCR enabled schema!'
-			);
-		}
-
-		// As long as we are not reading from the new schema, we don't want to write extra slots.
-		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW )
-			&& $slotRoles !== [ SlotRecord::MAIN ]
-		) {
-			throw new InvalidArgumentException(
-				'Only the main slot is supported when not reading from the MCR enabled schema!'
 			);
 		}
 
@@ -607,14 +504,6 @@ class RevisionStore
 				// This happens when restoring archived revisions.
 
 				$newSlots[$role] = $slot;
-
-				// Write the main slot's text ID to the revision table for backwards compatibility
-				if ( $slot->getRole() === SlotRecord::MAIN
-					&& $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD )
-				) {
-					$blobAddress = $slot->getAddress();
-					$this->updateRevisionTextId( $dbw, $revisionId, $blobAddress );
-				}
 			} else {
 				$newSlots[$role] = $this->insertSlotOn( $dbw, $revisionId, $slot, $title, $blobHints );
 			}
@@ -632,35 +521,6 @@ class RevisionStore
 		);
 
 		return $rev;
-	}
-
-	/**
-	 * @param IDatabase $dbw
-	 * @param int $revisionId
-	 * @param string &$blobAddress (may change!)
-	 *
-	 * @return int the text row id
-	 */
-	private function updateRevisionTextId( IDatabase $dbw, $revisionId, &$blobAddress ) {
-		$textId = $this->blobStore->getTextIdFromAddress( $blobAddress );
-		if ( !$textId ) {
-			throw new LogicException(
-				'Blob address not supported in 1.29 database schema: ' . $blobAddress
-			);
-		}
-
-		// getTextIdFromAddress() is free to insert something into the text table, so $textId
-		// may be a new value, not anything already contained in $blobAddress.
-		$blobAddress = SqlBlobStore::makeAddressFromTextId( $textId );
-
-		$dbw->update(
-			'revision',
-			[ 'rev_text_id' => $textId ],
-			[ 'rev_id' => $revisionId ],
-			__METHOD__
-		);
-
-		return $textId;
 	}
 
 	/**
@@ -686,25 +546,13 @@ class RevisionStore
 
 		$contentId = null;
 
-		// Write the main slot's text ID to the revision table for backwards compatibility
-		if ( $protoSlot->getRole() === SlotRecord::MAIN
-			&& $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD )
-		) {
-			// If SCHEMA_COMPAT_WRITE_NEW is also set, the fake content ID is overwritten
-			// with the real content ID below.
-			$textId = $this->updateRevisionTextId( $dbw, $revisionId, $blobAddress );
-			$contentId = $this->emulateContentId( $textId );
+		if ( $protoSlot->hasContentId() ) {
+			$contentId = $protoSlot->getContentId();
+		} else {
+			$contentId = $this->insertContentRowOn( $protoSlot, $dbw, $blobAddress );
 		}
 
-		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
-			if ( $protoSlot->hasContentId() ) {
-				$contentId = $protoSlot->getContentId();
-			} else {
-				$contentId = $this->insertContentRowOn( $protoSlot, $dbw, $blobAddress );
-			}
-
-			$this->insertSlotRowOn( $protoSlot, $dbw, $revisionId, $contentId );
-		}
+		$this->insertSlotRowOn( $protoSlot, $dbw, $revisionId, $contentId );
 
 		$savedSlot = SlotRecord::newSaved(
 			$revisionId,
@@ -787,12 +635,10 @@ class RevisionStore
 
 				$maxRevId = intval( $dbw->selectField( 'archive', 'MAX(ar_rev_id)', '', __METHOD__ ) );
 				$table = 'archive';
-				if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
-					$maxRevId2 = intval( $dbw->selectField( 'slots', 'MAX(slot_revision_id)', '', __METHOD__ ) );
-					if ( $maxRevId2 >= $maxRevId ) {
-						$maxRevId = $maxRevId2;
-						$table = 'slots';
-					}
+				$maxRevId2 = intval( $dbw->selectField( 'slots', 'MAX(slot_revision_id)', '', __METHOD__ ) );
+				if ( $maxRevId2 >= $maxRevId ) {
+					$maxRevId = $maxRevId2;
+					$table = 'slots';
 				}
 
 				if ( $maxRevId >= $revisionRow['rev_id'] ) {
@@ -830,14 +676,12 @@ class RevisionStore
 					$row1 = $dbw->query(
 						$dbw->selectSQLText( 'archive', [ 'v' => "MAX(ar_rev_id)" ], '', __METHOD__ ) . ' FOR UPDATE'
 					)->fetchObject();
-					if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
-						$row2 = $dbw->query(
-							$dbw->selectSQLText( 'slots', [ 'v' => "MAX(slot_revision_id)" ], '', __METHOD__ )
-								. ' FOR UPDATE'
-						)->fetchObject();
-					} else {
-						$row2 = null;
-					}
+
+					$row2 = $dbw->query(
+						$dbw->selectSQLText( 'slots', [ 'v' => "MAX(slot_revision_id)" ], '', __METHOD__ )
+							. ' FOR UPDATE'
+					)->fetchObject();
+
 					$maxRevId = max(
 						$maxRevId,
 						$row1 ? intval( $row1->v ) : 0,
@@ -889,26 +733,6 @@ class RevisionStore
 		if ( $rev->getId() !== null ) {
 			// Needed to restore revisions with their original ID
 			$revisionRow['rev_id'] = $rev->getId();
-		}
-
-		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD ) ) {
-			// In non MCR mode this IF section will relate to the main slot
-			$mainSlot = $rev->getSlot( SlotRecord::MAIN );
-			$model = $mainSlot->getModel();
-			$format = $mainSlot->getFormat();
-
-			// MCR migration note: rev_content_model and rev_content_format will go away
-			if ( $this->contentHandlerUseDB ) {
-				$this->assertCrossWikiContentLoadingIsSafe();
-
-				$defaultModel = ContentHandler::getDefaultModelFor( $title );
-				$defaultFormat = $this->contentHandlerFactory
-					->getContentHandler( $defaultModel )
-					->getDefaultFormat();
-
-				$revisionRow['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
-				$revisionRow['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
-			}
 		}
 
 		return $revisionRow;
@@ -1006,33 +830,6 @@ class RevisionStore
 
 		if ( !$handler->isSupportedFormat( $format ) ) {
 			throw new MWException( "Can't use format $format with content model $model on $name" );
-		}
-
-		if ( !$this->contentHandlerUseDB ) {
-			// if $wgContentHandlerUseDB is not set,
-			// all revisions must use the default content model and format.
-
-			$this->assertCrossWikiContentLoadingIsSafe();
-
-			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
-			$defaultModel = $roleHandler->getDefaultModel( $title );
-			$defaultFormat = $this->contentHandlerFactory
-				->getContentHandler( $defaultModel )
-				->getDefaultFormat();
-
-			if ( $model != $defaultModel ) {
-				throw new MWException( "Can't save non-default content model with "
-					. "\$wgContentHandlerUseDB disabled: model is $model, "
-					. "default for $name is $defaultModel"
-				);
-			}
-
-			if ( $format != $defaultFormat ) {
-				throw new MWException( "Can't use non-default content format with "
-					. "\$wgContentHandlerUseDB disabled: format is $format, "
-					. "default for $name is $defaultFormat"
-				);
-			}
 		}
 
 		if ( !$content->isValid() ) {
@@ -1164,239 +961,6 @@ class RevisionStore
 
 		// XXX: cache this locally? Glue it to the RevisionRecord?
 		return $rc;
-	}
-
-	/**
-	 * Maps fields of the archive row to corresponding revision rows.
-	 *
-	 * @param object $archiveRow
-	 *
-	 * @return object a revision row object, corresponding to $archiveRow.
-	 */
-	private static function mapArchiveFields( $archiveRow ) {
-		$fieldMap = [
-			// keep with ar prefix:
-			'ar_id'        => 'ar_id',
-
-			// not the same suffix:
-			'ar_page_id'        => 'rev_page',
-			'ar_rev_id'         => 'rev_id',
-
-			// same suffix:
-			'ar_text_id'        => 'rev_text_id',
-			'ar_timestamp'      => 'rev_timestamp',
-			'ar_user_text'      => 'rev_user_text',
-			'ar_user'           => 'rev_user',
-			'ar_actor'          => 'rev_actor',
-			'ar_minor_edit'     => 'rev_minor_edit',
-			'ar_deleted'        => 'rev_deleted',
-			'ar_len'            => 'rev_len',
-			'ar_parent_id'      => 'rev_parent_id',
-			'ar_sha1'           => 'rev_sha1',
-			'ar_comment'        => 'rev_comment',
-			'ar_comment_cid'    => 'rev_comment_cid',
-			'ar_comment_id'     => 'rev_comment_id',
-			'ar_comment_text'   => 'rev_comment_text',
-			'ar_comment_data'   => 'rev_comment_data',
-			'ar_comment_old'    => 'rev_comment_old',
-			'ar_content_format' => 'rev_content_format',
-			'ar_content_model'  => 'rev_content_model',
-		];
-
-		$revRow = (object)[];
-		foreach ( $fieldMap as $arKey => $revKey ) {
-			if ( property_exists( $archiveRow, $arKey ) ) {
-				$revRow->$revKey = $archiveRow->$arKey;
-			}
-		}
-
-		return $revRow;
-	}
-
-	/**
-	 * Constructs a RevisionRecord for the revisions main slot, based on the MW1.29 schema.
-	 *
-	 * @param object|array $row Either a database row or an array
-	 * @param int $queryFlags for callbacks
-	 * @param Title $title
-	 *
-	 * @return SlotRecord The main slot, extracted from the MW 1.29 style row.
-	 * @throws MWException
-	 */
-	private function emulateMainSlot_1_29( $row, $queryFlags, Title $title ) {
-		$mainSlotRow = (object)[
-			'role_name' => SlotRecord::MAIN,
-			'model_name' => null,
-			'slot_revision_id' => null,
-			'slot_content_id' => null,
-			'content_address' => null,
-		];
-
-		$content = null;
-		$blobData = null;
-		$blobFlags = null;
-
-		if ( is_object( $row ) ) {
-			if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) ) {
-				// Don't emulate from a row when using the new schema.
-				// Emulating from an array is still OK.
-				throw new LogicException( 'Can\'t emulate the main slot when using MCR schema.' );
-			}
-
-			// archive row
-			if ( !isset( $row->rev_id ) && ( isset( $row->ar_user ) || isset( $row->ar_actor ) ) ) {
-				$row = $this->mapArchiveFields( $row );
-			}
-
-			if ( isset( $row->rev_text_id ) && $row->rev_text_id > 0 ) {
-				$mainSlotRow->content_address = SqlBlobStore::makeAddressFromTextId(
-					$row->rev_text_id
-				);
-			}
-
-			// This is used by null-revisions
-			$mainSlotRow->slot_origin = isset( $row->slot_origin )
-				? intval( $row->slot_origin )
-				: null;
-
-			if ( isset( $row->old_text ) ) {
-				// this happens when the text-table gets joined directly, in the pre-1.30 schema
-				$blobData = isset( $row->old_text ) ? strval( $row->old_text ) : null;
-				// Check against selects that might have not included old_flags
-				if ( !property_exists( $row, 'old_flags' ) ) {
-					throw new InvalidArgumentException( 'old_flags was not set in $row' );
-				}
-				$blobFlags = $row->old_flags ?? '';
-			}
-
-			$mainSlotRow->slot_revision_id = intval( $row->rev_id );
-
-			$mainSlotRow->content_size = isset( $row->rev_len ) ? intval( $row->rev_len ) : null;
-			$mainSlotRow->content_sha1 = isset( $row->rev_sha1 ) ? strval( $row->rev_sha1 ) : null;
-			$mainSlotRow->model_name = isset( $row->rev_content_model )
-				? strval( $row->rev_content_model )
-				: null;
-			// XXX: in the future, we'll probably always use the default format, and drop content_format
-			$mainSlotRow->format_name = isset( $row->rev_content_format )
-				? strval( $row->rev_content_format )
-				: null;
-
-			if ( isset( $row->rev_text_id ) && intval( $row->rev_text_id ) > 0 ) {
-				// Overwritten below for SCHEMA_COMPAT_WRITE_NEW
-				$mainSlotRow->slot_content_id
-					= $this->emulateContentId( intval( $row->rev_text_id ) );
-			}
-		} elseif ( is_array( $row ) ) {
-			$mainSlotRow->slot_revision_id = isset( $row['id'] ) ? intval( $row['id'] ) : null;
-
-			$mainSlotRow->slot_origin = isset( $row['slot_origin'] )
-				? intval( $row['slot_origin'] )
-				: null;
-			$mainSlotRow->content_address = isset( $row['text_id'] )
-				? SqlBlobStore::makeAddressFromTextId( intval( $row['text_id'] ) )
-				: null;
-			$mainSlotRow->content_size = isset( $row['len'] ) ? intval( $row['len'] ) : null;
-			$mainSlotRow->content_sha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
-
-			$mainSlotRow->model_name = isset( $row['content_model'] )
-				? strval( $row['content_model'] ) : null;  // XXX: must be a string!
-			// XXX: in the future, we'll probably always use the default format, and drop content_format
-			$mainSlotRow->format_name = isset( $row['content_format'] )
-				? strval( $row['content_format'] ) : null;
-			$blobData = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
-			// XXX: If the flags field is not set then $blobFlags should be null so that no
-			// decoding will happen. An empty string will result in default decodings.
-			$blobFlags = isset( $row['flags'] ) ? trim( strval( $row['flags'] ) ) : null;
-
-			// if we have a Content object, override mText and mContentModel
-			if ( !empty( $row['content'] ) ) {
-				if ( !( $row['content'] instanceof Content ) ) {
-					throw new MWException( 'content field must contain a Content object.' );
-				}
-
-				/** @var Content $content */
-				$content = $row['content'];
-				$handler = $content->getContentHandler();
-
-				$mainSlotRow->model_name = $content->getModel();
-
-				// XXX: in the future, we'll probably always use the default format.
-				if ( $mainSlotRow->format_name === null ) {
-					$mainSlotRow->format_name = $handler->getDefaultFormat();
-				}
-			}
-
-			if ( isset( $row['text_id'] ) && intval( $row['text_id'] ) > 0 ) {
-				// Overwritten below for SCHEMA_COMPAT_WRITE_NEW
-				$mainSlotRow->slot_content_id
-					= $this->emulateContentId( intval( $row['text_id'] ) );
-			}
-		} else {
-			throw new MWException( 'Revision constructor passed invalid row format.' );
-		}
-
-		// With the old schema, the content changes with every revision,
-		// except for null-revisions.
-		if ( !isset( $mainSlotRow->slot_origin ) ) {
-			$mainSlotRow->slot_origin = $mainSlotRow->slot_revision_id;
-		}
-
-		if ( $mainSlotRow->model_name === null ) {
-			$mainSlotRow->model_name = function ( SlotRecord $slot ) use ( $title ) {
-				$this->assertCrossWikiContentLoadingIsSafe();
-
-				return $this->slotRoleRegistry->getRoleHandler( $slot->getRole() )
-					->getDefaultModel( $title );
-			};
-		}
-
-		if ( !$content ) {
-			// XXX: We should perhaps fail if $blobData is null and $mainSlotRow->content_address
-			// is missing, but "empty revisions" with no content are used in some edge cases.
-
-			$content = function ( SlotRecord $slot )
-				use ( $blobData, $blobFlags, $queryFlags, $mainSlotRow )
-			{
-				return $this->loadSlotContent(
-					$slot,
-					$blobData,
-					$blobFlags,
-					$mainSlotRow->format_name,
-					$queryFlags
-				);
-			};
-		}
-
-		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
-			// NOTE: this callback will be looped through RevisionSlot::newInherited(), allowing
-			// the inherited slot to have the same content_id as the original slot. In that case,
-			// $slot will be the inherited slot, while $mainSlotRow still refers to the original slot.
-			$mainSlotRow->slot_content_id =
-				function ( SlotRecord $slot ) use ( $queryFlags, $mainSlotRow ) {
-					$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
-					return $this->findSlotContentId( $db, $mainSlotRow->slot_revision_id, SlotRecord::MAIN );
-				};
-		}
-
-		return new SlotRecord( $mainSlotRow, $content );
-	}
-
-	/**
-	 * Provides a content ID to use with emulated SlotRecords in SCHEMA_COMPAT_OLD mode,
-	 * based on the revision's text ID (rev_text_id or ar_text_id, respectively).
-	 * Note that in SCHEMA_COMPAT_WRITE_BOTH, a callback to findSlotContentId() should be used
-	 * instead, since in that mode, some revision rows may already have a real content ID,
-	 * while other's don't - and for the ones that don't, we should indicate that it
-	 * is missing and cause SlotRecords::hasContentId() to return false.
-	 *
-	 * @param int $textId
-	 * @return int The emulated content ID
-	 */
-	private function emulateContentId( $textId ) {
-		// Return a negative number to ensure the ID is distinct from any real content IDs
-		// that will be assigned in SCHEMA_COMPAT_WRITE_NEW mode and read in SCHEMA_COMPAT_READ_NEW
-		// mode.
-		return -$textId;
 	}
 
 	/**
@@ -1663,11 +1227,6 @@ class RevisionStore
 				}
 			}
 
-			if ( !isset( $row->content_id ) && isset( $row->rev_text_id ) ) {
-				$row->slot_content_id
-					= $this->emulateContentId( intval( $row->rev_text_id ) );
-			}
-
 			// We may have a fake blob_data field from getSlotRowsForBatch(), use it!
 			if ( isset( $row->blob_data ) ) {
 				$slotContents[$row->content_address] = $row->blob_data;
@@ -1722,10 +1281,6 @@ class RevisionStore
 			$slots = new RevisionSlots(
 				$this->constructSlotRecords( $revId, $slotRows, $queryFlags, $title )
 			);
-		} elseif ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW ) ) {
-			$mainSlot = $this->emulateMainSlot_1_29( $revisionRow, $queryFlags, $title );
-			// @phan-suppress-next-line PhanTypeInvalidCallableArraySize false positive
-			$slots = new RevisionSlots( [ SlotRecord::MAIN => $mainSlot ] );
 		} else {
 			// XXX: do we need the same kind of caching here
 			// that getKnownCurrentRevision uses (if $revId == page_latest?)
@@ -1988,7 +1543,7 @@ class RevisionStore
 			}
 		}
 
-		if ( !isset( $options['slots'] ) || $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
+		if ( !isset( $options['slots'] ) ) {
 			$result->setResult( true,
 				array_map( function ( $row ) use ( $queryFlags, $titlesByPageId, $result ) {
 					try {
@@ -2081,7 +1636,6 @@ class RevisionStore
 		array $options = [],
 		$queryFlags = 0
 	) {
-		$readNew = $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_NEW );
 		$result = new StatusValue();
 
 		$revIds = [];
@@ -2101,7 +1655,7 @@ class RevisionStore
 		$revIdField = $slotQueryInfo['keys']['rev_id'];
 		$slotQueryConds = [ $revIdField => $revIds ];
 
-		if ( $readNew && isset( $options['slots'] ) && is_array( $options['slots'] ) ) {
+		if ( isset( $options['slots'] ) && is_array( $options['slots'] ) ) {
 			if ( empty( $options['slots'] ) ) {
 				// Degenerate case: return no slots for each revision.
 				$result->setResult( true, array_fill_keys( $revIds, [] ) );
@@ -2270,16 +1824,7 @@ class RevisionStore
 		}
 
 		if ( !empty( $fields['text_id'] ) ) {
-			if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
-				throw new MWException( "The text_id field is only available in the pre-MCR schema" );
-			}
-
-			if ( !empty( $fields['content'] ) ) {
-				throw new MWException(
-					"Text already stored in external store (id {$fields['text_id']}), " .
-					"can't specify content object"
-				);
-			}
+			throw new MWException( 'The text_id field can not be used in MediaWiki 1.35 and later' );
 		}
 
 		if (
@@ -2303,16 +1848,34 @@ class RevisionStore
 		}
 
 		$revision = new MutableRevisionRecord( $title, $this->dbDomain );
-		$this->initializeMutableRevisionFromArray( $revision, $fields );
 
-		if ( isset( $fields['content'] ) && is_array( $fields['content'] ) ) {
-			foreach ( $fields['content'] as $role => $content ) {
-				$revision->setContent( $role, $content );
+		/** @var Content[] $slotContent */
+		if ( isset( $fields['content'] ) ) {
+			if ( is_array( $fields['content'] ) ) {
+				$slotContent = $fields['content'];
+			} else {
+				$slotContent = [ SlotRecord::MAIN => $fields['content'] ];
 			}
+		} elseif ( isset( $fields['text'] ) ) {
+			if ( isset( $fields['content_model'] ) ) {
+				$model = $fields['content_model'];
+			} else {
+				$slotRoleHandler = $this->slotRoleRegistry->getRoleHandler( SlotRecord::MAIN );
+				$model = $slotRoleHandler->getDefaultModel( $title );
+			}
+
+			$contentHandler = ContentHandler::getForModelID( $model );
+			$content = $contentHandler->unserializeContent( $fields['text'] );
+			$slotContent = [ SlotRecord::MAIN => $content ];
 		} else {
-			$mainSlot = $this->emulateMainSlot_1_29( $fields, $queryFlags, $title );
-			$revision->setSlot( $mainSlot );
+			$slotContent = [];
 		}
+
+		foreach ( $slotContent as $role => $content ) {
+			$revision->setContent( $role, $content );
+		}
+
+		$this->initializeMutableRevisionFromArray( $revision, $fields );
 
 		return $revision;
 	}
@@ -2374,8 +1937,11 @@ class RevisionStore
 		if ( isset( $fields['sha1'] ) ) {
 			$record->setSha1( $fields['sha1'] );
 		}
+
 		if ( isset( $fields['size'] ) ) {
 			$record->setSize( intval( $fields['size'] ) );
+		} elseif ( isset( $fields['len'] ) ) {
+			$record->setSize( intval( $fields['len'] ) );
 		}
 
 		if ( isset( $fields['minor_edit'] ) ) {
@@ -2610,42 +2176,6 @@ class RevisionStore
 	}
 
 	/**
-	 * Finds the ID of a content row for a given revision and slot role.
-	 * This can be used to re-use content rows even while the content ID
-	 * is still missing from SlotRecords, when writing to both the old and
-	 * the new schema during MCR schema migration.
-	 *
-	 * @todo remove after MCR schema migration is complete.
-	 *
-	 * @param IDatabase $db
-	 * @param int $revId
-	 * @param string $role
-	 *
-	 * @return int|null
-	 */
-	private function findSlotContentId( IDatabase $db, $revId, $role ) {
-		if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_NEW ) ) {
-			return null;
-		}
-
-		try {
-			$roleId = $this->slotRoleStore->getId( $role );
-			$conditions = [
-				'slot_revision_id' => $revId,
-				'slot_role_id' => $roleId,
-			];
-
-			$contentId = $db->selectField( 'slots', 'slot_content_id', $conditions, __METHOD__ );
-
-			return $contentId ?: null;
-		} catch ( NameTableAccessException $ex ) {
-			// If the role is missing from the slot_roles table,
-			// the corresponding row in slots cannot exist.
-			return null;
-		}
-	}
-
-	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new RevisionStoreRecord object.
 	 *
@@ -2659,9 +2189,6 @@ class RevisionStore
 	 * @param array $options Any combination of the following strings
 	 *  - 'page': Join with the page table, and select fields to identify the page
 	 *  - 'user': Join with the user table, and select the user name
-	 *  - 'text': Join with the text table, and select fields to load page text. This
-	 *    option is deprecated in MW 1.32 when the MCR migration flag SCHEMA_COMPAT_WRITE_NEW
-	 *    is set, and disallowed when SCHEMA_COMPAT_READ_OLD is not set.
 	 *
 	 * @return array With three keys:
 	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
@@ -2698,15 +2225,6 @@ class RevisionStore
 		$ret['fields'] = array_merge( $ret['fields'], $actorQuery['fields'] );
 		$ret['joins'] = array_merge( $ret['joins'], $actorQuery['joins'] );
 
-		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
-			$ret['fields'][] = 'rev_text_id';
-
-			if ( $this->contentHandlerUseDB ) {
-				$ret['fields'][] = 'rev_content_format';
-				$ret['fields'][] = 'rev_content_model';
-			}
-		}
-
 		if ( in_array( 'page', $options, true ) ) {
 			$ret['tables'][] = 'page';
 			$ret['fields'] = array_merge( $ret['fields'], [
@@ -2730,21 +2248,9 @@ class RevisionStore
 		}
 
 		if ( in_array( 'text', $options, true ) ) {
-			if ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_WRITE_OLD ) ) {
-				throw new InvalidArgumentException( 'text table can no longer be joined directly' );
-			} elseif ( !$this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
-				// NOTE: even when this class is set to not read from the old schema, callers
-				// should still be able to join against the text table, as long as we are still
-				// writing the old schema for compatibility.
-				wfDeprecated( __METHOD__ . ' with `text` option', '1.32' );
-			}
-
-			$ret['tables'][] = 'text';
-			$ret['fields'] = array_merge( $ret['fields'], [
-				'old_text',
-				'old_flags'
-			] );
-			$ret['joins']['text'] = [ 'JOIN', [ 'rev_text_id=old_id' ] ];
+			throw new InvalidArgumentException(
+				'The `text` option is no longer supported in MediaWiki 1.35 and later.'
+			);
 		}
 
 		return $ret;
@@ -2778,73 +2284,45 @@ class RevisionStore
 			'keys'  => [],
 		];
 
-		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
-			$db = $this->getDBConnectionRef( DB_REPLICA );
-			$ret['keys']['rev_id'] = 'rev_id';
+		$ret['keys']['rev_id'] = 'slot_revision_id';
+		$ret['keys']['role_id'] = 'slot_role_id';
 
-			$ret['tables'][] = 'revision';
+		$ret['tables'][] = 'slots';
+		$ret['fields'] = array_merge( $ret['fields'], [
+			'slot_revision_id',
+			'slot_content_id',
+			'slot_origin',
+			'slot_role_id',
+		] );
 
-			$ret['fields']['slot_revision_id'] = 'rev_id';
-			$ret['fields']['slot_content_id'] = 'NULL';
-			$ret['fields']['slot_origin'] = 'rev_id';
-			$ret['fields']['role_name'] = $db->addQuotes( SlotRecord::MAIN );
+		if ( in_array( 'role', $options, true ) ) {
+			// Use left join to attach role name, so we still find the revision row even
+			// if the role name is missing. This triggers a more obvious failure mode.
+			$ret['tables'][] = 'slot_roles';
+			$ret['joins']['slot_roles'] = [ 'LEFT JOIN', [ 'slot_role_id = role_id' ] ];
+			$ret['fields'][] = 'role_name';
+		}
 
-			if ( in_array( 'content', $options, true ) ) {
-				$ret['fields']['content_size'] = 'rev_len';
-				$ret['fields']['content_sha1'] = 'rev_sha1';
-				$ret['fields']['content_address']
-					= $db->buildConcat( [ $db->addQuotes( 'tt:' ), 'rev_text_id' ] );
+		if ( in_array( 'content', $options, true ) ) {
+			$ret['keys']['model_id'] = 'content_model';
 
-				// Allow the content_id field to be emulated later
-				$ret['fields']['rev_text_id'] = 'rev_text_id';
-
-				if ( $this->contentHandlerUseDB ) {
-					$ret['fields']['model_name'] = 'rev_content_model';
-				} else {
-					$ret['fields']['model_name'] = 'NULL';
-				}
-			}
-		} else {
-			$ret['keys']['rev_id'] = 'slot_revision_id';
-			$ret['keys']['role_id'] = 'slot_role_id';
-
-			$ret['tables'][] = 'slots';
+			$ret['tables'][] = 'content';
 			$ret['fields'] = array_merge( $ret['fields'], [
-				'slot_revision_id',
-				'slot_content_id',
-				'slot_origin',
-				'slot_role_id',
+				'content_size',
+				'content_sha1',
+				'content_address',
+				'content_model',
 			] );
+			$ret['joins']['content'] = [ 'JOIN', [ 'slot_content_id = content_id' ] ];
 
-			if ( in_array( 'role', $options, true ) ) {
-				// Use left join to attach role name, so we still find the revision row even
-				// if the role name is missing. This triggers a more obvious failure mode.
-				$ret['tables'][] = 'slot_roles';
-				$ret['joins']['slot_roles'] = [ 'LEFT JOIN', [ 'slot_role_id = role_id' ] ];
-				$ret['fields'][] = 'role_name';
+			if ( in_array( 'model', $options, true ) ) {
+				// Use left join to attach model name, so we still find the revision row even
+				// if the model name is missing. This triggers a more obvious failure mode.
+				$ret['tables'][] = 'content_models';
+				$ret['joins']['content_models'] = [ 'LEFT JOIN', [ 'content_model = model_id' ] ];
+				$ret['fields'][] = 'model_name';
 			}
 
-			if ( in_array( 'content', $options, true ) ) {
-				$ret['keys']['model_id'] = 'content_model';
-
-				$ret['tables'][] = 'content';
-				$ret['fields'] = array_merge( $ret['fields'], [
-					'content_size',
-					'content_sha1',
-					'content_address',
-					'content_model',
-				] );
-				$ret['joins']['content'] = [ 'JOIN', [ 'slot_content_id = content_id' ] ];
-
-				if ( in_array( 'model', $options, true ) ) {
-					// Use left join to attach model name, so we still find the revision row even
-					// if the model name is missing. This triggers a more obvious failure mode.
-					$ret['tables'][] = 'content_models';
-					$ret['joins']['content_models'] = [ 'LEFT JOIN', [ 'content_model = model_id' ] ];
-					$ret['fields'][] = 'model_name';
-				}
-
-			}
 		}
 
 		return $ret;
@@ -2883,15 +2361,6 @@ class RevisionStore
 				] + $commentQuery['fields'] + $actorQuery['fields'],
 			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
 		];
-
-		if ( $this->hasMcrSchemaFlags( SCHEMA_COMPAT_READ_OLD ) ) {
-			$ret['fields'][] = 'ar_text_id';
-
-			if ( $this->contentHandlerUseDB ) {
-				$ret['fields'][] = 'ar_content_format';
-				$ret['fields'][] = 'ar_content_model';
-			}
-		}
 
 		return $ret;
 	}

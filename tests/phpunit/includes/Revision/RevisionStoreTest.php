@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Revision;
 
 use CommentStore;
-use InvalidArgumentException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
@@ -11,14 +10,12 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiTestCase;
-use MWException;
 use PHPUnit\Framework\MockObject\MockObject;
 use WANObjectCache;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * Tests RevisionStore
@@ -37,10 +34,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 		$blobStore = null,
 		$WANObjectCache = null
 	) {
-		global $wgMultiContentRevisionSchemaMigrationStage;
-		// the migration stage should be irrelevant, since all the tests that interact with
-		// the database are in RevisionStoreDbTest, not here.
-
 		return new RevisionStore(
 			$loadBalancer ?: $this->getMockLoadBalancer(),
 			$blobStore ?: $this->getMockSqlBlobStore(),
@@ -49,7 +42,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
-			$wgMultiContentRevisionSchemaMigrationStage,
 			MediaWikiServices::getInstance()->getActorMigration(),
 			$this->getMockContentHandlerFactory()
 		);
@@ -108,49 +100,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 	private function getHashWANObjectCache() {
 		return new WANObjectCache( [ 'cache' => new \HashBagOStuff() ] );
-	}
-
-	public function provideSetContentHandlerUseDB() {
-		return [
-			// ContentHandlerUseDB can be true or false pre migration.
-			// During and after migration it can not be false...
-			[ false, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, true ],
-			[ false, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, true ],
-			[ false, SCHEMA_COMPAT_NEW, true ],
-			// ...but it can be true.
-			[ true, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, false ],
-			[ true, SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, false ],
-			[ true, SCHEMA_COMPAT_NEW, false ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideSetContentHandlerUseDB
-	 * @covers \MediaWiki\Revision\RevisionStore::getContentHandlerUseDB
-	 * @covers \MediaWiki\Revision\RevisionStore::setContentHandlerUseDB
-	 */
-	public function testSetContentHandlerUseDB( $contentHandlerDb, $migrationMode, $expectedFail ) {
-		if ( $expectedFail ) {
-			$this->expectException( MWException::class );
-		}
-
-		$nameTables = MediaWikiServices::getInstance()->getNameTableStoreFactory();
-
-		$store = new RevisionStore(
-			$this->getMockLoadBalancer(),
-			$this->getMockSqlBlobStore(),
-			$this->getHashWANObjectCache(),
-			$this->getMockCommentStore(),
-			$nameTables->getContentModels(),
-			$nameTables->getSlotRoles(),
-			$this->getMockSlotRoleRegistry(),
-			$migrationMode,
-			MediaWikiServices::getInstance()->getActorMigration(),
-			$this->getMockContentHandlerFactory()
-		);
-
-		$store->setContentHandlerUseDB( $contentHandlerDb );
-		$this->assertSame( $contentHandlerDb, $store->getContentHandlerUseDB() );
 	}
 
 	/**
@@ -432,61 +381,6 @@ class RevisionStoreTest extends MediaWikiTestCase {
 
 		$this->expectException( RevisionAccessException::class );
 		$store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
-	}
-
-	public function provideMigrationConstruction() {
-		return [
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, false ],
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, false ],
-			[ SCHEMA_COMPAT_NEW, false ],
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_BOTH, true ],
-			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_BOTH, true ],
-			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_BOTH, true ],
-		];
-	}
-
-	/**
-	 * @covers \MediaWiki\Revision\RevisionStore::__construct
-	 * @dataProvider provideMigrationConstruction
-	 */
-	public function testMigrationConstruction( $migration, $expectException ) {
-		if ( $expectException ) {
-			$this->expectException( InvalidArgumentException::class );
-		}
-		$loadBalancer = $this->getMockLoadBalancer();
-		$blobStore = $this->getMockSqlBlobStore();
-		$cache = $this->getHashWANObjectCache();
-		$commentStore = $this->getMockCommentStore();
-		$services = MediaWikiServices::getInstance();
-		$nameTables = $services->getNameTableStoreFactory();
-		$contentModelStore = $nameTables->getContentModels();
-		$slotRoleStore = $nameTables->getSlotRoles();
-		$slotRoleRegistry = $services->getSlotRoleRegistry();
-		$contentHandlerFactory = $this->getMockContentHandlerFactory();
-
-		$store = new RevisionStore(
-			$loadBalancer,
-			$blobStore,
-			$cache,
-			$commentStore,
-			$nameTables->getContentModels(),
-			$nameTables->getSlotRoles(),
-			$slotRoleRegistry,
-			$migration,
-			$services->getActorMigration(),
-			$contentHandlerFactory
-		);
-
-		if ( !$expectException ) {
-			$store = TestingAccessWrapper::newFromObject( $store );
-			$this->assertSame( $loadBalancer, $store->loadBalancer );
-			$this->assertSame( $blobStore, $store->blobStore );
-			$this->assertSame( $cache, $store->cache );
-			$this->assertSame( $commentStore, $store->commentStore );
-			$this->assertSame( $contentModelStore, $store->contentModelStore );
-			$this->assertSame( $slotRoleStore, $store->slotRoleStore );
-			$this->assertSame( $migration, $store->mcrMigrationStage );
-		}
 	}
 
 }

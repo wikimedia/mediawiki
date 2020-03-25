@@ -9,6 +9,7 @@ use Exception;
 use HashBagOStuff;
 use IDBAccessObject;
 use InvalidArgumentException;
+use JavaScriptContent;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\IncompleteRevisionException;
@@ -56,23 +57,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	private $testPage;
 
-	/**
-	 * @return int
-	 */
-	abstract protected function getMcrMigrationStage();
-
-	/**
-	 * @return bool
-	 */
-	protected function getContentHandlerUseDB() {
-		return true;
-	}
-
-	/**
-	 * @return string[]
-	 */
-	abstract protected function getMcrTablesToReset();
-
 	public function setUp() : void {
 		parent::setUp();
 		$this->tablesUsed[] = 'archive';
@@ -81,17 +65,11 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'comment';
 		$this->tablesUsed[] = 'actor';
 		$this->tablesUsed[] = 'recentchanges';
-
-		$this->tablesUsed += $this->getMcrTablesToReset();
-
-		$this->setMwGlobals( [
-			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
-			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
-		] );
-	}
-
-	protected function addCoreDBData() {
-		// Blank out. This would fail with a modified schema, and we don't need it.
+		$this->tablesUsed[] = 'revision';
+		$this->tablesUsed[] = 'content';
+		$this->tablesUsed[] = 'slots';
+		$this->tablesUsed[] = 'content_models';
+		$this->tablesUsed[] = 'slot_roles';
 	}
 
 	/**
@@ -246,7 +224,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getContentModelStore(),
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
-			$this->getMcrMigrationStage(),
 			MediaWikiServices::getInstance()->getActorMigration(),
 			MediaWikiServices::getInstance()->getContentHandlerFactory(),
 			$dbDomain
@@ -526,7 +503,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
-			new InvalidArgumentException( 'main slot must be provided' )
+			new IncompleteRevisionException( 'main slot must be provided' )
 		];
 		yield 'no main slot' => [
 			[
@@ -535,7 +512,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				'timestamp' => '20171117010101',
 				'user' => true,
 			],
-			new InvalidArgumentException( 'main slot must be provided' )
+			new IncompleteRevisionException( 'main slot must be provided' )
 		];
 		yield 'no timestamp' => [
 			[
@@ -619,7 +596,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideNewNullRevision
 	 * @covers \MediaWiki\Revision\RevisionStore::newNullRevision
-	 * @covers \MediaWiki\Revision\RevisionStore::findSlotContentId
 	 */
 	public function testNewNullRevision( Title $title, $revDetails, $comment, $minor = false ) {
 		$user = TestUserRegistry::getMutableTestUser( __METHOD__ )->getUser();
@@ -923,13 +899,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		}
 
 		if ( $revMain->hasContentId() ) {
-			// XXX: the content ID value is ill-defined when SCHEMA_COMPAT_WRITE_BOTH and
-			//      SCHEMA_COMPAT_READ_OLD is set, since revision insertion will report the
-			//      content ID used with the new schema, while loading the revision from the
-			//      old schema will report an emulated ID.
-			if ( $this->getMcrMigrationStage() & SCHEMA_COMPAT_READ_NEW ) {
-				$this->assertSame( $revMain->getContentId(), $recMain->getContentId(), 'getContentId' );
-			}
+			$this->assertSame( $revMain->getContentId(), $recMain->getContentId(), 'getContentId' );
 		}
 	}
 
@@ -961,7 +931,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$slotRows = $this->db->select(
 			$info['tables'],
 			$info['fields'],
-			$this->getSlotRevisionConditions( $rev->getId() ),
+			 [ 'slot_revision_id' => $rev->getId() ],
 			__METHOD__,
 			[],
 			$info['joins']
@@ -976,15 +946,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertRevisionRecordMatchesRevision( $rev, $record );
 		$this->assertSame( $text, $rev->getContent()->serialize() );
 	}
-
-	/**
-	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
-	 * revision.
-	 *
-	 * @param int $revId
-	 * @return array
-	 */
-	abstract protected function getSlotRevisionConditions( $revId );
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRow
@@ -1697,6 +1658,23 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				'text' => ( new WikitextContent( 'Söme Content' ) )->serialize(),
 			]
 		];
+		yield 'Basic array, serialized text and model' => [
+			[
+				'id' => 2,
+				'page' => 1,
+				'timestamp' => '20171017114835',
+				'user_text' => '111.0.1.2',
+				'user' => 0,
+				'minor_edit' => false,
+				'deleted' => 0,
+				'len' => 46,
+				'parent_id' => 1,
+				'sha1' => 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z',
+				'comment' => 'Goat Comment!',
+				'text' => ( new JavaScriptContent( 'alert("test")' ) )->serialize(),
+				'content_model' => CONTENT_MODEL_JAVASCRIPT
+			]
+		];
 		yield 'Basic array, serialized text, utf-8 flags' => [
 			[
 				'id' => 2,
@@ -1791,12 +1769,19 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		} elseif ( isset( $array['text'] ) ) {
 			$this->assertSame( $array['text'],
 				$result->getSlot( SlotRecord::MAIN )->getContent()->serialize() );
-		} elseif ( isset( $array['content_format'] ) ) {
-			$this->assertSame(
-				$array['content_format'],
-				$result->getSlot( SlotRecord::MAIN )->getContent()->getDefaultFormat()
-			);
-			$this->assertSame( $array['content_model'], $result->getSlot( SlotRecord::MAIN )->getModel() );
+
+			if ( isset( $array['content_format'] ) ) {
+				$this->assertSame(
+					$array['content_format'],
+					$result->getSlot( SlotRecord::MAIN )->getContent()->getDefaultFormat()
+				);
+			}
+			if ( isset( $array['content_model'] ) ) {
+				$this->assertSame(
+					$array['content_model'],
+					$result->getSlot( SlotRecord::MAIN )->getModel()
+				);
+			}
 		}
 	}
 

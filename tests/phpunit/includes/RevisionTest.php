@@ -17,14 +17,6 @@ use Wikimedia\Rdbms\LoadBalancer;
  */
 class RevisionTest extends MediaWikiTestCase {
 
-	public function setUp() : void {
-		parent::setUp();
-		$this->setMwGlobals(
-			'wgMultiContentRevisionSchemaMigrationStage',
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
-		);
-	}
-
 	public function provideConstructFromArray() {
 		yield 'with text' => [
 			[
@@ -162,7 +154,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'content' => new WikitextContent( 'GOAT' ),
 				'text_id' => 'someid',
 			],
-			new MWException( 'The text_id field is only available in the pre-MCR schema' )
+			new MWException( 'The text_id field can not be used in MediaWiki 1.35 and later' )
 		];
 
 		yield 'with bad content object (class)' => [
@@ -353,76 +345,6 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $rev->getParentId() );
 	}
 
-	public function provideGetRevisionText() {
-		yield 'Generic test' => [
-			'This is a goat of revision text.',
-			(object)[
-				'old_flags' => '',
-				'old_text' => 'This is a goat of revision text.',
-			],
-		];
-		yield 'garbage in, garbage out' => [
-			false,
-			false,
-		];
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 * @dataProvider provideGetRevisionText
-	 */
-	public function testGetRevisionText( $expected, $rowData, $prefix = 'old_', $wiki = false ) {
-		$this->hideDeprecated( 'Revision::getRevisionText' );
-		$this->assertEquals(
-			$expected,
-			Revision::getRevisionText( $rowData, $prefix, $wiki ) );
-	}
-
-	public function provideGetRevisionTextWithZlibExtension() {
-		yield 'Generic gzip test' => [
-			'This is a small goat of revision text.',
-			(object)[
-				'old_flags' => 'gzip',
-				'old_text' => gzdeflate( 'This is a small goat of revision text.' ),
-			],
-		];
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 * @dataProvider provideGetRevisionTextWithZlibExtension
-	 */
-	public function testGetRevisionWithZlibExtension( $expected, $rowData ) {
-		$this->checkPHPExtension( 'zlib' );
-		$this->testGetRevisionText( $expected, $rowData );
-	}
-
-	public function provideGetRevisionTextWithZlibExtension_badData() {
-		yield 'Generic gzip test' => [
-			'This is a small goat of revision text.',
-			(object)[
-				'old_flags' => 'gzip',
-				'old_text' => 'DEAD BEEF',
-			],
-		];
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 * @dataProvider provideGetRevisionTextWithZlibExtension_badData
-	 */
-	public function testGetRevisionWithZlibExtension_badData( $expected, $rowData ) {
-		$this->checkPHPExtension( 'zlib' );
-		Wikimedia\suppressWarnings();
-		$this->hideDeprecated( 'Revision::getRevisionText' );
-		$this->assertFalse(
-			Revision::getRevisionText(
-				(object)$rowData
-			)
-		);
-		Wikimedia\suppressWarnings( true );
-	}
-
 	private function getWANObjectCache() {
 		return new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 	}
@@ -458,101 +380,6 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @return RevisionStore
-	 */
-	private function getRevisionStore() {
-		/** @var LoadBalancer $lb */
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$cache = $this->getWANObjectCache();
-
-		$blobStore = new RevisionStore(
-			$lb,
-			$this->getBlobStore(),
-			$cache,
-			MediaWikiServices::getInstance()->getCommentStore(),
-			MediaWikiServices::getInstance()->getContentModelStore(),
-			MediaWikiServices::getInstance()->getSlotRoleStore(),
-			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
-			MIGRATION_OLD,
-			MediaWikiServices::getInstance()->getActorMigration(),
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
-		);
-		return $blobStore;
-	}
-
-	public function provideGetRevisionTextWithLegacyEncoding() {
-		yield 'Utf8Native' => [
-			"Wiki est l'\xc3\xa9cole superieur !",
-			'iso-8859-1',
-			(object)[
-				'old_flags' => 'utf-8',
-				'old_text' => "Wiki est l'\xc3\xa9cole superieur !",
-			]
-		];
-		yield 'Utf8Legacy' => [
-			"Wiki est l'\xc3\xa9cole superieur !",
-			'iso-8859-1',
-			(object)[
-				'old_flags' => '',
-				'old_text' => "Wiki est l'\xe9cole superieur !",
-			]
-		];
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 * @dataProvider provideGetRevisionTextWithLegacyEncoding
-	 */
-	public function testGetRevisionWithLegacyEncoding( $expected, $encoding, $rowData ) {
-		$blobStore = $this->getBlobStore();
-		$blobStore->setLegacyEncoding( $encoding );
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
-
-		$this->testGetRevisionText( $expected, $rowData );
-	}
-
-	public function provideGetRevisionTextWithGzipAndLegacyEncoding() {
-		/**
-		 * WARNING!
-		 * Do not set the external flag!
-		 * Otherwise, getRevisionText will hit the live database (if ExternalStore is enabled)!
-		 */
-		yield 'Utf8NativeGzip' => [
-			"Wiki est l'\xc3\xa9cole superieur !",
-			'iso-8859-1',
-			(object)[
-				'old_flags' => 'gzip,utf-8',
-				'old_text' => gzdeflate( "Wiki est l'\xc3\xa9cole superieur !" ),
-			]
-		];
-		yield 'Utf8LegacyGzip' => [
-			"Wiki est l'\xc3\xa9cole superieur !",
-			'iso-8859-1',
-			(object)[
-				'old_flags' => 'gzip',
-				'old_text' => gzdeflate( "Wiki est l'\xe9cole superieur !" ),
-			]
-		];
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 * @dataProvider provideGetRevisionTextWithGzipAndLegacyEncoding
-	 */
-	public function testGetRevisionWithGzipAndLegacyEncoding( $expected, $encoding, $rowData ) {
-		$this->checkPHPExtension( 'zlib' );
-
-		$blobStore = $this->getBlobStore();
-		$blobStore->setLegacyEncoding( $encoding );
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
-
-		$this->testGetRevisionText( $expected, $rowData );
-	}
-
-	/**
 	 * @covers Revision::compressRevisionText
 	 */
 	public function testCompressRevisionTextUtf8() {
@@ -566,7 +393,8 @@ class RevisionTest extends MediaWikiTestCase {
 			$row->old_text, "Direct check" );
 		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ), "getRevisionText" );
+			Revision::decompressRevisionText( $row->old_text, explode( ',', $row->old_flags ) ),
+			"decompressRevisionText" );
 	}
 
 	/**
@@ -589,7 +417,8 @@ class RevisionTest extends MediaWikiTestCase {
 			gzinflate( $row->old_text ), "Direct check" );
 		$this->hideDeprecated( 'Revision::getRevisionText' );
 		$this->assertEquals( "Wiki est l'\xc3\xa9cole superieur !",
-			Revision::getRevisionText( $row ), "getRevisionText" );
+			Revision::decompressRevisionText( $row->old_text, explode( ',', $row->old_flags ) ),
+			"decompressRevisionText" );
 	}
 
 	/**
@@ -733,129 +562,6 @@ class RevisionTest extends MediaWikiTestCase {
 			$expected,
 			Revision::decompressRevisionText( $text, $flags )
 		);
-	}
-
-	public function provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal() {
-		yield 'Just text' => [
-			(object)[ 'old_text' => 'SomeText' ],
-			'old_',
-			'SomeText'
-		];
-		// gzip string below generated with gzdeflate( 'AAAABBAAA' )
-		yield 'gzip text' => [
-			(object)[
-				'old_text' => "sttttr\002\022\000",
-				'old_flags' => 'gzip'
-			],
-			'old_',
-			'AAAABBAAA'
-		];
-		yield 'gzip text and different prefix' => [
-			(object)[
-				'jojo_text' => "sttttr\002\022\000",
-				'jojo_flags' => 'gzip'
-			],
-			'jojo_',
-			'AAAABBAAA'
-		];
-	}
-
-	/**
-	 * @dataProvider provideTestGetRevisionText_returnsDecompressedTextFieldWhenNotExternal
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionText_returnsDecompressedTextFieldWhenNotExternal(
-		$row,
-		$prefix,
-		$expected
-	) {
-		$this->hideDeprecated( 'Revision::getRevisionText' );
-		$this->assertSame( $expected, Revision::getRevisionText( $row, $prefix ) );
-	}
-
-	public function provideTestGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts() {
-		yield 'Just some text' => [ 'someNonUrlText' ];
-		yield 'No second URL part' => [ 'someProtocol://' ];
-	}
-
-	/**
-	 * @dataProvider provideTestGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionText_external_returnsFalseWhenNotEnoughUrlParts(
-		$text
-	) {
-		Wikimedia\suppressWarnings();
-		$this->hideDeprecated( 'Revision::getRevisionText' );
-		$this->assertFalse(
-			Revision::getRevisionText(
-				(object)[
-					'old_text' => $text,
-					'old_flags' => 'external',
-				]
-			)
-		);
-		Wikimedia\suppressWarnings( true );
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionText_external_noOldId() {
-		$this->setService(
-			'ExternalStoreFactory',
-			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
-		);
-		$this->hideDeprecated( 'Revision::getRevisionText' );
-		$this->assertSame(
-			'AAAABBAAA',
-			Revision::getRevisionText(
-				(object)[
-					'old_text' => 'ForTesting://cluster1/12345',
-					'old_flags' => 'external,gzip',
-				]
-			)
-		);
-	}
-
-	/**
-	 * @covers Revision::getRevisionText
-	 */
-	public function testGetRevisionText_external_oldId() {
-		$cache = $this->getWANObjectCache();
-		$this->setService( 'MainWANObjectCache', $cache );
-
-		$this->setService(
-			'ExternalStoreFactory',
-			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
-		);
-
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$access = MediaWikiServices::getInstance()->getExternalStoreAccess();
-
-		$blobStore = new SqlBlobStore( $lb, $access, $cache );
-		$this->setService( 'BlobStoreFactory', $this->mockBlobStoreFactory( $blobStore ) );
-
-		$this->hideDeprecated( 'Revision::getRevisionText' );
-		$this->assertSame(
-			'AAAABBAAA',
-			Revision::getRevisionText(
-				(object)[
-					'old_text' => 'ForTesting://cluster1/12345',
-					'old_flags' => 'external,gzip',
-					'old_id' => '7777',
-				]
-			)
-		);
-
-		$cacheKey = $cache->makeGlobalKey(
-			'SqlBlobStore-blob',
-			$lb->getLocalDomainID(),
-			'tt:7777'
-		);
-		$this->assertSame( 'AAAABBAAA', $cache->get( $cacheKey ) );
 	}
 
 	/**

@@ -44,11 +44,6 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		if ( !$this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
-			$this->output( "\$wgContentHandlerUseDB is not enabled, nothing to do.\n" );
-			return true;
-		}
-
 		$dbr = $this->getDB( DB_REPLICA );
 		$namespaces = [
 			NS_MEDIAWIKI => $dbr->buildLike( $dbr->anyString(), '.json' ),

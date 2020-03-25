@@ -85,7 +85,6 @@ class MovePageTest extends MediaWikiTestCase {
 				$params['options'] ?? [],
 				[
 					'CategoryCollation' => 'uppercase',
-					'ContentHandlerUseDB' => true,
 				]
 			),
 			$mockLB,
@@ -195,7 +194,6 @@ class MovePageTest extends MediaWikiTestCase {
 	}
 
 	public static function provideIsValidMove() {
-		global $wgMultiContentRevisionSchemaMigrationStage;
 		$ret = [
 			'Self move' => [
 				'Existent',
@@ -309,15 +307,6 @@ class MovePageTest extends MediaWikiTestCase {
 				[ [ 'imagetypemismatch' ] ],
 			],
 		];
-		if ( $wgMultiContentRevisionSchemaMigrationStage === SCHEMA_COMPAT_OLD ) {
-			// ContentHandlerUseDB = false only works with the old schema
-			$ret['Move to different content model (ContentHandlerUseDB false)'] = [
-				'MediaWiki:Existent.js',
-				'MediaWiki:Nonexistent',
-				[ [ 'bad-target-model', 'JavaScript', 'wikitext' ] ],
-				[ 'ContentHandlerUseDB' => false ],
-			];
-		}
 		return $ret;
 	}
 

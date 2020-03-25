@@ -8601,18 +8601,12 @@ $wgNamespaceContentModels = [];
 $wgContentHandlerTextFallback = 'ignore';
 
 /**
- * Set to false to disable use of the database fields introduced by the ContentHandler facility.
- * This way, the ContentHandler facility can be used without any additional information in the
- * database. A page's content model is then derived solely from the page's title. This however
- * means that changing a page's default model (e.g. using $wgNamespaceContentModels) will break
- * the page and/or make the content inaccessible. This also means that pages can not be moved to
- * a title that would default to a different content model.
- *
- * Overall, with $wgContentHandlerUseDB = false, no database updates are needed, but content
- * handling is less robust and less flexible.
+ * Unused in MediaWiki core.
  *
  * @since 1.21
- * @deprecated since 1.34, and should always be set true.
+ * @deprecated since 1.34
+ * @note Must always be true, in case an extension reads it.
+ * @todo remove once no extensions read it any more.
  */
 $wgContentHandlerUseDB = true;
 
@@ -8975,6 +8969,8 @@ $wgInterwikiPrefixDisplayTypes = [];
  * @see Commit: https://gerrit.wikimedia.org/r/#/c/378724/
  *
  * @since 1.32
+ * @deprecated Since 1.35, the only accepted value is is SCHEMA_COMPAT_NEW.
+ *             No longer functions as a setting. Will be removed in 1.36.
  * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */
 $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_NEW;

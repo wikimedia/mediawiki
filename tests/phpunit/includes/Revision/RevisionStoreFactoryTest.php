@@ -35,9 +35,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$this->getHashWANObjectCache(),
 			$this->getMockCommentStore(),
 			ActorMigration::newMigration(),
-			MIGRATION_NEW,
 			new NullLogger(),
-			true,
 			$this->getContentHandlerFactory()
 		);
 		$this->assertTrue( true );
@@ -53,11 +51,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideWikiIds
 	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStore
 	 */
-	public function testGetRevisionStore(
-		$dbDomain,
-		$mcrMigrationStage = MIGRATION_NEW,
-		$contentHandlerUseDb = true
-	) {
+	public function testGetRevisionStore( $dbDomain ) {
 		$lbFactory = $this->getMockLoadBalancerFactory();
 		$blobStoreFactory = $this->getMockBlobStoreFactory();
 		$nameTableStoreFactory = $this->getNameTableStoreFactory();
@@ -76,9 +70,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$cache,
 			$commentStore,
 			$actorMigration,
-			$mcrMigrationStage,
 			$logger,
-			$contentHandlerUseDb,
 			$contentHandlerFactory
 		);
 
@@ -94,9 +86,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 		// ensure all other required services are correctly set
 		$this->assertSame( $cache, $wrapper->cache );
 		$this->assertSame( $commentStore, $wrapper->commentStore );
-		$this->assertSame( $mcrMigrationStage, $wrapper->mcrMigrationStage );
 		$this->assertSame( $actorMigration, $wrapper->actorMigration );
-		$this->assertSame( $contentHandlerUseDb, $store->getContentHandlerUseDB() );
 
 		$this->assertInstanceOf( ILoadBalancer::class, $wrapper->loadBalancer );
 		$this->assertInstanceOf( BlobStore::class, $wrapper->blobStore );

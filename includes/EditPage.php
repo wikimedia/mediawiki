@@ -187,6 +187,8 @@ class EditPage {
 	/**
 	 * Status: when changing the content model is disallowed due to
 	 * $wgContentHandlerUseDB being false
+	 *
+	 * @deprecated since 1.35, meaningless since $wgContentHandlerUseDB has been removed.
 	 */
 	public const AS_CANNOT_USE_CUSTOM_MODEL = 241;
 
@@ -1740,6 +1742,11 @@ class EditPage {
 				return false;
 
 			case self::AS_CANNOT_USE_CUSTOM_MODEL:
+				wfDeprecated(
+					__METHOD__ . ' with $status->value == AS_CANNOT_USE_CUSTOM_MODEL',
+					'1.35'
+				);
+				// ...and fall through to next case
 			case self::AS_PARSE_ERROR:
 			case self::AS_UNICODE_NOT_SUPPORTED:
 				$out->wrapWikiTextAsInterface( 'error',
@@ -2092,11 +2099,7 @@ ERROR;
 
 		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
-			if ( !$config->get( 'ContentHandlerUseDB' ) ) {
-				$status->fatal( 'editpage-cannot-use-custom-model' );
-				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
-				return $status;
-			} elseif ( !$this->permManager->userHasRight( $user, 'editcontentmodel' ) ) {
+			if ( !$this->permManager->userHasRight( $user, 'editcontentmodel' ) ) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
 				return $status;
 			}

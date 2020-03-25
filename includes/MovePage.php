@@ -218,18 +218,9 @@ class MovePage {
 		}
 
 		// Content model checks
-		if ( !$this->options->get( 'ContentHandlerUseDB' ) &&
-			$this->oldTitle->getContentModel() !== $this->newTitle->getContentModel() ) {
-			// can't move a page if that would change the page's content model
-			$status->fatal(
-				'bad-target-model',
-				ContentHandler::getLocalizedName( $this->oldTitle->getContentModel() ),
-				ContentHandler::getLocalizedName( $this->newTitle->getContentModel() )
-			);
-		} elseif (
-			!$this->contentHandlerFactory
-				->getContentHandler( $this->oldTitle->getContentModel() )
-				->canBeUsedOn( $this->newTitle )
+		if ( !$this->contentHandlerFactory
+			->getContentHandler( $this->oldTitle->getContentModel() )
+			->canBeUsedOn( $this->newTitle )
 		) {
 			$status->fatal(
 				'content-not-allowed-here',
