@@ -574,6 +574,15 @@ abstract class RevisionRecord {
 			&& $this->mSlots->getSlotRoles() !== [];
 	}
 
+	/**
+	 * Checks whether the revision record is a stored current revision.
+	 * @since 1.35
+	 * @return bool
+	 */
+	public function isCurrent() {
+		return false;
+	}
+
 }
 
 /**
