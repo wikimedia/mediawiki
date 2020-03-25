@@ -2506,12 +2506,14 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::getCreator
 	 * @param int $audience
 	 * @param User|null $user
 	 * @return User|null
 	 */
 	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getCreator( $audience, $user );
 	}
 
