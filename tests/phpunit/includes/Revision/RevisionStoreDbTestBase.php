@@ -1310,6 +1310,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			->value['revision'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
 		$result = $store->loadRevisionFromPageId( wfGetDB( DB_MASTER ), $page->getId() );
 		$this->assertRevisionRecordMatchesRevision( $rev, $result );
 	}

@@ -29,6 +29,7 @@ define( 'MW_ENTRY_POINT', 'cli' );
 require_once __DIR__ . '/../includes/PHPVersionCheck.php';
 wfEntryPointCheck( 'text' );
 
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -1506,7 +1507,7 @@ abstract class Maintenance {
 				$lockTime = time();
 				$this->output( "\n" );
 			}
-			call_user_func( $callback, $dbw, $row );
+			call_user_func( $callback, $row );
 		}
 
 		# Unlock searchindex
@@ -1519,20 +1520,21 @@ abstract class Maintenance {
 
 	/**
 	 * Update the searchindex table for a given pageid
-	 * @param IDatabase $dbw A database write handle
 	 * @param int $pageId The page ID to update.
 	 * @return null|string
 	 */
-	public function updateSearchIndexForPage( $dbw, $pageId ) {
+	public function updateSearchIndexForPage( int $pageId ) {
 		// Get current revision
-		$rev = Revision::loadFromPageId( $dbw, $pageId );
+		$rev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByPageId( $pageId, 0, IDBAccessObject::READ_LATEST );
 		$title = null;
 		if ( $rev ) {
-			$titleObj = $rev->getTitle();
+			$titleObj = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
 			$title = $titleObj->getPrefixedDBkey();
 			$this->output( "$title..." );
 			# Update searchindex
-			$u = new SearchUpdate( $pageId, $titleObj, $rev->getContent() );
+			$u = new SearchUpdate( $pageId, $titleObj, $rev->getContent( SlotRecord::MAIN ) );
 			$u->doUpdate();
 			$this->output( "\n" );
 		}
