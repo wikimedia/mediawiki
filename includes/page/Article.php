@@ -2999,6 +2999,7 @@ class Article implements Page {
 	}
 
 	/**
+	 * @deprecated since 1.35
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param int|null $u1 Unused
@@ -3012,6 +3013,7 @@ class Article implements Page {
 	public function doDeleteArticle(
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', $immediate = false
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->doDeleteArticle( $reason, $suppress, $u1, $u2, $error,
 			null, $immediate );
 	}

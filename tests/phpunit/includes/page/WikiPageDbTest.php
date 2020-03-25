@@ -53,12 +53,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	protected function tearDown() : void {
+		$user = $this->getTestSysop()->getUser();
 		foreach ( $this->pagesToDelete as $p ) {
 			/* @var WikiPage $p */
 
 			try {
 				if ( $p->exists() ) {
-					$p->doDeleteArticle( "testing done." );
+					$p->doDeleteArticleReal( "testing done.", $user );
 				}
 			} catch ( MWException $ex ) {
 				// fail silently
@@ -382,6 +383,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
 	public function testDoDeleteArticle() {
+		$this->hideDeprecated( 'WikiPage::doDeleteArticle' );
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -753,7 +755,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $page->exists() );
 
 		# -----------------
-		$page->doDeleteArticle( "done testing" );
+		$page->doDeleteArticleReal( "done testing", $this->getTestSysop()->getUser() );
 		$this->assertFalse( $page->exists() );
 
 		$page = new WikiPage( $page->getTitle() );
@@ -1467,7 +1469,7 @@ more stuff
 		$this->assertEquals( $expectedHistory, $hasHistory,
 			"expected \$hasHistory to be " . var_export( $expectedHistory, true ) );
 
-		$page->doDeleteArticle( "done" );
+		$page->doDeleteArticleReal( "done", $this->getTestSysop()->getUser() );
 	}
 
 	public function providePreSaveTransform() {
@@ -1901,7 +1903,7 @@ more stuff
 	public function testUpdateRevisionOn_NonExistingPage() {
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
-		$page->doDeleteArticle( 'reason' );
+		$page->doDeleteArticleReal( 'reason', $user );
 
 		$revision = new Revision(
 			[
