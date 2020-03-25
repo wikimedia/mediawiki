@@ -196,7 +196,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$revisions = new MergeHistoryPager(
 			$this, [], $this->mTargetObj, $this->mDestObj
 		);
-		$haveRevisions = $revisions && $revisions->getNumRows() > 0;
+		$haveRevisions = $revisions->getNumRows() > 0;
 
 		$out = $this->getOutput();
 		$titleObj = $this->getPageTitle();
