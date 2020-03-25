@@ -279,7 +279,7 @@ class Revision implements IDBAccessObject {
 	 * so this isn't the best key to use.
 	 *
 	 * @deprecated since 1.31, use RevisionStore::getRevisionByTimestamp()
-	 *   or RevisionStore::loadRevisionFromTimestamp() instead.
+	 *   or RevisionStore::loadRevisionFromTimestamp() instead. Hard deprecated since 1.35
 	 *
 	 * @param IDatabase $db
 	 * @param Title $title
@@ -287,6 +287,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$rec = self::getRevisionStore()->loadRevisionFromTimestamp( $db, $title, $timestamp );
 		return $rec ? new Revision( $rec ) : null;
 	}

@@ -2030,8 +2030,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::loadFromTimestamp
 	 *
-	 * @note direct use is deprecated! Use getRevisionByTimestamp instead!
-	 * @todo remove when unused!
+	 * @deprecated since 1.35
 	 *
 	 * @param IDatabase $db
 	 * @param Title $title
@@ -2039,6 +2038,7 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function loadRevisionFromTimestamp( IDatabase $db, $title, $timestamp ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->loadRevisionFromConds( $db,
 			[
 				'rev_timestamp' => $db->timestamp( $timestamp ),
