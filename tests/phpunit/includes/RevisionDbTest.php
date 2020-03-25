@@ -6,15 +6,19 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
-use Wikimedia\IPUtils;
 
 /**
- * RevisionDbTestBase contains test cases for the Revision class that have Database interactions.
+ * Tests Revision against the MCR DB schema after schema migration.
  *
+ * @covers Revision
+ *
+ * @group Revision
+ * @group Storage
+ * @group ContentHandler
  * @group Database
  * @group medium
  */
-abstract class RevisionDbTestBase extends MediaWikiTestCase {
+class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var WikiPage
@@ -33,6 +37,11 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 				'text',
 				'archive',
 
+				'slots',
+				'content',
+				'content_models',
+				'slot_roles',
+
 				'recentchanges',
 				'logging',
 
@@ -48,23 +57,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		);
 	}
 
-	protected function addCoreDBData() {
-		// Blank out. This would fail with a modified schema, and we don't need it.
-	}
-
-	/**
-	 * @return int
-	 */
-	abstract protected function getMcrMigrationStage();
-
-	/**
-	 * @return string[]
-	 */
-	abstract protected function getMcrTablesToReset();
-
 	protected function setUp() : void {
-		$this->tablesUsed += $this->getMcrTablesToReset();
-
 		parent::setUp();
 
 		$this->mergeMwGlobalArrayValue(
@@ -89,11 +82,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 				RevisionTestModifyableContent::MODEL_ID => 'RevisionTestModifyableContentHandler',
 			]
 		);
-
-		$this->setMwGlobals( [
-			'wgMultiContentRevisionSchemaMigrationStage' => $this->getMcrMigrationStage(),
-			'wgContentHandlerUseDB' => $this->getContentHandlerUseDB(),
-		] );
 
 		if ( !$this->testPage ) {
 			/**
@@ -126,8 +114,6 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 
 		return $mock;
 	}
-
-	abstract protected function getContentHandlerUseDB();
 
 	private function makeRevisionWithProps( $props = null ) {
 		if ( $props === null ) {
@@ -326,7 +312,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 				'user' => $user,
 			],
 			IncompleteRevisionException::class,
-			"Uninitialized field: content_address" // XXX: message may change
+			"main slot must be provided" // XXX: message may change
 		];
 	}
 
@@ -459,12 +445,10 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			$services->getContentModelStore(),
 			$services->getSlotRoleStore(),
 			$services->getSlotRoleRegistry(),
-			$this->getMcrMigrationStage(),
 			$services->getActorMigration(),
 			$services->getContentHandlerFactory()
 		);
 
-		$store->setContentHandlerUseDB( $this->getContentHandlerUseDB() );
 		$this->setService( 'RevisionStore', $store );
 
 		$page = $this->createPage(
@@ -749,7 +733,7 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$res = $dbr->select( 'ip_changes', '*', [ 'ipc_rev_id' => $orig->getId() ] );
 		$row = $res->fetchObject();
 
-		$this->assertEquals( IPUtils::toHex( $ip ), $row->ipc_hex );
+		$this->assertEquals( IP::toHex( $ip ), $row->ipc_hex );
 		$this->assertEquals(
 			$orig->getTimestamp(),
 			wfTimestamp( TS_MW, $row->ipc_rev_timestamp )
@@ -921,6 +905,19 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 		$this->assertEquals( $expectedModel, $rev->getContentModel() );
 	}
 
+	/**
+	 * @covers Revision::getContentModel
+	 */
+	public function testGetContentModelForEmptyRevision() {
+		$rev = new Revision( [], 0, $this->testPage->getTitle() );
+
+		$slotRoleHandler = MediaWikiServices::getInstance()->getSlotRoleRegistry()
+			->getRoleHandler( SlotRecord::MAIN );
+
+		$expectedModel = $slotRoleHandler->getDefaultModel( $this->testPage->getTitle() );
+		$this->assertEquals( $expectedModel, $rev->getContentModel() );
+	}
+
 	public function provideGetContentFormat() {
 		// NOTE: we expect the help namespace to always contain wikitext
 		return [
@@ -937,6 +934,21 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	 */
 	public function testGetContentFormat( $text, $title, $model, $format, $expectedFormat ) {
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
+
+		$this->assertEquals( $expectedFormat, $rev->getContentFormat() );
+	}
+
+	/**
+	 * @covers Revision::getContentFormat
+	 */
+	public function testGetContentFormatForEmptyRevision() {
+		$rev = new Revision( [], 0, $this->testPage->getTitle() );
+
+		$slotRoleHandler = MediaWikiServices::getInstance()->getSlotRoleRegistry()
+			->getRoleHandler( SlotRecord::MAIN );
+
+		$expectedModel = $slotRoleHandler->getDefaultModel( $this->testPage->getTitle() );
+		$expectedFormat = ContentHandler::getForModelID( $expectedModel )->getDefaultFormat();
 
 		$this->assertEquals( $expectedFormat, $rev->getContentFormat() );
 	}
@@ -1621,7 +1633,10 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 	}
 
 	public function provideGetTextId() {
-		yield [ [], null ];
+		$title = $this->getMockTitle();
+
+		$rev = new Revision( [], 0, $title );
+		yield [ $rev, null ];
 
 		$slot = new SlotRecord( (object)[
 			'slot_revision_id' => 42,
@@ -1632,35 +1647,51 @@ abstract class RevisionDbTestBase extends MediaWikiTestCase {
 			'slot_origin' => 1,
 		], new WikitextContent( 'Test' ) );
 
-		$rec = new MutableRevisionRecord( $this->testPage->getTitle() );
-		$rec->setId( 42 );
+		$rec = new MutableRevisionRecord( $title );
+		$rec->setId( $slot->getRevision() );
 		$rec->setSlot( $slot );
 
-		yield [ $rec, 789 ];
+		$rev = new Revision( $rec );
+		yield [ $rev, 789 ];
 	}
 
 	/**
 	 * @dataProvider provideGetTextId
-	 * @covers Revision::getTextId()
+	 * @covers       Revision::getTextId()
 	 */
-	public function testGetTextId( $spec, $expected ) {
-		$rev = new Revision( $spec, 0, $this->testPage->getTitle() );
+	public function testGetTextId( Revision $rev, $expected ) {
 		$this->assertSame( $expected, $rev->getTextId() );
 	}
 
-	abstract public function provideGetRevisionText();
+	public function provideGetSerializedData() {
+		$title = $this->getMockTitle();
+
+		$rev = new Revision( [], 0, $title );
+		yield [ $rev, '' ];
+
+		$text = __METHOD__;
+		$rev = new Revision( [ 'text' => $text ], 0, $title );
+		yield [ $rev, $text ];
+	}
 
 	/**
-	 * @dataProvider provideGetRevisionText
+	 * @dataProvider provideGetSerializedData
+	 * @covers       Revision::getTextId()
+	 *
+	 * @param Revision $rev
+	 * @param int $expected
+	 */
+	public function testGetSerializedData( $rev, $expected ) {
+		$this->assertSame( $expected, $rev->getSerializedData() );
+	}
+
+	/**
 	 * @covers Revision::getRevisionText
 	 */
-	public function testGetRevisionText( array $queryInfoOptions, array $queryInfoExtra = [] ) {
+	public function testGetRevisionText() {
 		$rev = $this->testPage->getRevisionRecord();
 
-		$queryInfo = Revision::getQueryInfo( $queryInfoOptions );
-		$queryInfo['tables'] = array_merge( $queryInfo['tables'], $queryInfoExtra['tables'] ?? [] );
-		$queryInfo['fields'] = array_merge( $queryInfo['fields'], $queryInfoExtra['fields'] ?? [] );
-		$queryInfo['joins'] = array_merge( $queryInfo['joins'], $queryInfoExtra['joins'] ?? [] );
+		$queryInfo = Revision::getQueryInfo();
 
 		$conds = [ 'rev_id' => $rev->getId() ];
 		$row = $this->db->selectRow(

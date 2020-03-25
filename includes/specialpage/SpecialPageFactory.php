@@ -187,6 +187,12 @@ class SpecialPageFactory {
 		'Whatlinkshere' => \SpecialWhatLinksHere::class,
 		'MergeHistory' => \SpecialMergeHistory::class,
 		'ExpandTemplates' => \SpecialExpandTemplates::class,
+		'ChangeContentModel' => [
+			'class' => \SpecialChangeContentModel::class,
+			'services' => [
+				'ContentHandlerFactory',
+			],
+		],
 
 		// Other
 		'Booksources' => \SpecialBookSources::class,
@@ -248,7 +254,6 @@ class SpecialPageFactory {
 	 * @since 1.35
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ContentHandlerUseDB',
 		'DisableInternalSearch',
 		'EmailAuthentication',
 		'EnableEmail',
@@ -316,15 +321,6 @@ class SpecialPageFactory {
 
 			if ( $this->options->get( 'PageLanguageUseDB' ) ) {
 				$this->list['PageLanguage'] = \SpecialPageLanguage::class;
-			}
-
-			if ( $this->options->get( 'ContentHandlerUseDB' ) ) {
-				$this->list['ChangeContentModel'] = [
-					'class' => \SpecialChangeContentModel::class,
-					'services' => [
-						'ContentHandlerFactory',
-					],
-				];
 			}
 
 			// Add extension special pages

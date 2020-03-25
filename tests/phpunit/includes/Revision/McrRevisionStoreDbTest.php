@@ -29,8 +29,6 @@ use WikitextContent;
  */
 class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
-	use McrSchemaOverride;
-
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
 		$numberOfSlots = count( $rev->getSlotRoles() );
 
@@ -191,16 +189,6 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$loaded = $store->getRevisionById( $return->getId() );
 		$this->assertRevisionCompleteness( $loaded );
 		$this->assertRevisionRecordsEqual( $return, $loaded );
-	}
-
-	/**
-	 * Conditions to use together with getSlotsQueryInfo() when selecting slot rows for a given
-	 * revision.
-	 *
-	 * @return array
-	 */
-	protected function getSlotRevisionConditions( $revId ) {
-		return [ 'slot_revision_id' => $revId ];
 	}
 
 	/**

@@ -303,9 +303,7 @@ class InfoAction extends FormlessAction {
 		// Content model of the page
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
-		if ( $config->get( 'ContentHandlerUseDB' )
-			&& $permissionManager->userCan( 'editcontentmodel', $user, $title )
-		) {
+		if ( $permissionManager->userCan( 'editcontentmodel', $user, $title ) ) {
 			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
 				$this->msg( 'pageinfo-content-model-change' )->text()

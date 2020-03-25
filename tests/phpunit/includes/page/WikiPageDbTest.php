@@ -9,8 +9,9 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers WikiPage
+ * @group Database
  */
-abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
+class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	private $pagesToDelete;
 
@@ -27,6 +28,11 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				'ip_changes',
 				'text',
 
+				'slots',
+				'content',
+				'slot_roles',
+				'content_models',
+
 				'recentchanges',
 				'logging',
 
@@ -40,30 +46,9 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 				'iwlinks' ] );
 	}
 
-	protected function addCoreDBData() {
-		// Blank out. This would fail with a modified schema, and we don't need it.
-	}
-
-	/**
-	 * @return int
-	 */
-	abstract protected function getMcrMigrationStage();
-
-	/**
-	 * @return string[]
-	 */
-	abstract protected function getMcrTablesToReset();
-
 	protected function setUp() : void {
 		parent::setUp();
 
-		$this->tablesUsed += $this->getMcrTablesToReset();
-
-		$this->setMwGlobals( 'wgContentHandlerUseDB', $this->getContentHandlerUseDB() );
-		$this->setMwGlobals(
-			'wgMultiContentRevisionSchemaMigrationStage',
-			$this->getMcrMigrationStage()
-		);
 		$this->pagesToDelete = [];
 	}
 
@@ -81,8 +66,6 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 		}
 		parent::tearDown();
 	}
-
-	abstract protected function getContentHandlerUseDB();
 
 	/**
 	 * @param Title|string $title
@@ -942,19 +925,9 @@ abstract class WikiPageDbTestBase extends MediaWikiLangTestCase {
 	 * @covers WikiPage::isCountable
 	 */
 	public function testIsCountable( $title, $model, $text, $mode, $expected ) {
-		global $wgContentHandlerUseDB;
-
 		$this->setMwGlobals( 'wgArticleCountMethod', $mode );
 
 		$title = Title::newFromText( $title );
-
-		if ( !$wgContentHandlerUseDB
-			&& $model
-			&& ContentHandler::getDefaultModelFor( $title ) != $model
-		) {
-			$this->markTestSkipped( "Can not use non-default content model $model for "
-				. $title->getPrefixedDBkey() . " with \$wgContentHandlerUseDB disabled." );
-		}
 
 		$page = $this->createPage( $title, $text, $model );
 
@@ -1840,7 +1813,7 @@ more stuff
 			[ 'edit' => '20200101040404' ],
 			false,
 			'Goat Reason',
-			'(goat-message-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Reason(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04)))'
+			'(goat-message-key: WikiPageDbTest::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Reason(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04)))'
 		];
 		yield [
 			'goat-key',
@@ -1848,7 +1821,7 @@ more stuff
 			[ 'edit' => '20200101040404', 'move' => '20210101050505' ],
 			false,
 			'Goat Goat',
-			'(goat-key: WikiPageDbTestBase::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
+			'(goat-key: WikiPageDbTest::testInsertProtectNullRevision, UTSysop)(colon-separator)Goat Goat(word-separator)(parentheses: (protect-summary-desc: (restriction-edit), (protect-level-sysop), (protect-expiring: 04:04, 1 (january) 2020, 1 (january) 2020, 04:04))(word-separator)(protect-summary-desc: (restriction-move), (protect-level-something), (protect-expiring: 05:05, 1 (january) 2021, 1 (january) 2021, 05:05)))'
 		];
 		// phpcs:enable
 	}

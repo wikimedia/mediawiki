@@ -77,8 +77,6 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes
 	'FactoryArgTestTrait' => "$testDir/phpunit/unit/includes/FactoryArgTestTrait.php",
-	'PageArchiveTestBase' => "$testDir/phpunit/includes/page/PageArchiveTestBase.php",
-	'RevisionDbTestBase' => "$testDir/phpunit/includes/RevisionDbTestBase.php",
 	'RevisionTestModifyableContent' => "$testDir/phpunit/includes/RevisionTestModifyableContent.php",
 	'RevisionTestModifyableContentHandler' => "$testDir/phpunit/includes/RevisionTestModifyableContentHandler.php",
 	'TestLogger' => "$testDir/phpunit/includes/TestLogger.php",
@@ -140,9 +138,6 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/logging
 	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
 
-	# tests/phpunit/includes/page
-	'WikiPageDbTestBase' => "$testDir/phpunit/includes/page/WikiPageDbTestBase.php",
-
 	# tests/phpunit/includes/parser
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 
@@ -170,10 +165,6 @@ $wgAutoloadClasses += [
 	'SpecialPageExecutor' => "$testDir/phpunit/includes/specials/SpecialPageExecutor.php",
 
 	# tests/phpunit/includes/Revision
-	'MediaWiki\Tests\Revision\McrSchemaDetection' => "$testDir/phpunit/includes/Revision/McrSchemaDetection.php",
-	'MediaWiki\Tests\Revision\McrSchemaOverride' => "$testDir/phpunit/includes/Revision/McrSchemaOverride.php",
-	'MediaWiki\Tests\Revision\McrWriteBothSchemaOverride' => "$testDir/phpunit/includes/Revision/McrWriteBothSchemaOverride.php",
-	'MediaWiki\Tests\Revision\McrReadNewSchemaOverride' => "$testDir/phpunit/includes/Revision/McrReadNewSchemaOverride.php",
 	'MediaWiki\Tests\Revision\RevisionSlotsTest' => "$testDir/phpunit/includes/Revision/RevisionSlotsTest.php",
 	'MediaWiki\Tests\Revision\RevisionRecordTests' => "$testDir/phpunit/includes/Revision/RevisionRecordTests.php",
 	'MediaWiki\Tests\Revision\RevisionStoreDbTestBase' => "$testDir/phpunit/includes/Revision/RevisionStoreDbTestBase.php",
