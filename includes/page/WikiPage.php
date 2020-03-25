@@ -511,7 +511,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$from = self::READ_NORMAL;
 		}
 
-		if ( is_int( $from ) && $from <= $this->mDataLoadedFrom ) {
+		if ( $from <= $this->mDataLoadedFrom ) {
 			return true;
 		}
 
