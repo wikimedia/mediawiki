@@ -37,7 +37,7 @@ describe( 'Page Source', () => {
 
 			assert.containsAllKeys( postEditHeaders, [ 'etag' ] );
 			assert.deepEqual( postEditHeaders[ 'last-modified' ], postEditDate.toGMTString() );
-			assert.match( postEditHeaders[ 'cache-control' ], /^maxage=\d/ );
+			assert.match( postEditHeaders[ 'cache-control' ], /^max-age=\d/ );
 			assert.strictEqual( isNaN( preEditDate.getTime() ), false );
 			assert.strictEqual( isNaN( postEditDate.getTime() ), false );
 			assert.notEqual( preEditDate, postEditDate );

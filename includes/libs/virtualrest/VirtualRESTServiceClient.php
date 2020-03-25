@@ -242,6 +242,14 @@ class VirtualRESTServiceClient {
 					$checkReqIndexesByPrefix[$prefix][$index] = 1;
 				}
 			}
+
+			// Expand protocol-relative URLs
+			foreach ( $executeReqs as $index => &$req ) {
+				if ( preg_match( '#^//#', $req['url'] ) ) {
+					$req['url'] = wfExpandUrl( $req['url'], PROTO_CURRENT );
+				}
+			}
+
 			// Run the actual work HTTP requests
 			foreach ( $this->http->runMulti( $executeReqs ) as $index => $ranReq ) {
 				$doneReqs[$index] = $ranReq;

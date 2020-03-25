@@ -47,6 +47,9 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	public function __construct( array $params ) {
 		// for backwards compatibility:
 		if ( isset( $params['URL'] ) ) {
+			wfDeprecated(
+				'Using all-caps URL parameter to $wgVirtualRestConfig', '1.35'
+			);
 			$params['url'] = $params['URL'];
 			unset( $params['URL'] );
 		}
@@ -68,8 +71,8 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 		// and trailing slash if present.  This lets us use
 		// $wgCanonicalServer as a default value, which is very convenient.
 		$mparams['domain'] = preg_replace(
-			'/^(https?:\/\/)?([^\/:]+?)(:\d+)?\/?$/',
-			'$2',
+			'/^((https?:)?\/\/)?([^\/:]+?)(:\d+)?\/?$/',
+			'$3',
 			$mparams['domain']
 		);
 		parent::__construct( $mparams );

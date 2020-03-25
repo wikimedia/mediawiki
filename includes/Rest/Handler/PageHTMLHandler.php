@@ -176,7 +176,7 @@ class PageHTMLHandler extends LatestPageContentHandler {
 				throw new LogicException( "Unknown HTML type $htmlType" );
 		}
 
-		$response->setHeader( 'Cache-Control', 'maxage=' . self::MAX_AGE_200 );
+		$response->setHeader( 'Cache-Control', 'max-age=' . self::MAX_AGE_200 );
 		return $response;
 	}
 
