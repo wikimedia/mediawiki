@@ -82,7 +82,7 @@ class PageSourceHandler extends LatestPageContentHandler {
 		$body['source'] = $content->getText();
 
 		$response = $this->getResponseFactory()->createJson( $body );
-		$response->setHeader( 'Cache-Control', 'maxage=' . self::MAX_AGE_200 );
+		$response->setHeader( 'Cache-Control', 'max-age=' . self::MAX_AGE_200 );
 		return $response;
 	}
 
