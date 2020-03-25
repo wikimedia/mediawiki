@@ -2548,6 +2548,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * backwards compatibility, if you care about error reporting you should use
 	 * doDeleteArticleReal() instead.
 	 *
+	 * @deprecated since 1.35
+	 *
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param string $reason Delete reason for deletion log
@@ -2566,6 +2568,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$reason, $suppress = false, $u1 = null, $u2 = null, &$error = '', User $user = null,
 		$immediate = false
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$status = $this->doDeleteArticleReal( $reason, $suppress, $u1, $u2, $error, $user,
 			[], 'delete', $immediate );
 
