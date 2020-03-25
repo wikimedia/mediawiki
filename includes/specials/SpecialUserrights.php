@@ -360,9 +360,8 @@ class UserrightsPage extends SpecialPage {
 		$addable = array_merge( $changeable['add'], $isself ? $changeable['add-self'] : [] );
 		$removable = array_merge( $changeable['remove'], $isself ? $changeable['remove-self'] : [] );
 
-		$remove = array_unique(
-			array_intersect( (array)$remove, $removable, $groups ) );
-		$add = array_intersect( (array)$add, $addable );
+		$remove = array_unique( array_intersect( $remove, $removable, $groups ) );
+		$add = array_intersect( $add, $addable );
 
 		// add only groups that are not already present or that need their expiry updated,
 		// UNLESS the user can only add this group (not remove it) and the expiry time
