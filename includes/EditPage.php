@@ -2512,7 +2512,7 @@ ERROR;
 		$currentRevisionRecord = $this->revisionStore->getRevisionByTitle(
 			$this->mTitle,
 			0,
-			IDBAccessObject::READ_LATEST
+			RevisionStore::READ_LATEST
 		);
 		$currentContent = $currentRevisionRecord
 			? $currentRevisionRecord->getContent( SlotRecord::MAIN )
@@ -2549,11 +2549,21 @@ ERROR;
 	 * @return Revision|null Current version when editing was initiated on the client
 	 */
 	public function getBaseRevision() {
-		if ( !$this->mBaseRevision ) {
-			$db = wfGetDB( DB_MASTER );
-			$this->mBaseRevision = $this->editRevId
-				? Revision::newFromId( $this->editRevId, Revision::READ_LATEST )
-				: Revision::loadFromTimestamp( $db, $this->mTitle, $this->edittime );
+		if ( $this->mBaseRevision === false ) {
+			$revRecord = null;
+			if ( $this->editRevId ) {
+				$revRecord = $this->revisionStore->getRevisionById(
+					$this->editRevId,
+					RevisionStore::READ_LATEST
+				);
+			} else {
+				$revRecord = $this->revisionStore->getRevisionByTimestamp(
+					$this->getTitle(),
+					$this->edittime,
+					RevisionStore::READ_LATEST
+				);
+			}
+			$this->mBaseRevision = $revRecord ? new Revision( $revRecord ) : null;
 		}
 		return $this->mBaseRevision;
 	}
