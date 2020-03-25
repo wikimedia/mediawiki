@@ -163,7 +163,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 				'count' => $count > $countLimit ? $countLimit : $count,
 				'limit' => $count > $countLimit
 		] );
-		$response->setHeader( 'Cache-Control', 'maxage=' . self::MAX_AGE_200 );
+		$response->setHeader( 'Cache-Control', 'max-age=' . self::MAX_AGE_200 );
 
 		// Inform clients who use a deprecated "type" value, so they can adjust
 		if ( isset( self::DEPRECATED_COUNT_TYPES[$type] ) ) {
