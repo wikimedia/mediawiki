@@ -1232,3 +1232,7 @@
 	path = extensions/ContributionTracking
 	url = https://github.com/wikimedia/mediawiki-extensions-ContributionTracking
 	ignore = dirty
+[submodule "extensions/SpriteSheet"]
+	path = extensions/SpriteSheet
+	url = https://github.com/HydraWiki/SpriteSheet
+	branch = master
