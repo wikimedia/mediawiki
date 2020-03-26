@@ -50,10 +50,10 @@ class MWExceptionRenderer {
 		}
 
 		if ( defined( 'MW_API' ) ) {
-			// Unhandled API exception, we can't be sure that format printer is alive
 			self::header( 'MediaWiki-API-Error: internal_api_error_' . get_class( $e ) );
-			wfHttpError( 500, 'Internal Server Error', self::getText( $e ) );
-		} elseif ( self::isCommandLine() ) {
+		}
+
+		if ( self::isCommandLine() ) {
 			self::printError( self::getText( $e ) );
 		} elseif ( $mode === self::AS_PRETTY ) {
 			self::statusHeader( 500 );
@@ -119,7 +119,9 @@ class MWExceptionRenderer {
 			!empty( $GLOBALS['wgFullyInitialised'] ) &&
 			!empty( $GLOBALS['wgOut'] ) &&
 			RequestContext::getMain()->getTitle() &&
-			!defined( 'MEDIAWIKI_INSTALL' )
+			!defined( 'MEDIAWIKI_INSTALL' ) &&
+			// Don't send a skinned HTTP 500 page to API clients.
+			!defined( 'MW_API' )
 		);
 	}
 
