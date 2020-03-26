@@ -13,9 +13,8 @@
 class MediaWikiVersionFetcherTest extends \MediaWikiIntegrationTestCase {
 
 	public function testReturnsResult() {
-		global $wgVersion;
 		$versionFetcher = new MediaWikiVersionFetcher();
-		$this->assertSame( $wgVersion, $versionFetcher->fetchVersion() );
+		$this->assertSame( MW_VERSION, $versionFetcher->fetchVersion() );
 	}
 
 }

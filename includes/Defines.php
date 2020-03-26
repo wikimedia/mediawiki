@@ -29,6 +29,15 @@ use Wikimedia\Rdbms\IDatabase;
  * @defgroup Constants MediaWiki constants
  */
 
+/**
+ * The running version of MediaWiki.
+ *
+ * This replaces the the $wgVersion global found in earlier versions.
+ *
+ * @since 1.34.1
+ */
+define( 'MW_VERSION', '1.34.1' );
+
 # Obsolete aliases
 
 /** @{

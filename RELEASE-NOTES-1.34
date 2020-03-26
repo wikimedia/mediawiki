@@ -1,5 +1,29 @@
 = MediaWiki 1.34 =
 
+== MediaWiki 1.34.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.34 branch.
+
+=== Changes since MediaWiki 1.34.0 ===
+* (T211450) User: better error message when getActorId fails.
+* (T241340) Don't redefine MW_ENTRY_POINT in thumb.php if already defined.
+* (T236444) User: Allow newSystemUser() to create over anonymous actors.
+* (T238483) Fix NewPagesPager "hide registered users" option.
+* (T245072) mediawiki.language: Rename languageData back to languageNames.
+* Use proper SemVer comparison in CheckComposerLockUpToDate.
+* (T212738) Add the MW_VERSION constant, global $wgVersion is soft deprecated.
+* (T246127) Fix error when initialising updateCollation.php.
+* Update comment about PHP versions supported by The PHP Group.
+* (T247215) Fix output of RecountCategories::doWork().
+* Add check for page existence to view.php maintenance script.
+* (T245149) Fix fetching login token from action=query&meta=tokens on private
+  wikis.
+* (T236509) SECURITY: Fix HTML escaping in UserGroupMembership::getLink().
+* (T232932) SECURITY: User content can redirect the logout button to different
+  URL.
+* (T246602) SECURITY: jquery.makeCollapsible allows applying event handler to
+  any CSS selector.
+
 == MediaWiki 1.34.0 ==
 
 === Changes since MediaWiki 1.34.0-rc.1 ===
