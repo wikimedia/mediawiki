@@ -26,18 +26,6 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 */
 	private $testParser = null;
 
-	/**
-	 * An array of magicword returned as type integer by the parser
-	 * They are usually returned as a string for i18n since we support
-	 * persan numbers for example, but some magic explicitly return
-	 * them as integer.
-	 * @see MagicVariableTest::assertMagic()
-	 */
-	private $expectedAsInteger = [
-		'revisionday',
-		'revisionmonth1',
-	];
-
 	/** setup a basic parser object */
 	protected function setUp() : void {
 		parent::setUp();
@@ -62,12 +50,12 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 	/**
 	 * @param int $num Upper limit for numbers
-	 * @return array Array of numbers from 1 up to $num
+	 * @return array Array of strings naming numbers from 1 up to $num
 	 */
 	private static function createProviderUpTo( $num ) {
 		$ret = [];
 		for ( $i = 1; $i <= $num; $i++ ) {
-			$ret[] = [ $i ];
+			$ret[] = [ strval( $i ) ];
 		}
 
 		return $ret;
@@ -214,10 +202,6 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 * @param string $magic
 	 */
 	private function assertMagic( $expected, $magic ) {
-		if ( in_array( $magic, $this->expectedAsInteger ) ) {
-			$expected = (int)$expected;
-		}
-
 		# Generate a message for the assertion
 		$msg = sprintf( "Magic %s should be <%s:%s>",
 			$magic,
