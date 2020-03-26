@@ -33,7 +33,9 @@ class MWException extends Exception {
 		return $this->useMessageCache() &&
 		!empty( $GLOBALS['wgFullyInitialised'] ) &&
 		!empty( $GLOBALS['wgOut'] ) &&
-		!defined( 'MEDIAWIKI_INSTALL' );
+		!defined( 'MEDIAWIKI_INSTALL' ) &&
+		// Don't send a skinned HTTP 500 page to API clients.
+		!defined( 'MW_API' );
 	}
 
 	/**
@@ -200,10 +202,10 @@ class MWException extends Exception {
 		global $wgMimeType;
 
 		if ( defined( 'MW_API' ) ) {
-			// Unhandled API exception, we can't be sure that format printer is alive
 			self::header( 'MediaWiki-API-Error: internal_api_error_' . static::class );
-			wfHttpError( 500, 'Internal Server Error', $this->getText() );
-		} elseif ( self::isCommandLine() ) {
+		}
+
+		if ( self::isCommandLine() ) {
 			$message = $this->getText();
 			$this->writeToCommandLine( $message );
 		} else {
