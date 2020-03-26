@@ -509,7 +509,7 @@ class RecentChange implements Taggable {
 	 * @param bool $auto For automatic patrol
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array See doMarkPatrolled(), or null if $change is not an existing rc_id
+	 * @return array[]|null See doMarkPatrolled(), or null if $change is not an existing rc_id
 	 */
 	public static function markPatrolled( $change, $auto = false, $tags = null ) {
 		wfDeprecated( __METHOD__, '1.35' );
@@ -536,7 +536,7 @@ class RecentChange implements Taggable {
 	 * @param bool $auto For automatic patrol
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array Array of permissions errors, see PermissionManager::getPermissionErrors()
+	 * @return array[] Array of permissions errors, see PermissionManager::getPermissionErrors()
 	 */
 	public function doMarkPatrolled( User $user, $auto = false, $tags = null ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;

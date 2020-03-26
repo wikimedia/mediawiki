@@ -586,7 +586,7 @@ class WikiExporter {
 
 	/**
 	 * @param IResultWrapper $resultset
-	 * @return int the log_id value of the last item output, or null if none
+	 * @return int|null the log_id value of the last item output, or null if none
 	 */
 	protected function outputLogStream( $resultset ) {
 		foreach ( $resultset as $row ) {

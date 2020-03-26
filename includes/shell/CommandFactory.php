@@ -52,8 +52,6 @@ class CommandFactory {
 	private $firejail;
 
 	/**
-	 * Constructor
-	 *
 	 * @param array $limits See {@see Command::limits()}
 	 * @param string|bool $cgroup See {@see Command::cgroup()}
 	 * @param string|bool $restrictionMethod
