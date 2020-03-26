@@ -26,7 +26,7 @@ class McrRestoreAction extends McrUndoAction {
 	}
 
 	protected function initFromParameters() {
-		$curRev = $this->page->getRevision();
+		$curRev = $this->getWikiPage()->getRevision();
 		if ( !$curRev ) {
 			throw new ErrorPageError( 'mcrundofailed', 'nopagetext' );
 		}

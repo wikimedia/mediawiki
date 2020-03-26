@@ -36,6 +36,6 @@ class RenderAction extends FormlessAction {
 	}
 
 	public function show() {
-		$this->page->render();
+		$this->getArticle()->render();
 	}
 }

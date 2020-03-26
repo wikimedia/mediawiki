@@ -2007,8 +2007,8 @@ class Linker {
 	 * Returns HTML for the "hidden categories on this page" list.
 	 *
 	 * @since 1.16.3
-	 * @param array $hiddencats Array of hidden categories from Article::getHiddenCategories
-	 *   or similar
+	 * @param array $hiddencats Array of hidden categories
+	 *    from {@link WikiPage::getHiddenCategories} or similar
 	 * @return string HTML output
 	 */
 	public static function formatHiddenCategories( $hiddencats ) {

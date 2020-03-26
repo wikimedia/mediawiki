@@ -94,7 +94,7 @@ class RollbackAction extends FormAction {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$from = $request->getVal( 'from' );
-		$rev = $this->page->getRevision();
+		$rev = $this->getWikiPage()->getRevision();
 		if ( $from === null ) {
 			throw new ErrorPageError( 'rollbackfailed', 'rollback-missingparam' );
 		}
@@ -110,7 +110,7 @@ class RollbackAction extends FormAction {
 		}
 
 		$data = null;
-		$errors = $this->page->doRollback(
+		$errors = $this->getWikiPage()->doRollback(
 			$from,
 			$request->getText( 'summary' ),
 			$request->getVal( 'token' ),
@@ -175,7 +175,7 @@ class RollbackAction extends FormAction {
 		);
 
 		if ( $user->getBoolOption( 'watchrollback' ) ) {
-			$user->addWatch( $this->page->getTitle(), User::IGNORE_USER_RIGHTS );
+			$user->addWatch( $this->getTitle(), User::IGNORE_USER_RIGHTS );
 		}
 
 		$this->getOutput()->returnToMain( false, $this->getTitle() );

@@ -210,7 +210,7 @@ class ProtectionForm {
 
 		if ( $this->mContext->getRequest()->wasPosted() ) {
 			if ( $this->save() ) {
-				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
+				$q = $this->mArticle->getPage()->isRedirect() ? 'redirect=no' : '';
 				$this->mContext->getOutput()->redirect( $this->mTitle->getFullURL( $q ) );
 			}
 		} else {
@@ -333,7 +333,7 @@ class ProtectionForm {
 
 		$this->mCascade = $request->getBool( 'mwProtect-cascade' );
 
-		$status = $this->mArticle->doUpdateRestrictions(
+		$status = $this->mArticle->getPage()->doUpdateRestrictions(
 			$this->mRestrictions,
 			$expiry,
 			$this->mCascade,
