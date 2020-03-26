@@ -1073,7 +1073,7 @@ class SpecialBlock extends FormSpecialPage {
 	 *     the wiki's content language
 	 * @param bool $includeOther Whether to include the 'other' option in the list of
 	 *     suggestions
-	 * @return array
+	 * @return string[]
 	 */
 	public static function getSuggestedDurations( Language $lang = null, $includeOther = true ) {
 		$a = [];

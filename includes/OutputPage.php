@@ -3914,7 +3914,7 @@ class OutputPage extends ContextSource {
 	 * Transform "media" attribute based on request parameters
 	 *
 	 * @param string $media Current value of the "media" attribute
-	 * @return string Modified value of the "media" attribute, or null to skip
+	 * @return string|null Modified value of the "media" attribute, or null to skip
 	 * this stylesheet
 	 */
 	public static function transformCssMedia( $media ) {

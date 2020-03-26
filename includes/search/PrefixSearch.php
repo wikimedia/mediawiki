@@ -98,7 +98,7 @@ abstract class PrefixSearch {
 	 * When implemented in a descendant class, receives an array of titles as strings and returns
 	 * either an unmodified array or an array of Title objects corresponding to strings received.
 	 *
-	 * @param array $strings
+	 * @param string[] $strings
 	 *
 	 * @return array
 	 */
