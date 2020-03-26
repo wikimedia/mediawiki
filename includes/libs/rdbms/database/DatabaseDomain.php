@@ -84,6 +84,10 @@ class DatabaseDomain {
 			$database = null;
 		}
 
+		if ( $schema === '' ) {
+			$schema = null;
+		}
+
 		return new self( $database, $schema, $prefix );
 	}
 
@@ -96,10 +100,10 @@ class DatabaseDomain {
 
 	/**
 	 * @param DatabaseDomain|string $other
-	 * @return bool
+	 * @return bool Whether the domain instances are the same by value
 	 */
 	public function equals( $other ) {
-		if ( $other instanceof DatabaseDomain ) {
+		if ( $other instanceof self ) {
 			return (
 				$this->database === $other->database &&
 				$this->schema === $other->schema &&
@@ -108,6 +112,44 @@ class DatabaseDomain {
 		}
 
 		return ( $this->getId() === $other );
+	}
+
+	/**
+	 * Check whether the domain $other meets the specifications of this domain
+	 *
+	 * If this instance has a null database specifier, then $other can have any database
+	 * specified, including the null, and likewise if the schema specifier is null. This
+	 * is not transitive like equals() since a domain that explicitly wants a certain
+	 * database or schema cannot be satisfied by one of another (nor null). If the prefix
+	 * is empty and the DB and schema are both null, then the entire domain is considered
+	 * unspecified, and any prefix of $other is considered compatible.
+	 *
+	 * @param DatabaseDomain|string $other
+	 * @return bool
+	 * @since 1.32
+	 */
+	public function isCompatible( $other ) {
+		if ( $this->isUnspecified() ) {
+			return true; // even the prefix doesn't matter
+		}
+
+		$other = ( $other instanceof self ) ? $other : self::newFromId( $other );
+
+		return (
+			( $this->database === $other->database || $this->database === null ) &&
+			( $this->schema === $other->schema || $this->schema === null ) &&
+			$this->prefix === $other->prefix
+		);
+	}
+
+	/**
+	 * @return bool
+	 * @since 1.32
+	 */
+	public function isUnspecified() {
+		return (
+			$this->database === null && $this->schema === null && $this->prefix === ''
+		);
 	}
 
 	/**
@@ -150,7 +192,12 @@ class DatabaseDomain {
 		if ( $this->schema !== null ) {
 			$parts[] = $this->schema;
 		}
-		if ( $this->prefix != '' ) {
+		if ( $this->prefix != '' || $this->schema !== null ) {
+			// If there is a schema, then we need the prefix to disambiguate.
+			// For engines like Postgres that use schemas, this awkwardness is hopefully
+			// avoided since it is easy to have one DB per server (to avoid having many users)
+			// and use schema/prefix to have wiki farms. For example, a domain schemes could be
+			// wiki-<project>-<language>, e.g. "wiki-fitness-es"/"wiki-sports-fr"/"wiki-news-en".
 			$parts[] = $this->prefix;
 		}
 

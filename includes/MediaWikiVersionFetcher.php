@@ -9,19 +9,19 @@
 class MediaWikiVersionFetcher {
 
 	/**
-	 * Returns the MediaWiki version, in the format used by MediaWiki's wgVersion global.
+	 * Get the MediaWiki version, extracted from the PHP source file where it is defined.
 	 *
 	 * @return string
 	 * @throws RuntimeException
 	 */
 	public function fetchVersion() {
-		$defaultSettings = file_get_contents( __DIR__ . '/DefaultSettings.php' );
+		$code = file_get_contents( __DIR__ . '/Defines.php' );
 
 		$matches = [];
-		preg_match( "/wgVersion = '([0-9a-zA-Z\.\-]+)';/", $defaultSettings, $matches );
+		preg_match( "/define\( 'MW_VERSION', '([0-9a-zA-Z\.\-]+)'/", $code, $matches );
 
 		if ( count( $matches ) !== 2 ) {
-			throw new RuntimeException( 'Could not extract the MediaWiki version from DefaultSettings.php' );
+			throw new RuntimeException( 'Could not extract the MediaWiki version from Defines.php' );
 		}
 
 		return $matches[1];
