@@ -402,7 +402,8 @@ class Names {
 		'sl' => 'slovenščina', # Slovenian
 		'sli' => 'Schläsch', # Lower Selisian
 		'sm' => 'Gagana Samoa', # Samoan
-		'sma' => 'Åarjelsaemien', # Southern Sami
+		'sma' => 'åarjelsaemien', # Southern Sami
+		'smn' => 'anarâškielâ', # Inari Sami
 		'sn' => 'chiShona', # Shona
 		'so' => 'Soomaaliga', # Somali
 		'sq' => 'shqip', # Albanian
