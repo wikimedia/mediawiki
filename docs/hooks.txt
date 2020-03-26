@@ -2588,12 +2588,12 @@ $rev: Revision object of the template
 'ParserFirstCallInit': Called when the parser initialises for the first time.
 [&]$parser: Parser object being cleared
 
-'ParserGetVariableValueSwitch': Called when the parser need the value of a
+'ParserGetVariableValueSwitch': Called when the parser needs the value of a
 custom magic word
 [&]$parser: Parser object
-&$variableCache: array to store the value in case of multiples calls of the
-  same magic word
-&$magicWordId: index (string) of the magic word
+&$variableCache: array to cache the value; when you return
+  $variableCache[$magicWordId] should be the same as $ret
+[&]$magicWordId: index (string) of the magic word (hook should not mutate it!)
 &$ret: value of the magic word (the hook should set it)
 [&]$frame: PPFrame object to use for expanding any template variables
 
