@@ -603,6 +603,8 @@ because of Phabricator reports.
      is set to something other than the default of 'public')
   - WikiPage::getCreator (only when the 'audience' parameter is set to
      Revision::FOR_THIS_USER)
+  - WikiPage::getUser (only when the 'audience' parameter is set to
+     Revision::FOR_THIS_USER)
   - WikiPage::getUserText (only when the 'audience' parameter is set to
      Revision::FOR_THIS_USER)
   - LogPage::addEntry
@@ -616,6 +618,7 @@ because of Phabricator reports.
   WikiPage::doDeleteArticleReal.
 * Article::getComment is deprecated. Instead, use WikiPage::getComment.
 * Article::getCreator is deprecated. Instead, use WikiPage::getCreator.
+* Article::getUser is deprecated. Instead, use WikiPage::getUser.
 * Article::getUserText is deprecated. Instead, use WikiPage::getUserText.
 * LocalFileDeleteBatch was migrated to a new constructor signature with the
   user as the second parameter. Support for the old signature is hard
