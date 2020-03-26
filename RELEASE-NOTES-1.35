@@ -53,6 +53,11 @@ For notes on 1.34.x and older releases, see HISTORY.
   (equivalent to $wgLogo), and '1.5x', '2x', and 'svg' operating as before for
   $wgLogoHD. If $wgLogos is unset, $wgLogo and $wgLogoHD values are read for
   temporary backwards compatibility. (T232140)
+* $wgWatchlistExpiry — Whether to enable the watchlist expiry feature. The
+  database table (watchlist_expiry) for this is created regardless of this
+  setting, but all other aspects of the expiry feature are controlled by it.
+* $wgWatchlistPurgeRate — Chance of expired watchlist items being purged on any
+  page edit. Only has effect if $wgWatchlistExpiry is true.
 * …
 
 ==== Changed configuration ====
@@ -235,6 +240,10 @@ For notes on 1.34.x and older releases, see HISTORY.
 * A new module was added to change the content model of existing pages.
   Use action=changecontentmodel. Unlike Special:ChangeContentModel, the api
   module does not work for pages that do not already exist.
+* If $wgWatchlistExpiry is true, the following API changes are made:
+  * action=watch accepts a new 'expiry' parameter analagous to the expiry
+    accepted by action=userrights, action=block, etc.
+  * action=query&list=watchlistraw returns pages' watchlist expiry dates.
 * …
 
 === Action API internal changes in 1.35 ===
@@ -738,6 +747,11 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.35 ===
+* A new maintenance script is added (purgeExpiredWatchlistItems.php) with which
+  to delete expired watchlist items. These items will also be deleted during
+  wiki editing if $wgWatchlistPurgeRate is > 0. This maintenance script only
+  has effect if $wgWatchlistExpiry is true. It is recommended that a cronjob or
+  similar be set up to run it at least daily.
 * …
 
 == Compatibility ==
