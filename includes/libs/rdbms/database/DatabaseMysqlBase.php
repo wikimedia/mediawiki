@@ -1082,7 +1082,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	public function serverIsReadOnly() {
 		// Avoid SHOW to avoid internal temporary tables
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS;
+		$flags = self::QUERY_IGNORE_DBO_TRX;
 		$res = $this->query( "SELECT @@GLOBAL.read_only AS Value", __METHOD__, $flags );
 		$row = $this->fetchObject( $res );
 
