@@ -1,4 +1,11 @@
 # OOUI Release History
+## v0.37.1 / 2020-03-25
+### Styles
+* WikimediaUI theme: Fix search query `padding` regression (Volker E.)
+* icons: Add 'specialPages' icon (Volker E.)
+* icons: Add 'stopHand' (Volker E.)
+
+
 ## v0.37.0 / 2020-02-26
 ### Breaking changes
 * [BREAKING CHANGE] Require oojs v3.0.1, up from v3.0.0 (James D. Forrester)
