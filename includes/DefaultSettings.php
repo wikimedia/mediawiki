@@ -4724,7 +4724,10 @@ $wgMaximalPasswordLength = false;
 $wgInvalidPasswordReset = true;
 
 /**
- * Default password type to use when hashing user passwords
+ * Default password type to use when hashing user passwords.
+ *
+ * Must be set to a type defined in $wgPasswordConfig, or a type that
+ * is registered by default in PasswordFactory.php.
  *
  * @since 1.24
  */
