@@ -2602,8 +2602,8 @@ custom magic word
 [&]$parser: Parser object
 &$time: actual time (timestamp)
 
-'ParserGetVariableValueVarCache': use this to change the value of the variable
-cache or return false to not use it.
+'ParserGetVariableValueVarCache': DEPRECATED since 1.35!  Use this to
+change the value of the variable cache or return false to not use it.
 [&]$parser: Parser object
 &$varCache: variable cache (array)
 
