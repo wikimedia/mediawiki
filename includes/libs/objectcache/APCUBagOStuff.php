@@ -74,13 +74,13 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		$blob = $this->nativeSerialize ? $value : $this->serialize( $value );
+		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$success = apcu_store( $key . self::KEY_SUFFIX, $blob, $exptime );
 		return $success;
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
-		$blob = $this->nativeSerialize ? $value : $this->serialize( $value );
+		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$success = apcu_add( $key . self::KEY_SUFFIX, $blob, $exptime );
 		return $success;
 	}

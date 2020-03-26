@@ -217,11 +217,6 @@ class WANObjectCache implements
 	/** @var float Tiny positive float to use when using "minTime" to assert an inequality */
 	private static $TINY_POSTIVE = 0.000001;
 
-	/** @var int Key value size estimate for primitive numeric value wrappers */
-	private const KEY_TINY_BYTES = 32;
-	/** @var int Pessimistic key value size estimate for non-scalar value wrappers */
-	private const KEY_HUGE_BYTES = 500000;
-
 	/** @var int Min millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
 	private static $RECENT_SET_LOW_MS = 50;
 	/** @var int Max millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
@@ -1662,24 +1657,9 @@ class WANObjectCache implements
 			return true;
 		}
 
-		// Value size (if cheap to determine) or pessimistic value size assumption (otherwise)
-		// https://www.php.net/manual/en/function.gettype.php
-		switch ( gettype( $value ) ) {
-			case 'NULL':
-			case 'boolean':
-			case 'integer':
-			case 'double':
-				$estimatedSize = self::KEY_TINY_BYTES;
-				break;
-			case 'string':
-				$estimatedSize = strlen( $value );
-				break;
-			default:
-				// @TODO: use some kind of BagOStuff::prepareValue() method instead
-				$estimatedSize = self::KEY_HUGE_BYTES;
-				break;
-		}
-
+		// Serialized value size or estimate
+		$valueKey = $this->makeSisterKey( $key, self::$TYPE_VALUE );
+		list( $estimatedSize ) = $this->cache->setNewPreparedValues( [ $valueKey => $value ] );
 		// Suppose that this cache key is very popular (KEY_HIGH_QPS reads/second).
 		// After eviction, there will be cache misses until it gets regenerated and saved.
 		// If the time window when the key is missing lasts less than one second, then the
@@ -1689,6 +1669,7 @@ class WANObjectCache implements
 		//  - 100 QPS, 100ms regeneration => ~10 misses (< 1s)
 		//  - 100 QPS, 3000ms regeneration => ~300 misses (100/s for 3s)
 		$missesPerSecForHighQPS = ( min( $elapsed, 1 ) * $this->keyHighQps );
+
 		// Determine whether there is enough I/O stampede risk to justify throttling set().
 		// Estimate the unthrottled set() overhead, as bps, from miss count/rate and value size,
 		// comparing it to the preferred per-key uplink bps limit (KEY_HIGH_UPLINK_BPS), e.g.:

@@ -122,9 +122,9 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		$e = null;
 		try {
 			if ( $ttl ) {
-				$result = $conn->setex( $key, $ttl, $this->serialize( $value ) );
+				$result = $conn->setex( $key, $ttl, $this->getSerialized( $value, $key ) );
 			} else {
-				$result = $conn->set( $key, $this->serialize( $value ) );
+				$result = $conn->set( $key, $this->getSerialized( $value, $key ) );
 			}
 		} catch ( RedisException $e ) {
 			$result = false;
@@ -227,9 +227,9 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				$conn->multi( Redis::PIPELINE );
 				foreach ( $batchKeys as $key ) {
 					if ( $ttl ) {
-						$conn->setex( $key, $ttl, $this->serialize( $data[$key] ) );
+						$conn->setex( $key, $ttl, $this->getSerialized( $data[$key], $key ) );
 					} else {
-						$conn->set( $key, $this->serialize( $data[$key] ) );
+						$conn->set( $key, $this->getSerialized( $data[$key], $key ) );
 					}
 				}
 				$batchResult = $conn->exec();
@@ -352,7 +352,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		try {
 			$result = $conn->set(
 				$key,
-				$this->serialize( $value ),
+				$this->getSerialized( $value, $key ),
 				$ttl ? [ 'nx', 'ex' => $ttl ] : [ 'nx' ]
 			);
 		} catch ( RedisException $e ) {

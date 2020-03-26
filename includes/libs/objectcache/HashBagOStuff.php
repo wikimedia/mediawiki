@@ -149,6 +149,16 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
+	public function setNewPreparedValues( array $valuesByKey ) {
+		// Do not bother with serialization as this class does not serialize values
+		$sizes = [];
+		foreach ( $valuesByKey as $value ) {
+			$sizes[] = $this->guessSerialValueSize( $value );
+		}
+
+		return $sizes;
+	}
+
 	/**
 	 * Does this bag have a non-null value for the given key?
 	 *
