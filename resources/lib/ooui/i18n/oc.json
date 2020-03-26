@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Cedric31",
-			"Gloria sah"
+			"Gloria sah",
+			"Quentí"
 		]
 	},
 	"ooui-outline-control-move-down": "Far davalar l’element",
@@ -17,6 +18,7 @@
 	"ooui-dialog-process-dismiss": "Regetar",
 	"ooui-dialog-process-retry": "Ensajatz tornamai",
 	"ooui-dialog-process-continue": "Contunhar",
+	"ooui-combobox-button-label": "Capvirar las opcions",
 	"ooui-selectfile-button-select": "Seleccionar un fichièr",
 	"ooui-selectfile-not-supported": "Lo tipe de fichièr es pas compatible",
 	"ooui-selectfile-placeholder": "Cap de fichièr pas seleccionat",

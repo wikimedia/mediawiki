@@ -135,6 +135,10 @@
 		"settings": {
 			"file": "images/icons/settings.svg"
 		},
+		"stopHand": {
+			"file": "images/icons/stopHand.svg",
+			"variants": [ "destructive" ]
+		},
 		"subtract": {
 			"file": "images/icons/subtract.svg",
 			"variants": [ "destructive" ]

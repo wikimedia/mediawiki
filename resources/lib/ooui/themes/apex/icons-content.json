@@ -78,6 +78,12 @@
 		"robot": {
 			"file": "../wikimediaui/images/icons/robot.svg"
 		},
+		"specialPages": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/specialPages-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/specialPages-rtl.svg"
+			}
+		},
 		"tag": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/tag-ltr.svg",
