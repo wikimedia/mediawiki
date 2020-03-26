@@ -2842,11 +2842,11 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.6.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://gerrit.wikimedia.org/r/wikimedia/fundraising/SmashPig.git",
-                "reference": "c5b83e222ba9399ba3bb9f348cd78e05b35c50e1"
+                "reference": "af9956b4e1618666e2776f26b7cc7b820878dea5"
             },
             "require": {
                 "amzn/login-and-pay-with-amazon-sdk-php": "dev-master",
@@ -2918,7 +2918,7 @@
                 "donations",
                 "payments"
             ],
-            "time": "2020-03-06T22:45:13+00:00"
+            "time": "2020-03-24T01:03:45+00:00"
         },
         {
             "name": "wikimedia/timestamp",
@@ -3471,6 +3471,7 @@
             ],
             "description": "This tool check syntax of PHP files about 20x faster than serial check.",
             "homepage": "https://github.com/JakubOnderka/PHP-Parallel-Lint",
+            "abandoned": "php-parallel-lint/php-parallel-lint",
             "time": "2015-12-15T10:42:16+00:00"
         },
         {
