@@ -2694,7 +2694,8 @@ class Parser {
 		 * expensive to check many times.
 		 */
 		if (
-			Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ] ) &&
+			// Using this hook to override the magic word cache is deprecated.
+			Hooks::run( 'ParserGetVariableValueVarCache', [ &$parser, &$this->mVarCache ], '1.35' ) &&
 			isset( $this->mVarCache[$index] )
 		) {
 			return $this->mVarCache[$index];
