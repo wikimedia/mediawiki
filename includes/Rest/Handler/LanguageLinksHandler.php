@@ -46,6 +46,11 @@ class LanguageLinksHandler extends SimpleHandler {
 	private $user;
 
 	/**
+	 * @var Title|bool|null
+	 */
+	private $title = null;
+
+	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param PermissionManager $permissionManager
@@ -70,12 +75,22 @@ class LanguageLinksHandler extends SimpleHandler {
 	}
 
 	/**
+	 * @return Title|bool Title or false if unable to retrieve title
+	 */
+	private function getTitle() {
+		if ( $this->title === null ) {
+			$this->title = Title::newFromText( $this->getValidatedParams()['title'] ) ?? false;
+		}
+		return $this->title;
+	}
+
+	/**
 	 * @param string $title
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
 	public function run( $title ) {
-		$titleObj = Title::newFromText( $title );
+		$titleObj = $this->getTitle();
 		if ( !$titleObj || !$titleObj->getArticleID() ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-nonexistent-title',
@@ -135,4 +150,40 @@ class LanguageLinksHandler extends SimpleHandler {
 			],
 		];
 	}
+
+	/**
+	 * @return string|null
+	 * @throws LocalizedHttpException
+	 */
+	protected function getETag(): ?string {
+		$title = $this->getTitle();
+		if ( !$title || !$title->getArticleID() ) {
+			return null;
+		}
+
+		// XXX: use hash of the rendered HTML?
+		return '"' . $title->getLatestRevID() . '@' . wfTimestamp( TS_MW, $title->getTouched() ) . '"';
+	}
+
+	/**
+	 * @return string|null
+	 * @throws LocalizedHttpException
+	 */
+	protected function getLastModified(): ?string {
+		$title = $this->getTitle();
+		if ( !$title || !$title->getArticleID() ) {
+			return null;
+		}
+
+		return $title->getTouched();
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function hasRepresentation() {
+		$title = $this->getTitle();
+		return $title ? $title->exists() : false;
+	}
+
 }

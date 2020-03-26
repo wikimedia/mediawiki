@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use File;
 use MediaFileTrait;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -15,7 +16,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * Handler class for Core REST API endpoints that perform operations on revisions
+ * Handler class for media meta-data
  */
 class MediaFileHandler extends SimpleHandler {
 	use MediaFileTrait;
@@ -28,6 +29,16 @@ class MediaFileHandler extends SimpleHandler {
 
 	/** @var User */
 	private $user;
+
+	/**
+	 * @var Title|bool|null
+	 */
+	private $title = null;
+
+	/**
+	 * @var File|bool|null
+	 */
+	private $file = null;
 
 	/**
 	 * @param PermissionManager $permissionManager
@@ -45,36 +56,64 @@ class MediaFileHandler extends SimpleHandler {
 	}
 
 	/**
+	 * @return Title|bool Title or false if unable to retrieve title
+	 */
+	private function getTitle() {
+		if ( $this->title === null ) {
+			$this->title =
+				Title::newFromText( $this->getValidatedParams()['title'], NS_FILE ) ?? false;
+		}
+		return $this->title;
+	}
+
+	/**
+	 * @return File|bool File or false if unable to retrieve file
+	 */
+	private function getFile() {
+		if ( $this->file === null ) {
+			$title = $this->getTitle();
+			$this->file =
+				$this->repoGroup->findFile( $title, [ 'private' => $this->user ] ) ?? false;
+		}
+		return $this->file;
+	}
+
+	/**
 	 * @param string $title
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
 	public function run( $title ) {
-		$titleObj = Title::newFromText( $title );
-		if ( !$titleObj || !$titleObj->getArticleID() ) {
+		$titleObj = $this->getTitle();
+		$fileObj = $this->getFile();
+
+		if ( !$fileObj || !$fileObj->exists() ) {
 			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $title ),
+				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams(
+					$titleObj->getPrefixedDBkey()
+				),
 				404
 			);
 		}
 
 		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
 			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $title ),
+				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams(
+					$titleObj->getPrefixedDBkey()
+				),
 				403
 			);
 		}
 
-		$response = $this->getResponse( $titleObj );
+		$response = $this->getResponse( $fileObj );
 		return $this->getResponseFactory()->createJson( $response );
 	}
 
 	/**
-	 * @param Title $titleObj the title to load media links for
+	 * @param File $file the file to load media links for
 	 * @return array response data
 	 */
-	private function getResponse( Title $titleObj ) : array {
-		$file = $this->repoGroup->findFile( $titleObj, [ 'private' => $this->user ] );
+	private function getResponse( File $file ) : array {
 		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
 			$this->user, 'imagesize'
 		);
@@ -107,5 +146,39 @@ class MediaFileHandler extends SimpleHandler {
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 		];
+	}
+
+	/**
+	 * @return string|null
+	 * @throws LocalizedHttpException
+	 */
+	protected function getETag(): ?string {
+		$file = $this->getFile();
+		if ( !$file || !$file->exists() ) {
+			return null;
+		}
+
+		return '"' . $file->getSha1() . '"';
+	}
+
+	/**
+	 * @return string|null
+	 * @throws LocalizedHttpException
+	 */
+	protected function getLastModified(): ?string {
+		$file = $this->getFile();
+		if ( !$file || !$file->exists() ) {
+			return null;
+		}
+
+		return $file->getTimestamp();
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function hasRepresentation() {
+		$file = $this->getFile();
+		return $file ? $file->exists() : false;
 	}
 }
