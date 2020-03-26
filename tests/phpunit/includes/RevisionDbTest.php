@@ -1057,6 +1057,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideGetSha1() {
+		$this->hideDeprecated( 'Revision::base36Sha1' );
 		return [
 			[ "hello world.", CONTENT_MODEL_WIKITEXT, Revision::base36Sha1( "hello world." ) ],
 			[
