@@ -84,7 +84,7 @@ class MediaFileHandlerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testCacheControl() {
-		$title = 'File:' . __CLASS__ . '_Foo';
+		$title = 'File:' . __CLASS__ . '.jpg';
 		$request = new RequestData( [ 'pathParams' => [ 'title' => $title ] ] );
 
 		$handler = $this->newHandler();
@@ -124,7 +124,7 @@ class MediaFileHandlerTest extends \MediaWikiIntegrationTestCase {
 		$handler = $this->newHandler();
 
 		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'rest-nonexistent-title' ), 404 )
+			new LocalizedHttpException( new MessageValue( 'rest-cannot-load-file' ), 404 )
 		);
 		$this->executeHandler( $handler, $request );
 	}
