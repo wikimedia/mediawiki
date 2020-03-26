@@ -601,6 +601,8 @@ because of Phabricator reports.
   - LogEventsList::userCanViewLogType
   - LogEventsList::getExcludeClause (only used when the 'audience' parameter
      is set to something other than the default of 'public')
+  - WikiPage::getCreator (only when the 'audience' parameter is set to
+     Revision::FOR_THIS_USER)
   - LogPage::addEntry
   - FileDeleteForm::doDelete
   - OldLocalFile::userCan
