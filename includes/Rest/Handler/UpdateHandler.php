@@ -2,76 +2,32 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Config;
 use FormatJson;
 use IApiMessage;
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
-use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use TextContent;
-use TitleFormatter;
-use TitleParser;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * Handler class for Core REST API endpoint that handles page updates (main slot only)
+ * Core REST API endpoint that handles page updates (main slot only)
  */
-class UpdateHandler extends ActionModuleBasedHandler {
-
-	/** @var Config */
-	protected $config;
+class UpdateHandler extends EditHandler {
 
 	/**
-	 * @var IContentHandlerFactory
-	 */
-	private $contentHandlerFactory;
-
-	/**
-	 * @var TitleParser
-	 */
-	private $titleParser;
-
-	/**
-	 * @var TitleFormatter
-	 */
-	private $titleFormatter;
-
-	/**
-	 * @var RevisionLookup
-	 */
-	private $revisionLookup;
-
-	/**
-	 * Function for generating a JSON diff
-	 *
 	 * @var callable
 	 */
-	private $jsonDiffFunction = 'wikidiff2_inline_json_diff';
+	private $jsonDiffFunction;
 
 	/**
-	 * @param Config $config
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param TitleParser $titleParser
-	 * @param TitleFormatter $titleFormatter
-	 * @param RevisionLookup $revisionLookup
+	 * @inheritDoc
 	 */
-	public function __construct(
-		Config $config,
-		IContentHandlerFactory $contentHandlerFactory,
-		TitleParser $titleParser,
-		TitleFormatter $titleFormatter,
-		RevisionLookup $revisionLookup
-	) {
-		$this->config = $config;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->titleParser = $titleParser;
-		$this->titleFormatter = $titleFormatter;
-		$this->revisionLookup = $revisionLookup;
+	protected function getTitleParameter() {
+		return $this->getValidatedParams()['title'];
 	}
 
 	/**
@@ -83,10 +39,9 @@ class UpdateHandler extends ActionModuleBasedHandler {
 		$this->jsonDiffFunction = $jsonDiffFunction;
 	}
 
-	public function needsWriteAccess() {
-		return true;
-	}
-
+	/**
+	 * @inheritDoc
+	 */
 	public function getParamSettings() {
 		return [
 			'title' => [
@@ -97,6 +52,9 @@ class UpdateHandler extends ActionModuleBasedHandler {
 		];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getBodyValidator( $contentType ) {
 		if ( $contentType !== 'application/json' ) {
 			throw new HttpException( "Unsupported Content-Type",
@@ -141,7 +99,7 @@ class UpdateHandler extends ActionModuleBasedHandler {
 	protected function getActionModuleParameters() {
 		$body = $this->getValidatedBody();
 
-		$title = $this->getValidatedParams()['title'];
+		$title = $this->getTitleParameter();
 		$baseRevId = $body['latest']['id'] ?? 0;
 
 		$contentmodel = $body['content_model'] ?: null;
@@ -179,61 +137,12 @@ class UpdateHandler extends ActionModuleBasedHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function mapActionModuleResult( array $data ) {
-		if ( isset( $data['error'] ) ) {
-			throw new LocalizedHttpException( new MessageValue( 'apierror-' . $data['error'] ), 400 );
-		}
-
-		if ( !isset( $data['edit'] ) || !$data['edit']['result'] ) {
-			throw new HttpException( 'Bad result structure received from ApiEditPage' );
-		}
-
-		if ( $data['edit']['result'] !== 'Success' ) {
-			// Probably an edit conflict
-			// TODO: which code for null edits?
-			throw new HttpException( $data['edit']['result'], 409 );
-		}
-
-		$title = $this->titleParser->parseTitle( $this->getValidatedParams()['title'] );
-
-		// This seems wasteful. This is the downside of delegating to the action API module:
-		// if we need additional data in the response, we have to load it.
-		$revision = $this->revisionLookup->getRevisionById( (int)$data['edit']['newrevid'] );
-		$content = $revision->getContent( SlotRecord::MAIN );
-
-		return [
-			'id' => $data['edit']['pageid'],
-			'title' => $this->titleFormatter->getPrefixedText( $title ),
-			'key' => $this->titleFormatter->getPrefixedDBkey( $title ),
-			'latest' => [
-				'id' => $data['edit']['newrevid'],
-				'timestamp' => $data['edit']['newtimestamp'],
-			],
-			'license' => [
-				'url' => $this->config->get( 'RightsUrl' ),
-				'title' => $this->config->get( 'RightsText' )
-			],
-			'content_model' => $data['edit']['contentmodel'],
-			'source' => $content->serialize(),
-		];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	protected function throwHttpExceptionForActionModuleError( IApiMessage $msg, $statusCode = 400 ) {
 		$code = $msg->getApiCode();
-		if ( $code === 'missingtitle' ) {
-			throw new LocalizedHttpException( $this->makeMessageValue( $msg ), 404 );
-		}
 
-		if ( $code === 'protectedpage' ) {
-			throw new LocalizedHttpException( $this->makeMessageValue( $msg ), 403 );
-		}
-
+		// Provide a message instructing the client to provide the base revision ID for updates.
 		if ( $code === 'articleexists' ) {
-			// The original message is not very helpful.
-			$title = $this->getValidatedParams()['title'];
+			$title = $this->getTitleParameter();
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-update-cannot-create-page', [ $title ] ),
 				409
@@ -245,35 +154,7 @@ class UpdateHandler extends ActionModuleBasedHandler {
 			throw new LocalizedHttpException( $this->makeMessageValue( $msg ), 409, $data );
 		}
 
-		if ( $code === 'ratelimited' ) {
-			throw new LocalizedHttpException( $this->makeMessageValue( $msg ), 429 );
-		}
-
-		if ( $code === 'badtoken' ) {
-			throw new LocalizedHttpException( $this->makeMessageValue( $msg ), 403 );
-		}
-
-		// Fall through to generic handling of the error (status 400).
 		parent::throwHttpExceptionForActionModuleError( $msg, $statusCode );
-	}
-
-	/**
-	 * Determines the CSRF token to be passed to the action module.
-	 *
-	 * This could be taken from a request parameter, or a known-good token
-	 * can be computed, if the request has been determined to be safe against
-	 * CSRF attacks, e.g. when an OAuth Authentication header is present.
-	 *
-	 * Most return an empty string if the request isn't known to be safe and
-	 * no token was supplied by the client.
-	 *
-	 * @return string
-	 */
-	protected function getActionModuleToken() {
-		// TODO: if the request is known to be safe, return $this->getUser()->getEditToken();
-
-		$body = $this->getValidatedBody();
-		return $body['token'] ?? '';
 	}
 
 	/**
