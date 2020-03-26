@@ -885,6 +885,8 @@
 	"undo-nochange": "Wygląda na to, że edycja została już anulowana.",
 	"undo-summary": "Anulowanie wersji $1 autorstwa [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]])",
 	"undo-summary-anon": "Anulowanie wersji $1 autorstwa [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Anulowanie zaimportowanej wersji $1 autorstwa [[:$2|$3]]",
+	"undo-summary-import2": "Anulowanie zaimportowanej wersji $1 autorstwa $2",
 	"undo-summary-username-hidden": "Anulowanie wersji $1 autorstwa ukrytego użytkownika",
 	"viewpagelogs": "Zobacz rejestry operacji dla tej strony",
 	"nohistory": "Ta strona nie ma swojej historii edycji.",

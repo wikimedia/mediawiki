@@ -824,6 +824,8 @@
 	"undo-nochange": "נראה שהעריכה כבר בוטלה.",
 	"undo-summary": "ביטול גרסה $1 של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]])",
 	"undo-summary-anon": "ביטול גרסה $1 של [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "ביטול גרסה מיובאת $1 מאת משתמש [[:$2|$3]]",
+	"undo-summary-import2": "ביטול גרסה מיובאת $1 מאת משתמש $2",
 	"undo-summary-username-hidden": "ביטול גרסה $1 של משתמש מוסתר",
 	"viewpagelogs": "הצגת יומנים עבור דף זה",
 	"nohistory": "אין היסטוריית שינויים עבור דף זה.",
