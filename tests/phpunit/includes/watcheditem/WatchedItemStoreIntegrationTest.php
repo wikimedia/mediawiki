@@ -322,4 +322,50 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$this->assertTrue( $store->isWatched( $user, $titleNew->getTalkPage() ) );
 	}
 
+	public function testRemoveExpired() {
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+
+		// Clear out any expired rows, to start from a known point.
+		$store->removeExpired( 10 );
+		$this->assertSame( 0, $store->countExpired() );
+
+		// Add three pages, two of which have already expired.
+		$user = $this->getUser();
+		$store->addWatch( $user, Title::newFromText( 'P1' ), '2020-01-25' );
+		$store->addWatch( $user, Title::newFromText( 'P2' ), '20200101000000' );
+		$store->addWatch( $user, Title::newFromText( 'P3' ), '1 month' );
+
+		// Test that they can be counted and removed correctly.
+		$this->assertSame( 2, $store->countExpired() );
+		$store->removeExpired( 1 );
+		$this->assertSame( 1, $store->countExpired() );
+	}
+
+	public function testRemoveOrphanedExpired() {
+		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		// Clear out any expired rows, to start from a known point.
+		$store->removeExpired( 10 );
+
+		// Manually insert some orphaned non-expired rows.
+		$orphanRows = [
+			[ 'we_item' => '100000', 'we_expiry' => $this->db->timestamp( '30300101000000' ) ],
+			[ 'we_item' => '100001', 'we_expiry' => $this->db->timestamp( '30300101000000' ) ],
+		];
+		$this->db->insert( 'watchlist_expiry', $orphanRows, __METHOD__ );
+		$initialRowCount = $this->db->selectRowCount( 'watchlist_expiry', '*', [], __METHOD__ );
+
+		// Make sure the orphans aren't removed if it's not requested.
+		$store->removeExpired( 10, false );
+		$this->assertSame(
+			$initialRowCount,
+			$this->db->selectRowCount( 'watchlist_expiry', '*', [], __METHOD__ )
+		);
+
+		// Make sure they are removed when requested.
+		$store->removeExpired( 10, true );
+		$this->assertSame(
+			$initialRowCount - 2,
+			$this->db->selectRowCount( 'watchlist_expiry', '*', [], __METHOD__ )
+		);
+	}
 }

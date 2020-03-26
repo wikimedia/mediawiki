@@ -2485,6 +2485,15 @@ ERROR;
 			}
 			WatchAction::doWatchOrUnwatch( $watch, $title, $user );
 		} );
+
+		// Add a job to purge expired watchlist items. Jobs will only be added at the rate
+		// specified by $wgWatchlistPurgeRate, which by default is every tenth edit.
+		$config = $this->context->getConfig();
+		if ( $config->get( 'WatchlistExpiry' ) ) {
+			MediaWikiServices::getInstance()
+				->getWatchedItemStore()
+				->enqueueWatchlistExpiryJob( $config->get( 'WatchlistPurgeRate' ) );
+		}
 	}
 
 	/**

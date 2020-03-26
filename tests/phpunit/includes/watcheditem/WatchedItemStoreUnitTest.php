@@ -2727,4 +2727,72 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		);
 	}
 
+	public function testRemoveExpired() {
+		$mockDb = $this->getMockDb();
+
+		// addQuotes is used for the expiry value.
+		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+
+		// Select watchlist IDs.
+		$mockDb->expects( $this->exactly( 2 ) )
+			->method( 'selectFieldValues' )
+			->withConsecutive(
+				// Select expired items.
+				[
+					'watchlist_expiry',
+					'we_item',
+					[ 'we_expiry <= 20200101000000' ],
+					'WatchedItemStore::removeExpired',
+					[ 'LIMIT' => 2 ]
+				],
+				// Select orphaned items.
+				[
+					[ 'watchlist_expiry', 'watchlist' ],
+					'we_item',
+					[ 'wl_id' => null, 'we_expiry' => null ],
+					'WatchedItemStore::removeExpired',
+					[],
+					[ 'watchlist' => [ 'LEFT JOIN', 'wl_id = we_item' ] ]
+				]
+			)
+			->willReturnOnConsecutiveCalls(
+				[ 1, 2 ],
+				[ 3 ]
+			);
+
+		// Return whatever is passed to makeList, to be tested below.
+		$mockDb->expects( $this->once() )
+			->method( 'makeList' )
+			->willReturnArgument( 0 );
+
+		// Delete from watchlist and watchlist_expiry.
+		$mockDb->expects( $this->exactly( 3 ) )
+			->method( 'delete' )
+			->withConsecutive(
+				// Delete expired items from watchlist
+				[
+					'watchlist',
+					[ 'wl_id' => [ 1, 2 ] ],
+					'WatchedItemStore::removeExpired'
+				],
+				// Delete expired items from watchlist_expiry
+				[
+					'watchlist_expiry',
+					[ 'we_item' => [ 1, 2 ] ],
+					'WatchedItemStore::removeExpired'
+				],
+				// Delete orphaned items
+				[
+					'watchlist_expiry',
+					[ 'we_item' => [ 3 ] ],
+					'WatchedItemStore::removeExpired'
+				]
+			);
+
+		$mockCache = $this->getMockCache();
+		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
+		$store->removeExpired( 2, true );
+	}
 }

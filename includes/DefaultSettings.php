@@ -7519,6 +7519,7 @@ $wgJobClasses = [
 		return new CategoryMembershipChangeJob( $pc, $title, $params );
 	},
 	'clearUserWatchlist' => ClearUserWatchlistJob::class,
+	'watchlistExpiry' => WatchlistExpiryJob::class,
 	'cdnPurge' => CdnPurgeJob::class,
 	'userGroupExpiry' => UserGroupExpiryJob::class,
 	'clearWatchlistNotifications' => ClearWatchlistNotificationsJob::class,
@@ -9099,6 +9100,19 @@ $wgMainPageIsDomainRoot = false;
  * @var bool
  */
 $wgWatchlistExpiry = false;
+
+/**
+ * Chance of expired watchlist items being purged on any page edit.
+ *
+ * Only has effect if $wgWatchlistExpiry is true.
+ *
+ * If this is zero, expired watchlist items will not be removed
+ * and the purgeExpiredWatchlistItems.php maintenance script should be run periodically.
+ *
+ * @since 1.35
+ * @var float
+ */
+$wgWatchlistPurgeRate = 0.1;
 
 /**
  * For really cool vim folding this needs to be at the end:

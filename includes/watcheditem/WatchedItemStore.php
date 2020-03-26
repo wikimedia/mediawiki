@@ -301,6 +301,17 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void {
+		$max = mt_getrandmax();
+		if ( mt_rand( 0, $max ) < $max * $watchlistPurgeRate ) {
+			// The higher the watchlist purge rate, the more likely we are to enqueue a job.
+			$this->queueGroup->push( new WatchlistExpiryJob() );
+		}
+	}
+
+	/**
 	 * @since 1.31
 	 * @return int The maximum current wl_id
 	 */
@@ -1465,4 +1476,72 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function countExpired(): int {
+		$dbr = $this->getConnectionRef( DB_REPLICA );
+		return $dbr->selectRowCount(
+			'watchlist_expiry',
+			'*',
+			[ 'we_expiry <= ' . $dbr->addQuotes( $dbr->timestamp() ) ],
+			__METHOD__
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function removeExpired( int $limit, bool $deleteOrphans = false ): void {
+		$dbr = $this->getConnectionRef( DB_REPLICA );
+		$dbw = $this->getConnectionRef( DB_MASTER );
+		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
+
+		// Get a batch of watchlist IDs to delete.
+		$toDelete = $dbr->selectFieldValues(
+			'watchlist_expiry',
+			'we_item',
+			[ 'we_expiry <= ' . $dbr->addQuotes( $dbr->timestamp() ) ],
+			__METHOD__,
+			[ 'LIMIT' => $limit ]
+		);
+		if ( count( $toDelete ) > 0 ) {
+			// Delete them from the watchlist and watchlist_expiry table.
+			$dbw->delete(
+				'watchlist',
+				[ 'wl_id' => $toDelete ],
+				__METHOD__
+			);
+			$dbw->delete(
+				'watchlist_expiry',
+				[ 'we_item' => $toDelete ],
+				__METHOD__
+			);
+		}
+
+		// Also delete any orphaned or null-expiry watchlist_expiry rows
+		// (they should not exist, but might because not everywhere knows about the expiry table yet).
+		if ( $deleteOrphans ) {
+			$expiryToDelete = $dbr->selectFieldValues(
+				[ 'watchlist_expiry', 'watchlist' ],
+				'we_item',
+				$dbr->makeList(
+					[ 'wl_id' => null, 'we_expiry' => null ],
+					$dbr::LIST_OR
+				),
+				__METHOD__,
+				[],
+				[ 'watchlist' => [ 'LEFT JOIN', 'wl_id = we_item' ] ]
+			);
+			if ( count( $expiryToDelete ) > 0 ) {
+				$dbw->delete(
+					'watchlist_expiry',
+					[ 'we_item' => $expiryToDelete ],
+					__METHOD__
+				);
+			}
+		}
+
+		$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+	}
 }
