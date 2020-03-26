@@ -73,6 +73,13 @@
 	transform: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
+.transform-origin( @value ) {
+	-webkit-transform-origin: @value; // Chrome 4-35, Safari 3.1-8.0, iOS 3.2-8.4, Op 15-22, Android 2.1-4.4.4
+	-moz-transform-origin: @value; // Firefox 3.5-15
+	-ms-transform-origin: @value; // IE 9
+	transform-origin: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
+}
+
 .transition( @value ) {
 	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
 	-moz-transition: @value; // Firefox 4-15
