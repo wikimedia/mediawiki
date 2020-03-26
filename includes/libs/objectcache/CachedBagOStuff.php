@@ -218,6 +218,10 @@ class CachedBagOStuff extends BagOStuff {
 		$this->backend->addBusyCallback( $workCallback );
 	}
 
+	public function setNewPreparedValues( array $valuesByKey ) {
+		return $this->backend->setNewPreparedValues( $valuesByKey );
+	}
+
 	public function setMockTime( &$time ) {
 		parent::setMockTime( $time );
 		$this->procCache->setMockTime( $time );
