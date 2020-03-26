@@ -611,6 +611,7 @@ because of Phabricator reports.
   - Revision::getComment
   - Revision::getUser
   - Revision::getUserText
+  - WikiPage::getComment
   - WikiPage::getCreator
   - WikiPage::getUser
   - WikiPage::getUserText
