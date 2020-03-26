@@ -759,6 +759,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideUserWasLastToEdit
 	 */
 	public function testUserWasLastToEdit( $sinceIdx, $expectedLast ) {
+		$this->hideDeprecated( 'Revision::userWasLastToEdit' );
 		$userA = User::newFromName( "RevisionStorageTest_userA" );
 		$userB = User::newFromName( "RevisionStorageTest_userB" );
 

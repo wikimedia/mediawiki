@@ -2241,9 +2241,11 @@ ERROR;
 					}
 				} elseif ( $this->section == ''
 					&& $this->edittime
-					&& Revision::userWasLastToEdit(
-						DB_MASTER, $this->mTitle->getArticleID(),
-						$user->getId(), $this->edittime
+					&& $this->revisionStore->userWasLastToEdit(
+						wfGetDb( DB_MASTER ),
+						$this->mTitle->getArticleID(),
+						$user->getId(),
+						$this->edittime
 					)
 				) {
 					# Suppress edit conflict with self, except for section edits where merging is required.
