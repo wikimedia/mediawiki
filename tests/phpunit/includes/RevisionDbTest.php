@@ -374,7 +374,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$orig = $this->makeRevisionWithProps();
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$revQuery = Revision::getQueryInfo();
+		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 		$res = $dbr->select( $revQuery['tables'], $revQuery['fields'], [ 'rev_id' => $orig->getId() ],
 		   __METHOD__, [], $revQuery['joins'] );
 		$this->assertIsObject( $res, 'query failed' );
@@ -464,7 +464,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$arQuery = Revision::getArchiveQueryInfo();
+		$arQuery = $services->getRevisionStore()->getArchiveQueryInfo();
 		$arQuery['fields'] = $selectModifier( $arQuery['fields'] );
 		$res = $dbr->select(
 			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
@@ -498,7 +498,9 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$arQuery = Revision::getArchiveQueryInfo();
+		$arQuery = MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->getArchiveQueryInfo();
 		$res = $dbr->select(
 			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
 			__METHOD__, [], $arQuery['joins']
@@ -841,7 +843,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		// test it ---------------------------------
 		$since = $revisions[$sinceIdx]->getTimestamp();
 
-		$revQuery = Revision::getQueryInfo();
+		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 		$allRows = iterator_to_array( $dbw->select(
 			$revQuery['tables'],
 			[ 'rev_id', 'rev_timestamp', 'rev_user' => $revQuery['fields']['rev_user'] ],
@@ -1708,7 +1710,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testGetRevisionText() {
 		$rev = $this->testPage->getRevisionRecord();
 
-		$queryInfo = Revision::getQueryInfo();
+		$queryInfo = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 
 		$conds = [ 'rev_id' => $rev->getId() ];
 		$row = $this->db->selectRow(

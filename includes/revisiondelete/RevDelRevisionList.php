@@ -63,8 +63,9 @@ class RevDelRevisionList extends RevDelList {
 	 * @return mixed
 	 */
 	public function doQuery( $db ) {
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$ids = array_map( 'intval', $this->ids );
-		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
+		$revQuery = $revisionStore->getQueryInfo( [ 'page', 'user' ] );
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
@@ -100,7 +101,7 @@ class RevDelRevisionList extends RevDelList {
 			return $live;
 		}
 
-		$arQuery = Revision::getArchiveQueryInfo();
+		$arQuery = $revisionStore->getArchiveQueryInfo();
 		$archiveQueryInfo = [
 			'tables' => $arQuery['tables'],
 			'fields' => $arQuery['fields'],

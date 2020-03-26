@@ -261,7 +261,9 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
+		$revQuery = MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->getQueryInfo( [ 'page', 'user' ] );
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
 			'fields' => array_merge( $revQuery['fields'], [ 'page_is_new' ] ),

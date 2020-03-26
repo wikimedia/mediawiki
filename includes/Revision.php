@@ -296,7 +296,7 @@ class Revision implements IDBAccessObject {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new revision object.
 	 * @since 1.31
-	 * @deprecated since 1.31, use RevisionStore::getQueryInfo() instead.
+	 * @deprecated since 1.31 (soft), 1.35 (hard), use RevisionStore::getQueryInfo() instead.
 	 * @param array $options Any combination of the following strings
 	 *  - 'page': Join with the page table, and select fields to identify the page
 	 *  - 'user': Join with the user table, and select the user name
@@ -307,6 +307,7 @@ class Revision implements IDBAccessObject {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo( $options = [] ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return self::getRevisionStore()->getQueryInfo( $options );
 	}
 
@@ -314,13 +315,15 @@ class Revision implements IDBAccessObject {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new archived revision object.
 	 * @since 1.31
-	 * @deprecated since 1.31, use RevisionStore::getArchiveQueryInfo() instead.
+	 * @deprecated since 1.31 (soft), 1.35 (hard), use RevisionStore::getArchiveQueryInfo()
+	 *   instead.
 	 * @return array With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getArchiveQueryInfo() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return self::getRevisionStore()->getArchiveQueryInfo();
 	}
 

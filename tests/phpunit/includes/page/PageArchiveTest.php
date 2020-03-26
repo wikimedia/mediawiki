@@ -119,9 +119,11 @@ class PageArchiveTest extends MediaWikiTestCase {
 		// TODO: Replace deprecated PageArchive::undelete with ::undeleteAsUser
 		$this->hideDeprecated( 'PageArchive::undelete' );
 
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+
 		// First make sure old revisions are archived
 		$dbr = wfGetDB( DB_REPLICA );
-		$arQuery = Revision::getArchiveQueryInfo();
+		$arQuery = $revisionStore->getArchiveQueryInfo();
 		$row = $dbr->selectRow(
 			$arQuery['tables'],
 			$arQuery['fields'],
@@ -144,7 +146,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 		$this->archivedPage->undelete( [] );
 
 		// Should be back in revision
-		$revQuery = Revision::getQueryInfo();
+		$revQuery = $revisionStore->getQueryInfo();
 		$row = $dbr->selectRow(
 			$revQuery['tables'],
 			$revQuery['fields'],

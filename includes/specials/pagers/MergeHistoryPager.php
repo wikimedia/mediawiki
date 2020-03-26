@@ -19,6 +19,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup Pager
  */
@@ -90,7 +92,11 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$conds['rev_page'] = $this->articleID;
 		$conds[] = "rev_timestamp < " . $this->mDb->addQuotes( $this->maxTimestamp );
 
-		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
+		// TODO inject a RevisionStore into SpecialMergeHistory and pass it to
+		// the MergeHistoryPager constructor
+		$revQuery = MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->getQueryInfo( [ 'page', 'user' ] );
 		return [
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],

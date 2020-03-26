@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -56,11 +57,23 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			return false;
 		}
 
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+
 		$this->output( "Populating rev_len column\n" );
-		$rev = $this->doLenUpdates( 'revision', 'rev_id', 'rev', Revision::getQueryInfo() );
+		$rev = $this->doLenUpdates(
+			'revision',
+			'rev_id',
+			'rev',
+			$revisionStore->getQueryInfo()
+		);
 
 		$this->output( "Populating ar_len column\n" );
-		$ar = $this->doLenUpdates( 'archive', 'ar_id', 'ar', Revision::getArchiveQueryInfo() );
+		$ar = $this->doLenUpdates(
+			'archive',
+			'ar_id',
+			'ar',
+			$revisionStore->getArchiveQueryInfo()
+		);
 
 		$this->output( "rev_len and ar_len population complete "
 			. "[$rev revision rows, $ar archive rows].\n" );

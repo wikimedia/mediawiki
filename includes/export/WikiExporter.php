@@ -246,7 +246,9 @@ class WikiExporter {
 		$this->author_list = "<contributors>";
 		// rev_deleted
 
-		$revQuery = Revision::getQueryInfo( [ 'page' ] );
+		$revQuery = MediaWikiServicesAlias::getInstance()
+			->getRevisionStore()
+			->getQueryInfo( [ 'page' ] );
 		$res = $this->db->select(
 			$revQuery['tables'],
 			[
