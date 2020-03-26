@@ -453,18 +453,6 @@ class Parser {
 	}
 
 	/**
-	 * Which class should we use for the preprocessor if not otherwise specified?
-	 *
-	 * @since 1.34
-	 * @deprecated since 1.34, removing configurability of preprocessor
-	 * @return string
-	 */
-	public static function getDefaultPreprocessorClass() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return Preprocessor_Hash::class;
-	}
-
-	/**
 	 * Do various kinds of initialisation on the first call of the parser
 	 */
 	public function firstCallInit() {
@@ -6417,8 +6405,10 @@ class Parser {
 	 * and instructs OutputPage to enable OOUI for itself.
 	 *
 	 * @since 1.26
+	 * @deprecated since 1.35, use $parser->getOutput()->enableOOUI() instead.
 	 */
 	public function enableOOUI() {
+		wfDeprecated( __METHOD__, '1.35' );
 		OutputPage::setupOOUI();
 		$this->mOutput->setEnableOOUI( true );
 	}
