@@ -27,6 +27,11 @@ class RevisionHandler extends SimpleHandler {
 	private $user;
 
 	/**
+	 * @var RevisionRecord|bool|null
+	 */
+	private $revision = null;
+
+	/**
 	 * @param RevisionLookup $revisionLookup
 	 * @param PermissionManager $permissionManager
 	 */
@@ -42,12 +47,28 @@ class RevisionHandler extends SimpleHandler {
 	}
 
 	/**
+	 * @return RevisionRecord|bool
+	 */
+	private function getRevision() {
+		$id = $this->getValidatedParams()['id'];
+
+		if ( $this->revision === null ) {
+			$rev = $this->revisionLookup->getRevisionById( $id );
+
+			// If null was returned, remember it as false, since null means uninitialized.
+			$this->revision = $rev ?: false;
+		}
+
+		return $this->revision;
+	}
+
+	/**
 	 * @param int $id
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
 	public function run( $id ) {
-		$rev = $this->revisionLookup->getRevisionById( $id );
+		$rev = $this->getRevision();
 		if ( !$rev ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-nonexistent-revision', [ $id ] ), 404 );
@@ -102,5 +123,47 @@ class RevisionHandler extends SimpleHandler {
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 		];
+	}
+
+	/**
+	 * Returns an ETag representing the requested revision.
+	 * If access to the revision is restricted, do not return an etag.
+	 *
+	 * @return string|null
+	 * @throws LocalizedHttpException
+	 */
+	protected function getETag(): ?string {
+		$rev = $this->getRevision();
+		if ( !$rev || $rev->getVisibility() !== 0 ) {
+			return null;
+		}
+
+		$tag = $rev->getId();
+
+		return '"' . $tag . '"';
+	}
+
+	/**
+	 * Returns the requested revision's timestamp.
+	 * If access to the revision is restricted, do not return a timestamp.
+	 *
+	 * @return string|null
+	 * @throws LocalizedHttpException
+	 */
+	protected function getLastModified(): ?string {
+		$rev = $this->getRevision();
+		if ( !$rev || $rev->getVisibility() !== 0 ) {
+			return null;
+		}
+
+		return $rev->getTimestamp();
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function hasRepresentation() {
+		$rev = $this->getRevision();
+		return $rev ? true : false;
 	}
 }

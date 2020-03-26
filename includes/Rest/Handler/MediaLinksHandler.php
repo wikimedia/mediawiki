@@ -37,6 +37,11 @@ class MediaLinksHandler extends SimpleHandler {
 	private $user;
 
 	/**
+	 * @var Title|bool|null
+	 */
+	private $title = null;
+
+	/**
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RepoGroup $repoGroup
@@ -52,6 +57,16 @@ class MediaLinksHandler extends SimpleHandler {
 
 		// @todo Inject this, when there is a good way to do that
 		$this->user = RequestContext::getMain()->getUser();
+	}
+
+	/**
+	 * @return Title|bool Title or false if unable to retrieve title
+	 */
+	private function getTitle() {
+		if ( $this->title === null ) {
+			$this->title = Title::newFromText( $this->getValidatedParams()['title'] ) ?? false;
+		}
+		return $this->title;
 	}
 
 	/**
@@ -153,5 +168,40 @@ class MediaLinksHandler extends SimpleHandler {
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 		];
+	}
+
+	/**
+	 * @return string|null
+	 * @throws LocalizedHttpException
+	 */
+	protected function getETag(): ?string {
+		$title = $this->getTitle();
+		if ( !$title || !$title->getArticleID() ) {
+			return null;
+		}
+
+		// XXX: use hash of the rendered HTML?
+		return '"' . $title->getLatestRevID() . '@' . wfTimestamp( TS_MW, $title->getTouched() ) . '"';
+	}
+
+	/**
+	 * @return string|null
+	 * @throws LocalizedHttpException
+	 */
+	protected function getLastModified(): ?string {
+		$title = $this->getTitle();
+		if ( !$title || !$title->getArticleID() ) {
+			return null;
+		}
+
+		return $title->getTouched();
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function hasRepresentation() {
+		$title = $this->getTitle();
+		return $title ? $title->exists() : false;
 	}
 }

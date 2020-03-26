@@ -311,6 +311,27 @@ describe( 'Page History', () => {
 
 			assert.equal( res.status, 404 );
 		} );
+
+		it( 'Should update cache control headers', async () => {
+			const title2 = utils.title( 'Random_' );
+			const edit1 = await alice.edit( title2, { text: 'Old Content', summary: 'make page' } );
+			const res1a = await client.get( `/page/${title2}/history`, { filter: 'bot' } );
+			const res1b = await client.get( `/page/${title2}/history`, { filter: 'bot' } );
+
+			assert.equal( res1a.headers[ 'last-modified' ], res1b.headers[ 'last-modified' ] );
+			assert.equal( res1a.headers.etag, res1b.headers.etag );
+
+			const edit2 = await alice.edit( title2, { text: 'New Content', summary: 'poke page' } );
+			const res2 = await client.get( `/page/${title2}/history`, { filter: 'bot' } );
+
+			assert.equal( Date.parse( res1a.headers[ 'last-modified' ] ),
+				Date.parse( edit1.newtimestamp ) );
+
+			assert.equal( Date.parse( res2.headers[ 'last-modified' ] ),
+				Date.parse( edit2.newtimestamp ) );
+
+			assert.notEqual( res1a.headers.etag, res2.headers.etag );
+		} );
 	} );
 
 	describe( 'GET /page/{title}/history?{older_than|newer_than={id}}', () => {

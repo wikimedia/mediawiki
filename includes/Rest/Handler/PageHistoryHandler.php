@@ -16,6 +16,7 @@ use MediaWiki\Storage\NameTableStoreFactory;
 use RequestContext;
 use Title;
 use User;
+use WebRequest;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
@@ -47,6 +48,13 @@ class PageHistoryHandler extends SimpleHandler {
 	private $user;
 
 	/**
+	 * @var Title|bool|null
+	 */
+	private $title = null;
+
+	/**
+	 * RevisionStore $revisionStore
+	 *
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStoreFactory $nameTableStoreFactory
 	 * @param PermissionManager $permissionManager
@@ -65,6 +73,16 @@ class PageHistoryHandler extends SimpleHandler {
 
 		// @todo Inject this, when there is a good way to do that
 		$this->user = RequestContext::getMain()->getUser();
+	}
+
+	/**
+	 * @return Title|bool Title or false if unable to retrieve title
+	 */
+	private function getTitle() {
+		if ( $this->title === null ) {
+			$this->title = Title::newFromText( $this->getValidatedParams()['title'] ) ?? false;
+		}
+		return $this->title;
 	}
 
 	/**
@@ -371,7 +389,7 @@ class PageHistoryHandler extends SimpleHandler {
 			}
 		}
 
-		$wr = new \WebRequest();
+		$wr = new WebRequest();
 		$urlParts = wfParseUrl( $wr->getFullRequestURL() );
 		if ( $urlParts ) {
 			if ( isset( $urlParts['query'] ) ) {
@@ -429,5 +447,42 @@ class PageHistoryHandler extends SimpleHandler {
 				ParamValidator::PARAM_REQUIRED => false,
 			],
 		];
+	}
+
+	/**
+	 * Returns an ETag representing a page's latest revision.
+	 *
+	 * @return string|null
+	 */
+	protected function getETag(): ?string {
+		$title = $this->getTitle();
+		if ( !$title || !$title->getArticleID() ) {
+			return null;
+		}
+
+		return '"' . $title->getLatestRevID() . '"';
+	}
+
+	/**
+	 * Returns the time of the last change to the page.
+	 *
+	 * @return string|null
+	 */
+	protected function getLastModified(): ?string {
+		$title = $this->getTitle();
+		if ( !$title || !$title->getArticleID() ) {
+			return null;
+		}
+
+		$rev = $this->revisionStore->getKnownCurrentRevision( $title );
+		return $rev->getTimestamp();
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function hasRepresentation() {
+		$title = $this->getTitle();
+		return $title ? $title->exists() : false;
 	}
 }
