@@ -599,13 +599,16 @@ class Revision implements IDBAccessObject {
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the ID regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter
+	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
 	 * @return int
 	 */
 	public function getUser( $audience = self::FOR_PUBLIC, User $user = null ) {
-		global $wgUser;
-
 		if ( $audience === self::FOR_THIS_USER && !$user ) {
+			wfDeprecated(
+				__METHOD__ . ' using FOR_THIS_USER without a user',
+				'1.35'
+			);
+			global $wgUser;
 			$user = $wgUser;
 		}
 
@@ -623,13 +626,16 @@ class Revision implements IDBAccessObject {
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter
+	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
 	 * @return string
 	 */
 	public function getUserText( $audience = self::FOR_PUBLIC, User $user = null ) {
-		global $wgUser;
-
 		if ( $audience === self::FOR_THIS_USER && !$user ) {
+			wfDeprecated(
+				__METHOD__ . ' using FOR_THIS_USER without a user',
+				'1.35'
+			);
+			global $wgUser;
 			$user = $wgUser;
 		}
 
@@ -643,15 +649,18 @@ class Revision implements IDBAccessObject {
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
 	 *   Revision::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
-	 *   to the $audience parameter
+	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
 	 *
 	 * @return string|null Returns null if the specified audience does not have access to the
 	 *  comment.
 	 */
 	public function getComment( $audience = self::FOR_PUBLIC, User $user = null ) {
-		global $wgUser;
-
 		if ( $audience === self::FOR_THIS_USER && !$user ) {
+			wfDeprecated(
+				__METHOD__ . ' using FOR_THIS_USER without a user',
+				'1.35'
+			);
+			global $wgUser;
 			$user = $wgUser;
 		}
 
