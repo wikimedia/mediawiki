@@ -84,6 +84,13 @@ class CleanupWatchlist extends TableCleanup {
 				[ 'wl_id' => $row->wl_id ],
 				__METHOD__
 			);
+			if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+				$dbw->delete(
+					'watchlist_expiry',
+					[ 'we_item' => $row->wl_id ],
+					__METHOD__
+				);
+			}
 
 			$this->output( "- removed\n" );
 

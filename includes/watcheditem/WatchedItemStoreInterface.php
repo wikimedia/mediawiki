@@ -339,6 +339,15 @@ interface WatchedItemStoreInterface {
 	public function clearUserWatchedItemsUsingJobQueue( UserIdentity $user );
 
 	/**
+	 * Probabilistically add a job to purge the expired watchlist items.
+	 *
+	 * @since 1.35
+	 *
+	 * @param float $watchlistPurgeRate The value of the $wgWatchlistPurgeRate configuration variable.
+	 */
+	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void;
+
+	/**
 	 * @since 1.32
 	 *
 	 * @param UserIdentity $user
@@ -363,4 +372,25 @@ interface WatchedItemStoreInterface {
 	 */
 	public function getLatestNotificationTimestamp(
 		$timestamp, UserIdentity $user, LinkTarget $target );
+
+	/**
+	 * Get the number of watchlist items that expire before the current time.
+	 *
+	 * @since 1.35
+	 *
+	 * @return int
+	 */
+	public function countExpired(): int;
+
+	/**
+	 * Remove some number of expired watchlist items.
+	 *
+	 * @since 1.35
+	 *
+	 * @param int $limit The number of items to remove.
+	 * @param bool $deleteOrphans Whether to also delete `watchlist_expiry` rows that have no
+	 * related `watchlist` rows (because not all code knows about the expiry table yet). This runs
+	 * two extra queries, so is only done from the purgeExpiredWatchlistItems.php maintenance script.
+	 */
+	public function removeExpired( int $limit, bool $deleteOrphans = false ): void;
 }
