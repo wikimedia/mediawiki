@@ -883,6 +883,8 @@
 	"undo-nochange": "De bewerking lijkt al ongedaan gemaakt te zijn.",
 	"undo-summary": "Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt",
 	"undo-summary-anon": "Versie $1 van [[Special:Contributions/$2|$2]] ongedaan gemaakt",
+	"undo-summary-import": "Geïmporteerde versie $1 van gebruiker [[:$2|$3]] ongedaan gemaakt",
+	"undo-summary-import2": "Geïmporteerde versie $1 van gebruiker $2 ongedaan gemaakt",
 	"undo-summary-username-hidden": "Versie $1 door een verborgen gebruiker ongedaan gemaakt",
 	"viewpagelogs": "Logboek voor deze pagina bekijken",
 	"nohistory": "Deze pagina is niet bewerkt.",

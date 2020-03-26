@@ -2154,7 +2154,7 @@
 	"logempty": "Ei tapahtumia lokissa.",
 	"log-title-wildcard": "Haun kohteet alkavat tällä tekstillä",
 	"showhideselectedlogentries": "Muuta valittujen lokitapahtumien näkyvyyttä",
-	"log-edit-tags": "Muuta markeerauksia valituissa lokimerkinnöissä",
+	"log-edit-tags": "Muuta merkkauksia valituissa lokimerkinnöissä",
 	"checkbox-select": "Valitse: $1",
 	"checkbox-all": "Kaikki",
 	"checkbox-none": "Ei mitään",
