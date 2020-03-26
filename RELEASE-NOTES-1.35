@@ -599,18 +599,21 @@ because of Phabricator reports.
   - LogEventsList::userCan
   - LogEventsList::userCanBitfield
   - LogEventsList::userCanViewLogType
-  - LogEventsList::getExcludeClause (only used when the 'audience' parameter
-     is set to something other than the default of 'public')
-  - WikiPage::getCreator (only when the 'audience' parameter is set to
-     Revision::FOR_THIS_USER)
-  - WikiPage::getUser (only when the 'audience' parameter is set to
-     Revision::FOR_THIS_USER)
-  - WikiPage::getUserText (only when the 'audience' parameter is set to
-     Revision::FOR_THIS_USER)
   - LogPage::addEntry
   - FileDeleteForm::doDelete
   - OldLocalFile::userCan
   - ArchivedFile::userCan
+* The following functions all accept an optional audience parameter and
+  an optional user parameter. If the audience is FOR_THIS_USER and no
+  user is passed, they fallback to $wgUser. Not passing a user when
+  one is needed is deprecated
+  - LogEventsList::getExcludeClause
+  - Revision::getComment
+  - Revision::getUser
+  - Revision::getUserText
+  - WikiPage::getCreator
+  - WikiPage::getUser
+  - WikiPage::getUserText
 * Article::insertProtectNullRevision is deprecated. Instead, use
   WikiPage::insertProtectNullRevision.
 * Article::doDeleteArticle, Article::doDeleteArticleReal, and
