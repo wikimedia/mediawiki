@@ -18,5 +18,9 @@
 	"ooui-dialog-process-error": "มีบางอย่างผิดพลาด",
 	"ooui-dialog-process-dismiss": "รับทราบ",
 	"ooui-dialog-process-retry": "ลองอีกครั้ง",
-	"ooui-dialog-process-continue": "ดำเนินการต่อ"
+	"ooui-dialog-process-continue": "ดำเนินการต่อ",
+	"ooui-selectfile-button-select": "เลือกไฟล์",
+	"ooui-selectfile-placeholder": "ไม่ได้เลือกไฟล์ใด",
+	"ooui-selectfile-dragdrop-placeholder": "หย่อนไฟล์ลงที่นี่",
+	"ooui-field-help": "วิธีใช้"
 }

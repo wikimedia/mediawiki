@@ -101,6 +101,12 @@
 		"robot": {
 			"file": "images/icons/robot.svg"
 		},
+		"specialPages": {
+			"file": {
+				"ltr": "images/icons/specialPages-ltr.svg",
+				"rtl": "images/icons/specialPages-rtl.svg"
+			}
+		},
 		"tag": {
 			"file": {
 				"ltr": "images/icons/tag-ltr.svg",

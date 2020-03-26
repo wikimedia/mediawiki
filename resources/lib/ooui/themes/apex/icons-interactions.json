@@ -110,6 +110,9 @@
 		"settings": {
 			"file": "../wikimediaui/images/icons/settings.svg"
 		},
+		"stopHand": {
+			"file": "../wikimediaui/images/icons/stopHand.svg"
+		},
 		"subtract": {
 			"file": "../wikimediaui/images/icons/subtract.svg"
 		}
