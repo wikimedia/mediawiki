@@ -6417,8 +6417,10 @@ class Parser {
 	 * and instructs OutputPage to enable OOUI for itself.
 	 *
 	 * @since 1.26
+	 * @deprecated since 1.35, use $parser->getOutput()->enableOOUI() instead.
 	 */
 	public function enableOOUI() {
+		wfDeprecated( __METHOD__, '1.35' );
 		OutputPage::setupOOUI();
 		$this->mOutput->setEnableOOUI( true );
 	}

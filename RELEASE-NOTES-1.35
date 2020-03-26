@@ -694,6 +694,8 @@ because of Phabricator reports.
   - Title::getEarliestRevTime
   - WikiPage::getOldestRevision
   Use RevisionStore::getFirstRevision instead.
+* The Parser::enableOOUI() method has been deprecated.  Use
+  $parser->getOutput()->enableOOUI() instead.
 * …
 
 === Other changes in 1.35 ===
