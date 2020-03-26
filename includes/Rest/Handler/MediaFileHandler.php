@@ -87,7 +87,7 @@ class MediaFileHandler extends SimpleHandler {
 		$titleObj = $this->getTitle();
 		$fileObj = $this->getFile();
 
-		if ( !$fileObj || !$fileObj->exists() ) {
+		if ( !$titleObj || !$titleObj->exists() ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams(
 					$titleObj->getPrefixedDBkey()
@@ -102,6 +102,15 @@ class MediaFileHandler extends SimpleHandler {
 					$titleObj->getPrefixedDBkey()
 				),
 				403
+			);
+		}
+
+		if ( !$fileObj || !$fileObj->exists() ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-cannot-load-file' )->plaintextParams(
+					$titleObj->getPrefixedDBkey()
+				),
+				404
 			);
 		}
 
