@@ -79,7 +79,8 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML
 	 */
 	protected function getAuthor( Page $page ) {
-		$user = User::newFromName( $page->getUserText(), false );
+		$wikipage = $page instanceof Article ? $page->getPage() : $page;
+		$user = User::newFromName( $wikipage->getUserText(), false );
 
 		$timestamp = $page->getTimestamp();
 		if ( $timestamp ) {
