@@ -61,6 +61,7 @@ class EntryPoint {
 		return new Router(
 			$routeFiles,
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
+			$conf->get( 'CanonicalServer' ),
 			$conf->get( 'RestPath' ),
 			$services->getLocalServerObjectCache(),
 			$responseFactory,

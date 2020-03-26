@@ -68,5 +68,17 @@
 			"TitleFormatter",
 			"RevisionStore"
 		]
+	},
+	{
+		"method": "POST",
+		"path": "/coredev/v0/page",
+		"class": "MediaWiki\\Rest\\Handler\\CreationHandler",
+		"services": [
+			"MainConfig",
+			"ContentHandlerFactory",
+			"TitleParser",
+			"TitleFormatter",
+			"RevisionStore"
+		]
 	}
 ]

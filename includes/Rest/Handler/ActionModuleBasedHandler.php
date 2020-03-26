@@ -125,7 +125,11 @@ abstract class ActionModuleBasedHandler extends Handler {
 
 		$response = $this->getResponseFactory()->createFromReturnValue( $resultData );
 
-		$this->mapActionModuleResponse( $apiMain->getRequest()->response(), $response );
+		$this->mapActionModuleResponse(
+			$apiMain->getRequest()->response(),
+			$actionModuleResult,
+			$response
+		);
 
 		return $response;
 	}
@@ -162,13 +166,15 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 * to preserve baseline behavior.
 	 *
 	 * @param WebResponse $actionModuleResponse
+	 * @param array $actionModuleResult
 	 * @param Response $response
 	 */
 	protected function mapActionModuleResponse(
 		WebResponse $actionModuleResponse,
+		array $actionModuleResult,
 		Response $response
 	) {
-		// TODO: map headers, cookies, etc
+		// TODO: map status, headers, cookies, etc
 	}
 
 	/**

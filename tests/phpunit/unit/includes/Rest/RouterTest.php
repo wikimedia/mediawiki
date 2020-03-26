@@ -34,6 +34,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		return new Router(
 			$routeFiles,
 			[],
+			'http://wiki.example.com',
 			'/rest',
 			new \EmptyBagOStuff(),
 			new ResponseFactory( [] ),
@@ -133,4 +134,28 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			[ '/rest/mock/RouterTest/hello/two' ],
 		];
 	}
+
+	public function provideGetRouteUrl() {
+		yield 'empty' => [ '' ];
+		yield 'simple route' => [ '/foo/bar' ];
+		yield 'simple route with query' => [ '/foo/bar', [ 'x' => '1', 'y' => '2' ] ];
+		yield 'strange chars' => [ '/foo+bar', [ 'x' => '#', 'y' => '%' ] ];
+	}
+
+	/**
+	 * @dataProvider provideGetRouteUrl
+	 */
+	public function testGetRouteUrl( $route, $query = [] ) {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/route' ) ] );
+		$router = $this->createRouter( $request );
+
+		$url = $router->getRouteUrl( $route, $query );
+		$this->assertRegExp( '!^https?://[\w.]+/!', $url );
+
+		$uri = new Uri( $url );
+
+		$this->assertSame( wfArrayToCgi( $query ), $uri->getQuery() );
+		$this->assertStringContainsString( $route, $uri->getPath() );
+	}
+
 }
