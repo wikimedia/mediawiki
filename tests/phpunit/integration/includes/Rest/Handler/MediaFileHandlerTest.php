@@ -13,7 +13,7 @@ use Wikimedia\Message\MessageValue;
  *
  * @group Database
  */
-class MediaFileHandlerTest extends \MediaWikiIntegrationTestCase {
+class MediaFileHandlerTest extends \MediaWikiLangTestCase {
 
 	use MediaTestTrait;
 

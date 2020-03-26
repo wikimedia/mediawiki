@@ -13,7 +13,6 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\SlotRecord;
-use MediaWikiIntegrationTestCase;
 use MediaWikiTitleCodec;
 use PHPUnit\Framework\MockObject\MockObject;
 use Status;
@@ -27,7 +26,7 @@ use WikitextContentHandler;
 /**
  * @covers \MediaWiki\Rest\Handler\UpdateHandler
  */
-class UpdateHandlerTest extends MediaWikiIntegrationTestCase {
+class UpdateHandlerTest extends \MediaWikiLangTestCase {
 
 	use ActionModuleBasedHandlerTestTrait;
 
