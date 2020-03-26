@@ -1,6 +1,12 @@
-== MediaWiki 1.31.7 ==
+== MediaWiki 1.31.8 ==
 
 THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.31.7 ===
+
+== MediaWiki 1.31.7 ==
+
+This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.6 ===
 * (T193565, T234022) Re-add DB domain sanity checks to LoadBalancer.
@@ -10,6 +16,9 @@ THIS IS NOT A RELEASE YET
 * (T247215) Fix output of RecountCategories::doWork().
 * Add check for page existence to view.php maintenance script.
 * (T247580) Disable some broken Selenium tests.
+* (T236509) SECURITY: Fix HTML escaping in UserGroupMembership::getLink().
+* (T246602) SECURITY: jquery.makeCollapsible allows applying event handler to any
+  CSS selector.
 
 == MediaWiki 1.31.6 ==
 
