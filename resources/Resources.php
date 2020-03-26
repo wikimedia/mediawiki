@@ -789,7 +789,8 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.notify' => [
-		'scripts' => 'resources/src/mediawiki.notify.js',
+		'deprecated' => 'This dependency is no longer needed, mw.notify() is available by default.',
+		'dependencies' => 'mediawiki.base',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.notification.convertmessagebox' => [
@@ -1449,7 +1450,6 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.util',
-			'mediawiki.notify',
 			'mediawiki.api'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1468,7 +1468,6 @@ return [
 			'mediawiki.api',
 			'mediawiki.util',
 			'mediawiki.Title',
-			'mediawiki.notify',
 			'jquery.spinner',
 			'user.options'
 		],
@@ -1482,7 +1481,6 @@ return [
 		'scripts' => 'resources/src/mediawiki.page.watch.ajax.js',
 		'dependencies' => [
 			'mediawiki.api',
-			'mediawiki.notify',
 			'mediawiki.util',
 			'mediawiki.Title',
 			'mediawiki.jqueryMsg',
@@ -2067,7 +2065,6 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.api',
-			'mediawiki.notify',
 			'mediawiki.Title',
 			'mediawiki.util',
 		],
@@ -2155,7 +2152,6 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
-			'mediawiki.notify',
 			'mediawiki.Title',
 			'mediawiki.util',
 			'oojs-ui-core',
@@ -2297,8 +2293,6 @@ return [
 			'mediawiki.Title',
 			'mediawiki.api',
 			'mediawiki.String',
-			// CopyTextLayout
-			'mediawiki.notify',
 		],
 		'messages' => [
 			// NamespaceInputWidget
