@@ -93,6 +93,8 @@ class MovePageForm extends UnlistedSpecialPage {
 			// Either oldTitle wasn't passed, or newFromText returned null
 			throw new ErrorPageError( 'notargettitle', 'notargettext' );
 		}
+		$this->getOutput()->addBacklinkSubtitle( $this->oldTitle );
+
 		if ( !$this->oldTitle->exists() ) {
 			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
 		}
