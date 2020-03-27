@@ -19,18 +19,19 @@ class ParserTestFileSuite extends TestSuite {
 		$this->ptRunner = $runner;
 		$this->ptFileName = $fileName;
 		$this->ptFileInfo = TestFileReader::read( $this->ptFileName );
+		if ( !$this->ptRunner->meetsRequirements( $this->ptFileInfo['requirements'] ) ) {
+			$skipMessage = 'required extension not enabled';
+		} else {
+			$skipMessage = null;
+		}
 
 		foreach ( $this->ptFileInfo['tests'] as $test ) {
-			$this->addTest( new ParserIntegrationTest( $runner, $fileName, $test ),
+			$this->addTest( new ParserIntegrationTest( $runner, $fileName, $test, $skipMessage ),
 				[ 'Database', 'Parser', 'ParserTests' ] );
 		}
 	}
 
 	public function setUp() : void {
-		if ( !$this->ptRunner->meetsRequirements( $this->ptFileInfo['requirements'] ) ) {
-			$this->markTestSuiteSkipped( 'required extension not enabled' );
-		} else {
-			$this->ptRunner->addArticles( $this->ptFileInfo[ 'articles'] );
-		}
+		$this->ptRunner->addArticles( $this->ptFileInfo[ 'articles'] );
 	}
 }
