@@ -12,6 +12,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
+use MediaWiki\Session\Session;
 use RequestContext;
 use WebResponse;
 use Wikimedia\Message\ListParam;
@@ -26,12 +27,37 @@ use Wikimedia\Message\ScalarParam;
 abstract class ActionModuleBasedHandler extends Handler {
 
 	/**
+	 * @var Session|null
+	 */
+	private $session = null;
+
+	/**
 	 * @var ApiMain|null
 	 */
 	private $apiMain = null;
 
 	protected function getUser() {
 		return $this->getApiMain()->getUser();
+	}
+
+	/**
+	 * @return Session
+	 */
+	protected function getSession() {
+		if ( !$this->session ) {
+			$this->session = $this->getApiMain()->getRequest()->getSession();
+		}
+
+		return $this->session;
+	}
+
+	/**
+	 * Set main action API entry point for testing.
+	 *
+	 * @param ApiMain $apiMain
+	 */
+	public function setApiMain( ApiMain $apiMain ) {
+		$this->apiMain = $apiMain;
 	}
 
 	/**
