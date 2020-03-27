@@ -2,16 +2,21 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use InvalidArgumentException;
 use ISearchResultSet;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
+use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Rest\Router;
 use RequestContext;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
 use SearchResult;
+use SearchSuggestion;
 use Status;
 use User;
 use Wikimedia\Message\MessageValue;
@@ -34,6 +39,26 @@ class SearchHandler extends Handler {
 
 	/** @var User */
 	private $user;
+
+	/**
+	 * Search page body and titles.
+	 */
+	public const FULLTEXT_MODE = 'fulltext';
+
+	/**
+	 * Search title completion matches.
+	 */
+	public const COMPLETION_MODE = 'completion';
+
+	/**
+	 * Supported modes
+	 */
+	private const SUPPORTED_MODES = [ self::FULLTEXT_MODE, self::COMPLETION_MODE ];
+
+	/**
+	 * @var string
+	 */
+	private $mode = null;
 
 	/** Limit results to 50 pages per default */
 	private const LIMIT = 50;
@@ -62,6 +87,29 @@ class SearchHandler extends Handler {
 		$this->user = RequestContext::getMain()->getUser();
 	}
 
+	public function init(
+		Router $router,
+		RequestInterface $request,
+		array $config,
+		ResponseFactory $responseFactory
+	) {
+		parent::init(
+			$router,
+			$request,
+			$config,
+			$responseFactory
+		);
+
+		$this->mode = $config['mode'] ?? self::FULLTEXT_MODE;
+
+		if ( !in_array( $this->mode, self::SUPPORTED_MODES ) ) {
+			throw new InvalidArgumentException(
+				"Unsupported search mode `{$this->mode}` configured. Supported modes: " .
+				implode( ', ', self::SUPPORTED_MODES )
+			);
+		}
+	}
+
 	/**
 	 * @return SearchEngine
 	 */
@@ -84,7 +132,7 @@ class SearchHandler extends Handler {
 	 * @return SearchResult[]
 	 * @throws LocalizedHttpException
 	 */
-	private function getResultsOrThrow( $results ) {
+	private function getSearchResultsOrThrow( $results ) {
 		if ( $results ) {
 			if ( $results instanceof Status ) {
 				$status = $results;
@@ -109,7 +157,8 @@ class SearchHandler extends Handler {
 	}
 
 	/**
-	 * Execute search on both title and text fields
+	 * Execute search and return results.
+	 *
 	 * @param SearchEngine $searchEngine
 	 * @return SearchResult[]
 	 * @throws LocalizedHttpException
@@ -117,34 +166,72 @@ class SearchHandler extends Handler {
 	private function doSearch( $searchEngine ) {
 		$query = $this->getValidatedParams()['q'];
 
-		$titleSearch = $searchEngine->searchTitle( $query );
-		$textSearch = $searchEngine->searchText( $query );
+		if ( $this->mode == self::COMPLETION_MODE ) {
+			$completionSearch = $searchEngine->completionSearchWithVariants( $query );
+			return $this->buildOutputFromSuggestions( $completionSearch->getSuggestions() );
+		} else {
+			$titleSearch = $searchEngine->searchTitle( $query );
+			$textSearch = $searchEngine->searchText( $query );
 
-		$titleSearchResults = $this->getResultsOrThrow( $titleSearch );
-		$textSearchResults = $this->getResultsOrThrow( $textSearch );
+			$titleSearchResults = $this->getSearchResultsOrThrow( $titleSearch );
+			$textSearchResults = $this->getSearchResultsOrThrow( $textSearch );
 
-		$mergedResults = array_merge( $titleSearchResults, $textSearchResults );
-		return $mergedResults;
+			$mergedResults = array_merge( $titleSearchResults, $textSearchResults );
+			return $this->buildOutputFromSearchResults( $mergedResults );
+		}
 	}
 
 	/**
 	 * Remove duplicate pages and turn results into response json objects
-	 * @param SearchResult[] $textAndTitleResults
+	 *
+	 * @param SearchSuggestion[] $suggestions
+	 *
 	 * @return array page objects
 	 */
-	private function parseResults( $textAndTitleResults ) {
+	private function buildOutputFromSuggestions( array $suggestions ) {
 		$pages = [];
 		$foundPageIds = [];
-		foreach ( $textAndTitleResults as $result ) {
+		foreach ( $suggestions as $suggestion ) {
+			$title = $suggestion->getSuggestedTitle();
+			if ( $title && $title->exists() ) {
+				$pageID = $title->getArticleID();
+				if ( !isset( $foundPageIds[$pageID] ) &&
+					$this->permissionManager->quickUserCan( 'read', $this->user, $title )
+				) {
+					$page = [
+						'id' => $pageID,
+						'key' => $title->getPrefixedDBkey(),
+						'title' => $title->getPrefixedText(),
+						'excerpt' => $suggestion->getText() ?: null,
+					];
+					$pages[] = $page;
+					$foundPageIds[$pageID] = true;
+				}
+			}
+		}
+		return $pages;
+	}
+
+	/**
+	 * Remove duplicate pages and turn results into response json objects
+	 *
+	 * @param SearchResult[] $searchResults
+	 *
+	 * @return array page objects
+	 */
+	private function buildOutputFromSearchResults( array $searchResults ) {
+		$pages = [];
+		$foundPageIds = [];
+		foreach ( $searchResults as $result ) {
 			if ( !$result->isBrokenTitle() && !$result->isMissingRevision() ) {
 				$title = $result->getTitle();
 				$pageID = $title->getArticleID();
 				if ( !isset( $foundPageIds[$pageID] ) &&
-					$this->permissionManager->userCan( 'read', $this->user, $title )
+					$this->permissionManager->quickUserCan( 'read', $this->user, $title )
 				) {
 					$page = [
 						'id' => $pageID,
-						'key' => $title->getPrefixedDbKey(),
+						'key' => $title->getPrefixedDBkey(),
 						'title' => $title->getPrefixedText(),
 						'excerpt' => $result->getTextSnippet() ?: null,
 					];
@@ -163,8 +250,7 @@ class SearchHandler extends Handler {
 	public function execute() {
 		$searchEngine = $this->createSearchEngine();
 		$results = $this->doSearch( $searchEngine );
-		$pages = $this->parseResults( $results );
-		return $this->getResponseFactory()->createJson( [ 'pages' => $pages ] );
+		return $this->getResponseFactory()->createJson( [ 'pages' => $results ] );
 	}
 
 	public function getParamSettings() {

@@ -16,7 +16,6 @@ use MediaWiki\Storage\NameTableStoreFactory;
 use RequestContext;
 use Title;
 use User;
-use WebRequest;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
@@ -389,32 +388,28 @@ class PageHistoryHandler extends SimpleHandler {
 			}
 		}
 
-		$wr = new WebRequest();
-		$urlParts = wfParseUrl( $wr->getFullRequestURL() );
-		if ( $urlParts ) {
-			if ( isset( $urlParts['query'] ) ) {
-				$queryParts = wfCgiToArray( $urlParts['query'] );
-				unset( $urlParts['query'] );
-				unset( $queryParts['older_than'] );
-				unset( $queryParts['newer_than'] );
-			} else {
-				$queryParts = [];
-			}
+		$queryParts = [];
 
-			$uri = Uri::fromParts( $urlParts );
-			$response['latest'] = Uri::withQueryValues( $uri, $queryParts )->__toString();
-			if ( isset( $older ) ) {
-				$response['older'] = Uri::withQueryValues(
-					$uri,
-					$queryParts + [ 'older_than' => $older ]
-				)->__toString();
-			}
-			if ( isset( $newer ) ) {
-				$response['newer'] = Uri::withQueryValues(
-					$uri,
-					$queryParts + [ 'newer_than' => $newer ]
-				)->__toString();
-			}
+		if ( isset( $params['filter'] ) ) {
+			$queryParts['filter'] = $params['filter'];
+		}
+
+		$path = '/page/' . urlencode( $titleObj->getPrefixedDBkey() ) . '/history';
+		$url = $this->getRouter()->getRouteUrl( $path, $queryParts );
+		$uri = new Uri( $url );
+
+		$response['latest'] = $url;
+		if ( isset( $older ) ) {
+			$response['older'] = '' . Uri::withQueryValues(
+				$uri,
+				$queryParts + [ 'older_than' => $older ]
+			);
+		}
+		if ( isset( $newer ) ) {
+			$response['newer'] = '' . Uri::withQueryValues(
+				$uri,
+				$queryParts + [ 'newer_than' => $newer ]
+			);
 		}
 
 		return $response;
