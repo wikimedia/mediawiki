@@ -129,7 +129,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers Article::getRedirectTarget()
+	 * @covers Article::getPage()
+	 * @covers WikiPage::getRedirectTarget()
 	 */
 	public function testViewRedirect() {
 		$target = Title::makeTitle( $this->getDefaultWikitextNS(), 'Test_Target' );
@@ -142,11 +143,11 @@ class ArticleViewTest extends MediaWikiTestCase {
 		$article->view();
 
 		$this->assertNotNull(
-			$article->getRedirectTarget()->getPrefixedDBkey()
+			$article->getPage()->getRedirectTarget()->getPrefixedDBkey()
 		);
 		$this->assertSame(
 			$target->getPrefixedDBkey(),
-			$article->getRedirectTarget()->getPrefixedDBkey()
+			$article->getPage()->getRedirectTarget()->getPrefixedDBkey()
 		);
 
 		$output = $article->getContext()->getOutput();

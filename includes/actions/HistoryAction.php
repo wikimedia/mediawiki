@@ -82,13 +82,6 @@ class HistoryAction extends FormlessAction {
 	}
 
 	/**
-	 * @return WikiPage|Article|ImagePage|CategoryPage|Page The Article object we are working on.
-	 */
-	public function getArticle() {
-		return $this->page;
-	}
-
-	/**
 	 * As we use the same small set of messages in various methods and that
 	 * they are called often, we call them once and save them in $this->message
 	 */
@@ -158,7 +151,7 @@ class HistoryAction extends FormlessAction {
 		// markers to appear, is for the page to be edited, which updates page_touched/Last-Modified.
 		if (
 			!$this->hasUnseenRevisionMarkers() &&
-			$out->checkLastModified( $this->page->getTouched() )
+			$out->checkLastModified( $this->getWikiPage()->getTouched() )
 		) {
 			return null; // Client cache fresh and headers sent, nothing more to do.
 		}
@@ -203,7 +196,7 @@ class HistoryAction extends FormlessAction {
 		);
 
 		// Fail nicely if article doesn't exist.
-		if ( !$this->page->exists() ) {
+		if ( !$this->getWikiPage()->exists() ) {
 			global $wgSend404Code;
 			if ( $wgSend404Code ) {
 				$out->setStatusCode( 404 );
@@ -290,7 +283,13 @@ class HistoryAction extends FormlessAction {
 
 		$out->addHTML( $htmlForm->getHTML( false ) );
 
-		Hooks::run( 'PageHistoryBeforeList', [ &$this->page, $this->getContext() ] );
+		Hooks::run(
+			'PageHistoryBeforeList',
+			[
+				$this->getArticle(),
+				$this->getContext()
+			]
+		);
 
 		// Create and output the list.
 		$dateComponents = explode( '-', $ts );
@@ -354,7 +353,7 @@ class HistoryAction extends FormlessAction {
 			$offsets = [];
 		}
 
-		$page_id = $this->page->getId();
+		$page_id = $this->getWikiPage()->getId();
 
 		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 		return $dbr->select(

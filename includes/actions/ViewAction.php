@@ -40,14 +40,17 @@ class ViewAction extends FormlessAction {
 
 		if (
 			$config->get( 'DebugToolbar' ) == false && // don't let this get stuck on pages
-			$this->page->checkTouched() // page exists and is not a redirect
+			$this->getWikiPage()->checkTouched() // page exists and is not a redirect
 		) {
 			// Include any redirect in the last-modified calculation
-			$redirFromTitle = $this->page->getRedirectedFrom();
+			$redirFromTitle = $this->getArticle()->getRedirectedFrom();
 			if ( !$redirFromTitle ) {
-				$touched = $this->page->getTouched();
+				$touched = $this->getWikiPage()->getTouched();
 			} elseif ( $config->get( 'MaxRedirects' ) <= 1 ) {
-				$touched = max( $this->page->getTouched(), $redirFromTitle->getTouched() );
+				$touched = max(
+					$this->getWikiPage()->getTouched(),
+					$redirFromTitle->getTouched()
+				);
 			} else {
 				// Don't bother following the chain and getting the max mtime
 				$touched = null;
@@ -60,6 +63,6 @@ class ViewAction extends FormlessAction {
 			}
 		}
 
-		$this->page->view();
+		$this->getArticle()->view();
 	}
 }

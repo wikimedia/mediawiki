@@ -25,7 +25,7 @@
  * Special handling for category description pages, showing pages,
  * subcategories and file that belong to the category
  *
- * @property WikiCategoryPage $mPage Set by overwritten newPage() in this class
+ * @method WikiCategoryPage getPage() Set by overwritten newPage() in this class
  */
 class CategoryPage extends Article {
 	# Subclasses can change this to override the viewer class.
@@ -71,7 +71,10 @@ class CategoryPage extends Article {
 
 		# Use adaptive TTLs for CDN so delayed/failed purges are noticed less often
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->adaptCdnTTL( $this->mPage->getTouched(), IExpiringStore::TTL_MINUTE );
+		$outputPage->adaptCdnTTL(
+			$this->getPage()->getTouched(),
+			IExpiringStore::TTL_MINUTE
+		);
 	}
 
 	function openShowCategory() {
