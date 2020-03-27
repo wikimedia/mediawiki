@@ -342,6 +342,19 @@
 	};
 
 	/**
+	 * @see mw.notification#notify
+	 * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
+	 * @param {Object} [options] See mw.notification#defaults for the defaults.
+	 * @return {jQuery.Promise}
+	 */
+	mw.notify = function ( message, options ) {
+		// Lazy load
+		return mw.loader.using( 'mediawiki.notification', function () {
+			return mw.notification.notify( message, options );
+		} );
+	};
+
+	/**
 	 * Track an analytic event.
 	 *
 	 * This method provides a generic means for MediaWiki JavaScript code to capture state
