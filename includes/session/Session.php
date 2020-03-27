@@ -45,7 +45,7 @@ use WebRequest;
  * @ingroup Session
  * @since 1.27
  */
-final class Session implements \Countable, \Iterator, \ArrayAccess {
+class Session implements \Countable, \Iterator, \ArrayAccess {
 	/** @var null|string[] Encryption algorithm to use */
 	private static $encryptionAlgorithm = null;
 
