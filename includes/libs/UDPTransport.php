@@ -31,6 +31,8 @@ use Wikimedia\IPUtils;
  * @since 1.25
  */
 class UDPTransport {
+	// Limit to 64KB
+	public const MAX_PAYLOAD_SIZE = 65507;
 	private $host, $port, $prefix, $domain;
 
 	/**
@@ -76,21 +78,20 @@ class UDPTransport {
 	/**
 	 * @param string $text
 	 */
-	public function emit( $text ) {
+	public function emit( $text ) : void {
 		// Clean it up for the multiplexer
 		if ( $this->prefix !== false ) {
 			$text = preg_replace( '/^/m', $this->prefix . ' ', $text );
 
-			// Limit to 64KB
-			if ( strlen( $text ) > 65506 ) {
-				$text = substr( $text, 0, 65506 );
+			if ( strlen( $text ) > self::MAX_PAYLOAD_SIZE - 1 ) {
+				$text = substr( $text, 0, self::MAX_PAYLOAD_SIZE - 1 );
 			}
 
 			if ( substr( $text, -1 ) != "\n" ) {
 				$text .= "\n";
 			}
-		} elseif ( strlen( $text ) > 65507 ) {
-			$text = substr( $text, 0, 65507 );
+		} elseif ( strlen( $text ) > self::MAX_PAYLOAD_SIZE ) {
+			$text = substr( $text, 0, self::MAX_PAYLOAD_SIZE );
 		}
 
 		$sock = socket_create( $this->domain, SOCK_DGRAM, SOL_UDP );
