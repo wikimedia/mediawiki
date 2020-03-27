@@ -36,7 +36,10 @@ describe( 'User', function () {
 		UserLoginPage.login( username, password );
 
 		// check
-		assert.strictEqual( UserLoginPage.userPage.getText(), username );
+		const actualUsername = browser.execute( () => {
+			return mw.config.get( 'wgUserName' );
+		} );
+		assert.strictEqual( actualUsername, username );
 	} );
 
 	// Disabled due to flakiness (T199446)
