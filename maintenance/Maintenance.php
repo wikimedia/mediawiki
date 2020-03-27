@@ -1213,7 +1213,10 @@ abstract class Maintenance {
 		if ( $this->hasOption( 'dbgroupdefault' ) ) {
 			$wgDBDefaultGroup = $this->getOption( 'dbgroupdefault', null );
 
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->destroy();
+			$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
+			if ( $service ) {
+				$service->destroy();
+			}
 		}
 
 		if ( $this->getDbType() == self::DB_ADMIN && isset( $wgDBadminuser ) ) {
@@ -1233,7 +1236,10 @@ abstract class Maintenance {
 				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
 				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->destroy();
+			$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
+			if ( $service ) {
+				$service->destroy();
+			}
 		}
 
 		// Per-script profiling; useful for debugging
