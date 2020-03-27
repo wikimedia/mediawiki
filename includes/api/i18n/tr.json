@@ -38,7 +38,7 @@
 	"apihelp-block-param-anononly": "Yalnızca anonim kullanıcıları engelleyin (yani bu IP adresi için anonim düzenlemeleri devre dışı bırakın).",
 	"apihelp-block-param-nocreate": "Hesap oluşturmayı önleyin.",
 	"apihelp-block-param-autoblock": "Son kullanılan IP adresini ve oturum açmaya çalıştıkları sonraki IP adreslerini otomatik olarak engelle.",
-	"apihelp-block-param-noemail": "Kullanıcının wiki üzerinden e-posta göndermesini engelleyin. (<code>blockemail</code> hakkını gerektirir).",
+	"apihelp-block-param-noemail": "Kullanıcının viki üzerinden e-posta göndermesini engelleyin. (<code>blockemail</code> hakkını gerektirir).",
 	"apihelp-block-param-hidename": "Kullanıcı adını blok günlüğünden gizleyin. (<code>hideuser</code> hakkını gerektirir).",
 	"apihelp-block-param-allowusertalk": "Kullanıcının kendi tarışma sayfasını düzenlemesine izin ver (<var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var> üzerinde bağlı kalır).",
 	"apihelp-block-param-reblock": "Kullanıcı zaten engellenmişse, mevcut engelin üzerine yazın.",

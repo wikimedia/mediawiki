@@ -28,5 +28,6 @@
 	"rest-page-source-type-error": "O tipo de conteúdo da fonte da página solicitada não é suportado",
 	"rest-no-revision": "Não foi possível recuperar a revisão para o título $1",
 	"rest-media-too-many-links": "Muitos links de mídia encontrados no título $1 ($2 permitidos)",
-	"rest-html-backend-error": "Não foi possível buscar o HTML Parsoid"
+	"rest-html-backend-error": "Não foi possível buscar o HTML Parsoid",
+	"rest-cannot-load-file": "O arquivo para o título `$1` não pode ser carregado."
 }
