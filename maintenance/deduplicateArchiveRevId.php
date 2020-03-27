@@ -214,5 +214,5 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 
 }
 
-$maintClass = "DeduplicateArchiveRevId";
+$maintClass = DeduplicateArchiveRevId::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -40,5 +40,5 @@ class GenerateRandomImages extends Maintenance {
 	}
 }
 
-$maintClass = 'GenerateRandomImages';
+$maintClass = GenerateRandomImages::class;
 require RUN_MAINTENANCE_IF_MAIN;
