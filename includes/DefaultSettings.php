@@ -7136,21 +7136,29 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
  * JSONRCFeedFormatter-specific options:
  * - 'channel' -- if set, the 'channel' parameter is also set in JSON values.
  *
- * @example $wgRCFeeds['example'] = [
- *		'uri' => 'udp://localhost:1336',
- *		'formatter' => 'JSONRCFeedFormatter',
- *		'add_interwiki_prefix' => false,
- *		'omit_bots' => true,
- *	];
- * @example $wgRCFeeds['example'] = [
- *		'uri' => 'udp://localhost:1338',
- *		'formatter' => 'IRCColourfulRCFeedFormatter',
- *		'add_interwiki_prefix' => false,
- *		'omit_bots' => true,
- *	];
- * @example $wgRCFeeds['example'] = [
- *		'class' => ExampleRCFeed::class,
- *	];
+ * @par Examples:
+ * @code
+ *  $wgRCFeeds['example'] = [
+ *      'uri' => 'udp://localhost:1336',
+ *      'formatter' => 'JSONRCFeedFormatter',
+ *      'add_interwiki_prefix' => false,
+ *      'omit_bots' => true,
+ *  ];
+ * @endcode
+ * @code
+ *  $wgRCFeeds['example'] = [
+ *      'uri' => 'udp://localhost:1338',
+ *      'formatter' => 'IRCColourfulRCFeedFormatter',
+ *      'add_interwiki_prefix' => false,
+ *      'omit_bots' => true,
+ *  ];
+ * @endcode
+ * @code
+ *  $wgRCFeeds['example'] = [
+ *      'class' => ExampleRCFeed::class,
+ *  ];
+ * @endcode
+ *
  * @since 1.22
  */
 $wgRCFeeds = [];
