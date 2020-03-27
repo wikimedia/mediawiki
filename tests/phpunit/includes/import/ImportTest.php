@@ -290,7 +290,7 @@ EOF
 		$importer->doImport();
 
 		$db = wfGetDB( DB_MASTER );
-		$revQuery = Revision::getQueryInfo();
+		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 
 		$row = $db->selectRow(
 			$revQuery['tables'],

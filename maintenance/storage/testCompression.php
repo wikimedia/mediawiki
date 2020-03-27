@@ -50,7 +50,7 @@ if ( isset( $options['limit'] ) ) {
 $type = $options['type'] ?? ConcatenatedGzipHistoryBlob::class;
 
 $dbr = wfGetDB( DB_REPLICA );
-$revQuery = Revision::getQueryInfo( [ 'page' ] );
+$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo( [ 'page' ] );
 $res = $dbr->select(
 	$revQuery['tables'],
 	$revQuery['fields'],

@@ -1037,7 +1037,7 @@ abstract class ContentHandler {
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
-		$revQuery = Revision::getQueryInfo();
+		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 		$res = $dbr->select(
 			$revQuery['tables'],
 			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'] ],

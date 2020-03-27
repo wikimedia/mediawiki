@@ -25,6 +25,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
 
@@ -214,6 +215,11 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private $contentHandlerFactory;
 
+	/**
+	 * @var RevisionStore
+	 */
+	private $revisionStore;
+
 	/** #@- */
 
 	/**
@@ -249,8 +255,11 @@ class DifferenceEngine extends ContextSource {
 		$this->mNewid = $new;
 		$this->mRefreshCache = $refreshCache;
 		$this->unhide = $unhide;
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$this->contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+
+		$services = MediaWikiServices::getInstance();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->contentHandlerFactory = $services->getContentHandlerFactory();
+		$this->revisionStore = $services->getRevisionStore();
 	}
 
 	/**
@@ -427,7 +436,7 @@ class DifferenceEngine extends ContextSource {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( $permissionManager->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$arQuery = Revision::getArchiveQueryInfo();
+			$arQuery = $this->revisionStore->getArchiveQueryInfo();
 			$row = $dbr->selectRow(
 				$arQuery['tables'],
 				array_merge( $arQuery['fields'], [ 'ar_namespace', 'ar_title' ] ),
@@ -1591,13 +1600,12 @@ class DifferenceEngine extends ContextSource {
 
 		// Sanity: don't show the notice if too many rows must be scanned
 		// @todo show some special message for that case
-		$nEdits = MediaWikiServices::getInstance()->getRevisionStore()
-			->countRevisionsBetween(
-				$this->mNewPage->getArticleID(),
-				$oldRev->getRevisionRecord(),
-				$newRev->getRevisionRecord(),
-				1000
-			);
+		$nEdits = $this->revisionStore->countRevisionsBetween(
+			$this->mNewPage->getArticleID(),
+			$oldRev->getRevisionRecord(),
+			$newRev->getRevisionRecord(),
+			1000
+		);
 		if ( $nEdits > 0 && $nEdits <= 1000 ) {
 			$limit = 100; // use diff-multi-manyusers if too many users
 			$users = $this->mNewPage->getAuthorsBetween( $oldRev, $newRev, $limit );
