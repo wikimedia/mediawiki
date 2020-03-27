@@ -283,10 +283,11 @@ class HistoryAction extends FormlessAction {
 
 		$out->addHTML( $htmlForm->getHTML( false ) );
 
+		$article = $this->getArticle(); // must be a variable for hook reference
 		Hooks::run(
 			'PageHistoryBeforeList',
 			[
-				$this->getArticle(),
+				&$article,
 				$this->getContext()
 			]
 		);
