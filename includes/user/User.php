@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
@@ -110,9 +111,6 @@ class User implements IDBAccessObject, UserIdentity {
 		// actor table
 		'mActorId',
 	];
-
-	/** @var string[]|false Cache for self::isUsableName() */
-	private static $reservedUsernames = false;
 
 	/** Cache variables */
 	// @{
@@ -942,6 +940,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * addresses like this, if we allowed accounts like this to be created
 	 * new users could get the old edits of these anonymous users.
 	 *
+	 * @deprecated since 1.35, use the UserNameUtils service
+	 *    Note that UserNameUtils::isIP does not accept IPv6 ranges, while this method does
 	 * @param string $name Name to match
 	 * @return bool
 	 */
@@ -953,6 +953,7 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Is the user an IP range?
 	 *
+	 * @deprecated since 1.35, use the UserNameUtils service or IPUtils directly
 	 * @since 1.30
 	 * @return bool
 	 */
@@ -968,45 +969,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 * is longer than the maximum allowed username size or doesn't begin with
 	 * a capital letter.
 	 *
+	 * @deprecated since 1.35, use the UserNameUtils service
 	 * @param string $name Name to match
 	 * @return bool
 	 */
 	public static function isValidUserName( $name ) {
-		global $wgMaxNameChars;
-
-		if ( $name == ''
-			|| self::isIP( $name )
-			|| strpos( $name, '/' ) !== false
-			|| strlen( $name ) > $wgMaxNameChars
-			|| $name != MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $name )
-		) {
-			return false;
-		}
-
-		// Ensure that the name can't be misresolved as a different title,
-		// such as with extra namespace keys at the start.
-		$parsed = Title::newFromText( $name );
-		if ( $parsed === null
-			|| $parsed->getNamespace()
-			|| strcmp( $name, $parsed->getPrefixedText() ) ) {
-			return false;
-		}
-
-		// Check an additional blacklist of troublemaker characters.
-		// Should these be merged into the title char list?
-		$unicodeBlacklist = '/[' .
-			'\x{0080}-\x{009f}' . # iso-8859-1 control chars
-			'\x{00a0}' . # non-breaking space
-			'\x{2000}-\x{200f}' . # various whitespace
-			'\x{2028}-\x{202f}' . # breaks and control chars
-			'\x{3000}' . # ideographic space
-			'\x{e000}-\x{f8ff}' . # private use
-			']/u';
-		if ( preg_match( $unicodeBlacklist, $name ) ) {
-			return false;
-		}
-
-		return true;
+		return MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $name );
 	}
 
 	/**
@@ -1017,31 +985,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 * If an account already exists in this form, login will be blocked
 	 * by a failure to pass this function.
 	 *
+	 * @deprecated since 1.35, use the UserNameUtils service
 	 * @param string $name Name to match
 	 * @return bool
 	 */
 	public static function isUsableName( $name ) {
-		global $wgReservedUsernames;
-		// Must be a valid username, obviously ;)
-		if ( !self::isValidUserName( $name ) ) {
-			return false;
-		}
-
-		if ( !self::$reservedUsernames ) {
-			self::$reservedUsernames = $wgReservedUsernames;
-			Hooks::run( 'UserGetReservedNames', [ &self::$reservedUsernames ] );
-		}
-
-		// Certain names may be reserved for batch processes.
-		foreach ( self::$reservedUsernames as $reserved ) {
-			if ( substr( $reserved, 0, 4 ) == 'msg:' ) {
-				$reserved = wfMessage( substr( $reserved, 4 ) )->inContentLanguage()->plain();
-			}
-			if ( $reserved == $name ) {
-				return false;
-			}
-		}
-		return true;
+		return MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $name );
 	}
 
 	/**
@@ -1091,31 +1040,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Additional blacklisting may be added here rather than in
 	 * isValidUserName() to avoid disrupting existing accounts.
 	 *
+	 * @deprecated since 1.35, use the UserNameUtils service
 	 * @param string $name String to match
 	 * @return bool
 	 */
 	public static function isCreatableName( $name ) {
-		global $wgInvalidUsernameCharacters;
-
-		// Ensure that the username isn't longer than 235 bytes, so that
-		// (at least for the builtin skins) user javascript and css files
-		// will work. (T25080)
-		if ( strlen( $name ) > 235 ) {
-			wfDebugLog( 'username', __METHOD__ .
-				": '$name' invalid due to length" );
-			return false;
-		}
-
-		// Preg yells if you try to give it an empty string
-		if ( $wgInvalidUsernameCharacters !== '' &&
-			preg_match( '/[' . preg_quote( $wgInvalidUsernameCharacters, '/' ) . ']/', $name )
-		) {
-			wfDebugLog( 'username', __METHOD__ .
-				": '$name' invalid due to wgInvalidUsernameCharacters" );
-			return false;
-		}
-
-		return self::isUsableName( $name );
+		return MediaWikiServices::getInstance()->getUserNameUtils()->isCreatable( $name );
 	}
 
 	/**
@@ -1182,6 +1112,8 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Given unvalidated user input, return a canonical username, or false if
 	 * the username is invalid.
+	 *
+	 * @deprecated since 1.35, use the UserNameUtils service
 	 * @param string $name User input
 	 * @param string|bool $validate Type of validation to use:
 	 *   - false        No validation
@@ -1193,50 +1125,26 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool|string
 	 */
 	public static function getCanonicalName( $name, $validate = 'valid' ) {
-		// Force usernames to capital
-		$name = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $name );
+		// Backwards compatibility with strings / false
+		$validationLevels = [
+			'valid' => UserNameUtils::RIGOR_VALID,
+			'usable' => UserNameUtils::RIGOR_USABLE,
+			'creatable' => UserNameUtils::RIGOR_CREATABLE
+		];
 
-		# Reject names containing '#'; these will be cleaned up
-		# with title normalisation, but then it's too late to
-		# check elsewhere
-		if ( strpos( $name, '#' ) !== false ) {
-			return false;
+		if ( $validate === false ) {
+			$validation = UserNameUtils::RIGOR_NONE;
+		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
+			$validation = $validationLevels[ $validate ];
+		} else {
+			// Not a recognized value, probably a test for unsupported validation
+			// levels, regardless, just pass it along
+			$validation = $validate;
 		}
 
-		// Clean up name according to title rules,
-		// but only when validation is requested (T14654)
-		$t = ( $validate !== false ) ?
-			Title::newFromText( $name, NS_USER ) : Title::makeTitle( NS_USER, $name );
-		// Check for invalid titles
-		if ( $t === null || $t->getNamespace() !== NS_USER || $t->isExternal() ) {
-			return false;
-		}
-
-		$name = $t->getText();
-
-		switch ( $validate ) {
-			case false:
-				break;
-			case 'valid':
-				if ( !self::isValidUserName( $name ) ) {
-					$name = false;
-				}
-				break;
-			case 'usable':
-				if ( !self::isUsableName( $name ) ) {
-					$name = false;
-				}
-				break;
-			case 'creatable':
-				if ( !self::isCreatableName( $name ) ) {
-					$name = false;
-				}
-				break;
-			default:
-				throw new InvalidArgumentException(
-					'Invalid parameter value for $validate in ' . __METHOD__ );
-		}
-		return $name;
+		return MediaWikiServices::getInstance()
+			->getUserNameUtils()
+			->getCanonical( (string)$name, $validation );
 	}
 
 	/**

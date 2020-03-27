@@ -89,6 +89,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
@@ -1053,6 +1054,19 @@ return [
 		return new ImportableUploadRevisionImporter(
 			$services->getMainConfig()->get( 'EnableUploads' ),
 			LoggerFactory::getInstance( 'UploadRevisionImporter' )
+		);
+	},
+
+	'UserNameUtils' => function ( MediaWikiServices $services ) : UserNameUtils {
+		// TODO there should be a proper injectable MessageLocalizer service (T247127)
+		return new UserNameUtils(
+			new ServiceOptions(
+				UserNameUtils::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getContentLanguage(),
+			LoggerFactory::getInstance( 'UserNameUtils' ),
+			$services->getService( 'TitleFactory' ),
+			RequestContext::getMain()
 		);
 	},
 
