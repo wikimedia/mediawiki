@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\MutableRevisionRecord;
+use Psr\Log\NullLogger;
 
 /**
  * @covers RefreshSecondaryDataUpdate
@@ -73,6 +74,9 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiTestCase {
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$queue = JobQueueGroup::singleton()->get( 'refreshLinksPrioritized' );
 		$user = $this->getTestUser()->getUser();
+
+		// T248189: DeferredUpdate will log the exception, don't fail because of that.
+		$this->setLogger( 'exception', new NullLogger() );
 
 		$goodCalls = 0;
 		$goodUpdate = $this->getMockBuilder( DataUpdate::class )
