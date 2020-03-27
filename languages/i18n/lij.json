@@ -3783,7 +3783,7 @@
 	"userjsispublic": "Regorda: e sottopaggine JavaScript no devan contegnî dæti riservæ percose son vixoalizabbile da-i atri utenti.",
 	"userjsonispublic": "Aregordite: e sottopaggine JSON no devan contegnî dæti riservæ percose son vixoalizabbile da-i atri utenti.",
 	"usercssispublic": "Regorda: e sottopagine CSS no devan contegnî dæti riservæ percose son vixoalizabbile da i atri utenti.",
-	"userjsdangerous": "Notta: i Scripts incioxi inte sta paggina saian exeguii tutte e votte che ti carreghi 'na paggina. Do coddexo maiçiozo azonto chie porriæ compromette l'utensa. O coddexo o saiâ exeguio quande ti vixoaliziæ 'n'anteprimma de modiffica a sta paggina.",
+	"userjsdangerous": "Notta: i Scripts inciosci inte sta paggina saian exeguii tutte e votte che ti carreghi 'na paggina. Do coddexo maiçiozo azonto chie porriæ compromette l'utensa. O coddexo o saiâ exeguio quande ti vixoaliziæ 'n'anteprimma de modiffica a sta paggina.",
 	"restrictionsfield-badip": "Intervallo d'adreççi IP non vallido:$1",
 	"restrictionsfield-label": "Intervalli IP consentii:",
 	"restrictionsfield-help": "Un adresso IP ò intervallo CIDR pe linnia. Pe consentî tutto, adœuvia:<pre>0.0.0.0/0",

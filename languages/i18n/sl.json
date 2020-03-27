@@ -797,6 +797,8 @@
 	"undo-nochange": "Zdi se, da je urejanje nekdo že razveljavil.",
 	"undo-summary": "Redakcija $1 uporabnika [[Special:Contributions/$2|$2]] ([[User talk:$2|pogovor]]) razveljavljena",
 	"undo-summary-anon": "Razveljavitev redakcije $1 uporabnika [[Special:Contributions/$2|$2]]",
+	"undo-summary-import": "Razveljavi uvoženo redakcijo $1 uporabnika [[:$2|$3]]",
+	"undo-summary-import2": "Razveljavi uvoženo redakcijo $1 uporabnika $2",
 	"undo-summary-username-hidden": "Razveljavi redakcijo $1 skritega uporabnika",
 	"viewpagelogs": "Poglej dnevniške zapise o strani",
 	"nohistory": "Stran nima zgodovine urejanja.",
