@@ -59,7 +59,9 @@ class RawAction extends FormlessAction {
 		$response = $request->response();
 		$config = $this->context->getConfig();
 
-		if ( $this->getOutput()->checkLastModified( $this->page->getTouched() ) ) {
+		if ( $this->getOutput()->checkLastModified(
+			$this->getWikiPage()->getTouched()
+		) ) {
 			return null; // Client cache fresh and headers sent, nothing more to do.
 		}
 
@@ -255,7 +257,7 @@ class RawAction extends FormlessAction {
 				$prevRev = null;
 				if ( !$oldid ) {
 					# get the current revision so we can get the penultimate one
-					$oldid = $this->page->getLatest();
+					$oldid = $this->getWikiPage()->getLatest();
 				}
 				$oldRev = $rl->getRevisionById( $oldid );
 				if ( $oldRev ) {

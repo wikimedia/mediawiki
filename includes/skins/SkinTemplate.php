@@ -379,7 +379,13 @@ class SkinTemplate extends Skin {
 				if ( $wgMaxCredits != 0 ) {
 					/** @var CreditsAction $action */
 					$action = Action::factory(
-						'credits', $this->getWikiPage(), $this->getContext() );
+						'credits',
+						Article::newFromWikiPage(
+							$this->getWikiPage(),
+							$this->getContext()
+						),
+						$this->getContext()
+					);
 					'@phan-var CreditsAction $action';
 					$tpl->set( 'credits',
 						$action->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );

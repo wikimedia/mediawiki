@@ -91,9 +91,9 @@ class InfoAction extends FormlessAction {
 		$content = '';
 
 		// Validate revision
-		$oldid = $this->page->getOldID();
+		$oldid = $this->getArticle()->getOldID();
 		if ( $oldid ) {
-			$revision = $this->page->getRevisionFetched();
+			$revision = $this->getArticle()->getRevisionFetched();
 
 			// Revision is missing
 			if ( $revision === null ) {
@@ -227,7 +227,7 @@ class InfoAction extends FormlessAction {
 		$config = $this->context->getConfig();
 		$linkRenderer = $services->getLinkRenderer();
 
-		$pageCounts = $this->pageCounts( $this->page );
+		$pageCounts = $this->pageCounts();
 
 		$props = PageProps::getInstance()->getAllProperties( $title );
 		$pageProperties = $props[$id] ?? [];
@@ -244,7 +244,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Is it a redirect? If so, where to?
-		$redirectTarget = $this->page->getRedirectTarget();
+		$redirectTarget = $this->getWikiPage()->getRedirectTarget();
 		if ( $redirectTarget !== null ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-redirectsto' ),
@@ -335,7 +335,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Use robot policy logic
-		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
+		$policy = $this->getArticle()->getRobotPolicy( 'view', $pOutput );
 		$pageInfo['header-basic'][] = [
 			// Messages: pageinfo-robot-index, pageinfo-robot-noindex
 			$this->msg( 'pageinfo-robot-policy' ),
@@ -395,7 +395,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Is it counted as a content page?
-		if ( $this->page->isCountable() ) {
+		if ( $this->getWikiPage()->isCountable() ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-contentpage' ),
 				$this->msg( 'pageinfo-contentpage-yes' )
@@ -530,7 +530,7 @@ class InfoAction extends FormlessAction {
 			),
 		];
 
-		if ( !$this->page->exists() ) {
+		if ( !$this->getWikiPage()->exists() ) {
 			return $pageInfo;
 		}
 
@@ -539,8 +539,8 @@ class InfoAction extends FormlessAction {
 
 		$firstRev = MediaWikiServices::getInstance()
 			->getRevisionLookup()
-			->getFirstRevision( $this->page->getTitle() );
-		$lastRev = $this->page->getRevision();
+			->getFirstRevision( $this->getTitle() );
+		$lastRev = $this->getWikiPage()->getRevision();
 		$batch = new LinkBatch;
 
 		if ( $firstRev ) {
@@ -592,9 +592,9 @@ class InfoAction extends FormlessAction {
 				$this->msg( 'pageinfo-lasttime' ),
 				$linkRenderer->makeKnownLink(
 					$title,
-					$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
+					$lang->userTimeAndDate( $this->getWikiPage()->getTimestamp(), $user ),
 					[],
-					[ 'oldid' => $this->page->getLatest() ]
+					[ 'oldid' => $this->getWikiPage()->getLatest() ]
 				)
 			];
 		}
@@ -641,7 +641,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		$localizedList = Html::rawElement( 'ul', [], implode( '', $listItems ) );
-		$hiddenCategories = $this->page->getHiddenCategories();
+		$hiddenCategories = $this->getWikiPage()->getHiddenCategories();
 
 		if (
 			count( $listItems ) > 0 ||
@@ -728,10 +728,10 @@ class InfoAction extends FormlessAction {
 	/**
 	 * Returns page counts that would be too "expensive" to retrieve by normal means.
 	 *
-	 * @param WikiPage|Article|Page $page
 	 * @return array
 	 */
-	protected function pageCounts( Page $page ) {
+	private function pageCounts() {
+		$page = $this->getWikiPage();
 		$fname = __METHOD__;
 		$config = $this->context->getConfig();
 		$services = MediaWikiServices::getInstance();
@@ -888,7 +888,7 @@ class InfoAction extends FormlessAction {
 	 * @return string Html
 	 */
 	protected function getContributors() {
-		$contributors = $this->page->getContributors();
+		$contributors = $this->getWikiPage()->getContributors();
 		$real_names = [];
 		$user_names = [];
 		$anon_ips = [];

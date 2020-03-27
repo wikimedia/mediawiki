@@ -98,7 +98,7 @@ class McrUndoAction extends FormAction {
 			throw new ErrorPageError( 'mcrundofailed', 'mcrundo-missingparam' );
 		}
 
-		$curRev = $this->page->getRevision();
+		$curRev = $this->getWikiPage()->getRevision();
 		if ( !$curRev ) {
 			throw new ErrorPageError( 'mcrundofailed', 'nopagetext' );
 		}
@@ -260,7 +260,7 @@ class McrUndoAction extends FormAction {
 
 			$note = $this->context->msg( 'previewnote' )->plain() . ' ' . $continueEditing;
 
-			$parserOptions = $this->page->makeParserOptions( $this->context );
+			$parserOptions = $this->getWikiPage()->makeParserOptions( $this->context );
 			$parserOptions->setIsPreview( true );
 			$parserOptions->setIsSectionPreview( false );
 			$parserOptions->enableLimitReport();
@@ -310,7 +310,7 @@ class McrUndoAction extends FormAction {
 			return false;
 		}
 
-		$updater = $this->page->getPage()->newPageUpdater( $this->context->getUser() );
+		$updater = $this->getWikiPage()->newPageUpdater( $this->context->getUser() );
 		$curRev = $updater->grabParentRevision();
 		if ( !$curRev ) {
 			throw new ErrorPageError( 'mcrundofailed', 'nopagetext' );
