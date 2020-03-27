@@ -189,6 +189,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added vuejs v2.6.11.
 * Added wikimedia/parsoid 0.12.0.
 * Added taylorhakes/promise-polyfill v8.1.3.
+* Added vuex v3.1.3.
 * …
 
 ==== Changed external libraries ====
