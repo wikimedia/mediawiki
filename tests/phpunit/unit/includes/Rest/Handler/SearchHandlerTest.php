@@ -14,6 +14,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 use SearchEngine;
 use SearchEngineFactory;
 use SearchResult;
+use SearchResultSet;
+use SearchSuggestion;
+use SearchSuggestionSet;
 use Status;
 use User;
 use Wikimedia\Message\MessageValue;
@@ -30,10 +33,19 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 	 */
 	private $searchEngine = null;
 
+	/**
+	 * @param $query
+	 * @param SearchResultSet|Status $titleResult
+	 * @param SearchResultSet|Status $textResult
+	 * @param SearchSuggestionSet|null $completionResult
+	 *
+	 * @return SearchHandler
+	 */
 	private function newHandler(
 		$query,
 		$titleResult,
-		$textResult
+		$textResult,
+		$completionResult = null
 	) {
 		$config = new HashConfig( [
 			'SearchType' => 'test',
@@ -41,14 +53,15 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 			'NamespacesToBeSearchedDefault' => [ NS_MAIN => true ],
 		] );
 
+		/** @var Language|MockObject $language */
 		$language = $this->createNoOpMock( Language::class );
 		$searchEngineConfig = new \SearchEngineConfig( $config, $language );
 
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'userCan' ]
+			PermissionManager::class, [ 'quickUserCan' ]
 		);
-		$permissionManager->method( 'userCan' )
+		$permissionManager->method( 'quickUserCan' )
 			->willReturnCallback( function ( $action, User $user, LinkTarget $page ) {
 				return !preg_match( '/Forbidden/', $page->getText() );
 			} );
@@ -61,6 +74,12 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$this->searchEngine->method( 'searchText' )
 			->with( $query )
 			->willReturn( $textResult );
+
+		if ( $completionResult ) {
+			$this->searchEngine->method( 'completionSearchWithVariants' )
+				->with( $query )
+				->willReturn( $completionResult );
+		}
 
 		/** @var SearchEngineFactory|MockObject $searchEngineFactory */
 		$searchEngineFactory = $this->createNoOpMock( SearchEngineFactory::class, [ 'create' ] );
@@ -75,6 +94,11 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @param string $pageName
+	 * @param string $textSnippet
+	 * @param bool $broken
+	 * @param bool $missing
+	 *
 	 * @return SearchResult
 	 */
 	private function makeMockSearchResult(
@@ -97,7 +121,27 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		return $result;
 	}
 
-	public function testExecute() {
+	/**
+	 * @param string $pageName
+	 *
+	 * @return SearchSuggestion
+	 */
+	private function makeMockSearchSuggestion( $pageName ) {
+		$title = $this->makeMockTitle( $pageName );
+
+		/** @var SearchSuggestion|MockObject $suggestion */
+		$suggestion = $this->createNoOpMock(
+			SearchSuggestion::class,
+			[ 'getSuggestedTitle', 'getSuggestedTitleID', 'getText' ]
+		);
+		$suggestion->method( 'getSuggestedTitle' )->willReturn( $title );
+		$suggestion->method( 'getSuggestedTitleID' )->willReturn( $title->getArticleID() );
+		$suggestion->method( 'getText' )->willReturn( $title->getPrefixedText() );
+
+		return $suggestion;
+	}
+
+	public function testExecuteFulltextSearch() {
 		$titleResults = new MockSearchResultSet( [
 			$this->makeMockSearchResult( 'Foo', 'one' ),
 			$this->makeMockSearchResult( 'Forbidden Foo', 'two' ), // forbidden
@@ -115,7 +159,8 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
 
 		$handler = $this->newHandler( $query, $titleResults, $textResults );
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request );
+		$config = [ 'mode' => SearchHandler::FULLTEXT_MODE ];
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
 
 		$this->assertArrayHasKey( 'pages', $data );
 		$this->assertCount( 4, $data['pages'] );
@@ -127,6 +172,31 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'one', $data['pages'][2]['excerpt'] );
 		$this->assertSame( 'Xyzzy', $data['pages'][3]['title'] );
 		$this->assertSame( 'three', $data['pages'][3]['excerpt'] );
+	}
+
+	public function testExecuteCompletionSearch() {
+		$titleResults = new MockSearchResultSet( [] );
+		$textResults = new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Quux', 'one' ),
+		] );
+		$completionResults = new SearchSuggestionSet( [
+			$this->makeMockSearchSuggestion( 'Frob' ),
+			$this->makeMockSearchSuggestion( 'Frobnitz' ),
+		] );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$handler = $this->newHandler( $query, $titleResults, $textResults, $completionResults );
+		$config = [ 'mode' => SearchHandler::COMPLETION_MODE ];
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
+
+		$this->assertArrayHasKey( 'pages', $data );
+		$this->assertCount( 2, $data['pages'] );
+		$this->assertSame( 'Frob', $data['pages'][0]['title'] );
+		$this->assertSame( 'Frob', $data['pages'][0]['excerpt'] );
+		$this->assertSame( 'Frobnitz', $data['pages'][1]['title'] );
+		$this->assertSame( 'Frobnitz', $data['pages'][1]['excerpt'] );
 	}
 
 	public function testExecute_limit() {
