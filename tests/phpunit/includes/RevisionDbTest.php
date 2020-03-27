@@ -1427,6 +1427,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::isUnpatrolled
 	 */
 	public function testIsUnpatrolled_returnsRecentChangesId() {
+		$this->hideDeprecated( 'Revision::isUnpatrolled' );
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$rev = $this->testPage->getRevision();
 
@@ -1438,6 +1439,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::isUnpatrolled
 	 */
 	public function testIsUnpatrolled_returnsZeroIfPatrolled() {
+		$this->hideDeprecated( 'Revision::isUnpatrolled' );
 		// This assumes that sysops are auto patrolled
 		$sysop = $this->getTestSysop()->getUser();
 		$this->testPage->doEditContent(
