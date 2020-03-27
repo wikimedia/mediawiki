@@ -679,9 +679,11 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 * @return int Rcid of the unpatrolled row, zero if there isn't one
 	 */
 	public function isUnpatrolled() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return self::getRevisionStore()->getRcIdIfUnpatrolled( $this->mRecord );
 	}
 
