@@ -27,6 +27,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
@@ -84,7 +85,9 @@ class RebuildTextIndex extends Maintenance {
 		$this->output( "Rebuilding index fields for {$count} pages...\n" );
 		$n = 0;
 
-		$revQuery = Revision::getQueryInfo( [ 'page' ] );
+		$revQuery = MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->getQueryInfo( [ 'page' ] );
 
 		while ( $n < $count ) {
 			if ( $n ) {

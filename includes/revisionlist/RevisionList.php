@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 class RevisionList extends RevisionListBase {
@@ -36,7 +37,9 @@ class RevisionList extends RevisionListBase {
 		if ( $this->ids !== null ) {
 			$conds['rev_id'] = array_map( 'intval', $this->ids );
 		}
-		$revQuery = Revision::getQueryInfo( [ 'page', 'user' ] );
+		$revQuery = MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->getQueryInfo( [ 'page', 'user' ] );
 		return $db->select(
 			$revQuery['tables'],
 			$revQuery['fields'],

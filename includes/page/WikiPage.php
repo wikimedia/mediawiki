@@ -2860,7 +2860,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$commentStore = CommentStore::getStore();
 		$actorMigration = ActorMigration::newMigration();
 
-		$revQuery = Revision::getQueryInfo();
+		$revQuery = $this->getRevisionStore()->getQueryInfo();
 		$bitfield = false;
 
 		// Bitfields to further suppress the content
