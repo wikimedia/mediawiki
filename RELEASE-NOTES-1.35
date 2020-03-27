@@ -67,6 +67,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   option in provider specifications.
 * The 'URL' parameter to $wgVirtualRestConfig['modules']['parsoid'], previously
   allowed for backwards-compatibility, has been deprecated.  Use 'url' instead.
+* The defaults for $wgVirtualRestConfig['modules']['parsoid'] have been
+  updated.  If you were relying on the default values, you may need to update
+  your configuration.
 * …
 
 ==== Removed configuration ====

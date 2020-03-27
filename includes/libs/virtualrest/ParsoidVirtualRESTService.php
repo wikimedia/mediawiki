@@ -54,11 +54,11 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 			unset( $params['URL'] );
 		}
 		// set up defaults and merge them with the given params
+		$defaultURL = wfExpandUrl( wfScript( 'rest' ), PROTO_CANONICAL );
 		$mparams = array_merge( [
 			'name' => 'parsoid',
-			'url' => 'http://localhost:8000/',
-			'prefix' => 'localhost',
-			'domain' => 'localhost',
+			'url' => $defaultURL,
+			'domain' => wfParseUrl( $defaultURL )['host'] ?? 'localhost',
 			'timeout' => null,
 			'forwardCookies' => false,
 			'HTTPProxy' => null,
