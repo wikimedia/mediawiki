@@ -2989,21 +2989,29 @@ class Parser {
 				$value = SpecialVersion::getVersion();
 				break;
 			case 'articlepath':
-				return $this->svcOptions->get( 'ArticlePath' );
+				$value = $this->svcOptions->get( 'ArticlePath' );
+				break;
 			case 'sitename':
-				return $this->svcOptions->get( 'Sitename' );
+				$value = $this->svcOptions->get( 'Sitename' );
+				break;
 			case 'server':
-				return $this->svcOptions->get( 'Server' );
+				$value = $this->svcOptions->get( 'Server' );
+				break;
 			case 'servername':
-				return $this->svcOptions->get( 'ServerName' );
+				$value = $this->svcOptions->get( 'ServerName' );
+				break;
 			case 'scriptpath':
-				return $this->svcOptions->get( 'ScriptPath' );
+				$value = $this->svcOptions->get( 'ScriptPath' );
+				break;
 			case 'stylepath':
-				return $this->svcOptions->get( 'StylePath' );
+				$value = $this->svcOptions->get( 'StylePath' );
+				break;
 			case 'directionmark':
-				return $pageLang->getDirMark();
+				$value = $pageLang->getDirMark();
+				break;
 			case 'contentlanguage':
-				return $this->svcOptions->get( 'LanguageCode' );
+				$value = $this->svcOptions->get( 'LanguageCode' );
+				break;
 			case 'pagelanguage':
 				$value = $pageLang->getCode();
 				break;
