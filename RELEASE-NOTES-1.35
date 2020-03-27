@@ -703,6 +703,10 @@ because of Phabricator reports.
 * The Parser::enableOOUI() method has been deprecated.  Use
   $parser->getOutput()->enableOOUI() instead.
 * The ParserGetVariableValueVarCache hook has been deprecated.
+* When using the ParserGetVariableValueSwitch hook, the following unusual
+  uses have been deprecated: modifying the passed $magicWordId or failing to
+  cache the returned value in $variableCache.
+* Parser::$mVarCache has been deprecated for direct access.
 * A new UserNameUtils service was introduced. The following User methods
   were deprecated in favor of using the new service:
   - isIP
