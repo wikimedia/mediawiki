@@ -126,5 +126,5 @@ class PHPUnitMaintClass extends Maintenance {
 	}
 }
 
-$maintClass = 'PHPUnitMaintClass';
+$maintClass = PHPUnitMaintClass::class;
 require RUN_MAINTENANCE_IF_MAIN;

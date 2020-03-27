@@ -294,5 +294,5 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateArchiveRevId";
+$maintClass = PopulateArchiveRevId::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

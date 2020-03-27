@@ -195,5 +195,5 @@ class ParserFuzzTest extends Maintenance {
 	}
 }
 
-$maintClass = 'ParserFuzzTest';
+$maintClass = ParserFuzzTest::class;
 require RUN_MAINTENANCE_IF_MAIN;

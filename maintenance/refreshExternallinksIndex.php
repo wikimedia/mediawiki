@@ -116,5 +116,5 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "RefreshExternallinksIndex";
+$maintClass = RefreshExternallinksIndex::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

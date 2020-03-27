@@ -85,5 +85,5 @@ class PopulateExternallinksIndex60 extends LoggedUpdateMaintenance {
 	}
 }
 
-$maintClass = "PopulateExternallinksIndex60";
+$maintClass = PopulateExternallinksIndex60::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
