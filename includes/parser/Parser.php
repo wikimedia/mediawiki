@@ -150,6 +150,7 @@ class Parser {
 	public $mFunctionTagHooks = [];
 	public $mStripList = [];
 	public $mDefaultStripList = [];
+	/** @deprecated since 1.35 */
 	public $mVarCache = [];
 	public $mImageParams = [];
 	public $mImageParamsMagicArray = [];
@@ -3020,11 +3021,22 @@ class Parser {
 				break;
 			default:
 				$ret = null;
+				$originalIndex = $index;
 				Hooks::run(
 					'ParserGetVariableValueSwitch',
 					[ &$parser, &$this->mVarCache, &$index, &$ret, &$frame ]
 				);
-
+				if ( $index !== $originalIndex ) {
+					wfDeprecated(
+						'ParserGetVariableValueSwitch modifying $index', '1.35'
+					);
+				}
+				if ( !isset( $this->mVarCache[$originalIndex] ) ||
+					 $this->mVarCache[$originalIndex] !== $ret ) {
+					wfDeprecated(
+						'ParserGetVariableValueSwitch bypassing cache', '1.35'
+					);
+				}
 				return $ret;
 		}
 
