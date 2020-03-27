@@ -37,13 +37,6 @@ class UserTest extends MediaWikiTestCase {
 		$this->setUpPermissionGlobals();
 
 		$this->user = $this->getTestUser( 'unittesters' )->getUser();
-
-		TestingAccessWrapper::newFromClass( User::class )->reservedUsernames = false;
-	}
-
-	protected function tearDown() : void {
-		parent::tearDown();
-		TestingAccessWrapper::newFromClass( User::class )->reservedUsernames = false;
 	}
 
 	private function setUpPermissionGlobals() {
@@ -685,7 +678,7 @@ class UserTest extends MediaWikiTestCase {
 	public function testGetCanonicalName_bad() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
-			'Invalid parameter value for $validate in User::getCanonicalName'
+			'Invalid parameter value for validation'
 		);
 		User::getCanonicalName( 'ValidName', 'InvalidValidationValue' );
 	}
