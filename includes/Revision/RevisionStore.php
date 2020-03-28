@@ -1058,12 +1058,15 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 ) {
-		// TODO should not require Title in future (T206498)
-		$title = Title::newFromLinkTarget( $linkTarget );
 		$conds = [
-			'page_namespace' => $title->getNamespace(),
-			'page_title' => $title->getDBkey()
+			'page_namespace' => $linkTarget->getNamespace(),
+			'page_title' => $linkTarget->getDBkey()
 		];
+
+		// Only resolve to a Title when operating in the context of the local wiki (T248756)
+		// TODO should not require Title in future (T206498)
+		$title = $this->dbDomain === false ? Title::newFromLinkTarget( $linkTarget ) : null;
+
 		if ( $revId ) {
 			// Use the specified revision ID.
 			// Note that we use newRevisionFromConds here because we want to retry
