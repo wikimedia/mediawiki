@@ -705,7 +705,7 @@ class Article implements Page {
 
 					# Try the parser cache
 					if ( $useParserCache ) {
-						$this->mParserOutput = $parserCache->get( $this->mPage, $parserOptions );
+						$this->mParserOutput = $parserCache->get( $this->getPage(), $parserOptions );
 
 						if ( $this->mParserOutput !== false ) {
 							if ( $oldid ) {
