@@ -35,6 +35,7 @@ class TestSetup {
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
+		global $wgMWLoggerDefaultSpi;
 		global $wgAuthManagerConfig;
 		global $wgShowExceptionDetails;
 
@@ -63,6 +64,13 @@ class TestSetup {
 		// Use memory job queue
 		$wgJobTypeConf = [
 			'default' => [ 'class' => JobQueueMemory::class, 'order' => 'fifo' ],
+		];
+		// Always default to LegacySpi and LegacyLogger during test
+		// See also MediaWikiIntegrationTestCase::setNullLogger().
+		// Note that MediaWikiLoggerPHPUnitTestListener may wrap this in
+		// a MediaWiki\Logger\LogCapturingSpi at run-time.
+		$wgMWLoggerDefaultSpi = [
+			'class' => \MediaWiki\Logger\LegacySpi::class,
 		];
 
 		$wgUseDatabaseMessages = false; # Set for future resets

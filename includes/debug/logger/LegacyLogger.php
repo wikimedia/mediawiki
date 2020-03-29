@@ -26,6 +26,7 @@ use MWDebug;
 use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
+use RuntimeException;
 use Throwable;
 use UDPTransport;
 use WikiMap;
@@ -133,6 +134,23 @@ class LegacyLogger extends AbstractLogger {
 			// Log DB errors if there is a DB error log
 			$this->minimumLevel = self::LEVEL_ERROR;
 		}
+	}
+
+	/**
+	 * Change an existing Logger singleton to act like NullLogger.
+	 *
+	 * @internal For use by MediaWikiIntegrationTestCase::setNullLogger
+	 * @param null|int $level
+	 * @return int
+	 */
+	public function setMinimumForTest( ?int $level ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( 'Not allowed outside tests' );
+		}
+		// Set LEVEL_INFINITY if given null, or restore the original level.
+		$original = $this->minimumLevel;
+		$this->minimumLevel = $level ?? self::LEVEL_INFINITY;
+		return $original;
 	}
 
 	/**

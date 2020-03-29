@@ -80,4 +80,24 @@ class LogCapturingSpi implements Spi {
 			}
 		};
 	}
+
+	/**
+	 * @internal For use by MediaWikiIntegrationTestCase
+	 * @return Spi
+	 */
+	public function getInnerSpi() : Spi {
+		return $this->inner;
+	}
+
+	/**
+	 * @internal For use by MediaWikiIntegrationTestCase
+	 * @param string $channel
+	 * @param LoggerInterface|null $logger
+	 * @return LoggerInterface|null
+	 */
+	public function setLoggerForTest( $channel, LoggerInterface $logger = null ) {
+		$ret = $this->singletons[$channel] ?? null;
+		$this->singletons[$channel] = $logger;
+		return $ret;
+	}
 }
