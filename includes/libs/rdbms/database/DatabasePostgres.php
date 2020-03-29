@@ -749,12 +749,13 @@ __INDEXATTR__;
 		$oldNameE = $this->addIdentifierQuotes( $oldName );
 
 		$temporary = $temporary ? 'TEMPORARY' : '';
+		$queryFlags = self::QUERY_PSEUDO_PERMANENT | self::QUERY_IGNORE_DBO_TRX;
 
 		$ret = $this->query(
 			"CREATE $temporary TABLE $newNameE " .
 				"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)",
 			$fname,
-			$this::QUERY_PSEUDO_PERMANENT
+			$queryFlags
 		);
 		if ( !$ret ) {
 			return $ret;
@@ -779,11 +780,13 @@ __INDEXATTR__;
 			$newSeqQ = $this->addQuotes( $newSeq );
 			$this->query(
 				"CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE",
-				$fname
+				$fname,
+				$queryFlags
 			);
 			$this->query(
 				"ALTER TABLE $newNameE ALTER COLUMN $fieldE SET DEFAULT nextval({$newSeqQ}::regclass)",
-				$fname
+				$fname,
+				$queryFlags
 			);
 		}
 

@@ -1429,9 +1429,12 @@ abstract class DatabaseMysqlBase extends Database {
 		$tmp = $temporary ? 'TEMPORARY ' : '';
 		$newName = $this->addIdentifierQuotes( $newName );
 		$oldName = $this->addIdentifierQuotes( $oldName );
-		$query = "CREATE $tmp TABLE $newName (LIKE $oldName)";
 
-		return $this->query( $query, $fname, $this::QUERY_PSEUDO_PERMANENT );
+		return $this->query(
+			"CREATE $tmp TABLE $newName (LIKE $oldName)",
+			$fname,
+			self::QUERY_PSEUDO_PERMANENT | self::QUERY_IGNORE_DBO_TRX
+		);
 	}
 
 	/**
@@ -1442,7 +1445,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return array
 	 */
 	public function listTables( $prefix = null, $fname = __METHOD__ ) {
-		$result = $this->query( "SHOW TABLES", $fname );
+		$result = $this->query( "SHOW TABLES", $fname, self::QUERY_IGNORE_DBO_TRX );
 
 		$endArray = [];
 

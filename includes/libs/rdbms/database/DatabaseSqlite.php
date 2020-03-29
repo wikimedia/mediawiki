@@ -996,10 +996,13 @@ class DatabaseSqlite extends Database {
 	 * @throws RuntimeException
 	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = __METHOD__ ) {
+		$queryFlags = self::QUERY_PSEUDO_PERMANENT | self::QUERY_IGNORE_DBO_TRX;
+
 		$res = $this->query(
 			"SELECT sql FROM sqlite_master WHERE tbl_name=" .
 			$this->addQuotes( $oldName ) . " AND type='table'",
-			$fname
+			$fname,
+			$queryFlags
 		);
 		$obj = $this->fetchObject( $res );
 		if ( !$obj ) {
@@ -1023,10 +1026,14 @@ class DatabaseSqlite extends Database {
 			}
 		}
 
-		$res = $this->query( $sql, $fname, self::QUERY_PSEUDO_PERMANENT );
+		$res = $this->query( $sql, $fname, $queryFlags );
 
 		// Take over indexes
-		$indexList = $this->query( 'PRAGMA INDEX_LIST(' . $this->addQuotes( $oldName ) . ')' );
+		$indexList = $this->query(
+			'PRAGMA INDEX_LIST(' . $this->addQuotes( $oldName ) . ')',
+			$fname,
+			$queryFlags
+		);
 		foreach ( $indexList as $index ) {
 			if ( strpos( $index->name, 'sqlite_autoindex' ) === 0 ) {
 				continue;
@@ -1041,7 +1048,11 @@ class DatabaseSqlite extends Database {
 			$indexName = $newName . '_' . $index->name;
 			$sql .= ' ' . $indexName . ' ON ' . $newName;
 
-			$indexInfo = $this->query( 'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')' );
+			$indexInfo = $this->query(
+				'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')',
+				$fname,
+				$queryFlags
+			);
 			$fields = [];
 			foreach ( $indexInfo as $indexInfoRow ) {
 				$fields[$indexInfoRow->seqno] = $indexInfoRow->name;
@@ -1064,10 +1075,10 @@ class DatabaseSqlite extends Database {
 	 * @return array
 	 */
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
-		$result = $this->select(
-			'sqlite_master',
-			'name',
-			"type='table'"
+		$result = $this->query(
+			"SELECT name FROM sqlite_master WHERE type = 'table'",
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX
 		);
 
 		$endArray = [];
