@@ -371,7 +371,7 @@ return [
 
 	'LanguageConverterFactory' => function ( MediaWikiServices $services ) : LanguageConverterFactory {
 		$usePigLatinVariant = $services->getMainConfig()->get( 'UsePigLatinVariant' );
-		return new LanguageConverterFactory( $usePigLatinVariant,  function () use ( $services ) {
+		return new LanguageConverterFactory( $usePigLatinVariant, function () use ( $services ) {
 			return $services->getContentLanguage();
 		} );
 	},
