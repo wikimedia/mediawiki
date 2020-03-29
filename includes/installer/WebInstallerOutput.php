@@ -203,6 +203,12 @@ class WebInstallerOutput {
 		$this->parent->request->response()->header( 'Content-Type: text/html; charset=utf-8' );
 		$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
 
+		$cspPolicy = "default-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none';" .
+			" script-src 'self' 'nonce-" . $this->getCSPNonce() . "';" .
+			" img-src 'self'; frame-src 'self'; base-uri 'none'";
+
+		$this->parent->request->response()->header( 'Content-Security-Policy: ' . $cspPolicy );
+
 		if ( $this->redirectTarget ) {
 			$this->parent->request->response()->header( 'Location: ' . $this->redirectTarget );
 
@@ -289,4 +295,18 @@ class WebInstallerOutput {
 		return Html::linkedStyle( "../resources/lib/codex/codex.style.css" );
 	}
 
+	/**
+	 * Get the nonce for use with inline scripts
+	 *
+	 * @since 1.45
+	 * @return string
+	 */
+	public function getCSPNonce() {
+		static $nonce;
+		if ( $nonce === null ) {
+			// Spec says at least 16 bytes. Do 18 so it encodes evenly in base64
+			$nonce = base64_encode( random_bytes( 18 ) );
+		}
+		return $nonce;
+	}
 }

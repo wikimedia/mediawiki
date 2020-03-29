@@ -32,6 +32,7 @@ use MediaWiki\Installer\Task\TaskRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use Wikimedia\HtmlArmor\HtmlArmor;
@@ -1201,6 +1202,7 @@ class WebInstaller extends Installer {
 	 * Actually output LocalSettings.php for download
 	 */
 	private function outputLS() {
+		ContentSecurityPolicy::sendRestrictiveHeader();
 		$this->request->response()->header( 'Content-type: application/x-httpd-php' );
 		$this->request->response()->header(
 			'Content-Disposition: attachment; filename="LocalSettings.php"'
@@ -1219,6 +1221,7 @@ class WebInstaller extends Installer {
 	 */
 	public function outputCss() {
 		$this->request->response()->header( 'Content-type: text/css' );
+		ContentSecurityPolicy::sendRestrictiveHeader();
 		echo $this->output->getCSS();
 	}
 

@@ -191,7 +191,7 @@ abstract class WebInstallerPage {
 		$this->addHTML(
 			'<div id="config-spinner" style="display:none;">' .
 			'<img src="images/ajax-loader.gif" /></div>' .
-			'<script>jQuery( "#config-spinner" ).show();</script>' .
+			$this->inlineScript( 'jQuery( "#config-spinner" ).show();' ) .
 			'<div id="config-live-log">' .
 			'<textarea name="LiveLog" rows="10" cols="30" readonly="readonly">'
 		);
@@ -202,9 +202,21 @@ abstract class WebInstallerPage {
 	 * Opposite to WebInstallerPage::startLiveBox
 	 */
 	protected function endLiveBox() {
-		$this->addHTML( '</textarea></div>
-<script>jQuery( "#config-spinner" ).hide()</script>' );
+		$this->addHTML(
+			'</textarea></div>' .
+			$this->inlineScript( 'jQuery( "#config-spinner" ).hide()' )
+		);
 		$this->parent->output->flush();
 	}
 
+	/**
+	 * Javascript to include inline. Handles addings CSP nonce.
+	 *
+	 * @since 1.45
+	 * @param string $script Script, not including <script> tag
+	 * @return string HTML to output
+	 */
+	protected function inlineScript( $script ) {
+		return Html::inlineScript( $script, $this->parent->output->getCSPNonce() );
+	}
 }

@@ -313,7 +313,7 @@ class WebInstallerOptions extends WebInstallerPage {
 				$this->getFieldsetEnd();
 			$this->addHTML( $extHtml );
 			// Push the dependency map to the client side
-			$this->addHTML( Html::inlineScript(
+			$this->addHTML( $this->inlineScript(
 				'var extDependencyMap = ' . Html::encodeJsVar( $dependencyMap )
 			) );
 		}
