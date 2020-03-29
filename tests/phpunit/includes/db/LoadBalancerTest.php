@@ -327,7 +327,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
-			'loadMonitorClass' => LoadMonitorNull::class
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ]
 		] );
 	}
 
@@ -400,7 +400,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, 'unittest_' ),
-			'loadMonitorClass' => LoadMonitorNull::class
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ]
 		] );
 
 		$this->assertTrue( $lb->getServerAttributes( 0 )[Database::ATTR_DB_LEVEL_LOCKING] );
@@ -429,7 +429,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, 'unittest_' ),
-			'loadMonitorClass' => LoadMonitorNull::class
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ]
 		] );
 
 		$this->assertFalse( $lb->getServerAttributes( 1 )[Database::ATTR_DB_LEVEL_LOCKING] );

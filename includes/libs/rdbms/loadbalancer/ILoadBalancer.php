@@ -109,7 +109,7 @@ interface ILoadBalancer {
 	 * @param array $params Parameter map with keys:
 	 *  - servers : List of server info structures
 	 *  - localDomain: A DatabaseDomain or domain ID string
-	 *  - loadMonitor : Name of a class used to fetch server lag and load
+	 *  - loadMonitor : LoadMonitor::__construct() parameters with "class" field. [optional]
 	 *  - readOnlyReason : Reason the master DB is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
 	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]

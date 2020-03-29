@@ -107,7 +107,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$factory = new LBFactorySimple( [
 			'servers' => $servers,
-			'loadMonitorClass' => LoadMonitorNull::class
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 		] );
 		$lb = $factory->getMainLB();
 
@@ -246,7 +246,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 				'test-db3' => $wgDBserver,
 				'test-db4' => $wgDBserver
 			],
-			'loadMonitorClass' => LoadMonitorNull::class
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 		] );
 	}
 
@@ -412,7 +412,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			'hostsByName' => [
 				'test-db1' => $wgDBserver,
 			],
-			'loadMonitorClass' => LoadMonitorNull::class,
+			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix ),
 			'agent' => 'MW-UNIT-TESTS'
 		] );
