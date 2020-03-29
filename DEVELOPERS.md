@@ -36,8 +36,8 @@ You'll need a locally running Docker and Docker Compose:
 
 **Linux users**
 
-We recommend installing `docker-compose` by [downloading the binary release](https://docs.docker.com/compose/install/#install-compose-on-linux-systems).
-You can also use `pip`, your OS package manager, or even run it in a container, but downloading the binary release is the easiest method.
+* We recommend installing `docker-compose` by [downloading the binary release](https://docs.docker.com/compose/install/#install-compose-on-linux-systems). You can also use `pip`, your OS package manager, or even run it in a container, but downloading the binary release is the easiest method.
+* Follow the instructions to ["Manage Docker as a non-root user"](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
 
 ---
 
