@@ -2458,11 +2458,17 @@ $wgObjectCaches = [
 ];
 
 /**
- * Main Wide-Area-Network cache type. This should be a cache with fast access,
- * but it may have limited space. By default, it is disabled, since the basic stock
- * cache is not fast enough to make it worthwhile. For single data-center setups, this can
- * simply be pointed to a cache in $wgWANObjectCaches that uses a local $wgObjectCaches
- * cache with a relayer of type EventRelayerNull.
+ * Main Wide-Area-Network cache type.
+ *
+ * By default, this will wrap $wgMainCacheType (which is disabled, since the basic
+ * stock default of CACHE_DB is not fast enough to make it worthwhile).
+ *
+ * For single server or single data-center setup, setting $wgMainCacheType
+ * is enough.
+ *
+ * For a multiple data-center setup, WANObjectCache should be configured to
+ * broadcast some if its operations using Mcrouter or Dynomite.
+ * See @ref wanobjectcache-deployment "Deploying WANObjectCache".
  *
  * The options are:
  *   - false:            Configure the cache using $wgMainCacheType, without using
@@ -2477,28 +2483,33 @@ $wgMainWANCache = false;
 /**
  * Advanced WAN object cache configuration.
  *
- * Each WAN cache wraps a registered object cache (for the local cluster)
- * and it must also be configured to point to a PubSub instance. Subscribers
- * must be configured to relay purges to the actual cache servers.
+ * The format is an associative array where the key is an identifier
+ * that may be referenced by $wgMainWANCache, and the value is an array of options:
  *
- * The format is an associative array where the key is a cache identifier, and
- * the value is an associative array of parameters. The "cacheId" parameter is
- * a cache identifier from $wgObjectCaches. The "loggroup" parameter controls
- * where log events are sent.
+ *  - class:   (Required) The class to use (must be WANObjectCache or a subclass).
+ *  - cacheId: (Required) A cache identifier from $wgObjectCaches.
+ *  - secret:  (Optional) Stable secret for hashing long strings in key components.
+ *             Default: $wgSecretKey.
+ *
+ * Any other options are treated as constructor parameters to WANObjectCache,
+ * except for 'cache', 'logger', 'stats' and 'asyncHandler' which are
+ * unconditionally set by MediaWiki core's ServiceWiring.
+ *
+ * @par Example:
+ * @code
+ * $wgWANObjectCaches'memcached-php' => [
+ *   'class' => WANObjectCache::class,
+ *   'cacheId' => 'memcached-php',
+ * ];
+ * @endcode
  *
  * @since 1.26
  */
 $wgWANObjectCaches = [
 	CACHE_NONE => [
-		'class'    => WANObjectCache::class,
-		'cacheId'  => CACHE_NONE
+		'class' => WANObjectCache::class,
+		'cacheId' => CACHE_NONE,
 	]
-	/* Example of a simple single data-center cache:
-	'memcached-php' => [
-		'class'    => WANObjectCache::class,
-		'cacheId'  => 'memcached-php'
-	]
-	*/
 ];
 
 /**

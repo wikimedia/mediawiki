@@ -516,39 +516,42 @@ return [
 	'MainWANObjectCache' => function ( MediaWikiServices $services ) : WANObjectCache {
 		$mainConfig = $services->getMainConfig();
 
-		$id = $mainConfig->get( 'MainWANCache' );
-		if ( !isset( $mainConfig->get( 'WANObjectCaches' )[$id] ) ) {
+		$wanId = $mainConfig->get( 'MainWANCache' );
+		$wanParams = $mainConfig->get( 'WANObjectCaches' )[$wanId] ?? null;
+		if ( !$wanParams ) {
 			throw new UnexpectedValueException(
-				"WAN cache type \"$id\" is not present in \$wgWANObjectCaches." );
+				"wgWANObjectCaches must have \"$wanId\" set (via wgMainWANCache)"
+			);
 		}
 
-		$params = $mainConfig->get( 'WANObjectCaches' )[$id];
+		$cacheId = $wanParams['cacheId'];
+		$wanClass = $wanParams['class'];
+		unset( $wanParams['cacheId'] );
+		unset( $wanParams['class'] );
 
-		$objectCacheId = $params['cacheId'];
-		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$objectCacheId] ) ) {
+		$storeParams = $mainConfig->get( 'ObjectCaches' )[$cacheId] ?? null;
+		if ( !$storeParams ) {
 			throw new UnexpectedValueException(
-				"Cache type \"$objectCacheId\" is not present in \$wgObjectCaches." );
+				"wgObjectCaches must have \"$cacheId\" set (via wgWANObjectCaches)"
+			);
 		}
-		$storeParams = $mainConfig->get( 'ObjectCaches' )[$objectCacheId];
 		$store = ObjectCache::newFromParams( $storeParams, $mainConfig );
 		$logger = $store->getLogger();
 		$logger->debug( 'MainWANObjectCache using store {class}', [
 			'class' => get_class( $store )
 		] );
 
-		$params['logger'] = $logger;
-		$params['cache'] = $store;
-		$params['secret'] = $params['secret'] ?? $mainConfig->get( 'SecretKey' );
+		$wanParams['cache'] = $store;
+		$wanParams['logger'] = $logger;
+		$wanParams['secret'] = $wanParams['secret'] ?? $mainConfig->get( 'SecretKey' );
 		if ( !$mainConfig->get( 'CommandLineMode' ) ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
-			$params['stats'] = $services->getStatsdDataFactory();
+			$wanParams['stats'] = $services->getStatsdDataFactory();
 			// Let pre-emptive refreshes happen post-send on HTTP requests
-			$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
+			$wanParams['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
 		}
 
-		$class = $params['class'];
-		// @phan-suppress-next-line PhanParamTooMany Not inferring the right type
-		$instance = new $class( $params );
+		$instance = new $wanClass( $wanParams );
 
 		'@phan-var WANObjectCache $instance';
 		return $instance;

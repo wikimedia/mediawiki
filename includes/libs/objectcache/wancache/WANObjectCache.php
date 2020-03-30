@@ -74,7 +74,8 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * The need for immediate updates should be avoided. If needed, solutions must be
  * sought outside WANObjectCache.
  *
- * ### Deploying WANObjectCache
+ * @anchor wanobjectcache-deployment
+ * ### Deploying %WANObjectCache
  *
  * There are two supported ways to set up broadcasted operations:
  *

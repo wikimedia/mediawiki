@@ -587,12 +587,11 @@ if ( $wgTmpDirectory === false ) {
 }
 
 if ( $wgMainWANCache === false ) {
-	// Setup a WAN cache from $wgMainCacheType with no relayer.
-	// Sites using multiple datacenters can configure a relayer.
+	// Setup a WAN cache from $wgMainCacheType
 	$wgMainWANCache = 'mediawiki-main-default';
 	$wgWANObjectCaches[$wgMainWANCache] = [
 		'class'    => WANObjectCache::class,
-		'cacheId'  => $wgMainCacheType
+		'cacheId'  => $wgMainCacheType,
 	];
 }
 
