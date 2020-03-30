@@ -26,7 +26,7 @@
  *
  * Browsers we support in our no-javascript run-time (Grade C):
  * - Chrome 1+
- * - IE 6+
+ * - IE 8+
  * - Firefox 3+
  * - Safari 3+
  * - Opera 15+
