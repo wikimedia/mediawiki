@@ -149,7 +149,6 @@ class Parser {
 	/** @deprecated since 1.35 */
 	public $mFunctionTagHooks = [];
 	public $mStripList = [];
-	public $mDefaultStripList = [];
 	/** @deprecated since 1.35 */
 	public $mVarCache = [];
 	public $mImageParams = [];
@@ -4984,7 +4983,7 @@ class Parser {
 	public function clearTagHooks() {
 		$this->mTagHooks = [];
 		$this->mFunctionTagHooks = [];
-		$this->mStripList = $this->mDefaultStripList;
+		$this->mStripList = [];
 	}
 
 	/**
