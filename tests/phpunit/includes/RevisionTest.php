@@ -324,6 +324,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::setUserIdAndName
 	 */
 	public function testSetUserIdAndName( $inputId, $expectedId, $name ) {
+		$this->hideDeprecated( 'Revision::setUserIdAndName' );
 		$rev = new Revision( [], 0, $this->getMockTitle() );
 		$rev->setUserIdAndName( $inputId, $name );
 		$this->assertSame( $expectedId, $rev->getUser( Revision::RAW ) );
