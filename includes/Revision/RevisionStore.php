@@ -1316,6 +1316,57 @@ class RevisionStore
 		Title $title = null,
 		array $overrides = []
 	) {
+		return $this->newRevisionFromArchiveRowAndSlots( $row, null, $queryFlags, $title, $overrides );
+	}
+
+	/**
+	 * @see RevisionFactory::newRevisionFromRow
+	 *
+	 * MCR migration note: this replaces Revision::newFromRow
+	 *
+	 * @param object $row A database row generated from a query based on getQueryInfo()
+	 * @param int $queryFlags
+	 * @param Title|null $title Preloaded title object based on Title::newFromRow from database row
+	 *   when query was build with option 'page' on getQueryInfo
+	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
+	 *   data is returned from getters, by querying the database as needed
+	 * @return RevisionRecord
+	 */
+	public function newRevisionFromRow(
+		$row,
+		$queryFlags = 0,
+		Title $title = null,
+		$fromCache = false
+	) {
+		return $this->newRevisionFromRowAndSlots( $row, null, $queryFlags, $title, $fromCache );
+	}
+
+	/**
+	 * @see newRevisionFromArchiveRow()
+	 * @since 1.35
+	 *
+	 * @param object $row
+	 * @param null|object[]|RevisionSlots $slots
+	 *  - Database rows generated from a query based on getSlotsQueryInfo
+	 *    with the 'content' flag set. Or
+	 *  - RevisionSlots instance
+	 * @param int $queryFlags
+	 * @param Title|null $title
+	 * @param array $overrides associative array with fields of $row to override. This may be
+	 *   used e.g. to force the parent revision ID or page ID. Keys in the array are fields
+	 *   names from the archive table without the 'ar_' prefix, i.e. use 'parent_id' to
+	 *   override ar_parent_id.
+	 *
+	 * @return RevisionRecord
+	 * @throws MWException
+	 */
+	public function newRevisionFromArchiveRowAndSlots(
+		$row,
+		$slots,
+		$queryFlags = 0,
+		Title $title = null,
+		array $overrides = []
+	) {
 		Assert::parameterType( 'object', $row, '$row' );
 
 		// check second argument, since Revision::newFromArchiveRow had $overrides in that spot.
@@ -1366,38 +1417,20 @@ class RevisionStore
 		// Legacy because $row may have come from self::selectFields()
 		$comment = $this->commentStore->getCommentLegacy( $db, 'ar_comment', $row, true );
 
-		$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, null, $queryFlags, $title );
+		if ( !( $slots instanceof RevisionSlots ) ) {
+			$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, $slots, $queryFlags, $title );
+		}
 
 		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->dbDomain );
 	}
 
 	/**
-	 * @see RevisionFactory::newRevisionFromRow
+	 * @see newFromRevisionRow()
 	 *
-	 * MCR migration note: this replaces Revision::newFromRow
-	 *
-	 * @param object $row A database row generated from a query based on getQueryInfo()
-	 * @param int $queryFlags
-	 * @param Title|null $title Preloaded title object based on Title::newFromRow from database row
-	 *   when query was build with option 'page' on getQueryInfo
-	 * @param bool $fromCache if true, the returned RevisionRecord will ensure that no stale
-	 *   data is returned from getters, by querying the database as needed
-	 * @return RevisionRecord
-	 */
-	public function newRevisionFromRow(
-		$row,
-		$queryFlags = 0,
-		Title $title = null,
-		$fromCache = false
-	) {
-		return $this->newRevisionFromRowAndSlots( $row, null, $queryFlags, $title, $fromCache );
-	}
-
-	/**
 	 * @param object $row A database row generated from a query based on getQueryInfo()
 	 * @param null|object[]|RevisionSlots $slots
-	 * 	- Database rows generated from a query based on getSlotsQueryInfo
-	 * 	  with the 'content' flag set. Or
+	 *  - Database rows generated from a query based on getSlotsQueryInfo
+	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
 	 * @param int $queryFlags
 	 * @param Title|null $title
@@ -1407,8 +1440,6 @@ class RevisionStore
 	 * @return RevisionRecord
 	 * @throws MWException
 	 * @see RevisionFactory::newRevisionFromRow
-	 *
-	 * MCR migration note: this replaces Revision::newFromRow
 	 */
 	public function newRevisionFromRowAndSlots(
 		$row,
@@ -1475,14 +1506,19 @@ class RevisionStore
 	/**
 	 * Construct a RevisionRecord instance for each row in $rows,
 	 * and return them as an associative array indexed by revision ID.
+	 * Use getQueryInfo() or getArchiveQueryInfo() to construct the
+	 * query that produces the rows.
+	 *
 	 * @param Traversable|array $rows the rows to construct revision records from
 	 * @param array $options Supports the following options:
 	 *               'slots' - whether metadata about revision slots should be
 	 *               loaded immediately. Supports falsy or truthy value as well
 	 *               as an explicit list of slot role names. The main slot will
 	 *               always be loaded.
-	 *               'content'- whether the actual content of the slots should be
+	 *               'content' - whether the actual content of the slots should be
 	 *               preloaded.
+	 *               'archive' - whether the rows where generated using getArchiveQueryInfo(),
+	 *                           rather than getQueryInfo.
 	 * @param int $queryFlags
 	 * @param Title|null $title The title to which all the revision rows belong, if there
 	 *        is such a title and the caller has it handy, so we don't have to look it up again.
@@ -1499,33 +1535,63 @@ class RevisionStore
 		Title $title = null
 	) {
 		$result = new StatusValue();
+		$archiveMode = $options['archive'] ?? false;
+
+		if ( $archiveMode ) {
+			$revIdField = 'ar_rev_id';
+		} else {
+			$revIdField = 'rev_id';
+		}
 
 		$rowsByRevId = [];
 		$pageIdsToFetchTitles = [];
-		$titlesByPageId = [];
+		$titlesByPageKey = [];
 		foreach ( $rows as $row ) {
-			if ( isset( $rowsByRevId[$row->rev_id] ) ) {
+			if ( isset( $rowsByRevId[$row->$revIdField] ) ) {
 				$result->warning(
 					'internalerror',
-					"Duplicate rows in newRevisionsFromBatch, rev_id {$row->rev_id}"
+					"Duplicate rows in newRevisionsFromBatch, $revIdField {$row->$revIdField}"
 				);
 			}
-			if ( $title && $row->rev_page != $title->getArticleID() ) {
-				throw new InvalidArgumentException(
-					"Revision {$row->rev_id} doesn't belong to page {$title->getArticleID()}"
-				);
-			} elseif ( !$title && !isset( $titlesByPageId[ $row->rev_page ] ) ) {
-				if ( isset( $row->page_namespace ) && isset( $row->page_title ) &&
-					// This should not happen, but just in case we don't have a page_id
-					// set or it doesn't match rev_page, let's fetch the title again.
-					isset( $row->page_id ) && $row->rev_page === $row->page_id
+
+			// Attach a page key to the row, so we can find and reuse Title objects easily.
+			$row->_page_key =
+				$archiveMode ? $row->ar_namespace . ':' . $row->ar_title : $row->rev_page;
+
+			if ( $title ) {
+				if ( !$archiveMode && $row->rev_page != $title->getArticleID() ) {
+					throw new InvalidArgumentException(
+						"Revision {$row->$revIdField} doesn't belong to page "
+							. $title->getArticleID()
+					);
+				}
+
+				if ( $archiveMode
+					&& ( $row->ar_namespace != $title->getNamespace()
+						|| $row->ar_title !== $title->getDBkey() )
 				) {
-					$titlesByPageId[ $row->rev_page ] = Title::newFromRow( $row );
+					throw new InvalidArgumentException(
+						"Revision {$row->$revIdField} doesn't belong to page "
+							. $title->getPrefixedDBkey()
+					);
+				}
+			} elseif ( !isset( $titlesByPageKey[ $row->_page_key ] ) ) {
+				if ( isset( $row->page_namespace ) && isset( $row->page_title )
+					// This should always be true, but just in case we don't have a page_id
+					// set or it doesn't match rev_page, let's fetch the title again.
+					&& isset( $row->page_id ) && isset( $row->rev_page )
+					&& $row->rev_page === $row->page_id
+				) {
+					$titlesByPageKey[ $row->_page_key ] = Title::newFromRow( $row );
+				} elseif ( $archiveMode ) {
+					// Can't look up deleted pages by ID, but we have namespace and title
+					$titlesByPageKey[ $row->_page_key ] =
+						Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				} else {
 					$pageIdsToFetchTitles[] = $row->rev_page;
 				}
 			}
-			$rowsByRevId[$row->rev_id] = $row;
+			$rowsByRevId[$row->$revIdField] = $row;
 		}
 
 		if ( empty( $rowsByRevId ) ) {
@@ -1535,28 +1601,45 @@ class RevisionStore
 
 		// If the title is not supplied, batch-fetch Title objects.
 		if ( $title ) {
-			$titlesByPageId[$title->getArticleID()] = $title;
+			// same logic as for $row->_page_key above
+			$pageKey = $archiveMode
+				? $title->getNamespace() . ':' . $title->getDBkey()
+				: $title->getArticleID();
+
+			$titlesByPageKey[$pageKey] = $title;
 		} elseif ( !empty( $pageIdsToFetchTitles ) ) {
+			// Note: when we fetch titles by ID, the page key is also the ID.
+			// We should never get here if $archiveMode is true.
+			Assert::invariant( !$archiveMode, 'Titles are not loaded by ID in archive mode.' );
+
 			$pageIdsToFetchTitles = array_unique( $pageIdsToFetchTitles );
 			foreach ( Title::newFromIDs( $pageIdsToFetchTitles ) as $t ) {
-				$titlesByPageId[$t->getArticleID()] = $t;
+				$titlesByPageKey[$t->getArticleID()] = $t;
 			}
 		}
 
+		// which method to use for creating RevisionRecords
+		$newRevisionRecord = [
+			$this,
+			$archiveMode ? 'newRevisionFromArchiveRowAndSlots' : 'newRevisionFromRowAndSlots'
+		];
+
 		if ( !isset( $options['slots'] ) ) {
-			$result->setResult( true,
-				array_map( function ( $row ) use ( $queryFlags, $titlesByPageId, $result ) {
-					try {
-						return $this->newRevisionFromRow(
-							$row,
-							$queryFlags,
-							$titlesByPageId[$row->rev_page]
-						);
-					} catch ( MWException $e ) {
-						$result->warning( 'internalerror', $e->getMessage() );
-						return null;
-					}
-				}, $rowsByRevId )
+			$result->setResult(
+				true,
+				array_map(
+					function ( $row )
+					use ( $queryFlags, $titlesByPageKey, $result, $newRevisionRecord ) {
+						try {
+							return $newRevisionRecord( $row, null, $queryFlags,
+								$titlesByPageKey[ $row->_page_key ] ?? null );
+						} catch ( MWException $e ) {
+							$result->warning( 'internalerror', $e->getMessage() );
+							return null;
+						}
+					},
+					$rowsByRevId
+				)
 			);
 			return $result;
 		}
@@ -1578,34 +1661,42 @@ class RevisionStore
 		$result->merge( $slotRowsStatus );
 		$slotRowsByRevId = $slotRowsStatus->getValue();
 
-		$result->setResult( true, array_map( function ( $row ) use
-			( $slotRowsByRevId, $queryFlags, $titlesByPageId, $result ) {
-				if ( !isset( $slotRowsByRevId[$row->rev_id] ) ) {
-					$result->warning(
-						'internalerror',
-						"Couldn't find slots for rev {$row->rev_id}"
-					);
-					return null;
-				}
-				try {
-					return $this->newRevisionFromRowAndSlots(
-						$row,
-						new RevisionSlots(
-							$this->constructSlotRecords(
-								$row->rev_id,
-								$slotRowsByRevId[$row->rev_id],
-								$queryFlags,
-								$titlesByPageId[$row->rev_page]
-							)
-						),
-						$queryFlags,
-						$titlesByPageId[$row->rev_page]
-					);
-				} catch ( MWException $e ) {
-					$result->warning( 'internalerror', $e->getMessage() );
-					return null;
-				}
-		}, $rowsByRevId ) );
+		$result->setResult(
+			true,
+			array_map(
+				function ( $row )
+				use ( $slotRowsByRevId, $queryFlags, $titlesByPageKey, $result,
+					$revIdField, $newRevisionRecord
+				) {
+					if ( !isset( $slotRowsByRevId[$row->$revIdField] ) ) {
+						$result->warning(
+							'internalerror',
+							"Couldn't find slots for rev {$row->$revIdField}"
+						);
+						return null;
+					}
+					try {
+						return $newRevisionRecord(
+							$row,
+							new RevisionSlots(
+								$this->constructSlotRecords(
+									$row->$revIdField,
+									$slotRowsByRevId[$row->$revIdField],
+									$queryFlags,
+									$titlesByPageKey[$row->_page_key] ?? null
+								)
+							),
+							$queryFlags,
+							$titlesByPageKey[$row->_page_key]
+						);
+					} catch ( MWException $e ) {
+						$result->warning( 'internalerror', $e->getMessage() );
+						return null;
+					}
+				},
+				$rowsByRevId
+			)
+		);
 		return $result;
 	}
 
@@ -1615,11 +1706,12 @@ class RevisionStore
 	 * Callers are responsible for unserializing and interpreting the content blobs
 	 * based on the model_name and role_name fields.
 	 *
-	 * @param Traversable|array $rowsOrIds list of revision ids, or revision rows from a db query.
+	 * @param Traversable|array $rowsOrIds list of revision ids, or revision or archive rows
+	 *        from a db query.
 	 * @param array $options Supports the following options:
 	 *               'slots' - a list of slot role names to fetch. If omitted or true or null,
 	 *                         all slots are fetched
-	 *               'blobs'- whether the serialized content of each slot should be loaded.
+	 *               'blobs' - whether the serialized content of each slot should be loaded.
 	 *                        If true, the serialiezd content will be present in the slot row
 	 *                        in the blob_data field.
 	 * @param int $queryFlags
@@ -1640,7 +1732,11 @@ class RevisionStore
 
 		$revIds = [];
 		foreach ( $rowsOrIds as $row ) {
-			$revIds[] = is_object( $row ) ? (int)$row->rev_id : (int)$row;
+			if ( is_object( $row ) ) {
+				$revIds[] = isset( $row->ar_rev_id ) ? (int)$row->ar_rev_id : (int)$row->rev_id;
+			} else {
+				$revIds[] = (int)$row;
+			}
 		}
 
 		// Nothing to do.
@@ -2847,7 +2943,7 @@ class RevisionStore
 	 *
 	 * @param int $pageId The id of the page
 	 * @param RevisionRecord|null $old Old revision.
-	 * 	If null is provided, count starting from the first revision (inclusive).
+	 *  If null is provided, count starting from the first revision (inclusive).
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
 	 * @param User|null $user the user who's access rights to apply
@@ -2857,7 +2953,7 @@ class RevisionStore
 	 *     'include_new' Include $new in the range; $old is excluded.
 	 *     'include_both' Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
-	 * 	the revisions do not belong to the same page or unknown option is passed.
+	 *  the revisions do not belong to the same page or unknown option is passed.
 	 * @return UserIdentity[] Names of revision authors in the range
 	 */
 	public function getAuthorsBetween(
@@ -2918,7 +3014,7 @@ class RevisionStore
 	 *
 	 * @param int $pageId The id of the page
 	 * @param RevisionRecord|null $old Old revision .
-	 * 	If null is provided, count starting from the first revision (inclusive).
+	 *  If null is provided, count starting from the first revision (inclusive).
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
 	 * @param User|null $user the user who's access rights to apply
@@ -2928,7 +3024,7 @@ class RevisionStore
 	 *     'include_new' Include $new in the range; $old is excluded.
 	 *     'include_both' Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
-	 * 	the revisions do not belong to the same page or unknown option is passed.
+	 *  the revisions do not belong to the same page or unknown option is passed.
 	 * @return int Number of revisions authors in the range.
 	 */
 	public function countAuthorsBetween(
@@ -2952,7 +3048,7 @@ class RevisionStore
 	 *
 	 * @param int $pageId The id of the page
 	 * @param RevisionRecord|null $old Old revision.
-	 * 	If null is provided, count starting from the first revision (inclusive).
+	 *  If null is provided, count starting from the first revision (inclusive).
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
@@ -2961,7 +3057,7 @@ class RevisionStore
 	 *     'include_new' Include $new in the range; $old is excluded.
 	 *     'include_both' Include both $old and $new in the range.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
-	 * 	the revisions do not belong to the same page.
+	 *  the revisions do not belong to the same page.
 	 * @return int Number of revisions between these revisions.
 	 */
 	public function countRevisionsBetween(

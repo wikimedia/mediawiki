@@ -907,7 +907,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
 	 */
-	public function testNewRevisionFromRowAndSlot_getQueryInfo() {
+	public function testNewRevisionFromRowAndSlots_getQueryInfo() {
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'o-ö';
 		/** @var Revision $rev */
@@ -1054,7 +1054,48 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRowAndSlots
+	 * @covers \MediaWiki\Revision\RevisionStore::getArchiveQueryInfo
+	 */
+	public function testNewRevisionFromArchiveRowAndSlots_getArchiveQueryInfo() {
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$title = Title::newFromText( __METHOD__ );
+		$text = __METHOD__ . '-bä';
+		$page = WikiPage::factory( $title );
+		/** @var Revision $orig */
+		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
+			->value['revision'];
+		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+
+		$db = wfGetDB( DB_MASTER );
+		$arQuery = $store->getArchiveQueryInfo();
+		$res = $db->select(
+			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
+			__METHOD__, [], $arQuery['joins']
+		);
+		$this->assertIsObject( $res, 'query failed' );
+
+		$info = $store->getSlotsQueryInfo( [ 'content' ] );
+		$slotRows = $this->db->select(
+			$info['tables'],
+			$info['fields'],
+			[ 'slot_revision_id' => $orig->getId() ],
+			__METHOD__,
+			[],
+			$info['joins']
+		);
+
+		$row = $res->fetchObject();
+		$res->free();
+		$record = $store->newRevisionFromArchiveRowAndSlots( $row, iterator_to_array( $slotRows ) );
+
+		$this->assertRevisionRecordMatchesRevision( $orig, $record );
+		$this->assertSame( $text, $record->getContent( SlotRecord::MAIN )->serialize() );
+	}
+
+	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRowAndSlots
 	 * @covers \MediaWiki\Revision\RevisionStore::getArchiveQueryInfo
 	 */
 	public function testNewRevisionFromArchiveRow_getArchiveQueryInfo() {
@@ -1085,6 +1126,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRowAndSlots
 	 */
 	public function testNewRevisionFromArchiveRow_legacyEncoding() {
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
@@ -1115,6 +1157,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRowAndSlots
 	 */
 	public function testNewRevisionFromArchiveRow_no_user() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -1155,6 +1198,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * Test for T236624.
 	 *
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRow
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRowAndSlots
 	 */
 	public function testNewRevisionFromArchiveRow_empty_actor() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
@@ -2007,7 +2051,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideGetContentBlobsForBatchOptions
-	 * @covers       \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @covers       \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
 	 * @param array|null $slots
 	 * @throws \MWException
 	 */
@@ -2055,6 +2099,50 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			$this->assertSame( $text . '1', $mainSlotRow1->blob_data );
 			$this->assertSame( $text . '2', $mainSlotRow2->blob_data );
 		}
+
+		// try again, with objects instead of ids:
+		$result2 = $store->getContentBlobsForBatch( [
+			(object)[ 'rev_id' => $rev1->getId() ],
+			(object)[ 'rev_id' => $rev2->getId() ],
+		], $slots );
+
+		$this->assertTrue( $result2->isGood() );
+		$exp1 = var_export( $result->getValue(), true );
+		$exp2 = var_export( $result2->getValue(), true );
+		$this->assertSame( $exp1, $exp2 );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
+	 * @throws \MWException
+	 */
+	public function testGetContentBlobsForBatch_archive() {
+		$page1 = $this->getTestPage( __METHOD__ );
+		$text = __METHOD__ . 'b-ä';
+		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 1' );
+		/** @var Revision $rev1 */
+		$rev1 = $editStatus->getValue()['revision'];
+		$page1->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+
+		$page2 = $this->getTestPage( $page1->getTitle()->getPrefixedText() . '_other' );
+		$editStatus = $this->editPage( $page2->getTitle()->getPrefixedDBkey(), $text . '2' );
+		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create revision 2' );
+		/** @var Revision $rev2 */
+		$rev2 = $editStatus->getValue()['revision'];
+		$page2->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$result = $store->getContentBlobsForBatch( [
+			(object)[ 'ar_rev_id' => $rev1->getId() ],
+			(object)[ 'ar_rev_id' => $rev2->getId() ],
+		] );
+		$this->assertTrue( $result->isGood() );
+		$this->assertSame( [], $result->getErrors() );
+
+		$rowSetsByRevId = $result->getValue();
+		$this->assertArrayHasKey( $rev1->getId(), $rowSetsByRevId );
+		$this->assertArrayHasKey( $rev2->getId(), $rowSetsByRevId );
 	}
 
 	/**
@@ -2143,7 +2231,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 				$this->revisionToRow( $rev1, $queryOptions ),
 				$this->revisionToRow( $rev2, $queryOptions )
 			],
-			$options
+			$options,
+			0, $otherPageTitle ? null : $page1->getTitle()
 		);
 		$this->assertTrue( $result->isGood() );
 		$this->assertSame( [], $result->getErrors() );
@@ -2155,6 +2244,74 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( $text . '1',
 			ContentHandler::getContentText( $records[$rev1->getId()]->getContent( SlotRecord::MAIN ) ) );
 		$this->assertSame( $text . '2',
+			ContentHandler::getContentText( $records[$rev2->getId()]->getContent( SlotRecord::MAIN ) ) );
+		$this->assertEquals( $page1->getTitle()->getDBkey(),
+			$records[$rev1->getId()]->getPageAsLinkTarget()->getDBkey() );
+		$this->assertEquals( $page2->getTitle()->getDBkey(),
+			$records[$rev2->getId()]->getPageAsLinkTarget()->getDBkey() );
+	}
+
+	/**
+	 * @dataProvider provideNewRevisionsFromBatchOptions
+	 * @covers       \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
+	 * @param array|null $queryOptions options to provide to revisionToRow
+	 * @param string|null $otherPageTitle
+	 * @param array|null $options
+	 * @throws \MWException
+	 */
+	public function testNewRevisionsFromBatch_archive(
+		$queryOptions,
+		$otherPageTitle = null,
+		array $options = []
+	) {
+		$title1 = Title::newFromText( __METHOD__ );
+		$text1 = __METHOD__ . '-bä';
+		$page1 = WikiPage::factory( $title1 );
+
+		$title2 = $otherPageTitle ? Title::newFromText( $otherPageTitle ) : $title1;
+		$text2 = __METHOD__ . '-bö';
+		$page2 = $otherPageTitle ? WikiPage::factory( $title2 ) : $page1;
+
+		/** @var Revision $rev1 */
+		/** @var Revision $rev2 */
+		$rev1 = $page1->doEditContent( new WikitextContent( $text1 ), __METHOD__ )
+			->value['revision'];
+		$rev2 = $page2->doEditContent( new WikitextContent( $text2 ), __METHOD__ )
+			->value['revision'];
+		$page1->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+
+		if ( $page2 !== $page1 ) {
+			$page2->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
+		}
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+
+		$queryInfo = $store->getArchiveQueryInfo();
+		$rows = $this->db->select(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			[ 'ar_rev_id' => [ $rev1->getId(), $rev2->getId() ] ],
+			__METHOD__,
+			[],
+			$queryInfo['joins']
+		);
+
+		$options['archive'] = true;
+		$rows = iterator_to_array( $rows );
+		$result = $store->newRevisionsFromBatch(
+			$rows, $options, 0, $otherPageTitle ? null : $title1 );
+
+		$this->assertTrue( $result->isGood() );
+		$this->assertSame( [], $result->getErrors() );
+		/** @var RevisionRecord[] $records */
+		$records = $result->getValue();
+		$this->assertCount( 2, $records );
+		$this->assertRevisionRecordMatchesRevision( $rev1, $records[$rev1->getId()] );
+		$this->assertRevisionRecordMatchesRevision( $rev2, $records[$rev2->getId()] );
+
+		$this->assertSame( $text1,
+			ContentHandler::getContentText( $records[$rev1->getId()]->getContent( SlotRecord::MAIN ) ) );
+		$this->assertSame( $text2,
 			ContentHandler::getContentText( $records[$rev2->getId()]->getContent( SlotRecord::MAIN ) ) );
 		$this->assertEquals( $page1->getTitle()->getDBkey(),
 			$records[$rev1->getId()]->getPageAsLinkTarget()->getDBkey() );

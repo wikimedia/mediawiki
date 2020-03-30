@@ -345,7 +345,12 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		$result = [];
 		$errors = [];
 		foreach ( $blobAddresses as $blobAddress ) {
-			list( $schema, $id ) = self::splitBlobAddress( $blobAddress );
+			try {
+				list( $schema, $id ) = self::splitBlobAddress( $blobAddress );
+			} catch ( InvalidArgumentException $ex ) {
+				throw new BlobAccessException( $ex->getMessage(), 0, $ex );
+			}
+
 			//TODO: MCR: also support 'ex' schema with ExternalStore URLs, plus flags encoded in the URL!
 			if ( $schema === 'bad' ) {
 				// Database row was marked as "known bad", no need to trigger an error.
