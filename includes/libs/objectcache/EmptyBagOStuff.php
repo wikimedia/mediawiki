@@ -27,6 +27,12 @@
  * @ingroup Cache
  */
 class EmptyBagOStuff extends MediumSpecificBagOStuff {
+	public function __construct( array $params = [] ) {
+		parent::__construct( $params );
+
+		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_NONE;
+	}
+
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$casToken = null;
 
