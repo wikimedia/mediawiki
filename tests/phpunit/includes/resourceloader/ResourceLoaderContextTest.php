@@ -15,8 +15,6 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		return new EmptyResourceLoader( new HashConfig( [
 			'ResourceLoaderDebug' => false,
 			'LoadScript' => '/w/load.php',
-			// For ResourceLoader::register()
-			'ResourceModuleSkinStyles' => [],
 		] ) );
 	}
 

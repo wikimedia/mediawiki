@@ -78,6 +78,11 @@ class ResourceLoader implements LoggerAwareInterface {
 	/** @var array Map of (module-variant => buffered DependencyStore updates) */
 	private $depStoreUpdateBuffer = [];
 
+	/** @var array Styles that are skin-specific and supplement or replace the
+	 * default skinStyles of a FileModule. See $wgResourceModuleSkinStyles.
+	 */
+	private $moduleSkinStyles = [];
+
 	/** @var bool */
 	protected static $debugMode = null;
 
@@ -295,6 +300,14 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @internal For use by ServiceWiring.php
+	 * @param array $moduleSkinStyles
+	 */
+	public function setModuleSkinStyles( array $moduleSkinStyles ) {
+		$this->moduleSkinStyles = $moduleSkinStyles;
+	}
+
+	/**
 	 * Register a module with the ResourceLoader system.
 	 *
 	 * @param string|array[] $name Module name as a string or, array of module info arrays
@@ -305,8 +318,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException If the module info is not an array
 	 */
 	public function register( $name, array $info = null ) {
-		$moduleSkinStyles = $this->config->get( 'ResourceModuleSkinStyles' );
-
 		// Allow multiple modules to be registered in one call
 		$registrations = is_array( $name ) ? $name : [ $name => $info ];
 		foreach ( $registrations as $name => $info ) {
@@ -336,8 +347,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			// Last-minute changes
 			// Apply custom skin-defined styles to existing modules.
 			if ( $this->isFileModule( $name ) ) {
-				foreach ( $moduleSkinStyles as $skinName => $skinStyles ) {
-					// If this module already defines skinStyles for this skin, ignore $wgResourceModuleSkinStyles.
+				foreach ( $this->moduleSkinStyles as $skinName => $skinStyles ) {
+					// If this module already defines skinStyles for this skin, ignore ResourceModuleSkinStyles.
 					if ( isset( $this->moduleInfos[$name]['skinStyles'][$skinName] ) ) {
 						continue;
 					}

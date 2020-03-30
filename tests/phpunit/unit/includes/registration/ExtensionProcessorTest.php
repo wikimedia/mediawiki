@@ -484,8 +484,9 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
+				[],
 				[
-					'wgResourceModuleSkinStyles' => [
+					'ResourceModuleSkinStyles' => [
 						'foobar' => [
 							'test.foo' => 'foo.css',
 							'localBasePath' => $dir,
@@ -510,8 +511,9 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
+				[],
 				[
-					'wgResourceModuleSkinStyles' => [
+					'ResourceModuleSkinStyles' => [
 						'foobar' => [
 							'test.foo' => 'foo.css',
 							'localBasePath' => $dir,

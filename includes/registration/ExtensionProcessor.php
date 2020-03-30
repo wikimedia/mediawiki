@@ -462,7 +462,7 @@ class ExtensionProcessor implements Processor {
 					if ( $defaultPaths ) {
 						$data += $defaultPaths;
 					}
-					if ( $setting === 'OOUIThemePaths' ) {
+					if ( $setting === 'OOUIThemePaths' || $setting === 'ResourceModuleSkinStyles' ) {
 						$this->attributes[$setting][$name] = $data;
 					} else {
 						$this->globals["wg$setting"][$name] = $data;
