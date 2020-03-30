@@ -64,9 +64,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 			'Script' => '/w/index.php',
 			'LoadScript' => '/w/load.php',
 
-			// For ResourceLoader::register() - TODO: Inject somehow T32956
-			'ResourceModuleSkinStyles' => [],
-
 			// For ResourceLoader::respond() - TODO: Inject somehow T32956
 			'UseFileCache' => false,
 		];

@@ -399,8 +399,9 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
+				[],
 				[
-					'wgResourceModules' => [
+					'ResourceModules' => [
 						'test.foo' => [
 							'styles' => 'foobar.js',
 							'localBasePath' => $dir,
@@ -442,8 +443,9 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
+				[],
 				[
-					'wgResourceModules' => [
+					'ResourceModules' => [
 						'test.foo' => [
 							'styles' => 'foo.js',
 							'localBasePath' => "$dir/modules",
@@ -484,8 +486,9 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
+				[],
 				[
-					'wgResourceModuleSkinStyles' => [
+					'ResourceModuleSkinStyles' => [
 						'foobar' => [
 							'test.foo' => 'foo.css',
 							'localBasePath' => $dir,
@@ -510,8 +513,9 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
+				[],
 				[
-					'wgResourceModuleSkinStyles' => [
+					'ResourceModuleSkinStyles' => [
 						'foobar' => [
 							'test.foo' => 'foo.css',
 							'localBasePath' => $dir,

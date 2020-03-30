@@ -836,14 +836,21 @@ return [
 				: new SqlModuleDependencyStore( $services->getDBLoadBalancer() )
 		);
 
+		$extRegistry = ExtensionRegistry::getInstance();
+		// Attribute has precedence over config
+		$modules = $extRegistry->getAttribute( 'ResourceModules' )
+			+ $config->get( 'ResourceModules' );
+		$moduleSkinStyles = $extRegistry->getAttribute( 'ResourceModuleSkinStyles' )
+			+ $config->get( 'ResourceModuleSkinStyles' );
+
+		$rl->setModuleSkinStyles( $moduleSkinStyles );
 		$rl->addSource( $config->get( 'ResourceLoaderSources' ) );
 
 		// Core modules, then extension/skin modules
 		$rl->register( include "$IP/resources/Resources.php" );
-		$rl->register( $config->get( 'ResourceModules' ) );
+		$rl->register( $modules );
 		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
 
-		$extRegistry = ExtensionRegistry::getInstance();
 		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
 		$rl->register( 'mediawiki.messagePoster', [
 			'localBasePath' => '',
