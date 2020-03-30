@@ -99,6 +99,7 @@ class EditPage implements IEditObject {
 	 * @var Article
 	 */
 	public $mArticle;
+
 	/** @var WikiPage */
 	private $page;
 
@@ -899,16 +900,23 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Returns whether section editing is supported for the current page.
-	 * Subclasses may override this to replace the default behavior, which is
-	 * to check ContentHandler::supportsSections.
+	 * Section editing is supported when the page content model allows
+	 * section edit and we are editing current revision.
 	 *
 	 * @return bool True if this edit page supports sections, false otherwise.
 	 */
 	protected function isSectionEditSupported() {
-		return $this->contentHandlerFactory
-			->getContentHandler( $this->mTitle->getContentModel() )
-			->supportsSections();
+		$currentRev = $this->page->getRevisionRecord();
+
+		// $currentRev is null for non-existing pages, use the page default content model.
+		$revContentModel = $currentRev
+			? $currentRev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel()
+			: $this->page->getContentModel();
+
+		return (
+			( $this->mArticle->getRevIdFetched() === $this->page->getLatest() ) &&
+			$this->contentHandlerFactory->getContentHandler( $revContentModel )->supportsSections()
+		);
 	}
 
 	/**
