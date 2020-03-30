@@ -5,12 +5,14 @@ namespace MediaWiki\Tests\Storage;
 use CommentStoreComment;
 use Content;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiTestCase;
 use ParserOptions;
 use RecentChange;
 use Revision;
+use Status;
 use TextContent;
 use Title;
 use User;
@@ -258,6 +260,100 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$updater->setContent( SlotRecord::MAIN, $content );
 		$rev = $updater->saveRevision( $comment );
 		return $rev;
+	}
+
+	/**
+	 * Verify that MultiContentSave hook is called by saveRevision() with correct parameters.
+	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
+	 */
+	public function testMultiContentSaveHook() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+
+		// TODO: MCR: test additional slots
+		$slots = [
+			SlotRecord::MAIN => new TextContent( 'Lorem Ipsum' )
+		];
+
+		// start editing non-existing page
+		$page = WikiPage::factory( $title );
+		$updater = $page->newPageUpdater( $user );
+		foreach ( $slots as $slot => $content ) {
+			$updater->setContent( $slot, $content );
+		}
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+
+		$expected = [
+			'user' => $user,
+			'title' => $title,
+			'slots' => $slots,
+			'summary' => $summary
+		];
+		$hookFired = false;
+		$this->setTemporaryHook( 'MultiContentSave',
+			function ( RenderedRevision $renderedRevision, User $user,
+				$summary, $flags, Status $hookStatus
+			) use ( &$hookFired, $expected ) {
+				$hookFired = true;
+
+				$this->assertSame( $expected['summary'], $summary );
+				$this->assertSame( EDIT_NEW, $flags );
+
+				$title = $renderedRevision->getRevision()->getPageAsLinkTarget();
+				$this->assertSame( $expected['title']->getFullText(), $title->getFullText() );
+
+				$slots = $renderedRevision->getRevision()->getSlots();
+				foreach ( $expected['slots'] as $slot => $content ) {
+					$this->assertSame( $content, $slots->getSlot( $slot )->getContent() );
+				}
+
+				// Don't abort this edit.
+				return true;
+			}
+		);
+
+		$rev = $updater->saveRevision( $summary );
+		$this->assertTrue( $hookFired, "MultiContentSave hook wasn't called." );
+		$this->assertNotNull( $rev,
+			"MultiContentSave returned true, but revision wasn't created." );
+	}
+
+	/**
+	 * Verify that MultiContentSave hook can abort saveRevision() by returning false.
+	 * @covers \MediaWiki\Storage\PageUpdater::saveRevision()
+	 */
+	public function testMultiContentSaveHookAbort() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+
+		// start editing non-existing page
+		$page = WikiPage::factory( $title );
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
+
+		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
+
+		$expectedError = 'aborted-by-test-hook';
+		$this->setTemporaryHook( 'MultiContentSave',
+			function ( RenderedRevision $renderedRevision, User $user,
+				$summary, $flags, Status $hookStatus
+			) use ( $expectedError ) {
+				$hookStatus->fatal( $expectedError );
+
+				// Returning false should disallow saveRevision() to continue saving this revision.
+				return false;
+			}
+		);
+
+		$rev = $updater->saveRevision( $summary );
+		$this->assertNull( $rev,
+			"MultiContentSave returned false, but revision was still created." );
+
+		$status = $updater->getStatus();
+		$this->assertFalse( $status->isOK(),
+			"MultiContentSave returned false, but Status is not fatal." );
+		$this->assertSame( $expectedError, $status->getMessage()->getKey() );
 	}
 
 	/**

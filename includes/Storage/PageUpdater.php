@@ -692,9 +692,6 @@ class PageUpdater {
 			$useStashed = $this->ajaxEditStash;
 		}
 
-		// TODO: use this only for the legacy hook, and only if something uses the legacy hook
-		$wikiPage = $this->getWikiPage();
-
 		$user = $this->user;
 
 		// Prepare the update. This performs PST and generates the canonical ParserOutput.
@@ -734,16 +731,29 @@ class PageUpdater {
 		 */
 		$this->derivedDataUpdater->getCanonicalParserOutput();
 
-		$mainContent = $this->derivedDataUpdater->getSlots()->getContent( SlotRecord::MAIN );
-
 		// Trigger pre-save hook (using provided edit summary)
+		$renderedRevision = $this->derivedDataUpdater->getRenderedRevision();
 		$hookStatus = Status::newGood( [] );
-		// TODO: replace legacy hook!
-		// TODO: avoid pass-by-reference, see T193950
-		// Check if the hook rejected the attempted save
-		if ( !Hooks::run( 'PageContentSave', [ &$wikiPage, &$user, &$mainContent, &$summary,
-			$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus ] )
-		) {
+		$allowedByHook = Hooks::run( 'MultiContentSave', [
+			$renderedRevision, $user, $summary, $flags, $hookStatus
+		] );
+		if ( $allowedByHook && Hooks::isRegistered( 'PageContentSave' ) ) {
+			// Also run the legacy hook.
+			// TODO: avoid pass-by-reference, see T193950
+			// NOTE: WikiPage should only be used for the legacy hook,
+			// and only if something uses the legacy hook.
+			$mainContent = $this->derivedDataUpdater->getSlots()->getContent( SlotRecord::MAIN );
+			$wikiPage = $this->getWikiPage();
+
+			// Deprecated since 1.35.
+			$allowedByHook = Hooks::run( 'PageContentSave', [
+				&$wikiPage, &$user, &$mainContent, &$summary,
+				$flags & EDIT_MINOR, null, null, &$flags, &$hookStatus
+			] );
+		}
+
+		if ( !$allowedByHook ) {
+			// The hook has prevented this change from being saved.
 			if ( $hookStatus->isOK() ) {
 				// Hook returned false but didn't call fatal(); use generic message
 				$hookStatus->fatal( 'edit-hook-aborted' );
