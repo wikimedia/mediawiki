@@ -2602,7 +2602,7 @@
 	"sp-contributions-blocked-notice": "这位用户目前被封禁。最近的封禁日志记录在下面提供以供参考：",
 	"sp-contributions-blocked-notice-partial": "这位用户目前被封禁。最近的封禁日志记录在下面提供以供参考：",
 	"sp-contributions-blocked-notice-anon": "这个IP地址目前正在被封禁。最近的封禁日志记录在下面提供以供参考：",
-	"sp-contributions-blocked-notice-anon-partial": "这个IP地址目前正在被封禁。最近的封禁日志记录在下面提供以供参考：",
+	"sp-contributions-blocked-notice-anon-partial": "这个IP地址目前已被部分封禁。最近的封禁日志记录如下，以供参考：",
 	"sp-contributions-search": "搜索贡献",
 	"sp-contributions-username": "IP地址或用户名：",
 	"sp-contributions-toponly": "仅显示最后版本的编辑",

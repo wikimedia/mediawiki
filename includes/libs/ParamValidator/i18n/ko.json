@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"paramvalidator-missingparam": "\"$1\" 변수는 설정이 필수입니다.",
+	"paramvalidator-outofrange-max": "\"$1\" 변수의 \"$2\" 값은 $4 미만이어야 합니다.",
+	"paramvalidator-param-deprecated": "\"$1\" 변수는 구식입니다.",
+	"paramvalidator-help-default": "기본값: $1",
+	"paramvalidator-help-default-empty": "기본값: (빈 값)",
+	"paramvalidator-help-deprecated": "이 변수는 구식입니다.",
+	"paramvalidator-help-multi-max-simple": "값의 최대 수는 {{PLURAL:$1|$1}}입니다.",
+	"paramvalidator-help-multi-all": "모든 값을 지정하려면, <kbd>$1</kbd>를 사용하십시오.",
+	"paramvalidator-help-required": "이 변수는 필수입니다."
+}

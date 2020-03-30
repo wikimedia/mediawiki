@@ -1860,7 +1860,7 @@
 	"upload-curl-error6-text": "URL yang diberikan tak dapat dihubungi. Harap periksa ulang bahwa URL tersebut tepat dan situs itu sedang aktif.",
 	"upload-curl-error28": "Pemuatan lewat waktu",
 	"upload-curl-error28-text": "Situs yang dituju terlalu lambat merespon. Tolong cek apakah situs tersebut aktif, tunggu sebentar, dan coba lagi. Mungkin Anda perlu mencobanya di saat yang lebih longgar.",
-	"license": "Jenis lisensi:",
+	"license": "Lisensi",
 	"license-header": "Lisensi",
 	"nolicense": "Tidak ada yang dipilih",
 	"licenses-edit": "Sunting pilihan lisensi",
