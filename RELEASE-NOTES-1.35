@@ -340,6 +340,10 @@ because of Phabricator reports.
     - testSrvus()
   - incrementIncludeSize(), setTransparentTagHook(), replaceTransparentTags(),
     and $mTransparentTagHooks have been removed without deprecation.
+  - The following constants have been made private without deprecation:
+    - ::EXT_LINK_ADDR
+    - ::EXT_IMAGE_REGEX
+    - ::SPACE_NOT_NL
   - $mDefaultStripList has been removed without deprecation.
   - $mIncludeCount has been removed without deprecation.
   - $mRevIdForTs has been removed without deprecation.
