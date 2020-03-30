@@ -838,6 +838,8 @@ return [
 
 		$extRegistry = ExtensionRegistry::getInstance();
 		// Attribute has precedence over config
+		$modules = $extRegistry->getAttribute( 'ResourceModules' )
+			+ $config->get( 'ResourceModules' );
 		$moduleSkinStyles = $extRegistry->getAttribute( 'ResourceModuleSkinStyles' )
 			+ $config->get( 'ResourceModuleSkinStyles' );
 
@@ -846,7 +848,7 @@ return [
 
 		// Core modules, then extension/skin modules
 		$rl->register( include "$IP/resources/Resources.php" );
-		$rl->register( $config->get( 'ResourceModules' ) );
+		$rl->register( $modules );
 		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
 
 		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );

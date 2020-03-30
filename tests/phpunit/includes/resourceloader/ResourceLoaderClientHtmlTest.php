@@ -358,7 +358,6 @@ Deprecation message.' ]
 
 	private static function makeContext( $extraQuery = [] ) {
 		$conf = new HashConfig( [
-			'ResourceModules' => [],
 			'EnableJavaScriptTest' => false,
 			'LoadScript' => '/w/load.php',
 		] );

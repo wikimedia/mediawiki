@@ -399,8 +399,9 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
+				[],
 				[
-					'wgResourceModules' => [
+					'ResourceModules' => [
 						'test.foo' => [
 							'styles' => 'foobar.js',
 							'localBasePath' => $dir,
@@ -442,8 +443,9 @@ class ExtensionProcessorTest extends \MediaWikiUnitTestCase {
 					],
 				],
 				// Expected
+				[],
 				[
-					'wgResourceModules' => [
+					'ResourceModules' => [
 						'test.foo' => [
 							'styles' => 'foo.js',
 							'localBasePath' => "$dir/modules",
