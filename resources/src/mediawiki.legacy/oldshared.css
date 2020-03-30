@@ -1,7 +1,12 @@
 /**
  * oldshared.css
  * This file contains CSS settings common to Wikistandard, Nostalgia and
- * CologneBlue, the old pre-Monobook skins
+ * CologneBlue, the old pre-Monobook skins.
+ *
+ * This file and it's corresponding ResourceLoader module are deprecated,
+ * move it to the calling skin repo if necessary, see T242177.
+ * Both, Nostalgia and CologneBlue have already moved it to their own repos.
+ * Wikistandard is not available any more.
  */
 
 /* stylelint-disable selector-class-pattern */
