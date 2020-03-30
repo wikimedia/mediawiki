@@ -34,5 +34,7 @@
 	"rest-json-body-parse-error": "İstek gövdesi JSON olarak ayrıştırılamadı: $1",
 	"rest-missing-body-field": "İstek gövdesinde `$1` zorunlu alanı eksik.",
 	"rest-bad-content-model": "Kötü içerik modeli: $1",
-	"rest-update-cannot-create-page": "`$1` sayfası zaten mevcut olduğundan oluşturulamıyor. Mevcut sayfayı güncellemek için, istek gövdesinde `en son` tuşu altındaki yapıda temel düzeltme kimliğini girin."
+	"rest-update-cannot-create-page": "`$1` sayfası zaten mevcut olduğundan oluşturulamıyor. Mevcut sayfayı güncellemek için, istek gövdesinde `en son` tuşu altındaki yapıda temel düzeltme kimliğini girin.",
+	"rest-extraneous-csrf-token": "Yabancı CSRF jetonu bulundu. CSRF saldırılarına karşı güvenli olan OAuth gibi kimlik doğrulama mekanizmaları kullanılırken CSRF belirteçleri kullanılmamalıdır.",
+	"rest-cannot-load-file": "`$1` başlıklı dosya yüklenemiyor."
 }

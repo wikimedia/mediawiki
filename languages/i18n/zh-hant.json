@@ -3878,7 +3878,7 @@
 	"authmanager-email-help": "電子郵件地址",
 	"authmanager-realname-label": "真實姓名",
 	"authmanager-realname-help": "使用者的真實姓名",
-	"authmanager-provider-password": "Password-based 認證",
+	"authmanager-provider-password": "基於密碼的認證",
 	"authmanager-provider-password-domain": "Password- 及 domain-based 認證",
 	"authmanager-provider-temporarypassword": "臨時密碼",
 	"authprovider-confirmlink-message": "根據您最近的登入嘗試次數，以下帳號可以被連結至您的 wiki 帳號。連結帳號可以讓您使用這些帳號登入。請選擇一個您想連結的帳號。",

@@ -209,7 +209,7 @@
 	"listingcontinuesabbrev": "forts.",
 	"index-category": "Indekserede sider",
 	"noindex-category": "Ikke-indekserede sider",
-	"broken-file-category": "Sider med brudte fillinks",
+	"broken-file-category": "Sider med brudte filhenvisninger",
 	"categoryviewer-pagedlinks": "($1) ($2)",
 	"category-header-numerals": "$1–$2",
 	"about": "Om",

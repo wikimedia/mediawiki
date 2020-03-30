@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wladek92"
+		]
+	},
+	"paramvalidator-emptystring": "chaîne vide",
+	"paramvalidator-help-default": "Par défaut : $1",
+	"paramvalidator-help-multi-all": "Pour indiquer toutes les valeurs, utiliser <kbd>$1</kbd>.",
+	"paramvalidator-help-required": "Ce paramètre est obligatoire.",
+	"paramvalidator-help-type-boolean": "Type: {{PLURAL:$1|1=booléen|2=liste de booléens}}",
+	"paramvalidator-help-type-integer": "Type: {{PLURAL:$1|1=entier|2=liste d'entiers}}",
+	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=La valeur ne peut|2=Les valeurs ne peuvent}} pas être inférieure{{PLURAL:$1||s}} à $2.",
+	"paramvalidator-help-type-timestamp": "Type : {{PLURAL:$1|1=horodatage|2=liste d'horodatages}}"
+}
