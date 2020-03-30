@@ -52,15 +52,15 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 		return $this->newObj()->getLanguageName( ...$args );
 	}
 
-	private static function getFileName( ...$args ) {
+	private function getFileName( ...$args ) {
 		return self::newObj()->getFileName( ...$args );
 	}
 
-	private static function getMessagesFileName( $code ) {
+	private function getMessagesFileName( $code ) {
 		return self::newObj()->getMessagesFileName( $code );
 	}
 
-	private static function getJsonMessagesFileName( $code ) {
+	private function getJsonMessagesFileName( $code ) {
 		return self::newObj()->getJsonMessagesFileName( $code );
 	}
 }

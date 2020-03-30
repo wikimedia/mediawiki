@@ -8,11 +8,11 @@ use MediaWiki\Page\PageHandlerFactory;
 class PageHandlerFactoryTest extends MediaWikiUnitTestCase {
 	use FactoryArgTestTrait;
 
-	protected function getFactoryClass() {
+	protected static function getFactoryClass() {
 		return PageHandlerFactory::class;
 	}
 
-	protected function getInstanceClass() {
+	protected static function getInstanceClass() {
 		return MovePage::class;
 	}
 
