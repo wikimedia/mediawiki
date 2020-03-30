@@ -733,6 +733,10 @@ because of Phabricator reports.
   - LocalFile::delete is hard deprecated in favor of the new ::deleteFile
   - LocalFile::deleteOld is hard deprecated in favor of the new ::deleteOldFile
   - ForeignDBFile::delete is hard deprecated in favor of the new ::deleteFile
+* File::recordUpload (along with the respective methods in the LocalFile and
+  ForeignDBFile classes) is hard deprecated, and LocalFile::recordUpload2 is
+  soft deprecated. Use the new LocalFile::recordUpload3, which has a different
+  signature and requires that a User parameter is passed.
 * The SpecialPageFactory class was moved from the MediaWiki\Special namespace
   to the MediaWiki\SpecialPage namespace. The old location remains as a
   deprecated alias.

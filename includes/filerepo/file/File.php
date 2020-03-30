@@ -1840,6 +1840,7 @@ abstract class File implements IDBAccessObject {
 	 * Record a file upload in the upload log and the image table
 	 * STUB
 	 * Overridden by LocalFile
+	 * @deprecated since 1.35
 	 * @param string $oldver
 	 * @param string $desc
 	 * @param string $license
@@ -1854,6 +1855,7 @@ abstract class File implements IDBAccessObject {
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false, User $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->readOnlyError();
 	}
 
