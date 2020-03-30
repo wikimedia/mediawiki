@@ -244,7 +244,6 @@ class Parser {
 	public $mRevisionTimestamp; # The timestamp of the specified revision ID
 	public $mRevisionUser; # User to display in {{REVISIONUSER}} tag
 	public $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
-	public $mRevIdForTs;   # The revision ID which was used to fetch the timestamp
 	public $mInputSize = false; # For {{PAGESIZE}} on current page.
 
 	/**
