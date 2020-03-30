@@ -398,7 +398,7 @@ class GlobalIdGenerator {
 			}
 			// Fetch the counter value and increment it...
 			rewind( $handle );
-			$counter = floor( trim( fgets( $handle ) ) ) + $count; // fetch as float
+			$counter = floor( (float)trim( fgets( $handle ) ) ) + $count; // fetch as float
 			// Write back the new counter value
 			ftruncate( $handle, 0 );
 			rewind( $handle );
