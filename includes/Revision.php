@@ -471,12 +471,13 @@ class Revision implements IDBAccessObject {
 	 *       since they are mutable.
 	 *
 	 * @since 1.28
-	 * @deprecated since 1.31, please reuse old Revision object
+	 * @deprecated since 1.31 (soft), 1.35 (hard), please reuse old Revision object
 	 * @param int $id User ID
 	 * @param string $name User name
 	 * @throws MWException
 	 */
 	public function setUserIdAndName( $id, $name ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( $this->mRecord instanceof MutableRevisionRecord ) {
 			$user = User::newFromAnyId( intval( $id ), $name, null );
 			$this->mRecord->setUser( $user );
