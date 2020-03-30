@@ -239,6 +239,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::prepareContentForEdit
 	 */
 	public function testDoEditContent() {
+		$this->hideDeprecated( 'Revision::getRecentChange' );
+
 		$this->setMwGlobals( 'wgPageCreationLog', true );
 
 		$page = $this->newPage( __METHOD__ );

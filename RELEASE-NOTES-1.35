@@ -667,6 +667,9 @@ because of Phabricator reports.
   - ::getArchiveQueryInfo - use RevisionStore::getArchiveQueryInfo instead
   - ::isUnpatrolled - use RevisionStore::getRcIdIfUnpatrolled instead
   - ::setUserIdAndName - use MutableRevisionRecord::setUser instead
+  - ::getRecentChange - use RevisionStore::getRecentChange instead
+  - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
+      content address, or RevisionRecord::hasSameContent to compare content
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
 * The JobRunner class has been converted to a service class.
   Direct construction is deprecated, use MediaWikiServices::getJobRunner.
