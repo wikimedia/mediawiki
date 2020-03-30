@@ -446,7 +446,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getMessage
 	 */
 	public function testGetMessage(
-		Status $status, $expectedParams = [], $expectedKey, $expectedWrapper
+		Status $status, $expectedParams, $expectedKey, $expectedWrapper
 	) {
 		$message = $status->getMessage( null, null, 'qqx' );
 		$this->assertInstanceOf( Message::class, $message );

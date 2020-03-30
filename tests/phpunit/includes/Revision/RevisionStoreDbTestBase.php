@@ -565,7 +565,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::insertRevisionOn
 	 */
 	public function testInsertRevisionOn_failures(
-		array $revDetails = [],
+		array $revDetails,
 		Exception $exception
 	) {
 		$rev = $this->getRevisionRecordFromDetailsArray( $revDetails );
