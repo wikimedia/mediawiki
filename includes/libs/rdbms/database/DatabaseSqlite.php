@@ -23,7 +23,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use Exception;
 use FSLockManager;
 use LockManager;
 use NullLockManager;
@@ -201,7 +200,7 @@ class DatabaseSqlite extends Database {
 				}
 			}
 			$this->attachDatabasesFromTableAliases();
-		} catch ( Exception $e ) {
+		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
 	}
