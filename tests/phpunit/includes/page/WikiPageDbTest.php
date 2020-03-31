@@ -384,6 +384,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	public function testDoDeleteArticle() {
 		$this->hideDeprecated( 'WikiPage::doDeleteArticle' );
+		$this->hideDeprecated(
+			'WikiPage::doDeleteArticleReal without passing a User as the second parameter'
+		);
+
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -432,6 +436,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doDeleteArticleReal
 	 */
 	public function testDoDeleteArticleReal_user0() {
+		$this->hideDeprecated(
+			'WikiPage::doDeleteArticleReal without passing a User as the second parameter'
+		);
+
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -492,11 +500,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$errorStack = '';
 		$status = $page->doDeleteArticleReal(
 			/* reason */ "testing sysop deletion",
+			$user,
 			/* suppress */ false,
 			/* unused 1 */ null,
-			/* unused 2 */ null,
-			/* errorStack */ $errorStack,
-			$user
+			/* errorStack */ $errorStack
 		);
 		$logId = $status->getValue();
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
@@ -544,11 +551,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$errorStack = '';
 		$status = $page->doDeleteArticleReal(
 			/* reason */ "testing deletion",
+			$user,
 			/* suppress */ true,
 			/* unused 1 */ null,
-			/* unused 2 */ null,
-			/* errorStack */ $errorStack,
-			$user
+			/* errorStack */ $errorStack
 		);
 		$logId = $status->getValue();
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );

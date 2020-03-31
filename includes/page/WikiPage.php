@@ -2614,10 +2614,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @since 1.19
 	 * @since 1.35 Signature changed, user moved to second parameter to prepare for requiring
-	 *             a user to be passed
+	 *             a user to be passed; not passing a user is deprecated since 1.35
 	 *
 	 * @param string $reason Delete reason for deletion log
-	 * @param user|bool $user The deleting user
+	 * @param user|bool $user The deleting user (not passing a user is deprecated since 1.35)
 	 * @param bool|null $suppress Suppress all revisions and log the deletion in
 	 *   the suppression log instead of the deletion log
 	 * @param bool|null $u2 Unused
@@ -2641,6 +2641,10 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $user instanceof User ) {
 			$deleter = $user;
 		} else {
+			wfDeprecated(
+				__METHOD__ . ' without passing a User as the second parameter',
+				'1.35'
+			);
 			$suppress = $user;
 			if ( $deleter === null ) {
 				global $wgUser;
