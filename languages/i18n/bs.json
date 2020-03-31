@@ -1045,6 +1045,7 @@
 	"badsiglength": "Vaš potpis je predug.\nMora biti manji od $1 {{PLURAL:$1|znaka|znaka|znakova}}.",
 	"yourgender": "Kako želite da se predstavite?",
 	"gender-unknown": "Kad Vas spominje, softver će koristiti rodno neutralne riječi kad god je to moguće",
+	"gender-notknown": "Ova osoba uređuje wiki stranice",
 	"gender-male": "On uređuje wiki stranice",
 	"gender-female": "Ona uređuje wiki stranice",
 	"prefs-help-gender": "Ova postavka nije obavezna.\nSoftver koristi datu vrijednost da bi Vam se obratio i spomenuo Vas drugima koristeći odgovarajući gramatički rod.\nPodatak će biti javan.",

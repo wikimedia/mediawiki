@@ -390,7 +390,7 @@
 	"viewsourcetext": "Možete pogledati i kopirati izvorni sadržaj ove stranice.",
 	"viewyourtext": "Možete vidjeti i kopirati tekst <strong>vaših uređivanja</strong> na ovoj stranici.",
 	"protectedinterface": "Ova stranica je zaštićena od izmjena jer sadrži tekst MediaWiki softvera.\nAko želite prevesti neprevedenu poruku ili popraviti prijevod neke druge poruke za sve MediaWiki wikije, posjetite [https://translatewiki.net/  translatewiki.net], projekt za lokalizaciju MediaWiki softvera.",
-	"editinginterface": "<strong>Upozorenje:</strong> Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici odrazit će se na izgled korisničkog sučelja kod drugih suradnika na ovoj wiki.",
+	"editinginterface": "<strong>Upozorenje:</strong> Uređujete stranicu koja se rabi za prikaz teksta u sučelju softvera. Promjene učinjene na ovoj stranici odrazit će se na izgled korisničkog sučelja kod drugih suradnika na ovom wikiju.",
 	"translateinterface": "Za dodavanje ili promjenu prijevoda za sve wikije koristite [https://translatewiki.net/ translatewiki.net], projekt za lokalizaciju MediaWikija.",
 	"cascadeprotected": "Ova je stranica zaključana za uređivanja jer je uključena u {{PLURAL:$1|sljedeću stranicu koja je zaštićena|sljedeće stranice koje su zaštićene}} »prenosivom zaštitom«:\n$2",
 	"namespaceprotected": "Ne možete uređivati stranice u imenskom prostoru '''$1'''.",

@@ -413,7 +413,7 @@
 	"userlogin-resetpassword-link": "تێپەڕوشەکەت بیر کردووە؟",
 	"userlogin-helplink2": "یارمەتی بۆ چوونەژوورەوە",
 	"userlogin-loggedin": "تۆ ھەر ئێستا بە ناوی {{GENDER:$1|$1}} چوویتە ژوورەوە.\nفۆرمی ژێرەوە بەکاربھێنە بۆ چوونەژوورەوە وەک بەکارھێنەرێکی تر.",
-	"userlogin-reauth": "دەبێت دووبارە بچیتە ژوورەوە بۆ دڵنیا بوونەوە لە {{GENDER:$1|$1}}بوونت.",
+	"userlogin-reauth": "دەبێت دووبارە بچیتە ژوورەوە بۆ دڵنیا بوونەوە لە {{GENDER:$1|$1}} بوونت.",
 	"userlogin-createanother": "ھەژمارێکی تر دروست بکە",
 	"createacct-emailrequired": "ناونیشانی ئیمەیل",
 	"createacct-emailoptional": "ناونیشانی ئیمەیل (دڵخوازانە)",
