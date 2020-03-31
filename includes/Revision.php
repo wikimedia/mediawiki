@@ -757,11 +757,12 @@ class Revision implements IDBAccessObject {
 	 * Get original serialized data (without checking view restrictions)
 	 *
 	 * @since 1.21
-	 * @deprecated since 1.31, use BlobStore::getBlob instead.
+	 * @deprecated since 1.31 (soft), 1.35 (hard), use BlobStore::getBlob instead.
 	 *
 	 * @return string
 	 */
 	public function getSerializedData() {
+		wfDeprecated( __METHOD__, '1.31' );
 		$slot = $this->getMainSlotRaw();
 		return $slot ? $slot->getContent()->serialize() : '';
 	}

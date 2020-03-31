@@ -652,6 +652,8 @@ because of Phabricator reports.
 * Global $wgUser variable was soft deprecated.
 * The Revision class was soft deprecated entirely in 1.31. Specific methods
   have now been individually hard deprecated:
+  - ::getSerializedData - use SlotRecord::getContent for retrieving a
+      content object, and Content::serialize for the serialized form
   - ::base36Sha1 - use SlotRecord::base36Sha1 instead
   - ::userWasLastToEdit - use RevisionStore::userWasLastToEdit instead
   - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
