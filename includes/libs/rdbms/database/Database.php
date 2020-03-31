@@ -405,7 +405,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'variables' => [],
 				'lbInfo' => [],
 				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
-				'agent' => basename( $_SERVER['SCRIPT_NAME'] ) . '@' . gethostname(),
+				'agent' => '',
 				'ownerId' => null,
 				'topologyRole' => null,
 				'topologicalMaster' => null,

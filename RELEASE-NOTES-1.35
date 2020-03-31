@@ -58,6 +58,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   setting, but all other aspects of the expiry feature are controlled by it.
 * $wgWatchlistPurgeRate — Chance of expired watchlist items being purged on any
   page edit. Only has effect if $wgWatchlistExpiry is true.
+* $wgImgAuthPath can be used to override the path prefix used when handling
+  img_auth.php requests. (T235357)
 * …
 
 ==== Changed configuration ====
@@ -794,6 +796,8 @@ because of Phabricator reports.
   the second parameter, and the suppression option the third parameter.
   Previously, the third parameter was unused. Using the old signature is
   hard deprecated.
+* wfGetScriptUrl() was deprecated. The script URL should be configured rather
+  than detected. wfScript() can be used to get a configured script URL.
 * …
 
 === Other changes in 1.35 ===

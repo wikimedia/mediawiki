@@ -136,6 +136,9 @@ class WebRequest {
 	 * If the REQUEST_URI is not provided we'll fall back on the PATH_INFO
 	 * provided by the server if any and use that to set a 'title' parameter.
 	 *
+	 * @internal This has many odd special cases and so should only be used by
+	 *   interpolateTitle() for index.php. Instead try getRequestPathSuffix().
+	 *
 	 * @param string $want If this is not 'all', then the function
 	 * will return an empty array if it determines that the URL is
 	 * inside a rewrite path.
@@ -172,15 +175,6 @@ class WebRequest {
 
 			// Raw PATH_INFO style
 			$router->add( "$wgScript/$1" );
-
-			if ( isset( $_SERVER['SCRIPT_NAME'] )
-				&& strpos( $_SERVER['SCRIPT_NAME'], '.php' ) !== false
-			) {
-				// Check for SCRIPT_NAME, we handle index.php explicitly
-				// But we do have some other .php files such as img_auth.php
-				// Don't let root article paths clober the parsing for them
-				$router->add( $_SERVER['SCRIPT_NAME'] . "/$1" );
-			}
 
 			global $wgArticlePath;
 			if ( $wgArticlePath ) {
@@ -224,6 +218,32 @@ class WebRequest {
 		}
 
 		return $matches;
+	}
+
+	/**
+	 * If the request URL matches a given base path, extract the path part of
+	 * the request URL after that base, and decode escape sequences in it.
+	 *
+	 * If the request URL does not match, false is returned.
+	 *
+	 * @since 1.35
+	 * @param string $basePath The base URL path. Trailing slashes will be
+	 *   stripped.
+	 * @return string|false
+	 */
+	public static function getRequestPathSuffix( $basePath ) {
+		$basePath = rtrim( $basePath, '/' ) . '/';
+		$requestUrl = self::getGlobalRequestURL();
+		$qpos = strpos( $requestUrl, '?' );
+		if ( $qpos !== false ) {
+			$requestPath = substr( $requestUrl, 0, $qpos );
+		} else {
+			$requestPath = $requestUrl;
+		}
+		if ( substr( $requestPath, 0, strlen( $basePath ) ) !== $basePath ) {
+			return false;
+		}
+		return rawurldecode( substr( $requestPath, strlen( $basePath ) ) );
 	}
 
 	/**

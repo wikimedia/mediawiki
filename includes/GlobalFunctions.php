@@ -940,10 +940,7 @@ function wfIsDebugRawPage() {
 	// Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
 	// phpcs:ignore MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
 	if ( ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' )
-		|| (
-			isset( $_SERVER['SCRIPT_NAME'] )
-			&& substr( $_SERVER['SCRIPT_NAME'], -8 ) == 'load.php'
-		)
+		|| MW_ENTRY_POINT === 'load'
 	) {
 		$cache = true;
 	} else {
@@ -2578,9 +2575,11 @@ function wfScript( $script = 'index' ) {
 /**
  * Get the script URL.
  *
+ * @deprecated since 1.35. Use wfScript() to obtain an entry point URL.
  * @return string Script URL
  */
 function wfGetScriptUrl() {
+	wfDeprecated( __FUNCTION__, '1.35' );
 	if ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 		/* as it was called, minus the query string.
 		 *

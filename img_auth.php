@@ -43,18 +43,13 @@ define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 define( 'MW_ENTRY_POINT', 'img_auth' );
 require __DIR__ . '/includes/WebStart.php';
 
-# Set action base paths so that WebRequest::getPathInfo()
-# recognizes the "X" as the 'title' in ../img_auth.php/X urls.
-$wgArticlePath = false; # Don't let a "/*" article path clober our action path
-$wgActionPaths = [ "$wgUploadPath/" ];
-
 wfImageAuthMain();
 
 $mediawiki = new MediaWiki();
 $mediawiki->doPostOutputShutdown();
 
 function wfImageAuthMain() {
-	global $wgImgAuthUrlPathMap;
+	global $wgImgAuthUrlPathMap, $wgScriptPath, $wgImgAuthPath;
 
 	$services = \MediaWiki\MediaWikiServices::getInstance();
 	$permissionManager = $services->getPermissionManager();
@@ -62,14 +57,27 @@ function wfImageAuthMain() {
 	$request = RequestContext::getMain()->getRequest();
 	$publicWiki = in_array( 'read', $permissionManager->getGroupPermissions( [ '*' ] ), true );
 
-	// Get the requested file path (source file or thumbnail)
-	$matches = WebRequest::getPathInfo();
-	if ( !isset( $matches['title'] ) ) {
-		wfForbidden( 'img-auth-accessdenied', 'img-auth-nopathinfo' );
+	// Find the path assuming the request URL is relative to the local public zone URL
+	$baseUrl = $services->getRepoGroup()->getLocalRepo()->getZoneUrl( 'public' );
+	if ( $baseUrl[0] === '/' ) {
+		$basePath = $baseUrl;
+	} else {
+		$basePath = parse_url( $baseUrl, PHP_URL_PATH );
+	}
+	$path = WebRequest::getRequestPathSuffix( $basePath );
+
+	if ( $path === false ) {
+		// Try instead assuming img_auth.php is the base path
+		$basePath = $wgImgAuthPath ?: "$wgScriptPath/img_auth.php";
+		$path = WebRequest::getRequestPathSuffix( $basePath );
+	}
+
+	if ( $path === false ) {
+		wfForbidden( 'img-auth-accessdenied', 'img-auth-notindir' );
 		return;
 	}
-	$path = $matches['title'];
-	if ( $path && $path[0] !== '/' ) {
+
+	if ( $path === '' || $path[0] !== '/' ) {
 		// Make sure $path has a leading /
 		$path = "/" . $path;
 	}
