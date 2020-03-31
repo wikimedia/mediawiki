@@ -21,6 +21,8 @@ THIS IS NOT A RELEASE YET
 * (T249730) Password Reset Updates.
 * (T234450) Per-user concurrency in SpecialContributions can now be limited by
   setting $wgPoolCounterConf['SpecialContributions'] appropriately.
+* (T248947) SECURITY: img_auth.php may leak private extension images into the
+  public cache.
 
 == MediaWiki 1.34.1 ==
 
