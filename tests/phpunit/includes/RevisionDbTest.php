@@ -1472,6 +1472,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContentHandler
 	 */
 	public function testSimpleContentGetters() {
+		$this->hideDeprecated( 'Revision::getSerializedData' );
+
 		$expectedText = 'testSimpleContentGetters in Revision. Goats love MCR...';
 		$expectedSummary = 'goatlicious testSimpleContentGetters summary';
 
@@ -1712,6 +1714,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @param int $expected
 	 */
 	public function testGetSerializedData( $rev, $expected ) {
+		$this->hideDeprecated( 'Revision::getSerializedData' );
 		$this->assertSame( $expected, $rev->getSerializedData() );
 	}
 
