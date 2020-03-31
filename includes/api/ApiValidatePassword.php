@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Auth\AuthManager;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
@@ -24,7 +24,9 @@ class ApiValidatePassword extends ApiBase {
 				);
 			}
 
-			if ( !$user->isAnon() || AuthManager::singleton()->userExists( $user->getName() ) ) {
+			if ( !$user->isAnon() ||
+				MediaWikiServices::getInstance()->getAuthManager()->userExists( $user->getName() )
+			) {
 				$this->dieWithError( 'userexists' );
 			}
 

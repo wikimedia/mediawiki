@@ -22,6 +22,7 @@
 
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Remove authentication data from AuthManager
@@ -50,10 +51,11 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		}
 
 		$params = $this->extractRequestParams();
-		$manager = AuthManager::singleton();
+		$manager = MediaWikiServices::getInstance()->getAuthManager();
 
 		// Check security-sensitive operation status
-		ApiAuthManagerHelper::newForModule( $this )->securitySensitiveOperation( $this->operation );
+		ApiAuthManagerHelper::newForModule( $this, $manager )
+			->securitySensitiveOperation( $this->operation );
 
 		// Fetch the request. No need to load from the request, so don't use
 		// ApiAuthManagerHelper's method.
