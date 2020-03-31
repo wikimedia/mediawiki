@@ -144,19 +144,21 @@ class Parser {
 	const MAX_TTS = 900;
 
 	# Persistent:
+	/** @deprecated since 1.35; use Parser::getTags() */
 	public $mTagHooks = [];
+	/** @deprecated since 1.35; use Parser::getFunctionHooks() */
 	public $mFunctionHooks = [];
-	public $mFunctionSynonyms = [ 0 => [], 1 => [] ];
+	private $mFunctionSynonyms = [ 0 => [], 1 => [] ];
+	private $mFunctionTagHooks = [];
+	private $mStripList = [];
+	private $mVarCache = [];
+	private $mImageParams = [];
+	private $mImageParamsMagicArray = [];
 	/** @deprecated since 1.35 */
-	public $mFunctionTagHooks = [];
-	public $mStripList = [];
-	/** @deprecated since 1.35 */
-	public $mVarCache = [];
-	public $mImageParams = [];
-	public $mImageParamsMagicArray = [];
 	public $mMarkerIndex = 0;
 	/**
 	 * @var bool Whether firstCallInit still needs to be called
+	 * @deprecated since 1.35
 	 */
 	public $mFirstCall = true;
 
@@ -170,65 +172,76 @@ class Parser {
 	/**
 	 * @var MagicWordArray
 	 */
-	public $mSubstWords;
+	private $mSubstWords;
 
 	/**
 	 * @deprecated since 1.34, there should be no need to use this
 	 * @var array
 	 */
-	public $mConf;
+	private $mConf;
 
 	# Initialised in constructor
-	public $mExtLinkBracketedRegex, $mUrlProtocols;
+	private $mExtLinkBracketedRegex, $mUrlProtocols;
 
 	# Initialized in getPreprocessor()
 	/**
 	 * @var Preprocessor
+	 * @deprecated since 1.35
 	 */
 	public $mPreprocessor;
 
 	# Cleared with clearState():
 	/**
 	 * @var ParserOutput
+	 * @deprecated since 1.35; use Parser::getOutput()
 	 */
 	public $mOutput;
-	public $mAutonumber;
+	private $mAutonumber;
 
 	/**
 	 * @var StripState
+	 * @deprecated since 1.35, use Parser::getStripState()
 	 */
 	public $mStripState;
 
 	/**
 	 * @var LinkHolderArray
 	 */
-	public $mLinkHolders;
+	private $mLinkHolders;
 
 	/**
 	 * @var int
+	 * @deprecated since 1.35; use Parser::nextLinkID() / ::setLinkID()
 	 */
 	public $mLinkID;
+	/** @deprecated since 1.35 */
 	public $mIncludeSizes;
+	/** @deprecated since 1.35 */
 	public $mPPNodeCount;
 	/**
 	 * @deprecated since 1.35, Preprocessor_DOM was removed and this counter
 	 *    is no longer incremented by anything.
 	 */
 	public $mGeneratedPPNodeCount;
+	/** @deprecated since 1.35 */
 	public $mHighestExpansionDepth;
-	public $mDefaultSort;
-	public $mTplRedirCache;
+	private $mDefaultSort;
+	private $mTplRedirCache;
 	/** @internal */
 	public $mHeadings;
+	/** @deprecated since 1.35 */
 	public $mDoubleUnderscores;
+	/** @deprecated since 1.35 */
 	public $mExpensiveFunctionCount; # number of expensive parser function calls
+	/** @deprecated since 1.35 */
 	public $mShowToc;
-	public $mForceTocPosition;
+	private $mForceTocPosition;
 	/** @var array */
-	public $mTplDomCache;
+	private $mTplDomCache;
 
 	/**
 	 * @var User
+	 * @deprecated since 1.35, use Parser::getUser()
 	 */
 	public $mUser; # User object; only used when doing pre-save transform
 
@@ -237,6 +250,7 @@ class Parser {
 
 	/**
 	 * @var ParserOptions|null
+	 * @deprecated since 1.35, use Parser::getOptions()
 	 */
 	public $mOptions;
 
@@ -244,17 +258,24 @@ class Parser {
 	 * Since 1.34, leaving `mTitle` uninitialized or setting `mTitle` to
 	 * `null` is deprecated.
 	 *
-	 * @internal
 	 * @var Title|null
+	 * @deprecated since 1.35, use Parser::getTitle()
 	 */
 	public $mTitle;        # Title context, used for self-link rendering and similar things
-	public $mOutputType;   # Output type, one of the OT_xxx constants
+	private $mOutputType;   # Output type, one of the OT_xxx constants
+	/** @deprecated since 1.35 */
 	public $ot;            # Shortcut alias, see setOutputType()
+	/** @deprecated since 1.35, use Parser::getRevisionObject() */
 	public $mRevisionObject; # The revision object of the specified revision ID
+	/** @deprecated since 1.35, use Parser::getRevisionId() */
 	public $mRevisionId;   # ID to display in {{REVISIONID}} tags
+	/** @deprecated since 1.35, use Parser::getRevisionTimestamp() */
 	public $mRevisionTimestamp; # The timestamp of the specified revision ID
+	/** @deprecated since 1.35, use Parser::getRevisionUser() */
 	public $mRevisionUser; # User to display in {{REVISIONUSER}} tag
+	/** @deprecated since 1.35, use Parser::getRevisionSize() */
 	public $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
+	/** @deprecated since 1.35 */
 	public $mInputSize = false; # For {{PAGESIZE}} on current page.
 
 	/**
@@ -262,7 +283,7 @@ class Parser {
 	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
 	 * duplicate language links to the ParserOutput.
 	 */
-	public $mLangLinkLanguages;
+	private $mLangLinkLanguages;
 
 	/**
 	 * @var MapCacheLRU|null
@@ -270,22 +291,23 @@ class Parser {
 	 *
 	 * A cache of the current revisions of titles. Keys are $title->getPrefixedDbKey()
 	 */
-	public $currentRevisionCache;
+	private $currentRevisionCache;
 
 	/**
 	 * @var bool|string Recursive call protection.
 	 * @internal
-	 * This variable should be treated as if it were private.
+	 * @deprecated since 1.35; this variable should be treated as if it
+	 *   were private.
 	 */
 	public $mInParse = false;
 
 	/** @var SectionProfiler */
-	protected $mProfiler;
+	private $mProfiler;
 
 	/**
 	 * @var LinkRenderer
 	 */
-	protected $mLinkRenderer;
+	private $mLinkRenderer;
 
 	/** @var MagicWordFactory */
 	private $magicWordFactory;
