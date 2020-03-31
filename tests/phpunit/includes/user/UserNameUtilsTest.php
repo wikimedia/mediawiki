@@ -5,6 +5,8 @@ use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 
 /**
  * @covers MediaWiki\User\UserNameUtils
@@ -28,7 +30,7 @@ class UserNameUtilsTest extends MediaWikiTestCase {
 		array $options = [],
 		Language $contentLang = null,
 		LoggerInterface $logger = null,
-		MessageLocalizer $msgLocalizer = null
+		ITextFormatter $textFormatter = null
 	) {
 		$baseOptions = [
 			'MaxNameChars' => 255,
@@ -52,8 +54,8 @@ class UserNameUtilsTest extends MediaWikiTestCase {
 		// one. Once its possible to mock, this should be converted to a unit test.
 		$titleFactory = new TitleFactory();
 
-		if ( $msgLocalizer === null ) {
-			$msgLocalizer = $this->createMock( MessageLocalizer::class );
+		if ( $textFormatter === null ) {
+			$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
 		}
 
 		$utils = new UserNameUtils(
@@ -61,7 +63,7 @@ class UserNameUtilsTest extends MediaWikiTestCase {
 			$contentLang,
 			$logger,
 			$titleFactory,
-			$msgLocalizer
+			$textFormatter
 		);
 		return $utils;
 	}
@@ -110,21 +112,10 @@ class UserNameUtilsTest extends MediaWikiTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::isUsable
 	 */
 	public function testIsUsable( string $name, bool $result ) {
-		$msg = $this->getMockBuilder( Message::class )
-			->setMethods( [ 'inContentLanguage', 'plain' ] )
-			->disableOriginalConstructor()
-			->getMock();
-		$msg->method( 'inContentLanguage' )
-			->will( $this->returnSelf() );
-		$msg->method( 'plain' )
+		$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
+		$textFormatter->method( 'format' )
+			->with( $this->equalTo( MessageValue::new( 'reserved-user' ) ) )
 			->willReturn( 'reserved-user' );
-
-		$msgLocalizer = $this->getMockBuilder( MessageLocalizer::class )
-			->setMethods( [ 'msg' ] )
-			->getMock();
-		$msgLocalizer->method( 'msg' )
-			->with( $this->equalTo( 'reserved-user' ) )
-			->willReturn( $msg );
 
 		$utils = $this->getUtils(
 			[
@@ -135,7 +126,7 @@ class UserNameUtilsTest extends MediaWikiTestCase {
 			],
 			$this->getUCFirstLanguageMock(),
 			null,
-			$msgLocalizer
+			$textFormatter
 		);
 		$this->assertSame(
 			$result,

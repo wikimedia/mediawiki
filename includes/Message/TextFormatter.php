@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Message;
 
+use Message;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 
@@ -15,6 +16,9 @@ class TextFormatter implements ITextFormatter {
 	/** @var string */
 	private $langCode;
 
+	/** @var string */
+	private $format;
+
 	/**
 	 * Construct a TextFormatter.
 	 *
@@ -25,10 +29,16 @@ class TextFormatter implements ITextFormatter {
 	 * @internal
 	 * @param string $langCode
 	 * @param Converter $converter
+	 * @param string $format
 	 */
-	public function __construct( $langCode, Converter $converter ) {
+	public function __construct(
+		string $langCode,
+		Converter $converter,
+		string $format = Message::FORMAT_TEXT
+	) {
 		$this->langCode = $langCode;
 		$this->converter = $converter;
+		$this->format = $format;
 	}
 
 	public function getLangCode() {
@@ -38,6 +48,6 @@ class TextFormatter implements ITextFormatter {
 	public function format( MessageValue $mv ) {
 		$message = $this->converter->convertMessageValue( $mv );
 		$message->inLanguage( $this->langCode );
-		return $message->text();
+		return $message->toString( $this->format );
 	}
 }
