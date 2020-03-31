@@ -1,4 +1,46 @@
 /* stylelint-disable selector-class-pattern */
+body {
+	background-color: #f7f7f7;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+#mw-page-base {
+	height: 3.5em;
+}
+
+#mw-head-base {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+}
+
+#mw-panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 10em;
+}
+
+#content {
+	background: #fff;
+	margin-left: 11em;
+	border: 1px solid #aaa;
+	padding: 1.25em 1.5em 1.5em 1.5em;
+}
+
+.portal {
+	margin: 0 0.6em 0 0.7em;
+	padding: 0.25em 0;
+}
+
+.portal ul {
+	list-style: none none;
+	margin: 0 0.5em;
+	font-size: 0.813em;
+	line-height: 1.4;
+}
 
 .env-check {
 	font-size: 90%;
@@ -210,6 +252,18 @@
 	display: none;
 }
 
+#p-logo {
+	width: 10em;
+	height: 160px;
+	margin: 0 0 0 0.6em;
+}
+
 #p-logo a {
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: block;
+	width: 10em;
+	height: 160px;
+	text-decoration: none;
 	background-image: url( images/installer-logo.png );
 }
