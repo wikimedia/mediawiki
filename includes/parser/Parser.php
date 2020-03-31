@@ -95,14 +95,15 @@ class Parser {
 	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]';
 	# Simplified expression to match an IPv4 or IPv6 address, or
 	# at least one character of a host name (embeds EXT_LINK_URL_CLASS)
-	const EXT_LINK_ADDR = '(?:[0-9.]+|\\[(?i:[0-9a-f:.]+)\\]|[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}])';
+	// phpcs:ignore Generic.Files.LineLength
+	private const EXT_LINK_ADDR = '(?:[0-9.]+|\\[(?i:[0-9a-f:.]+)\\]|[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}])';
 	# RegExp to make image URLs (embeds IPv6 part of EXT_LINK_ADDR)
 	// phpcs:ignore Generic.Files.LineLength
-	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)((?:\\[(?i:[0-9a-f:.]+)\\])?[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]+)
+	private const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)((?:\\[(?i:[0-9a-f:.]+)\\])?[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]+)
 		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
 
 	# Regular expression for a non-newline space
-	const SPACE_NOT_NL = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
+	private const SPACE_NOT_NL = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
 
 	# Flags for preprocessToDom
 	const PTD_FOR_INCLUSION = 1;
@@ -181,7 +182,9 @@ class Parser {
 	public $mExtLinkBracketedRegex, $mUrlProtocols;
 
 	# Initialized in getPreprocessor()
-	/** @var Preprocessor */
+	/**
+	 * @var Preprocessor
+	 */
 	public $mPreprocessor;
 
 	# Cleared with clearState():
@@ -201,8 +204,12 @@ class Parser {
 	 */
 	public $mLinkHolders;
 
+	/**
+	 * @var int
+	 */
 	public $mLinkID;
-	public $mIncludeSizes, $mPPNodeCount;
+	public $mIncludeSizes;
+	public $mPPNodeCount;
 	/**
 	 * @deprecated since 1.35, Preprocessor_DOM was removed and this counter
 	 *    is no longer incremented by anything.
@@ -210,9 +217,13 @@ class Parser {
 	public $mGeneratedPPNodeCount;
 	public $mHighestExpansionDepth;
 	public $mDefaultSort;
-	public $mTplRedirCache, $mHeadings, $mDoubleUnderscores;
+	public $mTplRedirCache;
+	/** @internal */
+	public $mHeadings;
+	public $mDoubleUnderscores;
 	public $mExpensiveFunctionCount; # number of expensive parser function calls
-	public $mShowToc, $mForceTocPosition;
+	public $mShowToc;
+	public $mForceTocPosition;
 	/** @var array */
 	public $mTplDomCache;
 
@@ -263,6 +274,7 @@ class Parser {
 
 	/**
 	 * @var bool|string Recursive call protection.
+	 * @internal
 	 * This variable should be treated as if it were private.
 	 */
 	public $mInParse = false;
