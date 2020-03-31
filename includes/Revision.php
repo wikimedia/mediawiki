@@ -503,13 +503,15 @@ class Revision implements IDBAccessObject {
 	 *
 	 * If the content is stored elsewhere, this returns null.
 	 *
-	 * @deprecated since 1.31, use RevisionRecord()->getSlot()->getContentAddress() to
+	 * @deprecated since 1.31 (soft), 1.35 (hard), use
+	 * RevisionRecord()->getSlot()->getContentAddress() to
 	 * get that actual address that can be used with BlobStore::getBlob(); or use
 	 * RevisionRecord::hasSameContent() to check if two revisions have the same content.
 	 *
 	 * @return int|null
 	 */
 	public function getTextId() {
+		wfDeprecated( __METHOD__, '1.31' );
 		$slot = $this->getMainSlotRaw();
 		return $slot && $slot->hasAddress()
 			? self::getBlobStore()->getTextIdFromAddress( $slot->getAddress() )
@@ -691,6 +693,8 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get the RC object belonging to the current revision, if there's one
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param int $flags (optional) $flags include:
 	 *      Revision::READ_LATEST  : Select the data from the master
 	 *
@@ -698,6 +702,7 @@ class Revision implements IDBAccessObject {
 	 * @return RecentChange|null
 	 */
 	public function getRecentChange( $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return self::getRevisionStore()->getRecentChange( $this->mRecord, $flags );
 	}
 

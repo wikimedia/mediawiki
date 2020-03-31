@@ -200,6 +200,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getRecentChange
 	 */
 	public function testGetRecentChange() {
+		$this->hideDeprecated( 'Revision::getRecentChange' );
+
 		$rev = $this->testPage->getRevision();
 		$recentChange = $rev->getRecentChange();
 
@@ -224,6 +226,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::insertOn
 	 */
 	public function testInsertOn_success() {
+		$this->hideDeprecated( 'Revision::getTextId' );
+
 		$parentId = $this->testPage->getLatest();
 
 		// If an ExternalStore is set don't use it.
@@ -696,6 +700,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newNullRevision
 	 */
 	public function testNewNullRevision() {
+		$this->hideDeprecated( 'Revision::getTextId' );
+
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$orig = $this->testPage->getRevision();
 		$user = $this->getTestUser()->getUser();
@@ -1428,6 +1434,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsUnpatrolled_returnsRecentChangesId() {
 		$this->hideDeprecated( 'Revision::isUnpatrolled' );
+		$this->hideDeprecated( 'Revision::getRecentChange' );
+
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$rev = $this->testPage->getRevision();
 
@@ -1681,6 +1689,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers       Revision::getTextId()
 	 */
 	public function testGetTextId( Revision $rev, $expected ) {
+		$this->hideDeprecated( 'Revision::getTextId' );
 		$this->assertSame( $expected, $rev->getTextId() );
 	}
 

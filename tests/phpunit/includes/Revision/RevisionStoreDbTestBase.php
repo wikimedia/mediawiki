@@ -710,6 +710,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getRecentChange
 	 */
 	public function testGetRecentChange() {
+		$this->hideDeprecated( 'Revision::getRecentChange' );
+
 		$page = $this->getTestPage();
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
