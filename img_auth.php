@@ -92,8 +92,10 @@ function wfImageAuthMain() {
 			}
 			if ( $be->fileExists( [ 'src' => $filename ] ) ) {
 				wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
-				$be->streamFile( [ 'src' => $filename ],
-					[ 'Cache-Control: private', 'Vary: Cookie' ] );
+				$be->streamFile( [
+					'src' => $filename,
+					'headers' => [ 'Cache-Control: private', 'Vary: Cookie' ]
+				] );
 			} else {
 				wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $path );
 			}
