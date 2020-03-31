@@ -182,7 +182,9 @@ class Parser {
 	public $mExtLinkBracketedRegex, $mUrlProtocols;
 
 	# Initialized in getPreprocessor()
-	/** @var Preprocessor */
+	/**
+	 * @var Preprocessor
+	 */
 	public $mPreprocessor;
 
 	# Cleared with clearState():
@@ -202,8 +204,12 @@ class Parser {
 	 */
 	public $mLinkHolders;
 
+	/**
+	 * @var int
+	 */
 	public $mLinkID;
-	public $mIncludeSizes, $mPPNodeCount;
+	public $mIncludeSizes;
+	public $mPPNodeCount;
 	/**
 	 * @deprecated since 1.35, Preprocessor_DOM was removed and this counter
 	 *    is no longer incremented by anything.
@@ -211,9 +217,13 @@ class Parser {
 	public $mGeneratedPPNodeCount;
 	public $mHighestExpansionDepth;
 	public $mDefaultSort;
-	public $mTplRedirCache, $mHeadings, $mDoubleUnderscores;
+	public $mTplRedirCache;
+	/** @internal */
+	public $mHeadings;
+	public $mDoubleUnderscores;
 	public $mExpensiveFunctionCount; # number of expensive parser function calls
-	public $mShowToc, $mForceTocPosition;
+	public $mShowToc;
+	public $mForceTocPosition;
 	/** @var array */
 	public $mTplDomCache;
 
@@ -264,6 +274,7 @@ class Parser {
 
 	/**
 	 * @var bool|string Recursive call protection.
+	 * @internal
 	 * This variable should be treated as if it were private.
 	 */
 	public $mInParse = false;
