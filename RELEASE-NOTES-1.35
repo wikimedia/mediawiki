@@ -516,6 +516,8 @@ because of Phabricator reports.
 * FileBackendGroup::destroySingleton() is deprecated. Test frameworks should
   instead reset MediaWikiServices between test runs.
   (MediaWikiIntegrationTestCase does this automatically.)
+* GenderCache::singleton(), deprecated in 1.28, is hard deprecated. Use
+  MediaWikiServices::getGenderCache() instead.
 * MediaWikiIntegrationTest::setContentLang() has been deprecated. Use
   setMwGlobals( 'wgLanguageCode', 'xxx' ) to set a different site language
   code, or setService( 'ContentLanguage', $myObj ) to set a specific Language
