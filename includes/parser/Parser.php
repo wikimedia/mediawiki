@@ -149,7 +149,6 @@ class Parser {
 	/** @deprecated since 1.35 */
 	public $mFunctionTagHooks = [];
 	public $mStripList = [];
-	public $mDefaultStripList = [];
 	/** @deprecated since 1.35 */
 	public $mVarCache = [];
 	public $mImageParams = [];
@@ -197,7 +196,6 @@ class Parser {
 	 */
 	public $mStripState;
 
-	public $mIncludeCount;
 	/**
 	 * @var LinkHolderArray
 	 */
@@ -480,7 +478,6 @@ class Parser {
 		$this->firstCallInit();
 		$this->resetOutput();
 		$this->mAutonumber = 0;
-		$this->mIncludeCount = [];
 		$this->mLinkHolders = new LinkHolderArray( $this, $this->getContentLanguageConverter() );
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
@@ -4984,7 +4981,7 @@ class Parser {
 	public function clearTagHooks() {
 		$this->mTagHooks = [];
 		$this->mFunctionTagHooks = [];
-		$this->mStripList = $this->mDefaultStripList;
+		$this->mStripList = [];
 	}
 
 	/**
