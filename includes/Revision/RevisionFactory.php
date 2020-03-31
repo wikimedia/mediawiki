@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Revision;
 
+use IDBAccessObject;
 use MWException;
 use Title;
 
@@ -34,7 +35,7 @@ use Title;
  * @note This was written to act as a drop-in replacement for the corresponding
  *       static methods in Revision.
  */
-interface RevisionFactory {
+interface RevisionFactory extends IDBAccessObject {
 
 	/**
 	 * Constructs a new RevisionRecord based on the given associative array following the MW1.29
@@ -51,7 +52,11 @@ interface RevisionFactory {
 	 * @return MutableRevisionRecord
 	 * @throws MWException
 	 */
-	public function newMutableRevisionFromArray( array $fields, $queryFlags = 0, Title $title = null );
+	public function newMutableRevisionFromArray(
+		array $fields,
+		$queryFlags = self::READ_NORMAL,
+		Title $title = null
+	);
 
 	/**
 	 * Constructs a RevisionRecord given a database row and content slots.
@@ -68,7 +73,11 @@ interface RevisionFactory {
 	 *
 	 * @return RevisionRecord
 	 */
-	public function newRevisionFromRow( $row, $queryFlags = 0, Title $title = null );
+	public function newRevisionFromRow(
+		$row,
+		$queryFlags = self::READ_NORMAL,
+		Title $title = null
+	);
 
 	/**
 	 * Make a fake revision object from an archive table row. This is queried
@@ -89,7 +98,7 @@ interface RevisionFactory {
 	 */
 	public function newRevisionFromArchiveRow(
 		$row,
-		$queryFlags = 0,
+		$queryFlags = self::READ_NORMAL,
 		Title $title = null,
 		array $overrides = []
 	);
