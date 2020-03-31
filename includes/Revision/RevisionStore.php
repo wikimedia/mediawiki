@@ -447,9 +447,9 @@ class RevisionStore
 
 		Hooks::run( 'RevisionRecordInserted', [ $rev ] );
 
-		// TODO: deprecate in 1.32!
+		// Soft deprecated in 1.31, hard deprecated in 1.35
 		$legacyRevision = new Revision( $rev );
-		Hooks::run( 'RevisionInsertComplete', [ &$legacyRevision, null, null ] );
+		Hooks::run( 'RevisionInsertComplete', [ &$legacyRevision, null, null ], '1.31' );
 
 		return $rev;
 	}
