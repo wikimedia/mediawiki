@@ -4,6 +4,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Token;
 
 /**
@@ -106,7 +107,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @return bool False if execution should be stopped.
 	 */
 	protected function handleReturnBeforeExecute( $subPage ) {
-		$authManager = AuthManager::singleton();
+		$authManager = MediaWikiServices::getInstance()->getAuthManager();
 		$key = 'AuthManagerSpecialPage:return:' . $this->getName();
 
 		if ( $subPage === 'return' ) {
@@ -144,14 +145,13 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @throws ErrorPageError When the user is not allowed to use this page.
 	 */
 	protected function handleReauthBeforeExecute( $subPage ) {
-		$authManager = AuthManager::singleton();
+		$authManager = MediaWikiServices::getInstance()->getAuthManager();
 		$request = $this->getRequest();
 		$key = 'AuthManagerSpecialPage:reauth:' . $this->getName();
 
 		$securityLevel = $this->getLoginSecurityLevel();
 		if ( $securityLevel ) {
-			$securityStatus = AuthManager::singleton()
-				->securitySensitiveOperationStatus( $securityLevel );
+			$securityStatus = $authManager->securitySensitiveOperationStatus( $securityLevel );
 			if ( $securityStatus === AuthManager::SEC_REAUTH ) {
 				$queryParams = array_diff_key( $request->getQueryValues(), [ 'title' => true ] );
 
@@ -253,7 +253,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			}
 		}
 
-		$allReqs = AuthManager::singleton()->getAuthenticationRequests(
+		$allReqs = MediaWikiServices::getInstance()->getAuthManager()->getAuthenticationRequests(
 			$this->authAction, $this->getUser() );
 		$this->authRequests = array_filter( $allReqs, function ( $req ) {
 			return !in_array( get_class( $req ), $this->getRequestBlacklist(), true );
@@ -301,7 +301,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @throws LogicException if $action is invalid
 	 */
 	protected function isActionAllowed( $action ) {
-		$authManager = AuthManager::singleton();
+		$authManager = MediaWikiServices::getInstance()->getAuthManager();
 		if ( !in_array( $action, static::$allowedActions, true ) ) {
 			throw new InvalidArgumentException( 'invalid action: ' . $action );
 		}
@@ -345,7 +345,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			throw new InvalidArgumentException( 'invalid action: ' . $action );
 		}
 
-		$authManager = AuthManager::singleton();
+		$authManager = MediaWikiServices::getInstance()->getAuthManager();
 		$returnToUrl = $this->getPageTitle( 'return' )
 			->getFullURL( $this->getPreservedParams( true ), false, PROTO_HTTPS );
 
