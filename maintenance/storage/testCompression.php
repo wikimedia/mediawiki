@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 $optionsWithArgs = [ 'start', 'limit', 'type' ];
 require __DIR__ . '/../commandLine.inc';
@@ -50,7 +52,8 @@ if ( isset( $options['limit'] ) ) {
 $type = $options['type'] ?? ConcatenatedGzipHistoryBlob::class;
 
 $dbr = wfGetDB( DB_REPLICA );
-$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo( [ 'page' ] );
+$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+$revQuery = $revStore->getQueryInfo( [ 'page' ] );
 $res = $dbr->select(
 	$revQuery['tables'],
 	$revQuery['fields'],
@@ -70,8 +73,10 @@ $keys = [];
 $uncompressedSize = 0;
 $t = -microtime( true );
 foreach ( $res as $row ) {
-	$revision = new Revision( $row );
-	$text = $revision->getSerializedData();
+	$revRecord = $revStore->newRevisionFromRow( $row );
+	$text = $revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
+		->getContent()
+		->serialize();
 	$uncompressedSize += strlen( $text );
 	$hashes[$row->rev_id] = md5( $text );
 	$keys[$row->rev_id] = $blob->addItem( $text );
