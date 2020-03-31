@@ -196,7 +196,6 @@ class Parser {
 	 */
 	public $mStripState;
 
-	public $mIncludeCount;
 	/**
 	 * @var LinkHolderArray
 	 */
@@ -479,7 +478,6 @@ class Parser {
 		$this->firstCallInit();
 		$this->resetOutput();
 		$this->mAutonumber = 0;
-		$this->mIncludeCount = [];
 		$this->mLinkHolders = new LinkHolderArray( $this, $this->getContentLanguageConverter() );
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
