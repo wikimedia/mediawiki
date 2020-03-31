@@ -174,8 +174,8 @@ class UserNameUtils {
 		// Certain names may be reserved for batch processes.
 		foreach ( $this->reservedUsernames as $reserved ) {
 			if ( substr( $reserved, 0, 4 ) === 'msg:' ) {
-				$reserved = $this->msgLocalizer
-					->msg( substr( $reserved, 4 ) )
+				// FIXME fix $this->msgLocalizer to be able to use it
+				$reserved = wfMessage( substr( $reserved, 4 ) )
 					->inContentLanguage()
 					->plain();
 			}
