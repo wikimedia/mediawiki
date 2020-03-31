@@ -610,4 +610,37 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
 	}
 
+	private function getMockContentHander() {
+		$handler = $this->getMockBuilder( ContentHandler::class )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
+		return $handler;
+	}
+
+	public function providerGetPageViewLanguage() {
+		yield [ NS_FILE, 'sr', 'sr-ec', 'sr-ec' ];
+		yield [ NS_FILE, 'sr', 'sr', 'sr' ];
+		yield [ NS_MEDIAWIKI, 'sr-ec', 'sr', 'sr-ec' ];
+		yield [ NS_MEDIAWIKI, 'sr', 'sr-ec', 'sr' ];
+	}
+
+	/**
+	 * @dataProvider providerGetPageViewLanguage
+	 * @covers ContentHandler::getPageViewLanguage
+	 */
+	public function testGetPageViewLanguage( $namespace, $lang, $variant, $expected ) {
+		$contentHandler = $this->getMockContentHander();
+
+		$title = Title::newFromText( "SimpleTitle", $namespace );
+
+		$this->setMwGlobals( [
+			'wgDefaultLanguageVariant' => $variant,
+		] );
+
+		$this->setUserLang( $lang );
+		$this->setContentLang( $lang );
+
+		$pageViewLanguage = $contentHandler->getPageViewLanguage( $title );
+		$this->assertEquals( $expected, $pageViewLanguage->getCode() );
+	}
 }
