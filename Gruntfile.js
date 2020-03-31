@@ -19,11 +19,11 @@ module.exports = function ( grunt ) {
 	grunt.initConfig( {
 		eslint: {
 			options: {
-				extensions: [ '.js', '.json', '.vue' ],
+				extensions: [ '.js', '.json' ],
 				cache: true
 			},
 			all: [
-				'**/*.{js,json,vue}',
+				'**/*.{js,json}',
 				'!docs/**',
 				'!node_modules/**',
 				'!resources/lib/**',
@@ -33,8 +33,8 @@ module.exports = function ( grunt ) {
 				'!tests/coverage/**',
 				'!vendor/**',
 				// Explicitly say "**/*.js" here in case of symlinks
-				'!extensions/**/*.{js,json,vue}',
-				'!skins/**/*.{js,json,vue}'
+				'!extensions/**/*.js{,on}',
+				'!skins/**/*.js{,on}'
 			]
 		},
 		banana: {
@@ -50,7 +50,7 @@ module.exports = function ( grunt ) {
 			paramvalidator: 'includes/libs/ParamValidator/i18n/'
 		},
 		stylelint: {
-			src: '{resources/src,mw-config}/**/*.{css,less,vue}'
+			src: '{resources/src,mw-config}/**/*.{css,less}'
 		},
 		svgmin: {
 			options: {

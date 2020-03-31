@@ -2,6 +2,7 @@
  * @class mw.user
  * @singleton
  */
+/* global Uint16Array */
 ( function () {
 	var userInfoPromise, pageviewRandomId;
 
