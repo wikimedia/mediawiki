@@ -86,7 +86,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
 		] ) );
-		$provider->setManager( AuthManager::singleton() );
+		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
 
 		$this->assertEquals(
 			\StatusValue::newGood(),
@@ -118,7 +118,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
 		] ) );
-		$provider->setManager( AuthManager::singleton() );
+		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
 		$provider->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 
 		$user = \User::newFromName( 'RandomUser' );
@@ -169,7 +169,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
 		] ) );
-		$provider->setManager( AuthManager::singleton() );
+		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
 
 		$req = new UsernameAuthenticationRequest;
 		$req->username = 'SomeUser';
@@ -215,7 +215,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
 		] ) );
-		$provider->setManager( AuthManager::singleton() );
+		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newPass() );
 
@@ -229,7 +229,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			'AccountCreationThrottle' => null,
 			'PasswordAttemptThrottle' => null,
 		] ) );
-		$provider->setManager( AuthManager::singleton() );
+		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newPass() );
 		$this->assertSame( [

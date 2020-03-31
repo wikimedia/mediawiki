@@ -25,6 +25,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to create an account and grant it rights.
  *
@@ -115,7 +117,7 @@ class CreateAndPromote extends Maintenance {
 		if ( !$exists ) {
 			// Create the user via AuthManager as there may be various side
 			// effects that are performed by the configured AuthManager chain.
-			$status = MediaWiki\Auth\AuthManager::singleton()->autoCreateUser(
+			$status = MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
 				$user,
 				MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_MAINT,
 				false

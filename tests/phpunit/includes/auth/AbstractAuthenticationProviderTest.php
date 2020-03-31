@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -17,7 +18,7 @@ class AbstractAuthenticationProviderTest extends \MediaWikiTestCase {
 		$provider->setLogger( $obj );
 		$this->assertSame( $obj, $providerPriv->logger, 'setLogger' );
 
-		$obj = AuthManager::singleton();
+		$obj = MediaWikiServices::getInstance()->getAuthManager();
 		$provider->setManager( $obj );
 		$this->assertSame( $obj, $providerPriv->manager, 'setManager' );
 

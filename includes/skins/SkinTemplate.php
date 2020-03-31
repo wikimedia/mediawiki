@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -530,8 +529,9 @@ class SkinTemplate extends Skin {
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
-		$authManager = AuthManager::singleton();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$authManager = $services->getAuthManager();
+		$permissionManager = $services->getPermissionManager();
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];

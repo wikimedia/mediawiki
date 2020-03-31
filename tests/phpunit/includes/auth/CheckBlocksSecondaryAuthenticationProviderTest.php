@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -120,7 +121,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		);
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$provider->setConfig( new \HashConfig() );
-		$provider->setManager( AuthManager::singleton() );
+		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
 
 		$unblockedUser = \User::newFromName( 'UTSysop' );
 		$blockedUser = $this->getBlockedUser();
@@ -175,7 +176,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		);
 		$provider->setLogger( new \Psr\Log\NullLogger() );
 		$provider->setConfig( new \HashConfig() );
-		$provider->setManager( AuthManager::singleton() );
+		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
 
 		$ret = $provider->beginSecondaryAuthentication( $user, [] );
 		$this->assertEquals( AuthenticationResponse::FAIL, $ret->status );

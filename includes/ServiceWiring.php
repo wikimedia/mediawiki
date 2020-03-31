@@ -867,7 +867,7 @@ return [
 		$options = new ServiceOptions( PasswordReset::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
 		return new PasswordReset(
 			$options,
-			AuthManager::singleton(),
+			$services->getAuthManager(),
 			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
 			LoggerFactory::getInstance( 'authentication' ),
@@ -903,7 +903,7 @@ return [
 			new ServiceOptions(
 				DefaultPreferencesFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
-			AuthManager::singleton(),
+			$services->getAuthManager(),
 			$services->getLinkRendererFactory()->create(),
 			$services->getNamespaceInfo(),
 			$services->getPermissionManager(),

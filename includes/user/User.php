@@ -837,7 +837,7 @@ class User implements IDBAccessObject, UserIdentity {
 				return null;
 			}
 
-			AuthManager::singleton()->revokeAccessForUser( $name );
+			MediaWikiServices::getInstance()->getAuthManager()->revokeAccessForUser( $name );
 
 			$user->invalidateEmail();
 			$user->mToken = self::INVALID_TOKEN;
@@ -2441,7 +2441,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool Success
 	 */
 	private function setPasswordInternal( $str ) {
-		$manager = AuthManager::singleton();
+		$manager = MediaWikiServices::getInstance()->getAuthManager();
 
 		// If the user doesn't exist yet, fail
 		if ( !$manager->userExists( $this->getName() ) ) {
@@ -2479,7 +2479,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @since 1.27
 	 */
 	public function changeAuthenticationData( array $data ) {
-		$manager = AuthManager::singleton();
+		$manager = MediaWikiServices::getInstance()->getAuthManager();
 		$reqs = $manager->getAuthenticationRequests( AuthManager::ACTION_CHANGE, $this );
 		$reqs = AuthenticationRequest::loadRequestsFromSubmission( $reqs, $data );
 
@@ -3133,7 +3133,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public function isSystemUser() {
 		$this->load();
 		if ( $this->mEmail || $this->mToken !== self::INVALID_TOKEN ||
-			AuthManager::singleton()->userCanAuthenticate( $this->mName )
+			MediaWikiServices::getInstance()->getAuthManager()->userCanAuthenticate( $this->mName )
 		) {
 			return false;
 		}
@@ -3851,7 +3851,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public function checkPassword( $password ) {
 		wfDeprecated( __METHOD__, '1.27' );
 
-		$manager = AuthManager::singleton();
+		$manager = MediaWikiServices::getInstance()->getAuthManager();
 		$reqs = AuthenticationRequest::loadRequestsFromSubmission(
 			$manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN ),
 			[
