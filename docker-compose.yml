@@ -9,12 +9,12 @@ services:
   mediawiki:
     image: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-xdebug:0.1.1
     ports:
-      - "8080:8080"
+      - "${MW_DOCKER_PORT:-8080}:8080"
     volumes:
       - ./:/var/www/html:cached
     environment:
       COMPOSER_CACHE_DIR: '/var/www/html/cache/composer'
-      MW_SERVER: 'http://localhost:8080'
+      MW_SERVER: 'http://localhost:${MW_DOCKER_PORT:-8080}'
       MW_SCRIPT_PATH: ''
       MW_DBPATH: '/var/www/html/cache/sqlite'
       MW_DBTYPE: 'sqlite'
@@ -23,3 +23,4 @@ services:
       MW_PASS: 'dockerpass'
       MW_SITENAME: 'MediaWiki'
       MW_LOG_DIR: /var/www/html/cache
+      XDEBUG_CONFIG: ${XDEBUG_CONFIG}
