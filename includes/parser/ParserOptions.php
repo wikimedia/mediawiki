@@ -303,6 +303,9 @@ class ParserOptions {
 	 * @return bool Old value
 	 */
 	public function setTidy( $x ) {
+		if ( !$x ) {
+			wfDeprecated( 'disabling tidy', '1.33' );
+		}
 		return $this->setOptionLegacy( 'tidy', $x );
 	}
 

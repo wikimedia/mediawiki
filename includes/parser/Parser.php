@@ -1620,6 +1620,8 @@ class Parser {
 		if ( MWTidy::isEnabled() ) {
 			if ( $this->mOptions->getTidy() ) {
 				$text = MWTidy::tidy( $text );
+			} else {
+				wfDeprecated( 'disabling tidy', '1.33' );
 			}
 		} else {
 			# attempt to sanitize at least some nesting problems

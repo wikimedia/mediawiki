@@ -266,6 +266,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$popt2->enableLimitReport( false );
 		$this->assertTrue( $popt1->matches( $popt2 ) );
 
+		$this->hideDeprecated( 'disabling tidy' );
 		$popt2->setTidy( !$popt2->getTidy() );
 		$this->assertFalse( $popt1->matches( $popt2 ) );
 

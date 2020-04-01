@@ -546,6 +546,13 @@ class ApiParse extends ApiBase {
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 		if ( $params['disabletidy'] ) {
+			// Don't spam the log w/ deprecation warnings caused by API requests
+			// The API request is already returning a deprecation warning to
+			// the caller.
+			Wikimedia\suppressWarnings();
+			wfDeprecated( 'disabling tidy', '1.33' );
+			Wikimedia\restoreWarnings();
+			// Allow this for now.
 			$popts->setTidy( false );
 		}
 		if ( $params['wrapoutputclass'] !== '' ) {
