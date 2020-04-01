@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Addshore
  *
@@ -12,7 +13,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	public function testGetType() {
 		$obj = new FakeDiffOp();
 		$obj->type = 'foo';
-		$this->assertEquals( 'foo', $obj->getType() );
+		$this->assertSame( 'foo', $obj->getType() );
 	}
 
 	/**
@@ -21,7 +22,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	public function testGetOrig() {
 		$obj = new FakeDiffOp();
 		$obj->orig = [ 'foo' ];
-		$this->assertEquals( [ 'foo' ], $obj->getOrig() );
+		$this->assertSame( [ 'foo' ], $obj->getOrig() );
 	}
 
 	/**
@@ -30,7 +31,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	public function testGetClosing() {
 		$obj = new FakeDiffOp();
 		$obj->closing = [ 'foo' ];
-		$this->assertEquals( [ 'foo' ], $obj->getClosing() );
+		$this->assertSame( [ 'foo' ], $obj->getClosing() );
 	}
 
 	/**
@@ -39,9 +40,9 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 	public function testGetClosingWithParameter() {
 		$obj = new FakeDiffOp();
 		$obj->closing = [ 'foo', 'bar', 'baz' ];
-		$this->assertEquals( 'foo', $obj->getClosing( 0 ) );
-		$this->assertEquals( 'bar', $obj->getClosing( 1 ) );
-		$this->assertEquals( 'baz', $obj->getClosing( 2 ) );
+		$this->assertSame( 'foo', $obj->getClosing( 0 ) );
+		$this->assertSame( 'bar', $obj->getClosing( 1 ) );
+		$this->assertSame( 'baz', $obj->getClosing( 2 ) );
 		$this->assertNull( $obj->getClosing( 3 ) );
 	}
 
@@ -52,7 +53,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 		$obj = new FakeDiffOp();
 		$this->assertSame( 0, $obj->norig() );
 		$obj->orig = [ 'foo' ];
-		$this->assertEquals( 1, $obj->norig() );
+		$this->assertSame( 1, $obj->norig() );
 	}
 
 	/**
@@ -62,7 +63,7 @@ class DiffOpTest extends \MediaWikiUnitTestCase {
 		$obj = new FakeDiffOp();
 		$this->assertSame( 0, $obj->nclosing() );
 		$obj->closing = [ 'foo' ];
-		$this->assertEquals( 1, $obj->nclosing() );
+		$this->assertSame( 1, $obj->nclosing() );
 	}
 
 }
