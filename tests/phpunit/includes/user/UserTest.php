@@ -1312,8 +1312,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::newFromActorId
 	 */
 	public function testActorId() {
-		$this->hideDeprecated( 'User::selectFields' );
-
 		// Newly-created user has an actor ID
 		$user = User::createNew( 'UserTestActorId1' );
 		$id = $user->getId();
@@ -1335,7 +1333,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getId(), $user2->getId(),
 			'User::newFromActorId works for an existing user' );
 
-		$row = $this->db->selectRow( 'user', User::selectFields(), [ 'user_id' => $id ], __METHOD__ );
+		$queryInfo = User::getQueryInfo();
+		$row = $this->db->selectRow( $queryInfo['tables'],
+			$queryInfo['fields'], [ 'user_id' => $id ], __METHOD__ );
 		$user = User::newFromRow( $row );
 		$this->assertGreaterThan( 0, $user->getActorId(),
 			'Actor ID can be retrieved for user loaded with User::selectFields()' );

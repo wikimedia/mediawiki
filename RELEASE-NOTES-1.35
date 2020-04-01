@@ -688,6 +688,8 @@ because of Phabricator reports.
   an user ID as part of ongoing refactoring of SpecialBlock class.
 * User::setInternalPassword() and User::setPassword(), deprecated in 1.27, have
   been removed. Use User::changeAuthenticationData() instead.
+* User::selectFields(), deprecated in 1.31, has been removed. Use
+  User::getQueryInfo() instead.
 * …
 
 === Deprecations in 1.35 ===
