@@ -65,6 +65,7 @@ class ParserCache {
 	 * @return ParserCache
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.30' );
 		return MediaWikiServices::getInstance()->getParserCache();
 	}
 
