@@ -40,7 +40,7 @@ class UpdateSearchIndex extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Script for periodic off-peak updating of the search index' );
-		$this->addOption( 's', 'starting timestamp', false, true );
+		$this->addOption( 's', 'Starting timestamp', false, true );
 		$this->addOption( 'e', 'Ending timestamp', false, true );
 		$this->addOption(
 			'p',
