@@ -776,6 +776,7 @@
 	"revdel-restore": "chanjar videbleso",
 	"pagehist": "Pagino-versionaro",
 	"deletedhist": "Efacita versionaro",
+	"revdelete-reason-dropdown": "* Ofta motivi por efaco\n** Violaco di autoroyuro\n** Komento nekonvenanta\n** Uzero-nomo nekonvenanta\n** Informo posible difamoza",
 	"revdelete-otherreason": "Altra/suplementala motivo:",
 	"revdelete-reasonotherlist": "Altra motivo",
 	"revdelete-offender": "Autoro di la revizo:",
@@ -1342,6 +1343,7 @@
 	"filedelete-nofile": "'''$1''' ne existas.",
 	"filedelete-otherreason": "Altra/suplementala motivo:",
 	"filedelete-reason-otherlist": "Altra motivo",
+	"filedelete-reason-dropdown": "* Ofta motivi por efaco\n** Violaco di autoroyuro\n** Arkivo duopligata",
 	"mimesearch": "serchar MIME",
 	"mimesearch-summary": "Ca pagino permisas filtrar arkivi segun lia tipoMIME.\nEniro: contenttype/subtype o contenttype/*, exemple <code>image/jpeg</code>.",
 	"download": "deskargar",
@@ -1601,7 +1603,7 @@
 	"deletecomment": "Motivo:",
 	"deleteotherreason": "Altra/suplementala motivo:",
 	"deletereasonotherlist": "Altra motivo",
-	"deletereason-dropdown": "*Ordinara motivi por efacado\n** \"Spam\" nedezirata mesaji\n** Vandalismo\n** Kopiyuro Violaco\n** Demandita da autoro\n** Nefuncionanta ligilo",
+	"deletereason-dropdown": "*Ordinara motivi por efaco\n** \"Spam\" (nedezirata mesaji)\n** Vandalismo\n** Kopiyuro violaco\n** Demandata dal autoro\n** Nefuncionanta ligilo",
 	"deleting-backlinks-warning": "<strong>Atencez:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Altra pagini]] ligesas ad or inkluzas la pagino quon vu deziras efacar.",
 	"rollback": "Retrorulez redakti",
 	"rollbacklink": "retrorulez",
@@ -1623,6 +1625,7 @@
 	"logentry-contentmodel-change-revertlink": "restaurar",
 	"logentry-contentmodel-change-revert": "restaurar",
 	"protectlogpage": "Protekto-registraro",
+	"protectlogtext": "Infre videsas listo pri modifikuri en la protekto di pagini. Videz la [[Special:ProtectedPages|listo pri pagini protektita]] por la nuna listo pri prezente operacala protekto di pagini.",
 	"protectedarticle": "protektita \"[[$1]]\"",
 	"modifiedarticleprotection": "la nivelo di protekto modifikesis a \"[[$1]]\"",
 	"unprotectedarticle": "desprotektita de \"[[$1]]\"",
@@ -2268,5 +2271,6 @@
 	"changecredentials-submit": "Modifikar identifiko",
 	"removecredentials": "Removar permisi",
 	"removecredentials-submit": "Removar permisi",
-	"interfaceadmin-info": "$1\n\nPermisi por redaktar arkivi CSS/JS/JSON en la retsituo recente separesis de la permiso <code>editinterface</code>. Se vu ne savas pro quo vu recevis ca eroro-mesajo, videz [[mw:MediaWiki_1.32/interface-admin]]."
+	"interfaceadmin-info": "$1\n\nPermisi por redaktar arkivi CSS/JS/JSON en la retsituo recente separesis de la permiso <code>editinterface</code>. Se vu ne savas pro quo vu recevis ca eroro-mesajo, videz [[mw:MediaWiki_1.32/interface-admin]].",
+	"gotointerwiki-external": "Tu balde livos {{SITENAME}} por vizitar [[$2]], quo esas diferanta ret-pagino.\n\n'''[$1 irez a $1]'''"
 }

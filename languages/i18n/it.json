@@ -3346,7 +3346,7 @@
 	"redirect-not-numeric": "Valore non numerico",
 	"fileduplicatesearch": "Ricerca dei file duplicati",
 	"fileduplicatesearch-summary": "Ricerca di eventuali duplicati del file in base al valore di ''hash''.",
-	"fileduplicatesearch-filename": "Nome del file:",
+	"fileduplicatesearch-filename": "Nome file:",
 	"fileduplicatesearch-submit": "Ricerca",
 	"fileduplicatesearch-info": "$1 × $2 pixel<br />Dimensione del file: $3<br />Tipo MIME: $4",
 	"fileduplicatesearch-result-1": "Non esistono duplicati identici al file \"$1\".",
