@@ -166,6 +166,8 @@ class Revision implements IDBAccessObject {
 	 * Make a fake revision object from an archive table row. This is queried
 	 * for permissions or even inserted (as in Special:Undelete)
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param object $row
 	 * @param array $overrides
 	 *
@@ -173,6 +175,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision
 	 */
 	public static function newFromArchiveRow( $row, $overrides = [] ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		/**
 		 * MCR Migration: https://phabricator.wikimedia.org/T183564
 		 * This method used to overwrite attributes, then passed to Revision::__construct
