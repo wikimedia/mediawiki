@@ -34,15 +34,11 @@ class ActionTest extends MediaWikiTestCase {
 		] );
 	}
 
-	private function getPage() : WikiPage {
-		return WikiPage::factory( $this->getTitle() );
+	private function getPage() {
+		return WikiPage::factory( Title::makeTitle( 0, 'Title' ) );
 	}
 
-	private function getTitle() : Title {
-		return Title::makeTitle( 0, 'Title' );
-	}
-
-	private function getContext( $requestedAction = null ) : IContextSource {
+	private function getContext( $requestedAction = null ) {
 		$request = new FauxRequest( [ 'action' => $requestedAction ] );
 
 		$context = new DerivativeContext( RequestContext::getMain() );

@@ -41,18 +41,9 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Page on which we're performing the action
 	 * @since 1.17
-	 * @deprecated since 1.35, use {@link getArticle()} ?? {@link getWikiPage()}. Must be removed.
-	 * @internal
-	 *
 	 * @var WikiPage|Article|ImagePage|CategoryPage|Page
 	 */
 	protected $page;
-
-	/**
-	 * @var Article
-	 * @since 1.35
-	 */
-	private $article;
 
 	/**
 	 * IContextSource if specified; otherwise we'll use the Context from the Page
@@ -97,30 +88,24 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
-	 *
-	 *
-	 * @param string|null $action
-	 * @param Article|WikiPage|Page $article
-	 * 	Calling with anything other than Article is deprecated since 1.35
+	 * @param string $action
+	 * @param Page $page
 	 * @param IContextSource|null $context
 	 * @return Action|bool|null False if the action is disabled, null
 	 *     if it is not recognised
 	 */
-	final public static function factory(
-		?string $action,
-		Page $article,
-		IContextSource $context = null
-	) {
-		$classOrCallable = self::getClass( $action, $article->getActionOverrides() );
+	final public static function factory( $action, Page $page, IContextSource $context = null ) {
+		$classOrCallable = self::getClass( $action, $page->getActionOverrides() );
+
 		if ( is_string( $classOrCallable ) ) {
 			if ( !class_exists( $classOrCallable ) ) {
 				return false;
 			}
-			return new $classOrCallable( $article, $context );
+			return new $classOrCallable( $page, $context );
 		}
 
 		if ( is_callable( $classOrCallable ) ) {
-			return $classOrCallable( $article, $context );
+			return $classOrCallable( $page, $context );
 		}
 
 		return $classOrCallable;
@@ -167,12 +152,7 @@ abstract class Action implements MessageLocalizer {
 			return 'view';
 		}
 
-		$action = self::factory(
-			$actionName,
-			Article::newFromWikiPage( $context->getWikiPage(), $context ),
-			$context
-		);
-
+		$action = self::factory( $actionName, $context->getWikiPage(), $context );
 		if ( $action instanceof Action ) {
 			return $action->getName();
 		}
@@ -199,9 +179,14 @@ abstract class Action implements MessageLocalizer {
 	final public function getContext() {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
+		} elseif ( $this->page instanceof Article ) {
+			// NOTE: $this->page can be a WikiPage, which does not have a context.
+			wfDebug( __METHOD__ . ": no context known, falling back to Article's context.\n" );
+			return $this->page->getContext();
 		}
-		wfDebug( __METHOD__ . ": no context known, falling back to Article's context.\n" );
-		return $this->getArticle()->getContext();
+
+		wfWarn( __METHOD__ . ': no context known, falling back to RequestContext::getMain().' );
+		return RequestContext::getMain();
 	}
 
 	/**
@@ -260,7 +245,10 @@ abstract class Action implements MessageLocalizer {
 	 * @return WikiPage
 	 */
 	final public function getWikiPage() : WikiPage {
-		return $this->getArticle()->getPage();
+		if ( $this->page instanceof WikiPage ) {
+			return $this->page;
+		}
+		return $this->page->getPage();
 	}
 
 	/**
@@ -271,7 +259,10 @@ abstract class Action implements MessageLocalizer {
 	 * @return Article|ImagePage|CategoryPage
 	 */
 	public function getArticle() {
-		return $this->article;
+		if ( $this->page instanceof Article ) {
+			return $this->page;
+		}
+		return Article::newFromWikiPage( $this->page, $this->getContext() );
 	}
 
 	/**
@@ -281,7 +272,7 @@ abstract class Action implements MessageLocalizer {
 	 * @return Title
 	 */
 	final public function getTitle() {
-		return $this->getArticle()->getTitle();
+		return $this->getWikiPage()->getTitle();
 	}
 
 	/**
@@ -299,31 +290,17 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Only public since 1.21
 	 *
-	 * @param Article|WikiPage|Page $page
-	 * 	Calling with anything other then Article is deprecated since 1.35
+	 * @param Page $page
 	 * @param IContextSource|null $context
 	 */
-	public function __construct(
-		Page $page,
-		IContextSource $context = null
-	) {
+	public function __construct( Page $page, IContextSource $context = null ) {
 		if ( $context === null ) {
 			wfWarn( __METHOD__ . ' called without providing a Context object.' );
 			// NOTE: We could try to initialize $context using $page->getContext(),
 			//      if $page is an Article. That however seems to not work seamlessly.
 		}
-		$this->page = $page;// @todo remove b/c
 
-		if ( $page instanceof Article ) {
-			$this->article = $page;
-		} elseif ( $page instanceof WikiPage ) {
-			$this->article = Article::newFromWikiPage( $page, $context );
-		} else {
-			throw new LogicException(
-				__METHOD__ . ' called with unknown Page: ' . get_class( $page )
-			);
-		}
-
+		$this->page = $page;
 		$this->context = $context;
 	}
 
