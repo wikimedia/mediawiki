@@ -2562,7 +2562,7 @@ TODO: No more strip, deprecated ?
 &$text: text being parsed
 [&]$stripState: stripState used (object)
 
-'ParserAfterTidy': Called after Parser::tidy() in Parser::parse()
+'ParserAfterTidy': Called after MWTidy::tidy() in Parser::parse()
 [&]$parser: Parser object being used
 &$text: text that will be returned
 

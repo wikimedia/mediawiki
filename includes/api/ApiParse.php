@@ -593,16 +593,7 @@ class ApiParse extends ApiBase {
 		$popts->enableLimitReport( !$params['disablepp'] && !$params['disablelimitreport'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
-		if ( $params['disabletidy'] ) {
-			// Don't spam the log w/ deprecation warnings caused by API requests
-			// The API request is already returning a deprecation warning to
-			// the caller.
-			Wikimedia\suppressWarnings();
-			wfDeprecated( 'disabling tidy', '1.33' );
-			Wikimedia\restoreWarnings();
-			// Allow this for now.
-			$popts->setTidy( false );
-		}
+
 		if ( $params['wrapoutputclass'] !== '' ) {
 			$popts->setWrapOutputClass( $params['wrapoutputclass'] );
 		}
@@ -946,10 +937,6 @@ class ApiParse extends ApiBase {
 			],
 			'disablelimitreport' => false,
 			'disableeditsection' => false,
-			'disabletidy' => [
-				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_DEPRECATED => true, // Since 1.32
-			],
 			'disablestylededuplication' => false,
 			'generatexml' => [
 				ApiBase::PARAM_DFLT => false,

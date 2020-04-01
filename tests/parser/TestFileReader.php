@@ -157,12 +157,6 @@ class TestFileReader {
 		];
 
 		if ( $nonTidySection !== false ) {
-			// Add non-tidy test
-			$this->tests[] = [
-				'result' => $data[$nonTidySection],
-				'resultSection' => $nonTidySection
-			] + $commonInfo;
-
 			if ( $tidySection !== false ) {
 				// Add tidy subtest
 				$this->tests[] = [
@@ -172,6 +166,10 @@ class TestFileReader {
 					'options' => $data['options'] . ' tidy',
 					'isSubtest' => true,
 				] + $commonInfo;
+			} else {
+				// We can no longer run the non-tidy test, and we don't have
+				// a tidy alternative.
+				wfDeprecated( 'skipping non-tidy test', '1.35' );
 			}
 		} elseif ( $tidySection !== false ) {
 			// No need to override desc when there is no subtest

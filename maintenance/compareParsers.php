@@ -58,7 +58,6 @@ class CompareParsers extends DumpIterator {
 		$this->addDescription( 'Run a file or dump with several parsers' );
 		$this->addOption( 'parser1', 'The first parser to compare.', true, true );
 		$this->addOption( 'parser2', 'The second parser to compare.', true, true );
-		$this->addOption( 'tidy', 'Run tidy on the articles.', false, false );
 		$this->addOption(
 			'save-failed',
 			'Folder in which articles which differ will be stored.',
@@ -105,13 +104,6 @@ class CompareParsers extends DumpIterator {
 
 		$user = new User();
 		$this->options = ParserOptions::newFromUser( $user );
-
-		if ( $this->hasOption( 'tidy' ) ) {
-			if ( !MWTidy::isEnabled() ) {
-				$this->fatalError( 'Tidy was requested but $wgTidyConfig is not set in LocalSettings.php' );
-			}
-			$this->options->setTidy( true );
-		}
 
 		$this->failed = 0;
 	}

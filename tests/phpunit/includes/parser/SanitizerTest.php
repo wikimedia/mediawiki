@@ -20,17 +20,13 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
 	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
-		$this->hideDeprecated( 'disabling tidy' );
-		$this->hideDeprecated( 'MWTidy::setInstance' );
-		MWTidy::setInstance( false );
-
 		if ( $escaped ) {
 			$this->assertEquals( "&lt;$tag&gt;",
 				Sanitizer::removeHTMLtags( "<$tag>" )
 			);
 		} else {
 			$this->assertEquals( "<$tag></$tag>\n",
-				Sanitizer::removeHTMLtags( "<$tag>" )
+				Sanitizer::removeHTMLtags( "<$tag></$tag>\n" )
 			);
 		}
 	}
@@ -54,7 +50,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			// former testSelfClosingTag
 			[
 				'<div>Hello world</div />',
-				'<div>Hello world</div>',
+				'<div>Hello world</div></div>',
 				'Self-closing closing div'
 			],
 			// Make sure special nested HTML5 semantics are not broken
@@ -84,9 +80,6 @@ class SanitizerTest extends MediaWikiTestCase {
 	 * @covers Sanitizer::removeHTMLtags
 	 */
 	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
-		$this->hideDeprecated( 'disabling tidy' );
-		$this->hideDeprecated( 'MWTidy::setInstance' );
-		MWTidy::setInstance( false );
 		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
 	}
 

@@ -857,29 +857,6 @@ class ApiParseTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
-	public function testDisableTidy() {
-		$this->setMwGlobals( 'wgTidyConfig', [ 'driver' => 'RemexHtml' ] );
-
-		// Check that disabletidy doesn't have an effect just because tidying
-		// doesn't work for some other reason
-		$res1 = $this->doApiRequest( [
-			'action' => 'parse',
-			'text' => "<b>Mixed <i>up</b></i>",
-			'contentmodel' => 'wikitext',
-		] );
-		$this->assertParsedTo( "<p><b>Mixed <i>up</i></b>\n</p>", $res1 );
-
-		$res2 = $this->doApiRequest( [
-			'action' => 'parse',
-			'text' => "<b>Mixed <i>up</b></i>",
-			'contentmodel' => 'wikitext',
-			'disabletidy' => '',
-		] );
-
-		$this->assertParsedTo( "<p><b>Mixed <i>up</b></i>\n</p>", $res2,
-			'The parameter "disabletidy" has been deprecated.' );
-	}
-
 	public function testFormatCategories() {
 		$name = ucfirst( __FUNCTION__ );
 
