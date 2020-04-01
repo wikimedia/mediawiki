@@ -314,7 +314,8 @@ because of Phabricator reports.
 * AbstractBlock::mReason, deprecated in 1.34, is no longer public.
 * The GetBlockedStatus and UserIsHidden, deprecated in 1.34, has been removed.
   Instead, use the GetUserBlock hook.
-* A large number of Parser-related methods were removed or made private.
+* A large number of Parser-related methods and properties were removed or
+  made private.
   - disableCache(), deprecated in 1.28.
   - serializeHalfParsedText() and the helpers unserializeHalfParsedText(),
     isValidHalfParsedText(), and StripState::getSubState() and
@@ -353,9 +354,32 @@ because of Phabricator reports.
     - ::EXT_LINK_ADDR
     - ::EXT_IMAGE_REGEX
     - ::SPACE_NOT_NL
-  - $mDefaultStripList has been removed without deprecation.
-  - $mIncludeCount has been removed without deprecation.
-  - $mRevIdForTs has been removed without deprecation.
+  - The following properties have been removed without deprecation:
+    - ::$mDefaultStripList
+    - ::$mIncludeCount
+    - ::$mRevIdForTs
+  - The following properties have been made private without deprecation:
+    - ::$mFunctionSynonyms
+    - ::$mFunctionTagHooks
+    - ::$mStripList
+    - ::$mVarCache
+    - ::$mImageParams
+    - ::$mImageParamsMagicArray
+    - ::$mSubstWords
+    - ::$mConf (deprecated in 1.34)
+    - ::$mExtLinkBracketedRegex
+    - ::$mUrlProtocols
+    - ::$mAutonumber
+    - ::$mLinkHolders
+    - ::$mDefaultSort
+    - ::$mTplRedirCache
+    - ::$mForceTocPosition
+    - ::$mTplDomCache
+    - ::$mOutputType
+    - ::$mLangLinkLanguages
+    - ::$currentRevisionCache
+    - ::$mProfiler
+    - ::$mLinkRenderer
 * Parser::getTitle() will now throw a TypeError if $mTitle is uninitialized.
   This use pattern was deprecated in 1.34.
 * MediaWikiTestCase::prepareServices(), deprecated in 1.32, has been removed
@@ -731,7 +755,33 @@ because of Phabricator reports.
 * When using the ParserGetVariableValueSwitch hook, the following unusual
   uses have been deprecated: modifying the passed $magicWordId or failing to
   cache the returned value in $variableCache.
-* Parser::$mVarCache has been deprecated for direct access.
+* The following Parser properties have been deprecated:
+  - ::$mTagHooks
+  - ::$mFunctionHooks
+  - ::$mMarkerIndex
+  - ::$mFirstCall
+  - ::$mPreprocessor
+  - ::$mOutput
+  - ::$mStripState
+  - ::$mLinkID
+  - ::$mIncludeSizes
+  - ::$mPPNodeCount
+  - ::$mGeneratedPPNodeCount
+  - ::$mHighestExpansionDepth
+  - ::$mDoubleUnderscores
+  - ::$mExpensiveFunctionCount
+  - ::$mShowToc
+  - ::$mUser
+  - ::$mOptions
+  - ::$mTitle
+  - ::$ot
+  - ::$mRevisionObject
+  - ::$mRevisionId
+  - ::$mRevisionTimestamp
+  - ::$mRevisionUser
+  - ::$mRevisionSize
+  - ::$mInputSize
+  - ::$mInParse
 * A new UserNameUtils service was introduced. The following User methods
   were deprecated in favor of using the new service:
   - isIP
