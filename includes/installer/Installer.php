@@ -462,7 +462,6 @@ abstract class Installer {
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
 		$this->parserOptions = new ParserOptions( $wgUser ); // language will be wrong :(
-		$this->parserOptions->setTidy( true );
 		// Don't try to access DB before user language is initialised
 		$this->setParserLanguage( $mwServices->getLanguageFactory()->getLanguage( 'en' ) );
 	}

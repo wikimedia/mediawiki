@@ -74,7 +74,6 @@ class SpecialExpandTemplates extends SpecialPage {
 			$this->removeNowiki = $request->getBool( 'wpRemoveNowiki', false );
 			$options = ParserOptions::newFromContext( $this->getContext() );
 			$options->setRemoveComments( $this->removeComments );
-			$options->setTidy( true );
 			$options->setMaxIncludeSize( self::MAX_INCLUDE_SIZE );
 
 			$parser = MediaWikiServices::getInstance()->getParser();
