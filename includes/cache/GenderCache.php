@@ -22,6 +22,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -125,19 +126,15 @@ class GenderCache {
 	}
 
 	/**
-	 * Wrapper for doQuery that processes a title or string array.
+	 * Wrapper for doQuery that processes a title array.
 	 *
 	 * @since 1.20
-	 * @param array $titles Array of LinkTarget objects or strings
+	 * @param LinkTarget[] $titles
 	 * @param string $caller The calling method
 	 */
 	public function doTitlesArray( $titles, $caller = '' ) {
 		$users = [];
-		foreach ( $titles as $title ) {
-			$titleObj = is_string( $title ) ? Title::newFromText( $title ) : $title;
-			if ( !$titleObj ) {
-				continue;
-			}
+		foreach ( $titles as $titleObj ) {
 			if ( !$this->nsInfo->hasGenderDistinction( $titleObj->getNamespace() ) ) {
 				continue;
 			}
