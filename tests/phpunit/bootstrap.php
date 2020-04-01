@@ -48,6 +48,7 @@ function wfRequireOnceInGlobalScope( $fileName ) {
 
 define( 'MEDIAWIKI', true );
 define( 'MW_PHPUNIT_TEST', true );
+define( 'MW_ENTRY_POINT', 'cli' );
 
 $IP = realpath( __DIR__ . '/../../' );
 // We don't use a settings file here but some code still assumes that one exists
