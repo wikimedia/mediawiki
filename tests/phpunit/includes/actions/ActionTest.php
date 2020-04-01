@@ -63,11 +63,10 @@ class ActionTest extends MediaWikiTestCase {
 			[ 'DUMMY', 'DummyAction' ],
 			[ 'STRING', 'NamedDummyAction' ],
 
-			// Null and non-existing values
+			// non-existing values
 			[ 'null', null ],
 			[ 'undeclared', null ],
 			[ '', null ],
-			[ false, null ],
 		];
 	}
 
@@ -76,7 +75,7 @@ class ActionTest extends MediaWikiTestCase {
 	 * @param string $requestedAction
 	 * @param string|null $expected
 	 */
-	public function testActionExists( $requestedAction, $expected ) {
+	public function testActionExists( string $requestedAction, $expected ) {
 		$exists = Action::exists( $requestedAction );
 
 		$this->assertSame( $expected !== null, $exists );
@@ -99,6 +98,25 @@ class ActionTest extends MediaWikiTestCase {
 		$actionName = Action::getActionName( $context );
 
 		$this->assertEquals( $expected ?: 'nosuchaction', $actionName );
+	}
+
+	public function provideGetActionNameNotPossible() {
+		return [
+			'null' => [ null, 'view' ],
+			'false' => [ false, 'nosuchaction' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetActionNameNotPossible
+	 * @param mixed $requestedAction
+	 * @param string $expected
+	 */
+	public function testGetActionNameNotPossible( $requestedAction, string $expected ) {
+		$actionName = Action::getActionName(
+			$this->getContext( $requestedAction )
+		);
+		$this->assertEquals( $expected, $actionName );
 	}
 
 	public function testGetActionName_editredlinkWorkaround() {
@@ -136,11 +154,13 @@ class ActionTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers \Action::factory
+	 *
 	 * @dataProvider actionProvider
 	 * @param string $requestedAction
 	 * @param string|null $expected
 	 */
-	public function testActionFactory( $requestedAction, $expected ) {
+	public function testActionFactory( string $requestedAction, $expected ) {
 		$context = $this->getContext();
 		$action = Action::factory( $requestedAction, $context->getWikiPage(), $context );
 
@@ -151,12 +171,6 @@ class ActionTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function testNull_doesNotExist() {
-		$exists = Action::exists( null );
-
-		$this->assertFalse( $exists );
-	}
-
 	public function testNull_defaultsToView() {
 		$context = $this->getContext( null );
 		$actionName = Action::getActionName( $context );
@@ -164,11 +178,13 @@ class ActionTest extends MediaWikiTestCase {
 		$this->assertEquals( 'view', $actionName );
 	}
 
-	public function testNull_canNotBeInstantiated() {
-		$page = $this->getPage();
-		$action = Action::factory( null, $page );
-
-		$this->assertNull( $action );
+	/**
+	 * @covers \Action::factory
+	 */
+	public function testActionFactory_withNull_expectNull() {
+		$this->hideDeprecated( 'Action::factory with null $action' );
+		$result = Action::factory( null, $this->getPage() );
+		$this->assertNull( $result );
 	}
 
 	public function testDisabledAction_exists() {
