@@ -5,6 +5,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -908,7 +909,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		array $rows,
 		?string $expiry = null
 	): int {
-		$expiry = WatchedItem::normalizeExpiry( $expiry );
+		$expiry = ExpiryDef::normalizeExpiry( $expiry );
 
 		if ( !$expiry ) {
 			// Either expiry was invalid or null (shouldn't change), 0 rows affected.

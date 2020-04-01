@@ -420,6 +420,7 @@
 
 				case 'string':
 				case 'user':
+				case 'expiry':
 					if ( Util.apiBool( pi.multi ) ) {
 						widget = new OO.ui.TagMultiselectWidget( {
 							allowArbitrary: true,

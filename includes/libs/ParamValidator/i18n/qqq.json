@@ -14,10 +14,15 @@
 			"Siebrand",
 			"Tacsipacsi",
 			"Umherirrender",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"D41D8CD98F",
+			"Zoranzoki21",
+			"MusikAnimal"
 		]
 	},
 	"paramvalidator-badbool": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - List of values recognized as \"true\", as a text list.\n* $4 - Count of values in $3.\n* $5 - List of values recognized as \"false\", as a text list. Includes {{msg-mw|paramvalidator-emptystring}}.\n* $6 - Count of values in $5.",
+	"paramvalidator-badexpiry": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
+	"paramvalidator-badexpiry-past": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-badfloat": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-badfloat-notfinite": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-badinteger": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
@@ -57,6 +62,7 @@
 	"paramvalidator-help-type-boolean": "Used to indicate that a parameter is a boolean (\"true\" or \"false\") or list of booleans. Parameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values",
 	"paramvalidator-help-type-enum-can-be-empty": "Used to indicate that one of the possible values in the list is the empty string.\n\nParameters:\n* $1 - Remainder of the list, as a comma-separated list.\n* $2 - Number of items in $1; may be 0",
 	"paramvalidator-help-type-enum": "Used to display the possible values for a parameter taking a list of values\n\nParameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - Comma-separated list of values, possibly formatted using {{msg-mw|paramvalidator-help-list-can-be-empty}}\n* $3 - Number of items in $2 (including the empty string, if applicable).\n{{Identical|Value}}",
+	"paramvalidator-help-type-expiry": "Help message indicating valid values for the expiry type.\n\nParameters:\n* $1 -  1 if the parameter takes one value, 2 if the parameter takes any number of values\n* $2 - Comma-separated list of values representing 'never expires'.",
 	"paramvalidator-help-type-float": "Used to indicate that a parameter is a decimal number or list of numbers. Parameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values",
 	"paramvalidator-help-type-integer": "Used to indicate that a parameter is an integer or list of integers. Parameters:\n* $1 - 1 if the parameter takes one value, 2 if the parameter takes any number of values",
 	"paramvalidator-help-type-limit": "Used to indicate that a parameter is a \"limit\" type. Parameters:\n* $1 - Always 1",

@@ -126,30 +126,4 @@ class WatchedItem {
 		$unix = MWTimestamp::convert( TS_UNIX, $this->getExpiry() );
 		return $unix < wfTimestamp();
 	}
-
-	/**
-	 * Normalize a user-inputted expiry.
-	 * @since 1.35
-	 * @param string|null $expiry
-	 * @return string|false|null Timestamp as TS_MW, 'infinity', false if invalid, or null
-	 *   when given null (which for the watchlist means the expiry should remain unchanged).
-	 * @todo This logic should really be refactored with UserrightsPage::expiryToTimestamp(),
-	 *   along with the expiry logic used for blocking and page protection.
-	 */
-	public static function normalizeExpiry( ?string $expiry ) {
-		if ( $expiry === null ) {
-			return null;
-		}
-		if ( wfIsInfinity( $expiry ) ) {
-			return 'infinity';
-		}
-
-		$unix = strtotime( $expiry );
-		if ( !$unix || $unix === -1 ) {
-			// Invalid expiry.
-			return false;
-		}
-
-		return wfTimestamp( TS_MW, $unix );
-	}
 }
