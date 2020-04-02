@@ -830,10 +830,14 @@ class MovePage {
 			__METHOD__
 		);
 
+		// Reset $nt before using it to create the null revision (T248789).
+		// But not $this->oldTitle yet, see below (T47348).
+		$nt->resetArticleID( $oldid );
+
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = $this->revisionStore->newNullRevision(
 			$dbw,
-			$this->oldTitle,
+			$nt,
 			CommentStoreComment::newUnsavedComment( $comment ),
 			true,
 			$user
@@ -859,7 +863,6 @@ class MovePage {
 		}
 
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
-		$nt->resetArticleID( $oldid );
 		$newpage->loadPageData( WikiPage::READ_LOCKING ); // T48397
 
 		$nullRevisionObj = new Revision( $nullRevision );
