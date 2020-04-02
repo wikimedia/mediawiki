@@ -3090,7 +3090,7 @@ $wgExtraLanguageNames = [];
 /**
  * List of mappings from one language code to another.
  * This array makes the codes not appear as a selectable language on the
- * installer, and excludes them when running the transstat.php script.
+ * installer.
  *
  * In Setup.php, the variable $wgDummyLanguageCodes is created by combining
  * these codes with a list of "deprecated" codes, which are mostly leftovers
