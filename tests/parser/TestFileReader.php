@@ -84,7 +84,6 @@ class TestFileReader {
 		$nonTidySection = $this->checkSection(
 			[ 'html/php+untidy', 'html+untidy' ], false );
 		if ( $this->format < 2 ) {
-			wfDeprecated( "parserTest v1: $this->file", '1.35' );
 			if ( $nonTidySection === false ) {
 				// untidy by default
 				$nonTidySection = $output;
