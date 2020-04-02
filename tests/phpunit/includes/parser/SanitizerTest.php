@@ -50,7 +50,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			// former testSelfClosingTag
 			[
 				'<div>Hello world</div />',
-				'<div>Hello world</div></div>',
+				'<div>Hello world</div>',
 				'Self-closing closing div'
 			],
 			// Make sure special nested HTML5 semantics are not broken
