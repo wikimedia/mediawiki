@@ -62,8 +62,17 @@ class ResetUserEmail extends Maintenance {
 		$user->saveSettings();
 
 		if ( !$this->hasOption( 'no-reset-password' ) ) {
-			// Kick whomever is currently controlling the account off
-			$user->setPassword( PasswordFactory::generateRandomPasswordString( 128 ) );
+			// Kick whomever is currently controlling the account off if possible
+			$password = PasswordFactory::generateRandomPasswordString( 128 );
+			$status = $user->changeAuthenticationData( [
+				'username' => $user->getName(),
+				'password' => $password,
+				'retype' => $password,
+			] );
+			if ( !$status->isGood() ) {
+				$this->error( "Password couldn't be reset because:\n"
+					. $status->getMessage( null, null, 'en' )->text() );
+			}
 		}
 		$this->output( "Done!\n" );
 	}
