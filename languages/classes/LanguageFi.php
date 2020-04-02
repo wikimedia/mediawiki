@@ -144,8 +144,9 @@ class LanguageFi extends Language {
 			'month' => 'kuukausi',
 			'years' => 'vuotta',
 			'year' => 'vuosi',
-			'infinite' => 'ikuisesti',
-			'indefinite' => 'ikuisesti'
+			'infinite' => 'ikuinen',
+			'indefinite' => 'ikuinen',
+			'infinity' => 'ikuinen'
 		];
 
 		$final = '';
