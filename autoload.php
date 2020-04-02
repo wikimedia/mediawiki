@@ -260,7 +260,6 @@ $wgAutoloadLocalClasses = [
 	'CheckBadRedirects' => __DIR__ . '/maintenance/checkBadRedirects.php',
 	'CheckComposerLockUpToDate' => __DIR__ . '/maintenance/checkComposerLockUpToDate.php',
 	'CheckDependencies' => __DIR__ . '/maintenance/checkDependencies.php',
-	'CheckExtensionsCLI' => __DIR__ . '/maintenance/language/checkLanguage.inc',
 	'CheckImages' => __DIR__ . '/maintenance/checkImages.php',
 	'CheckLanguageCLI' => __DIR__ . '/maintenance/language/checkLanguage.inc',
 	'CheckLess' => __DIR__ . '/maintenance/checkLess.php',
