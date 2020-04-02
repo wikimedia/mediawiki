@@ -539,8 +539,10 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
 			$this->mId = intval( $data->page_id );
-			$this->mTouched = wfTimestamp( TS_MW, $data->page_touched );
-			$this->mLinksUpdated = wfTimestampOrNull( TS_MW, $data->page_links_updated );
+			$this->mTouched = MWTimestamp::convert( TS_MW, $data->page_touched );
+			$this->mLinksUpdated = $data->page_links_updated === null
+				? null
+				: MWTimestamp::convert( TS_MW, $data->page_links_updated );
 			$this->mIsRedirect = intval( $data->page_is_redirect );
 			$this->mLatest = intval( $data->page_latest );
 			// T39225: $latest may no longer match the cached latest Revision object.
@@ -800,7 +802,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->loadLastEdit();
 		}
 
-		return wfTimestamp( TS_MW, $this->mTimestamp );
+		return MWTimestamp::convert( TS_MW, $this->mTimestamp );
 	}
 
 	/**
@@ -809,7 +811,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return void
 	 */
 	public function setTimestamp( $ts ) {
-		$this->mTimestamp = wfTimestamp( TS_MW, $ts );
+		$this->mTimestamp = MWTimestamp::convert( TS_MW, $ts );
 	}
 
 	/**
@@ -1500,7 +1502,7 @@ class WikiPage implements Page, IDBAccessObject {
 			__METHOD__ );
 
 		if ( $row ) {
-			if ( wfTimestamp( TS_MW, $row->rev_timestamp ) >= $revision->getTimestamp() ) {
+			if ( MWTimestamp::convert( TS_MW, $row->rev_timestamp ) >= $revision->getTimestamp() ) {
 				return false;
 			}
 			$prev = $row->rev_id;
@@ -3219,7 +3221,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$targetEditorForPublic ? $targetEditorForPublic->getName() : null,
 			$currentEditorForPublic ? $currentEditorForPublic->getName() : null,
 			$s->rev_id,
-			$contLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
+			$contLang->timeanddate( MWTimestamp::convert( TS_MW, $s->rev_timestamp ) ),
 			$current->getId(),
 			$contLang->timeanddate( $current->getTimestamp() )
 		];

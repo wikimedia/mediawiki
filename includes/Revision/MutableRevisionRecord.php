@@ -28,6 +28,7 @@ use InvalidArgumentException;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MWException;
+use MWTimestamp;
 use Title;
 use Wikimedia\Assert\Assert;
 
@@ -224,12 +225,12 @@ class MutableRevisionRecord extends RevisionRecord {
 	}
 
 	/**
-	 * @param string $timestamp A timestamp understood by wfTimestamp
+	 * @param string $timestamp A timestamp understood by MWTimestamp
 	 */
 	public function setTimestamp( $timestamp ) {
 		Assert::parameterType( 'string', $timestamp, '$timestamp' );
 
-		$this->mTimestamp = wfTimestamp( TS_MW, $timestamp );
+		$this->mTimestamp = MWTimestamp::convert( TS_MW, $timestamp );
 	}
 
 	/**
