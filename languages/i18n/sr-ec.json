@@ -1769,7 +1769,6 @@
 	"uploadstash-zero-length": "Датотека је празна",
 	"invalid-chunk-offset": "Неважећа полазна тачка",
 	"img-auth-accessdenied": "Приступ је одбијен",
-	"img-auth-nopathinfo": "Недостају информације о путањи.\nВаш сервер мора да буде подешен да пропушта промењиве REQUEST_URI и/или PATH_INFO.\nАко јесте, покушајте са омогућавањем $wgUsePathInfo.\nПогледајте https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Тражена путања није у подешеном директоријуму за отпремање.",
 	"img-auth-badtitle": "Није могуће саставити важећи наслов из „$1”.",
 	"img-auth-nofile": "Датотека „$1“ не постоји.",

@@ -1624,7 +1624,6 @@
 	"uploadstash-zero-length": "Lengd skráar er núll.",
 	"invalid-chunk-offset": "Ógild raðbreyting bunka",
 	"img-auth-accessdenied": "Aðgangur óheimill",
-	"img-auth-nopathinfo": "Vantar upplýsingar um slóð.\nÞjónninn þinn er ekki stilltur til að senda REQUEST_URI og/eða PATH_INFO breyturnar.\nEf svo er, prófaðu að virkja $wgUsePathInfo.\nSkoðaðu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Umbeðin slóð var ekki í stilltri innhleðslumöppu.",
 	"img-auth-badtitle": "Mistókst að búa til gildan titil útfrá „$1”.",
 	"img-auth-nofile": "Skráin \"$1\" er ekki til.",

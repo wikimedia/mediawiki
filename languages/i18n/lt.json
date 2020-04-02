@@ -1683,7 +1683,6 @@
 	"uploadstash-zero-length": "Rinkmena neturi ilgio.",
 	"invalid-chunk-offset": "Neleistinas segmento poslinkis",
 	"img-auth-accessdenied": "Prieiga uždrausta",
-	"img-auth-nopathinfo": "Trūksta PATH_INFO.\nJūsų serveris nenustatytas perduoti šią informaciją.\nTai gali būti CGI paremta ir negali palaikyti img_auth.\nDaugiau informacijos https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization. žr.",
 	"img-auth-notindir": "Užklaustas kelias nėra sukonfigūruotame įkėlimo kataloge.",
 	"img-auth-badtitle": "Nepavyksta padaryti leistino pavadinimo iš „$1“.",
 	"img-auth-nofile": "Failas „$1“ neegzistuoja.",

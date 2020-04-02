@@ -1885,7 +1885,6 @@
 	"uploadstash-zero-length": "ファイルのサイズがゼロです。",
 	"invalid-chunk-offset": "無効なチャンクオフセット",
 	"img-auth-accessdenied": "アクセスが拒否されました",
-	"img-auth-nopathinfo": "URL のパス情報が見つかりません。\nサーバーは、変数 REQUEST_URI または PATH_INFO の一方または両方でパス情報を渡すように構成する必要があります。\nすでに設定済みの場合は、$wgUsePathInfo を有効にすることをお試しください。\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization をご覧ください。",
 	"img-auth-notindir": "要求されたパスは、設定済みのアップロード先ディレクトリ内にありません。",
 	"img-auth-badtitle": "「$1」からは有効なページ名を構築できません。",
 	"img-auth-nofile": "ファイル「$1」は存在しません。",

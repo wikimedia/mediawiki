@@ -1813,7 +1813,6 @@
 	"uploadstash-zero-length": "הקובץ באורך אפס.",
 	"invalid-chunk-offset": "היסט גוש לא תקין",
 	"img-auth-accessdenied": "הגישה נדחתה",
-	"img-auth-nopathinfo": "חסר מידע על הנתיב.\nהשרת חייב להיות מוגדר להעברת המשתנים REQUEST_URI ו/או PATH_INFO.\nאם הוא אכן מוגדר כך, ניתן לנסות להפעיל את ‎$wgUsePathInfo.\nלמידע נוסף: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.",
 	"img-auth-badtitle": "לא ניתן ליצור כותרת תקינה מתוך \"$1\".",
 	"img-auth-nofile": "הקובץ \"$1\" אינו קיים.",

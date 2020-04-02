@@ -1328,7 +1328,6 @@
 	"uploadstash-refresh": "Aggiorna la lista dî file",
 	"invalid-chunk-offset": "Offset ntô chunk nun vàlidu",
 	"img-auth-accessdenied": "Accessu nigatu",
-	"img-auth-nopathinfo": "Variàbbili PATH_INFO ammancanti.\nLu tò server nun è mpustatu pi passari sta nfurmazzioni.\nPurrìa èssiri basatu supra a CGI e nun pò suppurtari img_auth.\nTalìa https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Lu caminu addumannatu nun è ntâ cartella cunfigurata pî carricamenti.",
 	"img-auth-badtitle": "Nun fu pussìbbili custruiri nu tìtulu vàlidu a pàrtiri di \"$1\".",
 	"img-auth-nofile": "Lu file \"$1\" nun esisti.",

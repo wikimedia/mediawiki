@@ -1351,7 +1351,6 @@
 	"uploadstash-refresh": "Lieste mit bestaanden biewarken",
 	"invalid-chunk-offset": "Ongeldig startpunt",
 	"img-auth-accessdenied": "Toegang eweigerd",
-	"img-auth-nopathinfo": "PATH_INFO ontbrik.\nJoew server is niet in-esteld um disse informasie deur te geven.\nMisschien gebruukt t CGI, en dan wörden img_auth niet ondersteund.\nZie https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization veur meer informasie.",
 	"img-auth-notindir": "t Op-evreugen pad is niet bekend in de in-estelden inlaojmap",
 	"img-auth-badtitle": "Kon gien geldige ziednaam maken van \"$1\".",
 	"img-auth-nofile": "Bestaand \"$1\" besteet niet.",

@@ -1874,7 +1874,6 @@
 	"uploadstash-zero-length": "Plik ma zerowy rozmiar.",
 	"invalid-chunk-offset": "Nieprawidłowe przesunięcie fragmentu",
 	"img-auth-accessdenied": "Odmowa dostępu",
-	"img-auth-nopathinfo": "Brak informacji o ścieżce.\nSerwer musi być skonfigurowany tak, aby przekazywał zmienne REQUEST_URI lub PATH_INFO.\nJeżeli jest już odpowiednio skonfigurowany, spróbuj włączyć $wgUsePathInfo.\nWięcej o informacji o autoryzacji grafik na https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Żądana ścieżka nie jest w obrębie katalogu skonfigurowanego do przesyłania plików.",
 	"img-auth-badtitle": "Nie można wygenerować prawidłowego tytuł z „$1”.",
 	"img-auth-nofile": "Brak pliku „$1”.",

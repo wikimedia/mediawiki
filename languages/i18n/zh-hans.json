@@ -1917,7 +1917,6 @@
 	"uploadstash-zero-length": "文件长度为零。",
 	"invalid-chunk-offset": "无效区块偏移量",
 	"img-auth-accessdenied": "拒绝访问",
-	"img-auth-nopathinfo": "缺少路径信息。您的服务器必须适当配置以跳过REQUEST_URI和/或PATH_INFO变量。如果有，请尝试启用$wgUsePathInfo。请参见https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization。",
 	"img-auth-notindir": "在已设置的上传目录中找不到请求的路径。",
 	"img-auth-badtitle": "无法为“$1”创建合法的标题。",
 	"img-auth-nofile": "文件“$1”不存在。",

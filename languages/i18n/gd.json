@@ -1421,7 +1421,6 @@
 	"uploadstash-refresh": "Ath-nuadhaich liosta nam faidhlichean",
 	"invalid-chunk-offset": "Frith-àireamh a' chnaip mhì-dhligheach",
 	"img-auth-accessdenied": "Chaidh an t-inntrigeadh a dhiùltadh",
-	"img-auth-nopathinfo": "Tha PATH_INFO a dhìth.\nCha deach am frithealaiche agad a shuidheachadh ach an doireadh e am fiosrachadh seo seachad.\nDh'fhaoidte gu bheil e stèidhichte air CGI 's chan urrainn dha taic a chur ri img_auth.\nFaic https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Chan eil an t-slighe a chaidh iarraidh san t-slighe luchdaidh suas a chaidh a rèiteachadh.",
 	"img-auth-badtitle": "Cha ghabh tiotal dligheach a thogail o \"$1\".",
 	"img-auth-nofile": "Chan eil am faidhle \"$1\" ann.",

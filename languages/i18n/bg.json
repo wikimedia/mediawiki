@@ -1819,7 +1819,6 @@
 	"uploadstash-zero-length": "Файлът е с нулева дължина.",
 	"invalid-chunk-offset": "Невалидно отместване на фрагмента",
 	"img-auth-accessdenied": "Достъпът е отказан",
-	"img-auth-nopathinfo": "Липсва информация за пътя.\nВашият сървър трябва да бъде настроен да предава променливите REQUEST_URI и PATH_INFO .\nАко това е така, опитайте да активирате $wgUsePathInfo.\n\nВижте https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Търсеният път не е в настроената директория за качвания.",
 	"img-auth-badtitle": "Грешка при изграждането на валидно заглавие от „$1“.",
 	"img-auth-nofile": "Файлът „$1“ не съществува.",

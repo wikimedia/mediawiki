@@ -1786,7 +1786,6 @@
 	"uploadstash-zero-length": "Datoteka ima nično dolžino.",
 	"invalid-chunk-offset": "Neveljaven odmik delčka",
 	"img-auth-accessdenied": "Dostop zavrnjen",
-	"img-auth-nopathinfo": "Manjka informacija o poti.\nVaš strežnik mora biti nastavljen tako, da posreduje spremenljivki REQUEST_URI in/ali PATH_INFO.\nČe je, poskusite omogočiti $wgUsePathInfo.\nOglejte si  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Zahtevana pot ni v konfigurirani mapi za nalaganje.",
 	"img-auth-badtitle": "Ni mogoče sestaviti veljavnega naslova iz »$1«.",
 	"img-auth-nofile": "Datoteka »$1« ne obstaja.",

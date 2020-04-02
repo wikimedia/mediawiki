@@ -1669,7 +1669,6 @@
 	"uploadstash-zero-length": "Datoteka ima nultu dužinu.",
 	"invalid-chunk-offset": "Neispravna polazna tačka",
 	"img-auth-accessdenied": "Pristup onemogućen",
-	"img-auth-nopathinfo": "Nedostaje PATH_INFO.\nVaš server nije postavljen da daje ovu informaciju.\nMožda je zasnovan na CGI koji ne podržava img_auth.\nPogledajte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Zahtjevana putanja nije u direktoriju podešenom za postavljanje.",
 	"img-auth-badtitle": "Ne mogu napraviti valjani naslov iz \"$1\".",
 	"img-auth-nofile": "Datoteka \"$1\" ne postoji.",

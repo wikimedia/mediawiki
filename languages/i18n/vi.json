@@ -1813,7 +1813,6 @@
 	"uploadstash-zero-length": "Tập tin có dung lượng bằng không.",
 	"invalid-chunk-offset": "Khúc lệch (chunk offset) không hợp lệ",
 	"img-auth-accessdenied": "Không cho phép truy cập",
-	"img-auth-nopathinfo": "Thiếu thông tin đường dẫn.\nMáy chủ của bạn phải được thiết lập để truyền biến REQUEST_URI và/hoặc biến PATH_INFO.\nNếu đã được thiết lập, hãy thử kích hoạt $wgUsePathInfo.\nXem [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization hướng dẫn điều khiển truy cập hình ảnh].",
 	"img-auth-notindir": "Đường dẫn yêu cầu không nằm trong thư mục cấu hình tải lên.",
 	"img-auth-badtitle": "Không thể tạo tựa đề hợp lệ từ “$1”.",
 	"img-auth-nofile": "Không tồn tại tập tin “$1”.",

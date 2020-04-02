@@ -1430,7 +1430,6 @@
 	"uploadstash-thumbnail": "vêre la miniatura",
 	"invalid-chunk-offset": "Dèplacement de bocon pas justo",
 	"img-auth-accessdenied": "Accès refusâ",
-	"img-auth-nopathinfo": "PATH_INFO entrovâblo.\nVoutron sèrvior est pas configurâ por passar cel’enformacion.\nPôt-étre que fonccione en CGI et recognêt vêr pas img_auth.\nVêde https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.",
 	"img-auth-badtitle": "Y at pas moyen de construire un titro justo dês « $1 ».",
 	"img-auth-nofile": "Lo fichiér « $1 » ègziste pas.",

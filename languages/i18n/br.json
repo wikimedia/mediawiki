@@ -1652,7 +1652,6 @@
 	"uploadstash-zero-length": "Ment ar restr a zo mann",
 	"invalid-chunk-offset": "Direizh eo offset ar rannad",
 	"img-auth-accessdenied": "Moned nac'het",
-	"img-auth-nopathinfo": "Mankout a ra ar PATH_INFO.\nN'eo ket kefluniet ho servijer evit reiñ an titour-mañ.\nMarteze eo diazezet war CGI ha n'hall ket skorañ img_auth.\nGwelet https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
 	"img-auth-badtitle": "Dibosupl krouiñ un titl reizh adalek \"$1\".",
 	"img-auth-nofile": "n'eus ket eus ar restr \"$1\".",

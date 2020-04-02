@@ -1820,7 +1820,6 @@
 	"uploadstash-zero-length": "Soubor má nulovou délku.",
 	"invalid-chunk-offset": "Neplatný posun bloku",
 	"img-auth-accessdenied": "Přístup odepřen",
-	"img-auth-nopathinfo": "Chybí informace o cestě.\nVáš server musí být nastaven tak, aby předával proměnné REQUEST_URI nebo PATH_INFO.\nPokud je, zkuste zapnout $wgUsePathInfo.\nVizte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.",
 	"img-auth-badtitle": "Z „$1“ nelze vytvořit platný název stránky.",
 	"img-auth-nofile": "Soubor „$1“ neexistuje.",

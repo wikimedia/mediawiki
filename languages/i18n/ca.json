@@ -1837,7 +1837,6 @@
 	"uploadstash-zero-length": "El fitxer té mida zero.",
 	"invalid-chunk-offset": "El desplaçament del fragment no és vàlid",
 	"img-auth-accessdenied": "Accés denegat",
-	"img-auth-nopathinfo": "Hi manca la informació del camí.\nCal configurar el servidor per passar les variables REQUEST_URI i/o PATH_INFO.\nConsulteu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
 	"img-auth-badtitle": "No s'ha pogut construir un títol vàlid a partir de \"$1\".",
 	"img-auth-nofile": "No existeix el fitxer \"$1\".",

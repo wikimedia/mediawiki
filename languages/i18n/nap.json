@@ -1651,7 +1651,6 @@
 	"uploadstash-file-not-found-no-remote-thumb": "N'aggio truvato 'a figurella: $1 URL = $2",
 	"invalid-chunk-offset": "Distanza d' 'a parte nun valida",
 	"img-auth-accessdenied": "Acciesso negato",
-	"img-auth-nopathinfo": "PATH_INFO mancante.\n'O server nun è mpustato pe' passà sta nfurmazione.\nPuò darse ca, essenno basato ncopp'a CGI, nun putesse suppurtà img_auth.\nVide https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "'O percurzo addimannato nun se trova dint' 'e cartelle d'upload configurate.",
 	"img-auth-badtitle": "Nun se può fravecà nu titolo valido 'a \"$1\".",
 	"img-auth-nofile": "File \"$1\" nun esiste.",

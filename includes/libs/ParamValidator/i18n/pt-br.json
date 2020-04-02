@@ -14,6 +14,7 @@
 	"paramvalidator-outofrange-minmax": "O valor \"$2\" para o parâmetro \"$1\" deve estar entre $3 e $4.",
 	"paramvalidator-outofrange-min": "O valor \"$2\" para o parâmetro \"$1\" não deve ser inferior a $3.",
 	"paramvalidator-param-deprecated": "O parâmetro \"$1\" foi descontinuado.",
+	"paramvalidator-toomanyvalues": "Valores demais fornecidos para o parâmetro \"$1\". O limite é de $2.",
 	"paramvalidator-help-default": "Padrão: $1",
 	"paramvalidator-help-default-empty": "Padrão: (vazio)",
 	"paramvalidator-help-deprecated": "Este parâmetro está obsoleto.",
@@ -24,9 +25,12 @@
 	"paramvalidator-help-type-float": "Tipo: {{PLURAL:$1|1=flutuante|2=lista de flutuantes}}",
 	"paramvalidator-help-type-integer": "Tipo: {{PLURAL:$1|1=inteiro|2=lista de inteiros}}",
 	"paramvalidator-help-type-limit": "Tipo: número inteiro ou \"max\"",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=O valor deve ser maior que|2=Os valores devem ser maiores que}} $3.",
 	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=O valor deve estar entre|2=Os valores devem estar entre}} $2 e $3.",
 	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=O valor não pode ser inferior a|2=Os valores não podem ser inferiores a}} $2.",
 	"paramvalidator-help-type-presenceboolean": "Tipo: booleano",
+	"paramvalidator-help-type-string-maxbytes": "Não pode exceder $1 {{PLURAL:$1|byte|bytes}}.",
+	"paramvalidator-help-type-string-maxchars": "Não pode exceder $1 {{PLURAL:$1|carácter|caracteres}}.",
 	"paramvalidator-help-type-timestamp": "Tipo: {{PLURAL:$1|1=carimbo de data/hora|2=lista de  carimbo de data/hora}}",
 	"paramvalidator-help-type-upload": "Deve ser postado como um upload de arquivo usando multipart/form-data."
 }

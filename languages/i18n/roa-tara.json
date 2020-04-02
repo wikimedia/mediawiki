@@ -1684,7 +1684,6 @@
 	"uploadstash-zero-length": "'U file tène lunghezze zero.",
 	"invalid-chunk-offset": "distanze d'u chunk invalide",
 	"img-auth-accessdenied": "Accesse negate",
-	"img-auth-nopathinfo": "No se iacchie 'u percorse d'a 'mbormnazione.\n'U server tune adda essere 'mbostate pe passà sta 'le variabbile REQUEST_URI e/o PATH_INFO.\nCe jè accussì, pruève a abbilità $wgUsePathInfo.\n'Ndruche https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
 	"img-auth-badtitle": "Non ge se pò costruì 'nu titele valide da \"$1\".",
 	"img-auth-nofile": "File \"$1\" non g'esiste.",

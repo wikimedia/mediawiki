@@ -1679,7 +1679,6 @@
 	"uploadstash-exception": "ატვირთვის სტეშში ($1) შენახვა ვერ მოხერხდა: „$2“.",
 	"invalid-chunk-offset": "არასწორი საწყისი წერტილი",
 	"img-auth-accessdenied": "მოქმედება აკრძალულია",
-	"img-auth-nopathinfo": "დაკარგულია PATH_INFO.\nთქვენი სერვერი არ არის მომართული ამ ინფორმაციის გადასაცემად.\nშესაძლოა, ის მუშაობს CGI-ის ბაზაზე და არ გააჩნია img_auth მხარდაჭერა.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization იხილეთ სურათის ავტორიზაცია.]",
 	"img-auth-notindir": "მოთხოვნილი გზა არ შეესაბამება ატვირთვის ფოლდერს.",
 	"img-auth-badtitle": "შეუძლებელია სწორი სათაურის შექმნა \"$1\"-დან.",
 	"img-auth-nofile": "ფაილი \"$1\" არ არსებობს.",

@@ -1733,7 +1733,6 @@
 	"uploadstash-zero-length": "Fitxategiaren luzeera zero da.",
 	"invalid-chunk-offset": "Desplazamendu zati baliogabea",
 	"img-auth-accessdenied": "Sarbide ukatua",
-	"img-auth-nopathinfo": "Bideratze informazioa falta da.\nZure zerbitzaria konfiguratua egon behar du REQUEST_URI eta/edo PATH_INFO aldagaiak gainditzeko.\nBaldin badago, saiatu $wgUsePathInfo gaitzen.\nIkusi https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Eskatutako bidea ez dago kofiguratutako igoera-direktorioan.",
 	"img-auth-badtitle": "Ezin izan da baleko izenbururik eraiki \"$1\" izenetik abiatuta",
 	"img-auth-nofile": "Ez dago \"$1\" fitxategirik.",

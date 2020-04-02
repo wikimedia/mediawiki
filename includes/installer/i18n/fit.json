@@ -41,7 +41,7 @@
 	"config-invalid-db-prefix": "”$1” ei kelpaa taattapaasin etuliitteeksi.\nKäytä ainoastaan kirjaimia (a-z, A-Z), numeroita (0-9), alaviivoja (_) ja tavuviivoja (-).",
 	"config-connection-error": "$1.\n\nTarkista isäntä, käyttäjänimi, salasana ja yritä uuestaan. Jos käytät \"localhost\" taattapaasin isäntänä, kokeile käyttää \"127.0.0.1\" sen sijaan (tai toisinpäin).",
 	"config-sqlite-connection-error": "$1.\n\nTarkista tietohakemiston ja taattapaasin nimi alla ja yritä uuesti.",
-	"config-sqlite-cant-create-db": "Taattapaasifiiliä <code>$1</code> ei voitu lua.",
+	"config-sqlite-cant-create-db": "Taattapaasifiiliä <code>$1</code> ei voitu luoa.",
 	"config-can-upgrade": "Taattapaasi sisältää jo MeetiaWiki-tauluja.\nPäivitä ne MeetiaWiki-versuuniin $1 painamalla <strong>Jatka</strong>.",
 	"config-unknown-collation": "<strong>Varoitus:</strong> Taattapaasi käyttää tunnistamatonta lajittelua.",
 	"config-db-web-account": "Taattapaasikonttu verkkokäythöön",

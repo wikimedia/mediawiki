@@ -1314,7 +1314,6 @@
 	"uploadstash-refresh": "Tukey maašeedaa dam taaga",
 	"invalid-chunk-offset": "Gurunbu hibiyan laala",
 	"img-auth-accessdenied": "Huruyan mongu",
-	"img-auth-nopathinfo": "PATH_INFO ga kuma.\nWar feršikaa mana soolu alhabaroo woo bisandiyanoo se.\nSanda CGI-gorante no nd'a ši nd'a ši hin ka img_auth kanbe.\nSee https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Fondaa kaŋ hãandi ši zijandiyan fooloɲaa hansantaa ra.",
 	"img-auth-badtitle": "Ši hin ka maa henna cin ka hun \"$1\" ga.",
 	"img-auth-nofile": "\"$1\" tuku ši bara.",

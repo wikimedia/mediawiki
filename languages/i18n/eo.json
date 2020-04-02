@@ -1812,7 +1812,6 @@
 	"uploadstash-zero-length": "Longo de dosiero estas nul.",
 	"invalid-chunk-offset": "Nevalida deŝovo de dosierpeco",
 	"img-auth-accessdenied": "Atingo malpermisita",
-	"img-auth-nopathinfo": "Mankas informo pri vojo.\nVia servilo estu agordita por sendi la variablojn REQUEST_URI kaj/aŭ PATH_INFO.\nSe ĝi jam estas, provu aktivigon de $wgUsePathInfo.\nVidu https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Petita vojo ne estas en la konfigurita alŝuta dosierujo.",
 	"img-auth-badtitle": "Ne povas konstrui validan titolon de \"$1\".",
 	"img-auth-nofile": "Dosiero \"$1\" ne ekzistas.",

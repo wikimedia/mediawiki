@@ -1780,7 +1780,6 @@
 	"uploadstash-zero-length": "O file o g'ha longhessa zero.",
 	"invalid-chunk-offset": "Offset d'a parte non vallido.",
 	"img-auth-accessdenied": "Accesso negou",
-	"img-auth-nopathinfo": "Informassioin mancanti in sciô percorso.\nO serviou o dev'ese impostou pe passâ e variabbile REQUEST_URI e/ò PATH_INFO.\nS'a l'è coscì, abillita $wgUsePathInfo.\nVeddi https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "O percorso domandou o no l'è inta directory de upload configuâ.",
 	"img-auth-badtitle": "Imposcibile construe un tittolo vallido da \"$1\".",
 	"img-auth-nofile": "O file \"$1\" o no l'existe.",

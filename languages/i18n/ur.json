@@ -1691,7 +1691,6 @@
 	"uploadstash-zero-length": "فائل کا طول صفر ہے۔",
 	"invalid-chunk-offset": "آفسیٹ کا قطعہ نادرست ہے",
 	"img-auth-accessdenied": "رسائی معطل",
-	"img-auth-nopathinfo": "PATH_INFO مفقود ہے۔\nآپ کے سرور کو اس معلومات کی ترسیل کے لیے مرتب نہیں کیا گیا ہے۔\nممکن ہے یہ سی جی آئی پر مبنی ہو اور img_auth کو قبول نہ کرتا ہو۔\nبراہ کرم https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization کو ملاحظہ کریں۔",
 	"img-auth-notindir": "اپلوڈ کے لیے ترتیب شدہ ڈائرکٹری میں درخواست کردہ راستہ موجود نہیں ہے۔",
 	"img-auth-badtitle": "«$1» سے کسی درست عنوان کی تشکیل نہیں کی جا سکتی۔",
 	"img-auth-nofile": "فائل «$1» موجود نہیں ہے۔",

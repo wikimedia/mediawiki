@@ -1855,7 +1855,6 @@
 	"uploadstash-zero-length": "Filens längd är noll.",
 	"invalid-chunk-offset": "Ogiltig segmentsförskjutning",
 	"img-auth-accessdenied": "Åtkomst nekad",
-	"img-auth-nopathinfo": "Sökvägsinformation saknas.\nDin server måste vara inställd för att ge variablerna REQUEST_URI och/eller PATH_INFO.\nOm den är det, försök att aktivera $wgUsePathInfo.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization Se bildbehörighet.]",
 	"img-auth-notindir": "Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.",
 	"img-auth-badtitle": "Kan inte skapa en giltig titel från \"$1\"",
 	"img-auth-nofile": "Filen \"$1\" finns inte.",

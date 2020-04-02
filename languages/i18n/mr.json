@@ -1633,7 +1633,6 @@
 	"uploadstash-refresh": "संचिकांची यादी ताजीतवानी करा",
 	"invalid-chunk-offset": "अवैध चंक ऑफसेट",
 	"img-auth-accessdenied": "पोहोच नाकारल्या गेली.",
-	"img-auth-nopathinfo": "मार्ग माहिती आढळली नाही.\nआपला सर्व्हर ही माहिती देण्यास अनुनत नाही.\nतो सीजीआय-आधारित व इमेज_ऑथला समर्थन न देऊ शकणारा असू शकतो.\nकृपया https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization  हे पहा.",
 	"img-auth-notindir": "विनंती केलेला मार्ग अपभारण शब्दकोशाकरीता रचित नाही.",
 	"img-auth-badtitle": "\"$1\" पासून वैध शीर्षक बनवण्यात अयशस्वी.",
 	"img-auth-nofile": "\"$1\" ही संचिका अस्तित्वात नाही.",

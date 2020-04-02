@@ -1458,7 +1458,6 @@
 	"uploadstash-zero-length": "دوتنه صفر اوږدوالی لري.",
 	"invalid-chunk-offset": "د ناباوره ټوټې ټکی",
 	"img-auth-accessdenied": "لاسرسی رد شو",
-	"img-auth-nopathinfo": "PATH_INFO موجود ندي.\nستا پالنګر د دې ارزښت ردولو لپاره ندی ټاکل شوی.\nدا کیدای شي د CGI او له مخې د img_auth ملاتړ وکړي.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization وګوري.",
 	"img-auth-nofile": "د $1 په نوم کومه دوتنه نشته.",
 	"img-auth-streaming": "سټريمينګ \"$1\".",
 	"http-invalid-url": "ناسم URL: $1",

@@ -1524,7 +1524,6 @@
 	"uploadstash-zero-length": "கோப்பின் நீளம் சுழியம்",
 	"invalid-chunk-offset": "செல்லாத chunk offset",
 	"img-auth-accessdenied": "அனுமதி மறுக்கப்பட்டது",
-	"img-auth-nopathinfo": "PATH_INFO காணவில்லை.\nஉங்கள் வழங்கி இந்தத் தகவலை அனுப்ப அமைக்கப்படவில்லை\nஇது சிஜிஐ (CGI)- அடிப்படையிலானதாகவோ img_auth-ஐ ஆதரக்காததாகவோ இருக்கலாம் .\nபார்க்கவும் https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "கோரிய பாதை இந்த குறிப்பிட்ட தகவலேற்று கோப்புறையில் இல்லை.",
 	"img-auth-badtitle": "செல்லத்தக்க தலைப்பு \"$1\" ஐ கட்ட இயலவில்லை.",
 	"img-auth-nofile": "கோப்பு \"$1\" இல்லை.",

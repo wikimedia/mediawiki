@@ -1817,7 +1817,6 @@
 	"uploadstash-zero-length": "اندازهٔ پرونده صفر است.",
 	"invalid-chunk-offset": "جابجایی نامعتبر قطعه",
 	"img-auth-accessdenied": "منع دسترسی",
-	"img-auth-nopathinfo": "مسیر اطلاعات موجود نیست.\nسرورتان برای ردکردن متغییرهای REQUEST_URI و/یا PATH_INFO باید تنظیم شود.\nاگر مبتنی قصد فعال‌کردن wgUsePathInfo دارد.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization را ببینید.",
 	"img-auth-notindir": "مسیر درخواست شده در شاخهٔ بارگذاری تنظیم‌شده قرار ندارد.",
 	"img-auth-badtitle": "امکان ایجاد یک عنوان مجاز از «$1» وجود ندارد.",
 	"img-auth-nofile": "پرونده «$1» وجود ندارد.",

@@ -1800,7 +1800,6 @@
 	"uploadstash-zero-length": "Faili suurus on tühiväärtusega.",
 	"invalid-chunk-offset": "Tüki vigane nihe",
 	"img-auth-accessdenied": "Juurdepääs keelatud",
-	"img-auth-nopathinfo": "Puudub teave tee kohta.\nServer peab olema seadistatud edastama muutujaid REQUEST_URI ja/või PATH_INFO.\nKui on, siis proovi lubada säte $wgUsePathInfo.\nVaata lehekülge https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Soovitud salvestuskoht pole üleslaadimiskataloogi all.",
 	"img-auth-badtitle": "Väljendist \"$1\" ei saa sobivat pealkirja moodustada.",
 	"img-auth-nofile": "Faili \"$1\" pole.",

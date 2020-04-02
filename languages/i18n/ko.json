@@ -1845,7 +1845,6 @@
 	"uploadstash-zero-length": "파일 길이가 0입니다.",
 	"invalid-chunk-offset": "청크 오프셋이 잘못되었습니다.",
 	"img-auth-accessdenied": "접근이 거부됨",
-	"img-auth-nopathinfo": "경로 정보가 없습니다.\n서버가 REQUEST_URI 및 PATH_INFO 변수를 넘길 수 있도록 설정되어야 합니다.\n이러한 경우 $wgUsePathInfo를 활성화해 보십시오.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization 를 참고하십시오.",
 	"img-auth-notindir": "요청한 경로가 설정한 올리기 디렉터리에 없습니다.",
 	"img-auth-badtitle": "\"$1\"에서 올바른 제목을 만들 수 없습니다.",
 	"img-auth-nofile": "\"$1\" 파일이 없습니다.",

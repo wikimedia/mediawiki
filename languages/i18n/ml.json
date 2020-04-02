@@ -1736,7 +1736,6 @@
 	"uploadstash-no-extension": "എക്സ്റ്റെൻഷൻ ശൂന്യമാണ്.",
 	"uploadstash-zero-length": "പ്രമാണത്തിന്റെ നീളം ശൂന്യമാണ്.",
 	"img-auth-accessdenied": "പ്രവേശനമില്ല",
-	"img-auth-nopathinfo": "പാത്ത് വിവരങ്ങൾ ലഭ്യമല്ല.\nതാങ്കളുടെ സെർവർ REQUEST_URI ഒപ്പം/അല്ലെങ്കിൽ PATH_INFO കൈമാറ്റം ചെയ്യാൻ കഴിയുന്നതായി സജ്ജീകരിച്ചിരിക്കേണ്ടതുണ്ട്.\nഅങ്ങനെ ചെയ്തിട്ടുണ്ടെങ്കിൽ $wgUsePathInfo സജ്ജമാക്കുക.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization കാണുക.",
 	"img-auth-notindir": "ആവശ്യപ്പെട്ട പാത അപ്‌‌ലോഡ് ഡയറക്റ്ററിയിൽ സജ്ജീകരിച്ചു നൽകിയിട്ടില്ല.",
 	"img-auth-badtitle": "\"$1\" എന്നതിൽ നിന്ന് സാധുവായ തലക്കെട്ട് സൃഷ്ടിക്കാൻ കഴിയില്ല.",
 	"img-auth-nofile": "\"$1\" എന്ന പ്രമാണം നിലവിലില്ല.",

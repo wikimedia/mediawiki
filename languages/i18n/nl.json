@@ -1872,7 +1872,6 @@
 	"uploadstash-zero-length": "Bestandsgrootte is nul.",
 	"invalid-chunk-offset": "Ongeldige chunkoffset",
 	"img-auth-accessdenied": "Toegang geweigerd",
-	"img-auth-nopathinfo": "Padinformatie ontbreekt.\nUw server moet ingesteld zijn om de REQUEST_URI en/of PATH_INFO variabelen door te geven.\nAls de server juist ingesteld is, kunt u proberen $wgUsePathInfo aan te zetten.\nZie https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization voor meer informatie.",
 	"img-auth-notindir": "Het opgegeven pad is niet de ingestelde uploadmap.",
 	"img-auth-badtitle": "Het was niet mogelijk een geldige paginanaam te maken van \"$1\".",
 	"img-auth-nofile": "Bestand \"$1\" bestaat niet.",

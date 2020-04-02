@@ -1737,7 +1737,6 @@
 	"uploadstash-no-extension": "Пустое расшырэнне.",
 	"invalid-chunk-offset": "Недапушчальнае зрушэнне фрагмента",
 	"img-auth-accessdenied": "Доступ забаронены",
-	"img-auth-nopathinfo": "Адсутнічае PATH_INFO.\nВаш сервер не настроены на перадачу гэтых звестак.\nМагчыма, ён на аснове CGI і не падтрымлівае img_auth.\nГл. https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Запытаны шлях не ставіцца да наладжанага каталога ўкладанняў.",
 	"img-auth-badtitle": "Немагчыма пабудаваць правільны загаловак з «$1».",
 	"img-auth-nofile": "Файл \" $1 \"не існуе.",

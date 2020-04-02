@@ -1549,7 +1549,6 @@
 	"uploadstash-refresh": "Vaozina ny lisi-drakitra",
 	"uploadstash-thumbnail": "haneho sarikely",
 	"img-auth-accessdenied": "Tsy afa-mankao",
-	"img-auth-nopathinfo": "Tsy misy PATH_INFO.\nTsy voaparametatra ny lohamilinao hampita io fampahalalàna io.\nMety mampiasa CGI angamba ilay lohamilina ka tsy mahazaka an'i img_auth\nVangio ny https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Ny lalana nangatahana dia tsy ny petra-drakitra nokaonfigiorena.",
 	"img-auth-badtitle": "Tsy afaka mamorona lohateny azo ampiasaina avy amin'ny « $1 ».",
 	"img-auth-nofile": "Tsy misy ny rakitra « $1 ».",

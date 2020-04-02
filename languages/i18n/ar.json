@@ -1851,7 +1851,6 @@
 	"uploadstash-zero-length": "الملف طوله صفر.",
 	"invalid-chunk-offset": "قطعة أوفست غير صالحة",
 	"img-auth-accessdenied": "رفض الوصول",
-	"img-auth-nopathinfo": "معلومات المسار مفقودة;\nيجب إعداد خادمك لتمرير المتغير REQUEST_URI و/أو PATH_INFO variables،\nإذا كان كذلك، فحاول تمكين $wgUsePathInfo،\nانظر https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "المسار المطلوب غير موجود في مجلد الرفع المضبوط.",
 	"img-auth-badtitle": "تعذر تشكيل عنوان صالح من \"$1\".",
 	"img-auth-nofile": "الملف \"$1\" غير موجود.",

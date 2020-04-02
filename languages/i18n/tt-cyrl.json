@@ -1275,7 +1275,6 @@
 	"uploadstash-thumbnail": "кече рәсемне карау",
 	"invalid-chunk-offset": "Кабул ителмәгән фрагмент шуышуы",
 	"img-auth-accessdenied": "Рөхсәт юк",
-	"img-auth-nopathinfo": "<code>PATH_INFO</code> күрсәтелмәгән.\nСезнең сервер әлеге мәгълүматларны бирүгә көйләнмәгән.\nБәлки ул CGI нигезендә эшлидер һәм <code>img_auth</code> белән эш итмидер.\nТулырак мәгълүмат: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Соралган юл көйләнгән төяүләр урынына карамый.",
 	"img-auth-badtitle": "«$1» исеменән дөрес атама төзеп булмый.",
 	"img-auth-nofile": "«$1» файлы юк.",

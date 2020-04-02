@@ -1754,7 +1754,6 @@
 	"uploadstash-zero-length": "फ़ाइल शून्य लंबाई की है|",
 	"invalid-chunk-offset": "अग्राह्य चंक ऑफ़सेट",
 	"img-auth-accessdenied": "पहुँच अस्वीकार",
-	"img-auth-nopathinfo": "PATH_INFO मौजूद नाइ है।\nआप कय सर्वर मा इ जानकारी भेजय खत्तीर जमाव नाइ है।\nइ सी॰जी॰आई-आधारित होइ सकत है औ img_auth कय स्वीकार नाइ करत है।\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization देखें।",
 	"img-auth-notindir": "अनुरोधित पथ जमावल अपलोड डायरेक्टरी मा नाइ है।",
 	"img-auth-badtitle": "\"$1\" से एकठु वैध शीर्षक बनावे मा असमर्थ।",
 	"img-auth-nofile": "\"$1\" फाइल नाइ है।",

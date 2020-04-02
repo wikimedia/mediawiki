@@ -1358,7 +1358,6 @@
 	"uploadstash-refresh": "Файлдардың тізімін жаңарту",
 	"invalid-chunk-offset": "Жарамсыз ауысым фрагментті",
 	"img-auth-accessdenied": "Қатынау шектелген",
-	"img-auth-nopathinfo": "PATH_INFO жоқ.\nБұл ақпаратты жөнелтуге сіздің серверіңіз келмейді.\nБұл мүмкін GGL-ге негізделген және img_auth қолдамайды. \nМына бетті қараңыз https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Түзетілген жүктеу каталогында сіз қалаған жол жоқ.",
 	"img-auth-badtitle": "«$1» дегеннен жарамды атау құрай алмады.",
 	"img-auth-nofile": "«$1» файлы жоқ.",

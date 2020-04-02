@@ -1801,7 +1801,6 @@
 	"uploadstash-zero-length": "Податотеката има нулта должина.",
 	"invalid-chunk-offset": "Неважечка појдовна точка",
 	"img-auth-accessdenied": "Оневозможен пристап",
-	"img-auth-nopathinfo": "Недостасува информација за патеката.\nВашиот опслужувач мора да е наместен да ги дава променливите REQUEST_URI и/или PATH_INFO.\nАко е веќе наместен, овозможете го $wgUsePathInfo.\nПогл. https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Бараниот пат не води кон зададената папка за подигање.",
 	"img-auth-badtitle": "Не може да се конструира важечки наслов од „$1“.",
 	"img-auth-nofile": "Податотеката „$1“ не постои.",

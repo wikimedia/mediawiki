@@ -1834,7 +1834,6 @@
 	"uploadstash-zero-length": "Tiedoston pituus on nolla.",
 	"invalid-chunk-offset": "Kelpaamaton siirtymä lohkoissa",
 	"img-auth-accessdenied": "Pääsy estetty",
-	"img-auth-nopathinfo": "Polkutiedot puuttuvat.\nPalvelimesi tulee olla määritelty välittämään REQUEST_URI- ja/tai PATH_INFO-muuttujat.\nJos näin on, kokeile ottaa $wgUsePathInfo käyttöön.\nLisätietoja löytyy sivulta https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.",
 	"img-auth-badtitle": "”$1” ei kelpaa oikean otsikon muodostamiseen.",
 	"img-auth-nofile": "Tiedostoa ”$1” ei ole.",

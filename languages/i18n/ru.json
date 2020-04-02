@@ -1923,7 +1923,6 @@
 	"uploadstash-zero-length": "Файл нулевой длины.",
 	"invalid-chunk-offset": "Недопустимое смещение фрагмента",
 	"img-auth-accessdenied": "Доступ запрещён",
-	"img-auth-nopathinfo": "Отсутствует информация о пути.\nВаш сервер должен быть настроен для передачи переменных REQUEST_URI и/или PATH_INFO.\nЕсли это так, попробуйте включить $wgUsePathInfo.\nСм. https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Запрашиваемый путь не относится к настроенной папке загрузок.",
 	"img-auth-badtitle": "Невозможно построить правильный заголовок из «$1».",
 	"img-auth-nofile": "Файл «$1» не существует.",

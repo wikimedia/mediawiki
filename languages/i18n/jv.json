@@ -1534,7 +1534,6 @@
 	"uploadstash-refresh": "Segeraké pratélan barkas",
 	"invalid-chunk-offset": "Ganti rugi kethoka ora sah",
 	"img-auth-accessdenied": "Aksès ditulak",
-	"img-auth-nopathinfo": "Kélangan PATH_INFO.\nSasana panjenengan durung disetèl kanggo ngliwati inpormasi iki.\nMungkin amarga abasis-CGI lan ora bisa nyengkuyung img_auth.\nWaca https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Alur kang dijaluk dudu dirèktori unggah kakonpigurasi.",
 	"img-auth-badtitle": "Ora bisa ngyasa sesirah kang trep saka \"$1\".",
 	"img-auth-nofile": "Berkas \"$1\" ora ana.",

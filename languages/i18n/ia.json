@@ -1785,7 +1785,6 @@
 	"uploadstash-zero-length": "Le file ha un grandor de zero.",
 	"invalid-chunk-offset": "Position de segmento invalide",
 	"img-auth-accessdenied": "Accesso refusate",
-	"img-auth-nopathinfo": "Le information sur le percurso manca.\nLe servitor debe esser configurate pro passar le variabiles REQUEST_URI e/o PATH_INFO.\nSi illo lo es, essaya activar $wgUsePathInfo.\nVide https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Le cammino requestate non es in le directorio de incargamentos configurate.",
 	"img-auth-badtitle": "Impossibile construer un titulo valide ex \"$1\".",
 	"img-auth-nofile": "File \"$1\" non existe.",

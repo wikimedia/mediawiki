@@ -1802,7 +1802,6 @@
 	"uploadstash-zero-length": "ফাইলটির দৈর্ঘ্য শূন্য।",
 	"invalid-chunk-offset": "ত্রুটিপূর্ণ চাংক অফসেট",
 	"img-auth-accessdenied": "প্রবেশাধিকার নাই",
-	"img-auth-nopathinfo": "পথের তথ্য পাওয়া যাচ্ছে না।\nআপনার সার্ভার অবশ্যই REQUEST_URI ও/বা PATH_INFO চলক অতিক্রম করাতে সমর্থ হতে হবে।\nযদি এটি তাই হয়, তবে $wgUsePathInfo সক্রিয় করার চেষ্টা করুন।\nবিস্তারিত জানতে https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization দেখুন।",
 	"img-auth-notindir": "অনুরোধকৃত পাথটি কনফিগার করা আপলোড ডিরেক্টরী নয়।",
 	"img-auth-badtitle": "\"$1\" থেকে একটি সঠিক শিরনাম তৈরী করা যাচ্ছে না।",
 	"img-auth-nofile": "ফাইল \"$1\" নাই।",

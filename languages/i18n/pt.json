@@ -1864,7 +1864,6 @@
 	"uploadstash-zero-length": "O ficheiro tem tamanho zero.",
 	"invalid-chunk-offset": "Deslocamento de fragmento inválido",
 	"img-auth-accessdenied": "Acesso negado",
-	"img-auth-nopathinfo": "Informação do caminho em falta.\nO seu servidor tem de estar configurado para passar as variáveis REQUEST_URI e/ou PATH_INFO.\nSe já está, tente ativar $wgUsePathInfo.\nConsulte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "O endereço especificado não conduz ao diretório de carregamento de ficheiros configurado.",
 	"img-auth-badtitle": "Não é possível construir um título válido a partir de \"$1\".",
 	"img-auth-nofile": "O ficheiro \"$1\" não existe.",

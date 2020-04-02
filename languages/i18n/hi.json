@@ -1800,7 +1800,6 @@
 	"uploadstash-zero-length": "फ़ाइल शून्य लंबाई की है|",
 	"invalid-chunk-offset": "अग्राह्य चंक ऑफ़सेट",
 	"img-auth-accessdenied": "अनुमति नहीं है",
-	"img-auth-nopathinfo": "पाथ जानकारी उपलब्ध नहीं है।\nआपके सर्वर को REQUEST_URI तथा/अथवा PATH_INFO चरों को पास करने के लिये सेट अप होना चाहिये। अगर ऐसा है तो $wgUsePathInfo को सक्रिय करने का प्रयास करें।  \nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization देखें।",
 	"img-auth-notindir": "अनुरोधित पथ जमाई हुई अपलोड डायरेक्टरी में नहीं है।",
 	"img-auth-badtitle": "\"$1\" से एक वैध शीर्षक बनाने में असमर्थ।",
 	"img-auth-nofile": "फ़ाइल \"$1\" मौजूद नहीं है।",

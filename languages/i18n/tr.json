@@ -1881,7 +1881,6 @@
 	"uploadstash-zero-length": "Dosya boyutu sıfır.",
 	"invalid-chunk-offset": "Geçersiz öbek ofset",
 	"img-auth-accessdenied": "Erişim engellendi",
-	"img-auth-nopathinfo": "Eksik path bilgilendirmesi.\nSunucunuz REQUEST_URI and/or PATH_INFO değişlenlerini geçirmek için ayarlanmış olmalıdır.\nEğer etkinse, $wgUsePathInfo'i etkinleştirmeyi deneyin.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization sayfasına bakın.",
 	"img-auth-notindir": "İstenen yol yapılandırılmış yükleme dizininde değil.",
 	"img-auth-badtitle": "\"$1\" ile geçerli bir başlık yapılamıyor.",
 	"img-auth-nofile": "\"$1\" dosyası mevcut değil.",

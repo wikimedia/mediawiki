@@ -1328,7 +1328,6 @@
 	"uploadstash-refresh": "सञ्चिकावलीं संस्करोतु ।",
 	"invalid-chunk-offset": "अमान्यं चङ्क् आफ्सेट्",
 	"img-auth-accessdenied": "अभिगमनम् अपलपितम् ।",
-	"img-auth-nopathinfo": "पथसूची विनष्टा ।\nते वितारकः सूचनाः प्रेषयितुं संसिद्धः न ।\nएतत् CGI अवलम्बितं स्यात् अपि च img_auth अनुमोदनं न करोति ।\nSee https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "सुदृढितायाम् उत्तारणनिदेशिकायाम् अभ्यर्थितपथः नास्ति ।",
 	"img-auth-badtitle": "\"$1\"तः मान्यशीर्षिकां निर्मातुं न शक्यते ।",
 	"img-auth-nofile": "\"$1\" इति सञ्चिका न वर्तते ।",

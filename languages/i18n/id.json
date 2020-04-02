@@ -1840,7 +1840,6 @@
 	"uploadstash-zero-length": "Berkas ini berukuran nihil.",
 	"invalid-chunk-offset": "Ofset potongan tidak valid",
 	"img-auth-accessdenied": "Akses ditolak",
-	"img-auth-nopathinfo": "Informasi jalur hilang.\nPeladen Anda harus diatur untuk meloloskan variabel REQUEST_URI dan/atau PATH_INFO.\nJika sudah, coba aktifkan $wgUsePathInfo.\nLihat https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Alur yang diminta tidak diatur dalam direktori ungahan.",
 	"img-auth-badtitle": "Tidak dapat membangun judul yang sah dari \"$1\".",
 	"img-auth-nofile": "Berkas \"$1\" tidak ada.",

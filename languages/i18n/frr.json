@@ -1439,7 +1439,6 @@
 	"uploadstash-refresh": "List mä datein aktualisiare.",
 	"invalid-chunk-offset": "Di began as diar ei tuläät.",
 	"img-auth-accessdenied": "Tugrip ei mögelk",
-	"img-auth-nopathinfo": "Diar as nian informatjuun auer di wai.\nDan server skal so iinracht wees, dat a wariaabeln REQUEST_URI an/of PATH_INFO auerden wurd.\nWan det tudraapt, aktiwiare $wgUsePathInfo.\nÜüb det sidj https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization (ingelsk) stäänt diar muar auer.",
 	"img-auth-notindir": "Detdiar fertiaknis as ei föörsen tu huuchschüüren.",
 	"img-auth-badtitle": "Mä „$1“ küd nään tiitel maaget wurd.",
 	"img-auth-nofile": "Diar as nään datei „$1“.",

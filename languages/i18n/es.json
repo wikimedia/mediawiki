@@ -1979,7 +1979,6 @@
 	"uploadstash-zero-length": "El archivo está vacío.",
 	"invalid-chunk-offset": "Desplazamiento inválido del fragmento",
 	"img-auth-accessdenied": "Acceso denegado",
-	"img-auth-nopathinfo": "Falta la información de ruta.\nEl servidor tiene que estar configurado para proporcionar las variables REQUEST_URI y/o PATH_INFO.\nSi lo está, intentá habilitar $wgUsePathInfo.\nConsulte https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "La ruta solicitada no figura en la carpeta de subidas configurada.",
 	"img-auth-badtitle": "Incapaz de construir un título válido de «$1».",
 	"img-auth-nofile": "El archivo «$1» no existe.",

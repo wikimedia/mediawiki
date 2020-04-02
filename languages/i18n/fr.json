@@ -1958,7 +1958,6 @@
 	"uploadstash-zero-length": "La taille du fichier est zéro.",
 	"invalid-chunk-offset": "Décalage de fragment non valide",
 	"img-auth-accessdenied": "Accès refusé",
-	"img-auth-nopathinfo": "Information de chemin manquante.\nVotre serveur doit être paramétré pour transmettre la variable REQUEST_URI et/ou PATH_INFO .\nSi c’est le cas, essayez d’activer $wgUsePathInfo.\nVoir https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Le chemin demandé n’est pas le répertoire d’import configuré.",
 	"img-auth-badtitle": "Impossible de construire un titre valide à partir de « $1 ».",
 	"img-auth-nofile": "Le fichier « $1 » n’existe pas.",
