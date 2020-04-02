@@ -60,6 +60,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   page edit. Only has effect if $wgWatchlistExpiry is true.
 * $wgImgAuthPath can be used to override the path prefix used when handling
   img_auth.php requests. (T235357)
+* $wgAllowedCorsHeaders — list of headers which can be used in a cross-site API
+  request.
 * …
 
 ==== Changed configuration ====

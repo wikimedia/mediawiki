@@ -8557,6 +8557,24 @@ $wgCrossSiteAJAXdomains = [];
 $wgCrossSiteAJAXdomainExceptions = [];
 
 /**
+ * List of allowed headers for cross-origin API requests.
+ */
+$wgAllowedCorsHeaders = [
+	/* simple headers (see spec) */
+	'Accept',
+	'Accept-Language',
+	'Content-Language',
+	'Content-Type',
+	/* non-authorable headers in XHR, which are however requested by some UAs */
+	'Accept-Encoding',
+	'DNT',
+	'Origin',
+	/* MediaWiki whitelist */
+	'User-Agent',
+	'Api-User-Agent',
+];
+
+/**
  * Enable the experimental REST API.
  *
  * This will be removed once the REST API is stable and used by clients.
