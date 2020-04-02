@@ -30,6 +30,7 @@ use LogicException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
+use Throwable;
 use WANObjectCache;
 use Wikimedia\ScopedCallback;
 
@@ -137,7 +138,7 @@ abstract class LBFactory implements ILBFactory {
 		foreach ( self::$loggerFields as $key ) {
 			$this->$key = $conf[$key] ?? new NullLogger();
 		}
-		$this->errorLogger = $conf['errorLogger'] ?? function ( Exception $e ) {
+		$this->errorLogger = $conf['errorLogger'] ?? function ( Throwable $e ) {
 			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
 		$this->deprecationLogger = $conf['deprecationLogger'] ?? function ( $msg ) {

@@ -22,7 +22,7 @@
  */
 namespace Wikimedia\Rdbms;
 
-use Exception;
+use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
@@ -115,7 +115,7 @@ class DatabasePostgres extends Database {
 		$this->installErrorHandler();
 		try {
 			$this->conn = pg_connect( $connectString, PGSQL_CONNECT_FORCE_NEW ) ?: null;
-		} catch ( Exception $e ) {
+		} catch ( RuntimeException $e ) {
 			$this->restoreErrorHandler();
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
@@ -146,7 +146,7 @@ class DatabasePostgres extends Database {
 			}
 			$this->determineCoreSchema( $schema );
 			$this->currentDomain = new DatabaseDomain( $dbName, $schema, $tablePrefix );
-		} catch ( Exception $e ) {
+		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
 	}
@@ -577,7 +577,7 @@ __INDEXATTR__;
 					}
 				}
 			}
-		} catch ( Exception $e ) {
+		} catch ( RuntimeException $e ) {
 			$this->cancelAtomic( "$fname (outer)", $tok );
 			throw $e;
 		}
