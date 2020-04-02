@@ -1699,10 +1699,15 @@ abstract class Installer {
 		if ( $user->idForName() == 0 ) {
 			$user->addToDatabase();
 
-			try {
-				$user->setPassword( $this->getVar( '_AdminPassword' ) );
-			} catch ( PasswordError $pwe ) {
-				return Status::newFatal( 'config-admin-error-password', $name, $pwe->getMessage() );
+			$password = $this->getVar( '_AdminPassword' );
+			$status = $user->changeAuthenticationData( [
+				'username' => $user->getName(),
+				'password' => $password,
+				'retype' => $password,
+			] );
+			if ( !$status->isGood() ) {
+				return Status::newFatal( 'config-admin-error-password',
+					$name, $status->getWikiText( null, null, $this->getVar( '_UserLang' ) ) );
 			}
 
 			$user->addGroup( 'sysop' );
