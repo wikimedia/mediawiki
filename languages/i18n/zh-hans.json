@@ -2642,7 +2642,7 @@
 	"ipb-hardblock": "封禁使用该IP地址的登陆用户",
 	"ipbcreateaccount": "账户创建",
 	"ipbemailban": "发送电子邮件",
-	"ipbenableautoblock": "自动封禁此用户最后使用的IP地址，以及其随后试图用于编辑的所有IP地址",
+	"ipbenableautoblock": "自动封禁此用户最后使用的IP地址，以及所有其随后试图用于编辑的IP地址",
 	"ipbsubmit": "封禁此用户",
 	"ipbother": "其它时间：",
 	"ipboptions": "2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,不限期:infinite",

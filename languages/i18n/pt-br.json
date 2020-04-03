@@ -937,6 +937,7 @@
 	"history-feed-item-nocomment": "$1 em $2",
 	"history-feed-empty": "A página requisitada não existe.\nPoderá ter sido eliminada do wiki ou renomeada.\nTente [[Special:Search|pesquisar no wiki]] por páginas relevantes.",
 	"history-edit-tags": "Editar etiquetas das revisões selecionadas",
+	"history-empty": "Nenhuma revisão correspondente foi encontrada.",
 	"rev-deleted-comment": "(resumo da edição suprimido)",
 	"rev-deleted-user": "(nome de usuário(a) removido)",
 	"rev-deleted-event": "(registros de detalhes eliminados)",

@@ -915,6 +915,7 @@
 	"history-feed-item-nocomment": "$1 am $3 um $4 Uhr",
 	"history-feed-empty": "Die angeforderte Seite existiert nicht. Vielleicht wurde sie gelöscht oder verschoben. [[Special:Search|Durchsuche]] {{SITENAME}} nach passenden neuen Seiten.",
 	"history-edit-tags": "Markierungen ausgewählter Versionen bearbeiten",
+	"history-empty": "Es wurden keine passenden Versionen gefunden.",
 	"rev-deleted-comment": "(Zusammenfassung entfernt)",
 	"rev-deleted-user": "(Benutzername entfernt)",
 	"rev-deleted-event": "(Logbucheinzelheiten entfernt)",

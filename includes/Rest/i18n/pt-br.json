@@ -29,5 +29,10 @@
 	"rest-no-revision": "Não foi possível recuperar a revisão para o título $1",
 	"rest-media-too-many-links": "Muitos links de mídia encontrados no título $1 ($2 permitidos)",
 	"rest-html-backend-error": "Não foi possível buscar o HTML Parsoid",
+	"rest-bad-json-body": "Corpo de solicitação inválido, deve ser um objeto JSON.",
+	"rest-json-body-parse-error": "A análise do corpo da solicitação como JSON falhou: $1",
+	"rest-missing-body-field": "Campo obrigatório `$1` ausente do corpo da solicitação.",
+	"rest-bad-content-model": "Modelo de conteúdo incorreto: $1",
+	"rest-update-cannot-create-page": "A página `$1` não pode ser criada, pois ela já existe. Para atualizar a página existente, forneça o ID da revisão base na estrutura sob a chave `latest` no corpo da solicitação.",
 	"rest-cannot-load-file": "O arquivo para o título `$1` não pode ser carregado."
 }
