@@ -85,9 +85,9 @@ class DumpRenderer extends Maintenance {
 
 	/**
 	 * Callback function for each revision, turn into HTML and save
-	 * @param Revision $rev
+	 * @param WikiRevision $rev
 	 */
-	public function handleRevision( $rev ) {
+	public function handleRevision( WikiRevision $rev ) {
 		$title = $rev->getTitle();
 		if ( !$title ) {
 			$this->error( "Got bogus revision with null title!" );
