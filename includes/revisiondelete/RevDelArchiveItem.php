@@ -19,13 +19,25 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionFactory;
+
 /**
  * Item class for a archive table row
  */
 class RevDelArchiveItem extends RevDelRevisionItem {
 	protected static function initRevision( $list, $row ) {
-		return Revision::newFromArchiveRow( $row,
-			[ 'page' => $list->title->getArticleID() ] );
+		$revRecord = MediaWikiServices::getInstance()
+			->getRevisionFactory()
+			->newRevisionFromArchiveRow(
+				$row,
+				RevisionFactory::READ_NORMAL,
+				null,
+				[ 'page_id' => $list->title->getArticleID() ]
+			);
+
+		// TODO return a RevisionRecord instead
+		return new Revision( $revRecord );
 	}
 
 	public function getIdField() {

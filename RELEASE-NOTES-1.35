@@ -699,6 +699,7 @@ because of Phabricator reports.
   - ::userWasLastToEdit - use RevisionStore::userWasLastToEdit instead
   - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
+  - ::newFromArchiveRow - use RevisionFactory::newRevisionFromArchiveRow
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
   - ::loadFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead

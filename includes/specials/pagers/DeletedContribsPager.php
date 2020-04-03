@@ -236,6 +236,8 @@ class DeletedContribsPager extends IndexPager {
 		$classes = [];
 		$attribs = [];
 
+		$revFactory = MediaWikiServices::getInstance()->getRevisionFactory();
+
 		/*
 		 * There may be more than just revision rows. To make sure that we'll only be processing
 		 * revisions here, let's _try_ to build a revision out of our row (without displaying
@@ -245,15 +247,15 @@ class DeletedContribsPager extends IndexPager {
 		 */
 		Wikimedia\suppressWarnings();
 		try {
-			$rev = Revision::newFromArchiveRow( $row );
-			$validRevision = (bool)$rev->getId();
+			$revRecord = $revFactory->newRevisionFromArchiveRow( $row );
+			$validRevision = (bool)$revRecord->getId();
 		} catch ( Exception $e ) {
 			$validRevision = false;
 		}
 		Wikimedia\restoreWarnings();
 
 		if ( $validRevision ) {
-			$attribs['data-mw-revid'] = $rev->getId();
+			$attribs['data-mw-revid'] = $revRecord->getId();
 			$ret = $this->formatRevisionRow( $row );
 		}
 

@@ -440,6 +440,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newFromArchiveRow
 	 */
 	public function testNewFromArchiveRow( $selectModifier ) {
+		$this->hideDeprecated( 'Revision::newFromArchiveRow' );
+
 		$services = MediaWikiServices::getInstance();
 
 		$store = new RevisionStore(
@@ -490,6 +492,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newFromArchiveRow
 	 */
 	public function testNewFromArchiveRowOverrides() {
+		$this->hideDeprecated( 'Revision::newFromArchiveRow' );
+
 		$page = $this->createPage(
 			'RevisionStorageTest_testNewFromArchiveRow',
 			'Lorem Ipsum',
