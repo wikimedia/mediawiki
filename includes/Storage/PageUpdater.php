@@ -1067,7 +1067,7 @@ class PageUpdater {
 		// Do secondary updates once the main changes have been committed...
 		// NOTE: the updates have to be processed before sending the response to the client
 		// (DeferredUpdates::PRESEND), otherwise the client may already be following the
-		// HTTP redirect to the standard view before dervide data has been created - most
+		// HTTP redirect to the standard view before derived data has been created - most
 		// importantly, before the parser cache has been updated. This would cause the
 		// content to be parsed a second time, or may cause stale content to be shown.
 		DeferredUpdates::addUpdate(
