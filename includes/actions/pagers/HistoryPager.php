@@ -346,7 +346,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$diffButtons = $this->diffButtons( $rev, $firstInList );
 		$s = $histLinks . $diffButtons;
 
-		$link = $this->revLink( $rev );
+		$link = $this->revLink( $rev->getRevisionRecord() );
 		$classes = [];
 
 		$del = '';
@@ -508,10 +508,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Create a link to view this revision of the page
 	 *
-	 * @param Revision $rev
+	 * @param RevisionRecord $rev
 	 * @return string
 	 */
-	function revLink( $rev ) {
+	private function revLink( RevisionRecord $rev ) {
 		return ChangesList::revDateLink( $rev, $this->getUser(), $this->getLanguage(),
 			$this->getTitle() );
 	}

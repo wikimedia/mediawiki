@@ -661,7 +661,7 @@ class ContribsPager extends RangeChronologicalPager {
 
 			$lang = $this->getLanguage();
 			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true, false );
-			$d = ChangesList::revDateLink( $rev, $user, $lang, $page );
+			$d = ChangesList::revDateLink( $rev->getRevisionRecord(), $user, $lang, $page );
 
 			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';

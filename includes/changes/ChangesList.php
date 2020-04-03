@@ -407,7 +407,7 @@ class ChangesList extends ContextSource {
 	/**
 	 * Render the date and time of a revision in the current user language
 	 * based on whether the user is able to view this information or not.
-	 * @param Revision $rev
+	 * @param RevisionRecord $rev
 	 * @param User $user
 	 * @param Language $lang
 	 * @param Title|null $title (optional) where Title does not match
@@ -415,7 +415,12 @@ class ChangesList extends ContextSource {
 	 * @internal For usage by Pager classes only (e.g. HistoryPager and ContribsPager).
 	 * @return string HTML
 	 */
-	public static function revDateLink( Revision $rev, User $user, Language $lang, $title = null ) {
+	public static function revDateLink(
+		RevisionRecord $rev,
+		User $user,
+		Language $lang,
+		$title = null
+	) {
 		$ts = $rev->getTimestamp();
 		$date = $lang->userTimeAndDate( $ts, $user );
 		if ( RevisionRecord::userCanBitfield(
@@ -424,7 +429,7 @@ class ChangesList extends ContextSource {
 			$user
 		) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
-				$title ?? $rev->getTitle(),
+				$title ?? $rev->getPageAsLinkTarget(),
 				$date,
 				[ 'class' => 'mw-changeslist-date' ],
 				[ 'oldid' => $rev->getId() ]
