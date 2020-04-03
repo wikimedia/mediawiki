@@ -644,6 +644,35 @@ class WebRequestTest extends MediaWikiTestCase {
 		$this->assertSame( $request->getAcceptLang(), $expectedLanguages, $description );
 	}
 
+	/**
+	 * @covers WebRequest::getHeader
+	 */
+	public function testGetHeaderCanYieldSpecialCgiHeaders() {
+		$contentType = 'application/json; charset=utf-8';
+		$contentLength = '4711';
+		$contentMd5 = 'rL0Y20zC+Fzt72VPzMSk2A==';
+		$this->setServerVars( [
+			'HTTP_CONTENT_TYPE' => $contentType,
+			'HTTP_CONTENT_LENGTH' => $contentLength,
+			'HTTP_CONTENT_MD5' => $contentMd5,
+		] );
+		$request = new WebRequest();
+		$this->assertSame( $request->getHeader( 'Content-Type' ), $contentType );
+		$this->assertSame( $request->getHeader( 'Content-Length' ), $contentLength );
+		$this->assertSame( $request->getHeader( 'Content-Md5' ), $contentMd5 );
+	}
+
+	/**
+	 * @covers WebRequest::getHeader
+	 */
+	public function testGetHeaderKeyIsCaseInsensitive() {
+		$cacheControl = 'private, must-revalidate, max-age=0';
+		$this->setServerVars( [ 'HTTP_CACHE_CONTROL' => $cacheControl ] );
+		$request = new WebRequest();
+		$this->assertSame( $request->getHeader( 'Cache-Control' ), $cacheControl );
+		$this->assertSame( $request->getHeader( 'cache-control' ), $cacheControl );
+	}
+
 	protected function setServerVars( $vars ) {
 		// Don't remove vars which should be available in all SAPI.
 		if ( !isset( $vars['REQUEST_TIME_FLOAT'] ) ) {

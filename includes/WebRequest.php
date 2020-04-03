@@ -1089,21 +1089,7 @@ class WebRequest {
 			return;
 		}
 
-		$apacheHeaders = function_exists( 'apache_request_headers' ) ? apache_request_headers() : false;
-		if ( $apacheHeaders ) {
-			foreach ( $apacheHeaders as $tempName => $tempValue ) {
-				$this->headers[strtoupper( $tempName )] = $tempValue;
-			}
-		} else {
-			foreach ( $_SERVER as $name => $value ) {
-				if ( substr( $name, 0, 5 ) === 'HTTP_' ) {
-					$name = str_replace( '_', '-', substr( $name, 5 ) );
-					$this->headers[$name] = $value;
-				} elseif ( $name === 'CONTENT_LENGTH' ) {
-					$this->headers['CONTENT-LENGTH'] = $value;
-				}
-			}
-		}
+		$this->headers = array_change_key_case( getallheaders(), CASE_UPPER );
 	}
 
 	/**
