@@ -119,6 +119,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	public static function provideIsSafeToCache() {
+		global $wgEnableParserLimitReporting;
 		return [
 			'No overrides' => [ true, [] ],
 			'In-key options are ok' => [ true, [
@@ -132,10 +133,10 @@ class ParserOptionsTest extends MediaWikiTestCase {
 				'wrapclass' => 'foobar',
 			] ],
 			'Canonical override, not default (1)' => [ true, [
-				'tidy' => true,
+				'enableLimitReport' => $wgEnableParserLimitReporting,
 			] ],
 			'Canonical override, not default (2)' => [ false, [
-				'tidy' => false,
+				'enableLimitReport' => !$wgEnableParserLimitReporting,
 			] ],
 		];
 	}
@@ -266,8 +267,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$popt2->enableLimitReport( false );
 		$this->assertTrue( $popt1->matches( $popt2 ) );
 
-		$this->hideDeprecated( 'disabling tidy' );
-		$popt2->setTidy( !$popt2->getTidy() );
+		$popt2->setInterfaceMessage( !$popt2->getInterfaceMessage() );
 		$this->assertFalse( $popt1->matches( $popt2 ) );
 
 		$ctr = 0;
