@@ -13,14 +13,14 @@
     "selenium-test": "wdio ./tests/selenium/wdio.conf.js"
   },
   "devDependencies": {
-    "@wdio/cli": "5.13.2",
-    "@wdio/devtools-service": "5.13.2",
-    "@wdio/dot-reporter": "5.13.2",
-    "@wdio/junit-reporter": "5.13.2",
-    "@wdio/local-runner": "5.13.2",
-    "@wdio/mocha-framework": "5.13.2",
-    "@wdio/sauce-service": "5.13.2",
-    "@wdio/sync": "5.13.2",
+    "@wdio/cli": "6.1.12",
+    "@wdio/devtools-service": "6.1.11",
+    "@wdio/dot-reporter": "6.1.9",
+    "@wdio/junit-reporter": "6.1.9",
+    "@wdio/local-runner": "6.1.12",
+    "@wdio/mocha-framework": "6.1.8",
+    "@wdio/sauce-service": "6.1.9",
+    "@wdio/sync": "6.1.8",
     "api-testing": "1.0.3",
     "eslint-config-wikimedia": "0.15.3",
     "grunt": "1.1.0",
@@ -40,6 +40,6 @@
     "qunit": "2.10.0",
     "stylelint-config-wikimedia": "0.10.1",
     "wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
-    "webdriverio": "5.13.2"
+    "webdriverio": "6.1.12"
   }
 }
