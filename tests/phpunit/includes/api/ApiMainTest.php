@@ -1153,4 +1153,15 @@ class ApiMainTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'code', $data['error'] );
 		$this->assertSame( 'badvalue', $data['error']['code'] );
 	}
+
+	public function testMatchRequestedHeaders() {
+		$api = Wikimedia\TestingAccessWrapper::newFromClass( 'ApiMain' );
+		$allowedHeaders = [ 'Accept', 'Origin', 'User-Agent' ];
+
+		$this->assertTrue( $api->matchRequestedHeaders( 'Accept', $allowedHeaders ) );
+		$this->assertTrue( $api->matchRequestedHeaders( 'Accept,Origin', $allowedHeaders ) );
+		$this->assertTrue( $api->matchRequestedHeaders( 'accEpt, oRIGIN', $allowedHeaders ) );
+		$this->assertFalse( $api->matchRequestedHeaders( 'Accept,Foo', $allowedHeaders ) );
+		$this->assertFalse( $api->matchRequestedHeaders( 'Accept, fOO', $allowedHeaders ) );
+	}
 }

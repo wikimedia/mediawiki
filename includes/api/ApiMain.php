@@ -737,8 +737,9 @@ class ApiMain extends ApiBase {
 				}
 				// We allow the actual request to send the following headers
 				$requestedHeaders = $request->getHeader( 'Access-Control-Request-Headers' );
+				$allowedHeaders = $this->getConfig()->get( 'AllowedCorsHeaders' );
 				if ( $requestedHeaders !== false ) {
-					if ( !self::matchRequestedHeaders( $requestedHeaders ) ) {
+					if ( !self::matchRequestedHeaders( $requestedHeaders, $allowedHeaders ) ) {
 						$response->header( 'MediaWiki-CORS-Rejection: Unsupported header requested in preflight' );
 						return true;
 					}
@@ -809,30 +810,18 @@ class ApiMain extends ApiBase {
 	 * of headers that we allow the follow up request to send.
 	 *
 	 * @param string $requestedHeaders Comma separated list of HTTP headers
+	 * @param string[] $allowedHeaders List of allowed HTTP headers
 	 * @return bool True if all requested headers are in the list of allowed headers
 	 */
-	protected static function matchRequestedHeaders( $requestedHeaders ) {
+	protected static function matchRequestedHeaders( $requestedHeaders, $allowedHeaders ) {
 		if ( trim( $requestedHeaders ) === '' ) {
 			return true;
 		}
 		$requestedHeaders = explode( ',', $requestedHeaders );
-		$allowedAuthorHeaders = array_flip( [
-			/* simple headers (see spec) */
-			'accept',
-			'accept-language',
-			'content-language',
-			'content-type',
-			/* non-authorable headers in XHR, which are however requested by some UAs */
-			'accept-encoding',
-			'dnt',
-			'origin',
-			/* MediaWiki whitelist */
-			'user-agent',
-			'api-user-agent',
-		] );
+		$allowedHeaders = array_change_key_case( array_flip( $allowedHeaders ), CASE_LOWER );
 		foreach ( $requestedHeaders as $rHeader ) {
 			$rHeader = strtolower( trim( $rHeader ) );
-			if ( !isset( $allowedAuthorHeaders[$rHeader] ) ) {
+			if ( !isset( $allowedHeaders[$rHeader] ) ) {
 				LoggerFactory::getInstance( 'api-warning' )->warning(
 					'CORS preflight failed on requested header: {header}', [
 						'header' => $rHeader
