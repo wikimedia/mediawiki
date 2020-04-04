@@ -22,6 +22,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 
@@ -74,8 +75,8 @@ class LinksUpdate extends DataUpdate {
 	/** @var bool Whether to queue jobs for recursive updates */
 	public $mRecursive;
 
-	/** @var Revision Revision for which this update has been triggered */
-	private $mRevision;
+	/** @var RevisionRecord Revision for which this update has been triggered */
+	private $mRevisionRecord;
 
 	/**
 	 * @var array[]|null Added links if calculated.
@@ -1041,19 +1042,39 @@ class LinksUpdate extends DataUpdate {
 	 * Set the revision corresponding to this LinksUpdate
 	 *
 	 * @since 1.27
-	 *
+	 * @deprecated since 1.35, use setRevisionRecord
 	 * @param Revision $revision
 	 */
 	public function setRevision( Revision $revision ) {
-		$this->mRevision = $revision;
+		$this->mRevisionRecord = $revision->getRevisionRecord();
+	}
+
+	/**
+	 * Set the RevisionRecord corresponding to this LinksUpdate
+	 *
+	 * @since 1.35
+	 * @param RevisionRecord $revisionRecord
+	 */
+	public function setRevisionRecord( RevisionRecord $revisionRecord ) {
+		$this->mRevisionRecord = $revisionRecord;
 	}
 
 	/**
 	 * @since 1.28
+	 * @deprecated since 1.35, use getRevisionRecord
 	 * @return null|Revision
 	 */
 	public function getRevision() {
-		return $this->mRevision;
+		$revRecord = $this->mRevisionRecord;
+		return $revRecord ? new Revision( $revRecord ) : null;
+	}
+
+	/**
+	 * @since 1.35
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionRecord() {
+		return $this->mRevisionRecord;
 	}
 
 	/**
