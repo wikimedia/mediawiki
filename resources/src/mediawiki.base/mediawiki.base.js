@@ -720,13 +720,6 @@
 		tokens: new mw.Map()
 	};
 
-	// Default values for the token maps.
-	// This is a temporary hack to ensure cached HTML for logged-out users
-	// will work correctly even with the changes we are making to the
-	// dependency between 'user.tokens' and 'user.options' (T235457).
-	// FIXME: Remove this 2 weeks after 1.35.0-wmf.25 is deployed to all wikis.
-	mw.user.tokens.set( { patrolToken: '+\\', watchToken: '+\\', csrfToken: '+\\' } );
-
 	// Alias $j to jQuery for backwards compatibility
 	// @deprecated since 1.23 Use $ or jQuery instead
 	mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );
