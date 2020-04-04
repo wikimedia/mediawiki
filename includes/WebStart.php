@@ -51,6 +51,15 @@ if ( $IP === false ) {
 	$IP = dirname( __DIR__ );
 }
 
+function wfWebStartNoLocalSettings() {
+	# LocalSettings.php is the per-site customization file. If it does not exist
+	# the wiki installer needs to be launched or the generated file uploaded to
+	# the root wiki directory. Give a hint, if it is not readable by the server.
+	global $IP;
+	require_once "$IP/includes/NoLocalSettings.php";
+	die();
+}
+
 // If no LocalSettings file exists, try to display an error page
 // (use a callback because it depends on TemplateParser)
 if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
@@ -58,31 +67,20 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
 		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
 	}
 	if ( !is_readable( MW_CONFIG_FILE ) ) {
-
-		function wfWebStartNoLocalSettings() {
-			# LocalSettings.php is the per-site customization file. If it does not exist
-			# the wiki installer needs to be launched or the generated file uploaded to
-			# the root wiki directory. Give a hint, if it is not readable by the server.
-			global $IP;
-			require_once "$IP/includes/NoLocalSettings.php";
-			die();
-		}
-
 		define( 'MW_CONFIG_CALLBACK', 'wfWebStartNoLocalSettings' );
+	}
+}
+
+function wfWebStartSetup() {
+	// Initialise output buffering
+	// Check for previously set up buffers, to avoid a mix of gzip and non-gzip output.
+	if ( ob_get_level() == 0 ) {
+		ob_start( 'MediaWiki\\OutputHandler::handle' );
 	}
 }
 
 // Custom setup for WebStart entry point
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
-
-	function wfWebStartSetup() {
-		// Initialise output buffering
-		// Check for previously set up buffers, to avoid a mix of gzip and non-gzip output.
-		if ( ob_get_level() == 0 ) {
-			ob_start( 'MediaWiki\\OutputHandler::handle' );
-		}
-	}
-
 	define( 'MW_SETUP_CALLBACK', 'wfWebStartSetup' );
 }
 
