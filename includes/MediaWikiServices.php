@@ -61,6 +61,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -1170,6 +1171,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getStatsdDataFactory() : IBufferingStatsdDataFactory {
 		return $this->getService( 'StatsdDataFactory' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return TalkPageNotificationManager
+	 */
+	public function getTalkPageNotificationManager() : TalkPageNotificationManager {
+		return $this->getService( 'TalkPageNotificationManager' );
 	}
 
 	/**
