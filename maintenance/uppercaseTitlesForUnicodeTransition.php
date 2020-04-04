@@ -380,6 +380,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
 		$oldTitle = Title::makeTitle( $ns, $title );
 		$newTitle = Title::makeTitle( $ns, $this->charmap[$char] . mb_substr( $title, 1 ) );
+		$deletionReason = $this->shouldDelete( $db, $oldTitle, $newTitle );
 		if ( !$this->mungeTitle( $db, $oldTitle, $newTitle ) ) {
 			return false;
 		}
@@ -398,6 +399,11 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			$this->output(
 				"Would rename {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}\n"
 			);
+			if ( $deletionReason ) {
+				$this->output(
+					"Would then delete {$newTitle->getPrefixedText()}: $deletionReason\n"
+				);
+			}
 			return true;
 		}
 
@@ -424,7 +430,83 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			__METHOD__
 		);
 
+		if ( $deletionReason !== null ) {
+			$page = WikiPage::factory( $newTitle );
+			$error = '';
+			$status = $page->doDeleteArticleReal(
+				$deletionReason,
+				$this->user,
+				false, // don't suppress
+				null, // unused
+				$error,
+				null, // unused
+				[], // tags
+				'delete',
+				true // immediate
+			);
+			if ( !$status->isOK() ) {
+				$this->error(
+					"Deletion of {$newTitle->getPrefixedText()} failed: "
+					. $status->getMessage( false, false, 'en' )->useDatabase( false )->plain()
+				);
+				return false;
+			}
+			$this->output( "Deleted {$newTitle->getPrefixedText()}\n" );
+		}
+
 		return true;
+	}
+
+	/**
+	 * Determine whether the old title should be deleted
+	 *
+	 * If it's already a redirect to the new title, or the old and new titles
+	 * are redirects to the same place, there's no point in keeping it.
+	 *
+	 * Note the caller will still rename it before deleting it, so the archive
+	 * and logging rows wind up in a sane place.
+	 *
+	 * @param IDatabase $db
+	 * @param Title $oldTitle
+	 * @param Title $newTitle
+	 * @return string|null Deletion reason, or null if it shouldn't be deleted
+	 */
+	private function shouldDelete( IDatabase $db, Title $oldTitle, Title $newTitle ) {
+		$oldRow = $db->selectRow(
+			[ 'page', 'redirect' ],
+			[ 'ns' => 'rd_namespace', 'title' => 'rd_title' ],
+			[ 'page_namespace' => $oldTitle->getNamespace(), 'page_title' => $oldTitle->getDBkey() ],
+			__METHOD__,
+			[],
+			[ 'redirect' => [ 'JOIN', 'rd_from = page_id' ] ]
+		);
+		if ( !$oldRow ) {
+			// Not a redirect
+			return null;
+		}
+
+		if ( (int)$oldRow->ns === $newTitle->getNamespace() &&
+			$oldRow->title === $newTitle->getDBKey()
+		) {
+			return $this->reason . ", and found that [[{$oldTitle->getPrefixedText()}]] is "
+				. "already a redirect to [[{$newTitle->getPrefixedText()}]]";
+		} else {
+			$newRow = $db->selectRow(
+				[ 'page', 'redirect' ],
+				[ 'ns' => 'rd_namespace', 'title' => 'rd_title' ],
+				[ 'page_namespace' => $newTitle->getNamespace(), 'page_title' => $newTitle->getDBkey() ],
+				__METHOD__,
+				[],
+				[ 'redirect' => [ 'JOIN', 'rd_from = page_id' ] ]
+			);
+			if ( $newRow && $oldRow->ns === $newRow->ns && $oldRow->title === $newRow->title ) {
+				$nt = Title::makeTitle( $newRow->ns, $newRow->title );
+				return $this->reason . ", and found that [[{$oldTitle->getPrefixedText()}]] and "
+					. "[[{$newTitle->getPrefixedText()}]] both redirect to [[{$nt->getPrefixedText()}]].";
+			}
+		}
+
+		return null;
 	}
 
 	/**
