@@ -692,6 +692,10 @@ because of Phabricator reports.
 * All methods of the old SpecialPageFactory, deprecated in 1.32, were hard
   deprecated. Instead, get a SpecialPageFactory from MediaWikiServices and
   use its methods.
+* User::setNewtalk now accepts as its optional second parameter a
+  RevisionRecord object; passing a Revision is hard deprecated.
+* User::updateNewtalk now accepts as its optional third parameter a
+  RevisionRecord object; passing a Revision is hard deprecated.
 * Global $wgUser variable was soft deprecated.
 * The Revision class was soft deprecated entirely in 1.31. Specific methods
   have now been individually hard deprecated:
