@@ -1268,7 +1268,7 @@ return [
 			),
 			$services->getContentLanguage(),
 			LoggerFactory::getInstance( 'UserNameUtils' ),
-			$services->getService( 'TitleFactory' ),
+			$services->getTitleParser(),
 			$messageFormatterFactory->getTextFormatter(
 				$services->getContentLanguage()->getCode()
 			),
