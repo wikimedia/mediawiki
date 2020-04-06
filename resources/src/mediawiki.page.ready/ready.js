@@ -1,22 +1,33 @@
 var checkboxShift = require( './checkboxShift.js' );
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
-	var $sortable, $collapsible;
+	var $sortable, $collapsible, $sortableAndCollapsible, dependencies;
 
 	$collapsible = $content.find( '.mw-collapsible' );
+	$sortable = $content.find( 'table.sortable' );
+	$sortableAndCollapsible = $content.find( 'table.sortable.mw-collapsible' );
+
+	// Both modules are preloaded by Skin::getDefaultModules()
+	dependencies = [];
 	if ( $collapsible.length ) {
-		// Preloaded by Skin::getDefaultModules()
-		mw.loader.using( 'jquery.makeCollapsible', function () {
-			$collapsible.makeCollapsible();
-		} );
+		dependencies.push( 'jquery.makeCollapsible' );
+	}
+	if ( $sortable.length ) {
+		dependencies.push( 'jquery.tablesorter' );
 	}
 
-	$sortable = $content.find( 'table.sortable' );
-	if ( $sortable.length ) {
-		// Preloaded by Skin::getDefaultModules()
-		mw.loader.using( 'jquery.tablesorter', function () {
+	mw.loader.using( dependencies ).then( function () {
+		// The two scripts only work correctly together when executed in this order (T64878)
+		if ( $sortableAndCollapsible.length ) {
+			$sortableAndCollapsible.tablesorter().makeCollapsible();
+		}
+		// These are no-ops when executed on elements that were already handled above
+		if ( $collapsible.length ) {
+			$collapsible.makeCollapsible();
+		}
+		if ( $sortable.length ) {
 			$sortable.tablesorter();
-		} );
-	}
+		}
+	} );
 
 	checkboxShift( $content.find( 'input[type="checkbox"]:not(.noshiftselect)' ) );
 } );
