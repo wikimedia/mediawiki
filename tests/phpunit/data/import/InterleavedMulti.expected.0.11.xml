@@ -1,0 +1,149 @@
+<test:data xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:test="http://www.mediawiki.org/xml/test/">
+	<page>
+		<title>{{page1_title}}</title>
+		<ns>{{page1_namespace}}</ns>
+		<id>{{page1_pageid}}</id>
+		<!-- Revisions appear below in the order in which they were imported,
+		which is not necessarily timestamp order. Timestamp order is Revision 1,
+		 Revision 5, Revision 2, Revision 6, Revision 3, Revision 4, Revision 7. -->
+		<revision>
+			<!-- Revision 1: initial revision with only main slot -->
+			<id>{{page1_rev1_id}}</id>
+			<timestamp>2020-07-01T01:00:00Z</timestamp>
+			<contributor>
+				<username>imported&gt;Heffalump</username>
+				<id>0</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>{{page1_rev1_id}}</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="1" sha1="ctqm7794fr2dp1taki8a88ovwnvmnmj" xml:space="preserve">A</text>
+			<sha1>ctqm7794fr2dp1taki8a88ovwnvmnmj</sha1>
+		</revision>
+		<revision>
+			<!-- Revision 2: inherits main slot, adds new aux slot, timestamp after Revision 1 -->
+			<id>{{page1_rev2_id}}</id>
+			<parentid>{{page1_rev1_id}}</parentid>
+			<timestamp>2020-07-01T02:00:00Z</timestamp>
+			<contributor>
+				<username>imported&gt;Heffalump</username>
+				<id>0</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>{{page1_rev1_id}}</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="1" sha1="ctqm7794fr2dp1taki8a88ovwnvmnmj" xml:space="preserve">A</text>
+			<content>
+				<role>importexporttest</role>
+				<origin>{{page1_rev2_id}}</origin>
+				<model>wikitext</model>
+				<format>text/x-wiki</format>
+				<text bytes="1" sha1="mg8blyuwnhkljc3tv3e9o22b5xv4qx7" xml:space="preserve">X</text>
+			</content>
+			<sha1>hp15zu20q03qcnkwmcsim3x1zny6fzk</sha1>
+		</revision>
+		<revision>
+			<!-- Revision 3: new main slot content, inherits aux slot, timestamp after Revision 2 -->
+			<id>{{page1_rev3_id}}</id>
+			<parentid>{{page1_rev2_id}}</parentid>
+			<timestamp>2020-07-01T03:00:00Z</timestamp>
+			<contributor>
+				<username>imported&gt;Heffalump</username>
+				<id>0</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>{{page1_rev3_id}}</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="1" sha1="kd06xhwmki8ed6sulgfwg6jqrwb9fxo" xml:space="preserve">B</text>
+			<content>
+				<role>importexporttest</role>
+				<origin>{{page1_rev2_id}}</origin>
+				<model>wikitext</model>
+				<format>text/x-wiki</format>
+				<text bytes="1" sha1="mg8blyuwnhkljc3tv3e9o22b5xv4qx7" xml:space="preserve">X</text>
+			</content>
+			<sha1>hamapuvrpwhdq79zen51nxjhsbxtla4</sha1>
+		</revision>
+		<revision>
+			<!-- Revision 4: new main slot content, inherits aux slot, timestamp after Revision 3 -->
+			<id>{{page1_rev4_id}}</id>
+			<parentid>{{page1_rev3_id}}</parentid>
+			<timestamp>2020-07-01T04:00:00Z</timestamp>
+			<contributor>
+				<username>imported&gt;Heffalump</username>
+				<id>0</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>{{page1_rev4_id}}</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="1" sha1="5uexnonqvnuuydsyjoibacs9i0v4osd" xml:space="preserve">C</text>
+			<content>
+				<role>importexporttest</role>
+				<origin>{{page1_rev2_id}}</origin>
+				<model>wikitext</model>
+				<format>text/x-wiki</format>
+				<text bytes="1" sha1="mg8blyuwnhkljc3tv3e9o22b5xv4qx7" xml:space="preserve">X</text>
+			</content>
+			<sha1>izray6n84g32m1mbx8e0tg70ztzmywi</sha1>
+		</revision>
+		<revision>
+			<!-- Revision 5: new main slot content, no aux slot, timestamp between Revision 1 and Revision 2 -->
+			<id>{{page1_rev5_id}}</id>
+			<parentid>{{page1_rev1_id}}</parentid>
+			<timestamp>2020-07-01T01:30:00Z</timestamp>
+			<contributor>
+				<username>imported&gt;Heffalump</username>
+				<id>0</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>{{page1_rev5_id}}</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="1" sha1="jm6jnbq7mdyxwafag4hbyd3z2waioa1" xml:space="preserve">K</text>
+			<sha1>jm6jnbq7mdyxwafag4hbyd3z2waioa1</sha1>
+		</revision>
+		<revision>
+			<!-- Revision 6: new main slot content, no aux slot, timestamp between Revision 2 and Revision 3 -->
+			<id>{{page1_rev6_id}}</id>
+			<parentid>{{page1_rev2_id}}</parentid>
+			<timestamp>2020-07-01T02:30:00Z</timestamp>
+			<contributor>
+				<username>imported&gt;Heffalump</username>
+				<id>0</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>{{page1_rev6_id}}</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="1" sha1="kd06xhwmki8ed6sulgfwg6jqrwb9fxo" xml:space="preserve">B</text>
+			<sha1>kd06xhwmki8ed6sulgfwg6jqrwb9fxo</sha1>
+		</revision>
+		<revision>
+			<!-- Revision 7: new main slot content, inherited aus slot, timestamp after Revision 4 -->
+			<id>{{page1_rev7_id}}</id>
+			<parentid>{{page1_rev4_id}}</parentid>
+			<timestamp>2020-07-01T04:30:00Z</timestamp>
+			<contributor>
+				<username>imported&gt;Heffalump</username>
+				<id>0</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>{{page1_rev7_id}}</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="1" sha1="kd06xhwmki8ed6sulgfwg6jqrwb9fxo" xml:space="preserve">B</text>
+			<content>
+				<role>importexporttest</role>
+				<origin>{{page1_rev2_id}}</origin>
+				<model>wikitext</model>
+				<format>text/x-wiki</format>
+				<text bytes="1" sha1="mg8blyuwnhkljc3tv3e9o22b5xv4qx7" xml:space="preserve">X</text>
+			</content>
+			<sha1>hamapuvrpwhdq79zen51nxjhsbxtla4</sha1>
+		</revision>
+	</page>
+</test:data>

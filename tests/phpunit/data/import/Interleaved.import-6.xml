@@ -1,0 +1,48 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.11/ http://www.mediawiki.org/xml/export-0.11.xsd" version="0.11" xml:lang="de">
+	<siteinfo>
+		<sitename>Test</sitename>
+		<dbname>wiki</dbname>
+		<base>http://example.com/wiki/</base>
+		<generator>MediaWiki Test</generator>
+		<case>first-letter</case>
+		<namespaces>
+			<namespace key="-2" case="first-letter">Medium</namespace>
+			<namespace key="-1" case="first-letter">Spezial</namespace>
+			<namespace key="0" case="first-letter" />
+			<namespace key="1" case="first-letter">Diskussion</namespace>
+			<namespace key="2" case="first-letter">Benutzer</namespace>
+			<namespace key="3" case="first-letter">Benutzer Diskussion</namespace>
+			<namespace key="4" case="first-letter">Project</namespace>
+			<namespace key="5" case="first-letter">Project Diskussion</namespace>
+			<namespace key="6" case="first-letter">Datei</namespace>
+			<namespace key="7" case="first-letter">Datei Diskussion</namespace>
+			<namespace key="8" case="first-letter">MediaWiki</namespace>
+			<namespace key="9" case="first-letter">MediaWiki Diskussion</namespace>
+			<namespace key="10" case="first-letter">Vorlage</namespace>
+			<namespace key="11" case="first-letter">Vorlage Diskussion</namespace>
+			<namespace key="12" case="first-letter">Hilfe</namespace>
+			<namespace key="13" case="first-letter">Hilfe Diskussion</namespace>
+			<namespace key="14" case="first-letter">Kategorie</namespace>
+			<namespace key="15" case="first-letter">Kategorie Diskussion</namespace>
+		</namespaces>
+	</siteinfo>
+	<page>
+		<title>{{page1_title}}</title>
+		<ns>0</ns>
+		<id>562</id>
+		<revision>
+			<id>904</id>
+			<timestamp>2020-07-01T02:30:00Z</timestamp>
+			<contributor>
+				<username>Heffalump</username>
+				<id>1</id>
+			</contributor>
+			<comment>consetetur sadipscing elitr</comment>
+			<origin>904</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="1" sha1="6nfnbjxiegpvuooe4zsuf5h1610qbrt" xml:space="preserve">B</text>
+			<sha1>6nfnbjxiegpvuooe4zsuf5h1610qbrt</sha1>
+		</revision>
+	</page>
+</mediawiki>
