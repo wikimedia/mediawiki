@@ -703,15 +703,12 @@ class MovePage {
 	 * @return Status
 	 */
 	private function moveFile( $oldTitle, $newTitle ) {
-		$status = Status::newFatal(
-			'cannotdelete',
-			$oldTitle->getPrefixedText()
-		);
-
 		$file = $this->repoGroup->getLocalRepo()->newFile( $oldTitle );
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
 			$status = $file->move( $newTitle );
+		} else {
+			$status = Status::newGood();
 		}
 
 		// Clear RepoGroup process cache
