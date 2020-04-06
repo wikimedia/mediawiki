@@ -49,10 +49,6 @@ return [
 
 	'user.defaults' => [ 'class' => ResourceLoaderUserDefaultsModule::class ],
 	'user.options' => [ 'class' => ResourceLoaderUserOptionsModule::class ],
-	'user.tokens' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => 'user.options'
-	],
 
 	'mediawiki.skinning.elements' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
