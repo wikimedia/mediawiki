@@ -43,17 +43,15 @@ You'll need a locally running Docker and Docker Compose:
 
 ### Quickstart
 
-Create a `.env` file for defining environment variables for the development environment: 
+Using a text editor, create a `.env` file in the root of the MediaWiki core repository, and copy these contents into that file:
 
 ```bash
-echo "MW_DOCKER_PORT=8080
-MW_DOCKER_UID=$(id -u)
-MW_DOCKER_GID=$(id -g)
+MW_DOCKER_PORT=8080
 MW_SCRIPT_PATH=/
 MW_SERVER=http://localhost:8080
 MEDIAWIKI_USER=Admin
 MEDIAWIKI_PASSWORD=dockerpass
-XDEBUG_CONFIG=''" > .env
+XDEBUG_CONFIG=''
 ```
 
 #### Linux users
@@ -69,6 +67,13 @@ services:
   mediawiki:
     # On Linux, these lines ensure file ownership is set to your host user/group
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
+```
+
+Run the following command to add your user ID and group ID to your `.env` file:
+
+```bash
+echo "MW_DOCKER_UID=$(id -u)
+MW_DOCKER_GID=$(id -g)" >> .env
 ```
 
 #### Start environment and install MediaWiki
