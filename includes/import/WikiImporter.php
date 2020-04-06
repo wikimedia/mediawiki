@@ -26,6 +26,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * XML file reader for the page data importer.
@@ -572,22 +573,22 @@ class WikiImporter {
 		// libxml_disable_entity_loader() to avoid local file
 		// inclusion attacks (T48932).
 		$oldDisable = libxml_disable_entity_loader( true );
-		$this->reader->read();
-
-		if ( $this->reader->localName != 'mediawiki' ) {
-			libxml_disable_entity_loader( $oldDisable );
-			throw new MWException( "Expected <mediawiki> tag, got " .
-				$this->reader->localName );
-		}
-		$this->debug( "<mediawiki> tag is correct." );
-
-		$this->debug( "Starting primary dump processing loop." );
-
-		$keepReading = $this->reader->read();
-		$skip = false;
 		$rethrow = null;
-		$pageCount = 0;
 		try {
+			$this->reader->read();
+
+			if ( $this->reader->localName != 'mediawiki' ) {
+				libxml_disable_entity_loader( $oldDisable );
+				throw new MWException( "Expected <mediawiki> tag, got " .
+					$this->reader->localName );
+			}
+			$this->debug( "<mediawiki> tag is correct." );
+
+			$this->debug( "Starting primary dump processing loop." );
+
+			$keepReading = $this->reader->read();
+			$skip = false;
+			$pageCount = 0;
 			while ( $keepReading ) {
 				$tag = $this->reader->localName;
 				if ( $this->pageOffset ) {
@@ -829,7 +830,8 @@ class WikiImporter {
 		$this->debug( "Enter revision handler" );
 		$revisionInfo = [];
 
-		$normalFields = [ 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text', 'sha1' ];
+		$normalFields = [ 'id', 'parentid', 'timestamp', 'comment', 'minor', 'origin',
+			'model', 'format', 'text', 'sha1' ];
 
 		$skip = false;
 
@@ -847,6 +849,9 @@ class WikiImporter {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$revisionInfo[$tag] = $this->nodeContents();
+			} elseif ( $tag == 'content' ) {
+				// We can have multiple content tags, so make this an array.
+				$revisionInfo[$tag][] = $this->handleContent();
 			} elseif ( $tag == 'contributor' ) {
 				$revisionInfo['contributor'] = $this->handleContributor();
 			} elseif ( $tag != '#text' ) {
@@ -861,6 +866,85 @@ class WikiImporter {
 		}
 	}
 
+	private function handleContent() {
+		$this->debug( "Enter content handler" );
+		$contentInfo = [];
+
+		$normalFields = [ 'role', 'origin', 'model', 'format', 'text' ];
+
+		$skip = false;
+
+		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
+			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
+				$this->reader->localName == 'content' ) {
+				break;
+			}
+
+			$tag = $this->reader->localName;
+
+			if ( !$this->hookRunner->onImportHandleContentXMLTag(
+				$this, $contentInfo )
+			) {
+				// Do nothing
+			} elseif ( in_array( $tag, $normalFields ) ) {
+				$contentInfo[$tag] = $this->nodeContents();
+			} elseif ( $tag != '#text' ) {
+				$this->warn( "Unhandled content XML tag $tag" );
+				$skip = true;
+			}
+		}
+
+		return $contentInfo;
+	}
+
+	/**
+	 * @param Title $title
+	 * @param int $revisionId
+	 * @param array $contentInfo
+	 *
+	 * @return Content
+	 * @throws MWException
+	 */
+	private function makeContent( Title $title, $revisionId, $contentInfo ) {
+		global $wgMaxArticleSize;
+
+		if ( !isset( $contentInfo['text'] ) ) {
+			throw new MWException( 'Missing text field in import.' );
+		}
+
+		// Make sure revisions won't violate $wgMaxArticleSize, which could lead to
+		// database errors and instability. Testing for revisions with only listed
+		// content models, as other content models might use serialization formats
+		// which aren't checked against $wgMaxArticleSize.
+		if ( ( !isset( $contentInfo['model'] ) ||
+				in_array( $contentInfo['model'], [
+					'wikitext',
+					'css',
+					'json',
+					'javascript',
+					'text',
+					''
+				] ) ) &&
+			strlen( $contentInfo['text'] ) > $wgMaxArticleSize * 1024
+		) {
+			throw new MWException( 'The text of ' .
+				( $revisionId ?
+					"the revision with ID $revisionId" :
+					'a revision'
+				) . " exceeds the maximum allowable size ($wgMaxArticleSize KB)" );
+		}
+
+		$role = $contentInfo['role'] ?? SlotRecord::MAIN;
+		$model = $contentInfo['model'] ?? $this->getDefaultContentModel( $title, $role );
+		$handler = $this->getContentHandler( $model );
+
+		$text = $handler->importTransform( $contentInfo['text'] );
+
+		$content = $handler->unserializeContent( $text );
+
+		return $content;
+	}
+
 	/**
 	 * @param array $pageInfo
 	 * @param array $revisionInfo
@@ -868,51 +952,26 @@ class WikiImporter {
 	 * @return bool|mixed
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
-		global $wgMaxArticleSize;
-
-		// Make sure revisions won't violate $wgMaxArticleSize, which could lead to
-		// database errors and instability. Testing for revisions with only listed
-		// content models, as other content models might use serialization formats
-		// which aren't checked against $wgMaxArticleSize.
-		if ( ( !isset( $revisionInfo['model'] ) ||
-			in_array( $revisionInfo['model'], [
-				'wikitext',
-				'css',
-				'json',
-				'javascript',
-				'text',
-				''
-			] ) ) &&
-			strlen( $revisionInfo['text'] ) > $wgMaxArticleSize * 1024
-		) {
-			throw new MWException( 'The text of ' .
-				( isset( $revisionInfo['id'] ) ?
-					"the revision with ID $revisionInfo[id]" :
-					'a revision'
-				) . " exceeds the maximum allowable size ($wgMaxArticleSize KB)" );
-		}
-
-		// FIXME: process schema version 11!
 		$revision = new WikiRevision( $this->config );
 
-		if ( isset( $revisionInfo['id'] ) ) {
+		$revId = $revisionInfo['id'] ?? 0;
+		if ( $revId ) {
 			$revision->setID( $revisionInfo['id'] );
 		}
-		if ( isset( $revisionInfo['model'] ) ) {
-			$revision->setModel( $revisionInfo['model'] );
-		}
-		if ( isset( $revisionInfo['format'] ) ) {
-			$revision->setFormat( $revisionInfo['format'] );
-		}
-		$revision->setTitle( $pageInfo['_title'] );
 
-		if ( isset( $revisionInfo['text'] ) ) {
-			$handler = $revision->getContentHandler();
-			$text = $handler->importTransform(
-				$revisionInfo['text'],
-				$revision->getFormat() );
+		$title = $pageInfo['_title'];
+		$revision->setTitle( $title );
 
-			$revision->setText( $text );
+		$content = $this->makeContent( $title, $revId, $revisionInfo );
+		$revision->setContent( SlotRecord::MAIN, $content );
+
+		foreach ( $revisionInfo['content'] ?? [] as $slotInfo ) {
+			if ( !isset( $slotInfo['role'] ) ) {
+				throw new MWException( "Missing role for imported slot." );
+			}
+
+			$content = $this->makeContent( $title, $revId, $slotInfo );
+			$revision->setContent( $slotInfo['role'], $content );
 		}
 		$revision->setTimestamp( $revisionInfo['timestamp'] ?? wfTimestampNow() );
 
@@ -1048,6 +1107,7 @@ class WikiImporter {
 	 * @return array
 	 */
 	private function handleContributor() {
+		$this->debug( "Enter contributor handler." );
 		$fields = [ 'id', 'ip', 'username' ];
 		$info = [];
 
@@ -1120,5 +1180,28 @@ class WikiImporter {
 		}
 
 		return [ $title, $foreignTitle ];
+	}
+
+	/**
+	 * @param string $model
+	 * @return ContentHandler
+	 */
+	private function getContentHandler( $model ) {
+		return MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $model );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param string $role
+	 *
+	 * @return string
+	 */
+	private function getDefaultContentModel( $title, $role ) {
+		return MediaWikiServices::getInstance()
+			->getSlotRoleRegistry()
+			->getRoleHandler( $role )
+			->getDefaultModel( $title );
 	}
 }

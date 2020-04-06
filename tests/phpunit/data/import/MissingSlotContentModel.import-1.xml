@@ -1,0 +1,54 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.11/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.11/ http://www.mediawiki.org/xml/export-0.11.xsd" version="0.11" xml:lang="de">
+	<siteinfo>
+		<sitename>Test</sitename>
+		<dbname>wiki</dbname>
+		<base>http://example.com/wiki/</base>
+		<generator>MediaWiki Test</generator>
+		<case>first-letter</case>
+		<namespaces>
+			<namespace key="-2" case="first-letter">Medium</namespace>
+			<namespace key="-1" case="first-letter">Spezial</namespace>
+			<namespace key="0" case="first-letter" />
+			<namespace key="1" case="first-letter">Diskussion</namespace>
+			<namespace key="2" case="first-letter">Benutzer</namespace>
+			<namespace key="3" case="first-letter">Benutzer Diskussion</namespace>
+			<namespace key="4" case="first-letter">Project</namespace>
+			<namespace key="5" case="first-letter">Project Diskussion</namespace>
+			<namespace key="6" case="first-letter">Datei</namespace>
+			<namespace key="7" case="first-letter">Datei Diskussion</namespace>
+			<namespace key="8" case="first-letter">MediaWiki</namespace>
+			<namespace key="9" case="first-letter">MediaWiki Diskussion</namespace>
+			<namespace key="10" case="first-letter">Vorlage</namespace>
+			<namespace key="11" case="first-letter">Vorlage Diskussion</namespace>
+			<namespace key="12" case="first-letter">Hilfe</namespace>
+			<namespace key="13" case="first-letter">Hilfe Diskussion</namespace>
+			<namespace key="14" case="first-letter">Kategorie</namespace>
+			<namespace key="15" case="first-letter">Kategorie Diskussion</namespace>
+		</namespaces>
+	</siteinfo>
+	<page>
+		<title>{{page1_title}}</title>
+		<ns>0</ns>
+		<id>1</id>
+		<revision>
+			<id>4</id>
+			<timestamp>2020-07-10T04:11:31Z</timestamp>
+			<contributor>
+				<username>Heffalump</username>
+				<id>3</id>
+			</contributor>
+			<comment>Testing slots</comment>
+			<origin>4</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="5" sha1="syvtbocopvw4f81bf07ocly0sl8ybqo" xml:space="preserve">Hello</text>
+			<content>
+				<role>importexporttest</role>
+				<origin>4</origin>
+				<format>text/x-wiki</format>
+				<text bytes="14" sha1="p2w9gtded1hduym7e0wokxbezokvq8c" xml:space="preserve">This is a slot</text>
+			</content>
+			<sha1>2zn8g94g6g8vb3y98u8wbnxxhtmksm6</sha1>
+		</revision>
+	</page>
+</mediawiki>

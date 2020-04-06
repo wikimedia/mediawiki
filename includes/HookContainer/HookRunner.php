@@ -2154,6 +2154,12 @@ class HookRunner implements
 		);
 	}
 
+	public function onImportHandleContentXMLTag( $reader, $contentInfo ) {
+		return $this->container->run(
+			'ImportHandleContentXMLTag',
+			[ $reader, $contentInfo ] );
+	}
+
 	public function onImportHandleToplevelXMLTag( $reader ) {
 		return $this->container->run(
 			'ImportHandleToplevelXMLTag',
