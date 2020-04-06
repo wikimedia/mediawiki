@@ -436,6 +436,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$blockPerformer,
 		$adjustPerformer,
 		$adjustTarget,
+		$sitewide,
 		$expectedResult,
 		$reason
 	) {
@@ -462,7 +463,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'user' => $blockedUser->getId(),
 			'by' => $blockPerformer->getId(),
 			'expiry' => 'infinity',
-			'sitewide' => 1,
+			'sitewide' => $sitewide,
 			'enableAutoblock' => true,
 		] );
 
@@ -478,12 +479,15 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function provideCheckUnblockSelf() {
 		// 'blockedUser', 'blockPerformer', 'adjustPerformer', 'adjustTarget'
 		return [
-			[ 'u1', 'u2', 'u3', 'u4', true, 'Unrelated users' ],
-			[ 'u1', 'u2', 'u1', 'u4', 'ipbblocked', 'Block unrelated while blocked' ],
-			[ 'u1', 'u2', 'u1', 'u1', true, 'Has unblockself' ],
-			[ 'nonsysop', 'u2', 'nonsysop', 'nonsysop', 'ipbnounblockself', 'no unblockself' ],
-			[ 'nonsysop', 'nonsysop', 'nonsysop', 'nonsysop', true, 'no unblockself but can de-selfblock' ],
-			[ 'u1', 'u2', 'u1', 'u2', true, 'Can block user who blocked' ],
+			[ 'u1', 'u2', 'u3', 'u4', 1, true, 'Unrelated users' ],
+			[ 'u1', 'u2', 'u1', 'u4', 1, 'ipbblocked', 'Block unrelated while blocked' ],
+			[ 'u1', 'u2', 'u1', 'u4', 0, true, 'Block unrelated while partial blocked' ],
+			[ 'u1', 'u2', 'u1', 'u1', 1, true, 'Has unblockself' ],
+			[ 'nonsysop', 'u2', 'nonsysop', 'nonsysop', 1, 'ipbnounblockself', 'no unblockself' ],
+			[ 'nonsysop', 'nonsysop', 'nonsysop', 'nonsysop', 1, true,
+				'no unblockself but can de-selfblock'
+			],
+			[ 'u1', 'u2', 'u1', 'u2', 1, true, 'Can block user who blocked' ],
 		];
 	}
 
