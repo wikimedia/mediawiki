@@ -321,7 +321,16 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 				$this->prefix . $oldTitle->getPrefixedText() . ( $this->suffix ?? '' )
 			);
 		} elseif ( $this->suffix !== null ) {
-			$newTitle = Title::makeTitle( $newTitle->getNamespace(), $newTitle->getText() . $this->suffix );
+			$dbkey = $newTitle->getText();
+			$i = $newTitle->getNamespace() === NS_FILE ? strrpos( $dbkey, '.' ) : false;
+			if ( $i !== false ) {
+				$newTitle = Title::makeTitle(
+					$newTitle->getNamespace(),
+					substr( $dbkey, 0, $i ) . $this->suffix . substr( $dbkey, $i )
+				);
+			} else {
+				$newTitle = Title::makeTitle( $newTitle->getNamespace(), $dbkey . $this->suffix );
+			}
 		} else {
 			$this->error(
 				"Cannot move {$oldTitle->getPrefixedText()} → $nt: "
