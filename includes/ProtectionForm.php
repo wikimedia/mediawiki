@@ -393,8 +393,9 @@ class ProtectionForm {
 			Xml::openElement( 'table', [ 'id' => 'mwProtectSet' ] ) .
 			Xml::openElement( 'tbody' );
 
-		$scExpiryOptions = wfMessage( 'protect-expiry-options' )->inContentLanguage()->text();
-		$showProtectOptions = $scExpiryOptions !== '-' && !$this->disabled;
+		$expiryOptionsMsg = wfMessage( 'protect-expiry-options' )->inContentLanguage()->text();
+		$showProtectOptions = $expiryOptionsMsg !== '-' && !$this->disabled;
+		$expiryOptions = XmlSelect::parseOptionsMessage( $expiryOptionsMsg );
 
 		// Not all languages have V_x <-> N_x relation
 		foreach ( $this->mRestrictions as $action => $selected ) {
@@ -447,14 +448,7 @@ class ProtectionForm {
 				$context->msg( 'protect-othertime-op' )->text(),
 				'othertime'
 			);
-			foreach ( explode( ',', $scExpiryOptions ) as $option ) {
-				if ( strpos( $option, ":" ) === false ) {
-					$show = $value = $option;
-				} else {
-					list( $show, $value ) = explode( ":", $option );
-				}
-				$expiryFormOptions->addOption( $show, htmlspecialchars( $value ) );
-			}
+			$expiryFormOptions->addOptions( $expiryOptions );
 			# Add expiry dropdown
 			if ( $showProtectOptions && !$this->disabled ) {
 				$out .= "

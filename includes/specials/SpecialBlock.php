@@ -1076,7 +1076,6 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string[]
 	 */
 	public static function getSuggestedDurations( Language $lang = null, $includeOther = true ) {
-		$a = [];
 		$msg = $lang === null
 			? wfMessage( 'ipboptions' )->inContentLanguage()->text()
 			: wfMessage( 'ipboptions' )->inLanguage( $lang )->text();
@@ -1085,14 +1084,7 @@ class SpecialBlock extends FormSpecialPage {
 			return [];
 		}
 
-		foreach ( explode( ',', $msg ) as $option ) {
-			if ( strpos( $option, ':' ) === false ) {
-				$option = "$option:$option";
-			}
-
-			list( $show, $value ) = explode( ':', $option );
-			$a[$show] = $value;
-		}
+		$a = XmlSelect::parseOptionsMessage( $msg );
 
 		if ( $a && $includeOther ) {
 			// if options exist, add other to the end instead of the begining (which
