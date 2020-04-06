@@ -81,7 +81,7 @@ abstract class Preprocessor {
 
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$key = $cache->makeKey(
-			// @phan-suppress-next-line PhanUndeclaredConstant
+			// @phan-suppress-next-line PhanUndeclaredConstantOfClass
 			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : static::class,
 			md5( $text ),
 			$flags
@@ -114,7 +114,7 @@ abstract class Preprocessor {
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
 		$key = $cache->makeKey(
-			// @phan-suppress-next-line PhanUndeclaredConstant
+			// @phan-suppress-next-line PhanUndeclaredConstantOfClass
 			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : static::class,
 			md5( $text ),
 			$flags

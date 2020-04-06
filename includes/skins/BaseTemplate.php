@@ -566,6 +566,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				unset( $buttonAttrs['width'] );
 				unset( $buttonAttrs['height'] );
 				$imgAttrs = [
+					// @phan-suppress-next-line PhanTypeInvalidDimOffset
 					'src' => $attrs['src'],
 					'alt' => $attrs['alt'] ?? wfMessage( 'searchbutton' )->text(),
 					'width' => $attrs['width'] ?? null,
