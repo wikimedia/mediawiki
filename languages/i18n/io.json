@@ -897,9 +897,10 @@
 	"savedprefs": "Vua preferaji registragesis.",
 	"timezonelegend": "Tempala zono:",
 	"localtime": "Lokala tempo:",
+	"timezoneuseserverdefault": "Uzez 'default' de wiki ($1)",
 	"timezoneuseoffset": "Altra (informez precize la tempo-difero)",
 	"timezone-useoffset-placeholder": "Exemple pri valori: \"-07:00\" o \"01:00\"",
-	"servertime": "Kloko en la servanto:",
+	"servertime": "Horo en la servanto:",
 	"guesstimezone": "Obtenar la kloko dil \"browser\"",
 	"timezoneregion-africa": "Afrika",
 	"timezoneregion-america": "Amerika",
@@ -1539,6 +1540,7 @@
 	"defemailsubject": "{{SITENAME}} e-mesaji de uzero \"$1\"",
 	"usermaildisabledtext": "Vu ne povas sendar e-posto ad altra uzeri en ca Wiki",
 	"noemailtitle": "Ne esas e-adreso",
+	"emailusername": "Uzeronomo:",
 	"email-legend": "Sendar e-posto ad altra uzero di {{SITENAME}}",
 	"emailfrom": "De:",
 	"emailto": "Ad:",
@@ -2272,6 +2274,7 @@
 	"changecredentials-submit": "Modifikar identifiko",
 	"removecredentials": "Removar permisi",
 	"removecredentials-submit": "Removar permisi",
+	"mute-preferences": "Tacema preferaji",
 	"interfaceadmin-info": "$1\n\nPermisi por redaktar arkivi CSS/JS/JSON en la retsituo recente separesis de la permiso <code>editinterface</code>. Se vu ne savas pro quo vu recevis ca eroro-mesajo, videz [[mw:MediaWiki_1.32/interface-admin]].",
 	"gotointerwiki-external": "Tu balde livos {{SITENAME}} por vizitar [[$2]], quo esas diferanta ret-pagino.\n\n'''[$1 irez a $1]'''"
 }

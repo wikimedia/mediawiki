@@ -914,6 +914,7 @@
 	"history-feed-item-nocomment": "$1 o $2",
 	"history-feed-empty": "Wybrana strona nie istnieje.\nMogła zostać usunięta lub jej nazwa została zmieniona.\nSpróbuj [[Special:Search|poszukać]] tej strony.",
 	"history-edit-tags": "Edytuj znaczniki wybranych wersji",
+	"history-empty": "Nie odnaleziono pasujących wersji.",
 	"rev-deleted-comment": "(usunięto opis zmian)",
 	"rev-deleted-user": "(nazwa użytkownika usunięta)",
 	"rev-deleted-event": "(szczegóły usunięte)",

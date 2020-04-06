@@ -3,7 +3,8 @@
 		"authors": [
 			"A Chinese Wikipedian",
 			"VulpesVulpes825",
-			"500000000006城"
+			"500000000006城",
+			"铁桶"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径($1)不在REST API根路径($2)中",
@@ -26,7 +27,7 @@
 	"rest-compare-wrong-content": "$2参数指定的修订版的$1插槽具有无法转换为文本的内容类型。",
 	"rest-compare-wikidiff2": "此终结点需要 wikidiff2 1.9.0 或更高版本。",
 	"rest-pagehistorycount-too-many-revisions": "因为指定的标题中包含的修改太多，所以不能获得这个数量。",
-	"rest-search-error": "返回搜索结果时出错:$1",
+	"rest-search-error": "返回搜索结果时出错：$1",
 	"rest-page-source-type-error": "不支持请求的页面源的内容类型",
 	"rest-no-revision": "无法检索标题$1的修订",
 	"rest-media-too-many-links": "标题$1有过多媒体链接（允许$2个）"

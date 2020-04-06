@@ -856,6 +856,7 @@
 	"history-feed-item-nocomment": "$1 v $2",
 	"history-feed-empty": "Požadovaná stránka neexistuje.\nMohla být smazána či přejmenována.\nZkuste [[Special:Search|hledání]].",
 	"history-edit-tags": "Editovat značky vybraných revizí",
+	"history-empty": "Nebyly nalezeny žádné odpovídající revize.",
 	"rev-deleted-comment": "(shrnutí editace odstraněno)",
 	"rev-deleted-user": "(uživatelské jméno odstraněno)",
 	"rev-deleted-event": "(podrobnosti odstraněny)",

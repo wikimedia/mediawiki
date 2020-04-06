@@ -894,6 +894,7 @@
 	"history-feed-item-nocomment": "$1 den $2",
 	"history-feed-empty": "Den begärda sidan finns inte.\nDen kan ha tagits bort från wikin eller bytt namn.\nProva att [[Special:Search|söka på wikin]] för relevanta nya sidor.",
 	"history-edit-tags": "Redigera märken för valda sidversioner",
+	"history-empty": "Inga matchande revisioner hittades.",
 	"rev-deleted-comment": "(redigeringssammanfattning togs bort)",
 	"rev-deleted-user": "(användarnamn borttaget)",
 	"rev-deleted-event": "(loggdetaljer borttagna)",

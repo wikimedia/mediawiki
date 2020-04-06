@@ -786,6 +786,7 @@
 	"history-feed-item-nocomment": "$1 d'an $2",
 	"history-feed-empty": "Ar bajenn goulennet n'eus ket anezhi.\nMarteze eo bet diverket eus ar wiki, pe adanvet.\nImplijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe klotañ.",
 	"history-edit-tags": "Kemmañ tikedennoù ar stummoù diuzet",
+	"history-empty": "N'eus bet kavet stumm ebet o klotañ.",
 	"rev-deleted-comment": "(diverradenn ar c'hemm diverket)",
 	"rev-deleted-user": "(anv implijer diverket)",
 	"rev-deleted-event": "(munudoù ar marilh bet dilamet)",

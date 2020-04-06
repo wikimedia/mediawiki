@@ -853,6 +853,7 @@
 	"history-feed-item-nocomment": "$1 ב־$2",
 	"history-feed-empty": "הדף המבוקש לא נמצא.\nייתכן שהוא נמחק, או ששמו שונה.\nבאפשרותך לנסות [[Special:Search|לחפש]] דפים רלוונטיים חדשים.",
 	"history-edit-tags": "עריכת התגיות של הגרסאות שנבחרו",
+	"history-empty": "לא נמצאו גרסאות מתאימות.",
 	"rev-deleted-comment": "(תקציר העריכה הוסתר)",
 	"rev-deleted-user": "(שם המשתמש הוסתר)",
 	"rev-deleted-event": "(פעולת היומן הוסתרה)",

@@ -2201,6 +2201,7 @@
 	"logeventslist-more-filters": "Mostra registri aggiuntivi:",
 	"logeventslist-patrol-log": "Modifiche verificate",
 	"logeventslist-tag-log": "Etichette",
+	"logeventslist-newusers-log": "Nuovi utenti",
 	"all-logs-page": "Tutti i registri pubblici",
 	"alllogstext": "Presentazione unificata di tutti i registri di {{SITENAME}}.\nÈ possibile restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata (entrambi i campi sono sensibili al maiuscolo/minuscolo).",
 	"logempty": "Il registro non contiene elementi corrispondenti alla ricerca.",

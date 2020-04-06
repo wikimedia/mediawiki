@@ -912,6 +912,7 @@
 	"history-feed-item-nocomment": "$1 op $3 om $4",
 	"history-feed-empty": "De gevraagde pagina bestaat niet.\nWellicht is die verwijderd of hernoemd.\n[[Special:Search|Doorzoek de wiki]] voor relevante pagina's.",
 	"history-edit-tags": "Labels van geselecteerde versies bewerken",
+	"history-empty": "Er zijn geen overeenkomende versies gevonden.",
 	"rev-deleted-comment": "(bewerkingssamenvatting verwijderd)",
 	"rev-deleted-user": "(gebruikersnaam verwijderd)",
 	"rev-deleted-event": "(logboekregel verwijderd)",
