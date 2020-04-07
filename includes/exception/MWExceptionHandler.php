@@ -28,12 +28,14 @@ use Wikimedia\Rdbms\DBError;
  * @ingroup Exception
  */
 class MWExceptionHandler {
-	public const CAUGHT_BY_HANDLER = 'mwe_handler'; // error reported by this exception handler
-	public const CAUGHT_BY_OTHER = 'other'; // error reported by direct logException() call
+	/** @var string Error caught and reported by this exception handler */
+	public const CAUGHT_BY_HANDLER = 'mwe_handler';
+	/** @var string Error caught and reported by a script entry point */
+	public const CAUGHT_BY_ENTRYPOINT = 'entrypoint';
+	/** @var string Error reported by direct logException() call */
+	public const CAUGHT_BY_OTHER = 'other';
 
-	/**
-	 * @var string $reservedMemory
-	 */
+	/** @var string $reservedMemory */
 	protected static $reservedMemory;
 
 	/**
@@ -117,8 +119,12 @@ class MWExceptionHandler {
 	 *
 	 * @since 1.23
 	 * @param Throwable $e
+	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
 	 */
-	public static function rollbackMasterChangesAndLog( Throwable $e ) {
+	public static function rollbackMasterChangesAndLog(
+		Throwable $e,
+		$catcher = self::CAUGHT_BY_OTHER
+	) {
 		$services = MediaWikiServices::getInstance();
 		if ( !$services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
 			// Rollback DBs to avoid transaction notices. This might fail
@@ -132,11 +138,11 @@ class MWExceptionHandler {
 				// which would result in an exception loop. PHP may escalate such
 				// errors to "Exception thrown without a stack frame" fatals, but
 				// it's better to be explicit here.
-				self::logException( $e2, self::CAUGHT_BY_HANDLER );
+				self::logException( $e2, $catcher );
 			}
 		}
 
-		self::logException( $e, self::CAUGHT_BY_HANDLER );
+		self::logException( $e, $catcher );
 	}
 
 	/**
@@ -146,7 +152,7 @@ class MWExceptionHandler {
 	 * @param Throwable $e
 	 */
 	public static function handleUncaughtException( Throwable $e ) {
-		self::handleException( $e );
+		self::handleException( $e, self::CAUGHT_BY_HANDLER );
 
 		// Make sure we don't claim success on exit for CLI scripts (T177414)
 		if ( wfIsCLI() ) {
@@ -171,9 +177,10 @@ class MWExceptionHandler {
 	 *
 	 * @since 1.25
 	 * @param Throwable $e
+	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
 	 */
-	public static function handleException( Throwable $e ) {
-		self::rollbackMasterChangesAndLog( $e );
+	public static function handleException( Throwable $e, $catcher = self::CAUGHT_BY_OTHER ) {
+		self::rollbackMasterChangesAndLog( $e, $catcher );
 		self::report( $e );
 	}
 
@@ -185,17 +192,17 @@ class MWExceptionHandler {
 	 * channel(s).
 	 *
 	 * @since 1.25
-	 *
 	 * @param int $level Error level raised
 	 * @param string $message
 	 * @param string|null $file
 	 * @param int|null $line
 	 * @return bool
-	 *
-	 * @see logError()
 	 */
 	public static function handleError(
-		$level, $message, $file = null, $line = null
+		$level,
+		$message,
+		$file = null,
+		$line = null
 	) {
 		global $wgPropagateErrors;
 
@@ -251,7 +258,7 @@ class MWExceptionHandler {
 		}
 
 		$e = new ErrorException( "PHP $levelName: $message", 0, $level, $file, $line );
-		self::logError( $e, 'error', $severity );
+		self::logError( $e, 'error', $severity, self::CAUGHT_BY_HANDLER );
 
 		// If $wgPropagateErrors is true return false so PHP shows/logs the error normally.
 		// Ignore $wgPropagateErrors if track_errors is set
@@ -271,7 +278,6 @@ class MWExceptionHandler {
 	 * Composer or other means.
 	 *
 	 * @since 1.25
-	 *
 	 * @return bool Always returns false
 	 */
 	public static function handleFatalError() {
@@ -349,10 +355,10 @@ TXT;
 	/**
 	 * Generate a string representation of a stacktrace.
 	 *
+	 * @since 1.26
 	 * @param array $trace
 	 * @param string $pad Constant padding to add to each line of trace
 	 * @return string
-	 * @since 1.26
 	 */
 	public static function prettyPrintTrace( array $trace, $pad = '' ) {
 		$text = '';
@@ -496,6 +502,7 @@ TXT;
 	 * throwable that can be used to augment a log message sent to a PSR-3
 	 * logger.
 	 *
+	 * @since 1.26
 	 * @param Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
 	 * @return array
@@ -516,10 +523,10 @@ TXT;
 	 * backtrace) derived from the given throwable. The backtrace information
 	 * will be redacted as per getRedactedTraceAsArray().
 	 *
+	 * @since 1.26
 	 * @param Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
 	 * @return array
-	 * @since 1.26
 	 */
 	public static function getStructuredExceptionData(
 		Throwable $e,
@@ -612,7 +619,10 @@ TXT;
 	 * @return string|false JSON string if successful; false upon failure
 	 */
 	public static function jsonSerializeException(
-		Throwable $e, $pretty = false, $escaping = 0, $catcher = self::CAUGHT_BY_OTHER
+		Throwable $e,
+		$pretty = false,
+		$escaping = 0,
+		$catcher = self::CAUGHT_BY_OTHER
 	) {
 		return FormatJson::encode(
 			self::getStructuredExceptionData( $e, $catcher ),
@@ -627,10 +637,10 @@ TXT;
 	 * This method must not assume the throwable is an MWException,
 	 * it is also used to handle PHP exceptions or exceptions from other libraries.
 	 *
+	 * @since 1.22
 	 * @param Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
 	 * @param array $extraData (since 1.34) Additional data to log
-	 * @since 1.22
 	 */
 	public static function logException(
 		Throwable $e,
@@ -661,15 +671,17 @@ TXT;
 	/**
 	 * Log an exception that wasn't thrown but made to wrap an error.
 	 *
-	 * @since 1.25
 	 * @param ErrorException $e
 	 * @param string $channel
 	 * @param string $level
+	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
 	 */
-	protected static function logError(
-		ErrorException $e, $channel, $level = LogLevel::ERROR
+	private static function logError(
+		ErrorException $e,
+		$channel,
+		$level,
+		$catcher
 	) {
-		$catcher = self::CAUGHT_BY_HANDLER;
 		// The set_error_handler callback is independent from error_reporting.
 		// Filter out unwanted errors manually (e.g. when
 		// Wikimedia\suppressWarnings is active).
