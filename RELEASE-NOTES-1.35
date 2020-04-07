@@ -476,6 +476,15 @@ because of Phabricator reports.
   required=true when exists=true. Form fields that use exists=true should also
   set required=true if they are required.
 * Parser::getDefaultPreprocessorClass(), deprecated in 1.34, has been removed.
+* In DatabaseUpdater, the following methods are no longer public: dropTable(),
+  modifyTable(), modifyField(), runMaintenance(), copyFile(), appendLine().
+  In PostgresUpdater, the following methods are no longer public:
+  addPgEnumValue(), addPgIndex(), addPgExtIndex(). This change was made without
+  deprecation due to immediate danger of data corruption and loss, see T157651.
+  Extensions should instead use dropExtensionTable(),
+  modifyExtensionExtensionTable(), modifyExtensionField(), addExtensionUpdate().
+  The addExtensionUpdate() method can still be used to access any of the
+  protected methods on DatabaseUpdater.
 * …
 
 === Deprecations in 1.35 ===

@@ -533,8 +533,14 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Helper function: Add a key to the updatelog table
-	 * Obviously, only use this for updates that occur after the updatelog table was
+	 *
+	 * @note Only use this for updates that occur after the updatelog table was
 	 * created!
+	 *
+	 * @note Extensions must only use this from within callbacks registered with
+	 * addExtensionUpdate(). In particular, this method must not be called directly
+	 * from a LoadExtensionSchemaUpdates handler.
+	 *
 	 * @param string $key Name of key to insert
 	 * @param string|null $val [optional] Value to insert along with the key
 	 */
@@ -643,9 +649,11 @@ abstract class DatabaseUpdater {
 	/**
 	 * Append an SQL fragment to the open file handle.
 	 *
+	 * @note protected since 1.35
+	 *
 	 * @param string $filename File name to open
 	 */
-	public function copyFile( $filename ) {
+	protected function copyFile( $filename ) {
 		$this->db->sourceFile(
 			$filename,
 			null,
@@ -661,11 +669,13 @@ abstract class DatabaseUpdater {
 	 *
 	 * This is used as a callback for sourceLine().
 	 *
+	 * @note protected since 1.35
+	 *
 	 * @param string $line Text to append to the file
 	 * @return bool False to skip actually executing the file
 	 * @throws MWException
 	 */
-	public function appendLine( $line ) {
+	protected function appendLine( $line ) {
 		$line = rtrim( $line ) . ";\n";
 		if ( fwrite( $this->fileHandle, $line ) === false ) {
 			throw new MWException( "trouble writing file" );
@@ -958,17 +968,17 @@ abstract class DatabaseUpdater {
 	 * If the specified table exists, drop it, or execute the
 	 * patch if one is provided.
 	 *
-	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
 	 *       use dropExtensionTable instead!
 	 *
-	 * Public @since 1.20
+	 * @note protected since 1.35
 	 *
 	 * @param string $table Table to drop.
 	 * @param string|bool $patch String of patch file that will drop the table. Default: false.
 	 * @param bool $fullpath Whether $patch is a full path. Default: false.
 	 * @return bool False if this was skipped because schema changes are skipped
 	 */
-	public function dropTable( $table, $patch = false, $fullpath = false ) {
+	protected function dropTable( $table, $patch = false, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
@@ -993,8 +1003,10 @@ abstract class DatabaseUpdater {
 	/**
 	 * Modify an existing field
 	 *
-	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
 	 *       use modifyExtensionField instead!
+	 *
+	 * @note protected since 1.35
 	 *
 	 * @param string $table Name of the table to which the field belongs
 	 * @param string $field Name of the field to modify
@@ -1002,7 +1014,7 @@ abstract class DatabaseUpdater {
 	 * @param bool $fullpath Whether to treat $patch path as a relative or not
 	 * @return bool False if this was skipped because schema changes are skipped
 	 */
-	public function modifyField( $table, $field, $patch, $fullpath = false ) {
+	protected function modifyField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
@@ -1029,15 +1041,17 @@ abstract class DatabaseUpdater {
 	 * Modify an existing table, similar to modifyField. Intended for changes that
 	 *  touch more than one column on a table.
 	 *
-	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
 	 *       use modifyExtensionTable instead!
+	 *
+	 * @note protected since 1.35
 	 *
 	 * @param string $table Name of the table to modify
 	 * @param string $patch Name of the patch file to apply
 	 * @param string|bool $fullpath Whether to treat $patch path as relative or not, defaults to false
 	 * @return bool False if this was skipped because of schema changes being skipped
 	 */
-	public function modifyTable( $table, $patch, $fullpath = false ) {
+	protected function modifyTable( $table, $patch, $fullpath = false ) {
 		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
@@ -1068,14 +1082,16 @@ abstract class DatabaseUpdater {
 	 * completion, and must return false (or throw an exception) to indicate
 	 * unsuccessful completion.
 	 *
-	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
 	 *       use addExtensionUpdate instead!
+	 *
+	 * @note protected since 1.35
 	 *
 	 * @since 1.32
 	 * @param string $class Maintenance subclass
 	 * @param string $script Script path and filename, usually "maintenance/fooBar.php"
 	 */
-	public function runMaintenance( $class, $script ) {
+	protected function runMaintenance( $class, $script ) {
 		$this->output( "Running $script...\n" );
 		$task = $this->maintenance->runChild( $class );
 		$ok = $task->execute();
