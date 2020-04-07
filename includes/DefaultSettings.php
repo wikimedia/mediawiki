@@ -9311,7 +9311,7 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_NEW;
  * The schema to use per default when generating XML dumps. This allows sites to control
  * explicitly when to make breaking changes to their export and dump format.
  */
-$wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_10;
+$wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_11;
 
 /**
  * Origin Trials tokens.
