@@ -29,7 +29,7 @@
  */
 class Xhprof {
 	/**
-	 * @var bool $enabled Whether XHProf is currently running.
+	 * @var bool Whether XHProf is currently running.
 	 */
 	protected static $enabled;
 

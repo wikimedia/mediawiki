@@ -375,7 +375,7 @@ EOD;
 	 *  * languages/
 	 *  * maintenance/
 	 *  * mw-config/
-	 *  * /*.php
+	 *  * any `*.php` file in the base directory
 	 */
 	public function initMediaWikiDefault() {
 		foreach ( [ 'includes', 'languages', 'maintenance', 'mw-config' ] as $dir ) {

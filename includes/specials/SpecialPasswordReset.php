@@ -42,7 +42,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	private $result;
 
 	/**
-	 * @var string $method Identifies which password reset field was specified by the user.
+	 * @var string Identifies which password reset field was specified by the user.
 	 */
 	private $method;
 
