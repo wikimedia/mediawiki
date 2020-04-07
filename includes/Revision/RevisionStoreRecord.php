@@ -106,9 +106,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	}
 
 	/**
-	 * MCR migration note: this replaces Revision::isCurrent
-	 *
-	 * @return bool
+	 * @inheritDoc
 	 */
 	public function isCurrent() {
 		return $this->mCurrent;
