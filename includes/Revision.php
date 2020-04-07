@@ -40,7 +40,7 @@ use Wikimedia\Rdbms\IDatabase;
 class Revision implements IDBAccessObject {
 
 	/** @var RevisionRecord */
-	protected $mRecord;
+	private $mRecord;
 
 	// Revision deletion constants
 	public const DELETED_TEXT = RevisionRecord::DELETED_TEXT;
@@ -61,7 +61,7 @@ class Revision implements IDBAccessObject {
 	 * @param string|false $wiki
 	 * @return RevisionStore
 	 */
-	protected static function getRevisionStore( $wiki = false ) {
+	private static function getRevisionStore( $wiki = false ) {
 		if ( $wiki ) {
 			return MediaWikiServices::getInstance()->getRevisionStoreFactory()
 				->getRevisionStore( $wiki );
@@ -73,14 +73,14 @@ class Revision implements IDBAccessObject {
 	/**
 	 * @return RevisionLookup
 	 */
-	protected static function getRevisionLookup() {
+	private static function getRevisionLookup() {
 		return MediaWikiServices::getInstance()->getRevisionLookup();
 	}
 
 	/**
 	 * @return RevisionFactory
 	 */
-	protected static function getRevisionFactory() {
+	private static function getRevisionFactory() {
 		return MediaWikiServices::getInstance()->getRevisionFactory();
 	}
 
@@ -89,7 +89,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return SqlBlobStore
 	 */
-	protected static function getBlobStore( $wiki = false ) {
+	private static function getBlobStore( $wiki = false ) {
 		$store = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()
 			->newSqlBlobStore( $wiki );

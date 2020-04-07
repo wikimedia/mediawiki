@@ -725,6 +725,13 @@ because of Phabricator reports.
   - ::getRecentChange - use RevisionStore::getRecentChange instead
   - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
       content address, or RevisionRecord::hasSameContent to compare content
+* The Revision method had a few methods that were previously protected and
+  have been made private. They were:
+  - ::getRevisionStore
+  - ::getRevisionLookup
+  - ::getRevisionFactory
+  - ::getBlobStore
+  The $mRecord variable was also changed from protected to private.
 * The RevisionInsertComplete hook, soft deprecated in 1.31, now emits
   deprecation warnings.
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
