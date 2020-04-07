@@ -304,9 +304,9 @@ abstract class DatabaseUpdater {
 	 * @since 1.20
 	 *
 	 * @param string $tableName
-	 * @param string $sqlPath
+	 * @param string|bool $sqlPath
 	 */
-	public function dropExtensionTable( $tableName, $sqlPath ) {
+	public function dropExtensionTable( $tableName, $sqlPath = false ) {
 		$this->extensionUpdates[] = [ 'dropTable', $tableName, $sqlPath, true ];
 	}
 
