@@ -587,6 +587,12 @@ class ApiComparePages extends ApiBase {
 			if ( isset( $this->props['size'] ) ) {
 				$vals["{$prefix}size"] = $rev->getSize();
 			}
+			if ( isset( $this->props['timestamp'] ) ) {
+				$revTimestamp = $rev->getTimestamp();
+				if ( $revTimestamp ) {
+					$vals["{$prefix}timestamp"] = wfTimestamp( TS_ISO_8601, $revTimestamp );
+				}
+			}
 
 			$anyHidden = false;
 			if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
@@ -723,6 +729,7 @@ class ApiComparePages extends ApiBase {
 				'comment',
 				'parsedcomment',
 				'size',
+				'timestamp',
 			],
 			ApiBase::PARAM_ISMULTI => true,
 			ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
