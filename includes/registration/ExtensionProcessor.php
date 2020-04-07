@@ -62,7 +62,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var string[]
 	 */
-	protected static $coreAttributes = [
+	protected const CORE_ATTRIBS = [
 		'SkinOOUIThemes',
 		'TrackingCategories',
 		'RestRoutes',
@@ -75,7 +75,7 @@ class ExtensionProcessor implements Processor {
 	 * @see getExtractedInfo
 	 * @var array
 	 */
-	protected static $mergeStrategies = [
+	protected const MERGE_STRATEGIES = [
 		'wgAuthManagerAutoConfig' => 'array_plus_2d',
 		'wgCapitalLinkOverrides' => 'array_plus',
 		'wgExtensionCredits' => 'array_merge_recursive',
@@ -96,7 +96,7 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @var array
 	 */
-	protected static $creditsAttributes = [
+	protected const CREDIT_ATTRIBS = [
 		'name',
 		'namemsg',
 		'author',
@@ -109,11 +109,11 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * Things that are not 'attributes', and are not in
-	 * $globalSettings or $creditsAttributes.
+	 * $globalSettings or CREDIT_ATTRIBS.
 	 *
 	 * @var array
 	 */
-	protected static $notAttributes = [
+	protected const NOT_ATTRIBS = [
 		'callback',
 		'requires',
 		'Hooks',
@@ -246,13 +246,13 @@ class ExtensionProcessor implements Processor {
 
 			if ( $version === 2 ) {
 				// Only whitelisted attributes are set
-				if ( in_array( $key, self::$coreAttributes ) ) {
+				if ( in_array( $key, self::CORE_ATTRIBS ) ) {
 					$this->storeToArray( $path, $key, $val, $this->attributes );
 				}
 			} else {
 				// version === 1
-				if ( !in_array( $key, self::$notAttributes )
-					&& !in_array( $key, self::$creditsAttributes )
+				if ( !in_array( $key, self::NOT_ATTRIBS )
+					&& !in_array( $key, self::CREDIT_ATTRIBS )
 				) {
 					// If it's not blacklisted, it's an attribute
 					$this->storeToArray( $path, $key, $val, $this->attributes );
@@ -277,8 +277,8 @@ class ExtensionProcessor implements Processor {
 	public function getExtractedInfo() {
 		// Make sure the merge strategies are set
 		foreach ( $this->globals as $key => $val ) {
-			if ( isset( self::$mergeStrategies[$key] ) ) {
-				$this->globals[$key][ExtensionRegistry::MERGE_STRATEGY] = self::$mergeStrategies[$key];
+			if ( isset( self::MERGE_STRATEGIES[$key] ) ) {
+				$this->globals[$key][ExtensionRegistry::MERGE_STRATEGY] = self::MERGE_STRATEGIES[$key];
 			}
 		}
 
@@ -530,7 +530,7 @@ class ExtensionProcessor implements Processor {
 			'path' => $path,
 			'type' => $info['type'] ?? 'other',
 		];
-		foreach ( self::$creditsAttributes as $attr ) {
+		foreach ( self::CREDIT_ATTRIBS as $attr ) {
 			if ( isset( $info[$attr] ) ) {
 				$credits[$attr] = $info[$attr];
 			}
