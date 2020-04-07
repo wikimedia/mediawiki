@@ -1,4 +1,24 @@
 <?php
+/**
+ * ApiParse check functions
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
@@ -228,10 +248,7 @@ class ApiParseTest extends ApiTestCase {
 
 			$this->fail( "API did not return an error when parsing a nonexistent page" );
 		} catch ( ApiUsageException $ex ) {
-			$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, 'missingtitle' ),
-				"Parse request for nonexistent page must give 'missingtitle' error: "
-					. var_export( self::getErrorFormatter()->arrayFromStatus( $ex->getStatusValue() ), true )
-			);
+			$this->assertExceptionHasError( $ex, 'missingtitle' );
 		}
 	}
 
@@ -883,5 +900,52 @@ class ApiParseTest extends ApiTestCase {
 			$res[0]['parse']['categories']
 		);
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
+	}
+
+	public function testConcurrentLimitPageParse() {
+		$wgPoolCounterConf = [
+			'ApiParser' => [
+				'class' => MockPoolCounterFailing::class,
+			]
+		];
+
+		$this->setMwGlobals( 'wgPoolCounterConf', $wgPoolCounterConf );
+
+		try{
+			$this->doApiRequest( [
+				'action' => 'parse',
+				'page' => __CLASS__,
+			] );
+			$this->fail( "API did not return an error when concurrency exceeded" );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertExceptionHasError( $ex, 'concurrency-limit' );
+		}
+	}
+
+	public function testConcurrentLimitContentParse() {
+		$wgPoolCounterConf = [
+			'ApiParser' => [
+				'class' => MockPoolCounterFailing::class,
+			]
+		];
+
+		$this->setMwGlobals( 'wgPoolCounterConf', $wgPoolCounterConf );
+
+		try{
+			$this->doApiRequest( [
+				'action' => 'parse',
+				'oldid' => self::$revIds['revdel'],
+			] );
+			$this->fail( "API did not return an error when concurrency exceeded" );
+		} catch ( ApiUsageException $ex ) {
+			$this->assertExceptionHasError( $ex, 'concurrency-limit' );
+		}
+	}
+
+	private function assertExceptionHasError( $ex, $error ) {
+		$this->assertTrue( ApiTestCase::apiExceptionHasCode( $ex, $error ),
+		"Parse request for nonexistent page must give '$error' error: "
+			. var_export( self::getErrorFormatter()->arrayFromStatus( $ex->getStatusValue() ), true )
+		);
 	}
 }

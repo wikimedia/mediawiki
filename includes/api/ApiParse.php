@@ -42,6 +42,54 @@ class ApiParse extends ApiBase {
 	/** @var bool */
 	private $contentIsDeleted = false, $contentIsSuppressed = false;
 
+	private function getPoolKey(): string {
+		$poolKey = WikiMap::getCurrentWikiDbDomain() . ':ApiParse:';
+		if ( $this->getUser()->isAnon() ) {
+			$poolKey .= 'a:' . $this->getUser()->getName();
+		} else {
+			$poolKey .= 'u:' . $this->getUser()->getId();
+		}
+		return $poolKey;
+	}
+
+	private function getContentParserOutput(
+		Content $content,
+		Title $title,
+		$revId,
+		ParserOptions $popts
+	) {
+		$worker = new PoolCounterWorkViaCallback( 'ApiParser', $this->getPoolKey(),
+			[
+				'doWork' => function () use ( $content, $title, $revId, $popts ) {
+					return $content->getParserOutput( $title, $revId, $popts );
+				},
+				'error' => function () {
+					$this->dieWithError( 'apierror-concurrency-limit' );
+				},
+			]
+		);
+		return $worker->execute();
+	}
+
+	private function getPageParserOutput(
+		WikiPage $page,
+		$revId,
+		ParserOptions $popts,
+		bool $suppressCache
+	) {
+		$worker = new PoolCounterWorkViaCallback( 'ApiParser', $this->getPoolKey(),
+			[
+				'doWork' => function () use ( $page, $revId, $popts, $suppressCache ) {
+					return $page->getParserOutput( $popts, $revId, $suppressCache );
+				},
+				'error' => function () {
+					$this->dieWithError( 'apierror-concurrency-limit' );
+				},
+			]
+		);
+		return $worker->execute();
+	}
+
 	public function execute() {
 		// The data is hot but user-dependent, like page views, so we set vary cookies
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
@@ -274,9 +322,9 @@ class ApiParse extends ApiBase {
 
 			// Not cached (save or load)
 			if ( $params['pst'] ) {
-				$p_result = $this->pstContent->getParserOutput( $titleObj, $revid, $popts );
+				$p_result = $this->getContentParserOutput( $this->pstContent, $titleObj, $revid, $popts );
 			} else {
-				$p_result = $this->content->getParserOutput( $titleObj, $revid, $popts );
+				$p_result = $this->getContentParserOutput( $this->content, $titleObj, $revid, $popts );
 			}
 		}
 
@@ -609,15 +657,16 @@ class ApiParse extends ApiBase {
 				$this->content,
 				$pageId === null ? $page->getTitle()->getPrefixedText() : $this->msg( 'pageid', $pageId )
 			);
-			return $this->content->getParserOutput( $page->getTitle(), $revId, $popts );
+			return $this->getContentParserOutput( $this->content, $page->getTitle(), $revId, $popts );
 		}
 
 		if ( $isDeleted ) {
 			// getParserOutput can't do revdeled revisions
-			$pout = $this->content->getParserOutput( $page->getTitle(), $revId, $popts );
+
+			$pout = $this->getContentParserOutput( $this->content, $page->getTitle(), $revId, $popts );
 		} else {
 			// getParserOutput will save to Parser cache if able
-			$pout = $page->getParserOutput( $popts, $revId, $suppressCache );
+			$pout = $this->getPageParserOutput( $page, $revId, $popts, $suppressCache );
 		}
 		if ( !$pout ) {
 			// @codeCoverageIgnoreStart

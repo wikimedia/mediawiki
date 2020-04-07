@@ -194,6 +194,7 @@ $wgAutoloadClasses += [
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
 	'MockLocalRepo' => "$testDir/phpunit/mocks/filerepo/MockLocalRepo.php",
 	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
+	'MockPoolCounterFailing' => "$testDir/phpunit/mocks/poolcounter/MockPoolCounterFailing.php",
 	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",
