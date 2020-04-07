@@ -735,17 +735,19 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $revision ) { // sanity
-			$this->setLastEdit( new Revision( $revision ) );
+			$this->setLastEdit( $revision );
 		}
 	}
 
 	/**
 	 * Set the latest revision
-	 * @param Revision $revision
+	 * @param RevisionRecord $revRecord
 	 */
-	protected function setLastEdit( Revision $revision ) {
-		$this->mLastRevision = $revision;
-		$this->mTimestamp = $revision->getTimestamp();
+	private function setLastEdit( RevisionRecord $revRecord ) {
+		// TODO mLastRevision should be replaced with RevisionRecord
+		$this->mLastRevision = new Revision( $revRecord );
+
+		$this->mTimestamp = $revRecord->getTimestamp();
 	}
 
 	/**
@@ -1426,7 +1428,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$result = $dbw->affectedRows() > 0;
 		if ( $result ) {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
-			$this->setLastEdit( $revision );
+			$this->setLastEdit( $revision->getRevisionRecord() );
 			$this->mLatest = $revision->getId();
 			$this->mIsRedirect = (bool)$rt;
 			// Update the LinkCache.
@@ -1946,7 +1948,7 @@ class WikiPage implements Page, IDBAccessObject {
 			// update cached fields
 			// TODO: this is currently redundant to what is done in updateRevisionOn.
 			// But updateRevisionOn() should move into PageStore, and then this will be needed.
-			$this->setLastEdit( new Revision( $revRec ) ); // TODO: use RevisionRecord
+			$this->setLastEdit( $revRec );
 			$this->mLatest = $revRec->getId();
 		}
 
