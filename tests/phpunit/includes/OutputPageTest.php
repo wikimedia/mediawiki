@@ -1476,6 +1476,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			'getCategories',
 			'getFileSearchOptions',
 			'getHeadItems',
+			'getImages',
 			'getIndicators',
 			'getLanguageLinks',
 			'getOutputHooks',

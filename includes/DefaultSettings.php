@@ -1639,6 +1639,15 @@ $wgDirectoryMode = 0777;
 $wgResponsiveImages = true;
 
 /**
+ * On pages containing images, tell the user agent to pre-connect to hosts from
+ * $wgForeignFileRepos.  This speeds up rendering, but may create unwanted
+ * traffic if there are many possible URLs from which images are served.
+ * @since 1.35
+ * @warning EXPERIMENTAL!
+ */
+$wgImagePreconnect = false;
+
+/**
  * @name DJVU settings
  * @{
  */
