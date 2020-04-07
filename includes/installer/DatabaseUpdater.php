@@ -226,8 +226,8 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Add a new update coming from an extension. This should be called by
-	 * extensions while executing the LoadExtensionSchemaUpdates hook.
+	 * Add a new update coming from an extension.
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
 	 *
 	 * @since 1.17
 	 *
@@ -244,6 +244,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Convenience wrapper for addExtensionUpdate() when adding a new table (which
 	 * is the most common usage of updaters in an extension)
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
 	 *
 	 * @since 1.18
 	 *
@@ -255,6 +256,9 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Add an index to an existing extension table.
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
+	 *
 	 * @since 1.19
 	 *
 	 * @param string $tableName
@@ -266,6 +270,9 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Add a field to an existing extension table.
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
+	 *
 	 * @since 1.19
 	 *
 	 * @param string $tableName
@@ -277,6 +284,9 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Drop a field from an extension table.
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
+	 *
 	 * @since 1.20
 	 *
 	 * @param string $tableName
@@ -289,6 +299,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Drop an index from an extension table
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
 	 *
 	 * @since 1.21
 	 *
@@ -301,6 +312,9 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Drop an extension table.
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
+	 *
 	 * @since 1.20
 	 *
 	 * @param string $tableName
@@ -312,6 +326,7 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Rename an index on an extension table
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
 	 *
 	 * @since 1.21
 	 *
@@ -337,6 +352,9 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Modify an existing field in an extension table.
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
+	 *
 	 * @since 1.21
 	 *
 	 * @param string $tableName The table name
@@ -348,6 +366,9 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Modify an existing extension table.
+	 * Intended for use in LoadExtensionSchemaUpdates hook handlers.
+	 *
 	 * @since 1.31
 	 *
 	 * @param string $tableName The table name
@@ -656,6 +677,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Applies a SQL patch
 	 *
+	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 *       use addExtensionUpdate instead!
+	 *
 	 * @param string $path Path to the patch file
 	 * @param bool $isFullPath Whether to treat $path as a relative or not
 	 * @param string|null $msg Description of the patch
@@ -709,6 +733,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Add a new table to the database
 	 *
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
+	 *       use addExtensionTable instead!
+	 *
 	 * @param string $name Name of the new table
 	 * @param string $patch Path to the patch file
 	 * @param bool $fullpath Whether to treat $patch path as a relative or not
@@ -730,6 +757,9 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a new field to an existing table
+	 *
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
+	 *       use addExtensionField instead!
 	 *
 	 * @param string $table Name of the table to modify
 	 * @param string $field Name of the new field
@@ -755,6 +785,9 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a new index to an existing table
+	 *
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
+	 *       use addExtensionIndex instead!
 	 *
 	 * @param string $table Name of the table to modify
 	 * @param string $index Name of the new index
@@ -814,6 +847,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Drop a field from an existing table
 	 *
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
+	 *       use dropExtensionField instead!
+	 *
 	 * @param string $table Name of the table to modify
 	 * @param string $field Name of the old field
 	 * @param string $patch Path to the patch file
@@ -837,6 +873,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Drop an index from an existing table
 	 *
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
+	 *       use dropExtensionIndex instead!
+	 *
 	 * @param string $table Name of the table to modify
 	 * @param string $index Name of the index
 	 * @param string $patch Path to the patch file
@@ -859,6 +898,9 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Rename an index from an existing table
+	 *
+	 * @note Code in a LoadExtensionSchemaUpdates handler should
+	 *       use renameExtensionIndex instead!
 	 *
 	 * @param string $table Name of the table to modify
 	 * @param string $oldIndex Old name of the index
@@ -916,6 +958,9 @@ abstract class DatabaseUpdater {
 	 * If the specified table exists, drop it, or execute the
 	 * patch if one is provided.
 	 *
+	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 *       use dropExtensionTable instead!
+	 *
 	 * Public @since 1.20
 	 *
 	 * @param string $table Table to drop.
@@ -947,6 +992,9 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Modify an existing field
+	 *
+	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 *       use modifyExtensionField instead!
 	 *
 	 * @param string $table Name of the table to which the field belongs
 	 * @param string $field Name of the field to modify
@@ -980,6 +1028,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Modify an existing table, similar to modifyField. Intended for changes that
 	 *  touch more than one column on a table.
+	 *
+	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 *       use modifyExtensionTable instead!
 	 *
 	 * @param string $table Name of the table to modify
 	 * @param string $patch Name of the patch file to apply
@@ -1016,6 +1067,9 @@ abstract class DatabaseUpdater {
 	 * The script's execute() method must return true to indicate successful
 	 * completion, and must return false (or throw an exception) to indicate
 	 * unsuccessful completion.
+	 *
+	 * @note Do not use this in a LoadExtensionSchemaUpdates handler,
+	 *       use addExtensionUpdate instead!
 	 *
 	 * @since 1.32
 	 * @param string $class Maintenance subclass
