@@ -26,6 +26,7 @@ $cfg['file_list'] = array_merge(
 	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],
 	defined( 'PASSWORD_ARGON2ID' ) ? [] : [ '.phan/stubs/password.php' ],
 	class_exists( ExcimerProfiler::class ) ? [] : [ '.phan/stubs/excimer.php' ],
+	class_exists( ValueError::class ) ? [] : [ '.phan/stubs/ValueError.php' ],
 	[
 		// This makes constants and globals known to Phan before processing all other files.
 		// You can check the parser order with --dump-parsed-file-list
