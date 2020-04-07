@@ -1,16 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rancher",
-			"Михајло Анђелковић",
-			"Milicevic01",
-			"Aktron",
-			"Сербијана",
-			"Zoranzoki21",
 			"Acamicamacaraca",
-			"Obsuser",
+			"Aktron",
 			"BadDog",
-			"Prevodim"
+			"Milicevic01",
+			"Obsuser",
+			"Prevodim",
+			"Rancher",
+			"Zoranzoki21",
+			"Михајло Анђелковић",
+			"Сербијана"
 		]
 	},
 	"config-desc": "Инсталациони програм за MediaWiki",

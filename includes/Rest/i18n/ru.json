@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Katunchik",
-			"Vlad5250",
-			"Okras"
+			"Okras",
+			"Vlad5250"
 		]
 	},
 	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри корневого пути REST API ($2)",

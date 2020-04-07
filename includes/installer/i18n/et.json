@@ -2,11 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Avjoska",
-			"Pikne",
 			"Boxmein",
 			"Cumbril",
-			"Roland",
-			"Postituvi"
+			"Pikne",
+			"Postituvi",
+			"Roland"
 		]
 	},
 	"config-desc": "MediaWiki paigaldaja",

@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Grkn gll",
-			"BaRaN6161 TURK"
+			"BaRaN6161 TURK",
+			"Grkn gll"
 		]
 	},
 	"rest-prefix-mismatch": "İstenen yol ($1), REST API kök yolunun içinde değildi ($2)",

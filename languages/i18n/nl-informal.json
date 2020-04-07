@@ -2,15 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"HanV",
-			"MarkvA",
-			"Siebrand",
-			"Tedjuh10",
-			"Southparkfan",
-			"McDutchie",
-			"Romaine",
 			"Mainframe98",
 			"Mar(c)",
-			"Robin van der Vliet"
+			"MarkvA",
+			"McDutchie",
+			"Robin van der Vliet",
+			"Romaine",
+			"Siebrand",
+			"Southparkfan",
+			"Tedjuh10"
 		]
 	},
 	"view-pool-error": "De servers zijn op het moment helaas overbelast.\nTe veel gebruikers proberen deze pagina te bekijken.\nWacht even voordat je opnieuw toegang probeert te krijgen tot deze pagina.\n\n$1",

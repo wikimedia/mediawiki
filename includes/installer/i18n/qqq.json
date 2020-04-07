@@ -2,10 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"BadDog",
 			"Dani",
 			"EugeneZelenko",
+			"Jdforrester",
 			"Kghbln",
+			"Liuxinyu970226",
 			"McDutchie",
+			"Metalhead64",
 			"Mormegil",
 			"Nemo bis",
 			"Nike",
@@ -15,16 +19,12 @@
 			"SPQRobin",
 			"Shirayuki",
 			"Siebrand",
-			"Umherirrender",
-			"Waldir",
-			"Jdforrester",
-			"Liuxinyu970226",
-			"Metalhead64",
 			"Tacsipacsi",
-			"Zoranzoki21",
-			"BadDog",
+			"Umherirrender",
+			"Verdy p",
+			"Waldir",
 			"Waldyrious",
-			"Verdy p"
+			"Zoranzoki21"
 		]
 	},
 	"config-desc": "Short description of the installer.",

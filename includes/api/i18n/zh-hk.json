@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Liuxinyu970226",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Liuxinyu970226"
 		]
 	},
 	"apihelp-block-param-hidename": "隱藏封鎖日誌的用戶名稱。 (需要 \"hideuser\" 權限)。",

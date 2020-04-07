@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kusavica",
-			"KuboF",
-			"Sudo77(new)",
 			"Hromoslav",
-			"Vlad5250",
-			"Luky001"
+			"KuboF",
+			"Kusavica",
+			"Luky001",
+			"Sudo77(new)",
+			"Vlad5250"
 		]
 	},
 	"config-desc": "Inštalátor pre MediaWiki",

@@ -1,5 +1,7 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": []
+	},
 	"paramvalidator-badbool": "Ungültiger Wert „$2“ für den booleschen Parameter „$1“. Übergib $3 für true, oder $5 für false.",
 	"paramvalidator-badfloat": "Ungültiger Wert „$2“ für den Float-Parameter „$1“.",
 	"paramvalidator-badfloat-notfinite": "Der Wert „$2“ für den Float-Parameter „$1“ ist zu groß oder ist keine Zahl.",

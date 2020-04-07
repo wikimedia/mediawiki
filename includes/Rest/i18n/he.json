@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rotemliss",
-			"Amire80"
+			"Amire80",
+			"Rotemliss"
 		]
 	},
 	"rest-prefix-mismatch": "הנתיב המבוקש ($1) לא היה בתוך נתיב השורש ($2) של ה־REST API",

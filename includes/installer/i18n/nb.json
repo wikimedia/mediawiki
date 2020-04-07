@@ -1,15 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Event",
-			"Nghtwlkr",
-			"아라",
 			"Danmichaelo",
+			"Event",
 			"Jeblad",
-			"Macofe",
-			"SuperPotato",
 			"Jon Harald Søby",
-			"Seb35"
+			"Macofe",
+			"Nghtwlkr",
+			"Seb35",
+			"SuperPotato",
+			"아라"
 		]
 	},
 	"config-desc": "Installasjonsprogrammet for MediaWiki",
