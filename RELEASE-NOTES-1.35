@@ -760,6 +760,16 @@ because of Phabricator reports.
   Use RevisionStore::getFirstRevision instead.
 * The Parser::enableOOUI() method has been deprecated.  Use
   $parser->getOutput()->enableOOUI() instead.
+* The following Linker methods previously accepted Revision objects as
+  parameters. They now accept either Revision or RevisionRecord objects.
+  Passing a Revision object is soft deprecated.
+  - ::revUserLink
+  - ::revUserTools
+  - ::revComment
+  - ::generateRollback
+  - ::getRollbackEditCount
+  - ::buildRollbackLink
+  - ::getRevDeleteLink
 * The ParserGetVariableValueVarCache hook has been deprecated.
 * When using the ParserGetVariableValueSwitch hook, the following unusual
   uses have been deprecated: modifying the passed $magicWordId or failing to
