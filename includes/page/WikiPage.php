@@ -1526,13 +1526,21 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @deprecated Use only as a stop-gap before refactoring to support MCR.
 	 *
-	 * @param Revision $a
-	 * @param Revision $b
+	 * @param Revision|RevisionRecord $a (revision deprecated since 1.35)
+	 * @param Revision|RevisionRecord $b (revision deprecated since 1.35)
 	 * @return bool
 	 */
-	public static function hasDifferencesOutsideMainSlot( Revision $a, Revision $b ) {
-		$aSlots = $a->getRevisionRecord()->getSlots();
-		$bSlots = $b->getRevisionRecord()->getSlots();
+	public static function hasDifferencesOutsideMainSlot( $a, $b ) {
+		if ( $a instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with Revision objects', '1.35' );
+			$a = $a->getRevisionRecord();
+		}
+		if ( $b instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with Revision objects', '1.35' );
+			$b = $b->getRevisionRecord();
+		}
+		$aSlots = $a->getSlots();
+		$bSlots = $b->getSlots();
 		$changedRoles = $aSlots->getRolesWithDifferentContent( $bSlots );
 
 		return ( $changedRoles !== [ SlotRecord::MAIN ] && $changedRoles !== [] );
@@ -1552,7 +1560,10 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getUndoContent( Revision $undo, Revision $undoafter ) {
 		// TODO: MCR: replace this with a method that returns a RevisionSlotsUpdate
 
-		if ( self::hasDifferencesOutsideMainSlot( $undo, $undoafter ) ) {
+		if ( self::hasDifferencesOutsideMainSlot(
+			$undo->getRevisionRecord(),
+			$undoafter->getRevisionRecord()
+		) ) {
 			// Cannot yet undo edits that involve anything other the main slot.
 			return false;
 		}

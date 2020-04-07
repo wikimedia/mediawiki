@@ -783,6 +783,9 @@ because of Phabricator reports.
   - ::getRollbackEditCount
   - ::buildRollbackLink
   - ::getRevDeleteLink
+* WikiPage::hasDifferencesOutsideMainSlot previously accepted Revision
+  objects for its two parameters. It now accepts RevisionRecord objects,
+  and passing Revision objects is hard deprecated.
 * The ParserGetVariableValueVarCache hook has been deprecated.
 * When using the ParserGetVariableValueSwitch hook, the following unusual
   uses have been deprecated: modifying the passed $magicWordId or failing to

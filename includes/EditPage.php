@@ -1285,8 +1285,10 @@ class EditPage {
 					!$undorev->isDeleted( RevisionRecord::DELETED_TEXT ) &&
 					!$oldrev->isDeleted( RevisionRecord::DELETED_TEXT )
 				) {
-					if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev )
-						|| !$this->isSupportedContentModel( $oldrev->getContentModel() )
+					if ( WikiPage::hasDifferencesOutsideMainSlot(
+							$undorev->getRevisionRecord(),
+							$oldrev->getRevisionRecord()
+						) || !$this->isSupportedContentModel( $oldrev->getContentModel() )
 					) {
 						// Hack for undo while EditPage can't handle multi-slot editing
 						$this->context->getOutput()->redirect( $this->mTitle->getFullURL( [
@@ -1404,8 +1406,10 @@ class EditPage {
 				if ( $curRevision
 					&& $oldRevision
 					&& $curRevision->getId() !== $oldRevision->getId()
-					&& ( WikiPage::hasDifferencesOutsideMainSlot( $oldRevision, $curRevision )
-						|| !$this->isSupportedContentModel( $oldRevision->getContentModel() ) )
+					&& ( WikiPage::hasDifferencesOutsideMainSlot(
+						$oldRevision->getRevisionRecord(),
+						$curRevision->getRevisionRecord()
+					) || !$this->isSupportedContentModel( $oldRevision->getContentModel() ) )
 				) {
 					$this->context->getOutput()->redirect(
 						$this->mTitle->getFullURL(
