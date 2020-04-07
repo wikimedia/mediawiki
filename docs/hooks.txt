@@ -1428,8 +1428,8 @@ $title: title of page being edited
 &$msg: localization message name, overridable. Default is either
   'copyrightwarning' or 'copyrightwarning2'.
 
-'EditPageGetCheckboxesDefinition': Allows modifying the edit checkboxes
-below the textarea in the edit form.
+'EditPageGetCheckboxesDefinition': Allows modifying the edit checkboxes and
+adding other input fields below the textarea in the edit form.
 $editpage: The current EditPage object
 &$checkboxes: Array of checkbox definitions. See
   EditPage::getCheckboxesDefinition() for the format.

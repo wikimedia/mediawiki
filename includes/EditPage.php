@@ -33,6 +33,10 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
+use OOUI\CheckboxInputWidget;
+use OOUI\DropdownInputWidget;
+use OOUI\FieldLayout;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -215,6 +219,15 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	public $watchthis = false;
 
+	/** @var bool Corresponds to $wgWatchlistExpiry */
+	private $watchlistExpiryEnabled = false;
+
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
+	/** @var string|null The expiry time of the watch item, or null if it is not watched temporarily. */
+	private $watchlistExpiry;
+
 	/** @var bool */
 	public $recreate = false;
 
@@ -396,6 +409,9 @@ class EditPage implements IEditObject {
 		$this->editConflictHelperFactory = [ $this, 'newTextConflictHelper' ];
 		$this->permManager = $services->getPermissionManager();
 		$this->revisionStore = $services->getRevisionStore();
+		$this->watchlistExpiryEnabled = $this->getContext()->getConfig() instanceof Config
+			&& $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchedItemStore = $services->getWatchedItemStore();
 
 		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
 	}
@@ -933,10 +949,26 @@ class EditPage implements IEditObject {
 
 			$this->recreate = $request->getCheck( 'wpRecreate' );
 
+			$user = $this->getContext()->getUser();
+
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
+			if ( $this->watchlistExpiryEnabled ) {
+				// Set the watchlistExpiry value: this will either be what's posted by the user,
+				// if we're saving the page; or what's already in the DB, if we're previewing.
+				// The posted value for previewing will be retrieved
+				// separately in $this->getCheckboxesDefinitionForWatchlist().
+				if ( $this->preview ) {
+					$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $this->getTitle() );
+					$this->watchlistExpiry = $watchedItem ? $watchedItem->getExpiry() : null;
+				} else {
+					$expiry = ExpiryDef::normalizeExpiry( $request->getText( 'wpWatchlistExpiry' ) );
+					if ( $expiry !== false ) {
+						$this->watchlistExpiry = $expiry;
+					}
+				}
+			}
 
-			$user = $this->context->getUser();
 			# Don't force edit summaries when a user is editing their own user or talk page
 			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK )
 				&& $this->mTitle->getText() == $user->getName()
@@ -975,6 +1007,9 @@ class EditPage implements IEditObject {
 			$this->minoredit = false;
 			// Watch may be overridden by request parameters
 			$this->watchthis = $request->getBool( 'watchthis', false );
+			if ( $this->watchlistExpiryEnabled ) {
+				$this->watchlistExpiry = null;
+			}
 			$this->recreate = false;
 
 			// When creating a new section, we can preload a section title by passing it as the
@@ -1108,6 +1143,10 @@ class EditPage implements IEditObject {
 		} elseif ( $user->isWatched( $this->mTitle ) ) {
 			# Already watched
 			$this->watchthis = true;
+		}
+		if ( $this->watchthis && $this->watchlistExpiryEnabled ) {
+			$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $this->getTitle() );
+			$this->watchlistExpiry = $watchedItem ? $watchedItem->getExpiry() : null;
 		}
 		if ( $user->getOption( 'minordefault' ) && !$this->isNew ) {
 			$this->minoredit = true;
@@ -2415,21 +2454,17 @@ ERROR;
 
 		$title = $this->mTitle;
 		$watch = $this->watchthis;
+		$watchlistExpiry = $this->watchlistExpiry;
 		// Do this in its own transaction to reduce contention...
-		DeferredUpdates::addCallableUpdate( function () use ( $user, $title, $watch ) {
-			if ( $watch == $user->isWatched( $title, User::IGNORE_USER_RIGHTS ) ) {
-				return; // nothing to change
-			}
-			WatchAction::doWatchOrUnwatch( $watch, $title, $user );
+		DeferredUpdates::addCallableUpdate( function () use ( $user, $title, $watch, $watchlistExpiry ) {
+			WatchAction::doWatchOrUnwatch( $watch, $title, $user, $watchlistExpiry );
 		} );
 
 		// Add a job to purge expired watchlist items. Jobs will only be added at the rate
 		// specified by $wgWatchlistPurgeRate, which by default is every tenth edit.
-		$config = $this->context->getConfig();
-		if ( $config->get( 'WatchlistExpiry' ) ) {
-			MediaWikiServices::getInstance()
-				->getWatchedItemStore()
-				->enqueueWatchlistExpiryJob( $config->get( 'WatchlistPurgeRate' ) );
+		if ( $this->watchlistExpiryEnabled ) {
+			$purgeRate = $this->getContext()->getConfig()->get( 'WatchlistPurgeRate' );
+			$this->watchedItemStore->enqueueWatchlistExpiryJob( $purgeRate );
 		}
 	}
 
@@ -2577,6 +2612,10 @@ ERROR;
 
 		if ( $user->getOption( 'useeditwarning' ) ) {
 			$out->addModules( 'mediawiki.action.edit.editWarning' );
+		}
+
+		if ( $this->watchlistExpiryEnabled ) {
+			$out->addModules( 'mediawiki.action.edit.watchlistExpiry' );
 		}
 
 		# Enabled article-related sidebar, toplinks, etc.
@@ -4217,6 +4256,13 @@ ERROR;
 	 *    from messages like 'tooltip-foo', 'accesskey-foo'
 	 *  - 'label-id' (optional): 'id' attribute for the `<label>`
 	 *  - 'legacy-name' (optional): short name for backwards-compatibility
+	 *  - 'class' (optional): PHP class name of the OOUI widget to use. Defaults to
+	 *    CheckboxInputWidget.
+	 *  - 'options' (optional): options to use for DropdownInputWidget,
+	 *    ComboBoxInputWidget, etc. following the structure as given in the documentation for those
+	 *    classes.
+	 *  - 'value-attr' (optional): name of the widget config option for the "current value" of the
+	 *    widget. Defaults to 'selected'; for some widget types it should be 'value'.
 	 * @param array $checked Array of checkbox name (matching the 'legacy-name') => bool,
 	 *   where bool indicates the checked status of the checkbox
 	 * @return array[]
@@ -4239,20 +4285,64 @@ ERROR;
 		}
 
 		if ( $user->isLoggedIn() ) {
-			$checkboxes['wpWatchthis'] = [
+			$checkboxes = array_merge(
+				$checkboxes,
+				$this->getCheckboxesDefinitionForWatchlist( $checked['watch'] )
+			);
+		}
+
+		$this->getHookRunner()->onEditPageGetCheckboxesDefinition( $this, $checkboxes );
+
+		return $checkboxes;
+	}
+
+	/**
+	 * Get the watchthis and watchlistExpiry form field definitions.
+	 *
+	 * @since 1.35
+	 * @param bool $watch
+	 * @return mixed[]
+	 */
+	private function getCheckboxesDefinitionForWatchlist( $watch ) {
+		$fieldDefs = [
+			'wpWatchthis' => [
 				'id' => 'wpWatchthis',
 				'label-message' => 'watchthis',
 				// Uses messages: tooltip-watch, accesskey-watch
 				'tooltip' => 'watch',
 				'label-id' => 'mw-editpage-watch',
 				'legacy-name' => 'watch',
-				'default' => $checked['watch'],
+				'default' => $watch,
+			]
+		];
+		if ( $this->watchlistExpiryEnabled ) {
+			$watchedItem = $this->watchedItemStore->getWatchedItem( $this->getContext()->getUser(), $this->getTitle() );
+			$expiryOptions = WatchAction::getExpiryOptions( $this->getContext(), $watchedItem );
+			// When previewing, override the selected dropdown option to select whatever was posted
+			// (if it's a valid option) rather than the current value for watchlistExpiry.
+			// See also above in $this->importFormData().
+			$expiryFromRequest = $this->getContext()->getRequest()->getText( 'wpWatchlistExpiry' );
+			if ( $this->preview && in_array( $expiryFromRequest, $expiryOptions['options'] ) ) {
+				$expiryOptions['default'] = $expiryFromRequest;
+			}
+			// Reformat the options to match what DropdownInputWidget wants.
+			$options = [];
+			foreach ( $expiryOptions['options'] as $label => $value ) {
+				$options[] = [ 'data' => $value, 'label' => $label ];
+			}
+			$fieldDefs['wpWatchlistExpiry'] = [
+				'id' => 'wpWatchlistExpiry',
+				'label-message' => 'confirm-watch-label',
+				// Uses messages: tooltip-watchlist-expiry, accesskey-watchlist-expiry
+				'tooltip' => 'watchlist-expiry',
+				'label-id' => 'mw-editpage-watchlist-expiry',
+				'default' => $expiryOptions['default'],
+				'value-attr' => 'value',
+				'class' => DropdownInputWidget::class,
+				'options' => $options,
 			];
 		}
-
-		$this->getHookRunner()->onEditPageGetCheckboxesDefinition( $this, $checkboxes );
-
-		return $checkboxes;
+		return $fieldDefs;
 	}
 
 	/**
@@ -4282,16 +4372,20 @@ ERROR;
 			if ( isset( $options['title-message'] ) ) {
 				$title = $this->context->msg( $options['title-message'] )->text();
 			}
-
-			$checkboxes[ $legacyName ] = new OOUI\FieldLayout(
-				new OOUI\CheckboxInputWidget( [
+			// Allow checkbox definitions to set their own class and value-attribute names.
+			// See $this->getCheckboxesDefinition() for details.
+			$className = $options['class'] ?? CheckboxInputWidget::class;
+			$valueAttr = $options['value-attr'] ?? 'selected';
+			$checkboxes[ $legacyName ] = new FieldLayout(
+				new $className( [
 					'tabIndex' => ++$tabindex,
 					'accessKey' => $accesskey,
 					'id' => $options['id'] . 'Widget',
 					'inputId' => $options['id'],
 					'name' => $name,
-					'selected' => $options['default'],
+					$valueAttr => $options['default'],
 					'infusable' => true,
+					'options' => $options['options'] ?? null,
 				] ),
 				[
 					'align' => 'inline',

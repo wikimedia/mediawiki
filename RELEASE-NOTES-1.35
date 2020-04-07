@@ -244,6 +244,10 @@ For notes on 1.34.x and older releases, see HISTORY.
   block-related permissions.
 * The support of 'database' type of extensions has been added to allow 3d party
   databases like Percona be used as storage. See T226857, T253248.
+* Three new return parameters have been added to the
+  EditPageGetCheckboxesDefinition hook. Handlers of this hook are no longer
+  restricted to defining checkboxes. See the documentation of
+  EditPage::getCheckboxesDefinition() for more details.
 * …
 
 === External library changes in 1.35 ===

@@ -863,4 +863,74 @@ hello
 
 		return $ep->internalAttemptSave( $result, false );
 	}
+
+	/**
+	 * The watchlist expiry field should select the entered value on preview, rather than the
+	 * calculated number of days till the expiry (as it shows on edit).
+	 * @covers EditPage::getCheckboxesDefinition()
+	 * @dataProvider provideWatchlistExpiry()
+	 */
+	public function testWatchlistExpiry( $existingExpiry, $postVal, $selected, $options ) {
+		// Set up config and fake current time.
+		$this->setMwGlobals( 'wgWatchlistExpiry', true );
+		MWTimestamp::setFakeTime( '20200505120000' );
+		$user = $this->getTestUser()->getUser();
+		$this->assertTrue( $user->isLoggedIn() );
+
+		// Create the EditPage.
+		$title = Title::newFromText( __METHOD__ );
+		$context = new RequestContext();
+		$context->setUser( $user );
+		$context->setTitle( $title );
+		$article = new Article( $title );
+		$article->setContext( $context );
+		$ep = new EditPage( $article );
+		WatchAction::doWatchOrUnwatch( (bool)$existingExpiry, $title, $user, $existingExpiry );
+
+		// Send the request.
+		$req = new FauxRequest( [ 'wpWatchlistExpiry' => $postVal ], true );
+		$context->setRequest( $req );
+		$req->getSession()->setUser( $user );
+		$ep->importFormData( $req );
+		$def = $ep->getCheckboxesDefinition( [ 'watch' => true ] )['wpWatchlistExpiry'];
+
+		// Test selected and available options.
+		$this->assertSame( $selected, $def['default'] );
+		$dropdownOptions = [];
+		foreach ( $def['options'] as $option ) {
+			// Reformat dropdown options for easier test comparison.
+			$dropdownOptions[] = $option['data'];
+		}
+		$this->assertSame( $options, $dropdownOptions );
+	}
+
+	public function provideWatchlistExpiry() {
+		$standardOptions = [ 'infinite', '1 week', '1 month', '3 months', '6 months' ];
+		return [
+			'not watched, request nothing' => [
+				'existingExpiry' => '',
+				'postVal' => '',
+				'selected' => 'infinite',
+				'options' => $standardOptions,
+			],
+			'not watched' => [
+				'existingExpiry' => '',
+				'postVal' => '1 month',
+				'result' => '1 month',
+				'options' => $standardOptions,
+			],
+			'watched with current selected' => [
+				'existingExpiry' => '20200505120001',
+				'postVal' => '20200505120001',
+				'result' => '20200505120001',
+				'options' => array_merge( [ '20200505120001' ], $standardOptions ),
+			],
+			'watched with 1 week selected' => [
+				'existingExpiry' => '20200505120002',
+				'postVal' => '1 week',
+				'result' => '1 week',
+				'options' => array_merge( [ '20200505120002' ], $standardOptions ),
+			],
+		];
+	}
 }
