@@ -124,6 +124,12 @@ abstract class DatabaseUpdater {
 			$this->maintenance = new FakeMaintenance;
 		}
 		$this->maintenance->setDB( $db );
+	}
+
+	/**
+	 * Cause extensions to register any updates they need to perform.
+	 */
+	private function loadExtensionSchemaUpdates() {
 		$this->initOldGlobals();
 		$this->loadExtensions();
 		Hooks::run( 'LoadExtensionSchemaUpdates', [ $this ] );
@@ -445,6 +451,7 @@ abstract class DatabaseUpdater {
 			$this->runUpdates( $this->getCoreUpdateList(), false );
 		}
 		if ( isset( $what['extensions'] ) ) {
+			$this->loadExtensionSchemaUpdates();
 			$this->runUpdates( $this->getOldGlobalUpdates(), false );
 			$this->runUpdates( $this->getExtensionUpdates(), true );
 		}
