@@ -84,7 +84,7 @@ abstract class PoolCounter {
 	 * @param string $type The class of actions to limit concurrency for (task type)
 	 * @param string $key
 	 */
-	protected function __construct( $conf, $type, $key ) {
+	protected function __construct( array $conf, string $type, string $key ) {
 		$this->workers = $conf['workers'];
 		$this->maxqueue = $conf['maxqueue'];
 		$this->timeout = $conf['timeout'];
@@ -108,7 +108,7 @@ abstract class PoolCounter {
 	 *
 	 * @return PoolCounter
 	 */
-	public static function factory( $type, $key ) {
+	public static function factory( string $type, string $key ) {
 		global $wgPoolCounterConf;
 		if ( !isset( $wgPoolCounterConf[$type] ) ) {
 			return new PoolCounterNull;
