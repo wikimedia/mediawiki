@@ -224,6 +224,7 @@ class PasswordResetTest extends MediaWikiTestCase {
 	 * @param string|null $username
 	 * @param string|null $email
 	 * @param User[] $usersWithEmail
+	 * @covers SendPasswordResetEmailUpdate
 	 */
 	public function testExecute(
 		$expectedError,
@@ -584,6 +585,8 @@ class PasswordResetTest extends MediaWikiTestCase {
 						? Status::newGood( $value )
 						: Status::newFatal( 'rejected by test mock' );
 				} );
+		// changeAuthenticationData is executed in the deferred update class
+		// SendPasswordResetEmailUpdate
 		$authManager->expects( $this->exactly( $numUsersToAuth ) )
 			->method( 'changeAuthenticationData' );
 
