@@ -3126,10 +3126,9 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clear caches
 		self::onArticleDelete( $this->mTitle );
 
-		// TODO use RevisionRecord here
 		ResourceLoaderWikiModule::invalidateModuleCache(
 			$this->mTitle,
-			new Revision( $revRecord ),
+			$revRecord,
 			null,
 			WikiMap::getCurrentWikiDbDomain()->getId()
 		);

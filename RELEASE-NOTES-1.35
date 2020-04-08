@@ -563,6 +563,9 @@ because of Phabricator reports.
   See Vector and Monobook for examples.
 * Passing an ApiMain to the constructor of ApiResult is no longer supported.
   This was deprecated in 1.25.
+* ResourceLoaderWikiModule::invalidateModuleCache has been declared to
+  be @internal as part of a signature change. No known uses exist outside
+  of MediaWiki core.
 * The ArticleAfterFetchContentObject hook, deprecated in 1.32, was removed.
   Use ArticleRevisionViewCustom to control output.
 * DatabaseBlock::isValid, deprecated in 1.33, was removed.

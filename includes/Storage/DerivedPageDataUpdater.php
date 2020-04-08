@@ -1553,7 +1553,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				// when a new message is added to their talk page
 				// TODO: replace legacy hook!  Use a listener on PageEventEmitter instead!
 				if ( $this->hookRunner->onArticleEditUpdateNewTalk( $wikiPage, $recipient ) ) {
-					$revRecord = $legacyRevision->getRevisionRecord();
+					$revRecord = $this->revision;
 					$talkPageNotificationManager = MediaWikiServices::getInstance()
 						->getTalkPageNotificationManager();
 					if ( User::isIP( $shortTitle ) ) {
@@ -1587,14 +1587,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			);
 		}
 
-		$oldRevision = $this->getParentRevision();
-		$oldLegacyRevision = $oldRevision ? new Revision( $oldRevision ) : null;
+		$oldRevisionRecord = $this->getParentRevision();
 
 		// TODO: In the wiring, register a listener for this on the new PageEventEmitter
 		ResourceLoaderWikiModule::invalidateModuleCache(
 			$title,
-			$oldLegacyRevision,
-			$legacyRevision,
+			$oldRevisionRecord,
+			$this->revision,
 			$this->loadbalancerFactory->getLocalDomainID()
 		);
 
