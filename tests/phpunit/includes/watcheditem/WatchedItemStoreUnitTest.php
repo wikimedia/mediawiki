@@ -218,7 +218,49 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			->method( 'delete' )
 			->with( 'RM-KEY' );
 
-		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
+		$store = $this->newWatchedItemStore( [
+			'db' => $mockDb,
+			'cache' => $mockCache,
+			'expiryEnabled' => false ] );
+		TestingAccessWrapper::newFromObject( $store )
+			->cacheIndex = [ 0 => [ 'F' => [ 7 => 'RM-KEY', 9 => 'KEEP-KEY' ] ] ];
+
+		$this->assertTrue( $store->clearUserWatchedItems( $user ) );
+	}
+
+	public function testClearWatchedItems_watchlistExpiry() {
+		$user = new UserIdentityValue( 7, 'MockUser', 0 );
+
+		$mockDb = $this->getMockDb();
+		// Select watchlist IDs.
+		$mockDb->expects( $this->once() )
+			->method( 'selectFieldValues' )
+			->willReturn( [ 1, 2 ] );
+
+		$mockDb->expects( $this->exactly( 2 ) )
+			->method( 'delete' )
+			->withConsecutive(
+				[
+					'watchlist',
+					[ 'wl_id' => [ 1, 2 ] ]
+				],
+				[
+					'watchlist_expiry',
+					[ 'we_item' => [ 1, 2 ] ]
+				]
+			);
+
+		$mockCache = $this->getMockCache();
+		$mockCache->expects( $this->never() )->method( 'get' );
+		$mockCache->expects( $this->never() )->method( 'set' );
+		$mockCache->expects( $this->once() )
+			->method( 'delete' )
+			->with( 'RM-KEY' );
+
+		$store = $this->newWatchedItemStore( [
+			'db' => $mockDb,
+			'cache' => $mockCache,
+			'expiryEnabled' => true ] );
 		TestingAccessWrapper::newFromObject( $store )
 			->cacheIndex = [ 0 => [ 'F' => [ 7 => 'RM-KEY', 9 => 'KEEP-KEY' ] ] ];
 

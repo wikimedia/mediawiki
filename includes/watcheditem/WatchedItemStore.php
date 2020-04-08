@@ -250,11 +250,37 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
-		$dbw->delete(
-			'watchlist',
-			[ 'wl_user' => $user->getId() ],
-			__METHOD__
-		);
+
+		if ( $this->expiryEnabled ) {
+			$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
+			// First fetch the wl_ids.
+			$wlIds = $dbw->selectFieldValues( 'watchlist', 'wl_id', [
+				'wl_user' => $user->getId()
+			] );
+
+			if ( $wlIds ) {
+				// Delete rows from both the watchlist and watchlist_expiry tables.
+				$dbw->delete(
+					'watchlist',
+					[ 'wl_id' => $wlIds ],
+					__METHOD__
+				);
+
+				$dbw->delete(
+					'watchlist_expiry',
+					[ 'we_item' => $wlIds ],
+					__METHOD__
+				);
+			}
+			$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+		} else {
+			$dbw->delete(
+				'watchlist',
+				[ 'wl_user' => $user->getId() ],
+				__METHOD__
+			);
+		}
+
 		$this->uncacheAllItemsForUser( $user );
 
 		return true;
