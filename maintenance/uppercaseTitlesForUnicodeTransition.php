@@ -385,6 +385,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 				. $status->getMessage( false, false, 'en' )->useDatabase( false )->plain()
 			);
 		}
+		$this->output( "Renamed {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}\n" );
 		return $status->isOK();
 	}
 
@@ -431,6 +432,8 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 				(array)$row,
 				__METHOD__
 			);
+			$r = json_encode( $row, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+			$this->output( "Set $r to {$newTitle->getPrefixedText()}\n" );
 		} else {
 			$r = json_encode( $row, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 			$this->output( "Would set $r to {$newTitle->getPrefixedText()}\n" );
