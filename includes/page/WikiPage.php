@@ -2838,7 +2838,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 			$dbw->endAtomic( __METHOD__ );
 
-			$this->doDeleteUpdates( $id, $content, $revision, $deleter );
+			$this->doDeleteUpdates(
+				$id,
+				$content,
+				$revision->getRevisionRecord(),
+				$deleter
+			);
 
 			Hooks::run( 'ArticleDeleteComplete', [
 				&$wikiPageBeforeDelete,
@@ -3008,14 +3013,20 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Content|null $content Page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
-	 * @param Revision|null $revision The current page revision at the time of
+	 * @param RevisionRecord|Revision|null $revRecord The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $this->getRevision() may already return null when the page proper was deleted.
+	 *  Passing a Revision is deprecated since 1.35
 	 * @param User|null $user The user that caused the deletion
 	 */
 	public function doDeleteUpdates(
-		$id, Content $content = null, Revision $revision = null, User $user = null
+		$id, Content $content = null, $revRecord = null, User $user = null
 	) {
+		if ( $revRecord && $revRecord instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+			$revRecord = $revRecord->getRevisionRecord();
+		}
+
 		if ( $id !== $this->getId() ) {
 			throw new InvalidArgumentException( 'Mismatching page ID' );
 		}
@@ -3034,9 +3045,7 @@ class WikiPage implements Page, IDBAccessObject {
 		) );
 
 		// Delete pagelinks, update secondary indexes, etc
-		$updates = $this->getDeletionUpdates(
-			$revision ? $revision->getRevisionRecord() : $content
-		);
+		$updates = $this->getDeletionUpdates( $revRecord ?: $content );
 		foreach ( $updates as $update ) {
 			DeferredUpdates::addUpdate( $update );
 		}
@@ -3053,9 +3062,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Clear caches
 		self::onArticleDelete( $this->mTitle );
+
+		// TODO use RevisionRecord here
 		ResourceLoaderWikiModule::invalidateModuleCache(
 			$this->mTitle,
-			$revision,
+			new Revision( $revRecord ),
 			null,
 			WikiMap::getCurrentWikiDbDomain()->getId()
 		);

@@ -2374,6 +2374,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doDeleteUpdates
+	 * @deprecated since 1.35
 	 * @param int $id
 	 * @param Content|null $content
 	 * @param Revision|null $revision
@@ -2385,6 +2386,7 @@ class Article implements Page {
 		$revision = null,
 		User $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->doDeleteUpdates( $id, $content, $revision, $user );
 	}
 
