@@ -111,8 +111,11 @@ class ApiLogin extends ApiBase {
 
 		// Check login token
 		$token = $session->getToken( '', 'login' );
-		if ( $token->wasNew() || !$params['token'] ) {
+		if ( !$params['token'] ) {
 			$authRes = 'NeedToken';
+		} elseif ( $token->wasNew() ) {
+			$authRes = 'Failed';
+			$message = ApiMessage::create( 'authpage-cannot-login-continue', 'sessionlost' );
 		} elseif ( !$token->match( $params['token'] ) ) {
 			$authRes = 'WrongToken';
 		}
