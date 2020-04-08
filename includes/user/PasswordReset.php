@@ -224,7 +224,6 @@ class PasswordReset implements LoggerAwareInterface {
 			'requestingUser' => $performingUser->getName(),
 			'targetUsername' => $username,
 			'targetEmail' => $email,
-			'actualUser' => $firstUser->getName(),
 		];
 
 		if ( !$result->isGood() ) {
@@ -235,15 +234,9 @@ class PasswordReset implements LoggerAwareInterface {
 			return $result;
 		}
 
-		foreach ( $reqs as $req ) {
-			// This is adding a new temporary password, not intentionally changing anything
-			// (even though it might technically invalidate an old temporary password).
-			$this->authManager->changeAuthenticationData( $req, /* $isAddition */ true );
-		}
-
-		$this->logger->info(
-			"{requestingUser} did password reset of {actualUser}",
-			$logContext
+		DeferredUpdates::addUpdate(
+			new SendPasswordResetEmailUpdate( $this->authManager, $reqs, $logContext ),
+			DeferredUpdates::POSTSEND
 		);
 
 		return StatusValue::newGood();
