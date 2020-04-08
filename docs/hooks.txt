@@ -685,7 +685,8 @@ $reason: Reason for protect
 'ArticlePurge': Before executing "&action=purge".
 [&]$wikiPage: WikiPage (object) to purge
 
-'ArticleRevisionUndeleted': After an article revision is restored.
+'ArticleRevisionUndeleted': DEPRECATED since 1.35! Use RevisionUndeleted instead.
+After an article revision is restored.
 [&]$title: the article title
 $revision: the revision
 $oldPageID: the page ID of the revision when archived (may be null)
@@ -2895,6 +2896,9 @@ instead. Called after a revision is inserted into the database.
 [&]$revision: the Revision
 $data: DEPRECATED! Always null!
 $flags: DEPRECATED! Always null!
+
+'RevisionUndeleted': After an article revision is restored.
+$revisionRecord: the RevisionRecord that was restored
 
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr: Array of namespaces ($nsId => $name) which will be used.
