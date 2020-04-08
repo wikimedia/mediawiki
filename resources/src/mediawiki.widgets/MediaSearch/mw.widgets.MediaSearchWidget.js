@@ -36,7 +36,6 @@
 		this.queryTimeout = null;
 		this.itemCache = {};
 		this.promises = [];
-		this.lang = config.lang || 'en';
 		this.$panels = config.$panels;
 
 		this.externalLinkUrlProtocolsRegExp = new RegExp(
@@ -72,6 +71,7 @@
 		this.resizeHandler = OO.ui.debounce( this.afterResultsResize.bind( this ), 500 );
 
 		// Initialization
+		this.setLang( config.lang || 'en' );
 		this.$element.addClass( 'mw-widget-mediaSearchWidget' );
 	};
 
@@ -461,6 +461,7 @@
 	 */
 	mw.widgets.MediaSearchWidget.prototype.setLang = function ( lang ) {
 		this.lang = lang;
+		this.searchQueue.setLang( lang );
 	};
 
 	/**
