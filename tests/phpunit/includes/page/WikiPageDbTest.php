@@ -1116,6 +1116,8 @@ more stuff
 	 * @covers WikiPage::getOldestRevision
 	 */
 	public function testGetOldestRevision() {
+		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+
 		$page = $this->newPage( __METHOD__ );
 		$page->doEditContent(
 			new WikitextContent( 'one' ),

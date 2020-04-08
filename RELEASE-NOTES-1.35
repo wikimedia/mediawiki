@@ -771,7 +771,8 @@ because of Phabricator reports.
 * The following methods were deprecated:
   - Title::getFirstRevision
   - Title::getEarliestRevTime
-  - WikiPage::getOldestRevision
+  - WikiPage::getOldestRevision (hard deprecated)
+  - Article::getOldestRevision (hard deprecated)
   Use RevisionStore::getFirstRevision instead.
 * The Parser::enableOOUI() method has been deprecated.  Use
   $parser->getOutput()->enableOOUI() instead.

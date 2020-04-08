@@ -2577,9 +2577,11 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getOldestRevision
+	 * @deprecated since 1.35
 	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getOldestRevision();
 	}
 
