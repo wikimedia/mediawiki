@@ -642,6 +642,8 @@ because of Phabricator reports.
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
 * WebRequest::getLimitOffset is hard deprecated. Instead, use
   ::getLimitOffsetForUser and pass a User object.
+* PageArchive::getArchivedRevision is hard deprecated. Instead, use the new
+  ::getArchivedRevisionRecord method.
 * PageArchive::undelete is hard deprecated. Instead, use ::undeleteAsUser
   and pass a User object.
 * FileDeleteForm previously did not accept a user parameter in its constructor,
