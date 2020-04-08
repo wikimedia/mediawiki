@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionLookup;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -1487,7 +1488,9 @@ abstract class Skin extends ContextSource {
 		$user = $this->getUser();
 		$newtalks = $user->getNewMessageLinks();
 		$out = $this->getOutput();
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
 
 		// Allow extensions to disable or modify the new messages alert
 		if ( !Hooks::run( 'GetNewMessagesAlert', [ &$newMessagesAlert, $newtalks, $user, $out ] ) ) {
@@ -1503,12 +1506,23 @@ abstract class Skin extends ContextSource {
 			$nofAuthors = 0;
 			if ( $lastSeenRev !== null ) {
 				$plural = true; // Default if we have a last seen revision: if unknown, use plural
-				$latestRev = Revision::newFromTitle( $uTalkTitle, false, Revision::READ_NORMAL );
+				$revStore = $services->getRevisionStore();
+				$latestRev = $revStore->getRevisionByTitle(
+					$uTalkTitle,
+					0,
+					RevisionLookup::READ_NORMAL
+				);
 				if ( $latestRev !== null ) {
 					// Singular if only 1 unseen revision, plural if several unseen revisions.
 					$plural = $latestRev->getParentId() !== $lastSeenRev->getId();
-					$nofAuthors = $uTalkTitle->countAuthorsBetween(
-						$lastSeenRev, $latestRev, 10, 'include_new' );
+					$nOfAuthors = $revStore->countAuthorsBetween(
+						$uTalkTitle->getArticleId(),
+						$lastSeenRev->getRevisionRecord(),
+						$latestRev,
+						null,
+						10,
+						'include_new'
+					);
 				}
 			} else {
 				// Singular if no revision -> diff link will show latest change only in any case

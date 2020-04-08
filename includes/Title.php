@@ -3882,6 +3882,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return array|null Names of revision authors in the range; null if not both revisions exist
 	 */
 	public function getAuthorsBetween( $old, $new, $limit, $options = [] ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( !( $old instanceof Revision ) ) {
 			$old = Revision::newFromTitle( $this, (int)$old );
 		}
@@ -3924,6 +3925,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return int Number of revision authors in the range; zero if not both revisions exist
 	 */
 	public function countAuthorsBetween( $old, $new, $limit, $options = [] ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$authors = $this->getAuthorsBetween( $old, $new, $limit, $options );
 		return $authors ? count( $authors ) : 0;
 	}
