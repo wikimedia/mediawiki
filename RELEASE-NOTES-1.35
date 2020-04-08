@@ -691,6 +691,8 @@ because of Phabricator reports.
 * Article::getCreator is deprecated. Instead, use WikiPage::getCreator.
 * Article::getUser is deprecated. Instead, use WikiPage::getUser.
 * Article::getUserText is deprecated. Instead, use WikiPage::getUserText.
+* Article::doDeleteUpdates is deprecated. Instead, use
+  WikiPage::doDeleteUpdates
 * LocalFileDeleteBatch was migrated to a new constructor signature with the
   user as the second parameter. Support for the old signature is hard
   deprecated, and once removed the user parameter will be required. At the
@@ -712,6 +714,8 @@ because of Phabricator reports.
   RevisionRecord object; passing a Revision is hard deprecated.
 * User::updateNewtalk now accepts as its optional third parameter a
   RevisionRecord object; passing a Revision is hard deprecated.
+* WikiPage::doDeleteUpdates now accepts as its optional third parameter
+  a RevisionRecord object; passing a Revision is hard deprecated.
 * Global $wgUser variable was soft deprecated.
 * The Revision class was soft deprecated entirely in 1.31. Specific methods
   have now been individually hard deprecated:
