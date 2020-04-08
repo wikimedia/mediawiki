@@ -173,6 +173,10 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	 * @covers MediaWikiTestCase::restoreLoggers
 	 */
 	public function testNullLogger_mutateAndRestore() {
+		// Don't rely on the $wgDebugLogGroups and $wgDebugLogFile settings in
+		// WMF CI to make LEVEL_DEBUG (100) the default. Control this in the test.
+		$this->setMwGlobals( 'wgDebugToolbar', true );
+
 		$logger = LoggerFactory::getInstance( 'tomutate' );
 		// Unwrap from LogCapturingSpi
 		$inner = TestingAccessWrapper::newFromObject( $logger )->logger;
