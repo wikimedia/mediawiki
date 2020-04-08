@@ -1310,7 +1310,7 @@ class WikiPage implements Page, IDBAccessObject {
 		HTMLFileCache::clearFileCache( $this->getTitle() );
 		// Send purge after above page_touched update was committed
 		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $this->mTitle->getCdnUrls() ),
+			new CdnCacheUpdate( [ $this->mTitle ] ),
 			DeferredUpdates::PRESEND
 		);
 
