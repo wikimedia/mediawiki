@@ -1881,7 +1881,7 @@ return [
 	// - .. are only used by logged-in users.
 	// - .. depend on oojs-ui-core.
 	// - .. contain UI intialisation code (e.g. no public module exports, because
-	//      requiring or depending on this bundle is awkard)
+	//      requiring or depending on this bundle is awkward)
 	'mediawiki.misc-authed-ooui' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-ooui",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-ooui",
