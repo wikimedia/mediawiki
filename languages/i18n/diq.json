@@ -1723,7 +1723,7 @@
 	"upload-form-label-infoform-categories": "Kategoriyi",
 	"upload-form-label-infoform-date": "Tarix",
 	"upload-form-label-own-work-message-generic-local": "{{SITENAME}} sera şertanê xızmeti u politikay lisansi temaşe kerdışa na dosya barkerdışi tesdiq kena.",
-	"upload-form-label-not-own-work-message-generic-local": "Na dosyay şertanê {{SITENAME}} gore nêşenê bar kerê se, na dora irtibat racınê u yewna metod bıcerrebnê.",
+	"upload-form-label-not-own-work-message-generic-local": "Na dosya ke bınê şertanê {{SITENAME}} de nêşenê bar kerê, kerem kerê irtıbat cadê u yewna metod bıcerrebnê.",
 	"upload-form-label-not-own-work-local-generic-local": "Ek wazenê se [[Special:Upload|hesabyaye pela barkerdışi]] şenê bıcerrebnê",
 	"upload-form-label-own-work-message-generic-foreign": "O ke mı fahm kerd na dosya barê yew hewız keme. Şertanê xızmeti u politikayanê lisansi tesdiq kena",
 	"upload-form-label-not-own-work-local-generic-foreign": "Ek ena dosya şertanê ho gore bar bena se, pela [[Special:Upload|bar kerdışê {{SITENAME}}]] şenê bıcerrebnê .",

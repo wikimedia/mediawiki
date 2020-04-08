@@ -826,6 +826,7 @@
 	"history-feed-item-nocomment": "$1 ob $2",
 	"history-feed-empty": "Zahtevana stran ne obstaja.\nMorda je bila izbrisana iz wikija ali pa jo je kdo preimenoval.\nProsimo, poskusite [[Special:Search|poiskati v wikiju]] ustrezajoče nove strani.",
 	"history-edit-tags": "Uredi oznake izbranih redakcij",
+	"history-empty": "Našli nismo nobene ujemajoče redakcije.",
 	"rev-deleted-comment": "(povzetek urejanja je odstranjen)",
 	"rev-deleted-user": "(uporabniško ime je bilo odstranjeno)",
 	"rev-deleted-event": "(podrobnosti dnevnika so odstranjene)",
