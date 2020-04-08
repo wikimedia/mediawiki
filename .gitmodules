@@ -1072,7 +1072,7 @@
 	ignore = dirty
 [submodule "extensions/WikiSEO"]
 	path = extensions/WikiSEO
-	url = https://github.com/tinymighty/wiki-seo.git
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/WikiSEO
 	branch = master
 	ignore = dirty
 [submodule "extensions/DummyFandoomMainpageTags"]
