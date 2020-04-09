@@ -384,7 +384,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * Get the size of the queus for a list of job types
+	 * Get the size of the queues for a list of job types
 	 *
 	 * @return int[] Map of (job type => size)
 	 */
