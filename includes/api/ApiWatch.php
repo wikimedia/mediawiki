@@ -105,30 +105,6 @@ class ApiWatch extends ApiBase {
 		$continuationManager->setContinuationIntoResult( $this->getResult() );
 	}
 
-	/**
-	 * Normalize the expiry into TS_MW format, or throw errors if it is invalid.
-	 * @param string $expiryParam
-	 * @return string
-	 */
-	private function normalizeAndValidateExpiry( string $expiryParam ): string {
-		$expiry = WatchedItem::normalizeExpiry( $expiryParam );
-
-		if ( $expiry === false ) {
-			$this->dieWithError( [
-				'apierror-invalidexpiry',
-				Message::plaintextParam( $expiryParam )
-			] );
-		}
-		if ( $expiry < wfTimestampNow() ) {
-			$this->dieWithError( [
-				'apierror-pastexpiry',
-				Message::plaintextParam( $expiryParam )
-			] );
-		}
-
-		return $expiry;
-	}
-
 	private function watchTitle( Title $title, User $user, array $params,
 		$compatibilityMode = false
 	) {
@@ -147,7 +123,7 @@ class ApiWatch extends ApiBase {
 
 			// NOTE: If an expiry parameter isn't given, any existing expiries remain unchanged.
 			if ( $this->expiryEnabled && isset( $params['expiry'] ) ) {
-				$expiry = $this->normalizeAndValidateExpiry( $params['expiry'] );
+				$expiry = $params['expiry'];
 				$res['expiry'] = ApiResult::formatExpiry( $expiry );
 			}
 
@@ -200,7 +176,7 @@ class ApiWatch extends ApiBase {
 				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'expiry' => [
-				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'expiry',
 			],
 			'unwatch' => false,
 			'continue' => [

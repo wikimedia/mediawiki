@@ -89,7 +89,9 @@ class ApiWatchTest extends ApiTestCase {
 
 	public function testWatchInvalidExpiry() {
 		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'Invalid expiry time "invalid expiry".' );
+		$this->expectExceptionMessage(
+			'Invalid value "invalid expiry" for expiry parameter "expiry".'
+		);
 		$this->doApiRequestWithToken( [
 			'action' => 'watch',
 			'titles' => 'Talk:Test page',
@@ -100,7 +102,9 @@ class ApiWatchTest extends ApiTestCase {
 
 	public function testWatchExpiryInPast() {
 		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( 'Expiry time "20010101000000" is in the past.' );
+		$this->expectExceptionMessage(
+			'Value "20010101000000" for expiry parameter "expiry" is in the past.'
+		);
 		$this->doApiRequestWithToken( [
 			'action' => 'watch',
 			'titles' => 'Talk:Test page',

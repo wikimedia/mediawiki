@@ -16,6 +16,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\LimitDef;
 use Wikimedia\ParamValidator\TypeDef\PasswordDef;
@@ -45,6 +46,7 @@ class ApiParamValidator {
 	private const TYPE_DEFS = [
 		'boolean' => [ 'class' => PresenceBooleanDef::class ],
 		'enum' => [ 'class' => EnumDef::class ],
+		'expiry' => [ 'class' => ExpiryDef::class ],
 		'integer' => [ 'class' => IntegerDef::class ],
 		'limit' => [ 'class' => LimitDef::class ],
 		'namespace' => [

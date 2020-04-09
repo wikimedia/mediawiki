@@ -1063,6 +1063,15 @@ class ApiBaseTest extends ApiTestCase {
 				[ wfTimestamp( TS_MW, 100 ), wfTimestamp( TS_MW, 101 ) ],
 				[],
 			],
+			'Expiry array' => [
+				'99990123123456|8888-01-23 12:34:56|indefinite',
+				[
+					ApiBase::PARAM_TYPE => 'expiry',
+					ApiBase::PARAM_ISMULTI => 1,
+				],
+				[ '9999-01-23T12:34:56Z', '8888-01-23T12:34:56Z', 'infinity' ],
+				[],
+			],
 			'User' => [
 				'foo_bar',
 				[ ApiBase::PARAM_TYPE => 'user' ],

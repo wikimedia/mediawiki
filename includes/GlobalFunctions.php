@@ -32,6 +32,7 @@ use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\WrappedString;
 
 /**
@@ -2873,9 +2874,8 @@ function wfCanIPUseHTTPS( $ip ) {
  * @since 1.25
  */
 function wfIsInfinity( $str ) {
-	// These are hardcoded elsewhere in MediaWiki (e.g. mediawiki.special.block.js).
-	$infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ];
-	return in_array( $str, $infinityValues );
+	// The INFINITY_VALS are hardcoded elsewhere in MediaWiki (e.g. mediawiki.special.block.js).
+	return in_array( $str, ExpiryDef::INFINITY_VALS );
 }
 
 /**
