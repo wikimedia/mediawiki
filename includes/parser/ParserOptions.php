@@ -790,21 +790,89 @@ class ParserOptions {
 
 	/**
 	 * Callback for current revision fetching; first argument to call_user_func().
+	 * @deprecated since 1.35, use getCurrentRevisionRecordCallback
 	 * @since 1.24
 	 * @return callable
 	 */
 	public function getCurrentRevisionCallback() {
-		return $this->getOption( 'currentRevisionCallback' );
+		$revCb = $this->getOption( 'currentRevisionCallback' );
+
+		// As a temporary measure, while both currentRevisionCallback and
+		// currentRevisionRecordCallback are supported, retrieving one that is
+		// not set first checks if the other is set, so that the end result works
+		// regardless of which setter was used, since  one extension may set a
+		// RevisionCallback and another may ask for the RevisionRecordCallback
+		if ( $revCb === [ Parser::class, 'statelessFetchRevision' ] ) {
+			// currentRevisionCallback is set to the default, check if
+			// currentRevisionRecordCallback is set (and not the default)
+			$revRecordCb = $this->getOption( 'currentRevisionRecordCallback' );
+			if ( $revRecordCb !== [ Parser::class, 'statelessFetchRevisionRecord' ] ) {
+				// currentRevisionRecordCallback is set and not the default,
+				// convert it
+				$revCb = function ( Title $title, $parser = false ) use ( $revRecordCb ) {
+					$revRecord = call_user_func(
+						$revRecordCb,
+						$title,
+						$parser ?: null
+					);
+					if ( $revRecord ) {
+						return new Revision( $revRecord );
+					}
+					return false;
+				};
+			}
+		}
+		return $revCb;
 	}
 
 	/**
 	 * Callback for current revision fetching; first argument to call_user_func().
+	 * @internal
+	 * @since 1.35
+	 * @return callable
+	 */
+	public function getCurrentRevisionRecordCallback() {
+		$revRecordCb = $this->getOption( 'currentRevisionRecordCallback' );
+
+		// See explanation above
+		if ( $revRecordCb === [ Parser::class, 'statelessFetchRevisionRecord' ] ) {
+			// currentRevisionRecordCallback is set to the default, check if
+			// currentRevisionCallback is set (and not the default)
+			$revCb = $this->getOption( 'currentRevisionCallback' );
+			if ( $revCb !== [ Parser::class, 'statelessFetchRevision' ] ) {
+				// currentRevisionCallback is set and not the default, convert it
+				$revRecordCb = function ( Title $title, $parser = null ) use ( $revCb ) {
+					$rev = call_user_func( $revCb, $title, $parser ?? false );
+					if ( $rev ) {
+						return $rev->getRevisionRecord();
+					}
+					return false;
+				};
+			}
+		}
+		return $revRecordCb;
+	}
+
+	/**
+	 * Callback for current revision fetching; first argument to call_user_func().
+	 * @deprecated since 1.35, use setCurrentRevisionRecordCallback
 	 * @since 1.24
 	 * @param callable|null $x New value (null is no change)
 	 * @return callable Old value
 	 */
 	public function setCurrentRevisionCallback( $x ) {
 		return $this->setOptionLegacy( 'currentRevisionCallback', $x );
+	}
+
+	/**
+	 * Callback for current revision fetching; first argument to call_user_func().
+	 * @internal
+	 * @since 1.35
+	 * @param callable|null $x New value
+	 * @return callable Old value
+	 */
+	public function setCurrentRevisionRecordCallback( $x ) {
+		return $this->setOption( 'currentRevisionRecordCallback', $x );
 	}
 
 	/**
@@ -1108,6 +1176,7 @@ class ParserOptions {
 				'allowUnsafeRawHtml' => true,
 				'wrapclass' => 'mw-parser-output',
 				'currentRevisionCallback' => [ Parser::class, 'statelessFetchRevision' ],
+				'currentRevisionRecordCallback' => [ Parser::class, 'statelessFetchRevisionRecord' ],
 				'templateCallback' => [ Parser::class, 'statelessFetchTemplate' ],
 				'speculativeRevIdCallback' => null,
 				'speculativeRevId' => null,

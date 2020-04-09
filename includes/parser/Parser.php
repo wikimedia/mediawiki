@@ -28,6 +28,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -278,6 +279,9 @@ class Parser {
 	/** @deprecated since 1.35 */
 	public $mInputSize = false; # For {{PAGESIZE}} on current page.
 
+	/** @var RevisionRecord|null */
+	private $mRevisionRecordObject;
+
 	/**
 	 * @var array Array with the language name of each language link (i.e. the
 	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
@@ -520,6 +524,7 @@ class Parser {
 		$this->mLinkID = 0;
 		$this->mRevisionObject = $this->mRevisionTimestamp =
 			$this->mRevisionId = $this->mRevisionUser = $this->mRevisionSize = null;
+		$this->mRevisionRecordObject = null;
 		$this->mVarCache = [];
 		$this->mUser = null;
 		$this->mLangLinkLanguages = [];
@@ -604,12 +609,14 @@ class Parser {
 
 		$oldRevisionId = $this->mRevisionId;
 		$oldRevisionObject = $this->mRevisionObject;
+		$oldRevisionRecordObject = $this->mRevisionRecordObject;
 		$oldRevisionTimestamp = $this->mRevisionTimestamp;
 		$oldRevisionUser = $this->mRevisionUser;
 		$oldRevisionSize = $this->mRevisionSize;
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 			$this->mRevisionObject = null;
+			$this->mRevisionRecordObject = null;
 			$this->mRevisionTimestamp = null;
 			$this->mRevisionUser = null;
 			$this->mRevisionSize = null;
@@ -673,6 +680,7 @@ class Parser {
 
 		$this->mRevisionId = $oldRevisionId;
 		$this->mRevisionObject = $oldRevisionObject;
+		$this->mRevisionRecordObject = $oldRevisionRecordObject;
 		$this->mRevisionTimestamp = $oldRevisionTimestamp;
 		$this->mRevisionUser = $oldRevisionUser;
 		$this->mRevisionSize = $oldRevisionSize;
@@ -3724,19 +3732,47 @@ class Parser {
 	 * where possible, rather than getting the revisions themselves. This
 	 * method also caches its results, so using it benefits performance.
 	 *
+	 * This can return false if the callback returns false
+	 *
+	 * @deprecated since 1.35, use fetchCurrentRevisionRecordOfTitle instead
 	 * @since 1.24
 	 * @param Title $title
-	 * @return Revision
+	 * @return Revision|false
 	 */
 	public function fetchCurrentRevisionOfTitle( Title $title ) {
+		$revisionRecord = $this->fetchCurrentRevisionRecordOfTitle( $title );
+		if ( $revisionRecord ) {
+			return new Revision( $revisionRecord );
+		}
+		return $revisionRecord;
+	}
+
+	/**
+	 * Fetch the current revision of a given title as a RevisionRecord.
+	 * Note that the revision (and even the title) may not exist in the database,
+	 * so everything contributing to the output of the parser should use this method
+	 * where possible, rather than getting the revisions themselves. This
+	 * method also caches its results, so using it benefits performance.
+	 *
+	 * This can return false if the callback returns false
+	 *
+	 * @since 1.35
+	 * @param Title $title
+	 * @return RevisionRecord|false
+	 */
+	public function fetchCurrentRevisionRecordOfTitle( Title $title ) {
 		$cacheKey = $title->getPrefixedDBkey();
 		if ( !$this->currentRevisionCache ) {
 			$this->currentRevisionCache = new MapCacheLRU( 100 );
 		}
 		if ( !$this->currentRevisionCache->has( $cacheKey ) ) {
 			$this->currentRevisionCache->set( $cacheKey,
-				// Defaults to Parser::statelessFetchRevision()
-				call_user_func( $this->mOptions->getCurrentRevisionCallback(), $title, $this )
+				// Defaults to Parser::statelessFetchRevisionRecord()
+				call_user_func(
+					$this->mOptions->getCurrentRevisionRecordCallback(),
+					$title,
+					$this
+				)
 			);
 		}
 		return $this->currentRevisionCache->get( $cacheKey );
@@ -3759,6 +3795,7 @@ class Parser {
 	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
 	 * without passing them on to it.
 	 *
+	 * @deprecated since 1.35, use statelessFetchRevisionRecord
 	 * @since 1.24
 	 * @param Title $title
 	 * @param Parser|bool $parser
@@ -3769,6 +3806,22 @@ class Parser {
 			->getRevisionLookup()
 			->getKnownCurrentRevision( $title );
 		return $revRecord ? new Revision( $revRecord ) : false;
+	}
+
+	/**
+	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
+	 * without passing them on to it.
+	 *
+	 * @since 1.34
+	 * @param Title $title
+	 * @param Parser|null $parser
+	 * @return RevisionRecord|bool False if missing
+	 */
+	public static function statelessFetchRevisionRecord( Title $title, $parser = null ) {
+		$revRecord = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getKnownCurrentRevision( $title );
+		return $revRecord;
 	}
 
 	/**
@@ -5987,7 +6040,7 @@ class Parser {
 	 *
 	 * The return value will be either:
 	 *   - a) Positive, indicating a specific revision ID (current or old)
-	 *   - b) Zero, meaning the revision ID is specified by getCurrentRevisionCallback()
+	 *   - b) Zero, meaning the revision ID is specified by getCurrentRevisionRecordCallback()
 	 *   - c) Null, meaning the parse is for preview mode and there is no revision
 	 *
 	 * @return int|null
@@ -5999,12 +6052,34 @@ class Parser {
 	/**
 	 * Get the revision object for $this->mRevisionId
 	 *
+	 * @deprecated since 1.35, use getRevisionRecordObject
 	 * @return Revision|null Either a Revision object or null
 	 * @since 1.23 (public since 1.23)
 	 */
 	public function getRevisionObject() {
 		if ( $this->mRevisionObject ) {
 			return $this->mRevisionObject;
+		}
+
+		$this->mRevisionObject = null;
+
+		$revRecord = $this->getRevisionRecordObject();
+		if ( $revRecord ) {
+			$this->mRevisionObject = new Revision( $revRecord );
+		}
+
+		return $this->mRevisionObject;
+	}
+
+	/**
+	 * Get the revision record object for $this->mRevisionId
+	 *
+	 * @return RevisionRecord|null Either a RevisionRecord object or null
+	 * @since 1.35
+	 */
+	public function getRevisionRecordObject() {
+		if ( $this->mRevisionRecordObject ) {
+			return $this->mRevisionRecordObject;
 		}
 
 		// NOTE: try to get the RevisionObject even if mRevisionId is null.
@@ -6015,7 +6090,7 @@ class Parser {
 		// already loaded, so "current" is a bit of a misnomer. We can't just
 		// skip it if mRevisionId is set.
 		$rev = call_user_func(
-			$this->mOptions->getCurrentRevisionCallback(),
+			$this->mOptions->getCurrentRevisionRecordCallback(),
 			$this->getTitle(),
 			$this
 		);
@@ -6033,12 +6108,14 @@ class Parser {
 		// already been set to force the object and should match mRevisionId.
 		// If not, try to fetch by mRevisionId for sanity.
 		if ( $this->mRevisionId && $rev && $rev->getId() != $this->mRevisionId ) {
-			$rev = Revision::newFromId( $this->mRevisionId );
+			$rev = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionById( $this->mRevisionId );
 		}
 
-		$this->mRevisionObject = $rev;
+		$this->mRevisionRecordObject = $rev;
 
-		return $this->mRevisionObject;
+		return $this->mRevisionRecordObject;
 	}
 
 	/**
