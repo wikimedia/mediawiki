@@ -21,6 +21,10 @@
 
 		// Use appropriate font
 		function updateFont( useEditFont ) {
+			// The following classes are used here:
+			// * mw-editfont-monospace
+			// * mw-editfont-sans-serif
+			// * mw-editfont-serif
 			signatureInput.$element.toggleClass(
 				'mw-editfont-' + mw.user.options.get( 'editfont' ),
 				useEditFont

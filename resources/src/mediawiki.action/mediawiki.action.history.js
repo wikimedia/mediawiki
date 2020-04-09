@@ -39,11 +39,17 @@ $( function () {
 				$li.addClass( 'selected after' );
 				nextState = 'after';
 			} else if ( $diffRadio.prop( 'checked' ) ) {
+				// The following classes are used here:
+				// * before
+				// * after
 				$li.addClass( 'selected ' + nextState );
 				nextState = 'between';
 			} else {
 				// This list item has neither checked
 				// apply the appropriate class following the previous item.
+				// The following classes are used here:
+				// * before
+				// * after
 				$li.addClass( nextState );
 			}
 		} );

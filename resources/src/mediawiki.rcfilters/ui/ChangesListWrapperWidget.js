@@ -139,6 +139,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 				);
 
 			// remove all classes matching mw-changeslist-*
+			// eslint-disable-next-line mediawiki/class-doc
 			this.$element.removeClass( function ( elementIndex, allClasses ) {
 				return allClasses
 					.split( ' ' )
@@ -314,6 +315,12 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 		var $elements = this.$element.find( '.' + filterItem.getCssClass() );
 
 		// Add highlight class to all highlighted list items
+		// The following classes are used here:
+		// * mw-rcfilters-highlight-color-c1
+		// * mw-rcfilters-highlight-color-c2
+		// * mw-rcfilters-highlight-color-c3
+		// * mw-rcfilters-highlight-color-c4
+		// * mw-rcfilters-highlight-color-c5
 		$elements
 			.addClass(
 				'mw-rcfilters-highlighted ' +
@@ -358,6 +365,12 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 ChangesListWrapperWidget.prototype.clearHighlight = function () {
 	// Remove highlight classes
 	mw.rcfilters.HighlightColors.forEach( function ( color ) {
+		// The following classes are used here:
+		// * mw-rcfilters-highlight-color-c1
+		// * mw-rcfilters-highlight-color-c2
+		// * mw-rcfilters-highlight-color-c3
+		// * mw-rcfilters-highlight-color-c4
+		// * mw-rcfilters-highlight-color-c5
 		this.$element
 			.find( '.mw-rcfilters-highlight-color-' + color )
 			.removeClass( 'mw-rcfilters-highlight-color-' + color );

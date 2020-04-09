@@ -296,6 +296,11 @@
 				this.$body.insertAfter( this.$oldBody );
 			}
 			setTimeout( function () {
+				// The following classes are used here:
+				// * mw-widget-calendarWidget-body-wrapper-fade-up
+				// * mw-widget-calendarWidget-body-wrapper-fade-down
+				// * mw-widget-calendarWidget-body-wrapper-fade-previous
+				// * mw-widget-calendarWidget-body-wrapper-fade-next
 				$bodyWrapper.addClass( 'mw-widget-calendarWidget-body-wrapper-fade-' + fade );
 			} );
 		} else {

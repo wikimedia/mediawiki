@@ -102,6 +102,7 @@ var SavedLinksListItemWidget = function MwRcfiltersUiSavedLinksListWidget( model
 	// Initialize
 	this.toggleDefault( !!this.model.isDefault() );
 	this.$overlay.append( this.menu.$element );
+	// eslint-disable-next-line mediawiki/class-doc
 	this.$element
 		.addClass( 'mw-rcfilters-ui-savedLinksListItemWidget' )
 		.addClass( 'mw-rcfilters-ui-savedLinksListItemWidget-query-' + this.model.getID() )
