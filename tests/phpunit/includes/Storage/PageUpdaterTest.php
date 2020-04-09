@@ -16,6 +16,7 @@ use Status;
 use TextContent;
 use Title;
 use User;
+use Wikimedia\AtEase\AtEase;
 use WikiPage;
 
 /**
@@ -27,10 +28,14 @@ class PageUpdaterTest extends MediaWikiTestCase {
 	public function setUp() : void {
 		parent::setUp();
 
-		MediaWikiServices::getInstance()->getSlotRoleRegistry()->defineRoleWithModel(
-			'aux',
-			CONTENT_MODEL_WIKITEXT
-		);
+		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+
+		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
+			$slotRoleRegistry->defineRoleWithModel(
+				'aux',
+				CONTENT_MODEL_WIKITEXT
+			);
+		}
 
 		$this->tablesUsed[] = 'logging';
 		$this->tablesUsed[] = 'recentchanges';
@@ -499,6 +504,42 @@ class PageUpdaterTest extends MediaWikiTestCase {
 
 		$rc = $revisionStore->getRecentChange( $rev );
 		$this->assertEquals( $patrolled, $rc->getAttribute( 'rc_patrolled' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::makeNewRevision()
+	 */
+	public function testStalePageID() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+		$summary = CommentStoreComment::newUnsavedComment( 'testing...' );
+
+		// Create page
+		$page = WikiPage::factory( $title );
+		$updater = $page->newPageUpdater( $user );
+		$updater->setContent( 'main', new TextContent( 'Content 1' ) );
+		$updater->saveRevision( $summary, EDIT_NEW );
+		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
+
+		// Create a clone of $title and $page.
+		$title = Title::makeTitle( $title->getNamespace(), $title->getDBkey() );
+		$page = WikiPage::factory( $title );
+
+		// start editing existing page using bad page ID
+		$updater = $page->newPageUpdater( $user );
+		$updater->grabParentRevision();
+
+		$updater->setContent( 'main', new TextContent( 'Content 2' ) );
+
+		// Force the article ID to something invalid,
+		// to emulate confusion due to a page move.
+		$title->resetArticleID( 886655 );
+
+		AtEase::suppressWarnings();
+		$updater->saveRevision( $summary, EDIT_UPDATE );
+		AtEase::restoreWarnings();
+
+		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
 	}
 
 	/**

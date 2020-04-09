@@ -1876,6 +1876,27 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
 	 */
+	public function testGetKnownCurrentRevision_stalePageId() {
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$this->setService( 'MainWANObjectCache', $cache );
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$page = $this->getNonexistingTestPage();
+		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
+
+		// Fore bad article ID
+		$title = $page->getTitle();
+		$title->resetArticleID( 886655 );
+
+		$result = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
+
+		// Redundant, we really only care that no exception is thrown.
+		$this->assertSame( $rev->getId(), $result->getId() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
+	 */
 	public function testGetKnownCurrentRevision_revDelete() {
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );

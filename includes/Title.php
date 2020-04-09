@@ -3180,6 +3180,10 @@ class Title implements LinkTarget, IDBAccessObject {
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 			$linkCache->forUpdate( $oldUpdate );
 		} elseif ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
+			// If mArticleID is >0, pageCond() will use it, making it impossible
+			// for the call below to return a different result, e.g. after a
+			// page move.
+			$this->mArticleID = -1;
 			$this->mArticleID = (int)$this->loadFieldFromDB( 'page_id', $flags );
 		} elseif ( $this->mArticleID == -1 ) {
 			$this->mArticleID = $linkCache->addLinkObj( $this );
@@ -3274,6 +3278,9 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * This can be called on page insertion to allow loading of the new page_id without
 	 * having to create a new Title instance. Likewise with deletion.
+	 *
+	 * This is also used during page moves, to reflect the change in the relationship
+	 * between article ID and title text.
 	 *
 	 * @note This overrides Title::setContentModel()
 	 *

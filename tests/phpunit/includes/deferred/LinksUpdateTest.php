@@ -1,5 +1,8 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @covers LinksUpdate
  * @group LinksUpdate
@@ -54,11 +57,21 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	protected function makeTitleAndParserOutput( $name, $id ) {
-		$t = Title::newFromText( $name );
-		$t->mArticleID = $id; # XXX: this is fugly
+		// Force the value returned by getArticleID, even is
+		// READ_LATEST is passed.
+
+		/** @var Title|MockObject $t */
+		$t = $this->getMockBuilder( Title::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [ 'getArticleID' ] )
+			->getMock();
+		$t->method( 'getArticleID' )->willReturn( $id );
+
+		$tAccess = TestingAccessWrapper::newFromObject( $t );
+		$tAccess->secureAndSplit( $name );
 
 		$po = new ParserOutput();
-		$po->setTitleText( $t->getPrefixedText() );
+		$po->setTitleText( $name );
 
 		return [ $t, $po ];
 	}

@@ -31,6 +31,7 @@ use Content;
 use ContentHandler;
 use DeferredUpdates;
 use Hooks;
+use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -903,6 +904,26 @@ class PageUpdater {
 		/** @var MutableRevisionRecord $rev */
 		$rev = $this->derivedDataUpdater->getRevision();
 		'@phan-var MutableRevisionRecord $rev';
+
+		// Avoid fatal error when the Title's ID changed, T204793
+		if (
+			$rev->getPageId() !== null && $title->exists()
+			&& $rev->getPageId() !== $title->getArticleID()
+		) {
+			$titlePageId = $title->getArticleID();
+			$revPageId = $rev->getPageId();
+			$masterPageId = $title->getArticleID( Title::READ_LATEST );
+
+			if ( $revPageId === $masterPageId ) {
+				wfWarn( __METHOD__ . ": Encountered stale Title object: old ID was $titlePageId, "
+					. "continuing with new ID from master, $masterPageId" );
+			} else {
+				throw new InvalidArgumentException(
+					"Revision inherited page ID $revPageId from its parent, "
+					. "but the provided Title object belongs to page ID $masterPageId"
+				);
+			}
+		}
 
 		$rev->setPageId( $title->getArticleID() );
 

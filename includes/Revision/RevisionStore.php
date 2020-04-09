@@ -1421,10 +1421,12 @@ class RevisionStore
 		Assert::parameterType( 'object', $row, '$row' );
 
 		if ( !$title ) {
-			$pageId = $row->rev_page ?? 0; // XXX: also check page_id?
-			$revId = $row->rev_id ?? 0;
+			$pageId = (int)$row->rev_page ?? 0; // XXX: fall back to page_id?
+			$revId = (int)$row->rev_id ?? 0;
 
 			$title = $this->getTitle( $pageId, $revId, $queryFlags );
+		} else {
+			$this->ensureRevisionRowMatchesTitle( $row, $title );
 		}
 
 		if ( !isset( $row->page_latest ) ) {
@@ -1471,6 +1473,45 @@ class RevisionStore
 				$title, $user, $comment, $row, $slots, $this->dbDomain );
 		}
 		return $rev;
+	}
+
+	/**
+	 * Check that the given row matches the given Title object.
+	 * When a mismatch is detected, this tries to re-load the title from master,
+	 * to avoid spurious errors during page moves.
+	 *
+	 * @param object $row
+	 * @param Title $title
+	 * @param array $context
+	 */
+	private function ensureRevisionRowMatchesTitle( $row, Title $title, $context = [] ) {
+		$revId = (int)$row->rev_id ?? 0;
+		$revPageId = (int)$row->rev_page ?? 0; // XXX: also check $row->page_id?
+		$titlePageId = $title->getArticleID();
+
+		// Avoid fatal error when the Title's ID changed, T246720
+		if ( $revPageId && $titlePageId && $revPageId !== $titlePageId ) {
+			$masterPageId = $title->getArticleID( Title::READ_LATEST );
+			$masterLatest = $title->getLatestRevID( Title::READ_LATEST );
+
+			if ( $revPageId === $masterPageId ) {
+				$this->logger->warning(
+					"Encountered stale Title object",
+					[
+						'page_id_stale' => $titlePageId,
+						'page_id_reloaded' => $masterPageId,
+						'page_latest' => $masterLatest,
+						'rev_id' => $revId,
+						'trace' => wfBacktrace()
+					] + $context
+				);
+			} else {
+				throw new InvalidArgumentException(
+					"Revision $revId belongs to page ID $revPageId, "
+					. "the provided Title object belongs to page ID $masterPageId"
+				);
+			}
+		}
 	}
 
 	/**
@@ -2681,6 +2722,7 @@ class RevisionStore
 	public function getKnownCurrentRevision( Title $title, $revId = 0 ) {
 		$db = $this->getDBConnectionRef( DB_REPLICA );
 
+		$revIdPassed = $revId;
 		$pageId = $title->getArticleID();
 
 		if ( !$pageId ) {
@@ -2721,6 +2763,13 @@ class RevisionStore
 
 		// Reflect revision deletion and user renames.
 		if ( $row ) {
+			$this->ensureRevisionRowMatchesTitle( $row, $title, [
+				'from_cache_flag' => $fromCache,
+				'page_id_initial' => $pageId,
+				'rev_id_used' => $revId,
+				'rev_id_requested' => $revIdPassed,
+			] );
+
 			return $this->newRevisionFromRow( $row, 0, $title, $fromCache );
 		} else {
 			return false;
