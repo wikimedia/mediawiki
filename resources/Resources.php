@@ -2289,6 +2289,7 @@ return [
 			'mediawiki.Title',
 			'mediawiki.api',
 			'mediawiki.String',
+			'mediawiki.language',
 		],
 		'messages' => [
 			// NamespaceInputWidget

@@ -61,7 +61,10 @@
 		this.api = config.api || new mw.Api();
 		// Supports: IE10, FF28, Chrome23
 		this.compare = window.Intl && Intl.Collator ?
-			new Intl.Collator( mw.config.get( 'wgContentLanguage' ), { sensitivity: 'base' } ).compare :
+			new Intl.Collator(
+				mw.language.bcp47( mw.config.get( 'wgContentLanguage' ) ),
+				{ sensitivity: 'base' }
+			).compare :
 			null;
 
 		// Initialization
