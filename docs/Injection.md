@@ -1,4 +1,4 @@
-Depencency Injection
+Dependency Injection
 =======
 
 This is an overview of how MediaWiki makes use of dependency injection.
