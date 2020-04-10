@@ -1046,6 +1046,7 @@ class LinksUpdate extends DataUpdate {
 	 * @param Revision $revision
 	 */
 	public function setRevision( Revision $revision ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mRevisionRecord = $revision->getRevisionRecord();
 	}
 
@@ -1065,6 +1066,7 @@ class LinksUpdate extends DataUpdate {
 	 * @return null|Revision
 	 */
 	public function getRevision() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$revRecord = $this->mRevisionRecord;
 		return $revRecord ? new Revision( $revRecord ) : null;
 	}

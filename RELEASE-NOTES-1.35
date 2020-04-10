@@ -838,7 +838,7 @@ because of Phabricator reports.
 * Version 1 of the parserTests file format has been deprecated.  Update
   your parser tests to version 2, which uses Remex tidy on all test output
   by default.
-* LinksUpdate::getRevision and ::setRevision are soft deprecated in favor
+* LinksUpdate::getRevision and ::setRevision are hard deprecated in favor
   of the new ::getRevisionRecord and ::setRevisionRecord methods.
 * A new UserNameUtils service was introduced. The following User methods
   were deprecated in favor of using the new service:
