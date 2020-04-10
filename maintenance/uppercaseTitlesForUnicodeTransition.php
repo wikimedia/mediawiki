@@ -35,6 +35,10 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
+	private const MOVE = 0;
+	private const INPLACE_MOVE = 1;
+	private const UPPERCASE = 2;
+
 	/** @var bool */
 	private $run = false;
 
@@ -170,15 +174,25 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		}
 
 		$db = $this->getDB( $this->run ? DB_MASTER : DB_REPLICA );
-		$this->processTable( $db, true, 'page', 'page_namespace', 'page_title', [ 'page_id' ] );
-		$this->processTable( $db, true, 'image', NS_FILE, 'img_name', [] );
+
+		// Process inplace moves first, before actual moves, so mungeTitle() doesn't get confused
 		$this->processTable(
-			$db, false, 'archive', 'ar_namespace', 'ar_title', [ 'ar_timestamp', 'ar_id' ]
+			$db, self::INPLACE_MOVE, 'archive', 'ar_namespace', 'ar_title', [ 'ar_timestamp', 'ar_id' ]
 		);
-		$this->processTable( $db, false, 'filearchive', NS_FILE, 'fa_name', [ 'fa_timestamp', 'fa_id' ] );
-		$this->processTable( $db, false, 'logging', 'log_namespace', 'log_title', [ 'log_id' ] );
-		$this->processTable( $db, false, 'redirect', 'rd_namespace', 'rd_title', [ 'rd_from' ] );
-		$this->processTable( $db, false, 'protected_titles', 'pt_namespace', 'pt_title', [] );
+		$this->processTable(
+			$db, self::INPLACE_MOVE, 'filearchive', NS_FILE, 'fa_name', [ 'fa_timestamp', 'fa_id' ]
+		);
+		$this->processTable(
+			$db, self::INPLACE_MOVE, 'logging', 'log_namespace', 'log_title', [ 'log_id' ]
+		);
+		$this->processTable(
+			$db, self::INPLACE_MOVE, 'protected_titles', 'pt_namespace', 'pt_title', []
+		);
+		$this->processTable( $db, self::MOVE, 'page', 'page_namespace', 'page_title', [ 'page_id' ] );
+		$this->processTable( $db, self::MOVE, 'image', NS_FILE, 'img_name', [] );
+		$this->processTable(
+			$db, self::UPPERCASE, 'redirect', 'rd_namespace', 'rd_title', [ 'rd_from' ]
+		);
 		$this->processUsers( $db );
 	}
 
@@ -386,19 +400,37 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			);
 		}
 		$this->output( "Renamed {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}\n" );
-		return $status->isOK();
+
+		// The move created a log entry under the old invalid title. Fix it.
+		$db->update(
+			'logging',
+			[
+				'log_title' => $this->charmap[$char] . mb_substr( $title, 1 ),
+			],
+			[
+				'log_namespace' => $oldTitle->getNamespace(),
+				'log_title' => $oldTitle->getDBkey(),
+				'log_page' => $newTitle->getArticleID(),
+			],
+			__METHOD__
+		);
+
+		return true;
 	}
 
 	/**
 	 * Directly update a database row
 	 * @param IDatabase $db Database handle
+	 * @param int $op Operation to perform
+	 *  - self::INPLACE_MOVE: Directly update the database table to move the page
+	 *  - self::UPPERCASE: Rewrite the table to point to the new uppercase title
 	 * @param string $table
 	 * @param string|int $nsField
 	 * @param string $titleField
 	 * @param stdClass $row
 	 * @return bool|null True on success, false on error, null if skipped
 	 */
-	private function doUpdate( IDatabase $db, $table, $nsField, $titleField, $row ) {
+	private function doUpdate( IDatabase $db, $op, $table, $nsField, $titleField, $row ) {
 		$ns = is_int( $nsField ) ? $nsField : (int)$row->$nsField;
 		$title = $row->$titleField;
 
@@ -411,14 +443,9 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return false;
 		}
 
-		if ( $this->isUserPage( $db, $ns, $title ) ) {
-			$this->output( "... Skipping user page NS$ns $title\n" );
-			return null;
-		}
-
 		$oldTitle = Title::makeTitle( $ns, $title );
 		$newTitle = Title::makeTitle( $ns, $this->charmap[$char] . mb_substr( $title, 1 ) );
-		if ( !$this->mungeTitle( $db, $oldTitle, $newTitle ) ) {
+		if ( $op !== self::UPPERCASE && !$this->mungeTitle( $db, $oldTitle, $newTitle ) ) {
 			return false;
 		}
 
@@ -445,14 +472,17 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 	/**
 	 * Rename entries in other tables
 	 * @param IDatabase $db Database handle
-	 * @param bool $doMove Whether to use MovePage or direct table manipulation
+	 * @param int $op Operation to perform
+	 *  - self::MOVE: Use MovePage to move the page
+	 *  - self::INPLACE_MOVE: Directly update the database table to move the page
+	 *  - self::UPPERCASE: Rewrite the table to point to the new uppercase title
 	 * @param string $table
 	 * @param string|int $nsField
 	 * @param string $titleField
 	 * @param string[] $pkFields Additional fields to match a unique index
 	 *  starting with $nsField and $titleField.
 	 */
-	private function processTable( IDatabase $db, $doMove, $table, $nsField, $titleField, $pkFields ) {
+	private function processTable( IDatabase $db, $op, $table, $nsField, $titleField, $pkFields ) {
 		if ( $this->tables !== null && !in_array( $table, $this->tables, true ) ) {
 			$this->output( "Skipping table `$table`, not in --tables.\n" );
 			return;
@@ -508,11 +538,11 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 						}
 						$cont = [ $cont ];
 
-						if ( $doMove ) {
+						if ( $op === self::MOVE ) {
 							$ns = is_int( $nsField ) ? $nsField : (int)$row->$nsField;
 							$ret = $this->doMove( $db, $ns, $row->$titleField );
 						} else {
-							$ret = $this->doUpdate( $db, $table, $nsField, $titleField, $row );
+							$ret = $this->doUpdate( $db, $op, $table, $nsField, $titleField, $row );
 						}
 						if ( $ret === true ) {
 							$count++;
