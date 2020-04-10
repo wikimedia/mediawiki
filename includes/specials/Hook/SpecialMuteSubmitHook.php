@@ -3,16 +3,16 @@
 namespace MediaWiki\Hook;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35, used only for instrumentation on Special:Mute
  * @ingroup Hooks
  */
 interface SpecialMuteSubmitHook {
 	/**
-	 * DEPRECATED since 1.34! Used only for instrumentation on SpecialMute
+	 * This hook is called at the end of SpecialMute::onSubmit
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $data Array containing information about submitted options on SpecialMute form
+	 * @param array $data Array containing information about submitted options on SpecialMute form
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialMuteSubmit( $data );

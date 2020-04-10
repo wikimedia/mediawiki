@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Hook;
 
+use SpecialTrackingCategories;
+use Title;
+
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
  * @stable for implementation
@@ -9,14 +12,13 @@ namespace MediaWiki\Hook;
  */
 interface SpecialTrackingCategories__generateCatLinkHook {
 	/**
-	 * Called for each cat link on
-	 * Special:TrackingCategories
+	 * This hook is called for each cat link on Special:TrackingCategories
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $specialPage The SpecialTrackingCategories object
-	 * @param ?mixed $catTitle The Title object of the linked category
-	 * @param ?mixed &$html The Result html
+	 * @param SpecialTrackingCategories $specialPage The SpecialTrackingCategories object
+	 * @param Title $catTitle The Title object of the linked category
+	 * @param string &$html The Result html
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialTrackingCategories__generateCatLink( $specialPage,

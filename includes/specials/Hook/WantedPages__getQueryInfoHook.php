@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use WantedPagesPage;
+
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
  * @stable for implementation
@@ -9,13 +11,12 @@ namespace MediaWiki\Hook;
  */
 interface WantedPages__getQueryInfoHook {
 	/**
-	 * Called in WantedPagesPage::getQueryInfo(), can be
-	 * used to alter the SQL query which gets the list of wanted pages.
+	 * This hook is called in WantedPagesPage::getQueryInfo(), can be used to alter the SQL query
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $wantedPages WantedPagesPage object
-	 * @param ?mixed &$query query array, see QueryPage::getQueryInfo() for format documentation
+	 * @param WantedPagesPage $wantedPages WantedPagesPage object
+	 * @param array &$query query array, see QueryPage::getQueryInfo() for format documentation
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onWantedPages__getQueryInfo( $wantedPages, &$query );

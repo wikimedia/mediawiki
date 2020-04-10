@@ -8,11 +8,11 @@ namespace MediaWiki\Hook;
  */
 interface SpecialSearchProfilesHook {
 	/**
-	 * Allows modification of search profiles.
+	 * Use this hook to modify search profiles.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$profiles profiles, which can be modified.
+	 * @param array &$profiles profiles, which can be modified.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialSearchProfiles( &$profiles );

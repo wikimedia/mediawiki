@@ -2,20 +2,22 @@
 
 namespace MediaWiki\Hook;
 
+use MailAddress;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface EmailUserCCHook {
 	/**
-	 * Before sending the copy of the email to the author.
+	 * This hook is called before sending the copy of the email to the author.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$to MailAddress object of receiving user
-	 * @param ?mixed &$from MailAddress object of sending user
-	 * @param ?mixed &$subject subject of the mail
-	 * @param ?mixed &$text text of the mail
+	 * @param MailAddress &$to MailAddress object of receiving user
+	 * @param MailAddress &$from MailAddress object of sending user
+	 * @param string &$subject subject of the mail
+	 * @param string &$text text of the mail
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onEmailUserCC( &$to, &$from, &$subject, &$text );

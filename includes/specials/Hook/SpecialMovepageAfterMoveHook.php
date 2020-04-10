@@ -2,19 +2,22 @@
 
 namespace MediaWiki\Hook;
 
+use MovePageForm;
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface SpecialMovepageAfterMoveHook {
 	/**
-	 * Called after moving a page.
+	 * This hook is called after moving a page.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $movePage MovePageForm object
-	 * @param ?mixed $oldTitle old title (object)
-	 * @param ?mixed $newTitle new title (object)
+	 * @param MovePageForm $movePage MovePageForm object
+	 * @param Title $oldTitle old title (object)
+	 * @param Title $newTitle new title (object)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialMovepageAfterMove( $movePage, $oldTitle, $newTitle );

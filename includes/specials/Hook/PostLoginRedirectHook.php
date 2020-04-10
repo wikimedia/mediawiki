@@ -8,14 +8,15 @@ namespace MediaWiki\Hook;
  */
 interface PostLoginRedirectHook {
 	/**
-	 * Modify the post login redirect behavior.
+	 * Use this hook to modify the post login redirect behavior.
+	 *
 	 * Occurs after signing up or logging in, allows for interception of redirect.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$returnTo The page name to return to, as a string
-	 * @param ?mixed &$returnToQuery array of url parameters, mapping parameter names to values
-	 * @param ?mixed &$type type of login redirect as string;
+	 * @param string &$returnTo The page name to return to, as a string
+	 * @param array &$returnToQuery array of url parameters, mapping parameter names to values
+	 * @param string &$type type of login redirect as string;
 	 *   error: display a return to link ignoring $wgRedirectOnLogin
 	 *   signup: display a return to link using $wgRedirectOnLogin if needed
 	 *   success: display a return to link using $wgRedirectOnLogin if needed
