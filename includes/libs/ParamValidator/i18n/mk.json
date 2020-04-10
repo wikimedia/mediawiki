@@ -5,6 +5,8 @@
 		]
 	},
 	"paramvalidator-badbool": "Неважечка вредност „$2“ за Буловиот параметар „$1“. Задајте $3 за точно или $5 за неточно.",
+	"paramvalidator-badexpiry": "Неважечка вредност „$2“ за параметарот за истек \"$1\".",
+	"paramvalidator-badexpiry-past": "Вредноста „$2“ за параметарот за истек „$1“ е во минатото.",
 	"paramvalidator-badfloat": "Неважечка вредност „$2“ за децималниот параметар \"$1\".",
 	"paramvalidator-badfloat-notfinite": "Вредноста „$2“ за децималниот параметар „$1“ е преголема или не е број.",
 	"paramvalidator-badinteger": "Неважечка вредност „$2“ за целобројниот параметар „$1“.",
@@ -43,6 +45,7 @@
 	"paramvalidator-help-type-boolean": "Вид: {{PLURAL:$1|1=Булов|2=список на Булови}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Мора да биде празно|Може да биде празно или $1}}",
 	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=Една од следниве вредности|2=Вредности (одделени со U+007C (права црта), или ставете претставка U+001F пред списокот и одделете со U+001F)}}: $2",
+	"paramvalidator-help-type-expiry": "Вид: {{PLURAL:$1|1=истек|2=список на истеци}}.\n\nМоже да биде релативно (на пр. <kbd>5 месеци</kbd> или <kbd>2 недели</kbd>) или пак апсолутно (на пр. <kbd>2014-09-18T12:34:56Z</kbd>). За да нема истек, употребете $2.",
 	"paramvalidator-help-type-float": "Вид: {{PLURAL:$1|1=децимален број|2=список на децимални броеви}}",
 	"paramvalidator-help-type-integer": "Вид: {{PLURAL:$1|1=цел број|2=список на цели броеви}}",
 	"paramvalidator-help-type-limit": "Вид: цел број или „max“",

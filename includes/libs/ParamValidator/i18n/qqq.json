@@ -6,6 +6,7 @@
 			"D41D8CD98F",
 			"Liuxinyu970226",
 			"McDutchie",
+			"MusikAnimal",
 			"Nemo bis",
 			"Purodha",
 			"Raymond",
@@ -14,10 +15,7 @@
 			"Siebrand",
 			"Tacsipacsi",
 			"Umherirrender",
-			"Zoranzoki21",
-			"D41D8CD98F",
-			"Zoranzoki21",
-			"MusikAnimal"
+			"Zoranzoki21"
 		]
 	},
 	"paramvalidator-badbool": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - List of values recognized as \"true\", as a text list.\n* $4 - Count of values in $3.\n* $5 - List of values recognized as \"false\", as a text list. Includes {{msg-mw|paramvalidator-emptystring}}.\n* $6 - Count of values in $5.",

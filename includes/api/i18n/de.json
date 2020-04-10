@@ -1084,7 +1084,7 @@
 	"apihelp-validatepassword-example-1": "Validiert das Passwort <kbd>foobar</kbd> für den aktuellen Benutzer.",
 	"apihelp-validatepassword-example-2": "Validiert das Passwort <kbd>qwerty</kbd> zum Erstellen des Benutzers <kbd>Beispiel</kbd>.",
 	"apihelp-watch-example-watch": "Die Seite <kbd>Main Page</kbd> beobachten.",
-	"apihelp-watch-example-watch-expiry": "Beobachte die Seiten <kbd>Main Page</kbd>, <kbd>Foo</kbd>, und <kbd>Bar</kbd> für einen Monat.",
+	"apihelp-watch-example-watch-expiry": "Beobachte die Seiten <kbd>Main Page</kbd>, <kbd>Foo</kbd> und <kbd>Bar</kbd> für einen Monat.",
 	"apihelp-watch-example-unwatch": "Die Seite <kbd>Main Page</kbd> nicht beobachten.",
 	"apihelp-format-example-generic": "Das Abfrageergebnis im $1-Format ausgeben.",
 	"apihelp-json-summary": "Daten im JSON-Format ausgeben.",
