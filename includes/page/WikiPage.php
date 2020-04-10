@@ -696,6 +696,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$rev = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
 		return $rev ? new Revision( $rev ) : null;
 	}
@@ -853,8 +854,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return User|null
 	 */
 	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		$revision = $this->getOldestRevision();
-		if ( $revision ) {
+		$revRecord = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
+		if ( $revRecord ) {
 			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
 				wfDeprecated(
 					__METHOD__ . ' using FOR_THIS_USER without a user',
@@ -863,8 +864,7 @@ class WikiPage implements Page, IDBAccessObject {
 				global $wgUser;
 				$user = $wgUser;
 			}
-			$userName = $revision->getUserText( $audience, $user );
-			return User::newFromName( $userName, false );
+			return $revRecord->getUser( $audience, $user );
 		} else {
 			return null;
 		}

@@ -618,6 +618,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getPrevious
 	 */
 	public function testGetPrevious() {
+		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+
 		$oldestRevision = $this->testPage->getOldestRevision();
 		$latestRevision = $this->testPage->getLatest();
 
@@ -637,6 +639,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\Revision\RevisionStore::getRelativeRevision
 	 */
 	public function testTitleGetPreviousRevisionID() {
+		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+
 		$oldestId = $this->testPage->getOldestRevision()->getId();
 		$latestId = $this->testPage->getLatest();
 
