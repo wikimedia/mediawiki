@@ -682,12 +682,13 @@ class EditPage {
 			return;
 		}
 
-		$revision = $this->mArticle->getRevisionFetched();
+		$revRecord = $this->mArticle->fetchRevisionRecord();
 		// Disallow editing revisions with content models different from the current one
 		// Undo edits being an exception in order to allow reverting content model changes.
-		if ( $revision
-			&& $revision->getContentModel() !== $this->contentModel
-		) {
+		$revContentModel = $revRecord ?
+			$revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel() :
+			false;
+		if ( $revContentModel && $revContentModel !== $this->contentModel ) {
 			$prevRev = null;
 			if ( $this->undidRev ) {
 				$undidRevObj = Revision::newFromId( $this->undidRev );
@@ -701,7 +702,7 @@ class EditPage {
 					$this->getContentObject(),
 					$this->context->msg(
 						'contentmodelediterror',
-						$revision->getContentModel(),
+						$revContentModel,
 						$this->contentModel
 					)->plain()
 				);
@@ -1448,25 +1449,27 @@ class EditPage {
 			if ( $content === false ) {
 				// Hack for restoring old revisions while EditPage
 				// can't handle multi-slot editing.
-				// TODO replace use of Revision objects entirely once
-				// Article::fetchRevisionRecord is public
-
 				$curRevisionRecord = $this->page->getRevisionRecord();
-				$oldRevision = $this->mArticle->getRevisionFetched();
+				$oldRevisionRecord = $this->mArticle->fetchRevisionRecord();
 
 				if ( $curRevisionRecord
-					&& $oldRevision
-					&& $curRevisionRecord->getId() !== $oldRevision->getId()
+					&& $oldRevisionRecord
+					&& $curRevisionRecord->getId() !== $oldRevisionRecord->getId()
 					&& ( WikiPage::hasDifferencesOutsideMainSlot(
-						$oldRevision->getRevisionRecord(),
+						$oldRevisionRecord,
 						$curRevisionRecord
-					) || !$this->isSupportedContentModel( $oldRevision->getContentModel() ) )
+					) || !$this->isSupportedContentModel(
+						$oldRevisionRecord->getSlot(
+							SlotRecord::MAIN,
+							RevisionRecord::RAW
+						)->getModel()
+					) )
 				) {
 					$this->context->getOutput()->redirect(
 						$this->mTitle->getFullURL(
 							[
 								'action' => 'mcrrestore',
-								'restore' => $oldRevision->getId(),
+								'restore' => $oldRevisionRecord->getId(),
 							]
 						)
 					);
@@ -1502,13 +1505,13 @@ class EditPage {
 		if ( $this->section == 'new' ) {
 			return $this->getCurrentContent();
 		}
-		$revision = $this->mArticle->getRevisionFetched();
-		if ( $revision === null ) {
+		$revRecord = $this->mArticle->fetchRevisionRecord();
+		if ( $revRecord === null ) {
 			return $this->contentHandlerFactory
 				->getContentHandler( $this->contentModel )
 				->makeEmptyContent();
 		}
-		return $revision->getContent( RevisionRecord::FOR_THIS_USER, $user );
+		return $revRecord->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user );
 	}
 
 	/**
@@ -3341,12 +3344,12 @@ ERROR;
 			}
 
 			if ( $this->section != 'new' ) {
-				$revision = $this->mArticle->getRevisionFetched();
-				if ( $revision ) {
+				$revRecord = $this->mArticle->fetchRevisionRecord();
+				if ( $revRecord ) {
 					// Let sysop know that this will make private content public if saved
 
 					if ( !RevisionRecord::userCanBitfield(
-						$revision->getVisibility(),
+						$revRecord->getVisibility(),
 						RevisionRecord::DELETED_TEXT,
 						$user
 					) ) {
@@ -3354,15 +3357,15 @@ ERROR;
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 							'rev-deleted-text-permission'
 						);
-					} elseif ( $revision->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+					} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 						$out->wrapWikiMsg(
 							"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 							'rev-deleted-text-view'
 						);
 					}
 
-					if ( !$revision->isCurrent() ) {
-						$this->mArticle->setOldSubtitle( $revision->getId() );
+					if ( !$revRecord->isCurrent() ) {
+						$this->mArticle->setOldSubtitle( $revRecord->getId() );
 						$out->wrapWikiMsg(
 							Html::warningBox( "\n$1\n" ),
 							'editingold'

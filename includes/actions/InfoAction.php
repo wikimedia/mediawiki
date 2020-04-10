@@ -93,15 +93,15 @@ class InfoAction extends FormlessAction {
 		// Validate revision
 		$oldid = $this->getArticle()->getOldID();
 		if ( $oldid ) {
-			$revision = $this->getArticle()->getRevisionFetched();
+			$revRecord = $this->getArticle()->fetchRevisionRecord();
 
 			// Revision is missing
-			if ( $revision === null ) {
+			if ( $revRecord === null ) {
 				return $this->msg( 'missing-revision', $oldid )->parse();
 			}
 
 			// Revision is not current
-			if ( !$revision->isCurrent() ) {
+			if ( !$revRecord->isCurrent() ) {
 				return $this->msg( 'pageinfo-not-current' )->plain();
 			}
 		}

@@ -282,7 +282,7 @@ class Article implements Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @deprecated since 1.32, use getRevisionFetched() or fetchRevisionRecord() instead.
+	 * @deprecated since 1.32, use fetchRevisionRecord() instead.
 	 *
 	 * @return Content
 	 *
@@ -449,9 +449,11 @@ class Article implements Page {
 	 * the revision actually loaded from the database, and any errors encountered while doing
 	 * that.
 	 *
+	 * Public since 1.35
+	 *
 	 * @return RevisionRecord|null
 	 */
-	protected function fetchRevisionRecord() {
+	public function fetchRevisionRecord() {
 		if ( $this->fetchResult ) {
 			return $this->mRevision ? $this->mRevision->getRevisionRecord() : null;
 		}
@@ -572,10 +574,13 @@ class Article implements Page {
 	 * wrapping content supplied by an extension. Refer to $this->fetchResult for the
 	 * revision actually loaded from the database.
 	 *
+	 * @deprecated since 1.35
+	 *
 	 * @since 1.19
 	 * @return Revision|null
 	 */
 	public function getRevisionFetched() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->fetchRevisionRecord();
 
 		if ( $this->fetchResult->isOK() ) {
@@ -924,7 +929,7 @@ class Article implements Page {
 		$unhide = $request->getInt( 'unhide' ) == 1;
 		$oldid = $this->getOldID();
 
-		$rev = $this->getRevisionFetched();
+		$rev = $this->fetchRevisionRecord();
 
 		if ( !$rev ) {
 			$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' ) );
@@ -936,7 +941,11 @@ class Article implements Page {
 			return;
 		}
 
-		$contentHandler = $rev->getContentHandler();
+		$contentHandler = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler(
+				$rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel()
+			);
 		$de = $contentHandler->createDifferenceEngine(
 			$this->getContext(),
 			$oldid,

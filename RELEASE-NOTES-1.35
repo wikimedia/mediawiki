@@ -733,6 +733,9 @@ because of Phabricator reports.
   Instead, use ContentHandler::getUndoContent.
 * Article::doDeleteUpdates and ::doEditUpdates are deprecated. Instead,
   use WikiPage::doDeleteUpdates and ::doEditUpdates.
+* Article::getRevisionFetched is deprecated. Instead, use the
+  fetchRevisionRecord method, which has been converted from protected to
+  public.
 * LocalFileDeleteBatch was migrated to a new constructor signature with the
   user as the second parameter. Support for the old signature is hard
   deprecated, and once removed the user parameter will be required. At the
