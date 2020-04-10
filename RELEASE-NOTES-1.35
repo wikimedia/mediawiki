@@ -464,8 +464,8 @@ because of Phabricator reports.
   - setVary
 * ApiDelete::delete and ::deleteFile, both of which were protected methods,
   have been made private to allow a signature change.
-* HistoryPager::revLink, which had no visibility defined, has been made
-  private to allow a signature change.
+* HistoryPager::revLink, ::curLink, ::lastLink, and ::diffButtons, which had
+  no visibilities defined, have been made private to allow signature changes.
 * WikiPage::setLastEdit, which was previously protected, has been made
   private to allow a signature change.
 * Skin::getSkinNameMessages() deprecated in 1.34, has been removed.
