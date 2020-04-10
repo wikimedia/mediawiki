@@ -1665,57 +1665,56 @@ class WANObjectCache implements
 	 * @param string $key
 	 * @param string $kClass
 	 * @param mixed $value The regenerated value
-	 * @param float $elapsed Seconds spent regenerating the value
-	 * @param bool $hasLock
+	 * @param float $elapsed Seconds spent fetching, validating, and regenerating the value
+	 * @param bool $hasLock Whether this thread has an exclusive regeneration lock
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
 	private function checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock ) {
-		$this->stats->timing( "wanobjectcache.$kClass.regen_set_delay", 1e3 * $elapsed );
-
-		if ( $hasLock ) {
-			// No concurrent I/O risk due to mutex
-			return true;
-		}
-
-		// Serialized value size or estimate
 		$valueKey = $this->makeSisterKey( $key, self::$TYPE_VALUE );
 		list( $estimatedSize ) = $this->cache->setNewPreparedValues( [ $valueKey => $value ] );
-		// Suppose that this cache key is very popular (KEY_HIGH_QPS reads/second).
-		// After eviction, there will be cache misses until it gets regenerated and saved.
-		// If the time window when the key is missing lasts less than one second, then the
-		// number of misses will not reach KEY_HIGH_QPS. This window largely corresponds to
-		// the key regeneration time. Estimate the count/rate of cache misses, e.g.:
-		//  - 100 QPS, 20ms regeneration => ~2 misses (< 1s)
-		//  - 100 QPS, 100ms regeneration => ~10 misses (< 1s)
-		//  - 100 QPS, 3000ms regeneration => ~300 misses (100/s for 3s)
-		$missesPerSecForHighQPS = ( min( $elapsed, 1 ) * $this->keyHighQps );
 
-		// Determine whether there is enough I/O stampede risk to justify throttling set().
-		// Estimate the unthrottled set() overhead, as bps, from miss count/rate and value size,
-		// comparing it to the preferred per-key uplink bps limit (KEY_HIGH_UPLINK_BPS), e.g.:
-		//  - 2 misses (< 1s), 10KB value, 1250000 bps limit => 160000 bits (low risk)
-		//  - 2 misses (< 1s), 100KB value, 1250000 bps limit => 1600000 bits (high risk)
-		//  - 10 misses (< 1s), 10KB value, 1250000 bps limit => 800000 bits (low risk)
-		//  - 10 misses (< 1s), 100KB value, 1250000 bps limit => 8000000 bits (high risk)
-		//  - 300 misses (100/s), 1KB value, 1250000 bps limit => 800000 bits/s (low risk)
-		//  - 300 misses (100/s), 10KB value, 1250000 bps limit => 8000000 bits/s (high risk)
-		//  - 300 misses (100/s), 100KB value, 1250000 bps limit => 80000000 bits/s (high risk)
-		if ( ( $missesPerSecForHighQPS * $estimatedSize ) >= $this->keyHighUplinkBps ) {
-			$this->cache->clearLastError();
-			if (
-				!$this->cache->add(
-					$this->makeSisterKey( $key, self::$TYPE_COOLOFF ),
-					1,
-					self::$COOLOFF_TTL
-				) &&
-				// Don't treat failures due to I/O errors as the key being in cooloff
-				$this->cache->getLastError() === BagOStuff::ERR_NONE
-			) {
-				$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
+		if ( !$hasLock ) {
+			// Suppose that this cache key is very popular (KEY_HIGH_QPS reads/second).
+			// After eviction, there will be cache misses until it gets regenerated and saved.
+			// If the time window when the key is missing lasts less than one second, then the
+			// number of misses will not reach KEY_HIGH_QPS. This window largely corresponds to
+			// the key regeneration time. Estimate the count/rate of cache misses, e.g.:
+			//  - 100 QPS, 20ms regeneration => ~2 misses (< 1s)
+			//  - 100 QPS, 100ms regeneration => ~10 misses (< 1s)
+			//  - 100 QPS, 3000ms regeneration => ~300 misses (100/s for 3s)
+			$missesPerSecForHighQPS = ( min( $elapsed, 1 ) * $this->keyHighQps );
 
-				return false;
+			// Determine whether there is enough I/O stampede risk to justify throttling set().
+			// Estimate unthrottled set() overhead, as bps, from miss count/rate and value size,
+			// comparing it to the per-key uplink bps limit (KEY_HIGH_UPLINK_BPS), e.g.:
+			//  - 2 misses (< 1s), 10KB value, 1250000 bps limit => 160000 bits (low risk)
+			//  - 2 misses (< 1s), 100KB value, 1250000 bps limit => 1600000 bits (high risk)
+			//  - 10 misses (< 1s), 10KB value, 1250000 bps limit => 800000 bits (low risk)
+			//  - 10 misses (< 1s), 100KB value, 1250000 bps limit => 8000000 bits (high risk)
+			//  - 300 misses (100/s), 1KB value, 1250000 bps limit => 800000 bps (low risk)
+			//  - 300 misses (100/s), 10KB value, 1250000 bps limit => 8000000 bps (high risk)
+			//  - 300 misses (100/s), 100KB value, 1250000 bps limit => 80000000 bps (high risk)
+			if ( ( $missesPerSecForHighQPS * $estimatedSize ) >= $this->keyHighUplinkBps ) {
+				$this->cache->clearLastError();
+				if (
+					!$this->cache->add(
+						$this->makeSisterKey( $key, self::$TYPE_COOLOFF ),
+						1,
+						self::$COOLOFF_TTL
+					) &&
+					// Don't treat failures due to I/O errors as the key being in cooloff
+					$this->cache->getLastError() === BagOStuff::ERR_NONE
+				) {
+					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
+
+					return false;
+				}
 			}
 		}
+
+		// Corresponding metrics for cache writes that actually get sent over the write
+		$this->stats->timing( "wanobjectcache.$kClass.regen_set_delay", 1e3 * $elapsed );
+		$this->stats->updateCount( "wanobjectcache.$kClass.regen_set_bytes", $estimatedSize );
 
 		return true;
 	}
