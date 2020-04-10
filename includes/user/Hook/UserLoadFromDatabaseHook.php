@@ -2,18 +2,21 @@
 
 namespace MediaWiki\User\Hook;
 
+use stdClass;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface UserLoadFromDatabaseHook {
 	/**
-	 * Called when loading a user from the database.
+	 * This hook is called when loading a user from the database.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $user user object
-	 * @param ?mixed &$s database query object
+	 * @param User $user user object
+	 * @param stdClass|bool &$s database query object
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserLoadFromDatabase( $user, &$s );

@@ -2,19 +2,20 @@
 
 namespace MediaWiki\User\Hook;
 
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface UserSetEmailAuthenticationTimestampHook {
 	/**
-	 * Called when setting the timestamp of
-	 * email authentication.
+	 * This hook is called when setting the timestamp of a User's email authentication.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $user User object
-	 * @param ?mixed &$timestamp new timestamp, change this to override local email
+	 * @param User $user User object
+	 * @param ?string &$timestamp new timestamp, change this to override local email
 	 *   authentication timestamp
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
