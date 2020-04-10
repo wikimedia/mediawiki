@@ -48,6 +48,9 @@ use Wikimedia\ScopedCallback;
  * headaches, which may be fatal.
  */
 class EditPage {
+
+	use DeprecationHelper;
+
 	/**
 	 * Used for Unicode support checks
 	 */
@@ -315,8 +318,23 @@ class EditPage {
 	/** @var bool Has a summary been preset using GET parameter &summary= ? */
 	public $hasPresetSummary = false;
 
-	/** @var Revision|bool|null A revision object corresponding to $this->editRevId. */
-	public $mBaseRevision = false;
+	/**
+	 * @var Revision|bool|null
+	 *
+	 * A revision object corresponding to $this->editRevId.
+	 * Formerly public as part of using Revision objects
+	 *
+	 * @deprecated since 1.35
+	 */
+	protected $mBaseRevision = false;
+
+	/**
+	 * @var RevisionRecord|bool|null
+	 *
+	 * A RevisionRecord corresponding to $this->editRevId or $this->edittime
+	 * Replaced $mBaseRevision
+	 */
+	private $mExpectedParentRevision = false;
 
 	/** @var bool */
 	public $mShowSummaryField = true;
@@ -519,6 +537,8 @@ class EditPage {
 		$this->editConflictHelperFactory = [ $this, 'newTextConflictHelper' ];
 		$this->permManager = $services->getPermissionManager();
 		$this->revisionStore = $services->getRevisionStore();
+
+		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
 	}
 
 	/**
@@ -2516,8 +2536,10 @@ ERROR;
 	private function mergeChangesIntoContent( &$editContent ) {
 		// This is the revision that was current at the time editing was initiated on the client,
 		// even if the edit was based on an old revision.
-		$baseRevision = $this->getBaseRevision();
-		$baseContent = $baseRevision ? $baseRevision->getContent() : null;
+		$baseRevRecord = $this->getExpectedParentRevision();
+		$baseContent = $baseRevRecord ?
+			$baseRevRecord->getContent( SlotRecord::MAIN ) :
+			null;
 
 		if ( $baseContent === null ) {
 			return false;
@@ -2555,6 +2577,8 @@ ERROR;
 	 * Returns the revision that was current at the time editing was initiated on the client,
 	 * even if the edit was based on an old revision.
 	 *
+	 * @deprecated since 1.35, use ::getExpectedParentRevision
+	 *
 	 * @warning this method is very poorly named. If the user opened the form with ?oldid=X,
 	 *        one might think of X as the "base revision", which is NOT what this returns,
 	 *        see oldid for that. One might further assume that this corresponds to the $baseRevId
@@ -2565,6 +2589,21 @@ ERROR;
 	 */
 	public function getBaseRevision() {
 		if ( $this->mBaseRevision === false ) {
+			$revRecord = $this->getExpectedParentRevision();
+			$this->mBaseRevision = $revRecord ? new Revision( $revRecord ) : null;
+		}
+		return $this->mBaseRevision;
+	}
+
+	/**
+	 * Returns the RevisionRecord corresponding to the revision that was current at the time
+	 * editing was initiated on the client even if the edit was based on an old revision
+	 *
+	 * @since 1.35
+	 * @return RevisionRecord|null Current revision when editing was initiated on the client
+	 */
+	public function getExpectedParentRevision() {
+		if ( $this->mExpectedParentRevision === false ) {
 			$revRecord = null;
 			if ( $this->editRevId ) {
 				$revRecord = $this->revisionStore->getRevisionById(
@@ -2578,9 +2617,9 @@ ERROR;
 					RevisionStore::READ_LATEST
 				);
 			}
-			$this->mBaseRevision = $revRecord ? new Revision( $revRecord ) : null;
+			$this->mExpectedParentRevision = $revRecord;
 		}
-		return $this->mBaseRevision;
+		return $this->mExpectedParentRevision;
 	}
 
 	/**

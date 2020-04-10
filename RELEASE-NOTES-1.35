@@ -652,6 +652,9 @@ because of Phabricator reports.
   ::getLimitOffsetForUser and pass a User object.
 * PageArchive::undelete is hard deprecated. Instead, use ::undeleteAsUser
   and pass a User object.
+* EditPage::getBaseRevision was soft deprecated. Instead, use the new
+  ::getExpectedParentRevision method.
+* The public variable EditPage::$mBaseRevision was hard deprecated.
 * FileDeleteForm previously did not accept a user parameter in its constructor,
   instead relying on the global $wgUser. A user parameter has been added,
   and //not// providing a user is deprecated. There are no known callers
