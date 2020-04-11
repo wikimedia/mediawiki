@@ -319,10 +319,30 @@ class PageArchive {
 	 * May produce unexpected results in case of history merges or other
 	 * unusual time issues.
 	 *
+	 * @deprecated since 1.35, use getPreviousRevisionRecord
+	 *
 	 * @param string $timestamp
 	 * @return Revision|null Null when there is no previous revision
 	 */
 	public function getPreviousRevision( $timestamp ) {
+		$revRecord = $this->getPreviousRevisionRecord( $timestamp );
+		$rev = $revRecord ? new Revision( $revRecord ) : null;
+		return $rev;
+	}
+
+	/**
+	 * Return the most-previous revision, either live or deleted, against
+	 * the deleted revision given by timestamp.
+	 *
+	 * May produce unexpected results in case of history merges or other
+	 * unusual time issues.
+	 *
+	 * @since 1.35
+	 *
+	 * @param string $timestamp
+	 * @return RevisionRecord|null Null when there is no previous revision
+	 */
+	public function getPreviousRevisionRecord( string $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		// Check the previous deleted revision...
@@ -357,11 +377,9 @@ class PageArchive {
 		if ( $prevLive && $prevLive > $prevDeleted ) {
 			// Most prior revision was live
 			$rec = $this->getRevisionStore()->getRevisionById( $prevLiveId );
-			$rec = $rec ? new Revision( $rec ) : null;
 		} elseif ( $prevDeleted ) {
 			// Most prior revision was deleted
 			$rec = $this->getArchivedRevisionRecord( $prevDeletedId );
-			$rec = $rec ? new Revision( $rec ) : null;
 		} else {
 			$rec = null;
 		}
