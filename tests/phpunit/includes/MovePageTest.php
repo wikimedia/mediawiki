@@ -265,14 +265,15 @@ class MovePageTest extends MediaWikiTestCase {
 			'Aborted by hook' => [
 				'Hooked in place',
 				'Nonexistent',
-				// @todo Error is wrong
-				[ [ 'immobile-source-namespace', '' ] ],
+				[ [ 'immobile-source-namespace', '(Main)' ] ],
 			],
 			'Doubly aborted by hook' => [
 				'Hooked in place',
 				'Hooked In Place',
-				// @todo Both errors are wrong
-				[ [ 'immobile-source-namespace', '' ], [ 'immobile-target-namespace', '' ] ],
+				[
+					[ 'immobile-source-namespace', '(Main)' ],
+					[ 'immobile-target-namespace', '(Main)' ]
+				],
 			],
 			'Non-file to file' =>
 				[ 'Existent', 'File:Nonexistent.jpg', [ [ 'nonfile-cannot-move-to-file' ] ] ],

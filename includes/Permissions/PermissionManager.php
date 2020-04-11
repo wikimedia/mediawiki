@@ -965,14 +965,22 @@ class PermissionManager {
 			// Check for immobile pages
 			if ( !$this->nsInfo->isMovable( $title->getNamespace() ) ) {
 				// Specific message for this case
-				$errors[] = [ 'immobile-source-namespace', $title->getNsText() ];
+				$nsText = $title->getNsText();
+				if ( $nsText === '' ) {
+					$nsText = wfMessage( 'blanknamespace' )->text();
+				}
+				$errors[] = [ 'immobile-source-namespace', $nsText ];
 			} elseif ( !$title->isMovable() ) {
 				// Less specific message for rarer cases
 				$errors[] = [ 'immobile-source-page' ];
 			}
 		} elseif ( $action == 'move-target' ) {
 			if ( !$this->nsInfo->isMovable( $title->getNamespace() ) ) {
-				$errors[] = [ 'immobile-target-namespace', $title->getNsText() ];
+				$nsText = $title->getNsText();
+				if ( $nsText === '' ) {
+					$nsText = wfMessage( 'blanknamespace' )->text();
+				}
+				$errors[] = [ 'immobile-target-namespace', $nsText ];
 			} elseif ( !$title->isMovable() ) {
 				$errors[] = [ 'immobile-target-page' ];
 			}
