@@ -1244,3 +1244,7 @@
 	path = extensions/LanguageSelector
 	url = https://github.com/wikimedia/mediawiki-extensions-LanguageSelector
 	branch = REL1_34
+[submodule "extensions/ForcePreview"]
+	path = extensions/ForcePreview
+	url = https://github.com/wikimedia/mediawiki-extensions-ForcePreview
+	branch = REL1_34
