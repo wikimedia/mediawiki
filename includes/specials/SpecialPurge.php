@@ -19,6 +19,7 @@
  *
  * @file
  * @ingroup SpecialPage
+ * @author DannyS712
  */
 class SpecialPurge extends SpecialRedirectWithAction {
 	public function __construct() {

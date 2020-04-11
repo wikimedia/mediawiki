@@ -7,6 +7,7 @@
  *
  * @since 1.35
  * @ingroup API
+ * @author DannyS712
  */
 class ApiChangeContentModel extends ApiBase {
 

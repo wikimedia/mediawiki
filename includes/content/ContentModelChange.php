@@ -10,6 +10,7 @@ use MediaWiki\Permissions\PermissionManager;
  * use the edit api and specify the desired content model and format.
  *
  * @since 1.35
+ * @author DannyS712
  */
 class ContentModelChange {
 

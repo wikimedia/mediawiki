@@ -8,6 +8,7 @@
  * @group medium
  *
  * @covers ApiChangeContentModel
+ * @author DannyS712
  */
 class ApiChangeContentModelTest extends ApiTestCase {
 
