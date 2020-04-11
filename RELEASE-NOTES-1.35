@@ -676,7 +676,6 @@ because of Phabricator reports.
   user is hard deprecated, and support for calling them without passing a user
   will be removed in 1.36:
   - Title::getNotificationTimestamp
-  - Revision::newNullRevision
   - WikiPage::insertProtectNullRevision
   - PatrolLog::record
   - LogEventsList::userCan
@@ -744,6 +743,7 @@ because of Phabricator reports.
   - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::newFromArchiveRow - use RevisionFactory::newRevisionFromArchiveRow
+  - ::newNullRevision - use RevisionStore::newNullRevision
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
   - ::loadFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead

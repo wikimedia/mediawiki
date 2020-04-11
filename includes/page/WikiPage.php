@@ -2442,8 +2442,8 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		if ( !$user ) {
 			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			// Don't need to set to $wgUser here, handled in Revision::newNullRevision
-			// where the user is needed
+			global $wgUser;
+			$user = $wgUser;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -2470,13 +2470,27 @@ class WikiPage implements Page, IDBAccessObject {
 			)->inContentLanguage()->text();
 		}
 
-		$nullRev = Revision::newNullRevision( $dbw, $this->getId(), $editComment, true, $user );
-		if ( $nullRev ) {
-			$nullRev->insertOn( $dbw );
+		$revStore = $this->getRevisionStore();
+		$comment = CommentStoreComment::newUnsavedComment( $editComment );
+		$nullRevRecord = $revStore->newNullRevision(
+			$dbw,
+			$this->getTitle(),
+			$comment,
+			true,
+			$user
+		);
+
+		if ( $nullRevRecord ) {
+			$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
 
 			// Update page record and touch page
-			$oldLatest = $nullRev->getParentId();
+			$oldLatest = $inserted->getParentId();
+
+			// TODO accept RevisionRecord here
+			$nullRev = new Revision( $inserted );
 			$this->updateRevisionOn( $dbw, $nullRev, $oldLatest );
+		} else {
+			$nullRev = null;
 		}
 
 		return $nullRev;

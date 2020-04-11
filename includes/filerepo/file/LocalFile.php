@@ -1628,27 +1628,41 @@ class LocalFile extends File {
 		$logId = $logEntry->insert();
 
 		if ( $descTitle->exists() ) {
-			// Use own context to get the action text in content language
-			$formatter = LogFormatter::newFromEntry( $logEntry );
-			$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
-			$editSummary = $formatter->getPlainActionText();
-
-			$nullRevision = $createNullRevision === false ? null : Revision::newNullRevision(
-				$dbw,
-				$descId,
-				$editSummary,
-				false,
-				$user
-			);
-			if ( $nullRevision ) {
-				$nullRevision->insertOn( $dbw );
-				Hooks::run(
-					'NewRevisionFromEditComplete',
-					[ $wikiPage, $nullRevision, $nullRevision->getParentId(), $user, &$tags ]
+			if ( $createNullRevision !== false ) {
+				$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+				// Use own context to get the action text in content language
+				$formatter = LogFormatter::newFromEntry( $logEntry );
+				$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
+				$editSummary = $formatter->getPlainActionText();
+				$summary = CommentStoreComment::newUnsavedComment( $editSummary );
+				$nullRevRecord = $revStore->newNullRevision(
+					$dbw,
+					$descTitle,
+					$summary,
+					false,
+					$user
 				);
-				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
-				// Associate null revision id
-				$logEntry->setAssociatedRevId( $nullRevision->getId() );
+
+				if ( $nullRevRecord ) {
+					$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
+
+					// TODO WikiPage::updateRevisionOn should accept a RevisionRecord
+					// TODO replace hook
+					$nullRevision = new Revision( $inserted );
+					Hooks::run(
+						'NewRevisionFromEditComplete',
+						[
+							$wikiPage,
+							$nullRevision,
+							$inserted->getParentId(),
+							$user,
+							&$tags
+						]
+					);
+					$wikiPage->updateRevisionOn( $dbw, $nullRevision );
+					// Associate null revision id
+					$logEntry->setAssociatedRevId( $inserted->getId() );
+				}
 			}
 
 			$newPageContent = null;

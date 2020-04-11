@@ -709,6 +709,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewNullRevision() {
 		$this->hideDeprecated( 'Revision::getTextId' );
+		$this->hideDeprecated( 'Revision::newNullRevision' );
 
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$orig = $this->testPage->getRevision();
@@ -734,6 +735,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newNullRevision
 	 */
 	public function testNewNullRevision_badPage() {
+		$this->hideDeprecated( 'Revision::newNullRevision' );
 		$dbw = wfGetDB( DB_MASTER );
 		$user = $this->getTestUser()->getUser();
 		$rev = Revision::newNullRevision( $dbw, -1, 'a null revision', false, $user );
