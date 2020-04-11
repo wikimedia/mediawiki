@@ -1236,3 +1236,7 @@
 	path = extensions/SpriteSheet
 	url = https://github.com/HydraWiki/SpriteSheet
 	branch = master
+[submodule "extensions/GoogleDocs4MW"]
+	path = extensions/GoogleDocs4MW
+	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
+	branch = REL1_34
