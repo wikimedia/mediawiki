@@ -238,7 +238,7 @@ class PageArchive {
 	/**
 	 * Return a Revision object containing data for the deleted revision.
 	 *
-	 * @deprecated since 1.32, use getArchivedRevision() instead.
+	 * @deprecated since 1.32, use getArchivedRevisionRecord() instead.
 	 *
 	 * @param string $timestamp
 	 * @return Revision|null
@@ -254,15 +254,31 @@ class PageArchive {
 	/**
 	 * Return the archived revision with the given ID.
 	 *
+	 * @deprecated since 1.35, use getArchivedRevisionRecord instead
+	 *
 	 * @param int $revId
 	 * @return Revision|null
 	 */
 	public function getArchivedRevision( $revId ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		// Protect against code switching from getRevision() passing in a timestamp.
 		Assert::parameterType( 'integer', $revId, '$revId' );
 
-		$rec = $this->getRevisionByConditions( [ 'ar_rev_id' => $revId ] );
-		return $rec ? new Revision( $rec ) : null;
+		$revRecord = $this->getArchivedRevisionRecord( $revId );
+		return $revRecord ? new Revision( $revRecord ) : null;
+	}
+
+	/**
+	 * Return the archived revision with the given ID.
+	 *
+	 * @since 1.35
+	 *
+	 * @param int $revId
+	 * @return RevisionRecord|null
+	 */
+	public function getArchivedRevisionRecord( int $revId ) {
+		return $this->getRevisionByConditions( [ 'ar_rev_id' => $revId ] );
 	}
 
 	/**
@@ -344,7 +360,8 @@ class PageArchive {
 			$rec = $rec ? new Revision( $rec ) : null;
 		} elseif ( $prevDeleted ) {
 			// Most prior revision was deleted
-			$rec = $this->getArchivedRevision( $prevDeletedId );
+			$rec = $this->getArchivedRevisionRecord( $prevDeletedId );
+			$rec = $rec ? new Revision( $rec ) : null;
 		} else {
 			$rec = null;
 		}
