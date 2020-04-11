@@ -19,6 +19,7 @@
  *
  * @file
  * @ingroup SpecialPage
+ * @author DannyS712
  */
 class SpecialPageHistory extends SpecialRedirectWithAction {
 	public function __construct() {

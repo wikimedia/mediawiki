@@ -6,6 +6,10 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 
+/**
+ * @covers MediaWiki\User\UserNameUtils
+ * @author DannyS712
+ */
 class UserNameUtilsTest extends MediaWikiTestCase {
 
 	private function getUCFirstLanguageMock() {
