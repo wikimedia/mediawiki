@@ -75,7 +75,10 @@ abstract class Action implements MessageLocalizer {
 	 * @param array $overrides
 	 * @return bool|null|string|callable|Action
 	 */
-	final private static function getClass( $action, array $overrides ) {
+	final private static function getClass(
+		string $action,
+		array $overrides
+	) {
 		global $wgActions;
 		$action = strtolower( $action );
 
@@ -98,8 +101,7 @@ abstract class Action implements MessageLocalizer {
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
 	 *
-	 *
-	 * @param string|null $action
+	 * @param string|null $action Null is hard-deprecated since 1.35
 	 * @param Article|WikiPage|Page $article
 	 * 	Calling with anything other than Article is deprecated since 1.35
 	 * @param IContextSource|null $context
@@ -111,6 +113,10 @@ abstract class Action implements MessageLocalizer {
 		Page $article,
 		IContextSource $context = null
 	) {
+		if ( !is_string( $action ) ) {
+			wfDeprecated( __METHOD__ . ' with null $action', '1.35' );
+			return null;
+		}
 		$classOrCallable = self::getClass( $action, $article->getActionOverrides() );
 		if ( is_string( $classOrCallable ) ) {
 			if ( !class_exists( $classOrCallable ) ) {
@@ -187,7 +193,7 @@ abstract class Action implements MessageLocalizer {
 	 * @param string $name Name of an action
 	 * @return bool
 	 */
-	final public static function exists( $name ) {
+	final public static function exists( string $name ) : bool {
 		return self::getClass( $name, [] ) !== null;
 	}
 

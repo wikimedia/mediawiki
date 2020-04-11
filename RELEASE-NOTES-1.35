@@ -863,6 +863,7 @@ because of Phabricator reports.
 * Page interface was deprecated. Use Article or WikiPage instead.
 * wfGetScriptUrl() was deprecated. The script URL should be configured rather
   than detected. wfScript() can be used to get a configured script URL.
+* Action::factory() with null $action argument is hard deprecated
 * …
 
 === Other changes in 1.35 ===
