@@ -1248,3 +1248,7 @@
 	path = extensions/ForcePreview
 	url = https://github.com/wikimedia/mediawiki-extensions-ForcePreview
 	branch = REL1_34
+[submodule "extensions/SlackNotifications"]
+	path = extensions/SlackNotifications
+	url = https://github.com/kulttuuri/SlackNotifications
+	branch = master
