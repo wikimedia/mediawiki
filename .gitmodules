@@ -1240,3 +1240,7 @@
 	path = extensions/GoogleDocs4MW
 	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
 	branch = REL1_34
+[submodule "extensions/LanguageSelector"]
+	path = extensions/LanguageSelector
+	url = https://github.com/wikimedia/mediawiki-extensions-LanguageSelector
+	branch = REL1_34
