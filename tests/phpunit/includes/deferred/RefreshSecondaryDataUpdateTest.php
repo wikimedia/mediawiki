@@ -4,6 +4,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\MutableRevisionRecord;
 use Psr\Log\NullLogger;
+use Wikimedia\ScopedCallback;
 
 /**
  * @covers RefreshSecondaryDataUpdate
@@ -159,6 +160,65 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiTestCase {
 
 		$queue->flushCaches();
 		$this->assertSame( 0, $queue->getSize() );
+	}
+
+	/**
+	 * Attempted use of onTransactionResolution() to avoid an update running on
+	 * rollback shouldn't cause DeferredUpdates to fail to get a ticket.
+	 */
+	public function testT248003() {
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$user = $this->getTestUser()->getUser();
+
+		$fname = __METHOD__;
+		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
+		$dbw->setFlag( DBO_TRX, $dbw::REMEMBER_PRIOR ); // make queries trigger TRX
+		$reset = new ScopedCallback( [ $dbw, 'restoreFlags' ] );
+
+		// Sanity check
+		$this->assertSame( 0, $dbw->trxLevel() );
+		$dbw->selectRow( 'page', '*', '', __METHOD__ );
+		if ( !$dbw->trxLevel() ) {
+			$this->markTestSkipped( 'No implicit transaction, cannot test for T248003' );
+		}
+		$dbw->commit( __METHOD__, $dbw::FLUSHING_INTERNAL );
+		$this->assertSame( 0, $dbw->trxLevel() );
+
+		$goodCalls = 0;
+		$goodUpdate = $this->getMockBuilder( DataUpdate::class )
+			->setMethods( [ 'doUpdate' ] )
+			->getMock();
+		$goodUpdate->method( 'doUpdate' )
+			->willReturnCallback( function () use ( &$goodCalls ) {
+				++$goodCalls;
+			} );
+
+		$updater = $this->getMockBuilder( DerivedPageDataUpdater::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'getSecondaryDataUpdates' ] )
+			->getMock();
+		$updater->method( 'getSecondaryDataUpdates' )
+			->willReturnCallback( function () use ( $dbw, $fname, $goodUpdate ) {
+				$dbw->selectRow( 'page', '*', '', $fname );
+				$dbw->onTransactionResolution( function () {
+				}, $fname );
+
+				return [ $goodUpdate ];
+			} );
+
+		$wikiPage = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$update = new RefreshSecondaryDataUpdate(
+			$lbFactory,
+			$user,
+			$wikiPage,
+			$wikiPage->getRevisionRecord(),
+			$updater,
+			[]
+		);
+		$update->doUpdate();
+
+		$this->assertSame( 1, $goodCalls );
 	}
 
 	private function runJobs() {
