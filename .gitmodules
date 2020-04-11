@@ -1252,3 +1252,7 @@
 	path = extensions/SlackNotifications
 	url = https://github.com/kulttuuri/SlackNotifications
 	branch = master
+[submodule "extensions/RegexFunctions"]
+	path = extensions/RegexFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-RegexFunctions
+	branch = REL1_34
