@@ -309,6 +309,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::setId
 	 */
 	public function testSetId( $input, $expected ) {
+		$this->hideDeprecated( 'Revision::setId' );
 		$rev = new Revision( [], 0, $this->getMockTitle() );
 		$rev->setId( $input );
 		$this->assertSame( $expected, $rev->getId() );
