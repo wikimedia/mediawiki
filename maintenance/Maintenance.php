@@ -21,8 +21,9 @@
  */
 
 // phpcs:disable MediaWiki.Classes.UnsortedUseStatements.UnsortedUse
-
-define( 'MW_ENTRY_POINT', 'cli' );
+if ( !defined( 'MW_ENTRY_POINT' ) ) {
+	define( 'MW_ENTRY_POINT', 'cli' );
+}
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies.
