@@ -953,13 +953,23 @@ class Article implements Page {
 		$rev = $this->fetchRevisionRecord();
 
 		if ( !$rev ) {
-			$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' ) );
-			$msg = $this->getContext()->msg( 'difference-missing-revision' )
-				->params( $oldid )
-				->numParams( 1 )
-				->parseAsBlock();
-			$this->getContext()->getOutput()->addHTML( $msg );
-			return;
+			// T213621: $rev maybe null due to either lack of permission to view the
+			// revision or actually not existing. So let's try loading it from the id
+			$services = MediaWikiServices::getInstance();
+			$rev = $services->getRevisionLookup()->getRevisionById( $oldid );
+			if ( $rev ) {
+				// Revision exists but $user lacks permission to diff it.
+				// Do nothing here.
+				// The $rev will later be used to create standard diff elements however.
+			} else {
+				$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' ) );
+				$msg = $this->getContext()->msg( 'difference-missing-revision' )
+					->params( $oldid )
+					->numParams( 1 )
+					->parseAsBlock();
+				$this->getContext()->getOutput()->addHTML( $msg );
+				return;
+			}
 		}
 
 		$contentHandler = MediaWikiServices::getInstance()
