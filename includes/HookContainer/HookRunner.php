@@ -261,6 +261,7 @@ class HookRunner implements
 	\MediaWiki\Hook\PageHistoryLineEndingHook,
 	\MediaWiki\Hook\PageHistoryPager__doBatchLookupsHook,
 	\MediaWiki\Hook\PageHistoryPager__getQueryInfoHook,
+	\MediaWiki\Hook\PageMoveCompleteHook,
 	\MediaWiki\Hook\PageRenderingHashHook,
 	\MediaWiki\Hook\ParserAfterParseHook,
 	\MediaWiki\Hook\ParserAfterStripHook,
@@ -2798,6 +2799,13 @@ class HookRunner implements
 		return $this->container->run(
 			'PageHistoryPager::getQueryInfo',
 			[ $pager, &$queryInfo ]
+		);
+	}
+
+	public function onPageMoveComplete( $old, $new, $user, $pageid, $redirid, $reason, $revision ) {
+		return $this->container->run(
+			'PageMoveComplete',
+			[ $old, $new, $user, $pageid, $redirid, $reason, $revision ]
 		);
 	}
 

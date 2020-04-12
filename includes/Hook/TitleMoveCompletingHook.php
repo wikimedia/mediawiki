@@ -7,7 +7,7 @@ use Title;
 use User;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35, use the PageMoveComplete hook instead
  * @ingroup Hooks
  */
 interface TitleMoveCompletingHook {

@@ -62,6 +62,8 @@ class DeprecatedHooks {
 		'SpecialMuteSubmit' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'SkinTemplatePreventOtherActiveTabs' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateTabAction' => [ 'deprecatedVersion' => '1.35' ],
+		'TitleMoveComplete' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
+		'TitleMoveCompleting' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],
 		'UserRetrieveNewTalks' => [ 'deprecatedVersion' => '1.35' ],
 		'UserSetCookies' => [ 'deprecatedVersion' => '1.27' ],
