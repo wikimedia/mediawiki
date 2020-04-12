@@ -1,11 +1,10 @@
 # Travis CI build configuration for MediaWiki
 # <https://travis-ci.org/wikimedia/mediawiki-core>
 #
-# The Wikimedia Foundation uses a self-hosted Jenkins instance to run unit
-# tests, but it tests code against the version of PHP that is deployed on
-# Wikimedia's production cluster. This Travis CI configuration is designed to
-# complement that setup by testing MediaWiki on travis
-#
+# Wikimedia Foundation uses self-hosted Jenkins CI to run unit tests
+# against the versions of PHP built for Wikimedia's production cluster.
+# This Travis CI configuration serves to independently verify that MediaWiki
+# tests also pass on unmodified Ubuntu installs with official PHP packages.
 language: php
 
 # Use Ubuntu 14 Trusty (not Ubuntu 12 Precise)
@@ -28,9 +27,6 @@ matrix:
     - php: 7.3
     - php: 7.4
 
-services:
-  - mysql
-
 branches:
   # Test changes in master and arbitrary Travis CI branches only.
   # The latter allows developers to enable Travis CI in their GitHub fork of
@@ -50,16 +46,8 @@ before_script:
   - echo 'opcache.enable_cli = 1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   # Force composer 1.x because MediaWiki/composer-merge-plugin don't support composer 2.x yet
   - composer self-update --1
-  - composer install --prefer-source --quiet --no-interaction
-  # At Travis CI, the mysql user 'travis' doesn't have create database rights, use 'root' instead.
-  - >
-      php maintenance/install.php traviswiki admin
-      --pass somemwadminpassword
-      --dbtype "mysql"
-      --dbname traviswiki
-      --dbuser "root"
-      --dbpass ""
-      --scriptpath "/w"
+  - composer install --prefer-dist --quiet --no-interaction
+  - composer mw-install:sqlite
   - echo -en "\n\nrequire_once __DIR__ . '/includes/DevelopmentSettings.php';\n" >> ./LocalSettings.php
   - php -l ./LocalSettings.php
 
