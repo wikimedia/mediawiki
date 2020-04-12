@@ -28,7 +28,6 @@ use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Assert\Assert;
@@ -841,7 +840,7 @@ class Revision implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isCurrent() {
-		return ( $this->mRecord instanceof RevisionStoreRecord ) && $this->mRecord->isCurrent();
+		return $this->mRecord->isCurrent();
 	}
 
 	/**
