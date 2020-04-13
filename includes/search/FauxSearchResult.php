@@ -11,12 +11,12 @@ class FauxSearchResult extends SearchResult {
 
 	public function __construct(
 		Title $title,
-		RevisionRecord $revision = null,
+		RevisionRecord $revRecord = null,
 		File $image = null,
 		$text = ''
 	) {
 		$this->mTitle = $title;
-		$this->mRevision = $revision ? new Revision( $revision ) : null;
+		$this->mRevisionRecord = $revRecord;
 		$this->mImage = $image;
 		$this->mText = $text;
 	}
