@@ -1256,3 +1256,7 @@
 	path = extensions/RegexFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-RegexFunctions
 	branch = REL1_34
+[submodule "extensions/CommentStreams"]
+	path = extensions/CommentStreams
+	url = https://github.com/wikimedia/mediawiki-extensions-CommentStreams
+	branch = REL1_34
