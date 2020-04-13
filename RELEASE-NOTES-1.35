@@ -637,6 +637,7 @@ because of Phabricator reports.
   - mVarSeparatorPattern
   changed from public to protected:
   - mTables
+* The UndeleteShowRevision hook has been deprecated.
 * The ArticleEditUpdatesDeleteFromRecentchanges hook has been deprecated. Please
   use the RecentChange_save hook or similar instead.
 * The ArticleEditUpdates hook has been deprecated. Please

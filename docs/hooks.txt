@@ -3546,7 +3546,8 @@ $context: IContextSource (object)
 $linkRenderer: LinkRenderer instance
 &$links: Array of HTML strings
 
-'UndeleteShowRevision': Called when showing a revision in Special:Undelete.
+'UndeleteShowRevision': DEPRECATED since 1.35!
+Called when showing a revision in Special:Undelete.
 $title: title object related to the revision
 $rev: revision (object) that will be viewed
 
