@@ -999,6 +999,9 @@ because of Phabricator reports.
   getDefaultOption, getOptions, getOption, getBoolOption, getIntOption,
   setOption, listOptionKinds, getOptionKinds, resetOptions.  Use corresponding
   methods in UserOptionsLookup or UserOptionsManager service classes instead.
+* The $user parameter for both the getForm() and getFormDescriptor() methods of
+  PreferencesFactory has been deprecated in favour of a new
+  PreferencesFactory::setUser( User $user ) method.
 * …
 
 === Other changes in 1.35 ===

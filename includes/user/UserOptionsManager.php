@@ -268,25 +268,28 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	 * See UserOptionsManager::listOptionKinds for the list of valid option types that can be provided.
 	 *
 	 * @see UserOptionsManager::listOptionKinds
-	 * @param UserIdentity $user
+	 * @param UserIdentity $userIdentity
 	 * @param IContextSource $context
 	 * @param array|null $options Assoc. array with options keys to check as keys.
 	 *   Defaults user options.
 	 * @return array The key => kind mapping data
 	 */
 	public function getOptionKinds(
-		UserIdentity $user,
+		UserIdentity $userIdentity,
 		IContextSource $context,
 		$options = null
 	): array {
 		if ( $options === null ) {
-			$options = $this->loadUserOptions( $user );
+			$options = $this->loadUserOptions( $userIdentity );
 		}
 
 		// TODO: injecting the preferences factory creates a cyclic dependency between
 		// PreferencesFactory and UserOptionsManager. See T250822
 		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		$prefs = $preferencesFactory->getFormDescriptor( User::newFromIdentity( $user ), $context );
+		$user = User::newFromIdentity( $userIdentity );
+		$preferencesFactory->setUser( $user );
+		// Note that the $user parameter of getFormDescriptor() is deprecated.
+		$prefs = $preferencesFactory->getFormDescriptor( $user, $context );
 		$mapping = [];
 
 		// Pull out the "special" options, so they don't get converted as
