@@ -66,7 +66,8 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		parent::checkPermissions();
 
 		$user = $this->getUser();
-		$status = AuthManager::singleton()->checkAccountCreatePermissions( $user );
+		$status = MediaWikiServices::getInstance()->getAuthManager()
+			->checkAccountCreatePermissions( $user );
 		if ( !$status->isGood() ) {
 			throw new ErrorPageError( 'createacct-error', $status->getMessage() );
 		}

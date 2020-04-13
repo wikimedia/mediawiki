@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -48,7 +47,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function isListed() {
-		return AuthManager::singleton()->allowsPropertyChange( 'emailaddress' );
+		return MediaWikiServices::getInstance()->getAuthManager()
+			->allowsPropertyChange( 'emailaddress' );
 	}
 
 	/**
@@ -67,7 +67,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function checkExecutePermissions( User $user ) {
-		if ( !AuthManager::singleton()->allowsPropertyChange( 'emailaddress' ) ) {
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->getAuthManager()->allowsPropertyChange( 'emailaddress' ) ) {
 			throw new ErrorPageError( 'changeemail', 'cannotchangeemail' );
 		}
 
@@ -75,8 +76,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
+		if ( !$services->getPermissionManager()
 				->userHasRight( $this->getUser(), 'viewmyprivateinfo' )
 		) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
