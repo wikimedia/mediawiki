@@ -1122,6 +1122,7 @@
 	"rcfilters-quickfilters-placeholder-title": "Ei säästettyjä filttereitä",
 	"rcfilters-savedqueries-remove": "Ota poies",
 	"rcfilters-savedqueries-cancel-label": "Lopeta",
+	"rcfilters-show-new-changes": "Näytä uuet muutokset $1 alkaen",
 	"rcfilters-search-placeholder": "Filtteröi muutoksia (käytä valikkoa tai eti filtterin nimeä)",
 	"rcfilters-highlightbutton-title": "Korosta resyltaatit",
 	"rcfilters-filter-editsbyother-label": "Muitten muutokset",

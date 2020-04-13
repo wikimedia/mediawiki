@@ -5,6 +5,8 @@
 		]
 	},
 	"paramvalidator-badbool": "Valor inválido \"$2\" para o parâmetro booleano \"$1\". Passe $3 para true ou $5 para false.",
+	"paramvalidator-badexpiry": "Valor inválido \"$2\" para o parâmetro de expiração \"$1\".",
+	"paramvalidator-badexpiry-past": "O valor \"$2\" para o parâmetro de expiração \"$1\" está no passado.",
 	"paramvalidator-badfloat": "Valor inválido \"$2\" para o parâmetro float \"$1\".",
 	"paramvalidator-badfloat-notfinite": "O valor \"$2\" para o parâmetro flutuante \"$1\" é muito grande ou não é um número.",
 	"paramvalidator-badinteger": "Valor inválido \"$2\" para o parâmetro inteiro \"$1\".",

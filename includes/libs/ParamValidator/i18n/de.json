@@ -3,6 +3,8 @@
 		"authors": []
 	},
 	"paramvalidator-badbool": "Ungültiger Wert „$2“ für den booleschen Parameter „$1“. Übergib $3 für true, oder $5 für false.",
+	"paramvalidator-badexpiry": "Ungültiger Wert „$2“ für den Ablauf-Parameter „$1“.",
+	"paramvalidator-badexpiry-past": "Der Wert „$2“ für den Ablauf-Parameter „$1“ liegt in der Vergangenheit.",
 	"paramvalidator-badfloat": "Ungültiger Wert „$2“ für den Float-Parameter „$1“.",
 	"paramvalidator-badfloat-notfinite": "Der Wert „$2“ für den Float-Parameter „$1“ ist zu groß oder ist keine Zahl.",
 	"paramvalidator-badinteger": "Ungültiger Wert „$2“ für den ganzzahligen Parameter „$1“.",
@@ -41,6 +43,7 @@
 	"paramvalidator-help-type-boolean": "Typ: {{PLURAL:$1|1=Boolean|2=Liste Boolean-Werte}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Muss leer sein|Kann leer sein oder $1}}",
 	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=Einer der folgenden Werte|2=Werte (getrennt durchh U+007C (Pipe) oder Prefix der Liste mit U+001F nd getrennt durch U+001F)}}: $2",
+	"paramvalidator-help-type-expiry": "Typ: {{PLURAL:$1|1=Ablaufzeit|2=Liste von Ablaufzeiten}}.\n\nKann relativ (z.B. <kbd>5 months</kbd> oder <kbd>2 weeks</kbd>) oder absolut (z.B. <kbd>2014-09-18T12:34:56Z</kbd>) sein. Für keine Ablaufzeit verwende $2.",
 	"paramvalidator-help-type-float": "Type {{PLURAL:$1|1=Gleitkommazahl|2=Liste von Gleitkommazahlen}}",
 	"paramvalidator-help-type-integer": "Typ: {{PLURAL:$1|1=Ganzzahl|2=Liste von Ganzzahlen}}",
 	"paramvalidator-help-type-limit": "Typ: integer oder „max“",

@@ -4,6 +4,8 @@
 			"Fulup"
 		]
 	},
+	"paramvalidator-badexpiry": "Talvoud \"$2\" direizh evit an arventenn aet d'e dermen \"$1\".",
+	"paramvalidator-badexpiry-past": "An talvoud \"$2\" evit an arventenn aet d'e dermen \"$1\" a zo tremenet c'hoazh.",
 	"paramvalidator-badfloat": "Talvoud \"$2\" direizh evit an arventenn war-neuñv \"$1\".",
 	"paramvalidator-badfloat-notfinite": "Re vras eo an talvoud \"$2\" evit an arventenn war-neuñv \"$1\", pe neuze n'eo ket un niver eo.",
 	"paramvalidator-badupload-cantwrite": "N'eus ket bet gallet stokañ ar restr evit \"$1\" abalamour d'ur fazi kefluniañ er servijer (skrivadur c'hwitet).",
@@ -11,6 +13,7 @@
 	"paramvalidator-badupload-partial": "Pellgarget eo bet ar restr evit \"$1\" en un doare darnel hepken.",
 	"paramvalidator-badvalue-enumnotmulti": "N'eo ket bet anavezet talvoud an arventenn \"$1\" : $2.",
 	"paramvalidator-emptystring": "an neudennad c'houllo",
+	"paramvalidator-maxbytes": "Ne c'hall ket an talvoud evit an arventenn \"$1\" bezañ hiroc'h eget $3 {{PLURAL:$3|okted}} (ha $4 a oa).",
 	"paramvalidator-maxchars": "Ne c'hall ket an talvoud evit an arventenn \"$1\" bezañ hiroc'h eget $3 {{PLURAL:$3|arouezenn}} (ha $4 a oa).",
 	"paramvalidator-missingparam": "Rekis eo termeniñ an arventenn \"$1\".",
 	"paramvalidator-outofrange-max": "Ne c'hall ket an talvoud \"$2\" bezañ brasoc'h eget $4 evit an arventenn \"$1\".",
@@ -24,8 +27,11 @@
 	"paramvalidator-help-multi-all": "Evit merkan an holl dalvoudoù, grit gant <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Rekis eo an arventenn-mañ.",
 	"paramvalidator-help-type-boolean": "Type: {{PLURAL:$1|1=boulean|2=roll ar bouleanoù}}",
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=a rank bezañ goullo|a c'hall bezañ goullo, pe $1}}",
+	"paramvalidator-help-type-expiry": "Seurt : {{PLURAL:$1|1=expiration|2=roll aet d'e dermen}}.\n\nA c'hall bezañ relativel (da sk. <kbd>5 miz</kbd> pe <kbd>2 sizhun</kbd>) pe krenn (da sk. <kbd>2014-09-18T12:34:56Z</kbd>). Kuit da gaout un deiziad termen, ober gant $2.",
 	"paramvalidator-help-type-float": "Seurt : {{PLURAL:$1|1=float|2=roll ar re war-neuñv}}",
 	"paramvalidator-help-type-integer": "Type: {{PLURAL:$1|1=anterin|2=roll aniveroù anterin}}",
+	"paramvalidator-help-type-limit": "Seurt : anterin pe \"brasañ\"",
 	"paramvalidator-help-type-number-minmax": "An {{PLURAL:$1|1=talvoud|2=talvoudoù}} a rank bezañ etre $2 ha $3.",
 	"paramvalidator-help-type-number-min": "Ne c'hall ket an {{PLURAL:$1|1=talvoud|2=talvoudoù}} bezañ dindan $2.",
 	"paramvalidator-help-type-presenceboolean": "Seurt : boulean",

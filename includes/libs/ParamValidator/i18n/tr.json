@@ -5,6 +5,8 @@
 		]
 	},
 	"paramvalidator-badbool": "\"$1\" boole parametresi için geçersiz \"$2\" değeri. True için $3 veya false için $5 iletin.",
+	"paramvalidator-badexpiry": "\"$1\" sona erme parametresi için geçersiz \"$2\" değeri.",
+	"paramvalidator-badexpiry-past": "\"$1\" son kullanma parametresi için \"$2\" değeri geçmişte.",
 	"paramvalidator-badfloat": "\"$1\" float parametresi için geçersiz \"$2\" değeri.",
 	"paramvalidator-badfloat-notfinite": "\"$1\" float parametresi için \"$2\" değeri çok büyük veya bir sayı değil.",
 	"paramvalidator-badinteger": "\"$1\" tamsayı parametresi için geçersiz \"$2\" değeri.",
@@ -43,6 +45,7 @@
 	"paramvalidator-help-type-boolean": "Tür: {{PLURAL:$1|1=boole|2=boole listesi}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Boş olmalıdır|Boş veya $1 olabilir}}",
 	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=Aşağıdaki değerlerden biri|2=Değerler (U+007C (boru) ile ayırın veya listeye U+001F ile önek ekleyin ve U+001F ile ayırın)}}: $2",
+	"paramvalidator-help-type-expiry": "Tür: {{PLURAL:$1|1=bitiş|2=süre bitimi listesi}}.\n\nGöreli (ör. <kbd>5 ay</kbd> veya <kbd>2 hafta</kbd>) veya mutlak (örn. <kbd>2014-09-18T12:34:56Z</kbd>) olabilir. Süre bitimi olmaması için, $2 kullanın.",
 	"paramvalidator-help-type-float": "Tür: {{PLURAL:$1|1=şamandıra|2=şamandıra listesi}}",
 	"paramvalidator-help-type-integer": "Tür: {{PLURAL:$1|1=tamsayı|2=tamsayı listesi}}",
 	"paramvalidator-help-type-limit": "Tür: tamsayı veya \"maks\"",

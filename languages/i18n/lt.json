@@ -2776,7 +2776,7 @@
 	"pageinfo-lasttime": "Paskutinio keitimo data",
 	"pageinfo-edits": "Keitimų skaičius",
 	"pageinfo-authors": "Skirtingų autorių skaičius",
-	"pageinfo-recent-edits": "Paskutinųjų keitimų skaičius (per $1 laikotarpį)",
+	"pageinfo-recent-edits": "Paskutinių keitimų skaičius (per $1 laikotarpį)",
 	"pageinfo-recent-authors": "Pastarųjų skirtingų redaguotojų skaičius",
 	"pageinfo-magic-words": "Magiški {{PLURAL:$1|žodis|žodžiai}} ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1|Paslėpta kategorija|Paslėptos kategorijos|Paslėptų kategorijų}} ($1)",
