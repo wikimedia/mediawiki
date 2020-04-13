@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Helper class to change the content model of pages
@@ -140,12 +141,13 @@ class ContentModelChange {
 	 */
 	private function createNewContent() {
 		$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
 		$title = $this->page->getTitle();
-		$latestRevision = Revision::newFromTitle( $title ) ?: false;
+		$latestRevRecord = $revLookup->getRevisionByTitle( $title );
 
-		if ( $latestRevision ) {
-			$latestContent = $latestRevision->getContent();
+		if ( $latestRevRecord ) {
+			$latestContent = $latestRevRecord->getContent( SlotRecord::MAIN );
 			$latestHandler = $latestContent->getContentHandler();
 			$latestModel = $latestContent->getModel();
 			if ( !$latestHandler->supportsDirectEditing() ) {
@@ -184,7 +186,7 @@ class ContentModelChange {
 					ContentHandler::getLocalizedName( $newModel )
 				);
 			}
-			$this->latestRevId = $latestRevision->getId();
+			$this->latestRevId = $latestRevRecord->getId();
 			$this->logAction = 'change';
 		} else {
 			// Page doesn't exist, create an empty content object
