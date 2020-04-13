@@ -146,12 +146,14 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	public function testGetPreferredVariantUserOption() {
 		global $wgUser;
 
-		$wgUser = new User;
-		$wgUser->load(); // from 'defaults'
-		$wgUser->mId = 1;
-		$wgUser->mDataLoaded = true;
-		$wgUser->mOptionsLoaded = true;
-		$wgUser->setOption( 'variant', 'tg-latn' );
+		$user = new User;
+		$user->load(); // from 'defaults'
+		$user->mId = 1;
+		$user->mDataLoaded = true;
+		$user->mOptionsLoaded = true;
+		$user->setOption( 'variant', 'tg-latn' );
+
+		$wgUser = $user;
 
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
@@ -162,12 +164,14 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	public function testGetPreferredVariantUserOptionDeprecated() {
 		global $wgUser;
 
-		$wgUser = new User;
-		$wgUser->load(); // from 'defaults'
-		$wgUser->mId = 1;
-		$wgUser->mDataLoaded = true;
-		$wgUser->mOptionsLoaded = true;
-		$wgUser->setOption( 'variant', 'bat-smg' );
+		$user = new User;
+		$user->load(); // from 'defaults'
+		$user->mId = 1;
+		$user->mDataLoaded = true;
+		$user->mOptionsLoaded = true;
+		$user->setOption( 'variant', 'bat-smg' );
+
+		$wgUser = $user;
 
 		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
 	}
@@ -178,12 +182,14 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	public function testGetPreferredVariantUserOptionBCP47() {
 		global $wgUser;
 
-		$wgUser = new User;
-		$wgUser->load(); // from 'defaults'
-		$wgUser->mId = 1;
-		$wgUser->mDataLoaded = true;
-		$wgUser->mOptionsLoaded = true;
-		$wgUser->setOption( 'variant', 'en-simple' );
+		$user = new User;
+		$user->load(); // from 'defaults'
+		$user->mId = 1;
+		$user->mDataLoaded = true;
+		$user->mOptionsLoaded = true;
+		$user->setOption( 'variant', 'en-simple' );
+
+		$wgUser = $user;
 
 		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
 	}
@@ -196,12 +202,14 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		global $wgUser;
 
 		$this->setContentLang( 'en' );
-		$wgUser = new User;
-		$wgUser->load(); // from 'defaults'
-		$wgUser->mId = 1;
-		$wgUser->mDataLoaded = true;
-		$wgUser->mOptionsLoaded = true;
-		$wgUser->setOption( 'variant-tg', 'tg-latn' );
+		$user = new User;
+		$user->load(); // from 'defaults'
+		$user->mId = 1;
+		$user->mDataLoaded = true;
+		$user->mOptionsLoaded = true;
+		$user->setOption( 'variant-tg', 'tg-latn' );
+
+		$wgUser = $user;
 
 		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
 	}
@@ -214,12 +222,14 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		global $wgUser;
 
 		$this->setContentLang( 'en' );
-		$wgUser = new User;
-		$wgUser->load(); // from 'defaults'
-		$wgUser->mId = 1;
-		$wgUser->mDataLoaded = true;
-		$wgUser->mOptionsLoaded = true;
-		$wgUser->setOption( 'variant-tg', 'bat-smg' );
+		$user = new User;
+		$user->load(); // from 'defaults'
+		$user->mId = 1;
+		$user->mDataLoaded = true;
+		$user->mOptionsLoaded = true;
+		$user->setOption( 'variant-tg', 'bat-smg' );
+
+		$wgUser = $user;
 
 		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
 	}
@@ -232,12 +242,14 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		global $wgUser;
 
 		$this->setContentLang( 'en' );
-		$wgUser = new User;
-		$wgUser->load(); // from 'defaults'
-		$wgUser->mId = 1;
-		$wgUser->mDataLoaded = true;
-		$wgUser->mOptionsLoaded = true;
-		$wgUser->setOption( 'variant-tg', 'en-simple' );
+		$user = new User;
+		$user->load(); // from 'defaults'
+		$user->mId = 1;
+		$user->mDataLoaded = true;
+		$user->mOptionsLoaded = true;
+		$user->setOption( 'variant-tg', 'en-simple' );
+
+		$wgUser = $user;
 
 		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
 	}
@@ -252,12 +264,15 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 		$this->setContentLang( 'tg-latn' );
 		$wgRequest->setVal( 'variant', 'tg' );
-		$wgUser = User::newFromId( "admin" );
-		$wgUser->setId( 1 );
-		$wgUser->mFrom = 'defaults';
-		$wgUser->mOptionsLoaded = true;
+		$user = User::newFromId( "admin" );
+		$user->setId( 1 );
+		$user->mFrom = 'defaults';
+		$user->mOptionsLoaded = true;
 		// The user's data is ignored because the variant is set in the URL.
-		$wgUser->setOption( 'variant', 'tg-latn' );
+		$user->setOption( 'variant', 'tg-latn' );
+
+		$wgUser = $user;
+
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
