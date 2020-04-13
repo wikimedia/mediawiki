@@ -513,7 +513,7 @@ class SpecialUndelete extends SpecialPage {
 		);
 		$out->addHTML( '</div>' );
 
-		if ( !Hooks::run( 'UndeleteShowRevision', [ $this->mTargetObj, $rev ] ) ) {
+		if ( !Hooks::run( 'UndeleteShowRevision', [ $this->mTargetObj, $rev ], '1.35' ) ) {
 			return;
 		}
 
