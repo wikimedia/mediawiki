@@ -1124,17 +1124,6 @@ return [
 			'colon-separator',
 		],
 	],
-	'mediawiki.action.delete.file' => [
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.delete.file.js',
-		'dependencies' => [
-			'oojs-ui-core',
-			'jquery.lengthLimit',
-		],
-		'messages' => [
-			// @todo Load this message in content language
-			'colon-separator',
-		],
-	],
 	'mediawiki.action.edit' => [
 		'scripts' => [
 			'resources/src/mediawiki.action/mediawiki.action.edit.js',
