@@ -1260,3 +1260,7 @@
 	path = extensions/CommentStreams
 	url = https://github.com/wikimedia/mediawiki-extensions-CommentStreams
 	branch = REL1_34
+[submodule "extensions/VEForAll"]
+	path = extensions/VEForAll
+	url = https://github.com/wikimedia/mediawiki-extensions-VEForAll
+	branch = REL1_34
