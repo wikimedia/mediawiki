@@ -41,6 +41,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::doLogChangeBatch
 	 */
 	public function testDoLogChangeBatch_exceptionDbConnect() {
+		$this->setNullLogger( 'DBConnection' );
 		$journal = $this->getJournal( [ 'domain' => 'no-such-domain' ] );
 
 		$this->assertEquals(
@@ -52,10 +53,10 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::doLogChangeBatch
 	 */
 	public function testDoLogChangeBatch_exceptionDbQuery() {
-		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'testing' );
-
+		$this->setNullLogger( 'DBQuery' );
 		$journal = $this->getJournal();
 
+		// Null value for 'op' will make the query fail
 		$this->assertEquals(
 			StatusValue::newFatal( 'filejournal-fail-dbquery', 'local-backend' ),
 			$journal->logChangeBatch(
