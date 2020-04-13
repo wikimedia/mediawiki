@@ -203,12 +203,20 @@ class PasswordReset implements LoggerAwareInterface {
 			// Email gets set to null for backward compatibility
 			'Email' => $method === 'email' ? $email : null,
 		];
+
+		// Recreate the $users array with its values so that we reset the numeric keys since
+		// the key '0' might have been unset from $users array. 'SpecialPasswordResetOnSubmit'
+		// hook assumes that index '0' is defined if $users is not empty.
+		$users = array_values( $users );
+
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
-		// Use 'reset' since users[ 0 ] might not exist because users with 'requireemail' option
-		// turned on might have been unset from users array
+
+		// Get the first element in $users by using `reset` function just in case $users is changed
+		// in 'SpecialPasswordResetOnSubmit' hook.
 		$firstUser = reset( $users ) ?? null;
+
 		$requireEmail = $this->config->get( 'AllowRequiringEmailForResets' )
 			&& $method === 'username'
 			&& $firstUser
