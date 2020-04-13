@@ -154,8 +154,7 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @param User $performingUser The user that does the password reset
 	 * @param string|null $username The user whose password is reset
 	 * @param string|null $email Alternative way to specify the user
-	 * @return StatusValue Will contain the passwords as a username => password array if the
-	 *   $displayPassword flag was set
+	 * @return StatusValue
 	 * @throws LogicException When the user is not allowed to perform the action
 	 * @throws MWException On unexpected DB errors
 	 */
@@ -315,7 +314,6 @@ class PasswordReset implements LoggerAwareInterface {
 			return $result;
 		}
 
-		$passwords = [];
 		foreach ( $reqs as $req ) {
 			// This is adding a new temporary password, not intentionally changing anything
 			// (even though it might technically invalidate an old temporary password).
@@ -327,7 +325,7 @@ class PasswordReset implements LoggerAwareInterface {
 			$logContext
 		);
 
-		return StatusValue::newGood( $passwords );
+		return StatusValue::newGood();
 	}
 
 	/**
