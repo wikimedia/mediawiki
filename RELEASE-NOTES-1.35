@@ -657,7 +657,7 @@ because of Phabricator reports.
   ::getArchivedRevisionRecord method.
 * PageArchive::undelete is hard deprecated. Instead, use ::undeleteAsUser
   and pass a User object.
-* EditPage::getBaseRevision was soft deprecated. Instead, use the new
+* EditPage::getBaseRevision was hard deprecated. Instead, use the new
   ::getExpectedParentRevision method.
 * The public variable EditPage::$mBaseRevision was hard deprecated.
 * FileDeleteForm previously did not accept a user parameter in its constructor,
