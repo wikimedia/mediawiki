@@ -390,7 +390,7 @@ class EditPage {
 	 * revision at the time, not the one the edit is based on.
 	 *
 	 * @see $oldid
-	 * @see getBaseRevision()
+	 * @see getExpectedParentRevision()
 	 */
 	private $editRevId = null;
 
@@ -2588,6 +2588,7 @@ ERROR;
 	 * @return Revision|null Current version when editing was initiated on the client
 	 */
 	public function getBaseRevision() {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $this->mBaseRevision === false ) {
 			$revRecord = $this->getExpectedParentRevision();
 			$this->mBaseRevision = $revRecord ? new Revision( $revRecord ) : null;
