@@ -120,14 +120,6 @@ class TestSetup {
 			'secondaryauth' => [],
 		];
 
-		// T46192 Do not attempt to send a real e-mail
-		Hooks::clear( 'AlternateUserMailer' );
-		Hooks::register(
-			'AlternateUserMailer',
-			function () {
-				return false;
-			}
-		);
 		// xdebug's default of 100 is too low for MediaWiki
 		ini_set( 'xdebug.max_nesting_level', 1000 );
 

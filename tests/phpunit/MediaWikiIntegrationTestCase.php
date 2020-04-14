@@ -553,6 +553,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$lbFactory = $this->localServices->getDBLoadBalancerFactory();
 		Maintenance::setLBFactoryTriggers( $lbFactory, $this->localServices->getMainConfig() );
 
+		// T46192 Do not attempt to send a real e-mail
+		$this->setTemporaryHook( 'AlternateUserMailer',
+			function () {
+				return false;
+			}
+		);
 		ob_start( 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier' );
 	}
 
