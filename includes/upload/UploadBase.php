@@ -701,7 +701,7 @@ abstract class UploadBase {
 
 		// If a file with the same name exists locally then the local file has already been tested
 		// for duplication of content
-		$ignoreLocalDupes = isset( $warnings[ 'exists '] );
+		$ignoreLocalDupes = isset( $warnings['exists'] );
 		$dupes = $this->checkAgainstExistingDupes( $hash, $ignoreLocalDupes );
 		if ( $dupes ) {
 			$warnings['duplicate'] = $dupes;
