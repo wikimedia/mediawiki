@@ -44,6 +44,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	protected $direction = self::INHERIT_VALUE;
 	protected $skin = self::INHERIT_VALUE;
 	protected $user = self::INHERIT_VALUE;
+	protected $userObj = self::INHERIT_VALUE;
 	protected $debug = self::INHERIT_VALUE;
 	protected $only = self::INHERIT_VALUE;
 	protected $version = self::INHERIT_VALUE;
@@ -116,6 +117,21 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 			return $this->context->getUser();
 		}
 		return $this->user;
+	}
+
+	public function getUserObj() : User {
+		if ( $this->userObj === self::INHERIT_VALUE ) {
+			return $this->context->getUserObj();
+		}
+		if ( $this->userObj === null ) {
+			$username = $this->getUser();
+			if ( $username ) {
+				$this->userObj = User::newFromName( $username ) ?: new User;
+			} else {
+				$this->userObj = new User;
+			}
+		}
+		return $this->userObj;
 	}
 
 	/**
