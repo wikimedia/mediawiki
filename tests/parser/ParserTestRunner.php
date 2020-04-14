@@ -36,6 +36,8 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ParserTestRunner {
 
+	use MediaWikiTestCaseTrait;
+
 	/**
 	 * MediaWiki core parser test files, paths
 	 * will be prefixed with __DIR__ . '/'
@@ -335,6 +337,8 @@ class ParserTestRunner {
 			$ts = $this->getFakeTimestamp();
 			return true;
 		} );
+
+		$this->hideDeprecated( 'Hooks::clear' );
 		$teardown[] = function () {
 			Hooks::clear( 'ParserGetVariableValueTs' );
 		};
