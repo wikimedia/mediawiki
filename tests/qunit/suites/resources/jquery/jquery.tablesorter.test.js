@@ -11,9 +11,9 @@
 		planets = [ mercury, venus, earth, mars, jupiter, saturn ],
 		planetsAscName = [ earth, jupiter, mars, mercury, saturn, venus ],
 		planetsAscRadius = [ mercury, mars, venus, earth, saturn, jupiter ],
+		planetsTotal = [ [ 'total', '146395.5' ] ],
 		planetsRowspan,
 		planetsRowspanII,
-		planetsAscNameLegacy,
 
 		// Data set "simple"
 		a1 = [ 'A', '1' ],
@@ -883,21 +883,46 @@
 		}
 	);
 
-	planetsAscNameLegacy = planetsAscName.slice( 0 );
-	planetsAscNameLegacy[ 4 ] = planetsAscNameLegacy[ 5 ];
-	planetsAscNameLegacy.pop();
-
 	tableTest(
-		'Legacy compat with .sortbottom',
+		'Handling of .sortbottom',
 		header,
-		planets,
-		planetsAscNameLegacy,
+		planets.concat( planetsTotal ),
+		planetsAscName,
 		function ( $table ) {
 			$table.find( 'tr' ).last().addClass( 'sortbottom' );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 		}
 	);
+
+	tableTest(
+		'Handling of .sorttop',
+		header,
+		planetsTotal.concat( planets ),
+		planetsAscName,
+		function ( $table ) {
+			$table.find( 'tbody > tr' ).first().addClass( 'sorttop' );
+			$table.tablesorter();
+			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+		}
+	);
+
+	QUnit.test( 'Test sort buttons not added to .sorttop row', function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+				'<tr><th>Data</th></tr>' +
+				'<tr class="sorttop"><th>2</th></tr>' +
+				'<tr><td>1</td></tr>' +
+				'<tr><td>1</td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		assert.strictEqual(
+			$table.find( '.headerSort' ).eq( 0 ).text(),
+			'Data',
+			'Sort buttons are added to a header row without class sorttop'
+		);
+	} );
 
 	QUnit.test( 'Test detection routine', function ( assert ) {
 		var $table;
