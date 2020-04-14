@@ -453,11 +453,13 @@ class Revision implements IDBAccessObject {
 	 * @note Only supported on Revisions that were constructed based on associative arrays,
 	 *       since they are mutable.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 * @since 1.19
 	 * @param int|string $id
 	 * @throws MWException
 	 */
 	public function setId( $id ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( $this->mRecord instanceof MutableRevisionRecord ) {
 			$this->mRecord->setId( intval( $id ) );
 		} else {
