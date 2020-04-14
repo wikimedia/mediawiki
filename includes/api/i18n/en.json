@@ -1621,7 +1621,7 @@
 	"api-pageset-param-converttitles": "Convert titles to other variants if necessary. Only works if the wiki's content language supports variant conversion. Languages that support variant conversion include $1.",
 
 	"api-help-title": "MediaWiki API help",
-	"api-help-lead": "This is an auto-generated MediaWiki API documentation page.\n\nDocumentation and examples: https://www.mediawiki.org/wiki/API",
+	"api-help-lead": "This is an auto-generated MediaWiki API documentation page.\n\nDocumentation and examples: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "Main module",
 	"api-help-undocumented-module": "No documentation for module $1.",
 	"api-help-flags": "",
