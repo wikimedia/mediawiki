@@ -20,6 +20,7 @@
 namespace MediaWiki\Permissions;
 
 use Action;
+use Article;
 use Exception;
 use Hooks;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -37,7 +38,6 @@ use SpecialPage;
 use Title;
 use User;
 use Wikimedia\ScopedCallback;
-use WikiPage;
 
 /**
  * A service class for checking permissions
@@ -676,15 +676,20 @@ class PermissionManager {
 		// in actions being blocked that shouldn't be.
 		$actionObj = null;
 		if ( Action::exists( $action ) ) {
-			// TODO: this drags a ton of dependencies in, would be good to avoid WikiPage
+			// TODO: this drags a ton of dependencies in, would be good to avoid Article
 			//  instantiation and decouple it creating an ActionPermissionChecker interface
-			$wikiPage = WikiPage::factory( Title::newFromLinkTarget( $page, 'clone' ) );
 			// Creating an action will perform several database queries to ensure that
 			// the action has not been overridden by the content type.
 			// FIXME: avoid use of RequestContext since it drags in User and Title dependencies
 			//  probably we may use fake context object since it's unlikely that Action uses it
 			//  anyway. It would be nice if we could avoid instantiating the Action at all.
-			$actionObj = Action::factory( $action, $wikiPage, RequestContext::getMain() );
+			$title = Title::newFromLinkTarget( $page, 'clone' );
+			$context = RequestContext::getMain();
+			$actionObj = Action::factory(
+				$action,
+				Article::newFromTitle( $title, $context ),
+				$context
+			);
 			// Ensure that the retrieved action matches the restriction.
 			if ( $actionObj && $actionObj->getRestriction() !== $action ) {
 				$actionObj = null;
