@@ -3491,15 +3491,21 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
-	 * @param Revision|null $revision Revision that was just saved, may be null
+	 * @param RevisionRecord|Revision|null $revRecord Revision that was just saved, may be null
+	 *        passing a Revision is hard deprecated since 1.35
 	 * @param string[]|null $slotsChanged The role names of the slots that were changed.
 	 *        If not given, all slots are assumed to have changed.
 	 */
 	public static function onArticleEdit(
 		Title $title,
-		Revision $revision = null,
+		$revRecord = null,
 		$slotsChanged = null
 	) {
+		if ( $revRecord && $revRecord instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+			$revRecord = $revRecord->getRevisionRecord();
+		}
+
 		// TODO: move this into a PageEventEmitter service
 		$jobs = [];
 		if ( $slotsChanged === null || in_array( SlotRecord::MAIN, $slotsChanged ) ) {
@@ -3528,7 +3534,7 @@ class WikiPage implements Page, IDBAccessObject {
 		HTMLFileCache::clearFileCache( $title );
 
 		// Purge ?action=info cache
-		$revid = $revision ? $revision->getId() : null;
+		$revid = $revRecord ? $revRecord->getId() : null;
 		DeferredUpdates::addCallableUpdate( function () use ( $title, $revid ) {
 			InfoAction::invalidateCache( $title, $revid );
 		} );
