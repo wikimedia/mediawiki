@@ -126,19 +126,20 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testMakeKey() {
 		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setConstructorArgs( [ [ 'keyspace' => 'magic' ] ] )
 			->setMethods( [ 'makeKey' ] )
 			->getMock();
 		$backend->method( 'makeKey' )
 			->willReturn( 'special/logic' );
 
-		// CachedBagOStuff wraps any backend with a process cache
-		// using HashBagOStuff. Hash has no special key limitations,
-		// but backends often do. Make sure it uses the backend's
-		// makeKey() logic, not the one inherited from HashBagOStuff
 		$cache = new CachedBagOStuff( $backend );
 
-		$this->assertEquals( 'special/logic', $backend->makeKey( 'special', 'logic' ) );
-		$this->assertEquals( 'special/logic', $cache->makeKey( 'special', 'logic' ) );
+		$this->assertSame( 'special/logic', $backend->makeKey( 'special', 'logic' ) );
+		$this->assertSame(
+			'magic:special:logic',
+			$cache->makeKey( 'special', 'logic' ),
+			"Backend keyspace used"
+		);
 	}
 
 	/**
@@ -146,6 +147,7 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testMakeGlobalKey() {
 		$backend = $this->getMockBuilder( HashBagOStuff::class )
+			->setConstructorArgs( [ [ 'keyspace' => 'magic' ] ] )
 			->setMethods( [ 'makeGlobalKey' ] )
 			->getMock();
 		$backend->method( 'makeGlobalKey' )
@@ -153,7 +155,7 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		$cache = new CachedBagOStuff( $backend );
 
-		$this->assertEquals( 'special/logic', $backend->makeGlobalKey( 'special', 'logic' ) );
-		$this->assertEquals( 'special/logic', $cache->makeGlobalKey( 'special', 'logic' ) );
+		$this->assertSame( 'special/logic', $backend->makeGlobalKey( 'special', 'logic' ) );
+		$this->assertSame( 'global:special:logic', $cache->makeGlobalKey( 'special', 'logic' ) );
 	}
 }

@@ -63,6 +63,19 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers MediumSpecificBagOStuff::isKeyGlobal
+	 */
+	public function testKeyIsGlobal() {
+		$cache = new HashBagOStuff();
+
+		$localKey = $cache->makeKey( 'first', 'second', 'third' );
+		$globalKey = $cache->makeGlobalKey( 'first', 'second', 'third' );
+
+		$this->assertFalse( $cache->isKeyGlobal( $localKey ) );
+		$this->assertTrue( $cache->isKeyGlobal( $globalKey ) );
+	}
+
+	/**
 	 * @covers MediumSpecificBagOStuff::merge
 	 * @covers MediumSpecificBagOStuff::mergeViaCas
 	 */
