@@ -1495,7 +1495,8 @@ abstract class File implements IDBAccessObject {
 		$title = $this->getTitle();
 		if ( $title ) {
 			$title->invalidateCache();
-			$title->purgeSquid();
+			$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+			$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 		}
 	}
 

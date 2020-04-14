@@ -3994,7 +3994,8 @@ class User implements IDBAccessObject, UserIdentity {
 
 		Hooks::run( 'UserSaveSettings', [ $this ] );
 		$this->clearSharedCache( 'changed' );
-		$this->getUserPage()->purgeSquid();
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $this->getUserPage(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 	}
 
 	/**

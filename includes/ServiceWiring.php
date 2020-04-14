@@ -340,6 +340,15 @@ return [
 		);
 	},
 
+	'HtmlCacheUpdater' => function ( MediaWikiServices $services ) : HtmlCacheUpdater {
+		$config = $services->getMainConfig();
+
+		return new HtmlCacheUpdater(
+			$config->get( 'CdnReboundPurgeDelay' ),
+			$config->get( 'UseFileCache' )
+		);
+	},
+
 	'HttpRequestFactory' =>
 	function ( MediaWikiServices $services ) : HttpRequestFactory {
 		return new HttpRequestFactory();

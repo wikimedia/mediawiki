@@ -176,6 +176,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * ParserOutput now has methods addExtraCSPStyleSrc, addExtraCSPDefaultSrc
   addExtraCSPScriptSrc for parser tags/functions to be able to add sources
   to the Content Security Policy.
+* The HtmlCacheUpdater service was added to unify the logic of purging CDN cache
+  and HTML file cache to simplify callers and make them more consistent.
 * …
 
 === External library changes in 1.35 ===
@@ -876,6 +878,7 @@ because of Phabricator reports.
   wiki editing if $wgWatchlistPurgeRate is > 0. This maintenance script only
   has effect if $wgWatchlistExpiry is true. It is recommended that a cronjob or
   similar be set up to run it at least daily.
+* Title::purgeSquid is deprecated. Use MediaWikiServices::getHtmlCacheUpdater.
 * …
 
 == Compatibility ==

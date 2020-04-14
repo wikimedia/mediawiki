@@ -1306,13 +1306,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$this->mTitle->invalidateCache();
 
-		// Clear file cache
-		HTMLFileCache::clearFileCache( $this->getTitle() );
-		// Send purge after above page_touched update was committed
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( [ $this->mTitle ] ),
-			DeferredUpdates::PRESEND
-		);
+		// Clear file cache and send purge after above page_touched update was committed
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $this->mTitle, $hcu::PURGE_PRESEND );
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			MediaWikiServices::getInstance()->getMessageCache()
@@ -3407,10 +3403,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->purgeSquid();
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
-		$title->purgeSquid();
 		$title->deleteTitleProtection();
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
@@ -3441,20 +3437,16 @@ class WikiPage implements Page, IDBAccessObject {
 		// TODO: move this into a PageEventEmitter service
 
 		// Update existence markers on article/talk tabs...
-		// Clear Backlink cache first so that purge jobs use more up-to-date backlink information
-		BacklinkCache::get( $title )->clear();
 		$other = $title->getOtherPage();
 
-		$other->purgeSquid();
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
-		$title->purgeSquid();
 
 		$services = MediaWikiServices::getInstance();
 		$services->getLinkCache()->invalidateTitle( $title );
 
-		// File cache
-		HTMLFileCache::clearFileCache( $title );
 		InfoAction::invalidateCache( $title );
 
 		// Messages
@@ -3507,6 +3499,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// TODO: move this into a PageEventEmitter service
+
 		$jobs = [];
 		if ( $slotsChanged === null || in_array( SlotRecord::MAIN, $slotsChanged ) ) {
 			// Invalidate caches of articles which include this page.
@@ -3528,10 +3521,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
-		// Purge CDN for this page only
-		$title->purgeSquid();
-		// Clear file cache for this page only
-		HTMLFileCache::clearFileCache( $title );
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		// Purge ?action=info cache
 		$revid = $revRecord ? $revRecord->getId() : null;
