@@ -329,7 +329,6 @@ JAVASCRIPT;
 			$startupQuery
 		);
 
-		// @phan-suppress-next-line PhanTypeMismatchArgument
 		return WrappedString::join( "\n", $chunks );
 	}
 
