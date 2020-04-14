@@ -2899,6 +2899,7 @@ $flags: DEPRECATED! Always null!
 
 'RevisionUndeleted': After an article revision is restored.
 $revisionRecord: the RevisionRecord that was restored
+$oldPageID: the page ID of the revision when archived (may be null)
 
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr: Array of namespaces ($nsId => $name) which will be used.
