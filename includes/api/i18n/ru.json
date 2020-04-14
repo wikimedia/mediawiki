@@ -393,7 +393,6 @@
 	"apihelp-parse-param-disablelimitreport": "Опустить отчёт о лимите («NewPP limit report») из результата парсинга.",
 	"apihelp-parse-param-disablepp": "Вместо этого используйте <var>$1disablelimitreport</var>.",
 	"apihelp-parse-param-disableeditsection": "Опустить ссылки на редактирование разделов из результата парсинга.",
-	"apihelp-parse-param-disabletidy": "Не проводить очистку HTML (например, с помощью tidy) результатов парсинга.",
 	"apihelp-parse-param-disablestylededuplication": "Не дедуплицируйте встроенные таблицы стилей в выходе парсера.",
 	"apihelp-parse-param-generatexml": "Сгенерировать дерево парсинга XML (требуется модель содержимого <code>$1</code>, замещено <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Проанализировать в режиме препросмотра.",

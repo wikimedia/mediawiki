@@ -3176,6 +3176,7 @@
 	"confirm-purge-bottom": "إفراغ مختزن الصفحة يمحو المختزن ويجبر أحدث نسخة على الظهور.",
 	"confirm-watch-button": "موافق",
 	"confirm-watch-top": "إضافة هذه الصفحة إلى قائمة مراقبتك؟",
+	"confirm-watch-button-expiry": "راقب",
 	"confirm-unwatch-button": "موافق",
 	"confirm-unwatch-top": "إزالة هذه الصفحة من قائمة مراقبتك؟",
 	"confirm-rollback-button": "موافق",

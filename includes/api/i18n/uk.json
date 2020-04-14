@@ -383,7 +383,6 @@
 	"apihelp-parse-param-disablelimitreport": "Пропустити звіт про ліміти («NewPP limit report») на виході аналізу.",
 	"apihelp-parse-param-disablepp": "Використати натомість <var>$1disablelimitreport</var>.",
 	"apihelp-parse-param-disableeditsection": "Пропустити посилання на редагування розділів на виході аналізу.",
-	"apihelp-parse-param-disabletidy": "Не запускайте очищення HTML (e.g. tidy) на виході аналізу.",
 	"apihelp-parse-param-disablestylededuplication": "Не усувайте дублікати вбудованих таблиць стилів на виході парсера.",
 	"apihelp-parse-param-generatexml": "Генерувати синтаксичне дерево XML (передбачає модель вмісту <code>$1</code>; замінено на <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Аналізувати у режимі попереднього перегляду.",

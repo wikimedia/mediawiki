@@ -363,7 +363,6 @@
 	"apihelp-parse-param-disablelimitreport": "Omgå grenserapporten («NewPP limit report») fra det tolkede resultatet.",
 	"apihelp-parse-param-disablepp": "Bruk <var>$1disablelimitreport</var> i stedet.",
 	"apihelp-parse-param-disableeditsection": "Omgå redigeringslenker for seksjoner i det tolkede resultatet.",
-	"apihelp-parse-param-disabletidy": "Ikke kjør HTML-rydding (f.eks. tidy) på tolkingsresultatet.",
 	"apihelp-parse-param-disablestylededuplication": "Ikke dedupliser inline-stilark i tolkingsresultatet.",
 	"apihelp-parse-param-generatexml": "Generer XML-tolkingstre (krever innholdsmodellen <code>$1</code>; erstattet av <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Tolk i forhåndsvisningsmodus.",

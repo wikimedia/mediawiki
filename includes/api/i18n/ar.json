@@ -370,7 +370,6 @@
 	"apihelp-parse-param-disablelimitreport": "تجاهل تقرير الحد (\"NewPP limit report\") من مخرجات المحلل.",
 	"apihelp-parse-param-disablepp": "استخدم <var>$1disablelimitreport</var> بدلا من ذلك.",
 	"apihelp-parse-param-disableeditsection": "تجاهل وصلات تحرير الأقسام من مخرجات المحلل.",
-	"apihelp-parse-param-disabletidy": "لا تشغل تنظيف HTML (على سبيل المثال مرتبة) على مخرجات المحلل.",
 	"apihelp-parse-param-disablestylededuplication": "لا تكرر أوراق الأنماط المضمنة في إخراج المحلل.",
 	"apihelp-parse-param-generatexml": "توليد شجرة تحليل XML (يتطلب نموذج المحتوى <code>$1</code>; حل محلها <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "تحليل في وضع المعاينة.",

@@ -312,7 +312,6 @@
 	"apihelp-parse-param-disablelimitreport": "構文解析の出力で制限レポート (New PP limit report) を省略する。",
 	"apihelp-parse-param-disablepp": "<var>$1disablelimitreport</var> を代わりに使用してください。",
 	"apihelp-parse-param-disableeditsection": "構文解析の出力で節リンクを省略する。",
-	"apihelp-parse-param-disabletidy": "構文解析の出力にHTMLのクリーンアップ (例えば整頓) を適用しない。",
 	"apihelp-parse-param-preview": "プレビューモードでのパース",
 	"apihelp-parse-example-page": "ページを構文解析する。",
 	"apihelp-parse-example-text": "ウィキテキストを構文解析",

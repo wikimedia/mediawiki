@@ -356,7 +356,6 @@
 	"apihelp-parse-param-sectiontitle": "Überschrift des neuen Abschnittes, wenn <var>section</var> = <kbd>new</kbd> ist.\n\nAnders als beim Bearbeiten der Seite wird der Parameter nicht durch die <var>summary</var> ersetzt, wenn er weggelassen oder leer ist.",
 	"apihelp-parse-param-disablepp": "Benutze <var>$1disablelimitreport</var> stattdessen.",
 	"apihelp-parse-param-disableeditsection": "Lässt Abschnittsbearbeitungslinks in der Parserausgabe weg.",
-	"apihelp-parse-param-disabletidy": "Wende keine HTML-Säuberung (z.B. Aufräumen) auf die Parser-Ausgabe an.",
 	"apihelp-parse-param-preview": "Im Vorschaumodus parsen.",
 	"apihelp-parse-param-sectionpreview": "Im Abschnitt Vorschau-Modus parsen (aktiviert ebenfalls den Vorschau-Modus)",
 	"apihelp-parse-param-disabletoc": "Inhaltsverzeichnis in der Ausgabe weglassen.",

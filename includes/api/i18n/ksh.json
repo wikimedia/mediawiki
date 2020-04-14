@@ -261,7 +261,6 @@
 	"apihelp-parse-param-disablelimitreport": "Jiff keine Bereesch vum Vüürbereijde zom Paase (der „<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">NewPP limit report</i>“) mem Paaser singe Dahte zosamme uß.",
 	"apihelp-parse-param-disablepp": "Nämm <var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1disablelimitreport</var> schtatt dämm.",
 	"apihelp-parse-param-disableeditsection": "Donn de Lenks för Affschnedde ze änndere en de Ußjahbe vum Paaser eruß lohße.",
-	"apihelp-parse-param-disabletidy": "Donn et <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i> vun dä Ußjahbe nit oprühme, för e Beijschpell met <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"correct and cleans up HTML and XML documents fixing markup errors and upgrading legacy code\">tidy</i>.",
 	"apihelp-parse-param-disabletoc": "Donn et Ennhaldsverzeijscheneß en de Ußjahbe vottlohße.",
 	"apihelp-parse-example-page": "Donn en Sigg pahse.",
 	"apihelp-parse-example-text": "Donn Wikkitäx pahse.",

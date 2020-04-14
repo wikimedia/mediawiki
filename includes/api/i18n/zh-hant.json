@@ -383,7 +383,6 @@
 	"apihelp-parse-param-disablelimitreport": "從解析輸出內容裡省略限制報告（\"NewPP limit report\"）。",
 	"apihelp-parse-param-disablepp": "請改用<var>$1disablelimitreport</var>。",
 	"apihelp-parse-param-disableeditsection": "從解析輸出內容省略編輯段落連結。",
-	"apihelp-parse-param-disabletidy": "不要在解析輸出裡執行 HTML 內容清理（例如使用 tidy 軟體工具）",
 	"apihelp-parse-param-disablestylededuplication": "不要在解析結果去除重複的行內樣式表。",
 	"apihelp-parse-param-generatexml": "產生 XML 解析樹狀（需要被 <kbd>$2prop=parsetree</kbd> 給取代的 <code>$1</code> 內容模組）。",
 	"apihelp-parse-param-preview": "在預覽模式下解析。",

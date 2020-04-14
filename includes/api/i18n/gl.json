@@ -341,7 +341,6 @@
 	"apihelp-parse-param-disablelimitreport": "Omitir o informe de límite (\"Informe de límite NewPP\") da saída do analizador.",
 	"apihelp-parse-param-disablepp": "Use <var>$1disablelimitreport</var> no seu lugar.",
 	"apihelp-parse-param-disableeditsection": "Omitir as ligazóns de edición de sección da saída do analizador.",
-	"apihelp-parse-param-disabletidy": "Non executar limpeza de HTML no retorno da análise.",
 	"apihelp-parse-param-generatexml": "Xenerar unha árbore de análise XML (necesita o modelo de contido <code>$1</code>; substituído por <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Analizar en modo vista previa.",
 	"apihelp-parse-param-sectionpreview": "Analizar en modo vista previa de sección (activa tamén o modo de vista previa).",

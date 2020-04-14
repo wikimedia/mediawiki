@@ -382,7 +382,6 @@
 	"apihelp-parse-param-disablelimitreport": "להשמיט את דו\"ח הקדם־מעבד (\"NewPP limit report\") מפלט המפענח.",
 	"apihelp-parse-param-disablepp": "יש להשתמש ב־<var>$1disablelimitreport</var> במקום.",
 	"apihelp-parse-param-disableeditsection": "להשמיט את קישורי עריכת הפסקאות מפלט המפענח.",
-	"apihelp-parse-param-disabletidy": "לא להריץ ניקוי HTML (למשל tidy) על פלט המפענח.",
 	"apihelp-parse-param-disablestylededuplication": "לא להסיר סגנונות כפולים בפלט של המפענח.",
 	"apihelp-parse-param-generatexml": "יצירת עץ פענוח של XML (נדרש מודל תוכן <code>$1</code>; מוחלף ב־<kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "לפענח במצב תצוגה מקדימה.",

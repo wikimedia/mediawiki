@@ -375,7 +375,6 @@
 	"apihelp-parse-param-disablelimitreport": "Ayrıştırıcı çıktısından sınır raporunu (\"NewPP sınır raporu\") atlayın.",
 	"apihelp-parse-param-disablepp": "Bunun yerine <var>$1disablelimitreport</var> kullanın.",
 	"apihelp-parse-param-disableeditsection": "Ayrıştırıcı çıktısından düzenleme bölümü bağlantılarını atlayın.",
-	"apihelp-parse-param-disabletidy": "Ayrıştırıcı çıktısında HTML temizleme (örn. düzenli) çalıştırmayın.",
 	"apihelp-parse-param-disablestylededuplication": "Ayrıştırıcı çıkışında satır içi stil sayfalarını tekilleştirmeyin.",
 	"apihelp-parse-param-generatexml": "XML ayrıştırma ağacı oluşturun (<code>$1</code> içerik modelini gerektirir; <kbd>$2prop=parsetree</kbd> ile değiştirilir).",
 	"apihelp-parse-param-preview": "Önizleme modunda ayrıştırın.",
