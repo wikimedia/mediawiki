@@ -554,6 +554,28 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+
+	'vuex' => [
+		'packageFiles' => [
+			'resources/src/vue/vuex.js',
+			[
+				'name' => 'resources/lib/vuex/vuex.js',
+				'callback' => function ( ResourceLoaderContext $context, Config $config ) {
+					// Use the development version if development mode is enabled, or if we're in debug mode
+					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+						'resources/lib/vuex/vuex.js' :
+						'resources/lib/vuex/vuex.min.js';
+					return new ResourceLoaderFilePath( $file );
+				}
+			]
+		],
+		'dependencies' => [
+			'vue',
+			'es6-promise',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+
 	/* MediaWiki */
 	'mediawiki.template' => [
 		'scripts' => 'resources/src/mediawiki.template.js',
