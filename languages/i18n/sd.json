@@ -1651,6 +1651,7 @@
 	"unblocked-range": "$1 تان بندش هٽي چڪي آهي.",
 	"unblocked-id": "بندش $1 هٽي چڪي آهي.",
 	"blocklist": "بندشيل واپرائيندڙ",
+	"autoblocklist": "خودڪار پابنديون",
 	"autoblocklist-submit": "ڳوليو",
 	"ipblocklist": "بندشيل واپرائيندڙ",
 	"blocklist-type": "قِسم:",

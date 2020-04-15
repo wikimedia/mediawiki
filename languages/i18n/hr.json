@@ -2081,7 +2081,7 @@
 	"watchlist-details": "Na Vašem popisu praćenja imate {{PLURAL:$1|$1 stranicu|$1 stranice|$1 stranica}} (plus stranice za razgovor).",
 	"wlheader-enotif": "Uključeno je izvješćivanje e-poštom.",
 	"wlheader-showupdated": "Stranice koje su promijenjene od Vašeg posljednjeg posjeta prikazane su '''podebljano'''.",
-	"wlnote": "Niže {{PLURAL:$1|0=nema ijedna izmjena načinjena|je posljednja izmjena načinjena|su <strong>$1</strong> posljednje izmjene načinjene|su <strong>$1</strong> posljednjih izmjena načinjenih}} {{PLURAL:$2|0=u zadanom roku|posljednjega sata|u posljednja <strong>$2</strong> sata|u posljednjih <strong>$2</strong> sati}}, zaključno do $3 u $4.",
+	"wlnote": "Niže {{PLURAL:$1|0=nema nijedna izmjena načinjena|je posljednja izmjena načinjena|su <strong>$1</strong> posljednje izmjene načinjene|je <strong>$1</strong> posljednjih izmjena načinjenih}} {{PLURAL:$2|0=u zadanom roku|posljednjega sata|u posljednja <strong>$2</strong> sata|u posljednjih <strong>$2</strong> sati}}, zaključno do $3 u $4.",
 	"watchlist-hide": "Sakrij",
 	"watchlist-submit": "Prikaži",
 	"wlshowtime": "Vremensko razdoblje za prikaz:",
