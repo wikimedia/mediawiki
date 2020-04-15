@@ -8956,16 +8956,6 @@ $wgNamespaceContentModels = [];
 $wgContentHandlerTextFallback = 'ignore';
 
 /**
- * Unused in MediaWiki core.
- *
- * @since 1.21
- * @deprecated since 1.34
- * @note Must always be true, in case an extension reads it.
- * @todo remove once no extensions read it any more.
- */
-$wgContentHandlerUseDB = true;
-
-/**
  * Determines which types of text are parsed as wikitext. This does not imply that these kinds
  * of texts are also rendered as wikitext, it only means that links, magic words, etc will have
  * the effect on the database they would have on a wikitext page.

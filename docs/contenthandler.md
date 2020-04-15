@@ -95,8 +95,6 @@ Each revision's content model and serialization format is stored in the revision
 
 Note however that the content model and format is only stored if it differs from the page's default, as determined by `ContentHandler::getDefaultModelFor( $title )`. The default values are represented as `NULL` in the database, to preserve space.
 
-Storage of content model and format can be disabled altogether by setting `$wgContentHandlerUseDB = false`. In that case, the page's default model (and the model's default format) will be used everywhere. Attempts to store a revision of a page using a model or format different from the default will result in an error.
-
 ## Globals
 
 There are some new globals that can be used to control the behavior of the ContentHandler facility:
@@ -104,8 +102,6 @@ There are some new globals that can be used to control the behavior of the Conte
 * `$wgContentHandlers` associates content model IDs with the names of the appropriate ContentHandler subclasses or callbacks that create an instance of the appropriate ContentHandler subclass.
 
 * `$wgNamespaceContentModels` maps namespace IDs to a content model that should be the default for that namespace.
-
-* `$wgContentHandlerUseDB` determines whether each revision's content model should be stored in the database. Default is true.
 
 * `$wgContentHandlerTextFallback` determines how the compatibility method `ContentHandler::getContentText()` will behave for non-text content:
     * `'ignore'` causes null to be returned for non-text content (default).
@@ -117,9 +113,6 @@ There are some new globals that can be used to control the behavior of the Conte
 There are some changes in behavior that might be surprising to users:
 
 * Javascript and CSS pages are no longer parsed as wikitext (though pre-save transform is still applied). Most importantly, this means that links, including categorization links, contained in the code will not work.
-
-* With `$wgContentHandlerUseDB = false`, pages cannot be moved in a way that would change the
-default model. E.g. `[[MediaWiki:foo.js]]` cannot be moved to `[[MediaWiki:foo bar]]`, but can still be moved to `[[User:John/foo.js]]`. Also, in this mode, changing the default content model for a page (e.g. by changing `$wgNamespaceContentModels`) may cause it to become inaccessible.
 
 * `action=edit` will fail for pages with non-text content, unless the respective ContentHandler implementation has provided a specialized handler for the edit action. This is true for the API as well.
 
