@@ -1370,7 +1370,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @todo Factor out into a PageStore service, or move into PageUpdater.
 	 *
 	 * @param IDatabase $dbw
-	 * @param Revision $revision For ID number, and text used to set
+	 * @param Revision|RevisionRecord $revision For ID number, and text used to set
 	 *   length and redirect status fields
 	 * @param int|null $lastRevision If given, will not overwrite the page field
 	 *   when different from the currently set value.
@@ -1393,7 +1393,11 @@ class WikiPage implements Page, IDBAccessObject {
 			);
 		}
 
-		$content = $revision->getContent();
+		if ( $revision instanceof Revision ) {
+			$revision = $revision->getRevisionRecord();
+		}
+
+		$content = $revision->getContent( SlotRecord::MAIN );
 		$len = $content ? $content->getSize() : 0;
 		$rt = $content ? $content->getUltimateRedirectTarget() : null;
 
@@ -1407,13 +1411,15 @@ class WikiPage implements Page, IDBAccessObject {
 		$revId = $revision->getId();
 		Assert::parameter( $revId > 0, '$revision->getId()', 'must be > 0' );
 
+		$model = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel();
+
 		$row = [ /* SET */
 			'page_latest'        => $revId,
 			'page_touched'       => $dbw->timestamp( $revision->getTimestamp() ),
 			'page_is_new'        => ( $lastRevision === 0 ) ? 1 : 0,
 			'page_is_redirect'   => $rt !== null ? 1 : 0,
 			'page_len'           => $len,
-			'page_content_model' => $revision->getContentModel(),
+			'page_content_model' => $model,
 		];
 
 		$dbw->update( 'page',
@@ -1424,7 +1430,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$result = $dbw->affectedRows() > 0;
 		if ( $result ) {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
-			$this->setLastEdit( $revision->getRevisionRecord() );
+			$this->setLastEdit( $revision );
 			$this->mLatest = $revision->getId();
 			$this->mIsRedirect = (bool)$rt;
 			// Update the LinkCache.
@@ -1435,7 +1441,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$len,
 				$this->mIsRedirect,
 				$this->mLatest,
-				$revision->getContentModel()
+				$model
 			);
 		}
 
@@ -2518,9 +2524,7 @@ class WikiPage implements Page, IDBAccessObject {
 			// Update page record and touch page
 			$oldLatest = $inserted->getParentId();
 
-			// TODO accept RevisionRecord here
-			$nullRev = new Revision( $inserted );
-			$this->updateRevisionOn( $dbw, $nullRev, $oldLatest );
+			$this->updateRevisionOn( $dbw, $inserted, $oldLatest );
 
 			return $inserted;
 		} else {
