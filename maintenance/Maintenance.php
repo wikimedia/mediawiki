@@ -201,9 +201,6 @@ abstract class Maintenance {
 	 * their own constructors
 	 */
 	public function __construct() {
-		global $IP;
-		$IP = getenv( 'MW_INSTALL_PATH' );
-
 		$this->addDefaultParams();
 		register_shutdown_function( [ $this, 'outputChanneled' ], false );
 	}
@@ -792,9 +789,6 @@ abstract class Maintenance {
 		# "When running PHP from the command line the default setting is 0."
 		# But sometimes this doesn't seem to be the case.
 		ini_set( 'max_execution_time', 0 );
-
-		# Define us as being in MediaWiki
-		define( 'MEDIAWIKI', true );
 
 		$wgCommandLineMode = true;
 
