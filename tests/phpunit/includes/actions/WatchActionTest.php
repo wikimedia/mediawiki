@@ -38,6 +38,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	protected function tearDown() : void {
 		parent::tearDown();
 
+		$this->hideDeprecated( 'Hooks::clear' );
 		Hooks::clear( 'WatchArticle' );
 		Hooks::clear( 'UnwatchArticle' );
 	}
