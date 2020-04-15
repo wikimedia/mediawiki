@@ -4,6 +4,8 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.33.3 ===
 
+* The MultiHttpClient code will fallover to non-curl if curl_multi* is blocked.
+
 == MediaWiki 1.33.3 ==
 
 This is a security and maintenance release of the MediaWiki 1.33 branch.
