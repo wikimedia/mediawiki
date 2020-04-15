@@ -490,6 +490,7 @@ because of Phabricator reports.
   This was deprecated in 1.25.
 * The ArticleAfterFetchContentObject hook, deprecated in 1.32, was removed.
   Use ArticleRevisionViewCustom to control output.
+* DatabaseBlock::isValid, deprecated in 1.33, was removed.
 * HTMLUserTextField and HTMLUsersMultiselectField previously implied
   required=true when exists=true. Form fields that use exists=true should also
   set required=true if they are required.

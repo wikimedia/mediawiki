@@ -934,17 +934,6 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Is the block address valid (i.e. not a null string?)
-	 *
-	 * @deprecated since 1.33 No longer needed in core.
-	 * @return bool
-	 */
-	public function isValid() {
-		wfDeprecated( __METHOD__, '1.33' );
-		return $this->getTarget() != null;
-	}
-
-	/**
 	 * Update the timestamp on autoblocks.
 	 */
 	public function updateTimestamp() {
