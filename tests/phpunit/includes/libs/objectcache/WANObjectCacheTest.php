@@ -123,17 +123,51 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
+	public static function provideStaleSetParams() {
+		return [
+			// Given a db transaction (trx lag) that started 30s ago,
+			// we generally don't want to cache its values.
+			[ 30, 0.0, false ],
+			[ 30, 2, false ],
+			[ 30, 10, false ],
+			[ 30, 20, false ],
+			// If the main reason we've hit 30s is that we spent
+			// a lot of time in the regeneration callback (as opposed
+			// to time mainly having passed before the cache computation)
+			// then cache it for at least a little while.
+			[ 30, 28, true ],
+			// Also if we don't know, cache it for a little while.
+			[ 30, null, true ],
+		];
+	}
+
 	/**
 	 * @covers WANObjectCache::set()
+	 * @dataProvider provideStaleSetParams
+	 * @param int $ago
+	 * @param float|null $walltime
+	 * @param bool $cacheable
 	 */
-	public function testStaleSet() {
+	public function testStaleSet( $ago, $walltime, $cacheable ) {
 		list( $cache ) = $this->newWanCache();
+		$mockWallClock = 1549343530.2053;
+		$cache->setMockTime( $mockWallClock );
 
 		$key = wfRandomString();
 		$value = wfRandomString();
-		$cache->set( $key, $value, 3, [ 'since' => microtime( true ) - 30 ] );
 
-		$this->assertSame( false, $cache->get( $key ), "Stale set() value ignored" );
+		$cache->set(
+			$key,
+			$value,
+			$cache::TTL_MINUTE,
+			[ 'since' => $mockWallClock - $ago, 'walltime' => $walltime ]
+		);
+
+		$this->assertSame(
+			$cacheable ? $value : false,
+			$cache->get( $key ),
+			"Stale set() value ignored"
+		);
 	}
 
 	/**
@@ -1251,7 +1285,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$calls = 0;
 		$func = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, &$mockWallClock ) {
 			++$calls;
-			$setOpts['since'] = $mockWallClock - 10;
+			$setOpts['since'] = $mockWallClock;
+			$mockWallClock += 10;
 			return $value;
 		};
 
@@ -1985,22 +2020,40 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testSetWithLag() {
 		list( $cache ) = $this->newWanCache();
-		$value = 1;
+		$now = microtime( true );
+		$cache->setMockTime( $now );
+
+		$v = 1;
 
 		$key = wfRandomString();
-		$opts = [ 'lag' => 300, 'since' => microtime( true ) ];
-		$cache->set( $key, $value, 30, $opts );
-		$this->assertSame( $value, $cache->get( $key ), "Rep-lagged value written." );
+		$opts = [ 'lag' => 300, 'since' => $now, 'walltime' => 0.1 ];
+		$cache->set( $key, $v, 30, $opts );
+		$this->assertSame( $v, $cache->get( $key ), "Repl-lagged value written." );
 
 		$key = wfRandomString();
-		$opts = [ 'lag' => 0, 'since' => microtime( true ) - 300 ];
-		$cache->set( $key, $value, 30, $opts );
-		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value not written." );
+		$opts = [ 'lag' => 300, 'since' => $now ];
+		$cache->set( $key, $v, 30, $opts );
+		$this->assertSame( $v, $cache->get( $key ), "Repl-lagged value written (no walltime)." );
 
 		$key = wfRandomString();
-		$opts = [ 'lag' => 5, 'since' => microtime( true ) - 5 ];
-		$cache->set( $key, $value, 30, $opts );
-		$this->assertSame( false, $cache->get( $key ), "Lagged value not written." );
+		$opts = [ 'lag' => 0, 'since' => $now - 300, 'walltime' => 0.1 ];
+		$cache->set( $key, $v, 30, $opts );
+		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value written." );
+
+		$key = wfRandomString();
+		$opts = [ 'lag' => 0, 'since' => $now - 300 ];
+		$cache->set( $key, $v, 30, $opts );
+		$this->assertSame( $v, $cache->get( $key ), "Trx-lagged value written (no walltime)." );
+
+		$key = wfRandomString();
+		$opts = [ 'lag' => 5, 'since' => $now - 5, 'walltime' => 0.1 ];
+		$cache->set( $key, $v, 30, $opts );
+		$this->assertSame( false, $cache->get( $key ), "Trx-lagged value written." );
+
+		$key = wfRandomString();
+		$opts = [ 'lag' => 5, 'since' => $now - 5 ];
+		$cache->set( $key, $v, 30, $opts );
+		$this->assertSame( false, $cache->get( $key ), "Lagged value not written (no walltime)." );
 	}
 
 	/**
