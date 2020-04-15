@@ -188,6 +188,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added wikimedia/ip-utils 1.0.0.
 * Added vuejs v2.6.11.
 * Added wikimedia/parsoid 0.12.0.
+* Added taylorhakes/promise-polyfill v8.1.3.
 * …
 
 ==== Changed external libraries ====

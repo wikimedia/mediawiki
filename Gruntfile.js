@@ -27,6 +27,8 @@ module.exports = function ( grunt ) {
 				'!docs/**',
 				'!node_modules/**',
 				'!resources/lib/**',
+				// Skip function
+				'!resources/src/skip-Promise.js',
 				'!resources/src/jquery.tipsy/**',
 				'!resources/src/mediawiki.libs.jpegmeta/**',
 				// Third-party code of PHPUnit coverage report

@@ -106,6 +106,11 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'es6-promise' => [
+		'scripts' => 'resources/lib/promise-polyfill/promise-polyfill.js',
+		'skipFunction' => 'resources/src/skip-Promise.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.base' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.base",
 		'packageFiles' => [
