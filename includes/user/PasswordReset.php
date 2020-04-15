@@ -166,6 +166,12 @@ class PasswordReset implements LoggerAwareInterface {
 				. ' is not allowed to reset passwords' );
 		}
 
+		// Check against the rate limiter. If the $wgRateLimit is reached, we want to pretend
+		// that the request was good to avoid displaying an error message.
+		if ( $performingUser->pingLimiter( 'mailpassword' ) ) {
+			return StatusValue::newGood();
+		}
+
 		$username = $username ?? '';
 		$email = $email ?? '';
 
@@ -176,11 +182,21 @@ class PasswordReset implements LoggerAwareInterface {
 			$users = [ $this->lookupUser( $username ) ];
 		} elseif ( $resetRoutes['email'] && $email ) {
 			if ( !Sanitizer::validateEmail( $email ) ) {
-				return StatusValue::newFatal( 'passwordreset-invalidemail' );
+				// Only email was supplied but not valid: pretend everything's fine.
+				return StatusValue::newGood();
 			}
+			// Only email was provided
 			$method = 'email';
 			$users = $this->getUsersByEmail( $email );
 			$username = null;
+			// Remove users whose preference 'requireemail' is on since username was not submitted
+			if ( $this->config->get( 'AllowRequiringEmailForResets' ) ) {
+				foreach ( $users as $index => $user ) {
+					if ( $user->getBoolOption( 'requireemail' ) ) {
+						unset( $users[$index] );
+					}
+				}
+			}
 		} else {
 			// The user didn't supply any data
 			return StatusValue::newFatal( 'passwordreset-nodata' );
@@ -193,53 +209,59 @@ class PasswordReset implements LoggerAwareInterface {
 			// Email gets set to null for backward compatibility
 			'Email' => $method === 'email' ? $email : null,
 		];
+
+		// Recreate the $users array with its values so that we reset the numeric keys since
+		// the key '0' might have been unset from $users array. 'SpecialPasswordResetOnSubmit'
+		// hook assumes that index '0' is defined if $users is not empty.
+		$users = array_values( $users );
+
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
 
-		$firstUser = $users[0] ?? null;
+		// Get the first element in $users by using `reset` function just in case $users is changed
+		// in 'SpecialPasswordResetOnSubmit' hook.
+		$firstUser = reset( $users ) ?? null;
+
 		$requireEmail = $this->config->get( 'AllowRequiringEmailForResets' )
 			&& $method === 'username'
 			&& $firstUser
 			&& $firstUser->getBoolOption( 'requireemail' );
-		if ( $requireEmail ) {
-			if ( $email === '' ) {
-				return StatusValue::newFatal( 'passwordreset-username-email-required' );
-			}
-
-			if ( !Sanitizer::validateEmail( $email ) ) {
-				return StatusValue::newFatal( 'passwordreset-invalidemail' );
-			}
-		}
-
-		// Check against the rate limiter
-		if ( $performingUser->pingLimiter( 'mailpassword' ) ) {
-			return StatusValue::newFatal( 'actionthrottledtext' );
+		if ( $requireEmail && ( $email === '' || !Sanitizer::validateEmail( $email ) ) ) {
+			// Email is required, and not supplied or not valid: pretend everything's fine.
+			return StatusValue::newGood();
 		}
 
 		if ( !$users ) {
 			if ( $method === 'email' ) {
 				// Don't reveal whether or not an email address is in use
-				return StatusValue::newGood( [] );
+				return StatusValue::newGood();
 			} else {
 				return StatusValue::newFatal( 'noname' );
 			}
 		}
 
+		// If the username is not valid, tell the user.
+		if ( $username && !User::getCanonicalName( $username ) ) {
+			return StatusValue::newFatal( 'noname' );
+		}
+
+		// If the username doesn't exist, don't tell the user.
+		// This is not to avoid disclosure, as this information is available elsewhere,
+		// but it simplifies the password reset UX. T238961.
 		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
-			// Don't parse username as wikitext (T67501)
-			return StatusValue::newFatal( wfMessage( 'nosuchuser', wfEscapeWikiText( $username ) ) );
+			return StatusValue::newGood();
 		}
 
-		// All the users will have the same email address
+		// The user doesn't have an email address, but pretend everything's fine to avoid
+		// disclosing this fact. Note that all the users will have the same email address (or none),
+		// so there's no need to check more than the first.
 		if ( !$firstUser->getEmail() ) {
-			// This won't be reachable from the email route, so safe to expose the username
-			return StatusValue::newFatal( wfMessage( 'noemail',
-				wfEscapeWikiText( $firstUser->getName() ) ) );
+			return StatusValue::newGood();
 		}
 
+		// Email is required but the email doesn't match: pretend everything's fine.
 		if ( $requireEmail && $firstUser->getEmail() !== $email ) {
-			// Pretend everything's fine to avoid disclosure
 			return StatusValue::newGood();
 		}
 
@@ -259,7 +281,15 @@ class PasswordReset implements LoggerAwareInterface {
 			$req->username = $user->getName();
 			$req->mailpassword = true;
 			$req->caller = $performingUser->getName();
+
 			$status = $this->authManager->allowsAuthenticationDataChange( $req, true );
+			// If status is good and the value is 'throttled-mailpassword', we want to pretend
+			// that the request was good to avoid displaying an error message and disclose
+			// if a reset password was previously sent.
+			if ( $status->isGood() && $status->getValue() === 'throttled-mailpassword' ) {
+				return StatusValue::newGood();
+			}
+
 			if ( $status->isGood() && $status->getValue() !== 'ignored' ) {
 				$reqs[] = $req;
 			} elseif ( $result->isGood() ) {

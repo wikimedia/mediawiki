@@ -816,7 +816,6 @@
 	"passwordreset-nocaller": "Shown when a password reset was requested but the process failed due to an internal error related to missing details about the origin (caller) of the password reset request.",
 	"passwordreset-nosuchcaller": "Shown when a password reset was requested but the username of the caller could not be resolved to a user. This is an internal error.\n\nParameters:\n* $1 - username of the caller",
 	"passwordreset-ignored": "Shown when password reset was unsuccessful due to configuration problems.",
-	"passwordreset-invalidemail": "Returned when the email address is syntatically invalid.",
 	"passwordreset-nodata": "Returned when no data was provided.",
 	"passwordreset-username-email-required": "Used in [[Special:PasswordReset]].\n\nSee also:\n* {{msg-mw|tog-requireemail}}\n* {{msg-mw|prefs-help-requireemail}}",
 	"changeemail": "Title of [[Special:ChangeEmail|special page]]. This page also allows removing the user's email address.",
