@@ -17,7 +17,7 @@ namespace MediaWiki\HookContainer {
 		 */
 		private function newHookContainer(
 			$mockRegistry = null,
-			$mockObjectFactory = null,
+			$objectFactory = null,
 			$deprecatedHooks = null
 		) {
 			if ( !$mockRegistry ) {
@@ -28,13 +28,13 @@ namespace MediaWiki\HookContainer {
 				];
 				$mockRegistry = $this->getMockExtensionRegistry( [ 'FooActionComplete' => [ $handler ] ] );
 			}
-			if ( !$mockObjectFactory ) {
-				$mockObjectFactory = $this->getObjectFactory();
+			if ( !$objectFactory ) {
+				$objectFactory = $this->getObjectFactory();
 			}
 			if ( !$deprecatedHooks ) {
 				$deprecatedHooks = new DeprecatedHooks();
 			}
-			$hookContainer = new HookContainer( $mockRegistry, $mockObjectFactory, $deprecatedHooks );
+			$hookContainer = new HookContainer( $mockRegistry, $objectFactory, $deprecatedHooks );
 			return $hookContainer;
 		}
 
@@ -188,12 +188,12 @@ namespace MediaWiki\HookContainer {
 			$reset1 = $hookContainer->scopedRegister( 'MWTestHook',
 				function () use ( &$called1 ) {
 					$called1 = true;
-				}
+				}, false
 			);
 			$reset2 = $hookContainer->scopedRegister( 'MWTestHook',
 				function () use ( &$called2 ) {
 					$called2 = true;
-				}
+				}, false
 			);
 			$hookContainer->run( 'MWTestHook' );
 			$this->assertTrue( $called1 );

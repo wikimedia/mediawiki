@@ -71,12 +71,12 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestC
 	protected function hookMailer( $func = null ) {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		if ( $func ) {
-			$reset = $hookContainer->scopedRegister( 'AlternateUserMailer', $func );
+			$reset = $hookContainer->scopedRegister( 'AlternateUserMailer', $func, true );
 		} else {
 			$reset = $hookContainer->scopedRegister( 'AlternateUserMailer', function () {
 				$this->fail( 'AlternateUserMailer hook called unexpectedly' );
 				return false;
-			} );
+			}, true );
 		}
 		return $reset;
 	}

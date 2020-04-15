@@ -63,8 +63,7 @@ class AuthManagerTest extends \MediaWikiTestCase {
 	 * @param string $hook
 	 */
 	protected function unhook( $hook ) {
-		global $wgHooks;
-		$wgHooks[$hook] = [];
+		$this->removeTemporaryHook( $hook );
 	}
 
 	/**
