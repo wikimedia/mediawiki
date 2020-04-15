@@ -125,6 +125,8 @@ class Revision implements IDBAccessObject {
 	 * that's attached to a given link target. If not attached
 	 * to that link target, will return null.
 	 *
+	 * @deprecated since 1.31 together with the class. Hard deprecated since 1.35
+	 *
 	 * $flags include:
 	 *      Revision::READ_LATEST  : Select the data from the master
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
@@ -135,6 +137,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public static function newFromTitle( LinkTarget $linkTarget, $id = 0, $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		$rec = self::getRevisionLookup()->getRevisionByTitle( $linkTarget, $id, $flags );
 		return $rec ? new Revision( $rec, $flags ) : null;
 	}

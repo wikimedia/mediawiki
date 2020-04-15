@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Job to fix double redirects after moving a page
@@ -103,13 +105,15 @@ class DoubleRedirectJob extends Job {
 			return false;
 		}
 
-		$targetRev = Revision::newFromTitle( $this->title, false, Revision::READ_LATEST );
+		$targetRev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $this->title, 0, RevisionLookup::READ_LATEST );
 		if ( !$targetRev ) {
 			wfDebug( __METHOD__ . ": target redirect already deleted, ignoring\n" );
 
 			return true;
 		}
-		$content = $targetRev->getContent();
+		$content = $targetRev->getContent( SlotRecord::MAIN );
 		$currentDest = $content ? $content->getRedirectTarget() : null;
 		if ( !$currentDest || !$currentDest->equals( $this->redirTitle ) ) {
 			wfDebug( __METHOD__ . ": Redirect has changed since the job was queued\n" );

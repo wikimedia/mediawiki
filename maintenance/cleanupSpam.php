@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -142,13 +143,19 @@ class CleanupSpam extends Maintenance {
 		}
 
 		$this->output( $title->getPrefixedDBkey() . " ..." );
-		$rev = Revision::newFromTitle( $title );
+
+		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$rev = $revLookup->getRevisionByTitle( $title );
 		$currentRevId = $rev->getId();
 
-		while ( $rev && ( $rev->isDeleted( RevisionRecord::DELETED_TEXT )
-			|| LinkFilter::matchEntry( $rev->getContent( RevisionRecord::RAW ), $domain, $protocol ) )
+		while ( $rev && ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ||
+			LinkFilter::matchEntry(
+				$rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW ),
+				$domain,
+				$protocol
+			) )
 		) {
-			$rev = $rev->getPrevious();
+			$rev = $revLookup->getPreviousRevision( $rev );
 		}
 
 		if ( $rev && $rev->getId() == $currentRevId ) {
@@ -161,7 +168,7 @@ class CleanupSpam extends Maintenance {
 			$page = WikiPage::factory( $title );
 			if ( $rev ) {
 				// Revert to this revision
-				$content = $rev->getContent( RevisionRecord::RAW );
+				$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 
 				$this->output( "reverting\n" );
 				$page->doEditContent(

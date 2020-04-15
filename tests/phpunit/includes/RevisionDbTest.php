@@ -340,6 +340,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newFromTitle
 	 */
 	public function testNewFromTitle_withoutId() {
+		$this->hideDeprecated( 'Revision::newFromTitle' );
+
 		$latestRevId = $this->testPage->getLatest();
 
 		$rev = Revision::newFromTitle( $this->testPage->getTitle() );
@@ -352,6 +354,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newFromTitle
 	 */
 	public function testNewFromTitle_withId() {
+		$this->hideDeprecated( 'Revision::newFromTitle' );
+
 		$latestRevId = $this->testPage->getLatest();
 
 		$rev = Revision::newFromTitle( $this->testPage->getTitle(), $latestRevId );
@@ -364,6 +368,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newFromTitle
 	 */
 	public function testNewFromTitle_withBadId() {
+		$this->hideDeprecated( 'Revision::newFromTitle' );
+
 		$latestRevId = $this->testPage->getLatest();
 
 		$rev = Revision::newFromTitle( $this->testPage->getTitle(), $latestRevId + 1 );

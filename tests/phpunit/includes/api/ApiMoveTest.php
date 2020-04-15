@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * @group API
@@ -35,7 +37,11 @@ class ApiMoveTest extends ApiTestCase {
 			$this->assertTrue( $fromTitle->isRedirect(),
 				"Source {$fromTitle->getPrefixedText()} is not a redirect" );
 
-			$target = Revision::newFromTitle( $fromTitle )->getContent()->getRedirectTarget();
+			$target = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionByTitle( $fromTitle )
+				->getContent( SlotRecord::MAIN )
+				->getRedirectTarget();
 			$this->assertSame( $toTitle->getPrefixedText(), $target->getPrefixedText() );
 		}
 

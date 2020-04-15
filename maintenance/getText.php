@@ -23,7 +23,9 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -47,14 +49,18 @@ class GetTextMaint extends Maintenance {
 			$this->fatalError( "$titleText is not a valid title.\n" );
 		}
 
-		$rev = Revision::newFromTitle( $title );
+		$rev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $title );
 		if ( !$rev ) {
 			$titleText = $title->getPrefixedText();
 			$this->fatalError( "Page $titleText does not exist.\n" );
 		}
-		$content = $rev->getContent( $this->hasOption( 'show-private' )
-			? RevisionRecord::RAW
-			: RevisionRecord::FOR_PUBLIC );
+
+		$audience = $this->hasOption( 'show-private' ) ?
+			RevisionRecord::RAW :
+			RevisionRecord::FOR_PUBLIC;
+		$content = $rev->getContent( SlotRecord::MAIN, $audience );
 
 		if ( $content === false ) {
 			$titleText = $title->getPrefixedText();

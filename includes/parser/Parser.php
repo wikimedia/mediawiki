@@ -3885,6 +3885,7 @@ class Parser {
 		$rev = null;
 
 		# Loop to fetch the article, with up to 1 redirect
+		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
 			$id = false; # Assume current
@@ -3903,12 +3904,15 @@ class Parser {
 				break;
 			}
 			# Get the revision
+			# TODO rewrite using only RevisionRecord objects
 			if ( $id ) {
-				$rev = Revision::newFromId( $id );
+				$revRecord = $revLookup->getRevisionById( $id );
+				$rev = $revRecord ? new Revision( $revRecord ) : null;
 			} elseif ( $parser ) {
 				$rev = $parser->fetchCurrentRevisionOfTitle( $title );
 			} else {
-				$rev = Revision::newFromTitle( $title );
+				$revRecord = $revLookup->getRevisionByTitle( $title );
+				$rev = $revRecord ? new Revision( $revRecord ) : null;
 			}
 			$rev_id = $rev ? $rev->getId() : 0;
 			# If there is no current revision, there is no page
