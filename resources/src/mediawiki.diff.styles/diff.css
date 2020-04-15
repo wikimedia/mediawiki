@@ -98,7 +98,7 @@ td.diff-marker {
 .diff-context {
 	background: #f8f9fa;
 	border-color: #eaecf0;
-	color: #222;
+	color: #202122;
 }
 
 .diffchange {
@@ -172,7 +172,7 @@ td.diff-marker {
 .mw-diff-movedpara-left:after,
 .mw-diff-movedpara-right:after {
 	display: block;
-	color: #222;
+	color: #202122;
 	margin-top: -1.25em;
 }
 
