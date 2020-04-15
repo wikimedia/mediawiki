@@ -873,6 +873,8 @@ because of Phabricator reports.
   hard deprecated.
 * Passing Article to ParserCache::get() was deprecated
 * Page interface was deprecated. Use Article or WikiPage instead.
+* The following DatabaseBlock methods are deprecated because they are no longer
+  needed in core: chooseBlock, fromMaster, deleteIfExpired.
 * wfGetScriptUrl() was deprecated. The script URL should be configured rather
   than detected. wfScript() can be used to get a configured script URL.
 * Action::factory() with null $action argument is hard deprecated

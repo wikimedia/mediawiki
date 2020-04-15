@@ -435,7 +435,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider providerXff
 	 * @covers ::getBlocksForIPList
-	 * @covers ::chooseBlock
 	 */
 	public function testBlocksOnXff( $xff, $exCount, $exResult ) {
 		$user = $this->getUserForBlocking();
@@ -444,10 +443,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$list = array_map( 'trim', explode( ',', $xff ) );
 		$xffblocks = DatabaseBlock::getBlocksForIPList( $list, true );
 		$this->assertCount( $exCount, $xffblocks, 'Number of blocks for ' . $xff );
-		$block = DatabaseBlock::chooseBlock( $xffblocks, $list );
-		$this->assertEquals(
-			$exResult, $block->getReasonComment()->text, 'Correct block type for XFF header ' . $xff
-		);
 	}
 
 	/**
