@@ -2939,12 +2939,14 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::updateIfNewerOn
 	 * @param IDatabase $dbw
 	 * @param Revision $revision
 	 * @return bool
 	 */
 	public function updateIfNewerOn( $dbw, $revision ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->updateIfNewerOn( $dbw, $revision );
 	}
 
@@ -2962,6 +2964,7 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::updateRevisionOn
 	 * @param IDatabase $dbw
 	 * @param Revision $revision
@@ -2972,6 +2975,7 @@ class Article implements Page {
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
 		$lastRevIsRedirect = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->updateRevisionOn( $dbw, $revision, $lastRevision,
 			$lastRevIsRedirect
 		);
