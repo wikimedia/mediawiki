@@ -3,12 +3,14 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use HashConfig;
+use InvalidArgumentException;
 use Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler\SearchHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MockSearchResultSet;
 use PHPUnit\Framework\MockObject\MockObject;
 use SearchEngine;
@@ -345,4 +347,116 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertFalse( $handler->needsWriteAccess() );
 	}
 
+	public function testExecute_augmentedFields() {
+		$titleResults = Status::newGood( new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Foo', 'one' ),
+			$this->makeMockSearchResult( 'FooBar', 'three' ),
+		] ) );
+		$textResults = Status::newGood( new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Quux', 'one' ),
+			$this->makeMockSearchResult( 'Xyzzy', 'three' ),
+		] ) );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$handler = $this->newHandler( $query, $titleResults, $textResults );
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request );
+
+		$this->assertArrayHasKey( 'pages', $data );
+		$this->assertCount( 4, $data['pages'] );
+		$this->assertArrayHasKey( 'thumbnail', $data['pages'][0] );
+		$this->assertNull( $data['pages'][0][ 'thumbnail' ] );
+
+		$this->assertArrayHasKey( 'description', $data['pages'][0] );
+		$this->assertNull( $data['pages'][0][ 'description' ] );
+	}
+
+	public function testExecute_augmentedFieldsDescriptionAndThumbnailProvided() {
+		$titleResults = Status::newGood( new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Foo', 'one' ),
+		] ) );
+		$textResults = Status::newGood( new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Quux', 'one' ),
+		] ) );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$handler = $this->newHandler( $query, $titleResults, $textResults );
+		$this->setTemporaryHook( 'SearchResultProvideDescription',
+		function ( array $pageIdentities, array &$result ) {
+				foreach ( $pageIdentities as $pageId => $pageIdentity ) {
+					$result[ $pageId ] = 'Description_' . $pageIdentity->getId();
+				}
+		} );
+
+		$this->setTemporaryHook( 'SearchResultProvideThumbnail',
+		function ( array $pageIdentities, array &$result ) {
+			foreach ( $pageIdentities as $pageId => $pageIdentity ) {
+					$result[ $pageId ] = new SearchResultThumbnail(
+						'image/png',
+						2250,
+						100,
+						125,
+						500,
+						'http:/example.org/url_' . $pageIdentity->getId(),
+						null
+					);
+			}
+		} );
+
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request );
+
+		$this->assertArrayHasKey( 'pages', $data );
+		$this->assertCount( 2, $data['pages'] );
+		$this->assertArrayHasKey( 'thumbnail', $data['pages'][0] );
+
+		$this->assertSame( 'http:/example.org/url_1', $data['pages'][0][ 'thumbnail' ]['url'] );
+		$this->assertSame( 125, $data['pages'][0][ 'thumbnail' ]['height'] );
+		$this->assertSame( 100, $data['pages'][0][ 'thumbnail' ]['width'] );
+		$this->assertSame( 'image/png', $data['pages'][0][ 'thumbnail' ]['mimetype'] );
+		$this->assertSame( 2250, $data['pages'][0][ 'thumbnail' ]['size'] );
+		$this->assertSame( 500, $data['pages'][0][ 'thumbnail' ]['duration'] );
+		$this->assertArrayHasKey( 'description', $data['pages'][0] );
+		$this->assertSame( 'Description_1', $data['pages'][0][ 'description' ] );
+	}
+
+	public function testExecute_NullResults() {
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$handler = $this->newHandler( $query, null, null );
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request );
+
+		$this->assertArrayHasKey( 'pages', $data );
+		$this->assertCount( 0, $data['pages'] );
+	}
+
+	public function testInitWrongConfig() {
+		$titleResults = Status::newGood( new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Foo', 'one' ),
+			$this->makeMockSearchResult( 'FooBar', 'three' ),
+		] ) );
+		$textResults = Status::newGood( new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Quux', 'one' ),
+			$this->makeMockSearchResult( 'Xyzzy', 'three' ),
+		] ) );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$this->expectException( InvalidArgumentException::class );
+
+		$handler = $this->newHandler( $query, $titleResults, $textResults );
+		$data = $this->executeHandlerAndGetBodyData(
+			$handler,
+			$request,
+			[
+				'mode' => 'SomethingWrong'
+			] );
+
+		$this->assertArrayHasKey( 'pages', $data );
+		$this->assertCount( 0, $data['pages'] );
+	}
 }

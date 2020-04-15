@@ -34,6 +34,8 @@ describe( 'Search', () => {
 			assert.nestedProperty( returnPage, 'id' );
 			assert.nestedProperty( returnPage, 'key' );
 			assert.nestedProperty( returnPage, 'excerpt' );
+			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
+			assert.nestedPropertyVal( returnPage, 'description', null );
 			assert.include( returnPage.excerpt, `<span class='searchmatch'>${searchTerm}</span>` );
 
 			// full-text search should not have cache-control
@@ -51,6 +53,8 @@ describe( 'Search', () => {
 			assert.nestedProperty( returnPage, 'id' );
 			assert.nestedProperty( returnPage, 'key' );
 			assert.nestedPropertyVal( returnPage, 'excerpt', null );
+			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
+			assert.nestedPropertyVal( returnPage, 'description', null );
 		} );
 		it( 'should return a single page when there is a title and text match on the same page', async () => {
 			const { body } = await client.get( `/search/page?q=${pageWithOwnTitle}` );
@@ -60,6 +64,8 @@ describe( 'Search', () => {
 			assert.nestedProperty( returnPage, 'id' );
 			assert.nestedProperty( returnPage, 'key' );
 			assert.nestedPropertyVal( returnPage, 'title', pageWithOwnTitle );
+			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
+			assert.nestedPropertyVal( returnPage, 'description', null );
 		} );
 		it( 'should return two pages when both pages match', async () => {
 			const { body } = await client.get( `/search/page?q=${searchTerm2}` );
@@ -104,6 +110,8 @@ describe( 'Search', () => {
 			assert.nestedProperty( returnPage, 'id' );
 			assert.nestedProperty( returnPage, 'key' );
 			assert.nestedProperty( returnPage, 'excerpt' );
+			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
+			assert.nestedPropertyVal( returnPage, 'description', null );
 
 			// completion search should encourage caching
 			assert.nestedProperty( headers, 'cache-control' );
