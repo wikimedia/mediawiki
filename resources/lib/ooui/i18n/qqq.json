@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"BadDog",
 			"Beta16",
 			"Erik Moeller",
 			"Jdforrester",
+			"Liuxinyu970226",
 			"Lloffiwr",
 			"Mooeypoo",
 			"Mormegil",
@@ -12,14 +14,12 @@
 			"PoLuX124",
 			"Purodha",
 			"Raymond",
+			"Robby",
 			"Sagan",
 			"Sayak Sarkar",
 			"Shirayuki",
 			"Siebrand",
-			"Trevor Parscal",
-			"Liuxinyu970226",
-			"Robby",
-			"BadDog"
+			"Trevor Parscal"
 		]
 	},
 	"ooui-outline-control-move-down": "Tooltip for a button that moves items in a list down one place",

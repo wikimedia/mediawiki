@@ -1,12 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"A1",
 			"AS",
 			"Aced",
 			"Ahonc",
 			"Andriykopanytsia",
 			"Base",
+			"Dars",
+			"Esk78",
 			"Perohanych",
+			"Piramidion",
 			"RLuts",
 			"Sahran",
 			"Sergento",
@@ -14,11 +18,7 @@
 			"SteveR",
 			"Tel'et",
 			"Tifinaghes",
-			"Ата",
-			"Piramidion",
-			"A1",
-			"Dars",
-			"Esk78"
+			"Ата"
 		]
 	},
 	"ooui-outline-control-move-down": "Перемістити елемент униз",

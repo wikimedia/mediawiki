@@ -1,6 +1,7 @@
 /**
- * WikimediaUI Base v0.14.0
+ * WikimediaUI Base v0.15.0
  * Wikimedia Foundation user interface base variables
+ * See https://design.wikimedia.org/style-guide/
  */
 
 // == Breakpoints ==
@@ -15,7 +16,7 @@
 // enough to cover iPad (768px).
 @width-breakpoint-tablet: 720px;
 
-// Minimum available screen width at which a device can be considered a desktop
+// Minimum available screen width at which a device can be considered a desktop.
 @width-breakpoint-desktop: 1000px;
 
 // Wider desktop breakpoint, currently used in Flow.
@@ -26,12 +27,13 @@
 
 
 // == Colors ==
-// WikimediaUI (WMUI) color palette
+// WikimediaUI (`wmui`) color palette
+// See https://design.wikimedia.org/style-guide/visual-style_colors.html
 // Don't use those variables directly, instead define your vars
-// referring to them as applied further below
+// referring to them as applied further below.
 
 @wmui-color-base0:    #000;    // = HSB 0°, 0%, 0%
-@wmui-color-base10:   #222;    // = HSB 0°, 0%, 13%
+@wmui-color-base10:   #202122; // = HSB 210°, 6%, 13%
 @wmui-color-base20:   #54595d; // = HSB 207°, 10%, 36%; WCAG 2.0 level AAA 7.09:1 contrast ratio on `#fff`
 @wmui-color-base30:   #72777d; // = HSB 210°, 9%, 49%; WCAG 2.0 level AA at 4.52:1 contrast ratio on `#fff`
 @wmui-color-base50:   #a2a9b1; // = HSB 212°, 8%, 69%
@@ -79,13 +81,13 @@
 @background-color-warning--framed: @wmui-color-yellow90;
 @background-color-success--framed: @wmui-color-green90;
 @background-color-notice--framed: @wmui-color-base80;
-// Highlight Colors, RGBA Colors include hex fallback on `#fff` for IE 6/7/8
+// Highlight Colors, RGBA Colors include hex fallback on `#fff` for IE 8
 @background-color-highlight:      rgba( 255, 182, 13, 0.4 );
 @background-color-highlight--fallback: #ffe29e;
 
 // Foreground Colors
 @color-base:                      @wmui-color-base10;
-@color-base--hover:               #444;
+@color-base--hover:               #404244;
 @color-base--active:              @wmui-color-base0;
 @color-base--inverted:            @wmui-color-base100;
 @color-base--emphasized:          @wmui-color-base0;
@@ -125,14 +127,15 @@
 // Opacity
 @opacity-base:                    1;
 @opacity-base--disabled:          0.51; // = `#7d7d7d` on `background-color: #fff`; HSB 0°, 0%, 49%
-@opacity-icon-base:               0.87; // = `#222` on `background-color: #fff`
-@opacity-icon-base--hover:        0.73; // = `#454545` on `background-color: #fff`, closest to `#444`
+@opacity-icon-base:               0.87; // = `#222` on `background-color: #fff`, closest to `#202122`
+@opacity-icon-base--hover:        0.74; // = `#424242` on `background-color: #fff`, closest to `#404244`
 @opacity-icon-base--selected:     1;
 
 
 // == Positioning ==
 // Z-Index
 @z-index-base:                    0;
+@z-index-overlay:                 101;
 
 
 // == Box Model properties ==
@@ -190,20 +193,21 @@
 
 
 // == Typography incl. print properties ==
+// See https://design.wikimedia.org/style-guide/visual-style_typography.html
 // Font Families
 @font-family-base:                @font-family-sans;
 @font-family-heading-main:        @font-family-serif;
-// To be deprecated
-@font-family-sans:                'Helvetica Neue', 'Helvetica', 'Nimbus Sans L', 'Arial', 'Liberation Sans', sans-serif;
+// To be deprecated, see T247166.
+@font-family-sans:                'Helvetica Neue', 'Helvetica', 'Liberation Sans', 'Arial', sans-serif;
 @font-family-sans--fallback:      sans-serif;
-// Provide better operating system-specific readability, see T175877
-// `system-ui` is currently not an option due to OS/language combination issues, see T175877#4776576
+// Provide better operating system-specific readability, see T175877.
+// `system-ui` is currently not an option due to OS/language combination issues, see T175877#4776576.
 @font-family-system-sans:         -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Lato', 'Helvetica', 'Arial', sans-serif;
 @font-family-serif:               'Linux Libertine', 'Georgia', 'Times', serif;
 @font-family-serif--fallback:     serif;
 // Provide better operating system-specific monospace stack, see T209915.
 @font-family-monospace:           'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
-@font-family-monospace--fallback: monospace, monospace; // See T176636
+@font-family-monospace--fallback: monospace, monospace; // See T176636.
 // Line Heights
 @line-height-base:                1.6;
 @line-height-heading:             1.25;

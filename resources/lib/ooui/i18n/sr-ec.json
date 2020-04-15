@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"BadDog",
 			"Milicevic01",
 			"Nikola Smolenski",
-			"Милан Јелисавчић",
-			"Zoranzoki21",
 			"Obsuser",
 			"Prevodim",
-			"BadDog"
+			"Zoranzoki21",
+			"Милан Јелисавчић"
 		]
 	},
 	"ooui-outline-control-move-down": "Премести ставку надоле",
