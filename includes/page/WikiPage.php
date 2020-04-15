@@ -2429,6 +2429,8 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Insert a new null revision for this page.
 	 *
+	 * @deprecated since 1.35, use insertNullProtectionRevision instead
+	 *
 	 * @param string $revCommentMsg Comment message key for the revision
 	 * @param array $limit Set of restriction keys
 	 * @param array $expiry Per restriction type expiration
@@ -2446,13 +2448,43 @@ class WikiPage implements Page, IDBAccessObject {
 			$user = $wgUser;
 		}
 
+		$nullRevRecord = $this->insertNullProtectionRevision(
+			$revCommentMsg,
+			$limit,
+			$expiry,
+			(bool)$cascade,
+			$reason,
+			$user
+		);
+		return $nullRevRecord ? new Revision( $nullRevRecord ) : null;
+	}
+
+	/**
+	 * Insert a new null revision for this page.
+	 *
+	 * @param string $revCommentMsg Comment message key for the revision
+	 * @param array $limit Set of restriction keys
+	 * @param array $expiry Per restriction type expiration
+	 * @param bool $cascade Set to false if cascading protection isn't allowed.
+	 * @param string $reason
+	 * @param User $user User to attribute to
+	 * @return RevisionRecord|null Null on error
+	 */
+	public function insertNullProtectionRevision(
+		string $revCommentMsg,
+		array $limit,
+		array $expiry,
+		bool $cascade,
+		string $reason,
+		User $user
+	) : ?RevisionRecord {
 		$dbw = wfGetDB( DB_MASTER );
 
 		// Prepare a null revision to be added to the history
 		$editComment = wfMessage(
 			$revCommentMsg,
 			$this->mTitle->getPrefixedText(),
-			$user ? $user->getName() : ''
+			$user->getName()
 		)->inContentLanguage()->text();
 		if ( $reason ) {
 			$editComment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
@@ -2489,11 +2521,11 @@ class WikiPage implements Page, IDBAccessObject {
 			// TODO accept RevisionRecord here
 			$nullRev = new Revision( $inserted );
 			$this->updateRevisionOn( $dbw, $nullRev, $oldLatest );
-		} else {
-			$nullRev = null;
-		}
 
-		return $nullRev;
+			return $inserted;
+		} else {
+			return null;
+		}
 	}
 
 	/**
