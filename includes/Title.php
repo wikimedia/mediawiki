@@ -3844,6 +3844,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return int Number of revisions between these revisions.
 	 */
 	public function countRevisionsBetween( $old, $new, $max = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( !( $old instanceof Revision ) ) {
 			$old = Revision::newFromTitle( $this, (int)$old );
 		}
