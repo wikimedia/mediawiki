@@ -75,7 +75,7 @@ class SpecialPagesWithProp extends QueryPage {
 
 		$propnames = $this->getExistingPropNames();
 
-		$form = HTMLForm::factory( 'ooui', [
+		$fields = [
 			'propname' => [
 				'type' => 'combobox',
 				'name' => 'propname',
@@ -105,7 +105,12 @@ class SpecialPagesWithProp extends QueryPage {
 				'label-message' => 'pageswithprop-sortbyvalue',
 				'required' => false,
 			]
-		], $this->getContext() );
+		];
+
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setTitle( $this->getPageTitle() ); // Remove subpage
+		$form = HTMLForm::factory( 'ooui', $fields, $context );
+
 		$form->setMethod( 'get' );
 		$form->setSubmitCallback( [ $this, 'onSubmit' ] );
 		$form->setWrapperLegendMsg( 'pageswithprop-legend' );
