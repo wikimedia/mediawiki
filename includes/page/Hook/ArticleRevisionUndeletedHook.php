@@ -6,7 +6,7 @@ use Revision;
 use Title;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35. Use RevisionUndeleted instead.
  * @ingroup Hooks
  */
 interface ArticleRevisionUndeletedHook {
