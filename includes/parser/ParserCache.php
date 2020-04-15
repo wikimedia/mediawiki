@@ -63,6 +63,9 @@ class ParserCache {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var IBufferingStatsdDataFactory */
+	private $stats;
+
 	/**
 	 * Get an instance of this object
 	 *
@@ -83,16 +86,21 @@ class ParserCache {
 	 * @param BagOStuff $cache
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
 	 * @param HookContainer|null $hookContainer
+	 * @param IBufferingStatsdDataFactory|null $stats
 	 * @throws MWException
 	 */
-	public function __construct( BagOStuff $cache, $cacheEpoch = '20030516000000',
-		HookContainer $hookContainer = null
+	public function __construct(
+		BagOStuff $cache,
+		$cacheEpoch = '20030516000000',
+		HookContainer $hookContainer = null,
+		IBufferingStatsdDataFactory $stats = null
 	) {
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
 		$this->hookRunner = new HookRunner(
 			$hookContainer ?: MediaWikiServices::getInstance()->getHookContainer()
 		);
+		$this->stats = $stats ?: MediaWikiServices::getInstance()->getStatsdDataFactory();
 	}
 
 	/**
@@ -171,7 +179,7 @@ class ParserCache {
 	private function incrementStats( WikiPage $wikiPage, $metricSuffix ) {
 		$contentModel = str_replace( '.', '_', $wikiPage->getContentModel() );
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
-		wfIncrStats( 'pcache.' . $contentModel . '.' . $metricSuffix );
+		$this->stats->increment( 'pcache.' . $contentModel . '.' . $metricSuffix );
 	}
 
 	/**

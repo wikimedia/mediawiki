@@ -822,7 +822,8 @@ return [
 		return new ParserCache(
 			$cache,
 			$config->get( 'CacheEpoch' ),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getStatsdDataFactory()
 		);
 	},
 
