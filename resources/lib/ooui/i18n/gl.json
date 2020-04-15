@@ -2,11 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Alison",
-			"Kscanne",
-			"Toliño",
-			"Elisardojm",
 			"Banjo",
-			"Fitoschido"
+			"Elisardojm",
+			"Fitoschido",
+			"Kscanne",
+			"Toliño"
 		]
 	},
 	"ooui-outline-control-move-down": "Mover o elemento abaixo",

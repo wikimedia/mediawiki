@@ -2,16 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Fryed-peach",
-			"Miya",
-			"Penn Station",
-			"Shirayuki",
-			"Takot",
 			"Los688",
-			"Sujiniku",
-			"Translatealcd",
+			"Miya",
 			"Otokoume",
+			"Penn Station",
 			"Rxy",
-			"S2KTS"
+			"S2KTS",
+			"Shirayuki",
+			"Sujiniku",
+			"Takot",
+			"Translatealcd"
 		]
 	},
 	"ooui-outline-control-move-down": "項目を下に移動させる",

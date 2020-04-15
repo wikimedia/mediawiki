@@ -67,7 +67,8 @@
 			"file": {
 				"ltr": "images/icons/funnel-ltr.svg",
 				"rtl": "images/icons/funnel-rtl.svg"
-			}
+			},
+			"variants": [ "destructive" ]
 		},
 		"heart": {
 			"file": "images/icons/heart.svg"

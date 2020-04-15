@@ -1,4 +1,25 @@
 # OOUI Release History
+## v0.38.0 / 2020-04-14
+### Breaking changes
+* [BREAKING CHANGE] icons: Remove 'stripe*' icons, deprecated in v0.36.5 (Volker E.)
+* [BREAKING CHANGE] icons: Remove 'toc' icon, deprecated in v0.37.0 (Volker E.)
+
+### Features
+* Implement ButtonMenuSelectWidget (Ed Sanders)
+* Implement IndexLayout.php#setTabPanel (Ed Sanders)
+
+### Styles
+* Update 'wikimedia-ui-base' dependency to amend Base10 color (Volker E.)
+* WikimediaUI theme: Unify hover `border-colors` on binary input widgets (Volker E.)
+* icons: Add "destructive" variant for "funnel" (Thalia Chan)
+
+### Code
+* Allow TabOptionWidget to take an 'href' config (Ed Sanders)
+* build: Upgrade eslint- and stylelint-config-wikimedia (James D. Forrester)
+* build: Upgrade grunt from 1.0.4 to 1.1.0 (James D. Forrester)
+* build: Upgrade grunt-banana-checker from 0.8.1 to 0.9.0 (James D. Forrester)
+
+
 ## v0.37.1 / 2020-03-25
 ### Styles
 * WikimediaUI theme: Fix search query `padding` regression (Volker E.)
