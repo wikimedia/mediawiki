@@ -1247,7 +1247,8 @@ class WikiPage implements Page, IDBAccessObject {
 		wfDebug( __METHOD__ .
 			': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $parserOptions->getStubThreshold() ) {
-			wfIncrStats( 'pcache.miss.stub' );
+			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			$stats->updateCount( 'pcache.miss.stub', 1 );
 		}
 
 		if ( $useParserCache ) {
