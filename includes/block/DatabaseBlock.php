@@ -342,7 +342,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * blocks. Decreasing order of specificity: user > IP > narrower IP range > wider IP
 	 * range. A range that encompasses one IP address is ranked equally to a singe IP.
 	 *
-	 * Note that DatabaseBlock::chooseBlocks chooses blocks in a different way.
+	 * Note that DatabaseBlock::chooseBlock chooses blocks in a different way.
 	 *
 	 * This is refactored out from DatabaseBlock::newLoad.
 	 *
@@ -903,9 +903,12 @@ class DatabaseBlock extends AbstractBlock {
 
 	/**
 	 * Check if a block has expired. Delete it if it is.
+	 *
+	 * @deprecated since 1.35 No longer needed in core
 	 * @return bool
 	 */
 	public function deleteIfExpired() {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $this->isExpired() ) {
 			wfDebug( __METHOD__ . " -- deleting\n" );
 			$this->delete();
@@ -1040,10 +1043,12 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Get/set a flag determining whether the master is used for reads
 	 *
+	 * @deprecated since 1.35 No longer needed in core
 	 * @param bool|null $x
 	 * @return bool
 	 */
 	public function fromMaster( $x = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mFromMaster, $x );
 	}
 
@@ -1270,15 +1275,18 @@ class DatabaseBlock extends AbstractBlock {
 	 * This should be used when $blocks were retrieved from the user's IP address
 	 * and $ipChain is populated from the same IP address information.
 	 *
+	 * @deprecated since 1.35 No longer needed in core, since the introduction of
+	 *  CompositeBlock (T206163)
 	 * @param array $blocks Array of DatabaseBlock objects
 	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
-	 *     a block is to the server, and if a block matches exactly, or is in a range.
-	 *     The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
-	 *     local-cdn, ...)
+	 *  a block is to the server, and if a block matches exactly, or is in a range.
+	 *  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
+	 *  local-cdn, ...)
 	 * @throws MWException
 	 * @return DatabaseBlock|null The "best" block from the list
 	 */
 	public static function chooseBlock( array $blocks, array $ipChain ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $blocks === [] ) {
 			return null;
 		} elseif ( count( $blocks ) == 1 ) {
