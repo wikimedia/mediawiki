@@ -787,11 +787,13 @@ class PageArchive {
 
 				Hooks::run( 'RevisionUndeleted', [ $revision, $row->ar_page_id ] );
 
-				// TODO: Hard deprecate after replacing uses with RevisionUndeleted
 				// Deprecated since 1.35
 				$legacyRevision = new Revision( $revision );
-				Hooks::run( 'ArticleRevisionUndeleted',
-					[ &$this->title, $legacyRevision, $row->ar_page_id ] );
+				Hooks::run(
+					'ArticleRevisionUndeleted',
+					[ &$this->title, $legacyRevision, $row->ar_page_id ],
+					'1.35'
+				);
 
 				$restoredPages[$row->ar_page_id] = true;
 			}
