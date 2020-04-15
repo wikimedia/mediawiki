@@ -203,6 +203,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   to the Content Security Policy.
 * The HtmlCacheUpdater service was added to unify the logic of purging CDN cache
   and HTML file cache to simplify callers and make them more consistent.
+* The MultiHttpClient code will fallover to non-curl if curl_multi* is blocked.
 * …
 
 === External library changes in 1.35 ===
