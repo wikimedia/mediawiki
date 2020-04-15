@@ -3,9 +3,7 @@
  *
  * @class mw.rcfilters.ui.SavedLinksListItemWidget
  * @extends OO.ui.Widget
- * @mixins OO.ui.mixin.LabelElement
  * @mixins OO.ui.mixin.IconElement
- * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {mw.rcfilters.dm.SavedQueryItemModel} model View model
@@ -19,18 +17,14 @@ var SavedLinksListItemWidget = function MwRcfiltersUiSavedLinksListWidget( model
 
 	// Parent
 	SavedLinksListItemWidget.parent.call( this, $.extend( {
-		data: this.model.getID()
+		data: this.model.getID(),
+		label: this.model.getLabel(),
+		title: this.model.getLabel()
 	}, config ) );
 
 	// Mixin constructors
-	OO.ui.mixin.LabelElement.call( this, $.extend( {
-		label: this.model.getLabel()
-	}, config ) );
 	OO.ui.mixin.IconElement.call( this, $.extend( {
 		icon: ''
-	}, config ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {
-		title: this.model.getLabel()
 	}, config ) );
 
 	this.edit = false;
@@ -134,10 +128,8 @@ var SavedLinksListItemWidget = function MwRcfiltersUiSavedLinksListWidget( model
 };
 
 /* Initialization */
-OO.inheritClass( SavedLinksListItemWidget, OO.ui.Widget );
-OO.mixinClass( SavedLinksListItemWidget, OO.ui.mixin.LabelElement );
+OO.inheritClass( SavedLinksListItemWidget, OO.ui.OptionWidget );
 OO.mixinClass( SavedLinksListItemWidget, OO.ui.mixin.IconElement );
-OO.mixinClass( SavedLinksListItemWidget, OO.ui.mixin.TitledElement );
 
 /* Events */
 

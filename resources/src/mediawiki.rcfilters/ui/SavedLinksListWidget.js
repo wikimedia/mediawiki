@@ -1,5 +1,4 @@
-var GroupWidget = require( './GroupWidget.js' ),
-	SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
+var SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
 	SavedLinksListWidget;
 
 /**
@@ -40,15 +39,15 @@ SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, m
 		icon: 'bookmark'
 	} );
 
-	this.menu = new GroupWidget( {
-		events: {
-			click: 'menuItemClick',
-			delete: 'menuItemDelete',
-			default: 'menuItemDefault',
-			edit: 'menuItemEdit'
-		},
+	this.menu = new OO.ui.SelectWidget( {
 		classes: [ 'mw-rcfilters-ui-savedLinksListWidget-menu' ],
 		items: [ this.placeholderItem ]
+	} );
+	this.menu.aggregate( {
+		click: 'menuItemClick',
+		delete: 'menuItemDelete',
+		default: 'menuItemDefault',
+		edit: 'menuItemEdit'
 	} );
 	this.button = new OO.ui.PopupButtonWidget( {
 		classes: [ 'mw-rcfilters-ui-savedLinksListWidget-button' ],
