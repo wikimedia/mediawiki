@@ -131,24 +131,30 @@ class ImportReporter extends ContextSource {
 					. $this->reason;
 			}
 
-			$comment = $detail; // quick
+			$comment = CommentStoreComment::newUnsavedComment( $detail );
 			$dbw = wfGetDB( DB_MASTER );
+			$revStore = MediaWikiServices::getInstance()->getRevisionStore();
 			$latest = $title->getLatestRevID();
-			$nullRevision = Revision::newNullRevision(
+			$nullRevRecord = $revStore->newNullRevision(
 				$dbw,
-				$title->getArticleID(),
+				$title,
 				$comment,
 				true,
 				$this->getUser()
 			);
 
 			$nullRevId = null;
-			if ( $nullRevision !== null ) {
-				$nullRevId = $nullRevision->insertOn( $dbw );
+			if ( $nullRevRecord !== null ) {
+				$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
+				$nullRevId = $inserted->getId();
 				$page = WikiPage::factory( $title );
-				# Update page record
+				// Update page record
+				// TODO WikiPage::updateRevisionOn should accept RevisionRecord
+				$nullRevision = new Revision( $inserted );
 				$page->updateRevisionOn( $dbw, $nullRevision );
 				$fakeTags = [];
+
+				// TODO replace hook
 				Hooks::run(
 					'NewRevisionFromEditComplete',
 					[ $page, $nullRevision, $latest, $this->getUser(), &$fakeTags ]
