@@ -35,10 +35,12 @@ abstract class PoolCounterWork {
 	/**
 	 * @param string $type The class of actions to limit concurrency for (task type)
 	 * @param string $key Key that identifies the queue this work is placed on
+	 * @param PoolCounter|null $poolCounter
 	 */
-	public function __construct( $type, $key ) {
+	public function __construct( string $type, string $key, PoolCounter $poolCounter = null ) {
 		$this->type = $type;
-		$this->poolCounter = PoolCounter::factory( $type, $key );
+		// MW >= 1.35
+		$this->poolCounter = $poolCounter ?? PoolCounter::factory( $type, $key );
 	}
 
 	/**
@@ -122,8 +124,11 @@ abstract class PoolCounterWork {
 				// Assume that the outer pool limiting is reasonable enough.
 				/* no break */
 			case PoolCounter::LOCKED:
-				$result = $this->doWork();
-				$this->poolCounter->release();
+				try {
+					$result = $this->doWork();
+				} finally {
+					$this->poolCounter->release();
+				}
 				return $result;
 
 			case PoolCounter::DONE:
