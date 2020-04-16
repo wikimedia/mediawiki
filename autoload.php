@@ -995,7 +995,6 @@ $wgAutoloadLocalClasses = [
 	'ParameterizedPassword' => __DIR__ . '/includes/password/ParameterizedPassword.php',
 	'Parser' => __DIR__ . '/includes/parser/Parser.php',
 	'ParserCache' => __DIR__ . '/includes/parser/ParserCache.php',
-	'ParserDiffTest' => __DIR__ . '/includes/parser/ParserDiffTest.php',
 	'ParserFactory' => __DIR__ . '/includes/parser/ParserFactory.php',
 	'ParserOptions' => __DIR__ . '/includes/parser/ParserOptions.php',
 	'ParserOutput' => __DIR__ . '/includes/parser/ParserOutput.php',

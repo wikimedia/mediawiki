@@ -1240,20 +1240,12 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return Parser
 	 */
 	public function getParser() {
-		global $wgParserConf;
 		if ( !$this->mParser ) {
 			$parser = MediaWikiServices::getInstance()->getParser();
 			# Do some initialisation so that we don't have to do it twice
 			$parser->firstCallInit();
 			# Clone it and store it
-			$class = $wgParserConf['class'];
-			if ( $class == ParserDiffTest::class ) {
-				# Uncloneable
-				// @phan-suppress-next-line PhanTypeMismatchProperty
-				$this->mParser = new $class( $wgParserConf );
-			} else {
-				$this->mParser = clone $parser;
-			}
+			$this->mParser = clone $parser;
 		}
 
 		return $this->mParser;
