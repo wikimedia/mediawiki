@@ -39,10 +39,10 @@ use Wikimedia\Services\SalvageableService;
 class HookContainer implements SalvageableService {
 
 	/** @var array Hooks and their callbacks registered through $this->register() */
-	private $legacyRegisteredHandlers;
+	private $legacyRegisteredHandlers = [];
 
 	/** @var array handler name and their handler objects */
-	private $handlersByName;
+	private $handlersByName = [];
 
 	/** @var ExtensionRegistry */
 	private $extensionRegistry;
@@ -52,6 +52,9 @@ class HookContainer implements SalvageableService {
 
 	/** @var DeprecatedHooks */
 	private $deprecatedHooks;
+
+	/** @var int The next ID to be used by scopedRegister() */
+	private $nextScopedRegisterId = 0;
 
 	/**
 	 * @param ExtensionRegistry $extensionRegistry
@@ -80,11 +83,11 @@ class HookContainer implements SalvageableService {
 	 */
 	public function salvage( SalvageableService $other ) {
 		Assert::parameterType( self::class, $other, '$other' );
-		if ( $this->legacyRegisteredHandlers ) {
+		if ( $this->legacyRegisteredHandlers || $this->handlersByName ) {
 			throw new MWException( 'salvage() must be called immediately after construction' );
 		}
-		$this->handlersByName = $other->handlersByName ?? [];
-		$this->legacyRegisteredHandlers = $other->legacyRegisteredHandlers ?? [];
+		$this->handlersByName = $other->handlersByName;
+		$this->legacyRegisteredHandlers = $other->legacyRegisteredHandlers;
 	}
 
 	/**
@@ -112,7 +115,7 @@ class HookContainer implements SalvageableService {
 		$legacyHandlers = $this->getLegacyHandlers( $hook );
 		$options = array_merge(
 			$this->deprecatedHooks->getDeprecationInfo( $hook ) ?? [],
-			$options ?? []
+			$options
 		);
 		// Equivalent of legacy Hooks::runWithoutAbort()
 		$notAbortable = ( isset( $options['abortable'] ) && $options['abortable'] === false );
@@ -139,10 +142,10 @@ class HookContainer implements SalvageableService {
 		}
 
 		$handlers = $this->getHandlers( $hook );
+		$funcName = 'on' . str_replace( ':', '_',  ucfirst( $hook ) );
 
 		foreach ( $handlers as $handler ) {
-			$return = $this->callHook( $hook, $handler, $args );
-			$funcName = 'on' . str_replace( ':', '_',  ucfirst( $hook ) );
+			$return = $handler->$funcName( ...$args );
 			if ( $notAbortable && $return !== null && $return !== true ) {
 				throw new UnexpectedValueException(
 					"Invalid return from " . $funcName . " for unabortable $hook."
@@ -182,9 +185,10 @@ class HookContainer implements SalvageableService {
 	 * @return ScopedCallback
 	 */
 	public function scopedRegister( string $hook, $callback ) : ScopedCallback {
-		$this->legacyRegisteredHandlers[$hook][] = $callback;
-		return new ScopedCallback( function () use ( $hook ) {
-			unset( $this->legacyRegisteredHandlers[$hook] );
+		$id = $this->nextScopedRegisterId++;
+		$this->legacyRegisteredHandlers[$hook][$id] = $callback;
+		return new ScopedCallback( function () use ( $hook, $id ) {
+			unset( $this->legacyRegisteredHandlers[$hook][$id] );
 		} );
 	}
 
@@ -272,19 +276,6 @@ class HookContainer implements SalvageableService {
 	}
 
 	/**
-	 * Run handler function for non-legacy hooks
-	 *
-	 * @param string $hook
-	 * @param object $handler handler object
-	 * @param array $args args to provide to handler function
-	 * @return null|string|bool handler function return
-	 */
-	private function callHook( string $hook, $handler, array $args = [] ) {
-		$funcName = 'on' . str_replace( ':', '_',  ucfirst( $hook ) );
-		return $handler->$funcName( ...$args );
-	}
-
-	/**
 	 * Return whether hook has any handlers registered to it.
 	 * The function may have been registered via Hooks::register or in extension.json
 	 *
@@ -293,10 +284,10 @@ class HookContainer implements SalvageableService {
 	 */
 	public function isRegistered( string $hook ) : bool {
 		global $wgHooks;
-		$legacyRegisteredHook = isset( $wgHooks[$hook] ) ||
-			isset( $this->legacyRegisteredHandlers[$hook] );
+		$legacyRegisteredHook = !empty( $wgHooks[$hook] ) ||
+			!empty( $this->legacyRegisteredHandlers[$hook] );
 		$registeredHooks = $this->extensionRegistry->getAttribute( 'Hooks' );
-		return isset( $registeredHooks[$hook] ) || $legacyRegisteredHook;
+		return !empty( $registeredHooks[$hook] ) || $legacyRegisteredHook;
 	}
 
 	/**

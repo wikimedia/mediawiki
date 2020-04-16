@@ -177,6 +177,39 @@ namespace MediaWiki\HookRunner {
 		}
 
 		/**
+		 * @covers       \MediaWiki\HookRunner\HookContainer::scopedRegister
+		 */
+		public function testScopedRegister2() {
+			$hookContainer = $this->newHookContainer();
+			$called1 = $called2 = false;
+			$reset1 = $hookContainer->scopedRegister( 'MWTestHook',
+				function () use ( &$called1 ) {
+					$called1 = true;
+				}
+			);
+			$reset2 = $hookContainer->scopedRegister( 'MWTestHook',
+				function () use ( &$called2 ) {
+					$called2 = true;
+				}
+			);
+			$hookContainer->run( 'MWTestHook' );
+			$this->assertTrue( $called1 );
+			$this->assertTrue( $called2 );
+
+			$called1 = $called2 = false;
+			$reset1 = null;
+			$hookContainer->run( 'MWTestHook' );
+			$this->assertFalse( $called1 );
+			$this->assertTrue( $called2 );
+
+			$called1 = $called2 = false;
+			$reset2 = null;
+			$hookContainer->run( 'MWTestHook' );
+			$this->assertFalse( $called1 );
+			$this->assertFalse( $called2 );
+		}
+
+		/**
 		 * @covers       \MediaWiki\HookRunner\HookContainer::isRegistered
 		 */
 		public function testNotRegisteredLegacy() {
@@ -262,7 +295,6 @@ namespace MediaWiki\HookRunner {
 
 		/**
 		 * @covers       \MediaWiki\HookRunner\HookContainer::run
-		 * @covers       \MediaWiki\HookRunner\HookContainer::callHook
 		 * @covers       \MediaWiki\HookRunner\HookContainer::normalizeHandler
 		 * Test HookContainer::run() with abort option
 		 */
@@ -323,7 +355,6 @@ namespace MediaWiki\HookRunner {
 		/**
 		 * @covers       \MediaWiki\HookRunner\HookContainer::run
 		 * @covers       \MediaWiki\HookRunner\HookContainer::normalizeHandler
-		 * @covers       \MediaWiki\HookRunner\HookContainer::callHook
 		 * Test HookContainer::run() throws exceptions appropriately
 		 */
 		public function testRunExceptions() {
