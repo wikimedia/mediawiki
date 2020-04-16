@@ -2557,8 +2557,10 @@ return [
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.APIResultsQueue.js',
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResourceProvider.js',
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchProvider.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaUserUploadsProvider.js',
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResourceQueue.js',
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchQueue.js',
+			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaUserUploadsQueue.js',
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaSearchWidget.js',
 			'resources/src/mediawiki.widgets/MediaSearch/mw.widgets.MediaResultWidget.js',
 		],
@@ -2575,6 +2577,7 @@ return [
 		'messages' => [
 			'mw-widgets-mediasearch-noresults',
 			'mw-widgets-mediasearch-input-placeholder',
+			'mw-widgets-mediasearch-recent-uploads',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

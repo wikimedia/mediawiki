@@ -4349,6 +4349,7 @@
 	"mw-widgets-dateinput-placeholder-day": "[[File:DateInputWidget active, empty.png|frame|Screenshot]]\nPlaceholder displayed in a date input field when it's empty, representing a date format with 4 digits for year, 2 digits for month, and 2 digits for day, separated with hyphens. This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
 	"mw-widgets-dateinput-placeholder-month": "Placeholder displayed in a date input field when it's empty, representing a date format with 4 digits for year and 2 digits for month, separated with hyphens (without a day). This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
 	"mw-widgets-mediasearch-input-placeholder": "Place holder text for media search input",
+	"mw-widgets-mediasearch-recent-uploads": "Heading for section showing a user's recent uploads",
 	"mw-widgets-mediasearch-noresults": "Label notifying the user no results were found for the media search.",
 	"mw-widgets-table-row-delete": "Tooltip for the delete row button in table widgets",
 	"mw-widgets-titleinput-description-new-page": "Description label for a new page in the title input widget.",
