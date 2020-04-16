@@ -3529,6 +3529,23 @@ $title: Title object being checked against
 $user: Current user object
 &$whitelisted: Boolean value of whether this title is whitelisted
 
+'HtmlCacheUpdaterAppendUrls': Declare extra URLs to purge from HTTP caches.
+Use $mode to decide whether to gather all related URLs or only those affected by
+a re-render of the same content. For example, after a direct revision to the
+content the history page will need to be purged. However when re-rendering after
+a cascading change from a template, only URLs that render content need purging.
+The $mode will be either HtmlCacheUpdater::PURGE_URLS_LINKSUPDATE_ONLY or 0.
+$title: Title object for the page being purged.
+$mode: Integer.
+&$append: Append URLs relating to $title.
+
+'HtmlCacheUpdaterVaryUrls': Add variants of URLs to purge from HTTP caches.
+Extensions that provide site-wide variants of all URLs, such as by serving from
+an alternate domain or path, can use this hook to append alternative URLs for
+each url in $canonical.
+$urls: Canonical URLs.
+&$append: Append alternative URLs for $urls.
+
 'TitleSquidURLs': Called to determine which URLs to purge from HTTP caches.
 $title: Title object to purge
 &$urls: An array of URLs to purge from the caches, to be manipulated.

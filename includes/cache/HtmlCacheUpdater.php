@@ -55,6 +55,16 @@ class HtmlCacheUpdater {
 	public const PURGE_INTENT_TXROUND_REFLECTED = self::PURGE_PRESEND | self::PURGE_REBOUND;
 
 	/**
+	 * Reduce set of URLs to be purged to only those that may be affected by
+	 * change propagation from LinksUpdate (e.g. after a used template was edited).
+	 *
+	 * Specifically, this means URLs only affected by direct revision edits,
+	 * will not be purged.
+	 * @var int
+	 */
+	public const PURGE_URLS_LINKSUPDATE_ONLY = 4;
+
+	/**
 	 * @param int $reboundDelay $wgCdnReboundPurgeDelay
 	 * @param bool $useFileCache $wgUseFileCache
 	 * @internal For use with MediaWikiServices->getHtmlCacheUpdater()
@@ -62,6 +72,15 @@ class HtmlCacheUpdater {
 	public function __construct( $reboundDelay, $useFileCache ) {
 		$this->reboundDelay = $reboundDelay;
 		$this->useFileCache = $useFileCache;
+	}
+
+	/**
+	 * @param int $flags Bit field
+	 * @param int $flag Constant to check for
+	 * @return bool If $flags contains $flag
+	 */
+	private function fieldHasFlag( $flags, $flag ) {
+		return ( ( $flags & $flag ) === $flag );
 	}
 
 	/**
@@ -74,12 +93,12 @@ class HtmlCacheUpdater {
 	public function purgeUrls( $urls, $flags = self::PURGE_PRESEND ) {
 		$urls = is_string( $urls ) ? [ $urls ] : $urls;
 
-		$reboundDelay = ( ( $flags & self::PURGE_REBOUND ) == self::PURGE_REBOUND )
+		$reboundDelay = $this->fieldHasFlag( $flags, self::PURGE_REBOUND )
 			? $this->reboundDelay
 			: 0; // no second purge
 
 		$update = new CdnCacheUpdate( $urls, [ 'reboundDelay' => $reboundDelay ] );
-		if ( ( $flags & self::PURGE_PRESEND ) == self::PURGE_PRESEND ) {
+		if ( $this->fieldHasFlag( $flags, self::PURGE_PRESEND ) ) {
 			DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
 		} else {
 			$update->doUpdate();
@@ -101,7 +120,7 @@ class HtmlCacheUpdater {
 
 		if ( $this->useFileCache ) {
 			$update = HtmlFileCacheUpdate::newFromTitles( $titles );
-			if ( ( $flags & self::PURGE_PRESEND ) == self::PURGE_PRESEND ) {
+			if ( $this->fieldHasFlag( $flags, self::PURGE_PRESEND ) ) {
 				DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
 			} else {
 				$update->doUpdate();
@@ -114,5 +133,54 @@ class HtmlCacheUpdater {
 			$urls = array_merge( $urls, $title->getCdnUrls() );
 		}
 		$this->purgeUrls( $urls, $flags );
+	}
+
+	/**
+	 * Get a list of URLs to purge from the CDN cache when this page changes.
+	 *
+	 * @param Title $title
+	 * @param int $flags Bit field of `PURGE_URLS_*` class constants (optional).
+	 * @return string[] URLs
+	 */
+	public function getUrls( Title $title, int $flags = 0 ) : array {
+		// These urls are affected both by direct revisions as well,
+		// as re-rendering of the same content during a LinksUpdate.
+		$urls = [
+			$title->getInternalURL()
+		];
+		// Language variant page views are currently not cached
+		// and thus not purged (T250511).
+
+		// These urls are only affected by direct revisions, and do not require
+		// purging when a LinksUpdate merely rerenders the same content.
+		// This exists to avoid large amounts of redundant PURGE traffic (T250261).
+		if ( !$this->fieldHasFlag( $flags, self::PURGE_URLS_LINKSUPDATE_ONLY ) ) {
+			$urls[] = $title->getInternalURL( 'action=history' );
+
+			// Canonical action=raw URLs for user config pages
+			if ( $title->isUserJsConfigPage() ) {
+				$urls[] = $title->getInternalURL( 'action=raw&ctype=text/javascript' );
+			} elseif ( $title->isUserJsonConfigPage() ) {
+				$urls[] = $title->getInternalURL( 'action=raw&ctype=application/json' );
+			} elseif ( $title->isUserCssConfigPage() ) {
+				$urls[] = $title->getInternalURL( 'action=raw&ctype=text/css' );
+			}
+		}
+
+		// Extensions may add novel ways to access this content
+		$append = [];
+		$mode = $flags & self::PURGE_URLS_LINKSUPDATE_ONLY;
+		Hooks::run( 'HtmlCacheUpdaterAppendUrls', [ $title, $mode, &$append ] );
+		$urls = array_merge( $urls, $append );
+
+		// Extensions may add novel ways to access the site overall
+		$append = [];
+		Hooks::run( 'HtmlCacheUpdaterVaryUrls', [ $urls, &$append ] );
+		$urls = array_merge( $urls, $append );
+
+		// Legacy. TODO: Deprecate this
+		Hooks::run( 'TitleSquidURLs', [ $title, &$urls ] );
+
+		return $urls;
 	}
 }
