@@ -47,7 +47,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 		$this->setContentLang( $contLang );
 
 		$this->testParser = $services->getParserFactory()->create();
-		$this->testParser->Options( ParserOptions::newFromUserAndLang( new User, $contLang ) );
+		$this->testParser->setOptions( ParserOptions::newFromUserAndLang( new User, $contLang ) );
 
 		# initialize parser output
 		$this->testParser->clearState();
@@ -205,7 +205,7 @@ class MagicVariableTest extends MediaWikiTestCase {
 	 * @param string $ts
 	 */
 	private function setParserTS( $ts ) {
-		$this->testParser->Options()->setTimestamp( $ts );
+		$this->testParser->getOptions()->setTimestamp( $ts );
 		$this->testParser->mRevisionTimestamp = $ts;
 	}
 

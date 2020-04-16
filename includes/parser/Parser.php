@@ -987,15 +987,27 @@ class Parser {
 	 *
 	 * @param Title|null $x Title object or null to just get the current one
 	 * @return Title|null
+	 * @deprecated since 1.35, use getTitle() / setTitle()
 	 */
 	public function Title( Title $x = null ) : ?Title {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mTitle, $x );
 	}
 
 	/**
+	 * Accessor for the output type.
+	 * @return int One of the Parser::OT_... constants
+	 * @since 1.35
+	 */
+	public function getOutputType(): int {
+		return $this->mOutputType;
+	}
+
+	/**
+	 * Mutator for the output type.
 	 * @param int $ot One of the Parser::OT_… constants
 	 */
-	public function setOutputType( $ot ) {
+	public function setOutputType( $ot ): void {
 		$this->mOutputType = $ot;
 		# Shortcut alias
 		$this->ot = [
@@ -1011,6 +1023,7 @@ class Parser {
 	 *
 	 * @param int|null $x New value or null to just get the current one
 	 * @return int
+	 * @deprecated since 1.35, use getOutputType()/setOutputType()
 	 */
 	public function OutputType( $x = null ) {
 		return wfSetVar( $this->mOutputType, $x );
@@ -1031,10 +1044,20 @@ class Parser {
 	}
 
 	/**
+	 * Mutator for the ParserOptions object
+	 * @param ParserOptions $options The new parser options
+	 * @since 1.35
+	 */
+	public function setOptions( ParserOptions $options ): void {
+		$this->mOptions = $options;
+	}
+
+	/**
 	 * Accessor/mutator for the ParserOptions object
 	 *
 	 * @param ParserOptions|null $x New value or null to just get the current one
 	 * @return ParserOptions Current ParserOptions object
+	 * @deprecated since 1.35, use getOptions() / setOptions()
 	 */
 	public function Options( $x = null ) {
 		return wfSetVar( $this->mOptions, $x );
