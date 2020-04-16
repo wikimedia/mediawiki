@@ -38,6 +38,7 @@ class ResourceLoaderOOUIIconPackModule extends ResourceLoaderOOUIImageModule {
 	}
 
 	private function getIcons() {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Checked in the constructor
 		return $this->definition['icons'];
 	}
 
