@@ -454,6 +454,10 @@ class Parser {
 
 		$this->languageConverterFactory = $languageConverterFactory ??
 			MediaWikiServices::getInstance()->getLanguageConverterFactory();
+
+		// T250444: This will eventually be inlined here and the
+		// standalone method removed.
+		$this->firstCallInit();
 	}
 
 	/**
@@ -495,6 +499,8 @@ class Parser {
 
 	/**
 	 * Do various kinds of initialisation on the first call of the parser
+	 * @deprecated since 1.35, this initialization is done in the constructor
+	 *  and manual calls to ::firstCallInit() have no effect.
 	 */
 	public function firstCallInit() {
 		if ( !$this->mFirstCall ) {
