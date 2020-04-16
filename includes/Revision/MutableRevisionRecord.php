@@ -77,7 +77,9 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @throws MWException
 	 */
 	public function __construct( Title $title, $dbDomain = false ) {
-		$slots = new MutableRevisionSlots();
+		$slots = new MutableRevisionSlots( [], function () {
+			$this->resetAggregateValues();
+		} );
 
 		parent::__construct( $title, $slots, $dbDomain );
 	}
@@ -116,7 +118,6 @@ class MutableRevisionRecord extends RevisionRecord {
 		}
 
 		$this->mSlots->setSlot( $slot );
-		$this->resetAggregateValues();
 	}
 
 	/**
@@ -130,7 +131,6 @@ class MutableRevisionRecord extends RevisionRecord {
 	 */
 	public function inheritSlot( SlotRecord $parentSlot ) {
 		$this->mSlots->inheritSlot( $parentSlot );
-		$this->resetAggregateValues();
 	}
 
 	/**
@@ -149,7 +149,6 @@ class MutableRevisionRecord extends RevisionRecord {
 	 */
 	public function setContent( $role, Content $content ) {
 		$this->mSlots->setContent( $role, $content );
-		$this->resetAggregateValues();
 	}
 
 	/**
@@ -166,7 +165,6 @@ class MutableRevisionRecord extends RevisionRecord {
 	 */
 	public function removeSlot( $role ) {
 		$this->mSlots->removeSlot( $role );
-		$this->resetAggregateValues();
 	}
 
 	/**
@@ -328,6 +326,7 @@ class MutableRevisionRecord extends RevisionRecord {
 
 	/**
 	 * Invalidate cached aggregate values such as hash and size.
+	 * Used as a callback by MutableRevisionSlots.
 	 */
 	private function resetAggregateValues() {
 		$this->mSize = null;
