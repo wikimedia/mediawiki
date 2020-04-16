@@ -91,9 +91,10 @@ trait PageDumpTestDataTrait {
 				"BackupDumperTestP2Summary4 extra " );
 			$this->pageId2 = $page->getId();
 
+			$context = RequestContext::getMain();
 			$revDel = RevisionDeleter::createList(
 				'revision',
-				RequestContext::getMain(),
+				$context,
 				$this->pageTitle2,
 				[ $this->rev2_2->getId() ]
 			);
@@ -114,7 +115,7 @@ trait PageDumpTestDataTrait {
 			[ , , $this->rev3_2 ] = $this->addRevision( $page,
 				"BackupDumperTestP3Text2", "BackupDumperTestP2Summary2" );
 			$this->pageId3 = $page->getId();
-			$page->doDeleteArticleReal( "Testing ;)" );
+			$page->doDeleteArticleReal( "Testing ;)", $context->getUser() );
 
 			$this->pageTitle4 = Title::newFromText( 'BackupDumperTestP1', $this->talk_namespace );
 			$page = WikiPage::factory( $this->pageTitle4 );
