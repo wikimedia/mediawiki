@@ -1105,7 +1105,7 @@
 	"api-pageset-param-pageids": "Eine Liste der Seitenkennungen, an denen gearbeitet werden soll.",
 	"api-pageset-param-revids": "Eine Liste der Versionskennungen, an denen gearbeitet werden soll.",
 	"api-help-title": "MediaWiki-API-Hilfe",
-	"api-help-lead": "Dies ist eine automatisch generierte MediaWiki-API-Dokumentationsseite.\n\nDokumentation und Beispiele: https://www.mediawiki.org/wiki/API/de",
+	"api-help-lead": "Dies ist eine automatisch generierte MediaWiki-API-Dokumentationsseite.\n\nDokumentation und Beispiele: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "Hauptmodul",
 	"api-help-undocumented-module": "Keine Dokumentation für das Modul „$1“.",
 	"api-help-flag-deprecated": "Dieses Modul ist veraltet.",

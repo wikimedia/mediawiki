@@ -1513,7 +1513,7 @@
 	"api-pageset-param-redirects-nogenerator": "自動解決在 <var>$1titles</var>、<var>$1pageids</var>，與 <var>$1revids</var> 的重新導向。",
 	"api-pageset-param-converttitles": "如有需要，轉換標題成其它變體。這僅在 wiki 的內容語言支援變體轉換時有用。支援變體轉換的語言包含有$1。",
 	"api-help-title": "MediaWiki API 說明",
-	"api-help-lead": "此頁為自動產生的 MediaWiki API 說明文件頁面。\n\n說明文件與範例：https://www.mediawiki.org/wiki/API",
+	"api-help-lead": "此頁為自動產生的 MediaWiki API 說明文件頁面。\n\n說明文件與範例：https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "主要模組",
 	"api-help-undocumented-module": "沒有用於模組 $1 的說明文件。",
 	"api-help-flag-deprecated": "此模組已停用。",

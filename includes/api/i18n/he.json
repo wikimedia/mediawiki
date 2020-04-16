@@ -1512,7 +1512,7 @@
 	"api-pageset-param-redirects-nogenerator": "פתרון אוטומטי של הפניות ב־<var>$1titles</var>, ב־<var>$1pageids</var> וב־<var>$1pageids</var>.",
 	"api-pageset-param-converttitles": "המרת כותרות לסוגי כתב אחרים אם זה נחוץ. זה עובד רק אם שפת הכותרת של הוויקי תומכת בהמרת סוגי כתב. השפות שתומכות בהמרת סוגי כתב הן $1.",
 	"api-help-title": "עזרה של MediaWiki API",
-	"api-help-lead": "זהו דף תיעוד של API שנוצר באופן אוטומטי.\n\nתיעוד ודוגמאות: https://www.mediawiki.org/wiki/API",
+	"api-help-lead": "זהו דף תיעוד של API שנוצר באופן אוטומטי.\n\nתיעוד ודוגמאות: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "יחידה ראשית",
 	"api-help-undocumented-module": "אין תיעוד למודול $1.",
 	"api-help-flag-deprecated": "יחידה זו אינה מומלצת לשימוש.",

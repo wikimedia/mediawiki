@@ -1531,7 +1531,7 @@
 	"api-pageset-param-redirects-nogenerator": "Résoudre automatiquement les redirections dans <var>$1titles</var>, <var>$1pageids</var> et <var>$1revids</var>.",
 	"api-pageset-param-converttitles": "Convertir les titres dans d’autres variantes si nécessaire. Fonctionne uniquement si la langue de contenu du wiki prend en charge la conversion en variantes. Les langues qui prennent en charge la conversion en variantes incluent $1.",
 	"api-help-title": "Aide de l’API MediaWiki",
-	"api-help-lead": "Ceci est une page d’aide de l’API de MediaWiki générée automatiquement.\n\nDocumentation et exemples : https://www.mediawiki.org/wiki/API",
+	"api-help-lead": "Ceci est une page d’aide de l’API de MediaWiki générée automatiquement.\n\nDocumentation et exemples : https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "Module principal",
 	"api-help-undocumented-module": "Aucune documentation pour le module $1.",
 	"api-help-flag-deprecated": "Ce module est désuet.",
