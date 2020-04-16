@@ -63,6 +63,8 @@ class ParserTest extends MediaWikiTestCase {
 	 * @covers Parser::__construct
 	 */
 	public function testBackwardsCompatibleConstructorArguments( $args ) {
+		$this->hideDeprecated( 'Parser::__construct' );
+		$this->hideDeprecated( 'old calling convention for Parser::__construct' );
 		$parser = new Parser( ...$args );
 
 		$refObject = new ReflectionObject( $parser );

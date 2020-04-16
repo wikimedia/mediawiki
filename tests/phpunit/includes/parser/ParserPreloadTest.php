@@ -37,10 +37,12 @@ class ParserPreloadTest extends MediaWikiTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();
+		$services = MediaWikiServices::getInstance();
+
 		$this->testParserOptions = ParserOptions::newFromUserAndLang( new User,
 			MediaWikiServices::getInstance()->getContentLanguage() );
 
-		$this->testParser = new Parser();
+		$this->testParser = $services->getParserFactory()->create();
 		$this->testParser->Options( $this->testParserOptions );
 		$this->testParser->clearState();
 

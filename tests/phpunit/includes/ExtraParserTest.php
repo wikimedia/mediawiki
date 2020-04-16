@@ -32,9 +32,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 		// FIXME: This test should pass without setting global content language
 		$this->options = ParserOptions::newFromUserAndLang( new User, $contLang );
 		$this->options->setTemplateCallback( [ __CLASS__, 'statelessFetchTemplate' ] );
-		$this->parser = new Parser;
-
 		$services->resetServiceForTesting( 'MagicWordFactory' );
+		$services->resetServiceForTesting( 'ParserFactory' );
+
+		$this->parser = $services->getParserFactory()->create();
 	}
 
 	/**
