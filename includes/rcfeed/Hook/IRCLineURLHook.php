@@ -13,7 +13,7 @@ use RecentChange;
  */
 interface IRCLineURLHook {
 	/**
-	 * This hook is called when constructing the URL to use in an IRC notification.
+	 * This hook is called when constructing the URL to use in an RCFeed notification.
 	 * Callee may modify $url and $query; URL will be constructed as $url . $query
 	 *
 	 * @since 1.35

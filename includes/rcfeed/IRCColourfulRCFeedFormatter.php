@@ -19,7 +19,6 @@
  * @file
  */
 
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
@@ -48,11 +47,9 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
+		$localInterwikis = $mainConfig->get( MainConfigNames::LocalInterwikis );
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
-		$localInterwikis = $mainConfig->get( MainConfigNames::LocalInterwikis );
-		$canonicalServer = $mainConfig->get( MainConfigNames::CanonicalServer );
-		$script = $mainConfig->get( MainConfigNames::Script );
 		$attribs = $rc->getAttributes();
 		if ( $attribs['rc_type'] == RC_CATEGORIZE ) {
 			// Don't send RC_CATEGORIZE events to IRC feed (T127360)
@@ -69,22 +66,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 		$title = $titleObj->getPrefixedText();
 		$title = self::cleanupForIRC( $title );
 
-		if ( $attribs['rc_type'] == RC_LOG ) {
-			$url = '';
-		} else {
-			$url = $canonicalServer . $script;
-			if ( $attribs['rc_type'] == RC_NEW ) {
-				$query = '?oldid=' . $attribs['rc_this_oldid'];
-			} else {
-				$query = '?diff=' . $attribs['rc_this_oldid'] . '&oldid=' . $attribs['rc_last_oldid'];
-			}
-			if ( $useRCPatrol || ( $attribs['rc_type'] == RC_NEW && $useNPPatrol ) ) {
-				$query .= '&rcid=' . $attribs['rc_id'];
-			}
-
-			( new HookRunner( $services->getHookContainer() ) )->onIRCLineURL( $url, $query, $rc );
-			$url .= $query;
-		}
+		$notifyUrl = $rc->getNotifyUrl() ?? '';
 
 		if ( $attribs['rc_old_len'] !== null && $attribs['rc_new_len'] !== null ) {
 			$szdiff = $attribs['rc_new_len'] - $attribs['rc_old_len'];
@@ -139,7 +121,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
 		# no colour (\003) switches back to the term default
 		$fullString = "$titleString\0034 $flag\00310 " .
-			"\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
+			"\00302$notifyUrl\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
 
 		return $fullString;
 	}

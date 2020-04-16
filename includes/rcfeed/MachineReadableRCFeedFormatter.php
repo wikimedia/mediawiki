@@ -58,10 +58,12 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			'type' => RecentChange::parseFromRCType( $rc->getAttribute( 'rc_type' ) ),
 			'namespace' => $rc->getTitle()->getNamespace(),
 			'title' => $rc->getTitle()->getPrefixedText(),
+			'title_url' => $rc->getTitle()->getCanonicalURL(),
 			'comment' => $rc->getAttribute( 'rc_comment' ),
 			'timestamp' => (int)wfTimestamp( TS_UNIX, $rc->getAttribute( 'rc_timestamp' ) ),
 			'user' => $rc->getAttribute( 'rc_user_text' ),
 			'bot' => (bool)$rc->getAttribute( 'rc_bot' ),
+			'notify_url' => $rc->getNotifyUrl(),
 		];
 
 		if ( isset( $feed['channel'] ) ) {

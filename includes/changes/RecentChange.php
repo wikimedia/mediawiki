@@ -1319,6 +1319,45 @@ class RecentChange implements Taggable {
 	}
 
 	/**
+	 * Get the extra URL that is given as part of the notification to RCFeed consumers.
+	 *
+	 * This is mainly to facilitate patrolling or other content review.
+	 *
+	 * @since 1.40
+	 * @return string|null URL
+	 */
+	public function getNotifyUrl() {
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
+		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
+		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
+		$localInterwikis = $mainConfig->get( MainConfigNames::LocalInterwikis );
+		$canonicalServer = $mainConfig->get( MainConfigNames::CanonicalServer );
+		$script = $mainConfig->get( MainConfigNames::Script );
+
+		$type = $this->getAttribute( 'rc_type' );
+		if ( $type == RC_LOG ) {
+			$url = null;
+		} else {
+			$url = $canonicalServer . $script;
+			if ( $type == RC_NEW ) {
+				$query = '?oldid=' . $this->getAttribute( 'rc_this_oldid' );
+			} else {
+				$query = '?diff=' . $this->getAttribute( 'rc_this_oldid' )
+					. '&oldid=' . $this->getAttribute( 'rc_last_oldid' );
+			}
+			if ( $useRCPatrol || ( $this->getAttribute( 'rc_type' ) == RC_NEW && $useNPPatrol ) ) {
+				$query .= '&rcid=' . $this->getAttribute( 'rc_id' );
+			}
+
+			( new HookRunner( $services->getHookContainer() ) )->onIRCLineURL( $url, $query, $this );
+			$url .= $query;
+		}
+
+		return $url;
+	}
+
+	/**
 	 * Parses and returns the rc_params attribute
 	 *
 	 * @since 1.26

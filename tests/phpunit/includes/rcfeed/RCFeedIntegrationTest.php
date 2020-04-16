@@ -19,6 +19,8 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::CanonicalServer => 'https://example.org',
 			MainConfigNames::ServerName => 'example.org',
 			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::DBname => 'example',
 			MainConfigNames::DBprefix => $this->dbPrefix(),
 			MainConfigNames::RCFeeds => [],
@@ -32,11 +34,9 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'send' ] )
 			->getMock();
 
-		$feed->method( 'send' )
-			->willReturn( true );
-
 		$feed->expects( $this->once() )
 			->method( 'send' )
+			->willReturn( true )
 			->with( $this->anything(), $this->callback( function ( $line ) {
 				$this->assertJsonStringEqualsJsonString(
 					json_encode( [
@@ -44,10 +44,12 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 						'type' => 'log',
 						'namespace' => 0,
 						'title' => 'Example',
+						'title_url' => 'https://example.org/wiki/Example',
 						'comment' => '',
 						'timestamp' => 1301644800,
 						'user' => 'UTSysop',
 						'bot' => false,
+						'notify_url' => null,
 						'log_id' => 0,
 						'log_type' => 'move',
 						'log_action' => 'move',

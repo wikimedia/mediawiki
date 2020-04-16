@@ -33,6 +33,17 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->user = new UserIdentityValue( $user->getId(), $user->getName() );
 
 		$this->user_comment = '<User comment about action>';
+
+		$this->overrideConfigValues( [
+			MainConfigNames::CanonicalServer => 'https://example.org',
+			MainConfigNames::ServerName => 'example.org',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::UseRCPatrol => false,
+			MainConfigNames::UseNPPatrol => false,
+			MainConfigNames::RCFeeds => [],
+			MainConfigNames::RCEngines => [],
+		] );
 	}
 
 	public static function provideAttribs() {
@@ -369,6 +380,84 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers RecentChange::getNotifyUrl
+	 */
+	public function testGetNotifyUrlForEdit() {
+		$rc = new RecentChange;
+		$rc->mAttribs = [
+			'rc_id' => 60,
+			'rc_timestamp' => '20110401090000',
+			'rc_namespace' => NS_MAIN,
+			'rc_title' => 'Example',
+			'rc_type' => RC_EDIT,
+			'rc_cur_id' => 42,
+			'rc_this_oldid' => 50,
+			'rc_last_oldid' => 30,
+			'rc_patrolled' => 0,
+		];
+		$this->assertSame(
+			'https://example.org/w/index.php?diff=50&oldid=30',
+			$rc->getNotifyUrl(), 'Notify url'
+		);
+
+		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
+		$this->assertSame(
+			'https://example.org/w/index.php?diff=50&oldid=30&rcid=60',
+			$rc->getNotifyUrl(), 'Notify url (RC Patrol)'
+		);
+	}
+
+	/**
+	 * @covers RecentChange::getNotifyUrl
+	 */
+	public function testGetNotifyUrlForCreate() {
+		$rc = new RecentChange;
+		$rc->mAttribs = [
+			'rc_id' => 60,
+			'rc_timestamp' => '20110401090000',
+			'rc_namespace' => NS_MAIN,
+			'rc_title' => 'Example',
+			'rc_type' => RC_NEW,
+			'rc_cur_id' => 42,
+			'rc_this_oldid' => 50,
+			'rc_last_oldid' => 0,
+			'rc_patrolled' => 0,
+		];
+		$this->assertSame(
+			'https://example.org/w/index.php?oldid=50',
+			$rc->getNotifyUrl(), 'Notify url'
+		);
+
+		$this->overrideConfigValue( MainConfigNames::UseNPPatrol, true );
+		$this->assertSame(
+			'https://example.org/w/index.php?oldid=50&rcid=60',
+			$rc->getNotifyUrl(), 'Notify url (NP Patrol)'
+		);
+	}
+
+	/**
+	 * @covers RecentChange::getNotifyUrl
+	 */
+	public function testGetNotifyUrlForLog() {
+		$rc = new RecentChange;
+		$rc->mAttribs = [
+			'rc_id' => 60,
+			'rc_timestamp' => '20110401090000',
+			'rc_namespace' => NS_MAIN,
+			'rc_title' => 'Example',
+			'rc_type' => RC_LOG,
+			'rc_cur_id' => 42,
+			'rc_this_oldid' => 50,
+			'rc_last_oldid' => 0,
+			'rc_patrolled' => 2,
+			'rc_logid' => 160,
+			'rc_log_type' => 'delete',
+			'rc_log_action' => 'delete',
+		];
+		$this->assertSame( null, $rc->getNotifyUrl(), 'Notify url' );
+	}
+
+	/**
 	 * @return array
 	 */
 	public static function provideIsInRCLifespan() {
@@ -519,7 +608,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::doMarkPatrolled
 	 */
 	public function testDoMarkPatrolledPermissions_NoRcPatrol() {
-		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, false );
 		$rc = $this->getDummyEditRecentChange();
 		$errors = $rc->doMarkPatrolled( $this->mockRegisteredUltimateAuthority() );
 		$this->assertContains( [ 'rcpatroldisabled' ], $errors );
@@ -529,6 +617,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::doMarkPatrolled
 	 */
 	public function testDoMarkPatrolled() {
+		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
 		$rc = $this->getDummyEditRecentChange();
 		$errors = $rc->doMarkPatrolled(
 			$this->mockUserAuthorityWithPermissions( $this->user, [ 'patrol', 'autopatrol' ] )
