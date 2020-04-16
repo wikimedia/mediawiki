@@ -2369,8 +2369,8 @@ $row: the database row for this page (the recentchanges record and a few extras
   Currently only data attributes reserved to MediaWiki are allowed
   (see Sanitizer::isReservedDataAttribute).
 
-'NewRevisionFromEditComplete': Called when a revision was inserted due to an
-edit, file upload, import or page move.
+'NewRevisionFromEditComplete': DEPRECATED since 1.35! Use RevisionFromEditComplete
+Called when a revision was inserted due to an edit, file upload, import or page move.
 $wikiPage: the WikiPage edited
 $rev: the new revision
 $originalRevId: if the edit restores or repeats an earlier revision (such as a
@@ -2894,6 +2894,17 @@ $title: The Title of the page the revision  belongs to
 $renderedRevision: a RenderedRevision object representing the new revision and providing access
   to the RevisionRecord as well as ParserOutput of that revision.
 &$updates: A list of DeferrableUpdate that can be manipulated by the hook handler.
+
+'RevisionFromEditComplete': Called when a revision was inserted due to an edit,
+file upload, import or page move.
+$wikiPage: the WikiPage edited
+$revRecord: the new RevisionRecord object
+$originalRevId: if the edit restores or repeats an earlier revision (such as a
+  rollback or a null revision), the ID of that earlier revision. False otherwise.
+  (Used to be called $baseID.)
+$user: UserIdentity representing the editing user
+&$tags: tags to apply to the edit and recent change. This is empty, and
+  replacement is ignored, in the case of import or page move.
 
 'RevisionRecordInserted': Called after a revision is inserted into the database.
 $revisionRecord: the RevisionRecord that has just been inserted.

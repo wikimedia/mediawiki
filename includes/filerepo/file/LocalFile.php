@@ -1646,7 +1646,18 @@ class LocalFile extends File {
 				if ( $nullRevRecord ) {
 					$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
 
-					// TODO replace hook
+					Hooks::run(
+						'RevisionFromEditComplete',
+						[
+							$wikiPage,
+							$inserted,
+							$inserted->getParentId(),
+							$user,
+							&$tags
+						]
+					);
+
+					// TODO hard deprecate
 					$nullRevision = new Revision( $inserted );
 					Hooks::run(
 						'NewRevisionFromEditComplete',

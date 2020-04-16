@@ -869,6 +869,11 @@ class MovePage {
 		// TODO cleanup hooks and use of $nullRevisionObj
 		$nullRevisionObj = new Revision( $nullRevision );
 		$fakeTags = [];
+		Hooks::run( 'RevisionFromEditComplete',
+			[ $newpage, $nullRevision, $nullRevision->getParentId(), $user, &$fakeTags ] );
+
+		// TODO hard deprecate hook
+		$nullRevisionObj = new Revision( $nullRevision );
 		Hooks::run( 'NewRevisionFromEditComplete',
 			[ $newpage, $nullRevisionObj, $nullRevision->getParentId(), $user, &$fakeTags ] );
 
@@ -898,9 +903,17 @@ class MovePage {
 				$redirectRevId = $inserted->getId();
 				$redirectArticle->updateRevisionOn( $dbw, $inserted, 0 );
 
-				// TODO replace hook with one using RevisionRecord
-				$redirectRevisionObj = new Revision( $inserted );
 				$fakeTags = [];
+				Hooks::run( 'RevisionFromEditComplete', [
+					$redirectArticle,
+					$inserted,
+					false,
+					$user,
+					&$fakeTags
+				] );
+
+				// TODO hard deprecate hook
+				$redirectRevisionObj = new Revision( $inserted );
 				Hooks::run( 'NewRevisionFromEditComplete',
 					[ $redirectArticle, $redirectRevisionObj, false, $user, &$fakeTags ] );
 

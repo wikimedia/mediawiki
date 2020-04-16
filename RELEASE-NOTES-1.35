@@ -706,8 +706,10 @@ because of Phabricator reports.
   use the RecentChange_save hook or similar instead.
 * The ArticleEditUpdates hook has been deprecated. Please
   use the RevisionDataUpdates hook or similar instead.
-* The ArticleRevisionUndeleted has been hard deprecated. Please use the new
-  RevisionUndeleted hook instead.
+* The ArticleRevisionUndeleted hook has been hard deprecated. Please use the
+  new RevisionUndeleted hook instead.
+* The NewRevisionFromEditComplete hook has been soft deprecated. Please use
+  the new RevisionFromEditComplete hook instead.
 * LinkHolderArray has been deprecated for public usage and will be
   internal part of parser.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
