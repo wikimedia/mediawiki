@@ -791,12 +791,9 @@ class ParserTestRunner {
 	 * @return Parser
 	 */
 	public function getParser() {
-		global $wgParserConf;
-
-		$class = $wgParserConf['class'];
-		$parser = new $class( $wgParserConf );
+		$parserFactory = MediaWikiServices::getInstance()->getParserFactory();
+		$parser = $parserFactory->create(); // A fresh parser object.
 		ParserTestParserHook::setup( $parser );
-
 		return $parser;
 	}
 
@@ -1140,6 +1137,7 @@ class ParserTestRunner {
 		Hooks::run( 'ParserTestGlobals', [ &$setup ] );
 
 		// Set content language. This invalidates the magic word cache and title services
+		// In addition the ParserFactory needs to be recreated as well.
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 		$lang->resetNamespaces();
 		$setup['wgContLang'] = $lang;
@@ -1158,6 +1156,7 @@ class ParserTestRunner {
 		$reset = function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'MagicWordFactory' );
 			$this->resetTitleServices();
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'ParserFactory' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;

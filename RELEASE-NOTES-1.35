@@ -85,6 +85,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   unchanged for revisions that only contain the main slot. The --schema-version
   option can be used with the dumpBackup.php script to set the dump format.
   (T238921)
+* $wgParserConf - This configuration is now deprecated.  It has been
+  effectively constant since 2008, and is ignored by core code.
+  Configure the ParserFactory service in order to customize the Parser used.
 * …
 
 ==== Removed configuration ====

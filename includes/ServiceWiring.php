@@ -731,6 +731,10 @@ return [
 	'ParserFactory' => function ( MediaWikiServices $services ) : ParserFactory {
 		$options = new ServiceOptions( Parser::CONSTRUCTOR_OPTIONS,
 			// 'class'
+			// Note that this value is ignored by ParserFactory and is always
+			// Parser::class for legacy reasons; we'll introduce a new
+			// mechanism for selecting an alternate parser in the future
+			// (T236809)
 			$services->getMainConfig()->get( 'ParserConf' ),
 			// Make sure to have defaults in case someone overrode ParserConf with something silly
 			[ 'class' => Parser::class ],
