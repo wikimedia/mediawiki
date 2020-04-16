@@ -14,6 +14,7 @@
 		</pre>
 	</div>
 </template>
+
 <script>
 module.exports = {
 	data: function () {
@@ -23,6 +24,7 @@ module.exports = {
 	}
 };
 </script>
+
 <style lang="less">
 .mw-vue-test {
 	&:hover {
