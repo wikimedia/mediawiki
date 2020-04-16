@@ -91,6 +91,7 @@ var FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptio
 	this.model.connect( this, { update: 'updateUiBasedOnState' } );
 
 	// Initialize
+	// eslint-disable-next-line mediawiki/class-doc
 	this.$element
 		.addClass( 'mw-rcfilters-ui-filterMenuSectionOptionWidget' )
 		.addClass( 'mw-rcfilters-ui-filterMenuSectionOptionWidget-name-' + this.model.getName() )
