@@ -350,7 +350,7 @@ class Parser {
 	 * @since 1.35
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		// See $wgParserConf documentation
+		// Deprecated and unused; from $wgParserConf
 		'class',
 		// See documentation for the corresponding config options
 		'ArticlePath',

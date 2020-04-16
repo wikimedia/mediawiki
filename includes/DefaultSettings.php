@@ -4465,6 +4465,9 @@ $wgInvalidRedirectTargets = [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ];
  * the contents of this variable will be out-of-date. The variable can only be
  * changed during LocalSettings.php, in particular, it can't be changed during
  * an extension setup function.
+ * @deprecated since 1.35.  This has been effectively a constant for a long
+ *  time.  Configuring the ParserFactory service is the modern way to tweak
+ *  the default parser.
  */
 $wgParserConf = [
 	'class' => Parser::class,
