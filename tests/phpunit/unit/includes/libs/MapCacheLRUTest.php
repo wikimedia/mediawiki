@@ -60,12 +60,24 @@ class MapCacheLRUTest extends PHPUnit\Framework\TestCase {
 	 * @covers MapCacheLRU::unserialize()
 	 */
 	public function testSerialize() {
-		$cache = MapCacheLRU::newFromArray( [ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ], 10 );
+		$cache = new MapCacheLRU( 3 );
+		$cache->set( 'a', 1 );
+		$cache->set( 'b', 2 );
+		$cache->set( 'c', 3 );
+
 		$string = serialize( $cache );
-		$ncache = unserialize( $string );
+		$cache = unserialize( $string );
 		$this->assertSame(
-			[ 'd' => 4, 'c' => 3, 'b' => 2, 'a' => 1 ],
-			$ncache->toArray()
+			[ 'a' => 1, 'b' => 2, 'c' => 3 ],
+			$cache->toArray(),
+			'entries are preserved'
+		);
+
+		$cache->set( 'd', 4 );
+		$this->assertSame(
+			[ 'b' => 2, 'c' => 3, 'd' => 4 ],
+			$cache->toArray(),
+			'maxKeys is preserved'
 		);
 	}
 
