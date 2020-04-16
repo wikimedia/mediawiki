@@ -37,8 +37,20 @@ namespace MediaWiki\HookContainer {
 			return $hookContainer;
 		}
 
-		private function getMockDeprecatedHooks() {
+		private function getMockDeprecatedHooks( $deprecatedHookInfo = null ) {
 			$mockDeprecatedHooks = $this->createMock( DeprecatedHooks::class );
+			if ( $deprecatedHookInfo ) {
+				foreach ( $deprecatedHookInfo as $name => $info ) {
+					$mockDeprecatedHooks
+						->method( 'isHookDeprecated' )
+						->with( $name )
+						->willReturn( true );
+					$mockDeprecatedHooks
+						->method( 'getDeprecationInfo' )
+						->with( $name )
+						->willReturn( $info );
+				}
+			}
 			return $mockDeprecatedHooks;
 		}
 
@@ -325,11 +337,9 @@ namespace MediaWiki\HookContainer {
 		 */
 		public function testRegisterDeprecated() {
 			$this->hideDeprecated( 'FooActionComplete hook' );
-			$mockDeprecatedHooks = $this->getMockDeprecatedHooks();
-			$mockDeprecatedHooks->method( 'isHookDeprecated' )->with( 'FooActionComplete' )
-				->willReturn( true );
-			$mockDeprecatedHooks->method( 'getDeprecationInfo' )->with( 'FooActionComplete' )
-				->willReturn( [ 'deprecatedVersion' => '1.0' ] );
+			$mockDeprecatedHooks = $this->getMockDeprecatedHooks( [
+				'FooActionComplete' => [ 'deprecatedVersion' => '1.0' ]
+			] );
 			$handler = [
 				'handler' => [
 					'name' => 'Path/To/extension.json-FooActionHandler',
@@ -371,6 +381,30 @@ namespace MediaWiki\HookContainer {
 			$hookContainer = $this->newHookContainer( $mockExtensionRegistry );
 			$this->expectException( UnexpectedValueException::class );
 			$hookContainer->run( 'InvalidReturnHandler' );
+		}
+
+		/**
+		 * @covers       \MediaWiki\HookContainer\HookContainer::emitDeprecationWarnings
+		 */
+		public function testEmitDeprecationWarnings() {
+			$registry = $this->getMockExtensionRegistry(
+				[
+					'handler' => 'FooGlobalFunction',
+					'extensionPath' => 'fake-extension.json'
+				],
+				'FooActionComplete'
+			);
+
+			$hookContainer = $this->newHookContainer(
+				$registry,
+				null,
+				$this->getMockDeprecatedHooks( [
+					'FooActionComplete' => [ 'deprecatedVersion' => '1.35' ]
+				] )
+			);
+
+			$this->expectDeprecation();
+			$hookContainer->emitDeprecationWarnings();
 		}
 	}
 

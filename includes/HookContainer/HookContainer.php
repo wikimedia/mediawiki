@@ -22,6 +22,7 @@ namespace MediaWiki\HookContainer;
 
 use Closure;
 use ExtensionRegistry;
+use MWDebug;
 use MWException;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
@@ -107,7 +108,9 @@ class HookContainer implements SalvageableService {
 	 *   - abortable: (bool) If false, handlers will not be allowed to abort the call sequenece.
 	 *     An exception will be raised if a handler returns anything other than true or null.
 	 *   - deprecatedVersion: (string) Version of MediaWiki this hook was deprecated in. For supporting
-	 *     Hooks::run() legacy $deprecatedVersion parameter
+	 *     Hooks::run() legacy $deprecatedVersion parameter. New core code should add deprecated
+	 *     hooks to the DeprecatedHooks::$deprecatedHooks array literal. New extension code should
+	 *     use the DeprecatedHooks attribute.
 	 * @return bool True if no handler aborted the hook
 	 * @throws UnexpectedValueException if handlers return an invalid value
 	 */
@@ -360,5 +363,29 @@ class HookContainer implements SalvageableService {
 			}
 		}
 		return $handlers;
+	}
+
+	/**
+	 * Will log a deprecation warning if:
+	 * 1. the hook is marked deprecated
+	 * 2. an extension registers a handler in the new way but does not acknowledge deprecation
+	 */
+	public function emitDeprecationWarnings() {
+		$registeredHooks = $this->extensionRegistry->getAttribute( 'Hooks' ) ?? [];
+		foreach ( $registeredHooks as $name => $handlers ) {
+			if ( $this->deprecatedHooks->isHookDeprecated( $name ) ) {
+				$deprecationInfo = $this->deprecatedHooks->getDeprecationInfo( $name );
+				$version = $deprecationInfo['deprecatedVersion'] ?? '';
+				$component = $deprecationInfo['component'] ?? 'MediaWiki';
+				foreach ( $handlers as $handler ) {
+					if ( !isset( $handler['deprecated'] ) || !$handler['deprecated'] ) {
+						MWDebug::sendRawDeprecated(
+							"Hook $name was deprecated in $component $version " .
+							"but is registered in " . $handler['extensionPath']
+						);
+					}
+				}
+			}
+		}
 	}
 }

@@ -18,6 +18,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * An action that views article content
  *
@@ -37,6 +39,12 @@ class ViewAction extends FormlessAction {
 
 	public function show() {
 		$config = $this->context->getConfig();
+
+		// Emit deprecated hook warnings.
+		// We do this only in the view action so that it reliably shows up in
+		// the debug toolbar without unduly impacting the performance of API and
+		// ResourceLoader requests.
+		MediaWikiServices::getInstance()->getHookContainer()->emitDeprecationWarnings();
 
 		if (
 			$config->get( 'DebugToolbar' ) == false && // don't let this get stuck on pages
