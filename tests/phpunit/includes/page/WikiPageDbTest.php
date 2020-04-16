@@ -1931,12 +1931,14 @@ more stuff
 			'page_id' => '44',
 			'page_len' => '76',
 			'page_is_redirect' => '1',
+			'page_is_new' => '1',
 			'page_latest' => '99',
 			'page_namespace' => '3',
 			'page_title' => 'JaJaTitle',
 			'page_restrictions' => 'edit=autoconfirmed,sysop:move=sysop',
 			'page_touched' => '20120101020202',
 			'page_links_updated' => '20140101020202',
+			'page_lang' => 'it',
 		];
 		foreach ( $overrides as $key => $value ) {
 			$row[$key] = $value;
@@ -1952,6 +1954,8 @@ more stuff
 				$test->assertSame( 76, $wikiPage->getTitle()->getLength() );
 				$test->assertTrue( $wikiPage->getPageIsRedirectField() );
 				$test->assertSame( 99, $wikiPage->getLatest() );
+				$test->assertSame( true, $wikiPage->isNew() );
+				$test->assertSame( 'it', $wikiPage->getLanguage() );
 				$test->assertSame( 3, $wikiPage->getTitle()->getNamespace() );
 				$test->assertSame( 'JaJaTitle', $wikiPage->getTitle()->getDBkey() );
 				$test->assertSame(
@@ -1989,12 +1993,31 @@ more stuff
 			);
 			}
 		];
+		yield 'no language' => [
+			$this->getRow( [
+				'page_lang' => null,
+			] ),
+			function ( WikiPage $wikiPage, self $test ) {
+				$test->assertSame(
+					'en',
+					$wikiPage->getLanguage()
+				);
+			}
+		];
 		yield 'not redirect' => [
 			$this->getRow( [
 				'page_is_redirect' => '0',
 			] ),
 			static function ( WikiPage $wikiPage, self $test ) {
 				$test->assertFalse( $wikiPage->isRedirect() );
+			}
+		];
+		yield 'not new' => [
+			$this->getRow( [
+				'page_is_new' => '0',
+			] ),
+			function ( WikiPage $wikiPage, self $test ) {
+				$test->assertFalse( $wikiPage->isNew() );
 			}
 		];
 	}
@@ -2697,6 +2720,50 @@ more stuff
 		// Don't use the title cache again, just use the LinkCache
 		$title = Title::makeTitleSafe( NS_MAIN, 'A new redirect' );
 		$this->assertTrue( $title->isRedirect() );
+	}
+
+	/**
+	 * @covers WikiPage::getTitle
+	 * @covers WikiPage::getId
+	 * @covers WikiPage::getNamespace
+	 * @covers WikiPage::getDBkey
+	 * @covers WikiPage::getWikiId
+	 * @covers WikiPage::canExist
+	 */
+	public function testGetTitle() {
+		$page = $this->createPage( __METHOD__, 'whatever' );
+
+		$title = $page->getTitle();
+		$this->assertSame( __METHOD__, $title->getText() );
+
+		$this->assertSame( $page->getId(), $title->getId() );
+		$this->assertSame( $page->getNamespace(), $title->getNamespace() );
+		$this->assertSame( $page->getDBkey(), $title->getDBkey() );
+		$this->assertSame( $page->getWikiId(), $title->getWikiId() );
+		$this->assertSame( $page->canExist(), $title->canExist() );
+	}
+
+	/**
+	 * @covers WikiPage::toPageRecord
+	 * @covers WikiPage::getLatest
+	 * @covers WikiPage::getTouched
+	 * @covers WikiPage::isNew
+	 * @covers WikiPage::isRedirect
+	 */
+	public function testToPageRecord() {
+		$page = $this->createPage( __METHOD__, 'whatever' );
+		$record = $page->toPageRecord();
+
+		$this->assertSame( $page->getId(), $record->getId() );
+		$this->assertSame( $page->getNamespace(), $record->getNamespace() );
+		$this->assertSame( $page->getDBkey(), $record->getDBkey() );
+		$this->assertSame( $page->getWikiId(), $record->getWikiId() );
+		$this->assertSame( $page->canExist(), $record->canExist() );
+
+		$this->assertSame( $page->getLatest(), $record->getLatest() );
+		$this->assertSame( $page->getTouched(), $record->getTouched() );
+		$this->assertSame( $page->isNew(), $record->isNew() );
+		$this->assertSame( $page->isRedirect(), $record->isRedirect() );
 	}
 
 }
