@@ -47,7 +47,7 @@ class PHPVersionCheck {
 	);
 
 	/**
-	 * @var string $format The format used for errors. One of "text" or "html"
+	 * @var string The format used for errors. One of "text" or "html"
 	 */
 	var $format = 'text';
 

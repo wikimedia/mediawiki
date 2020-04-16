@@ -26,17 +26,17 @@ use Wikimedia\Rdbms\IDatabase;
 
 class BatchRowWriter {
 	/**
-	 * @var IDatabase $db The database to write to
+	 * @var IDatabase The database to write to
 	 */
 	protected $db;
 
 	/**
-	 * @var string $table The name of the table to update
+	 * @var string The name of the table to update
 	 */
 	protected $table;
 
 	/**
-	 * @var string|false $clusterName A cluster name valid for use with LBFactory
+	 * @var string|false A cluster name valid for use with LBFactory
 	 */
 	protected $clusterName;
 
