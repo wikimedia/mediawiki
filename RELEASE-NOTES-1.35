@@ -389,6 +389,7 @@ because of Phabricator reports.
     - ::$mImageParams
     - ::$mImageParamsMagicArray
     - ::$mSubstWords
+    - ::$mVariables
     - ::$mConf (deprecated in 1.34)
     - ::$mExtLinkBracketedRegex
     - ::$mUrlProtocols
