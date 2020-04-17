@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki\HookRunner;
+namespace MediaWiki\HookContainer;
 
 use Closure;
 use ExtensionRegistry;
