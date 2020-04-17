@@ -1548,7 +1548,7 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
-		Hooks::run( 'InternalParseBeforeSanitize', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'InternalParseBeforeSanitize', [ &$parser, &$text, &$this->mStripState ], '1.35' );
 		$text = Sanitizer::removeHTMLtags(
 			$text,
 			// Callback from the Sanitizer for expanding items found in
@@ -3934,7 +3934,7 @@ class Parser {
 				$text = $content ? $content->getWikitextForTransclusion() : null;
 
 				Hooks::run( 'ParserFetchTemplate',
-					[ $parser, $title, $rev, &$text, &$deps ] );
+					[ $parser, $title, $rev, &$text, &$deps ], '1.35' );
 
 				if ( $text === false || $text === null ) {
 					$text = false;
@@ -4715,7 +4715,7 @@ class Parser {
 			 * &$sectionContent : ref to the content of the section
 			 * $maybeShowEditLinks : boolean describing whether this section has an edit link
 			 */
-			Hooks::run( 'ParserSectionCreate', [ $this, $i, &$sections[$i], $maybeShowEditLink ] );
+			Hooks::run( 'ParserSectionCreate', [ $this, $i, &$sections[$i], $maybeShowEditLink ], '1.35' );
 
 			$i++;
 		}
@@ -4769,7 +4769,7 @@ class Parser {
 		$text = $this->mStripState->unstripBoth( $text );
 
 		Hooks::run( 'ParserPreSaveTransformComplete',
-			[ $this, &$text ] );
+			[ $this, &$text ], '1.35' );
 
 		$this->setUser( null ); # Reset
 
@@ -5279,7 +5279,7 @@ class Parser {
 
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$parser = $this;
-		Hooks::run( 'BeforeParserrenderImageGallery', [ &$parser, &$ig ] );
+		Hooks::run( 'BeforeParserrenderImageGallery', [ &$parser, &$ig ], '1.35' );
 
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
