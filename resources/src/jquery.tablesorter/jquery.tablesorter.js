@@ -325,7 +325,7 @@
 			headerIndex,
 			exploded,
 			$tableHeaders = $( [] ),
-			$tableRows = $( table ).find( 'thead' ).eq( 0 ).find( '> tr' );
+			$tableRows = $( table ).find( 'thead' ).eq( 0 ).find( '> tr:not(.sorttop)' );
 
 		if ( $tableRows.length <= 1 ) {
 			$tableHeaders = $tableRows.children( 'th' );
@@ -905,7 +905,7 @@
 				cacheRegexs();
 
 				function setupForFirstSort() {
-					var $tfoot, $sortbottoms;
+					var $tfoot, $sortbottoms, $sorttops;
 
 					firstTime = false;
 
@@ -915,9 +915,7 @@
 					// tableSorterCollation customizations.
 					buildCollation();
 
-					// Legacy fix of .sortbottoms
-					// Wrap them inside a tfoot (because that's what they actually want to be)
-					// and put the <tfoot> at the end of the <table>
+					// Move .sortbottom rows to the <tfoot> at the bottom of the <table>
 					$sortbottoms = $table.find( '> tbody > tr.sortbottom' );
 					if ( $sortbottoms.length ) {
 						$tfoot = $table.children( 'tfoot' );
@@ -926,6 +924,13 @@
 						} else {
 							$table.append( $( '<tfoot>' ).append( $sortbottoms ) );
 						}
+					}
+
+					// Move .sorttop rows to the <thead> at the top of the <table>
+					// <thead> should exist if we got this far
+					$sorttops = $table.find( '> tbody > tr.sorttop' );
+					if ( $sorttops.length ) {
+						$table.children( 'thead' ).append( $sorttops );
 					}
 
 					explodeRowspans( $table );
