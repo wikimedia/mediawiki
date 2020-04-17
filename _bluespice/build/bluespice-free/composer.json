@@ -4,6 +4,8 @@
 		"url": "https://packages.bluespice.com/"
 	}],
 	"require": {
+		"monolog/monolog": "~1.22.1",
+
 		"bluespice/foundation": "dev-REL1_31",
 		"bluespice/about": "dev-REL1_31",
 		"bluespice/articleinfo": "dev-REL1_31",
