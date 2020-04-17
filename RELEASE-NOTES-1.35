@@ -869,6 +869,18 @@ because of Phabricator reports.
   - ::$mRevisionSize
   - ::$mInputSize
   - ::$mInParse
+* The following parser-related hooks have been deprecated:
+  - InternalParseBeforeSanitize
+    * Use an alternative hook which doesn't expose internal half-parsed state,
+      like ParserBeforeInternalParse or ParserAfterTidy
+  - ParserFetchTemplate
+    * Use BeforeParserFetchTemplateAndTitle
+  - ParserSectionCreate
+    * No replacement; <section> tag wrapping will be done by core in future.
+  - ParserPreSaveTransformComplete
+    * No replacement; Content::preSaveTransform() provides for customizable PSTs
+  - BeforeParserrenderImageGallery
+    * No replacement; MediaHandler provides for customizable media rendering
 * The accessor/mutator methods Parser::Options(), Parser::OutputType(), and
   Parser::Title() have been deprecated; use the appropriate Parser::get*
   or Parser::set* methods instead.
