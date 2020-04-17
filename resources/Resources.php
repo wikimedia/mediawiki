@@ -1471,6 +1471,7 @@ return [
 		'packageFiles' => [
 			'ready.js',
 			'checkboxShift.js',
+			'checkboxHack.js',
 		],
 		'dependencies' => [
 			'mediawiki.util',
