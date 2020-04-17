@@ -11,7 +11,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers WANObjectCache::getWarmupKeyMisses
  * @covers WANObjectCache::makeSisterKey
  * @covers WANObjectCache::makeSisterKeys
- * @covers WANObjectCache::extractBaseKey
  * @covers WANObjectCache::getProcessCache
  * @covers WANObjectCache::getNonProcessCachedMultiKeys
  * @covers WANObjectCache::getRawKeysForWarmup
