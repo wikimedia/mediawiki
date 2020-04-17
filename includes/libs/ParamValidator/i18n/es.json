@@ -5,6 +5,8 @@
 		]
 	},
 	"paramvalidator-emptystring": "la cadena vacía",
+	"paramvalidator-help-default": "Predeterminado: $1",
+	"paramvalidator-help-default-empty": "Predeterminado: (vacío)",
 	"paramvalidator-help-required": "Este parámetro es obligatorio.",
 	"paramvalidator-help-type-boolean": "Tipo: {{PLURAL:$1|1=booleano|2=lista de booleanos}}",
 	"paramvalidator-help-type-float": "Tipo: {{PLURAL:$1|1=flotante|2=lista de flotantes}}",
