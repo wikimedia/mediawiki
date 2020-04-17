@@ -169,6 +169,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   Support for not passing a user has also been hard-deprecated and will be
   removed in 1.36.
 * The ParserPreSaveTransformComplete hook was added.
+* The BeforeParserFetchTemplateAndTitle hook was added.
 * The ResourceLoaderSkinModule class now has a "legacy" feature that loads
   the stylesheets previously part of the "mediawiki.legacy.shared" and
   "mediawiki.legacy.commonPrint" module.
@@ -881,6 +882,10 @@ because of Phabricator reports.
     * No replacement; Content::preSaveTransform() provides for customizable PSTs
   - BeforeParserrenderImageGallery
     * No replacement; MediaHandler provides for customizable media rendering
+  - BeforeParserFetchTemplateAndtitle
+    * Replace with new BeforeParserFetchTemplateAndTitle hook
+  - ParserBeforeTidy
+    * Use ParserAfterTidy instead to avoid exposing internal half-parsed state
 * The accessor/mutator methods Parser::Options(), Parser::OutputType(), and
   Parser::Title() have been deprecated; use the appropriate Parser::get*
   or Parser::set* methods instead.

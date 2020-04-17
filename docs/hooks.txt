@@ -848,7 +848,14 @@ $nt: the image title
   as a key then the file will appear as a broken thumbnail.
 &$descQuery: query string to add to thumbnail URL
 
-'BeforeParserFetchTemplateAndtitle': Before a template is fetched by Parser.
+'BeforeParserFetchTemplateAndtitle': DEPRECATED since 1.35!
+Use the version with corrected capitalization below.
+$parser: Parser object
+$title: title of the template
+&$skip: skip this template and link it?
+&$id: the id of the revision being parsed
+
+'BeforeParserFetchTemplateAndTitle': Before a template is fetched by Parser.
 $parser: Parser object
 $title: title of the template
 &$skip: skip this template and link it?
@@ -2579,7 +2586,8 @@ TODO: No more strip, deprecated ?
 &$text: text being parsed
 [&]$stripState: stripState used (object)
 
-'ParserBeforeTidy': Called before tidy and custom tags replacements.
+'ParserBeforeTidy': DEPRECATED since 1.35!
+Called before tidy and custom tags replacements.
 [&]$parser: Parser object being used
 &$text: actual text
 
