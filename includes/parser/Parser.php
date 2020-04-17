@@ -399,7 +399,12 @@ class Parser {
 		BadFileLookup $badFileLookup = null,
 		LanguageConverterFactory $languageConverterFactory = null
 	) {
+		if ( ParserFactory::$inParserFactory === 0 ) {
+			// Direct construction of Parser is deprecated; use a ParserFactory
+			wfDeprecated( __METHOD__, '1.34' );
+		}
 		if ( !$svcOptions || is_array( $svcOptions ) ) {
+			wfDeprecated( 'old calling convention for ' . __METHOD__, '1.34' );
 			// Pre-1.34 calling convention is the first parameter is just ParserConf, the seventh is
 			// Config, and the eighth is LinkRendererFactory.
 			$this->mConf = (array)$svcOptions;

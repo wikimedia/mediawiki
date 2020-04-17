@@ -42,10 +42,11 @@ class MagicVariableTest extends MediaWikiTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getLanguageFactory()->getLanguage( 'en' );
 		$this->setContentLang( $contLang );
 
-		$this->testParser = new Parser();
+		$this->testParser = $services->getParserFactory()->create();
 		$this->testParser->Options( ParserOptions::newFromUserAndLang( new User, $contLang ) );
 
 		# initialize parser output
