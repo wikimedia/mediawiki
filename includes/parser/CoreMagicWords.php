@@ -168,7 +168,7 @@ class CoreMagicWords {
 					self::setOutputFlag( $parser, $logger, 'vary-revision-id', '{{REVISIONID}} used' );
 					$value = $parser->getRevisionId();
 					if ( $value === 0 ) {
-						$rev = $parser->getRevisionObject();
+						$rev = $parser->getRevisionRecordObject();
 						$value = $rev ? $rev->getId() : $value;
 					}
 					if ( !$value ) {
@@ -332,7 +332,7 @@ class CoreMagicWords {
 		// Get the timezone-adjusted timestamp to be used for this revision
 		$resNow = substr( $parser->getRevisionTimestamp(), $start, $len );
 		// Possibly set vary-revision if there is not yet an associated revision
-		if ( !$parser->getRevisionObject() ) {
+		if ( !$parser->getRevisionRecordObject() ) {
 			// Get the timezone-adjusted timestamp $mtts seconds in the future.
 			// This future is relative to the current time and not that of the
 			// parser options. The rendered timestamp can be compared to that
