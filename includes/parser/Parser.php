@@ -1026,6 +1026,7 @@ class Parser {
 	 * @deprecated since 1.35, use getOutputType()/setOutputType()
 	 */
 	public function OutputType( $x = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mOutputType, $x );
 	}
 
@@ -1060,6 +1061,7 @@ class Parser {
 	 * @deprecated since 1.35, use getOptions() / setOptions()
 	 */
 	public function Options( $x = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mOptions, $x );
 	}
 
