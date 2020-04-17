@@ -936,11 +936,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $this->segmentedValueMaxSize;
 	}
 
-	public function setNewPreparedValues( array $valuesByKey ) {
+	public function setNewPreparedValues( array $valueByKey ) {
 		$this->preparedValues = [];
 
 		$sizes = [];
-		foreach ( $valuesByKey as $key => $value ) {
+		foreach ( $valueByKey as $key => $value ) {
 			if ( $value === false ) {
 				$sizes[] = null; // not storable, don't bother
 				continue;
