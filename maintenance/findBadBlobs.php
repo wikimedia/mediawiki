@@ -66,7 +66,10 @@ class FindBadBlobs extends Maintenance {
 		$this->addDescription( 'Scan for bad content blobs' );
 		$this->addOption( 'from-date', 'Start scanning revisions at the given date. '
 			. 'Format: Anything supported by MediaWiki, e.g. YYYYMMDDHHMMSS or YYYY-MM-DD_HH:MM:SS',
-			true, true );
+			false, true );
+		$this->addOption( 'revisions', 'A list of revision IDs to scan, separated by comma or colon '
+			. 'or whitespace. Revisions belonging to deleted pages will work. '
+			. 'If set to "-" IDs are read from stdin, one per line.', false, true );
 		$this->addOption( 'limit', 'Maximum number of revisions to scan. Default: 1000', false, true );
 		$this->addOption( 'mark', 'Mark the blob as "known bad", to avoid errors when '
 			. 'attempting to read it. The value given is the reason for marking the blob as bad, '
@@ -106,15 +109,61 @@ class FindBadBlobs extends Maintenance {
 	}
 
 	/**
+	 * @return int[]
+	 */
+	private function getRevisionIds() {
+		$opt = $this->getOption( 'revisions' );
+
+		if ( $opt === '-' ) {
+			$opt = stream_get_contents( STDIN );
+
+			if ( !$opt ) {
+				return [];
+			}
+		}
+
+		return $this->normalizeIds( $opt );
+	}
+
+	/**
+	 * @param string $text
+	 *
+	 * @return int[]
+	 */
+	private function normalizeIds( $text ) {
+		$ids = preg_split( '/[\s,;:]+/', $text );
+		return array_map( function ( $id ) {
+			return (int)$id;
+		}, $ids );
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function execute() {
 		$this->initializeServices();
 
-		$fromTimestamp = $this->getStartTimestamp();
-		$total = $this->getOption( 'limit', 1000 );
+		if ( $this->hasOption( 'revisions' ) ) {
+			$ids = $this->getRevisionIds();
 
-		$this->scanRevisionsByTimestamp( $fromTimestamp, $total );
+			$count = $this->scanRevisionsById( $ids );
+		} elseif ( $this->hasOption( 'from-date' ) ) {
+			$fromTimestamp = $this->getStartTimestamp();
+			$total = $this->getOption( 'limit', 1000 );
+
+			$count = $this->scanRevisionsByTimestamp( $fromTimestamp, $total );
+
+			$this->output( "The range of archive rows scanned is based on the range of revision IDs "
+				. "scanned in the revision table.\n" );
+		} else {
+			$this->fatalError( 'Must specify either --revisions or --from-date' );
+		}
+
+		if ( $this->hasOption( 'mark' ) ) {
+			$this->output( "Marked $count bad revisions\n" );
+		} else {
+			$this->output( "Found $count bad revisions\n" );
+		}
 	}
 
 	/**
@@ -190,15 +239,6 @@ class FindBadBlobs extends Maintenance {
 
 			$this->waitForReplication();
 		}
-
-		if ( $this->hasOption( 'mark' ) ) {
-			$this->output( "Marked $count bad revisions\n" );
-		} else {
-			$this->output( "Found $count bad revisions\n" );
-		}
-
-		$this->output( "The range of archive rows scanned is based on the range of revision IDs "
-			. "scanned in the revision table.\n" );
 
 		return $count;
 	}
@@ -277,6 +317,98 @@ class FindBadBlobs extends Maintenance {
 			[ 'ORDER BY' => "rev_id $dir" ]
 		);
 		return (int)$next;
+	}
+
+	/**
+	 * @param array $ids
+	 *
+	 * @return int
+	 */
+	private function scanRevisionsById( array $ids ) {
+		$count = 0;
+		$total = count( $ids );
+
+		$this->output( "Scanning $total ids\n" );
+
+		foreach ( array_chunk( $ids, $this->getBatchSize() ) as $batch ) {
+			$revisions = $this->loadRevisionsById( $batch );
+
+			if ( !$revisions ) {
+				continue;
+			}
+
+			/** @var RevisionRecord $rev */
+			foreach ( $revisions as $rev ) {
+				$count += $this->checkRevision( $rev );
+			}
+
+			$batchSize = count( $revisions );
+			$this->output( "\t- Scanned a batch of $batchSize revisions\n" );
+		}
+
+		return $count;
+	}
+
+	/**
+	 * @param int[] $ids
+	 *
+	 * @return RevisionRecord[]
+	 */
+	private function loadRevisionsById( array $ids ) {
+		$db = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$queryInfo = $this->revisionStore->getQueryInfo();
+
+		$rows = $db->select(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			[
+				'rev_id ' => $ids,
+			],
+			__METHOD__,
+			[],
+			$queryInfo['joins']
+		);
+
+		$result = $this->revisionStore->newRevisionsFromBatch( $rows, [ 'slots' => true ] );
+
+		if ( !$result->isOK() ) {
+			$this->fatalError( Status::wrap( $result )->getMessage( false, false, 'en' )->text() );
+		}
+
+		$revisions = $result->value;
+
+		// if not all revisions were found, check the archive table.
+		if ( count( $revisions ) < count( $ids ) ) {
+			$archiveQueryInfo = $this->revisionStore->getArchiveQueryInfo();
+			$remainingIds = array_diff( $ids, array_keys( $revisions ) );
+
+			$rows = $db->select(
+				$archiveQueryInfo['tables'],
+				$archiveQueryInfo['fields'],
+				[
+					'ar_rev_id ' => $remainingIds,
+				],
+				__METHOD__,
+				[],
+				$archiveQueryInfo['joins']
+			);
+
+			$archiveResult = $this->revisionStore->newRevisionsFromBatch(
+				$rows,
+				[ 'slots' => true, 'archive' => true ]
+			);
+
+			if ( !$archiveResult->isOK() ) {
+				$this->fatalError(
+					Status::wrap( $archiveResult )->getMessage( false, false, 'en' )->text()
+				);
+			}
+
+			// don't use array_merge, since it will re-index
+			$revisions = $revisions + $archiveResult->value;
+		}
+
+		return $revisions;
 	}
 
 	/**
