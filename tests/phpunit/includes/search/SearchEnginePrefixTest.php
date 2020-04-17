@@ -1,15 +1,12 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Search
  * @group Database
  */
 class SearchEnginePrefixTest extends MediaWikiLangTestCase {
-	private $originalHandlers;
-
 	/**
 	 * @var SearchEngine
 	 */
@@ -65,15 +62,6 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 		$this->search = MediaWikiServices::getInstance()->newSearchEngine();
 		$this->search->setNamespaces( [] );
-
-		$this->originalHandlers = TestingAccessWrapper::newFromClass( Hooks::class )->handlers;
-		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = [];
-	}
-
-	public function tearDown() : void {
-		parent::tearDown();
-
-		TestingAccessWrapper::newFromClass( Hooks::class )->handlers = $this->originalHandlers;
 	}
 
 	protected function searchProvision( array $results = null ) {

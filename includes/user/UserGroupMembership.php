@@ -205,7 +205,7 @@ class UserGroupMembership {
 				$fname
 			);
 			if ( $hasExpiredRow ) {
-				JobQueueGroup::singleton()->push( new UserGroupExpiryJob() );
+				JobQueueGroup::singleton()->push( new UserGroupExpiryJob( [] ) );
 			}
 		} );
 

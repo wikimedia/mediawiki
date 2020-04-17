@@ -132,8 +132,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$securityLevel = $this->getRequest()->getText( 'force' );
 		if (
-			$securityLevel && AuthManager::singleton()->securitySensitiveOperationStatus(
-				$securityLevel ) === AuthManager::SEC_REAUTH
+			$securityLevel &&
+				MediaWikiServices::getInstance()->getAuthManager()->securitySensitiveOperationStatus(
+					$securityLevel ) === AuthManager::SEC_REAUTH
 		) {
 			$this->securityLevel = $securityLevel;
 		}
@@ -220,7 +221,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			} );
 		}
 
-		$authManager = AuthManager::singleton();
+		$authManager = MediaWikiServices::getInstance()->getAuthManager();
 		$session = SessionManager::getGlobalSession();
 
 		// Session data is used for various things in the authentication process, so we must make
@@ -523,7 +524,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( !$requests ) {
 			$this->authAction = $this->getDefaultAction( $this->subPage );
 			$this->authForm = null;
-			$requests = AuthManager::singleton()->getAuthenticationRequests( $this->authAction, $user );
+			$requests = MediaWikiServices::getInstance()->getAuthManager()
+				->getAuthenticationRequests( $this->authAction, $user );
 		}
 
 		// Generic styles and scripts for both login and signup form
@@ -882,8 +884,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 								return $this->reasonValidatorResult;
 							}
 							$this->reasonValidatorResult = true;
-							if ( !AuthManager::singleton()->getAuthenticationSessionData( 'reason-retry', false ) ) {
-								AuthManager::singleton()->setAuthenticationSessionData( 'reason-retry', true );
+							$authManager = MediaWikiServices::getInstance()->getAuthManager();
+							if ( !$authManager->getAuthenticationSessionData( 'reason-retry', false ) ) {
+								$authManager->setAuthenticationSessionData( 'reason-retry', true );
 								$this->reasonValidatorResult = $this->msg( 'createacct-reason-confirm' );
 							}
 							return $this->reasonValidatorResult;

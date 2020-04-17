@@ -45,6 +45,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Message;
 use MWException;
+use MWTimestamp;
 use MWUnknownContentModelException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -908,7 +909,7 @@ class RevisionStore
 		}
 
 		// Construct the new revision
-		$timestamp = wfTimestampNow(); // TODO: use a callback, so we can override it for testing.
+		$timestamp = MWTimestamp::now( TS_MW );
 		$newRevision = MutableRevisionRecord::newFromParentRevision( $oldRevision );
 
 		$newRevision->setComment( $comment );
@@ -1919,7 +1920,7 @@ class RevisionStore
 
 		$timestamp = isset( $fields['timestamp'] )
 			? strval( $fields['timestamp'] )
-			: wfTimestampNow(); // TODO: use a callback, so we can override it for testing.
+			: MWTimestamp::now( TS_MW );
 
 		$record->setTimestamp( $timestamp );
 
@@ -2574,7 +2575,7 @@ class RevisionStore
 		$timestamp =
 			$db->selectField( 'revision', 'rev_timestamp', [ 'rev_id' => $id ], __METHOD__ );
 
-		return ( $timestamp !== false ) ? wfTimestamp( TS_MW, $timestamp ) : false;
+		return ( $timestamp !== false ) ? MWTimestamp::convert( TS_MW, $timestamp ) : false;
 	}
 
 	/**

@@ -49,10 +49,12 @@ class GenderCache {
 	}
 
 	/**
-	 * @deprecated in 1.28 see MediaWikiServices::getInstance()->getGenderCache()
+	 * @see MediaWikiServices::getInstance()->getGenderCache()
+	 * @deprecated in 1.28 (soft), 1.35 (hard)
 	 * @return GenderCache
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.28' );
 		return MediaWikiServices::getInstance()->getGenderCache();
 	}
 

@@ -152,7 +152,7 @@ class MediaWiki {
 	 *
 	 * @return string Action
 	 */
-	public function getAction() {
+	public function getAction() : string {
 		if ( $this->action === null ) {
 			$this->action = Action::getActionName( $this->context );
 		}
@@ -478,23 +478,23 @@ class MediaWiki {
 	/**
 	 * Perform one of the "standard" actions
 	 *
-	 * @param Page $page
+	 * @param Article $article
 	 * @param Title $requestTitle The original title, before any redirects were applied
 	 */
-	private function performAction( Page $page, Title $requestTitle ) {
+	private function performAction( Article $article, Title $requestTitle ) {
 		$request = $this->context->getRequest();
 		$output = $this->context->getOutput();
 		$title = $this->context->getTitle();
 		$user = $this->context->getUser();
 
 		if ( !Hooks::run( 'MediaWikiPerformAction',
-				[ $output, $page, $title, $user, $request, $this ] )
+				[ $output, $article, $title, $user, $request, $this ] )
 		) {
 			return;
 		}
 
 		$act = $this->getAction();
-		$action = Action::factory( $act, $page, $this->context );
+		$action = Action::factory( $act, $article, $this->context );
 
 		if ( $action instanceof Action ) {
 			// Narrow DB query expectations for this HTTP request

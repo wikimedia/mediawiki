@@ -1,7 +1,5 @@
 <?php
 /**
- * CDN cache purging.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,14 +26,33 @@ use Wikimedia\Assert\Assert;
  * @ingroup Cache
  */
 class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
-	/** @var string[] Collection of URLs to purge */
-	private $urls = [];
+	/** @var array[] List of (URL, rebound purge delay) tuples */
+	private $urlTuples = [];
+	/** @var array[] List of (Title, rebound purge delay) tuples */
+	private $titleTuples = [];
+
+	/** @var int Maximum seconds of rebound purge delay (sanity) */
+	const MAX_REBOUND_DELAY = 300;
 
 	/**
-	 * @param string[] $urlArr Collection of URLs to purge
+	 * @param string[]|Title[] $targets Collection of URLs/titles to be purged from CDN
+	 * @param array $options Options map. Supports:
+	 *   - reboundDelay: how many seconds after the first purge to send a rebound purge.
+	 *      No rebound purge will be sent if this is not positive. [Default: 0]
 	 */
-	public function __construct( array $urlArr ) {
-		$this->urls = $urlArr;
+	public function __construct( array $targets, array $options = [] ) {
+		$delay = min(
+			(int)max( $options['reboundDelay'] ?? 0, 0 ),
+			self::MAX_REBOUND_DELAY
+		);
+
+		foreach ( $targets as $target ) {
+			if ( $target instanceof Title ) {
+				$this->titleTuples[] = [ $target, $delay ];
+			} else {
+				$this->urlTuples[] = [ $target, $delay ];
+			}
+		}
 	}
 
 	public function merge( MergeableUpdate $update ) {
@@ -43,40 +60,46 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		Assert::parameterType( __CLASS__, $update, '$update' );
 		'@phan-var self $update';
 
-		$this->urls = array_merge( $this->urls, $update->urls );
+		$this->urlTuples = array_merge( $this->urlTuples, $update->urlTuples );
+		$this->titleTuples = array_merge( $this->titleTuples, $update->titleTuples );
 	}
 
 	/**
 	 * Create an update object from an array of Title objects, or a TitleArray object
 	 *
 	 * @param Traversable|Title[] $titles
-	 * @param string[] $urlArr
+	 * @param string[] $urls
 	 * @return CdnCacheUpdate
+	 * @deprecated Since 1.35 Use HtmlCacheUpdater instead
 	 */
-	public static function newFromTitles( $titles, $urlArr = [] ) {
-		( new LinkBatch( $titles ) )->execute();
-		/** @var Title $title */
-		foreach ( $titles as $title ) {
-			$urlArr = array_merge( $urlArr, $title->getCdnUrls() );
-		}
-
-		return new CdnCacheUpdate( $urlArr );
+	public static function newFromTitles( $titles, $urls = [] ) {
+		return new CdnCacheUpdate( array_merge( $titles, $urls ) );
 	}
 
-	/**
-	 * Purges the list of URLs passed to the constructor.
-	 */
 	public function doUpdate() {
-		global $wgCdnReboundPurgeDelay;
+		// Resolve the final list of URLs just before purging them (T240083)
+		$reboundDelayByUrl = $this->resolveReboundDelayByUrl();
 
-		self::purge( $this->urls );
+		// Send the immediate purges to CDN
+		self::purge( array_keys( $reboundDelayByUrl ) );
+		$immediatePurgeTimestamp = time();
 
-		if ( $wgCdnReboundPurgeDelay > 0 ) {
-			JobQueueGroup::singleton()->lazyPush( new CdnPurgeJob( [
-				'urls' => $this->urls,
-				'jobReleaseTimestamp' => time() + $wgCdnReboundPurgeDelay
-			] ) );
+		// Get the URLs that need rebound purges, grouped by seconds of purge delay
+		$urlsWithReboundByDelay = [];
+		foreach ( $reboundDelayByUrl as $url => $delay ) {
+			if ( $delay > 0 ) {
+				$urlsWithReboundByDelay[$delay][] = $url;
+			}
 		}
+		// Enqueue delayed purge jobs for these URLs (usually only one job)
+		$jobs = [];
+		foreach ( $urlsWithReboundByDelay as $delay => $urls ) {
+			$jobs[] = new CdnPurgeJob( [
+				'urls' => $urls,
+				'jobReleaseTimestamp' => $immediatePurgeTimestamp + $delay
+			] );
+		}
+		JobQueueGroup::singleton()->lazyPush( $jobs );
 	}
 
 	/**
@@ -145,6 +168,44 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 			$pool->run();
 		}
+	}
+
+	/**
+	 * @return string[] List of URLs
+	 */
+	public function getUrls() {
+		return array_keys( $this->resolveReboundDelayByUrl() );
+	}
+
+	/**
+	 * @return int[] Map of (URL => rebound purge delay)
+	 */
+	private function resolveReboundDelayByUrl() {
+		/** @var Title $title */
+
+		// Avoid multiple queries for getCdnUrls() call
+		$lb = MediaWikiServices::getInstance()->getLinkBatchFactory()->newLinkBatch();
+		foreach ( $this->titleTuples as list( $title, $delay ) ) {
+			$lb->addObj( $title );
+		}
+		$lb->execute();
+
+		$reboundDelayByUrl = [];
+
+		// Resolve the titles into CDN URLs
+		foreach ( $this->titleTuples as list( $title, $delay ) ) {
+			foreach ( $title->getCdnUrls() as $url ) {
+				// Use the highest rebound for duplicate URLs in order to handle the most lag
+				$reboundDelayByUrl[$url] = max( $reboundDelayByUrl[$url] ?? 0, $delay );
+			}
+		}
+
+		foreach ( $this->urlTuples as list( $url, $delay ) ) {
+			// Use the highest rebound for duplicate URLs in order to handle the most lag
+			$reboundDelayByUrl[$url] = max( $reboundDelayByUrl[$url] ?? 0, $delay );
+		}
+
+		return $reboundDelayByUrl;
 	}
 
 	/**

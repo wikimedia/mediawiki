@@ -2,18 +2,18 @@
 	"@metadata": {
 		"authors": [
 			"Ainali",
+			"Bengtsson96",
 			"Haxpett",
 			"Jopparn",
 			"Knuckles",
+			"Lokal Profil",
 			"Magol",
 			"Milicevic01",
 			"Per",
 			"Sendelbach",
 			"Skalman",
-			"WikiPhoenix",
-			"Lokal Profil",
 			"Warrakkk",
-			"Bengtsson96"
+			"WikiPhoenix"
 		]
 	},
 	"ooui-outline-control-move-down": "Flytta ned objekt",
@@ -29,7 +29,7 @@
 	"ooui-dialog-process-dismiss": "Stäng",
 	"ooui-dialog-process-retry": "Försök igen",
 	"ooui-dialog-process-continue": "Fortsätt",
-	"ooui-combobox-button-label": "Rullgardinslist för kryssruta",
+	"ooui-combobox-button-label": "Växla alternativ",
 	"ooui-selectfile-button-select": "Välj en fil",
 	"ooui-selectfile-not-supported": "Filval stöds inte",
 	"ooui-selectfile-placeholder": "Ingen fil är vald",

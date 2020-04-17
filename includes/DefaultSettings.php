@@ -252,6 +252,20 @@ $wgArticlePath = false;
 $wgUploadPath = false;
 
 /**
+ * The base path for img_auth.php. This is used to interpret the request URL
+ * for requests to img_auth.php that do not match the base upload path. If
+ * false, "{$wgScriptPath}/img_auth.php" is used.
+ *
+ * Normally, requests to img_auth.php have a REQUEST_URI which matches
+ * $wgUploadPath, and in that case, setting this should not be necessary.
+ * This variable is used in case img_auth.php is accessed via a different path
+ * than $wgUploadPath.
+ *
+ * @since 1.35
+ */
+$wgImgAuthPath = false;
+
+/**
  * The filesystem path of the images directory. Defaults to "{$IP}/images".
  */
 $wgUploadDirectory = false;
@@ -1625,6 +1639,15 @@ $wgDirectoryMode = 0777;
 $wgResponsiveImages = true;
 
 /**
+ * On pages containing images, tell the user agent to pre-connect to hosts from
+ * $wgForeignFileRepos.  This speeds up rendering, but may create unwanted
+ * traffic if there are many possible URLs from which images are served.
+ * @since 1.35
+ * @warning EXPERIMENTAL!
+ */
+$wgImagePreconnect = false;
+
+/**
  * @name DJVU settings
  * @{
  */
@@ -2458,11 +2481,17 @@ $wgObjectCaches = [
 ];
 
 /**
- * Main Wide-Area-Network cache type. This should be a cache with fast access,
- * but it may have limited space. By default, it is disabled, since the basic stock
- * cache is not fast enough to make it worthwhile. For single data-center setups, this can
- * simply be pointed to a cache in $wgWANObjectCaches that uses a local $wgObjectCaches
- * cache with a relayer of type EventRelayerNull.
+ * Main Wide-Area-Network cache type.
+ *
+ * By default, this will wrap $wgMainCacheType (which is disabled, since the basic
+ * stock default of CACHE_DB is not fast enough to make it worthwhile).
+ *
+ * For single server or single data-center setup, setting $wgMainCacheType
+ * is enough.
+ *
+ * For a multiple data-center setup, WANObjectCache should be configured to
+ * broadcast some if its operations using Mcrouter or Dynomite.
+ * See @ref wanobjectcache-deployment "Deploying WANObjectCache".
  *
  * The options are:
  *   - false:            Configure the cache using $wgMainCacheType, without using
@@ -2477,28 +2506,33 @@ $wgMainWANCache = false;
 /**
  * Advanced WAN object cache configuration.
  *
- * Each WAN cache wraps a registered object cache (for the local cluster)
- * and it must also be configured to point to a PubSub instance. Subscribers
- * must be configured to relay purges to the actual cache servers.
+ * The format is an associative array where the key is an identifier
+ * that may be referenced by $wgMainWANCache, and the value is an array of options:
  *
- * The format is an associative array where the key is a cache identifier, and
- * the value is an associative array of parameters. The "cacheId" parameter is
- * a cache identifier from $wgObjectCaches. The "loggroup" parameter controls
- * where log events are sent.
+ *  - class:   (Required) The class to use (must be WANObjectCache or a subclass).
+ *  - cacheId: (Required) A cache identifier from $wgObjectCaches.
+ *  - secret:  (Optional) Stable secret for hashing long strings in key components.
+ *             Default: $wgSecretKey.
+ *
+ * Any other options are treated as constructor parameters to WANObjectCache,
+ * except for 'cache', 'logger', 'stats' and 'asyncHandler' which are
+ * unconditionally set by MediaWiki core's ServiceWiring.
+ *
+ * @par Example:
+ * @code
+ * $wgWANObjectCaches'memcached-php' => [
+ *   'class' => WANObjectCache::class,
+ *   'cacheId' => 'memcached-php',
+ * ];
+ * @endcode
  *
  * @since 1.26
  */
 $wgWANObjectCaches = [
 	CACHE_NONE => [
-		'class'    => WANObjectCache::class,
-		'cacheId'  => CACHE_NONE
+		'class' => WANObjectCache::class,
+		'cacheId' => CACHE_NONE,
 	]
-	/* Example of a simple single data-center cache:
-	'memcached-php' => [
-		'class'    => WANObjectCache::class,
-		'cacheId'  => 'memcached-php'
-	]
-	*/
 ];
 
 /**
@@ -3056,7 +3090,7 @@ $wgExtraLanguageNames = [];
 /**
  * List of mappings from one language code to another.
  * This array makes the codes not appear as a selectable language on the
- * installer, and excludes them when running the transstat.php script.
+ * installer.
  *
  * In Setup.php, the variable $wgDummyLanguageCodes is created by combining
  * these codes with a list of "deprecated" codes, which are mostly leftovers
@@ -4431,6 +4465,9 @@ $wgInvalidRedirectTargets = [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ];
  * the contents of this variable will be out-of-date. The variable can only be
  * changed during LocalSettings.php, in particular, it can't be changed during
  * an extension setup function.
+ * @deprecated since 1.35.  This has been effectively a constant for a long
+ *  time.  Configuring the ParserFactory service is the modern way to tweak
+ *  the default parser.
  */
 $wgParserConf = [
 	'class' => Parser::class,
@@ -5130,7 +5167,6 @@ $wgReservedUsernames = [
  */
 $wgDefaultUserOptions = [
 	'ccmeonemails' => 0,
-	'cols' => 80, // @deprecated since 1.29 No longer used in core
 	'date' => 'default',
 	'diffonly' => 0,
 	'disablemail' => 0,
@@ -5160,7 +5196,6 @@ $wgDefaultUserOptions = [
 	'rcdays' => 7,
 	'rcenhancedfilters-disable' => 0,
 	'rclimit' => 50,
-	'rows' => 25, // @deprecated since 1.29 No longer used in core
 	'search-match-redirect' => true,
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
@@ -7137,21 +7172,29 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
  * JSONRCFeedFormatter-specific options:
  * - 'channel' -- if set, the 'channel' parameter is also set in JSON values.
  *
- * @example $wgRCFeeds['example'] = [
- *		'uri' => 'udp://localhost:1336',
- *		'formatter' => 'JSONRCFeedFormatter',
- *		'add_interwiki_prefix' => false,
- *		'omit_bots' => true,
- *	];
- * @example $wgRCFeeds['example'] = [
- *		'uri' => 'udp://localhost:1338',
- *		'formatter' => 'IRCColourfulRCFeedFormatter',
- *		'add_interwiki_prefix' => false,
- *		'omit_bots' => true,
- *	];
- * @example $wgRCFeeds['example'] = [
- *		'class' => ExampleRCFeed::class,
- *	];
+ * @par Examples:
+ * @code
+ *  $wgRCFeeds['example'] = [
+ *      'uri' => 'udp://localhost:1336',
+ *      'formatter' => 'JSONRCFeedFormatter',
+ *      'add_interwiki_prefix' => false,
+ *      'omit_bots' => true,
+ *  ];
+ * @endcode
+ * @code
+ *  $wgRCFeeds['example'] = [
+ *      'uri' => 'udp://localhost:1338',
+ *      'formatter' => 'IRCColourfulRCFeedFormatter',
+ *      'add_interwiki_prefix' => false,
+ *      'omit_bots' => true,
+ *  ];
+ * @endcode
+ * @code
+ *  $wgRCFeeds['example'] = [
+ *      'class' => ExampleRCFeed::class,
+ *  ];
+ * @endcode
+ *
  * @since 1.22
  */
 $wgRCFeeds = [];
@@ -7794,7 +7837,7 @@ $wgJobClasses = [
 	'refreshLinksPrioritized' => RefreshLinksJob::class,
 	'refreshLinksDynamic' => RefreshLinksJob::class,
 	'activityUpdateJob' => ActivityUpdateJob::class,
-	'categoryMembershipChange' => function ( Title $title, $params = [] ) {
+	'categoryMembershipChange' => function ( Title $title, array $params ) {
 		$pc = MediaWikiServices::getInstance()->getParserCache();
 		return new CategoryMembershipChangeJob( $pc, $title, $params );
 	},
@@ -8535,6 +8578,24 @@ $wgCrossSiteAJAXdomains = [];
 $wgCrossSiteAJAXdomainExceptions = [];
 
 /**
+ * List of allowed headers for cross-origin API requests.
+ */
+$wgAllowedCorsHeaders = [
+	/* simple headers (see spec) */
+	'Accept',
+	'Accept-Language',
+	'Content-Language',
+	'Content-Type',
+	/* non-authorable headers in XHR, which are however requested by some UAs */
+	'Accept-Encoding',
+	'DNT',
+	'Origin',
+	/* MediaWiki whitelist */
+	'User-Agent',
+	'Api-User-Agent',
+];
+
+/**
  * Enable the experimental REST API.
  *
  * This will be removed once the REST API is stable and used by clients.
@@ -9260,7 +9321,7 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_NEW;
  * The schema to use per default when generating XML dumps. This allows sites to control
  * explicitly when to make breaking changes to their export and dump format.
  */
-$wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_10;
+$wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_11;
 
 /**
  * Origin Trials tokens.

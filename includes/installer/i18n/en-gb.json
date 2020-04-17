@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shirayuki",
-			"Caliburn"
+			"Caliburn",
+			"Shirayuki"
 		]
 	},
 	"config-desc": "The installer for MediaWiki",

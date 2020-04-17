@@ -26,7 +26,10 @@ class WatchActionTest extends MediaWikiTestCase {
 		$this->testWikiPage = new WikiPage( $testTitle );
 		$testContext = new DerivativeContext( RequestContext::getMain() );
 		$testContext->setTitle( $testTitle );
-		$this->watchAction = new WatchAction( $this->testWikiPage, $testContext );
+		$this->watchAction = new WatchAction(
+			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
+			$testContext
+		);
 	}
 
 	/**
@@ -35,6 +38,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	protected function tearDown() : void {
 		parent::tearDown();
 
+		$this->hideDeprecated( 'Hooks::clear' );
 		Hooks::clear( 'WatchArticle' );
 		Hooks::clear( 'UnwatchArticle' );
 	}
@@ -94,7 +98,10 @@ class WatchActionTest extends MediaWikiTestCase {
 		$notLoggedInUser = new User();
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $notLoggedInUser );
-		$watchAction = new WatchAction( $this->testWikiPage, $testContext );
+		$watchAction = new WatchAction(
+			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
+			$testContext
+		);
 		$this->expectException( UserNotLoggedIn::class );
 
 		$watchAction->show();
@@ -108,7 +115,10 @@ class WatchActionTest extends MediaWikiTestCase {
 		$loggedInUser->method( 'isLoggedIn' )->willReturn( true );
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $loggedInUser );
-		$watchAction = new WatchAction( $this->testWikiPage, $testContext );
+		$watchAction = new WatchAction(
+			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
+			$testContext
+		);
 
 		$exception = null;
 		try {
@@ -133,7 +143,10 @@ class WatchActionTest extends MediaWikiTestCase {
 		$testContext->method( 'msg' )->willReturnCallback( function ( $msgKey ) {
 			return new RawMessage( $msgKey );
 		} );
-		$watchAction = new WatchAction( $this->testWikiPage, $testContext );
+		$watchAction = new WatchAction(
+			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
+			$testContext
+		);
 
 		$watchAction->onSuccess();
 
@@ -156,7 +169,10 @@ class WatchActionTest extends MediaWikiTestCase {
 		} );
 		$talkPageTitle = Title::newFromText( 'Talk:UTTest' );
 		$testContext->setTitle( $talkPageTitle );
-		$watchAction = new WatchAction( new WikiPage( $talkPageTitle ), $testContext );
+		$watchAction = new WatchAction(
+			Article::newFromTitle( $talkPageTitle, $testContext ),
+			$testContext
+		);
 
 		$watchAction->onSuccess();
 

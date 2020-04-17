@@ -1,25 +1,25 @@
 {
 	"@metadata": {
 		"authors": [
+			"Artsiom91",
 			"Cesco",
 			"Crt",
 			"EugeneZelenko",
 			"Geitost",
 			"Jim-by",
 			"Kaganer",
+			"Kareyac",
+			"Liashko",
+			"Macofe",
 			"Nemo bis",
+			"Nerogaf",
 			"Red Winged Duck",
 			"Renessaince",
+			"Vlad5250",
 			"Wizardist",
 			"Zedlik",
 			"Тест",
-			"아라",
-			"Liashko",
-			"Macofe",
-			"Kareyac",
-			"Artsiom91",
-			"Vlad5250",
-			"Nerogaf"
+			"아라"
 		]
 	},
 	"tog-underline": "Падкрэсьліваць спасылкі:",
@@ -1776,7 +1776,6 @@
 	"uploadstash-zero-length": "Файл мае нулявую даўжыню.",
 	"invalid-chunk-offset": "Няслушнае зрушэньне фрагмэнту",
 	"img-auth-accessdenied": "Доступ забаронены",
-	"img-auth-nopathinfo": "Адсутнічаюць зьвесткі пра шлях.\nВаш сэрвэр мусіць быць наладжаны на пропуск зьменных REQUEST_URI і/ці PATH_INFO.\nКалі гэта так, паспрабуйце ўключыць $wgUsePathInfo.\nГлядзіце https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Запытаны шлях не належыць да каталёгу загрузкі, пазначанага ў канфігурацыі.",
 	"img-auth-badtitle": "Немагчыма стварыць слушную назву з «$1».",
 	"img-auth-nofile": "Файл «$1» не існуе.",

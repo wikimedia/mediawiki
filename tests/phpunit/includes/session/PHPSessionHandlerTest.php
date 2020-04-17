@@ -349,7 +349,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 		TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'enable' );
 
 		$this->expectException( UnexpectedValueException::class );
-		$this->expectExceptionMessageRegExp( "/: Wrong instance called!$/" );
+		$this->expectExceptionMessageMatches( "/: Wrong instance called!$/" );
 		call_user_func_array( [ $handler, $method ], $args );
 	}
 

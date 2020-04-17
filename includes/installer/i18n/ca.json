@@ -1,17 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pitort",
-			"පසිඳු කාවින්ද",
-			"Kippelboy",
-			"Toniher",
-			"Fitoschido",
-			"Jmarchn",
 			"Alvaro Vidal-Abarca",
 			"ESM",
-			"Xavier Dengra",
+			"Fitoschido",
 			"Jaumeortola",
-			"Macofe"
+			"Jmarchn",
+			"Kippelboy",
+			"Macofe",
+			"Pitort",
+			"Toniher",
+			"Xavier Dengra",
+			"පසිඳු කාවින්ද"
 		]
 	},
 	"config-desc": "L'instal·lador del MediaWiki",

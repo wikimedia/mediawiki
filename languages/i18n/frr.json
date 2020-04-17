@@ -1,21 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
+			"Fitoschido",
 			"Geitost",
 			"Inkowik",
 			"Maartenvdbent",
-			"Merlissimo",
-			"Murma174",
-			"Pyt",
-			"아라",
-			"Purodha",
 			"Macofe",
 			"Matma Rex",
+			"Merlissimo",
+			"Murma174",
 			"Nemo bis",
-			"Fitoschido",
+			"Purodha",
+			"Pyt",
 			"Tacsipacsi",
 			"Vlad5250",
-			"DannyS712"
+			"아라"
 		]
 	},
 	"tog-underline": "Ferwisangen onerstrik:",
@@ -1439,7 +1439,6 @@
 	"uploadstash-refresh": "List mä datein aktualisiare.",
 	"invalid-chunk-offset": "Di began as diar ei tuläät.",
 	"img-auth-accessdenied": "Tugrip ei mögelk",
-	"img-auth-nopathinfo": "Diar as nian informatjuun auer di wai.\nDan server skal so iinracht wees, dat a wariaabeln REQUEST_URI an/of PATH_INFO auerden wurd.\nWan det tudraapt, aktiwiare $wgUsePathInfo.\nÜüb det sidj https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization (ingelsk) stäänt diar muar auer.",
 	"img-auth-notindir": "Detdiar fertiaknis as ei föörsen tu huuchschüüren.",
 	"img-auth-badtitle": "Mä „$1“ küd nään tiitel maaget wurd.",
 	"img-auth-nofile": "Diar as nään datei „$1“.",
@@ -2040,7 +2039,7 @@
 	"blockiptext": "Mä detdiar formulaar sperest dü en IP-adres of en brükernööm, so dat faan diar nian feranrangen muar maaget wurd kön. \nDet skul bluas föörnimen wurd, am jin wandaalen föörtugungen an uun auerianstemang mä a [[{{MediaWiki:Policy-url}}|brükerreegeln]].\nSkriiw en guden grünj för det sper ap.\nDü könst IP-adres-beriker mä det [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-syntax spere; di gratst mögelk berik as /$1 för IPv4 and /$2 för IPv6.",
 	"ipaddressorusername": "IP-adres of brükernööm:",
 	"ipbreason": "Grünj:",
-	"ipbreason-dropdown": "* Mist brükt spergrünjer\n** Skraft wat ferkiards\n** Maaget sidjen leesag\n** Maaget tuföl ferwisangen üüb frääm sidjen\n** Maaget dom tschüch\n** Koon ham ei skake\n** Masbrükt brükerkontos\n** Hää en brükernööm, diar ei tuläät as",
+	"ipbreason-dropdown": "* Miast brükt spergrünjer\n** Skraft wat ferkiards\n** Maaget sidjen leesag\n** Maaget tuföl ferwisangen üüb frääm sidjen\n** Maaget dom tjüch\n** Koon ham ei skake\n** Masbrükt brükerkontos\n** Hää en brükernööm, diar ei tuläät as",
 	"ipb-hardblock": "Ferhanre, dat en uunmeldeten brüker mä detdiar IP-adres sidjen feranre koon.",
 	"ipbcreateaccount": "Ferhanre, dat en brükerkonto iinracht woort.",
 	"ipbemailban": "Ferhanre, dat e-mails ferschüürd wurd",

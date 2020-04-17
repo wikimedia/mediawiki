@@ -191,6 +191,7 @@ class ParamValidator {
 		'timestamp' => [ 'class' => TypeDef\TimestampDef::class ],
 		'upload' => [ 'class' => TypeDef\UploadDef::class ],
 		'enum' => [ 'class' => TypeDef\EnumDef::class ],
+		'expiry' => [ 'class' => TypeDef\ExpiryDef::class ],
 	];
 
 	/** @var Callbacks */

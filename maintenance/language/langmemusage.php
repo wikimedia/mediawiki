@@ -23,9 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-/** This is a command line script */
 require_once __DIR__ . '/../Maintenance.php';
-require_once __DIR__ . '/languages.inc';
 
 /**
  * Maintenance script that tries to get the memory usage for each language file.
@@ -45,12 +43,18 @@ class LangMemUsage extends Maintenance {
 			$this->fatalError( "You must compile PHP with --enable-memory-limit" );
 		}
 
-		$langtool = new Languages();
 		$memlast = $memstart = memory_get_usage();
 
 		$this->output( "Base memory usage: $memstart\n" );
 
-		foreach ( $langtool->getLanguages() as $langcode ) {
+		$languages = array_keys(
+			MediaWikiServices::getInstance()
+				->getLanguageNameUtils()
+				->getLanguageNames( null, 'mwfile' )
+		);
+		sort( $languages );
+
+		foreach ( $languages as $langcode ) {
 			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langcode );
 			$memstep = memory_get_usage();
 			$this->output( sprintf( "%12s: %d\n", $langcode, ( $memstep - $memlast ) ) );

@@ -48,16 +48,23 @@ class Pbkdf2Password extends ParameterizedPassword {
 			$this->args[] = base64_encode( random_bytes( 16 ) );
 		}
 
-		$hash = hash_pbkdf2(
-			$this->params['algo'],
-			$password,
-			base64_decode( $this->args[0] ),
-			(int)$this->params['rounds'],
-			(int)$this->params['length'],
-			true
-		);
-		if ( !is_string( $hash ) ) {
-			throw new PasswordError( 'Error when hashing password.' );
+		try {
+			$hash = hash_pbkdf2(
+				$this->params['algo'],
+				$password,
+				base64_decode( $this->args[0] ),
+				(int)$this->params['rounds'],
+				(int)$this->params['length'],
+				true
+			);
+
+			// PHP < 8 raises a warning in case of an error, such as unknown algorithm...
+			if ( !is_string( $hash ) ) {
+				throw new PasswordError( 'Error when hashing password.' );
+			}
+		} catch ( ValueError $e ) {
+			// ...while PHP 8 throws ValueError
+			throw new PasswordError( 'Error when hashing password.', 0, $e );
 		}
 
 		$this->hash = base64_encode( $hash );

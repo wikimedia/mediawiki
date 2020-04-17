@@ -1,19 +1,19 @@
 <?php
 // phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 
+use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Logger\MonologSpi;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -111,6 +111,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @var LoggerInterface[]
 	 */
 	private $loggers = [];
+
+	/**
+	 * Holds original loggers which have been ignored by setNullLogger()
+	 * @var array<array<LegacyLogger|int>>
+	 */
+	private $ignoredLoggers = [];
 
 	/**
 	 * Holds a list of services that were overridden with setService().  Used for printing an error
@@ -547,6 +553,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$lbFactory = $this->localServices->getDBLoadBalancerFactory();
 		Maintenance::setLBFactoryTriggers( $lbFactory, $this->localServices->getMainConfig() );
 
+		// T46192 Do not attempt to send a real e-mail
+		$this->setTemporaryHook( 'AlternateUserMailer',
+			function () {
+				return false;
+			}
+		);
 		ob_start( 'MediaWikiIntegrationTestCase::wfResetOutputBuffersBarrier' );
 	}
 
@@ -1119,7 +1131,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Sets the logger for a specified channel, for the duration of the test.
+	 * Set the logger for a specified channel, for the duration of the test.
 	 * @since 1.27
 	 * @param string $channel
 	 * @param LoggerInterface $logger
@@ -1129,50 +1141,67 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		//       resetServiceForTesting() to set loggers.
 
 		$provider = LoggerFactory::getProvider();
-		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
-		$singletons = $wrappedProvider->singletons;
-		if ( $provider instanceof MonologSpi ) {
+		if ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
+			$prev = $provider->setLoggerForTest( $channel, $logger );
 			if ( !isset( $this->loggers[$channel] ) ) {
-				$this->loggers[$channel] = $singletons['loggers'][$channel] ?? null;
+				// Remember for restoreLoggers()
+				$this->loggers[$channel] = $prev;
 			}
-			$singletons['loggers'][$channel] = $logger;
-		} elseif ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
-			if ( !isset( $this->loggers[$channel] ) ) {
-				$this->loggers[$channel] = $singletons[$channel] ?? null;
-			}
-			$singletons[$channel] = $logger;
 		} else {
-			throw new LogicException( __METHOD__ . ': setting a logger for ' . get_class( $provider )
-				. ' is not implemented' );
+			throw new LogicException( __METHOD__ . ': cannot set logger for ' . get_class( $provider ) );
 		}
-		$wrappedProvider->singletons = $singletons;
 	}
 
 	/**
-	 * Restores loggers replaced by setLogger().
+	 * Restore loggers replaced by setLogger() or setNullLogger().
 	 * @since 1.27
 	 */
 	private function restoreLoggers() {
 		$provider = LoggerFactory::getProvider();
-		$wrappedProvider = TestingAccessWrapper::newFromObject( $provider );
-		$singletons = $wrappedProvider->singletons;
 		foreach ( $this->loggers as $channel => $logger ) {
-			if ( $provider instanceof MonologSpi ) {
-				if ( $logger === null ) {
-					unset( $singletons['loggers'][$channel] );
-				} else {
-					$singletons['loggers'][$channel] = $logger;
-				}
-			} elseif ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
-				if ( $logger === null ) {
-					unset( $singletons[$channel] );
-				} else {
-					$singletons[$channel] = $logger;
-				}
+			if ( $provider instanceof LegacySpi || $provider instanceof LogCapturingSpi ) {
+				// Replace override with original object or null
+				$provider->setLoggerForTest( $channel, $logger );
 			}
 		}
-		$wrappedProvider->singletons = $singletons;
 		$this->loggers = [];
+
+		foreach (
+			array_splice( $this->ignoredLoggers, 0 )
+			as list( $logger, $level )
+		) {
+			$logger->setMinimumForTest( $level );
+		}
+	}
+
+	/**
+	 * Ignore all messages for the specified log channel.
+	 *
+	 * This is an alternative to setLogger() for when an existing logger
+	 * must be changed as well (T248195).
+	 *
+	 * @since 1.35
+	 * @param string $channel
+	 */
+	protected function setNullLogger( $channel ) {
+		$spi = LoggerFactory::getProvider();
+		$spiCapture = null;
+		if ( $spi instanceof LogCapturingSpi ) {
+			$spiCapture = $spi;
+			$spi = $spiCapture->getInnerSpi();
+		}
+		if ( !$spi instanceof LegacySpi ) {
+			throw new LogicException( __METHOD__ . ': cannot set logger for ' . get_class( $spi ) );
+		}
+
+		$existing = $spi->getLogger( $channel );
+		$level = $existing->setMinimumForTest( null );
+		$this->ignoredLoggers[] = [ $existing, $level ];
+		if ( $spiCapture ) {
+			$spiCapture->setLoggerForTest( $channel, new NullLogger() );
+			// Remember to unset in restoreLoggers()
+			$this->loggers[$channel] = null;
+		}
 	}
 
 	/**

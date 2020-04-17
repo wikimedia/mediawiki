@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * API module that facilitates deleting pages. The API equivalent of action=delete.
  * Requires API write mode to be enabled.
@@ -175,7 +177,8 @@ class ApiDelete extends ApiBase {
 			if ( !FileDeleteForm::isValidOldSpec( $oldimage ) ) {
 				return Status::newFatal( 'invalidoldimage' );
 			}
-			$oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $oldimage );
+			$oldfile = MediaWikiServices::getInstance()->getRepoGroup()
+				->getLocalRepo()->newFromArchiveName( $title, $oldimage );
 			if ( !$oldfile->exists() || !$oldfile->isLocal() || $oldfile->getRedirected() ) {
 				return Status::newFatal( 'nodeleteablefile' );
 			}

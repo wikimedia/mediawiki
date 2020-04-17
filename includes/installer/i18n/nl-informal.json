@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Siebrand",
-			"Seb35",
 			"Macofe",
-			"Mar(c)"
+			"Mar(c)",
+			"Seb35",
+			"Siebrand"
 		]
 	},
 	"config-localsettings-badkey": "De sleutel die je hebt opgegeven is onjuist",

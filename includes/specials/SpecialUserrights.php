@@ -816,9 +816,9 @@ class UserrightsPage extends SpecialPage {
 
 		// Get the list of preset expiry times from the system message
 		$expiryOptionsMsg = $this->msg( 'userrights-expiry-options' )->inContentLanguage();
-		$expiryOptions = $expiryOptionsMsg->isDisabled() ?
-			[] :
-			explode( ',', $expiryOptionsMsg->text() );
+		$expiryOptions = $expiryOptionsMsg->isDisabled()
+			? []
+			: XmlSelect::parseOptionsMessage( $expiryOptionsMsg->text() );
 
 		// Put all column info into an associative array so that extensions can
 		// more easily manage it.
@@ -953,14 +953,8 @@ class UserrightsPage extends SpecialPage {
 							$this->msg( 'userrights-expiry-othertime' )->text(),
 							'other'
 						);
-						foreach ( $expiryOptions as $option ) {
-							if ( strpos( $option, ":" ) === false ) {
-								$displayText = $value = $option;
-							} else {
-								list( $displayText, $value ) = explode( ":", $option );
-							}
-							$expiryFormOptions->addOption( $displayText, htmlspecialchars( $value ) );
-						}
+
+						$expiryFormOptions->addOptions( $expiryOptions );
 
 						// Add expiry dropdown
 						$expiryHtml .= $expiryFormOptions->getHTML() . '<br />';

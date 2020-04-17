@@ -4,9 +4,9 @@
 			"ArmenBakkalian",
 			"Armeniki",
 			"Azniv Stepanian",
+			"Kareyac",
 			"Rajemian",
-			"Դավիթ Սարոյան",
-			"Kareyac"
+			"Դավիթ Սարոյան"
 		]
 	},
 	"tog-underline": "Ընդգծել յղումները․",
@@ -15,6 +15,7 @@
 	"tog-numberheadings": "Ինքնահամարակալել վերնագիրները",
 	"tog-editondblclick": "Խմբագրել էջերը կրկնակի սեղմամբ",
 	"tog-shownumberswatching": "Ցոյց տալ հսկող մասնակիցներուն թիւը",
+	"tog-oldsig": "Ձեր ընթացիկ ստորագրութիւնը՝",
 	"tog-watchlisthideown": "Թաքցնել իմ խմբագրումները հսկացանկէն",
 	"tog-watchlisthidebots": "Խմբագրումներս թաքցնել հսկացանկէն",
 	"tog-watchlisthideminor": "Խմբագրումներս թաքցնել հսկացանկէն",
@@ -519,6 +520,7 @@
 	"default": "լռելեան",
 	"youremail": "Ելեկտրոնային նամակ․",
 	"yourlanguage": "Լեզու.",
+	"yournick": "Ստորագրութիւն",
 	"email": "Ելեկտրոնային նամակ",
 	"prefs-info": "Հիմնական տուեալներ",
 	"prefs-signature": "Ստորագրութիւն",

@@ -2122,6 +2122,8 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertSame( empty( $testOpts['reserved'] ), User::isUsableName( $name ) );
 
 		if ( $expect === 'exception' ) {
+			// T248195: Duplicate entry errors will log the exception, don't fail because of that.
+			$this->setNullLogger( 'DBQuery' );
 			$this->expectException( Exception::class );
 		}
 		$user = User::newSystemUser( $name, $options );

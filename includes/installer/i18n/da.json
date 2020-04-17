@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Peter Alberti",
 			"Christian List",
-			"Tjernobyl",
-			"Thomsen",
+			"Joedalton",
 			"MGA73",
 			"Mads Haupt",
-			"Joedalton",
-			"Saederup92"
+			"Peter Alberti",
+			"Saederup92",
+			"Thomsen",
+			"Tjernobyl"
 		]
 	},
 	"config-desc": "Installationsprogrammet til MediaWiki",

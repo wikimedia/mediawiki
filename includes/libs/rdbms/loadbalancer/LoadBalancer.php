@@ -24,12 +24,12 @@ namespace Wikimedia\Rdbms;
 use ArrayUtils;
 use BagOStuff;
 use EmptyBagOStuff;
-use Exception;
 use InvalidArgumentException;
 use LogicException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
+use Throwable;
 use UnexpectedValueException;
 use WANObjectCache;
 use Wikimedia\ScopedCallback;
@@ -218,7 +218,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->profiler = $params['profiler'] ?? null;
 		$this->trxProfiler = $params['trxProfiler'] ?? new TransactionProfiler();
 
-		$this->errorLogger = $params['errorLogger'] ?? function ( Exception $e ) {
+		$this->errorLogger = $params['errorLogger'] ?? function ( Throwable $e ) {
 			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
 		$this->deprecationLogger = $params['deprecationLogger'] ?? function ( $msg ) {
@@ -1769,7 +1769,7 @@ class LoadBalancer implements ILoadBalancer {
 					}
 					try {
 						$count += $conn->runOnTransactionIdleCallbacks( $type );
-					} catch ( Exception $ex ) {
+					} catch ( Throwable $ex ) {
 						$e = $e ?: $ex;
 					}
 				}
@@ -1795,7 +1795,7 @@ class LoadBalancer implements ILoadBalancer {
 				}
 				try {
 					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
-				} catch ( Exception $ex ) {
+				} catch ( Throwable $ex ) {
 					$e = $e ?: $ex;
 				}
 			} );
@@ -1829,7 +1829,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->forEachOpenMasterConnection( function ( Database $conn ) use ( $type, &$e ) {
 			try {
 				$conn->runTransactionListenerCallbacks( $type );
-			} catch ( Exception $ex ) {
+			} catch ( Throwable $ex ) {
 				$e = $e ?: $ex;
 			}
 		} );

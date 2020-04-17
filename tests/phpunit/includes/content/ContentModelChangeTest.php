@@ -5,6 +5,7 @@ use MediaWiki\Permissions\PermissionManager;
 
 /**
  * @group Database
+ * @author DannyS712
  */
 class ContentModelChangeTest extends MediaWikiTestCase {
 

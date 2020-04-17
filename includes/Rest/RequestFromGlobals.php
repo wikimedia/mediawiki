@@ -54,22 +54,7 @@ class RequestFromGlobals extends RequestBase {
 	}
 
 	protected function initHeaders() {
-		if ( function_exists( 'apache_request_headers' ) ) {
-			$this->setHeaders( apache_request_headers() );
-		} else {
-			$headers = [];
-			foreach ( $_SERVER as $name => $value ) {
-				if ( substr( $name, 0, 5 ) === 'HTTP_' ) {
-					$name = strtolower( str_replace( '_', '-', substr( $name, 5 ) ) );
-					$headers[$name] = $value;
-				} elseif ( $name === 'CONTENT_LENGTH' ) {
-					$headers['content-length'] = $value;
-				} elseif ( $name === 'CONTENT_TYPE' ) {
-					$headers['content-type'] = $value;
-				}
-			}
-			$this->setHeaders( $headers );
-		}
+		$this->setHeaders( getallheaders() );
 	}
 
 	public function getBody() {

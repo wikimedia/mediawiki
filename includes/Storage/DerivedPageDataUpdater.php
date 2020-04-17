@@ -48,6 +48,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\User\UserIdentity;
 use MessageCache;
+use MWTimestamp;
 use MWUnknownContentModelException;
 use ParserCache;
 use ParserOptions;
@@ -793,7 +794,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 		// NOTE: user and timestamp must be set, so they can be used for
 		// {{subst:REVISIONUSER}} and {{subst:REVISIONTIMESTAMP}} in PST!
-		$this->revision->setTimestamp( wfTimestampNow() );
+		$this->revision->setTimestamp( MWTimestamp::now( TS_MW ) );
 		$this->revision->setUser( $user );
 
 		// Set up ParserOptions to operate on the new revision
@@ -1549,11 +1550,12 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				// when a new message is added to their talk page
 				// TODO: replace legacy hook!  Use a listener on PageEventEmitter instead!
 				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ &$wikiPage, $recipient ] ) ) {
+					$revRecord = $legacyRevision->getRevisionRecord();
 					if ( User::isIP( $shortTitle ) ) {
 						// An anonymous user
-						$recipient->setNewtalk( true, $legacyRevision );
+						$recipient->setNewtalk( true, $revRecord );
 					} elseif ( $recipient->isLoggedIn() ) {
-						$recipient->setNewtalk( true, $legacyRevision );
+						$recipient->setNewtalk( true, $revRecord );
 					} else {
 						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
 					}
@@ -1573,7 +1575,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		if ( $this->options['created'] ) {
 			WikiPage::onArticleCreate( $title );
 		} elseif ( $this->options['changed'] ) { // T52785
-			WikiPage::onArticleEdit( $title, $legacyRevision, $this->getTouchedSlotRoles() );
+			WikiPage::onArticleEdit( $title, $this->revision, $this->getTouchedSlotRoles() );
 		} elseif ( $this->options['restored'] ) {
 			MediaWikiServices::getInstance()->getMainWANObjectCache()->touchCheckKey(
 				"DerivedPageDataUpdater:restore:page:$id"

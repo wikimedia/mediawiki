@@ -12,6 +12,7 @@ use Wikimedia\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\BooleanDef;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\ParamValidator\TypeDef\FloatDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\PasswordDef;
@@ -46,6 +47,7 @@ class Validator {
 		'string' => [ 'class' => StringDef::class ],
 		'timestamp' => [ 'class' => TimestampDef::class ],
 		'upload' => [ 'class' => UploadDef::class ],
+		'expiry' => [ 'class' => ExpiryDef::class ],
 	];
 
 	/** @var string[] HTTP request methods that we expect never to have a payload */

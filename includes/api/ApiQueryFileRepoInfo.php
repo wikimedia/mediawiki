@@ -21,6 +21,8 @@
  * @since 1.22
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A query action to return meta information about the foreign file repos
  * configured on the wiki.
@@ -34,7 +36,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 	}
 
 	protected function getInitialisedRepoGroup() {
-		$repoGroup = RepoGroup::singleton();
+		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 		$repoGroup->initialiseRepos();
 
 		return $repoGroup;

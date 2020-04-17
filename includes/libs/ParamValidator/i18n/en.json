@@ -2,12 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Anomie",
+			"MusikAnimal",
 			"Siebrand",
 			"Zoranzoki21"
 		]
 	},
 
 	"paramvalidator-badbool": "Invalid value \"$2\" for boolean parameter \"$1\". Pass $3 for true, or $5 for false.",
+	"paramvalidator-badexpiry": "Invalid value \"$2\" for expiry parameter \"$1\".",
+	"paramvalidator-badexpiry-past": "Value \"$2\" for expiry parameter \"$1\" is in the past.",
 	"paramvalidator-badfloat": "Invalid value \"$2\" for float parameter \"$1\".",
 	"paramvalidator-badfloat-notfinite": "Value \"$2\" for float parameter \"$1\" is too large or is not a number.",
 	"paramvalidator-badinteger": "Invalid value \"$2\" for integer parameter \"$1\".",
@@ -49,6 +52,7 @@
 	"paramvalidator-help-type-boolean": "Type: {{PLURAL:$1|1=boolean|2=list of booleans}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Must be empty|Can be empty, or $1}}",
 	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=One of the following values|2=Values (separate with U+007C (pipe), or prefix the list with U+001F and separate with U+001F)}}: $2",
+	"paramvalidator-help-type-expiry": "Type: {{PLURAL:$1|1=expiry|2=list of expiries}}.\n\nMay be relative (e.g. <kbd>5 months</kbd> or <kbd>2 weeks</kbd>) or absolute (e.g. <kbd>2014-09-18T12:34:56Z</kbd>). For no expiry, use $2.",
 	"paramvalidator-help-type-float": "Type: {{PLURAL:$1|1=float|2=list of floats}}",
 	"paramvalidator-help-type-integer": "Type: {{PLURAL:$1|1=integer|2=list of integers}}",
 	"paramvalidator-help-type-limit": "Type: integer or \"max\"",

@@ -183,6 +183,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Maintenance\DumpAsserter' => "$testDir/phpunit/maintenance/DumpAsserter.php",
 	'MediaWiki\Tests\Maintenance\DumpTestCase' => "$testDir/phpunit/maintenance/DumpTestCase.php",
 	'MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase' => "$testDir/phpunit/maintenance/MaintenanceBaseTestCase.php",
+	'MediaWiki\Tests\Maintenance\PageDumpTestDataTrait' => "$testDir/phpunit/maintenance/PageDumpTestDataTrait.php",
 
 	# tests/phpunit/media
 	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
@@ -193,6 +194,7 @@ $wgAutoloadClasses += [
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
 	'MockLocalRepo' => "$testDir/phpunit/mocks/filerepo/MockLocalRepo.php",
 	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
+	'MockPoolCounterFailing' => "$testDir/phpunit/mocks/poolcounter/MockPoolCounterFailing.php",
 	'MockImageHandler' => "$testDir/phpunit/mocks/media/MockImageHandler.php",
 	'MockSvgHandler' => "$testDir/phpunit/mocks/media/MockSvgHandler.php",
 	'MockDjVuHandler' => "$testDir/phpunit/mocks/media/MockDjVuHandler.php",

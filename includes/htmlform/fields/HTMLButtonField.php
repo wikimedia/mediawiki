@@ -27,7 +27,7 @@ class HTMLButtonField extends HTMLFormField {
 	protected $buttonType = 'button';
 	protected $buttonLabel = null;
 
-	/** @var array $mFlags Flags to add to OOUI Button widget */
+	/** @var array Flags to add to OOUI Button widget */
 	protected $mFlags = [];
 
 	protected $mFormnovalidate = false;

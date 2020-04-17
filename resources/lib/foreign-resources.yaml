@@ -237,8 +237,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.37.1.tgz
-  integrity: sha384-vTdg6whv7qvSkkbCEPnYB38lszPF3NhzDQ6wlTp6E3CWJ6oru6euQIloGHEl6Qun
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.38.0.tgz
+  integrity: sha384-Y1Fd0zOQ55bysq3pypiXRffveV1Y2kKYTmwCpmU5lBSknkdF9yD+JDy1CK68sOPF
 
   dest:
     # Main stuff
@@ -279,6 +279,13 @@ pako:
       src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/LICENSE
       integrity: sha384-9tg5LwdfxM6Fpdp6Sep9VI0qXS7Eg5gQRPvNrfV3DKIkVVL3EwSK2atu+zRoEwJg
 
+promise-polyfill:
+  type: file
+  # src: https://raw.githubusercontent.com/taylorhakes/promise-polyfill/8.1.3/dist/polyfill.js
+  src: https://raw.githubusercontent.com/wikimedia/promise-polyfill/9bafe45598e69e4215757dc874b99629d0dfea0d/dist/polyfill.js
+  integrity: sha384-nQUslfDX7uz5YSWudfV8dG5d8whQpNMrLcbJPLjvq+McUl2VK7v0UOVnbfs/FrMl
+  dest: promise-polyfill.js
+
 qunitjs:
   type: multi-file
   # Integrity from link modals at https://code.jquery.com/qunit/
@@ -306,3 +313,14 @@ vue:
     vue-2.6.11/LICENSE:
     vue-2.6.11/dist/vue.common.prod.js:
     vue-2.6.11/dist/vue.common.dev.js:
+
+vuex:
+  type: tar
+  src: https://codeload.github.com/vuejs/vuex/tar.gz/v3.1.3
+  integrity: sha384-Q+Mapd6G1U76N7ZSdYApIqr/+u/c0HxSiYw+IKQAqcKPFFOLD5ASFQ9pOBrE4qcw
+
+  dest:
+    vuex-3.1.3/README.md:
+    vuex-3.1.3/LICENSE:
+    vuex-3.1.3/dist/vuex.js:
+    vuex-3.1.3/dist/vuex.min.js:

@@ -58,6 +58,10 @@ For notes on 1.34.x and older releases, see HISTORY.
   setting, but all other aspects of the expiry feature are controlled by it.
 * $wgWatchlistPurgeRate — Chance of expired watchlist items being purged on any
   page edit. Only has effect if $wgWatchlistExpiry is true.
+* $wgImgAuthPath can be used to override the path prefix used when handling
+  img_auth.php requests. (T235357)
+* $wgAllowedCorsHeaders — list of headers which can be used in a cross-site API
+  request.
 * …
 
 ==== Changed configuration ====
@@ -75,6 +79,15 @@ For notes on 1.34.x and older releases, see HISTORY.
 * The defaults for $wgVirtualRestConfig['modules']['parsoid'] have been
   updated.  If you were relying on the default values, you may need to update
   your configuration.
+* Set $wgXmlDumpSchemaVersion to XML_DUMP_SCHEMA_VERSION_11, so dumps use the
+  new dump format per default. Consumers of XML dumps should not be affected if
+  they ignore any unknown tags they encounter. Also, the format is effectively
+  unchanged for revisions that only contain the main slot. The --schema-version
+  option can be used with the dumpBackup.php script to set the dump format.
+  (T238921)
+* $wgParserConf - This configuration is now deprecated.  It has been
+  effectively constant since 2008, and is ignored by core code.
+  Configure the ParserFactory service in order to customize the Parser used.
 * …
 
 ==== Removed configuration ====
@@ -128,6 +141,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   for assistive technologies.
 * (T245931) interwiki map API doesn't report foreign language if
   $wgInterwikiMagic=false
+* The form at ?action=watch has a new dropdown list to support expiry dates for
+  watchlist items (if $wgWatchlistExpiry is true).
 * …
 
 === New developer features in 1.35 ===
@@ -164,6 +179,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * ParserOutput now has methods addExtraCSPStyleSrc, addExtraCSPDefaultSrc
   addExtraCSPScriptSrc for parser tags/functions to be able to add sources
   to the Content Security Policy.
+* The HtmlCacheUpdater service was added to unify the logic of purging CDN cache
+  and HTML file cache to simplify callers and make them more consistent.
 * …
 
 === External library changes in 1.35 ===
@@ -174,6 +191,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added wikimedia/ip-utils 1.0.0.
 * Added vuejs v2.6.11.
 * Added wikimedia/parsoid 0.12.0.
+* Added taylorhakes/promise-polyfill v8.1.3.
+* Added vuex v3.1.3.
 * …
 
 ==== Changed external libraries ====
@@ -181,14 +200,14 @@ For notes on 1.34.x and older releases, see HISTORY.
 * pear/mail_mime was upgraded from 1.10.2 to 1.10.7.
 * wikimedia/less.php was upgraded from 1.8.0 to 3.0.0.
 * Updated oojs from 3.0.0 to 3.0.1.
-* Updated OOUI from 0.35.1 to 0.37.0.
+* Updated OOUI from 0.35.1 to 0.38.0.
 * zordius/lightncandy was upgraded from 0.23.0 to 1.2.5.
-* Updated nikic/php-parser from 3.1.5 to 4.3.0 (dev-only).
+* Updated nikic/php-parser from 3.1.5 to 4.4.0 (dev-only).
 * Updated jQuery from v3.3.1 to v3.4.1.
 * Updated jQuery Migrate from v3.0.1 to v3.1.0.
 * Updated jakub-onderka/php-console-highlighter from v0.3.2 to v0.4 (dev-only).
 * Updated wikimedia/assert from 0.2.2 to 0.5.0.
-* Updated psy/psysh from 0.9.9 to 0.10.2 (dev-only).
+* Updated psy/psysh from 0.9.9 to 0.10.3 (dev-only).
 * Updated pear/net_smtp from 1.8.1 from to 1.9.0.
 * Updated psr/log from 1.0.2 to 1.1.3.
 * Updated monolog/monolog from 1.24.0 to 1.25.2 (dev-only).
@@ -244,6 +263,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   * action=watch accepts a new 'expiry' parameter analagous to the expiry
     accepted by action=userrights, action=block, etc.
   * action=query&list=watchlistraw returns pages' watchlist expiry dates.
+* (T249526) action=login will now return Failed rather than NeedToken on
+  session loss.
 * …
 
 === Action API internal changes in 1.35 ===
@@ -292,6 +313,8 @@ because of Phabricator reports.
   module instead.
 * (T219604) The "jquery.ui.*" and "jquery.effects.*" module aliases,
   deprecated in 1.34, have been removed. Use "jquery.ui" instead.
+* (T235457) The "user.tokens" module has been removed.
+  Use "user.options" instead.
 * The internal variable $constructorOptions for the Parser & SpecialPageFactory,
   exposed only for integration purposes, are now each replaced by a const called
   CONSTRUCTOR_OPTIONS. This was a breaking change made without deprecation.
@@ -448,6 +471,10 @@ because of Phabricator reports.
   - setVary
 * ApiDelete::delete and ::deleteFile, both of which were protected methods,
   have been made private to allow a signature change.
+* HistoryPager::revLink, ::curLink, ::lastLink, and ::diffButtons, which had
+  no visibilities defined, have been made private to allow signature changes.
+* WikiPage::setLastEdit, which was previously protected, has been made
+  private to allow a signature change.
 * Skin::getSkinNameMessages() deprecated in 1.34, has been removed.
 * Skin::escapeSearchLink() deprecated in 1.34, has been removed, use
   Skin::getSearchLink() instead.
@@ -466,10 +493,20 @@ because of Phabricator reports.
   This was deprecated in 1.25.
 * The ArticleAfterFetchContentObject hook, deprecated in 1.32, was removed.
   Use ArticleRevisionViewCustom to control output.
+* DatabaseBlock::isValid, deprecated in 1.33, was removed.
 * HTMLUserTextField and HTMLUsersMultiselectField previously implied
   required=true when exists=true. Form fields that use exists=true should also
   set required=true if they are required.
 * Parser::getDefaultPreprocessorClass(), deprecated in 1.34, has been removed.
+* In DatabaseUpdater, the following methods are no longer public: dropTable(),
+  modifyTable(), modifyField(), runMaintenance(), copyFile(), appendLine().
+  In PostgresUpdater, the following methods are no longer public:
+  addPgEnumValue(), addPgIndex(), addPgExtIndex(). This change was made without
+  deprecation due to immediate danger of data corruption and loss, see T157651.
+  Extensions should instead use dropExtensionTable(),
+  modifyExtensionExtensionTable(), modifyExtensionField(), addExtensionUpdate().
+  The addExtensionUpdate() method can still be used to access any of the
+  protected methods on DatabaseUpdater.
 * …
 
 === Deprecations in 1.35 ===
@@ -498,6 +535,8 @@ because of Phabricator reports.
 * FileBackendGroup::destroySingleton() is deprecated. Test frameworks should
   instead reset MediaWikiServices between test runs.
   (MediaWikiIntegrationTestCase does this automatically.)
+* GenderCache::singleton(), deprecated in 1.28, is hard deprecated. Use
+  MediaWikiServices::getGenderCache() instead.
 * MediaWikiIntegrationTest::setContentLang() has been deprecated. Use
   setMwGlobals( 'wgLanguageCode', 'xxx' ) to set a different site language
   code, or setService( 'ContentLanguage', $myObj ) to set a specific Language
@@ -615,19 +654,31 @@ because of Phabricator reports.
   - mVarSeparatorPattern
   changed from public to protected:
   - mTables
+* The UndeleteShowRevision hook has been deprecated.
 * The ArticleEditUpdatesDeleteFromRecentchanges hook has been deprecated. Please
   use the RecentChange_save hook or similar instead.
 * The ArticleEditUpdates hook has been deprecated. Please
   use the RevisionDataUpdates hook or similar instead.
+* The ArticleRevisionUndeleted has been hard deprecated. Please use the new
+  RevisionUndeleted hook instead.
 * LinkHolderArray has been deprecated for public usage and will be
   internal part of parser.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
+* Calling Action::factory and Action constructor with WikiPage has been
+  hard deprecated. Caller must provide an Article instance.
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
 * WebRequest::getLimitOffset is hard deprecated. Instead, use
   ::getLimitOffsetForUser and pass a User object.
+* PageArchive::getPreviousRevision is soft deprecated. Instead, use the new
+  ::getPreviousRevisionRecord method.
+* PageArchive::getArchivedRevision is hard deprecated. Instead, use the new
+  ::getArchivedRevisionRecord method.
 * PageArchive::undelete is hard deprecated. Instead, use ::undeleteAsUser
   and pass a User object.
+* EditPage::getBaseRevision was hard deprecated. Instead, use the new
+  ::getExpectedParentRevision method.
+* The public variable EditPage::$mBaseRevision was hard deprecated.
 * FileDeleteForm previously did not accept a user parameter in its constructor,
   instead relying on the global $wgUser. A user parameter has been added,
   and //not// providing a user is deprecated. There are no known callers
@@ -638,7 +689,6 @@ because of Phabricator reports.
   user is hard deprecated, and support for calling them without passing a user
   will be removed in 1.36:
   - Title::getNotificationTimestamp
-  - Revision::newNullRevision
   - WikiPage::insertProtectNullRevision
   - PatrolLog::record
   - LogEventsList::userCan
@@ -667,8 +717,12 @@ because of Phabricator reports.
   WikiPage::doDeleteArticleReal.
 * Article::getComment is deprecated. Instead, use WikiPage::getComment.
 * Article::getCreator is deprecated. Instead, use WikiPage::getCreator.
+* Article::updateRevisionOn and Article::updateIfNewerOn are deprecated.
+  Instead, use WikiPage::updateRevisionOn.
 * Article::getUser is deprecated. Instead, use WikiPage::getUser.
 * Article::getUserText is deprecated. Instead, use WikiPage::getUserText.
+* Article::doDeleteUpdates is deprecated. Instead, use
+  WikiPage::doDeleteUpdates
 * LocalFileDeleteBatch was migrated to a new constructor signature with the
   user as the second parameter. Support for the old signature is hard
   deprecated, and once removed the user parameter will be required. At the
@@ -686,6 +740,14 @@ because of Phabricator reports.
 * All methods of the old SpecialPageFactory, deprecated in 1.32, were hard
   deprecated. Instead, get a SpecialPageFactory from MediaWikiServices and
   use its methods.
+* User::setNewtalk now accepts as its optional second parameter a
+  RevisionRecord object; passing a Revision is hard deprecated.
+* User::updateNewtalk now accepts as its optional third parameter a
+  RevisionRecord object; passing a Revision is hard deprecated.
+* WikiPage::doDeleteUpdates now accepts as its optional third parameter
+  a RevisionRecord object; passing a Revision is hard deprecated.
+* WikiPage::onArticleEdit now accepts as its optional second parameter
+  a RevisionRecord object; passing a Revision is hard deprecated.
 * Global $wgUser variable was soft deprecated.
 * The Revision class was soft deprecated entirely in 1.31. Specific methods
   have now been individually hard deprecated:
@@ -695,6 +757,8 @@ because of Phabricator reports.
   - ::userWasLastToEdit - use RevisionStore::userWasLastToEdit instead
   - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
+  - ::newFromArchiveRow - use RevisionFactory::newRevisionFromArchiveRow
+  - ::newNullRevision - use RevisionStore::newNullRevision
   - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
   - ::loadFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead
@@ -709,9 +773,17 @@ because of Phabricator reports.
   - ::getArchiveQueryInfo - use RevisionStore::getArchiveQueryInfo instead
   - ::isUnpatrolled - use RevisionStore::getRcIdIfUnpatrolled instead
   - ::setUserIdAndName - use MutableRevisionRecord::setUser instead
+  - ::setId - use MutableRevisionRecord::setId instead
   - ::getRecentChange - use RevisionStore::getRecentChange instead
   - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
       content address, or RevisionRecord::hasSameContent to compare content
+* The Revision method had a few methods that were previously protected and
+  have been made private. They were:
+  - ::getRevisionStore
+  - ::getRevisionLookup
+  - ::getRevisionFactory
+  - ::getBlobStore
+  The $mRecord variable was also changed from protected to private.
 * The RevisionInsertComplete hook, soft deprecated in 1.31, now emits
   deprecation warnings.
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
@@ -747,10 +819,24 @@ because of Phabricator reports.
 * The following methods were deprecated:
   - Title::getFirstRevision
   - Title::getEarliestRevTime
-  - WikiPage::getOldestRevision
+  - WikiPage::getOldestRevision (hard deprecated)
+  - Article::getOldestRevision (hard deprecated)
   Use RevisionStore::getFirstRevision instead.
 * The Parser::enableOOUI() method has been deprecated.  Use
   $parser->getOutput()->enableOOUI() instead.
+* The following Linker methods previously accepted Revision objects as
+  parameters. They now accept either Revision or RevisionRecord objects.
+  Passing a Revision object is soft deprecated.
+  - ::revUserLink
+  - ::revUserTools
+  - ::revComment
+  - ::generateRollback
+  - ::getRollbackEditCount
+  - ::buildRollbackLink
+  - ::getRevDeleteLink
+* WikiPage::hasDifferencesOutsideMainSlot previously accepted Revision
+  objects for its two parameters. It now accepts RevisionRecord objects,
+  and passing Revision objects is hard deprecated.
 * The ParserGetVariableValueVarCache hook has been deprecated.
 * When using the ParserGetVariableValueSwitch hook, the following unusual
   uses have been deprecated: modifying the passed $magicWordId or failing to
@@ -782,6 +868,14 @@ because of Phabricator reports.
   - ::$mRevisionSize
   - ::$mInputSize
   - ::$mInParse
+* The accessor/mutator methods Parser::Options(), Parser::OutputType(), and
+  Parser::Title() have been deprecated; use the appropriate Parser::get*
+  or Parser::set* methods instead.
+* Version 1 of the parserTests file format has been deprecated.  Update
+  your parser tests to version 2, which uses Remex tidy on all test output
+  by default.
+* LinksUpdate::getRevision and ::setRevision are hard deprecated in favor
+  of the new ::getRevisionRecord and ::setRevisionRecord methods.
 * A new UserNameUtils service was introduced. The following User methods
   were deprecated in favor of using the new service:
   - isIP
@@ -794,6 +888,15 @@ because of Phabricator reports.
   the second parameter, and the suppression option the third parameter.
   Previously, the third parameter was unused. Using the old signature is
   hard deprecated.
+* Passing Article to ParserCache::get() was deprecated
+* WikiPage::insertProtectNullRevision was soft deprecated in favor of the
+  new insertNullProtectionRevision method.
+* Page interface was deprecated. Use Article or WikiPage instead.
+* The following DatabaseBlock methods are deprecated because they are no longer
+  needed in core: chooseBlock, fromMaster, deleteIfExpired.
+* wfGetScriptUrl() was deprecated. The script URL should be configured rather
+  than detected. wfScript() can be used to get a configured script URL.
+* Action::factory() with null $action argument is hard deprecated
 * …
 
 === Other changes in 1.35 ===
@@ -802,6 +905,7 @@ because of Phabricator reports.
   wiki editing if $wgWatchlistPurgeRate is > 0. This maintenance script only
   has effect if $wgWatchlistExpiry is true. It is recommended that a cronjob or
   similar be set up to run it at least daily.
+* Title::purgeSquid is deprecated. Use MediaWikiServices::getHtmlCacheUpdater.
 * …
 
 == Compatibility ==

@@ -1,21 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dicto23456",
 			"Engelseziekte",
+			"Fitoschido",
 			"Gazeb",
 			"Gleb Borisov",
+			"Igor Kercsa",
+			"KHMELNYTSKYIA",
 			"Kaganer",
+			"Macofe",
+			"Matma Rex",
 			"Nemo bis",
 			"Reedy",
 			"Tkalyn",
-			"아라",
-			"Dicto23456",
-			"Macofe",
-			"Matma Rex",
-			"KHMELNYTSKYIA",
-			"Igor Kercsa",
-			"Fitoschido",
-			"Vlad5250"
+			"Vlad5250",
+			"아라"
 		]
 	},
 	"tog-underline": "Підкреслёвати одказы:",
@@ -1358,7 +1358,6 @@
 	"uploadstash-refresh": "Обновити список файлів",
 	"invalid-chunk-offset": "Неприступный посув фраґмента.",
 	"img-auth-accessdenied": "Приступ одопертый",
-	"img-auth-nopathinfo": "Ваш сервер не є наштелёваный так, жебы давав тоту інформацію.\nМоже фунґує помочов CGI і img_auth на нім не може фунґовати.\nПосмотьте https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Пожадована стежка не є в конфіґурованім адресарю із наладованыма файлами.",
 	"img-auth-badtitle": "З „$1“  ся не дасть створити платна назва сторінкы.",
 	"img-auth-nofile": "Файл «$1» не екзістує.",

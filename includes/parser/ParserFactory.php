@@ -61,6 +61,16 @@ class ParserFactory {
 	private $languageConverterFactory;
 
 	/**
+	 * Track calls to Parser constructor to aid in deprecation of direct
+	 * Parser invocation.  This is temporary: it will be removed once the
+	 * deprecation notice period is over and the underlying method calls
+	 * are refactored.
+	 * @internal
+	 * @var int
+	 */
+	public static $inParserFactory = 0;
+
+	/**
 	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param Language $contLang Content language
@@ -108,18 +118,23 @@ class ParserFactory {
 	 * @since 1.32
 	 */
 	public function create() : Parser {
-		return new Parser(
-			$this->svcOptions,
-			$this->magicWordFactory,
-			$this->contLang,
-			$this,
-			$this->urlProtocols,
-			$this->specialPageFactory,
-			$this->linkRendererFactory,
-			$this->nsInfo,
-			$this->logger,
-			$this->badFileLookup,
-			$this->languageConverterFactory
-		);
+		self::$inParserFactory++;
+		try {
+			return new Parser(
+				$this->svcOptions,
+				$this->magicWordFactory,
+				$this->contLang,
+				$this,
+				$this->urlProtocols,
+				$this->specialPageFactory,
+				$this->linkRendererFactory,
+				$this->nsInfo,
+				$this->logger,
+				$this->badFileLookup,
+				$this->languageConverterFactory
+			);
+		} finally {
+			self::$inParserFactory--;
+		}
 	}
 }

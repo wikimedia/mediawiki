@@ -41,10 +41,6 @@ class MWTidy {
 	 */
 	public static function tidy( $text ) {
 		$driver = self::singleton();
-		if ( !$driver ) {
-			throw new MWException( __METHOD__ .
-				': tidy is disabled, caller should have checked MWTidy::isEnabled()' );
-		}
 		return $driver->tidy( $text );
 	}
 
@@ -52,7 +48,7 @@ class MWTidy {
 	 * @return bool
 	 */
 	public static function isEnabled() {
-		return self::singleton() !== false;
+		return true;
 	}
 
 	/**
@@ -75,16 +71,6 @@ class MWTidy {
 	 */
 	public static function factory( array $config = null ) {
 		return new MediaWiki\Tidy\RemexDriver( $config ?? [] );
-	}
-
-	/**
-	 * Set the driver to be used. This is for testing.
-	 * @param MediaWiki\Tidy\TidyDriverBase|false|null $instance
-	 * @deprecated Since 1.33
-	 */
-	public static function setInstance( $instance ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		self::$instance = $instance;
 	}
 
 	/**

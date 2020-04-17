@@ -1,12 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"Dbc334",
 			"Derbeth",
 			"Dunak",
 			"Dundak",
+			"Fitoschido",
 			"Geitost",
+			"J budissin",
 			"Kaganer",
+			"Macofe",
+			"Matma Rex",
 			"Michawiki",
 			"Murjarik",
 			"Nemo bis",
@@ -14,16 +19,11 @@
 			"Pe7er",
 			"Qualia",
 			"Shirayuki",
+			"TMg",
 			"Tlustulimu",
 			"Tlustulimu Nepl1",
-			"아라",
-			"TMg",
-			"Macofe",
-			"Matma Rex",
-			"Fitoschido",
 			"Vlad5250",
-			"J budissin",
-			"DannyS712"
+			"아라"
 		]
 	},
 	"tog-underline": "Wótkaze pódšmarnuś:",
@@ -1248,7 +1248,6 @@
 	"uploadstash-refresh": "Lisćinu datajow aktualizěrowaś",
 	"invalid-chunk-offset": "Njepłaśiwy startowy dypk",
 	"img-auth-accessdenied": "Pśistup zawobarany",
-	"img-auth-nopathinfo": "PATH_INFO felujo.\nTwój serwer njejo konfigurěrowany, aby toś te informacije dalej pósrědnił.\nMóžo na CGI bazěrowaś a njamóžo img_auth pódpěraś.\nGlědaj https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "Pominana šćažka njejo w konfigurěrowanem nagraśowem zapisu.",
 	"img-auth-badtitle": "Njejo móžno z \"$1\" płaśiwy titel twóriś.",
 	"img-auth-nofile": "Dataja \"$1\" njeeksistěrujo.",

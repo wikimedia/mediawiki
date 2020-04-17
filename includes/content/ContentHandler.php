@@ -29,6 +29,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 use Wikimedia\Assert\Assert;
@@ -1008,32 +1009,33 @@ abstract class ContentHandler {
 	 */
 	public function getAutoDeleteReason( Title $title, &$hasHistory ) {
 		$dbr = wfGetDB( DB_REPLICA );
+		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
 		// Get the last revision
-		$rev = Revision::newFromTitle( $title );
+		$revRecord = $revLookup->getRevisionByTitle( $title );
 
-		if ( $rev === null ) {
+		if ( $revRecord === null ) {
 			return false;
 		}
 
 		// Get the article's contents
-		$content = $rev->getContent();
+		$content = $revRecord->getContent( SlotRecord::MAIN );
 		$blank = false;
 
 		// If the page is blank, use the text from the previous revision,
 		// which can only be blank if there's a move/import/protect dummy
 		// revision involved
 		if ( !$content || $content->isEmpty() ) {
-			$prev = $rev->getPrevious();
+			$prev = $revLookup->getPreviousRevision( $revRecord );
 
 			if ( $prev ) {
-				$rev = $prev;
-				$content = $rev->getContent();
+				$revRecord = $prev;
+				$content = $prev->getContent( SlotRecord::MAIN );
 				$blank = true;
 			}
 		}
 
-		$this->checkModelID( $rev->getContentModel() );
+		$this->checkModelID( $revRecord->getSlot( SlotRecord::MAIN )->getModel() );
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions

@@ -19,6 +19,7 @@
  *
  * @file
  * @ingroup SpecialPage
+ * @author DannyS712
  */
 class SpecialNewSection extends RedirectSpecialPage {
 	public function __construct() {

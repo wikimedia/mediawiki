@@ -1,0 +1,75 @@
+<test:data xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:test="http://www.mediawiki.org/xml/test/">
+	<page>
+		<title>{{rev1_1_title}}</title>
+		<ns>{{rev1_1_namespace}}</ns>
+		<id>{{rev1_1_pageid}}</id>
+		<revision>
+			<id>{{rev1_1_id}}</id>
+			<timestamp>{{rev1_1_timestamp}}</timestamp>
+			<contributor>
+				<username>{{rev1_1_username}}</username>
+				<id>{{rev1_1_userid}}</id>
+			</contributor>
+			<comment>{{rev1_1_comment}}</comment>
+			<model>{{rev1_1_main_model}}</model>
+			<format>{{rev1_1_main_format}}</format>
+			<text bytes="{{rev1_1_main_size}}" id="{{rev1_1_main_textid}}"/>
+			<sha1>{{rev1_1_sha1}}</sha1>
+		</revision>
+	</page>
+	<page>
+		<title>{{rev2_4_title}}</title>
+		<ns>{{rev2_4_namespace}}</ns>
+		<id>{{rev2_4_pageid}}</id>
+		<revision>
+			<id>{{rev2_4_id}}</id>
+			<parentid>{{rev2_4_parentid}}</parentid>
+			<timestamp>{{rev2_4_timestamp}}</timestamp>
+			<contributor>
+				<username>{{rev2_4_username}}</username>
+				<id>{{rev2_4_userid}}</id>
+			</contributor>
+			<comment>{{rev2_4_comment}}</comment>
+			<model>{{rev2_4_main_model}}</model>
+			<format>{{rev2_4_main_format}}</format>
+			<text bytes="{{rev2_4_main_size}}" id="{{rev2_4_main_textid}}"/>
+			<sha1>{{rev2_4_sha1}}</sha1>
+		</revision>
+	</page>
+	<page>
+		<title>{{rev4_1_title}}</title>
+		<ns>{{rev4_1_namespace}}</ns>
+		<id>{{rev4_1_pageid}}</id>
+		<revision>
+			<id>{{rev4_1_id}}</id>
+			<timestamp>{{rev4_1_timestamp}}</timestamp>
+			<contributor>
+				<username>{{rev4_1_username}}</username>
+				<id>{{rev4_1_userid}}</id>
+			</contributor>
+			<comment>{{rev4_1_comment}}</comment>
+			<model>{{rev4_1_main_model}}</model>
+			<format>{{rev4_1_main_format}}</format>
+			<text bytes="{{rev4_1_main_size}}" id="{{rev4_1_main_textid}}"/>
+			<sha1>{{rev4_1_sha1}}</sha1>
+		</revision>
+	</page>
+	<page>
+		<title>{{rev5_1_title}}</title>
+		<ns>{{rev5_1_namespace}}</ns>
+		<id>{{rev5_1_pageid}}</id>
+		<revision>
+			<id>{{rev5_1_id}}</id>
+			<timestamp>{{rev5_1_timestamp}}</timestamp>
+			<contributor>
+				<username>{{rev5_1_username}}</username>
+				<id>{{rev5_1_userid}}</id>
+			</contributor>
+			<comment>{{rev5_1_comment}}</comment>
+			<model>{{rev5_1_main_model}}</model>
+			<format>{{rev5_1_main_format}}</format>
+			<text bytes="{{rev5_1_main_size}}" id="{{rev5_1_main_textid}}"/>
+			<sha1>{{rev5_1_sha1}}</sha1>
+		</revision>
+	</page>
+</test:data>

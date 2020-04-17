@@ -405,7 +405,7 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideInvalidDependency
 	 */
-	public function testInvalidDependency( $depencency, $type ) {
+	public function testInvalidDependency( $dependency, $type ) {
 		$checker = new VersionChecker(
 			'1.0.0',
 			'7.0.0',
@@ -417,7 +417,7 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 		);
 		$this->expectException( UnexpectedValueException::class );
 		$this->expectExceptionMessage( "Dependency type $type unknown in FakeExtension" );
-		$checker->checkArray( $depencency );
+		$checker->checkArray( $dependency );
 	}
 
 	public function testInvalidPhpExtensionConstraint() {

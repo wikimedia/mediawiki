@@ -154,9 +154,14 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
 		$dbw = $this->getDB( DB_MASTER );
 
-		$rev = ( $table === 'archive' )
-			? Revision::newFromArchiveRow( $row )
-			: new Revision( $row );
+		if ( $table === 'archive' ) {
+			$revRecord = MediaWikiServices::getInstance()
+				->getRevisionFactory()
+				->newRevisionFromArchiveRow( $row );
+			$rev = new Revision( $revRecord );
+		} else {
+			$rev = new Revision( $row );
+		}
 
 		$content = $rev->getContent( RevisionRecord::RAW );
 		if ( !$content ) {

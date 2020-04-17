@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Fitoschido",
 			"Giromin Cangiaxo",
-			"Fitoschido"
+			"S4b1nuz E.656"
 		]
 	},
 	"config-desc": "Programma de installaçion pe MediaWiki",
@@ -136,7 +137,7 @@
 	"config-db-web-create": "Crea l'account s'o no l'existe ancon",
 	"config-db-web-no-create-privs": "L'account doeuviou pe l'installaçion o no dispon-e di privileggi necessai pe creâ un atro account.\nL'account indicou chì o deve za existe.",
 	"config-mysql-engine": "Motô d'archiviaçion:",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (consegiòu)",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> o l'è quæxi sempre a megio opçion, in quante o g'ha 'n bon supporto da concorença.\n\n<strong>MyISAM</strong> o poriæ vese ciu veloçe inte installaçioin mono-utente ò in sola-lettua.\nI database MyISAM tendan a dannezâse ciu soventi di database InnoDB.",
 	"config-site-name": "Nomme da wiki:",
 	"config-site-name-help": "Questo saiâ vixualizou inta bara do tittolo do navegatô e in atri varri recanti.",
@@ -189,7 +190,7 @@
 	"config-license-help": "Tante wiki pubbriche rilascian i so contributi co-ina [https://freedomdefined.org/Definition liçençia libbera]. Sto fæto o l'agiutta a creâ un senso de propietæ condivisa inta comunitæ e o l'incoragisce a contriboî a longo termine. O no l'è generalmente necessaio pe 'na wiki privâ ò aziendale.\n\nSe ti voeu doeuviâ di scriti da Wikipedia, ò ti dexiddei che a Wikipedia a posse vese in graddo de acetâ di scriti copiæ da-a to wiki, ti doviesci scellie <strong>{{int:config-license-cc-by-sa}}</strong>.\n\nIn precedença a Wikipedia a l'ha doeuviou a GNU Free Documentation License. A GFDL a l'è 'na liçençia vallida, ma a l'è difiççile da capî e a complica o riutilizzo di contegnui.",
 	"config-email-settings": "Impostaçioin e-mail",
 	"config-enable-email": "Abillita a sciortia da posta elettronica",
-	"config-enable-email-help": "Se ti voeu che fonçion-e l'e-mail, e [Config-dbsupport-oracle/manual/en/mail.configuration.php PHP's impostaçioin della posta] dev'esan configuæ corettamente.\nSe non ti dexiddei arcun-a fonçionalitæ de posta eletronnica, ti a poeu disabilitâ chie.",
+	"config-enable-email-help": "Se ti voeu che fonçion-e l'e-mail, e [https://www.php.net/manual/en/mail.configuration.php PHP's impostaçioin della posta] dev'esan configuæ corettamente.\nSe non ti dexiddei arcun-a fonçionalitæ de posta eletronnica, ti a poeu disabilitâ chie.",
 	"config-email-user": "Abillita e-mail fra utenti",
 	"config-email-user-help": "Consente a tutti i utenti de inviâse l'un l'atro l'e-mail, se l'han abilitou inte so preferençe.",
 	"config-email-usertalk": "Abillita e notiffiche pe-e paggine de discuscion utente",
@@ -216,7 +217,7 @@
 	"config-cache-options": "Impostaçioin pe-a cache di ogetti:",
 	"config-cache-help": "A memorizaçion di ogetti inta cache a serve pe fâ anâ ciu fito a MediaWiki sarvando inta cache i dæti che ti doeuvi soventi.\nPe di sciti de dimenscioin mezan-e e grende l'è cadamente consegiou attivâ a cache, ma pe-i piccin ascì se ne vediâ i benefiççi.",
 	"config-cache-none": "Nisciun-a memorizaçion inta cache (nisciun-a fonçionalitæ a l'è impedia, ma in scî sciti wiki ciu grendi a veloçitæ a poriæ risentîne)",
-	"config-cache-accel": "Mette in cache ogetti PHP (APC, APCu, XCache ò WinCache)",
+	"config-cache-accel": "Mette in cache ogetti PHP (APC, APCu ò WinCache)",
 	"config-cache-memcached": "Doeuvia Memcached (a richiede urteioî attivitæ de instalaçion e configuaçion)",
 	"config-memcached-servers": "Serviou de Memcached:",
 	"config-memcached-help": "Lista de adressi IP da doeuviâ pe Memcached.\nTi doviesci specificâne un pe riga e indicâ a porta da doeuviâ. Presempio:\n 127.0.0.1:11211\n 192.168.1.25:1234",

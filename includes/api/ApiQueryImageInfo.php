@@ -95,10 +95,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				];
 			}, $titles );
 
+			$services = MediaWikiServices::getInstance();
+			$repoGroup = $services->getRepoGroup();
 			if ( $params['localonly'] ) {
-				$images = RepoGroup::singleton()->getLocalRepo()->findFiles( $findTitles );
+				$images = $repoGroup->getLocalRepo()->findFiles( $findTitles );
 			} else {
-				$images = RepoGroup::singleton()->findFiles( $findTitles );
+				$images = $repoGroup->findFiles( $findTitles );
 			}
 
 			$result = $this->getResult();
@@ -110,8 +112,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( !isset( $images[$title] ) ) {
 					if ( isset( $prop['uploadwarning'] ) || isset( $prop['badfile'] ) ) {
 						// uploadwarning and badfile need info about non-existing files
-						$images[$title] = MediaWikiServices::getInstance()->getRepoGroup()
-							->getLocalRepo()->newFile( $title );
+						$images[$title] = $repoGroup->getLocalRepo()->newFile( $title );
 						// Doesn't exist, so set an empty image repository
 						$info['imagerepository'] = '';
 					} else {
@@ -144,7 +145,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$info['imagerepository'] = $img->getRepoName();
 				}
 				if ( isset( $prop['badfile'] ) ) {
-					$info['badfile'] = (bool)MediaWikiServices::getInstance()->getBadFileLookup()
+					$info['badfile'] = (bool)$services->getBadFileLookup()
 						->isBadFile( $title, $badFileContextTitle );
 				}
 

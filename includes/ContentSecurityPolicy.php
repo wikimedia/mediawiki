@@ -559,7 +559,7 @@ class ContentSecurityPolicy {
 	 *
 	 * @since 1.35
 	 * @param string $source Source to add.
-	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 *   e.g. blob:, *.example.com, %https://example.com, example.com/foo
 	 */
 	public function addDefaultSrc( $source ) {
 		$this->extraDefaultSrc[] = $this->prepareUrlForCSP( $source );
@@ -573,7 +573,7 @@ class ContentSecurityPolicy {
 	 *
 	 * @since 1.35
 	 * @param string $source Source to add.
-	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 *   e.g. blob:, *.example.com, %https://example.com, example.com/foo
 	 */
 	public function addStyleSrc( $source ) {
 		$this->extraStyleSrc[] = $this->prepareUrlForCSP( $source );
@@ -588,7 +588,7 @@ class ContentSecurityPolicy {
 	 * @since 1.35
 	 * @warning Be careful including external scripts, as they can take over accounts.
 	 * @param string $source Source to add.
-	 *   e.g. blob:, example.com, https://*.example.com, example.com/foo
+	 *   e.g. blob:, *.example.com, %https://example.com, example.com/foo
 	 */
 	public function addScriptSrc( $source ) {
 		$this->extraScriptSrc[] = $this->prepareUrlForCSP( $source );

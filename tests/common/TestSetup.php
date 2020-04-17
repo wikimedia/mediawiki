@@ -35,6 +35,7 @@ class TestSetup {
 		global $wgDevelopmentWarnings;
 		global $wgSessionProviders, $wgSessionPbkdf2Iterations;
 		global $wgJobTypeConf;
+		global $wgMWLoggerDefaultSpi;
 		global $wgAuthManagerConfig;
 		global $wgShowExceptionDetails;
 
@@ -63,6 +64,13 @@ class TestSetup {
 		// Use memory job queue
 		$wgJobTypeConf = [
 			'default' => [ 'class' => JobQueueMemory::class, 'order' => 'fifo' ],
+		];
+		// Always default to LegacySpi and LegacyLogger during test
+		// See also MediaWikiIntegrationTestCase::setNullLogger().
+		// Note that MediaWikiLoggerPHPUnitTestListener may wrap this in
+		// a MediaWiki\Logger\LogCapturingSpi at run-time.
+		$wgMWLoggerDefaultSpi = [
+			'class' => \MediaWiki\Logger\LegacySpi::class,
 		];
 
 		$wgUseDatabaseMessages = false; # Set for future resets
@@ -112,14 +120,6 @@ class TestSetup {
 			'secondaryauth' => [],
 		];
 
-		// T46192 Do not attempt to send a real e-mail
-		Hooks::clear( 'AlternateUserMailer' );
-		Hooks::register(
-			'AlternateUserMailer',
-			function () {
-				return false;
-			}
-		);
 		// xdebug's default of 100 is too low for MediaWiki
 		ini_set( 'xdebug.max_nesting_level', 1000 );
 

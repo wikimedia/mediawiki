@@ -77,14 +77,24 @@ class RequestFromGlobalsTest extends MediaWikiTestCase {
 		$this->setServerVars( [
 			'HTTP_HOST' => '[::1]',
 			'CONTENT_LENGTH' => 6,
-			'CONTENT_TYPE' => 'application/json'
+			'CONTENT_TYPE' => 'application/json',
+			'CONTENT_MD5' => 'rL0Y20zC+Fzt72VPzMSk2A==',
 		] );
 
 		$this->assertEquals( $this->reqFromGlobals->getHeaders(), [
-			'host' => [ '[::1]' ],
-			'content-length' => [ 6 ],
-			'content-type' => [ 'application/json' ]
+			'Host' => [ '[::1]' ],
+			'Content-Length' => [ 6 ],
+			'Content-Type' => [ 'application/json' ],
+			'Content-Md5' => [ 'rL0Y20zC+Fzt72VPzMSk2A==' ],
 		] );
+	}
+
+	public function testGetHeaderKeyIsCaseInsensitive() {
+		$cacheControl = 'private, must-revalidate, max-age=0';
+		$this->setServerVars( [ 'HTTP_CACHE_CONTROL' => $cacheControl ] );
+
+		$this->assertSame( $this->reqFromGlobals->getHeader( 'Cache-Control' ), [ $cacheControl ] );
+		$this->assertSame( $this->reqFromGlobals->getHeader( 'cache-control' ), [ $cacheControl ] );
 	}
 
 	public function testGetBody() {

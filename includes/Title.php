@@ -3577,12 +3577,11 @@ class Title implements LinkTarget, IDBAccessObject {
 
 	/**
 	 * Purge all applicable CDN URLs
+	 * @deprecated 1.35 Use HtmlCacheUpdater
 	 */
 	public function purgeSquid() {
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $this->getCdnUrls() ),
-			DeferredUpdates::PRESEND
-		);
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $this, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 	}
 
 	/**
@@ -3845,6 +3844,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return int Number of revisions between these revisions.
 	 */
 	public function countRevisionsBetween( $old, $new, $max = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( !( $old instanceof Revision ) ) {
 			$old = Revision::newFromTitle( $this, (int)$old );
 		}

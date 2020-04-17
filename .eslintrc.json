@@ -10,8 +10,8 @@
 		"OO": "readonly"
 	},
 	"rules": {
-		"quote-props": [ "error", "as-needed" ],
 		"max-len": "off",
+		"mediawiki/valid-package-file-require": "off",
 		"no-jquery/no-global-selector": "off"
 	}
 }

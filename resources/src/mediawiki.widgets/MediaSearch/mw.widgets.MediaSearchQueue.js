@@ -43,7 +43,7 @@
 			if ( queue.providers.length === 0 ) {
 				// Set up the providers
 				for ( i = 0, len = sources.length; i < len; i++ ) {
-					queue.providers.push( new mw.widgets.MediaSearchProvider(
+					queue.addProvider( new mw.widgets.MediaSearchProvider(
 						sources[ i ].apiurl,
 						{
 							name: sources[ i ].name,

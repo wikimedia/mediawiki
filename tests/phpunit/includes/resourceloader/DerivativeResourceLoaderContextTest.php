@@ -66,6 +66,21 @@ class DerivativeResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $derived->getUser(), 'MyUser' );
 	}
 
+	public function testChangeUserObj() {
+		$user = $this->createMock( User::class );
+		$parent = $this->createMock( ResourceLoaderContext::class );
+		$parent
+			->expects( $this->once() )
+			->method( 'getUserObj' )
+			->willReturn( $user );
+
+		$derived = new DerivativeResourceLoaderContext( $parent );
+		$this->assertSame( $derived->getUserObj(), $user, 'inherit from parent' );
+
+		$derived->setUser( null );
+		$this->assertNotSame( $derived->getUserObj(), $user, 'different' );
+	}
+
 	public function testChangeDebug() {
 		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
 		$this->assertSame( $derived->getDebug(), false, 'inherit from parent' );

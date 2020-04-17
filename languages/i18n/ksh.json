@@ -1,20 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
+			"Fitoschido",
 			"Geitost",
+			"Macofe",
 			"Matma Rex",
+			"MusikAnimal",
+			"Nemo bis",
 			"Purodha",
 			"Reedy",
 			"Rentenirer",
-			"לערי ריינהארט",
-			"아라",
 			"TTO",
-			"Macofe",
-			"Nemo bis",
-			"Fitoschido",
-			"MusikAnimal",
 			"Vlad5250",
-			"DannyS712"
+			"לערי ריינהארט",
+			"아라"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -1468,7 +1468,6 @@
 	"uploadstash-thumbnail": "et Minni-Belldsche aanlohre",
 	"invalid-chunk-offset": "Ene onjöltijje Aanfangspungk för dä Rötsch",
 	"img-auth-accessdenied": "Keine Zohjang",
-	"img-auth-nopathinfo": "De <code xml:lang=\"en\" lang=\"en\" dir=\"rtl\">PATH_INFO</code> fäält.\nDä Webßööver es nit doför ennjerescht, di Ennfommazjuhn wigger ze jävve.\nHä künnd_op <code xml:lang=\"en\" lang=\"en\" dir=\"rtl\">CGI</code> opjebout sin, un dröm <code xml:lang=\"en\" lang=\"en\" dir=\"rtl\">img_auth</code> nit ongschtöze künne. Loor em [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization Handbohch] noh, wat domed es.",
 	"img-auth-notindir": "Dä aanjefroochte Pat is nit em enjeschtallte Verzeischneß för et Huhlaade.",
 	"img-auth-badtitle": "Uß „$1“ löht sesch kein jöltijje Övverschreff maache.",
 	"img-auth-nofile": "En Dattei „$1“ jidd_et nit.",

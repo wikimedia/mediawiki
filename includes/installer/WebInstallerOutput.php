@@ -131,30 +131,12 @@ class WebInstallerOutput {
 	 * @return string
 	 */
 	public function getCSS() {
-		global $wgStyleDirectory;
-
 		$moduleNames = [
-			// Based on Vector::setupSkinUserCss
 			'mediawiki.skinning.interface',
+			'mediawiki.legacy.config'
 		];
 
 		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
-
-		if ( file_exists( "$wgStyleDirectory/Vector/skin.json" ) ) {
-			// Force loading Vector skin if available as a fallback skin
-			// for whatever ResourceLoader wants to have as the default.
-			$registry = new ExtensionRegistry();
-			$data = $registry->readFromQueue( [
-				"$wgStyleDirectory/Vector/skin.json" => 1,
-			] );
-			if ( isset( $data['attributes']['ResourceModules'] ) ) {
-				$resourceLoader->register( $data['attributes']['ResourceModules'] );
-			}
-
-			$moduleNames[] = 'skins.vector.styles';
-		}
-
-		$moduleNames[] = 'mediawiki.legacy.config';
 
 		$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( [
 				'debug' => 'true',
@@ -260,6 +242,7 @@ class WebInstallerOutput {
 
 			return;
 		}
+
 ?>
 <?php echo Html::htmlHeader( $this->getHeadAttribs() ); ?>
 

@@ -1038,9 +1038,12 @@ class LocalFile extends File {
 		$this->purgeThumbnails( $options );
 
 		// Purge CDN cache for this file
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( [ $this->getUrl() ] ),
-			DeferredUpdates::PRESEND
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeUrls(
+			$this->getUrl(),
+			!empty( $options['forThumbRefresh'] )
+				? $hcu::PURGE_PRESEND // just a manual purge
+				: $hcu::PURGE_INTENT_TXROUND_REFLECTED
 		);
 	}
 
@@ -1064,7 +1067,9 @@ class LocalFile extends File {
 		foreach ( $files as $file ) {
 			$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
 		}
-		DeferredUpdates::addUpdate( new CdnCacheUpdate( $urls ), DeferredUpdates::PRESEND );
+
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeUrls( $urls, $hcu::PURGE_PRESEND );
 	}
 
 	/**
@@ -1097,7 +1102,13 @@ class LocalFile extends File {
 		$this->purgeThumbList( $dir, $files );
 
 		// Purge the CDN
-		DeferredUpdates::addUpdate( new CdnCacheUpdate( $urls ), DeferredUpdates::PRESEND );
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeUrls(
+			$urls,
+			!empty( $options['forThumbRefresh'] )
+				? $hcu::PURGE_PRESEND // just a manual purge
+				: $hcu::PURGE_INTENT_TXROUND_REFLECTED
+		);
 	}
 
 	/**
@@ -1617,27 +1628,41 @@ class LocalFile extends File {
 		$logId = $logEntry->insert();
 
 		if ( $descTitle->exists() ) {
-			// Use own context to get the action text in content language
-			$formatter = LogFormatter::newFromEntry( $logEntry );
-			$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
-			$editSummary = $formatter->getPlainActionText();
-
-			$nullRevision = $createNullRevision === false ? null : Revision::newNullRevision(
-				$dbw,
-				$descId,
-				$editSummary,
-				false,
-				$user
-			);
-			if ( $nullRevision ) {
-				$nullRevision->insertOn( $dbw );
-				Hooks::run(
-					'NewRevisionFromEditComplete',
-					[ $wikiPage, $nullRevision, $nullRevision->getParentId(), $user, &$tags ]
+			if ( $createNullRevision !== false ) {
+				$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+				// Use own context to get the action text in content language
+				$formatter = LogFormatter::newFromEntry( $logEntry );
+				$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
+				$editSummary = $formatter->getPlainActionText();
+				$summary = CommentStoreComment::newUnsavedComment( $editSummary );
+				$nullRevRecord = $revStore->newNullRevision(
+					$dbw,
+					$descTitle,
+					$summary,
+					false,
+					$user
 				);
-				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
-				// Associate null revision id
-				$logEntry->setAssociatedRevId( $nullRevision->getId() );
+
+				if ( $nullRevRecord ) {
+					$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
+
+					// TODO WikiPage::updateRevisionOn should accept a RevisionRecord
+					// TODO replace hook
+					$nullRevision = new Revision( $inserted );
+					Hooks::run(
+						'NewRevisionFromEditComplete',
+						[
+							$wikiPage,
+							$nullRevision,
+							$inserted->getParentId(),
+							$user,
+							&$tags
+						]
+					);
+					$wikiPage->updateRevisionOn( $dbw, $nullRevision );
+					// Associate null revision id
+					$logEntry->setAssociatedRevId( $inserted->getId() );
+				}
 			}
 
 			$newPageContent = null;
@@ -1694,8 +1719,10 @@ class LocalFile extends File {
 						}
 					} else {
 						# Existing file page: invalidate description page cache
-						$wikiPage->getTitle()->invalidateCache();
-						$wikiPage->getTitle()->purgeSquid();
+						$title = $wikiPage->getTitle();
+						$title->invalidateCache();
+						$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+						$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 						# Allow the new file version to be patrolled from the page footer
 						Article::purgePatrolFooterCache( $descId );
 					}
@@ -1743,10 +1770,8 @@ class LocalFile extends File {
 						# Delete old thumbnails
 						$this->purgeThumbnails();
 						# Remove the old file from the CDN cache
-						DeferredUpdates::addUpdate(
-							new CdnCacheUpdate( [ $this->getUrl() ] ),
-							DeferredUpdates::PRESEND
-						);
+						$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+						$hcu->purgeUrls( $this->getUrl(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 					} else {
 						# Update backlink pages pointing to this title if created
 						LinksUpdate::queueRecursiveJobsForTable(
@@ -1769,9 +1794,12 @@ class LocalFile extends File {
 		}
 
 		# Invalidate cache for all pages using this file
-		DeferredUpdates::addUpdate(
-			new HTMLCacheUpdate( $this->getTitle(), 'imagelinks', 'file-upload' )
+		$job = HTMLCacheUpdateJob::newForBacklinks(
+			$this->getTitle(),
+			'imagelinks',
+			[ 'causeAction' => 'file-upload', 'causeAgent' => $user->getName() ]
 		);
+		JobQueueGroup::singleton()->lazyPush( $job );
 
 		return Status::newGood();
 	}
@@ -2001,7 +2029,9 @@ class LocalFile extends File {
 		foreach ( $archiveNames as $archiveName ) {
 			$purgeUrls[] = $this->getArchiveUrl( $archiveName );
 		}
-		DeferredUpdates::addUpdate( new CdnCacheUpdate( $purgeUrls ), DeferredUpdates::PRESEND );
+
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeUrls( $purgeUrls, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		return $status;
 	}
@@ -2066,10 +2096,9 @@ class LocalFile extends File {
 			$this->purgeDescription();
 		}
 
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( [ $this->getArchiveUrl( $archiveName ) ] ),
-			DeferredUpdates::PRESEND
-		);
+		$url = $this->getArchiveUrl( $archiveName );
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeUrls( $url, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		return $status;
 	}

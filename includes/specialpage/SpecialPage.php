@@ -408,7 +408,8 @@ class SpecialPage implements MessageLocalizer {
 		$key = 'SpecialPage:reauth:' . $this->getName();
 		$request = $this->getRequest();
 
-		$securityStatus = AuthManager::singleton()->securitySensitiveOperationStatus( $level );
+		$securityStatus = MediaWikiServices::getInstance()->getAuthManager()
+			->securitySensitiveOperationStatus( $level );
 		if ( $securityStatus === AuthManager::SEC_OK ) {
 			$uniqueId = $request->getVal( 'postUniqueId' );
 			if ( $uniqueId ) {

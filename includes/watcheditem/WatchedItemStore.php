@@ -5,6 +5,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -250,11 +251,37 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
-		$dbw->delete(
-			'watchlist',
-			[ 'wl_user' => $user->getId() ],
-			__METHOD__
-		);
+
+		if ( $this->expiryEnabled ) {
+			$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
+			// First fetch the wl_ids.
+			$wlIds = $dbw->selectFieldValues( 'watchlist', 'wl_id', [
+				'wl_user' => $user->getId()
+			] );
+
+			if ( $wlIds ) {
+				// Delete rows from both the watchlist and watchlist_expiry tables.
+				$dbw->delete(
+					'watchlist',
+					[ 'wl_id' => $wlIds ],
+					__METHOD__
+				);
+
+				$dbw->delete(
+					'watchlist_expiry',
+					[ 'we_item' => $wlIds ],
+					__METHOD__
+				);
+			}
+			$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
+		} else {
+			$dbw->delete(
+				'watchlist',
+				[ 'wl_user' => $user->getId() ],
+				__METHOD__
+			);
+		}
+
 		$this->uncacheAllItemsForUser( $user );
 
 		return true;
@@ -908,7 +935,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		array $rows,
 		?string $expiry = null
 	): int {
-		$expiry = WatchedItem::normalizeExpiry( $expiry );
+		$expiry = ExpiryDef::normalizeExpiry( $expiry );
 
 		if ( !$expiry ) {
 			// Either expiry was invalid or null (shouldn't change), 0 rows affected.

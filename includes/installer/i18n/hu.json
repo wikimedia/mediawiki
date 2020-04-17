@@ -1,19 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bencemac",
 			"Dani",
-			"Glanthor Reviol",
-			"아라",
 			"Dj",
-			"Misibacsi",
-			"Tacsipacsi",
 			"Dorgan",
+			"Glanthor Reviol",
 			"Macofe",
+			"MeskoBalazs",
+			"Misibacsi",
 			"Máté",
 			"Seb35",
+			"Tacsipacsi",
 			"Urbalazs",
-			"MeskoBalazs",
-			"Bencemac"
+			"아라"
 		]
 	},
 	"config-desc": "A MediaWiki telepítője",

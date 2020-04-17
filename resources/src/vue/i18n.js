@@ -34,26 +34,24 @@ module.exports = {
 		/*
 		 * Add a custom v-i18n-html directive. This is used to inject parsed i18n message contents.
 		 *
-		 * <div v-i18n-html:my-message-key></div>
+		 * <div v-i18n-html:my-message-key />
 		 *     Parses the my-message-key message and injects the parsed HTML into the div.
 		 *     Equivalent to v-html="mw.message( 'my-message-key' ).parse()"
 		 *
-		 * <div v-i18n-html="msgKey"></div>
+		 * <div v-i18n-html="msgKey" />
 		 *     Looks in the msgKey variable for the message name, and parses that message.
 		 *     Equivalent to v-html="mw.message( msgKey ).parse()"
 		 *
-		 * <div v-i18n-html="'my-message-key'"></div>
+		 * <div v-i18n-html="'my-message-key'" />
 		 *     Parses the message named my-message-key. Note the nested quotes!
 		 *     Equivalent to v-html="mw.message( 'my-message-key' ).parse()"
 		 */
-		Vue.directive( 'i18n-html', {
-			bind: function ( el, binding ) {
-				// If v-i18n-html:foo was used, binding.arg = 'foo'
-				// If v-i18n-html="'foo'" was used, binding.value = 'foo'
-				var messageKey = binding.arg || binding.value;
-				// eslint-disable-next-line mediawiki/msg-doc
-				el.innerHTML = mw.message( messageKey ).parse();
-			}
+		Vue.directive( 'i18n-html', function ( el, binding ) {
+			// If v-i18n-html:foo was used, binding.arg = 'foo'
+			// If v-i18n-html="'foo'" was used, binding.value = 'foo'
+			var messageKey = binding.arg || binding.value;
+			// eslint-disable-next-line mediawiki/msg-doc
+			el.innerHTML = mw.message( messageKey ).parse();
 		} );
 	}
 };

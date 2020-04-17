@@ -154,8 +154,7 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @param User $performingUser The user that does the password reset
 	 * @param string|null $username The user whose password is reset
 	 * @param string|null $email Alternative way to specify the user
-	 * @return StatusValue Will contain the passwords as a username => password array if the
-	 *   $displayPassword flag was set
+	 * @return StatusValue
 	 * @throws LogicException When the user is not allowed to perform the action
 	 * @throws MWException On unexpected DB errors
 	 */
@@ -203,12 +202,26 @@ class PasswordReset implements LoggerAwareInterface {
 			// Email gets set to null for backward compatibility
 			'Email' => $method === 'email' ? $email : null,
 		];
+
+		// Recreate the $users array with its values so that we reset the numeric keys since
+		// the key '0' might have been unset from $users array. 'SpecialPasswordResetOnSubmit'
+		// hook assumes that index '0' is defined if $users is not empty.
+		$users = array_values( $users );
+
 		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
-		// Use 'reset' since users[ 0 ] might not exist because users with 'requireemail' option
-		// turned on might have been unset from users array
+
+		// Check against the rate limiter. If the $wgRateLimit is reached, we want to pretend
+		// that the request was good to avoid displaying an error message.
+		if ( $performingUser->pingLimiter( 'mailpassword' ) ) {
+			return StatusValue::newGood();
+		}
+
+		// Get the first element in $users by using `reset` function just in case $users is changed
+		// in 'SpecialPasswordResetOnSubmit' hook.
 		$firstUser = reset( $users ) ?? null;
+
 		$requireEmail = $this->config->get( 'AllowRequiringEmailForResets' )
 			&& $method === 'username'
 			&& $firstUser
@@ -222,11 +235,6 @@ class PasswordReset implements LoggerAwareInterface {
 			if ( !Sanitizer::validateEmail( $email ) ) {
 				return StatusValue::newFatal( 'passwordreset-invalidemail' );
 			}
-		}
-
-		// Check against the rate limiter
-		if ( $performingUser->pingLimiter( 'mailpassword' ) ) {
-			return StatusValue::newFatal( 'actionthrottledtext' );
 		}
 
 		if ( !$users ) {
@@ -281,7 +289,7 @@ class PasswordReset implements LoggerAwareInterface {
 
 			$status = $this->authManager->allowsAuthenticationDataChange( $req, true );
 			// If status is good and the value is 'throttled-mailpassword', we want to pretend
-			// that the request was a good to avoid displaying an error message and disclose
+			// that the request was good to avoid displaying an error message and disclose
 			// if a reset password was previously sent.
 			if ( $status->isGood() && $status->getValue() === 'throttled-mailpassword' ) {
 				return StatusValue::newGood();
@@ -315,7 +323,6 @@ class PasswordReset implements LoggerAwareInterface {
 			return $result;
 		}
 
-		$passwords = [];
 		foreach ( $reqs as $req ) {
 			// This is adding a new temporary password, not intentionally changing anything
 			// (even though it might technically invalidate an old temporary password).
@@ -327,7 +334,7 @@ class PasswordReset implements LoggerAwareInterface {
 			$logContext
 		);
 
-		return StatusValue::newGood( $passwords );
+		return StatusValue::newGood();
 	}
 
 	/**

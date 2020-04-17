@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"McDutchie",
-			"아라",
-			"Macofe",
 			"Fanjiayi",
-			"Fitoschido"
+			"Fitoschido",
+			"Macofe",
+			"McDutchie",
+			"아라"
 		]
 	},
 	"config-desc": "Le installator de MediaWiki",

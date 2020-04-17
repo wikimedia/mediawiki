@@ -24,7 +24,6 @@ namespace Wikimedia\Rdbms;
 
 use DateTime;
 use DateTimeZone;
-use Exception;
 use InvalidArgumentException;
 use RuntimeException;
 use stdClass;
@@ -133,7 +132,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->installErrorHandler();
 		try {
 			$this->conn = $this->mysqlConnect( $this->server, $dbName );
-		} catch ( Exception $e ) {
+		} catch ( RuntimeException $e ) {
 			$this->restoreErrorHandler();
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
@@ -172,7 +171,7 @@ abstract class DatabaseMysqlBase extends Database {
 					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY
 				);
 			}
-		} catch ( Exception $e ) {
+		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
 	}

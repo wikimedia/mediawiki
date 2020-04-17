@@ -621,7 +621,18 @@
 	}() );
 
 	/**
-	 * Execute a function as soon as one or more required modules are ready.
+	 * Execute a function after one or more modules are ready.
+	 *
+	 * Use this method if you need to dynamically control which modules are loaded
+	 * and/or when they loaded (instead of declaring them as dependencies directly
+	 * on your module.)
+	 *
+	 * This uses the same loader as for regular module dependencies. This means
+	 * ResourceLoader will not re-download or re-execute a module for the second
+	 * time if something else already needed it. And the same browser HTTP cache,
+	 * and localStorage are checked before considering to fetch from the network.
+	 * And any on-going requests from other dependencies or using() calls are also
+	 * automatically re-used.
 	 *
 	 * Example of inline dependency on OOjs:
 	 *
@@ -635,7 +646,7 @@
 	 *         var util = require( 'mediawiki.util' );
 	 *     } );
 	 *
-	 * Since MediaWiki 1.23 this also returns a promise.
+	 * Since MediaWiki 1.23 this returns a promise.
 	 *
 	 * Since MediaWiki 1.28 the promise is resolved with a `require` function.
 	 *
@@ -719,13 +730,6 @@
 		 */
 		tokens: new mw.Map()
 	};
-
-	// Default values for the token maps.
-	// This is a temporary hack to ensure cached HTML for logged-out users
-	// will work correctly even with the changes we are making to the
-	// dependency between 'user.tokens' and 'user.options' (T235457).
-	// FIXME: Remove this 2 weeks after 1.35.0-wmf.25 is deployed to all wikis.
-	mw.user.tokens.set( { patrolToken: '+\\', watchToken: '+\\', csrfToken: '+\\' } );
 
 	// Alias $j to jQuery for backwards compatibility
 	// @deprecated since 1.23 Use $ or jQuery instead

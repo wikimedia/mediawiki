@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @ingroup API
  */
@@ -78,7 +80,7 @@ class ApiFileRevert extends ApiBase {
 				[ 'apierror-invalidtitle', wfEscapeWikiText( $this->params['filename'] ) ]
 			);
 		}
-		$localRepo = RepoGroup::singleton()->getLocalRepo();
+		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 
 		// Check if the file really exists
 		$this->file = $localRepo->newFile( $title );

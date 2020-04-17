@@ -44,8 +44,8 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 	/** @var bool */
 	private $recursive;
 
-	/** @var Revision|null */
-	private $revision;
+	/** @var RevisionRecord|null */
+	private $revisionRecord;
 	/** @var User|null */
 	private $user;
 
@@ -53,7 +53,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 	 * @param ILBFactory $lbFactory
 	 * @param User $user
 	 * @param WikiPage $page Page we are updating
-	 * @param RevisionRecord $revision
+	 * @param RevisionRecord $revisionRecord
 	 * @param DerivedPageDataUpdater $updater
 	 * @param array $options Options map; supports "recursive"
 	 */
@@ -61,7 +61,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		ILBFactory $lbFactory,
 		User $user,
 		WikiPage $page,
-		RevisionRecord $revision,
+		RevisionRecord $revisionRecord,
 		DerivedPageDataUpdater $updater,
 		array $options
 	) {
@@ -70,7 +70,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		$this->lbFactory = $lbFactory;
 		$this->user = $user;
 		$this->page = $page;
-		$this->revision = new Revision( $revision );
+		$this->revisionRecord = $revisionRecord;
 		$this->updater = $updater;
 		$this->recursive = !empty( $options['recursive'] );
 	}
@@ -83,13 +83,17 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		$updates = $this->updater->getSecondaryDataUpdates( $this->recursive );
 		foreach ( $updates as $update ) {
 			if ( $update instanceof LinksUpdate ) {
-				$update->setRevision( $this->revision );
+				$update->setRevisionRecord( $this->revisionRecord );
 				$update->setTriggeringUser( $this->user );
 			}
 			if ( $update instanceof DataUpdate ) {
 				$update->setCause( $this->causeAction, $this->causeAgent );
 			}
 		}
+
+		// T221577, T248003: flush any transaction; each update needs outer transaction scope
+		// and the code above may have implicitly started one.
+		$this->lbFactory->commitMasterChanges( __METHOD__ );
 
 		$e = null;
 		foreach ( $updates as $update ) {
@@ -115,8 +119,8 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 					'namespace' => $this->page->getTitle()->getNamespace(),
 					'title' => $this->page->getTitle()->getDBkey(),
 					// Reuse the parser cache if it was saved
-					'rootJobTimestamp' => $this->revision
-						? $this->revision->getTimestamp()
+					'rootJobTimestamp' => $this->revisionRecord
+						? $this->revisionRecord->getTimestamp()
 						: null,
 					'useRecursiveLinksUpdate' => $this->recursive,
 					'triggeringUser' => $this->user
@@ -125,8 +129,8 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 							'userName' => $this->user->getName()
 						]
 						: null,
-					'triggeringRevisionId' => $this->revision
-						? $this->revision->getId()
+					'triggeringRevisionId' => $this->revisionRecord
+						? $this->revisionRecord->getId()
 						: null,
 					'causeAction' => $this->getCauseAction(),
 					'causeAgent' => $this->getCauseAgent()

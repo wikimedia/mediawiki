@@ -329,7 +329,6 @@ JAVASCRIPT;
 			$startupQuery
 		);
 
-		// @phan-suppress-next-line PhanTypeMismatchArgument
 		return WrappedString::join( "\n", $chunks );
 	}
 
@@ -362,18 +361,17 @@ JAVASCRIPT;
 	private static function makeContext( ResourceLoaderContext $mainContext, $group, $type,
 		array $extraQuery = []
 	) {
-		// Create new ResourceLoaderContext so that $extraQuery is supported (eg. for 'sync=1').
-		$req = new FauxRequest( array_merge( $mainContext->getRequest()->getValues(), $extraQuery ) );
+		// Allow caller to setVersion() and setModules()
+		$ret = new DerivativeResourceLoaderContext( $mainContext );
 		// Set 'only' if not combined
-		$req->setVal( 'only', $type === ResourceLoaderModule::TYPE_COMBINED ? null : $type );
+		$ret->setOnly( $type === ResourceLoaderModule::TYPE_COMBINED ? null : $type );
 		// Remove user parameter in most cases
 		if ( $group !== 'user' && $group !== 'private' ) {
-			$req->setVal( 'user', null );
+			$ret->setUser( null );
 		}
-		$context = new ResourceLoaderContext( $mainContext->getResourceLoader(), $req );
-		// Allow caller to setVersion() and setModules()
-		$ret = new DerivativeResourceLoaderContext( $context );
-		$ret->setContentOverrideCallback( $mainContext->getContentOverrideCallback() );
+		if ( isset( $extraQuery['raw'] ) ) {
+			$ret->setRaw( true );
+		}
 		return $ret;
 	}
 

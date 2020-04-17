@@ -90,7 +90,7 @@
 			}
 
 			moduleTemplates = mw.templates.get( moduleName );
-			if ( !moduleTemplates || !moduleTemplates[ templateName ] ) {
+			if ( !moduleTemplates || moduleTemplates[ templateName ] === undefined ) {
 				throw new Error( 'Template ' + templateName + ' not found in module ' + moduleName );
 			}
 

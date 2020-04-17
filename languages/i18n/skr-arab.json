@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Saraiki",
-			"BukhariSaeed"
+			"BukhariSaeed",
+			"Saraiki"
 		]
 	},
 	"tog-underline": "لنک  ہیٹھ لکیر:",
@@ -769,6 +769,7 @@
 	"yourvariant": "مواد زبان لہجہ:",
 	"yournick": "نویں دستخط:",
 	"badsig": "غلط کچے دستخط۔\nایچ ٹی ایم ایل ٹیگاں دی پڑتال کرو۔",
+	"yourgender": "جنس:",
 	"gender-notknown": "او وکی ورقیاں وچ تبدیلی کریندن",
 	"gender-male": "او وکی ورقیاں وچ تبدیلی کریندا ہے",
 	"gender-female": "او وکی ورقیاں وچ تبدیلی کریندی ہے",
@@ -794,6 +795,7 @@
 	"prefs-pageswatchlist": "پارھے ہیٹھ ورقے",
 	"prefs-tokenwatchlist": "ٹوکن",
 	"prefs-diffs": "فرق",
+	"prefs-help-prefershttps": "ایہ ترجیح تہاݙے اڳلے لاگ ان وچ مؤثر تھیسی۔",
 	"userrights": "حقوق صارف",
 	"userrights-lookup-user": "ورتُو چُݨو",
 	"userrights-user-editname": "ورتݨ آلا ناں درج کرو:",
@@ -2209,9 +2211,10 @@
 	"confirm-purge-title": "ایہ ورقہ تازہ تے صاف کرو",
 	"confirm_purge_button": "ٹھیک ہے",
 	"confirm-purge-top": "ایں ورقے دا کیشی صاف کروں؟",
-	"confirm-purge-bottom": "ورقے کوں پک صاف کرݨ نال کیشی صاف تھیندی ہے تے  نویں دہرائی ظاہر تھیندی ہے۔",
+	"confirm-purge-bottom": "ورقے کوں پاک صاف کرݨ نال کیشی صاف تھیندی ہے تے  نویں نکور دہرائی ظاہر تھیندی ہے۔",
 	"confirm-watch-button": "ٹھیک ہے",
 	"confirm-watch-top": "ایں ورقے کوں تہاݙی دید آلے ورقیاں وچ رکھوں؟",
+	"confirm-watch-button-expiry": "پارھا ݙیوو",
 	"confirm-unwatch-button": "ٹھیک ہے",
 	"confirm-unwatch-top": "ایں ورقے کوں تہاݙی پارھاتندیر آلے ورقیاں وچوں ہٹاؤں؟",
 	"confirm-rollback-button": "ٹھیک ہے",
@@ -2343,7 +2346,7 @@
 	"tag-mw-new-redirect": "نواں ریڈائرکٹ",
 	"tag-mw-removed-redirect": "ریڈائرکٹ ہٹا ہٹا ݙتا",
 	"tag-mw-blank": "خالی کرݨ",
-	"tag-mw-replace": "بدیلج ڳیا",
+	"tag-mw-replace": "بدلیج ڳیا",
 	"tag-mw-rollback": "پچھاں واپس کرو",
 	"tag-mw-undo": "واپس",
 	"tags-title": "ٹیگ",

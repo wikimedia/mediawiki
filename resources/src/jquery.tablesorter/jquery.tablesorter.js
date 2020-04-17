@@ -21,7 +21,7 @@
  *      // Create a tablesorter interface, initially sorting on the first and second column
  *      $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } );
  *
- * @param {string} [cssHeader="header"] A string of the class name to be appended to sortable
+ * @param {string} [cssHeader="headerSort"] A string of the class name to be appended to sortable
  *         tr elements in the thead of the table.
  *
  * @param {string} [cssAsc="headerSortUp"] A string of the class name to be appended to
@@ -384,6 +384,9 @@
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( !$cell.hasClass( config.unsortableClass ) ) {
 				$cell
+					// The following classes are used here:
+					// * headerSort
+					// * other passed by config
 					.addClass( config.cssHeader )
 					.prop( 'tabIndex', 0 )
 					.attr( {
@@ -473,9 +476,15 @@
 	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {
 		var i, len;
 		// Remove all header information and reset titles to default message
+		// The following classes are used here:
+		// * headerSortUp
+		// * headerSortDown
 		$headers.removeClass( css ).attr( 'title', msg[ 1 ] );
 
 		for ( i = 0, len = list.length; i < len; i++ ) {
+			// The following classes are used here:
+			// * headerSortUp
+			// * headerSortDown
 			$headers
 				.eq( columnToHeader[ list[ i ][ 0 ] ] )
 				.addClass( css[ list[ i ][ 1 ] ] )

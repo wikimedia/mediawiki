@@ -28,7 +28,6 @@ use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Assert\Assert;
@@ -40,7 +39,7 @@ use Wikimedia\Rdbms\IDatabase;
 class Revision implements IDBAccessObject {
 
 	/** @var RevisionRecord */
-	protected $mRecord;
+	private $mRecord;
 
 	// Revision deletion constants
 	public const DELETED_TEXT = RevisionRecord::DELETED_TEXT;
@@ -61,7 +60,7 @@ class Revision implements IDBAccessObject {
 	 * @param string|false $wiki
 	 * @return RevisionStore
 	 */
-	protected static function getRevisionStore( $wiki = false ) {
+	private static function getRevisionStore( $wiki = false ) {
 		if ( $wiki ) {
 			return MediaWikiServices::getInstance()->getRevisionStoreFactory()
 				->getRevisionStore( $wiki );
@@ -73,14 +72,14 @@ class Revision implements IDBAccessObject {
 	/**
 	 * @return RevisionLookup
 	 */
-	protected static function getRevisionLookup() {
+	private static function getRevisionLookup() {
 		return MediaWikiServices::getInstance()->getRevisionLookup();
 	}
 
 	/**
 	 * @return RevisionFactory
 	 */
-	protected static function getRevisionFactory() {
+	private static function getRevisionFactory() {
 		return MediaWikiServices::getInstance()->getRevisionFactory();
 	}
 
@@ -89,7 +88,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return SqlBlobStore
 	 */
-	protected static function getBlobStore( $wiki = false ) {
+	private static function getBlobStore( $wiki = false ) {
 		$store = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()
 			->newSqlBlobStore( $wiki );
@@ -166,6 +165,8 @@ class Revision implements IDBAccessObject {
 	 * Make a fake revision object from an archive table row. This is queried
 	 * for permissions or even inserted (as in Special:Undelete)
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param object $row
 	 * @param array $overrides
 	 *
@@ -173,6 +174,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision
 	 */
 	public static function newFromArchiveRow( $row, $overrides = [] ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		/**
 		 * MCR Migration: https://phabricator.wikimedia.org/T183564
 		 * This method used to overwrite attributes, then passed to Revision::__construct
@@ -450,11 +453,13 @@ class Revision implements IDBAccessObject {
 	 * @note Only supported on Revisions that were constructed based on associative arrays,
 	 *       since they are mutable.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 * @since 1.19
 	 * @param int|string $id
 	 * @throws MWException
 	 */
 	public function setId( $id ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( $this->mRecord instanceof MutableRevisionRecord ) {
 			$this->mRecord->setId( intval( $id ) );
 		} else {
@@ -837,7 +842,7 @@ class Revision implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isCurrent() {
-		return ( $this->mRecord instanceof RevisionStoreRecord ) && $this->mRecord->isCurrent();
+		return $this->mRecord->isCurrent();
 	}
 
 	/**
@@ -985,16 +990,19 @@ class Revision implements IDBAccessObject {
 	 * Such revisions can for instance identify page rename
 	 * operations and other such meta-modifications.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param IDatabase $dbw
 	 * @param int $pageId ID number of the page to read from
 	 * @param string $summary Revision's summary
 	 * @param bool $minor Whether the revision should be considered as minor
-	 * @param User|null $user User object to use or null for $wgUser (deprecated since 1.35)
+	 * @param User|null $user User object to use or null for $wgUser
 	 * @return Revision|null Revision or null on error
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor, $user = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}

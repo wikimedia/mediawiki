@@ -1,24 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
-			"Shijualex",
-			"Psubhashish",
 			"Ansumang",
+			"DannyS712",
+			"Fitoschido",
 			"Jnanaranjan Sahu",
 			"Jose77",
 			"MKar",
-			"Odisha1",
-			"Sambiwiki",
-			"Shisir 1945",
-			"ଶିତିକଣ୍ଠ ଦାଶ",
-			"아라",
 			"Macofe",
-			"Nistha.aslp",
 			"Matma Rex",
+			"Nistha.aslp",
+			"Odisha1",
+			"Psubhashish",
+			"Sambiwiki",
+			"Shijualex",
+			"Shisir 1945",
 			"Susant purohit",
-			"Fitoschido",
 			"Vlad5250",
-			"DannyS712"
+			"ଶିତିକଣ୍ଠ ଦାଶ",
+			"아라"
 		]
 	},
 	"tog-underline": "ଲିଙ୍କତଳେ ଗାର ଟାଣିବା:",
@@ -1346,7 +1346,6 @@
 	"uploadstash-refresh": "ଫାଇଲମାନଙ୍କର ତାଲିକାକୁ ସତେଜ କରିବେ",
 	"invalid-chunk-offset": "ଅବୈଧ ଖରାପ ଅଫସେଟ",
 	"img-auth-accessdenied": "ଭିତରକୁ ପଶିବାକୁ ବାରଣ କରାଗଲା",
-	"img-auth-nopathinfo": "ପଥ_ବିବରଣୀ ମିଳୁ ନାହିଁ।\nଆପଣଙ୍କ ସର୍ଭରରେ ଏହି ତଥ୍ୟଟିକୁ ପଠାଇବା ନିମନ୍ତେ ବ୍ୟବସ୍ଥା କରାଯାଇନାହିଁ ।\nଏହା ସିଜିଆଇ-ଆଧାରିତ ହୋଇପାରେ ଓ ଆଇଏମଜି_ଅଉଥରେ କାମକରୁନଥାଇପାରେ  ।\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization ଦେଖନ୍ତୁ ।",
 	"img-auth-notindir": "ଅନୁରୋଧ କରାଯାଇଥିବା ପଥ ସଂରଚିତ ଅପଲୋଡ଼ ତାଲିକା ନୁହେଁ ।",
 	"img-auth-badtitle": "\"$1\"ରୁ ଏକ ସଠିକ ଶିରୋନାମା ଗଠନ କରିବାରେ ଅସଫଳ ହେଲୁଁ ।",
 	"img-auth-nofile": "\"$1\" ଫାଇଲଟି ଏଠାରେ ନାହିଁ ।",

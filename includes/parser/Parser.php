@@ -350,7 +350,7 @@ class Parser {
 	 * @since 1.35
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		// See $wgParserConf documentation
+		// Deprecated and unused; from $wgParserConf
 		'class',
 		// See documentation for the corresponding config options
 		'ArticlePath',
@@ -399,7 +399,12 @@ class Parser {
 		BadFileLookup $badFileLookup = null,
 		LanguageConverterFactory $languageConverterFactory = null
 	) {
+		if ( ParserFactory::$inParserFactory === 0 ) {
+			// Direct construction of Parser is deprecated; use a ParserFactory
+			wfDeprecated( __METHOD__, '1.34' );
+		}
 		if ( !$svcOptions || is_array( $svcOptions ) ) {
+			wfDeprecated( 'old calling convention for ' . __METHOD__, '1.34' );
 			// Pre-1.34 calling convention is the first parameter is just ParserConf, the seventh is
 			// Config, and the eighth is LinkRendererFactory.
 			$this->mConf = (array)$svcOptions;
@@ -948,7 +953,7 @@ class Parser {
 	 *
 	 * @param User|null $user User object or null (to reset)
 	 */
-	public function setUser( $user ) {
+	public function setUser( ?User $user ) {
 		$this->mUser = $user;
 	}
 
@@ -982,15 +987,27 @@ class Parser {
 	 *
 	 * @param Title|null $x Title object or null to just get the current one
 	 * @return Title|null
+	 * @deprecated since 1.35, use getTitle() / setTitle()
 	 */
 	public function Title( Title $x = null ) : ?Title {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mTitle, $x );
 	}
 
 	/**
+	 * Accessor for the output type.
+	 * @return int One of the Parser::OT_... constants
+	 * @since 1.35
+	 */
+	public function getOutputType(): int {
+		return $this->mOutputType;
+	}
+
+	/**
+	 * Mutator for the output type.
 	 * @param int $ot One of the Parser::OT_… constants
 	 */
-	public function setOutputType( $ot ) {
+	public function setOutputType( $ot ): void {
 		$this->mOutputType = $ot;
 		# Shortcut alias
 		$this->ot = [
@@ -1006,8 +1023,10 @@ class Parser {
 	 *
 	 * @param int|null $x New value or null to just get the current one
 	 * @return int
+	 * @deprecated since 1.35, use getOutputType()/setOutputType()
 	 */
 	public function OutputType( $x = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mOutputType, $x );
 	}
 
@@ -1026,12 +1045,23 @@ class Parser {
 	}
 
 	/**
+	 * Mutator for the ParserOptions object
+	 * @param ParserOptions $options The new parser options
+	 * @since 1.35
+	 */
+	public function setOptions( ParserOptions $options ): void {
+		$this->mOptions = $options;
+	}
+
+	/**
 	 * Accessor/mutator for the ParserOptions object
 	 *
 	 * @param ParserOptions|null $x New value or null to just get the current one
 	 * @return ParserOptions Current ParserOptions object
+	 * @deprecated since 1.35, use getOptions() / setOptions()
 	 */
 	public function Options( $x = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mOptions, $x );
 	}
 
@@ -1169,7 +1199,7 @@ class Parser {
 	 * @param array &$matches Out parameter, Array: extracted tags
 	 * @return string Stripped text
 	 */
-	public static function extractTagsAndParams( $elements, $text, &$matches ) {
+	public static function extractTagsAndParams( array $elements, $text, &$matches ) {
 		static $n = 1;
 		$stripped = '';
 		$matches = [];
@@ -1617,39 +1647,7 @@ class Parser {
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
-		if ( MWTidy::isEnabled() ) {
-			if ( $this->mOptions->getTidy() ) {
-				$text = MWTidy::tidy( $text );
-			}
-		} else {
-			# attempt to sanitize at least some nesting problems
-			# (T4702 and quite a few others)
-			# This code path is buggy and deprecated!
-			wfDeprecated( 'disabling tidy', '1.33' );
-			$tidyregs = [
-				# ''Something [http://www.cool.com cool''] -->
-				# <i>Something</i><a href="http://www.cool.com"..><i>cool></i></a>
-				'/(<([bi])>)(<([bi])>)?([^<]*)(<\/?a[^<]*>)([^<]*)(<\/\\4>)?(<\/\\2>)/' =>
-				'\\1\\3\\5\\8\\9\\6\\1\\3\\7\\8\\9',
-				# fix up an anchor inside another anchor, only
-				# at least for a single single nested link (T5695)
-				'/(<a[^>]+>)([^<]*)(<a[^>]+>[^<]*)<\/a>(.*)<\/a>/' =>
-				'\\1\\2</a>\\3</a>\\1\\4</a>',
-				# fix div inside inline elements- doBlockLevels won't wrap a line which
-				# contains a div, so fix it up here; replace
-				# div with escaped text
-				'/(<([aib]) [^>]+>)([^<]*)(<div([^>]*)>)(.*)(<\/div>)([^<]*)(<\/\\2>)/' =>
-				'\\1\\3&lt;div\\5&gt;\\6&lt;/div&gt;\\8\\9',
-				# remove empty italic or bold tag pairs, some
-				# introduced by rules above
-				'/<([bi])><\/\\1>/' => '',
-			];
-
-			$text = preg_replace(
-				array_keys( $tidyregs ),
-				array_values( $tidyregs ),
-				$text );
-		}
+		$text = MWTidy::tidy( $text );
 
 		if ( $isMain ) {
 			Hooks::run( 'ParserAfterTidy', [ &$parser, &$text ] );
@@ -1699,7 +1697,7 @@ class Parser {
 	 * @param array $m
 	 * @return string HTML
 	 */
-	private function magicLinkCallback( $m ) {
+	private function magicLinkCallback( array $m ) {
 		if ( isset( $m[1] ) && $m[1] !== '' ) {
 			# Skip anchor
 			return $m[0];
@@ -2148,7 +2146,7 @@ class Parser {
 	 * @param LinkTarget|null $title Optional LinkTarget, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
-	public static function getExternalLinkRel( $url = false, $title = null ) {
+	public static function getExternalLinkRel( $url = false, LinkTarget $title = null ) {
 		global $wgNoFollowLinks, $wgNoFollowNsExceptions, $wgNoFollowDomainExceptions;
 		$ns = $title ? $title->getNamespace() : false;
 		if ( $wgNoFollowLinks && !in_array( $ns, $wgNoFollowNsExceptions )
@@ -2665,7 +2663,7 @@ class Parser {
 	 * @param string $prefix
 	 * @return string HTML-wikitext mix oh yuck
 	 */
-	private function makeKnownLinkHolder( $nt, $text = '', $trail = '', $prefix = '' ) {
+	private function makeKnownLinkHolder( Title $nt, $text = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 
 		if ( $text == '' ) {
@@ -3242,7 +3240,7 @@ class Parser {
 	 * @return string|array The text of the template
 	 * @internal
 	 */
-	public function braceSubstitution( $piece, $frame ) {
+	public function braceSubstitution( array $piece, PPFrame $frame ) {
 		// Flags
 
 		// $text has been filled
@@ -3595,7 +3593,7 @@ class Parser {
 	 * @param array $args Arguments to the function
 	 * @return array
 	 */
-	public function callParserFunction( $frame, $function, array $args = [] ) {
+	public function callParserFunction( PPFrame $frame, $function, array $args = [] ) {
 		# Case sensitive functions
 		if ( isset( $this->mFunctionSynonyms[1][$function] ) ) {
 			$function = $this->mFunctionSynonyms[1][$function];
@@ -3687,7 +3685,7 @@ class Parser {
 	 *
 	 * @return array
 	 */
-	public function getTemplateDom( $title ) {
+	public function getTemplateDom( Title $title ) {
 		$cacheTitle = $title;
 		$titleText = $title->getPrefixedDBkey();
 
@@ -3730,7 +3728,7 @@ class Parser {
 	 * @param Title $title
 	 * @return Revision
 	 */
-	public function fetchCurrentRevisionOfTitle( $title ) {
+	public function fetchCurrentRevisionOfTitle( Title $title ) {
 		$cacheKey = $title->getPrefixedDBkey();
 		if ( !$this->currentRevisionCache ) {
 			$this->currentRevisionCache = new MapCacheLRU( 100 );
@@ -3750,7 +3748,7 @@ class Parser {
 	 * @since 1.34
 	 * @internal
 	 */
-	public function isCurrentRevisionOfTitleCached( $title ) {
+	public function isCurrentRevisionOfTitleCached( Title $title ) {
 		return (
 			$this->currentRevisionCache &&
 			$this->currentRevisionCache->has( $title->getPrefixedText() )
@@ -3778,7 +3776,7 @@ class Parser {
 	 * @param Title $title
 	 * @return array ( string or false, Title )
 	 */
-	public function fetchTemplateAndTitle( $title ) {
+	public function fetchTemplateAndTitle( Title $title ) {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
@@ -3807,7 +3805,7 @@ class Parser {
 	 * @return string|bool
 	 * @deprecated since 1.35, use Parser::fetchTemplateAndTitle(...)[0]
 	 */
-	public function fetchTemplate( $title ) {
+	public function fetchTemplate( Title $title ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		return $this->fetchTemplateAndTitle( $title )[0];
 	}
@@ -3917,7 +3915,7 @@ class Parser {
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return array ( File or false, Title of file )
 	 */
-	public function fetchFileAndTitle( $title, $options = [] ) {
+	public function fetchFileAndTitle( Title $title, array $options = [] ) {
 		$file = $this->fetchFileNoRegister( $title, $options );
 
 		$time = $file ? $file->getTimestamp() : false;
@@ -3942,7 +3940,7 @@ class Parser {
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return File|bool
 	 */
-	protected function fetchFileNoRegister( $title, $options = [] ) {
+	protected function fetchFileNoRegister( Title $title, array $options = [] ) {
 		if ( isset( $options['broken'] ) ) {
 			$file = false; // broken thumbnail forced by hook
 		} else {
@@ -3965,7 +3963,7 @@ class Parser {
 	 * @return string
 	 * @internal
 	 */
-	public function interwikiTransclude( $title, $action ) {
+	public function interwikiTransclude( Title $title, $action ) {
 		if ( !$this->svcOptions->get( 'EnableScaryTranscluding' ) ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
@@ -4034,7 +4032,7 @@ class Parser {
 	 * @return array
 	 * @internal
 	 */
-	public function argSubstitution( $piece, $frame ) {
+	public function argSubstitution( array $piece, PPFrame $frame ) {
 		$error = false;
 		$parts = $piece['parts'];
 		$nameWithSpaces = $frame->expand( $piece['title'] );
@@ -4087,7 +4085,7 @@ class Parser {
 	 * @return string
 	 * @internal
 	 */
-	public function extensionSubstitution( $params, $frame ) {
+	public function extensionSubstitution( array $params, PPFrame $frame ) {
 		static $errorStr = '<span class="error">';
 		static $errorLen = 20;
 
@@ -4727,7 +4725,7 @@ class Parser {
 	 *
 	 * @return string
 	 */
-	private function pstPass2( $text, $user ) {
+	private function pstPass2( $text, User $user ) {
 		# Note: This is the timestamp saved as hardcoded wikitext to the database, we use
 		# $this->contLang here in order to give everyone the same signature and use the default one
 		# rather than the one selected in each user's preferences.  (see also T14815)
@@ -4797,13 +4795,13 @@ class Parser {
 	 * Do not reuse this parser instance after calling getUserSig(),
 	 * as it may have changed.
 	 *
-	 * @param User &$user
+	 * @param User $user
 	 * @param string|false $nickname Nickname to use or false to use user's default nickname
 	 * @param bool|null $fancySig whether the nicknname is the complete signature
 	 *    or null to use default value
 	 * @return string
 	 */
-	public function getUserSig( &$user, $nickname = false, $fancySig = null ) {
+	public function getUserSig( User $user, $nickname = false, $fancySig = null ) {
 		$username = $user->getName();
 
 		# If not given, retrieve from the user object.
@@ -4950,7 +4948,7 @@ class Parser {
 	 * @param Title|null $title Title object or null to use $wgTitle
 	 * @return string
 	 */
-	public function transformMsg( $text, $options, $title = null ) {
+	public function transformMsg( $text, ParserOptions $options, Title $title = null ) {
 		static $executing = false;
 
 		# Guard against infinite recursion
@@ -5176,7 +5174,7 @@ class Parser {
 	 * @return string HTML
 	 * @internal
 	 */
-	public function renderImageGallery( $text, $params ) {
+	public function renderImageGallery( $text, array $params ) {
 		$mode = false;
 		if ( isset( $params['mode'] ) ) {
 			$mode = $params['mode'];
@@ -5337,7 +5335,7 @@ class Parser {
 	}
 
 	/**
-	 * @param MediaHandler $handler
+	 * @param MediaHandler|false $handler
 	 * @return array
 	 */
 	private function getImageParams( $handler ) {
@@ -5394,7 +5392,7 @@ class Parser {
 	 * @param LinkHolderArray|bool $holders
 	 * @return string HTML
 	 */
-	public function makeImage( $title, $options, $holders = false ) {
+	public function makeImage( Title $title, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -6323,7 +6321,7 @@ class Parser {
 	 * @return string
 	 * @internal
 	 */
-	public function markerSkipCallback( $s, $callback ) {
+	public function markerSkipCallback( $s, callable $callback ) {
 		$i = 0;
 		$out = '';
 		while ( $i < strlen( $s ) ) {

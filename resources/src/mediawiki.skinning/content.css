@@ -77,9 +77,9 @@ table.toc td {
 
 /* Space between the columns for tocnumber and toctext */
 .tocnumber {
+	color: #202122;
 	padding-left: 0;
 	padding-right: 0.5em;
-	color: #222;
 }
 /* @noflip */
 .mw-content-ltr .tocnumber {

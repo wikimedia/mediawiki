@@ -269,4 +269,12 @@ class RevisionArchiveRecordTest extends MediaWikiTestCase {
 		new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $wikiId );
 	}
 
+	/**
+	 * @covers \MediaWiki\Revision\RevisionRecord::isCurrent
+	 */
+	public function testIsCurrent() {
+		$rev = $this->newRevision();
+		$this->assertFalse( $rev->isCurrent(),
+			RevisionArchiveRecord::class . ' cannot be stored current revision' );
+	}
 }

@@ -57,6 +57,8 @@ use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
+use MediaWiki\HookRunner\DeprecatedHooks;
+use MediaWiki\HookRunner\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -340,6 +342,26 @@ return [
 		);
 	},
 
+	'HookContainer' => function ( MediaWikiServices $services ) : HookContainer {
+		$extRegistry = ExtensionRegistry::getInstance();
+		$extDeprecatedHooks = $extRegistry->getAttribute( 'DeprecatedHooks' );
+		$deprecatedHooks = new DeprecatedHooks( $extDeprecatedHooks );
+		return new HookContainer(
+			$extRegistry,
+			$services->getObjectFactory(),
+			$deprecatedHooks
+		);
+	},
+
+	'HtmlCacheUpdater' => function ( MediaWikiServices $services ) : HtmlCacheUpdater {
+		$config = $services->getMainConfig();
+
+		return new HtmlCacheUpdater(
+			$config->get( 'CdnReboundPurgeDelay' ),
+			$config->get( 'UseFileCache' )
+		);
+	},
+
 	'HttpRequestFactory' =>
 	function ( MediaWikiServices $services ) : HttpRequestFactory {
 		return new HttpRequestFactory();
@@ -516,39 +538,42 @@ return [
 	'MainWANObjectCache' => function ( MediaWikiServices $services ) : WANObjectCache {
 		$mainConfig = $services->getMainConfig();
 
-		$id = $mainConfig->get( 'MainWANCache' );
-		if ( !isset( $mainConfig->get( 'WANObjectCaches' )[$id] ) ) {
+		$wanId = $mainConfig->get( 'MainWANCache' );
+		$wanParams = $mainConfig->get( 'WANObjectCaches' )[$wanId] ?? null;
+		if ( !$wanParams ) {
 			throw new UnexpectedValueException(
-				"WAN cache type \"$id\" is not present in \$wgWANObjectCaches." );
+				"wgWANObjectCaches must have \"$wanId\" set (via wgMainWANCache)"
+			);
 		}
 
-		$params = $mainConfig->get( 'WANObjectCaches' )[$id];
+		$cacheId = $wanParams['cacheId'];
+		$wanClass = $wanParams['class'];
+		unset( $wanParams['cacheId'] );
+		unset( $wanParams['class'] );
 
-		$objectCacheId = $params['cacheId'];
-		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$objectCacheId] ) ) {
+		$storeParams = $mainConfig->get( 'ObjectCaches' )[$cacheId] ?? null;
+		if ( !$storeParams ) {
 			throw new UnexpectedValueException(
-				"Cache type \"$objectCacheId\" is not present in \$wgObjectCaches." );
+				"wgObjectCaches must have \"$cacheId\" set (via wgWANObjectCaches)"
+			);
 		}
-		$storeParams = $mainConfig->get( 'ObjectCaches' )[$objectCacheId];
 		$store = ObjectCache::newFromParams( $storeParams, $mainConfig );
 		$logger = $store->getLogger();
 		$logger->debug( 'MainWANObjectCache using store {class}', [
 			'class' => get_class( $store )
 		] );
 
-		$params['logger'] = $logger;
-		$params['cache'] = $store;
-		$params['secret'] = $params['secret'] ?? $mainConfig->get( 'SecretKey' );
+		$wanParams['cache'] = $store;
+		$wanParams['logger'] = $logger;
+		$wanParams['secret'] = $wanParams['secret'] ?? $mainConfig->get( 'SecretKey' );
 		if ( !$mainConfig->get( 'CommandLineMode' ) ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
-			$params['stats'] = $services->getStatsdDataFactory();
+			$wanParams['stats'] = $services->getStatsdDataFactory();
 			// Let pre-emptive refreshes happen post-send on HTTP requests
-			$params['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
+			$wanParams['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
 		}
 
-		$class = $params['class'];
-		// @phan-suppress-next-line PhanParamTooMany Not inferring the right type
-		$instance = new $class( $params );
+		$instance = new $wanClass( $wanParams );
 
 		'@phan-var WANObjectCache $instance';
 		return $instance;
@@ -719,6 +744,10 @@ return [
 	'ParserFactory' => function ( MediaWikiServices $services ) : ParserFactory {
 		$options = new ServiceOptions( Parser::CONSTRUCTOR_OPTIONS,
 			// 'class'
+			// Note that this value is ignored by ParserFactory and is always
+			// Parser::class for legacy reasons; we'll introduce a new
+			// mechanism for selecting an alternate parser in the future
+			// (T236809)
 			$services->getMainConfig()->get( 'ParserConf' ),
 			// Make sure to have defaults in case someone overrode ParserConf with something silly
 			[ 'class' => Parser::class ],

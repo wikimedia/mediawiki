@@ -272,6 +272,10 @@
 				entry = this.data.log[ i ];
 				entry.typeText = entryTypeText( entry.type );
 
+				// The following classes are used here:
+				// * mw-debug-console-log
+				// * mw-debug-console-warn
+				// * mw-debug-console-deprecated
 				$( '<tr>' )
 					.append( $( '<td>' )
 						.text( entry.typeText )

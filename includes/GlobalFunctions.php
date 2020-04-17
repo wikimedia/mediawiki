@@ -32,6 +32,7 @@ use MediaWiki\ProcOpenError;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\WrappedString;
 
 /**
@@ -940,10 +941,7 @@ function wfIsDebugRawPage() {
 	// Check for raw action using $_GET not $wgRequest, since the latter might not be initialised yet
 	// phpcs:ignore MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
 	if ( ( isset( $_GET['action'] ) && $_GET['action'] == 'raw' )
-		|| (
-			isset( $_SERVER['SCRIPT_NAME'] )
-			&& substr( $_SERVER['SCRIPT_NAME'], -8 ) == 'load.php'
-		)
+		|| MW_ENTRY_POINT === 'load'
 	) {
 		$cache = true;
 	} else {
@@ -2578,9 +2576,11 @@ function wfScript( $script = 'index' ) {
 /**
  * Get the script URL.
  *
+ * @deprecated since 1.35. Use wfScript() to obtain an entry point URL.
  * @return string Script URL
  */
 function wfGetScriptUrl() {
+	wfDeprecated( __FUNCTION__, '1.35' );
 	if ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 		/* as it was called, minus the query string.
 		 *
@@ -2874,9 +2874,8 @@ function wfCanIPUseHTTPS( $ip ) {
  * @since 1.25
  */
 function wfIsInfinity( $str ) {
-	// These are hardcoded elsewhere in MediaWiki (e.g. mediawiki.special.block.js).
-	$infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ];
-	return in_array( $str, $infinityValues );
+	// The INFINITY_VALS are hardcoded elsewhere in MediaWiki (e.g. mediawiki.special.block.js).
+	return in_array( $str, ExpiryDef::INFINITY_VALS );
 }
 
 /**

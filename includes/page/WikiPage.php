@@ -539,8 +539,10 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
 			$this->mId = intval( $data->page_id );
-			$this->mTouched = wfTimestamp( TS_MW, $data->page_touched );
-			$this->mLinksUpdated = wfTimestampOrNull( TS_MW, $data->page_links_updated );
+			$this->mTouched = MWTimestamp::convert( TS_MW, $data->page_touched );
+			$this->mLinksUpdated = $data->page_links_updated === null
+				? null
+				: MWTimestamp::convert( TS_MW, $data->page_links_updated );
 			$this->mIsRedirect = intval( $data->page_is_redirect );
 			$this->mLatest = intval( $data->page_latest );
 			// T39225: $latest may no longer match the cached latest Revision object.
@@ -694,6 +696,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$rev = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
 		return $rev ? new Revision( $rev ) : null;
 	}
@@ -733,17 +736,19 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $revision ) { // sanity
-			$this->setLastEdit( new Revision( $revision ) );
+			$this->setLastEdit( $revision );
 		}
 	}
 
 	/**
 	 * Set the latest revision
-	 * @param Revision $revision
+	 * @param RevisionRecord $revRecord
 	 */
-	protected function setLastEdit( Revision $revision ) {
-		$this->mLastRevision = $revision;
-		$this->mTimestamp = $revision->getTimestamp();
+	private function setLastEdit( RevisionRecord $revRecord ) {
+		// TODO mLastRevision should be replaced with RevisionRecord
+		$this->mLastRevision = new Revision( $revRecord );
+
+		$this->mTimestamp = $revRecord->getTimestamp();
 	}
 
 	/**
@@ -800,7 +805,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->loadLastEdit();
 		}
 
-		return wfTimestamp( TS_MW, $this->mTimestamp );
+		return MWTimestamp::convert( TS_MW, $this->mTimestamp );
 	}
 
 	/**
@@ -809,7 +814,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return void
 	 */
 	public function setTimestamp( $ts ) {
-		$this->mTimestamp = wfTimestamp( TS_MW, $ts );
+		$this->mTimestamp = MWTimestamp::convert( TS_MW, $ts );
 	}
 
 	/**
@@ -849,8 +854,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return User|null
 	 */
 	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
-		$revision = $this->getOldestRevision();
-		if ( $revision ) {
+		$revRecord = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
+		if ( $revRecord ) {
 			if ( $audience === RevisionRecord::FOR_THIS_USER && $user === null ) {
 				wfDeprecated(
 					__METHOD__ . ' using FOR_THIS_USER without a user',
@@ -859,8 +864,7 @@ class WikiPage implements Page, IDBAccessObject {
 				global $wgUser;
 				$user = $wgUser;
 			}
-			$userName = $revision->getUserText( $audience, $user );
-			return User::newFromName( $userName, false );
+			return $revRecord->getUser( $audience, $user );
 		} else {
 			return null;
 		}
@@ -1243,7 +1247,8 @@ class WikiPage implements Page, IDBAccessObject {
 		wfDebug( __METHOD__ .
 			': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $parserOptions->getStubThreshold() ) {
-			wfIncrStats( 'pcache.miss.stub' );
+			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+			$stats->updateCount( 'pcache.miss.stub', 1 );
 		}
 
 		if ( $useParserCache ) {
@@ -1302,13 +1307,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$this->mTitle->invalidateCache();
 
-		// Clear file cache
-		HTMLFileCache::clearFileCache( $this->getTitle() );
-		// Send purge after above page_touched update was committed
-		DeferredUpdates::addUpdate(
-			new CdnCacheUpdate( $this->mTitle->getCdnUrls() ),
-			DeferredUpdates::PRESEND
-		);
+		// Clear file cache and send purge after above page_touched update was committed
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $this->mTitle, $hcu::PURGE_PRESEND );
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			MediaWikiServices::getInstance()->getMessageCache()
@@ -1370,7 +1371,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @todo Factor out into a PageStore service, or move into PageUpdater.
 	 *
 	 * @param IDatabase $dbw
-	 * @param Revision $revision For ID number, and text used to set
+	 * @param Revision|RevisionRecord $revision For ID number, and text used to set
 	 *   length and redirect status fields
 	 * @param int|null $lastRevision If given, will not overwrite the page field
 	 *   when different from the currently set value.
@@ -1393,7 +1394,11 @@ class WikiPage implements Page, IDBAccessObject {
 			);
 		}
 
-		$content = $revision->getContent();
+		if ( $revision instanceof Revision ) {
+			$revision = $revision->getRevisionRecord();
+		}
+
+		$content = $revision->getContent( SlotRecord::MAIN );
 		$len = $content ? $content->getSize() : 0;
 		$rt = $content ? $content->getUltimateRedirectTarget() : null;
 
@@ -1407,13 +1412,15 @@ class WikiPage implements Page, IDBAccessObject {
 		$revId = $revision->getId();
 		Assert::parameter( $revId > 0, '$revision->getId()', 'must be > 0' );
 
+		$model = $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel();
+
 		$row = [ /* SET */
 			'page_latest'        => $revId,
 			'page_touched'       => $dbw->timestamp( $revision->getTimestamp() ),
 			'page_is_new'        => ( $lastRevision === 0 ) ? 1 : 0,
 			'page_is_redirect'   => $rt !== null ? 1 : 0,
 			'page_len'           => $len,
-			'page_content_model' => $revision->getContentModel(),
+			'page_content_model' => $model,
 		];
 
 		$dbw->update( 'page',
@@ -1435,7 +1442,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$len,
 				$this->mIsRedirect,
 				$this->mLatest,
-				$revision->getContentModel()
+				$model
 			);
 		}
 
@@ -1500,7 +1507,7 @@ class WikiPage implements Page, IDBAccessObject {
 			__METHOD__ );
 
 		if ( $row ) {
-			if ( wfTimestamp( TS_MW, $row->rev_timestamp ) >= $revision->getTimestamp() ) {
+			if ( MWTimestamp::convert( TS_MW, $row->rev_timestamp ) >= $revision->getTimestamp() ) {
 				return false;
 			}
 			$prev = $row->rev_id;
@@ -1524,13 +1531,21 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @deprecated Use only as a stop-gap before refactoring to support MCR.
 	 *
-	 * @param Revision $a
-	 * @param Revision $b
+	 * @param Revision|RevisionRecord $a (revision deprecated since 1.35)
+	 * @param Revision|RevisionRecord $b (revision deprecated since 1.35)
 	 * @return bool
 	 */
-	public static function hasDifferencesOutsideMainSlot( Revision $a, Revision $b ) {
-		$aSlots = $a->getRevisionRecord()->getSlots();
-		$bSlots = $b->getRevisionRecord()->getSlots();
+	public static function hasDifferencesOutsideMainSlot( $a, $b ) {
+		if ( $a instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with Revision objects', '1.35' );
+			$a = $a->getRevisionRecord();
+		}
+		if ( $b instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with Revision objects', '1.35' );
+			$b = $b->getRevisionRecord();
+		}
+		$aSlots = $a->getSlots();
+		$bSlots = $b->getSlots();
 		$changedRoles = $aSlots->getRolesWithDifferentContent( $bSlots );
 
 		return ( $changedRoles !== [ SlotRecord::MAIN ] && $changedRoles !== [] );
@@ -1550,7 +1565,10 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getUndoContent( Revision $undo, Revision $undoafter ) {
 		// TODO: MCR: replace this with a method that returns a RevisionSlotsUpdate
 
-		if ( self::hasDifferencesOutsideMainSlot( $undo, $undoafter ) ) {
+		if ( self::hasDifferencesOutsideMainSlot(
+			$undo->getRevisionRecord(),
+			$undoafter->getRevisionRecord()
+		) ) {
 			// Cannot yet undo edits that involve anything other the main slot.
 			return false;
 		}
@@ -1933,7 +1951,7 @@ class WikiPage implements Page, IDBAccessObject {
 			// update cached fields
 			// TODO: this is currently redundant to what is done in updateRevisionOn.
 			// But updateRevisionOn() should move into PageStore, and then this will be needed.
-			$this->setLastEdit( new Revision( $revRec ) ); // TODO: use RevisionRecord
+			$this->setLastEdit( $revRec );
 			$this->mLatest = $revRec->getId();
 		}
 
@@ -2032,7 +2050,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
 	 *
-	 * @deprecated since 1.32, use PageUpdater::doUpdates instead.
+	 * @deprecated since 1.32, use DerivedPageDataUpdater::doUpdates instead.
 	 *
 	 * @param Revision $revision
 	 * @param User $user User object that did the revision
@@ -2418,6 +2436,8 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Insert a new null revision for this page.
 	 *
+	 * @deprecated since 1.35, use insertNullProtectionRevision instead
+	 *
 	 * @param string $revCommentMsg Comment message key for the revision
 	 * @param array $limit Set of restriction keys
 	 * @param array $expiry Per restriction type expiration
@@ -2431,17 +2451,47 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		if ( !$user ) {
 			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
-			// Don't need to set to $wgUser here, handled in Revision::newNullRevision
-			// where the user is needed
+			global $wgUser;
+			$user = $wgUser;
 		}
 
+		$nullRevRecord = $this->insertNullProtectionRevision(
+			$revCommentMsg,
+			$limit,
+			$expiry,
+			(bool)$cascade,
+			$reason,
+			$user
+		);
+		return $nullRevRecord ? new Revision( $nullRevRecord ) : null;
+	}
+
+	/**
+	 * Insert a new null revision for this page.
+	 *
+	 * @param string $revCommentMsg Comment message key for the revision
+	 * @param array $limit Set of restriction keys
+	 * @param array $expiry Per restriction type expiration
+	 * @param bool $cascade Set to false if cascading protection isn't allowed.
+	 * @param string $reason
+	 * @param User $user User to attribute to
+	 * @return RevisionRecord|null Null on error
+	 */
+	public function insertNullProtectionRevision(
+		string $revCommentMsg,
+		array $limit,
+		array $expiry,
+		bool $cascade,
+		string $reason,
+		User $user
+	) : ?RevisionRecord {
 		$dbw = wfGetDB( DB_MASTER );
 
 		// Prepare a null revision to be added to the history
 		$editComment = wfMessage(
 			$revCommentMsg,
 			$this->mTitle->getPrefixedText(),
-			$user ? $user->getName() : ''
+			$user->getName()
 		)->inContentLanguage()->text();
 		if ( $reason ) {
 			$editComment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
@@ -2459,16 +2509,28 @@ class WikiPage implements Page, IDBAccessObject {
 			)->inContentLanguage()->text();
 		}
 
-		$nullRev = Revision::newNullRevision( $dbw, $this->getId(), $editComment, true, $user );
-		if ( $nullRev ) {
-			$nullRev->insertOn( $dbw );
+		$revStore = $this->getRevisionStore();
+		$comment = CommentStoreComment::newUnsavedComment( $editComment );
+		$nullRevRecord = $revStore->newNullRevision(
+			$dbw,
+			$this->getTitle(),
+			$comment,
+			true,
+			$user
+		);
+
+		if ( $nullRevRecord ) {
+			$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
 
 			// Update page record and touch page
-			$oldLatest = $nullRev->getParentId();
-			$this->updateRevisionOn( $dbw, $nullRev, $oldLatest );
-		}
+			$oldLatest = $inserted->getParentId();
 
-		return $nullRev;
+			$this->updateRevisionOn( $dbw, $inserted, $oldLatest );
+
+			return $inserted;
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -2823,7 +2885,12 @@ class WikiPage implements Page, IDBAccessObject {
 
 			$dbw->endAtomic( __METHOD__ );
 
-			$this->doDeleteUpdates( $id, $content, $revision, $deleter );
+			$this->doDeleteUpdates(
+				$id,
+				$content,
+				$revision->getRevisionRecord(),
+				$deleter
+			);
 
 			Hooks::run( 'ArticleDeleteComplete', [
 				&$wikiPageBeforeDelete,
@@ -2993,14 +3060,20 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param Content|null $content Page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
-	 * @param Revision|null $revision The current page revision at the time of
+	 * @param RevisionRecord|Revision|null $revRecord The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $this->getRevision() may already return null when the page proper was deleted.
+	 *  Passing a Revision is deprecated since 1.35
 	 * @param User|null $user The user that caused the deletion
 	 */
 	public function doDeleteUpdates(
-		$id, Content $content = null, Revision $revision = null, User $user = null
+		$id, Content $content = null, $revRecord = null, User $user = null
 	) {
+		if ( $revRecord && $revRecord instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+			$revRecord = $revRecord->getRevisionRecord();
+		}
+
 		if ( $id !== $this->getId() ) {
 			throw new InvalidArgumentException( 'Mismatching page ID' );
 		}
@@ -3019,9 +3092,7 @@ class WikiPage implements Page, IDBAccessObject {
 		) );
 
 		// Delete pagelinks, update secondary indexes, etc
-		$updates = $this->getDeletionUpdates(
-			$revision ? $revision->getRevisionRecord() : $content
-		);
+		$updates = $this->getDeletionUpdates( $revRecord ?: $content );
 		foreach ( $updates as $update ) {
 			DeferredUpdates::addUpdate( $update );
 		}
@@ -3038,9 +3109,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Clear caches
 		self::onArticleDelete( $this->mTitle );
+
+		// TODO use RevisionRecord here
 		ResourceLoaderWikiModule::invalidateModuleCache(
 			$this->mTitle,
-			$revision,
+			new Revision( $revRecord ),
 			null,
 			WikiMap::getCurrentWikiDbDomain()->getId()
 		);
@@ -3219,7 +3292,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$targetEditorForPublic ? $targetEditorForPublic->getName() : null,
 			$currentEditorForPublic ? $currentEditorForPublic->getName() : null,
 			$s->rev_id,
-			$contLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
+			$contLang->timeanddate( MWTimestamp::convert( TS_MW, $s->rev_timestamp ) ),
 			$current->getId(),
 			$contLang->timeanddate( $current->getTimestamp() )
 		];
@@ -3381,10 +3454,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->purgeSquid();
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
-		$title->purgeSquid();
 		$title->deleteTitleProtection();
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
@@ -3415,20 +3488,16 @@ class WikiPage implements Page, IDBAccessObject {
 		// TODO: move this into a PageEventEmitter service
 
 		// Update existence markers on article/talk tabs...
-		// Clear Backlink cache first so that purge jobs use more up-to-date backlink information
-		BacklinkCache::get( $title )->clear();
 		$other = $title->getOtherPage();
 
-		$other->purgeSquid();
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( [ $title, $other ], $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		$title->touchLinks();
-		$title->purgeSquid();
 
 		$services = MediaWikiServices::getInstance();
 		$services->getLinkCache()->invalidateTitle( $title );
 
-		// File cache
-		HTMLFileCache::clearFileCache( $title );
 		InfoAction::invalidateCache( $title );
 
 		// Messages
@@ -3465,16 +3534,23 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
-	 * @param Revision|null $revision Revision that was just saved, may be null
+	 * @param RevisionRecord|Revision|null $revRecord Revision that was just saved, may be null
+	 *        passing a Revision is hard deprecated since 1.35
 	 * @param string[]|null $slotsChanged The role names of the slots that were changed.
 	 *        If not given, all slots are assumed to have changed.
 	 */
 	public static function onArticleEdit(
 		Title $title,
-		Revision $revision = null,
+		$revRecord = null,
 		$slotsChanged = null
 	) {
+		if ( $revRecord && $revRecord instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+			$revRecord = $revRecord->getRevisionRecord();
+		}
+
 		// TODO: move this into a PageEventEmitter service
+
 		$jobs = [];
 		if ( $slotsChanged === null || in_array( SlotRecord::MAIN, $slotsChanged ) ) {
 			// Invalidate caches of articles which include this page.
@@ -3496,13 +3572,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 		MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $title );
 
-		// Purge CDN for this page only
-		$title->purgeSquid();
-		// Clear file cache for this page only
-		HTMLFileCache::clearFileCache( $title );
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		// Purge ?action=info cache
-		$revid = $revision ? $revision->getId() : null;
+		$revid = $revRecord ? $revRecord->getId() : null;
 		DeferredUpdates::addCallableUpdate( function () use ( $title, $revid ) {
 			InfoAction::invalidateCache( $title, $revid );
 		} );

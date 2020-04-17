@@ -1,19 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bonevarluri",
-			"Mogoeilor",
-			"아라",
-			"Macofe",
-			"Mjbmr",
-			"Matma Rex",
-			"Lakzon",
-			"Nemo bis",
 			"Amire80",
 			"Beyronvan",
+			"Bonevarluri",
+			"DannyS712",
 			"Fitoschido",
+			"Lakzon",
 			"Lorestani",
-			"DannyS712"
+			"Macofe",
+			"Matma Rex",
+			"Mjbmr",
+			"Mogoeilor",
+			"Nemo bis",
+			"아라"
 		]
 	},
 	"tog-underline": "هوم پاٛڤٱن زؽرخٱت دار:",
@@ -1331,7 +1331,6 @@
 	"uploadstash-refresh": "نومه گه جانیایا نه د نو تازه کو",
 	"invalid-chunk-offset": "جا وه جایی نامعتور برشت",
 	"img-auth-accessdenied": "دسرسی منع بی",
-	"img-auth-nopathinfo": "PATH_INFO نیئش.\nسرور شما سی گواردن ای انازه میزونکاری نبیه.\n شات د پایه سی جی آی با و حامین دار img_auth نبا.\nhttps://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization سیل بکیت.",
 	"img-auth-notindir": "مسیر حاسته بیه د لشک سوارکرد میزونکاری بیه نئ.",
 	"img-auth-badtitle": "امکان راس کردن یه سرون مجازی د «$1» وجود ناره.",
 	"img-auth-nofile": "فایل $1 وجود ناره.",

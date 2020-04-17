@@ -17,6 +17,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @author DannyS712
  */
 
 namespace MediaWiki\User;

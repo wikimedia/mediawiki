@@ -40,6 +40,7 @@
 			// Sanitize options.tag before it is used by any code. (Including Notification class methods)
 			options.tag = options.tag.replace( /[ _-]+/g, '-' ).replace( /[^-a-z0-9]+/ig, '' );
 			if ( options.tag ) {
+				// eslint-disable-next-line mediawiki/class-doc
 				$notification.addClass( 'mw-notification-tag-' + options.tag );
 			} else {
 				delete options.tag;
@@ -49,6 +50,9 @@
 		if ( options.type ) {
 			// Sanitize options.type
 			options.type = options.type.replace( /[ _-]+/g, '-' ).replace( /[^-a-z0-9]+/ig, '' );
+			// The following classes are used here:
+			// * mw-notification-type-error
+			// * mw-notification-type-warn
 			$notification.addClass( 'mw-notification-type-' + options.type );
 		}
 

@@ -2,18 +2,18 @@
 	"@metadata": {
 		"authors": [
 			"Danny B.",
-			"Jezevec",
-			"Mormegil",
-			"아라",
-			"Matěj Grabovský",
-			"Paxt",
-			"Matěj Suchánek",
-			"LordMsz",
-			"Seb35",
-			"Ilimanaq29",
 			"Dvorapa",
+			"Ilimanaq29",
+			"Jezevec",
+			"LordMsz",
+			"Matěj Grabovský",
+			"Matěj Suchánek",
+			"Mormegil",
 			"Patriccck",
-			"Tchoř"
+			"Paxt",
+			"Seb35",
+			"Tchoř",
+			"아라"
 		]
 	},
 	"config-desc": "Instalační program pro MediaWiki",

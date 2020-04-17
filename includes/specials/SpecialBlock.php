@@ -1076,7 +1076,6 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string[]
 	 */
 	public static function getSuggestedDurations( Language $lang = null, $includeOther = true ) {
-		$a = [];
 		$msg = $lang === null
 			? wfMessage( 'ipboptions' )->inContentLanguage()->text()
 			: wfMessage( 'ipboptions' )->inLanguage( $lang )->text();
@@ -1085,14 +1084,7 @@ class SpecialBlock extends FormSpecialPage {
 			return [];
 		}
 
-		foreach ( explode( ',', $msg ) as $option ) {
-			if ( strpos( $option, ':' ) === false ) {
-				$option = "$option:$option";
-			}
-
-			list( $show, $value ) = explode( ':', $option );
-			$a[$show] = $value;
-		}
+		$a = XmlSelect::parseOptionsMessage( $msg );
 
 		if ( $a && $includeOther ) {
 			// if options exist, add other to the end instead of the begining (which
@@ -1142,12 +1134,11 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * T17810: blocked admins should not be able to block/unblock
-	 * others, and probably shouldn't be able to unblock themselves
-	 * either.
+	 * T17810: Sitewide blocked admins should not be able to block/unblock
+	 * others with one exception; they can block the user who blocked them,
+	 * to reduce advantage of a malicious account blocking all admins (T150826).
 	 *
-	 * Exception: Users can block the user who blocked them, to reduce
-	 * advantage of a malicious account blocking all admins (T150826)
+	 * T208965: Partially blocked admins can block and unblock others as normal.
 	 *
 	 * @param User|int|string|null $target Target to block or unblock; could be a User object,
 	 *   or a user ID or username, or null when the target is not known yet (e.g. when
@@ -1162,6 +1153,11 @@ class SpecialBlock extends FormSpecialPage {
 			$target = User::newFromName( $target );
 		}
 		if ( $performer->getBlock() ) {
+			if ( !$performer->getBlock()->isSitewide() ) {
+				# Allow user to block other users while they are subject to partial block
+				return true;
+			}
+
 			if ( $target instanceof User && $target->getId() == $performer->getId() ) {
 				# User is trying to unblock themselves
 				if ( MediaWikiServices::getInstance()
@@ -1187,9 +1183,9 @@ class SpecialBlock extends FormSpecialPage {
 				// user can block the malicious user back, resulting
 				// in a stalemate.
 				return true;
-
 			} else {
-				# User is trying to block/unblock someone else
+				// User is trying to block/unblock someone else while
+				// they have sitewide block on themselves.
 				return 'ipbblocked';
 			}
 		} else {

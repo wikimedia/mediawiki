@@ -4,9 +4,9 @@
 			"Akamycoco",
 			"Benel",
 			"Bunukwiki",
+			"Matma Rex",
 			"Tokoabibi",
-			"Xiplus",
-			"Matma Rex"
+			"Xiplus"
 		]
 	},
 	"tog-underline": "nu sasaan sacuzu’ masasiket:",
@@ -1507,7 +1507,6 @@
 	"uploadstash-exception": "la’cus misuped patapabaw tayza suped-sulu ($1): \"$2\".",
 	"invalid-chunk-offset": "la’cus atilad kakitizaan",
 	"img-auth-accessdenied": "kakaian misuped-miala",
-	"img-auth-nopathinfo": "caay kataneng PATH_INFO aazihen-sulyang.\nmilacul kisu sefu-kikay caay patudu’ tina cesyun,\nhakay kisu pisaungay CGI ku palana’an a sefu-kikay, zumasatu caay midama img_auth sasahicaan.\npiazih tu tatenga’ay  https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization.",
 	"img-auth-notindir": "masetin patapabaway a dilyikotoling piazihan-tu-sulit inayi’ matuzu’ay nu misu a pazazan.",
 	"img-auth-badtitle": "la’cus pisaungay \"$1\" patizeng kapahay a satangahan.",
 	"img-auth-nofile": "tangan \"$1\" inayi’.",

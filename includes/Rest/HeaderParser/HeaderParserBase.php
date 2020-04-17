@@ -7,17 +7,17 @@ namespace MediaWiki\Rest\HeaderParser;
  */
 class HeaderParserBase {
 	/**
-	 * @var string $input The input string being processed
+	 * @var string The input string being processed
 	 */
 	protected $input;
 
 	/**
-	 * @var int $pos The position within $input
+	 * @var int The position within $input
 	 */
 	protected $pos;
 
 	/**
-	 * @var int $inputLength The length of $input
+	 * @var int The length of $input
 	 */
 	protected $inputLength;
 

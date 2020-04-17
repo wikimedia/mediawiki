@@ -75,7 +75,7 @@
 				switchPrefTab( hash.slice( 1 ) );
 			} else if ( hash.match( /^#mw-[\w-]+$/ ) ) {
 				matchedElement = document.getElementById( hash.slice( 1 ) );
-				$parentSection = $( matchedElement ).parent().closest( '[id^="mw-prefsection-"]' );
+				$parentSection = $( matchedElement ).closest( '.mw-prefs-section-fieldset' );
 				if ( $parentSection.length ) {
 					mw.storage.session.remove( 'mwpreferences-prevTab' );
 					// Switch to proper tab and scroll to selected item.

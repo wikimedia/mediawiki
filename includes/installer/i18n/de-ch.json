@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Geitost",
-			"Das Schäfchen"
+			"Das Schäfchen",
+			"Geitost"
 		]
 	},
 	"config-welcome-section-copyright": "=== Lizenz und Nutzungsbedingungen ===\n\n$1\n\nDieses Programm ist freie Software, d. h. es kann, gemäss den Bedingungen der von der Free Software Foundation veröffentlichten ''GNU General Public License'', weiterverteilt und/oder modifiziert werden. Dabei kann die Version 2, oder nach eigenem Ermessen, jede neuere Version der Lizenz verwendet werden.\n\nDieses Programm wird in der Hoffnung verteilt, dass es nützlich sein wird, allerdings '''ohne jegliche Garantie''' und sogar ohne die implizierte Garantie einer '''Marktgängigkeit''' oder '''Eignung für einen bestimmten Zweck'''. Hierzu sind weitere Hinweise in der ''GNU General Public License'' enthalten.\n\nEine [$2 Kopie der GNU General Public License] sollte zusammen mit diesem Programm verteilt worden sein. Sofern dies nicht der Fall war, kann eine Kopie bei der Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftlich angefordert oder auf deren Website [https://www.gnu.org/copyleft/gpl.html online gelesen] werden.",

@@ -977,7 +977,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		}
 
 		$this->mTablesLoaded = true;
-		$this->mTables = null;
+		// Do not use null as starting value, as that would confuse phan a lot.
+		$this->mTables = [];
 		$cache = ObjectCache::getInstance( $wgLanguageConverterCacheType );
 		$cacheKey = $cache->makeKey( 'conversiontables', $this->mMainLanguageCode );
 		if ( $fromCache ) {

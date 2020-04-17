@@ -349,4 +349,13 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 	public function testNotReadyForInsertion( $rev ) {
 		$this->assertFalse( $rev->isReadyForInsertion() );
 	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionRecord::isCurrent
+	 */
+	public function testIsCurrent() {
+		$rev = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$this->assertFalse( $rev->isCurrent(),
+			MutableRevisionRecord::class . ' cannot be stored current revision' );
+	}
 }

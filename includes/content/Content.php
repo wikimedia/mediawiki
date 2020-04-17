@@ -407,7 +407,7 @@ interface Content {
 	 * @param Content $with New content of the section
 	 * @param string $sectionTitle New section's subject, only if $section is 'new'
 	 *
-	 * @return string|null Complete article text, or null if error
+	 * @return Content|null New content of the entire page, or null if error
 	 */
 	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' );
 

@@ -172,6 +172,14 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	/**
+	 * Returns message when query returns no revisions
+	 * @return string escaped message
+	 */
+	protected function getEmptyBody() {
+		return $this->msg( 'history-empty' )->escaped();
+	}
+
+	/**
 	 * Creates begin of history list with a submit button
 	 *
 	 * @return string HTML output
@@ -181,17 +189,19 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
-
-		$this->getOutput()->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
-		$s = Html::openElement( 'form', [ 'action' => wfScript(),
-			'id' => 'mw-history-compare' ] ) . "\n";
-		$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
-		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
-		$s .= Html::hidden( 'type', 'revision' ) . "\n";
-
+		$s = '';
 		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '';
 		if ( $this->getNumRows() > 0 ) {
+			$this->getOutput()->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
+			$s = Html::openElement( 'form', [
+				'action' => wfScript(),
+				'id' => 'mw-history-compare'
+			] ) . "\n";
+			$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
+			$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
+			$s .= Html::hidden( 'type', 'revision' ) . "\n";
+
 			$this->buttons .= Html::openElement(
 				'div', [ 'class' => 'mw-history-compareselectedversions' ] );
 			$className = 'historysubmit mw-history-compareselectedversions-button mw-ui-button';
@@ -223,8 +233,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->buttons .= '</div>';
 
 			$s .= $this->buttons;
+			$s .= '<ul id="pagehistory">' . "\n";
 		}
-		$s .= '<ul id="pagehistory">' . "\n";
 
 		return $s;
 	}
@@ -245,6 +255,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	protected function getEndBody() {
+		if ( $this->getNumRows() == 0 ) {
+			return '';
+		}
+
 		if ( $this->lastRow ) {
 			$firstInList = $this->counter == 1;
 			if ( $this->mIsBackwards ) {
@@ -274,7 +288,6 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= $this->buttons;
 		}
 		$s .= '</form>';
-
 		return $s;
 	}
 
@@ -319,9 +332,11 @@ class HistoryPager extends ReverseChronologicalPager {
 			$prevRev = null;
 		}
 
+		$revRecord = $rev->getRevisionRecord();
+
 		$latest = $rev->getId() === $this->getWikiPage()->getLatest();
-		$curlink = $this->curLink( $rev );
-		$lastlink = $this->lastLink( $rev, $next );
+		$curlink = $this->curLink( $revRecord );
+		$lastlink = $this->lastLink( $revRecord, $next );
 		$curLastlinks = Html::rawElement( 'span', [], $curlink ) .
 			Html::rawElement( 'span', [], $lastlink );
 		$histLinks = Html::rawElement(
@@ -330,10 +345,10 @@ class HistoryPager extends ReverseChronologicalPager {
 			$curLastlinks
 		);
 
-		$diffButtons = $this->diffButtons( $rev, $firstInList );
+		$diffButtons = $this->diffButtons( $revRecord, $firstInList );
 		$s = $histLinks . $diffButtons;
 
-		$link = $this->revLink( $rev );
+		$link = $this->revLink( $revRecord );
 		$classes = [];
 
 		$del = '';
@@ -495,10 +510,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Create a link to view this revision of the page
 	 *
-	 * @param Revision $rev
+	 * @param RevisionRecord $rev
 	 * @return string
 	 */
-	function revLink( $rev ) {
+	private function revLink( RevisionRecord $rev ) {
 		return ChangesList::revDateLink( $rev, $this->getUser(), $this->getLanguage(),
 			$this->getTitle() );
 	}
@@ -506,10 +521,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Create a diff-to-current link for this revision for this page
 	 *
-	 * @param Revision $rev
+	 * @param RevisionRecord $rev
 	 * @return string
 	 */
-	function curLink( $rev ) {
+	private function curLink( RevisionRecord $rev ) {
 		$cur = $this->historyPage->message['cur'];
 		$latest = $this->getWikiPage()->getLatest();
 		if ( $latest === $rev->getId()
@@ -536,13 +551,13 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Create a diff-to-previous link for this revision for this page.
 	 *
-	 * @param Revision $prevRev The revision being displayed
+	 * @param RevisionRecord $prevRev The revision being displayed
 	 * @param stdClass|string|null $next The next revision in list (that is
 	 *        the previous one in chronological order).
 	 *        May either be a row, "unknown" or null.
 	 * @return string
 	 */
-	function lastLink( $prevRev, $next ) {
+	private function lastLink( RevisionRecord $prevRev, $next ) {
 		$last = $this->historyPage->message['last'];
 
 		if ( $next === null ) {
@@ -593,12 +608,12 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Create radio buttons for page history
 	 *
-	 * @param Revision $rev
+	 * @param RevisionRecord $rev
 	 * @param bool $firstInList Is this version the first one?
 	 *
 	 * @return string HTML output for the radio buttons
 	 */
-	function diffButtons( $rev, $firstInList ) {
+	private function diffButtons( RevisionRecord $rev, $firstInList ) {
 		if ( $this->getNumRows() > 1 ) {
 			$id = $rev->getId();
 			$radio = [ 'type' => 'radio', 'value' => $id ];

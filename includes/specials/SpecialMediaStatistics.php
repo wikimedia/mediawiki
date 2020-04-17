@@ -32,12 +32,12 @@ class SpecialMediaStatistics extends QueryPage {
 	protected $totalCount = 0, $totalBytes = 0;
 
 	/**
-	 * @var int $totalPerType Combined file size of all files in a section
+	 * @var int Combined file size of all files in a section
 	 */
 	protected $totalPerType = 0;
 
 	/**
-	 * @var int $totalSize Combined file size of all files
+	 * @var int Combined file size of all files
 	 */
 	protected $totalSize = 0;
 

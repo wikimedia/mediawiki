@@ -27,7 +27,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Tidy\TidyDriverBase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -36,6 +35,8 @@ use Wikimedia\TestingAccessWrapper;
  * @ingroup Testing
  */
 class ParserTestRunner {
+
+	use MediaWikiTestCaseTrait;
 
 	/**
 	 * MediaWiki core parser test files, paths
@@ -75,11 +76,6 @@ class ParserTestRunner {
 	 * @var CloneDatabase
 	 */
 	private $dbClone;
-
-	/**
-	 * @var TidyDriverBase
-	 */
-	private $tidyDriver = null;
 
 	/**
 	 * @var TestRecorder
@@ -341,6 +337,8 @@ class ParserTestRunner {
 			$ts = $this->getFakeTimestamp();
 			return true;
 		} );
+
+		$this->hideDeprecated( 'Hooks::clear' );
 		$teardown[] = function () {
 			Hooks::clear( 'ParserGetVariableValueTs' );
 		};
@@ -793,12 +791,9 @@ class ParserTestRunner {
 	 * @return Parser
 	 */
 	public function getParser() {
-		global $wgParserConf;
-
-		$class = $wgParserConf['class'];
-		$parser = new $class( $wgParserConf );
+		$parserFactory = MediaWikiServices::getInstance()->getParserFactory();
+		$parser = $parserFactory->create(); // A fresh parser object.
 		ParserTestParserHook::setup( $parser );
-
 		return $parser;
 	}
 
@@ -831,10 +826,6 @@ class ParserTestRunner {
 		$user = $context->getUser();
 		$options = ParserOptions::newFromContext( $context );
 		$options->setTimestamp( $this->getFakeTimestamp() );
-
-		if ( isset( $opts['tidy'] ) ) {
-			$options->setTidy( true );
-		}
 
 		$revId = 1337; // see Parser::getRevisionId()
 		$title = isset( $opts['title'] )
@@ -920,9 +911,7 @@ class ParserTestRunner {
 				'allowTOC' => !isset( $opts['notoc'] ),
 				'unwrap' => !isset( $opts['wrap'] ),
 			] );
-			if ( isset( $opts['tidy'] ) ) {
-				$out = preg_replace( '/\s+$/', '', $out );
-			}
+			$out = preg_replace( '/\s+$/', '', $out );
 
 			if ( isset( $opts['showtitle'] ) ) {
 				if ( $output->getTitleText() ) {
@@ -1147,29 +1136,8 @@ class ParserTestRunner {
 		/** @since 1.20 */
 		Hooks::run( 'ParserTestGlobals', [ &$setup ] );
 
-		// Create tidy driver
-		if ( isset( $opts['tidy'] ) ) {
-			// Cache a driver instance
-			if ( $this->tidyDriver === null ) {
-				$this->tidyDriver = MWTidy::factory();
-			}
-			$tidy = $this->tidyDriver;
-		} else {
-			$tidy = false;
-		}
-
-		# Suppress warnings about running tests without tidy
-		Wikimedia\suppressWarnings();
-		wfDeprecated( 'disabling tidy' );
-		wfDeprecated( 'MWTidy::setInstance' );
-		Wikimedia\restoreWarnings();
-
-		MWTidy::setInstance( $tidy );
-		$teardown[] = function () {
-			MWTidy::destroySingleton();
-		};
-
 		// Set content language. This invalidates the magic word cache and title services
+		// In addition the ParserFactory needs to be recreated as well.
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 		$lang->resetNamespaces();
 		$setup['wgContLang'] = $lang;
@@ -1188,6 +1156,7 @@ class ParserTestRunner {
 		$reset = function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'MagicWordFactory' );
 			$this->resetTitleServices();
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'ParserFactory' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;

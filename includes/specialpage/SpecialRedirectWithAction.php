@@ -19,6 +19,7 @@
  *
  * @file
  * @ingroup SpecialPage
+ * @author DannyS712
  */
 abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	protected $action, $msgPrefix;

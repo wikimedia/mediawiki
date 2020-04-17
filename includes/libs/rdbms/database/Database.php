@@ -405,7 +405,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'variables' => [],
 				'lbInfo' => [],
 				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
-				'agent' => basename( $_SERVER['SCRIPT_NAME'] ) . '@' . gethostname(),
+				'agent' => '',
 				'ownerId' => null,
 				'topologyRole' => null,
 				'topologicalMaster' => null,
@@ -417,7 +417,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'connLogger' => $params['connLogger'] ?? new NullLogger(),
 				'queryLogger' => $params['queryLogger'] ?? new NullLogger(),
 				'replLogger' => $params['replLogger'] ?? new NullLogger(),
-				'errorLogger' => $params['errorLogger'] ?? function ( Exception $e ) {
+				'errorLogger' => $params['errorLogger'] ?? function ( Throwable $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 				},
 				'deprecationLogger' => $params['deprecationLogger'] ?? function ( $msg ) {
@@ -1525,13 +1525,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
 			// If callback suppression is set then the array will remain unhandled.
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-		} catch ( Exception $ex ) {
+		} catch ( Throwable $ex ) {
 			// Already logged; move on...
 		}
 		try {
 			// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener()
 			$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
-		} catch ( Exception $ex ) {
+		} catch ( Throwable $ex ) {
 			// Already logged; move on...
 		}
 	}
@@ -2341,7 +2341,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $set, self::LIST_SET );
 
-		// @phan-suppress-next-line PhanTypeComparisonFromArray
 		if ( $conds !== [] && $conds !== '*' ) {
 			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}
@@ -3066,7 +3065,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$affectedRowCount += $this->affectedRows();
 			}
 			$this->endAtomic( $fname );
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
@@ -3180,7 +3179,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				}
 			}
 			$this->endAtomic( $fname );
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
@@ -3352,7 +3351,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->insert( $destTable, $rows, $fname, $insertOptions );
 				$affectedRowCount += $this->affectedRows();
 			}
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
@@ -3566,7 +3565,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->begin( __METHOD__ );
 
 		$retVal = null;
-		/** @var Exception $e */
+		/** @var Throwable $e */
 		$e = null;
 		do {
 			try {
@@ -3652,7 +3651,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			try {
 				$callback( $this );
 				$this->endAtomic( __METHOD__ );
-			} catch ( Exception $e ) {
+			} catch ( Throwable $e ) {
 				$this->cancelAtomic( __METHOD__ );
 				throw $e;
 			}
@@ -3805,7 +3804,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$count = 0;
 		$autoTrx = $this->getFlag( self::DBO_TRX ); // automatic begin() enabled?
-		/** @var Exception $e */
+		/** @var Throwable $e */
 		$e = null; // first exception
 		do { // callbacks may add callbacks :)
 			$callbacks = array_merge(
@@ -3828,7 +3827,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
 				try {
 					call_user_func( $phpCallback, $trigger, $this );
-				} catch ( Exception $ex ) {
+				} catch ( Throwable $ex ) {
 					call_user_func( $this->errorLogger, $ex );
 					$e = $e ?: $ex;
 					// Some callbacks may use startAtomic/endAtomic, so make sure
@@ -3846,7 +3845,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		} while ( count( $this->trxIdleCallbacks ) );
 
-		if ( $e instanceof Exception ) {
+		if ( $e instanceof Throwable ) {
 			throw $e; // re-throw any first exception
 		}
 
@@ -3875,14 +3874,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					list( $phpCallback ) = $callback;
 					// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 					$phpCallback( $this );
-				} catch ( Exception $ex ) {
+				} catch ( Throwable $ex ) {
 					( $this->errorLogger )( $ex );
 					$e = $e ?: $ex;
 				}
 			}
 		} while ( count( $this->trxPreCommitCallbacks ) );
 
-		if ( $e instanceof Exception ) {
+		if ( $e instanceof Throwable ) {
 			throw $e; // re-throw any first exception
 		}
 
@@ -3911,11 +3910,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					try {
 						// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 						$entry[0]( $trigger, $this );
-					} catch ( Exception $ex ) {
-						( $this->errorLogger )( $ex );
-						$e = $e ?: $ex;
 					} catch ( Throwable $ex ) {
-						// @todo: Log?
+						( $this->errorLogger )( $ex );
 						$e = $e ?: $ex;
 					}
 				} else {
@@ -3944,19 +3940,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return;
 		}
 
-		/** @var Exception $e */
+		/** @var Throwable $e */
 		$e = null; // first exception
 
 		foreach ( $this->trxRecurringCallbacks as $phpCallback ) {
 			try {
 				$phpCallback( $trigger, $this );
-			} catch ( Exception $ex ) {
+			} catch ( Throwable $ex ) {
 				( $this->errorLogger )( $ex );
 				$e = $e ?: $ex;
 			}
 		}
 
-		if ( $e instanceof Exception ) {
+		if ( $e instanceof Throwable ) {
 			throw $e; // re-throw any first exception
 		}
 	}
@@ -4177,7 +4173,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$sectionId = $this->startAtomic( $fname, $cancelable );
 		try {
 			$res = $callback( $this, $fname );
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			$this->cancelAtomic( $fname, $sectionId );
 
 			throw $e;
@@ -4368,12 +4364,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $trxActive && $flush !== self::FLUSHING_ALL_PEERS ) {
 			try {
 				$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-			} catch ( Exception $e ) {
+			} catch ( Throwable $e ) {
 				// already logged; finish and let LoadBalancer move on during mass-rollback
 			}
 			try {
 				$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
-			} catch ( Exception $e ) {
+			} catch ( Throwable $e ) {
 				// already logged; let LoadBalancer move on during mass-rollback
 			}
 
@@ -4686,7 +4682,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		try {
 			$error = $this->sourceStream(
 				$fp, $lineCallback, $resultCallback, $fname, $inputCallback );
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			fclose( $fp );
 			throw $e;
 		}

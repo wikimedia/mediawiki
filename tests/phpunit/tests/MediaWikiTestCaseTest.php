@@ -4,6 +4,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers MediaWikiTestCase
@@ -149,6 +150,56 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		$logger2 = LoggerFactory::getInstance( 'baz' );
 
 		$this->assertSame( $logger1, $logger2 );
+	}
+
+	/**
+	 * @covers MediaWikiTestCase::setNullLogger
+	 * @covers MediaWikiTestCase::restoreLoggers
+	 */
+	public function testNullLogger_createAndRemove() {
+		$this->setNullLogger( 'tocreate' );
+		$logger = LoggerFactory::getInstance( 'tocreate' );
+		$this->assertInstanceOf( \Psr\Log\NullLogger::class, $logger );
+
+		$this->mediaWikiTearDown();
+		$logger = LoggerFactory::getInstance( 'tocreate' );
+		// Unwrap from LogCapturingSpi
+		$inner = TestingAccessWrapper::newFromObject( $logger )->logger;
+		$this->assertInstanceOf( \MediaWiki\Logger\LegacyLogger::class, $inner );
+	}
+
+	/**
+	 * @covers MediaWikiTestCase::setNullLogger
+	 * @covers MediaWikiTestCase::restoreLoggers
+	 */
+	public function testNullLogger_mutateAndRestore() {
+		// Don't rely on the $wgDebugLogGroups and $wgDebugLogFile settings in
+		// WMF CI to make LEVEL_DEBUG (100) the default. Control this in the test.
+		$this->setMwGlobals( 'wgDebugToolbar', true );
+
+		$logger = LoggerFactory::getInstance( 'tomutate' );
+		// Unwrap from LogCapturingSpi
+		$inner = TestingAccessWrapper::newFromObject( $logger )->logger;
+		$this->assertInstanceOf( \MediaWiki\Logger\LegacyLogger::class, $inner );
+		$this->assertSame(
+			100,
+			TestingAccessWrapper::newFromObject( $inner )->minimumLevel,
+			'original minimumLevel'
+		);
+
+		$this->setNullLogger( 'tomutate' );
+		$this->assertSame(
+			999,
+			TestingAccessWrapper::newFromObject( $inner )->minimumLevel,
+			'changed minimumLevel'
+		);
+
+		$this->mediaWikiTearDown();
+		$this->assertSame(
+			100,
+			TestingAccessWrapper::newFromObject( $inner )->minimumLevel,
+			'restored minimumLevel'
+		);
 	}
 
 	/**

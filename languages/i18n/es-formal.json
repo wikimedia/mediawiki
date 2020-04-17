@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Agusbou2015",
 			"Baffo",
 			"Dalton2",
 			"Fitoschido",
+			"La Mantis",
 			"Macofe",
 			"MarcoAurelio",
-			"XanaG",
-			"La Mantis",
-			"Agusbou2015"
+			"XanaG"
 		]
 	},
 	"tog-underline": "Subrayado de enlaces:",
@@ -109,6 +109,7 @@
 	"searcharticle": "Ir",
 	"history": "Historial de página",
 	"history_short": "Historial",
+	"updatedmarker": "actualizada desde su última visita",
 	"printableversion": "Versión para imprimir",
 	"permalink": "Enlace permanente",
 	"print": "Imprimir",

@@ -37,159 +37,159 @@ class ParserOutput extends CacheTime {
 	const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
-	 * @var string|null $mText The output text
+	 * @var string|null The output text
 	 */
 	public $mText = null;
 
 	/**
-	 * @var array $mLanguageLinks List of the full text of language links,
+	 * @var array List of the full text of language links,
 	 *  in the order they appear.
 	 */
 	public $mLanguageLinks;
 
 	/**
-	 * @var array $mCategories Map of category names to sort keys
+	 * @var array Map of category names to sort keys
 	 */
 	public $mCategories;
 
 	/**
-	 * @var array $mIndicators Page status indicators, usually displayed in top-right corner.
+	 * @var array Page status indicators, usually displayed in top-right corner.
 	 */
 	public $mIndicators = [];
 
 	/**
-	 * @var string $mTitleText Title text of the chosen language variant, as HTML.
+	 * @var string Title text of the chosen language variant, as HTML.
 	 */
 	public $mTitleText;
 
 	/**
-	 * @var int[][] $mLinks 2-D map of NS/DBK to ID for the links in the document.
+	 * @var int[][] 2-D map of NS/DBK to ID for the links in the document.
 	 *  ID=zero for broken.
 	 * @phan-var array<int,array<string,int>>
 	 */
 	public $mLinks = [];
 
 	/**
-	 * @var array $mTemplates 2-D map of NS/DBK to ID for the template references.
+	 * @var array 2-D map of NS/DBK to ID for the template references.
 	 *  ID=zero for broken.
 	 */
 	public $mTemplates = [];
 
 	/**
-	 * @var array $mTemplateIds 2-D map of NS/DBK to rev ID for the template references.
+	 * @var array 2-D map of NS/DBK to rev ID for the template references.
 	 *  ID=zero for broken.
 	 */
 	public $mTemplateIds = [];
 
 	/**
-	 * @var array $mImages DB keys of the images used, in the array key only
+	 * @var array DB keys of the images used, in the array key only
 	 */
 	public $mImages = [];
 
 	/**
-	 * @var array $mFileSearchOptions DB keys of the images used mapped to sha1 and MW timestamp.
+	 * @var array DB keys of the images used mapped to sha1 and MW timestamp.
 	 */
 	public $mFileSearchOptions = [];
 
 	/**
-	 * @var array $mExternalLinks External link URLs, in the key only.
+	 * @var array External link URLs, in the key only.
 	 */
 	public $mExternalLinks = [];
 
 	/**
-	 * @var array $mInterwikiLinks 2-D map of prefix/DBK (in keys only)
+	 * @var array 2-D map of prefix/DBK (in keys only)
 	 *  for the inline interwiki links in the document.
 	 */
 	public $mInterwikiLinks = [];
 
 	/**
-	 * @var bool $mNewSection Show a new section link?
+	 * @var bool Show a new section link?
 	 */
 	public $mNewSection = false;
 
 	/**
-	 * @var bool $mHideNewSection Hide the new section link?
+	 * @var bool Hide the new section link?
 	 */
 	public $mHideNewSection = false;
 
 	/**
-	 * @var bool $mNoGallery No gallery on category page? (__NOGALLERY__).
+	 * @var bool No gallery on category page? (__NOGALLERY__).
 	 */
 	public $mNoGallery = false;
 
 	/**
-	 * @var array $mHeadItems Items to put in the <head> section
+	 * @var array Items to put in the <head> section
 	 */
 	public $mHeadItems = [];
 
 	/**
-	 * @var array $mModules Modules to be loaded by ResourceLoader
+	 * @var array Modules to be loaded by ResourceLoader
 	 */
 	public $mModules = [];
 
 	/**
-	 * @var array $mModuleStyles Modules of which only the CSSS will be loaded by ResourceLoader.
+	 * @var array Modules of which only the CSSS will be loaded by ResourceLoader.
 	 */
 	public $mModuleStyles = [];
 
 	/**
-	 * @var array $mJsConfigVars JavaScript config variable for mw.config combined with this page.
+	 * @var array JavaScript config variable for mw.config combined with this page.
 	 */
 	public $mJsConfigVars = [];
 
 	/**
-	 * @var array $mOutputHooks Hook tags as per $wgParserOutputHooks.
+	 * @var array Hook tags as per $wgParserOutputHooks.
 	 */
 	public $mOutputHooks = [];
 
 	/**
-	 * @var array $mWarnings Warning text to be returned to the user.
+	 * @var array Warning text to be returned to the user.
 	 *  Wikitext formatted, in the key only.
 	 */
 	public $mWarnings = [];
 
 	/**
-	 * @var array $mSections Table of contents
+	 * @var array Table of contents
 	 */
 	public $mSections = [];
 
 	/**
-	 * @var array $mProperties Name/value pairs to be cached in the DB.
+	 * @var array Name/value pairs to be cached in the DB.
 	 */
 	public $mProperties = [];
 
 	/**
-	 * @var string $mTOCHTML HTML of the TOC.
+	 * @var string HTML of the TOC.
 	 */
 	public $mTOCHTML = '';
 
 	/**
-	 * @var string $mTimestamp Timestamp of the revision.
+	 * @var string Timestamp of the revision.
 	 */
 	public $mTimestamp;
 
 	/**
-	 * @var bool $mEnableOOUI Whether OOUI should be enabled.
+	 * @var bool Whether OOUI should be enabled.
 	 */
 	public $mEnableOOUI = false;
 
 	/**
-	 * @var string $mIndexPolicy 'index' or 'noindex'?  Any other value will result in no change.
+	 * @var string 'index' or 'noindex'?  Any other value will result in no change.
 	 */
 	private $mIndexPolicy = '';
 
 	/**
-	 * @var true[] $mAccessedOptions List of ParserOptions (stored in the keys).
+	 * @var true[] List of ParserOptions (stored in the keys).
 	 */
 	private $mAccessedOptions = [];
 
 	/**
-	 * @var array $mExtensionData extra data used by extensions.
+	 * @var array extra data used by extensions.
 	 */
 	private $mExtensionData = [];
 
 	/**
-	 * @var array $mLimitReportData Parser limit report data.
+	 * @var array Parser limit report data.
 	 */
 	private $mLimitReportData = [];
 
@@ -197,32 +197,32 @@ class ParserOutput extends CacheTime {
 	private $mLimitReportJSData = [];
 
 	/**
-	 * @var array $mParseStartTime Timestamps for getTimeSinceStart().
+	 * @var array Timestamps for getTimeSinceStart().
 	 */
 	private $mParseStartTime = [];
 
 	/**
-	 * @var bool $mPreventClickjacking Whether to emit X-Frame-Options: DENY.
+	 * @var bool Whether to emit X-Frame-Options: DENY.
 	 */
 	private $mPreventClickjacking = false;
 
 	/**
-	 * @var array $mExtraScriptSrcs Extra script-src for CSP
+	 * @var array Extra script-src for CSP
 	 */
 	private $mExtraScriptSrcs = [];
 
 	/**
-	 * @var array $mExtraDefaultSrcs Extra default-src for CSP [Everything but script and style]
+	 * @var array Extra default-src for CSP [Everything but script and style]
 	 */
 	private $mExtraDefaultSrcs = [];
 
 	/**
-	 * @var array $mExtraStyleSrcs Extra style-src for CSP
+	 * @var array Extra style-src for CSP
 	 */
 	private $mExtraStyleSrcs = [];
 
 	/**
-	 * @var array $mFlags Generic flags.
+	 * @var array Generic flags.
 	 */
 	private $mFlags = [];
 

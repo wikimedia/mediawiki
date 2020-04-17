@@ -24,6 +24,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiTestCase;
+use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use Revision;
@@ -786,9 +787,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	public function testGetRevisionByTimestamp() {
 		// Make sure there is 1 second between the last revision and the rev we create...
 		// Otherwise we might not get the correct revision and the test may fail...
-		// :(
+		MWTimestamp::setFakeTime( '20110401090000' );
 		$page = $this->getTestPage();
-		sleep( 1 );
+		MWTimestamp::setFakeTime( '20110401090001' );
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
 		/** @var Revision $rev */
@@ -1337,13 +1338,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::loadRevisionFromTimestamp
 	 */
 	public function testLoadRevisionFromTimestamp() {
+		MWTimestamp::setFakeTime( '20110401090000' );
 		$title = Title::newFromText( __METHOD__ );
 		$page = WikiPage::factory( $title );
 		/** @var Revision $revOne */
 		$revOne = $page->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ )
 			->value['revision'];
-		// Sleep to ensure different timestamps... )(evil)
-		sleep( 1 );
+		// Ensure different timestamps...
+		MWTimestamp::setFakeTime( '20110401090001' );
 		/** @var Revision $revTwo */
 		$revTwo = $page->doEditContent( new WikitextContent( __METHOD__ . 'a' ), '' )
 			->value['revision'];

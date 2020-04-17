@@ -29,6 +29,32 @@ use MediaWiki\MediaWikiServices;
  */
 class WatchAction extends FormAction {
 
+	/** @var bool The value of the $wgWatchlistExpiry configuration variable. */
+	protected $watchlistExpiry;
+
+	/** @var string */
+	protected $expiryFormFieldName = 'expiry';
+
+	/** @var false|WatchedItem */
+	protected $watchedItem = false;
+
+	/**
+	 * Only public since 1.21
+	 *
+	 * @param Page $page
+	 * @param IContextSource|null $context
+	 */
+	public function __construct( Page $page, IContextSource $context = null ) {
+		parent::__construct( $page, $context );
+		$this->watchlistExpiry = $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
+		if ( $this->watchlistExpiry ) {
+			// The watchedItem is only used in this action's form if $wgWatchlistExpiry is enabled.
+			$this->watchedItem = MediaWikiServices::getInstance()
+				->getWatchedItemStore()
+				->getWatchedItem( $this->getUser(), $this->getTitle() );
+		}
+	}
+
 	public function getName() {
 		return 'watch';
 	}
@@ -42,7 +68,8 @@ class WatchAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		return self::doWatch( $this->getTitle(), $this->getUser() );
+		$expiry = $this->getRequest()->getText( 'wp' . $this->expiryFormFieldName );
+		return self::doWatch( $this->getTitle(), $this->getUser(), User::CHECK_USER_RIGHTS, $expiry );
 	}
 
 	protected function checkCanExecute( User $user ) {
@@ -59,19 +86,75 @@ class WatchAction extends FormAction {
 	}
 
 	protected function getFormFields() {
+		// If watchlist expiry is not enabled, return a simple confirmation message.
+		if ( !$this->watchlistExpiry ) {
+			return [
+				'intro' => [
+					'type' => 'info',
+					'vertical-label' => true,
+					'raw' => true,
+					'default' => $this->msg( 'confirm-watch-top' )->parse(),
+				],
+			];
+		}
+
+		// Otherwise, use a select-list of expiries.
+		$expiry = false;
+		if ( $this->watchedItem && $this->watchedItem->getExpiry() ) {
+			$expiry = $this->watchedItem->getExpiry();
+		}
+		$expiryOptions = static::getExpiryOptions( $this->getContext(), $expiry );
 		return [
-			'intro' => [
-				'type' => 'info',
-				'vertical-label' => true,
-				'raw' => true,
-				'default' => $this->msg( 'confirm-watch-top' )->parse()
+			$this->expiryFormFieldName => [
+				'type' => 'select',
+				'label-message' => 'confirm-watch-label',
+				'options' => $expiryOptions['options'],
+				'default' => $expiryOptions['default'],
 			]
 		];
 	}
 
+	/**
+	 * Get options and default for a watchlist expiry select list. If an expiry time is provided, it
+	 * will be added to the top of the list as 'x days left'.
+	 *
+	 * @todo Move this somewhere better when it's being used in more than just this action.
+	 *
+	 * @param IContextSource $context
+	 * @param string $expiryTime
+	 *
+	 * @return mixed[] With keys `options` (string[]) and `default` (string).
+	 */
+	public static function getExpiryOptions( IContextSource $context, $expiryTime = false ) {
+		$expiryOptionsMsg = $context->msg( 'watchlist-expiry-options' )->text();
+		$expiryOptions = XmlSelect::parseOptionsMessage( $expiryOptionsMsg );
+		$default = 'infinite';
+		if ( $expiryTime ) {
+			// If it's already being temporarily watched,
+			// add the existing expiry as the default option in the dropdown.
+			$expiry = MWTimestamp::getInstance( $expiryTime );
+			$diffInSeconds = $expiry->getTimestamp() - wfTimestamp();
+			$diffInDays = $context
+				->getLanguage()
+				->getDurationIntervals( $diffInSeconds, [ 'days' ] )[ 'days' ];
+			$daysLeft = $context->msg( 'watchlist-expiry-days-left', [ $diffInDays ] )->text();
+			$expiryOptions = array_merge(
+				[ $daysLeft => $expiry->getTimestamp() ],
+				$expiryOptions
+			);
+			$default = $expiry->getTimestamp();
+		}
+		return [
+			'options' => $expiryOptions,
+			'default' => $default,
+		];
+	}
+
 	protected function alterForm( HTMLForm $form ) {
-		$form->setWrapperLegendMsg( 'addwatch' );
-		$form->setSubmitTextMsg( 'confirm-watch-button' );
+		$msg = $this->watchlistExpiry && $this->watchedItem ? 'updatewatchlist' : 'addwatch';
+		$form->setWrapperLegendMsg( $msg );
+		$submitMsg = $this->watchlistExpiry ? 'confirm-watch-button-expiry' : 'confirm-watch-button';
+		$form->setSubmitTextMsg( $submitMsg );
 		$form->setTokenSalt( 'watch' );
 	}
 

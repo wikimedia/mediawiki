@@ -27,7 +27,7 @@ describe( 'Search', () => {
 			assert.deepEqual( noResultsResponse, body );
 		} );
 		it( 'should return array of pages when there is only a text match', async () => {
-			const { body } = await client.get( `/search/page?q=${searchTerm}` );
+			const { body, headers } = await client.get( `/search/page?q=${searchTerm}` );
 			assert.lengthOf( body.pages, 1 );
 			const returnPage = body.pages[ 0 ];
 			assert.nestedProperty( returnPage, 'title' );
@@ -35,6 +35,13 @@ describe( 'Search', () => {
 			assert.nestedProperty( returnPage, 'key' );
 			assert.nestedProperty( returnPage, 'excerpt' );
 			assert.include( returnPage.excerpt, `<span class='searchmatch'>${searchTerm}</span>` );
+
+			// full-text search should not have cache-control
+			if ( headers[ 'cache-control' ] ) {
+				assert.notMatch( headers[ 'cache-control' ], /\bpublic\b/ );
+				assert.notMatch( headers[ 'cache-control' ], /\bmax-age=0*[1-9]\b/ );
+				assert.notMatch( headers[ 'cache-control' ], /\bs-maxage=0*[1-9]\b/ );
+			}
 		} );
 		it( 'should return array of pages when there is only title match', async () => {
 			const { body } = await client.get( `/search/page?q=${pageWithBothTerms}` );
@@ -90,13 +97,18 @@ describe( 'Search', () => {
 			assert.lengthOf( body.pages, 0 );
 		} );
 		it( 'should return array of pages when there is a title match', async () => {
-			const { body } = await client.get( `/search/title?q=${pageWithBothTerms}` );
+			const { body, headers } = await client.get( `/search/title?q=${pageWithBothTerms}` );
 			assert.lengthOf( body.pages, 1 );
 			const returnPage = body.pages[ 0 ];
 			assert.nestedProperty( returnPage, 'title' );
 			assert.nestedProperty( returnPage, 'id' );
 			assert.nestedProperty( returnPage, 'key' );
 			assert.nestedProperty( returnPage, 'excerpt' );
+
+			// completion search should encourage caching
+			assert.nestedProperty( headers, 'cache-control' );
+			assert.match( headers[ 'cache-control' ], /\bpublic\b/ );
+			assert.match( headers[ 'cache-control' ], /\bmax-age=[1-9]\d*/ );
 		} );
 		it( 'should return two pages when both pages match', async () => {
 			const { body } = await client.get( `/search/title?q=${sharedTitleTerm}` );

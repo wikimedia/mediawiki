@@ -2,14 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Airon90",
-			"Yekrats",
-			"KuboF",
 			"Fitoschido",
+			"KuboF",
+			"Mirin",
 			"Ochilov",
-			"Tlustulimu",
 			"Robin van der Vliet",
-			"YvesNevelsteen",
-			"Mirin"
+			"Tlustulimu",
+			"Yekrats",
+			"YvesNevelsteen"
 		]
 	},
 	"config-desc": "La instalilo de MediaWiki",

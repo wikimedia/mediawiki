@@ -1,19 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Meno25",
-			"أحمد المحمودي",
-			"Khaled",
+			"1233qwer1234qwer4",
+			"ASHmed",
+			"Azouz.anis",
 			"Fatz",
 			"Hiba Alshawi",
+			"Khaled",
 			"Maroen1990",
-			"محمد أحمد عبد الفتاح",
-			"ديفيد",
-			"ASHmed",
+			"Meno25",
+			"NEHAOUA",
+			"Tala Ali",
 			"Yasser Yousssef",
-			"Azouz.anis",
-			"1233qwer1234qwer4",
-			"NEHAOUA"
+			"أحمد المحمودي",
+			"ديفيد",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|التوثيق]]\n* [[mw:Special:MyLanguage/API:FAQ|الأسئلة الأكثر تكرارا]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api القائمة البريدية]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce إعلانات API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R الأخطاء والطلبات]\n</div>\n<strong>الحالة:</strong> API ميدياويكي هي واجهة ناضجة ومستقرة يتم دعمها وتحسينها بشكل نشط، في حين أننا نحاول تجنب ذلك، قد نحتاج في بعض الأحيان إلى إجراء تغييرات في التكسير، اشترك في [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ القائمة البريدية لإعلان API ميدياويكي] لإشعارات التحديثات.\n\n<strong>الطلبات الخاطئة:</strong>عندما يتم إرسال طلبات خاطئة إلى API، سيتم إرسال رأس HTTP مع مفتاح \"خطأ-API-ميدياويكي\"، وبعد ذلك سترجع قيمة الرأس ورمز الخطأ المرتجع إلى يتم تعيينه على نفس القيمة، لمزيد من المعلومات; راجع [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>الاختبار:</strong>لسهولة اختبار طلبات API ; انظر [[Special:ApiSandbox]].</p>",
@@ -370,7 +371,6 @@
 	"apihelp-parse-param-disablelimitreport": "تجاهل تقرير الحد (\"NewPP limit report\") من مخرجات المحلل.",
 	"apihelp-parse-param-disablepp": "استخدم <var>$1disablelimitreport</var> بدلا من ذلك.",
 	"apihelp-parse-param-disableeditsection": "تجاهل وصلات تحرير الأقسام من مخرجات المحلل.",
-	"apihelp-parse-param-disabletidy": "لا تشغل تنظيف HTML (على سبيل المثال مرتبة) على مخرجات المحلل.",
 	"apihelp-parse-param-disablestylededuplication": "لا تكرر أوراق الأنماط المضمنة في إخراج المحلل.",
 	"apihelp-parse-param-generatexml": "توليد شجرة تحليل XML (يتطلب نموذج المحتوى <code>$1</code>; حل محلها <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "تحليل في وضع المعاينة.",
@@ -1460,6 +1460,7 @@
 	"apihelp-validatepassword-example-2": "تحقق من كلمة المرور <kbd>qwerty</kbd> لإنشاء المستخدم <kbd>Example</kbd>.",
 	"apihelp-watch-summary": "إضافة أو إزالة صفحات من قائمة مراقبة المستخدم الحالي.",
 	"apihelp-watch-param-title": "الصفحة ل(عدم)مراقبتها، استخدم <var>$1titles</var> بدلا من ذلك.",
+	"apihelp-watch-param-expiry": "سيتم تطبيق ختم وقت الانتهاء على جميع الصفحات. احذف هذه المعلمة تمامًا لترك أي انتهاء صلاحية حالي دون تغيير.",
 	"apihelp-watch-param-unwatch": "إذا تم التعيين فستتم إزالة الصفحة من قائمة المراقبة بدلا من مراقبتها.",
 	"apihelp-watch-example-watch": "راقب الصفحة <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-unwatch": "ألغِ مراقبة الصفحة <kbd>Main Page</kbd>.",
@@ -1608,6 +1609,7 @@
 	"apierror-compare-nofromrevision": "ليس 'من' مراجعة، حدد <var>fromrev</var> أو <var>fromtitle</var> أو <var>fromid</var>.",
 	"apierror-compare-notext": "لا يمكن استخدام الوسيط <var>$1</var> بدون <var>$2</var>.",
 	"apierror-compare-notorevision": "ليس 'إلى' مراجعة، حدد <var>torev</var> أو <var>totitle</var> أو <var>toid</var>.",
+	"apierror-concurrency-limit": " .تم تجاوز حد التزامن. يرجى الانتظار حتى يعود كل طلب قبل إرسال الطلب التالي",
 	"apierror-compare-relative-to-deleted": "لا يمكن استخدام <kbd>torelative=$1</kbd> بالنسبة لمراجعة محذوفة.",
 	"apierror-compare-relative-to-nothing": "لا توجد مراجعة 'من' لـ<var>torelative</var> لتكون نسبة.",
 	"apierror-contentserializationexception": "فشل تسلسل المحتوى: $1",

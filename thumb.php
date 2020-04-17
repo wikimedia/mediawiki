@@ -58,25 +58,17 @@ $mediawiki->doPostOutputShutdown();
  * @return void
  */
 function wfThumbHandle404() {
-	global $wgArticlePath;
-
-	# Set action base paths so that WebRequest::getPathInfo()
-	# recognizes the "X" as the 'title' in ../thumb_handler.php/X urls.
-	# Note: If Custom per-extension repo paths are set, this may break.
+	// Determine the request path relative to the thumbnail zone base
 	$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
-	$oldArticlePath = $wgArticlePath;
-	$wgArticlePath = $repo->getZoneUrl( 'thumb' ) . '/$1';
-
-	$matches = WebRequest::getPathInfo();
-
-	$wgArticlePath = $oldArticlePath;
-
-	if ( !isset( $matches['title'] ) ) {
-		wfThumbError( 404, 'Could not determine the name of the requested thumbnail.' );
-		return;
+	$baseUrl = $repo->getZoneUrl( 'thumb' );
+	if ( substr( $baseUrl, 0, 1 ) === '/' ) {
+		$basePath = $baseUrl;
+	} else {
+		$basePath = parse_url( $baseUrl, PHP_URL_PATH );
 	}
+	$relPath = WebRequest::getRequestPathSuffix( $basePath );
 
-	$params = wfExtractThumbRequestInfo( $matches['title'] ); // basic wiki URL param extracting
+	$params = wfExtractThumbRequestInfo( $relPath ); // basic wiki URL param extracting
 	if ( $params == null ) {
 		wfThumbError( 400, 'The specified thumbnail parameters are not recognized.' );
 		return;

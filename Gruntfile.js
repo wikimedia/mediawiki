@@ -19,22 +19,26 @@ module.exports = function ( grunt ) {
 	grunt.initConfig( {
 		eslint: {
 			options: {
-				extensions: [ '.js', '.json' ],
+				extensions: [ '.js', '.json', '.vue' ],
 				cache: true
 			},
 			all: [
-				'**/*.{js,json}',
+				'**/*.{js,json,vue}',
 				'!docs/**',
 				'!node_modules/**',
 				'!resources/lib/**',
+				// Skip function
+				'!resources/src/skip-Promise.js',
 				'!resources/src/jquery.tipsy/**',
 				'!resources/src/mediawiki.libs.jpegmeta/**',
+				// Intentionally-broken JSON file
+				'!tests/phpunit/data/registration/duplicate_keys.json',
 				// Third-party code of PHPUnit coverage report
 				'!tests/coverage/**',
 				'!vendor/**',
 				// Explicitly say "**/*.js" here in case of symlinks
-				'!extensions/**/*.js{,on}',
-				'!skins/**/*.js{,on}'
+				'!extensions/**/*.{js,json,vue}',
+				'!skins/**/*.{js,json,vue}'
 			]
 		},
 		banana: {
@@ -50,7 +54,7 @@ module.exports = function ( grunt ) {
 			paramvalidator: 'includes/libs/ParamValidator/i18n/'
 		},
 		stylelint: {
-			src: '{resources/src,mw-config}/**/*.{css,less}'
+			src: '{resources/src,mw-config}/**/*.{css,less,vue}'
 		},
 		svgmin: {
 			options: {

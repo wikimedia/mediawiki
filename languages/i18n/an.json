@@ -1,24 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
+			"Carlos Cristia",
+			"DannyS712",
+			"Fitoschido",
 			"Juanpabl",
 			"Kaganer",
+			"Macofe",
 			"Malafaya",
+			"MarcoAurelio",
+			"Matma Rex",
 			"Reedy",
 			"Remember the dot",
 			"The Evil IP address",
 			"Urhixidur",
+			"Vlad5250",
 			"Willtron",
 			"לערי ריינהארט",
-			"아라",
-			"Macofe",
-			"Carlos Cristia",
-			"MarcoAurelio",
-			"Matma Rex",
-			"Fitoschido",
 			"ديفيد",
-			"Vlad5250",
-			"DannyS712"
+			"아라"
 		]
 	},
 	"tog-underline": "Subrayar os vinclos:",
@@ -1084,7 +1084,6 @@
 	"uploadstash-refresh": "Esviellar a lista de fichers",
 	"invalid-chunk-offset": "Desplazamiento invalido d'o fragmento",
 	"img-auth-accessdenied": "Acceso refusau",
-	"img-auth-nopathinfo": "Falta PATH_INFO.\n O suyo servidor no ye configurau ta pasar ista información.\nPuet que siga basau en CGI y no siga compatible con img_auth.\nSe veiga l'autorización d'a imachen en https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "A rota solicitada no ye en o directorio de cargas configurau",
 	"img-auth-badtitle": "No s'ha puesto construyir un títol valito dende \"$1\".",
 	"img-auth-nofile": "No existe l'archivo \"$1\".",

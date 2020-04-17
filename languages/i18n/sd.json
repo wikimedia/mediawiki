@@ -2,17 +2,17 @@
 	"@metadata": {
 		"authors": [
 			"Aursani",
-			"아라",
-			"Fayazburiro",
-			"Sindhu",
-			"Mehtab ahmed",
-			"Macofe",
-			"Indus Asia",
 			"BukhariSaeed",
+			"Fayazburiro",
 			"Fitoschido",
-			"Tweety",
+			"Indus Asia",
 			"KaleemBhatti",
-			"Matma Rex"
+			"Macofe",
+			"Matma Rex",
+			"Mehtab ahmed",
+			"Sindhu",
+			"Tweety",
+			"아라"
 		]
 	},
 	"tog-underline": "ڳنڍڻي هيٺان لڪير:",
@@ -1651,6 +1651,7 @@
 	"unblocked-range": "$1 تان بندش هٽي چڪي آهي.",
 	"unblocked-id": "بندش $1 هٽي چڪي آهي.",
 	"blocklist": "بندشيل واپرائيندڙ",
+	"autoblocklist": "خودڪار پابنديون",
 	"autoblocklist-submit": "ڳوليو",
 	"ipblocklist": "بندشيل واپرائيندڙ",
 	"blocklist-type": "قِسم:",

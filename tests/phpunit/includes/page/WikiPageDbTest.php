@@ -617,7 +617,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		// Similar to MovePage logic
 		wfGetDB( DB_MASTER )->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
-		$page->doDeleteUpdates( $page->getId(), $page->getContent(), $page->getRevision(), $user );
+		$page->doDeleteUpdates(
+			$page->getId(),
+			$page->getContent(),
+			$page->getRevisionRecord(),
+			$user
+		);
 
 		// Run the job queue
 		JobQueueGroup::destroySingletons();
@@ -1116,6 +1121,8 @@ more stuff
 	 * @covers WikiPage::getOldestRevision
 	 */
 	public function testGetOldestRevision() {
+		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+
 		$page = $this->newPage( __METHOD__ );
 		$page->doEditContent(
 			new WikitextContent( 'one' ),

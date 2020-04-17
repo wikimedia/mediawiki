@@ -1,22 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
+			"Crucifunked",
+			"Enolp",
 			"Esbardu",
+			"Fitoschido",
 			"Kaganer",
+			"Macofe",
+			"Matma Rex",
+			"Matěj Suchánek",
 			"Mikel",
 			"Remember the dot",
 			"Savh",
 			"Shirayuki",
+			"Tokvo",
 			"Xuacu",
 			"לערי ריינהארט",
-			"아라",
-			"Fitoschido",
-			"Macofe",
-			"Matma Rex",
-			"Tokvo",
-			"Crucifunked",
-			"Enolp",
-			"Matěj Suchánek"
+			"아라"
 		]
 	},
 	"tog-underline": "Sorrayar enllaces:",
@@ -1786,7 +1786,6 @@
 	"uploadstash-zero-length": "El ficheru tien tamañu cero.",
 	"invalid-chunk-offset": "Allugamientu inválidu del fragmentu",
 	"img-auth-accessdenied": "Accesu denegáu",
-	"img-auth-nopathinfo": "Falta la información de ruta.\nEl to sirvidor tien de configurase pa pasar les variables REQUEST_URI y/o PATH_INFO.\nSi yá ta fecho, tenta activar $wgUsePathInfo.\nVer https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization",
 	"img-auth-notindir": "El camín solicitáu nun ta nel direutoriu de xubíes configuráu.",
 	"img-auth-badtitle": "Nun se pue construir un títulu validu dende \"$1\".",
 	"img-auth-nofile": "El ficheru \"$1\" nun esiste.",

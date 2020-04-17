@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.37.1
+ * OOUI v0.38.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-03-26T02:04:47Z
+ * Date: 2020-04-15T01:28:08Z
  */
 ( function ( OO ) {
 
@@ -1025,6 +1025,7 @@ OO.ui.mixin.LookupElement.prototype.getRequestCacheDataFromResponse = function (
  * @param {string} name Unique symbolic name of tab panel
  * @param {Object} [config] Configuration options
  * @cfg {jQuery|string|Function|OO.ui.HtmlSnippet} [label] Label for tab panel's tab
+ * @cfg {Object} [tabItemConfig] Additional tab item config
  */
 OO.ui.TabPanelLayout = function OoUiTabPanelLayout( name, config ) {
 	// Allow passing positional parameters inside the config object
@@ -1042,6 +1043,7 @@ OO.ui.TabPanelLayout = function OoUiTabPanelLayout( name, config ) {
 	// Properties
 	this.name = name;
 	this.label = config.label;
+	this.tabItemConfig = config.tabItemConfig || {};
 	this.tabItem = null;
 	this.active = false;
 
@@ -1100,6 +1102,15 @@ OO.ui.TabPanelLayout.prototype.isActive = function () {
  */
 OO.ui.TabPanelLayout.prototype.getTabItem = function () {
 	return this.tabItem;
+};
+
+/**
+ * Get config for creating a tab item.
+ *
+ * @return {Object} Tab option config
+ */
+OO.ui.TabPanelLayout.prototype.getTabItemConfig = function () {
+	return this.tabItemConfig;
 };
 
 /**
@@ -1604,12 +1615,12 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
 	if ( !this.continuous ) {
 		for ( i = 0, len = items.length; i < len; i++ ) {
 			if ( !selectedItem || selectedItem !== items[ i ] ) {
-				items[ i ].$element.addClass( 'oo-ui-element-hidden' );
+				items[ i ].toggle( false );
 				items[ i ].$element.attr( 'aria-hidden', 'true' );
 			}
 		}
 		if ( selectedItem ) {
-			selectedItem.$element.removeClass( 'oo-ui-element-hidden' );
+			selectedItem.toggle( true );
 			selectedItem.$element.removeAttr( 'aria-hidden' );
 		}
 	}
@@ -2787,10 +2798,10 @@ OO.ui.IndexLayout.prototype.getCurrentTabPanelName = function () {
  * @return {OO.ui.IndexLayout} The layout, for chaining
  */
 OO.ui.IndexLayout.prototype.addTabPanels = function ( tabPanels, index ) {
-	var i, len, name, tabPanel, item, currentIndex,
+	var i, len, name, tabPanel, tabItem, currentIndex,
 		stackLayoutTabPanels = this.stackLayout.getItems(),
 		remove = [],
-		items = [];
+		tabItems = [];
 
 	// Remove tab panels with same names
 	for ( i = 0, len = tabPanels.length; i < len; i++ ) {
@@ -2814,14 +2825,16 @@ OO.ui.IndexLayout.prototype.addTabPanels = function ( tabPanels, index ) {
 	for ( i = 0, len = tabPanels.length; i < len; i++ ) {
 		tabPanel = tabPanels[ i ];
 		name = tabPanel.getName();
-		this.tabPanels[ tabPanel.getName() ] = tabPanel;
-		item = new OO.ui.TabOptionWidget( { data: name } );
-		tabPanel.setTabItem( item );
-		items.push( item );
+		this.tabPanels[ name ] = tabPanel;
+		tabItem = new OO.ui.TabOptionWidget(
+			$.extend( { data: name }, tabPanel.getTabItemConfig() )
+		);
+		tabPanel.setTabItem( tabItem );
+		tabItems.push( tabItem );
 	}
 
-	if ( items.length ) {
-		this.tabSelectWidget.addItems( items, index );
+	if ( tabItems.length ) {
+		this.tabSelectWidget.addItems( tabItems, index );
 		this.selectFirstSelectableTabPanel();
 	}
 	this.stackLayout.addItems( tabPanels, index );
@@ -2897,12 +2910,13 @@ OO.ui.IndexLayout.prototype.setTabPanel = function ( name ) {
 	var selectedItem,
 		$focused,
 		previousTabPanel,
-		tabPanel = this.tabPanels[ name ];
+		tabPanel;
 
 	if ( name !== this.currentTabPanelName ) {
+		tabPanel = this.getTabPanel( name );
 		previousTabPanel = this.getCurrentTabPanel();
 		selectedItem = this.tabSelectWidget.findSelectedItem();
-		if ( selectedItem && selectedItem.getData() !== name ) {
+		if ( !selectedItem || selectedItem.getData() !== name ) {
 			this.tabSelectWidget.selectItemByData( name );
 		}
 		if ( tabPanel ) {
@@ -3783,10 +3797,17 @@ OO.mixinClass( OO.ui.ButtonSelectWidget, OO.ui.mixin.TabIndexedElement );
  *
  * @constructor
  * @param {Object} [config] Configuration options
+ * @cfg {string} [href] Hyperlink to add to TabOption. Mostly used in OOUI PHP.
  */
 OO.ui.TabOptionWidget = function OoUiTabOptionWidget( config ) {
 	// Configuration initialization
 	config = config || {};
+
+	if ( config.href ) {
+		config = $.extend( {
+			$label: $( '<a>' ).attr( 'href', config.href )
+		}, config );
+	}
 
 	// Parent constructor
 	OO.ui.TabOptionWidget.parent.call( this, config );
@@ -3914,6 +3935,140 @@ OO.ui.TabSelectWidget.prototype.toggleFramed = function ( framed ) {
 	}
 
 	return this;
+};
+
+/**
+ * ButtonMenuSelectWidgets launch a menu of options created with OO.ui.MenuOptionWidget.
+ * The ButtonMenuSelectWidget takes care of opening and displaying the menu so that
+ * users can interact with it.
+ *
+ *     @example
+ *     // A ButtonMenuSelectWidget with a menu that contains three options.
+ *     var buttonMenu = new OO.ui.ButtonMenuSelectWidget( {
+ *         icon: 'menu',
+ *         menu: {
+ *             items: [
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'a',
+ *                     label: 'First'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'b',
+ *                     label: 'Second'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'c',
+ *                     label: 'Third'
+ *                 } )
+ *             ]
+ *         }
+ *     } );
+ *
+ *     $( document.body ).append( buttonMenu.$element );
+ *
+ *     // When using the `clearOnSelect` option, listen to the `choose` event
+ *     // to avoid getting the null select event.
+ *     buttonMenu.getMenu().on( 'choose', function ( menuOption ) {
+ *         console.log( menuOption.getData() );
+ *     } );
+ *
+ * @class
+ * @extends OO.ui.ButtonWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {boolean} [clearOnSelect=true] Clear selection immediately after making it
+ * @cfg {Object} [menu] Configuration options to pass to
+ *  {@link OO.ui.MenuSelectWidget menu select widget}.
+ * @cfg {jQuery|boolean} [$overlay] Render the menu into a separate layer. This configuration is
+ *  useful in cases where the expanded menu is larger than its containing `<div>`. The specified
+ *  overlay layer is usually on top of the containing `<div>` and has a larger area. By default,
+ *  the menu uses relative positioning. Pass 'true' to use the default overlay.
+ *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
+ */
+OO.ui.ButtonMenuSelectWidget = function OoUiButtonMenuSelectWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.ButtonMenuSelectWidget.parent.call( this, config );
+
+	this.$overlay = ( config.$overlay === true ?
+		OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
+
+	// Properties
+	this.clearOnSelect = config.clearOnSelect !== false;
+	this.menu = new OO.ui.MenuSelectWidget( $.extend( {
+		widget: this,
+		$floatableContainer: this.$element
+	}, config.menu ) );
+
+	// Events
+	this.connect( this, {
+		click: 'onButtonMenuClick'
+	} );
+	this.getMenu().connect( this, {
+		select: 'onMenuSelect',
+		toggle: 'onMenuToggle'
+	} );
+
+	// Initialization
+	this.$button
+		.attr( {
+			'aria-expanded': 'false',
+			'aria-haspopup': 'true',
+			'aria-owns': this.menu.getElementId()
+		} );
+	this.$element.addClass( 'oo-ui-buttonMenuSelectWidget' );
+	this.$overlay.append( this.menu.$element );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.ButtonMenuSelectWidget, OO.ui.ButtonWidget );
+
+/* Methods */
+
+/**
+ * Get the menu.
+ *
+ * @return {OO.ui.MenuSelectWidget} Menu of widget
+ */
+OO.ui.ButtonMenuSelectWidget.prototype.getMenu = function () {
+	return this.menu;
+};
+
+/**
+ * Handle menu select events.
+ *
+ * @private
+ * @param {OO.ui.MenuOptionWidget} item Selected menu item
+ */
+OO.ui.ButtonMenuSelectWidget.prototype.onMenuSelect = function ( item ) {
+	if ( this.clearOnSelect && item ) {
+		// This will cause an additional 'select' event to fire, so
+		// users should probably listen to the 'choose' event.
+		this.getMenu().selectItem();
+	}
+};
+
+/**
+ * Handle menu toggle events.
+ *
+ * @private
+ * @param {boolean} isVisible Open state of the menu
+ */
+OO.ui.ButtonMenuSelectWidget.prototype.onMenuToggle = function ( isVisible ) {
+	this.$element.toggleClass( 'oo-ui-buttonElement-pressed', isVisible );
+};
+
+/**
+ * Handle mouse click events.
+ *
+ * @private
+ */
+OO.ui.ButtonMenuSelectWidget.prototype.onButtonMenuClick = function () {
+	this.menu.toggle();
 };
 
 /**

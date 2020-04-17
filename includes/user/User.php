@@ -28,6 +28,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\User\UserIdentity;
@@ -2402,13 +2403,25 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Add or update the new messages flag
 	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
 	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @param Revision|null $curRev New, as yet unseen revision of the user talk page. Ignored if null.
+	 * @param RevisionRecord|Revision|null $curRev New, as yet unseen revision of the
+	 *   user talk page. Ignored if null; passing a Revision is deprecated since 1.35.
 	 * @return bool True if successful, false otherwise
 	 */
 	protected function updateNewtalk( $field, $id, $curRev = null ) {
 		// Get timestamp of the talk page revision prior to the current one
-		$prevRev = $curRev ? $curRev->getPrevious() : false;
-		$ts = $prevRev ? $prevRev->getTimestamp() : null;
+		if ( $curRev && $curRev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+			$curRev = $curRev->getRevisionRecord();
+		}
+		if ( $curRev ) {
+			$prevRev = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getPreviousRevision( $curRev );
+			$ts = $prevRev ? $prevRev->getTimestamp() : null;
+		} else {
+			$ts = null;
+		}
+
 		// Mark the user as having new messages since this revision
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'user_newtalk',
@@ -2447,10 +2460,15 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Update the 'You have new messages!' status.
 	 * @param bool $val Whether the user has new messages
-	 * @param Revision|null $curRev New, as yet unseen revision of the user talk
-	 *   page. Ignored if null or !$val.
+	 * @param RevisionRecord|Revision|null $curRev New, as yet unseen revision of the
+	 *   user talk page. Ignored if null or !$val; passing a Revision is deprecated since 1.35.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
+		if ( $curRev && $curRev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+			$curRev = $curRev->getRevisionRecord();
+		}
+
 		if ( wfReadOnly() ) {
 			return;
 		}
@@ -3725,9 +3743,7 @@ class User implements IDBAccessObject, UserIdentity {
 					if ( $oldRev ) {
 						$newRev = $rl->getNextRevision( $oldRev );
 						if ( $newRev ) {
-							// TODO: actually no need to wrap in a revision,
-							// setNewtalk really only needs a RevRecord
-							$this->setNewtalk( true, new Revision( $newRev ) );
+							$this->setNewtalk( true, $newRev );
 						}
 					}
 				}
@@ -3978,7 +3994,8 @@ class User implements IDBAccessObject, UserIdentity {
 
 		Hooks::run( 'UserSaveSettings', [ $this ] );
 		$this->clearSharedCache( 'changed' );
-		$this->getUserPage()->purgeSquid();
+		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$hcu->purgeTitleUrls( $this->getUserPage(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 	}
 
 	/**

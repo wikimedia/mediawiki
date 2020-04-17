@@ -2,16 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Demmy",
+			"Fitoschido",
 			"Kaganer",
-			"Meno25",
-			"Urhixidur",
-			"아라",
 			"Macofe",
 			"Matma Rex",
-			"Wikicology",
-			"Fitoschido",
+			"Meno25",
 			"Olaniyan Olushola",
-			"Vlad5250"
+			"Urhixidur",
+			"Vlad5250",
+			"Wikicology",
+			"아라"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -1287,7 +1287,6 @@
 	"uploadstash-errclear": "Ìparẹ́ àwọn fáìlì náà kò yorísírere.",
 	"uploadstash-refresh": "Àtúnraṣe àtòjọ àwọn fáìlì",
 	"img-auth-accessdenied": "Ìdínà igbàwọlé",
-	"img-auth-nopathinfo": "Kò sí PATH_INFO.\nẸ̀rọ-ìwọ̀fà yín kò létò láti mú dátà yìí kọjá.\nO ṣe é ṣe kó jẹ́ ti CGI tí kò ní ìtìlẹ́yìn fún img_auth.\nẸ wo [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Image_Authorization àṣẹ àwòrán.]",
 	"img-auth-notindir": "Ojúọ̀nà tí ẹ tọrọ kò ní nínú àpò ìrùsókè alátòsílẹ̀.",
 	"img-auth-badtitle": "Àkọlé oníìbámu kò ṣe é dá láti \"$1\".",
 	"img-auth-nofile": "Fáìlì \"$1\" kò sí.",

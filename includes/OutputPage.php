@@ -1889,6 +1889,28 @@ class OutputPage extends ContextSource {
 			$this->getCSP()->addStyleSrc( $src );
 		}
 
+		// If $wgImagePreconnect is true, and if the output contains
+		// images, give the user-agent a hint about foreign repos from
+		// which those images may be served.  See T123582.
+		//
+		// TODO: We don't have an easy way to know from which remote(s)
+		// the image(s) will be served.  For now, we only hint the first
+		// valid one.
+		if ( $this->getConfig()->get( 'ImagePreconnect' ) && count( $parserOutput->getImages() ) ) {
+			$preconnect = [];
+			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
+			$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$preconnect ) {
+				$preconnect[] = wfParseUrl( $repo->getZoneUrl( 'thumb' ) )['host'];
+			} );
+			$preconnect[] = wfParseUrl( $repoGroup->getLocalRepo()->getZoneUrl( 'thumb' ) )['host'];
+			foreach ( $preconnect as $host ) {
+				if ( $host ) {
+					$this->addLink( [ 'rel' => 'preconnect', 'href' => '//' . $host ] );
+					break;
+				}
+			}
+		}
+
 		// Template versioning...
 		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {
 			if ( isset( $this->mTemplateIds[$ns] ) ) {

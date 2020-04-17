@@ -685,7 +685,8 @@ $reason: Reason for protect
 'ArticlePurge': Before executing "&action=purge".
 [&]$wikiPage: WikiPage (object) to purge
 
-'ArticleRevisionUndeleted': After an article revision is restored.
+'ArticleRevisionUndeleted': DEPRECATED since 1.35! Use RevisionUndeleted instead.
+After an article revision is restored.
 [&]$title: the article title
 $revision: the revision
 $oldPageID: the page ID of the revision when archived (may be null)
@@ -2561,7 +2562,7 @@ TODO: No more strip, deprecated ?
 &$text: text being parsed
 [&]$stripState: stripState used (object)
 
-'ParserAfterTidy': Called after Parser::tidy() in Parser::parse()
+'ParserAfterTidy': Called after MWTidy::tidy() in Parser::parse()
 [&]$parser: Parser object being used
 &$text: text that will be returned
 
@@ -2895,6 +2896,10 @@ instead. Called after a revision is inserted into the database.
 [&]$revision: the Revision
 $data: DEPRECATED! Always null!
 $flags: DEPRECATED! Always null!
+
+'RevisionUndeleted': After an article revision is restored.
+$revisionRecord: the RevisionRecord that was restored
+$oldPageID: the page ID of the revision when archived (may be null)
 
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr: Array of namespaces ($nsId => $name) which will be used.
@@ -3542,7 +3547,8 @@ $context: IContextSource (object)
 $linkRenderer: LinkRenderer instance
 &$links: Array of HTML strings
 
-'UndeleteShowRevision': Called when showing a revision in Special:Undelete.
+'UndeleteShowRevision': DEPRECATED since 1.35!
+Called when showing a revision in Special:Undelete.
 $title: title object related to the revision
 $rev: revision (object) that will be viewed
 

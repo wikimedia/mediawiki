@@ -20,6 +20,7 @@
 
 /**
  * Interface for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
+ * @deprecated since 1.35, Use WikiPage or Article instead
  *
  * @method array getActionOverrides()
  * @method string getUserText($audience=1,User $user=null)

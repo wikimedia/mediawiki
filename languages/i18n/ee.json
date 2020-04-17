@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cbrown1023",
-			"Natsubee",
-			"아라",
 			"Aguve",
-			"Latercio2000",
+			"Cbrown1023",
+			"Enock4seth",
 			"Hello903hello",
-			"Enock4seth"
+			"Latercio2000",
+			"Natsubee",
+			"Savh",
+			"아라"
 		]
 	},
 	"tog-underline": "Flitete ɖe kadodo te:",
@@ -534,7 +535,7 @@
 	"namespace": "Ŋkɔŋlɔƒe",
 	"invert": "Trɔ tatiawo tu",
 	"blanknamespace": "(Vevitɔ)",
-	"contributions": "{{ŊUTSU/NYƆNU:$1|Ezãla}} ƒe asikpeɖeŋuwo",
+	"contributions": "{{GENDER:$1|Ezãla}} ƒe asikpeɖeŋuwo",
 	"contributions-title": "$1 ƒe nuŋɔŋlɔwo",
 	"mycontris": "Nyeƒe nuŋɔŋlɔwo",
 	"contribsub2": "Na $1 ($2)",

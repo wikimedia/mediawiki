@@ -105,6 +105,7 @@ class MovePageTest extends MediaWikiTestCase {
 		$this->getExistingTestPage( 'Existent2' );
 		$this->getExistingTestPage( 'File:Existent.jpg' );
 		$this->getExistingTestPage( 'File:Existent2.jpg' );
+		$this->getExistingTestPage( 'File:Non-file.jpg' );
 		$this->getExistingTestPage( 'MediaWiki:Existent.js' );
 		$this->getExistingTestPage( 'Hooked in place' );
 		$this->getNonExistingTestPage( 'Nonexistent' );
@@ -305,6 +306,11 @@ class MovePageTest extends MediaWikiTestCase {
 				'File:Existent.jpg',
 				'File:Nonexistent.png',
 				[ [ 'imagetypemismatch' ] ],
+			],
+			'Non-file page in the File namespace' => [
+				'File:Non-file.jpg',
+				'File:Non-file-new.png',
+				[],
 			],
 		];
 		return $ret;

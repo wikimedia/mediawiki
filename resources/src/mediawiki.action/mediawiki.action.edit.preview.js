@@ -212,6 +212,7 @@
 				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
 					newList = response.parse.langlinks.map( function ( langlink ) {
 						var bcp47 = mw.language.bcp47( langlink.lang );
+						// eslint-disable-next-line mediawiki/class-doc
 						return $( '<li>' )
 							.addClass( 'interlanguage-link interwiki-' + langlink.lang )
 							.append( $( '<a>' )

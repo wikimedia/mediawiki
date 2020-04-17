@@ -238,7 +238,7 @@ class PageArchive {
 	/**
 	 * Return a Revision object containing data for the deleted revision.
 	 *
-	 * @deprecated since 1.32, use getArchivedRevision() instead.
+	 * @deprecated since 1.32, use getArchivedRevisionRecord() instead.
 	 *
 	 * @param string $timestamp
 	 * @return Revision|null
@@ -254,15 +254,31 @@ class PageArchive {
 	/**
 	 * Return the archived revision with the given ID.
 	 *
+	 * @deprecated since 1.35, use getArchivedRevisionRecord instead
+	 *
 	 * @param int $revId
 	 * @return Revision|null
 	 */
 	public function getArchivedRevision( $revId ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		// Protect against code switching from getRevision() passing in a timestamp.
 		Assert::parameterType( 'integer', $revId, '$revId' );
 
-		$rec = $this->getRevisionByConditions( [ 'ar_rev_id' => $revId ] );
-		return $rec ? new Revision( $rec ) : null;
+		$revRecord = $this->getArchivedRevisionRecord( $revId );
+		return $revRecord ? new Revision( $revRecord ) : null;
+	}
+
+	/**
+	 * Return the archived revision with the given ID.
+	 *
+	 * @since 1.35
+	 *
+	 * @param int $revId
+	 * @return RevisionRecord|null
+	 */
+	public function getArchivedRevisionRecord( int $revId ) {
+		return $this->getRevisionByConditions( [ 'ar_rev_id' => $revId ] );
 	}
 
 	/**
@@ -303,10 +319,30 @@ class PageArchive {
 	 * May produce unexpected results in case of history merges or other
 	 * unusual time issues.
 	 *
+	 * @deprecated since 1.35, use getPreviousRevisionRecord
+	 *
 	 * @param string $timestamp
 	 * @return Revision|null Null when there is no previous revision
 	 */
 	public function getPreviousRevision( $timestamp ) {
+		$revRecord = $this->getPreviousRevisionRecord( $timestamp );
+		$rev = $revRecord ? new Revision( $revRecord ) : null;
+		return $rev;
+	}
+
+	/**
+	 * Return the most-previous revision, either live or deleted, against
+	 * the deleted revision given by timestamp.
+	 *
+	 * May produce unexpected results in case of history merges or other
+	 * unusual time issues.
+	 *
+	 * @since 1.35
+	 *
+	 * @param string $timestamp
+	 * @return RevisionRecord|null Null when there is no previous revision
+	 */
+	public function getPreviousRevisionRecord( string $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		// Check the previous deleted revision...
@@ -341,10 +377,9 @@ class PageArchive {
 		if ( $prevLive && $prevLive > $prevDeleted ) {
 			// Most prior revision was live
 			$rec = $this->getRevisionStore()->getRevisionById( $prevLiveId );
-			$rec = $rec ? new Revision( $rec ) : null;
 		} elseif ( $prevDeleted ) {
 			// Most prior revision was deleted
-			$rec = $this->getArchivedRevision( $prevDeletedId );
+			$rec = $this->getArchivedRevisionRecord( $prevDeletedId );
 		} else {
 			$rec = null;
 		}
@@ -750,9 +785,16 @@ class PageArchive {
 
 				$restored++;
 
+				Hooks::run( 'RevisionUndeleted', [ $revision, $row->ar_page_id ] );
+
+				// Deprecated since 1.35
 				$legacyRevision = new Revision( $revision );
-				Hooks::run( 'ArticleRevisionUndeleted',
-					[ &$this->title, $legacyRevision, $row->ar_page_id ] );
+				Hooks::run(
+					'ArticleRevisionUndeleted',
+					[ &$this->title, $legacyRevision, $row->ar_page_id ],
+					'1.35'
+				);
+
 				$restoredPages[$row->ar_page_id] = true;
 			}
 

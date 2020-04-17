@@ -30,6 +30,7 @@ use Wikimedia\ScopedCallback;
 class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use MediaWikiTestCaseTrait;
 
 	/** @var array */
 	private $ptTest;
@@ -66,6 +67,7 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 
 	public function setUp() : void {
 		$this->ptTeardownScope = $this->ptRunner->staticSetup();
+		$this->hideDeprecated( 'Hooks::clear' );
 	}
 
 	public function tearDown() : void {

@@ -440,6 +440,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newFromArchiveRow
 	 */
 	public function testNewFromArchiveRow( $selectModifier ) {
+		$this->hideDeprecated( 'Revision::newFromArchiveRow' );
+
 		$services = MediaWikiServices::getInstance();
 
 		$store = new RevisionStore(
@@ -490,6 +492,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newFromArchiveRow
 	 */
 	public function testNewFromArchiveRowOverrides() {
+		$this->hideDeprecated( 'Revision::newFromArchiveRow' );
+
 		$page = $this->createPage(
 			'RevisionStorageTest_testNewFromArchiveRow',
 			'Lorem Ipsum',
@@ -614,6 +618,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getPrevious
 	 */
 	public function testGetPrevious() {
+		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+
 		$oldestRevision = $this->testPage->getOldestRevision();
 		$latestRevision = $this->testPage->getLatest();
 
@@ -633,6 +639,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\Revision\RevisionStore::getRelativeRevision
 	 */
 	public function testTitleGetPreviousRevisionID() {
+		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+
 		$oldestId = $this->testPage->getOldestRevision()->getId();
 		$latestId = $this->testPage->getLatest();
 
@@ -701,6 +709,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewNullRevision() {
 		$this->hideDeprecated( 'Revision::getTextId' );
+		$this->hideDeprecated( 'Revision::newNullRevision' );
 
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$orig = $this->testPage->getRevision();
@@ -726,6 +735,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newNullRevision
 	 */
 	public function testNewNullRevision_badPage() {
+		$this->hideDeprecated( 'Revision::newNullRevision' );
 		$dbw = wfGetDB( DB_MASTER );
 		$user = $this->getTestUser()->getUser();
 		$rev = Revision::newNullRevision( $dbw, -1, 'a null revision', false, $user );

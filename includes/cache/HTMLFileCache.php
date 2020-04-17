@@ -38,15 +38,15 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * @param Title|string $title Title object or prefixed DB key string
 	 * @param string $action
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $title, $action ) {
 		parent::__construct();
 
-		$allowedTypes = self::cacheablePageActions();
-		if ( !in_array( $action, $allowedTypes ) ) {
-			throw new MWException( 'Invalid file cache type given.' );
+		if ( !in_array( $action, self::cacheablePageActions() ) ) {
+			throw new InvalidArgumentException( 'Invalid file cache type given.' );
 		}
+
 		$this->mKey = ( $title instanceof Title )
 			? $title->getPrefixedDBkey()
 			: (string)$title;
@@ -217,12 +217,12 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Clear the file caches for a page for all actions
-	 * @param Title $title
+	 *
+	 * @param Title|string $title Title or prefixed DB key
 	 * @return bool Whether $wgUseFileCache is enabled
 	 */
-	public static function clearFileCache( Title $title ) {
+	public static function clearFileCache( $title ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-
 		if ( !$config->get( 'UseFileCache' ) ) {
 			return false;
 		}

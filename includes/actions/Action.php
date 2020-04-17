@@ -75,7 +75,10 @@ abstract class Action implements MessageLocalizer {
 	 * @param array $overrides
 	 * @return bool|null|string|callable|Action
 	 */
-	final private static function getClass( $action, array $overrides ) {
+	final private static function getClass(
+		string $action,
+		array $overrides
+	) {
 		global $wgActions;
 		$action = strtolower( $action );
 
@@ -98,10 +101,9 @@ abstract class Action implements MessageLocalizer {
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
 	 *
-	 *
-	 * @param string|null $action
-	 * @param Article|WikiPage|Page $article
-	 * 	Calling with anything other than Article is deprecated since 1.35
+	 * @param string|null $action Null is hard-deprecated since 1.35
+	 * @param Article|WikiPage|Page $article Calling with anything
+	 *  other than Article is hard-deprecated since 1.35
 	 * @param IContextSource|null $context
 	 * @return Action|bool|null False if the action is disabled, null
 	 *     if it is not recognised
@@ -111,6 +113,16 @@ abstract class Action implements MessageLocalizer {
 		Page $article,
 		IContextSource $context = null
 	) {
+		if ( !is_string( $action ) ) {
+			wfDeprecated( __METHOD__ . ' with null $action', '1.35' );
+			return null;
+		}
+		if ( !$article instanceof Article ) {
+			wfDeprecated(
+				__METHOD__ . ' with ' . get_class( $article ),
+				'1.35'
+			);
+		}
 		$classOrCallable = self::getClass( $action, $article->getActionOverrides() );
 		if ( is_string( $classOrCallable ) ) {
 			if ( !class_exists( $classOrCallable ) ) {
@@ -187,7 +199,7 @@ abstract class Action implements MessageLocalizer {
 	 * @param string $name Name of an action
 	 * @return bool
 	 */
-	final public static function exists( $name ) {
+	final public static function exists( string $name ) : bool {
 		return self::getClass( $name, [] ) !== null;
 	}
 
@@ -281,7 +293,7 @@ abstract class Action implements MessageLocalizer {
 	 * @return Title
 	 */
 	final public function getTitle() {
-		return $this->getArticle()->getTitle();
+		return $this->getWikiPage()->getTitle();
 	}
 
 	/**
@@ -309,22 +321,37 @@ abstract class Action implements MessageLocalizer {
 	) {
 		if ( $context === null ) {
 			wfWarn( __METHOD__ . ' called without providing a Context object.' );
-			// NOTE: We could try to initialize $context using $page->getContext(),
-			//      if $page is an Article. That however seems to not work seamlessly.
 		}
-		$this->page = $page;// @todo remove b/c
 
+		$this->page = $page;// @todo remove b/c
+		$this->article = self::convertPageToArticle( $page, $context, __METHOD__ );
+		$this->context = $context;
+	}
+
+	private static function convertPageToArticle(
+		Page $page,
+		?IContextSource $context,
+		string $method
+	) : Article {
 		if ( $page instanceof Article ) {
-			$this->article = $page;
-		} elseif ( $page instanceof WikiPage ) {
-			$this->article = Article::newFromWikiPage( $page, $context );
-		} else {
+			return $page;
+		}
+
+		if ( !$page instanceof WikiPage ) {
 			throw new LogicException(
-				__METHOD__ . ' called with unknown Page: ' . get_class( $page )
+				$method . ' called with unknown Page: ' . get_class( $page )
 			);
 		}
 
-		$this->context = $context;
+		wfDeprecated(
+			$method . ' with: ' . get_class( $page ),
+			'1.35'
+		);
+
+		return Article::newFromWikiPage(
+			$page,
+			$context ?? RequestContext::getMain()
+		);
 	}
 
 	/**

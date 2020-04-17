@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use Config;
 use InvalidArgumentException;
 use ISearchResultSet;
 use MediaWiki\Permissions\PermissionManager;
@@ -70,11 +71,21 @@ class SearchHandler extends Handler {
 	private const OFFSET = 0;
 
 	/**
+	 * Expiry time for use as max-age value in the cache-control header
+	 * of completion search responses.
+	 * @see $wgSearchSuggestCacheExpiry
+	 * @var int|null
+	 */
+	private $completionCacheExpiry;
+
+	/**
+	 * @param Config $config
 	 * @param PermissionManager $permissionManager
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param SearchEngineConfig $searchEngineConfig
 	 */
 	public function __construct(
+		Config $config,
 		PermissionManager $permissionManager,
 		SearchEngineFactory $searchEngineFactory,
 		SearchEngineConfig $searchEngineConfig
@@ -83,8 +94,11 @@ class SearchHandler extends Handler {
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->searchEngineConfig = $searchEngineConfig;
 
-		// @todo Inject this, when there is a good way to do that
+		// @todo Inject this, when there is a good way to do that, see T239753
 		$this->user = RequestContext::getMain()->getUser();
+
+		// @todo Avoid injecting the entire config, see T246377
+		$this->completionCacheExpiry = $config->get( 'SearchSuggestCacheExpiry' );
 	}
 
 	public function init(
@@ -191,8 +205,8 @@ class SearchHandler extends Handler {
 	private function buildOutputFromSuggestions( array $suggestions ) {
 		$pages = [];
 		$foundPageIds = [];
-		foreach ( $suggestions as $suggestion ) {
-			$title = $suggestion->getSuggestedTitle();
+		foreach ( $suggestions as $sugg ) {
+			$title = $sugg->getSuggestedTitle();
 			if ( $title && $title->exists() ) {
 				$pageID = $title->getArticleID();
 				if ( !isset( $foundPageIds[$pageID] ) &&
@@ -202,7 +216,7 @@ class SearchHandler extends Handler {
 						'id' => $pageID,
 						'key' => $title->getPrefixedDBkey(),
 						'title' => $title->getPrefixedText(),
-						'excerpt' => $suggestion->getText() ?: null,
+						'excerpt' => $sugg->getText() ?: null,
 					];
 					$pages[] = $page;
 					$foundPageIds[$pageID] = true;
@@ -250,7 +264,16 @@ class SearchHandler extends Handler {
 	public function execute() {
 		$searchEngine = $this->createSearchEngine();
 		$results = $this->doSearch( $searchEngine );
-		return $this->getResponseFactory()->createJson( [ 'pages' => $results ] );
+		$response = $this->getResponseFactory()->createJson( [ 'pages' => $results ] );
+
+		if ( $this->mode === self::COMPLETION_MODE && $this->completionCacheExpiry ) {
+			// Type-ahead completion matches should be cached by the client and
+			// in the CDN, especially for short prefixes.
+			// See also $wgSearchSuggestCacheExpiry and ApiOpenSearch
+			$response->setHeader( 'Cache-Control', 'public, max-age=' . $this->completionCacheExpiry );
+		}
+
+		return $response;
 	}
 
 	public function getParamSettings() {

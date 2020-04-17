@@ -49,10 +49,6 @@ return [
 
 	'user.defaults' => [ 'class' => ResourceLoaderUserDefaultsModule::class ],
 	'user.options' => [ 'class' => ResourceLoaderUserOptionsModule::class ],
-	'user.tokens' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => 'user.options'
-	],
 
 	'mediawiki.skinning.elements' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
@@ -108,6 +104,11 @@ return [
 			'resources/lib/jquery/jquery.js',
 			'resources/lib/jquery/jquery.migrate.js',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'es6-promise' => [
+		'scripts' => 'resources/lib/promise-polyfill/promise-polyfill.js',
+		'skipFunction' => 'resources/src/skip-Promise.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.base' => [
@@ -553,6 +554,28 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+
+	'vuex' => [
+		'packageFiles' => [
+			'resources/src/vue/vuex.js',
+			[
+				'name' => 'resources/lib/vuex/vuex.js',
+				'callback' => function ( ResourceLoaderContext $context, Config $config ) {
+					// Use the development version if development mode is enabled, or if we're in debug mode
+					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+						'resources/lib/vuex/vuex.js' :
+						'resources/lib/vuex/vuex.min.js';
+					return new ResourceLoaderFilePath( $file );
+				}
+			]
+		],
+		'dependencies' => [
+			'vue',
+			'es6-promise',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+
 	/* MediaWiki */
 	'mediawiki.template' => [
 		'scripts' => 'resources/src/mediawiki.template.js',
@@ -630,7 +653,7 @@ return [
 	],
 	'mediawiki.diff.styles' => [
 		'styles' => [
-			'resources/src/mediawiki.diff.styles/diff.css',
+			'resources/src/mediawiki.diff.styles/diff.less',
 			'resources/src/mediawiki.diff.styles/print.css' => [
 				'media' => 'print'
 			],
@@ -1885,7 +1908,7 @@ return [
 	// - .. are only used by logged-in users.
 	// - .. depend on oojs-ui-core.
 	// - .. contain UI intialisation code (e.g. no public module exports, because
-	//      requiring or depending on this bundle is awkard)
+	//      requiring or depending on this bundle is awkward)
 	'mediawiki.misc-authed-ooui' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-ooui",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-ooui",
@@ -2293,6 +2316,7 @@ return [
 			'mediawiki.Title',
 			'mediawiki.api',
 			'mediawiki.String',
+			'mediawiki.language',
 		],
 		'messages' => [
 			// NamespaceInputWidget

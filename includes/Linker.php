@@ -1096,7 +1096,8 @@ class Linker {
 	/**
 	 * Generate a user link if the current user is allowed to view it
 	 * @since 1.16.3
-	 * @param Revision $rev
+	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
+	 *    deprecated since 1.35)
 	 * @param bool $isPublic Show only if all users can see it
 	 * @return string HTML fragment
 	 */
@@ -1104,21 +1105,28 @@ class Linker {
 		// TODO inject a user
 		$user = RequestContext::getMain()->getUser();
 
-		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) && $isPublic ) {
+		if ( $rev instanceof Revision ) {
+			$revRecord = $rev->getRevisionRecord();
+		} else {
+			$revRecord = $rev;
+		}
+
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) && $isPublic ) {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		} elseif ( RevisionRecord::userCanBitfield(
-			$rev->getVisibility(),
+			$revRecord->getVisibility(),
 			 RevisionRecord::DELETED_USER,
 			$user
 		) ) {
+			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $user );
 			$link = self::userLink(
-				$rev->getUser( RevisionRecord::FOR_THIS_USER, $user ),
-				$rev->getUserText( RevisionRecord::FOR_THIS_USER, $user )
+				$revUser ? $revUser->getId() : 0,
+				$revUser ? $revUser->getName() : ''
 			);
 		} else {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
-		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
 		return $link;
@@ -1127,7 +1135,8 @@ class Linker {
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
 	 * @since 1.16.3
-	 * @param Revision $rev
+	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
+	 *    deprecated since 1.35)
 	 * @param bool $isPublic Show only if all users can see it
 	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML
@@ -1136,16 +1145,24 @@ class Linker {
 		// TODO inject a user
 		$user = RequestContext::getMain()->getUser();
 
+		if ( $rev instanceof Revision ) {
+			$revRecord = $rev->getRevisionRecord();
+		} else {
+			$revRecord = $rev;
+		}
+
 		if ( RevisionRecord::userCanBitfield(
-			$rev->getVisibility(),
+			$revRecord->getVisibility(),
 			RevisionRecord::DELETED_USER,
 			$user
 		) &&
-			( !$rev->isDeleted( RevisionRecord::DELETED_USER ) || !$isPublic )
+			( !$revRecord->isDeleted( RevisionRecord::DELETED_USER ) || !$isPublic )
 		) {
-			$userId = $rev->getUser( RevisionRecord::FOR_THIS_USER, $user );
-			$userText = $rev->getUserText( RevisionRecord::FOR_THIS_USER, $user );
-			if ( $userId || (string)$userText !== '' ) {
+			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			$userId = $revUser ? $revUser->getId() : 0;
+			$userText = $revUser ? $revUser->getName() : '';
+
+			if ( $userId || $userText !== '' ) {
 				$link = self::userLink( $userId, $userText )
 					. self::userToolLinks( $userId, $userText, false, 0, null,
 						$useParentheses );
@@ -1156,7 +1173,7 @@ class Linker {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
 
-		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			return ' <span class="history-deleted mw-userlink">' . $link . '</span>';
 		}
 		return $link;
@@ -1582,36 +1599,47 @@ class Linker {
 	 * user is allowed to view it.
 	 *
 	 * @since 1.16.3
-	 * @param Revision $rev
+	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
+	 *    deprecated since 1.35)
 	 * @param bool $local Whether section links should refer to local page
 	 * @param bool $isPublic Show only if all users can see it
 	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML fragment
 	 */
-	public static function revComment( Revision $rev, $local = false, $isPublic = false,
+	public static function revComment( $rev, $local = false, $isPublic = false,
 		$useParentheses = true
 	) {
 		// TODO inject a user
 		$user = RequestContext::getMain()->getUser();
 
-		if ( $rev->getComment( RevisionRecord::RAW ) == "" ) {
+		if ( $rev instanceof Revision ) {
+			$revRecord = $rev->getRevisionRecord();
+		} else {
+			$revRecord = $rev;
+		}
+
+		if ( $revRecord->getComment( RevisionRecord::RAW ) === null ) {
 			return "";
 		}
-		if ( $rev->isDeleted( RevisionRecord::DELETED_COMMENT ) && $isPublic ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		} elseif ( RevisionRecord::userCanBitfield(
-			$rev->getVisibility(),
+			$revRecord->getVisibility(),
 			RevisionRecord::DELETED_COMMENT,
 			$user
 		) ) {
+			$comment = $revRecord->getComment( RevisionRecord::FOR_THIS_USER, $user );
 			$block = self::commentBlock(
-				$rev->getComment( RevisionRecord::FOR_THIS_USER, $user ),
-				$rev->getTitle(), $local, null, $useParentheses
+				$comment ? $comment->text : null,
+				$revRecord->getPageAsLinkTarget(),
+				$local,
+				null,
+				$useParentheses
 			);
 		} else {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
-		if ( $rev->isDeleted( RevisionRecord::DELETED_COMMENT ) ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_COMMENT ) ) {
 			return " <span class=\"history-deleted comment\">$block</span>";
 		}
 		return $block;
@@ -1825,8 +1853,10 @@ class Linker {
 	 * If the option noBrackets is set the rollback link wont be enclosed in "[]".
 	 *
 	 * @since 1.16.3. $context added in 1.20. $options added in 1.21
+	 *   $rev could be a RevisionRecord since 1.35
 	 *
-	 * @param Revision $rev
+	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
+	 *    deprecated since 1.35)
 	 * @param IContextSource|null $context Context to use or null for the main context.
 	 * @param array $options
 	 * @return string
@@ -1834,19 +1864,25 @@ class Linker {
 	public static function generateRollback( $rev, IContextSource $context = null,
 		$options = [ 'verify' ]
 	) {
+		if ( $rev instanceof Revision ) {
+			$revRecord = $rev->getRevisionRecord();
+		} else {
+			$revRecord = $rev;
+		}
+
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		}
 
 		$editCount = false;
 		if ( in_array( 'verify', $options, true ) ) {
-			$editCount = self::getRollbackEditCount( $rev, true );
+			$editCount = self::getRollbackEditCount( $revRecord, true );
 			if ( $editCount === false ) {
 				return '';
 			}
 		}
 
-		$inner = self::buildRollbackLink( $rev, $context, $editCount );
+		$inner = self::buildRollbackLink( $revRecord, $context, $editCount );
 
 		if ( !in_array( 'noBrackets', $options, true ) ) {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
@@ -1872,12 +1908,20 @@ class Linker {
 	 * Returns null if $wgShowRollbackEditCount is disabled or false if $verify
 	 * is set and the user is the only contributor of the page.
 	 *
-	 * @param Revision $rev
+	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
+	 *    deprecated since 1.35)
 	 * @param bool $verify Try to verify that this revision can really be rolled back
 	 * @return int|bool|null
 	 */
 	public static function getRollbackEditCount( $rev, $verify ) {
 		global $wgShowRollbackEditCount;
+
+		if ( $rev instanceof Revision ) {
+			$revRecord = $rev->getRevisionRecord();
+		} else {
+			$revRecord = $rev;
+		}
+
 		if ( !is_int( $wgShowRollbackEditCount ) || !$wgShowRollbackEditCount > 0 ) {
 			// Nothing has happened, indicate this by returning 'null'
 			return null;
@@ -1890,8 +1934,7 @@ class Linker {
 		$res = $dbr->select(
 			$revQuery['tables'],
 			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'], 'rev_deleted' ],
-			// $rev->getPage() returns null sometimes
-			[ 'rev_page' => $rev->getTitle()->getArticleID() ],
+			[ 'rev_page' => $revRecord->getPageId() ],
 			__METHOD__,
 			[
 				'USE INDEX' => [ 'revision' => 'page_timestamp' ],
@@ -1901,10 +1944,13 @@ class Linker {
 			$revQuery['joins']
 		);
 
+		$revUser = $revRecord->getUser( RevisionRecord::RAW );
+		$revUserText = $revUser ? $revUser->getName() : '';
+
 		$editCount = 0;
 		$moreRevs = false;
 		foreach ( $res as $row ) {
-			if ( $rev->getUserText( RevisionRecord::RAW ) != $row->rev_user_text ) {
+			if ( $row->rev_user_text != $revUserText ) {
 				if ( $verify &&
 					( $row->rev_deleted & RevisionRecord::DELETED_TEXT
 						|| $row->rev_deleted & RevisionRecord::DELETED_USER
@@ -1933,7 +1979,10 @@ class Linker {
 	 * Build a raw rollback link, useful for collections of "tool" links
 	 *
 	 * @since 1.16.3. $context added in 1.20. $editCount added in 1.21
-	 * @param Revision $rev
+	 *   $rev could be a RevisionRecord since 1.35
+	 *
+	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
+	 *    deprecated since 1.35)
 	 * @param IContextSource|null $context Context to use or null for the main context.
 	 * @param int|false $editCount Number of edits that would be reverted
 	 * @return string HTML fragment
@@ -1943,6 +1992,12 @@ class Linker {
 	) {
 		global $wgShowRollbackEditCount, $wgMiserMode;
 
+		if ( $rev instanceof Revision ) {
+			$revRecord = $rev->getRevisionRecord();
+		} else {
+			$revRecord = $rev;
+		}
+
 		// To config which pages are affected by miser mode
 		$disableRollbackEditCountSpecialPage = [ 'Recentchanges', 'Watchlist' ];
 
@@ -1950,11 +2005,13 @@ class Linker {
 			$context = RequestContext::getMain();
 		}
 
-		$title = $rev->getTitle();
+		$title = $revRecord->getPageAsLinkTarget();
+		$revUser = $revRecord->getUser();
+		$revUserText = $revUser ? $revUser->getName() : '';
 
 		$query = [
 			'action' => 'rollback',
-			'from' => $rev->getUserText(),
+			'from' => $revUserText,
 			'token' => $context->getUser()->getEditToken( 'rollback' ),
 		];
 
@@ -1986,7 +2043,7 @@ class Linker {
 			&& $wgShowRollbackEditCount > 0
 		) {
 			if ( !is_numeric( $editCount ) ) {
-				$editCount = self::getRollbackEditCount( $rev, false );
+				$editCount = self::getRollbackEditCount( $revRecord, false );
 			}
 
 			if ( $editCount > $wgShowRollbackEditCount ) {
@@ -2126,20 +2183,27 @@ class Linker {
 	 * undeletion.
 	 *
 	 * @param User $user
-	 * @param Revision $rev
+	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
+	 *    deprecated since 1.35)
 	 * @param LinkTarget $title
 	 * @return string HTML fragment
 	 */
-	public static function getRevDeleteLink( User $user, Revision $rev, LinkTarget $title ) {
+	public static function getRevDeleteLink( User $user, $rev, LinkTarget $title ) {
+		if ( $rev instanceof Revision ) {
+			$revRecord = $rev->getRevisionRecord();
+		} else {
+			$revRecord = $rev;
+		}
+
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$canHide = $permissionManager->userHasRight( $user, 'deleterevision' );
 		$canHideHistory = $permissionManager->userHasRight( $user, 'deletedhistory' );
-		if ( !$canHide && !( $rev->getVisibility() && $canHideHistory ) ) {
+		if ( !$canHide && !( $revRecord->getVisibility() && $canHideHistory ) ) {
 			return '';
 		}
 
 		if ( !RevisionRecord::userCanBitfield(
-			$rev->getVisibility(),
+			$revRecord->getVisibility(),
 			RevisionRecord::DELETED_RESTRICTED,
 			$user
 		) ) {
@@ -2147,13 +2211,13 @@ class Linker {
 		}
 		$prefixedDbKey = MediaWikiServices::getInstance()->getTitleFormatter()->
 			getPrefixedDBkey( $title );
-		if ( $rev->getId() ) {
+		if ( $revRecord->getId() ) {
 			// RevDelete links using revision ID are stable across
 			// page deletion and undeletion; use when possible.
 			$query = [
 				'type' => 'revision',
 				'target' => $prefixedDbKey,
-				'ids' => $rev->getId()
+				'ids' => $revRecord->getId()
 			];
 		} else {
 			// Older deleted entries didn't save a revision ID.
@@ -2161,11 +2225,14 @@ class Linker {
 			$query = [
 				'type' => 'archive',
 				'target' => $prefixedDbKey,
-				'ids' => $rev->getTimestamp()
+				'ids' => $revRecord->getTimestamp()
 			];
 		}
-		return self::revDeleteLink( $query,
-			$rev->isDeleted( RevisionRecord::DELETED_RESTRICTED ), $canHide );
+		return self::revDeleteLink(
+			$query,
+			$revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ),
+			$canHide
+		);
 	}
 
 	/**

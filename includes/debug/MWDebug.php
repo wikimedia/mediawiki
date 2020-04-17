@@ -333,7 +333,7 @@ class MWDebug {
 			trigger_error( $msg, $level );
 		}
 
-		wfDebugLog( $group, $msg, 'private' );
+		wfDebugLog( $group, $msg );
 	}
 
 	/**

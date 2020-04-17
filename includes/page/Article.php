@@ -705,7 +705,7 @@ class Article implements Page {
 
 					# Try the parser cache
 					if ( $useParserCache ) {
-						$this->mParserOutput = $parserCache->get( $this->mPage, $parserOptions );
+						$this->mParserOutput = $parserCache->get( $this->getPage(), $parserOptions );
 
 						if ( $this->mParserOutput !== false ) {
 							if ( $oldid ) {
@@ -2374,6 +2374,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::doDeleteUpdates
+	 * @deprecated since 1.35
 	 * @param int $id
 	 * @param Content|null $content
 	 * @param Revision|null $revision
@@ -2385,6 +2386,7 @@ class Article implements Page {
 		$revision = null,
 		User $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->doDeleteUpdates( $id, $content, $revision, $user );
 	}
 
@@ -2577,9 +2579,11 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::getOldestRevision
+	 * @deprecated since 1.35
 	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getOldestRevision();
 	}
 
@@ -2935,12 +2939,14 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::updateIfNewerOn
 	 * @param IDatabase $dbw
 	 * @param Revision $revision
 	 * @return bool
 	 */
 	public function updateIfNewerOn( $dbw, $revision ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->updateIfNewerOn( $dbw, $revision );
 	}
 
@@ -2958,6 +2964,7 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::updateRevisionOn
 	 * @param IDatabase $dbw
 	 * @param Revision $revision
@@ -2968,6 +2975,7 @@ class Article implements Page {
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
 		$lastRevIsRedirect = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->updateRevisionOn( $dbw, $revision, $lastRevision,
 			$lastRevIsRedirect
 		);

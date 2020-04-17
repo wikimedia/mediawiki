@@ -436,7 +436,8 @@ class DifferenceEngine extends ContextSource {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( $permissionManager->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_REPLICA );
-			$arQuery = $this->revisionStore->getArchiveQueryInfo();
+			$revStore = $this->revisionStore;
+			$arQuery = $revStore->getArchiveQueryInfo();
 			$row = $dbr->selectRow(
 				$arQuery['tables'],
 				array_merge( $arQuery['fields'], [ 'ar_namespace', 'ar_title' ] ),
@@ -446,12 +447,12 @@ class DifferenceEngine extends ContextSource {
 				$arQuery['joins']
 			);
 			if ( $row ) {
-				$rev = Revision::newFromArchiveRow( $row );
+				$revRecord = $revStore->newRevisionFromArchiveRow( $row );
 				$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
 
 				return SpecialPage::getTitleFor( 'Undelete' )->getFullURL( [
 					'target' => $title->getPrefixedText(),
-					'timestamp' => $rev->getTimestamp()
+					'timestamp' => $revRecord->getTimestamp()
 				] );
 			}
 		}
@@ -1135,7 +1136,9 @@ class DifferenceEngine extends ContextSource {
 
 		// Cacheable?
 		$key = false;
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getMainWANObjectCache();
+		$stats = $services->getStatsdDataFactory();
 		if ( $this->mOldid && $this->mNewid ) {
 			// Check if subclass is still using the old way
 			// for backwards-compatibility
@@ -1148,7 +1151,7 @@ class DifferenceEngine extends ContextSource {
 			if ( !$this->mRefreshCache ) {
 				$difftext = $cache->get( $key );
 				if ( is_string( $difftext ) ) {
-					wfIncrStats( 'diff_cache.hit' );
+					$stats->updateCount( 'diff_cache.hit', 1 );
 					$difftext = $this->localiseDiff( $difftext );
 					$difftext .= "\n<!-- diff cache key $key -->\n";
 
@@ -1183,12 +1186,12 @@ class DifferenceEngine extends ContextSource {
 
 		// Save to cache for 7 days
 		if ( !Hooks::run( 'AbortDiffCache', [ &$diffEngine ] ) ) {
-			wfIncrStats( 'diff_cache.uncacheable' );
+			$stats->updateCount( 'diff_cache.uncacheable', 1 );
 		} elseif ( $key !== false && $difftext !== false ) {
-			wfIncrStats( 'diff_cache.miss' );
+			$stats->updateCount( 'diff_cache.miss', 1 );
 			$cache->set( $key, $difftext, 7 * 86400 );
 		} else {
-			wfIncrStats( 'diff_cache.uncacheable' );
+			$stats->updateCount( 'diff_cache.uncacheable', 1 );
 		}
 		// localise line numbers and title attribute text
 		if ( $difftext !== false ) {
@@ -1741,7 +1744,11 @@ class DifferenceEngine extends ContextSource {
 		// shared.css sets diff in interface language/dir, but the actual content
 		// is often in a different language, mostly the page content language/dir
 		$header = Html::openElement( 'table', [
-			'class' => [ 'diff', 'diff-contentalign-' . $this->getDiffLang()->alignStart() ],
+			'class' => [
+				'diff',
+				'diff-contentalign-' . $this->getDiffLang()->alignStart(),
+				'diff-editfont-' . $this->getUser()->getOption( 'editfont' )
+			],
 			'data-mw' => 'interface',
 		] );
 		$userLang = htmlspecialchars( $this->getLanguage()->getHtmlCode() );
