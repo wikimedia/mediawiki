@@ -3,7 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Page\PageHandlerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
@@ -81,7 +81,7 @@ class MovePageTest extends MediaWikiTestCase {
 			$old,
 			$new,
 			new ServiceOptions(
-				MovePageFactory::CONSTRUCTOR_OPTIONS,
+				PageHandlerFactory::CONSTRUCTOR_OPTIONS,
 				$params['options'] ?? [],
 				[
 					'CategoryCollation' => 'uppercase',
@@ -148,7 +148,7 @@ class MovePageTest extends MediaWikiTestCase {
 		$obj2 = new MovePage(
 			Title::newFromText( 'A' ),
 			Title::newFromText( 'B' ),
-			new ServiceOptions( MovePageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			new ServiceOptions( PageHandlerFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),

@@ -22,7 +22,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Page\PageHandlerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -117,7 +117,7 @@ class MovePage {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 		$this->options = $options ??
-			new ServiceOptions( MovePageFactory::CONSTRUCTOR_OPTIONS,
+			new ServiceOptions( PageHandlerFactory::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig() );
 		$this->loadBalancer =
 			$loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
