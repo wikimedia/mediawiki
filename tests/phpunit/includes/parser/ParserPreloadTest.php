@@ -43,7 +43,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 			MediaWikiServices::getInstance()->getContentLanguage() );
 
 		$this->testParser = $services->getParserFactory()->create();
-		$this->testParser->Options( $this->testParserOptions );
+		$this->testParser->setOptions( $this->testParserOptions );
 		$this->testParser->clearState();
 
 		$this->title = Title::newFromText( 'Preload Test' );

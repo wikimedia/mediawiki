@@ -859,6 +859,9 @@ because of Phabricator reports.
   - ::$mRevisionSize
   - ::$mInputSize
   - ::$mInParse
+* The accessor/mutator methods Parser::Options(), Parser::OutputType(), and
+  Parser::Title() have been deprecated; use the appropriate Parser::get*
+  or Parser::set* methods instead.
 * Version 1 of the parserTests file format has been deprecated.  Update
   your parser tests to version 2, which uses Remex tidy on all test output
   by default.
