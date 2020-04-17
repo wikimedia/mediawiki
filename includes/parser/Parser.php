@@ -168,7 +168,7 @@ class Parser {
 	/**
 	 * @var MagicWordArray
 	 */
-	public $mVariables;
+	private $mVariables;
 
 	/**
 	 * @var MagicWordArray
