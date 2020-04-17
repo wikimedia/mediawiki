@@ -16,6 +16,11 @@ class TitleTest extends MediaWikiTestCase {
 			'wgAllowUserJs' => false,
 			'wgDefaultLanguageVariant' => false,
 			'wgMetaNamespace' => 'Project',
+			'wgServer' => 'https://example.org',
+			'wgCanonicalServer' => 'https://example.org',
+			'wgScriptPath' => '/w',
+			'wgScript' => '/w/index.php',
+			'wgArticlePath' => '/wiki/$1',
 		] );
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
@@ -1706,4 +1711,78 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers Title::getCdnUrls
+	 */
+	public function testGetCdnUrls() {
+		$this->assertEquals(
+			[
+				'https://example.org/wiki/Example',
+				'https://example.org/w/index.php?title=Example&action=history',
+			],
+			Title::makeTitle( NS_MAIN, 'Example' )->getCdnUrls(),
+			'article'
+		);
+
+		$this->assertEquals(
+			[
+				'https://example.org/wiki/User:Example/foo.js',
+				'https://example.org/w/index.php?title=User:Example/foo.js&action=history',
+				'https://example.org/w/index.php?title=User:Example/foo.js&action=raw&ctype=text/javascript',
+			],
+			Title::makeTitle( NS_USER, 'Example/foo.js' )->getCdnUrls(),
+			'user config page'
+		);
+	}
+
+	/**
+	 * @covers Title::getCdnUrls
+	 */
+	public function testGetCdnUrlsWithLangVariants() {
+		// Enable the en-x-piglatin language variant
+		$this->setContentLang( 'en' );
+		$this->setService( 'LanguageConverterFactory', new MediaWiki\Languages\LanguageConverterFactory(
+			true,
+			function () {
+				return MediaWikiServices::getInstance()->getContentLanguage();
+			}
+		) );
+
+		$this->assertEquals(
+			[
+				'https://example.org/wiki/Example',
+				'https://example.org/w/index.php?title=Example&action=history',
+				'https://example.org/w/index.php?title=Example&en',
+				'https://example.org/w/index.php?title=Example&en-x-piglatin',
+			],
+			Title::makeTitle( NS_MAIN, 'Example' )->getCdnUrls(),
+			'article language variants'
+		);
+	}
+
+	/**
+	 * @covers Title::getCdnUrls
+	 */
+	public function testGetCdnUrlsWithLangVariantPath() {
+		// Enable the en-x-piglatin language variant
+		$this->setMwGlobals( 'wgVariantArticlePath', '/$2/$1' );
+		$this->setContentLang( 'en' );
+		$this->setService( 'LanguageConverterFactory', new MediaWiki\Languages\LanguageConverterFactory(
+			true,
+			function () {
+				return MediaWikiServices::getInstance()->getContentLanguage();
+			}
+		) );
+
+		$this->assertEquals(
+			[
+				'https://example.org/wiki/Example',
+				'https://example.org/w/index.php?title=Example&action=history',
+				'https://example.org/w/index.php?title=Example&en',
+				'https://example.org/w/index.php?title=Example&en-x-piglatin',
+			],
+			Title::makeTitle( NS_MAIN, 'Example' )->getCdnUrls(),
+			'article language variants'
+		);
+	}
 }
