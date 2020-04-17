@@ -10,9 +10,25 @@ class ParserTest extends MediaWikiTestCase {
 		$mockConfig->method( 'has' )->willReturn( true );
 		$mockConfig->method( 'get' )->willReturn( 'I like otters.' );
 
+		// Stub out a MagicWordFactory so the Parser can initialize its
+		// function hooks when it is created.
+		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'get' ] )
+			->getMock();
+		$mwFactory
+			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
+				$mw = $this->getMockBuilder( MagicWord::class )
+					->disableOriginalConstructor()
+					->setMethods( [ 'getSynonyms' ] )
+					->getMock();
+				$mw->method( 'getSynonyms' )->willReturn( [] );
+				return $mw;
+			} ) );
+
 		$newArgs = [
 			$this->createMock( 'MediaWiki\Config\ServiceOptions' ),
-			$this->createMock( 'MagicWordFactory' ),
+			$mwFactory,
 			$this->createMock( 'Language' ),
 			$this->createMock( 'ParserFactory' ),
 			'a snail can sleep for three years',
@@ -23,7 +39,7 @@ class ParserTest extends MediaWikiTestCase {
 
 		$oldArgs = [
 			[],
-			$this->createMock( 'MagicWordFactory' ),
+			$mwFactory,
 			$this->createMock( 'Language' ),
 			$this->createMock( 'ParserFactory' ),
 			'a snail can sleep for three years',
