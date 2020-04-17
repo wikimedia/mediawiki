@@ -854,7 +854,8 @@ $title: title of the template
 &$skip: skip this template and link it?
 &$id: the id of the revision being parsed
 
-'BeforeParserrenderImageGallery': Before an image gallery is rendered by Parser.
+'BeforeParserrenderImageGallery': DEPRECATED since 1.35!
+Before an image gallery is rendered by Parser.
 [&]$parser: Parser object
 [&]$ig: ImageGallery object
 
@@ -1900,7 +1901,8 @@ but after nowiki/noinclude/includeonly/onlyinclude and other processings.
 &$text: string containing partially parsed text
 [&]$stripState: Parser's internal StripState object
 
-'InternalParseBeforeSanitize': during Parser's internalParse method just before
+'InternalParseBeforeSanitize': DEPRECATED since 1.35!
+During Parser's internalParse method just before
 the parser removes unwanted/dangerous HTML tags and after nowiki/noinclude/
 includeonly/onlyinclude and other processings. Ideal for syntax-extensions after
 template/parser function execution which respect nowiki and HTML-comments.
@@ -2595,7 +2597,8 @@ $revId: ID of the revision that was parsed to create $parserOutput
 'ParserCloned': Called when the parser is cloned.
 $parser: Newly-cloned Parser object
 
-'ParserFetchTemplate': Called when the parser fetches a template
+'ParserFetchTemplate': DEPRECATED since 1.35!
+Called when the parser fetches a template
 $parser: Parser Parser object or false
 $title: Title object of the template to be fetched
 $rev: Revision object of the template
@@ -2666,13 +2669,15 @@ $parserOutput: The ParserOutput object.
 &$text: The text being transformed, before core transformations are done.
 &$options: The options array being used for the transformation.
 
-'ParserPreSaveTransformComplete': Called from Parser::preSaveTransform() after
+'ParserPreSaveTransformComplete': DEPRECATED since 1.35!
+Called from Parser::preSaveTransform() after
 processing is complete, giving the extension a chance to further modify the
 wikitext.
 $parser: the calling Parser instance
 &$text: The transformed text, which can be modified by the hook
 
-'ParserSectionCreate': Called each time the parser creates a document section
+'ParserSectionCreate': DEPRECATED since 1.35!
+Called each time the parser creates a document section
 from wikitext. Use this to apply per-section modifications to HTML (like
 wrapping the section in a DIV).  Caveat: DIVs are valid wikitext, and a DIV
 can begin in one section and end in another. Make sure your code can handle
