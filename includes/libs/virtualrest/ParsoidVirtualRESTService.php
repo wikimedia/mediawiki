@@ -111,8 +111,8 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 			if ( $reqType !== 'page' && $reqType !== 'transform' ) {
 				throw new Exception( "Request action must be either 'page' or 'transform'" );
 			}
-			if ( $format !== 'html' && $format !== 'wikitext' ) {
-				throw new Exception( "Request format must be either 'html' or 'wt'" );
+			if ( $format !== 'html' && $format !== 'wikitext' && $format !== 'lint' ) {
+				throw new Exception( "Request format must be 'html', 'wt' or 'lint'" );
 			}
 			// replace /local/ with the current domain
 			$req['url'] = preg_replace( '#^local/#', $this->params['domain'] . '/', $req['url'] );
