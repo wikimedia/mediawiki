@@ -2586,7 +2586,8 @@ TODO: No more strip, deprecated ?
 &$text: text being parsed
 [&]$stripState: stripState used (object)
 
-'ParserBeforeTidy': Called before tidy and custom tags replacements.
+'ParserBeforeTidy': DEPRECATED since 1.35!
+Called before tidy and custom tags replacements.
 [&]$parser: Parser object being used
 &$text: actual text
 

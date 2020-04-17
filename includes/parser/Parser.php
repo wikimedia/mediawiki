@@ -1654,7 +1654,7 @@ class Parser {
 		$text = $this->mStripState->unstripNoWiki( $text );
 
 		if ( $isMain ) {
-			Hooks::run( 'ParserBeforeTidy', [ &$parser, &$text ] );
+			Hooks::run( 'ParserBeforeTidy', [ &$parser, &$text ], '1.35' );
 		}
 
 		$text = $this->mStripState->unstripGeneral( $text );
