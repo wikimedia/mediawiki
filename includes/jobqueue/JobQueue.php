@@ -733,7 +733,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Call wfIncrStats() for the queue overall and for the queue type
+	 * Call StatsdDataFactoryInterface::updateCount() for the queue overall and for the queue type
 	 *
 	 * @param string $key Event type
 	 * @param string $type Job type

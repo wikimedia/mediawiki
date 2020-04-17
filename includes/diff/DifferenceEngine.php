@@ -1136,7 +1136,9 @@ class DifferenceEngine extends ContextSource {
 
 		// Cacheable?
 		$key = false;
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$services = MediaWikiServices::getInstance();
+		$cache = $services->getMainWANObjectCache();
+		$stats = $services->getStatsdDataFactory();
 		if ( $this->mOldid && $this->mNewid ) {
 			// Check if subclass is still using the old way
 			// for backwards-compatibility
@@ -1149,7 +1151,7 @@ class DifferenceEngine extends ContextSource {
 			if ( !$this->mRefreshCache ) {
 				$difftext = $cache->get( $key );
 				if ( is_string( $difftext ) ) {
-					wfIncrStats( 'diff_cache.hit' );
+					$stats->updateCount( 'diff_cache.hit', 1 );
 					$difftext = $this->localiseDiff( $difftext );
 					$difftext .= "\n<!-- diff cache key $key -->\n";
 
@@ -1184,12 +1186,12 @@ class DifferenceEngine extends ContextSource {
 
 		// Save to cache for 7 days
 		if ( !Hooks::run( 'AbortDiffCache', [ &$diffEngine ] ) ) {
-			wfIncrStats( 'diff_cache.uncacheable' );
+			$stats->updateCount( 'diff_cache.uncacheable', 1 );
 		} elseif ( $key !== false && $difftext !== false ) {
-			wfIncrStats( 'diff_cache.miss' );
+			$stats->updateCount( 'diff_cache.miss', 1 );
 			$cache->set( $key, $difftext, 7 * 86400 );
 		} else {
-			wfIncrStats( 'diff_cache.uncacheable' );
+			$stats->updateCount( 'diff_cache.uncacheable', 1 );
 		}
 		// localise line numbers and title attribute text
 		if ( $difftext !== false ) {
