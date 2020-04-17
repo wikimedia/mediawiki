@@ -1,6 +1,6 @@
 <?php
 
-use Wikimedia\Rdbms\LBFactory;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @covers ExternalStoreAccess
@@ -9,9 +9,6 @@ class ExternalStoreAccessTest extends MediaWikiTestCase {
 
 	use MediaWikiCoversValidator;
 
-	/**
-	 * @covers ExternalStoreAccess::isReadOnly
-	 */
 	public function testBasic() {
 		$active = [ 'memory' ];
 		$defaults = [ 'memory://cluster1', 'memory://cluster2' ];
@@ -24,24 +21,35 @@ class ExternalStoreAccessTest extends MediaWikiTestCase {
 		$store = $esFactory->getStore( 'memory' );
 		$this->assertInstanceOf( ExternalStoreMemory::class, $store );
 
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()->getMock();
-		$lb->expects( $this->any() )->method( 'getReadOnlyReason' )->willReturn( 'Locked' );
-		$lb->expects( $this->any() )->method( 'getServerInfo' )->willReturn( [] );
+		$location = $esFactory->getStoreLocationFromUrl( 'memory://cluster1' );
+		$this->assertFalse( $store->isReadOnly( $location ) );
+	}
 
-		$lbFactory = $this->getMockBuilder( LBFactory::class )
-			->disableOriginalConstructor()->getMock();
-		$lbFactory->expects( $this->any() )->method( 'getExternalLB' )->willReturn( $lb );
+	/**
+	 * @covers ExternalStoreAccess::isReadOnly
+	 */
+	public function testReadOnly() {
+		/** @var  ExternalStoreMedium|MockObject $medium */
+		$medium = $this->getMockBuilder( ExternalStoreMedium::class )
+			->disableOriginalConstructor()
+			->getMock();
 
-		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
+		$medium->method( 'isReadOnly' )->willReturn( true );
 
-		$active = [ 'db', 'mwstore' ];
-		$defaults = [ 'DB://clusterX' ];
-		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );
+		/** @var  ExternalStoreFactory|MockObject $esFactory */
+		$esFactory = $this->getMockBuilder( ExternalStoreFactory::class )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$esFactory->method( 'getWriteBaseUrls' )->willReturn( [ 'test:' ] );
+		$esFactory->method( 'getStoreForUrl' )->willReturn( $medium );
+		$esFactory->method( 'getStoreLocationFromUrl' )->willReturn( 'dummy' );
+
 		$access = new ExternalStoreAccess( $esFactory );
 		$this->assertTrue( $access->isReadOnly() );
 
-		$store->clear();
+		$this->expectExceptionObject( new ReadOnlyError() );
+		$access->insert( 'Lorem Ipsum' );
 	}
 
 	/**
