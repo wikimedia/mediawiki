@@ -179,7 +179,7 @@ class MediaWikiServices extends ServiceContainer {
 	 *
 	 * @return MediaWikiServices
 	 */
-	public static function getInstance() {
+	public static function getInstance() : self {
 		if ( self::$instance === null ) {
 			// NOTE: constructing GlobalVarConfig here is not particularly pretty,
 			// but some information from the global scope has to be injected here,
