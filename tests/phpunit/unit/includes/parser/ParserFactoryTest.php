@@ -21,9 +21,26 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			->method( $this->anythingBut( 'assertRequiredOptions', 'get' ) );
 
 		$this->assertInstanceOf( ServiceOptions::class, $options );
+
+		// Stub out a MagicWordFactory so the Parser can initialize its
+		// function hooks when it is created.
+		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
+		->disableOriginalConstructor()
+		->setMethods( [ 'get' ] )
+		->getMock();
+		$mwFactory
+		->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
+			$mw = $this->getMockBuilder( MagicWord::class )
+			->disableOriginalConstructor()
+			->setMethods( [ 'getSynonyms' ] )
+			->getMock();
+			$mw->method( 'getSynonyms' )->willReturn( [] );
+			return $mw;
+		} ) );
+
 		$factory = new ParserFactory(
 			$options,
-			$this->createNoOpMock( MagicWordFactory::class ),
+			$mwFactory,
 			$this->createNoOpMock( Language::class ),
 			"",
 			$this->createNoOpMock( SpecialPageFactory::class ),
