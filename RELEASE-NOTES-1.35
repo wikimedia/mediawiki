@@ -170,6 +170,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   removed in 1.36.
 * The ParserPreSaveTransformComplete hook was added.
 * The BeforeParserFetchTemplateAndTitle hook was added.
+* The ParserBeforePreprocess hook was added.
 * The ResourceLoaderSkinModule class now has a "legacy" feature that loads
   the stylesheets previously part of the "mediawiki.legacy.shared" and
   "mediawiki.legacy.commonPrint" module.

@@ -913,6 +913,7 @@ class Parser {
 		$parser = $this;
 		Hooks::run( 'ParserBeforeStrip', [ &$parser, &$text, &$this->mStripState ] );
 		Hooks::run( 'ParserAfterStrip', [ &$parser, &$text, &$this->mStripState ] );
+		Hooks::run( 'ParserBeforePreprocess', [ $parser, &$text, $this->mStripState ] );
 		$text = $this->replaceVariables( $text, $frame );
 		$text = $this->mStripState->unstripBoth( $text );
 		return $text;
