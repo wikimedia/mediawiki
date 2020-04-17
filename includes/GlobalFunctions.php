@@ -2447,6 +2447,7 @@ function wfMemcKey( ...$args ) {
  * @param string $prefix
  * @param string|int ...$args
  * @return string
+ * @deprecated Since 1.35 Call makeGlobalKey on a BagOStuff instance
  */
 function wfForeignMemcKey( $db, $prefix, ...$args ) {
 	$keyspace = $prefix ? "$db-$prefix" : $db;
