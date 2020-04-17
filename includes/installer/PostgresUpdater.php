@@ -1037,7 +1037,7 @@ END;
 		}
 	}
 
-	public function addPgIndex( $table, $index, $type, $unique = false ) {
+	protected function addPgIndex( $table, $index, $type, $unique = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
@@ -1047,7 +1047,7 @@ END;
 		}
 	}
 
-	public function addPgExtIndex( $table, $index, $type ) {
+	protected function addPgExtIndex( $table, $index, $type ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} elseif ( preg_match( '/^\(/', $type ) ) {
@@ -1064,7 +1064,7 @@ END;
 	 * @param string $type Type name. Must be in the core schema.
 	 * @param string $value Value to add.
 	 */
-	public function addPgEnumValue( $type, $value ) {
+	protected function addPgEnumValue( $type, $value ) {
 		$row = $this->db->selectRow(
 			[
 				't' => 'pg_catalog.pg_type',
