@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers CategoryMembershipChangeJob
  *
@@ -92,7 +90,6 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 	public function testJobSpecRemovesDuplicates() {
 		$jobSpec = CategoryMembershipChangeJob::newSpec( $this->title, MWTimestamp::now() );
 		$job = new CategoryMembershipChangeJob(
-			MediaWikiServices::getInstance()->getParserCache(),
 			$this->title,
 			$jobSpec->getParams()
 		);
