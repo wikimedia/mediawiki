@@ -723,6 +723,8 @@ because of Phabricator reports.
   Instead, use WikiPage::updateRevisionOn.
 * Article::getUser is deprecated. Instead, use WikiPage::getUser.
 * Article::getUserText is deprecated. Instead, use WikiPage::getUserText.
+* Article::prepareContentForEdit is hard deprecated. Instead, use
+  WikiPage::prepareContentForEdit.
 * Article::doDeleteUpdates and ::doEditUpdates are deprecated. Instead,
   use WikiPage::doDeleteUpdates and ::doEditUpdates.
 * LocalFileDeleteBatch was migrated to a new constructor signature with the
