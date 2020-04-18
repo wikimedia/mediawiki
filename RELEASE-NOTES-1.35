@@ -496,6 +496,8 @@ because of Phabricator reports.
   have been made private to allow a signature change.
 * HistoryPager::revLink, ::curLink, ::lastLink, and ::diffButtons, which had
   no visibilities defined, have been made private to allow signature changes.
+* SpecialNewpages::revisionFromRcResult, which previously was protected, has
+  been made private to allow a signature change.
 * WikiPage::setLastEdit, which was previously protected, has been made
   private to allow a signature change.
 * Skin::getSkinNameMessages() deprecated in 1.34, has been removed.

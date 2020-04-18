@@ -22,6 +22,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * A special page that list newly created pages
@@ -316,16 +319,23 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/**
 	 * @param stdClass $result Result row from recent changes
 	 * @param Title $title
-	 * @return bool|Revision
+	 * @return RevisionRecord
 	 */
-	protected function revisionFromRcResult( stdClass $result, Title $title ) {
-		return new Revision( [
-			'comment' => CommentStore::getStore()->getComment( 'rc_comment', $result )->text,
-			'deleted' => $result->rc_deleted,
-			'user_text' => $result->rc_user_text,
-			'user' => $result->rc_user,
-			'actor' => $result->rc_actor,
-		], 0, $title );
+	private function revisionFromRcResult( stdClass $result, Title $title ) : RevisionRecord {
+		$revRecord = new MutableRevisionRecord( $title );
+		$revRecord->setComment(
+			CommentStore::getStore()->getComment( 'rc_comment', $result )
+		);
+		$revRecord->setVisibility( $result->rc_deleted );
+
+		$user = new UserIdentityValue(
+			$result->rc_user,
+			$result->rc_user_text,
+			$result->rc_actor
+		);
+		$revRecord->setUser( $user );
+
+		return $revRecord;
 	}
 
 	/**
@@ -340,7 +350,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		// Revision deletion works on revisions,
 		// so cast our recent change row to a revision row.
-		$rev = $this->revisionFromRcResult( $result, $title );
+		$revRecord = $this->revisionFromRcResult( $result, $title );
 
 		$classes = [];
 		$attribs = [ 'data-mw-revid' => $result->rev_id ];
@@ -397,8 +407,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			)->escaped()
 		);
 
-		$ulink = Linker::revUserTools( $rev->getRevisionRecord() );
-		$comment = Linker::revComment( $rev->getRevisionRecord() );
+		$ulink = Linker::revUserTools( $revRecord );
+		$comment = Linker::revComment( $revRecord );
 
 		if ( $this->patrollable( $result ) ) {
 			$classes[] = 'not-patrolled';
