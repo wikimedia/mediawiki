@@ -3148,6 +3148,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
 	 *
+	 * @internal since 1.35
+	 *
 	 * @todo Separate the business/permission stuff out from backend code
 	 * @todo Remove $token parameter. Already verified by RollbackAction and ApiRollback.
 	 *
@@ -3201,14 +3203,16 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Backend implementation of doRollback(), please refer there for parameter
 	 * and return value documentation
 	 *
+	 * @internal since 1.35
+	 *
 	 * NOTE: This function does NOT check ANY permissions, it just commits the
 	 * rollback to the DB. Therefore, you should only call this function direct-
 	 * ly if you want to use custom permissions checks. If you don't, use
 	 * doRollback() instead.
+	 *
 	 * @param string $fromP Name of the user whose edits to rollback.
 	 * @param string $summary Custom summary. Set to default summary if empty.
 	 * @param bool $bot If true, mark all reverted edits as bot.
-	 *
 	 * @param array &$resultDetails Contains result-specific array of additional values
 	 * @param User $guser The user performing the rollback
 	 * @param array|null $tags Change tags to apply to the rollback

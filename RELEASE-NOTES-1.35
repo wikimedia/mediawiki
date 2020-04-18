@@ -1029,6 +1029,9 @@ because of Phabricator reports.
   - WikiPage::getOldestRevision (hard deprecated)
   - Article::getOldestRevision (hard deprecated)
   Use RevisionStore::getFirstRevision instead.
+* WikiPage::commitRollback and ::doRollback are declared to be internal
+  in preparation for breaking changes. Neither method has any known
+  callers outside of MediaWiki core.
 * The following Linker methods previously accepted Revision objects as
   parameters. They now accept either Revision or RevisionRecord objects.
   Passing a Revision object is hard deprecated.
