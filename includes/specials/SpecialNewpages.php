@@ -397,8 +397,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			)->escaped()
 		);
 
-		$ulink = Linker::revUserTools( $rev );
-		$comment = Linker::revComment( $rev );
+		$ulink = Linker::revUserTools( $rev->getRevisionRecord() );
+		$comment = Linker::revComment( $rev->getRevisionRecord() );
 
 		if ( $this->patrollable( $result ) ) {
 			$classes[] = 'not-patrolled';

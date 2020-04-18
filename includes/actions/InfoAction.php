@@ -565,7 +565,7 @@ class InfoAction extends FormlessAction {
 			// Page creator
 			$pageInfo['header-edits'][] = [
 				$this->msg( 'pageinfo-firstuser' ),
-				Linker::revUserTools( new Revision( $firstRev ) )
+				Linker::revUserTools( $firstRev )
 			];
 
 			// Date of page creation
@@ -584,7 +584,7 @@ class InfoAction extends FormlessAction {
 			// Latest editor
 			$pageInfo['header-edits'][] = [
 				$this->msg( 'pageinfo-lastuser' ),
-				Linker::revUserTools( $lastRev )
+				Linker::revUserTools( $lastRev->getRevisionRecord() )
 			];
 
 			// Date of latest edit

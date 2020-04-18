@@ -164,8 +164,8 @@ class RollbackAction extends FormAction {
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
-		$old = Linker::revUserTools( $current );
-		$new = Linker::revUserTools( $target );
+		$old = Linker::revUserTools( $current->getRevisionRecord() );
+		$new = Linker::revUserTools( $target->getRevisionRecord() );
 		$this->getOutput()->addHTML(
 			$this->msg( 'rollback-success' )
 				->rawParams( $old, $new )

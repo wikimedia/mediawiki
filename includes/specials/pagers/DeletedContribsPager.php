@@ -342,7 +342,7 @@ class DeletedContribsPager extends IndexPager {
 			$last = htmlspecialchars( $this->messages['diff'] );
 		}
 
-		$comment = Linker::revComment( $rev );
+		$comment = Linker::revComment( $rev->getRevisionRecord() );
 		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
 
 		if ( !$permissionManager->userHasRight( $user, 'undelete' ) ||
@@ -382,7 +382,7 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		// Revision delete link
-		$del = Linker::getRevDeleteLink( $user, $rev, $page );
+		$del = Linker::getRevDeleteLink( $user, $rev->getRevisionRecord(), $page );
 		if ( $del ) {
 			$del .= ' ';
 		}

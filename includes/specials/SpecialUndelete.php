@@ -484,7 +484,7 @@ class SpecialUndelete extends SpecialPage {
 		$time = $lang->userTimeAndDate( $timestamp, $user );
 		$d = $lang->userDate( $timestamp, $user );
 		$t = $lang->userTime( $timestamp, $user );
-		$userLink = Linker::revUserTools( $rev );
+		$userLink = Linker::revUserTools( $rev->getRevisionRecord() );
 
 		$content = $rev->getContent( RevisionRecord::FOR_THIS_USER, $user );
 
@@ -500,7 +500,11 @@ class SpecialUndelete extends SpecialPage {
 
 		// Revision delete links
 		if ( !$this->mDiff ) {
-			$revdel = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
+			$revdel = Linker::getRevDeleteLink(
+				$user,
+				$rev->getRevisionRecord(),
+				$this->mTargetObj
+			);
 			if ( $revdel ) {
 				$out->addHTML( "$revdel " );
 			}
@@ -644,7 +648,7 @@ class SpecialUndelete extends SpecialPage {
 		// Add show/hide deletion links if available
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
-		$rdel = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
+		$rdel = Linker::getRevDeleteLink( $user, $rev->getRevisionRecord(), $this->mTargetObj );
 
 		if ( $rdel ) {
 			$rdel = " $rdel";
@@ -689,7 +693,7 @@ class SpecialUndelete extends SpecialPage {
 			Linker::revUserTools( $rev ) . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-' . $prefix . 'title3">' .
-			$minor . Linker::revComment( $rev ) . $rdel . '<br />' .
+			$minor . Linker::revComment( $rev->getRevisionRecord() ) . $rdel . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-' . $prefix . 'title5">' .
 			$tagSummary[0] . '<br />' .
@@ -1019,7 +1023,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		// User links
-		$userLink = Linker::revUserTools( $revObject );
+		$userLink = Linker::revUserTools( $revRecord );
 
 		// Minor edit
 		$minor = $revRecord->isMinor() ? ChangesList::flag( 'minor' ) : '';
@@ -1031,7 +1035,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		// Edit summary
-		$comment = Linker::revComment( $revObject );
+		$comment = Linker::revComment( $revRecord );
 
 		// Tags
 		$attribs = [];

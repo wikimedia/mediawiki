@@ -473,7 +473,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$summary = CommentStoreComment::newUnsavedComment( 'Some comment!' );
 		$updater->saveRevision( $summary );
 
-		$rollbackOutput = Linker::generateRollback( $page->getRevision(), $context );
+		$rollbackOutput = Linker::generateRollback( $page->getRevisionRecord(), $context );
 		$modules = $context->getOutput()->getModules();
 		$currentRev = $page->getRevision();
 		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();

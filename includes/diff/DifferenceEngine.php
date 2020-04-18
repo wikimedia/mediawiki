@@ -663,8 +663,11 @@ class DifferenceEngine extends ContextSource {
 				if ( $this->mNewRev->isCurrent() && $permissionManager->quickUserCan(
 					'rollback', $user, $this->mNewPage
 				) ) {
-					$rollbackLink = Linker::generateRollback( $this->mNewRev, $this->getContext(),
-						[ 'noBrackets' ] );
+					$rollbackLink = Linker::generateRollback(
+						$this->mNewRev->getRevisionRecord(),
+						$this->getContext(),
+						[ 'noBrackets' ]
+					);
 					if ( $rollbackLink ) {
 						$out->preventClickjacking();
 						$rollback = "\u{00A0}\u{00A0}\u{00A0}" . $rollbackLink;
@@ -710,11 +713,12 @@ class DifferenceEngine extends ContextSource {
 			$oldRevisionHeader = $this->getRevisionHeader( $this->mOldRev, 'complete' );
 			$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff', $this->getContext() );
 
+			$oldRevRecord = $this->mOldRev->getRevisionRecord();
 			$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $oldRevisionHeader . '</strong></div>' .
 				'<div id="mw-diff-otitle2">' .
-				Linker::revUserTools( $this->mOldRev, !$this->unhide ) . '</div>' .
+				Linker::revUserTools( $oldRevRecord, !$this->unhide ) . '</div>' .
 				'<div id="mw-diff-otitle3">' . $oldminor .
-				Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide ) . $ldel . '</div>' .
+				Linker::revComment( $oldRevRecord, !$diffOnly, !$this->unhide ) . $ldel . '</div>' .
 				'<div id="mw-diff-otitle5">' . $oldChangeTags[0] . '</div>' .
 				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
 
@@ -768,11 +772,12 @@ class DifferenceEngine extends ContextSource {
 			' ' . implode( ' ', $formattedRevisionTools );
 		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
 
+		$newRevRecord = $this->mNewRev->getRevisionRecord();
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
+			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $newRevRecord, !$this->unhide ) .
 			" $rollback</div>" .
 			'<div id="mw-diff-ntitle3">' . $newminor .
-			Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
+			Linker::revComment( $newRevRecord, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
 			'<div id="mw-diff-ntitle5">' . $newChangeTags[0] . '</div>' .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
 
@@ -917,10 +922,16 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * @param Revision $rev
 	 *
+	 * @todo Accept RevisionRecord
+	 *
 	 * @return string
 	 */
 	protected function revisionDeleteLink( $rev ) {
-		$link = Linker::getRevDeleteLink( $this->getUser(), $rev, $rev->getTitle() );
+		$link = Linker::getRevDeleteLink(
+			$this->getUser(),
+			$rev->getRevisionRecord(),
+			$rev->getTitle()
+		);
 		if ( $link !== '' ) {
 			$link = "\u{00A0}\u{00A0}\u{00A0}" . $link . ' ';
 		}
