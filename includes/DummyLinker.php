@@ -315,7 +315,7 @@ class DummyLinker {
 		);
 	}
 
-	public function revComment( Revision $rev, $local = false, $isPublic = false ) {
+	public function revComment( $rev, $local = false, $isPublic = false ) {
 		return Linker::revComment( $rev, $local, $isPublic );
 	}
 
@@ -419,7 +419,7 @@ class DummyLinker {
 		return Linker::accesskey( $name );
 	}
 
-	public function getRevDeleteLink( User $user, Revision $rev, Title $title ) {
+	public function getRevDeleteLink( User $user, $rev, Title $title ) {
 		return Linker::getRevDeleteLink(
 			$user,
 			$rev,
