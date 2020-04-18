@@ -69,8 +69,6 @@
 			<!--
 			includes/GlobalFunctions.php
 			* mimeTypeMatch
-			maintenance/cdb.php
-			* cdbShowHelp
 			maintenance/language/transstat.php
 			* showUsage
 			maintenance/mcc.php
@@ -87,7 +85,7 @@
 			tests/qunit/data/styleTest.css.php
 			* cssfilter
 			-->
-			<property name="ignoreList" type="array" value="cdbShowHelp,cssfilter,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
+			<property name="ignoreList" type="array" value="cssfilter,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
