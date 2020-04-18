@@ -785,7 +785,7 @@ class PageUpdater {
 		} );
 
 		// NOTE: set $this->status only after all hooks have been called,
-		// so wasCommitted doesn't return true wehn called indirectly from a hook handler!
+		// so wasCommitted doesn't return true when called indirectly from a hook handler!
 		$this->status = $status;
 
 		// TODO: replace bad status with Exceptions!
