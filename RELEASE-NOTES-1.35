@@ -725,6 +725,8 @@ because of Phabricator reports.
 * Article::getUserText is deprecated. Instead, use WikiPage::getUserText.
 * Article::prepareContentForEdit is hard deprecated. Instead, use
   WikiPage::prepareContentForEdit.
+* Article::getUndoContent is hard deprecated. Instead, use either of
+  ContentHandler::getUndoContent or WikiPage::getUndoContent.
 * Article::doDeleteUpdates and ::doEditUpdates are deprecated. Instead,
   use WikiPage::doDeleteUpdates and ::doEditUpdates.
 * LocalFileDeleteBatch was migrated to a new constructor signature with the

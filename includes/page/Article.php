@@ -2645,12 +2645,14 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::getUndoContent
 	 * @param Revision $undo
 	 * @param Revision|null $undoafter
 	 * @return Content|bool
 	 */
 	public function getUndoContent( Revision $undo, Revision $undoafter = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getUndoContent( $undo, $undoafter );
 	}
 
