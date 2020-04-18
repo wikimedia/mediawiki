@@ -2824,6 +2824,7 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::prepareContentForEdit
 	 * @param Content $content
 	 * @param Revision|RevisionRecord|null $revision
@@ -2836,6 +2837,7 @@ class Article implements Page {
 		Content $content, $revision = null, User $user = null,
 		$serialFormat = null, $useCache = true
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->prepareContentForEdit(
 			$content, $revision, $user,
 			$serialFormat, $useCache
