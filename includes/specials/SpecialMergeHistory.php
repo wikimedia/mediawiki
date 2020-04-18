@@ -318,13 +318,13 @@ class SpecialMergeHistory extends SpecialPage {
 			);
 		}
 
-		$userLink = Linker::revUserTools( $rev );
+		$userLink = Linker::revUserTools( $rev->getRevisionRecord() );
 
 		$size = $row->rev_len;
 		if ( $size !== null ) {
 			$stxt = Linker::formatRevisionSize( $size );
 		}
-		$comment = Linker::revComment( $rev );
+		$comment = Linker::revComment( $rev->getRevisionRecord() );
 
 		return Html::rawElement( 'li', [],
 			$this->msg( 'mergehistory-revisionrow' )

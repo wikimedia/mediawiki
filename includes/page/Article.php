@@ -1580,7 +1580,7 @@ class Article implements Page {
 		$tdtime = $language->userTime( $timestamp, $user );
 
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
-		$userlinks = Linker::revUserTools( $revision, !$unhide );
+		$userlinks = Linker::revUserTools( $revision->getRevisionRecord(), !$unhide );
 
 		$infomsg = $current && !$context->msg( 'revision-info-current' )->isDisabled()
 			? 'revision-info-current'
@@ -1591,7 +1591,11 @@ class Article implements Page {
 			$context->msg( $infomsg, $td )
 				->rawParams( $userlinks )
 				->params( $revision->getId(), $tddate, $tdtime, $revision->getUserText() )
-				->rawParams( Linker::revComment( $revision, true, true ) )
+				->rawParams( Linker::revComment(
+					$revision->getRevisionRecord(),
+					true,
+					true
+				) )
 				->parse() .
 			"</div>";
 
@@ -1661,7 +1665,11 @@ class Article implements Page {
 				] + $extraParams
 			);
 
-		$cdel = Linker::getRevDeleteLink( $user, $revision, $this->getTitle() );
+		$cdel = Linker::getRevDeleteLink(
+			$user,
+			$revision->getRevisionRecord(),
+			$this->getTitle()
+		);
 		if ( $cdel !== '' ) {
 			$cdel .= ' ';
 		}

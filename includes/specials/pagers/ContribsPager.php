@@ -606,8 +606,11 @@ class ContribsPager extends RangeChronologicalPager {
 					$permissionManager->quickUserCan( 'edit', $user, $page )
 				) {
 					$this->preventClickjacking();
-					$topmarktext .= ' ' . Linker::generateRollback( $rev, $this->getContext(),
-						[ 'noBrackets' ] );
+					$topmarktext .= ' ' . Linker::generateRollback(
+						$rev->getRevisionRecord(),
+						$this->getContext(),
+						[ 'noBrackets' ]
+					);
 				}
 			}
 			# Is there a visible previous revision?
@@ -660,8 +663,9 @@ class ContribsPager extends RangeChronologicalPager {
 			}
 
 			$lang = $this->getLanguage();
-			$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true, false );
-			$d = ChangesList::revDateLink( $rev->getRevisionRecord(), $user, $lang, $page );
+			$revRecord = $rev->getRevisionRecord();
+			$comment = $lang->getDirMark() . Linker::revComment( $revRecord, false, true, false );
+			$d = ChangesList::revDateLink( $revRecord, $user, $lang, $page );
 
 			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';
@@ -682,7 +686,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$flags[] = ChangesList::flag( 'minor' );
 			}
 
-			$del = Linker::getRevDeleteLink( $user, $rev, $page );
+			$del = Linker::getRevDeleteLink( $user, $revRecord, $page );
 			if ( $del !== '' ) {
 				$del .= ' ';
 			}

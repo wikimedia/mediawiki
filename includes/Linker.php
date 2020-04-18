@@ -1908,6 +1908,8 @@ class Linker {
 	 * Returns null if $wgShowRollbackEditCount is disabled or false if $verify
 	 * is set and the user is the only contributor of the page.
 	 *
+	 * @todo Unused outside of this file - should it be made private?
+	 *
 	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
 	 *    deprecated since 1.35)
 	 * @param bool $verify Try to verify that this revision can really be rolled back
@@ -1980,6 +1982,8 @@ class Linker {
 	 *
 	 * @since 1.16.3. $context added in 1.20. $editCount added in 1.21
 	 *   $rev could be a RevisionRecord since 1.35
+	 *
+	 * @todo Unused outside of this file - should it be made private?
 	 *
 	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
 	 *    deprecated since 1.35)

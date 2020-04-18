@@ -401,7 +401,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= " $link";
 		$s .= $dirmark;
 		$s .= " <span class='history-user'>" .
-			Linker::revUserTools( $rev, true, false ) . "</span>";
+			Linker::revUserTools( $rev->getRevisionRecord(), true, false ) . "</span>";
 		$s .= $dirmark;
 
 		if ( $rev->isMinor() ) {
@@ -418,7 +418,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		# Text following the character difference is added just before running hooks
-		$s2 = Linker::revComment( $rev, false, true, false );
+		$s2 = Linker::revComment( $rev->getRevisionRecord(), false, true, false );
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
 			$s2 .= ' <span class="updatedmarker">' . $this->msg( 'updatedmarker' )->escaped() . '</span>';
@@ -435,7 +435,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			) {
 				// Get a rollback link without the brackets
 				$rollbackLink = Linker::generateRollback(
-					$rev,
+					$rev->getRevisionRecord(),
 					$this->getContext(),
 					[ 'verify', 'noBrackets' ]
 				);
