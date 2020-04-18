@@ -126,7 +126,11 @@ class ForeignDBRepo extends LocalRepo {
 	 */
 	function getSharedCacheKey( ...$args ) {
 		if ( $this->hasSharedCache() ) {
-			return wfForeignMemcKey( $this->dbName, $this->tablePrefix, ...$args );
+			return $this->wanCache->makeGlobalKey(
+				$this->dbName,
+				$this->tablePrefix,
+				...$args
+			);
 		} else {
 			return false;
 		}
