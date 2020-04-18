@@ -2400,12 +2400,14 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::doEditUpdates
 	 * @param Revision $revision
 	 * @param User $user
 	 * @param array $options
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->doEditUpdates( $revision, $user, $options );
 	}
 
