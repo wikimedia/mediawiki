@@ -2291,7 +2291,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			// insert null revision to identify the page protection change as edit summary
 			$latest = $this->getLatest();
-			$nullRevision = $this->insertProtectNullRevision(
+			$nullRevisionRecord = $this->insertNullProtectionRevision(
 				$revCommentMsg,
 				$limit,
 				$expiry,
@@ -2300,7 +2300,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$user
 			);
 
-			if ( $nullRevision === null ) {
+			if ( $nullRevisionRecord === null ) {
 				return Status::newFatal( 'no-null-revision', $this->mTitle->getPrefixedText() );
 			}
 
@@ -2365,6 +2365,8 @@ class WikiPage implements Page, IDBAccessObject {
 			// Avoid PHP 7.1 warning of passing $this by reference
 			$wikiPage = $this;
 
+			// TODO replace hook with one using RevisionRecord
+			$nullRevision = new Revision( $nullRevisionRecord );
 			Hooks::run( 'NewRevisionFromEditComplete',
 				[ $this, $nullRevision, $latest, $user, &$tags ] );
 			Hooks::run( 'ArticleProtectComplete', [ &$wikiPage, &$user, $limit, $reason ] );
@@ -2449,8 +2451,8 @@ class WikiPage implements Page, IDBAccessObject {
 	public function insertProtectNullRevision( $revCommentMsg, array $limit,
 		array $expiry, $cascade, $reason, $user = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without passing a $user parameter', '1.35' );
 			global $wgUser;
 			$user = $wgUser;
 		}

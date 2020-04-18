@@ -2703,7 +2703,7 @@ class Article implements Page {
 	/**
 	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::insertProtectNullRevision
-	 * @deprecated since 1.35, use WikiPage::insertProtectNullRevision instead
+	 * @deprecated since 1.35, use WikiPage::insertNullProtectionRevision instead
 	 * @param string $revCommentMsg
 	 * @param array $limit
 	 * @param array $expiry
