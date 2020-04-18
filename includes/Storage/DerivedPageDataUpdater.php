@@ -533,12 +533,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// Do not call WikiPage::clear(), since the caller may already have caused page data
 		// to be loaded with SELECT FOR UPDATE. Just assert it's loaded now.
 		$wikiPage->loadPageData( self::READ_LATEST );
-		$rev = $wikiPage->getRevision();
-		$current = $rev ? $rev->getRevisionRecord() : null;
+		$current = $wikiPage->getRevisionRecord();
 
 		$this->pageState = [
 			'oldRevision' => $current,
-			'oldId' => $rev ? $rev->getId() : 0,
+			'oldId' => $current ? $current->getId() : 0,
 			'oldIsRedirect' => $wikiPage->isRedirect(), // NOTE: uses page table
 			'oldCountable' => $wikiPage->isCountable(), // NOTE: uses pagelinks table
 		];

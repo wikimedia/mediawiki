@@ -336,7 +336,7 @@ class ParserCache {
 		if ( $expire > 0 && !$this->cache instanceof EmptyBagOStuff ) {
 			$cacheTime = $cacheTime ?: wfTimestampNow();
 			if ( !$revId ) {
-				$revision = $wikiPage->getRevision();
+				$revision = $wikiPage->getRevisionRecord();
 				$revId = $revision ? $revision->getId() : null;
 			}
 

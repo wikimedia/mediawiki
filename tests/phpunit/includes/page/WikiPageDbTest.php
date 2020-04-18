@@ -175,7 +175,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( $edit->output, $sameEdit->output, 're-use output' );
 
 		// Not re-using the same PreparedEdit if not possible
-		$rev = $page->getRevision();
 		$edit2 = $page->prepareContentForEdit( $content2, null, $user, null, false );
 		$this->assertPreparedEditNotEquals( $edit, $edit2 );
 		$this->assertStringContainsString( 'At vero eos', $edit2->pstContent->serialize(), "content" );
@@ -240,6 +239,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	public function testDoEditContent() {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$this->setMwGlobals( 'wgPageCreationLog', true );
 
@@ -723,6 +723,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::getRevision
 	 */
 	public function testGetRevision() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$page = $this->newPage( __METHOD__ );
 
 		$rev = $page->getRevision();
@@ -1122,6 +1123,7 @@ more stuff
 	 */
 	public function testGetOldestRevision() {
 		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$page = $this->newPage( __METHOD__ );
 		$page->doEditContent(
@@ -1166,6 +1168,7 @@ more stuff
 	 */
 	public function testDoRollback() {
 		$this->hideDeprecated( 'Revision::countByPageId' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
@@ -1254,6 +1257,8 @@ more stuff
 	 * @covers WikiPage::commitRollback
 	 */
 	public function testDoRollbackFailureSameContent() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$admin = $this->getTestSysop()->getUser();
 
 		$text = "one";
@@ -1887,6 +1892,7 @@ more stuff
 	 * @covers WikiPage::updateRevisionOn
 	 */
 	public function testUpdateRevisionOn_existingPage() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
 
@@ -1946,6 +1952,7 @@ more stuff
 	 * @covers WikiPage::updateIfNewerOn
 	 */
 	public function testUpdateIfNewerOn_olderRevision() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
 		$initialRevision = $page->getRevision();
@@ -1980,6 +1987,7 @@ more stuff
 	 * @covers WikiPage::updateIfNewerOn
 	 */
 	public function testUpdateIfNewerOn_newerRevision() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
 		$initialRevision = $page->getRevision();
@@ -2370,6 +2378,7 @@ more stuff
 	 * @covers WikiPage::getDerivedDataUpdater
 	 */
 	public function testGetDerivedDataUpdater() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$admin = $this->getTestSysop()->getUser();
 
 		/** @var object $page */

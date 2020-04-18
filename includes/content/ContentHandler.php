@@ -1373,18 +1373,21 @@ abstract class ContentHandler {
 	}
 
 	private function latestRevision( WikiPage $page ): Revision {
-		$revision = $page->getRevision();
-		if ( $revision == null ) {
+		$revRecord = $page->getRevisionRecord();
+		if ( $revRecord == null ) {
 			// If the content represents a brand new page it's possible
 			// we need to fetch it from the master.
 			$page->loadPageData( WikiPage::READ_LATEST );
-			$revision = $page->getRevision();
-			if ( $revision == null ) {
+			$revRecord = $page->getRevisionRecord();
+			if ( $revRecord == null ) {
 				$text = $page->getTitle()->getPrefixedText();
 				throw new MWException(
 					"No revision could be loaded for page: $text" );
 			}
 		}
+
+		// TODO return RevisionRecord
+		$revision = new Revision( $revRecord );
 		return $revision;
 	}
 

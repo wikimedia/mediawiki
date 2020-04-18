@@ -81,7 +81,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 		$page->doEditContent( $content, 'testing', EDIT_NEW, false, $user );
 
 		$this->pageId = $page->getId();
-		$this->firstRev = $page->getRevision()->getRevisionRecord();
+		$this->firstRev = $page->getRevisionRecord();
 
 		// Insert IP revision
 		$this->ipEditor = '2001:db8::1';

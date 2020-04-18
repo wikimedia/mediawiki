@@ -540,7 +540,7 @@ class InfoAction extends FormlessAction {
 		$firstRev = MediaWikiServices::getInstance()
 			->getRevisionLookup()
 			->getFirstRevision( $this->getTitle() );
-		$lastRev = $this->getWikiPage()->getRevision();
+		$lastRev = $this->getWikiPage()->getRevisionRecord();
 		$batch = new LinkBatch;
 
 		if ( $firstRev ) {
@@ -552,10 +552,10 @@ class InfoAction extends FormlessAction {
 		}
 
 		if ( $lastRev ) {
-			$lastRevUser = $lastRev->getUserText( RevisionRecord::FOR_THIS_USER, $user );
-			if ( $lastRevUser !== '' ) {
-				$batch->add( NS_USER, $lastRevUser );
-				$batch->add( NS_USER_TALK, $lastRevUser );
+			$lastRevUser = $lastRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			if ( $lastRevUser ) {
+				$batch->add( NS_USER, $lastRevUser->getName() );
+				$batch->add( NS_USER_TALK, $lastRevUser->getName() );
 			}
 		}
 
@@ -584,7 +584,7 @@ class InfoAction extends FormlessAction {
 			// Latest editor
 			$pageInfo['header-edits'][] = [
 				$this->msg( 'pageinfo-lastuser' ),
-				Linker::revUserTools( $lastRev->getRevisionRecord() )
+				Linker::revUserTools( $lastRev )
 			];
 
 			// Date of latest edit
