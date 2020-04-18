@@ -266,10 +266,10 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
-	public function setNewPreparedValues( array $valuesByKey ) {
+	public function setNewPreparedValues( array $valueByKey ) {
 		// The PECL driver does the serializing and will not reuse anything from here
 		$sizes = [];
-		foreach ( $valuesByKey as $value ) {
+		foreach ( $valueByKey as $value ) {
 			$sizes[] = $this->guessSerialValueSize( $value );
 		}
 

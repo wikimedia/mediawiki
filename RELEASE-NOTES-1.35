@@ -790,6 +790,7 @@ because of Phabricator reports.
   - ::getRevisionFactory
   - ::getBlobStore
   The $mRecord variable was also changed from protected to private.
+* WikiPage::$mLastRevision was changed from protected to private.
 * The RevisionInsertComplete hook, soft deprecated in 1.31, now emits
   deprecation warnings.
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.

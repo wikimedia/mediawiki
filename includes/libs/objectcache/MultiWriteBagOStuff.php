@@ -367,8 +367,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$this->caches[0]->addBusyCallback( $workCallback );
 	}
 
-	public function setNewPreparedValues( array $valuesByKey ) {
-		return $this->caches[0]->setNewPreparedValues( $valuesByKey );
+	public function setNewPreparedValues( array $valueByKey ) {
+		return $this->caches[0]->setNewPreparedValues( $valueByKey );
 	}
 
 	public function setMockTime( &$time ) {

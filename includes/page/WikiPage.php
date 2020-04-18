@@ -94,7 +94,7 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * @var Revision
 	 */
-	protected $mLastRevision = null;
+	private $mLastRevision = null;
 
 	/**
 	 * @var string Timestamp of the current revision or empty string if not loaded
