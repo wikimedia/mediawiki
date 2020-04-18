@@ -593,7 +593,7 @@ because of Phabricator reports.
 * OutputPage::getCSPNonce() is deprecated, use OutputPage::getCSP()->getNonce()
   instead.
 * Skin::makeI18nUrl() and makeNSUrl() have been deprecated, no longer used.
-* Title::countAuthorsBetween and Title::getAuthorsBetween have been deprecated.
+* Title::countAuthorsBetween and Title::getAuthorsBetween were hard deprecated.
   Use respective methods in RevisionStore instead.
 * Remove deprecated SkinCopyrightFooter &$forContent parameter
 * The following Language class static variables have been replaced with

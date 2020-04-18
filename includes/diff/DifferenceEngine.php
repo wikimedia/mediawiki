@@ -1622,12 +1622,21 @@ class DifferenceEngine extends ContextSource {
 		);
 		if ( $nEdits > 0 && $nEdits <= 1000 ) {
 			$limit = 100; // use diff-multi-manyusers if too many users
-			$users = $this->mNewPage->getAuthorsBetween( $oldRev, $newRev, $limit );
-			$numUsers = count( $users );
+			try {
+				$users = $this->revisionStore->getAuthorsBetween(
+					$this->mNewPage->getArticleID(),
+					$oldRev->getRevisionRecord(),
+					$newRev->getRevisionRecord(),
+					null,
+					$limit
+				);
+				$numUsers = count( $users );
 
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable False positive
-			if ( $numUsers == 1 && $users[0] == $newRev->getUserText( RevisionRecord::RAW ) ) {
-				$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
+				if ( $numUsers == 1 && $users[0]->getName() == $newRev->getUserText( RevisionRecord::RAW ) ) {
+					$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
+				}
+			} catch ( InvalidArgumentException $e ) {
+				$numUsers = 0;
 			}
 
 			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit );
