@@ -828,7 +828,7 @@ because of Phabricator reports.
   $parser->getOutput()->enableOOUI() instead.
 * The following Linker methods previously accepted Revision objects as
   parameters. They now accept either Revision or RevisionRecord objects.
-  Passing a Revision object is soft deprecated.
+  Passing a Revision object is hard deprecated.
   - ::revUserLink
   - ::revUserTools
   - ::revComment
