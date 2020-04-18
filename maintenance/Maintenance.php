@@ -303,6 +303,7 @@ abstract class Maintenance {
 	 * @param string $name The name of the param
 	 * @param mixed|null $default Anything you want, default null
 	 * @return mixed
+	 * @return-taint none
 	 */
 	protected function getOption( $name, $default = null ) {
 		if ( $this->hasOption( $name ) ) {
@@ -372,6 +373,7 @@ abstract class Maintenance {
 	 * @param int $argId The integer value (from zero) for the arg
 	 * @param mixed|null $default The default if it doesn't exist
 	 * @return mixed
+	 * @return-taint none
 	 */
 	protected function getArg( $argId = 0, $default = null ) {
 		if ( func_num_args() === 0 ) {
