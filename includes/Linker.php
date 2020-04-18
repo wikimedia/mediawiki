@@ -1106,6 +1106,7 @@ class Linker {
 		$user = RequestContext::getMain()->getUser();
 
 		if ( $rev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revRecord = $rev->getRevisionRecord();
 		} else {
 			$revRecord = $rev;
@@ -1146,6 +1147,7 @@ class Linker {
 		$user = RequestContext::getMain()->getUser();
 
 		if ( $rev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revRecord = $rev->getRevisionRecord();
 		} else {
 			$revRecord = $rev;
@@ -1613,6 +1615,7 @@ class Linker {
 		$user = RequestContext::getMain()->getUser();
 
 		if ( $rev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revRecord = $rev->getRevisionRecord();
 		} else {
 			$revRecord = $rev;
@@ -1865,6 +1868,7 @@ class Linker {
 		$options = [ 'verify' ]
 	) {
 		if ( $rev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revRecord = $rev->getRevisionRecord();
 		} else {
 			$revRecord = $rev;
@@ -1919,6 +1923,7 @@ class Linker {
 		global $wgShowRollbackEditCount;
 
 		if ( $rev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revRecord = $rev->getRevisionRecord();
 		} else {
 			$revRecord = $rev;
@@ -1997,6 +2002,7 @@ class Linker {
 		global $wgShowRollbackEditCount, $wgMiserMode;
 
 		if ( $rev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revRecord = $rev->getRevisionRecord();
 		} else {
 			$revRecord = $rev;
@@ -2194,6 +2200,7 @@ class Linker {
 	 */
 	public static function getRevDeleteLink( User $user, $rev, LinkTarget $title ) {
 		if ( $rev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revRecord = $rev->getRevisionRecord();
 		} else {
 			$revRecord = $rev;
