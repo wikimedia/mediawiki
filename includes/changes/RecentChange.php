@@ -588,26 +588,26 @@ class RecentChange implements Taggable {
 
 	/**
 	 * @since 1.22
-	 * @deprecated since 1.29 Use RCFeed::factory() instead
+	 * @codeCoverageIgnore
+	 * @deprecated since 1.29 Use RCFeed::factory() instead. Hard deprecated since 1.38.
 	 * @param string $uri URI to get the engine object for
 	 * @param array $params
-	 * @return RCFeedEngine The engine object
+	 * @return FormattedRCFeed
 	 * @throws MWException
 	 */
 	public static function getEngine( $uri, $params = [] ) {
-		// TODO: Merge into RCFeed::factory().
+		wfDeprecated( __METHOD__, '1.29' );
 		$rcEngines = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCEngines' );
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
 		if ( !$scheme ) {
 			throw new MWException( "Invalid RCFeed uri: '$uri'" );
 		}
 		if ( !isset( $rcEngines[$scheme] ) ) {
-			throw new MWException( "Unknown RCFeedEngine scheme: '$scheme'" );
+			throw new MWException( "Unknown RCFeed engine: '$scheme'" );
 		}
 		if ( defined( 'MW_PHPUNIT_TEST' ) && is_object( $rcEngines[$scheme] ) ) {
 			return $rcEngines[$scheme];
 		}
-		// TODO For non test a object could be here?
 		return new $rcEngines[$scheme]( $params );
 	}
 
