@@ -192,7 +192,7 @@
 
 		/**
 		 * @param {jQuery.Event} event
-		 * @param {jqXHR} jqXHR
+		 * @param {jQuery.jqXHR} jqXHR
 		 * @param {Object} ajaxOptions
 		 */
 		function trackAjax( event, jqXHR, ajaxOptions ) {
