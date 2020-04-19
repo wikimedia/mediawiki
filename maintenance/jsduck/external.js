@@ -7,7 +7,7 @@
  * Source: <https://api.jquery.com/jQuery.ajax/>
  * @method ajax
  * @static
- * @return {jqXHR}
+ * @return {jQuery.jqXHR}
  */
 
 /**
@@ -34,7 +34,7 @@
 /**
  * Source: <https://api.jquery.com/Types/#jqXHR>
  * @class jQuery.jqXHR
- * @alternateClassName jqXHR
+ * @mixins jQuery.Promise
  */
 
 /**

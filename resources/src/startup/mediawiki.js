@@ -4,7 +4,6 @@
  * Exposed globally as `mw`, with `mediaWiki` as alias.
  *
  * @class mw
- * @alternateClassName mediaWiki
  * @singleton
  */
 /* global $VARS, $CODE */
