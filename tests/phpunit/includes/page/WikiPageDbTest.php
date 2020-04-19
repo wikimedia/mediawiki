@@ -1863,6 +1863,7 @@ more stuff
 		$reason,
 		$expectedComment
 	) {
+		$this->hideDeprecated( 'WikiPage::insertProtectNullRevision' );
 		$this->setContentLang( 'qqx' );
 
 		$page = $this->createPage( __METHOD__, 'Goat' );
