@@ -1094,7 +1094,7 @@ return [
 	},
 
 	'UserNameUtils' => function ( MediaWikiServices $services ) : UserNameUtils {
-		// TODO there should be a proper injectable MessageLocalizer service (T247127)
+		$messageFormatterFactory = new MessageFormatterFactory( Message::FORMAT_PLAIN );
 		return new UserNameUtils(
 			new ServiceOptions(
 				UserNameUtils::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
@@ -1102,7 +1102,9 @@ return [
 			$services->getContentLanguage(),
 			LoggerFactory::getInstance( 'UserNameUtils' ),
 			$services->getService( 'TitleFactory' ),
-			RequestContext::getMain()
+			$messageFormatterFactory->getTextFormatter(
+				$services->getContentLanguage()->getCode()
+			)
 		);
 	},
 
