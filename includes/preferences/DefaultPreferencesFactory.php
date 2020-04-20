@@ -218,14 +218,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	private function loadPreferenceValues(
 		User $user, IContextSource $context, &$defaultPreferences
 	) {
-		# # Remove preferences that wikis don't want to use
+		// Remove preferences that wikis don't want to use
 		foreach ( $this->options->get( 'HiddenPrefs' ) as $pref ) {
 			if ( isset( $defaultPreferences[$pref] ) ) {
 				unset( $defaultPreferences[$pref] );
 			}
 		}
 
-		# # Make sure that form fields have their parent set. See T43337.
+		// Make sure that form fields have their parent set. See T43337.
 		$dummyForm = new HTMLForm( [], $context );
 
 		$disable = !$this->permissionManager->userHasRight( $user, 'editmyoptions' );
@@ -233,7 +233,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultOptions = User::getDefaultOptions();
 		$userOptions = $user->getOptions();
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
-		# # Prod in defaults from the user
+		// Add in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
 			$prefFromUser = $this->getOptionFromUser( $name, $info, $userOptions );
 			if ( $disable && !in_array( $name, $this->getSaveBlacklist() ) ) {
@@ -324,7 +324,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
 
-		# # User info #####################################
 		// Information panel
 		$defaultPreferences['username'] = [
 			'type' => 'info',
@@ -335,7 +334,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$lang = $context->getLanguage();
 
-		# Get groups to which the user belongs
+		// Get groups to which the user belongs
 		$userEffectiveGroups = $user->getEffectiveGroups();
 		$userGroupMemberships = $user->getGroupMemberships();
 		$userGroups = $userMembers = $userTempGroups = $userTempMembers = [];
@@ -570,8 +569,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'personal/signature'
 		];
 
-		# # Email stuff
-
+		// Email preferences
 		if ( $this->options->get( 'EnableEmail' ) ) {
 			if ( $canViewPrivateInfo ) {
 				$helpMessages = [];
@@ -604,7 +602,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'label-message' => 'youremail',
 					'section' => 'personal/email',
 					'help-messages' => $helpMessages,
-					# 'cssclass' chosen below
+					// 'cssclass' chosen below
 				];
 			}
 
@@ -658,7 +656,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 						'section' => 'personal/email',
 						'label-message' => 'prefs-emailconfirm-label',
 						'default' => $emailauthenticated,
-						# Apply the same CSS class used on the input to the message:
+						// Apply the same CSS class used on the input to the message:
 						'cssclass' => $emailauthenticationclass,
 					];
 				}
@@ -748,8 +746,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @return void
 	 */
 	protected function skinPreferences( User $user, IContextSource $context, &$defaultPreferences ) {
-		# # Skin #####################################
-
 		// Skin selector, if there is at least one valid skin
 		$skinOptions = $this->generateSkinOptions( $user, $context );
 		if ( $skinOptions ) {
@@ -762,9 +758,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$allowUserCss = $this->options->get( 'AllowUserCss' );
 		$allowUserJs = $this->options->get( 'AllowUserJs' );
-		# Create links to user CSS/JS pages for all skins
-		# This code is basically copied from generateSkinOptions().  It'd
-		# be nice to somehow merge this back in there to avoid redundancy.
+		// Create links to user CSS/JS pages for all skins.
+		// This code is basically copied from generateSkinOptions().
+		// @todo Refactor this and the similar code in generateSkinOptions().
 		if ( $allowUserCss || $allowUserJs ) {
 			$linkTools = [];
 			$userName = $user->getName();
@@ -796,7 +792,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 */
 	protected function filesPreferences( IContextSource $context, &$defaultPreferences ) {
-		# # Files #####################################
 		$defaultPreferences['imagesize'] = [
 			'type' => 'select',
 			'options' => $this->getImageSizes( $context ),
@@ -818,7 +813,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @return void
 	 */
 	protected function datetimePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		# # Date and time #####################################
 		$dateOptions = $this->getDateOptions( $context );
 		if ( $dateOptions ) {
 			$defaultPreferences['date'] = [
@@ -901,7 +895,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		MessageLocalizer $l10n,
 		&$defaultPreferences
 	) {
-		# # Diffs ####################################
+		// Diffs
 		$defaultPreferences['diffonly'] = [
 			'type' => 'toggle',
 			'section' => 'rendering/diffs',
@@ -913,7 +907,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-norollbackdiff',
 		];
 
-		# # Page Rendering ##############################
+		// Page Rendering
 		if ( $this->options->get( 'AllowUserCssPrefs' ) ) {
 			$defaultPreferences['underline'] = [
 				'type' => 'select',
@@ -971,7 +965,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param array &$defaultPreferences
 	 */
 	protected function editingPreferences( User $user, MessageLocalizer $l10n, &$defaultPreferences ) {
-		# # Editing #####################################
 		$defaultPreferences['editsectiononrightclick'] = [
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
@@ -1039,7 +1032,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 */
 	protected function rcPreferences( User $user, MessageLocalizer $l10n, &$defaultPreferences ) {
 		$rcMaxAge = $this->options->get( 'RCMaxAge' );
-		# # RecentChanges #####################################
 		$defaultPreferences['rcdays'] = [
 			'type' => 'float',
 			'label-message' => 'recentchangesdays',
@@ -1141,7 +1133,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	) {
 		$watchlistdaysMax = ceil( $this->options->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
-		# # Watchlist #####################################
 		if ( $this->permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
 			$editWatchlistLinks = '';
 			$editWatchlistModes = [
@@ -1374,10 +1365,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$allowUserCss = $this->options->get( 'AllowUserCss' );
 		$allowUserJs = $this->options->get( 'AllowUserJs' );
 
-		# Sort by the internal name, so that the ordering is the same for each display language,
-		# especially if some skin names are translated to use a different alphabet and some are not.
+		// Sort by the internal name, so that the ordering is the same for each display language,
+		// especially if some skin names are translated to use a different alphabet and some are not.
 		uksort( $validSkinNames, function ( $a, $b ) use ( $defaultSkin ) {
-			# Display the default first in the list by comparing it as lesser than any other.
+			// Display the default first in the list by comparing it as lesser than any other.
 			if ( strcasecmp( $a, $defaultSkin ) === 0 ) {
 				return -1;
 			}
@@ -1391,17 +1382,18 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		foreach ( $validSkinNames as $skinkey => $sn ) {
 			$linkTools = [];
 
-			# Mark the default skin
+			// Mark the default skin
 			if ( strcasecmp( $skinkey, $defaultSkin ) === 0 ) {
 				$linkTools[] = $context->msg( 'default' )->escaped();
 				$foundDefault = true;
 			}
 
-			# Create preview link
+			// Create preview link
 			$mplink = htmlspecialchars( $mptitle->getLocalURL( [ 'useskin' => $skinkey ] ) );
 			$linkTools[] = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
 
-			# Create links to user CSS/JS pages
+			// Create links to user CSS/JS pages
+			// @todo Refactor this and the similar code in skinPreferences().
 			if ( $allowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName() . '/' . $skinkey . '.css' );
 				$cssLinkText = $context->msg( 'prefs-custom-css' )->text();
@@ -1591,7 +1583,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setAutocomplete( 'off' );
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
-		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
+		// Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );
 		$htmlForm->setSubmitCallback(
@@ -1687,12 +1679,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				unset( $formData[$b] );
 			}
 
-			# If users have saved a value for a preference which has subsequently been disabled
-			# via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
-			# is subsequently re-enabled
+			// If users have saved a value for a preference which has subsequently been disabled
+			// via $wgHiddenPrefs, we don't want to destroy that setting in case the preference
+			// is subsequently re-enabled
 			foreach ( $hiddenPrefs as $pref ) {
-				# If the user has not set a non-default value here, the default will be returned
-				# and subsequently discarded
+				// If the user has not set a non-default value here, the default will be returned
+				// and subsequently discarded
 				$formData[$pref] = $user->getOption( $pref, null, true );
 			}
 
