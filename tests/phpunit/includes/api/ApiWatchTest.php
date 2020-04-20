@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group API
@@ -14,9 +15,19 @@ class ApiWatchTest extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		// Fake current time to be 2019-06-05T19:50:42Z
+		ConvertibleTimestamp::setFakeTime( 1559764242 );
+
 		$this->setMwGlobals( [
 			'wgWatchlistExpiry' => true,
+			'wgWatchlistExpiryMaxDuration' => '6 months',
 		] );
+	}
+
+	protected function tearDown(): void {
+		parent::tearDown();
+
+		ConvertibleTimestamp::setFakeTime( false );
 	}
 
 	protected function getTokens() {
@@ -34,8 +45,8 @@ class ApiWatchTest extends ApiTestCase {
 		$res = $data[0]['watch'][0];
 		$this->assertSame( 'Talk:Test page', $res['title'] );
 		$this->assertSame( 1, $res['ns'] );
-		$this->assertSame( '9999-01-01T00:00:00Z', $res['expiry'] );
 		$this->assertTrue( $res['watched'] );
+		$this->assertSame( '2019-12-05T19:50:42Z', $res['expiry'] );
 
 		// Re-watch, changing the expiry to indefinite.
 		$data = $this->doApiRequestWithToken( [
@@ -65,17 +76,13 @@ class ApiWatchTest extends ApiTestCase {
 
 		// Re-watch, setting an expiry.
 		$expiry = '2 weeks';
-		$expectedExpiry = strtotime( $expiry );
 		$this->doApiRequestWithToken( [
 			'action' => 'watch',
 			'titles' => 'UTPage',
 			'expiry' => $expiry,
 		], null, $user );
 		[ $item ] = $store->getWatchedItemsForUser( $user );
-		$this->assertGreaterThanOrEqual(
-			$expectedExpiry,
-			wfTimestamp( TS_UNIX, $item->getExpiry() )
-		);
+		$this->assertSame( '20190619195042', $item->getExpiry() );
 
 		// Re-watch again, providing no expiry parameter, so expiry should remain unchanged.
 		$oldExpiry = $item->getExpiry();

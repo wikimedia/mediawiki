@@ -60,6 +60,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   setting, but all other aspects of the expiry feature are controlled by it.
 * $wgWatchlistPurgeRate — Chance of expired watchlist items being purged on any
   page edit. Only has effect if $wgWatchlistExpiry is true.
+* $wgWatchlistExpiryMaxDuration — Maximum definite relative duration for
+  watchlist expiries. Only has effect if $wgWatchlistExpiry is true.
 * $wgImgAuthPath can be used to override the path prefix used when handling
   img_auth.php requests. (T235357)
 * $wgAllowedCorsHeaders — list of headers which can be used in a cross-site API
@@ -297,7 +299,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   module does not work for pages that do not already exist.
 * If $wgWatchlistExpiry is true, the following API changes are made:
   - action=watch accepts a new 'expiry' parameter analagous to the expiry
-    accepted by action=userrights, action=block, etc.
+    accepted by action=userrights, action=block, etc., except it must be no
+    greater than $wgWatchlistExpiryMaxDuration, or an infinity value.
   - action=query&list=watchlistraw returns pages' watchlist expiry dates.
 * (T249526) action=login will now return Failed rather than NeedToken on
   session loss.

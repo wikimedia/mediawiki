@@ -20,6 +20,8 @@
 	},
 	"paramvalidator-badbool": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - List of values recognized as \"true\", as a text list.\n* $4 - Count of values in $3.\n* $5 - List of values recognized as \"false\", as a text list. Includes {{msg-mw|paramvalidator-emptystring}}.\n* $6 - Count of values in $5.",
 	"paramvalidator-badexpiry": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
+	"paramvalidator-badexpiry-duration": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - Maximum permitted value.",
+	"paramvalidator-badexpiry-duration-max": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - Maximum permitted value.",
 	"paramvalidator-badexpiry-past": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-badfloat": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-badfloat-notfinite": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",

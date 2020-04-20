@@ -1,6 +1,7 @@
 <?php
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\UserIdentity;
@@ -21,6 +22,15 @@ use Wikimedia\ScopedCallback;
  * @since 1.27
  */
 class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterface {
+
+	/**
+	 * @since 1.35
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		'UpdateRowsPerQuery',
+		'WatchlistExpiry',
+		'WatchlistExpiryMaxDuration',
+	];
 
 	/**
 	 * @var ILBFactory
@@ -97,27 +107,35 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $expiryEnabled;
 
 	/**
+	 * @var string|null Maximum configured relative expiry.
+	 */
+	private $maxExpiryDuration;
+
+	/**
+	 * @param ServiceOptions $options
 	 * @param ILBFactory $lbFactory
 	 * @param JobQueueGroup $queueGroup
 	 * @param BagOStuff $stash
 	 * @param HashBagOStuff $cache
 	 * @param ReadOnlyMode $readOnlyMode
-	 * @param int $updateRowsPerQuery
 	 * @param NamespaceInfo $nsInfo
 	 * @param RevisionLookup $revisionLookup
-	 * @param bool $expiryEnabled
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		ILBFactory $lbFactory,
 		JobQueueGroup $queueGroup,
 		BagOStuff $stash,
 		HashBagOStuff $cache,
 		ReadOnlyMode $readOnlyMode,
-		$updateRowsPerQuery,
 		NamespaceInfo $nsInfo,
-		RevisionLookup $revisionLookup,
-		bool $expiryEnabled
+		RevisionLookup $revisionLookup
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
+		$this->expiryEnabled = $options->get( 'WatchlistExpiry' );
+		$this->maxExpiryDuration = $options->get( 'WatchlistExpiryMaxDuration' );
+
 		$this->lbFactory = $lbFactory;
 		$this->loadBalancer = $lbFactory->getMainLB();
 		$this->queueGroup = $queueGroup;
@@ -127,10 +145,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback =
 			[ DeferredUpdates::class, 'addCallableUpdate' ];
-		$this->updateRowsPerQuery = $updateRowsPerQuery;
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
-		$this->expiryEnabled = $expiryEnabled;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -957,7 +973,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		array $rows,
 		?string $expiry = null
 	): int {
-		$expiry = ExpiryDef::normalizeExpiry( $expiry );
+		if ( ExpiryDef::expiryExceedsMax( $expiry, $this->maxExpiryDuration ) ) {
+			$expiry = ExpiryDef::normalizeExpiry( $this->maxExpiryDuration );
+		} else {
+			$expiry = ExpiryDef::normalizeExpiry( $expiry );
+		}
 
 		if ( !$expiry ) {
 			// Either expiry was invalid or null (shouldn't change), 0 rows affected.

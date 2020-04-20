@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -171,20 +172,26 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	 *     * nsInfo
 	 *     * revisionLookup
 	 *     * expiryEnabled
+	 *     * maxExpiryDuration
 	 * @return WatchedItemStore
 	 */
 	private function newWatchedItemStore( array $mocks = [] ) : WatchedItemStore {
+		$options = new ServiceOptions( WatchedItemStore::CONSTRUCTOR_OPTIONS, [
+			'UpdateRowsPerQuery' => 1000,
+			'WatchlistExpiry' => $mocks['expiryEnabled'] ?? true,
+			'WatchlistExpiryMaxDuration' => $mocks['maxExpiryDuration'] ?? null,
+		] );
+
 		return new WatchedItemStore(
+			$options,
 			$mocks['lbFactory'] ??
 				$this->getMockLBFactory( $mocks['db'] ?? $this->getMockDb() ),
 			$mocks['queueGroup'] ?? $this->getMockJobQueueGroup(),
 			new HashBagOStuff(),
 			$mocks['cache'] ?? $this->getMockCache(),
 			$mocks['readOnlyMode'] ?? $this->getMockReadOnlyMode(),
-			1000,
 			$mocks['nsInfo'] ?? $this->getMockNsInfo(),
-			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
-			$mocks['expiryEnabled'] ?? true
+			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup()
 		);
 	}
 
