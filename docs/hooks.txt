@@ -2580,6 +2580,11 @@ TODO: No more strip, deprecated ?
 &$text: text to parse
 [&]$stripState: StripState instance being used
 
+'ParserBeforePreprocess': Called at the beginning of Parser::preprocess()
+$parser: Parser object
+&$text: text to parse
+$stripState: StripState instance being used
+
 'ParserBeforeStrip': Called at start of parsing time.
 TODO: No more strip, deprecated ?
 [&]$parser: parser object
