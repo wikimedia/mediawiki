@@ -946,7 +946,7 @@
 	"textmatches": "Corispondençe into scrito de paggine",
 	"notextmatches": "Nisciun-a corispondença into scrito de paggine",
 	"prevn": "Precedenti {{PLURAL:$1|$1}}",
-	"nextn": "{{PLURAL:$1|sucesîvo|sucesîvi $1}}",
+	"nextn": "{{PLURAL:$1|sucescîvo|sucescîvi $1}}",
 	"prev-page": "paggina precedente",
 	"next-page": "paggina succesciva",
 	"prevn-title": "{{PLURAL:$1|rezoltato precedénte|rezoltati precedénti}}",

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"FarsiNevis"
+		]
+	},
+	"paramvalidator-badexpiry": "مقدار نامعتبر «$2» برای پارامتر انقضای «$1».",
+	"paramvalidator-badinteger": "مقدار نامعتبر «$2» برای پارامتر صحیح «$1».",
+	"paramvalidator-badvalue-enummulti": "مقدار نامعتبر «$2» برای پارامتر «$1». {{PLURAL:$4|فقط «$3» مجاز است.|مقادیر مجاز عبارت‌اند از $3.}}",
+	"paramvalidator-missingparam": "پارامتر «$1» باید تعیین شود.",
+	"paramvalidator-help-default": "پیش‌فرض: $1",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=مقدار|2=مقادیر}} نباید بزرگ‌تر از $3 {{PLURAL:$1|1=باشد|2=باشند}}.",
+	"paramvalidator-help-type-string-maxbytes": "نباید بیشتر از $1 بایت باشد."
+}
