@@ -19,6 +19,12 @@
  *
  * @file
  */
+
+/**
+ * SquidPurgeClient helper class
+ *
+ * @deprecated Since 1.35 Use MultiHttpClient
+ */
 class SquidPurgeClientPool {
 	/** @var SquidPurgeClient[] */
 	protected $clients = [];

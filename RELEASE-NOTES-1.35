@@ -668,6 +668,8 @@ because of Phabricator reports.
   internal part of parser.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
+* The SquidPurgeClient and SquidPurgeClientPool classes have been deprecated.
+  Use MultiHttpClient or HtmlCacheUpdater instead.
 * Calling Action::factory and Action constructor with WikiPage has been
   hard deprecated. Caller must provide an Article instance.
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
