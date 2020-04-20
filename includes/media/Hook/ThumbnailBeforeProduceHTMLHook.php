@@ -16,8 +16,8 @@ interface ThumbnailBeforeProduceHTMLHook {
 	 * @since 1.35
 	 *
 	 * @param ThumbnailImage $thumbnail
-	 * @param array &$attribs Image attribute array
-	 * @param array &$linkAttribs Image link attribute array
+	 * @param string[] &$attribs Image attribute array
+	 * @param string[] &$linkAttribs Image link attribute array
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onThumbnailBeforeProduceHTML( $thumbnail, &$attribs,

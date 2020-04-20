@@ -20,8 +20,8 @@ interface EnhancedChangesListModifyLineDataHook {
 	 * @param array &$data Array of components that will be joined in order to create the line
 	 * @param RecentChange[] $block Array of RecentChange objects in that block
 	 * @param RecentChange $rc RecentChange object for this line
-	 * @param array &$classes Array of classes to change
-	 * @param array &$attribs Associative array of other HTML attributes for the `<tr>` element.
+	 * @param string[] &$classes Array of classes to change
+	 * @param string[] &$attribs Associative array of other HTML attributes for the `<tr>` element.
 	 *   Currently only data attributes reserved to MediaWiki are allowed
 	 *   (see Sanitizer::isReservedDataAttribute).
 	 * @return bool|void True or no return value to continue, or false to omit this line from

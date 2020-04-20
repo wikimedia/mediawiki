@@ -12,7 +12,7 @@ interface ChangeTagsListActiveHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$tags List of all active tags. Append to this array.
+	 * @param string[] &$tags List of all active tags. Append to this array.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onChangeTagsListActive( &$tags );

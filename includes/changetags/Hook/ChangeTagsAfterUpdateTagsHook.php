@@ -15,13 +15,13 @@ interface ChangeTagsAfterUpdateTagsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array $addedTags Tags effectively added in the update
-	 * @param array $removedTags Tags effectively removed in the update
-	 * @param array $prevTags Tags that were present prior to the update
+	 * @param string[] $addedTags Tags effectively added in the update
+	 * @param string[] $removedTags Tags effectively removed in the update
+	 * @param string[] $prevTags Tags that were present prior to the update
 	 * @param int $rc_id Recentchanges table id
 	 * @param int $rev_id Revision table id
 	 * @param int $log_id Logging table id
-	 * @param array $params Tag params
+	 * @param string|null $params Tag params
 	 * @param RecentChange|null $rc RecentChange being tagged when the tagging accompanies the
 	 *   action, or null
 	 * @param User|null $user User who performed the tagging when the tagging is subsequent to the

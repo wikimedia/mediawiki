@@ -14,7 +14,7 @@ interface ParserTestTablesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$tables Array of table names
+	 * @param string[] &$tables Array of table names
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onParserTestTables( &$tables );

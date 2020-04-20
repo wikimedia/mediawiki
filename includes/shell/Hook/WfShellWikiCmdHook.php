@@ -14,7 +14,7 @@ interface WfShellWikiCmdHook {
 	 * @since 1.35
 	 *
 	 * @param string &$script MediaWiki CLI script path
-	 * @param array &$parameters Array of arguments and options to the script
+	 * @param string[] &$parameters Array of arguments and options to the script
 	 * @param array &$options Associative array of options, may contain the 'php' and 'wrapper'
 	 *   keys
 	 * @return bool|void True or no return value to continue or false to abort

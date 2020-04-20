@@ -12,8 +12,8 @@ interface LocalisationIgnoredOptionalMessagesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$ignored Array of ignored message keys
-	 * @param array &$optional Array of optional message keys
+	 * @param string[] &$ignored Array of ignored message keys
+	 * @param string[] &$optional Array of optional message keys
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLocalisationIgnoredOptionalMessages( &$ignored, &$optional );

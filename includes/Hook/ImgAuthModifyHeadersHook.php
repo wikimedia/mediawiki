@@ -16,7 +16,7 @@ interface ImgAuthModifyHeadersHook {
 	 * @since 1.35
 	 *
 	 * @param LinkTarget $title
-	 * @param array &$headers HTTP headers ( name => value, names are case insensitive ).
+	 * @param string[] &$headers HTTP headers ( name => value, names are case insensitive ).
 	 *   Two headers get special handling: If-Modified-Since (value must be
 	 *   a valid HTTP date) and Range (must be of the form "bytes=(\d*-\d*)")
 	 *   will be honored when streaming the file.

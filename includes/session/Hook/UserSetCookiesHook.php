@@ -20,7 +20,7 @@ interface UserSetCookiesHook {
 	 *
 	 * @param User $user
 	 * @param array &$session Session array, will be added to the session
-	 * @param array &$cookies Cookies array mapping cookie name to its value
+	 * @param string[] &$cookies Cookies array mapping cookie name to its value
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserSetCookies( $user, &$session, &$cookies );

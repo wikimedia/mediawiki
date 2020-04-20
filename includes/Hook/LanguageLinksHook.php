@@ -17,7 +17,7 @@ interface LanguageLinksHook {
 	 * @since 1.35
 	 *
 	 * @param Title $title
-	 * @param array &$links Array with elements of the form "language:title" in the order
+	 * @param string[] &$links Array with elements of the form "language:title" in the order
 	 *   that they will be output
 	 * @param array &$linkFlags Associative array mapping prefixed links to arrays of flags.
 	 *   Currently unused, but planned to provide support for marking individual

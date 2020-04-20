@@ -15,7 +15,7 @@ interface OutputPageMakeCategoryLinksHook {
 	 * @since 1.35
 	 *
 	 * @param OutputPage $out
-	 * @param array $categories Associative array in which keys are category names and
+	 * @param string[] $categories Associative array in which keys are category names and
 	 *   values are category types ("normal" or "hidden")
 	 * @param array &$links Intended to hold the result. Associative array with
 	 *   category types as keys and arrays of HTML links as values.

@@ -13,7 +13,7 @@ interface GetContentModelsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$models Array containing current model list as strings. Extensions should add to this list.
+	 * @param string[] &$models Array containing current model list as strings. Extensions should add to this list.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onGetContentModels( &$models );

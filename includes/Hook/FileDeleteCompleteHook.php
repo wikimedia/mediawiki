@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Hook;
 
+use LocalFile;
 use User;
 use WikiFilePage;
 
@@ -15,7 +16,7 @@ interface FileDeleteCompleteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param string $file Reference to the deleted file
+	 * @param LocalFile $file Reference to the deleted file
 	 * @param string $oldimage In case of the deletion of an old image, the name of the old file
 	 * @param WikiFilePage $article In case all revisions of the file are deleted, a reference to
 	 *   the WikiFilePage associated with the file

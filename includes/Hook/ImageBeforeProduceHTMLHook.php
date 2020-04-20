@@ -30,7 +30,7 @@ interface ImageBeforeProduceHTMLHook {
 	 *   form, or false for current
 	 * @param string &$res Final HTML output, used if you return false
 	 * @param Parser $parser
-	 * @param array &$query Query params for desc URL
+	 * @param string &$query Query params for desc URL
 	 * @param string &$widthOption Used by the parser to remember the user preference thumbnailsize
 	 * @return bool|void True or no return value to continue or false to skip the default logic
 	 */

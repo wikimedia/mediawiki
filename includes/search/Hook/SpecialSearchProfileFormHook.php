@@ -18,7 +18,7 @@ interface SpecialSearchProfileFormHook {
 	 * @param string &$form Form HTML
 	 * @param string $profile Current search profile
 	 * @param string $term Search term
-	 * @param array $opts Key => value of hidden options for inclusion in custom forms
+	 * @param string[] $opts Key => value of hidden options for inclusion in custom forms
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialSearchProfileForm( $search, &$form, $profile, $term,

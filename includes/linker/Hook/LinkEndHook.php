@@ -18,10 +18,10 @@ interface LinkEndHook {
 	 *
 	 * @param Skin $skin
 	 * @param Title $target Title that the link is pointing to
-	 * @param array $options Array of options, which always includes either
+	 * @param string[] $options Array of options, which always includes either
 	 *   'known' or 'broken', and may include 'noclasses'
 	 * @param string &$html Final (raw HTML) contents of the `<a>` tag, after processing
-	 * @param array &$attribs Final HTML attributes of the `<a>` tag, after processing, in
+	 * @param string[] &$attribs Final HTML attributes of the `<a>` tag, after processing, in
 	 *   associative array form
 	 * @param string &$ret Value to return if your hook returns false
 	 * @return bool|void True or no return value to continue or false to abort. If you return

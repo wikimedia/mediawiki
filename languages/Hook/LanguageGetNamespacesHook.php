@@ -14,7 +14,7 @@ interface LanguageGetNamespacesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$namespaces Array of namespaces indexed by their numbers
+	 * @param string[] &$namespaces Array of namespaces indexed by their numbers
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLanguageGetNamespaces( &$namespaces );

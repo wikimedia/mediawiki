@@ -12,7 +12,7 @@ interface ListDefinedTagsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$tags List of tags
+	 * @param string[] &$tags List of tags
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onListDefinedTags( &$tags );

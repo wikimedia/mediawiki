@@ -22,7 +22,7 @@ interface HtmlPageLinkRendererEndHook {
 	 * @param bool $isKnown Whether the page is known or not
 	 * @param string|HtmlArmor &$text Contents that the `<a>` tag should have; either a plain,
 	 *   unescaped string or an HtmlArmor object
-	 * @param array &$attribs Final HTML attributes of the `<a>` tag, after processing, in
+	 * @param string[] &$attribs Final HTML attributes of the `<a>` tag, after processing, in
 	 *   associative array form
 	 * @param string &$ret Value to return if your hook returns false
 	 * @return bool|void True or no return value to continue or false to abort. If you return

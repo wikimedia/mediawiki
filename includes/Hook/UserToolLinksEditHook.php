@@ -15,7 +15,7 @@ interface UserToolLinksEditHook {
 	 *
 	 * @param int $userId User ID of the current user
 	 * @param string $userText Username of the current user
-	 * @param array &$items Array of user tool links as HTML fragments
+	 * @param string[] &$items Array of user tool links as HTML fragments
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserToolLinksEdit( $userId, $userText, &$items );
