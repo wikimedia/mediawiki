@@ -25,6 +25,8 @@
 require __DIR__ . '/../Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Maintenance script to benchmark how long it takes to parse a given title at an optionally
@@ -81,6 +83,7 @@ class BenchmarkParse extends Maintenance {
 			exit( 1 );
 		}
 
+		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		if ( $this->hasOption( 'page-time' ) ) {
 			$pageTimestamp = wfTimestamp( TS_MW, strtotime( $this->getOption( 'page-time' ) ) );
 			$id = $this->getRevIdForTime( $title, $pageTimestamp );
@@ -89,9 +92,9 @@ class BenchmarkParse extends Maintenance {
 				exit( 1 );
 			}
 
-			$revision = Revision::newFromId( $id );
+			$revision = $revLookup->getRevisionById( $id );
 		} else {
-			$revision = Revision::newFromTitle( $title );
+			$revision = $revLookup->getRevisionByTitle( $title );
 		}
 
 		if ( !$revision ) {
@@ -154,11 +157,13 @@ class BenchmarkParse extends Maintenance {
 	/**
 	 * Parse the text from a given Revision
 	 *
-	 * @param Revision $revision
+	 * @param RevisionRecord $revision
 	 */
-	private function runParser( Revision $revision ) {
-		$content = $revision->getContent();
-		$content->getParserOutput( $revision->getTitle(), $revision->getId() );
+	private function runParser( RevisionRecord $revision ) {
+		$content = $revision->getContent( SlotRecord::MAIN );
+		$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
+
+		$content->getParserOutput( $title, $revision->getId() );
 		if ( $this->clearLinkCache ) {
 			$this->linkCache->clear();
 		}

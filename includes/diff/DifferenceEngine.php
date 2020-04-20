@@ -1968,11 +1968,11 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->mNewid ) {
 			$this->mNewRev = Revision::newFromId( $this->mNewid );
 		} else {
-			$this->mNewRev = Revision::newFromTitle(
-				$this->getTitle(),
-				false,
-				Revision::READ_NORMAL
-			);
+			// TODO clean up this method and remove uses of newFromId
+			$revRecord = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionByTitle( $this->getTitle() );
+			$this->mNewRev = $revRecord ? new Revision( $revRecord ) : null;
 		}
 
 		if ( !$this->mNewRev instanceof Revision ) {

@@ -25,6 +25,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Base class for multi-variant language conversion.
@@ -1065,11 +1066,20 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$txt = false;
 			$title = Title::makeTitleSafe( NS_MEDIAWIKI, $key );
 			if ( $title && $title->exists() ) {
-				$revision = Revision::newFromTitle( $title );
+				$revision = MediaWikiServices::getInstance()
+					->getRevisionLookup()
+					->getRevisionByTitle( $title );
 				if ( $revision ) {
-					if ( $revision->getContentModel() == CONTENT_MODEL_WIKITEXT ) {
+					$model = $revision->getSlot(
+						SlotRecord::MAIN,
+						RevisionRecord::RAW
+					)->getModel();
+					if ( $model == CONTENT_MODEL_WIKITEXT ) {
 						// @phan-suppress-next-line PhanUndeclaredMethod
-						$txt = $revision->getContent( RevisionRecord::RAW )->getText();
+						$txt = $revision->getContent(
+							SlotRecord::MAIN,
+							RevisionRecord::RAW
+						)->getText();
 					}
 
 					// @todo in the future, use a specialized content model, perhaps based on json!

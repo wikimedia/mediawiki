@@ -1151,13 +1151,16 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 			]
 		);
 		$title = Title::newFromLinkTarget( $subjectTarget );
-		$revision = Revision::newFromTitle( $title );
+		$revision = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $title );
 
+		$comment = $revision->getComment();
 		$rc = RecentChange::newForCategorization(
 			$revision->getTimestamp(),
 			Title::newFromLinkTarget( $categoryTarget ),
 			$user,
-			$revision->getComment(),
+			$comment ? $comment->text : '',
 			$title,
 			0,
 			$revision->getId(),

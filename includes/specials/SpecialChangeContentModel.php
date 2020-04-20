@@ -2,6 +2,8 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 class SpecialChangeContentModel extends FormSpecialPage {
 
@@ -35,9 +37,9 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	private $title;
 
 	/**
-	 * @var Revision|bool|null
+	 * @var RevisionRecord|bool|null
 	 *
-	 * A Revision object, false if no revision exists, null if not loaded yet
+	 * A RevisionRecord object, false if no revision exists, null if not loaded yet
 	 */
 	private $oldRevision;
 
@@ -93,10 +95,12 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		// an exception instead of a fatal
 		$titleObj = Title::newFromTextThrow( $title );
 
-		$this->oldRevision = Revision::newFromTitle( $titleObj ) ?: false;
+		$this->oldRevision = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $titleObj ) ?: false;
 
 		if ( $this->oldRevision ) {
-			$oldContent = $this->oldRevision->getContent();
+			$oldContent = $this->oldRevision->getContent( SlotRecord::MAIN );
 			if ( !$oldContent->getContentHandler()->supportsDirectEditing() ) {
 				return $this->msg( 'changecontentmodel-nodirectediting' )
 					->params( ContentHandler::getLocalizedName( $oldContent->getModel() ) )

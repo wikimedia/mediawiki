@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -75,8 +77,10 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 	protected function handleRow( stdClass $row ) {
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$this->output( "Processing {$title} ({$row->page_id})...\n" );
-		$rev = Revision::newFromTitle( $title );
-		$content = $rev->getContent( RevisionRecord::RAW );
+		$rev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByTitle( $title );
+		$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 		$dbw = $this->getDB( DB_MASTER );
 		if ( $content instanceof JsonContent ) {
 			if ( $content->isValid() ) {
