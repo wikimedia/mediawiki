@@ -26,10 +26,11 @@ use Hooks;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\Config\ServiceOptions;
-use MessageLocalizer;
 use Psr\Log\LoggerInterface;
 use TitleFactory;
 use Wikimedia\IPUtils;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 
 /**
  * UserNameUtils service
@@ -70,9 +71,9 @@ class UserNameUtils {
 	private $titleFactory;
 
 	/**
-	 * @var MessageLocalizer
+	 * @var ITextFormatter
 	 */
-	private $msgLocalizer;
+	private $textFormatter;
 
 	/**
 	 * @var string[]|false Cache for isUsable()
@@ -84,21 +85,21 @@ class UserNameUtils {
 	 * @param Language $contentLang
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
-	 * @param MessageLocalizer $msgLocalizer
+	 * @param ITextFormatter $textFormatter the text formatter for the current content language
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contentLang,
 		LoggerInterface $logger,
 		TitleFactory $titleFactory,
-		MessageLocalizer $msgLocalizer
+		ITextFormatter $textFormatter
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->contentLang = $contentLang;
 		$this->logger = $logger;
 		$this->titleFactory = $titleFactory;
-		$this->msgLocalizer = $msgLocalizer;
+		$this->textFormatter = $textFormatter;
 	}
 
 	/**
@@ -175,10 +176,9 @@ class UserNameUtils {
 		// Certain names may be reserved for batch processes.
 		foreach ( $this->reservedUsernames as $reserved ) {
 			if ( substr( $reserved, 0, 4 ) === 'msg:' ) {
-				// FIXME fix $this->msgLocalizer to be able to use it
-				$reserved = wfMessage( substr( $reserved, 4 ) )
-					->inContentLanguage()
-					->plain();
+				$reserved = $this->textFormatter->format(
+					MessageValue::new( substr( $reserved, 4 ) )
+				);
 			}
 			if ( $reserved === $name ) {
 				return false;

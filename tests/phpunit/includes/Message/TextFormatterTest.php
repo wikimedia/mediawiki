@@ -18,27 +18,34 @@ use Wikimedia\Message\ScalarParam;
  * @covers \Wikimedia\Message\MessageParam
  */
 class TextFormatterTest extends MediaWikiTestCase {
-	private function createTextFormatter( $langCode ) {
+	private function createTextFormatter( $langCode,
+		$includeWikitext = false,
+		$format = Message::FORMAT_TEXT
+	) {
 		$converter = $this->getMockBuilder( Converter::class )
 			->setMethods( [ 'createMessage' ] )
 			->getMock();
 		$converter->method( 'createMessage' )
-			->willReturnCallback( function ( $key ) {
+			->willReturnCallback( function ( $key ) use ( $includeWikitext ) {
 				$message = $this->getMockBuilder( Message::class )
 					->setConstructorArgs( [ $key ] )
 					->setMethods( [ 'fetchMessage' ] )
 					->getMock();
 
 				$message->method( 'fetchMessage' )
-					->willReturnCallback( function () use ( $message ) {
+					->willReturnCallback( function () use ( $message, $includeWikitext ) {
 						/** @var Message $message */
-						return "{$message->getKey()} $1 $2";
+						$result = "{$message->getKey()} $1 $2";
+						if ( $includeWikitext ) {
+							$result .= " {{SITENAME}}";
+						}
+						return $result;
 					} );
 
 				return $message;
 			} );
 
-		return new TextFormatter( $langCode, $converter );
+		return new TextFormatter( $langCode, $converter, $format );
 	}
 
 	public function testGetLangCode() {
@@ -81,5 +88,20 @@ class TextFormatterTest extends MediaWikiTestCase {
 			] );
 		$result = $formatter->format( $mv );
 		$this->assertSame( 'test test2 a b x, 100 bps, test3 c test4 d e', $result );
+	}
+
+	public function testFormatMessageFormatsWikitext() {
+		global $wgSitename;
+		$formatter = $this->createTextFormatter( 'en', true );
+		$mv = MessageValue::new( 'test' )
+			->plaintextParams( '1', '2' );
+		$this->assertSame( "test 1 2 $wgSitename", $formatter->format( $mv ) );
+	}
+
+	public function testFormatMessageNotWikitext() {
+		$formatter = $this->createTextFormatter( 'en', true, Message::FORMAT_PLAIN );
+		$mv = MessageValue::new( 'test' )
+			->plaintextParams( '1', '2' );
+		$this->assertSame( "test 1 2 {{SITENAME}}", $formatter->format( $mv ) );
 	}
 }
