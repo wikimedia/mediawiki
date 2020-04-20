@@ -995,11 +995,11 @@ return [
 		'styles' => [
 			'resources/src/mediawiki.toc/toc.css'
 				=> [ 'media' => 'screen' ],
-			'resources/src/mediawiki.toc/print.css'
-				=> [ 'media' => 'print' ],
 		],
-		'dependencies' => 'mediawiki.cookie',
-		'messages' => [ 'showtoc', 'hidetoc' ],
+		'dependencies' => [
+			'mediawiki.cookie',
+			'mediawiki.toc.styles',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.toc.styles' => [
