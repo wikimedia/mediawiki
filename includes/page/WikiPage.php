@@ -3425,7 +3425,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$revId = $rev->getId();
 
+		// Soft deprecated in 1.35
 		Hooks::run( 'ArticleRollbackComplete', [ $this, $guser, $legacyTarget, $legacyCurrent ] );
+
+		Hooks::run( 'RollbackComplete', [ $this, $guser, $target, $current ] );
 
 		$resultDetails = [
 			'summary' => $summary,

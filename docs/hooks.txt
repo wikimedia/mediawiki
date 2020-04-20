@@ -700,7 +700,8 @@ $visibilityChangeMap: Map of revision id to oldBits and newBits.  This array can
   revision.  This array is of the form
   [id => ['oldBits' => $oldBits, 'newBits' => $newBits], ... ]
 
-'ArticleRollbackComplete': After an article rollback is completed.
+'ArticleRollbackComplete': DEPRECATED since 1.35! Use RollbackComplete instead.
+After an article rollback is completed.
 $wikiPage: the WikiPage that was edited
 $user: the user who did the rollback
 $revision: the revision the page was reverted back to
@@ -2918,6 +2919,12 @@ $flags: DEPRECATED! Always null!
 'RevisionUndeleted': After an article revision is restored.
 $revisionRecord: the RevisionRecord that was restored
 $oldPageID: the page ID of the revision when archived (may be null)
+
+'RollbackComplete': After an article rollback is completed.
+$wikiPage: the WikiPage that was edited
+$user: UserIdentity for the user who did the rollback
+$revision: RevisionRecord for the revision the page was reverted back to
+$current: RevisionRecord for the reverted revision
 
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr: Array of namespaces ($nsId => $name) which will be used.
