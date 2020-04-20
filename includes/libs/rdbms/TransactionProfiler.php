@@ -1,6 +1,5 @@
 <?php
 /**
- * Transaction profiling for contention
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +17,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Profiler
  */
 
 namespace Wikimedia\Rdbms;
@@ -29,11 +27,13 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 
 /**
- * Helper class that detects high-contention DB queries via profiling calls
+ * Detect high-contention DB queries via profiling calls.
  *
- * This class is meant to work with an IDatabase object, which manages queries
+ * This class is meant to work with an IDatabase object, which manages queries.
  *
  * @since 1.24
+ * @ingroup Profiler
+ * @ingroup Database
  */
 class TransactionProfiler implements LoggerAwareInterface {
 	/** @var float Seconds */
