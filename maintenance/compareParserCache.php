@@ -70,7 +70,7 @@ class CompareParserCache extends Maintenance {
 
 			$title = Title::newFromRow( $row );
 			$page = WikiPage::factory( $title );
-			$revision = $page->getRevision()->getRevisionRecord();
+			$revision = $page->getRevisionRecord();
 			$parserOptions = $page->makeParserOptions( 'canonical' );
 
 			$parserOutputOld = $parserCache->get( $page, $parserOptions );

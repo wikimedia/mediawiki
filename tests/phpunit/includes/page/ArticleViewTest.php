@@ -160,7 +160,7 @@ class ArticleViewTest extends MediaWikiTestCase {
 
 	public function testViewNonText() {
 		$dummy = $this->getPage( __METHOD__, [ 'Dummy' ] );
-		$dummyRev = $dummy->getRevision()->getRevisionRecord();
+		$dummyRev = $dummy->getRevisionRecord();
 		$title = $dummy->getTitle();
 
 		/** @var MockObject|ContentHandler $mockHandler */
@@ -205,15 +205,13 @@ class ArticleViewTest extends MediaWikiTestCase {
 
 		$rev->setContent( SlotRecord::MAIN, $content );
 
-		$rev = new Revision( $rev );
-
 		/** @var MockObject|WikiPage $page */
 		$page = $this->getMockBuilder( WikiPage::class )
-			->setMethods( [ 'getRevision', 'getLatest' ] )
+			->setMethods( [ 'getRevisionRecord', 'getLatest' ] )
 			->setConstructorArgs( [ $title ] )
 			->getMock();
 
-		$page->method( 'getRevision' )
+		$page->method( 'getRevisionRecord' )
 			->willReturn( $rev );
 		$page->method( 'getLatest' )
 			->willReturn( $rev->getId() );

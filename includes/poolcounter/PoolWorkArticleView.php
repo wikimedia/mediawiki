@@ -76,8 +76,18 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$revid, $useParserCache, $revision = null, $audience = RevisionRecord::FOR_PUBLIC
 	) {
 		if ( is_string( $revision ) ) { // BC: very old style call
-			$modelId = $page->getRevision()->getContentModel();
-			$format = $page->getRevision()->getContentFormat();
+			$revRecord = $page->getRevisionRecord();
+			$mainSlot = $revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
+			$modelId = $mainSlot->getModel();
+			$format = $mainSlot->getFormat();
+
+			if ( $format === null ) {
+				$format = MediaWikiServices::getInstance()
+					->getContentHandlerFactory()
+					->getContentHandler( $modelId )
+					->getDefaultFormat();
+			}
+
 			$revision = ContentHandler::makeContent( $revision, $page->getTitle(), $modelId, $format );
 		}
 
@@ -165,9 +175,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		if ( $this->revision !== null ) {
 			$rev = $this->revision;
 		} elseif ( $isCurrent ) {
-			$rev = $this->page->getRevision()
-				? $this->page->getRevision()->getRevisionRecord()
-				: null;
+			$rev = $this->page->getRevisionRecord();
 		} else {
 			$rev = $this->revisionStore->getRevisionByTitle( $this->page->getTitle(), $this->revid );
 		}

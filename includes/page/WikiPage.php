@@ -628,10 +628,14 @@ class WikiPage implements Page, IDBAccessObject {
 				$cache->makeKey( 'page-content-model', $this->getLatest() ),
 				$cache::TTL_MONTH,
 				function () {
-					$rev = $this->getRevision();
+					$rev = $this->getRevisionRecord();
 					if ( $rev ) {
 						// Look at the revision's actual content model
-						return $rev->getContentModel();
+						$slot = $rev->getSlot(
+							SlotRecord::MAIN,
+							RevisionRecord::RAW
+						);
+						return $slot->getModel();
 					} else {
 						$title = $this->mTitle->getPrefixedDBkey();
 						wfWarn( "Page $title exists but has no (visible) revisions!" );
@@ -753,9 +757,11 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * Get the latest revision
+	 * @deprecated since 1.35
 	 * @return Revision|null
 	 */
 	public function getRevision() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision;
@@ -1574,7 +1580,11 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$handler = $undo->getContentHandler();
-		return $handler->getUndoContent( $this->getRevision(), $undo, $undoafter );
+
+		// TODO remove use of Revision objects by deprecating this method entirely
+		$revRecord = $this->getRevisionRecord();
+		$revision = $revRecord ? new Revision( $revRecord ) : null;
+		return $handler->getUndoContent( $revision, $undo, $undoafter );
 	}
 
 	/**
@@ -2783,7 +2793,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// unless they actually try to catch exceptions (which is rare).
 
 		// we need to remember the old content so we can use it to generate all deletion updates.
-		$revision = $this->getRevision();
+		$revisionRecord = $this->getRevisionRecord();
 		try {
 			$content = $this->getContent( RevisionRecord::RAW );
 		} catch ( Exception $ex ) {
@@ -2890,7 +2900,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->doDeleteUpdates(
 				$id,
 				$content,
-				$revision->getRevisionRecord(),
+				$revisionRecord,
 				$deleter
 			);
 
@@ -3064,7 +3074,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   may already return null when the page proper was deleted.
 	 * @param RevisionRecord|Revision|null $revRecord The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
-	 *   $this->getRevision() may already return null when the page proper was deleted.
+	 *   $this->getRevisionRecord() may already return null when the page proper was deleted.
 	 *  Passing a Revision is deprecated since 1.35
 	 * @param User|null $user The user that caused the deletion
 	 */

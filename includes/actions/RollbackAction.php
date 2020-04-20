@@ -94,18 +94,21 @@ class RollbackAction extends FormAction {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$from = $request->getVal( 'from' );
-		$rev = $this->getWikiPage()->getRevision();
+		$rev = $this->getWikiPage()->getRevisionRecord();
 		if ( $from === null ) {
 			throw new ErrorPageError( 'rollbackfailed', 'rollback-missingparam' );
 		}
 		if ( !$rev ) {
 			throw new ErrorPageError( 'rollbackfailed', 'rollback-missingrevision' );
 		}
-		if ( $from !== $rev->getUserText() ) {
+
+		$revUser = $rev->getUser();
+		$userText = $revUser ? $revUser->getName() : '';
+		if ( $from !== $userText ) {
 			throw new ErrorPageError( 'rollbackfailed', 'alreadyrolled', [
 				$this->getTitle()->getPrefixedText(),
 				$from,
-				$rev->getUserText()
+				$userText
 			] );
 		}
 

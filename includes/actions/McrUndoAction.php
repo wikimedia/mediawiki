@@ -98,11 +98,11 @@ class McrUndoAction extends FormAction {
 			throw new ErrorPageError( 'mcrundofailed', 'mcrundo-missingparam' );
 		}
 
-		$curRev = $this->getWikiPage()->getRevision();
+		$curRev = $this->getWikiPage()->getRevisionRecord();
 		if ( !$curRev ) {
 			throw new ErrorPageError( 'mcrundofailed', 'nopagetext' );
 		}
-		$this->curRev = $curRev->getRevisionRecord();
+		$this->curRev = $curRev;
 		$this->cur = $this->getRequest()->getInt( 'cur', $this->curRev->getId() );
 	}
 

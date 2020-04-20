@@ -66,6 +66,8 @@ class PageUpdaterTest extends MediaWikiTestCase {
 	 * @covers \WikiPage::newPageUpdater()
 	 */
 	public function testCreatePage() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$user = $this->getTestUser()->getUser();
 
 		$title = $this->getDummyTitle( __METHOD__ );
@@ -162,6 +164,8 @@ class PageUpdaterTest extends MediaWikiTestCase {
 	 * @covers \WikiPage::newPageUpdater()
 	 */
 	public function testUpdatePage() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$user = $this->getTestUser()->getUser();
 
 		$title = $this->getDummyTitle( __METHOD__ );

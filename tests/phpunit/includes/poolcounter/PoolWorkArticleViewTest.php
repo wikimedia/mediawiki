@@ -126,7 +126,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 	public function testMagicWords( $wikitext, $callback ) {
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$page = $this->getExistingTestPage( __METHOD__ );
-		$rev = $page->getRevision()->getRevisionRecord();
+		$rev = $page->getRevisionRecord();
 
 		// NOTE: provide the input as a string and let the PoolWorkArticleView create a fake
 		// revision internally, to see if the magic words work with that fake. They should
@@ -151,7 +151,7 @@ class PoolWorkArticleViewTest extends MediaWikiTestCase {
 	public function testDoWorkDeletedContent() {
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$page = $this->getExistingTestPage( __METHOD__ );
-		$rev1 = $page->getRevision()->getRevisionRecord();
+		$rev1 = $page->getRevisionRecord();
 
 		// make another revision, since the latest revision cannot be deleted.
 		$rev2 = $this->makeRevision( $page, 'Next' );

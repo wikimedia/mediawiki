@@ -242,6 +242,7 @@ class ApiEditPageTest extends ApiTestCase {
 	 * Ensure we can edit through a redirect, if adding a section
 	 */
 	public function testEdit_redirect() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		static $count = 0;
 		$count++;
 
@@ -258,7 +259,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->getUser() );
 		$this->forceRevisionDate( $page, '20120101000000' );
-		$baseTime = $page->getRevision()->getTimestamp();
+		$baseTime = $page->getRevisionRecord()->getTimestamp();
 
 		// base edit for redirect
 		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]" ),
@@ -304,7 +305,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->getUser() );
 		$this->forceRevisionDate( $page, '20120101000000' );
-		$baseTime = $page->getRevision()->getTimestamp();
+		$baseTime = $page->getRevisionRecord()->getTimestamp();
 
 		// base edit for redirect
 		$rpage->doEditContent( new WikitextContent( "#REDIRECT [[$name]]" ),
@@ -346,7 +347,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->getUser() );
 		$this->forceRevisionDate( $page, '20120101000000' );
-		$baseId = $page->getRevision()->getId();
+		$baseId = $page->getRevisionRecord()->getId();
 
 		// conflicting edit
 		$page->doEditContent( new WikitextContent( "Foo bar" ),
@@ -382,7 +383,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->getUser() );
 		$this->forceRevisionDate( $page, '20120101000000' );
-		$baseTime = $page->getRevision()->getTimestamp();
+		$baseTime = $page->getRevisionRecord()->getTimestamp();
 
 		// conflicting edit
 		$page->doEditContent( new WikitextContent( "Foo bar" ),
@@ -421,7 +422,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$page->doEditContent( new WikitextContent( "Foo" ),
 			"testing 1", EDIT_NEW, false, self::$users['sysop']->getUser() );
 		$this->forceRevisionDate( $page, '20120101000000' );
-		$baseTime = $page->getRevision()->getTimestamp();
+		$baseTime = $page->getRevisionRecord()->getTimestamp();
 
 		// conflicting edit
 		$page->doEditContent( new WikitextContent( "Foo bar" ),
@@ -1142,8 +1143,9 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertSame( "Initial content\n\n== My section ==\n\nMore content",
 			$page->getContent()->getText() );
-		$this->assertSame( '/* My section */ new section',
-			$page->getRevision()->getComment() );
+		$comment = $page->getRevisionRecord()->getComment();
+		$this->assertInstanceOf( CommentStoreComment::class, $comment );
+		$this->assertSame( '/* My section */ new section', $comment->text );
 	}
 
 	public function testAppendNewSectionWithSummary() {
@@ -1164,8 +1166,9 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( "Initial content\n\n== Add new section ==\n\nMore content",
 			$page->getContent()->getText() );
 		// EditPage actually assumes the summary is the section name here
-		$this->assertSame( '/* Add new section */ new section',
-			$page->getRevision()->getComment() );
+		$comment = $page->getRevisionRecord()->getComment();
+		$this->assertInstanceOf( CommentStoreComment::class, $comment );
+		$this->assertSame( '/* Add new section */ new section', $comment->text );
 	}
 
 	public function testAppendNewSectionWithTitleAndSummary() {
@@ -1186,8 +1189,9 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertSame( "Initial content\n\n== My section ==\n\nMore content",
 			$page->getContent()->getText() );
-		$this->assertSame( 'Add new section',
-			$page->getRevision()->getComment() );
+		$comment = $page->getRevisionRecord()->getComment();
+		$this->assertInstanceOf( CommentStoreComment::class, $comment );
+		$this->assertSame( 'Add new section', $comment->text );
 	}
 
 	public function testAppendToSection() {

@@ -909,6 +909,8 @@ because of Phabricator reports.
   by default.
 * LinksUpdate::getRevision and ::setRevision are hard deprecated in favor
   of the new ::getRevisionRecord and ::setRevisionRecord methods.
+* Article::getRevision and WikiPage::getRevision were hard deprecated
+  in favor of the new WikiPage::getRevisionRecord method.
 * A new UserNameUtils service was introduced. The following User methods
   were deprecated in favor of using the new service:
   - isIP

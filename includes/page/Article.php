@@ -371,7 +371,9 @@ class Article implements Page {
 			# Load the given revision and check whether the page is another one.
 			# In that case, update this instance to reflect the change.
 			if ( $oldid === $this->mPage->getLatest() ) {
-				$this->mRevision = $this->mPage->getRevision();
+				// TODO replace uses of Revision
+				$revRecord = $this->mPage->getRevisionRecord();
+				$this->mRevision = $revRecord ? new Revision( $revRecord ) : null;
 			} else {
 				$this->mRevision = Revision::newFromId( $oldid );
 				if ( $this->mRevision !== null ) {
@@ -462,7 +464,9 @@ class Article implements Page {
 		// $this->mRevision might already be fetched by getOldIDFromRequest()
 		if ( !$this->mRevision ) {
 			if ( !$oldid ) {
-				$this->mRevision = $this->mPage->getRevision();
+				// TODO cleanup and remove use of Revision objects
+				$revRecord = $this->mPage->getRevisionRecord();
+				$this->mRevision = $revRecord ? new Revision( $revRecord ) : null;
 
 				if ( !$this->mRevision ) {
 					wfDebug( __METHOD__ . " failed to find page data for title " .
@@ -2618,10 +2622,12 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35
 	 * @see WikiPage::getRevision
 	 * @return Revision|null
 	 */
 	public function getRevision() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getRevision();
 	}
 
