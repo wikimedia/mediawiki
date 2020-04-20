@@ -203,6 +203,23 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 'someHash', $record->getSha1() );
 	}
 
+	public function testResetSha1() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+
+		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'foo' ) );
+		$fooHash = $record->getSha1();
+
+		// setting the content directly updates the hash
+		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'barx' ) );
+		$barxHash = $record->getSha1();
+		$this->assertNotSame( $fooHash, $barxHash );
+
+		// setting the content indirectly also updates the hash
+		$record->getSlots()->setContent( 'aux', new WikitextContent( 'frump' ) );
+		$frumpHash = $record->getSha1();
+		$this->assertNotSame( $barxHash, $frumpHash );
+	}
+
 	public function testGetSlots() {
 		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
 		$this->assertInstanceOf( MutableRevisionSlots::class, $record->getSlots() );
@@ -213,6 +230,23 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertSame( 0, $record->getSize() );
 		$record->setSize( 775 );
 		$this->assertSame( 775, $record->getSize() );
+	}
+
+	public function testResetSize() {
+		$record = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+
+		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'foo' ) );
+		$fooSize = $record->getSize();
+
+		// setting the content directly updates the hash
+		$record->setContent( SlotRecord::MAIN, new WikitextContent( 'barx' ) );
+		$barxSize = $record->getSize();
+		$this->assertNotSame( $fooSize, $barxSize );
+
+		// setting the content indirectly also updates the hash
+		$record->getSlots()->setContent( 'aux', new WikitextContent( 'frump' ) );
+		$frumpSize = $record->getSize();
+		$this->assertNotSame( $barxSize, $frumpSize );
 	}
 
 	public function testSetGetComment() {

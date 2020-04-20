@@ -31,30 +31,42 @@ use Content;
  * @since 1.32 Renamed from MediaWiki\Storage\MutableRevisionSlots
  */
 class MutableRevisionSlots extends RevisionSlots {
+	/**
+	 * @var callable|null
+	 */
+	private $resetCallback;
 
 	/**
 	 * Constructs a MutableRevisionSlots that inherits from the given
 	 * list of slots.
 	 *
 	 * @param SlotRecord[] $slots
+	 * @param callable|null $resetCallback Callback to be triggered whenever slots change.
+	 *        Signature: function ( MutableRevisionSlots ): void.
 	 *
 	 * @return MutableRevisionSlots
 	 */
-	public static function newFromParentRevisionSlots( array $slots ) {
+	public static function newFromParentRevisionSlots(
+		array $slots,
+		?callable $resetCallback = null
+	) {
 		$inherited = [];
 		foreach ( $slots as $slot ) {
 			$role = $slot->getRole();
 			$inherited[$role] = SlotRecord::newInherited( $slot );
 		}
 
-		return new MutableRevisionSlots( $inherited );
+		return new MutableRevisionSlots( $inherited, $resetCallback );
 	}
 
 	/**
 	 * @param SlotRecord[] $slots An array of SlotRecords.
+	 * @param callable|null $resetCallback Callback to be triggered whenever slots change.
+	 *        Signature: function ( MutableRevisionSlots ): void.
 	 */
-	public function __construct( array $slots = [] ) {
+	public function __construct( array $slots = [], ?callable $resetCallback = null ) {
 		parent::__construct( $slots );
+		$this->resetCallback = $resetCallback;
 	}
 
 	/**
@@ -70,6 +82,7 @@ class MutableRevisionSlots extends RevisionSlots {
 
 		$role = $slot->getRole();
 		$this->slots[$role] = $slot;
+		$this->triggerResetCallback();
 	}
 
 	/**
@@ -105,6 +118,16 @@ class MutableRevisionSlots extends RevisionSlots {
 		}
 
 		unset( $this->slots[$role] );
+		$this->triggerResetCallback();
+	}
+
+	/**
+	 * Trigger the reset callback supplied to the constructor, if any.
+	 */
+	private function triggerResetCallback() {
+		if ( $this->resetCallback ) {
+			( $this->resetCallback )( $this );
+		}
 	}
 
 }
