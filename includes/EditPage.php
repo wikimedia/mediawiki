@@ -1294,8 +1294,8 @@ class EditPage {
 			$undo = $request->getInt( 'undo' );
 
 			if ( $undo > 0 && $undoafter > 0 ) {
-				$undorev = Revision::newFromId( $undo );
-				$oldrev = Revision::newFromId( $undoafter );
+				$undorev = $this->revisionStore->getRevisionById( $undo );
+				$oldrev = $this->revisionStore->getRevisionById( $undoafter );
 				$undoMsg = null;
 
 				# Sanity check, make sure it's the right page,
@@ -1305,10 +1305,10 @@ class EditPage {
 					!$undorev->isDeleted( RevisionRecord::DELETED_TEXT ) &&
 					!$oldrev->isDeleted( RevisionRecord::DELETED_TEXT )
 				) {
-					if ( WikiPage::hasDifferencesOutsideMainSlot(
-							$undorev->getRevisionRecord(),
-							$oldrev->getRevisionRecord()
-						) || !$this->isSupportedContentModel( $oldrev->getContentModel() )
+					if ( WikiPage::hasDifferencesOutsideMainSlot( $undorev, $oldrev )
+						|| !$this->isSupportedContentModel(
+							$oldrev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getModel()
+						)
 					) {
 						// Hack for undo while EditPage can't handle multi-slot editing
 						$this->context->getOutput()->redirect( $this->mTitle->getFullURL( [
@@ -1318,7 +1318,22 @@ class EditPage {
 						] ) );
 						return false;
 					} else {
-						$content = $this->page->getUndoContent( $undorev, $oldrev );
+						$handler = $this->contentHandlerFactory
+							->getContentHandler( $undorev->getSlot(
+								SlotRecord::MAIN,
+								RevisionRecord::RAW
+							)->getModel() );
+						$currentContent = $this->page->getRevisionRecord()
+							->getContent( SlotRecord::MAIN );
+						$undoContent = $undorev->getContent( SlotRecord::MAIN );
+						$undoAfterContent = $oldrev->getContent( SlotRecord::MAIN );
+						$undoIsLatest = $this->page->getRevisionRecord()->getId() === $undorev->getId();
+						$content = $handler->getUndoContent(
+							$currentContent,
+							$undoContent,
+							$undoAfterContent,
+							$undoIsLatest
+						);
 
 						if ( $content === false ) {
 							# Warn the user that something went wrong
@@ -1337,7 +1352,16 @@ class EditPage {
 							// edit. This can result in
 							// mismatched content model/format.
 							$this->contentModel = $newContent->getModel();
-							$this->contentFormat = $oldrev->getContentFormat();
+							$oldMainSlot = $oldrev->getSlot(
+								SlotRecord::MAIN,
+								RevisionRecord::RAW
+							);
+							$this->contentFormat = $oldMainSlot->getFormat();
+							if ( $this->contentFormat === null ) {
+								$this->contentFormat = $this->contentHandlerFactory
+									->getContentHandler( $oldMainSlot->getModel() )
+									->getDefaultFormat();
+							}
 						}
 
 						if ( $newContent->equals( $oldContent ) ) {
@@ -1350,9 +1374,11 @@ class EditPage {
 							$undoMsg = 'success';
 
 							# If we just undid one rev, use an autosummary
-							$firstrev = $oldrev->getNext();
+							$firstrev = $this->revisionStore->getNextRevision( $oldrev );
 							if ( $firstrev && $firstrev->getId() == $undo ) {
-								$userText = $undorev->getUserText();
+								$userText = $undorev->getUser() ?
+									$undorev->getUser()->getName() :
+									'';
 								if ( $userText === '' ) {
 									$undoSummary = $this->context->msg(
 										'undo-summary-username-hidden',
@@ -1377,7 +1403,10 @@ class EditPage {
 										)->inContentLanguage()->text();
 									}
 								} else {
-									$undoMessage = ( $undorev->getUser() === 0 && $wgDisableAnonTalk ) ?
+									$undoIsAnon = $undorev->getUser() ?
+										!$undorev->getUser()->isRegistered() :
+										true;
+									$undoMessage = ( $undoIsAnon && $wgDisableAnonTalk ) ?
 										'undo-summary-anon' :
 										'undo-summary';
 									$undoSummary = $this->context->msg(

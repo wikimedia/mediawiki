@@ -1562,6 +1562,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * between $undo and $undoafter. Revisions must belong to the same page,
 	 * must exist and must not be deleted
 	 *
+	 * @deprecated since 1.35, use ContentHandler::getUndoContent instead
+	 *
 	 * @param Revision $undo
 	 * @param Revision $undoafter Must be an earlier revision than $undo
 	 * @return Content|bool Content on success, false on failure
@@ -1569,6 +1571,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Before we had the Content object, this was done in getUndoText
 	 */
 	public function getUndoContent( Revision $undo, Revision $undoafter ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		// TODO: MCR: replace this with a method that returns a RevisionSlotsUpdate
 
 		if ( self::hasDifferencesOutsideMainSlot(
