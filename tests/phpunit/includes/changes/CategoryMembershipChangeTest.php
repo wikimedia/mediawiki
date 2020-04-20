@@ -57,6 +57,10 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	}
 
 	public function addDBDataOnce() {
+		// $pageRev is a Revision object
+		// TODO replace with RevisionRecord throughout the file
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$info = $this->insertPage( self::$pageName );
 		$title = $info['title'];
 

@@ -1419,16 +1419,18 @@ class EditPage {
 			if ( $content === false ) {
 				// Hack for restoring old revisions while EditPage
 				// can't handle multi-slot editing.
+				// TODO replace use of Revision objects entirely once
+				// Article::fetchRevisionRecord is public
 
-				$curRevision = $this->page->getRevision();
+				$curRevisionRecord = $this->page->getRevisionRecord();
 				$oldRevision = $this->mArticle->getRevisionFetched();
 
-				if ( $curRevision
+				if ( $curRevisionRecord
 					&& $oldRevision
-					&& $curRevision->getId() !== $oldRevision->getId()
+					&& $curRevisionRecord->getId() !== $oldRevision->getId()
 					&& ( WikiPage::hasDifferencesOutsideMainSlot(
 						$oldRevision->getRevisionRecord(),
-						$curRevision->getRevisionRecord()
+						$curRevisionRecord
 					) || !$this->isSupportedContentModel( $oldRevision->getContentModel() ) )
 				) {
 					$this->context->getOutput()->redirect(
@@ -1509,40 +1511,51 @@ class EditPage {
 	 * @return Content
 	 */
 	protected function getCurrentContent() {
-		$rev = $this->page->getRevision();
-		$content = $rev ? $rev->getContent( RevisionRecord::RAW ) : null;
+		$revRecord = $this->page->getRevisionRecord();
+		$content = $revRecord ? $revRecord->getContent(
+			SlotRecord::MAIN,
+			RevisionRecord::RAW
+		) : null;
 
 		if ( $content === false || $content === null ) {
 			return $this->contentHandlerFactory
 				->getContentHandler( $this->contentModel )
 				->makeEmptyContent();
 		} elseif ( !$this->undidRev ) {
+			$mainSlot = $revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
+
 			// Content models should always be the same since we error
 			// out if they are different before this point (in ->edit()).
 			// The exception being, during an undo, the current revision might
 			// differ from the prior revision.
 			$logger = LoggerFactory::getInstance( 'editpage' );
-			if ( $this->contentModel !== $rev->getContentModel() ) {
+			if ( $this->contentModel !== $mainSlot->getModel() ) {
 				$logger->warning( "Overriding content model from current edit {prev} to {new}", [
 					'prev' => $this->contentModel,
-					'new' => $rev->getContentModel(),
+					'new' => $mainSlot->getModel(),
 					'title' => $this->getTitle()->getPrefixedDBkey(),
 					'method' => __METHOD__
 				] );
-				$this->contentModel = $rev->getContentModel();
+				$this->contentModel = $mainSlot->getModel();
 			}
 
 			// Given that the content models should match, the current selected
 			// format should be supported.
 			if ( !$content->isSupportedFormat( $this->contentFormat ) ) {
-				$logger->warning( "Current revision content format unsupported. Overriding {prev} to {new}", [
+				$revFormat = $mainSlot->getFormat();
+				if ( $revFormat === null ) {
+					$revFormat = $this->contentHandlerFactory
+						->getContentHandler( $mainSlot->getModel() )
+						->getDefaultFormat();
+				}
 
+				$logger->warning( "Current revision content format unsupported. Overriding {prev} to {new}", [
 					'prev' => $this->contentFormat,
-					'new' => $rev->getContentFormat(),
+					'new' => $revFormat,
 					'title' => $this->getTitle()->getPrefixedDBkey(),
 					'method' => __METHOD__
 				] );
-				$this->contentFormat = $rev->getContentFormat();
+				$this->contentFormat = $revFormat;
 			}
 		}
 		return $content;

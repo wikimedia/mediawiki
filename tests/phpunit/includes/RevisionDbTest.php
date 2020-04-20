@@ -201,6 +201,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRecentChange() {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$rev = $this->testPage->getRevision();
 		$recentChange = $rev->getRecentChange();
@@ -447,6 +448,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromArchiveRow( $selectModifier ) {
 		$this->hideDeprecated( 'Revision::newFromArchiveRow' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$services = MediaWikiServices::getInstance();
 
@@ -499,6 +501,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromArchiveRowOverrides() {
 		$this->hideDeprecated( 'Revision::newFromArchiveRow' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$page = $this->createPage(
 			'RevisionStorageTest_testNewFromArchiveRow',
@@ -534,6 +537,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newFromId
 	 */
 	public function testNewFromId() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$orig = $this->testPage->getRevision();
 		$rev = Revision::newFromId( $orig->getId() );
 		$this->assertRevEquals( $orig, $rev );
@@ -544,6 +549,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromPageId() {
 		$this->hideDeprecated( Revision::class . '::newFromPageId' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$rev = Revision::newFromPageId( $this->testPage->getId() );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
@@ -556,6 +563,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromPageIdWithLatestId() {
 		$this->hideDeprecated( Revision::class . '::newFromPageId' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$rev = Revision::newFromPageId(
 			$this->testPage->getId(),
 			$this->testPage->getLatest()
@@ -573,6 +582,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$content = new WikitextContent( __METHOD__ );
 		$this->testPage->doEditContent( $content, __METHOD__ );
 		$this->hideDeprecated( Revision::class . '::newFromPageId' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$rev = Revision::newFromPageId(
 			$this->testPage->getId(),
 			$this->testPage->getRevision()->getPrevious()->getId()
@@ -599,6 +610,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::isCurrent
 	 */
 	public function testIsCurrent() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$rev1 = $this->testPage->getRevision();
 
 		# @todo find out if this should be true
@@ -625,6 +638,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetPrevious() {
 		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$oldestRevision = $this->testPage->getOldestRevision();
 		$latestRevision = $this->testPage->getLatest();
@@ -646,6 +660,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testTitleGetPreviousRevisionID() {
 		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$oldestId = $this->testPage->getOldestRevision()->getId();
 		$latestId = $this->testPage->getLatest();
@@ -672,6 +687,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getNext
 	 */
 	public function testGetNext() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$rev1 = $this->testPage->getRevision();
 
 		$this->assertNull( $rev1->getNext() );
@@ -716,6 +733,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testNewNullRevision() {
 		$this->hideDeprecated( 'Revision::getTextId' );
 		$this->hideDeprecated( 'Revision::newNullRevision' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$orig = $this->testPage->getRevision();
@@ -1158,6 +1176,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testLoadFromPageId() {
 		$this->hideDeprecated( Revision::class . '::loadFromPageId' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromPageId( wfGetDB( DB_MASTER ), $this->testPage->getId() )
@@ -1170,6 +1189,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testLoadFromPageIdWithLatestRevId() {
 		$this->hideDeprecated( Revision::class . '::loadFromPageId' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromPageId(
@@ -1187,6 +1207,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$this->hideDeprecated( Revision::class . '::loadFromPageId' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision()->getPrevious(),
 			Revision::loadFromPageId(
@@ -1203,6 +1224,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testLoadFromTitle() {
 		$this->hideDeprecated( 'Revision::loadFromTitle' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromTitle( wfGetDB( DB_MASTER ), $this->testPage->getTitle() )
@@ -1215,6 +1237,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testLoadFromTitleWithLatestRevId() {
 		$this->hideDeprecated( 'Revision::loadFromTitle' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromTitle(
@@ -1231,6 +1254,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testLoadFromTitleWithNotLatestRevId() {
 		$this->hideDeprecated( 'Revision::loadFromTitle' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$this->assertRevEquals(
 			$this->testPage->getRevision()->getPrevious(),
@@ -1248,6 +1272,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testLoadFromTimestamp() {
 		$this->hideDeprecated( Revision::class . '::loadFromTimestamp' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTimestamp' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromTimestamp(
@@ -1320,6 +1345,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getTitle
 	 */
 	public function testGetTitle_fromExistingRevision() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertTrue(
 			$this->testPage->getTitle()->equals(
 				$this->testPage->getRevision()->getTitle()
@@ -1343,6 +1369,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::isMinor
 	 */
 	public function testIsMinor_true() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		// Use a sysop to ensure we can mark edits as minor
 		$sysop = $this->getTestSysop()->getUser();
 
@@ -1362,6 +1389,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::isMinor
 	 */
 	public function testIsMinor_false() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->testPage->doEditContent(
 			new WikitextContent( __METHOD__ ),
 			__METHOD__,
@@ -1376,6 +1404,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getTimestamp
 	 */
 	public function testGetTimestamp() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$testTimestamp = wfTimestampNow();
 
 		$this->testPage->doEditContent(
@@ -1394,6 +1423,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getUserText
 	 */
 	public function testGetUserAndText() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$sysop = $this->getTestSysop()->getUser();
 
 		$this->testPage->doEditContent(
@@ -1413,6 +1443,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::isDeleted
 	 */
 	public function testIsDeleted_nothingDeleted() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$rev = $this->testPage->getRevision();
 
 		$this->assertSame( false, $rev->isDeleted( Revision::DELETED_TEXT ) );
@@ -1425,6 +1456,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getVisibility
 	 */
 	public function testGetVisibility_nothingDeleted() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$rev = $this->testPage->getRevision();
 
 		$this->assertSame( 0, $rev->getVisibility() );
@@ -1434,6 +1466,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getComment
 	 */
 	public function testGetComment_notDeleted() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$expectedSummary = 'goatlicious summary';
 
 		$this->testPage->doEditContent(
@@ -1451,6 +1484,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testIsUnpatrolled_returnsRecentChangesId() {
 		$this->hideDeprecated( 'Revision::isUnpatrolled' );
 		$this->hideDeprecated( 'Revision::getRecentChange' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$rev = $this->testPage->getRevision();
@@ -1464,6 +1498,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsUnpatrolled_returnsZeroIfPatrolled() {
 		$this->hideDeprecated( 'Revision::isUnpatrolled' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		// This assumes that sysops are auto patrolled
 		$sysop = $this->getTestSysop()->getUser();
 		$this->testPage->doEditContent(
@@ -1489,6 +1524,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSimpleContentGetters() {
 		$this->hideDeprecated( 'Revision::getSerializedData' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$expectedText = 'testSimpleContentGetters in Revision. Goats love MCR...';
 		$expectedSummary = 'goatlicious testSimpleContentGetters summary';
@@ -1510,6 +1546,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newKnownCurrent
 	 */
 	public function testNewKnownCurrent() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		// Setup the services
 		$this->overrideMwServices();
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
@@ -1546,6 +1583,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewKnownCurrent_withPageId() {
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$db = wfGetDB( DB_MASTER );
 
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
