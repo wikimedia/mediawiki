@@ -174,7 +174,10 @@
 
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
-					var message, otherAction = action === 'watch' ? 'unwatch' : 'watch';
+					var message,
+						watchlistPopup = null,
+						isWatchlistExpiryEnabled = mw.config.get( 'wgWatchlistExpiry' ),
+						otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
 					if ( mwTitle.isTalkPage() ) {
 						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
@@ -182,14 +185,39 @@
 						message = action === 'watch' ? 'addedwatchtext' : 'removedwatchtext';
 					}
 
-					// The following messages can be used here:
-					// * addedwatchtext-talk
-					// * addedwatchtest
-					// * removedwatchtext-talk
-					// * removedwatchtext
-					mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
-						tag: 'watch-self'
-					} );
+					// @since 1.35 - pop up notification will be loaded with OOUI
+					// only if Watchlist Expiry is enabled
+					if ( isWatchlistExpiryEnabled ) {
+						mw.loader.using( 'mediawiki.watchstar.widgets' ).done( function ( require ) {
+							var WatchlistExpiryWidget = require( 'mediawiki.watchstar.widgets' );
+
+							if ( !watchlistPopup ) {
+								watchlistPopup = new WatchlistExpiryWidget( {
+									// The following messages can be used here:
+									// * addedwatchtext-talk
+									// * addedwatchtext
+									// * removedwatchtext-talk
+									// * removedwatchtext
+									message: mw.message( message, mwTitle.getPrefixedText() ).parseDom()
+								} );
+							}
+
+							mw.notify( watchlistPopup.$element, {
+								tag: 'watch-self',
+								autoHide: true
+							} );
+
+						} );
+					} else {
+						// The following messages can be used here:
+						// * addedwatchtext-talk
+						// * addedwatchtext
+						// * removedwatchtext-talk
+						// * removedwatchtext
+						mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
+							tag: 'watch-self'
+						} );
+					}
 
 					// Set link to opposite
 					updateWatchLink( $link, otherAction );

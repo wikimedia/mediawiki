@@ -3332,6 +3332,7 @@ class OutputPage extends ContextSource {
 			'wgPageContentModel' => $title->getContentModel(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
+			'wgWatchlistExpiry' => $this->getContext()->getConfig()->get( 'WatchlistExpiry' ),
 		];
 		if ( $user->isLoggedIn() ) {
 			$vars['wgUserId'] = $user->getId();
