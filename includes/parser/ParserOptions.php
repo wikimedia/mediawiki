@@ -292,6 +292,7 @@ class ParserOptions {
 	/**
 	 * Use tidy to cleanup output HTML?
 	 * @return bool
+	 * @deprecated since 1.35; tidy is always enabled
 	 */
 	public function getTidy() {
 		return $this->getOption( 'tidy' );
@@ -301,6 +302,7 @@ class ParserOptions {
 	 * Use tidy to cleanup output HTML?
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
+	 * @deprecated since 1.35; tidy is always enabled so this has no effect
 	 */
 	public function setTidy( $x ) {
 		if ( !$x ) {

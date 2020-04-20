@@ -2091,7 +2091,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$popts = $this->parserOptions();
-		$oldTidy = $popts->setTidy( true );
+
 		$oldInterface = $popts->setInterfaceMessage( (bool)$interface );
 
 		$parserOutput = MediaWikiServices::getInstance()->getParser()->getFreshParser()->parse(
@@ -2099,7 +2099,6 @@ class OutputPage extends ContextSource {
 			$linestart, true, $this->mRevisionId
 		);
 
-		$popts->setTidy( $oldTidy );
 		$popts->setInterfaceMessage( $oldInterface );
 
 		return $parserOutput;
