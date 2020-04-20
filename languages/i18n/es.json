@@ -2572,7 +2572,7 @@
 	"protect-expiry-indefinite": "indefinido",
 	"protect-cascade": "Protección en cascada - proteger todas las páginas incluidas en ésta.",
 	"protect-cantedit": "No puedes cambiar el nivel de protección de esta página porque no tienes permiso para editarla.",
-	"protect-othertime": "En otro momento:",
+	"protect-othertime": "Otro tiempo:",
 	"protect-othertime-op": "en otro momento",
 	"protect-existing-expiry": "Fecha de caducidad actual: $2 a las $3",
 	"protect-existing-expiry-infinity": "Tiempo de caducidad existente: infinito",
