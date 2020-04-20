@@ -1264,3 +1264,7 @@
 	path = extensions/VEForAll
 	url = https://github.com/wikimedia/mediawiki-extensions-VEForAll
 	branch = REL1_34
+[submodule "extensions/DataTransfer"]
+	path = extensions/DataTransfer
+	url = https://github.com/wikimedia/mediawiki-extensions-DataTransfer
+	branch = REL1_34
