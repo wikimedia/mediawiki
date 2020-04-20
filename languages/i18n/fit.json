@@ -790,7 +790,7 @@
 	"cur": "nyk.",
 	"next": "seur.",
 	"last": "eel.",
-	"page_first": "ensimmäinen sivu",
+	"page_first": "ensimäinen sivu",
 	"page_last": "viiminen sivu",
 	"histlegend": "Eron valinta: markkeeraa klikkiruuissa ette pääset vertaamhaan versuunia, ja paina enter eli knaphiin kaikhiin alla. \nMerkinät: <strong>({{int:cur}})</strong> = eroavaisuuet nykyisheen versuunhiin, <strong>({{int:last}})</strong> = eroavaisuuet eelisheen versuunhiin, <strong>{{int:minoreditletter}}</strong> = pieni muutos.",
 	"history-fieldset-title": "Filtteröi versuuneja",

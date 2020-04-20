@@ -1513,7 +1513,7 @@
 	"api-pageset-param-redirects-nogenerator": "Автоматично вирішувати перенаправлення у <var>$1titles</var>, <var>$1pageids</var>, та <var>$1revids</var>.",
 	"api-pageset-param-converttitles": "Конвертувати назви в інші варіанти за необхідності. Працює лише для вікі, мова вмісту яких підтримує конвертування варіантів. Мовами, що підтримують конвертування варіантів є $1.",
 	"api-help-title": "Довідка API MediaWiki",
-	"api-help-lead": "Це автоматично генерована сторінка документації API MediaWiki.\n\nДокументація та приклади: https://www.mediawiki.org/wiki/API",
+	"api-help-lead": "Це автоматично генерована сторінка документації API MediaWiki.\n\nДокументація та приклади: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "Головний модуль",
 	"api-help-undocumented-module": "Для модуля $1 відсутня документація.",
 	"api-help-flag-deprecated": "Цей модуль є застарілим.",
