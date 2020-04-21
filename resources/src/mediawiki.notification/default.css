@@ -55,3 +55,10 @@
 	/* Red50 */
 	border-color: #d33;
 }
+
+.mw-notification.mw-notification-type-success {
+	/* Green90 */
+	background-color: #d5fdf4;
+	/* Green30 */
+	border-color: #14866d;
+}
