@@ -2,19 +2,21 @@
 
 namespace MediaWiki\Hook;
 
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface TitleGetEditNoticesHook {
 	/**
-	 * Allows extensions to add edit notices
+	 * Use this hook to add edit notices.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title The Title object for the page the edit notices are for
-	 * @param ?mixed $oldid Revision ID that the edit notices are for (or 0 for latest)
-	 * @param ?mixed &$notices Array of notices. Keys are i18n message keys, values are
+	 * @param Title $title Title object for the page the edit notices are for
+	 * @param int $oldid Revision ID that the edit notices are for (or 0 for latest)
+	 * @param array &$notices Array of notices. Keys are i18n message keys, values are
 	 *   parseAsBlock()ed messages.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

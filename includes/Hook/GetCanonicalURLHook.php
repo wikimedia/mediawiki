@@ -2,20 +2,21 @@
 
 namespace MediaWiki\Hook;
 
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface GetCanonicalURLHook {
 	/**
-	 * Modify fully-qualified URLs used for IRC and e-mail
-	 * notifications.
+	 * Use this hook to modify fully-qualified URLs used for IRC and email notifications.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title Title object of page
-	 * @param ?mixed &$url string value as output (out parameter, can modify)
-	 * @param ?mixed $query query options as string passed to Title::getCanonicalURL()
+	 * @param Title $title Title object of page
+	 * @param string &$url String value as output (out parameter, can modify)
+	 * @param string $query Query options as string passed to Title::getCanonicalURL()
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onGetCanonicalURL( $title, &$url, $query );

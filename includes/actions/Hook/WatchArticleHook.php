@@ -2,21 +2,26 @@
 
 namespace MediaWiki\Hook;
 
+use Status;
+use User;
+use WikiPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface WatchArticleHook {
 	/**
-	 * Before a watch is added to an article.
+	 * This hook is called before a watch is added to an article.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $user user that will watch
-	 * @param ?mixed $page WikiPage object to be watched
-	 * @param ?mixed &$status Status object to be returned if the hook returns false
-	 * @param ?mixed $expiry Optional expiry timestamp in any format acceptable to wfTimestamp()
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param User $user User that will watch
+	 * @param WikiPage $page WikiPage object to be watched
+	 * @param Status &$status Status object to be returned if the hook returns false
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp()
+	 * @return bool|void True or no return value to continue or false to abort and
+	 *   return Status object
 	 */
 	public function onWatchArticle( $user, $page, &$status, $expiry );
 }

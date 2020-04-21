@@ -2,20 +2,22 @@
 
 namespace MediaWiki\Hook;
 
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface AutopromoteConditionHook {
 	/**
-	 * Check autopromote condition for user.
+	 * Use this hook to check autopromote condition for user.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $type condition type
-	 * @param ?mixed $args arguments
-	 * @param ?mixed $user user
-	 * @param ?mixed &$result result of checking autopromote condition
+	 * @param string $type Condition type
+	 * @param array $args Arguments
+	 * @param User $user
+	 * @param array &$result Result of checking autopromote condition
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAutopromoteCondition( $type, $args, $user, &$result );

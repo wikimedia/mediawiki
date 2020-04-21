@@ -2,20 +2,23 @@
 
 namespace MediaWiki\Hook;
 
+use Parser;
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface BeforeParserFetchTemplateAndtitleHook {
 	/**
-	 * Before a template is fetched by Parser.
+	 * This hook is called before a template is fetched by Parser.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $parser Parser object
-	 * @param ?mixed $title title of the template
-	 * @param ?mixed &$skip skip this template and link it?
-	 * @param ?mixed &$id the id of the revision being parsed
+	 * @param Parser $parser
+	 * @param Title $title Title of the template
+	 * @param bool &$skip Skip this template and link it?
+	 * @param int &$id ID of the revision being parsed
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onBeforeParserFetchTemplateAndtitle( $parser, $title, &$skip,

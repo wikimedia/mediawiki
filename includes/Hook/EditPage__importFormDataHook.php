@@ -3,21 +3,22 @@
 namespace MediaWiki\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
+use EditPage;
+use WebRequest;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface EditPage__importFormDataHook {
 	/**
-	 * allow extensions to read additional data
-	 * posted in the form
-	 * Return value is ignored (should always return true)
+	 * Use this hook to read additional data posted in the form.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $editpage EditPage instance
-	 * @param ?mixed $request Webrequest
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param EditPage $editpage
+	 * @param WebRequest $request
+	 * @return bool|void Return value is ignored; this hook should always return true
 	 */
 	public function onEditPage__importFormData( $editpage, $request );
 }

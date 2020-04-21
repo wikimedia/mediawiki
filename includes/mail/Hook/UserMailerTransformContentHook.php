@@ -2,24 +2,25 @@
 
 namespace MediaWiki\Hook;
 
+use MailAddress;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface UserMailerTransformContentHook {
 	/**
-	 * Called in UserMailer::send() to change email
-	 * contents. Extensions can block sending the email by returning false and setting
-	 * $error.
+	 * This hook is called in UserMailer::send() to change email contents.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $to array of MailAdresses of the targets
-	 * @param ?mixed $from MailAddress of the sender
-	 * @param ?mixed &$body email body, either a string (for plaintext emails) or an array with
+	 * @param MailAddress[] $to Array of addresses of the targets
+	 * @param MailAddress $from Address of the sender
+	 * @param string|array &$body Email body, either a string (for plaintext emails) or an array with
 	 *   'text' and 'html' keys
-	 * @param ?mixed &$error should be set to an error message string
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param string &$error Error message
+	 * @return bool|void True or no return value to continue, or false and set $error to
+	 *   block sending the email
 	 */
 	public function onUserMailerTransformContent( $to, $from, &$body, &$error );
 }

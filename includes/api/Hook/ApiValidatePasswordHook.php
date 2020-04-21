@@ -2,18 +2,20 @@
 
 namespace MediaWiki\Api\Hook;
 
+use ApiValidatePassword;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ApiValidatePasswordHook {
 	/**
-	 * Called from ApiValidatePassword.
+	 * This hook is called from ApiValidatePassword.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $module ApiValidatePassword instance.
-	 * @param ?mixed &$r Result array.
+	 * @param ApiValidatePassword $module
+	 * @param array &$r Result array
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onApiValidatePassword( $module, &$r );

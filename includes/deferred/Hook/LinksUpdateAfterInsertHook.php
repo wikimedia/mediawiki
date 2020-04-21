@@ -2,20 +2,22 @@
 
 namespace MediaWiki\Hook;
 
+use LinksUpdate;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface LinksUpdateAfterInsertHook {
 	/**
-	 * At the end of LinksUpdate::incrTableUpdate() after
-	 * each link table insert.  For example, pagelinks, imagelinks, externallinks.
+	 * This hook is called at the end of LinksUpdate::incrTableUpdate() after
+	 * each link table insert. For example: pagelinks, imagelinks, externallinks.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $linksUpdate LinksUpdate object
-	 * @param ?mixed $table the table to insert links to
-	 * @param ?mixed $insertions an array of links to insert
+	 * @param LinksUpdate $linksUpdate
+	 * @param string $table Table to insert links to
+	 * @param array $insertions Array of links to insert
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLinksUpdateAfterInsert( $linksUpdate, $table, $insertions );

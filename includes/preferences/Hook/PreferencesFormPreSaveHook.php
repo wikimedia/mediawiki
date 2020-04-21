@@ -2,21 +2,24 @@
 
 namespace MediaWiki\Preferences\Hook;
 
+use HTMLForm;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface PreferencesFormPreSaveHook {
 	/**
-	 * Override preferences being saved
+	 * Use this hook to override preferences being saved.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $formData array of user submitted data
-	 * @param ?mixed $form HTMLForm object, also a ContextSource
-	 * @param ?mixed $user User object with preferences to be saved set
-	 * @param ?mixed &$result boolean indicating success
-	 * @param ?mixed $oldUserOptions array with user old options (before save)
+	 * @param array $formData Array of user submitted data
+	 * @param HTMLForm $form HTMLForm object, also a ContextSource
+	 * @param User $user User with preferences to be saved
+	 * @param bool &$result Boolean indicating success
+	 * @param array $oldUserOptions Array with user's old options (before save)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onPreferencesFormPreSave( $formData, $form, $user, &$result,

@@ -2,17 +2,19 @@
 
 namespace MediaWiki\Hook;
 
+use ApiMain;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ApiBeforeMainHook {
 	/**
-	 * Before calling ApiMain's execute() method in api.php.
+	 * This hook is called before calling ApiMain's execute() method in api.php.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$main ApiMain object
+	 * @param ApiMain &$main
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onApiBeforeMain( &$main );

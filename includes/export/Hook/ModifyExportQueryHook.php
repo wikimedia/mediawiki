@@ -2,21 +2,23 @@
 
 namespace MediaWiki\Hook;
 
+use Wikimedia\Rdbms\IDatabase;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ModifyExportQueryHook {
 	/**
-	 * Modify the query used by the exporter.
+	 * Use this hook to modify the query used by the exporter.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $db The database object to be queried.
-	 * @param ?mixed &$tables Tables in the query.
-	 * @param ?mixed &$conds Conditions in the query.
-	 * @param ?mixed &$opts Options for the query.
-	 * @param ?mixed &$join_conds Join conditions for the query.
+	 * @param IDatabase $db Database object to be queried
+	 * @param array &$tables Tables in the query
+	 * @param array &$conds Conditions in the query
+	 * @param array &$opts Options for the query
+	 * @param array &$join_conds Join conditions for the query
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onModifyExportQuery( $db, &$tables, &$conds, &$opts,

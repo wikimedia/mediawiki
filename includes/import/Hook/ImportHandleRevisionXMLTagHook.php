@@ -2,21 +2,23 @@
 
 namespace MediaWiki\Hook;
 
+use XMLReader;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ImportHandleRevisionXMLTagHook {
 	/**
-	 * When parsing a XML tag in a page revision.
-	 * Return false to stop further processing of the tag
+	 * This hook is called when parsing an XML tag in a page revision.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $reader XMLReader object
-	 * @param ?mixed $pageInfo Array of page information
-	 * @param ?mixed $revisionInfo Array of revision information
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param XMLReader $reader
+	 * @param array $pageInfo Array of page information
+	 * @param array $revisionInfo Array of revision information
+	 * @return bool|void True or no return value to continue, or false to stop further
+	 *   processing of the tag
 	 */
 	public function onImportHandleRevisionXMLTag( $reader, $pageInfo,
 		$revisionInfo

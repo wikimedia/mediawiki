@@ -3,22 +3,23 @@
 namespace MediaWiki\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
+use EditPage;
+use OutputPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface EditPage__showStandardInputs_optionsHook {
 	/**
-	 * allows injection of form fields into
-	 * the editOptions area
-	 * Return value is ignored (should always be true)
+	 * Use this hook to inject form fields into the editOptions area.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $editor EditPage instance (object)
-	 * @param ?mixed $out an OutputPage instance to write to
-	 * @param ?mixed &$tabindex HTML tabindex of the last edit check/button
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param EditPage $editor
+	 * @param OutputPage $out OutputPage instance to write to
+	 * @param string &$tabindex HTML tabindex of the last edit check/button
+	 * @return bool|void Return value is ignored; this hook should always return true
 	 */
 	public function onEditPage__showStandardInputs_options( $editor, $out,
 		&$tabindex

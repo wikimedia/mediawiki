@@ -2,23 +2,27 @@
 
 namespace MediaWiki\Permissions\Hook;
 
+use Action;
+use Title;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface TitleQuickPermissionsHook {
 	/**
-	 * Called from Title::checkQuickPermissions to add to
+	 * This hook is called from Title::checkQuickPermissions to add to
 	 * or override the quick permissions check.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title The Title object being accessed
-	 * @param ?mixed $user The User performing the action
-	 * @param ?mixed $action Action being performed
-	 * @param ?mixed &$errors Array of errors
-	 * @param ?mixed $doExpensiveQueries Whether to do expensive DB queries
-	 * @param ?mixed $short Whether to return immediately on first error
+	 * @param Title $title Title being accessed
+	 * @param User $user User performing the action
+	 * @param Action $action Action being performed
+	 * @param array &$errors Array of errors
+	 * @param bool $doExpensiveQueries Whether to do expensive database queries
+	 * @param bool $short Whether to return immediately on first error
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onTitleQuickPermissions( $title, $user, $action, &$errors,

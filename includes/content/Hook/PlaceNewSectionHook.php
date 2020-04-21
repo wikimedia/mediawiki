@@ -2,22 +2,24 @@
 
 namespace MediaWiki\Content\Hook;
 
+use WikiPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface PlaceNewSectionHook {
 	/**
-	 * Override placement of new sections. Return false and put the
-	 * merged text into $text to override the default behavior.
+	 * Use this hook to override placement of new sections.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $wikipage WikiPage object
-	 * @param ?mixed $oldtext the text of the article before editing
-	 * @param ?mixed $subject subject of the new section
-	 * @param ?mixed &$text text of the new section
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param WikiPage $wikipage
+	 * @param string $oldtext Text of the article before editing
+	 * @param string $subject Subject of the new section
+	 * @param string &$text Text of the new section
+	 * @return bool|void True or no return value to continue, or false and put the
+	 *   merged text into $text to override the default behavior
 	 */
 	public function onPlaceNewSection( $wikipage, $oldtext, $subject, &$text );
 }

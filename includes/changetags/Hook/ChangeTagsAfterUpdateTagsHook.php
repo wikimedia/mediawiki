@@ -2,26 +2,29 @@
 
 namespace MediaWiki\ChangeTags\Hook;
 
+use RecentChange;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ChangeTagsAfterUpdateTagsHook {
 	/**
-	 * Called after tags have been updated with the
-	 * ChangeTags::updateTags function. Params:
+	 * This hook is called after tags have been updated with the ChangeTags::updateTags function.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $addedTags tags effectively added in the update
-	 * @param ?mixed $removedTags tags effectively removed in the update
-	 * @param ?mixed $prevTags tags that were present prior to the update
-	 * @param ?mixed $rc_id recentchanges table id
-	 * @param ?mixed $rev_id revision table id
-	 * @param ?mixed $log_id logging table id
-	 * @param ?mixed $params tag params
-	 * @param ?mixed $rc RecentChange being tagged when the tagging accompanies the action, or null
-	 * @param ?mixed $user User who performed the tagging when the tagging is subsequent to the
+	 * @param array $addedTags Tags effectively added in the update
+	 * @param array $removedTags Tags effectively removed in the update
+	 * @param array $prevTags Tags that were present prior to the update
+	 * @param int $rc_id Recentchanges table id
+	 * @param int $rev_id Revision table id
+	 * @param int $log_id Logging table id
+	 * @param array $params Tag params
+	 * @param RecentChange|null $rc RecentChange being tagged when the tagging accompanies the
+	 *   action, or null
+	 * @param User|null $user User who performed the tagging when the tagging is subsequent to the
 	 *   action, or null
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

@@ -2,21 +2,25 @@
 
 namespace MediaWiki\Hook;
 
+use stdClass;
+use Title;
+use XmlDumpWriter;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface XmlDumpWriterOpenPageHook {
 	/**
-	 * Called at the end of XmlDumpWriter::openPage, to allow
+	 * This hook is called at the end of XmlDumpWriter::openPage, to allow
 	 * extra metadata to be added.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $obj The XmlDumpWriter object.
-	 * @param ?mixed &$out The output string.
-	 * @param ?mixed $row The database row for the page.
-	 * @param ?mixed $title The title of the page.
+	 * @param XmlDumpWriter $obj
+	 * @param string &$out Output string
+	 * @param stdClass $row Database row for the page
+	 * @param Title $title Title of the page
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onXmlDumpWriterOpenPage( $obj, &$out, $row, $title );

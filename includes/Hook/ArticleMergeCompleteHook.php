@@ -2,18 +2,20 @@
 
 namespace MediaWiki\Hook;
 
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ArticleMergeCompleteHook {
 	/**
-	 * After merging to article using Special:Mergehistory.
+	 * This hook is called after merging to article using Special:Mergehistory.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $targetTitle target title (object)
-	 * @param ?mixed $destTitle destination title (object)
+	 * @param Title $targetTitle Target title
+	 * @param Title $destTitle Destination title
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticleMergeComplete( $targetTitle, $destTitle );

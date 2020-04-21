@@ -2,20 +2,23 @@
 
 namespace MediaWiki\Page\Hook;
 
+use User;
+use WikiPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ArticleProtectHook {
 	/**
-	 * Before an article is protected.
+	 * This hook is called before an article is protected.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $wikiPage the WikiPage being protected
-	 * @param ?mixed $user the user doing the protection
-	 * @param ?mixed $protect Set of restriction keys
-	 * @param ?mixed $reason Reason for protect
+	 * @param WikiPage $wikiPage WikiPage being protected
+	 * @param User $user User doing the protection
+	 * @param array $protect Set of restriction keys
+	 * @param string $reason Reason for protect
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticleProtect( $wikiPage, $user, $protect, $reason );

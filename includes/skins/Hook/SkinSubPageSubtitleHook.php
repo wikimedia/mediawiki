@@ -2,24 +2,26 @@
 
 namespace MediaWiki\Hook;
 
+use OutputPage;
+use Skin;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface SkinSubPageSubtitleHook {
 	/**
-	 * At the beginning of Skin::subPageSubtitle().
-	 * If false is returned $subpages will be used instead of the HTML
-	 * subPageSubtitle() generates.
-	 * If true is returned, $subpages will be ignored and the rest of
-	 * subPageSubtitle() will run.
+	 * This hook is called at the beginning of Skin::subPageSubtitle().
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$subpages Subpage links HTML
-	 * @param ?mixed $skin Skin object
-	 * @param ?mixed $out OutputPage object
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param string &$subpages Subpage links HTML
+	 * @param Skin $skin
+	 * @param OutputPage $out
+	 * @return bool|void True or no return value to continue or false to abort.
+	 *   If true is returned, $subpages will be ignored and the rest of subPageSubtitle()
+	 *   will run. If false is returned, $subpages will be used instead of the HTML
+	 *   subPageSubtitle() generates.
 	 */
 	public function onSkinSubPageSubtitle( &$subpages, $skin, $out );
 }

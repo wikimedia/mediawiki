@@ -2,18 +2,21 @@
 
 namespace MediaWiki\Storage\Hook;
 
+use ParserOptions;
+use WikiPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ArticlePrepareTextForEditHook {
 	/**
-	 * Called when preparing text to be saved.
+	 * This hook is called when preparing text to be saved.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $wikiPage the WikiPage being saved
-	 * @param ?mixed $popts parser options to be used for pre-save transformation
+	 * @param WikiPage $wikiPage WikiPage being saved
+	 * @param ParserOptions $popts Parser options to be used for pre-save transformation
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticlePrepareTextForEdit( $wikiPage, $popts );

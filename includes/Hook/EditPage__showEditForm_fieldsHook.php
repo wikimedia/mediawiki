@@ -3,20 +3,22 @@
 namespace MediaWiki\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
+use EditPage;
+use OutputPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface EditPage__showEditForm_fieldsHook {
 	/**
-	 * allows injection of form field into edit form
-	 * Return value is ignored (should always return true)
+	 * Use this hook to inject form field into edit form.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $editor the EditPage instance for reference
-	 * @param ?mixed $out an OutputPage instance to write to
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param EditPage $editor EditPage instance for reference
+	 * @param OutputPage $out OutputPage instance to write to
+	 * @return bool|void Return value is ignored; this hook should always return true
 	 */
 	public function onEditPage__showEditForm_fields( $editor, $out );
 }

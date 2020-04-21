@@ -8,13 +8,13 @@ namespace MediaWiki\Diff\Hook;
  */
 interface DifferenceEngineRenderRevisionShowFinalPatrolLinkHook {
 	/**
-	 * An extension can hook into
-	 * this hook point and return false to not show the final "mark as patrolled" link
-	 * on the bottom of a page.
+	 * Use this hook to not show the final "mark as patrolled" link on the bottom of a page.
 	 * This hook has no arguments.
 	 *
 	 * @since 1.35
-	 * @return bool|void True or no return value to continue or false to abort
+	 *
+	 * @return bool|void True or no return value to continue, or false to not show the final
+	 *   "mark as patrolled" link
 	 */
 	public function onDifferenceEngineRenderRevisionShowFinalPatrolLink();
 }

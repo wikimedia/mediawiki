@@ -8,12 +8,12 @@ namespace MediaWiki\Permissions\Hook;
  */
 interface UserIsEveryoneAllowedHook {
 	/**
-	 * Check if all users are allowed some user right; return
+	 * Use this hook to check if all users are allowed some user right; return
 	 * false if a UserGetRights hook might remove the named right.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $right The user right being checked
+	 * @param string $right User right being checked
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserIsEveryoneAllowed( $right );

@@ -8,7 +8,7 @@ namespace MediaWiki\Hook;
  */
 interface GetMetadataVersionHook {
 	/**
-	 * Modify the image metadata version currently in use. This
+	 * Use this hook to modify the image metadata version currently in use. This
 	 * is used when requesting image metadata from a ForeignApiRepo. Media handlers
 	 * that need to have versioned metadata should add an element to the end of the
 	 * version array of the form 'handler_name=version'. Most media handlers won't need
@@ -17,7 +17,7 @@ interface GetMetadataVersionHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$version Array of version strings
+	 * @param string[] &$version Array of version strings
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onGetMetadataVersion( &$version );
