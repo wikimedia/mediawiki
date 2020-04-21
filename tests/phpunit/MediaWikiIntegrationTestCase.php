@@ -1806,22 +1806,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				$wgUser->clearInstanceCache( $wgUser->mFrom );
 			}
 
-			// Postgres uses mwuser/pagecontent
-			// instead of user/text. But Postgres does not remap the
-			// table name in tableExists(), so we mark the real table
-			// names as being used.
-			if ( $db->getType() === 'postgres' ) {
-				if ( in_array( 'user', $tablesUsed ) ) {
-					$tablesUsed[] = 'mwuser';
-				}
-				if ( in_array( 'text', $tablesUsed ) ) {
-					$tablesUsed[] = 'pagecontent';
-				}
-			}
-
-			foreach ( $tablesUsed as $tbl ) {
-				$this->truncateTable( $tbl, $db );
-			}
+			$this->truncateTables( $tablesUsed, $db );
 
 			if ( array_intersect( $tablesUsed, $coreDBDataTables ) ) {
 				// Reset services that may contain information relating to the truncated tables
@@ -1832,25 +1817,25 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
+	protected function truncateTable( $table, IDatabase $db = null ) {
+		$this->truncateTables( [ $table ], $db );
+	}
+
 	/**
-	 * Empties the given table and resets any auto-increment counters.
+	 * Empties the given tables and resets any auto-increment counters.
 	 * Will also purge caches associated with some well known tables.
 	 * If the table is not know, this method just returns.
 	 *
-	 * @param string $tableName
+	 * @param string[] $tables
 	 * @param IDatabase|null $db
 	 */
-	protected function truncateTable( $tableName, IDatabase $db = null ) {
+	protected function truncateTables( array $tables, IDatabase $db = null ) {
 		$dbw = $db ?: $this->db;
 
-		if ( !$dbw->tableExists( $tableName ) ) {
-			return;
-		}
-
-		$dbw->truncateTable( $tableName, __METHOD__ );
+		$dbw->truncate( $tables, __METHOD__ );
 
 		// re-initialize site_stats table
-		if ( $tableName === 'site_stats' ) {
+		if ( in_array( 'site_stats', $tables ) ) {
 			SiteStatsInit::doPlaceholderInit();
 		}
 	}
