@@ -114,8 +114,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var array Map of (name => 1) for locks obtained via lock() */
 	protected $sessionNamedLocks = [];
-	/** @var array Map of (table name => 1) for TEMPORARY tables */
+	/** @var array Map of (table name => 1) for current TEMPORARY tables */
 	protected $sessionTempTables = [];
+	/** @var array Map of (table name => 1) for current TEMPORARY tables */
+	protected $sessionDirtyTempTables = [];
 
 	/** @var string ID of the active transaction or the empty string otherwise */
 	private $trxShortId = '';
@@ -1087,62 +1089,107 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param string $sql A SQL query
+	 * @param string $sql SQL query
 	 * @param bool $pseudoPermanent Treat any table from CREATE TEMPORARY as pseudo-permanent
-	 * @return array A n-tuple of:
-	 *   - int|null: A self::TEMP_* constant for temp table operations or null otherwise
-	 *   - string|null: The name of the new temporary table $sql creates, or null
-	 *   - string|null: The name of the temporary table that $sql drops, or null
+	 * @return array[] List of change n-tuples with:
+	 *   - int: self::TEMP_* constant for temp table operations
+	 *   - string: SQL query verb from $sql
+	 *   - string: Name of the temp table changed in $sql
 	 */
-	protected function getTempWrites( $sql, $pseudoPermanent ) {
-		static $qt = '[`"\']?(\w+)[`"\']?'; // quoted table
-
-		if ( preg_match(
-			'/^CREATE\s+TEMPORARY\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?' . $qt . '/i',
-			$sql,
-			$matches
-		) ) {
-			$type = $pseudoPermanent ? self::$TEMP_PSEUDO_PERMANENT : self::$TEMP_NORMAL;
-
-			return [ $type, $matches[1], null ];
-		} elseif ( preg_match(
-			'/^DROP\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?' . $qt . '/i',
-			$sql,
-			$matches
-		) ) {
-			return [ $this->sessionTempTables[$matches[1]] ?? null, null, $matches[1] ];
-		} elseif ( preg_match(
-			'/^TRUNCATE\s+(?:TEMPORARY\s+)?TABLE\s+(?:IF\s+EXISTS\s+)?' . $qt . '/i',
-			$sql,
-			$matches
-		) ) {
-			return [ $this->sessionTempTables[$matches[1]] ?? null, null, null ];
-		} elseif ( preg_match(
-			'/^(?:(?:INSERT|REPLACE)\s+(?:\w+\s+)?INTO|UPDATE|DELETE\s+FROM)\s+' . $qt . '/i',
-			$sql,
-			$matches
-		) ) {
-			return [ $this->sessionTempTables[$matches[1]] ?? null, null, null ];
+	protected function getTempTableWrites( $sql, $pseudoPermanent ) {
+		// Regexes for basic queries that can create/change/drop temporary tables.
+		// For simplicity, this only looks for tables with sane, alphanumeric, names;
+		// temporary tables only need simple programming names anyway.
+		static $regexes = null;
+		if ( $regexes === null ) {
+			// Regex with a group for quoted table 0 and a group for quoted tables 1..N
+			$qts = '(\w+|`\w+`|\'\w+\'|"\w+")(?:\s*,\s*(\w+|`\w+`|\'\w+\'|"\w+"))*';
+			// Regex to get query verb, table 0, and tables 1..N
+			$regexes = [
+				// DML write queries
+				"/^(INSERT|REPLACE)\s+(?:\w+\s+)*?INTO\s+$qts/i",
+				"/^(UPDATE)(?:\s+OR\s+\w+|\s+IGNORE|\s+ONLY)?\s+$qts/i",
+				"/^(DELETE)\s+(?:\w+\s+)*?FROM(?:\s+ONLY)?\s+$qts/i",
+				// DDL write queries
+				"/^(CREATE)\s+TEMPORARY\s+TABLE(?:\s+IF\s+NOT\s+EXISTS)?\s+$qts/i",
+				"/^(DROP)\s+(?:TEMPORARY\s+)?TABLE(?:\s+IF\s+EXISTS)?\s+$qts/i",
+				"/^(TRUNCATE)\s+(?:TEMPORARY\s+)?TABLE\s+$qts/i",
+				"/^(ALTER)\s+TABLE\s+$qts/i"
+			];
 		}
 
-		return [ null, null, null ];
+		$queryVerb = null;
+		$queryTables = [];
+		foreach ( $regexes as $regex ) {
+			if ( preg_match( $regex, $sql, $m, PREG_UNMATCHED_AS_NULL ) ) {
+				$queryVerb = $m[1];
+				$queryTables[] = trim( $m[2], "\"'`" );
+				foreach ( ( $m[3] ?? [] ) as $quotedTable ) {
+					$queryTables[] = trim( $quotedTable, "\"'`" );
+				}
+				break;
+			}
+		}
+
+		$tempTableChanges = [];
+		foreach ( $queryTables as $table ) {
+			if ( $queryVerb === 'CREATE' ) {
+				// Record the type of temporary table being created
+				$tableType = $pseudoPermanent ? self::$TEMP_PSEUDO_PERMANENT : self::$TEMP_NORMAL;
+			} else {
+				$tableType = $this->sessionTempTables[$table] ?? null;
+			}
+
+			if ( $tableType !== null ) {
+				$tempTableChanges[] = [ $tableType, $queryVerb, $table ];
+			}
+		}
+
+		return $tempTableChanges;
 	}
 
 	/**
 	 * @param IResultWrapper|bool $ret
-	 * @param int|null $tmpType TEMP_NORMAL or TEMP_PSEUDO_PERMANENT
-	 * @param string|null $tmpNew Name of created temp table
-	 * @param string|null $tmpDel Name of dropped temp table
+	 * @param array[] $changes List of change n-tuples with from getTempWrites()
 	 */
-	protected function registerTempWrites( $ret, $tmpType, $tmpNew, $tmpDel ) {
-		if ( $ret !== false ) {
-			if ( $tmpNew !== null ) {
-				$this->sessionTempTables[$tmpNew] = $tmpType;
-			}
-			if ( $tmpDel !== null ) {
-				unset( $this->sessionTempTables[$tmpDel] );
+	protected function registerTempWrites( $ret, array $changes ) {
+		if ( $ret === false ) {
+			return;
+		}
+
+		foreach ( $changes as list( $tmpTableType, $verb, $table ) ) {
+			switch ( $verb ) {
+				case 'CREATE':
+					$this->sessionTempTables[$table] = $tmpTableType;
+					break;
+				case 'DROP':
+					unset( $this->sessionTempTables[$table] );
+					unset( $this->sessionDirtyTempTables[$table] );
+					break;
+				case 'TRUNCATE':
+					unset( $this->sessionDirtyTempTables[$table] );
+					break;
+				default:
+					$this->sessionDirtyTempTables[$table] = 1;
+					break;
 			}
 		}
+	}
+
+	/**
+	 * Check if the table is both a TEMPORARY table and has not yet received CRUD operations
+	 *
+	 * @param string $table
+	 * @return bool
+	 * @since 1.35
+	 */
+	protected function isPristineTemporaryTable( $table ) {
+		$rawTable = $this->tableName( $table, 'raw' );
+
+		return (
+			isset( $this->sessionTempTables[$rawTable] ) &&
+			!isset( $this->sessionDirtyTempTables[$rawTable] )
+		);
 	}
 
 	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
@@ -1195,8 +1242,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// visible to one session and are not permanent. Profile them as reads. Integration
 			// tests can override this behavior via $flags.
 			$pseudoPermanent = $this->fieldHasBit( $flags, self::QUERY_PSEUDO_PERMANENT );
-			list( $tmpType, $tmpNew, $tmpDel ) = $this->getTempWrites( $sql, $pseudoPermanent );
-			$isPermWrite = ( $tmpType !== self::$TEMP_NORMAL );
+			$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
+			$isPermWrite = !$tempTableChanges;
+			foreach ( $tempTableChanges as list( $tmpType ) ) {
+				$isPermWrite = $isPermWrite || ( $tmpType !== self::$TEMP_NORMAL );
+			}
 			// DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
 			if ( $isPermWrite && $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
 				throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
@@ -1205,7 +1255,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// No permanent writes in this query
 			$isPermWrite = false;
 			// No temporary tables written to either
-			list( $tmpType, $tmpNew, $tmpDel ) = [ null, null, null ];
+			$tempTableChanges = [];
 		}
 
 		// Add trace comment to the begin of the sql string, right after the operator.
@@ -1227,7 +1277,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Register creation and dropping of temporary tables
-		$this->registerTempWrites( $ret, $tmpType, $tmpNew, $tmpDel );
+		$this->registerTempWrites( $ret, $tempTableChanges );
 
 		$corruptedTrx = false;
 
@@ -1488,6 +1538,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://dev.mysql.com/doc/refman/5.7/en/implicit-commit.html
 		// https://www.postgresql.org/docs/9.2/static/sql-createtable.html (ignoring ON COMMIT)
 		$this->sessionTempTables = [];
+		$this->sessionDirtyTempTables = [];
 		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
@@ -4972,35 +5023,51 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return false;
 		}
 
+		$this->doDropTable( $table, $fname );
+
+		return true;
+	}
+
+	/**
+	 * @see Database::dropTable()
+	 * @param string $table
+	 * @param string $fname
+	 */
+	protected function doDropTable( $table, $fname ) {
 		// https://mariadb.com/kb/en/drop-table/
 		// https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
 		// https://www.postgresql.org/docs/9.2/sql-truncate.html
 		$sql = "DROP TABLE " . $this->tableName( $table ) . " CASCADE";
 		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
-
-		return true;
 	}
 
-	public function truncateTable( $table, $fname = __METHOD__ ) {
-		$this->startAtomic( $fname );
+	public function truncate( $tables, $fname = __METHOD__ ) {
+		$tables = is_array( $tables ) ? $tables : [ $tables ];
 
-		$sql = "DELETE FROM " . $this->tableName( $table );
-		$this->query( $sql, $fname );
+		$tablesTruncate = [];
+		foreach ( $tables as $table ) {
+			// Skip TEMPORARY tables with no writes nor sequence updates detected.
+			// This mostly is an optimization for integration testing.
+			if ( !$this->isPristineTemporaryTable( $table ) ) {
+				$tablesTruncate[] = $table;
+			}
+		}
 
-		$this->resetSequencesForTable( $table, $fname );
-
-		$this->endAtomic( $fname );
+		if ( $tablesTruncate ) {
+			$this->doTruncate( $tablesTruncate, $fname );
+		}
 	}
 
 	/**
-	 * Reset all sequences owned by a table
-	 *
-	 * @param string $table
+	 * @see Database::truncate()
+	 * @param string[] $tables
 	 * @param string $fname
-	 * @since 1.35
 	 */
-	protected function resetSequencesForTable( $table, $fname ) {
-		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
+	protected function doTruncate( array $tables, $fname ) {
+		foreach ( $tables as $table ) {
+			$sql = "TRUNCATE TABLE " . $this->tableName( $table );
+			$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+		}
 	}
 
 	public function getInfinity() {

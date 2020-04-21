@@ -1272,18 +1272,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return true;
 	}
 
-	public function truncateTable( $table, $fname = __METHOD__ ) {
-		// No need to explicitly reset AUTO_INCREMENT counters with MySQL
-		$sql = "TRUNCATE TABLE " . $this->tableName( $table );
-		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
-	}
-
-	protected function resetSequencesForTable( $table, $fname ) {
-		// Note that this is a no-op if there is no AUTO_INCREMENT field
-		$sql = 'ALTER TABLE ' . $this->tableName( $table ) . ' AUTO_INCREMENT = 1';
-		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
-	}
-
 	/**
 	 * @param bool $value
 	 */
