@@ -291,17 +291,21 @@ class DeferredUpdates {
 		$type = get_class( $update ) . $suffix;
 		$stats->increment( "deferred_updates.$httpMethod.$type" );
 
+		$updateId = spl_object_id( $update );
+		$logger->debug( __METHOD__ . ": started $type #$updateId" );
 		$e = null;
 		try {
 			self::attemptUpdate( $update, $lbFactory );
 
 			return null;
 		} catch ( Throwable $e ) {
+		} finally {
+			$logger->debug( __METHOD__ . ": ended $type #$updateId" );
 		}
 
 		MWExceptionHandler::logException( $e );
 		$logger->error(
-			"Deferred update '$type' failed to run.",
+			"Deferred update '{deferred_type}' failed to run.",
 			[
 				'deferred_type' => $type,
 				'exception' => $e,
@@ -323,7 +327,7 @@ class DeferredUpdates {
 
 			MWExceptionHandler::logException( $jobEx );
 			$logger->error(
-				"Deferred update '$type' failed to enqueue as a job.",
+				"Deferred update '{deferred_type}' failed to enqueue as a job.",
 				[
 					'deferred_type' => $type,
 					'exception' => $jobEx,
