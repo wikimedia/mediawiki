@@ -506,6 +506,8 @@ because of Phabricator reports.
 * OutputPage::parserOptions doesn't accept an $options parameter anymore.
 * MessageCache::getParserOptions previously did not have a visibility set.
   It has been made private.
+* SpecialUndelete::showDiff previously did not have a visibilty set. It
+  hav been made private to allow a signature change.
 * The Skin no longer loads the "mediawiki.legacy.shared" or
   "mediawiki.legacy.commonPrint" modules. The legacy shared styles must now
   be loaded by the skin explicitly, either inherited via the
