@@ -71,6 +71,8 @@ wfRequireOnceInGlobalScope( "$IP/includes/Defines.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
 
+TestSetup::applyInitialConfig();
+
 // Populate classes and namespaces from extensions and skins present in filesystem.
 $directoryToJsonMap = [
 	$GLOBALS['wgExtensionDirectory'] => [ 'extension.json', 'extension-wip.json' ],
