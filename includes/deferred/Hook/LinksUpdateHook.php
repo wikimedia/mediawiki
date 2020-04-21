@@ -1,0 +1,20 @@
+<?php
+
+namespace MediaWiki\Hook;
+
+/**
+ * @stable for implementation
+ * @ingroup Hooks
+ */
+interface LinksUpdateHook {
+	/**
+	 * At the beginning of LinksUpdate::doUpdate() just before the
+	 * actual update.
+	 *
+	 * @since 1.35
+	 *
+	 * @param ?mixed $linksUpdate the LinksUpdate object
+	 * @return bool|void True or no return value to continue or false to abort
+	 */
+	public function onLinksUpdate( $linksUpdate );
+}
