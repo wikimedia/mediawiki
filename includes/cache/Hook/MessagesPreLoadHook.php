@@ -8,13 +8,13 @@ namespace MediaWiki\Cache\Hook;
  */
 interface MessagesPreLoadHook {
 	/**
-	 * When loading a message from the database.
+	 * This hook is called when loading a message from the database.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title title of the message (string)
-	 * @param ?mixed &$message value (string), change it to the message you want to define
-	 * @param ?mixed $code code (string) denoting the language to try.
+	 * @param string $title Title of the message
+	 * @param string &$message Message you want to define
+	 * @param string $code Language code
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onMessagesPreLoad( $title, &$message, $code );

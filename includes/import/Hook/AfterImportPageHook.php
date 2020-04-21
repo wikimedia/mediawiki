@@ -2,21 +2,24 @@
 
 namespace MediaWiki\Hook;
 
+use ForeignTitle;
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface AfterImportPageHook {
 	/**
-	 * When a page import is completed.
+	 * This hook is called when a page import is completed.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title Title under which the revisions were imported
-	 * @param ?mixed $foreignTitle ForeignTitle object based on data provided by the XML file
-	 * @param ?mixed $revCount Number of revisions in the XML file
-	 * @param ?mixed $sRevCount Number of successfully imported revisions
-	 * @param ?mixed $pageInfo associative array of page information
+	 * @param Title $title Title under which the revisions were imported
+	 * @param ForeignTitle $foreignTitle ForeignTitle object based on data provided by the XML file
+	 * @param int $revCount Number of revisions in the XML file
+	 * @param int $sRevCount Number of successfully imported revisions
+	 * @param array $pageInfo Associative array of page information
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAfterImportPage( $title, $foreignTitle, $revCount,

@@ -2,23 +2,25 @@
 
 namespace MediaWiki\Hook;
 
+use IContextSource;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface BeforeHttpsRedirectHook {
 	/**
-	 * Prior to forcing HTTP->HTTPS redirect. Gives a chance to
-	 * override how the redirect is output by modifying, or by returning false, and
-	 * letting standard HTTP rendering take place.
+	 * This hook is called prior to forcing HTTP->HTTPS redirect. Use this hook
+	 * to override how the redirect is output.
 	 * ATTENTION: This hook is likely to be removed soon due to overall design of the
 	 * system.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $context IContextSource object
-	 * @param ?mixed &$redirect string URL, modifiable
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param IContextSource $context
+	 * @param string &$redirect string URL, modifiable
+	 * @return bool|void True or no return value to continue, or false to let standard HTTP rendering
+	 *   take place
 	 */
 	public function onBeforeHttpsRedirect( $context, &$redirect );
 }

@@ -2,22 +2,24 @@
 
 namespace MediaWiki\Api\Hook;
 
+use IContextSource;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ApiFormatHighlightHook {
 	/**
-	 * Use to syntax-highlight API pretty-printed output. When
-	 * highlighting, add output to $context->getOutput() and return false.
+	 * Use this hook to syntax-highlight API pretty-printed output.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $context An IContextSource.
-	 * @param ?mixed $text Text to be highlighted.
-	 * @param ?mixed $mime MIME type of $text.
-	 * @param ?mixed $format API format code for $text.
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param IContextSource $context
+	 * @param string $text Text to be highlighted
+	 * @param string $mime MIME type of $text
+	 * @param string $format API format code for $text
+	 * @return bool|void True or no return value to continue, or false and add output
+	 *  to $context->getOutput() to highlight
 	 */
 	public function onApiFormatHighlight( $context, $text, $mime, $format );
 }

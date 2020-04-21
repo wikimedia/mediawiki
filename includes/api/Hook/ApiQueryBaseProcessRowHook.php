@@ -2,25 +2,28 @@
 
 namespace MediaWiki\Api\Hook;
 
+use ApiQueryBase;
+use stdClass;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ApiQueryBaseProcessRowHook {
 	/**
-	 * Called for (some) API query modules as each row of
-	 * the database result is processed. Return false to stop processing the result
-	 * set. An API query module wanting to use this hook should see the
+	 * This hook is called for (some) API query modules as each row of the database result is
+	 * processed. An API query module wanting to use this hook should see the
 	 * ApiQueryBase::select() and ApiQueryBase::processRow() documentation.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $module ApiQueryBase module in question
-	 * @param ?mixed $row stdClass Database result row
-	 * @param ?mixed &$data array to be included in the ApiResult.
-	 * @param ?mixed &$hookData array that was be passed to the 'ApiQueryBaseBeforeQuery' and
-	 *   'ApiQueryBaseAfterQuery' hooks, intended for inter-hook communication.
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param ApiQueryBase $module Module in question
+	 * @param stdClass $row Database result row
+	 * @param array &$data Array to be included in the ApiResult
+	 * @param array &$hookData Array that was be passed to the ApiQueryBaseBeforeQuery and
+	 *   ApiQueryBaseAfterQuery hooks, intended for inter-hook communication
+	 * @return bool|void True or no return value to continue, or false to stop processing the
+	 *   result set
 	 */
 	public function onApiQueryBaseProcessRow( $module, $row, &$data, &$hookData );
 }

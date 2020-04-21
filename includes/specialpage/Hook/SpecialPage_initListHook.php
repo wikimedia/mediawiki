@@ -9,12 +9,12 @@ namespace MediaWiki\SpecialPage\Hook;
  */
 interface SpecialPage_initListHook {
 	/**
-	 * Called when setting up SpecialPageFactory::$list, use
+	 * This hook is called when setting up SpecialPageFactory::$list. Use
 	 * this hook to remove a core special page or conditionally register special pages.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$list list (array) of core special pages
+	 * @param array &$list List of core special pages
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialPage_initList( &$list );

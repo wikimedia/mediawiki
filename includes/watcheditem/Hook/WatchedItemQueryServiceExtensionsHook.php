@@ -2,18 +2,20 @@
 
 namespace MediaWiki\Hook;
 
+use WatchedItemQueryService;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface WatchedItemQueryServiceExtensionsHook {
 	/**
-	 * Create a WatchedItemQueryServiceExtension.
+	 * Use this hook to create a WatchedItemQueryServiceExtension.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$extensions Add WatchedItemQueryServiceExtension objects to this array
-	 * @param ?mixed $watchedItemQueryService Service object
+	 * @param array &$extensions Add WatchedItemQueryServiceExtension objects to this array
+	 * @param WatchedItemQueryService $watchedItemQueryService Service object
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onWatchedItemQueryServiceExtensions( &$extensions,

@@ -2,23 +2,27 @@
 
 namespace MediaWiki\Hook;
 
+use Revision;
+use Title;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface TitleMoveCompleteHook {
 	/**
-	 * After moving an article (title), post-commit.
+	 * This hook is called after moving an article (title), post-commit.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $old old title
-	 * @param ?mixed $nt new title
-	 * @param ?mixed $user user who did the move
-	 * @param ?mixed $pageid database ID of the page that's been moved
-	 * @param ?mixed $redirid database ID of the created redirect
-	 * @param ?mixed $reason reason for the move
-	 * @param ?mixed $revision the Revision created by the move
+	 * @param Title $old Old title
+	 * @param Title $nt New title
+	 * @param User $user User who did the move
+	 * @param int $pageid Database ID of the page that's been moved
+	 * @param int $redirid Database ID of the created redirect
+	 * @param string $reason Reason for the move
+	 * @param Revision $revision Revision created by the move
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onTitleMoveComplete( $old, $nt, $user, $pageid, $redirid,

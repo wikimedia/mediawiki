@@ -2,19 +2,20 @@
 
 namespace MediaWiki\Hook;
 
+use EditPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface EditPageNoSuchSectionHook {
 	/**
-	 * When a section edit request is given for an
-	 * non-existent section
+	 * This hook is called when a section edit request is given for an non-existent section.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $editpage The current EditPage object
-	 * @param ?mixed &$res the HTML of the error text
+	 * @param EditPage $editpage Current EditPage object
+	 * @param string &$res HTML of the error text
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onEditPageNoSuchSection( $editpage, &$res );

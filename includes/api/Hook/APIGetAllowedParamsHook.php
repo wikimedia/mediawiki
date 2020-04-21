@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Api\Hook;
 
+use ApiBase;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
@@ -12,9 +14,9 @@ interface APIGetAllowedParamsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $module ApiBase Module object
-	 * @param ?mixed &$params Array of parameters
-	 * @param ?mixed $flags int zero or OR-ed flags like ApiBase::GET_VALUES_FOR_HELP
+	 * @param ApiBase $module Module object
+	 * @param array &$params Array of parameters
+	 * @param int $flags Zero or OR-ed flags like ApiBase::GET_VALUES_FOR_HELP
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAPIGetAllowedParams( $module, &$params, $flags );

@@ -9,14 +9,14 @@ namespace MediaWiki\Cache\Hook;
  */
 interface MessageCache__getHook {
 	/**
-	 * When fetching a message. Can be used to override the key
-	 * for customisations. Given and returned message key must be in special format:
-	 * 1) first letter must be in lower case according to the content language.
-	 * 2) spaces must be replaced with underscores
+	 * This hook is called when fetching a message. Use this hook to override the key
+	 * for customisations. Given and returned message key must be formatted with:
+	 * 1) the first letter in lower case according to the content language
+	 * 2) spaces replaced with underscores
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$key message key (string)
+	 * @param string &$key Message key
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onMessageCache__get( &$key );

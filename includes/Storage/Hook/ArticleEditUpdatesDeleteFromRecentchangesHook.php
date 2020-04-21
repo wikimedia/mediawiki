@@ -2,20 +2,22 @@
 
 namespace MediaWiki\Storage\Hook;
 
+use WikiPage;
+
 /**
- * @stable for implementation
+ * @deprecated since 1.35 Use RecentChange_save or similar instead
  * @ingroup Hooks
  */
 interface ArticleEditUpdatesDeleteFromRecentchangesHook {
 	/**
-	 * DEPRECATED since 1.35, use RecentChange_save
-	 * or similar instead. Before deleting old entries from
-	 * recentchanges table, return false to not delete old entries.
+	 * This hook is called before deleting old entries from
+	 * recentchanges table.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $wikiPage WikiPage (object) being modified
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param WikiPage $wikiPage WikiPage being modified
+	 * @return bool|void True or no return value to continue, or false
+	 *   to not delete old entries
 	 */
 	public function onArticleEditUpdatesDeleteFromRecentchanges( $wikiPage );
 }

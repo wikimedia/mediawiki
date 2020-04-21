@@ -2,17 +2,19 @@
 
 namespace MediaWiki\Hook;
 
+use LinksUpdate;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface LinksUpdateConstructedHook {
 	/**
-	 * At the end of LinksUpdate() is construction.
+	 * This hook is called at the end of LinksUpdate() is construction.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $linksUpdate the LinksUpdate object
+	 * @param LinksUpdate $linksUpdate
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLinksUpdateConstructed( $linksUpdate );

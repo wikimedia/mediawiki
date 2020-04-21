@@ -2,20 +2,21 @@
 
 namespace MediaWiki\SpecialPage\Hook;
 
+use SpecialPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface SpecialPageBeforeExecuteHook {
 	/**
-	 * Called before SpecialPage::execute.
-	 * Return false to prevent execution.
+	 * This hook is called before SpecialPage::execute.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $special the SpecialPage object
-	 * @param ?mixed $subPage the subpage string or null if no subpage was specified
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param SpecialPage $special
+	 * @param string|null $subPage Subpage string, or null if no subpage was specified
+	 * @return bool|void True or no return value to continue or false to prevent execution
 	 */
 	public function onSpecialPageBeforeExecute( $special, $subPage );
 }

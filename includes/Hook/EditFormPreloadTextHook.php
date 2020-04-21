@@ -2,19 +2,20 @@
 
 namespace MediaWiki\Hook;
 
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface EditFormPreloadTextHook {
 	/**
-	 * Allows population of the edit form when creating
-	 * new pages
+	 * Use this hook to populate the edit form when creating pages.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$text Text to preload with
-	 * @param ?mixed $title Title object representing the page being created
+	 * @param string &$text Text to preload with
+	 * @param Title $title Page being created
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onEditFormPreloadText( &$text, $title );

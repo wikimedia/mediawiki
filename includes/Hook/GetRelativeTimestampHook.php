@@ -2,25 +2,29 @@
 
 namespace MediaWiki\Hook;
 
+use DateInterval;
+use Language;
+use MWTimestamp;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface GetRelativeTimestampHook {
 	/**
-	 * Pre-emptively override the relative timestamp generated
-	 * by MWTimestamp::getRelativeTimestamp(). Return false in this hook to use the
-	 * custom output.
+	 * Use this hook to pre-emptively override the relative timestamp generated
+	 * by MWTimestamp::getRelativeTimestamp().
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$output string for the output timestamp
-	 * @param ?mixed &$diff DateInterval representing the difference between the timestamps
-	 * @param ?mixed $timestamp MWTimestamp object of the current (user-adjusted) timestamp
-	 * @param ?mixed $relativeTo MWTimestamp object of the relative (user-adjusted) timestamp
-	 * @param ?mixed $user User whose preferences are being used to make timestamp
-	 * @param ?mixed $lang Language that will be used to render the timestamp
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param string &$output String for the output timestamp
+	 * @param DateInterval &$diff Difference between the timestamps
+	 * @param MWTimestamp $timestamp Current (user-adjusted) timestamp
+	 * @param MWTimestamp $relativeTo Relative (user-adjusted) timestamp
+	 * @param User $user User whose preferences are being used to make timestamp
+	 * @param Language $lang Language that will be used to render the timestamp
+	 * @return bool|void True or no return value to continue, or false to use the custom output
 	 */
 	public function onGetRelativeTimestamp( &$output, &$diff, $timestamp,
 		$relativeTo, $user, $lang

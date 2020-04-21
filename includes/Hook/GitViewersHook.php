@@ -8,12 +8,12 @@ namespace MediaWiki\Hook;
  */
 interface GitViewersHook {
 	/**
-	 * Called when generating the list of git viewers for
-	 * Special:Version, use this to change the list.
+	 * This hook is called when generating the list of git viewers for Special:Version,
+	 * allowing you to modify the list.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$extTypes associative array of repo URLS to viewer URLs.
+	 * @param array &$extTypes Associative array of repo URLS to viewer URLs
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onGitViewers( &$extTypes );

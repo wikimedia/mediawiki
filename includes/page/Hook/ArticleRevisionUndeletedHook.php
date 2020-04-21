@@ -2,19 +2,22 @@
 
 namespace MediaWiki\Page\Hook;
 
+use Revision;
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ArticleRevisionUndeletedHook {
 	/**
-	 * After an article revision is restored.
+	 * This hook is called after an article revision is restored.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $title the article title
-	 * @param ?mixed $revision the revision
-	 * @param ?mixed $oldPageID the page ID of the revision when archived (may be null)
+	 * @param Title $title Article title
+	 * @param Revision $revision
+	 * @param int|null $oldPageID Page ID of the revision when archived
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticleRevisionUndeleted( $title, $revision, $oldPageID );

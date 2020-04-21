@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
@@ -9,15 +11,15 @@ namespace MediaWiki\Hook;
 interface PageRenderingHashHook {
 	/**
 	 * NOTE: Consider using ParserOptionsRegister instead.
-	 * Alter the parser cache option hash key. A parser extension
+	 * Use this hook to alter the parser cache option hash key. A parser extension
 	 * which depends on user options should install this hook and append its values to
 	 * the key.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$confstr reference to a hash key string which can be modified
-	 * @param ?mixed $user User (object) requesting the page
-	 * @param ?mixed &$forOptions array of options the hash is for
+	 * @param string &$confstr Reference to a hash key string which can be modified
+	 * @param User $user User requesting the page
+	 * @param array &$forOptions Array of options the hash is for
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onPageRenderingHash( &$confstr, $user, &$forOptions );

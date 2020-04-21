@@ -8,12 +8,12 @@ namespace MediaWiki\Hook;
  */
 interface IsTrustedProxyHook {
 	/**
-	 * Override the result of ProxyLookup::isTrustedProxy()
+	 * Use this hook to override the result of ProxyLookup::isTrustedProxy().
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $ip IP being check
-	 * @param ?mixed &$result Change this value to override the result of ProxyLookup::isTrustedProxy()
+	 * @param string $ip IP being checked
+	 * @param array &$result Change this value to override the result of ProxyLookup::isTrustedProxy()
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onIsTrustedProxy( $ip, &$result );

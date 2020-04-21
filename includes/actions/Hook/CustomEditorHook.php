@@ -2,21 +2,23 @@
 
 namespace MediaWiki\Hook;
 
+use User;
+use WikiPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface CustomEditorHook {
 	/**
-	 * When invoking the page editor
-	 * Return true to allow the normal editor to be used, or false if implementing
-	 * a custom editor, e.g. for a special namespace, etc.
+	 * This hook is called when invoking the page editor.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $article Article being edited
-	 * @param ?mixed $user User performing the edit
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param WikiPage $article Article being edited
+	 * @param User $user User performing the edit
+	 * @return bool|void True or no return value to allow the normal editor to be used.
+	 *   False if implementing a custom editor, e.g. for a special namespace, etc.
 	 */
 	public function onCustomEditor( $article, $user );
 }

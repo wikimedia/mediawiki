@@ -2,21 +2,24 @@
 
 namespace MediaWiki\Hook;
 
+use HistoryPager;
+use stdClass;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface PageHistoryLineEndingHook {
 	/**
-	 * Right before the end <li> is added to a history line.
+	 * This hook is called right before the `<li>` is generated for a history line.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $historyAction the action object
-	 * @param ?mixed &$row the revision row for this line
-	 * @param ?mixed &$s the string representing this parsed line
-	 * @param ?mixed &$classes array containing the <li> element classes
-	 * @param ?mixed &$attribs associative array of other HTML attributes for the <li> element.
+	 * @param HistoryPager $historyAction
+	 * @param stdClass &$row The revision row for this line
+	 * @param string &$s The string representing this parsed line
+	 * @param string[] &$classes Array containing the `<li>` element classes
+	 * @param string[] &$attribs Associative array of other HTML attributes for the `<li>` element.
 	 *   Currently only data attributes reserved to MediaWiki are allowed
 	 *   (see Sanitizer::isReservedDataAttribute).
 	 * @return bool|void True or no return value to continue or false to abort

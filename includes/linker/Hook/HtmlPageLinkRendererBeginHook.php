@@ -2,30 +2,35 @@
 
 namespace MediaWiki\Linker\Hook;
 
+use HtmlArmor;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkTarget;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface HtmlPageLinkRendererBeginHook {
 	/**
-	 * Used when generating internal and interwiki links in
-	 * LinkRenderer, before processing starts.  Return false to skip default
-	 * processing and return $ret.
+	 * This hook is called when generating internal and interwiki links in
+	 * LinkRenderer, before processing starts.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $linkRenderer the LinkRenderer object
-	 * @param ?mixed $target the LinkTarget that the link is pointing to
-	 * @param ?mixed &$text the contents that the <a> tag should have; either a plain, unescaped
-	 *   string or a HtmlArmor object; null means "default".
-	 * @param ?mixed &$customAttribs the HTML attributes that the <a> tag should have, in
-	 *   associative array form, with keys and values unescaped.  Should be merged
+	 * @param LinkRenderer $linkRenderer
+	 * @param LinkTarget $target LinkTarget that the link is pointing to
+	 * @param string|HtmlArmor|null &$text Contents that the `<a>` tag should
+	 *   have; either a plain, unescaped string or an HtmlArmor object; null
+	 *   means "default"
+	 * @param array &$customAttribs HTML attributes that the `<a>` tag should have, in
+	 *   associative array form, with keys and values unescaped. Should be merged
 	 *   with default values, with a value of false meaning to suppress the
 	 *   attribute.
-	 * @param ?mixed &$query the query string to add to the generated URL (the bit after the "?"),
+	 * @param array &$query Query string to add to the generated URL (the bit after the "?"),
 	 *   in associative array form, with keys and values unescaped.
-	 * @param ?mixed &$ret the value to return if your hook returns false.
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param string &$ret Value to return if your hook returns false
+	 * @return bool|void True or no return value to continue, or false to skip default
+	 *   processing and return $ret
 	 */
 	public function onHtmlPageLinkRendererBegin( $linkRenderer, $target, &$text,
 		&$customAttribs, &$query, &$ret

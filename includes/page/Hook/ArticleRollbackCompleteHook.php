@@ -2,20 +2,24 @@
 
 namespace MediaWiki\Page\Hook;
 
+use Revision;
+use User;
+use WikiPage;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ArticleRollbackCompleteHook {
 	/**
-	 * After an article rollback is completed.
+	 * This hook is called after an article rollback is completed.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $wikiPage the WikiPage that was edited
-	 * @param ?mixed $user the user who did the rollback
-	 * @param ?mixed $revision the revision the page was reverted back to
-	 * @param ?mixed $current the reverted revision
+	 * @param WikiPage $wikiPage WikiPage that was edited
+	 * @param User $user User who did the rollback
+	 * @param Revision $revision Revision the page was reverted back to
+	 * @param Revision $current Reverted revision
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticleRollbackComplete( $wikiPage, $user, $revision,

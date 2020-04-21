@@ -2,23 +2,27 @@
 
 namespace MediaWiki\Session\Hook;
 
+use MediaWiki\Session\SessionInfo;
+use WebRequest;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface SessionCheckInfoHook {
 	/**
-	 * Validate a MediaWiki\Session\SessionInfo as it's being
-	 * loaded from storage. Return false to prevent it from being used.
+	 * Use this hook to validate a MediaWiki\Session\SessionInfo as it's being
+	 * loaded from storage.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$reason String rejection reason to be logged
-	 * @param ?mixed $info MediaWiki\Session\SessionInfo being validated
-	 * @param ?mixed $request WebRequest being loaded from
-	 * @param ?mixed $metadata Array|false Metadata array for the MediaWiki\Session\Session
-	 * @param ?mixed $data Array|false Data array for the MediaWiki\Session\Session
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param string &$reason Rejection reason to be logged
+	 * @param SessionInfo $info MediaWiki\Session\SessionInfo being validated
+	 * @param WebRequest $request WebRequest being loaded from
+	 * @param array|bool $metadata Metadata array for the MediaWiki\Session\Session
+	 * @param array|bool $data Data array for the MediaWiki\Session\Session
+	 * @return bool|void True or no return value to continue, or false to to prevent
+	 *   the MediaWiki\Session\SessionInfo from being used
 	 */
 	public function onSessionCheckInfo( &$reason, $info, $request, $metadata,
 		$data

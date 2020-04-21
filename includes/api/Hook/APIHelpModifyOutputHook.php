@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Api\Hook;
 
+use ApiBase;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
@@ -12,10 +14,10 @@ interface APIHelpModifyOutputHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $module ApiBase Module object
-	 * @param ?mixed &$help Array of HTML strings to be joined for the output.
-	 * @param ?mixed $options Array Options passed to ApiHelp::getHelp
-	 * @param ?mixed &$tocData Array If a TOC is being generated, this array has keys as anchors in
+	 * @param ApiBase $module Module object
+	 * @param string[] &$help Array of HTML strings to be joined for the output
+	 * @param array $options Array of formatting options passed to ApiHelp::getHelp
+	 * @param array &$tocData If a TOC is being generated, this array has keys as anchors in
 	 *   the page and values as for Linker::generateTOC().
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
