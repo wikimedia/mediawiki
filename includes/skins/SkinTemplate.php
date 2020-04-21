@@ -215,12 +215,24 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 
 		$this->initPage( $out );
+		$out->addJsConfigVars( $this->getJsConfigVars() );
 		$tpl = $this->prepareQuickTemplate();
 		// execute template
 		$res = $tpl->execute();
 
 		// result may be an error
 		$this->printOrError( $res );
+	}
+
+	/**
+	 * Returns array of config variables that should be added only to this skin
+	 * for use in JavaScript.
+	 * Skins can override this to add variables to the page.
+	 * @since 1.35
+	 * @return array
+	 */
+	protected function getJsConfigVars() : array {
+		return [];
 	}
 
 	/**
