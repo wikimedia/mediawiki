@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\ResourceLoader\Hook;
 
 use ResourceLoader;
 
 /**
  * @deprecated since 1.33
- * @ingroup Hooks
+ * @ingroup ResourceLoaderHooks
  */
 interface ResourceLoaderTestModulesHook {
 	/**
@@ -25,8 +25,8 @@ interface ResourceLoaderTestModulesHook {
 	 *   		'script' => [ 'tests/qunit/foo.js' ],
 	 *   		'dependencies' => [ 'ext.Example.foo' ]
 	 *   	 ];
-	 * @param ResourceLoader $ResourceLoader
+	 * @param ResourceLoader $rl
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onResourceLoaderTestModules( &$testModules, $ResourceLoader );
+	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl );
 }
