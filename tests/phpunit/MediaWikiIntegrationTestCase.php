@@ -2315,7 +2315,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Revision-deletes a revision.
 	 *
-	 * @param Revision|int $rev Revision to delete
+	 * @param RevisionRecord|int $rev Revision to delete
 	 * @param array $value Keys are Revision::DELETED_* flags.  Values are 1 to set the bit, 0 to
 	 *   clear, -1 to leave alone.  (All other values also clear the bit.)
 	 * @param string $comment Deletion comment
@@ -2324,10 +2324,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$rev, array $value = [ Revision::DELETED_TEXT => 1 ], $comment = ''
 	) {
 		if ( is_int( $rev ) ) {
-			$rev = Revision::newFromId( $rev );
+			$rev = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionById( $rev );
 		}
+
+		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
+
 		RevisionDeleter::createList(
-			'revision', RequestContext::getMain(), $rev->getTitle(), [ $rev->getId() ]
+			'revision', RequestContext::getMain(), $title, [ $rev->getId() ]
 		)->setVisibility( [
 			'value' => $value,
 			'comment' => $comment,

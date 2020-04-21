@@ -241,7 +241,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 		$this->setExpectedApiException( [ 'apierror-missingcontent-pageid', $oldRev->getPage() ] );
 
-		$this->revisionDelete( $oldRev );
+		$this->revisionDelete( $oldRev->getRevisionRecord() );
 
 		$this->doStash( [
 			'title' => $name,
@@ -257,7 +257,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 		$this->setExpectedApiException( 'apierror-sectionreplacefailed' );
 
-		$this->revisionDelete( $oldRev );
+		$this->revisionDelete( $oldRev->getRevisionRecord() );
 
 		$this->doStash( [
 			'title' => $name,
