@@ -1,0 +1,18 @@
+<?php
+
+namespace MediaWiki\Hook;
+
+/**
+ * @stable for implementation
+ * @ingroup Hooks
+ */
+interface UnitTestsBeforeDatabaseTeardownHook {
+	/**
+	 * Called right before MediaWiki tears down its
+	 * database infrastructure used for unit tests.
+	 *
+	 * @since 1.35
+	 * @return bool|void True or no return value to continue or false to abort
+	 */
+	public function onUnitTestsBeforeDatabaseTeardown();
+}
