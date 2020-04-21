@@ -3090,6 +3090,7 @@
 	"confirm-purge-bottom": "किसी पृष्ठ को मिटाने से संचिका साफ़ हो जाती है और इस वजह से ताज़ातरीन संस्करण प्रकट हो जाता है।",
 	"confirm-watch-button": "ठीक है",
 	"confirm-watch-top": "इस पृष्ठ को अपने ध्यानसूची में जोड़ें?",
+	"confirm-watch-button-expiry": "ध्यान दें",
 	"confirm-unwatch-button": "ठीक है",
 	"confirm-unwatch-top": "यह पृष्ठ अपने ध्यानसूचीसे हटाएं?",
 	"confirm-rollback-button": "ठीक है",
