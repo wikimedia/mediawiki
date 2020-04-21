@@ -66,6 +66,22 @@
 	hyphens: @value;         // Firefox 43+, Chrome 55+, Android 62+, UC Browser 11.8+, Samsung 6.2+
 }
 
+// Use to truncate overflow text with value of `ellipsis` (mixin default)
+// a custom string (Firefox 9+ only).
+// Recommended usage: `text-overflow( @visible: false )` for best readability.
+.text-overflow( @visible: false, @value: ellipsis ) {
+	& when ( @visible = true ) {
+		overflow: visible;
+		text-overflow: clip;
+		white-space: normal;
+	}
+	& when ( @visible = false ) {
+		overflow: hidden;
+		text-overflow: @value;
+		white-space: nowrap;
+	}
+}
+
 .transform( @value ) {
 	-webkit-transform: @value; // Safari 3.1-8.0, iOS 3.2-8.4, Android 2.1-4.4.4
 	-moz-transform: @value; // Firefox 3.5-15
