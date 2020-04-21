@@ -523,7 +523,20 @@ $wgImgAuthUrlPathMap = [];
  *                      and default to using the container root as the zone's root directory.
  *                      Nesting of zone locations within other zones should be avoided.
  *   - url              Public zone URL. The 'zones' settings take precedence.
- *   - hashLevels       The number of directory levels for hash-based division of files
+ *   - hashLevels       The number of directory levels for hash-based division of files.
+ *
+ *                      Set this to 0 if you do not want MediaWiki to divide your images
+ *                      directory into many subdirectories.
+ *
+ *                      It is recommended to leave this enabled. In previous versions of
+ *                      MediaWiki, some users set this to false to allow images to be added to
+ *                      the wiki by copying them into $wgUploadDirectory and then running
+ *                      maintenance/rebuildImages.php to register them in the database.
+ *                      This is no longer supported, use maintenance/importImages.php instead.
+ *
+ *                      Default: 2.
+ *   - deletedHashLevels
+ *                      Optional 'hashLevels' override for the the 'deleted' zone.
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
  *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404
  *                      handler instead.
@@ -574,6 +587,7 @@ $wgImgAuthUrlPathMap = [];
  * be searched after the local file repo.
  * Otherwise, you will only have access to local media files.
  *
+ * @see FileRepo::__construct for the default options.
  * @see Setup.php for an example usage and default initialization.
  */
 $wgLocalFileRepo = false;
@@ -957,17 +971,10 @@ $wgThumbnailScriptPath = false;
 $wgSharedThumbnailScriptPath = false;
 
 /**
- * Set this to false if you do not want MediaWiki to divide your images
- * directory into many subdirectories, for improved performance.
+ * Shortcut for setting `hashLevels=2` in $wgLocalFileRepo.
  *
- * It's almost always good to leave this enabled. In previous versions of
- * MediaWiki, some users set this to false to allow images to be added to the
- * wiki by simply copying them into $wgUploadDirectory and then running
- * maintenance/rebuildImages.php to register them in the database. This is no
- * longer recommended, use maintenance/importImages.php instead.
- *
- * @note That this variable may be ignored if $wgLocalFileRepo is set.
- * @todo Deprecate the setting and ultimately remove it from Core.
+ * @note Only used if $wgLocalFileRepo is not set.
+ * @var bool
  */
 $wgHashedUploadDirectory = true;
 

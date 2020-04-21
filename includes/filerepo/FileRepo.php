@@ -151,6 +151,7 @@ class FileRepo {
 	public $name;
 
 	/**
+	 * @see Documentation of info options at $wgLocalFileRepo
 	 * @param array|null $info
 	 * @throws MWException
 	 * @phan-assert array $info
