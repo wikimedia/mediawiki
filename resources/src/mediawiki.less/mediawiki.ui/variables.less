@@ -108,8 +108,10 @@
 // Checked radio input border-width, equal to OOUI at 14px base font-size
 @borderWidthRadioChecked: 0.4285em;
 
-// Global border radius to be used to buttons and inputs
-@borderRadius: 2px;
+// Border radius to be used to buttons and inputs
+@border-radius-base: 2px;
+// Deprecated in MW v1.35.0
+@borderRadius: @border-radius-base;
 
 // Box shadows
 @boxShadowWidget: inset 0 0 0 1px transparent;
