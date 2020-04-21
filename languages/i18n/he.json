@@ -1982,7 +1982,7 @@
 	"ninterwikis": "{{PLURAL:$1|קישור בינוויקי אחד|$1 קישורי בינוויקי}}",
 	"nlinks": "{{PLURAL:$1|קישור אחד|$1 קישורים}}",
 	"nmembers": "{{PLURAL:$1|דף אחד|$1 דפים}}",
-	"nmemberschanged": "$1 ← {{PLURAL:$2|חבר אחד|$2 חברים}}",
+	"nmemberschanged": "$1 ← {{PLURAL:$2|דף אחד|$2 דפים}}",
 	"nrevisions": "{{PLURAL:$1|גרסה אחת|$1 גרסאות}}",
 	"nimagelinks": "בשימוש {{PLURAL:$1|בדף אחד|ב־$1 דפים}}",
 	"ntransclusions": "בשימוש {{PLURAL:$1|בדף אחד|ב־$1 דפים}}",

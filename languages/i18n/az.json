@@ -726,7 +726,7 @@
 	"sectioneditnotsupported-text": "Bölüm redaktəsi bu səhifədə dəstəklənmir.",
 	"permissionserrors": "İcazə xətası",
 	"permissionserrorstext": "Siz, bunu aşağıdakı {{PLURAL:$1|səbəbə|səbəblərə}} görə edə bilməzsiniz:",
-	"permissionserrorstext-withaction": "Aşağıdakı {{PLURAL:$1|səbəbə|səbəblərə}} görə, $2 hüququnuz yoxdur:",
+	"permissionserrorstext-withaction": "Aşağıdakı {{PLURAL:$1|səbəbə|səbəblərə}} görə $2 hüququnuz yoxdur:",
 	"contentmodelediterror": "<code>$1</code> <code>$2</code> səhifəsinin mövcud məzmun modelindən fərqləndiyi üçün bu versiyanı redaktə edə bilməzsiniz.",
 	"recreate-moveddeleted-warn": "'''Diqqət! Siz əvvəllər silinmiş səhifəni bərpa etmək istəyirsiz.'''\n\nBu səhifəni yenidən yaratmağın nə qədər zəruri olduğunu bir daha yoxlayın.\nBu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 	"moveddeleted-notice": "Bu səhifə silinmişdir.\nMəlumat üçün aşağıda bu səhifənin tarixçəsindən müvafiq silmə, mühafizə və köçmə qeydləri göstərilmişdir.",
