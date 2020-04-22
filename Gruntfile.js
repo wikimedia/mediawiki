@@ -22,24 +22,7 @@ module.exports = function ( grunt ) {
 				extensions: [ '.js', '.json', '.vue' ],
 				cache: true
 			},
-			all: [
-				'**/*.{js,json,vue}',
-				'!docs/**',
-				'!node_modules/**',
-				'!resources/lib/**',
-				// Skip function
-				'!resources/src/skip-Promise.js',
-				'!resources/src/jquery.tipsy/**',
-				'!resources/src/mediawiki.libs.jpegmeta/**',
-				// Intentionally-broken JSON file
-				'!tests/phpunit/data/registration/duplicate_keys.json',
-				// Third-party code of PHPUnit coverage report
-				'!tests/coverage/**',
-				'!vendor/**',
-				// Explicitly say "**/*.js" here in case of symlinks
-				'!extensions/**/*.{js,json,vue}',
-				'!skins/**/*.{js,json,vue}'
-			]
+			all: '.'
 		},
 		banana: {
 			options: {
