@@ -78,6 +78,10 @@ namespace MediaWiki\HookRunner {
 					'MWTestHook',
 					[ [ 'MediaWiki\HookRunner\FooClass::FooStaticMethod' ] ]
 				],
+				'Object and fully-qualified non-static method' => [
+					'MWTestHook',
+					[ $fooObj, 'MediaWiki\HookRunner\FooClass::FooMethod' ]
+				],
 				'Closure' => [ 'MWTestHook', function () {
 					return true;
 				} ],
