@@ -70,6 +70,13 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		$modules = $rl->getTestSuiteModuleNames();
 
+		// Disable module storage.
+		// The unit test for mw.loader.store will enable it (with a mock timers).
+		$config = new MultiConfig( [
+			new HashConfig( [ 'ResourceLoaderStorageEnabled' => false ] ),
+			$rl->getConfig(),
+		] );
+
 		// Disable autostart because we load modules asynchronously. By default, QUnit would start
 		// at domready when there are no tests loaded and also fire 'QUnit.done' which then instructs
 		// Karma to exit the browser process before the tests even finished loading.
@@ -82,15 +89,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 			. '}';
 
 		// The below is essentially a pure-javascript version of OutputPage::headElement().
-		$code = $rl->makeModuleResponse( $startupContext, [
-			'startup' => $rl->getModule( 'startup' ),
-		] );
-		$code .= <<<JAVASCRIPT
-	// Disable module storage.
-	// The unit test for mw.loader.store will enable it
-	// explicitly with a mock timer.
-	mw.loader.store.enabled = false;
-JAVASCRIPT;
+		$startupModule = $rl->getModule( 'startup' );
+		$startupModule->setConfig( $config );
+		$code = $rl->makeModuleResponse( $startupContext, [ 'startup' => $startupModule ] );
 		// The following has to be deferred via RLQ because the startup module is asynchronous.
 		$code .= ResourceLoader::makeLoaderConditionalScript(
 			// Embed page-specific mw.config variables.
