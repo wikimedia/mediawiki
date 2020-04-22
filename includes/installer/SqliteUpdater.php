@@ -282,6 +282,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyfield', 'recentchanges', 'rc_actor', 'patch-recentchanges-drop-rc_actor-DEFAULT.sql' ],
 			[ 'modifyfield', 'logging', 'log_actor', 'patch-logging-drop-log_actor-DEFAULT.sql' ],
 			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
+			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
+				'patch-ipblocks-rename-ipb_address.sql' ],
 		];
 	}
 

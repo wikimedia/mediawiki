@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/ipblocks DROP INDEX /*i*/ipb_address, ADD UNIQUE INDEX /*i*/ipb_address_unique (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only);

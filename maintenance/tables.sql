@@ -1090,7 +1090,7 @@ CREATE TABLE /*_*/ipblocks (
 
 -- Unique index to support "user already blocked" messages
 -- Any new options which prevent collisions should be included
-CREATE UNIQUE INDEX /*i*/ipb_address ON /*_*/ipblocks (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only);
+CREATE UNIQUE INDEX /*i*/ipb_address_unique ON /*_*/ipblocks (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only);
 
 -- For querying whether a logged-in user is blocked
 CREATE INDEX /*i*/ipb_user ON /*_*/ipblocks (ipb_user);

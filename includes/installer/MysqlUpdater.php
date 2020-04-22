@@ -412,6 +412,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.35
 			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
 			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
+			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
+				'patch-ipblocks-rename-ipb_address.sql' ],
 		];
 	}
 
