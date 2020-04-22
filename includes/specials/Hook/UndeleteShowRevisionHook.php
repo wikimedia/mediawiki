@@ -15,8 +15,8 @@ interface UndeleteShowRevisionHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Title $title title object related to the revision
-	 * @param Revision $rev revision (object) that will be viewed
+	 * @param Title $title The title of the revision
+	 * @param Revision $rev The revision that will be viewed
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUndeleteShowRevision( $title, $rev );

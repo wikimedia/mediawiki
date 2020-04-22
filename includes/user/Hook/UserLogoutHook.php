@@ -14,7 +14,7 @@ interface UserLogoutHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user the user object that is about to be logged out
+	 * @param User $user The user that is about to be logged out
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserLogout( $user );

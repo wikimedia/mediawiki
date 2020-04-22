@@ -14,7 +14,7 @@ interface SpecialRecentChangesPanelHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$extraOpts array of added items, to which can be added
+	 * @param array &$extraOpts Array of added items, to which can be added
 	 * @param FormOptions $opts FormOptions for this request
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

@@ -12,7 +12,7 @@ interface UserSaveSettingsHook {
 	/**
 	 * This hook is called directly after user preferences have been saved to the database.
 	 *
-	 * Compare to the UserSaveOptions hook, which is called before saving
+	 * Compare to the UserSaveOptions hook, which is called before saving.
 	 *
 	 * @since 1.35
 	 *

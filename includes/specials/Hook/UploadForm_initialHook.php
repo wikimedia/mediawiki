@@ -18,7 +18,7 @@ interface UploadForm_initialHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialUpload $upload SpecialUpload object
+	 * @param SpecialUpload $upload
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUploadForm_initial( $upload );

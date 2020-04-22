@@ -11,13 +11,13 @@ use SpecialSearch;
  */
 interface SpecialSearchSetupEngineHook {
 	/**
-	 * Use this hook for passing custom data to search engine.
+	 * Use this hook for passing custom data to the search engine.
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialSearch $search SpecialSearch special page object
-	 * @param string $profile String: current search profile
-	 * @param SearchEngine $engine the search engine
+	 * @param SpecialSearch $search
+	 * @param string $profile Current search profile
+	 * @param SearchEngine $engine
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialSearchSetupEngine( $search, $profile, $engine );
