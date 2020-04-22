@@ -1446,7 +1446,7 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "b",
-	"rc-change-size-new": "$1 byte aropp'ô cagnamiento",
+	"rc-change-size-new": "$1 {{PLURAL:$1|byte}} aropp'ô cagnamiento",
 	"newsectionsummary": "/* $1 */ sezziona nnova",
 	"rc-enhanced-expand": "Fa vede dettaglie",
 	"rc-enhanced-hide": "Annascunne dettaglie",

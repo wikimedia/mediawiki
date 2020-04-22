@@ -574,7 +574,7 @@
 	"passwordreset-text-many": "{{PLURAL:$1|Skribez en un ek la texto-buxi por recevar tempala pasovorto per e-posto.}}",
 	"passwordreset-disabled": "Ica Wiki ne permisas riestablisar pasovorti.",
 	"passwordreset-emaildisabled": "La funcioni di e-posto (e-mail) blokusesis en ica Wiki.",
-	"passwordreset-username": "Uzantonomo:",
+	"passwordreset-username": "Uzeronomo:",
 	"passwordreset-domain": "Interreto-domeno:",
 	"passwordreset-email": "E-postal adreso:",
 	"passwordreset-emailtitle": "Detali pri la konto en {{SITENAME}}",
