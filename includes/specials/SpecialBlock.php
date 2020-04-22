@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -626,55 +627,36 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * Determine the target of the block, and the type of target
-	 * @todo Should be in DatabaseBlock.php?
+	 * Get the target and type, given the request and the subpage parameter.
+	 * Several parameters are handled for backwards compatability. 'wpTarget' is
+	 * prioritized, since it matches the HTML form.
+	 *
 	 * @param string $par Subpage parameter passed to setup, or data value from
-	 *     the HTMLForm
+	 *  the HTMLForm
 	 * @param WebRequest|null $request Optionally try and get data from a request too
 	 * @return array [ User|string|null, DatabaseBlock::TYPE_ constant|null ]
 	 * @phan-return array{0:User|string|null,1:int|null}
 	 */
 	public static function getTargetAndType( $par, WebRequest $request = null ) {
-		$i = 0;
-		$target = null;
-
-		while ( true ) {
-			switch ( $i++ ) {
-				case 0:
-					# The HTMLForm will check wpTarget first and only if it doesn't get
-					# a value use the default, which will be generated from the options
-					# below; so this has to have a higher precedence here than $par, or
-					# we could end up with different values in $this->target and the HTMLForm!
-					if ( $request instanceof WebRequest ) {
-						$target = $request->getText( 'wpTarget', null );
-					}
-					break;
-				case 1:
-					$target = $par;
-					break;
-				case 2:
-					if ( $request instanceof WebRequest ) {
-						$target = $request->getText( 'ip', null );
-					}
-					break;
-				case 3:
-					# B/C @since 1.18
-					if ( $request instanceof WebRequest ) {
-						$target = $request->getText( 'wpBlockAddress', null );
-					}
-					break;
-				case 4:
-					break 2;
-			}
-
-			list( $target, $type ) = DatabaseBlock::parseTarget( $target );
-
-			if ( $type !== null ) {
-				return [ $target, $type ];
-			}
+		if ( !$request instanceof WebRequest ) {
+			return AbstractBlock::parseTarget( $par );
 		}
 
-		return [ null, null ];
+		$possibleTargets = [
+			$request->getVal( 'wpTarget', null ),
+			$par,
+			$request->getVal( 'ip', null ),
+			// B/C @since 1.18
+			$request->getVal( 'wpBlockAddress', null ),
+		];
+		foreach ( $possibleTargets as $possibleTarget ) {
+			$targetAndType = AbstractBlock::parseTarget( $possibleTarget );
+			// If type is not null then target is valid
+			if ( $targetAndType[ 1 ] !== null ) {
+				break;
+			}
+		}
+		return $targetAndType;
 	}
 
 	/**
@@ -708,7 +690,7 @@ class SpecialBlock extends FormSpecialPage {
 		global $wgBlockCIDRLimit;
 
 		/** @var User $target */
-		list( $target, $type ) = self::getTargetAndType( $value );
+		list( $target, $type ) = AbstractBlock::parseTarget( $value );
 		$status = Status::newGood( $target );
 
 		if ( $type == DatabaseBlock::TYPE_USER ) {
@@ -775,7 +757,7 @@ class SpecialBlock extends FormSpecialPage {
 		$data['Confirm'] = !in_array( $data['Confirm'], [ '', '0', null, false ], true );
 
 		/** @var User $target */
-		list( $target, $type ) = self::getTargetAndType( $data['Target'] );
+		list( $target, $type ) = AbstractBlock::parseTarget( $data['Target'] );
 		if ( $type == DatabaseBlock::TYPE_USER ) {
 			$user = $target;
 			$target = $user->getName();
@@ -863,6 +845,7 @@ class SpecialBlock extends FormSpecialPage {
 				# Bad expiry.
 				return [ 'ipb_expiry_temp' ];
 			} elseif ( $hideUserContribLimit !== false
+				/** @phan-suppress-next-line PhanNonClassMethodCall */
 				&& $user->getEditCount() > $hideUserContribLimit
 			) {
 				# Typically, the user should have a handful of edits.
