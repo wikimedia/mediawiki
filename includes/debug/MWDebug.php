@@ -68,6 +68,11 @@ class MWDebug {
 	protected static $deprecationWarnings = [];
 
 	/**
+	 * @var string[] Deprecation filter regexes
+	 */
+	protected static $deprecationFilters = [];
+
+	/**
 	 * @internal For use by Setup.php only.
 	 */
 	public static function setup() {
@@ -185,7 +190,10 @@ class MWDebug {
 
 		$callerDescription = self::getCallerDescription( $callerOffset );
 
-		self::sendMessage( $msg, $callerDescription, 'warning', $level );
+		self::sendMessage(
+			self::formatCallerDescription( $msg, $callerDescription ),
+			'warning',
+			$level );
 
 		if ( self::$enabled ) {
 			self::$log[] = [
@@ -256,11 +264,35 @@ class MWDebug {
 			$msg = "Use of $function is deprecated.";
 		}
 
+		self::sendRawDeprecated(
+			self::formatCallerDescription( $msg, $callerDescription ),
+			$sendToLog,
+			$callerFunc );
+	}
+
+	/**
+	 * Send a raw deprecation message to the log and the debug toolbar,
+	 * without filtering of duplicate messages.
+	 *
+	 * @param string $msg The complete message including relevant caller information.
+	 * @param bool $sendToLog If true, the message will be sent to the debug
+	 *   toolbar, the debug log, and raised as a warning if indicated by
+	 *   $wgDevelopmentWarnings. If false, the message will only be sent to
+	 *   the debug toolbar.
+	 * @param string $callerFunc The caller, for display in the debug toolbar's
+	 *   caller column.
+	 */
+	public static function sendRawDeprecated( $msg, $sendToLog = true, $callerFunc = '' ) {
+		foreach ( self::$deprecationFilters as $filter ) {
+			if ( preg_match( $filter, $msg ) ) {
+				return;
+			}
+		}
+
 		if ( $sendToLog ) {
 			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
 			self::sendMessage(
 				$msg,
-				$callerDescription,
 				'deprecated',
 				$wgDevelopmentWarnings ? E_USER_DEPRECATED : false
 			);
@@ -278,6 +310,26 @@ class MWDebug {
 				'caller' => $callerFunc,
 			];
 		}
+	}
+
+	/**
+	 * Deprecation messages matching the supplied regex will be suppressed.
+	 * Use this to filter deprecation warnings when testing deprecated code.
+	 *
+	 * @param string $regex
+	 */
+	public static function filterDeprecationForTest( $regex ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
+		}
+		self::$deprecationFilters[] = $regex;
+	}
+
+	/**
+	 * Clear all deprecation filters.
+	 */
+	public static function clearDeprecationFilters() {
+		self::$deprecationFilters = [];
 	}
 
 	/**
@@ -318,17 +370,25 @@ class MWDebug {
 	}
 
 	/**
+	 * Append a caller description to an error message
+	 *
+	 * @param string $msg
+	 * @param array $caller Caller description from getCallerDescription()
+	 * @return string
+	 */
+	private static function formatCallerDescription( $msg, $caller ) {
+		return $msg . ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
+	}
+
+	/**
 	 * Send a message to the debug log and optionally also trigger a PHP
 	 * error, depending on the $level argument.
 	 *
 	 * @param string $msg Message to send
-	 * @param array $caller Caller description get from getCallerDescription()
 	 * @param string $group Log group on which to send the message
 	 * @param int|bool $level Error level to use; set to false to not trigger an error
 	 */
-	private static function sendMessage( $msg, $caller, $group, $level ) {
-		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
-
+	private static function sendMessage( $msg, $group, $level ) {
 		if ( $level !== false ) {
 			trigger_error( $msg, $level );
 		}
