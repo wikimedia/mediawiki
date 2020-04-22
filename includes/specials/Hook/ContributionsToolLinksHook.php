@@ -2,20 +2,23 @@
 
 namespace MediaWiki\Hook;
 
+use SpecialPage;
+use Title;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface ContributionsToolLinksHook {
 	/**
-	 * Change tool links above Special:Contributions
+	 * Use this hook to change the tool links above Special:Contributions
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $id User identifier
-	 * @param ?mixed $title User page title
-	 * @param ?mixed &$tools Array of tool links
-	 * @param ?mixed $specialPage SpecialPage instance for context and services. Can be either
+	 * @param int $id User identifier
+	 * @param Title $title User page title
+	 * @param array &$tools Array of tool links
+	 * @param SpecialPage $specialPage SpecialPage instance for context and services. Can be either
 	 *   SpecialContributions or DeletedContributionsPage. Extensions should type
 	 *   hint against a generic SpecialPage though.
 	 * @return bool|void True or no return value to continue or false to abort

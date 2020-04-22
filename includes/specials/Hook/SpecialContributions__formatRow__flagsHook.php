@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Hook;
 
+use IContextSource;
+use stdClass;
+
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
  * @stable for implementation
@@ -9,14 +12,13 @@ namespace MediaWiki\Hook;
  */
 interface SpecialContributions__formatRow__flagsHook {
 	/**
-	 * Called before rendering a
-	 * Special:Contributions row.
+	 * This hook is called before rendering a Special:Contributions row.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $context IContextSource object
-	 * @param ?mixed $row Revision information from the database
-	 * @param ?mixed &$flags List of flags on this row
+	 * @param IContextSource $context IContextSource object
+	 * @param stdClass $row Revision information from the database
+	 * @param array &$flags List of flags on this row
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialContributions__formatRow__flags( $context, $row,

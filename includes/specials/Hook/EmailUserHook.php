@@ -2,21 +2,24 @@
 
 namespace MediaWiki\Hook;
 
+use MailAddress;
+use Status;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface EmailUserHook {
 	/**
-	 * Before sending email from one user to another.
+	 * This hook is called before sending email from one user to another.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed &$to MailAddress object of receiving user
-	 * @param ?mixed &$from MailAddress object of sending user
-	 * @param ?mixed &$subject subject of the mail
-	 * @param ?mixed &$text text of the mail
-	 * @param ?mixed &$error Out-param for an error. Should be set to a Status object or boolean
+	 * @param MailAddress &$to MailAddress object of receiving user
+	 * @param MailAddress &$from MailAddress object of sending user
+	 * @param MailAddress &$subject subject of the mail
+	 * @param MailAddress &$text text of the mail
+	 * @param bool|Status &$error Out-param for an error. Should be set to a Status object or boolean
 	 *   false.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use SpecialTrackingCategories;
+
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
  * @stable for implementation
@@ -9,13 +11,12 @@ namespace MediaWiki\Hook;
  */
 interface SpecialTrackingCategories__preprocessHook {
 	/**
-	 * Called after LinkBatch on
-	 * Special:TrackingCategories
+	 * This hook is called after LinkBatch on Special:TrackingCategories
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $specialPage The SpecialTrackingCategories object
-	 * @param ?mixed $trackingCategories Array of data from Special:TrackingCategories with msg and
+	 * @param SpecialTrackingCategories $specialPage The SpecialTrackingCategories object
+	 * @param array $trackingCategories Array of data from Special:TrackingCategories with msg and
 	 *   cats
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

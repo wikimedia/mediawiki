@@ -2,19 +2,22 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Block\DatabaseBlock;
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface BlockIpHook {
 	/**
-	 * Before an IP address or user is blocked.
+	 * This hook is called before an IP address or user is blocked.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $block the Block object about to be saved
-	 * @param ?mixed $user the user _doing_ the block (not the one being blocked)
-	 * @param ?mixed &$reason if the hook is aborted, the error message to be returned in an array
+	 * @param DatabaseBlock $block the Block object about to be saved
+	 * @param User $user the user _doing_ the block (not the one being blocked)
+	 * @param array &$reason if the hook is aborted, the error message to be returned in an array
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onBlockIp( $block, $user, &$reason );
