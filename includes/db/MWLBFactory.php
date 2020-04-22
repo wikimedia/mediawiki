@@ -381,16 +381,10 @@ abstract class MWLBFactory {
 	 * @internal For use with service wiring
 	 */
 	public static function logDeprecation( $msg ) {
-		global $wgDevelopmentWarnings;
-
 		if ( isset( self::$loggedDeprecations[$msg] ) ) {
 			return;
 		}
 		self::$loggedDeprecations[$msg] = true;
-
-		if ( $wgDevelopmentWarnings ) {
-			trigger_error( $msg, E_USER_DEPRECATED );
-		}
-		wfDebugLog( 'deprecated', $msg, 'private' );
+		MWDebug::sendRawDeprecated( $msg, true, wfGetCaller() );
 	}
 }
