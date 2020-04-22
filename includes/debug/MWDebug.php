@@ -319,7 +319,7 @@ class MWDebug {
 	 * @param string $regex
 	 */
 	public static function filterDeprecationForTest( $regex ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
 		}
 		self::$deprecationFilters[] = $regex;
