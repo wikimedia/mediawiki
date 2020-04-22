@@ -2,18 +2,20 @@
 
 namespace MediaWiki\User\Hook;
 
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface UserSetEmailHook {
 	/**
-	 * Called when changing user email address.
+	 * This hook is called when changing user email address.
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $user User object
-	 * @param ?mixed &$email new email, change this to override new email address
+	 * @param User $user User object
+	 * @param string &$email new email, change this to override new email address
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserSetEmail( $user, &$email );

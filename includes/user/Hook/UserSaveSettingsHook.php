@@ -2,19 +2,21 @@
 
 namespace MediaWiki\User\Hook;
 
+use User;
+
 /**
  * @stable for implementation
  * @ingroup Hooks
  */
 interface UserSaveSettingsHook {
 	/**
-	 * Called directly after user preferences (user_properties in
-	 * the database) have been saved. Compare to the UserSaveOptions hook, which is
-	 * called before.
+	 * This hook is called directly after user preferences have been saved to the database.
+	 *
+	 * Compare to the UserSaveOptions hook, which is called before saving
 	 *
 	 * @since 1.35
 	 *
-	 * @param ?mixed $user The User for which the options have been saved
+	 * @param User $user The User for which the options have been saved
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserSaveSettings( $user );
