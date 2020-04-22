@@ -233,6 +233,14 @@ class HookContainer implements SalvageableService {
 			// If no method was specified, default to on$event
 			if ( $functionName === null ) {
 				$functionName = "on$hook";
+			} else {
+				$colonPos = strpos( $functionName, '::' );
+				if ( $colonPos !== false ) {
+					// Some extensions use [ $object, 'Class::func' ] which
+					// worked with call_user_func_array() but doesn't work now
+					// that we use a plain varadic call
+					$functionName = substr( $functionName, $colonPos + 2 );
+				}
 			}
 
 			$callback = [ $object, $functionName ];
