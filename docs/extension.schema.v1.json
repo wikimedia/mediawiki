@@ -55,7 +55,7 @@
 		},
 		"requires": {
 			"type": "object",
-			"description": "Indicates what versions of PHP, MediaWiki core or extensions are required. This syntax may be extended in the future, for example to check dependencies between other services.",
+			"description": "Indicates what versions of PHP, MediaWiki core, extensions or skins are required. This syntax may be extended in the future, for example to check dependencies between other services.",
 			"additionalProperties": false,
 			"properties": {
 				"MediaWiki": {
