@@ -21,6 +21,7 @@
 			"Winstonyin",
 			"Wwycheuk",
 			"Xiaomingyan",
+			"Xiplus",
 			"蘭斯特",
 			"아라"
 		]
@@ -40,7 +41,7 @@
 	"config-no-session": "您的連線階段資料遺失！\n請檢查 php.ini 設定檔並確認 <code>session.save_path</code> 所設定的目錄是否合適。",
 	"config-your-language": "您的語言：",
 	"config-your-language-help": "請選擇接下來安裝程序中要使用的語言。",
-	"config-wiki-language": "wiki 語言：",
+	"config-wiki-language": "wiki語言：",
 	"config-wiki-language-help": "選擇將要安裝的 Wiki 多數情況主要使用的語言。",
 	"config-back": "← 返回",
 	"config-continue": "繼續 →",
@@ -172,7 +173,7 @@
 	"config-ns-site-name": "與 wiki 名稱一致：$1",
 	"config-ns-other": "其他 (請註明)",
 	"config-ns-other-default": "我的 wiki",
-	"config-project-namespace-help": "許多 Wiki 以維基百科 (Wikipedia) 做為範例將政策頁面從內容頁面抽離，放置在 \"'''專案命名空間'''\" 中。\n所有在此命名空間裡的頁面都會有特定的字首，您可以在此處設定。\n通常這些字首是由該 Wiki 的名稱所衍伸出來，但無法使用標點符號，如 \"#\" 或 \":\"。",
+	"config-project-namespace-help": "許多wiki以維基百科做為範例將政策頁面從內容頁面抽離，放置在「'''專案命名空間'''」中。\n所有在此命名空間裡的頁面都會有特定的字首，您可以在此處設定。\n通常這些字首是由該wiki以的名稱所衍伸出來，但無法使用標點符號，如「#」或「:」。",
 	"config-ns-invalid": "您指定的命名空間 \"<nowiki>$1</nowiki>\" 無效，\n請指定另一個專案命名空間。",
 	"config-ns-conflict": "您指定的命名空間 \"<nowiki>$1</nowiki>\" 與 MediaWiki 預設的命名空間衝突。\n請指定另一個專案命名空間。",
 	"config-admin-box": "管理員帳號",

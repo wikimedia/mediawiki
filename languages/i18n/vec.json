@@ -2646,6 +2646,7 @@
 	"logentry-newusers-create2": "L'utensa $3 xe sta {{GENDER:$2|creà}} da $1",
 	"logentry-newusers-byemail": "L'utensa $3 xe sta {{GENDER:$2|creà}} da $1 e ła password ła xe sta invià par e-mail",
 	"logentry-newusers-autocreate": "L'utensa $1 ła xé stà {{GENDER:$2|creà}} automategamente",
+	"logentry-protect-unprotect": "$1 {{GENDER:$2|el ga|ła ga}} cavà ła protesion da $3",
 	"logentry-rights-rights": "$1 {{GENDER:$2|el|la}} ga canbià l'apartenensa de $3 dal grupo $4 al grupo $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|el|la}} ga canbià l'apartenensa a grupi de $3",
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|el|la}} xe stà automategamente promoso/a da $4 a $5",
