@@ -2842,11 +2842,11 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.6.1",
+            "version": "v0.6.2",
             "source": {
                 "type": "git",
                 "url": "https://gerrit.wikimedia.org/r/wikimedia/fundraising/SmashPig.git",
-                "reference": "af9956b4e1618666e2776f26b7cc7b820878dea5"
+                "reference": "f4ea11274ce8c340f5cb47bd2c56426ad681d921"
             },
             "require": {
                 "amzn/login-and-pay-with-amazon-sdk-php": "dev-master",
@@ -2918,7 +2918,7 @@
                 "donations",
                 "payments"
             ],
-            "time": "2020-03-24T01:03:45+00:00"
+            "time": "2020-04-14T15:55:29+00:00"
         },
         {
             "name": "wikimedia/timestamp",
@@ -3380,6 +3380,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -3424,6 +3425,7 @@
                     "homepage": "http://www.acci.cz/"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2015-04-20T18:58:01+00:00"
         },
         {
