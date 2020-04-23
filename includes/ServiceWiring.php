@@ -52,6 +52,8 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\UnblockUserFactory;
+use MediaWiki\Block\UserBlockCommandFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
@@ -1252,6 +1254,10 @@ return [
 		return $services->getService( '_MediaWikiTitleCodec' );
 	},
 
+	'UnblockUserFactory' => function ( MediaWikiServices $services ) : UnblockUserFactory {
+		return $services->getService( '_UserBlockCommandFactory' );
+	},
+
 	'UploadRevisionImporter' => function ( MediaWikiServices $services ) : UploadRevisionImporter {
 		return new ImportableUploadRevisionImporter(
 			$services->getMainConfig()->get( 'EnableUploads' ),
@@ -1448,6 +1454,13 @@ return [
 
 	'_SqlBlobStore' => function ( MediaWikiServices $services ) : SqlBlobStore {
 		return $services->getBlobStoreFactory()->newSqlBlobStore();
+	},
+
+	'_UserBlockCommandFactory' => function ( MediaWikiServices $services ) : UserBlockCommandFactory {
+		return new UserBlockCommandFactory(
+			$services->getBlockPermissionCheckerFactory(),
+			$services->getHookContainer()
+		);
 	},
 
 	///////////////////////////////////////////////////////////////////////////
