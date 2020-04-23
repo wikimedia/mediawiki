@@ -1268,3 +1268,7 @@
 	path = extensions/DataTransfer
 	url = https://github.com/wikimedia/mediawiki-extensions-DataTransfer
 	branch = REL1_34
+[submodule "extensions/Bootstrap"]
+	path = extensions/Bootstrap
+	url = https://github.com/ProfessionalWiki/Bootstrap
+	branch = master
