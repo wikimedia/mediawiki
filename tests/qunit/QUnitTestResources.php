@@ -24,6 +24,31 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	'mediawiki.language.testdata' => [
+		'localBasePath' => "{$GLOBALS['IP']}/resources/src/mediawiki.language/languages",
+		'remoteBasePath' => "{$GLOBALS['wgResourceBasePath']}/resources/src/mediawiki.language/languages",
+		'packageFiles' => [
+			[
+				'name' => 'mediawiki.jqueryMsg.testdata.js',
+				'file' => new ResourceLoaderFilePath( __DIR__ . '/data/mediawiki.jqueryMsg.testdata.js' ),
+			],
+			[
+				'name' => 'mediawiki.jqueryMsg.data.json',
+				'file' => new ResourceLoaderFilePath( __DIR__ . '/data/mediawiki.jqueryMsg.data.json' ),
+			],
+			'bs.js',
+			'dsb.js',
+			'fi.js',
+			'ga.js',
+			'hsb.js',
+			'hu.js',
+			'hy.js',
+			'la.js',
+			'os.js',
+			'sl.js',
+		]
+	],
+
 	'test.MediaWiki' => [
 		'scripts' => [
 			'tests/qunit/suites/resources/startup.test.js',
@@ -36,7 +61,6 @@ return [
 			'tests/qunit/suites/resources/jquery/jquery.tablesorter.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.tablesorter.parsers.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.textSelection.test.js',
-			'tests/qunit/data/mediawiki.jqueryMsg.data.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.requestIdleCallback.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.errorLogger.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jqueryMsg.test.js',
@@ -105,6 +129,7 @@ return [
 			'mediawiki.special.recentchanges',
 			'mediawiki.rcfilters.filters.dm',
 			'mediawiki.language',
+			'mediawiki.language.testdata',
 			'mediawiki.cldr',
 			'mediawiki.cookie',
 			'mediawiki.experiments',
