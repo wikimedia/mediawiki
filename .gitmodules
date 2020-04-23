@@ -549,7 +549,7 @@
 	ignore = dirty
 [submodule "extensions/JavascriptSlideshow"]
 	path = extensions/JavascriptSlideshow
-	url = https://github.com/DaSchTour/JavascriptSlideshow.git
+	url = https://gitlab.com/hydrawiki/extensions/javascriptslideshow.git
 	branch = master
 	ignore = dirty
 [submodule "extensions/Wikibase"]
