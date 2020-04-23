@@ -41,6 +41,8 @@
 		};
 		// Mock startup.js
 		window.RLQ = [];
+		// Mock mw.loader#execute context
+		function require() {}
 	</script>
 	<script src="modules/src/startup/mediawiki.js"></script>
 	<script src="modules/src/startup/mediawiki.requestIdleCallback.js"></script>
@@ -93,6 +95,7 @@
 	<link rel="stylesheet" href="modules/lib/ooui/oojs-ui-widgets-wikimediaui.css">
 	<link rel="stylesheet" href="modules/lib/ooui/oojs-ui-toolbars-wikimediaui.css">
 	<link rel="stylesheet" href="modules/lib/ooui/oojs-ui-windows-wikimediaui.css">
+	<link rel="stylesheet" href="modules/lib/ooui/oojs-ui-images-wikimediaui.css">
 </head>
 <body>
 <script>
