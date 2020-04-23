@@ -1246,6 +1246,7 @@
 	"rcfilters-preference-help": "Montras recenta modifikuri sen sercho-selektilo od emfazo-utensilo.",
 	"rcfilters-watchlist-preference-label": "Uzez interfacio* sen JavaScript",
 	"rcfilters-allcontents-label": "Omna kontenajo",
+	"rcfilters-alldiscussions-label": "Omna diskuti",
 	"rcnotefrom": "Infre {{PLURAL:$5|esas la chanjo|esas la chanji}} de <strong>$3, $4</strong> (montrata til <strong>$1</strong>).",
 	"rclistfrom": "Montrar nova chanji startante de $3 $2",
 	"rcshowhideminor": "$1 mikra redakturi",
