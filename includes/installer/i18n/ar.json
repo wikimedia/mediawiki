@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Claw eg",
+			"Hasley",
 			"Kuwaity26",
 			"Maroen1990",
 			"Meno25",
@@ -225,7 +226,7 @@
 	"config-logo": "مسار الشعار:",
 	"config-logo-help": "يحتوي المظهر الافتراضي لميدياويكي على مساحة لشعار 135x160 بكسل فوق قائمة الشريط الجانبي، \nارفع صورة بالحجم المناسب، وأدخل المسار هنا. \n\nيمكنك استخدام <code>$wgStylePath</code> أو <code>$wgScriptPath</code> إذا كان شعارك مرتبطا بتلك المسارات. \n\nإذا كنت لا تريد شعارا، فاترك هذا الصندوق فارغا.",
 	"config-instantcommons": "تمكين الاستخدام الفوري لويكيميديا كومنز InstantCommons",
-	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons كومنز الفوري] هي ميزة تسمح للويكي باستخدام الصور والأصوات والوسائط الأخرى الموجودة على موقع [https://commons.wikimedia.org/ ويكيميديا كومنز]،\nمن أجل القيام بذلك; يتطلب ميدياويكي الوصول إلى الإنترنت. \n\nلمزيد من المعلومات حول هذه الميزة، بما في ذلك تعليمات حول كيفية إعدادها لمواقع ويكي بخلاف ويكيميديا كومنز; يُرجَى الرجوع إلى [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos الدليل].",
+	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons كومنز الفوري] هي ميزة تسمح للويكي باستخدام الصور والأصوات والوسائط الأخرى الموجودة على موقع [https://commons.wikimedia.org/ ويكيميديا كومنز]،\nمن أجل القيام بذلك; يتطلب ميدياويكي الوصول إلى الإنترنت. \n\nلمزيد من المعلومات حول هذه الميزة، بما في ذلك تعليمات حول كيفية إعدادها لمواقع ويكي بخلاف ويكيميديا كومنز; يُرجَى الرجوع إلى [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos الدليل].",
 	"config-cc-error": "لم يعطِ منتقي رخصة المشاع الإبداعي أية نتيجة; أدخل اسم الترخيص يدويا.",
 	"config-cc-again": "اختر مجددًا",
 	"config-cc-not-chosen": "اختر أي ترخيص تريده ثم اضغط على \"متابعة\".",
