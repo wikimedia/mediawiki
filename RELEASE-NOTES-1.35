@@ -731,6 +731,9 @@ because of Phabricator reports.
   WikiPage::prepareContentForEdit.
 * Article::getUndoContent and WikiPage::getUndoContent are hard deprecated.
   Instead, use ContentHandler::getUndoContent.
+* Passing Revision objects to ContentHandler::getUndoContent is hard deprecated.
+  Instead, pass the associated Content objects, as well as whether the undo is
+  from the current revision.
 * Article::doDeleteUpdates and ::doEditUpdates are deprecated. Instead,
   use WikiPage::doDeleteUpdates and ::doEditUpdates.
 * LocalFileDeleteBatch was migrated to a new constructor signature with the
