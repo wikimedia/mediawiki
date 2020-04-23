@@ -293,130 +293,131 @@
 		assert.strictEqual( util.$content.length, 1, 'mw.util.$content must have length of 1' );
 	} );
 
-	/**
-	 * Portlet names are prefixed with 'p-test' to avoid conflict with core
-	 * when running the test suite under a wiki page.
-	 * Previously, test elements where invisible to the selector since only
-	 * one element can have a given id.
-	 */
-	QUnit.test( 'addPortletLink', function ( assert ) {
-		var tbRL, cuQuux, $cuQuux, tbMW, $tbMW, tbRLDM, caFoo, listPortletItem,
-			addedAfter, tbRLDMnonexistentid, tbRLDMemptyjquery, link;
+	function getParents( link ) {
+		return $( link ).parents( '#qunit-fixture *' ).toArray()
+			.map( function ( el ) {
+				return el.tagName + ( el.className && '.' + el.className ) + ( el.id && '#' + el.id );
+			} );
+	}
 
-		$( '#qunit-fixture' ).append(
-			'<div class="portlet" id="p-test-tb">' +
-				'<h3>Toolbox</h3>' +
-				'<ul class="body"></ul>' +
-			'</div>' +
-			'<div class="portlet" id="p-test-custom">' +
-				'<h3>Views</h3>' +
-				'<ul class="body">' +
-					'<li id="c-foo"><a href="#">Foo</a></li>' +
-					'<li id="c-barmenu">' +
-						'<ul>' +
-							'<li id="c-bar-baz"><a href="#">Baz</a></a>' +
-						'</ul>' +
-					'</li>' +
-				'</ul>' +
-			'</div>' +
-			'<ul id="p-list"></ul>' +
-			'<div id="p-test-views" class="vectorTabs">' +
-				'<h3>Views</h3>' +
-				'<ul></ul>' +
-			'</div>'
+	QUnit.test( 'addPortletLink (Vector list)', function ( assert ) {
+		var link;
+
+		$( '#qunit-fixture' ).html(
+			'<div class="portlet" id="p-toolbox">' +
+				'<h3>Tools</h3>' +
+				'<div class="body"><ul></ul></div>' +
+				'</div>'
+		);
+		link = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
+			'Foo', 't-foo', 'Tooltip', 'l'
 		);
 
-		tbRL = util.addPortletLink( 'p-test-tb', 'https://example.org/next',
-			'Next', 't-rl', 'More info about Example Next ', 'l'
-		);
-		assert.strictEqual( tbRL.nodeType, 1, 'returns a DOM Node' );
-		assert.strictEqual( tbRL.nodeName, 'LI', 'returns a list item element' );
-
-		tbMW = util.addPortletLink( 'p-test-tb', 'https://example.org/',
-			'Example.org', 't-xmp', 'Go to Example', 'x', tbRL );
-		$tbMW = $( tbMW );
-		link = $tbMW.children( 'a' )[ 0 ];
-		assert.propEqual(
-			{ id: $tbMW[ 0 ].id },
-			{ id: 't-xmp' },
-			'List item attributes'
-		);
-		assert.propEqual(
-			$tbMW.children().get().map( function ( node ) { return node.nodeName; } ),
-			[ 'A' ],
-			'List item children'
-		);
-		assert.propEqual(
+		assert.domEqual(
+			link,
 			{
-				href: link.href,
-				title: link.title,
-				accesskey: link.accessKey
+				tagName: 'LI',
+				attributes: { id: 't-foo' },
+				contents: [
+					{
+						tagName: 'A',
+						attributes: { href: 'https://foo.test/', title: 'Tooltip [test-l]', accesskey: 'l' },
+						contents: [ 'Foo' ]
+					}
+				]
 			},
+			'Link element'
+		);
+		assert.propEqual(
+			[ 'UL', 'DIV.body', 'DIV.portlet#p-toolbox' ],
+			getParents( link ),
+			'List structure'
+		);
+	} );
+
+	QUnit.test( 'addPortletLink (Minerva list)', function ( assert ) {
+		var link;
+
+		$( '#qunit-fixture' ).html( '<ul id="p-list"></ul>' );
+		link = util.addPortletLink( 'p-list', '#', 'Foo', 't-foo' );
+
+		assert.domEqual(
+			link,
 			{
-				href: 'https://example.org/',
-				title: 'Go to Example [test-x]',
-				accesskey: 'x'
+				tagName: 'LI',
+				attributes: { id: 't-foo' },
+				contents: [
+					{
+						tagName: 'A',
+						attributes: { href: '#' },
+						contents: [ 'Foo' ]
+					}
+				]
 			},
-			'Anchor link attributes'
+			'Link element'
 		);
-		assert.strictEqual(
-			$tbMW.closest( '.portlet' ).attr( 'id' ),
-			'p-test-tb',
-			'Parent portlet ID'
+		assert.propEqual(
+			getParents( link ),
+			[ 'UL#p-list' ],
+			'List structure'
 		);
-		assert.strictEqual(
-			$tbMW.next()[ 0 ],
-			tbRL,
-			'Next node (set as Node object)'
+	} );
+
+	QUnit.test( 'addPortletLink (nextNode option)', function ( assert ) {
+		var linkFoo, link;
+
+		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
+		linkFoo = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
+			'Foo', 't-foo', 'Tooltip', 'l'
 		);
 
-		cuQuux = util.addPortletLink( 'p-test-custom', '#', 'Quux', null, 'Example [shift-x]', 'q' );
-		$cuQuux = $( cuQuux );
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-node', null, null, linkFoo );
+		assert.strictEqual( link.nextSibling, linkFoo, 'HTMLElement' );
+
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-selector', null, null, '#t-foo' );
+		assert.strictEqual( link.nextSibling, linkFoo, 'CSS selector' );
+
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-jqueryobj', null, null, $( '#t-foo' ) );
+		assert.strictEqual( link.nextSibling, linkFoo, 'jQuery object' );
+
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-selector-unknown', null, null, '#t-nonexistent' );
+		assert.strictEqual( link.nextSibling, null, 'non-matching CSS selector' );
+
+		link = util.addPortletLink( 'p-toolbox', '#',
+			'Label', 't-jqueryobj-empty', null, null, $( '#t-nonexistent' ) );
+		assert.strictEqual( link.nextSibling, null, 'empty jQuery object' );
+	} );
+
+	QUnit.test( 'addPortletLink (accesskey option)', function ( assert ) {
+		var link;
+		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
+
+		link = util.addPortletLink( 'p-toolbox', '#', 'Label', null, 'Tooltip [shift-x]', 'z' );
 		assert.strictEqual(
-			$cuQuux.find( 'a' ).attr( 'title' ),
-			'Example [test-q]',
-			'Title has new accesskey and label'
+			link.querySelector( 'a' ).title,
+			'Tooltip [test-z]',
+			'Change a pre-existing accesskey in a tooltip'
 		);
+	} );
+
+	QUnit.test( 'addPortletLink (nested list)', function ( assert ) {
+		// Regresion test for T37082
+		$( '#qunit-fixture' ).html(
+			'<ul id="p-toolbox">' +
+				'<li id="x-foo"><a href="#">Foo</a></li>' +
+				'<li id="x-bar"><ul><li id="quux"><a href="#">Quux</a></li></ul></li>' +
+				'</ul>'
+		);
+		util.addPortletLink( 'p-toolbox', 'https://example.test/', 'Example' );
+
 		assert.strictEqual(
-			$( '#p-test-custom #c-barmenu ul li' ).length,
+			$( 'a[href="https://example.test/"]' ).length,
 			1,
-			'No items added to unrelated <ul> elsewhere in the portlet (T37082)'
-		);
-
-		tbRLDM = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
-			'Default modules', 't-rldm', 'List of all default modules ', 'd', '#t-rl' );
-		assert.strictEqual( $( tbRLDM ).next()[ 0 ], tbRL, 'Next node (set as CSS selector)' );
-
-		caFoo = util.addPortletLink( 'p-test-views', '#', 'Foo' );
-		assert.propEqual(
-			[].map.call( caFoo.children, function ( node ) { return node.nodeName; } ),
-			[ 'A' ],
-			'List item children for porlet with vectorTabs class'
-		);
-
-		addedAfter = util.addPortletLink( 'p-test-tb', '#', 'After foo', 'post-foo', 'After foo', null, $( tbRL ) );
-		assert.strictEqual( $( addedAfter ).next()[ 0 ], tbRL, 'Next node (set as jQuery object)' );
-
-		tbRLDMnonexistentid = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
-			'Default modules', 't-rldm-nonexistent', 'List of all default modules ', 'd', '#t-rl-nonexistent' );
-		assert.strictEqual(
-			tbRLDMnonexistentid,
-			$( '#p-test-tb li' ).last()[ 0 ],
-			'Next node as non-matching CSS selector falls back to appending'
-		);
-
-		tbRLDMemptyjquery = util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
-			'Default modules', 't-rldm-empty-jquery', 'List of all default modules ', 'd', $( '#t-rl-nonexistent' ) );
-		assert.strictEqual(
-			tbRLDMemptyjquery,
-			$( '#p-test-tb li' ).last()[ 0 ],
-			'Next node as empty jQuery object falls back to appending'
-		);
-
-		listPortletItem = util.addPortletLink( 'p-list', 'foo.html', 'Foo' );
-		assert.strictEqual(
-			$( listPortletItem ).parents( 'ul' ).length, 1,
-			'Minerva support: The portlet is the list and a new item is added'
+			'No duplicates created (T37082)'
 		);
 	} );
 

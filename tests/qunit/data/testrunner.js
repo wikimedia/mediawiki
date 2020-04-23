@@ -43,6 +43,8 @@
 	// killing the test and assuming timeout failure.
 	QUnit.config.testTimeout = 60 * 1000;
 
+	QUnit.dump.maxDepth = QUnit.config.maxDepth = 20;
+
 	// Reduce default animation duration from 400ms to 0ms for unit tests
 	// eslint-disable-next-line no-underscore-dangle
 	$.fx.speeds._default = 0;
@@ -429,6 +431,23 @@
 				result: actual >= true,
 				actual: actual,
 				expected: 'greater than or equal to ' + expected,
+				message: message
+			} );
+		},
+
+		/**
+		 * Asserts that two DOM nodes are structurally equivalent.
+		 *
+		 * @param {HTMLElement} actual.
+		 * @param {Object} expectedStruct
+		 * @param {string} message Assertion message.
+		 */
+		domEqual: function ( actual, expectedStruct, message ) {
+			var actualStruct = getDomStructure( actual );
+			this.pushResult( {
+				result: QUnit.equiv( actualStruct, expectedStruct ),
+				actual: actualStruct,
+				expected: expectedStruct,
 				message: message
 			} );
 		},
