@@ -134,6 +134,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testProcessForm() {
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
+		$context->setUser( $this->getTestSysop()->getUser() );
 
 		$page = $this->newSpecialPage();
 		$reason = 'test';
@@ -169,6 +170,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 		$context = RequestContext::getMain();
+		$context->setUser( $sysop );
 
 		// Create a block that will be updated.
 		$block = new DatabaseBlock( [
@@ -215,6 +217,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testProcessFormRestrictions() {
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
+		$context->setUser( $this->getTestSysop()->getUser() );
 
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
 		$pageMars = $this->getExistingTestPage( 'Mars' );
@@ -265,6 +268,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testProcessFormRestrictionsChange() {
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
+		$context->setUser( $this->getTestSysop()->getUser() );
 
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
 		$pageMars = $this->getExistingTestPage( 'Mars' );
@@ -402,7 +406,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 
 		if ( $expected === 'ipb-prevent-user-talk-edit' ) {
-			$this->assertSame( $expected, $result[0] );
+			$this->assertSame( $expected, $result->getErrorsArray()[0][0] );
 		} else {
 			$block = DatabaseBlock::newFromTarget( $target );
 			$this->assertSame( $expected, $block->isUsertalkEditAllowed() );
@@ -486,7 +490,13 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'Target' => $target,
 			'PreviousTarget' => $target,
 			'Expiry' => 'infinity',
+			'CreateAccount' => '0',
+			'DisableUTEdit' => '0',
+			'DisableEmail' => '0',
+			'HardBlock' => '0',
+			'AutoBlock' => '0',
 			'Confirm' => '0',
+			'Watch' => '0',
 		];
 
 		$context = new DerivativeContext( RequestContext::getMain() );
@@ -497,7 +507,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			$context
 		);
 
-		$this->assertEquals( $expected, $result[0] );
+		if ( $result instanceof Status ) {
+			$result = $result->getErrorsArray();
+		}
+		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
+		$this->assertEquals( $expected, $error );
 	}
 
 	public function provideProcessFormErrors() {
@@ -602,6 +616,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'AutoBlock' => '0',
 			'HideUser' => '1',
 			'Confirm' => '1',
+			'Watch' => '0',
 		];
 
 		$context = new DerivativeContext( RequestContext::getMain() );
@@ -612,6 +627,9 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			$context
 		);
 
+		if ( $result instanceof Status ) {
+			$result = $result->getErrorsArray();
+		}
 		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
 		$this->assertEquals( $expected, $error );
 	}
@@ -624,27 +642,27 @@ class SpecialBlockTest extends SpecialPageTestBase {
 					'HideUser' => '0',
 					'Confirm' => '0',
 				],
-				[ 'hideuser' ],
+				[ 'block', 'hideuser' ],
 				'ipb_already_blocked',
 			],
 			'Reblock user with Reblock false' => [
 				[ 'Reblock' => '0' ],
-				[ 'hideuser' ],
+				[ 'block', 'hideuser' ],
 				'ipb_already_blocked',
 			],
 			'Reblock with confirm True but target has changed' => [
 				[ 'PreviousTarget' => '1.2.3.4' ],
-				[ 'hideuser' ],
+				[ 'block', 'hideuser' ],
 				'ipb_already_blocked',
 			],
 			'Reblock with same block' => [
 				[ 'HideUser' => '1' ],
-				[ 'hideuser' ],
+				[ 'block', 'hideuser' ],
 				'ipb_already_blocked',
 			],
 			'Reblock hidden user with wrong permissions' => [
 				[ 'HideUser' => '0' ],
-				[ 'hideuser' => false ],
+				[ 'block', 'hideuser' => false ],
 				'cant-see-hidden-user',
 			],
 		];
@@ -656,13 +674,19 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 */
 	public function testProcessFormErrorsHideUser( $data, $permissions, $expected ) {
 		$performer = $this->getTestSysop()->getUser();
-		$this->overrideUserPermissions( $performer, $permissions );
+		$this->overrideUserPermissions( $performer, array_merge( $permissions, [ 'block' ] ) );
 
 		$defaultData = [
 			'Target' => $this->getTestUser()->getUser(),
 			'HideUser' => '1',
 			'Expiry' => 'infinity',
 			'Confirm' => '1',
+			'CreateAccount' => '0',
+			'DisableUTEdit' => '0',
+			'DisableEmail' => '0',
+			'HardBlock' => '0',
+			'AutoBlock' => '0',
+			'Watch' => '0',
 		];
 
 		$context = new DerivativeContext( RequestContext::getMain() );
@@ -673,7 +697,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			$context
 		);
 
-		$this->assertEquals( $expected, $result[0] );
+		if ( $result instanceof Status ) {
+			$result = $result->getErrorsArray();
+		}
+		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
+		$this->assertEquals( $expected, $error );
 	}
 
 	public function provideProcessFormErrorsHideUser() {
@@ -708,7 +736,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->setMwGlobals( [ 'wgHideUserContribLimit' => 0 ] );
 
 		$performer = $this->getTestSysop()->getUser();
-		$this->overrideUserPermissions( $performer, [ 'hideuser' ] );
+		$this->overrideUserPermissions( $performer, [ 'block', 'hideuser' ] );
 
 		$userToBlock = $this->getTestUser()->getUser();
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
@@ -726,14 +754,24 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$result = $this->newSpecialPage()->processForm(
 			[
 				'Target' => $userToBlock,
+				'CreateAccount' => '1',
 				'HideUser' => '1',
 				'Expiry' => 'infinity',
 				'Confirm' => '1',
+				'DisableUTEdit' => '0',
+				'DisableEmail' => '0',
+				'HardBlock' => '0',
+				'AutoBlock' => '0',
+				'Watch' => '0',
 			],
 			$context
 		);
 
-		$this->assertEquals( 'ipb_hide_invalid', $result[0][0] );
+		if ( $result instanceof Status ) {
+			$result = $result->getErrorsArray();
+		}
+		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
+		$this->assertEquals( 'ipb_hide_invalid', $error );
 	}
 
 	/**

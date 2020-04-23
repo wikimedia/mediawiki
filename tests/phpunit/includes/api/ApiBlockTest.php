@@ -182,7 +182,7 @@ class ApiBlockTest extends ApiTestCase {
 	public function testBlockWithProhibitedHide() {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
-			"You don't have permission to hide user names from the block log."
+			"You are not allowed to execute the action you have requested."
 		);
 
 		$this->doBlock( [ 'hidename' => '' ] );

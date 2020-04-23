@@ -48,7 +48,7 @@
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
 				isNonEmptyIp = isIp && !isEmpty,
 				expiryValue = expiryWidget.getValue(),
-				// infinityValues are the values the SpecialBlock class accepts as infinity (sf. wfIsInfinity)
+				// infinityValues are the values the BlockUser class accepts as infinity (sf. wfIsInfinity)
 				infinityValues = [ 'infinite', 'indefinite', 'infinity', 'never' ],
 				isIndefinite = infinityValues.indexOf( expiryValue ) !== -1,
 				editingRestrictionValue = editingRestrictionWidget.getValue(),

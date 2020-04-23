@@ -97,6 +97,9 @@ class ApiMain extends ApiBase {
 			'class' => ApiBlock::class,
 			'services' => [
 				'BlockPermissionCheckerFactory',
+				'BlockUserFactory',
+				'TitleFactory',
+				'UserFactory',
 			]
 		],
 		'unblock' => [
