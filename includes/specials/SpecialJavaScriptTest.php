@@ -164,19 +164,12 @@ JAVASCRIPT
 		$out = $this->getOutput();
 		$out->disable();
 
-		$styles = $out->makeResourceLoaderLink( 'jquery.qunit',
-			ResourceLoaderModule::TYPE_STYLES
-		);
-
-		// Use 'raw' because QUnit loads before ResourceLoader initialises (omit mw.loader.state call)
-		// Use 'sync' to ensure OutputPage doesn't use the "async" attribute because QUnit must
-		// load before qunit/export.
-		$scripts = $out->makeResourceLoaderLink( 'jquery.qunit',
-			ResourceLoaderModule::TYPE_SCRIPTS,
-			[ 'raw' => '1', 'sync' => '1' ]
-		);
-
-		$head = implode( "\n", [ $styles, $scripts ] );
+		$basePath = $this->getConfig()->get( 'ResourceBasePath' );
+		$head = implode( "\n", [
+			Html::linkedScript( "$basePath/resources/lib/qunitjs/qunit.js" ),
+			Html::linkedStyle( "$basePath/resources/lib/qunitjs/qunit.css" ),
+			Html::linkedStyle( "$basePath/resources/src/qunitjs/qunit-local.css" ),
+		] );
 		$summary = $this->getSummaryHtml();
 		$html = <<<HTML
 <!DOCTYPE html>
