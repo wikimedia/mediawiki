@@ -1567,13 +1567,14 @@ class Article implements Page {
 			$extraParams['unhide'] = 1;
 		}
 
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		if ( $this->mRevision && $this->mRevision->getId() === $oldid ) {
-			$revision = $this->mRevision;
+			$revisionRecord = $this->mRevision->getRevisionRecord();
 		} else {
-			$revision = Revision::newFromId( $oldid );
+			$revisionRecord = $revisionLookup->getRevisionById( $oldid );
 		}
 
-		$timestamp = $revision->getTimestamp();
+		$timestamp = $revisionRecord->getTimestamp();
 
 		$current = ( $oldid == $this->mPage->getLatest() );
 		$language = $context->getLanguage();
@@ -1584,19 +1585,25 @@ class Article implements Page {
 		$tdtime = $language->userTime( $timestamp, $user );
 
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
-		$userlinks = Linker::revUserTools( $revision->getRevisionRecord(), !$unhide );
+		$userlinks = Linker::revUserTools( $revisionRecord, !$unhide );
 
 		$infomsg = $current && !$context->msg( 'revision-info-current' )->isDisabled()
 			? 'revision-info-current'
 			: 'revision-info';
 
 		$outputPage = $context->getOutput();
+		$revisionUser = $revisionRecord->getUser();
 		$revisionInfo = "<div id=\"mw-{$infomsg}\">" .
 			$context->msg( $infomsg, $td )
 				->rawParams( $userlinks )
-				->params( $revision->getId(), $tddate, $tdtime, $revision->getUserText() )
+				->params(
+					$revisionRecord->getId(),
+					$tddate,
+					$tdtime,
+					$revisionUser ? $revisionUser->getName() : ''
+				)
 				->rawParams( Linker::revComment(
-					$revision->getRevisionRecord(),
+					$revisionRecord,
 					true,
 					true
 				) )
@@ -1622,8 +1629,7 @@ class Article implements Page {
 					'oldid' => $oldid
 				] + $extraParams
 			);
-		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
-		$prevExist = (bool)$rl->getPreviousRevision( $revision->getRevisionRecord() );
+		$prevExist = (bool)$revisionLookup->getPreviousRevision( $revisionRecord );
 		$prevlink = $prevExist
 			? $this->linkRenderer->makeKnownLink(
 				$this->getTitle(),
@@ -1671,7 +1677,7 @@ class Article implements Page {
 
 		$cdel = Linker::getRevDeleteLink(
 			$user,
-			$revision->getRevisionRecord(),
+			$revisionRecord,
 			$this->getTitle()
 		);
 		if ( $cdel !== '' ) {
