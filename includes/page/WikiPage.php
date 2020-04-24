@@ -1379,7 +1379,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param IDatabase $dbw
 	 * @param Revision|RevisionRecord $revision For ID number, and text used to set
-	 *   length and redirect status fields
+	 *   length and redirect status fields. Passing a Revision is deprecated since 1.35
 	 * @param int|null $lastRevision If given, will not overwrite the page field
 	 *   when different from the currently set value.
 	 *   Giving 0 indicates the new page flag should be set on.
@@ -1402,6 +1402,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( $revision instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revision = $revision->getRevisionRecord();
 		}
 
@@ -1525,7 +1526,12 @@ class WikiPage implements Page, IDBAccessObject {
 			$lastRevIsRedirect = null;
 		}
 
-		$ret = $this->updateRevisionOn( $dbw, $revision, $prev, $lastRevIsRedirect );
+		$ret = $this->updateRevisionOn(
+			$dbw,
+			$revision->getRevisionRecord(),
+			$prev,
+			$lastRevIsRedirect
+		);
 
 		return $ret;
 	}

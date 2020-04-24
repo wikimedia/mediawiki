@@ -1646,7 +1646,6 @@ class LocalFile extends File {
 				if ( $nullRevRecord ) {
 					$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
 
-					// TODO WikiPage::updateRevisionOn should accept a RevisionRecord
 					// TODO replace hook
 					$nullRevision = new Revision( $inserted );
 					Hooks::run(
@@ -1659,7 +1658,7 @@ class LocalFile extends File {
 							&$tags
 						]
 					);
-					$wikiPage->updateRevisionOn( $dbw, $nullRevision );
+					$wikiPage->updateRevisionOn( $dbw, $inserted );
 					// Associate null revision id
 					$logEntry->setAssociatedRevId( $inserted->getId() );
 				}
