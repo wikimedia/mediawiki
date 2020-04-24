@@ -3555,13 +3555,6 @@ class Title implements LinkTarget, IDBAccessObject {
 			$this->getInternalURL( 'action=history' )
 		];
 
-		if ( $this->getPageLanguageConverter()->hasVariants() ) {
-			$variants = $this->getPageLanguageConverter()->getVariants();
-			foreach ( $variants as $vCode ) {
-				$urls[] = $this->getInternalURL( $vCode );
-			}
-		}
-
 		// If we are looking at a css/js user subpage, purge the action=raw.
 		if ( $this->isUserJsConfigPage() ) {
 			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/javascript' );
