@@ -2949,7 +2949,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|uma edição|$1 edições}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|$1 edição|$1 edições}} de $2",
 	"javascripttest": "Teste de JavaScript",
-	"javascripttest-pagetext-unknownaction": "Ação desconhecida de $1",
 	"javascripttest-qunit-intro": "Veja a [$1 documentação de testes] no mediawiki.org.",
 	"tooltip-pt-userpage": "Sua página de {{GENDER:|usuário|usuária|usuário(a)}}",
 	"tooltip-pt-anonuserpage": "A página de usuário para o ip com o qual você está editando",

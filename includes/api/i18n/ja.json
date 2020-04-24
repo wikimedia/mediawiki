@@ -1001,7 +1001,7 @@
 	"api-pageset-param-redirects-generator": "<var>$1titles</var>, <var>$1pageids</var>, および <var>$1revids</var>, および <var>$1generator</var> によって返されたページの転送を自動的に解決する。",
 	"api-pageset-param-redirects-nogenerator": "<var>$1titles</var>, <var>$1pageids</var>, および <var>$1revids</var> の転送を自動的に解決する。",
 	"api-help-title": "MediaWiki API ヘルプ",
-	"api-help-lead": "このページは自動生成された MediaWiki API の説明文書ページです。\n\n説明文書と例: https://www.mediawiki.org/wiki/API",
+	"api-help-lead": "このページは自動生成された MediaWiki API の説明文書ページです。\n\n説明文書と例: https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page",
 	"api-help-main-header": "メイン モジュール",
 	"api-help-flag-deprecated": "このモジュールは廃止予定です。",
 	"api-help-flag-internal": "<strong>このモジュールは内部的または不安定です。</strong>動作が予告なく変更される場合があります。",

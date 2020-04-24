@@ -2766,7 +2766,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|izmena uvezena|izmene uvezene|izmena uvezeno}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|izmena uvezena|izmene uvezene|izmena uvezeno}} iz $2",
 	"javascripttest": "Testiranje javasktipta",
-	"javascripttest-pagetext-unknownaction": "Nepoznata radnja „$1“.",
 	"javascripttest-qunit-intro": "Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Vaša}} korisnička stranica",
 	"tooltip-pt-anonuserpage": "Korisnička stranica za IP adresu s koje uređujete",

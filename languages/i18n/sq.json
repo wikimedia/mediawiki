@@ -2480,7 +2480,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|version|versione}} u importuan",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|version|versione}} u importuan nga $2",
 	"javascripttest": "Duke testuar JavaScript",
-	"javascripttest-pagetext-unknownaction": "Veprim i panjohur \"$1\".",
 	"javascripttest-qunit-intro": "Shiko [$1 dokumentacionin e testimit] në mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Faqja juaj}} e përdoruesit",
 	"tooltip-pt-anonuserpage": "Faqja e përdoruesve anonim nga kjo adresë IP",

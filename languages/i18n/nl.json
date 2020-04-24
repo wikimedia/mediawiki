@@ -2906,7 +2906,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versie|versies}} geïmporteerd",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versie|versies}} geïmporteerd uit $2",
 	"javascripttest": "JavaScript testen",
-	"javascripttest-pagetext-unknownaction": "Onbekende handeling \"$1\".",
 	"javascripttest-qunit-intro": "Zie de [$1 testdocumentatie] op mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Uw}} gebruikerspagina",
 	"tooltip-pt-anonuserpage": "Gebruikerspagina voor uw IP-adres",

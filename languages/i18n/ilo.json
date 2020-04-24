@@ -2610,7 +2610,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|a rebision|kadagiti rebision}} ti naala",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|rebision|dagiti rebision}} ti naala manipud iti $2",
 	"javascripttest": "Panagsubok ti JavaScript",
-	"javascripttest-pagetext-unknownaction": "Di ammo a tignay ti \"$1\".",
 	"javascripttest-qunit-intro": "Kitaen ti [ $1 dukomentasion ti panagsubok] idiay mediawiki.org.",
 	"tooltip-pt-userpage": "Panidmo nga agar-aramat",
 	"tooltip-pt-anonuserpage": "Ti panid ti agar-aramat para iti daytoy nga adres ti IP a kas ur-urnosem",

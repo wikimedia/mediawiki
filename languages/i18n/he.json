@@ -2850,7 +2850,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|גרסה אחת יובאה|$1 גרסאות יובאו}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|גרסה אחת של הדף $2 יובאה|$1 גרסאות של הדף $2 יובאו}}",
 	"javascripttest": "בדיקת JavaScript",
-	"javascripttest-pagetext-unknownaction": "הפעולה \"$1\" אינה ידועה.",
 	"javascripttest-qunit-intro": "ניתן לעיין ב[$1 תיעוד הבדיקות] באתר mediawiki.org.",
 	"tooltip-pt-userpage": "דף {{GENDER:|המשתמש|המשתמשת}} שלך",
 	"tooltip-pt-anonuserpage": "דף המשתמש של כתובת IP זו",

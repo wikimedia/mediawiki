@@ -2419,7 +2419,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|संशोधन|संशोधनहरू}} आयात भयो",
 	"import-logentry-interwiki-detail": "$2 देखि $1 {{PLURAL:$1|पुनरावलोकन|पुनरावलोकनहरू}} आयात भयो",
 	"javascripttest": "JavaScript जाँच गरिदै",
-	"javascripttest-pagetext-unknownaction": "अज्ञात कारवाही \"$1\" ।",
 	"javascripttest-qunit-intro": "mediawiki.org मा [$1 जाँचको कागजात] हेर्नुहोस् ।",
 	"tooltip-pt-userpage": "{{GENDER:| तपाईंको प्रयोगकर्ता}} पृष्ठ",
 	"tooltip-pt-anonuserpage": "तपाईं जुन IP ठेगानाको रुपमा सम्पादन गर्दै हुनुहुन्छ , त्यसको प्रयोगकर्ता पृष्ठ निम्न छ :",

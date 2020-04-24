@@ -2857,7 +2857,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Én revisjon|$1 revisjoner}} ble importert",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Én revisjon|$1 revisjoner}} ble importert fra $2",
 	"javascripttest": "JavaScript-testing",
-	"javascripttest-pagetext-unknownaction": "Ukjent handling «$1».",
 	"javascripttest-qunit-intro": "Se [$1 testedokumentasjonen] på mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Din brukerside}}",
 	"tooltip-pt-anonuserpage": "Brukersiden for IP-adressen du redigerer fra",

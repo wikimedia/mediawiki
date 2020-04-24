@@ -2653,7 +2653,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|adweladenn}} enporzhiet",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|adweladenn}} enporzhiet eus $2",
 	"javascripttest": "Amprouadenn JavaScript",
-	"javascripttest-pagetext-unknownaction": "Obererezh dianav \"$1\".",
 	"javascripttest-qunit-intro": "Sellet ouzh [$1 an teulioù amprouiñ] e mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Ho pajenn}} implijer",
 	"tooltip-pt-anonuserpage": "Ar bajenn implijer evit ar c'homlec'h IP implijet ganeoc'h",

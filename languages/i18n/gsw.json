@@ -2252,7 +2252,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|Version|Versionen}} importiert",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|Version|Versione}} us $2 importiert",
 	"javascripttest": "JavaScript-Tescht",
-	"javascripttest-pagetext-unknownaction": "Unbekannti Aktion «$1».",
 	"javascripttest-qunit-intro": "Lueg d [$1 Dokumentation zue Tescht] uf mediawiki.org",
 	"tooltip-pt-userpage": "{{GENDER:|Dyyni}} Benutzersyte",
 	"tooltip-pt-anonuserpage": "D Benutzersyte vo der IP-Adress wo du mit schaffsch",

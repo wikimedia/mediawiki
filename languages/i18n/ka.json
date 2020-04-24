@@ -2674,7 +2674,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ვერსია|ვერსია}} იმპორტირებულია",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|ვერსია|ვერსია}} იმპორტირებულია $2-დან",
 	"javascripttest": "JavaScript-ის ტესტირება",
-	"javascripttest-pagetext-unknownaction": "უცნობი ქმედება „$1“.",
 	"javascripttest-qunit-intro": "იხილეთ [$1 ტესტირების დოკუმენტები] mediawiki.org-ზე.",
 	"tooltip-pt-userpage": "{{GENDER:|თქვენი მომხმარებლის}} გვერდი",
 	"tooltip-pt-anonuserpage": "ჩემი IP-ის მქონე მომხმარებლის გვერდი",

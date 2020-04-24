@@ -2714,7 +2714,6 @@
 	"import-logentry-upload-detail": "$1 semakan diimportkan",
 	"import-logentry-interwiki-detail": "$1 semakan diimportkan daripada $2",
 	"javascripttest": "Ujian JavaScript",
-	"javascripttest-pagetext-unknownaction": "Tindakan \"$1\" tidak dikenali.",
 	"javascripttest-qunit-intro": "Lihat [$1 pendokumenan ujian] di mediawiki.org.",
 	"tooltip-pt-userpage": "Laman {{GENDER:|pengguna anda}}",
 	"tooltip-pt-anonuserpage": "Laman pengguna bagi alamat IP anda",

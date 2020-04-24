@@ -2588,7 +2588,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия күсерелгән|версиялар күсерелгән}}",
 	"import-logentry-interwiki-detail": "$2-нан $1 {{PLURAL:$1|өлгө импортланған}}",
 	"javascripttest": "\nJavaScript тикшереү",
-	"javascripttest-pagetext-unknownaction": "$1 ғәмәле билдәһеҙ",
 	"javascripttest-qunit-intro": "mediawiki.org адресы буйынса ҡарағыҙ [$1 тест үткәреү документацияһы].",
 	"tooltip-pt-userpage": "{{GENDER:|Һеҙҙең}} ҡатнашыусы бите",
 	"tooltip-pt-anonuserpage": "IP адресығыҙ өсөн ҡатнашыусы бите",

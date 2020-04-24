@@ -2913,7 +2913,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|Version|Versionen}} importiert",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|Version|Versionen}} von $2 importiert",
 	"javascripttest": "JavaScript-Test",
-	"javascripttest-pagetext-unknownaction": "Unbekannte Aktion „$1“.",
 	"javascripttest-qunit-intro": "Siehe die [$1 Dokumentation zu Tests] auf mediawiki.org",
 	"tooltip-pt-userpage": "{{GENDER:|Deine}} Benutzerseite",
 	"tooltip-pt-anonuserpage": "Benutzerseite der IP-Adresse von der aus du Änderungen durchführst",

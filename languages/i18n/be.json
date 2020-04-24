@@ -2726,7 +2726,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версія|версіі|версій}} імпартавана",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|версія|версіі|версій}} імпартавана з $2",
 	"javascripttest": "JavaScript-тэсты",
-	"javascripttest-pagetext-unknownaction": "Невядомае дзеянне \"$1\".",
 	"javascripttest-qunit-intro": "Глядзіце [$1 дакументацыю па тэставанні] на mediawiki.org.",
 	"tooltip-pt-userpage": "Ваша ўласная старонка",
 	"tooltip-pt-anonuserpage": "Старонка ўдзельніка для таго IP, з якога вы зараз працуеце",

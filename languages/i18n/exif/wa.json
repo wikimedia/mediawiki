@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Reptilien.19831209BE1",
 			"Srtxg"
 		]
 	},
@@ -10,16 +11,16 @@
 	"exif-photometricinterpretation": "Compôzaedje des picsels",
 	"exif-orientation": "Oryintåcion",
 	"exif-samplesperpixel": "Nombe di compôzants",
-	"exif-xresolution": "Finté d' coûtchî",
-	"exif-yresolution": "Finté d' astampé",
-	"exif-datetime": "Date ey eure ki l' fitchî a stî candjî",
+	"exif-xresolution": "Finté d’&nbsp;coûtchî",
+	"exif-yresolution": "Finté d’&nbsp;astampé",
+	"exif-datetime": "Date ey eure ki l’&nbsp;fitchî a stî candjî",
 	"exif-imagedescription": "Tite di l' imådje",
 	"exif-make": "Måke del camera",
 	"exif-model": "Modele del camera",
 	"exif-software": "Programe eployî",
 	"exif-artist": "Oteur",
 	"exif-copyright": "Ditinteu des abondroets",
-	"exif-exifversion": "Modêye d' exif",
+	"exif-exifversion": "Modêye d’&nbsp;exif",
 	"exif-colorspace": "Espåce di coleurs",
 	"exif-usercomment": "Comintaires di l' uzeu",
 	"exif-datetimeoriginal": "Date ey eure ki les dnêyes ont stî fwaites",

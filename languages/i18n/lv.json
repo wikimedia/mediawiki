@@ -2361,7 +2361,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versijas|versija|versijas}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versijas|versija|versijas}} no $2",
 	"javascripttest": "JavaScript testēšana",
-	"javascripttest-pagetext-unknownaction": "Nezināma darbība \"$1\".",
 	"tooltip-pt-userpage": "Tava {{GENDER:|dalībnieka|dalībnieces}} lapa",
 	"tooltip-pt-anonuserpage": "Manas IP adreses lietotāja lapa",
 	"tooltip-pt-mytalk": "{{GENDER:|Tava}} diskusiju lapa",
