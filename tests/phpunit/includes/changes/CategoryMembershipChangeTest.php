@@ -28,7 +28,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	private static $mockRecentChange;
 
 	/**
-	 * @var Revision
+	 * @var RevisionRecord
 	 */
 	private static $pageRev = null;
 
@@ -57,16 +57,12 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	}
 
 	public function addDBDataOnce() {
-		// $pageRev is a Revision object
-		// TODO replace with RevisionRecord throughout the file
-		$this->hideDeprecated( 'WikiPage::getRevision' );
-
 		$info = $this->insertPage( self::$pageName );
 		$title = $info['title'];
 
 		$page = WikiPage::factory( $title );
-		self::$pageRev = $page->getRevision();
-		self::$revUser = User::newFromId( self::$pageRev->getUser( Revision::RAW ) );
+		self::$pageRev = $page->getRevisionRecord();
+		self::$revUser = User::newFromIdentity( self::$pageRev->getUser( Revision::RAW ) );
 	}
 
 	private function newChange( RevisionRecord $revision = null ) {
