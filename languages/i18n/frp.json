@@ -2349,7 +2349,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|vèrsion importâye|vèrsions importâyes}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|vèrsion importâye|vèrsions importâyes}} dês $2",
 	"javascripttest": "Èprôva de JavaScript",
-	"javascripttest-pagetext-unknownaction": "Accion « $1 » encognua.",
 	"javascripttest-qunit-intro": "Vêde la [$1 documentacion de les èprôves] dessus mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Voutra}} pâge utilisator",
 	"tooltip-pt-anonuserpage": "La pâge utilisator por l’adrèce IP que vos empleyéd",

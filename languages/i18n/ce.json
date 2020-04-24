@@ -2263,7 +2263,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|верси импорт йина|версеш импорт йина}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|верси импорт йина|версеш импорт йина}} $2 чура",
 	"javascripttest": "JavaScript хьажар",
-	"javascripttest-pagetext-unknownaction": "Девзаш доцу дийриг «$1».",
 	"javascripttest-qunit-intro": "Хьажа [$1 тестан документацига] mediawiki.org. тӀехь",
 	"tooltip-pt-userpage": "{{GENDER:|Декъашхочун агӀо}}",
 	"tooltip-pt-anonuserpage": "Сан IP-на декъашхочун агӀо",

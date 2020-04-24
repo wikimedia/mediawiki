@@ -2915,7 +2915,6 @@
 	"import-logentry-upload-detail": "已匯入 $1 筆{{PLURAL:$1|修訂}}",
 	"import-logentry-interwiki-detail": "已從 $2 匯入 $1 筆{{PLURAL:$1|修訂}}",
 	"javascripttest": "JavaScript 測試",
-	"javascripttest-pagetext-unknownaction": "不明操作 \"$1\"。",
 	"javascripttest-qunit-intro": "請參考 mediawiki.org 的 [$1 測試說明文件]。",
 	"tooltip-pt-userpage": "{{GENDER:|您的使用者}}頁面",
 	"tooltip-pt-anonuserpage": "您正在作為以下身分編輯此 IP 位址的使用者頁面",

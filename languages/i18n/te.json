@@ -2698,7 +2698,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|కూర్పును|కూర్పులను}} దిగుమతి చేసాం",
 	"import-logentry-interwiki-detail": "$2 నుండి {{PLURAL:$1|కూర్పును|కూర్పులను}} దిగుమతి చేసాం",
 	"javascripttest": "జావాస్క్రిప్ట్ పరీక్ష",
-	"javascripttest-pagetext-unknownaction": "తెలియని చర్య \"$1\".",
 	"javascripttest-qunit-intro": "mediawiki.org లోని [$1 పరీక్షా డాక్యుమెంటేషన్] చూడండి.",
 	"tooltip-pt-userpage": "{{GENDER:|మీ వాడుకరి}} పేజీ",
 	"tooltip-pt-anonuserpage": "మీ ఐపీ చిరునామాకి సంబంధించిన వాడుకరి పేజీ",

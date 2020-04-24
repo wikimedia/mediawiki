@@ -2568,7 +2568,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|Versioun|Versiounen}} importéiert",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|Versioun|Versiounen}} importéiert vu(n) $2",
 	"javascripttest": "JavaScript-Test",
-	"javascripttest-pagetext-unknownaction": "Onbekannt Aktioun \"$1\".",
 	"javascripttest-qunit-intro": "Kuckt d'[$1 Dokumentatioun vun den Tester] op mediawiki.org",
 	"tooltip-pt-userpage": "{{GENDER:|Är Benotzer}}säit",
 	"tooltip-pt-anonuserpage": "Benotzersäit vun der IP-Adress vun där aus Dir den Ament Ännerunge maachtt",

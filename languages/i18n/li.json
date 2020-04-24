@@ -2649,7 +2649,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versie|versies}} ingeveurd",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versie|versies}} ingeveurd van $2",
 	"javascripttest": "Tes JavaScript",
-	"javascripttest-pagetext-unknownaction": "Ónbekande hanjeling \"$1\".",
 	"javascripttest-qunit-intro": "Zuuch de [$1 tesdocumentatie] op mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Dien gebroekerspagina}}",
 	"tooltip-pt-anonuserpage": "De gebroekerspazjena veur dit IP adres",

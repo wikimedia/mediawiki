@@ -2838,7 +2838,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Увезена е една преработка|Увезени се $1 преработки}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Увезена е една преработка|Увезени се $1 преработки}} од $2",
 	"javascripttest": "Проба на JavaScript",
-	"javascripttest-pagetext-unknownaction": "Непознато дејство „$1“.",
 	"javascripttest-qunit-intro": "Вид. [$1 документација на испробувањето] на mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Вашата}} корисничка страница",
 	"tooltip-pt-anonuserpage": "Корисничка страница за IP-адресата од која уредувате",

@@ -3000,7 +3000,6 @@
 	"import-logentry-upload-detail": "$1 version{{PLURAL:$1||s}} importée{{PLURAL:$1||s}}",
 	"import-logentry-interwiki-detail": "$1 version{{PLURAL:$1||s}} importée{{PLURAL:$1||s}} depuis $2",
 	"javascripttest": "Test de JavaScript",
-	"javascripttest-pagetext-unknownaction": "Action « $1 » inconnue.",
 	"javascripttest-qunit-intro": "Voir [$1 la documentation de test] sur mediawiki.org.",
 	"tooltip-pt-userpage": "Votre page d’utilisat{{GENDER:|eur|rice}}",
 	"tooltip-pt-anonuserpage": "La page utilisateur pour l’adresse IP de laquelle vous contribuez",

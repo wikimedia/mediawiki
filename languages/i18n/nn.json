@@ -2372,7 +2372,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Éin versjon|$1 versjonar}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Éin versjon|$1 versjonar}} frå $2",
 	"javascripttest": "JavaScript-utrøyning",
-	"javascripttest-pagetext-unknownaction": "Ukjend handling \"$1\".",
 	"javascripttest-qunit-intro": "Sjå [$1 utrøyningsdokumentasjon] på mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Brukarsida}} di",
 	"tooltip-pt-anonuserpage": "Brukarsida for ip-adressa du endrar under",

@@ -2424,7 +2424,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|רעוויזיע|רעוויזיעס}} אימפארטירט",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|רעוויזיע|רעוויזיעס}} אימפארטירט פֿון $2",
 	"javascripttest": "JavaScript טעסט",
-	"javascripttest-pagetext-unknownaction": "אומבאַקאַנטע אַקציע '$1'",
 	"javascripttest-qunit-intro": "זעט [$1 דאקומענטאציע פאר טעסטן] בײַ mediawiki.org.",
 	"tooltip-pt-userpage": "אייער {{GENDER:|באניצער|באניצערין}} בלאט",
 	"tooltip-pt-anonuserpage": "באַניצער בלאַט פון דעם IP אַדרעס",

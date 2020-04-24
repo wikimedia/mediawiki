@@ -2190,7 +2190,6 @@
 	"importlogpage": "د واردولو يادښت",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|بڼه|بڼې}} راولېږدېدې",
 	"javascripttest": "د جاوا سکرېپټ آزمېښت",
-	"javascripttest-pagetext-unknownaction": "ناڅرگنده کړنه \"$1\".",
 	"tooltip-pt-userpage": "{{GENDER:|ستاسې کارن}} مخ",
 	"tooltip-pt-mytalk": "{{GENDER:|ستاسې}} د خبرواترو مخ",
 	"tooltip-pt-preferences": "{{GENDER:|ستاسې}} غوره توبونه",

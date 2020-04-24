@@ -2847,7 +2847,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|نسخه|نسخه}} واردشده",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|نسخه|نسخه}} واردشده از $2",
 	"javascripttest": "آزمایش جاوااسکریپت",
-	"javascripttest-pagetext-unknownaction": "تابع ناشناختهٔ \"$1\".",
 	"javascripttest-qunit-intro": "[$1 مستندات آزمایش] را در mediawiki.org ببینید.",
 	"tooltip-pt-userpage": "صفحهٔ {{GENDER:|کاربری شما}}",
 	"tooltip-pt-anonuserpage": "صفحهٔ کاربری نشانی آی‌پی‌ای که با آن ویرایش می‌کنید",

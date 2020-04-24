@@ -1115,6 +1115,7 @@
 	"htmlform-reset": "Ka noqo wax bedelka",
 	"htmlform-selectorother-other": "kuwa kale",
 	"logentry-delete-delete": "$1 {{GENDER:$2|tirtiray}} bogga $3",
+	"logentry-move-move-noredirect": "$1 {{GENDER:$2|wareejiyay}} bogga $3 ilaa $4 oo aan ka tagin sii toosin",
 	"logentry-newusers-create": "Akoonka  isticmaalaha $1 ayaa  {{GENDER:$2| la sameeyay}}",
 	"rightsnone": "(waxna)",
 	"feedback-message": "Fariinta:",

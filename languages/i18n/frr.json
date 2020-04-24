@@ -2304,7 +2304,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|werjuun|werjuunen}} importiaret",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|werjuun|werjuunen}} faan $2 importiaret",
 	"javascripttest": "JavaScript-test",
-	"javascripttest-pagetext-unknownaction": "Ünbekäänd aktjuun „$1“.",
 	"javascripttest-qunit-intro": "Luke efter bi [$1 test dokumentatjuun] üüb mediawiki.org",
 	"tooltip-pt-userpage": "{{GENDER:|Din}} brükersidj",
 	"tooltip-pt-anonuserpage": "Brükersidj faan det IP-adres, faan huar ütj dü werkest",

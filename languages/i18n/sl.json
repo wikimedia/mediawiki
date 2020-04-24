@@ -2819,7 +2819,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Uvožena $1 redakcija|Uvoženi $1 redakciji|Uvožene $1 redakcije|Uvoženih $1 redakcij}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Uvožena $1 redakcija|Uvoženi $1 redakciji|Uvožene $1 redakcije|Uvoženih $1 redakcij}} z $2",
 	"javascripttest": "Preizkušanje JavaScripta",
-	"javascripttest-pagetext-unknownaction": "Neznano dejanje »$1«.",
 	"javascripttest-qunit-intro": "Oglejte si [$1 dokumentacijo o preizkušanju] na mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Tvoja}} uporabniška stran",
 	"tooltip-pt-anonuserpage": "Uporabniška stran IP-naslova, ki ga uporabljate",

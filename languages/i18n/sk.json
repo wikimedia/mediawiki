@@ -2834,7 +2834,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|importovaná $1 revízia|importované $1 revízie|importovaných $1 revízií}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|importovaná $1 revízia|importované $1 revízie|importovaných $1 revízií}} z $2",
 	"javascripttest": "Testovanie JavaScriptu",
-	"javascripttest-pagetext-unknownaction": "Neznáma akcia: „$1“.",
 	"javascripttest-qunit-intro": "Pozri [$1 dokumentácia testovania] na mediawiki.org.",
 	"tooltip-pt-userpage": "Vaša používateľská stránka",
 	"tooltip-pt-anonuserpage": "Používateľská stránka pre ip adresu, ktorú upravujete ako",

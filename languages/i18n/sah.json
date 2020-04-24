@@ -2722,7 +2722,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|барыл угулунна|барылы уктубут}}",
 	"import-logentry-interwiki-detail": "Барыта $2 барылтан $1 барыл угулунна",
 	"javascripttest": "JavaScript тургутуу",
-	"javascripttest-pagetext-unknownaction": "Биллибэт дьайыы «$1».",
 	"javascripttest-qunit-intro": "[$1 тургутуу документациятын] манна mediawiki.org көр.",
 	"tooltip-pt-userpage": "{{GENDER:|Кыттааччы}} быһыытынан тус сириҥ",
 	"tooltip-pt-anonuserpage": "Билигин киирбит IP-м сирэйэ",

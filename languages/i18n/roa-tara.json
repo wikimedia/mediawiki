@@ -2643,7 +2643,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revisione|revisiune}} 'mbortate",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revisione|revisiune}} 'mbortate da $2",
 	"javascripttest": "Test de JavaScript",
-	"javascripttest-pagetext-unknownaction": "Aziona scanusciute \"$1\"",
 	"javascripttest-qunit-intro": "Vide 'a [$1 documendazione d'u test] sus a mediawiki.org.",
 	"tooltip-pt-userpage": "'A pàgene {{GENDER:|utende}} meje",
 	"tooltip-pt-anonuserpage": "'A pàgene utende pe l'IP ca tu ste cange cumme",

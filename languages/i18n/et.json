@@ -2831,7 +2831,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} imporditud",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} imporditud asukohast $2",
 	"javascripttest": "JavaScripti katsetamine",
-	"javascripttest-pagetext-unknownaction": "Tundmatu toiming \"$1\".",
 	"javascripttest-qunit-intro": "Vaata [$1 katsetamise dokumentatsiooni] asukohas mediawiki.org.",
 	"tooltip-pt-userpage": "Sinu kasutajaleht",
 	"tooltip-pt-anonuserpage": "Sinu IP-aadressi kasutajalehekülg",
