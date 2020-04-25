@@ -1234,7 +1234,7 @@
 	ignore = dirty
 [submodule "extensions/SpriteSheet"]
 	path = extensions/SpriteSheet
-	url = https://github.com/HydraWiki/SpriteSheet
+	url = https://gitlab.com/hydrawiki/extensions/SpriteSheet.git
 	branch = master
 	ignore = dirty
 [submodule "extensions/GoogleDocs4MW"]
