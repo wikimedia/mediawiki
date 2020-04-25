@@ -55,6 +55,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\DeprecatedHooks;
@@ -1044,6 +1045,13 @@ return [
 		} );
 
 		return $registry;
+	},
+
+	'SpamChecker' => function ( MediaWikiServices $services ) : SpamChecker {
+		return new SpamChecker(
+			(array)$services->getMainConfig()->get( 'SpamRegex' ),
+			(array)$services->getMainConfig()->get( 'SummarySpamRegex' )
+		);
 	},
 
 	'SpecialPageFactory' => function ( MediaWikiServices $services ) : SpecialPageFactory {
