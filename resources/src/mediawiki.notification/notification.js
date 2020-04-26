@@ -435,7 +435,7 @@
 		 *
 		 * - type:
 		 *   An optional string for the type of the message used for styling:
-		 *   Examples: 'info', 'warn', 'error'.
+		 *   Examples: 'info', 'warn', 'error', 'success'.
 		 *
 		 * - visibleTimeout:
 		 *   A boolean indicating if the autoHide timeout should be based on
