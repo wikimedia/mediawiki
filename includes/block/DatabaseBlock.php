@@ -443,9 +443,9 @@ class DatabaseBlock extends AbstractBlock {
 
 		$this->setTimestamp( wfTimestamp( TS_MW, $row->ipb_timestamp ) );
 		$this->mAuto = (bool)$row->ipb_auto;
-		$this->setHideName( $row->ipb_deleted );
+		$this->setHideName( (bool)$row->ipb_deleted );
 		$this->mId = (int)$row->ipb_id;
-		$this->mParentBlockId = $row->ipb_parent_block_id;
+		$this->mParentBlockId = (int)$row->ipb_parent_block_id;
 
 		$this->setBlocker( User::newFromAnyId(
 			$row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ?? null
@@ -461,12 +461,12 @@ class DatabaseBlock extends AbstractBlock {
 		);
 
 		$this->isHardblock( !$row->ipb_anon_only );
-		$this->isAutoblocking( $row->ipb_enable_autoblock );
+		$this->isAutoblocking( (bool)$row->ipb_enable_autoblock );
 		$this->isSitewide( (bool)$row->ipb_sitewide );
 
-		$this->isCreateAccountBlocked( $row->ipb_create_account );
-		$this->isEmailBlocked( $row->ipb_block_email );
-		$this->isUsertalkEditAllowed( $row->ipb_allow_usertalk );
+		$this->isCreateAccountBlocked( (bool)$row->ipb_create_account );
+		$this->isEmailBlocked( (bool)$row->ipb_block_email );
+		$this->isUsertalkEditAllowed( (bool)$row->ipb_allow_usertalk );
 	}
 
 	/**
