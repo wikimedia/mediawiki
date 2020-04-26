@@ -134,7 +134,7 @@ class Xml {
 	/**
 	 * Create a date selector
 	 *
-	 * @param string $selected The month which should be selected, default ''.
+	 * @param string|null $selected The month which should be selected, default ''.
 	 * @param string|null $allmonths Value of a special item denoting all month.
 	 *   Null to not include (default).
 	 * @param string $id Element identifier
@@ -143,10 +143,12 @@ class Xml {
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
 		global $wgLang;
 		$options = [];
-		$data = new XmlSelect( 'month', $id, $selected );
+
 		if ( $selected === null ) {
 			$selected = '';
 		}
+		$data = new XmlSelect( 'month', $id, $selected );
+
 		if ( $allmonths !== null ) {
 			$options[wfMessage( 'monthsall' )->text()] = $allmonths;
 		}
