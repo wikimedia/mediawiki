@@ -29,6 +29,7 @@ class ArticleTest extends \MediaWikiTestCase {
 	 * @covers Article::__get
 	 */
 	public function testImplementsGetMagic() {
+		$this->hideDeprecated( 'Article::__get Access to raw mLatest field' );
 		$this->assertFalse( $this->article->mLatest, "Article __get magic" );
 	}
 
@@ -37,6 +38,8 @@ class ArticleTest extends \MediaWikiTestCase {
 	 * @covers Article::__set
 	 */
 	public function testImplementsSetMagic() {
+		$this->hideDeprecated( 'Article::__get Access to raw mLatest field' );
+		$this->hideDeprecated( 'Article::__set Access to raw mLatest field' );
 		$this->article->mLatest = 2;
 		$this->assertEquals( 2, $this->article->mLatest, "Article __set magic" );
 	}
@@ -46,12 +49,21 @@ class ArticleTest extends \MediaWikiTestCase {
 	 * @covers Article::__set
 	 */
 	public function testGetOrSetOnNewProperty() {
+		$this->hideDeprecated(
+			'Article::__get Access to raw ext_someNewProperty field'
+		);
+		$this->hideDeprecated(
+			'Article::__set Access to raw ext_someNewProperty field'
+		);
 		$this->article->ext_someNewProperty = 12;
 		$this->assertEquals( 12, $this->article->ext_someNewProperty,
 			"Article get/set magic on new field" );
-
+		$this->assertEquals( 12, $this->article->getPage()->ext_someNewProperty,
+			"Article get/set magic on new field" );
 		$this->article->ext_someNewProperty = -8;
 		$this->assertEquals( -8, $this->article->ext_someNewProperty,
 			"Article get/set magic on update to new field" );
+		$this->assertEquals( -8, $this->article->getPage()->ext_someNewProperty,
+			"Article get/set magic on new field" );
 	}
 }
