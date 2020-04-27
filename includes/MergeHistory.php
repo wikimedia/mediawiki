@@ -21,6 +21,8 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -291,6 +293,8 @@ class MergeHistory {
 			[ 'rev_page' => $this->source->getArticleID() ],
 			__METHOD__
 		);
+
+		$services = MediaWikiServices::getInstance();
 		if ( !$haveRevisions ) {
 			if ( $reason ) {
 				$reason = wfMessage(
@@ -307,8 +311,7 @@ class MergeHistory {
 				)->inContentLanguage()->text();
 			}
 
-			$redirectContent = MediaWikiServices::getInstance()
-				->getContentHandlerFactory()
+			$redirectContent = $services->getContentHandlerFactory()
 				->getContentHandler( $this->source->getContentModel() )
 				->makeRedirectContent(
 					$this->dest,
@@ -316,14 +319,23 @@ class MergeHistory {
 				);
 
 			if ( $redirectContent ) {
+				$revStore = $services->getRevisionStore();
+				$redirectComment = CommentStoreComment::newUnsavedComment( $reason );
+
+				$redirectRevRecord = new MutableRevisionRecord( $this->source );
+				$redirectRevRecord->setContent( SlotRecord::MAIN, $redirectContent );
+				$redirectRevRecord->setPageId( $this->source->getArticleID() );
+				$redirectRevRecord->setComment( $redirectComment );
+				$redirectRevRecord->setUser( $user );
+				$redirectRevRecord->setTimestamp( wfTimestampNow() );
+
+				$insertedRevRecord = $revStore->insertRevisionOn(
+					$redirectRevRecord,
+					$this->dbw
+				);
+
 				$redirectPage = WikiPage::factory( $this->source );
-				$redirectRevision = new Revision( [
-					'title' => $this->source,
-					'page' => $this->source->getArticleID(),
-					'comment' => $reason,
-					'content' => $redirectContent ] );
-				$redirectRevision->insertOn( $this->dbw );
-				$redirectPage->updateRevisionOn( $this->dbw, $redirectRevision );
+				$redirectPage->updateRevisionOn( $this->dbw, $insertedRevRecord );
 
 				// Now, we record the link from the redirect to the new title.
 				// It should have no other outgoing links...
@@ -350,7 +362,7 @@ class MergeHistory {
 		$this->dest->invalidateCache(); // update histories
 
 		// Duplicate watchers of the old article to the new article on history merge
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$store = $services->getWatchedItemStore();
 		$store->duplicateAllAssociatedEntries( $this->source, $this->dest );
 
 		// Update our logs

@@ -709,11 +709,12 @@ class DifferenceEngine extends ContextSource {
 				$oldminor = '';
 			}
 
+			$oldRevRecord = $this->mOldRev->getRevisionRecord();
+
 			$ldel = $this->revisionDeleteLink( $this->mOldRev );
-			$oldRevisionHeader = $this->getRevisionHeader( $this->mOldRev, 'complete' );
+			$oldRevisionHeader = $this->getRevisionHeader( $oldRevRecord, 'complete' );
 			$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff', $this->getContext() );
 
-			$oldRevRecord = $this->mOldRev->getRevisionRecord();
 			$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $oldRevisionHeader . '</strong></div>' .
 				'<div id="mw-diff-otitle2">' .
 				Linker::revUserTools( $oldRevRecord, !$this->unhide ) . '</div>' .
@@ -768,11 +769,13 @@ class DifferenceEngine extends ContextSource {
 			);
 			$formattedRevisionTools[] = $element;
 		}
-		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) .
+
+		$newRevRecord = $this->mNewRev->getRevisionRecord();
+
+		$newRevisionHeader = $this->getRevisionHeader( $newRevRecord, 'complete' ) .
 			' ' . implode( ' ', $formattedRevisionTools );
 		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
 
-		$newRevRecord = $this->mNewRev->getRevisionRecord();
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
 			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $newRevRecord, !$this->unhide ) .
 			" $rollback</div>" .
@@ -956,7 +959,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$out = $this->getOutput();
-		$revHeader = $this->getRevisionHeader( $this->mNewRev );
+		$revHeader = $this->getRevisionHeader( $this->mNewRev->getRevisionRecord() );
 		# Add "current version as of X" title
 		$out->addHTML( "<hr class='diff-hr' id='mw-oldid' />
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
@@ -1689,7 +1692,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get a header for a specified revision.
 	 *
-	 * @param Revision|RevisionRecord $rev
+	 * @param Revision|RevisionRecord $rev (passing a Revision is deprecated since 1.35)
 	 * @param string $complete 'complete' to get the header wrapped depending
 	 *        the visibility of the revision and a link to edit the page.
 	 *
@@ -1697,6 +1700,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function getRevisionHeader( $rev, $complete = '' ) {
 		if ( $rev instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$rev = $rev->getRevisionRecord();
 		}
 
