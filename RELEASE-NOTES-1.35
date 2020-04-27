@@ -76,6 +76,26 @@ For notes on 1.34.x and older releases, see HISTORY.
   option in provider specifications.
 * The 'URL' parameter to $wgVirtualRestConfig['modules']['parsoid'], previously
   allowed for backwards-compatibility, has been deprecated.  Use 'url' instead.
+* Article::$mContext, use getContext()/setContext()
+* Article::__get(), ::__set() hard deprecated, use WikiPage property instead
+* Article::checkFlags(), ::checkTouched(), ::clearPreparedEdit(), ::exists(),
+  ::doDeleteArticleReal(), ::doEditContent(), ::doPurge(), ::doViewUpdates(),
+  ::followRedirect(), ::getContentHandler(), ::getId(), ::hasViewableContent()
+  ::getContentModel(), ::getContributors(), ::getLatest(),::getMinorEdit(),
+  ::getHiddenCategories(), ::getLinksTimestamp(), ::getDeletionUpdates(),
+  ::getRedirectTarget(), ::getRedirectURL(), ::getTimestamp(), ::getTouched(),
+  ::insertRedirect(), ::insertRedirectEntry(), ::isCountable(), ::isRedirect(),
+  ::loadFromRow(), ::loadPageData(), ::lockAndGetLatest(), ::setTimestamp(),
+  ::makeParserOptions(), ::updateCategoryCounts(), ::protectDescriptionLog(),
+  ::protectDescription(), ::replaceSectionAtRev(), ::pageDataFromTitle(),
+  ::shouldCheckParserCache(), ::supportsSections(), ::prepareContentForEdit(),
+  ::triggerOpportunisticLinksUpdate(), ::pageDataFromId(), ::commitRollback(),
+  ::updateRedirectOn(), ::doUpdateRestrictions(), ::insertOn(), ::doRollback()
+  hard deprecated, use corresponding methods of the WikiPage class instead
+* Article::generateReason() hard deprecated,
+  use \Article::getPage()->getAutoDeleteReason() instead
+* Article::replaceSectionContent() hard deprecated,
+  use ::replaceSectionAtRev instead
 * The defaults for $wgVirtualRestConfig['modules']['parsoid'] have been
   updated.  If you were relying on the default values, you may need to update
   your configuration.

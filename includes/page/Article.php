@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -46,10 +45,11 @@ class Article implements Page {
 	/**
 	 * @var IContextSource|null The context this Article is executed in.
 	 * If null, RequestContext::getMain() is used.
+	 * @deprecated since 1.35, must be private, use {@link getContext}
 	 */
 	protected $mContext;
 
-	/** @var WikiPage|null The WikiPage object of this instance */
+	/** @var WikiPage The WikiPage object of this instance */
 	protected $mPage;
 
 	/**
@@ -1885,7 +1885,8 @@ class Article implements Page {
 		$hasHistory = false;
 		if ( !$reason ) {
 			try {
-				$reason = $this->generateReason( $hasHistory );
+				$reason = $this->getPage()
+					->getAutoDeleteReason( $hasHistory );
 			} catch ( Exception $e ) {
 				# if a page is horribly broken, we still want to be able to
 				# delete it. So be lenient about errors here.
@@ -2299,6 +2300,7 @@ class Article implements Page {
 	}
 
 	/**
+	 * @deprecated since 1.35, use Article::getPage() instead
 	 * Use PHP's magic __get handler to handle accessing of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
@@ -2306,14 +2308,15 @@ class Article implements Page {
 	 * @return mixed
 	 */
 	public function __get( $fname ) {
+		wfDeprecated( __METHOD__ . " Access to raw $fname field", '1.35' );
 		if ( property_exists( $this->mPage, $fname ) ) {
-			# wfWarn( "Access to raw $fname field " . __CLASS__ );
 			return $this->mPage->$fname;
 		}
 		trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
 	}
 
 	/**
+	 * @deprecated since 1.35, use Article::getPage() instead
 	 * Use PHP's magic __set handler to handle setting of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
@@ -2321,8 +2324,8 @@ class Article implements Page {
 	 * @param mixed $fvalue New value
 	 */
 	public function __set( $fname, $fvalue ) {
+		wfDeprecated( __METHOD__ . " Access to raw $fname field", '1.35' );
 		if ( property_exists( $this->mPage, $fname ) ) {
-			# wfWarn( "Access to raw $fname field of " . __CLASS__ );
 			$this->mPage->$fname = $fvalue;
 		// Note: extensions may want to toss on new fields
 		} elseif ( !in_array( $fname, [ 'mContext', 'mPage' ] ) ) {
@@ -2334,35 +2337,44 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::exists() instead,
+	 *  or simply omit the EDIT_UPDATE and EDIT_NEW flags.
+	 *  To protect against race conditions,
+	 *  use PageUpdater::grabParentRevision.
+	 *
 	 * @see WikiPage::checkFlags
 	 * @param int $flags
 	 * @return int
 	 */
 	public function checkFlags( $flags ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->checkFlags( $flags );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::checkTouched instead
 	 * @see WikiPage::checkTouched
 	 * @return bool
 	 */
 	public function checkTouched() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->checkTouched();
 	}
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::clearPreparedEdit instead
 	 * @see WikiPage::clearPreparedEdit
 	 */
 	public function clearPreparedEdit() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->clearPreparedEdit();
 	}
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::doDeleteArticleReal
 	 * @deprecated since 1.35
+	 * @see WikiPage::doDeleteArticleReal
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param int|null $u1
@@ -2384,9 +2396,8 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::doDeleteUpdates instead
 	 * @see WikiPage::doDeleteUpdates
-	 * @deprecated since 1.35
 	 * @param int $id
 	 * @param Content|null $content
 	 * @param Revision|null $revision
@@ -2404,7 +2415,8 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35, use PageUpdater::doUpdates instead.
+	 *
 	 * @see WikiPage::doEditUpdates
 	 * @param Revision $revision
 	 * @param User $user
@@ -2416,41 +2428,45 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::doPurge instead
 	 * @see WikiPage::doPurge
 	 * @note In 1.28 (and only 1.28), this took a $flags parameter that
 	 *  controlled how much purging was done.
 	 * @return bool
 	 */
 	public function doPurge() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->doPurge();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::doViewUpdates instead
 	 * @see WikiPage::doViewUpdates
 	 * @param User $user
 	 * @param int $oldid
 	 */
 	public function doViewUpdates( User $user, $oldid = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->doViewUpdates( $user, $oldid );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::exists instead
 	 * @see WikiPage::exists
 	 * @return bool
 	 */
 	public function exists() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->exists();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::followRedirect instead
 	 * @see WikiPage::followRedirect
 	 * @return bool|Title|string
 	 */
 	public function followRedirect() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->followRedirect();
 	}
 
@@ -2464,21 +2480,23 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getAutoDeleteReason instead
 	 * @see WikiPage::getAutoDeleteReason
 	 * @param bool &$hasHistory
 	 * @return string|bool
 	 */
 	public function getAutoDeleteReason( &$hasHistory ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getAutoDeleteReason( $hasHistory );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getCategories instead
 	 * @see WikiPage::getCategories
 	 * @return TitleArray
 	 */
 	public function getCategories() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getCategories();
 	}
 
@@ -2496,29 +2514,32 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getContentHandler instead
 	 * @see WikiPage::getContentHandler
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getContentHandler();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getContentModel instead
 	 * @see WikiPage::getContentModel
 	 * @return string
 	 */
 	public function getContentModel() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getContentModel();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getContributors instead
 	 * @see WikiPage::getContributors
 	 * @return UserArrayFromResult
 	 */
 	public function getContributors() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getContributors();
 	}
 
@@ -2536,64 +2557,68 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getDeletionUpdates instead
 	 * @see WikiPage::getDeletionUpdates
 	 * @param Content|null $content
 	 * @return DeferrableUpdate[]
 	 */
 	public function getDeletionUpdates( Content $content = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getDeletionUpdates( $content );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getHiddenCategories instead
 	 * @see WikiPage::getHiddenCategories
 	 * @return array
 	 */
 	public function getHiddenCategories() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getHiddenCategories();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getId instead
 	 * @see WikiPage::getId
 	 * @return int
 	 */
 	public function getId() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getId();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getLatest instead
 	 * @see WikiPage::getLatest
 	 * @return int
 	 */
 	public function getLatest() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getLatest();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getLinksTimestamp instead
 	 * @see WikiPage::getLinksTimestamp
 	 * @return string|null
 	 */
 	public function getLinksTimestamp() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getLinksTimestamp();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getMinorEdit instead
 	 * @see WikiPage::getMinorEdit
 	 * @return bool
 	 */
 	public function getMinorEdit() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getMinorEdit();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @see WikiPage::getOldestRevision
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35, use RevisionStore::getFirstRevision
 	 * @return Revision|null
 	 */
 	public function getOldestRevision() {
@@ -2602,21 +2627,23 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getRedirectTarget instead
 	 * @see WikiPage::getRedirectTarget
 	 * @return Title|null
 	 */
 	public function getRedirectTarget() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getRedirectTarget();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getRedirectURL instead
 	 * @see WikiPage::getRedirectURL
 	 * @param Title $rt
 	 * @return bool|Title|string
 	 */
 	public function getRedirectURL( $rt ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getRedirectURL( $rt );
 	}
 
@@ -2632,20 +2659,22 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getTimestamp instead
 	 * @see WikiPage::getTimestamp
 	 * @return string
 	 */
 	public function getTimestamp() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getTimestamp();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::getTouched instead
 	 * @see WikiPage::getTouched
 	 * @return string
 	 */
 	public function getTouched() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->getTouched();
 	}
 
@@ -2663,8 +2692,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35, use WikiPage::getUser instead
 	 * @see WikiPage::getUser
 	 * @param int $audience
 	 * @param User|null $user
@@ -2676,8 +2704,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35, use WikiPage::getUserText instead
 	 * @see WikiPage::getUserText
 	 * @param int $audience
 	 * @param User|null $user
@@ -2689,27 +2716,28 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::hasViewableContent instead
 	 * @see WikiPage::hasViewableContent
 	 * @return bool
 	 */
 	public function hasViewableContent() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->hasViewableContent();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::insertOn instead
 	 * @see WikiPage::insertOn
 	 * @param IDatabase $dbw
 	 * @param int|null $pageId
 	 * @return bool|int
 	 */
 	public function insertOn( $dbw, $pageId = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->insertOn( $dbw, $pageId );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
 	 * @see WikiPage::insertProtectNullRevision
 	 * @deprecated since 1.35, use WikiPage::insertNullProtectionRevision instead
 	 * @param string $revCommentMsg
@@ -2730,84 +2758,92 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::insertRedirect instead
 	 * @see WikiPage::insertRedirect
 	 * @return Title|null
 	 */
 	public function insertRedirect() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->insertRedirect();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::insertRedirectEntry instead
 	 * @see WikiPage::insertRedirectEntry
 	 * @param Title $rt
 	 * @param int|null $oldLatest
 	 * @return bool
 	 */
 	public function insertRedirectEntry( Title $rt, $oldLatest = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->insertRedirectEntry( $rt, $oldLatest );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::isCountable instead
 	 * @see WikiPage::isCountable
 	 * @param PreparedEdit|bool $editInfo
 	 * @return bool
 	 */
 	public function isCountable( $editInfo = false ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->isCountable( $editInfo );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::isRedirect instead
 	 * @see WikiPage::isRedirect
 	 * @return bool
 	 */
 	public function isRedirect() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->isRedirect();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::loadFromRow instead
 	 * @see WikiPage::loadFromRow
 	 * @param object|bool $data
 	 * @param string|int $from
 	 */
 	public function loadFromRow( $data, $from ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->loadFromRow( $data, $from );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::loadPageData instead
 	 * @see WikiPage::loadPageData
 	 * @param object|string|int $from
 	 */
 	public function loadPageData( $from = 'fromdb' ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->loadPageData( $from );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::lockAndGetLatest instead
 	 * @see WikiPage::lockAndGetLatest
 	 * @return int
 	 */
 	public function lockAndGetLatest() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->lockAndGetLatest();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::makeParserOptions instead
 	 * @see WikiPage::makeParserOptions
 	 * @param IContextSource|User|string $context
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->makeParserOptions( $context );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::pageDataFromId instead
 	 * @see WikiPage::pageDataFromId
 	 * @param IDatabase $dbr
 	 * @param int $id
@@ -2815,11 +2851,12 @@ class Article implements Page {
 	 * @return object|bool
 	 */
 	public function pageDataFromId( $dbr, $id, $options = [] ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->pageDataFromId( $dbr, $id, $options );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::pageDataFromTitle instead
 	 * @see WikiPage::pageDataFromTitle
 	 * @param IDatabase $dbr
 	 * @param Title $title
@@ -2827,12 +2864,15 @@ class Article implements Page {
 	 * @return object|bool
 	 */
 	public function pageDataFromTitle( $dbr, $title, $options = [] ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->pageDataFromTitle( $dbr, $title, $options );
 	}
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35 with PreparedEdit.
+	 *             use @see \MediaWiki\Storage\DerivedPageDataUpdater instead.
+	 *
 	 * @see WikiPage::prepareContentForEdit
 	 * @param Content $content
 	 * @param Revision|RevisionRecord|null $revision
@@ -2853,29 +2893,31 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::protectDescription instead
 	 * @see WikiPage::protectDescription
 	 * @param array $limit
 	 * @param array $expiry
 	 * @return string
 	 */
 	public function protectDescription( array $limit, array $expiry ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->protectDescription( $limit, $expiry );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::protectDescriptionLog instead
 	 * @see WikiPage::protectDescriptionLog
 	 * @param array $limit
 	 * @param array $expiry
 	 * @return string
 	 */
 	public function protectDescriptionLog( array $limit, array $expiry ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->protectDescriptionLog( $limit, $expiry );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::replaceSectionAtRev instead
 	 * @see WikiPage::replaceSectionAtRev
 	 * @param string|int|null|bool $sectionId
 	 * @param Content $sectionContent
@@ -2886,6 +2928,7 @@ class Article implements Page {
 	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
 		$sectionTitle = '', $baseRevId = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->replaceSectionAtRev( $sectionId, $sectionContent,
 			$sectionTitle, $baseRevId
 		);
@@ -2893,6 +2936,8 @@ class Article implements Page {
 
 	/**
 	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::replaceSectionAtRev instead
+	 *
 	 * @see WikiPage::replaceSectionContent
 	 * @param string|int|null|bool $sectionId
 	 * @param Content $sectionContent
@@ -2903,57 +2948,63 @@ class Article implements Page {
 	public function replaceSectionContent(
 		$sectionId, Content $sectionContent, $sectionTitle = '', $edittime = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->replaceSectionContent(
 			$sectionId, $sectionContent, $sectionTitle, $edittime
 		);
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::setTimestamp instead
 	 * @see WikiPage::setTimestamp
 	 * @param string $ts
 	 */
 	public function setTimestamp( $ts ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->setTimestamp( $ts );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::shouldCheckParserCache instead
 	 * @see WikiPage::shouldCheckParserCache
 	 * @param ParserOptions $parserOptions
 	 * @param int $oldId
 	 * @return bool
 	 */
 	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->shouldCheckParserCache( $parserOptions, $oldId );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::supportsSections instead
 	 * @see WikiPage::supportsSections
 	 * @return bool
 	 */
 	public function supportsSections() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->supportsSections();
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::triggerOpportunisticLinksUpdate instead
 	 * @see WikiPage::triggerOpportunisticLinksUpdate
 	 * @param ParserOutput $parserOutput
 	 */
 	public function triggerOpportunisticLinksUpdate( ParserOutput $parserOutput ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->triggerOpportunisticLinksUpdate( $parserOutput );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::updateCategoryCounts instead
 	 * @see WikiPage::updateCategoryCounts
 	 * @param array $added
 	 * @param array $deleted
 	 * @param int $id
 	 */
 	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mPage->updateCategoryCounts( $added, $deleted, $id );
 	}
 
@@ -2971,7 +3022,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
+	 * @deprecated since 1.35, use WikiPage::updateRedirectOn instead
 	 * @see WikiPage::updateRedirectOn
 	 * @param IDatabase $dbw
 	 * @param Title|null $redirectTitle
@@ -2979,12 +3030,12 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect );
 	}
 
 	/**
-	 * Call to WikiPage function for backwards compatibility.
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35, use WikiPage::updateRevisionOn instead
 	 * @see WikiPage::updateRevisionOn
 	 * @param IDatabase $dbw
 	 * @param Revision $revision
@@ -3002,6 +3053,7 @@ class Article implements Page {
 	}
 
 	/**
+	 * @deprecated since 1.35, use WikiPage::doUpdateRestrictions instead
 	 * @param array $limit
 	 * @param array $expiry
 	 * @param bool &$cascade
@@ -3012,10 +3064,12 @@ class Article implements Page {
 	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade,
 		$reason, User $user
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user );
 	}
 
 	/**
+	 * @deprecated since 1.35, use WikiPage::updateRestrictions
 	 * @param array $limit
 	 * @param string $reason
 	 * @param int &$cascade
@@ -3025,6 +3079,7 @@ class Article implements Page {
 	public function updateRestrictions( $limit = [], $reason = '',
 		&$cascade = 0, $expiry = []
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mPage->doUpdateRestrictions(
 			$limit,
 			$expiry,
@@ -3035,7 +3090,7 @@ class Article implements Page {
 	}
 
 	/**
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35, use WikiPage::doDeleteArticleReal instead
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param int|null $u1 Unused
@@ -3055,6 +3110,7 @@ class Article implements Page {
 	}
 
 	/**
+	 * @deprecated since 1.35
 	 * @param string $fromP
 	 * @param string $summary
 	 * @param string $token
@@ -3063,7 +3119,15 @@ class Article implements Page {
 	 * @param User|null $user
 	 * @return array[]
 	 */
-	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
+	public function doRollback(
+		$fromP,
+		$summary,
+		$token,
+		$bot,
+		&$resultDetails,
+		User $user = null
+	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( !$user ) {
 			$user = $this->getContext()->getUser();
 		}
@@ -3072,6 +3136,8 @@ class Article implements Page {
 	}
 
 	/**
+	 * @deprecated since 1.35
+	 * @internal
 	 * @param string $fromP
 	 * @param string $summary
 	 * @param bool $bot
@@ -3080,6 +3146,7 @@ class Article implements Page {
 	 * @return array
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( !$guser ) {
 			$guser = $this->getContext()->getUser();
 		}
@@ -3088,17 +3155,13 @@ class Article implements Page {
 	}
 
 	/**
+	 * @deprecated since 1.35, use WikiPage::getAutoDeleteReason instead
+	 *
 	 * @param bool &$hasHistory
 	 * @return mixed
 	 */
 	public function generateReason( &$hasHistory ) {
-		$title = $this->mPage->getTitle();
-		$handler = $this->getContentHandlerFactory()->getContentHandler( $title->getContentModel() );
-
-		return $handler->getAutoDeleteReason( $title, $hasHistory );
-	}
-
-	private function getContentHandlerFactory(): IContentHandlerFactory {
-		return MediaWikiServices::getInstance()->getContentHandlerFactory();
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getPage()->getAutoDeleteReason( $hasHistory );
 	}
 }
