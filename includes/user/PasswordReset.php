@@ -166,6 +166,12 @@ class PasswordReset implements LoggerAwareInterface {
 				. ' is not allowed to reset passwords' );
 		}
 
+		// Check against the rate limiter. If the $wgRateLimit is reached, we want to pretend
+		// that the request was good to avoid displaying an error message.
+		if ( $performingUser->pingLimiter( 'mailpassword' ) ) {
+			return StatusValue::newGood();
+		}
+
 		$username = $username ?? '';
 		$email = $email ?? '';
 
@@ -176,7 +182,8 @@ class PasswordReset implements LoggerAwareInterface {
 			$users = [ $this->lookupUser( $username ) ];
 		} elseif ( $resetRoutes['email'] && $email ) {
 			if ( !Sanitizer::validateEmail( $email ) ) {
-				return StatusValue::newFatal( 'passwordreset-invalidemail' );
+				// Only email was supplied but not valid: pretend everything's fine.
+				return StatusValue::newGood();
 			}
 			// Only email was provided
 			$method = 'email';
@@ -212,12 +219,6 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
 
-		// Check against the rate limiter. If the $wgRateLimit is reached, we want to pretend
-		// that the request was good to avoid displaying an error message.
-		if ( $performingUser->pingLimiter( 'mailpassword' ) ) {
-			return StatusValue::newGood();
-		}
-
 		// Get the first element in $users by using `reset` function just in case $users is changed
 		// in 'SpecialPasswordResetOnSubmit' hook.
 		$firstUser = reset( $users ) ?? null;
@@ -226,15 +227,9 @@ class PasswordReset implements LoggerAwareInterface {
 			&& $method === 'username'
 			&& $firstUser
 			&& $firstUser->getBoolOption( 'requireemail' );
-		if ( $requireEmail ) {
-			if ( $email === '' ) {
-				// Email is required but not supplied: pretend everything's fine.
-				return StatusValue::newGood();
-			}
-
-			if ( !Sanitizer::validateEmail( $email ) ) {
-				return StatusValue::newFatal( 'passwordreset-invalidemail' );
-			}
+		if ( $requireEmail && ( $email === '' || !Sanitizer::validateEmail( $email ) ) ) {
+			// Email is required, and not supplied or not valid: pretend everything's fine.
+			return StatusValue::newGood();
 		}
 
 		if ( !$users ) {
