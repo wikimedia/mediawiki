@@ -1668,10 +1668,11 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * @param Revision $rev
+	 * @todo Remove use of Revision objects
+	 * @param Revision|RevisionRecord $rev
 	 * @return bool whether the user can see and edit the revision.
 	 */
-	private function userCanEdit( Revision $rev ) {
+	private function userCanEdit( $rev ) {
 		$user = $this->getUser();
 
 		if ( !RevisionRecord::userCanBitfield(
@@ -1688,13 +1689,17 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get a header for a specified revision.
 	 *
-	 * @param Revision $rev
+	 * @param Revision|RevisionRecord $rev
 	 * @param string $complete 'complete' to get the header wrapped depending
 	 *        the visibility of the revision and a link to edit the page.
 	 *
 	 * @return string HTML fragment
 	 */
-	public function getRevisionHeader( Revision $rev, $complete = '' ) {
+	public function getRevisionHeader( $rev, $complete = '' ) {
+		if ( $rev instanceof Revision ) {
+			$rev = $rev->getRevisionRecord();
+		}
+
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
 		$revtimestamp = $rev->getTimestamp();
@@ -1713,7 +1718,7 @@ class DifferenceEngine extends ContextSource {
 			return $header->escaped();
 		}
 
-		$title = $rev->getTitle();
+		$title = $rev->getPageAsLinkTarget();
 
 		$header = $this->linkRenderer->makeKnownLink( $title, $header->text(), [],
 			[ 'oldid' => $rev->getId() ] );
