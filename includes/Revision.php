@@ -861,9 +861,12 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get next revision for this title
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard), use RevisionLookup::getNextRevision instead
+	 *
 	 * @return Revision|null
 	 */
 	public function getNext() {
+		wfDeprecated( __METHOD__, '1.31' );
 		$rec = self::getRevisionLookup()->getNextRevision( $this->mRecord );
 		return $rec ? new Revision( $rec, self::READ_NORMAL, $this->getTitle() ) : null;
 	}

@@ -687,6 +687,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getNext
 	 */
 	public function testGetNext() {
+		$this->hideDeprecated( 'Revision::getNext' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$rev1 = $this->testPage->getRevision();
