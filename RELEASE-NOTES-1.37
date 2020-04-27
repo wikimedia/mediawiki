@@ -54,6 +54,8 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * $wgIncludejQueryMigrate Default value for this configuration has changed
   from true to false. This may break gadgets that depended on methods removed
   in jQuery 3. See T280944 for more information.
+* $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
+  form of JavaScript, 'application/javascript', as well as previous MIME types.
 * …
 
 ==== Removed configuration ====
