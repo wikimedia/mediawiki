@@ -17,7 +17,7 @@ interface Article__MissingArticleConditionsHook {
 	 *
 	 * @param array &$conds Array of query conditions (all of which have to be met;
 	 *   conditions will AND in the final query)
-	 * @param array $logTypes Array of log types being queried
+	 * @param string[] $logTypes Array of log types being queried
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticle__MissingArticleConditions( &$conds, $logTypes );

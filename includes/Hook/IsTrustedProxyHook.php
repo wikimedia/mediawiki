@@ -13,7 +13,7 @@ interface IsTrustedProxyHook {
 	 * @since 1.35
 	 *
 	 * @param string $ip IP being checked
-	 * @param array &$result Change this value to override the result of ProxyLookup::isTrustedProxy()
+	 * @param bool &$result Change this value to override the result of ProxyLookup::isTrustedProxy()
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onIsTrustedProxy( $ip, &$result );

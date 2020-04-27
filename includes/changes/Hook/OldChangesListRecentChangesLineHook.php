@@ -18,8 +18,8 @@ interface OldChangesListRecentChangesLineHook {
 	 * @param OldChangesList $changeslist
 	 * @param string &$s HTML of the form `<li>...</li>` containing one RC entry
 	 * @param RecentChange $rc
-	 * @param array &$classes Array of CSS classes for the `<li>` element
-	 * @param array &$attribs Associative array of other HTML attributes for the `<li>` element.
+	 * @param string[] &$classes Array of CSS classes for the `<li>` element
+	 * @param string[] &$attribs Associative array of other HTML attributes for the `<li>` element.
 	 *   Currently only data attributes reserved to MediaWiki are allowed
 	 *   (see Sanitizer::isReservedDataAttribute).
 	 * @return bool|void True or no return value to continue, or false to omit the line from

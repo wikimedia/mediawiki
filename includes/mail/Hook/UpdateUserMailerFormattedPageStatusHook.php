@@ -12,7 +12,7 @@ interface UpdateUserMailerFormattedPageStatusHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$formattedPageStatus List of valid page states
+	 * @param string[] &$formattedPageStatus List of valid page states
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUpdateUserMailerFormattedPageStatus( &$formattedPageStatus );

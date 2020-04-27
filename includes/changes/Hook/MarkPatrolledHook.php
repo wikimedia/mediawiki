@@ -19,7 +19,7 @@ interface MarkPatrolledHook {
 	 * @param bool $wcOnlySysopsCanPatrol Config setting indicating whether the user needs to be a
 	 *   sysop in order to mark an edit patrolled
 	 * @param bool $auto True if the edit is being marked as patrolled automatically
-	 * @param array &$tags Tags to be applied to the patrol log entry
+	 * @param string[] &$tags Tags to be applied to the patrol log entry
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onMarkPatrolled( $rcid, $user, $wcOnlySysopsCanPatrol, $auto,

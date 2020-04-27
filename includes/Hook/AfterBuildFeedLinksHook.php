@@ -14,7 +14,7 @@ interface AfterBuildFeedLinksHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$feedLinks Array of created feed links
+	 * @param string[] &$feedLinks Array of created feed links
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onAfterBuildFeedLinks( &$feedLinks );

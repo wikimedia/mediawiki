@@ -16,7 +16,7 @@ interface TitleGetRestrictionTypesHook {
 	 * @since 1.35
 	 *
 	 * @param Title $title Title in question
-	 * @param array &$types Types of protection available
+	 * @param string[] &$types Types of protection available
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onTitleGetRestrictionTypes( $title, &$types );

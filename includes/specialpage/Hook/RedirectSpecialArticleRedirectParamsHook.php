@@ -14,7 +14,7 @@ interface RedirectSpecialArticleRedirectParamsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$redirectParams Array of parameters preserved by redirecting special pages
+	 * @param string[] &$redirectParams Array of parameters preserved by redirecting special pages
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onRedirectSpecialArticleRedirectParams( &$redirectParams );

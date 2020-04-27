@@ -16,7 +16,7 @@ interface ArticleRevisionVisibilitySetHook {
 	 * @since 1.35
 	 *
 	 * @param Title $title Title of the article
-	 * @param array $ids IDs to set the visibility for
+	 * @param int[] $ids IDs to set the visibility for
 	 * @param array $visibilityChangeMap Map of revision ID to oldBits and newBits.
 	 *   This array can be examined to determine exactly what visibility bits
 	 *   have changed for each revision. This array is of the form:

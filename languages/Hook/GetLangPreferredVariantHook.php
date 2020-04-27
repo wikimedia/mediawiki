@@ -14,7 +14,7 @@ interface GetLangPreferredVariantHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param string|bool &$req Language variant from the URL or boolean false if no variant
+	 * @param string|null &$req Language variant from the URL or null if no variant
 	 *   was specified in the URL; the value of this variable comes from
 	 *   LanguageConverter#getURLVariant()
 	 * @return bool|void True or no return value to continue or false to abort

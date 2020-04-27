@@ -13,7 +13,7 @@ interface GitViewersHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$extTypes Associative array of repo URLS to viewer URLs
+	 * @param string[] &$extTypes Associative array of repo URLS to viewer URLs
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onGitViewers( &$extTypes );

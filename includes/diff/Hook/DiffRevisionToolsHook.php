@@ -17,7 +17,7 @@ interface DiffRevisionToolsHook {
 	 * @since 1.35
 	 *
 	 * @param Revision $newRev New revision
-	 * @param array &$links Array of HTML links
+	 * @param string[] &$links Array of HTML links
 	 * @param Revision|null $oldRev Old revision (may be null)
 	 * @param User $user Current user
 	 * @return bool|void True or no return value to continue or false to abort

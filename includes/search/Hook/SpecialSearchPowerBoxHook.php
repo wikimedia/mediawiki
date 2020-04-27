@@ -14,9 +14,9 @@ interface SpecialSearchPowerBoxHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$showSections Array to add values with more options to
+	 * @param string[] &$showSections Array to add values with more options to
 	 * @param string $term Search term (not a title object)
-	 * @param array &$opts Array of hidden options (containing 'redirs' and 'profile')
+	 * @param string[] &$opts Array of hidden options (containing 'redirs' and 'profile')
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialSearchPowerBox( &$showSections, $term, &$opts );

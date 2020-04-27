@@ -22,11 +22,11 @@ interface HtmlPageLinkRendererBeginHook {
 	 * @param string|HtmlArmor|null &$text Contents that the `<a>` tag should
 	 *   have; either a plain, unescaped string or an HtmlArmor object; null
 	 *   means "default"
-	 * @param array &$customAttribs HTML attributes that the `<a>` tag should have, in
+	 * @param string[] &$customAttribs HTML attributes that the `<a>` tag should have, in
 	 *   associative array form, with keys and values unescaped. Should be merged
 	 *   with default values, with a value of false meaning to suppress the
 	 *   attribute.
-	 * @param array &$query Query string to add to the generated URL (the bit after the "?"),
+	 * @param string[] &$query Query string to add to the generated URL (the bit after the "?"),
 	 *   in associative array form, with keys and values unescaped.
 	 * @param string &$ret Value to return if your hook returns false
 	 * @return bool|void True or no return value to continue, or false to skip default

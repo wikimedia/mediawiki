@@ -13,7 +13,7 @@ interface PrefixSearchExtractNamespaceHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$namespaces Array of int namespace keys to search in
+	 * @param int[] &$namespaces Array of int namespace keys to search in
 	 *   (change this if you can extract namespaces)
 	 * @param string &$search Search term (replace this with term without
 	 *   the namespace if you can extract one)

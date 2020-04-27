@@ -22,7 +22,7 @@ interface SkinTemplateTabActionHook {
 	 * @param string $message Visible label of tab
 	 * @param bool $selected Whether this is a selected tab
 	 * @param bool $checkEdit Whether or not the action=edit query should be added if appropriate
-	 * @param array &$classes Array of CSS classes to apply
+	 * @param string[] &$classes Array of CSS classes to apply
 	 * @param string &$query Query string to add to link
 	 * @param string &$text Link text
 	 * @param array &$result Complete associative array if you want to return true

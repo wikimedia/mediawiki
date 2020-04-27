@@ -13,7 +13,7 @@ interface PrefixSearchBackendHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array $ns Array of int namespace keys to search in
+	 * @param int[] $ns Array of int namespace keys to search in
 	 * @param string $search Search term (not guaranteed to be conveniently normalized)
 	 * @param int $limit Maximum number of results to return
 	 * @param string[] &$results Out param: array of page names
