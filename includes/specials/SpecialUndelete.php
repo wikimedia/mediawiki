@@ -24,6 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -433,10 +434,11 @@ class SpecialUndelete extends SpecialPage {
 
 			return;
 		}
+		$revRecord = $rev->getRevisionRecord();
 
 		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			if ( !RevisionRecord::userCanBitfield(
-				$rev->getVisibility(),
+				$revRecord->getVisibility(),
 				RevisionRecord::DELETED_TEXT,
 				$user
 			) ) {
@@ -451,7 +453,7 @@ class SpecialUndelete extends SpecialPage {
 
 			$out->wrapWikiMsg(
 				"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				$rev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
+				$revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 					'rev-suppressed-text-view' : 'rev-deleted-text-view'
 			);
 			$out->addHTML( '<br />' );
@@ -461,7 +463,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mDiff ) {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
 			if ( $previousRev ) {
-				$this->showDiff( $previousRev, $rev );
+				$this->showDiff( $previousRev->getRevisionRecord(), $revRecord );
 				if ( $this->mDiffOnly ) {
 					return;
 				}
@@ -484,7 +486,7 @@ class SpecialUndelete extends SpecialPage {
 		$time = $lang->userTimeAndDate( $timestamp, $user );
 		$d = $lang->userDate( $timestamp, $user );
 		$t = $lang->userTime( $timestamp, $user );
-		$userLink = Linker::revUserTools( $rev->getRevisionRecord() );
+		$userLink = Linker::revUserTools( $revRecord );
 
 		$content = $rev->getContent( RevisionRecord::FOR_THIS_USER, $user );
 
@@ -502,7 +504,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( !$this->mDiff ) {
 			$revdel = Linker::getRevDeleteLink(
 				$user,
-				$rev->getRevisionRecord(),
+				$revRecord,
 				$this->mTargetObj
 			);
 			if ( $revdel ) {
@@ -517,6 +519,7 @@ class SpecialUndelete extends SpecialPage {
 		);
 		$out->addHTML( '</div>' );
 
+		// Hook needs a Revision, but its deprecated, so that is fine
 		if ( !Hooks::run( 'UndeleteShowRevision', [ $this->mTargetObj, $rev ], '1.35' ) ) {
 			return;
 		}
@@ -528,7 +531,7 @@ class SpecialUndelete extends SpecialPage {
 			$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
 
 			$rendered = $renderer->getRenderedRevision(
-				$rev->getRevisionRecord(),
+				$revRecord,
 				$popts,
 				$user,
 				[ 'audience' => RevisionRecord::FOR_THIS_USER ]
@@ -606,60 +609,74 @@ class SpecialUndelete extends SpecialPage {
 	 * Build a diff display between this and the previous either deleted
 	 * or non-deleted edit.
 	 *
-	 * @param Revision $previousRev
-	 * @param Revision $currentRev
+	 * @param RevisionRecord $previousRevRecord
+	 * @param RevisionRecord $currentRevRecord
 	 */
-	function showDiff( $previousRev, $currentRev ) {
-		$diffContext = clone $this->getContext();
-		$diffContext->setTitle( $currentRev->getTitle() );
-		$diffContext->setWikiPage( WikiPage::factory( $currentRev->getTitle() ) );
+	private function showDiff(
+		RevisionRecord $previousRevRecord,
+		RevisionRecord $currentRevRecord
+	) {
+		$currentTitle = Title::newFromLinkTarget( $currentRevRecord->getPageAsLinkTarget() );
 
-		$diffEngine = $currentRev->getContentHandler()->createDifferenceEngine( $diffContext );
-		$diffEngine->setRevisions( $previousRev->getRevisionRecord(), $currentRev->getRevisionRecord() );
+		$diffContext = clone $this->getContext();
+		$diffContext->setTitle( $currentTitle );
+		$diffContext->setWikiPage( WikiPage::factory( $currentTitle ) );
+
+		$contentModel = $currentRevRecord->getSlot(
+			SlotRecord::MAIN,
+			RevisionRecord::RAW
+		)->getModel();
+
+		$diffEngine = MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $contentModel )
+			->createDifferenceEngine( $diffContext );
+
+		$diffEngine->setRevisions( $previousRevRecord, $currentRevRecord );
 		$diffEngine->showDiffStyle();
 		$formattedDiff = $diffEngine->getDiff(
-			$this->diffHeader( $previousRev, 'o' ),
-			$this->diffHeader( $currentRev, 'n' )
+			$this->diffHeader( $previousRevRecord, 'o' ),
+			$this->diffHeader( $currentRevRecord, 'n' )
 		);
 
 		$this->getOutput()->addHTML( "<div>$formattedDiff</div>\n" );
 	}
 
 	/**
-	 * @param Revision $rev
+	 * @param RevisionRecord $revRecord
 	 * @param string $prefix
 	 * @return string
 	 */
-	private function diffHeader( $rev, $prefix ) {
-		$isDeleted = !( $rev->getId() && $rev->getTitle() );
+	private function diffHeader( RevisionRecord $revRecord, $prefix ) {
+		$isDeleted = !( $revRecord->getId() && $revRecord->getPageAsLinkTarget() );
 		if ( $isDeleted ) {
 			/// @todo FIXME: $rev->getTitle() is null for deleted revs...?
 			$targetPage = $this->getPageTitle();
 			$targetQuery = [
 				'target' => $this->mTargetObj->getPrefixedText(),
-				'timestamp' => wfTimestamp( TS_MW, $rev->getTimestamp() )
+				'timestamp' => wfTimestamp( TS_MW, $revRecord->getTimestamp() )
 			];
 		} else {
 			/// @todo FIXME: getId() may return non-zero for deleted revs...
-			$targetPage = $rev->getTitle();
-			$targetQuery = [ 'oldid' => $rev->getId() ];
+			$targetPage = $revRecord->getPageAsLinkTarget();
+			$targetQuery = [ 'oldid' => $revRecord->getId() ];
 		}
 
 		// Add show/hide deletion links if available
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
-		$rdel = Linker::getRevDeleteLink( $user, $rev->getRevisionRecord(), $this->mTargetObj );
+		$rdel = Linker::getRevDeleteLink( $user, $revRecord, $this->mTargetObj );
 
 		if ( $rdel ) {
 			$rdel = " $rdel";
 		}
 
-		$minor = $rev->isMinor() ? ChangesList::flag( 'minor' ) : '';
+		$minor = $revRecord->isMinor() ? ChangesList::flag( 'minor' ) : '';
 
 		$tagIds = wfGetDB( DB_REPLICA )->selectFieldValues(
 			'change_tag',
 			'ct_tag_id',
-			[ 'ct_rev_id' => $rev->getId() ],
+			[ 'ct_rev_id' => $revRecord->getId() ],
 			__METHOD__
 		);
 		$tags = [];
@@ -681,19 +698,19 @@ class SpecialUndelete extends SpecialPage {
 				$targetPage,
 				$this->msg(
 					'revisionasof',
-					$lang->userTimeAndDate( $rev->getTimestamp(), $user ),
-					$lang->userDate( $rev->getTimestamp(), $user ),
-					$lang->userTime( $rev->getTimestamp(), $user )
+					$lang->userTimeAndDate( $revRecord->getTimestamp(), $user ),
+					$lang->userDate( $revRecord->getTimestamp(), $user ),
+					$lang->userTime( $revRecord->getTimestamp(), $user )
 				)->text(),
 				[],
 				$targetQuery
 			) .
 			'</strong></div>' .
 			'<div id="mw-diff-' . $prefix . 'title2">' .
-			Linker::revUserTools( $rev ) . '<br />' .
+			Linker::revUserTools( $revRecord ) . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-' . $prefix . 'title3">' .
-			$minor . Linker::revComment( $rev->getRevisionRecord() ) . $rdel . '<br />' .
+			$minor . Linker::revComment( $revRecord ) . $rdel . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-' . $prefix . 'title5">' .
 			$tagSummary[0] . '<br />' .
