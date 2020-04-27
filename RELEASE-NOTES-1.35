@@ -788,6 +788,7 @@ because of Phabricator reports.
   - ::getRecentChange - use RevisionStore::getRecentChange instead
   - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
       content address, or RevisionRecord::hasSameContent to compare content
+  - ::getNext - use RevisionLookup::getNextRevision instead
 * The Revision method had a few methods that were previously protected and
   have been made private. They were:
   - ::getRevisionStore
