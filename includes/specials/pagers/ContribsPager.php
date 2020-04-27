@@ -534,11 +534,29 @@ class ContribsPager extends RangeChronologicalPager {
 	 * Check whether the revision associated is valid for formatting. If has no associated revision
 	 * id then null is returned.
 	 *
+	 * @deprecated since 1.35
+	 *
 	 * @param object $row
 	 * @param Title|null $title
 	 * @return Revision|null
 	 */
 	public function tryToCreateValidRevision( $row, $title = null ) {
+		$potentialRevRecord = $this->tryCreatingRevisionRecord( $row, $title );
+		return $potentialRevRecord ? new Revision( $potentialRevRecord ) : null;
+	}
+
+	/**
+	 * Check whether the revision associated is valid for formatting. If has no associated revision
+	 * id then null is returned.
+	 *
+	 * @since 1.35
+	 *
+	 * @param object $row
+	 * @param Title|null $title
+	 * @return RevisionRecord|null
+	 */
+	public function tryCreatingRevisionRecord( $row, $title = null ) {
+		$revFactory = MediaWikiServices::getInstance()->getRevisionFactory();
 		/*
 		 * There may be more than just revision rows. To make sure that we'll only be processing
 		 * revisions here, let's _try_ to build a revision out of our row (without displaying
@@ -548,13 +566,13 @@ class ContribsPager extends RangeChronologicalPager {
 		 */
 		Wikimedia\suppressWarnings();
 		try {
-			$rev = new Revision( $row, 0, $title );
-			$validRevision = (bool)$rev->getId();
+			$revRecord = $revFactory->newRevisionFromRow( $row, 0, $title );
+			$validRevision = (bool)$revRecord->getId();
 		} catch ( Exception $e ) {
 			$validRevision = false;
 		}
 		Wikimedia\restoreWarnings();
-		return $validRevision ? $rev : null;
+		return $validRevision ? $revRecord : null;
 	}
 
 	/**
@@ -583,9 +601,9 @@ class ContribsPager extends RangeChronologicalPager {
 		if ( isset( $row->page_namespace ) && isset( $row->page_title ) ) {
 			$page = Title::newFromRow( $row );
 		}
-		$rev = $this->tryToCreateValidRevision( $row, $page );
-		if ( $rev ) {
-			$attribs['data-mw-revid'] = $rev->getId();
+		$revRecord = $this->tryCreatingRevisionRecord( $row, $page );
+		if ( $revRecord ) {
+			$attribs['data-mw-revid'] = $revRecord->getId();
 
 			$link = $linkRenderer->makeLink(
 				$page,
@@ -607,16 +625,16 @@ class ContribsPager extends RangeChronologicalPager {
 				) {
 					$this->preventClickjacking();
 					$topmarktext .= ' ' . Linker::generateRollback(
-						$rev->getRevisionRecord(),
+						$revRecord,
 						$this->getContext(),
 						[ 'noBrackets' ]
 					);
 				}
 			}
 			# Is there a visible previous revision?
-			if ( $rev->getParentId() !== 0 &&
+			if ( $revRecord->getParentId() !== 0 &&
 				RevisionRecord::userCanBitfield(
-					$rev->getVisibility(),
+					$revRecord->getVisibility(),
 					RevisionRecord::DELETED_TEXT,
 					$user
 				)
@@ -663,26 +681,28 @@ class ContribsPager extends RangeChronologicalPager {
 			}
 
 			$lang = $this->getLanguage();
-			$revRecord = $rev->getRevisionRecord();
 			$comment = $lang->getDirMark() . Linker::revComment( $revRecord, false, true, false );
 			$d = ChangesList::revDateLink( $revRecord, $user, $lang, $page );
 
 			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';
+			$revUser = $revRecord->getUser();
+			$revUserId = $revUser ? $revUser->getId() : 0;
+			$revUserText = $revUser ? $revUser->getName() : '';
 			if ( $this->isQueryableRange( $this->target ) ) {
 				$userlink = ' <span class="mw-changeslist-separator"></span> '
 					. $lang->getDirMark()
-					. Linker::userLink( $rev->getUser(), $rev->getUserText() );
+					. Linker::userLink( $revUserId, $revUserText );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
-					Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
+					Linker::userTalkLink( $revUserId, $revUserText ) )->escaped() . ' ';
 			}
 
 			$flags = [];
-			if ( $rev->getParentId() === 0 ) {
+			if ( $revRecord->getParentId() === 0 ) {
 				$flags[] = ChangesList::flag( 'newpage' );
 			}
 
-			if ( $rev->isMinor() ) {
+			if ( $revRecord->isMinor() ) {
 				$flags[] = ChangesList::flag( 'minor' );
 			}
 
@@ -728,7 +748,7 @@ class ContribsPager extends RangeChronologicalPager {
 			];
 
 			# Denote if username is redacted for this edit
-			if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
+			if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
 				$templateParams['rev-deleted-user-contribs'] =
 					$this->msg( 'rev-deleted-user-contribs' )->escaped();
 			}

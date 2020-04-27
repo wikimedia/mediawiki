@@ -692,6 +692,8 @@ because of Phabricator reports.
   outside of mediawiki core.
 * AuthManager::singleton() has been deprecated. Use
   MediaWikiServices::getInstance()->getAuthManager() instead.
+* ContribsPager::tryToCreateValidRevision is soft deprecated. Instead, use
+  ContribsPager::tryCreatingRevisionRecord.
 * The following functions all accept an optional user parameter. Not passing a
   user is hard deprecated, and support for calling them without passing a user
   will be removed in 1.36:
