@@ -23,7 +23,9 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class ChangesList extends ContextSource {
@@ -742,17 +744,19 @@ class ChangesList extends ContextSource {
 			if ( MediaWikiServices::getInstance()->getPermissionManager()
 				->quickUserCan( 'rollback', $this->getUser(), $title )
 			) {
-				$rev = new Revision( [
-					'title' => $title,
-					'id' => $rc->mAttribs['rc_this_oldid'],
-					'user' => $rc->mAttribs['rc_user'],
-					'user_text' => $rc->mAttribs['rc_user_text'],
-					'actor' => $rc->mAttribs['rc_actor'] ?? null,
-					'deleted' => $rc->mAttribs['rc_deleted']
-				] );
+				$revRecord = new MutableRevisionRecord( $title );
+				$revRecord->setId( $rc->mAttribs['rc_this_oldid'] );
+				$revRecord->setVisibility( $rc->mAttribs['rc_deleted'] );
+				$user = new UserIdentityValue(
+					$rc->mAttribs['rc_user'],
+					$rc->mAttribs['rc_user_text'],
+					$rc->mAttribs['rc_actor'] ?? 0
+				);
+				$revRecord->setUser( $user );
+
 				$s .= ' ';
 				$s .= Linker::generateRollback(
-					$rev->getRevisionRecord(),
+					$revRecord,
 					$this->getContext(),
 					[ 'noBrackets' ]
 				);
