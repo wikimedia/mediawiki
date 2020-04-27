@@ -27,7 +27,7 @@
  * @ingroup Media
  */
 class PNGHandler extends BitmapHandler {
-	const BROKEN_FILE = '0';
+	private const BROKEN_FILE = '0';
 
 	/**
 	 * @param File|FSFile $image

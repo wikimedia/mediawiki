@@ -27,21 +27,24 @@
  * @ingroup Media
  */
 class WebPHandler extends BitmapHandler {
-	const BROKEN_FILE = '0'; // value to store in img_metadata if error extracting metadata.
 	/**
-	 * @var int Minimum chunk header size to be able to read all header types
+	 * Value to store in img_metadata if there was an error extracting metadata
 	 */
-	const MINIMUM_CHUNK_HEADER_LENGTH = 18;
+	private const BROKEN_FILE = '0';
 	/**
-	 * @var int version of the metadata stored in db records
+	 * Minimum chunk header size to be able to read all header types
 	 */
-	const _MW_WEBP_VERSION = 1;
+	private const MINIMUM_CHUNK_HEADER_LENGTH = 18;
+	/**
+	 * Version of the metadata stored in db records
+	 */
+	private const _MW_WEBP_VERSION = 1;
 
-	const VP8X_ICC = 32;
-	const VP8X_ALPHA = 16;
-	const VP8X_EXIF = 8;
-	const VP8X_XMP = 4;
-	const VP8X_ANIM = 2;
+	private const VP8X_ICC = 32;
+	private const VP8X_ALPHA = 16;
+	private const VP8X_EXIF = 8;
+	private const VP8X_XMP = 4;
+	private const VP8X_ANIM = 2;
 
 	public function getMetadata( $image, $filename ) {
 		$parsedWebPData = self::extractMetadata( $filename );

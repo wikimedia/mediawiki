@@ -31,7 +31,7 @@ use Wikimedia\ScopedCallback;
  * @ingroup Media
  */
 class SvgHandler extends ImageHandler {
-	const SVG_METADATA_VERSION = 2;
+	public const SVG_METADATA_VERSION = 2;
 
 	/** @var array A list of metadata tags that can be converted
 	 *  to the commonly used exif tags. This allows messages

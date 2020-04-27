@@ -28,8 +28,11 @@
  * @ingroup Media
  */
 class ExifBitmapHandler extends BitmapHandler {
-	const BROKEN_FILE = '-1'; // error extracting metadata
-	const OLD_BROKEN_FILE = '0'; // outdated error extracting metadata.
+	/** Error extracting metadata */
+	public const BROKEN_FILE = '-1';
+
+	/** Outdated error extracting metadata */
+	public const OLD_BROKEN_FILE = '0';
 
 	function convertMetadataVersion( $metadata, $version = 1 ) {
 		// basically flattens arrays.

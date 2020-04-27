@@ -33,8 +33,8 @@ use MediaWiki\Shell\Shell;
  * @ingroup Media
  */
 class JpegHandler extends ExifBitmapHandler {
-	const SRGB_EXIF_COLOR_SPACE = 'sRGB';
-	const SRGB_ICC_PROFILE_DESCRIPTION = 'sRGB IEC61966-2.1';
+	private const SRGB_EXIF_COLOR_SPACE = 'sRGB';
+	private const SRGB_ICC_PROFILE_DESCRIPTION = 'sRGB IEC61966-2.1';
 
 	public function normaliseParams( $image, &$params ) {
 		if ( !parent::normaliseParams( $image, $params ) ) {
