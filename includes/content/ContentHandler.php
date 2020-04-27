@@ -1114,9 +1114,12 @@ abstract class ContentHandler {
 	 * @since 1.32 accepts Content objects for all parameters instead of Revision objects.
 	 *  Passing Revision objects is deprecated.
 	 *
-	 * @param Revision|Content $current The current text
-	 * @param Revision|Content $undo The content of the revision to undo
-	 * @param Revision|Content $undoafter Must be from an earlier revision than $undo
+	 * @param Revision|Content $current The current text (passing a Revision is hard
+	 *    deprecated since 1.35)
+	 * @param Revision|Content $undo The content of the revision to undo (passing a Revision is
+	 *    hard deprecated since 1.35)
+	 * @param Revision|Content $undoafter Must be from an earlier revision than $undo (passing a
+	 *     Revision is hard deprecated since 1.35)
 	 * @param bool $undoIsLatest Set true if $undo is from the current revision (since 1.32)
 	 *
 	 * @return Content|false Content on success, false on failure
@@ -1136,6 +1139,8 @@ abstract class ContentHandler {
 				'Must be Revision when $current is Revision' );
 			Assert::parameter( $undoafter instanceof Revision, '$undoafter',
 				'Must be Revision when $current is Revision' );
+
+			wfDeprecated( __METHOD__ . ' with Revision objects', '1.32' );
 
 			$cur_content = $current->getContent();
 
