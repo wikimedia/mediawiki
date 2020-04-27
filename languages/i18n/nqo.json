@@ -546,7 +546,6 @@
 	"passwordreset-emailelement": "ߕߐ߯ ߟߊߓߊ߯ߙߕߊ:\n$1\n\nߥߊ߯ߕߌ߫ ߟߊߕߊߡߌ߲߫ ߕߊߡߌ߲ߞߊ߲:\n $2",
 	"passwordreset-nocaller": "ߞߟߌߟߌߟߊ ߦߋ߫ ߡߊߛߐ߫ ߟߋ߬",
 	"passwordreset-nosuchcaller": "ߞߟߌߟߌߟߊ ߕߴߦߋ߲߬ $1",
-	"passwordreset-invalidemail": "ߢߎߡߍߙߋ߲߫ ߛߊ߲߬ߓߊ߬ߕߐ߮ ߓߍ߲߬ߓߊߟߌ",
 	"changeemail": "ߢߎߡߍߙߋ߲߫ ߞߏ߲ߘߏ ߡߊߝߊ߬ߟߋ߲߬ ߥߟߊ߫ ߞߵߊ߬ ߛߋ߲߬ߓߐ߫",
 	"changeemail-no-info": "ߌ ߦߴߌ ߜߊ߲߬ߞߎ߲߫ ߡߎߣߎ߲߬߸ ߞߊ߬ ߛߋ߫ ߞߐߜߍ ߣߌ߲߬ ߡߊߛߐ߬ߘߐ߲߬ ߠߊ߫ ߞߋߟߋ߲ߘߌ߫.",
 	"changeemail-oldemail": "ߕߋ߲߭ߕߋ߲߭ ߢߎߡߍߙߋ߲߫ ߞߏ߲ߘߏ",

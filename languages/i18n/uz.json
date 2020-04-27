@@ -423,7 +423,6 @@
 	"passwordreset-domain": "Domen:",
 	"passwordreset-email": "Elektron pochta manzilingiz:",
 	"passwordreset-emailelement": "Foydalanuvchi ismi: \n$1\n\nVaqtinchalik maxfiy so'z: \n$2",
-	"passwordreset-invalidemail": "Noto‘g‘ri elektron pochta manzili",
 	"changeemail": "Elektron pochta manzilini oʻzgartirish",
 	"changeemail-header": "Elektron pochta manzilini o'zgaritish",
 	"changeemail-oldemail": "Joriy elektron pochta manzili",

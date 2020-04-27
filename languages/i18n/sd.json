@@ -489,7 +489,6 @@
 	"passwordreset-email": "برقٽپال پتو:",
 	"passwordreset-emailtitle": "{{SITENAME}} واري کاتي جا تفصيل",
 	"passwordreset-emailelement": "يُوزرنانءُ: \n$1\n\nعارضي ڳجھولفظ:\n$2",
-	"passwordreset-invalidemail": "ناقابلڪار برقٽپال پتو",
 	"changeemail": "برقٽپال پتو مِٽايو يا بدلايو",
 	"changeemail-oldemail": "هاڻوڪو برقٽپال پتو:",
 	"changeemail-newemail": "نئون برقٽپال پتو:",

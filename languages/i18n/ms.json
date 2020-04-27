@@ -598,7 +598,6 @@
 	"passwordreset-nocaller": "Pemanggil perlu diberikan",
 	"passwordreset-nosuchcaller": "Pemanggil tidak wujud: $1",
 	"passwordreset-ignored": "Reset kata laluan tidak dikendalikan. Mungkin tiada pembekal tidak dikonfigurasikan?",
-	"passwordreset-invalidemail": "Alamat e-mel tidak sah",
 	"passwordreset-nodata": "Tiada nama pengguna atau alamat e-mel dibekalkan",
 	"changeemail": "Tukar atau padamkan alamat e-mel",
 	"changeemail-header": "Lengkapkan borang ini untuk menukar alamat e-mel anda. Jika anda ingin memutuskan sebarang hubungan alamat e-mel daripada akaun anda, biarkan ruangan alamat e-mel kosong ketika menghantar borang.",
