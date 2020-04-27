@@ -56,7 +56,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		/** @var Language|MockObject $language */
 		$language = $this->createNoOpMock( Language::class );
-		$searchEngineConfig = new \SearchEngineConfig( $config, $language );
+		$searchEngineConfig = new \SearchEngineConfig( $config, $language, [] );
 
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(

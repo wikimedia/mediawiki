@@ -2030,18 +2030,28 @@ $wgDBadminpassword = null;
 
 /**
  * Search type.
+ *
  * Leave as null to select the default search engine for the
  * selected database type (eg SearchMySQL), or set to a class
  * name to override to a custom search engine.
+ *
+ * If the canonical name for the search engine doesn't match the class name
+ * (because it's namespaced for example), you can add a mapping for this in
+ * SearchMappings in extension.json.
  */
 $wgSearchType = null;
 
 /**
  * Alternative search types
+ *
  * Sometimes you want to support multiple search engines for testing. This
  * allows users to select their search engine of choice via url parameters
  * to Special:Search and the action=search API. If using this, there's no
  * need to add $wgSearchType to it, that is handled automatically.
+ *
+ * If the canonical name for the search engine doesn't match the class name
+ * (because it's namespaced for example), you can add a mapping for this in
+ * SearchMappings in extension.json.
  */
 $wgSearchTypeAlternatives = null;
 
