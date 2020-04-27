@@ -608,7 +608,6 @@
 	"passwordreset-nocaller": "Cómpre proporcionar un chamador",
 	"passwordreset-nosuchcaller": "O chamador non existe: $1",
 	"passwordreset-ignored": "Non se puido completar o restablecemento do contrasinal. Quizais non configurou o provedor?",
-	"passwordreset-invalidemail": "O enderezo de correo electrónico non é válido",
 	"passwordreset-nodata": "Non se indicou nin un nome de usuario nin un enderezo de correo electrónico",
 	"changeemail": "Cambiar ou eliminar o enderezo de correo electrónico",
 	"changeemail-header": "Encha este formulario para cambiar o seu enderezo de correo electrónico. Se quere eliminar a asociación do enderezo de correo electrónico á súa conta, deixe en branco o novo enderezo de correo electrónico cando envíe o formulario.",

@@ -598,7 +598,6 @@
 	"passwordreset-emailelement": "Emri i përdoruesit: \n$1\n\nFjalëkalimi i përkohshëm: \n$2",
 	"passwordreset-nocaller": "Duhet të sigurohet një telefonues",
 	"passwordreset-nosuchcaller": "Telefonuesi nuk ekziston: $1",
-	"passwordreset-invalidemail": "Adresë e-mail-i e pavlefshme",
 	"passwordreset-nodata": "Nuk është dhënë as emri i përdoruesit e as adresa e emailit",
 	"changeemail": "Ndrysho ose hiq postën elektronike",
 	"changeemail-header": "Plotësoni këtë formular për të ndryshuar adresën tuaj të postës elektronike. Nëse do të donit për të hequr ndërlidhjen e ndonjë adrese email nga llogaria juaj, lëreni bosh adresën e re të email-it kur të dorëzoni formularin.",

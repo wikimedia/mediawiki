@@ -356,7 +356,6 @@
 	"passwordreset-domain": "Համակարգիչի պետութիւն.",
 	"passwordreset-email": "Ելեկտրոնային հասցէ․",
 	"passwordreset-emailtitle": "{{SITENAME}} հաշիւի մանրամասները",
-	"passwordreset-invalidemail": "Անվաւեր ելեկտրոնային հասցէ",
 	"changeemail": "Փոխել կամ հանել ելեկտրոնային հասցէն",
 	"changeemail-oldemail": "Այժմու ելեկտրոնային հասցէ․",
 	"changeemail-newemail": "Նոր ելեկտրոնային հասցէ․",

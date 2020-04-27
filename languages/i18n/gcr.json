@@ -559,7 +559,6 @@
 	"passwordreset-emailelement": "Non di itilizatò : \n$1\n\nModipas tanporèr : \n$2",
 	"passwordreset-nocaller": "Oun apélan divèt fika fourni",
 	"passwordreset-nosuchcaller": "Apélan-an pa ka ègzisté : $1",
-	"passwordreset-invalidemail": "Adrès di mésajri pa valid",
 	"passwordreset-nodata": "Pyès non d'itilizatò oben adrès di mésajri té fourni",
 	"changeemail": "Chanjé oben siprimen adrès-a di kourilèt",
 	"changeemail-no-info": "Ou divèt konnègté oukò anvan pou ganyen dirèkman lagsé di sa paj.",

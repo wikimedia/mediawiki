@@ -582,7 +582,6 @@
 	"passwordreset-nocaller": "Rhaid darparu'r wybodaeth wreiddiol",
 	"passwordreset-nosuchcaller": "Nid yw'r ffynhonnell yn bodoli: $1",
 	"passwordreset-ignored": "Ailosod y cyfrinair nad ymdriniwyd â. Efallai y nid y darparwr yn osod?",
-	"passwordreset-invalidemail": "Cyfeiriad e-bost annilys",
 	"passwordreset-nodata": "Ni wnaethoch ddarparu ebost na chyfeiriad",
 	"changeemail": "Newid neu ddiddymu cyfeiriad e-bost",
 	"changeemail-header": "Cwbwlhewch y ffurflen hon i newid cyfeiriad e-bost y cyfrifi. I ddileu pob cysylltiad i bob cyfeiriad ebost, gadewch e'n wag.",

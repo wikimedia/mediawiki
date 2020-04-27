@@ -612,7 +612,6 @@
 	"passwordreset-success-details-generic": "Ako su napisane informacije valjane, poslat ćemo Vam e-poruku za ponovno postavljanje zaporke. Ako niste dobili e-poruku, preporučujemo Vam da posjetite [[mw:Special:MyLanguage/Help:Reset_password|stranicu s pomoći za ponovno postavljanje zaporke]]. Kako bi se spriječila zlouporaba, imajte u vidu da će se slati <strong> samo jedna e-poruka po suradničkom računu {{PLURAL:$1|svakog sata|svaka $1 sata|svakih $1 sati}}</strong>.",
 	"passwordreset-success-info": "Podatci koje ste podnijeli: $1",
 	"passwordreset-nosuchcaller": "Pozivatelj ne postoji: $1",
-	"passwordreset-invalidemail": "Nevaljala adresa e-pošte",
 	"passwordreset-nodata": "Niste naveli ni suradničko ime, a niti adresu e-pošte",
 	"changeemail": "Promjena ili uklanjanje adrese e-pošte",
 	"changeemail-header": "Ispunite ovaj obrazac da biste promijenili svoju adresu e-pošte. Ukoliko želite ukloniti povezanost svoje adrese e-pošte i suradničkoga računa, prilikom popunjavanja obrasca ostavite prazno polje umjesto upisivanja nove adrese e-pošte.",

@@ -588,7 +588,6 @@
 	"passwordreset-emailtext-user": "{{SITENAME}}用戶$1請求更改閣下喺{{SITENAME}}道嘅密碼$4。同爾個電子郵件有關聯嘅用戶包括：\n\n$2\n\n{{PLURAL:$3|爾個|爾啲}}臨時密碼會喺{{$5}}日之後失效。\n\n如果係閣下自己請求改密碼嘅，請馬上登錄{{SITENAME}}並且更改密碼。如果閣下諗返起自己個密碼，或者根本無申請過改密碼嘅話，請忽略爾條訊息，繼續用返舊密碼。",
 	"passwordreset-emailelement": "用戶名：\n$1\n\n臨時密碼：\n$2",
 	"passwordreset-success": "User_id: $1 嘅密碼已經重設咗",
-	"passwordreset-invalidemail": "無效嘅電郵地址",
 	"passwordreset-nodata": "漏咗畀用戶名同電郵地址",
 	"changeemail": "改或者剷走電郵地址",
 	"changeemail-header": "填好呢份表去改戶口電郵地址。若果你想剷走你戶口個電郵地址，填表時請將電郵地址欄留空。",
