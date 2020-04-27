@@ -59,6 +59,8 @@ class ArticleViewTest extends MediaWikiTestCase {
 	 * @covers Article::getRevIdFetched()
 	 */
 	public function testGetOldId() {
+		$this->hideDeprecated( 'Article::getRevisionFetched' );
+
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
 
