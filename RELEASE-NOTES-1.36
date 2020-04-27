@@ -7,6 +7,8 @@ THIS IS NOT A RELEASE YET
 === Changes since MediaWiki 1.36.1 ===
 * (T287526) JavaScriptMinifer: Recognize `...` as a single token.
 * (T287526) Update wikimedia/minify to 2.2.4.
+* $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
+  form of JavaScript, 'application/javascript', as well as previous MIME types.
 
 == MediaWiki 1.36.1 ==
 
