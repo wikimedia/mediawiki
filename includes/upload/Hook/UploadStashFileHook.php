@@ -24,7 +24,7 @@ interface UploadStashFileHook {
 	 * @param array|null $props File properties, as returned by MWFileProps::getPropsFromPath().
 	 *   Note this is not always guaranteed to be set, e.g. in test scenarios. Call
 	 *   MWFileProps::getPropsFromPath() yourself in case you need the information.
-	 * @param array|MessageSpecifier &$error Output: If the file stashing should
+	 * @param array|MessageSpecifier|null &$error Output: If the file stashing should
 	 *   be prevented, set this to the reason in the form of [ messagename, param1, param2, ... ]
 	 *   or a MessageSpecifier instance. (You might want to use ApiMessage to provide machine
 	 *   -readable details for the API.)

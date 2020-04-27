@@ -20,7 +20,7 @@ interface OutputPageBodyAttributesHook {
 	 *
 	 * @param OutputPage $out OutputPage which called the hook, can be used to get the real title
 	 * @param Skin $sk Skin that called OutputPage::headElement
-	 * @param array &$bodyAttrs Array of attributes for the body tag passed to Html::openElement
+	 * @param string[] &$bodyAttrs Array of attributes for the body tag passed to Html::openElement
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs );

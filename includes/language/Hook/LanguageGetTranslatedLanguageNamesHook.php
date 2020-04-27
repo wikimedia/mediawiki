@@ -12,7 +12,7 @@ interface LanguageGetTranslatedLanguageNamesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$names Array of language code => language name
+	 * @param string[] &$names Array of language code => language name
 	 * @param string $code Language of the preferred translations
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

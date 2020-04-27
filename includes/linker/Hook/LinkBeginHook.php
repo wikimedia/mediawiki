@@ -21,13 +21,13 @@ interface LinkBeginHook {
 	 * @param Title $target Title that the link is pointing to
 	 * @param string|null &$html Contents that the `<a>` tag should have (raw HTML); null means
 	 *   "default"
-	 * @param array &$customAttribs HTML attributes that the `<a>` tag should have, in
+	 * @param string[] &$customAttribs HTML attributes that the `<a>` tag should have, in
 	 *   associative array form, with keys and values unescaped. Should be merged
 	 *   with default values, with a value of false meaning to suppress the
 	 *   attribute.
-	 * @param array &$query Query string to add to the generated URL (the bit after the "?"),
+	 * @param string[] &$query Query string to add to the generated URL (the bit after the "?"),
 	 *   in associative array form, with keys and values unescaped
-	 * @param array &$options Array of options, which can include 'known', 'broken', 'noclasses'
+	 * @param string[] &$options Array of options, which can include 'known', 'broken', 'noclasses'
 	 * @param string &$ret Value to return if your hook returns false
 	 * @return bool|void True or no return value to continue, or false to skip default
 	 *   processing and return $ret

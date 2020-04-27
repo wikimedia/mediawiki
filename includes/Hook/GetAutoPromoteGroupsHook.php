@@ -15,7 +15,7 @@ interface GetAutoPromoteGroupsHook {
 	 * @since 1.35
 	 *
 	 * @param User $user User to promote
-	 * @param array &$promote Groups that will be added
+	 * @param string[] &$promote Groups that will be added
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onGetAutoPromoteGroups( $user, &$promote );

@@ -15,7 +15,7 @@ interface TitleSquidURLsHook {
 	 * @since 1.35
 	 *
 	 * @param Title $title Title object to purge
-	 * @param array &$urls Array of URLs to purge from the caches, to be manipulated
+	 * @param string[] &$urls Array of URLs to purge from the caches, to be manipulated
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onTitleSquidURLs( $title, &$urls );

@@ -15,7 +15,7 @@ interface LinkerMakeExternalLinkHook {
 	 * @param string &$url Link URL
 	 * @param string &$text Link text
 	 * @param string &$link New link HTML (if returning false)
-	 * @param array &$attribs Attributes to be applied
+	 * @param string[] &$attribs Attributes to be applied
 	 * @param string $linkType External link type
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

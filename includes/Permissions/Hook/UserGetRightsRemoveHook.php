@@ -18,7 +18,7 @@ interface UserGetRightsRemoveHook {
 	 * @since 1.35
 	 *
 	 * @param User $user User to get rights for
-	 * @param array &$rights Current rights
+	 * @param string[] &$rights Current rights
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserGetRightsRemove( $user, &$rights );

@@ -19,7 +19,7 @@ interface BeforeInitializeHook {
 	 * @since 1.35
 	 *
 	 * @param Title $title Title being used for request
-	 * @param ?mixed $unused Null
+	 * @param null $unused Null
 	 * @param OutputPage $output
 	 * @param User $user
 	 * @param WebRequest $request

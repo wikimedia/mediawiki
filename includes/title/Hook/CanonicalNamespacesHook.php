@@ -20,7 +20,7 @@ interface CanonicalNamespacesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$namespaces Array of namespace numbers with corresponding canonical names
+	 * @param string[] &$namespaces Array of namespace numbers with corresponding canonical names
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onCanonicalNamespaces( &$namespaces );

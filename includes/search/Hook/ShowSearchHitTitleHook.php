@@ -23,9 +23,9 @@ interface ShowSearchHitTitleHook {
 	 * @param array $terms Array of search terms extracted by SearchDatabase search engines
 	 *   (may not be populated by other search engines)
 	 * @param SpecialSearch $specialSearch
-	 * @param array &$query Array of query string parameters for the link representing the search
+	 * @param string[] &$query Array of query string parameters for the link representing the search
 	 *   result
-	 * @param array &$attributes Array of title link attributes, can be modified by extension
+	 * @param string[] &$attributes Array of title link attributes, can be modified by extension
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onShowSearchHitTitle( &$title, &$titleSnippet, $result, $terms,

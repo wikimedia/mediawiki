@@ -14,7 +14,7 @@ interface ContentSecurityPolicyScriptSourceHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$scriptSrc Array of CSP directives
+	 * @param string[] &$scriptSrc Array of CSP directives
 	 * @param array $policyConfig Current configuration for the CSP header
 	 * @param string $mode ContentSecurityPolicy::REPORT_ONLY_MODE or
 	 *   ContentSecurityPolicy::FULL_MODE depending on type of header
