@@ -60,6 +60,7 @@ class Names {
 		'aln' => 'Gegë', # Gheg Albanian
 		'als' => 'Alemannisch', # Alemannic -- not a valid code, for compatibility. See gsw.
 		'am' => 'አማርኛ', # Amharic
+		'ami' => 'Pangcah', # Amis
 		'an' => 'aragonés', # Aragonese
 		'ang' => 'Ænglisc', # Old English, T25283
 		'anp' => 'अङ्गिका', # Angika
