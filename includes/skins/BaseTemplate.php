@@ -671,6 +671,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( count( $validFooterIcons ) + count( $validFooterLinks ) > 0 ) {
 			$html .= Html::openElement( 'div', [
 				'id' => 'footer-bottom',
+				'class' => 'mw-footer',
 				'role' => 'contentinfo',
 				'lang' => $this->get( 'userlang' ),
 				'dir' => $this->get( 'dir' )
