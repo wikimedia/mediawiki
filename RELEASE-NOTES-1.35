@@ -14,6 +14,8 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.3 ===
+* $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
+  form of JavaScript, 'application/javascript', as well as previous MIME types.
 
 == MediaWiki 1.35.3 ==
 
