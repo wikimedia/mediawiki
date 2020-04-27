@@ -26,7 +26,6 @@ namespace MediaWiki\EditPage;
 
 use Content;
 use ContentHandler;
-use DeprecationHelper;
 use Html;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -107,15 +106,11 @@ class TextConflictHelper {
 		$this->submitLabel = $submitLabel;
 		$this->contentModel = $title->getContentModel();
 
-		$this->contentHandlerFactory = DeprecationHelper::newArgumentWithDeprecation(
-			__METHOD__,
-			'contentHandlerFactory',
-			'1.35',
-			$contentHandlerFactory,
-			function () {
-				return MediaWikiServices::getInstance()->getContentHandlerFactory();
-			}
-		);
+		if ( !$contentHandlerFactory ) {
+			wfDeprecated( __METHOD__ . ' without $contentHandlerFactory parameter', '1.35' );
+			$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		}
+		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		$this->contentFormat = $this->contentHandlerFactory
 			->getContentHandler( $this->contentModel )
