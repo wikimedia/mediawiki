@@ -1720,4 +1720,418 @@ abstract class Skin extends ContextSource {
 		return $result;
 	}
 
+	/**
+	 * Create an array of common toolbox items from the data in the quicktemplate
+	 * stored by SkinTemplate.
+	 * The resulting array is built according to a format intended to be passed
+	 * through makeListItem to generate the html.
+	 * @param array $navUrls
+	 * @param array $feedUrls
+	 * @return array
+	 */
+	public function makeToolbox( $navUrls, $feedUrls ) {
+		$toolbox = [];
+		if ( isset( $navUrls['whatlinkshere'] )
+			&& $navUrls['whatlinkshere']
+		) {
+			$toolbox['whatlinkshere'] = $navUrls['whatlinkshere'];
+			$toolbox['whatlinkshere']['id'] = 't-whatlinkshere';
+		}
+		if ( isset( $navUrls['recentchangeslinked'] )
+			&& $navUrls['recentchangeslinked']
+		) {
+			$toolbox['recentchangeslinked'] = $navUrls['recentchangeslinked'];
+			$toolbox['recentchangeslinked']['msg'] = 'recentchangeslinked-toolbox';
+			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
+			$toolbox['recentchangeslinked']['rel'] = 'nofollow';
+		}
+		if ( isset( $feedUrls ) && $feedUrls ) {
+			$toolbox['feeds']['id'] = 'feedlinks';
+			$toolbox['feeds']['links'] = [];
+			foreach ( $feedUrls as $key => $feed ) {
+				$toolbox['feeds']['links'][$key] = $feed;
+				$toolbox['feeds']['links'][$key]['id'] = "feed-$key";
+				$toolbox['feeds']['links'][$key]['rel'] = 'alternate';
+				$toolbox['feeds']['links'][$key]['type'] = "application/{$key}+xml";
+				$toolbox['feeds']['links'][$key]['class'] = 'feedlink';
+			}
+		}
+		foreach ( [ 'contributions', 'log', 'blockip', 'emailuser', 'mute',
+			'userrights', 'upload', 'specialpages' ] as $special
+		) {
+			if ( isset( $navUrls[$special] ) && $navUrls[$special] ) {
+				$toolbox[$special] = $navUrls[$special];
+				$toolbox[$special]['id'] = "t-$special";
+			}
+		}
+		if ( isset( $navUrls['print'] ) && $navUrls['print'] ) {
+			$toolbox['print'] = $navUrls['print'];
+			$toolbox['print']['id'] = 't-print';
+			$toolbox['print']['rel'] = 'alternate';
+			$toolbox['print']['msg'] = 'printableversion';
+		}
+		if ( isset( $navUrls['permalink'] ) && $navUrls['permalink'] ) {
+			$toolbox['permalink'] = $navUrls['permalink'];
+			$toolbox['permalink']['id'] = 't-permalink';
+		}
+		if ( isset( $navUrls['info'] ) && $navUrls['info'] ) {
+			$toolbox['info'] = $navUrls['info'];
+			$toolbox['info']['id'] = 't-info';
+		}
+
+		return $toolbox;
+	}
+
+	/**
+	 * Get the suggested HTML for page status indicators: icons (or short text snippets) usually
+	 * displayed in the top-right corner of the page, outside of the main content.
+	 *
+	 * Your skin may implement this differently, for example by handling some indicator names
+	 * specially with a different UI. However, it is recommended to use a `<div class="mw-indicator"
+	 * id="mw-indicator-<id>" />` as a wrapper element for each indicator, for better compatibility
+	 * with extensions and user scripts.
+	 *
+	 * The raw data is available in `$this->data['indicators']` as an associative array (keys:
+	 * identifiers, values: contents) internally ordered by keys.
+	 *
+	 * @since 1.35
+	 * @param array $indicators
+	 * @return string HTML
+	 */
+	final public function getIndicatorsHTML( $indicators ) {
+		$out = "<div class=\"mw-indicators mw-body-content\">\n";
+		foreach ( $indicators as $id => $content ) {
+			$out .= Html::rawElement(
+				'div',
+				[
+					'id' => Sanitizer::escapeIdForAttribute( "mw-indicator-$id" ),
+					'class' => 'mw-indicator',
+				],
+				$content
+			) . "\n";
+		}
+		$out .= "</div>\n";
+		return $out;
+	}
+
+	/**
+	 * Create an array of personal tools items from the data in the quicktemplate
+	 * stored by SkinTemplate.
+	 * The resulting array is built according to a format intended to be passed
+	 * through makeListItem to generate the html.
+	 * This is in reality the same list as already stored in personal_urls
+	 * however it is reformatted so that you can just pass the individual items
+	 * to makeListItem instead of hardcoding the element creation boilerplate.
+	 * @since 1.35
+	 * @param array $urls
+	 * @return array
+	 */
+	final public function getPersonalToolsForMakeListItem( $urls ) {
+		$personal_tools = [];
+		foreach ( $urls as $key => $plink ) {
+			# The class on a personal_urls item is meant to go on the <a> instead
+			# of the <li> so we have to use a single item "links" array instead
+			# of using most of the personal_url's keys directly.
+			$ptool = [
+				'links' => [
+					[ 'single-id' => "pt-$key" ],
+				],
+				'id' => "pt-$key",
+			];
+			if ( isset( $plink['active'] ) ) {
+				$ptool['active'] = $plink['active'];
+			}
+			foreach ( [
+				'href',
+				'class',
+				'text',
+				'dir',
+				'data',
+				'exists',
+				'data-mw'
+			] as $k ) {
+				if ( isset( $plink[$k] ) ) {
+					$ptool['links'][0][$k] = $plink[$k];
+				}
+			}
+			$personal_tools[$key] = $ptool;
+		}
+		return $personal_tools;
+	}
+
+	/**
+	 * Makes a link, usually used by makeListItem to generate a link for an item
+	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
+	 *
+	 * @since 1.35
+	 * @param string $key Usually a key from the list you are generating this
+	 * link from.
+	 * @param array $item Contains some of a specific set of keys.
+	 *
+	 * The text of the link will be generated either from the contents of the
+	 * "text" key in the $item array, if a "msg" key is present a message by
+	 * that name will be used, and if neither of those are set the $key will be
+	 * used as a message name.
+	 *
+	 * If a "href" key is not present makeLink will just output htmlescaped text.
+	 * The "href", "id", "class", "rel", and "type" keys are used as attributes
+	 * for the link if present.
+	 *
+	 * If an "id" or "single-id" (if you don't want the actual id to be output
+	 * on the link) is present it will be used to generate a tooltip and
+	 * accesskey for the link.
+	 *
+	 * The keys "context" and "primary" are ignored; these keys are used
+	 * internally by skins and are not supposed to be included in the HTML
+	 * output.
+	 *
+	 * If you don't want an accesskey, set $item['tooltiponly'] = true;
+	 *
+	 * If a "data" key is present, it must be an array, where the keys represent
+	 * the data-xxx properties with their provided values. For example,
+	 *     $item['data'] = [
+	 *       'foo' => 1,
+	 *       'bar' => 'baz',
+	 *     ];
+	 * will render as element properties:
+	 *     data-foo='1' data-bar='baz'
+	 *
+	 * @param array $options Can be used to affect the output of a link.
+	 * Possible options are:
+	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
+	 *   a link in. This should be an array of arrays containing a 'tag' and
+	 *   optionally an 'attributes' key. If you only have one element you don't
+	 *   need to wrap it in another array. eg: To use <a><span>...</span></a>
+	 *   in all links use [ 'text-wrapper' => [ 'tag' => 'span' ] ]
+	 *   for your options.
+	 *   - 'link-class' key can be used to specify additional classes to apply
+	 *   to all links.
+	 *   - 'link-fallback' can be used to specify a tag to use instead of "<a>"
+	 *   if there is no link. eg: If you specify 'link-fallback' => 'span' than
+	 *   any non-link will output a "<span>" instead of just text.
+	 *
+	 * @return string
+	 */
+	final public function makeLink( $key, $item, $options = [] ) {
+		$text = $item['text'] ?? $this->msg( $item['msg'] ?? $key )->text();
+
+		$html = htmlspecialchars( $text );
+
+		if ( isset( $options['text-wrapper'] ) ) {
+			$wrapper = $options['text-wrapper'];
+			if ( isset( $wrapper['tag'] ) ) {
+				$wrapper = [ $wrapper ];
+			}
+			while ( count( $wrapper ) > 0 ) {
+				$element = array_pop( $wrapper );
+				$html = Html::rawElement( $element['tag'], $element['attributes'] ?? null, $html );
+			}
+		}
+
+		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
+			$attrs = $item;
+			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
+				'tooltip-params', 'exists' ] as $k ) {
+				unset( $attrs[$k] );
+			}
+
+			if ( isset( $attrs['data'] ) ) {
+				foreach ( $attrs['data'] as $key => $value ) {
+					$attrs[ 'data-' . $key ] = $value;
+				}
+				unset( $attrs[ 'data' ] );
+			}
+
+			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
+				$item['single-id'] = $item['id'];
+			}
+
+			$tooltipParams = [];
+			if ( isset( $item['tooltip-params'] ) ) {
+				$tooltipParams = $item['tooltip-params'];
+			}
+
+			if ( isset( $item['single-id'] ) ) {
+				$tooltipOption = isset( $item['exists'] ) && $item['exists'] === false ? 'nonexisting' : null;
+
+				if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
+					$title = Linker::titleAttrib( $item['single-id'], $tooltipOption, $tooltipParams );
+					if ( $title !== false ) {
+						$attrs['title'] = $title;
+					}
+				} else {
+					$tip = Linker::tooltipAndAccesskeyAttribs(
+						$item['single-id'],
+						$tooltipParams,
+						$tooltipOption
+					);
+					if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
+						$attrs['title'] = $tip['title'];
+					}
+					if ( isset( $tip['accesskey'] ) && $tip['accesskey'] !== false ) {
+						$attrs['accesskey'] = $tip['accesskey'];
+					}
+				}
+			}
+			if ( isset( $options['link-class'] ) ) {
+				if ( isset( $attrs['class'] ) ) {
+					$attrs['class'] .= " {$options['link-class']}";
+				} else {
+					$attrs['class'] = $options['link-class'];
+				}
+			}
+			$html = Html::rawElement( isset( $attrs['href'] )
+				? 'a'
+				: $options['link-fallback'], $attrs, $html );
+		}
+
+		return $html;
+	}
+
+	/**
+	 * Generates a list item for a navigation, portlet, portal, sidebar... list
+	 *
+	 * @since 1.35
+	 * @param string $key Usually a key from the list you are generating this link from.
+	 * @param array $item Array of list item data containing some of a specific set of keys.
+	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
+	 * if "active" contains a value of true a "active" class will also be appended to class.
+	 * @phan-param array{id?:string,class?:string,itemtitle?:string,active?:bool} $item
+	 *
+	 * @param array $options
+	 * @phan-param array{tag?:string} $options
+	 *
+	 * If you want something other than a "<li>" you can pass a tag name such as
+	 * "tag" => "span" in the $options array to change the tag used.
+	 * link/content data for the list item may come in one of two forms
+	 * A "links" key may be used, in which case it should contain an array with
+	 * a list of links to include inside the list item, see makeLink for the
+	 * format of individual links array items.
+	 *
+	 * Otherwise the relevant keys from the list item $item array will be passed
+	 * to makeLink instead. Note however that "id" and "class" are used by the
+	 * list item directly so they will not be passed to makeLink
+	 * (however the link will still support a tooltip and accesskey from it)
+	 * If you need an id or class on a single link you should include a "links"
+	 * array with just one link item inside of it. You can also set "link-class" in
+	 * $item to set a class on the link itself. If you want to add a title
+	 * to the list item itself, you can set "itemtitle" to the value.
+	 * $options is also passed on to makeLink calls
+	 *
+	 * @return string
+	 */
+	final public function makeListItem( $key, $item, $options = [] ) {
+		// In case this is still set from SkinTemplate, we don't want it to appear in
+		// the HTML output (normally removed in SkinTemplate::buildContentActionUrls())
+		unset( $item['redundant'] );
+
+		if ( isset( $item['links'] ) ) {
+			$links = [];
+			foreach ( $item['links'] as $linkKey => $link ) {
+				$links[] = self::makeLink( $linkKey, $link, $options );
+			}
+			$html = implode( ' ', $links );
+		} else {
+			$link = $item;
+			// These keys are used by makeListItem and shouldn't be passed on to the link
+			foreach ( [ 'id', 'class', 'active', 'tag', 'itemtitle' ] as $k ) {
+				unset( $link[$k] );
+			}
+			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
+				// The id goes on the <li> not on the <a> for single links
+				// but makeSidebarLink still needs to know what id to use when
+				// generating tooltips and accesskeys.
+				$link['single-id'] = $item['id'];
+			}
+			if ( isset( $link['link-class'] ) ) {
+				// link-class should be set on the <a> itself,
+				// so pass it in as 'class'
+				$link['class'] = $link['link-class'];
+				unset( $link['link-class'] );
+			}
+			$html = self::makeLink( $key, $link, $options );
+		}
+
+		$attrs = [];
+		foreach ( [ 'id', 'class' ] as $attr ) {
+			if ( isset( $item[$attr] ) ) {
+				$attrs[$attr] = $item[$attr];
+			}
+		}
+		if ( isset( $item['active'] ) && $item['active'] ) {
+			if ( !isset( $attrs['class'] ) ) {
+				$attrs['class'] = '';
+			}
+			$attrs['class'] .= ' active';
+			$attrs['class'] = trim( $attrs['class'] );
+		}
+		if ( isset( $item['itemtitle'] ) ) {
+			$attrs['title'] = $item['itemtitle'];
+		}
+		return Html::rawElement( $options['tag'] ?? 'li', $attrs, $html );
+	}
+
+	/**
+	 * @since 1.35
+	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
+	 *  and decorate the resulting input
+	 * @return string of HTML input
+	 */
+	final public function makeSearchInput( $attrs = [] ) {
+		$realAttrs = [
+			'type' => 'search',
+			'name' => 'search',
+			'placeholder' => $this->msg( 'searchsuggest-search' )->text(),
+		];
+		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
+		return Html::element( 'input', $realAttrs );
+	}
+
+	/**
+	 * @param string $mode representing the type of button wanted
+	 *  either `go`, `fulltext` or `image`
+	 * @param array $attrs (optional)
+	 * @throws MWException if bad value of $mode passed in
+	 * @return string of HTML button
+	 */
+	final public function makeSearchButton( $mode, $attrs = [] ) {
+		switch ( $mode ) {
+			case 'go':
+			case 'fulltext':
+				$realAttrs = [
+					'type' => 'submit',
+					'name' => $mode,
+					'value' => $this->msg( $mode == 'go' ? 'searcharticle' : 'searchbutton' )->text(),
+				];
+				$realAttrs = array_merge(
+					$realAttrs,
+					Linker::tooltipAndAccesskeyAttribs( "search-$mode" ),
+					$attrs
+				);
+				return Html::element( 'input', $realAttrs );
+			case 'image':
+				$buttonAttrs = [
+					'type' => 'submit',
+					'name' => 'button',
+				];
+				$buttonAttrs = array_merge(
+					$buttonAttrs,
+					Linker::tooltipAndAccesskeyAttribs( 'search-fulltext' ),
+					$attrs
+				);
+				unset( $buttonAttrs['src'] );
+				unset( $buttonAttrs['alt'] );
+				unset( $buttonAttrs['width'] );
+				unset( $buttonAttrs['height'] );
+				$imgAttrs = [
+					'src' => $attrs['src'],
+					'alt' => $attrs['alt'] ?? $this->msg( 'searchbutton' )->text(),
+					'width' => $attrs['width'] ?? null,
+					'height' => $attrs['height'] ?? null,
+				];
+				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
+			default:
+				throw new MWException( 'Unknown mode passed to BaseTemplate::makeSearchButton' );
+		}
+	}
 }
