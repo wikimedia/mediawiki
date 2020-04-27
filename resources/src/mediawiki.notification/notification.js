@@ -472,7 +472,13 @@
 		autoHideLimit: 3
 	};
 
-	$( init );
+	if ( window.QUnit ) {
+		$area = $( document.body );
+	} else {
+		// Don't run UI logic while under test.
+		// Let the test control this instead.
+		$( init );
+	}
 
 	mw.notification = notification;
 

@@ -546,53 +546,42 @@ util = {
 	}
 };
 
+/**
+ * Initialisation of mw.util.$content
+ *
+ * @ignore
+ */
+function init() {
+	// The preferred standard is class "mw-body".
+	// You may also use class "mw-body mw-body-primary" if you use
+	// mw-body in multiple locations. Or class "mw-body-primary" if
+	// you use mw-body deeper in the DOM.
+	var content = document.querySelector( '.mw-body-primary' ) ||
+		document.querySelector( '.mw-body' ) ||
+		// If the skin has no such class, fall back to the parser output
+		document.querySelector( '#mw-content-text' ) ||
+		// Should never happen..., except if the skin is still in development.
+		document.body;
+
+	util.$content = $( content );
+}
+
 // Backwards-compatible alias for mediawiki.RegExp module.
 // @deprecated since 1.34
 mw.RegExp = {};
 mw.log.deprecate( mw.RegExp, 'escape', util.escapeRegExp, 'Use mw.util.escapeRegExp() instead.', 'mw.RegExp.escape' );
 
-// Not allowed outside unit tests
 if ( window.QUnit ) {
+	// Not allowed outside unit tests
 	util.setOptionsForTest = function ( opts ) {
 		var oldConfig = config;
 		config = $.extend( {}, config, opts );
 		return oldConfig;
 	};
+	util.init = init;
+} else {
+	$( init );
 }
-
-/**
- * Initialisation of mw.util.$content
- */
-function init() {
-	util.$content = ( function () {
-		var i, l, $node, selectors;
-
-		selectors = [
-			// The preferred standard is class "mw-body".
-			// You may also use class "mw-body mw-body-primary" if you use
-			// mw-body in multiple locations. Or class "mw-body-primary" if
-			// you use mw-body deeper in the DOM.
-			'.mw-body-primary',
-			'.mw-body',
-
-			// If the skin has no such class, fall back to the parser output
-			'#mw-content-text'
-		];
-
-		for ( i = 0, l = selectors.length; i < l; i++ ) {
-			$node = $( selectors[ i ] );
-			if ( $node.length ) {
-				return $node.first();
-			}
-		}
-
-		// Should never happen... well, it could if someone is not finished writing a
-		// skin and has not yet inserted bodytext yet.
-		return $( document.body );
-	}() );
-}
-
-$( init );
 
 mw.util = util;
 module.exports = util;

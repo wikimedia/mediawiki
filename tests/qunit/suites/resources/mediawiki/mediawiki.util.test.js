@@ -288,11 +288,6 @@
 		assert.strictEqual( util.getParamValue( 'TEST', url ), 'a b+c d', 'T32441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 	} );
 
-	QUnit.test( '$content', function ( assert ) {
-		assert.ok( util.$content instanceof $, 'mw.util.$content instance of jQuery' );
-		assert.strictEqual( util.$content.length, 1, 'mw.util.$content must have length of 1' );
-	} );
-
 	function getParents( link ) {
 		return $( link ).parents( '#qunit-fixture *' ).toArray()
 			.map( function ( el ) {
@@ -511,5 +506,50 @@
 			);
 			done();
 		} );
+	} );
+
+	QUnit.test( 'init (.mw-body-primary)', function ( assert ) {
+		var node = $( '<div class="mw-body-primary mw-body">primary</div>' )[ 0 ];
+		$( '#qunit-fixture' ).append(
+			'<div id="mw-content-text"></div>',
+			'<div class="mw-body"></div>',
+			node
+		);
+
+		util.init();
+		assert.strictEqual( mw.util.$content[ 0 ], node );
+	} );
+
+	QUnit.test( 'init (first of multiple .mw-body)', function ( assert ) {
+		var node = $( '<div class="mw-body">first</div>' )[ 0 ];
+		$( '#qunit-fixture' ).append(
+			'<div id="mw-content-text"></div>',
+			node,
+			'<div class="mw-body">second</div>'
+		);
+
+		util.init();
+		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.strictEqual( mw.util.$content[ 0 ], node, 'node' );
+		assert.strictEqual( mw.util.$content.length, 1, 'length' );
+	} );
+
+	QUnit.test( 'init (#mw-content-text fallback)', function ( assert ) {
+		var node = $( '<div id="mw-content-text">fallback</div>' )[ 0 ];
+		$( '#qunit-fixture' ).append(
+			node
+		);
+
+		util.init();
+		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.strictEqual( mw.util.$content[ 0 ], node, 'node' );
+		assert.strictEqual( mw.util.$content.length, 1, 'length' );
+	} );
+
+	QUnit.test( 'init (body fallback)', function ( assert ) {
+		util.init();
+		assert.ok( util.$content instanceof $, 'jQuery object' );
+		assert.strictEqual( mw.util.$content[ 0 ], document.body, 'node' );
+		assert.strictEqual( mw.util.$content.length, 1, 'length' );
 	} );
 }() );
