@@ -54,16 +54,14 @@ class LinkHolderArray {
 	 */
 	public function __construct( $parent, ILanguageConverter $languageConverter = null ) {
 		$this->parent = $parent;
-		$this->languageConverter = DeprecationHelper::newArgumentWithDeprecation(
-			__METHOD__,
-			'languageConverter',
-			'1.35',
-			$languageConverter,
-			function () use ( $parent ) {
-				return MediaWikiServices::getInstance()->getLanguageConverterFactory()
-					->getLanguageConverter( $parent->getTargetLanguage() );
-			}
-		);
+
+		if ( !$languageConverter ) {
+			wfDeprecated( __METHOD__ . ' without $languageConverter parameter', '1.35' );
+			$languageConverter = MediaWikiServices::getInstance()
+				->getLanguageConverterFactory()
+				->getLanguageConverter( $parent->getTargetLanguage() );
+		}
+		$this->languageConverter = $languageConverter;
 	}
 
 	/**
