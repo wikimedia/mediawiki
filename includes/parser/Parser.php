@@ -5822,9 +5822,9 @@ class Parser {
 	/**
 	 * Get the name of the user that edited the last revision
 	 *
-	 * @return string User name
+	 * @return string|null User name
 	 */
-	public function getRevisionUser() {
+	public function getRevisionUser(): ?string {
 		if ( $this->mRevisionUser === null ) {
 			$revObject = $this->getRevisionObject();
 
@@ -5834,6 +5834,9 @@ class Parser {
 				$this->mRevisionUser = $revObject->getUserText();
 			} elseif ( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
 				$this->mRevisionUser = $this->getUser()->getName();
+			} else {
+				# Note that we fall through here with
+				# $this->mRevisionUser still null
 			}
 		}
 		return $this->mRevisionUser;
