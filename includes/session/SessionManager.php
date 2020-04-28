@@ -478,7 +478,7 @@ final class SessionManager implements SessionManagerInterface {
 		// Sort the SessionInfos. Then find the first one that can be
 		// successfully loaded, and then all the ones after it with the same
 		// priority.
-		usort( $infos, 'MediaWiki\\Session\\SessionInfo::compare' );
+		usort( $infos, [ SessionInfo::class, 'compare' ] );
 		$retInfos = [];
 		while ( $infos ) {
 			$info = array_pop( $infos );
