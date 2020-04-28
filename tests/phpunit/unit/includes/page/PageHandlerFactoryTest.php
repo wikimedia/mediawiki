@@ -1,15 +1,15 @@
 <?php
 
-use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Page\PageHandlerFactory;
 
 /**
- * @covers MediaWiki\Page\MovePageFactory
+ * @covers MediaWiki\Page\PageHandlerFactory
  */
-class MovePageFactoryTest extends MediaWikiUnitTestCase {
+class PageHandlerFactoryTest extends MediaWikiUnitTestCase {
 	use FactoryArgTestTrait;
 
 	protected function getFactoryClass() {
-		return MovePageFactory::class;
+		return PageHandlerFactory::class;
 	}
 
 	protected function getInstanceClass() {
