@@ -536,6 +536,9 @@ because of Phabricator reports.
   modifyExtensionExtensionTable(), modifyExtensionField(), addExtensionUpdate().
   The addExtensionUpdate() method can still be used to access any of the
   protected methods on DatabaseUpdater.
+* ResourceLoader no longer provides the (always-true) variables for wgEnableAPI
+  and wgEnableWriteAPI; they were deprecated in MediaWiki 1.31 and removed from
+  the PHP environment in MediaWiki 1.32.
 * …
 
 === Deprecations in 1.35 ===

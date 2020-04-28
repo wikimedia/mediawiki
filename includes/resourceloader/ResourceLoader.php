@@ -1955,8 +1955,6 @@ MESSAGE;
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $contLang->getCode(),
 			'wgVersion' => MW_VERSION,
-			'wgEnableAPI' => true, // Deprecated since MW 1.32
-			'wgEnableWriteAPI' => true, // Deprecated since MW 1.32
 			'wgFormattedNamespaces' => $contLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
 			'wgContentNamespaces' => $nsInfo->getContentNamespaces(),
