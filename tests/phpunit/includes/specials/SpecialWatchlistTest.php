@@ -18,22 +18,23 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 			null
 		);
 
-		$this->setMwGlobals(
-			'wgDefaultUserOptions',
-			[
-				'extendwatchlist' => 1,
-				'watchlistdays' => 3.0,
-				'watchlisthideanons' => 0,
-				'watchlisthidebots' => 0,
-				'watchlisthideliu' => 0,
-				'watchlisthideminor' => 0,
-				'watchlisthideown' => 0,
-				'watchlisthidepatrolled' => 0,
-				'watchlisthidecategorization' => 1,
-				'watchlistreloadautomatically' => 0,
-				'watchlistunwatchlinks' => 0,
-			]
-		);
+		$this->setMwGlobals( [
+			'wgDefaultUserOptions' =>
+				[
+					'extendwatchlist' => 1,
+					'watchlistdays' => 3.0,
+					'watchlisthideanons' => 0,
+					'watchlisthidebots' => 0,
+					'watchlisthideliu' => 0,
+					'watchlisthideminor' => 0,
+					'watchlisthideown' => 0,
+					'watchlisthidepatrolled' => 1,
+					'watchlisthidecategorization' => 0,
+					'watchlistreloadautomatically' => 0,
+					'watchlistunwatchlinks' => 0,
+				],
+			'wgWatchlistExpiry' => true
+		] );
 	}
 
 	/**

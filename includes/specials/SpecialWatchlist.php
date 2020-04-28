@@ -373,6 +373,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$join_conds
 		);
 
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+			$tables[] = 'watchlist_expiry';
+			$join_conds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+		}
+
 		$tables[] = 'page';
 		$fields[] = 'page_latest';
 		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];

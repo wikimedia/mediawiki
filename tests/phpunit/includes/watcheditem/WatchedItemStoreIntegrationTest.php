@@ -115,12 +115,14 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$user = $this->getUser();
 		$title = Title::newFromText( 'WatchedItemStoreIntegrationTestPage' );
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$initialUserWatchedItems = $store->countWatchedItems( $user );
 
 		$store->addWatch( $user, $title, '20300101000000' );
 		$this->assertSame(
 			'20300101000000',
 			$store->loadWatchedItem( $user, $title )->getExpiry()
 		);
+		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
 
 		// Invalid expiry, nothing should change.
 		$store->addWatch( $user, $title, 'invalid expiry' );
@@ -128,12 +130,14 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			'20300101000000',
 			$store->loadWatchedItem( $user, $title )->getExpiry()
 		);
+		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
 
 		// Changed to infinity, so expiry row should be removed.
 		$store->addWatch( $user, $title, 'infinity' );
 		$this->assertNull(
 			$store->loadWatchedItem( $user, $title )->getExpiry()
 		);
+		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
 
 		// Updating to a valid expiry.
 		$store->addWatch( $user, $title, '1 month' );
@@ -144,9 +148,11 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 				$store->loadWatchedItem( $user, $title )->getExpiry()
 			)
 		);
+		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
 
 		// Expiry in the past, should not be considered watched.
 		$store->addWatch( $user, $title, '20090101000000' );
+		$this->assertEquals( $initialUserWatchedItems, $store->countWatchedItems( $user ) );
 
 		// Test isWatch(), which would normally pull from the cache. In this case
 		// the cache should bust and return false since the item has expired.
