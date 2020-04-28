@@ -147,6 +147,12 @@ class OutputPage extends ContextSource {
 	 */
 	public $mPageLinkTitle = '';
 
+	/**
+	 * Additional <html> classes; This should be rarely modified; prefer mAdditionalBodyClasses.
+	 * @var array
+	 */
+	protected $mAdditionalHtmlClasses = [];
+
 	/** @var array Array of elements in "<head>". Parser might add its own headers! */
 	protected $mHeadItems = [];
 
@@ -621,6 +627,17 @@ class OutputPage extends ContextSource {
 	 */
 	public function addContentOverrideCallback( callable $callback ) {
 		$this->contentOverrideCallbacks[] = $callback;
+	}
+
+	/**
+	 * Add a class to the <html> element. This should rarely be used.
+	 * Instead use OutputPage::addBodyClasses() if possible.
+	 *
+	 * @since 1.34
+	 * @param string|string[] $classes One or more classes to add
+	 */
+	public function addHtmlClasses( $classes ) {
+		$this->mAdditionalHtmlClasses = array_merge( $this->mAdditionalHtmlClasses, (array)$classes );
 	}
 
 	/**
@@ -3037,10 +3054,10 @@ class OutputPage extends ContextSource {
 		$sitedir = MediaWikiServices::getInstance()->getContentLanguage()->getDir();
 
 		$pieces = [];
-		$htmlAttribs = Sanitizer::mergeAttributes(
+		$htmlAttribs = Sanitizer::mergeAttributes( Sanitizer::mergeAttributes(
 			$this->getRlClient()->getDocumentAttributes(),
 			$sk->getHtmlElementAttributes()
-		);
+		), [ 'class' => implode( ' ', $this->mAdditionalHtmlClasses ) ] );
 		$pieces[] = Html::htmlHeader( $htmlAttribs );
 		$pieces[] = Html::openElement( 'head' );
 
