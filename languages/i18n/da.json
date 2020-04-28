@@ -1622,7 +1622,7 @@
 	"file-thumbnail-no": "Filnavnet begynder med <strong>$1</strong>.\nDet tyder på et billede i reduceret format ''(thumbnail)''.\nHvis du har billedet i fuld størrelse, så brug det i stedet. Ellers bedes du venligst ændre filnavnet.",
 	"fileexists-forbidden": "En fil med dette navn findes allerede, og den kan ikke overskrives.\nHvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.\n[[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "Der findes allerede en fil med dette navn i det delte filarkiv.\nHvis du fortsat vil lægge filen op, bedes du gå tilbage og bruge et nyt navn.\n[[File:$1|thumb|center|$1]]",
-	"file-exists-duplicate": "Denne fil er en bublet af {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}:",
+	"file-exists-duplicate": "Denne fil er en dublet af {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}:",
 	"file-deleted-duplicate": "En fil identisk med denne fil ([[:$1]]) er tidligere blevet slettet. Du bør tjekke den fils sletningshistorik før du prøver at genoplægge den.",
 	"file-deleted-duplicate-notitle": "En fil, der er identisk med denne fil er tidligere blevet slettet, og titlen er blevet undertrykt.\nDu bør spørge en person med evnen til at se undertrykte fildata for at gennemgå situationen inden du fortsætter med at uploade den igen.",
 	"uploadwarning": "Advarsel",
