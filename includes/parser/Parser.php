@@ -5733,6 +5733,8 @@ class Parser {
 	 * @since 1.23 (public since 1.23)
 	 */
 	public function getRevisionObject() {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		if ( $this->mRevisionObject ) {
 			return $this->mRevisionObject;
 		}
@@ -5805,7 +5807,7 @@ class Parser {
 		}
 
 		# Use specified revision timestamp, falling back to the current timestamp
-		$revObject = $this->getRevisionObject();
+		$revObject = $this->getRevisionRecordObject();
 		$timestamp = $revObject ? $revObject->getTimestamp() : $this->mOptions->getTimestamp();
 		$this->mOutput->setRevisionTimestampUsed( $timestamp ); // unadjusted time zone
 
@@ -5826,12 +5828,12 @@ class Parser {
 	 */
 	public function getRevisionUser(): ?string {
 		if ( $this->mRevisionUser === null ) {
-			$revObject = $this->getRevisionObject();
+			$revObject = $this->getRevisionRecordObject();
 
 			# if this template is subst: the revision id will be blank,
 			# so just use the current user's name
-			if ( $revObject ) {
-				$this->mRevisionUser = $revObject->getUserText();
+			if ( $revObject && $revObject->getUser() ) {
+				$this->mRevisionUser = $revObject->getUser()->getName();
 			} elseif ( $this->ot['wiki'] || $this->mOptions->getIsPreview() ) {
 				$this->mRevisionUser = $this->getUser()->getName();
 			} else {
@@ -5849,7 +5851,7 @@ class Parser {
 	 */
 	public function getRevisionSize() {
 		if ( $this->mRevisionSize === null ) {
-			$revObject = $this->getRevisionObject();
+			$revObject = $this->getRevisionRecordObject();
 
 			# if this variable is subst: the revision id will be blank,
 			# so just use the parser input size, because the own substituation
