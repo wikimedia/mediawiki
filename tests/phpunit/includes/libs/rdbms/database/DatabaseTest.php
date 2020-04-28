@@ -752,7 +752,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testIsWriteQuery( string $query, bool $res ) {
 		$db = TestingAccessWrapper::newFromObject( $this->db );
-		$this->assertSame( $res, $db->isWriteQuery( $query ) );
+		$this->assertSame( $res, $db->isWriteQuery( $query, 0 ) );
 	}
 
 	/**

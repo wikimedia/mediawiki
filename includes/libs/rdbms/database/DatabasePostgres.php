@@ -141,7 +141,7 @@ class DatabasePostgres extends Database {
 				$this->query(
 					'SET ' . $this->addIdentifierQuotes( $var ) . ' = ' . $this->addQuotes( $val ),
 					__METHOD__,
-					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY
+					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
 				);
 			}
 			$this->determineCoreSchema( $schema );
@@ -322,8 +322,13 @@ class DatabasePostgres extends Database {
 	}
 
 	public function insertId() {
-		$res = $this->query( "SELECT lastval()" );
+		$res = $this->query(
+			"SELECT lastval()",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchRow( $res );
+
 		return $row[0] === null ? null : (int)$row[0];
 	}
 
@@ -398,8 +403,11 @@ class DatabasePostgres extends Database {
 	}
 
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
-		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
-		$res = $this->query( $sql, $fname );
+		$res = $this->query(
+			"SELECT indexname FROM pg_indexes WHERE tablename='$table'",
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		if ( !$res ) {
 			return null;
 		}
@@ -421,6 +429,7 @@ class DatabasePostgres extends Database {
 
 		$eindex = $this->addQuotes( $index );
 
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		foreach ( $schemas as $schema ) {
 			$eschema = $this->addQuotes( $schema );
 			/*
@@ -459,7 +468,7 @@ class DatabasePostgres extends Database {
 						AND	i.indclass[s.g] = opcls.oid
 						AND	pg_am.oid = opcls.opcmethod
 __INDEXATTR__;
-			$res = $this->query( $sql, __METHOD__ );
+			$res = $this->query( $sql, __METHOD__, $flags );
 			$a = [];
 			if ( $res ) {
 				foreach ( $res as $row ) {
@@ -476,11 +485,12 @@ __INDEXATTR__;
 	}
 
 	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'" .
 			" AND indexdef LIKE 'CREATE UNIQUE%(" .
 			$this->strencode( $this->indexName( $index ) ) .
 			")'";
-		$res = $this->query( $sql, $fname );
+		$res = $this->query( $sql, $fname, $flags );
 		if ( !$res ) {
 			return null;
 		}
@@ -565,7 +575,7 @@ __INDEXATTR__;
 
 				$this->startAtomic( "$fname (inner)", self::ATOMIC_CANCELABLE );
 				try {
-					$this->query( $tempsql, $fname );
+					$this->query( $tempsql, $fname, self::QUERY_CHANGE_ROWS );
 					$this->endAtomic( "$fname (inner)" );
 					$affectedRowCount++;
 				} catch ( DBQueryError $e ) {
@@ -643,7 +653,7 @@ __INDEXATTR__;
 				$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ') ' .
 					$selectSql . ' ON CONFLICT DO NOTHING';
 
-				$this->query( $sql, $fname );
+				$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 			} else {
 				// IGNORE and we don't have ON CONFLICT DO NOTHING, so just use the non-native version
 				$this->doInsertSelectGeneric(
@@ -692,8 +702,11 @@ __INDEXATTR__;
 	 * @return int
 	 */
 	public function currentSequenceValue( $seqName ) {
-		$safeseq = str_replace( "'", "''", $seqName );
-		$res = $this->query( "SELECT currval('$safeseq')" );
+		$res = $this->query(
+			"SELECT currval('" . str_replace( "'", "''", $seqName ) . "')",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchRow( $res );
 		$currval = $row[0];
 
@@ -701,12 +714,13 @@ __INDEXATTR__;
 	}
 
 	public function textFieldSize( $table, $field ) {
-		$table = $this->tableName( $table );
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
+		$encTable = $this->tableName( $table );
 		$sql = "SELECT t.typname as ftype,a.atttypmod as size
 			FROM pg_class c, pg_attribute a, pg_type t
-			WHERE relname='$table' AND a.attrelid=c.oid AND
+			WHERE relname='$encTable' AND a.attrelid=c.oid AND
 				a.atttypid=t.oid and a.attname='$field'";
-		$res = $this->query( $sql );
+		$res = $this->query( $sql, __METHOD__, $flags );
 		$row = $this->fetchObject( $res );
 		if ( $row->ftype == 'varchar' ) {
 			$size = $row->size - 4;
@@ -749,19 +763,19 @@ __INDEXATTR__;
 		$oldNameE = $this->addIdentifierQuotes( $oldName );
 
 		$temporary = $temporary ? 'TEMPORARY' : '';
-		$queryFlags = self::QUERY_PSEUDO_PERMANENT | self::QUERY_IGNORE_DBO_TRX;
 
 		$ret = $this->query(
 			"CREATE $temporary TABLE $newNameE " .
 				"(LIKE $oldNameE INCLUDING DEFAULTS INCLUDING INDEXES)",
 			$fname,
-			$queryFlags
+			self::QUERY_PSEUDO_PERMANENT | self::QUERY_CHANGE_SCHEMA
 		);
 		if ( !$ret ) {
 			return $ret;
 		}
 
-		$res = $this->query( 'SELECT attname FROM pg_class c'
+		$res = $this->query(
+			'SELECT attname FROM pg_class c'
 			. ' JOIN pg_namespace n ON (n.oid = c.relnamespace)'
 			. ' JOIN pg_attribute a ON (a.attrelid = c.oid)'
 			. ' JOIN pg_attrdef d ON (c.oid=d.adrelid and a.attnum=d.adnum)'
@@ -769,7 +783,8 @@ __INDEXATTR__;
 			. ' AND nspname = ' . $this->addQuotes( $this->getCoreSchema() )
 			. ' AND relname = ' . $this->addQuotes( $oldName )
 			. ' AND pg_get_expr(adbin, adrelid) LIKE \'nextval(%\'',
-			$fname
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		$row = $this->fetchObject( $res );
 		if ( $row ) {
@@ -781,12 +796,12 @@ __INDEXATTR__;
 			$this->query(
 				"CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE",
 				$fname,
-				$queryFlags
+				self::QUERY_CHANGE_SCHEMA
 			);
 			$this->query(
 				"ALTER TABLE $newNameE ALTER COLUMN $fieldE SET DEFAULT nextval({$newSeqQ}::regclass)",
 				$fname,
-				$queryFlags
+				self::QUERY_CHANGE_SCHEMA
 			);
 		}
 
@@ -796,7 +811,7 @@ __INDEXATTR__;
 	protected function doTruncate( array $tables, $fname ) {
 		$encTables = $this->tableNamesN( ...$tables );
 		$sql = "TRUNCATE TABLE " . implode( ',', $encTables ) . " RESTART IDENTITY";
-		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 	}
 
 	/**
@@ -808,7 +823,10 @@ __INDEXATTR__;
 	public function listTables( $prefix = '', $fname = __METHOD__ ) {
 		$eschemas = implode( ',', array_map( [ $this, 'addQuotes' ], $this->getCoreSchemas() ) );
 		$result = $this->query(
-			"SELECT DISTINCT tablename FROM pg_tables WHERE schemaname IN ($eschemas)", $fname );
+			"SELECT DISTINCT tablename FROM pg_tables WHERE schemaname IN ($eschemas)",
+			$fname,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$endArray = [];
 
 		foreach ( $result as $table ) {
@@ -889,7 +907,11 @@ __INDEXATTR__;
 	 * @return string Default schema for the current session
 	 */
 	public function getCurrentSchema() {
-		$res = $this->query( "SELECT current_schema()", __METHOD__, self::QUERY_IGNORE_DBO_TRX );
+		$res = $this->query(
+			"SELECT current_schema()",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchRow( $res );
 
 		return $row[0];
@@ -909,7 +931,7 @@ __INDEXATTR__;
 		$res = $this->query(
 			"SELECT current_schemas(false)",
 			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		$row = $this->fetchRow( $res );
 		$schemas = [];
@@ -929,7 +951,11 @@ __INDEXATTR__;
 	 * @return array How to search for table names schemas for the current user
 	 */
 	public function getSearchPath() {
-		$res = $this->query( "SHOW search_path", __METHOD__, self::QUERY_IGNORE_DBO_TRX );
+		$res = $this->query(
+			"SHOW search_path",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchRow( $res );
 
 		/* PostgreSQL returns SHOW values as strings */
@@ -948,7 +974,7 @@ __INDEXATTR__;
 		$this->query(
 			"SET search_path = " . implode( ", ", $search_path ),
 			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX
 		);
 	}
 
@@ -1020,7 +1046,9 @@ __INDEXATTR__;
 		}
 
 		$res = $this->query(
-			"SELECT nspname FROM pg_catalog.pg_namespace n WHERE n.oid = pg_my_temp_schema()", __METHOD__
+			"SELECT nspname FROM pg_catalog.pg_namespace n WHERE n.oid = pg_my_temp_schema()",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		$row = $this->fetchObject( $res );
 		if ( $row ) {
@@ -1074,7 +1102,11 @@ __INDEXATTR__;
 			$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
 				. "WHERE c.relnamespace = n.oid AND c.relname = $etable AND n.nspname = $eschema "
 				. "AND c.relkind IN ('" . implode( "','", $types ) . "')";
-			$res = $this->query( $sql );
+			$res = $this->query(
+				$sql,
+				__METHOD__,
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			);
 			if ( $res && $res->numRows() ) {
 				return true;
 			}
@@ -1112,7 +1144,9 @@ SQL;
 					$this->addQuotes( $schema ),
 					$this->addQuotes( $table ),
 					$this->addQuotes( $trigger )
-				)
+				),
+				__METHOD__,
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 			);
 			if ( $res && $res->numRows() ) {
 				return true;
@@ -1142,7 +1176,11 @@ SQL;
 				$this->addQuotes( $table ),
 				$this->addQuotes( $constraint )
 			);
-			$res = $this->query( $sql );
+			$res = $this->query(
+				$sql,
+				__METHOD__,
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			);
 			if ( $res && $res->numRows() ) {
 				return true;
 			}
@@ -1164,7 +1202,7 @@ SQL;
 			"SELECT 1 FROM pg_catalog.pg_namespace " .
 			"WHERE nspname = " . $this->addQuotes( $schema ) . " LIMIT 1",
 			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 
 		return ( $this->numRows( $res ) > 0 );
@@ -1176,10 +1214,14 @@ SQL;
 	 * @return bool
 	 */
 	public function roleExists( $roleName ) {
-		$exists = $this->selectField( '"pg_catalog"."pg_roles"', '1',
-			[ 'rolname' => $roleName ], __METHOD__ );
+		$res = $this->query(
+			"SELECT 1 FROM pg_catalog.pg_roles " .
+			"WHERE rolname = " . $this->addQuotes( $roleName ) . " LIMIT 1",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 
-		return (bool)$exists;
+		return ( $this->numRows( $res ) > 0 );
 	}
 
 	/**
@@ -1315,13 +1357,15 @@ SQL;
 		if ( $tablesWrite ) {
 			$this->query(
 				'LOCK TABLE ONLY ' . implode( ',', $tablesWrite ) . ' IN EXCLUSIVE MODE',
-				$method
+				$method,
+				self::QUERY_CHANGE_ROWS
 			);
 		}
 		if ( $tablesRead ) {
 			$this->query(
 				'LOCK TABLE ONLY ' . implode( ',', $tablesRead ) . ' IN SHARE MODE',
-				$method
+				$method,
+				self::QUERY_CHANGE_ROWS
 			);
 		}
 
@@ -1334,9 +1378,13 @@ SQL;
 		}
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
-		$result = $this->query( "SELECT (CASE(pg_try_advisory_lock($key))
-			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS lockstatus", $method );
-		$row = $this->fetchObject( $result );
+		$res = $this->query(
+			"SELECT (CASE(pg_try_advisory_lock($key))
+			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS lockstatus",
+			$method,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
+		$row = $this->fetchObject( $res );
 
 		return ( $row->lockstatus === 't' );
 	}
@@ -1346,7 +1394,11 @@ SQL;
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
 		$loop = new WaitConditionLoop(
 			function () use ( $lockName, $key, $timeout, $method ) {
-				$res = $this->query( "SELECT pg_try_advisory_lock($key) AS lockstatus", $method );
+				$res = $this->query(
+					"SELECT pg_try_advisory_lock($key) AS lockstatus",
+					$method,
+					self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
+				);
 				$row = $this->fetchObject( $res );
 				if ( $row->lockstatus === 't' ) {
 					parent::lock( $lockName, $method, $timeout ); // record
@@ -1364,7 +1416,11 @@ SQL;
 	public function unlock( $lockName, $method ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
-		$result = $this->query( "SELECT pg_advisory_unlock($key) as lockstatus", $method );
+		$result = $this->query(
+			"SELECT pg_advisory_unlock($key) as lockstatus",
+			$method,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
+		);
 		$row = $this->fetchObject( $result );
 
 		if ( $row->lockstatus === 't' ) {
@@ -1378,7 +1434,11 @@ SQL;
 	}
 
 	public function serverIsReadOnly() {
-		$res = $this->query( "SHOW default_transaction_read_only", __METHOD__ );
+		$res = $this->query(
+			"SHOW default_transaction_read_only",
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchObject( $res );
 
 		return $row ? ( strtolower( $row->default_transaction_read_only ) === 'on' ) : false;

@@ -1037,9 +1037,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * - Reject write queries to replica DBs, in query().
 	 *
 	 * @param string $sql
+	 * @param int $flags Query flags to query()
 	 * @return bool
 	 */
-	protected function isWriteQuery( $sql ) {
+	protected function isWriteQuery( $sql, $flags ) {
+		if (
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_ROWS ) ||
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA )
+		) {
+			return true;
+		} elseif ( $this->fieldHasBit( $flags, self::QUERY_CHANGE_NONE ) ) {
+			return false;
+		}
 		// BEGIN and COMMIT queries are considered read queries here.
 		// Database backends and drivers (MySQL, MariaDB, php-mysqli) generally
 		// treat these as write queries, in that their results have "affected rows"
@@ -1192,7 +1201,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 	}
 
-	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
+	public function query( $sql, $fname = __METHOD__, $flags = self::QUERY_NORMAL ) {
 		$flags = (int)$flags; // b/c; this field used to be a bool
 		// Sanity check that the SQL query is appropriate in the current context and is
 		// allowed for an outside caller (e.g. does not break transaction/session tracking).
@@ -1234,7 +1243,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$priorTransaction = $this->trxLevel();
 
-		if ( $this->isWriteQuery( $sql ) ) {
+		if ( $this->isWriteQuery( $sql, $flags ) ) {
 			// In theory, non-persistent writes are allowed in read-only mode, but due to things
 			// like https://bugs.mysql.com/bug.php?id=33669 that might not work anyway...
 			$this->assertIsWritableMaster();
@@ -1867,7 +1876,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 
-		return $this->query( $sql, $fname );
+		return $this->query( $sql, $fname, self::QUERY_CHANGE_NONE );
 	}
 
 	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
@@ -2290,7 +2299,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$sql = "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
 	/**
@@ -2307,7 +2316,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$sql = rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES $sqlTuples $sqlOpts" );
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
 	/**
@@ -2396,7 +2405,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 
 		return true;
 	}
@@ -3252,13 +3261,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 		$sql .= ')';
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
 	public function textFieldSize( $table, $field ) {
 		$table = $this->tableName( $table );
 		$sql = "SHOW COLUMNS FROM $table LIKE \"$field\"";
-		$res = $this->query( $sql, __METHOD__ );
+		$res = $this->query( $sql, __METHOD__, self::QUERY_CHANGE_NONE );
 		$row = $this->fetchObject( $res );
 
 		$m = [];
@@ -3287,7 +3296,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$sql .= ' WHERE ' . $conds;
 		}
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 
 		return true;
 	}
@@ -3451,7 +3460,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$sql = rtrim( "$sqlVerb $encDstTable ($sqlDstColumns) $selectSql $sqlOpts" );
 
-		$this->query( $sql, $fname );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
 	public function limitResult( $sql, $limit, $offset = false ) {
@@ -4019,7 +4028,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $fname Calling function name
 	 */
 	protected function doSavepoint( $identifier, $fname ) {
-		$this->query( 'SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
+		$sql = 'SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 	}
 
 	/**
@@ -4033,7 +4043,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $fname Calling function name
 	 */
 	protected function doReleaseSavepoint( $identifier, $fname ) {
-		$this->query( 'RELEASE SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
+		$sql = 'RELEASE SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 	}
 
 	/**
@@ -4047,7 +4058,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $fname Calling function name
 	 */
 	protected function doRollbackToSavepoint( $identifier, $fname ) {
-		$this->query( 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier ), $fname );
+		$sql = 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 	}
 
 	/**
@@ -4294,7 +4306,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws DBError
 	 */
 	protected function doBegin( $fname ) {
-		$this->query( 'BEGIN', $fname );
+		$this->query( 'BEGIN', $fname, self::QUERY_CHANGE_TRX );
 	}
 
 	final public function commit( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
@@ -4368,7 +4380,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function doCommit( $fname ) {
 		if ( $this->trxLevel() ) {
-			$this->query( 'COMMIT', $fname );
+			$this->query( 'COMMIT', $fname, self::QUERY_CHANGE_TRX );
 		}
 	}
 
@@ -4438,7 +4450,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function doRollback( $fname ) {
 		if ( $this->trxLevel() ) {
 			# Disconnects cause rollback anyway, so ignore those errors
-			$this->query( 'ROLLBACK', $fname, IDatabase::QUERY_SILENCE_ERRORS );
+			$this->query( 'ROLLBACK', $fname, self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_TRX );
 		}
 	}
 
@@ -4551,7 +4563,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// This will reconnect if possible or return false if not
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_NONE;
 		$ok = ( $this->query( self::$PING_QUERY, __METHOD__, $flags ) !== false );
 		if ( $ok ) {
 			$rtt = $this->lastRoundTripEstimate;
@@ -5066,7 +5078,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function doTruncate( array $tables, $fname ) {
 		foreach ( $tables as $table ) {
 			$sql = "TRUNCATE TABLE " . $this->tableName( $table );
-			$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+			$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 		}
 	}
 
