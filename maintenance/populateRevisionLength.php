@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -154,27 +153,24 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
 		$dbw = $this->getDB( DB_MASTER );
 
+		$revFactory = MediaWikiServices::getInstance()->getRevisionFactory();
 		if ( $table === 'archive' ) {
-			$revRecord = MediaWikiServices::getInstance()
-				->getRevisionFactory()
-				->newRevisionFromArchiveRow( $row );
-			$rev = new Revision( $revRecord );
+			$revRecord = $revFactory->newRevisionFromArchiveRow( $row );
 		} else {
-			$rev = new Revision( $row );
+			$revRecord = $revFactory->newRevisionFromRow( $row );
 		}
 
-		$content = $rev->getContent( RevisionRecord::RAW );
-		if ( !$content ) {
+		if ( !$revRecord ) {
 			# This should not happen, but sometimes does (T22757)
 			$id = $row->$idCol;
-			$this->output( "Content of $table $id unavailable!\n" );
+			$this->output( "RevisionRecord of $table $id unavailable!\n" );
 
 			return false;
 		}
 
 		# Update the row...
 		$dbw->update( $table,
-			[ "{$prefix}_len" => $content->getSize() ],
+			[ "{$prefix}_len" => $revRecord->getSize() ],
 			[ $idCol => $row->$idCol ],
 			__METHOD__
 		);
