@@ -1952,13 +1952,14 @@ function wfRecursiveRemoveDir( $dir ) {
 }
 
 /**
- * @param float $nr The number to format
+ * @param float|int $nr The number to format
  * @param int $acc The number of digits after the decimal point, default 2
  * @param bool $round Whether or not to round the value, default true
  * @return string
  */
-function wfPercent( $nr, $acc = 2, $round = true ) {
-	$ret = sprintf( "%.${acc}f", $nr );
+function wfPercent( $nr, int $acc = 2, bool $round = true ) {
+	$accForFormat = $acc >= 0 ? $acc : 0;
+	$ret = sprintf( "%.${accForFormat}f", $nr );
 	return $round ? round( (float)$ret, $acc ) . '%' : "$ret%";
 }
 
