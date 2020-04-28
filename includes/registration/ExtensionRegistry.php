@@ -555,7 +555,7 @@ class ExtensionRegistry {
 			throw new LogicException( $msg );
 		}
 
-		return SemVer::satisfies( $this->loaded[$name]['version'], $constraint );
+		return Semver::satisfies( $this->loaded[$name]['version'], $constraint );
 	}
 
 	/**
