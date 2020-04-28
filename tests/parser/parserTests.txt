@@ -4662,9 +4662,9 @@ Definition Lists: Mixed Lists: Test 13
 *#*#;*;;foo : bar
 *#*#;boo : baz
 !! html+tidy
-<ul><li><ol><li><ul><li><ol><li><dl><dt>foo&#160;</dt>
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo</dt>
 <dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dt></dl></li></ul></dd></dl></li></ol></li></ul>
-<dl><dt>boo&#160;</dt>
+<dl><dt>boo</dt>
 <dd>baz</dd></dl></li></ol></li></ul>
 !! end
 
@@ -8947,7 +8947,7 @@ Interwiki links that cannot be represented in wiki syntax
 !! html/php
 <p><a href="http://www.usemod.com/cgi-bin/mb.pl?ok" class="extiw" title="meatball:ok">meatball:ok</a>
 <a href="http://www.usemod.com/cgi-bin/mb.pl?ok#foo" class="extiw" title="meatball:ok">ok with fragment</a>
-<a href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F" class="extiw" title="meatball:ok as well?">ok ending with ? mark</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F" class="extiw" title="meatball:ok as well?">ok ending with&#160;? mark</a>
 <a rel="nofollow" class="external text" href="http://de.wikipedia.org/wiki/Foo?action=history">has query</a>
 <a rel="nofollow" class="external text" href="http://de.wikipedia.org/wiki/#foo">is just fragment</a>
 </p>
@@ -9126,7 +9126,7 @@ Blah blah blah
 !! html/php
 <p>Blah blah blah
 <a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">es:Spanish</a>
-<a href="http://zh.wikipedia.org/wiki/Chinese" class="extiw" title="zh:Chinese"> zh : Chinese </a>
+<a href="http://zh.wikipedia.org/wiki/Chinese" class="extiw" title="zh:Chinese"> zh&#160;: Chinese </a>
 </p>
 !! html/parsoid
 <p>Blah blah blah
@@ -25209,14 +25209,12 @@ Hello : this ; is « something ‹ else › again »
 </p>
 !! end
 
-# It would be reasonable for Parsoid and PHP to differ here.
-# The PHP behavior is arguably a bug.
 !! test
 Corner case: french spaces in definition list
 !! wikitext
 ;foo : bar
 !! html+tidy
-<dl><dt>foo&#160;</dt>
+<dl><dt>foo</dt>
 <dd>bar</dd></dl>
 !! end
 
@@ -33186,7 +33184,7 @@ __NOTOC__
 <h2><span class="mw-headline" id="Tabs">Tabs</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Tabs">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id=".D0.9B.D0.B8.D1.87.D0.BD.D0.B0.D1.8F_.D0.B6.D0.B8.D0.B7.D0.BD.D1.8C">Личная жизнь</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Личная жизнь">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <ul><li>List item</li></ul>
-<dl><dt>term&#160;</dt>
+<dl><dt>term</dt>
 <dd>definition</dd></dl>
 <table>
 <caption>Table Caption
