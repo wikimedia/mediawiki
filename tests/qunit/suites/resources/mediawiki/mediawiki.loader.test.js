@@ -876,11 +876,11 @@
 	QUnit.test( 'Empty string module name - T28804', function ( assert ) {
 		var done = false;
 
-		assert.strictEqual( mw.loader.getState( '' ), null, 'State (unregistered)' );
+		assert.strictEqual( mw.loader.moduleRegistry[ '' ], undefined, 'Unregistered' );
 
 		mw.loader.register( '', 'v1' );
-		assert.strictEqual( mw.loader.getState( '' ), 'registered', 'State (registered)' );
-		assert.strictEqual( mw.loader.getVersion( '' ), 'v1', 'Version' );
+		assert.strictEqual( mw.loader.moduleRegistry[ '' ].state, 'registered', 'State before' );
+		assert.strictEqual( mw.loader.moduleRegistry[ '' ].version, 'v1', 'Version' );
 
 		mw.loader.implement( '', function () {
 			done = true;
@@ -888,7 +888,7 @@
 
 		return mw.loader.using( '', function () {
 			assert.strictEqual( done, true, 'script ran' );
-			assert.strictEqual( mw.loader.getState( '' ), 'ready', 'State (ready)' );
+			assert.strictEqual( mw.loader.moduleRegistry[ '' ].state, 'ready', 'State after' );
 		} );
 	} );
 
@@ -939,8 +939,8 @@
 			.then( function () {
 				assert.strictEqual( count, 1 );
 				// After implementing, registry contains version as implemented by the response.
-				assert.strictEqual( mw.loader.getVersion( 'test.stale' ), 'v1', 'Override version' );
-				assert.strictEqual( mw.loader.getState( 'test.stale' ), 'ready' );
+				assert.strictEqual( mw.loader.moduleRegistry[ 'test.stale' ].version, 'v1', 'Override version' );
+				assert.strictEqual( mw.loader.moduleRegistry[ 'test.stale' ].state, 'ready' );
 				assert.strictEqual( typeof mw.loader.store.get( 'test.stale' ), 'string', 'In store' );
 			} )
 			.then( function () {
