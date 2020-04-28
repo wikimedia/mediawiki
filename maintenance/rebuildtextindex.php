@@ -28,6 +28,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
@@ -85,9 +86,8 @@ class RebuildTextIndex extends Maintenance {
 		$this->output( "Rebuilding index fields for {$count} pages...\n" );
 		$n = 0;
 
-		$revQuery = MediaWikiServices::getInstance()
-			->getRevisionStore()
-			->getQueryInfo( [ 'page' ] );
+		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revQuery = $revStore->getQueryInfo( [ 'page' ] );
 
 		while ( $n < $count ) {
 			if ( $n ) {
@@ -107,8 +107,8 @@ class RebuildTextIndex extends Maintenance {
 			foreach ( $res as $s ) {
 				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				try {
-					$rev = new Revision( $s );
-					$content = $rev->getContent();
+					$revRecord = $revStore->newRevisionFromRow( $s );
+					$content = $revRecord->getContent( SlotRecord::MAIN );
 
 					$u = new SearchUpdate( $s->page_id, $title, $content );
 					$u->doUpdate();
