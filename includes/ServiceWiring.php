@@ -74,6 +74,7 @@ use MediaWiki\Mail\IEmailer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Page\MovePageFactory;
+use MediaWiki\Page\PageHandlerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -675,16 +676,7 @@ return [
 	},
 
 	'MovePageFactory' => function ( MediaWikiServices $services ) : MovePageFactory {
-		return new MovePageFactory(
-			new ServiceOptions( MovePageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getDBLoadBalancer(),
-			$services->getNamespaceInfo(),
-			$services->getWatchedItemStore(),
-			$services->getPermissionManager(),
-			$services->getRepoGroup(),
-			$services->getContentHandlerFactory(),
-			$services->getRevisionStore()
-		);
+		return $services->getService( '_PageHandlerFactory' );
 	},
 
 	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {
@@ -1174,6 +1166,19 @@ return [
 			$services->getMainConfig()->get( 'LocalInterwikis' ),
 			$services->getInterwikiLookup(),
 			$services->getNamespaceInfo()
+		);
+	},
+
+	'_PageHandlerFactory' => function ( MediaWikiServices $services ) : PageHandlerFactory {
+		return new PageHandlerFactory(
+			new ServiceOptions( PageHandlerFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getDBLoadBalancer(),
+			$services->getNamespaceInfo(),
+			$services->getWatchedItemStore(),
+			$services->getPermissionManager(),
+			$services->getRepoGroup(),
+			$services->getContentHandlerFactory(),
+			$services->getRevisionStore()
 		);
 	},
 
