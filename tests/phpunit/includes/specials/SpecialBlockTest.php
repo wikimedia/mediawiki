@@ -360,27 +360,29 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @dataProvider provideProcessFormErrors
 	 * @covers ::processForm()
 	 */
-	public function testProcessFormErrors( $data, $expected, $config = [] ) {
-		$defaultConfig = [
+	public function testProcessFormErrors( $data, $expected, $options = [] ) {
+		$this->setMwGlobals( [
 			'wgBlockAllowsUTEdit' => true,
-		];
+		] );
 
-		$this->setMwGlobals( array_merge( $defaultConfig, $config ) );
-
+		$performer = $this->getTestSysop()->getUser();
+		$target = !empty( $options['blockingSelf'] ) ? $performer : '1.2.3.4';
 		$defaultData = [
-			'Target' => '1.2.3.4',
+			'Target' => $target,
+			'PreviousTarget' => $target,
 			'Expiry' => 'infinity',
-			'Reason' => [ 'bad reason' ],
-			'Confirm' => false,
-			'PageRestrictions' => '',
-			'NamespaceRestrictions' => '',
+			'Confirm' => '0',
 		];
 
-		$context = RequestContext::getMain();
-		$page = $this->newSpecialPage();
-		$result = $page->processForm( array_merge( $defaultData, $data ), $context );
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $performer );
 
-		$this->assertEquals( $result[0], $expected );
+		$result = $this->newSpecialPage()->processForm(
+			array_merge( $defaultData, $data ),
+			$context
+		);
+
+		$this->assertEquals( $expected, $result[0] );
 	}
 
 	public function provideProcessFormErrors() {
@@ -397,12 +399,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 				],
 				'ipb_expiry_old',
 			],
-			'HideUser with wrong permissions' => [
-				[
-					'HideUser' => 1,
-				],
-				'badaccess-group0',
-			],
 			'Bad ip address' => [
 				[
 					'Target' => '1.2.3.4/1234',
@@ -412,19 +408,217 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'Edit user talk page invalid with no restrictions' => [
 				[
 					'EditingRestriction' => 'partial',
-					'DisableUTEdit' => 1,
+					'DisableUTEdit' => '1',
+					'PageRestrictions' => '',
+					'NamespaceRestrictions' => '',
 				],
 				'ipb-prevent-user-talk-edit',
 			],
 			'Edit user talk page invalid with namespace restriction != NS_USER_TALK ' => [
 				[
 					'EditingRestriction' => 'partial',
-					'DisableUTEdit' => 1,
-					'NamespaceRestrictions' => NS_USER
+					'DisableUTEdit' => '1',
+					'PageRestrictions' => '',
+					'NamespaceRestrictions' => NS_USER,
 				],
 				'ipb-prevent-user-talk-edit',
 			],
+			'Blocking self and target changed' => [
+				[
+					'PreviousTarget' => 'other',
+					'Confirm' => '1',
+				],
+				'ipb-blockingself',
+				[
+					'blockingSelf' => true,
+				],
+			],
+			'Blocking self and no confirm' => [
+				[],
+				'ipb-blockingself',
+				[
+					'blockingSelf' => true,
+				],
+			],
+			'Empty expiry' => [
+				[
+					'Expiry' => '',
+				],
+				'ipb_expiry_invalid',
+			],
+			'Expiry valid but longer than 50 chars' => [
+				[
+					'Expiry' => '30th September 9999 19:19:19.532453 Europe/Amsterdam',
+				],
+				'ipb_expiry_invalid',
+			],
 		];
+	}
+
+	/**
+	 * @dataProvider provideProcessFormErrorsReblock
+	 * @covers ::processForm()
+	 */
+	public function testProcessFormErrorsReblock( $data, $permissions, $expected ) {
+		$this->setMwGlobals( [
+			'wgBlockAllowsUTEdit' => true,
+		] );
+
+		$performer = $this->getTestSysop()->getUser();
+		$this->overrideUserPermissions( $performer, $permissions );
+		$blockedUser = $this->getTestUser()->getUser();
+
+		$block = new DatabaseBlock( [
+			'address' => $blockedUser,
+			'by' => $performer->getId(),
+			'hideName' => true,
+		] );
+		$block->insert();
+
+		// Matches the existing block
+		$defaultData = [
+			'Target' => $blockedUser->getName(),
+			'PreviousTarget' => $blockedUser->getName(),
+			'Expiry' => 'infinity',
+			'DisableUTEdit' => '1',
+			'CreateAccount' => '0',
+			'DisableEmail' => '0',
+			'HardBlock' => '0',
+			'AutoBlock' => '0',
+			'HideUser' => '1',
+			'Confirm' => '1',
+		];
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $performer );
+
+		$result = $this->newSpecialPage()->processForm(
+			array_merge( $defaultData, $data ),
+			$context
+		);
+
+		$error = is_array( $result[0] ) ? $result[0][0] : $result[0];
+		$this->assertEquals( $expected, $error );
+	}
+
+	public function provideProcessFormErrorsReblock() {
+		return [
+			'Reblock user with Confirm false' => [
+				[
+					// Avoid error for hiding user with confirm false
+					'HideUser' => '0',
+					'Confirm' => '0',
+				],
+				[ 'hideuser' ],
+				'ipb_already_blocked',
+			],
+			'Reblock user with Reblock false' => [
+				[ 'Reblock' => '0' ],
+				[ 'hideuser' ],
+				'ipb_already_blocked',
+			],
+			'Reblock with confirm True but target has changed' => [
+				[ 'PreviousTarget' => '1.2.3.4' ],
+				[ 'hideuser' ],
+				'ipb_already_blocked',
+			],
+			'Reblock with same block' => [
+				[ 'HideUser' => '1' ],
+				[ 'hideuser' ],
+				'ipb_already_blocked',
+			],
+			'Reblock hidden user with wrong permissions' => [
+				[ 'HideUser' => '0' ],
+				[ 'hideuser' => false ],
+				'cant-see-hidden-user',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideProcessFormErrorsHideUser
+	 * @covers ::processForm()
+	 */
+	public function testProcessFormErrorsHideUser( $data, $permissions, $expected ) {
+		$performer = $this->getTestSysop()->getUser();
+		$this->overrideUserPermissions( $performer, $permissions );
+
+		$defaultData = [
+			'Target' => $this->getTestUser()->getUser(),
+			'HideUser' => '1',
+			'Expiry' => 'infinity',
+			'Confirm' => '1',
+		];
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $performer );
+
+		$result = $this->newSpecialPage()->processForm(
+			array_merge( $defaultData, $data ),
+			$context
+		);
+
+		$this->assertEquals( $expected, $result[0] );
+	}
+
+	public function provideProcessFormErrorsHideUser() {
+		return [
+			'HideUser with wrong permissions' => [
+				[],
+				[ 'hideuser' => '0' ],
+				'badaccess-group0',
+			],
+			'Hideuser with partial block' => [
+				[ 'EditingRestriction' => 'partial' ],
+				[ 'hideuser' ],
+				'ipb_hide_partial',
+			],
+			'Hideuser with finite expiry' => [
+				[ 'Expiry' => '1 hour' ],
+				[ 'hideuser' ],
+				'ipb_expiry_temp',
+			],
+			'Hideuser with no confirm' => [
+				[ 'Confirm' => '0' ],
+				[ 'hideuser' ],
+				'ipb-confirmhideuser',
+			],
+		];
+	}
+
+	/**
+	 * @covers ::processForm()
+	 */
+	public function testProcessFormErrorsHideUserProlific() {
+		$this->setMwGlobals( [ 'wgHideUserContribLimit' => 0 ] );
+
+		$performer = $this->getTestSysop()->getUser();
+		$this->overrideUserPermissions( $performer, [ 'hideuser' ] );
+
+		$userToBlock = $this->getTestUser()->getUser();
+		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
+		$pageSaturn->doEditContent(
+			ContentHandler::makeContent( 'content', $pageSaturn->getTitle() ),
+			'summary',
+			0,
+			false,
+			$userToBlock
+		);
+
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $performer );
+
+		$result = $this->newSpecialPage()->processForm(
+			[
+				'Target' => $userToBlock,
+				'HideUser' => '1',
+				'Expiry' => 'infinity',
+				'Confirm' => '1',
+			],
+			$context
+		);
+
+		$this->assertEquals( 'ipb_hide_invalid', $result[0][0] );
 	}
 
 	/**
