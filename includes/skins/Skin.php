@@ -910,7 +910,7 @@ abstract class Skin extends ContextSource {
 		);
 		$text = '<a href="https://www.mediawiki.org/"><img src="' . $url1
 			. '" srcset="' . $url1_5 . ' 1.5x, ' . $url2 . ' 2x" '
-			. 'height="31" width="88" alt="Powered by MediaWiki" /></a>';
+			. 'height="31" width="88" alt="Powered by MediaWiki" loading="lazy" /></a>';
 		Hooks::run( 'SkinGetPoweredBy', [ &$text, $this ] );
 		return $text;
 	}
