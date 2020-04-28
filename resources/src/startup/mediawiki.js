@@ -2032,17 +2032,6 @@
 				},
 
 				/**
-				 * Get the version of a module.
-				 *
-				 * @param {string} module Name of module
-				 * @return {string|null} The version, or null if the module (or its version) is not
-				 *  in the registry.
-				 */
-				getVersion: function ( module ) {
-					return module in registry ? registry[ module ].version : null;
-				},
-
-				/**
 				 * Get the state of a module.
 				 *
 				 * @param {string} module Name of module
