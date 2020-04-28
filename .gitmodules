@@ -1291,3 +1291,4 @@
 	path = extensions/DynamicSidebar
 	url = https://github.com/wikimedia/mediawiki-extensions-DynamicSidebar.git
 	branch = REL1_34
+	ignore = dirty
