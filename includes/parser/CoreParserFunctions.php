@@ -1149,8 +1149,11 @@ class CoreParserFunctions {
 			// Revision is for the same title that is currently being parsed. Only use the last
 			// saved revision, regardless of Parser::getRevisionId() or fake revision injection
 			// callbacks against the current title.
-			$parserRevision = $parser->getRevisionObject();
-			if ( $parserRevision && $parserRevision->isCurrent() ) {
+			$parserRevisionRecord = $parser->getRevisionRecordObject();
+			if ( $parserRevisionRecord && $parserRevisionRecord->isCurrent() ) {
+				// TODO refactor this method to return RevisionRecord
+				// and remove the use of Revision here
+				$parserRevision = new Revision( $parserRevisionRecord );
 				$revision = $parserRevision;
 			}
 		}
