@@ -92,7 +92,7 @@ class WikiPage implements Page, IDBAccessObject {
 	protected $mRedirectTarget = null;
 
 	/**
-	 * @var Revision
+	 * @var RevisionRecord
 	 */
 	private $mLastRevision = null;
 
@@ -545,8 +545,8 @@ class WikiPage implements Page, IDBAccessObject {
 				: MWTimestamp::convert( TS_MW, $data->page_links_updated );
 			$this->mIsRedirect = intval( $data->page_is_redirect );
 			$this->mLatest = intval( $data->page_latest );
-			// T39225: $latest may no longer match the cached latest Revision object.
-			// Double-check the ID of any cached latest Revision object for consistency.
+			// T39225: $latest may no longer match the cached latest RevisionRecord object.
+			// Double-check the ID of any cached latest RevisionRecord object for consistency.
 			if ( $this->mLastRevision && $this->mLastRevision->getId() != $this->mLatest ) {
 				$this->mLastRevision = null;
 				$this->mTimestamp = '';
@@ -749,9 +749,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param RevisionRecord $revRecord
 	 */
 	private function setLastEdit( RevisionRecord $revRecord ) {
-		// TODO mLastRevision should be replaced with RevisionRecord
-		$this->mLastRevision = new Revision( $revRecord );
-
+		$this->mLastRevision = $revRecord;
 		$this->mTimestamp = $revRecord->getTimestamp();
 	}
 
@@ -764,7 +762,7 @@ class WikiPage implements Page, IDBAccessObject {
 		wfDeprecated( __METHOD__, '1.35' );
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision;
+			return new Revision( $this->mLastRevision );
 		}
 		return null;
 	}
@@ -776,7 +774,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getRevisionRecord() {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getRevisionRecord();
+			return $this->mLastRevision;
 		}
 		return null;
 	}
@@ -797,7 +795,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function getContent( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getContent( $audience, $user );
+			return $this->mLastRevision->getContent( SlotRecord::MAIN, $audience, $user );
 		}
 		return null;
 	}
@@ -843,7 +841,8 @@ class WikiPage implements Page, IDBAccessObject {
 				global $wgUser;
 				$user = $wgUser;
 			}
-			return $this->mLastRevision->getUser( $audience, $user );
+			$revUser = $this->mLastRevision->getUser( $audience, $user );
+			return $revUser ? $revUser->getId() : 0;
 		} else {
 			return -1;
 		}
@@ -896,7 +895,8 @@ class WikiPage implements Page, IDBAccessObject {
 				global $wgUser;
 				$user = $wgUser;
 			}
-			return $this->mLastRevision->getUserText( $audience, $user );
+			$revUser = $this->mLastRevision->getUser( $audience, $user );
+			return $revUser ? $revUser->getName() : '';
 		} else {
 			return '';
 		}
@@ -923,7 +923,8 @@ class WikiPage implements Page, IDBAccessObject {
 				global $wgUser;
 				$user = $wgUser;
 			}
-			return $this->mLastRevision->getComment( $audience, $user );
+			$revComment = $this->mLastRevision->getComment( $audience, $user );
+			return $revComment ? $revComment->text : '';
 		} else {
 			return '';
 		}
