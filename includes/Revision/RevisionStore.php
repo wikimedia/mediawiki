@@ -1452,8 +1452,8 @@ class RevisionStore
 		Assert::parameterType( 'object', $row, '$row' );
 
 		if ( !$title ) {
-			$pageId = (int)$row->rev_page ?? 0; // XXX: fall back to page_id?
-			$revId = (int)$row->rev_id ?? 0;
+			$pageId = (int)( $row->rev_page ?? 0 ); // XXX: fall back to page_id?
+			$revId = (int)( $row->rev_id ?? 0 );
 
 			$title = $this->getTitle( $pageId, $revId, $queryFlags );
 		} else {
@@ -1516,8 +1516,8 @@ class RevisionStore
 	 * @param array $context
 	 */
 	private function ensureRevisionRowMatchesTitle( $row, Title $title, $context = [] ) {
-		$revId = (int)$row->rev_id ?? 0;
-		$revPageId = (int)$row->rev_page ?? 0; // XXX: also check $row->page_id?
+		$revId = (int)( $row->rev_id ?? 0 );
+		$revPageId = (int)( $row->rev_page ?? 0 ); // XXX: also check $row->page_id?
 		$titlePageId = $title->getArticleID();
 
 		// Avoid fatal error when the Title's ID changed, T246720
