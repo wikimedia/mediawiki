@@ -468,10 +468,8 @@ JAVASCRIPT;
 							// Use cases:
 							// - startup (naturally because this is what will define mw.loader)
 							// - html5shiv (loads synchronously in old IE before the async startup module arrives)
-							// - QUnit (needed in SpecialJavaScriptTest before async startup)
 							$chunk = Html::element( 'script', [
-								// The 'sync' option is only supported in combination with 'raw'.
-								'async' => !isset( $extraQuery['sync'] ),
+								'async' => true,
 								'src' => $url
 							] );
 						} else {
