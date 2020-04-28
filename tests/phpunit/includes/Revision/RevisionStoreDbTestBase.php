@@ -2398,7 +2398,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 			->newRevisionsFromBatch( [ $this->revisionToRow( $rev1 ), $this->revisionToRow( $rev1 ) ] );
 
 		$this->assertFalse( $status->isGood() );
-		$this->assertTrue( $status->hasMessage( 'internalerror' ) );
+		$this->assertTrue( $status->hasMessage( 'internalerror_info' ) );
 	}
 
 	/**
