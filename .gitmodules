@@ -1292,3 +1292,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-DynamicSidebar.git
 	branch = REL1_34
 	ignore = dirty
+[submodule "extensions/GlobalUsage"]
+	path = extensions/GlobalUsage
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUsage.git
+	branch = REL1_34
+	ignore = dirty
