@@ -73,4 +73,39 @@ class ClearUserWatchlistJobTest extends MediaWikiTestCase {
 		$this->assertTrue( $watchedItemStore->isWatched( $user, new TitleValue( 1, 'C' ) ) );
 	}
 
+	public function testRunWithWatchlistExpiry() {
+		// Set up.
+		$this->setMwGlobals( 'wgWatchlistExpiry', true );
+		$user = $this->getUser();
+		$watchedItemStore = $this->getWatchedItemStore();
+
+		// Add two watched items, one with an expiry.
+		$watchedItemStore->addWatch( $user, new TitleValue( 0, __METHOD__ . 'no expiry' ) );
+		$watchedItemStore->addWatch( $user, new TitleValue( 0, __METHOD__ . 'has expiry' ), '1 week' );
+
+		// Get the IDs of these items.
+		$itemIds = $this->db->selectFieldValues(
+			[ 'watchlist' ],
+			'wl_id',
+			[ 'wl_user' => $user->getId() ],
+			__METHOD__
+		);
+
+		// Clear the watchlist by running the job.
+		$job = new ClearUserWatchlistJob( [
+			'userId' => $user->getId(),
+			'maxWatchlistId' => max( $itemIds ),
+		] );
+		JobQueueGroup::singleton()->push( $job );
+		$this->runJobs( 1 );
+
+		// Confirm that there are now no expiry records.
+		$watchedCount = $this->db->selectRowCount(
+			'watchlist_expiry',
+			'*',
+			[ 'we_item' => $itemIds ],
+			__METHOD__
+		);
+		$this->assertSame( 0, $watchedCount );
+	}
 }
