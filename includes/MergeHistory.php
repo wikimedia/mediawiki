@@ -20,10 +20,15 @@
  *
  * @file
  */
+
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -58,18 +63,63 @@ class MergeHistory {
 	/** @var int Number of revisions merged (for Special:MergeHistory success message) */
 	protected $revisionsMerged;
 
+	/** @var PermissionManager */
+	private $permManager;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
 	/**
+	 * Since 1.35 dependencies are injected and not providing them is hard deprecated; use the
+	 * MergeHistoryFactory service
+	 *
 	 * @param Title $source Page from which history will be merged
 	 * @param Title $dest Page to which history will be merged
 	 * @param string|bool $timestamp Timestamp up to which history from the source will be merged
+	 * @param ILoadBalancer|null $loadBalancer
+	 * @param PermissionManager|null $permManager
+	 * @param IContentHandlerFactory|null $contentHandlerFactory
+	 * @param RevisionStore|null $revisionStore
+	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 */
-	public function __construct( Title $source, Title $dest, $timestamp = false ) {
+	public function __construct(
+		Title $source,
+		Title $dest,
+		$timestamp = false,
+		ILoadBalancer $loadBalancer = null,
+		PermissionManager $permManager = null,
+		IContentHandlerFactory $contentHandlerFactory = null,
+		RevisionStore $revisionStore = null,
+		WatchedItemStoreInterface $watchedItemStore = null
+	) {
+		if ( $loadBalancer === null ) {
+			wfDeprecated( __CLASS__ . ' being constructed directly', '1.35' );
+			$services = MediaWikiServices::getInstance();
+
+			$loadBalancer = $services->getDBLoadBalancer();
+			$permManager = $services->getPermissionManager();
+			$contentHandlerFactory = $services->getContentHandlerFactory();
+			$revisionStore = $services->getRevisionStore();
+			$watchedItemStore = $services->getWatchedItemStore();
+		}
+
 		// Save the parameters
 		$this->source = $source;
 		$this->dest = $dest;
 
 		// Get the database
-		$this->dbw = wfGetDB( DB_MASTER );
+		$this->dbw = $loadBalancer->getConnection( DB_MASTER );
+
+		$this->permManager = $permManager;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->revisionStore = $revisionStore;
+		$this->watchedItemStore = $watchedItemStore;
 
 		// Max timestamp should be min of destination page
 		$firstDestTimestamp = $this->dbw->selectField(
@@ -159,12 +209,11 @@ class MergeHistory {
 	 */
 	public function checkPermissions( User $user, $reason ) {
 		$status = new Status();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		// Check if user can edit both pages
 		$errors = wfMergeErrorArrays(
-			$permissionManager->getPermissionErrors( 'edit', $user, $this->source ),
-			$permissionManager->getPermissionErrors( 'edit', $user, $this->dest )
+			$this->permManager->getPermissionErrors( 'edit', $user, $this->source ),
+			$this->permManager->getPermissionErrors( 'edit', $user, $this->dest )
 		);
 
 		// Convert into a Status object
@@ -175,13 +224,14 @@ class MergeHistory {
 		}
 
 		// Anti-spam
+		// TODO inject a SpamRegexChecker once that is a service
 		if ( EditPage::matchSummarySpamRegex( $reason ) !== false ) {
 			// This is kind of lame, won't display nice
 			$status->fatal( 'spamprotectiontext' );
 		}
 
 		// Check mergehistory permission
-		if ( !$permissionManager->userHasRight( $user, 'mergehistory' ) ) {
+		if ( !$this->permManager->userHasRight( $user, 'mergehistory' ) ) {
 			// User doesn't have the right to merge histories
 			$status->fatal( 'mergehistory-fail-permission' );
 		}
@@ -294,7 +344,6 @@ class MergeHistory {
 			__METHOD__
 		);
 
-		$services = MediaWikiServices::getInstance();
 		if ( !$haveRevisions ) {
 			if ( $reason ) {
 				$reason = wfMessage(
@@ -311,7 +360,7 @@ class MergeHistory {
 				)->inContentLanguage()->text();
 			}
 
-			$redirectContent = $services->getContentHandlerFactory()
+			$redirectContent = $this->contentHandlerFactory
 				->getContentHandler( $this->source->getContentModel() )
 				->makeRedirectContent(
 					$this->dest,
@@ -319,7 +368,6 @@ class MergeHistory {
 				);
 
 			if ( $redirectContent ) {
-				$revStore = $services->getRevisionStore();
 				$redirectComment = CommentStoreComment::newUnsavedComment( $reason );
 
 				$redirectRevRecord = new MutableRevisionRecord( $this->source );
@@ -329,7 +377,7 @@ class MergeHistory {
 				$redirectRevRecord->setUser( $user );
 				$redirectRevRecord->setTimestamp( wfTimestampNow() );
 
-				$insertedRevRecord = $revStore->insertRevisionOn(
+				$insertedRevRecord = $this->revisionStore->insertRevisionOn(
 					$redirectRevRecord,
 					$this->dbw
 				);
@@ -362,8 +410,7 @@ class MergeHistory {
 		$this->dest->invalidateCache(); // update histories
 
 		// Duplicate watchers of the old article to the new article on history merge
-		$store = $services->getWatchedItemStore();
-		$store->duplicateAllAssociatedEntries( $this->source, $this->dest );
+		$this->watchedItemStore->duplicateAllAssociatedEntries( $this->source, $this->dest );
 
 		// Update our logs
 		$logEntry = new ManualLogEntry( 'merge', 'merge' );

@@ -601,6 +601,8 @@ because of Phabricator reports.
   deprecated. Instead, use User::getBlock to get the block, then use
   AbstractBlock::getByName or AbstractBlock::getHideName.Use the GetUserBlock
   hook to set, unset or modify a block, including hiding or unhiding a user.
+* Directly calling the MergeHistory constructor is deprecated. Instead, use the
+  new MergeHistoryFactory class.
 * Language::factory() and Language::getParentLanguage() are deprecated, and so
   is directly calling the Language constructor. Use the new LanguageFactory
   class instead.

@@ -360,7 +360,8 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 
 		// MergeHistory object
-		$mh = new MergeHistory( $targetTitle, $destTitle, $this->mTimestamp );
+		$factory = MediawikiServices::getInstance()->getMergeHistoryFactory();
+		$mh = $factory->newMergeHistory( $targetTitle, $destTitle, $this->mTimestamp );
 
 		// Merge!
 		$mergeStatus = $mh->merge( $this->getUser(), $this->mComment );
