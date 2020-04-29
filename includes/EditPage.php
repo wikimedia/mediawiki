@@ -29,6 +29,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\ScopedCallback;
 
@@ -3345,7 +3346,7 @@ ERROR;
 
 			if ( $this->section != 'new' ) {
 				$revRecord = $this->mArticle->fetchRevisionRecord();
-				if ( $revRecord ) {
+				if ( $revRecord && $revRecord instanceof RevisionStoreRecord ) {
 					// Let sysop know that this will make private content public if saved
 
 					if ( !RevisionRecord::userCanBitfield(
