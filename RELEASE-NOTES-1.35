@@ -360,6 +360,8 @@ because of Phabricator reports.
 * The easy-deflate.inflate module, unused since 1.32, was removed.
 * The easy-deflate.deflate module was removed. Use the mediawiki.deflate
   module instead.
+* The mediawiki.notify module was removed. The mw.notify() shortcut is now
+  available by default, without any dependency.
 * (T219604) The "jquery.ui.*" and "jquery.effects.*" module aliases,
   deprecated in 1.34, have been removed. Use "jquery.ui" instead.
 * (T235457) The "user.tokens" module has been removed.
