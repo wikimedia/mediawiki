@@ -2257,7 +2257,7 @@
 	"linksearch-pat": "Procurar padrão:",
 	"linksearch-ns": "Espaço nominal:",
 	"linksearch-ok": "Pesquisar",
-	"linksearch-text": "É possível usar caracteres coringa, como \"*.wikipedia.org\".\nNecessário no mínimo um domínio de nível superior, por exemplo \"*.org\".<br />\n{{PLURAL:$2|Protocolo suportado|Protocolos suportados}}: $1 (caso nenhum seja especificado, o protocolo http:// será selecionado automaticamente).",
+	"linksearch-text": "É possível usar caracteres coringa, como \"*.wikipedia.org\".<br />\n{{PLURAL:$2|Protocolo suportado|Protocolos suportados}}: $1 (caso nenhum seja especificado, o protocolo http:// será selecionado automaticamente).",
 	"linksearch-line": "$1 na página $2",
 	"linksearch-error": "\"Caracteres mágicos\" (''wildcards'') só podem ser usados no início do endereço.",
 	"listusersfrom": "Mostrar usuários começando em:",

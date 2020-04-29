@@ -2230,7 +2230,7 @@
 	"linksearch-pat": "Motif ara:",
 	"linksearch-ns": "Ad alanı:",
 	"linksearch-ok": "Ara",
-	"linksearch-text": "\"*.wikipedia.org\" gibi jokerler kullanılabilir.\nEn az bir üst-seviye alan gerekir, örneğin \"*.org\".<br />\nDesteklenen {{PLURAL:$2|iletişim kuralı|iletişim kuralları}}: $1 (herhangi bir iletişim kuralı belirtmezseniz http:// otomatik olarak eklenir).",
+	"linksearch-text": "\"*.wikipedia.org\" gibi jokerler kullanılabilir.<br />\nDesteklenen {{PLURAL:$2|iletişim kuralı|iletişim kuralları}}: $1 (herhangi bir iletişim kuralı belirtmezseniz http:// otomatik olarak eklenir).",
 	"linksearch-line": "$1 bağlantısı, $2 üzerinden bağlantı verildi",
 	"linksearch-error": "Jokerler sadece ana makine adının başında görünebilir.",
 	"listusersfrom": "Şununla başlayan kullanıcıları görüntüle:",
