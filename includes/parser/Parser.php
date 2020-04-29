@@ -3554,8 +3554,6 @@ class Parser {
 			# Give extensions a chance to select the revision instead
 			$id = false; # Assume current
 			Hooks::run( 'BeforeParserFetchTemplateAndtitle',
-				[ $parser, $title, &$skip, &$id ], '1.35' );
-			Hooks::run( 'BeforeParserFetchTemplateAndTitle',
 				[ $parser, $title, &$skip, &$id ] );
 
 			if ( $skip ) {
