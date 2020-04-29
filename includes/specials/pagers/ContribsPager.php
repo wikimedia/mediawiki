@@ -541,6 +541,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @return Revision|null
 	 */
 	public function tryToCreateValidRevision( $row, $title = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$potentialRevRecord = $this->tryCreatingRevisionRecord( $row, $title );
 		return $potentialRevRecord ? new Revision( $potentialRevRecord ) : null;
 	}
