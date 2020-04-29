@@ -359,13 +359,23 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	public function countWatchedItems( UserIdentity $user ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
+		$tables = [ 'watchlist' ];
+		$conds = [ 'wl_user' => $user->getId() ];
+		$joinConds = [];
+
+		if ( $this->expiryEnabled ) {
+			$tables[] = 'watchlist_expiry';
+			$joinConds[ 'watchlist_expiry' ] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+		}
+
 		$return = (int)$dbr->selectField(
-			'watchlist',
+			$tables,
 			'COUNT(*)',
-			[
-				'wl_user' => $user->getId()
-			],
-			__METHOD__
+			$conds,
+			__METHOD__,
+			[],
+			$joinConds
 		);
 
 		return $return;
