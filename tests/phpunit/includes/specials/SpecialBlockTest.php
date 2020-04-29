@@ -203,7 +203,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = DatabaseBlock::newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
-		$this->assertSame( '1', $block->isAutoblocking() );
+		$this->assertSame( true, $block->isAutoblocking() );
 	}
 
 	/**
