@@ -2009,7 +2009,7 @@
 	"linksearch-pat": "Klask an droienn :",
 	"linksearch-ns": "Esaouenn anv :",
 	"linksearch-ok": "Klask",
-	"linksearch-text": "Gallout a reer implijout arouezennoù \"joker\" evel, da skouer, \"*.wikipedia.org\".\nRekis eo dezho un domani a-us da nebeutañ evel, da skouer, \"*.org\".<br />\n{{PLURAL:$2|Protokol|Protokoloù}} skoret : $1 (defaults to http:// na lakait hini ebet eus ar re-se en ho klask).",
+	"linksearch-text": "Gallout a reer implijout arouezennoù \"joker\" evel, da skouer, \"*.wikipedia.org\"<br/>.\n{{PLURAL:$2|Protokol|Protokoloù}} skoret : $1 (http:// dre ziouer ma n'eus ket bet spisaet protokol ebet).",
 	"linksearch-line": "$1 gant ul liamm adal $2",
 	"linksearch-error": "N'hall an arouezennoù joker bezañ implijet nemet e deroù anv domani an ostiz.",
 	"listusersfrom": "Diskouez anv an implijerien adal :",
