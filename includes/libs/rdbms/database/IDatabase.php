@@ -151,6 +151,9 @@ interface IDatabase {
 	/** @var string Unknown replication topology role */
 	const ROLE_UNKNOWN = 'unknown';
 
+	/** @var string Unconditional update/delete of whole table */
+	const ALL_ROWS = '*';
+
 	/**
 	 * Get a human-readable string describing the current software version
 	 *
@@ -669,7 +672,7 @@ interface IDatabase {
 	 * Escaping of untrusted input used in values of numeric keys should be done via
 	 * IDatabase::addQuotes()
 	 *
-	 * Use an empty array, string, or '*' to select all rows.
+	 * Use an empty array, string, or IDatabase::ALL_ROWS to select all rows.
 	 *
 	 * @param string $fname Caller function name
 	 *
@@ -941,6 +944,9 @@ interface IDatabase {
 	 *   have no defined execution order, so they should not depend on each other. Do not
 	 *   modify AUTOINCREMENT or UUID columns in assignments.
 	 * @param array|string $conds Condition in the format of IDatabase::select() conditions.
+	 *   In order to prevent possible performance or replication issues or damaging a data
+	 *   accidentally, an empty condition for 'update' queries isn't allowed.
+	 *   IDatabase::ALL_ROWS should be passed explicitely in order to update all rows.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param string|array $options Combination map/list where each string-keyed entry maps a
 	 *   non-boolean option to the option parameters and each integer-keyed value is the
@@ -1354,7 +1360,7 @@ interface IDatabase {
 	 * we use sub-selects
 	 *
 	 * For safety, an empty $conds will not delete everything. If you want to
-	 * delete all rows where the join condition matches, set $conds='*'.
+	 * delete all rows where the join condition matches, set $conds=IDatabase::ALL_ROWS.
 	 *
 	 * DO NOT put the join condition in $conds.
 	 *
@@ -1381,7 +1387,9 @@ interface IDatabase {
 	 *
 	 * @param string $table Table name
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
-	 *   for the format. Use $conds == "*" to delete all rows
+	 *   In order to prevent possible performance or replication issues or damaging a data
+	 *   accidentally, an empty condition for 'delete' queries isn't allowed.
+	 *   IDatabase::ALL_ROWS should be passed explicitely in order to delete all rows.
 	 * @param string $fname Name of the calling function
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, see IDatabase::query()
