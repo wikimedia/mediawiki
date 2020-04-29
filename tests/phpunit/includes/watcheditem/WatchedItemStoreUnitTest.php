@@ -195,7 +195,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
-				'watchlist',
+				[ 'watchlist' ],
 				'COUNT(*)',
 				[
 					'wl_user' => $user->getId(),
@@ -274,7 +274,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
-				'watchlist',
+				[ 'watchlist' ],
 				'COUNT(*)',
 				[
 					'wl_user' => $user->getId(),
@@ -288,7 +288,10 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'set' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
-		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
+		$store = $this->newWatchedItemStore( [
+			'db' => $mockDb,
+			'cache' => $mockCache,
+			'expiryEnabled' => false ] );
 
 		$this->assertFalse( $store->clearUserWatchedItems( $user ) );
 	}
@@ -297,13 +300,17 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$user = new UserIdentityValue( 1, 'MockUser', 0 );
 
 		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'selectField' )
 			->with(
-				'watchlist',
+				[ 'watchlist', 'watchlist_expiry' ],
 				'COUNT(*)',
 				[
 					'wl_user' => $user->getId(),
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				],
 				$this->isType( 'string' )
 			)
