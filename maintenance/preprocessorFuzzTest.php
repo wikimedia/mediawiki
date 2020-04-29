@@ -28,7 +28,7 @@ use Wikimedia\TestingAccessWrapper;
 $optionsWithoutArgs = [ 'verbose' ];
 require_once __DIR__ . '/commandLine.inc';
 
-$wgHooks['BeforeParserFetchTemplateAndTitle'][] = 'PPFuzzTester::templateHook';
+$wgHooks['BeforeParserFetchTemplateAndtitle'][] = 'PPFuzzTester::templateHook';
 
 class PPFuzzTester {
 	public $hairs = [
