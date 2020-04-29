@@ -754,6 +754,8 @@ because of Phabricator reports.
   - WikiPage::getCreator
   - WikiPage::getUser
   - WikiPage::getUserText
+* UploadBase::checkWarnings now accepts a User parameter; not providing a
+  user is soft deprecated.
 * Article::insertProtectNullRevision and WikiPage::insertProtectNullRevision
   were hard deprecated. Instead, use WikiPage::insertNullProtectionRevision.
 * Article::doDeleteArticle, Article::doDeleteArticleReal, and
