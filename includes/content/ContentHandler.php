@@ -1364,10 +1364,10 @@ abstract class ContentHandler {
 
 		if ( empty( $parserOutput ) ) {
 			$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
-			$revision = $this->latestRevision( $page );
+			$revisionRecord = $this->latestRevision( $page );
 			$parserOutput =
 				$renderer->getRenderedRevision(
-					$revision->getRevisionRecord(),
+					$revisionRecord,
 					$parserOptions
 				)->getRevisionParserOutput();
 			if ( $cache ) {
@@ -1377,7 +1377,7 @@ abstract class ContentHandler {
 		return $parserOutput;
 	}
 
-	private function latestRevision( WikiPage $page ): Revision {
+	private function latestRevision( WikiPage $page ): RevisionRecord {
 		$revRecord = $page->getRevisionRecord();
 		if ( $revRecord == null ) {
 			// If the content represents a brand new page it's possible
@@ -1391,9 +1391,7 @@ abstract class ContentHandler {
 			}
 		}
 
-		// TODO return RevisionRecord
-		$revision = new Revision( $revRecord );
-		return $revision;
+		return $revRecord;
 	}
 
 	/**
