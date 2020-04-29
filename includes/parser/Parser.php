@@ -28,6 +28,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Psr\Log\LoggerInterface;
@@ -3514,8 +3515,14 @@ class Parser {
 			$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
 			if ( $dep['title']->equals( $this->getTitle() ) && $rev instanceof Revision ) {
 				// Self-transclusion; final result may change based on the new page version
+				// FIXME $templateCb shouldn't return Revisions
+				try {
+					$sha1 = $rev->getRevisionRecord()->getSha1();
+				} catch ( RevisionAccessException $e ) {
+					$sha1 = null;
+				}
 				$this->setOutputFlag( 'vary-revision-sha1', 'Self transclusion' );
-				$this->getOutput()->setRevisionUsedSha1Base36( $rev->getSha1() );
+				$this->getOutput()->setRevisionUsedSha1Base36( $sha1 );
 			}
 		}
 
