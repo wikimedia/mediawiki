@@ -745,12 +745,12 @@ class ChangesList extends ContextSource {
 				->quickUserCan( 'rollback', $this->getUser(), $title )
 			) {
 				$revRecord = new MutableRevisionRecord( $title );
-				$revRecord->setId( $rc->mAttribs['rc_this_oldid'] );
-				$revRecord->setVisibility( $rc->mAttribs['rc_deleted'] );
+				$revRecord->setId( (int)$rc->mAttribs['rc_this_oldid'] );
+				$revRecord->setVisibility( (int)$rc->mAttribs['rc_deleted'] );
 				$user = new UserIdentityValue(
-					$rc->mAttribs['rc_user'],
+					(int)$rc->mAttribs['rc_user'],
 					$rc->mAttribs['rc_user_text'],
-					$rc->mAttribs['rc_actor'] ?? 0
+					(int)$rc->mAttribs['rc_actor'] ?? 0
 				);
 				$revRecord->setUser( $user );
 
