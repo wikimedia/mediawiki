@@ -45,17 +45,16 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	public function testNewCanonical() {
-		$wgUser = $this->getMutableTestUser()->getUser();
+		$user = $this->getMutableTestUser()->getUser();
 		$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'fr' );
 		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
 
 		$this->setContentLang( $contLang );
 		$this->setMwGlobals( [
-			'wgUser' => $wgUser,
+			'wgUser' => $user,
 			'wgLang' => $wgLang,
 		] );
 
-		$user = $this->getMutableTestUser()->getUser();
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' );
 		$lang2 = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'bug' );
 		$context = new DerivativeContext( RequestContext::getMain() );
@@ -64,7 +63,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 
 		// No parameters picks up $wgUser and $wgLang
 		$popt = ParserOptions::newCanonical();
-		$this->assertSame( $wgUser, $popt->getUser() );
+		$this->assertSame( $user, $popt->getUser() );
 		$this->assertSame( $wgLang, $popt->getUserLangObj() );
 
 		// Just a user uses $wgLang
@@ -74,7 +73,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 
 		// Just a language uses $wgUser
 		$popt = ParserOptions::newCanonical( null, $lang );
-		$this->assertSame( $wgUser, $popt->getUser() );
+		$this->assertSame( $user, $popt->getUser() );
 		$this->assertSame( $lang, $popt->getUserLangObj() );
 
 		// Passing both works
