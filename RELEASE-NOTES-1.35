@@ -326,6 +326,8 @@ because of Phabricator reports.
 * The default targets for the ISBN search from Special:BookSources in English
   have been updated for better international suppport. They will now be
   BetterWorldBooks.com, OpenLibrary.org and Worldcat.org.
+* (T237672) Changed the Moroccan Arabic language (ary) to the Arabic script.
+* (T201269) Added language support for Amis (ami).
 * (T248299) Added language support for Inari Sami (smn).
 * (T251369) Added language support for Ladin (lld).
 * …
