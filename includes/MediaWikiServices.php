@@ -35,7 +35,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
-use MediaWiki\HookRunner\HookContainer;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;

@@ -20,7 +20,7 @@
  * @file
  */
 
-namespace MediaWiki\HookRunner;
+namespace MediaWiki\HookContainer;
 
 use InvalidArgumentException;
 

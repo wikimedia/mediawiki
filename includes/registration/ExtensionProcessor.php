@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\HookRunner\DeprecatedHooks;
+use MediaWiki\HookContainer\DeprecatedHooks;
 
 class ExtensionProcessor implements Processor {
 
