@@ -525,7 +525,8 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		// Verify permissions for this title
-		$permErrors = $this->mUpload->verifyTitlePermissions( $this->getUser() );
+		$user = $this->getUser();
+		$permErrors = $this->mUpload->verifyTitlePermissions( $user );
 		if ( $permErrors !== true ) {
 			$code = array_shift( $permErrors[0] );
 			$this->showRecoverableUploadError( $this->msg( $code, $permErrors[0] )->parse() );
@@ -537,14 +538,14 @@ class SpecialUpload extends SpecialPage {
 
 		// Check warnings if necessary
 		if ( !$this->mIgnoreWarning ) {
-			$warnings = $this->mUpload->checkWarnings();
+			$warnings = $this->mUpload->checkWarnings( $user );
 			if ( $this->showUploadWarning( $warnings ) ) {
 				return;
 			}
 		}
 
 		// This is as late as we can throttle, after expected issues have been handled
-		if ( UploadBase::isThrottled( $this->getUser() ) ) {
+		if ( UploadBase::isThrottled( $user ) ) {
 			$this->showRecoverableUploadError(
 				$this->msg( 'actionthrottledtext' )->escaped()
 			);
@@ -568,7 +569,7 @@ class SpecialUpload extends SpecialPage {
 
 		if ( $changeTags ) {
 			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
-				$changeTags, $this->getUser() );
+				$changeTags, $user );
 			if ( !$changeTagsStatus->isOK() ) {
 				$this->showUploadError( $this->getOutput()->parseAsInterface(
 					$changeTagsStatus->getWikiText( false, false, $this->getLanguage() )
@@ -582,7 +583,7 @@ class SpecialUpload extends SpecialPage {
 			$this->mComment,
 			$pageText,
 			$this->mWatchthis,
-			$this->getUser(),
+			$user,
 			$changeTags
 		);
 

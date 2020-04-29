@@ -665,9 +665,16 @@ abstract class UploadBase {
 	 *
 	 * This should not assume that mTempPath is set.
 	 *
+	 * @param User|null $user Accepted since 1.35
+	 *
 	 * @return mixed[] Array of warnings
 	 */
-	public function checkWarnings() {
+	public function checkWarnings( $user = null ) {
+		if ( $user === null ) {
+			// TODO check uses and hard deprecate
+			$user = RequestContext::getMain()->getUser();
+		}
+
 		$warnings = [];
 
 		$localFile = $this->getLocalFile();
@@ -707,7 +714,7 @@ abstract class UploadBase {
 			$warnings['duplicate'] = $dupes;
 		}
 
-		$archivedDupes = $this->checkAgainstArchiveDupes( $hash );
+		$archivedDupes = $this->checkAgainstArchiveDupes( $hash, $user );
 		if ( $archivedDupes !== null ) {
 			$warnings['duplicate-archive'] = $archivedDupes;
 		}
@@ -866,14 +873,15 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $hash sha1 hash of the file to check
+	 * @param User $user
 	 *
 	 * @return string|null Name of the dupe or empty string if discovered (depending on visibility)
 	 *                     null if the check discovered no dupes.
 	 */
-	private function checkAgainstArchiveDupes( $hash ) {
+	private function checkAgainstArchiveDupes( $hash, User $user ) {
 		$archivedFile = new ArchivedFile( null, 0, '', $hash );
 		if ( $archivedFile->getID() > 0 ) {
-			if ( $archivedFile->userCan( File::DELETED_FILE ) ) {
+			if ( $archivedFile->userCan( File::DELETED_FILE, $user ) ) {
 				return $archivedFile->getName();
 			} else {
 				return '';

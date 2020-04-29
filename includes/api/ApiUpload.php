@@ -661,7 +661,9 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	protected function getApiWarnings() {
-		$warnings = UploadBase::makeWarningsSerializable( $this->mUpload->checkWarnings() );
+		$warnings = UploadBase::makeWarningsSerializable(
+			$this->mUpload->checkWarnings( $this->getUser() )
+		);
 
 		return $this->transformWarnings( $warnings );
 	}
