@@ -9167,7 +9167,8 @@ $wgCSPReportOnlyHeader = false;
 
 /**
  * List of messages which might contain raw HTML.
- * Extensions should add their messages here. The list is used for access control:
+ * Extensions should add their insecure raw HTML messages to extension.json.
+ * The list is used for access control:
  * changing messages listed here will require editsitecss and editsitejs rights.
  *
  * Message names must be given with underscores rather than spaces and with lowercase first letter.
