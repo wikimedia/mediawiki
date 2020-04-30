@@ -135,7 +135,8 @@ class LinksUpdate extends DataUpdate {
 
 		if ( !$this->mId ) {
 			throw new InvalidArgumentException(
-				"The Title object yields no ID. Perhaps the page doesn't exist?"
+				"The Title object yields no ID. "
+					. "Perhaps the page [[{$title->getPrefixedDBkey()}]] doesn't exist?"
 			);
 		}
 
