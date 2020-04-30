@@ -1962,15 +1962,15 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		return Language::fetchLanguageName( ...$args );
 	}
 
-	private static function getFileName( ...$args ) {
+	private function getFileName( ...$args ) {
 		return Language::getFileName( ...$args );
 	}
 
-	private static function getMessagesFileName( $code ) {
+	private function getMessagesFileName( $code ) {
 		return Language::getMessagesFileName( $code );
 	}
 
-	private static function getJsonMessagesFileName( $code ) {
+	private function getJsonMessagesFileName( $code ) {
 		return Language::getJsonMessagesFileName( $code );
 	}
 

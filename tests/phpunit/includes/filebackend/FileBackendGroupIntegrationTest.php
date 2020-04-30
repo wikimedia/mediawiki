@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -14,7 +15,7 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		return wfWikiID();
 	}
 
-	private function getLockManagerGroupFactory() {
+	private function getLockManagerGroupFactory( $domain ) : LockManagerGroupFactory {
 		return MediaWikiServices::getInstance()->getLockManagerGroupFactory();
 	}
 

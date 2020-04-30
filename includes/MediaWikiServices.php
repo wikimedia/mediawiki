@@ -697,6 +697,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.35
 	 * @return HookContainer
 	 */
 	public function getHookContainer() : HookContainer {
@@ -707,7 +708,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @since 1.35
 	 * @return HtmlCacheUpdater
 	 */
-	public function getHtmlCacheUpdater() {
+	public function getHtmlCacheUpdater() : HtmlCacheUpdater {
 		return $this->getService( 'HtmlCacheUpdater' );
 	}
 
