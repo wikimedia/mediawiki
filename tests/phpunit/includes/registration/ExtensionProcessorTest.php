@@ -28,6 +28,14 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		'name' => 'FooBar',
 	];
 
+	/**
+	 * 'name' is absolutely required, and sometimes we require two distinct ones...
+	 * @var array
+	 */
+	public static $default2 = [
+		'name' => 'FooBar2',
+	];
+
 	public function testExtractInfo() {
 		// Test that attributes that begin with @ are ignored
 		$processor = new ExtensionProcessor();
@@ -430,7 +438,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public function testExtractConfig1() {
-		$processor = new ExtensionProcessor;
+		$processor = new ExtensionProcessor();
 		$info = [
 			'config' => [
 				'Bar' => 'somevalue',
@@ -443,8 +451,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				'_prefix' => 'eg',
 				'Bar' => 'somevalue'
 			],
-			'name' => 'FooBar2',
-		];
+		] + self::$default2;
 		$processor->extractInfo( $this->dir, $info, 1 );
 		$processor->extractInfo( $this->dir, $info2, 1 );
 		$extracted = $processor->getExtractedInfo();
@@ -456,7 +463,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public function testExtractConfig2() {
-		$processor = new ExtensionProcessor;
+		$processor = new ExtensionProcessor();
 		$info = [
 			'config' => [
 				'Bar' => [ 'value' => 'somevalue' ],
@@ -477,8 +484,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				'Bar' => [ 'value' => 'somevalue' ],
 			],
 			'config_prefix' => 'eg',
-			'name' => 'FooBar2',
-		];
+		] + self::$default2;
 		$processor->extractInfo( $this->dir, $info, 2 );
 		$processor->extractInfo( $this->dir, $info2, 2 );
 		$extracted = $processor->getExtractedInfo();
@@ -502,7 +508,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public function testDuplicateConfigKey1() {
-		$processor = new ExtensionProcessor;
+		$processor = new ExtensionProcessor();
 		$info = [
 			'config' => [
 				'Bar' => '',
@@ -512,15 +518,14 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 			'config' => [
 				'Bar' => 'g',
 			],
-			'name' => 'FooBar2',
-		];
+		] + self::$default2;
 		$this->expectException( RuntimeException::class );
 		$processor->extractInfo( $this->dir, $info, 1 );
 		$processor->extractInfo( $this->dir, $info2, 1 );
 	}
 
 	public function testDuplicateConfigKey2() {
-		$processor = new ExtensionProcessor;
+		$processor = new ExtensionProcessor();
 		$info = [
 			'config' => [
 				'Bar' => [ 'value' => 'somevalue' ],
@@ -530,8 +535,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 			'config' => [
 				'Bar' => [ 'value' => 'somevalue' ],
 			],
-			'name' => 'FooBar2',
-		];
+		] + self::$default2;
 		$this->expectException( RuntimeException::class );
 		$processor->extractInfo( $this->dir, $info, 2 );
 		$processor->extractInfo( $this->dir, $info2, 2 );
@@ -848,7 +852,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	public function testExtractAttributes() {
 		$processor = new ExtensionProcessor();
 		// Load FooBar extension
-		$processor->extractInfo( $this->dir, [ 'name' => 'FooBar' ], 2 );
+		$processor->extractInfo( $this->dir, self::$default, 2 );
 		$processor->extractInfo(
 			$this->dir,
 			[
@@ -885,24 +889,22 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$processor->extractInfo(
 			$this->dir,
 			[
-				'name' => 'FooBar',
 				'FooBarPlugins' => [
 					'ext.baz.foobar',
 				],
 				'FizzBuzzMorePlugins' => [
 					'ext.baz.fizzbuzz',
 				],
-			],
+			] + self::$default,
 			1
 		);
 		$processor->extractInfo(
 			$this->dir,
 			[
-				'name' => 'FooBar2',
 				'FizzBuzzMorePlugins' => [
 					'ext.bar.fizzbuzz',
 				]
-			],
+			] + self::$default2,
 			1
 		);
 
