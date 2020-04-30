@@ -176,11 +176,24 @@ class SkinTemplate extends Skin {
 	 * @return QuickTemplate
 	 */
 	protected function setupTemplateForOutput() {
+		$this->setupTemplateContext();
+		$tpl = $this->setupTemplate( $this->template );
+		return $tpl;
+	}
+
+	/**
+	 * Setup class properties that are necessary prior to calling
+	 * setupTemplateForOutput. It must be called inside
+	 * prepareQuickTemplate.
+	 * This function may set local class properties that will be used
+	 * by other methods, but should not make assumptions about the
+	 * implementation of setupTemplateForOutput
+	 * @since 1.35
+	 */
+	final protected function setupTemplateContext() {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$title = $this->getTitle();
-
-		$tpl = $this->setupTemplate( $this->template );
 
 		$this->thispage = $title->getPrefixedDBkey();
 		$this->titletxt = $title->getPrefixedText();
@@ -203,8 +216,20 @@ class SkinTemplate extends Skin {
 			# To save time, we check for existence
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
+	}
 
-		return $tpl;
+	/**
+	 * Subclasses not wishing to use the QuickTemplate
+	 * render method can rewrite this method, for example to use
+	 * TemplateParser::processTemplate
+	 * @since 1.35
+	 * @return string of complete document HTML to output to the page
+	 *  which includes `<!DOCTYPE>` and opening and closing html tags.
+	 */
+	public function generateHTML() {
+		$tpl = $this->prepareQuickTemplate();
+		// execute template
+		return $tpl->execute();
 	}
 
 	/**
@@ -216,12 +241,9 @@ class SkinTemplate extends Skin {
 
 		$this->initPage( $out );
 		$out->addJsConfigVars( $this->getJsConfigVars() );
-		$tpl = $this->prepareQuickTemplate();
-		// execute template
-		$res = $tpl->execute();
 
 		// result may be an error
-		$this->printOrError( $res );
+		$this->printOrError( $this->generateHTML() );
 	}
 
 	/**
