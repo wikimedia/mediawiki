@@ -237,7 +237,7 @@ class ExtensionProcessor implements Processor {
 		foreach ( $info as $key => $val ) {
 			// If it's a global setting,
 			if ( in_array( $key, self::$globalSettings ) ) {
-				$this->storeToArray( $path, "wg$key", $val, $this->globals );
+				$this->storeToArrayRecursive( $path, "wg$key", $val, $this->globals );
 				continue;
 			}
 			// Ignore anything that starts with a @
@@ -248,7 +248,7 @@ class ExtensionProcessor implements Processor {
 			if ( $version === 2 ) {
 				// Only whitelisted attributes are set
 				if ( in_array( $key, self::CORE_ATTRIBS ) ) {
-					$this->storeToArray( $path, $key, $val, $this->attributes );
+					$this->storeToArrayRecursive( $path, $key, $val, $this->attributes );
 				}
 			} else {
 				// version === 1
@@ -256,7 +256,7 @@ class ExtensionProcessor implements Processor {
 					&& !in_array( $key, self::CREDIT_ATTRIBS )
 				) {
 					// If it's not blacklisted, it's an attribute
-					$this->storeToArray( $path, $key, $val, $this->attributes );
+					$this->storeToArrayRecursive( $path, $key, $val, $this->attributes );
 				}
 			}
 		}
@@ -269,7 +269,7 @@ class ExtensionProcessor implements Processor {
 	protected function extractAttributes( $path, array $info ) {
 		if ( isset( $info['attributes'] ) ) {
 			foreach ( $info['attributes'] as $extName => $value ) {
-				$this->storeToArray( $path, $extName, $value, $this->extAttributes );
+				$this->storeToArrayRecursive( $path, $extName, $value, $this->extAttributes );
 			}
 		}
 	}
@@ -287,7 +287,7 @@ class ExtensionProcessor implements Processor {
 			// Only set the attribute if $extName is loaded (and hence present in credits)
 			if ( isset( $this->credits[$extName] ) ) {
 				foreach ( $value as $attrName => $attrValue ) {
-					$this->storeToArray(
+					$this->storeToArrayRecursive(
 						'', // Don't provide a path since it's impossible to generate an error here
 						$extName . $attrName,
 						$attrValue,
@@ -724,13 +724,15 @@ class ExtensionProcessor implements Processor {
 	}
 
 	/**
+	 * Stores $value to $array; using array_merge_recursive() if $array already contains $name
+	 *
 	 * @param string $path
 	 * @param string $name
 	 * @param array $value
 	 * @param array &$array
 	 * @throws InvalidArgumentException
 	 */
-	protected function storeToArray( $path, $name, $value, &$array ) {
+	protected function storeToArrayRecursive( $path, $name, $value, &$array ) {
 		if ( !is_array( $value ) ) {
 			throw new InvalidArgumentException( "The value for '$name' should be an array (from $path)" );
 		}
