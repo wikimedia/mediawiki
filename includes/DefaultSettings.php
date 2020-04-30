@@ -904,10 +904,14 @@ $wgCopyUploadProxy = false;
 $wgCopyUploadTimeout = false;
 
 /**
- * Max size for uploads, in bytes. If not set to an array, applies to all
- * uploads. If set to an array, per upload type maximums can be set, using the
- * file and url keys. If the * key is set this value will be used as maximum
- * for non-specified types.
+ * Max size for uploads, in bytes.
+ *
+ * If not set to an array, applies to all uploads. If set to an array, per upload
+ * type maximums can be set, using the file and url keys. If the `*` key is set
+ * this value will be used as maximum for non-specified types.
+ *
+ * The below example would set the maximum for all uploads to 250 kB except,
+ * for upload-by-url, which would have a maximum of 500 kB.
  *
  * @par Example:
  * @code
@@ -916,18 +920,26 @@ $wgCopyUploadTimeout = false;
  *     'url' => 500 * 1024,
  * ];
  * @endcode
- * Sets the maximum for all uploads to 250 kB except for upload-by-url, which
- * will have a maximum of 500 kB.
+ *
+ * Default: 100 MB.
  */
-$wgMaxUploadSize = 1024 * 1024 * 100; # 100MB
+$wgMaxUploadSize = 1024 * 1024 * 100;
 
 /**
- * Minimum upload chunk size, in bytes. When using chunked upload, non-final
- * chunks smaller than this will be rejected. May be reduced based on the
- * 'upload_max_filesize' or 'post_max_size' PHP settings.
+ * Minimum upload chunk size, in bytes.
+ *
+ * When using chunked upload, non-final chunks smaller than this will be rejected.
+ *
+ * Note that this may be further reduced by the `upload_max_filesize` and
+ * `post_max_size` PHP settings. Use ApiUpload::getMinUploadChunkSize to
+ * get the effective minimum chunk size used by MediaWiki.
+ *
+ * Default: 1 KB.
+ *
  * @since 1.26
+ * @see ApiUpload::getMinUploadChunkSize
  */
-$wgMinUploadChunkSize = 1024; # 1KB
+$wgMinUploadChunkSize = 1024;
 
 /**
  * Point the upload navigation link to an external URL

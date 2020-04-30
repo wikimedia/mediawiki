@@ -244,7 +244,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['uploadsenabled'] = UploadBase::isEnabled();
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
-		$data['minuploadchunksize'] = (int)$config->get( 'MinUploadChunkSize' );
+		$data['minuploadchunksize'] = ApiUpload::getMinUploadChunkSize( $config );
 
 		$data['galleryoptions'] = $config->get( 'GalleryOptions' );
 

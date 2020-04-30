@@ -2190,7 +2190,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Get the MediaWiki maximum uploaded file size for given type of upload, based on
+	 * Get MediaWiki's maximum uploaded file size for given type of upload, based on
 	 * $wgMaxUploadSize.
 	 *
 	 * @param null|string $forType
