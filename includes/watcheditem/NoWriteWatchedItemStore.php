@@ -89,6 +89,10 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		return $this->actualStore->isWatched( $user, $target );
 	}
 
+	public function isTempWatched( UserIdentity $user, LinkTarget $target ): bool {
+		return $this->actualStore->isTempWatched( $user, $target );
+	}
+
 	public function getNotificationTimestampsBatch( UserIdentity $user, array $targets ) {
 		return $this->actualStore->getNotificationTimestampsBatch( $user, $targets );
 	}

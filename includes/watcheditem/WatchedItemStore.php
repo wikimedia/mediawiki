@@ -789,6 +789,18 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
+	 * Check if the user is temporarily watching the page.
+	 * @since 1.35
+	 * @param UserIdentity $user
+	 * @param LinkTarget $target
+	 * @return bool
+	 */
+	public function isTempWatched( UserIdentity $user, LinkTarget $target ): bool {
+		$item = $this->getWatchedItem( $user, $target );
+		return $item && $item->getExpiry();
+	}
+
+	/**
 	 * @since 1.27
 	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets

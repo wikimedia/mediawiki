@@ -976,6 +976,42 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Get the attributes for the watch link.
+	 * @param string $mode Either 'watch' or 'unwatch'
+	 * @param User $user
+	 * @param Title $title
+	 * @param string|null $action
+	 * @param bool $onPage
+	 * @return array
+	 */
+	private function getWatchLinkAttrs(
+		string $mode, User $user, Title $title, ?string $action, bool $onPage
+	): array {
+		$class = 'mw-watchlink ' . (
+			$onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : ''
+			);
+
+		// Add class identifying the page is temporarily watched, if applicable.
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) &&
+			$user->isTempWatched( $title )
+		) {
+			$class .= ' mw-watchlink-temp';
+		}
+
+		return [
+			'class' => $class,
+			// uses 'watch' or 'unwatch' message
+			'text' => $this->msg( $mode )->text(),
+			'href' => $title->getLocalURL( [ 'action' => $mode ] ),
+			// Set a data-mw=interface attribute, which the mediawiki.page.ajax
+			// module will look for to make sure it's a trusted link
+			'data' => [
+				'mw' => 'interface',
+			],
+		];
+	}
+
+	/**
 	 * a structured array of links usually used for the tabs in a skin
 	 *
 	 * There are 4 standard sections
@@ -1233,19 +1269,15 @@ class SkinTemplate extends Skin {
 					 * the global versions.
 					 */
 					$mode = $user->isWatched( $title ) ? 'unwatch' : 'watch';
-					$content_navigation['actions'][$mode] = [
-						'class' => 'mw-watchlink ' . (
-							$onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : ''
-						),
-						// uses 'watch' or 'unwatch' message
-						'text' => $this->msg( $mode )->text(),
-						'href' => $title->getLocalURL( [ 'action' => $mode ] ),
-						// Set a data-mw=interface attribute, which the mediawiki.page.ajax
-						// module will look for to make sure it's a trusted link
-						'data' => [
-							'mw' => 'interface',
-						],
-					];
+
+					// Add the watch/unwatch link.
+					$content_navigation['actions'][$mode] = $this->getWatchLinkAttrs(
+						$mode,
+						$user,
+						$title,
+						$action,
+						$onPage
+					);
 				}
 			}
 

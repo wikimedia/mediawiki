@@ -32,6 +32,7 @@ class UserTest extends MediaWikiTestCase {
 			'wgGroupPermissions' => [],
 			'wgRevokePermissions' => [],
 			'wgUseRCPatrol' => true,
+			'wgWatchlistExpiry' => true,
 		] );
 
 		$this->setUpPermissionGlobals();
@@ -2411,6 +2412,7 @@ class UserTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers User::isWatched
+	 * @covers User::isTempWatched
 	 * @covers User::addWatch
 	 * @covers User::removeWatch
 	 */
@@ -2424,9 +2426,22 @@ class UserTest extends MediaWikiTestCase {
 
 		$user->addWatch( $articleTitle );
 		$this->assertTrue( $user->isWatched( $articleTitle ), 'The article has been watched' );
+		$this->assertFalse(
+			$user->isTempWatched( $articleTitle ),
+			"The article hasn't been temporarily watched"
+		);
 
 		$user->removeWatch( $articleTitle );
 		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has been unwatched' );
+		$this->assertFalse(
+			$user->isTempWatched( $articleTitle ),
+			"The article hasn't been temporarily watched"
+		);
+
+		$user->addWatch( $articleTitle, true, '2 weeks' );
+		$this->assertTrue(
+			$user->isTempWatched( $articleTitle, 'The article has been tempoarily watched' )
+		);
 	}
 
 	/**

@@ -3381,6 +3381,24 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
+	 * Check if the article is temporarily watched.
+	 * @since 1.35
+	 * @internal This, isWatched() and related User methods may be deprecated soon (T208766).
+	 *     If possible, implement permissions checks and call WatchedItemStore::isTempWatched()
+	 * @param Title $title Title of the article to look at
+	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
+	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
+	 * @return bool
+	 */
+	public function isTempWatched( $title, $checkRights = self::CHECK_USER_RIGHTS ): bool {
+		if ( $title->isWatchable() && ( !$checkRights || $this->isAllowed( 'viewmywatchlist' ) ) ) {
+			return MediaWikiServices::getInstance()->getWatchedItemStore()
+				->isTempWatched( $this, $title );
+		}
+		return false;
+	}
+
+	/**
 	 * Watch an article.
 	 * @since 1.22 $checkRights parameter added
 	 * @param Title $title Title of the article to look at
