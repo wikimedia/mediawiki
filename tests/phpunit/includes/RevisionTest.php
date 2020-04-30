@@ -212,6 +212,7 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_comment_cid' => null,
 			],
 			function ( RevisionTest $testCase, Revision $rev ) {
+				$testCase->hideDeprecated( 'Revision::getSha1' );
 				$testCase->assertSame( 42, $rev->getId() );
 				$testCase->assertSame( 23, $rev->getPage() );
 				$testCase->assertSame( '20171017114835', $rev->getTimestamp() );
@@ -428,6 +429,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testLoadFromTitle() {
 		$this->hideDeprecated( 'Revision::loadFromTitle' );
+		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 		$title = $this->getMockTitle();
 
@@ -602,6 +604,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getSha1
 	 */
 	public function testGetSha1() {
+		$this->hideDeprecated( 'Revision::getSha1' );
+
 		$title = $this->getMockTitle();
 
 		$rec = new MutableRevisionRecord( $title );
@@ -618,6 +622,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getSha1
 	 */
 	public function testGetSha1_failure() {
+		$this->hideDeprecated( 'Revision::getSha1' );
+
 		$title = $this->getMockTitle();
 
 		$rec = $this->getMockBuilder( RevisionRecord::class )
