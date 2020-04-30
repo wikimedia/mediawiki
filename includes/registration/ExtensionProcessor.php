@@ -65,9 +65,9 @@ class ExtensionProcessor implements Processor {
 	 * @var string[]
 	 */
 	protected const CORE_ATTRIBS = [
+		'RestRoutes',
 		'SkinOOUIThemes',
 		'TrackingCategories',
-		'RestRoutes',
 	];
 
 	/**
@@ -99,14 +99,14 @@ class ExtensionProcessor implements Processor {
 	 * @var array
 	 */
 	protected const CREDIT_ATTRIBS = [
-		'name',
-		'namemsg',
 		'author',
-		'version',
-		'url',
 		'description',
 		'descriptionmsg',
 		'license-name',
+		'name',
+		'namemsg',
+		'url',
+		'version',
 	];
 
 	/**
@@ -117,26 +117,26 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected const NOT_ATTRIBS = [
 		'callback',
-		'requires',
-		'Hooks',
-		'namespaces',
-		'ResourceFileModulePaths',
-		'ResourceModules',
-		'ResourceModuleSkinStyles',
-		'OOUIThemePaths',
-		'QUnitTestModule',
-		'MessagePosterModule',
-		'ExtensionMessagesFiles',
-		'MessagesDirs',
-		'type',
 		'config',
 		'config_prefix',
+		'load_composer_autoloader',
+		'manifest_version',
+		'namespaces',
+		'requires',
+		'type',
+		'AutoloadClasses',
+		'ExtensionMessagesFiles',
+		'Hooks',
+		'MessagePosterModule',
+		'MessagesDirs',
+		'OOUIThemePaths',
+		'ParserTestFiles',
+		'QUnitTestModule',
+		'ResourceFileModulePaths',
+		'ResourceModuleSkinStyles',
+		'ResourceModules',
 		'SearchMappings',
 		'ServiceWiringFiles',
-		'ParserTestFiles',
-		'AutoloadClasses',
-		'manifest_version',
-		'load_composer_autoloader',
 	];
 
 	/**
