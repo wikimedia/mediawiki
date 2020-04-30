@@ -2621,7 +2621,7 @@
 	"ipb-needreblock": "$1 je že blokiran.\nAli želite spremeniti nastavitve blokade?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Druga blokada|Drugi blokadi|Druge blokade}}",
 	"unblock-hideuser": "Ne morete odblokirati tega uporabnika, ker je njegovo uporabniško ime skrito.",
-	"ipb_cant_unblock": "Napaka: blokade št. $1 ni moč najti. Morda je bila že odstranjena.",
+	"ipb_cant_unblock": "Napaka: blokade za $1 ni moč najti. Morda je bila že odstranjena.",
 	"ipb_blocked_as_range": "Napaka: IP-naslov $1 ni blokiran direktno in ga zato ni mogoče odblokirati.\nJe pa blokiran kot del območja $2, ki ga lahko odblokirate.",
 	"ip_range_invalid": "Neveljaven IP-razpon.",
 	"ip_range_toolarge": "Območja blokade večja od /$1 niso dovoljena.",

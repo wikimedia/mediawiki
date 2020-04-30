@@ -2172,7 +2172,7 @@
 	"linksearch-pat": "Søkemønster:",
 	"linksearch-ns": "Navnerom:",
 	"linksearch-ok": "Søk",
-	"linksearch-text": "Jokertegn som i «*.wikipedia.org» kan brukes.\nDet kreves at det i det minste oppgis et toppnivådomene, for eksempel «*.org».<br />\n{{PLURAL:$2|Støttet protokoll|Støttede protokoller}}: $1 (standard er http:// hvis ingen protokoll angis).",
+	"linksearch-text": "Jokertegn kan brukes, som i «*.wikipedia.org».\n{{PLURAL:$2|Støttet protokoll|Støttede protokoller}}: $1 (standard er http:// hvis protokoll ikke angis).",
 	"linksearch-line": "$1 lenkes fra $2",
 	"linksearch-error": "Jokertegn kan kun brukes foran tjenernavnet.",
 	"listusersfrom": "Vis brukere fra og med:",

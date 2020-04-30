@@ -22,5 +22,6 @@
 	"rest-compare-nonexistent": "Wersja podana przez parametr $1 nie istnieje.",
 	"rest-compare-inaccessible": "Wersja podana przez parametr $1 nie jest publicznie dostępna.",
 	"rest-compare-wrong-content": "Slot $1 wersji podanej przez parametr $2 posiada typ treści, który nie może zostać zamieniony na tekst.",
-	"rest-compare-wikidiff2": "Ten endpoint wymaga oprogramowania wikidiff2 w wersji 1.9.0 lub nowszej."
+	"rest-compare-wikidiff2": "Ten endpoint wymaga oprogramowania wikidiff2 w wersji 1.9.0 lub nowszej.",
+	"rest-cannot-load-file": "Plik o tytule „$1” nie mógł zostać wczytany."
 }
