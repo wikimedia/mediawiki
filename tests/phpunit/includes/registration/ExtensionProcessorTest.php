@@ -438,7 +438,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public function testExtractConfig1() {
-		$processor = new ExtensionProcessor;
+		$processor = new ExtensionProcessor();
 		$info = [
 			'config' => [
 				'Bar' => 'somevalue',
@@ -463,7 +463,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public function testExtractConfig2() {
-		$processor = new ExtensionProcessor;
+		$processor = new ExtensionProcessor();
 		$info = [
 			'config' => [
 				'Bar' => [ 'value' => 'somevalue' ],
@@ -508,7 +508,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public function testDuplicateConfigKey1() {
-		$processor = new ExtensionProcessor;
+		$processor = new ExtensionProcessor();
 		$info = [
 			'config' => [
 				'Bar' => '',
@@ -525,7 +525,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public function testDuplicateConfigKey2() {
-		$processor = new ExtensionProcessor;
+		$processor = new ExtensionProcessor();
 		$info = [
 			'config' => [
 				'Bar' => [ 'value' => 'somevalue' ],
