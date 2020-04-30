@@ -239,6 +239,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	public function testDoEditContent() {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
+		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$this->setMwGlobals( 'wgPageCreationLog', true );
@@ -1168,6 +1169,7 @@ more stuff
 	 */
 	public function testDoRollback() {
 		$this->hideDeprecated( 'Revision::countByPageId' );
+		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$admin = $this->getTestSysop()->getUser();
@@ -1257,6 +1259,7 @@ more stuff
 	 * @covers WikiPage::commitRollback
 	 */
 	public function testDoRollbackFailureSameContent() {
+		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$admin = $this->getTestSysop()->getUser();

@@ -552,9 +552,12 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the base36 sha1 of the content in this revision, or null if unknown.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @return string|null
 	 */
 	public function getSha1() {
+		wfDeprecated( __METHOD__, '1.31' );
 		try {
 			return $this->mRecord->getSha1();
 		} catch ( RevisionAccessException $ex ) {

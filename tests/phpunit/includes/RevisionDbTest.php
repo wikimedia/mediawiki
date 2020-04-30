@@ -185,6 +185,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function assertRevEquals( Revision $orig, Revision $rev = null ) {
+		$this->hideDeprecated( 'Revision::getSha1' );
+
 		$this->assertNotNull( $rev, 'missing revision' );
 
 		$this->assertEquals( $orig->getId(), $rev->getId() );
@@ -734,6 +736,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testNewNullRevision() {
 		$this->hideDeprecated( 'Revision::getTextId' );
 		$this->hideDeprecated( 'Revision::newNullRevision' );
+		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
@@ -1117,6 +1120,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetSha1
 	 */
 	public function testGetSha1( $text, $model, $expected_hash ) {
+		$this->hideDeprecated( 'Revision::getSha1' );
+
 		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSha1', $model );
 		$this->assertEquals( $expected_hash, $rev->getSha1() );
 	}
