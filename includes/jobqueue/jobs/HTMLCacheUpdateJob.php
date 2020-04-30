@@ -158,8 +158,11 @@ class HTMLCacheUpdateJob extends Job {
 		) );
 
 		// Update CDN and file caches (avoiding secondary purge overhead)
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
-		$hcu->purgeTitleUrls( $titleArray, $hcu::PURGE_NAIVE );
+		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$htmlCache->purgeTitleUrls(
+			$titleArray,
+			$htmlCache::PURGE_NAIVE | $htmlCache::PURGE_URLS_LINKSUPDATE_ONLY
+		);
 	}
 
 	public function getDeduplicationInfo() {

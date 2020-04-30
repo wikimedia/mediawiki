@@ -130,7 +130,7 @@ class HtmlCacheUpdater {
 		$urls = [];
 		foreach ( $titles as $title ) {
 			/** @var Title $title */
-			$urls = array_merge( $urls, $title->getCdnUrls() );
+			$urls = array_merge( $urls, $this->getUrls( $title, $flags ) );
 		}
 		$this->purgeUrls( $urls, $flags );
 	}
