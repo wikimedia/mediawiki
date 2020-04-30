@@ -78,7 +78,12 @@ class UploadedFileStream implements StreamInterface {
 	public function close() {
 		if ( $this->fp ) {
 			// Spec doesn't care about close errors.
-			AtEase::quietCall( 'fclose', $this->fp );
+			try {
+				// PHP 7 emits warnings, suppress
+				AtEase::quietCall( 'fclose', $this->fp );
+			} catch ( \TypeError $unused ) {
+				// While PHP 8 throws exceptions, ignore
+			}
 			$this->fp = null;
 		}
 	}
@@ -95,7 +100,10 @@ class UploadedFileStream implements StreamInterface {
 
 			if ( $this->fp ) {
 				// Spec doesn't care about errors here.
-				$stat = AtEase::quietCall( 'fstat', $this->fp );
+				try {
+					$stat = AtEase::quietCall( 'fstat', $this->fp );
+				} catch ( \TypeError $unused ) {
+				}
 				$this->size = $stat['size'] ?? null;
 			}
 		}
@@ -110,7 +118,11 @@ class UploadedFileStream implements StreamInterface {
 
 	public function eof() {
 		// Spec doesn't care about errors here.
-		return !$this->fp || AtEase::quietCall( 'feof', $this->fp );
+		try {
+			return !$this->fp || AtEase::quietCall( 'feof', $this->fp );
+		} catch ( \TypeError $unused ) {
+			return true;
+		}
 	}
 
 	public function isSeekable() {
