@@ -172,6 +172,13 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newGood();
 		}
 
+		// We need to have a valid IP address for the hook 'User::mailPasswordInternal', but per T20347,
+		// we should send the user's name if they're logged in.
+		$ip = $performingUser->getRequest()->getIP();
+		if ( !$ip ) {
+			return StatusValue::newFatal( 'badipaddress' );
+		}
+
 		$username = $username ?? '';
 		$email = $email ?? '';
 
@@ -200,6 +207,11 @@ class PasswordReset implements LoggerAwareInterface {
 		} else {
 			// The user didn't supply any data
 			return StatusValue::newFatal( 'passwordreset-nodata' );
+		}
+
+		// If the username is not valid, tell the user.
+		if ( $username && !User::getCanonicalName( $username ) ) {
+			return StatusValue::newFatal( 'noname' );
 		}
 
 		// Check for hooks (captcha etc), and allow them to modify the users list
@@ -241,35 +253,17 @@ class PasswordReset implements LoggerAwareInterface {
 			}
 		}
 
-		// If the username is not valid, tell the user.
-		if ( $username && !User::getCanonicalName( $username ) ) {
-			return StatusValue::newFatal( 'noname' );
-		}
-
-		// If the username doesn't exist, don't tell the user.
-		// This is not to avoid disclosure, as this information is available elsewhere,
-		// but it simplifies the password reset UX. T238961.
-		if ( !$firstUser instanceof User || !$firstUser->getId() ) {
-			return StatusValue::newGood();
-		}
-
-		// The user doesn't have an email address, but pretend everything's fine to avoid
-		// disclosing this fact. Note that all the users will have the same email address (or none),
+		// If the user doesn't exist, or if the user doesn't have an email address,
+		// don't disclose the information. We want to pretend everything is ok per T238961.
+		// Note that all the users will have the same email address (or none),
 		// so there's no need to check more than the first.
-		if ( !$firstUser->getEmail() ) {
+		if ( !$firstUser instanceof User || !$firstUser->getId() || !$firstUser->getEmail() ) {
 			return StatusValue::newGood();
 		}
 
 		// Email is required but the email doesn't match: pretend everything's fine.
 		if ( $requireEmail && $firstUser->getEmail() !== $email ) {
 			return StatusValue::newGood();
-		}
-
-		// We need to have a valid IP address for the hook, but per T20347, we should
-		// send the user's name if they're logged in.
-		$ip = $performingUser->getRequest()->getIP();
-		if ( !$ip ) {
-			return StatusValue::newFatal( 'badipaddress' );
 		}
 
 		Hooks::run( 'User::mailPasswordInternal', [ &$performingUser, &$ip, &$firstUser ] );
