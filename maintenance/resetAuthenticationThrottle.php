@@ -58,7 +58,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 		if ( !$forLogin && !$forSignup ) {
 			$this->fatalError( 'At least one of --login and --signup is required!' );
 		} elseif ( $forLogin && ( $ip === null || $username === null ) ) {
-			$this->fatalError( '--usename and --ip are both required when using --login!' );
+			$this->fatalError( '--user and --ip are both required when using --login!' );
 		} elseif ( $forSignup && $ip === null ) {
 			$this->fatalError( '--ip is required when using --signup!' );
 		} elseif ( $ip !== null && !IPUtils::isValid( $ip ) ) {
