@@ -20,7 +20,10 @@
  * @file
  * @ingroup Parser
  */
+
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Various core parser functions, registered in Parser::firstCallInit()
@@ -1134,7 +1137,7 @@ class CoreParserFunctions {
 	 * @param Parser $parser
 	 * @param Title $title
 	 * @param string $vary ParserOuput vary-* flag
-	 * @return Revision|null
+	 * @return RevisionRecord|null
 	 * @since 1.23
 	 */
 	private static function getCachedRevisionObject( $parser, $title, $vary ) {
@@ -1142,7 +1145,7 @@ class CoreParserFunctions {
 			return null;
 		}
 
-		$revision = null;
+		$revisionRecord = null;
 
 		$isSelfReferential = $title->equals( $parser->getTitle() );
 		if ( $isSelfReferential ) {
@@ -1151,15 +1154,12 @@ class CoreParserFunctions {
 			// callbacks against the current title.
 			$parserRevisionRecord = $parser->getRevisionRecordObject();
 			if ( $parserRevisionRecord && $parserRevisionRecord->isCurrent() ) {
-				// TODO refactor this method to return RevisionRecord
-				// and remove the use of Revision here
-				$parserRevision = new Revision( $parserRevisionRecord );
-				$revision = $parserRevision;
+				$revisionRecord = $parserRevisionRecord;
 			}
 		}
 
 		$parserOutput = $parser->getOutput();
-		if ( !$revision ) {
+		if ( !$revisionRecord ) {
 			if (
 				!$parser->isCurrentRevisionOfTitleCached( $title ) &&
 				!$parser->incrementExpensiveFunctionCount()
@@ -1167,12 +1167,12 @@ class CoreParserFunctions {
 				return null; // not allowed
 			}
 			// Get the current revision, ignoring Parser::getRevisionId() being null/old
-			$revision = $parser->fetchCurrentRevisionOfTitle( $title );
+			$revisionRecord = $parser->fetchCurrentRevisionRecordOfTitle( $title );
 			// Register dependency in templatelinks
 			$parserOutput->addTemplate(
 				$title,
-				$revision ? $revision->getPage() : 0,
-				$revision ? $revision->getId() : 0
+				$revisionRecord ? $revisionRecord->getPageId() : 0,
+				$revisionRecord ? $revisionRecord->getId() : 0
 			);
 		}
 
@@ -1180,12 +1180,17 @@ class CoreParserFunctions {
 			wfDebug( __METHOD__ . ": used current revision, setting $vary" );
 			// Upon page save, the result of the parser function using this might change
 			$parserOutput->setFlag( $vary );
-			if ( $vary === 'vary-revision-sha1' && $revision ) {
-				$parserOutput->setRevisionUsedSha1Base36( $revision->getSha1() );
+			if ( $vary === 'vary-revision-sha1' && $revisionRecord ) {
+				try {
+					$sha1 = $revisionRecord->getSha1();
+				} catch ( RevisionAccessException $e ) {
+					$sha1 = null;
+				}
+				$parserOutput->setRevisionUsedSha1Base36( $sha1 );
 			}
 		}
 
-		return $revision;
+		return $revisionRecord;
 	}
 
 	/**
@@ -1389,7 +1394,11 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-user' );
-		return $rev ? $rev->getUserText() : '';
+		if ( $rev === null ) {
+			return '';
+		}
+		$user = $rev->getUser();
+		return $user ? $user->getName() : '';
 	}
 
 	/**
