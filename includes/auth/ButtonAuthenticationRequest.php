@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use Message;
+use RawMessage;
 
 /**
  * This is an authentication request that just implements a simple button.
@@ -86,16 +87,16 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 	 */
 	public static function __set_state( $data ) {
 		if ( !isset( $data['label'] ) ) {
-			$data['label'] = new \RawMessage( '$1', $data['name'] );
+			$data['label'] = new RawMessage( '$1', $data['name'] );
 		} elseif ( is_string( $data['label'] ) ) {
-			$data['label'] = new \Message( $data['label'] );
+			$data['label'] = new Message( $data['label'] );
 		} elseif ( is_array( $data['label'] ) ) {
 			$data['label'] = Message::newFromKey( ...$data['label'] );
 		}
 		if ( !isset( $data['help'] ) ) {
-			$data['help'] = new \RawMessage( '$1', $data['name'] );
+			$data['help'] = new RawMessage( '$1', $data['name'] );
 		} elseif ( is_string( $data['help'] ) ) {
-			$data['help'] = new \Message( $data['help'] );
+			$data['help'] = new Message( $data['help'] );
 		} elseif ( is_array( $data['help'] ) ) {
 			$data['help'] = Message::newFromKey( ...$data['help'] );
 		}
