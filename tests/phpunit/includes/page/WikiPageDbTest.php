@@ -2470,4 +2470,29 @@ more stuff
 		$this->assertNotEquals( $edit, $edit2, $message );
 	}
 
+	/**
+	 * @covers WikiPage::factory
+	 *
+	 * @throws MWException
+	 */
+	public function testWikiPageFactoryHookValid() {
+		$isCalled = false;
+		$expectedWikiPage = $this->createMock( WikiPage::class );
+
+		$this->setTemporaryHook(
+			'WikiPageFactory',
+			function ( $title, &$page ) use ( &$isCalled, $expectedWikiPage ) {
+				$page = $expectedWikiPage;
+				$isCalled = true;
+
+				return false;
+			}
+		);
+
+		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
+		$wikiPage = WikiPage::factory( $title );
+
+		$this->assertTrue( $isCalled );
+		$this->assertSame( $expectedWikiPage, $wikiPage );
+	}
 }
