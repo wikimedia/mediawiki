@@ -1237,11 +1237,6 @@
 	url = https://gitlab.com/hydrawiki/extensions/SpriteSheet.git
 	branch = master
 	ignore = dirty
-[submodule "extensions/GoogleDocs4MW"]
-	path = extensions/GoogleDocs4MW
-	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
-	branch = REL1_34
-	ignore = dirty
 [submodule "extensions/LanguageSelector"]
 	path = extensions/LanguageSelector
 	url = https://github.com/wikimedia/mediawiki-extensions-LanguageSelector
@@ -1297,3 +1292,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUsage.git
 	branch = REL1_34
 	ignore = dirty
+[submodule "extensions/GoogleDocs4MW"]
+	path = extensions/GoogleDocs4MW
+	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
+	branch = master
