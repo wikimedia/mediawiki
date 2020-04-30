@@ -3551,28 +3551,14 @@ class Title implements LinkTarget, IDBAccessObject {
 	}
 
 	/**
-	 * Get a list of URLs to purge from the CDN cache when this
-	 * page changes
+	 * Get a list of URLs to purge from the CDN cache when this page changes.
 	 *
+	 * @deprecated 1.35 Use HtmlCacheUpdater
 	 * @return string[] Array of String the URLs
 	 */
 	public function getCdnUrls() {
-		$urls = [
-			$this->getInternalURL(),
-			$this->getInternalURL( 'action=history' )
-		];
-
-		// If we are looking at a css/js user subpage, purge the action=raw.
-		if ( $this->isUserJsConfigPage() ) {
-			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/javascript' );
-		} elseif ( $this->isUserJsonConfigPage() ) {
-			$urls[] = $this->getInternalURL( 'action=raw&ctype=application/json' );
-		} elseif ( $this->isUserCssConfigPage() ) {
-			$urls[] = $this->getInternalURL( 'action=raw&ctype=text/css' );
-		}
-
-		Hooks::run( 'TitleSquidURLs', [ $this, &$urls ] );
-		return $urls;
+		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		return $htmlCache->getUrls( $this );
 	}
 
 	/**
@@ -3580,8 +3566,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @deprecated 1.35 Use HtmlCacheUpdater
 	 */
 	public function purgeSquid() {
-		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
-		$hcu->purgeTitleUrls( $this, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
+		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+		$htmlCache->purgeTitleUrls( $this, $htmlCache::PURGE_INTENT_TXROUND_REFLECTED );
 	}
 
 	/**
