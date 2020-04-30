@@ -2717,7 +2717,7 @@
 	"ipb-needreblock": "$1 已經被封鎖。您是否想變更設定？",
 	"ipb-otherblocks-header": "其他{{PLURAL:$1|封鎖}}",
 	"unblock-hideuser": "由於此使用者名稱已被設為隱藏，您無法解除封鎖這個使用者。",
-	"ipb_cant_unblock": "錯誤：查無封鎖 ID $1，可能已被解除封鎖。",
+	"ipb_cant_unblock": "錯誤：查無封鎖$1，可能已被移除。",
 	"ipb_blocked_as_range": "錯誤：IP 位址 $1 並不是直接被封鎖，因此無法直接解除封鎖。\n此 IP 位址在 $2 的封鎖範圍之中，您可以解決此範圍的封鎖。",
 	"ip_range_invalid": "無效的 IP 範圍。",
 	"ip_range_toolarge": "不允許封鎖範圍大於 /$1。",
