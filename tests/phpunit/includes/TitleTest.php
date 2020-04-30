@@ -1723,15 +1723,5 @@ class TitleTest extends MediaWikiTestCase {
 			Title::makeTitle( NS_MAIN, 'Example' )->getCdnUrls(),
 			'article'
 		);
-
-		$this->assertEquals(
-			[
-				'https://example.org/wiki/User:Example/foo.js',
-				'https://example.org/w/index.php?title=User:Example/foo.js&action=history',
-				'https://example.org/w/index.php?title=User:Example/foo.js&action=raw&ctype=text/javascript',
-			],
-			Title::makeTitle( NS_USER, 'Example/foo.js' )->getCdnUrls(),
-			'user config page'
-		);
 	}
 }
