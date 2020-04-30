@@ -697,6 +697,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.35
 	 * @return HookContainer
 	 */
 	public function getHookContainer() : HookContainer {
