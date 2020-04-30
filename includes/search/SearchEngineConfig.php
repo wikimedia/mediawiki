@@ -20,9 +20,20 @@ class SearchEngineConfig {
 	 */
 	private $language;
 
-	public function __construct( Config $config, Language $lang ) {
+	/**
+	 * Search Engine Mappings
+	 *
+	 * Key is the canonical name (used in $wgSearchType and $wgSearchTypeAlternatives).
+	 * Value is a specification for ObjectFactory.
+	 *
+	 * @var array
+	 */
+	private $engineMappings;
+
+	public function __construct( Config $config, Language $lang, array $mappings ) {
 		$this->config = $config;
 		$this->language = $lang;
+		$this->engineMappings = $mappings;
 	}
 
 	/**
@@ -97,6 +108,30 @@ class SearchEngineConfig {
 	 */
 	public function getSearchType() {
 		return $this->config->get( 'SearchType' );
+	}
+
+	/**
+	 * Returns the mappings between canonical search name and underlying PHP class
+	 *
+	 * Key is the canonical name (used in $wgSearchType and $wgSearchTypeAlternatives).
+	 * Value is a specification for ObjectFactory.
+	 *
+	 * For example to be able to use 'foobarsearch' in $wgSearchType and
+	 * $wgSearchTypeAlternatives but the PHP class for 'foobarsearch'
+	 * is 'MediaWiki\Extensions\FoobarSearch\FoobarSearch' set:
+	 *
+	 * @par extension.json Example:
+	 * @code
+	 * 'SearchMappings': {
+	 * 	'foobarsearch': { 'class': 'MediaWiki\\Extensions\\FoobarSearch\\FoobarSearch' }
+	 * }
+	 * @endcode
+	 *
+	 * @since 1.35
+	 * @return array
+	 */
+	public function getSearchMappings() {
+		return $this->engineMappings;
 	}
 
 	/**

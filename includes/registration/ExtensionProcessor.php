@@ -131,6 +131,7 @@ class ExtensionProcessor implements Processor {
 		'type',
 		'config',
 		'config_prefix',
+		'SearchMappings',
 		'ServiceWiringFiles',
 		'ParserTestFiles',
 		'AutoloadClasses',

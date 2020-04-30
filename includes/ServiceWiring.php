@@ -961,8 +961,11 @@ return [
 	'SearchEngineConfig' => function ( MediaWikiServices $services ) : SearchEngineConfig {
 		// @todo This should not take a Config object, but it's not so easy to remove because it
 		// exposes it in a getter, which is actually used.
-		return new SearchEngineConfig( $services->getMainConfig(),
-			$services->getContentLanguage() );
+		return new SearchEngineConfig(
+			$services->getMainConfig(),
+			$services->getContentLanguage(),
+			ExtensionRegistry::getInstance()->getAttribute( 'SearchMappings' )
+		);
 	},
 
 	'SearchEngineFactory' => function ( MediaWikiServices $services ) : SearchEngineFactory {
