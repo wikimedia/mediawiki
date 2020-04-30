@@ -48,9 +48,8 @@ class ButtonAuthenticationRequestTest extends AuthenticationRequestTestCase {
 		);
 		$reqs[] = new ButtonAuthenticationRequest( 'bar', wfMessage( 'msg1' ), wfMessage( 'help1' ) );
 		$reqs[] = new ButtonAuthenticationRequest( 'bar', wfMessage( 'msg2' ), wfMessage( 'help2' ) );
-		$reqs['testSub'] = $this->getMockBuilder( ButtonAuthenticationRequest::class )
-			->setConstructorArgs( [ 'subclass', wfMessage( 'msg3' ), wfMessage( 'help3' ) ] )
-			->getMock();
+		$reqs['testSub'] =
+			new ButtonAuthenticationRequest( 'subclass', wfMessage( 'msg3' ), wfMessage( 'help3' ) );
 
 		$this->assertNull( ButtonAuthenticationRequest::getRequestByName( $reqs, 'missing' ) );
 		$this->assertSame(
