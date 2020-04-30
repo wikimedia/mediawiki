@@ -1185,6 +1185,7 @@ return [
 			'mediawiki.language',
 			'mediawiki.util',
 			'mediawiki.jqueryMsg',
+			'mediawiki.user',
 			'oojs-ui-core',
 		],
 		'messages' => [
