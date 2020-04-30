@@ -317,6 +317,12 @@
 				$( '<div>' )
 					.hide()
 					.attr( 'id', 'wikiDiff' )
+					// The following classes are used here:
+					// * diff-editfont-monospace
+					// * diff-editfont-sans-serif
+					// * diff-editfont-serif
+					.addClass( 'diff-editfont-' + mw.user.options.get( 'editfont' ) )
+					// TODO: Set diff-contentalign-* classes
 					.append(
 						$( '<table>' ).addClass( 'diff' ).append(
 							$( '<col>' ).addClass( 'diff-marker' ),
