@@ -2,11 +2,13 @@
 
 namespace MediaWiki\HookContainer {
 
+	use Psr\Container\ContainerInterface;
 	use UnexpectedValueException;
 	use Wikimedia\ObjectFactory;
 	use ExtensionRegistry;
 	use MediaWikiUnitTestCase;
 	use Wikimedia\ScopedCallback;
+	use Wikimedia\Services\NoSuchServiceException;
 	use Wikimedia\TestingAccessWrapper;
 
 	class HookContainerTest extends MediaWikiUnitTestCase {
@@ -21,14 +23,14 @@ namespace MediaWiki\HookContainer {
 		) {
 			if ( !$mockRegistry ) {
 				$handler = [ 'handler' => [
-					'name' => 'Path/To/extension.json-FooActionHandler',
+					'name' => 'FooExtension-FooActionHandler',
 					'class' => 'FooExtension\\Hooks',
 					'services' => [] ]
 				];
-				$mockRegistry = $this->getMockExtensionRegistry( $handler, $hook = 'FooActionComplete' );
+				$mockRegistry = $this->getMockExtensionRegistry( [ 'FooActionComplete' => [ $handler ] ] );
 			}
 			if ( !$mockObjectFactory ) {
-				$mockObjectFactory = $this->getMockObjectFactory();
+				$mockObjectFactory = $this->getObjectFactory();
 			}
 			if ( !$mockDeprecatedHooks ) {
 				$mockDeprecatedHooks = $this->getMockDeprecatedHooks();
@@ -54,18 +56,21 @@ namespace MediaWiki\HookContainer {
 			return $mockDeprecatedHooks;
 		}
 
-		private function getMockExtensionRegistry( $handler, $hook = 'FooActionComplete' ) {
+		private function getMockExtensionRegistry( $hooks ) {
 			$mockRegistry = $this->createMock( ExtensionRegistry::class );
-			$mockRegistry->method( 'getAttribute' )->with( 'Hooks' )->willReturn( [
-				$hook => [ $handler ]
-			] );
+			$mockRegistry->method( 'getAttribute' )
+				->with( 'Hooks' )
+				->willReturn( $hooks );
 			return $mockRegistry;
 		}
 
-		private function getMockObjectFactory() {
-			$mockObjectFactory = $this->createMock( ObjectFactory::class );
-			$mockObjectFactory->method( 'createObject' )->willReturn( new \FooExtension\Hooks() );
-			return $mockObjectFactory;
+		private function getObjectFactory() {
+			$mockServiceContainer = $this->createMock( ContainerInterface::class );
+			$mockServiceContainer->method( 'get' )
+				->willThrowException( new \RuntimeException );
+
+			$objectFactory = new ObjectFactory( $mockServiceContainer );
+			return $objectFactory;
 		}
 
 		/**
@@ -112,7 +117,7 @@ namespace MediaWiki\HookContainer {
 				'SuccessfulHandlerReturn' => [
 					'FooActionComplete',
 					[ 'handler' => [
-						'name' => 'Path/To/extension.json-FooActionHandler',
+						'name' => 'FooExtension-FooActionHandler',
 						'class' => 'FooExtension\\Hooks',
 						'services' => [] ]
 					],
@@ -121,7 +126,7 @@ namespace MediaWiki\HookContainer {
 				'SkipDeprecated' => [
 					'FooActionCompleteDeprecated',
 					[ 'handler' => [
-						'name' => 'Path/To/extension.json-FooActionHandler',
+						'name' => 'FooExtension-FooActionHandler',
 						'class' => 'FooExtension\\Hooks',
 						'services' => [] ],
 					  'deprecated' => true
@@ -237,11 +242,16 @@ namespace MediaWiki\HookContainer {
 		 * @covers       \MediaWiki\HookContainer\HookContainer::getHandlers
 		 * @dataProvider provideGetHandlers
 		 * @param $hook
-		 * @param $handlersToRegister
+		 * @param $handlerToRegister
 		 * @param $expectedReturn
 		 */
-		public function testGetHandlers( $hook, $handlersToRegister, $expectedReturn ) {
-			$mockExtensionRegistry = $this->getMockExtensionRegistry( $handlersToRegister );
+		public function testGetHandlers( $hook, $handlerToRegister, $expectedReturn ) {
+			if ( $handlerToRegister ) {
+				$hooks = [ $hook => [ $handlerToRegister ] ];
+			} else {
+				$hooks = [];
+			}
+			$mockExtensionRegistry = $this->getMockExtensionRegistry( $hooks );
 			$mockDeprecatedHooks = $this->getMockDeprecatedHooks();
 			$mockDeprecatedHooks->method( 'isHookDeprecated' )->will( $this->returnValueMap( [
 				[ 'FooActionComplete', false ],
@@ -286,7 +296,7 @@ namespace MediaWiki\HookContainer {
 			$this->assertArrayEquals(
 				$hookHandlers,
 				$expectedHandlers,
-				'HookContainer::getLegacyHandlers() should return array of handler functions'
+				true
 			);
 		}
 
@@ -312,15 +322,16 @@ namespace MediaWiki\HookContainer {
 		/**
 		 * @covers       \MediaWiki\HookContainer\HookContainer::run
 		 * @covers       \MediaWiki\HookContainer\HookContainer::normalizeHandler
-		 * Test HookContainer::run() with abort option
+		 * Test HookContainer::run() with abortable option
 		 */
-		public function testRunAbort() {
+		public function testRunNotAbortable() {
 			$handler = [ 'handler' => [
-				'name' => 'Path/To/extension.json-InvalidReturnHandler',
+				'name' => 'FooExtension-InvalidReturnHandler',
 				'class' => 'FooExtension\\Hooks',
 				'services' => [] ]
 			];
-			$mockExtensionRegistry = $this->getMockExtensionRegistry( $handler, 'InvalidReturnHandler' );
+			$mockExtensionRegistry = $this->getMockExtensionRegistry(
+				[ 'InvalidReturnHandler' => [ $handler ] ] );
 			$hookContainer = $this->newHookContainer( $mockExtensionRegistry );
 			$this->expectException( UnexpectedValueException::class );
 			$this->expectExceptionMessage(
@@ -329,6 +340,38 @@ namespace MediaWiki\HookContainer {
 			);
 			$hookRun = $hookContainer->run( 'InvalidReturnHandler', [], [ 'abortable' => false ] );
 			$this->assertTrue( $hookRun );
+		}
+
+		/**
+		 * @covers       \MediaWiki\HookContainer\HookContainer::run
+		 * @covers       \MediaWiki\HookContainer\HookContainer::normalizeHandler
+		 * Test HookContainer::run() when the handler returns false
+		 */
+		public function testRunAbort() {
+			$handler1 = [ 'handler' => [
+				'name' => 'FooExtension-Abort1',
+				'class' => 'FooExtension\\AbortHooks1'
+			] ];
+			$handler2 = [ 'handler' => [
+				'name' => 'FooExtension-Abort2',
+				'class' => 'FooExtension\\AbortHooks2'
+			] ];
+			$handler3 = [ 'handler' => [
+				'name' => 'FooExtension-Abort3',
+				'class' => 'FooExtension\\AbortHooks3'
+			] ];
+			$mockExtensionRegistry = $this->getMockExtensionRegistry( [
+				'Abort' => [
+					$handler1,
+					$handler2,
+					$handler3
+				]
+			] );
+			$hookContainer = $this->newHookContainer( $mockExtensionRegistry );
+			$called = [];
+			$ret = $hookContainer->run( 'Abort', [ &$called ] );
+			$this->assertFalse( $ret );
+			$this->assertArrayEquals( [ 1, 2 ], $called );
 		}
 
 		/**
@@ -342,12 +385,12 @@ namespace MediaWiki\HookContainer {
 			] );
 			$handler = [
 				'handler' => [
-					'name' => 'Path/To/extension.json-FooActionHandler',
+					'name' => 'FooExtension-FooActionHandler',
 					'class' => 'FooExtension\\Hooks',
 					'services' => []
 				]
 			];
-			$mockRegistry = $this->getMockExtensionRegistry( $handler, 'FooActionComplete' );
+			$mockRegistry = $this->getMockExtensionRegistry( [ 'FooActionComplete' => [ $handler ] ] );
 			$hookContainer = $this->newHookContainer( $mockRegistry, null, $mockDeprecatedHooks );
 			$hookContainer->register( 'FooActionComplete', new FooClass() );
 			$this->assertTrue( $hookContainer->isRegistered( 'FooActionComplete' ) );
@@ -373,11 +416,12 @@ namespace MediaWiki\HookContainer {
 		 */
 		public function testRunExceptions() {
 			$handler = [ 'handler' => [
-				'name' => 'Path/To/extension.json-InvalidReturnHandler',
+				'name' => 'FooExtension-InvalidReturnHandler',
 				'class' => 'FooExtension\\Hooks',
 				'services' => [] ]
 			];
-			$mockExtensionRegistry = $this->getMockExtensionRegistry( $handler, 'InvalidReturnHandler' );
+			$mockExtensionRegistry = $this->getMockExtensionRegistry(
+				[ 'InvalidReturnHandler' => [ $handler ] ] );
 			$hookContainer = $this->newHookContainer( $mockExtensionRegistry );
 			$this->expectException( UnexpectedValueException::class );
 			$hookContainer->run( 'InvalidReturnHandler' );
@@ -387,13 +431,14 @@ namespace MediaWiki\HookContainer {
 		 * @covers       \MediaWiki\HookContainer\HookContainer::emitDeprecationWarnings
 		 */
 		public function testEmitDeprecationWarnings() {
-			$registry = $this->getMockExtensionRegistry(
-				[
-					'handler' => 'FooGlobalFunction',
-					'extensionPath' => 'fake-extension.json'
-				],
-				'FooActionComplete'
-			);
+			$registry = $this->getMockExtensionRegistry( [
+				'FooActionComplete' => [
+					[
+						'handler' => 'FooGlobalFunction',
+						'extensionPath' => 'fake-extension.json'
+					]
+				]
+			] );
 
 			$hookContainer = $this->newHookContainer(
 				$registry,
@@ -426,7 +471,6 @@ namespace MediaWiki\HookContainer {
 		public static function onMWTestHook() {
 			return true;
 		}
-
 	}
 
 }
@@ -452,7 +496,27 @@ namespace FooExtension {
 		public function onInvalidReturnHandler() {
 			return 123;
 		}
+	}
 
+	class AbortHooks1 {
+		public function onAbort( &$called ) {
+			$called[] = 1;
+			return true;
+		}
+	}
+
+	class AbortHooks2 {
+		public function onAbort( &$called ) {
+			$called[] = 2;
+			return false;
+		}
+	}
+
+	class AbortHooks3 {
+		public function onAbort( &$called ) {
+			$called[] = 3;
+			return true;
+		}
 	}
 
 }
