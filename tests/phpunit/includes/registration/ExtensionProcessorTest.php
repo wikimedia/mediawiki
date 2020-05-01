@@ -1061,6 +1061,32 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$this->assertEquals( [], $missing,
 			"The following global settings are not documented in docs/extension.schema.json" );
 	}
+
+	public function testGetCoreAttribsMerging() {
+		$processor = new ExtensionProcessor();
+
+		$info = self::$default + [
+			'TrackingCategories' => [
+				'Foo'
+			]
+		];
+
+		$info2 = self::$default2 + [
+			'TrackingCategories' => [
+				'Bar'
+			]
+		];
+
+		$processor->extractInfo( $this->dir, $info, 2 );
+		$processor->extractInfo( $this->dir, $info2, 2 );
+
+		$attributes = $processor->getExtractedInfo()['attributes'];
+
+		$this->assertEquals(
+			[ 'Foo', 'Bar' ],
+			$attributes['TrackingCategories']
+		);
+	}
 }
 
 /**
