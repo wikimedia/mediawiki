@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\HookContainer\DeprecatedHooks;
-
 class ExtensionProcessor implements Processor {
 
 	/**
@@ -276,39 +274,7 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 
-	/**
-	 * Will throw wfDeprecated() warning if:
-	 * 1. an extension does not acknowledge deprecation and
-	 * 2. is marked deprecated
-	 */
-	private function emitDeprecatedHookWarnings() {
-		if ( !isset( $this->attributes['Hooks'] ) ) {
-			return;
-		}
-		$extDeprecatedHooks = $this->attributes['DeprecatedHooks'] ?? false;
-		if ( !$extDeprecatedHooks ) {
-			return;
-		}
-		$deprecatedHooks = new DeprecatedHooks( $extDeprecatedHooks );
-		foreach ( $this->attributes['Hooks'] as $name => $handlers ) {
-			if ( $deprecatedHooks->isHookDeprecated( $name ) ) {
-				$deprecationInfo = $deprecatedHooks->getDeprecationInfo( $name );
-				foreach ( $handlers as $handler ) {
-					if ( !isset( $handler['deprecated'] ) || !$handler['deprecated'] ) {
-						wfDeprecated(
-							"$name hook",
-							$deprecationInfo['deprecatedVersion'] ?? false,
-							$deprecationInfo['component'] ?? false
-						);
-					}
-				}
-			}
-		}
-	}
-
 	public function getExtractedInfo() {
-		$this->emitDeprecatedHookWarnings();
-
 		// Make sure the merge strategies are set
 		foreach ( $this->globals as $key => $val ) {
 			if ( isset( self::MERGE_STRATEGIES[$key] ) ) {
@@ -439,6 +405,7 @@ class ExtensionProcessor implements Processor {
 				);
 			}
 			$callback['handler'] = $handlerDefinition;
+			$callback['extensionPath'] = $path;
 			$this->attributes['Hooks'][$name][] = $callback;
 		} else {
 			foreach ( $callback as $callable ) {
@@ -449,7 +416,7 @@ class ExtensionProcessor implements Processor {
 						$this->globals['wgHooks'][$name][] = $callable;
 					}
 				} elseif ( is_string( $callable ) ) {
-					$this->setStringHookHandler( $callable, $hookHandlersAttr, $name );
+					$this->setStringHookHandler( $callable, $hookHandlersAttr, $name, $path );
 				}
 			}
 		}
@@ -463,14 +430,19 @@ class ExtensionProcessor implements Processor {
 	 * @param string $callback Handler
 	 * @param array $hookHandlersAttr handler definitions from 'HookHandler' attribute
 	 * @param string $name
+	 * @param string $path
 	 */
 	private function setStringHookHandler(
 		string $callback,
 		array $hookHandlersAttr,
-		string $name
+		string $name,
+		string $path
 	) {
 		if ( isset( $hookHandlersAttr[$callback] ) ) {
-			$handler = [ 'handler' => $hookHandlersAttr[$callback] ];
+			$handler = [
+				'handler' => $hookHandlersAttr[$callback],
+				'extensionPath' => $path
+			];
 			$this->attributes['Hooks'][$name][] = $handler;
 		} else { // legacy style handler
 			$this->globals['wgHooks'][$name][] = $callback;
@@ -486,18 +458,30 @@ class ExtensionProcessor implements Processor {
 	 * @param string $path path to extension.json
 	 */
 	protected function extractHooks( array $info, string $path ) {
-		if ( !isset( $info['Hooks'] ) ) {
-			return;
+		$extName = $info['name'];
+		if ( isset( $info['Hooks'] ) ) {
+			$hookHandlersAttr = [];
+			foreach ( $info['HookHandlers'] ?? [] as $name => $def ) {
+				$hookHandlersAttr[$name] = [ 'name' => "$extName-$name" ] + $def;
+			}
+			foreach ( $info['Hooks'] as $name => $callback ) {
+				if ( is_string( $callback ) ) {
+					$this->setStringHookHandler( $callback, $hookHandlersAttr, $name, $path );
+				} elseif ( is_array( $callback ) ) {
+					$this->setArrayHookHandler( $callback, $hookHandlersAttr, $name, $path );
+				}
+			}
 		}
-		$hookHandlersAttr = [];
-		foreach ( $info['HookHandlers'] ?? [] as $name => $def ) {
-			$hookHandlersAttr[$name] = [ 'name' => "$path-$name" ] + $def;
-		}
-		foreach ( $info['Hooks'] as $name => $callback ) {
-			if ( is_string( $callback ) ) {
-				$this->setStringHookHandler( $callback, $hookHandlersAttr, $name );
-			} elseif ( is_array( $callback ) ) {
-				$this->setArrayHookHandler( $callback, $hookHandlersAttr, $name, $path );
+		if ( isset( $info['DeprecatedHooks'] ) ) {
+			$deprecatedHooks = [];
+			foreach ( $info['DeprecatedHooks'] as $name => $info ) {
+				$info += [ 'component' => $extName ];
+				$deprecatedHooks[$name] = $info;
+			}
+			if ( isset( $this->attributes['DeprecatedHooks'] ) ) {
+				$this->attributes['DeprecatedHooks'] += $deprecatedHooks;
+			} else {
+				$this->attributes['DeprecatedHooks'] = $deprecatedHooks;
 			}
 		}
 	}

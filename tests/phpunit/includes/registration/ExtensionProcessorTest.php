@@ -130,32 +130,6 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$this->assertArrayNotHasKey( 123456, $extracted['globals']['wgNamespacesWithSubpages'] );
 	}
 
-	public function provideDeprecatedNonLegacyHooks() {
-		// Format:
-		// Current Hooks attribute
-		// Content in extension.json
-		return [
-			[
-				[ 'ExtensionOwnedFooBaz' => [
-					[
-						'handler' => [
-							'class' => 'FooClass',
-							'services' => [],
-							'name' => $this->getCurrentDir() . '-PriorCallback',
-						]
-					]
-				] ],
-				[
-					'Hooks' => [ 'ExtensionOwnedFooBaz' => [ [ 'handler' => 'HandlerObjectCallback' ] ] ],
-					'HookHandlers' => [
-						'HandlerObjectCallback' => [ 'class' => 'FooClass', 'services' => [] ]
-					],
-					'DeprecatedHooks' => [ 'ExtensionOwnedFooBaz' => [ 'deprecatedVersion' => '1.0' ] ]
-				] + self::$default,
-			],
-		];
-	}
-
 	public function provideMixedStyleHooks() {
 		// Format:
 		// Content in extension.json
@@ -187,21 +161,31 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				] + [ ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive' ],
 				[
 					'FooBaz' => [
-						[ 'handler' => [
-							'class' => 'FooClass',
-							'services' => [],
-							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
-						] ],
-						[ 'handler' => [
-							'class' => 'FooClass',
-							'services' => [],
-							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
-						], 'deprecated' => true ],
-						[ 'handler' => [
-							'class' => 'FooClass',
-							'services' => [],
-							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
-						] ]
+						[
+							'handler' => [
+								'class' => 'FooClass',
+								'services' => [],
+								'name' => 'FooBar-HandlerObjectCallback'
+							],
+							'extensionPath' => $this->getCurrentDir()
+						],
+						[
+							'handler' => [
+								'class' => 'FooClass',
+								'services' => [],
+								'name' => 'FooBar-HandlerObjectCallback'
+							],
+							'deprecated' => true,
+							'extensionPath' => $this->getCurrentDir()
+						],
+						[
+							'handler' => [
+								'class' => 'FooClass',
+								'services' => [],
+								'name' => 'FooBar-HandlerObjectCallback'
+							],
+							'extensionPath' => $this->getCurrentDir()
+						]
 					]
 				]
 			]
@@ -223,7 +207,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 						'HandlerObjectCallback' => [
 							'class' => 'FooClass',
 							'services' => [],
-							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
+							'name' => 'FooBar-HandlerObjectCallback'
 						]
 					]
 				] + self::$default,
@@ -234,9 +218,10 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 							'handler' => [
 								'class' => 'FooClass',
 								'services' => [],
-								'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
+								'name' => 'FooBar-HandlerObjectCallback'
 							],
-							'deprecated' => true
+							'deprecated' => true,
+							'extensionPath' => $this->getCurrentDir()
 						]
 					]
 				],
@@ -254,11 +239,14 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				[ 'FooBaz' =>
 					[
 						'PriorCallback',
-						[ 'handler' => [
-							'class' => 'FooClass',
-							'services' => [],
-							'name' => $this->getCurrentDir() . '-HandlerObjectCallback'
-						] ],
+						[
+							'handler' => [
+								'class' => 'FooClass',
+								'services' => [],
+								'name' => 'FooBar-HandlerObjectCallback'
+							],
+							'extensionPath' => $this->getCurrentDir()
+						],
 					]
 				],
 				[]
@@ -279,16 +267,23 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				[ 'FooBaz' =>
 					[
 						'PriorCallback',
-						[ 'handler' => [
-							'name' => $this->getCurrentDir() . '-HandlerObjectCallback',
-							'class' => 'FooClass',
-							'services' => []
-						], 'deprecated' => true ],
-						[ 'handler' => [
-							'name' => $this->getCurrentDir() . '-HandlerObjectCallback2',
-							'class' => 'FooClass',
-							'services' => [],
-						] ]
+						[
+							'handler' => [
+								'name' => 'FooBar-HandlerObjectCallback',
+								'class' => 'FooClass',
+								'services' => []
+							],
+							'deprecated' => true,
+							'extensionPath' => $this->getCurrentDir()
+						],
+						[
+							'handler' => [
+								'name' => 'FooBar-HandlerObjectCallback2',
+								'class' => 'FooClass',
+								'services' => [],
+							],
+							'extensionPath' => $this->getCurrentDir()
+						]
 					]
 				],
 				[]
@@ -309,11 +304,14 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				[ 'FooBaz' =>
 					[
 						'PriorCallback',
-						[ 'handler' => [
-							'name' => $this->getCurrentDir() . '-HandlerObjectCallback',
-							'class' => 'FooClass',
-							'services' => []
-						] ],
+						[
+							'handler' => [
+								'name' => 'FooBar-HandlerObjectCallback',
+								'class' => 'FooClass',
+								'services' => []
+							],
+							'extensionPath' => $this->getCurrentDir()
+						],
 					]
 				],
 				[ 'FooClass', 'FooMethod' ]
@@ -378,17 +376,6 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				] + $merge,
 			],
 		];
-	}
-
-	/**
-	 * @dataProvider provideDeprecatedNonLegacyHooks
-	 */
-	public function testDeprecatedNonLegacyHooks( $pre, $info ) {
-		// Use Case: Marking a hook deprecated that has already been loaded by another extension
-		$processor = new MockExtensionProcessor( [ 'attributes' => [ 'Hooks' => $pre ] ] );
-		$this->expectDeprecation();
-		$processor->extractInfo( $this->dir, $info, 1 );
-		$processor->getExtractedInfo();
 	}
 
 	/**
