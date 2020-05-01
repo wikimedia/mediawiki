@@ -474,9 +474,9 @@ class ExtensionProcessor implements Processor {
 		}
 		if ( isset( $info['DeprecatedHooks'] ) ) {
 			$deprecatedHooks = [];
-			foreach ( $info['DeprecatedHooks'] as $name => $info ) {
-				$info += [ 'component' => $extName ];
-				$deprecatedHooks[$name] = $info;
+			foreach ( $info['DeprecatedHooks'] as $name => $deprecatedHookInfo ) {
+				$deprecatedHookInfo += [ 'component' => $extName ];
+				$deprecatedHooks[$name] = $deprecatedHookInfo;
 			}
 			if ( isset( $this->attributes['DeprecatedHooks'] ) ) {
 				$this->attributes['DeprecatedHooks'] += $deprecatedHooks;
