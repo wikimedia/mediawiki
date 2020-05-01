@@ -81,14 +81,13 @@ class AttachLatest extends Maintenance {
 					"$dbDomain $pageId [[$name]] latest time $latestTime, can't find revision id\n"
 				);
 				continue;
-			} else {
-				$revision = new Revision( $revRecord );
 			}
-			$id = $revision->getId();
+
+			$id = $revRecord->getId();
 			$this->output( "$dbDomain $pageId [[$name]] latest time $latestTime, rev id $id\n" );
 			if ( $this->hasOption( 'fix' ) ) {
 				$page = WikiPage::factory( $title );
-				$page->updateRevisionOn( $dbw, $revision );
+				$page->updateRevisionOn( $dbw, $revRecord );
 				$lbFactory->waitForReplication();
 			}
 			$n++;

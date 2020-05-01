@@ -616,7 +616,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$baseRev = $store->insertRevisionOn( $baseRev, $dbw );
-		$page->updateRevisionOn( $dbw, new Revision( $baseRev ), $page->getLatest() );
+		$page->updateRevisionOn( $dbw, $baseRev, $page->getLatest() );
 
 		$record = $store->newNullRevision(
 			wfGetDB( DB_MASTER ),

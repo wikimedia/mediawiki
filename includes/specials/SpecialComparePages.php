@@ -23,6 +23,10 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
+
 /**
  * Implements Special:ComparePages
  *
@@ -114,10 +118,18 @@ class SpecialComparePages extends SpecialPage {
 		$rev2 = self::revOrTitle( $data['Revision2'], $data['Page2'] );
 
 		if ( $rev1 && $rev2 ) {
-			$revision = Revision::newFromId( $rev1 );
+			$revisionRecord = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionById( $rev1 );
 
-			if ( $revision ) { // NOTE: $rev1 was already checked, should exist.
-				$contentHandler = $revision->getContentHandler();
+			if ( $revisionRecord ) { // NOTE: $rev1 was already checked, should exist.
+				$contentModel = $revisionRecord->getSlot(
+					SlotRecord::MAIN,
+					RevisionRecord::RAW
+				)->getModel();
+				$contentHandler = MediaWikiServices::getInstance()
+					->getContentHandlerFactory()
+					->getContentHandler( $contentModel );
 				$de = $contentHandler->createDifferenceEngine( $form->getContext(),
 					$rev1,
 					$rev2,
@@ -162,8 +174,10 @@ class SpecialComparePages extends SpecialPage {
 		if ( $value === '' || $value === null ) {
 			return true;
 		}
-		$revision = Revision::newFromId( $value );
-		if ( $revision === null ) {
+		$revisionRecord = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionById( $value );
+		if ( $revisionRecord === null ) {
 			return $this->msg( 'compare-revision-not-exists' )->parseAsBlock();
 		}
 

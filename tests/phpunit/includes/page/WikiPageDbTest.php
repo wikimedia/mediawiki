@@ -1896,6 +1896,8 @@ more stuff
 	 */
 	public function testUpdateRevisionOn_existingPage() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'WikiPage::updateRevisionOn with a Revision object' );
+
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
 
@@ -1926,6 +1928,8 @@ more stuff
 	 * @covers WikiPage::updateRevisionOn
 	 */
 	public function testUpdateRevisionOn_NonExistingPage() {
+		$this->hideDeprecated( 'WikiPage::updateRevisionOn with a Revision object' );
+
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
 		$page->doDeleteArticleReal( 'reason', $user );
