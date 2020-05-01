@@ -38,6 +38,17 @@ class RevisionItem extends RevisionItemBase {
 		$this->context = $list->getContext();
 	}
 
+	/**
+	 * Get the RevisionRecord for the item
+	 *
+	 * @todo remove use of Revision entirely
+	 *
+	 * @return RevisionRecord
+	 */
+	protected function getRevisionRecord() : RevisionRecord {
+		return $this->revision->getRevisionRecord();
+	}
+
 	public function getIdField() {
 		return 'rev_id';
 	}
@@ -56,7 +67,7 @@ class RevisionItem extends RevisionItemBase {
 
 	public function canView() {
 		return RevisionRecord::userCanBitfield(
-			$this->revision->getVisibility(),
+			$this->getRevisionRecord()->getVisibility(),
 			RevisionRecord::DELETED_RESTRICTED,
 			$this->context->getUser()
 		);
@@ -64,14 +75,14 @@ class RevisionItem extends RevisionItemBase {
 
 	public function canViewContent() {
 		return RevisionRecord::userCanBitfield(
-			$this->revision->getVisibility(),
+			$this->getRevisionRecord()->getVisibility(),
 			RevisionRecord::DELETED_TEXT,
 			$this->context->getUser()
 		);
 	}
 
 	public function isDeleted() {
-		return $this->revision->isDeleted( RevisionRecord::DELETED_TEXT );
+		return $this->getRevisionRecord()->isDeleted( RevisionRecord::DELETED_TEXT );
 	}
 
 	/**
@@ -82,8 +93,9 @@ class RevisionItem extends RevisionItemBase {
 	 * @return string
 	 */
 	protected function getRevisionLink() {
+		$revRecord = $this->getRevisionRecord();
 		$date = $this->list->getLanguage()->userTimeAndDate(
-			$this->revision->getTimestamp(), $this->list->getUser() );
+			$revRecord, $this->list->getUser() );
 
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return htmlspecialchars( $date );
@@ -94,7 +106,7 @@ class RevisionItem extends RevisionItemBase {
 			$date,
 			[],
 			[
-				'oldid' => $this->revision->getId(),
+				'oldid' => $revRecord->getId(),
 				'unhide' => 1
 			]
 		);
@@ -113,15 +125,15 @@ class RevisionItem extends RevisionItemBase {
 		} else {
 			$linkRenderer = $this->getLinkRenderer();
 			return $linkRenderer->makeKnownLink(
-					$this->list->title,
-					$this->list->msg( 'diff' )->text(),
-					[],
-					[
-						'diff' => $this->revision->getId(),
-						'oldid' => 'prev',
-						'unhide' => 1
-					]
-				);
+				$this->list->title,
+				$this->list->msg( 'diff' )->text(),
+				[],
+				[
+					'diff' => $this->getRevisionRecord()->getId(),
+					'oldid' => 'prev',
+					'unhide' => 1
+				]
+			);
 		}
 	}
 
@@ -135,8 +147,8 @@ class RevisionItem extends RevisionItemBase {
 		$difflink = $this->context->msg( 'parentheses' )
 			->rawParams( $this->getDiffLink() )->escaped();
 		$revlink = $this->getRevisionLink();
-		$userlink = Linker::revUserLink( $this->revision->getRevisionRecord() );
-		$comment = Linker::revComment( $this->revision->getRevisionRecord() );
+		$userlink = Linker::revUserLink( $this->getRevisionRecord() );
+		$comment = Linker::revComment( $this->getRevisionRecord() );
 		if ( $this->isDeleted() ) {
 			$revlink = "<span class=\"history-deleted\">$revlink</span>";
 		}

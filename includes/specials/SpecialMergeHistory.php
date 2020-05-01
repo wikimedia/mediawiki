@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -277,7 +278,9 @@ class SpecialMergeHistory extends SpecialPage {
 	}
 
 	function formatRevisionRow( $row ) {
-		$rev = new Revision( $row );
+		$revRecord = MediaWikiServices::getInstance()
+			->getRevisionFactory()
+			->newRevisionFromRow( $row );
 
 		$linkRenderer = $this->getLinkRenderer();
 
@@ -290,25 +293,25 @@ class SpecialMergeHistory extends SpecialPage {
 		$user = $this->getUser();
 
 		$pageLink = $linkRenderer->makeKnownLink(
-			$rev->getTitle(),
+			$revRecord->getPageAsLinkTarget(),
 			$this->getLanguage()->userTimeAndDate( $ts, $user ),
 			[],
-			[ 'oldid' => $rev->getId() ]
+			[ 'oldid' => $revRecord->getId() ]
 		);
-		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';
 		}
 
 		# Last link
 		if ( !RevisionRecord::userCanBitfield(
-			$rev->getVisibility(),
+			$revRecord->getVisibility(),
 			RevisionRecord::DELETED_TEXT,
 			$user
 		) ) {
 			$last = $this->msg( 'last' )->escaped();
 		} elseif ( isset( $this->prevId[$row->rev_id] ) ) {
 			$last = $linkRenderer->makeKnownLink(
-				$rev->getTitle(),
+				$revRecord->getPageAsLinkTarget(),
 				$this->msg( 'last' )->text(),
 				[],
 				[
@@ -318,13 +321,13 @@ class SpecialMergeHistory extends SpecialPage {
 			);
 		}
 
-		$userLink = Linker::revUserTools( $rev->getRevisionRecord() );
+		$userLink = Linker::revUserTools( $revRecord );
 
 		$size = $row->rev_len;
 		if ( $size !== null ) {
 			$stxt = Linker::formatRevisionSize( $size );
 		}
-		$comment = Linker::revComment( $rev->getRevisionRecord() );
+		$comment = Linker::revComment( $revRecord );
 
 		return Html::rawElement( 'li', [],
 			$this->msg( 'mergehistory-revisionrow' )
