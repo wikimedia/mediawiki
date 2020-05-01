@@ -175,6 +175,8 @@ class ContribsPagerTest extends MediaWikiTestCase {
 	 * @covers \ContribsPager::tryCreatingRevisionRecord
 	 */
 	public function testCreateRevision() {
+		$this->hideDeprecated( 'ContribsPager::tryToCreateValidRevision' );
+
 		$pager = new ContribsPager( new RequestContext(), [
 			'target' => '116.17.184.5/32',
 			'start' => '',
