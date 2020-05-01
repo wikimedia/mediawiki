@@ -28,6 +28,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -44,16 +45,41 @@ class NamespaceDupes extends Maintenance {
 	 */
 	protected $db;
 
+	/**
+	 * Total number of pages that need fixing that are automatically resolveable
+	 * @var int
+	 */
 	private $resolvablePages = 0;
+
+	/**
+	 * Total number of pages that need fixing
+	 * @var int
+	 */
 	private $totalPages = 0;
 
+	/**
+	 * Total number of links that need fixing that are automatically resolveable
+	 * @var int
+	 */
 	private $resolvableLinks = 0;
+
+	/**
+	 * Total number of erroneous links
+	 * @var int
+	 */
 	private $totalLinks = 0;
+
+	/**
+	 * Total number of links deleted because they weren't automatically resolveable due to the
+	 * target already existing
+	 * @var int
+	 */
+	private $deletedLinks = 0;
 
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Find and fix pages affected by namespace addition/removal' );
-		$this->addOption( 'fix', 'Attempt to automatically fix errors' );
+		$this->addOption( 'fix', 'Attempt to automatically fix errors and delete broken links' );
 		$this->addOption( 'merge', "Instead of renaming conflicts, do a history merge with " .
 			"the correct title" );
 		$this->addOption( 'add-suffix', "Dupes will be renamed with correct namespace with " .
@@ -168,8 +194,10 @@ class NamespaceDupes extends Maintenance {
 			$ok = $this->checkNamespace( $ns, $name, $options ) && $ok;
 		}
 
-		$this->output( "{$this->totalPages} pages to fix, " .
-			"{$this->resolvablePages} were resolvable.\n\n" );
+		$this->output(
+			"{$this->totalPages} pages to fix, " .
+			"{$this->resolvablePages} were resolvable.\n\n"
+		);
 
 		foreach ( $spaces as $name => $ns ) {
 			if ( $ns != 0 ) {
@@ -204,8 +232,11 @@ class NamespaceDupes extends Maintenance {
 			}
 		}
 
-		$this->output( "{$this->totalLinks} links to fix, " .
-			"{$this->resolvableLinks} were resolvable.\n" );
+		$this->output(
+			"{$this->totalLinks} links to fix, " .
+			"{$this->resolvableLinks} were resolvable, " .
+			"{$this->deletedLinks} were deleted.\n"
+		);
 
 		return $ok;
 	}
@@ -342,10 +373,14 @@ class NamespaceDupes extends Maintenance {
 			$res = $dbw->select(
 				$table,
 				[ $fromField, $namespaceField, $titleField ],
-				array_merge( $batchConds, $extraConds, [
-					$namespaceField => 0,
-					$titleField . $dbw->buildLike( "$name:", $dbw->anyString() )
-				] ),
+				array_merge(
+					$batchConds,
+					$extraConds,
+					[
+						$namespaceField => 0,
+						$titleField . $dbw->buildLike( "$name:", $dbw->anyString() )
+					]
+				),
 				__METHOD__,
 				[
 					'ORDER BY' => [ $titleField, $fromField ],
@@ -356,6 +391,9 @@ class NamespaceDupes extends Maintenance {
 			if ( $res->numRows() == 0 ) {
 				break;
 			}
+
+			$rowsToDeleteIfStillExists = [];
+
 			foreach ( $res as $row ) {
 				$logTitle = "from={$row->$fromField} ns={$row->$namespaceField} " .
 					"dbk={$row->$titleField}";
@@ -388,17 +426,41 @@ class NamespaceDupes extends Maintenance {
 					__METHOD__,
 					[ 'IGNORE' ]
 				);
+
+				$rowsToDeleteIfStillExists[] = $dbw->makeList(
+					[
+						$fromField => $row->$fromField,
+						$namespaceField => $row->$namespaceField,
+						$titleField => $row->$titleField,
+					],
+					IDatabase::LIST_AND
+				);
+
 				$this->output( "$table $logTitle -> " .
-					$destTitle->getPrefixedDBkey() . "\n" );
+					$destTitle->getPrefixedDBkey() . "\n"
+				);
 			}
+
+			if ( $options['fix'] && count( $rowsToDeleteIfStillExists ) > 0 ) {
+				$dbw->delete(
+					$table,
+					$dbw->makeList( $rowsToDeleteIfStillExists, IDatabase::LIST_OR ),
+					__METHOD__
+				);
+
+				$this->deletedLinks += $dbw->affectedRows();
+				$this->resolvableLinks -= $dbw->affectedRows();
+			}
+
 			$encLastTitle = $dbw->addQuotes( $row->$titleField );
 			$encLastFrom = $dbw->addQuotes( $row->$fromField );
 
 			$batchConds = [
 				"$titleField > $encLastTitle " .
-				"OR ($titleField = $encLastTitle AND $fromField > $encLastFrom)" ];
+				"OR ($titleField = $encLastTitle AND $fromField > $encLastFrom)"
+			];
 
-			wfWaitForSlaves();
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 		}
 	}
 
@@ -524,13 +586,15 @@ class NamespaceDupes extends Maintenance {
 			[
 				"page_id" => $id,
 			],
-			__METHOD__ );
+			__METHOD__
+		);
 
 		// Update *_from_namespace in links tables
 		$fromNamespaceTables = [
 			[ 'pagelinks', 'pl' ],
 			[ 'templatelinks', 'tl' ],
-			[ 'imagelinks', 'il' ] ];
+			[ 'imagelinks', 'il' ]
+		];
 		foreach ( $fromNamespaceTables as $tableInfo ) {
 			list( $table, $fieldPrefix ) = $tableInfo;
 			$dbw->update( $table,
@@ -538,7 +602,8 @@ class NamespaceDupes extends Maintenance {
 				[ "{$fieldPrefix}_from_namespace" => $newLinkTarget->getNamespace() ],
 				// WHERE
 				[ "{$fieldPrefix}_from" => $id ],
-				__METHOD__ );
+				__METHOD__
+			);
 		}
 
 		return true;
@@ -597,7 +662,8 @@ class NamespaceDupes extends Maintenance {
 			[ 'rev_page' => $destId ],
 			// WHERE
 			[ 'rev_page' => $id ],
-			__METHOD__ );
+			__METHOD__
+		);
 
 		$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 
