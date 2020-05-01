@@ -383,9 +383,18 @@ class GlobalTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers ::wfPercent
+	 * @dataProvider provideWfPercentTest
 	 */
-	public function testWfPercentTest() {
-		$pcts = [
+	public function testWfPercentTest( float $input,
+		string $expected,
+		int $accuracy = 2,
+		bool $round = true
+	) {
+		$this->assertSame( $expected, wfPercent( $input, $accuracy, $round ) );
+	}
+
+	public function provideWfPercentTest() {
+		return [
 			[ 6 / 7, '0.86%', 2, false ],
 			[ 3 / 3, '1%' ],
 			[ 22 / 7, '3.14286%', 5 ],
@@ -395,17 +404,6 @@ class GlobalTest extends MediaWikiTestCase {
 			[ 3 / 4 / 5, '0.1%', 1 ],
 			[ 6 / 7 * 8, '6.8571428571%', 10 ],
 		];
-
-		foreach ( $pcts as $pct ) {
-			if ( !isset( $pct[2] ) ) {
-				$pct[2] = 2;
-			}
-			if ( !isset( $pct[3] ) ) {
-				$pct[3] = true;
-			}
-
-			$this->assertEquals( wfPercent( $pct[0], $pct[2], $pct[3] ), $pct[1], $pct[1] );
-		}
 	}
 
 	/**
