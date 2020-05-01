@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use WikiPage;
+use Article;
 
 /**
  * @stable for implementation
@@ -17,7 +17,7 @@ interface ActionModifyFormFieldsHook {
 	 *
 	 * @param string $name Name of the action
 	 * @param array &$fields HTMLForm descriptor array
-	 * @param WikiPage $article
+	 * @param Article $article
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onActionModifyFormFields( $name, &$fields, $article );

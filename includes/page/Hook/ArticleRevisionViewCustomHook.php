@@ -3,7 +3,7 @@
 namespace MediaWiki\Page\Hook;
 
 use MediaWiki\Revision\RevisionRecord;
-use ParserOutput;
+use OutputPage;
 use Title;
 
 /**
@@ -22,7 +22,7 @@ interface ArticleRevisionViewCustomHook {
 	 *   could not be loaded). May also be a fake that wraps content supplied by an extension.
 	 * @param Title $title Title of the page
 	 * @param int $oldid Requested revision ID, or 0 for the current revision
-	 * @param ParserOutput $output
+	 * @param OutputPage $output
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onArticleRevisionViewCustom( $revision, $title, $oldid,

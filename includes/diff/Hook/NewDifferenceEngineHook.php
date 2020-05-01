@@ -15,8 +15,8 @@ interface NewDifferenceEngineHook {
 	 * @since 1.35
 	 *
 	 * @param Title|null $title Diff page title
-	 * @param int &$oldId Actual old ID to use in the diff
-	 * @param int &$newId Actual new Id to use in the diff (0 means current)
+	 * @param int|false|null &$oldId Actual old ID to use in the diff
+	 * @param int|false|null &$newId Actual new Id to use in the diff (0 means current)
 	 * @param int $old ?old= param value from the URL
 	 * @param int $new ?new= param value from the URL
 	 * @return bool|void True or no return value to continue or false to abort

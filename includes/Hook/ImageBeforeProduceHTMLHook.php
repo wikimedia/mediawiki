@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Hook;
 
+use DummyLinker;
 use File;
 use Parser;
-use Skin;
 use Title;
 
 /**
@@ -19,7 +19,7 @@ interface ImageBeforeProduceHTMLHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Skin $skin
+	 * @param DummyLinker $linker Formerly a Skin/Linker, now a DummyLinker for b/c
 	 * @param Title &$title Title object of the image
 	 * @param File|bool &$file File object, or false if it doesn't exist
 	 * @param array &$frameParams Various parameters with special meanings; see documentation in
@@ -34,7 +34,7 @@ interface ImageBeforeProduceHTMLHook {
 	 * @param string &$widthOption Used by the parser to remember the user preference thumbnailsize
 	 * @return bool|void True or no return value to continue or false to skip the default logic
 	 */
-	public function onImageBeforeProduceHTML( $skin, &$title, &$file,
+	public function onImageBeforeProduceHTML( $linker, &$title, &$file,
 		&$frameParams, &$handlerParams, &$time, &$res, $parser, &$query, &$widthOption
 	);
 }

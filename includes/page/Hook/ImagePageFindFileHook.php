@@ -17,8 +17,9 @@ interface ImagePageFindFileHook {
 	 * @since 1.35
 	 *
 	 * @param ImagePage $page
-	 * @param File &$file
-	 * @param File &$displayFile Displayed file
+	 * @param File|false &$file False on input, can be replaced with a File
+	 * @param File|false &$displayFile False on input, can be replaced with a
+	 *   file to display.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onImagePageFindFile( $page, &$file, &$displayFile );

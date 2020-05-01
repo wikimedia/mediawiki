@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use XMLReader;
+use WikiImporter;
 
 /**
  * @stable for implementation
@@ -14,7 +14,7 @@ interface ImportHandleLogItemXMLTagHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param XMLReader $reader
+	 * @param WikiImporter $reader
 	 * @param array $logInfo Array of information
 	 * @return bool|void True or no return value to continue, or false to stop further
 	 *   processing of the tag

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use RequestContext;
-use WikiPage;
+use Article;
+use IContextSource;
 
 /**
  * @stable for implementation
@@ -15,8 +15,8 @@ interface PageHistoryBeforeListHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param WikiPage $article The article that the history is loading for
-	 * @param RequestContext $context
+	 * @param Article $article The article that the history is loading for
+	 * @param IContextSource $context
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onPageHistoryBeforeList( $article, $context );

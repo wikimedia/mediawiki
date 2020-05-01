@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Hook;
 
+use Content;
 use EditPage;
 
 /**
@@ -17,7 +18,7 @@ interface EditPageGetDiffContentHook {
 	 * @since 1.35
 	 *
 	 * @param EditPage $editPage
-	 * @param string &$newtext Wikitext that will be used in place of "Show changes"
+	 * @param Content &$newtext Content that will be used in place of "Show changes"
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onEditPageGetDiffContent( $editPage, &$newtext );

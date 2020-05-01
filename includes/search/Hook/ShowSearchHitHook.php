@@ -17,7 +17,7 @@ interface ShowSearchHitHook {
 	 *
 	 * @param SpecialSearch $searchPage
 	 * @param SearchResult $result SearchResult to show
-	 * @param string $terms Search terms, for highlighting (unreliable as search engine dependent)
+	 * @param string[] $terms Search terms, for highlighting (unreliable as search engine dependent)
 	 * @param string &$link HTML of link to the matching page. May be modified.
 	 * @param string &$redirect HTML of redirect info. May be modified.
 	 * @param string &$section HTML of matching section. May be modified.
