@@ -1116,7 +1116,7 @@ class Linker {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		} elseif ( RevisionRecord::userCanBitfield(
 			$revRecord->getVisibility(),
-			 RevisionRecord::DELETED_USER,
+			RevisionRecord::DELETED_USER,
 			$user
 		) ) {
 			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $user );
