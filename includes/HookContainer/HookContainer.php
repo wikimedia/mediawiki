@@ -154,6 +154,9 @@ class HookContainer implements SalvageableService {
 					"Invalid return from " . $funcName . " for unabortable $hook."
 				);
 			}
+			if ( $return === false ) {
+				return false;
+			}
 			if ( $return !== null && !is_bool( $return ) ) {
 				throw new UnexpectedValueException( "Invalid return from " . $funcName . " for $hook." );
 			}
@@ -357,7 +360,8 @@ class HookContainer implements SalvageableService {
 				}
 				$handlerName = $handlerObject['name'];
 				if ( !isset( $this->handlersByName[$handlerName] ) ) {
-					$this->handlersByName[$handlerName] = $this->objectFactory->createObject( $handlerObject );
+					$this->handlersByName[$handlerName] =
+						$this->objectFactory->createObject( $handlerObject );
 				}
 				$handlers[] = $this->handlersByName[$handlerName];
 			}
