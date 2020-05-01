@@ -148,13 +148,13 @@ class ImportReporter extends ContextSource {
 				$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
 				$nullRevId = $inserted->getId();
 				$page = WikiPage::factory( $title );
+
 				// Update page record
-				// TODO WikiPage::updateRevisionOn should accept RevisionRecord
-				$nullRevision = new Revision( $inserted );
-				$page->updateRevisionOn( $dbw, $nullRevision );
-				$fakeTags = [];
+				$page->updateRevisionOn( $dbw, $inserted );
 
 				// TODO replace hook
+				$fakeTags = [];
+				$nullRevision = new Revision( $inserted );
 				Hooks::run(
 					'NewRevisionFromEditComplete',
 					[ $page, $nullRevision, $latest, $this->getUser(), &$fakeTags ]

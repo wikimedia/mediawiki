@@ -1025,16 +1025,16 @@ class PageUpdater {
 
 			// Save revision content and meta-data
 			$newRevisionRecord = $this->revisionStore->insertRevisionOn( $newRevisionRecord, $dbw );
-			$newLegacyRevision = new Revision( $newRevisionRecord );
 
 			// Update page_latest and friends to reflect the new revision
 			// TODO: move to storage service
 			$wasRedirect = $this->derivedDataUpdater->wasRedirect();
-			if ( !$wikiPage->updateRevisionOn( $dbw, $newLegacyRevision, null, $wasRedirect ) ) {
+			if ( !$wikiPage->updateRevisionOn( $dbw, $newRevisionRecord, null, $wasRedirect ) ) {
 				throw new PageUpdateException( "Failed to update page row to use new revision." );
 			}
 
 			// TODO: replace legacy hook!
+			$newLegacyRevision = new Revision( $newRevisionRecord );
 			$tags = $this->computeEffectiveTags( $flags );
 			Hooks::run(
 				'NewRevisionFromEditComplete',
@@ -1160,15 +1160,15 @@ class PageUpdater {
 
 		// Save the revision text...
 		$newRevisionRecord = $this->revisionStore->insertRevisionOn( $newRevisionRecord, $dbw );
-		$newLegacyRevision = new Revision( $newRevisionRecord );
 
 		// Update the page record with revision data
 		// TODO: move to storage service
-		if ( !$wikiPage->updateRevisionOn( $dbw, $newLegacyRevision, 0 ) ) {
+		if ( !$wikiPage->updateRevisionOn( $dbw, $newRevisionRecord, 0 ) ) {
 			throw new PageUpdateException( "Failed to update page row to use new revision." );
 		}
 
 		// TODO: replace legacy hook!
+		$newLegacyRevision = new Revision( $newRevisionRecord );
 		$tags = $this->computeEffectiveTags( $flags );
 		Hooks::run(
 			'NewRevisionFromEditComplete',

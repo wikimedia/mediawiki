@@ -862,9 +862,10 @@ class MovePage {
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
 		$newpage->loadPageData( WikiPage::READ_LOCKING ); // T48397
 
-		$nullRevisionObj = new Revision( $nullRevision );
-		$newpage->updateRevisionOn( $dbw, $nullRevisionObj );
+		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
+		// TODO cleanup hooks and use of $nullRevisionObj
+		$nullRevisionObj = new Revision( $nullRevision );
 		$fakeTags = [];
 		Hooks::run( 'NewRevisionFromEditComplete',
 			[ $newpage, $nullRevisionObj, $nullRevision->getParentId(), $user, &$fakeTags ] );
@@ -889,7 +890,11 @@ class MovePage {
 					'comment' => $comment,
 					'content' => $redirectContent ] );
 				$redirectRevId = $redirectRevision->insertOn( $dbw );
-				$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
+				$redirectArticle->updateRevisionOn(
+					$dbw,
+					$redirectRevision->getRevisionRecord(),
+					0
+				);
 
 				$fakeTags = [];
 				Hooks::run( 'NewRevisionFromEditComplete',
