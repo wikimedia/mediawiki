@@ -38,6 +38,12 @@
 		"articleSearch": {
 			"file": "../wikimediaui/images/icons/articleSearch.svg"
 		},
+		"articlesSearch": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/articlesSearch-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/articlesSearch-rtl.svg"
+			}
+		},
 		"articleRedirect": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/articleRedirect-ltr.svg",

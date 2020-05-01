@@ -794,9 +794,9 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
  * @var Parser $wgParser
  * @deprecated since 1.32, use MediaWikiServices::getInstance()->getParser() instead
  */
-$wgParser = new StubObject( 'wgParser', function () {
+$wgParser = new DeprecatedGlobal( 'wgParser', function () {
 	return MediaWikiServices::getInstance()->getParser();
-} );
+}, '1.32' );
 
 /**
  * @var Title $wgTitle
