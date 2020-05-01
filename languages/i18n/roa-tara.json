@@ -2462,7 +2462,7 @@
 	"ipb-needreblock": "$1 ha state già blocchete. Vuè cu cange le 'mbostaziune?",
 	"ipb-otherblocks-header": "Otre {{PLURAL:$1|blocche|blocche}}",
 	"unblock-hideuser": "Tu non ge puè sbloccà st'utende, purcé 'u nome utende ha state ggià scunnute.",
-	"ipb_cant_unblock": "Errore: L'ID $1 d'u blocche non ge se iacchie.\nPò essere ca ha state già sbloccate.",
+	"ipb_cant_unblock": "Errore: Blocche pe $1 non ge se iacchie. Pò essere ca ha state già luate.",
 	"ipb_blocked_as_range": "Errore: l'IP $1 non g'à state bloccate direttamende e non ge pò essere sbloccate.\nJidde ha state bloccate cumme parte de l'indervalle $2, ca pò essere sbloccate.",
 	"ip_range_invalid": "L'indervalle de l'IP non g'è valide.",
 	"ip_range_toolarge": "Le indervalle de le blocche cchiù larie de /$1 non ge sonde permesse.",

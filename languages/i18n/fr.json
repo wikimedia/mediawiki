@@ -2801,7 +2801,7 @@
 	"ipb-needreblock": "$1 est déjà bloqué. Voulez-vous modifier les paramètres ?",
 	"ipb-otherblocks-header": "Autre{{PLURAL:$1||s}} blocage{{PLURAL:$1||s}}",
 	"unblock-hideuser": "Vous ne pouvez pas débloquer cet utilisateur, car son nom d’utilisateur a été masqué.",
-	"ipb_cant_unblock": "Erreur : identifiant de blocage $1 non trouvé.\nIl est possible qu’un déblocage ait déjà été effectué.",
+	"ipb_cant_unblock": "Erreur : blocage pour $1 non trouvé. Il a peut-être déjà été supprimé.",
 	"ipb_blocked_as_range": "Erreur : l’adresse IP $1 n’est pas bloquée directement et ne peut donc pas être débloquée.\nElle fait cependant partie de la plage $2 qui, elle, peut être débloquée.",
 	"ip_range_invalid": "Plage d’adresses IP incorrecte.",
 	"ip_range_toolarge": "Les plages de blocage plus grandes que /$1 ne sont pas autorisées.",

@@ -2466,7 +2466,7 @@
 	"ipb-needreblock": "Stanket eo $1 c'hoazh. Kemmañ an arventennoù a fell deoc'h ?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Stankadenn|Stankadnenoù}} all",
 	"unblock-hideuser": "N'hallit ket distankañ an implijer-mañ rak kuzhet eo bet e anv kont.",
-	"ipb_cant_unblock": "Fazi: N'eo ket stanket an ID $1. Moarvat eo bet distanket c'hoazh.",
+	"ipb_cant_unblock": "Fazi : N'eo ket bet kavet stankadenn an ID $1. Moarvat eo bet nullet.",
 	"ipb_blocked_as_range": "Fazi : N'eo ket bet stanket ar chomlec'h IP $1 war-eeun, setu n'hall ket bezañ distanket. Stanket eo bet dre al live $2 avat, hag a c'hall bezañ distanket.",
 	"ip_range_invalid": "Stankañ IP direizh.",
 	"ip_range_toolarge": "N'eo ket aotreet stankañ pajennoù brasoc'h evit /$1.",

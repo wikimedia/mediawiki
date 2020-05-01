@@ -2717,7 +2717,7 @@
 	"ipb-needreblock": "$1 zaten engellenmiş. Ayarları değiştirmek istiyor musunuz?",
 	"ipb-otherblocks-header": "Diğer {{PLURAL:$1|engelleme|engellemeler}}",
 	"unblock-hideuser": "Kullanıcı adı gizlenmiş olduğu için bu kullanıcının engelini kaldıramazsınız.",
-	"ipb_cant_unblock": "Hata: Engelleme $1 kimliği bulunamadı. Engelleme kaldırılmış olabilir.",
+	"ipb_cant_unblock": "Hata: $1 için engelleme bulunamadı. Zaten kaldırılmış olabilir.",
 	"ipb_blocked_as_range": "Hata: $1 IP adresi doğrudan engellenmemiş ve engelleme kaldırılamaz.\nAncak, bu adres $2 aralığının parçası olarak engellenmiş, aralık engellemesini kaldırabilirsiniz.",
 	"ip_range_invalid": "Geçersiz IP adres aralığı.",
 	"ip_range_toolarge": "/$1 fazladan büyük aralık aralıkları izin verilmez.",

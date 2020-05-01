@@ -2401,6 +2401,7 @@
 	"sp-contributions-hideminor": "Схаваць дробныя праўкі",
 	"sp-contributions-submit": "Пошук",
 	"whatlinkshere": "Сюды спасылаюцца",
+	"whatlinkshere-count": "{{PLURAL:$1|Паказаны|Паказаны|Паказана}} $1 {{PLURAL:$1|элемент|элементы|элементаў}}.",
 	"whatlinkshere-title": "Старонкі, якія спасылаюцца на \"$1\"",
 	"whatlinkshere-page": "Старонка:",
 	"linkshere": "Наступныя старонкі спасылаюцца на <strong>$2</strong>:",

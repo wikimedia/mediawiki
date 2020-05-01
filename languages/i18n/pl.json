@@ -2709,7 +2709,7 @@
 	"ipb-needreblock": "$1 jest już zablokowany. Czy chcesz zmienić ustawienia blokady?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Inna blokada|Inne blokady}}",
 	"unblock-hideuser": "Nie można odblokować użytkownika, jeśli jego nazwa została ukryta.",
-	"ipb_cant_unblock": "Błąd: Blokada o ID $1 nie została znaleziona. Mogła ona zostać zdjęta wcześniej.",
+	"ipb_cant_unblock": "Błąd: Blokada nałożona na $1 nie została znaleziona. Mogła ona zostać zdjęta wcześniej.",
 	"ipb_blocked_as_range": "Błąd – adres IP $1 nie został zablokowany bezpośrednio i nie może zostać odblokowany.\nNależy on do zablokowanego zakresu adresów $2. Odblokować można tylko cały zakres.",
 	"ip_range_invalid": "Niepoprawny zakres adresów IP.",
 	"ip_range_toolarge": "Zakresy IP większe niż /$1 są niedozwolone.",

@@ -2724,7 +2724,7 @@
 	"ipb-needreblock": "L'utente $1 è già bloccato. Modificare le impostazioni?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Altro blocco|Altri blocchi}}",
 	"unblock-hideuser": "Non puoi sbloccare questo utente, perché il suo nome utente è stato nascosto.",
-	"ipb_cant_unblock": "Errore: Impossibile trovare il blocco con ID $1. Il blocco potrebbe essere già stato rimosso.",
+	"ipb_cant_unblock": "Errore: impossibile trovare il blocco per $1. Il blocco potrebbe essere già stato rimosso.",
 	"ipb_blocked_as_range": "Errore: L'indirizzo IP $1 non è soggetto a blocco individuale e non può essere sbloccato. Il blocco è invece attivo a livello dell'intervallo $2, che può essere sbloccato.",
 	"ip_range_invalid": "Intervallo di indirizzi IP non valido.",
 	"ip_range_toolarge": "Non è possibile bloccare range superiori al /$1",
