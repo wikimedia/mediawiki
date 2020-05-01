@@ -61,6 +61,12 @@
 		"articleSearch": {
 			"file": "images/icons/articleSearch.svg"
 		},
+		"articlesSearch": {
+			"file": {
+				"ltr": "images/icons/articlesSearch-ltr.svg",
+				"rtl": "images/icons/articlesSearch-rtl.svg"
+			}
+		},
 		"articleRedirect": {
 			"file": {
 				"ltr": "images/icons/articleRedirect-ltr.svg",

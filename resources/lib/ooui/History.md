@@ -1,4 +1,22 @@
 # OOUI Release History
+## v0.38.1 / 2020-05-01
+### Styles
+* icons: Add 'articlesSearch' icon (Volker E.)
+* icons: Unify 'referenceExisting' with other multi object ones (Volker E.)
+
+### Code
+* Replace deprecate 'parent' with 'super' (Ed Sanders)
+* Element: Simplify instanceof check in infusion (Ed Sanders)
+* build: Bump phan to 0.10.2 (James D. Forrester)
+* build: Upgrade eslint-config-wikimedia to 0.15.3 (James D. Forrester)
+* build: Upgrade mediawiki-codesniffer from v29.0.0 to v30.0.0 (James D. Forrester)
+* build: Upgrade stylelint-config-wikimedia to 0.10.1 (James D. Forrester)
+* demos: Add 'invisibleLabel' to quiet ButtonMenuSelectWidget (Volker E.)
+* demos: Fix demo display for narrow ButtonMenuSelectWidget (Thalia Chan)
+* demos: Fix documentation for ButtonMenuSelect widget (Thalia Chan)
+* tests: Use assertStringContainsString for string contains, to support PHPUnit 9 (James D. Forrester)
+
+
 ## v0.38.0 / 2020-04-14
 ### Breaking changes
 * [BREAKING CHANGE] icons: Remove 'stripe*' icons, deprecated in v0.36.5 (Volker E.)
