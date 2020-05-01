@@ -2408,6 +2408,7 @@
 	"createaccountblock": "blokirano stvaranje suradničkog računa",
 	"emailblock": "e-pošta je blokirana",
 	"blocklist-nousertalk": "bez uređivanja vlastite stranice za razgovor",
+	"blocklist-editing-sitewide": "uređivanje (na cijelom wikiju)",
 	"ipblocklist-empty": "Popis blokiranja je prazan.",
 	"ipblocklist-no-results": "Za traženu IP adresu ili suradničko ime nema pronađenih podudarnih blokiranja.",
 	"blocklink": "blokiraj",

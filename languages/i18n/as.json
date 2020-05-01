@@ -1179,6 +1179,7 @@
 	"rcfilters-filter-newpages-label": "পৃষ্ঠা সৃষ্টি",
 	"rcfilters-filter-logactions-label": "নথিভুক্ত কাম",
 	"rcfilters-liveupdates-button": "পোনপটীয়া উন্নীতকৰণ",
+	"rcfilters-watchlist-showupdated": "সালসলনি হোৱাৰ পাছত আপুনি দৰ্শন নকৰা পৃষ্ঠাবোৰ <strong>গাঢ়</strong> কৰি দেখুওৱা হৈছে।",
 	"rcnotefrom": "<strong>$3, $4</strong>ৰ হোৱা {{PLURAL:$5|টা পৰিৱৰ্তন}} (<strong>$1</strong> টালৈকে দেখুওৱা হৈছে).",
 	"rclistfrom": "$3 $2ৰ পৰা নতুন সালসলনি দেখুৱাওক",
 	"rcshowhideminor": "$1 -সংখ্যক নগণ্য সম্পাদনা",

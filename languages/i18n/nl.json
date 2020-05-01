@@ -2708,7 +2708,7 @@
 	"ipb-needreblock": "$1 is al geblokkeerd.\nWilt u de instellingen wijzigen?",
 	"ipb-otherblocks-header": "Andere {{PLURAL:$1|blokkade|blokkades}}",
 	"unblock-hideuser": "U kunt deze gebruiker niet deblokkeren, omdat de gebruikersnaam is verborgen.",
-	"ipb_cant_unblock": "Fout: blokkadenummer $1 is niet gevonden.\nMisschien is de blokkade al opgeheven.",
+	"ipb_cant_unblock": "Fout: Kon de blokkade voor $1 niet vinden. De blokkade is mogelijk al opgeheven.",
 	"ipb_blocked_as_range": "Fout: het IP-adres $1 is niet direct geblokkeerd en de blokkade kan niet opgeheven worden.\nDe blokkade is onderdeel van de range $2, waarvan de blokkade wel opgeheven kan worden.",
 	"ip_range_invalid": "Ongeldige IP-range.",
 	"ip_range_toolarge": "Reeksblokkades groter dan /$1 zijn niet toegestaan.",

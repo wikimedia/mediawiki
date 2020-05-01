@@ -1647,7 +1647,7 @@
 	"logentry-delete-delete": "$1 {{GENDER:$2|otti poies}} sivun $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|palautti}} sivun $3 ($4)",
 	"restore-count-files": "{{PLURAL:$1|1 fiili|$1 fiilit}}",
-	"logentry-delete-revision": "$1 {{GENDER:$2|muutti}} {{PLURAL:$5|version|$5 version}} näkyvyyttä sivula $3: $4",
+	"logentry-delete-revision": "$1 {{GENDER:$2|muutti}} {{PLURAL:$5|versuunin|$5 versuunin}} näkyvyyttä sivula $3: $4",
 	"revdelete-content-hid": "sisältö piilotettu",
 	"logentry-move-move": "$1 {{GENDER:$2|siirsi}} sivun $3 uuelle nimele $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|siirsi}} sivun $3 uuele nimele $4 luomatta ohjausta",
