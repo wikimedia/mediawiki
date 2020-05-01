@@ -55,15 +55,15 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 			$lastPage = 0;
 			do {
 				$rows = $dbr->select(
-						'page',
-						[ 'page_id', 'page_title', 'page_namespace', 'page_content_model' ],
-						[
-								'page_namespace' => $ns,
-								'page_title ' . $like,
-								'page_id > ' . $dbr->addQuotes( $lastPage )
-						],
-						__METHOD__,
-						[ 'ORDER BY' => 'page_id', 'LIMIT' => $this->getBatchSize() ]
+					'page',
+					[ 'page_id', 'page_title', 'page_namespace', 'page_content_model' ],
+					[
+						'page_namespace' => $ns,
+						'page_title ' . $like,
+						'page_id > ' . $dbr->addQuotes( $lastPage )
+					],
+					__METHOD__,
+					[ 'ORDER BY' => 'page_id', 'LIMIT' => $this->getBatchSize() ]
 				);
 				foreach ( $rows as $row ) {
 					$this->handleRow( $row );
@@ -83,6 +83,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 		$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 		$dbw = $this->getDB( DB_MASTER );
 		if ( $content instanceof JsonContent ) {
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			if ( $content->isValid() ) {
 				// Yay, actually JSON. We need to just change the
 				// page_content_model because revision will automatically
@@ -95,7 +96,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 					__METHOD__
 				);
 				$this->output( "done.\n" );
-				wfWaitForSlaves();
+				$lbFactory->waitForReplication();
 			} else {
 				// Not JSON...force it to wikitext. We need to update the
 				// revision table so that these revisions are always processed
@@ -115,7 +116,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 						[ 'rev_content_model' => CONTENT_MODEL_WIKITEXT ],
 						[ 'rev_page' => $row->page_id, 'rev_id' => $chunk ]
 					);
-					wfWaitForSlaves();
+					$lbFactory->waitForReplication();
 				}
 				$this->output( "done.\n" );
 			}

@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -73,9 +74,10 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			return true;
 		}
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$count = 0;
 		while ( true ) {
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 
 			$arIds = $dbw->selectFieldValues(
 				'archive',

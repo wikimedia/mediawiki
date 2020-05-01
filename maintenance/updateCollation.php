@@ -136,7 +136,7 @@ TEXT
 			} else {
 				$this->output( "Fixing collation for $count rows.\n" );
 			}
-			wfWaitForSlaves();
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 		}
 		$count = 0;
 		$batchConds = [];

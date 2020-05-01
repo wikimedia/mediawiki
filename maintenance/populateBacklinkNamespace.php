@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to populate *_from_namespace fields
  *
@@ -63,6 +65,7 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 		$end += $batchSize - 1;
 		$blockStart = $start;
 		$blockEnd = $start + $batchSize - 1;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		while ( $blockEnd <= $end ) {
 			$this->output( "...doing page_id from $blockStart to $blockEnd\n" );
 			$cond = "page_id BETWEEN " . (int)$blockStart . " AND " . (int)$blockEnd;
@@ -86,7 +89,7 @@ class PopulateBacklinkNamespace extends LoggedUpdateMaintenance {
 			}
 			$blockStart += $batchSize - 1;
 			$blockEnd += $batchSize - 1;
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 		return true;
 	}

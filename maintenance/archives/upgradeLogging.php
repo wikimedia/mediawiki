@@ -23,6 +23,7 @@
 
 require __DIR__ . '/../commandLine.inc';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 
 /**
@@ -135,6 +136,7 @@ EOT;
 		$minTs = $this->dbw->selectField( $srcTable, 'MIN(log_timestamp)', '', __METHOD__ );
 		$minTsUnix = wfTimestamp( TS_UNIX, $minTs );
 		$numRowsCopied = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		while ( true ) {
 			$maxTs = $this->dbw->selectField( $srcTable, 'MAX(log_timestamp)', '', __METHOD__ );
@@ -175,7 +177,7 @@ EOT;
 			$this->dbw->insert( $dstTable, $batch, __METHOD__ );
 			$numRowsCopied += count( $batch );
 
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 		echo "Copied $numRowsCopied rows\n";
 	}

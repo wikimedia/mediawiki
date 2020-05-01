@@ -110,7 +110,7 @@ class MwSql extends Maintenance {
 		if ( $this->hasOption( 'query' ) ) {
 			$query = $this->getOption( 'query' );
 			$res = $this->sqlDoQuery( $db, $query, /* dieOnError */ true );
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 			if ( $this->hasOption( 'status' ) ) {
 				exit( $res ? 0 : 2 );
 			}
@@ -157,7 +157,7 @@ class MwSql extends Maintenance {
 			$prompt = $newPrompt;
 			$wholeLine = '';
 		}
-		wfWaitForSlaves();
+		$lbFactory->waitForReplication();
 		if ( $this->hasOption( 'status' ) ) {
 			exit( $res ? 0 : 2 );
 		}

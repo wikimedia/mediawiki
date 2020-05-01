@@ -61,6 +61,7 @@ class InitEditCount extends Maintenance {
 
 			$start = microtime( true );
 			$migrated = 0;
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			for ( $min = 0; $min <= $lastUser; $min += $chunkSize ) {
 				$max = $min + $chunkSize;
 
@@ -91,7 +92,7 @@ class InitEditCount extends Maintenance {
 					$delta,
 					$rate ) );
 
-				wfWaitForSlaves();
+				$lbFactory->waitForReplication();
 			}
 		} else {
 			$this->output( "Using single-query mode...\n" );

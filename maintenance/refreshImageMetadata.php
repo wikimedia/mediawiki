@@ -127,6 +127,7 @@ class RefreshImageMetadata extends Maintenance {
 		];
 
 		$fileQuery = LocalFile::getQueryInfo();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		do {
 			$res = $dbw->select(
@@ -195,7 +196,7 @@ class RefreshImageMetadata extends Maintenance {
 				}
 			}
 			$conds2 = [ 'img_name > ' . $dbw->addQuotes( $row->img_name ) ];
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		} while ( $res->numRows() === $batchSize );
 
 		$total = $upgraded + $leftAlone;

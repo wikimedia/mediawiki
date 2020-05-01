@@ -105,7 +105,8 @@ class NamespaceDupes extends Maintenance {
 			'add-prefix' => $this->getOption( 'add-prefix', '' ),
 			'move-talk' => $this->hasOption( 'move-talk' ),
 			'source-pseudo-namespace' => $this->getOption( 'source-pseudo-namespace', '' ),
-			'dest-namespace' => intval( $this->getOption( 'dest-namespace', 0 ) ) ];
+			'dest-namespace' => intval( $this->getOption( 'dest-namespace', 0 ) )
+		];
 
 		if ( $options['source-pseudo-namespace'] !== '' ) {
 			$retval = $this->checkPrefix( $options );
@@ -369,6 +370,7 @@ class NamespaceDupes extends Maintenance {
 		$namespaceField = "{$fieldPrefix}_namespace";
 		$titleField = "{$fieldPrefix}_title";
 		$batchSize = 500;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		while ( true ) {
 			$res = $dbw->select(
 				$table,
@@ -460,7 +462,7 @@ class NamespaceDupes extends Maintenance {
 				"OR ($titleField = $encLastTitle AND $fromField > $encLastFrom)"
 			];
 
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
+			$lbFactory->waitForReplication();
 		}
 	}
 

@@ -23,6 +23,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -51,6 +52,7 @@ class ConvertUserOptions extends Maintenance {
 
 			return;
 		}
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		while ( $id !== null ) {
 			$res = $dbw->select( 'user',
 				[ 'user_id', 'user_options' ],
@@ -66,7 +68,7 @@ class ConvertUserOptions extends Maintenance {
 			);
 			$id = $this->convertOptionBatch( $res, $dbw );
 
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 
 			if ( $id ) {
 				$this->output( "--Converted to ID $id\n" );
