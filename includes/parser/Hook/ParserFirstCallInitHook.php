@@ -14,7 +14,7 @@ interface ParserFirstCallInitHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Parser $parser Parser object being cleared
+	 * @param Parser $parser Parser object being initialised
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onParserFirstCallInit( $parser );
