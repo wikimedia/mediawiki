@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Helper functions for feeds
@@ -105,7 +106,8 @@ class FeedUtils {
 		//       No "privileged" version should end up in the cache.
 		//       Most feed readers will not log in anyway.
 		$anon = new User();
-		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$permManager = $services->getPermissionManager();
 		$accErrors = $permManager->getPermissionErrors(
 			'read',
 			$anon,
@@ -118,19 +120,25 @@ class FeedUtils {
 			return $completeText;
 		}
 
+		$revLookup = $services->getRevisionLookup();
+		$contentHandlerFactory = $services->getContentHandlerFactory();
 		if ( $oldid ) {
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
 			if ( $wgFeedDiffCutoff > 0 ) {
-				$rev = Revision::newFromId( $oldid );
+				$revRecord = $revLookup->getRevisionById( $oldid );
 
-				if ( !$rev ) {
+				if ( !$revRecord ) {
 					$diffText = false;
 				} else {
 					$context = clone RequestContext::getMain();
 					$context->setTitle( $title );
 
-					$contentHandler = $rev->getContentHandler();
+					$model = $revRecord->getSlot(
+						SlotRecord::MAIN,
+						RevisionRecord::RAW
+					)->getModel();
+					$contentHandler = $contentHandlerFactory->getContentHandler( $model );
 					$de = $contentHandler->createDifferenceEngine( $context, $oldid, $newid );
 					$diffText = $de->getDiff(
 						wfMessage( 'previousrevision' )->text(), // hack
@@ -153,14 +161,13 @@ class FeedUtils {
 				$diffText = self::applyDiffStyle( $diffText );
 			}
 		} else {
-			$rev = Revision::newFromId( $newid );
-			if ( $wgFeedDiffCutoff <= 0 || $rev === null ) {
-				$newContent = MediaWikiServices::getInstance()
-					->getContentHandlerFactory()
+			$revRecord = $revLookup->getRevisionById( $newid );
+			if ( $wgFeedDiffCutoff <= 0 || $revRecord === null ) {
+				$newContent = $contentHandlerFactory
 					->getContentHandler( $title->getContentModel() )
 					->makeEmptyContent();
 			} else {
-				$newContent = $rev->getContent();
+				$newContent = $revRecord->getContent( SlotRecord::MAIN );
 			}
 
 			if ( $newContent instanceof TextContent ) {
