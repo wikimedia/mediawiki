@@ -1212,7 +1212,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( "SELECT GET_LOCK($encName, $timeout) AS lockstatus", $method, $flags );
 		$row = $this->fetchObject( $res );
 
@@ -1237,7 +1237,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function unlock( $lockName, $method ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS;
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( "SELECT RELEASE_LOCK($encName) as lockstatus", $method, $flags );
 		$row = $this->fetchObject( $res );
 
