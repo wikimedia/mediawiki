@@ -2564,6 +2564,25 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.widgets.Table' => [
+		'scripts' => [
+			'resources/src/mediawiki.widgets/Table/mw.widgets.RowWidget.js',
+			'resources/src/mediawiki.widgets/Table/mw.widgets.RowWidgetModel.js',
+			'resources/src/mediawiki.widgets/Table/mw.widgets.TableWidget.js',
+			'resources/src/mediawiki.widgets/Table/mw.widgets.TableWidgetModel.js'
+		],
+		'styles' => [
+			'resources/src/mediawiki.widgets/Table/mw.widgets.RowWidget.css',
+			'resources/src/mediawiki.widgets/Table/mw.widgets.TableWidget.css',
+		],
+		'dependencies' => [
+			'oojs-ui-widgets'
+		],
+		'messages' => [
+			'mw-widgets-table-row-delete',
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.widgets.UserInputWidget' => [
 		'scripts' => [
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',

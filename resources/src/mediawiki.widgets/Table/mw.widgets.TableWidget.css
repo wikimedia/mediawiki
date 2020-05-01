@@ -1,0 +1,9 @@
+.mw-widgets-tableWidget > .mw-widgets-tableWidget-rows {
+	float: left;
+	clear: left;
+	width: 100%;
+}
+
+.mw-widgets-tableWidget.mw-widgets-tableWidget-no-labels .mw-widgets-rowWidget-label {
+	display: none;
+}
