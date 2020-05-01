@@ -27,6 +27,34 @@ use InvalidArgumentException;
 class DeprecatedHooks {
 
 	/**
+	 * @var array[] List of deprecated hooks. Value arrays for each hook contain:
+	 *  - deprecatedVersion: (string) Version in which the hook was deprecated,
+	 *    to pass to wfDeprecated().
+	 *  - component: (string, optional) $component to pass to wfDeprecated().
+	 */
+	private $deprecatedHooks = [
+		'APIQueryInfoTokens' => [ 'deprecatedVersion' => '1.24' ],
+		'APIQueryRecentChangesTokens' => [ 'deprecatedVersion' => '1.24' ],
+		'APIQueryRevisionsTokens' => [ 'deprecatedVersion' => '1.24' ],
+		'APIQueryUsersTokens' => [ 'deprecatedVersion' => '1.24' ],
+		'ApiTokensGetTokenTypes' => [ 'deprecatedVersion' => '1.24' ],
+		'ArticleEditUpdates' => [ 'deprecatedVersion' => '1.35' ],
+		'ArticleEditUpdatesDeleteFromRecentchanges' => [ 'deprecatedVersion' => '1.35' ],
+		'ArticleRevisionUndeleted' => [ 'deprecatedVersion' => '1.35' ],
+		'BeforeParserrenderImageGallery' => [ 'deprecatedVersion' => '1.35' ],
+		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
+		'LinkBegin' => [ 'deprecatedVersion' => '1.28' ],
+		'LinkEnd' => [ 'deprecatedVersion' => '1.28' ],
+		'ParserBeforeTidy' => [ 'deprecatedVersion' => '1.35' ],
+		'ParserFetchTemplate' => [ 'deprecatedVersion' => '1.35' ],
+		'ParserGetVariableValueVarCache' => [ 'deprecatedVersion' => '1.35' ],
+		'ParserPreSaveTransformComplete' => [ 'deprecatedVersion' => '1.35' ],
+		'ParserSectionCreate' => [ 'deprecatedVersion' => '1.35' ],
+		'RevisionInsertComplete' => [ 'deprecatedVersion' => '1.31' ],
+		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],
+	];
+
+	/**
 	 * @param array[] $deprecatedHooks List of hooks to mark as deprecated.
 	 * Value arrays for each hook contain:
 	 *  - deprecatedVersion: (string) Version in which the hook was deprecated,
@@ -38,14 +66,6 @@ class DeprecatedHooks {
 			$this->markDeprecated( $hook, $info['deprecatedVersion'], $info['component'] ?? false );
 		}
 	}
-
-	/**
-	 * @var array[] List of deprecated hooks. Value arrays for each hook contain:
-	 *  - deprecatedVersion: (string) Version in which the hook was deprecated,
-	 *    to pass to wfDeprecated().
-	 *  - component: (string, optional) $component to pass to wfDeprecated().
-	 */
-	private $deprecatedHooks = [];
 
 	/**
 	 * For use by extensions, to add to list of deprecated hooks.
