@@ -24,6 +24,7 @@
  */
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -294,17 +295,13 @@ class DeletedContribsPager extends IndexPager {
 
 		$linkRenderer = $this->getLinkRenderer();
 
-		$rev = new Revision( [
-			'title' => $page,
-			'id' => $row->ar_rev_id,
-			'comment' => CommentStore::getStore()->getComment( 'ar_comment', $row )->text,
-			'user' => $row->ar_user,
-			'user_text' => $row->ar_user_text,
-			'actor' => $row->ar_actor ?? null,
-			'timestamp' => $row->ar_timestamp,
-			'minor_edit' => $row->ar_minor_edit,
-			'deleted' => $row->ar_deleted,
-		] );
+		$revRecord = MediaWikiServices::getInstance()
+			->getRevisionFactory()
+			->newRevisionFromRow(
+				$row,
+				RevisionFactory::READ_NORMAL,
+				$page
+			);
 
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 
@@ -334,7 +331,7 @@ class DeletedContribsPager extends IndexPager {
 				[],
 				[
 					'target' => $page->getPrefixedText(),
-					'timestamp' => $rev->getTimestamp(),
+					'timestamp' => $revRecord->getTimestamp(),
 					'diff' => 'prev'
 				]
 			);
@@ -342,12 +339,12 @@ class DeletedContribsPager extends IndexPager {
 			$last = htmlspecialchars( $this->messages['diff'] );
 		}
 
-		$comment = Linker::revComment( $rev->getRevisionRecord() );
-		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
+		$comment = Linker::revComment( $revRecord );
+		$date = $this->getLanguage()->userTimeAndDate( $revRecord->getTimestamp(), $user );
 
 		if ( !$permissionManager->userHasRight( $user, 'undelete' ) ||
 			 !RevisionRecord::userCanBitfield(
-				$rev->getVisibility(),
+				$revRecord->getVisibility(),
 				RevisionRecord::DELETED_TEXT,
 				$user
 			)
@@ -360,12 +357,12 @@ class DeletedContribsPager extends IndexPager {
 				[ 'class' => 'mw-changeslist-date' ],
 				[
 					'target' => $page->getPrefixedText(),
-					'timestamp' => $rev->getTimestamp()
+					'timestamp' => $revRecord->getTimestamp()
 				]
 			);
 		}
 		// Style deleted items
-		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 
@@ -375,14 +372,14 @@ class DeletedContribsPager extends IndexPager {
 			[ 'class' => 'mw-changeslist-title' ]
 		);
 
-		if ( $rev->isMinor() ) {
+		if ( $revRecord->isMinor() ) {
 			$mflag = ChangesList::flag( 'minor' );
 		} else {
 			$mflag = '';
 		}
 
 		// Revision delete link
-		$del = Linker::getRevDeleteLink( $user, $rev->getRevisionRecord(), $page );
+		$del = Linker::getRevDeleteLink( $user, $revRecord, $page );
 		if ( $del ) {
 			$del .= ' ';
 		}
@@ -398,7 +395,7 @@ class DeletedContribsPager extends IndexPager {
 		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment}";
 
 		# Denote if username is redacted for this edit
-		if ( $rev->isDeleted( RevisionRecord::DELETED_USER ) ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
 		}
 

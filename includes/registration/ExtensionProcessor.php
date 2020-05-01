@@ -248,7 +248,7 @@ class ExtensionProcessor implements Processor {
 			if ( $version === 2 ) {
 				// Only whitelisted attributes are set
 				if ( in_array( $key, self::CORE_ATTRIBS ) ) {
-					$this->storeToArrayRecursive( $path, $key, $val, $this->attributes );
+					$this->storeToArray( $path, $key, $val, $this->attributes );
 				}
 			} else {
 				// version === 1
@@ -738,6 +738,26 @@ class ExtensionProcessor implements Processor {
 		}
 		if ( isset( $array[$name] ) ) {
 			$array[$name] = array_merge_recursive( $array[$name], $value );
+		} else {
+			$array[$name] = $value;
+		}
+	}
+
+	/**
+	 * Stores $value to $array; using array_merge() if $array already contains $name
+	 *
+	 * @param string $path
+	 * @param string $name
+	 * @param array $value
+	 * @param array &$array
+	 * @throws InvalidArgumentException
+	 */
+	protected function storeToArray( $path, $name, $value, &$array ) {
+		if ( !is_array( $value ) ) {
+			throw new InvalidArgumentException( "The value for '$name' should be an array (from $path)" );
+		}
+		if ( isset( $array[$name] ) ) {
+			$array[$name] = array_merge( $array[$name], $value );
 		} else {
 			$array[$name] = $value;
 		}

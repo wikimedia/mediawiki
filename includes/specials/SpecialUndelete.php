@@ -436,7 +436,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 		$revRecord = $rev->getRevisionRecord();
 
-		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			if ( !RevisionRecord::userCanBitfield(
 				$revRecord->getVisibility(),
 				RevisionRecord::DELETED_TEXT,
@@ -444,7 +444,7 @@ class SpecialUndelete extends SpecialPage {
 			) ) {
 				$out->wrapWikiMsg(
 					"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				$rev->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
+				$revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 					'rev-suppressed-text-permission' : 'rev-deleted-text-permission'
 				);
 
@@ -461,9 +461,9 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $this->mDiff ) {
-			$previousRev = $archive->getPreviousRevision( $timestamp );
-			if ( $previousRev ) {
-				$this->showDiff( $previousRev->getRevisionRecord(), $revRecord );
+			$previousRevRecord = $archive->getPreviousRevisionRecord( $timestamp );
+			if ( $previousRevRecord ) {
+				$this->showDiff( $previousRevRecord, $revRecord );
 				if ( $this->mDiffOnly ) {
 					return;
 				}
@@ -488,7 +488,11 @@ class SpecialUndelete extends SpecialPage {
 		$t = $lang->userTime( $timestamp, $user );
 		$userLink = Linker::revUserTools( $revRecord );
 
-		$content = $rev->getContent( RevisionRecord::FOR_THIS_USER, $user );
+		$content = $revRecord->getContent(
+			SlotRecord::MAIN,
+			RevisionRecord::FOR_THIS_USER,
+			$user
+		);
 
 		// TODO: MCR: this will have to become something like $hasTextSlots and $hasNonTextSlots
 		$isText = ( $content instanceof TextContent );
@@ -987,7 +991,6 @@ class SpecialUndelete extends SpecialPage {
 				RevisionFactory::READ_NORMAL,
 				$this->mTargetObj
 			);
-		$revObject = new Revision( $revRecord );
 
 		$revTextSize = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
@@ -1019,7 +1022,7 @@ class SpecialUndelete extends SpecialPage {
 				$pageLink = htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) );
 				$last = $this->msg( 'diff' )->escaped();
 			} elseif ( $remaining > 0 || ( $earliestLiveTime && $ts > $earliestLiveTime ) ) {
-				$pageLink = $this->getPageLink( $revObject, $titleObj, $ts );
+				$pageLink = $this->getPageLink( $revRecord, $titleObj, $ts );
 				$last = $this->getLinkRenderer()->makeKnownLink(
 					$titleObj,
 					$this->msg( 'diff' )->text(),
@@ -1031,7 +1034,7 @@ class SpecialUndelete extends SpecialPage {
 					]
 				);
 			} else {
-				$pageLink = $this->getPageLink( $revObject, $titleObj, $ts );
+				$pageLink = $this->getPageLink( $revRecord, $titleObj, $ts );
 				$last = $this->msg( 'diff' )->escaped();
 			}
 		} else {
@@ -1129,17 +1132,17 @@ class SpecialUndelete extends SpecialPage {
 	/**
 	 * Fetch revision text link if it's available to all users
 	 *
-	 * @param Revision $rev
+	 * @param RevisionRecord $revRecord
 	 * @param Title $titleObj
 	 * @param string $ts Timestamp
 	 * @return string
 	 */
-	function getPageLink( $rev, $titleObj, $ts ) {
+	private function getPageLink( RevisionRecord $revRecord, $titleObj, $ts ) {
 		$user = $this->getUser();
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
 		if ( !RevisionRecord::userCanBitfield(
-			$rev->getVisibility(),
+			$revRecord->getVisibility(),
 			RevisionRecord::DELETED_TEXT,
 			$user
 		) ) {
@@ -1156,7 +1159,7 @@ class SpecialUndelete extends SpecialPage {
 			]
 		);
 
-		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 
