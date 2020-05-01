@@ -1964,7 +1964,7 @@ function wfRecursiveRemoveDir( $dir ) {
 }
 
 /**
- * @param int $nr The number to format
+ * @param float $nr The number to format
  * @param int $acc The number of digits after the decimal point, default 2
  * @param bool $round Whether or not to round the value, default true
  * @return string
