@@ -295,6 +295,7 @@ class ParserOptions {
 	 * @deprecated since 1.35; tidy is always enabled
 	 */
 	public function getTidy() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->getOption( 'tidy' );
 	}
 
