@@ -437,8 +437,14 @@ abstract class Installer {
 		$mwServices->redefineService( 'InterwikiLookup', function () {
 			return new NullInterwikiLookup();
 		} );
+		// Disable user options database fetching, only rely on default options.
+		$mwServices->redefineService(
+			'UserOptionsLookup',
+			function ( MediaWikiServices $services ) {
+				return $services->get( '_DefaultOptionsManager' );
+			}
+		);
 
-		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
 		RequestContext::getMain()->setUser( $wgUser );
 
@@ -1549,6 +1555,7 @@ abstract class Installer {
 			[ 'name' => 'stats', 'callback' => [ $this, 'populateSiteStats' ] ],
 			[ 'name' => 'keys', 'callback' => [ $this, 'generateKeys' ] ],
 			[ 'name' => 'updates', 'callback' => [ $installer, 'insertUpdateKeys' ] ],
+			[ 'name' => 'restore-services', 'callback' => [ $this, 'restoreServices' ] ],
 			[ 'name' => 'sysop', 'callback' => [ $this, 'createSysop' ] ],
 			[ 'name' => 'mainpage', 'callback' => [ $this, 'createMainpage' ] ],
 		];
@@ -1639,6 +1646,21 @@ abstract class Installer {
 		}
 
 		return $this->doGenerateKeys( $keys );
+	}
+
+	/**
+	 * Restore services that have been redefined in the early stage of installation
+	 * @return Status
+	 */
+	public function restoreServices() {
+		MediaWikiServices::resetGlobalInstance();
+		MediaWikiServices::getInstance()->redefineService(
+			'UserOptionsLookup',
+			function ( MediaWikiServices $services ) {
+				return $services->get( 'UserOptionsManager' );
+			}
+		);
+		return Status::newGood();
 	}
 
 	/**

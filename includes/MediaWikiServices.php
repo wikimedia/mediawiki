@@ -62,6 +62,8 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\UserOptionsManager;
 use MessageCache;
 use MimeAnalyzer;
 use MWException;
@@ -1216,6 +1218,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserNameUtils() : UserNameUtils {
 		return $this->getService( 'UserNameUtils' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return UserOptionsLookup
+	 */
+	public function getUserOptionsLookup() : UserOptionsLookup {
+		return $this->getService( 'UserOptionsLookup' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return UserOptionsManager
+	 */
+	public function getUserOptionsManager() : UserOptionsManager {
+		return $this->getService( 'UserOptionsManager' );
 	}
 
 	/**

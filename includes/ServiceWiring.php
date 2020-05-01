@@ -92,7 +92,10 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\User\DefaultOptionsManager;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\UserOptionsManager;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
@@ -1103,6 +1106,20 @@ return [
 		);
 	},
 
+	'UserOptionsLookup' => function ( MediaWikiServices $services ) : UserOptionsLookup {
+		return $services->getUserOptionsManager();
+	},
+
+	'UserOptionsManager' => function ( MediaWikiServices $services ) : UserOptionsManager {
+		return new UserOptionsManager(
+			new ServiceOptions( UserOptionsManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->get( '_DefaultOptionsManager' ),
+			$services->getLanguageConverterFactory(),
+			$services->getDBLoadBalancer(),
+			LoggerFactory::getInstance( 'UserOptionsManager' )
+		);
+	},
+
 	'VirtualRESTServiceClient' =>
 	function ( MediaWikiServices $services ) : VirtualRESTServiceClient {
 		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
@@ -1159,6 +1176,13 @@ return [
 			false,
 			LoggerFactory::getInstance( 'OldRevisionImporter' ),
 			$services->getDBLoadBalancer()
+		);
+	},
+
+	'_DefaultOptionsManager' => function ( MediaWikiServices $services ) : DefaultOptionsManager {
+		return new DefaultOptionsManager(
+			new ServiceOptions( DefaultOptionsManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getContentLanguage()
 		);
 	},
 
