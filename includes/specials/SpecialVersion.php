@@ -1068,7 +1068,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Obtains the full path of an extensions authors or credits file if
+	 * Obtains the full path of an extensions AUTHORS or CREDITS file if
 	 * one exists.
 	 *
 	 * @param string $extDir Path to the extensions root directory
@@ -1097,7 +1097,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Obtains the full path of an extensions copying or license file if
+	 * Obtains the full path of an extensions COPYING or LICENSE file if
 	 * one exists.
 	 *
 	 * @param string $extDir Path to the extensions root directory
