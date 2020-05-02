@@ -425,7 +425,7 @@
 [submodule "extensions/AJAXPoll"]
 	path = extensions/AJAXPoll
 	url = https://github.com/wikimedia/mediawiki-extensions-AJAXPoll.git
-	branch = REL1_34
+	branch = master
 	ignore = dirty
 [submodule "extensions/BlogPage"]
 	path = extensions/BlogPage
@@ -549,7 +549,7 @@
 	ignore = dirty
 [submodule "extensions/JavascriptSlideshow"]
 	path = extensions/JavascriptSlideshow
-	url = https://github.com/DaSchTour/JavascriptSlideshow.git
+	url = https://gitlab.com/hydrawiki/extensions/javascriptslideshow.git
 	branch = master
 	ignore = dirty
 [submodule "extensions/Wikibase"]
@@ -1072,7 +1072,7 @@
 	ignore = dirty
 [submodule "extensions/WikiSEO"]
 	path = extensions/WikiSEO
-	url = https://github.com/tinymighty/wiki-seo.git
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiSEO.git
 	branch = master
 	ignore = dirty
 [submodule "extensions/DummyFandoomMainpageTags"]
@@ -1234,5 +1234,65 @@
 	ignore = dirty
 [submodule "extensions/SpriteSheet"]
 	path = extensions/SpriteSheet
-	url = https://github.com/HydraWiki/SpriteSheet
+	url = https://gitlab.com/hydrawiki/extensions/SpriteSheet.git
+	branch = master
+	ignore = dirty
+[submodule "extensions/LanguageSelector"]
+	path = extensions/LanguageSelector
+	url = https://github.com/wikimedia/mediawiki-extensions-LanguageSelector
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/ForcePreview"]
+	path = extensions/ForcePreview
+	url = https://github.com/wikimedia/mediawiki-extensions-ForcePreview
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/SlackNotifications"]
+	path = extensions/SlackNotifications
+	url = https://github.com/kulttuuri/SlackNotifications
+	branch = master
+	ignore = dirty
+[submodule "extensions/RegexFunctions"]
+	path = extensions/RegexFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-RegexFunctions
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/CommentStreams"]
+	path = extensions/CommentStreams
+	url = https://github.com/wikimedia/mediawiki-extensions-CommentStreams
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/VEForAll"]
+	path = extensions/VEForAll
+	url = https://github.com/wikimedia/mediawiki-extensions-VEForAll
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/DataTransfer"]
+	path = extensions/DataTransfer
+	url = https://github.com/wikimedia/mediawiki-extensions-DataTransfer
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/Bootstrap"]
+	path = extensions/Bootstrap
+	url = https://github.com/ProfessionalWiki/Bootstrap
+	branch = master
+	ignore = dirty
+[submodule "extensions/Calendar"]
+	path = extensions/Calendar
+	url = https://github.com/wikimedia/mediawiki-extensions-Calendar
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/DynamicSidebar"]
+	path = extensions/DynamicSidebar
+	url = https://github.com/wikimedia/mediawiki-extensions-DynamicSidebar.git
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/GlobalUsage"]
+	path = extensions/GlobalUsage
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUsage.git
+	branch = REL1_34
+	ignore = dirty
+[submodule "extensions/GoogleDocs4MW"]
+	path = extensions/GoogleDocs4MW
+	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
 	branch = master
