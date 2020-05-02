@@ -285,6 +285,124 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Prepare the subtitle of the page for output in the skin if one has been set.
+	 * @since 1.35
+	 * @return string HTML
+	 */
+	final protected function prepareSubtitle() {
+		$out = $this->getOutput();
+		$subpagestr = $this->subPageSubtitle();
+		if ( $subpagestr !== '' ) {
+			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
+		}
+		return $subpagestr . $out->getSubtitle();
+	}
+
+	/**
+	 * Prepare user language attribute links
+	 * @since 1.35
+	 * @return string HTML attributes
+	 */
+	final protected function prepareUserLanguageAttributes() {
+		$userLang = $this->getLanguage();
+		$userLangCode = $userLang->getHtmlCode();
+		$userLangDir = $userLang->getDir();
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		if (
+			$userLangCode !== $contLang->getHtmlCode() ||
+			$userLangDir !== $contLang->getDir()
+		) {
+			$escUserlang = htmlspecialchars( $userLangCode );
+			$escUserdir = htmlspecialchars( $userLangDir );
+			// Attributes must be in double quotes because htmlspecialchars() doesn't
+			// escape single quotes
+			$attrs = " lang=\"$escUserlang\" dir=\"$escUserdir\"";
+			return $attrs;
+		}
+		return '';
+	}
+
+	/**
+	 * Get template representation of the footer.
+	 * @since 1.35
+	 * @return array
+	 */
+	protected function getFooterIcons() {
+		global $wgFooterIcons;
+		$footericons = [];
+		foreach ( $wgFooterIcons as $footerIconsKey => &$footerIconsBlock ) {
+			if ( count( $footerIconsBlock ) > 0 ) {
+				$footericons[$footerIconsKey] = [];
+				foreach ( $footerIconsBlock as &$footerIcon ) {
+					if ( isset( $footerIcon['src'] ) ) {
+						if ( !isset( $footerIcon['width'] ) ) {
+							$footerIcon['width'] = 88;
+						}
+						if ( !isset( $footerIcon['height'] ) ) {
+							$footerIcon['height'] = 31;
+						}
+					}
+					$footericons[$footerIconsKey][] = $footerIcon;
+				}
+			}
+		}
+		return $footericons;
+	}
+
+	/**
+	 * Get template representation of the footer.
+	 * @since 1.35
+	 * @return array
+	 */
+	final protected function getFooterLinks() {
+		return [
+			'info' => [
+				'lastmod',
+				'numberofwatchingusers',
+				'credits',
+				'copyright',
+			],
+			'places' => [
+				'privacy',
+				'about',
+				'disclaimer',
+			],
+		];
+	}
+
+	/**
+	 * Build data structure representing syndication links
+	 * @since 1.35
+	 * @return array
+	 */
+	final protected function buildFeedUrls() {
+		$out = $this->getOutput();
+		if ( $out->isSyndicated() ) {
+			$feeds = [];
+			foreach ( $out->getSyndicationLinks() as $format => $link ) {
+				$feeds[$format] = [
+					// Messages: feed-atom, feed-rss
+					'text' => $this->msg( "feed-$format" )->text(),
+					'href' => $link
+				];
+			}
+			return $feeds;
+		} else {
+			return [];
+		}
+	}
+
+	/**
+	 * Prepare undelete link for output in page.
+	 * @since 1.35
+	 * @return null|string HTML, or null if there is no undelete link.
+	 */
+	final protected function prepareUndeleteLink() {
+		$undelete = $this->getUndeleteLink();
+		return $undelete === '' ? null : '<span class="subpages">' . $undelete . '</span>';
+	}
+
+	/**
 	 * initialize various variables and generate the template
 	 *
 	 * @since 1.23
@@ -312,33 +430,12 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'isarticle', $out->isArticle() );
 
-		$subpagestr = $this->subPageSubtitle();
-		if ( $subpagestr !== '' ) {
-			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
-		}
-		$tpl->set( 'subtitle', $subpagestr . $out->getSubtitle() );
-
-		$undelete = $this->getUndeleteLink();
-		if ( $undelete === '' ) {
-			$tpl->set( 'undelete', '' );
-		} else {
-			$tpl->set( 'undelete', '<span class="subpages">' . $undelete . '</span>' );
-		}
+		$tpl->set( 'subtitle', $this->prepareSubtitle() );
+		$tpl->set( 'undelete', $this->prepareUndeleteLink() );
 
 		$tpl->set( 'catlinks', $this->getCategories() );
-		if ( $out->isSyndicated() ) {
-			$feeds = [];
-			foreach ( $out->getSyndicationLinks() as $format => $link ) {
-				$feeds[$format] = [
-					// Messages: feed-atom, feed-rss
-					'text' => $this->msg( "feed-$format" )->text(),
-					'href' => $link
-				];
-			}
-			$tpl->set( 'feeds', $feeds );
-		} else {
-			$tpl->set( 'feeds', false );
-		}
+		$feeds = $this->buildFeedUrls();
+		$tpl->set( 'feeds', count( $feeds ) ? $feeds : false );
 
 		$tpl->set( 'mimetype', $wgMimeType );
 		$tpl->set( 'charset', 'UTF-8' );
@@ -386,18 +483,7 @@ class SkinTemplate extends Skin {
 		// heading for the page title. Defaults to empty string.
 		$tpl->set( 'prebodyhtml', '' );
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		if (
-			$userLangCode !== $contLang->getHtmlCode() ||
-			$userLangDir !== $contLang->getDir()
-		) {
-			$escUserlang = htmlspecialchars( $userLangCode );
-			$escUserdir = htmlspecialchars( $userLangDir );
-			// Attributes must be in double quotes because htmlspecialchars() doesn't
-			// escape single quotes
-			$attrs = " lang=\"$escUserlang\" dir=\"$escUserdir\"";
-			$tpl->set( 'userlangattributes', $attrs );
-		}
+		$tpl->set( 'userlangattributes', $this->prepareUserLanguageAttributes() );
 
 		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->set( 'logo', $this->logoText() );
@@ -440,38 +526,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'privacy', $footerLinks['privacy'] );
 		$tpl->set( 'about', $footerLinks['about'] );
 
-		$tpl->set( 'footerlinks', [
-			'info' => [
-				'lastmod',
-				'numberofwatchingusers',
-				'credits',
-				'copyright',
-			],
-			'places' => [
-				'privacy',
-				'about',
-				'disclaimer',
-			],
-		] );
-
-		global $wgFooterIcons;
-		$tpl->set( 'footericons', $wgFooterIcons );
-		foreach ( $tpl->data['footericons'] as $footerIconsKey => &$footerIconsBlock ) {
-			if ( count( $footerIconsBlock ) > 0 ) {
-				foreach ( $footerIconsBlock as &$footerIcon ) {
-					if ( isset( $footerIcon['src'] ) ) {
-						if ( !isset( $footerIcon['width'] ) ) {
-							$footerIcon['width'] = 88;
-						}
-						if ( !isset( $footerIcon['height'] ) ) {
-							$footerIcon['height'] = 31;
-						}
-					}
-				}
-			} else {
-				unset( $tpl->data['footericons'][$footerIconsKey] );
-			}
-		}
+		$tpl->set( 'footerlinks', $this->getFooterLinks() );
+		$tpl->set( 'footericons', $this->getFooterIcons() );
 
 		$tpl->set( 'indicators', $out->getIndicators() );
 
