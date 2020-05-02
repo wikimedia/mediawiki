@@ -1850,17 +1850,6 @@ function wfIsWindows() {
 }
 
 /**
- * Check if we are running under HHVM
- *
- * @deprecated since 1.34, HHVM is no longer supported
- * @return bool
- */
-function wfIsHHVM() {
-	wfDeprecated( __FUNCTION__, '1.34' );
-	return false;
-}
-
-/**
  * Check if we are running from the commandline
  *
  * @since 1.31
