@@ -29,7 +29,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
-use MediaWiki\Session\SessionManager;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -1851,17 +1850,6 @@ function wfIsWindows() {
 }
 
 /**
- * Check if we are running under HHVM
- *
- * @deprecated since 1.34, HHVM is no longer supported
- * @return bool
- */
-function wfIsHHVM() {
-	wfDeprecated( __FUNCTION__, '1.34' );
-	return false;
-}
-
-/**
  * Check if we are running from the commandline
  *
  * @since 1.31
@@ -2381,31 +2369,6 @@ function wfRelativePath( $path, $from ) {
 	array_push( $pieces, wfBaseName( $path ) );
 
 	return implode( DIRECTORY_SEPARATOR, $pieces );
-}
-
-/**
- * Initialise php session
- *
- * @deprecated since 1.27, use MediaWiki\Session\SessionManager instead.
- *  Generally, "using" SessionManager will be calling ->getSessionById() or
- *  ::getGlobalSession() (depending on whether you were passing $sessionId
- *  here), then calling $session->persist().
- * @param bool|string $sessionId
- */
-function wfSetupSession( $sessionId = false ) {
-	wfDeprecated( __FUNCTION__, '1.27' );
-
-	if ( $sessionId ) {
-		session_id( $sessionId );
-	}
-
-	$session = SessionManager::getGlobalSession();
-	$session->persist();
-
-	if ( session_id() !== $session->getId() ) {
-		session_id( $session->getId() );
-	}
-	AtEase::quietCall( 'session_start' );
 }
 
 /**
