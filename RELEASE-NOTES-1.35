@@ -122,6 +122,10 @@ For notes on 1.34.x and older releases, see HISTORY.
   they have local skin config for the feature and use that.
 * $wgPasswordPolicy — The deprecated policy 'PasswordCannotBePopular' has been
   removed. Use PasswordNotInCommonList instead which covers many more passwords.
+* Backwards compatibility for using an associative array
+  (e.g. [ '127.0.0.1' => 'bad-ip' ]) for $wgProxyList has been removed. This
+  was deprecated since 1.30. Please convert these arrays to indexed/sequential
+  ones (e.g. [ '127.0.0.1' ]).
 * …
 
 ==== Removed configuration ====
