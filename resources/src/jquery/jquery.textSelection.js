@@ -154,8 +154,9 @@
 						post = options.post;
 
 					/**
-					 * @ignore
 					 * Check if the selected text is the same as the insert text
+					 *
+					 * @ignore
 					 */
 					function checkSelectedText() {
 						if ( !selText ) {
@@ -178,11 +179,11 @@
 					}
 
 					/**
-					 * @ignore
 					 * Do the splitlines stuff.
 					 *
 					 * Wrap each line of the selected text with pre and post
 					 *
+					 * @ignore
 					 * @param {string} selText Selected text
 					 * @param {string} pre Text before
 					 * @param {string} post Text after

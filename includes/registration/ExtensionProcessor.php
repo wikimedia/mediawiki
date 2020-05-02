@@ -65,6 +65,7 @@ class ExtensionProcessor implements Processor {
 	protected const CORE_ATTRIBS = [
 		'RestRoutes',
 		'SkinOOUIThemes',
+		'SearchMappings',
 		'TrackingCategories',
 	];
 
@@ -133,7 +134,6 @@ class ExtensionProcessor implements Processor {
 		'ResourceFileModulePaths',
 		'ResourceModuleSkinStyles',
 		'ResourceModules',
-		'SearchMappings',
 		'ServiceWiringFiles',
 	];
 
