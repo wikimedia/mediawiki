@@ -62,7 +62,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  *        be stale, one should consider using TTL only – using the value's age as
  *        method of validation.
  *
- * The purge strategy refers to the the approach whereby your application knows that
+ * The purge strategy refers to the approach whereby your application knows that
  * source data has changed and can react by purging the relevant cache keys.
  * As purges are expensive, this strategy should be avoided if possible.
  * The simplest purge method is delete().

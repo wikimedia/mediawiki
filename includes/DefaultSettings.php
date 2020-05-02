@@ -536,7 +536,7 @@ $wgImgAuthUrlPathMap = [];
  *
  *                      Default: 2.
  *   - deletedHashLevels
- *                      Optional 'hashLevels' override for the the 'deleted' zone.
+ *                      Optional 'hashLevels' override for the 'deleted' zone.
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
  *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404
  *                      handler instead.
@@ -3933,7 +3933,7 @@ $wgResourceModules = [];
 /**
  * Add extra skin-specific styles to a resource module.
  *
- * These are automatically added by ResourceLoader to the the 'skinStyles' list of
+ * These are automatically added by ResourceLoader to the 'skinStyles' list of
  * the existing module. The 'styles' list cannot be modified or disabled.
  *
  * For example, below a module "bar" is defined and skin Foo provides additional
