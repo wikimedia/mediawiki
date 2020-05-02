@@ -4286,12 +4286,10 @@ $wgNamespaceAliases = [];
 $wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
 
 /**
- * Array for multiple $wgLocalInterwiki values, in case there are several
- * interwiki prefixes that point to the current wiki. If $wgLocalInterwiki is
- * set, its value is prepended to this array, for backwards compatibility.
+ * Array for local interwiki values, for each of the interwiki prefixes that point to
+ * the current wiki.
  *
- * Note, recent changes feeds use only the first entry in this array (or
- * $wgLocalInterwiki, if it is set). See $wgRCFeeds
+ * Note, recent changes feeds use only the first entry in this array. See $wgRCFeeds.
  */
 $wgLocalInterwikis = [];
 
@@ -7182,8 +7180,7 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
  *
  * IRCColourfulRCFeedFormatter-specific options:
  * - 'add_interwiki_prefix' -- whether the titles should be prefixed with
- *   the first entry in the $wgLocalInterwikis array (or the value of
- *   $wgLocalInterwiki, if set)
+ *   the first entry in the $wgLocalInterwikis array
  *
  * JSONRCFeedFormatter-specific options:
  * - 'channel' -- if set, the 'channel' parameter is also set in JSON values.
