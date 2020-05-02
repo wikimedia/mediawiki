@@ -938,14 +938,6 @@ return [
 			}
 		}
 
-		if ( $config->has( 'ContentHandlerUseDB' ) ) {
-			if ( $config->get( 'ContentHandlerUseDB' ) !== true ) {
-				throw new UnexpectedValueException(
-					'The ContentHandlerUseDB setting is no longer supported!'
-				);
-			}
-		}
-
 		$store = new RevisionStoreFactory(
 			$services->getDBLoadBalancerFactory(),
 			$services->getBlobStoreFactory(),
