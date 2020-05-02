@@ -877,6 +877,18 @@ class SpecialBlock extends FormSpecialPage {
 			return [ 'ipb-prevent-user-talk-edit' ];
 		}
 
+		// A block is empty if it is a partial block, the page restrictions are empty, the
+		// namespace restrictions are empty, and none of the actions are enabled
+		if ( $isPartialBlock &&
+			!( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) &&
+			!( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) &&
+			$data['DisableEmail'] === false &&
+			!$data['DisableUTEdit'] &&
+			!$data['CreateAccount']
+		) {
+			return [ 'ipb-empty-block' ];
+		}
+
 		# Create block object.
 		$block = new DatabaseBlock();
 		$block->setTarget( $target );
