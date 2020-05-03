@@ -30,7 +30,7 @@ class SpecialMute extends FormSpecialPage {
 
 	private const PAGE_NAME = 'Mute';
 
-	/** @var User */
+	/** @var User|null */
 	private $target;
 
 	/** @var int */
@@ -128,6 +128,13 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
+	 * @return User|null $target
+	 */
+	public function getTarget(): ?User {
+		return $this->target;
+	}
+
+	/**
 	 * Un-mute target
 	 *
 	 * @param string $userOption up_property key that holds the blacklist
@@ -189,7 +196,10 @@ class SpecialMute extends FormSpecialPage {
 		) {
 			$fields['email-blacklist'] = [
 				'type' => 'check',
-				'label-message' => 'specialmute-label-mute-email',
+				'label-message' => [
+					'specialmute-label-mute-email',
+					$this->getTarget() ? $this->getTarget()->getName() : ''
+				],
 				'default' => $this->isTargetBlacklisted( 'email-blacklist' ),
 			];
 		}

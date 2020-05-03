@@ -4467,7 +4467,7 @@
 	"specialmute": "The name of the special page [[Special:Mute]].",
 	"specialmute-success": "The content of [[Special:Mute]] with a successful message indicating that your mute preferences have been updated after the form has been submitted.",
 	"specialmute-submit": "Submit button on [[Special:Mute]] form.\n{{Identical|Confirm}}",
-	"specialmute-label-mute-email": "Label for the checkbox that mutes/unmutes emails from the specified user.",
+	"specialmute-label-mute-email": "Label for the checkbox that mutes/unmutes emails from the specified user. {{Gender}}",
 	"specialmute-header": "Used as header text on [[Special:Mute]]. Shown before the form with the muting options.\n* $1 - User selected for muting",
 	"specialmute-error-invalid-user": "Error displayed when the username cannot be found.",
 	"specialmute-error-no-options": "Error displayed when there are no options available to mute on [[Special:Mute]].",
