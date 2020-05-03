@@ -24941,10 +24941,10 @@ showtitle
 wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=false
 !! wikitext
-this is not the the title
+this is not the title
 !! html/php
 Parser test
-<p>this is not the the title
+<p>this is not the title
 </p>
 !! end
 
@@ -24957,11 +24957,11 @@ title=[[Screen]]
 wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=false
 !! wikitext
-this is not the the title
+this is not the title
 {{DISPLAYTITLE:whatever}}
 !! html/php
 whatever
-<p>this is not the the title
+<p>this is not the title
 </p>
 !! end
 
@@ -24974,11 +24974,11 @@ title=[[Screen]]
 wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=true
 !! wikitext
-this is not the the title
+this is not the title
 {{DISPLAYTITLE:whatever}}
 !! html/php
 Screen
-<p>this is not the the title
+<p>this is not the title
 </p>
 !! end
 
@@ -24991,11 +24991,11 @@ title=[[Screen]]
 wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=true
 !! wikitext
-this is not the the title
+this is not the title
 {{DISPLAYTITLE:screen}}
 !! html/php
 screen
-<p>this is not the the title
+<p>this is not the title
 </p>
 !! end
 
@@ -25007,11 +25007,11 @@ title=[[Screen]]
 !! config
 wgAllowDisplayTitle=false
 !! wikitext
-this is not the the title
+this is not the title
 {{DISPLAYTITLE:screen}}
 !! html/php
 Screen
-<p>this is not the the title
+<p>this is not the title
 <a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
 </p>
 !! end
@@ -25024,10 +25024,10 @@ title=[[Screen]]
 !! config
 wgAllowDisplayTitle=false
 !! wikitext
-this is not the the title
+this is not the title
 !! html/php
 Screen
-<p>this is not the the title
+<p>this is not the title
 </p>
 !! end
 
@@ -25040,11 +25040,11 @@ title=[[Screen]]
 wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=true
 !! wikitext
-this is not the the title
+this is not the title
 {{DISPLAYTITLE:<span style="display: none;">s</span>creen}}
 !! html/php
 <span style="/* attempt to bypass $wgRestrictDisplayTitle */">s</span>creen
-<p>this is not the the title
+<p>this is not the title
 </p>
 !! end
 
@@ -25057,11 +25057,11 @@ title=[[Screen]]
 wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=true
 !! wikitext
-this is not the the title
+this is not the title
 {{DISPLAYTITLE:<span style="color: red;">s</span>creen}}
 !! html/php
 <span style="color: red;">s</span>creen
-<p>this is not the the title
+<p>this is not the title
 </p>
 !! end
 

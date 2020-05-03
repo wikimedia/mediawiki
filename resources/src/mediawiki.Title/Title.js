@@ -981,7 +981,7 @@ Title.prototype = {
 	},
 
 	/**
-	 * Check the the title can have an associated talk page
+	 * Check the title can have an associated talk page
 	 *
 	 * @return {boolean} The title can have an associated talk page
 	 */
