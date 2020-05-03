@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * The running version of MediaWiki.
  *
- * This replaces the the $wgVersion global found in earlier versions.
+ * This replaces the $wgVersion global found in earlier versions.
  *
  * @since 1.35
  */

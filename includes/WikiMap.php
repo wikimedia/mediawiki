@@ -225,7 +225,7 @@ class WikiMap {
 		global $wgCanonicalServer;
 
 		if ( strpos( $url, "$wgCanonicalServer/" ) === 0 ) {
-			// Optimisation: Handle the the common case.
+			// Optimisation: Handle the common case.
 			// (Duplicates self::getCanonicalServerInfoForAllWikis)
 			return self::getCurrentWikiId();
 		}

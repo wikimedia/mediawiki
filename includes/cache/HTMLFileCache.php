@@ -175,7 +175,7 @@ class HTMLFileCache extends FileCacheBase {
 	 *
 	 * Normally this is only registed as a handler if $wgUseFileCache is on.
 	 * If can be explicitly called by rebuildFileCache.php when it takes over
-	 * handling file caching itself, disabling any automatic handling the the
+	 * handling file caching itself, disabling any automatic handling the
 	 * process.
 	 *
 	 * @param string $text
