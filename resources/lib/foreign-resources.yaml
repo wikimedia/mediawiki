@@ -196,14 +196,14 @@ jquery.throttle-debounce:
 
 moment:
   type: tar
-  src: https://codeload.github.com/moment/moment/tar.gz/2.24.0
-  integrity: sha384-2/I9rfqkN8AAgh5wOXXphuo827uV7lMmOodrCfIvqC6W6JKKiDGOwd+lE3e8R0yz
+  src: https://codeload.github.com/moment/moment/tar.gz/2.25.2
+  integrity: sha384-Kdi8+psMUggMYwnp+uBCuy03sBfDbKFyjzdLWJks/4O8x4DwOFWzYbtm7RbJ4ISU
   dest:
-    moment-2.24.0/moment.js:
-    moment-2.24.0/CHANGELOG.md:
-    moment-2.24.0/README.md:
-    moment-2.24.0/LICENSE:
-    moment-2.24.0/locale/*.js: locale
+    moment-2.25.2/moment.js:
+    moment-2.25.2/CHANGELOG.md:
+    moment-2.25.2/README.md:
+    moment-2.25.2/LICENSE:
+    moment-2.25.2/locale/*.js: locale
 
 mustache:
   type: multi-file

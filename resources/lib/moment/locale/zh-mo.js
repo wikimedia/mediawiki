@@ -1,7 +1,8 @@
 //! moment.js locale configuration
-//! locale : Chinese (Taiwan) [zh-tw]
+//! locale : Chinese (Macau) [zh-mo]
 //! author : Ben : https://github.com/ben-lin
 //! author : Chris Lam : https://github.com/hehachris
+//! author : Tan Yuanhong : https://github.com/le0tan
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -12,7 +13,7 @@
 
     //! moment.js locale configuration
 
-    var zhTw = moment.defineLocale('zh-tw', {
+    var zhMo = moment.defineLocale('zh-mo', {
         months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split(
             '_'
         ),
@@ -25,11 +26,11 @@
         longDateFormat: {
             LT: 'HH:mm',
             LTS: 'HH:mm:ss',
-            L: 'YYYY/MM/DD',
+            L: 'DD/MM/YYYY',
             LL: 'YYYY年M月D日',
             LLL: 'YYYY年M月D日 HH:mm',
             LLLL: 'YYYY年M月D日dddd HH:mm',
-            l: 'YYYY/M/D',
+            l: 'D/M/YYYY',
             ll: 'YYYY年M月D日',
             lll: 'YYYY年M月D日 HH:mm',
             llll: 'YYYY年M月D日dddd HH:mm',
@@ -88,7 +89,7 @@
             }
         },
         relativeTime: {
-            future: '%s後',
+            future: '%s內',
             past: '%s前',
             s: '幾秒',
             ss: '%d 秒',
@@ -105,6 +106,6 @@
         },
     });
 
-    return zhTw;
+    return zhMo;
 
 })));

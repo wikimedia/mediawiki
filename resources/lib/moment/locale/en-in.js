@@ -1,6 +1,6 @@
 //! moment.js locale configuration
-//! locale : English (Ireland) [en-ie]
-//! author : Chris Cartlidge : https://github.com/chriscartlidge
+//! locale : English (India) [en-in]
+//! author : Jatin Agrawal : https://github.com/jatinag22
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -11,7 +11,7 @@
 
     //! moment.js locale configuration
 
-    var enIe = moment.defineLocale('en-ie', {
+    var enIn = moment.defineLocale('en-in', {
         months: 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
             '_'
         ),
@@ -22,12 +22,12 @@
         weekdaysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_'),
         weekdaysMin: 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_'),
         longDateFormat: {
-            LT: 'HH:mm',
-            LTS: 'HH:mm:ss',
+            LT: 'h:mm A',
+            LTS: 'h:mm:ss A',
             L: 'DD/MM/YYYY',
             LL: 'D MMMM YYYY',
-            LLL: 'D MMMM YYYY HH:mm',
-            LLLL: 'dddd D MMMM YYYY HH:mm',
+            LLL: 'D MMMM YYYY h:mm A',
+            LLLL: 'dddd, D MMMM YYYY h:mm A',
         },
         calendar: {
             sameDay: '[Today at] LT',
@@ -74,6 +74,6 @@
         },
     });
 
-    return enIe;
+    return enIn;
 
 })));
