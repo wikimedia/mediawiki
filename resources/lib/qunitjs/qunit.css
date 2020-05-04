@@ -1,12 +1,12 @@
 /*!
- * QUnit 2.9.3
+ * QUnit 2.10.0
  * https://qunitjs.com/
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2019-10-08T15:49Z
+ * Date: 2020-05-02T22:51Z
  */
 
 /** Font Family and Sizes */
@@ -105,6 +105,10 @@
 	height: 1.6em;
 }
 
+#qunit-toolbar-filters {
+	float: right;
+}
+
 .qunit-url-config,
 .qunit-filter,
 #qunit-modulefilter {
@@ -114,7 +118,6 @@
 
 .qunit-filter,
 #qunit-modulefilter {
-	float: right;
 	position: relative;
 	margin-left: 1em;
 }

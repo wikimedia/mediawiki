@@ -37,7 +37,7 @@
     "karma-mocha-reporter": "2.2.5",
     "karma-qunit": "4.0.0",
     "postcss-less": "2.0.0",
-    "qunit": "2.9.3",
+    "qunit": "2.10.0",
     "stylelint-config-wikimedia": "0.9.0",
     "wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
     "webdriverio": "5.13.2"
