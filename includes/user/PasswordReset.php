@@ -114,6 +114,8 @@ class PasswordReset implements LoggerAwareInterface {
 		$this->logger = $logger;
 
 		if ( !$hookContainer ) {
+			wfDeprecatedMsg( 'Not passing HookContainer to ' . __METHOD__ .
+				' was deprecated in MediaWiki 1.35', '1.35' );
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		}
 		$this->hookContainer = $hookContainer;
