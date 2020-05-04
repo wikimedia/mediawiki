@@ -125,7 +125,7 @@ class SpecialVersion extends SpecialPage {
 				if ( $extName === 'MediaWiki' ) {
 					$wikiText = file_get_contents( $IP . '/COPYING' );
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
-					$file = $this->getExtLicenseFileName( dirname( $extNode['path'] ) );
+					$file = self::getExtLicenseFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
 						$wikiText = Html::element(
@@ -146,8 +146,8 @@ class SpecialVersion extends SpecialPage {
 			default:
 				$out->addModuleStyles( 'mediawiki.special.version' );
 				$out->addWikiTextAsInterface(
-					$this->getMediaWikiCredits() .
-					$this->softwareInformation() .
+					self::getMediaWikiCredits() .
+					self::softwareInformation() .
 					$this->getEntryPointInfo()
 				);
 				$out->addHTML(
@@ -841,7 +841,7 @@ class SpecialVersion extends SpecialPage {
 			$licenseName = null;
 			if ( isset( $extension['license-name'] ) ) {
 				$licenseName = new HtmlArmor( $out->parseInlineAsInterface( $extension['license-name'] ) );
-			} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
+			} elseif ( self::getExtLicenseFileName( $extensionPath ) ) {
 				$licenseName = $this->msg( 'version-ext-license' )->text();
 			}
 			if ( $licenseName !== null ) {
@@ -1022,7 +1022,7 @@ class SpecialVersion extends SpecialPage {
 		if ( count( $authors ) === 1 && $authors[0] === '...' ) {
 			// Link to the extension's or skin's AUTHORS or CREDITS file, if there is
 			// such a file; otherwise just return the i18n msg as-is
-			if ( $extName && $this->getExtAuthorsFileName( $extDir ) ) {
+			if ( $extName && self::getExtAuthorsFileName( $extDir ) ) {
 				return $linkRenderer->makeLink(
 					$this->getPageTitle( "Credits/$extName" ),
 					$this->msg( 'version-poweredby-various' )->text()
