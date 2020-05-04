@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
@@ -59,7 +60,7 @@ class Article implements Page {
 	public $mParserOptions;
 
 	/**
-	 * @var Content|null Content of the main slot of $this->mRevision.
+	 * @var Content|null Content of the main slot of $this->mRevisionRecord.
 	 * @note This variable is read only, setting it has no effect.
 	 *       Extensions that wish to override the output of Article::view should use a hook.
 	 * @todo MCR: Remove in 1.33
@@ -101,19 +102,10 @@ class Article implements Page {
 	 * $fetchResult->value is the RevisionRecord object, if the operation was successful.
 	 *
 	 * The information in $fetchResult is duplicated by the following deprecated public fields:
-	 * $mRevIdFetched, $mContentLoaded. $mRevision (and $mContentObject) also typically duplicate
+	 * $mRevIdFetched, $mContentLoaded (and $mContentObject) also typically duplicate
 	 * information of the loaded revision, but may be overwritten by extensions or due to errors.
 	 */
 	private $fetchResult = null;
-
-	/**
-	 * @var Revision|null Revision to be shown. Initialized by getOldIDFromRequest()
-	 * or fetchContentObject(). Normally loaded from the database, but may be replaced
-	 * by an extension, or be a fake representing an error message or some such.
-	 * While the output of Article::view is typically based on this revision,
-	 * it may be overwritten by error messages or replaced by extensions.
-	 */
-	public $mRevision = null;
 
 	/**
 	 * @var ParserOutput|null|false The ParserOutput generated for viewing the page,
@@ -140,6 +132,24 @@ class Article implements Page {
 	private $permManager;
 
 	/**
+	 * @var RevisionStore
+	 */
+	private $revisionStore;
+
+	/*
+	 * @var RevisionRecord|null Revision to be shown
+	 *
+	 * Initialized by getOldIDFromRequest() or fetchRevisionRecord(). Normally loaded from the
+	 * database, but may be replaced by an extension, or be a fake representing an error message
+	 * or some such. While the output of Article::view is typically based on this revision,
+	 * it may be overwritten by error messages or replaced by extensions.
+	 *
+	 * Replaced $mRevision, which was public and is provided in a deprecated manner via
+	 * __get and __set
+	 */
+	private $mRevisionRecord = null;
+
+	/**
 	 * Constructor and clear the article
 	 * @param Title $title Reference to a Title object.
 	 * @param int|null $oldId Revision ID, null to fetch from request, zero for current
@@ -151,6 +161,7 @@ class Article implements Page {
 		$services = MediaWikiServices::getInstance();
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->permManager = $services->getPermissionManager();
+		$this->revisionStore = $services->getRevisionStore();
 	}
 
 	/**
@@ -262,7 +273,7 @@ class Article implements Page {
 		$this->mRedirectedFrom = null; # Title object if set
 		$this->mRevIdFetched = 0;
 		$this->mRedirectUrl = false;
-		$this->mRevision = null;
+		$this->mRevisionRecord = null;
 		$this->mContentObject = null;
 		$this->fetchResult = null;
 
@@ -371,52 +382,50 @@ class Article implements Page {
 			# Load the given revision and check whether the page is another one.
 			# In that case, update this instance to reflect the change.
 			if ( $oldid === $this->mPage->getLatest() ) {
-				// TODO replace uses of Revision
-				$revRecord = $this->mPage->getRevisionRecord();
-				$this->mRevision = $revRecord ? new Revision( $revRecord ) : null;
+				$this->mRevisionRecord = $this->mPage->getRevisionRecord();
 			} else {
-				$this->mRevision = Revision::newFromId( $oldid );
-				if ( $this->mRevision !== null ) {
+				$this->mRevisionRecord = $this->revisionStore->getRevisionById( $oldid );
+				if ( $this->mRevisionRecord !== null ) {
+					$revPageId = $this->mRevisionRecord->getPageId();
 					// Revision title doesn't match the page title given?
-					if ( $this->mPage->getId() != $this->mRevision->getPage() ) {
+					if ( $this->mPage->getId() != $revPageId ) {
 						$function = get_class( $this->mPage ) . '::newFromID';
-						$this->mPage = $function( $this->mRevision->getPage() );
+						$this->mPage = $function( $revPageId );
 					}
 				}
 			}
 		}
 
-		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
-		$oldRev = $this->mRevision ? $this->mRevision->getRevisionRecord() : null;
+		$oldRev = $this->mRevisionRecord;
 		if ( $request->getVal( 'direction' ) == 'next' ) {
 			$nextid = 0;
 			if ( $oldRev ) {
-				$nextRev = $rl->getNextRevision( $oldRev );
+				$nextRev = $this->revisionStore->getNextRevision( $oldRev );
 				if ( $nextRev ) {
 					$nextid = $nextRev->getId();
 				}
 			}
 			if ( $nextid ) {
 				$oldid = $nextid;
-				$this->mRevision = null;
+				$this->mRevisionRecord = null;
 			} else {
 				$this->mRedirectUrl = $this->getTitle()->getFullURL( 'redirect=no' );
 			}
 		} elseif ( $request->getVal( 'direction' ) == 'prev' ) {
 			$previd = 0;
 			if ( $oldRev ) {
-				$prevRev = $rl->getPreviousRevision( $oldRev );
+				$prevRev = $this->revisionStore->getPreviousRevision( $oldRev );
 				if ( $prevRev ) {
 					$previd = $prevRev->getId();
 				}
 			}
 			if ( $previd ) {
 				$oldid = $previd;
-				$this->mRevision = null;
+				$this->mRevisionRecord = null;
 			}
 		}
 
-		$this->mRevIdFetched = $this->mRevision ? $this->mRevision->getId() : 0;
+		$this->mRevIdFetched = $this->mRevisionRecord ? $this->mRevisionRecord->getId() : 0;
 
 		return $oldid;
 	}
@@ -455,7 +464,7 @@ class Article implements Page {
 	 */
 	public function fetchRevisionRecord() {
 		if ( $this->fetchResult ) {
-			return $this->mRevision ? $this->mRevision->getRevisionRecord() : null;
+			return $this->mRevisionRecord;
 		}
 
 		$this->mContentLoaded = true;
@@ -463,14 +472,12 @@ class Article implements Page {
 
 		$oldid = $this->getOldID();
 
-		// $this->mRevision might already be fetched by getOldIDFromRequest()
-		if ( !$this->mRevision ) {
+		// $this->mRevisionRecord might already be fetched by getOldIDFromRequest()
+		if ( !$this->mRevisionRecord ) {
 			if ( !$oldid ) {
-				// TODO cleanup and remove use of Revision objects
-				$revRecord = $this->mPage->getRevisionRecord();
-				$this->mRevision = $revRecord ? new Revision( $revRecord ) : null;
+				$this->mRevisionRecord = $this->mPage->getRevisionRecord();
 
-				if ( !$this->mRevision ) {
+				if ( !$this->mRevisionRecord ) {
 					wfDebug( __METHOD__ . " failed to find page data for title " .
 						$this->getTitle()->getPrefixedText() . "\n" );
 
@@ -480,9 +487,9 @@ class Article implements Page {
 					return null;
 				}
 			} else {
-				$this->mRevision = Revision::newFromId( $oldid );
+				$this->mRevisionRecord = $this->revisionStore->getRevisionById( $oldid );
 
-				if ( !$this->mRevision ) {
+				if ( !$this->mRevisionRecord ) {
 					wfDebug( __METHOD__ . " failed to load revision, rev_id $oldid\n" );
 
 					$this->fetchResult = Status::newFatal( 'missing-revision', $oldid );
@@ -492,16 +499,16 @@ class Article implements Page {
 			}
 		}
 
-		$this->mRevIdFetched = $this->mRevision->getId();
-		$this->fetchResult = Status::newGood( $this->mRevision );
+		$this->mRevIdFetched = $this->mRevisionRecord->getId();
+		$this->fetchResult = Status::newGood( $this->mRevisionRecord );
 
 		if ( !RevisionRecord::userCanBitfield(
-			$this->mRevision->getVisibility(),
+			$this->mRevisionRecord->getVisibility(),
 			RevisionRecord::DELETED_TEXT,
 			$this->getContext()->getUser()
 		) ) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
-				$this->mRevision->getId() . "\n" );
+				$this->mRevisionRecord->getId() . "\n" );
 
 			// Just for sanity, output for this case is done by showDeletedRevisionHeader().
 			$this->fetchResult = Status::newFatal( 'rev-deleted-text-permission' );
@@ -510,12 +517,13 @@ class Article implements Page {
 		}
 
 		// For B/C only
-		$this->mContentObject = $this->mRevision->getContent(
+		$this->mContentObject = $this->mRevisionRecord->getContent(
+			SlotRecord::MAIN,
 			RevisionRecord::FOR_THIS_USER,
 			$this->getContext()->getUser()
 		);
 
-		return $this->mRevision->getRevisionRecord();
+		return $this->mRevisionRecord;
 	}
 
 	/**
@@ -534,11 +542,13 @@ class Article implements Page {
 
 	/**
 	 * Applies a content override by constructing a fake Revision object and assigning
-	 * it to mRevision. The fake revision will not have a user, timestamp or summary set.
+	 * it to mRevisionRecord. The fake revision will not have a user, timestamp or summary set.
 	 *
 	 * @todo This mechanism was created mainly to accommodate extensions that use the
 	 * ArticleAfterFetchContentObject. fetchRevisionRecord() presently also uses this mechanism
 	 * to report errors, but that could be changed to use $this->fetchResult instead.
+	 *
+	 * @todo the ArticleAfterFetchContentObject hook was removed; check if this is still needed
 	 *
 	 * @param Content $override Content to be used instead of the actual page content,
 	 *        coming from an extension or representing an error message.
@@ -548,7 +558,7 @@ class Article implements Page {
 		$rev = new MutableRevisionRecord( $this->getTitle() );
 		$rev->setContent( SlotRecord::MAIN, $override );
 
-		$this->mRevision = new Revision( $rev );
+		$this->mRevisionRecord = $rev;
 
 		// For B/C only
 		$this->mContentObject = $override;
@@ -565,7 +575,9 @@ class Article implements Page {
 			return true;
 		}
 
-		return $this->mPage->exists() && $this->mRevision && $this->mRevision->isCurrent();
+		return $this->mPage->exists() &&
+			$this->mRevisionRecord &&
+			$this->mRevisionRecord->isCurrent();
 	}
 
 	/**
@@ -581,11 +593,9 @@ class Article implements Page {
 	 */
 	public function getRevisionFetched() {
 		wfDeprecated( __METHOD__, '1.35' );
-		$this->fetchRevisionRecord();
+		$revRecord = $this->fetchRevisionRecord();
 
-		if ( $this->fetchResult->isOK() ) {
-			return $this->mRevision;
-		}
+		return $revRecord ? new Revision( $revRecord ) : null;
 	}
 
 	/**
@@ -1218,8 +1228,8 @@ class Article implements Page {
 			return false;
 		}
 
-		if ( $this->mRevision
-			&& !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 )
+		if ( $this->mRevisionRecord
+			&& !RecentChange::isInRCLifespan( $this->mRevisionRecord->getTimestamp(), 21600 )
 		) {
 			// The current revision is already older than what could be in the RC table
 			// 6h tolerance because the RC might not be cleaned out regularly
@@ -1513,7 +1523,7 @@ class Article implements Page {
 	 * @return bool True if the view is allowed, false if not.
 	 */
 	public function showDeletedRevisionHeader() {
-		if ( !$this->mRevision->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+		if ( !$this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			// Not deleted
 			return true;
 		}
@@ -1522,7 +1532,7 @@ class Article implements Page {
 		$user = $this->getContext()->getUser();
 		// If the user is not allowed to see it...
 		if ( !RevisionRecord::userCanBitfield(
-			$this->mRevision->getVisibility(),
+			$this->mRevisionRecord->getVisibility(),
 			RevisionRecord::DELETED_TEXT,
 			$user
 		) ) {
@@ -1535,7 +1545,7 @@ class Article implements Page {
 			# Give explanation and add a link to view the revision...
 			$oldid = intval( $this->getOldID() );
 			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
-			$msg = $this->mRevision->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
+			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
 				[ $msg, $link ] );
@@ -1543,7 +1553,7 @@ class Article implements Page {
 			return false;
 		// We are allowed to see...
 		} else {
-			$msg = $this->mRevision->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
+			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-view' : 'rev-deleted-text-view';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
 
@@ -1576,11 +1586,10 @@ class Article implements Page {
 			$extraParams['unhide'] = 1;
 		}
 
-		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
-		if ( $this->mRevision && $this->mRevision->getId() === $oldid ) {
-			$revisionRecord = $this->mRevision->getRevisionRecord();
+		if ( $this->mRevisionRecord && $this->mRevisionRecord->getId() === $oldid ) {
+			$revisionRecord = $this->mRevisionRecord;
 		} else {
-			$revisionRecord = $revisionLookup->getRevisionById( $oldid );
+			$revisionRecord = $this->revisionStore->getRevisionById( $oldid );
 		}
 
 		$timestamp = $revisionRecord->getTimestamp();
@@ -1638,7 +1647,7 @@ class Article implements Page {
 					'oldid' => $oldid
 				] + $extraParams
 			);
-		$prevExist = (bool)$revisionLookup->getPreviousRevision( $revisionRecord );
+		$prevExist = (bool)$this->revisionStore->getPreviousRevision( $revisionRecord );
 		$prevlink = $prevExist
 			? $this->linkRenderer->makeKnownLink(
 				$this->getTitle(),
@@ -2316,14 +2325,21 @@ class Article implements Page {
 
 	/**
 	 * @deprecated since 1.35, use Article::getPage() instead
+	 *
 	 * Use PHP's magic __get handler to handle accessing of
-	 * raw WikiPage fields for backwards compatibility.
+	 * raw WikiPage fields for backwards compatibility, as well as the deprecated $mRevision
 	 *
 	 * @param string $fname Field name
 	 * @return mixed
 	 */
 	public function __get( $fname ) {
 		wfDeprecated( __METHOD__ . " Access to raw $fname field", '1.35' );
+
+		if ( $fname === 'mRevision' ) {
+			$record = $this->fetchRevisionRecord(); // Ensure that it is loaded
+			return $record ? new Revision( $record ) : null;
+		}
+
 		if ( property_exists( $this->mPage, $fname ) ) {
 			return $this->mPage->$fname;
 		}
@@ -2332,14 +2348,23 @@ class Article implements Page {
 
 	/**
 	 * @deprecated since 1.35, use Article::getPage() instead
+	 *
 	 * Use PHP's magic __set handler to handle setting of
-	 * raw WikiPage fields for backwards compatibility.
+	 * raw WikiPage fields for backwards compatibility, as well as the deprecated $mRevision
 	 *
 	 * @param string $fname Field name
 	 * @param mixed $fvalue New value
 	 */
 	public function __set( $fname, $fvalue ) {
 		wfDeprecated( __METHOD__ . " Access to raw $fname field", '1.35' );
+
+		if ( $fname === 'mRevision' ) {
+			$this->mRevisionRecord = $fvalue ?
+				$fvalue->getRevisionRecord() :
+				null;
+			return;
+		}
+
 		if ( property_exists( $this->mPage, $fname ) ) {
 			$this->mPage->$fname = $fvalue;
 		// Note: extensions may want to toss on new fields
