@@ -2307,9 +2307,14 @@ $mimeMagic: Instance of MimeAnalyzer.
 'ModifyExportQuery': Modify the query used by the exporter.
 $db: The database object to be queried.
 &$tables: Tables in the query.
-&$conds: Conditions in the query.
+[&]$cond: An SQL fragment included in the WHERE clause which is used to filter
+  the results, for example to a specific page. Since 1.31, modification of this
+  parameter has no effect. Since 1.35, you can use $conds instead to modify the
+  array of conditions passed to IDatabase::select().
 &$opts: Options for the query.
 &$join_conds: Join conditions for the query.
+&$conds: The array of conditions to be passed to IDatabase::select(). Can be
+  modified. Includes the value of $cond. (Since 1.35)
 
 'MovePageCheckPermissions': Specify whether the user is allowed to move the
 page.
