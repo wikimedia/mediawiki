@@ -660,6 +660,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'redirect', 'redirect_pkey', 'patch-redirect-pk.sql' ],
 			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
 			[ 'setSequenceOwner', 'watchlist_expiry', 'we_item', 'watchlist_expiry_we_item_seq' ],
+			[ 'setDefault', 'user_newtalk', 'user_ip', '' ],
+			[ 'changeNullableField', 'user_newtalk', 'user_ip', 'NOT NULL', true ],
+			[ 'setDefault', 'user_newtalk', 'user_id', 0 ],
 		];
 	}
 
