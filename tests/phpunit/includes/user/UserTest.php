@@ -2756,4 +2756,55 @@ class UserTest extends MediaWikiTestCase {
 		);
 	}
 
+	private function doTestNewTalk( User $user ) {
+		$this->assertFalse( $user->getNewtalk(), 'Should be false before updated' );
+		$user->setNewtalk( true );
+		$this->assertTrue( $user->getNewtalk(), 'Should be true after updated' );
+		$user->clearInstanceCache();
+		$this->assertTrue( $user->getNewtalk(), 'Should be true after cache cleared' );
+		$user->setNewtalk( false );
+		$this->assertFalse( $user->getNewtalk(), 'Should be false after updated' );
+		$user->clearInstanceCache();
+		$this->assertFalse( $user->getNewtalk(), 'Should be false after cache cleared' );
+	}
+
+	/**
+	 * @covers User::getNewtalk
+	 * @covers User::setNewtalk
+	 */
+	public function testNewtalkRegistered() {
+		$this->doTestNewTalk( $this->getTestUser()->getUser() );
+	}
+
+	/**
+	 * @covers User::getNewtalk
+	 * @covers User::setNewtalk
+	 */
+	public function testNewtalkAnon() {
+		$this->doTestNewTalk( User::newFromName( __METHOD__ ) );
+	}
+
+	/**
+	 * @covers User::getNewMessageLinks
+	 * @covers User::getNewMessageRevisionId
+	 */
+	public function testGetNewMessageLinks() {
+		$user = $this->getTestUser()->getUser();
+		$userTalk = $user->getTalkPage();
+		$status = $this->editPage( $userTalk->getPrefixedText(), 'Message one' );
+		$this->assertTrue( $status->isGood(), 'Sanity: create revision 1 of user talk' );
+		/** @var Revision $firstRev */
+		$firstRev = $status->getValue()['revision'];
+		$status = $this->editPage( $userTalk->getPrefixedText(), 'Message two' );
+		$this->assertTrue( $status->isGood(), 'Sanity: create revision 2 of user talk' );
+		/** @var Revision $secondRev */
+		$secondRev = $status->getValue()['revision'];
+
+		$user->setNewtalk( true, $secondRev->getRevisionRecord() );
+		$links = $user->getNewMessageLinks();
+		$this->assertTrue( count( $links ) > 0, 'Must have new message links' );
+		$this->assertSame( $userTalk->getLocalURL(), $links[0]['link'] );
+		$this->assertSame( $firstRev->getId(), $links[0]['rev']->getId() );
+		$this->assertSame( $firstRev->getId(), $user->getNewMessageRevisionId() );
+	}
 }
