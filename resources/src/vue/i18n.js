@@ -45,13 +45,44 @@ module.exports = {
 		 * <div v-i18n-html="'my-message-key'" />
 		 *     Parses the message named my-message-key. Note the nested quotes!
 		 *     Equivalent to v-html="mw.message( 'my-message-key' ).parse()"
+		 *
+		 * <div v-i18n-html:my-message-key="[ param1, param2 ]" />
+		 *     Parses the my-message-key message, passing parameters param1 and param2
+		 *     Equivalent to v-html="mw.message( 'my-message-key' ).params( [ param1, param2 ] ).parse()"
+		 *
+		 * <div v-i18n-html:my-message-key="[ param1 ]" />
+		 *     Parses the my-message-key message, passing only one parameter. Note the array brackets!
+		 *     Equivalent to v-html="mw.message( 'my-message-key' ).params( [ param1 ] ).parse()"
+		 *
+		 * <div v-i18n-html="$i18n( 'my-message-key' ).params( [ param1, param2 ] )" />
+		 *     If a mw.Message object is passed in, .parse() will be called on it.
+		 *     Equivalent to v-html="mw.message( 'my-message-key' ).params( [ param1, param2 ] ).parse()"
+		 *     This is only recommended for when you have a Message object coming from a
+		 *     computed property or a method, or for when you can't use any of the other calling
+		 *     styles (e.g. because the message key is dynamic, or contains unusual characters).
+		 *     Note that you can use mw.message() in computed properties, but in template attributes
+		 *     you have to use $i18n() instead as demonstrated above.
 		 */
 		Vue.directive( 'i18n-html', function ( el, binding ) {
-			// If v-i18n-html:foo was used, binding.arg = 'foo'
-			// If v-i18n-html="'foo'" was used, binding.value = 'foo'
-			var messageKey = binding.arg || binding.value;
-			// eslint-disable-next-line mediawiki/msg-doc
-			el.innerHTML = mw.message( messageKey ).parse();
+			var message;
+			/* eslint-disable mediawiki/msg-doc */
+			if ( Array.isArray( binding.value ) ) {
+				if ( binding.arg === undefined ) {
+					// v-i18n-html="[ ...params ]" (error)
+					throw new Error( 'v-i18n-html used with parameter array but without message key' );
+				}
+				// v-i18n-html:messageKey="[ ...params ]"
+				message = mw.message( binding.arg ).params( binding.value );
+			} else if ( binding.value instanceof mw.Message ) {
+				// v-i18n-html="mw.message( '...' ).params( [ ... ] )"
+				message = binding.value;
+			} else {
+				// v-i18n-html:foo or v-i18n-html="'foo'"
+				message = mw.message( binding.arg || binding.value );
+			}
+			/* eslint-enable mediawiki/msg-doc */
+
+			el.innerHTML = message.parse();
 		} );
 	}
 };
