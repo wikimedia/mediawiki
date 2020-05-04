@@ -1,7 +1,5 @@
-hooks.txt
-
-This document describes how event hooks work in MediaWiki; how to add hooks for
-an event; and how to run hooks for an event.
+This document describes the hook system used in MediaWiki 1.34 and earlier. For
+the hook system implemented in MediaWiki 1.35, see Hooks.md.
 
 ==Glossary==
 
@@ -1809,7 +1807,7 @@ $imagePage: ImagePage object ($this)
 &$html: HTML for the hook to add
 
 'ImagePageFileHistoryLine': Called when a file history line is constructed.
-$imagePage: ImagePage object ($this)
+$imagePage: Formerly an ImagePage but since 1.27 it is an ImageHistoryList.
 $file: the file
 &$line: the HTML of the history line
 &$css: the line CSS class
