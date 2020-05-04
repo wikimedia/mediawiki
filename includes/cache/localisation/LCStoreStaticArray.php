@@ -61,6 +61,25 @@ class LCStoreStaticArray implements LCStore {
 	}
 
 	/**
+	 * Determine whether this array contains only scalar values.
+	 *
+	 * @param array $arr
+	 * @return bool
+	 */
+	private static function isValueArray( array $arr ) {
+		foreach ( $arr as $key => $value ) {
+			if ( is_scalar( $value )
+				|| $value === null
+				|| ( is_array( $value ) && self::isValueArray( $value ) )
+			) {
+				continue;
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Encodes a value into an array format
 	 *
 	 * @param mixed $value
@@ -68,16 +87,19 @@ class LCStoreStaticArray implements LCStore {
 	 * @throws RuntimeException
 	 */
 	public static function encode( $value ) {
-		if ( is_array( $value ) ) {
-			// [a]rray
-			return [ 'a', array_map( 'LCStoreStaticArray::encode', $value ) ];
+		if ( is_array( $value ) && self::isValueArray( $value ) ) {
+			// Type: scalar [v]alue.
+			// Optimization: Write large arrays as one value to avoid recursive decoding cost.
+			return [ 'v', $value ];
 		}
-		if ( is_object( $value ) ) {
-			// [s]erialized
+		if ( is_array( $value ) || is_object( $value ) ) {
+			// Type: [s]seralized.
+			// Optimization: Avoid recursive decoding cost. Write arrays with an objects
+			// as one serialised value.
 			return [ 's', serialize( $value ) ];
 		}
 		if ( is_scalar( $value ) || $value === null ) {
-			// Scalar value, written directly without array
+			// Optimization: Reduce file size by not wrapping scalar values.
 			return $value;
 		}
 
@@ -93,21 +115,21 @@ class LCStoreStaticArray implements LCStore {
 	 */
 	public static function decode( $encoded ) {
 		if ( !is_array( $encoded ) ) {
-			// Scalar values are written directly without array
+			// Unwrapped scalar value
 			return $encoded;
 		}
 
 		list( $type, $data ) = $encoded;
 
 		switch ( $type ) {
-			case 'a':
-				return array_map( 'LCStoreStaticArray::decode', $data );
+			case 'v':
+				// Value array (1.35+) or unwrapped scalar value (1.32 and earlier)
+				return $data;
 			case 's':
 				return unserialize( $data );
-			case 'v':
-				// Support: MediaWiki 1.32 and earlier
-				// Backward compatibility with older file format
-				return $data;
+			case 'a':
+				// Support: MediaWiki 1.34 and earlier (older file format)
+				return array_map( 'LCStoreStaticArray::decode', $data );
 			default:
 				throw new RuntimeException(
 					'Unable to decode ' . var_export( $encoded, true ) );
