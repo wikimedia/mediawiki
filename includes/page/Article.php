@@ -1502,7 +1502,24 @@ class Article implements Page {
 			$outputPage->addParserOutput( $this->getEmptyPageParserOutput( $parserOptions ) );
 		} else {
 			if ( $oldid ) {
-				$text = wfMessage( 'missing-revision', $oldid )->plain();
+				// T251066: Try loading the revision from the archive table.
+				// Show link to view it if it exists and the user has permission to view it.
+				$pa = new PageArchive( $title, $this->getContext()->getConfig() );
+				$revRecord = $pa->getArchivedRevisionRecord( $oldid );
+				if ( $revRecord && $revRecord->audienceCan(
+					RevisionRecord::DELETED_TEXT,
+					RevisionRecord::FOR_THIS_USER,
+					$this->getContext()->getUser()
+				) ) {
+					$text = wfMessage(
+						'missing-revision-permission', $oldid,
+						$revRecord->getTimestamp(),
+						$title->getPrefixedDBkey()
+					)->plain();
+				} else {
+					$text = wfMessage( 'missing-revision', $oldid )->plain();
+				}
+
 			} elseif ( $pm->quickUserCan( 'create', $this->getContext()->getUser(), $title ) &&
 				$pm->quickUserCan( 'edit', $this->getContext()->getUser(), $title )
 			) {

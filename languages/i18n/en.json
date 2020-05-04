@@ -690,6 +690,7 @@
 	"noarticletext": "There is currently no text in this page.\nYou can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nor [{{fullurl:{{FULLPAGENAME}}|action=edit}} create this page]</span>.",
 	"noarticletext-nopermission": "There is currently no text in this page.\nYou can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages, or <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, but you do not have permission to create this page.",
 	"noarticletextanon": "{{int:noarticletext}}",
+	"missing-revision-permission": "The revision #$1 belongs to a deleted page. You can [{{fullurl:{{#Special:Undelete}}|target=$3&timestamp=$2&diff=prev}} view it]; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page=$3}} deletion log].",
 	"missing-revision": "The revision #$1 of the page named \"{{FULLPAGENAME}}\" does not exist.\n\nThis is usually caused by following an outdated history link to a page that has been deleted.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 	"missing-revision-content": "The content of revision #$1 of the page named \"$2\" could not be loaded.",
 	"userpage-userdoesnotexist": "User account \"$1\" is not registered.\nPlease check if you want to create/edit this page.",
