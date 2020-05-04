@@ -325,6 +325,8 @@ class PageArchive {
 	 * @return Revision|null Null when there is no previous revision
 	 */
 	public function getPreviousRevision( $timestamp ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		$revRecord = $this->getPreviousRevisionRecord( $timestamp );
 		$rev = $revRecord ? new Revision( $revRecord ) : null;
 		return $rev;

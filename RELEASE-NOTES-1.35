@@ -716,7 +716,7 @@ because of Phabricator reports.
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
 * WebRequest::getLimitOffset is hard deprecated. Instead, use
   ::getLimitOffsetForUser and pass a User object.
-* PageArchive::getPreviousRevision is soft deprecated. Instead, use the new
+* PageArchive::getPreviousRevision is hard deprecated. Instead, use the new
   ::getPreviousRevisionRecord method.
 * PageArchive::getArchivedRevision is hard deprecated. Instead, use the new
   ::getArchivedRevisionRecord method.
