@@ -150,6 +150,7 @@ class AutoLoader {
 			'MediaWiki\\Logger\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
 			'MediaWiki\\Page\\' => __DIR__ . '/page/',
 			'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
+			'MediaWiki\\ResourceLoader\\Hook\\' => __DIR__ . '/resourceloader/Hook/',
 			'MediaWiki\\Search\\' => __DIR__ . '/search/',
 			'MediaWiki\\Search\\SearchWidgets\\' => __DIR__ . '/search/searchwidgets/',
 			'MediaWiki\\Session\\' => __DIR__ . '/session/',

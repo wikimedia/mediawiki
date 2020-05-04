@@ -1,12 +1,12 @@
 /*!
- * QUnit 2.9.3
+ * QUnit 2.10.0
  * https://qunitjs.com/
  *
  * Copyright jQuery Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2019-10-08T15:49Z
+ * Date: 2020-05-02T22:51Z
  */
 (function (global$1) {
   'use strict';
@@ -1120,6 +1120,15 @@
 
   var moduleStack = [];
 
+  function isParentModuleInQueue() {
+  	var modulesInQueue = config.modules.map(function (module) {
+  		return module.moduleId;
+  	});
+  	return moduleStack.some(function (module) {
+  		return modulesInQueue.includes(module.moduleId);
+  	});
+  }
+
   function createModule(name, testEnvironment, modifiers) {
   	var parentModule = moduleStack.length ? moduleStack.slice(-1)[0] : null;
   	var moduleName = parentModule !== null ? [parentModule.name, name].join(" > ") : name;
@@ -1209,7 +1218,7 @@
   }
 
   function module$1(name, options, executeNow) {
-  	if (focused) {
+  	if (focused && !isParentModuleInQueue()) {
   		return;
   	}
 
@@ -1217,14 +1226,12 @@
   }
 
   module$1.only = function () {
-  	if (focused) {
-  		return;
+  	if (!focused) {
+  		config.modules.length = 0;
+  		config.queue.length = 0;
   	}
 
-  	config.modules.length = 0;
-  	config.queue.length = 0;
-
-  	module$1.apply(undefined, arguments);
+  	processModule.apply(undefined, arguments);
 
   	focused = true;
   };
@@ -3547,12 +3554,10 @@
 
   // Will be exposed as QUnit.only
   function only(testName, callback) {
-  	if (focused$1) {
-  		return;
+  	if (!focused$1) {
+  		config.queue.length = 0;
+  		focused$1 = true;
   	}
-
-  	config.queue.length = 0;
-  	focused$1 = true;
 
   	var newTest = new Test({
   		testName: testName,
@@ -4276,7 +4281,7 @@
   QUnit.isLocal = !(defined.document && window$1.location.protocol !== "file:");
 
   // Expose the current QUnit version
-  QUnit.version = "2.9.3";
+  QUnit.version = "2.10.0";
 
   extend(QUnit, {
   	on: on,
@@ -5075,13 +5080,22 @@
   		return moduleFilter;
   	}
 
+  	function toolbarFilters() {
+  		var toolbarFilters = document.createElement("span");
+
+  		toolbarFilters.id = "qunit-toolbar-filters";
+  		toolbarFilters.appendChild(toolbarLooseFilter());
+  		toolbarFilters.appendChild(toolbarModuleFilter());
+
+  		return toolbarFilters;
+  	}
+
   	function appendToolbar() {
   		var toolbar = id("qunit-testrunner-toolbar");
 
   		if (toolbar) {
   			toolbar.appendChild(toolbarUrlConfigContainer());
-  			toolbar.appendChild(toolbarModuleFilter());
-  			toolbar.appendChild(toolbarLooseFilter());
+  			toolbar.appendChild(toolbarFilters());
   			toolbar.appendChild(document.createElement("div")).className = "clearfix";
   		}
   	}
