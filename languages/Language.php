@@ -2656,9 +2656,10 @@ class Language {
 			return ucfirst( $str );
 		}
 
-		return $this->isMultibyte( $str )
+		$first = mb_substr( $str, 0, 1 );
+		return ( strlen( $first ) !== 1 )
 			// Assume this is a multibyte character and mb_internal_encoding() is appropriate
-			? $this->mbUpperChar( mb_substr( $str, 0, 1 ) ) . mb_substr( $str, 1 )
+			? $this->mbUpperChar( $first ) . mb_substr( $str, 1 )
 			// Assume this is a non-multibyte character and LC_CASE is appropriate
 			: ucfirst( $str );
 	}
