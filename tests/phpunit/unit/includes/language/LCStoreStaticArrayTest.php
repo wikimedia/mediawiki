@@ -66,15 +66,10 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 				'a-number' => 42,
 				'some-string' => '0',
 				'common-data' => [
-					'a', [
-						3 => [
-							'a',
-							[ 'three', 'threa', 'phree' ],
-						],
-						6 => [
-							'a',
-							[ 'six', 'seaks', 'phrix' ],
-						],
+					'v',
+					[
+						3 => [ 'three', 'threa', 'phree' ],
+						6 => [ 'six', 'seaks', 'phrix' ],
 					]
 				],
 				'some-obj' => [
@@ -82,14 +77,8 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 					'O:12:"DateTimeZone":2:{s:13:"timezone_type";i:1;s:8:"timezone";s:6:"-06:30";}'
 				],
 				'unlikely' => [
-					'a',
-					[
-						3 => 'three',
-						6 => [
-							's',
-							'O:12:"DateTimeZone":2:{s:13:"timezone_type";i:1;s:8:"timezone";s:6:"-03:15";}'
-						],
-					]
+					's',
+					'a:2:{i:3;s:5:"three";i:6;O:12:"DateTimeZone":2:{s:13:"timezone_type";i:1;s:8:"timezone";s:6:"-03:15";}}'
 				],
 			],
 			require $dir . '/en.l10n.php',
