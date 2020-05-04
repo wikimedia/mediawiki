@@ -38,6 +38,12 @@ use Wikimedia\WrappedString;
  */
 
 /**
+ * @defgroup ResourceLoaderHooks ResourceLoader Hooks
+ * @ingroup ResourceLoader
+ * @ingroup Hooks
+ */
+
+/**
  * ResourceLoader is a loading system for JavaScript and CSS resources.
  *
  * For higher level documentation, see <https://www.mediawiki.org/wiki/ResourceLoader/Architecture>.

@@ -1,26 +1,27 @@
 <?php
 
-namespace MediaWiki\Hook;
+namespace MediaWiki\ResourceLoader\Hook;
 
 use ResourceLoaderContext;
 
 /**
  * @stable for implementation
- * @ingroup Hooks
+ * @ingroup ResourceLoaderHooks
  */
 interface ResourceLoaderJqueryMsgModuleMagicWordsHook {
 	/**
-	 * This hook is called in ResourceLoaderJqueryMsgModule to allow
-	 * adding magic words for jQueryMsg. The value should be a string,
-	 * and they can depend only on the ResourceLoaderContext.
+	 * Add magic words to the `mediawiki.jqueryMsg` module. The values should be a string,
+	 * and they may only vary by what's in the ResourceLoaderContext.
+	 *
+	 * This hook is called from ResourceLoaderJqueryMsgModule.
 	 *
 	 * @since 1.35
-	 *
 	 * @param ResourceLoaderContext $context
 	 * @param string[] &$magicWords Associative array mapping all-caps magic word to a string value
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onResourceLoaderJqueryMsgModuleMagicWords( $context,
-		&$magicWords
+	public function onResourceLoaderJqueryMsgModuleMagicWords(
+		ResourceLoaderContext $context,
+		array &$magicWords
 	);
 }
