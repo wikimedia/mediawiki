@@ -1810,7 +1810,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * to put a brake on flooding.
 	 *
 	 * The method generates both a generic profiling point and a per action one
-	 * (suffix being "-$action".
+	 * (suffix being "-$action").
 	 *
 	 * @note When using a shared cache like memcached, IP-address
 	 * last-hit counters will be shared across wikis.
