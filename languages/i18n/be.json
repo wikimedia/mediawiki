@@ -2587,6 +2587,7 @@
 	"move-watch": "Назіраць за старонкай",
 	"movepagebtn": "Перанесці старонку",
 	"pagemovedsub": "Паспяховы перанос",
+	"cannotmove": "Старонка не можа быць перайменавана з-за наступных прычын:",
 	"movepage-moved": "<strong>\"$1\" перанесена ў \"$2\"</strong>",
 	"movepage-moved-redirect": "Была створана перасылка.",
 	"movepage-moved-noredirect": "Не была створаная перасылка.",

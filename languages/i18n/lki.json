@@ -2593,7 +2593,7 @@
 	"watchlistedit-raw-legend": "ویرایش فهرست خام پی‌گیری‌ها",
 	"watchlistedit-raw-explain": "عنوان‌های موجود در فهرست پی‌گیری‌های شما در زیر نشان داده شده‌اند، و شما می‌توانید مواردی را حذف یا اضافه کنید؛ هر مورد در یک سطر جداگانه باید قرار بگیرد.\nدر پایان، دکمهٔ «{{int:Watchlistedit-raw-submit}}» را بفشارید.\nتوجه کنید که شما می‌توانید از [[Special:EditWatchlist|ویرایشگر استاندارد فهرست پی‌گیری‌ها]] هم استفاده کنید.",
 	"watchlistedit-raw-titles": "عنوانةل:",
-	"watchlistedit-raw-submit": "روزآمدسازی پی‌گیری‌ها",
+	"watchlistedit-raw-submit": "روزآمدسازی فهرست پی‌گیری‌ها",
 	"watchlistedit-raw-done": "فهرست پی‌گیری‌های شما به روز شد.",
 	"watchlistedit-raw-added": "$1 عنوان به فهرست پی‌گیری‌ها اضافه {{PLURAL:$1|شد|شدند}}:",
 	"watchlistedit-raw-removed": "$1 عنوان حذف {{PLURAL:$1|شد|شدند}}:",

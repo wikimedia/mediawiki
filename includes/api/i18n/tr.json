@@ -867,7 +867,7 @@
 	"apihelp-query+info-param-testactionsdetail": "<var>$1testactions</var> için ayrıntı düzeyi. Döndürülen iletilerin biçimini denetlemek için [[Special:ApiHelp/main|ana modülün]] <var>errorformat</var> ve <var>errorlang</var> parametrelerini kullanın.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Her eylem için bir boole değeri döndürün.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "Eylemin neden izin verilmediğini açıklayan iletileri veya izin veriliyorsa boş bir diziyi döndürün.",
-	"apihelp-query+info-paramvalue-testactionsdetail-quick": "<kbd>full</kbd> gibi ama pahalı kontrolleri atlıyor.",
+	"apihelp-query+info-paramvalue-testactionsdetail-quick": "<kbd>full</kbd> gibi ancak pahalı kontrolleri atlıyor.",
 	"apihelp-query+info-param-token": "Bunun yerine [[Special:ApiHelp/query+tokens|action=query&meta=tokens]] kullanın.",
 	"apihelp-query+info-example-simple": "<kbd>Anasayfa</kbd> sayfası hakkında bilgi alın.",
 	"apihelp-query+info-example-protection": "<kbd>Anasayfa</kbd> sayfası hakkında genel ve koruma bilgileri alın.",

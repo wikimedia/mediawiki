@@ -287,7 +287,7 @@
 	"site-atom-feed": "Feed Atom de $1",
 	"page-rss-feed": "Feed RSS pe \"$1\"",
 	"page-atom-feed": "Feed Atom pe \"$1\"",
-	"red-link-title": "$1 (a pàgina a no existe)",
+	"red-link-title": "$1 (a pàgina a no l'existe)",
 	"sort-descending": "Ordine decrescente",
 	"sort-ascending": "Ordine crescente",
 	"nstab-main": "Pàgina",

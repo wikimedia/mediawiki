@@ -3897,7 +3897,7 @@
 	"restrictionsfield-help": "En IP-adress eller CIDR-intervall per rad. För att aktivera allting, använd<br /><code>0.0.0.0/0</code><br /><code>::/0</code>",
 	"edit-error-short": "Fel: $1",
 	"edit-error-long": "Fel:\n\n$1",
-	"specialmute": "Tyst",
+	"specialmute": "Tystnad",
 	"specialmute-success": "Dina tystnadsinställningar har uppdateras. Se alla tystade användare i [[Special:Preferences|dina inställningarna]].",
 	"specialmute-submit": "Bekräfta",
 	"specialmute-label-mute-email": "Tysta e-post från denna användare",
