@@ -265,6 +265,7 @@
 	"config-install-user-grant-failed": "Beviljandet av behörighet till användaren \"$1\" misslyckades: $2",
 	"config-install-user-missing": "Den angivna användaren \"$1\" existerar inte.",
 	"config-install-user-missing-create": "Den angivna användaren \"$1\" existerar inte.\nVänligen klicka på kryssrutan \"skapa konto\" nedan om du vill skapa den.",
+	"config-install-restore-services": "Återställer mediawikitjänster",
 	"config-install-tables": "Skapar tabeller",
 	"config-install-tables-exist": "'''Varning:''' MediaWiki-tabeller verkar redan finnas.\nHoppar över skapandet.",
 	"config-install-tables-failed": "'''Fel:''' Skapandet av tabell misslyckades med följande fel: $1",

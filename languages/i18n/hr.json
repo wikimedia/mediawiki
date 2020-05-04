@@ -1397,7 +1397,7 @@
 	"rcfilters-filter-reviewstatus-manual-description": "Uređivanja koja su ručno označena ophođenima.",
 	"rcfilters-filter-reviewstatus-manual-label": "Ručno ophođeno",
 	"rcfilters-filter-reviewstatus-auto-description": "Uređivanja suradnika s pravima, čiji je rad automatski označen ophođenim.",
-	"rcfilters-filter-reviewstatus-auto-label": "Autoophođenni",
+	"rcfilters-filter-reviewstatus-auto-label": "Autoophođeni",
 	"rcfilters-filtergroup-significance": "Važnost",
 	"rcfilters-filter-minor-label": "Manja uređivanja",
 	"rcfilters-filter-minor-description": "Uređivanja koja je suradnik označio manjim.",
