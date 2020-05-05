@@ -1008,6 +1008,10 @@ because of Phabricator reports.
   has effect if $wgWatchlistExpiry is true. It is recommended that a cronjob or
   similar be set up to run it at least daily.
 * Title::purgeSquid is deprecated. Use MediaWikiServices::getHtmlCacheUpdater.
+* SpecialVersion::getExtLicenseFileName() has been deprecated, use
+  MediaWiki\ExtensionInfo::getLicenseFileNames() instead.
+* SpecialVersion::getExtAuthorsFileName() has been deprecated, use
+  MediaWiki\ExtensionInfo::getAuthorsFileName() instead.
 * …
 
 == Compatibility ==

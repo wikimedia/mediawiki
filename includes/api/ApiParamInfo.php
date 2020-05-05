@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\ExtensionInfo;
+
 /**
  * @ingroup API
  */
@@ -265,7 +267,7 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $sourceInfo['license-name'] ) ) {
 				$ret['licensetag'] = $sourceInfo['license-name'];
 				$ret['licenselink'] = (string)$link;
-			} elseif ( SpecialVersion::getExtLicenseFileName( dirname( $sourceInfo['path'] ) ) ) {
+			} elseif ( ExtensionInfo::getLicenseFileNames( dirname( $sourceInfo['path'] ) ) ) {
 				$ret['licenselink'] = (string)$link;
 			}
 		}
