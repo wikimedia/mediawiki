@@ -326,12 +326,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$revRecord->setComment(
 			CommentStore::getStore()->getComment( 'rc_comment', $result )
 		);
-		$revRecord->setVisibility( $result->rc_deleted );
+		$revRecord->setVisibility( (int)$result->rc_deleted );
 
 		$user = new UserIdentityValue(
-			$result->rc_user,
+			(int)$result->rc_user,
 			$result->rc_user_text,
-			$result->rc_actor
+			(int)$result->rc_actor
 		);
 		$revRecord->setUser( $user );
 
