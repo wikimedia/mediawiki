@@ -58,6 +58,7 @@ function moveToExternal( $type, $location, $maxID, $minID = 1 ) {
 	print "Moving text rows from $minID to $maxID to external storage\n";
 
 	$esFactory = MediaWikiServices::getInstance()->getExternalStoreFactory();
+	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 	$extStore = $esFactory->getStore( $type );
 	$numMoved = 0;
 
@@ -67,14 +68,15 @@ function moveToExternal( $type, $location, $maxID, $minID = 1 ) {
 
 		if ( !( $block % REPORTING_INTERVAL ) ) {
 			print "oldid=$blockStart, moved=$numMoved\n";
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 
 		$res = $dbr->select( 'text', [ 'old_id', 'old_flags', 'old_text' ],
 			[
 				"old_id BETWEEN $blockStart AND $blockEnd",
 				'old_flags NOT ' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() ),
-			], $fname );
+			], $fname
+		);
 		foreach ( $res as $row ) {
 			# Resolve stubs
 			$text = $row->old_text;

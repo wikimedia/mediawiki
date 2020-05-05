@@ -89,7 +89,7 @@ class PopulateContentModel extends Maintenance {
 			[ 'page_id' => $pageIds ],
 			__METHOD__
 		);
-		wfWaitForSlaves();
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 		$this->output( "done.\n" );
 	}
 
@@ -173,6 +173,7 @@ class PopulateContentModel extends Maintenance {
 		$idsToClear = [];
 		$lastId = 0;
 		$batchSize = $this->getBatchSize();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		do {
 			$rows = $dbw->select(
 				$selectTables,
@@ -232,7 +233,7 @@ class PopulateContentModel extends Maintenance {
 							[ $key => $id ],
 							__METHOD__
 						);
-						wfWaitForSlaves();
+						$lbFactory->waitForReplication();
 						$this->clearCache( $row->{$page_id_column}, $row->{$rev_id_column} );
 						$this->output( "done.\n" );
 						continue;

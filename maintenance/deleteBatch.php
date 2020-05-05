@@ -82,6 +82,8 @@ class DeleteBatch extends Maintenance {
 			$this->fatalError( "Unable to read file, exiting" );
 		}
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		# Handle each entry
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 			$line = trim( fgets( $file ) );
@@ -129,7 +131,7 @@ class DeleteBatch extends Maintenance {
 			if ( $interval ) {
 				sleep( $interval );
 			}
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 	}
 }

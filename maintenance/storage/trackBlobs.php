@@ -19,7 +19,6 @@
  *
  * @file
  * @ingroup Maintenance
- * @see wfWaitForSlaves()
  */
 
 use MediaWiki\MediaWikiServices;
@@ -160,6 +159,7 @@ class TrackBlobs {
 			'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
 			'SUBSTRING(content_address, 4)=old_id',
 		], $conds );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		while ( true ) {
 			$res = $dbr->select( $tables,
@@ -205,7 +205,7 @@ class TrackBlobs {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				wfWaitForSlaves();
+				$lbFactory->waitForReplication();
 			}
 		}
 		echo "Found $rowsInserted revisions\n";
@@ -228,6 +228,7 @@ class TrackBlobs {
 		$endId = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
 		$rowsInserted = 0;
 		$batchesDone = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		echo "Finding orphan text...\n";
 
@@ -289,7 +290,7 @@ class TrackBlobs {
 			if ( $batchesDone >= $this->reportingInterval ) {
 				$batchesDone = 0;
 				echo "$startId / $endId\n";
-				wfWaitForSlaves();
+				$lbFactory->waitForReplication();
 			}
 		}
 		echo "Found $rowsInserted orphan text rows\n";
@@ -310,10 +311,10 @@ class TrackBlobs {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		foreach ( $this->clusters as $cluster ) {
 			echo "Searching for orphan blobs in $cluster...\n";
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			$lb = $lbFactory->getExternalLB( $cluster );
 			try {
 				$extDB = $lb->getMaintenanceConnectionRef( DB_REPLICA );

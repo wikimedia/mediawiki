@@ -189,6 +189,7 @@ class ImportImages extends Maintenance {
 		# Batch "upload" operation
 		$count = count( $files );
 		if ( $count > 0 ) {
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			foreach ( $files as $file ) {
 				if ( $sleep && ( $processed > 0 ) ) {
 					sleep( $sleep );
@@ -366,7 +367,7 @@ class ImportImages extends Maintenance {
 						$this->output( "\nWaiting for replica DBs...\n" );
 						// Wait for replica DBs.
 						sleep( 2 ); # Why this sleep?
-						wfWaitForSlaves();
+						$lbFactory->waitForReplication();
 
 						$this->output( "\nSetting image restrictions ... " );
 
