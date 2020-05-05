@@ -33,8 +33,7 @@
 	} ) );
 
 	mw.loader.addSource( {
-		testloader:
-			QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php' )
+		testloader: mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/load.mock.php'
 	} );
 
 	/**
