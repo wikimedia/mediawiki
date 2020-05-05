@@ -137,6 +137,7 @@ return [
 			'mediawiki.inspect',
 			'mediawiki.visibleTimeout',
 			'mediawiki.widgets.MediaSearch',
+			'mediawiki.widgets.Table',
 			'mediawiki.qunit-testrunner',
 		],
 	]
