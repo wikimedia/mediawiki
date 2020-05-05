@@ -182,6 +182,33 @@ class ApiUpload extends ApiBase {
 	}
 
 	/**
+	 * @since 1.35
+	 * @see $wgMinUploadChunkSize
+	 * @param Config $config Site configuration for MinUploadChunkSize
+	 * @return int
+	 */
+	public static function getMinUploadChunkSize( Config $config ) {
+		$configured = $config->get( 'MinUploadChunkSize' );
+
+		// Leave some room for other POST parameters
+		$postMax = (
+			wfShorthandToInteger(
+				ini_get( 'post_max_size' ),
+				PHP_INT_MAX
+			) ?: PHP_INT_MAX
+		) - 1024;
+
+		// Ensure the minimum chunk size is less than PHP upload limits
+		// or the maximum upload size.
+		return min(
+			$configured,
+			UploadBase::getMaxUploadSize( 'file' ),
+			UploadBase::getMaxPhpUploadSize(),
+			$postMax
+		);
+	}
+
+	/**
 	 * Get the result of a chunk upload.
 	 * @param array $warnings Array of Api upload warnings
 	 * @return array
@@ -197,7 +224,7 @@ class ApiUpload extends ApiBase {
 		$chunkPath = $request->getFileTempname( 'chunk' );
 		$chunkSize = $request->getUpload( 'chunk' )->getSize();
 		$totalSoFar = $this->mParams['offset'] + $chunkSize;
-		$minChunkSize = $this->getConfig()->get( 'MinUploadChunkSize' );
+		$minChunkSize = self::getMinUploadChunkSize( $this->getConfig() );
 
 		// Sanity check sizing
 		if ( $totalSoFar > $this->mParams['filesize'] ) {

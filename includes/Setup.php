@@ -441,18 +441,6 @@ if ( $wgEnableEmail ) {
 	$wgUsersNotifiedOnAllChanges = [];
 }
 
-// Ensure the minimum chunk size is less than PHP upload limits or the maximum
-// upload size.
-$wgMinUploadChunkSize = min(
-	$wgMinUploadChunkSize,
-	UploadBase::getMaxUploadSize( 'file' ),
-	UploadBase::getMaxPhpUploadSize(),
-	( wfShorthandToInteger(
-		ini_get( 'post_max_size' ),
-		PHP_INT_MAX
-	) ?: PHP_INT_MAX ) - 1024 // Leave some room for other POST parameters
-);
-
 /**
  * Definitions of the NS_ constants are in Defines.php
  * @private
