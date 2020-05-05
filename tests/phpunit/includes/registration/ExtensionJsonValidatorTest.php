@@ -81,6 +81,10 @@ class ExtensionJsonValidatorTest extends MediaWikiTestCase {
 				true
 			],
 			[
+				'good_with_license_expressions.json',
+				true
+			],
+			[
 				'bad_url.json', 'bad_url.json did not pass validation.
 [url] Should use HTTPS for www.mediawiki.org URLs'
 			],
