@@ -3,15 +3,18 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use Hooks;
 use InvalidArgumentException;
 use ISearchResultSet;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Rest\Entity\SearchResultPageIdentityValue;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
+use MediaWiki\Search\Entity\SearchResultThumbnail;
 use RequestContext;
 use SearchEngine;
 use SearchEngineConfig;
@@ -171,10 +174,10 @@ class SearchHandler extends Handler {
 	}
 
 	/**
-	 * Execute search and return results.
+	 * Execute search and return info about pages for further processing.
 	 *
 	 * @param SearchEngine $searchEngine
-	 * @return SearchResult[]
+	 * @return array[]
 	 * @throws LocalizedHttpException
 	 */
 	private function doSearch( $searchEngine ) {
@@ -182,7 +185,7 @@ class SearchHandler extends Handler {
 
 		if ( $this->mode == self::COMPLETION_MODE ) {
 			$completionSearch = $searchEngine->completionSearchWithVariants( $query );
-			return $this->buildOutputFromSuggestions( $completionSearch->getSuggestions() );
+			return $this->buildPageInfosFromSuggestions( $completionSearch->getSuggestions() );
 		} else {
 			$titleSearch = $searchEngine->searchTitle( $query );
 			$textSearch = $searchEngine->searchText( $query );
@@ -191,70 +194,143 @@ class SearchHandler extends Handler {
 			$textSearchResults = $this->getSearchResultsOrThrow( $textSearch );
 
 			$mergedResults = array_merge( $titleSearchResults, $textSearchResults );
-			return $this->buildOutputFromSearchResults( $mergedResults );
+			return $this->buildPageInfosFromSearchResults( $mergedResults );
 		}
 	}
 
 	/**
-	 * Remove duplicate pages and turn results into response json objects
+	 * Remove duplicate pages and turn suggestions into array with
+	 * information needed for further processing:
+	 * pageId => [ $title, $suggestion, null ]
 	 *
 	 * @param SearchSuggestion[] $suggestions
 	 *
-	 * @return array page objects
+	 * @return array[] of pageId => [ $title, $suggestion, null ]
 	 */
-	private function buildOutputFromSuggestions( array $suggestions ) {
-		$pages = [];
-		$foundPageIds = [];
+	private function buildPageInfosFromSuggestions( array $suggestions ): array {
+		$pageInfos = [];
+
 		foreach ( $suggestions as $sugg ) {
 			$title = $sugg->getSuggestedTitle();
 			if ( $title && $title->exists() ) {
 				$pageID = $title->getArticleID();
-				if ( !isset( $foundPageIds[$pageID] ) &&
+				if ( !isset( $pageInfos[$pageID] ) &&
 					$this->permissionManager->quickUserCan( 'read', $this->user, $title )
 				) {
-					$page = [
-						'id' => $pageID,
-						'key' => $title->getPrefixedDBkey(),
-						'title' => $title->getPrefixedText(),
-						'excerpt' => $sugg->getText() ?: null,
-					];
-					$pages[] = $page;
-					$foundPageIds[$pageID] = true;
+					$pageInfos[ $pageID ] = [ $title, $sugg, null ];
 				}
 			}
 		}
-		return $pages;
+		return $pageInfos;
 	}
 
 	/**
-	 * Remove duplicate pages and turn results into response json objects
+	 * Remove duplicate pages and turn search results into array with
+	 * information needed for further processing:
+	 * pageId => [ $title, null, $result ]
 	 *
 	 * @param SearchResult[] $searchResults
 	 *
-	 * @return array page objects
+	 * @return array[] of pageId => [ $title, null, $result ]
 	 */
-	private function buildOutputFromSearchResults( array $searchResults ) {
-		$pages = [];
-		$foundPageIds = [];
+	private function buildPageInfosFromSearchResults( array $searchResults ): array {
+		$pageInfos = [];
+
 		foreach ( $searchResults as $result ) {
 			if ( !$result->isBrokenTitle() && !$result->isMissingRevision() ) {
 				$title = $result->getTitle();
 				$pageID = $title->getArticleID();
-				if ( !isset( $foundPageIds[$pageID] ) &&
+				if ( !isset( $pageInfos[$pageID] ) &&
 					$this->permissionManager->quickUserCan( 'read', $this->user, $title )
 				) {
-					$page = [
-						'id' => $pageID,
-						'key' => $title->getPrefixedDBkey(),
-						'title' => $title->getPrefixedText(),
-						'excerpt' => $result->getTextSnippet() ?: null,
-					];
-					$pages[] = $page;
-					$foundPageIds[$pageID] = true;
+					$pageInfos[$pageID] = [ $title, null, $result ];
 				}
 			}
 		}
-		return $pages;
+		return $pageInfos;
+	}
+
+	/**
+	 * Turn array of page info into serializable array with common information about the page
+	 *
+	 * @param array[] $pageInfos
+	 *
+	 * @return array[] of pageId => [ $title, null, $result ]
+	 */
+	private function buildResultFromPageInfos( array $pageInfos ): array {
+		return array_map( function ( $pageInfo ) {
+			list( $title, $sugg, $result ) = $pageInfo;
+			return [
+				'id' => $title->getArticleID(),
+				'key' => $title->getPrefixedDBkey(),
+				'title' => $title->getPrefixedText(),
+				'excerpt' => ( $sugg ? $sugg->getText() : $result->getTextSnippet() ) ?: null,
+			];
+		},
+		$pageInfos );
+	}
+
+	/**
+	 * Converts SearchResultThumbnail object into serializable array
+	 *
+	 * @param SearchResultThumbnail|null $thumbnail
+	 *
+	 * @return array|null
+	 */
+	private function serializeThumbnail( ?SearchResultThumbnail $thumbnail ) : ?array {
+		if ( $thumbnail == null ) {
+			return null;
+		}
+
+		return [
+			'mimetype' => $thumbnail->getMimeType(),
+			'size' => $thumbnail->getSize(),
+			'width' => $thumbnail->getWidth(),
+			'height' => $thumbnail->getHeight(),
+			'duration' => $thumbnail->getDuration(),
+			'url' => $thumbnail->getUrl(),
+		];
+	}
+
+	/**
+	 * Turn page info into serializable array with desciption field for the page.
+	 *
+	 * The information about desciption should be provided by extension by implementing
+	 * 'SearchResultProvideDescription' hook. Desciption is set to null if no extensions implement
+	 * the hook.
+	 * @param array $pageIdentities
+	 *
+	 * @return array
+	 */
+	private function buildDescriptionsFromPageIdentities( array $pageIdentities ) {
+		$descriptions = array_fill_keys( array_keys( $pageIdentities ), null );
+
+		Hooks::run( 'SearchResultProvideDescription', [ $pageIdentities, &$descriptions ] );
+
+		return array_map( function ( $description ) {
+			return [ 'description' => $description ];
+		}, $descriptions );
+	}
+
+	/**
+	 * Turn page info into serializable array with thumbnail information for the page.
+	 *
+	 * The information about thumbnail should be provided by extension by implementing
+	 * 'SearchResultProvideThumbnail' hook. Thumbnail is set to null if no extensions implement
+	 * the hook.
+	 *
+	 * @param array $pageIdentities
+	 *
+	 * @return array
+	 */
+	private function buildThumbnailsFromPageIdentities( array $pageIdentities ) {
+		$thumbnails = array_fill_keys( array_keys( $pageIdentities ), null );
+
+		Hooks::run( 'SearchResultProvideThumbnail', [ $pageIdentities, &$thumbnails ] );
+
+		return array_map( function ( $thumbnail ) {
+			return [ 'thumbnail' => $this->serializeThumbnail( $thumbnail ) ];
+		}, $thumbnails );
 	}
 
 	/**
@@ -263,8 +339,23 @@ class SearchHandler extends Handler {
 	 */
 	public function execute() {
 		$searchEngine = $this->createSearchEngine();
-		$results = $this->doSearch( $searchEngine );
-		$response = $this->getResponseFactory()->createJson( [ 'pages' => $results ] );
+		$pageInfos = $this->doSearch( $searchEngine );
+		$pageIdentities = array_map( function ( $pageInfo ) {
+			list( $title ) = $pageInfo;
+			return new SearchResultPageIdentityValue(
+				$title->getArticleID(),
+				$title->getNamespace(),
+				$title->getDBkey()
+			);
+		}, $pageInfos );
+
+		$result = array_map( "array_merge",
+			$this->buildResultFromPageInfos( $pageInfos ),
+			$this->buildDescriptionsFromPageIdentities( $pageIdentities ),
+			$this->buildThumbnailsFromPageIdentities( $pageIdentities )
+		);
+
+		$response = $this->getResponseFactory()->createJson( [ 'pages' => $result ] );
 
 		if ( $this->mode === self::COMPLETION_MODE && $this->completionCacheExpiry ) {
 			// Type-ahead completion matches should be cached by the client and
