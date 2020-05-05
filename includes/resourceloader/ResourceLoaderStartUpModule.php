@@ -351,7 +351,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		// Perform replacements for mediawiki.js
 		$mwLoaderPairs = [
-			'$VARS.reqBase' => $context->encodeJson( $context->getReqBase() ),
+			// This should always be an object, even if the base vars are empty
+			// (such as when using the default lang/skin).
+			'$VARS.reqBase' => $context->encodeJson( (object)$context->getReqBase() ),
 			'$VARS.baseModules' => $context->encodeJson( $this->getBaseModules() ),
 			'$VARS.maxQueryLength' => $context->encodeJson(
 				$conf->get( 'ResourceLoaderMaxQueryLength' )
