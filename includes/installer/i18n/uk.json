@@ -271,6 +271,7 @@
 	"config-install-user-grant-failed": "Не вдалося надати права користувачеві \"$1\": $2",
 	"config-install-user-missing": "Зазначеного користувача \"$1\" не існує.",
 	"config-install-user-missing-create": "Зазначеного користувача \"$1\" не існує.\nБудь ласка, поставте галочку \"Створити обліковий запис\", якщо хочете його створити.",
+	"config-install-restore-services": "Відновлення медіавікі-сервісів",
 	"config-install-tables": "Створення таблиць",
 	"config-install-tables-exist": "'''Увага''': Таблиці MediaWiki уже, здається, існують.\nПропуск створення.",
 	"config-install-tables-failed": "'''Помилка''': Не вдалося створити таблицю внаслідок такої помилки: $1",

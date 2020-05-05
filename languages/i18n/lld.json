@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Asenoner",
+			"Fierodelveneto",
 			"Starladin"
 		]
 	},
@@ -255,6 +256,12 @@
 	"showtoc": "mostra",
 	"hidetoc": "ascogn",
 	"collapsible-collapse": "Strënj",
+	"collapsible-expand": "deslarié",
+	"confirmable-confirm": "Este {{GENDER:$1|sigü|sigüda}}",
+	"confirmable-yes": "Sce",
+	"confirmable-no": "No",
+	"thisisdeleted": "ciaré o mëte indô $1?",
+	"viewdeleted": "Ciaré $1?",
 	"site-atom-feed": "Atom Feed de $1",
 	"page-atom-feed": "Atom feed \"$1\"",
 	"red-link-title": "$1 (chësta plata ne dal nia)",
