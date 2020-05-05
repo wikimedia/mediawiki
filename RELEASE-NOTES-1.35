@@ -444,6 +444,8 @@ because of Phabricator reports.
 * ExtensionRegistry::load(), deprecated in 1.34, was removed.
   Use ::queue() instead.
 * MWMessagePack class, deprecated in 1.34, was removed.
+* The cdb.php maintenance script was removed.
+  Use the 'cdb' command from the wikimedia/cdb library instead.
 * User::addNewUserLogEntryAutoCreate, deprecated in 1.27, was removed.
 * FileBasedSiteLookup class, deprecated in 1.33, was removed.
 * The wfGlobalCacheKey global function, deprecated in 1.30, was removed.
