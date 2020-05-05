@@ -129,11 +129,7 @@
 
 		assert.strictEqual( conf.exists( 'doesNotExist' ), false, 'Map.exists where property does not exist' );
 		assert.strictEqual( conf.exists( 'undef' ), true, 'Map.exists where value is `undefined`' );
-		assert.strictEqual( conf.exists( [ 'undef', 'example' ] ), true, 'Map.exists with multiple keys (all existing)' );
-		assert.strictEqual( conf.exists( [ 'example', 'doesNotExist' ] ), false, 'Map.exists with multiple keys (some non-existing)' );
-		assert.strictEqual( conf.exists( [] ), true, 'Map.exists with no keys' );
 		assert.strictEqual( conf.exists( nummy ), false, 'Map.exists with invalid key that looks like an existing key' );
-		assert.strictEqual( conf.exists( [ nummy ] ), false, 'Map.exists with invalid key that looks like an existing key' );
 
 		// Multiple values at once
 		conf = new mw.Map();

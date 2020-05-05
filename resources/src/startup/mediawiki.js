@@ -229,21 +229,12 @@
 		},
 
 		/**
-		 * Check if one or more keys exist.
+		 * Check if a given key exists in the map.
 		 *
-		 * @param {Mixed} selection Key or array of keys to check
-		 * @return {boolean} True if the key(s) exist
+		 * @param {string} selection Key to check
+		 * @return {boolean} True if the key exists
 		 */
 		exists: function ( selection ) {
-			var i;
-			if ( Array.isArray( selection ) ) {
-				for ( i = 0; i < selection.length; i++ ) {
-					if ( typeof selection[ i ] !== 'string' || !( selection[ i ] in this.values ) ) {
-						return false;
-					}
-				}
-				return true;
-			}
 			return typeof selection === 'string' && selection in this.values;
 		}
 	};
