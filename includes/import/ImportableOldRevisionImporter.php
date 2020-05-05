@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -112,33 +115,48 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row
-		$revision = new Revision( [
-			'title' => $importableRevision->getTitle(),
-			'page' => $pageId,
-			'content_model' => $importableRevision->getModel(),
-			'content_format' => $importableRevision->getFormat(),
-			// XXX: just set 'content' => $wikiRevision->getContent()?
-			'text' => $importableRevision->getContent()->serialize( $importableRevision->getFormat() ),
-			'comment' => $importableRevision->getComment(),
-			'user' => $userId,
-			'user_text' => $userText,
-			'timestamp' => $importableRevision->getTimestamp(),
-			'minor_edit' => $importableRevision->getMinor(),
-			'parent_id' => $prevId,
-		] );
-		$revision->insertOn( $dbw );
-		$changed = $page->updateIfNewerOn( $dbw, $revision );
+		$revisionRecord = new MutableRevisionRecord( $importableRevision->getTitle() );
+		$revisionRecord->setParentId( (int)$prevId );
+		$revisionRecord->setComment(
+			CommentStoreComment::newUnsavedComment( $importableRevision->getComment() )
+		);
+
+		try {
+			$revUser = User::newFromAnyId(
+				$userId,
+				$userText,
+				null
+			);
+		} catch ( InvalidArgumentException $ex ) {
+			$revUser = RequestContext::getMain()->getUser();
+		}
+		$revisionRecord->setUser( $revUser );
+
+		$revisionRecord->setContent( SlotRecord::MAIN, $importableRevision->getContent() );
+		$revisionRecord->setTimestamp( $importableRevision->getTimestamp() );
+		$revisionRecord->setMinorEdit( $importableRevision->getMinor() );
+		$revisionRecord->setPageId( $pageId );
+
+		$inserted = MediaWikiServices::getInstance()
+			->getRevisionStore()
+			->insertRevisionOn( $revisionRecord, $dbw );
+
+		$revObject = new Revision( $inserted );
+
+		// TODO WikiPage::updateIfNewerOn is deprecated
+		$changed = $page->updateIfNewerOn( $dbw, $revObject );
 
 		$tags = $importableRevision->getTags();
 		if ( $tags !== [] ) {
-			ChangeTags::addTags( $tags, null, $revision->getId() );
+			ChangeTags::addTags( $tags, null, $inserted->getId() );
 		}
 
 		if ( $changed !== false && $this->doUpdates ) {
 			$this->logger->debug( __METHOD__ . ": running updates\n" );
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
+			// TODO WikiPgae::doEditUpdates is deprecated
 			$page->doEditUpdates(
-				$revision,
+				$revObject,
 				$user,
 				[ 'created' => $created, 'oldcountable' => 'no-change' ]
 			);
