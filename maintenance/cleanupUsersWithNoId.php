@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -146,6 +147,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 		$next = '1=1';
 		$countAssigned = 0;
 		$countPrefixed = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->select(
@@ -204,7 +206,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 
 			list( $next, $display ) = $this->makeNextCond( $dbw, $orderby, $row );
 			$this->output( "... $display\n" );
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 
 		$this->output(

@@ -24,6 +24,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that makes the required database updates for populating the
  * log_search table retroactively
@@ -85,6 +87,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 		$end += $batchSize - 1;
 		$blockStart = $start;
 		$blockEnd = $start + $batchSize - 1;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		$delTypes = [ 'delete', 'suppress' ]; // revisiondelete types
 		while ( $blockEnd <= $end ) {
@@ -174,7 +177,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 			}
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 		$this->output( "Done populating log_search table.\n" );
 

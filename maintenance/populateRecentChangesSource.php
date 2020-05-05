@@ -23,6 +23,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -71,7 +72,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 			);
 
 			$this->output( "." );
-			wfWaitForSlaves();
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;

@@ -179,8 +179,9 @@ class DeleteEqualMessages extends Maintenance {
 		// Handle deletion
 		$this->output( "\n...deleting equal messages (this may take a long time!)..." );
 		$dbw = $this->getDB( DB_MASTER );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		foreach ( $messageInfo['results'] as $result ) {
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 			$dbw->ping();
 			$title = Title::makeTitle( NS_MEDIAWIKI, $result['title'] );
 			$this->output( "\n* [[$title]]" );

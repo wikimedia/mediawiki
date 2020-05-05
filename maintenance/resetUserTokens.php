@@ -26,6 +26,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script to reset the user_token for all users on the wiki.
  *
@@ -80,6 +82,7 @@ class ResetUserTokens extends Maintenance {
 
 		$min = 0;
 		$max = $this->getBatchSize();
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		do {
 			$result = $dbr->select( 'user',
@@ -100,7 +103,7 @@ class ResetUserTokens extends Maintenance {
 			$min = $max;
 			$max = $min + $this->getBatchSize();
 
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		} while ( $min <= $maxid );
 	}
 

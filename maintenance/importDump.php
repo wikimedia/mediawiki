@@ -271,7 +271,7 @@ TEXT
 				$this->progress( "$this->revCount ($revrate revs/sec)" );
 			}
 		}
-		wfWaitForSlaves();
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 	}
 
 	private function progress( $string ) {

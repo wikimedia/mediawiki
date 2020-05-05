@@ -115,7 +115,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$this->output( 'MediaWiki ' . MW_VERSION . " Updater\n\n" );
 
-		wfWaitForSlaves();
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
 
 		if ( !$this->hasOption( 'skip-compat-checks' ) ) {
 			$this->compatChecks();

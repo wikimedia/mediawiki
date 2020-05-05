@@ -25,6 +25,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that makes the required database updates for rev_parent_id
  * to be of any use.
@@ -66,6 +68,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 		$blockEnd = intval( $start ) + $batchSize - 1;
 		$count = 0;
 		$changed = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		while ( $blockStart <= $end ) {
 			$this->output( "...doing rev_id from $blockStart to $blockEnd\n" );
 			$cond = "rev_id BETWEEN $blockStart AND $blockEnd";
@@ -119,7 +122,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 			}
 			$blockStart += $batchSize;
 			$blockEnd += $batchSize;
-			wfWaitForSlaves();
+			$lbFactory->waitForReplication();
 		}
 		$this->output( "rev_parent_id population complete ... {$count} rows [{$changed} changed]\n" );
 
