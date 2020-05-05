@@ -3532,7 +3532,7 @@ $mode: Integer.
 'HtmlCacheUpdaterVaryUrls': Add variants of URLs to purge from HTTP caches.
 Extensions that provide site-wide variants of all URLs, such as by serving from
 an alternate domain or path, can use this hook to append alternative URLs for
-each url in $canonical.
+each url in $urls.
 $urls: Canonical URLs.
 &$append: Append alternative URLs for $urls.
 
