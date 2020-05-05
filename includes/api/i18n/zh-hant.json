@@ -1528,7 +1528,7 @@
 	"api-help-license-noname": "協定：[[$1|查看連結]]",
 	"api-help-license-unknown": "授權條款：<span class=\"apihelp-unknown\">未知</span>",
 	"api-help-parameters": "{{PLURAL:$1|參數}}：",
-	"api-help-param-deprecated": "已停用。",
+	"api-help-param-deprecated": "已棄用。",
 	"api-help-param-internal": "內部。",
 	"api-help-param-templated": "此為[[Special:ApiHelp/main#main/templatedparams|模板參數]]。當做出請求時，$2。",
 	"api-help-param-templated-var-first": "在參數名稱裡的 <var>&#x7B;$1&#x7D;</var> 應替換成 <var>$2</var> 的值",

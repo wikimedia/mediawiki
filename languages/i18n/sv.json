@@ -2691,7 +2691,7 @@
 	"ipb-needreblock": "$1 är redan blockerad. Vill du ändra inställningarna?",
 	"ipb-otherblocks-header": "{{PLURAL:$1|Annan blockering|Andra blockeringar}}",
 	"unblock-hideuser": "Du kan inte ta bort blockeringen här användaren, eftersom dens användarnamn har dolts.",
-	"ipb_cant_unblock": "Fel: Hittade inte blockering $1. Det är möjligt att den redan har upphävts.",
+	"ipb_cant_unblock": "Fel: Hittade inte blockering för $1. Det är möjligt att den redan har tagits bort.",
 	"ipb_blocked_as_range": "Fel: IP-adressen $1 är inte direkt blockerad, och kan därför inte avblockeras. Adressen är blockerad som en del av IP-intervallet $2, som kan avblockeras.",
 	"ip_range_invalid": "Ogiltigt IP-intervall.",
 	"ip_range_toolarge": "Blockering av block större än /$1 är inte tillåtna.",

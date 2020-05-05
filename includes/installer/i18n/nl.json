@@ -281,6 +281,7 @@
 	"config-install-user-grant-failed": "Het geven van rechten aan gebruiker \"$1\" is mislukt: $2",
 	"config-install-user-missing": "De opgegeven gebruiker \"$1\" bestaat niet.",
 	"config-install-user-missing-create": "Het opgegeven account \"$1\" bestaat niet.\nKlik op \"registreren\" onderaan als u het account wilt aanmaken.",
+	"config-install-restore-services": "MediaWiki services worden hersteld",
 	"config-install-tables": "Tabellen aanmaken",
 	"config-install-tables-exist": "'''Waarschuwing''': de MediaWikitabellen lijken al te bestaan.\nHet aanmaken wordt overgeslagen.",
 	"config-install-tables-failed": "'''Fout''': het aanmaken van een tabel is mislukt met de volgende foutmelding: $1",

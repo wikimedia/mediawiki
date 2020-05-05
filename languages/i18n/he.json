@@ -2874,7 +2874,7 @@
 	"tooltip-ca-move": "שינוי השם של דף זה",
 	"tooltip-ca-watch": "הוספת דף זה לרשימת המעקב שלך",
 	"tooltip-ca-unwatch": "הסרת דף זה מרשימת המעקב שלך",
-	"tooltip-search": "חיפוש ב{{GRAMMAR:תחילית|{{SITENAME}}}}",
+	"tooltip-search": "‏חיפוש ב{{GRAMMAR:תחילית|{{SITENAME}}}}‏",
 	"tooltip-search-go": "מעבר לדף בשם הזה בדיוק, אם הוא קיים",
 	"tooltip-search-fulltext": "חיפוש טקסט זה בדפים",
 	"tooltip-p-logo": "ביקור בעמוד הראשי",
