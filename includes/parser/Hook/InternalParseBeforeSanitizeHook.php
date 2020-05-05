@@ -6,7 +6,7 @@ use Parser;
 use StripState;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35
  * @ingroup Hooks
  */
 interface InternalParseBeforeSanitizeHook {
