@@ -225,8 +225,8 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.SearchInputWidget.prototype.onLookupMenuItemChoose = function () {
-		mw.widgets.SearchInputWidget.parent.prototype.onLookupMenuItemChoose.apply( this, arguments );
+	mw.widgets.SearchInputWidget.prototype.onLookupMenuChoose = function () {
+		mw.widgets.SearchInputWidget.parent.prototype.onLookupMenuChoose.apply( this, arguments );
 
 		if ( this.performSearchOnClick ) {
 			this.$element.closest( 'form' ).trigger( 'submit' );

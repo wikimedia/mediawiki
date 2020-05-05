@@ -45,11 +45,9 @@
 	/**
 	 * Handle menu item 'choose' event, updating the text input value to the value of the clicked item.
 	 *
-	 * TODO: Replace this with an override of onLookupMenuChoose()
-	 *
 	 * @param {OO.ui.MenuOptionWidget} item Selected item
 	 */
-	mw.widgets.UserInputWidget.prototype.onLookupMenuItemChoose = function ( item ) {
+	mw.widgets.UserInputWidget.prototype.onLookupMenuChoose = function ( item ) {
 		this.closeLookupMenu();
 		this.setLookupsDisabled( true );
 		this.setValue( item.getData() );

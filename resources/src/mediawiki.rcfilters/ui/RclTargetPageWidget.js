@@ -36,7 +36,7 @@ var RclTargetPageWidget = function MwRcfiltersUiRclTargetPageWidget(
 	} );
 
 	this.titleSearch.lookupMenu.connect( this, {
-		choose: 'onLookupMenuItemChoose'
+		choose: 'onLookupMenuChoose'
 	} );
 
 	// Initialize
@@ -56,7 +56,7 @@ OO.inheritClass( RclTargetPageWidget, OO.ui.Widget );
 /**
  * Respond to the user choosing a title
  */
-RclTargetPageWidget.prototype.onLookupMenuItemChoose = function () {
+RclTargetPageWidget.prototype.onLookupMenuChoose = function () {
 	this.titleSearch.$input.trigger( 'blur' );
 };
 
