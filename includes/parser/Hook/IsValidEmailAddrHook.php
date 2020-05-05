@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Hook;
 
-use MailAddress;
-
 /**
  * @stable for implementation
  * @ingroup Hooks
@@ -15,7 +13,7 @@ interface IsValidEmailAddrHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param MailAddress $addr Email address entered by the user
+	 * @param string $addr Email address entered by the user
 	 * @param bool|null &$result Set this and return false to override the internal checks
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

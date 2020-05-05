@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Hook;
 
-use BitmapHandler;
 use File;
 use MediaTransformOutput;
+use TransformationalImageHandler;
 
 /**
  * @stable for implementation
@@ -17,7 +17,7 @@ interface BitmapHandlerTransformHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param BitmapHandler $handler
+	 * @param TransformationalImageHandler $handler
 	 * @param File $image
 	 * @param array &$scalerParams Array with scaler parameters
 	 * @param null|MediaTransformOutput &$mto

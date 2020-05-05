@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use ImagePage;
+use File;
 
 /**
  * @stable for implementation
@@ -14,7 +14,7 @@ interface FileUploadHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param ImagePage $file Image object representing the file that was uploaded
+	 * @param File $file Image object representing the file that was uploaded
 	 * @param bool $reupload Boolean indicating if there was a previously another image there or
 	 *   not (since 1.17)
 	 * @param bool $hasDescription Boolean indicating that there was already a description page

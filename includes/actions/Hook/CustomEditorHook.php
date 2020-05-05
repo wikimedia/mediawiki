@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use Article;
 use User;
-use WikiPage;
 
 /**
  * @stable for implementation
@@ -15,7 +15,7 @@ interface CustomEditorHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param WikiPage $article Article being edited
+	 * @param Article $article Article being edited
 	 * @param User $user User performing the edit
 	 * @return bool|void True or no return value to allow the normal editor to be used.
 	 *   False if implementing a custom editor, e.g. for a special namespace, etc.

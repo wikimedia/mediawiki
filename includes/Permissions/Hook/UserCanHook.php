@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Permissions\Hook;
 
-use Action;
 use Title;
 use User;
 
@@ -19,7 +18,7 @@ interface UserCanHook {
 	 *
 	 * @param Title $title Title being checked against
 	 * @param User $user Current user
-	 * @param Action $action Action being checked
+	 * @param string $action Action being checked
 	 * @param string &$result Pointer to result returned if hook returns false.
 	 *   If null is returned, userCan checks are continued by internal code.
 	 * @return bool|void True or no return value to continue or false to abort
