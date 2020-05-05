@@ -24,6 +24,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageHandlerFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -831,11 +832,12 @@ class MovePage {
 		// But not $this->oldTitle yet, see below (T47348).
 		$nt->resetArticleID( $oldid );
 
+		$commentObj = CommentStoreComment::newUnsavedComment( $comment );
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = $this->revisionStore->newNullRevision(
 			$dbw,
 			$nt,
-			CommentStoreComment::newUnsavedComment( $comment ),
+			$commentObj,
 			true,
 			$user
 		);
@@ -882,25 +884,32 @@ class MovePage {
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
 				$this->oldTitle->resetArticleID( $newid );
-				$redirectRevision = new Revision( [
-					'title' => $this->oldTitle, // for determining the default content model
-					'page' => $newid,
-					'user_text' => $user->getName(),
-					'user' => $user->getId(),
-					'comment' => $comment,
-					'content' => $redirectContent ] );
-				$redirectRevId = $redirectRevision->insertOn( $dbw );
-				$redirectArticle->updateRevisionOn(
-					$dbw,
-					$redirectRevision->getRevisionRecord(),
-					0
-				);
+				$redirectRevisionRecord = new MutableRevisionRecord( $this->oldTitle );
+				$redirectRevisionRecord->setPageId( $newid );
+				$redirectRevisionRecord->setUser( $user );
+				$redirectRevisionRecord->setComment( $commentObj );
+				$redirectRevisionRecord->setContent( SlotRecord::MAIN, $redirectContent );
+				$redirectRevisionRecord->setTimestamp( MWTimestamp::now( TS_MW ) );
 
+				$inserted = $this->revisionStore->insertRevisionOn(
+					$redirectRevisionRecord,
+					$dbw
+				);
+				$redirectRevId = $inserted->getId();
+				$redirectArticle->updateRevisionOn( $dbw, $inserted, 0 );
+
+				// TODO replace hook with one using RevisionRecord
+				$redirectRevisionObj = new Revision( $inserted );
 				$fakeTags = [];
 				Hooks::run( 'NewRevisionFromEditComplete',
-					[ $redirectArticle, $redirectRevision, false, $user, &$fakeTags ] );
+					[ $redirectArticle, $redirectRevisionObj, false, $user, &$fakeTags ] );
 
-				$redirectArticle->doEditUpdates( $redirectRevision, $user, [ 'created' => true ] );
+				// TODO WikiPage::doEditUpdates is deprecated
+				$redirectArticle->doEditUpdates(
+					$redirectRevisionObj,
+					$user,
+					[ 'created' => true ]
+				);
 
 				// make a copy because of log entry below
 				$redirectTags = $changeTags;
