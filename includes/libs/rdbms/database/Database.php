@@ -2397,12 +2397,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {
+		$this->assertConditionIsNotEmpty( $conds, __METHOD__, true );
 		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $set, self::LIST_SET );
 
-		if ( $conds !== [] && $conds !== '*' ) {
-			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
+		if ( $conds && $conds !== IDatabase::ALL_ROWS ) {
+			if ( is_array( $conds ) ) {
+				$conds = $this->makeList( $conds, self::LIST_AND );
+			}
+			$sql .= ' WHERE ' . $conds;
 		}
 
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
@@ -2614,6 +2618,30 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new InvalidArgumentException(
 				'$length must be null or an integer greater than or equal to 0'
 			);
+		}
+	}
+
+	/**
+	 * Check type and bounds conditions parameters for update
+	 *
+	 * In order to prevent possible performance or replication issues,
+	 * empty condition for 'update' queries isn't allowed
+	 *
+	 * @param array|string $conds conditions to be validated on emptiness
+	 * @param string $fname caller's function name to be passed to exception
+	 * @param bool $deprecate define the assertion type. If true then
+	 *   wfDeprecated will be called, otherwise DBUnexpectedError will be
+	 *   raised.
+	 * @since 1.35
+	 */
+	protected function assertConditionIsNotEmpty( $conds, string $fname, bool $deprecate ) {
+		$isCondValid = ( is_string( $conds ) || is_array( $conds ) ) && $conds;
+		if ( !$isCondValid ) {
+			if ( $deprecate ) {
+				wfDeprecated( $fname . ' called with empty $conds', '1.35', false, 3 );
+			} else {
+				throw new DBUnexpectedError( $this, $fname . ' called with empty conditions' );
+			}
 		}
 	}
 
@@ -3282,14 +3310,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
-		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, __METHOD__ . ' called with no conditions' );
-		}
+		$this->assertConditionIsNotEmpty( $conds, __METHOD__, false );
 
 		$table = $this->tableName( $table );
 		$sql = "DELETE FROM $table";
 
-		if ( $conds != '*' ) {
+		if ( $conds !== IDatabase::ALL_ROWS ) {
 			if ( is_array( $conds ) ) {
 				$conds = $this->makeList( $conds, self::LIST_AND );
 			}
