@@ -14,7 +14,7 @@ interface ConfirmEmailCompleteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user user (object) whose email is being confirmed
+	 * @param User $user User whose email is being confirmed
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onConfirmEmailComplete( $user );

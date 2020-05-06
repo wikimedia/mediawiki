@@ -8,13 +8,13 @@ namespace MediaWiki\Hook;
  */
 interface OtherAutoblockLogLinkHook {
 	/**
-	 * This hook is used to get links to the autoblock log
-	 *
-	 * Extensions may autoblocks users and/or IP addresses too.
+	 * Use this hook to add list items to a list of "other autoblocks" which
+	 * appears at the end of Special:AutoblockList. Handlers should append
+	 * HTML fragments to the $otherBlockLink array.
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$otherBlockLink An array with links to other autoblock logs
+	 * @param string[] &$otherBlockLink An array of HTML fragments
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onOtherAutoblockLogLink( &$otherBlockLink );

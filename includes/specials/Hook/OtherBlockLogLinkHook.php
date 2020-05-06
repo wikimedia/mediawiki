@@ -8,14 +8,15 @@ namespace MediaWiki\Hook;
  */
 interface OtherBlockLogLinkHook {
 	/**
-	 * This hook is used to get links to the block log
-	 *
-	 * Extensions can blocks users and/or IP addresses too.
+	 * Use this hook to add list items to a list of "other blocks" when
+	 * viewing Special:BlockList. Handlers should append HTML fragments to
+	 * the $otherBlockLink array.
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$otherBlockLink An array with links to other block logs
-	 * @param string $ip The requested IP address or username
+	 * @param string[] &$otherBlockLink Array of HTML fragments
+	 * @param string $ip The requested IP address or username, or an empty
+	 *   string if Special:BlockList is showing all blocks.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onOtherBlockLogLink( &$otherBlockLink, $ip );

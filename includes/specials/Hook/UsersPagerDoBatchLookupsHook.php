@@ -19,7 +19,7 @@ interface UsersPagerDoBatchLookupsHook {
 	 * @since 1.35
 	 *
 	 * @param DBConnRef $dbr Read-only database handle
-	 * @param array $userIds Array of user IDs whose groups we should look up
+	 * @param int[] $userIds Array of user IDs whose groups we should look up
 	 * @param array &$cache Array of user ID -> (array of internal group name (e.g. 'sysop') ->
 	 *   UserGroupMembership object)
 	 * @param array &$groups Array of group name -> bool true mappings for members of a given user

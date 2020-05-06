@@ -15,8 +15,8 @@ interface LoginFormValidErrorMessagesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$messages Already added messages (inclusive messages from
-	 *   LoginForm::$validErrorMessages)
+	 * @param string[] &$messages Already added message keys (including message
+	 *   keys from LoginForm::$validErrorMessages)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onLoginFormValidErrorMessages( &$messages );

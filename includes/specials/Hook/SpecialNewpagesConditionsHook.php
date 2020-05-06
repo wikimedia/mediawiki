@@ -11,7 +11,7 @@ use NewPagesPager;
  */
 interface SpecialNewpagesConditionsHook {
 	/**
-	 * This hook is called when building the sql query for Special:NewPages.
+	 * This hook is called when building the SQL query for Special:NewPages.
 	 *
 	 * @since 1.35
 	 *

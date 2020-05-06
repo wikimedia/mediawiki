@@ -15,8 +15,8 @@ interface UserLoadFromDatabaseHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user user object
-	 * @param stdClass|bool &$s database query object
+	 * @param User $user
+	 * @param stdClass|bool &$s Database query object
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserLoadFromDatabase( $user, &$s );

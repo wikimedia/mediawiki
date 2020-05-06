@@ -14,8 +14,8 @@ interface UserLoadDefaultsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user user object
-	 * @param string $name user name
+	 * @param User $user
+	 * @param string $name User name
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserLoadDefaults( $user, $name );
