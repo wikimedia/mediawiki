@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * API module that clears the hasmsg flag for current user
  * @ingroup API
@@ -28,7 +30,10 @@
 class ApiClearHasMsg extends ApiBase {
 	public function execute() {
 		$user = $this->getUser();
-		$user->setNewtalk( false );
+		MediaWikiServices::getInstance()
+			->getTalkPageNotificationManager()
+			->removeUserHasNewMessages( $user );
+
 		$this->getResult()->addValue( null, $this->getModuleName(), 'success' );
 	}
 
