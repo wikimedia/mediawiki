@@ -126,17 +126,22 @@ class SpecialVersion extends SpecialPage {
 				if ( $extName === 'MediaWiki' ) {
 					$wikiText = file_get_contents( $IP . '/COPYING' );
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
-					$file = self::getExtLicenseFileName( dirname( $extNode['path'] ) );
-					if ( $file ) {
-						$wikiText = file_get_contents( $file );
-						$wikiText = Html::element(
-							'pre',
-							[
-								'lang' => 'en',
-								'dir' => 'ltr',
-							],
-							$wikiText
-						);
+					$files = ExtensionInfo::getLicenseFileNames( dirname( $extNode['path'] ) );
+
+					if ( count( $files ) ) {
+						// Only replace '{{int:version-license-not-found}}' if we have files
+						$wikiText = '';
+						foreach ( $files as $file ) {
+							$fileText = file_get_contents( $file );
+							$wikiText .= Html::element(
+								'pre',
+								[
+									'lang' => 'en',
+									'dir' => 'ltr',
+								],
+								$fileText
+							);
+						}
 					}
 				}
 
@@ -842,7 +847,7 @@ class SpecialVersion extends SpecialPage {
 			$licenseName = null;
 			if ( isset( $extension['license-name'] ) ) {
 				$licenseName = new HtmlArmor( $out->parseInlineAsInterface( $extension['license-name'] ) );
-			} elseif ( self::getExtLicenseFileName( $extensionPath ) ) {
+			} elseif ( ExtensionInfo::getLicenseFileNames( $extensionPath ) ) {
 				$licenseName = $this->msg( 'version-ext-license' )->text();
 			}
 			if ( $licenseName !== null ) {
@@ -1092,26 +1097,18 @@ class SpecialVersion extends SpecialPage {
 	 * @param string $extDir Path to the extensions root directory
 	 *
 	 * @since 1.23
+	 * @deprecated since 1.35 Use MediaWiki\ExtensionInfo::getLicenseFileNames()
 	 *
 	 * @return bool|string False if no such file exists, otherwise returns
 	 * a path to it.
 	 */
 	public static function getExtLicenseFileName( $extDir ) {
-		if ( !$extDir ) {
+		wfDeprecated( __METHOD__, '1.35' );
+		$licenses = ExtensionInfo::getLicenseFileNames( $extDir );
+		if ( count( $licenses ) === 0 ) {
 			return false;
 		}
-
-		foreach ( scandir( $extDir ) as $file ) {
-			$fullPath = $extDir . DIRECTORY_SEPARATOR . $file;
-			if ( preg_match( '/^((COPYING)|(LICENSE))(\.txt)?$/', $file ) &&
-				is_readable( $fullPath ) &&
-				is_file( $fullPath )
-			) {
-				return $fullPath;
-			}
-		}
-
-		return false;
+		return $licenses[0];
 	}
 
 	/**

@@ -34,4 +34,33 @@ class ExtensionInfo {
 
 		return false;
 	}
+
+	/**
+	 * Obtains the full paths of COPYING or LICENSE files if they exist.
+	 *
+	 * @param string $extDir Path to the extensions root directory
+	 *
+	 * @since 1.35
+	 *
+	 * @return array Returns an array of zero or more paths.
+	 */
+	public static function getLicenseFileNames( $extDir ) {
+		if ( !$extDir ) {
+			return [];
+		}
+
+		$licenseFiles = [];
+		foreach ( scandir( $extDir ) as $file ) {
+			$fullPath = $extDir . DIRECTORY_SEPARATOR . $file;
+			// Allow files like GPL-COPYING and MIT-LICENSE
+			if ( preg_match( '/^([\w\.-]+)?(COPYING|LICENSE)(\.txt)?$/', $file ) &&
+				is_readable( $fullPath ) &&
+				is_file( $fullPath )
+			) {
+				$licenseFiles[] = $fullPath;
+			}
+		}
+
+		return $licenseFiles;
+	}
 }

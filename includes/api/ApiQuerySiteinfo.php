@@ -646,7 +646,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						}
 					}
 
-					if ( SpecialVersion::getExtLicenseFileName( $extensionPath ) ) {
+					if ( ExtensionInfo::getLicenseFileNames( $extensionPath ) ) {
 						$ret['license-name'] = $ext['license-name'] ?? '';
 						$ret['license'] = SpecialPage::getTitleFor(
 							'Version',
