@@ -23,6 +23,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\ExtensionInfo;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -100,7 +101,7 @@ class SpecialVersion extends SpecialPage {
 						[ '<div class="mw-version-credits">', '</div>' ],
 						$wikiText );
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
-					$file = $this->getExtAuthorsFileName( dirname( $extNode['path'] ) );
+					$file = ExtensionInfo::getAuthorsFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
 						if ( substr( $file, -4 ) === '.txt' ) {
@@ -1022,7 +1023,7 @@ class SpecialVersion extends SpecialPage {
 		if ( count( $authors ) === 1 && $authors[0] === '...' ) {
 			// Link to the extension's or skin's AUTHORS or CREDITS file, if there is
 			// such a file; otherwise just return the i18n msg as-is
-			if ( $extName && self::getExtAuthorsFileName( $extDir ) ) {
+			if ( $extName && ExtensionInfo::getAuthorsFileName( $extDir ) ) {
 				return $linkRenderer->makeLink(
 					$this->getPageTitle( "Credits/$extName" ),
 					$this->msg( 'version-poweredby-various' )->text()
@@ -1038,7 +1039,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $item == '...' ) {
 				$hasOthers = true;
 
-				if ( $extName && $this->getExtAuthorsFileName( $extDir ) ) {
+				if ( $extName && ExtensionInfo::getAuthorsFileName( $extDir ) ) {
 					$text = $linkRenderer->makeLink(
 						$this->getPageTitle( "Credits/$extName" ),
 						$this->msg( 'version-poweredby-others' )->text()
@@ -1057,7 +1058,7 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		if ( $extName && !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
+		if ( $extName && !$hasOthers && ExtensionInfo::getAuthorsFileName( $extDir ) ) {
 			$list[] = $text = $linkRenderer->makeLink(
 				$this->getPageTitle( "Credits/$extName" ),
 				$this->msg( 'version-poweredby-others' )->text()
@@ -1074,26 +1075,14 @@ class SpecialVersion extends SpecialPage {
 	 * @param string $extDir Path to the extensions root directory
 	 *
 	 * @since 1.23
+	 * @deprecated since 1.35 Use MediaWiki\ExtensionInfo::getAuthorsFileName()
 	 *
 	 * @return bool|string False if no such file exists, otherwise returns
 	 * a path to it.
 	 */
 	public static function getExtAuthorsFileName( $extDir ) {
-		if ( !$extDir ) {
-			return false;
-		}
-
-		foreach ( scandir( $extDir ) as $file ) {
-			$fullPath = $extDir . DIRECTORY_SEPARATOR . $file;
-			if ( preg_match( '/^((AUTHORS)|(CREDITS))(\.txt|\.wiki|\.mediawiki)?$/', $file ) &&
-				is_readable( $fullPath ) &&
-				is_file( $fullPath )
-			) {
-				return $fullPath;
-			}
-		}
-
-		return false;
+		wfDeprecated( __METHOD__, '1.35' );
+		return ExtensionInfo::getAuthorsFileName( $extDir );
 	}
 
 	/**
