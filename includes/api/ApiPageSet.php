@@ -1163,7 +1163,9 @@ class ApiPageSet extends ApiBase {
 		$services = MediaWikiServices::getInstance();
 		$linkBatchFactory = $services->getLinkBatchFactory();
 		$linkBatch = $linkBatchFactory->newLinkBatch();
-		$contLang = $services->getContentLanguage();
+		$languageConverter = $services
+			->getLanguageConverterFactory()
+			->getLanguageConverter( $services->getContentLanguage() );
 
 		$titleObjects = [];
 		foreach ( $titles as $index => $title ) {
@@ -1204,12 +1206,14 @@ class ApiPageSet extends ApiBase {
 			} else {
 				// Variants checking
 				if (
-					$this->mConvertTitles && $contLang->hasVariants() && !$titleObj->exists()
+					$this->mConvertTitles
+					&& $languageConverter->hasVariants()
+					&& !$titleObj->exists()
 				) {
 					// Language::findVariantLink will modify titleText and titleObj into
 					// the canonical variant if possible
 					$titleText = $title !== false ? $title : $titleObj->getPrefixedText();
-					$contLang->findVariantLink( $titleText, $titleObj );
+					$languageConverter->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
 

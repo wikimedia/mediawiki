@@ -339,6 +339,11 @@ because of Phabricator reports.
   upgrade to PHPUnit 8, but never used.
 * ParserCache::getETag has been deprecated, instead build suitable etag
   explicitly.
+* The following functions from the Language class have been hard deprecated
+  and will be removed in a subsequent release:
+   - findVariantLink
+   - convertTitle
+   - updateConversionTable
 * …
 
 === Other changes in 1.36 ===
