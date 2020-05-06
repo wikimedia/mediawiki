@@ -3430,6 +3430,7 @@
 	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
 	"mw-widgets-mediasearch-input-placeholder": "Søg efter medier",
 	"mw-widgets-mediasearch-noresults": "Der blev ikke fundet noget resultat.",
+	"mw-widgets-table-row-delete": "Slet række",
 	"mw-widgets-titleinput-description-new-page": "side eksisterer ikke endnu",
 	"mw-widgets-titleinput-description-redirect": "omdiriger til $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Tilføj en kategori...",

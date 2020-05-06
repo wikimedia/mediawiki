@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use File;
-use RequestContext;
+use IContextSource;
 
 /**
  * @stable for implementation
@@ -21,7 +21,7 @@ interface GetExtendedMetadataHook {
 	 *   		'source' => 'name of hook'
 	 *   	 ]
 	 * @param File $file File in question
-	 * @param RequestContext $context RequestContext (including language to use)
+	 * @param IContextSource $context RequestContext (including language to use)
 	 * @param bool $single Only extract the current language; if false, the prop value should
 	 *   be in the metadata multi-language array format:
 	 *   https://mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format

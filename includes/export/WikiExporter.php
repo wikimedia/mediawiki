@@ -448,7 +448,7 @@ class WikiExporter {
 		$opts['LIMIT'] = self::BATCH_SIZE;
 
 		Hooks::run( 'ModifyExportQuery',
-			[ $this->db, &$tables, &$cond, &$opts, &$join ] );
+			[ $this->db, &$tables, &$cond, &$opts, &$join, &$conds ] );
 
 		while ( !$done ) {
 			// If necessary, impose the overall maximum and stop looping after this iteration.

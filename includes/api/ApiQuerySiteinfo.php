@@ -19,6 +19,8 @@
  *
  * @file
  */
+
+use MediaWiki\ExtensionInfo;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -652,7 +654,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 						)->getLinkURL();
 					}
 
-					if ( SpecialVersion::getExtAuthorsFileName( $extensionPath ) ) {
+					if ( ExtensionInfo::getAuthorsFileName( $extensionPath ) ) {
 						$ret['credits'] = SpecialPage::getTitleFor(
 							'Version',
 							"Credits/{$ext['name']}"

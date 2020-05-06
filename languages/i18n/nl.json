@@ -3782,6 +3782,7 @@
 	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-mediasearch-input-placeholder": "Zoeken naar media",
 	"mw-widgets-mediasearch-noresults": "Geen resultaten gevonden.",
+	"mw-widgets-table-row-delete": "Rij verwijderen",
 	"mw-widgets-titleinput-description-new-page": "pagina bestaat nog niet",
 	"mw-widgets-titleinput-description-redirect": "doorverwijzing naar $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Voeg een categorie toe...",

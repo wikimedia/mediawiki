@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Linker\Hook;
 
-use Skin;
+use DummyLinker;
 use Title;
 
 /**
@@ -16,7 +16,7 @@ interface LinkEndHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Skin $skin
+	 * @param DummyLinker $skin Formerly a Linker/Skin, now a DummyLinker for b/c
 	 * @param Title $target Title that the link is pointing to
 	 * @param string[] $options Array of options, which always includes either
 	 *   'known' or 'broken', and may include 'noclasses'

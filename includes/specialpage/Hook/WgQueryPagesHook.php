@@ -2,8 +2,6 @@
 
 namespace MediaWiki\SpecialPage\Hook;
 
-use QueryPage;
-
 /**
  * @stable for implementation
  * @ingroup Hooks
@@ -15,7 +13,7 @@ interface WgQueryPagesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param QueryPage[] &$qp List of QueryPages
+	 * @param array &$qp List of QueryPages
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onWgQueryPages( &$qp );

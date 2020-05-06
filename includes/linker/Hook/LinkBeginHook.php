@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Linker\Hook;
 
-use Skin;
+use DummyLinker;
 use Title;
 
 /**
@@ -17,7 +17,7 @@ interface LinkBeginHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Skin $skin
+	 * @param DummyLinker $skin Formerly a Linker/Skin, now a DummyLinker for b/c
 	 * @param Title $target Title that the link is pointing to
 	 * @param string|null &$html Contents that the `<a>` tag should have (raw HTML); null means
 	 *   "default"

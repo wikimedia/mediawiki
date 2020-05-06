@@ -3,7 +3,6 @@
 namespace MediaWiki\ResourceLoader\Hook;
 
 use Config;
-use Skin;
 
 /**
  * @stable for implementation
@@ -21,7 +20,7 @@ interface ResourceLoaderGetConfigVarsHook {
 	 *
 	 * @since 1.35
 	 * @param array &$vars `[ variable name => value ]`
-	 * @param Skin $skin
+	 * @param string $skin
 	 * @param Config $config since 1.34
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

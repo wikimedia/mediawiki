@@ -3772,6 +3772,7 @@
 	"mw-widgets-dateinput-no-date": "Hiçbir tarih seçilmedi",
 	"mw-widgets-mediasearch-input-placeholder": "Medya ara",
 	"mw-widgets-mediasearch-noresults": "Sonuç bulunamadı.",
+	"mw-widgets-table-row-delete": "Sırayı sil",
 	"mw-widgets-titleinput-description-new-page": "sayfa henüz mevcut değil",
 	"mw-widgets-titleinput-description-redirect": "$1 yönlendir",
 	"mw-widgets-categoryselector-add-category-placeholder": "Bir kategori ekle...",

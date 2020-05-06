@@ -159,6 +159,8 @@ class ApiOptions extends ApiBase {
 	 */
 	protected function getPreferences() {
 		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		$preferencesFactory->setUser( $this->getUserForUpdates() );
+		// Note that the $user parameter of getFormDescriptor() is deprecated.
 		return $preferencesFactory->getFormDescriptor( $this->getUserForUpdates(),
 			$this->getContext() );
 	}

@@ -54,8 +54,14 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public static function suggestTarget( $target, array $ids ) {
-		$rev = Revision::newFromId( $ids[0] );
-		return $rev ? $rev->getTitle() : $target;
+		$revisionRecord = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionById( $ids[0] );
+
+		if ( $revisionRecord ) {
+			return Title::newFromLinkTarget( $revisionRecord->getPageAsLinkTarget() );
+		}
+		return $target;
 	}
 
 	/**

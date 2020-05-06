@@ -20,33 +20,34 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Item class for a live revision table row
  */
 class RevisionItem extends RevisionItemBase {
-	/** @var Revision */
-	protected $revision;
+	/** @var RevisionRecord */
+	protected $revisionRecord;
 
 	/** @var RequestContext */
 	protected $context;
 
 	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
-		$this->revision = new Revision( $row );
+		$this->revisionRecord = MediaWikiServices::getInstance()
+			->getRevisionFactory()
+			->newRevisionFromRow( $row );
 		$this->context = $list->getContext();
 	}
 
 	/**
 	 * Get the RevisionRecord for the item
 	 *
-	 * @todo remove use of Revision entirely
-	 *
 	 * @return RevisionRecord
 	 */
 	protected function getRevisionRecord() : RevisionRecord {
-		return $this->revision->getRevisionRecord();
+		return $this->revisionRecord;
 	}
 
 	public function getIdField() {

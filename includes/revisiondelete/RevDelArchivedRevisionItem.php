@@ -29,7 +29,7 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 	}
 
 	public function getId() {
-		return $this->revision->getId();
+		return $this->getRevisionRecord()->getId();
 	}
 
 	public function setBits( $bits ) {

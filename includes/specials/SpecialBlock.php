@@ -178,6 +178,7 @@ class SpecialBlock extends FormSpecialPage {
 		$a['EditingRestriction'] = [
 			'type' => 'radio',
 			'cssclass' => 'mw-block-editing-restriction',
+			'default' => 'sitewide',
 			'options' => [
 				$this->msg( 'ipb-sitewide' )->escaped() .
 					new \OOUI\LabelWidget( [
@@ -400,6 +401,33 @@ class SpecialBlock extends FormSpecialPage {
 				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->getExpiry() );
 			}
 
+			if ( !$block->isSitewide() ) {
+				$fields['EditingRestriction']['default'] = 'partial';
+
+				$pageRestrictions = [];
+				$namespaceRestrictions = [];
+				foreach ( $block->getRestrictions() as $restriction ) {
+					if ( $restriction instanceof PageRestriction && $restriction->getTitle() ) {
+						$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
+					} elseif ( $restriction instanceof NamespaceRestriction ) {
+						$namespaceRestrictions[] = $restriction->getValue();
+					}
+				}
+
+				// Sort the restrictions so they are in alphabetical order.
+				sort( $pageRestrictions );
+				$fields['PageRestrictions']['default'] = implode( "\n", $pageRestrictions );
+				sort( $namespaceRestrictions );
+				$fields['NamespaceRestrictions']['default'] = implode( "\n", $namespaceRestrictions );
+
+				if (
+					empty( $pageRestrictions ) &&
+					empty( $namespaceRestrictions )
+				) {
+					$fields['Editing']['default'] = false;
+				}
+			}
+
 			$this->alreadyBlocked = true;
 			$this->preErrors[] = [ 'ipb-needreblock', wfEscapeWikiText( (string)$block->getTarget() ) ];
 		}
@@ -422,45 +450,6 @@ class SpecialBlock extends FormSpecialPage {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
 			$this->preErrors[] = [ 'ipb-blockingself', 'ipb-confirmaction' ];
-		}
-
-		if ( $block instanceof DatabaseBlock && !$block->isSitewide() ) {
-			$fields['EditingRestriction']['default'] = 'partial';
-		} else {
-			$fields['EditingRestriction']['default'] = 'sitewide';
-		}
-
-		if ( $block instanceof DatabaseBlock ) {
-			$pageRestrictions = [];
-			$namespaceRestrictions = [];
-			foreach ( $block->getRestrictions() as $restriction ) {
-				switch ( $restriction->getType() ) {
-					case PageRestriction::TYPE:
-						/** @var PageRestriction $restriction */
-						'@phan-var PageRestriction $restriction';
-						if ( $restriction->getTitle() ) {
-							$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
-						}
-						break;
-					case NamespaceRestriction::TYPE:
-						$namespaceRestrictions[] = $restriction->getValue();
-						break;
-				}
-			}
-
-			if (
-				!$block->isSitewide() &&
-				empty( $pageRestrictions ) &&
-				empty( $namespaceRestrictions )
-			) {
-				$fields['Editing']['default'] = false;
-			}
-
-			// Sort the restrictions so they are in alphabetical order.
-			sort( $pageRestrictions );
-			$fields['PageRestrictions']['default'] = implode( "\n", $pageRestrictions );
-			sort( $namespaceRestrictions );
-			$fields['NamespaceRestrictions']['default'] = implode( "\n", $namespaceRestrictions );
 		}
 	}
 

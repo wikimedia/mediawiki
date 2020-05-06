@@ -3202,6 +3202,7 @@
 	"mw-widgets-dateinput-no-date": "Cap de data pas seleccionada",
 	"mw-widgets-mediasearch-input-placeholder": "Recercar de mèdias",
 	"mw-widgets-mediasearch-noresults": "Cap de resultat pas trobat.",
+	"mw-widgets-table-row-delete": "Suprimir la linha",
 	"mw-widgets-categoryselector-add-category-placeholder": "Apondre una categoria...",
 	"mw-widgets-usersmultiselect-placeholder": "Apondre mai...",
 	"sessionprovider-generic": "sessions $1",

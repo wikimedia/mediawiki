@@ -87,8 +87,10 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 		$testUser = $this->getTestUser();
 		$pm = $this->createMock( PermissionManager::class );
 		$pm->method( 'userHasRight' )->willReturn( true );
-		$form = $this->getPreferencesFactory( $pm, new Language() )
-			->getForm( $testUser->getUser(), $this->context );
+		$prefFactory = $this->getPreferencesFactory( $pm, new Language() );
+		$prefFactory->setUser( $testUser->getUser() );
+		// Note that the $user parameter of getForm() is deprecated.
+		$form = $prefFactory->getForm( $testUser->getUser(), $this->context );
 		$this->assertInstanceOf( PreferencesFormOOUI::class, $form );
 		$this->assertCount( 5, $form->getPreferenceSections() );
 	}
@@ -268,7 +270,10 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 			->will( $this->returnValueMap( [
 				[ $user, 'editmyoptions', true ]
 			] ) );
-		$form = $this->getPreferencesFactory( $pm, new Language() )->getForm( $user, $this->context );
+		$prefFactory = $this->getPreferencesFactory( $pm, new Language() );
+		$prefFactory->setUser( $user );
+		// Note that the $user parameter of getForm() is deprecated.
+		$form = $prefFactory->getForm( $user, $this->context );
 		$form->show();
 		$form->trySubmit();
 		$this->assertEquals( 12, $user->getOption( 'rclimit' ) );

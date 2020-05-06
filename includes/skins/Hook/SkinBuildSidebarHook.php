@@ -15,7 +15,7 @@ interface SkinBuildSidebarHook {
 	 * @since 1.35
 	 *
 	 * @param Skin $skin
-	 * @param string &$bar Sidebar contents. Modify $bar to add or modify sidebar portlets.
+	 * @param array &$bar Sidebar contents. Modify $bar to add or modify sidebar portlets.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSkinBuildSidebar( $skin, &$bar );

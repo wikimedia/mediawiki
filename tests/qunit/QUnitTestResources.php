@@ -99,6 +99,7 @@ return [
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.SavedQueriesModel.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/UriProcessor.test.js',
 			'tests/qunit/suites/resources/mediawiki.widgets/MediaSearch/mediawiki.widgets.APIResultsQueue.test.js',
+			'tests/qunit/suites/resources/mediawiki.widgets/Table/mediawiki.widgets.TableWidget.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',

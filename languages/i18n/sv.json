@@ -3756,6 +3756,7 @@
 	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
 	"mw-widgets-mediasearch-input-placeholder": "Sök efter media",
 	"mw-widgets-mediasearch-noresults": "Inga resultat hittades.",
+	"mw-widgets-table-row-delete": "Radera rad",
 	"mw-widgets-titleinput-description-new-page": "sidan existerar inte ännu",
 	"mw-widgets-titleinput-description-redirect": "omdirigerar till $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Lägg till en kategori...",

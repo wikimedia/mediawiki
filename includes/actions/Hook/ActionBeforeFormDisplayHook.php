@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use Article;
 use HTMLForm;
-use WikiPage;
 
 /**
  * @stable for implementation
@@ -17,7 +17,7 @@ interface ActionBeforeFormDisplayHook {
 	 *
 	 * @param string $name Name of the action
 	 * @param HTMLForm $form
-	 * @param WikiPage $article
+	 * @param Article $article
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onActionBeforeFormDisplay( $name, $form, $article );

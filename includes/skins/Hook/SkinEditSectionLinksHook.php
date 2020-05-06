@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Hook;
 
+use Language;
 use Skin;
 use Title;
 
@@ -28,7 +29,7 @@ interface SkinEditSectionLinksHook {
 	 *     - `text`: String for the text
 	 *     - `attribs`: Array of attributes
 	 *     - `query`: Array of query parameters to add to the URL
-	 * @param string $lang Language code to use for the link in the wfMessage function
+	 * @param Language $lang Language to use for the link in the wfMessage function
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSkinEditSectionLinks( $skin, $title, $section, $tooltip,

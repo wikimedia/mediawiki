@@ -103,7 +103,7 @@
 	 *
 	 * @param {OO.ui.MenuOptionWidget} item Selected item
 	 */
-	mw.widgets.TitleInputWidget.prototype.onLookupMenuItemChoose = function ( item ) {
+	mw.widgets.TitleInputWidget.prototype.onLookupMenuChoose = function ( item ) {
 		this.closeLookupMenu();
 		this.setLookupsDisabled( true );
 		this.setValue( item.getData() );

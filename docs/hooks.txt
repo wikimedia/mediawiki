@@ -2307,9 +2307,14 @@ $mimeMagic: Instance of MimeAnalyzer.
 'ModifyExportQuery': Modify the query used by the exporter.
 $db: The database object to be queried.
 &$tables: Tables in the query.
-&$conds: Conditions in the query.
+[&]$cond: An SQL fragment included in the WHERE clause which is used to filter
+  the results, for example to a specific page. Since 1.31, modification of this
+  parameter has no effect. Since 1.35, you can use $conds instead to modify the
+  array of conditions passed to IDatabase::select().
 &$opts: Options for the query.
 &$join_conds: Join conditions for the query.
+&$conds: The array of conditions to be passed to IDatabase::select(). Can be
+  modified. Includes the value of $cond. (Since 1.35)
 
 'MovePageCheckPermissions': Specify whether the user is allowed to move the
 page.
@@ -4051,6 +4056,21 @@ add extra metadata.
 $row: The database row for the revision being dumped. DEPRECATED, use $rev instead.
 $text: The revision text to be dumped. DEPRECATED, use $rev instead.
 $rev: The RevisionRecord that is being dumped to XML
+
+'SearchResultProvideDescription':  Called by REST SearchHandler in order to allow
+extensions to fill the 'description' field in search results. Warning: this
+hook as well as SearchResultPageIdentity interface is being under development and still unstable.
+$pageIdentities: an array (string=>SearchResultPageIdentity) where key is pageId.
+&$descriptions: an output array (string=>string|null) where key is pageId and value is either
+a desciption for given page or null
+
+'SearchResultProvideThumbnail': Called by REST SearchHandler in order to allow
+extensions to fill the 'thumbnail' field in rest search results. Warning: this
+hook as well as SearchResultPageIdentity interface is being under development and still unstable.
+$pageIdentities: an array (string=>SearchResultPageIdentity) where key is pageId.
+&$thumbnails: an output array (string=>SearchResultThumbnail|null) where key is pageId and
+value is either a valid SearchResultThumbnail for given page or null
+
 
 More hooks might be available but undocumented, you can execute
 "php maintenance/findHooks.php" to find hidden ones.

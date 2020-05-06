@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use HistoryPager;
-use Wikimedia\Rdbms\ResultWrapper;
+use Wikimedia\Rdbms\IResultWrapper;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
@@ -18,7 +18,7 @@ interface PageHistoryPager__doBatchLookupsHook {
 	 * @since 1.35
 	 *
 	 * @param HistoryPager $pager
-	 * @param ResultWrapper $result A ResultWrapper representing the query result
+	 * @param IResultWrapper $result A ResultWrapper representing the query result
 	 * @return bool|void True or no return value to continue. False to skip the
 	 *   regular behavior of doBatchLookups().
 	 */
