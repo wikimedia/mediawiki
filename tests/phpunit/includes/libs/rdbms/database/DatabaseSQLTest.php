@@ -15,6 +15,7 @@ use Wikimedia\TestingAccessWrapper;
 class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
+	use MediaWikiTestCaseTrait;
 
 	/** @var DatabaseTestHelper|Database */
 	private $database;
@@ -22,6 +23,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	protected function setUp() : void {
 		parent::setUp();
 		$this->database = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => true ] );
+		MWDebug::clearDeprecationFilters();
+		MWDebug::clearLog();
 	}
 
 	protected function assertLastSql( $sqlText ) {
@@ -412,8 +415,10 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::update
 	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptions
 	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptionsArray
+	 * @covers Wikimedia\Rdbms\Database::assertConditionIsNotEmpty
 	 */
 	public function testUpdate( $sql, $sqlText ) {
+		$this->hideDeprecated( 'Wikimedia\Rdbms\Database::update' );
 		$this->database->update(
 			$sql['table'],
 			$sql['values'],
@@ -431,6 +436,17 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					'table' => 'table',
 					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
 					'conds' => [ 'alias' => 'text' ],
+				],
+				"UPDATE table " .
+					"SET field = 'text'" .
+					",field2 = 'text2' " .
+					"WHERE alias = 'text'"
+			],
+			[
+				[
+					'table' => 'table',
+					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
+					'conds' => 'alias = \'text\'',
 				],
 				"UPDATE table " .
 					"SET field = 'text'" .
@@ -458,12 +474,87 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 					"SET field = other" .
 					",field2 = 'text2'"
 			],
+			[
+				[
+					'table' => 'table',
+					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
+					'conds' => null,
+				],
+				"UPDATE table " .
+				"SET field = 'text'" .
+				",field2 = 'text2'",
+			],
+			[
+				[
+					'table' => 'table',
+					'values' => [ 'field = other', 'field2' => 'text2' ],
+					'conds' => [],
+				],
+				"UPDATE table " .
+				"SET field = other" .
+				",field2 = 'text2'",
+			],
+			[
+				[
+					'table' => 'table',
+					'values' => [ 'field = other', 'field2' => 'text2' ],
+					'conds' => '',
+				],
+				"UPDATE table " .
+				"SET field = other" .
+				",field2 = 'text2'",
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideUpdateEmptyCondition
+	 * @covers Wikimedia\Rdbms\Database::update
+	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptions
+	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptionsArray
+	 * @covers Wikimedia\Rdbms\Database::assertConditionIsNotEmpty
+	 */
+	public function testUpdateEmptyCondition( $sql ) {
+		$this->expectDeprecation();
+		$this->database->update(
+			$sql['table'],
+			$sql['values'],
+			$sql['conds'],
+			__METHOD__,
+			[]
+		);
+	}
+
+	public static function provideUpdateEmptyCondition() {
+		return [
+			[
+				[
+					'table' => 'table',
+					'values' => [ 'field' => 'text', 'field2' => 'text2' ],
+					'conds' => null,
+				],
+			],
+			[
+				[
+					'table' => 'table',
+					'values' => [ 'field = other', 'field2' => 'text2' ],
+					'conds' => [],
+				],
+			],
+			[
+				[
+					'table' => 'table',
+					'values' => [ 'field = other', 'field2' => 'text2' ],
+					'conds' => '',
+				],
+			]
 		];
 	}
 
 	/**
 	 * @dataProvider provideDelete
 	 * @covers Wikimedia\Rdbms\Database::delete
+	 * @covers Wikimedia\Rdbms\Database::assertConditionIsNotEmpty
 	 */
 	public function testDelete( $sql, $sqlText ) {
 		$this->database->delete(
@@ -487,9 +578,58 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			[
 				[
 					'table' => 'table',
+					'conds' => 'alias = \'text\'',
+				],
+				"DELETE FROM table " .
+					"WHERE alias = 'text'"
+			],
+			[
+				[
+					'table' => 'table',
 					'conds' => '*',
 				],
 				"DELETE FROM table"
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideDeleteEmptyCondition
+	 * @covers Wikimedia\Rdbms\Database::delete
+	 * @covers Wikimedia\Rdbms\Database::assertConditionIsNotEmpty
+	 */
+	public function testDeleteEmptyCondition( $sql ) {
+		try {
+			$this->database->delete(
+				$sql['table'],
+				$sql['conds'],
+				__METHOD__
+			);
+			$this->fail( 'The Database::delete should raise exception' );
+		} catch ( Exception $e ) {
+			$this->assertStringContainsString( 'delete called with empty conditions', $e->getMessage() );
+		}
+	}
+
+	public static function provideDeleteEmptyCondition() {
+		return [
+			[
+				[
+					'table' => 'table',
+					'conds' => null,
+				],
+			],
+			[
+				[
+					'table' => 'table',
+					'conds' => [],
+				],
+			],
+			[
+				[
+					'table' => 'table',
+					'conds' => '',
+				],
 			],
 		];
 	}
