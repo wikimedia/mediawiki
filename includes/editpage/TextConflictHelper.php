@@ -217,6 +217,7 @@ class TextConflictHelper {
 	 * HTML to build the textbox1 on edit conflicts
 	 *
 	 * @param array $customAttribs
+	 * @return string HTML
 	 */
 	public function getEditConflictMainTextBox( array $customAttribs = [] ) {
 		$builder = new TextboxBuilder();
@@ -234,8 +235,10 @@ class TextConflictHelper {
 			$this->title
 		);
 
-		$this->out->addHTML(
-			Html::textarea( 'wpTextbox1', $builder->addNewLineAtEnd( $this->storedversion ), $attribs )
+		return Html::textarea(
+			'wpTextbox1',
+			$builder->addNewLineAtEnd( $this->storedversion ),
+			$attribs
 		);
 	}
 
