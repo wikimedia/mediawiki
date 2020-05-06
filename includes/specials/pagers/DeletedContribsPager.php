@@ -297,7 +297,7 @@ class DeletedContribsPager extends IndexPager {
 
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionFactory()
-			->newRevisionFromRow(
+			->newRevisionFromArchiveRow(
 				$row,
 				RevisionFactory::READ_NORMAL,
 				$page
