@@ -106,7 +106,7 @@ class DeletedContribsPager extends IndexPager {
 		return [
 			'tables' => [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'],
 			'fields' => [
-				'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_timestamp',
+				'ar_rev_id', 'ar_id', 'ar_namespace', 'ar_title', 'ar_timestamp',
 				'ar_minor_edit', 'ar_deleted'
 			] + $commentQuery['fields'] + $actorQuery['fields'],
 			'conds' => $conds,
