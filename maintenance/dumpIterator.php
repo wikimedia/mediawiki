@@ -154,8 +154,12 @@ abstract class DumpIterator extends Maintenance {
 	public function conclusions() {
 	}
 
-	/* Core function which does whatever the maintenance script is designed to do */
-	abstract public function processRevision( $rev );
+	/*
+	 * Core function which does whatever the maintenance script is designed to do
+	 *
+	 * @param WikiRevision $rev
+	 */
+	abstract public function processRevision( WikiRevision $rev );
 }
 
 /**
@@ -176,9 +180,9 @@ class SearchDump extends DumpIterator {
 	}
 
 	/**
-	 * @param Revision $rev
+	 * @param WikiRevision $rev
 	 */
-	public function processRevision( $rev ) {
+	public function processRevision( WikiRevision $rev ) {
 		if ( preg_match( $this->getOption( 'regex' ), $rev->getContent()->getTextForSearchIndex() ) ) {
 			$this->output( $rev->getTitle() . " matches at edit from " . $rev->getTimestamp() . "\n" );
 		}

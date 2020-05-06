@@ -125,9 +125,9 @@ class CompareParsers extends DumpIterator {
 
 	/**
 	 * Callback function for each revision, parse with both parsers and compare
-	 * @param Revision $rev
+	 * @param WikiRevision $rev
 	 */
-	public function processRevision( $rev ) {
+	public function processRevision( WikiRevision $rev ) {
 		$title = $rev->getTitle();
 
 		$parser1Name = $this->getOption( 'parser1' );
