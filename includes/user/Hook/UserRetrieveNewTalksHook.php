@@ -5,7 +5,7 @@ namespace MediaWiki\User\Hook;
 use User;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35
  * @ingroup Hooks
  */
 interface UserRetrieveNewTalksHook {

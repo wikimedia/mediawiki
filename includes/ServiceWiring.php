@@ -93,6 +93,7 @@ use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\DefaultOptionsManager;
+use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -1057,6 +1058,19 @@ return [
 	'StatsdDataFactory' => function ( MediaWikiServices $services ) : IBufferingStatsdDataFactory {
 		return new BufferingStatsdDataFactory(
 			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
+		);
+	},
+
+	'TalkPageNotificationManager' => function (
+		MediaWikiServices $services
+	) : TalkPageNotificationManager {
+		return new TalkPageNotificationManager(
+			new ServiceOptions(
+				TalkPageNotificationManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getDBLoadBalancer(),
+			$services->getReadOnlyMode(),
+			$services->getRevisionLookup()
 		);
 	},
 
