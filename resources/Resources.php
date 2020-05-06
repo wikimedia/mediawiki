@@ -1595,7 +1595,6 @@ return [
 		'packageFiles' => [
 			'mw.rcfilters.init.js',
 			'HighlightColors.js',
-			'ui/GroupWidget.js',
 			'ui/CheckboxInputWidget.js',
 			'ui/FilterTagMultiselectWidget.js',
 			'ui/ItemMenuOptionWidget.js',

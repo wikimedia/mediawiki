@@ -1,5 +1,4 @@
-var GroupWidget = require( './GroupWidget.js' ),
-	ViewSwitchWidget;
+var ViewSwitchWidget;
 
 /**
  * A widget for the footer for the default view, allowing to switch views
@@ -21,10 +20,7 @@ ViewSwitchWidget = function MwRcfiltersUiViewSwitchWidget( controller, model, co
 	this.controller = controller;
 	this.model = model;
 
-	this.buttons = new GroupWidget( {
-		events: {
-			click: 'buttonClick'
-		},
+	this.buttons = new OO.ui.ButtonGroupWidget( {
 		items: [
 			new OO.ui.ButtonWidget( {
 				data: 'namespaces',
@@ -38,6 +34,8 @@ ViewSwitchWidget = function MwRcfiltersUiViewSwitchWidget( controller, model, co
 			} )
 		]
 	} );
+
+	this.buttons.aggregate( { click: 'buttonClick' } );
 
 	// Events
 	this.model.connect( this, { update: 'onModelUpdate' } );
