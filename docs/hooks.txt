@@ -3886,8 +3886,8 @@ $user: the User (object) whose preferences are being reset
 $options: array of the user's old preferences
 $resetKinds: array containing the kinds of preferences to reset
 
-'UserRetrieveNewTalks': Called when retrieving "You have new messages!"
-message(s).
+'UserRetrieveNewTalks': DEPRECATED since 1.35!
+Called when retrieving "You have new messages!" message(s).
 [&]$user: user retrieving new talks messages
 &$talks: array of new talks page(s)
 
