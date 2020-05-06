@@ -716,9 +716,11 @@ class ChangeTags {
 
 		// find the appropriate target page
 		if ( $rev_id ) {
-			$rev = Revision::newFromId( $rev_id );
-			if ( $rev ) {
-				$logEntry->setTarget( $rev->getTitle() );
+			$revisionRecord = MediaWikiServices::getInstance()
+				->getRevisionLookup()
+				->getRevisionById( $rev_id );
+			if ( $revisionRecord ) {
+				$logEntry->setTarget( $revisionRecord->getPageAsLinkTarget() );
 			}
 		} elseif ( $log_id ) {
 			// This function is from revision deletion logic and has nothing to do with
