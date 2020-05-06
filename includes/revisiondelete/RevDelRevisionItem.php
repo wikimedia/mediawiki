@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -27,12 +28,12 @@ use MediaWiki\Revision\RevisionRecord;
  * @property RevDelRevisionList $list
  */
 class RevDelRevisionItem extends RevDelItem {
-	/** @var Revision */
-	public $revision;
+	/** @var RevisionRecord */
+	public $revisionRecord;
 
 	public function __construct( RevisionListBase $list, $row ) {
 		parent::__construct( $list, $row );
-		$this->revision = static::initRevision( $list, $row );
+		$this->revisionRecord = static::initRevisionRecord( $list, $row );
 	}
 
 	/**
@@ -40,21 +41,21 @@ class RevDelRevisionItem extends RevDelItem {
 	 *
 	 * @param RevisionListBase $list
 	 * @param mixed $row
-	 * @return Revision
+	 * @return RevisionRecord
 	 */
-	protected static function initRevision( $list, $row ) {
-		return new Revision( $row );
+	protected static function initRevisionRecord( $list, $row ) {
+		return MediaWikiServices::getInstance()
+			->getRevisionFactory()
+			->newRevisionFromRow( $row );
 	}
 
 	/**
 	 * Get the RevisionRecord for the item
 	 *
-	 * @todo remove use of Revision entirely
-	 *
 	 * @return RevisionRecord
 	 */
 	protected function getRevisionRecord() : RevisionRecord {
-		return $this->revision->getRevisionRecord();
+		return $this->revisionRecord;
 	}
 
 	public function getIdField() {
