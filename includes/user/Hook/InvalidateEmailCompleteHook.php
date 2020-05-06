@@ -14,7 +14,7 @@ interface InvalidateEmailCompleteHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user user (object) whose email is being invalidated
+	 * @param User $user User whose email is being invalidated
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onInvalidateEmailComplete( $user );

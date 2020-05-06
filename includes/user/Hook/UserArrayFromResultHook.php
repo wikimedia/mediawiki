@@ -16,7 +16,7 @@ interface UserArrayFromResultHook {
 	 * @since 1.35
 	 *
 	 * @param UserArrayFromResult|null &$userArray Set this to an object to override the default
-	 * @param IResultWrapper $res database result used to create the object
+	 * @param IResultWrapper $res Database result used to create the object
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserArrayFromResult( &$userArray, $res );

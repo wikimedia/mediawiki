@@ -19,10 +19,10 @@ interface UserResetAllOptionsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param User $user the User (object) whose preferences are being reset
-	 * @param array &$newOptions array of new (site default) preferences
-	 * @param array $options array of the user's old preferences
-	 * @param array $resetKinds array containing the kinds of preferences to reset
+	 * @param User $user The user whose preferences are being reset
+	 * @param array &$newOptions Array of new (site default) preferences
+	 * @param array $options Array of the user's old preferences
+	 * @param string[] $resetKinds Array containing the kinds of preferences to reset
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserResetAllOptions(

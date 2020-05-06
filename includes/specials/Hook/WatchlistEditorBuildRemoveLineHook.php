@@ -15,10 +15,10 @@ interface WatchlistEditorBuildRemoveLineHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$tools array of extra links
-	 * @param Title $title Title object
+	 * @param string[] &$tools Array of extra HTML links
+	 * @param Title $title
 	 * @param bool $redirect whether the page is a redirect
-	 * @param Skin $skin Skin object
+	 * @param Skin $skin
 	 * @param string &$link HTML link to title
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

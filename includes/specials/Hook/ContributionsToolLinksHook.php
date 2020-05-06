@@ -11,13 +11,13 @@ use Title;
  */
 interface ContributionsToolLinksHook {
 	/**
-	 * Use this hook to change the tool links above Special:Contributions
+	 * Use this hook to change the tool links above Special:Contributions.
 	 *
 	 * @since 1.35
 	 *
 	 * @param int $id User identifier
 	 * @param Title $title User page title
-	 * @param array &$tools Array of tool links
+	 * @param string[] &$tools Array of tool links
 	 * @param SpecialPage $specialPage SpecialPage instance for context and services. Can be either
 	 *   SpecialContributions or DeletedContributionsPage. Extensions should type
 	 *   hint against a generic SpecialPage though.

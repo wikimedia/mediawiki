@@ -15,7 +15,7 @@ interface UserEffectiveGroupsHook {
 	 * @since 1.35
 	 *
 	 * @param User $user User to get groups for
-	 * @param array &$groups Current effective groups
+	 * @param string[] &$groups Current effective groups
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onUserEffectiveGroups( $user, &$groups );

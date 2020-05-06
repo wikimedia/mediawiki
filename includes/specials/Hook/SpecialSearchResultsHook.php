@@ -14,9 +14,9 @@ interface SpecialSearchResultsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param string $term string of search term
-	 * @param ?ISearchResultSet &$titleMatches empty or ISearchResultSet object
-	 * @param ?ISearchResultSet &$textMatches empty or ISearchResultSet object
+	 * @param string $term Search term
+	 * @param ?ISearchResultSet &$titleMatches Empty or ISearchResultSet object
+	 * @param ?ISearchResultSet &$textMatches Empty or ISearchResultSet object
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialSearchResults( $term, &$titleMatches, &$textMatches );

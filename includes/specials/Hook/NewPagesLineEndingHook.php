@@ -15,12 +15,12 @@ interface NewPagesLineEndingHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialNewPages $page the SpecialNewPages object
+	 * @param SpecialNewPages $page The SpecialNewPages object
 	 * @param string &$ret the HTML line
-	 * @param stdClass $row the database row for this page (the recentchanges record and a few extras
+	 * @param stdClass $row The database row for this page (the recentchanges record and a few extras
 	 *   - see NewPagesPager::getQueryInfo)
-	 * @param array &$classes the classes to add to the surrounding <li>
-	 * @param array &$attribs associative array of other HTML attributes for the <li> element.
+	 * @param string[] &$classes The classes to add to the surrounding <li>
+	 * @param string[] &$attribs Associative array of other HTML attributes for the <li> element.
 	 *   Currently only data attributes reserved to MediaWiki are allowed
 	 *   (see Sanitizer::isReservedDataAttribute).
 	 * @return bool|void True or no return value to continue or false to abort

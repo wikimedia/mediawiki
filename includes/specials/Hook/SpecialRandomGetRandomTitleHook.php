@@ -18,7 +18,7 @@ interface SpecialRandomGetRandomTitleHook {
 	 *
 	 * @param string &$randstr The random number from wfRandom()
 	 * @param bool &$isRedir Boolean, whether to select a redirect or non-redirect
-	 * @param array &$namespaces An array of namespace indexes to get the title from
+	 * @param int[] &$namespaces An array of namespace indexes to get the title from
 	 * @param array &$extra An array of extra SQL statements
 	 * @param Title &$title If the hook returns false, a Title object to use instead of the
 	 *   result from the normal query

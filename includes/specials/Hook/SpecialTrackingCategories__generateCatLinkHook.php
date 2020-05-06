@@ -12,7 +12,7 @@ use Title;
  */
 interface SpecialTrackingCategories__generateCatLinkHook {
 	/**
-	 * This hook is called for each cat link on Special:TrackingCategories
+	 * This hook is called for each category link on Special:TrackingCategories.
 	 *
 	 * @since 1.35
 	 *

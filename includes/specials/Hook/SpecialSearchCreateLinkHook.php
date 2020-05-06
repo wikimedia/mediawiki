@@ -14,8 +14,8 @@ interface SpecialSearchCreateLinkHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Title $t title object searched for
-	 * @param array &$params an array of the default message name and page title (as parameter)
+	 * @param Title $t Title object searched for
+	 * @param array &$params An array of the default message name and page title (as parameter)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSpecialSearchCreateLink( $t, &$params );
