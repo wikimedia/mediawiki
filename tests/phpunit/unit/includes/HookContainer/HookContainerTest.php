@@ -8,7 +8,6 @@ namespace MediaWiki\HookContainer {
 	use ExtensionRegistry;
 	use MediaWikiUnitTestCase;
 	use Wikimedia\ScopedCallback;
-	use Wikimedia\Services\NoSuchServiceException;
 	use Wikimedia\TestingAccessWrapper;
 
 	class HookContainerTest extends MediaWikiUnitTestCase {
@@ -19,7 +18,7 @@ namespace MediaWiki\HookContainer {
 		private function newHookContainer(
 			$mockRegistry = null,
 			$mockObjectFactory = null,
-			$mockDeprecatedHooks = null
+			$deprecatedHooks = null
 		) {
 			if ( !$mockRegistry ) {
 				$handler = [ 'handler' => [
@@ -32,32 +31,15 @@ namespace MediaWiki\HookContainer {
 			if ( !$mockObjectFactory ) {
 				$mockObjectFactory = $this->getObjectFactory();
 			}
-			if ( !$mockDeprecatedHooks ) {
-				$mockDeprecatedHooks = $this->getMockDeprecatedHooks();
+			if ( !$deprecatedHooks ) {
+				$deprecatedHooks = new DeprecatedHooks();
 			}
-			$hookContainer = new HookContainer( $mockRegistry, $mockObjectFactory, $mockDeprecatedHooks );
+			$hookContainer = new HookContainer( $mockRegistry, $mockObjectFactory, $deprecatedHooks );
 			return $hookContainer;
 		}
 
-		private function getMockDeprecatedHooks( $deprecatedHookInfo = null ) {
-			$mockDeprecatedHooks = $this->createMock( DeprecatedHooks::class );
-			if ( $deprecatedHookInfo ) {
-				foreach ( $deprecatedHookInfo as $name => $info ) {
-					$mockDeprecatedHooks
-						->method( 'isHookDeprecated' )
-						->with( $name )
-						->willReturn( true );
-					$mockDeprecatedHooks
-						->method( 'getDeprecationInfo' )
-						->with( $name )
-						->willReturn( $info );
-				}
-			}
-			return $mockDeprecatedHooks;
-		}
-
 		private function getMockExtensionRegistry( $hooks ) {
-			$mockRegistry = $this->createMock( ExtensionRegistry::class );
+			$mockRegistry = $this->createNoOpMock( ExtensionRegistry::class, [ 'getAttribute' ] );
 			$mockRegistry->method( 'getAttribute' )
 				->with( 'Hooks' )
 				->willReturn( $hooks );
@@ -252,12 +234,11 @@ namespace MediaWiki\HookContainer {
 				$hooks = [];
 			}
 			$mockExtensionRegistry = $this->getMockExtensionRegistry( $hooks );
-			$mockDeprecatedHooks = $this->getMockDeprecatedHooks();
-			$mockDeprecatedHooks->method( 'isHookDeprecated' )->will( $this->returnValueMap( [
-				[ 'FooActionComplete', false ],
-				[ 'FooActionCompleteDeprecated', true ]
-			] ) );
-			$hookContainer = $this->newHookContainer( $mockExtensionRegistry, null, $mockDeprecatedHooks );
+			$fakeDeprecatedHooks = [
+				'FooActionCompleteDeprecated' => [ 'deprecatedVersion' => '1.35' ]
+			];
+			$deprecatedHooks = new DeprecatedHooks( $fakeDeprecatedHooks );
+			$hookContainer = $this->newHookContainer( $mockExtensionRegistry, null, $deprecatedHooks );
 			$handlers = $hookContainer->getHandlers( $hook );
 			$this->assertArrayEquals(
 				$handlers,
@@ -380,9 +361,8 @@ namespace MediaWiki\HookContainer {
 		 */
 		public function testRegisterDeprecated() {
 			$this->hideDeprecated( 'FooActionComplete hook' );
-			$mockDeprecatedHooks = $this->getMockDeprecatedHooks( [
-				'FooActionComplete' => [ 'deprecatedVersion' => '1.0' ]
-			] );
+			$fakeDeprecatedHooks = [ 'FooActionComplete' => [ 'deprecatedVersion' => '1.0' ] ];
+			$deprecatedHooks = new DeprecatedHooks( $fakeDeprecatedHooks );
 			$handler = [
 				'handler' => [
 					'name' => 'FooExtension-FooActionHandler',
@@ -391,7 +371,7 @@ namespace MediaWiki\HookContainer {
 				]
 			];
 			$mockRegistry = $this->getMockExtensionRegistry( [ 'FooActionComplete' => [ $handler ] ] );
-			$hookContainer = $this->newHookContainer( $mockRegistry, null, $mockDeprecatedHooks );
+			$hookContainer = $this->newHookContainer( $mockRegistry, null, $deprecatedHooks );
 			$hookContainer->register( 'FooActionComplete', new FooClass() );
 			$this->assertTrue( $hookContainer->isRegistered( 'FooActionComplete' ) );
 		}
@@ -443,7 +423,7 @@ namespace MediaWiki\HookContainer {
 			$hookContainer = $this->newHookContainer(
 				$registry,
 				null,
-				$this->getMockDeprecatedHooks( [
+				new DeprecatedHooks( [
 					'FooActionComplete' => [ 'deprecatedVersion' => '1.35' ]
 				] )
 			);
