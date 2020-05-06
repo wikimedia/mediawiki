@@ -6,6 +6,7 @@
 			"Mikel Ibaiba",
 			"Sator",
 			"Subi",
+			"Xabier Armendaritz",
 			"පසිඳු කාවින්ද"
 		]
 	},
@@ -282,7 +283,7 @@
 	"config-download-localsettings": "Jaitsi <code>LocalSettings.php</code>",
 	"config-help": "laguntza",
 	"config-help-tooltip": "sakatu zabaltzeko",
-	"config-nofile": "Ezin da \"$1\" fitxategia aurkitu. Ezabatua izan da?",
+	"config-nofile": "Ezin da «$1» fitxategia aurkitu. Ezabatuta dago?",
 	"config-extension-link": "Ba al zenekien wikiak [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions] onartzen dituela?\n\nArakatu [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions by category] edo [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] ikusi ahal izateko luzapenen zerrenda.",
 	"config-skins-screenshots": "$1 (Pantaila-irudia: $2)",
 	"config-extensions-requires": "$1 ($2 behar du)",

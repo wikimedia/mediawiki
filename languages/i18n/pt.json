@@ -3764,6 +3764,7 @@
 	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-mediasearch-input-placeholder": "Procurar ficheiros multimédia",
 	"mw-widgets-mediasearch-noresults": "Não foram encontrados resultados.",
+	"mw-widgets-table-row-delete": "Apagar linha",
 	"mw-widgets-titleinput-description-new-page": "a página ainda não existe.",
 	"mw-widgets-titleinput-description-redirect": "redireciona para $1",
 	"mw-widgets-categoryselector-add-category-placeholder": "Adicionar uma categoria...",
