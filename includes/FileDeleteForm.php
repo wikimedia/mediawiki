@@ -49,6 +49,10 @@ class FileDeleteForm {
 	 * @var LocalFile
 	 */
 	private $oldfile = null;
+
+	/**
+	 * @var string
+	 */
 	private $oldimage = '';
 
 	/**
@@ -100,7 +104,7 @@ class FileDeleteForm {
 
 		$this->setHeaders();
 
-		$this->oldimage = $wgRequest->getText( 'oldimage', false );
+		$this->oldimage = $wgRequest->getText( 'oldimage', '' );
 		$token = $wgRequest->getText( 'wpEditToken' );
 		# Flag to hide all contents of the archived revisions
 		$suppress = $wgRequest->getCheck( 'wpSuppress' ) &&
@@ -491,7 +495,7 @@ class FileDeleteForm {
 	 *
 	 * @param LocalFile &$file
 	 * @param LocalFile &$oldfile
-	 * @param LocalFile $oldimage
+	 * @param string $oldimage
 	 * @return bool
 	 */
 	public static function haveDeletableFile( &$file, &$oldfile, $oldimage ) {
