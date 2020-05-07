@@ -57,7 +57,6 @@ class Xhprof {
 			$args[] = $options;
 		}
 
-		self::$enabled = true;
 		self::callAny(
 			[
 				'xhprof_enable',
@@ -66,6 +65,7 @@ class Xhprof {
 			],
 			$args
 		);
+		self::$enabled = true;
 	}
 
 	/**
