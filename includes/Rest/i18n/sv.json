@@ -29,5 +29,6 @@
 	"rest-page-source-type-error": "Innehållstypen för den begärda källsidan stöds inte",
 	"rest-no-revision": "Kunde inte hämta versionen för titeln $1",
 	"rest-media-too-many-links": "För många medialänkar hittades i titeln $1 ($2 är tillåtet)",
-	"rest-html-backend-error": "Kunde inte hämta Parsoid-HTML"
+	"rest-html-backend-error": "Kunde inte hämta Parsoid-HTML",
+	"rest-cannot-load-file": "Filen för titeln \"$1\" kan inte läsas in."
 }

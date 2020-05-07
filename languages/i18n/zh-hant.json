@@ -441,7 +441,7 @@
 	"title-invalid-utf8": "請求的頁面標題含有無效的 UTF-8 符號。",
 	"title-invalid-interwiki": "請求的頁面標題含有無法使用在標題的跨 Wiki 連結。",
 	"title-invalid-talk-namespace": "請求的頁面標題引用了可能不存在的討論頁面。",
-	"title-invalid-characters": "請求的頁面標題包含無效的字元：\"$1\"。",
+	"title-invalid-characters": "請求的頁面標題包含無效的字元：「$1」。",
 	"title-invalid-relative": "標題中含有相對路徑。相對路徑的頁面標題 (./, ../) 無效，使用者瀏覽器通常無法存取相對路徑。",
 	"title-invalid-magic-tilde": "請求的頁面標題含有無效的魔術波浪符號（<nowiki>~~~</nowiki>）。",
 	"title-invalid-too-long": "請求的頁面標題過長，標題使用 UTF-8 編碼不可超過 $1 {{PLURAL:$1|位元組}}。",
