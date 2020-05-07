@@ -392,4 +392,29 @@ class MutableRevisionRecordTest extends MediaWikiTestCase {
 		$this->assertFalse( $rev->isCurrent(),
 			MutableRevisionRecord::class . ' cannot be stored current revision' );
 	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionRecord::hasSameContent
+	 */
+	public function testHasSameContent() {
+		$rev1 = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$this->assertTrue( $rev1->hasSameContent( $rev1 ) );
+
+		$rev2 = new MutableRevisionRecord( Title::newFromText( 'Bar' ) );
+		$rev1->setSize( 1 );
+		$rev2->setSize( 2 );
+		$this->assertFalse( $rev1->hasSameContent( $rev2 ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionRecord::audienceCan
+	 */
+	public function testAudienceCan() {
+		$rev = new MutableRevisionRecord( Title::newFromText( 'Foo' ) );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage(
+			'A User object must be given when checking FOR_THIS_USER audience.'
+		);
+		$rev->audienceCan( RevisionRecord::DELETED_TEXT, RevisionRecord::FOR_THIS_USER );
+	}
 }
