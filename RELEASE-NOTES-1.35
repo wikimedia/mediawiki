@@ -229,6 +229,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * The SkinAddFooterLinks hook is added to allow extensions to add items to skin
   footers. Previously this had to be done via SkinTemplateOutputPageBeforeExec.
   Doing so using that hook is now soft deprecated.
+* A new BlockPermissionChecker service was introduced for checking
+  block-related permissions.
 * …
 
 === External library changes in 1.35 ===
@@ -664,6 +666,8 @@ because of Phabricator reports.
   ILBFactory::getChronologyProtectorTouched() were changed without backwards
   compatibility.
 * The deprecated $blacklist parameter to wfIsBadImage() has been removed.
+* SpecialBlock::checkUnblockSelf no longer accepts an integer representing
+  an user ID as part of ongoing refactoring of SpecialBlock class.
 * …
 
 === Deprecations in 1.35 ===
