@@ -343,6 +343,8 @@ class PageArchiveTest extends MediaWikiTestCase {
 	 * @covers PageArchive::getPreviousRevision
 	 */
 	public function testGetPreviousRevision() {
+		$this->hideDeprecated( 'PageArchive::getPreviousRevision' );
+
 		$rev = $this->archivedPage->getPreviousRevision( $this->ipRev->getTimestamp() );
 		$this->assertNotNull( $rev );
 		$this->assertSame( $this->firstRev->getId(), $rev->getId() );
