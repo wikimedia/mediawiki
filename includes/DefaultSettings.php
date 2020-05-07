@@ -6711,33 +6711,32 @@ $wgDeprecationReleaseLimit = false;
  *
  * Options:
  *
- * - class        The Profiler subclass to use. `string`
- *                Default: ProfilerStub.
- * - sampling     Only enable the profiler on one in this many requests. `int`
- *                For requests that are not in the sampling,
- *                the 'class' option will be replaced with ProfilerStub.
- *                Default: 1.
- * - threshold    Only process the recorded data if the total ellapsed
- *                time for a request is more than this number of seconds. `float`
- *                Default: 0.0.
- * - output       ProfilerOutput subclass or subclasess to use. `string|string[]`
+ * - 'class' (`string`): The Profiler subclass to use.
+ *   Default: ProfilerStub.
+ * - 'sampling' (`int`): Only enable the profiler on one in this many requests.
+ *   For requests that are not in the sampling,
+ *   the 'class' option will be replaced with ProfilerStub.
+ *   Default: `1`.
+ * - 'threshold' (`float`): Only process the recorded data if the total ellapsed
+ *   time for a request is more than this number of seconds.
+ *   Default: `0.0`.
+ * - 'output' (`string|string[]`):  ProfilerOutput subclass or subclasess to use.
+ *   Default: `[]`.
  *
- *                The output classes available in MediaWiki core are:
- *                ProfilerOutputText, ProfilerOutputStats, and ProfilerOutputDump.
+ * The output classes available in MediaWiki core are:
+ * ProfilerOutputText, ProfilerOutputStats, and ProfilerOutputDump.
  *
- *                ProfilerOutputText: outputs profiling data in the web page body as
- *                a comment.  You can make the profiling data in HTML render visibly
- *                instead by setting the 'visible' configuration flag.
+ * - ProfilerOutputText: outputs profiling data in the web page body as
+ *   a comment.  You can make the profiling data in HTML render visibly
+ *   instead by setting the 'visible' configuration flag.
  *
- *                ProfilerOutputStats: outputs profiling data as StatsD metrics.
- *                It expects that $wgStatsdServer is set to the host (or host:port)
- *                of a statsd server.
+ * - ProfilerOutputStats: outputs profiling data as StatsD metrics.
+ *   It expects that $wgStatsdServer is set to the host (or host:port)
+ *   of a statsd server.
  *
- *                ProfilerOutputDump: outputs dump files that are compatible
- *                with the XHProf gui. It expects that `$wgProfiler['outputDir']`
- *                is set as well.
- *
- *                Default: [].
+ * - ProfilerOutputDump: outputs dump files that are compatible
+ *   with the XHProf gui. It expects that `$wgProfiler['outputDir']`
+ *   is set as well.
  *
  * Examples:
  *
