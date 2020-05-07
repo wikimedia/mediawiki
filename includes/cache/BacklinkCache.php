@@ -182,8 +182,6 @@ class BacklinkCache {
 	 * @return IResultWrapper
 	 */
 	protected function queryLinks( $table, $startId, $endId, $max, $select = 'all' ) {
-		$fromField = $this->getPrefix( $table ) . '_from';
-
 		if ( !$startId && !$endId && is_infinite( $max )
 			&& isset( $this->fullResultCache[$table] )
 		) {
@@ -191,6 +189,7 @@ class BacklinkCache {
 			$res = $this->fullResultCache[$table];
 		} else {
 			wfDebug( __METHOD__ . ": got results from DB\n" );
+			$fromField = $this->getPrefix( $table ) . '_from';
 			$conds = $this->getConditions( $table );
 			// Use the from field in the condition rather than the joined page_id,
 			// because databases are stupid and don't necessarily propagate indexes.
@@ -209,7 +208,7 @@ class BacklinkCache {
 				// Just select from the backlink table and ignore the page JOIN
 				$res = $this->getDB()->select(
 					$table,
-					[ $this->getPrefix( $table ) . '_from AS page_id' ],
+					[ 'page_id' => $fromField ],
 					array_filter( $conds, function ( $clause ) { // kind of janky
 						return !preg_match( '/(\b|=)page_id(\b|=)/', $clause );
 					} ),
