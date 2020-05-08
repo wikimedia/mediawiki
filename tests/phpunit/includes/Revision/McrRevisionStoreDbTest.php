@@ -205,7 +205,7 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 
 		$contentAddress = $rev1->getRevisionRecord()->getSlot( SlotRecord::MAIN )->getAddress();
 		$blobStatus = StatusValue::newGood( [] );
-		$blobStatus->warning( 'internalerror', 'oops!' );
+		$blobStatus->warning( 'internalerror_info', 'oops!' );
 
 		$mockBlobStore = $this->createMock( BlobStore::class );
 		$mockBlobStore->method( 'getBlobBatch' )
@@ -230,14 +230,14 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$this->assertSame( [
 			[
 				'type' => 'warning',
-				'message' => 'internalerror',
+				'message' => 'internalerror_info',
 				'params' => [
 					"oops!"
 				]
 			],
 			[
 				'type' => 'warning',
-				'message' => 'internalerror',
+				'message' => 'internalerror_info',
 				'params' => [
 					"Couldn't find blob data for rev " . $rev1->getId()
 				]
@@ -322,7 +322,7 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$this->assertNull( $records[$invalidRow->rev_id] );
 		$this->assertSame( [ [
 			'type' => 'warning',
-			'message' => 'internalerror',
+			'message' => 'internalerror_info',
 			'params' => [
 				"Couldn't find slots for rev 100500"
 			]

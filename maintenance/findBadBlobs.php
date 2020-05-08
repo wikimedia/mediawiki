@@ -264,10 +264,12 @@ class FindBadBlobs extends Maintenance {
 			$queryInfo['joins']
 		);
 		$result = $this->revisionStore->newRevisionsFromBatch( $rows, [ 'slots' => true ] );
-		if ( !$result->isOK() ) {
-			$this->fatalError( Status::wrap( $result )->getMessage( false, false, 'en' )->text() );
-		}
-		return $result->value;
+		$this->handleStatus( $result );
+
+		$records = array_filter( $result->value );
+
+		'@phan-var RevisionStoreRecord[] $records';
+		return $records;
 	}
 
 	/**
@@ -292,10 +294,12 @@ class FindBadBlobs extends Maintenance {
 			$rows,
 			[ 'archive' => true, 'slots' => true ]
 		);
-		if ( !$result->isOK() ) {
-			$this->fatalError( Status::wrap( $result )->getMessage( false, false, 'en' )->text() );
-		}
-		return $result->value;
+		$this->handleStatus( $result );
+
+		$records = array_filter( $result->value );
+
+		'@phan-var RevisionArchiveRecord[] $records';
+		return $records;
 	}
 
 	/**
@@ -371,11 +375,10 @@ class FindBadBlobs extends Maintenance {
 
 		$result = $this->revisionStore->newRevisionsFromBatch( $rows, [ 'slots' => true ] );
 
-		if ( !$result->isOK() ) {
-			$this->fatalError( Status::wrap( $result )->getMessage( false, false, 'en' )->text() );
-		}
+		$this->handleStatus( $result );
 
-		$revisions = $result->value;
+		$revisions = array_filter( $result->value );
+		'@phan-var RevisionArchiveRecord[] $revisions';
 
 		// if not all revisions were found, check the archive table.
 		if ( count( $revisions ) < count( $ids ) ) {
@@ -398,14 +401,10 @@ class FindBadBlobs extends Maintenance {
 				[ 'slots' => true, 'archive' => true ]
 			);
 
-			if ( !$archiveResult->isOK() ) {
-				$this->fatalError(
-					Status::wrap( $archiveResult )->getMessage( false, false, 'en' )->text()
-				);
-			}
+			$this->handleStatus( $archiveResult );
 
 			// don't use array_merge, since it will re-index
-			$revisions = $revisions + $archiveResult->value;
+			$revisions = $revisions + array_filter( $archiveResult->value );
 		}
 
 		return $revisions;
@@ -495,6 +494,19 @@ class FindBadBlobs extends Maintenance {
 
 	private function waitForReplication() {
 		return $this->lbFactory->waitForReplication();
+	}
+
+	private function handleStatus( StatusValue $status ) {
+		if ( !$status->isOK() ) {
+			$this->fatalError(
+				Status::wrap( $status )->getMessage( false, false, 'en' )->text()
+			);
+		}
+		if ( !$status->isGood() ) {
+			$this->error(
+				"\t! " . Status::wrap( $status )->getMessage( false, false, 'en' )->text()
+			);
+		}
 	}
 
 }

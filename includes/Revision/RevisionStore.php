@@ -1606,7 +1606,7 @@ class RevisionStore
 		foreach ( $rows as $row ) {
 			if ( isset( $rowsByRevId[$row->$revIdField] ) ) {
 				$result->warning(
-					'internalerror',
+					'internalerror_info',
 					"Duplicate rows in newRevisionsFromBatch, $revIdField {$row->$revIdField}"
 				);
 			}
@@ -1686,12 +1686,20 @@ class RevisionStore
 				true,
 				array_map(
 					function ( $row )
-					use ( $queryFlags, $titlesByPageKey, $result, $newRevisionRecord ) {
+					use ( $queryFlags, $titlesByPageKey, $result, $newRevisionRecord, $revIdField ) {
 						try {
+							if ( !isset( $titlesByPageKey[$row->_page_key] ) ) {
+								$result->warning(
+									'internalerror_info',
+									"Couldn't find title for rev {$row->$revIdField} "
+									. "(page key {$row->_page_key})"
+								);
+								return null;
+							}
 							return $newRevisionRecord( $row, null, $queryFlags,
-								$titlesByPageKey[ $row->_page_key ] ?? null );
+								$titlesByPageKey[ $row->_page_key ] );
 						} catch ( MWException $e ) {
-							$result->warning( 'internalerror', $e->getMessage() );
+							$result->warning( 'internalerror_info', $e->getMessage() );
 							return null;
 						}
 					},
@@ -1727,8 +1735,16 @@ class RevisionStore
 				) {
 					if ( !isset( $slotRowsByRevId[$row->$revIdField] ) ) {
 						$result->warning(
-							'internalerror',
+							'internalerror_info',
 							"Couldn't find slots for rev {$row->$revIdField}"
+						);
+						return null;
+					}
+					if ( !isset( $titlesByPageKey[$row->_page_key] ) ) {
+						$result->warning(
+							'internalerror_info',
+							"Couldn't find title for rev {$row->$revIdField} "
+								. "(page key {$row->_page_key})"
 						);
 						return null;
 					}
@@ -1740,14 +1756,14 @@ class RevisionStore
 									$row->$revIdField,
 									$slotRowsByRevId[$row->$revIdField],
 									$queryFlags,
-									$titlesByPageKey[$row->_page_key] ?? null
+									$titlesByPageKey[$row->_page_key]
 								)
 							),
 							$queryFlags,
 							$titlesByPageKey[$row->_page_key]
 						);
 					} catch ( MWException $e ) {
-						$result->warning( 'internalerror', $e->getMessage() );
+						$result->warning( 'internalerror_info', $e->getMessage() );
 						return null;
 					}
 				},
@@ -1853,7 +1869,7 @@ class RevisionStore
 				$slotRow->blob_data = $slotContents[$slotRow->content_address];
 			} else {
 				$result->warning(
-					'internalerror',
+					'internalerror_info',
 					"Couldn't find blob data for rev {$slotRow->slot_revision_id}"
 				);
 				$slotRow->blob_data = null;
