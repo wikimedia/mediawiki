@@ -14,6 +14,7 @@ use SebastianBergmann\Comparator\ComparisonFailure;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -123,6 +124,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @var array<array<LegacyLogger|int>>
 	 */
 	private $ignoredLoggers = [];
+
+	/**
+	 * @var callable[]
+	 */
+	private $temporaryHookHandlers = [];
+
+	/**
+	 * @var ScopedCallback[]
+	 */
+	private $temporaryHookScopes = [];
 
 	/**
 	 * Holds a list of services that were overridden with setService().  Used for printing an error
@@ -2333,6 +2344,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			false,
 			$user
 		);
+	}
+
+	/**
+	 * Remove a temporary hook. Use this if you need to remove a temporary hook
+	 * before teardown.
+	 *
+	 * @param string $hookName
+	 */
+	protected function removeTemporaryHook( $hookName ) {
+		$this->temporaryHookHandlers[$hookName] = [];
+		$this->temporaryHookScopes[$hookName] = [];
 	}
 
 	/**
