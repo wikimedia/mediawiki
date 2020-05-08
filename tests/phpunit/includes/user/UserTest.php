@@ -2791,6 +2791,14 @@ class UserTest extends MediaWikiTestCase {
 	public function testGetNewMessageLinks() {
 		$user = $this->getTestUser()->getUser();
 		$userTalk = $user->getTalkPage();
+
+		// Make sure time progresses between revisions.
+		// MediaWikiIntegrationTestCase automatically restores the real clock.
+		$clock = MWTimestamp::time();
+		MWTimestamp::setFakeTime( function () use ( $clock ) {
+			return ++$clock;
+		} );
+
 		$status = $this->editPage( $userTalk->getPrefixedText(), 'Message one' );
 		$this->assertTrue( $status->isGood(), 'Sanity: create revision 1 of user talk' );
 		/** @var Revision $firstRev */
