@@ -311,6 +311,21 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @see $wgResourceLoaderMaxQueryLength
+	 * @return int
+	 */
+	private function getMaxQueryLength() : int {
+		$len = $this->getConfig()->get( 'ResourceLoaderMaxQueryLength' );
+		// - Ignore -1, which in MW 1.34 and earlier was used to mean "unlimited".
+		// - Ignore invalid values, e.g. non-int or other negative values.
+		if ( $len === false || $len < 0 ) {
+			// Default
+			$len = 2000;
+		}
+		return $len;
+	}
+
+	/**
 	 * Get the key on which the JavaScript module cache (mw.loader.store) will vary.
 	 *
 	 * @param ResourceLoaderContext $context
@@ -355,9 +370,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// (such as when using the default lang/skin).
 			'$VARS.reqBase' => $context->encodeJson( (object)$context->getReqBase() ),
 			'$VARS.baseModules' => $context->encodeJson( $this->getBaseModules() ),
-			'$VARS.maxQueryLength' => $context->encodeJson(
-				$conf->get( 'ResourceLoaderMaxQueryLength' )
-			),
+			'$VARS.maxQueryLength' => $context->encodeJson( $this->getMaxQueryLength() ),
 			// The client-side module cache can be disabled by site configuration.
 			// It is also always disabled in debug mode.
 			'$VARS.storeEnabled' => $context->encodeJson(
