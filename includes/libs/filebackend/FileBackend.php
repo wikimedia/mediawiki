@@ -191,12 +191,17 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $config ) {
+		if ( !array_key_exists( 'name', $config ) ) {
+			throw new InvalidArgumentException( 'Backend name not specified.' );
+		}
 		$this->name = $config['name'];
 		$this->domainId = $config['domainId'] // e.g. "my_wiki-en_"
-			?? $config['wikiId']; // b/c alias
+			?? $config['wikiId'] // b/c alias
+			?? null;
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
 			throw new InvalidArgumentException( "Backend name '{$this->name}' is invalid." );
-		} elseif ( !is_string( $this->domainId ) ) {
+		}
+		if ( !is_string( $this->domainId ) ) {
 			throw new InvalidArgumentException(
 				"Backend domain ID not provided for '{$this->name}'." );
 		}

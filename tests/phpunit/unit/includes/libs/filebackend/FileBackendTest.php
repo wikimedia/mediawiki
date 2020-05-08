@@ -110,8 +110,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::__construct
 	 */
 	public function testConstruct_noName() : void {
-		$this->expectException( PHPUnit\Framework\Error\Notice::class );
-		$this->expectExceptionMessage( 'Undefined index: name' );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Backend name not specified' );
 
 		$this->getMockBuilder( FileBackend::class )
 			->setConstructorArgs( [ [] ] )
@@ -199,8 +199,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::__construct
 	 */
 	public function testConstruct_noDomainId() : void {
-		$this->expectException( PHPUnit\Framework\Error\Notice::class );
-		$this->expectExceptionMessage( 'Undefined index: wikiId' );
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Backend domain ID not provided for 'test_name'" );
 
 		$this->getMockBuilder( FileBackend::class )
 			->setConstructorArgs( [ [ 'name' => 'test_name' ] ] )
