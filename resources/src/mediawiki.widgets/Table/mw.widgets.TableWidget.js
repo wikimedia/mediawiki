@@ -558,9 +558,11 @@ mw.widgets.TableWidget.prototype.setDisabled = function ( disabled ) {
 		row.setDisabled( disabled );
 	} );
 
-	this.insertionRow.getItems().forEach( function ( row ) {
-		row.setDisabled( disabled );
-	} );
+	if ( this.model.getTableProperties().allowRowInsertion ) {
+		this.insertionRow.getItems().forEach( function ( row ) {
+			row.setDisabled( disabled );
+		} );
+	}
 };
 
 /**
