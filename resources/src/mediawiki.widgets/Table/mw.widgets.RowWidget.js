@@ -328,7 +328,9 @@ mw.widgets.RowWidget.prototype.setDisabled = function ( disabled ) {
 		return;
 	}
 
-	this.deleteButton.setDisabled( disabled );
+	if ( this.model.getRowProperties().isDeletable ) {
+		this.deleteButton.setDisabled( disabled );
+	}
 
 	this.getItems().forEach( function ( cell ) {
 		cell.setDisabled( disabled );
