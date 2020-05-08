@@ -54,11 +54,9 @@ mw.widgets.TableWidget = function MwWidgetsTableWidget( config ) {
 
 		for ( i = 0, len = columnProps.length; i < len; i++ ) {
 			prop = columnProps[ i ];
-			headerRowItems.push( new OO.ui.TextInputWidget( {
-				value: prop.label ? prop.label : ( prop.key ? prop.key : prop.index ),
-				// TODO: Allow editing of fields
-				disabled: true
-			} ) );
+			headerRowItems.push(
+				this.getHeaderRowItem( prop.label, prop.key, prop.index )
+			);
 		}
 
 		this.headerRow.addItems( headerRowItems );
@@ -273,6 +271,23 @@ mw.widgets.TableWidget.prototype.filterCellInput = function ( value ) {
 };
 
 /**
+ * Get an input item for the header row.
+ *
+ * @private
+ * @param {string} label The column label
+ * @param {string} key The column key
+ * @param {number} index The column index
+ * @return {OO.ui.TextInputWidget} An input item for the header row
+ */
+mw.widgets.TableWidget.prototype.getHeaderRowItem = function ( label, key, index ) {
+	return new OO.ui.TextInputWidget( {
+		value: label || key || index,
+		// TODO: Allow editing of fields
+		disabled: true
+	} );
+};
+
+/**
  * @private
  * @inheritdoc
  */
@@ -386,11 +401,7 @@ mw.widgets.TableWidget.prototype.onInsertColumn = function ( data, index, key, l
 
 	if ( tableProps.showHeaders ) {
 		this.headerRow.addItems( [
-			new OO.ui.TextInputWidget( {
-				value: label || key || index,
-				// TODO: Allow editing of fields
-				disabled: true
-			} )
+			this.getHeaderRowItem( label, key, index )
 		] );
 	}
 
@@ -559,18 +570,17 @@ mw.widgets.TableWidget.prototype.refreshTableMarginals = function () {
 	var tableProps = this.model.getTableProperties(),
 		columnProps = this.model.getAllColumnProperties(),
 		rowItems,
-		i, len;
+		i, len, prop;
 
 	if ( tableProps.showHeaders ) {
 		this.headerRow.removeItems( this.headerRow.getItems() );
 		rowItems = [];
 
 		for ( i = 0, len = columnProps.length; i < len; i++ ) {
-			rowItems.push( new OO.ui.TextInputWidget( {
-				value: columnProps[ i ].key ? columnProps[ i ].key : columnProps[ i ].index,
-				// TODO: Allow editing of fields
-				disabled: true
-			} ) );
+			prop = columnProps[ i ];
+			rowItems.push(
+				this.getHeaderRowItem( prop.label, prop.key, prop.index )
+			);
 		}
 
 		this.headerRow.addItems( rowItems );
