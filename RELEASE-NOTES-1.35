@@ -958,6 +958,8 @@ because of Phabricator reports.
   when manually invoked.
 * ParserOptions::getTidy() and ParserOptions::setTidy() have been deprecated.
   These options no longer have any effect.
+* Most methods of MWTidy, except for MWTidy::tidy(), have been deprecated;
+  tidiness is always enabled and not configurable.
 * Version 1 of the parserTests file format has been deprecated.  Update
   your parser tests to version 2, which uses Remex tidy on all test output
   by default.
