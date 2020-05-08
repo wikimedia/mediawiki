@@ -23,9 +23,6 @@
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/actions/</exclude-pattern>
 		<exclude-pattern>includes/cache/</exclude-pattern>
-		<exclude-pattern>includes/changes/</exclude-pattern>
-		<exclude-pattern>includes/changetags/</exclude-pattern>
-		<exclude-pattern>includes/collation/</exclude-pattern>
 		<exclude-pattern>includes/deferred/</exclude-pattern>
 		<exclude-pattern>includes/diff/</exclude-pattern>
 		<exclude-pattern>includes/export/</exclude-pattern>
@@ -44,8 +41,6 @@
 		<exclude-pattern>includes/parser/</exclude-pattern>
 		<exclude-pattern>includes/poolcounter/</exclude-pattern>
 		<exclude-pattern>includes/Rest/</exclude-pattern>
-		<exclude-pattern>includes/revisiondelete/</exclude-pattern>
-		<exclude-pattern>includes/revisionlist/</exclude-pattern>
 		<exclude-pattern>includes/search/</exclude-pattern>
 		<exclude-pattern>includes/skins/</exclude-pattern>
 		<exclude-pattern>includes/specialpage/</exclude-pattern>

@@ -318,7 +318,7 @@ abstract class RevDelList extends RevisionListBase {
 	 * Reload the list data from the master DB. This can be done after setVisibility()
 	 * to allow $item->getHTML() to show the new data.
 	 */
-	function reloadFromMaster() {
+	public function reloadFromMaster() {
 		$dbw = wfGetDB( DB_MASTER );
 		$this->res = $this->doQuery( $dbw );
 	}
