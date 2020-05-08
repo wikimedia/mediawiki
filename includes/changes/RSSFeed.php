@@ -38,6 +38,7 @@ class RSSFeed extends ChannelFeed {
 		if ( $ts ) {
 			return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
 		}
+		return null;
 	}
 
 	/**
