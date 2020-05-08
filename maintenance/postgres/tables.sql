@@ -145,25 +145,20 @@ CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE revision (
   rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
   rev_page           INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  rev_text_id        INTEGER          NULL, -- FK
-  rev_comment        TEXT         NOT NULL DEFAULT '',
-  rev_user           INTEGER      NOT NULL DEFAULT 0 REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
-  rev_user_text      TEXT         NOT NULL DEFAULT '',
+  rev_comment_id     INTEGER      NOT NULL DEFAULT 0,
+  rev_actor          INTEGER      NOT NULL DEFAULT 0,
   rev_timestamp      TIMESTAMPTZ  NOT NULL,
   rev_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
   rev_deleted        SMALLINT     NOT NULL  DEFAULT 0,
   rev_len            INTEGER          NULL,
   rev_parent_id      INTEGER          NULL,
-  rev_sha1           TEXT         NOT NULL DEFAULT '',
-  rev_content_model  TEXT,
-  rev_content_format TEXT
+  rev_sha1           TEXT         NOT NULL DEFAULT ''
 );
 ALTER SEQUENCE revision_rev_id_seq OWNED BY revision.rev_id;
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
-CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
 CREATE INDEX rev_timestamp_idx      ON revision (rev_timestamp);
-CREATE INDEX rev_user_idx           ON revision (rev_user);
-CREATE INDEX rev_user_text_idx      ON revision (rev_user_text);
+CREATE INDEX rev_actor_timestamp    ON revision (rev_actor,rev_timestamp);
+CREATE INDEX rev_page_actor_timestamp ON revision (rev_page,rev_actor,rev_timestamp);
 
 CREATE TABLE revision_comment_temp (
 	revcomment_rev        INTEGER NOT NULL,
@@ -180,8 +175,8 @@ CREATE TABLE revision_actor_temp (
   PRIMARY KEY (revactor_rev, revactor_actor)
 );
 CREATE UNIQUE INDEX revactor_rev ON revision_actor_temp (revactor_rev);
-CREATE INDEX rev_actor_timestamp ON revision_actor_temp (revactor_actor,revactor_timestamp);
-CREATE INDEX rev_page_actor_timestamp ON revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
+CREATE INDEX revactor_actor_timestamp ON revision_actor_temp (revactor_actor,revactor_timestamp);
+CREATE INDEX revactor_page_actor_timestamp ON revision_actor_temp (revactor_page,revactor_actor,revactor_timestamp);
 
 CREATE SEQUENCE ip_changes_ipc_rev_id_seq;
 CREATE TABLE ip_changes (
@@ -249,11 +244,8 @@ CREATE TABLE archive (
   ar_timestamp      TIMESTAMPTZ  NOT NULL,
   ar_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
   ar_rev_id         INTEGER      NOT NULL,
-  ar_text_id        INTEGER      NOT NULL  DEFAULT 0,
   ar_deleted        SMALLINT     NOT NULL  DEFAULT 0,
-  ar_len            INTEGER          NULL,
-  ar_content_model  TEXT,
-  ar_content_format TEXT
+  ar_len            INTEGER          NULL
 );
 ALTER SEQUENCE archive_ar_id_seq OWNED BY archive.ar_id;
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
