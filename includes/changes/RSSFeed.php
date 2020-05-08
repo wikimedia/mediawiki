@@ -34,7 +34,7 @@ class RSSFeed extends ChannelFeed {
 	 * @param int|null $ts Timestamp
 	 * @return string|null Date string
 	 */
-	function formatTime( $ts ) {
+	private function formatTime( $ts ) {
 		if ( $ts ) {
 			return gmdate( 'D, d M Y H:i:s \G\M\T', wfTimestamp( TS_UNIX, $ts ) );
 		}
@@ -43,7 +43,7 @@ class RSSFeed extends ChannelFeed {
 	/**
 	 * Output an RSS 2.0 header
 	 */
-	function outHeader() {
+	public function outHeader() {
 		global $wgVersion;
 
 		$this->outXmlHeader();
@@ -64,7 +64,7 @@ class RSSFeed extends ChannelFeed {
 	 * Output an RSS 2.0 item
 	 * @param FeedItem $item Item to be output
 	 */
-	function outItem( $item ) {
+	public function outItem( $item ) {
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
@@ -87,7 +87,7 @@ class RSSFeed extends ChannelFeed {
 	/**
 	 * Output an RSS 2.0 footer
 	 */
-	function outFooter() {
+	public function outFooter() {
 		print "</channel></rss>";
 	}
 }

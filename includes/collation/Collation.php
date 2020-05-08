@@ -98,7 +98,7 @@ abstract class Collation {
 	 * @param string $string UTF-8 string
 	 * @return string Binary sortkey
 	 */
-	abstract function getSortKey( $string );
+	abstract public function getSortKey( $string );
 
 	/**
 	 * Given a string, return the logical "first letter" to be used for
@@ -125,6 +125,6 @@ abstract class Collation {
 	 * @param string $string UTF-8 string
 	 * @return string UTF-8 string corresponding to the first letter of input
 	 */
-	abstract function getFirstLetter( $string );
+	abstract public function getFirstLetter( $string );
 
 }

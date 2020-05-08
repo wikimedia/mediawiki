@@ -53,7 +53,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 * Select items only where the ID is any of the specified values
 	 * @param array $ids
 	 */
-	function filterByIds( array $ids ) {
+	public function filterByIds( array $ids ) {
 		$this->ids = $ids;
 	}
 
