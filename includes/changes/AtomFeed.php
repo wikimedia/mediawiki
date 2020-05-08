@@ -38,6 +38,7 @@ class AtomFeed extends ChannelFeed {
 			// need to use RFC 822 time format at least for rss2.0
 			return gmdate( 'Y-m-d\TH:i:s', wfTimestamp( TS_UNIX, $timestamp ) );
 		}
+		return null;
 	}
 
 	/**
