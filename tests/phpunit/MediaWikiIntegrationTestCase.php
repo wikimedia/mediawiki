@@ -38,6 +38,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static $originalServices;
 
 	/**
+	 * Cached service wirings of the original service locator, to work around T247990
+	 * @var callable[]
+	 */
+	private static $originalServiceWirings = [];
+
+	/**
 	 * The local service locator, created during setUp().
 	 * @var MediaWikiServices
 	 */
@@ -965,6 +971,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			self::$originalServices = MediaWikiServices::getInstance();
 		}
 
+		// (T247990) Cache the original service wirings to work around a memory leak on PHP 7.4 and above
+		if ( !self::$originalServiceWirings ) {
+			$serviceWiringFiles = self::$originalServices->getBootstrapConfig()->get( 'ServiceWiringFiles' );
+
+			foreach ( $serviceWiringFiles as $wiringFile ) {
+				self::$originalServiceWirings[] = require $wiringFile;
+			}
+		}
+
 		if ( !$configOverrides ) {
 			$configOverrides = new HashConfig();
 		}
@@ -976,9 +991,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$newServices = new MediaWikiServices( $testConfig );
 
 		// Load the default wiring from the specified files.
-		// NOTE: this logic mirrors the logic in MediaWikiServices::newInstance.
-		$wiringFiles = $testConfig->get( 'ServiceWiringFiles' );
-		$newServices->loadWiringFiles( $wiringFiles );
+		// NOTE: this logic mirrors the logic in MediaWikiServices::newInstance
+		if ( $configOverrides->has( 'ServiceWiringFiles' ) ) {
+			$wiringFiles = $testConfig->get( 'ServiceWiringFiles' );
+			$newServices->loadWiringFiles( $wiringFiles );
+		} else {
+			// (T247990) Avoid including default wirings many times - use cached wirings
+			foreach ( self::$originalServiceWirings as $wiring ) {
+				$newServices->applyWiring( $wiring );
+			}
+		}
 
 		// Provide a traditional hook point to allow extensions to configure services.
 		Hooks::run( 'MediaWikiServices', [ $newServices ] );
@@ -1169,7 +1191,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		foreach (
 			array_splice( $this->ignoredLoggers, 0 )
-			as list( $logger, $level )
+			as [ $logger, $level ]
 		) {
 			$logger->setMinimumForTest( $level );
 		}
@@ -1516,7 +1538,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$dbws = [];
 		foreach ( $defaultArray as $url ) {
 			if ( strpos( $url, 'DB://' ) === 0 ) {
-				list( $proto, $cluster ) = explode( '://', $url, 2 );
+				[ $proto, $cluster ] = explode( '://', $url, 2 );
 				// Avoid getMaster() because setupDatabaseWithTestPrefix()
 				// requires Database instead of plain DBConnRef/IDatabase
 				$dbws[] = $externalStoreDB->getMaster( $cluster );
