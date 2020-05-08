@@ -8,6 +8,7 @@
 			"Fitoschido",
 			"Macofe",
 			"Matma Rex",
+			"Nawabji",
 			"Sfic",
 			"राम प्रसाद जोशी"
 		]
@@ -36,8 +37,8 @@
 	"tog-enotifminoredits": "छोटे परिवर्तन कय लिए भी हम्म्य ई-मेल पठवो",
 	"tog-enotifrevealaddr": "अधिसूचना ई-मेल में हमार ई-मेल ठाँव देखावो",
 	"tog-shownumberswatching": "ध्यान रख्खय वाले सदस्यन् कय संख्या देखावो",
-	"tog-oldsig": "आपका वर्तमान हस्ताक्षर:",
-	"tog-fancysig": "हस्ताक्षर कय विकिपाठ जैसन मानों (बिना स्वचालित कड़ी कय)",
+	"tog-oldsig": "आपकै बर्तमान दस्खत:",
+	"tog-fancysig": "दस्खत कय विकिपाठ जैसन मानों (बिना स्वचालित कड़ी कय)",
 	"tog-uselivepreview": "सजीवन झलक का उपयोग करें",
 	"tog-forceeditsummary": "यदि सम्पादन सारांश नाई दिहा है तो हम्मै बतावा जाय (या फिर डिफ़ॉल्ट पहिले जइसा सारांश)",
 	"tog-watchlisthideown": "हमरे ध्यानसूची से हमार करल बदलाव लुकुवाओ",
@@ -192,7 +193,7 @@
 	"unprotect": "असुरक्षित",
 	"newpage": "नँवा पन्ना",
 	"talkpagelinktext": "बातचीत",
-	"specialpage": "विशेष पन्ना",
+	"specialpage": "खास पन्ना",
 	"personaltools": "वैयक्तिक औज़ार",
 	"talk": "चर्चा",
 	"views": "दर्शाव",
