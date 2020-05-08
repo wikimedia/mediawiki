@@ -2795,7 +2795,7 @@ class UserTest extends MediaWikiTestCase {
 		// Make sure time progresses between revisions.
 		// MediaWikiIntegrationTestCase automatically restores the real clock.
 		$clock = MWTimestamp::time();
-		MWTimestamp::setFakeTime( function () use ( $clock ) {
+		MWTimestamp::setFakeTime( function () use ( &$clock ) {
 			return ++$clock;
 		} );
 

@@ -1417,32 +1417,75 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Only run a function if the `actor` table does not exist
+	 * @deprecated since 1.35, use ifTableNotExists() instead
+	 */
+	protected function ifNoActorTable( $func, ...$params ) {
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->ifTableNotExists( 'actor', $func, ...$params );
+	}
+
+	/**
+	 * Only run a function if a table does not exist
 	 *
-	 * The transition to the actor table is dropping several indexes (and a few
-	 * fields) that old upgrades want to add. This function is used to prevent
-	 * those from running to re-add things when the `actor` table exists, while
-	 * still allowing them to run if this really is an upgrade from an old MW
-	 * version.
-	 *
-	 * @since 1.34
+	 * @since 1.35
+	 * @param string $table Table to check.
+	 *  If passed $this, it's assumed to be a call from runUpdates() with
+	 *  $passSelf = true: all other parameters are shifted and $this is
+	 *  prepended to the rest of $params.
 	 * @param string|array|static $func Normally this is the string naming the method on $this to
-	 *  call. It may also be an array callable. If passed $this, it's assumed to be a call from
-	 *  runUpdates() with $passSelf = true: $params[0] is assumed to be the real $func and $this
-	 *  is prepended to the rest of $params.
+	 *  call. It may also be an array callable.
 	 * @param mixed ...$params Parameters for `$func`
 	 * @return mixed Whatever $func returns, or null when skipped.
 	 */
-	protected function ifNoActorTable( $func, ...$params ) {
-		if ( $this->tableExists( 'actor' ) ) {
+	protected function ifTableNotExists( $table, $func, ...$params ) {
+		// Handle $passSelf from runUpdates().
+		$passSelf = false;
+		if ( $table === $this ) {
+			$passSelf = true;
+			$table = $func;
+			$func = array_shift( $params );
+		}
+
+		if ( $this->db->tableExists( $table ) ) {
 			return null;
 		}
 
+		if ( !is_array( $func ) && method_exists( $this, $func ) ) {
+			$func = [ $this, $func ];
+		} elseif ( $passSelf ) {
+			array_unshift( $params, $this );
+		}
+
+		// @phan-suppress-next-line PhanUndeclaredInvokeInCallable Phan is confused
+		return $func( ...$params );
+	}
+
+	/**
+	 * Only run a function if the named field exists
+	 *
+	 * @since 1.35
+	 * @param string $table Table to check.
+	 *  If passed $this, it's assumed to be a call from runUpdates() with
+	 *  $passSelf = true: all other parameters are shifted and $this is
+	 *  prepended to the rest of $params.
+	 * @param string $field Field to check
+	 * @param string|array|static $func Normally this is the string naming the method on $this to
+	 *  call. It may also be an array callable.
+	 * @param mixed ...$params Parameters for `$func`
+	 * @return mixed Whatever $func returns, or null when skipped.
+	 */
+	protected function ifFieldExists( $table, $field, $func, ...$params ) {
 		// Handle $passSelf from runUpdates().
 		$passSelf = false;
-		if ( $func === $this ) {
+		if ( $table === $this ) {
 			$passSelf = true;
+			$table = $field;
+			$field = $func;
 			$func = array_shift( $params );
+		}
+
+		if ( !$this->db->tableExists( $table ) || !$this->db->fieldExists( $table, $field ) ) {
+			return null;
 		}
 
 		if ( !is_array( $func ) && method_exists( $this, $func ) ) {
