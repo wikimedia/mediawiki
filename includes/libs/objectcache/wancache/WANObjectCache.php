@@ -105,13 +105,14 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * should not be relied on for cases where reads are used to determine writes to source
  * (e.g. non-cache) data stores, except when reading immutable data.
  *
- * All values are wrapped in metadata arrays. Keys use a "WANCache:" prefix
- * to avoid collisions with keys that are not wrapped as metadata arrays. The
- * prefixes are as follows:
- *   - a) "WANCache:v" : used for regular value keys
- *   - b) "WANCache:i" : used for temporarily storing values of tombstoned keys
- *   - c) "WANCache:t" : used for storing timestamp "check" keys
- *   - d) "WANCache:m" : used for temporary mutex keys to avoid cache stampedes
+ * All values are wrapped in metadata arrays. Keys use a "WANCache:" prefix to avoid
+ * collisions with keys that are not wrapped as metadata arrays. For any given key that
+ * a caller uses, there are several "sister" keys that might be involved under the hood.
+ * Each "sister" key differs only by a single-character:
+ *   - v: used for regular value keys
+ *   - i: used for temporarily storing values of tombstoned keys
+ *   - t: used for storing timestamp "check" keys
+ *   - m: used for temporary mutex keys to avoid cache stampedes
  *
  * @ingroup Cache
  * @since 1.26
@@ -145,8 +146,10 @@ class WANObjectCache implements
 	protected $epoch;
 	/** @var string Stable secret used for hasing long strings into key components */
 	protected $secret;
-	/** @var bool Whether to use Hash Tags and Hash Stops in key names */
+	/** @var string|bool Whether "sister" keys should be coalesced to the same cache server */
 	protected $coalesceKeys;
+	/** @var int Scheme to use for key coalescing (Hash Tags or Hash Stops) */
+	protected $coalesceScheme;
 
 	/** @var int Reads/second assumed during a hypothetical cache write stampede for a key */
 	private $keyHighQps;
@@ -200,6 +203,11 @@ class WANObjectCache implements
 
 	/** @var int Idion for get()/getMulti() to return extra information by reference */
 	const PASS_BY_REF = -1;
+
+	/** @var int Use twemproxy-style Hash Tag key scheme (e.g. "{...}") */
+	private const SCHEME_HASH_TAG = 1;
+	/** @var int Use mcrouter-style Hash Stop key scheme (e.g. "...|#|") */
+	private const SCHEME_HASH_STOP = 2;
 
 	/** @var int Seconds to keep dependency purge keys around */
 	private static $CHECK_KEY_TTL = self::TTL_YEAR;
@@ -287,9 +295,10 @@ class WANObjectCache implements
 	 *       requires that "region" and "cluster" are both set above. [optional]
 	 *   - epoch: lowest UNIX timestamp a value/tombstone must have to be valid. [optional]
 	 *   - secret: stable secret used for hashing long strings into key components. [optional]
-	 *   - coalesceKeys: whether to use Hash Tags and Hash Stops in key names so that related
-	 *       keys use the same cache server. This can reduce network overhead and reduce the
-	 *       chance the a single down cache server causes disruption. [default: false]
+	 *   - coalesceKeys: whether to use a key scheme that encourages the backend to place any
+	 *       "helper" keys for a "value" key within the same cache server. This reduces network
+	 *       overhead and reduces the chance the a single downed cache server causes disruption.
+	 *       Set this to "non-global" to only apply the scheme to non-global keys. [default: false]
 	 *   - keyHighQps: reads/second assumed during a hypothetical cache write stampede for
 	 *       a single key. This is used to decide when the overhead of checking short-lived
 	 *       write throttling keys is worth it.
@@ -306,6 +315,15 @@ class WANObjectCache implements
 		$this->epoch = $params['epoch'] ?? 0;
 		$this->secret = $params['secret'] ?? (string)$this->epoch;
 		$this->coalesceKeys = $params['coalesceKeys'] ?? false;
+		if ( !empty( $params['mcrouterAware'] ) ) {
+			// https://github.com/facebook/mcrouter/wiki/Key-syntax
+			$this->coalesceScheme = self::SCHEME_HASH_STOP;
+		} else {
+			// https://redis.io/topics/cluster-spec
+			// https://github.com/twitter/twemproxy/blob/v0.4.1/notes/recommendation.md#hash-tags
+			// https://github.com/Netflix/dynomite/blob/v0.7.0/notes/recommendation.md#hash-tags
+			$this->coalesceScheme = self::SCHEME_HASH_TAG;
+		}
 
 		$this->keyHighQps = $params['keyHighQps'] ?? 100;
 		$this->keyHighUplinkBps = $params['keyHighUplinkBps'] ?? ( 1e9 / 8 / 100 );
@@ -375,7 +393,7 @@ class WANObjectCache implements
 	 *
 	 * Otherwise, $info will transform into the cached value timestamp.
 	 *
-	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param mixed|null &$curTTL Approximate TTL left on the key if present/tombstoned [returned]
 	 * @param string[] $checkKeys The "check" keys used to validate the value
 	 * @param mixed|null &$info Key info if WANObjectCache::PASS_BY_REF [returned]
@@ -419,7 +437,7 @@ class WANObjectCache implements
 	 *
 	 * @see WANObjectCache::get()
 	 *
-	 * @param string[] $keys List of cache keys made from makeKey() or makeGlobalKey()
+	 * @param string[] $keys List/map with cache keys made from makeKey()/makeGlobalKey() as values
 	 * @param mixed|null &$curTTLs Map of (key => TTL left) for existing/tombstoned keys [returned]
 	 * @param string[]|string[][] $checkKeys Map of (integer or cache key => "check" key(s))
 	 * @param mixed|null &$info Map of (key => info) if WANObjectCache::PASS_BY_REF [returned]
@@ -435,34 +453,42 @@ class WANObjectCache implements
 		$curTTLs = [];
 		$infoByKey = [];
 
+		// Order-corresponding list of value keys for the provided base keys
 		$valueKeys = $this->makeSisterKeys( $keys, self::$TYPE_VALUE );
 
+		$fullKeysNeeded = $valueKeys;
 		$checkKeysForAll = [];
 		$checkKeysByKey = [];
-		$checkKeysFlat = [];
-		foreach ( $checkKeys as $i => $checkKeyGroup ) {
-			$prefixed = $this->makeSisterKeys( (array)$checkKeyGroup, self::$TYPE_TIMESTAMP );
-			$checkKeysFlat = array_merge( $checkKeysFlat, $prefixed );
-			// Are these check keys for a specific cache key, or for all keys being fetched?
+		foreach ( $checkKeys as $i => $checkKeyOrKeyGroup ) {
+			// Note: avoid array_merge() inside loop in case there are many keys
 			if ( is_int( $i ) ) {
-				$checkKeysForAll = array_merge( $checkKeysForAll, $prefixed );
+				// Single check key that applies to all value keys
+				$fullKey = $this->makeSisterKey( $checkKeyOrKeyGroup, self::$TYPE_TIMESTAMP );
+				$fullKeysNeeded[] = $fullKey;
+				$checkKeysForAll[] = $fullKey;
 			} else {
-				$checkKeysByKey[$i] = $prefixed;
+				// List of check keys that apply to a specific value key
+				foreach ( (array)$checkKeyOrKeyGroup as $checkKey ) {
+					$fullKey = $this->makeSisterKey( $checkKey, self::$TYPE_TIMESTAMP );
+					$fullKeysNeeded[] = $fullKey;
+					$checkKeysByKey[$i][] = $fullKey;
+				}
 			}
 		}
 
-		// Fetch all of the raw values
-		$keysGet = array_merge( $valueKeys, $checkKeysFlat );
 		if ( $this->warmupCache ) {
-			$wrappedValues = array_intersect_key( $this->warmupCache, array_flip( $keysGet ) );
-			$keysGet = array_diff( $keysGet, array_keys( $wrappedValues ) ); // keys left to fetch
-			$this->warmupKeyMisses += count( $keysGet );
+			// Get the raw values of the keys from the warmup cache
+			$wrappedValues = $this->warmupCache;
+			$fullKeysMissing = array_diff( $fullKeysNeeded, array_keys( $wrappedValues ) );
+			if ( $fullKeysMissing ) { // sanity
+				$this->warmupKeyMisses += count( $fullKeysMissing );
+				$wrappedValues += $this->cache->getMulti( $fullKeysMissing );
+			}
 		} else {
-			$wrappedValues = [];
+			// Fetch the raw values of the keys from the backend
+			$wrappedValues = $this->cache->getMulti( $fullKeysNeeded );
 		}
-		if ( $keysGet ) {
-			$wrappedValues += $this->cache->getMulti( $keysGet );
-		}
+
 		// Time used to compare/init "check" keys (derived after getMulti() to be pessimistic)
 		$now = $this->getCurrentTime();
 
@@ -470,13 +496,16 @@ class WANObjectCache implements
 		$purgeValuesForAll = $this->processCheckKeys( $checkKeysForAll, $wrappedValues, $now );
 		$purgeValuesByKey = [];
 		foreach ( $checkKeysByKey as $cacheKey => $checks ) {
-			$purgeValuesByKey[$cacheKey] =
-				$this->processCheckKeys( $checks, $wrappedValues, $now );
+			$purgeValuesByKey[$cacheKey] = $this->processCheckKeys( $checks, $wrappedValues, $now );
 		}
 
 		// Get the main cache value for each key and validate them
-		foreach ( $valueKeys as $vKey ) {
-			$key = $this->extractBaseKey( $vKey ); // unprefix
+		reset( $keys );
+		foreach ( $valueKeys as $i => $vKey ) {
+			// Get the corresponding base key for this value key
+			$key = current( $keys );
+			next( $keys );
+
 			list( $value, $keyInfo ) = $this->unwrap(
 				array_key_exists( $vKey, $wrappedValues ) ? $wrappedValues[$vKey] : false,
 				$now
@@ -519,11 +548,11 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @since 1.27
 	 * @param string[] $timeKeys List of prefixed time check keys
-	 * @param mixed[] $wrappedValues
+	 * @param mixed[] $wrappedValues Preloaded map of (key => value)
 	 * @param float $now
 	 * @return array[] List of purge value arrays
+	 * @since 1.27
 	 */
 	private function processCheckKeys( array $timeKeys, array $wrappedValues, $now ) {
 		$purgeValues = [];
@@ -1216,7 +1245,7 @@ class WANObjectCache implements
 	 * @see WANObjectCache::get()
 	 * @see WANObjectCache::set()
 	 *
-	 * @param string $key Cache key made from makeKey() or makeGlobalKey()
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param int $ttl Nominal seconds-to-live for newly computed values. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (subject to LRU-style evictions)
 	 *   - WANObjectCache::TTL_UNCACHEABLE: Do not cache (if the key exists, it is not deleted)
@@ -1598,46 +1627,28 @@ class WANObjectCache implements
 	 * Get a cache key that should be collocated with a base key
 	 *
 	 * @param string $baseKey Cache key made from makeKey()/makeGlobalKey()
-	 * @param string $type Consistent hashing agnostic suffix character matching [a-zA-Z]
+	 * @param string $typeChar Consistent hashing agnostic suffix character matching [a-zA-Z]
 	 * @return string Cache key
 	 */
-	private function makeSisterKey( $baseKey, $type ) {
-		if ( !$this->coalesceKeys ) {
-			// Old key style: "WANCache:<character>:<base key>"
-			return 'WANCache:' . $type . ':' . $baseKey;
+	private function makeSisterKey( $baseKey, $typeChar ) {
+		if ( $this->coalesceKeys === 'non-global' ) {
+			$useColocationScheme = ( strncmp( $baseKey, "global:", 7 ) !== 0 );
+		} else {
+			$useColocationScheme = ( $this->coalesceKeys === true );
 		}
 
-		return $this->mcrouterAware
-			// https://github.com/facebook/mcrouter/wiki/Key-syntax
-			// Note that the prefix prevents callers from making route keys.
-			? 'WANCache:' . $baseKey . '|#|' . $type
-			// https://redis.io/topics/cluster-spec
-			// https://github.com/twitter/twemproxy/blob/master/notes/recommendation.md
-			// https://github.com/Netflix/dynomite/blob/master/notes/recommendation.md
-			: 'WANCache:{' . $baseKey . '}:' . $type;
-	}
-
-	/**
-	 * Get a cache key that should be collocated with a base key
-	 *
-	 * @param string $sisterKey Cache key made from makeSisterKey()
-	 * @return string Original cache key made from makeKey()/makeGlobalKey()
-	 */
-	private function extractBaseKey( $sisterKey ) {
-		if ( !$this->coalesceKeys ) {
+		if ( !$useColocationScheme ) {
 			// Old key style: "WANCache:<character>:<base key>"
-			return substr( $sisterKey, 11 );
-		}
-
-		return $this->mcrouterAware
+			$fullKey = 'WANCache:' . $typeChar . ':' . $baseKey;
+		} elseif ( $this->coalesceScheme === self::SCHEME_HASH_STOP ) {
 			// Key style: "WANCache:<base key>|#|<character>"
-			// https://github.com/facebook/mcrouter/wiki/Key-syntax
-			? substr( $sisterKey, 9, -4 )
+			$fullKey = 'WANCache:' . $baseKey . '|#|' . $typeChar;
+		} else {
 			// Key style: "WANCache:{<base key>}:<character>"
-			// https://redis.io/topics/cluster-spec
-			// https://github.com/twitter/twemproxy/blob/master/notes/recommendation.md
-			// https://github.com/Netflix/dynomite/blob/master/notes/recommendation.md
-			: substr( $sisterKey, 10, -3 );
+			$fullKey = 'WANCache:{' . $baseKey . '}:' . $typeChar;
+		}
+
+		return $fullKey;
 	}
 
 	/**
@@ -2811,23 +2822,23 @@ class WANObjectCache implements
 		}
 
 		// Get all the value keys to fetch...
-		$keysWarmUp = $this->makeSisterKeys( $keys, self::$TYPE_VALUE );
+		$keysWarmup = $this->makeSisterKeys( $keys, self::$TYPE_VALUE );
 		// Get all the check keys to fetch...
-		foreach ( $checkKeys as $i => $checkKeyOrKeys ) {
+		foreach ( $checkKeys as $i => $checkKeyOrKeyGroup ) {
+			// Note: avoid array_merge() inside loop in case there are many keys
 			if ( is_int( $i ) ) {
 				// Single check key that applies to all value keys
-				$keysWarmUp[] = $this->makeSisterKey( $checkKeyOrKeys, self::$TYPE_TIMESTAMP );
+				$keysWarmup[] = $this->makeSisterKey( $checkKeyOrKeyGroup, self::$TYPE_TIMESTAMP );
 			} else {
-				// List of check keys that apply to value key $i
-				$keysWarmUp = array_merge(
-					$keysWarmUp,
-					$this->makeSisterKeys( $checkKeyOrKeys, self::$TYPE_TIMESTAMP )
-				);
+				// List of check keys that apply to a specific value key
+				foreach ( (array)$checkKeyOrKeyGroup as $checkKey ) {
+					$keysWarmup[] = $this->makeSisterKey( $checkKey, self::$TYPE_TIMESTAMP );
+				}
 			}
 		}
 
-		$warmupCache = $this->cache->getMulti( $keysWarmUp );
-		$warmupCache += array_fill_keys( $keysWarmUp, false );
+		$warmupCache = $this->cache->getMulti( $keysWarmup );
+		$warmupCache += array_fill_keys( $keysWarmup, false );
 
 		return $warmupCache;
 	}
