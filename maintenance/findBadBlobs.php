@@ -260,7 +260,11 @@ class FindBadBlobs extends Maintenance {
 			"rev_timestamp > $quotedTimestamp OR "
 			. "(rev_timestamp = $quotedTimestamp AND rev_id > $afterId )",
 			__METHOD__,
-			[ 'LIMIT' => $batchSize, 'ORDER BY' => 'rev_timestamp, rev_id' ],
+			[
+				'USE INDEX' => [ 'revision' => 'rev_timestamp' ],
+				'ORDER BY' => 'rev_timestamp, rev_id',
+				'LIMIT' => $batchSize,
+			],
 			$queryInfo['joins']
 		);
 		$result = $this->revisionStore->newRevisionsFromBatch( $rows, [ 'slots' => true ] );
