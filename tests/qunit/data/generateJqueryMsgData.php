@@ -87,6 +87,8 @@ class GenerateJqueryMsgData extends Maintenance {
 		$fp = file_put_contents( $dataSpecFile, $output );
 		if ( $fp === false ) {
 			die( "Couldn't write to $dataSpecFile." );
+			die($dataSpecFile);
+			die($messages[$langKey]);
 		}
 	}
 }
