@@ -1131,19 +1131,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Replace legacy globals like $wgParser and $wgContLang with fresh ones so they pick up any
-	 * config changes. They're deprecated, but we still support them for now.
+	 * Replace legacy global $wgParser with a fresh one so it picks up any
+	 * config changes. It's deprecated, but we still support it for now.
 	 */
 	private static function resetLegacyGlobals() {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgParser
-		global $wgParser, $wgContLang;
+		global $wgParser;
 		// We don't have to replace the parser if it wasn't unstubbed
 		if ( !( $wgParser instanceof StubObject ) ) {
 			$wgParser = new StubObject( 'wgParser', static function () {
 				return MediaWikiServices::getInstance()->getParser();
 			} );
 		}
-		$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**
