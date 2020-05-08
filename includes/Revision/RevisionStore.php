@@ -1247,6 +1247,21 @@ class RevisionStore
 			$slots[$row->role_name] = new SlotRecord( $row, $contentCallback );
 		}
 
+		if ( !$slots && !( $queryFlags & self::READ_LATEST ) ) {
+			// If we found no slots, try looking on the master database (T212428, T252156)
+			$this->logger->info(
+				__METHOD__ . ' falling back to READ_LATEST.',
+				[ 'trace' => wfBacktrace() ]
+			);
+			return $this->constructSlotRecords(
+				$revId,
+				$slotRows,
+				$queryFlags | self::READ_LATEST,
+				$title,
+				$slotContents
+			);
+		}
+
 		if ( !isset( $slots[SlotRecord::MAIN] ) ) {
 			throw new RevisionAccessException(
 				'Main slot of revision ' . $revId . ' not found in database!'
