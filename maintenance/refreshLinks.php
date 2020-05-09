@@ -33,7 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class RefreshLinks extends Maintenance {
-	const REPORTING_INTERVAL = 100;
+	private const REPORTING_INTERVAL = 100;
 
 	/** @var int|bool */
 	protected $namespace = false;

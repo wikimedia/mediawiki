@@ -44,7 +44,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @ingroup Maintenance ExternalStorage
  */
 class CheckStorage {
-	const CONCAT_HEADER = 'O:27:"concatenatedgziphistoryblob"';
+	private const CONCAT_HEADER = 'O:27:"concatenatedgziphistoryblob"';
 	public $oldIdMap, $errors;
 	/** @var ExternalStoreDB */
 	public $dbStore = null;

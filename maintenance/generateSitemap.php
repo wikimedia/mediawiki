@@ -37,8 +37,8 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class GenerateSitemap extends Maintenance {
-	const GS_MAIN = -2;
-	const GS_TALK = -1;
+	private const GS_MAIN = -2;
+	private const GS_TALK = -1;
 
 	/**
 	 * The maximum amount of urls in a sitemap file

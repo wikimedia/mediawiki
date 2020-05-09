@@ -33,7 +33,7 @@ use MediaWiki\MediaWikiServices;
  */
 class PopulateCategory extends Maintenance {
 
-	const REPORTING_INTERVAL = 1000;
+	private const REPORTING_INTERVAL = 1000;
 
 	public function __construct() {
 		parent::__construct();

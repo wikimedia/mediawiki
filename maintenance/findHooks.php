@@ -44,8 +44,8 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class FindHooks extends Maintenance {
-	const FIND_NON_RECURSIVE = 0;
-	const FIND_RECURSIVE = 1;
+	private const FIND_NON_RECURSIVE = 0;
+	private const FIND_RECURSIVE = 1;
 
 	/*
 	 * Hooks that are ignored
