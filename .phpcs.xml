@@ -40,7 +40,6 @@
 		<exclude-pattern>includes/pager/</exclude-pattern>
 		<exclude-pattern>includes/parser/</exclude-pattern>
 		<exclude-pattern>includes/poolcounter/</exclude-pattern>
-		<exclude-pattern>includes/Rest/</exclude-pattern>
 		<exclude-pattern>includes/search/</exclude-pattern>
 		<exclude-pattern>includes/skins/</exclude-pattern>
 		<exclude-pattern>includes/specialpage/</exclude-pattern>
