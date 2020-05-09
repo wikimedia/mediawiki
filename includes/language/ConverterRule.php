@@ -71,9 +71,8 @@ class ConverterRule {
 
 	/**
 	 * Parse flags with syntax -{FLAG| ... }-
-	 * @private
 	 */
-	function parseFlags() {
+	private function parseFlags() {
 		$text = $this->mText;
 		$flags = [];
 		$variantFlags = [];
@@ -134,9 +133,8 @@ class ConverterRule {
 
 	/**
 	 * Generate conversion table.
-	 * @private
 	 */
-	function parseRules() {
+	private function parseRules() {
 		$rules = $this->mRules;
 		$bidtable = [];
 		$unidtable = [];
@@ -188,11 +186,9 @@ class ConverterRule {
 	}
 
 	/**
-	 * @private
-	 *
 	 * @return string
 	 */
-	function getRulesDesc() {
+	private function getRulesDesc() {
 		$codesep = $this->mConverter->mDescCodeSep;
 		$varsep = $this->mConverter->mDescVarSep;
 		$text = '';
@@ -210,13 +206,12 @@ class ConverterRule {
 
 	/**
 	 * Parse rules conversion.
-	 * @private
 	 *
 	 * @param string $variant
 	 *
 	 * @return string
 	 */
-	function getRuleConvertedStr( $variant ) {
+	private function getRuleConvertedStr( $variant ) {
 		$bidtable = $this->mBidtable;
 		$unidtable = $this->mUnidtable;
 
@@ -256,7 +251,7 @@ class ConverterRule {
 	 * @param string $variant The variant code to display page title in
 	 * @return string|bool The converted title or false if just page name
 	 */
-	function getRuleConvertedTitle( $variant ) {
+	private function getRuleConvertedTitle( $variant ) {
 		if ( $variant === $this->mConverter->mMainLanguageCode ) {
 			// If a string targeting exactly this variant is set,
 			// use it. Otherwise, just return false, so the real
@@ -278,9 +273,8 @@ class ConverterRule {
 
 	/**
 	 * Generate conversion table for all text.
-	 * @private
 	 */
-	function generateConvTable() {
+	private function generateConvTable() {
 		// Special case optimisation
 		if ( !$this->mBidtable && !$this->mUnidtable ) {
 			$this->mConvTable = [];
