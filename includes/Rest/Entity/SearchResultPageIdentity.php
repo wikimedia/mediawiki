@@ -16,7 +16,7 @@ interface SearchResultPageIdentity {
 	 *
 	 * @return int
 	 */
-	function getId(): int;
+	public function getId(): int;
 
 	/**
 	 * Returns the page's namespace number.
@@ -25,7 +25,7 @@ interface SearchResultPageIdentity {
 	 *
 	 * @return int
 	 */
-	function getNamespace(): int;
+	public function getNamespace(): int;
 
 	/**
 	 * Get the page title in DB key form.
@@ -34,5 +34,5 @@ interface SearchResultPageIdentity {
 	 *
 	 * @return string
 	 */
-	function getDBkey(): string;
+	public function getDBkey(): string;
 }
