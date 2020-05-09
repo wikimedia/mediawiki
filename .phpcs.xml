@@ -24,12 +24,10 @@
 		<exclude-pattern>includes/actions/</exclude-pattern>
 		<exclude-pattern>includes/deferred/</exclude-pattern>
 		<exclude-pattern>includes/diff/</exclude-pattern>
-		<exclude-pattern>includes/export/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
 		<exclude-pattern>includes/gallery/</exclude-pattern>
 		<exclude-pattern>includes/historyblob/</exclude-pattern>
 		<exclude-pattern>includes/htmlform/</exclude-pattern>
-		<exclude-pattern>includes/import/</exclude-pattern>
 		<exclude-pattern>includes/installer/</exclude-pattern>
 		<exclude-pattern>includes/libs/</exclude-pattern>
 		<exclude-pattern>includes/logging/</exclude-pattern>

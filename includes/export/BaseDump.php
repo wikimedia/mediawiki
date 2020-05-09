@@ -67,7 +67,7 @@ class BaseDump {
 	 * @param string $slot Role name of the slot to read
 	 * @return string|null
 	 */
-	function prefetch( $page, $rev, $slot = SlotRecord::MAIN ) {
+	public function prefetch( $page, $rev, $slot = SlotRecord::MAIN ) {
 		$page = intval( $page );
 		$rev = intval( $rev );
 		while ( $this->lastPage < $page && !$this->atEnd ) {
@@ -110,16 +110,13 @@ class BaseDump {
 		}
 	}
 
-	function debug( $str ) {
+	protected function debug( $str ) {
 		wfDebug( $str . "\n" );
 		// global $dumper;
 		// $dumper->progress( $str );
 	}
 
-	/**
-	 * @private
-	 */
-	function nextPage() {
+	private function nextPage() {
 		if ( $this->skipTo( 'page', 'mediawiki' ) ) {
 			if ( $this->skipTo( 'id' ) ) {
 				$this->lastPage = intval( $this->nodeContents() );
@@ -136,10 +133,7 @@ class BaseDump {
 		}
 	}
 
-	/**
-	 * @private
-	 */
-	function nextRev() {
+	private function nextRev() {
 		if ( $this->skipTo( 'revision' ) ) {
 			if ( $this->skipTo( 'id' ) ) {
 				$this->lastRev = intval( $this->nodeContents() );
@@ -150,10 +144,9 @@ class BaseDump {
 	}
 
 	/**
-	 * @private
 	 * @return string
 	 */
-	function nextText() {
+	private function nextText() {
 		if ( !$this->skipTo( 'text', 'revision' ) ) {
 			return null;
 		}
@@ -162,12 +155,11 @@ class BaseDump {
 	}
 
 	/**
-	 * @private
 	 * @param string $name
 	 * @param string $parent
 	 * @return bool|null
 	 */
-	function skipTo( $name, $parent = 'page' ) {
+	private function skipTo( $name, $parent = 'page' ) {
 		if ( $this->atEnd ) {
 			return false;
 		}
@@ -195,9 +187,8 @@ class BaseDump {
 	 * no sub-elements or such scary things.
 	 *
 	 * @return string
-	 * @private
 	 */
-	function nodeContents() {
+	private function nodeContents() {
 		if ( $this->atEnd ) {
 			return null;
 		}
@@ -221,10 +212,9 @@ class BaseDump {
 	}
 
 	/**
-	 * @private
 	 * @return null
 	 */
-	function close() {
+	public function close() {
 		$this->reader->close();
 		$this->atEnd = true;
 

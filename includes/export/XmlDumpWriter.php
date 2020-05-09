@@ -113,7 +113,7 @@ class XmlDumpWriter {
 	 *
 	 * @return string
 	 */
-	function openStream() {
+	public function openStream() {
 		$ver = $this->schemaVersion;
 		return Xml::element( 'mediawiki', [
 			'xmlns'              => "http://www.mediawiki.org/xml/export-$ver/",
@@ -140,7 +140,7 @@ class XmlDumpWriter {
 	/**
 	 * @return string
 	 */
-	function siteInfo() {
+	private function siteInfo() {
 		$info = [
 			$this->sitename(),
 			$this->dbname(),
@@ -156,7 +156,7 @@ class XmlDumpWriter {
 	/**
 	 * @return string
 	 */
-	function sitename() {
+	private function sitename() {
 		global $wgSitename;
 		return Xml::element( 'sitename', [], $wgSitename );
 	}
@@ -164,7 +164,7 @@ class XmlDumpWriter {
 	/**
 	 * @return string
 	 */
-	function dbname() {
+	private function dbname() {
 		global $wgDBname;
 		return Xml::element( 'dbname', [], $wgDBname );
 	}
@@ -172,21 +172,21 @@ class XmlDumpWriter {
 	/**
 	 * @return string
 	 */
-	function generator() {
+	private function generator() {
 		return Xml::element( 'generator', [], 'MediaWiki ' . MW_VERSION );
 	}
 
 	/**
 	 * @return string
 	 */
-	function homelink() {
+	private function homelink() {
 		return Xml::element( 'base', [], Title::newMainPage()->getCanonicalURL() );
 	}
 
 	/**
 	 * @return string
 	 */
-	function caseSetting() {
+	private function caseSetting() {
 		global $wgCapitalLinks;
 		// "case-insensitive" option is reserved for future
 		$sensitivity = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
@@ -196,7 +196,7 @@ class XmlDumpWriter {
 	/**
 	 * @return string
 	 */
-	function namespaces() {
+	private function namespaces() {
 		$spaces = "<namespaces>\n";
 		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		foreach (
@@ -221,7 +221,7 @@ class XmlDumpWriter {
 	 *
 	 * @return string
 	 */
-	function closeStream() {
+	public function closeStream() {
 		return "</mediawiki>\n";
 	}
 
@@ -265,7 +265,7 @@ class XmlDumpWriter {
 	 * @private
 	 * @return string
 	 */
-	function closePage() {
+	public function closePage() {
 		if ( $this->currentTitle !== null ) {
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			// In rare cases, link cache has the same key for some pages which
@@ -328,9 +328,8 @@ class XmlDumpWriter {
 	 * @return string
 	 * @throws FatalError
 	 * @throws MWException
-	 * @private
 	 */
-	function writeRevision( $row, $slotRows = null ) {
+	public function writeRevision( $row, $slotRows = null ) {
 		$rev = $this->getRevisionStore()->newRevisionFromRowAndSlots(
 			$row,
 			$slotRows,
@@ -567,9 +566,8 @@ class XmlDumpWriter {
 	 *
 	 * @param object $row
 	 * @return string
-	 * @private
 	 */
-	function writeLogItem( $row ) {
+	public function writeLogItem( $row ) {
 		$out = "  <logitem>\n";
 		$out .= "    " . Xml::element( 'id', null, strval( $row->log_id ) ) . "\n";
 
@@ -613,7 +611,7 @@ class XmlDumpWriter {
 	 * @param string $indent Default to six spaces
 	 * @return string
 	 */
-	function writeTimestamp( $timestamp, $indent = "      " ) {
+	public function writeTimestamp( $timestamp, $indent = "      " ) {
 		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
 		return $indent . Xml::element( 'timestamp', null, $ts ) . "\n";
 	}
@@ -624,7 +622,7 @@ class XmlDumpWriter {
 	 * @param string $indent Default to six spaces
 	 * @return string
 	 */
-	function writeContributor( $id, $text, $indent = "      " ) {
+	public function writeContributor( $id, $text, $indent = "      " ) {
 		$out = $indent . "<contributor>\n";
 		if ( $id || !IPUtils::isValid( $text ) ) {
 			$out .= $indent . "  " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
@@ -642,7 +640,7 @@ class XmlDumpWriter {
 	 * @param bool $dumpContents
 	 * @return string
 	 */
-	function writeUploads( $row, $dumpContents = false ) {
+	public function writeUploads( $row, $dumpContents = false ) {
 		if ( $row->page_namespace == NS_FILE ) {
 			$img = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
 				->newFile( $row->page_title );
@@ -663,7 +661,7 @@ class XmlDumpWriter {
 	 * @param bool $dumpContents
 	 * @return string
 	 */
-	function writeUpload( $file, $dumpContents = false ) {
+	private function writeUpload( $file, $dumpContents = false ) {
 		if ( $file->isOld() ) {
 			/** @var OldLocalFile $file */
 			'@phan-var OldLocalFile $file';
