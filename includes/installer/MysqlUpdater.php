@@ -426,6 +426,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 			[ 'doLanguageLinksLengthSync' ],
 			[ 'doFixIpbAddressUniqueIndex' ],
+			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ]
 		];
 	}
 

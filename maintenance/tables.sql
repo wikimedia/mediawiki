@@ -139,29 +139,6 @@ CREATE UNIQUE INDEX /*i*/user_name ON /*_*/user (user_name);
 CREATE INDEX /*i*/user_email_token ON /*_*/user (user_email_token);
 CREATE INDEX /*i*/user_email ON /*_*/user (user_email(50));
 
-
---
--- The "actor" table associates user names or IP addresses with integers for
--- the benefit of other tables that need to refer to either logged-in or
--- logged-out users. If something can only ever be done by logged-in users, it
--- can refer to the user table directly.
---
-CREATE TABLE /*_*/actor (
-  -- Unique ID to identify each actor
-  actor_id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-
-  -- Key to user.user_id, or NULL for anonymous edits.
-  actor_user int unsigned,
-
-  -- Text username or IP address
-  actor_name varchar(255) binary NOT NULL
-) /*$wgDBTableOptions*/;
-
--- User IDs and names must be unique.
-CREATE UNIQUE INDEX /*i*/actor_user ON /*_*/actor (actor_user);
-CREATE UNIQUE INDEX /*i*/actor_name ON /*_*/actor (actor_name);
-
-
 --
 -- User permissions have been broken out to a separate table;
 -- this allows sites with a shared user table to have different
@@ -193,17 +170,6 @@ CREATE TABLE /*_*/user_groups (
 
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
 CREATE INDEX /*i*/ug_expiry ON /*_*/user_groups (ug_expiry);
-
--- Stores the groups the user has once belonged to.
--- The user may still belong to these groups (check user_groups).
--- Autopromotion of users to groups from which they were removed can
--- be restricted by using wgAutopromoteOnce instead of wgAutopromote.
-CREATE TABLE /*_*/user_former_groups (
-  -- Key to user_id
-  ufg_user int unsigned NOT NULL default 0,
-  ufg_group varbinary(255) NOT NULL default '',
-  PRIMARY KEY (ufg_user,ufg_group)
-) /*$wgDBTableOptions*/;
 
 --
 -- Stores notifications of user talk page changes, for the display
