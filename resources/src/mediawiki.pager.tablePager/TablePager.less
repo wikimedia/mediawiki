@@ -5,8 +5,6 @@
 
 /* stylelint-disable selector-class-pattern */
 
-@import 'mediawiki.mixins.less';
-
 // TablePager uses `.mw-datatable` and is loaded in the right order by RL
 .mw-datatable {
 	min-width: 80%;
@@ -18,11 +16,11 @@
 	}
 
 	&-is-ascending a {
-		.background-image-svg( 'images/arrow-sort-ascending.svg', 'images/arrow-sort-ascending.png' );
+		background-image: url( images/arrow-sort-ascending.svg );
 	}
 
 	&-is-descending a {
-		.background-image-svg( 'images/arrow-sort-descending.svg', 'images/arrow-sort-descending.png' );
+		background-image: url( images/arrow-sort-descending.svg );
 	}
 }
 
