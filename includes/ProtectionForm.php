@@ -110,7 +110,7 @@ class ProtectionForm {
 	/**
 	 * Loads the current state of protection into the object.
 	 */
-	function loadData() {
+	private function loadData() {
 		$levels = $this->permManager->getNamespaceRestrictionLevels(
 			$this->mTitle->getNamespace(), $this->mContext->getUser()
 		);
@@ -172,7 +172,7 @@ class ProtectionForm {
 	 *
 	 * @return string|false 14-char timestamp or "infinity", or false if the input was invalid
 	 */
-	function getExpiry( $action ) {
+	private function getExpiry( $action ) {
 		if ( $this->mExpirySelection[$action] == 'existing' ) {
 			return $this->mExistingExpiry[$action];
 		} elseif ( $this->mExpirySelection[$action] == 'othertime' ) {
@@ -199,7 +199,7 @@ class ProtectionForm {
 	/**
 	 * Main entry point for action=protect and action=unprotect
 	 */
-	function execute() {
+	public function execute() {
 		if (
 			$this->permManager->getNamespaceRestrictionLevels(
 				$this->mTitle->getNamespace()
@@ -223,7 +223,7 @@ class ProtectionForm {
 	 *
 	 * @param string|string[]|null $err Error message or null if there's no error
 	 */
-	function show( $err = null ) {
+	private function show( $err = null ) {
 		$out = $this->mContext->getOutput();
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->addBacklinkSubtitle( $this->mTitle );
@@ -291,7 +291,7 @@ class ProtectionForm {
 	 *
 	 * @return bool Success
 	 */
-	function save() {
+	private function save() {
 		# Permission check!
 		if ( $this->disabled ) {
 			$this->show();
@@ -319,7 +319,8 @@ class ProtectionForm {
 		foreach ( $this->mApplicableTypes as $action ) {
 			$expiry[$action] = $this->getExpiry( $action );
 			if ( empty( $this->mRestrictions[$action] ) ) {
-				continue; // unprotected
+				// unprotected
+				continue;
 			}
 			if ( !$expiry[$action] ) {
 				$this->show( [ 'protect_expiry_invalid' ] );
@@ -375,7 +376,7 @@ class ProtectionForm {
 	 *
 	 * @return string HTML form
 	 */
-	function buildForm() {
+	private function buildForm() {
 		$context = $this->mContext;
 		$user = $context->getUser();
 		$output = $context->getOutput();
@@ -600,15 +601,15 @@ class ProtectionForm {
 	 * @param string $selected Current protection level
 	 * @return string HTML fragment
 	 */
-	function buildSelector( $action, $selected ) {
+	private function buildSelector( $action, $selected ) {
 		// If the form is disabled, display all relevant levels. Otherwise,
 		// just show the ones this user can use.
 		$levels = MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->getNamespaceRestrictionLevels(
-					$this->mTitle->getNamespace(),
-					$this->disabled ? null : $this->mContext->getUser()
-				);
+			->getPermissionManager()
+			->getNamespaceRestrictionLevels(
+				$this->mTitle->getNamespace(),
+				$this->disabled ? null : $this->mContext->getUser()
+			);
 
 		$id = 'mwProtect-level-' . $action;
 
