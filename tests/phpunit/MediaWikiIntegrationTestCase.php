@@ -75,13 +75,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private static $oldTablePrefix = '';
 
 	/**
-	 * Original value of PHP's error_reporting setting.
-	 *
-	 * @var int
-	 */
-	private $phpErrorLevel;
-
-	/**
 	 * Holds the paths of temporary files/directories created through getNewTempFile,
 	 * and getNewTempDirectory
 	 *
@@ -520,8 +513,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @before
 	 */
 	protected function mediaWikiSetUp() {
-		$this->phpErrorLevel = intval( ini_get( 'error_reporting' ) );
-
 		$reflection = new ReflectionClass( $this );
 		// TODO: Eventually we should assert for test presence in /integration/
 		if ( strpos( $reflection->getFilename(), '/unit/' ) !== false ) {
@@ -646,19 +637,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$wgRequest = new FauxRequest();
 		MediaWiki\Session\SessionManager::resetCache();
 		MediaWiki\Auth\AuthManager::resetCache();
-
-		$phpErrorLevel = intval( ini_get( 'error_reporting' ) );
-
-		if ( $phpErrorLevel !== $this->phpErrorLevel ) {
-			ini_set( 'error_reporting', $this->phpErrorLevel );
-
-			$oldVal = self::formatErrorLevel( $this->phpErrorLevel );
-			$newVal = self::formatErrorLevel( $phpErrorLevel );
-			$message = "PHP error_reporting setting was left dirty: "
-				. "was $oldVal before test, $newVal after test!";
-
-			$this->fail( $message );
-		}
 
 		// If anything faked the time, reset it
 		ConvertibleTimestamp::setFakeTime( false );
