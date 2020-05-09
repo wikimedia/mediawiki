@@ -624,9 +624,16 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( $error !== true ) {
 			$conn->reportQueryError( $error, 0, '', __METHOD__ );
 			$conn->rollback( __METHOD__ );
-			$status->fatal( 'config-install-tables-failed', $error );
+			$status->fatal( 'config-install-tables-manual-failed', $error );
 		} else {
-			$conn->commit( __METHOD__ );
+			$error = $conn->sourceFile( $this->getGeneratedSchemaPath( $conn ) );
+			if ( $error !== true ) {
+				$conn->reportQueryError( $error, 0, '', __METHOD__ );
+				$conn->rollback( __METHOD__ );
+				$status->fatal( 'config-install-tables-failed', $error );
+			} else {
+				$conn->commit( __METHOD__ );
+			}
 		}
 		// Resume normal operations
 		if ( $status->isOK() ) {

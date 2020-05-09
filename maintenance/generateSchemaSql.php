@@ -72,11 +72,14 @@ class GenerateSchemaSql extends Maintenance {
 			"-- Do not modify this file directly.\n" .
 			"-- See https://www.mediawiki.org/wiki/Manual:Schema_changes\n";
 
-		$schema = $sql . implode( ";\n\n", $schemaBuilder->getSql() ) . ';';
+		$tables = $schemaBuilder->getSql();
+		if ( $tables !== [] ) {
+			// Temporary
+			$sql = $sql . implode( ";\n\n", $tables ) . ';';
+			$sql = ( new SqlFormatter( new NullHighlighter() ) )->format( $sql );
+		}
 
-		$formattedSchema = ( new SqlFormatter( new NullHighlighter() ) )->format( $schema );
-
-		file_put_contents( $sqlFile, $formattedSchema );
+		file_put_contents( $sqlFile, $sql );
 	}
 
 }
