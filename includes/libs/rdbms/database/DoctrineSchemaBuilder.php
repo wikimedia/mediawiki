@@ -13,13 +13,21 @@ class DoctrineSchemaBuilder implements SchemaBuilder {
 	private $schema;
 	private $platform;
 
-	const TABLE_PREFIX = '/*_*/';
+	public const TABLE_PREFIX = '/*_*/';
 
+	/**
+	 * A builder object that take abstract schema definition and produces sql to create the tables.
+	 *
+	 * @param AbstractPlatform $platform A Doctrine Platform object, Can be Mysql, Sqlite, etc.
+	 */
 	public function __construct( AbstractPlatform $platform ) {
 		$this->schema = new Schema();
 		$this->platform = $platform;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function addTable( array $schema ) {
 		$table = $this->schema->createTable( self::TABLE_PREFIX . $schema['name'] );
 		foreach ( $schema['columns'] as $column ) {
@@ -33,9 +41,12 @@ class DoctrineSchemaBuilder implements SchemaBuilder {
 			}
 		}
 		$table->setPrimaryKey( $schema['pk'] );
-		$table->addOption( 'table_options', '' );
+		$table->addOption( 'table_options', '/*$wgDBTableOptions*/' );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getSql() {
 		return $this->schema->toSql( $this->platform );
 	}
