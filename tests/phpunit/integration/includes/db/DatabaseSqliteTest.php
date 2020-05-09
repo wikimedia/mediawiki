@@ -362,6 +362,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		$currentDB = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$currentDB->sourceFile( "$IP/maintenance/tables.sql" );
+		$currentDB->sourceFile( "$IP/maintenance/sqlite/tables-generated.sql" );
 
 		$currentTables = $this->getTables( $currentDB );
 		sort( $currentTables );

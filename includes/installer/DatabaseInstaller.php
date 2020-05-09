@@ -243,12 +243,22 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Create database tables from scratch.
+	 * Create database tables from scratch from the automatically generated file
 	 *
 	 * @return Status
 	 */
 	public function createTables() {
-		return $this->stepApplySourceFile( 'getSchemaPath', 'install', true );
+		return $this->stepApplySourceFile( 'getGeneratedSchemaPath', 'install', true );
+	}
+
+	/**
+	 * Create database tables from scratch.
+	 *
+	 * @return Status
+	 */
+	public function createManualTables() {
+		// TODO: Set "archiveTableMustNotExist" to "false" when archive table is migrated to tables.json
+		return $this->stepApplySourceFile( 'getSchemaPath', 'install-manual', true );
 	}
 
 	/**
@@ -288,6 +298,16 @@ abstract class DatabaseInstaller {
 	 */
 	public function getSchemaPath( $db ) {
 		return $this->getSqlFilePath( $db, 'tables.sql' );
+	}
+
+	/**
+	 * Return a path to the DBMS-specific automatically generated schema file.
+	 *
+	 * @param IDatabase $db
+	 * @return string
+	 */
+	public function getGeneratedSchemaPath( $db ) {
+		return $this->getSqlFilePath( $db, 'tables-generated.sql' );
 	}
 
 	/**
