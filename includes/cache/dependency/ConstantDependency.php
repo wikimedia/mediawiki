@@ -36,7 +36,7 @@ class ConstantDependency extends CacheDependency {
 	/**
 	 * @return bool
 	 */
-	function isExpired() {
+	public function isExpired() {
 		return constant( $this->name ) != $this->value;
 	}
 }

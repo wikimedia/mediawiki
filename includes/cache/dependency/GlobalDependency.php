@@ -36,7 +36,7 @@ class GlobalDependency extends CacheDependency {
 	/**
 	 * @return bool
 	 */
-	function isExpired() {
+	public function isExpired() {
 		if ( !isset( $GLOBALS[$this->name] ) ) {
 			return true;
 		}
