@@ -57,9 +57,7 @@ class NukeNS extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
-		$tbl_pag = $dbw->tableName( 'page' );
-		$tbl_rev = $dbw->tableName( 'revision' );
-		$res = $dbw->query( "SELECT page_title FROM $tbl_pag WHERE page_namespace = $ns" );
+		$res = $dbw->select( 'page', 'page_title', [ 'page_namespace' => $ns ], __METHOD__ );
 
 		$n_deleted = 0;
 
@@ -69,12 +67,12 @@ class NukeNS extends Maintenance {
 			$id = $title->getArticleID();
 
 			// Get corresponding revisions
-			$res2 = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_page = $id" );
-			$revs = [];
-
-			foreach ( $res2 as $row2 ) {
-				$revs[] = $row2->rev_id;
-			}
+			$revs = $dbw->selectFieldValues(
+				'revision',
+				'rev_id',
+				[ 'rev_page' => $id ],
+				__METHOD__
+			);
 			$count = count( $revs );
 
 			// skip anything that looks modified (i.e. multiple revs)
@@ -85,7 +83,7 @@ class NukeNS extends Maintenance {
 				// as much as I hate to cut & paste this, it's a little different, and
 				// I already have the id & revs
 				if ( $delete ) {
-					$dbw->query( "DELETE FROM $tbl_pag WHERE page_id = $id" );
+					$dbw->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 					$this->commitTransaction( $dbw, __METHOD__ );
 					// Delete revisions as appropriate
 					/** @var NukePage $child */
@@ -104,7 +102,7 @@ class NukeNS extends Maintenance {
 		if ( $n_deleted > 0 ) {
 			# update statistics - better to decrement existing count, or just count
 			# the page table?
-			$pages = $dbw->selectField( 'site_stats', 'ss_total_pages' );
+			$pages = $dbw->selectField( 'site_stats', 'ss_total_pages', [], __METHOD__ );
 			$pages -= $n_deleted;
 			$dbw->update(
 				'site_stats',
