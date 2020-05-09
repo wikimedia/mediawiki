@@ -54,7 +54,7 @@ class FileDependency extends CacheDependency {
 		return [ 'filename', 'timestamp' ];
 	}
 
-	function loadDependencyValues() {
+	public function loadDependencyValues() {
 		if ( $this->timestamp === null ) {
 			Wikimedia\suppressWarnings();
 			# Dependency on a non-existent file stores "false"
@@ -67,7 +67,7 @@ class FileDependency extends CacheDependency {
 	/**
 	 * @return bool
 	 */
-	function isExpired() {
+	public function isExpired() {
 		Wikimedia\suppressWarnings();
 		$lastmod = filemtime( $this->filename );
 		Wikimedia\restoreWarnings();

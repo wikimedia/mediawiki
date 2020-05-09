@@ -42,18 +42,18 @@ interface LCStore {
 	 * @param string $code Language code
 	 * @param string $key Cache key
 	 */
-	function get( $code, $key );
+	public function get( $code, $key );
 
 	/**
 	 * Start a write transaction.
 	 * @param string $code Language code
 	 */
-	function startWrite( $code );
+	public function startWrite( $code );
 
 	/**
 	 * Finish a write transaction.
 	 */
-	function finishWrite();
+	public function finishWrite();
 
 	/**
 	 * Set a key to a given value. startWrite() must be called before this
@@ -61,6 +61,6 @@ interface LCStore {
 	 * @param string $key
 	 * @param mixed $value
 	 */
-	function set( $key, $value );
+	public function set( $key, $value );
 
 }
