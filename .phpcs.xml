@@ -16,10 +16,74 @@
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.SingleSpaceBeforeSingleLineComment" />
-		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
 		<exclude name="PSR2.Classes.ClassDeclaration.InterfaceWrongIndent" /><!-- Temporary: T243529 -->
 	</rule>
 	<!-- TODO Still to be done -->
+	<rule ref="PSR12.Properties.ConstantVisibility.NotFound">
+		<exclude-pattern>includes/ActorMigration\.php</exclude-pattern>
+		<exclude-pattern>includes/CategoriesRdf\.php</exclude-pattern>
+		<exclude-pattern>includes/Category\.php</exclude-pattern>
+		<exclude-pattern>includes/CommentStore\.php</exclude-pattern>
+		<exclude-pattern>includes/ContentSecurityPolicy\.php</exclude-pattern>
+		<exclude-pattern>includes/ForkController\.php</exclude-pattern>
+		<exclude-pattern>includes/FormOptions\.php</exclude-pattern>
+		<exclude-pattern>includes/LinkFilter\.php</exclude-pattern>
+		<exclude-pattern>includes/Linker\.php</exclude-pattern>
+		<exclude-pattern>includes/MediaWiki\.php</exclude-pattern>
+		<exclude-pattern>includes/MergeHistory\.php</exclude-pattern>
+		<exclude-pattern>includes/PageProps\.php</exclude-pattern>
+		<exclude-pattern>includes/Pingback\.php</exclude-pattern>
+		<exclude-pattern>includes/Rest/</exclude-pattern>
+		<exclude-pattern>includes/Revision/</exclude-pattern>
+		<exclude-pattern>includes/Storage/</exclude-pattern>
+		<exclude-pattern>includes/StreamFile\.php</exclude-pattern>
+		<exclude-pattern>includes/Title\.php</exclude-pattern>
+		<exclude-pattern>includes/WebRequest\.php</exclude-pattern>
+		<exclude-pattern>includes/actions/</exclude-pattern>
+		<exclude-pattern>includes/api/</exclude-pattern>
+		<exclude-pattern>includes/auth/PrimaryAuthenticationProvider\.php</exclude-pattern>
+		<exclude-pattern>includes/block/</exclude-pattern>
+		<exclude-pattern>includes/cache/</exclude-pattern>
+		<exclude-pattern>includes/changes/</exclude-pattern>
+		<exclude-pattern>includes/changetags/ChangeTags\.php</exclude-pattern>
+		<exclude-pattern>includes/clientpool/SquidPurgeClient\.php</exclude-pattern>
+		<exclude-pattern>includes/collation/IcuCollation\.php</exclude-pattern>
+		<exclude-pattern>includes/composer/ComposerPackageModifier\.php</exclude-pattern>
+		<exclude-pattern>includes/dao/IDBAccessObject\.php</exclude-pattern>
+		<exclude-pattern>includes/debug/logger/monolog/AvroFormatter\.php</exclude-pattern>
+		<exclude-pattern>includes/deferred/</exclude-pattern>
+		<exclude-pattern>includes/diff/</exclude-pattern>
+		<exclude-pattern>includes/exception/</exclude-pattern>
+		<exclude-pattern>includes/filerepo/</exclude-pattern>
+		<exclude-pattern>includes/gallery/PackedImageGallery\.php</exclude-pattern>
+		<exclude-pattern>includes/historyblob/DiffHistoryBlob\.php</exclude-pattern>
+		<exclude-pattern>includes/htmlform/fields/</exclude-pattern>
+		<exclude-pattern>includes/http/</exclude-pattern>
+		<exclude-pattern>includes/installer/</exclude-pattern>
+		<exclude-pattern>includes/jobqueue/</exclude-pattern>
+		<exclude-pattern>includes/json/FormatJson\.php</exclude-pattern>
+		<exclude-pattern>includes/language/</exclude-pattern>
+		<exclude-pattern>includes/libs/</exclude-pattern>
+		<exclude-pattern>includes/logging/</exclude-pattern>
+		<exclude-pattern>includes/mail/EmailNotification\.php</exclude-pattern>
+		<exclude-pattern>includes/pager/IndexPager\.php</exclude-pattern>
+		<exclude-pattern>includes/parser/</exclude-pattern>
+		<exclude-pattern>includes/password/Password\.php</exclude-pattern>
+		<exclude-pattern>includes/poolcounter/</exclude-pattern>
+		<exclude-pattern>includes/resourceloader/</exclude-pattern>
+		<exclude-pattern>includes/search/</exclude-pattern>
+		<exclude-pattern>includes/session/Token\.php</exclude-pattern>
+		<exclude-pattern>includes/site/</exclude-pattern>
+		<exclude-pattern>includes/sparql/SparqlClient\.php</exclude-pattern>
+		<exclude-pattern>includes/specialpage/ChangesListSpecialPage\.php</exclude-pattern>
+		<exclude-pattern>includes/specials/</exclude-pattern>
+		<exclude-pattern>includes/upload/UploadStash\.php</exclude-pattern>
+		<exclude-pattern>includes/user/</exclude-pattern>
+		<exclude-pattern>includes/utils/</exclude-pattern>
+		<exclude-pattern>includes/watcheditem/</exclude-pattern>
+		<exclude-pattern>languages/</exclude-pattern>
+		<exclude-pattern>tests/phpunit/includes/</exclude-pattern>
+	</rule>
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/actions/</exclude-pattern>
 		<exclude-pattern>includes/deferred/</exclude-pattern>
