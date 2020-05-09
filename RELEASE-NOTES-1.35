@@ -1023,7 +1023,32 @@ because of Phabricator reports.
   MediaWiki\ExtensionInfo::getLicenseFileNames() instead.
 * SpecialVersion::getExtAuthorsFileName() has been deprecated, use
   MediaWiki\ExtensionInfo::getAuthorsFileName() instead.
-* …
+* Migration to the new content storage schema is complete, all backwards
+  compatibility code and duplication in the database have been removed.
+  The old schema was a 1:1 relationship modeled by
+  revision.text_id -> text.old_id. The new schema is a n:m relationship,
+  revision.rev_id <- slots.slot_revision_id|slots.slot_content_id ->
+  content.content_id|content.content_address -> text.old_id. The same applies
+  to the archive table.
+  The following fields were removed:
+  - revision.rev_text_id, replaced by content.content_address
+  - revision.rev_content_model, replaced by content.content_model,
+    referencing content_models.model_id
+  - revision.rev_content_format, replaced by automatic detecting in
+    ContentHandler
+  - archive.ar_text_id, replaced by content.content_address
+  - archive.ar_content_model, replaced by content.content_model,
+    referencing content_models.model_id
+  - archive.ar_content_format, replaced by automatic detecting in
+    ContentHandler
+* Migration to normalized storage of edit comments and user names is
+  progressing. The following fields were unused and have been removed:
+  - revision.rev_comment,
+    replaced by rev_comment_id referencing comment.comment_id.
+  - revision.rev_user and rev_user_text,
+    replaced by rev_actor referencing actor.actor_id.
+  Note that archive.ar_user, archive.ar_user_text, and archive.ar_comment
+  had already been removed in previous releases.
 
 == Compatibility ==
 MediaWiki 1.35 requires PHP 7.2.22 or later, and the following PHP extensions:
