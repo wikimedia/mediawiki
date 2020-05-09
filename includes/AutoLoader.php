@@ -41,7 +41,7 @@ class AutoLoader {
 	 *
 	 * @param string $className Name of class we're looking for.
 	 */
-	static function autoload( $className ) {
+	public static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses,
 			$wgAutoloadAttemptLowercase;
 
@@ -113,7 +113,7 @@ class AutoLoader {
 	 * Method to clear the protected class property $autoloadLocalClassesLower.
 	 * Used in tests.
 	 */
-	static function resetAutoloadLocalClassesLower() {
+	public static function resetAutoloadLocalClassesLower() {
 		self::$autoloadLocalClassesLower = null;
 	}
 
