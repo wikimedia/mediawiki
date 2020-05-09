@@ -49,14 +49,14 @@ class ImportStringSource implements ImportSource {
 	/**
 	 * @return bool
 	 */
-	function atEnd() {
+	public function atEnd() {
 		return $this->mRead;
 	}
 
 	/**
 	 * @return bool|string
 	 */
-	function readChunk() {
+	public function readChunk() {
 		if ( $this->atEnd() ) {
 			return false;
 		}

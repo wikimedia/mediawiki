@@ -49,7 +49,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	 * @param string $file
 	 * @return string
 	 */
-	function setup7zCommand( $file ) {
+	private function setup7zCommand( $file ) {
 		$command = "7za a -bd -si -mx=";
 		$command .= Shell::escape( $this->compressionLevel ) . ' ';
 		$command .= Shell::escape( $file );
@@ -62,7 +62,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	/**
 	 * @inheritDoc
 	 */
-	function closeAndRename( $newname, $open = false ) {
+	public function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
 			fclose( $this->handle );

@@ -135,7 +135,7 @@ class WikiImporter {
 	 * Set debug mode...
 	 * @param bool $debug
 	 */
-	function setDebug( $debug ) {
+	public function setDebug( $debug ) {
 		$this->mDebug = $debug;
 	}
 
@@ -143,7 +143,7 @@ class WikiImporter {
 	 * Set 'no updates' mode. In this mode, the link tables will not be updated by the importer
 	 * @param bool $noupdates
 	 */
-	function setNoUpdates( $noupdates ) {
+	public function setNoUpdates( $noupdates ) {
 		$this->mNoUpdates = $noupdates;
 	}
 
@@ -153,7 +153,7 @@ class WikiImporter {
 	 * @param int $nthPage
 	 * @since 1.29
 	 */
-	function setPageOffset( $nthPage ) {
+	public function setPageOffset( $nthPage ) {
 		$this->pageOffset = $nthPage;
 	}
 
@@ -470,7 +470,7 @@ class WikiImporter {
 	 * Notify the callback function when a new "<page>" is reached.
 	 * @param array $title
 	 */
-	function pageCallback( $title ) {
+	public function pageCallback( $title ) {
 		if ( isset( $this->mPageCallback ) ) {
 			call_user_func( $this->mPageCallback, $title );
 		}
