@@ -32,7 +32,6 @@
 		<exclude-pattern>includes/htmlform/</exclude-pattern>
 		<exclude-pattern>includes/import/</exclude-pattern>
 		<exclude-pattern>includes/installer/</exclude-pattern>
-		<exclude-pattern>includes/language/</exclude-pattern>
 		<exclude-pattern>includes/libs/</exclude-pattern>
 		<exclude-pattern>includes/logging/</exclude-pattern>
 		<exclude-pattern>includes/media/</exclude-pattern>
