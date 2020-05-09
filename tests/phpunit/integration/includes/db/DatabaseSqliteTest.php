@@ -392,6 +392,12 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 							(bool)$cols[$name]->notnull,
 							"NOT NULL status does not match for column $fullName $versions"
 						);
+						if ( $cols[$name]->dflt_value === 'NULL' ) {
+							$cols[$name]->dflt_value = null;
+						}
+						if ( $column->dflt_value === 'NULL' ) {
+							$column->dflt_value = null;
+						}
 						$this->assertEquals(
 							$column->dflt_value,
 							$cols[$name]->dflt_value,
