@@ -106,7 +106,6 @@
 		<exclude-pattern>includes/specials/</exclude-pattern>
 		<exclude-pattern>includes/upload/</exclude-pattern>
 		<exclude-pattern>includes/user/</exclude-pattern>
-		<exclude-pattern>includes/utils/</exclude-pattern>
 		<exclude-pattern>includes/CategoryViewer\.php</exclude-pattern>
 		<exclude-pattern>includes/Title\.php</exclude-pattern>
 	</rule>
