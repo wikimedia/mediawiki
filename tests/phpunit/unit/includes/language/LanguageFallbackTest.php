@@ -10,7 +10,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 class LanguageFallbackTest extends MediaWikiUnitTestCase {
 	use LanguageFallbackTestTrait;
 
-	const DATA = [
+	private const DATA = [
 		'en' => [],
 		'fr' => [],
 		'sco' => [ 'en' ],

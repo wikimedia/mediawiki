@@ -7,7 +7,7 @@ use MediaWiki\BadFileLookup;
  */
 class BadFileLookupTest extends MediaWikiUnitTestCase {
 	/** Shared with GlobalWithDBTest */
-	const BLACKLIST = <<<WIKITEXT
+	public const BLACKLIST = <<<WIKITEXT
 Comment line, no effect [[File:Good.jpg]]
  * Indented list is also a comment [[File:Good.jpg]]
 * [[File:Bad.jpg]] except [[Nasty page]]

@@ -32,11 +32,11 @@ class ParserTestTopLevelSuite extends TestSuite {
 	 */
 
 	/** Include files shipped with MediaWiki core */
-	const CORE_ONLY = 1;
+	public const CORE_ONLY = 1;
 	/** Include non core files as set in $wgParserTestFiles */
-	const NO_CORE = 2;
+	public const NO_CORE = 2;
 	/** Include anything set via $wgParserTestFiles */
-	const WITH_ALL = self::CORE_ONLY | self::NO_CORE;
+	public const WITH_ALL = self::CORE_ONLY | self::NO_CORE;
 
 	/** @} */
 
