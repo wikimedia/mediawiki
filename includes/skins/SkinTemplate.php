@@ -602,6 +602,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Get the HTML for the personal tools list
+	 * Please ensure setupTemplateContext is called before calling this method.
 	 *
 	 * @since 1.31
 	 *
@@ -610,18 +611,17 @@ class SkinTemplate extends Skin {
 	 * @return string
 	 */
 	public function makePersonalToolsList( $personalTools = null, $options = [] ) {
-		$tpl = $this->setupTemplateForOutput();
-		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
+		$this->setupTemplateContext();
 		$html = '';
 
 		if ( $personalTools === null ) {
-			$personalTools = ( $tpl instanceof BaseTemplate )
-				? $tpl->getPersonalTools()
-				: [];
+			$personalTools = $this->getPersonalToolsForMakeListItem(
+				$this->buildPersonalUrls()
+			);
 		}
 
 		foreach ( $personalTools as $key => $item ) {
-			$html .= $tpl->makeListItem( $key, $item, $options );
+			$html .= $this->makeListItem( $key, $item, $options );
 		}
 
 		return $html;
@@ -635,10 +635,11 @@ class SkinTemplate extends Skin {
 	 * @return array Array of personal tools
 	 */
 	public function getStructuredPersonalTools() {
-		$tpl = $this->setupTemplateForOutput();
-		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
-
-		return ( $tpl instanceof BaseTemplate ) ? $tpl->getPersonalTools() : [];
+		// buildPersonalUrls requires the template context.
+		$this->setupTemplateContext();
+		return $this->getPersonalToolsForMakeListItem(
+			$this->buildPersonalUrls()
+		);
 	}
 
 	/**
@@ -694,6 +695,8 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * build array of urls for personal toolbar
+	 * Please ensure setupTemplateContext is called before calling
+	 * this method.
 	 * @return array
 	 */
 	protected function buildPersonalUrls() {
