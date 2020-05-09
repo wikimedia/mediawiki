@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\AtEase\AtEase;
-
 /**
  * @group large
  * @covers Pbkdf2Password
@@ -41,8 +39,6 @@ class Pbkdf2PasswordTest extends PasswordTestCase {
 		);
 		$this->expectException( PasswordError::class );
 		$this->expectExceptionMessage( 'Error when hashing password.' );
-		AtEase::suppressWarnings();
-		$password->crypt( 'whatever' );
-		AtEase::restoreWarnings();
+		@$password->crypt( 'whatever' );
 	}
 }

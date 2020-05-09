@@ -7,6 +7,9 @@ use PHPUnit\Framework\MockObject\MockObject;
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
  */
 trait MediaWikiTestCaseTrait {
+	/** @var int|null */
+	private $originalPhpErrorFilter;
+
 	/**
 	 * Returns a PHPUnit constraint that matches anything other than a fixed set of values. This can
 	 * be used to whitelist values, e.g.
@@ -148,5 +151,26 @@ trait MediaWikiTestCaseTrait {
 				return serialize( $a ) <=> serialize( $b );
 			}
 		);
+	}
+
+	/**
+	 * @before
+	 */
+	protected function phpErrorFilterSetUp() {
+		$this->originalPhpErrorFilter = intval( ini_get( 'error_reporting' ) );
+	}
+
+	/**
+	 * @after
+	 */
+	protected function phpErrorFilterTearDown() {
+		$phpErrorFilter = intval( ini_get( 'error_reporting' ) );
+
+		if ( $phpErrorFilter !== $this->originalPhpErrorFilter ) {
+			ini_set( 'error_reporting', $this->originalPhpErrorFilter );
+			$message = "PHP error_reporting setting found dirty."
+				. " Did you forget AtEase::restoreWarnings?";
+			$this->fail( $message );
+		}
 	}
 }
