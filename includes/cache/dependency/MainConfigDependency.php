@@ -41,7 +41,7 @@ class MainConfigDependency extends CacheDependency {
 	/**
 	 * @return bool
 	 */
-	function isExpired() {
+	public function isExpired() {
 		if ( !$this->getConfig()->has( $this->name ) ) {
 			return true;
 		}

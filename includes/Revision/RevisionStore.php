@@ -2616,12 +2616,12 @@ class RevisionStore
 				return null;
 			}
 		}
-		$ts = $db->addQuotes( $db->timestamp( $ts ) );
+		$dbts = $db->addQuotes( $db->timestamp( $ts ) );
 
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $rev->getPageId(),
-				"rev_timestamp $op $ts OR (rev_timestamp = $ts AND rev_id $op {$rev->getId()})"
+				"rev_timestamp $op $dbts OR (rev_timestamp = $dbts AND rev_id $op {$rev->getId()})"
 			],
 			__METHOD__,
 			[
