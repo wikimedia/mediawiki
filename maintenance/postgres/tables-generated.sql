@@ -2,3 +2,8 @@
 -- Source: maintenance/tables.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
+CREATE TABLE updatelog (
+  ul_key VARCHAR(255) NOT NULL,
+  ul_value BYTEA DEFAULT NULL,
+  PRIMARY KEY(ul_key)
+);

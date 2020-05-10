@@ -731,12 +731,6 @@ CREATE TABLE protected_titles (
   PRIMARY KEY (pt_namespace, pt_title)
 );
 
-CREATE TABLE updatelog (
-  ul_key TEXT NOT NULL PRIMARY KEY,
-  ul_value TEXT
-);
-
-
 CREATE SEQUENCE category_cat_id_seq;
 CREATE TABLE category (
   cat_id       INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('category_cat_id_seq'),
