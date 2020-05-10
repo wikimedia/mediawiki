@@ -250,110 +250,104 @@
 
 	defineFallbacks();
 
-	log = ( function () {
-		/**
-		 * Write a verbose message to the browser's console in debug mode.
-		 *
-		 * This method is mainly intended for verbose logging. It is a no-op in production mode.
-		 * In ResourceLoader debug mode, it will use the browser's console if available, with
-		 * fallback to creating a console interface in the DOM and logging messages there.
-		 *
-		 * See {@link mw.log} for other logging methods.
-		 *
-		 * @member mw
-		 * @param {...string} msg Messages to output to console.
-		 */
-		var log = function () {};
+	/**
+	 * Write a verbose message to the browser's console in debug mode.
+	 *
+	 * This method is mainly intended for verbose logging. It is a no-op in production mode.
+	 * In ResourceLoader debug mode, it will use the browser's console if available.
+	 *
+	 * See {@link mw.log} for other logging methods.
+	 *
+	 * @member mw
+	 * @param {...string} msg Messages to output to console.
+	 */
+	log = function () {};
 
-		// Note: Keep list of methods in sync with restoration in mediawiki.log.js
-		// when adding or removing mw.log methods below!
+	// Note: Keep list of log methods in sync with restoration in mediawiki.log.js!
 
-		/**
-		 * Collection of methods to help log messages to the console.
-		 *
-		 * @class mw.log
-		 * @singleton
-		 */
+	/**
+	 * Collection of methods to help log messages to the console.
+	 *
+	 * @class mw.log
+	 * @singleton
+	 */
 
-		/**
-		 * Write a message to the browser console's warning channel.
-		 *
-		 * This method is a no-op in browsers that don't implement the Console API.
-		 *
-		 * @param {...string} msg Messages to output to console
-		 */
-		log.warn = console && console.warn ?
-			Function.prototype.bind.call( console.warn, console ) :
-			function () {};
+	/**
+	 * Write a message to the browser console's warning channel.
+	 *
+	 * This method is a no-op in browsers that don't implement the Console API.
+	 *
+	 * @param {...string} msg Messages to output to console
+	 */
+	log.warn = console && console.warn ?
+		Function.prototype.bind.call( console.warn, console ) :
+		function () {};
 
-		/**
-		 * Write a message to the browser console's error channel.
-		 *
-		 * Most browsers also print a stacktrace when calling this method if the
-		 * argument is an Error object.
-		 *
-		 * This method is a no-op in browsers that don't implement the Console API.
-		 *
-		 * @since 1.26
-		 * @param {...Mixed} msg Messages to output to console
-		 */
-		log.error = console && console.error ?
-			Function.prototype.bind.call( console.error, console ) :
-			function () {};
+	/**
+	 * Write a message to the browser console's error channel.
+	 *
+	 * Most browsers also print a stacktrace when calling this method if the
+	 * argument is an Error object.
+	 *
+	 * This method is a no-op in browsers that don't implement the Console API.
+	 *
+	 * @since 1.26
+	 * @param {...Mixed} msg Messages to output to console
+	 */
+	log.error = console && console.error ?
+		Function.prototype.bind.call( console.error, console ) :
+		function () {};
 
-		/**
-		 * Create a property on a host object that, when accessed, will produce
-		 * a deprecation warning in the console.
-		 *
-		 * @param {Object} obj Host object of deprecated property
-		 * @param {string} key Name of property to create in `obj`
-		 * @param {Mixed} val The value this property should return when accessed
-		 * @param {string} [msg] Optional text to include in the deprecation message
-		 * @param {string} [logName] Name for the feature for logging and tracking
-		 *  purposes. Except for properties of the window object, tracking is only
-		 *  enabled if logName is set.
-		 */
-		log.deprecate = function ( obj, key, val, msg, logName ) {
-			var stacks;
-			function maybeLog() {
-				var name = logName || key,
-					trace = new Error().stack;
-				if ( !stacks ) {
-					stacks = new StringSet();
-				}
-				if ( !stacks.has( trace ) ) {
-					stacks.add( trace );
-					if ( logName || obj === window ) {
-						mw.track( 'mw.deprecate', name );
-					}
-					mw.log.warn(
-						'Use of "' + name + '" is deprecated.' + ( msg ? ' ' + msg : '' )
-					);
-				}
+	/**
+	 * Create a property on a host object that, when accessed, will produce
+	 * a deprecation warning in the console.
+	 *
+	 * @param {Object} obj Host object of deprecated property
+	 * @param {string} key Name of property to create in `obj`
+	 * @param {Mixed} val The value this property should return when accessed
+	 * @param {string} [msg] Optional text to include in the deprecation message
+	 * @param {string} [logName] Name for the feature for logging and tracking
+	 *  purposes. Except for properties of the window object, tracking is only
+	 *  enabled if logName is set.
+	 */
+	log.deprecate = function ( obj, key, val, msg, logName ) {
+		var stacks;
+		function maybeLog() {
+			var name = logName || key,
+				trace = new Error().stack;
+			if ( !stacks ) {
+				stacks = new StringSet();
 			}
-			// Support: Safari 5.0
-			// Throws "not supported on DOM Objects" for Node or Element objects (incl. document)
-			// Safari 4.0 doesn't have this method, and it was fixed in Safari 5.1.
-			try {
-				Object.defineProperty( obj, key, {
-					configurable: true,
-					enumerable: true,
-					get: function () {
-						maybeLog();
-						return val;
-					},
-					set: function ( newVal ) {
-						maybeLog();
-						val = newVal;
-					}
-				} );
-			} catch ( err ) {
-				obj[ key ] = val;
+			if ( !stacks.has( trace ) ) {
+				stacks.add( trace );
+				if ( logName || obj === window ) {
+					mw.track( 'mw.deprecate', name );
+				}
+				mw.log.warn(
+					'Use of "' + name + '" is deprecated.' + ( msg ? ' ' + msg : '' )
+				);
 			}
-		};
-
-		return log;
-	}() );
+		}
+		// Support: Safari 5.0
+		// Throws "not supported on DOM Objects" for Node or Element objects (incl. document)
+		// Safari 4.0 doesn't have this method, and it was fixed in Safari 5.1.
+		try {
+			Object.defineProperty( obj, key, {
+				configurable: true,
+				enumerable: true,
+				get: function () {
+					maybeLog();
+					return val;
+				},
+				set: function ( newVal ) {
+					maybeLog();
+					val = newVal;
+				}
+			} );
+		} catch ( err ) {
+			obj[ key ] = val;
+		}
+	};
 
 	/**
 	 * @class mw
