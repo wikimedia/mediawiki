@@ -10,5 +10,5 @@ interface DeferrableUpdate {
 	/**
 	 * Perform the actual work
 	 */
-	function doUpdate();
+	public function doUpdate();
 }

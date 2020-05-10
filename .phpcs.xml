@@ -86,7 +86,6 @@
 	</rule>
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/actions/</exclude-pattern>
-		<exclude-pattern>includes/deferred/</exclude-pattern>
 		<exclude-pattern>includes/diff/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
 		<exclude-pattern>includes/gallery/</exclude-pattern>

@@ -681,7 +681,7 @@ class LinksUpdate extends DataUpdate {
 	 * @param array $existing
 	 * @return array
 	 */
-	function getPropertyInsertions( $existing = [] ) {
+	private function getPropertyInsertions( $existing = [] ) {
 		$diffs = array_diff_assoc( $this->mProperties, $existing );
 
 		$arr = [];

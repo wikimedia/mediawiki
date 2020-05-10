@@ -38,7 +38,7 @@ class WANCacheReapUpdate implements DeferrableUpdate {
 		$this->logger = $logger;
 	}
 
-	function doUpdate() {
+	public function doUpdate() {
 		$reaper = new WANObjectCacheReaper(
 			MediaWikiServices::getInstance()->getMainWANObjectCache(),
 			ObjectCache::getLocalClusterInstance(),
