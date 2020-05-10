@@ -1297,12 +1297,7 @@ END;
 		# This is create or replace, so harmless to call if not needed
 		$this->applyPatch( 'patch-ts2pagetitle.sql', false, "Refreshing ts2_page_title()" );
 
-		# If the server is 8.3 or higher, rewrite the tsearch2 triggers
-		# in case they have the old 'default' versions
-		# Gather version numbers in case we need them
-		if ( $this->db->getServerVersion() >= 8.3 ) {
-			$this->applyPatch( 'patch-tsearch2funcs.sql', false, "Rewriting tsearch2 triggers" );
-		}
+		$this->applyPatch( 'patch-tsearch2funcs.sql', false, "Rewriting tsearch2 triggers" );
 	}
 
 	protected function rebuildTextSearch() {
