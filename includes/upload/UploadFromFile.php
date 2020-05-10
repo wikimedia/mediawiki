@@ -36,7 +36,7 @@ class UploadFromFile extends UploadBase {
 	/**
 	 * @param WebRequest &$request
 	 */
-	function initializeFromRequest( &$request ) {
+	public function initializeFromRequest( &$request ) {
 		$upload = $request->getUpload( 'wpUploadFile' );
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if ( !$desiredDestName ) {
@@ -51,7 +51,7 @@ class UploadFromFile extends UploadBase {
 	 * @param string $name
 	 * @param WebRequestUpload $webRequestUpload
 	 */
-	function initialize( $name, $webRequestUpload ) {
+	public function initialize( $name, $webRequestUpload ) {
 		$this->mUpload = $webRequestUpload;
 		$this->initializePathInfo( $name,
 			$this->mUpload->getTempName(), $this->mUpload->getSize() );
@@ -61,7 +61,7 @@ class UploadFromFile extends UploadBase {
 	 * @param WebRequest $request
 	 * @return bool
 	 */
-	static function isValidRequest( $request ) {
+	public static function isValidRequest( $request ) {
 		# Allow all requests, even if no file is present, so that an error
 		# because a post_max_size or upload_max_filesize overflow
 		return true;

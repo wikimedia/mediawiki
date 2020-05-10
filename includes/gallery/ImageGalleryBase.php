@@ -110,7 +110,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @return ImageGalleryBase
 	 * @throws MWException
 	 */
-	static function factory( $mode = false, IContextSource $context = null ) {
+	public static function factory( $mode = false, IContextSource $context = null ) {
 		self::loadModes();
 		if ( !$context ) {
 			$context = RequestContext::getMainAndWarn( __METHOD__ );
@@ -182,7 +182,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param Parser $parser
 	 */
-	function setParser( $parser ) {
+	public function setParser( $parser ) {
 		$this->mParser = $parser;
 	}
 
@@ -190,7 +190,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Set bad image flag
 	 * @param bool $flag
 	 */
-	function setHideBadImages( $flag = true ) {
+	public function setHideBadImages( $flag = true ) {
 		$this->mHideBadImages = $flag;
 	}
 
@@ -199,7 +199,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param string $caption
 	 */
-	function setCaption( $caption ) {
+	public function setCaption( $caption ) {
 		$this->mCaption = htmlspecialchars( $caption );
 	}
 
@@ -270,7 +270,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 */
-	function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
+	public function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
@@ -289,7 +289,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 */
-	function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
+	public function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
@@ -310,7 +310,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * isEmpty() returns true if the gallery contains no images
 	 * @return bool
 	 */
-	function isEmpty() {
+	public function isEmpty() {
 		return empty( $this->mImages );
 	}
 
@@ -320,7 +320,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param bool $f Set to false to disable
 	 */
-	function setShowDimensions( $f ) {
+	public function setShowDimensions( $f ) {
 		$this->mShowDimensions = (bool)$f;
 	}
 
@@ -330,7 +330,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param bool $f Set to false to disable
 	 */
-	function setShowBytes( $f ) {
+	public function setShowBytes( $f ) {
 		$this->mShowBytes = (bool)$f;
 	}
 
@@ -340,7 +340,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param bool $f Set to false to disable
 	 */
-	function setShowFilename( $f ) {
+	public function setShowFilename( $f ) {
 		$this->mShowFilename = (bool)$f;
 	}
 
@@ -353,7 +353,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *
 	 * @param array $attribs Array of HTML attribute pairs
 	 */
-	function setAttributes( $attribs ) {
+	public function setAttributes( $attribs ) {
 		$this->mAttribs = $attribs;
 	}
 

@@ -32,7 +32,7 @@ class ZipDirectoryReaderError extends Exception {
 	/**
 	 * @return mixed
 	 */
-	function getErrorCode() {
+	public function getErrorCode() {
 		return $this->errorCode;
 	}
 }
