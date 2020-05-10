@@ -5,8 +5,8 @@ CREATE TABLE /*_*/user_former_groups_tmp (
   PRIMARY KEY (ufg_user,ufg_group)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/user_former_groups_tmp
-	SELECT * FROM /*_*/user_former_groups;
+INSERT INTO /*_*/user_former_groups_tmp(ufg_user, ufg_group)
+	SELECT ufg_user, ufg_group FROM /*_*/user_former_groups;
 
 DROP TABLE /*_*/user_former_groups;
 

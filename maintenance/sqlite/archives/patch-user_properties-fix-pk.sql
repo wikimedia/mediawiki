@@ -10,8 +10,8 @@ CREATE TABLE /*_*/user_properties_tmp (
   PRIMARY KEY (up_user,up_property)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/user_properties_tmp
-	SELECT * FROM /*_*/user_properties;
+INSERT INTO /*_*/user_properties_tmp(up_user, up_property, up_value)
+	SELECT up_user, up_property, up_value FROM /*_*/user_properties;
 
 DROP TABLE /*_*/user_properties;
 
