@@ -104,7 +104,6 @@
 		<exclude-pattern>includes/skins/</exclude-pattern>
 		<exclude-pattern>includes/specialpage/</exclude-pattern>
 		<exclude-pattern>includes/specials/</exclude-pattern>
-		<exclude-pattern>includes/upload/</exclude-pattern>
 		<exclude-pattern>includes/user/</exclude-pattern>
 		<exclude-pattern>includes/utils/</exclude-pattern>
 		<exclude-pattern>includes/CategoryViewer\.php</exclude-pattern>
