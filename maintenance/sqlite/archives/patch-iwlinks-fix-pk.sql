@@ -10,8 +10,8 @@ CREATE TABLE /*_*/iwlinks_tmp (
   PRIMARY KEY (iwl_from,iwl_prefix,iwl_title)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/iwlinks_tmp
-	SELECT * FROM /*_*/iwlinks;
+INSERT INTO /*_*/iwlinks_tmp(iwl_from, iwl_prefix, iwl_title)
+	SELECT iwl_from, iwl_prefix, iwl_title FROM /*_*/iwlinks;
 
 DROP TABLE /*_*/iwlinks;
 
