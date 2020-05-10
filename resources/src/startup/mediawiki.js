@@ -12,7 +12,8 @@
 	'use strict';
 
 	var mw, StringSet, log,
-		hasOwn = Object.hasOwnProperty;
+		hasOwn = Object.hasOwnProperty,
+		console = window.console;
 
 	/**
 	 * FNV132 hash function
@@ -101,8 +102,7 @@
 	 */
 	function logError( topic, data ) {
 		var msg,
-			e = data.exception,
-			console = window.console;
+			e = data.exception;
 
 		if ( console && console.log ) {
 			msg = ( e ? 'Exception' : 'Error' ) +
@@ -263,8 +263,7 @@
 		 * @member mw
 		 * @param {...string} msg Messages to output to console.
 		 */
-		var log = function () {},
-			console = window.console;
+		var log = function () {};
 
 		// Note: Keep list of methods in sync with restoration in mediawiki.log.js
 		// when adding or removing mw.log methods below!
