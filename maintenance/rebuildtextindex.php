@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\DatabaseSqlite;
  * @ingroup Maintenance
  */
 class RebuildTextIndex extends Maintenance {
-	const RTI_CHUNK_SIZE = 500;
+	private const RTI_CHUNK_SIZE = 500;
 
 	public function __construct() {
 		parent::__construct();

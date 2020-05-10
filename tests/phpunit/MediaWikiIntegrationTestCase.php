@@ -127,7 +127,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Table name prefix.
 	 */
-	const DB_PREFIX = 'unittest_';
+	public const DB_PREFIX = 'unittest_';
 
 	/**
 	 * @var array

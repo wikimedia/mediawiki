@@ -9,10 +9,10 @@ class XmlTypeCheckTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	const WELL_FORMED_XML = "<root><child /></root>";
-	const MAL_FORMED_XML = "<root><child /></error>";
+	private const WELL_FORMED_XML = "<root><child /></root>";
+	private const MAL_FORMED_XML = "<root><child /></error>";
 	// phpcs:ignore Generic.Files.LineLength
-	const XML_WITH_PIH = '<?xml version="1.0"?><?xml-stylesheet type="text/xsl" href="/w/index.php"?><svg><child /></svg>';
+	private const XML_WITH_PIH = '<?xml version="1.0"?><?xml-stylesheet type="text/xsl" href="/w/index.php"?><svg><child /></svg>';
 
 	/**
 	 * @covers XMLTypeCheck::newFromString

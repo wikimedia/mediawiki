@@ -32,7 +32,7 @@ class CategoryChangesAsRdf extends Maintenance {
 	/**
 	 * Insert query
 	 */
-	const SPARQL_INSERT = <<<SPARQL
+	private const SPARQL_INSERT = <<<SPARQL
 INSERT DATA {
 %s
 };
@@ -42,7 +42,7 @@ SPARQL;
 	/**
 	 * Delete query
 	 */
-	const SPARQL_DELETE = <<<SPARQLD
+	private const SPARQL_DELETE = <<<SPARQLD
 DELETE {
 ?category ?x ?y
 } WHERE {
@@ -57,7 +57,7 @@ SPARQLD;
 	/**
 	 * Delete/Insert query
 	 */
-	const SPARQL_DELETE_INSERT = <<<SPARQLDI
+	private const SPARQL_DELETE_INSERT = <<<SPARQLDI
 DELETE {
 ?category ?x ?y
 } INSERT {

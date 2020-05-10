@@ -36,8 +36,8 @@ use Wikimedia\Rdbms\IDatabase;
  * @ingroup Maintenance
  */
 class UpdateCollation extends Maintenance {
-	const BATCH_SIZE = 100; // Number of rows to process in one batch
-	const SYNC_INTERVAL = 5; // Wait for replica DBs after this many batches
+	private const BATCH_SIZE = 100; // Number of rows to process in one batch
+	private const SYNC_INTERVAL = 5; // Wait for replica DBs after this many batches
 
 	public $sizeHistogram = [];
 

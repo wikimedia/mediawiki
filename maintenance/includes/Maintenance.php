@@ -53,12 +53,12 @@ abstract class Maintenance {
 	 * Constants for DB access type
 	 * @see Maintenance::getDbType()
 	 */
-	const DB_NONE = 0;
-	const DB_STD = 1;
-	const DB_ADMIN = 2;
+	public const DB_NONE = 0;
+	public const DB_STD = 1;
+	public const DB_ADMIN = 2;
 
 	// Const for getStdin()
-	const STDIN_ALL = 'all';
+	public const STDIN_ALL = 'all';
 
 	/**
 	 * Array of desired/allowed params
