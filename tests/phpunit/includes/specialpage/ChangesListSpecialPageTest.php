@@ -387,7 +387,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcReviewStatusFilter() {
 		$user = $this->getTestSysop()->getUser();
 		$this->assertConditions(
-			[ #expected
+			[ # expected
 				'rc_patrolled' => 1,
 			],
 			[
@@ -397,7 +397,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			$user
 		);
 		$this->assertConditions(
-			[ #expected
+			[ # expected
 				'rc_patrolled' => [ 0, 2 ],
 			],
 			[

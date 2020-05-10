@@ -2522,7 +2522,7 @@ class WANObjectCache implements
 		$ageStale = abs( $curTTL ); // seconds of staleness
 		$curGTTL = ( $graceTTL - $ageStale ); // current grace-time-to-live
 		if ( $curGTTL <= 0 ) {
-			return false; //  already out of grace period
+			return false; // already out of grace period
 		}
 
 		// Chance of using a stale value is the complement of the chance of refreshing it

@@ -893,7 +893,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 			[ 'rev_id', 'rev_timestamp', 'rev_user' => $revQuery['fields']['rev_user'] ],
 			[
 				'rev_page' => $page->getId(),
-				//'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $since ) )
+				// 'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $since ) )
 			],
 			__METHOD__,
 			[ 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ],

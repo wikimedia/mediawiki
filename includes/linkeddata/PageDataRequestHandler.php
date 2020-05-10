@@ -89,7 +89,7 @@ class PageDataRequestHandler {
 		$revision = $request->getInt( 'revision', $revision );
 
 		if ( $title === null || $title === '' ) {
-			//TODO: different error message?
+			// TODO: different error message?
 			throw new HttpError( 400, wfMessage( 'pagedata-bad-title', $title ) );
 		}
 

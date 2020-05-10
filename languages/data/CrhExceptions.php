@@ -402,10 +402,8 @@ class CrhExceptions {
 	private function loadRegs() {
 		// Regexes as keys need to be declared in a function.
 		$this->Cyrl2LatnRegexes = [
-			############################
-			# относятся ко всему слову #
-			# whole words              #
-			############################
+			# относятся ко всему слову
+			# whole words
 
 			// TODO: refactor upper/lower/first capital whole words without
 			// regexes into simpler list
@@ -478,10 +476,8 @@ class CrhExceptions {
 			'/' . self::WB . 'Я' . self::WB . '/u' => 'Ya',
 			'/' . self::WB . 'Ё' . self::WB . '/u' => 'Yo',
 
-			############################
-			# относятся к началу слова #
-			# word prefixes            #
-			############################
+			# относятся к началу слова
+			# word prefixes
 			'/' . self::WB . 'КъЮШн/u' => 'QYŞn',
 			'/' . self::WB . 'ЮШн/u' => 'YŞn',
 
@@ -564,10 +560,8 @@ class CrhExceptions {
 			'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])Я([' . Crh::C_LC . 'cğñqöü])/u' => '$1Ya$2',
 			'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])Я([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => '$1YA$2',
 
-			###############################
-			# не зависят от места в слове #
-			# position independent        #
-			###############################
+			# не зависят от места в слове
+			# position independent
 
 			# слова на -льон
 			# words with -льон

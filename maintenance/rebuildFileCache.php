@@ -48,7 +48,7 @@ class RebuildFileCache extends Maintenance {
 		$this->enabled = $wgUseFileCache;
 		// Script will handle capturing output and saving it itself
 		$wgUseFileCache = false;
-		//  Avoid DB writes (like enotif/counters)
+		// Avoid DB writes (like enotif/counters)
 		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()
 			->setReason( 'Building cache' );
 

@@ -277,10 +277,6 @@ class LogFormatter {
 						$text = wfMessage( 'undeletedarticle' )
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
-					//case 'revision': // Revision deletion
-					//case 'event': // Log deletion
-					// see https://github.com/wikimedia/mediawiki/commit/a9c243b7b5289dad204278dbe7ed571fd914e395
-					//default:
 				}
 				break;
 
