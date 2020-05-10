@@ -218,7 +218,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @param int $index
 	 * @return string
 	 */
-	function getVirtualChunkLocation( $index ) {
+	private function getVirtualChunkLocation( $index ) {
 		return $this->repo->getVirtualUrl( 'temp' ) .
 			'/' .
 			$this->repo->getHashPath(
