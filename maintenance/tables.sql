@@ -1821,23 +1821,6 @@ CREATE INDEX /*i*/sites_protocol ON /*_*/sites (site_protocol);
 CREATE INDEX /*i*/sites_domain ON /*_*/sites (site_domain);
 CREATE INDEX /*i*/sites_forward ON /*_*/sites (site_forward);
 
--- Links local site identifiers to their corresponding site.
-CREATE TABLE /*_*/site_identifiers (
-  -- Key on site.site_id
-  si_site                    INT UNSIGNED        NOT NULL,
-
-  -- local key type, ie 'interwiki' or 'langlink'
-  si_type                    varbinary(32)       NOT NULL,
-
-  -- local key value, ie 'en' or 'wiktionary'
-  si_key                     varbinary(32)       NOT NULL,
-
-  PRIMARY KEY (si_type, si_key)
-) /*$wgDBTableOptions*/;
-
-CREATE INDEX /*i*/site_ids_site ON /*_*/site_identifiers (si_site);
-CREATE INDEX /*i*/site_ids_key ON /*_*/site_identifiers (si_key);
-
 -- Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag
 CREATE TABLE /*_*/change_tag_def (
     -- Numerical ID of the tag (ct_tag_id refers to this)
