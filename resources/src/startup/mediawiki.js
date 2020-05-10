@@ -597,7 +597,7 @@
 				marker = document.querySelector( 'meta[name="ResourceLoaderDynamicStyles"]' ),
 
 				// For #addEmbeddedCSS()
-				nextCssBuffer,
+				lastCssBuffer,
 				rAF = window.requestAnimationFrame || setTimeout;
 
 			/**
@@ -626,9 +626,17 @@
 			 */
 			function flushCssBuffer( cssBuffer ) {
 				var i;
-				// Mark this object as inactive now so that further calls to addEmbeddedCSS() from
-				// the callbacks go to a new buffer instead of this one (T105973)
-				cssBuffer.active = false;
+				// Make sure the next call to addEmbeddedCSS() starts a new buffer.
+				// This must be done before we run the callbacks, as those may end up
+				// queueing new chunks which would be lost otherwise (T105973).
+				//
+				// There can be more than one buffer in-flight (given "@import", and
+				// generally due to race conditions). Only tell addEmbeddedCSS() to
+				// start a new buffer if we're currently flushing the last one that it
+				// started. If we're flushing an older buffer, keep the last one open.
+				if ( cssBuffer === lastCssBuffer ) {
+					lastCssBuffer = null;
+				}
 				newStyleTag( cssBuffer.cssText, marker );
 				for ( i = 0; i < cssBuffer.callbacks.length; i++ ) {
 					cssBuffer.callbacks[ i ]();
@@ -650,32 +658,24 @@
 			 *
 			 * @private
 			 * @param {string} cssText CSS text to be added in a `<style>` tag.
-			 * @param {Function} callback Called after the insertion has occurred
+			 * @param {Function} callback Called after the insertion has occurred.
 			 */
 			function addEmbeddedCSS( cssText, callback ) {
-				// Create a buffer if:
-				// - We don't have one yet.
-				// - The previous one is closed.
+				// Start a new buffer if one of the following is true:
+				// - We've never started a buffer before, this will be our first.
+				// - The last buffer we created was flushed meanwhile, so start a new one.
 				// - The next CSS chunk syntactically needs to be at the start of a stylesheet (T37562).
-				if ( !nextCssBuffer || nextCssBuffer.active === false || cssText.slice( 0, '@import'.length ) === '@import' ) {
-					nextCssBuffer = {
+				if ( !lastCssBuffer || cssText.slice( 0, '@import'.length ) === '@import' ) {
+					lastCssBuffer = {
 						cssText: '',
-						callbacks: [],
-						active: null
+						callbacks: []
 					};
+					rAF( flushCssBuffer.bind( null, lastCssBuffer ) );
 				}
 
 				// Linebreak for somewhat distinguishable sections
-				nextCssBuffer.cssText += '\n' + cssText;
-				nextCssBuffer.callbacks.push( callback );
-
-				if ( nextCssBuffer.active === null ) {
-					nextCssBuffer.active = true;
-					// The flushCssBuffer callback has its parameter bound by reference, which means
-					// 1) We can still extend the buffer from our object reference after this point.
-					// 2) We can safely re-assign the variable (not the object) to start a new buffer.
-					rAF( flushCssBuffer.bind( null, nextCssBuffer ) );
-				}
+				lastCssBuffer.cssText += '\n' + cssText;
+				lastCssBuffer.callbacks.push( callback );
 			}
 
 			/**
