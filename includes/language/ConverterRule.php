@@ -21,25 +21,37 @@
 
 /**
  * The rules used for language conversion, this processes the rules
- * exctracted by Parser from the `-{ }-` wikitext syntax.
+ * extracted by Parser from the `-{ }-` wikitext syntax.
  *
  * @ingroup Language
  */
 class ConverterRule {
-	public $mText; // original text in -{text}-
+	/**
+	 * @var string original text in -{text}-
+	 */
+	public $mText;
 	/**
 	 * @var LanguageConverter
 	 */
-	public $mConverter; // LanguageConverter object
+	public $mConverter;
 	public $mRuleDisplay = '';
 	public $mRuleTitle = false;
-	public $mRules = ''; // string : the text of the rules
+	/**
+	 * @var string the text of the rules
+	 */
+	public $mRules = '';
 	public $mRulesAction = 'none';
 	public $mFlags = [];
 	public $mVariantFlags = [];
 	public $mConvTable = [];
-	public $mBidtable = []; // array of the translation in each variant
-	public $mUnidtable = []; // array of the translation in each variant
+	/**
+	 * @var array of the translation in each variant
+	 */
+	public $mBidtable = [];
+	/**
+	 * @var array of the translation in each variant
+	 */
+	public $mUnidtable = [];
 
 	/**
 	 * @param string $text The text between -{ and }-
@@ -93,12 +105,15 @@ class ConverterRule {
 		if ( !$flags ) {
 			$flags['S'] = true;
 		} elseif ( isset( $flags['R'] ) ) {
-			$flags = [ 'R' => true ];// remove other flags
+			// remove other flags
+			$flags = [ 'R' => true ];
 		} elseif ( isset( $flags['N'] ) ) {
-			$flags = [ 'N' => true ];// remove other flags
+			// remove other flags
+			$flags = [ 'N' => true ];
 		} elseif ( isset( $flags['-'] ) ) {
-			$flags = [ '-' => true ];// remove other flags
-		} elseif ( count( $flags ) == 1 && isset( $flags['T'] ) ) {
+			// remove other flags
+			$flags = [ '-' => true ];
+		} elseif ( count( $flags ) === 1 && isset( $flags['T'] ) ) {
 			$flags['H'] = true;
 		} elseif ( isset( $flags['H'] ) ) {
 			// replace A flag, and remove other flags except T
@@ -138,7 +153,6 @@ class ConverterRule {
 		$rules = $this->mRules;
 		$bidtable = [];
 		$unidtable = [];
-		$variants = $this->mConverter->getVariants();
 		$varsep_pattern = $this->mConverter->getVarSeparatorPattern();
 
 		// Split according to $varsep_pattern, but ignore semicolons from HTML entities
@@ -148,7 +162,7 @@ class ConverterRule {
 
 		foreach ( $choice as $c ) {
 			$v = explode( ':', $c, 2 );
-			if ( count( $v ) != 2 ) {
+			if ( count( $v ) !== 2 ) {
 				// syntax error, skip
 				continue;
 			}
@@ -158,9 +172,9 @@ class ConverterRule {
 			$vv = $this->mConverter->validateVariant( $v );
 			// if $to is empty (which is also used as $from in bidtable),
 			// strtr() could return a wrong result.
-			if ( count( $u ) == 1 && $to !== '' && $vv ) {
+			if ( count( $u ) === 1 && $to !== '' && $vv ) {
 				$bidtable[$vv] = $to;
-			} elseif ( count( $u ) == 2 ) {
+			} elseif ( count( $u ) === 2 ) {
 				$from = trim( $u[0] );
 				$v = trim( $u[1] );
 				$vv = $this->mConverter->validateVariant( $v );
@@ -215,30 +229,31 @@ class ConverterRule {
 		$bidtable = $this->mBidtable;
 		$unidtable = $this->mUnidtable;
 
-		if ( count( $bidtable ) + count( $unidtable ) == 0 ) {
+		if ( count( $bidtable ) + count( $unidtable ) === 0 ) {
 			return $this->mRules;
-		} else {
-			// display current variant in bidirectional array
-			$disp = $this->getTextInBidtable( $variant );
-			// or display current variant in fallbacks
-			if ( $disp === false ) {
-				$disp = $this->getTextInBidtable(
-					$this->mConverter->getVariantFallbacks( $variant ) );
-			}
-			// or display current variant in unidirectional array
-			if ( $disp === false && array_key_exists( $variant, $unidtable ) ) {
-				$disp = array_values( $unidtable[$variant] )[0];
-			}
-			// or display first text under disable manual convert
-			if ( $disp === false && $this->mConverter->mManualLevel[$variant] == 'disable' ) {
-				if ( count( $bidtable ) > 0 ) {
-					$disp = array_values( $bidtable )[0];
-				} else {
-					$disp = array_values( array_values( $unidtable )[0] )[0];
-				}
-			}
-			return $disp;
 		}
+
+		// display current variant in bidirectional array
+		$disp = $this->getTextInBidtable( $variant );
+		// or display current variant in fallbacks
+		if ( $disp === false ) {
+			$disp = $this->getTextInBidtable(
+				$this->mConverter->getVariantFallbacks( $variant ) );
+		}
+		// or display current variant in unidirectional array
+		if ( $disp === false && array_key_exists( $variant, $unidtable ) ) {
+			$disp = array_values( $unidtable[$variant] )[0];
+		}
+		// or display first text under disable manual convert
+		if ( $disp === false && $this->mConverter->mManualLevel[$variant] === 'disable' ) {
+			if ( count( $bidtable ) > 0 ) {
+				$disp = array_values( $bidtable )[0];
+			} else {
+				$disp = array_values( array_values( $unidtable )[0] )[0];
+			}
+		}
+
+		return $disp;
 	}
 
 	/**
@@ -266,9 +281,9 @@ class ConverterRule {
 			}
 			// Assigned above or still false.
 			return $disp;
-		} else {
-			return $this->getRuleConvertedStr( $variant );
 		}
+
+		return $this->getRuleConvertedStr( $variant );
 	}
 
 	/**
@@ -306,17 +321,17 @@ class ConverterRule {
 					// or -{-|zh:WordZh;zh-tw:WordTw}-
 					// to introduce a custom mapping between
 					// words WordZh and WordTw in the whole text
-					if ( $manLevel[$v] == 'bidirectional' ) {
+					if ( $manLevel[$v] === 'bidirectional' ) {
 						$this->mConvTable[$v][$bidtable[$vo]] = $bidtable[$v];
 					}
-					if ( $manLevel[$vo] == 'bidirectional' ) {
+					if ( $manLevel[$vo] === 'bidirectional' ) {
 						$this->mConvTable[$vo][$bidtable[$v]] = $bidtable[$vo];
 					}
 				}
 				$vmarked[] = $v;
 			}
 			/* for unidirectional array fill to convert tables */
-			if ( ( $manLevel[$v] == 'bidirectional' || $manLevel[$v] == 'unidirectional' )
+			if ( ( $manLevel[$v] === 'bidirectional' || $manLevel[$v] === 'unidirectional' )
 				&& isset( $unidtable[$v] )
 			) {
 				if ( isset( $this->mConvTable[$v] ) ) {

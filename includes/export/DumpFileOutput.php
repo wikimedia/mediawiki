@@ -70,9 +70,9 @@ class DumpFileOutput extends DumpOutput {
 	 * @throws MWException
 	 */
 	protected function renameOrException( $newname ) {
-			if ( !rename( $this->filename, $newname ) ) {
-				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
-			}
+		if ( !rename( $this->filename, $newname ) ) {
+			throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
+		}
 	}
 
 	/**
@@ -84,9 +84,8 @@ class DumpFileOutput extends DumpOutput {
 		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			} else {
-				$newname = $newname[0];
 			}
+			$newname = $newname[0];
 		}
 		return $newname;
 	}
