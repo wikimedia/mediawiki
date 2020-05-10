@@ -32,7 +32,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 	 * we can scale it up by that much on the client side, without
 	 * worrying about requesting a new image.
 	 */
-	const SCALE_FACTOR = 1.5;
+	private const SCALE_FACTOR = 1.5;
 
 	protected function getVPad( $boxHeight, $thumbHeight ) {
 		return ( $this->getThumbPadding() + $boxHeight - $thumbHeight / self::SCALE_FACTOR ) / 2;

@@ -36,7 +36,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 *
 	 * @return string
 	 */
-	function toHTML() {
+	public function toHTML() {
 		$resolveFilesViaParser = $this->mParser instanceof Parser;
 		if ( $resolveFilesViaParser ) {
 			$out = $this->mParser->getOutput();
