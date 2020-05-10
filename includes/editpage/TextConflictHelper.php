@@ -222,7 +222,10 @@ class TextConflictHelper {
 		$builder = new TextboxBuilder();
 		$classes = $builder->getTextboxProtectionCSSClasses( $this->title );
 
-		$attribs = [ 'tabindex' => 1 ];
+		$attribs = [
+			'aria-label' => $this->out->msg( 'edit-textarea-aria-label' )->text(),
+			'tabindex' => 1,
+		];
 		$attribs += $customAttribs;
 
 		$attribs = $builder->mergeClassesIntoAttributes( $classes, $attribs );
