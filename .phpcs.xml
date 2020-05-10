@@ -55,7 +55,6 @@
 		<exclude-pattern>includes/diff/</exclude-pattern>
 		<exclude-pattern>includes/exception/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
-		<exclude-pattern>includes/gallery/PackedImageGallery\.php</exclude-pattern>
 		<exclude-pattern>includes/historyblob/DiffHistoryBlob\.php</exclude-pattern>
 		<exclude-pattern>includes/htmlform/fields/</exclude-pattern>
 		<exclude-pattern>includes/http/</exclude-pattern>
@@ -89,7 +88,6 @@
 		<exclude-pattern>includes/deferred/</exclude-pattern>
 		<exclude-pattern>includes/diff/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
-		<exclude-pattern>includes/gallery/</exclude-pattern>
 		<exclude-pattern>includes/historyblob/</exclude-pattern>
 		<exclude-pattern>includes/htmlform/</exclude-pattern>
 		<exclude-pattern>includes/installer/</exclude-pattern>
