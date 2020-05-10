@@ -21,5 +21,5 @@ interface MergeableUpdate extends DeferrableUpdate {
 	 *
 	 * @param MergeableUpdate $update Update of the same class type
 	 */
-	function merge( MergeableUpdate $update );
+	public function merge( MergeableUpdate $update );
 }

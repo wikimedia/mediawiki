@@ -70,7 +70,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiTestCase {
 		$this->assertSame( 1, $goodCalls );
 	}
 
-	function testEnqueueOnFailure() {
+	public function testEnqueueOnFailure() {
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$queue = JobQueueGroup::singleton()->get( 'refreshLinksPrioritized' );
