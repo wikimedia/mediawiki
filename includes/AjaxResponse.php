@@ -100,7 +100,7 @@ class AjaxResponse {
 	 * Set the HTTP response code
 	 * @param int|string $code
 	 */
-	function setResponseCode( $code ) {
+	public function setResponseCode( $code ) {
 		$this->mResponseCode = $code;
 	}
 
@@ -108,14 +108,14 @@ class AjaxResponse {
 	 * Set the HTTP header Content-Type
 	 * @param string $type
 	 */
-	function setContentType( $type ) {
+	public function setContentType( $type ) {
 		$this->mContentType = $type;
 	}
 
 	/**
 	 * Disable output.
 	 */
-	function disable() {
+	public function disable() {
 		$this->mDisabled = true;
 	}
 
@@ -123,7 +123,7 @@ class AjaxResponse {
 	 * Add content to the response
 	 * @param string $text
 	 */
-	function addText( $text ) {
+	public function addText( $text ) {
 		if ( !$this->mDisabled && $text ) {
 			$this->mText .= $text;
 		}
@@ -132,7 +132,7 @@ class AjaxResponse {
 	/**
 	 * Output text
 	 */
-	function printText() {
+	public function printText() {
 		if ( !$this->mDisabled ) {
 			print $this->mText;
 		}
@@ -141,7 +141,7 @@ class AjaxResponse {
 	/**
 	 * Construct the header and output it
 	 */
-	function sendHeaders() {
+	public function sendHeaders() {
 		if ( $this->mResponseCode ) {
 			// For back-compat, it is supported that mResponseCode be a string like " 200 OK"
 			// (with leading space and the status message after). Cast response code to an integer
