@@ -1,8 +1,12 @@
 @import 'mediawiki.ui/variables.less';
 
 .mw-rcfilters-ui-savedLinksListItemWidget {
-	padding: 0 0.5em;
 	line-height: normal;
+
+	&,
+	&.oo-ui-iconElement {
+		padding: 0 0.5em;
+	}
 
 	&:hover {
 		// Mimicking optionWidget styles
@@ -24,6 +28,7 @@
 		min-width: 16px;
 		min-height: 16px;
 		opacity: 0.5;
+		left: 0;
 		position: relative;
 	}
 
