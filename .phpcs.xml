@@ -109,7 +109,6 @@
 		<exclude-pattern>includes/utils/</exclude-pattern>
 		<exclude-pattern>includes/AjaxResponse\.php</exclude-pattern>
 		<exclude-pattern>includes/CategoryViewer\.php</exclude-pattern>
-		<exclude-pattern>includes/ProtectionForm\.php</exclude-pattern>
 		<exclude-pattern>includes/Title\.php</exclude-pattern>
 		<exclude-pattern>includes/TitleArrayFromResult\.php</exclude-pattern>
 	</rule>
