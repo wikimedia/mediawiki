@@ -52,8 +52,8 @@
  */
 class UploadStash {
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
-	const KEY_FORMAT_REGEX = '/^[\w\-\.]+\.\w*$/';
-	const MAX_US_PROPS_SIZE = 65535;
+	public const KEY_FORMAT_REGEX = '/^[\w\-\.]+\.\w*$/';
+	private const MAX_US_PROPS_SIZE = 65535;
 
 	/**
 	 * repository that this uses to store temp files

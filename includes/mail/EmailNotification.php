@@ -50,15 +50,15 @@ class EmailNotification {
 	/**
 	 * Notification is due to user's user talk being edited
 	 */
-	const USER_TALK = 'user_talk';
+	private const USER_TALK = 'user_talk';
 	/**
 	 * Notification is due to a watchlisted page being edited
 	 */
-	const WATCHLIST = 'watchlist';
+	private const WATCHLIST = 'watchlist';
 	/**
 	 * Notification because user is notified for all changes
 	 */
-	const ALL_CHANGES = 'all_changes';
+	private const ALL_CHANGES = 'all_changes';
 
 	protected $subject, $body, $replyto, $from;
 	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common, $pageStatus;

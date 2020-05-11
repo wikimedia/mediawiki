@@ -71,14 +71,14 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 abstract class IndexPager extends ContextSource implements Pager {
 	/** Backwards-compatible constant for $mDefaultDirection field (do not change) */
-	const DIR_ASCENDING = false;
+	public const DIR_ASCENDING = false;
 	/** Backwards-compatible constant for $mDefaultDirection field (do not change) */
-	const DIR_DESCENDING = true;
+	public const DIR_DESCENDING = true;
 
 	/** Backwards-compatible constant for reallyDoQuery() (do not change) */
-	const QUERY_ASCENDING = true;
+	public const QUERY_ASCENDING = true;
 	/** Backwards-compatible constant for reallyDoQuery() (do not change) */
-	const QUERY_DESCENDING = false;
+	public const QUERY_DESCENDING = false;
 
 	/** @var WebRequest */
 	public $mRequest;

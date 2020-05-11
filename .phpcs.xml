@@ -55,28 +55,19 @@
 		<exclude-pattern>includes/diff/</exclude-pattern>
 		<exclude-pattern>includes/exception/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
-		<exclude-pattern>includes/historyblob/DiffHistoryBlob\.php</exclude-pattern>
 		<exclude-pattern>includes/htmlform/fields/</exclude-pattern>
 		<exclude-pattern>includes/http/</exclude-pattern>
 		<exclude-pattern>includes/installer/</exclude-pattern>
 		<exclude-pattern>includes/jobqueue/</exclude-pattern>
-		<exclude-pattern>includes/json/FormatJson\.php</exclude-pattern>
 		<exclude-pattern>includes/language/</exclude-pattern>
 		<exclude-pattern>includes/libs/</exclude-pattern>
 		<exclude-pattern>includes/logging/</exclude-pattern>
-		<exclude-pattern>includes/mail/EmailNotification\.php</exclude-pattern>
-		<exclude-pattern>includes/pager/IndexPager\.php</exclude-pattern>
 		<exclude-pattern>includes/parser/</exclude-pattern>
-		<exclude-pattern>includes/password/Password\.php</exclude-pattern>
 		<exclude-pattern>includes/poolcounter/</exclude-pattern>
 		<exclude-pattern>includes/resourceloader/</exclude-pattern>
 		<exclude-pattern>includes/search/</exclude-pattern>
-		<exclude-pattern>includes/session/Token\.php</exclude-pattern>
 		<exclude-pattern>includes/site/</exclude-pattern>
-		<exclude-pattern>includes/sparql/SparqlClient\.php</exclude-pattern>
-		<exclude-pattern>includes/specialpage/ChangesListSpecialPage\.php</exclude-pattern>
 		<exclude-pattern>includes/specials/</exclude-pattern>
-		<exclude-pattern>includes/upload/UploadStash\.php</exclude-pattern>
 		<exclude-pattern>includes/user/</exclude-pattern>
 		<exclude-pattern>includes/utils/</exclude-pattern>
 		<exclude-pattern>includes/watcheditem/</exclude-pattern>
