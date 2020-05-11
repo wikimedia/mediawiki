@@ -279,7 +279,7 @@
 	"config-install-user-grant-failed": "Errore durante la concessione delle autorizzazione all'utente \"$1\": $2",
 	"config-install-user-missing": "L'utente indicato \"$1\" non esiste.",
 	"config-install-user-missing-create": "L'utente indicato \"$1\" non esiste.\nSeleziona la casella \"crea utenza\" qui sotto se vuoi crearla.",
-	"config-install-tables": "Creazione tabelle",
+	"config-install-tables": "Creazione tabelle, primo passo",
 	"config-install-tables-exist": "'''Attenzione:''' sembra che le tabelle di MediaWiki esistono già.\nSalto la creazione.",
 	"config-install-tables-failed": "'''Errore''': La creazione della tabella non è riuscita: $1",
 	"config-install-interwiki": "Riempimento della tabella interwiki predefinita",

@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"1917 Ekim Devrimi",
+			"Mirzali"
+		]
+	},
+	"rest-prefix-mismatch": "Raya waziyayi ($1), raya rêçe REST API tede niya ($2)",
+	"rest-nonexistent-title": "Belı bıyaye serey ($1) mewcud niyo",
+	"rest-nonexistent-title-revision": "Belı bıyaye revizyon ($1) belı bıyaye pela dê çıniyo ($2)",
+	"rest-nonexistent-revision": "Wazıyaye revizyon ($1) çıniyo",
+	"rest-permission-denied-title": "Heqê karberi çıniyo serey bıwano ($1)",
+	"rest-permission-denied-revision": "Heqê karberi çıniyo bıreso meqaley ( $1)",
+	"rest-pagehistory-incompatible-params": "\"older_than\" u \"newer_than\" parametreyan ê wurdına nêşeno ifade bıkero",
+	"rest-pagehistory-param-range-error": "Kamiya çımraviyarnayışi gani 0 ra gırd bo",
+	"rest-pagehistorycount-type-unrecognized": "Belı bıyaye tewrê amar rê  ($1) ravêrde niyo",
+	"rest-pagehistorycount-parameters-invalid": "Belı bıyaye kombinasyobê parametrey pheşti nêgêno",
+	"rest-compare-page-mismatch": "Belı bıyaye revizyoni aidê ciya pelanê ;  pêver ardış pela red biyo",
+	"rest-compare-permission-denied": "Karber nêşeno bıreso waziyaye revizyona",
+	"rest-compare-nonexistent": "Terefê parametrey $1 ra belı bıyaye vurnayış çıniyo.",
+	"rest-compare-inaccessible": "Terefê parametrey $1 ra belı bıyaye vurnayış şari rê akerde niyo",
+	"rest-compare-wikidiff2": "Na nuqtaya peyên , wikidiff2 1.9.0 yana berz lazıma.",
+	"rest-search-error": "Neticeyanê cıgeyrayışi tedayış dê xeta veciyê :$1",
+	"rest-page-source-type-error": "Waziyaye çımey pela tewrê zerreki pheşti nêgêno",
+	"rest-no-revision": "Seba serey $1 rê vurnayış nêgêriyeno",
+	"rest-html-backend-error": "Parsoid HTML nêardo",
+	"rest-bad-json-body": "Bezna xırab waştışi, wa jew nesneye JSON'i bo",
+	"rest-json-body-parse-error": "Waştışê bezne zey JSON'i nêagozniyayo:",
+	"rest-missing-body-field": "Bezna waştışi de cayo mecburi $1 kemiyo",
+	"rest-bad-content-model": "Xırab modelê zerreki: $1",
+	"rest-cannot-load-file": "Be sereya \"$1\" dosya bar nêbena"
+}
