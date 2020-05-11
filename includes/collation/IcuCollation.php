@@ -24,7 +24,7 @@ use MediaWiki\MediaWikiServices;
  * @since 1.16.3
  */
 class IcuCollation extends Collation {
-	const FIRST_LETTER_VERSION = 4;
+	private const FIRST_LETTER_VERSION = 4;
 
 	/** @var Collator */
 	private $primaryCollator;
@@ -240,11 +240,6 @@ class IcuCollation extends Collation {
 		'yo' => [ "Ẹ", "Gb", "Ọ", "Ṣ" ],
 		'zu' => [],
 	];
-
-	/**
-	 * @since 1.16.3
-	 */
-	const RECORD_LENGTH = 14;
 
 	public function __construct( $locale ) {
 		if ( !extension_loaded( 'intl' ) ) {
