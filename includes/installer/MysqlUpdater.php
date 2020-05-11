@@ -548,48 +548,68 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * Check if we need to add talk page rows to the watchlist
 	 */
 	function doWatchlistUpdate() {
-		$talk = $this->db->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', __METHOD__ );
-		$nontalk = $this->db->selectField(
-			'watchlist',
-			'count(*)',
-			'NOT (wl_namespace & 1)',
-			__METHOD__
+		global $wgUpdateRowsPerQuery;
+
+		$sql = $this->db->unionQueries(
+			[
+				// Missing talk page rows (corresponding subject page row exists)
+				$this->db->selectSQLText(
+					[ 'wlsubject' => 'watchlist', 'wltalk' => 'watchlist' ],
+					[
+						'wl_user' => 'wlsubject.wl_user',
+						'wl_namespace' => 'wlsubject.wl_namespace | 1',
+						'wl_title' => 'wlsubject.wl_title',
+						'wl_notificationtimestamp' => 'wlsubject.wl_notificationtimestamp'
+					],
+					[ 'NOT (wlsubject.wl_namespace & 1)', 'wltalk.wl_namespace IS NULL' ],
+					__METHOD__,
+					[],
+					[
+						'wltalk' => [ 'LEFT JOIN', [
+							'wltalk.wl_user = wlsubject.wl_user',
+							'wltalk.wl_namespace = (wlsubject.wl_namespace | 1)',
+							'wltalk.wl_title = wlsubject.wl_title'
+						] ]
+					]
+				),
+				// Missing subject page rows (corresponding talk page row exists)
+				$this->db->selectSQLText(
+					[ 'wltalk' => 'watchlist', 'wlsubject' => 'watchlist' ],
+					[
+						'wl_user' => 'wltalk.wl_user',
+						'wl_namespace' => 'wltalk.wl_namespace & ~1',
+						'wl_title' => 'wltalk.wl_title',
+						'wl_notificationtimestamp' => 'wltalk.wl_notificationtimestamp'
+					],
+					[ 'wltalk.wl_namespace & 1', 'wlsubject.wl_namespace IS NULL' ],
+					__METHOD__,
+					[],
+					[
+						'wlsubject' => [ 'LEFT JOIN', [
+							'wlsubject.wl_user = wltalk.wl_user',
+							'wlsubject.wl_namespace = (wltalk.wl_namespace & ~1)',
+							'wlsubject.wl_title = wltalk.wl_title'
+						] ]
+					]
+				)
+			],
+			true // use a non-distinct UNION to avoid overhead
 		);
-		if ( $talk == $nontalk ) {
-			$this->output( "...watchlist talk page rows already present.\n" );
 
-			return;
+		$res = $this->db->query( $sql, __METHOD__ );
+
+		$this->output( "Adding missing corresponding talk/subject watchlist page rows... " );
+
+		$rowBatch = [];
+		foreach ( $res as $row ) {
+			$rowBatch[] = (array)$row;
+			if ( count( $rowBatch ) >= $wgUpdateRowsPerQuery ) {
+				$this->db->insert( 'watchlist', $rowBatch, __METHOD__, [ 'IGNORE' ] );
+				$rowBatch = [];
+			}
 		}
+		$this->db->insert( 'watchlist', $rowBatch, __METHOD__, [ 'IGNORE' ] );
 
-		$insertOpts = [ 'IGNORE' ];
-		$selectOpts = [];
-
-		// If wl_id exists, make insertSelect() more replication-safe by
-		// ordering on that column. If not, hint that it should be safe anyway.
-		if ( $this->db->fieldExists( 'watchlist', 'wl_id', __METHOD__ ) ) {
-			$selectOpts['ORDER BY'] = 'wl_id';
-		} else {
-			$insertOpts[] = 'NO_AUTO_COLUMNS';
-		}
-
-		$this->output( "Adding missing watchlist talk page rows... " );
-		$this->db->insertSelect( 'watchlist', 'watchlist',
-			[
-				'wl_user' => 'wl_user',
-				'wl_namespace' => 'wl_namespace | 1',
-				'wl_title' => 'wl_title',
-				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
-			], [ 'NOT (wl_namespace & 1)' ], __METHOD__, $insertOpts, $selectOpts );
-		$this->output( "done.\n" );
-
-		$this->output( "Adding missing watchlist subject page rows... " );
-		$this->db->insertSelect( 'watchlist', 'watchlist',
-			[
-				'wl_user' => 'wl_user',
-				'wl_namespace' => 'wl_namespace & ~1',
-				'wl_title' => 'wl_title',
-				'wl_notificationtimestamp' => 'wl_notificationtimestamp'
-			], [ 'wl_namespace & 1' ], __METHOD__, $insertOpts, $selectOpts );
 		$this->output( "done.\n" );
 	}
 
