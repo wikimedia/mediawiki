@@ -59,8 +59,8 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$out->allowClickjacking();
 
 		$query = [
-			'lang' => $this->getLanguage()->getCode(),
-			'skin' => $this->getSkin()->getSkinName(),
+			'lang' => 'qqx',
+			'skin' => 'fallback',
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 			'target' => 'test',
 		];
