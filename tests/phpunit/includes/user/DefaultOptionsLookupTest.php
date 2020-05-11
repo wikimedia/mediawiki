@@ -1,12 +1,12 @@
 <?php
 
-use MediaWiki\User\DefaultOptionsManager;
+use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
- * @covers MediaWiki\User\DefaultOptionsManager
+ * @covers MediaWiki\User\DefaultOptionsLookup
  */
-class DefaultOptionsManagerTest extends UserOptionsLookupTest {
+class DefaultOptionsLookupTest extends UserOptionsLookupTest {
 	protected function getLookup(
 		string $langCode = 'qqq',
 		array $defaultOptionsOverrides = []
@@ -15,15 +15,15 @@ class DefaultOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getOption
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getOption
 	 */
 	public function testGetOptionsExcludeDefaults() {
 		$this->assertSame( [], $this->getLookup()
-			->getOptions( $this->getAnon(), DefaultOptionsManager::EXCLUDE_DEFAULTS ) );
+			->getOptions( $this->getAnon(), DefaultOptionsLookup::EXCLUDE_DEFAULTS ) );
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getDefaultOptions
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
 	 */
 	public function testGetDefaultOptionsHook() {
 		$this->setTemporaryHook( 'UserGetDefaultOptions', function ( &$options ) {
@@ -33,7 +33,7 @@ class DefaultOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getDefaultOptions
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
 	 */
 	public function testSearchNS() {
 		$this->assertTrue( $this->getLookup()->getDefaultOption( 'searchNs0' ) );
@@ -41,7 +41,7 @@ class DefaultOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getDefaultOptions
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
 	 */
 	public function testLangVariantOptions() {
 		$managerZh = $this->getLookup( 'zh' );

@@ -152,8 +152,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->linkRenderer = $linkRenderer;
 		$this->nsInfo = $nsInfo;
 		$this->permissionManager = $permissionManager;
-		$this->languageNameUtils = $languageNameUtils ??
-			MediaWikiServices::getInstance()->getLanguageNameUtils();
 		$this->logger = new NullLogger();
 
 		if ( !$languageConverter ) {
@@ -163,6 +161,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				->getLanguageConverter();
 		}
 		$this->languageConverter = $languageConverter;
+
+		if ( !$languageNameUtils ) {
+			wfDeprecated( __METHOD__ . ' without $languageNameUtils parameter', '1.35' );
+			$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		}
+		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/**

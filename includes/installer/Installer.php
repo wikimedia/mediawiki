@@ -441,7 +441,7 @@ abstract class Installer {
 		$mwServices->redefineService(
 			'UserOptionsLookup',
 			function ( MediaWikiServices $services ) {
-				return $services->get( '_DefaultOptionsManager' );
+				return $services->get( '_DefaultOptionsLookup' );
 			}
 		);
 

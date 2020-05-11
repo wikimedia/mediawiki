@@ -73,7 +73,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 			$mockNsInfo,
 			$mockPM,
 			MediaWikiServices::getInstance()->getLanguageConverterFactory()
-				->getLanguageConverter( $language )
+				->getLanguageConverter( $language ),
+			MediaWikiServices::getInstance()->getLanguageNameUtils()
 		);
 	}
 
