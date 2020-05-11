@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ObjectFactory;
@@ -38,6 +39,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 
 	private static $originalGlobals;
 	private static $unitGlobals;
+	private static $temporaryHooks;
 
 	/**
 	 * Whitelist of globals to allow in MediaWikiUnitTestCase.
@@ -74,9 +76,10 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		foreach ( self::getGlobalsWhitelist() as $global ) {
 			self::$unitGlobals[ $global ] =& $GLOBALS[ $global ];
 		}
+		self::$temporaryHooks = [];
 
-		// Would be nice if we coud simply replace $GLOBALS as a whole,
-		// but unsetting or re-assigning that breaks the reference of this magic
+		// Would be nice if we could simply replace $GLOBALS as a whole,
+		// but un-setting or re-assigning that breaks the reference of this magic
 		// variable. Thus we have to modify it in place.
 		self::$originalGlobals = [];
 		foreach ( $GLOBALS as $key => $_ ) {
@@ -126,6 +129,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		foreach ( self::$unitGlobals as $key => $value ) {
 			$GLOBALS[ $key ] = $value;
 		}
+		self::$temporaryHooks = [];
 
 		parent::tearDown();
 	}
@@ -147,17 +151,16 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 
 	/**
 	 * Create a temporary hook handler which will be reset by tearDown.
-	 * This replaces other handlers for the same hook.
 	 * @param string $hookName Hook name
 	 * @param mixed $handler Value suitable for a hook handler
 	 * @since 1.34
 	 */
 	protected function setTemporaryHook( $hookName, $handler ) {
-		// This will be reset by tearDown() when it restores globals. We don't want to use
-		// Hooks::register()/clear() because they won't replace other handlers for the same hook,
-		// which doesn't match behavior of MediaWikiIntegrationTestCase.
-		global $wgHooks;
-		$wgHooks[$hookName] = [ $handler ];
+		// Adds handler to list of hook handlers
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookToRemove = $hookContainer->scopedRegister( $hookName, $handler, true );
+		// Keep reference to the ScopedCallback
+		self::$temporaryHooks[] = $hookToRemove;
 	}
 
 	protected function getMockMessage( $text, ...$params ) {
