@@ -440,6 +440,7 @@ class Names {
 		'tpi' => 'Tok Pisin', # Tok Pisin
 		'tr' => 'Türkçe', # Turkish
 		'tru' => 'Ṫuroyo', # Turoyo
+		'trv' => 'Seediq', # Taroko
 		'ts' => 'Xitsonga', # Tsonga
 		'tt' => 'татарча/tatarça', # Tatar (multiple scripts - defaults to Cyrillic)
 		'tt-cyrl' => 'татарча', # Tatar (Cyrillic script) (default)
