@@ -10,7 +10,7 @@ use Composer\Semver\Constraint\Constraint;
  */
 class ComposerPackageModifier {
 
-	const MEDIAWIKI_PACKAGE_NAME = 'mediawiki/mediawiki';
+	private const MEDIAWIKI_PACKAGE_NAME = 'mediawiki/mediawiki';
 
 	protected $package;
 	protected $versionNormalizer;

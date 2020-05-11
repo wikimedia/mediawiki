@@ -32,7 +32,7 @@ class ChangeTags {
 	 * the bigdelete user right
 	 * @todo Use the job queue for tag deletion to avoid this restriction
 	 */
-	const MAX_DELETE_USES = 5000;
+	private const MAX_DELETE_USES = 5000;
 
 	/**
 	 * Flag for canDeleteTag().
