@@ -1293,12 +1293,12 @@
 	branch = REL1_34
 	ignore = dirty
 [submodule "extensions/GoogleDocs4MW"]
-        path = extensions/GoogleDocs4MW
-        url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
-        branch = master
-        ignore = dirty
+	path = extensions/GoogleDocs4MW
+	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
+	branch = master
+	ignore = dirty
 [submodule "skins/Femiwiki"]
-        path = skins/Femiwiki
-        url = https://github.com/femiwiki/FemiwikiSkin.git
-        branch = master 
-        ignore = dirty
+	path = skins/Femiwiki
+	url = https://github.com/femiwiki/FemiwikiSkin.git
+	branch = master 
+	ignore = dirty
