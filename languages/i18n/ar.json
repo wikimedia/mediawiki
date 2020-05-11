@@ -3923,7 +3923,7 @@
 	"authprovider-confirmlink-success-line": "$1: تم الوصل بشكل صحيح.",
 	"authprovider-confirmlink-failed": "وصل الحساب لم ينجح بشكل كامل: $1",
 	"authprovider-confirmlink-ok-help": "الاستمرار بعد عرض رسائل فشل الوصل.",
-	"authprovider-resetpass-skip-label": "تخطى",
+	"authprovider-resetpass-skip-label": "تَخطَّ",
 	"authprovider-resetpass-skip-help": "تخطي إعادة تعيين كلمة المرور",
 	"authform-nosession-login": "عملية التحقق كانت ناجحة، لكن متصفحك لا يمكنه \"تذكر\" أنك مسجل الدخول.\n\n$1",
 	"authform-nosession-signup": "الحساب تم إنشاؤه، لكن متصفحك لا يمكنه cannot \"تذكر\" أنك مسجل الدخول.\n\n$1",

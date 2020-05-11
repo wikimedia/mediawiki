@@ -26,6 +26,7 @@
 	"exif-gpslatitude": "Latitudo",
 	"exif-gpslongitude": "Longitudo",
 	"exif-gpsaltitude": "Altitudo",
+	"exif-source": "Fonto",
 	"exif-languagecode": "Linguo",
 	"exif-label": "Etiketo",
 	"exif-unknowndate": "Nesavata dato",

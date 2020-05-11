@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Boulaur",
+			"COMISSIONTOPOC",
 			"Cedric31",
 			"ChrisPtDe",
 			"DannyS712",
@@ -772,7 +773,7 @@
 	"page_first": "primièra",
 	"page_last": "darrièra",
 	"histlegend": "Legenda : ({{MediaWiki:Cur}}) = diferéncia amb la version actuala ,\n({{MediaWiki:Last}}) = diferéncia amb la version precedenta, <b>m</b> = cambiament menor",
-	"history-fieldset-title": "Filtrar las revisions",
+	"history-fieldset-title": "Filtrar lei revisions",
 	"history-show-deleted": "Revision suprimida unicament",
 	"histfirst": "Las mai ancianas",
 	"histlast": "Las mai recentas",
@@ -1709,7 +1710,7 @@
 	"imagelinks": "Paginas que contenon lo fichièr",
 	"linkstoimage": "{{PLURAL:$1|La pagina çaijós compòrta|Las paginas çaijós compòrtan}} aqueste imatge :",
 	"linkstoimage-more": "Mai {{PLURAL:$1|d’un ligam de pagina|de $1 ligams de paginas}} cap a aqueste fichièr.\nLa lista seguenta aficha {{PLURAL:$1|lo primièr ligam de pagina|los $1 primièrs ligams de pagina}} unicament cap a aqueste fichièr.\nUna [[Special:WhatLinksHere/$2|lista completa]] es disponibla.",
-	"nolinkstoimage": "I a pas cap de pagina que compòrta un ligam cap a aqueste imatge.",
+	"nolinkstoimage": "I a ges de pagina que compòrta un ligam vèrs aqueste imatge.",
 	"morelinkstoimage": "Vejatz [[Special:WhatLinksHere/$1|mai de ligams]] cap a aqueste imatge.",
 	"linkstoimage-redirect": "$1 (redireccion de fichièr) $2",
 	"duplicatesoffile": "{{PLURAL:$1|Lo fichièr seguent es un duplicata|Los fichièrs seguents son de duplicatas}} d'aqueste fichièr ([[Special:FileDuplicateSearch/$2|mai de detalhs]]):",

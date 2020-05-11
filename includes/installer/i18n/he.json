@@ -268,6 +268,7 @@
 	"config-install-user-grant-failed": "מתן הרשאות למשתמש \"$1\" נכשל: $2",
 	"config-install-user-missing": "המשתמש \"$1\" שצוין אינו קיים.",
 	"config-install-user-missing-create": "המשתמש \"$1\" שצוין אינו קיים.\nנא ללחוץ על תיבת בסימון \"יצירת חשבון\" להלן אם אתם רוצים ליצור אותו.",
+	"config-install-restore-services": "שחזור שירותי מדיה־ויקי",
 	"config-install-tables": "יצירת טבלאות",
 	"config-install-tables-exist": "'''אזהרה:''' נראה שטבלאות מדיה־ויקי כבר קיימות.\nמדלג על יצירתן.",
 	"config-install-tables-failed": "'''שגיאה:''' יצירת הטבלה נכשלה עם השגיאה הבאה: $1",

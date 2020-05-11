@@ -2516,7 +2516,7 @@
 	"nolinkshere": "هیچ صفحه‌ای به '''$2''' پیوند ندارد.",
 	"nolinkshere-ns": "هیچ صفحه‌ای از فضای نام انتخاب شده به '''$2''' پیوند ندارد.",
 	"isredirect": "صفحهٔ تغییرمسیر",
-	"istemplate": "تراگنجانش‌ها",
+	"istemplate": "تراگنجانش",
 	"isimage": "پیوند به پرونده",
 	"whatlinkshere-prev": "{{PLURAL:$1|قبلی|$1 مورد قبلی}}",
 	"whatlinkshere-next": "{{PLURAL:$1|بعدی|$1 مورد بعدی}}",
