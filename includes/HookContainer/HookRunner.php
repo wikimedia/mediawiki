@@ -478,6 +478,8 @@ class HookRunner implements
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteStylesModulePagesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderTestModulesHook,
+	\MediaWiki\Rest\Hook\SearchResultProvideDescriptionHook,
+	\MediaWiki\Rest\Hook\SearchResultProvideThumbnailHook,
 	\MediaWiki\Revision\Hook\ContentHandlerDefaultModelForHook,
 	\MediaWiki\Revision\Hook\RevisionInsertCompleteHook,
 	\MediaWiki\Revision\Hook\RevisionRecordInsertedHook,
@@ -3297,6 +3299,20 @@ class HookRunner implements
 		return $this->container->run(
 			'SearchResultInitFromTitle',
 			[ $title, &$id ]
+		);
+	}
+
+	public function onSearchResultProvideDescription( array $pageIdentities, &$descriptions ) {
+		return $this->container->run(
+			'SearchResultProvideDescription',
+			[ $pageIdentities, &$descriptions ]
+		);
+	}
+
+	public function onSearchResultProvideThumbnail( array $pageIdentities, &$thumbnails ) {
+		return $this->container->run(
+			'SearchResultProvideThumbnail',
+			[ $pageIdentities, &$thumbnails ]
 		);
 	}
 
