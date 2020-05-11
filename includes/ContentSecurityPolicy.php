@@ -28,8 +28,8 @@
 use MediaWiki\MediaWikiServices;
 
 class ContentSecurityPolicy {
-	const REPORT_ONLY_MODE = 1;
-	const FULL_MODE = 2;
+	public const REPORT_ONLY_MODE = 1;
+	public const FULL_MODE = 2;
 
 	/** @var string The nonce to use for inline scripts (from OutputPage) */
 	private $nonce;

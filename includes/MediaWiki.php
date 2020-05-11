@@ -44,9 +44,9 @@ class MediaWiki {
 	private $postSendStrategy;
 
 	/** @var int Use fastcgi_finish_request() */
-	const DEFER_FASTCGI_FINISH_REQUEST = 1;
+	private const DEFER_FASTCGI_FINISH_REQUEST = 1;
 	/** @var int Use ob_end_flush() after explicitly setting the Content-Length */
-	const DEFER_SET_LENGTH_AND_FLUSH = 2;
+	private const DEFER_SET_LENGTH_AND_FLUSH = 2;
 
 	/**
 	 * @param IContextSource|null $context

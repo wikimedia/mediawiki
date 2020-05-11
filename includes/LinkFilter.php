@@ -38,7 +38,7 @@ class LinkFilter {
 	 * Increment this when makeIndexes output changes. It'll cause
 	 * maintenance/refreshExternallinksIndex.php to run from update.php.
 	 */
-	const VERSION = 1;
+	public const VERSION = 1;
 
 	/**
 	 * Check whether $content contains a link to $filterEntry
