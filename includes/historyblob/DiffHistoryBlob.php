@@ -64,9 +64,9 @@ class DiffHistoryBlob implements HistoryBlob {
 	public $mMaxCount = 100;
 
 	/** Constants from xdiff.h */
-	const XDL_BDOP_INS = 1;
-	const XDL_BDOP_CPY = 2;
-	const XDL_BDOP_INSB = 3;
+	private const XDL_BDOP_INS = 1;
+	private const XDL_BDOP_CPY = 2;
+	private const XDL_BDOP_INSB = 3;
 
 	public function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {

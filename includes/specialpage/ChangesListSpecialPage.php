@@ -39,7 +39,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Maximum length of a tag description in UTF-8 characters.
 	 * Longer descriptions will be truncated.
 	 */
-	const TAG_DESC_CHARACTER_LIMIT = 120;
+	private const TAG_DESC_CHARACTER_LIMIT = 120;
 
 	/**
 	 * Preference name for saved queries. Subclasses that use saved queries should override this.

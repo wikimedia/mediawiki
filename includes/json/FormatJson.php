@@ -31,7 +31,7 @@ class FormatJson {
 	 *
 	 * @since 1.22
 	 */
-	const UTF8_OK = 1;
+	public const UTF8_OK = 1;
 
 	/**
 	 * Skip escaping the characters '<', '>', and '&', which have special meanings in
@@ -43,7 +43,7 @@ class FormatJson {
 	 *
 	 * @since 1.22
 	 */
-	const XMLMETA_OK = 2;
+	public const XMLMETA_OK = 2;
 
 	/**
 	 * Skip escaping as many characters as reasonably possible.
@@ -52,7 +52,7 @@ class FormatJson {
 	 *
 	 * @since 1.22
 	 */
-	const ALL_OK = self::UTF8_OK | self::XMLMETA_OK;
+	public const ALL_OK = self::UTF8_OK | self::XMLMETA_OK;
 
 	/**
 	 * If set, treat JSON objects '{...}' as associative arrays. Without this option,
@@ -60,21 +60,21 @@ class FormatJson {
 	 *
 	 * @since 1.24
 	 */
-	const FORCE_ASSOC = 0x100;
+	public const FORCE_ASSOC = 0x100;
 
 	/**
 	 * If set, attempt to fix invalid JSON.
 	 *
 	 * @since 1.24
 	 */
-	const TRY_FIXING = 0x200;
+	public const TRY_FIXING = 0x200;
 
 	/**
 	 * If set, strip comments from input before parsing as JSON.
 	 *
 	 * @since 1.25
 	 */
-	const STRIP_COMMENTS = 0x400;
+	public const STRIP_COMMENTS = 0x400;
 
 	/**
 	 * Characters problematic in JavaScript.
