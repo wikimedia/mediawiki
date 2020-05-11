@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ParserFactory
  */
 class ParserFactoryTest extends MediaWikiUnitTestCase {
-	function createFactory() {
+	private function createFactory() {
 		$options = $this->getMockBuilder( ServiceOptions::class )
 		->disableOriginalConstructor()
 		->setMethods( [ 'assertRequiredOptions', 'get' ] )->getMock();
@@ -64,7 +64,7 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers ParserFactory::create
 	 */
-	function testCreate() {
+	public function testCreate() {
 		$factory = $this->createFactory();
 		$parser = $factory->create();
 		$this->assertNotNull( $factory, "Factory should be created correctly" );
