@@ -9,13 +9,15 @@ use ResourceLoaderContext;
 /**
  * This class provides an implementation of the core hook interfaces,
  * forwarding hook calls to HookContainer for dispatch to extensions.
+ * It is intended for use within MediaWiki core only. Extensions that
+ * need a hook runner should create one for the hooks they need to run.
  *
  * To use it, create a new HookRunner object from a HookContainer obtained
  * by dependency injection, or as a last resort, from the global service
  * container. Then call the relevant method on the object:
  *   ( new HookRunner( $hookContainer ) )->onSomeHook( $param );
  *
- * @newable
+ * @internal
  */
 class HookRunner implements
 	\MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook,
