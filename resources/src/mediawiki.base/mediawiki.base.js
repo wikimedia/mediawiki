@@ -113,7 +113,7 @@
 			var text = this.map.get( this.key );
 			if (
 				mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
-				( !text || text === '(' + this.key + ')' )
+				text === '(' + this.key + ')'
 			) {
 				text = '(' + this.key + '$*)';
 			}
@@ -231,9 +231,6 @@
 		 * @return {boolean}
 		 */
 		exists: function () {
-			if ( mw.config.get( 'wgUserLanguage' ) === 'qqx' ) {
-				return true;
-			}
 			return this.map.exists( this.key );
 		}
 	};
