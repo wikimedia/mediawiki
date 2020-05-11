@@ -1,13 +1,13 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\User\DefaultOptionsManager;
+use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
- * @covers MediaWiki\User\DefaultOptionsManager
+ * @covers MediaWiki\User\DefaultOptionsLookup
  * @covers MediaWiki\User\UserOptionsManager
  * @covers MediaWiki\User\UserOptionsLookup
  */
@@ -28,12 +28,12 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	protected function getDefaultManager(
 		string $langCode = 'qqq',
 		array $defaultOptionsOverrides = []
-	) : DefaultOptionsManager {
+	) : DefaultOptionsLookup {
 		$lang = $this->createMock( Language::class );
 		$lang->method( 'getCode' )->willReturn( $langCode );
-		return new DefaultOptionsManager(
+		return new DefaultOptionsLookup(
 			new ServiceOptions(
-				DefaultOptionsManager::CONSTRUCTOR_OPTIONS,
+				DefaultOptionsLookup::CONSTRUCTOR_OPTIONS,
 				new HashConfig( [
 					'DefaultSkin' => 'test',
 					'DefaultUserOptions' => array_merge( [
@@ -52,7 +52,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getDefaultOptions
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
 	 * @covers MediaWiki\User\UserOptionsManager::getDefaultOptions
 	 */
 	public function testGetDefaultOptions() {
@@ -63,7 +63,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getDefaultOption
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOption
 	 * @covers MediaWiki\User\UserOptionsManager::getDefaultOption
 	 */
 	public function testGetDefaultOption() {
@@ -74,7 +74,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getOptions
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getOptions
 	 * @covers MediaWiki\User\UserOptionsManager::getOptions
 	 */
 	public function testGetOptions() {
@@ -85,7 +85,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getOption
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getOption
 	 * @covers MediaWiki\User\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefault() {
@@ -97,7 +97,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getOption
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getOption
 	 * @covers MediaWiki\User\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefaultNotExist() {
@@ -106,7 +106,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\User\DefaultOptionsManager::getOption
+	 * @covers MediaWiki\User\DefaultOptionsLookup::getOption
 	 * @covers MediaWiki\User\UserOptionsManager::getOption
 	 */
 	public function testGetOptionDefaultNotExistDefaultOverride() {
