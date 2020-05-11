@@ -1682,7 +1682,7 @@ class TitleTest extends MediaWikiTestCase {
 			$title->getCascadeProtectionSources( true )
 		);
 
-		//TODO: this might partially duplicate testIsCascadeProtected method above
+		// TODO: this might partially duplicate testIsCascadeProtected method above
 
 		$cascade = 1;
 		$anotherPage = $this->getExistingTestPage( 'UTest2' );

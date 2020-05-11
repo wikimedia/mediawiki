@@ -345,10 +345,10 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 
 		$factory = new ContentHandlerFactory( [
 			'mock name 1' => function () {
-				//return new DummyContentHandlerForTesting( 'mock 1', [ 'format 1' ] );
+				// return new DummyContentHandlerForTesting( 'mock 1', [ 'format 1' ] );
 			},
 			'mock name 2' => function () {
-				//return new DummyContentHandlerForTesting( 'mock 0', [ 'format 0' ] );
+				// return new DummyContentHandlerForTesting( 'mock 0', [ 'format 0' ] );
 			},
 		], $objectFactory );
 
@@ -360,7 +360,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 
 		$factory->defineContentHandler( 'some new name',
 			function () {
-				//return new DummyContentHandlerForTesting( 'mock defined', [ 'format defined' ] );
+				// return new DummyContentHandlerForTesting( 'mock defined', [ 'format defined' ] );
 			} );
 
 		$this->assertArrayEquals( [

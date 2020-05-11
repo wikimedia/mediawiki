@@ -311,7 +311,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		);
 
 		$this->setUser( 'anon' );
-		//$this->setUserPerm( "move" );
 		$this->runGroupPermissions( 'move', 'move', [ [ 'movenotallowedfile' ] ] );
 
 		// $this->setUserPerm( "" );
@@ -339,7 +338,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			// $this->setUserPerm( "" );
 			$this->runGroupPermissions( '', 'move', [ [ 'movenotallowed' ] ] );
 
-			//$this->setUserPerm( "move" );
+			// $this->setUserPerm( "move" );
 			$this->runGroupPermissions( 'move', 'move', [] );
 
 			$this->setUser( 'anon' );
@@ -1420,9 +1419,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$user = $this->getMutableTestUser()->getUser();
 		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
 		$this->assertNull( $user->getBlock( false ), 'sanity check' );
-		//$this->assertSame( '', $user->blockedBy(), 'sanity check' );
-		//$this->assertSame( '', $user->blockedFor(), 'sanity check' );
-		//$this->assertFalse( (bool)$user->isHidden(), 'sanity check' );
 		$this->assertFalse( MediaWikiServices::getInstance()->getPermissionManager()
 			->isBlockedFrom( $user, $ut ), 'sanity check' );
 
@@ -1441,9 +1437,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();
 		$this->assertInstanceOf( DatabaseBlock::class, $user->getBlock( false ) );
-		//$this->assertSame( $blocker->getName(), $user->blockedBy() );
-		//$this->assertSame( 'Because', $user->blockedFor() );
-		//$this->assertTrue( (bool)$user->isHidden() );
 		$this->assertTrue( MediaWikiServices::getInstance()->getPermissionManager()
 			->isBlockedFrom( $user, $ut ) );
 
@@ -1453,9 +1446,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		// Clear cache and confirm it loaded the not-blocked properly
 		$user->clearInstanceCache();
 		$this->assertNull( $user->getBlock( false ) );
-		//$this->assertSame( '', $user->blockedBy() );
-		//$this->assertSame( '', $user->blockedFor() );
-		//$this->assertFalse( (bool)$user->isHidden() );
 		$this->assertFalse( MediaWikiServices::getInstance()->getPermissionManager()
 			->isBlockedFrom( $user, $ut ) );
 	}

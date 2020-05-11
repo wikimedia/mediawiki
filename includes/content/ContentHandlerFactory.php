@@ -223,12 +223,12 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 				] );
 		}
 		catch ( InvalidArgumentException $e ) {
-			//legacy support
+			// legacy support
 			throw new MWException( "Wrong Argument HandlerSpec for ModelID: {$modelID}. " .
 				"Error: {$e->getMessage()}" );
 		}
 		catch ( UnexpectedValueException $e ) {
-			//legacy support
+			// legacy support
 			throw new MWException( "Wrong HandlerSpec class for ModelID: {$modelID}. " .
 				"Error: {$e->getMessage()}" );
 		}

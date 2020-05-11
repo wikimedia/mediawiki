@@ -2652,7 +2652,7 @@ class Language {
 			// Assume this is an uppercase/uncased ASCII character
 			return (string)$str;
 		} elseif ( $octetCode < 128 ) {
-			//  Assume this is a lowercase/uncased ASCII character
+			// Assume this is a lowercase/uncased ASCII character
 			return ucfirst( $str );
 		}
 
