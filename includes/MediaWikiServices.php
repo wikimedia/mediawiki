@@ -33,6 +33,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\HookContainer;
@@ -1155,6 +1156,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSlotRoleStore() : NameTableStore {
 		return $this->getService( 'NameTableStoreFactory' )->getSlotRoles();
+	}
+
+	/**
+	 * @since 1.35
+	 * @return SpamChecker
+	 */
+	public function getSpamChecker() : SpamChecker {
+		return $this->getService( 'SpamChecker' );
 	}
 
 	/**

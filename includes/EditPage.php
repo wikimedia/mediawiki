@@ -2095,21 +2095,22 @@ ERROR;
 		}
 
 		# Check for spam
-		$match = self::matchSummarySpamRegex( $this->summary );
+		$spamRegexChecker = MediaWikiServices::getInstance()->getSpamChecker();
+		$match = $spamRegexChecker->checkSummary( $this->summary );
 		if ( $match === false && $this->section == 'new' ) {
 			# $wgSpamRegex is enforced on this new heading/summary because, unlike
 			# regular summaries, it is added to the actual wikitext.
 			if ( $this->sectiontitle !== '' ) {
 				# This branch is taken when the API is used with the 'sectiontitle' parameter.
-				$match = self::matchSpamRegex( $this->sectiontitle );
+				$match = $spamRegexChecker->checkContent( $this->sectiontitle );
 			} else {
 				# This branch is taken when the "Add Topic" user interface is used, or the API
 				# is used with the 'summary' parameter.
-				$match = self::matchSpamRegex( $this->summary );
+				$match = $spamRegexChecker->checkContent( $this->summary );
 			}
 		}
 		if ( $match === false ) {
-			$match = self::matchSpamRegex( $this->textbox1 );
+			$match = $spamRegexChecker->checkContent( $this->textbox1 );
 		}
 		if ( $match !== false ) {
 			$result['spam'] = $match;
@@ -2677,10 +2678,7 @@ ERROR;
 	 * @return string|bool Matching string or false
 	 */
 	public static function matchSpamRegex( $text ) {
-		global $wgSpamRegex;
-		// For back compatibility, $wgSpamRegex may be a single string or an array of regexes.
-		$regexes = (array)$wgSpamRegex;
-		return self::matchSpamRegexInternal( $text, $regexes );
+		return MediaWikiServices::getInstance()->getSpamChecker()->checkContent( $text );
 	}
 
 	/**
@@ -2691,24 +2689,7 @@ ERROR;
 	 * @return string|bool Matching string or false
 	 */
 	public static function matchSummarySpamRegex( $text ) {
-		global $wgSummarySpamRegex;
-		$regexes = (array)$wgSummarySpamRegex;
-		return self::matchSpamRegexInternal( $text, $regexes );
-	}
-
-	/**
-	 * @param string $text
-	 * @param array $regexes
-	 * @return bool|string
-	 */
-	protected static function matchSpamRegexInternal( $text, $regexes ) {
-		foreach ( $regexes as $regex ) {
-			$matches = [];
-			if ( preg_match( $regex, $text, $matches ) ) {
-				return $matches[0];
-			}
-		}
-		return false;
+		return MediaWikiServices::getInstance()->getSpamChecker()->checkSummary( $text );
 	}
 
 	public function setHeaders() {
