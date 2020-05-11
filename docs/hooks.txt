@@ -2875,7 +2875,8 @@ such as when responding to a resource
 loader request or generating HTML output.
 [&]$resourceLoader: ResourceLoader object
 
-'ResourceLoaderTestModules': DEPRECATED since 1.33! Register ResourceLoader modules
+'ResourceLoaderTestModules': DEPRECATED since 1.33! Use the QUnitTestModule static extension
+registration attribute instead. Register ResourceLoader modules
 that are only available when `$wgEnableJavaScriptTest` is true. Use this for test
 suites and other test-only resources.
 &$testModules: one array of modules per test framework. The modules array
