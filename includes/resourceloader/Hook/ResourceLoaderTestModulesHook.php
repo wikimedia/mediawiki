@@ -5,7 +5,7 @@ namespace MediaWiki\ResourceLoader\Hook;
 use ResourceLoader;
 
 /**
- * @deprecated since 1.33
+ * @deprecated since 1.33; use the QUnitTestModule static extension registration attribute instead.
  * @ingroup ResourceLoaderHooks
  */
 interface ResourceLoaderTestModulesHook {
