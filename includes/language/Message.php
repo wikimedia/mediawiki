@@ -136,8 +136,8 @@ use MediaWiki\MediaWikiServices;
  *     wfMessage( 'key', 'apple', 'pear' )->text();
  * @endcode
  *
- * Shortcut for escaping the message too, similar to wfMsgHTML(), but
- * parameters are not replaced after escaping by default.
+ * Shortcut for escaping the message. Parameters are not replaced after escaping
+ * by default.
  * @code
  *     $escaped = wfMessage( 'key' )
  *          ->rawParams( 'apple' )

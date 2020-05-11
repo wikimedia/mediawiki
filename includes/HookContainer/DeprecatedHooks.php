@@ -53,6 +53,7 @@ class DeprecatedHooks {
 		'RevisionInsertComplete' => [ 'deprecatedVersion' => '1.31' ],
 		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],
 		'UserRetrieveNewTalks' => [ 'deprecatedVersion' => '1.35' ],
+		'UserSetCookies' => [ 'deprecatedVersion' => '1.27' ],
 	];
 
 	/**
