@@ -149,12 +149,13 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertContains( 'writetest', $rights, 'sanity check' );
 		$this->assertNotContains( 'nukeworld', $rights, 'sanity check' );
 
-		// Add a hook manipluating the rights
+		// Add a hook manipulating the rights
 		$this->setTemporaryHook( 'UserGetRights', function ( $user, &$rights ) {
 			$rights[] = 'nukeworld';
 			$rights = array_diff( $rights, [ 'writetest' ] );
 		} );
 
+		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache( $user );
 		$rights = $user->getRights();
 		$this->assertContains( 'test', $rights );
 		$this->assertContains( 'runtest', $rights );
@@ -583,10 +584,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $status->isGood() );
 		$this->assertSame( $status->getErrors()[0]['message'], 'isValidPassword returned false' );
 
-		// Unregister
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'isValidPassword' => []
-		] );
+		$this->removeTemporaryHook( 'isValidPassword' );
 
 		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
 			$result = true;
@@ -597,10 +595,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertTrue( $status->isGood() );
 		$this->assertSame( [], $status->getErrors() );
 
-		// Unregister
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'isValidPassword' => []
-		] );
+		$this->removeTemporaryHook( 'isValidPassword' );
 
 		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
 			$result = 'isValidPassword returned true';
@@ -611,10 +606,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $status->isGood() );
 		$this->assertSame( $status->getErrors()[0]['message'], 'isValidPassword returned true' );
 
-		// Unregister
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'isValidPassword' => []
-		] );
+		$this->removeTemporaryHook( 'isValidPassword' );
 
 		// On the forbidden list
 		$user = User::newFromName( 'Useruser' );
@@ -749,9 +741,7 @@ class UserTest extends MediaWikiTestCase {
 		$user->logout();
 		$this->assertTrue( $user->isLoggedIn() );
 
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'UserLogout' => []
-		] );
+		$this->removeTemporaryHook( 'UserLogout' );
 		$user->logout();
 		$this->assertFalse( $user->isLoggedIn() );
 
@@ -2482,10 +2472,7 @@ class UserTest extends MediaWikiTestCase {
 		} );
 		$user->setEmail( 'TestEmail@mediawiki.org' );
 
-		// Unregister failing
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'UserSetEmail' => []
-		] );
+		$this->removeTemporaryHook( 'UserSetEmail' );
 
 		$this->setTemporaryHook( 'UserSetEmail', function ( $user, &$email ) {
 			$email = 'SettingIntercepted@mediawiki.org';
@@ -2506,11 +2493,9 @@ class UserTest extends MediaWikiTestCase {
 			'Hooks can override getting email address'
 		);
 
-		// Unregister hooks
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'UserSetEmail' => [],
-			'UserGetEmail' => []
-		] );
+		$this->removeTemporaryHook( 'UserGetEmail' );
+		$this->removeTemporaryHook( 'UserSetEmail' );
+
 		$user->invalidateEmail();
 		$this->assertSame(
 			'',
@@ -2729,9 +2714,7 @@ class UserTest extends MediaWikiTestCase {
 			$this->user->pingLimiter(),
 			'Hooks that just return false leave $result false'
 		);
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'PingLimiter' => []
-		] );
+		$this->removeTemporaryHook( 'PingLimiter' );
 
 		// Hook sets $result to true
 		$this->setTemporaryHook(
@@ -2745,9 +2728,7 @@ class UserTest extends MediaWikiTestCase {
 			$this->user->pingLimiter(),
 			'Hooks can set $result to true'
 		);
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'PingLimiter' => []
-		] );
+		$this->removeTemporaryHook( 'PingLimiter' );
 
 		// Unknown action
 		$this->assertFalse(

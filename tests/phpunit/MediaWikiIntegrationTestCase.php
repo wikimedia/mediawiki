@@ -14,7 +14,6 @@ use SebastianBergmann\Comparator\ComparisonFailure;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -119,21 +118,26 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private $ignoredLoggers = [];
 
 	/**
-	 * @var callable[]
-	 */
-	private $temporaryHookHandlers = [];
-
-	/**
-	 * @var ScopedCallback[]
-	 */
-	private $temporaryHookScopes = [];
-
-	/**
 	 * Holds a list of services that were overridden with setService().  Used for printing an error
 	 * if overrideMwServices() overrides a service that was previously set.
 	 * @var string[]
 	 */
 	private $overriddenServices = [];
+
+	/**
+	 * @var callable[]
+	 */
+	private $originalHookHandlers = [];
+
+	/**
+	 * @var callable[]
+	 */
+	private $temporaryHookHandlers = [];
+
+	/**
+	 * @var \Wikimedia\ScopedCallback[]
+	 */
+	private $temporaryHookScopes = [];
 
 	/**
 	 * Table name prefix.
@@ -651,6 +655,26 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// If anything faked the time, reset it
 		ConvertibleTimestamp::setFakeTime( false );
+
+		// Remove handlers set by setTemporaryHook()
+		$this->temporaryHookHandlers = [];
+		$this->temporaryHookScopes = [];
+
+		$this->restoreLegacyRegisteredHookHandlers();
+	}
+
+	/**
+	 * Restore handlers that were registered if setTemporaryHook() overrides them.
+	 * @since 1.35
+	 *
+	 */
+	private function restoreLegacyRegisteredHookHandlers() {
+		$originalHandlers = $this->localServices->getHookContainer()->getOriginalHooksForTest();
+		foreach ( $originalHandlers as $hook => $ogHandlers ) {
+			foreach ( $ogHandlers as $handler ) {
+				$this->localServices->getHookContainer()->register( $hook, $handler );
+			}
+		}
 	}
 
 	/**
@@ -866,6 +890,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.34
 	 */
 	protected function resetServices() {
+		// Consume temporary hooks
+		$this->temporaryHookScopes = [];
+
 		// Reset but don't destroy service instances supplied via setService().
 		foreach ( $this->overriddenServices as $name ) {
 			$this->localServices->resetServiceForTesting( $name, false );
@@ -875,6 +902,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// This will not have any effect on services that had already been reset above.
 		foreach ( $this->localServices->getServiceNames() as $name ) {
 			$this->localServices->resetServiceForTesting( $name, true );
+		}
+
+		// Reapply temporary hooks
+		foreach ( $this->temporaryHookHandlers as $name => $callback ) {
+			$this->setTemporaryHook( $name, $callback );
 		}
 
 		self::resetLegacyGlobals();
@@ -2275,16 +2307,36 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Create a temporary hook handler which will be reset by tearDown.
-	 * This replaces other handlers for the same hook.
-	 *
-	 * @note This will call resetServices().
+	 * This will only replace handlers that have been registered in $wgHooks.
 	 *
 	 * @param string $hookName Hook name
 	 * @param mixed $handler Value suitable for a hook handler
+	 * @param bool $replace (optional) Default is to replace all existing handlers for the given hook.
+	 *        Set false to add to existing handler array
 	 * @since 1.28
 	 */
-	protected function setTemporaryHook( $hookName, $handler ) {
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [ $hookName => [ $handler ] ] );
+	protected function setTemporaryHook( $hookName, $handler, $replace = false ) {
+		global $wgHooks;
+
+		// Stash and unset handlers registered through $wgHooks global
+		$this->doStashMwGlobals( [ 'wgHooks' ] );
+		if ( isset( $wgHooks[$hookName] ) ) {
+			unset( $wgHooks[$hookName] );
+		}
+		$this->temporaryHookHandlers[$hookName] = $handler;
+		$this->temporaryHookScopes[$hookName][] =
+			$this->localServices->getHookContainer()->scopedRegister( $hookName, $handler, $replace );
+	}
+
+	/**
+	 * Remove a temporary hook. Use this if you need to remove a temporary hook
+	 * before teardown.
+	 *
+	 * @param string $hookName
+	 */
+	protected function removeTemporaryHook( $hookName ) {
+		$this->temporaryHookHandlers[$hookName] = [];
+		$this->temporaryHookScopes[$hookName] = [];
 	}
 
 	/**
@@ -2322,17 +2374,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			false,
 			$user
 		);
-	}
-
-	/**
-	 * Remove a temporary hook. Use this if you need to remove a temporary hook
-	 * before teardown.
-	 *
-	 * @param string $hookName
-	 */
-	protected function removeTemporaryHook( $hookName ) {
-		$this->temporaryHookHandlers[$hookName] = [];
-		$this->temporaryHookScopes[$hookName] = [];
 	}
 
 	/**

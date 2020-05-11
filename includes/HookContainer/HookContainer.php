@@ -57,6 +57,9 @@ class HookContainer implements SalvageableService {
 	/** @var int The next ID to be used by scopedRegister() */
 	private $nextScopedRegisterId = 0;
 
+	/** @var array existing hook names and their handlers to restore between tests */
+	private $originalHooks;
+
 	/**
 	 * @param ExtensionRegistry $extensionRegistry
 	 * @param ObjectFactory $objectFactory
@@ -187,15 +190,43 @@ class HookContainer implements SalvageableService {
 	 * Intended for use in temporary registration e.g. testing
 	 *
 	 * @param string $hook Name of hook
-	 * @param callable|string|array $callback handler object to attach
+	 * @param callable|string|array $callback Handler object to attach
+	 * @param bool $replace (optional) By default adds callback to handler array.
+	 *        Set true to remove all existing callbacks for the hook.
 	 * @return ScopedCallback
 	 */
-	public function scopedRegister( string $hook, $callback ) : ScopedCallback {
+	public function scopedRegister( string $hook, $callback, bool $replace = false ) : ScopedCallback {
+		if ( $replace ) {
+			// Stash any previously registered hooks
+			if ( !isset( $this->originalHooks[$hook] ) &&
+				isset( $this->legacyRegisteredHandlers[$hook] )
+			) {
+				$this->originalHooks[$hook] = $this->legacyRegisteredHandlers[$hook];
+			}
+			$this->legacyRegisteredHandlers[$hook] = [ $callback ];
+			return new ScopedCallback( function () use ( $hook ) {
+				unset( $this->legacyRegisteredHandlers[$hook] );
+			} );
+		}
 		$id = $this->nextScopedRegisterId++;
 		$this->legacyRegisteredHandlers[$hook][$id] = $callback;
 		return new ScopedCallback( function () use ( $hook, $id ) {
 			unset( $this->legacyRegisteredHandlers[$hook][$id] );
 		} );
+	}
+
+	/**
+	 * Return hooks that were set before being potentially overridden by scopedRegister().
+	 * For use in restoring registered hook handlers between tests.
+	 *
+	 * @return array Associative array mapping hook names to array of handlers
+	 * @throws MWException
+	 */
+	public function getOriginalHooksForTest() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
+			throw new MWException( 'Cannot get original hooks outside when not in test mode' );
+		}
+		return $this->originalHooks ?? [];
 	}
 
 	/**

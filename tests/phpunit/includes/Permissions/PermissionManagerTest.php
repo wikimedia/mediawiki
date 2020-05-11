@@ -124,11 +124,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function tearDown() : void {
-		parent::tearDown();
-		$this->restoreMwServices();
-	}
-
 	protected function setTitle( $ns, $title = "Main_Page" ) {
 		$this->title = Title::makeTitle( $ns, $title );
 	}
@@ -1601,9 +1596,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser( [ 'unittesters', 'testwriters' ] )->getUser();
 		$userWrapper = TestingAccessWrapper::newFromObject( $user );
 
-		$rights = MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->getUserPermissions( $user );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$rights = $permissionManager->getUserPermissions( $user );
 		$this->assertContains( 'test', $rights, 'sanity check' );
 		$this->assertContains( 'runtest', $rights, 'sanity check' );
 		$this->assertContains( 'writetest', $rights, 'sanity check' );
@@ -1615,9 +1609,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			$rights = array_diff( $rights, [ 'writetest' ] );
 		} );
 
-		$rights = MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->getUserPermissions( $user );
+		$permissionManager->invalidateUsersRightsCache( $user );
+		$rights = $permissionManager->getUserPermissions( $user );
 		$this->assertContains( 'test', $rights );
 		$this->assertContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
