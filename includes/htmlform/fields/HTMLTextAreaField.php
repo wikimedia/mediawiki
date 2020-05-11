@@ -88,7 +88,7 @@ class HTMLTextAreaField extends HTMLFormField {
 		return Html::textarea( $this->mName, $value, $attribs );
 	}
 
-	function getInputOOUI( $value ) {
+	public function getInputOOUI( $value ) {
 		$classes = [];
 
 		if ( isset( $this->mParams['cols'] ) ) {
