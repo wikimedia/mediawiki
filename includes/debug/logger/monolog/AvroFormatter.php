@@ -39,7 +39,7 @@ class AvroFormatter implements FormatterInterface {
 	/**
 	 * @var Magic byte to encode schema revision id.
 	 */
-	const MAGIC = 0x0;
+	private const MAGIC = 0x0;
 	/**
 	 * @var array Map from schema name to schema definition
 	 */
