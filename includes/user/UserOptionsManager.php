@@ -49,8 +49,8 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	/** @var ServiceOptions */
 	private $serviceOptions;
 
-	/** @var DefaultOptionsManager */
-	private $defaultOptionsManager;
+	/** @var DefaultOptionsLookup */
+	private $defaultOptionsLookup;
 
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
@@ -68,23 +68,22 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	private $originalOptionsCache = [];
 
 	/**
-	 * UserOptionsManager constructor.
 	 * @param ServiceOptions $options
-	 * @param DefaultOptionsManager $defaultOptionsManager
+	 * @param DefaultOptionsLookup $defaultOptionsLookup
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		DefaultOptionsManager $defaultOptionsManager,
+		DefaultOptionsLookup $defaultOptionsLookup,
 		LanguageConverterFactory $languageConverterFactory,
 		ILoadBalancer $loadBalancer,
 		LoggerInterface $logger
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
-		$this->defaultOptionsManager = $defaultOptionsManager;
+		$this->defaultOptionsLookup = $defaultOptionsLookup;
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->loadBalancer = $loadBalancer;
 		$this->logger = $logger;
@@ -94,14 +93,14 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	 * @inheritDoc
 	 */
 	public function getDefaultOptions(): array {
-		return $this->defaultOptionsManager->getDefaultOptions();
+		return $this->defaultOptionsLookup->getDefaultOptions();
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getDefaultOption( string $opt ) {
-		return $this->defaultOptionsManager->getDefaultOption( $opt );
+		return $this->defaultOptionsLookup->getDefaultOption( $opt );
 	}
 
 	/**
@@ -119,7 +118,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
 		if ( !$ignoreHidden && in_array( $oname, $this->serviceOptions->get( 'HiddenPrefs' ) ) ) {
-			return $this->defaultOptionsManager->getDefaultOption( $oname );
+			return $this->defaultOptionsLookup->getDefaultOption( $oname );
 		}
 
 		$options = $this->loadUserOptions( $user );
@@ -141,14 +140,14 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
 		foreach ( $this->serviceOptions->get( 'HiddenPrefs' ) as $pref ) {
-			$default = $this->defaultOptionsManager->getDefaultOption( $pref );
+			$default = $this->defaultOptionsLookup->getDefaultOption( $pref );
 			if ( $default !== null ) {
 				$options[$pref] = $default;
 			}
 		}
 
 		if ( $flags & self::EXCLUDE_DEFAULTS ) {
-			$options = array_diff_assoc( $options, $this->defaultOptionsManager->getDefaultOptions() );
+			$options = array_diff_assoc( $options, $this->defaultOptionsLookup->getDefaultOptions() );
 		}
 
 		return $options;
@@ -168,7 +167,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 
 		// Explicitly NULL values should refer to defaults
 		if ( $val === null ) {
-			$val = $this->defaultOptionsManager->getDefaultOption( $oname );
+			$val = $this->defaultOptionsLookup->getDefaultOption( $oname );
 		}
 
 		$userKey = $this->getCacheKey( $user );
@@ -193,7 +192,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
 	) {
 		$oldOptions = $this->loadUserOptions( $user );
-		$defaultOptions = $this->defaultOptionsManager->getDefaultOptions();
+		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
 
 		if ( !is_array( $resetKinds ) ) {
 			$resetKinds = [ $resetKinds ];
@@ -378,7 +377,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		$insert_rows = []; // all the new preference rows
 		foreach ( $saveOptions as $key => $value ) {
 			// Don't bother storing default values
-			$defaultOption = $this->defaultOptionsManager->getDefaultOption( $key );
+			$defaultOption = $this->defaultOptionsLookup->getDefaultOption( $key );
 			if ( ( $defaultOption === null && $value !== false && $value !== null )
 				|| $value != $defaultOption
 			) {
@@ -458,7 +457,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 			return $this->optionsCache[$userKey];
 		}
 
-		$options = $this->defaultOptionsManager->getDefaultOptions();
+		$options = $this->defaultOptionsLookup->getDefaultOptions();
 
 		if ( !$user->isRegistered() ) {
 			// For unlogged-in users, load language/variant options from request.

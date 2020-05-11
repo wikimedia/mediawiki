@@ -92,7 +92,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\SqlBlobStore;
-use MediaWiki\User\DefaultOptionsManager;
+use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -1119,7 +1119,7 @@ return [
 	'UserOptionsManager' => function ( MediaWikiServices $services ) : UserOptionsManager {
 		return new UserOptionsManager(
 			new ServiceOptions( UserOptionsManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->get( '_DefaultOptionsManager' ),
+			$services->get( '_DefaultOptionsLookup' ),
 			$services->getLanguageConverterFactory(),
 			$services->getDBLoadBalancer(),
 			LoggerFactory::getInstance( 'UserOptionsManager' )
@@ -1185,9 +1185,9 @@ return [
 		);
 	},
 
-	'_DefaultOptionsManager' => function ( MediaWikiServices $services ) : DefaultOptionsManager {
-		return new DefaultOptionsManager(
-			new ServiceOptions( DefaultOptionsManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+	'_DefaultOptionsLookup' => function ( MediaWikiServices $services ) : DefaultOptionsLookup {
+		return new DefaultOptionsLookup(
+			new ServiceOptions( DefaultOptionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage()
 		);
 	},

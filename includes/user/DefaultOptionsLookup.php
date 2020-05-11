@@ -31,7 +31,7 @@ use Wikimedia\Assert\Assert;
  * A service class to control default user options
  * @since 1.35
  */
-class DefaultOptionsManager extends UserOptionsLookup {
+class DefaultOptionsLookup extends UserOptionsLookup {
 
 	public const CONSTRUCTOR_OPTIONS = [
 		'DefaultSkin',
@@ -127,7 +127,7 @@ class DefaultOptionsManager extends UserOptionsLookup {
 	}
 
 	/**
-	 * Checks if the DefaultOptionsManager is usable as an instance of UserOptionsLookup.
+	 * Checks if the DefaultOptionsLookup is usable as an instance of UserOptionsLookup.
 	 * It only makes sense in an installer context when UserOptionsManager cannot be yet instantiated
 	 * as the database is not available. Thus, this can only be called for an anon user,
 	 * calling under different circumstances indicates a bug.
