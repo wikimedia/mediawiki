@@ -79,7 +79,7 @@ abstract class Password {
 	/**
 	 * Hash must fit in user_password, which is a tinyblob
 	 */
-	const MAX_HASH_SIZE = 255;
+	private const MAX_HASH_SIZE = 255;
 
 	/**
 	 * Construct the Password object using a string hash

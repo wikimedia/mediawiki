@@ -33,7 +33,7 @@ class SparqlClient {
 	/**
 	 * Limit on how long can be the query to be sent by GET.
 	 */
-	const MAX_GET_SIZE = 2048;
+	public const MAX_GET_SIZE = 2048;
 
 	/**
 	 * User agent for HTTP requests.
