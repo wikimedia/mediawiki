@@ -599,7 +599,7 @@ abstract class ContentHandler {
 	final public function getSlotDiffRenderer( IContextSource $context, array $options = [] ) {
 		$slotDiffRenderer = $this->getSlotDiffRendererWithOptions( $context, $options );
 		if ( get_class( $slotDiffRenderer ) === TextSlotDiffRenderer::class ) {
-			//  To keep B/C, when SlotDiffRenderer is not overridden for a given content type
+			// To keep B/C, when SlotDiffRenderer is not overridden for a given content type
 			// but DifferenceEngine is, use that instead.
 			$differenceEngine = $this->createDifferenceEngine( $context );
 			if ( get_class( $differenceEngine ) !== DifferenceEngine::class ) {

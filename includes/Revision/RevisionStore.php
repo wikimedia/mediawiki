@@ -2915,7 +2915,7 @@ class RevisionStore
 		LinkTarget $title,
 		int $flags = IDBAccessObject::READ_NORMAL
 	): ?RevisionRecord {
-		$titleObj = Title::newFromLinkTarget( $title ); //TODO: eventually we shouldn't need a title
+		$titleObj = Title::newFromLinkTarget( $title ); // TODO: eventually we shouldn't need a title
 		return $this->newRevisionFromConds(
 			[
 				'page_namespace' => $title->getNamespace(),

@@ -2033,7 +2033,7 @@ class Linker {
 		$options = [ 'known', 'noclasses' ];
 
 		if ( $context->getRequest()->getBool( 'bot' ) ) {
-			//T17999
+			// T17999
 			$query['hidediff'] = '1';
 			$query['bot'] = '1';
 		}

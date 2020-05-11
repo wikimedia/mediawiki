@@ -244,7 +244,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 	protected function makeMessageValue( IApiMessage $msg ) {
 		$params = [];
 
-		//TODO: find a better home for the parameter mapping logic
+		// TODO: find a better home for the parameter mapping logic
 		foreach ( $msg->getParams() as $p ) {
 			$params[] = $this->makeMessageParam( $p );
 		}
