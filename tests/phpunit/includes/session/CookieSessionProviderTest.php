@@ -178,6 +178,12 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$name = $user->getName();
 		$token = $user->getToken( true );
 
+		$this->hideDeprecated(
+			'UserSetCookies hook (used in '
+			. get_class( $this->getMockBuilder( __CLASS__ ) )
+			. '::onUserSetCookies)'
+		);
+
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
 		// No data
@@ -653,6 +659,9 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$backend->setForceHTTPS( false );
 		$backend->setLoggedOutTimestamp( $loggedOut = time() );
 		$request = new \FauxRequest();
+
+		$this->hideDeprecated( 'UserSetCookies hook (used in onUserSetCookies)' );
+
 		$provider->persistSession( $backend, $request );
 		$this->assertSame( $sessionId, $request->response()->getCookie( 'MySessionName' ) );
 		$this->assertSame( (string)$user->getId(), $request->response()->getCookie( 'xUserID' ) );

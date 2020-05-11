@@ -321,7 +321,7 @@ mw.jqueryMsg.Parser.prototype = {
 			wikiText = this.settings.messages.get( key );
 			if (
 				mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
-				( !wikiText || wikiText === '(' + key + ')' )
+				wikiText === '(' + key + ')'
 			) {
 				wikiText = '(' + key + '$*)';
 			} else if ( typeof wikiText !== 'string' ) {
