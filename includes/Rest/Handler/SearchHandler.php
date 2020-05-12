@@ -10,10 +10,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Entity\SearchResultPageIdentityValue;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
-use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
-use MediaWiki\Rest\ResponseFactory;
-use MediaWiki\Rest\Router;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use RequestContext;
 use SearchEngine;
@@ -104,20 +101,8 @@ class SearchHandler extends Handler {
 		$this->completionCacheExpiry = $config->get( 'SearchSuggestCacheExpiry' );
 	}
 
-	public function init(
-		Router $router,
-		RequestInterface $request,
-		array $config,
-		ResponseFactory $responseFactory
-	) {
-		parent::init(
-			$router,
-			$request,
-			$config,
-			$responseFactory
-		);
-
-		$this->mode = $config['mode'] ?? self::FULLTEXT_MODE;
+	protected function postInitSetup() {
+		$this->mode = $this->getConfig()['mode'] ?? self::FULLTEXT_MODE;
 
 		if ( !in_array( $this->mode, self::SUPPORTED_MODES ) ) {
 			throw new InvalidArgumentException(
