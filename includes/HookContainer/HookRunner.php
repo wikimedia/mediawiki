@@ -424,6 +424,7 @@ class HookRunner implements
 	\MediaWiki\Interwiki\Hook\InterwikiLoadPrefixHook,
 	\MediaWiki\Languages\Hook\LanguageGetTranslatedLanguageNamesHook,
 	\MediaWiki\Languages\Hook\Language__getMessagesFileNameHook,
+	\MediaWiki\Linker\Hook\LinkerGenerateRollbackLinkHook,
 	\MediaWiki\Linker\Hook\HtmlPageLinkRendererBeginHook,
 	\MediaWiki\Linker\Hook\HtmlPageLinkRendererEndHook,
 	\MediaWiki\Page\Hook\ArticleConfirmDeleteHook,
@@ -2320,6 +2321,13 @@ class HookRunner implements
 		return $this->container->run(
 			'Language::getMessagesFileName',
 			[ $code, &$file ]
+		);
+	}
+
+	public function onLinkerGenerateRollbackLink( $revRecord, $context, $options, &$inner ) {
+		return $this->container->run(
+			'LinkerGenerateRollbackLink',
+			[ $revRecord, $context, $options, &$inner ]
 		);
 	}
 
