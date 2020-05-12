@@ -68,11 +68,13 @@ class UserContributionsHandler extends Handler {
 		$revisionsData = [];
 
 		foreach ( $segment->getRevisions() as $revision ) {
+			$id = $revision->getId();
 			$revisionsData[] = [
-				"id" => $revision->getId(),
+				"id" => $id,
 				"comment" => $revision->getComment()->text,
 				"timestamp" => wfTimestamp( TS_ISO_8601, $revision->getTimestamp() ),
 				"size" => $revision->getSize(),
+				"tags" => $segment->getTagsForRevision( $id ),
 				"page" => [
 					"id" => $revision->getPageId(),
 					"key" => $revision->getPageAsLinkTarget()->getDBkey(),
