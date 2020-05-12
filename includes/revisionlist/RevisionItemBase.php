@@ -93,7 +93,7 @@ abstract class RevisionItemBase {
 	 */
 	public function getId() {
 		$field = $this->getIdField();
-		return $this->row->$field;
+		return intval( $this->row->$field );
 	}
 
 	/**
