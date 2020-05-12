@@ -19,25 +19,10 @@
 	</rule>
 	<!-- TODO Still to be done -->
 	<rule ref="PSR12.Properties.ConstantVisibility.NotFound">
-		<exclude-pattern>includes/ActorMigration\.php</exclude-pattern>
-		<exclude-pattern>includes/CategoriesRdf\.php</exclude-pattern>
-		<exclude-pattern>includes/Category\.php</exclude-pattern>
-		<exclude-pattern>includes/CommentStore\.php</exclude-pattern>
-		<exclude-pattern>includes/ContentSecurityPolicy\.php</exclude-pattern>
-		<exclude-pattern>includes/ForkController\.php</exclude-pattern>
 		<exclude-pattern>includes/FormOptions\.php</exclude-pattern>
-		<exclude-pattern>includes/LinkFilter\.php</exclude-pattern>
-		<exclude-pattern>includes/Linker\.php</exclude-pattern>
-		<exclude-pattern>includes/MediaWiki\.php</exclude-pattern>
-		<exclude-pattern>includes/MergeHistory\.php</exclude-pattern>
-		<exclude-pattern>includes/PageProps\.php</exclude-pattern>
-		<exclude-pattern>includes/Pingback\.php</exclude-pattern>
 		<exclude-pattern>includes/Rest/</exclude-pattern>
 		<exclude-pattern>includes/Revision/</exclude-pattern>
 		<exclude-pattern>includes/Storage/</exclude-pattern>
-		<exclude-pattern>includes/StreamFile\.php</exclude-pattern>
-		<exclude-pattern>includes/Title\.php</exclude-pattern>
-		<exclude-pattern>includes/WebRequest\.php</exclude-pattern>
 		<exclude-pattern>includes/actions/</exclude-pattern>
 		<exclude-pattern>includes/api/</exclude-pattern>
 		<exclude-pattern>includes/block/</exclude-pattern>

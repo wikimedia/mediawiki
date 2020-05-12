@@ -69,7 +69,7 @@ class WebRequest {
 	 * Flag to make WebRequest::getHeader return an array of values.
 	 * @since 1.26
 	 */
-	const GETHEADER_LIST = 1;
+	public const GETHEADER_LIST = 1;
 
 	/**
 	 * The unique request ID.

@@ -36,7 +36,7 @@ class Pingback {
 	 *   payload. The schema lives on MetaWiki, at
 	 *   <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>.
 	 */
-	const SCHEMA_REV = 15781718;
+	private const SCHEMA_REV = 15781718;
 
 	/** @var LoggerInterface */
 	protected $logger;
