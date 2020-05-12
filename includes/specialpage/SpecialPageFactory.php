@@ -110,7 +110,12 @@ class SpecialPageFactory {
 
 		// Users and rights
 		'Activeusers' => \SpecialActiveUsers::class,
-		'Block' => \SpecialBlock::class,
+		'Block' => [
+			'class' => \SpecialBlock::class,
+			'services' => [
+				'PermissionManager'
+			]
+		],
 		'Unblock' => \SpecialUnblock::class,
 		'BlockList' => \SpecialBlockList::class,
 		'AutoblockList' => \SpecialAutoblockList::class,

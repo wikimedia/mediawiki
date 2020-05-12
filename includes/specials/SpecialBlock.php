@@ -25,6 +25,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 
@@ -35,6 +36,11 @@ use Wikimedia\IPUtils;
  * @ingroup SpecialPage
  */
 class SpecialBlock extends FormSpecialPage {
+	/**
+	 * @var PermissionManager
+	 */
+	private $permissionManager;
+
 	/** @var User|string|null User to be blocked, as passed either by parameter (url?wpTarget=Foo)
 	 * or as subpage (Special:Block/Foo)
 	 */
@@ -55,8 +61,10 @@ class SpecialBlock extends FormSpecialPage {
 	/** @var array */
 	protected $preErrors = [];
 
-	public function __construct() {
+	public function __construct( PermissionManager $permissionManager ) {
 		parent::__construct( 'Block', 'block' );
+
+		$this->permissionManager = $permissionManager;
 	}
 
 	public function doesWrites() {
@@ -278,10 +286,7 @@ class SpecialBlock extends FormSpecialPage {
 		];
 
 		# Allow some users to hide name from block log, blocklist and listusers
-		if ( MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $user, 'hideuser' )
-		) {
+		if ( $this->permissionManager->userHasRight( $user, 'hideuser' ) ) {
 			$a['HideUser'] = [
 				'type' => 'check',
 				'label-message' => 'ipbhidename',
@@ -375,8 +380,7 @@ class SpecialBlock extends FormSpecialPage {
 
 			// If the username was hidden (ipb_deleted == 1), don't show the reason
 			// unless this user also has rights to hideuser: T37839
-			if ( !$block->getHideName() || MediaWikiServices::getInstance()
-					->getPermissionManager()
+			if ( !$block->getHideName() || $this->permissionManager
 					->userHasRight( $this->getUser(), 'hideuser' )
 			) {
 				$fields['Reason']['default'] = $block->getReasonComment()->text;
@@ -547,8 +551,7 @@ class SpecialBlock extends FormSpecialPage {
 		$user = $this->getUser();
 
 		# Link to edit the block dropdown reasons, if applicable
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $permissionManager->userHasRight( $user, 'editinterface' ) ) {
+		if ( $this->permissionManager->userHasRight( $user, 'editinterface' ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$this->msg( 'ipbreason-dropdown' )->inContentLanguage()->getTitle(),
 				$this->msg( 'ipb-edit-dropdown' )->text(),
@@ -582,7 +585,7 @@ class SpecialBlock extends FormSpecialPage {
 			$text .= $out;
 
 			# Add suppression block entries if allowed
-			if ( $permissionManager->userHasRight( $user, 'suppressionlog' ) ) {
+			if ( $this->permissionManager->userHasRight( $user, 'suppressionlog' ) ) {
 				LogEventsList::showLogExtract(
 					$out,
 					'suppress',
