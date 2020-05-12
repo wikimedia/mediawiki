@@ -780,6 +780,7 @@
 	"token_suffix_mismatch": "<strong>Düzenleme anahtarındaki noktalama işaretlerini yönettiği için düzenlemeniz reddedildi.</strong>\nSayfa metninin bozulmasını önlemek için düzenleme reddedildi.\nBu bazen, hatalı web tabanlı anonim bir proxy hizmeti kullandığınızda olur.",
 	"edit_form_incomplete": "<strong>Değişiklik formu için bazı sunuculara erişilemedi; yaptığınız değişiklikler bozulmamıştır, gözden geçirip tekrar deneyiniz.</strong>",
 	"editing": "\"$1\" sayfasını değiştirmektesiniz",
+	"edit-textarea-aria-label": "Vikimetin kaynak editörü",
 	"creating": "$1 sayfasını oluşturuyorsunuz",
 	"editingsection": "\"$1\" sayfasında değiştirmektesiniz (bölüm)",
 	"editingcomment": "$1 değiştiriliyor (yeni bölüm)",

@@ -783,6 +783,7 @@
 	"token_suffix_mismatch": "<strong>因您使用的瀏覽器破壞了編輯密鑰中的特殊符號，您的編輯已被拒絕。</strong>\n為了避免破壞頁面內容，已拒絕此次編輯動作，\n會發生這個問題通常是因為您使用了有問題的匿名網頁代理伺服器。",
 	"edit_form_incomplete": "<strong>部份編輯的內容未送至伺服器，請檢查您的編輯內容是否完整並再試一次。</strong>",
 	"editing": "正在編輯 $1",
+	"edit-textarea-aria-label": "Wiki 語法原始碼編輯器",
 	"creating": "正在建立 $1",
 	"editingsection": "正在編輯 $1 (章節)",
 	"editingcomment": "正在編輯 $1 (新章節)",

@@ -514,7 +514,7 @@
 	"userlogout": "Afmelden",
 	"notloggedin": "Niet aangemeld",
 	"userlogin-noaccount": "Hebt u geen account?",
-	"userlogin-joinproject": "Word lid van {{SITENAME}}",
+	"userlogin-joinproject": "Bij {{SITENAME}} registreren",
 	"createaccount": "Registreren",
 	"userlogin-resetpassword-link": "Wachtwoord vergeten?",
 	"userlogin-helplink2": "Hulp bij aanmelden",

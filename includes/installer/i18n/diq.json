@@ -48,7 +48,7 @@
 	"config-db-password": "Database parola :",
 	"config-db-port": "Portê database:",
 	"config-type-mysql": "MariaDB, MySQL, ya zi umışin",
-	"config-header-mysql": "Eyarê MySQL/MariaDB",
+	"config-header-mysql": "Eyarê MySQL/MariaDByi",
 	"config-header-sqlite": "SQLite sazi",
 	"config-missing-db-name": "\"{{int:config-db-name}}\"nrë jew erc dekerdış gerek keno.",
 	"config-missing-db-host": "\"{{int:config-db-host}}\" rë jew erc gerek keno",
