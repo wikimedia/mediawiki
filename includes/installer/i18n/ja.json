@@ -17,6 +17,7 @@
 			"Rxy",
 			"Shield-9",
 			"Shirayuki",
+			"Siglite3",
 			"Suchichi02",
 			"Sujiniku",
 			"Takot",
@@ -75,7 +76,7 @@
 	"config-env-good": "環境を確認しました。\nMediaWiki をインストールできます。",
 	"config-env-bad": "環境を確認しました。\nMediaWiki のインストールはできません。",
 	"config-env-php": "PHP $1がインストールされています。",
-	"config-unicode-using-intl": "Unicode正規化に[https://php.net/manual/en/book.intl.php PHP intl \n 拡張機能]を使用。",
+	"config-unicode-using-intl": "Unicode 正規化に[https://php.net/manual/en/book.intl.php PHP intl 拡張機能]を使用。",
 	"config-unicode-pure-php-warning": "<strong>警告:</strong> Unicode 正規化の処理に[https://php.net/manual/en/book.intl.php PHP intl 拡張機能]を利用できないため、処理が遅いピュア PHP の実装を代わりに使用しています。\n高トラフィックのサイトを運営する場合、[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode 正規化]は必ず読むよう推奨されます。",
 	"config-unicode-update-warning": "<strong>警告:</strong> インストールされているバージョンの Unicode 正規化ラッパーは、[http://site.icu-project.org/ ICU プロジェクト]のライブラリの古いバージョンを使用しています。\nUnicode を少しでも利用する可能性がある場合は、[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations アップグレード]してください。",
 	"config-no-db": "適切なデータベース ドライバーが見つかりませんでした! PHP にデータベース ドライバーをインストールする必要があります。\n以下の種類のデータベース{{PLURAL:$2|のタイプ}}に対応しています: $1\n\nPHP を自分でコンパイルした場合は、例えば <code>./configure --with-mysqli</code> を実行して、データベース クライアントを使用できるように再設定してください。\nDebian または Ubuntu のパッケージから PHP をインストールした場合は、モジュール (例: <code>php-mysql</code>) もインストールする必要があります。",
@@ -155,7 +156,7 @@
 	"config-sqlite-readonly": "ファイル <code>$1</code> に書き込めません。",
 	"config-sqlite-cant-create-db": "データベース ファイル <code>$1</code> を作成できませんでした。",
 	"config-sqlite-fts3-downgrade": "PHP が FTS3 に対応していないため、テーブルをダウングレードしています。",
-	"config-can-upgrade": "このデータベースには　MediaWiki テーブルがあります。\nこれらのテーブルを MediaWiki $1 にアップグレードするには、<strong>続行</strong>をクリックしてください。",
+	"config-can-upgrade": "このデータベースには MediaWiki テーブルがあります。\nこれらのテーブルを MediaWiki $1 にアップグレードするには、<strong>続行</strong>をクリックしてください。",
 	"config-upgrade-error": "データベースのMediaWikiテーブルをアップグレード中にエラーが発生しました。\n\n詳細については、上記のログを確認して、もう一度<strong>続行</strong>をクリックしてください。",
 	"config-upgrade-done": "更新は完了しました。\n\n[$1 ウィキを使い始める]ことができます。\n\n<code>LocalSettings.php</code> ファイルを再生成したい場合は、下のボタンを押してください。\nウィキに問題がある場合を除き、再生成は<strong>推奨されません</strong>。",
 	"config-upgrade-done-no-regenerate": "アップグレードが完了しました。\n\n[$1 ウィキの使用を開始]することができます。",
@@ -319,5 +320,5 @@
 	"config-extension-not-found": "拡張機能「$1」の登録ファイルは見つかりませんでした",
 	"config-extension-dependency": "拡張機能「$1」のインストール中に依存関係エラーが発生しました: $2",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
-	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\nウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki をご使用の言語へ地域化]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam ご使用のウィキでスパムと戦う方法を学ぶ]"
+	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki をご使用の言語へ翻訳]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam ご使用のウィキでスパムと戦う方法を学ぶ]"
 }

@@ -1604,7 +1604,7 @@
 	"apierror-blocked": "您已被封鎖，無法編輯。",
 	"apierror-blocked-partial": "您已被禁止編輯此頁面。",
 	"apierror-botsnotsupported": "此介面不支援機器人。",
-	"apierror-cannot-async-upload-file": "參數 <var>async</var> 與 <var>file</var> 不能結合。如果您想要對您上傳的檔案非同步處理，請先上傳至儲藏（使用 <var>stash</var> 參數）並非同步發佈儲藏檔案（使用 <var>filekey</var> 和 <var>async</var>）。",
+	"apierror-cannot-async-upload-file": "參數 <var>async</var> 與 <var>file</var> 不能結合。如果您想要對您上傳的檔案非同步處理，請先上傳至儲藏（使用 <var>stash</var> 參數）並非同步發布儲藏檔案（使用 <var>filekey</var> 和 <var>async</var>）。",
 	"apierror-cannotreauthenticate": "出於您的身份無法驗證，此操作不可用。",
 	"apierror-cannotviewtitle": "您不被允許檢視$1。",
 	"apierror-cantblock-email": "您沒有權限來封鎖使用者透過 wiki 來發送電子郵件。",
