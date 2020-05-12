@@ -1302,3 +1302,8 @@
 	url = https://github.com/femiwiki/FemiwikiSkin.git
 	branch = master 
 	ignore = dirty
+[submodule "skins/Citizen"]
+	path = skins/Citizen
+	url = https://github.com/StarCitizenTools/mediawiki-skins-Citizen.git
+	branch = master
+	ignore = dirty
