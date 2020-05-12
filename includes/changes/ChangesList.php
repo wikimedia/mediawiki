@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 class ChangesList extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
-	const CSS_CLASS_PREFIX = 'mw-changeslist-';
+	public const CSS_CLASS_PREFIX = 'mw-changeslist-';
 
 	/**
 	 * @var Skin

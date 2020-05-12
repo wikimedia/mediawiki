@@ -52,9 +52,9 @@ abstract class JobQueue {
 	/** @var WANObjectCache */
 	protected $wanCache;
 
-	const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
+	protected const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
 
-	const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
+	protected const ROOTJOB_TTL = 2419200; // integer; seconds to remember root jobs (28 days)
 
 	/**
 	 * @param array $params

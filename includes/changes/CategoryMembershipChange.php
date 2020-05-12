@@ -30,8 +30,8 @@ use MediaWiki\Revision\RevisionStore;
 
 class CategoryMembershipChange {
 
-	const CATEGORY_ADDITION = 1;
-	const CATEGORY_REMOVAL = -1;
+	private const CATEGORY_ADDITION = 1;
+	private const CATEGORY_REMOVAL = -1;
 
 	/**
 	 * @var string Current timestamp, set during CategoryMembershipChange::__construct()

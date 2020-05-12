@@ -44,14 +44,14 @@ class JobQueueGroup {
 	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
 	protected $coalescedQueues;
 
-	const TYPE_DEFAULT = 1; // integer; jobs popped by default
-	const TYPE_ANY = 2; // integer; any job
+	public const TYPE_DEFAULT = 1; // integer; jobs popped by default
+	private const TYPE_ANY = 2; // integer; any job
 
-	const USE_CACHE = 1; // integer; use process or persistent cache
+	public const USE_CACHE = 1; // integer; use process or persistent cache
 
-	const PROC_CACHE_TTL = 15; // integer; seconds
+	private const PROC_CACHE_TTL = 15; // integer; seconds
 
-	const CACHE_VERSION = 1; // integer; cache version
+	private const CACHE_VERSION = 1; // integer; cache version
 
 	/**
 	 * @param string $domain Wiki domain ID

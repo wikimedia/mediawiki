@@ -107,7 +107,7 @@ abstract class ChangesListFilter {
 	 */
 	protected $defaultHighlightColor;
 
-	const RESERVED_NAME_CHAR = '_';
+	private const RESERVED_NAME_CHAR = '_';
 
 	/**
 	 * Creates a new filter with the specified configuration, and registers it to the

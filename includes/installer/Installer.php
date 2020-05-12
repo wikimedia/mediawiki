@@ -57,7 +57,7 @@ abstract class Installer {
 	 * Defining this is necessary because PHP may be linked with a system version
 	 * of PCRE, which may be older than that bundled with the minimum PHP version.
 	 */
-	const MINIMUM_PCRE_VERSION = '7.2';
+	public const MINIMUM_PCRE_VERSION = '7.2';
 
 	/**
 	 * @var array

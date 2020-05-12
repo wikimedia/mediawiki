@@ -159,15 +159,15 @@ use MediaWiki\MediaWikiServices;
  */
 class Message implements MessageSpecifier, Serializable {
 	/** Use message text as-is */
-	const FORMAT_PLAIN = 'plain';
+	public const FORMAT_PLAIN = 'plain';
 	/** Use normal wikitext -> HTML parsing (the result will be wrapped in a block-level HTML tag) */
-	const FORMAT_BLOCK_PARSE = 'block-parse';
+	public const FORMAT_BLOCK_PARSE = 'block-parse';
 	/** Use normal wikitext -> HTML parsing but strip the block-level wrapper */
-	const FORMAT_PARSE = 'parse';
+	public const FORMAT_PARSE = 'parse';
 	/** Transform {{..}} constructs but don't transform to HTML */
-	const FORMAT_TEXT = 'text';
+	public const FORMAT_TEXT = 'text';
 	/** Transform {{..}} constructs, HTML-escape the result */
-	const FORMAT_ESCAPED = 'escaped';
+	public const FORMAT_ESCAPED = 'escaped';
 
 	/**
 	 * Mapping from Message::listParam() types to Language methods.
