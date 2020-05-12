@@ -8,9 +8,9 @@
  */
 interface TransactionRoundAwareUpdate {
 	/** @var int No explicit transaction round should be used */
-	const TRX_ROUND_ABSENT = 1;
+	public const TRX_ROUND_ABSENT = 1;
 	/** @var int An explicit transaction round owned by self::doUpdate should be used */
-	const TRX_ROUND_PRESENT = 2;
+	public const TRX_ROUND_PRESENT = 2;
 
 	/**
 	 * @return int One of the class TRX_ROUND_* constants

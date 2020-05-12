@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\Database;
  * @ingroup Actions
  */
 class InfoAction extends FormlessAction {
-	const VERSION = 1;
+	private const VERSION = 1;
 
 	/**
 	 * Returns the name of the action this object responds to.

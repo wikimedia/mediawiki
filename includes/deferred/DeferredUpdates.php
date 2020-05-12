@@ -80,11 +80,11 @@ class DeferredUpdates {
 	 */
 	private static $executionStack = [];
 
-	const ALL = 0; // all updates; in web requests, use only after flushing the output buffer
-	const PRESEND = 1; // for updates that should run before flushing output buffer
-	const POSTSEND = 2; // for updates that should run after flushing output buffer
+	public const ALL = 0; // all updates; in web requests, use only after flushing the output buffer
+	public const PRESEND = 1; // for updates that should run before flushing output buffer
+	public const POSTSEND = 2; // for updates that should run after flushing output buffer
 
-	const BIG_QUEUE_SIZE = 100;
+	private const BIG_QUEUE_SIZE = 100;
 
 	/**
 	 * Add an update to the deferred update queue for execution at the appropriate time

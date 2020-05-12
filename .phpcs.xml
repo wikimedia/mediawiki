@@ -21,14 +21,11 @@
 	<rule ref="PSR12.Properties.ConstantVisibility.NotFound">
 		<exclude-pattern>includes/FormOptions\.php</exclude-pattern>
 		<exclude-pattern>includes/Rest/</exclude-pattern>
-		<exclude-pattern>includes/Revision/</exclude-pattern>
 		<exclude-pattern>includes/Storage/</exclude-pattern>
-		<exclude-pattern>includes/actions/</exclude-pattern>
 		<exclude-pattern>includes/api/</exclude-pattern>
 		<exclude-pattern>includes/block/</exclude-pattern>
 		<exclude-pattern>includes/cache/</exclude-pattern>
 		<exclude-pattern>includes/changes/</exclude-pattern>
-		<exclude-pattern>includes/deferred/</exclude-pattern>
 		<exclude-pattern>includes/diff/</exclude-pattern>
 		<exclude-pattern>includes/exception/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
@@ -43,11 +40,8 @@
 		<exclude-pattern>includes/poolcounter/</exclude-pattern>
 		<exclude-pattern>includes/resourceloader/</exclude-pattern>
 		<exclude-pattern>includes/search/</exclude-pattern>
-		<exclude-pattern>includes/site/</exclude-pattern>
-		<exclude-pattern>includes/specials/</exclude-pattern>
 		<exclude-pattern>includes/user/</exclude-pattern>
 		<exclude-pattern>includes/utils/</exclude-pattern>
-		<exclude-pattern>includes/watcheditem/</exclude-pattern>
 		<exclude-pattern>languages/</exclude-pattern>
 		<exclude-pattern>tests/phpunit/includes/</exclude-pattern>
 	</rule>

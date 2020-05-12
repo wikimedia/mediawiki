@@ -44,7 +44,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	protected $removeNowiki;
 
 	/** @var int Maximum size in bytes to include. 50MB allows fixing those huge pages */
-	const MAX_INCLUDE_SIZE = 50000000;
+	private const MAX_INCLUDE_SIZE = 50000000;
 
 	function __construct() {
 		parent::__construct( 'ExpandTemplates' );

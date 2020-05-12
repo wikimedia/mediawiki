@@ -32,12 +32,12 @@ interface WatchedItemStoreInterface {
 	/**
 	 * @since 1.31
 	 */
-	const SORT_ASC = 'ASC';
+	public const SORT_ASC = 'ASC';
 
 	/**
 	 * @since 1.31
 	 */
-	const SORT_DESC = 'DESC';
+	public const SORT_DESC = 'DESC';
 
 	/**
 	 * Count the number of individual items that are watched by the user.
