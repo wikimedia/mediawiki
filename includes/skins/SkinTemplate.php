@@ -350,24 +350,54 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Get template representation of the footer.
+	 * Get template representation of the footer containing site footer
+	 * links as well as standard footer links.
+	 * All values are resolved and can be added to by the
+	 * SkinAddFooterLinks hook.
 	 * @since 1.35
+	 * @internal
 	 * @return array
 	 */
-	final protected function getFooterLinks() {
-		return [
-			'info' => [
-				'lastmod',
-				'numberofwatchingusers',
+	protected function getFooterLinks() {
+		$out = $this->getOutput();
+		$title = $out->getTitle();
+		$titleExists = $title->exists();
+		$config = $this->getConfig();
+		$wgMaxCredits = $config->get( 'MaxCredits' );
+		$wgShowCreditsIfMax = $config->get( 'ShowCreditsIfMax' );
+		$useCredits = $titleExists && $out->isArticle() &&
+			$out->isRevisionCurrent() && $wgMaxCredits !== 0;
+
+		/** @var CreditsAction $action */
+		if ( $titleExists ) {
+			$action = Action::factory(
 				'credits',
-				'copyright',
+				Article::newFromWikiPage(
+					$this->getWikiPage(),
+					$this->getContext()
+				),
+				$this->getContext()
+			);
+		}
+
+		'@phan-var CreditsAction $action';
+		$data = [
+			'info' => [
+				'lastmod' => !$useCredits ? $this->lastModified() : null,
+				'numberofwatchingusers' => null,
+				'credits' => $useCredits ?
+					$action->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) : null,
+				'copyright' => $titleExists &&
+					$out->showsCopyright() ? $this->getCopyright() : null,
 			],
-			'places' => [
-				'privacy',
-				'about',
-				'disclaimer',
-			],
+			'places' => $this->getSiteFooterLinks(),
 		];
+		foreach ( $data as $key => $existingItems ) {
+			$newItems = [];
+			Hooks::run( 'SkinAddFooterLinks', [ $this->getSkin(), $key, &$newItems ] );
+			$data[$key] = $existingItems + $newItems;
+		}
+		return $data;
 	}
 
 	/**
@@ -410,8 +440,7 @@ class SkinTemplate extends Skin {
 	 */
 	protected function prepareQuickTemplate() {
 		global $wgScript, $wgStylePath, $wgMimeType,
-			$wgSitename, $wgMaxCredits,
-			$wgShowCreditsIfMax, $wgArticlePath,
+			$wgSitename, $wgArticlePath,
 			$wgScriptPath, $wgServer;
 
 		$title = $this->getTitle();
@@ -488,45 +517,27 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->set( 'logo', $this->logoText() );
 
-		$tpl->set( 'copyright', false );
+		$footerData = $this->getFooterLinks();
+		$tpl->set( 'copyright', $footerData['info']['copyright'] ?? false );
 		// No longer used
 		$tpl->set( 'viewcount', false );
-		$tpl->set( 'lastmod', false );
-		$tpl->set( 'credits', false );
+		$tpl->set( 'lastmod', $footerData['info']['lastmod'] ?? false );
+		$tpl->set( 'credits', $footerData['info']['credits'] ?? false );
 		$tpl->set( 'numberofwatchingusers', false );
-		if ( $title->exists() ) {
-			if ( $out->isArticle() && $out->isRevisionCurrent() ) {
-				if ( $wgMaxCredits != 0 ) {
-					/** @var CreditsAction $action */
-					$action = Action::factory(
-						'credits',
-						Article::newFromWikiPage(
-							$this->getWikiPage(),
-							$this->getContext()
-						),
-						$this->getContext()
-					);
-					'@phan-var CreditsAction $action';
-					$tpl->set( 'credits',
-						$action->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
-				} else {
-					$tpl->set( 'lastmod', $this->lastModified() );
-				}
-			}
-			if ( $out->showsCopyright() ) {
-				$tpl->set( 'copyright', $this->getCopyright() );
-			}
-		}
 
 		$tpl->set( 'copyrightico', $this->getCopyrightIcon() );
 		$tpl->set( 'poweredbyico', $this->getPoweredBy() );
 
-		$footerLinks = $this->getSiteFooterLinks();
-		$tpl->set( 'disclaimer', $footerLinks['disclaimer'] );
-		$tpl->set( 'privacy', $footerLinks['privacy'] );
-		$tpl->set( 'about', $footerLinks['about'] );
+		$tpl->set( 'disclaimer', $footerData['places']['disclaimer'] ?? false );
+		$tpl->set( 'privacy', $footerData['places']['privacy'] ?? false );
+		$tpl->set( 'about', $footerData['places']['about'] ?? false );
 
-		$tpl->set( 'footerlinks', $this->getFooterLinks() );
+		// Flatten for compat with the 'footerlinks' key in QuickTemplate-based skins.
+		$flattenedfooterlinks = [];
+		foreach ( $footerData as $category => $links ) {
+			$flattenedfooterlinks[$category] = array_keys( $links );
+		}
+		$tpl->set( 'footerlinks', $flattenedfooterlinks );
 		$tpl->set( 'footericons', $this->getFooterIcons() );
 
 		$tpl->set( 'indicators', $out->getIndicators() );
