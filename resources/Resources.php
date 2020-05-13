@@ -2663,6 +2663,15 @@ return [
 			'oojs-ui-core',
 		],
 	],
+	'mediawiki.watchstar.widgets' => [
+		'packageFiles' => [
+			'resources/src/mediawiki.watchstar.widgets/WatchlistExpiryWidget.js',
+		],
+		'dependencies' => [
+			'oojs-ui'
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 
 	'mediawiki.deflate' => [
 		'packageFiles' => [
