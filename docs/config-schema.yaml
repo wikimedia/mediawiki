@@ -6993,7 +6993,7 @@ config-schema:
             refreshLinks: RefreshLinksJob
             deleteLinks: DeleteLinksJob
             htmlCacheUpdate: HTMLCacheUpdateJob
-            sendMail: EmaillingJob
+            sendMail: { class: EmaillingJob, services: [Emailer] }
             enotifNotify: EnotifNotifyJob
             fixDoubleRedirect: { class: DoubleRedirectJob, services: [RevisionLookup, MagicWordFactory, WikiPageFactory], needsPage: true }
             AssembleUploadChunks: AssembleUploadChunksJob

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Mail\IEmailer;
 use MediaWiki\Title\Title;
 
 /**
@@ -28,16 +29,22 @@ use MediaWiki\Title\Title;
  * @ingroup JobQueue
  */
 class EmaillingJob extends Job {
-	public function __construct( ?Title $title, array $params ) {
+
+	/** @var IEmailer */
+	private $emailer;
+
+	public function __construct( ?Title $title, array $params, IEmailer $emailer ) {
 		parent::__construct( 'sendMail', Title::newMainPage(), $params );
+		$this->emailer = $emailer;
 	}
 
 	public function run() {
-		$status = UserMailer::send(
-			$this->params['to'],
+		$status = $this->emailer->send(
+			[ $this->params['to'] ],
 			$this->params['from'],
 			$this->params['subj'],
 			$this->params['body'],
+			null,
 			[ 'replyTo' => $this->params['replyto'] ]
 		);
 
