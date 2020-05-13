@@ -24,6 +24,7 @@ namespace MediaWiki\Page;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
 use MergeHistory;
@@ -64,6 +65,9 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var SpamChecker */
+	private $spamChecker;
+
 	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation'
 	];
@@ -76,7 +80,8 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 		PermissionManager $permManager,
 		RepoGroup $repoGroup,
 		IContentHandlerFactory $contentHandlerFactory,
-		RevisionStore $revisionStore
+		RevisionStore $revisionStore,
+		SpamChecker $spamChecker
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -88,6 +93,7 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 		$this->repoGroup = $repoGroup;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
+		$this->spamChecker = $spamChecker;
 	}
 
 	/**
@@ -113,7 +119,8 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 			$this->permManager,
 			$this->contentHandlerFactory,
 			$this->revisionStore,
-			$this->watchedItemStore
+			$this->watchedItemStore,
+			$this->spamChecker
 		);
 	}
 
@@ -133,7 +140,8 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 			$this->permManager,
 			$this->repoGroup,
 			$this->contentHandlerFactory,
-			$this->revisionStore
+			$this->revisionStore,
+			$this->spamChecker
 		);
 	}
 }
