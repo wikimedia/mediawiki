@@ -390,6 +390,10 @@ abstract class Job implements RunnableJob {
 					$flatValue = "string(" . mb_strlen( $value ) . ")";
 				}
 
+				// Remove newline characters from the value, since
+				// newlines indicate new job lines in log files
+				$flatValue = preg_replace( '/\s+/', ' ', $flatValue );
+
 				$paramString .= "$key={$flatValue}";
 			}
 		}
