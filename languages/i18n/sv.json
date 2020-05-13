@@ -756,6 +756,7 @@
 	"token_suffix_mismatch": "'''Din redigering har stoppats eftersom din klient har ändrat tecknen\ni redigerings-nyckeln. Redigeringen stoppades för att förhindra att sidtexten skadas.\nDetta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.'''",
 	"edit_form_incomplete": "'''Vissa delar av redigeringen kunde inte nå servern, dubbelkolla att dina ändringar är intakta och försök igen.'''",
 	"editing": "Redigerar $1",
+	"edit-textarea-aria-label": "Wikitextkällredigerare",
 	"creating": "Skapar $1",
 	"editingsection": "Redigerar $1 (avsnitt)",
 	"editingcomment": "Redigerar $1 (nytt avsnitt)",

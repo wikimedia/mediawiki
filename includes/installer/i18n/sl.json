@@ -171,7 +171,7 @@
 	"config-install-database": "Vzpostavljanje zbirke podatkov",
 	"config-install-pg-schema-not-exist": "Shema PostgreSQL ne obstaja.",
 	"config-install-user-alreadyexists": "Uporabnik »$1« že obstaja",
-	"config-install-tables": "Ustvarjanje tabel",
+	"config-install-tables": "Ustvarjanje tabel, prvi korak",
 	"config-download-localsettings": "Prenesi <code>LocalSettings.php</code>",
 	"config-help": "pomoč",
 	"mainpagetext": "<strong>Programje MediaWiki je bilo nameščeno.</strong>",
