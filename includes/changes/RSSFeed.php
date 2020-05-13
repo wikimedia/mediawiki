@@ -45,8 +45,6 @@ class RSSFeed extends ChannelFeed {
 	 * Output an RSS 2.0 header
 	 */
 	public function outHeader() {
-		global $wgVersion;
-
 		$this->outXmlHeader();
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
@@ -55,7 +53,7 @@ class RSSFeed extends ChannelFeed {
 			'url' => $this->xmlEncode( wfExpandUrl( $this->getUrlUnescaped(), PROTO_CURRENT ) ),
 			'description' => $this->getDescription(),
 			'language' => $this->xmlEncode( $this->getLanguage() ),
-			'version' => $this->xmlEncode( $wgVersion ),
+			'version' => $this->xmlEncode( MW_VERSION ),
 			'timestamp' => $this->xmlEncode( $this->formatTime( wfTimestampNow() ) )
 		];
 		print $this->templateParser->processTemplate( 'RSSHeader', $templateParams );

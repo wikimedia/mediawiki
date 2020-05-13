@@ -289,7 +289,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @throws Exception
 	 */
 	private static function naivePurge( array $urls ) {
-		global $wgCdnServers, $wgVersion;
+		global $wgCdnServers;
 
 		$reqs = [];
 		foreach ( $urls as $url ) {
@@ -307,7 +307,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 					'Host' => $urlHost,
 					'Connection' => 'Keep-Alive',
 					'Proxy-Connection' => 'Keep-Alive',
-					'User-Agent' => "MediaWiki/$wgVersion " . __CLASS__
+					'User-Agent' => 'MediaWiki/' . MW_VERSION . ' ' . __CLASS__
 				]
 			];
 			foreach ( $wgCdnServers as $server ) {
