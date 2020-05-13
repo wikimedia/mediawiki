@@ -17,6 +17,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @author DannyS712
  */
 
 namespace MediaWiki\Page;
@@ -25,6 +26,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
+use MergeHistory;
 use MovePage;
 use NamespaceInfo;
 use RepoGroup;
@@ -37,7 +39,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @since 1.35
  */
-class PageHandlerFactory implements MovePageFactory {
+class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 	/** @var ServiceOptions */
 	private $options;
 
@@ -48,10 +50,10 @@ class PageHandlerFactory implements MovePageFactory {
 	private $nsInfo;
 
 	/** @var WatchedItemStoreInterface */
-	private $watchedItems;
+	private $watchedItemStore;
 
 	/** @var PermissionManager */
-	private $permMgr;
+	private $permManager;
 
 	/** @var RepoGroup */
 	private $repoGroup;
@@ -70,8 +72,8 @@ class PageHandlerFactory implements MovePageFactory {
 		ServiceOptions $options,
 		ILoadBalancer $loadBalancer,
 		NamespaceInfo $nsInfo,
-		WatchedItemStoreInterface $watchedItems,
-		PermissionManager $permMgr,
+		WatchedItemStoreInterface $watchedItemStore,
+		PermissionManager $permManager,
 		RepoGroup $repoGroup,
 		IContentHandlerFactory $contentHandlerFactory,
 		RevisionStore $revisionStore
@@ -81,11 +83,38 @@ class PageHandlerFactory implements MovePageFactory {
 		$this->options = $options;
 		$this->loadBalancer = $loadBalancer;
 		$this->nsInfo = $nsInfo;
-		$this->watchedItems = $watchedItems;
-		$this->permMgr = $permMgr;
+		$this->watchedItemStore = $watchedItemStore;
+		$this->permManager = $permManager;
 		$this->repoGroup = $repoGroup;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
+	}
+
+	/**
+	 * @param Title $source
+	 * @param Title $destination
+	 * @param string|null $timestamp
+	 * @return MergeHistory
+	 */
+	public function newMergeHistory(
+		Title $source,
+		Title $destination,
+		string $timestamp = null
+	) : MergeHistory {
+		if ( $timestamp === null ) {
+			// For compatibility with MergeHistory constructor until it can be changed
+			$timestamp = false;
+		}
+		return new MergeHistory(
+			$source,
+			$destination,
+			$timestamp,
+			$this->loadBalancer,
+			$this->permManager,
+			$this->contentHandlerFactory,
+			$this->revisionStore,
+			$this->watchedItemStore
+		);
 	}
 
 	/**
@@ -94,12 +123,14 @@ class PageHandlerFactory implements MovePageFactory {
 	 * @return MovePage
 	 */
 	public function newMovePage( Title $from, Title $to ) : MovePage {
-		return new MovePage( $from, $to,
+		return new MovePage(
+			$from,
+			$to,
 			$this->options,
 			$this->loadBalancer,
 			$this->nsInfo,
-			$this->watchedItems,
-			$this->permMgr,
+			$this->watchedItemStore,
+			$this->permManager,
 			$this->repoGroup,
 			$this->contentHandlerFactory,
 			$this->revisionStore

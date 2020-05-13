@@ -22,7 +22,6 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageHandlerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -89,6 +88,10 @@ class MovePage {
 	 */
 	private $revisionStore;
 
+	public const CONSTRUCTOR_OPTIONS = [
+		'CategoryCollation'
+	];
+
 	/**
 	 * Calling this directly is deprecated in 1.34. Use MovePageFactory instead.
 	 *
@@ -118,7 +121,7 @@ class MovePage {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 		$this->options = $options ??
-			new ServiceOptions( PageHandlerFactory::CONSTRUCTOR_OPTIONS,
+			new ServiceOptions( self::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig() );
 		$this->loadBalancer =
 			$loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
