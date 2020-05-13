@@ -633,7 +633,7 @@ class OutputPage extends ContextSource {
 	 * Add a class to the <html> element. This should rarely be used.
 	 * Instead use OutputPage::addBodyClasses() if possible.
 	 *
-	 * @since 1.34
+	 * @since 1.35
 	 * @param string|string[] $classes One or more classes to add
 	 */
 	public function addHtmlClasses( $classes ) {
