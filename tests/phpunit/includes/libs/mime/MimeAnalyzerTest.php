@@ -199,4 +199,11 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$actualType = $this->doGuessMimeType( [ $file, 'png' ] );
 		$this->assertEquals( $expectedType, $actualType, $description );
 	}
+
+	/**
+	 * The empty string is not a MIME type and should not be mapped to a file extension.
+	 */
+	public function testNoEmptyStringMimeType() {
+		$this->assertNull( $this->mimeAnalyzer->getExtensionsForType( '' ) );
+	}
 }
