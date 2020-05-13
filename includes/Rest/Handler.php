@@ -43,13 +43,14 @@ abstract class Handler {
 	 * @param array $config
 	 * @param ResponseFactory $responseFactory
 	 */
-	public function init( Router $router, RequestInterface $request, array $config,
+	final public function init( Router $router, RequestInterface $request, array $config,
 		ResponseFactory $responseFactory
 	) {
 		$this->router = $router;
 		$this->request = $request;
 		$this->config = $config;
 		$this->responseFactory = $responseFactory;
+		$this->postInitSetup();
 	}
 
 	/**
@@ -268,6 +269,13 @@ abstract class Handler {
 	 */
 	public function needsWriteAccess() {
 		return true;
+	}
+
+	/**
+	 * The handler can override this to do any necessary setup after init()
+	 * is called to inject the dependencies.
+	 */
+	protected function postInitSetup() {
 	}
 
 	/**
