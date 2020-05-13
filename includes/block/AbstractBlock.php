@@ -372,7 +372,7 @@ abstract class AbstractBlock {
 	 *
 	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
 	 *
-	 * @param string|int|User|null $target
+	 * @param string|User|null $target
 	 * @return array [ User|String|null, int|null ]
 	 */
 	public static function parseTarget( $target ) {
