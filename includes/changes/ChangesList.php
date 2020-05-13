@@ -21,6 +21,8 @@
  *
  * @file
  */
+
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -29,6 +31,8 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class ChangesList extends ContextSource {
+	use ProtectedHookAccessorTrait;
+
 	const CSS_CLASS_PREFIX = 'mw-changeslist-';
 
 	/**
@@ -90,7 +94,7 @@ class ChangesList extends ContextSource {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$list = null;
-		if ( Hooks::run( 'FetchChangesList', [ $user, &$sk, &$list, $groups ] ) ) {
+		if ( Hooks::runner()->onFetchChangesList( $user, $sk, $list, $groups ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
 
 			return $new ?
@@ -312,7 +316,7 @@ class ChangesList extends ContextSource {
 	 * @param IResultWrapper|array $rows
 	 */
 	public function initChangesListRows( $rows ) {
-		Hooks::run( 'ChangesListInitRows', [ $this, $rows ] );
+		$this->getHookRunner()->onChangesListInitRows( $this, $rows );
 	}
 
 	/**
@@ -562,10 +566,8 @@ class ChangesList extends ContextSource {
 
 		# TODO: Deprecate the $s argument, it seems happily unused.
 		$s = '';
-		# Avoid PHP 7.1 warning from passing $this by reference
-		$changesList = $this;
-		Hooks::run( 'ChangesListInsertArticleLink',
-			[ &$changesList, &$articlelink, &$s, &$rc, $unpatrolled, $watched ] );
+		$this->getHookRunner()->onChangesListInsertArticleLink( $this, $articlelink,
+			$s, $rc, $unpatrolled, $watched );
 
 		return "{$s} {$articlelink}";
 	}
