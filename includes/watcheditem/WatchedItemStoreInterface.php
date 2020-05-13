@@ -162,6 +162,19 @@ interface WatchedItemStoreInterface {
 	public function isWatched( UserIdentity $user, LinkTarget $target );
 
 	/**
+	 * Whether the page is only being watched temporarily (has expiry).
+	 * Must be called separately for Subject & Talk namespaces.
+	 *
+	 * @since 1.35
+	 *
+	 * @param UserIdentity $user
+	 * @param LinkTarget $target
+	 *
+	 * @return bool
+	 */
+	public function isTempWatched( UserIdentity $user, LinkTarget $target ): bool;
+
+	/**
 	 * @since 1.31
 	 *
 	 * @param UserIdentity $user

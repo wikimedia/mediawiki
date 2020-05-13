@@ -39,11 +39,16 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			$store->isWatched( $user, $title ),
 			'Page should not initially be watched'
 		);
+		$this->assertFalse( $store->isTempWatched( $user, $title ) );
 
 		$store->addWatch( $user, $title );
 		$this->assertTrue(
 			$store->isWatched( $user, $title ),
 			'Page should be watched'
+		);
+		$this->assertFalse(
+			$store->isTempWatched( $user, $title ),
+			'Page should not be temporarily watched'
 		);
 		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
 		$watchedItemsForUser = $store->getWatchedItemsForUser( $user );
@@ -123,6 +128,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			$store->loadWatchedItem( $user, $title )->getExpiry()
 		);
 		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
+		$this->assertTrue( $store->isTempWatched( $user, $title ) );
 
 		// Invalid expiry, nothing should change.
 		$store->addWatch( $user, $title, 'invalid expiry' );
@@ -138,6 +144,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 			$store->loadWatchedItem( $user, $title )->getExpiry()
 		);
 		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
+		$this->assertFalse( $store->isTempWatched( $user, $title ) );
 
 		// Updating to a valid expiry.
 		$store->addWatch( $user, $title, '1 month' );
@@ -156,9 +163,8 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 
 		// Test isWatch(), which would normally pull from the cache. In this case
 		// the cache should bust and return false since the item has expired.
-		$this->assertFalse(
-			$store->isWatched( $user, $title )
-		);
+		$this->assertFalse( $store->isWatched( $user, $title ) );
+		$this->assertFalse( $store->isTempWatched( $user, $title ) );
 	}
 
 	public function testWatchAndUnwatchMultipleWithExpiry(): void {

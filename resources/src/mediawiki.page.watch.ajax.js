@@ -71,6 +71,11 @@
 			$link.addClass( 'loading' );
 		} else {
 			$link.removeClass( 'loading' );
+
+			// Remove the half-star class that might have been added by SkinTemplate.
+			if ( action === 'unwatch' ) {
+				$li.removeClass( 'mw-watchlink-temp' );
+			}
 		}
 	}
 
