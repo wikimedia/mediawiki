@@ -452,6 +452,7 @@ return [
 			'gd' => 'resources/lib/moment/locale/gd.js',
 			'gl' => 'resources/lib/moment/locale/gl.js',
 			'gom' => 'resources/lib/moment/locale/gom-latn.js',
+			'gom-deva' => 'resources/lib/moment/locale/gom-deva.js',
 			'gom-latn' => 'resources/lib/moment/locale/gom-latn.js',
 			'gu' => 'resources/lib/moment/locale/gu.js',
 			'he' => 'resources/lib/moment/locale/he.js',
@@ -518,6 +519,7 @@ return [
 			'zh-hant' => 'resources/lib/moment/locale/zh-tw.js',
 			'zh-cn' => 'resources/lib/moment/locale/zh-cn.js',
 			'zh-hk' => 'resources/lib/moment/locale/zh-hk.js',
+			'zh-mo' => 'resources/lib/moment/locale/zh-mo.js',
 			'zh-tw' => 'resources/lib/moment/locale/zh-tw.js',
 		],
 		// HACK: skinScripts come after languageScripts, and we need locale overrides to come

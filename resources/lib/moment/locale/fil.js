@@ -1,6 +1,7 @@
 //! moment.js locale configuration
-//! locale : Tagalog (Philippines) [tl-ph]
+//! locale : Filipino [fil]
 //! author : Dan Hagman : https://github.com/hagmandan
+//! author : Matthew Co : https://github.com/matthewdeeco
 
 ;(function (global, factory) {
    typeof exports === 'object' && typeof module !== 'undefined'
@@ -11,7 +12,7 @@
 
     //! moment.js locale configuration
 
-    var tlPh = moment.defineLocale('tl-ph', {
+    var fil = moment.defineLocale('fil', {
         months: 'Enero_Pebrero_Marso_Abril_Mayo_Hunyo_Hulyo_Agosto_Setyembre_Oktubre_Nobyembre_Disyembre'.split(
             '_'
         ),
@@ -63,6 +64,6 @@
         },
     });
 
-    return tlPh;
+    return fil;
 
 })));
