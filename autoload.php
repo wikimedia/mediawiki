@@ -1000,6 +1000,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SidebarBeforeOutputHook' => __DIR__ . '/includes/skins/Hook/SidebarBeforeOutputHook.php',
 	'MediaWiki\\Hook\\SiteNoticeAfterHook' => __DIR__ . '/includes/skins/Hook/SiteNoticeAfterHook.php',
 	'MediaWiki\\Hook\\SiteNoticeBeforeHook' => __DIR__ . '/includes/skins/Hook/SiteNoticeBeforeHook.php',
+	'MediaWiki\\Hook\\SkinAddFooterLinks' => __DIR__ . '/includes/skins/Hook/SkinAddFooterLinks.php',
 	'MediaWiki\\Hook\\SkinAfterBottomScriptsHook' => __DIR__ . '/includes/skins/Hook/SkinAfterBottomScriptsHook.php',
 	'MediaWiki\\Hook\\SkinAfterContentHook' => __DIR__ . '/includes/skins/Hook/SkinAfterContentHook.php',
 	'MediaWiki\\Hook\\SkinBuildSidebarHook' => __DIR__ . '/includes/skins/Hook/SkinBuildSidebarHook.php',
