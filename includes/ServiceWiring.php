@@ -74,8 +74,9 @@ use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\MessageFormatterFactory;
+use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
-use MediaWiki\Page\PageHandlerFactory;
+use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -591,6 +592,10 @@ return [
 		);
 	},
 
+	'MergeHistoryFactory' => function ( MediaWikiServices $services ) : MergeHistoryFactory {
+		return $services->getService( '_PageCommandFactory' );
+	},
+
 	'MessageCache' => function ( MediaWikiServices $services ) : MessageCache {
 		$mainConfig = $services->getMainConfig();
 		$clusterCache = ObjectCache::getInstance( $mainConfig->get( 'MessageCacheType' ) );
@@ -681,7 +686,7 @@ return [
 	},
 
 	'MovePageFactory' => function ( MediaWikiServices $services ) : MovePageFactory {
-		return $services->getService( '_PageHandlerFactory' );
+		return $services->getService( '_PageCommandFactory' );
 	},
 
 	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {
@@ -1210,9 +1215,9 @@ return [
 		);
 	},
 
-	'_PageHandlerFactory' => function ( MediaWikiServices $services ) : PageHandlerFactory {
-		return new PageHandlerFactory(
-			new ServiceOptions( PageHandlerFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+	'_PageCommandFactory' => function ( MediaWikiServices $services ) : PageCommandFactory {
+		return new PageCommandFactory(
+			new ServiceOptions( PageCommandFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
