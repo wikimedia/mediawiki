@@ -1489,24 +1489,33 @@ abstract class Skin extends ContextSource {
 	public function getNewtalks() {
 		$newMessagesAlert = '';
 		$user = $this->getUser();
-		$newtalks = $user->getNewMessageLinks();
-		$out = $this->getOutput();
-
 		$services = MediaWikiServices::getInstance();
 		$linkRenderer = $services->getLinkRenderer();
+		$userHasNewMessages = $services->getTalkPageNotificationManager()
+			->userHasNewMessages( $user );
+		$timestamp = $services->getTalkPageNotificationManager()
+			->getLatestSeenMessageTimestamp( $user );
+		$newtalks = !$userHasNewMessages ? [] : [
+			// TODO: Deprecate adding wiki and link to array and redesign GetNewMessagesAlert hook
+			'wiki' => WikiMap::getCurrentWikiId(),
+			'link' => $user->getTalkPage()->getLocalURL(),
+			'rev' => $timestamp ? $services->getRevisionLookup()
+				->getRevisionByTimestamp( $user->getTalkPage(), $timestamp ) : null
+		];
+		$out = $this->getOutput();
 
 		// Allow extensions to disable or modify the new messages alert
-		if ( !Hooks::run( 'GetNewMessagesAlert', [ &$newMessagesAlert, $newtalks, $user, $out ] ) ) {
+		if ( !Hooks::run( 'GetNewMessagesAlert', [ &$newMessagesAlert, [ $newtalks ], $user, $out ] ) ) {
 			return '';
 		}
 		if ( $newMessagesAlert ) {
 			return $newMessagesAlert;
 		}
 
-		if ( count( $newtalks ) == 1 && WikiMap::isCurrentWikiId( $newtalks[0]['wiki'] ) ) {
+		if ( $newtalks !== [] ) {
 			$uTalkTitle = $user->getTalkPage();
-			$lastSeenRev = $newtalks[0]['rev'] ?? null;
-			$nofAuthors = 0;
+			$lastSeenRev = $newtalks['rev'];
+			$numAuthors = 0;
 			if ( $lastSeenRev !== null ) {
 				$plural = true; // Default if we have a last seen revision: if unknown, use plural
 				$revStore = $services->getRevisionStore();
@@ -1518,9 +1527,9 @@ abstract class Skin extends ContextSource {
 				if ( $latestRev !== null ) {
 					// Singular if only 1 unseen revision, plural if several unseen revisions.
 					$plural = $latestRev->getParentId() !== $lastSeenRev->getId();
-					$nOfAuthors = $revStore->countAuthorsBetween(
+					$numAuthors = $revStore->countAuthorsBetween(
 						$uTalkTitle->getArticleID(),
-						$lastSeenRev->getRevisionRecord(),
+						$lastSeenRev,
 						$latestRev,
 						null,
 						10,
@@ -1551,35 +1560,22 @@ abstract class Skin extends ContextSource {
 					: [ 'diff' => 'cur' ]
 			);
 
-			if ( $nofAuthors >= 1 && $nofAuthors <= 10 ) {
+			if ( $numAuthors >= 1 && $numAuthors <= 10 ) {
 				$newMessagesAlert = $this->msg(
 					'youhavenewmessagesfromusers',
 					$newMessagesLink,
 					$newMessagesDiffLink
-				)->numParams( $nofAuthors, $plural );
+				)->numParams( $numAuthors, $plural );
 			} else {
-				// $nofAuthors === 11 signifies "11 or more" ("more than 10")
+				// $numAuthors === 11 signifies "11 or more" ("more than 10")
 				$newMessagesAlert = $this->msg(
-					$nofAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
+					$numAuthors > 10 ? 'youhavenewmessagesmanyusers' : 'youhavenewmessages',
 					$newMessagesLink,
 					$newMessagesDiffLink
 				)->numParams( $plural );
 			}
 			$newMessagesAlert = $newMessagesAlert->text();
-			# Disable CDN cache
-			$out->setCdnMaxage( 0 );
-		} elseif ( count( $newtalks ) ) {
-			$sep = $this->msg( 'newtalkseparator' )->escaped();
-			$msgs = [];
-
-			foreach ( $newtalks as $newtalk ) {
-				$msgs[] = Xml::element(
-					'a',
-					[ 'href' => $newtalk['link'] ], $newtalk['wiki']
-				);
-			}
-			$parts = implode( $sep, $msgs );
-			$newMessagesAlert = $this->msg( 'youhavenewmessagesmulti' )->rawParams( $parts )->escaped();
+			// Disable CDN cache
 			$out->setCdnMaxage( 0 );
 		}
 
