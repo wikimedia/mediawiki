@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require( 'assert' );
 const HistoryPage = require( '../pageobjects/history.page' );
 const Api = require( 'wdio-mediawiki/Api' );

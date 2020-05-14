@@ -1,3 +1,5 @@
+'use strict';
+
 const { action, assert } = require( 'api-testing' );
 
 describe( 'Testing a new talk page notification', function () {

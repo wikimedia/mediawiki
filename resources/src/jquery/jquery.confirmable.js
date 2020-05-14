@@ -12,7 +12,6 @@
 		return data;
 	};
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Enable inline confirmation for given clickable element (like `<a />` or `<button />`).
 	 *

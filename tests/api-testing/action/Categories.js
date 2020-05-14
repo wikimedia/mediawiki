@@ -1,3 +1,5 @@
+'use strict';
+
 const { assert, action, utils } = require( 'api-testing' );
 
 describe( 'Categories', function testCategories() {
