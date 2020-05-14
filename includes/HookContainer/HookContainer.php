@@ -21,7 +21,6 @@
 namespace MediaWiki\HookContainer;
 
 use Closure;
-use ExtensionRegistry;
 use MWDebug;
 use MWException;
 use UnexpectedValueException;
@@ -45,14 +44,11 @@ class HookContainer implements SalvageableService {
 	/** @var array handler name and their handler objects */
 	private $handlersByName = [];
 
-	/** @var ExtensionRegistry */
-	private $extensionRegistry;
+	/** @var HookRegistry */
+	private $registry;
 
 	/** @var ObjectFactory */
 	private $objectFactory;
-
-	/** @var DeprecatedHooks */
-	private $deprecatedHooks;
 
 	/** @var int The next ID to be used by scopedRegister() */
 	private $nextScopedRegisterId = 0;
@@ -61,18 +57,15 @@ class HookContainer implements SalvageableService {
 	private $originalHooks;
 
 	/**
-	 * @param ExtensionRegistry $extensionRegistry
+	 * @param HookRegistry $hookRegistry
 	 * @param ObjectFactory $objectFactory
-	 * @param DeprecatedHooks $deprecatedHooks
 	 */
 	public function __construct(
-		ExtensionRegistry $extensionRegistry,
-		ObjectFactory $objectFactory,
-		DeprecatedHooks $deprecatedHooks
+		HookRegistry $hookRegistry,
+		ObjectFactory $objectFactory
 	) {
-		$this->extensionRegistry = $extensionRegistry;
+		$this->registry = $hookRegistry;
 		$this->objectFactory = $objectFactory;
-		$this->deprecatedHooks = $deprecatedHooks;
 	}
 
 	/**
@@ -120,7 +113,7 @@ class HookContainer implements SalvageableService {
 	public function run( string $hook, array $args = [], array $options = [] ) : bool {
 		$legacyHandlers = $this->getLegacyHandlers( $hook );
 		$options = array_merge(
-			$this->deprecatedHooks->getDeprecationInfo( $hook ) ?? [],
+			$this->registry->getDeprecatedHooks()->getDeprecationInfo( $hook ) ?? [],
 			$options
 		);
 		// Equivalent of legacy Hooks::runWithoutAbort()
@@ -328,10 +321,9 @@ class HookContainer implements SalvageableService {
 	 * @return bool Whether the hook has a handler registered to it
 	 */
 	public function isRegistered( string $hook ) : bool {
-		global $wgHooks;
-		$legacyRegisteredHook = !empty( $wgHooks[$hook] ) ||
+		$legacyRegisteredHook = !empty( $this->registry->getGlobalHooks()[$hook] ) ||
 			!empty( $this->legacyRegisteredHandlers[$hook] );
-		$registeredHooks = $this->extensionRegistry->getAttribute( 'Hooks' );
+		$registeredHooks = $this->registry->getExtensionHooks();
 		return !empty( $registeredHooks[$hook] ) || $legacyRegisteredHook;
 	}
 
@@ -342,11 +334,12 @@ class HookContainer implements SalvageableService {
 	 * @param callable|string|array $callback handler object to attach
 	 */
 	public function register( string $hook, $callback ) {
-		$deprecated = $this->deprecatedHooks->isHookDeprecated( $hook );
+		$deprecatedHooks = $this->registry->getDeprecatedHooks();
+		$deprecated = $deprecatedHooks->isHookDeprecated( $hook );
 		if ( $deprecated ) {
-			$deprecatedVersion = $this->deprecatedHooks->getDeprecationInfo( $hook )['deprecatedVersion']
-				?? false;
-			$component = $this->deprecatedHooks->getDeprecationInfo( $hook )['component'] ?? false;
+			$info = $deprecatedHooks->getDeprecationInfo( $hook );
+			$deprecatedVersion = $info['deprecatedVersion'] ?? false;
+			$component = $info['component'] ?? false;
 			wfDeprecated(
 				"$hook hook", $deprecatedVersion, $component
 			);
@@ -362,10 +355,9 @@ class HookContainer implements SalvageableService {
 	 * @return array function names
 	 */
 	public function getLegacyHandlers( string $hook ) : array {
-		global $wgHooks;
 		$handlers = array_merge(
 			$this->legacyRegisteredHandlers[$hook] ?? [],
-			$wgHooks[$hook] ?? []
+			$this->registry->getGlobalHooks()[$hook] ?? []
 		);
 		return $handlers;
 	}
@@ -378,14 +370,15 @@ class HookContainer implements SalvageableService {
 	 */
 	public function getHandlers( string $hook ) : array {
 		$handlers = [];
-		$registeredHooks = $this->extensionRegistry->getAttribute( 'Hooks' );
+		$deprecatedHooks = $this->registry->getDeprecatedHooks();
+		$registeredHooks = $this->registry->getExtensionHooks();
 		if ( isset( $registeredHooks[$hook] ) ) {
 			foreach ( $registeredHooks[$hook] as $hookReference ) {
 				// Non-legacy hooks have handler attributes
 				$handlerObject = $hookReference['handler'];
 				// Skip hooks that both acknowledge deprecation and are deprecated in core
 				$flaggedDeprecated = !empty( $hookReference['deprecated'] );
-				$deprecated = $this->deprecatedHooks->isHookDeprecated( $hook );
+				$deprecated = $deprecatedHooks->isHookDeprecated( $hook );
 				if ( $deprecated && $flaggedDeprecated ) {
 					continue;
 				}
@@ -406,10 +399,11 @@ class HookContainer implements SalvageableService {
 	 * 2. an extension registers a handler in the new way but does not acknowledge deprecation
 	 */
 	public function emitDeprecationWarnings() {
-		$registeredHooks = $this->extensionRegistry->getAttribute( 'Hooks' ) ?? [];
+		$deprecatedHooks = $this->registry->getDeprecatedHooks();
+		$registeredHooks = $this->registry->getExtensionHooks();
 		foreach ( $registeredHooks as $name => $handlers ) {
-			if ( $this->deprecatedHooks->isHookDeprecated( $name ) ) {
-				$deprecationInfo = $this->deprecatedHooks->getDeprecationInfo( $name );
+			if ( $deprecatedHooks->isHookDeprecated( $name ) ) {
+				$deprecationInfo = $deprecatedHooks->getDeprecationInfo( $name );
 				$version = $deprecationInfo['deprecatedVersion'] ?? '';
 				$component = $deprecationInfo['component'] ?? 'MediaWiki';
 				foreach ( $handlers as $handler ) {
