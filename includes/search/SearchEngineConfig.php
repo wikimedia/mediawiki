@@ -122,8 +122,8 @@ class SearchEngineConfig {
 	 *
 	 * @par extension.json Example:
 	 * @code
-	 * 'SearchMappings': {
-	 * 	'foobarsearch': { 'class': 'MediaWiki\\Extensions\\FoobarSearch\\FoobarSearch' }
+	 * "SearchMappings": {
+	 * 	"foobarsearch": { "class": "MediaWiki\\Extensions\\FoobarSearch\\FoobarSearch" }
 	 * }
 	 * @endcode
 	 *
