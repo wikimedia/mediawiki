@@ -536,6 +536,11 @@ class SkinTemplate extends Skin {
 		$flattenedfooterlinks = [];
 		foreach ( $footerData as $category => $links ) {
 			$flattenedfooterlinks[$category] = array_keys( $links );
+			foreach ( $links as $key => $value ) {
+				// For full support with BaseTemplate we also need to
+				// copy over the keys.
+				$tpl->set( $key, $value );
+			}
 		}
 		$tpl->set( 'footerlinks', $flattenedfooterlinks );
 		$tpl->set( 'footericons', $this->getFooterIcons() );
