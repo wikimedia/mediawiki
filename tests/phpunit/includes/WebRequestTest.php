@@ -604,33 +604,33 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 	public static function provideLanguageData() {
 		return [
 			[ '', [], 'Empty Accept-Language header' ],
-			[ 'en', [ 'en' => 1 ], 'One language' ],
-			[ 'en;q=', [ 'en' => 1 ], 'Empty q= defaults to 1' ],
+			[ 'en', [ 'en' => 1.0 ], 'One language' ],
+			[ 'en;q=', [ 'en' => 1.0 ], 'Empty q= defaults to 1' ],
 			[ 'en;q=0, de;q=0. pt;q=0.0 it;q=0.0000', [], 'Zeros to be skipped' ],
-			[ 'EN;Q=1.0009', [ 'en' => '1.000' ], 'Limited to max. 3 decimal places' ],
-			[ 'en, ar', [ 'en' => 1, 'ar' => 1 ], 'Two languages listed in appearance order.' ],
+			[ 'EN;Q=1.0009', [ 'en' => 1.000 ], 'Limited to max. 3 decimal places' ],
+			[ 'en, ar', [ 'en' => 1.0, 'ar' => 1.0 ], 'Two languages listed in appearance order.' ],
 			[
 				'zh-cn,zh-tw',
-				[ 'zh-cn' => 1, 'zh-tw' => 1 ],
+				[ 'zh-cn' => 1.0, 'zh-tw' => 1.0 ],
 				'Two equally prefered languages, listed in appearance order per rfc3282. Checks c9119'
 			],
 			[
 				'es, en; q=0.5',
-				[ 'es' => 1, 'en' => '0.5' ],
+				[ 'es' => 1.0, 'en' => 0.5 ],
 				'Spanish as first language and English and second'
 			],
-			[ 'en; q=0.5, es', [ 'es' => 1, 'en' => '0.5' ], 'Less prefered language first' ],
-			[ 'fr, en; q=0.5, es', [ 'fr' => 1, 'es' => 1, 'en' => '0.5' ], 'Three languages' ],
-			[ 'en; q=0.5, es', [ 'es' => 1, 'en' => '0.5' ], 'Two languages' ],
-			[ 'en, zh;q=0', [ 'en' => 1 ], "It's Chinese to me" ],
+			[ 'en; q=0.5, es', [ 'es' => 1.0, 'en' => 0.5 ], 'Less prefered language first' ],
+			[ 'fr, en; q=0.5, es', [ 'fr' => 1.0, 'es' => 1.0, 'en' => 0.5 ], 'Three languages' ],
+			[ 'en; q=0.5, es', [ 'es' => 1.0, 'en' => 0.5 ], 'Two languages' ],
+			[ 'en, zh;q=0', [ 'en' => 1.0 ], "It's Chinese to me" ],
 			[
 				'es; q=1, pt;q=0.7, it; q=0.6, de; q=0.1, ru;q=0',
-				[ 'es' => '1', 'pt' => '0.7', 'it' => '0.6', 'de' => '0.1' ],
+				[ 'es' => 1.0, 'pt' => 0.7, 'it' => 0.6, 'de' => 0.1 ],
 				'Preference for Romance languages'
 			],
 			[
 				'en-gb, en-us; q=1',
-				[ 'en-gb' => 1, 'en-us' => '1' ],
+				[ 'en-gb' => 1.0, 'en-us' => 1.0 ],
 				'Two equally prefered English variants'
 			],
 			[ '_', [], 'Invalid input' ],
