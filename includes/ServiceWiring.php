@@ -59,6 +59,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\DeprecatedHooks;
+use MediaWiki\HookContainer\GlobalHookRegistry;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
@@ -353,10 +354,10 @@ return [
 		$extRegistry = ExtensionRegistry::getInstance();
 		$extDeprecatedHooks = $extRegistry->getAttribute( 'DeprecatedHooks' );
 		$deprecatedHooks = new DeprecatedHooks( $extDeprecatedHooks );
+		$hookRegistry = new GlobalHookRegistry( $extRegistry, $deprecatedHooks );
 		return new HookContainer(
-			$extRegistry,
-			$services->getObjectFactory(),
-			$deprecatedHooks
+			$hookRegistry,
+			$services->getObjectFactory()
 		);
 	},
 

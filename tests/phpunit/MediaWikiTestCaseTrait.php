@@ -1,7 +1,10 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\MockObject\MockObject;
+use Pimple\Psr11\ServiceLocator;
+use Wikimedia\ObjectFactory;
 
 /**
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
@@ -54,6 +57,26 @@ trait MediaWikiTestCaseTrait {
 			->getMockForAbstractClass();
 		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
 		return $mock;
+	}
+
+	/**
+	 * Create an initially empty HookContainer with an empty service container
+	 * attached. Register only the hooks specified in the parameter.
+	 *
+	 * @param callable[] $hooks
+	 * @return HookContainer
+	 */
+	protected function createHookContainer( $hooks = [] ) {
+		$hookContainer = new HookContainer(
+			new \MediaWiki\HookContainer\StaticHookRegistry(),
+			new ObjectFactory(
+				new ServiceLocator( new \Pimple\Container(), [] )
+			)
+		);
+		foreach ( $hooks as $name => $callback ) {
+			$hookContainer->register( $name, $callback );
+		}
+		return $hookContainer;
 	}
 
 	/**
