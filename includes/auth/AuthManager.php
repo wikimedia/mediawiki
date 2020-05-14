@@ -2317,6 +2317,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		$ret = [];
 		foreach ( $specs as $spec ) {
+			/** @var AuthenticationProvider $provider */
 			$provider = $this->objectFactory->createObject( $spec, [ 'assertClass' => $class ] );
 			$provider->setLogger( $this->logger );
 			$provider->setManager( $this );
