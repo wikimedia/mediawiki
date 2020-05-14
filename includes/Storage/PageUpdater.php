@@ -1033,9 +1033,14 @@ class PageUpdater {
 				throw new PageUpdateException( "Failed to update page row to use new revision." );
 			}
 
+			$tags = $this->computeEffectiveTags( $flags );
+			Hooks::run(
+				'RevisionFromEditComplete',
+				[ $wikiPage, $newRevisionRecord, $this->getOriginalRevisionId(), $user, &$tags ]
+			);
+
 			// TODO: replace legacy hook!
 			$newLegacyRevision = new Revision( $newRevisionRecord );
-			$tags = $this->computeEffectiveTags( $flags );
 			Hooks::run(
 				'NewRevisionFromEditComplete',
 				[ $wikiPage, $newLegacyRevision, $this->getOriginalRevisionId(), $user, &$tags ]
@@ -1167,9 +1172,14 @@ class PageUpdater {
 			throw new PageUpdateException( "Failed to update page row to use new revision." );
 		}
 
+		$tags = $this->computeEffectiveTags( $flags );
+		Hooks::run(
+			'RevisionFromEditComplete',
+			[ $wikiPage, $newRevisionRecord, false, $user, &$tags ]
+		);
+
 		// TODO: replace legacy hook!
 		$newLegacyRevision = new Revision( $newRevisionRecord );
-		$tags = $this->computeEffectiveTags( $flags );
 		Hooks::run(
 			'NewRevisionFromEditComplete',
 			[ $wikiPage, $newLegacyRevision, false, $user, &$tags ]

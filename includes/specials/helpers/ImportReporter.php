@@ -152,8 +152,13 @@ class ImportReporter extends ContextSource {
 				// Update page record
 				$page->updateRevisionOn( $dbw, $inserted );
 
-				// TODO replace hook
 				$fakeTags = [];
+				Hooks::run(
+					'RevisionFromEditComplete',
+					[ $page, $inserted, $latest, $this->getUser(), &$fakeTags ]
+				);
+
+				// TODO hard deprecate old hook
 				$nullRevision = new Revision( $inserted );
 				Hooks::run(
 					'NewRevisionFromEditComplete',
