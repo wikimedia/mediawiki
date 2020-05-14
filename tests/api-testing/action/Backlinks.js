@@ -24,7 +24,7 @@ describe( 'Backlinks', function () {
 	describe( 'referrers', () => {
 		it( 'can be listed', async () => {
 			const result = await bob.list( 'backlinks', { bltitle: randomPage } );
-			const links = result.map( ( p )=>( p.title ) );
+			const links = result.map( ( p ) => p.title );
 			assert.sameMembers( links, [ linksToEsther1, linksToEsther2 ] );
 		} );
 	} );

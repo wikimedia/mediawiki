@@ -154,6 +154,7 @@
 								label: user.name
 							} );
 						}
+						return undefined;
 					} ).filter( function ( item ) {
 						return item !== undefined;
 					} );
