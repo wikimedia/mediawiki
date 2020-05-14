@@ -2382,13 +2382,16 @@ class WikiPage implements Page, IDBAccessObject {
 				__METHOD__
 			);
 
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$wikiPage = $this;
+			Hooks::run( 'RevisionFromEditComplete',
+				[ $this, $nullRevisionRecord, $latest, $user, &$tags ] );
 
-			// TODO replace hook with one using RevisionRecord
+			// TODO hard deprecate
 			$nullRevision = new Revision( $nullRevisionRecord );
 			Hooks::run( 'NewRevisionFromEditComplete',
 				[ $this, $nullRevision, $latest, $user, &$tags ] );
+
+			// Avoid PHP 7.1 warning of passing $this by reference
+			$wikiPage = $this;
 			Hooks::run( 'ArticleProtectComplete', [ &$wikiPage, &$user, $limit, $reason ] );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
