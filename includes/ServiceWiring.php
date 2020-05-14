@@ -1018,10 +1018,18 @@ return [
 		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
 
 		foreach ( $names as $name => $skin ) {
-			$factory->register( $name, $skin, [
-				'class' => "Skin$skin"
-			] );
+			if ( is_array( $skin ) ) {
+				$spec = $skin;
+				$displayName = $skin['displayname'] ?? $name;
+			} else {
+				$displayName = $skin;
+				$spec = [
+					'class' => "Skin$skin"
+				];
+			}
+			$factory->register( $name, $displayName, $spec );
 		}
+
 		// Register a hidden "fallback" skin
 		$factory->register( 'fallback', 'Fallback', [
 			'class' => SkinFallback::class
