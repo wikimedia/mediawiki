@@ -330,14 +330,18 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$titleValue = new TitleValue( 0, 'SomeDbKey' );
 
 		$mockDb = $this->getMockDb();
+		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'selectField' )
 			->with(
-				'watchlist',
+				[ 'watchlist', 'watchlist_expiry' ],
 				'COUNT(*)',
 				[
 					'wl_namespace' => $titleValue->getNamespace(),
 					'wl_title' => $titleValue->getDBkey(),
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
 				],
 				$this->isType( 'string' )
 			)
@@ -376,12 +380,20 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->isType( 'string' )
 				)
 			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+
+		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
+				[ 'watchlist', 'watchlist_expiry' ],
 				[ 'wl_title', 'wl_namespace', 'watchers' => 'COUNT(*)' ],
-				[ 'makeWhereFrom2d return value' ],
+				[
+					'makeWhereFrom2d return value',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
+				],
 				$this->isType( 'string' ),
 				[
 					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
@@ -430,6 +442,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$this->getFakeRow( [ 'wl_title' => 'AnotherDbKey', 'wl_namespace' => '1', 'watchers' => '500' ]
 			),
 		];
+
 		$mockDb->expects( $this->once() )
 			->method( 'makeWhereFrom2d' )
 			->with(
@@ -438,12 +451,20 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 				$this->isType( 'string' )
 			)
 			->will( $this->returnValue( 'makeWhereFrom2d return value' ) );
+
+		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
+				[ 'watchlist', 'watchlist_expiry' ],
 				[ 'wl_title', 'wl_namespace', 'watchers' => 'COUNT(*)' ],
-				[ 'makeWhereFrom2d return value' ],
+				[
+					'makeWhereFrom2d return value',
+					'we_expiry IS NULL OR we_expiry > 20200101000000'
+				],
 				$this->isType( 'string' ),
 				[
 					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
@@ -475,27 +496,34 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$titleValue = new TitleValue( 0, 'SomeDbKey' );
 
 		$mockDb = $this->getMockDb();
+
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'selectField' )
 			->with(
-				'watchlist',
+				[ 'watchlist', 'watchlist_expiry' ],
 				'COUNT(*)',
 				[
 					'wl_namespace' => $titleValue->getNamespace(),
 					'wl_title' => $titleValue->getDBkey(),
 					'wl_notificationtimestamp >= \'TS111TS\' OR wl_notificationtimestamp IS NULL',
+					'we_expiry IS NULL OR we_expiry > \'20200101000000\''
 				],
 				$this->isType( 'string' )
 			)
 			->will( $this->returnValue( '7' ) );
-		$mockDb->expects( $this->exactly( 1 ) )
+
+		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'addQuotes' )
 			->will( $this->returnCallback( function ( $value ) {
 				return "'$value'";
 			} ) );
-		$mockDb->expects( $this->exactly( 1 ) )
+
+		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'timestamp' )
 			->will( $this->returnCallback( function ( $value ) {
+				if ( $value === 0 ) {
+					return '20200101000000';
+				}
 				return 'TS' . $value . 'TS';
 			} ) );
 
@@ -524,16 +552,21 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			),
 		];
 		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->exactly( 2 * 3 ) )
+		$mockDb->expects( $this->exactly( 2 * 3 + 1 ) )
 			->method( 'addQuotes' )
 			->will( $this->returnCallback( function ( $value ) {
 				return "'$value'";
 			} ) );
-		$mockDb->expects( $this->exactly( 3 ) )
+
+		$mockDb->expects( $this->exactly( 4 ) )
 			->method( 'timestamp' )
 			->will( $this->returnCallback( function ( $value ) {
+				if ( $value === 0 ) {
+					return '20200101000000';
+				}
 				return 'TS' . $value . 'TS';
 			} ) );
+
 		$mockDb->expects( $this->any() )
 			->method( 'makeList' )
 			->with(
@@ -565,9 +598,12 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
+				[ 'watchlist', 'watchlist_expiry' ],
 				[ 'wl_namespace', 'wl_title', 'watchers' => 'COUNT(*)' ],
-				$expectedCond,
+				[
+					$expectedCond,
+					'we_expiry IS NULL OR we_expiry > \'20200101000000\''
+				],
 				$this->isType( 'string' ),
 				[
 					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
@@ -666,9 +702,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
+				[ 'watchlist' ],
 				[ 'wl_namespace', 'wl_title', 'watchers' => 'COUNT(*)' ],
-				$expectedCond,
+				[ $expectedCond ],
 				$this->isType( 'string' ),
 				[
 					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
@@ -683,7 +719,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'set' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
-		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
+		$store = $this->newWatchedItemStore( [
+				'db' => $mockDb,
+				'cache' => $mockCache,
+				'expiryEnabled' => false
+			] );
 
 		$expected = [
 			0 => [
@@ -715,9 +755,9 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
+				[ 'watchlist' ],
 				[ 'wl_namespace', 'wl_title', 'watchers' => 'COUNT(*)' ],
-				'makeList return value',
+				[ 'makeList return value' ],
 				$this->isType( 'string' ),
 				[
 					'GROUP BY' => [ 'wl_namespace', 'wl_title' ],
@@ -733,7 +773,11 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$mockCache->expects( $this->never() )->method( 'set' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
-		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
+		$store = $this->newWatchedItemStore( [
+				'db' => $mockDb,
+				'cache' => $mockCache,
+				'expiryEnabled' => false
+			] );
 
 		$expected = [
 			0 => [ 'SomeDbKey' => 0, 'OtherDbKey' => 0 ],
