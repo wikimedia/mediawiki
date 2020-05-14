@@ -98,7 +98,8 @@ class TalkPageNotificationManager {
 	 *
 	 * @param UserIdentity $user
 	 * @param RevisionRecord|null $curRev New, as yet unseen revision of the user talk page.
-	 *   Passing null is deprecated since 1.35
+	 * 	Null is acceptable in case the revision is not known. This will indicate that new messages
+	 * 	exist, but will not affect the latest seen message timestamp
 	 */
 	public function setUserHasNewMessages(
 		UserIdentity $user,

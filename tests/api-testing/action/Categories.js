@@ -25,7 +25,7 @@ describe( 'Categories', function testCategories() {
 			page
 		);
 
-		return result[ page ].categories.map( ( p )=>utils.dbkey( p.title ) );
+		return result[ page ].categories.map( ( p ) => utils.dbkey( p.title ) );
 	};
 
 	const listMembers = async ( cat, param = {} ) => {
@@ -34,7 +34,7 @@ describe( 'Categories', function testCategories() {
 			{ cmtitle: cat, ...param }
 		);
 
-		return result.map( ( p )=>utils.dbkey( p.title ) );
+		return result.map( ( p ) => utils.dbkey( p.title ) );
 	};
 
 	it( 'can be added using wikitext syntax', async () => {

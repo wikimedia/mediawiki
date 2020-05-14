@@ -9,10 +9,9 @@ module.exports = {
 	 * @return {string} File path
 	 */
 	saveScreenshot( title ) {
-		var filename, filePath;
 		// Create sane file name for current test title
-		filename = encodeURIComponent( title.replace( /\s+/g, '-' ) );
-		filePath = `${browser.config.screenshotPath}/${filename}.png`;
+		const filename = encodeURIComponent( title.replace( /\s+/g, '-' ) );
+		const filePath = `${browser.config.screenshotPath}/${filename}.png`;
 		// Ensure directory exists, based on WebDriverIO#saveScreenshotSync()
 		try {
 			fs.statSync( browser.config.screenshotPath );

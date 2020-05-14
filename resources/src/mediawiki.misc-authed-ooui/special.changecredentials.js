@@ -33,18 +33,18 @@
 					errorsuselocal: true,
 					uselang: mw.config.get( 'wgUserLanguage' )
 				} ).done( function ( resp ) {
-					var pwinfo = resp.validatepassword,
-						good = pwinfo.validity === 'Good',
-						errors = [];
+					var errors,
+						pwinfo = resp.validatepassword,
+						good = pwinfo.validity === 'Good';
 
 					currentApiPromise = undefined;
 
 					if ( !good ) {
-						pwinfo.validitymessages.map( function ( m ) {
-							errors.push( new OO.ui.HtmlSnippet( m.html ) );
+						errors = pwinfo.validitymessages.map( function ( m ) {
+							return new OO.ui.HtmlSnippet( m.html );
 						} );
 					}
-					self.setErrors( errors );
+					self.setErrors( errors || [] );
 					d.resolve( good );
 				} ).fail( d.reject );
 
