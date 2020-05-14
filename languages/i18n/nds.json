@@ -874,6 +874,7 @@
 	"recentchanges-label-unpatrolled": "Düsse Ännern is noch nich kontrolleert worrn",
 	"recentchanges-label-plusminus": "Disse Siedengrött is mit dit Antall Bytes ännert",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}<br />(süh ok de [[Special:NewPages|List mit ne'e Sieden]])",
+	"rcfilters-search-placeholder": "Ännern filtern (Menü oder Söök för’n Filternaam bruken)",
 	"rcfilters-search-placeholder-mobile": "Filters",
 	"rcnotefrom": "Dit sünd de Ännern siet <b>$2</b> (bet to <b>$1</b> wiest).",
 	"rclistfrom": "Wies ne’e Ännern siet $3 $2",
