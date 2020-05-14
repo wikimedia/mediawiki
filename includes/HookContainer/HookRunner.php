@@ -2426,7 +2426,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onLoginFormValidErrorMessages( &$messages ) {
+	public function onLoginFormValidErrorMessages( array &$messages ) {
 		return $this->container->run(
 			'LoginFormValidErrorMessages',
 			[ &$messages ]

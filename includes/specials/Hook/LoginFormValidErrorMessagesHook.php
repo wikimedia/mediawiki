@@ -19,5 +19,5 @@ interface LoginFormValidErrorMessagesHook {
 	 *   keys from LoginForm::$validErrorMessages)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onLoginFormValidErrorMessages( &$messages );
+	public function onLoginFormValidErrorMessages( array &$messages );
 }
