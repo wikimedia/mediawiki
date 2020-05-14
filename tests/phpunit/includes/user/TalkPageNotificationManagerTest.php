@@ -68,6 +68,12 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		$manager->clearInstanceCache( $user );
 		$this->assertFalse( $manager->userHasNewMessages( $user ),
 			'Should be false after cache cleared' );
+		$manager->setUserHasNewMessages( $user, null );
+		$this->assertTrue( $manager->userHasNewMessages( $user ),
+			'Should be true after updated' );
+		$manager->removeUserHasNewMessages( $user );
+		$this->assertFalse( $manager->userHasNewMessages( $user ),
+			'Should be false after updated' );
 	}
 
 	/**
