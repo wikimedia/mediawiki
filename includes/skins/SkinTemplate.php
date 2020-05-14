@@ -443,6 +443,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'reporttime', wfReportTime( $out->getCSP()->getNonce() ) );
 
 		// original version by hansm
+		// See T60137 for information on deprecation.
 		if ( !$this->getHookRunner()->onSkinTemplateOutputPageBeforeExec( $this, $tpl ) ) {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!" );
 		}
