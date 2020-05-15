@@ -157,7 +157,6 @@ class ContentSecurityPolicy {
 		// blocked.
 		$defaultSrc = [ '*', 'data:', 'blob:' ];
 
-		$cssSrc = false;
 		$imgSrc = false;
 		$scriptSrc = [ "'unsafe-eval'", "blob:", "'self'" ];
 		if ( $policyConfig['useNonces'] ?? true ) {
