@@ -43,9 +43,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Editing modes. EDIT_CLEAR is no longer used; the "Clear" link scared people
 	 * too much. Now it's passed on to the raw editor, from which it's very easy to clear.
 	 */
-	const EDIT_CLEAR = 1;
-	const EDIT_RAW = 2;
-	const EDIT_NORMAL = 3;
+	public const EDIT_CLEAR = 1;
+	public const EDIT_RAW = 2;
+	public const EDIT_NORMAL = 3;
 
 	protected $successMessage;
 

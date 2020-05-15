@@ -98,7 +98,7 @@ class SpecialSearch extends SpecialPage {
 	 */
 	private $loadStatus;
 
-	const NAMESPACES_CURRENT = 'sense';
+	private const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
 		parent::__construct( 'Search' );

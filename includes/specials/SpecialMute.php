@@ -28,7 +28,7 @@ use MediaWiki\Preferences\MultiUsernameFilter;
  */
 class SpecialMute extends FormSpecialPage {
 
-	const PAGE_NAME = 'Mute';
+	private const PAGE_NAME = 'Mute';
 
 	/** @var User */
 	private $target;

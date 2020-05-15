@@ -32,7 +32,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	private $titleTuples = [];
 
 	/** @var int Maximum seconds of rebound purge delay (sanity) */
-	const MAX_REBOUND_DELAY = 300;
+	private const MAX_REBOUND_DELAY = 300;
 
 	/**
 	 * @param string[]|Title[] $targets Collection of URLs/titles to be purged from CDN
