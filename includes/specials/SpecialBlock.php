@@ -871,13 +871,22 @@ class SpecialBlock extends FormSpecialPage {
 			}
 		}
 
+		// Check whether the user can edit their own user talk page.
 		$blockAllowsUTEdit = $context->getConfig()->get( 'BlockAllowsUTEdit' );
-		$userTalkEditAllowed = !$blockAllowsUTEdit || !$data['DisableUTEdit'];
-		if ( !$userTalkEditAllowed &&
-			$isPartialBlock &&
-			!in_array( NS_USER_TALK, explode( "\n", $data['NamespaceRestrictions'] ) )
-		) {
-			return [ 'ipb-prevent-user-talk-edit' ];
+		$isUserTalkNamespaceBlock = !$isPartialBlock ||
+			in_array( NS_USER_TALK, explode( "\n", $data['NamespaceRestrictions'] ) );
+		if ( $isUserTalkNamespaceBlock ) {
+			// If the block blocks the user talk namespace, disallow own user talk edit if
+			// the global config disallows it; otherwise use the form field value.
+			$userTalkEditAllowed = $blockAllowsUTEdit ? !$data['DisableUTEdit'] : false;
+		} else {
+			// If the block doesn't block the user talk namespace, then it can't block own
+			// user talk edit, regardless of the config or field (T210475). Return error
+			// message if the field tries to disallow own user talk edit.
+			if ( isset( $data['DisableUTEdit'] ) && $data['DisableUTEdit'] ) {
+				return [ 'ipb-prevent-user-talk-edit' ];
+			}
+			$userTalkEditAllowed = true;
 		}
 
 		// A block is empty if it is a partial block, the page restrictions are empty, the
@@ -886,7 +895,7 @@ class SpecialBlock extends FormSpecialPage {
 			!( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) &&
 			!( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) &&
 			$data['DisableEmail'] === false &&
-			$userTalkEditAllowed &&
+			( $userTalkEditAllowed || !$blockAllowsUTEdit ) &&
 			!$data['CreateAccount']
 		) {
 			return [ 'ipb-empty-block' ];
