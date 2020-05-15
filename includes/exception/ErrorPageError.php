@@ -25,8 +25,8 @@
  * @ingroup Exception
  */
 class ErrorPageError extends MWException implements ILocalizedException {
-	const SEND_OUTPUT = 0;
-	const STAGE_OUTPUT = 1;
+	public const SEND_OUTPUT = 0;
+	public const STAGE_OUTPUT = 1;
 	public $title, $msg, $params;
 
 	/**

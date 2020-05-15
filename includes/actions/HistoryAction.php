@@ -36,8 +36,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup Actions
  */
 class HistoryAction extends FormlessAction {
-	const DIR_PREV = 0;
-	const DIR_NEXT = 1;
+	private const DIR_PREV = 0;
+	private const DIR_NEXT = 1;
 
 	/** @var array Array of message keys and strings */
 	public $message;

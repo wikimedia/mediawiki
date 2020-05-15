@@ -29,8 +29,8 @@ use Wikimedia\Rdbms\DBReadOnlyError;
  * @since 1.28
  */
 class MWExceptionRenderer {
-	const AS_RAW = 1; // show as text
-	const AS_PRETTY = 2; // show as HTML
+	public const AS_RAW = 1; // show as text
+	public const AS_PRETTY = 2; // show as HTML
 
 	/**
 	 * @param Throwable $e Original exception

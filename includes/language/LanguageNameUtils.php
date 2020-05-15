@@ -42,22 +42,22 @@ class LanguageNameUtils {
 	/**
 	 * Return autonyms in getLanguageName(s).
 	 */
-	const AUTONYMS = null;
+	public const AUTONYMS = null;
 
 	/**
 	 * Return all known languages in getLanguageName(s).
 	 */
-	const ALL = 'all';
+	public const ALL = 'all';
 
 	/**
 	 * Return in getLanguageName(s) only the languages that are defined by MediaWiki.
 	 */
-	const DEFINED = 'mw';
+	public const DEFINED = 'mw';
 
 	/**
 	 * Return in getLanguageName(s) only the languages for which we have at least some localisation.
 	 */
-	const SUPPORTED = 'mwfile';
+	public const SUPPORTED = 'mwfile';
 
 	/** @var ServiceOptions */
 	private $options;

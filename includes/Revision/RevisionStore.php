@@ -78,7 +78,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 class RevisionStore
 	implements IDBAccessObject, RevisionFactory, RevisionLookup, LoggerAwareInterface {
 
-	const ROW_CACHE_KEY = 'revision-row-1.29';
+	public const ROW_CACHE_KEY = 'revision-row-1.29';
 
 	/**
 	 * @var SqlBlobStore

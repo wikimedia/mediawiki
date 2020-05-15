@@ -38,7 +38,7 @@ use Wikimedia\Assert\Assert;
  */
 class SlotRecord {
 
-	const MAIN = 'main';
+	public const MAIN = 'main';
 
 	/**
 	 * @var object database result row, as a raw object. Callbacks are supported for field values,
