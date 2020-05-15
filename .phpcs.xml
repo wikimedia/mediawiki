@@ -19,7 +19,6 @@
 	</rule>
 	<!-- TODO Still to be done -->
 	<rule ref="PSR12.Properties.ConstantVisibility.NotFound">
-		<exclude-pattern>includes/FormOptions\.php</exclude-pattern>
 		<exclude-pattern>includes/Rest/</exclude-pattern>
 		<exclude-pattern>includes/Storage/</exclude-pattern>
 		<exclude-pattern>includes/api/</exclude-pattern>
