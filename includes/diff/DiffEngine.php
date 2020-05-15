@@ -412,7 +412,7 @@ class DiffEngine {
 		$this->added = $added;
 	}
 
-	function diff_range( $from_lines, $to_lines ) {
+	private function diff_range( $from_lines, $to_lines ) {
 		// Diff and store locally
 		$this->diff( $from_lines, $to_lines );
 		unset( $from_lines, $to_lines );

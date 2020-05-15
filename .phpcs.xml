@@ -41,13 +41,10 @@
 	</rule>
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/actions/</exclude-pattern>
-		<exclude-pattern>includes/diff/DiffEngine\.php</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
 		<exclude-pattern>includes/historyblob/</exclude-pattern>
-		<exclude-pattern>includes/htmlform/fields/HTMLTextAreaField\.php</exclude-pattern>
 		<exclude-pattern>includes/installer/</exclude-pattern>
 		<exclude-pattern>includes/libs/</exclude-pattern>
-		<exclude-pattern>includes/logging/LogPager\.php</exclude-pattern>
 		<exclude-pattern>includes/media/</exclude-pattern>
 		<exclude-pattern>includes/page/</exclude-pattern>
 		<exclude-pattern>includes/pager/</exclude-pattern>
@@ -57,7 +54,6 @@
 		<exclude-pattern>includes/specialpage/</exclude-pattern>
 		<exclude-pattern>includes/specials/</exclude-pattern>
 		<exclude-pattern>includes/user/</exclude-pattern>
-		<exclude-pattern>includes/CategoryViewer\.php</exclude-pattern>
 		<exclude-pattern>includes/Title\.php</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
