@@ -33,8 +33,8 @@
 	 * @param {string} options.description Description
 	 * @param {string} options.input Input
 	 * @param {string} options.output Output
-	 * @param {int} options.start Starting char for selection
-	 * @param {int} options.end Ending char for selection
+	 * @param {number} options.start Starting char for selection
+	 * @param {number} options.end Ending char for selection
 	 * @param {Object} options.params Additional parameters for $().textSelection( 'encapsulateText' )
 	 */
 	function encapsulateTest( options ) {

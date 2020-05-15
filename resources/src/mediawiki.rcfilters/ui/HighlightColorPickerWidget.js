@@ -74,6 +74,7 @@ OO.mixinClass( HighlightColorPickerWidget, OO.ui.mixin.LabelElement );
 
 /**
  * Bind the color picker to an item
+ *
  * @param {mw.rcfilters.dm.FilterItem} filterItem
  */
 HighlightColorPickerWidget.prototype.setFilterItem = function ( filterItem ) {

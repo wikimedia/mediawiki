@@ -5,6 +5,7 @@ var byteLength = require( 'mediawiki.String' ).byteLength,
 /* eslint no-underscore-dangle: "off" */
 /**
  * Controller for the filters in Recent Changes
+ *
  * @class mw.rcfilters.Controller
  *
  * @constructor
@@ -303,6 +304,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 
 /**
  * Check if the controller has finished initializing.
+ *
  * @return {boolean} Controller is initialized
  */
 Controller.prototype.isInitialized = function () {
@@ -569,6 +571,7 @@ Controller.prototype.toggleInvertedNamespaces = function () {
 
 /**
  * Set the value of the 'showlinkedto' parameter
+ *
  * @param {boolean} value
  */
 Controller.prototype.setShowLinkedTo = function ( value ) {
@@ -585,6 +588,7 @@ Controller.prototype.setShowLinkedTo = function ( value ) {
 
 /**
  * Set the target page
+ *
  * @param {string} page
  */
 Controller.prototype.setTargetPage = function ( page ) {
@@ -619,6 +623,7 @@ Controller.prototype.clearHighlightColor = function ( filterName ) {
 
 /**
  * Enable or disable live updates.
+ *
  * @param {boolean} enable True to enable, false to disable
  */
 Controller.prototype.toggleLiveUpdate = function ( enable ) {
@@ -630,6 +635,7 @@ Controller.prototype.toggleLiveUpdate = function ( enable ) {
 
 /**
  * Set a timeout for the next live update.
+ *
  * @private
  */
 Controller.prototype._scheduleLiveUpdate = function () {
@@ -638,6 +644,7 @@ Controller.prototype._scheduleLiveUpdate = function () {
 
 /**
  * Perform a live update.
+ *
  * @private
  */
 Controller.prototype._doLiveUpdate = function () {

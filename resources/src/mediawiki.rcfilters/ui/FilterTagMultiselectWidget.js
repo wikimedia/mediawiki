@@ -259,6 +259,7 @@ OO.inheritClass( FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
 /**
  * Create a OOUI ButtonGroupWidget. The buttons are framed and have additional CSS
  * classes applied on mobile.
+ *
  * @return {OO.ui.ButtonGroupWidget}
  */
 FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {

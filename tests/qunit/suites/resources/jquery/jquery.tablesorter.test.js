@@ -305,7 +305,7 @@
 	 * @param {string[]} header cols to make the table
 	 * @param {string[][]} data rows/cols to make the table
 	 * @param {string[][]} expected rows/cols to compare against at end
-	 * @param {function($table)} callback something to do with the table before we compare
+	 * @param {Function} callback Callback on $table before we compare
 	 */
 	function tableTest( msg, header, data, expected, callback ) {
 		QUnit.test( msg, function ( assert ) {
@@ -329,7 +329,7 @@
 	 * @param {string} msg text to pass on to qunit for the comparison
 	 * @param {string} html HTML to make the table
 	 * @param {string[][]} expected Rows/cols to compare against at end
-	 * @param {function($table)} callback Something to do with the table before we compare
+	 * @param {Function} callback Callback on $table before we compare
 	 */
 	function tableTestHTML( msg, html, expected, callback ) {
 		QUnit.test( msg, function ( assert ) {

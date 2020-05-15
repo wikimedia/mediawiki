@@ -205,6 +205,7 @@ ChangesListWrapperWidget.prototype.getMsgKeyForNoResults = function ( reason ) {
 
 /**
  * Emphasize the elements (or groups) newer than the 'from' parameter
+ *
  * @param {string} from Anything newer than this is considered 'new'
  */
 ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {

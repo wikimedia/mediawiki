@@ -382,6 +382,7 @@ FilterGroup.prototype.hasWhatsThis = function () {
 
 /**
  * Get the conflicts associated with the entire group.
+ *
  * Conflict object is set up by filter name keys and conflict
  * definition. For example:
  * [
@@ -398,6 +399,7 @@ FilterGroup.prototype.hasWhatsThis = function () {
  *         }
  *     }
  * ]
+ *
  * @return {Object} Conflict definition
  */
 FilterGroup.prototype.getConflicts = function () {

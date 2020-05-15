@@ -116,6 +116,7 @@ exports.config = {
 	// =====
 	/**
 	 * Executed after a Mocha test ends.
+	 *
 	 * @param {Object} test Mocha Test object
 	 */
 	afterTest: function ( test ) {

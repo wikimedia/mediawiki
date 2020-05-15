@@ -1252,6 +1252,7 @@ FiltersViewModel.prototype.toggleHighlight = function ( enable ) {
 
 /**
  * Check if the highlight feature is enabled
+ *
  * @return {boolean}
  */
 FiltersViewModel.prototype.isHighlightEnabled = function () {
