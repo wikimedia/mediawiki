@@ -390,7 +390,7 @@ class LogPager extends ReverseChronologicalPager {
 		);
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'log_timestamp';
 	}
 

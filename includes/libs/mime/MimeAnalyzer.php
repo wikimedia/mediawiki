@@ -428,8 +428,7 @@ EOT;
 	public function getTypesForExtension( $ext ) {
 		$ext = strtolower( $ext );
 
-		$r = $this->mExtToMime[$ext] ?? null;
-		return $r;
+		return $this->mExtToMime[$ext] ?? null;
 	}
 
 	/**
