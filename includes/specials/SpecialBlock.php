@@ -886,7 +886,7 @@ class SpecialBlock extends FormSpecialPage {
 			!( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) &&
 			!( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) &&
 			$data['DisableEmail'] === false &&
-			!$data['DisableUTEdit'] &&
+			$userTalkEditAllowed &&
 			!$data['CreateAccount']
 		) {
 			return [ 'ipb-empty-block' ];
