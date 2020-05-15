@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: daki
- * Date: 05.09.18
- * Time: 16:08
- */
+
 namespace MediaWiki\Revision;
 
 use ParserOutput;
