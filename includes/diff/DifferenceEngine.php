@@ -61,7 +61,7 @@ class DifferenceEngine extends ContextSource {
 	 * fixes important bugs or such to force cached diff views to
 	 * clear.
 	 */
-	const DIFF_VERSION = '1.12';
+	private const DIFF_VERSION = '1.12';
 
 	/**
 	 * Revision ID for the old revision. 0 for the revision previous to $mNewid, false

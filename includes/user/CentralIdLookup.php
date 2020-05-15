@@ -29,8 +29,8 @@ use Wikimedia\ObjectFactory;
  */
 abstract class CentralIdLookup implements IDBAccessObject {
 	// Audience options for accessors
-	const AUDIENCE_PUBLIC = 1;
-	const AUDIENCE_RAW = 2;
+	public const AUDIENCE_PUBLIC = 1;
+	public const AUDIENCE_RAW = 2;
 
 	/** @var CentralIdLookup[] */
 	private static $instances = [];

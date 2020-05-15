@@ -38,16 +38,16 @@ use Wikimedia\Assert\Assert;
 class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 	/** Use the PHP diff implementation (DiffEngine). */
-	const ENGINE_PHP = 'php';
+	public const ENGINE_PHP = 'php';
 
 	/** Use the wikidiff2 PHP module. */
-	const ENGINE_WIKIDIFF2 = 'wikidiff2';
+	public const ENGINE_WIKIDIFF2 = 'wikidiff2';
 
 	/** Use the wikidiff2 PHP module. */
-	const ENGINE_WIKIDIFF2_INLINE = 'wikidiff2inline';
+	public const ENGINE_WIKIDIFF2_INLINE = 'wikidiff2inline';
 
 	/** Use an external executable. */
-	const ENGINE_EXTERNAL = 'external';
+	public const ENGINE_EXTERNAL = 'external';
 
 	/** @var IBufferingStatsdDataFactory|null */
 	private $statsdDataFactory;

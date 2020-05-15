@@ -56,35 +56,35 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Number of characters required for the user_token field.
 	 */
-	const TOKEN_LENGTH = 32;
+	public const TOKEN_LENGTH = 32;
 
 	/**
 	 * An invalid string value for the user_token field.
 	 */
-	const INVALID_TOKEN = '*** INVALID ***';
+	public const INVALID_TOKEN = '*** INVALID ***';
 
 	/**
 	 * Version number to tag cached versions of serialized User objects. Should be increased when
 	 * {@link $mCacheVars} or one of it's members changes.
 	 */
-	const VERSION = 15;
+	private const VERSION = 15;
 
 	/**
 	 * Exclude user options that are set to their default value.
 	 * @deprecated since 1.35 Use UserOptionsLookup::EXCLUDE_DEFAULTS
 	 * @since 1.25
 	 */
-	const GETOPTIONS_EXCLUDE_DEFAULTS = UserOptionsLookup::EXCLUDE_DEFAULTS;
+	public const GETOPTIONS_EXCLUDE_DEFAULTS = UserOptionsLookup::EXCLUDE_DEFAULTS;
 
 	/**
 	 * @since 1.27
 	 */
-	const CHECK_USER_RIGHTS = true;
+	public const CHECK_USER_RIGHTS = true;
 
 	/**
 	 * @since 1.27
 	 */
-	const IGNORE_USER_RIGHTS = false;
+	public const IGNORE_USER_RIGHTS = false;
 
 	/**
 	 * Array of Strings List of member variables which are saved to the

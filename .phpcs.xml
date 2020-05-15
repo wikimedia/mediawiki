@@ -21,13 +21,9 @@
 	<rule ref="PSR12.Properties.ConstantVisibility.NotFound">
 		<exclude-pattern>includes/Storage/</exclude-pattern>
 		<exclude-pattern>includes/cache/</exclude-pattern>
-		<exclude-pattern>includes/diff/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
-		<exclude-pattern>includes/htmlform/fields/</exclude-pattern>
 		<exclude-pattern>includes/libs/</exclude-pattern>
-		<exclude-pattern>includes/logging/</exclude-pattern>
 		<exclude-pattern>includes/parser/</exclude-pattern>
-		<exclude-pattern>includes/user/</exclude-pattern>
 		<exclude-pattern>includes/utils/</exclude-pattern>
 		<exclude-pattern>languages/</exclude-pattern>
 		<exclude-pattern>tests/phpunit/includes/</exclude-pattern>
