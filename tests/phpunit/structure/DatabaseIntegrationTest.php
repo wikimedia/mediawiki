@@ -53,4 +53,32 @@ class DatabaseIntegrationTest extends MediaWikiTestCase {
 		$this->assertFalse( $this->db->tableExists( 'foobarbaz' ) );
 		$this->assertIsInt( $res->numRows() );
 	}
+
+	public function automaticSqlGenerationParams() {
+		return [
+			[ 'mysql', '/maintenance/tables-generated.sql' ],
+			[ 'sqlite', '/maintenance/sqlite/tables-generated.sql' ],
+			[ 'postgres', '/maintenance/postgres/tables-generated.sql' ],
+		];
+	}
+
+	/**
+	 * @dataProvider automaticSqlGenerationParams
+	 */
+	public function testAutomaticSqlGeneration( $type, $sqlPath ) {
+		global $IP;
+		$abstractSchemaPath = "$IP/maintenance/tables.json";
+		$mysqlPath = $IP . $sqlPath;
+		$oldContent = file_get_contents( $mysqlPath );
+		$maintenanceScript = new GenerateSchemaSql();
+		$maintenanceScript->loadWithArgv(
+			[ '--json=' . $abstractSchemaPath, '--sql=' . $mysqlPath, '--type=' . $type ]
+		);
+		$maintenanceScript->execute();
+		$this->assertEquals(
+			$oldContent,
+			file_get_contents( $mysqlPath ),
+			"The generated schema in '$type' type has to be the same"
+		);
+	}
 }
