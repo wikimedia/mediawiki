@@ -664,7 +664,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// get basic form description from the auth logic
 		$fieldInfo = AuthenticationRequest::mergeFieldInfo( $requests );
 		// this will call onAuthChangeFormFields()
-		$formDescriptor = static::fieldInfoToFormDescriptor( $requests, $fieldInfo, $this->authAction );
+		$formDescriptor = $this->fieldInfoToFormDescriptor( $requests, $fieldInfo, $this->authAction );
 		$this->postProcessFormDescriptor( $formDescriptor, $requests );
 
 		$context = $this->getContext();
