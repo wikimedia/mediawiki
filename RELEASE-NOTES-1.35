@@ -8,6 +8,8 @@ MediaWiki 1.35 is an alpha-quality development branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.35 ==
+1.35 requires PHP 7.2.22 or above (up from 7.2.9), to avoid segfaults (T228346).
+
 1.35 has several database changes since 1.34, and will not work without schema
 updates. Note that due to changes to some very large tables like the revision
 table, the schema update may take quite long (minutes on a medium sized site,
@@ -39,7 +41,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   your site's default by setting $wgDefaultUserOptions['search-match-redirect'].
 * Per-user concurrency in SpecialContributions can now be limited by setting
   $wgPoolCounterConf['SpecialContributions'] appropriately.
-* Added new PasswordPolicyCheck: PasswordCannotBeSubstringInUsername.  Similar
+* Added new PasswordPolicyCheck: PasswordCannotBeSubstringInUsername. Similar
   to the existing PasswordCannotMatchUsername check, this check ensures that
   a user's (case-insensitive) password cannot be a part of their username.
   e.g. password = MyPassword, username = ThisUsersPasswordIsMyPassword.
@@ -75,7 +77,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * $wgAuthManagerConfig and $wgAuthManagerAutoConfig can now use the 'services'
   option in provider specifications.
 * The 'URL' parameter to $wgVirtualRestConfig['modules']['parsoid'], previously
-  allowed for backwards-compatibility, has been deprecated.  Use 'url' instead.
+  allowed for backwards-compatibility, has been deprecated. Use 'url' instead.
 * Article::$mContext, use getContext()/setContext()
 * Article::__get(), ::__set() hard deprecated, use WikiPage property instead
 * Article::checkFlags(), ::checkTouched(), ::clearPreparedEdit(), ::exists(),
@@ -97,7 +99,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Article::replaceSectionContent() hard deprecated,
   use ::replaceSectionAtRev instead
 * The defaults for $wgVirtualRestConfig['modules']['parsoid'] have been
-  updated.  If you were relying on the default values, you may need to update
+  updated. If you were relying on the default values, you may need to update
   your configuration.
 * Set $wgXmlDumpSchemaVersion to XML_DUMP_SCHEMA_VERSION_11, so dumps use the
   new dump format per default. Consumers of XML dumps should not be affected if
@@ -105,7 +107,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   unchanged for revisions that only contain the main slot. The --schema-version
   option can be used with the dumpBackup.php script to set the dump format.
   (T238921)
-* $wgParserConf - This configuration is now deprecated.  It has been
+* $wgParserConf - This configuration is now deprecated. It has been
   effectively constant since 2008, and is ignored by core code.
   Configure the ParserFactory service in order to customize the Parser used.
 * …
@@ -129,7 +131,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * $wgDisableCounters, deprecated in 1.25, was removed. The feature that it
   controlled was already removed in 1.26, but the variable remained existent
   with a value of `false` for backward-compatibility.
-* $wgMaxGeneratedPPNodeCount - This setting was removed.  It only affected
+* $wgMaxGeneratedPPNodeCount - This setting was removed. It only affected
   Preprocessor_DOM, which was deprecated in 1.34 and removed in this release.
 * $wgFixArabicUnicode and $wgFixMalayalamUnicode, deprecated in 1.33, were
   removed. The fixes are now always enabled for their respective languages.
@@ -276,11 +278,11 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Integer-type parameters are now validated for syntax rather than being
   interpreted in surprising ways. For example, the following will now return a
   badinteger error:
-  * "1.9" (formerly interpreted as "1")
-  * " 1" (formerly interpreted as "1")
-  * "1e1" (formerly interpreted as "1" or "10", depending on the PHP version)
-  * "1foobar" (formerly interpreted as "1")
-  * "foobar" (formerly intepreted as "0")
+  - "1.9" (formerly interpreted as "1")
+  - " 1" (formerly interpreted as "1")
+  - "1e1" (formerly interpreted as "1" or "10", depending on the PHP version)
+  - "1foobar" (formerly interpreted as "1")
+  - "foobar" (formerly intepreted as "0")
   parameters. Ranges should be assumed to be enforced.
 * Many user-type parameters now accept a user ID, formatted like "#12345".
 * The 'assert' parameter used by all API modules now supports the value 'anon'.
@@ -294,9 +296,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   Use action=changecontentmodel. Unlike Special:ChangeContentModel, the api
   module does not work for pages that do not already exist.
 * If $wgWatchlistExpiry is true, the following API changes are made:
-  * action=watch accepts a new 'expiry' parameter analagous to the expiry
+  - action=watch accepts a new 'expiry' parameter analagous to the expiry
     accepted by action=userrights, action=block, etc.
-  * action=query&list=watchlistraw returns pages' watchlist expiry dates.
+  - action=query&list=watchlistraw returns pages' watchlist expiry dates.
 * (T249526) action=login will now return Failed rather than NeedToken on
   session loss.
 * …
@@ -306,12 +308,12 @@ For notes on 1.34.x and older releases, see HISTORY.
   validation, which brings some new features and changes. For the most part
   existing module code should work as it did before, but see subsequent notes
   for changes.
-  * The values for all ApiBase PARAM_* constants have changed. Code should have
+  - The values for all ApiBase PARAM_* constants have changed. Code should have
     been using the constants rather than hard-coding the values.
-  * Several ApiBase PARAM_* constants have been deprecated, see the in-class
+  - Several ApiBase PARAM_* constants have been deprecated, see the in-class
     documentation for details. Use the equivalent ParamValidator constants
     instead.
-  * The value returned for 'upload'-type parameters has changed from
+  - The value returned for 'upload'-type parameters has changed from
     WebRequestUpload to Psr\Http\Message\UploadedFileInterface.
 * Validation of 'user'-type parameters is more flexible. PARAM constants exist
   to specify the type of "user" allowed and to request UserIdentity objects
@@ -375,8 +377,9 @@ because of Phabricator reports.
 * AbstractBlock::mReason, deprecated in 1.34, is no longer public.
 * The GetBlockedStatus and UserIsHidden, deprecated in 1.34, has been removed.
   Instead, use the GetUserBlock hook.
-* A large number of Parser-related methods and properties were removed or
-  made private.
+* As part of work to replace the Parser, a large number of breaking changes have
+  been made, principally in related methods and properties being removed or made
+  private:
   - disableCache(), deprecated in 1.28.
   - serializeHalfParsedText() and the helpers unserializeHalfParsedText(),
     isValidHalfParsedText(), and StripState::getSubState() and
@@ -442,19 +445,29 @@ because of Phabricator reports.
     - ::$currentRevisionCache
     - ::$mProfiler
     - ::$mLinkRenderer
-* Parser::getTitle() will now throw a TypeError if $mTitle is uninitialized.
-  This use pattern was deprecated in 1.34.
+  - Parser::getTitle() will now throw a TypeError if $mTitle is uninitialized.
+    This use pattern was deprecated in 1.34.
+  - ContentHandler::makeParserOptions(), deprecated in 1.32, was removed. Use
+    WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
+  - The ParserAfterUnstrip hook, believed to be unused, was removed without
+    deprecation.
+  - Preprocessor_DOM and related classes, deprecated in 1.34, have been removed.
+    Consequently, the related ParserOptions::getMaxGeneratedPPNodeCount() and
+    ::setMaxGeneratedPPNodeCount() have been removed without deprecation.
+  - The support for the old signature for ParserFactory::__construct, which was
+    deprecated in 1.34, has been removed.
+  - Parser::getDefaultPreprocessorClass(), deprecated in 1.34, has been removed.
 * MediaWikiTestCase::prepareServices(), deprecated in 1.32, has been removed
 * The method ContentHandler::getSlotDiffRendererInternal is replaced with
   ContentHandler::getSlotDiffRendererWithOptions. This breaks consumers which
   call parent::getSlotDiffRendererInternal (no instances of which are known).
 * TextContent::getHighlightHtml, deprecated since 1.24, has been removed. Use
   TextContent::getHtml instead.
-* ExtensionRegistry::load(), deprecated in 1.34, was removed.
-  Use ::queue() instead.
+* ExtensionRegistry::load(), deprecated in 1.34, was removed. Instead, use
+  ExtensionRegistry::queue().
 * MWMessagePack class, deprecated in 1.34, was removed.
-* The cdb.php maintenance script was removed.
-  Use the 'cdb' command from the wikimedia/cdb library instead.
+* The cdb.php maintenance script was removed. Use the 'cdb' command from the
+  wikimedia/cdb library instead.
 * User::addNewUserLogEntryAutoCreate, deprecated in 1.27, was removed.
 * FileBasedSiteLookup class, deprecated in 1.33, was removed.
 * The wfGlobalCacheKey global function, deprecated in 1.30, was removed.
@@ -472,10 +485,8 @@ because of Phabricator reports.
 * The UsersMultiselectWidget config 'allowArbitrary' is now false by default. To
   accept arbitrary entries, pass in true for this config.
 * OutputPage::parse() and OutputPage::parseInline(), deprecated in 1.32, have
-  been removed.  Use ::parseAsContent() or ::parseAsInterface(), as
+  been removed. Use ::parseAsContent() or ::parseAsInterface(), as
   appropriate.
-* ContentHandler::makeParserOptions(), deprecated in 1.32, was removed. Use
-  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 * WikiPage::selectFields, deprecated in 1.31, was removed. Use ::getQueryInfo.
 * The remaining static methods for MagicWord, deprecated in 1.32, were removed.
   These were MagicWord::get(), ::getSubstIDs(), ::getDoubleUnderscoreArray(),
@@ -484,13 +495,7 @@ because of Phabricator reports.
 * ApiBase::checkTitleUserPermissions no longer accepts a User as the third
   parameter. Passing a user was deprecated in 1.33.
 * Sanitizer::setupAttributeWhitelist() and Sanitizer::attributeWhitelist(),
-  deprecated in 1.34, have been removed.  They should not have been public.
-* The ParserAfterUnstrip hook was removed without deprecation.
-* Preprocessor_DOM and related classes, deprecated in 1.34, have been removed.
-* ParserOptions::getMaxGeneratedPPNodeCount() and ::setMaxGeneratedPPNodeCount()
-  have been removed without deprecation.
-* The support for old signature for ParserFactory::__construct was deprecated in
-  1.34 and now has been removed.
+  deprecated in 1.34, have been removed. They should not have been public.
 * SpecialRecentChanges::filterByCategories(), deprecated in 1.31, was removed.
 * The `ArticleContentViewCustom` hook, deprecated in 1.32, was removed.
 * AuthManager::callLegacyAuthPlugin, deprecated in 1.33, was removed.
@@ -542,7 +547,6 @@ because of Phabricator reports.
 * HTMLUserTextField and HTMLUsersMultiselectField previously implied
   required=true when exists=true. Form fields that use exists=true should also
   set required=true if they are required.
-* Parser::getDefaultPreprocessorClass(), deprecated in 1.34, has been removed.
 * In DatabaseUpdater, the following methods are no longer public: dropTable(),
   modifyTable(), modifyField(), runMaintenance(), copyFile(), appendLine().
   In PostgresUpdater, the following methods are no longer public:
@@ -690,12 +694,48 @@ because of Phabricator reports.
   ObjectCache::makeLocalServerCache().
 * ImagePage::getImageLimitsFromOptions() is deprecated. Use static function
   MediaFileTrait::getImageLimitsFromOptions() instead.
-* A number of Parser-related methods were deprecated to simplify the API or
-  because they will not be supported in the upcoming parser replacement:
-  - doBlockLevels() (and BlockLevelPass class has been marked @internal)
-  - setFunctionTagHook()
-  - attributeStripCallback()
-  - fetchTemplate() - use Parser::fetchTemplateAndTitle() instead.
+* As part of work to replace the Parser, alongside the breaking changes listed
+  above, a large number of deprecations changes been made, to simplify the API
+  or because they will not be supported in replacement:
+  - Parser::doBlockLevels() (and BlockLevelPass class has been marked @internal)
+  - Parser::setFunctionTagHook()
+  - Parser::attributeStripCallback()
+  - Parser::fetchTemplate() - use Parser::fetchTemplateAndTitle() instead.
+  - Parser::enableOOUI() - use $parser->getOutput()->enableOOUI() instead.
+  - LinkHolderArray has been deprecated for public usage and will be
+    internal part of parser.
+  - The following parser-related hooks have been deprecated:
+    - InternalParseBeforeSanitize
+        Use an alternative hook which doesn't expose internal half-parsed state,
+        like ParserBeforeInternalParse or ParserAfterTidy
+    - ParserFetchTemplate
+        Use BeforeParserFetchTemplateAndTitle
+    - ParserSectionCreate
+        No replacement; <section> tag wrapping will be done by core in future.
+    - ParserPreSaveTransformComplete
+        No replacement; Content::preSaveTransform() provides for customizable
+        PreSaveTransforms
+    - BeforeParserrenderImageGallery
+        No replacement; MediaHandler provides for customizable media rendering
+    - ParserBeforeTidy
+        Use ParserAfterTidy instead to avoid exposing internal half-parsed state
+  - The accessor/mutator methods Parser::Options(), Parser::OutputType(), and
+    Parser::Title() have been deprecated; use the appropriate Parser::get* or
+    Parser::set* methods instead.
+  - Parser::firstCallInit() has been deprecated. The parser is initialized
+    fully on construction and so ::firstCallInit() no longer has any effect
+    when manually invoked.
+  - ParserOptions::getTidy() and ParserOptions::setTidy() have been deprecated.
+    These options no longer have any effect.
+  - Most methods of MWTidy, except for MWTidy::tidy(), have been deprecated;
+    tidiness is always enabled and not configurable.
+  - Version 1 of the parserTests file format has been deprecated. You'll need to
+    update your parser tests to version 2, which uses Remex tidy on all test
+    output by default. Support for parser tests with Remex tidy off will later
+    be removed entirely.
+  - $wgParser — This global variable, soft deprecated in 1.32, has now been hard
+    deprecated. Use MediaWikiServices::getInstance()->getParser() instead.
+    (T160811)
 * The signature of DefaultPreferencesFactory::__construct has been changed:
   - LanguageConverter $languageConverter has been added.
   and its usage with old arguments is hard deprecated.
@@ -723,8 +763,6 @@ because of Phabricator reports.
   new RevisionUndeleted hook instead.
 * The NewRevisionFromEditComplete hook has been soft deprecated. Please use
   the new RevisionFromEditComplete hook instead.
-* LinkHolderArray has been deprecated for public usage and will be
-  internal part of parser.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
 * The SquidPurgeClient and SquidPurgeClientPool classes have been deprecated.
@@ -905,8 +943,6 @@ because of Phabricator reports.
   - WikiPage::getOldestRevision (hard deprecated)
   - Article::getOldestRevision (hard deprecated)
   Use RevisionStore::getFirstRevision instead.
-* The Parser::enableOOUI() method has been deprecated.  Use
-  $parser->getOutput()->enableOOUI() instead.
 * The following Linker methods previously accepted Revision objects as
   parameters. They now accept either Revision or RevisionRecord objects.
   Passing a Revision object is hard deprecated.
@@ -954,36 +990,6 @@ because of Phabricator reports.
   - ::$mRevisionSize
   - ::$mInputSize
   - ::$mInParse
-* The following parser-related hooks have been deprecated:
-  - InternalParseBeforeSanitize
-    * Use an alternative hook which doesn't expose internal half-parsed state,
-      like ParserBeforeInternalParse or ParserAfterTidy
-  - ParserFetchTemplate
-    * Use BeforeParserFetchTemplateAndTitle
-  - ParserSectionCreate
-    * No replacement; <section> tag wrapping will be done by core in future.
-  - ParserPreSaveTransformComplete
-    * No replacement; Content::preSaveTransform() provides for customizable PSTs
-  - BeforeParserrenderImageGallery
-    * No replacement; MediaHandler provides for customizable media rendering
-  - ParserBeforeTidy
-    * Use ParserAfterTidy instead to avoid exposing internal half-parsed state
-* The accessor/mutator methods Parser::Options(), Parser::OutputType(), and
-  Parser::Title() have been deprecated; use the appropriate Parser::get*
-  or Parser::set* methods instead.
-* Parser::firstCallInit() has been deprecated.  The parser is initialized
-  fully on construction and so ::firstCallInit() no longer has any effect
-  when manually invoked.
-* ParserOptions::getTidy() and ParserOptions::setTidy() have been deprecated.
-  These options no longer have any effect.
-* Most methods of MWTidy, except for MWTidy::tidy(), have been deprecated;
-  tidiness is always enabled and not configurable.
-* Version 1 of the parserTests file format has been deprecated.  Update
-  your parser tests to version 2, which uses Remex tidy on all test output
-  by default.
-* $wgParser — This global variable, soft deprecated in 1.32, has now been hard
-  deprecated. Use MediaWikiServices::getInstance()->getParser() instead.
-  (T160811)
 * LinksUpdate::getRevision and ::setRevision are hard deprecated in favor
   of the new ::getRevisionRecord and ::setRevisionRecord methods.
 * Article::getRevision and WikiPage::getRevision were hard deprecated
@@ -1017,7 +1023,7 @@ because of Phabricator reports.
 * Action::factory() with null $action argument is hard deprecated
 * The following methods of the User class were deprecated: getDefaultOptions,
   getDefaultOption, getOptions, getOption, getBoolOption, getIntOption,
-  setOption, listOptionKinds, getOptionKinds, resetOptions.  Use corresponding
+  setOption, listOptionKinds, getOptionKinds, resetOptions. Use corresponding
   methods in UserOptionsLookup or UserOptionsManager service classes instead.
 * The $user parameter for both the getForm() and getFormDescriptor() methods of
   PreferencesFactory has been deprecated in favour of a new
