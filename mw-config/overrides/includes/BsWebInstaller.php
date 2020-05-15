@@ -105,8 +105,6 @@ class BsWebInstaller extends WebInstaller {
 		$wgAutoloadClasses = [];
 
 		require "$IP/includes/DefaultSettings.php";
-		require_once
-			"$IP/extensions/BlueSpiceFoundation/BlueSpiceFoundation.php";
 
 		// Manual dependency to BSF
 		$this->doIncludeExtensions( [
@@ -137,7 +135,7 @@ class BsWebInstaller extends WebInstaller {
 			return;
 		}
 
-		$requires = $processor->getRequirements( $info );
+		$requires = $processor->getRequirements( $info, false );
 		if ( is_array( $requires ) && $requires && isset( $requires['extensions'] ) ) {
 			$deps = $requires['extensions'];
 			if ( is_array( $deps ) ) {
