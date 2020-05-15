@@ -48,7 +48,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	/** @var array Map of MIME type aliases */
 	protected $mimeTypeAliases = null;
 	/** @var array Map of MIME types to file extensions (as a space separated list) */
-	protected $mimetoExt = null;
+	protected $mimeToExt = null;
 
 	/** @var array Map of file extensions types to MIME types (as a space separated list) */
 	public $mExtToMime = null; // legacy name; field accessed by hooks
@@ -236,7 +236,7 @@ EOT;
 		$types = str_replace( [ "\r\n", "\n\r", "\n\n", "\r\r", "\r" ], "\n", $types );
 		$types = str_replace( "\t", " ", $types );
 
-		$this->mimetoExt = [];
+		$this->mimeToExt = [];
 		$this->mExtToMime = [];
 
 		$lines = explode( "\n", $types );
@@ -263,10 +263,10 @@ EOT;
 				continue;
 			}
 
-			if ( !empty( $this->mimetoExt[$mime] ) ) {
-				$this->mimetoExt[$mime] .= ' ' . $ext;
+			if ( !empty( $this->mimeToExt[$mime] ) ) {
+				$this->mimeToExt[$mime] .= ' ' . $ext;
 			} else {
-				$this->mimetoExt[$mime] = $ext;
+				$this->mimeToExt[$mime] = $ext;
 			}
 
 			$extensions = explode( ' ', $ext );
@@ -403,15 +403,15 @@ EOT;
 		$mime = strtolower( $mime );
 
 		// Check the mime-to-ext map
-		if ( isset( $this->mimetoExt[$mime] ) ) {
-			return $this->mimetoExt[$mime];
+		if ( isset( $this->mimeToExt[$mime] ) ) {
+			return $this->mimeToExt[$mime];
 		}
 
 		// Resolve the MIME type to the canonical type
 		if ( isset( $this->mimeTypeAliases[$mime] ) ) {
 			$mime = $this->mimeTypeAliases[$mime];
-			if ( isset( $this->mimetoExt[$mime] ) ) {
-				return $this->mimetoExt[$mime];
+			if ( isset( $this->mimeToExt[$mime] ) ) {
+				return $this->mimeToExt[$mime];
 			}
 		}
 
