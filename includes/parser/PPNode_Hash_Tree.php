@@ -48,13 +48,13 @@ class PPNode_Hash_Tree implements PPNode {
 	 * The offset of the name within descriptors, used in some places for
 	 * readability.
 	 */
-	const NAME = 0;
+	public const NAME = 0;
 
 	/**
 	 * The offset of the child list within descriptors, used in some places for
 	 * readability.
 	 */
-	const CHILDREN = 1;
+	public const CHILDREN = 1;
 
 	/**
 	 * Construct an object using the data from $store[$index]. The rest of the

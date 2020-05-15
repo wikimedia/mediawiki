@@ -26,18 +26,15 @@
  * @property PPFrame $parent
  */
 interface PPFrame {
-	const NO_ARGS = 1;
-	const NO_TEMPLATES = 2;
-	const STRIP_COMMENTS = 4;
-	const NO_IGNORE = 8;
-	const RECOVER_COMMENTS = 16;
-	const NO_TAGS = 32;
+	public const NO_ARGS = 1;
+	public const NO_TEMPLATES = 2;
+	public const STRIP_COMMENTS = 4;
+	public const NO_IGNORE = 8;
+	public const RECOVER_COMMENTS = 16;
+	public const NO_TAGS = 32;
 
-	const RECOVER_ORIG = self::NO_ARGS | self::NO_TEMPLATES | self::NO_IGNORE |
+	public const RECOVER_ORIG = self::NO_ARGS | self::NO_TEMPLATES | self::NO_IGNORE |
 		self::RECOVER_COMMENTS | self::NO_TAGS;
-
-	/** This constant exists when $indexOffset is supported in newChild() */
-	const SUPPORTS_INDEX_OFFSET = 1;
 
 	/**
 	 * Create a child frame

@@ -42,13 +42,6 @@ use Wikimedia\ScopedCallback;
 class ParserOptions {
 
 	/**
-	 * Flag indicating that newCanonical() accepts an IContextSource or the string 'canonical', for
-	 * back-compat checks from extensions.
-	 * @since 1.32
-	 */
-	const HAS_NEWCANONICAL_FROM_CONTEXT = 1;
-
-	/**
 	 * Default values for all options that are relevant for caching.
 	 * @see self::getDefaults()
 	 * @var array|null

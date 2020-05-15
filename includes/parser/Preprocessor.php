@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  */
 abstract class Preprocessor {
 
-	const CACHE_VERSION = 1;
+	public const CACHE_VERSION = 1;
 
 	/**
 	 * @var Parser
