@@ -111,7 +111,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {
-			$vals['messages'] = $user->getNewtalk();
+			$vals['messages'] = MediaWikiServices::getInstance()
+				->getTalkPageNotificationManager()->userHasNewMessages( $user );
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {

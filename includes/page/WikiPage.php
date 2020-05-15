@@ -3544,7 +3544,9 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $title->getNamespace() == NS_USER_TALK ) {
 			$user = User::newFromName( $title->getText(), false );
 			if ( $user ) {
-				$user->setNewtalk( false );
+				MediaWikiServices::getInstance()
+					->getTalkPageNotificationManager()
+					->removeUserHasNewMessages( $user );
 			}
 		}
 
