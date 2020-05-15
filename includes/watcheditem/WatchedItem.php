@@ -79,6 +79,21 @@ class WatchedItem {
 	}
 
 	/**
+	 * @since 1.35
+	 * @param RecentChange $recentChange
+	 * @param UserIdentity $user
+	 * @return WatchedItem
+	 */
+	public static function newFromRecentChange( RecentChange $recentChange, UserIdentity $user ) {
+		return new self(
+			$user,
+			$recentChange->getTitle(),
+			$recentChange->notificationtimestamp,
+			$recentChange->watchlistExpiry
+		);
+	}
+
+	/**
 	 * @deprecated since 1.34, use getUserIdentity()
 	 * @return User
 	 */

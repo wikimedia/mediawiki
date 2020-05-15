@@ -23,6 +23,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use OOUI\IconWidget;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -1761,6 +1762,29 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			[ 'class' => 'mw-changeslist-legend-plusminus' ],
 			$context->msg( 'recentchanges-label-plusminus' )->text()
 		) . "\n";
+		// Watchlist expiry clock icon.
+		if ( $this->getName() === 'Watchlist' && $context->getConfig()->get( 'WatchlistExpiry' ) ) {
+			$widget = new IconWidget( [
+				'icon' => 'clock',
+				'classes' => [ 'mw-changesList-watchlistExpiry' ],
+			] );
+			// Link the image to its label for assistive technologies.
+			$watchlistLabelId = 'mw-changeslist-watchlistExpiry-label';
+			$widget->getIconElement()->setAttributes( [
+				'role' => 'img',
+				'aria-labelledby' => $watchlistLabelId,
+			] );
+			$legend .= Html::rawElement(
+				'dt',
+				[ 'class' => 'mw-changeslist-legend-watchlistexpiry' ],
+				$widget
+			);
+			$legend .= Html::rawElement(
+				'dd',
+				[ 'class' => 'mw-changeslist-legend-watchlistexpiry', 'id' => $watchlistLabelId ],
+				$context->msg( 'recentchanges-legend-watchlistexpiry' )->text()
+			);
+		}
 		$legend .= Html::closeElement( 'dl' ) . "\n";
 
 		$legendHeading = $this->isStructuredFilterUiEnabled() ?

@@ -2183,6 +2183,7 @@ return [
 			'mediawiki.Title',
 			'mediawiki.util',
 			'oojs-ui-core',
+			'oojs-ui.styles.icons-interactions',
 			'user.options',
 		],
 	],

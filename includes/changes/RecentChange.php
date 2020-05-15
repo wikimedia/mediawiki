@@ -63,6 +63,7 @@ use Wikimedia\IPUtils;
  * temporary:       not stored in the database
  *      notificationtimestamp
  *      numberofWatchingusers
+ *      watchlistExpiry        for temporary watchlist items
  *
  * @todo Deprecate access to mAttribs (direct or via getAttributes). Right now
  *  we're having to include both rc_comment and rc_comment_text/rc_comment_data
@@ -107,6 +108,11 @@ class RecentChange implements Taggable {
 
 	public $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentChangesLinked
 	public $notificationtimestamp;
+
+	/**
+	 * @var string|null The expiry time, if this is a temporary watchlist item.
+	 */
+	public $watchlistExpiry;
 
 	/**
 	 * @var int Line number of recent change. Default -1.
@@ -1022,6 +1028,11 @@ class RecentChange implements Taggable {
 		$this->mAttribs['rc_user'] = $user->getId();
 		$this->mAttribs['rc_user_text'] = $user->getName();
 		$this->mAttribs['rc_actor'] = $user->getActorId();
+
+		// Watchlist expiry.
+		if ( isset( $row->we_expiry ) && $row->we_expiry ) {
+			$this->watchlistExpiry = wfTimestamp( TS_MW, $row->we_expiry );
+		}
 	}
 
 	/**
