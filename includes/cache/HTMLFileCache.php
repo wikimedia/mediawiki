@@ -31,9 +31,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Cache
  */
 class HTMLFileCache extends FileCacheBase {
-	const MODE_NORMAL = 0; // normal cache mode
-	const MODE_OUTAGE = 1; // fallback cache for DB outages
-	const MODE_REBUILD = 2; // background cache rebuild mode
+	public const MODE_NORMAL = 0; // normal cache mode
+	public const MODE_OUTAGE = 1; // fallback cache for DB outages
+	public const MODE_REBUILD = 2; // background cache rebuild mode
 
 	/**
 	 * @param Title|string $title Title object or prefixed DB key string

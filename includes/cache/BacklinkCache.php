@@ -90,7 +90,7 @@ class BacklinkCache {
 	 */
 	protected $title;
 
-	const CACHE_EXPIRY = 3600;
+	private const CACHE_EXPIRY = 3600;
 
 	/**
 	 * Create a new BacklinkCache

@@ -54,9 +54,9 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup FileAbstraction
  */
 class LocalFile extends File {
-	const VERSION = 11; // cache version
+	private const VERSION = 11; // cache version
 
-	const CACHE_FIELD_MAX_LEN = 1000;
+	private const CACHE_FIELD_MAX_LEN = 1000;
 
 	/** @var bool Does the file exist on disk? (loadFromXxx) */
 	protected $fileExists;
@@ -137,9 +137,9 @@ class LocalFile extends File {
 	private $missing;
 
 	// @note: higher than IDBAccessObject constants
-	const LOAD_ALL = 16; // integer; load all the lazy fields too (like metadata)
+	private const LOAD_ALL = 16; // integer; load all the lazy fields too (like metadata)
 
-	const ATOMIC_SECTION_LOCK = 'LocalFile::lockingTransaction';
+	private const ATOMIC_SECTION_LOCK = 'LocalFile::lockingTransaction';
 
 	/**
 	 * Create a LocalFile from a title

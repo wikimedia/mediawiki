@@ -39,7 +39,7 @@ use Psr\Log\LoggerInterface;
  * as grammatical transformation, is done by the caller.
  */
 class LocalisationCache {
-	const VERSION = 4;
+	public const VERSION = 4;
 
 	/** @var ServiceOptions */
 	private $options;

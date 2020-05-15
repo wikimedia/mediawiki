@@ -51,7 +51,7 @@ class RepoGroup {
 	protected $cache;
 
 	/** Maximum number of cache items */
-	const MAX_CACHE_SIZE = 500;
+	private const MAX_CACHE_SIZE = 500;
 
 	/**
 	 * @deprecated since 1.34, use MediaWikiServices::getRepoGroup

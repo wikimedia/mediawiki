@@ -52,7 +52,7 @@ class LinkCache {
 	 * How many Titles to store. There are two caches, so the amount actually
 	 * stored in memory can be up to twice this.
 	 */
-	const MAX_SIZE = 10000;
+	private const MAX_SIZE = 10000;
 
 	public function __construct(
 		TitleFormatter $titleFormatter,
