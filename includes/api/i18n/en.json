@@ -1955,7 +1955,7 @@
 	"apiwarn-validationfailed-cannotset": "cannot be set by this module.",
 	"apiwarn-validationfailed-keytoolong": "key too long (no more than $1 bytes allowed).",
 	"apiwarn-validationfailed": "Validation error for <kbd>$1</kbd>: $2",
-	"apiwarn-wgdebugapi": "<strong>Security Warning</strong>: <var>$wgDebugAPI</var> is enabled.",
+	"apiwarn-wgdebugapi": "<strong>Security Warning:</strong> <var>$wgDebugAPI</var> is enabled.",
 
 	"api-feed-error-title": "Error ($1)",
 	"api-usage-docref": "See $1 for API usage.",
