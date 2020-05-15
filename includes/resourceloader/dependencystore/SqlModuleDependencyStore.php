@@ -21,6 +21,7 @@
 namespace Wikimedia\DependencyStore;
 
 use InvalidArgumentException;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -45,7 +46,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	public function retrieveMulti( $type, array $entities ) {
 		try {
-			$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+			$dbr = $this->getReplicaDb();
 
 			$modulesByVariant = [];
 			foreach ( $entities as $entity ) {
@@ -93,7 +94,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	public function storeMulti( $type, array $dataByEntity, $ttl ) {
 		try {
-			$dbw = $this->lb->getConnectionRef( DB_MASTER );
+			$dbw = $this->getMasterDb();
 
 			$rows = [];
 			foreach ( $dataByEntity as $entity => $data ) {
@@ -134,7 +135,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	public function remove( $type, $entities ) {
 		try {
-			$dbw = $this->lb->getConnectionRef( DB_MASTER );
+			$dbw = $this->getMasterDb();
 
 			$condsPerRow = [];
 			foreach ( (array)$entities as $entity ) {
@@ -156,6 +157,22 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	public function renew( $type, $entities, $ttl ) {
 		// no-op
+	}
+
+	/**
+	 * @return DBConnRef
+	 */
+	private function getReplicaDb() {
+		return $this->lb
+			->getConnectionRef( DB_REPLICA, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
+	}
+
+	/**
+	 * @return DBConnRef
+	 */
+	private function getMasterDb() {
+		return $this->lb
+			->getConnectionRef( DB_MASTER, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
 	}
 
 	/**
