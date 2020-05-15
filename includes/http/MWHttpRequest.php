@@ -99,8 +99,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	public function __construct(
 		$url, array $options = [], $caller = __METHOD__, Profiler $profiler = null
 	) {
-		global $wgHTTPTimeout, $wgHTTPConnectTimeout;
-
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
 		$this->parsedUrl = wfParseUrl( $this->url );
 
@@ -115,11 +113,19 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( isset( $options['timeout'] ) && $options['timeout'] != 'default' ) {
 			$this->timeout = $options['timeout'];
 		} else {
+			// The timeout should always be set by HttpRequestFactory, so this
+			// should only happen if the class was directly constructed
+			wfDeprecated( __METHOD__ . ' without the timeout option', '1.35' );
+			global $wgHTTPTimeout;
 			$this->timeout = $wgHTTPTimeout;
 		}
 		if ( isset( $options['connectTimeout'] ) && $options['connectTimeout'] != 'default' ) {
 			$this->connectTimeout = $options['connectTimeout'];
 		} else {
+			// The timeout should always be set by HttpRequestFactory, so this
+			// should only happen if the class was directly constructed
+			wfDeprecated( __METHOD__ . ' without the connectTimeout option', '1.35' );
+			global $wgHTTPConnectTimeout;
 			$this->connectTimeout = $wgHTTPConnectTimeout;
 		}
 		if ( isset( $options['userAgent'] ) ) {

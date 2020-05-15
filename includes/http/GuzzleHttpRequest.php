@@ -48,6 +48,8 @@ class GuzzleHttpRequest extends MWHttpRequest {
 	protected $guzzleOptions = [ 'http_errors' => false ];
 
 	/**
+	 * @internal Use HttpRequestFactory
+	 *
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options (optional) extra params to pass (see HttpRequestFactory::create())
 	 * @param string $caller The method making this request, for profiling

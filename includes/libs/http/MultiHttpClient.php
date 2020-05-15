@@ -47,6 +47,9 @@ use Psr\Log\NullLogger;
  *                  - relayResponseHeaders : write out header via header()
  * Request maps can use integer index 0 instead of 'method' and 1 instead of 'url'.
  *
+ * Since 1.35, callers should use HttpRequestFactory::createMultiClient() to get
+ * a client object with appropriately configured timeouts.
+ *
  * @since 1.23
  */
 class MultiHttpClient implements LoggerAwareInterface {
@@ -57,7 +60,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 	/** @var float */
 	protected $connTimeout = 10;
 	/** @var float */
+	protected $maxConnTimeout = INF;
+	/** @var float */
 	protected $reqTimeout = 900;
+	/** @var float */
+	protected $maxReqTimeout = INF;
 	/** @var bool */
 	protected $usePipelining = false;
 	/** @var int */
@@ -75,9 +82,15 @@ class MultiHttpClient implements LoggerAwareInterface {
 	private const TIMEOUT_ACCURACY_FACTOR = 0.1;
 
 	/**
+	 * Since 1.35, callers should use HttpRequestFactory::createMultiClient() to get
+	 * a client object with appropriately configured timeouts instead of constructing
+	 * a MultiHttpClient directly.
+	 *
 	 * @param array $options
 	 *   - connTimeout     : default connection timeout (seconds)
 	 *   - reqTimeout      : default request timeout (seconds)
+	 *   - maxConnTimeout  : maximum connection timeout (seconds)
+	 *   - maxReqTimeout   : maximum request timeout (seconds)
 	 *   - proxy           : HTTP proxy to use
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
@@ -94,8 +107,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 			}
 		}
 		static $opts = [
-			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost',
-			'proxy', 'userAgent', 'logger'
+			'connTimeout', 'maxConnTimeout', 'reqTimeout', 'maxReqTimeout',
+			'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent', 'logger'
 		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -164,6 +177,13 @@ class MultiHttpClient implements LoggerAwareInterface {
 	public function runMulti( array $reqs, array $opts = [] ) {
 		$this->normalizeRequests( $reqs );
 		$opts += [ 'connTimeout' => $this->connTimeout, 'reqTimeout' => $this->reqTimeout ];
+
+		if ( $opts['connTimeout'] > $this->maxConnTimeout ) {
+			$opts['connTimeout'] = $this->maxConnTimeout;
+		}
+		if ( $opts['reqTimeout'] > $this->maxReqTimeout ) {
+			$opts['reqTimeout'] = $this->maxReqTimeout;
+		}
 
 		if ( $this->isCurlEnabled() ) {
 			return $this->runMultiCurl( $reqs, $opts );

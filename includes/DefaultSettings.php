@@ -8769,9 +8769,29 @@ $wgShellRestrictionMethod = false;
 
 /**
  * Timeout for HTTP requests done internally, in seconds.
- * @var int
+ * @var float|int
  */
 $wgHTTPTimeout = 25;
+
+/**
+ * Timeout for connections done internally (in seconds)
+ * Only works for curl
+ * @var float|int
+ */
+$wgHTTPConnectTimeout = 5.0;
+
+/**
+ * The maximum HTTP request timeout in seconds. If any specified or configured
+ * request timeout is larger than this, then this value will be used instead.
+ * @var float|int
+ */
+$wgHTTPMaxTimeout = INF;
+
+/**
+ * The maximum HTTP connect timeout in seconds. If any specified or configured
+ * connect timeout is larger than this, then this value will be used instead.
+ */
+$wgHTTPMaxConnectTimeout = INF;
 
 /**
  * Timeout for HTTP requests done internally for transwiki imports, in seconds.
@@ -8803,12 +8823,6 @@ $wgHTTPProxy = '';
  * @since 1.25
  */
 $wgLocalVirtualHosts = [];
-
-/**
- * Timeout for connections done internally (in seconds)
- * Only works for curl
- */
-$wgHTTPConnectTimeout = 5e0;
 
 /**
  * Whether to respect/honour the request ID provided by the incoming request

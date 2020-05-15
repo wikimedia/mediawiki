@@ -372,7 +372,13 @@ return [
 
 	'HttpRequestFactory' =>
 	function ( MediaWikiServices $services ) : HttpRequestFactory {
-		return new HttpRequestFactory();
+		return new HttpRequestFactory(
+			new ServiceOptions(
+				HttpRequestFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			LoggerFactory::getInstance( 'http' )
+		);
 	},
 
 	'InterwikiLookup' => function ( MediaWikiServices $services ) : InterwikiLookup {
