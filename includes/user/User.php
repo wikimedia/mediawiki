@@ -4083,20 +4083,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Check if the given clear-text password matches the temporary password
-	 * sent by e-mail for password reset operations.
-	 *
-	 * @deprecated since 1.27, use AuthManager instead
-	 * @param string $plaintext
-	 * @return bool True if matches, false otherwise
-	 */
-	public function checkTemporaryPassword( $plaintext ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		// Can't check the temporary password individually.
-		return $this->checkPassword( $plaintext );
-	}
-
-	/**
 	 * Initialize (if necessary) and return a session token value
 	 * which can be used in edit forms to show that the user's
 	 * login credentials aren't being hijacked with a foreign form

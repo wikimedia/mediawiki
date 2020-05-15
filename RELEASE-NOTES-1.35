@@ -557,6 +557,8 @@ because of Phabricator reports.
 * GenderCache::doTitlesArray no longer accepts string values in its $titles
   array parameter. Use Title objects (or other LinkTarget) instead.
 * Unused CommentStore::MAX_COMMENT_LENGTH has been removed.
+* User::checkTemporaryPassword(), deprecated in 1.27, was removed. Use
+  AuthManager instead.
 * …
 
 === Deprecations in 1.35 ===
