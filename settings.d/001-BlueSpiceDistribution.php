@@ -8,7 +8,7 @@ require_once __DIR__ . "/../extensions/ImageMapEdit/ImageMapEdit.php";
 require_once __DIR__ . "/../extensions/Quiz/Quiz.php";
 wfLoadExtension( 'RSS' );
 wfLoadExtension( 'Echo');
-require_once __DIR__ . "/../extensions/TitleKey/TitleKey.php";
+wfLoadExtension( 'TitleKey');
 require_once __DIR__ . "/../extensions/EmbedVideo/EmbedVideo.php";
 wfLoadExtension( 'FilterSpecialPages' );
 wfLoadExtension( 'UserMerge' );
