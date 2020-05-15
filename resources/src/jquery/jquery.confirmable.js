@@ -92,9 +92,6 @@
 		if ( $element.hasClass( 'jquery-confirmable-element' ) ) {
 			$wrapper = $element.closest( '.jquery-confirmable-wrapper' );
 			$interface = $wrapper.find( '.jquery-confirmable-interface' );
-			$text = $interface.find( '.jquery-confirmable-text' );
-			$buttonYes = $interface.find( '.jquery-confirmable-button-yes' );
-			$buttonNo = $interface.find( '.jquery-confirmable-button-no' );
 
 			interfaceWidth = $interface.data( 'jquery-confirmable-width' );
 			elementWidth = $element.data( 'jquery-confirmable-width' );
