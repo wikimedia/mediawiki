@@ -4401,7 +4401,8 @@ ERROR;
 	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
 	 *                 status of the checkbox
 	 *
-	 * @return array Associative array of string keys to OOUI\FieldLayout instances
+	 * @return \OOUI\Element[] Associative array of string keys to \OOUI\Widget or \OOUI\Layout
+	 *  instances
 	 */
 	public function getCheckboxesWidget( &$tabindex, $checked ) {
 		$checkboxes = [];
