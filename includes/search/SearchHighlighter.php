@@ -29,8 +29,8 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Search
  */
 class SearchHighlighter {
-	const DEFAULT_CONTEXT_LINES = 2;
-	const DEFAULT_CONTEXT_CHARS = 75;
+	public const DEFAULT_CONTEXT_LINES = 2;
+	public const DEFAULT_CONTEXT_CHARS = 75;
 
 	protected $mCleanWikitext = true;
 

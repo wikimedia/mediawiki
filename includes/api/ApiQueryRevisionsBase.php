@@ -43,8 +43,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	// Bits to indicate the results of the revdel permission check on a revision,
 	// see self::checkRevDel()
-	const IS_DELETED = 1; // Whether the field is revision-deleted
-	const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel
+	private const IS_DELETED = 1; // Whether the field is revision-deleted
+	private const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel
 
 	/** @} */
 

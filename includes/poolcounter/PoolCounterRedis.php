@@ -75,8 +75,8 @@ class PoolCounterRedis extends PoolCounter {
 	/** @var int UNIX timestamp */
 	protected $slotTime;
 
-	const AWAKE_ONE = 1; // wake-up if when a slot can be taken from an existing process
-	const AWAKE_ALL = 2; // wake-up if an existing process finishes and wake up such others
+	private const AWAKE_ONE = 1; // wake-up if when a slot can be taken from an existing process
+	private const AWAKE_ALL = 2; // wake-up if an existing process finishes and wake up such others
 
 	/** @var PoolCounterRedis[] List of active PoolCounterRedis objects in this script */
 	protected static $active = null;

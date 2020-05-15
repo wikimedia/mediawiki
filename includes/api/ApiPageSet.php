@@ -44,7 +44,7 @@ class ApiPageSet extends ApiBase {
 	 * Constructor flag: The new instance of ApiPageSet will ignore the 'generator=' parameter
 	 * @since 1.21
 	 */
-	const DISABLE_GENERATORS = 1;
+	private const DISABLE_GENERATORS = 1;
 
 	private $mDbSource;
 	private $mParams = [];

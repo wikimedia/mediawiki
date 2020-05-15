@@ -27,9 +27,9 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryHandler extends SimpleHandler {
-	const REVISIONS_RETURN_LIMIT = 20;
-	const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
-	const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
+	private const REVISIONS_RETURN_LIMIT = 20;
+	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
+	private const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
 	/** @var RevisionStore */
 	private $revisionStore;

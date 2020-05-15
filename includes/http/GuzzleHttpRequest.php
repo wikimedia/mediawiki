@@ -40,7 +40,7 @@ use Psr\Http\Message\RequestInterface;
  * @since 1.33
  */
 class GuzzleHttpRequest extends MWHttpRequest {
-	const SUPPORTS_FILE_POSTS = true;
+	public const SUPPORTS_FILE_POSTS = true;
 
 	protected $handler = null;
 	protected $sink = null;

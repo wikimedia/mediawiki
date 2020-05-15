@@ -45,12 +45,12 @@ class ApiMain extends ApiBase {
 	/**
 	 * When no format parameter is given, this format will be used
 	 */
-	const API_DEFAULT_FORMAT = 'jsonfm';
+	private const API_DEFAULT_FORMAT = 'jsonfm';
 
 	/**
 	 * When no uselang parameter is given, this language will be used
 	 */
-	const API_DEFAULT_USELANG = 'user';
+	private const API_DEFAULT_USELANG = 'user';
 
 	/**
 	 * List of available modules: action name => module class

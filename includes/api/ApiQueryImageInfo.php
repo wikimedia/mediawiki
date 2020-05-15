@@ -28,7 +28,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiQueryImageInfo extends ApiQueryBase {
-	const TRANSFORM_LIMIT = 50;
+	public const TRANSFORM_LIMIT = 50;
 	private static $transformCount = 0;
 
 	public function __construct( ApiQuery $query, $moduleName, $prefix = 'ii' ) {

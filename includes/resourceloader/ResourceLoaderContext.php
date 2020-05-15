@@ -31,8 +31,8 @@ use MediaWiki\MediaWikiServices;
  * @since 1.17
  */
 class ResourceLoaderContext implements MessageLocalizer {
-	const DEFAULT_LANG = 'qqx';
-	const DEFAULT_SKIN = 'fallback';
+	public const DEFAULT_LANG = 'qqx';
+	public const DEFAULT_SKIN = 'fallback';
 
 	protected $resourceLoader;
 	protected $request;

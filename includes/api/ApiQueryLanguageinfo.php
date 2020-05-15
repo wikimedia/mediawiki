@@ -41,7 +41,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	 *
 	 * @var float
 	 */
-	const MAX_EXECUTE_SECONDS = 2.0;
+	private const MAX_EXECUTE_SECONDS = 2.0;
 
 	/** @var LanguageFactory */
 	private $languageFactory;

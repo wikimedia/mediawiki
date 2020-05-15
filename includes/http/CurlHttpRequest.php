@@ -22,7 +22,7 @@
  * MWHttpRequest implemented using internal curl compiled into PHP
  */
 class CurlHttpRequest extends MWHttpRequest {
-	const SUPPORTS_FILE_POSTS = true;
+	public const SUPPORTS_FILE_POSTS = true;
 
 	protected $curlOptions = [];
 	protected $headerText = "";

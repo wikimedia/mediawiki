@@ -21,7 +21,6 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Storage\PageEditStash;
 
 /**
  * Prepare an edit in shared cache so that it can be reused on edit
@@ -37,12 +36,6 @@ use MediaWiki\Storage\PageEditStash;
  * @since 1.25
  */
 class ApiStashEdit extends ApiBase {
-	const ERROR_NONE = PageEditStash::ERROR_NONE; // b/c
-	const ERROR_PARSE = PageEditStash::ERROR_PARSE; // b/c
-	const ERROR_CACHE = PageEditStash::ERROR_CACHE; // b/c
-	const ERROR_UNCACHEABLE = PageEditStash::ERROR_UNCACHEABLE; // b/c
-	const ERROR_BUSY = PageEditStash::ERROR_BUSY; // b/c
-
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();

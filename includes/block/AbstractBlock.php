@@ -83,11 +83,11 @@ abstract class AbstractBlock {
 	protected $isSitewide = true;
 
 	# TYPE constants
-	const TYPE_USER = 1;
-	const TYPE_IP = 2;
-	const TYPE_RANGE = 3;
-	const TYPE_AUTO = 4;
-	const TYPE_ID = 5;
+	public const TYPE_USER = 1;
+	public const TYPE_IP = 2;
+	public const TYPE_RANGE = 3;
+	public const TYPE_AUTO = 4;
+	public const TYPE_ID = 5;
 
 	/**
 	 * Create a new block with specified parameters on a user, IP or IP range.

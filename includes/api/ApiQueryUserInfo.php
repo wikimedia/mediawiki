@@ -31,7 +31,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	use ApiBlockInfoTrait;
 
-	const WL_UNREAD_LIMIT = 1000;
+	private const WL_UNREAD_LIMIT = 1000;
 
 	/** @var array */
 	private $params = [];
