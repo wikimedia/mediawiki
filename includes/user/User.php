@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\Auth\AuthenticationRequest;
-use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
@@ -3838,39 +3837,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isNewbie() {
 		return !$this->isAllowed( 'autoconfirmed' );
-	}
-
-	/**
-	 * Check to see if the given clear-text password is one of the accepted passwords
-	 * @deprecated since 1.27, use AuthManager instead
-	 * @param string $password User password
-	 * @return bool True if the given password is correct, otherwise False
-	 */
-	public function checkPassword( $password ) {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		$manager = MediaWikiServices::getInstance()->getAuthManager();
-		$reqs = AuthenticationRequest::loadRequestsFromSubmission(
-			$manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN ),
-			[
-				'username' => $this->getName(),
-				'password' => $password,
-			]
-		);
-		$res = $manager->beginAuthentication( $reqs, 'null:' );
-		switch ( $res->status ) {
-			case AuthenticationResponse::PASS:
-				return true;
-			case AuthenticationResponse::FAIL:
-				// Hope it's not a PreAuthenticationProvider that failed...
-				LoggerFactory::getInstance( 'authentication' )
-					->info( __METHOD__ . ': Authentication failed: ' . $res->message->plain() );
-				return false;
-			default:
-				throw new BadMethodCallException(
-					'AuthManager returned a response unsupported by ' . __METHOD__
-				);
-		}
 	}
 
 	/**
