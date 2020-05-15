@@ -22,7 +22,7 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 
 		// Throws an error if bug hit
 		$meta = $file->formatMetadata();
-		$this->assertNotEquals( false, $meta, 'Valid metadata extracted' );
+		$this->assertIsArray( $meta, 'Valid metadata extracted' );
 
 		// Find date exif entry
 		$this->assertArrayHasKey( 'visible', $meta );
