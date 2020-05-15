@@ -457,6 +457,7 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\OpportunisticLinksUpdateHook,
 	\MediaWiki\Page\Hook\PageDeletionDataUpdatesHook,
 	\MediaWiki\Page\Hook\PageViewUpdatesHook,
+	\MediaWiki\Page\Hook\RevisionFromEditCompleteHook,
 	\MediaWiki\Page\Hook\RevisionUndeletedHook,
 	\MediaWiki\Page\Hook\RollbackCompleteHook,
 	\MediaWiki\Page\Hook\ShowMissingArticleHook,
@@ -3215,6 +3216,13 @@ class HookRunner implements
 		return $this->container->run(
 			'RevisionDataUpdates',
 			[ $title, $renderedRevision, &$updates ]
+		);
+	}
+
+	public function onRevisionFromEditComplete( $wikiPage, $rev, $originalRevId, $user, &$tags ) {
+		$this->container->run(
+			'RevisionFromEditComplete',
+			[ $wikiPage, $rev, $originalRevId, $user, &$tags ]
 		);
 	}
 
