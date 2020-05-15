@@ -28,8 +28,8 @@ use Wikimedia\Rdbms\DBError;
  * @ingroup Exception
  */
 class MWExceptionHandler {
-	const CAUGHT_BY_HANDLER = 'mwe_handler'; // error reported by this exception handler
-	const CAUGHT_BY_OTHER = 'other'; // error reported by direct logException() call
+	public const CAUGHT_BY_HANDLER = 'mwe_handler'; // error reported by this exception handler
+	public const CAUGHT_BY_OTHER = 'other'; // error reported by direct logException() call
 
 	/**
 	 * @var string $reservedMemory

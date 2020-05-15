@@ -34,7 +34,7 @@ require_once __DIR__ . '/../../maintenance/Maintenance.php';
  * @since 1.17
  */
 abstract class DatabaseUpdater {
-	const REPLICATION_WAIT_TIMEOUT = 300;
+	public const REPLICATION_WAIT_TIMEOUT = 300;
 
 	/**
 	 * Array of updates to perform on the database

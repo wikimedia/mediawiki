@@ -42,7 +42,7 @@ class CategoryMembershipChangeJob extends Job {
 	/** @var int|null */
 	private $ticket;
 
-	const ENQUEUE_FUDGE_SEC = 60;
+	private const ENQUEUE_FUDGE_SEC = 60;
 
 	/**
 	 * @param Title $title The title of the page for which to update category membership.

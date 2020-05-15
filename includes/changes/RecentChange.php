@@ -71,25 +71,25 @@ use Wikimedia\IPUtils;
 class RecentChange implements Taggable {
 	// Constants for the rc_source field.  Extensions may also have
 	// their own source constants.
-	const SRC_EDIT = 'mw.edit';
-	const SRC_NEW = 'mw.new';
-	const SRC_LOG = 'mw.log';
-	const SRC_EXTERNAL = 'mw.external'; // obsolete
-	const SRC_CATEGORIZE = 'mw.categorize';
+	public const SRC_EDIT = 'mw.edit';
+	public const SRC_NEW = 'mw.new';
+	public const SRC_LOG = 'mw.log';
+	public const SRC_EXTERNAL = 'mw.external'; // obsolete
+	public const SRC_CATEGORIZE = 'mw.categorize';
 
-	const PRC_UNPATROLLED = 0;
-	const PRC_PATROLLED = 1;
-	const PRC_AUTOPATROLLED = 2;
+	public const PRC_UNPATROLLED = 0;
+	public const PRC_PATROLLED = 1;
+	public const PRC_AUTOPATROLLED = 2;
 
 	/**
 	 * @var bool For save() - save to the database only, without any events.
 	 */
-	const SEND_NONE = true;
+	public const SEND_NONE = true;
 
 	/**
 	 * @var bool For save() - do emit the change to RCFeeds (usually public).
 	 */
-	const SEND_FEED = false;
+	public const SEND_FEED = false;
 
 	/** @var array */
 	public $mAttribs = [];

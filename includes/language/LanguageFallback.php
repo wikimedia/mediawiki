@@ -33,13 +33,13 @@ class LanguageFallback {
 	 * Return a fallback chain for messages in getAll
 	 * @since 1.35
 	 */
-	const MESSAGES = 0;
+	public const MESSAGES = 0;
 
 	/**
 	 * Return a strict fallback chain in getAll
 	 * @since 1.35
 	 */
-	const STRICT = 1;
+	public const STRICT = 1;
 
 	/** @var string */
 	private $siteLangCode;

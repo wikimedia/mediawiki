@@ -25,15 +25,10 @@
 		<exclude-pattern>includes/api/</exclude-pattern>
 		<exclude-pattern>includes/block/</exclude-pattern>
 		<exclude-pattern>includes/cache/</exclude-pattern>
-		<exclude-pattern>includes/changes/</exclude-pattern>
 		<exclude-pattern>includes/diff/</exclude-pattern>
-		<exclude-pattern>includes/exception/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
 		<exclude-pattern>includes/htmlform/fields/</exclude-pattern>
 		<exclude-pattern>includes/http/</exclude-pattern>
-		<exclude-pattern>includes/installer/</exclude-pattern>
-		<exclude-pattern>includes/jobqueue/</exclude-pattern>
-		<exclude-pattern>includes/language/</exclude-pattern>
 		<exclude-pattern>includes/libs/</exclude-pattern>
 		<exclude-pattern>includes/logging/</exclude-pattern>
 		<exclude-pattern>includes/parser/</exclude-pattern>

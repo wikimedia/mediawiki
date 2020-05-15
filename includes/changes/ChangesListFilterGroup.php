@@ -123,9 +123,9 @@ abstract class ChangesListFilterGroup {
 	 */
 	protected $conflictingFilters = [];
 
-	const DEFAULT_PRIORITY = -100;
+	private const DEFAULT_PRIORITY = -100;
 
-	const RESERVED_NAME_CHAR = '_';
+	private const RESERVED_NAME_CHAR = '_';
 
 	/**
 	 * Create a new filter group with the specified configuration

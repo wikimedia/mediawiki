@@ -76,7 +76,7 @@ class JobQueueRedis extends JobQueue {
 	/** @var string Compression method to use */
 	protected $compression;
 
-	const MAX_PUSH_SIZE = 25; // avoid tying up the server
+	private const MAX_PUSH_SIZE = 25; // avoid tying up the server
 
 	/**
 	 * @param array $params Possible keys:
