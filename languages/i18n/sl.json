@@ -2527,6 +2527,7 @@
 	"badipaddress": "Neveljaven IP-naslov ali uporabniško ime.",
 	"blockipsuccesssub": "Blokiranje je uspelo",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />\nOglejte si [[Special:BlockList|seznam blokad]] za pregled blokad.",
+	"ipb-empty-block": "Vnesena blokada nima omogočenih omejitev.",
 	"ipb-blockingself": "Nameravate se blokirati! Ste prepričani, da želite to storiti?",
 	"ipb-confirmhideuser": "Nameravate blokirati uporabnika z omogočeno možnostjo »skrij uporabnika«. To bo skrilo uporabnikovo ime na vseh seznamih in dnevniških vnosih. Ste prepričani, da želite to storiti?",
 	"ipb-confirmaction": "Če ste prepričani, da to res želite storiti, označite polje »{{int:ipb-confirm}}« na dnu.",

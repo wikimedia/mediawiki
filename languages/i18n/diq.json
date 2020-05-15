@@ -2559,6 +2559,7 @@
 	"badipaddress": "Adresê IPî raşt niyo",
 	"blockipsuccesssub": "Blok biyo",
 	"blockipsuccesstext": "Verniya [[Special:Contributions/$1|$1]] gêriyaya.\n<br />Qey çım ra viyarnayişê verni-grewtışi bewni [[Special:BlockList|Ê yê ke verniyê IP adresê cı gêriyaya]].",
+	"ipb-empty-block": "Rışiyaye bloqey de qet theba men bıyayış aktiv nêbiyo",
 	"ipb-blockingself": "Şımayê kenê ke xo bloke kerê! Şıma qayılye xo bloke kerê?",
 	"ipb-confirmhideuser": "Wexto ke \"karberi bınımnê\" nışandeyo se şıma ye kenê karberi bloke kerê. No, Namey karberi lista pêron dı u dekewtışê rocekan dı aktiv bo.Şıma qayıli ney bıkerê?",
 	"ipb-confirmaction": "Şıma qayılê nê hereketi bıkerê, lutfen bıni ra cayê \"{{int:ipb-confirm}}\" nışan kerê .",

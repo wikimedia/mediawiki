@@ -2707,6 +2707,7 @@
 	"badipaddress": "Adresse IP incorrecte",
 	"blockipsuccesssub": "Blocage réussi",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] a été bloqué{{GENDER:$1||e}}.<br />\nConsultez la [[Special:BlockList|liste des blocages]] pour voir les utilisateurs bloqués.",
+	"ipb-empty-block": "Le bloc soumis n’a pas de restriction activée.",
 	"ipb-blockingself": "Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain{{GENDER:||e}} de vouloir faire cela ?",
 	"ipb-confirmhideuser": "Vous êtes sur le point de bloquer un utilisateur avec « cacher l’utilisateur » activé. Cela supprimera le nom de l’utilisateur dans toutes les listes et les entrées du journal. Êtes-vous sûr{{GENDER:||e}} de vouloir le faire ?",
 	"ipb-confirmaction": "Si vous êtes sûr{{GENDER:||e}} de vraiment vouloir le faire, veuillez cocher le champ « {{int:ipb-confirm}} » en bas.",

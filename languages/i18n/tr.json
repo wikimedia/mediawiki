@@ -2623,6 +2623,7 @@
 	"badipaddress": "Geçersiz IP adresi",
 	"blockipsuccesssub": "Engelleme başarılı oldu",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] engellendi.<br />\nEngellemeleri gözden geçirmek için [[Special:BlockList|engel listesine]] bakınız.",
+	"ipb-empty-block": "Gönderilen engelde hiçbir kısıtlama etkinleştirilmedi.",
 	"ipb-blockingself": "Kendinizi engellemek üzeresiniz! Bunu yapmak istediğinizden emin misiniz?",
 	"ipb-confirmhideuser": "\"Kullanıcıyı gizle\" seçiliyken bir kullanıcı engellemek üzeresiniz. Bu, kullanıcının adını tüm listeler ile günlük girişlerinde bastıracaktır. Bunu yapmak istediğinizden emin misiniz?",
 	"ipb-confirmaction": "Bunu gerçekten yapmak istediğinize eminseniz, lütfen en alttaki \"{{int:ipb-confirm}}\" alanını işaretleyin.",
