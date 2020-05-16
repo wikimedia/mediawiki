@@ -35,7 +35,7 @@ class Sanitizer {
 	 * Regular expression to match various types of character references in
 	 * Sanitizer::normalizeCharReferences and Sanitizer::decodeCharReferences
 	 */
-	const CHAR_REFS_REGEX =
+	private const CHAR_REFS_REGEX =
 		'/&([A-Za-z0-9\x80-\xff]+);
 		 |&\#([0-9]+);
 		 |&\#[xX]([0-9A-Fa-f]+);
@@ -45,7 +45,7 @@ class Sanitizer {
 	 * Acceptable tag name charset from HTML5 parsing spec
 	 * https://www.w3.org/TR/html5/syntax.html#tag-open-state
 	 */
-	const ELEMENT_BITS_REGEX = '!^(/?)([A-Za-z][^\t\n\v />\0]*+)([^>]*?)(/?>)([^<]*)$!';
+	private const ELEMENT_BITS_REGEX = '!^(/?)([A-Za-z][^\t\n\v />\0]*+)([^>]*?)(/?>)([^<]*)$!';
 
 	/**
 	 * Blacklist for evil uris like javascript:
@@ -55,15 +55,15 @@ class Sanitizer {
 	 * things that you know are safe and deny everything else.
 	 * [1]: http://ha.ckers.org/xss.html
 	 */
-	const EVIL_URI_PATTERN = '!(^|\s|\*/\s*)(javascript|vbscript)([^\w]|$)!i';
-	const XMLNS_ATTRIBUTE_PATTERN = "/^xmlns:[:A-Z_a-z-.0-9]+$/";
+	private const EVIL_URI_PATTERN = '!(^|\s|\*/\s*)(javascript|vbscript)([^\w]|$)!i';
+	private const XMLNS_ATTRIBUTE_PATTERN = "/^xmlns:[:A-Z_a-z-.0-9]+$/";
 
 	/**
 	 * Tells escapeUrlForHtml() to encode the ID using the wiki's primary encoding.
 	 *
 	 * @since 1.30
 	 */
-	const ID_PRIMARY = 0;
+	public const ID_PRIMARY = 0;
 
 	/**
 	 * Tells escapeUrlForHtml() to encode the ID using the fallback encoding, or return false
@@ -71,7 +71,7 @@ class Sanitizer {
 	 *
 	 * @since 1.30
 	 */
-	const ID_FALLBACK = 1;
+	public const ID_FALLBACK = 1;
 
 	/**
 	 * List of all named character entities defined in HTML 4.01

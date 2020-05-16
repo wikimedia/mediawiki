@@ -31,15 +31,15 @@ class BlockLevelPass {
 	private $text;
 
 	# State constants for the definition list colon extraction
-	const COLON_STATE_TEXT = 0;
-	const COLON_STATE_TAG = 1;
-	const COLON_STATE_TAGSTART = 2;
-	const COLON_STATE_CLOSETAG = 3;
-	const COLON_STATE_TAGSLASH = 4;
-	const COLON_STATE_COMMENT = 5;
-	const COLON_STATE_COMMENTDASH = 6;
-	const COLON_STATE_COMMENTDASHDASH = 7;
-	const COLON_STATE_LC = 8;
+	private const COLON_STATE_TEXT = 0;
+	private const COLON_STATE_TAG = 1;
+	private const COLON_STATE_TAGSTART = 2;
+	private const COLON_STATE_CLOSETAG = 3;
+	private const COLON_STATE_TAGSLASH = 4;
+	private const COLON_STATE_COMMENT = 5;
+	private const COLON_STATE_COMMENTDASH = 6;
+	private const COLON_STATE_COMMENTDASHDASH = 7;
+	private const COLON_STATE_LC = 8;
 
 	/**
 	 * Make lists from lines starting with ':', '*', '#', etc.

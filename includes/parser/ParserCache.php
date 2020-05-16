@@ -34,19 +34,19 @@ class ParserCache {
 	 */
 
 	/** Use only current data */
-	const USE_CURRENT_ONLY = 0;
+	private const USE_CURRENT_ONLY = 0;
 
 	/** Use expired data if current data is unavailable */
-	const USE_EXPIRED = 1;
+	private const USE_EXPIRED = 1;
 
 	/** Use expired data or data from different revisions if current data is unavailable */
-	const USE_OUTDATED = 2;
+	private const USE_OUTDATED = 2;
 
 	/**
 	 * Use expired data and data from different revisions, and if all else
 	 * fails vary on all variable options
 	 */
-	const USE_ANYTHING = 3;
+	private const USE_ANYTHING = 3;
 
 	/** @var BagOStuff */
 	private $cache;

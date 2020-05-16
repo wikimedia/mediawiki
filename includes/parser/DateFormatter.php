@@ -65,37 +65,37 @@ class DateFormatter {
 	private $targetFormats;
 
 	/** Used as a preference ID for rules that apply regardless of preference */
-	const ALL = -1;
+	private const ALL = -1;
 
 	/** No preference: the date may be left in the same format as the input */
-	const NONE = 0;
+	private const NONE = 0;
 
 	/** e.g. January 15, 2001 */
-	const MDY = 1;
+	private const MDY = 1;
 
 	/** e.g. 15 January 2001 */
-	const DMY = 2;
+	private const DMY = 2;
 
 	/** e.g. 2001 January 15 */
-	const YMD = 3;
+	private const YMD = 3;
 
 	/** e.g. 2001-01-15 */
-	const ISO = 4;
+	private const ISO = 4;
 
 	/** The highest ID that is a valid user preference */
-	const LASTPREF = 4;
+	private const LASTPREF = 4;
 
 	/** e.g. 2001, 15 January */
-	const YDM = 5;
+	private const YDM = 5;
 
 	/** e.g. 15 January */
-	const DM = 6;
+	private const DM = 6;
 
 	/** e.g. January 15 */
-	const MD = 7;
+	private const MD = 7;
 
 	/** The highest ID that is a valid target format */
-	const LAST = 7;
+	private const LAST = 7;
 
 	/**
 	 * @param Language $lang In which language to format the date

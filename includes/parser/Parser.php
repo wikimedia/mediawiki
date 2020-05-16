@@ -82,11 +82,11 @@ class Parser {
 	 * changes in an incompatible way, so the parser cache
 	 * can automatically discard old data.
 	 */
-	const VERSION = '1.6.4';
+	public const VERSION = '1.6.4';
 
 	# Flags for Parser::setFunctionHook
-	const SFH_NO_HASH = 1;
-	const SFH_OBJECT_ARGS = 2;
+	public const SFH_NO_HASH = 1;
+	public const SFH_OBJECT_ARGS = 2;
 
 	# Constants needed for external link processing
 	# Everything except bracket, space, or control characters
@@ -94,7 +94,7 @@ class Parser {
 	# as well as U+3000 is IDEOGRAPHIC SPACE for T21052
 	# \x{FFFD} is the Unicode replacement character, which the HTML5 spec
 	# uses to replace invalid HTML characters.
-	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]';
+	public const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]';
 	# Simplified expression to match an IPv4 or IPv6 address, or
 	# at least one character of a host name (embeds EXT_LINK_URL_CLASS)
 	// phpcs:ignore Generic.Files.LineLength
@@ -108,15 +108,16 @@ class Parser {
 	private const SPACE_NOT_NL = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
 
 	# Flags for preprocessToDom
-	const PTD_FOR_INCLUSION = 1;
+	public const PTD_FOR_INCLUSION = 1;
 
 	# Allowed values for $this->mOutputType
 	# Parameter to startExternalParse().
-	const OT_HTML = 1; # like parse()
-	const OT_WIKI = 2; # like preSaveTransform()
-	const OT_PREPROCESS = 3; # like preprocess()
-	const OT_MSG = 3;
-	const OT_PLAIN = 4; # like extractSections() - portions of the original are returned unchanged.
+	public const OT_HTML = 1; # like parse()
+	public const OT_WIKI = 2; # like preSaveTransform()
+	public const OT_PREPROCESS = 3; # like preprocess()
+	public const OT_MSG = 3;
+	# like extractSections() - portions of the original are returned unchanged.
+	public const OT_PLAIN = 4;
 
 	/**
 	 * @var string Prefix and suffix for temporary replacement strings
@@ -135,18 +136,12 @@ class Parser {
 	 * escaping quote marks, and break out of the attribute. Thus we add
 	 * `'".
 	 */
-	const MARKER_SUFFIX = "-QINU`\"'\x7f";
-	const MARKER_PREFIX = "\x7f'\"`UNIQ-";
+	public const MARKER_SUFFIX = "-QINU`\"'\x7f";
+	public const MARKER_PREFIX = "\x7f'\"`UNIQ-";
 
 	# Markers used for wrapping the table of contents
-	const TOC_START = '<mw:toc>';
-	const TOC_END = '</mw:toc>';
-
-	/**
-	 * @var int Assume that no output will later be saved this many seconds after parsing
-	 * @deprecated since 1.35; moved to CoreMagicWords and made private
-	 */
-	const MAX_TTS = 900;
+	public const TOC_START = '<mw:toc>';
+	public const TOC_END = '</mw:toc>';
 
 	# Persistent:
 	/** @deprecated since 1.35; use Parser::getTags() */

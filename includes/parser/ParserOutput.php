@@ -29,12 +29,12 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @since 1.31
 	 */
-	const SUPPORTS_STATELESS_TRANSFORMS = 1;
+	public const SUPPORTS_STATELESS_TRANSFORMS = 1;
 
 	/**
 	 * @since 1.31
 	 */
-	const SUPPORTS_UNWRAP_TRANSFORM = 1;
+	public const SUPPORTS_UNWRAP_TRANSFORM = 1;
 
 	/**
 	 * @var string|null The output text
@@ -251,17 +251,17 @@ class ParserOutput extends CacheTime {
 	/** @var int Upper bound of expiry based on parse duration */
 	private $mMaxAdaptiveExpiry = INF;
 
-	const EDITSECTION_REGEX =
+	private const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#s';
 
 	// finalizeAdaptiveCacheExpiry() uses TTL = MAX( m * PARSE_TIME + b, MIN_AR_TTL)
 	// Current values imply that m=3933.333333 and b=-333.333333
 	// See https://www.nngroup.com/articles/website-response-times/
-	const PARSE_FAST_SEC = 0.100; // perceived "fast" page parse
-	const PARSE_SLOW_SEC = 1.0; // perceived "slow" page parse
-	const FAST_AR_TTL = 60; // adaptive TTL for "fast" pages
-	const SLOW_AR_TTL = 3600; // adaptive TTL for "slow" pages
-	const MIN_AR_TTL = 15; // min adaptive TTL (for sanity, pool counter, and edit stashing)
+	private const PARSE_FAST_SEC = 0.100; // perceived "fast" page parse
+	private const PARSE_SLOW_SEC = 1.0; // perceived "slow" page parse
+	private const FAST_AR_TTL = 60; // adaptive TTL for "fast" pages
+	private const SLOW_AR_TTL = 3600; // adaptive TTL for "slow" pages
+	private const MIN_AR_TTL = 15; // min adaptive TTL (for sanity, pool counter, and edit stashing)
 
 	/**
 	 * @param string|null $text HTML. Use null to indicate that this ParserOutput contains only
