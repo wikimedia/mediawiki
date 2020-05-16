@@ -36,10 +36,10 @@ class DBConnRef implements IDatabase {
 	/** @var int One of DB_MASTER/DB_REPLICA */
 	private $role;
 
-	const FLD_INDEX = 0;
-	const FLD_GROUP = 1;
-	const FLD_DOMAIN = 2;
-	const FLD_FLAGS = 3;
+	private const FLD_INDEX = 0;
+	private const FLD_GROUP = 1;
+	private const FLD_DOMAIN = 2;
+	private const FLD_FLAGS = 3;
 
 	/**
 	 * @param ILoadBalancer $lb Connection manager for $conn

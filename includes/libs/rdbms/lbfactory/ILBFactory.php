@@ -32,14 +32,14 @@ use InvalidArgumentException;
  */
 interface ILBFactory {
 	/** @var int Don't save DB positions at all */
-	const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
+	public const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
 	/** @var int Save DB positions, but don't wait on remote DCs */
-	const SHUTDOWN_CHRONPROT_ASYNC = 1;
+	public const SHUTDOWN_CHRONPROT_ASYNC = 1;
 	/** @var int Save DB positions, waiting on all DCs */
-	const SHUTDOWN_CHRONPROT_SYNC = 2;
+	public const SHUTDOWN_CHRONPROT_SYNC = 2;
 
 	/** @var string Default main LB cluster name (do not change this) */
-	const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
+	public const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
 
 	/**
 	 * Construct a manager of ILoadBalancer objects

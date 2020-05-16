@@ -189,23 +189,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $ownerId;
 
 	/** @var string Whether the database is a file on disk */
-	const ATTR_DB_IS_FILE = 'db-is-file';
+	public const ATTR_DB_IS_FILE = 'db-is-file';
 	/** @var string Lock granularity is on the level of the entire database */
-	const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
+	public const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
 	/** @var string The SCHEMA keyword refers to a grouping of tables in a database */
-	const ATTR_SCHEMAS_AS_TABLE_GROUPS = 'supports-schemas';
+	public const ATTR_SCHEMAS_AS_TABLE_GROUPS = 'supports-schemas';
 
 	/** @var int New Database instance will not be connected yet when returned */
-	const NEW_UNCONNECTED = 0;
+	public const NEW_UNCONNECTED = 0;
 	/** @var int New Database instance will already be connected when returned */
-	const NEW_CONNECTED = 1;
+	public const NEW_CONNECTED = 1;
 
 	/** @var int Transaction is in a error state requiring a full or savepoint rollback */
-	const STATUS_TRX_ERROR = 1;
+	public const STATUS_TRX_ERROR = 1;
 	/** @var int Transaction is active and in a normal state */
-	const STATUS_TRX_OK = 2;
+	public const STATUS_TRX_OK = 2;
 	/** @var int No transaction is active */
-	const STATUS_TRX_NONE = 3;
+	public const STATUS_TRX_NONE = 3;
 
 	/** @var string Idiom used when a cancelable atomic section started the transaction */
 	private static $NOT_APPLICABLE = 'n/a';
