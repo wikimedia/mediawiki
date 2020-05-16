@@ -44,7 +44,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	 *  whenever the handling of values is changed, to prevent existing code
 	 *  from encountering older values which it cannot handle.
 	 */
-	const KEY_SUFFIX = ':4';
+	private const KEY_SUFFIX = ':4';
 
 	/** @var int Max attempts for implicit CAS operations */
 	private static $CAS_MAX_ATTEMPTS = 100;

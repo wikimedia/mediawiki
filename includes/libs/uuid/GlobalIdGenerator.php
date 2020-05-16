@@ -60,7 +60,7 @@ class GlobalIdGenerator {
 	/** @var array Cached file handles */
 	protected $fileHandles = []; // cached file handles
 
-	const QUICK_VOLATILE = 1; // use an APC like in-memory counter if available
+	public const QUICK_VOLATILE = 1; // use an APC like in-memory counter if available
 
 	/**
 	 * @param string $tempDirectory A writable temporary directory

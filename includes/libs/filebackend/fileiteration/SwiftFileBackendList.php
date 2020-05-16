@@ -54,7 +54,7 @@ abstract class SwiftFileBackendList implements Iterator {
 	/** @var int */
 	protected $suffixStart;
 
-	const PAGE_SIZE = 9000; // file listing buffer size
+	private const PAGE_SIZE = 9000; // file listing buffer size
 
 	/**
 	 * @param SwiftFileBackend $backend
