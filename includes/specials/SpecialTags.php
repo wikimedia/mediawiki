@@ -45,11 +45,11 @@ class SpecialTags extends SpecialPage {
 	 */
 	protected $softwareActivatedTags;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Tags' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Manual:Tags' );

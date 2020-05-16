@@ -30,7 +30,7 @@ class MediaTransformError extends MediaTransformOutput {
 	/** @var Message */
 	private $msg;
 
-	function __construct( $msg, $width, $height, ...$args ) {
+	public function __construct( $msg, $width, $height, ...$args ) {
 		$this->msg = wfMessage( $msg )->params( $args );
 		$this->width = intval( $width );
 		$this->height = intval( $height );
