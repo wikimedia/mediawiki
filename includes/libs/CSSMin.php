@@ -30,15 +30,15 @@
 class CSSMin {
 
 	/** @var string Strip marker for comments. */
-	const PLACEHOLDER = "\x7fPLACEHOLDER\x7f";
+	private const PLACEHOLDER = "\x7fPLACEHOLDER\x7f";
 
 	/**
 	 * Internet Explorer data URI length limit. See encodeImageAsDataURI().
 	 */
-	const DATA_URI_SIZE_LIMIT = 32768;
+	private const DATA_URI_SIZE_LIMIT = 32768;
 
-	const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
-	const COMMENT_REGEX = '\/\*.*?\*\/';
+	private const EMBED_REGEX = '\/\*\s*\@embed\s*\*\/';
+	private const COMMENT_REGEX = '\/\*.*?\*\/';
 
 	/** @var string[] List of common image files extensions and MIME-types */
 	protected static $mimeTypes = [
@@ -217,7 +217,7 @@ class CSSMin {
 		// The list below has been crafted to match URLs such as:
 		//   scheme://user@domain:port/~user/fi%20le.png?query=yes&really=y+s
 		//   data:image/png;base64,R0lGODlh/+==
-		if ( preg_match( '!^[\w\d:@/~.%+;,?&=-]+$!', $url ) ) {
+		if ( preg_match( '!^[\w:@/~.%+;,?&=-]+$!', $url ) ) {
 			return "url($url)";
 		} else {
 			return 'url("' . strtr( $url, [ '\\' => '\\\\', '"' => '\\"' ] ) . '")';
@@ -266,7 +266,7 @@ class CSSMin {
 			$pattern,
 			function ( $match ) use ( &$comments ) {
 				$comments[] = $match[ 0 ];
-				return CSSMin::PLACEHOLDER . ( count( $comments ) - 1 ) . 'x';
+				return self::PLACEHOLDER . ( count( $comments ) - 1 ) . 'x';
 			},
 			$source
 		);
@@ -287,9 +287,9 @@ class CSSMin {
 				$embedAll = false;
 				$rule = preg_replace(
 					'/^((?:\s+|' .
-						CSSMin::PLACEHOLDER .
+						self::PLACEHOLDER .
 						'(\d+)x)*)' .
-						CSSMin::EMBED_REGEX .
+						self::EMBED_REGEX .
 						'\s*/',
 					'$1',
 					$rule,
@@ -299,13 +299,13 @@ class CSSMin {
 
 				// Build two versions of current rule: with remapped URLs
 				// and with embedded data: URIs (where possible).
-				$pattern = '/(?P<embed>' . CSSMin::EMBED_REGEX . '\s*|)' . self::getUrlRegex() . '/J';
+				$pattern = '/(?P<embed>' . self::EMBED_REGEX . '\s*|)' . self::getUrlRegex() . '/J';
 
 				$ruleWithRemapped = preg_replace_callback(
 					$pattern,
 					function ( $match ) use ( $local, $remote ) {
-						$remapped = CSSMin::remapOne( $match['file'], $match['query'], $local, $remote, false );
-						return CSSMin::buildUrlValue( $remapped );
+						$remapped = self::remapOne( $match['file'], $match['query'], $local, $remote, false );
+						return self::buildUrlValue( $remapped );
 					},
 					$rule
 				);
@@ -318,7 +318,7 @@ class CSSMin {
 						$pattern,
 						function ( $match ) use ( $embedAll, $local, $remote, &$mimeTypes ) {
 							$embed = $embedAll || $match['embed'];
-							$embedded = CSSMin::remapOne(
+							$embedded = self::remapOne(
 								$match['file'],
 								$match['query'],
 								$local,
@@ -332,10 +332,10 @@ class CSSMin {
 								!self::isRemoteUrl( $url ) && !self::isLocalUrl( $url )
 								&& file_exists( $file )
 							) {
-								$mimeTypes[ CSSMin::getMimeType( $file ) ] = true;
+								$mimeTypes[ self::getMimeType( $file ) ] = true;
 							}
 
-							return CSSMin::buildUrlValue( $embedded );
+							return self::buildUrlValue( $embedded );
 						},
 						$rule
 					);
