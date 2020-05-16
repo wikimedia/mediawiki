@@ -28,9 +28,9 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 class LogEventsList extends ContextSource {
-	const NO_ACTION_LINK = 1;
-	const NO_EXTRA_USER_LINKS = 2;
-	const USE_CHECKBOXES = 4;
+	public const NO_ACTION_LINK = 1;
+	public const NO_EXTRA_USER_LINKS = 2;
+	public const USE_CHECKBOXES = 4;
 
 	public $flags;
 

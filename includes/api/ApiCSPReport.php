@@ -36,7 +36,7 @@ class ApiCSPReport extends ApiBase {
 	/**
 	 * These reports should be small. Ignore super big reports out of paranoia
 	 */
-	const MAX_POST_SIZE = 8192;
+	private const MAX_POST_SIZE = 8192;
 
 	/**
 	 * Logs a content-security-policy violation report from web browser.

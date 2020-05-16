@@ -13,7 +13,7 @@ use Wikimedia\IPUtils;
  * valid IP ranges.
  */
 class HTMLRestrictionsField extends HTMLTextAreaField {
-	const DEFAULT_ROWS = 5;
+	protected const DEFAULT_ROWS = 5;
 
 	public function __construct( array $params ) {
 		parent::__construct( $params );

@@ -12,7 +12,7 @@ abstract class Handler {
 	 * (string) ParamValidator constant to specify the source of the parameter.
 	 * Value must be 'path', 'query', or 'post'.
 	 */
-	const PARAM_SOURCE = 'rest-param-source';
+	public const PARAM_SOURCE = 'rest-param-source';
 
 	/** @var Router */
 	private $router;

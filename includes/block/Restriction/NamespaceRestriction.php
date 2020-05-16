@@ -27,12 +27,12 @@ class NamespaceRestriction extends AbstractRestriction {
 	/**
 	 * @inheritDoc
 	 */
-	const TYPE = 'ns';
+	public const TYPE = 'ns';
 
 	/**
 	 * @inheritDoc
 	 */
-	const TYPE_ID = 2;
+	public const TYPE_ID = 2;
 
 	/**
 	 * @inheritDoc

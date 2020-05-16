@@ -27,9 +27,9 @@ namespace Wikimedia\DependencyStore;
  */
 abstract class DependencyStore {
 	/** @var string */
-	const KEY_PATHS = 'paths';
+	protected const KEY_PATHS = 'paths';
 	/** @var string */
-	const KEY_AS_OF = 'asOf';
+	protected const KEY_AS_OF = 'asOf';
 
 	/**
 	 * @param string[] $paths List of dependency paths

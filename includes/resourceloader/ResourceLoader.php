@@ -93,7 +93,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected static $debugMode = null;
 
 	/** @var int */
-	const CACHE_VERSION = 8;
+	public const CACHE_VERSION = 8;
 
 	/** @var string */
 	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
@@ -101,7 +101,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_WEEK;
 
 	/** @var string JavaScript / CSS pragma to disable minification. * */
-	const FILTER_NOMIN = '/*@nomin*/';
+	public const FILTER_NOMIN = '/*@nomin*/';
 
 	/**
 	 * Load information stored in the database and dependency tracking store about modules
@@ -653,7 +653,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * @internal For use by ResourceLoaderStartUpModule only.
 	 */
-	const HASH_LENGTH = 5;
+	public const HASH_LENGTH = 5;
 
 	/**
 	 * Create a hash for module versioning purposes.

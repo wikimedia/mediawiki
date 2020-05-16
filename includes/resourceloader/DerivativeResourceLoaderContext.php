@@ -31,7 +31,7 @@ use MediaWiki\MediaWikiServices;
  * @since 1.24
  */
 class DerivativeResourceLoaderContext extends ResourceLoaderContext {
-	const INHERIT_VALUE = -1;
+	private const INHERIT_VALUE = -1;
 
 	/**
 	 * @var ResourceLoaderContext

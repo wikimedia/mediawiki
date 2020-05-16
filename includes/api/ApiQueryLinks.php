@@ -27,8 +27,8 @@
  */
 class ApiQueryLinks extends ApiQueryGeneratorBase {
 
-	const LINKS = 'links';
-	const TEMPLATES = 'templates';
+	private const LINKS = 'links';
+	private const TEMPLATES = 'templates';
 
 	private $table, $prefix, $titlesParam, $helpUrl;
 

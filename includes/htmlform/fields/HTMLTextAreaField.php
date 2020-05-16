@@ -1,8 +1,8 @@
 <?php
 
 class HTMLTextAreaField extends HTMLFormField {
-	const DEFAULT_COLS = 80;
-	const DEFAULT_ROWS = 25;
+	protected const DEFAULT_COLS = 80;
+	protected const DEFAULT_ROWS = 25;
 
 	protected $mPlaceholder = '';
 	protected $mUseEditFont = false;

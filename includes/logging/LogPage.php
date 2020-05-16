@@ -31,14 +31,14 @@ use MediaWiki\MediaWikiServices;
  * than ever-growing wiki pages.
  */
 class LogPage {
-	const DELETED_ACTION = 1;
-	const DELETED_COMMENT = 2;
-	const DELETED_USER = 4;
-	const DELETED_RESTRICTED = 8;
+	public const DELETED_ACTION = 1;
+	public const DELETED_COMMENT = 2;
+	public const DELETED_USER = 4;
+	public const DELETED_RESTRICTED = 8;
 
 	// Convenience fields
-	const SUPPRESSED_USER = self::DELETED_USER | self::DELETED_RESTRICTED;
-	const SUPPRESSED_ACTION = self::DELETED_ACTION | self::DELETED_RESTRICTED;
+	public const SUPPRESSED_USER = self::DELETED_USER | self::DELETED_RESTRICTED;
+	public const SUPPRESSED_ACTION = self::DELETED_ACTION | self::DELETED_RESTRICTED;
 
 	/** @var bool */
 	public $updateRecentChanges;

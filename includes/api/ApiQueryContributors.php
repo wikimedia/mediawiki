@@ -37,7 +37,7 @@ class ApiQueryContributors extends ApiQueryBase {
 	 * database pages too heavily), so only do the first MAX_PAGES input pages
 	 * in each API call (leaving the rest for continuation).
 	 */
-	const MAX_PAGES = 100;
+	private const MAX_PAGES = 100;
 
 	public function __construct( ApiQuery $query, $moduleName ) {
 		// "pc" is short for "page contributors", "co" was already taken by the

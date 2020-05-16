@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class BotPassword implements IDBAccessObject {
 
-	const APPID_MAXLENGTH = 32;
+	public const APPID_MAXLENGTH = 32;
 
 	/** @var bool */
 	private $isSaved;

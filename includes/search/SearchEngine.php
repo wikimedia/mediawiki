@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Search
  */
 abstract class SearchEngine {
-	const DEFAULT_SORT = 'relevance';
+	public const DEFAULT_SORT = 'relevance';
 
 	/** @var string */
 	public $prefix = '';
@@ -60,16 +60,16 @@ abstract class SearchEngine {
 	protected $features = [];
 
 	/** Profile type for completionSearch */
-	const COMPLETION_PROFILE_TYPE = 'completionSearchProfile';
+	public const COMPLETION_PROFILE_TYPE = 'completionSearchProfile';
 
 	/** Profile type for query independent ranking features */
-	const FT_QUERY_INDEP_PROFILE_TYPE = 'fulltextQueryIndepProfile';
+	public const FT_QUERY_INDEP_PROFILE_TYPE = 'fulltextQueryIndepProfile';
 
 	/** Integer flag for legalSearchChars: includes all chars allowed in a search query */
-	const CHARS_ALL = 1;
+	protected const CHARS_ALL = 1;
 
 	/** Integer flag for legalSearchChars: includes all chars allowed in a search term */
-	const CHARS_NO_SYNTAX = 2;
+	protected const CHARS_NO_SYNTAX = 2;
 
 	/**
 	 * Perform a full text search query and return a result set.

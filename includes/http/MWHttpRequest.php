@@ -31,7 +31,7 @@ use Psr\Log\NullLogger;
  * PHP's HTTP extension.
  */
 abstract class MWHttpRequest implements LoggerAwareInterface {
-	const SUPPORTS_FILE_POSTS = false;
+	public const SUPPORTS_FILE_POSTS = false;
 
 	/**
 	 * @var int|string
