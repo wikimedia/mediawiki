@@ -42,9 +42,9 @@ class MSCompoundFileReaderTest extends PHPUnit\Framework\TestCase {
 
 	public static function provideInvalid() {
 		return [
-			[ 'dir-beyond-end.xls', 'ERROR_READ_PAST_END' ],
-			[ 'fat-loop.xls', 'ERROR_INVALID_FORMAT' ],
-			[ 'invalid-signature.xls', 'ERROR_INVALID_SIGNATURE' ],
+			[ 'dir-beyond-end.xls', MSCompoundFileReader::ERROR_READ_PAST_END ],
+			[ 'fat-loop.xls', MSCompoundFileReader::ERROR_INVALID_FORMAT ],
+			[ 'invalid-signature.xls', MSCompoundFileReader::ERROR_INVALID_SIGNATURE ],
 		];
 	}
 
@@ -54,7 +54,6 @@ class MSCompoundFileReaderTest extends PHPUnit\Framework\TestCase {
 
 		$info = MSCompoundFileReader::readFile( "$IP/tests/phpunit/data/MSCompoundFileReader/$fileName" );
 		$this->assertFalse( $info['valid'] );
-		$this->assertSame( constant( MSCompoundFileReader::class . '::' . $expectedError ),
-			$info['errorCode'] );
+		$this->assertSame( $expectedError, $info['errorCode'] );
 	}
 }

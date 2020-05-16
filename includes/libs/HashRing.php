@@ -55,17 +55,17 @@ class HashRing implements Serializable {
 	protected $liveRing;
 
 	/** @var integer Overall number of node groups per server */
-	const HASHES_PER_LOCATION = 40;
+	private const HASHES_PER_LOCATION = 40;
 	/** @var integer Number of nodes in a node group */
-	const SECTORS_PER_HASH = 4;
+	private const SECTORS_PER_HASH = 4;
 
-	const KEY_POS = 0;
-	const KEY_LOCATION = 1;
+	public const KEY_POS = 0;
+	public const KEY_LOCATION = 1;
 
 	/** @var int Consider all locations */
-	const RING_ALL = 0;
+	public const RING_ALL = 0;
 	/** @var int Only consider "live" locations */
-	const RING_LIVE = 1;
+	public const RING_LIVE = 1;
 
 	/**
 	 * Make a consistent hash ring given a set of locations and their weight values
