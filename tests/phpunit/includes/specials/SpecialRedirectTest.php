@@ -12,7 +12,7 @@ class SpecialRedirectTest extends MediaWikiTestCase {
 
 	protected $tablesUsed = [ 'user' ];
 
-	const CREATE_USER = 'create_user';
+	private const CREATE_USER = 'create_user';
 
 	/**
 	 * @dataProvider provideDispatch

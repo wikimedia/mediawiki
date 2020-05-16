@@ -11,7 +11,7 @@
  */
 class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 
-	const TITLE_STRING = 'UTCatChangeJobPage';
+	private const TITLE_STRING = 'UTCatChangeJobPage';
 
 	/**
 	 * @var Title
