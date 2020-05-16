@@ -7710,10 +7710,26 @@ $wgEnableParserLimitReporting = true;
 /**
  * List of valid skin names
  *
- * The key should be the name in all lower case, the value should be a properly
- * cased name for the skin. This value will be prefixed with "Skin" to create
- * the class name of the skin to load. Use Skin::getSkinNames() as an accessor
- * if you wish to have access to the full list.
+ * The key should be the name in all lower case.
+ *
+ * As of 1.35, the value should be a an array in the form of the ObjectFactory specification.
+ *
+ * For example for 'foobarskin' where the PHP class is 'MediaWiki\Skins\FooBar\FooBarSkin' set:
+ *
+ * @par extension.json Example:
+ * @code
+ * "ValidSkinNames": {
+ * 	"foobarskin": {
+ * 		"displayname": "FooBarSkin"
+ * 		"class": "MediaWiki\\Skins\\FooBar\\FooBarSkin"
+ * 	}
+ * }
+ * @endcode
+ *
+ * Historically, the value was a properly cased name for the skin (and is still currently
+ * supported). This value will be prefixed with "Skin" to create the class name of the
+ * skin to load. Use Skin::getSkinNames() as an accessor if you wish to have access to the
+ * full list.
  */
 $wgValidSkinNames = [];
 
