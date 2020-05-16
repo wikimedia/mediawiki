@@ -32,29 +32,47 @@ class CrhConverter extends LanguageConverter {
 	// Defines working character ranges
 
 	// Cyrillic
-	const C_UC = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'; # Crimean Tatar Cyrillic uppercase
-	const C_LC = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'; # Crimean Tatar Cyrillic lowercase
-	const C_CONS_UC = 'БВГДЖЗЙКЛМНПРСТФХЦЧШЩCÑ'; # Crimean Tatar Cyrillic + CÑ uppercase consonants
-	const C_CONS_LC = 'бвгджзйклмнпрстфхцчшщcñ'; # Crimean Tatar Cyrillic + CÑ lowercase consonants
-	const C_M_CONS = 'бгкмшcБГКМШC'; # Crimean Tatar Cyrillic M-type consonants
+	# Crimean Tatar Cyrillic uppercase
+	public const C_UC = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+	# Crimean Tatar Cyrillic lowercase
+	public const C_LC = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя';
+	# Crimean Tatar Cyrillic + CÑ uppercase consonants
+	public const C_CONS_UC = 'БВГДЖЗЙКЛМНПРСТФХЦЧШЩCÑ';
+	# Crimean Tatar Cyrillic + CÑ lowercase consonants
+	public const C_CONS_LC = 'бвгджзйклмнпрстфхцчшщcñ';
+	# Crimean Tatar Cyrillic M-type consonants
+	public const C_M_CONS = 'бгкмшcБГКМШC';
 
 	// Crimean Tatar Cyrillic + CÑ consonants
-	const C_CONS = 'бвгджзйклмнпрстфхцчшщcñБВГДЖЗЙКЛМНПРСТФХЦЧШЩCÑ';
+	public const C_CONS = 'бвгджзйклмнпрстфхцчшщcñБВГДЖЗЙКЛМНПРСТФХЦЧШЩCÑ';
 
 	// Latin
-	const L_UC = 'AÂBCÇDEFGĞHIİJKLMNÑOÖPQRSŞTUÜVYZ'; # Crimean Tatar Latin uppercase
-	const L_LC = 'aâbcçdefgğhıijklmnñoöpqrsştuüvyz'; # Crimean Tatar Latin lowercase
-	const L_N_CONS_UC = 'ÇNRSTZ'; # Crimean Tatar Latin N-type upper case consonants
-	const L_N_CONS_LC = 'çnrstz'; # Crimean Tatar Latin N-type lower case consonants
-	const L_N_CONS = 'çnrstzÇNRSTZ'; # Crimean Tatar Latin N-type consonants
-	const L_M_CONS = 'bcgkmpşBCGKMPŞ'; # Crimean Tatar Latin M-type consonants
-	const L_CONS_UC = 'BCÇDFGĞHJKLMNÑPQRSŞTVZ'; # Crimean Tatar Latin uppercase consonants
-	const L_CONS_LC = 'bcçdfgğhjklmnñpqrsştvz'; # Crimean Tatar Latin lowercase consonants
-	const L_CONS = 'bcçdfgğhjklmnñpqrsştvzBCÇDFGĞHJKLMNÑPQRSŞTVZ'; # Crimean Tatar Latin consonants
-	const L_VOW_UC = 'AÂEIİOÖUÜ'; # Crimean Tatar Latin uppercase vowels
-	const L_VOW = 'aâeıioöuüAÂEIİOÖUÜ'; # Crimean Tatar Latin vowels
-	const L_F_UC = 'EİÖÜ'; # Crimean Tatar Latin uppercase front vowels
-	const L_F = 'eiöüEİÖÜ'; # Crimean Tatar Latin front vowels
+	# Crimean Tatar Latin uppercase
+	public const L_UC = 'AÂBCÇDEFGĞHIİJKLMNÑOÖPQRSŞTUÜVYZ';
+	# Crimean Tatar Latin lowercase
+	public const L_LC = 'aâbcçdefgğhıijklmnñoöpqrsştuüvyz';
+	# Crimean Tatar Latin N-type upper case consonants
+	public const L_N_CONS_UC = 'ÇNRSTZ';
+	# Crimean Tatar Latin N-type lower case consonants
+	public const L_N_CONS_LC = 'çnrstz';
+	# Crimean Tatar Latin N-type consonants
+	public const L_N_CONS = 'çnrstzÇNRSTZ';
+	# Crimean Tatar Latin M-type consonants
+	public const L_M_CONS = 'bcgkmpşBCGKMPŞ';
+	# Crimean Tatar Latin uppercase consonants
+	public const L_CONS_UC = 'BCÇDFGĞHJKLMNÑPQRSŞTVZ';
+	# Crimean Tatar Latin lowercase consonants
+	public const L_CONS_LC = 'bcçdfgğhjklmnñpqrsştvz';
+	# Crimean Tatar Latin consonants
+	public const L_CONS = 'bcçdfgğhjklmnñpqrsştvzBCÇDFGĞHJKLMNÑPQRSŞTVZ';
+	# Crimean Tatar Latin uppercase vowels
+	public const L_VOW_UC = 'AÂEIİOÖUÜ';
+	# Crimean Tatar Latin vowels
+	public const L_VOW = 'aâeıioöuüAÂEIİOÖUÜ';
+	# Crimean Tatar Latin uppercase front vowels
+	public const L_F_UC = 'EİÖÜ';
+	# Crimean Tatar Latin front vowels
+	public const L_F = 'eiöüEİÖÜ';
 
 	/**
 	 * @param Language $langobj

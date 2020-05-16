@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Languages\LanguageFallback;
+
 /**
  * @group Language
  * @coversDefaultClass Language
@@ -32,10 +34,10 @@ class LanguageFallbackStaticMethodsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getMessagesKey() {
-		return Language::MESSAGES_FALLBACKS;
+		return LanguageFallback::MESSAGES;
 	}
 
 	private function getStrictKey() {
-		return Language::STRICT_FALLBACKS;
+		return LanguageFallback::STRICT;
 	}
 }
