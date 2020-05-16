@@ -65,7 +65,7 @@ class ParamValidator {
 	 * TypeDef::validate() will be informed when the default value was used by the presence of
 	 * 'is-default' in $options.
 	 */
-	const PARAM_DEFAULT = 'param-default';
+	public const PARAM_DEFAULT = 'param-default';
 
 	/**
 	 * (string|array) Type of the parameter.
@@ -73,7 +73,7 @@ class ParamValidator {
 	 * type must be registered). If omitted, the default is the PHP type of the default value
 	 * (see PARAM_DEFAULT).
 	 */
-	const PARAM_TYPE = 'param-type';
+	public const PARAM_TYPE = 'param-type';
 
 	/**
 	 * (bool) Indicate that the parameter is required.
@@ -81,7 +81,7 @@ class ParamValidator {
 	 * Failure codes:
 	 *  - 'missingparam': The parameter is omitted/empty (and no default was set). No data.
 	 */
-	const PARAM_REQUIRED = 'param-required';
+	public const PARAM_REQUIRED = 'param-required';
 
 	/**
 	 * (bool) Indicate that the parameter is multi-valued.
@@ -109,14 +109,14 @@ class ParamValidator {
 	 *    PARAM_IGNORE_UNRECOGNIZED_VALUES was set. Data:
 	 *     - 'values': The unrecognized values.
 	 */
-	const PARAM_ISMULTI = 'param-ismulti';
+	public const PARAM_ISMULTI = 'param-ismulti';
 
 	/**
 	 * (int) Maximum number of multi-valued parameter values allowed
 	 *
 	 * @see PARAM_ISMULTI
 	 */
-	const PARAM_ISMULTI_LIMIT1 = 'param-ismulti-limit1';
+	public const PARAM_ISMULTI_LIMIT1 = 'param-ismulti-limit1';
 
 	/**
 	 * (int) Maximum number of multi-valued parameter values allowed for users
@@ -124,7 +124,7 @@ class ParamValidator {
 	 *
 	 * @see PARAM_ISMULTI
 	 */
-	const PARAM_ISMULTI_LIMIT2 = 'param-ismulti-limit2';
+	public const PARAM_ISMULTI_LIMIT2 = 'param-ismulti-limit2';
 
 	/**
 	 * (bool|string) Whether a magic "all values" value exists for multi-valued
@@ -134,7 +134,7 @@ class ParamValidator {
 	 * this allows for an asterisk ('*') to be passed in place of a pipe-separated list of
 	 * every possible value. If a string is set, it will be used in place of the asterisk.
 	 */
-	const PARAM_ALL = 'param-all';
+	public const PARAM_ALL = 'param-all';
 
 	/**
 	 * (bool) Allow the same value to be set more than once when PARAM_ISMULTI is true?
@@ -142,7 +142,7 @@ class ParamValidator {
 	 * If not truthy, the set of values will be passed through
 	 * `array_values( array_unique() )`. The default is falsey.
 	 */
-	const PARAM_ALLOW_DUPLICATES = 'param-allow-duplicates';
+	public const PARAM_ALLOW_DUPLICATES = 'param-allow-duplicates';
 
 	/**
 	 * (bool) Indicate that the parameter's value should not be logged.
@@ -150,7 +150,7 @@ class ParamValidator {
 	 * Failure codes: (non-fatal)
 	 *  - 'param-sensitive': Always recorded when the parameter is used.
 	 */
-	const PARAM_SENSITIVE = 'param-sensitive';
+	public const PARAM_SENSITIVE = 'param-sensitive';
 
 	/**
 	 * (bool) Indicate that a deprecated parameter was used.
@@ -158,19 +158,19 @@ class ParamValidator {
 	 * Failure codes: (non-fatal)
 	 *  - 'param-deprecated': Always recorded when the parameter is used.
 	 */
-	const PARAM_DEPRECATED = 'param-deprecated';
+	public const PARAM_DEPRECATED = 'param-deprecated';
 
 	/**
 	 * (bool) Whether to downgrade "badvalue" errors to non-fatal when validating multi-valued
 	 * parameters.
 	 * @see PARAM_ISMULTI
 	 */
-	const PARAM_IGNORE_UNRECOGNIZED_VALUES = 'param-ignore-unrecognized-values';
+	public const PARAM_IGNORE_UNRECOGNIZED_VALUES = 'param-ignore-unrecognized-values';
 
 	/** @} */
 
 	/** Magic "all values" value when PARAM_ALL is true. */
-	const ALL_DEFAULT_STRING = '*';
+	public const ALL_DEFAULT_STRING = '*';
 
 	/** A list of standard type names and types that may be passed as `$typeDefs` to __construct(). */
 	public static $STANDARD_TYPES = [

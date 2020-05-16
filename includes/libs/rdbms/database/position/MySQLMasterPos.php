@@ -34,14 +34,14 @@ class MySQLMasterPos implements DBMasterPos {
 	/** @var float UNIX timestamp */
 	private $asOfTime = 0.0;
 
-	const BINARY_LOG = 'binary-log';
-	const GTID_MARIA = 'gtid-maria';
-	const GTID_MYSQL = 'gtid-mysql';
+	private const BINARY_LOG = 'binary-log';
+	private const GTID_MARIA = 'gtid-maria';
+	private const GTID_MYSQL = 'gtid-mysql';
 
 	/** @var int Key name of the binary log index number of a position tuple */
-	const CORD_INDEX = 0;
+	public const CORD_INDEX = 0;
 	/** @var int Key name of the binary log event number of a position tuple */
-	const CORD_EVENT = 1;
+	public const CORD_EVENT = 1;
 
 	/**
 	 * @param string $position One of (comma separated GTID list, <binlog file>/<integer>)

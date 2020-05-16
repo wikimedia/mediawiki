@@ -111,12 +111,12 @@ abstract class LBFactory implements ILBFactory {
 	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
 	private $nonLocalDomainCache = [];
 
-	const ROUND_CURSORY = 'cursory';
-	const ROUND_BEGINNING = 'within-begin';
-	const ROUND_COMMITTING = 'within-commit';
-	const ROUND_ROLLING_BACK = 'within-rollback';
-	const ROUND_COMMIT_CALLBACKS = 'within-commit-callbacks';
-	const ROUND_ROLLBACK_CALLBACKS = 'within-rollback-callbacks';
+	private const ROUND_CURSORY = 'cursory';
+	private const ROUND_BEGINNING = 'within-begin';
+	private const ROUND_COMMITTING = 'within-commit';
+	private const ROUND_ROLLING_BACK = 'within-rollback';
+	private const ROUND_COMMIT_CALLBACKS = 'within-commit-callbacks';
+	private const ROUND_ROLLBACK_CALLBACKS = 'within-rollback-callbacks';
 
 	private static $loggerFields =
 		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];

@@ -65,12 +65,12 @@ abstract class LockManager {
 	protected $session;
 
 	/** Lock types; stronger locks have higher values */
-	const LOCK_SH = 1; // shared lock (for reads)
-	const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
-	const LOCK_EX = 3; // exclusive lock (for writes)
+	public const LOCK_SH = 1; // shared lock (for reads)
+	public const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
+	public const LOCK_EX = 3; // exclusive lock (for writes)
 
 	/** @var int Max expected lock expiry in any context */
-	const MAX_LOCK_TTL = 7200; // 2 hours
+	protected const MAX_LOCK_TTL = 7200; // 2 hours
 
 	/**
 	 * Construct a new instance from configuration

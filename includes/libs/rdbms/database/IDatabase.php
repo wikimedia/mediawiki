@@ -37,76 +37,76 @@ use Wikimedia\ScopedCallback;
  */
 interface IDatabase {
 	/** @var int Callback triggered immediately due to no active transaction */
-	const TRIGGER_IDLE = 1;
+	public const TRIGGER_IDLE = 1;
 	/** @var int Callback triggered by COMMIT */
-	const TRIGGER_COMMIT = 2;
+	public const TRIGGER_COMMIT = 2;
 	/** @var int Callback triggered by ROLLBACK */
-	const TRIGGER_ROLLBACK = 3;
+	public const TRIGGER_ROLLBACK = 3;
 	/** @var int Callback triggered by atomic section cancel (ROLLBACK TO SAVEPOINT) */
-	const TRIGGER_CANCEL = 4;
+	public const TRIGGER_CANCEL = 4;
 
 	/** @var string Transaction is requested by regular caller outside of the DB layer */
-	const TRANSACTION_EXPLICIT = '';
+	public const TRANSACTION_EXPLICIT = '';
 	/** @var string Transaction is requested internally via DBO_TRX/startAtomic() */
-	const TRANSACTION_INTERNAL = 'implicit';
+	public const TRANSACTION_INTERNAL = 'implicit';
 
 	/** @var string Atomic section is not cancelable */
-	const ATOMIC_NOT_CANCELABLE = '';
+	public const ATOMIC_NOT_CANCELABLE = '';
 	/** @var string Atomic section is cancelable */
-	const ATOMIC_CANCELABLE = 'cancelable';
+	public const ATOMIC_CANCELABLE = 'cancelable';
 
 	/** @var string Commit/rollback is from outside the IDatabase handle and connection manager */
-	const FLUSHING_ONE = '';
+	public const FLUSHING_ONE = '';
 	/** @var string Commit/rollback is from the connection manager for the IDatabase handle */
-	const FLUSHING_ALL_PEERS = 'flush';
+	public const FLUSHING_ALL_PEERS = 'flush';
 	/** @var string Commit/rollback is from the IDatabase handle internally */
-	const FLUSHING_INTERNAL = 'flush-internal';
+	public const FLUSHING_INTERNAL = 'flush-internal';
 
 	/** @var string Do not remember the prior flags */
-	const REMEMBER_NOTHING = '';
+	public const REMEMBER_NOTHING = '';
 	/** @var string Remember the prior flags */
-	const REMEMBER_PRIOR = 'remember';
+	public const REMEMBER_PRIOR = 'remember';
 	/** @var string Restore to the prior flag state */
-	const RESTORE_PRIOR = 'prior';
+	public const RESTORE_PRIOR = 'prior';
 	/** @var string Restore to the initial flag state */
-	const RESTORE_INITIAL = 'initial';
+	public const RESTORE_INITIAL = 'initial';
 
 	/** @var string Estimate total time (RTT, scanning, waiting on locks, applying) */
-	const ESTIMATE_TOTAL = 'total';
+	public const ESTIMATE_TOTAL = 'total';
 	/** @var string Estimate time to apply (scanning, applying) */
-	const ESTIMATE_DB_APPLY = 'apply';
+	public const ESTIMATE_DB_APPLY = 'apply';
 
 	/** @var int Combine list with comma delimeters */
-	const LIST_COMMA = 0;
+	public const LIST_COMMA = 0;
 	/** @var int Combine list with AND clauses */
-	const LIST_AND = 1;
+	public const LIST_AND = 1;
 	/** @var int Convert map into a SET clause */
-	const LIST_SET = 2;
+	public const LIST_SET = 2;
 	/** @var int Treat as field name and do not apply value escaping */
-	const LIST_NAMES = 3;
+	public const LIST_NAMES = 3;
 	/** @var int Combine list with OR clauses */
-	const LIST_OR = 4;
+	public const LIST_OR = 4;
 
 	/** @var int Enable debug logging of all SQL queries */
-	const DBO_DEBUG = 1;
+	public const DBO_DEBUG = 1;
 	/** @var int Unused since 1.34 */
-	const DBO_NOBUFFER = 2;
+	public const DBO_NOBUFFER = 2;
 	/** @var int Unused since 1.31 */
-	const DBO_IGNORE = 4;
+	public const DBO_IGNORE = 4;
 	/** @var int Automatically start a transaction before running a query if none is active */
-	const DBO_TRX = 8;
+	public const DBO_TRX = 8;
 	/** @var int Join load balancer transaction rounds (which control DBO_TRX) in non-CLI mode */
-	const DBO_DEFAULT = 16;
+	public const DBO_DEFAULT = 16;
 	/** @var int Use DB persistent connections if possible */
-	const DBO_PERSISTENT = 32;
+	public const DBO_PERSISTENT = 32;
 	/** @var int DBA session mode; was used by Oracle */
-	const DBO_SYSDBA = 64;
+	public const DBO_SYSDBA = 64;
 	/** @var int Schema file mode; was used by Oracle */
-	const DBO_DDLMODE = 128;
+	public const DBO_DDLMODE = 128;
 	/** @var int Enable SSL/TLS in connection protocol */
-	const DBO_SSL = 256;
+	public const DBO_SSL = 256;
 	/** @var int Enable compression in connection protocol */
-	const DBO_COMPRESS = 512;
+	public const DBO_COMPRESS = 512;
 
 	/** @var int Idiom for "no special flags" */
 	public const QUERY_NORMAL = 0;
@@ -133,26 +133,26 @@ interface IDatabase {
 	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
 
 	/** @var bool Parameter to unionQueries() for UNION ALL */
-	const UNION_ALL = true;
+	public const UNION_ALL = true;
 	/** @var bool Parameter to unionQueries() for UNION DISTINCT */
-	const UNION_DISTINCT = false;
+	public const UNION_DISTINCT = false;
 
 	/** @var string Field for getLBInfo()/setLBInfo() */
-	const LB_TRX_ROUND_ID = 'trxRoundId';
+	public const LB_TRX_ROUND_ID = 'trxRoundId';
 	/** @var string Field for getLBInfo()/setLBInfo() */
-	const LB_READ_ONLY_REASON = 'readOnlyReason';
+	public const LB_READ_ONLY_REASON = 'readOnlyReason';
 
 	/** @var string Master server than can stream OLTP updates to replica servers */
-	const ROLE_STREAMING_MASTER = 'streaming-master';
+	public const ROLE_STREAMING_MASTER = 'streaming-master';
 	/** @var string Replica server that streams OLTP updates from the master server */
-	const ROLE_STREAMING_REPLICA = 'streaming-replica';
+	public const ROLE_STREAMING_REPLICA = 'streaming-replica';
 	/** @var string Replica server of a static dataset that does not get OLTP updates */
-	const ROLE_STATIC_CLONE = 'static-clone';
+	public const ROLE_STATIC_CLONE = 'static-clone';
 	/** @var string Unknown replication topology role */
-	const ROLE_UNKNOWN = 'unknown';
+	public const ROLE_UNKNOWN = 'unknown';
 
 	/** @var string Unconditional update/delete of whole table */
-	const ALL_ROWS = '*';
+	public const ALL_ROWS = '*';
 
 	/**
 	 * Get a human-readable string describing the current software version

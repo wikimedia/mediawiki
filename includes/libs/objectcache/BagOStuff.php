@@ -83,14 +83,14 @@ abstract class BagOStuff implements
 	private $wallClockOverride;
 
 	/** Bitfield constants for get()/getMulti(); these are only advisory */
-	const READ_LATEST = 1; // if supported, avoid reading stale data due to replication
-	const READ_VERIFIED = 2; // promise that the caller handles detection of staleness
+	public const READ_LATEST = 1; // if supported, avoid reading stale data due to replication
+	public const READ_VERIFIED = 2; // promise that the caller handles detection of staleness
 	/** Bitfield constants for set()/merge(); these are only advisory */
-	const WRITE_SYNC = 4; // if supported, block until the write is fully replicated
-	const WRITE_CACHE_ONLY = 8; // only change state of the in-memory cache
-	const WRITE_ALLOW_SEGMENTS = 16; // allow partitioning of the value if it is large
-	const WRITE_PRUNE_SEGMENTS = 32; // delete all the segments if the value is partitioned
-	const WRITE_BACKGROUND = 64; // if supported, do not block on completion until the next read
+	public const WRITE_SYNC = 4; // if supported, block until the write is fully replicated
+	public const WRITE_CACHE_ONLY = 8; // only change state of the in-memory cache
+	public const WRITE_ALLOW_SEGMENTS = 16; // allow partitioning of the value if it is large
+	public const WRITE_PRUNE_SEGMENTS = 32; // delete all the segments if the value is partitioned
+	public const WRITE_BACKGROUND = 64; // if supported, do not block on completion until the next read
 
 	/**
 	 * Parameters include:

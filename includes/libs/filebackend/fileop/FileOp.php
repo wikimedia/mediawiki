@@ -65,13 +65,13 @@ abstract class FileOp {
 	protected $destExists;
 
 	/* Object life-cycle */
-	const STATE_NEW = 1;
-	const STATE_CHECKED = 2;
-	const STATE_ATTEMPTED = 3;
+	private const STATE_NEW = 1;
+	private const STATE_CHECKED = 2;
+	private const STATE_ATTEMPTED = 3;
 
-	const ASSUMED_SHA1 = 'sha1';
-	const ASSUMED_EXISTS = 'exists';
-	const ASSUMED_SIZE = 'size';
+	protected const ASSUMED_SHA1 = 'sha1';
+	protected const ASSUMED_EXISTS = 'exists';
+	protected const ASSUMED_SIZE = 'size';
 
 	/**
 	 * Build a new batch file operation transaction

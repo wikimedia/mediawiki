@@ -129,32 +129,32 @@ abstract class FileBackend implements LoggerAwareInterface {
 	protected $statusWrapper;
 
 	/** Bitfield flags for supported features */
-	const ATTR_HEADERS = 1; // files can be tagged with standard HTTP headers
-	const ATTR_METADATA = 2; // files can be stored with metadata key/values
-	const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
+	public const ATTR_HEADERS = 1; // files can be tagged with standard HTTP headers
+	public const ATTR_METADATA = 2; // files can be stored with metadata key/values
+	public const ATTR_UNICODE_PATHS = 4; // files can have Unicode paths (not just ASCII)
 
 	/** @var false Idiom for "no info; non-existant file" (since 1.34) */
-	const STAT_ABSENT = false;
+	protected const STAT_ABSENT = false;
 
 	/** @var null Idiom for "no info; I/O errors" (since 1.34) */
-	const STAT_ERROR = null;
+	public const STAT_ERROR = null;
 	/** @var null Idiom for "no file/directory list; I/O errors" (since 1.34) */
-	const LIST_ERROR = null;
+	public const LIST_ERROR = null;
 	/** @var null Idiom for "no temp URL; not supported or I/O errors" (since 1.34) */
-	const TEMPURL_ERROR = null;
+	public const TEMPURL_ERROR = null;
 	/** @var null Idiom for "existence unknown; I/O errors" (since 1.34) */
-	const EXISTENCE_ERROR = null;
+	public const EXISTENCE_ERROR = null;
 
 	/** @var false Idiom for "no timestamp; missing file or I/O errors" (since 1.34) */
-	const TIMESTAMP_FAIL = false;
+	public const TIMESTAMP_FAIL = false;
 	/** @var false Idiom for "no content; missing file or I/O errors" (since 1.34) */
-	const CONTENT_FAIL = false;
+	public const CONTENT_FAIL = false;
 	/** @var false Idiom for "no metadata; missing file or I/O errors" (since 1.34) */
-	const XATTRS_FAIL = false;
+	public const XATTRS_FAIL = false;
 	/** @var false Idiom for "no size; missing file or I/O errors" (since 1.34) */
-	const SIZE_FAIL = false;
+	public const SIZE_FAIL = false;
 	/** @var false Idiom for "no SHA1 hash; missing file or I/O errors" (since 1.34) */
-	const SHA1_FAIL = false;
+	public const SHA1_FAIL = false;
 
 	/**
 	 * Create a new backend instance from configuration.

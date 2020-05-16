@@ -145,35 +145,35 @@ class LoadBalancer implements ILoadBalancer {
 	private static $INFO_FOREIGN_REF_COUNT = 'foreignPoolRefCount';
 
 	/** @var int Warn when this many connection are held */
-	const CONN_HELD_WARN_THRESHOLD = 10;
+	private const CONN_HELD_WARN_THRESHOLD = 10;
 
 	/** @var int Default 'maxLag' when unspecified */
-	const MAX_LAG_DEFAULT = 6;
+	private const MAX_LAG_DEFAULT = 6;
 	/** @var int Default 'waitTimeout' when unspecified */
-	const MAX_WAIT_DEFAULT = 10;
+	private const MAX_WAIT_DEFAULT = 10;
 	/** @var int Seconds to cache master DB server read-only status */
-	const TTL_CACHE_READONLY = 5;
+	private const TTL_CACHE_READONLY = 5;
 
-	const KEY_LOCAL = 'local';
-	const KEY_FOREIGN_FREE = 'foreignFree';
-	const KEY_FOREIGN_INUSE = 'foreignInUse';
+	private const KEY_LOCAL = 'local';
+	private const KEY_FOREIGN_FREE = 'foreignFree';
+	private const KEY_FOREIGN_INUSE = 'foreignInUse';
 
-	const KEY_LOCAL_NOROUND = 'localAutoCommit';
-	const KEY_FOREIGN_FREE_NOROUND = 'foreignFreeAutoCommit';
-	const KEY_FOREIGN_INUSE_NOROUND = 'foreignInUseAutoCommit';
+	private const KEY_LOCAL_NOROUND = 'localAutoCommit';
+	private const KEY_FOREIGN_FREE_NOROUND = 'foreignFreeAutoCommit';
+	private const KEY_FOREIGN_INUSE_NOROUND = 'foreignInUseAutoCommit';
 
 	/** @var string Transaction round, explicit or implicit, has not finished writing */
-	const ROUND_CURSORY = 'cursory';
+	private const ROUND_CURSORY = 'cursory';
 	/** @var string Transaction round writes are complete and ready for pre-commit checks */
-	const ROUND_FINALIZED = 'finalized';
+	private const ROUND_FINALIZED = 'finalized';
 	/** @var string Transaction round passed final pre-commit checks */
-	const ROUND_APPROVED = 'approved';
+	private const ROUND_APPROVED = 'approved';
 	/** @var string Transaction round was committed and post-commit callbacks must be run */
-	const ROUND_COMMIT_CALLBACKS = 'commit-callbacks';
+	private const ROUND_COMMIT_CALLBACKS = 'commit-callbacks';
 	/** @var string Transaction round was rolled back and post-rollback callbacks must be run */
-	const ROUND_ROLLBACK_CALLBACKS = 'rollback-callbacks';
+	private const ROUND_ROLLBACK_CALLBACKS = 'rollback-callbacks';
 	/** @var string Transaction round encountered an error */
-	const ROUND_ERROR = 'error';
+	private const ROUND_ERROR = 'error';
 
 	public function __construct( array $params ) {
 		if ( !isset( $params['servers'] ) || !count( $params['servers'] ) ) {

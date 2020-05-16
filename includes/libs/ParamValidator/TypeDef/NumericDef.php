@@ -29,22 +29,22 @@ abstract class NumericDef extends TypeDef {
 	 *
 	 * If set and truthy, the 'outofrange' failure is non-fatal.
 	 */
-	const PARAM_IGNORE_RANGE = 'param-ignore-range';
+	public const PARAM_IGNORE_RANGE = 'param-ignore-range';
 
 	/**
 	 * (int|float) Minimum allowed value.
 	 */
-	const PARAM_MIN = 'param-min';
+	public const PARAM_MIN = 'param-min';
 
 	/**
 	 * (int|float) Maximum allowed value (normal limits)
 	 */
-	const PARAM_MAX = 'param-max';
+	public const PARAM_MAX = 'param-max';
 
 	/**
 	 * (int|float) Maximum allowed value (high limits)
 	 */
-	const PARAM_MAX2 = 'param-max2';
+	public const PARAM_MAX2 = 'param-max2';
 
 	/** @var string PHP type (as from `gettype()`) of values this NumericDef handles */
 	protected $valueType = 'integer';

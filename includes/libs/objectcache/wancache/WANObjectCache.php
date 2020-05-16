@@ -167,42 +167,42 @@ class WANObjectCache implements
 	private $wallClockOverride;
 
 	/** @var int Max expected seconds to pass between delete() and DB commit finishing */
-	const MAX_COMMIT_DELAY = 3;
+	private const MAX_COMMIT_DELAY = 3;
 	/** @var int Max expected seconds of combined lag from replication and view snapshots */
-	const MAX_READ_LAG = 7;
+	private const MAX_READ_LAG = 7;
 	/** @var int Seconds to tombstone keys on delete() and treat as volatile after invalidation */
-	const HOLDOFF_TTL = self::MAX_COMMIT_DELAY + self::MAX_READ_LAG + 1;
+	public const HOLDOFF_TTL = self::MAX_COMMIT_DELAY + self::MAX_READ_LAG + 1;
 
 	/** @var int Consider regeneration if the key will expire within this many seconds */
-	const LOW_TTL = 30;
+	private const LOW_TTL = 30;
 	/** @var int Max TTL, in seconds, to store keys when a data sourced is lagged */
-	const TTL_LAGGED = 30;
+	public const TTL_LAGGED = 30;
 
 	/** @var int Expected time-till-refresh, in seconds, if the key is accessed once per second */
-	const HOT_TTR = 900;
+	private const HOT_TTR = 900;
 	/** @var int Minimum key age, in seconds, for expected time-till-refresh to be considered */
-	const AGE_NEW = 60;
+	private const AGE_NEW = 60;
 
 	/** @var int Idiom for getWithSetCallback() meaning "no cache stampede mutex required" */
-	const TSE_NONE = -1;
+	private const TSE_NONE = -1;
 
 	/** @var int Idiom for set()/getWithSetCallback() meaning "no post-expiration persistence" */
-	const STALE_TTL_NONE = 0;
+	private const STALE_TTL_NONE = 0;
 	/** @var int Idiom for set()/getWithSetCallback() meaning "no post-expiration grace period" */
-	const GRACE_TTL_NONE = 0;
+	private const GRACE_TTL_NONE = 0;
 	/** @var int Idiom for delete()/touchCheckKey() meaning "no hold-off period" */
-	const HOLDOFF_TTL_NONE = 0;
+	public const HOLDOFF_TTL_NONE = 0;
 	/** @var int Alias for HOLDOFF_TTL_NONE (b/c) (deprecated since 1.34) */
-	const HOLDOFF_NONE = self::HOLDOFF_TTL_NONE;
+	public const HOLDOFF_NONE = self::HOLDOFF_TTL_NONE;
 
 	/** @var float Idiom for getWithSetCallback() meaning "no minimum required as-of timestamp" */
-	const MIN_TIMESTAMP_NONE = 0.0;
+	public const MIN_TIMESTAMP_NONE = 0.0;
 
 	/** @var string Default process cache name and max key count */
-	const PC_PRIMARY = 'primary:1000';
+	private const PC_PRIMARY = 'primary:1000';
 
 	/** @var int Idion for get()/getMulti() to return extra information by reference */
-	const PASS_BY_REF = -1;
+	public const PASS_BY_REF = -1;
 
 	/** @var int Use twemproxy-style Hash Tag key scheme (e.g. "{...}") */
 	private const SCHEME_HASH_TAG = 1;

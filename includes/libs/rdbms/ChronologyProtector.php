@@ -67,11 +67,11 @@ class ChronologyProtector implements LoggerAwareInterface {
 	protected $shutdownTouchDBs = [];
 
 	/** @var int Seconds to store positions */
-	const POSITION_TTL = 60;
+	public const POSITION_TTL = 60;
 	/** @var int Seconds to store position write index cookies (safely less than POSITION_TTL) */
-	const POSITION_COOKIE_TTL = 10;
+	public const POSITION_COOKIE_TTL = 10;
 	/** @var int Max time to wait for positions to appear */
-	const POS_STORE_WAIT_TIMEOUT = 5;
+	private const POS_STORE_WAIT_TIMEOUT = 5;
 
 	/**
 	 * @param BagOStuff $store

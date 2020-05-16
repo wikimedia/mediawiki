@@ -40,9 +40,9 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	/** @var int CAS token counter */
 	private static $casCounter = 0;
 
-	const KEY_VAL = 0;
-	const KEY_EXP = 1;
-	const KEY_CAS = 2;
+	public const KEY_VAL = 0;
+	public const KEY_EXP = 1;
+	public const KEY_CAS = 2;
 
 	/**
 	 * @param array $params Additional parameters include:
