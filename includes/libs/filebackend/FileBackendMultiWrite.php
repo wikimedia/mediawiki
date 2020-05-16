@@ -60,11 +60,11 @@ class FileBackendMultiWrite extends FileBackend {
 	protected $asyncWrites = false;
 
 	/** @var int Compare file sizes among backends */
-	const CHECK_SIZE = 1;
+	private const CHECK_SIZE = 1;
 	/** @var int Compare file mtimes among backends */
-	const CHECK_TIME = 2;
+	private const CHECK_TIME = 2;
 	/** @var int Compare file hashes among backends */
-	const CHECK_SHA1 = 4;
+	private const CHECK_SHA1 = 4;
 
 	/**
 	 * Construct a proxy backend that consists of several internal backends.

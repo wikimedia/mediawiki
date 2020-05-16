@@ -59,7 +59,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	protected $preparedValues = [];
 
 	/** @var string Component to use for key construction of blob segment keys */
-	const SEGMENT_COMPONENT = 'segment';
+	private const SEGMENT_COMPONENT = 'segment';
 
 	/**
 	 * @see BagOStuff::__construct()

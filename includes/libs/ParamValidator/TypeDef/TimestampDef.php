@@ -41,7 +41,7 @@ class TimestampDef extends TypeDef {
 	 *
 	 * This does not affect the format returned by stringifyValue().
 	 */
-	const PARAM_TIMESTAMP_FORMAT = 'param-timestamp-format';
+	public const PARAM_TIMESTAMP_FORMAT = 'param-timestamp-format';
 
 	/** @var string|int */
 	protected $defaultFormat;

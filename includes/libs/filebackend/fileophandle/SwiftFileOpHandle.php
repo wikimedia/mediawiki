@@ -32,9 +32,9 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	public $state = self::CONTINUE_IF_OK;
 
 	/** @var int Continue with the next requests stages if no errors occurred */
-	const CONTINUE_IF_OK = 0;
+	public const CONTINUE_IF_OK = 0;
 	/** @var int Cancel the next requests stages */
-	const CONTINUE_NO = 1;
+	public const CONTINUE_NO = 1;
 
 	/**
 	 * Construct a handle to be use with SwiftFileOpHandle::doExecuteOpHandlesInternal()

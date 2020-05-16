@@ -46,7 +46,7 @@ class EnumDef extends TypeDef {
 	 * Failure codes: (non-fatal)
 	 *  - 'deprecated-value': A deprecated value was encountered. No data.
 	 */
-	const PARAM_DEPRECATED_VALUES = 'param-deprecated-values';
+	public const PARAM_DEPRECATED_VALUES = 'param-deprecated-values';
 
 	public function validate( $name, $value, array $settings, array $options ) {
 		$values = $this->getEnumValues( $name, $settings, $options );

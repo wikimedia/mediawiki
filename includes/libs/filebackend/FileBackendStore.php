@@ -55,9 +55,9 @@ abstract class FileBackendStore extends FileBackend {
 
 	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
 
-	const CACHE_TTL = 10; // integer; TTL in seconds for process cache entries
-	const CACHE_CHEAP_SIZE = 500; // integer; max entries in "cheap cache"
-	const CACHE_EXPENSIVE_SIZE = 5; // integer; max entries in "expensive cache"
+	protected const CACHE_TTL = 10; // integer; TTL in seconds for process cache entries
+	protected const CACHE_CHEAP_SIZE = 500; // integer; max entries in "cheap cache"
+	protected const CACHE_EXPENSIVE_SIZE = 5; // integer; max entries in "expensive cache"
 
 	/** @var false Idiom for "no result due to missing file" (since 1.34) */
 	protected static $RES_ABSENT = false;

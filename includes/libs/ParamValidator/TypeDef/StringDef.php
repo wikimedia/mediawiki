@@ -31,7 +31,7 @@ class StringDef extends TypeDef {
 	 *     - 'maxbytes': The maximum number of bytes allowed, or null if no limit
 	 *     - 'maxchars': The maximum number of characters allowed, or null if no limit
 	 */
-	const PARAM_MAX_BYTES = 'param-max-bytes';
+	public const PARAM_MAX_BYTES = 'param-max-bytes';
 
 	/**
 	 * (integer) Maximum length of a string in characters (Unicode codepoints).
@@ -43,7 +43,7 @@ class StringDef extends TypeDef {
 	 *     - 'maxbytes': The maximum number of bytes allowed, or null if no limit
 	 *     - 'maxchars': The maximum number of characters allowed, or null if no limit
 	 */
-	const PARAM_MAX_CHARS = 'param-max-chars';
+	public const PARAM_MAX_CHARS = 'param-max-chars';
 
 	protected $allowEmptyWhenRequired = false;
 

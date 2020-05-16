@@ -67,7 +67,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	protected static $instances = [];
 
 	/** integer; seconds to cache servers as "down". */
-	const SERVER_DOWN_TTL = 30;
+	private const SERVER_DOWN_TTL = 30;
 
 	/**
 	 * @var LoggerInterface
