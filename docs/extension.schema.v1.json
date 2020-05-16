@@ -272,7 +272,7 @@
 								},
 								"group": {
 									"type": "string",
-									"description": "Group which this module should be loaded together with"
+									"description": "Group with which this module should be loaded"
 								},
 								"deprecated": {
 									"type": ["object", "string", "boolean"],
@@ -319,7 +319,7 @@
 								},
 								"group": {
 									"type": "string",
-									"description": "Group which this module should be loaded together with"
+									"description": "Group with which this module should be loaded"
 								},
 								"position": {
 									"type": "string",
@@ -338,12 +338,14 @@
 								},
 								"scripts": {
 									"type": "array",
+									"description": "A list of on-wiki pages containing JavaScript that should be loaded",
 									"items": {
 										"type": "string"
 									}
 								},
 								"styles": {
 									"type": "array",
+									"description": "A list of on-wiki pages containing CSS that should be loaded",
 									"items": {
 										"type": "string"
 									}
@@ -397,7 +399,7 @@
 							}
 						},
 						{
-							"description": "An arbitrary ResourceLoaderModule definition",
+							"description": "An arbitrary ResourceLoaderModule definition by class",
 							"properties": {
 								"class": {
 									"type": "string",
@@ -752,7 +754,8 @@
 			"description": "Available feeds objects"
 		},
 		"SkinOOUIThemes": {
-			"type": "object"
+			"type": "object",
+			"description": "Map of skin names to OOUI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
 		},
 		"OOUIThemePaths": {
 			"type": "object",
