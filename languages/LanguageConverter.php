@@ -87,7 +87,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	private $mMaxDepth = 10;
 	private $mVarSeparatorPattern;
 
-	const CACHE_VERSION_KEY = 'VERSION 7';
+	private const CACHE_VERSION_KEY = 'VERSION 7';
 
 	/**
 	 * @param Language $langobj

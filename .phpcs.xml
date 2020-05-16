@@ -18,9 +18,6 @@
 		<exclude name="PSR2.Classes.ClassDeclaration.InterfaceWrongIndent" /><!-- Temporary: T243529 -->
 	</rule>
 	<!-- TODO Still to be done -->
-	<rule ref="PSR12.Properties.ConstantVisibility.NotFound">
-		<exclude-pattern>languages/</exclude-pattern>
-	</rule>
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/actions/</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>

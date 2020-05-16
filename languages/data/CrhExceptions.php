@@ -13,7 +13,7 @@ use CrhConverter as Crh;
 
 class CrhExceptions {
 
-	const WB = '\b'; # default word boundary; may be updated in the future
+	private const WB = '\b'; # default word boundary; may be updated in the future
 
 	public function __construct() {
 		$this->loadRegs();

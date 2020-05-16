@@ -42,14 +42,14 @@ class Language {
 	 * @since 1.32
 	 * @deprecated since 1.34, LanguageNameUtils::AUTONYMS
 	 */
-	const AS_AUTONYMS = LanguageNameUtils::AUTONYMS;
+	public const AS_AUTONYMS = LanguageNameUtils::AUTONYMS;
 
 	/**
 	 * Return all known languages in fetchLanguageName(s).
 	 * @since 1.32
 	 * @deprecated since 1.34, use LanguageNameUtils::ALL
 	 */
-	const ALL = LanguageNameUtils::ALL;
+	public const ALL = LanguageNameUtils::ALL;
 
 	/**
 	 * Return in fetchLanguageName(s) only the languages for which we have at
@@ -57,7 +57,7 @@ class Language {
 	 * @since 1.32
 	 * @deprecated since 1.34, use LanguageNameUtils::SUPPORTED
 	 */
-	const SUPPORTED = LanguageNameUtils::SUPPORTED;
+	public const SUPPORTED = LanguageNameUtils::SUPPORTED;
 
 	/**
 	 * Use PHP's magic __get handler to handle lazy accessing to
@@ -134,14 +134,14 @@ class Language {
 	 * @since 1.32
 	 * @deprecated since 1.35, use LanguageFallback::MESSAGES
 	 */
-	const MESSAGES_FALLBACKS = LanguageFallback::MESSAGES;
+	public const MESSAGES_FALLBACKS = LanguageFallback::MESSAGES;
 
 	/**
 	 * Return a strict fallback chain in getFallbacksFor
 	 * @since 1.32
 	 * @deprecated since 1.35, use LanguageFallback::STRICT
 	 */
-	const STRICT_FALLBACKS = LanguageFallback::STRICT;
+	public const STRICT_FALLBACKS = LanguageFallback::STRICT;
 
 	/**
 	 * @since 1.35
@@ -878,15 +878,20 @@ class Language {
 	 *
 	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageNames
 	 * @param null|string $inLanguage Code of language in which to return the names
-	 * 		Use self::AS_AUTONYMS for autonyms (native names)
+	 * 		Use LanguageNameUtils::AUTONYMS for autonyms (native names)
 	 * @param string $include One of:
-	 * 		self::ALL all available languages
-	 * 		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
-	 * 		self::SUPPORTED only if the language is in 'mw' *and* has a message file
+	 * 		LanguageNameUtils::AUTONYMS all available languages
+	 * 		'mw' only if the language is defined in MediaWiki
+	 * 		 or wgExtraLanguageNames (default)
+	 * 		LanguageNameUtils::SUPPORTED only if the language is in 'mw' *and*
+	 * 		 has a message file
 	 * @return array Language code => language name (sorted by key)
 	 * @since 1.20
 	 */
-	public static function fetchLanguageNames( $inLanguage = self::AS_AUTONYMS, $include = 'mw' ) {
+	public static function fetchLanguageNames(
+		$inLanguage = LanguageNameUtils::AUTONYMS,
+		$include = 'mw'
+	) {
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageNames( $inLanguage, $include );
 	}
@@ -895,15 +900,15 @@ class Language {
 	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageName
 	 * @param string $code The code of the language for which to get the name
 	 * @param null|string $inLanguage Code of language in which to return the name
-	 *   (SELF::AS_AUTONYMS for autonyms)
+	 *   (LanguageNameUtils::AUTONYMS for autonyms)
 	 * @param string $include See fetchLanguageNames()
 	 * @return string Language name or empty
 	 * @since 1.20
 	 */
 	public static function fetchLanguageName(
 		$code,
-		$inLanguage = self::AS_AUTONYMS,
-		$include = self::ALL
+		$inLanguage = LanguageNameUtils::AUTONYMS,
+		$include = LanguageNameUtils::ALL
 	) {
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageName( $code, $inLanguage, $include );
@@ -4456,7 +4461,7 @@ class Language {
 	 * @throws InvalidArgumentException
 	 * @return array List of language codes
 	 */
-	public static function getFallbacksFor( $code, $mode = self::MESSAGES_FALLBACKS ) {
+	public static function getFallbacksFor( $code, $mode = LanguageFallback::MESSAGES ) {
 		return MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $code, $mode );
 	}
 
