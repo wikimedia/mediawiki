@@ -45,18 +45,18 @@ define( 'MSG_CACHE_VERSION', 2 );
  * @ingroup Cache
  */
 class MessageCache implements LoggerAwareInterface {
-	const FOR_UPDATE = 1; // force message reload
+	private const FOR_UPDATE = 1; // force message reload
 
 	/** How long to wait for memcached locks */
-	const WAIT_SEC = 15;
+	private const WAIT_SEC = 15;
 	/** How long memcached locks last */
-	const LOCK_TTL = 30;
+	private const LOCK_TTL = 30;
 
 	/**
 	 * Lifetime for cache, for keys stored in $wanCache, in seconds.
 	 * @var int
 	 */
-	const WAN_TTL = IExpiringStore::TTL_DAY;
+	private const WAN_TTL = IExpiringStore::TTL_DAY;
 
 	/** @var LoggerInterface */
 	private $logger;

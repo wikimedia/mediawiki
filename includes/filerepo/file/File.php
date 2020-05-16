@@ -60,28 +60,28 @@ use Wikimedia\AtEase\AtEase;
  */
 abstract class File implements IDBAccessObject {
 	// Bitfield values akin to the Revision deletion constants
-	const DELETED_FILE = 1;
-	const DELETED_COMMENT = 2;
-	const DELETED_USER = 4;
-	const DELETED_RESTRICTED = 8;
+	public const DELETED_FILE = 1;
+	public const DELETED_COMMENT = 2;
+	public const DELETED_USER = 4;
+	public const DELETED_RESTRICTED = 8;
 
 	/** Force rendering in the current process */
-	const RENDER_NOW = 1;
+	public const RENDER_NOW = 1;
 	/**
 	 * Force rendering even if thumbnail already exist and using RENDER_NOW
 	 * I.e. you have to pass both flags: File::RENDER_NOW | File::RENDER_FORCE
 	 */
-	const RENDER_FORCE = 2;
+	public const RENDER_FORCE = 2;
 
-	const DELETE_SOURCE = 1;
+	public const DELETE_SOURCE = 1;
 
 	// Audience options for File::getDescription()
-	const FOR_PUBLIC = 1;
-	const FOR_THIS_USER = 2;
-	const RAW = 3;
+	public const FOR_PUBLIC = 1;
+	public const FOR_THIS_USER = 2;
+	public const RAW = 3;
 
 	// Options for File::thumbName()
-	const THUMB_FULL_NAME = 1;
+	public const THUMB_FULL_NAME = 1;
 
 	/**
 	 * Some member variables can be lazy-initialised using __get(). The

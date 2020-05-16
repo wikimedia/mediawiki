@@ -20,8 +20,6 @@
 	<!-- TODO Still to be done -->
 	<rule ref="PSR12.Properties.ConstantVisibility.NotFound">
 		<exclude-pattern>includes/Storage/</exclude-pattern>
-		<exclude-pattern>includes/cache/</exclude-pattern>
-		<exclude-pattern>includes/filerepo/</exclude-pattern>
 		<exclude-pattern>includes/libs/</exclude-pattern>
 		<exclude-pattern>includes/parser/</exclude-pattern>
 		<exclude-pattern>includes/utils/</exclude-pattern>

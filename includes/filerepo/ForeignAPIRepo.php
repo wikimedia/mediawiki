@@ -42,7 +42,7 @@ class ForeignAPIRepo extends FileRepo {
 	/* This version string is used in the user agent for requests and will help
 	 * server maintainers in identify ForeignAPI usage.
 	 * Update the version every time you make breaking or significant changes. */
-	const VERSION = "2.1";
+	private const VERSION = "2.1";
 
 	/**
 	 * List of iiprop values for the thumbnail fetch queries.

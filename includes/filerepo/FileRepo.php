@@ -39,12 +39,12 @@ use MediaWiki\MediaWikiServices;
  * @ingroup FileRepo
  */
 class FileRepo {
-	const DELETE_SOURCE = 1;
-	const OVERWRITE = 2;
-	const OVERWRITE_SAME = 4;
-	const SKIP_LOCKING = 8;
+	public const DELETE_SOURCE = 1;
+	public const OVERWRITE = 2;
+	public const OVERWRITE_SAME = 4;
+	public const SKIP_LOCKING = 8;
 
-	const NAME_AND_TIME_ONLY = 1;
+	public const NAME_AND_TIME_ONLY = 1;
 
 	/** @var bool Whether to fetch commons image description pages and display
 	 *    them on the local wiki

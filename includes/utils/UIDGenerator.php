@@ -30,9 +30,9 @@ use Wikimedia\UUID\GlobalIdGenerator;
  */
 class UIDGenerator {
 	/** @var int B/C constant (deprecated since 1.35) */
-	const QUICK_RAND = 0; // b/c
+	public const QUICK_RAND = 0; // b/c
 	/** @var int B/C constant (deprecated since 1.35) */
-	const QUICK_VOLATILE = GlobalIdGenerator::QUICK_VOLATILE;
+	public const QUICK_VOLATILE = GlobalIdGenerator::QUICK_VOLATILE;
 
 	/**
 	 * Get a statistically unique 88-bit unsigned integer ID string.

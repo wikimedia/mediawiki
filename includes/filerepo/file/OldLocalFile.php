@@ -36,8 +36,7 @@ class OldLocalFile extends LocalFile {
 	/** @var string Archive name */
 	protected $archive_name;
 
-	const CACHE_VERSION = 1;
-	const MAX_CACHE_ROWS = 20;
+	public const CACHE_VERSION = 1;
 
 	/**
 	 * @param Title $title
