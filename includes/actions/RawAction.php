@@ -53,7 +53,7 @@ class RawAction extends FormlessAction {
 	 * @suppress SecurityCheck-XSS Non html mime type
 	 * @return string|null
 	 */
-	function onView() {
+	public function onView() {
 		$this->getOutput()->disable();
 		$request = $this->getRequest();
 		$response = $request->response();

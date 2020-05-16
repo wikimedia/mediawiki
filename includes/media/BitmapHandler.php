@@ -505,7 +505,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param int|null $quality Quality of the thumbnail from 1-100,
 	 *    or null to use default quality.
 	 */
-	static function imageJpegWrapper( $dst_image, $thumbPath, $quality = null ) {
+	public static function imageJpegWrapper( $dst_image, $thumbPath, $quality = null ) {
 		global $wgJpegQuality;
 
 		if ( $quality === null ) {

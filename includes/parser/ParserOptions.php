@@ -996,7 +996,7 @@ class ParserOptions {
 	 * @since 1.24
 	 * @param Title|null $title
 	 */
-	function setRedirectTarget( $title ) {
+	public function setRedirectTarget( $title ) {
 		$this->redirectTarget = $title;
 	}
 
@@ -1006,7 +1006,7 @@ class ParserOptions {
 	 * @since 1.24
 	 * @return Title|null
 	 */
-	function getRedirectTarget() {
+	public function getRedirectTarget() {
 		return $this->redirectTarget;
 	}
 

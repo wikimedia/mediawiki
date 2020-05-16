@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialListDuplicatedFiles extends QueryPage {
-	function __construct( $name = 'ListDuplicatedFiles' ) {
+	public function __construct( $name = 'ListDuplicatedFiles' ) {
 		parent::__construct( $name );
 	}
 
