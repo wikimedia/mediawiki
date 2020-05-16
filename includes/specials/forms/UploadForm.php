@@ -440,7 +440,7 @@ class UploadForm extends HTMLForm {
 	 *
 	 * @return bool False
 	 */
-	function trySubmit() {
+	public function trySubmit() {
 		return false;
 	}
 }

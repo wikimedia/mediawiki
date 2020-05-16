@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 abstract class WantedQueryPage extends QueryPage {
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 

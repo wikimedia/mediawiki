@@ -547,7 +547,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	/**
 	 * Check if we need to add talk page rows to the watchlist
 	 */
-	function doWatchlistUpdate() {
+	protected function doWatchlistUpdate() {
 		global $wgUpdateRowsPerQuery;
 
 		$sql = $this->db->unionQueries(
@@ -613,7 +613,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
-	function doSchemaRestructuring() {
+	protected function doSchemaRestructuring() {
 		if ( $this->db->tableExists( 'page', __METHOD__ ) ) {
 			$this->output( "...page table already exists.\n" );
 

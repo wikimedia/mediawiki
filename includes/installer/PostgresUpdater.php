@@ -757,7 +757,7 @@ END;
 		return $cols;
 	}
 
-	function describeIndex( $idx ) {
+	protected function describeIndex( $idx ) {
 		// first fetch the key (which is a list of columns ords) and
 		// the table the index applies to (an oid)
 		$q = <<<END
@@ -808,7 +808,7 @@ END;
 		return $colnames;
 	}
 
-	function fkeyDeltype( $fkey ) {
+	protected function fkeyDeltype( $fkey ) {
 		$q = <<<END
 SELECT confdeltype FROM pg_constraint, pg_namespace
 	WHERE connamespace=pg_namespace.oid
@@ -830,7 +830,7 @@ END;
 		return $row[0];
 	}
 
-	function ruleDef( $table, $rule ) {
+	protected function ruleDef( $table, $rule ) {
 		$q = <<<END
 SELECT definition FROM pg_rules
 	WHERE schemaname = %s

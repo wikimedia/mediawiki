@@ -24,7 +24,7 @@
 abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	protected $action, $msgPrefix;
 
-	function __construct( $name, $action, $msgPrefix ) {
+	public function __construct( $name, $action, $msgPrefix ) {
 		parent::__construct( $name );
 		$this->action = $action;
 		$this->msgPrefix = $msgPrefix;

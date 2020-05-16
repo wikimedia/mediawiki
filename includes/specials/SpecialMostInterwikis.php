@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialMostInterwikis extends QueryPage {
-	function __construct( $name = 'Mostinterwikis' ) {
+	public function __construct( $name = 'Mostinterwikis' ) {
 		parent::__construct( $name );
 	}
 

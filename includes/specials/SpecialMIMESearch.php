@@ -30,7 +30,7 @@
 class SpecialMIMESearch extends QueryPage {
 	protected $major, $minor, $mime;
 
-	function __construct( $name = 'MIMEsearch' ) {
+	public function __construct( $name = 'MIMEsearch' ) {
 		parent::__construct( $name );
 	}
 

@@ -85,7 +85,7 @@
  * @ingroup SpecialPage
  */
 abstract class RedirectSpecialArticle extends RedirectSpecialPage {
-	function __construct( $name ) {
+	public function __construct( $name ) {
 		parent::__construct( $name );
 		$redirectParams = [
 			'action',
