@@ -105,7 +105,7 @@ class Exif {
 	 *   DigitalZoomRatio = 0/0 is rejected. need to determine if that's valid.
 	 *   Possibly should treat 0/0 = 0. need to read exif spec on that.
 	 */
-	function __construct( $file, $byteOrder = '' ) {
+	public function __construct( $file, $byteOrder = '' ) {
 		/**
 		 * Page numbers here refer to pages in the Exif 2.2 standard
 		 *

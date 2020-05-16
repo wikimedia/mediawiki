@@ -31,7 +31,7 @@
  * @ingroup SpecialPage
  */
 class SpecialListBots extends SpecialRedirectToSpecial {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Listbots', 'Listusers', 'bot' );
 	}
 }

@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  * @author Martin Drashkov
  */
 class SpecialFewestRevisions extends QueryPage {
-	function __construct( $name = 'Fewestrevisions' ) {
+	public function __construct( $name = 'Fewestrevisions' ) {
 		parent::__construct( $name );
 	}
 

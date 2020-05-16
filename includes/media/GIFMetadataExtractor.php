@@ -53,7 +53,7 @@ class GIFMetadataExtractor {
 	 * @param string $filename
 	 * @return array
 	 */
-	static function getMetadata( $filename ) {
+	public static function getMetadata( $filename ) {
 		self::$gifFrameSep = pack( "C", ord( "," ) ); // 2C
 		self::$gifExtensionSep = pack( "C", ord( "!" ) ); // 21
 		self::$gifTerm = pack( "C", ord( ";" ) ); // 3B

@@ -46,7 +46,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var int Maximum size in bytes to include. 50MB allows fixing those huge pages */
 	private const MAX_INCLUDE_SIZE = 50000000;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'ExpandTemplates' );
 	}
 
@@ -54,7 +54,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	 * Show the special page
 	 * @param string|null $subpage
 	 */
-	function execute( $subpage ) {
+	public function execute( $subpage ) {
 		$this->setHeaders();
 		$this->addHelpLink( 'Help:ExpandTemplates' );
 

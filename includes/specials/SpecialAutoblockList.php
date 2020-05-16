@@ -31,7 +31,7 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialAutoblockList extends SpecialPage {
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'AutoblockList' );
 	}
 

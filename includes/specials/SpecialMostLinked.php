@@ -34,7 +34,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialMostLinked extends QueryPage {
-	function __construct( $name = 'Mostlinked' ) {
+	public function __construct( $name = 'Mostlinked' ) {
 		parent::__construct( $name );
 	}
 
