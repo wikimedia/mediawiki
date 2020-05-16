@@ -745,7 +745,8 @@
 			"type": "object"
 		},
 		"ValidSkinNames": {
-			"type": "object"
+			"type": "object",
+			"description":  "Mapping of skin canonical names to PHP class name using the Object Factory specification. Or historically, the human readable name of the skin."
 		},
 		"FeedClasses": {
 			"type": "object",
