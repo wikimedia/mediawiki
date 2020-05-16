@@ -69,10 +69,10 @@ abstract class DatabaseMysqlBase extends Database {
 	private $replicationInfoRow = null;
 
 	// Cache getServerId() for 24 hours
-	const SERVER_ID_CACHE_TTL = 86400;
+	private const SERVER_ID_CACHE_TTL = 86400;
 
 	/** @var float Warn if lag estimates are made for transactions older than this many seconds */
-	const LAG_STALE_WARN_THRESHOLD = 0.100;
+	private const LAG_STALE_WARN_THRESHOLD = 0.100;
 
 	/**
 	 * Additional $params include:

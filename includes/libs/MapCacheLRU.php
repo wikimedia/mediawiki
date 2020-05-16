@@ -50,12 +50,12 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	private $wallClockOverride;
 
 	/** @var float */
-	const RANK_TOP = 1.0;
+	private const RANK_TOP = 1.0;
 
 	/** @var int Array key that holds the entry's main timestamp (flat key use) */
-	const SIMPLE = 0;
+	private const SIMPLE = 0;
 	/** @var int Array key that holds the entry's field timestamps (nested key use) */
-	const FIELDS = 1;
+	private const FIELDS = 1;
 
 	/**
 	 * @param int $maxKeys Maximum number of entries allowed (min 1)

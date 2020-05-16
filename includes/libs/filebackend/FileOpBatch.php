@@ -32,7 +32,7 @@
  */
 class FileOpBatch {
 	/* Timeout related parameters */
-	const MAX_BATCH_SIZE = 1000; // integer
+	private const MAX_BATCH_SIZE = 1000; // integer
 
 	/**
 	 * Attempt to perform a series of file operations.

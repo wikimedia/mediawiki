@@ -51,12 +51,12 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	 * packet after 1 second, so 1.2 seconds allows for 1 retransmit without
 	 * permanent failure.
 	 */
-	const DEFAULT_CONN_TIMEOUT = 1.2;
+	private const DEFAULT_CONN_TIMEOUT = 1.2;
 
 	/**
 	 * Default request timeout
 	 */
-	const DEFAULT_REQ_TIMEOUT = 3.0;
+	private const DEFAULT_REQ_TIMEOUT = 3.0;
 
 	/**
 	 * @var MultiHttpClient

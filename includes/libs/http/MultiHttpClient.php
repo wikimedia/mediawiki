@@ -72,7 +72,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	// In PHP 7 due to https://bugs.php.net/bug.php?id=76480 the request/connect
 	// timeouts are periodically polled instead of being accurately respected.
 	// The select timeout is set to the minimum timeout multiplied by this factor.
-	const TIMEOUT_ACCURACY_FACTOR = 0.1;
+	private const TIMEOUT_ACCURACY_FACTOR = 0.1;
 
 	/**
 	 * @param array $options

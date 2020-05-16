@@ -48,7 +48,7 @@ class VirtualRESTServiceClient {
 	/** @var array Map of (prefix => VirtualRESTService|array) */
 	private $instances = [];
 
-	const VALID_MOUNT_REGEX = '#^/[0-9a-z]+/([0-9a-z]+/)*$#';
+	private const VALID_MOUNT_REGEX = '#^/[0-9a-z]+/([0-9a-z]+/)*$#';
 
 	/**
 	 * @param MultiHttpClient $http

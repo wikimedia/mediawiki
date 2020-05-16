@@ -43,7 +43,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	private $lastKeyWrites = [];
 
 	/** @var int Max expected delay (in seconds) for writes to reach replicas */
-	const MAX_WRITE_DELAY = 5;
+	private const MAX_WRITE_DELAY = 5;
 
 	/**
 	 * Constructor. Parameters are:
