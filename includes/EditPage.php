@@ -311,7 +311,7 @@ class EditPage {
 	public $autoSumm = '';
 
 	/** @var string */
-	public $hookError = '';
+	private $hookError = '';
 
 	/** @var ParserOutput */
 	public $mParserOutput;
