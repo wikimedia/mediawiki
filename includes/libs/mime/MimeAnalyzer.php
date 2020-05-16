@@ -508,7 +508,7 @@ EOT;
 	 * @param string $extension
 	 * @return bool
 	 */
-	function isRecognizableExtension( $extension ) {
+	public function isRecognizableExtension( $extension ) {
 		static $types = [
 			// Types recognized by getimagesize()
 			'gif', 'jpeg', 'jpg', 'png', 'swf', 'psd',
@@ -869,7 +869,7 @@ EOT;
 	 *
 	 * @return string
 	 */
-	function detectZipType( $header, $tail = null, $ext = false ) {
+	public function detectZipType( $header, $tail = null, $ext = false ) {
 		if ( $ext ) { # TODO: remove $ext param
 			$this->logger->info( __METHOD__ .
 				": WARNING: use of the \$ext parameter is deprecated. " .
@@ -977,7 +977,7 @@ EOT;
 	 * @param resource $handle An opened seekable file handle
 	 * @return string The detected MIME type
 	 */
-	function detectMicrosoftBinaryType( $handle ) {
+	private function detectMicrosoftBinaryType( $handle ) {
 		$info = MSCompoundFileReader::readHandle( $handle );
 		if ( !$info['valid'] ) {
 			$this->logger->info( __METHOD__ . ': invalid file format' );
@@ -1076,7 +1076,7 @@ EOT;
 	 *
 	 * @return string A value to be used with the MEDIATYPE_xxx constants.
 	 */
-	function getMediaType( $path = null, $mime = null ) {
+	public function getMediaType( $path = null, $mime = null ) {
 		if ( !$mime && !$path ) {
 			return MEDIATYPE_UNKNOWN;
 		}
@@ -1165,7 +1165,7 @@ EOT;
 	 * @param string $extMime
 	 * @return int|string
 	 */
-	function findMediaType( $extMime ) {
+	public function findMediaType( $extMime ) {
 		if ( strpos( $extMime, '.' ) === 0 ) {
 			// If it's an extension, look up the MIME types
 			$m = $this->getTypesForExtension( substr( $extMime, 1 ) );

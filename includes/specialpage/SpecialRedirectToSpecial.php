@@ -31,7 +31,7 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
 	/** @var string Name of subpage of redirect target */
 	protected $redirSubpage;
 
-	function __construct(
+	public function __construct(
 		$name, $redirName, $redirSubpage = false,
 		$allowedRedirectParams = [], $addedRedirectParams = []
 	) {

@@ -843,7 +843,7 @@ class JavaScriptMinifier {
 		return $out;
 	}
 
-	static function parseError( $fullJavascript, $position, $errorMsg ) {
+	public static function parseError( $fullJavascript, $position, $errorMsg ) {
 		// TODO: Handle the error: trigger_error, throw exception, return false...
 		return false;
 	}
