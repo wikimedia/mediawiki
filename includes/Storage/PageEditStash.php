@@ -53,20 +53,20 @@ class PageEditStash {
 	/** @var int */
 	private $initiator;
 
-	const ERROR_NONE = 'stashed';
-	const ERROR_PARSE = 'error_parse';
-	const ERROR_CACHE = 'error_cache';
-	const ERROR_UNCACHEABLE = 'uncacheable';
-	const ERROR_BUSY = 'busy';
+	public const ERROR_NONE = 'stashed';
+	public const ERROR_PARSE = 'error_parse';
+	public const ERROR_CACHE = 'error_cache';
+	public const ERROR_UNCACHEABLE = 'uncacheable';
+	public const ERROR_BUSY = 'busy';
 
-	const PRESUME_FRESH_TTL_SEC = 30;
-	const MAX_CACHE_TTL = 300; // 5 minutes
-	const MAX_SIGNATURE_TTL = 60;
+	public const PRESUME_FRESH_TTL_SEC = 30;
+	private const MAX_CACHE_TTL = 300; // 5 minutes
+	private const MAX_SIGNATURE_TTL = 60;
 
-	const MAX_CACHE_RECENT = 2;
+	private const MAX_CACHE_RECENT = 2;
 
-	const INITIATOR_USER = 1;
-	const INITIATOR_JOB_OR_CLI = 2;
+	public const INITIATOR_USER = 1;
+	public const INITIATOR_JOB_OR_CLI = 2;
 
 	/**
 	 * @param BagOStuff $cache
