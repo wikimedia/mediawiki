@@ -11,15 +11,15 @@ use Wikimedia\TestingAccessWrapper;
  * @group Output
  */
 class OutputPageTest extends MediaWikiTestCase {
-	const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
-	const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
+	private const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
+	private const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
 
 	// @codingStandardsIgnoreStart Generic.Files.LineLength
-	const RSS_RC_LINK = '<link rel="alternate" type="application/rss+xml" title=" RSS feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=rss"/>';
-	const ATOM_RC_LINK = '<link rel="alternate" type="application/atom+xml" title=" Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>';
+	private const RSS_RC_LINK = '<link rel="alternate" type="application/rss+xml" title=" RSS feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=rss"/>';
+	private const ATOM_RC_LINK = '<link rel="alternate" type="application/atom+xml" title=" Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>';
 
-	const RSS_TEST_LINK = '<link rel="alternate" type="application/rss+xml" title="&quot;Test&quot; RSS feed" href="fake-link"/>';
-	const ATOM_TEST_LINK = '<link rel="alternate" type="application/atom+xml" title="&quot;Test&quot; Atom feed" href="fake-link"/>';
+	private const RSS_TEST_LINK = '<link rel="alternate" type="application/rss+xml" title="&quot;Test&quot; RSS feed" href="fake-link"/>';
+	private const ATOM_TEST_LINK = '<link rel="alternate" type="application/atom+xml" title="&quot;Test&quot; Atom feed" href="fake-link"/>';
 	// @codingStandardsIgnoreEnd
 
 	// Ensure that we don't affect the global ResourceLoader state.

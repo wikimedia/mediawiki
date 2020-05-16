@@ -8,7 +8,7 @@
  * @covers ApiQueryPrefixSearch
  */
 class ApiQueryPrefixSearchTest extends ApiTestCase {
-	const TEST_QUERY = 'unittest';
+	private const TEST_QUERY = 'unittest';
 
 	public function setUp() : void {
 		parent::setUp();

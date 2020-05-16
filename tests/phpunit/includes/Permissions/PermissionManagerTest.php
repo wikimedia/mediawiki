@@ -51,7 +51,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	protected $user, $anonUser, $userUser, $altUser;
 
 	/** Constant for self::testIsBlockedFrom */
-	const USER_TALK_PAGE = '<user talk page>';
+	private const USER_TALK_PAGE = '<user talk page>';
 
 	protected function setUp() : void {
 		parent::setUp();

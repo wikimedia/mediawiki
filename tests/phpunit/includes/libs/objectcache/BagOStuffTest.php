@@ -12,7 +12,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 	/** @var BagOStuff */
 	private $cache;
 
-	const TEST_KEY = 'test';
+	private const TEST_KEY = 'test';
 
 	protected function setUp() : void {
 		parent::setUp();

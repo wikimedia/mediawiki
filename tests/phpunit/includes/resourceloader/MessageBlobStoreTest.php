@@ -10,7 +10,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
-	const NAME = 'test.blobstore';
+	private const NAME = 'test.blobstore';
 
 	protected function setUp() : void {
 		parent::setUp();

@@ -14,7 +14,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MediaWiki\Session\SessionBackend
  */
 class SessionBackendTest extends MediaWikiTestCase {
-	const SESSIONID = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+	private const SESSIONID = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
 	/** @var SessionManager */
 	protected $manager;

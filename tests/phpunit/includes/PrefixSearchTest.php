@@ -6,7 +6,7 @@
  * @covers PrefixSearch
  */
 class PrefixSearchTest extends MediaWikiLangTestCase {
-	const NS_NONCAP = 12346;
+	private const NS_NONCAP = 12346;
 
 	public function addDBDataOnce() {
 		if ( !$this->isWikitextNS( NS_MAIN ) ) {

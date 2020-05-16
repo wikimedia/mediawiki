@@ -15,8 +15,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @group Database
  */
 class PasswordResetTest extends MediaWikiTestCase {
-	const VALID_IP = '1.2.3.4';
-	const VALID_EMAIL = 'foo@bar.baz';
+	private const VALID_IP = '1.2.3.4';
+	private const VALID_EMAIL = 'foo@bar.baz';
 
 	/**
 	 * @dataProvider provideIsAllowed
