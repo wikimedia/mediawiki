@@ -1851,7 +1851,7 @@ abstract class File implements IDBAccessObject {
 	 * @return bool
 	 * @throws MWException
 	 */
-	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
+	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false, User $user = null
 	) {
 		$this->readOnlyError();
@@ -1878,7 +1878,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function publish( $src, $flags = 0, array $options = [] ) {
+	public function publish( $src, $flags = 0, array $options = [] ) {
 		$this->readOnlyError();
 	}
 
@@ -1974,7 +1974,7 @@ abstract class File implements IDBAccessObject {
 	 * @param Title $target New file name
 	 * @return Status
 	 */
-	function move( $target ) {
+	public function move( $target ) {
 		$this->readOnlyError();
 	}
 
@@ -1995,7 +1995,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function delete( $reason, $suppress = false, $user = null ) {
+	public function delete( $reason, $suppress = false, $user = null ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		$this->readOnlyError();
 	}
@@ -2017,7 +2017,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function deleteFile( $reason, User $user, $suppress = false ) {
+	public function deleteFile( $reason, User $user, $suppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -2034,7 +2034,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * Overridden by LocalFile
 	 */
-	function restore( $versions = [], $unsuppress = false ) {
+	public function restore( $versions = [], $unsuppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -2109,7 +2109,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string|bool
 	 */
-	function getDescriptionUrl() {
+	public function getDescriptionUrl() {
 		if ( $this->repo ) {
 			return $this->repo->getDescriptionUrl( $this->getName() );
 		} else {
@@ -2123,7 +2123,7 @@ abstract class File implements IDBAccessObject {
 	 * @param Language|null $lang Optional language to fetch description in
 	 * @return string|false
 	 */
-	function getDescriptionText( Language $lang = null ) {
+	public function getDescriptionText( Language $lang = null ) {
 		global $wgLang;
 
 		if ( !$this->repo || !$this->repo->fetchDescription ) {

@@ -45,18 +45,18 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	/**
 	 * @param array|null $info
 	 */
-	function __construct( $info ) {
+	public function __construct( $info ) {
 		parent::__construct( $info );
 		'@phan-var array $info';
 		$this->wiki = $info['wiki'];
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}
 
-	function getMasterDB() {
+	public function getMasterDB() {
 		return $this->getDBLoadBalancer()->getConnectionRef( DB_MASTER, [], $this->wiki );
 	}
 
-	function getReplicaDB() {
+	public function getReplicaDB() {
 		return $this->getDBLoadBalancer()->getConnectionRef( DB_REPLICA, [], $this->wiki );
 	}
 
@@ -78,7 +78,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 		return $lbFactory->getMainLB( $this->wiki );
 	}
 
-	function hasSharedCache() {
+	private function hasSharedCache() {
 		return $this->hasSharedCache;
 	}
 
@@ -89,7 +89,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	 * @param mixed ...$args
 	 * @return bool|string
 	 */
-	function getSharedCacheKey( ...$args ) {
+	public function getSharedCacheKey( ...$args ) {
 		if ( $this->hasSharedCache() ) {
 			array_unshift( $args, $this->wiki );
 

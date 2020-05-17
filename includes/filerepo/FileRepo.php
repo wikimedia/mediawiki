@@ -1728,7 +1728,7 @@ class FileRepo {
 	 *
 	 * @return callable
 	 */
-	function getErrorCleanupFunction() {
+	private function getErrorCleanupFunction() {
 		switch ( $this->pathDisclosureProtection ) {
 			case 'none':
 			case 'simple': // b/c
@@ -1746,7 +1746,7 @@ class FileRepo {
 	 * @param string $param
 	 * @return string
 	 */
-	function paranoidClean( $param ) {
+	private function paranoidClean( $param ) {
 		return '[hidden]';
 	}
 
@@ -1756,7 +1756,7 @@ class FileRepo {
 	 * @param string $param
 	 * @return string
 	 */
-	function passThrough( $param ) {
+	private function passThrough( $param ) {
 		return $param;
 	}
 

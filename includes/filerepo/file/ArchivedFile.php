@@ -423,7 +423,7 @@ class ArchivedFile {
 	 * Get a MediaHandler instance for this file
 	 * @return MediaHandler
 	 */
-	function getHandler() {
+	private function getHandler() {
 		if ( !isset( $this->handler ) ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
 		}
@@ -436,7 +436,7 @@ class ArchivedFile {
 	 * documents which aren't multipage documents
 	 * @return int|false
 	 */
-	function pageCount() {
+	public function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
 			// @FIXME: callers expect File objects
 			// @phan-suppress-next-line PhanTypeMismatchArgument
@@ -479,7 +479,7 @@ class ArchivedFile {
 	 * @return string
 	 * @since 1.21
 	 */
-	function getSha1() {
+	public function getSha1() {
 		$this->load();
 
 		return $this->sha1;
