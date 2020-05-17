@@ -172,10 +172,9 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
-	function getEmptyBody() {
+	protected function getEmptyBody() {
 		$colspan = count( $this->getFieldNames() );
 		$msgEmpty = $this->msg( 'table_pager_empty' )->text();
 		return Html::rawElement( 'tr', [],
@@ -183,11 +182,10 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @protected
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$this->mCurrentRow = $row; // In case formatValue etc need to know
 		$s = Html::openElement( 'tr', $this->getRowAttrs( $row ) ) . "\n";
 		$fieldNames = $this->getFieldNames();
@@ -211,24 +209,20 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a class name to be applied to the given row.
 	 *
-	 * @protected
-	 *
 	 * @param object $row The database result row
 	 * @return string
 	 */
-	function getRowClass( $row ) {
+	protected function getRowClass( $row ) {
 		return '';
 	}
 
 	/**
 	 * Get attributes to be applied to the given row.
 	 *
-	 * @protected
-	 *
 	 * @param object $row The database result row
 	 * @return array Array of attribute => value
 	 */
-	function getRowAttrs( $row ) {
+	protected function getRowAttrs( $row ) {
 		$class = $this->getRowClass( $row );
 		if ( $class === '' ) {
 			// Return an empty array to avoid clutter in HTML like class=""
@@ -250,20 +244,18 @@ abstract class TablePager extends IndexPager {
 	 * take this as an excuse to hardcode styles; use classes and
 	 * CSS instead.  Row context is available in $this->mCurrentRow
 	 *
-	 * @protected
-	 *
 	 * @param string $field The column
 	 * @param string $value The cell contents
 	 * @return array Array of attr => value
 	 */
-	function getCellAttrs( $field, $value ) {
+	protected function getCellAttrs( $field, $value ) {
 		return [ 'class' => 'TablePager_col_' . $field ];
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return $this->mSort;
 	}
 
@@ -395,7 +387,7 @@ abstract class TablePager extends IndexPager {
 	 * @param array $blacklist Parameters from the request query which should not be resubmitted
 	 * @return string HTML fragment
 	 */
-	function getHiddenFields( $blacklist = [] ) {
+	public function getHiddenFields( $blacklist = [] ) {
 		$blacklist = (array)$blacklist;
 		$query = $this->getRequest()->getQueryValues();
 		foreach ( $blacklist as $name ) {
@@ -413,7 +405,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @return string HTML fragment
 	 */
-	function getLimitForm() {
+	public function getLimitForm() {
 		return Html::rawElement(
 			'form',
 			[
@@ -429,7 +421,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @return string
 	 */
-	function getLimitDropdown() {
+	private function getLimitDropdown() {
 		# Make the select with some explanatory text
 		$msgSubmit = $this->msg( 'table_pager_limit_submit' )->escaped();
 
@@ -445,7 +437,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @param string $field
 	 */
-	abstract function isFieldSortable( $field );
+	abstract protected function isFieldSortable( $field );
 
 	/**
 	 * Format a table cell. The return value should be HTML, but use an empty
@@ -459,7 +451,7 @@ abstract class TablePager extends IndexPager {
 	 * @param string $name The database field name
 	 * @param string $value The value retrieved from the database
 	 */
-	abstract function formatValue( $name, $value );
+	abstract public function formatValue( $name, $value );
 
 	/**
 	 * The database field name used as a default sort order.
@@ -472,7 +464,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @return string
 	 */
-	abstract function getDefaultSort();
+	abstract public function getDefaultSort();
 
 	/**
 	 * An array mapping database field names to a textual description of the
@@ -481,5 +473,5 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @return array
 	 */
-	abstract function getFieldNames();
+	abstract protected function getFieldNames();
 }

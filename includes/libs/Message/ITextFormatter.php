@@ -20,7 +20,7 @@ interface ITextFormatter {
 	 * Get the internal language code in which format() is
 	 * @return string
 	 */
-	function getLangCode();
+	public function getLangCode();
 
 	/**
 	 * Convert a MessageValue to text.
@@ -30,5 +30,5 @@ interface ITextFormatter {
 	 * @param MessageValue $message
 	 * @return string
 	 */
-	function format( MessageValue $message );
+	public function format( MessageValue $message );
 }
