@@ -1483,7 +1483,7 @@ abstract class Skin extends ContextSource {
 	 * appropriate alert message (or an empty string if there are no messages)
 	 * @return string
 	 */
-	function getNewtalks() {
+	public function getNewtalks() {
 		$newMessagesAlert = '';
 		$user = $this->getUser();
 		$newtalks = $user->getNewMessageLinks();
@@ -1639,7 +1639,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @return string HTML fragment
 	 */
-	function getSiteNotice() {
+	public function getSiteNotice() {
 		$siteNotice = '';
 
 		if ( Hooks::run( 'SiteNoticeBefore', [ &$siteNotice, $this ] ) ) {

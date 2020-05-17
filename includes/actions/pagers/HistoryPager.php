@@ -80,11 +80,11 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	// For hook compatibility...
-	function getArticle() {
+	public function getArticle() {
 		return $this->historyPage->getArticle();
 	}
 
-	function getSqlComment() {
+	protected function getSqlComment() {
 		if ( $this->conds ) {
 			return 'history page filtered'; // potentially slow, see CR r58153
 		} else {
@@ -92,7 +92,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'user' ] );
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
@@ -119,7 +119,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $queryInfo;
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return [ [ 'rev_timestamp', 'rev_id' ] ];
 	}
 
@@ -127,7 +127,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param stdClass $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		if ( $this->lastRow ) {
 			$firstInList = $this->counter == 1;
 			$this->counter++;
@@ -298,7 +298,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param array $attributes
 	 * @return string HTML output for the submit button
 	 */
-	function submitButton( $message, $attributes = [] ) {
+	private function submitButton( $message, $attributes = [] ) {
 		# Disable submit button if history has 1 revision only
 		if ( $this->getNumRows() > 1 ) {
 			return Html::submitButton( $message, $attributes );
@@ -321,7 +321,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 *   displayed on this history page.
 	 * @return string HTML output for the row
 	 */
-	function historyLine( $row, $next, $notificationtimestamp = false,
+	private function historyLine( $row, $next, $notificationtimestamp = false,
 		$dummy = false, $firstInList = false ) {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -686,7 +686,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * @inheritDoc
 	 */
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		parent::getDefaultQuery();
 		unset( $this->mDefaultQuery['date-range-to'] );
 		return $this->mDefaultQuery;
@@ -696,7 +696,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * This is called if a write operation is possible from the generated HTML
 	 * @param bool $enable
 	 */
-	function preventClickjacking( $enable = true ) {
+	private function preventClickjacking( $enable = true ) {
 		$this->preventClickjacking = $enable;
 	}
 
@@ -704,7 +704,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * Get the "prevent clickjacking" flag
 	 * @return bool
 	 */
-	function getPreventClickjacking() {
+	public function getPreventClickjacking() {
 		return $this->preventClickjacking;
 	}
 

@@ -58,7 +58,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * through makeListItem to generate the html.
 	 * @return array
 	 */
-	function getToolbox() {
+	public function getToolbox() {
 		$toolbox = $this->getSkin()->makeToolbox(
 			$this->data['nav_urls'],
 			$this->data['feeds']
@@ -73,7 +73,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @deprecated since 1.35 use Skin::getPersonalToolsForMakeListItem
 	 * @return array
 	 */
-	function getPersonalTools() {
+	public function getPersonalTools() {
 		return $this->getSkin()->getPersonalToolsForMakeListItem( $this->get( 'personal_urls' ) );
 	}
 
@@ -83,7 +83,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *  The keys `search`, `toolbox` and `languages` are accepted.
 	 * @return array representing the sidebar
 	 */
-	function getSidebar( $options = [] ) {
+	protected function getSidebar( $options = [] ) {
 		// Force the rendering of the following portals
 		$sidebar = $this->data['sidebar'];
 		if ( !isset( $sidebar['SEARCH'] ) ) {

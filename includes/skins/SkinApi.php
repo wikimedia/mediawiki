@@ -40,15 +40,15 @@ class SkinApi extends SkinTemplate {
 
 	// Skip work and hooks for stuff we don't use
 
-	function buildSidebar() {
+	public function buildSidebar() {
 		return [];
 	}
 
-	function getNewtalks() {
+	public function getNewtalks() {
 		return '';
 	}
 
-	function getSiteNotice() {
+	public function getSiteNotice() {
 		return '';
 	}
 

@@ -53,7 +53,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	protected $pgConns = [];
 
-	function getName() {
+	public function getName() {
 		return 'postgres';
 	}
 
@@ -61,7 +61,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		return self::checkExtension( 'pgsql' );
 	}
 
-	function getConnectForm() {
+	public function getConnectForm() {
 		return $this->getTextBox(
 			'wgDBserver',
 			'config-db-host',
@@ -87,7 +87,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			$this->getInstallUserBox();
 	}
 
-	function submitConnectForm() {
+	public function submitConnectForm() {
 		// Get variables from the request
 		$newValues = $this->setVarsFromRequest( [
 			'wgDBserver',
@@ -482,7 +482,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$this->parent->addInstallStep( $schemaCB, 'database' );
 	}
 
-	function setupDatabase() {
+	public function setupDatabase() {
 		$status = $this->getPgConnection( 'create-db' );
 		if ( !$status->isOK() ) {
 			return $status;
@@ -501,7 +501,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		return Status::newGood();
 	}
 
-	function setupSchema() {
+	public function setupSchema() {
 		// Get a connection to the target database
 		$status = $this->getPgConnection( 'create-schema' );
 		if ( !$status->isOK() ) {
@@ -530,13 +530,13 @@ class PostgresInstaller extends DatabaseInstaller {
 		return Status::newGood();
 	}
 
-	function commitChanges() {
+	public function commitChanges() {
 		$this->db->commit( __METHOD__ );
 
 		return Status::newGood();
 	}
 
-	function setupUser() {
+	public function setupUser() {
 		if ( !$this->getVar( '_CreateDBAccount' ) ) {
 			return Status::newGood();
 		}
@@ -576,7 +576,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		return Status::newGood();
 	}
 
-	function getLocalSettings() {
+	public function getLocalSettings() {
 		$port = $this->getVar( 'wgDBport' );
 		$schema = $this->getVar( 'wgDBmwschema' );
 

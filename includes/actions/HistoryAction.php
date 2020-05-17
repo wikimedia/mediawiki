@@ -138,7 +138,7 @@ class HistoryAction extends FormlessAction {
 	 * Print the history page for an article.
 	 * @return string|null
 	 */
-	function onView() {
+	public function onView() {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 
@@ -334,7 +334,7 @@ class HistoryAction extends FormlessAction {
 	 * @param int $direction Either self::DIR_PREV or self::DIR_NEXT
 	 * @return IResultWrapper
 	 */
-	function fetchRevisions( $limit, $offset, $direction ) {
+	private function fetchRevisions( $limit, $offset, $direction ) {
 		// Fail if article doesn't exist.
 		if ( !$this->getTitle()->exists() ) {
 			return new FakeResultWrapper( [] );
@@ -376,7 +376,7 @@ class HistoryAction extends FormlessAction {
 	 *
 	 * @param string $type Feed type
 	 */
-	function feed( $type ) {
+	private function feed( $type ) {
 		if ( !FeedUtils::checkFeedOutput( $type ) ) {
 			return;
 		}
@@ -413,7 +413,7 @@ class HistoryAction extends FormlessAction {
 		$feed->outFooter();
 	}
 
-	function feedEmpty() {
+	private function feedEmpty() {
 		return new FeedItem(
 			$this->msg( 'nohistory' )->inContentLanguage()->text(),
 			$this->msg( 'history-feed-empty' )->inContentLanguage()->parseAsBlock(),
@@ -432,7 +432,7 @@ class HistoryAction extends FormlessAction {
 	 * @param stdClass|array $row Database row
 	 * @return FeedItem
 	 */
-	function feedItem( $row ) {
+	private function feedItem( $row ) {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$rev = $revisionStore->newRevisionFromRow( $row, 0, $this->getTitle() );
 		$prevRev = $revisionStore->getPreviousRevision( $rev );

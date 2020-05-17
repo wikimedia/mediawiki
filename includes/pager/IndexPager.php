@@ -288,7 +288,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * @return IResultWrapper The result wrapper.
 	 */
-	function getResult() {
+	public function getResult() {
 		return $this->mResult;
 	}
 
@@ -297,7 +297,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @param int|string $offset
 	 */
-	function setOffset( $offset ) {
+	public function setOffset( $offset ) {
 		$this->mOffset = $offset;
 	}
 
@@ -308,7 +308,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @param int|string $limit
 	 */
-	function setLimit( $limit ) {
+	public function setLimit( $limit ) {
 		$limit = (int)$limit;
 		// WebRequest::getLimitOffsetForUser() puts a cap of 5000, so do same here.
 		if ( $limit > 5000 ) {
@@ -324,7 +324,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return int
 	 */
-	function getLimit() {
+	public function getLimit() {
 		return $this->mLimit;
 	}
 
@@ -348,7 +348,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param int $limit Exact query limit
 	 * @param IResultWrapper $res
 	 */
-	function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
+	protected function extractResultInfo( $isFirst, $limit, IResultWrapper $res ) {
 		$numRows = $res->numRows();
 
 		$firstIndex = [];
@@ -408,7 +408,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return string
 	 */
-	function getSqlComment() {
+	protected function getSqlComment() {
 		return static::class;
 	}
 
@@ -601,7 +601,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *  "title". Valid values (non-exhaustive list): 'first', 'last', 'prev', 'next', 'asc', 'desc'.
 	 * @return string HTML fragment
 	 */
-	function makeLink( $text, array $query = null, $type = null ) {
+	protected function makeLink( $text, array $query = null, $type = null ) {
 		if ( $query === null ) {
 			return $text;
 		}
@@ -673,7 +673,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return array Associative array
 	 */
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		if ( !isset( $this->mDefaultQuery ) ) {
 			$this->mDefaultQuery = $this->getRequest()->getQueryValues();
 			unset( $this->mDefaultQuery['title'] );
@@ -692,7 +692,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return int
 	 */
-	function getNumRows() {
+	public function getNumRows() {
 		if ( !$this->mQueryDone ) {
 			$this->doQuery();
 		}
@@ -704,7 +704,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return array
 	 */
-	function getPagingQueries() {
+	public function getPagingQueries() {
 		if ( !$this->mQueryDone ) {
 			$this->doQuery();
 		}
@@ -762,7 +762,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param array $disabledTexts
 	 * @return array
 	 */
-	function getPagingLinks( $linkTexts, $disabledTexts = [] ) {
+	protected function getPagingLinks( $linkTexts, $disabledTexts = [] ) {
 		$queries = $this->getPagingQueries();
 		$links = [];
 
@@ -783,7 +783,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		return $links;
 	}
 
-	function getLimitLinks() {
+	protected function getLimitLinks() {
 		$links = [];
 		if ( $this->mIsBackwards ) {
 			$offset = implode( '|', (array)$this->mPastTheEndIndex );
@@ -807,7 +807,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param array|stdClass $row Database row
 	 * @return string
 	 */
-	abstract function formatRow( $row );
+	abstract public function formatRow( $row );
 
 	/**
 	 * Provides all parameters needed for the main paged query. It returns
@@ -820,7 +820,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return array
 	 */
-	abstract function getQueryInfo();
+	abstract public function getQueryInfo();
 
 	/**
 	 * Returns the name of the index field.  If the pager supports multiple
@@ -858,7 +858,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return string|string[]|array[]
 	 */
-	abstract function getIndexField();
+	abstract public function getIndexField();
 
 	/**
 	 * Returns the names of secondary columns to order by in addition to the
