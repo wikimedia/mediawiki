@@ -32,11 +32,11 @@ class SqlSearchResultSet extends SearchResultSet {
 	 * @return string[]
 	 * @deprecated since 1.34
 	 */
-	function termMatches() {
+	public function termMatches() {
 		return $this->terms;
 	}
 
-	function numRows() {
+	public function numRows() {
 		if ( $this->resultSet === false ) {
 			return false;
 		}
@@ -66,7 +66,7 @@ class SqlSearchResultSet extends SearchResultSet {
 		return $this->results;
 	}
 
-	function getTotalHits() {
+	public function getTotalHits() {
 		if ( $this->totalHits !== null ) {
 			return $this->totalHits;
 		} else {

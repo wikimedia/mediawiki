@@ -315,7 +315,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param IResultWrapper|resource $res
 	 * @return int
 	 */
-	function numRows( $res ) {
+	public function numRows( $res ) {
 		if ( is_bool( $res ) ) {
 			$n = 0;
 		} else {
@@ -1106,7 +1106,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $index
 	 * @return string
 	 */
-	function useIndexClause( $index ) {
+	public function useIndexClause( $index ) {
 		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
 	}
 
@@ -1114,7 +1114,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $index
 	 * @return string
 	 */
-	function ignoreIndexClause( $index ) {
+	public function ignoreIndexClause( $index ) {
 		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
 	}
 

@@ -142,7 +142,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @return int
 	 */
-	function insertId() {
+	public function insertId() {
 		$conn = $this->getBindingHandle();
 
 		return (int)$conn->insert_id;
@@ -151,7 +151,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @return int
 	 */
-	function lastErrno() {
+	public function lastErrno() {
 		if ( $this->conn instanceof mysqli ) {
 			return $this->conn->errno;
 		} else {

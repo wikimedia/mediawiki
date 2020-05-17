@@ -1027,7 +1027,7 @@ EOT
 	 *
 	 * @param string $description
 	 */
-	function showError( $description ) {
+	public function showError( $description ) {
 		$out = $this->getContext()->getOutput();
 		$out->setPageTitle( $this->getContext()->msg( 'internalerror' ) );
 		$out->setRobotPolicy( 'noindex,nofollow' );

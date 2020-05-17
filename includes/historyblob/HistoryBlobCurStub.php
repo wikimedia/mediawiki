@@ -45,14 +45,14 @@ class HistoryBlobCurStub {
 	 *
 	 * @param int $id
 	 */
-	function setLocation( $id ) {
+	public function setLocation( $id ) {
 		$this->mCurId = $id;
 	}
 
 	/**
 	 * @return string|bool
 	 */
-	function getText() {
+	public function getText() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$row = $dbr->selectRow( 'cur', [ 'cur_text' ], [ 'cur_id' => $this->mCurId ] );
 		if ( !$row ) {
