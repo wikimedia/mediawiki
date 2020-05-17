@@ -147,7 +147,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @param bool $bool
 	 */
-	function setListoutput( $bool ) {
+	protected function setListoutput( $bool ) {
 		$this->listoutput = $bool;
 	}
 
@@ -187,7 +187,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @throws MWException
 	 * @return string
 	 */
-	function getSQL() {
+	protected function getSQL() {
 		/* Implement getQueryInfo() instead */
 		throw new MWException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
 			. "getQuery() properly" );
@@ -200,7 +200,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return string[]
 	 * @since 1.18
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'value' ];
 	}
 
@@ -223,7 +223,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @return bool
 	 */
-	function sortDescending() {
+	protected function sortDescending() {
 		return true;
 	}
 
@@ -264,27 +264,27 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @return bool
 	 */
-	function isSyndicated() {
+	public function isSyndicated() {
 		return true;
 	}
 
 	/**
 	 * Formats the results of the query for display. The skin is the current
 	 * skin; you can use it for making links. The result is a single row of
-	 * result data. You should be able to grab SQL results off of it.
+	 * result data. You should be able to grab SQL results from it.
 	 * If the function returns false, the line output will be skipped.
 	 * @param Skin $skin
 	 * @param object $result Result row
 	 * @return string|bool String or false to skip
 	 */
-	abstract function formatResult( $skin, $result );
+	abstract protected function formatResult( $skin, $result );
 
 	/**
 	 * The content returned by this function will be output before any result
 	 *
 	 * @return string
 	 */
-	function getPageHeader() {
+	protected function getPageHeader() {
 		return '';
 	}
 
@@ -306,7 +306,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @return array
 	 */
-	function linkParameters() {
+	protected function linkParameters() {
 		return [];
 	}
 
@@ -396,7 +396,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Get a DB connection to be used for slow recache queries
 	 * @return IDatabase
 	 */
-	function getRecacheDB() {
+	protected function getRecacheDB() {
 		return wfGetDB( DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
 	}
 
@@ -529,7 +529,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return array
 	 * @since 1.29
 	 */
-	function getCacheOrderFields() {
+	protected function getCacheOrderFields() {
 		return [ 'value' ];
 	}
 
@@ -769,14 +769,14 @@ abstract class QueryPage extends SpecialPage {
 	 * @param int $offset
 	 * @return string
 	 */
-	function openList( $offset ) {
+	protected function openList( $offset ) {
 		return "\n<ol start='" . ( $offset + 1 ) . "' class='special'>\n";
 	}
 
 	/**
 	 * @return string
 	 */
-	function closeList() {
+	protected function closeList() {
 		return "</ol>\n";
 	}
 
@@ -785,7 +785,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	protected function preprocessResults( $db, $res ) {
 	}
 
 	/**

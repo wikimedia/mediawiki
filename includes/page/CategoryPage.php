@@ -40,7 +40,7 @@ class CategoryPage extends Article {
 		return new WikiCategoryPage( $title );
 	}
 
-	function view() {
+	public function view() {
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
 		$diffOnly = $request->getBool( 'diffonly',
@@ -77,11 +77,11 @@ class CategoryPage extends Article {
 		);
 	}
 
-	function openShowCategory() {
+	public function openShowCategory() {
 		# For overloading
 	}
 
-	function closeShowCategory() {
+	public function closeShowCategory() {
 		// Use these as defaults for back compat --catrope
 		$request = $this->getContext()->getRequest();
 		$oldFrom = $request->getVal( 'from' );
@@ -118,11 +118,19 @@ class CategoryPage extends Article {
 		$this->addHelpLink( 'Help:Categories' );
 	}
 
-	function getCategoryViewerClass() {
+	/**
+	 * @deprecated since 1.35
+	 */
+	public function getCategoryViewerClass() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->mCategoryViewerClass;
 	}
 
-	function setCategoryViewerClass( $class ) {
+	/**
+	 * @deprecated since 1.35
+	 */
+	public function setCategoryViewerClass( $class ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->mCategoryViewerClass = $class;
 	}
 }

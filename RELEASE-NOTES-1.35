@@ -1031,6 +1031,11 @@ because of Phabricator reports.
 * UserRetrieveNewTalks hook was deprecated without replacement.
 * User::getNewtalk and ::setNewtalk were deprecated. Use service
   TalkPageNotificationManager instead.
+* SpecialPage::setListed() and SpecialPage::listed() were deprecated. Subclass
+  UnlistedSpecialPage to set listed as false, and use SpecialPage::isListed()
+  to get the value.
+* CategoryPage::getCategoryViewerClass() and ::setCategoryViewerClass() were
+  deprecated.
 * …
 
 === Other changes in 1.35 ===

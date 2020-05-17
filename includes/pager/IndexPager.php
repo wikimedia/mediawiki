@@ -744,7 +744,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *
 	 * @return bool
 	 */
-	function isNavigationBarShown() {
+	protected function isNavigationBarShown() {
 		if ( !$this->mQueryDone ) {
 			$this->doQuery();
 		}

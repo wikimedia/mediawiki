@@ -66,8 +66,7 @@ abstract class ImageQueryPage extends QueryPage {
 		}
 	}
 
-	// Gotta override this since it's abstract
-	function formatResult( $skin, $result ) {
+	protected function formatResult( $skin, $result ) {
 		return false;
 	}
 
