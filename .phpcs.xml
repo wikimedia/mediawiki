@@ -33,7 +33,6 @@
 		<exclude-pattern>includes/specialpage/</exclude-pattern>
 		<exclude-pattern>includes/specials/</exclude-pattern>
 		<exclude-pattern>includes/user/</exclude-pattern>
-		<exclude-pattern>includes/Title\.php</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
