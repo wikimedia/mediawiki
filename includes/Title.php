@@ -2836,7 +2836,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function areRestrictionsCascading() {
+	public function areRestrictionsCascading() {
 		if ( !$this->mRestrictionsLoaded ) {
 			$this->loadRestrictions();
 		}
@@ -3014,7 +3014,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * This will purge no more than $wgUpdateRowsPerQuery page_restrictions rows
 	 */
-	static function purgeExpiredRestrictions() {
+	public static function purgeExpiredRestrictions() {
 		if ( wfReadOnly() ) {
 			return;
 		}
