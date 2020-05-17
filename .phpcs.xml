@@ -21,10 +21,6 @@
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/parser/Sanitizer.php</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
-		<exclude-pattern>includes/libs/rdbms/field/SQLiteField.php</exclude-pattern>
-		<exclude-pattern>includes/libs/rdbms/field/PostgresField.php</exclude-pattern>
-		<exclude-pattern>includes/libs/rdbms/field/MySQLField.php</exclude-pattern>
-		<exclude-pattern>includes/libs/rdbms/database/DatabaseSqlite.php</exclude-pattern>
 		<exclude-pattern>includes/media/</exclude-pattern>
 		<exclude-pattern>includes/skins/SkinTemplate.php</exclude-pattern>
 		<exclude-pattern>includes/skins/Skin.php</exclude-pattern>
