@@ -46,7 +46,7 @@ class SqlSearchResult extends RevisionSearchResult {
 	 * @param array $terms Terms to highlight (this parameter is deprecated)
 	 * @return string Highlighted text snippet, null (and not '') if not supported
 	 */
-	function getTextSnippet( $terms = [] ) {
+	public function getTextSnippet( $terms = [] ) {
 		global $wgAdvancedSearchHighlighting;
 		$this->initText();
 

@@ -193,7 +193,7 @@ class SearchPostgres extends SearchDatabase {
 
 	# # Most of the work of these two functions are done automatically via triggers
 
-	function update( $pageid, $title, $text ) {
+	public function update( $pageid, $title, $text ) {
 		# # We don't want to index older revisions
 		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
 		$sql = "UPDATE pagecontent SET textvector = NULL " .
@@ -213,7 +213,7 @@ class SearchPostgres extends SearchDatabase {
 		return true;
 	}
 
-	function updateTitle( $id, $title ) {
+	public function updateTitle( $id, $title ) {
 		return true;
 	}
 }
