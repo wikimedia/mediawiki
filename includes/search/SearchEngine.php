@@ -452,7 +452,7 @@ abstract class SearchEngine {
 	 * @param string $title
 	 * @param string $text
 	 */
-	function update( $id, $title, $text ) {
+	public function update( $id, $title, $text ) {
 		// no-op
 	}
 
@@ -464,7 +464,7 @@ abstract class SearchEngine {
 	 * @param int $id
 	 * @param string $title
 	 */
-	function updateTitle( $id, $title ) {
+	public function updateTitle( $id, $title ) {
 		// no-op
 	}
 

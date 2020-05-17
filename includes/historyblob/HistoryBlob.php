@@ -35,7 +35,7 @@ interface HistoryBlob {
 	 *
 	 * @return string The key for getItem()
 	 */
-	function addItem( $text );
+	public function addItem( $text );
 
 	/**
 	 * Get item by key, or false if the key is not present
@@ -44,7 +44,7 @@ interface HistoryBlob {
 	 *
 	 * @return string|bool
 	 */
-	function getItem( $key );
+	public function getItem( $key );
 
 	/**
 	 * Set the "default text"
@@ -56,12 +56,12 @@ interface HistoryBlob {
 	 *
 	 * @param string $text
 	 */
-	function setText( $text );
+	public function setText( $text );
 
 	/**
 	 * Get default text. This is called from Revision::getRevisionText()
 	 *
 	 * @return string
 	 */
-	function getText();
+	public function getText();
 }

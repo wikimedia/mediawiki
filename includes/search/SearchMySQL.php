@@ -341,7 +341,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title
 	 * @param string $text
 	 */
-	function update( $id, $title, $text ) {
+	public function update( $id, $title, $text ) {
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->replace(
 			'searchindex',
@@ -362,7 +362,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param int $id
 	 * @param string $title
 	 */
-	function updateTitle( $id, $title ) {
+	public function updateTitle( $id, $title ) {
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->update( 'searchindex',
 			[ 'si_title' => $this->normalizeText( $title ) ],

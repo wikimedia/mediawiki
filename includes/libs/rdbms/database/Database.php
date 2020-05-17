@@ -809,7 +809,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $fname Calling function name
 	 * @return mixed Database-specific index description class or false if the index does not exist
 	 */
-	abstract function indexInfo( $table, $index, $fname = __METHOD__ );
+	abstract public function indexInfo( $table, $index, $fname = __METHOD__ );
 
 	/**
 	 * Wrapper for addslashes()
@@ -817,7 +817,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $s String to be slashed.
 	 * @return string Slashed string.
 	 */
-	abstract function strencode( $s );
+	abstract public function strencode( $s );
 
 	/**
 	 * Set a custom error handler for logging errors during database connection

@@ -10,11 +10,11 @@ class SQLiteField implements Field {
 		$this->tableName = $tableName;
 	}
 
-	function name() {
+	public function name() {
 		return $this->info->name;
 	}
 
-	function tableName() {
+	public function tableName() {
 		return $this->tableName;
 	}
 
@@ -32,11 +32,11 @@ class SQLiteField implements Field {
 	/**
 	 * @return bool
 	 */
-	function isNullable() {
+	public function isNullable() {
 		return !$this->info->notnull;
 	}
 
-	function type() {
+	public function type() {
 		return $this->info->type;
 	}
 }
