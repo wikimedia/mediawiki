@@ -14,7 +14,7 @@
  * @author Urhixidur
  */
 
-$fallback = 'it';
+$fallback = 'en';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Medja',
