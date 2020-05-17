@@ -27,7 +27,7 @@
  * @ingroup Media
  */
 class TransformParameterError extends MediaTransformError {
-	function __construct( $params ) {
+	public function __construct( $params ) {
 		parent::__construct( 'thumbnail_error',
 			max( $params['width'] ?? 0, 120 ),
 			max( $params['height'] ?? 0, 120 ),
@@ -35,7 +35,7 @@ class TransformParameterError extends MediaTransformError {
 		);
 	}
 
-	function getHttpStatusCode() {
+	public function getHttpStatusCode() {
 		return 400;
 	}
 }

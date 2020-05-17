@@ -263,7 +263,7 @@ class GIFMetadataExtractor {
 	 * @param int $bpp
 	 * @return void
 	 */
-	static function readGCT( $fh, $bpp ) {
+	private static function readGCT( $fh, $bpp ) {
 		if ( $bpp > 0 ) {
 			$max = 2 ** $bpp;
 			for ( $i = 1; $i <= $max; ++$i ) {
@@ -277,7 +277,7 @@ class GIFMetadataExtractor {
 	 * @throws Exception
 	 * @return int
 	 */
-	static function decodeBPP( $data ) {
+	private static function decodeBPP( $data ) {
 		if ( strlen( $data ) < 1 ) {
 			throw new Exception( "Ran out of input" );
 		}
@@ -295,7 +295,7 @@ class GIFMetadataExtractor {
 	 * @param resource $fh
 	 * @throws Exception
 	 */
-	static function skipBlock( $fh ) {
+	private static function skipBlock( $fh ) {
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
 			if ( strlen( $buf ) < 1 ) {
@@ -323,7 +323,7 @@ class GIFMetadataExtractor {
 	 * @throws Exception
 	 * @return string The data.
 	 */
-	static function readBlock( $fh, $includeLengths = false ) {
+	private static function readBlock( $fh, $includeLengths = false ) {
 		$data = '';
 		$subLength = fread( $fh, 1 );
 		$blocks = 0;

@@ -48,7 +48,7 @@ class DjVuImage {
 	/**
 	 * @param string $filename The DjVu file name.
 	 */
-	function __construct( $filename ) {
+	public function __construct( $filename ) {
 		$this->mFilename = $filename;
 	}
 
@@ -85,7 +85,7 @@ class DjVuImage {
 	/**
 	 * For debugging; dump the IFF chunk structure
 	 */
-	function dump() {
+	public function dump() {
 		$file = fopen( $this->mFilename, 'rb' );
 		$header = fread( $file, 12 );
 		$arr = unpack( 'a4magic/a4chunk/NchunkLength', $header );
@@ -122,7 +122,7 @@ class DjVuImage {
 		}
 	}
 
-	function getInfo() {
+	private function getInfo() {
 		Wikimedia\suppressWarnings();
 		$file = fopen( $this->mFilename, 'rb' );
 		Wikimedia\restoreWarnings();
@@ -249,7 +249,7 @@ class DjVuImage {
 	 * Return an XML string describing the DjVu image
 	 * @return string|bool
 	 */
-	function retrieveMetaData() {
+	public function retrieveMetaData() {
 		global $wgDjvuToXML, $wgDjvuDump, $wgDjvuTxt;
 
 		if ( !$this->isValid() ) {
@@ -300,7 +300,7 @@ EOR;
 		return $xml;
 	}
 
-	function pageTextCallback( $matches ) {
+	private function pageTextCallback( $matches ) {
 		# Get rid of invalid UTF-8, strip control characters
 		$val = htmlspecialchars( UtfNormal\Validator::cleanUp( stripcslashes( $matches[1] ) ) );
 		$val = str_replace( [ "\n", '�' ], [ '&#10;', '' ], $val );
@@ -312,7 +312,7 @@ EOR;
 	 * @param string $dump
 	 * @return string
 	 */
-	function convertDumpToXML( $dump ) {
+	private function convertDumpToXML( $dump ) {
 		if ( strval( $dump ) == '' ) {
 			return false;
 		}
@@ -373,7 +373,7 @@ EOT;
 		return $xml;
 	}
 
-	function parseFormDjvu( $line, &$xml ) {
+	private function parseFormDjvu( $line, &$xml ) {
 		$parentLevel = strspn( $line, ' ' );
 		$line = strtok( "\n" );
 

@@ -51,7 +51,7 @@ class SVGReader {
 	 * @param string $source URI from which to read
 	 * @throws MWException|Exception
 	 */
-	function __construct( $source ) {
+	public function __construct( $source ) {
 		global $wgSVGMetadataCutoff;
 		$this->reader = new XMLReader();
 
@@ -351,7 +351,7 @@ class SVGReader {
 	 * @param float|int $viewportSize Optional scale for percentage units...
 	 * @return float Length in pixels
 	 */
-	static function scaleSVGUnit( $length, $viewportSize = 512 ) {
+	public static function scaleSVGUnit( $length, $viewportSize = 512 ) {
 		static $unitLength = [
 			'px' => 1.0,
 			'pt' => 1.25,

@@ -86,7 +86,7 @@ class BitmapMetadataHandler {
 	 * @param string $filename
 	 * @param string $byteOrder
 	 */
-	function getExif( $filename, $byteOrder ) {
+	public function getExif( $filename, $byteOrder ) {
 		global $wgShowEXIF;
 		if ( file_exists( $filename ) && $wgShowEXIF ) {
 			$exif = new Exif( $filename, $byteOrder );
@@ -103,7 +103,7 @@ class BitmapMetadataHandler {
 	 * @param array $metaArray Array of metadata values
 	 * @param string $type Type. defaults to other. if two things have the same type they're merged
 	 */
-	function addMetadata( $metaArray, $type = 'other' ) {
+	public function addMetadata( $metaArray, $type = 'other' ) {
 		if ( isset( $this->metadata[$type] ) ) {
 			/* merge with old data */
 			$metaArray = $metaArray + $this->metadata[$type];
@@ -121,7 +121,7 @@ class BitmapMetadataHandler {
 	 *
 	 * @return array Metadata array
 	 */
-	function getMetadataArray() {
+	public function getMetadataArray() {
 		// this seems a bit ugly... This is all so its merged in right order
 		// based on the MWG recommendation.
 		$temp = [];
@@ -156,7 +156,7 @@ class BitmapMetadataHandler {
 	 * @return array Metadata result array.
 	 * @throws MWException On invalid file.
 	 */
-	static function Jpeg( $filename ) {
+	public static function Jpeg( $filename ) {
 		$showXMP = XMPReader::isSupported();
 		$meta = new self();
 
@@ -296,7 +296,7 @@ class BitmapMetadataHandler {
 	 * @param string $filename
 	 * @return string 'BE' or 'LE' or false
 	 */
-	static function getTiffByteOrder( $filename ) {
+	public static function getTiffByteOrder( $filename ) {
 		$fh = fopen( $filename, 'rb' );
 		if ( !$fh ) {
 			return false;

@@ -147,7 +147,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param int $flags
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
-	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		global $wgDjvuRenderer, $wgDjvuPostProcessor;
 
 		if ( !$this->normaliseParams( $image, $params ) ) {
@@ -242,7 +242,7 @@ class DjVuHandler extends ImageHandler {
 	 * @return DjVuImage
 	 * @suppress PhanUndeclaredProperty Custom property
 	 */
-	function getDjVuImage( $image, $path ) {
+	private function getDjVuImage( $image, $path ) {
 		if ( !$image ) {
 			$deja = new DjVuImage( $path );
 		} elseif ( !isset( $image->dejaImage ) ) {
@@ -353,7 +353,7 @@ class DjVuHandler extends ImageHandler {
 		return [ 'MetaTree' => $metaTree, 'TextTree' => $textTree ];
 	}
 
-	function getImageSize( $image, $path ) {
+	public function getImageSize( $image, $path ) {
 		return $this->getDjVuImage( $image, $path )->getImageSize();
 	}
 
@@ -380,7 +380,7 @@ class DjVuHandler extends ImageHandler {
 		}
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'djvuxml';
 	}
 
@@ -450,7 +450,7 @@ class DjVuHandler extends ImageHandler {
 	 * @param int $page Page number to get information for
 	 * @return bool|string Page text or false when no text found.
 	 */
-	function getPageText( File $image, $page ) {
+	public function getPageText( File $image, $page ) {
 		$tree = $this->getMetaTree( $image, true );
 		if ( !$tree ) {
 			return false;
