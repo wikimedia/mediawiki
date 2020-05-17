@@ -310,7 +310,7 @@ class SearchHighlighter {
 	 * @param int &$count
 	 * @param string $text
 	 */
-	function splitAndAdd( &$extracts, &$count, $text ) {
+	private function splitAndAdd( &$extracts, &$count, $text ) {
 		$split = explode( "\n", $this->mCleanWikitext ? $this->removeWiki( $text ) : $text );
 		foreach ( $split as $line ) {
 			$tt = trim( $line );
@@ -326,7 +326,7 @@ class SearchHighlighter {
 	 * @param array $matches
 	 * @return string
 	 */
-	function caseCallback( $matches ) {
+	private function caseCallback( $matches ) {
 		if ( strlen( $matches[0] ) > 1 ) {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			return '[' . $contLang->lc( $matches[0] ) .
@@ -346,7 +346,7 @@ class SearchHighlighter {
 	 * @param int|null &$posEnd (out) actual end position
 	 * @return string
 	 */
-	function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {
+	private function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {
 		if ( $start != 0 ) {
 			$start = $this->position( $text, $start, 1 );
 		}
@@ -378,7 +378,7 @@ class SearchHighlighter {
 	 * @param int $offset Offset to found index
 	 * @return int Nearest nonletter index, or beginning of utf8 char if none
 	 */
-	function position( $text, $point, $offset = 0 ) {
+	private function position( $text, $point, $offset = 0 ) {
 		$tolerance = 10;
 		$s = max( 0, $point - $tolerance );
 		$l = min( strlen( $text ), $point + $tolerance ) - $s;
@@ -419,7 +419,7 @@ class SearchHighlighter {
 	 * @param array &$offsets Map of starting points of snippets
 	 * @protected
 	 */
-	function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {
+	private function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {
 		if ( $linesleft == 0 ) {
 			return; // nothing to do
 		}
@@ -462,7 +462,7 @@ class SearchHighlighter {
 	 * @param string $text
 	 * @return mixed
 	 */
-	function removeWiki( $text ) {
+	private function removeWiki( $text ) {
 		$text = preg_replace( "/\\{\\{([^|]+?)\\}\\}/", "", $text );
 		$text = preg_replace( "/\\{\\{([^|]+\\|)(.*?)\\}\\}/", "\\2", $text );
 		$text = preg_replace( "/\\[\\[([^|]+?)\\]\\]/", "\\1", $text );
@@ -490,7 +490,7 @@ class SearchHighlighter {
 	 * @param array $matches
 	 * @return string
 	 */
-	function linkReplace( $matches ) {
+	private function linkReplace( $matches ) {
 		$colon = strpos( $matches[1], ':' );
 		if ( $colon === false ) {
 			return $matches[2]; // replace with caption

@@ -39,14 +39,14 @@ abstract class BaseTemplate extends QuickTemplate {
 		return $this->getSkin()->msg( $name, ...$params );
 	}
 
-	function msg( $str ) {
+	public function msg( $str ) {
 		echo $this->getMsg( $str )->escaped();
 	}
 
 	/**
 	 * @deprecated since 1.33 Use ->msg() or ->getMsg() instead.
 	 */
-	function msgWiki( $str ) {
+	public function msgWiki( $str ) {
 		wfDeprecated( __METHOD__, '1.33' );
 		echo $this->getMsg( $str )->parseAsBlock();
 	}
@@ -246,7 +246,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @deprecated since 1.35 use Skin::makeLink
 	 * @return string
 	 */
-	function makeLink( $key, $item, $options = [] ) {
+	protected function makeLink( $key, $item, $options = [] ) {
 		return $this->getSkin()->makeLink( $key, $item, $options );
 	}
 
@@ -254,21 +254,21 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @deprecated since 1.35 use Skin::makeListItem
 	 * @return string
 	 */
-	function makeListItem( $key, $item, $options = [] ) {
+	public function makeListItem( $key, $item, $options = [] ) {
 		return $this->getSkin()->makeListItem( $key, $item, $options );
 	}
 
 	/**
 	 * @deprecated since 1.35 use Skin::makeSearchInput
 	 */
-	function makeSearchInput( $attrs = [] ) {
+	protected function makeSearchInput( $attrs = [] ) {
 		return $this->getSkin()->makeSearchInput( $attrs );
 	}
 
 	/**
 	 * @deprecated since 1.35 use Skin::makeSearchButton
 	 */
-	function makeSearchButton( $mode, $attrs = [] ) {
+	protected function makeSearchButton( $mode, $attrs = [] ) {
 		return $this->getSkin()->makeSearchButton( $mode, $attrs );
 	}
 
@@ -281,7 +281,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @param string|null $option
 	 * @return array|mixed
 	 */
-	function getFooterLinks( $option = null ) {
+	protected function getFooterLinks( $option = null ) {
 		$footerlinks = $this->get( 'footerlinks' );
 
 		// Reduce footer links down to only those which are being used
@@ -319,7 +319,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @deprecated 1.35 read FooterIcons from getConfig instead.
 	 * @return array
 	 */
-	function getFooterIcons( $option = null ) {
+	protected function getFooterIcons( $option = null ) {
 		// Generate additional footer icons
 		$footericons = $this->get( 'footericons' );
 
@@ -446,7 +446,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Output getTrail
 	 */
-	function printTrail() {
+	protected function printTrail() {
 		echo $this->getTrail();
 	}
 

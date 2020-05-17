@@ -88,28 +88,25 @@ abstract class QuickTemplate {
 	abstract public function execute();
 
 	/**
-	 * @private
 	 * @param string $str
 	 * @suppress SecurityCheck-DoubleEscaped $this->data can be either
 	 */
-	function text( $str ) {
+	protected function text( $str ) {
 		echo htmlspecialchars( $this->data[$str] );
 	}
 
 	/**
-	 * @private
 	 * @param string $str
 	 * @suppress SecurityCheck-XSS phan-taint-check cannot tell if $str is pre-escaped
 	 */
-	function html( $str ) {
+	public function html( $str ) {
 		echo $this->data[$str];
 	}
 
 	/**
-	 * @private
 	 * @param string $msgKey
 	 */
-	function msg( $msgKey ) {
+	public function msg( $msgKey ) {
 		echo htmlspecialchars( wfMessage( $msgKey )->text() );
 	}
 
@@ -118,7 +115,7 @@ abstract class QuickTemplate {
 	 * @deprecated since 1.33 Use ->msg() instead.
 	 * @param string $msgKey
 	 */
-	function msgWiki( $msgKey ) {
+	public function msgWiki( $msgKey ) {
 		wfDeprecated( __METHOD__, '1.33' );
 		global $wgOut;
 
@@ -127,21 +124,18 @@ abstract class QuickTemplate {
 	}
 
 	/**
-	 * @private
 	 * @param string $str
 	 * @return bool
 	 */
-	function haveData( $str ) {
+	private function haveData( $str ) {
 		return isset( $this->data[$str] );
 	}
 
 	/**
-	 * @private
-	 *
 	 * @param string $msgKey
 	 * @return bool
 	 */
-	function haveMsg( $msgKey ) {
+	protected function haveMsg( $msgKey ) {
 		$msg = wfMessage( $msgKey );
 		return $msg->exists() && !$msg->isDisabled();
 	}
