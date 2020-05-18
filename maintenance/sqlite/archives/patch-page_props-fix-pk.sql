@@ -7,8 +7,8 @@ CREATE TABLE /*_*/page_props_tmp (
   PRIMARY KEY (pp_page,pp_propname)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/page_props_tmp
-	SELECT * FROM /*_*/page_props;
+INSERT INTO /*_*/page_props_tmp(pp_page, pp_propname, pp_value, pp_sortkey)
+	SELECT pp_page, pp_propname, pp_value, pp_sortkey FROM /*_*/page_props;
 
 DROP TABLE /*_*/page_props;
 

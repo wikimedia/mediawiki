@@ -11,8 +11,8 @@ CREATE TABLE /*_*/protected_titles_tmp (
   PRIMARY KEY (pt_namespace,pt_title)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/protected_titles_tmp
-	SELECT * FROM /*_*/protected_titles;
+INSERT INTO /*_*/protected_titles_tmp(pt_namespace, pt_title, pt_user, pt_reason, pt_reason_id, pt_timestamp, pt_expiry, pt_create_perm)
+	SELECT pt_namespace, pt_title, pt_user, pt_reason, pt_reason_id, pt_timestamp, pt_expiry, pt_create_perm FROM /*_*/protected_titles;
 
 DROP TABLE /*_*/protected_titles;
 
