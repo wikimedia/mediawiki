@@ -21,7 +21,9 @@
 namespace Wikimedia\DependencyStore;
 
 use InvalidArgumentException;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -45,43 +47,18 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	public function retrieveMulti( $type, array $entities ) {
 		try {
-			$dbr = $this->lb->getConnectionRef( DB_REPLICA );
+			$dbr = $this->getReplicaDb();
 
-			$modulesByVariant = [];
-			foreach ( $entities as $entity ) {
-				list( $module, $variant ) = $this->getEntityNameComponents( $entity );
-				$modulesByVariant[$variant][] = $module;
-			}
+			$depsBlobByEntity = $this->fetchDependencyBlobs( $entities, $dbr );
 
-			$condsByVariant = [];
-			foreach ( $modulesByVariant as $variant => $modules ) {
-				$condsByVariant[] = $dbr->makeList(
-					[ 'md_module' => $modules, 'md_skin' => $variant ],
-					$dbr::LIST_AND
-				);
-			}
-
-			if ( !$condsByVariant ) {
-				return [];
-			}
-
-			$conds = $dbr->makeList( $condsByVariant, $dbr::LIST_OR );
-			$res = $dbr->select(
-				'module_deps',
-				[ 'md_module', 'md_skin', 'md_deps' ],
-				$conds,
-				__METHOD__
-			);
-
-			$pathsByEntity = [];
-			foreach ( $res as $row ) {
-				$entity = "{$row->md_module}|{$row->md_skin}";
-				$pathsByEntity[$entity] = json_decode( $row->md_deps, true );
+			$storedPathsByEntity = [];
+			foreach ( $depsBlobByEntity as $entity => $depsBlob ) {
+				$storedPathsByEntity[$entity] = json_decode( $depsBlob, true );
 			}
 
 			$results = [];
 			foreach ( $entities as $entity ) {
-				$paths = $pathsByEntity[$entity] ?? [];
+				$paths = $storedPathsByEntity[$entity] ?? [];
 				$results[$entity] = $this->newEntityDependencies( $paths, null );
 			}
 
@@ -93,7 +70,9 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	public function storeMulti( $type, array $dataByEntity, $ttl ) {
 		try {
-			$dbw = $this->lb->getConnectionRef( DB_MASTER );
+			$dbw = $this->getMasterDb();
+
+			$depsBlobByEntity = $this->fetchDependencyBlobs( array_keys( $dataByEntity ), $dbw );
 
 			$rows = [];
 			foreach ( $dataByEntity as $entity => $data ) {
@@ -107,11 +86,14 @@ class SqlModuleDependencyStore extends DependencyStore {
 				sort( $paths, SORT_STRING );
 				$blob = json_encode( $paths, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
 
-				$rows[] = [
-					'md_module' => $module,
-					'md_skin' => $variant,
-					'md_deps' => $blob
-				];
+				$existingBlob = $depsBlobByEntity[$entity] ?? null;
+				if ( $blob !== $existingBlob ) {
+					$rows[] = [
+						'md_module' => $module,
+						'md_skin' => $variant,
+						'md_deps' => $blob
+					];
+				}
 			}
 
 			// @TODO: use a single query with VALUES()/aliases support in DB wrapper
@@ -134,20 +116,23 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	public function remove( $type, $entities ) {
 		try {
-			$dbw = $this->lb->getConnectionRef( DB_MASTER );
+			$dbw = $this->getMasterDb();
 
-			$condsPerRow = [];
+			$disjunctionConds = [];
 			foreach ( (array)$entities as $entity ) {
 				list( $module, $variant ) = $this->getEntityNameComponents( $entity );
-				$condsPerRow[] = $dbw->makeList(
-					[ 'md_module' => $module, 'md_skin' => $variant ],
+				$disjunctionConds[] = $dbw->makeList(
+					[ 'md_skin' => $variant, 'md_module' => $module ],
 					$dbw::LIST_AND
 				);
 			}
 
-			if ( $condsPerRow ) {
-				$conds = $dbw->makeList( $condsPerRow, $dbw::LIST_OR );
-				$dbw->delete( 'module_deps', $conds, __METHOD__ );
+			if ( $disjunctionConds ) {
+				$dbw->delete(
+					'module_deps',
+					$dbw->makeList( $disjunctionConds, $dbw::LIST_OR ),
+					__METHOD__
+				);
 			}
 		} catch ( DBError $e ) {
 			throw new DependencyStoreException( $e->getMessage() );
@@ -156,6 +141,61 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 	public function renew( $type, $entities, $ttl ) {
 		// no-op
+	}
+
+	/**
+	 * @param string[] $entities
+	 * @param IDatabase $db
+	 * @return string[]
+	 */
+	private function fetchDependencyBlobs( array $entities, IDatabase $db ) {
+		$modulesByVariant = [];
+		foreach ( $entities as $entity ) {
+			list( $module, $variant ) = $this->getEntityNameComponents( $entity );
+			$modulesByVariant[$variant][] = $module;
+		}
+
+		$disjunctionConds = [];
+		foreach ( $modulesByVariant as $variant => $modules ) {
+			$disjunctionConds[] = $db->makeList(
+				[ 'md_skin' => $variant, 'md_module' => $modules ],
+				$db::LIST_AND
+			);
+		}
+
+		$depsBlobByEntity = [];
+
+		if ( $disjunctionConds ) {
+			$res = $db->select(
+				'module_deps',
+				[ 'md_module', 'md_skin', 'md_deps' ],
+				$db->makeList( $disjunctionConds, $db::LIST_OR ),
+				__METHOD__
+			);
+
+			foreach ( $res as $row ) {
+				$entity = "{$row->md_module}|{$row->md_skin}";
+				$depsBlobByEntity[$entity] = $row->md_deps;
+			}
+		}
+
+		return $depsBlobByEntity;
+	}
+
+	/**
+	 * @return DBConnRef
+	 */
+	private function getReplicaDb() {
+		return $this->lb
+			->getConnectionRef( DB_REPLICA, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
+	}
+
+	/**
+	 * @return DBConnRef
+	 */
+	private function getMasterDb() {
+		return $this->lb
+			->getConnectionRef( DB_MASTER, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
 	}
 
 	/**
