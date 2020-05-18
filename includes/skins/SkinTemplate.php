@@ -107,7 +107,7 @@ class SkinTemplate extends Skin {
 				}
 			} else {
 				// Use the language autonym as display text
-				$ilLangName = $this->formatLanguageName( $ilLangName );
+				$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
 			}
 
 			// CLDR extension or similar is required to localize the language name;
@@ -243,7 +243,7 @@ class SkinTemplate extends Skin {
 		$out->addJsConfigVars( $this->getJsConfigVars() );
 
 		// result may be an error
-		$this->printOrError( $this->generateHTML() );
+		echo $this->generateHTML();
 	}
 
 	/**
@@ -659,17 +659,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Format language name for use in sidebar interlanguage links list.
-	 * By default it is capitalized.
-	 *
-	 * @param string $name Language name, e.g. "English" or "español"
-	 * @return string
-	 */
-	private function formatLanguageName( $name ) {
-		return $this->getLanguage()->ucfirst( $name );
-	}
-
-	/**
 	 * Allows correcting the language of interlanguage links which, mostly due to
 	 * legacy reasons, do not always match the standards compliant language tag.
 	 *
@@ -680,31 +669,6 @@ class SkinTemplate extends Skin {
 	public function mapInterwikiToLanguage( $code ) {
 		$map = $this->getConfig()->get( 'InterlanguageLinkCodeMap' );
 		return $map[ $code ] ?? $code;
-	}
-
-	/**
-	 * Output the string, or print error message if it's
-	 * an error object of the appropriate type.
-	 * For the base class, assume strings all around.
-	 *
-	 * @param string $str
-	 */
-	private function printOrError( $str ) {
-		echo $str;
-	}
-
-	/**
-	 * Output a boolean indicating if buildPersonalUrls should output separate
-	 * login and create account links or output a combined link
-	 * By default we simply return a global config setting that affects most skins
-	 * This is setup as a method so that like with $wgLogos and getLogo() a skin
-	 * can override this setting and always output one or the other if it has
-	 * a reason it can't output one of the two modes.
-	 * @return bool
-	 */
-	private function useCombinedLoginLink() {
-		global $wgUseCombinedLoginLink;
-		return $wgUseCombinedLoginLink;
 	}
 
 	/**
@@ -816,7 +780,7 @@ class SkinTemplate extends Skin {
 				];
 			}
 		} else {
-			$useCombinedLoginLink = $this->useCombinedLoginLink();
+			$useCombinedLoginLink = $this->getConfig()->get( 'UseCombinedLoginLink' );
 			if ( !$authManager->canCreateAccounts() || !$authManager->canAuthenticateNow() ) {
 				// don't show combined login/signup link if one of those is actually not available
 				$useCombinedLoginLink = false;
@@ -977,16 +941,6 @@ class SkinTemplate extends Skin {
 			'href' => $title->getLocalURL( $urlaction ),
 			'exists' => $title->exists(),
 		];
-	}
-
-	/**
-	 * Shorthand for getting a Language Converter for specific language
-	 * @param Language $language Language of converter
-	 * @return ILanguageConverter
-	 */
-	private function getLanguageConverter( $language ) : ILanguageConverter {
-		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter( $language );
 	}
 
 	/**
@@ -1304,7 +1258,9 @@ class SkinTemplate extends Skin {
 
 			if ( $userCanRead && !$wgDisableLangConversion ) {
 				$pageLang = $title->getPageLanguage();
-				$converter = $this->getLanguageConverter( $pageLang );
+				$converter = MediaWikiServices::getInstance()
+					->getLanguageConverterFactory()
+					->getLanguageConverter( $pageLang );
 				// Checks that language conversion is enabled and variants exist
 				// And if it is not in the special namespace
 				if ( $converter->hasVariants() ) {
