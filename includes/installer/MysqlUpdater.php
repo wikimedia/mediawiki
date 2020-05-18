@@ -598,6 +598,11 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		$res = $this->db->query( $sql, __METHOD__ );
 
+		if ( !$res->numRows() ) {
+			$this->output( "...watchlist talk page rows already present.\n" );
+			return;
+		}
+
 		$this->output( "Adding missing corresponding talk/subject watchlist page rows... " );
 
 		$rowBatch = [];
