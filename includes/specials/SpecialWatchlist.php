@@ -43,11 +43,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/** @var WatchedItemStore */
 	private $watchStore;
 
+	/** @var bool Watchlist Expiry flag */
+	private $isWatchlistExpiryEnabled;
+
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
 
 		$this->maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
 		$this->watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$this->isWatchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 	}
 
 	public function doesWrites() {
@@ -382,7 +386,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$join_conds
 		);
 
-		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+		if ( $this->isWatchlistExpiryEnabled ) {
 			$tables[] = 'watchlist_expiry';
 			$fields[] = 'we_expiry';
 			$join_conds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
@@ -491,13 +495,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 		$output = $this->getOutput();
 
-		# Show a message about replica DB lag, if applicable
+		// Show a message about replica DB lag, if applicable
 		$lag = $dbr->getSessionLagStatus()['lag'];
 		if ( $lag > 0 ) {
 			$output->showLagWarning( $lag );
 		}
 
-		# If no rows to display, show message before try to render the list
+		// If there are no rows to display, show message before trying to render the list
 		if ( $rows->numRows() == 0 ) {
 			$output->wrapWikiMsg(
 				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
@@ -510,6 +514,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->setWatchlistDivs();
 		$list->initChangesListRows( $rows );
+
 		if ( $user->getOption( 'watchlistunwatchlinks' ) ) {
 			$list->setChangeLinePrefixer( function ( RecentChange $rc, ChangesList $cl, $grouped ) {
 				// Don't show unwatch link if the line is a grouped log entry using EnhancedChangesList,
@@ -518,11 +523,22 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					$grouped ) {
 					return '';
 				} else {
+					$unwatchTooltipMessage = 'tooltip-ca-unwatch';
+					$diffInDays = null;
+					// Check if the watchlist expiry flag is enabled to show new tooltip message
+					if ( $this->isWatchlistExpiryEnabled ) {
+						$watchedItem = $this->watchStore->getWatchedItem( $this->getUser(), $rc->getTitle() );
+						if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
+							$diffInDays = $watchedItem->getExpiryInDays();
+							$unwatchTooltipMessage = 'tooltip-ca-unwatch-expiring';
+						}
+					}
+
 					return $this->getLinkRenderer()
 							->makeKnownLink( $rc->getTitle(),
 								$this->msg( 'watchlist-unwatch' )->text(), [
 									'class' => 'mw-unwatch-link',
-									'title' => $this->msg( 'tooltip-ca-unwatch' )->text()
+									'title' => $this->msg( $unwatchTooltipMessage, [ $diffInDays ] )->text()
 								], [ 'action' => 'unwatch' ] ) . "\u{00A0}";
 				}
 			} );
@@ -538,10 +554,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$userShowHiddenCats = $this->getUser()->getBoolOption( 'showhiddencats' );
 		$counter = 1;
 		foreach ( $rows as $obj ) {
-			# Make RC entry
+			// Make RC entry
 			$rc = RecentChange::newFromRow( $obj );
 
-			# Skip CatWatch entries for hidden cats based on user preference
+			// Skip CatWatch entries for hidden cats based on user preference
 			if (
 				$rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE &&
 				!$userShowHiddenCats &&
@@ -641,7 +657,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$this->msg( 'wlshowtime' ) . ' ' . $this->cutoffselector( $opts )
 		);
 
-		# Spit out some control panel links
+		// Spit out some control panel links
 		$links = [];
 		$namesOfDisplayedFilters = [];
 		foreach ( $this->getLegacyShowHideFilters() as $filterName => $filter ) {
@@ -665,7 +681,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			unset( $hiddenFields[$filterName] );
 		}
 
-		# Namespace filter and put the whole form together.
+		// Namespace filter and put the whole form together.
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
 		$form .= Html::rawElement(
