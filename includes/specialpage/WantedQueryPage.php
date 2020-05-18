@@ -34,7 +34,7 @@ abstract class WantedQueryPage extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
@@ -43,7 +43,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	protected function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
 
@@ -55,7 +55,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * 6220).
 	 * @return bool
 	 */
-	function forceExistenceCheck() {
+	protected function forceExistenceCheck() {
 		return false;
 	}
 
@@ -122,7 +122,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @return array
 	 * @since 1.29
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'value DESC', 'namespace', 'title' ];
 	}
 
@@ -135,7 +135,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @return bool
 	 * @since 1.29
 	 */
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
@@ -144,7 +144,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @return array
 	 * @since 1.29
 	 */
-	function getCacheOrderFields() {
+	protected function getCacheOrderFields() {
 		return $this->getOrderFields();
 	}
 

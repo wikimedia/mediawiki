@@ -35,13 +35,13 @@ class HistoryBlobStub {
 	protected static $blobCache = [];
 
 	/** @var int */
-	public $mOldId;
+	protected $mOldId;
 
 	/** @var string */
-	public $mHash;
+	protected $mHash;
 
 	/** @var string */
-	public $mRef;
+	protected $mRef;
 
 	/**
 	 * @param string $hash The content hash of the text
@@ -56,7 +56,7 @@ class HistoryBlobStub {
 	 * points
 	 * @param int $id
 	 */
-	function setLocation( $id ) {
+	public function setLocation( $id ) {
 		$this->mOldId = $id;
 	}
 
@@ -64,7 +64,7 @@ class HistoryBlobStub {
 	 * Sets the location (old_id) of the referring object
 	 * @param string $id
 	 */
-	function setReferrer( $id ) {
+	public function setReferrer( $id ) {
 		$this->mRef = $id;
 	}
 
@@ -72,14 +72,14 @@ class HistoryBlobStub {
 	 * Gets the location of the referring object
 	 * @return string
 	 */
-	function getReferrer() {
+	public function getReferrer() {
 		return $this->mRef;
 	}
 
 	/**
 	 * @return string|false
 	 */
-	function getText() {
+	public function getText() {
 		if ( isset( self::$blobCache[$this->mOldId] ) ) {
 			$obj = self::$blobCache[$this->mOldId];
 		} else {
@@ -137,7 +137,7 @@ class HistoryBlobStub {
 	 *
 	 * @return string
 	 */
-	function getHash() {
+	public function getHash() {
 		return $this->mHash;
 	}
 }

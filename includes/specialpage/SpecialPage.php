@@ -150,7 +150,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Get the name of this Special Page.
 	 * @return string
 	 */
-	function getName() {
+	public function getName() {
 		return $this->mName;
 	}
 
@@ -158,7 +158,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Get the permission that a user must have to execute this page
 	 * @return string
 	 */
-	function getRestriction() {
+	public function getRestriction() {
 		return $this->mRestriction;
 	}
 
@@ -169,27 +169,33 @@ class SpecialPage implements MessageLocalizer {
 	 * @since 1.3 (r3583)
 	 * @return bool
 	 */
-	function isListed() {
+	public function isListed() {
 		return $this->mListed;
 	}
 
 	/**
 	 * Set whether this page is listed in Special:Specialpages, at run-time
 	 * @since 1.3
-	 * @param bool $listed
+	 * @deprecated since 1.35
+	 * @param bool $listed Set via subclassing UnlistedSpecialPage, get via
+	 *  isListed()
 	 * @return bool
 	 */
-	function setListed( $listed ) {
+	public function setListed( $listed ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mListed, $listed );
 	}
 
 	/**
 	 * Get or set whether this special page is listed in Special:SpecialPages
 	 * @since 1.6
+	 * @deprecated since 1.35 Set via subclassing UnlistedSpecialPage, get via
+	 *  isListed()
 	 * @param bool|null $x
 	 * @return bool
 	 */
-	function listed( $x = null ) {
+	public function listed( $x = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return wfSetVar( $this->mListed, $x );
 	}
 
@@ -227,7 +233,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @param bool|null $x
 	 * @return bool
 	 */
-	function including( $x = null ) {
+	public function including( $x = null ) {
 		return wfSetVar( $this->mIncluding, $x );
 	}
 
@@ -235,7 +241,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Get the localised name of the special page
 	 * @return string
 	 */
-	function getLocalName() {
+	public function getLocalName() {
 		if ( !isset( $this->mLocalName ) ) {
 			$this->mLocalName = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 				getLocalNameFor( $this->mName );
@@ -301,7 +307,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Output an error message telling the user what access level they have to have
 	 * @throws PermissionsError
 	 */
-	function displayRestrictionError() {
+	protected function displayRestrictionError() {
 		throw new PermissionsError( $this->mRestriction );
 	}
 
@@ -535,7 +541,7 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
-	function setHeaders() {
+	protected function setHeaders() {
 		$out = $this->getOutput();
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( $this->getRobotPolicy() );
@@ -637,7 +643,7 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @param string $summaryMessageKey Message key of the summary
 	 */
-	function outputHeader( $summaryMessageKey = '' ) {
+	protected function outputHeader( $summaryMessageKey = '' ) {
 		if ( $summaryMessageKey == '' ) {
 			$msg = MediaWikiServices::getInstance()->getContentLanguage()->lc( $this->getName() ) .
 				'-summary';
@@ -659,7 +665,7 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @return string
 	 */
-	function getDescription() {
+	public function getDescription() {
 		return $this->msg( strtolower( $this->mName ) )->text();
 	}
 
@@ -670,7 +676,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @return Title
 	 * @since 1.23
 	 */
-	function getPageTitle( $subpage = false ) {
+	public function getPageTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
 	}
 

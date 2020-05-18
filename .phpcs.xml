@@ -19,10 +19,6 @@
 	</rule>
 	<!-- TODO Still to be done -->
 	<rule ref="Squiz.Scope.MethodScope.Missing">
-		<exclude-pattern>includes/historyblob/HistoryBlobStub.php</exclude-pattern>
-		<exclude-pattern>includes/historyblob/DiffHistoryBlob.php</exclude-pattern>
-		<exclude-pattern>includes/page/CategoryPage.php</exclude-pattern>
-		<exclude-pattern>includes/pager/IndexPager.php</exclude-pattern>
 		<exclude-pattern>includes/parser/Sanitizer.php</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
 		<exclude-pattern>includes/libs/rdbms/field/SQLiteField.php</exclude-pattern>
@@ -35,10 +31,6 @@
 		<exclude-pattern>includes/skins/QuickTemplate.php</exclude-pattern>
 		<exclude-pattern>includes/skins/BaseTemplate.php</exclude-pattern>
 		<exclude-pattern>includes/specials/</exclude-pattern>
-		<exclude-pattern>includes/specialpage/QueryPage.php</exclude-pattern>
-		<exclude-pattern>includes/specialpage/SpecialPage.php</exclude-pattern>
-		<exclude-pattern>includes/specialpage/WantedQueryPage.php</exclude-pattern>
-		<exclude-pattern>includes/specialpage/ImageQueryPage.php</exclude-pattern>
 		<exclude-pattern>includes/user/User.php</exclude-pattern>
 		<exclude-pattern>includes/user/UserRightsProxy.php</exclude-pattern>
 		<exclude-pattern>includes/user/UserArrayFromResult.php</exclude-pattern>
