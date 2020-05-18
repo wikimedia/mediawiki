@@ -241,13 +241,6 @@ class RevisionStore
 	}
 
 	/**
-	 * @return ILoadBalancer
-	 */
-	private function getDBLoadBalancer() {
-		return $this->loadBalancer;
-	}
-
-	/**
 	 * Get the ID of the wiki this revision belongs to.
 	 *
 	 * @return string|false The wiki's logical name, of false to indicate the local wiki.
@@ -273,8 +266,7 @@ class RevisionStore
 	 * @return DBConnRef
 	 */
 	private function getDBConnectionRef( $mode, $groups = [] ) {
-		$lb = $this->getDBLoadBalancer();
-		return $lb->getConnectionRef( $mode, $groups, $this->wikiId );
+		return $this->loadBalancer->getConnectionRef( $mode, $groups, $this->wikiId );
 	}
 
 	/**
@@ -2311,14 +2303,12 @@ class RevisionStore
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
 		$rev = $this->loadRevisionFromConds( $db, $conditions, $flags, $page, $options );
 
-		$lb = $this->getDBLoadBalancer();
-
 		// Make sure new pending/committed revision are visible later on
 		// within web requests to certain avoid bugs like T93866 and T94407.
 		if ( !$rev
 			&& !( $flags & self::READ_LATEST )
-			&& $lb->hasStreamingReplicaServers()
-			&& $lb->hasOrMadeRecentPrimaryChanges()
+			&& $this->loadBalancer->hasStreamingReplicaServers()
+			&& $this->loadBalancer->hasOrMadeRecentPrimaryChanges()
 		) {
 			$flags = self::READ_LATEST;
 			$dbw = $this->getDBConnectionRef( DB_PRIMARY );
