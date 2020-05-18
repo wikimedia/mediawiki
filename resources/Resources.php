@@ -505,7 +505,7 @@ return [
 			'te' => 'resources/lib/moment/locale/te.js',
 			'tet' => 'resources/lib/moment/locale/tet.js',
 			'th' => 'resources/lib/moment/locale/th.js',
-			'tl-ph' => 'resources/lib/moment/locale/tl-ph.js',
+			'tl' => 'resources/lib/moment/locale/tl-ph.js',
 			'tr' => 'resources/lib/moment/locale/tr.js',
 			'tzm' => 'resources/lib/moment/locale/tzm.js',
 			'tzm-latn' => 'resources/lib/moment/locale/tzm-latn.js',
