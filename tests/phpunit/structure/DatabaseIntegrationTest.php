@@ -56,28 +56,33 @@ class DatabaseIntegrationTest extends MediaWikiTestCase {
 
 	public function automaticSqlGenerationParams() {
 		return [
-			[ 'mysql', '/maintenance/tables-generated.sql' ],
-			[ 'sqlite', '/maintenance/sqlite/tables-generated.sql' ],
-			[ 'postgres', '/maintenance/postgres/tables-generated.sql' ],
+			[ 'mysql' ],
+			[ 'sqlite' ],
+			[ 'postgres' ],
 		];
 	}
 
 	/**
 	 * @dataProvider automaticSqlGenerationParams
 	 */
-	public function testAutomaticSqlGeneration( $type, $sqlPath ) {
+	public function testAutomaticSqlGeneration( $type ) {
 		global $IP;
 		$abstractSchemaPath = "$IP/maintenance/tables.json";
-		$mysqlPath = $IP . $sqlPath;
-		$oldContent = file_get_contents( $mysqlPath );
+		if ( $type === 'mysql' ) {
+			$oldPath = "$IP/maintenance/tables-generated.sql";
+		} else {
+			$oldPath = "$IP/maintenance/$type/tables-generated.sql";
+		}
+		$oldContent = file_get_contents( $oldPath );
+		$newPath = $this->getNewTempFile();
 		$maintenanceScript = new GenerateSchemaSql();
 		$maintenanceScript->loadWithArgv(
-			[ '--json=' . $abstractSchemaPath, '--sql=' . $mysqlPath, '--type=' . $type ]
+			[ '--json=' . $abstractSchemaPath, '--sql=' . $newPath, '--type=' . $type ]
 		);
 		$maintenanceScript->execute();
 		$this->assertEquals(
 			$oldContent,
-			file_get_contents( $mysqlPath ),
+			file_get_contents( $newPath ),
 			"The generated schema in '$type' type has to be the same"
 		);
 	}
