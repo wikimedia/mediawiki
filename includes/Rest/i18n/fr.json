@@ -34,9 +34,9 @@
 	"rest-html-backend-error": "Impossible de récupérer le HTML de Parsoid",
 	"rest-bad-json-body": "Mauvais corps de requête, doit être un objet JSON.",
 	"rest-json-body-parse-error": "Échec de l’analyse du corps de la requête en JSON : $1",
-	"rest-missing-body-field": "Champ obligatoire « $1 » absent du corps de la requête.",
+	"rest-missing-body-field": "Champ obligatoire « $1 » absent du corps de la requête.",
 	"rest-bad-content-model": "Mauvais modèle de contenu : $1",
-	"rest-update-cannot-create-page": "La page « $1 » n’a pas pu être créée car elle existe déjà. Pour mettre à jour la page existante, fournir l’ID de la révision de base dans la structure sous la clé « latest » dans le corps de la requête.",
+	"rest-update-cannot-create-page": "La page « $1 » n’a pas pu être créée car elle existe déjà. Pour mettre à jour la page existante, fournir l’ID de la révision de base dans la structure sous la clé « latest » dans le corps de la requête.",
 	"rest-extraneous-csrf-token": "Jeton CRSF superflu trouvé. Les jetons CSRF ne doivent pas être utilisés lors de l’utilisation de mécanismes d’authentification tels que OAuth, qui sont sûrs vis-à-vis des attaques CSRF.",
-	"rest-cannot-load-file": "Le fichier de titre « $1 » n’a pas pu être chargé."
+	"rest-cannot-load-file": "Le fichier de titre « $1 » n’a pas pu être chargé."
 }
