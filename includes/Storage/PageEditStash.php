@@ -60,8 +60,8 @@ class PageEditStash {
 	public const ERROR_BUSY = 'busy';
 
 	public const PRESUME_FRESH_TTL_SEC = 30;
-	private const MAX_CACHE_TTL = 300; // 5 minutes
-	private const MAX_SIGNATURE_TTL = 60;
+	public const MAX_CACHE_TTL = 300; // 5 minutes
+	public const MAX_SIGNATURE_TTL = 60;
 
 	private const MAX_CACHE_RECENT = 2;
 
