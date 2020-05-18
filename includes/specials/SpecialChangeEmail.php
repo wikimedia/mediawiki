@@ -55,7 +55,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 * Main execution point
 	 * @param string $par
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$out = $this->getOutput();
 		$out->disallowUserJs();
 

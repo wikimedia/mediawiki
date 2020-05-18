@@ -30,11 +30,11 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialDeadendPages extends PageQueryPage {
 
-	function __construct( $name = 'Deadendpages' ) {
+	public function __construct( $name = 'Deadendpages' ) {
 		parent::__construct( $name );
 	}
 
-	function getPageHeader() {
+	protected function getPageHeader() {
 		return $this->msg( 'deadendpagestext' )->parseAsBlock();
 	}
 
@@ -43,22 +43,22 @@ class SpecialDeadendPages extends PageQueryPage {
 	 *
 	 * @return bool
 	 */
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'page', 'pagelinks' ],
 			'fields' => [
@@ -81,7 +81,7 @@ class SpecialDeadendPages extends PageQueryPage {
 		];
 	}
 
-	function getOrderFields() {
+	protected function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
 		if ( count( MediaWikiServices::getInstance()->getNamespaceInfo()->

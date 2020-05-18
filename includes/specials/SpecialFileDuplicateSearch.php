@@ -39,15 +39,15 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 */
 	protected $file = null;
 
-	function __construct( $name = 'FileDuplicateSearch' ) {
+	public function __construct( $name = 'FileDuplicateSearch' ) {
 		parent::__construct( $name );
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function isCacheable() {
+	public function isCacheable() {
 		return false;
 	}
 
@@ -205,7 +205,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 * @param File $result
 	 * @return string HTML
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = $result->getTitle();
 		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert(

@@ -54,11 +54,11 @@ class SpecialPagesWithProp extends QueryPage {
 	 */
 	private $sortByValue = false;
 
-	function __construct( $name = 'PagesWithProp' ) {
+	public function __construct( $name = 'PagesWithProp' ) {
 		parent::__construct( $name );
 	}
 
-	function isCacheable() {
+	public function isCacheable() {
 		return false;
 	}
 
@@ -147,7 +147,7 @@ class SpecialPagesWithProp extends QueryPage {
 	 * Disable RSS/Atom feeds
 	 * @return bool
 	 */
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
@@ -179,7 +179,7 @@ class SpecialPagesWithProp extends QueryPage {
 		return $query;
 	}
 
-	function getOrderFields() {
+	protected function getOrderFields() {
 		$sort = [ 'page_id' ];
 		if ( $this->sortByValue ) {
 			array_unshift( $sort, 'pp_sortkey' );
@@ -199,7 +199,7 @@ class SpecialPagesWithProp extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$title = Title::newFromRow( $result );
 		$ret = $this->getLinkRenderer()->makeKnownLink( $title );
 		if ( $result->pp_value !== '' ) {

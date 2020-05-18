@@ -260,7 +260,7 @@ class ContribsPager extends RangeChronologicalPager {
 		return 'revision';
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$revQuery = MediaWikiServices::getInstance()
 			->getRevisionStore()
 			->getQueryInfo( [ 'page', 'user' ] );
@@ -588,7 +588,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param object $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$ret = '';
 		$classes = [];
 		$attribs = [];

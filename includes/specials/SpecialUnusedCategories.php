@@ -25,7 +25,7 @@
  * @ingroup SpecialPage
  */
 class SpecialUnusedCategories extends QueryPage {
-	function __construct( $name = 'Unusedcategories' ) {
+	public function __construct( $name = 'Unusedcategories' ) {
 		parent::__construct( $name );
 	}
 
@@ -33,11 +33,11 @@ class SpecialUnusedCategories extends QueryPage {
 		return true;
 	}
 
-	function getPageHeader() {
+	protected function getPageHeader() {
 		return $this->msg( 'unusedcategoriestext' )->parseAsBlock();
 	}
 
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'title' ];
 	}
 
@@ -68,7 +68,7 @@ class SpecialUnusedCategories extends QueryPage {
 	 * A should come before Z (T32907)
 	 * @return bool
 	 */
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
@@ -77,7 +77,7 @@ class SpecialUnusedCategories extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
 
 		return $this->getLinkRenderer()->makeLink( $title, $title->getText() );

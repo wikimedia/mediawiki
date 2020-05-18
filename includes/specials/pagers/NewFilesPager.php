@@ -61,7 +61,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		$this->getDateRangeCond( $startTimestamp, $endTimestamp );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$opts = $this->opts;
 		$conds = [];
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'img_user' );
@@ -147,7 +147,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		return $query;
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'img_timestamp';
 	}
 
@@ -170,7 +170,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		return $this->gallery->toHTML();
 	}
 
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$name = $row->img_name;
 		$user = User::newFromId( $row->img_user );
 

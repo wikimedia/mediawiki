@@ -82,7 +82,7 @@ class DeletedContribsPager extends IndexPager {
 		return $query;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$userCond = [
 			// ->getJoin() below takes care of any joins needed
 			ActorMigration::newMigration()->getWhere(
@@ -160,7 +160,7 @@ class DeletedContribsPager extends IndexPager {
 		return new FakeResultWrapper( $result );
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'ar_timestamp';
 	}
 
@@ -232,7 +232,7 @@ class DeletedContribsPager extends IndexPager {
 	 * @param stdClass $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$ret = '';
 		$classes = [];
 		$attribs = [];

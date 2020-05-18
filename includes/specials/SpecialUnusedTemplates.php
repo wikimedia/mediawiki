@@ -30,7 +30,7 @@
  * @ingroup SpecialPage
  */
 class SpecialUnusedTemplates extends QueryPage {
-	function __construct( $name = 'Unusedtemplates' ) {
+	public function __construct( $name = 'Unusedtemplates' ) {
 		parent::__construct( $name );
 	}
 
@@ -38,15 +38,15 @@ class SpecialUnusedTemplates extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'title' ];
 	}
 
@@ -73,7 +73,7 @@ class SpecialUnusedTemplates extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$title = Title::makeTitle( NS_TEMPLATE, $result->title );
 		$pageLink = $linkRenderer->makeKnownLink(
@@ -90,7 +90,7 @@ class SpecialUnusedTemplates extends QueryPage {
 		return $this->getLanguage()->specialList( $pageLink, $wlhLink );
 	}
 
-	function getPageHeader() {
+	protected function getPageHeader() {
 		return $this->msg( 'unusedtemplatestext' )->parseAsBlock();
 	}
 

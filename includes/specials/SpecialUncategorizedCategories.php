@@ -34,7 +34,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	 */
 	private $exceptionList = null;
 
-	function __construct( $name = 'Uncategorizedcategories' ) {
+	public function __construct( $name = 'Uncategorizedcategories' ) {
 		parent::__construct( $name );
 		$this->requestedNamespace = NS_CATEGORY;
 	}
@@ -85,7 +85,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	 * @param object $result The query result
 	 * @return string The category link
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
 		$text = $title->getText();
 

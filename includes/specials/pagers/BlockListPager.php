@@ -331,7 +331,7 @@ class BlockListPager extends TablePager {
 		);
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'ipb_by' );
 
@@ -402,7 +402,7 @@ class BlockListPager extends TablePager {
 		return parent::getTableClass() . ' mw-blocklist';
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return [ [ 'ipb_timestamp', 'ipb_id' ] ];
 	}
 
@@ -410,7 +410,7 @@ class BlockListPager extends TablePager {
 		return '';
 	}
 
-	function isFieldSortable( $name ) {
+	protected function isFieldSortable( $name ) {
 		return false;
 	}
 
@@ -418,7 +418,7 @@ class BlockListPager extends TablePager {
 	 * Do a LinkBatch query to minimise database load when generating all these links
 	 * @param IResultWrapper $result
 	 */
-	function preprocessResults( $result ) {
+	public function preprocessResults( $result ) {
 		# Do a link batch query
 		$lb = new LinkBatch;
 		$lb->setCaller( __METHOD__ );

@@ -34,7 +34,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		parent::__construct( 'Protectedtitles' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:Protected_pages' );
@@ -67,7 +67,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @param object $row Database row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
 		if ( !$title ) {
 			return Html::rawElement(

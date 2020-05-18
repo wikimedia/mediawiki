@@ -566,7 +566,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 *
 	 * @param FormOptions $opts Unused
 	 */
-	function setTopText( FormOptions $opts ) {
+	public function setTopText( FormOptions $opts ) {
 		$message = $this->msg( 'recentchangestext' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
 			$services = MediaWikiServices::getInstance();
