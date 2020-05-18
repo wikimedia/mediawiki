@@ -971,9 +971,6 @@ class HTMLForm extends ContextSource {
 	 * @since 1.27 takes an array as shown. Earlier versions accepted
 	 *  'name', 'value', 'id', and 'attribs' as separate parameters in that
 	 *  order.
-	 * @note Custom labels ('label', 'label-message', 'label-raw') are not
-	 *  supported for IE6 and IE7 due to bugs in those browsers. If detected,
-	 *  they will be served buttons using 'value' as the button label.
 	 * @param array $data Data to define the button:
 	 *  - name: (string) Button name.
 	 *  - value: (string) Button value.
