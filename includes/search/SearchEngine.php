@@ -275,7 +275,7 @@ abstract class SearchEngine {
 	 * @param int $limit
 	 * @param int $offset
 	 */
-	function setLimitOffset( $limit, $offset = 0 ) {
+	public function setLimitOffset( $limit, $offset = 0 ) {
 		$this->limit = intval( $limit );
 		$this->offset = intval( $offset );
 	}
@@ -286,7 +286,7 @@ abstract class SearchEngine {
 	 *
 	 * @param int[]|null $namespaces
 	 */
-	function setNamespaces( $namespaces ) {
+	public function setNamespaces( $namespaces ) {
 		if ( $namespaces ) {
 			// Filter namespaces to only keep valid ones
 			$validNs = MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
@@ -306,7 +306,7 @@ abstract class SearchEngine {
 	 *
 	 * @param bool $showSuggestion Should the searcher try to build suggestions
 	 */
-	function setShowSuggestion( $showSuggestion ) {
+	public function setShowSuggestion( $showSuggestion ) {
 		$this->showSuggestion = $showSuggestion;
 	}
 
@@ -356,7 +356,7 @@ abstract class SearchEngine {
 	 * @param string $query
 	 * @return string
 	 */
-	function replacePrefixes( $query ) {
+	public function replacePrefixes( $query ) {
 		return $query;
 	}
 
@@ -476,7 +476,7 @@ abstract class SearchEngine {
 	 * @param int $id Page id that was deleted
 	 * @param string $title Title of page that was deleted
 	 */
-	function delete( $id, $title ) {
+	public function delete( $id, $title ) {
 		// no-op
 	}
 

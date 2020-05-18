@@ -196,7 +196,7 @@ class UserRightsProxy {
 	 * Replaces User::getUserGroups()
 	 * @return array
 	 */
-	function getGroups() {
+	public function getGroups() {
 		return array_keys( self::getGroupMemberships() );
 	}
 
@@ -206,7 +206,7 @@ class UserRightsProxy {
 	 * @return array
 	 * @since 1.29
 	 */
-	function getGroupMemberships() {
+	public function getGroupMemberships() {
 		return UserGroupMembership::getMembershipsForUser( $this->id, $this->db );
 	}
 
@@ -217,7 +217,7 @@ class UserRightsProxy {
 	 * @param string|null $expiry
 	 * @return bool
 	 */
-	function addGroup( $group, $expiry = null ) {
+	public function addGroup( $group, $expiry = null ) {
 		if ( $expiry ) {
 			$expiry = wfTimestamp( TS_MW, $expiry );
 		}
@@ -232,7 +232,7 @@ class UserRightsProxy {
 	 * @param string $group
 	 * @return bool
 	 */
-	function removeGroup( $group ) {
+	public function removeGroup( $group ) {
 		$ugm = UserGroupMembership::getMembership( $this->id, $group, $this->db );
 		if ( !$ugm ) {
 			return false;
@@ -270,7 +270,7 @@ class UserRightsProxy {
 	/**
 	 * Replaces User::touchUser()
 	 */
-	function invalidateCache() {
+	public function invalidateCache() {
 		$this->db->update(
 			'user',
 			[ 'user_touched' => $this->db->timestamp() ],

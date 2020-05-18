@@ -22,18 +22,8 @@
 		<exclude-pattern>includes/parser/Sanitizer.php</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
 		<exclude-pattern>includes/media/</exclude-pattern>
-		<exclude-pattern>includes/skins/SkinTemplate.php</exclude-pattern>
-		<exclude-pattern>includes/skins/Skin.php</exclude-pattern>
-		<exclude-pattern>includes/skins/QuickTemplate.php</exclude-pattern>
-		<exclude-pattern>includes/skins/BaseTemplate.php</exclude-pattern>
 		<exclude-pattern>includes/specials/</exclude-pattern>
 		<exclude-pattern>includes/user/User.php</exclude-pattern>
-		<exclude-pattern>includes/user/UserRightsProxy.php</exclude-pattern>
-		<exclude-pattern>includes/user/UserArrayFromResult.php</exclude-pattern>
-		<exclude-pattern>includes/user/UserArray.php</exclude-pattern>
-		<exclude-pattern>includes/search/SearchMySQL.php</exclude-pattern>
-		<exclude-pattern>includes/search/SearchEngine.php</exclude-pattern>
-		<exclude-pattern>includes/search/SearchHighlighter.php</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">

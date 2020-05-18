@@ -237,7 +237,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param array &$query
 	 * @since 1.18 (changed)
 	 */
-	function queryNamespaces( &$query ) {
+	private function queryNamespaces( &$query ) {
 		if ( is_array( $this->namespaces ) ) {
 			if ( count( $this->namespaces ) === 0 ) {
 				$this->namespaces[] = '0';
@@ -378,7 +378,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param int $id Page id that was deleted
 	 * @param string $title Title of page that was deleted
 	 */
-	function delete( $id, $title ) {
+	public function delete( $id, $title ) {
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
 		$dbw->delete( 'searchindex', [ 'si_page' => $id ], __METHOD__ );
 	}
@@ -389,7 +389,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $string
 	 * @return mixed|string
 	 */
-	function normalizeText( $string ) {
+	public function normalizeText( $string ) {
 		$out = parent::normalizeText( $string );
 
 		// MySQL fulltext index doesn't grok utf-8, so we

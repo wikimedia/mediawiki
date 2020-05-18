@@ -235,7 +235,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * Initialize various variables and generate the template
 	 */
-	function outputPage() {
+	public function outputPage() {
 		Profiler::instance()->setAllowOutput();
 		$out = $this->getOutput();
 
@@ -664,9 +664,8 @@ class SkinTemplate extends Skin {
 	 *
 	 * @param string $name Language name, e.g. "English" or "español"
 	 * @return string
-	 * @private
 	 */
-	function formatLanguageName( $name ) {
+	private function formatLanguageName( $name ) {
 		return $this->getLanguage()->ucfirst( $name );
 	}
 
@@ -689,9 +688,8 @@ class SkinTemplate extends Skin {
 	 * For the base class, assume strings all around.
 	 *
 	 * @param string $str
-	 * @private
 	 */
-	function printOrError( $str ) {
+	private function printOrError( $str ) {
 		echo $str;
 	}
 
@@ -704,7 +702,7 @@ class SkinTemplate extends Skin {
 	 * a reason it can't output one of the two modes.
 	 * @return bool
 	 */
-	function useCombinedLoginLink() {
+	private function useCombinedLoginLink() {
 		global $wgUseCombinedLoginLink;
 		return $wgUseCombinedLoginLink;
 	}
@@ -890,7 +888,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @return array
 	 */
-	function tabAction( $title, $message, $selected, $query = '', $checkEdit = false ) {
+	public function tabAction( $title, $message, $selected, $query = '', $checkEdit = false ) {
 		$classes = [];
 		if ( $selected ) {
 			$classes[] = 'selected';
@@ -951,7 +949,7 @@ class SkinTemplate extends Skin {
 	 * @param string|array $urlaction
 	 * @return array
 	 */
-	function makeTalkUrlDetails( $name, $urlaction = '' ) {
+	private function makeTalkUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
 		if ( !is_object( $title ) ) {
 			throw new MWException( __METHOD__ . " given invalid pagename $name" );
@@ -970,7 +968,7 @@ class SkinTemplate extends Skin {
 	 * @param string|array $urlaction
 	 * @return array
 	 */
-	function makeArticleUrlDetails( $name, $urlaction = '' ) {
+	public function makeArticleUrlDetails( $name, $urlaction = '' ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		$title = Title::newFromText( $name );
 		$title = $title->getSubjectPage();
