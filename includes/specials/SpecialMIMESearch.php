@@ -46,7 +46,7 @@ class SpecialMIMESearch extends QueryPage {
 		return false;
 	}
 
-	function linkParameters() {
+	protected function linkParameters() {
 		return [ 'mime' => "{$this->major}/{$this->minor}" ];
 	}
 

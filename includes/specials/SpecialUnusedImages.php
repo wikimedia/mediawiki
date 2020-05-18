@@ -71,7 +71,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 		return $retval;
 	}
 
-	function usesTimestamps() {
+	public function usesTimestamps() {
 		return true;
 	}
 

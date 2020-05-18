@@ -57,7 +57,7 @@ class MostimagesPage extends ImageQueryPage {
 		];
 	}
 
-	function getCellHtml( $row ) {
+	protected function getCellHtml( $row ) {
 		return $this->msg( 'nimagelinks' )->numParams( $row->value )->escaped() . '<br />';
 	}
 

@@ -113,7 +113,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 * @private
 	 */
-	function showOptions( $namespace, $type, $level ) {
+	private function showOptions( $namespace, $type, $level ) {
 		$formDescriptor = [
 			'namespace' => [
 				'class' => 'HTMLSelectNamespace',
@@ -140,7 +140,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string|array
 	 * @private
 	 */
-	function getLevelMenu( $pr_level ) {
+	private function getLevelMenu( $pr_level ) {
 		// Temporary array
 		$m = [ $this->msg( 'restriction-level-all' )->text() => 0 ];
 		$options = [];

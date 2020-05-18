@@ -92,7 +92,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * redirects.
 	 * @return bool
 	 */
-	function forceExistenceCheck() {
+	protected function forceExistenceCheck() {
 		return true;
 	}
 

@@ -398,7 +398,7 @@ class UsersPager extends AlphabeticPager {
 	 * Get a list of all explicit groups
 	 * @return array
 	 */
-	function getAllGroups() {
+	private function getAllGroups() {
 		$result = [];
 		foreach ( User::getAllGroups() as $group ) {
 			$result[$group] = UserGroupMembership::getGroupName( $group );
@@ -412,7 +412,7 @@ class UsersPager extends AlphabeticPager {
 	 * Preserve group and username offset parameters when paging
 	 * @return array
 	 */
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		if ( $this->requestedGroup != '' ) {
 			$query['group'] = $this->requestedGroup;

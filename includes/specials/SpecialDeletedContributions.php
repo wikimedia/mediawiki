@@ -132,7 +132,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	 * @param User $userObj User object for the target
 	 * @return string Appropriately-escaped HTML to be output literally
 	 */
-	function getSubTitle( $userObj ) {
+	private function getSubTitle( $userObj ) {
 		$linkRenderer = $this->getLinkRenderer();
 		if ( $userObj->isAnon() ) {
 			$user = htmlspecialchars( $userObj->getName() );
@@ -194,7 +194,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	/**
 	 * Generates the namespace selector form with hidden attributes.
 	 */
-	function getForm() {
+	private function getForm() {
 		$opts = $this->mOpts;
 
 		$formDescriptor = [

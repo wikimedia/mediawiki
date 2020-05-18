@@ -55,7 +55,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 		return false;
 	}
 
-	function linkParameters() {
+	protected function linkParameters() {
 		return [ 'filename' => $this->filename ];
 	}
 
@@ -64,14 +64,14 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 *
 	 * @return array Array of File objects
 	 */
-	function getDupes() {
+	private function getDupes() {
 		return MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $this->hash );
 	}
 
 	/**
 	 * @param array $dupes Array of File objects
 	 */
-	function showList( $dupes ) {
+	private function showList( $dupes ) {
 		$html = [];
 		$html[] = $this->openList( 0 );
 
@@ -185,7 +185,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 		}
 	}
 
-	function doBatchLookups( $list ) {
+	private function doBatchLookups( $list ) {
 		$batch = new LinkBatch();
 		/** @var File $file */
 		foreach ( $list as $file ) {

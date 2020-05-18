@@ -30,7 +30,7 @@ class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
 	 * @param array $alldata The data collected from the form
 	 * @return bool|string Bool true on success, or String error to display.
 	 */
-	function validate( $value, $alldata ) {
+	public function validate( $value, $alldata ) {
 		// Need to call into grandparent to be a good citizen. :)
 		return HTMLFormField::validate( $value, $alldata );
 	}

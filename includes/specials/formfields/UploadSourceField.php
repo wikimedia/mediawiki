@@ -27,7 +27,7 @@ class UploadSourceField extends HTMLTextField {
 	 * @param array $cellAttributes
 	 * @return string
 	 */
-	function getLabelHtml( $cellAttributes = [] ) {
+	public function getLabelHtml( $cellAttributes = [] ) {
 		$id = $this->mParams['id'];
 		$label = Html::rawElement( 'label', [ 'for' => $id ], $this->mLabel );
 
@@ -57,7 +57,7 @@ class UploadSourceField extends HTMLTextField {
 	/**
 	 * @return int
 	 */
-	function getSize() {
+	public function getSize() {
 		return $this->mParams['size'] ?? 60;
 	}
 }
