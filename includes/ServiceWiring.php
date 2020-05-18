@@ -1336,6 +1336,14 @@ return [
 		);
 	},
 
+	'UserCache' => function ( MediaWikiServices $services ) : UserCache {
+		return new UserCache(
+			LoggerFactory::getInstance( 'UserCache' ),
+			$services->getDBLoadBalancer(),
+			$services->getLinkBatchFactory()
+		);
+	},
+
 	'UserEditTracker' => function ( MediaWikiServices $services ) : UserEditTracker {
 		$jobQueueGroup = JobQueueGroup::singleton();
 

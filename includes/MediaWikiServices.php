@@ -109,6 +109,7 @@ use TitleFactory;
 use TitleFormatter;
 use TitleParser;
 use UploadRevisionImporter;
+use UserCache;
 use VirtualRESTServiceClient;
 use WANObjectCache;
 use WatchedItemQueryService;
@@ -1338,6 +1339,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUploadRevisionImporter() : UploadRevisionImporter {
 		return $this->getService( 'UploadRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return UserCache
+	 */
+	public function getUserCache() : UserCache {
+		return $this->getService( 'UserCache' );
 	}
 
 	/**
