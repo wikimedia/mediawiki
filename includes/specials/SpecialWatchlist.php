@@ -39,7 +39,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	/** @var float|int */
 	private $maxDays;
-	/** WatchedItemStore */
+
+	/** @var WatchedItemStore */
 	private $watchStore;
 
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
@@ -480,7 +481,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 		$user = $this->getUser();
 		$output = $this->getOutput();
-		$services = MediaWikiServices::getInstance();
 
 		# Show a message about replica DB lag, if applicable
 		$lag = $dbr->getSessionLagStatus()['lag'];
@@ -520,12 +520,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 		$dbr->dataSeek( $rows, 0 );
 
-		if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
-			&& $user->getOption( 'shownumberswatching' )
-		) {
-			$watchedItemStore = $services->getWatchedItemStore();
-		}
-
 		$s = $list->beginRecentChangesList();
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
@@ -555,9 +549,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$unseen = false;
 			}
 
-			if ( isset( $watchedItemStore ) ) {
+			if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
+				&& $user->getOption( 'shownumberswatching' )
+			) {
 				$rcTitleValue = new TitleValue( (int)$obj->rc_namespace, $obj->rc_title );
-				$rc->numberofWatchingusers = $watchedItemStore->countWatchers( $rcTitleValue );
+				$rc->numberofWatchingusers = $this->watchStore->countWatchers( $rcTitleValue );
 			} else {
 				$rc->numberofWatchingusers = 0;
 			}
@@ -866,8 +862,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return int
 	 */
 	protected function countItems() {
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$count = $store->countWatchedItems( $this->getUser() );
+		$count = $this->watchStore->countWatchedItems( $this->getUser() );
 		return floor( $count / 2 );
 	}
 
