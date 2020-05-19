@@ -41,7 +41,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 */
 	protected $totalSize = 0;
 
-	function __construct( $name = 'MediaStatistics' ) {
+	public function __construct( $name = 'MediaStatistics' ) {
 		parent::__construct( $name );
 		// Generally speaking there is only a small number of file types,
 		// so just show all of them.
@@ -104,7 +104,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 * tables will be fragmented.
 	 * @return array Fields to sort by
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [ 'img_media_type', 'count(*)', 'img_major_mime', 'img_minor_mime' ];
 	}
 

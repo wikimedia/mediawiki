@@ -44,7 +44,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		parent::__construct( 'Whatlinkshere' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$out = $this->getOutput();
 
 		$this->setHeaders();

@@ -46,7 +46,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	/**
 	 * @param string $name Name of the special page, as seen in links and URLs (default: 'Allpages')
 	 */
-	function __construct( $name = 'Allpages' ) {
+	public function __construct( $name = 'Allpages' ) {
 		parent::__construct( $name );
 	}
 
@@ -55,7 +55,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 *
 	 * @param string $par Becomes "FOO" when called like Special:Allpages/FOO (default null)
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$request = $this->getRequest();
 		$out = $this->getOutput();
 

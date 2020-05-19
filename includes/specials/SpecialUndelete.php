@@ -65,7 +65,7 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private $mSearchPrefix;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 	}
 
@@ -195,7 +195,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 
 		$user = $this->getUser();

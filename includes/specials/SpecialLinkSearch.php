@@ -45,7 +45,7 @@ class SpecialLinkSearch extends QueryPage {
 		$this->mProt = $params['protocol'];
 	}
 
-	function __construct( $name = 'LinkSearch' ) {
+	public function __construct( $name = 'LinkSearch' ) {
 		parent::__construct( $name );
 
 		// Since we don't control the constructor parameters, we can't inject services that way.
@@ -53,7 +53,7 @@ class SpecialLinkSearch extends QueryPage {
 		// using the setServices() method.
 	}
 
-	function isCacheable() {
+	public function isCacheable() {
 		return false;
 	}
 
@@ -148,7 +148,7 @@ class SpecialLinkSearch extends QueryPage {
 	 * Disable RSS/Atom feeds
 	 * @return bool
 	 */
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
@@ -215,7 +215,7 @@ class SpecialLinkSearch extends QueryPage {
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
-	function preprocessResults( $db, $res ) {
+	public function preprocessResults( $db, $res ) {
 		$this->executeLBFromResultWrapper( $res );
 	}
 
@@ -224,7 +224,7 @@ class SpecialLinkSearch extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$title = new TitleValue( (int)$result->namespace, $result->title );
 		$pageLink = $this->getLinkRenderer()->makeLink( $title );
 
@@ -239,7 +239,7 @@ class SpecialLinkSearch extends QueryPage {
 	 * Not much point in descending order here.
 	 * @return array
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [];
 	}
 

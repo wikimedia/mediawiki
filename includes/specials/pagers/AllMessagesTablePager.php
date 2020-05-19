@@ -296,7 +296,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		// Do all the normal stuff
 		$s = parent::formatRow( $row );
 
@@ -356,7 +356,7 @@ class AllMessagesTablePager extends TablePager {
 		return SpecialPage::getTitleFor( 'Allmessages', false );
 	}
 
-	function isFieldSortable( $x ) {
+	protected function isFieldSortable( $x ) {
 		return false;
 	}
 
@@ -364,7 +364,7 @@ class AllMessagesTablePager extends TablePager {
 		return '';
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [];
 	}
 

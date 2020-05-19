@@ -50,7 +50,7 @@ class SpecialRedirect extends FormSpecialPage {
 	 */
 	protected $mValue;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Redirect' );
 		$this->mType = null;
 		$this->mValue = null;

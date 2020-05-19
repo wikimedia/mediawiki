@@ -25,11 +25,11 @@
  * @ingroup SpecialPage
  */
 class SpecialLongPages extends SpecialShortPages {
-	function __construct( $name = 'Longpages' ) {
+	public function __construct( $name = 'Longpages' ) {
 		parent::__construct( $name );
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return true;
 	}
 

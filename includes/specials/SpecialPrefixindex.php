@@ -39,7 +39,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 	// Inherit $maxPerPage
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Prefixindex' );
 	}
 
@@ -47,7 +47,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 	 * Entry point : initialise variables and call subfunctions.
 	 * @param string $par Becomes "FOO" when called like Special:Prefixindex/FOO (default null)
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 

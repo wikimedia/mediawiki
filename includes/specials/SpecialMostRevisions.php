@@ -25,11 +25,11 @@
  */
 
 class SpecialMostRevisions extends SpecialFewestRevisions {
-	function __construct( $name = 'Mostrevisions' ) {
+	public function __construct( $name = 'Mostrevisions' ) {
 		parent::__construct( $name );
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return true;
 	}
 

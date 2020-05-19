@@ -113,14 +113,14 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return $this->creationSort ? 'user_id' : 'user_name';
 	}
 
 	/**
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$conds = [];
 
@@ -190,7 +190,7 @@ class UsersPager extends AlphabeticPager {
 	 * @param stdClass $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		if ( $row->user_id == 0 ) { # T18487
 			return '';
 		}
@@ -299,7 +299,7 @@ class UsersPager extends AlphabeticPager {
 	/**
 	 * @return string
 	 */
-	function getPageHeader() {
+	public function getPageHeader() {
 		$self = explode( '/', $this->getTitle()->getPrefixedDBkey(), 2 )[0];
 
 		$groupOptions = [ $this->msg( 'group-all' )->text() => '' ];

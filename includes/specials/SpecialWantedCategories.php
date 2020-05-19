@@ -31,11 +31,11 @@
 class SpecialWantedCategories extends WantedQueryPage {
 	private $currentCategoryCounts;
 
-	function __construct( $name = 'Wantedcategories' ) {
+	public function __construct( $name = 'Wantedcategories' ) {
 		parent::__construct( $name );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'categorylinks', 'page' ],
 			'fields' => [
@@ -51,7 +51,7 @@ class SpecialWantedCategories extends WantedQueryPage {
 		];
 	}
 
-	function preprocessResults( $db, $res ) {
+	public function preprocessResults( $db, $res ) {
 		parent::preprocessResults( $db, $res );
 
 		$this->currentCategoryCounts = [];
@@ -87,7 +87,7 @@ class SpecialWantedCategories extends WantedQueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 
 		$text = new HtmlArmor( $this->getLanguageConverter()->convertHtml( $nt->getText() ) );

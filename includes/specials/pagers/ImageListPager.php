@@ -201,7 +201,7 @@ class ImageListPager extends TablePager {
 		return $this->mFieldNames;
 	}
 
-	function isFieldSortable( $field ) {
+	protected function isFieldSortable( $field ) {
 		if ( $this->mIncluding ) {
 			return false;
 		}
@@ -235,7 +235,7 @@ class ImageListPager extends TablePager {
 		return in_array( $field, $sortable );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		// Hacky Hacky Hacky - I want to get query info
 		// for two different tables, without reimplementing
 		// the pager class.

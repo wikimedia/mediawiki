@@ -33,7 +33,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var FormOptions */
 	protected $mOpts;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'DeletedContributions', 'deletedhistory' );
 	}
 
@@ -43,7 +43,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	 *
 	 * @param string $par (optional) user name of the user for which to show the contributions
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->checkPermissions();
