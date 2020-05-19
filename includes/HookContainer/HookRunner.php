@@ -5,6 +5,7 @@ namespace MediaWiki\HookContainer;
 use Config;
 use ResourceLoader;
 use ResourceLoaderContext;
+use Skin;
 
 /**
  * This class provides an implementation of the core hook interfaces,
@@ -307,6 +308,7 @@ class HookRunner implements
 	\MediaWiki\Hook\SidebarBeforeOutputHook,
 	\MediaWiki\Hook\SiteNoticeAfterHook,
 	\MediaWiki\Hook\SiteNoticeBeforeHook,
+	\MediaWiki\Hook\SkinAddFooterLinksHook,
 	\MediaWiki\Hook\SkinAfterBottomScriptsHook,
 	\MediaWiki\Hook\SkinAfterContentHook,
 	\MediaWiki\Hook\SkinBuildSidebarHook,
@@ -457,6 +459,7 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\OpportunisticLinksUpdateHook,
 	\MediaWiki\Page\Hook\PageDeletionDataUpdatesHook,
 	\MediaWiki\Page\Hook\PageViewUpdatesHook,
+	\MediaWiki\Page\Hook\RevisionFromEditCompleteHook,
 	\MediaWiki\Page\Hook\RevisionUndeletedHook,
 	\MediaWiki\Page\Hook\RollbackCompleteHook,
 	\MediaWiki\Page\Hook\ShowMissingArticleHook,
@@ -3218,6 +3221,13 @@ class HookRunner implements
 		);
 	}
 
+	public function onRevisionFromEditComplete( $wikiPage, $rev, $originalRevId, $user, &$tags ) {
+		$this->container->run(
+			'RevisionFromEditComplete',
+			[ $wikiPage, $rev, $originalRevId, $user, &$tags ]
+		);
+	}
+
 	public function onRevisionInsertComplete( $revision, $data, $flags ) {
 		return $this->container->run(
 			'RevisionInsertComplete',
@@ -3432,6 +3442,13 @@ class HookRunner implements
 		return $this->container->run(
 			'SiteNoticeBefore',
 			[ &$siteNotice, $skin ]
+		);
+	}
+
+	public function onSkinAddFooterLinks( Skin $skin, string $key, array &$footerItems ) {
+		$this->container->run(
+			'SkinAddFooterLinks',
+			[ $skin, $key, &$footerItems ]
 		);
 	}
 

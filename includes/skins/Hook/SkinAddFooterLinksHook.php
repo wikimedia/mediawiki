@@ -8,7 +8,7 @@ use Skin;
  * @stable for implementation
  * @ingroup Hooks
  */
-interface SkinAddFooterLinks {
+interface SkinAddFooterLinksHook {
 	/**
 	 * This hook is called when generating the code used to display the
 	 * footer. Skins
