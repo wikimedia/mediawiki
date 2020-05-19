@@ -13,6 +13,13 @@ use MediaWiki\MediaWikiServices;
  * @author Addshore
  */
 class SpecialPageFatalTest extends MediaWikiTestCase {
+
+	public function setUp() : void {
+		parent::setUp();
+		// FIXME: Acknowledge known non-fatal query (T248191)
+		$this->setMwGlobals( 'wgDBerrorLog', false );
+	}
+
 	public function provideSpecialPages() {
 		$specialPages = [];
 		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
