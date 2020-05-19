@@ -43,7 +43,7 @@ class ForeignAPIFile extends File {
 	 * @param array $info
 	 * @param bool $exists
 	 */
-	function __construct( $title, $repo, $info, $exists = false ) {
+	public function __construct( $title, $repo, $info, $exists = false ) {
 		parent::__construct( $title, $repo );
 
 		$this->mInfo = $info;
@@ -57,7 +57,7 @@ class ForeignAPIFile extends File {
 	 * @param ForeignApiRepo $repo
 	 * @return ForeignAPIFile|null
 	 */
-	static function newFromTitle( Title $title, $repo ) {
+	public static function newFromTitle( Title $title, $repo ) {
 		$data = $repo->fetchImageQuery( [
 			'titles' => 'File:' . $title->getDBkey(),
 			'iiprop' => self::getProps(),
@@ -93,7 +93,7 @@ class ForeignAPIFile extends File {
 	 * Get the property string for iiprop and aiprop
 	 * @return string
 	 */
-	static function getProps() {
+	public static function getProps() {
 		return 'timestamp|user|comment|url|size|sha1|metadata|mime|mediatype|extmetadata';
 	}
 
@@ -125,7 +125,7 @@ class ForeignAPIFile extends File {
 	 * @param int $flags
 	 * @return bool|MediaTransformOutput
 	 */
-	function transform( $params, $flags = 0 ) {
+	public function transform( $params, $flags = 0 ) {
 		if ( !$this->canRender() ) {
 			// show icon
 			return parent::transform( $params, $flags );
@@ -269,7 +269,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @return null|string
 	 */
-	function getSha1() {
+	public function getSha1() {
 		return isset( $this->mInfo['sha1'] )
 			? Wikimedia\base_convert( strval( $this->mInfo['sha1'] ), 16, 36, 31 )
 			: null;
@@ -278,7 +278,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @return bool|string
 	 */
-	function getTimestamp() {
+	public function getTimestamp() {
 		return wfTimestamp( TS_MW,
 			isset( $this->mInfo['timestamp'] )
 				? strval( $this->mInfo['timestamp'] )
@@ -289,7 +289,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @return string
 	 */
-	function getMimeType() {
+	public function getMimeType() {
 		if ( !isset( $this->mInfo['mime'] ) ) {
 			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$this->mInfo['mime'] = $magic->guessTypesForExtension( $this->getExtension() );
@@ -301,7 +301,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @return int|string
 	 */
-	function getMediaType() {
+	public function getMediaType() {
 		if ( isset( $this->mInfo['mediatype'] ) ) {
 			return $this->mInfo['mediatype'];
 		}
@@ -313,7 +313,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @return bool|string
 	 */
-	function getDescriptionUrl() {
+	public function getDescriptionUrl() {
 		return $this->mInfo['descriptionurl'] ?? false;
 	}
 
@@ -322,7 +322,7 @@ class ForeignAPIFile extends File {
 	 * @param string $suffix
 	 * @return null|string
 	 */
-	function getThumbPath( $suffix = '' ) {
+	public function getThumbPath( $suffix = '' ) {
 		if ( !$this->repo->canCacheThumbs() ) {
 			return null;
 		}
@@ -337,7 +337,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @return string[]
 	 */
-	function getThumbnails() {
+	protected function getThumbnails() {
 		$dir = $this->getThumbPath( $this->getName() );
 		$iter = $this->repo->getBackend()->getFileList( [ 'dir' => $dir ] );
 
@@ -351,12 +351,12 @@ class ForeignAPIFile extends File {
 		return $files;
 	}
 
-	function purgeCache( $options = [] ) {
+	public function purgeCache( $options = [] ) {
 		$this->purgeThumbnails( $options );
 		$this->purgeDescriptionPage();
 	}
 
-	function purgeDescriptionPage() {
+	private function purgeDescriptionPage() {
 		$services = MediaWikiServices::getInstance();
 		$url = $this->repo->getDescriptionRenderUrl(
 			$this->getName(), $services->getContentLanguage()->getCode() );
@@ -368,7 +368,7 @@ class ForeignAPIFile extends File {
 	/**
 	 * @param array $options
 	 */
-	function purgeThumbnails( $options = [] ) {
+	public function purgeThumbnails( $options = [] ) {
 		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
 

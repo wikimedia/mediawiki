@@ -153,7 +153,7 @@ class LocalFile extends File {
 	 *
 	 * @return static
 	 */
-	static function newFromTitle( $title, $repo, $unused = null ) {
+	public static function newFromTitle( $title, $repo, $unused = null ) {
 		return new static( $title, $repo );
 	}
 
@@ -166,7 +166,7 @@ class LocalFile extends File {
 	 *
 	 * @return static
 	 */
-	static function newFromRow( $row, $repo ) {
+	public static function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_FILE, $row->img_name );
 		$file = new static( $title, $repo );
 		$file->loadFromRow( $row );
@@ -183,7 +183,7 @@ class LocalFile extends File {
 	 * @param string|bool $timestamp MW_timestamp (optional)
 	 * @return bool|LocalFile
 	 */
-	static function newFromKey( $sha1, $repo, $timestamp = false ) {
+	public static function newFromKey( $sha1, $repo, $timestamp = false ) {
 		$dbr = $repo->getReplicaDB();
 
 		$conds = [ 'img_sha1' => $sha1 ];
@@ -251,7 +251,7 @@ class LocalFile extends File {
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 */
-	function __construct( $title, $repo ) {
+	public function __construct( $title, $repo ) {
 		parent::__construct( $title, $repo );
 
 		$this->metadata = '';
@@ -276,7 +276,7 @@ class LocalFile extends File {
 	 * there is no access to the shared cache.
 	 * @return string|bool
 	 */
-	function getCacheKey() {
+	protected function getCacheKey() {
 		return $this->repo->getSharedCacheKey( 'file', sha1( $this->getName() ) );
 	}
 
@@ -426,7 +426,7 @@ class LocalFile extends File {
 	 * Load file metadata from the DB
 	 * @param int $flags
 	 */
-	function loadFromDB( $flags = 0 ) {
+	protected function loadFromDB( $flags = 0 ) {
 		$fname = static::class . '::' . __FUNCTION__;
 
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
@@ -688,7 +688,7 @@ class LocalFile extends File {
 	/**
 	 * Fix assorted version-related problems with the image row by reloading it from the file
 	 */
-	function upgradeRow() {
+	public function upgradeRow() {
 		$this->lock();
 
 		$this->loadFromFile();
