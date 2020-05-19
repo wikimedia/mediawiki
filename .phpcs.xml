@@ -17,10 +17,6 @@
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="PSR2.Classes.ClassDeclaration.InterfaceWrongIndent" /><!-- Temporary: T243529 -->
 	</rule>
-	<!-- TODO Still to be done -->
-	<rule ref="Squiz.Scope.MethodScope.Missing">
-		<exclude-pattern>includes/filerepo/</exclude-pattern>
-	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
 		<exclude-pattern>tests/</exclude-pattern>
