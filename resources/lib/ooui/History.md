@@ -1,4 +1,22 @@
 # OOUI Release History
+## v0.39.0 / 2020-05-05
+### Breaking changes
+* [BREAKING CHANGE] LookupElement: Remove `onLookupMenuItemChoose` event (Volker E.)
+* [BREAKING CHANGE] TagItemWidget: Remove `setDisabled` function (Volker E.)
+* [BREAKING CHANGE] Use OOjs v5.0.0, up from v3.0.1 (James D. Forrester)
+* [BREAKING CHANGE] Use jQuery v3.5.1, up from v3.4.1 (James D. Forrester)
+
+### Features
+* PopupWidget: Add option to remove close button and add icon to widget head (Sohom Datta)
+
+### Styles
+* icons: Fix border-radii on all stacked-page icons (Ed Sanders)
+
+### Code
+* docs: Fix typo: 'the the' -> 'the' (Ed Sanders)
+* build: Upgrade karma-related devDependencies to latest (James D. Forrester)
+
+
 ## v0.38.1 / 2020-05-01
 ### Styles
 * icons: Add 'articlesSearch' icon (Volker E.)
