@@ -54,10 +54,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		if ( $this->mPerRow > 0 ) {
 			$maxwidth = $this->mPerRow * ( $this->mWidths + $this->getAllPadding() );
 			$oldStyle = $this->mAttribs['style'] ?? '';
-			# _width is ignored by any sane browser. IE6 doesn't know max-width
-			# so it uses _width instead
-			$this->mAttribs['style'] = "max-width: {$maxwidth}px;_width: {$maxwidth}px;" .
-				$oldStyle;
+			$this->mAttribs['style'] = "max-width: {$maxwidth}px;" . $oldStyle;
 		}
 
 		$attribs = Sanitizer::mergeAttributes(
