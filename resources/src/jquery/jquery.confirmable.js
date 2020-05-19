@@ -173,6 +173,7 @@
 
 	/**
 	 * Default options. Overridable primarily for internationalisation handling.
+	 *
 	 * @property {Object} defaultOptions
 	 */
 	$.fn.confirmable.defaultOptions = {

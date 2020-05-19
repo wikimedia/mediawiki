@@ -49,7 +49,7 @@
 	 *
 	 * @private
 	 * @param {string} id
-	 * @return {HTMLIframeElement}
+	 * @return {HTMLIFrameElement}
 	 */
 	function getNewIframe( id ) {
 		var frame = document.createElement( 'iframe' );
@@ -76,7 +76,7 @@
 	 * Process the result of the form submission, returned to an iframe.
 	 * This is the iframe's onload event.
 	 *
-	 * @param {HTMLIframeElement} iframe Iframe to extract result from
+	 * @param {HTMLIFrameElement} iframe Iframe to extract result from
 	 * @return {Object} Response from the server. The return value may or may
 	 *   not be an XMLDocument, this code was copied from elsewhere, so if you
 	 *   see an unexpected return type, please file a bug.

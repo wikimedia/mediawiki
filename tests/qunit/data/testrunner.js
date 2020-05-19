@@ -438,7 +438,7 @@
 		/**
 		 * Asserts that two DOM nodes are structurally equivalent.
 		 *
-		 * @param {HTMLElement} actual.
+		 * @param {HTMLElement} actual
 		 * @param {Object} expectedStruct
 		 * @param {string} message Assertion message.
 		 */
