@@ -775,7 +775,7 @@
 [submodule "extensions/ContributionScores"]
 	path = extensions/ContributionScores
 	url = https://github.com/wikimedia/mediawiki-extensions-ContributionScores
-	branch = REL1_34
+	branch = master
 	ignore = dirty
 [submodule "extensions/TocTree"]
 	path = extensions/TocTree
@@ -1260,12 +1260,12 @@
 [submodule "extensions/CommentStreams"]
 	path = extensions/CommentStreams
 	url = https://github.com/wikimedia/mediawiki-extensions-CommentStreams
-	branch = REL1_34
+	branch = master
 	ignore = dirty
 [submodule "extensions/VEForAll"]
 	path = extensions/VEForAll
 	url = https://github.com/wikimedia/mediawiki-extensions-VEForAll
-	branch = REL1_34
+	branch = master
 	ignore = dirty
 [submodule "extensions/DataTransfer"]
 	path = extensions/DataTransfer
@@ -1296,3 +1296,14 @@
 	path = extensions/GoogleDocs4MW
 	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
 	branch = master
+	ignore = dirty
+[submodule "skins/Femiwiki"]
+	path = skins/Femiwiki
+	url = https://github.com/femiwiki/FemiwikiSkin.git
+	branch = master 
+	ignore = dirty
+[submodule "skins/Citizen"]
+	path = skins/Citizen
+	url = https://github.com/StarCitizenTools/mediawiki-skins-Citizen.git
+	branch = master
+	ignore = dirty
