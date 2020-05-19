@@ -65,7 +65,7 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private $mSearchPrefix;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 	}
 
@@ -73,7 +73,7 @@ class SpecialUndelete extends SpecialPage {
 		return true;
 	}
 
-	function loadRequest( $par ) {
+	private function loadRequest( $par ) {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
@@ -163,7 +163,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 	}
 
-	function userCanExecute( User $user ) {
+	public function userCanExecute( User $user ) {
 		return $this->isAllowed( $this->mRestriction, $user );
 	}
 
@@ -195,7 +195,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 
 		$user = $this->getUser();
@@ -287,7 +287,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->getOutput()->redirect( $url );
 	}
 
-	function showSearchForm() {
+	private function showSearchForm() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
 		$fuzzySearch = $this->getRequest()->getVal( 'fuzzy', true );
@@ -1176,7 +1176,7 @@ class SpecialUndelete extends SpecialPage {
 	 *
 	 * @return string HTML fragment
 	 */
-	function getFileLink( $file, $titleObj, $ts, $key ) {
+	private function getFileLink( $file, $titleObj, $ts, $key ) {
 		$user = $this->getUser();
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
@@ -1208,7 +1208,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param File|ArchivedFile $file
 	 * @return string HTML fragment
 	 */
-	function getFileUser( $file ) {
+	private function getFileUser( $file ) {
 		if ( !$file->userCan( File::DELETED_USER, $this->getUser() ) ) {
 			return '<span class="history-deleted">' .
 				$this->msg( 'rev-deleted-user' )->escaped() .
@@ -1231,7 +1231,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param File|ArchivedFile $file
 	 * @return string HTML fragment
 	 */
-	function getFileComment( $file ) {
+	private function getFileComment( $file ) {
 		if ( !$file->userCan( File::DELETED_COMMENT, $this->getUser() ) ) {
 			return '<span class="history-deleted"><span class="comment">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span></span>';
@@ -1246,7 +1246,7 @@ class SpecialUndelete extends SpecialPage {
 		return $link;
 	}
 
-	function undelete() {
+	private function undelete() {
 		if ( $this->getConfig()->get( 'UploadMaintenance' )
 			&& $this->mTargetObj->getNamespace() == NS_FILE
 		) {

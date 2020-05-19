@@ -173,7 +173,7 @@ abstract class File implements IDBAccessObject {
 	 * @param Title|string|bool $title
 	 * @param FileRepo|bool $repo
 	 */
-	function __construct( $title, $repo ) {
+	public function __construct( $title, $repo ) {
 		// Some subclasses do not use $title, but set name/title some other way
 		if ( $title !== false ) {
 			$title = self::normalizeTitle( $title, 'exception' );
@@ -270,7 +270,7 @@ abstract class File implements IDBAccessObject {
 	 * Called by ImagePage
 	 * STUB
 	 */
-	function upgradeRow() {
+	public function upgradeRow() {
 	}
 
 	/**
@@ -768,7 +768,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getMimeType() {
+	public function getMimeType() {
 		return 'unknown/unknown';
 	}
 
@@ -1095,7 +1095,7 @@ abstract class File implements IDBAccessObject {
 	 * @param int $flags A bitfield, may contain self::RENDER_NOW to force rendering
 	 * @return ThumbnailImage|MediaTransformOutput|bool False on failure
 	 */
-	function transform( $params, $flags = 0 ) {
+	public function transform( $params, $flags = 0 ) {
 		global $wgThumbnailEpoch;
 
 		do {
@@ -1472,7 +1472,7 @@ abstract class File implements IDBAccessObject {
 	 * Overridden by LocalFile
 	 * @return string[]
 	 */
-	function getThumbnails() {
+	protected function getThumbnails() {
 		return [];
 	}
 
@@ -1483,7 +1483,7 @@ abstract class File implements IDBAccessObject {
 	 * @param array $options Options, which include:
 	 *   'forThumbRefresh' : The purging is only to refresh thumbnails
 	 */
-	function purgeCache( $options = [] ) {
+	public function purgeCache( $options = [] ) {
 	}
 
 	/**
@@ -1579,7 +1579,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getRel() {
+	public function getRel() {
 		return $this->getHashPath() . $this->getName();
 	}
 
@@ -1623,7 +1623,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getUrlRel() {
+	public function getUrlRel() {
 		return $this->getHashPath() . rawurlencode( $this->getName() );
 	}
 
@@ -1676,7 +1676,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
-	function getThumbPath( $suffix = false ) {
+	public function getThumbPath( $suffix = false ) {
 		$this->assertRepoDefined();
 
 		return $this->repo->getZonePath( 'thumb' ) . '/' . $this->getThumbRel( $suffix );
@@ -1927,7 +1927,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function isOld() {
+	public function isOld() {
 		return false;
 	}
 
@@ -1938,7 +1938,7 @@ abstract class File implements IDBAccessObject {
 	 * @param int $field One of DELETED_* bitfield constants
 	 * @return bool
 	 */
-	function isDeleted( $field ) {
+	public function isDeleted( $field ) {
 		return false;
 	}
 
@@ -1947,7 +1947,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * @return int
 	 */
-	function getVisibility() {
+	public function getVisibility() {
 		return 0;
 	}
 
@@ -2095,7 +2095,7 @@ abstract class File implements IDBAccessObject {
 	 * @param string $filePath The path to the file (e.g. From getLocalRefPath() )
 	 * @return array|false The width, followed by height, with optionally more things after
 	 */
-	function getImageSize( $filePath ) {
+	protected function getImageSize( $filePath ) {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
@@ -2182,7 +2182,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string|bool TS_MW timestamp or false on failure
 	 */
-	function getTimestamp() {
+	public function getTimestamp() {
 		$this->assertRepoDefined();
 
 		return $this->repo->getFileTimestamp( $this->getPath() );
@@ -2204,7 +2204,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getSha1() {
+	public function getSha1() {
 		$this->assertRepoDefined();
 
 		return $this->repo->getFileSha1( $this->getPath() );
@@ -2234,7 +2234,7 @@ abstract class File implements IDBAccessObject {
 	 * @param User|null $user User object to check, or null to use $wgUser
 	 * @return bool
 	 */
-	function userCan( $field, User $user = null ) {
+	public function userCan( $field, User $user = null ) {
 		return true;
 	}
 

@@ -27,7 +27,7 @@
  * @ingroup SpecialPage
  */
 class SpecialUserLogout extends FormSpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Userlogout' );
 	}
 

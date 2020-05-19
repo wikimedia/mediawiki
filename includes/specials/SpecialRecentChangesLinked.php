@@ -32,7 +32,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/** @var bool|Title */
 	protected $rclTargetTitle;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Recentchangeslinked' );
 	}
 
@@ -237,7 +237,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		return $dbr->query( $sql, __METHOD__ );
 	}
 
-	function setTopText( FormOptions $opts ) {
+	public function setTopText( FormOptions $opts ) {
 		$target = $this->getTargetTitle();
 		if ( $target ) {
 			$this->getOutput()->addBacklinkSubtitle( $target );
@@ -251,7 +251,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	 * @param FormOptions $opts
 	 * @return array
 	 */
-	function getExtraOptions( $opts ) {
+	public function getExtraOptions( $opts ) {
 		$extraOpts = parent::getExtraOptions( $opts );
 
 		$opts->consumeValues( [ 'showlinkedto', 'target' ] );
@@ -268,7 +268,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	/**
 	 * @return Title
 	 */
-	function getTargetTitle() {
+	private function getTargetTitle() {
 		if ( $this->rclTargetTitle === null ) {
 			$opts = $this->getOptions();
 			if ( isset( $opts['target'] ) && $opts['target'] !== '' ) {

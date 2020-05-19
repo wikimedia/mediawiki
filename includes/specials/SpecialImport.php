@@ -69,7 +69,7 @@ class SpecialImport extends SpecialPage {
 	 * @throws PermissionsError
 	 * @throws ReadOnlyError
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
 
 		$this->setHeaders();

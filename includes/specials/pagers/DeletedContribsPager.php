@@ -75,14 +75,14 @@ class DeletedContribsPager extends IndexPager {
 		$this->mDb = wfGetDB( DB_REPLICA, 'contributions' );
 	}
 
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['target'] = $this->target;
 
 		return $query;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$userCond = [
 			// ->getJoin() below takes care of any joins needed
 			ActorMigration::newMigration()->getWhere(
@@ -124,7 +124,7 @@ class DeletedContribsPager extends IndexPager {
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return IResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $order ) {
+	public function reallyDoQuery( $offset, $limit, $order ) {
 		$data = [ parent::reallyDoQuery( $offset, $limit, $order ) ];
 
 		// This hook will allow extensions to add in additional queries, nearly
@@ -160,7 +160,7 @@ class DeletedContribsPager extends IndexPager {
 		return new FakeResultWrapper( $result );
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'ar_timestamp';
 	}
 
@@ -186,7 +186,7 @@ class DeletedContribsPager extends IndexPager {
 		return "</ul>\n";
 	}
 
-	function getNavigationBar() {
+	public function getNavigationBar() {
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
@@ -217,7 +217,7 @@ class DeletedContribsPager extends IndexPager {
 		return $this->mNavigationBar;
 	}
 
-	function getNamespaceCond() {
+	private function getNamespaceCond() {
 		if ( $this->namespace !== '' ) {
 			return [ 'ar_namespace' => (int)$this->namespace ];
 		} else {
@@ -232,7 +232,7 @@ class DeletedContribsPager extends IndexPager {
 	 * @param stdClass $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$ret = '';
 		$classes = [];
 		$attribs = [];
@@ -290,7 +290,7 @@ class DeletedContribsPager extends IndexPager {
 	 * @param stdClass $row
 	 * @return string
 	 */
-	function formatRevisionRow( $row ) {
+	private function formatRevisionRow( $row ) {
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
 		$linkRenderer = $this->getLinkRenderer();

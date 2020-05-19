@@ -45,7 +45,7 @@ class OldLocalFile extends LocalFile {
 	 * @return static
 	 * @throws MWException
 	 */
-	static function newFromTitle( $title, $repo, $time = null ) {
+	public static function newFromTitle( $title, $repo, $time = null ) {
 		# The null default value is only here to avoid an E_STRICT
 		if ( $time === null ) {
 			throw new MWException( __METHOD__ . ' got null for $time parameter' );
@@ -60,7 +60,7 @@ class OldLocalFile extends LocalFile {
 	 * @param string $archiveName
 	 * @return static
 	 */
-	static function newFromArchiveName( $title, $repo, $archiveName ) {
+	public static function newFromArchiveName( $title, $repo, $archiveName ) {
 		return new static( $title, $repo, null, $archiveName );
 	}
 
@@ -69,7 +69,7 @@ class OldLocalFile extends LocalFile {
 	 * @param FileRepo $repo
 	 * @return static
 	 */
-	static function newFromRow( $row, $repo ) {
+	public static function newFromRow( $row, $repo ) {
 		$title = Title::makeTitle( NS_FILE, $row->oi_name );
 		$file = new static( $title, $repo, null, $row->oi_archive_name );
 		$file->loadFromRow( $row, 'oi_' );
@@ -87,7 +87,7 @@ class OldLocalFile extends LocalFile {
 	 *
 	 * @return bool|OldLocalFile
 	 */
-	static function newFromKey( $sha1, $repo, $timestamp = false ) {
+	public static function newFromKey( $sha1, $repo, $timestamp = false ) {
 		$dbr = $repo->getReplicaDB();
 
 		$conds = [ 'oi_sha1' => $sha1 ];
@@ -158,7 +158,7 @@ class OldLocalFile extends LocalFile {
 	 * @param string|null $archiveName Archive name or null to load by timestamp
 	 * @throws MWException
 	 */
-	function __construct( $title, $repo, $time, $archiveName ) {
+	public function __construct( $title, $repo, $time, $archiveName ) {
 		parent::__construct( $title, $repo );
 		$this->requestedTime = $time;
 		$this->archive_name = $archiveName;
@@ -170,14 +170,14 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * @return bool
 	 */
-	function getCacheKey() {
+	protected function getCacheKey() {
 		return false;
 	}
 
 	/**
 	 * @return string
 	 */
-	function getArchiveName() {
+	public function getArchiveName() {
 		if ( !isset( $this->archive_name ) ) {
 			$this->load();
 		}
@@ -188,18 +188,18 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * @return bool
 	 */
-	function isOld() {
+	public function isOld() {
 		return true;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isVisible() {
+	public function isVisible() {
 		return $this->exists() && !$this->isDeleted( File::DELETED_FILE );
 	}
 
-	function loadFromDB( $flags = 0 ) {
+	protected function loadFromDB( $flags = 0 ) {
 		$this->dataLoaded = true;
 
 		$dbr = ( $flags & self::READ_LATEST )
@@ -284,18 +284,18 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * @return string
 	 */
-	function getRel() {
+	public function getRel() {
 		return $this->getArchiveRel( $this->getArchiveName() );
 	}
 
 	/**
 	 * @return string
 	 */
-	function getUrlRel() {
+	public function getUrlRel() {
 		return $this->getArchiveRel( rawurlencode( $this->getArchiveName() ) );
 	}
 
-	function upgradeRow() {
+	public function upgradeRow() {
 		$this->loadFromFile();
 
 		# Don't destroy file info of missing files
@@ -332,7 +332,7 @@ class OldLocalFile extends LocalFile {
 	 *   revision rows
 	 * @return bool
 	 */
-	function isDeleted( $field ) {
+	public function isDeleted( $field ) {
 		$this->load();
 
 		return ( $this->deleted & $field ) == $field;
@@ -342,7 +342,7 @@ class OldLocalFile extends LocalFile {
 	 * Returns bitfield value
 	 * @return int
 	 */
-	function getVisibility() {
+	public function getVisibility() {
 		$this->load();
 
 		return (int)$this->deleted;
@@ -356,7 +356,7 @@ class OldLocalFile extends LocalFile {
 	 * @param User|null $user User object to check, or null to use $wgUser (deprecated since 1.35)
 	 * @return bool
 	 */
-	function userCan( $field, User $user = null ) {
+	public function userCan( $field, User $user = null ) {
 		$this->load();
 
 		if ( !$user ) {

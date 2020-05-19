@@ -38,7 +38,7 @@ class SpecialFewestRevisions extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
@@ -62,7 +62,7 @@ class SpecialFewestRevisions extends QueryPage {
 		];
 	}
 
-	function sortDescending() {
+	protected function sortDescending() {
 		return false;
 	}
 
@@ -71,7 +71,7 @@ class SpecialFewestRevisions extends QueryPage {
 	 * @param object $result Database row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$nt = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$nt ) {
 			return Html::element(

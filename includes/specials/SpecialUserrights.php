@@ -228,7 +228,7 @@ class UserrightsPage extends SpecialPage {
 		}
 	}
 
-	function getSuccessURL() {
+	private function getSuccessURL() {
 		return $this->getPageTitle( $this->mTarget )->getFullURL();
 	}
 
@@ -349,7 +349,7 @@ class UserrightsPage extends SpecialPage {
 	 *   containing only those groups that are to have new expiry values set
 	 * @return array Tuple of added, then removed groups
 	 */
-	function doSaveUserGroups( $user, array $add, array $remove, $reason = '',
+	public function doSaveUserGroups( $user, array $add, array $remove, $reason = '',
 		array $tags = [], array $groupExpiries = []
 	) {
 		// Validate input set...
@@ -487,7 +487,7 @@ class UserrightsPage extends SpecialPage {
 	 * Edit user groups membership
 	 * @param string $username Name of the user.
 	 */
-	function editUserGroupsForm( $username ) {
+	private function editUserGroupsForm( $username ) {
 		$status = $this->fetchUser( $username, true );
 		if ( !$status->isOK() ) {
 			$this->getOutput()->addWikiTextAsInterface(
@@ -599,7 +599,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Output a form to allow searching for a user
 	 */
-	function switchForm() {
+	private function switchForm() {
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 
 		$this->getOutput()->addHTML(
@@ -1032,7 +1032,7 @@ class UserrightsPage extends SpecialPage {
 	 *   'remove-self' => [ removable groups from self ]
 	 *  ]
 	 */
-	function changeableGroups() {
+	private function changeableGroups() {
 		return $this->getUser()->changeableGroups();
 	}
 

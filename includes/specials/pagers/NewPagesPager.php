@@ -46,7 +46,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->opts = $opts;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$rcQuery = RecentChange::getQueryInfo();
 
 		$conds = [];
@@ -130,7 +130,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	// Based on ContribsPager.php
-	function getNamespaceCond() {
+	private function getNamespaceCond() {
 		$namespace = $this->opts->getValue( 'namespace' );
 		if ( $namespace === 'all' || $namespace === '' ) {
 			return [];
@@ -158,11 +158,11 @@ class NewPagesPager extends ReverseChronologicalPager {
 		];
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'rc_timestamp';
 	}
 
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mForm->formatRow( $row );
 	}
 

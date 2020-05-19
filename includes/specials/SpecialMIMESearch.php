@@ -38,15 +38,15 @@ class SpecialMIMESearch extends QueryPage {
 		return false;
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function isCacheable() {
+	public function isCacheable() {
 		return false;
 	}
 
-	function linkParameters() {
+	protected function linkParameters() {
 		return [ 'mime' => "{$this->major}/{$this->minor}" ];
 	}
 
@@ -105,7 +105,7 @@ class SpecialMIMESearch extends QueryPage {
 	 * is what we ideally want, so everything works out fine anyhow.
 	 * @return array
 	 */
-	function getOrderFields() {
+	protected function getOrderFields() {
 		return [];
 	}
 
@@ -113,7 +113,7 @@ class SpecialMIMESearch extends QueryPage {
 	 * Generate and output the form
 	 * @return string
 	 */
-	function getPageHeader() {
+	protected function getPageHeader() {
 		$formDescriptor = [
 			'mime' => [
 				'type' => 'combobox',
@@ -184,7 +184,7 @@ class SpecialMIMESearch extends QueryPage {
 	 * @param object $result Result row
 	 * @return string
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 

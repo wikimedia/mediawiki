@@ -105,7 +105,7 @@ class ImageListPager extends TablePager {
 	 *
 	 * @return User|null
 	 */
-	function getRelevantUser() {
+	public function getRelevantUser() {
 		return $this->mUser;
 	}
 
@@ -175,7 +175,7 @@ class ImageListPager extends TablePager {
 	 * @return-taint onlysafefor_sql
 	 * @return array
 	 */
-	function getFieldNames() {
+	protected function getFieldNames() {
 		if ( !$this->mFieldNames ) {
 			$this->mFieldNames = [
 				'img_timestamp' => $this->msg( 'listfiles_date' )->text(),
@@ -201,7 +201,7 @@ class ImageListPager extends TablePager {
 		return $this->mFieldNames;
 	}
 
-	function isFieldSortable( $field ) {
+	protected function isFieldSortable( $field ) {
 		if ( $this->mIncluding ) {
 			return false;
 		}
@@ -235,7 +235,7 @@ class ImageListPager extends TablePager {
 		return in_array( $field, $sortable );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		// Hacky Hacky Hacky - I want to get query info
 		// for two different tables, without reimplementing
 		// the pager class.
@@ -325,7 +325,7 @@ class ImageListPager extends TablePager {
 	 * @return FakeResultWrapper
 	 * @throws MWException
 	 */
-	function reallyDoQuery( $offset, $limit, $order ) {
+	public function reallyDoQuery( $offset, $limit, $order ) {
 		$prevTableName = $this->mTableName;
 		$this->mTableName = 'image';
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
@@ -404,7 +404,7 @@ class ImageListPager extends TablePager {
 		return new FakeResultWrapper( $resultArray );
 	}
 
-	function getDefaultSort() {
+	public function getDefaultSort() {
 		if ( $this->mShowAll && $this->getConfig()->get( 'MiserMode' ) && $this->mUserName === null ) {
 			// Unfortunately no index on oi_timestamp.
 			return 'img_name';
@@ -437,7 +437,7 @@ class ImageListPager extends TablePager {
 	 *   - top: Message
 	 * @throws MWException
 	 */
-	function formatValue( $field, $value ) {
+	public function formatValue( $field, $value ) {
 		$services = MediaWikiServices::getInstance();
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
@@ -525,7 +525,7 @@ class ImageListPager extends TablePager {
 		}
 	}
 
-	function getForm() {
+	public function getForm() {
 		$formDescriptor = [];
 		$formDescriptor['limit'] = [
 			'type' => 'select',
@@ -596,7 +596,7 @@ class ImageListPager extends TablePager {
 		return parent::getSortHeaderClass() . ' listfiles_sort';
 	}
 
-	function getPagingQueries() {
+	public function getPagingQueries() {
 		$queries = parent::getPagingQueries();
 		if ( $this->mUserName !== null ) {
 			# Append the username to the query string
@@ -610,7 +610,7 @@ class ImageListPager extends TablePager {
 		return $queries;
 	}
 
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		$queries = parent::getDefaultQuery();
 		if ( !isset( $queries['user'] ) && $this->mUserName !== null ) {
 			$queries['user'] = $this->mUserName;
@@ -619,7 +619,7 @@ class ImageListPager extends TablePager {
 		return $queries;
 	}
 
-	function getTitle() {
+	public function getTitle() {
 		return SpecialPage::getTitleFor( 'Listfiles' );
 	}
 }

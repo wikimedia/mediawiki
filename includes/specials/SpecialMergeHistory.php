@@ -158,7 +158,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 	}
 
-	function showMergeForm() {
+	private function showMergeForm() {
 		$out = $this->getOutput();
 		$out->addWikiMsg( 'mergehistory-header' );
 
@@ -277,7 +277,7 @@ class SpecialMergeHistory extends SpecialPage {
 		return true;
 	}
 
-	function formatRevisionRow( $row ) {
+	public function formatRevisionRow( $row ) {
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionFactory()
 			->newRevisionFromRow( $row );
@@ -346,7 +346,7 @@ class SpecialMergeHistory extends SpecialPage {
 	 *
 	 * @return bool Success
 	 */
-	function merge() {
+	private function merge() {
 		# Get the titles directly from the IDs, in case the target page params
 		# were spoofed. The queries are done based on the IDs, so it's best to
 		# keep it consistent...

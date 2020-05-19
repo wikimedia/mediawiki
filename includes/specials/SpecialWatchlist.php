@@ -59,7 +59,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 *
 	 * @param string $subpage
 	 */
-	function execute( $subpage ) {
+	public function execute( $subpage ) {
 		// Anons don't get a watchlist
 		$this->requireLogin( 'watchlistanontext' );
 
@@ -747,7 +747,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->setBottomText( $opts );
 	}
 
-	function cutoffselector( $options ) {
+	private function cutoffselector( $options ) {
 		$selected = (float)$options['days'];
 		if ( $selected <= 0 ) {
 			$selected = $this->maxDays;
@@ -783,7 +783,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		return $select->getHTML() . "\n<br />\n";
 	}
 
-	function setTopText( FormOptions $opts ) {
+	public function setTopText( FormOptions $opts ) {
 		$nondefaults = $opts->getChangedValues();
 		$form = '';
 		$user = $this->getUser();

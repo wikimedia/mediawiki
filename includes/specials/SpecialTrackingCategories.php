@@ -32,11 +32,11 @@
  */
 
 class SpecialTrackingCategories extends SpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'TrackingCategories' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:Categories' );

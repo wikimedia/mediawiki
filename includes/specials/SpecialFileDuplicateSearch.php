@@ -39,15 +39,15 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 */
 	protected $file = null;
 
-	function __construct( $name = 'FileDuplicateSearch' ) {
+	public function __construct( $name = 'FileDuplicateSearch' ) {
 		parent::__construct( $name );
 	}
 
-	function isSyndicated() {
+	public function isSyndicated() {
 		return false;
 	}
 
-	function isCacheable() {
+	public function isCacheable() {
 		return false;
 	}
 
@@ -55,7 +55,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 		return false;
 	}
 
-	function linkParameters() {
+	protected function linkParameters() {
 		return [ 'filename' => $this->filename ];
 	}
 
@@ -64,14 +64,14 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 *
 	 * @return array Array of File objects
 	 */
-	function getDupes() {
+	private function getDupes() {
 		return MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $this->hash );
 	}
 
 	/**
 	 * @param array $dupes Array of File objects
 	 */
-	function showList( $dupes ) {
+	private function showList( $dupes ) {
 		$html = [];
 		$html[] = $this->openList( 0 );
 
@@ -185,7 +185,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 		}
 	}
 
-	function doBatchLookups( $list ) {
+	private function doBatchLookups( $list ) {
 		$batch = new LinkBatch();
 		/** @var File $file */
 		foreach ( $list as $file ) {
@@ -205,7 +205,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 	 * @param File $result
 	 * @return string HTML
 	 */
-	function formatResult( $skin, $result ) {
+	public function formatResult( $skin, $result ) {
 		$linkRenderer = $this->getLinkRenderer();
 		$nt = $result->getTitle();
 		$text = MediaWikiServices::getInstance()->getContentLanguage()->convert(

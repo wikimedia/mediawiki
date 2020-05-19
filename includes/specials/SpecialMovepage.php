@@ -148,7 +148,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
 	 * @param bool $isPermError Whether the error message is about user permissions.
 	 */
-	function showForm( $err, $isPermError = false ) {
+	protected function showForm( $err, $isPermError = false ) {
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
 		$out = $this->getOutput();
@@ -532,7 +532,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->showSubpages( $this->oldTitle );
 	}
 
-	function doSubmit() {
+	private function doSubmit() {
 		$user = $this->getUser();
 
 		if ( $user->pingLimiter( 'move' ) ) {
@@ -814,7 +814,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		WatchAction::doWatchOrUnwatch( $this->watch, $nt, $user );
 	}
 
-	function showLogFragment( $title ) {
+	private function showLogFragment( $title ) {
 		$moveLogPage = new LogPage( 'move' );
 		$out = $this->getOutput();
 		$out->addHTML( Xml::element( 'h2', null, $moveLogPage->getName()->text() ) );
@@ -827,7 +827,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 *
 	 * @param Title $title Page being moved.
 	 */
-	function showSubpages( $title ) {
+	private function showSubpages( $title ) {
 		$nsHasSubpages = MediaWikiServices::getInstance()->getNamespaceInfo()->
 			hasSubpages( $title->getNamespace() );
 		$subpages = $title->getSubpages();
@@ -856,7 +856,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 	}
 
-	function showSubpagesList( $subpages, $pagecount, $wikiMsg, $noSubpageMsg = false ) {
+	private function showSubpagesList( $subpages, $pagecount, $wikiMsg, $noSubpageMsg = false ) {
 		$out = $this->getOutput();
 
 		# No subpages.

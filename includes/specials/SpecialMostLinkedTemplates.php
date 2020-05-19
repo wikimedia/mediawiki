@@ -32,7 +32,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialMostLinkedTemplates extends QueryPage {
-	function __construct( $name = 'Mostlinkedtemplates' ) {
+	public function __construct( $name = 'Mostlinkedtemplates' ) {
 		parent::__construct( $name );
 	}
 

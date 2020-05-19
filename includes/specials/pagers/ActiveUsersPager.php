@@ -80,11 +80,11 @@ class ActiveUsersPager extends UsersPager {
 		}
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'qcc_title';
 	}
 
-	function getQueryInfo( $data = null ) {
+	public function getQueryInfo( $data = null ) {
 		$dbr = $this->getDatabase();
 
 		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
@@ -221,7 +221,7 @@ class ActiveUsersPager extends UsersPager {
 		$this->mResult->seek( 0 );
 	}
 
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		$userName = $row->user_name;
 
 		$ulinks = Linker::userLink( $row->user_id, $userName );

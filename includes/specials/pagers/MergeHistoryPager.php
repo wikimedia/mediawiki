@@ -83,11 +83,11 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		return '';
 	}
 
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mForm->formatRevisionRow( $row );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds['rev_page'] = $this->articleID;
 		$conds[] = "rev_timestamp < " . $this->mDb->addQuotes( $this->maxTimestamp );
@@ -105,7 +105,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		];
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'rev_timestamp';
 	}
 }

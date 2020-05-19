@@ -76,18 +76,18 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	/**
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mForm->getPageTitle();
 	}
 
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mForm->formatRow( $row );
 	}
 
 	/**
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds[] = 'pt_expiry > ' . $this->mDb->addQuotes( $this->mDb->timestamp() ) .
 			' OR pt_expiry IS NULL';
@@ -107,7 +107,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		];
 	}
 
-	function getIndexField() {
+	public function getIndexField() {
 		return 'pt_timestamp';
 	}
 }
