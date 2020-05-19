@@ -159,7 +159,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param string $mimeType Unused
 	 * @return bool False to indicate that an error should be returned to the user.
 	 */
-	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
+	private function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
 		$width = intval( $width );
 
 		# Sanity check $width
@@ -189,7 +189,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param array $params
 	 * @return bool|MediaTransformOutput
 	 */
-	function getScriptedTransform( $image, $script, $params ) {
+	public function getScriptedTransform( $image, $script, $params ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return false;
 		}
@@ -200,7 +200,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
-	function getImageSize( $image, $path ) {
+	public function getImageSize( $image, $path ) {
 		Wikimedia\suppressWarnings();
 		$gis = getimagesize( $path );
 		Wikimedia\restoreWarnings();
@@ -217,7 +217,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param File $image
 	 * @return int
 	 */
-	function getImageArea( $image ) {
+	public function getImageArea( $image ) {
 		return $image->getWidth() * $image->getHeight();
 	}
 
@@ -225,7 +225,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param File $file
 	 * @return string
 	 */
-	function getShortDesc( $file ) {
+	public function getShortDesc( $file ) {
 		global $wgLang;
 		$nbytes = htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
 		$widthheight = wfMessage( 'widthheight' )
@@ -259,7 +259,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param File $file
 	 * @return string
 	 */
-	function getDimensionsString( $file ) {
+	public function getDimensionsString( $file ) {
 		$pages = $file->pageCount();
 		if ( $pages > 1 ) {
 			return wfMessage( 'widthheightpage' )

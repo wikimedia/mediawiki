@@ -313,7 +313,7 @@ class Exif {
 	/**
 	 * Make $this->mFilteredExifData
 	 */
-	function makeFilteredData() {
+	private function makeFilteredData() {
 		$this->mFilteredExifData = [];
 
 		foreach ( array_keys( $this->mRawExifData ) as $section ) {
@@ -359,7 +359,7 @@ class Exif {
 	 * As an alternative approach, some of this could be done in the validate phase
 	 * if we make up our own types like Exif::DATE.
 	 */
-	function collapseData() {
+	private function collapseData() {
 		$this->exifGPStoNumber( 'GPSLatitude' );
 		$this->exifGPStoNumber( 'GPSDestLatitude' );
 		$this->exifGPStoNumber( 'GPSLongitude' );
@@ -553,7 +553,7 @@ class Exif {
 	 * Get $this->mRawExifData
 	 * @return array
 	 */
-	function getData() {
+	public function getData() {
 		return $this->mRawExifData;
 	}
 
@@ -561,7 +561,7 @@ class Exif {
 	 * Get $this->mFilteredExifData
 	 * @return array
 	 */
-	function getFilteredData() {
+	public function getFilteredData() {
 		return $this->mFilteredExifData;
 	}
 

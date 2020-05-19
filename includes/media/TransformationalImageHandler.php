@@ -104,7 +104,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @param int $flags
 	 * @return MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
-	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
@@ -413,7 +413,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @param string $s
 	 * @return string
 	 */
-	function escapeMagickProperty( $s ) {
+	protected function escapeMagickProperty( $s ) {
 		// Double the backslashes
 		$s = str_replace( '\\', '\\\\', $s );
 		// Double the percents
@@ -443,7 +443,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @throws MWException
 	 * @return string
 	 */
-	function escapeMagickInput( $path, $scene = false ) {
+	protected function escapeMagickInput( $path, $scene = false ) {
 		# Die on initial metacharacters (caller should prepend path)
 		$firstChar = substr( $path, 0, 1 );
 		if ( $firstChar === '~' || $firstChar === '@' ) {
@@ -463,7 +463,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @param bool|string $scene The scene specification, or false if there is none
 	 * @return string
 	 */
-	function escapeMagickOutput( $path, $scene = false ) {
+	protected function escapeMagickOutput( $path, $scene = false ) {
 		$path = str_replace( '%', '%%', $path );
 
 		return $this->escapeMagickPath( $path, $scene );

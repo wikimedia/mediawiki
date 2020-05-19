@@ -41,7 +41,7 @@ class TransformTooBigImageAreaError extends MediaTransformError {
 		);
 	}
 
-	function getHttpStatusCode() {
+	public function getHttpStatusCode() {
 		return 400;
 	}
 }

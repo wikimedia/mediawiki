@@ -20,7 +20,6 @@
 	<!-- TODO Still to be done -->
 	<rule ref="Squiz.Scope.MethodScope.Missing">
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
-		<exclude-pattern>includes/media/</exclude-pattern>
 		<exclude-pattern>includes/specials/</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
