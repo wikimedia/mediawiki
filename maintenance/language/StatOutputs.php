@@ -25,7 +25,9 @@
 
 use MediaWiki\MediaWikiServices;
 
-/** A general output object. Need to be overridden */
+/**
+ * A general output object. Need to be overridden
+ */
 class StatsOutput {
 	public function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
 		Wikimedia\suppressWarnings();
@@ -35,7 +37,6 @@ class StatsOutput {
 		return $return;
 	}
 
-	# Override the following methods
 	public function heading() {
 	}
 

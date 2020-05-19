@@ -48,12 +48,16 @@ class BenchWfIsWindows extends Benchmarker {
 		return substr( php_uname(), 0, 7 ) == 'Windows';
 	}
 
-	// bench function 1
+	/**
+	 * @return bool
+	 */
 	protected function wfIsWindows() {
 		return self::is_win();
 	}
 
-	// bench function 2
+	/**
+	 * @return bool
+	 */
 	protected function wfIsWindowsCached() {
 		static $isWindows = null;
 		if ( $isWindows == null ) {

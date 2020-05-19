@@ -146,15 +146,19 @@ abstract class DumpIterator extends Maintenance {
 		$this->processRevision( $rev );
 	}
 
-	/* Stub function for processing additional options */
+	/**
+	 * Stub function for processing additional options
+	 */
 	public function checkOptions() {
 	}
 
-	/* Stub function for giving data about what was computed */
+	/**
+	 * Stub function for giving data about what was computed
+	 */
 	public function conclusions() {
 	}
 
-	/*
+	/**
 	 * Core function which does whatever the maintenance script is designed to do
 	 *
 	 * @param WikiRevision $rev

@@ -36,8 +36,6 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		Http::$httpEngine = $this->oldHttpEngine;
 	}
 
-	// --------------------
-
 	public function testIsRedirect() {
 		$request = $this->factory->create( 'http://httpbin.org/get' );
 		$status = $request->execute();
@@ -205,8 +203,6 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		$request = $this->factory->create( 'http://acme.test' );
 		$this->assertInstanceOf( MWHttpRequest::class, $request );
 	}
-
-	// --------------------
 
 	/**
 	 * Verifies that the request was successful, returned valid JSON and the given field of that

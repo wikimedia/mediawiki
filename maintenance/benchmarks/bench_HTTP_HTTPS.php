@@ -51,12 +51,16 @@ class BenchHttpHttps extends Benchmarker {
 			get( "$proto://localhost/", [], __METHOD__ );
 	}
 
-	// bench function 1
+	/**
+	 * bench function 1
+	 */
 	protected function getHTTP() {
 		$this->doRequest( 'http' );
 	}
 
-	// bench function 2
+	/**
+	 * bench function 2
+	 */
 	protected function getHTTPS() {
 		$this->doRequest( 'https' );
 	}
