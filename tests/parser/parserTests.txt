@@ -2378,6 +2378,37 @@ P-wrapping non-breaking spaces
 <p> </p>
 !! end
 
+!! test
+Paragraph wrapping suppressed in table captions
+!! wikitext
+{|
+|+hi
+|ho
+|}
+
+{|
+|hi
+|+ho
+|}
+
+it's off to work we go
+!! html/php
+<table>
+<caption>hi
+</caption>
+<tbody><tr>
+<td>ho
+</td></tr></tbody></table>
+<table>
+<tbody><tr>
+<td>hi
+</td>
+</tr></tbody><caption>ho
+</caption></table>
+<p>it's off to work we go
+</p>
+!! end
+
 ###
 ### Preformatted text
 ###
