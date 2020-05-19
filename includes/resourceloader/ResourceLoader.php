@@ -586,9 +586,12 @@ class ResourceLoader implements LoggerAwareInterface {
 				$entitiesUnreg = [];
 				$entitiesRenew = [];
 				foreach ( $updatesByEntity as $entity => $update ) {
-					$scopeLocks[$entity] = $cache->getScopedLock( "rl-deps:$entity", 0 );
+					$lockKey = $cache->makeKey( 'rl-deps', $entity );
+					$scopeLocks[$entity] = $cache->getScopedLock( $lockKey, 0 );
 					if ( !$scopeLocks[$entity] ) {
-						continue; // avoid duplicate write request slams (T124649)
+						// avoid duplicate write request slams (T124649)
+						// the lock must be specific to the current wiki (T247028)
+						continue;
 					} elseif ( $update === null ) {
 						$entitiesUnreg[] = $entity;
 					} elseif ( $update === '*' ) {
