@@ -565,10 +565,10 @@ class MediaWiki {
 			}
 			// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit() while
 			// ChronologyProtector synchronizes DB positions or replicas across all datacenters.
-			MWExceptionHandler::handleException( $e );
-		} catch ( Error $e ) {
+			MWExceptionHandler::handleException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
+		} catch ( Throwable $e ) {
 			// Type errors and such: at least handle it now and clean up the LBFactory state
-			MWExceptionHandler::handleException( $e );
+			MWExceptionHandler::handleException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		}
 
 		$this->doPostOutputShutdown();
@@ -707,8 +707,10 @@ class MediaWiki {
 					);
 					$output->redirect( $safeUrl );
 				} else {
-					$e = new LogicException( "No redirect; cannot append cpPosIndex parameter." );
-					MWExceptionHandler::logException( $e );
+					MWExceptionHandler::logException(
+						new LogicException( "No redirect; cannot append cpPosIndex parameter." ),
+						MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
+					);
 				}
 			}
 		}
@@ -825,9 +827,9 @@ class MediaWiki {
 		try {
 			// Show visible profiling data if enabled (which cannot be post-send)
 			Profiler::instance()->logDataPageOutputOnly();
-		} catch ( Exception $e ) {
+		} catch ( Throwable $e ) {
 			// An error may already have been shown in run(), so just log it to be safe
-			MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		}
 
 		// Disable WebResponse setters for post-send processing (T191537).
@@ -837,9 +839,12 @@ class MediaWiki {
 		$callback = function () {
 			try {
 				$this->restInPeace();
-			} catch ( Exception $e ) {
+			} catch ( Throwable $e ) {
 				// If this is post-send, then displaying errors can cause broken HTML
-				MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+				MWExceptionHandler::rollbackMasterChangesAndLog(
+					$e,
+					MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
+				);
 			}
 		};
 
@@ -1090,8 +1095,8 @@ class MediaWiki {
 				$statsdClient->send( $stats->getData() );
 
 				$stats->clearData(); // empty buffer for the next round
-			} catch ( Exception $ex ) {
-				MWExceptionHandler::logException( $ex );
+			} catch ( Exception $e ) {
+				MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 			}
 		}
 	}
@@ -1136,7 +1141,7 @@ class MediaWiki {
 			}
 		} catch ( JobQueueError $e ) {
 			// Do not make the site unavailable (T88312)
-			MWExceptionHandler::logException( $e );
+			MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 		}
 	}
 
