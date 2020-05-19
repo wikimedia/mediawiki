@@ -191,7 +191,7 @@ abstract class File implements IDBAccessObject {
 	 * @throws MWException
 	 * @return Title|null
 	 */
-	static function normalizeTitle( $title, $exception = false ) {
+	public static function normalizeTitle( $title, $exception = false ) {
 		$ret = $title;
 		if ( $ret instanceof Title ) {
 			# Normalize NS_MEDIA -> NS_FILE
@@ -231,7 +231,7 @@ abstract class File implements IDBAccessObject {
 	 * @param string $extension File extension (without the leading dot)
 	 * @return string File extension in canonical form
 	 */
-	static function normalizeExtension( $extension ) {
+	public static function normalizeExtension( $extension ) {
 		$lower = strtolower( $extension );
 		$squish = [
 			'htm' => 'html',
@@ -256,7 +256,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool|null
 	 */
-	static function checkExtensionCompatibility( File $old, $new ) {
+	public static function checkExtensionCompatibility( File $old, $new ) {
 		$oldMime = $old->getMimeType();
 		$n = strrpos( $new, '.' );
 		$newExt = self::normalizeExtension( $n ? substr( $new, $n + 1 ) : '' );
@@ -318,7 +318,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getExtension() {
+	public function getExtension() {
 		if ( !isset( $this->extension ) ) {
 			$n = strrpos( $this->getName(), '.' );
 			$this->extension = self::normalizeExtension(
@@ -396,7 +396,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @return string
 	 */
-	function getViewURL() {
+	public function getViewURL() {
 		if ( $this->mustRender() ) {
 			if ( $this->canRender() ) {
 				return $this->createThumb( $this->getWidth() );
@@ -779,7 +779,7 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * @return string
 	 */
-	function getMediaType() {
+	public function getMediaType() {
 		return MEDIATYPE_UNKNOWN;
 	}
 
@@ -795,7 +795,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function canRender() {
+	public function canRender() {
 		if ( !isset( $this->canRender ) ) {
 			$this->canRender = $this->getHandler() && $this->handler->canRender( $this ) && $this->exists();
 		}
@@ -821,7 +821,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function mustRender() {
+	public function mustRender() {
 		return $this->getHandler() && $this->handler->mustRender( $this );
 	}
 
@@ -830,7 +830,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function allowInlineDisplay() {
+	public function allowInlineDisplay() {
 		return $this->canRender();
 	}
 
@@ -847,7 +847,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function isSafeFile() {
+	public function isSafeFile() {
 		if ( !isset( $this->isSafeFile ) ) {
 			$this->isSafeFile = $this->getIsSafeFileUncached();
 		}
@@ -913,7 +913,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function isTrustedFile() {
+	protected function isTrustedFile() {
 		# this could be implemented to check a flag in the database,
 		# look for signatures, etc
 		return false;
@@ -955,7 +955,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @return string
 	 */
-	function getTransformScript() {
+	private function getTransformScript() {
 		if ( !isset( $this->transformScript ) ) {
 			$this->transformScript = false;
 			if ( $this->repo ) {
@@ -976,7 +976,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return ThumbnailImage|MediaTransformOutput|bool False on failure
 	 */
-	function getUnscaledThumb( $handlerParams = [] ) {
+	public function getUnscaledThumb( $handlerParams = [] ) {
 		$hp =& $handlerParams;
 		$page = $hp['page'] ?? false;
 		$width = $this->getWidth( $page );
@@ -1402,7 +1402,7 @@ abstract class File implements IDBAccessObject {
 	 * @param string $dispositionType Type of disposition (either "attachment" or "inline")
 	 * @return string Content-Disposition header value
 	 */
-	function getThumbDisposition( $thumbName, $dispositionType = 'inline' ) {
+	public function getThumbDisposition( $thumbName, $dispositionType = 'inline' ) {
 		$fileName = $this->name; // file name to suggest
 		$thumbExt = FileBackend::extensionFromPath( $thumbName );
 		if ( $thumbExt != '' && $thumbExt !== $this->getExtension() ) {
@@ -1415,10 +1415,9 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * Hook into transform() to allow migration of thumbnail files
 	 * STUB
-	 * Overridden by LocalFile
 	 * @param string $thumbName
 	 */
-	function migrateThumbFile( $thumbName ) {
+	protected function migrateThumbFile( $thumbName ) {
 	}
 
 	/**
@@ -1427,7 +1426,7 @@ abstract class File implements IDBAccessObject {
 	 * @return MediaHandler|bool Registered MediaHandler for file's MIME type
 	 *   or false if none found
 	 */
-	function getHandler() {
+	public function getHandler() {
 		if ( !isset( $this->handler ) ) {
 			$this->handler = MediaHandler::getHandler( $this->getMimeType() );
 		}
@@ -1440,7 +1439,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return ThumbnailImage
 	 */
-	function iconThumb() {
+	public function iconThumb() {
 		global $wgResourceBasePath, $IP;
 		$assetsPath = "$wgResourceBasePath/resources/assets/file-type-icons/";
 		$assetsDirectory = "$IP/resources/assets/file-type-icons/";
@@ -1462,7 +1461,7 @@ abstract class File implements IDBAccessObject {
 	 * Largely obsolete.
 	 * @return string
 	 */
-	function getLastError() {
+	public function getLastError() {
 		return $this->lastError;
 	}
 
@@ -1491,7 +1490,7 @@ abstract class File implements IDBAccessObject {
 	 * pages using the file. Use when modifying file history
 	 * but not the current data.
 	 */
-	function purgeDescription() {
+	public function purgeDescription() {
 		$title = $this->getTitle();
 		if ( $title ) {
 			$title->invalidateCache();
@@ -1504,7 +1503,7 @@ abstract class File implements IDBAccessObject {
 	 * Purge metadata and all affected pages when the file is created,
 	 * deleted, or majorly updated.
 	 */
-	function purgeEverything() {
+	public function purgeEverything() {
 		// Delete thumbnails and refresh file metadata cache
 		$this->purgeCache();
 		$this->purgeDescription();
@@ -1531,7 +1530,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return File[]
 	 */
-	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
+	public function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
 		return [];
 	}
 
@@ -1564,7 +1563,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getHashPath() {
+	public function getHashPath() {
 		if ( $this->hashPath === null ) {
 			$this->assertRepoDefined();
 			$this->hashPath = $this->repo->getHashPath( $this->getName() );
@@ -1590,7 +1589,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getArchiveRel( $suffix = false ) {
+	public function getArchiveRel( $suffix = false ) {
 		$path = 'archive/' . $this->getHashPath();
 		if ( $suffix === false ) {
 			$path = rtrim( $path, '/' );
@@ -1608,7 +1607,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
-	function getThumbRel( $suffix = false ) {
+	public function getThumbRel( $suffix = false ) {
 		$path = $this->getRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . $suffix;
@@ -1635,7 +1634,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
-	function getArchiveThumbRel( $archiveName, $suffix = false ) {
+	private function getArchiveThumbRel( $archiveName, $suffix = false ) {
 		$path = $this->getArchiveRel( $archiveName );
 		if ( $suffix !== false ) {
 			$path .= '/' . $suffix;
@@ -1650,7 +1649,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of an archived file.
 	 * @return string
 	 */
-	function getArchivePath( $suffix = false ) {
+	public function getArchivePath( $suffix = false ) {
 		$this->assertRepoDefined();
 
 		return $this->repo->getZonePath( 'public' ) . '/' . $this->getArchiveRel( $suffix );
@@ -1663,7 +1662,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
-	function getArchiveThumbPath( $archiveName, $suffix = false ) {
+	public function getArchiveThumbPath( $archiveName, $suffix = false ) {
 		$this->assertRepoDefined();
 
 		return $this->repo->getZonePath( 'thumb' ) . '/' .
@@ -1688,7 +1687,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a media file
 	 * @return string
 	 */
-	function getTranscodedPath( $suffix = false ) {
+	public function getTranscodedPath( $suffix = false ) {
 		$this->assertRepoDefined();
 
 		return $this->repo->getZonePath( 'transcoded' ) . '/' . $this->getThumbRel( $suffix );
@@ -1700,7 +1699,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of an archived file
 	 * @return string
 	 */
-	function getArchiveUrl( $suffix = false ) {
+	public function getArchiveUrl( $suffix = false ) {
 		$this->assertRepoDefined();
 		$ext = $this->getExtension();
 		$path = $this->repo->getZoneUrl( 'public', $ext ) . '/archive/' . $this->getHashPath();
@@ -1720,7 +1719,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
-	function getArchiveThumbUrl( $archiveName, $suffix = false ) {
+	public function getArchiveThumbUrl( $archiveName, $suffix = false ) {
 		$this->assertRepoDefined();
 		$ext = $this->getExtension();
 		$path = $this->repo->getZoneUrl( 'thumb', $ext ) . '/archive/' .
@@ -1739,7 +1738,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a file in zone
 	 * @return string Path
 	 */
-	function getZoneUrl( $zone, $suffix = false ) {
+	private function getZoneUrl( $zone, $suffix = false ) {
 		$this->assertRepoDefined();
 		$ext = $this->getExtension();
 		$path = $this->repo->getZoneUrl( $zone, $ext ) . '/' . $this->getUrlRel();
@@ -1756,7 +1755,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string Path
 	 */
-	function getThumbUrl( $suffix = false ) {
+	public function getThumbUrl( $suffix = false ) {
 		return $this->getZoneUrl( 'thumb', $suffix );
 	}
 
@@ -1766,7 +1765,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a media file
 	 * @return string Path
 	 */
-	function getTranscodedUrl( $suffix = false ) {
+	public function getTranscodedUrl( $suffix = false ) {
 		return $this->getZoneUrl( 'transcoded', $suffix );
 	}
 
@@ -1776,7 +1775,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
-	function getVirtualUrl( $suffix = false ) {
+	public function getVirtualUrl( $suffix = false ) {
 		$this->assertRepoDefined();
 		$path = $this->repo->getVirtualUrl() . '/public/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
@@ -1792,7 +1791,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
-	function getArchiveVirtualUrl( $suffix = false ) {
+	public function getArchiveVirtualUrl( $suffix = false ) {
 		$this->assertRepoDefined();
 		$path = $this->repo->getVirtualUrl() . '/public/archive/' . $this->getHashPath();
 		if ( $suffix === false ) {
@@ -1810,7 +1809,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|string $suffix If not false, the name of a thumbnail file
 	 * @return string
 	 */
-	function getThumbVirtualUrl( $suffix = false ) {
+	public function getThumbVirtualUrl( $suffix = false ) {
 		$this->assertRepoDefined();
 		$path = $this->repo->getVirtualUrl() . '/thumb/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
@@ -1823,7 +1822,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @return bool
 	 */
-	function isHashed() {
+	protected function isHashed() {
 		$this->assertRepoDefined();
 
 		return (bool)$this->repo->getHashLevels();
@@ -1832,7 +1831,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @throws MWException
 	 */
-	function readOnlyError() {
+	protected function readOnlyError() {
 		throw new MWException( static::class . ': write operations are not supported' );
 	}
 
@@ -1886,7 +1885,7 @@ abstract class File implements IDBAccessObject {
 	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return bool
 	 */
-	function formatMetadata( $context = false ) {
+	public function formatMetadata( $context = false ) {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
@@ -1899,7 +1898,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function isLocal() {
+	public function isLocal() {
 		return $this->repo && $this->repo->isLocal();
 	}
 
@@ -1908,7 +1907,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string
 	 */
-	function getRepoName() {
+	public function getRepoName() {
 		return $this->repo ? $this->repo->getName() : 'unknown';
 	}
 
@@ -1956,7 +1955,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function wasDeleted() {
+	public function wasDeleted() {
 		$title = $this->getTitle();
 
 		return $title && $title->isDeletedQuick();
@@ -2045,7 +2044,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return bool
 	 */
-	function isMultipage() {
+	public function isMultipage() {
 		return $this->getHandler() && $this->handler->isMultiPage( $this );
 	}
 
@@ -2055,7 +2054,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return int|false
 	 */
-	function pageCount() {
+	public function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
 			if ( $this->getHandler() && $this->handler->isMultiPage( $this ) ) {
 				$this->pageCount = $this->handler->pageCount( $this );
@@ -2076,7 +2075,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return int
 	 */
-	static function scaleHeight( $srcWidth, $srcHeight, $dstWidth ) {
+	public static function scaleHeight( $srcWidth, $srcHeight, $dstWidth ) {
 		// Exact integer multiply followed by division
 		if ( $srcWidth == 0 ) {
 			return 0;
@@ -2173,7 +2172,7 @@ abstract class File implements IDBAccessObject {
 	 *   passed to the $audience parameter
 	 * @return null|string
 	 */
-	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
 		return null;
 	}
 
@@ -2215,7 +2214,7 @@ abstract class File implements IDBAccessObject {
 	 *
 	 * @return string|false
 	 */
-	function getStorageKey() {
+	public function getStorageKey() {
 		$hash = $this->getSha1();
 		if ( !$hash ) {
 			return false;
@@ -2242,7 +2241,7 @@ abstract class File implements IDBAccessObject {
 	 * @return string[] HTTP header name/value map to use for HEAD/GET request responses
 	 * @since 1.30
 	 */
-	function getContentHeaders() {
+	public function getContentHeaders() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			$metadata = $this->getMetadata();
@@ -2264,7 +2263,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @return string
 	 */
-	function getLongDesc() {
+	public function getLongDesc() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->getLongDesc( $this );
@@ -2276,7 +2275,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @return string
 	 */
-	function getShortDesc() {
+	public function getShortDesc() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->getShortDesc( $this );
@@ -2288,7 +2287,7 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @return string
 	 */
-	function getDimensionsString() {
+	public function getDimensionsString() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			return $handler->getDimensionsString( $this );
@@ -2300,14 +2299,14 @@ abstract class File implements IDBAccessObject {
 	/**
 	 * @return string
 	 */
-	function getRedirected() {
+	public function getRedirected() {
 		return $this->redirected;
 	}
 
 	/**
 	 * @return Title|null
 	 */
-	function getRedirectedTitle() {
+	protected function getRedirectedTitle() {
 		if ( $this->redirected ) {
 			if ( !$this->redirectTitle ) {
 				$this->redirectTitle = Title::makeTitle( NS_FILE, $this->redirected );
@@ -2323,14 +2322,14 @@ abstract class File implements IDBAccessObject {
 	 * @param string $from
 	 * @return void
 	 */
-	function redirectedFrom( $from ) {
+	public function redirectedFrom( $from ) {
 		$this->redirected = $from;
 	}
 
 	/**
 	 * @return bool
 	 */
-	function isMissing() {
+	public function isMissing() {
 		return false;
 	}
 

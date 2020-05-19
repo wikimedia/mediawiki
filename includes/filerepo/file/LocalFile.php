@@ -378,7 +378,7 @@ class LocalFile extends File {
 	/**
 	 * Load metadata from the file itself
 	 */
-	function loadFromFile() {
+	protected function loadFromFile() {
 		$props = $this->repo->getFileProps( $this->getVirtualUrl() );
 		$this->setProps( $props );
 	}
@@ -561,7 +561,7 @@ class LocalFile extends File {
 	 * @throws MWException
 	 * @return array
 	 */
-	function decodeRow( $row, $prefix = 'img_' ) {
+	private function decodeRow( $row, $prefix = 'img_' ) {
 		$decoded = $this->unprefixRow( $row, $prefix );
 
 		$decoded['description'] = MediaWikiServices::getInstance()->getCommentStore()
@@ -607,7 +607,7 @@ class LocalFile extends File {
 	 * @param object $row
 	 * @param string $prefix
 	 */
-	function loadFromRow( $row, $prefix = 'img_' ) {
+	public function loadFromRow( $row, $prefix = 'img_' ) {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
 
@@ -624,7 +624,7 @@ class LocalFile extends File {
 	 * Load file metadata from cache or DB, unless already loaded
 	 * @param int $flags
 	 */
-	function load( $flags = 0 ) {
+	public function load( $flags = 0 ) {
 		if ( !$this->dataLoaded ) {
 			if ( $flags & self::READ_LATEST ) {
 				$this->loadFromDB( $flags );
@@ -681,7 +681,7 @@ class LocalFile extends File {
 	/**
 	 * @return bool Whether upgradeRow() ran for this object
 	 */
-	function getUpgraded() {
+	public function getUpgraded() {
 		return $this->upgraded;
 	}
 
@@ -743,7 +743,7 @@ class LocalFile extends File {
 	 *
 	 * @param array $info
 	 */
-	function setProps( $info ) {
+	protected function setProps( $info ) {
 		$this->dataLoaded = true;
 		$fields = $this->getCacheFields( '' );
 		$fields[] = 'fileExists';
@@ -785,7 +785,7 @@ class LocalFile extends File {
 	 *
 	 * @return bool
 	 */
-	function isMissing() {
+	public function isMissing() {
 		if ( $this->missing === null ) {
 			$fileExists = $this->repo->fileExists( $this->getVirtualUrl() );
 			$this->missing = !$fileExists;
@@ -865,7 +865,7 @@ class LocalFile extends File {
 	 * @return int|string|User
 	 * @since 1.31 Added 'object'
 	 */
-	function getUser( $type = 'text' ) {
+	public function getUser( $type = 'text' ) {
 		$this->load();
 
 		if ( !$this->user ) {
@@ -917,7 +917,7 @@ class LocalFile extends File {
 	 * Get handler-specific metadata
 	 * @return string
 	 */
-	function getMetadata() {
+	public function getMetadata() {
 		$this->load( self::LOAD_ALL ); // large metadata is loaded in another step
 		return $this->metadata;
 	}
@@ -925,7 +925,7 @@ class LocalFile extends File {
 	/**
 	 * @return int
 	 */
-	function getBitDepth() {
+	public function getBitDepth() {
 		$this->load();
 
 		return (int)$this->bits;
@@ -945,7 +945,7 @@ class LocalFile extends File {
 	 * Returns the MIME type of the file.
 	 * @return string
 	 */
-	function getMimeType() {
+	public function getMimeType() {
 		$this->load();
 
 		return $this->mime;
@@ -956,7 +956,7 @@ class LocalFile extends File {
 	 * Use the value returned by this function with the MEDIATYPE_xxx constants.
 	 * @return string
 	 */
-	function getMediaType() {
+	public function getMediaType() {
 		$this->load();
 
 		return $this->media_type;
@@ -993,7 +993,7 @@ class LocalFile extends File {
 	 * @param string|bool $archiveName Name of an archive file, default false
 	 * @return array First element is the base dir, then files in that base dir.
 	 */
-	function getThumbnails( $archiveName = false ) {
+	protected function getThumbnails( $archiveName = false ) {
 		if ( $archiveName ) {
 			$dir = $this->getArchiveThumbPath( $archiveName );
 		} else {
@@ -1018,7 +1018,7 @@ class LocalFile extends File {
 	/**
 	 * Refresh metadata in memcached, but don't touch thumbnails or CDN
 	 */
-	function purgeMetadataCache() {
+	private function purgeMetadataCache() {
 		$this->invalidateCache();
 	}
 
@@ -1029,7 +1029,7 @@ class LocalFile extends File {
 	 *
 	 * @note This used to purge old thumbnails by default as well, but doesn't anymore.
 	 */
-	function purgeCache( $options = [] ) {
+	public function purgeCache( $options = [] ) {
 		// Refresh metadata cache
 		$this->maybeUpgradeRow();
 		$this->purgeMetadataCache();
@@ -1051,7 +1051,7 @@ class LocalFile extends File {
 	 * Delete cached transformed files for an archived version only.
 	 * @param string $archiveName Name of the archived file
 	 */
-	function purgeOldThumbnails( $archiveName ) {
+	public function purgeOldThumbnails( $archiveName ) {
 		// Get a list of old thumbnails and URLs
 		$files = $this->getThumbnails( $archiveName );
 
@@ -1183,7 +1183,7 @@ class LocalFile extends File {
 	 * @param bool $inc
 	 * @return OldLocalFile[]
 	 */
-	function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
+	public function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
 		if ( !$this->exists() ) {
 			return []; // Avoid hard failure when the file does not exist. T221812
 		}
@@ -1331,7 +1331,7 @@ class LocalFile extends File {
 	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function upload( $src, $comment, $pageText, $flags = 0, $props = false,
+	public function upload( $src, $comment, $pageText, $flags = 0, $props = false,
 		$timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
@@ -1454,7 +1454,7 @@ class LocalFile extends File {
 	 * @param bool $revert If this file upload is a revert
 	 * @return Status
 	 */
-	function recordUpload2(
+	public function recordUpload2(
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
@@ -1848,7 +1848,7 @@ class LocalFile extends File {
 	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function publishTo( $src, $dstRel, $flags = 0, array $options = [] ) {
+	protected function publishTo( $src, $dstRel, $flags = 0, array $options = [] ) {
 		$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
 
 		$repo = $this->getRepo();
@@ -2063,7 +2063,7 @@ class LocalFile extends File {
 	 * @throws MWException Exception on database or file store failure
 	 * @return Status
 	 */
-	function deleteOld( $archiveName, $reason, $suppress = false, $user = null ) {
+	public function deleteOld( $archiveName, $reason, $suppress = false, $user = null ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		if ( $user === null ) {
 			global $wgUser;
@@ -2089,7 +2089,7 @@ class LocalFile extends File {
 	 * @throws MWException Exception on database or file store failure
 	 * @return Status
 	 */
-	function deleteOldFile( $archiveName, $reason, User $user, $suppress = false ) {
+	public function deleteOldFile( $archiveName, $reason, User $user, $suppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
@@ -2202,7 +2202,7 @@ class LocalFile extends File {
 	 * @param User|null $user
 	 * @return string
 	 */
-	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
 		$this->load();
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
 			return '';
@@ -2218,7 +2218,7 @@ class LocalFile extends File {
 	/**
 	 * @return bool|string
 	 */
-	function getTimestamp() {
+	public function getTimestamp() {
 		$this->load();
 
 		return $this->timestamp;
@@ -2250,7 +2250,7 @@ class LocalFile extends File {
 	/**
 	 * @return string
 	 */
-	function getSha1() {
+	public function getSha1() {
 		$this->load();
 		// Initialise now if necessary
 		if ( $this->sha1 == '' && $this->fileExists ) {
@@ -2275,7 +2275,7 @@ class LocalFile extends File {
 	/**
 	 * @return bool Whether to cache in RepoGroup (this avoids OOMs)
 	 */
-	function isCacheable() {
+	public function isCacheable() {
 		$this->load();
 
 		// If extra data (metadata) was not loaded then it must have been large
