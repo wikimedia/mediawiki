@@ -325,7 +325,7 @@ class LocalFileDeleteBatch {
 		}
 	}
 
-	function doDBDeletes() {
+	private function doDBDeletes() {
 		$dbw = $this->file->repo->getMasterDB();
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 

@@ -38,30 +38,30 @@ class MediaTransformError extends MediaTransformOutput {
 		$this->path = false;
 	}
 
-	function toHtml( $options = [] ) {
+	public function toHtml( $options = [] ) {
 		return "<div class=\"MediaTransformError\" style=\"" .
 			"width: {$this->width}px; height: {$this->height}px; display:inline-block;\">" .
 			$this->getHtmlMsg() .
 			"</div>";
 	}
 
-	function toText() {
+	public function toText() {
 		return $this->msg->text();
 	}
 
-	function getHtmlMsg() {
+	public function getHtmlMsg() {
 		return $this->msg->escaped();
 	}
 
-	function getMsg() {
+	public function getMsg() {
 		return $this->msg;
 	}
 
-	function isError() {
+	public function isError() {
 		return true;
 	}
 
-	function getHttpStatusCode() {
+	public function getHttpStatusCode() {
 		return 500;
 	}
 }

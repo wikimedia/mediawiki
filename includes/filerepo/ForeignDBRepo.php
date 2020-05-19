@@ -65,7 +65,7 @@ class ForeignDBRepo extends LocalRepo {
 	/**
 	 * @param array|null $info
 	 */
-	function __construct( $info ) {
+	public function __construct( $info ) {
 		parent::__construct( $info );
 		'@phan-var array $info';
 		$this->dbType = $info['dbType'];
@@ -78,7 +78,7 @@ class ForeignDBRepo extends LocalRepo {
 		$this->hasSharedCache = $info['hasSharedCache'];
 	}
 
-	function getMasterDB() {
+	public function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
 			$func = $this->getDBFactory();
 			$this->dbConn = $func( DB_MASTER );
@@ -87,7 +87,7 @@ class ForeignDBRepo extends LocalRepo {
 		return $this->dbConn;
 	}
 
-	function getReplicaDB() {
+	public function getReplicaDB() {
 		return $this->getMasterDB();
 	}
 
@@ -113,7 +113,7 @@ class ForeignDBRepo extends LocalRepo {
 	/**
 	 * @return bool
 	 */
-	function hasSharedCache() {
+	private function hasSharedCache() {
 		return $this->hasSharedCache;
 	}
 
@@ -124,7 +124,7 @@ class ForeignDBRepo extends LocalRepo {
 	 * @param mixed ...$args
 	 * @return bool|mixed
 	 */
-	function getSharedCacheKey( ...$args ) {
+	public function getSharedCacheKey( ...$args ) {
 		if ( $this->hasSharedCache() ) {
 			return $this->wanCache->makeGlobalKey(
 				$this->dbName,
@@ -146,7 +146,7 @@ class ForeignDBRepo extends LocalRepo {
 	 * @return array
 	 * @since 1.22
 	 */
-	function getInfo() {
+	public function getInfo() {
 		return FileRepo::getInfo();
 	}
 }

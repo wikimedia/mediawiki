@@ -59,7 +59,7 @@ class SvgHandler extends ImageHandler {
 		return true;
 	}
 
-	function isVectorized( $file ) {
+	public function isVectorized( $file ) {
 		return true;
 	}
 
@@ -67,7 +67,7 @@ class SvgHandler extends ImageHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function isAnimatedImage( $file ) {
+	public function isAnimatedImage( $file ) {
 		# @todo Detect animated SVGs
 		$metadata = $file->getMetadata();
 		if ( $metadata ) {
@@ -164,7 +164,7 @@ class SvgHandler extends ImageHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function canAnimateThumbnail( $file ) {
+	public function canAnimateThumbnail( $file ) {
 		return false;
 	}
 
@@ -225,7 +225,7 @@ class SvgHandler extends ImageHandler {
 	 * @param int $flags
 	 * @return bool|MediaTransformError|ThumbnailImage|TransformParameterError
 	 */
-	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
@@ -384,7 +384,7 @@ class SvgHandler extends ImageHandler {
 	 * @param bool|array $metadata
 	 * @return array|false
 	 */
-	function getImageSize( $file, $path, $metadata = false ) {
+	public function getImageSize( $file, $path, $metadata = false ) {
 		if ( $metadata === false && $file instanceof File ) {
 			$metadata = $file->getMetadata();
 		}
@@ -455,7 +455,7 @@ class SvgHandler extends ImageHandler {
 		return serialize( $metadata );
 	}
 
-	function unpackMetadata( $metadata ) {
+	protected function unpackMetadata( $metadata ) {
 		Wikimedia\suppressWarnings();
 		$unser = unserialize( $metadata );
 		Wikimedia\restoreWarnings();
@@ -466,7 +466,7 @@ class SvgHandler extends ImageHandler {
 		}
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'parsed-svg';
 	}
 

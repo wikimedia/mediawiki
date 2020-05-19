@@ -85,7 +85,7 @@ class GIFHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool
 	 */
-	function getImageArea( $image ) {
+	public function getImageArea( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
@@ -103,7 +103,7 @@ class GIFHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool
 	 */
-	function isAnimatedImage( $image ) {
+	public function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
@@ -120,14 +120,13 @@ class GIFHandler extends BitmapHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function canAnimateThumbnail( $file ) {
+	public function canAnimateThumbnail( $file ) {
 		global $wgMaxAnimatedGifArea;
-		$answer = $this->getImageArea( $file ) <= $wgMaxAnimatedGifArea;
 
-		return $answer;
+		return $this->getImageArea( $file ) <= $wgMaxAnimatedGifArea;
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'parsed-gif';
 	}
 

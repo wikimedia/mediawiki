@@ -86,7 +86,7 @@ class PNGHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool
 	 */
-	function isAnimatedImage( $image ) {
+	public function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
@@ -103,11 +103,11 @@ class PNGHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool False
 	 */
-	function canAnimateThumbnail( $image ) {
+	public function canAnimateThumbnail( $image ) {
 		return false;
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'parsed-png';
 	}
 

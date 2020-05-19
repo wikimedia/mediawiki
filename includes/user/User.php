@@ -4866,7 +4866,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string $permission User right required
 	 * @return Status
 	 */
-	static function newFatalPermissionDeniedStatus( $permission ) {
+	public static function newFatalPermissionDeniedStatus( $permission ) {
 		global $wgLang;
 
 		$groups = [];

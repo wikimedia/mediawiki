@@ -48,7 +48,7 @@ abstract class MediaHandler {
 	 * @param string $type
 	 * @return MediaHandler|bool
 	 */
-	static function getHandler( $type ) {
+	public static function getHandler( $type ) {
 		return MediaWikiServices::getInstance()
 			->getMediaHandlerFactory()->getHandler( $type );
 	}
@@ -114,7 +114,7 @@ abstract class MediaHandler {
 	 *   key. All other array keys are ignored. Returning a 'bits' key is optional
 	 *   as not all formats have a notion of "bitdepth". Returns false on failure.
 	 */
-	abstract function getImageSize( $image, $path );
+	abstract public function getImageSize( $image, $path );
 
 	/**
 	 * Get handler-specific metadata which will be saved in the img_metadata field.
@@ -143,7 +143,7 @@ abstract class MediaHandler {
 	 *
 	 * @return string Version string
 	 */
-	static function getMetadataVersion() {
+	public static function getMetadataVersion() {
 		$version = [ '2' ]; // core metadata version
 		Hooks::run( 'GetMetadataVersion', [ &$version ] );
 
@@ -160,7 +160,7 @@ abstract class MediaHandler {
 	 * @param int $version Target version
 	 * @return array Serialized metadata in specified version, or $metadata on fail.
 	 */
-	function convertMetadataVersion( $metadata, $version = 1 ) {
+	public function convertMetadataVersion( $metadata, $version = 1 ) {
 		if ( !is_array( $metadata ) ) {
 			// unserialize to keep return parameter consistent.
 			Wikimedia\suppressWarnings();
@@ -180,7 +180,7 @@ abstract class MediaHandler {
 	 * @param File $image
 	 * @return string
 	 */
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return false;
 	}
 
@@ -252,7 +252,7 @@ abstract class MediaHandler {
 	 * @param array $params
 	 * @return bool|ThumbnailImage
 	 */
-	function getScriptedTransform( $image, $script, $params ) {
+	public function getScriptedTransform( $image, $script, $params ) {
 		return false;
 	}
 
@@ -266,7 +266,7 @@ abstract class MediaHandler {
 	 * @param array $params Arbitrary set of parameters validated by $this->validateParam()
 	 * @return MediaTransformOutput
 	 */
-	final function getTransform( $image, $dstPath, $dstUrl, $params ) {
+	final public function getTransform( $image, $dstPath, $dstUrl, $params ) {
 		return $this->doTransform( $image, $dstPath, $dstUrl, $params, self::TRANSFORM_LATER );
 	}
 
@@ -282,7 +282,7 @@ abstract class MediaHandler {
 	 * @param int $flags A bitfield, may contain self::TRANSFORM_LATER
 	 * @return MediaTransformOutput
 	 */
-	abstract function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 );
+	abstract public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 );
 
 	/**
 	 * Get the thumbnail extension and MIME type for a given source MIME type
@@ -355,7 +355,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function isVectorized( $file ) {
+	public function isVectorized( $file ) {
 		return false;
 	}
 
@@ -367,7 +367,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool
 	 */
-	function isAnimatedImage( $file ) {
+	public function isAnimatedImage( $file ) {
 		return false;
 	}
 
@@ -378,7 +378,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return bool If material is not animated, handler may return any value.
 	 */
-	function canAnimateThumbnail( $file ) {
+	public function canAnimateThumbnail( $file ) {
 		return true;
 	}
 
@@ -426,7 +426,7 @@ abstract class MediaHandler {
 	 * @return bool|string Page text or false when no text found or if
 	 *   unsupported.
 	 */
-	function getPageText( File $image, $page ) {
+	public function getPageText( File $image, $page ) {
 		return false;
 	}
 
@@ -496,7 +496,7 @@ abstract class MediaHandler {
 	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array Array for use displaying metadata.
 	 */
-	function formatMetadataHelper( $metadataArray, $context = false ) {
+	protected function formatMetadataHelper( $metadataArray, $context = false ) {
 		$result = [
 			'visible' => [],
 			'collapsed' => []
@@ -577,7 +577,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return string
 	 */
-	function getShortDesc( $file ) {
+	public function getShortDesc( $file ) {
 		return self::getGeneralShortDesc( $file );
 	}
 
@@ -597,7 +597,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return string
 	 */
-	static function getGeneralShortDesc( $file ) {
+	public static function getGeneralShortDesc( $file ) {
 		global $wgLang;
 
 		return htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
@@ -609,7 +609,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return string
 	 */
-	static function getGeneralLongDesc( $file ) {
+	public static function getGeneralLongDesc( $file ) {
 		return wfMessage( 'file-info' )->sizeParams( $file->getSize() )
 			->params( '<span class="mime-type">' . $file->getMimeType() . '</span>' )->parse();
 	}
@@ -638,7 +638,7 @@ abstract class MediaHandler {
 	 * @param File $file
 	 * @return string Dimensions
 	 */
-	function getDimensionsString( $file ) {
+	public function getDimensionsString( $file ) {
 		return '';
 	}
 
@@ -652,7 +652,7 @@ abstract class MediaHandler {
 	 * @param Parser $parser
 	 * @param File $file
 	 */
-	function parserTransformHook( $parser, $file ) {
+	public function parserTransformHook( $parser, $file ) {
 	}
 
 	/**
@@ -677,7 +677,7 @@ abstract class MediaHandler {
 	 * @param int $retval Return value of some shell process, file will be deleted if this is non-zero
 	 * @return bool True if removed, false otherwise
 	 */
-	function removeBadFile( $dstPath, $retval = 0 ) {
+	public function removeBadFile( $dstPath, $retval = 0 ) {
 		if ( file_exists( $dstPath ) ) {
 			$thumbstat = stat( $dstPath );
 			if ( $thumbstat['size'] == 0 || $retval != 0 ) {

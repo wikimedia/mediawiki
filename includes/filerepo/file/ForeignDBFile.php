@@ -46,7 +46,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return Status
 	 * @throws MWException
 	 */
-	function publish( $srcPath, $flags = 0, array $options = [] ) {
+	public function publish( $srcPath, $flags = 0, array $options = [] ) {
 		$this->readOnlyError();
 	}
 
@@ -62,7 +62,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return bool
 	 * @throws MWException
 	 */
-	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
+	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false, User $user = null ) {
 		$this->readOnlyError();
 	}
@@ -73,7 +73,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return Status
 	 * @throws MWException
 	 */
-	function restore( $versions = [], $unsuppress = false ) {
+	public function restore( $versions = [], $unsuppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -85,7 +85,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return Status
 	 * @throws MWException
 	 */
-	function delete( $reason, $suppress = false, $user = null ) {
+	public function delete( $reason, $suppress = false, $user = null ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		$this->readOnlyError();
 	}
@@ -97,7 +97,7 @@ class ForeignDBFile extends LocalFile {
 	 * @return Status
 	 * @throws MWException
 	 */
-	function deleteFile( $reason, User $user, $suppress = false ) {
+	public function deleteFile( $reason, User $user, $suppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -106,14 +106,14 @@ class ForeignDBFile extends LocalFile {
 	 * @return Status
 	 * @throws MWException
 	 */
-	function move( $target ) {
+	public function move( $target ) {
 		$this->readOnlyError();
 	}
 
 	/**
 	 * @return string
 	 */
-	function getDescriptionUrl() {
+	public function getDescriptionUrl() {
 		// Restore remote behavior
 		return File::getDescriptionUrl();
 	}
@@ -122,7 +122,7 @@ class ForeignDBFile extends LocalFile {
 	 * @param Language|null $lang Optional language to fetch description in.
 	 * @return string|false
 	 */
-	function getDescriptionText( Language $lang = null ) {
+	public function getDescriptionText( Language $lang = null ) {
 		global $wgLang;
 
 		if ( !$this->repo->fetchDescription ) {

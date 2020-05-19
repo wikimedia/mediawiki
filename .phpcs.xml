@@ -19,11 +19,8 @@
 	</rule>
 	<!-- TODO Still to be done -->
 	<rule ref="Squiz.Scope.MethodScope.Missing">
-		<exclude-pattern>includes/parser/Sanitizer.php</exclude-pattern>
 		<exclude-pattern>includes/filerepo/</exclude-pattern>
-		<exclude-pattern>includes/media/</exclude-pattern>
 		<exclude-pattern>includes/specials/</exclude-pattern>
-		<exclude-pattern>includes/user/User.php</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">

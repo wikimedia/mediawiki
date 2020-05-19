@@ -60,7 +60,7 @@ class XCFHandler extends BitmapHandler {
 	 * @param string $filename
 	 * @return array|false
 	 */
-	function getImageSize( $image, $filename ) {
+	public function getImageSize( $image, $filename ) {
 		$header = self::getXCFMetaData( $filename );
 		if ( !$header ) {
 			return false;
@@ -89,7 +89,7 @@ class XCFHandler extends BitmapHandler {
 	 * @param string $filename Full path to a XCF file
 	 * @return bool|array Metadata Array just like PHP getimagesize()
 	 */
-	static function getXCFMetaData( $filename ) {
+	private static function getXCFMetaData( $filename ) {
 		# Decode master structure
 		$f = fopen( $filename, 'rb' );
 		if ( !$f ) {
