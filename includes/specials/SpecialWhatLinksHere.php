@@ -106,7 +106,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param int $from Display from this article ID (default: 0)
 	 * @param int $back Display from this article ID at backwards scrolling (default: 0)
 	 */
-	function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
+	private function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
 		$out = $this->getOutput();
 		$dbr = wfGetDB( DB_REPLICA );
 
@@ -476,7 +476,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		return $this->getLanguage()->pipeList( $links );
 	}
 
-	function makeSelfLink( $text, $query ) {
+	private function makeSelfLink( $text, $query ) {
 		if ( $text !== null ) {
 			$text = new HtmlArmor( $text );
 		}
@@ -489,7 +489,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		);
 	}
 
-	function getPrevNext( $prevId, $nextId ) {
+	private function getPrevNext( $prevId, $nextId ) {
 		$currentLimit = $this->opts->getValue( 'limit' );
 		$prev = $this->msg( 'whatlinkshere-prev' )->numParams( $currentLimit )->escaped();
 		$next = $this->msg( 'whatlinkshere-next' )->numParams( $currentLimit )->escaped();
@@ -519,7 +519,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		return $this->msg( 'viewprevnext' )->rawParams( $prev, $next, $nums )->escaped();
 	}
 
-	function whatlinkshereForm() {
+	private function whatlinkshereForm() {
 		// We get nicer value from the title object
 		$this->opts->consumeValue( 'target' );
 		// Reset these for new requests
@@ -585,7 +585,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 *
 	 * @return string HTML fieldset and filter panel with the show/hide links
 	 */
-	function getFilterPanel() {
+	private function getFilterPanel() {
 		$show = $this->msg( 'show' )->escaped();
 		$hide = $this->msg( 'hide' )->escaped();
 

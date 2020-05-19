@@ -97,7 +97,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @param string $html
 	 * @return string
 	 */
-	function wrapForm( $html ) {
+	public function wrapForm( $html ) {
 		$html = Xml::tags( 'div', [ 'id' => 'preferences' ], $html );
 
 		return parent::wrapForm( $html );
@@ -106,7 +106,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	/**
 	 * @return string
 	 */
-	function getButtons() {
+	public function getButtons() {
 		if ( !$this->areOptionsEditable() && !$this->isPrivateInfoEditable() ) {
 			return '';
 		}
@@ -137,7 +137,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @param array $data
 	 * @return array
 	 */
-	function filterDataForSubmit( $data ) {
+	public function filterDataForSubmit( $data ) {
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( $field instanceof HTMLNestedFilterable ) {
 				// @phan-suppress-next-next-line PhanUndeclaredProperty All HTMLForm fields have mParams,
@@ -167,7 +167,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * Get the whole body of the form.
 	 * @return string
 	 */
-	function getBody() {
+	public function getBody() {
 		$tabPanels = [];
 		foreach ( $this->mFieldTree as $key => $val ) {
 			if ( !is_array( $val ) ) {
@@ -227,7 +227,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @param string $key
 	 * @return string
 	 */
-	function getLegend( $key ) {
+	public function getLegend( $key ) {
 		$legend = parent::getLegend( $key );
 		Hooks::run( 'PreferencesGetLegend', [ $this, $key, &$legend ] );
 		return $legend;
@@ -237,7 +237,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * Get the keys of each top level preference section.
 	 * @return string[] List of section keys
 	 */
-	function getPreferenceSections() {
+	public function getPreferenceSections() {
 		return array_keys( array_filter( $this->mFieldTree, 'is_array' ) );
 	}
 }

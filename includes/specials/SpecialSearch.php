@@ -783,7 +783,7 @@ class SpecialSearch extends SpecialPage {
 	 * Current search profile.
 	 * @return null|string
 	 */
-	function getProfile() {
+	public function getProfile() {
 		return $this->profile;
 	}
 
@@ -791,7 +791,7 @@ class SpecialSearch extends SpecialPage {
 	 * Current namespaces.
 	 * @return array
 	 */
-	function getNamespaces() {
+	public function getNamespaces() {
 		return $this->namespaces;
 	}
 

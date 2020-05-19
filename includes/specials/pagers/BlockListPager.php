@@ -52,7 +52,7 @@ class BlockListPager extends TablePager {
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 	}
 
-	function getFieldNames() {
+	protected function getFieldNames() {
 		static $headers = null;
 
 		if ( $headers === null ) {
@@ -78,7 +78,7 @@ class BlockListPager extends TablePager {
 	 * @return string
 	 * @suppress PhanTypeArraySuspicious
 	 */
-	function formatValue( $name, $value ) {
+	public function formatValue( $name, $value ) {
 		static $msg = null;
 		if ( $msg === null ) {
 			$keys = [
@@ -383,7 +383,7 @@ class BlockListPager extends TablePager {
 	 *
 	 * @return int Total number of unexpired active autoblocks
 	 */
-	function getTotalAutoblocks() {
+	public function getTotalAutoblocks() {
 		$dbr = $this->getDatabase();
 		$res = $dbr->selectField( 'ipblocks',
 			'COUNT(*)',
@@ -406,7 +406,7 @@ class BlockListPager extends TablePager {
 		return [ [ 'ipb_timestamp', 'ipb_id' ] ];
 	}
 
-	function getDefaultSort() {
+	public function getDefaultSort() {
 		return '';
 	}
 

@@ -62,17 +62,17 @@ class ImportReporter extends ContextSource {
 		$this->logTags = $tags;
 	}
 
-	function open() {
+	public function open() {
 		$this->getOutput()->addHTML( "<ul>\n" );
 	}
 
-	function reportNotice( $msg, array $params ) {
+	private function reportNotice( $msg, array $params ) {
 		$this->getOutput()->addHTML(
 			Html::element( 'li', [], $this->msg( $msg, $params )->text() )
 		);
 	}
 
-	function reportLogItem( ...$args ) {
+	private function reportLogItem( ...$args ) {
 		$this->mLogItemCount++;
 		if ( is_callable( $this->mOriginalLogCallback ) ) {
 			call_user_func_array( $this->mOriginalLogCallback, $args );
@@ -185,7 +185,7 @@ class ImportReporter extends ContextSource {
 		}
 	}
 
-	function close() {
+	public function close() {
 		$out = $this->getOutput();
 		if ( $this->mLogItemCount > 0 ) {
 			$msg = $this->msg( 'imported-log-entries' )->numParams( $this->mLogItemCount )->parse();

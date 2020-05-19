@@ -85,7 +85,7 @@ class ProtectedPagesPager extends TablePager {
 		$lb->execute();
 	}
 
-	function getFieldNames() {
+	protected function getFieldNames() {
 		static $headers = null;
 
 		if ( $headers == [] ) {
@@ -111,7 +111,7 @@ class ProtectedPagesPager extends TablePager {
 	 * @return string HTML
 	 * @throws MWException
 	 */
-	function formatValue( $field, $value ) {
+	public function formatValue( $field, $value ) {
 		/** @var object $row */
 		$row = $this->mCurrentRow;
 		$linkRenderer = $this->getLinkRenderer();
@@ -325,7 +325,7 @@ class ProtectedPagesPager extends TablePager {
 		return 'pr_id';
 	}
 
-	function getDefaultSort() {
+	public function getDefaultSort() {
 		return 'pr_id';
 	}
 

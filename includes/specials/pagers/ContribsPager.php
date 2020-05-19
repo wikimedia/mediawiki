@@ -143,7 +143,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->templateParser = new TemplateParser();
 	}
 
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['target'] = $this->target;
 
@@ -157,7 +157,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 *
 	 * @return string HTML
 	 */
-	function getNavigationBar() {
+	public function getNavigationBar() {
 		return Html::rawElement( 'p', [ 'class' => 'mw-pager-navigation-bar' ],
 			parent::getNavigationBar()
 		);
@@ -172,7 +172,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
 	 * @return IResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $order ) {
+	public function reallyDoQuery( $offset, $limit, $order ) {
 		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo(
 			$offset,
 			$limit,
@@ -348,7 +348,7 @@ class ContribsPager extends RangeChronologicalPager {
 		return $queryInfo;
 	}
 
-	function getNamespaceCond() {
+	protected function getNamespaceCond() {
 		if ( $this->namespace !== '' ) {
 			$selectedNS = $this->mDb->addQuotes( $this->namespace );
 			$eq_op = $this->nsInvert ? '!=' : '=';
@@ -785,7 +785,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * Overwrite Pager function and return a helpful comment
 	 * @return string
 	 */
-	function getSqlComment() {
+	protected function getSqlComment() {
 		if ( $this->namespace || $this->deletedOnly ) {
 			// potentially slow, see CR r58153
 			return 'contributions page filtered for namespace or RevisionDeleted edits';

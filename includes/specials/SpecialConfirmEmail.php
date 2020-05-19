@@ -83,7 +83,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 	/**
 	 * Show a nice form for the user to request a confirmation mail
 	 */
-	function showRequestForm() {
+	private function showRequestForm() {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 

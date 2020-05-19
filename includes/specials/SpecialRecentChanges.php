@@ -640,7 +640,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param FormOptions $opts
 	 * @return array
 	 */
-	function getExtraOptions( $opts ) {
+	public function getExtraOptions( $opts ) {
 		$opts->consumeValues( [
 			'namespace', 'invert', 'associated', 'tagfilter'
 		] );
@@ -725,7 +725,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param bool $active Whether to show the link in bold
 	 * @return string
 	 */
-	function makeOptionsLink( $title, $override, $options, $active = false ) {
+	private function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $this->convertParamsForLink( $override + $options );
 
 		if ( $active ) {
@@ -746,7 +746,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param int $numRows Number of rows in the result to show after this header
 	 * @return string
 	 */
-	function optionsPanel( $defaults, $nondefaults, $numRows ) {
+	private function optionsPanel( $defaults, $nondefaults, $numRows ) {
 		$options = $nondefaults + $defaults;
 
 		$note = '';

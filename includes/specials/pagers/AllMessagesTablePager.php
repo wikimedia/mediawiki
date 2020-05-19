@@ -109,7 +109,7 @@ class AllMessagesTablePager extends TablePager {
 		}
 	}
 
-	function getAllMessages( $descending ) {
+	private function getAllMessages( $descending ) {
 		$messageNames = MediaWikiServices::getInstance()
 			->getLocalisationCache()
 			->getSubitemList( 'en', 'messages' );
@@ -185,7 +185,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param bool $order
 	 * @return FakeResultWrapper
 	 */
-	function reallyDoQuery( $offset, $limit, $order ) {
+	public function reallyDoQuery( $offset, $limit, $order ) {
 		$asc = ( $order === self::QUERY_ASCENDING );
 
 		$messageNames = $this->getAllMessages( $order );
@@ -241,11 +241,11 @@ class AllMessagesTablePager extends TablePager {
 			</tr></thead>\n";
 	}
 
-	function getEndBody() {
+	protected function getEndBody() {
 		return Html::closeElement( 'table' );
 	}
 
-	function formatValue( $field, $value ) {
+	public function formatValue( $field, $value ) {
 		$linkRenderer = $this->getLinkRenderer();
 		switch ( $field ) {
 			case 'am_title' :
@@ -316,7 +316,7 @@ class AllMessagesTablePager extends TablePager {
 		return Html::rawElement( 'tbody', [], $s );
 	}
 
-	function getRowAttrs( $row ) {
+	protected function getRowAttrs( $row ) {
 		return [];
 	}
 
@@ -325,7 +325,7 @@ class AllMessagesTablePager extends TablePager {
 	 * @param string $value
 	 * @return array HTML attributes
 	 */
-	function getCellAttrs( $field, $value ) {
+	protected function getCellAttrs( $field, $value ) {
 		$attr = [];
 		if ( $field === 'am_title' ) {
 			if ( $this->mCurrentRow->am_customised ) {
@@ -345,14 +345,14 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	// This is not actually used, as getStartBody is overridden above
-	function getFieldNames() {
+	protected function getFieldNames() {
 		return [
 			'am_title' => $this->msg( 'allmessagesname' )->text(),
 			'am_default' => $this->msg( 'allmessagesdefault' )->text()
 		];
 	}
 
-	function getTitle() {
+	public function getTitle() {
 		return SpecialPage::getTitleFor( 'Allmessages', false );
 	}
 
@@ -360,7 +360,7 @@ class AllMessagesTablePager extends TablePager {
 		return false;
 	}
 
-	function getDefaultSort() {
+	public function getDefaultSort() {
 		return '';
 	}
 

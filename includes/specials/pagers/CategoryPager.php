@@ -53,7 +53,7 @@ class CategoryPager extends AlphabeticPager {
 		return 'cat_title';
 	}
 
-	function getDefaultQuery() {
+	public function getDefaultQuery() {
 		parent::getDefaultQuery();
 		unset( $this->mDefaultQuery['from'] );
 

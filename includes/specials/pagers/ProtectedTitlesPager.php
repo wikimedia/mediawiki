@@ -76,7 +76,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	/**
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mForm->getPageTitle();
 	}
 

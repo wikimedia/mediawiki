@@ -52,7 +52,7 @@ class SpecialDoubleRedirects extends QueryPage {
 		return $this->msg( 'doubleredirectstext' )->parseAsBlock();
 	}
 
-	function reallyGetQueryInfo( $namespace = null, $title = null ) {
+	private function reallyGetQueryInfo( $namespace = null, $title = null ) {
 		$limitToTitle = !( $namespace === null && $title === null );
 		$dbr = wfGetDB( DB_REPLICA );
 		$retval = [
