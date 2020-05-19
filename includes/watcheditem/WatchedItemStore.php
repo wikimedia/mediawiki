@@ -388,14 +388,26 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	public function countWatchers( LinkTarget $target ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
+		$tables = [ 'watchlist' ];
+		$conds = [
+			'wl_namespace' => $target->getNamespace(),
+			'wl_title' => $target->getDBkey()
+		];
+		$joinConds = [];
+
+		if ( $this->expiryEnabled ) {
+			$tables[] = 'watchlist_expiry';
+			$joinConds[ 'watchlist_expiry' ] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+		}
+
 		$return = (int)$dbr->selectField(
-			'watchlist',
+			$tables,
 			'COUNT(*)',
-			[
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
-			],
-			__METHOD__
+			$conds,
+			__METHOD__,
+			[],
+			$joinConds
 		);
 
 		return $return;
@@ -409,17 +421,29 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	public function countVisitingWatchers( LinkTarget $target, $threshold ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
+		$tables = [ 'watchlist' ];
+		$conds = [
+			'wl_namespace' => $target->getNamespace(),
+			'wl_title' => $target->getDBkey(),
+			'wl_notificationtimestamp >= ' .
+			$dbr->addQuotes( $dbr->timestamp( $threshold ) ) .
+			' OR wl_notificationtimestamp IS NULL'
+		];
+		$joinConds = [];
+
+		if ( $this->expiryEnabled ) {
+			$tables[] = 'watchlist_expiry';
+			$joinConds[ 'watchlist_expiry' ] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+		}
+
 		$visitingWatchers = (int)$dbr->selectField(
-			'watchlist',
+			$tables,
 			'COUNT(*)',
-			[
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
-				'wl_notificationtimestamp >= ' .
-				$dbr->addQuotes( $dbr->timestamp( $threshold ) ) .
-				' OR wl_notificationtimestamp IS NULL'
-			],
-			__METHOD__
+			$conds,
+			__METHOD__,
+			[],
+			$joinConds
 		);
 
 		return $visitingWatchers;
@@ -504,12 +528,24 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$lb = new LinkBatch( $targets );
+
+		$tables = [ 'watchlist' ];
+		$conds = [ $lb->constructSet( 'wl', $dbr ) ];
+		$joinConds = [];
+
+		if ( $this->expiryEnabled ) {
+			$tables[] = 'watchlist_expiry';
+			$joinConds[ 'watchlist_expiry' ] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+		}
+
 		$res = $dbr->select(
-			'watchlist',
+			$tables,
 			[ 'wl_title', 'wl_namespace', 'watchers' => 'COUNT(*)' ],
-			[ $lb->constructSet( 'wl', $dbr ) ],
+			$conds,
 			__METHOD__,
-			$dbOptions
+			$dbOptions,
+			$joinConds
 		);
 
 		$watchCounts = [];
@@ -541,18 +577,29 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 
-		$conds = $this->getVisitingWatchersCondition( $dbr, $targetsWithVisitThresholds );
+		$conds = [ $this->getVisitingWatchersCondition( $dbr, $targetsWithVisitThresholds ) ];
 
 		$dbOptions = [ 'GROUP BY' => [ 'wl_namespace', 'wl_title' ] ];
 		if ( $minimumWatchers !== null ) {
 			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$minimumWatchers;
 		}
+
+		$tables = [ 'watchlist' ];
+		$joinConds = [];
+
+		if ( $this->expiryEnabled ) {
+			$tables[] = 'watchlist_expiry';
+			$joinConds[ 'watchlist_expiry' ] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+		}
+
 		$res = $dbr->select(
-			'watchlist',
+			$tables,
 			[ 'wl_namespace', 'wl_title', 'watchers' => 'COUNT(*)' ],
 			$conds,
 			__METHOD__,
-			$dbOptions
+			$dbOptions,
+			$joinConds
 		);
 
 		$watcherCounts = [];
