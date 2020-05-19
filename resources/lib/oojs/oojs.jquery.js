@@ -1,12 +1,12 @@
 /*!
- * OOjs v3.0.1 optimised for jQuery
+ * OOjs v5.0.0 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2020 OOjs Team and other contributors.
  * Released under the MIT license
  * https://oojs.mit-license.org
  *
- * Date: 2020-02-24T22:36:27Z
+ * Date: 2020-05-05T19:28:30Z
  */
 ( function ( global ) {
 
