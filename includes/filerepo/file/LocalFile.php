@@ -1420,7 +1420,7 @@ class LocalFile extends File {
 	 * @param User|null $user User object or null to use $wgUser
 	 * @return bool
 	 */
-	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
+	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false, User $user = null ) {
 		if ( !$user ) {
 			global $wgUser;
@@ -1829,7 +1829,7 @@ class LocalFile extends File {
 	 * @return Status On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function publish( $src, $flags = 0, array $options = [] ) {
+	public function publish( $src, $flags = 0, array $options = [] ) {
 		return $this->publishTo( $src, $this->getRel(), $flags, $options );
 	}
 
@@ -1914,7 +1914,7 @@ class LocalFile extends File {
 	 * @param Title $target New file name
 	 * @return Status
 	 */
-	function move( $target ) {
+	public function move( $target ) {
 		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
@@ -1977,7 +1977,7 @@ class LocalFile extends File {
 	 * @param User|null $user
 	 * @return Status
 	 */
-	function delete( $reason, $suppress = false, $user = null ) {
+	public function delete( $reason, $suppress = false, $user = null ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		if ( $user === null ) {
 			global $wgUser;
@@ -2001,7 +2001,7 @@ class LocalFile extends File {
 	 * @param bool $suppress
 	 * @return Status
 	 */
-	function deleteFile( $reason, User $user, $suppress = false ) {
+	public function deleteFile( $reason, User $user, $suppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
@@ -2124,7 +2124,7 @@ class LocalFile extends File {
 	 * @param bool $unsuppress
 	 * @return Status
 	 */
-	function restore( $versions = [], $unsuppress = false ) {
+	public function restore( $versions = [], $unsuppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
@@ -2158,7 +2158,7 @@ class LocalFile extends File {
 	 * Get the URL of the file description page.
 	 * @return string|bool
 	 */
-	function getDescriptionUrl() {
+	public function getDescriptionUrl() {
 		if ( !$this->title ) {
 			return false; // Avoid hard failure when the file does not exist. T221812
 		}
@@ -2174,7 +2174,7 @@ class LocalFile extends File {
 	 * @param Language|null $lang What language to get description in (Optional)
 	 * @return string|false
 	 */
-	function getDescriptionText( Language $lang = null ) {
+	public function getDescriptionText( Language $lang = null ) {
 		if ( !$this->title ) {
 			return false; // Avoid hard failure when the file does not exist. T221812
 		}
