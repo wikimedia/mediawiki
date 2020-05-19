@@ -40,7 +40,8 @@ class BenchUtf8TitleCheck extends Benchmarker {
 		// phpcs:disable Generic.Files.LineLength
 		$this->data = [
 			"",
-			"United States of America", // 7bit ASCII
+			// 7bit ASCII
+			"United States of America",
 			"S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e",
 			"Acteur%7CAlbert%20Robbins%7CAnglais%7CAnn%20Donahue%7CAnthony%20E.%20Zuiker%7CCarol%20Mendelsohn",
 			// This comes from T38839

@@ -86,7 +86,8 @@ class RebuildLocalisationCache extends Maintenance {
 		}
 
 		$conf = $wgLocalisationCacheConf;
-		$conf['manualRecache'] = false; // Allow fallbacks to create CDB files
+		// Allow fallbacks to create CDB files
+		$conf['manualRecache'] = false;
 		$conf['forceRecache'] = $force || !empty( $conf['forceRecache'] );
 		if ( $this->hasOption( 'outdir' ) ) {
 			$conf['storeDirectory'] = $this->getOption( 'outdir' );

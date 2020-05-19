@@ -107,7 +107,9 @@ class DeleteArchivedFiles extends Maintenance {
 			} elseif ( !$repo->quickPurge( $path ) ) {
 				$this->output( "Unable to remove file $path, skipping\n" );
 				$file->unlock();
-				continue; // don't delete even with --force
+
+				// don't delete even with --force
+				continue;
 			} else {
 				$needForce = false;
 			}

@@ -59,7 +59,8 @@ class Sqlite {
 			'integer',
 			'real',
 			'text',
-			'blob', // NULL type is omitted intentionally
+			'blob',
+			// NULL type is omitted intentionally
 		] );
 
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );

@@ -415,7 +415,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			// Update rows
 			if ( $rows ) {
 				$inserts = [];
-				$updates = [];
 				foreach ( $rows as $row ) {
 					if ( !$row->actor_id ) {
 						list( , $display ) = $this->makeNextCond( $dbw, [ $primaryKey ], $row );
@@ -431,10 +430,10 @@ class MigrateActors extends LoggedUpdateMaintenance {
 						$actorField => $row->actor_id,
 					];
 					foreach ( $extra as $to => $from ) {
-						$ins[$to] = $row->$to; // It's aliased
+						// It's aliased
+						$ins[$to] = $row->$to;
 					}
 					$inserts[] = $ins;
-					$updates[] = $row->$primaryKey;
 				}
 				$this->beginTransaction( $dbw, __METHOD__ );
 				$dbw->insert( $newTable, $inserts, __METHOD__ );
