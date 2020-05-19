@@ -2597,6 +2597,7 @@
 	"badipaddress": "Du har inte skrivit IP-adressen korrekt.",
 	"blockipsuccesssub": "Blockeringen är utförd",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] har blockerats.<br />\nFör att se alla aktuella blockeringar, gå till [[Special:BlockList|listan över blockeringar]].",
+	"ipb-empty-block": "Den inskickade blockeringen har inte några aktiverade begränsningar.",
 	"ipb-blockingself": "Du håller på att blockera dig själv! Är du säker på att du vill göra det?",
 	"ipb-confirmhideuser": "Du är på väg att blockera en användare med \"dölj användare\" aktiverat. Detta kommer upphäva användarens namn i alla listor och loggar. Är du säker på att du vill göra det?",
 	"ipb-confirmaction": "Markera fältet \"{{int:ipb-confirm}}\" längst ned om du är säker på att du verkligen vill göra det.",
