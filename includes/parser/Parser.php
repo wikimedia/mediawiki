@@ -1627,12 +1627,12 @@ class Parser {
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$parser = $this;
 
-		# Clean up special characters, only run once, next-to-last before doBlockLevels
-		$text = Sanitizer::armorFrenchSpaces( $text );
-
 		$text = BlockLevelPass::doBlockLevels( $text, $linestart );
 
 		$this->replaceLinkHoldersPrivate( $text );
+
+		# Clean up special characters, only run once, after doBlockLevels
+		$text = Sanitizer::armorFrenchSpaces( $text );
 
 		/**
 		 * The input doesn't get language converted if
