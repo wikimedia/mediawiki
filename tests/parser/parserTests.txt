@@ -21537,7 +21537,7 @@ image:foobar.jpg
 image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 </gallery>
 !! html/php
-<ul class="gallery mw-gallery-traditional" style="max-width: 226px;_width: 226px;">
+<ul class="gallery mw-gallery-traditional" style="max-width: 226px;">
 	<li class="gallerycaption">Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
 			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
@@ -21572,7 +21572,7 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 		</div></li>
 </ul>
 !! html/parsoid
-<ul class="gallery mw-gallery-traditional" style="max-width: 226px; _width: 226px;" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"widths":"70px","heights":"40px","perrow":"2"},"body":{}}'>
+<ul class="gallery mw-gallery-traditional" style="max-width: 226px;" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{"widths":"70px","heights":"40px","perrow":"2"},"body":{}}'>
 <li class="gallerycaption">Foo <a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a></li>
 <li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><figure-inline typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Nonexistent.jpg"><span resource="./File:Nonexistent.jpg" data-width="70" data-height="40">File:Nonexistent.jpg</span></a></figure-inline></div><div class="gallerytext">caption</div></li>
 <li class="gallerybox" style="width: 105px;"><div class="thumb" style="width: 100px; height: 70px;"><figure-inline typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Nonexistent.jpg"><span resource="./File:Nonexistent.jpg" data-width="70" data-height="40">File:Nonexistent.jpg</span></a></figure-inline></div><div class="gallerytext"></div></li>
@@ -21597,7 +21597,7 @@ image:foobar.jpg
 image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 </gallery>
 !! html/php
-<ul class="gallery mw-gallery-traditional" style="max-width: 226px;_width: 226px;">
+<ul class="gallery mw-gallery-traditional" style="max-width: 226px;">
 	<li class="gallerycaption">Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 105px"><div style="width: 105px">
 			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>

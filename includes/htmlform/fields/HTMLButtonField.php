@@ -17,10 +17,6 @@
  *   client-side form validation. Used in HTMLFormFieldCloner for add/remove
  *   buttons.
  *
- * Note that the buttonlabel parameters are not supported on IE6 and IE7 due to
- * bugs in those browsers. If detected, they will be served buttons using the
- * value of 'default' as the button label.
- *
  * @since 1.22
  */
 class HTMLButtonField extends HTMLFormField {
