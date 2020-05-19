@@ -151,6 +151,7 @@ var toUpperMap,
 
 	/**
 	 * Slightly modified from Flinfo. Credit goes to Lupo and Flominator.
+	 *
 	 * @private
 	 * @static
 	 * @property sanitationRules

@@ -59,6 +59,7 @@
 
 	/**
 	 * Validate the form element
+	 *
 	 * @return {jQuery.Promise}
 	 */
 	mw.htmlform.Checker.prototype.validate = function () {
@@ -102,6 +103,7 @@
 
 	/**
 	 * Display errors associated with the form element
+	 *
 	 * @param {boolean} valid Whether the input is still valid regardless of the messages
 	 * @param {Array} errors Errorbox messages. Each errorbox message will be appended to a
 	 *  `<div>` or `<li>`, as with jQuery.append().

@@ -142,6 +142,7 @@ SaveFiltersPopupButtonWidget.prototype.onPopupReady = function () {
 
 /**
  * Respond to "set as default" checkbox change
+ *
  * @param {boolean} checked State of the checkbox
  */
 SaveFiltersPopupButtonWidget.prototype.onSetAsDefaultChange = function ( checked ) {

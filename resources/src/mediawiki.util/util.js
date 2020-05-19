@@ -7,8 +7,8 @@ require( './jquery.accessKeyLabel.js' );
 
 /**
  * Encode the string like PHP's rawurlencode
- * @ignore
  *
+ * @ignore
  * @param {string} str String to be encoded.
  * @return {string} Encoded string
  */
@@ -20,8 +20,8 @@ function rawurlencode( str ) {
 
 /**
  * Private helper function used by util.escapeId*()
- * @ignore
  *
+ * @ignore
  * @param {string} str String to be encoded
  * @param {string} mode Encoding mode, see documentation for $wgFragmentMode
  *     in DefaultSettings.php
@@ -44,6 +44,7 @@ function escapeIdInternal( str, mode ) {
 
 /**
  * Utility library
+ *
  * @class mw.util
  * @singleton
  */

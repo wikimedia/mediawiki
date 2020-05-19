@@ -1389,6 +1389,7 @@
 
 	/**
 	 * Create a widget and the FieldLayouts it needs
+	 *
 	 * @private
 	 * @param {Object} ppi API paraminfo data for the parameter
 	 * @param {string} name API parameter name
@@ -1580,6 +1581,7 @@
 
 	/**
 	 * Update templated parameters in the page
+	 *
 	 * @private
 	 * @param {Object} [params] Query parameters for initializing the widgets
 	 */

@@ -1022,6 +1022,7 @@
 
 			/**
 			 * Make a require() function scoped to a package file
+			 *
 			 * @private
 			 * @param {Object} moduleObj Module object from the registry
 			 * @param {string} basePath Path of the file this is scoped to. Used for relative paths.

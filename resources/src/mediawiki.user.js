@@ -41,7 +41,7 @@
 		 *
 		 * See https://en.wikipedia.org/wiki/Birthday_attack#Mathematics
 		 * n(p;H) = n(0.01,2^80)= sqrt (2 * 2^80 * ln(1/(1-0.01)))
-
+		 *
 		 * @return {string} 80 bit integer in hex format, padded
 		 */
 		generateRandomSessionId: function () {
