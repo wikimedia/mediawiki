@@ -24,6 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -541,20 +542,26 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItemDesc( $row ) {
-		$revision = Revision::newFromId( $row->rev_id );
-		if ( !$revision ) {
+		$revisionRecord = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionById( $row->rev_id );
+		if ( !$revisionRecord ) {
 			return '';
 		}
 
-		$content = $revision->getContent();
+		$content = $revisionRecord->getContent( SlotRecord::MAIN );
 		if ( $content === null ) {
 			return '';
 		}
 
 		// XXX: include content model/type in feed item?
-		return '<p>' . htmlspecialchars( $revision->getUserText() ) .
+		$revUser = $revisionRecord->getUser();
+		$revUserText = $revUser ? $revUser->getName() : '';
+		$revComment = $revisionRecord->getComment();
+		$revCommentText = $revComment ? $revComment->text : '';
+		return '<p>' . htmlspecialchars( $revUserText ) .
 			$this->msg( 'colon-separator' )->inContentLanguage()->escaped() .
-			htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
+			htmlspecialchars( FeedItem::stripComment( $revCommentText ) ) .
 			"</p>\n<hr />\n<div>" .
 			nl2br( htmlspecialchars( $content->serialize() ) ) . "</div>";
 	}
