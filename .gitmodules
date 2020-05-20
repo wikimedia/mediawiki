@@ -1307,3 +1307,9 @@
 	url = https://github.com/StarCitizenTools/mediawiki-skins-Citizen.git
 	branch = master
 	ignore = dirty
+[submodule "extensions/Mermaid"]
+	path = extensions/Mermaid
+	url = https://github.com/SemanticMediaWiki/Mermaid.git
+	branch = master
+	ignore = dirty
+
