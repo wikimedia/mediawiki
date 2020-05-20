@@ -1550,11 +1550,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				// TODO: replace legacy hook!  Use a listener on PageEventEmitter instead!
 				if ( Hooks::run( 'ArticleEditUpdateNewTalk', [ &$wikiPage, $recipient ] ) ) {
 					$revRecord = $legacyRevision->getRevisionRecord();
+					$talkPageNotificationManager = MediaWikiServices::getInstance()
+						->getTalkPageNotificationManager();
 					if ( User::isIP( $shortTitle ) ) {
 						// An anonymous user
-						$recipient->setNewtalk( true, $revRecord );
+						$talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
 					} elseif ( $recipient->isLoggedIn() ) {
-						$recipient->setNewtalk( true, $revRecord );
+						$talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
 					} else {
 						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
 					}

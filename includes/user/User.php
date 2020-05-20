@@ -2265,17 +2265,18 @@ class User implements IDBAccessObject, UserIdentity {
 			return $talks;
 		}
 
-		if ( !$this->getNewtalk() ) {
+		$services = MediaWikiServices::getInstance();
+		$userHasNewMessages = $services->getTalkPageNotificationManager()
+			->userHasNewMessages( $this );
+		if ( !$userHasNewMessages ) {
 			return [];
 		}
 		$utp = $this->getTalkPage();
-		$timestamp = MediaWikiServices::getInstance()
-			->getTalkPageNotificationManager()
+		$timestamp = $services->getTalkPageNotificationManager()
 			->getLatestSeenMessageTimestamp( $this );
 		$rev = null;
 		if ( $timestamp ) {
-			$revRecord = MediaWikiServices::getInstance()
-				->getRevisionLookup()
+			$revRecord = $services->getRevisionLookup()
 				->getRevisionByTimestamp( $utp, $timestamp );
 			if ( $revRecord ) {
 				$rev = new Revision( $revRecord );
@@ -3469,12 +3470,14 @@ class User implements IDBAccessObject, UserIdentity {
 
 			// Try to update the DB post-send and only if needed...
 			DeferredUpdates::addCallableUpdate( function () use ( $oldid ) {
-				if ( !$this->getNewtalk() ) {
+				$talkPageNotificationManager = MediaWikiServices::getInstance()
+					->getTalkPageNotificationManager();
+				if ( !$talkPageNotificationManager->userHasNewMessages( $this ) ) {
 					return; // no notifications to clear
 				}
 
 				// Delete the last notifications (they stack up)
-				$this->setNewtalk( false );
+				$talkPageNotificationManager->removeUserHasNewMessages( $this );
 
 				// If there is a new, unseen, revision, use its timestamp
 				if ( $oldid ) {
@@ -3483,7 +3486,7 @@ class User implements IDBAccessObject, UserIdentity {
 					if ( $oldRev ) {
 						$newRev = $rl->getNextRevision( $oldRev );
 						if ( $newRev ) {
-							$this->setNewtalk( true, $newRev );
+							$talkPageNotificationManager->setUserHasNewMessages( $this, $newRev );
 						}
 					}
 				}
@@ -3526,7 +3529,9 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
-			$this->setNewtalk( false );
+			MediaWikiServices::getInstance()
+				->getTalkPageNotificationManager()
+				->removeUserHasNewMessages( $this );
 			return;
 		}
 
