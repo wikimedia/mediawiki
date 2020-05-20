@@ -5773,6 +5773,14 @@ class Parser {
 			$this
 		);
 
+		if ( $rev === false ) {
+			// The revision record callback returns `false` (not null) to
+			// indicate that the revision is missing.  (See for example
+			// Parser::statelessFetchRevisionRecord(), the default callback.)
+			// This API expects `null` instead. (T251952)
+			$rev = null;
+		}
+
 		if ( $this->mRevisionId === null && $rev && $rev->getId() ) {
 			// We are in preview mode (mRevisionId is null), and the current revision callback
 			// returned an existing revision. Ignore it and return null, it's probably the page's
