@@ -36,5 +36,27 @@
 			"RevisionLookup",
 			"PermissionManager"
 		]
+	},
+	{
+		"path": "/v1/search/page",
+		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"SearchEngineFactory",
+			"SearchEngineConfig"
+		],
+		"mode": "fulltext"
+	},
+	{
+		"path": "/v1/search/title",
+		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"SearchEngineFactory",
+			"SearchEngineConfig"
+		],
+		"mode": "completion"
 	}
 ]

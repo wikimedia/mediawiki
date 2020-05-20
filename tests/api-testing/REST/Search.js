@@ -1,7 +1,7 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'Search', () => {
-	const client = new REST( 'rest.php/coredev/v0' );
+	const client = new REST( 'rest.php/v1' );
 	const sharedTitleTerm = 'X' + utils.uniq(); // NOTE: must start with upper-case letter
 	const pageWithBothTerms = utils.title( `${sharedTitleTerm}XXX` );
 	const pageWithOneTerm = utils.title( `${sharedTitleTerm}YYY` );
