@@ -6,19 +6,6 @@
  */
 class ErrorPageErrorTest extends MediaWikiTestCase {
 
-	private function getMockMessage() {
-		$mockMessage = $this->getMockBuilder( Message::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mockMessage->expects( $this->once() )
-			->method( 'inLanguage' )
-			->will( $this->returnValue( $mockMessage ) );
-		$mockMessage->expects( $this->once() )
-			->method( 'useDatabase' )
-			->will( $this->returnValue( $mockMessage ) );
-		return $mockMessage;
-	}
-
 	public function testConstruction() {
 		$mockMessage = $this->getMockMessage();
 		$title = 'Foo';
