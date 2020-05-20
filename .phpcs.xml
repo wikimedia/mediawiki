@@ -5,7 +5,6 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
@@ -14,6 +13,10 @@
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="PSR2.Classes.ClassDeclaration.InterfaceWrongIndent" /><!-- Temporary: T243529 -->
+	</rule>
+	<!-- TODO Still to be done -->
+	<rule ref="MediaWiki.Commenting.FunctionComment.WrongStyle">
+		<exclude-pattern>includes/</exclude-pattern>
 	</rule>
 	<!-- See T238572 -->
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">

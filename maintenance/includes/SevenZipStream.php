@@ -64,8 +64,6 @@ class SevenZipStream {
 		return stat( $this->stripPath( $path ) );
 	}
 
-	// This is all so lame; there should be a default class we can extend
-
 	public function stream_close() {
 		return fclose( $this->stream );
 	}

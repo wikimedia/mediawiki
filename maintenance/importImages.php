@@ -490,8 +490,15 @@ class ImportImages extends Maintenance {
 		return false;
 	}
 
-	# @todo FIXME: Access the api in a saner way and performing just one query
-	# (preferably batching files too).
+	/**
+	 * @todo FIXME: Access the api in a saner way and performing just one query
+	 * (preferably batching files too).
+	 *
+	 * @param string $wiki_host
+	 * @param string $file
+	 *
+	 * @return string|bool
+	 */
 	private function getFileCommentFromSourceWiki( $wiki_host, $file ) {
 		$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
 			. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=comment';
