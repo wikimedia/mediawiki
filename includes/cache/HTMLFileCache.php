@@ -124,7 +124,9 @@ class HTMLFileCache extends FileCacheBase {
 			return false;
 		}
 
-		if ( ( $mode === self::MODE_NORMAL ) && $user->getNewtalk() ) {
+		$userHasNewMessages = MediaWikiServices::getInstance()
+			->getTalkPageNotificationManager()->userHasNewMessages( $user );
+		if ( ( $mode === self::MODE_NORMAL ) && $userHasNewMessages ) {
 			return false;
 		}
 
