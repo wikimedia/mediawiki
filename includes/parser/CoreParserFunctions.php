@@ -1394,9 +1394,7 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-user' );
-
-		// TODO what can getCachedRevisionObject return other than RevisionRecord and null
-		if ( !( $rev instanceof RevisionRecord ) ) {
+		if ( $rev === null ) {
 			return '';
 		}
 		$user = $rev->getUser();
