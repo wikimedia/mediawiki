@@ -190,7 +190,6 @@ $wgAutoloadLocalClasses = [
 	'BenchHttpHttps' => __DIR__ . '/maintenance/benchmarks/bench_HTTP_HTTPS.php',
 	'BenchIfSwitch' => __DIR__ . '/maintenance/benchmarks/bench_if_switch.php',
 	'BenchUtf8TitleCheck' => __DIR__ . '/maintenance/benchmarks/bench_utf8_title_check.php',
-	'BenchWfIsWindows' => __DIR__ . '/maintenance/benchmarks/bench_wfIsWindows.php',
 	'BenchWikimediaBaseConvert' => __DIR__ . '/maintenance/benchmarks/bench_Wikimedia_base_convert.php',
 	'BenchmarkCSSMin' => __DIR__ . '/maintenance/benchmarks/benchmarkCSSMin.php',
 	'BenchmarkDeleteTruncate' => __DIR__ . '/maintenance/benchmarks/bench_delete_truncate.php',
