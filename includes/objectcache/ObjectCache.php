@@ -175,6 +175,12 @@ class ObjectCache {
 						$server['dbDirectory'] = $conf->get( 'SQLiteDataDir' );
 					}
 				}
+			} elseif ( !isset( $params['localKeyLB'] ) ) {
+				$params['localKeyLB'] = [
+					'factory' => function () {
+						return MediaWikiServices::getInstance()->getDBLoadBalancer();
+					}
+				];
 			}
 		}
 
