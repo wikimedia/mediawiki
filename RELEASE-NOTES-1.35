@@ -567,6 +567,12 @@ because of Phabricator reports.
 * Unused CommentStore::MAX_COMMENT_LENGTH has been removed.
 * User::checkTemporaryPassword(), deprecated in 1.27, was removed. Use
   AuthManager instead.
+* All constants and class functions now have explicit visibility modifiers. This
+  means, per [[mw:Stable interface policy]], that these should now be considered
+  stable. This also helps MW align with PSR 2 and PSR 12. This was done based on
+  audits of the corpus of skins and extensions hosted in Gerrit. If you find any
+  that you need to be less restrictive (i.e. public or protected), please report
+  these so that we can re-evaluate or suggest workarounds.
 * …
 
 === Deprecations in 1.35 ===
