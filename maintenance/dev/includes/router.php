@@ -54,15 +54,13 @@ if ( $ext == 'php' ) {
 	// The built-in server for PHP 7.0+ supports most files already
 	// (contrary to PHP 5.2, which was supported when router.php was created).
 	// But it still doesn't support as many MIME types as MediaWiki (e.g. ".json")
+	require_once __DIR__ . "/../../../includes/libs/mime/MimeMap.php";
 
 	// Fallback
 	$mime = 'text/plain';
 	// Borrow from MimeAnalyzer
-	$lines = explode( "\n", file_get_contents( "includes/libs/mime/mime.types" ) );
-	foreach ( $lines as $line ) {
-		$exts = explode( ' ', $line );
-		$type = array_shift( $exts );
-		if ( in_array( $ext, $exts ) ) {
+	foreach ( \Wikimedia\Mime\MimeMap::MIME_EXTENSIONS as $type => $exts ) {
+		if ( in_array( $ext, explode( ' ', $exts ) ) ) {
 			$mime = $type;
 			break;
 		}

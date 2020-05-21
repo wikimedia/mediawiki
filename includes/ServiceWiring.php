@@ -663,11 +663,11 @@ return [
 		];
 
 		if ( $params['infoFile'] === 'includes/mime.info' ) {
-			$params['infoFile'] = __DIR__ . "/libs/mime/mime.info";
+			$params['infoFile'] = MimeAnalyzer::USE_INTERNAL;
 		}
 
 		if ( $params['typeFile'] === 'includes/mime.types' ) {
-			$params['typeFile'] = __DIR__ . "/libs/mime/mime.types";
+			$params['typeFile'] = MimeAnalyzer::USE_INTERNAL;
 		}
 
 		$detectorCmd = $mainConfig->get( 'MimeDetectorCommand' );

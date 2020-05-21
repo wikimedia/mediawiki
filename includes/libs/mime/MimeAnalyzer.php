@@ -22,6 +22,8 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\Mime\MimeMap;
+use Wikimedia\Mime\MimeMapMinimal;
 
 /**
  * Implements functions related to MIME types such as detection and mapping to file extension
@@ -64,118 +66,8 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/**
-	 * Defines a set of well known MIME types
-	 * This is used as a fallback to mime.types files.
-	 * An extensive list of well known MIME types is provided by
-	 * the file mime.types in the includes directory.
-	 *
-	 * This list concatenated with mime.types is used to create a MIME <-> ext
-	 * map. Each line contains a MIME type followed by a space separated list of
-	 * extensions. If multiple extensions for a single MIME type exist or if
-	 * multiple MIME types exist for a single extension then in most cases
-	 * MediaWiki assumes that the first extension following the MIME type is the
-	 * canonical extension, and the first time a MIME type appears for a certain
-	 * extension is considered the canonical MIME type.
-	 *
-	 * (Note that appending the type file list to the end of self::$wellKnownTypes
-	 * sucks because you can't redefine canonical types. This could be fixed by
-	 * appending self::$wellKnownTypes behind type file list, but who knows
-	 * what will break? In practice this probably isn't a problem anyway -- Bryan)
-	 */
-	protected static $wellKnownTypes = <<<EOT
-application/ogg ogx ogg ogm ogv oga spx opus
-application/pdf pdf
-application/vnd.oasis.opendocument.chart odc
-application/vnd.oasis.opendocument.chart-template otc
-application/vnd.oasis.opendocument.database odb
-application/vnd.oasis.opendocument.formula odf
-application/vnd.oasis.opendocument.formula-template otf
-application/vnd.oasis.opendocument.graphics odg
-application/vnd.oasis.opendocument.graphics-template otg
-application/vnd.oasis.opendocument.image odi
-application/vnd.oasis.opendocument.image-template oti
-application/vnd.oasis.opendocument.presentation odp
-application/vnd.oasis.opendocument.presentation-template otp
-application/vnd.oasis.opendocument.spreadsheet ods
-application/vnd.oasis.opendocument.spreadsheet-template ots
-application/vnd.oasis.opendocument.text odt
-application/vnd.oasis.opendocument.text-master otm
-application/vnd.oasis.opendocument.text-template ott
-application/vnd.oasis.opendocument.text-web oth
-application/javascript js
-application/x-shockwave-flash swf
-audio/midi mid midi kar
-audio/mpeg mpga mpa mp2 mp3
-audio/x-aiff aif aiff aifc
-audio/x-wav wav
-audio/ogg oga spx ogg opus
-audio/opus opus ogg oga ogg spx
-image/x-bmp bmp
-image/gif gif
-image/jpeg jpeg jpg jpe
-image/png png
-image/svg+xml svg
-image/svg svg
-image/tiff tiff tif
-image/vnd.djvu djvu
-image/x.djvu djvu
-image/x-djvu djvu
-image/x-portable-pixmap ppm
-image/x-xcf xcf
-text/plain txt
-text/html html htm
-video/ogg ogv ogm ogg
-video/mpeg mpg mpeg
-EOT;
-
-	/**
-	 * Defines a set of well known MIME info entries
-	 * This is used as a fallback to mime.info files.
-	 * An extensive list of well known MIME types is provided by
-	 * the file mime.info in the includes directory.
-	 */
-	protected static $wellKnownInfo = <<<EOT
-application/pdf [OFFICE]
-application/vnd.oasis.opendocument.chart [OFFICE]
-application/vnd.oasis.opendocument.chart-template [OFFICE]
-application/vnd.oasis.opendocument.database [OFFICE]
-application/vnd.oasis.opendocument.formula [OFFICE]
-application/vnd.oasis.opendocument.formula-template [OFFICE]
-application/vnd.oasis.opendocument.graphics [OFFICE]
-application/vnd.oasis.opendocument.graphics-template [OFFICE]
-application/vnd.oasis.opendocument.image [OFFICE]
-application/vnd.oasis.opendocument.image-template [OFFICE]
-application/vnd.oasis.opendocument.presentation [OFFICE]
-application/vnd.oasis.opendocument.presentation-template [OFFICE]
-application/vnd.oasis.opendocument.spreadsheet [OFFICE]
-application/vnd.oasis.opendocument.spreadsheet-template [OFFICE]
-application/vnd.oasis.opendocument.text [OFFICE]
-application/vnd.oasis.opendocument.text-template [OFFICE]
-application/vnd.oasis.opendocument.text-master [OFFICE]
-application/vnd.oasis.opendocument.text-web [OFFICE]
-application/javascript text/javascript application/x-javascript [EXECUTABLE]
-application/x-shockwave-flash [MULTIMEDIA]
-audio/midi [AUDIO]
-audio/x-aiff [AUDIO]
-audio/x-wav [AUDIO]
-audio/mp3 audio/mpeg [AUDIO]
-application/ogg audio/ogg video/ogg [MULTIMEDIA]
-image/x-bmp image/x-ms-bmp image/bmp [BITMAP]
-image/gif [BITMAP]
-image/jpeg [BITMAP]
-image/png [BITMAP]
-image/svg+xml [DRAWING]
-image/tiff [BITMAP]
-image/vnd.djvu [BITMAP]
-image/x-xcf [BITMAP]
-image/x-portable-pixmap [BITMAP]
-text/plain [TEXT]
-text/html [TEXT]
-video/ogg [VIDEO]
-video/mpeg [VIDEO]
-unknown/unknown application/octet-stream application/x-empty [UNKNOWN]
-EOT;
+	/** @var string Use the full, built-in MIME mapping rather than load from a file */
+	public const USE_INTERNAL = 'internal';
 
 	/**
 	 * @param array $params Configuration map, includes:
@@ -206,40 +98,56 @@ EOT;
 	}
 
 	protected function loadFiles() {
-		/**
-		 *   --- load mime.types ---
-		 */
-
 		# Allow media handling extensions adding MIME-types and MIME-info
 		if ( $this->initCallback ) {
 			call_user_func( $this->initCallback, $this );
 		}
 
-		$types = self::$wellKnownTypes;
-
-		$mimeTypeFile = $this->typeFile;
-		if ( $mimeTypeFile ) {
-			if ( is_file( $mimeTypeFile ) && is_readable( $mimeTypeFile ) ) {
-				$this->logger->info( __METHOD__ . ": loading mime types from $mimeTypeFile\n" );
-				$types .= "\n";
-				$types .= file_get_contents( $mimeTypeFile );
-			} else {
-				$this->logger->info( __METHOD__ . ": can't load mime types from $mimeTypeFile\n" );
-			}
+		$rawTypes = $this->extraTypes;
+		if ( $this->typeFile === self::USE_INTERNAL ) {
+			$this->mimeToExt = MimeMap::MIME_EXTENSIONS;
 		} else {
-			$this->logger->info( __METHOD__ .
-				": no mime types file defined, using built-ins only.\n" );
+			$this->mimeToExt = MimeMapMinimal::MIME_EXTENSIONS;
+			if ( $this->typeFile ) {
+				$rawTypes = file_get_contents( $this->typeFile ) . "\n" . $this->extraTypes;
+			}
+		}
+		if ( $rawTypes ) {
+			$this->parseMimeTypes( $rawTypes );
 		}
 
-		$types .= "\n" . $this->extraTypes;
+		// Build the reverse mapping (extension => MIME type).
+		foreach ( $this->mimeToExt as $mime => $exts ) {
+			foreach ( explode( ' ', $exts ) as $ext ) {
+				if ( isset( $this->mExtToMime[$ext] ) ) {
+					$this->mExtToMime[$ext] .= " " . $mime;
+				} else {
+					$this->mExtToMime[$ext] = $mime;
+				}
+			}
+		}
 
-		$types = str_replace( [ "\r\n", "\n\r", "\n\n", "\r\r", "\r" ], "\n", $types );
-		$types = str_replace( "\t", " ", $types );
+		$rawInfo = $this->extraInfo;
+		if ( $this->infoFile === self::USE_INTERNAL ) {
+			$this->mimeTypeAliases = MimeMap::MIME_TYPE_ALIASES;
+			$this->mediaTypes = MimeMap::MEDIA_TYPES;
+		} else {
+			$this->mimeTypeAliases = MimeMapMinimal::MIME_TYPE_ALIASES;
+			$this->mediaTypes = MimeMapMinimal::MEDIA_TYPES;
+			if ( $this->infoFile ) {
+				$rawInfo = file_get_contents( $this->infoFile ) . "\n" . $this->extraInfo;
+			}
+		}
+		if ( $rawInfo ) {
+			$this->parseMimeInfo( $rawInfo );
+		}
+	}
 
-		$this->mimeToExt = [];
-		$this->mExtToMime = [];
+	protected function parseMimeTypes( $rawMimeTypes ) {
+		$rawMimeTypes = str_replace( [ "\r\n", "\n\r", "\n\n", "\r\r", "\r" ], "\n", $rawMimeTypes );
+		$rawMimeTypes = str_replace( "\t", " ", $rawMimeTypes );
 
-		$lines = explode( "\n", $types );
+		$lines = explode( "\n", $rawMimeTypes );
 		foreach ( $lines as $s ) {
 			$s = trim( $s );
 			if ( empty( $s ) ) {
@@ -268,53 +176,14 @@ EOT;
 			} else {
 				$this->mimeToExt[$mime] = $ext;
 			}
-
-			$extensions = explode( ' ', $ext );
-
-			foreach ( $extensions as $e ) {
-				$e = trim( $e );
-				if ( empty( $e ) ) {
-					continue;
-				}
-
-				if ( !empty( $this->mExtToMime[$e] ) ) {
-					$this->mExtToMime[$e] .= ' ' . $mime;
-				} else {
-					$this->mExtToMime[$e] = $mime;
-				}
-			}
 		}
+	}
 
-		/**
-		 *   --- load mime.info ---
-		 */
+	protected function parseMimeInfo( $rawMimeInfo ) {
+		$rawMimeInfo = str_replace( [ "\r\n", "\n\r", "\n\n", "\r\r", "\r" ], "\n", $rawMimeInfo );
+		$rawMimeInfo = str_replace( "\t", " ", $rawMimeInfo );
 
-		$mimeInfoFile = $this->infoFile;
-
-		$info = self::$wellKnownInfo;
-
-		if ( $mimeInfoFile ) {
-			if ( is_file( $mimeInfoFile ) && is_readable( $mimeInfoFile ) ) {
-				$this->logger->info( __METHOD__ . ": loading mime info from $mimeInfoFile\n" );
-				$info .= "\n";
-				$info .= file_get_contents( $mimeInfoFile );
-			} else {
-				$this->logger->info( __METHOD__ . ": can't load mime info from $mimeInfoFile\n" );
-			}
-		} else {
-			$this->logger->info( __METHOD__ .
-				": no mime info file defined, using built-ins only.\n" );
-		}
-
-		$info .= "\n" . $this->extraInfo;
-
-		$info = str_replace( [ "\r\n", "\n\r", "\n\n", "\r\r", "\r" ], "\n", $info );
-		$info = str_replace( "\t", " ", $info );
-
-		$this->mimeTypeAliases = [];
-		$this->mediaTypes = [];
-
-		$lines = explode( "\n", $info );
+		$lines = explode( "\n", $rawMimeInfo );
 		foreach ( $lines as $s ) {
 			$s = trim( $s );
 			if ( empty( $s ) ) {
@@ -374,7 +243,7 @@ EOT;
 	/**
 	 * Adds to the list mapping MIME to file extensions.
 	 * As an extension author, you are encouraged to submit patches to
-	 * MediaWiki's core to add new MIME types to mime.types.
+	 * MediaWiki's core to add new MIME types to MimeMap.php.
 	 * @param string $types
 	 */
 	public function addExtraTypes( $types ) {
@@ -384,7 +253,7 @@ EOT;
 	/**
 	 * Adds to the list mapping MIME to media type.
 	 * As an extension author, you are encouraged to submit patches to
-	 * MediaWiki's core to add new MIME info to mime.info.
+	 * MediaWiki's core to add new MIME info to MimeMap.php.
 	 * @param string $info
 	 */
 	public function addExtraInfo( $info ) {
