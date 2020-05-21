@@ -89,7 +89,8 @@ class NukePage extends Maintenance {
 			# Update stats as appropriate
 			if ( $delete ) {
 				$this->output( "Updating site stats..." );
-				$ga = $isGoodArticle ? -1 : 0; // if it was good, decrement that too
+				// if it was good, decrement that too
+				$ga = $isGoodArticle ? -1 : 0;
 				$stats = SiteStatsUpdate::factory( [
 					'edits' => -$count,
 					'articles' => $ga,

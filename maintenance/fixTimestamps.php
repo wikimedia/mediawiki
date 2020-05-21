@@ -46,7 +46,8 @@ class FixTimestamps extends Maintenance {
 		$offset = $this->getArg( 0 ) * 3600;
 		$start = $this->getArg( 1 );
 		$end = $this->getArg( 2 );
-		$grace = 60; // maximum normal clock offset
+		// maximum normal clock offset
+		$grace = 60;
 
 		# Find bounding revision IDs
 		$dbw = $this->getDB( DB_MASTER );

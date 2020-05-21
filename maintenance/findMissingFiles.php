@@ -98,7 +98,8 @@ class FindMissingFiles extends Maintenance {
 				$checkPaths = [];
 				foreach ( $ores as $row ) {
 					if ( !strlen( $row->oi_archive_name ) ) {
-						continue; // broken row
+						// broken row
+						continue;
 					}
 					$file = $repo->newFromArchiveName( $row->oi_name, $row->oi_archive_name );
 					$checkPaths[] = $file->getPath();

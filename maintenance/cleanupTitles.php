@@ -54,7 +54,8 @@ class TitleCleanup extends TableCleanup {
 			&& $title->getNamespace() == $row->page_namespace
 			&& $title->getDBkey() === $row->page_title
 		) {
-			$this->progress( 0 ); // all is fine
+			// all is fine
+			$this->progress( 0 );
 
 			return;
 		}

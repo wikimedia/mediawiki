@@ -440,7 +440,8 @@ class FindBadBlobs extends Maintenance {
 
 		try {
 			$this->blobStore->getBlob( $address );
-			return 0; // nothing to do
+			// nothing to do
+			return 0;
 		} catch ( BlobAccessException $ex ) {
 			$error = $ex->getMessage();
 		} catch ( ExternalStoreException $ex ) {

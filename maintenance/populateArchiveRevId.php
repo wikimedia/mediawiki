@@ -139,7 +139,8 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 				} );
 				$ok = true;
 			} catch ( DBQueryError $e ) {
-				if ( $e->errno != 1062 ) { // 1062 is "duplicate entry", ignore it and retry
+				if ( $e->errno != 1062 ) {
+					// 1062 is "duplicate entry", ignore it and retry
 					throw $e;
 				}
 			}

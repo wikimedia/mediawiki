@@ -112,11 +112,13 @@ TEXT
 
 		$this->reportingInterval = intval( $this->getOption( 'report', 100 ) );
 		if ( !$this->reportingInterval ) {
-			$this->reportingInterval = 100; // avoid division by zero
+			// avoid division by zero
+			$this->reportingInterval = 100;
 		}
 
 		$this->dryRun = $this->hasOption( 'dry-run' );
-		$this->uploads = $this->hasOption( 'uploads' ); // experimental!
+		$this->uploads = $this->hasOption( 'uploads' );
+
 		if ( $this->hasOption( 'image-base-path' ) ) {
 			$this->imageBasePath = $this->getOption( 'image-base-path' );
 		}

@@ -71,7 +71,8 @@ class WikiStatsOutput extends StatsOutput {
 				'system message translations, usually because they redirect to other ' .
 				'language codes: ' . implode( ', ', $dummyCodes );
 		}
-		echo ".\n\n"; # dot to end sentence
+		# dot to end sentence
+		echo ".\n\n";
 		echo '{| class="sortable wikitable" border="2" style="background-color: #F9F9F9; ' .
 			'border: 1px #AAAAAA solid; border-collapse: collapse; clear:both; width:100%;"' . "\n";
 	}

@@ -106,7 +106,7 @@ class CleanupUploadStash extends Maintenance {
 		}
 		$this->output( "Deleting old thumbnails...\n" );
 		$i = 0;
-		$batch = []; // operation batch
+		$batch = [];
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$batch[] = [ 'op' => 'delete', 'src' => "$dir/$file" ];
@@ -131,11 +131,13 @@ class CleanupUploadStash extends Maintenance {
 			$this->fatalError( "Could not get file listing." );
 		}
 		$this->output( "Deleting orphaned temp files...\n" );
-		if ( strpos( $dir, '/local-temp' ) === false ) { // sanity check
+		if ( strpos( $dir, '/local-temp' ) === false ) {
+			// sanity check
 			$this->fatalError( "Temp repo is not using the temp container." );
 		}
+
 		$i = 0;
-		$batch = []; // operation batch
+		$batch = [];
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$batch[] = [ 'op' => 'delete', 'src' => "$dir/$file" ];

@@ -212,7 +212,8 @@ class ImageBuilder extends Maintenance {
 			[ 'img_name' => $filename ],
 			__METHOD__ );
 
-		if ( !$row ) { // file not registered
+		if ( !$row ) {
+			// file not registered
 			$this->addMissingImage( $filename, $fullpath );
 		}
 	}

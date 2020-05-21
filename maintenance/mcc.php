@@ -213,7 +213,7 @@ do {
 
 		default:
 			$bad = true;
-	} // switch() end
+	}
 
 	if ( $bad ) {
 		if ( $command ) {

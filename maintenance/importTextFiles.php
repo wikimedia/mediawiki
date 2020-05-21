@@ -177,7 +177,8 @@ class ImportTextFiles extends Maintenance {
 							$oldContent ? $oldContent->getSize() : 0,
 							$rev->getContent()->getSize(),
 							$newId,
-							1 /* the pages don't need to be patrolled */
+							// the pages don't need to be patrolled
+							1
 						);
 					}
 				} else {

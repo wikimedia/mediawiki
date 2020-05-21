@@ -84,7 +84,7 @@ class FileOpPerfTest extends Maintenance {
 				$ops5[] = [ 'op' => 'delete', 'src' => "$dst-2" ];
 			}
 			if ( count( $ops1 ) >= $this->getOption( 'maxfiles', 20 ) ) {
-				break; // enough
+				break;
 			}
 		}
 		closedir( $dir );
