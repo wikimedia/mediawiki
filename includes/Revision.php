@@ -954,11 +954,15 @@ class Revision implements IDBAccessObject {
 	 * Insert a new revision into the database, returning the new revision ID
 	 * number on success and dies horribly on failure.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param IDatabase $dbw (master connection)
 	 * @throws MWException
 	 * @return int The revision ID
 	 */
 	public function insertOn( $dbw ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		global $wgUser;
 
 		// Note that $this->mRecord->getId() will typically return null here, but not always,

@@ -116,6 +116,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function makeRevisionWithProps( $props = null ) {
+		$this->hideDeprecated( 'Revision::insertOn' );
+
 		if ( $props === null ) {
 			$props = [];
 		}
@@ -230,6 +232,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInsertOn_success() {
 		$this->hideDeprecated( 'Revision::getTextId' );
+		$this->hideDeprecated( 'Revision::insertOn' );
 
 		$parentId = $this->testPage->getLatest();
 
@@ -328,6 +331,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::insertOn
 	 */
 	public function testInsertOn_exceptionOnIncomplete( $array, $expException, $expMessage ) {
+		$this->hideDeprecated( 'Revision::insertOn' );
+
 		// If an ExternalStore is set don't use it.
 		$this->setMwGlobals( 'wgDefaultExternalStore', false );
 		$this->expectException( $expException );
@@ -806,6 +811,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testUserWasLastToEdit( $sinceIdx, $expectedLast ) {
 		$this->hideDeprecated( 'Revision::userWasLastToEdit' );
+		$this->hideDeprecated( 'Revision::insertOn' );
 		$userA = User::newFromName( "RevisionStorageTest_userA" );
 		$userB = User::newFromName( "RevisionStorageTest_userB" );
 
