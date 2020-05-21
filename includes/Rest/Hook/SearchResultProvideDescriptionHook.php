@@ -19,7 +19,7 @@ interface SearchResultProvideDescriptionHook {
 	 *
 	 * @param array $pageIdentities an array (string=>SearchResultPageIdentity) where key is pageId.
 	 * @param array &$descriptions an output array (string=>string|null) where key
-	 *   is pageId and value is either a desciption for given page or null
+	 *   is pageId and value is either a description for given page or null
 	 */
 	public function onSearchResultProvideDescription( array $pageIdentities, &$descriptions );
 }
