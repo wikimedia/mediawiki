@@ -83,6 +83,7 @@ use MWException;
 use NamespaceInfo;
 use ObjectCache;
 use OldRevisionImporter;
+use PageProps;
 use Parser;
 use ParserCache;
 use ParserFactory;
@@ -1000,6 +1001,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPageEditStash() : PageEditStash {
 		return $this->getService( 'PageEditStash' );
+	}
+
+	/**
+	 * @return PageProps
+	 * @since 1.36
+	 */
+	public function getPageProps() : PageProps {
+		return $this->getService( 'PageProps' );
 	}
 
 	/**

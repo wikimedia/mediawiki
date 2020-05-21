@@ -830,6 +830,13 @@ return [
 		);
 	},
 
+	'PageProps' => function ( MediaWikiServices $services ) : PageProps {
+		return new PageProps(
+			$services->getLinkBatchFactory(),
+			$services->getDBLoadBalancer()
+		);
+	},
+
 	'Parser' => function ( MediaWikiServices $services ) : Parser {
 		return $services->getParserFactory()->create();
 	},

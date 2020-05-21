@@ -120,6 +120,9 @@ because of Phabricator reports.
 * Skin::getIndicatorsHTML() is deprecated. The functionality can be retained
   by reimplementing the method using the raw indicators data from
   OutputPage::getIndicators.
+* The PageProps class was converted to a service. PageProps::overrideInstance
+  was deprecated, and MediaWikiServices::redefineService should be used
+  instead.
 * …
 
 === Other changes in 1.36 ===
