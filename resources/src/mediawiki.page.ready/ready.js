@@ -111,3 +111,7 @@ if (
 ) {
 	mw.loader.load( 'mediawiki.searchSuggest' );
 }
+
+module.exports = {
+	checkboxHack: require( './checkboxHack.js' )
+};
