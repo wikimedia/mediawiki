@@ -69,17 +69,6 @@ $wgEnableJavaScriptTest = true;
 // Enable development/experimental endpoints
 $wgRestAPIAdditionalRouteFiles = [ 'includes/Rest/coreDevelopmentRoutes.json' ];
 
-// Disable resource limits
-$wgMaxShellMemory = 0;
-$wgMaxShellFileSize = 0;
-$wgMaxShellTime = 0;
-$wgMaxShellWallClockTime = 0;
-
-// Disable resource limits for TimedMediaHandler
-$wgTranscodeBackgroundTimeLimit = 0;
-$wgTranscodeBackgroundMemoryLimit = 0;
-$wgTranscodeBackgroundSizeLimit = 0;
-
 /**
  * Experimental changes that may later become the default.
  * (Must reference a Phabricator ticket)
