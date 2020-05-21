@@ -81,7 +81,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 		if ( empty( $this->handlersByModel[$modelID] ) ) {
 			$contentHandler = $this->createForModelID( $modelID );
 
-			wfDebugLog( __METHOD__,
+			wfDebugLog( 'ContentHandler',
 				"Registered handler for {$modelID}: " . get_class( $contentHandler ) );
 			$this->handlersByModel[$modelID] = $contentHandler;
 		}
