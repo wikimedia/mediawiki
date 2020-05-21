@@ -96,6 +96,13 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		$this->assertSQL( 'SELECT a,b FROM b a FORCE INDEX (ia),c FORCE INDEX (ic)' );
 	}
 
+	public function testRawTables() {
+		$this->sqb
+			->select( 'f' )
+			->rawTables( [ 'a' => [ 't1', 't2' ] ] );
+		$this->assertSQL( "SELECT f FROM (t1,t2 )" );
+	}
+
 	public function testJoin() {
 		$this->sqb
 			->table( 'a' )
@@ -521,5 +528,36 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			->caller( __METHOD__ );
 		$res = $this->sqb->getSQL();
 		$this->assertEquals( 'SELECT  f  FROM t     ', $res );
+	}
+
+	public function testGetQueryInfo() {
+		$this->sqb
+			->select( 'f' )
+			->from( 't' )
+			->conds( [ 'a' => 'b' ] )
+			->join( 'u', 'u', 'tt=uu' )
+			->limit( 1 );
+		$this->assertEquals(
+			[
+				'tables' => [ 't', 'u' => 'u' ],
+				'fields' => [ 'f' ],
+				'conds' => [ 'a' => 'b' ],
+				'options' => [ 'LIMIT' => 1 ],
+				'join_conds' => [ 'u' => [ 'JOIN', 'tt=uu' ] ]
+			],
+			$this->sqb->getQueryInfo() );
+	}
+
+	public function testQueryInfo() {
+		$this->sqb->queryInfo(
+			[
+				'tables' => [ 't', 'u' => 'u' ],
+				'fields' => [ 'f' ],
+				'conds' => [ 'a' => 'b' ],
+				'options' => [ 'LIMIT' => 1 ],
+				'join_conds' => [ 'u' => [ 'JOIN', 'tt=uu' ] ]
+			]
+		);
+		$this->assertSQL( "SELECT f FROM t JOIN u ON ((tt=uu)) WHERE a = 'b' LIMIT 1" );
 	}
 }
