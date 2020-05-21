@@ -393,7 +393,8 @@ return [
 
 		return new HtmlCacheUpdater(
 			$config->get( 'CdnReboundPurgeDelay' ),
-			$config->get( 'UseFileCache' )
+			$config->get( 'UseFileCache' ),
+			$config->get( 'CdnMaxAge' )
 		);
 	},
 
