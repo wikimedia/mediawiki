@@ -32,7 +32,10 @@ class SqlBagOStuffTest extends MediaWikiIntegrationTestCase {
 		array $components,
 		string $expected
 	) {
-		$cache = new SqlBagOStuff( [ 'keyspace' => $keyspace ] );
+		$cache = new SqlBagOStuff( [
+			'keyspace' => $keyspace,
+			'servers' => []
+		] );
 		$this->assertSame( $expected, $cache->makeKey( $class, ...$components ) );
 	}
 }

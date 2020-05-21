@@ -1471,16 +1471,20 @@ $wgVerifyMimeTypeIE = true;
 
 /**
  * Sets the MIME type definition file to use by includes/libs/mime/MimeAnalyzer.php.
- * Set to null, to use built-in defaults only.
+ * When this is set to the path of a mime.types file, MediaWiki will use this
+ * file to map MIME types to file extensions and vice versa, in lieu of its
+ * internal MIME map. Note that some MIME mappings are considered "baked in"
+ * and cannot be overridden. See includes/libs/mime/MimeMapMinimal.php for a
+ * full list.
  * example: $wgMimeTypeFile = '/etc/mime.types';
  */
-$wgMimeTypeFile = 'includes/mime.types';
+$wgMimeTypeFile = 'internal';
 
 /**
  * Sets the MIME type info file to use by includes/libs/mime/MimeAnalyzer.php.
- * Set to null, to use built-in defaults only.
+ * Set to null to use the minimum set of built-in defaults only.
  */
-$wgMimeInfoFile = 'includes/mime.info';
+$wgMimeInfoFile = 'internal';
 
 /**
  * Sets an external MIME detector program. The command must print only

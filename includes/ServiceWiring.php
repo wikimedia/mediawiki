@@ -104,6 +104,7 @@ use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory;
+use Wikimedia\Services\RecursiveServiceDependencyException;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 return [
@@ -245,13 +246,30 @@ return [
 	function ( MediaWikiServices $services ) : Wikimedia\Rdbms\LBFactory {
 		$mainConfig = $services->getMainConfig();
 
+		try {
+			$stash = $services->getMainObjectStash();
+		} catch ( RecursiveServiceDependencyException $e ) {
+			$stash = new EmptyBagOStuff(); // T141804: handle cases like CACHE_DB
+		}
+
+		if ( $stash instanceof EmptyBagOStuff ) {
+			// Use process cache if the main stash is disabled or there was recursion
+			$stash = new HashBagOStuff( [ 'maxKeys' => 100 ] );
+		}
+
+		try {
+			$wanCache = $services->getMainWANObjectCache();
+		} catch ( RecursiveServiceDependencyException $e ) {
+			$wanCache = WANObjectCache::newEmpty(); // T141804: handle cases like CACHE_DB
+		}
+
 		$lbConf = MWLBFactory::applyDefaultConfig(
 			$mainConfig->get( 'LBFactoryConf' ),
 			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $mainConfig ),
 			$services->getConfiguredReadOnlyMode(),
 			$services->getLocalServerObjectCache(),
-			$services->getMainObjectStash(),
-			$services->getMainWANObjectCache()
+			$stash,
+			$wanCache
 		);
 
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );
@@ -663,11 +681,11 @@ return [
 		];
 
 		if ( $params['infoFile'] === 'includes/mime.info' ) {
-			$params['infoFile'] = __DIR__ . "/libs/mime/mime.info";
+			$params['infoFile'] = MimeAnalyzer::USE_INTERNAL;
 		}
 
 		if ( $params['typeFile'] === 'includes/mime.types' ) {
-			$params['typeFile'] = __DIR__ . "/libs/mime/mime.types";
+			$params['typeFile'] = MimeAnalyzer::USE_INTERNAL;
 		}
 
 		$detectorCmd = $mainConfig->get( 'MimeDetectorCommand' );

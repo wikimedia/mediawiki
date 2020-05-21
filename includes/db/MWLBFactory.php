@@ -157,7 +157,9 @@ abstract class MWLBFactory {
 			$options->get( 'DBprefix' )
 		);
 
-		$lbConf = self::injectObjectCaches( $lbConf, $srvCache, $mainStash, $wanCache );
+		$lbConf['srvCache'] = $srvCache;
+		$lbConf['memStash'] = $mainStash;
+		$lbConf['wanCache'] = $wanCache;
 
 		return $lbConf;
 	}
@@ -212,35 +214,6 @@ abstract class MWLBFactory {
 		];
 
 		return $server;
-	}
-
-	/**
-	 * @param array $lbConf
-	 * @param BagOStuff $sCache
-	 * @param BagOStuff $mStash
-	 * @param WANObjectCache $wCache
-	 * @return array
-	 */
-	private static function injectObjectCaches(
-		array $lbConf, BagOStuff $sCache, BagOStuff $mStash, WANObjectCache $wCache
-	) {
-		// Fallback if APC style caching is not an option
-		if ( $sCache instanceof EmptyBagOStuff ) {
-			$sCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
-		}
-
-		// Use APC/memcached style caching, but avoids loops with CACHE_DB (T141804)
-		if ( $sCache->getQoS( $sCache::ATTR_EMULATION ) > $sCache::QOS_EMULATION_SQL ) {
-			$lbConf['srvCache'] = $sCache;
-		}
-		if ( $mStash->getQoS( $mStash::ATTR_EMULATION ) > $mStash::QOS_EMULATION_SQL ) {
-			$lbConf['memStash'] = $mStash;
-		}
-		if ( $wCache->getQoS( $wCache::ATTR_EMULATION ) > $wCache::QOS_EMULATION_SQL ) {
-			$lbConf['wanCache'] = $wCache;
-		}
-
-		return $lbConf;
 	}
 
 	/**
