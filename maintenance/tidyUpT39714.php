@@ -25,7 +25,8 @@ class TidyUpT39714 extends Maintenance {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		foreach ( $result as $row ) {
 			$ids = explode( ',', explode( "\n", $row->log_params )[0] );
-			$result = $this->getDB( DB_REPLICA )->select( // Work out what log entries were changed here.
+			// Work out what log entries were changed here.
+			$result = $this->getDB( DB_REPLICA )->select(
 				'logging',
 				'log_type',
 				[ 'log_id' => $ids ],

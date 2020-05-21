@@ -103,7 +103,8 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 		$processingTime = microtime( true ) - $startTime;
 		$this->output( sprintf( "\nDone %d files in %.1f seconds\n", $done, $processingTime ) );
 
-		return true; // we only updated *some* files, don't log
+		// we only updated *some* files, don't log
+		return true;
 	}
 }
 

@@ -139,7 +139,7 @@ TEXT
 		$dbr = $this->getDB( DB_REPLICA, 'vslow' );
 
 		// Find all TitleValue-invalid titles.
-		$percent = $dbr->anyString(); // DBMS-agnostic equivalent of '%' LIKE wildcard
+		$percent = $dbr->anyString();
 		$res = $dbr->select(
 			$table,
 			[

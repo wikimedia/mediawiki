@@ -79,7 +79,8 @@ class PurgeParserCache extends Maintenance {
 	}
 
 	public function showProgressAndWait( $percent ) {
-		usleep( $this->usleep ); // avoid lag; T150124
+		// avoid lag; T150124
+		usleep( $this->usleep );
 
 		$percentString = sprintf( "%.2f", $percent );
 		if ( $percentString === $this->lastProgress ) {

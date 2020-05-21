@@ -347,7 +347,7 @@ class CheckStorage {
 							"Error: Incorrect object header for concat bulk row {$row->old_id}",
 							$concatBlobs[$row->old_id]
 						);
-					} # else good
+					}
 
 					unset( $concatBlobs[$row->old_id] );
 				}

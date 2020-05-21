@@ -50,12 +50,14 @@ class EraseArchivedFile extends Maintenance {
 		$filekey = $this->getOption( 'filekey' );
 		$filename = $this->getOption( 'filename' );
 
-		if ( $filekey === '*' ) { // all versions by name
+		if ( $filekey === '*' ) {
+			// all versions by name
 			if ( !strlen( $filename ) ) {
 				$this->fatalError( "Missing --filename parameter." );
 			}
 			$afile = false;
-		} else { // specified version
+		} else {
+			// specified version
 			$dbw = $this->getDB( DB_MASTER );
 			$fileQuery = ArchivedFile::getQueryInfo();
 			$row = $dbw->selectRow( $fileQuery['tables'], $fileQuery['fields'],

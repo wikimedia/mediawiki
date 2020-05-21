@@ -77,7 +77,7 @@ class PurgeChangedPages extends Maintenance {
 			$this->maybeHelp( true );
 		}
 
-		$stuckCount = 0; // loop breaker
+		$stuckCount = 0;
 		while ( true ) {
 			// Adjust bach size if we are stuck in a second that had many changes
 			$bSize = ( $stuckCount + 1 ) * $this->getBatchSize();

@@ -340,7 +340,8 @@ class RefreshLinks extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 
-		$linksTables = [ // table name => page_id field
+		$linksTables = [
+			// table name => page_id field
 			'pagelinks' => 'pl_from',
 			'imagelinks' => 'il_from',
 			'categorylinks' => 'cl_from',

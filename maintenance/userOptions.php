@@ -60,7 +60,7 @@ The new option is NOT validated.' );
 		) {
 			$this->updateOptions();
 		} else {
-			$this->maybeHelp( /* force = */ true );
+			$this->maybeHelp( true );
 		}
 	}
 

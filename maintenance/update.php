@@ -109,7 +109,9 @@ class UpdateMediaWiki extends Maintenance {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		// Set global language to ensure localised errors are in English (T22633)
 		RequestContext::getMain()->setLanguage( $lang );
-		$wgLang = $lang; // BackCompat
+
+		// BackCompat
+		$wgLang = $lang;
 
 		define( 'MW_UPDATER', true );
 
