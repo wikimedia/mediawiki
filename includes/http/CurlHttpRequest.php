@@ -28,6 +28,7 @@ class CurlHttpRequest extends MWHttpRequest {
 	protected $headerText = "";
 
 	/**
+	 * @internal Use HttpRequestFactory
 	 * @throws RuntimeException
 	 */
 	public function __construct() {

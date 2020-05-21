@@ -64,6 +64,10 @@ For notes on 1.34.x and older releases, see HISTORY.
   img_auth.php requests. (T235357)
 * $wgAllowedCorsHeaders — list of headers which can be used in a cross-site API
   request.
+* Added $wgHTTPMaxTimeout and $wgHTTPMaxConnectTimeout, which allow site
+  administrators to limit the timeouts used by the HTTP client libraries.
+  This only affects callers using HttpRequestFactory and the deprecated
+  wrappers in the Http class.
 * …
 
 ==== Changed configuration ====
@@ -1042,6 +1046,10 @@ because of Phabricator reports.
   to get the value.
 * CategoryPage::getCategoryViewerClass() and ::setCategoryViewerClass() were
   deprecated.
+* MWHttpRequest and its subclasses PhpHttpRequest, CurlHttpRequest and
+  GuzzleHttpRequest now require the timeout and connectTimeout options to
+  always be specified, otherwise a deprecation warning will be raised. Most
+  callers should use HttpRequestFactory which always sets these options.
 * …
 
 === Other changes in 1.35 ===
