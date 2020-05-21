@@ -2969,7 +2969,7 @@
 	"tooltip-save": "Zapisz zmiany",
 	"tooltip-publish": "Opublikuj swoje zmiany",
 	"tooltip-preview": "Obejrzyj efekt swojej edycji przed zapisaniem zmian!",
-	"tooltip-diff": "Pokaż zmiany wykonane w tekście.",
+	"tooltip-diff": "Pokaż zmiany wykonane w tekście",
 	"tooltip-compareselectedversions": "Pokazuje różnice między dwiema wybranymi wersjami tej strony.",
 	"tooltip-watch": "Dodaj tę stronę do listy obserwowanych",
 	"tooltip-watchlistedit-normal-submit": "Usuń zaznaczone z listy obserwowanych",

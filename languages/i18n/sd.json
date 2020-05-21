@@ -1822,6 +1822,7 @@
 	"pageinfo-robot-index": "اجازت ڏنل",
 	"pageinfo-robot-noindex": "اجازت-ناهي",
 	"pageinfo-watchers": "صفحا ڏسندڙن جو انگ",
+	"pageinfo-visiting-watchers": "تازيون تبديليون ڏسندڙن جو تعداد",
 	"pageinfo-few-watchers": "$1 کان گھٽ {{PLURAL:$1|ڏسندڙ}}",
 	"pageinfo-redirects-name": "ھن صفحي ڏانھن ڇوريل صفحن جو انگ",
 	"pageinfo-subpages-name": "ھن صفحي جي ذيلي صفحن جو انگ",

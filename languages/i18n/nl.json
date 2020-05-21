@@ -774,6 +774,7 @@
 	"token_suffix_mismatch": "'''Uw bewerking is geweigerd, omdat uw browser de leestekens in het bewerkingstoken onjuist heeft behandeld.'''\nDe bewerking is geweigerd om verminking van de paginatekst te voorkomen.\nDit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten bevat.",
 	"edit_form_incomplete": "'''Sommige onderdelen van het bewerkingsformulier hebben de server niet bereikt. Controleer of uw bewerkingen intact zijn en probeer het opnieuw.'''",
 	"editing": "Bewerken van $1",
+	"edit-textarea-aria-label": "Wikitekst brontekstbewerker",
 	"creating": "Bezig met het aanmaken van $1",
 	"editingsection": "Bezig met bewerken van $1 (deelpagina)",
 	"editingcomment": "Bezig met bewerken van $1 (nieuwe sectie)",
