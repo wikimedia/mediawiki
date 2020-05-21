@@ -4074,7 +4074,7 @@ extensions to fill the 'description' field in search results. Warning: this
 hook as well as SearchResultPageIdentity interface is being under development and still unstable.
 $pageIdentities: an array (string=>SearchResultPageIdentity) where key is pageId.
 &$descriptions: an output array (string=>string|null) where key is pageId and value is either
-a desciption for given page or null
+a description for given page or null
 
 'SearchResultProvideThumbnail': Called by REST SearchHandler in order to allow
 extensions to fill the 'thumbnail' field in rest search results. Warning: this

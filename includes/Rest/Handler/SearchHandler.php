@@ -278,11 +278,11 @@ class SearchHandler extends Handler {
 	}
 
 	/**
-	 * Turn page info into serializable array with desciption field for the page.
+	 * Turn page info into serializable array with description field for the page.
 	 *
-	 * The information about desciption should be provided by extension by implementing
-	 * 'SearchResultProvideDescription' hook. Desciption is set to null if no extensions implement
-	 * the hook.
+	 * The information about description should be provided by extension by implementing
+	 * 'SearchResultProvideDescription' hook. Description is set to null if no extensions
+	 * implement the hook.
 	 * @param array $pageIdentities
 	 *
 	 * @return array
