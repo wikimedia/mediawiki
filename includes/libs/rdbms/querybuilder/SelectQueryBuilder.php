@@ -57,6 +57,66 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
+	 * Set the query parameters to the given values, appending to the values
+	 * which were already set. This can be used to interface with legacy code.
+	 * If a key is omitted, the previous value will be retained.
+	 *
+	 * The parameters must be formatted as required by Database::select. For
+	 * example, JoinGroup cannot be used.
+	 *
+	 * @param array $info Associative array of query info, with keys:
+	 *   - tables: The raw array of tables to be passed to Database::select()
+	 *   - fields: The fields
+	 *   - conds: The conditions
+	 *   - options: The query options
+	 *   - join_conds: The join conditions
+	 *
+	 * @return $this
+	 */
+	public function queryInfo( $info ) {
+		if ( isset( $info['tables'] ) ) {
+			$this->rawTables( $info['tables'] );
+		}
+		if ( isset( $info['fields'] ) ) {
+			$this->fields( $info['fields'] );
+		}
+		if ( isset( $info['conds'] ) ) {
+			$this->where( $info['conds'] );
+		}
+		if ( isset( $info['options'] ) ) {
+			$this->options( (array)$info['options'] );
+		}
+		if ( isset( $info['join_conds'] ) ) {
+			$this->joinConds( (array)$info['join_conds'] );
+		}
+		return $this;
+	}
+
+	/**
+	 * Given a table or table array as might be passed to Database::select(),
+	 * append it to the existing tables, interpreting nested arrays as join
+	 * groups.
+	 *
+	 * This can be used to interface with existing code that expresses join
+	 * groups as nested arrays. In new code, join groups should generally
+	 * be created with newJoinGroup(), which provides a fluent interface.
+	 *
+	 * @param string|array $tables
+	 * @return $this
+	 */
+	public function rawTables( $tables ) {
+		if ( is_array( $tables ) ) {
+			$this->tables = array_merge( $this->tables, $tables );
+		} elseif ( is_string( $tables ) ) {
+			$this->tables[] = $tables;
+		} else {
+			throw new \InvalidArgumentException( __METHOD__ .
+				': $tables must be a string or array' );
+		}
+		return $this;
+	}
+
+	/**
 	 * Get an empty SelectQueryBuilder which can be used to build a subquery
 	 * of this query.
 	 * @return SelectQueryBuilder
@@ -669,5 +729,26 @@ class SelectQueryBuilder extends JoinGroupBase {
 	public function getSQL() {
 		return $this->db->selectSQLText( $this->tables, $this->fields, $this->conds, $this->caller,
 			$this->options, $this->joinConds );
+	}
+
+	/**
+	 * Get an associative array describing the query in terms of its raw parameters to
+	 * Database::select(). This can be used to interface with legacy code.
+	 *
+	 * @return array The query info array, with keys:
+	 *   - tables: The table array
+	 *   - fields: The fields
+	 *   - conds: The conditions
+	 *   - options: The query options
+	 *   - join_conds: The join conditions
+	 */
+	public function getQueryInfo() {
+		return [
+			'tables' => $this->tables,
+			'fields' => $this->fields,
+			'conds' => $this->conds,
+			'options' => $this->options,
+			'join_conds' => $this->joinConds
+		];
 	}
 }
