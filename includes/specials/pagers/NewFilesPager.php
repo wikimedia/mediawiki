@@ -185,7 +185,11 @@ class NewFilesPager extends RangeChronologicalPager {
 			$title,
 			"$ul<br />\n<i>"
 			. htmlspecialchars( $time )
-			. "</i><br />\n"
+			. "</i><br />\n",
+			'',
+			'',
+			[],
+			ImageGalleryBase::LOADING_LAZY
 		);
 		return '';
 	}

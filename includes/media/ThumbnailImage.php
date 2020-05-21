@@ -126,8 +126,8 @@ class ThumbnailImage extends MediaTransformOutput {
 			'decoding' => 'async',
 		];
 
-		if ( $wgNativeImageLazyLoading ) {
-			$attribs['loading'] = 'lazy';
+		if ( $options['loading'] ?? $wgNativeImageLazyLoading ) {
+			$attribs['loading'] = $options['loading'] ?? 'lazy';
 		}
 
 		$elementTimingName = 'thumbnail';
