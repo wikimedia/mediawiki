@@ -19,6 +19,17 @@
  * @author Roan Kattouw
  */
 
+use RemexHtml\DOM\DOMBuilder;
+use RemexHtml\HTMLData;
+use RemexHtml\Serializer\HtmlFormatter;
+use RemexHtml\Serializer\Serializer;
+use RemexHtml\Serializer\SerializerNode;
+use RemexHtml\Tokenizer\Attributes;
+use RemexHtml\Tokenizer\Tokenizer;
+use RemexHtml\TreeBuilder\Dispatcher;
+use RemexHtml\TreeBuilder\Element;
+use RemexHtml\TreeBuilder\TreeBuilder;
+
 /**
  * Parser for Vue single file components (.vue files). See parse() for usage.
  *
@@ -32,21 +43,27 @@ class VueComponentParser {
 	 *
 	 * Returns an associative array with the following keys:
 	 * - 'script': The JS code in the <script> tag
-	 * - 'template': The HTML in the <template> tag, with whitespace removed
-	 * - 'rawTemplate': The HTML in the <template> tag, unmodified (before whitespace removal)
+	 * - 'template': The HTML in the <template> tag
 	 * - 'style': The CSS/LESS styles in the <style> tag, or null if the <style> tag was missing
 	 * - 'styleLang': The language used for 'style'; either 'css' or 'less', or null if no <style> tag
 	 *
+	 * The following options can be passed in the $options parameter:
+	 * - 'minifyTemplate': Whether to minify the HTML in the template tag. This removes
+	 *                     HTML comments and strips whitespace. Default: false
+	 *
 	 * @param string $html HTML with <script>, <template> and <style> tags at the top level
+	 * @param array $options Associative array of options
 	 * @return array
 	 * @throws Exception If the input is invalid
 	 */
-	public function parse( $html ) : array {
+	public function parse( string $html, array $options = [] ) : array {
 		$dom = $this->parseHTML( $html );
+		// Remex wraps everything in <html><head>, unwrap that
+		$head = $dom->firstChild->firstChild;
 
 		// Find the <script>, <template> and <style> tags. They can appear in any order, but they
 		// must be at the top level, and there can only be one of each.
-		$nodes = $this->findUniqueTags( $dom, [ 'script', 'template', 'style' ] );
+		$nodes = $this->findUniqueTags( $head, [ 'script', 'template', 'style' ] );
 
 		// Throw an error if we didn't find a <script> or <template> tag. <style> is optional.
 		foreach ( [ 'script', 'template' ] as $requiredTag ) {
@@ -60,52 +77,29 @@ class VueComponentParser {
 		if ( isset( $nodes['style'] ) ) {
 			$this->validateAttributes( $nodes['style'], [ 'lang' ] );
 		}
-
-		$rootTemplateNode = $this->getRootTemplateNode( $nodes['template'] );
-
-		$rawTemplate = $dom->saveHTML( $rootTemplateNode );
-		$this->removeWhitespaceAndComments( $rootTemplateNode );
-		$minifiedTemplate = $dom->saveHTML( $rootTemplateNode );
+		$this->validateTemplateTag( $nodes['template'] );
 
 		$styleData = isset( $nodes['style'] ) ? $this->getStyleAndLang( $nodes['style'] ) : null;
+		$template = $this->getTemplateHtml( $html, $options['minifyTemplate'] ?? false );
 
 		return [
 			'script' => trim( $nodes['script']->nodeValue ),
-			'template' => $minifiedTemplate,
-			'rawTemplate' => $rawTemplate,
+			'template' => $template,
 			'style' => $styleData ? $styleData['style'] : null,
 			'styleLang' => $styleData ? $styleData['lang'] : null
 		];
 	}
 
 	/**
-	 * Parse HTML, working around various annoying libxml behaviors.
+	 * Parse HTML to DOM using RemexHtml
 	 * @param string $html
 	 * @return DOMDocument
 	 */
 	private function parseHTML( $html ) : DOMDocument {
-		$dom = new DOMDocument();
-		// Disable external entities, see https://www.mediawiki.org/wiki/XML_External_Entity_Processing
-		$loadEntities = libxml_disable_entity_loader( true );
-		$useErrors = libxml_use_internal_errors( true );
-		// Force UTF-8, and disable network access
-		$dom->loadHTML( '<?xml encoding="utf-8">' . $html, LIBXML_NONET | LIBXML_HTML_NOIMPLIED );
-		libxml_disable_entity_loader( $loadEntities );
-
-		$errors = array_filter( libxml_get_errors(), function ( $error ) {
-			return $error->code !== 801; // XML_HTML_UNKNOWN_TAG
-		} );
-		libxml_clear_errors();
-		libxml_use_internal_errors( $useErrors );
-
-		if ( $errors ) {
-			throw new Exception( "HTML parse errors:\n" .
-				implode( "\n", array_map( function ( $error ) {
-					return $error->message . ' on line ' . $error->line;
-				}, $errors ) )
-			);
-		}
-		return $dom;
+		$domBuilder = new DOMBuilder();
+		$tokenizer = new Tokenizer( new Dispatcher( new TreeBuilder( $domBuilder ) ), $html );
+		$tokenizer->execute();
+		return $domBuilder->getFragment();
 	}
 
 	/**
@@ -150,15 +144,15 @@ class VueComponentParser {
 	}
 
 	/**
-	 * Get the root node of the template. This is the only child node of the <template> node.
-	 * If the <template> node has multiple children, or is empty, or contains (non-whitespace) text,
+	 * Check that the <template> tag has exactly one element child.
+	 *
+	 * If the <template> tag has multiple children, or is empty, or contains (non-whitespace) text,
 	 * an exception is thrown.
 	 *
 	 * @param DOMNode $templateNode The <template> node
-	 * @return DOMNode The only child of the template node
 	 * @throws Exception If the contents of the <template> node are invalid
 	 */
-	private function getRootTemplateNode( DOMNode $templateNode ) : DOMNode {
+	private function validateTemplateTag( DOMNode $templateNode ) {
 		// Verify that the <template> tag only contains one tag, and put it in $rootTemplateNode
 		// We can't use ->childNodes->length === 1 here because whitespace shows up as text nodes,
 		// and comments are also allowed.
@@ -183,35 +177,6 @@ class VueComponentParser {
 		if ( $rootTemplateNode === null ) {
 			throw new Exception( '<template> tag may not be empty' );
 		}
-		return $rootTemplateNode;
-	}
-
-	/**
-	 * Recursively remove whitespace from all text nodes in a DOM subtree, and remove all comment nodes
-	 * @param DOMNode $node
-	 */
-	private function removeWhitespaceAndComments( DOMNode $node ) {
-		$toRemove = [];
-		foreach ( $node->childNodes as $child ) {
-			if ( $child->nodeType === XML_TEXT_NODE ) {
-				$trimmedText = trim( $child->data );
-				if ( $trimmedText === '' ) {
-					$toRemove[] = $child;
-				} else {
-					$child->replaceData( 0, strlen( $child->data ), $trimmedText );
-				}
-			} elseif ( $child->nodeType === XML_COMMENT_NODE ) {
-				$toRemove[] = $child;
-			} elseif ( $child->nodeType === XML_ELEMENT_NODE ) {
-				// Recurse, but don't strip whitespace inside <pre> tags
-				if ( !in_array( strtolower( $child->nodeName ), [ 'pre', 'listing', 'textarea' ] ) ) {
-					$this->removeWhitespaceAndComments( $child );
-				}
-			}
-		}
-		foreach ( $toRemove as $child ) {
-			$node->removeChild( $child );
-		}
 	}
 
 	/**
@@ -221,7 +186,7 @@ class VueComponentParser {
 	 * @throws Exception If an invalid language is used, or if the 'scoped' attribute is set.
 	 */
 	private function getStyleAndLang( DOMElement $styleNode ) : array {
-		$style = $styleNode->nodeValue;
+		$style = trim( $styleNode->nodeValue );
 		$styleLang = $styleNode->hasAttribute( 'lang' ) ?
 			$styleNode->getAttribute( 'lang' ) : 'css';
 		if ( $styleLang !== 'css' && $styleLang !== 'less' ) {
@@ -232,5 +197,149 @@ class VueComponentParser {
 			'style' => $style,
 			'lang' => $styleLang,
 		];
+	}
+
+	/**
+	 * Get the HTML contents of the <template> tag, optionally minifed.
+	 *
+	 * To work around a bug in PHP's DOMDocument where attributes like @click get mangled,
+	 * we re-parse the entire file using a Remex parse+serialie pipeline, with a custom dispatcher
+	 * to zoom in on just the contents of the <template> tag, and a custom formatter for minification.
+	 * Keeping everything in Remex and never converting it to DOM avoids the attribute mangling issue.
+	 *
+	 * @param string $html HTML that contains a <template> tag somewhere
+	 * @param bool $minify Whether to minify the output (remove comments, strip whitespace)
+	 * @return string HTML contents of the template tag
+	 */
+	private function getTemplateHtml( $html, $minify ) {
+		$serializer = new Serializer( $this->newTemplateFormatter( $minify ) );
+		$tokenizer = new Tokenizer(
+			$this->newFilteringDispatcher(
+				new TreeBuilder( $serializer ),
+				'template'
+			),
+			$html
+		);
+		$tokenizer->execute( [ 'fragmentNamespace' => HTMLData::NS_HTML, 'fragmentName' => 'template' ] );
+		return trim( $serializer->getResult() );
+	}
+
+	/**
+	 * Custom HtmlFormatter subclass that optionally removes comments and strips whitespace.
+	 * If $minify=false, this formatter falls through to HtmlFormatter for everything (except that
+	 * it strips the <!doctype html> tag).
+	 *
+	 * @param bool $minify If true, remove comments and strip whitespace
+	 * @return HtmlFormatter
+	 */
+	private function newTemplateFormatter( $minify ) {
+		return new class( $minify ) extends HtmlFormatter {
+			private $minify;
+
+			public function __construct( $minify ) {
+				$this->minify = $minify;
+			}
+
+			public function startDocument( $fragmentNamespace, $fragmentName ) {
+				// Remove <!doctype html>
+				return '';
+			}
+
+			public function comment( SerializerNode $parent, $text ) {
+				if ( $this->minify ) {
+					// Remove all comments
+					return '';
+				}
+				return parent::comment( $parent, $text );
+			}
+
+			public function characters( SerializerNode $parent, $text, $start, $length ) {
+				if (
+					$this->minify && (
+						// Don't touch <pre>/<listing>/<textarea> nodes
+						$parent->namespace !== HTMLData::NS_HTML ||
+						!isset( $this->prefixLfElements[ $parent->name ] )
+					)
+				) {
+					$text = substr( $text, $start, $length );
+					// Collapse runs of adjacent whitespace, and convert all whitespace to spaces
+					$text = preg_replace( '/[ \r\n\t]+/', ' ', $text );
+					$start = 0;
+					$length = strlen( $text );
+				}
+				return parent::characters( $parent, $text, $start, $length );
+			}
+
+			public function element( SerializerNode $parent, SerializerNode $node, $contents ) {
+				if (
+					$this->minify && (
+						// Don't touch <pre>/<listing>/<textarea> nodes
+						$node->namespace !== HTMLData::NS_HTML ||
+						!isset( $this->prefixLfElements[ $node->name ] )
+					)
+				) {
+					// Remove leading and trailing whitespace
+					$contents = preg_replace( '/(^[ \r\n\t]+)|([\r\n\t ]+$)/', '', $contents );
+				}
+				return parent::element( $parent, $node, $contents );
+			}
+		};
+	}
+
+	/**
+	 * Custom Dispatcher subclass that only dispatches tree events inside a tag with a certain name.
+	 * This effectively filters the tree to only the contents of that tag.
+	 *
+	 * @param TreeBuilder $treeBuilder
+	 * @param string $nodeName Tag name to filter for
+	 * @return Dispatcher
+	 */
+	private function newFilteringDispatcher( TreeBuilder $treeBuilder, $nodeName ) {
+		return new class( $treeBuilder, $nodeName ) extends Dispatcher {
+			private $nodeName;
+			private $nodeDepth = 0;
+			private $seenTag = false;
+
+			public function __construct( TreeBuilder $treeBuilder, $nodeName ) {
+				$this->nodeName = $nodeName;
+				parent::__construct( $treeBuilder );
+			}
+
+			public function startTag( $name, Attributes $attrs, $selfClose, $sourceStart, $sourceLength ) {
+				if ( $this->nodeDepth ) {
+					parent::startTag( $name, $attrs, $selfClose, $sourceStart, $sourceLength );
+				}
+
+				if ( $name === $this->nodeName ) {
+					if ( $this->nodeDepth === 0 && $this->seenTag ) {
+						// This is the second opening tag, not nested in the first one
+						throw new Exception( "More than one <{$this->nodeName}> tag found" );
+					}
+					$this->nodeDepth++;
+					$this->seenTag = true;
+				}
+			}
+
+			public function endTag( $name, $sourceStart, $sourceLength ) {
+				if ( $name === $this->nodeName ) {
+					$this->nodeDepth--;
+				}
+				if ( $this->nodeDepth ) {
+					parent::endTag( $name, $sourceStart, $sourceLength );
+				}
+			}
+
+			public function characters( $text, $start, $length, $sourceStart, $sourceLength ) {
+				if ( $this->nodeDepth ) {
+					parent::characters( $text, $start, $length, $sourceStart, $sourceLength );
+				}
+			}
+
+			public function comment( $text, $sourceStart, $sourceLength ) {
+				if ( $this->nodeDepth ) {
+					parent::comment( $text, $sourceStart, $sourceLength );
+				}
+			}
+		};
 	}
 }
