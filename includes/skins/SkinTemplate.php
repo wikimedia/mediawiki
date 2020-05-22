@@ -598,6 +598,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Get the HTML for the p-personal list
+	 * @deprecated since 1.35, use SkinTemplate::makePersonalToolsList()
 	 * @return string
 	 */
 	public function getPersonalToolsList() {

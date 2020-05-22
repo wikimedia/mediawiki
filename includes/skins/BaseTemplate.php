@@ -44,14 +44,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * @deprecated since 1.33 Use ->msg() or ->getMsg() instead.
-	 */
-	public function msgWiki( $str ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		echo $this->getMsg( $str )->parseAsBlock();
-	}
-
-	/**
 	 * Create an array of common toolbox items from the data in the quicktemplate
 	 * stored by SkinTemplate.
 	 * The resulting array is built according to a format intended to be passed

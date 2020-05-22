@@ -111,19 +111,6 @@ abstract class QuickTemplate {
 	}
 
 	/**
-	 * An ugly, ugly hack.
-	 * @deprecated since 1.33 Use ->msg() instead.
-	 * @param string $msgKey
-	 */
-	public function msgWiki( $msgKey ) {
-		wfDeprecated( __METHOD__, '1.33' );
-		global $wgOut;
-
-		$text = wfMessage( $msgKey )->plain();
-		echo $wgOut->parseAsInterface( $text );
-	}
-
-	/**
 	 * @param string $str
 	 * @return bool
 	 */

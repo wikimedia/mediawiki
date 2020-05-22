@@ -579,6 +579,10 @@ because of Phabricator reports.
   audits of the corpus of skins and extensions hosted in Gerrit. If you find any
   that you need to be less restrictive (i.e. public or protected), please report
   these so that we can re-evaluate or suggest workarounds.
+* BaseTemplate::msgWiki(), deprecated in 1.33, was removed. Use ->msg() or
+  ->getMsg() instead.
+* QuickTemplate::msgWiki(), deprecated in 1.33, was removed. Use ->msg()
+  instead.
 * …
 
 === Deprecations in 1.35 ===
@@ -1055,6 +1059,7 @@ because of Phabricator reports.
   callers should use HttpRequestFactory which always sets these options.
 * Linker::normaliseSpecialPage() has been deprecated, instead make use of
   LinkRenderer::normalizeTarget().
+* SkinTemplate::getPersonalToolsList() was soft deprecated.
 * …
 
 === Other changes in 1.35 ===
