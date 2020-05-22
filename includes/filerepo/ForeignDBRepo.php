@@ -117,13 +117,6 @@ class ForeignDBRepo extends LocalRepo {
 		return $this->hasSharedCache;
 	}
 
-	/**
-	 * Get a key on the primary cache for this repository.
-	 * Returns false if the repository's cache is not accessible at this site.
-	 * The parameters are the parts of the key, as for wfMemcKey().
-	 * @param mixed ...$args
-	 * @return bool|mixed
-	 */
 	public function getSharedCacheKey( ...$args ) {
 		if ( $this->hasSharedCache() ) {
 			return $this->wanCache->makeGlobalKey(
