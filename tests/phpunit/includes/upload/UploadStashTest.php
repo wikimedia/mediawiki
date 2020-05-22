@@ -40,21 +40,14 @@ class UploadStashTest extends MediaWikiTestCase {
 		];
 	}
 
-	/**
-	 * @todo give this test a real name explaining what is being tested here
-	 */
-	public function testT31408() {
+	public function testExceptionNoFileExtension() {
 		$this->setMwGlobals( 'wgUser', self::$users['uploader']->getUser() );
 
 		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$stash = new UploadStash( $repo );
 
-		// Throws exception caught by PHPUnit on failure
+		$this->expectExceptionMessage( wfMessage( 'uploadstash-no-extension' )->text() );
 		$file = $stash->stashFile( $this->tmpFile );
-		// We'll never reach this point if we hit T31408
-		$this->assertTrue( true, 'Unrecognized file without extension' );
-
-		$stash->removeFile( $file->getFileKey() );
 	}
 
 	public static function provideInvalidRequests() {
@@ -99,9 +92,6 @@ class UploadStashTest extends MediaWikiTestCase {
 		$mockRepo = $this->getMockBuilder( FileRepo::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mockRepo->expects( $this->once() )
-			->method( 'storeTemp' )
-			->willReturn( $mockRepoStoreStatusResult );
 
 		$stash = new UploadStash( $mockRepo );
 		try {
