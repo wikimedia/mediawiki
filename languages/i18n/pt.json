@@ -2605,6 +2605,7 @@
 	"badipaddress": "Endereço IP inválido",
 	"blockipsuccesssub": "Bloqueio efetuado",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] foi {{GENDER:$1|bloqueado|bloqueada}}.<br />\nConsulte a [[Special:BlockList|lista de bloqueios]] para rever os bloqueios.",
+	"ipb-empty-block": "O bloqueio não tem nenhuma restrição ativada.",
 	"ipb-blockingself": "Está prestes a bloquear-se a si próprio. Tem a certeza de que pretende fazê-lo?",
 	"ipb-confirmhideuser": "Está prestes a bloquear um utilizador com \"Ocultar nome de utilizador/IP\" ativado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?",
 	"ipb-confirmaction": "Se tem a certeza de que quer fazê-lo, marque o campo \"{{int:ipb-confirm}}\" ao fundo.",
