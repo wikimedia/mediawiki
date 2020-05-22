@@ -2026,7 +2026,7 @@ abstract class Skin extends ContextSource {
 		if ( isset( $item['links'] ) ) {
 			$links = [];
 			foreach ( $item['links'] as $linkKey => $link ) {
-				$links[] = self::makeLink( $linkKey, $link, $options );
+				$links[] = $this->makeLink( $linkKey, $link, $options );
 			}
 			$html = implode( ' ', $links );
 		} else {
@@ -2047,7 +2047,7 @@ abstract class Skin extends ContextSource {
 				$link['class'] = $link['link-class'];
 				unset( $link['link-class'] );
 			}
-			$html = self::makeLink( $key, $link, $options );
+			$html = $this->makeLink( $key, $link, $options );
 		}
 
 		$attrs = [];
@@ -2122,6 +2122,7 @@ abstract class Skin extends ContextSource {
 				unset( $buttonAttrs['width'] );
 				unset( $buttonAttrs['height'] );
 				$imgAttrs = [
+					/* @phan-suppress-next-line PhanTypeInvalidDimOffset */
 					'src' => $attrs['src'],
 					'alt' => $attrs['alt'] ?? $this->msg( 'searchbutton' )->text(),
 					'width' => $attrs['width'] ?? null,

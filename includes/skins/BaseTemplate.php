@@ -175,7 +175,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				if ( is_array( $box['content'] ) ) {
 					$content = '<ul>';
 					foreach ( $box['content'] as $key => $val ) {
-						$content .= "\n	" . $this->makeListItem( $key, $val );
+						$content .= "\n	" . $this->getSkin()->makeListItem( $key, $val );
 					}
 					// HACK, shove the toolbox end onto the toolbox if we're rendering itself
 					if ( $hookContents ) {
