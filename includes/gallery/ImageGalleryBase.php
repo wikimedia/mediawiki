@@ -30,9 +30,12 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Media
  */
 abstract class ImageGalleryBase extends ContextSource {
+	public const LOADING_DEFAULT = 1;
+	public const LOADING_LAZY = 2;
+
 	/**
 	 * @var array[] Gallery images
-	 * @phan-var array<int,array{0:Title,1:string,2:string,3:string,4:array}>
+	 * @phan-var array<int,array{0:Title,1:string,2:string,3:string,4:array,5:int}>
 	 */
 	protected $mImages;
 
@@ -269,13 +272,21 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $alt Alt text for the image
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
+	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
 	 */
-	public function add( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
+	public function add(
+			$title,
+			$html = '',
+			$alt = '',
+			$link = '',
+			$handlerOpts = [],
+			$loading = self::LOADING_DEFAULT
+		) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts ];
+		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts, $loading ];
 		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
 	}
 
@@ -288,13 +299,21 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $alt Alt text for the image
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
+	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
 	 */
-	public function insert( $title, $html = '', $alt = '', $link = '', $handlerOpts = [] ) {
+	public function insert(
+			$title,
+			$html = '',
+			$alt = '',
+			$link = '',
+			$handlerOpts = [],
+			$loading = self::LOADING_DEFAULT
+		) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts ] );
+		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts, $loading ] );
 	}
 
 	/**

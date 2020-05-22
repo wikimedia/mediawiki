@@ -82,7 +82,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		foreach ( $this->mImages as $pair ) {
 			// "text" means "caption" here
 			/** @var Title $nt */
-			list( $nt, $text, $alt, $link ) = $pair;
+			list( $nt, $text, $alt, $link, $handlerOpts, $loading ) = $pair;
 
 			$descQuery = false;
 			if ( $nt->getNamespace() === NS_FILE ) {
@@ -146,6 +146,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					// providing screen readers with the filename as alt text
 					if ( $alt == '' && $text == '' ) {
 						$imageParameters['alt'] = $nt->getText();
+					}
+
+					if ( $loading === ImageGalleryBase::LOADING_LAZY ) {
+						$imageParameters['loading'] = 'lazy';
 					}
 
 					$this->adjustImageParameters( $thumb, $imageParameters );
