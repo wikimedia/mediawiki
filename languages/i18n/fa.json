@@ -3942,5 +3942,5 @@
 	"userlogout-continue": "آیا قصد خروج از سامانه را دارید؟",
 	"paramvalidator-baduser": "مقدار نامعتبر «$2» برای پارامتر کاربری <var>$1</var>.",
 	"paramvalidator-help-type-user-subtype-name": "نام کاربری",
-	"paramvalidator-help-type-user-subtype-id": "شناسهٔ کاربری (مثلاً «#12345»)"
+	"paramvalidator-help-type-user-subtype-id": "شناسهٔ کاربر (مثلاً «#12345»)"
 }
