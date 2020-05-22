@@ -21,6 +21,7 @@
 namespace MediaWiki\Linker;
 
 use LinkCache;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use NamespaceInfo;
 use TitleFormatter;
 use User;
@@ -47,23 +48,36 @@ class LinkRendererFactory {
 	private $nsInfo;
 
 	/**
+	 * @var SpecialPageFactory
+	 */
+	private $specialPageFactory;
+
+	/**
+	 * @internal For use by core ServiceWiring
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
 	 * @param NamespaceInfo $nsInfo
+	 * @param SpecialPageFactory $specialPageFactory
 	 */
 	public function __construct(
-		TitleFormatter $titleFormatter, LinkCache $linkCache, NamespaceInfo $nsInfo
+		TitleFormatter $titleFormatter,
+		LinkCache $linkCache,
+		NamespaceInfo $nsInfo,
+		SpecialPageFactory $specialPageFactory
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
 		$this->nsInfo = $nsInfo;
+		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	/**
 	 * @return LinkRenderer
 	 */
 	public function create() {
-		return new LinkRenderer( $this->titleFormatter, $this->linkCache, $this->nsInfo );
+		return new LinkRenderer(
+			$this->titleFormatter, $this->linkCache, $this->nsInfo, $this->specialPageFactory
+		);
 	}
 
 	/**

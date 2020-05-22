@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @since 1.18
  */
@@ -66,7 +68,8 @@ class DummyLinker {
 	}
 
 	public function normaliseSpecialPage( Title $title ) {
-		return Linker::normaliseSpecialPage( $title );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->normalizeTarget( $title );
 	}
 
 	public function makeExternalImage( $url, $alt = '' ) {
