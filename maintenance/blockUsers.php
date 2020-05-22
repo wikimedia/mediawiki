@@ -58,6 +58,13 @@ class BlockUsers extends Maintenance {
 			false,
 			true
 		);
+
+		$this->addOption(
+			'reblock',
+			'Reblock users who are already blocked',
+			false,
+			false
+		);
 	}
 
 	public function execute() {
@@ -76,6 +83,8 @@ class BlockUsers extends Maintenance {
 		if ( !$permManager->userHasRight( $performer, 'block' ) ) {
 			$this->fatalError( "User '{$performerName}' doesn't have blocking rights.\n" );
 		}
+
+		$reblock = $this->hasOption( 'reblock' );
 
 		$users = null;
 		if ( $this->hasArg( 0 ) ) {
@@ -97,7 +106,8 @@ class BlockUsers extends Maintenance {
 		$this->blockUsers(
 			$users,
 			$performer,
-			$this->getOption( 'reason', '' )
+			$this->getOption( 'reason', '' ),
+			$reblock
 		);
 	}
 
@@ -105,9 +115,10 @@ class BlockUsers extends Maintenance {
 	 * @param string[] $users
 	 * @param User $performer
 	 * @param string $reason
+	 * @param bool $reblock
 	 * @throws MWException
 	 */
-	private function blockUsers( $users, $performer, $reason ) {
+	private function blockUsers( $users, $performer, $reason, $reblock ) {
 		foreach ( $users as $name ) {
 			$user = User::newFromName( $name );
 
@@ -117,12 +128,16 @@ class BlockUsers extends Maintenance {
 				continue;
 			}
 
-			if ( $user->getBlock() !== null ) {
+			$priorBlock = $user->getBlock();
+			if ( $priorBlock === null ) {
+				$block = new DatabaseBlock();
+			} elseif ( $reblock ) {
+				$block = clone $priorBlock;
+			} else {
 				$this->output( "Blocking '{$name}' skipped (user already blocked).\n" );
 				continue;
 			}
 
-			$block = new DatabaseBlock();
 			$block->setTarget( $name );
 			$block->setBlocker( $performer );
 			$block->setReason( $reason );
@@ -133,9 +148,15 @@ class BlockUsers extends Maintenance {
 			$block->isUsertalkEditAllowed( false );
 			$block->setExpiry( SpecialBlock::parseExpiryInput( 'infinity' ) );
 
-			$success = $block->insert();
+			if ( $priorBlock === null ) {
+				$success = $block->insert();
+			} else {
+				$success = $block->update();
+			}
 
 			if ( $success ) {
+				// Fire any post block hooks
+				Hooks::run( 'BlockIpComplete', [ $block, $performer, $priorBlock ] );
 				// Log it only if the block was successful
 				$flags = [
 					'nocreate',
