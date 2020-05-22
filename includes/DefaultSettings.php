@@ -8773,13 +8773,18 @@ $wgShellRestrictionMethod = false;
 
 /**
  * Timeout for HTTP requests done internally, in seconds.
+ *
+ * @since 1.5
  * @var float|int
  */
 $wgHTTPTimeout = 25;
 
 /**
- * Timeout for connections done internally (in seconds)
- * Only works for curl
+ * Timeout for connections done internally (in seconds).
+ *
+ * Only supported if cURL is installed, ignored otherwise.
+ *
+ * @since 1.22
  * @var float|int
  */
 $wgHTTPConnectTimeout = 5.0;
@@ -8787,6 +8792,8 @@ $wgHTTPConnectTimeout = 5.0;
 /**
  * The maximum HTTP request timeout in seconds. If any specified or configured
  * request timeout is larger than this, then this value will be used instead.
+ *
+ * @since 1.35
  * @var float|int
  */
 $wgHTTPMaxTimeout = INF;
@@ -8794,6 +8801,9 @@ $wgHTTPMaxTimeout = INF;
 /**
  * The maximum HTTP connect timeout in seconds. If any specified or configured
  * connect timeout is larger than this, then this value will be used instead.
+ *
+ * @since 1.35
+ * @var float|int
  */
 $wgHTTPMaxConnectTimeout = INF;
 
