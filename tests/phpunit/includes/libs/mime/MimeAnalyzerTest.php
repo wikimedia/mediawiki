@@ -204,4 +204,23 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	public function testNoEmptyStringMimeType() {
 		$this->assertNull( $this->mimeAnalyzer->getExtensionsForType( '' ) );
 	}
+
+	/**
+	 * @covers MimeAnalyzer::addExtraTypes
+	 * @covers MimeAnalyzer::addExtraInfo
+	 */
+	public function testAddExtraTypes() {
+		$mimeAnalyzer = new MimeAnalyzer( [
+			'infoFile' => MimeAnalyzer::USE_INTERNAL,
+			'typeFile' => MimeAnalyzer::USE_INTERNAL,
+			'xmlTypes' => [],
+			'initCallback' => function ( $instance ) {
+				$instance->addExtraTypes( 'fake/mime fake_extension' );
+				$instance->addExtraInfo( 'fake/mime [OFFICE]' );
+				$instance->mExtToMime[ 'no_such_extension' ] = 'fake/mime';
+			},
+		] );
+		$this->assertSame( MEDIATYPE_OFFICE, $mimeAnalyzer->findMediaType( '.fake_extension' ) );
+		$this->assertSame( 'fake/mime', $mimeAnalyzer->getTypesForExtension( 'no_such_extension' ) );
+	}
 }
