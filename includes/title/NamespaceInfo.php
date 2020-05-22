@@ -129,6 +129,25 @@ class NamespaceInfo {
 	}
 
 	/**
+	 * Throw if given index isn't an integer or integer-like string and so can't be a valid namespace.
+	 *
+	 * @param int|string $index
+	 * @param string $method
+	 *
+	 * @throws InvalidArgumentException
+	 * @return int Cleaned up namespace index
+	 */
+	private function makeValidNamespace( $index, $method ) {
+		if ( !( is_int( $index ) || ctype_digit( $index ) ) ) {
+			throw new InvalidArgumentException(
+				"$method called with non-integer (" . gettype( $index ) . ") namespace '$index'"
+			);
+		}
+
+		return intval( $index );
+	}
+
+	/**
 	 * Can pages in the given namespace be moved?
 	 *
 	 * @param int $index Namespace index
@@ -163,6 +182,8 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isTalk( $index ) {
+		$index = $this->makeValidNamespace( $index, __METHOD__ );
+
 		return $index > NS_MAIN
 			&& $index % 2;
 	}
@@ -176,6 +197,8 @@ class NamespaceInfo {
 	 *         (e.g. NS_SPECIAL).
 	 */
 	public function getTalk( $index ) {
+		$index = $this->makeValidNamespace( $index, __METHOD__ );
+
 		$this->isMethodValidFor( $index, __METHOD__ );
 		return $this->isTalk( $index )
 			? $index
@@ -239,6 +262,8 @@ class NamespaceInfo {
 	 * @return int
 	 */
 	public function getSubject( $index ) {
+		$index = $this->makeValidNamespace( $index, __METHOD__ );
+
 		# Handle special namespaces
 		if ( $index < NS_MAIN ) {
 			return $index;
