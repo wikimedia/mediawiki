@@ -531,6 +531,72 @@ util = {
 	},
 
 	/**
+	 * Parse the URL of an image uploaded to MediaWiki, or a thumbnail for such an image,
+	 * and return the image name and thumbnail size.
+	 * @param {string} url
+	 * @return {Object|null} URL data, or null if the URL is not a valid MediaWiki
+	 *   image/thumbnail URL.
+	 * @return {string} return.name File name (same format as Title.getMainText()).
+	 * @return {number} [return.width] Thumbnail width, in pixels. Null when the file is not
+	 *   a thumbnail.
+	 */
+	parseImageUrl: function ( url ) {
+		var i, name, width, match, decodedUrl,
+			// thumb.php-generated thumbnails
+			// thumb.php?f=<name>[&w=<width>]
+			thumbPhpRegex = /thumb\.php/,
+			regexes = [
+				// Thumbnails
+				// /<hash prefix>/<name>/[<options>-]<width>-<name*>[.<ext>]
+				// where <name*> could be the filename, 'thumbnail.<ext>' (for long filenames)
+				// or the base-36 SHA1 of the filename.
+				/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})(\.[^\s/]+)?$/,
+
+				// Full size images
+				// /<hash prefix>/<name>
+				/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)$/,
+
+				// Thumbnails in non-hashed upload directories
+				// /<name>/[<options>-]<width>-<name>[.<ext>]
+				/\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})[^\s/]*$/,
+
+				// Full-size images in non-hashed upload directories
+				// /<name>
+				/\/([^\s/]+)$/
+			];
+
+		if ( thumbPhpRegex.test( url ) ) {
+			name = mw.util.getParamValue( 'f', url );
+			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
+		} else {
+			decodedUrl = decodeURIComponent( url );
+			for ( i = 0; i < regexes.length; i++ ) {
+				match = decodedUrl.match( regexes[ i ] );
+				if ( match ) {
+					name = match[ 1 ];
+					width = match[ 2 ] || null;
+					break;
+				}
+			}
+		}
+
+		if ( name ) {
+			name = name.replace( /_/g, ' ' );
+			if ( width !== null ) {
+				width = parseInt( width, 10 );
+				if ( isNaN( width ) ) {
+					width = null;
+				}
+			}
+			return {
+				name: name,
+				width: width
+			};
+		}
+		return null;
+	},
+
+	/**
 	 * Escape string for safe inclusion in regular expression
 	 *
 	 * The following characters are escaped:
