@@ -97,7 +97,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	private $moduleSkinStyles = [];
 
-	/** @var bool */
+	/** @var int|null */
 	protected static $debugMode = null;
 
 	/** @var int */
@@ -1757,14 +1757,15 @@ MESSAGE;
 	 * - 2) Cookie,
 	 * - 3) Site configuration.
 	 *
-	 * @return bool
+	 * @return int
 	 */
 	public static function inDebugMode() {
 		if ( self::$debugMode === null ) {
 			global $wgRequest, $wgResourceLoaderDebug;
-			self::$debugMode = $wgRequest->getFuzzyBool( 'debug',
-				$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug )
+			$str = $wgRequest->getRawVal( 'debug',
+				$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ? 'true' : '' )
 			);
+			self::$debugMode = ResourceLoaderContext::debugFromString( $str );
 		}
 		return self::$debugMode;
 	}
@@ -1836,7 +1837,7 @@ MESSAGE;
 	 * @param string $skin
 	 * @param string|null $user
 	 * @param string|null $version
-	 * @param bool $debug
+	 * @param int $debug
 	 * @param string|null $only
 	 * @param bool $printable
 	 * @param bool $handheld
@@ -1844,8 +1845,8 @@ MESSAGE;
 	 * @return array
 	 */
 	public static function makeLoaderQuery( array $modules, $lang, $skin, $user = null,
-		$version = null, $debug = false, $only = null, $printable = false,
-		$handheld = false, array $extraQuery = []
+		$version = null, $debug = ResourceLoaderContext::DEBUG_OFF, $only = null,
+		$printable = false, $handheld = false, array $extraQuery = []
 	) {
 		$query = [
 			'modules' => self::makePackedModulesString( $modules ),
@@ -1860,8 +1861,8 @@ MESSAGE;
 		if ( $skin !== ResourceLoaderContext::DEFAULT_SKIN ) {
 			$query['skin'] = $skin;
 		}
-		if ( $debug === true ) {
-			$query['debug'] = 'true';
+		if ( $debug !== ResourceLoaderContext::DEBUG_OFF ) {
+			$query['debug'] = strval( $debug );
 		}
 		if ( $user !== null ) {
 			$query['user'] = $user;
