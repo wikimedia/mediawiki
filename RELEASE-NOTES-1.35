@@ -896,6 +896,7 @@ because of Phabricator reports.
   - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
   - ::newFromRow - use RevisionStore::newRevisionFromRow instead
   - ::newKnownCurrent - use RevisionStore::getKnownCurrentRevision instead
+  - ::insertOn - use RevisionStore::insertRevisionOn instead
   - ::getParentLengths - use RevisionStore::getRevisionSizes instead
   - ::setTitle - the method was previously a no-op
   - ::getQueryInfo - use RevisionStore::getQueryInfo instead
