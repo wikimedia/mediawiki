@@ -94,7 +94,7 @@ class GenerateCollationData extends Maintenance {
 				// Extra old version
 				$error .= "You are using outdated version of ICU ($icuVersion), intended for "
 					. ( $unicodeVersion ? "Unicode $unicodeVersion" : "an unknown version of Unicode" )
-					. "; this file might not be avalaible for it, and it's not supported by MediaWiki. "
+					. "; this file might not be available for it, and it's not supported by MediaWiki. "
 					. " You are on your own; consider upgrading PHP's intl extension or try "
 					. "one of the files available at:";
 			} elseif ( version_compare( $icuVersion, "51.0", ">=" ) ) {
