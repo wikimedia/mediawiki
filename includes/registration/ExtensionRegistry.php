@@ -145,7 +145,7 @@ class ExtensionRegistry {
 
 	/**
 	 * Controls if classes and namespaces defined under the keys TestAutoloadClasses and
-	 * TestAutloadNamespaces should be added to the autoloader.
+	 * TestAutoloadNamespaces should be added to the autoloader.
 	 *
 	 * @since 1.35
 	 * @param bool $load
@@ -347,7 +347,7 @@ class ExtensionRegistry {
 					'1.29'
 				);
 				$warnings = true;
-				// For backwards-compatability, assume a version of 1
+				// For backwards-compatibility, assume a version of 1
 				$info['manifest_version'] = 1;
 			}
 			$version = $info['manifest_version'];
