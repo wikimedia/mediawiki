@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -59,9 +60,9 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 * @param string $lang Language and content of the created page
 	 * @param string|null $content Content of the created page, or null for a generic string
 	 *
-	 * @return Revision
+	 * @return RevisionRecord
 	 */
-	protected function makePage( $title, $lang, $content = null ) {
+	private function makePage( $title, $lang, $content = null ) {
 		if ( $content === null ) {
 			$content = $lang;
 		}
@@ -71,12 +72,19 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 		$title = Title::newFromText( $title, NS_MEDIAWIKI );
 		$wikiPage = new WikiPage( $title );
-		$contentHandler = ContentHandler::makeContent( $content, $title );
-		$status = $wikiPage->doEditContent( $contentHandler, "$lang translation test case" );
+		$content = ContentHandler::makeContent( $content, $title );
+
+		$updater = $wikiPage->newPageUpdater( $this->getTestSysop()->getUser() );
+		$updater->setContent(
+			SlotRecord::MAIN,
+			$content
+		);
+		$summary = CommentStoreComment::newUnsavedComment( "$lang translation test case" );
+		$inserted = $updater->saveRevision( $summary );
 
 		// sanity
-		$this->assertTrue( $status->isOK(), 'Create page ' . $title->getPrefixedDBkey() );
-		return $status->value['revision'];
+		$this->assertTrue( $updater->wasSuccessful(), 'Create page ' . $title->getPrefixedDBkey() );
+		return $inserted;
 	}
 
 	/**
@@ -249,7 +257,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		// Create an out-of-sequence revision by importing a
 		// revision with an old timestamp. Hacky.
 		$importRevision = new WikiRevision( new HashConfig() );
-		$importRevision->setTitle( $r3->getTitle() );
+		$importRevision->setTitle( Title::newFromLinkTarget( $r3->getPageAsLinkTarget() ) );
 		$importRevision->setComment( 'Imported edit' );
 		$importRevision->setTimestamp( '19991122001122' );
 		$importRevision->setText( 'IMPORTED OLD TEST' );
