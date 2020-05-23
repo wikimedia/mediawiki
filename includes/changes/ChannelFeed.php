@@ -91,9 +91,8 @@ abstract class ChannelFeed extends FeedItem {
 		header( "Content-type: $mimetype; charset=UTF-8" );
 
 		// Set a sane filename
-		$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
-			->getExtensionsForType( $mimetype );
-		$ext = $exts ? strtok( $exts, ' ' ) : 'xml';
+		$mimeAnalyzer = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$ext = $mimeAnalyzer->getExtensionFromMimeTypeOrNull( $mimetype ) ?? 'xml';
 		header( "Content-Disposition: inline; filename=\"feed.{$ext}\"" );
 
 		if ( $wgVaryOnXFP ) {
