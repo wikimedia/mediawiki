@@ -21,13 +21,10 @@ Compilation
 --------------------------------
 
 * PHP must be compiled with --enable-sockets
-
 * libevent: <http://www.monkey.org/~provos/libevent/>
   (as of 2003-08-11, 0.7a is current)
-
 * optionally, epoll-rt patch for Linux kernel:
   <http://www.xmailserver.org/linux-patches/nio-improve.html>
-
 * memcached: <http://www.danga.com/memcached/download.bml>
   (as of this writing, 1.1.9 is current)
 
@@ -70,8 +67,10 @@ on port 11211, using up to 64MB of memory)
 
 In your LocalSettings.php file, set:
 
-	$wgMainCacheType = CACHE_MEMCACHED;
-	$wgMemCachedServers = [ "127.0.0.1:11211" ];
+```php
+$wgMainCacheType = CACHE_MEMCACHED;
+$wgMemCachedServers = [ "127.0.0.1:11211" ];
+```
 
 The wiki should then use memcached to cache various data. To use
 multiple servers (physically separate boxes or multiple caches
@@ -80,10 +79,12 @@ to the array. To increase the weight of a server (say, because
 it has twice the memory of the others and you want to spread
 usage evenly), make its entry a subarray:
 
-	$wgMemCachedServers = [
-        "127.0.0.1:11211", # one gig on this box
-        [ "192.168.0.1:11211", 2 ] # two gigs on the other box
-	];
+```php
+$wgMemCachedServers = [
+	"127.0.0.1:11211", # one gig on this box
+	[ "192.168.0.1:11211", 2 ] # two gigs on the other box
+];
+```
 
 PHP client for memcached
 --------------------------------

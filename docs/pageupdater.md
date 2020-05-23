@@ -47,18 +47,22 @@ The stateful nature of `PageUpdater` allows it to be used to safely perform tran
 
 Typical usage for programmatic revision creation (with `$page` being a WikiPage as of 1.32, to be replaced by a repository service later):
 
-    $updater = $page->newPageUpdater( $user );
-    $updater->setContent( SlotRecord::MAIN, $content );
-    $updater->setRcPatrolStatus( RecentChange::PRC_PATROLLED );
-    $newRev = $updater->saveRevision( $comment );
+```php
+$updater = $page->newPageUpdater( $user );
+$updater->setContent( SlotRecord::MAIN, $content );
+$updater->setRcPatrolStatus( RecentChange::PRC_PATROLLED );
+$newRev = $updater->saveRevision( $comment );
+```
 
 Usage with content depending on the parent revision
 
-    $updater = $page->newPageUpdater( $user );
-    $parent = $updater->grabParentRevision();
-    $content = $parent->getContent( SlotRecord::MAIN )->replaceSection( $section, $sectionContent );
-    $updater->setContent( SlotRecord::MAIN, $content );
-    $newRev = $updater->saveRevision( $comment, EDIT_UPDATE );
+```php
+$updater = $page->newPageUpdater( $user );
+$parent = $updater->grabParentRevision();
+$content = $parent->getContent( SlotRecord::MAIN )->replaceSection( $section, $sectionContent );
+$updater->setContent( SlotRecord::MAIN, $content );
+$newRev = $updater->saveRevision( $comment, EDIT_UPDATE );
+```
 
 In both cases, all secondary updates will be triggered automatically.
 
