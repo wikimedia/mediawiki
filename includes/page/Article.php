@@ -2000,8 +2000,16 @@ class Article implements Page {
 
 		$fields = [];
 
+		$suppressAllowed = $this->permManager->userHasRight( $user, 'suppressrevision' );
+		$dropDownReason = $ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text();
+		// Add additional specific reasons for suppress
+		if ( $suppressAllowed ) {
+			$dropDownReason .= "\n" . $ctx->msg( 'deletereason-dropdown-suppress' )
+				->inContentLanguage()->text();
+		}
+
 		$options = Xml::listDropDownOptions(
-			$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text(),
+			$dropDownReason,
 			[ 'other' => $ctx->msg( 'deletereasonotherlist' )->inContentLanguage()->text() ]
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
@@ -2055,7 +2063,7 @@ class Article implements Page {
 				]
 			);
 		}
-		if ( $this->permManager->userHasRight( $user, 'suppressrevision' ) ) {
+		if ( $suppressAllowed ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -2114,9 +2122,19 @@ class Article implements Page {
 		);
 
 		if ( $this->permManager->userHasRight( $user, 'editinterface' ) ) {
-			$link = $this->linkRenderer->makeKnownLink(
+			$link = '';
+			if ( $suppressAllowed ) {
+				$link .= $this->linkRenderer->makeKnownLink(
+					$ctx->msg( 'deletereason-dropdown-suppress' )->inContentLanguage()->getTitle(),
+					$ctx->msg( 'delete-edit-reasonlist-suppress' )->text(),
+					[],
+					[ 'action' => 'edit' ]
+				);
+				$link .= $ctx->msg( 'pipe-separator' )->escaped();
+			}
+			$link .= $this->linkRenderer->makeKnownLink(
 				$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
-				wfMessage( 'delete-edit-reasonlist' )->text(),
+				$ctx->msg( 'delete-edit-reasonlist' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
