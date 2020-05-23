@@ -67,6 +67,7 @@ use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
+use MediaWiki\User\WatchlistNotificationManager;
 use MessageCache;
 use MimeAnalyzer;
 use MWException;
@@ -1287,6 +1288,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchedItemStore() : WatchedItemStoreInterface {
 		return $this->getService( 'WatchedItemStore' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return WatchlistNotificationManager
+	 */
+	public function getWatchlistNotificationManager() : WatchlistNotificationManager {
+		return $this->getService( 'WatchlistNotificationManager' );
 	}
 
 	/**

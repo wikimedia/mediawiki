@@ -102,6 +102,7 @@ use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
+use MediaWiki\User\WatchlistNotificationManager;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
@@ -1271,6 +1272,22 @@ return [
 		}
 
 		return $store;
+	},
+
+	'WatchlistNotificationManager' =>
+	function ( MediaWikiServices $services ) : WatchlistNotificationManager {
+		return new WatchlistNotificationManager(
+			new ServiceOptions(
+				WatchlistNotificationManager::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getHookContainer(),
+			$services->getPermissionManager(),
+			$services->getReadOnlyMode(),
+			$services->getRevisionLookup(),
+			$services->getTalkPageNotificationManager(),
+			$services->getWatchedItemStore()
+		);
 	},
 
 	'WikiRevisionOldRevisionImporterNoUpdates' =>

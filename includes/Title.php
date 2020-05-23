@@ -165,9 +165,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	/** @var null Is the article at this title a redirect? */
 	public $mRedirect = null;
 
-	/** @var array Associative array of user ID -> timestamp/false */
-	private $mNotificationTimestamp = [];
-
 	/** @var bool Whether a page has any subpages */
 	private $mHasSubpages;
 
@@ -4193,29 +4190,10 @@ class Title implements LinkTarget, IDBAccessObject {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		// Check cache first
-		$uid = $user->getId();
-		if ( !$uid ) {
-			return false;
-		}
-		// avoid isset here, as it'll return false for null entries
-		if ( array_key_exists( $uid, $this->mNotificationTimestamp ) ) {
-			return $this->mNotificationTimestamp[$uid];
-		}
-		// Don't cache too much!
-		if ( count( $this->mNotificationTimestamp ) >= self::CACHE_MAX ) {
-			$this->mNotificationTimestamp = [];
-		}
 
-		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$watchedItem = $store->getWatchedItem( $user, $this );
-		if ( $watchedItem ) {
-			$this->mNotificationTimestamp[$uid] = $watchedItem->getNotificationTimestamp();
-		} else {
-			$this->mNotificationTimestamp[$uid] = false;
-		}
-
-		return $this->mNotificationTimestamp[$uid];
+		return MediaWikiServices::getInstance()
+			->getWatchlistNotificationManager()
+			->getTitleNotificationTimestamp( $user, $this );
 	}
 
 	/**
