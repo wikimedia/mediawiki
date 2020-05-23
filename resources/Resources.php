@@ -1504,8 +1504,13 @@ return [
 		],
 	],
 	'mediawiki.page.watch.ajax' => [
+		'localBasePath' => "$IP/resources/src",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'targets' => [ 'desktop', 'mobile' ],
-		'scripts' => 'resources/src/mediawiki.page.watch.ajax.js',
+		'packageFiles' => [
+			'mediawiki.page.watch.ajax.js',
+			[ 'name' => 'config.json', 'config' => [ 'WatchlistExpiry' ] ],
+		],
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.util',
