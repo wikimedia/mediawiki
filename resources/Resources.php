@@ -161,6 +161,7 @@ return [
 		],
 		'styles' => 'resources/src/jquery/jquery.confirmable.css',
 		'dependencies' => 'mediawiki.jqueryMsg',
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.cookie' => [
 		'scripts' => 'resources/lib/jquery.cookie/jquery.cookie.js',
@@ -1479,21 +1480,6 @@ return [
 		'scripts' => 'resources/src/mediawiki.page.startup.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.page.patrol.ajax' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		'scripts' => 'resources/src/mediawiki.page.patrol.ajax.js',
-		'dependencies' => [
-			'mediawiki.api',
-			'mediawiki.util',
-			'mediawiki.Title',
-			'jquery.spinner',
-			'user.options'
-		],
-		'messages' => [
-			'markedaspatrollednotify',
-			'markedaspatrollederrornotify',
-		],
-	],
 	'mediawiki.page.watch.ajax' => [
 		'localBasePath' => "$IP/resources/src",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
@@ -1519,17 +1505,6 @@ return [
 			'addedwatchtext-talk',
 			'removedwatchtext',
 			'removedwatchtext-talk',
-		],
-	],
-	'mediawiki.page.rollback.confirmation' => [
-		'scripts' => 'resources/src/mediawiki.rollback.confirmation.js',
-		'dependencies' => [
-			'jquery.confirmable'
-		],
-		'messages' => [
-			'rollback-confirmation-confirm',
-			'rollback-confirmation-yes',
-			'rollback-confirmation-no',
 		],
 	],
 	'mediawiki.page.image.pagination' => [
@@ -1940,6 +1915,36 @@ return [
 		],
 		'dependencies' => [
 			'user.options',
+		],
+	],
+	// This bundles various small scripts that relate to moderation or curation
+	// in some way, and:
+	// - .. are only loaded for a privileged subset of logged-in users.
+	// - .. may be loaded in the critical path on page views.
+	// - .. do NOT depend on OOUI or other "large" modules.
+	// - .. contain only UI intialisation code (e.g. no public exports)
+	'mediawiki.misc-authed-curate' => [
+		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-curate",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-curate",
+		'targets' => [ 'desktop', 'mobile' ],
+		'scripts' => [
+			'patrol.js',
+			'rollback.js',
+		],
+		'dependencies' => [
+			'mediawiki.api',
+			'mediawiki.util',
+			'mediawiki.Title',
+			'jquery.spinner',
+			'user.options',
+			'jquery.confirmable',
+		],
+		'messages' => [
+			'markedaspatrollednotify',
+			'markedaspatrollederrornotify',
+			'rollback-confirmation-confirm',
+			'rollback-confirmation-yes',
+			'rollback-confirmation-no',
 		],
 	],
 	'mediawiki.special.changeslist' => [

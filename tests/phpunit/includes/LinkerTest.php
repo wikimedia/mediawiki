@@ -504,7 +504,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		return [
 			[
 				true,
-				[ 'mediawiki.page.rollback.confirmation' ],
+				[ 'mediawiki.misc-authed-curate' ],
 				'Rollback_Test_Page'
 			],
 			[

@@ -1202,8 +1202,9 @@ class Article implements Page {
 	 * If patrol is possible, output a patrol UI box. This is called from the
 	 * footer section of ordinary page views. If patrol is not possible or not
 	 * desired, does nothing.
+	 *
 	 * Side effect: When the patrol link is build, this method will call
-	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
+	 * OutputPage::preventClickjacking() and load a JS module.
 	 *
 	 * @return bool
 	 */
@@ -1348,7 +1349,7 @@ class Article implements Page {
 
 		$outputPage->preventClickjacking();
 		if ( $this->permManager->userHasRight( $user, 'writeapi' ) ) {
-			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
+			$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 		}
 
 		$link = $this->linkRenderer->makeKnownLink(
