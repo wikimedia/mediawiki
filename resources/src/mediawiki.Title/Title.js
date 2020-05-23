@@ -587,44 +587,10 @@ Title.newFromFileName = function ( uncleanName ) {
  * @return {mw.Title|null} The file title or null if unsuccessful
  */
 Title.newFromImg = function ( img ) {
-	var matches, i, regex, src, decodedSrc,
+	var src = img.jquery ? img[ 0 ].src : img.src,
+		data = mw.util.parseImageUrl( src );
 
-		// thumb.php-generated thumbnails
-		thumbPhpRegex = /thumb\.php/,
-		regexes = [
-			// Thumbnails
-			/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)\/[^\s/]+-[^\s/]*$/,
-
-			// Full size images
-			/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)$/,
-
-			// Thumbnails in non-hashed upload directories
-			/\/([^\s/]+)\/[^\s/]+-(?:\1|thumbnail)[^\s/]*$/,
-
-			// Full-size images in non-hashed upload directories
-			/\/([^\s/]+)$/
-		],
-
-		recount = regexes.length;
-
-	src = img.jquery ? img[ 0 ].src : img.src;
-
-	if ( thumbPhpRegex.test( src ) ) {
-		return mw.Title.newFromText( 'File:' + mw.util.getParamValue( 'f', src ) );
-	}
-
-	decodedSrc = decodeURIComponent( src );
-
-	for ( i = 0; i < recount; i++ ) {
-		regex = regexes[ i ];
-		matches = decodedSrc.match( regex );
-
-		if ( matches && matches[ 1 ] ) {
-			return mw.Title.newFromText( 'File:' + matches[ 1 ] );
-		}
-	}
-
-	return null;
+	return data ? mw.Title.newFromText( 'File:' + data.name ) : null;
 };
 
 /**

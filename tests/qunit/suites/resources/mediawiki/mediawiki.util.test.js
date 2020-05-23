@@ -451,6 +451,123 @@
 		} );
 	} );
 
+	QUnit.test( 'parseImageUrl', function ( assert ) {
+		var data, i, thisCase, prefix,
+			cases = [
+				{
+					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg',
+					typeOfUrl: 'Hashed thumb with shortened path',
+					name: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg',
+					width: 939
+				},
+
+				{
+					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg',
+					typeOfUrl: 'Hashed thumb with sha1-ed path',
+					name: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg',
+					width: 939
+				},
+
+				{
+					url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Normal hashed directory thumbnail',
+					name: 'Anticlockwise heliotrope\'s.jpg',
+					width: 99
+				},
+
+				{
+					url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
+					name: 'Wikipedia-logo-v2.svg',
+					width: 150
+				},
+
+				{
+					url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons thumbnail',
+					name: 'Wikipedia-logo-v2.svg',
+					width: 150
+				},
+
+				{
+					url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Full image',
+					name: 'Anticlockwise heliotrope\'s.jpg',
+					width: null
+				},
+
+				{
+					url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&width=180',
+					typeOfUrl: 'thumb.php-based thumbnail',
+					name: 'Stuffless Figaro\'s.jpg',
+					width: 180
+				},
+
+				{
+					url: 'http://localhost/thumb.php?f=Stuffless_Figaro%27s.jpg&w=180',
+					typeOfUrl: 'thumb.php-based BC thumbnail',
+					name: 'Stuffless Figaro\'s.jpg',
+					width: 180
+				},
+
+				{
+					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons unhashed thumbnail',
+					name: 'Wikipedia-logo-v2.svg',
+					width: 150
+				},
+
+				{
+					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
+					typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
+					name: 'Wikipedia-logo-v2.svg',
+					width: 150
+				},
+
+				{
+					url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
+					typeOfUrl: 'Unhashed local file',
+					name: 'Anticlockwise heliotrope\'s.jpg',
+					width: null
+				},
+
+				{
+					url: '',
+					typeOfUrl: 'Empty string'
+				},
+
+				{
+					url: 'foo',
+					typeOfUrl: 'String with only alphabet characters'
+				},
+
+				{
+					url: 'foobar.foobar',
+					typeOfUrl: 'Not a file path'
+				},
+
+				{
+					url: '/a/a0/blah blah blah',
+					typeOfUrl: 'Space characters'
+				}
+			];
+
+		for ( i = 0; i < cases.length; i++ ) {
+			thisCase = cases[ i ];
+			data = mw.util.parseImageUrl( thisCase.url );
+
+			if ( thisCase.name !== undefined ) {
+				prefix = '[' + thisCase.typeOfUrl + ' URL] ';
+
+				assert.notStrictEqual( data, null, prefix + 'Parses successfully' );
+				assert.strictEqual( data.name, thisCase.name, prefix + 'File name is correct' );
+				assert.strictEqual( data.width, thisCase.width, prefix + 'Width is correct' );
+			} else {
+				assert.strictEqual( data, null, thisCase.typeOfUrl + ', should not produce an mw.Title object' );
+			}
+		}
+	} );
+
 	QUnit.test( 'escapeRegExp', function ( assert ) {
 		var specials, normal;
 

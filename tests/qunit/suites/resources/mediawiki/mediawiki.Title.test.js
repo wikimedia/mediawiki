@@ -431,41 +431,6 @@
 		var title, i, thisCase, prefix,
 			cases = [
 				{
-					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg',
-					typeOfUrl: 'Hashed thumb with shortened path',
-					nameText: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V)',
-					prefixedText: 'File:Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg'
-				},
-
-				{
-					url: '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-ki708pr1r6g2dl5lbhvwdqxenhait13.jpg',
-					typeOfUrl: 'Hashed thumb with sha1-ed path',
-					nameText: 'Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V)',
-					prefixedText: 'File:Princess Alexandra of Denmark (later Queen Alexandra, wife of Edward VII) with her two eldest sons, Prince Albert Victor (Eddy) and George Frederick Ernest Albert (later George V).jpg'
-				},
-
-				{
-					url: '/wiki/images/thumb/9/91/Anticlockwise_heliotrope%27s.jpg/99px-Anticlockwise_heliotrope%27s.jpg',
-					typeOfUrl: 'Normal hashed directory thumbnail',
-					nameText: 'Anticlockwise heliotrope\'s',
-					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
-				},
-
-				{
-					url: '/wiki/images/thumb/8/80/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
-					typeOfUrl: 'Normal hashed directory thumbnail with complex thumbnail parameters',
-					nameText: 'Wikipedia-logo-v2',
-					prefixedText: 'File:Wikipedia-logo-v2.svg'
-				},
-
-				{
-					url: '//upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
-					typeOfUrl: 'Commons thumbnail',
-					nameText: 'Wikipedia-logo-v2',
-					prefixedText: 'File:Wikipedia-logo-v2.svg'
-				},
-
-				{
 					url: '/wiki/images/9/91/Anticlockwise_heliotrope%27s.jpg',
 					typeOfUrl: 'Full image',
 					nameText: 'Anticlockwise heliotrope\'s',
@@ -480,45 +445,10 @@
 				},
 
 				{
-					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/150px-Wikipedia-logo-v2.svg.png',
-					typeOfUrl: 'Commons unhashed thumbnail',
-					nameText: 'Wikipedia-logo-v2',
-					prefixedText: 'File:Wikipedia-logo-v2.svg'
-				},
-
-				{
-					url: '/wikipedia/commons/thumb/Wikipedia-logo-v2.svg/langde-150px-Wikipedia-logo-v2.svg.png',
-					typeOfUrl: 'Commons unhashed thumbnail with complex thumbnail parameters',
-					nameText: 'Wikipedia-logo-v2',
-					prefixedText: 'File:Wikipedia-logo-v2.svg'
-				},
-
-				{
-					url: '/wiki/images/Anticlockwise_heliotrope%27s.jpg',
-					typeOfUrl: 'Unhashed local file',
-					nameText: 'Anticlockwise heliotrope\'s',
-					prefixedText: 'File:Anticlockwise heliotrope\'s.jpg'
-				},
-
-				{
-					url: '',
-					typeOfUrl: 'Empty string'
-				},
-
-				{
 					url: 'foo',
 					typeOfUrl: 'String with only alphabet characters'
-				},
-
-				{
-					url: 'foobar.foobar',
-					typeOfUrl: 'Not a file path'
-				},
-
-				{
-					url: '/a/a0/blah blah blah',
-					typeOfUrl: 'Space characters'
 				}
+
 			];
 
 		for ( i = 0; i < cases.length; i++ ) {
