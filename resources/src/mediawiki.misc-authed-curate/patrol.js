@@ -6,53 +6,49 @@
  * @author Marius Hoch <hoo@online.de>
  */
 ( function () {
-	if ( !mw.user.tokens.exists( 'patrolToken' ) ) {
-		// Current user has no patrol right.
-		return;
-	}
-	$( function () {
-		var $patrolLinks = $( '.patrollink[data-mw="interface"] a' );
-		$patrolLinks.on( 'click', function ( e ) {
-			var $spinner, rcid, api;
-
-			// Preload the notification module for mw.notify
-			mw.loader.load( 'mediawiki.notification' );
-
-			// Hide the link and create a spinner to show it inside the brackets.
-			$spinner = $.createSpinner( {
-				size: 'small',
-				type: 'inline'
-			} );
-			$( this ).hide().after( $spinner );
-
-			rcid = mw.util.getParamValue( 'rcid', this.href );
+	function patrol( link ) {
+		var $spinner,
 			api = new mw.Api();
 
-			api.postWithToken( 'patrol', {
-				formatversion: 2,
-				action: 'patrol',
-				rcid: rcid
-			} ).done( function ( data ) {
-				var title;
-				// Remove all patrollinks from the page (including any spinners inside).
-				$patrolLinks.closest( '.patrollink' ).remove();
-				if ( data.patrol !== undefined ) {
-					// Success
-					title = new mw.Title( data.patrol.title );
-					mw.notify( mw.msg( 'markedaspatrollednotify', title.toText() ) );
-				} else {
-					// This should never happen as errors should trigger fail
-					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
-				}
-			} ).fail( function ( code, data ) {
-				var $msg = api.getErrorMessage( data );
-				$spinner.remove();
-				// Restore the patrol link. This allows the user to try again
-				// (or open it in a new window, bypassing this ajax module).
-				$patrolLinks.show();
-				mw.notify( $msg, { type: code === 'noautopatrol' ? 'warn' : 'error' } );
-			} );
+		// Preload a module concurrently with the ajax request.
+		mw.loader.load( 'mediawiki.notification' );
 
+		// Hide the link and show a spinner inside the brackets.
+		$spinner = $.createSpinner( { size: 'small', type: 'inline' } );
+		$( link ).css( 'display', 'none' ).after( $spinner );
+
+		api.postWithToken( 'patrol', {
+			formatversion: 2,
+			action: 'patrol',
+			rcid: mw.util.getParamValue( 'rcid', link.href )
+		} )
+			.then( function ( data ) {
+				var title = new mw.Title( data.patrol.title );
+				mw.notify( mw.msg( 'markedaspatrollednotify', title.toText() ) );
+				// Remove link wrapper (including the spinner).
+				$( link ).closest( '.patrollink' ).remove();
+			} )
+			.catch( function ( code, data ) {
+				// Restore the link. This allows the user to try again
+				// (or open it in a new window, bypassing this ajax handler).
+				$spinner.remove();
+				$( link ).css( 'display', '' );
+
+				mw.notify(
+					api.getErrorMessage( data ),
+					{ type: code === 'noautopatrol' ? 'warn' : 'error' }
+				);
+			} );
+	}
+
+	if ( !mw.user.tokens.exists( 'patrolToken' ) ) {
+		// No patrol right, let normal navigation happen.
+		return;
+	}
+
+	$( function () {
+		$( '.patrollink[data-mw="interface"] a' ).on( 'click', function ( e ) {
+			patrol( this );
 			e.preventDefault();
 		} );
 	} );
