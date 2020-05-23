@@ -181,7 +181,7 @@
 				.done( function ( watchResponse ) {
 					var message,
 						watchlistPopup = null,
-						isWatchlistExpiryEnabled = mw.config.get( 'wgWatchlistExpiry' ),
+						isWatchlistExpiryEnabled = require( './config.json' ).WatchlistExpiry,
 						otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
 					if ( mwTitle.isTalkPage() ) {
