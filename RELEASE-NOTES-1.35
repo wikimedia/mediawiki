@@ -794,6 +794,10 @@ because of Phabricator reports.
   ResourceLoaderFileModule::compileLessString() instead
 * The SquidPurgeClient and SquidPurgeClientPool classes have been deprecated.
   Use MultiHttpClient or HtmlCacheUpdater instead.
+* MimeAnalyzer::getExtensionsForType() and ::getTypesForExtensions() were
+  deprecated in favor of MimeAnalyzer::getExtensionsFromMimeType() and
+  ::getMimeTypesFromExtension(), respectively. The new methods return arrays
+  rather than strings.
 * Calling Action::factory and Action constructor with WikiPage has been
   hard deprecated. Caller must provide an Article instance.
 * ApiTestCase::doLogin, soft deprecated in 1.31, was hard deprecated.
