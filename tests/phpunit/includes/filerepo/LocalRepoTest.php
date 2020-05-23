@@ -177,8 +177,8 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			->setMethods( [ 'makeKey' ] )
 			->getMock();
 		$mockWan->expects( $this->exactly( 2 ) )->method( 'makeKey' )->withConsecutive(
-			[ 'image_redirect', md5( 'Redirect' ) ],
-			[ 'filerepo', 'local', 'image_redirect', md5( 'Redirect' ) ]
+			[ 'file_redirect', md5( 'Redirect' ) ],
+			[ 'filerepo', 'local', 'file_redirect', md5( 'Redirect' ) ]
 		)->will( $this->onConsecutiveCalls( false, 'somekey' ) );
 
 		$repo = $this->newRepo( [ 'wanCache' => $mockWan ] );
