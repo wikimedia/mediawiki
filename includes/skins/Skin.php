@@ -510,6 +510,7 @@ abstract class Skin extends ContextSource {
 	public function getCategoryLinks() {
 		$out = $this->getOutput();
 		$allCats = $out->getCategoryLinks();
+		$title = $this->getTitle();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		if ( $allCats === [] ) {
@@ -527,8 +528,12 @@ abstract class Skin extends ContextSource {
 
 			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) );
 			$linkPage = $this->msg( 'pagecategorieslink' )->inContentLanguage()->text();
-			$title = Title::newFromText( $linkPage );
-			$link = $title ? $linkRenderer->makeLink( $title, $msg->text() ) : $msg->escaped();
+			$pageCategoriesLinkTitle = Title::newFromText( $linkPage );
+			if ( $pageCategoriesLinkTitle ) {
+				$link = $linkRenderer->makeLink( $pageCategoriesLinkTitle, $msg->text() );
+			} else {
+				$link = $msg->escaped();
+			}
 			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
 				$link . $colon . '<ul>' . $t . '</ul></div>';
 		}
@@ -537,7 +542,7 @@ abstract class Skin extends ContextSource {
 		if ( isset( $allCats['hidden'] ) ) {
 			if ( $this->getUser()->getBoolOption( 'showhiddencats' ) ) {
 				$class = ' mw-hidden-cats-user-shown';
-			} elseif ( $this->getTitle()->getNamespace() == NS_CATEGORY ) {
+			} elseif ( $title->inNamespace( NS_CATEGORY ) ) {
 				$class = ' mw-hidden-cats-ns-shown';
 			} else {
 				$class = ' mw-hidden-cats-hidden';
@@ -555,7 +560,7 @@ abstract class Skin extends ContextSource {
 			$s .= '<br /><hr />';
 
 			# get a big array of the parents tree
-			$parenttree = $this->getTitle()->getParentCategoryTree();
+			$parenttree = $title->getParentCategoryTree();
 			# Skin object passed by reference cause it can not be
 			# accessed under the method subfunction drawCategoryBrowser
 			$tempout = explode( "\n", $this->drawCategoryBrowser( $parenttree ) );
@@ -599,13 +604,11 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getCategories() {
-		$out = $this->getOutput();
 		$catlinks = $this->getCategoryLinks();
-
 		// Check what we're showing
-		$allCats = $out->getCategoryLinks();
+		$allCats = $this->getOutput()->getCategoryLinks();
 		$showHidden = $this->getUser()->getBoolOption( 'showhiddencats' ) ||
-						$this->getTitle()->getNamespace() == NS_CATEGORY;
+						$this->getTitle()->inNamespace( NS_CATEGORY );
 
 		$classes = [ 'catlinks' ];
 		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
@@ -691,13 +694,14 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML text with an URL
 	 */
 	public function printSource() {
+		$title = $this->getTitle();
 		$oldid = $this->getOutput()->getRevisionId();
 		if ( $oldid ) {
-			$canonicalUrl = $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid );
+			$canonicalUrl = $title->getCanonicalURL( 'oldid=' . $oldid );
 			$url = htmlspecialchars( wfExpandIRI( $canonicalUrl ) );
 		} else {
 			// oldid not available for non existing pages
-			$url = htmlspecialchars( wfExpandIRI( $this->getTitle()->getCanonicalURL() ) );
+			$url = htmlspecialchars( wfExpandIRI( $title->getCanonicalURL() ) );
 		}
 
 		return $this->msg( 'retrievedfrom' )
@@ -711,18 +715,17 @@ abstract class Skin extends ContextSource {
 	public function getUndeleteLink() {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 		$title = $this->getTitle();
+		$user = $this->getUser();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( ( !$title->exists() || $action == 'history' ) &&
-			$permissionManager->quickUserCan( 'deletedhistory', $this->getUser(), $title )
+			$permissionManager->quickUserCan( 'deletedhistory', $user, $title )
 		) {
 			$n = $title->isDeleted();
 
 			if ( $n ) {
-				if ( $permissionManager->quickUserCan( 'undelete',
-						$this->getUser(), $this->getTitle() )
-				) {
+				if ( $permissionManager->quickUserCan( 'undelete', $user, $title ) ) {
 					$msg = 'thisisdeleted';
 				} else {
 					$msg = 'viewdeleted';
@@ -730,7 +733,7 @@ abstract class Skin extends ContextSource {
 
 				$subtitle = $this->msg( $msg )->rawParams(
 					$linkRenderer->makeKnownLink(
-						SpecialPage::getTitleFor( 'Undelete', $this->getTitle()->getPrefixedDBkey() ),
+						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedDBkey() ),
 						$this->msg( 'restorelink' )->numParams( $n )->text() )
 					)->escaped();
 
@@ -758,9 +761,7 @@ abstract class Skin extends ContextSource {
 	 */
 	public function subPageSubtitle( $out = null ) {
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		if ( $out === null ) {
-			$out = $this->getOutput();
-		}
+		$out = $out ?? $this->getOutput();
 		$title = $out->getTitle();
 		$subpages = '';
 
@@ -922,6 +923,8 @@ abstract class Skin extends ContextSource {
 	 */
 	protected function lastModified() {
 		$timestamp = $this->getOutput()->getRevisionTimestamp();
+		$user = $this->getUser();
+		$language = $this->getLanguage();
 
 		# No cached timestamp, load it from the database
 		if ( $timestamp === null ) {
@@ -931,8 +934,8 @@ abstract class Skin extends ContextSource {
 		}
 
 		if ( $timestamp ) {
-			$d = $this->getLanguage()->userDate( $timestamp, $this->getUser() );
-			$t = $this->getLanguage()->userTime( $timestamp, $this->getUser() );
+			$d = $language->userDate( $timestamp, $user );
+			$t = $language->userTime( $timestamp, $user );
 			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->parse();
 		} else {
 			$s = '';
@@ -1115,9 +1118,10 @@ abstract class Skin extends ContextSource {
 	 */
 	public function editUrlOptions() {
 		$options = [ 'action' => 'edit' ];
+		$out = $this->getOutput();
 
-		if ( !$this->getOutput()->isRevisionCurrent() ) {
-			$options['oldid'] = intval( $this->getOutput()->getRevisionId() );
+		if ( !$out->isRevisionCurrent() ) {
+			$options['oldid'] = intval( $out->getRevisionId() );
 		}
 
 		return $options;
@@ -1344,17 +1348,18 @@ abstract class Skin extends ContextSource {
 		$msgCache = $services->getMessageCache();
 		$wanCache = $services->getMainWANObjectCache();
 		$config = $this->getConfig();
+		$languageCode = $this->getLanguage()->getCode();
 
 		$sidebar = $config->get( 'EnableSidebarCache' )
 			? $wanCache->getWithSetCallback(
-				$wanCache->makeKey( 'sidebar', $this->getLanguage()->getCode() ),
+				$wanCache->makeKey( 'sidebar', $languageCode ),
 				$config->get( 'SidebarCacheExpiry' ),
 				$callback,
 				[
 					'checkKeys' => [
 						// Unless there is both no exact $code override nor an i18n definition
 						// in the software, the only MediaWiki page to check is for $code.
-						$msgCache->getCheckKey( $this->getLanguage()->getCode() )
+						$msgCache->getCheckKey( $languageCode )
 					],
 					'lockTSE' => 30
 				]
@@ -1641,7 +1646,7 @@ abstract class Skin extends ContextSource {
 		$siteNotice = '';
 
 		if ( Hooks::run( 'SiteNoticeBefore', [ &$siteNotice, $this ] ) ) {
-			if ( is_object( $this->getUser() ) && $this->getUser()->isLoggedIn() ) {
+			if ( $this->getUser()->isLoggedIn() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
 				$anonNotice = $this->getCachedNotice( 'anonnotice' );

@@ -74,8 +74,7 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	public function getLanguages() {
-		global $wgHideInterlanguageLinks;
-		if ( $wgHideInterlanguageLinks ) {
+		if ( $this->getConfig()->get( 'HideInterlanguageLinks' ) ) {
 			return [];
 		}
 
@@ -96,7 +95,7 @@ class SkinTemplate extends Skin {
 			$ilLangName = $langNameUtils->getLanguageName( $ilInterwikiCode );
 
 			if ( strval( $ilLangName ) === '' ) {
-				$ilDisplayTextMsg = wfMessage( "interlanguage-link-$ilInterwikiCode" );
+				$ilDisplayTextMsg = $this->msg( "interlanguage-link-$ilInterwikiCode" );
 				if ( !$ilDisplayTextMsg->isDisabled() ) {
 					// Use custom MW message for the display text
 					$ilLangName = $ilDisplayTextMsg->text();
@@ -118,15 +117,15 @@ class SkinTemplate extends Skin {
 
 			$languageLinkTitleText = $languageLinkTitle->getText();
 			if ( $ilLangLocalName === '' ) {
-				$ilFriendlySiteName = wfMessage( "interlanguage-link-sitename-$ilInterwikiCode" );
+				$ilFriendlySiteName = $this->msg( "interlanguage-link-sitename-$ilInterwikiCode" );
 				if ( !$ilFriendlySiteName->isDisabled() ) {
 					if ( $languageLinkTitleText === '' ) {
-						$ilTitle = wfMessage(
+						$ilTitle = $this->msg(
 							'interlanguage-link-title-nonlangonly',
 							$ilFriendlySiteName->text()
 						)->text();
 					} else {
-						$ilTitle = wfMessage(
+						$ilTitle = $this->msg(
 							'interlanguage-link-title-nonlang',
 							$languageLinkTitleText,
 							$ilFriendlySiteName->text()
@@ -140,12 +139,12 @@ class SkinTemplate extends Skin {
 						":$languageLinkTitleText";
 				}
 			} elseif ( $languageLinkTitleText === '' ) {
-				$ilTitle = wfMessage(
+				$ilTitle = $this->msg(
 					'interlanguage-link-title-langonly',
 					$ilLangLocalName
 				)->text();
 			} else {
-				$ilTitle = wfMessage(
+				$ilTitle = $this->msg(
 					'interlanguage-link-title',
 					$languageLinkTitleText,
 					$ilLangLocalName
@@ -315,8 +314,7 @@ class SkinTemplate extends Skin {
 			$escUserdir = htmlspecialchars( $userLangDir );
 			// Attributes must be in double quotes because htmlspecialchars() doesn't
 			// escape single quotes
-			$attrs = " lang=\"$escUserlang\" dir=\"$escUserdir\"";
-			return $attrs;
+			return " lang=\"$escUserlang\" dir=\"$escUserdir\"";
 		}
 		return '';
 	}
@@ -327,9 +325,10 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function getFooterIcons() {
-		global $wgFooterIcons;
+		$config = $this->getConfig();
+
 		$footericons = [];
-		foreach ( $wgFooterIcons as $footerIconsKey => &$footerIconsBlock ) {
+		foreach ( $config->get( 'FooterIcons' ) as $footerIconsKey => &$footerIconsBlock ) {
 			if ( count( $footerIconsBlock ) > 0 ) {
 				$footericons[$footerIconsKey] = [];
 				foreach ( $footerIconsBlock as &$footerIcon ) {
@@ -438,13 +437,10 @@ class SkinTemplate extends Skin {
 	 * @return QuickTemplate The template to be executed by outputPage
 	 */
 	protected function prepareQuickTemplate() {
-		global $wgScript, $wgStylePath, $wgMimeType,
-			$wgSitename, $wgArticlePath,
-			$wgScriptPath, $wgServer;
-
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$out = $this->getOutput();
+		$config = $this->getConfig();
 		$tpl = $this->setupTemplateForOutput();
 
 		$tpl->set( 'title', $out->getPageTitle() );
@@ -465,9 +461,9 @@ class SkinTemplate extends Skin {
 		$feeds = $this->buildFeedUrls();
 		$tpl->set( 'feeds', count( $feeds ) ? $feeds : false );
 
-		$tpl->set( 'mimetype', $wgMimeType );
+		$tpl->set( 'mimetype', $config->get( 'MimeType' ) );
 		$tpl->set( 'charset', 'UTF-8' );
-		$tpl->set( 'wgScript', $wgScript );
+		$tpl->set( 'wgScript', $config->get( 'Script' ) );
 		$tpl->set( 'skinname', $this->skinname );
 		$tpl->set( 'skinclass', static::class );
 		$tpl->set( 'skin', $this );
@@ -479,13 +475,13 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'searchaction', $this->getSearchLink() );
 		$tpl->set( 'searchtitle', SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
-		$tpl->set( 'stylepath', $wgStylePath );
-		$tpl->set( 'articlepath', $wgArticlePath );
-		$tpl->set( 'scriptpath', $wgScriptPath );
-		$tpl->set( 'serverurl', $wgServer );
-		$logos = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() );
+		$tpl->set( 'stylepath', $config->get( 'StylePath' ) );
+		$tpl->set( 'articlepath', $config->get( 'ArticlePath' ) );
+		$tpl->set( 'scriptpath', $config->get( 'ScriptPath' ) );
+		$tpl->set( 'serverurl', $config->get( 'Server' ) );
+		$logos = ResourceLoaderSkinModule::getAvailableLogos( $config );
 		$tpl->set( 'logopath', $logos['1x'] );
-		$tpl->set( 'sitename', $wgSitename );
+		$tpl->set( 'sitename', $config->get( 'Sitename' ) );
 
 		$userLang = $this->getLanguage();
 		$userLangCode = $userLang->getHtmlCode();
@@ -505,13 +501,11 @@ class SkinTemplate extends Skin {
 		// Users can have their language set differently than the
 		// content of the wiki. For these users, tell the web browser
 		// that interface elements are in a different language.
-		$tpl->set( 'userlangattributes', '' );
+		$tpl->set( 'userlangattributes', $this->prepareUserLanguageAttributes() );
 		$tpl->set( 'specialpageattributes', '' ); # obsolete
 		// Used by VectorBeta to insert HTML before content but after the
 		// heading for the page title. Defaults to empty string.
 		$tpl->set( 'prebodyhtml', '' );
-
-		$tpl->set( 'userlangattributes', $this->prepareUserLanguageAttributes() );
 
 		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->set( 'logo', $this->logoText() );
@@ -552,12 +546,7 @@ class SkinTemplate extends Skin {
 		$out->mBodytext = $this->wrapHTML( $title, $out->mBodytext );
 		$tpl->set( 'bodytext', $out->mBodytext );
 
-		$language_urls = $this->getLanguages();
-		if ( count( $language_urls ) ) {
-			$tpl->set( 'language_urls', $language_urls );
-		} else {
-			$tpl->set( 'language_urls', false );
-		}
+		$tpl->set( 'language_urls', $this->getLanguages() ?: false );
 
 		# Personal toolbar
 		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
@@ -691,7 +680,7 @@ class SkinTemplate extends Skin {
 		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
 		if ( $permissionManager->userHasRight( $this->getUser(), 'read' ) ) {
-			$page = $this->getTitle();
+			$page = $title;
 		} else {
 			$page = Title::newFromText( $request->getVal( 'title', '' ) );
 		}
@@ -880,9 +869,12 @@ class SkinTemplate extends Skin {
 		if ( $msg->exists() ) {
 			$text = $msg->text();
 		} else {
-			$text = $services->getContentLanguage()->getConverter()->
-				convertNamespace( $services->getNamespaceInfo()->
-					getSubject( $title->getNamespace() ) );
+			$text = $services->getLanguageConverterFactory()
+				->getLanguageConverter( $services->getContentLanguage() )
+				->convertNamespace(
+					$services->getNamespaceInfo()
+						->getSubject( $title->getNamespace() )
+				);
 		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference
@@ -1013,8 +1005,6 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildContentNavigationUrls() {
-		global $wgDisableLangConversion;
-
 		// Display tabs for the relevant title rather than always the title itself
 		$title = $this->getRelevantTitle();
 		$onPage = $title->equals( $this->getTitle() );
@@ -1119,7 +1109,7 @@ class SkinTemplate extends Skin {
 					$section = $request->getVal( 'section' );
 
 					if ( $title->exists()
-						|| ( $title->getNamespace() == NS_MEDIAWIKI
+						|| ( $title->inNamespace( NS_MEDIAWIKI )
 							&& $title->getDefaultMessageText() !== false
 						)
 					) {
@@ -1255,7 +1245,7 @@ class SkinTemplate extends Skin {
 				[ &$skinTemplate, &$content_navigation ]
 			);
 
-			if ( $userCanRead && !$wgDisableLangConversion ) {
+			if ( $userCanRead && !$this->getConfig()->get( 'DisableLangConversion' ) ) {
 				$pageLang = $title->getPageLanguage();
 				$converter = MediaWikiServices::getInstance()
 					->getLanguageConverterFactory()
@@ -1394,15 +1384,16 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildNavUrls() {
-		global $wgUploadNavigationUrl;
-
 		$out = $this->getOutput();
 		$request = $this->getRequest();
+		$title = $this->getTitle();
+
+		$uploadNavigationUrl = $this->getConfig()->get( 'UploadNavigationUrl' );
 
 		$nav_urls = [];
 		$nav_urls['mainpage'] = [ 'href' => self::makeMainPageUrl() ];
-		if ( $wgUploadNavigationUrl ) {
-			$nav_urls['upload'] = [ 'href' => $wgUploadNavigationUrl ];
+		if ( $uploadNavigationUrl ) {
+			$nav_urls['upload'] = [ 'href' => $uploadNavigationUrl ];
 		} elseif ( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getUser() ) === true ) {
 			$nav_urls['upload'] = [ 'href' => self::makeSpecialUrl( 'Upload' ) ];
 		} else {
@@ -1424,21 +1415,21 @@ class SkinTemplate extends Skin {
 
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
-		if ( !$out->isPrintable() && ( $out->isArticle() || $this->getTitle()->isSpecialPage() ) ) {
+		if ( !$out->isPrintable() && ( $out->isArticle() || $title->isSpecialPage() ) ) {
 			$nav_urls['print'] = [
 				'text' => $this->msg( 'printableversion' )->text(),
-				'href' => $this->getTitle()->getLocalURL(
+				'href' => $title->getLocalURL(
 					$request->appendQueryValue( 'printable', 'yes' ) )
 			];
 		}
 
 		if ( $out->isArticle() ) {
 			// Also add a "permalink" while we're at it
-			$revid = $this->getOutput()->getRevisionId();
+			$revid = $out->getRevisionId();
 			if ( $revid ) {
 				$nav_urls['permalink'] = [
 					'text' => $this->msg( 'permalink' )->text(),
-					'href' => $this->getTitle()->getLocalURL( "oldid=$revid" )
+					'href' => $title->getLocalURL( "oldid=$revid" )
 				];
 			}
 
@@ -1459,7 +1450,7 @@ class SkinTemplate extends Skin {
 				'href' => $this->getTitle()->getLocalURL( "action=info" )
 			];
 
-			if ( $this->getTitle()->exists() || $this->getTitle()->inNamespace( NS_CATEGORY ) ) {
+			if ( $title->exists() || $title->inNamespace( NS_CATEGORY ) ) {
 				$nav_urls['recentchangeslinked'] = [
 					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL()
 				];
