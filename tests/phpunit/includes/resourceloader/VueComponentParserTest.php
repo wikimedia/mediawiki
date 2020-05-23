@@ -113,6 +113,17 @@ class VueComponentParserTest extends PHPUnit\Framework\TestCase {
 				'<template> tag may not contain text',
 			],
 			[
+				'<template><p><mw-button /><mw-blah>foo</mw-blah></p></template><script>bar</script>',
+				[
+					'script' => 'bar',
+					'template' => '<p><mw-button></mw-button><mw-blah>foo</mw-blah></p>',
+					'rawTemplate' => '<p><mw-button></mw-button><mw-blah>foo</mw-blah></p>',
+					'style' => null,
+					'styleLang' => null,
+				],
+				'Template with self-closing tag'
+			],
+			[
 				"<template>\n\t<div>\t\t<div> {{foo}}\n{{bar}}  </div>\n\t</div>\n</template><script>blah</script>",
 				[
 					'script' => 'blah',
