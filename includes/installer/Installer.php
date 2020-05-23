@@ -1830,6 +1830,9 @@ abstract class Installer {
 			]
 		];
 
+		// Don't use the DB as the main stash
+		$GLOBALS['wgMainStash'] = CACHE_NONE;
+
 		// Don't try to use any object cache for SessionManager either.
 		$GLOBALS['wgSessionCacheType'] = CACHE_NONE;
 
