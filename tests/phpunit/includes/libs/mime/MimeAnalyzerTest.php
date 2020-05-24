@@ -36,7 +36,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider providerImproveTypeFromExtension
 	 * @param string $ext File extension (no leading dot)
 	 * @param string $oldMime Initially detected MIME
-	 * @param string $expectedMime MIME type after taking extension into account
+	 * @param string|null $expectedMime MIME type after taking extension into account
 	 */
 	public function testImproveTypeFromExtension( $ext, $oldMime, $expectedMime ) {
 		$actualMime = $this->mimeAnalyzer->improveTypeFromExtension( $oldMime, $ext );
@@ -59,6 +59,12 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 				'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ],
 			[ 'djvu', 'image/x-djvu', 'image/vnd.djvu' ],
 			[ 'wav', 'audio/wav', 'audio/wav' ],
+
+			// XXX: It's probably wrong (as in: confusing and error-prone) for
+			//   ::improveTypeFromExtension to return null (T253483).
+			//   This test case exists to ensure that any changes to the existing
+			//   behavior are intentional.
+			[ 'no_such_extension', 'unknown/unknown', null ],
 		];
 	}
 

@@ -405,10 +405,13 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * by looking at the file extension. Typically, this method would be called on the
 	 * result of guessMimeType().
 	 *
+	 * XXX: Null-returning behavior is probably an accident and definitely confusing (T253483).
+	 *
 	 * @param string $mime The MIME type, typically guessed from a file's content.
 	 * @param string $ext The file extension, as taken from the file name
 	 *
-	 * @return string The MIME type
+	 * @return string|null The improved MIME type, or null if the MIME type is
+	 *   unknown/unknown and the extension is not recognized.
 	 */
 	public function improveTypeFromExtension( $mime, $ext ) {
 		if ( $mime === 'unknown/unknown' ) {
