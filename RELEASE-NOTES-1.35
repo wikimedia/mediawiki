@@ -1060,6 +1060,7 @@ because of Phabricator reports.
 * Linker::normaliseSpecialPage() has been deprecated, instead make use of
   LinkRenderer::normalizeTarget().
 * SkinTemplate::getPersonalToolsList() was soft deprecated.
+* ChangeTags::truncateTagDescription() has been deprecated.
 * …
 
 === Other changes in 1.35 ===
