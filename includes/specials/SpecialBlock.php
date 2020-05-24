@@ -680,7 +680,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param string $value
 	 * @param array $alldata
 	 * @param HTMLForm $form
-	 * @return Message
+	 * @return Message|true
 	 */
 	public static function validateTargetField( $value, $alldata, $form ) {
 		$status = self::validateTarget( $value, $form->getUser() );
