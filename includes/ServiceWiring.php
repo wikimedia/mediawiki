@@ -489,7 +489,8 @@ return [
 		return new LinkRendererFactory(
 			$services->getTitleFormatter(),
 			$services->getLinkCache(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$services->getSpecialPageFactory()
 		);
 	},
 

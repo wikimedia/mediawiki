@@ -46,13 +46,13 @@ class ParserOptionsTest extends MediaWikiTestCase {
 
 	public function testNewCanonical() {
 		$user = $this->getMutableTestUser()->getUser();
-		$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'fr' );
+		$userLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'fr' );
 		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
 
 		$this->setContentLang( $contLang );
 		$this->setMwGlobals( [
 			'wgUser' => $user,
-			'wgLang' => $wgLang,
+			'wgLang' => $userLang,
 		] );
 
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' );
@@ -64,12 +64,12 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		// No parameters picks up $wgUser and $wgLang
 		$popt = ParserOptions::newCanonical();
 		$this->assertSame( $user, $popt->getUser() );
-		$this->assertSame( $wgLang, $popt->getUserLangObj() );
+		$this->assertSame( $userLang, $popt->getUserLangObj() );
 
 		// Just a user uses $wgLang
 		$popt = ParserOptions::newCanonical( $user );
 		$this->assertSame( $user, $popt->getUser() );
-		$this->assertSame( $wgLang, $popt->getUserLangObj() );
+		$this->assertSame( $userLang, $popt->getUserLangObj() );
 
 		// Just a language uses $wgUser
 		$popt = ParserOptions::newCanonical( null, $lang );
