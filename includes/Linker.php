@@ -202,19 +202,14 @@ class Linker {
 
 	/**
 	 * @since 1.16.3
+	 * @deprecated since 1.35, use LinkRenderer::normalizeTarget()
 	 * @param LinkTarget $target
 	 * @return LinkTarget
 	 */
 	public static function normaliseSpecialPage( LinkTarget $target ) {
-		if ( $target->getNamespace() == NS_SPECIAL && !$target->isExternal() ) {
-			list( $name, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-				resolveAlias( $target->getDBkey() );
-			if ( $name ) {
-				return SpecialPage::getTitleValueFor( $name, $subpage, $target->getFragment() );
-			}
-		}
-
-		return $target;
+		wfDeprecated( __METHOD__, '1.35' );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->normalizeTarget( $target );
 	}
 
 	/**
@@ -467,8 +462,9 @@ class Linker {
 				}
 			}
 		} elseif ( isset( $frameParams['link-title'] ) && $frameParams['link-title'] !== '' ) {
+			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			$mtoParams['custom-title-link'] = Title::newFromLinkTarget(
-				self::normaliseSpecialPage( $frameParams['link-title'] )
+				$linkRenderer->normalizeTarget( $frameParams['link-title'] )
 			);
 		} elseif ( !empty( $frameParams['no-link'] ) ) {
 			// No link

@@ -142,6 +142,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		$wanCache = $services->getMainWANObjectCache();
 		$titleFormatter = $services->getTitleFormatter();
 		$nsInfo = $services->getNamespaceInfo();
+		$specialPageFactory = $services->getSpecialPageFactory();
 		$linkCache = new LinkCache( $titleFormatter, $wanCache, $nsInfo );
 		$foobarTitle = new TitleValue( NS_MAIN, 'FooBar' );
 		$redirectTitle = new TitleValue( NS_MAIN, 'Redirect' );
@@ -166,7 +167,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			0 // redir
 		);
 
-		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache, $nsInfo );
+		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache, $nsInfo, $specialPageFactory );
 		$linkRenderer->setStubThreshold( 0 );
 		$this->assertSame(
 			'',

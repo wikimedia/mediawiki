@@ -1051,6 +1051,8 @@ because of Phabricator reports.
   GuzzleHttpRequest now require the timeout and connectTimeout options to
   always be specified, otherwise a deprecation warning will be raised. Most
   callers should use HttpRequestFactory which always sets these options.
+* Linker::normaliseSpecialPage() has been deprecated, instead make use of
+  LinkRenderer::normalizeTarget().
 * …
 
 === Other changes in 1.35 ===

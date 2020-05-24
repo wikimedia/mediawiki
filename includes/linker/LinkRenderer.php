@@ -25,10 +25,11 @@ use Hooks;
 use Html;
 use HtmlArmor;
 use LinkCache;
-use Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use NamespaceInfo;
 use Sanitizer;
+use SpecialPage;
 use Title;
 use TitleFormatter;
 
@@ -82,16 +83,27 @@ class LinkRenderer {
 	private $runLegacyBeginHook = true;
 
 	/**
+	 * @var SpecialPageFactory
+	 */
+	private $specialPageFactory;
+
+	/**
+	 * @internal For use by LinkRendererFactory
 	 * @param TitleFormatter $titleFormatter
 	 * @param LinkCache $linkCache
 	 * @param NamespaceInfo $nsInfo
+	 * @param SpecialPageFactory $specialPageFactory
 	 */
 	public function __construct(
-		TitleFormatter $titleFormatter, LinkCache $linkCache, NamespaceInfo $nsInfo
+		TitleFormatter $titleFormatter,
+		LinkCache $linkCache,
+		NamespaceInfo $nsInfo,
+		SpecialPageFactory $specialPageFactory
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
 		$this->nsInfo = $nsInfo;
+		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	/**
@@ -427,12 +439,22 @@ class LinkRenderer {
 	/**
 	 * Normalizes the provided target
 	 *
-	 * @todo move the code from Linker actually here
+	 * @internal For use by deprecated Linker & DummyLinker
+	 *     ::normaliseSpecialPage() methods
 	 * @param LinkTarget $target
 	 * @return LinkTarget
 	 */
-	private function normalizeTarget( LinkTarget $target ) {
-		return Linker::normaliseSpecialPage( $target );
+	public function normalizeTarget( LinkTarget $target ) {
+		if ( $target->getNamespace() == NS_SPECIAL && !$target->isExternal() ) {
+			list( $name, $subpage ) = $this->specialPageFactory->resolveAlias(
+				$target->getDBkey()
+			);
+			if ( $name ) {
+				return SpecialPage::getTitleValueFor( $name, $subpage, $target->getFragment() );
+			}
+		}
+
+		return $target;
 	}
 
 	/**
