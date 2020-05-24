@@ -9029,7 +9029,7 @@ $wgTextModelsToParse = [
 /**
  * Register handlers for specific types of sites.
  *
- * @since 1.20
+ * @since 1.21
  */
 $wgSiteTypes = [
 	'mediawiki' => MediaWikiSite::class,
