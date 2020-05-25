@@ -52,15 +52,13 @@ trait HandlerTestTrait {
 	abstract protected function createMock( $originalClassName ): MockObject;
 
 	/**
-	 * Executes the given Handler on the given request.
+	 * Calls init() on the Handler, supplying a mock Router and ResponseFactory.
 	 *
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
-	 *
-	 * @return ResponseInterface
 	 */
-	private function executeHandler( Handler $handler, RequestInterface $request, $config = [] ) {
+	private function initHandler( Handler $handler, RequestInterface $request, $config = [] ) {
 		$formatter = $this->createMock( ITextFormatter::class );
 		$formatter->method( 'format' )->willReturnCallback( function ( MessageValue $msg ) {
 			return $msg->dump();
@@ -69,6 +67,21 @@ trait HandlerTestTrait {
 		/** @var ResponseFactory|MockObject $responseFactory */
 		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );
 
+		/** @var Router|MockObject $router */
+		$router = $this->createNoOpMock( Router::class, [ 'getRouteUrl' ] );
+		$router->method( 'getRouteUrl' )->willReturnCallback( function ( $route, $query = [] ) {
+			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
+		} );
+
+		$handler->init( $router, $request, $config, $responseFactory );
+	}
+
+	/**
+	 * Calls validate() on the Handler, with an appropriate Validator supplied.
+	 *
+	 * @param Handler $handler
+	 */
+	private function validateHandler( Handler $handler ) {
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(
 			PermissionManager::class, [ 'userCan', 'userHasRight' ]
@@ -81,16 +94,24 @@ trait HandlerTestTrait {
 		$objectFactory = new ObjectFactory( $serviceContainer );
 
 		$user = new UserIdentityValue( 0, 'Fake User', 0 );
-		$validator = new Validator( $objectFactory, $permissionManager, $request, $user );
+		$validator =
+			new Validator( $objectFactory, $permissionManager, $handler->getRequest(), $user );
 
-		/** @var Router|MockObject $router */
-		$router = $this->createNoOpMock( Router::class, [ 'getRouteUrl' ] );
-		$router->method( 'getRouteUrl' )->willReturnCallback( function ( $route, $query = [] ) {
-			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
-		} );
-
-		$handler->init( $router, $request, $config, $responseFactory );
 		$handler->validate( $validator );
+	}
+
+	/**
+	 * Executes the given Handler on the given request.
+	 *
+	 * @param Handler $handler
+	 * @param RequestInterface $request
+	 * @param array $config
+	 *
+	 * @return ResponseInterface
+	 */
+	private function executeHandler( Handler $handler, RequestInterface $request, $config = [] ) {
+		$this->initHandler( $handler, $request, $config );
+		$this->validateHandler( $handler );
 
 		// Check conditional request headers
 		$earlyResponse = $handler->checkPreconditions();
@@ -101,7 +122,7 @@ trait HandlerTestTrait {
 		$ret = $handler->execute();
 
 		$response = $ret instanceof Response ? $ret
-			: $responseFactory->createFromReturnValue( $ret );
+			: $handler->getResponseFactory()->createFromReturnValue( $ret );
 
 		// Set Last-Modified and ETag headers in the response if available
 		$handler->applyConditionalResponseHeaders( $response );
