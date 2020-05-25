@@ -30,6 +30,7 @@ use Psr\Log\NullLogger;
 use Revision;
 use TestUserRegistry;
 use Title;
+use TitleValue;
 use User;
 use WANObjectCache;
 use Wikimedia\Assert\PreconditionException;
@@ -37,6 +38,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\TransactionProfiler;
 use WikiPage;
@@ -761,6 +763,58 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( $rev->getId(), $revRecord->getId() );
 		$this->assertTrue( $revRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $revRecord->getComment()->text );
+	}
+
+	/**
+	 * Test that getRevisionByTitle doesn't try to use the local wiki DB (T248756)
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionByTitle
+	 */
+	public function testGetRevisionByTitle_doesNotUseLocalLoadBalancerForForeignWiki() {
+		$page = $this->getTestPage();
+		$content = new WikitextContent( __METHOD__ );
+		$status = $page->doEditContent( $content, __METHOD__ );
+		/** @var Revision $rev */
+		$rev = $status->value['revision'];
+
+		$dbDomain = 'some_foreign_wiki';
+
+		$services = MediaWikiServices::getInstance();
+
+		// Configure the load balancer to route queries for the "foreign" domain to the test DB
+		$dbLoadBalancer = $services->getDBLoadBalancer();
+		$dbLoadBalancer->setDomainAliases( [ $dbDomain => $dbLoadBalancer->getLocalDomainID() ] );
+
+		$store = new RevisionStore(
+			$dbLoadBalancer,
+			$services->getBlobStore(),
+			$services->getMainWANObjectCache(),
+			$services->getCommentStore(),
+			$services->getContentModelStore(),
+			$services->getSlotRoleStore(),
+			$services->getSlotRoleRegistry(),
+			$services->getActorMigration(),
+			$services->getContentHandlerFactory(),
+			$dbDomain
+		);
+
+		// Redefine the DBLoadBalancer service to verify Title doesn't attempt to resolve its ID
+		// via wfGetDB()
+		$localLoadBalancerMock = $this->createMock( ILoadBalancer::class );
+		$localLoadBalancerMock->expects( $this->never() )
+			->method( $this->anything() );
+
+		$this->setService( 'DBLoadBalancer', $localLoadBalancerMock );
+
+		$revRecord = $store->getRevisionByTitle(
+			new TitleValue( $page->getTitle()->getNamespace(), $page->getTitle()->getDBkey() )
+		);
+
+		$this->assertSame( $rev->getId(), $revRecord->getId() );
+		$this->assertTrue( $revRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
+		$this->assertSame( __METHOD__, $revRecord->getComment()->text );
+
+		// Restore the original load balancer to make test teardown work
+		$this->setService( 'DBLoadBalancer', $dbLoadBalancer );
 	}
 
 	/**
