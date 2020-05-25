@@ -74,6 +74,27 @@ abstract class Handler {
 	}
 
 	/**
+	 * Get the URL of this handler's endpoint.
+	 * Supports the substitution of path parameters, and additions of query parameters.
+	 *
+	 * @see Router::getRouteUrl()
+	 *
+	 * @param string[] $pathParams Path parameters to be injected into the path
+	 * @param string[] $queryParams Query parameters to be attached to the URL
+	 *
+	 * @return string
+	 */
+	protected function getRouteUrl( $pathParams = [], $queryParams = [] ): string {
+		$path = $this->getConfig()['path'];
+
+		foreach ( $pathParams as $param => $value ) {
+			$path = str_replace( '{' . $param . '}', urlencode( $value ), $path );
+		}
+
+		return $this->router->getRouteUrl( $path, $queryParams );
+	}
+
+	/**
 	 * Get the current request. The return type declaration causes it to raise
 	 * a fatal error if init() has not yet been called.
 	 *

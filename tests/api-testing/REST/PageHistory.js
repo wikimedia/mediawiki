@@ -1,6 +1,7 @@
 'use strict';
 
 const { action, assert, REST, utils } = require( 'api-testing' );
+const supertest = require( 'supertest' );
 
 describe( 'Page History', () => {
 	const title = utils.title( 'PageHistory_' );
@@ -20,6 +21,11 @@ describe( 'Page History', () => {
 		const editOne = await bot.edit( titleToDelete, { text: 'Delete Me 1', summary: 'edit 1' } );
 		const editTwo = await mindy.edit( titleToDelete, { text: 'Counting 1', summary: 'edit 2' } );
 		return { editOne, editTwo };
+	}
+
+	async function assertGetStatus( url, status = 200 ) {
+		const response = await supertest.agent( url ).get( '' );
+		assert.equal( response.status, status, `Status of GET ${url}` );
 	}
 
 	const addEditInfo = ( editInfo, editBucket ) => {
@@ -269,6 +275,8 @@ describe( 'Page History', () => {
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.all[ i ] ) );
 			assert.include( res.body.latest, `page/${title}/history` );
 			assert.equal( res.status, 200 );
+
+			await assertGetStatus( res.body.latest );
 		} );
 
 		it( 'Should get revisions by anonymous users', async () => {
@@ -279,6 +287,8 @@ describe( 'Page History', () => {
 				.forEach( ( rev, i ) => assert.deepNestedInclude( rev, edits.anon[ i ] ) );
 			assert.include( res.body.latest, `page/${title}/history?filter=anonymous` );
 			assert.equal( res.status, 200 );
+
+			await assertGetStatus( res.body.latest );
 		} );
 
 		it( 'Should get revisions by bots', async () => {
@@ -361,6 +371,8 @@ describe( 'Page History', () => {
 			assert.include( res.body.latest, `page/${title}/history` );
 			assert.include( res.body.newer, `page/${title}/history?newer_than=${expected[ 0 ].id}` );
 			assert.equal( res.status, 200 );
+
+			await assertGetStatus( res.body.newer );
 		} );
 
 		it( 'Should get revisions using both filter and newer_than|older_than parameters', async () => {
@@ -373,6 +385,8 @@ describe( 'Page History', () => {
 			assert.include( res.body.latest, `page/${title}/history?filter=bot` );
 			assert.include( res.body.older, `page/${title}/history?filter=bot&older_than=${edits.bot[ 1 ].id}` );
 			assert.equal( res.status, 200 );
+
+			await assertGetStatus( res.body.older );
 		} );
 
 		it( 'Should return 400 for revision id less than 0 ', async () => {
