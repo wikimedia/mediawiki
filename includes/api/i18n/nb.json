@@ -851,7 +851,7 @@
 	"apihelp-query+info-paramvalue-prop-preload": "Gir teksten returnert av EditFormPreloadText.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Gir måten sidetittelen faktisk vises.",
 	"apihelp-query+info-paramvalue-prop-varianttitles": "Gir visningstittelen i alle varianter av nettstedets innholdsspråk.",
-	"apihelp-query+info-param-testactions": "Hest hvorvidt den gjeldende brukeren kan utføre visse handlinger på siden.",
+	"apihelp-query+info-param-testactions": "Test hvorvidt den gjeldende brukeren kan utføre visse handlinger på siden.",
 	"apihelp-query+info-param-testactionsdetail": "Detaljnivå for <var>$1testactions</var>. Bruk [[Special:ApiHelp/main|hovedmodulens]] <var>errorformat</var> og <var>errorlang</var>-parametre for å kontrollere formatet til beskjedene som returneres.",
 	"apihelp-query+info-paramvalue-testactionsdetail-boolean": "Returnerer en boolsk verdi for hver handling.",
 	"apihelp-query+info-paramvalue-testactionsdetail-full": "Returnerer beskjeder som beskriver hvorfor handlingen ikke tillates, eller en tom liste hvis den er tillatt.",
