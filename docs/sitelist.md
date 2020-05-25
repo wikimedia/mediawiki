@@ -7,23 +7,24 @@ Lists of external sites can be imported and exported using the *importSites.php*
 
 The formal specification of the format used by *importSites.php* and *exportSites.php* can be found in the *sitelist-1.0.xsd* file. Below is an example and a brief description of what the individual XML elements and attributes mean:
 
-
-    <sites version="1.0">
-        <site>
-            <globalid>acme.com</globalid>
-            <localid type="interwiki">acme</localid>
-            <group>Vendor</group>
-            <path type="link">http://acme.com/</path>
-            <source>meta.wikimedia.org</source>
-        </site>
-        <site type="mediawiki">
-            <globalid>de.wikidik.example</globalid>
-            <localid type="equivalent">de</localid>
-            <group>Dictionary</group>
-            <forward/>
-            <path type="page_path">http://acme.com/</path>
-        </site>
-    </sites>
+```xml
+<sites version="1.0">
+	<site>
+		<globalid>acme.com</globalid>
+		<localid type="interwiki">acme</localid>
+		<group>Vendor</group>
+		<path type="link">http://acme.com/</path>
+		<source>meta.wikimedia.org</source>
+	</site>
+	<site type="mediawiki">
+		<globalid>de.wikidik.example</globalid>
+		<localid type="equivalent">de</localid>
+		<group>Dictionary</group>
+		<forward/>
+		<path type="page_path">http://acme.com/</path>
+	</site>
+</sites>
+```
 
 
 The XML elements are used as follows:
