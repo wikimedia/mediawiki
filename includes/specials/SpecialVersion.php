@@ -53,13 +53,28 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * @since 1.35
+	 * @param ExtensionRegistry $reg
+	 * @param Config $conf For additional entries from $wgExtensionCredits.
+	 * @return array[]
+	 * @see $wgExtensionCredits
+	 */
+	public static function getCredits( ExtensionRegistry $reg, Config $conf ) : array {
+		$credits = $conf->get( 'ExtensionCredits' );
+		foreach ( $reg->getAllThings() as $name => $credit ) {
+			$credits[$credit['type']][] = $credit;
+		}
+		return $credits;
+	}
+
+	/**
 	 * main()
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		global $IP;
 		$config = $this->getConfig();
-		$credits = $config->get( 'ExtensionCredits' );
+		$credits = self::getCredits( ExtensionRegistry::getInstance(), $config );
 
 		$this->setHeaders();
 		$this->outputHeader();

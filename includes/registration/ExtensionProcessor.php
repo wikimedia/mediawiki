@@ -79,7 +79,6 @@ class ExtensionProcessor implements Processor {
 	protected const MERGE_STRATEGIES = [
 		'wgAuthManagerAutoConfig' => 'array_plus_2d',
 		'wgCapitalLinkOverrides' => 'array_plus',
-		'wgExtensionCredits' => 'array_merge_recursive',
 		'wgExtraGenderNamespaces' => 'array_plus',
 		'wgGrantPermissions' => 'array_plus_2d',
 		'wgGroupPermissions' => 'array_plus_2d',
@@ -98,6 +97,7 @@ class ExtensionProcessor implements Processor {
 	 * @var array
 	 */
 	protected const CREDIT_ATTRIBS = [
+		'type',
 		'author',
 		'description',
 		'descriptionmsg',
@@ -122,7 +122,6 @@ class ExtensionProcessor implements Processor {
 		'manifest_version',
 		'namespaces',
 		'requires',
-		'type',
 		'AutoloadClasses',
 		'ExtensionMessagesFiles',
 		'Hooks',
@@ -620,7 +619,7 @@ class ExtensionProcessor implements Processor {
 	protected function extractCredits( $path, array $info ) {
 		$credits = [
 			'path' => $path,
-			'type' => $info['type'] ?? 'other',
+			'type' => 'other',
 		];
 		foreach ( self::CREDIT_ATTRIBS as $attr ) {
 			if ( isset( $info[$attr] ) ) {
@@ -639,7 +638,6 @@ class ExtensionProcessor implements Processor {
 		}
 
 		$this->credits[$name] = $credits;
-		$this->globals['wgExtensionCredits'][$credits['type']][] = $credits;
 
 		return $name;
 	}
