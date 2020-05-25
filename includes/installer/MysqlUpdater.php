@@ -189,7 +189,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropIndex', 'archive', 'ar_page_revid', 'patch-archive_kill_ar_page_revid.sql' ],
 			[ 'addIndexIfNoneExist',
 				'archive', [ 'ar_revid', 'ar_revid_uniq' ], 'patch-archive_ar_revid.sql' ],
-			[ 'doLangLinksLengthUpdate' ],
 
 			// 1.18
 			[ 'doUserNewTalkTimestampNotNull' ],
@@ -425,6 +424,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-ipblocks-rename-ipb_address.sql' ],
 			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
+			[ 'doLanguageLinksLengthSync' ],
 		];
 	}
 
@@ -1170,19 +1170,28 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doLangLinksLengthUpdate() {
-		$langlinks = $this->db->tableName( 'langlinks' );
-		$res = $this->db->query( "SHOW COLUMNS FROM $langlinks LIKE 'll_lang'" );
-		$row = $this->db->fetchObject( $res );
+	protected function doLanguageLinksLengthSync() {
+		$sync = [
+			[ 'table' => 'l10n_cache', 'field' => 'lc_lang' ],
+			[ 'table' => 'langlinks', 'field' => 'll_lang' ],
+			[ 'table' => 'sites', 'field' => 'site_language' ],
+		];
 
-		if ( $row && $row->Type == "varbinary(10)" ) {
-			$this->applyPatch(
-				'patch-langlinks-ll_lang-20.sql',
-				false,
-				'Updating length of ll_lang in langlinks'
-			);
-		} else {
-			$this->output( "...ll_lang is up-to-date.\n" );
+		foreach ( $sync as $s ) {
+			$table = $this->db->tableName( $s['table'] );
+			$field = $s['field'];
+			$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE '$field'" );
+			$row = $this->db->fetchObject( $res );
+
+			if ( $row && $row->Type !== "varbinary(35)" ) {
+				$this->applyPatch(
+					"patch-{$s['table']}-$field-35.sql",
+					false,
+					"Updating length of $field in $table"
+				);
+			} else {
+				$this->output( "...$field is up-to-date.\n" );
+			}
 		}
 	}
 
