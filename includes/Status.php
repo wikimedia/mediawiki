@@ -430,7 +430,7 @@ class Status extends StatusValue {
 	/**
 	 * @param string|MessageSpecifier $key
 	 * @param string|Language|StubUserLang|null $lang
-	 * @param string|string[] ...$params
+	 * @param mixed ...$params
 	 * @return Message
 	 */
 	private function msgInLang( $key, $lang, ...$params ) : Message {
