@@ -27,65 +27,69 @@ For example to add a new variable:
 
 Create a file called **ExtensionName.i18n.magic.php** with the following contents:
 
-	<?php
+```php
+<?php
 
-	$magicWords = [];
+$magicWords = [];
 
-	$magicWords['en'] = [
-		// Case sensitive.
-		'mag_custom' => [ 1, 'CUSTOM' ],
-	];
+$magicWords['en'] = [
+	// Case sensitive.
+	'mag_custom' => [ 1, 'CUSTOM' ],
+];
 
-	$magicWords['es'] = [
-		'mag_custom' => [ 1, 'ADUANERO' ],
-	];
+$magicWords['es'] = [
+	'mag_custom' => [ 1, 'ADUANERO' ],
+];
 
 
-	$wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
-	$wgHooks['MagicWordwgVariableIDs'][] = 'wfAddCustomMagicWordID';
-	$wgHooks['ParserGetVariableValueSwitch'][] = 'wfGetCustomMagicWordValue';
+$wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
+$wgHooks['MagicWordwgVariableIDs'][] = 'wfAddCustomMagicWordID';
+$wgHooks['ParserGetVariableValueSwitch'][] = 'wfGetCustomMagicWordValue';
 
-	function wfAddCustomMagicWordID( &$magicWords ) {
-		$magicWords[] = 'mag_custom';
-		return true;
+function wfAddCustomMagicWordID( &$magicWords ) {
+	$magicWords[] = 'mag_custom';
+	return true;
+}
+
+function wfGetCustomMagicWordValue( $parser, &$variableCache, $magicWordId, &$ret ){
+	if( $magicWordId == 'mag_custom' ){
+		$ret = $variableCache['mag_custom'] = "Custom value";
 	}
-
-	function wfGetCustomMagicWordValue( $parser, &$variableCache, $magicWordId, &$ret ){
-		if( $magicWordId == 'mag_custom' ){
-			$ret = $variableCache['mag_custom'] = "Custom value";
-		}
-		return true;
-	}
+	return true;
+}
+```
 
 And to add a new parser function:
 
 Create a file called **ExtensionName.i18n.magic.php** with the following contents:
 
-	<?php
+```php
+<?php
 
-	$magicWords = [];
+$magicWords = [];
 
-	$magicWords['en'] = [
-		// Case insensitive.
-		'mag_custom' => [ 0, 'custom' ],
-	];
+$magicWords['en'] = [
+	// Case insensitive.
+	'mag_custom' => [ 0, 'custom' ],
+];
 
-	$magicWords['es'] = [
-		'mag_custom' => [ 0, 'aduanero' ],
-	];
+$magicWords['es'] = [
+	'mag_custom' => [ 0, 'aduanero' ],
+];
 
 
-	$wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
-	$wgHooks['ParserFirstCallInit'][] = 'wfRegisterCustomMagicWord';
+$wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
+$wgHooks['ParserFirstCallInit'][] = 'wfRegisterCustomMagicWord';
 
-	function wfRegisterCustomMagicWord( $parser ){
-		$parser->setFunctionHook( 'mag_custom', 'wfGetCustomMagicWordValue' );
-		return true;
-	}
+function wfRegisterCustomMagicWord( $parser ){
+	$parser->setFunctionHook( 'mag_custom', 'wfGetCustomMagicWordValue' );
+	return true;
+}
 
-	function wfGetCustomMagicWordValue( $parser, $var1, $var2 ){
-		return "custom: var1 is $var1, var2 is $var2";
-	}
+function wfGetCustomMagicWordValue( $parser, $var1, $var2 ){
+	return "custom: var1 is $var1, var2 is $var2";
+}
+```
 
 Note: the **ParserFirstCallInit** hook is only available since 1.12. To work with
 an older version, you'll need to use an extension function.
