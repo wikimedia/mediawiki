@@ -147,6 +147,11 @@ class SpecialChangeContentModel extends FormSpecialPage {
 					'type' => 'text',
 					'name' => 'reason',
 					'validation-callback' => function ( $reason ) {
+						if ( $reason === null || $reason === '' ) {
+							// null on form display, or no reason given
+							return true;
+						}
+
 						$match = EditPage::matchSummarySpamRegex( $reason );
 						if ( $match ) {
 							return $this->msg( 'spamprotectionmatch', $match )->parse();
