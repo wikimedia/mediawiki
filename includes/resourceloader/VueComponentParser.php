@@ -130,6 +130,12 @@ class VueComponentParser {
 		return $nodes;
 	}
 
+	/**
+	 * Verify that a given node only has a given set of attributes, and no others.
+	 * @param DOMNode $node Node to check
+	 * @param array $allowedAttributes Attributes the node is allowed to have
+	 * @throws Exception If the node has an attribute it's not allowed to have
+	 */
 	private function validateAttributes( DOMNode $node, array $allowedAttributes ) {
 		if ( $allowedAttributes ) {
 			foreach ( $node->attributes as $attr ) {
