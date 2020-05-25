@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -62,6 +63,9 @@ class ForeignDBRepo extends LocalRepo {
 	/** @var callable */
 	protected $fileFromRowFactory = [ ForeignDBFile::class, 'newFromRow' ];
 
+	/** @var string */
+	private $dbDomain;
+
 	/**
 	 * @param array|null $info
 	 */
@@ -76,6 +80,9 @@ class ForeignDBRepo extends LocalRepo {
 		$this->dbFlags = $info['dbFlags'];
 		$this->tablePrefix = $info['tablePrefix'];
 		$this->hasSharedCache = $info['hasSharedCache'];
+
+		$dbDomain = new DatabaseDomain( $this->dbName, null, $this->tablePrefix );
+		$this->dbDomain = $dbDomain->getId();
 	}
 
 	public function getMasterDB() {
@@ -119,11 +126,7 @@ class ForeignDBRepo extends LocalRepo {
 
 	public function getSharedCacheKey( ...$args ) {
 		if ( $this->hasSharedCache() ) {
-			return $this->wanCache->makeGlobalKey(
-				$this->dbName,
-				$this->tablePrefix,
-				...$args
-			);
+			return $this->wanCache->makeGlobalKey( $this->dbDomain, ...$args );
 		} else {
 			return false;
 		}
