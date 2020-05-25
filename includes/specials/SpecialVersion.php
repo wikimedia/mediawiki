@@ -59,7 +59,7 @@ class SpecialVersion extends SpecialPage {
 	public function execute( $par ) {
 		global $IP;
 		$config = $this->getConfig();
-		$extensionCredits = $config->get( 'ExtensionCredits' );
+		$credits = $config->get( 'ExtensionCredits' );
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -72,7 +72,7 @@ class SpecialVersion extends SpecialPage {
 		if ( isset( $parts[1] ) ) {
 			$extName = str_replace( '_', ' ', $parts[1] );
 			// Find it!
-			foreach ( $extensionCredits as $group => $extensions ) {
+			foreach ( $credits as $group => $extensions ) {
 				foreach ( $extensions as $ext ) {
 					if ( isset( $ext['name'] ) && ( $ext['name'] === $extName ) ) {
 						$extNode = &$ext;
@@ -157,9 +157,9 @@ class SpecialVersion extends SpecialPage {
 					$this->getEntryPointInfo()
 				);
 				$out->addHTML(
-					$this->getSkinCredits() .
-					$this->getExtensionCredits() .
-					$this->getExternalLibraries() .
+					$this->getSkinCredits( $credits ) .
+					$this->getExtensionCredits( $credits ) .
+					$this->getExternalLibraries( $credits ) .
 					$this->getParserTags() .
 					$this->getParserFunctionHooks()
 				);
@@ -423,16 +423,14 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Generate wikitext showing the name, URL, author and description of each extension.
 	 *
+	 * @param array $credits
 	 * @return string Wikitext
 	 */
-	public function getExtensionCredits() {
-		$config = $this->getConfig();
-		$extensionCredits = $config->get( 'ExtensionCredits' );
-
+	private function getExtensionCredits( array $credits ) {
 		if (
-			count( $extensionCredits ) === 0 ||
+			!$credits ||
 			// Skins are displayed separately, see getSkinCredits()
-			( count( $extensionCredits ) === 1 && isset( $extensionCredits['skin'] ) )
+			( count( $credits ) === 1 && isset( $credits['skin'] ) )
 		) {
 			return '';
 		}
@@ -447,14 +445,14 @@ class SpecialVersion extends SpecialPage {
 			Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ] );
 
 		// Make sure the 'other' type is set to an array.
-		if ( !array_key_exists( 'other', $extensionCredits ) ) {
-			$extensionCredits['other'] = [];
+		if ( !array_key_exists( 'other', $credits ) ) {
+			$credits['other'] = [];
 		}
 
 		// Find all extensions that do not have a valid type and give them the type 'other'.
-		foreach ( $extensionCredits as $type => $extensions ) {
+		foreach ( $credits as $type => $extensions ) {
 			if ( !array_key_exists( $type, $extensionTypes ) ) {
-				$extensionCredits['other'] = array_merge( $extensionCredits['other'], $extensions );
+				$credits['other'] = array_merge( $credits['other'], $extensions );
 			}
 		}
 
@@ -463,12 +461,12 @@ class SpecialVersion extends SpecialPage {
 		foreach ( $extensionTypes as $type => $message ) {
 			// Skins have a separate section
 			if ( $type !== 'other' && $type !== 'skin' ) {
-				$out .= $this->getExtensionCategory( $type, $message );
+				$out .= $this->getExtensionCategory( $type, $message, $credits[$type] ?? [] );
 			}
 		}
 
 		// We want the 'other' type to be last in the list.
-		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'] );
+		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'], $credits['other'] );
 
 		$out .= Xml::closeElement( 'table' );
 
@@ -478,11 +476,11 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Generate wikitext showing the name, URL, author and description of each skin.
 	 *
+	 * @param array $credits
 	 * @return string Wikitext
 	 */
-	public function getSkinCredits() {
-		global $wgExtensionCredits;
-		if ( !isset( $wgExtensionCredits['skin'] ) || count( $wgExtensionCredits['skin'] ) === 0 ) {
+	private function getSkinCredits( array $credits ) {
+		if ( !isset( $credits['skin'] ) || count( $credits['skin'] ) === 0 ) {
 			return '';
 		}
 
@@ -494,7 +492,7 @@ class SpecialVersion extends SpecialPage {
 			Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ] );
 
 		$this->firstExtOpened = false;
-		$out .= $this->getExtensionCategory( 'skin', null );
+		$out .= $this->getExtensionCategory( 'skin', null, $credits['skin'] );
 
 		$out .= Xml::closeElement( 'table' );
 
@@ -504,22 +502,21 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Generate an HTML table for external libraries that are installed
 	 *
+	 * @param array $credits
 	 * @return string
 	 */
-	protected function getExternalLibraries() {
+	protected function getExternalLibraries( array $credits ) {
 		global $IP;
 		$paths = [
 			"$IP/vendor/composer/installed.json"
 		];
 
-		$extensionCredits = $this->getConfig()->get( 'ExtensionCredits' );
 		$extensionTypes = self::getExtensionTypes();
-
 		foreach ( $extensionTypes as $type => $message ) {
-			if ( !isset( $extensionCredits[$type] ) || $extensionCredits[$type] === [] ) {
+			if ( !isset( $credits[$type] ) || $credits[$type] === [] ) {
 				continue;
 			}
-			foreach ( $extensionCredits[$type] as $extension ) {
+			foreach ( $credits[$type] as $extension ) {
 				if ( !isset( $extension['path'] ) ) {
 					continue;
 				}
@@ -681,24 +678,23 @@ class SpecialVersion extends SpecialPage {
 	 * Creates and returns the HTML for a single extension category.
 	 *
 	 * @since 1.17
-	 *
 	 * @param string $type
-	 * @param string $message
-	 *
+	 * @param string|null $message
+	 * @param array $creditsGroup
 	 * @return string
 	 */
-	protected function getExtensionCategory( $type, $message ) {
+	protected function getExtensionCategory( $type, $message, array $creditsGroup ) {
 		$config = $this->getConfig();
-		$extensionCredits = $config->get( 'ExtensionCredits' );
+		$credits = $config->get( 'ExtensionCredits' );
 
 		$out = '';
 
-		if ( array_key_exists( $type, $extensionCredits ) && count( $extensionCredits[$type] ) > 0 ) {
+		if ( $creditsGroup ) {
 			$out .= $this->openExtType( $message, 'credits-' . $type );
 
-			usort( $extensionCredits[$type], [ $this, 'compare' ] );
+			usort( $creditsGroup, [ $this, 'compare' ] );
 
-			foreach ( $extensionCredits[$type] as $extension ) {
+			foreach ( $creditsGroup as $extension ) {
 				$out .= $this->getCreditsForExtension( $type, $extension );
 			}
 		}
