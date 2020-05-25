@@ -267,9 +267,9 @@ interface ILoadBalancer {
 	 * query grouped (the default), DB_REPLICA handles. All such callers will operate within a
 	 * single database transaction as a consequence.
 	 *
-	 * Calling functions that use $domain must call reuseConnection() once the last query of the
-	 * function is executed. This lets the load balancer share this handle with other callers
-	 * requesting connections on different database domains.
+	 * Callers of this function that use a non-local $domain must call reuseConnection() after
+	 * their last query on this handle executed. This lets the load balancer share the handle with
+	 * other callers requesting connections on different database domains.
 	 *
 	 * Use CONN_TRX_AUTOCOMMIT to use a separate pool of only auto-commit handles. This flag
 	 * is ignored for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in order to avoid
