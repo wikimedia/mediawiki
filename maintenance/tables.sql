@@ -902,7 +902,7 @@ CREATE TABLE /*_*/langlinks (
   ll_from int unsigned NOT NULL default 0,
 
   -- Language code of the target
-  ll_lang varbinary(20) NOT NULL default '',
+  ll_lang varbinary(35) NOT NULL default '',
 
   -- Title of the target, including namespace
   ll_title varchar(255) binary NOT NULL default '',
@@ -1757,7 +1757,7 @@ CREATE INDEX /*i*/change_tag_tag_id_id ON /*_*/change_tag (ct_tag_id,ct_rc_id,ct
 -- Table for storing localisation data
 CREATE TABLE /*_*/l10n_cache (
   -- Language code
-  lc_lang varbinary(32) NOT NULL,
+  lc_lang varbinary(35) NOT NULL,
   -- Cache key
   lc_key varchar(255) NOT NULL,
   -- Value
@@ -1796,7 +1796,7 @@ CREATE TABLE /*_*/sites (
   site_source                varbinary(32)       NOT NULL,
 
   -- Language code of the sites primary language.
-  site_language              varbinary(32)       NOT NULL,
+  site_language              varbinary(35)       NOT NULL,
 
   -- Protocol of the site, ie 'http://', 'irc://', '//'
   -- This field is an index for lookups and is build from type specific data in site_data.
