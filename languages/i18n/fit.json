@@ -1267,6 +1267,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (kato myös [[Special:NewPages|lista uusista sivuista]])",
 	"rcfilters-legend-heading": "<strong>Lista lyhenteistä:</strong>",
 	"rcfilters-other-review-tools": "Muut arviointityöneuvot",
+	"rcfilters-group-results-by-page": "Ryhmitä resyltaatit sivujen mukhaan",
 	"rcfilters-limit-title": "Näytettävät resyltaatit",
 	"rcfilters-days-show-hours": "$1 {{PLURAL:$1|tiima|tiimaa}}",
 	"rcfilters-quickfilters": "Säästetyt filtterit",
