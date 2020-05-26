@@ -3910,6 +3910,7 @@ false, e.g. to save to a global profile instead. Compare to the UserSaveSettings
 hook, which is called after the preferences have been saved.
 $user: The User for which the options are going to be saved
 &$options: The users options as an associative array, modifiable
+$originalOptions: The user's original options being replaced. Since 1.35
 
 'UserSaveSettings': Called directly after user preferences (user_properties in
 the database) have been saved. Compare to the UserSaveOptions hook, which is

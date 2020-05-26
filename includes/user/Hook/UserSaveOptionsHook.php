@@ -21,7 +21,8 @@ interface UserSaveOptionsHook {
 	 *
 	 * @param User $user The User for which the options are going to be saved
 	 * @param array &$options The user's options as an associative array, modifiable
+	 * @param array $originalOptions The user's original options being replaced
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onUserSaveOptions( $user, &$options );
+	public function onUserSaveOptions( $user, &$options, $originalOptions );
 }
