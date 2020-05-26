@@ -634,6 +634,7 @@ class OutputPage extends ContextSource {
 	 * Instead use OutputPage::addBodyClasses() if possible.
 	 *
 	 * @since 1.35
+	 * @internal Prefer OutputPage::addBodyClasses()
 	 * @param string|string[] $classes One or more classes to add
 	 */
 	public function addHtmlClasses( $classes ) {
