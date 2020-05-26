@@ -2614,6 +2614,7 @@
 	"badipaddress": "Geen geldig IP-adres",
 	"blockipsuccesssub": "De blokkering is ingesteld",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />\nZie de [[Special:BlockList|blokkadelijst]] voor recente blokkades.",
+	"ipb-empty-block": "De opgegeven blokkade legt geen beperkingen op.",
 	"ipb-blockingself": "U staat op het punt uzelf te blokkeren. Weet u zeker dat u dat wilt doen?",
 	"ipb-confirmhideuser": "U staat op het punt een verborgen gebruiker te blokkeren. Hiermee wordt de gebruikersnaam in alle lijsten en logboekregels verborgen. Weet u het zeker?",
 	"ipb-confirmaction": "Weet u zeker dat u dit wilt doen? Selecteer dan het selectievakje \"{{int:ipb-confirm}}\" hieronder.",

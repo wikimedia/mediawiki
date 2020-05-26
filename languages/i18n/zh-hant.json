@@ -2288,7 +2288,7 @@
 	"emailuser": "Email 聯絡此使用者",
 	"emailuser-title-target": "Email 聯絡此{{GENDER:$1|使用者}}",
 	"emailuser-title-notarget": "Email 聯絡使用者",
-	"emailpagetext": "您可以使用以下表格傳送電子郵件給這位 {{Gender:$1|使用者}}。\n您在 [[Special:Preferences|偏好設定]] 中所輸入的電子郵件地址將會作為郵件的 \"寄件人\"，因此該使用者可直接回覆您。",
+	"emailpagetext": "您可以使用以下表格傳送電子郵件給這位{{Gender:$1|使用者}}。您在[[Special:Preferences|偏好設定]]中所輸入的電子郵件地址將會作為郵件的「寄件人」，因此該使用者可直接回覆您。",
 	"defemailsubject": "{{SITENAME}} 使用者 \"$1\" 寄來的電子郵件",
 	"usermaildisabled": "使用者電子郵件已停用",
 	"usermaildisabledtext": "您不能傳送電子郵件到本 Wiki 上的其他使用者",

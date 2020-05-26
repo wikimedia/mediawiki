@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"BaRaN6161 TURK",
 			"Baciccin",
 			"C.R.",
 			"DannyS712",
@@ -3483,7 +3484,7 @@
 	"logentry-upload-revert": "$1 {{GENDER:$2|o|a}} l'ha ripristinou $3 a 'na vegia verscion",
 	"log-name-managetags": "Gestion etichette",
 	"log-description-managetags": "Questa paggina a l'elenca i açioin de gestion relative a-i [[Special:Tags|etichette]]. O registro o conten solo e açioin effettuæ manoalmente da 'n amministratoô; i etichette porieivan ese creæ ò scassæ da-o programma wiki sença che 'na voxe a segge registrâ chie.",
-	"logentry-managetags-create": "$1 {{GENERE:$2|o l'ha creou}}o tag \"$4\"",
+	"logentry-managetags-create": "$1 {{GENDER:$2|o l'ha creou}}o tag \"$4\"",
 	"logentry-managetags-delete": "$1 {{GENDER:$2|o l'ha rimosso}} l'etichetta \"$4\" (da $5 {{PLURAL:$5|verscione ò voxe de registro|verscioin ò voxe de registro}})",
 	"logentry-managetags-activate": "$1 {{GENDER:$2|o l'ha inseio}} l'etichetta \"$4\" pe l'uso da parte d'utenti e bot",
 	"logentry-managetags-deactivate": "$1 {{GENDER:$2|o l'ha disattivou}} l'etichetta \"$4\" pe l'uso da parte d'utenti e bot",
