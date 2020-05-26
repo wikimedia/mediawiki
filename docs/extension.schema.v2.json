@@ -788,8 +788,107 @@
 			"type": "object"
 		},
 		"Hooks": {
-			"type": [ "string", "object" ],
-			"description": "Hooks this extension uses (mapping of hook name to callback)"
+			"type": "object",
+			"description": "Hooks this extension uses (mapping of hook name to callback)",
+			"additionalProperties": {
+				"oneOf": [
+					{
+						"type": "string",
+						"description": "A global function name, static function name, or the name of a property in HookHandlers"
+					},
+					{
+						"type": "object",
+						"description": "A handler specification",
+						"properties": {
+							"handler": {
+								"type": "string",
+								"description": "The name of a property in HookHandlers"
+							},
+							"deprecated": {
+								"type": "boolean",
+								"description": "The deprecation acknowledgement flag for the handler. If this is true, calls will be filtered if the relevant hook is deprecated."
+							}
+						},
+						"required": [
+							"handler"
+						]
+					},
+					{
+						"type": "array",
+						"description": "An ordered array of handlers",
+						"items": {
+							"oneOf": [
+								{
+									"type": "string",
+									"description": "A global function name, static function name, or the name of a property in HookHandlers"
+								},
+								{
+									"type": "object",
+									"description": "A handler specification",
+									"properties": {
+										"handler": {
+											"type": "string",
+											"description": "The name of a property in HookHandlers"
+										},
+										"deprecated": {
+											"type": "boolean",
+											"description": "The deprecation acknowledgement flag for the handler. If this is true, calls will be filtered if the relevant hook is deprecated."
+										}
+									},
+									"required": [
+										"handler"
+									]
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		"HookHandlers": {
+			"type": "object",
+			"description": "ObjectFactory specifications for new-style hook handlers",
+			"additionalProperties": {
+				"type": "object",
+				"properties": {
+					"factory": {
+						"type": ["string", "array"],
+						"description": "A factory function to be called to create the handler for this hook"
+					},
+					"class": {
+						"type": "string",
+						"description": "The fully-qualified class name of the handler. This should be omitted if a factory is specified."
+					},
+					"args": {
+						"type": "array",
+						"description": "The arguments passed to the handler constructor or factory"
+					},
+					"services": {
+						"type": "array",
+						"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
+					}
+				}
+			}
+		},
+		"DeprecatedHooks": {
+			"type": "object",
+			"description": "Hooks which are defined and deprecated by the extension",
+			"additionalProperties": {
+				"type": "object",
+				"properties": {
+					"deprecatedVersion": {
+						"type": "string",
+						"description": "The version in which the hook was deprecated"
+					},
+					"component": {
+						"type": "string",
+						"description" : "The component to which the deprecated version relates. If omitted, the extension name will be used."
+					}
+				},
+				"required": [
+					"deprecatedVersion"
+				]
+			}
 		},
 		"JobClasses": {
 			"type": "object",
@@ -1017,6 +1116,10 @@
 					"args": {
 						"type": "array",
 						"description": "The arguments passed to the handler constructor or factory"
+					},
+					"services": {
+						"type": "array",
+						"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
 					}
 				}
 			}
