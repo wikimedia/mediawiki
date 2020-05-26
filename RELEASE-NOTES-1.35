@@ -114,6 +114,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * $wgParserConf - This configuration is now deprecated. It has been
   effectively constant since 2008, and is ignored by core code.
   Configure the ParserFactory service in order to customize the Parser used.
+* $wgAutoloadAttemptLowercase has been deprecated and the default value changed
+  to false.
 * …
 
 ==== Removed configuration ====

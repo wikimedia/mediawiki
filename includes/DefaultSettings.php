@@ -7754,8 +7754,10 @@ $wgAutoloadClasses = $wgAutoloadClasses ?? [];
  * Switch controlling legacy case-insensitive classloading.
  * Do not disable if your wiki must support data created by PHP4, or by
  * MediaWiki 1.4 or earlier.
+ *
+ * @deprecated since 1.35
  */
-$wgAutoloadAttemptLowercase = true;
+$wgAutoloadAttemptLowercase = false;
 
 /**
  * An array of information about installed extensions keyed by their type.
