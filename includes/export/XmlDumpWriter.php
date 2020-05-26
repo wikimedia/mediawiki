@@ -241,7 +241,11 @@ class XmlDumpWriter {
 		$out .= '    ' . Xml::element( 'id', [], strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
 			$page = WikiPage::factory( $this->currentTitle );
-			$redirect = $page->getRedirectTarget();
+			$redirect = $this->invokeLenient(
+				$page,
+				'getRedirectTarget',
+				'Failed to get redirect target of page ' . $page->getId()
+			);
 			if ( $redirect instanceof Title && $redirect->isValidRedirectTarget() ) {
 				$out .= '    ';
 				$out .= Xml::element( 'redirect', [ 'title' => self::canonicalTitle( $redirect ) ] );
