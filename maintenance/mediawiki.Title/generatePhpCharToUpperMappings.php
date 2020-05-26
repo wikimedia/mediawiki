@@ -52,7 +52,7 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 			->limits( [ 'memory' => 1024 * 1024 ] )
 			->execute();
 
-		if ( $result->getExitcode() !== 0 ) {
+		if ( $result->getExitCode() !== 0 ) {
 			$this->output( $result->getStderr() );
 			return;
 		}

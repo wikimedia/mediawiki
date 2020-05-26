@@ -108,13 +108,13 @@ class MovePageTest extends MediaWikiTestCase {
 		$this->getExistingTestPage( 'File:Non-file.jpg' );
 		$this->getExistingTestPage( 'MediaWiki:Existent.js' );
 		$this->getExistingTestPage( 'Hooked in place' );
-		$this->getNonExistingTestPage( 'Nonexistent' );
-		$this->getNonExistingTestPage( 'Nonexistent2' );
-		$this->getNonExistingTestPage( 'File:Nonexistent.jpg' );
-		$this->getNonExistingTestPage( 'File:Nonexistent.png' );
-		$this->getNonExistingTestPage( 'File:Existent-file-no-page.jpg' );
-		$this->getNonExistingTestPage( 'MediaWiki:Nonexistent' );
-		$this->getNonExistingTestPage( 'No content allowed' );
+		$this->getNonexistingTestPage( 'Nonexistent' );
+		$this->getNonexistingTestPage( 'Nonexistent2' );
+		$this->getNonexistingTestPage( 'File:Nonexistent.jpg' );
+		$this->getNonexistingTestPage( 'File:Nonexistent.png' );
+		$this->getNonexistingTestPage( 'File:Existent-file-no-page.jpg' );
+		$this->getNonexistingTestPage( 'MediaWiki:Nonexistent' );
+		$this->getNonexistingTestPage( 'No content allowed' );
 
 		// Set a couple of hooks for specific pages
 		$this->setTemporaryHook( 'ContentModelCanBeUsedOn',

@@ -2313,7 +2313,7 @@ ERROR;
 				} elseif ( $this->section == ''
 					&& $this->edittime
 					&& $this->revisionStore->userWasLastToEdit(
-						wfGetDb( DB_MASTER ),
+						wfGetDB( DB_MASTER ),
 						$this->mTitle->getArticleID(),
 						$user->getId(),
 						$this->edittime

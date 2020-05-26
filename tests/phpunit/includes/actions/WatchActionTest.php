@@ -221,7 +221,7 @@ class WatchActionTest extends MediaWikiTestCase {
 	 */
 	public function testDoUnWatchWithoutRights() {
 		$notPermittedUser = $this->getUser( null, null, [] );
-		$actual = WatchAction::doUnWatch( $this->testWikiPage->getTitle(), $notPermittedUser );
+		$actual = WatchAction::doUnwatch( $this->testWikiPage->getTitle(), $notPermittedUser );
 
 		$this->assertFalse( $actual->isGood() );
 	}
@@ -235,7 +235,7 @@ class WatchActionTest extends MediaWikiTestCase {
 			return false;
 		} );
 
-		$status = WatchAction::doUnWatch( $this->testWikiPage->getTitle(), $permittedUser );
+		$status = WatchAction::doUnwatch( $this->testWikiPage->getTitle(), $permittedUser );
 
 		$this->assertFalse( $status->isGood() );
 		$errors = $status->getErrors();
@@ -253,7 +253,7 @@ class WatchActionTest extends MediaWikiTestCase {
 			->method( 'removeWatch' )
 			->with( $this->equalTo( $this->testWikiPage->getTitle() ) );
 
-		$actual = WatchAction::doUnWatch( $this->testWikiPage->getTitle(), $permittedUser );
+		$actual = WatchAction::doUnwatch( $this->testWikiPage->getTitle(), $permittedUser );
 
 		$this->assertTrue( $actual->isGood() );
 	}

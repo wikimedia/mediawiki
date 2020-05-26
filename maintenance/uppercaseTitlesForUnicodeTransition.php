@@ -486,7 +486,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		}
 
 		if ( (int)$oldRow->ns === $newTitle->getNamespace() &&
-			$oldRow->title === $newTitle->getDBKey()
+			$oldRow->title === $newTitle->getDBkey()
 		) {
 			return $this->reason . ", and found that [[{$oldTitle->getPrefixedText()}]] is "
 				. "already a redirect to [[{$newTitle->getPrefixedText()}]]";

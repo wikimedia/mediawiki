@@ -64,7 +64,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 
 	private function getBlockedUser() {
 		$user = \User::newFromName( 'UTBlockee' );
-		if ( $user->getID() == 0 ) {
+		if ( $user->getId() == 0 ) {
 			$user->addToDatabase();
 			\TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
@@ -76,7 +76,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		}
 		$blockOptions = [
 			'address' => 'UTBlockee',
-			'user' => $user->getID(),
+			'user' => $user->getId(),
 			'by' => $this->getTestSysop()->getUser()->getId(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
@@ -161,7 +161,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$scopeVariable = new \Wikimedia\ScopedCallback( [ $block, 'delete' ] );
 
 		$user = \User::newFromName( 'UTNormalUser' );
-		if ( $user->getID() == 0 ) {
+		if ( $user->getId() == 0 ) {
 			$user->addToDatabase();
 			\TestUser::setPasswordForUser( $user, 'UTNormalUserPassword' );
 			$user->saveSettings();

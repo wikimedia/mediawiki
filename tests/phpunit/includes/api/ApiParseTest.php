@@ -490,7 +490,7 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testSerializationError() {
-		$this->expectException( APIUsageException::class );
+		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'Content serialization failed: Could not unserialize content' );
 
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers',

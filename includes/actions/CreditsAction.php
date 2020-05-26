@@ -44,7 +44,7 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML
 	 */
 	public function onView() {
-		if ( $this->getWikiPage()->getID() == 0 ) {
+		if ( $this->getWikiPage()->getId() == 0 ) {
 			$s = $this->msg( 'nocredits' )->parse();
 		} else {
 			$s = $this->getCredits( -1 );

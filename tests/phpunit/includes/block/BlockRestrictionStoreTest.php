@@ -226,7 +226,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			new NamespaceRestriction( $block->getId(), NS_USER ),
 		] );
 
-		$db = wfGetDb( DB_REPLICA );
+		$db = wfGetDB( DB_REPLICA );
 		$result = $db->select(
 			[ 'ipblocks_restrictions' ],
 			[ '*' ],
@@ -252,7 +252,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
-		$db = wfGetDb( DB_REPLICA );
+		$db = wfGetDB( DB_REPLICA );
 		$result = $db->select(
 			[ 'ipblocks_restrictions' ],
 			[ '*' ],
@@ -275,7 +275,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 
 		$this->blockRestrictionStore->update( [] );
 
-		$db = wfGetDb( DB_REPLICA );
+		$db = wfGetDB( DB_REPLICA );
 		$result = $db->select(
 			[ 'ipblocks_restrictions' ],
 			[ '*' ],
@@ -301,7 +301,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			new PageRestriction( $block->getId(), $page->getId() ),
 		] );
 
-		$db = wfGetDb( DB_REPLICA );
+		$db = wfGetDB( DB_REPLICA );
 		$result = $db->select(
 			[ 'ipblocks_restrictions' ],
 			[ '*' ],
