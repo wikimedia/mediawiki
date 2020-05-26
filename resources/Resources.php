@@ -759,15 +759,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.htmlform.checker' => [
-		'scripts' => [
-			'resources/src/mediawiki.htmlform.checker.js',
-		],
-		'dependencies' => [
-			'mediawiki.util',
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.htmlform.ooui' => [
 		'scripts' => [
 			'resources/src/mediawiki.htmlform.ooui/Element.js',
@@ -2139,8 +2130,13 @@ return [
 			'resources/src/mediawiki.special.userlogin.login.styles/login.css',
 		],
 	],
-	'mediawiki.special.userlogin.signup.js' => [
-		'scripts' => 'resources/src/mediawiki.special.userlogin.signup.js',
+	'mediawiki.special.createaccount' => [
+		'localBasePath' => "$IP/resources/src/mediawiki.special.createaccount",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.createaccount",
+		'packageFiles' => [
+			'signup.js',
+			'HtmlformChecker.js'
+		],
 		'messages' => [
 			'createacct-emailrequired',
 			'noname',
@@ -2150,7 +2146,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
-			'mediawiki.htmlform.checker',
+			'mediawiki.util',
 		],
 	],
 	'mediawiki.special.userlogin.signup.styles' => [
