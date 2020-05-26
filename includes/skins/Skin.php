@@ -1311,6 +1311,274 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Allows correcting the language of interlanguage links which, mostly due to
+	 * legacy reasons, do not always match the standards compliant language tag.
+	 *
+	 * @param string $code
+	 * @return string
+	 * @since 1.35
+	 */
+	public function mapInterwikiToLanguage( $code ) {
+		$map = $this->getConfig()->get( 'InterlanguageLinkCodeMap' );
+		return $map[ $code ] ?? $code;
+	}
+
+	/**
+	 * Generates array of language links for the current page.
+	 * @since 1.35
+	 * @return array
+	 */
+	public function getLanguages() {
+		if ( $this->getConfig()->get( 'HideInterlanguageLinks' ) ) {
+			return [];
+		}
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+
+		$userLang = $this->getLanguage();
+		$languageLinks = [];
+		$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+
+		foreach ( $this->getOutput()->getLanguageLinks() as $languageLinkText ) {
+			$class = 'interlanguage-link interwiki-' . explode( ':', $languageLinkText, 2 )[0];
+
+			$languageLinkTitle = Title::newFromText( $languageLinkText );
+			if ( !$languageLinkTitle ) {
+				continue;
+			}
+
+			$ilInterwikiCode = $this->mapInterwikiToLanguage( $languageLinkTitle->getInterwiki() );
+
+			$ilLangName = $langNameUtils->getLanguageName( $ilInterwikiCode );
+
+			if ( strval( $ilLangName ) === '' ) {
+				$ilDisplayTextMsg = $this->msg( "interlanguage-link-$ilInterwikiCode" );
+				if ( !$ilDisplayTextMsg->isDisabled() ) {
+					// Use custom MW message for the display text
+					$ilLangName = $ilDisplayTextMsg->text();
+				} else {
+					// Last resort: fallback to the language link target
+					$ilLangName = $languageLinkText;
+				}
+			} else {
+				// Use the language autonym as display text
+				$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
+			}
+
+			// CLDR extension or similar is required to localize the language name;
+			// otherwise we'll end up with the autonym again.
+			$ilLangLocalName = $langNameUtils->getLanguageName(
+				$ilInterwikiCode,
+				$userLang->getCode()
+			);
+
+			$languageLinkTitleText = $languageLinkTitle->getText();
+			if ( $ilLangLocalName === '' ) {
+				$ilFriendlySiteName = $this->msg( "interlanguage-link-sitename-$ilInterwikiCode" );
+				if ( !$ilFriendlySiteName->isDisabled() ) {
+					if ( $languageLinkTitleText === '' ) {
+						$ilTitle = $this->msg(
+							'interlanguage-link-title-nonlangonly',
+							$ilFriendlySiteName->text()
+						)->text();
+					} else {
+						$ilTitle = $this->msg(
+							'interlanguage-link-title-nonlang',
+							$languageLinkTitleText,
+							$ilFriendlySiteName->text()
+						)->text();
+					}
+				} else {
+					// we have nothing friendly to put in the title, so fall back to
+					// displaying the interlanguage link itself in the title text
+					// (similar to what is done in page content)
+					$ilTitle = $languageLinkTitle->getInterwiki() .
+						":$languageLinkTitleText";
+				}
+			} elseif ( $languageLinkTitleText === '' ) {
+				$ilTitle = $this->msg(
+					'interlanguage-link-title-langonly',
+					$ilLangLocalName
+				)->text();
+			} else {
+				$ilTitle = $this->msg(
+					'interlanguage-link-title',
+					$languageLinkTitleText,
+					$ilLangLocalName
+				)->text();
+			}
+
+			$ilInterwikiCodeBCP47 = LanguageCode::bcp47( $ilInterwikiCode );
+			$languageLink = [
+				'href' => $languageLinkTitle->getFullURL(),
+				'text' => $ilLangName,
+				'title' => $ilTitle,
+				'class' => $class,
+				'link-class' => 'interlanguage-link-target',
+				'lang' => $ilInterwikiCodeBCP47,
+				'hreflang' => $ilInterwikiCodeBCP47,
+			];
+			$hookContainer->run(
+				'SkinTemplateGetLanguageLink',
+				[ &$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput() ],
+				[]
+			);
+			$languageLinks[] = $languageLink;
+		}
+		return $languageLinks;
+	}
+
+	/**
+	 * Build array of common navigation links.
+	 * Assumes thispage property has been set before execution.
+	 * @since 1.35
+	 * @return array
+	 */
+	protected function buildNavUrls() {
+		$out = $this->getOutput();
+		$request = $this->getRequest();
+		$title = $this->getTitle();
+		$thispage = $title->getPrefixedDBkey();
+		$uploadNavigationUrl = $this->getConfig()->get( 'UploadNavigationUrl' );
+
+		$nav_urls = [];
+		$nav_urls['mainpage'] = [ 'href' => self::makeMainPageUrl() ];
+		if ( $uploadNavigationUrl ) {
+			$nav_urls['upload'] = [ 'href' => $uploadNavigationUrl ];
+		} elseif ( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getUser() ) === true ) {
+			$nav_urls['upload'] = [ 'href' => self::makeSpecialUrl( 'Upload' ) ];
+		} else {
+			$nav_urls['upload'] = false;
+		}
+		$nav_urls['specialpages'] = [ 'href' => self::makeSpecialUrl( 'Specialpages' ) ];
+
+		$nav_urls['print'] = false;
+		$nav_urls['permalink'] = false;
+		$nav_urls['info'] = false;
+		$nav_urls['whatlinkshere'] = false;
+		$nav_urls['recentchangeslinked'] = false;
+		$nav_urls['contributions'] = false;
+		$nav_urls['log'] = false;
+		$nav_urls['blockip'] = false;
+		$nav_urls['mute'] = false;
+		$nav_urls['emailuser'] = false;
+		$nav_urls['userrights'] = false;
+
+		// A print stylesheet is attached to all pages, but nobody ever
+		// figures that out. :)  Add a link...
+		if ( !$out->isPrintable() && ( $out->isArticle() || $title->isSpecialPage() ) ) {
+			$nav_urls['print'] = [
+				'text' => $this->msg( 'printableversion' )->text(),
+				'href' => $title->getLocalURL(
+					$request->appendQueryValue( 'printable', 'yes' ) )
+			];
+		}
+
+		if ( $out->isArticle() ) {
+			// Also add a "permalink" while we're at it
+			$revid = $out->getRevisionId();
+			if ( $revid ) {
+				$nav_urls['permalink'] = [
+					'text' => $this->msg( 'permalink' )->text(),
+					'href' => $title->getLocalURL( "oldid=$revid" )
+				];
+			}
+		}
+
+		if ( $out->isArticleRelated() ) {
+			$nav_urls['whatlinkshere'] = [
+				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $thispage )->getLocalURL()
+			];
+
+			$nav_urls['info'] = [
+				'text' => $this->msg( 'pageinfo-toolboxlink' )->text(),
+				'href' => $title->getLocalURL( "action=info" )
+			];
+
+			if ( $title->exists() || $title->inNamespace( NS_CATEGORY ) ) {
+				$nav_urls['recentchangeslinked'] = [
+					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $thispage )->getLocalURL()
+				];
+			}
+		}
+
+		$user = $this->getRelevantUser();
+		if ( $user ) {
+			$rootUser = $user->getName();
+
+			$nav_urls['contributions'] = [
+				'text' => $this->msg( 'contributions', $rootUser )->text(),
+				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser ),
+				'tooltip-params' => [ $rootUser ],
+			];
+
+			$nav_urls['log'] = [
+				'href' => self::makeSpecialUrlSubpage( 'Log', $rootUser )
+			];
+
+			if (
+				MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userHasRight( $this->getUser(), 'block' )
+			) {
+				$nav_urls['blockip'] = [
+					'text' => $this->msg( 'blockip', $rootUser )->text(),
+					'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
+				];
+			}
+
+			if ( $this->showEmailUser( $user ) ) {
+				$nav_urls['emailuser'] = [
+					'text' => $this->msg( 'tool-link-emailuser', $rootUser )->text(),
+					'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser ),
+					'tooltip-params' => [ $rootUser ],
+				];
+			}
+
+			if ( !$user->isAnon() ) {
+				if ( $this->getUser()->isRegistered() && $this->getConfig()->get( 'EnableSpecialMute' ) ) {
+					$nav_urls['mute'] = [
+						'text' => $this->msg( 'mute-preferences' )->text(),
+						'href' => self::makeSpecialUrlSubpage( 'Mute', $rootUser )
+					];
+				}
+
+				$sur = new UserrightsPage;
+				$sur->setContext( $this->getContext() );
+				$canChange = $sur->userCanChangeRights( $user );
+				$nav_urls['userrights'] = [
+					'text' => $this->msg(
+						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
+						$rootUser
+					)->text(),
+					'href' => self::makeSpecialUrlSubpage( 'Userrights', $rootUser )
+				];
+			}
+		}
+
+		return $nav_urls;
+	}
+
+	/**
+	 * Build data structure representing syndication links.
+	 * @since 1.35
+	 * @return array
+	 */
+	final protected function buildFeedUrls() {
+		$feeds = [];
+		$out = $this->getOutput();
+		if ( $out->isSyndicated() ) {
+			foreach ( $out->getSyndicationLinks() as $format => $link ) {
+				$feeds[$format] = [
+					// Messages: feed-atom, feed-rss
+					'text' => $this->msg( "feed-$format" )->text(),
+					'href' => $link
+				];
+			}
+		}
+		return $feeds;
+	}
+
+	/**
 	 * Build an array that represents the sidebar(s), the navigation bar among them.
 	 *
 	 * BaseTemplate::getSidebar can be used to simplify the format and id generation in new skins.
@@ -1365,6 +1633,11 @@ abstract class Skin extends ContextSource {
 				]
 			)
 			: $callback();
+		$sidebar['TOOLBOX'] = $this->makeToolbox(
+			$this->buildNavUrls(),
+			$this->buildFeedUrls()
+		);
+		$sidebar['LANGUAGES'] = $this->getLanguages();
 
 		// Apply post-processing to the cached value
 		Hooks::run( 'SidebarBeforeOutput', [ $this, &$sidebar ] );
