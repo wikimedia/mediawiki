@@ -98,10 +98,10 @@ class DeprecationHelperTest extends MediaWikiTestCase {
 	public function testSubclassGetSet() {
 		$fullName = 'TestDeprecatedClass::$privateNonDeprecated';
 		$this->assertErrorTriggered( function () {
-			$this->assertSame( null, $this->testSubclass->getNonDeprecatedPrivateParentProperty() );
+			$this->assertSame( null, $this->testSubclass->getNondeprecatedPrivateParentProperty() );
 		}, E_USER_ERROR, "Cannot access non-public property $fullName" );
 		$this->assertErrorTriggered( function () {
-			$this->testSubclass->setNonDeprecatedPrivateParentProperty( 0 );
+			$this->testSubclass->setNondeprecatedPrivateParentProperty( 0 );
 			$wrapper = TestingAccessWrapper::newFromObject( $this->testSubclass );
 			$this->assertSame( 1, $wrapper->privateNonDeprecated );
 		}, E_USER_ERROR, "Cannot access non-public property $fullName" );

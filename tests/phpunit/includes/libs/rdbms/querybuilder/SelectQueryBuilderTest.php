@@ -84,7 +84,7 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 				'sq'
 			)
 			->field( 'sq.f' );
-		$this->assertSql( 'SELECT sq.f FROM (SELECT f FROM t FORCE INDEX (i) ) sq' );
+		$this->assertSQL( 'SELECT sq.f FROM (SELECT f FROM t FORCE INDEX (i) ) sq' );
 	}
 
 	public function testTablesFields() {

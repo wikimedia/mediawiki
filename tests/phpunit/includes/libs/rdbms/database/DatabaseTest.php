@@ -648,17 +648,17 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $ud->getId(), $this->db->getDomainID() );
 
 		$old = $this->db->tablePrefix();
-		$oldDomain = $this->db->getDomainId();
+		$oldDomain = $this->db->getDomainID();
 		$this->assertIsString( $old, 'Prefix is string' );
 		$this->assertSame( $old, $this->db->tablePrefix(), "Prefix unchanged" );
 		$this->assertSame( $old, $this->db->tablePrefix( 'xxx_' ) );
 		$this->assertSame( 'xxx_', $this->db->tablePrefix(), "Prefix set" );
 		$this->db->tablePrefix( $old );
 		$this->assertNotEquals( 'xxx_', $this->db->tablePrefix() );
-		$this->assertSame( $oldDomain, $this->db->getDomainId() );
+		$this->assertSame( $oldDomain, $this->db->getDomainID() );
 
 		$old = $this->db->dbSchema();
-		$oldDomain = $this->db->getDomainId();
+		$oldDomain = $this->db->getDomainID();
 		$this->assertIsString( $old, 'Schema is string' );
 		$this->assertSame( $old, $this->db->dbSchema(), "Schema unchanged" );
 
@@ -667,7 +667,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 'xxx', $this->db->dbSchema(), "Schema set" );
 		$this->db->dbSchema( $old );
 		$this->assertNotEquals( 'xxx', $this->db->dbSchema() );
-		$this->assertSame( "y", $this->db->getDomainId() );
+		$this->assertSame( "y", $this->db->getDomainID() );
 	}
 
 	/**
@@ -688,7 +688,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::selectDomain
 	 */
 	public function testSelectDomain() {
-		$oldDomain = $this->db->getDomainId();
+		$oldDomain = $this->db->getDomainID();
 		$oldDatabase = $this->db->getDBname();
 		$oldSchema = $this->db->dbSchema();
 		$oldPrefix = $this->db->tablePrefix();
@@ -702,7 +702,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $oldDatabase, $this->db->getDBname() );
 		$this->assertSame( $oldSchema, $this->db->dbSchema() );
 		$this->assertSame( $oldPrefix, $this->db->tablePrefix() );
-		$this->assertSame( $oldDomain, $this->db->getDomainId() );
+		$this->assertSame( $oldDomain, $this->db->getDomainID() );
 
 		$this->db->selectDomain( 'testselectdb-schema-xxx_' );
 		$this->assertSame( 'testselectdb', $this->db->getDBname() );
@@ -713,7 +713,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $oldDatabase, $this->db->getDBname() );
 		$this->assertSame( $oldSchema, $this->db->dbSchema() );
 		$this->assertSame( $oldPrefix, $this->db->tablePrefix() );
-		$this->assertSame( $oldDomain, $this->db->getDomainId() );
+		$this->assertSame( $oldDomain, $this->db->getDomainID() );
 	}
 
 	/**

@@ -3027,7 +3027,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		] );
 
 		$output->enableClientCache( $options['enableClientCache'] ?? true );
-		$output->setCdnMaxAge( $options['cdnMaxAge'] ?? 0 );
+		$output->setCdnMaxage( $options['cdnMaxAge'] ?? 0 );
 
 		if ( isset( $options['lastModified'] ) ) {
 			$output->setLastModified( $options['lastModified'] );

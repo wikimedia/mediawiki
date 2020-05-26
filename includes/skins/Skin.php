@@ -1519,7 +1519,7 @@ abstract class Skin extends ContextSource {
 					// Singular if only 1 unseen revision, plural if several unseen revisions.
 					$plural = $latestRev->getParentId() !== $lastSeenRev->getId();
 					$nOfAuthors = $revStore->countAuthorsBetween(
-						$uTalkTitle->getArticleId(),
+						$uTalkTitle->getArticleID(),
 						$lastSeenRev->getRevisionRecord(),
 						$latestRev,
 						null,

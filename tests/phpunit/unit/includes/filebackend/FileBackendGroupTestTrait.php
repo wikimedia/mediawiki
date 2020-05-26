@@ -354,9 +354,9 @@ trait FileBackendGroupTestTrait {
 	 */
 	public function testBackendFromPath( $expected, $storagePath ) {
 		$obj = $this->newObj( [ 'FileBackends' => [
-			[ 'name' => '', 'class' => stdclass::class, 'lockManager' => 'fsLockManager' ],
-			[ 'name' => 'a', 'class' => stdclass::class, 'lockManager' => 'fsLockManager' ],
-			[ 'name' => 'b', 'class' => stdclass::class, 'lockManager' => 'fsLockManager' ],
+			[ 'name' => '', 'class' => stdClass::class, 'lockManager' => 'fsLockManager' ],
+			[ 'name' => 'a', 'class' => stdClass::class, 'lockManager' => 'fsLockManager' ],
+			[ 'name' => 'b', 'class' => stdClass::class, 'lockManager' => 'fsLockManager' ],
 		] ] );
 		$this->assertSame(
 			$expected === null ? null : $obj->get( $expected ),

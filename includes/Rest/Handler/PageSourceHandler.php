@@ -94,7 +94,7 @@ class PageSourceHandler extends LatestPageContentHandler {
 	 */
 	protected function getETag(): string {
 		$revision = $this->getLatestRevision();
-		$latestRevision = $revision ? $revision->getID() : 'e0';
+		$latestRevision = $revision ? $revision->getId() : 'e0';
 
 		$isAccessible = $this->isAccessible( $this->getTitle() );
 		$accessibleTag = $isAccessible ? 'a1' : 'a0';

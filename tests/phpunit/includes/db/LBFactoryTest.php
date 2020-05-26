@@ -449,7 +449,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 
 		$this->assertSame(
 			'',
-			$db->getDomainId(),
+			$db->getDomainID(),
 			'Null domain ID handle used'
 		);
 		$this->assertNull(

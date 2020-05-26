@@ -51,7 +51,7 @@ class FileJournalTest extends MediaWikiUnitTestCase {
 			$time1 = time();
 			$uuid = $obj->getTimestampedUUID();
 			$time2 = time();
-			$this->assertRegexp( '/^[0-9a-z]{31}$/', $uuid );
+			$this->assertRegExp( '/^[0-9a-z]{31}$/', $uuid );
 			$this->assertArrayNotHasKey( $uuid, $uuids );
 			$uuids[$uuid] = true;
 

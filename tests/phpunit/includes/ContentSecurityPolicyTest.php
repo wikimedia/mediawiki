@@ -153,7 +153,7 @@ class ContentSecurityPolicyTest extends MediaWikiTestCase {
 		$actualReport = $this->csp->makeCSPDirectives(
 			$policy, ContentSecurityPolicy::REPORT_ONLY_MODE
 		);
-		$policyJson = formatJson::encode( $policy );
+		$policyJson = FormatJson::encode( $policy );
 		$this->assertSame( $expectedFull, $actualFull, "full: " . $policyJson );
 		$this->assertSame( $expectedReport, $actualReport, "report: " . $policyJson );
 	}
