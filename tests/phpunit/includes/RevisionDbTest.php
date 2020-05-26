@@ -206,6 +206,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testGetRecentChange() {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getUserText' );
 
 		$rev = $this->testPage->getRevision();
 		$recentChange = $rev->getRecentChange();
@@ -618,6 +619,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsCurrent() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::isCurrent' );
 
 		$rev1 = $this->testPage->getRevision();
 
@@ -1382,6 +1384,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsMinor_true() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::isMinor' );
+
 		// Use a sysop to ensure we can mark edits as minor
 		$sysop = $this->getTestSysop()->getUser();
 
@@ -1402,6 +1406,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsMinor_false() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::isMinor' );
+
 		$this->testPage->doEditContent(
 			new WikitextContent( __METHOD__ ),
 			__METHOD__,
@@ -1436,6 +1442,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetUserAndText() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getUserText' );
+
 		$sysop = $this->getTestSysop()->getUser();
 
 		$this->testPage->doEditContent(
