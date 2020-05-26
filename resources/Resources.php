@@ -2139,8 +2139,12 @@ return [
 			'resources/src/mediawiki.special.userlogin.login.styles/login.css',
 		],
 	],
-	'mediawiki.special.userlogin.signup.js' => [
-		'scripts' => 'resources/src/mediawiki.special.userlogin.signup.js',
+	'mediawiki.special.createaccount' => [
+		'localBasePath' => "$IP/resources/src/mediawiki.special.createaccount",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.createaccount",
+		'packageFiles' => [
+			'signup.js',
+		],
 		'messages' => [
 			'createacct-emailrequired',
 			'noname',

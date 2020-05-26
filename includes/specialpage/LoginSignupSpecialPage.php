@@ -542,9 +542,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$this->msg( 'createacct-imgcaptcha-help' )->parse() );
 
 			// Additional styles and scripts for signup form
-			$out->addModules( [
-				'mediawiki.special.userlogin.signup.js'
-			] );
+			$out->addModules( 'mediawiki.special.createaccount' );
 			$out->addModuleStyles( [
 				'mediawiki.special.userlogin.signup.styles'
 			] );
@@ -786,8 +784,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->isSignup() ) {
 			$fieldDefinitions = [
 				'statusarea' => [
-					// used by the mediawiki.special.userlogin.signup.js module for error display
-					// FIXME merge this with HTMLForm's normal status (error) area
+					// Used by the mediawiki.special.createaccount module for error display.
+					// FIXME: Merge this with HTMLForm's normal status (error) area
 					'type' => 'info',
 					'raw' => true,
 					'default' => Html::element( 'div', [ 'id' => 'mw-createacct-status-area' ] ),
