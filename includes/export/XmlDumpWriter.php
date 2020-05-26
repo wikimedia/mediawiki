@@ -248,8 +248,9 @@ class XmlDumpWriter {
 		if ( $row->page_is_redirect ) {
 			$page = WikiPage::factory( $this->currentTitle );
 			$redirect = $this->invokeLenient(
-				$page,
-				'getRedirectTarget',
+				function () use ( $page ) {
+					return $page->getRedirectTarget();
+				},
 				'Failed to get redirect target of page ' . $page->getId()
 			);
 			if ( $redirect instanceof Title && $redirect->isValidRedirectTarget() ) {
@@ -300,21 +301,19 @@ class XmlDumpWriter {
 	}
 
 	/**
-	 * Invokes the given method on the given object, catching and logging any storage related
+	 * Invokes the given callback, catching and logging any storage related
 	 * exceptions.
 	 *
-	 * @param object $obj
-	 * @param string $method
+	 * @param callable $callback
 	 * @param string $warning The warning to output in case of a storage related exception.
-	 * @param array $args
 	 *
 	 * @return mixed Returns the method's return value,
 	 *         or null in case of a storage related exception.
 	 * @throws Exception
 	 */
-	private function invokeLenient( $obj, $method, $warning, $args = [] ) {
+	private function invokeLenient( $callback, $warning ) {
 		try {
-			return call_user_func_array( [ $obj, $method ], $args );
+			return $callback();
 		} catch ( SuppressedDataException $ex ) {
 			return null;
 		} catch ( Exception $ex ) {
@@ -400,8 +399,9 @@ class XmlDumpWriter {
 			$out .= "      <sha1/>\n";
 		} else {
 			$sha1 = $this->invokeLenient(
-				$rev,
-				'getSha1',
+				function () use ( $rev ) {
+					return $rev->getSha1();
+				},
 				'failed to determine sha1 for revision ' . $rev->getId()
 			);
 			$out .= "      " . Xml::element( 'sha1', null, strval( $sha1 ) ) . "\n";
@@ -413,10 +413,10 @@ class XmlDumpWriter {
 		if ( $contentMode === self::WRITE_CONTENT ) {
 			/** @var Content $content */
 			$content = $this->invokeLenient(
-				$rev,
-				'getContent',
-				'Failed to load main slot content of revision ' . $rev->getId(),
-				[ SlotRecord::MAIN, RevisionRecord::RAW ]
+				function () use ( $rev ) {
+					return $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+				},
+				'Failed to load main slot content of revision ' . $rev->getId()
 			);
 
 			$text = $content ? $content->serialize() : '';
@@ -470,8 +470,9 @@ class XmlDumpWriter {
 
 		$textAttributes = [
 			'bytes' => $this->invokeLenient(
-				$slot,
-				'getSize',
+				function () use ( $slot ) {
+					return $slot->getSize();
+				},
 				'failed to determine size for slot ' . $slot->getRole() . ' of revision '
 				. $slot->getRevision()
 			) ?: '0'
@@ -479,8 +480,9 @@ class XmlDumpWriter {
 
 		if ( $isV11 ) {
 			$textAttributes['sha1'] = $this->invokeLenient(
-				$slot,
-				'getSha1',
+				function () use ( $slot ) {
+					return $slot->getSha1();
+				},
 				'failed to determine sha1 for slot ' . $slot->getRole() . ' of revision '
 				. $slot->getRevision()
 			) ?: '';
@@ -488,8 +490,9 @@ class XmlDumpWriter {
 
 		if ( $contentMode === self::WRITE_CONTENT ) {
 			$content = $this->invokeLenient(
-				$slot,
-				'getContent',
+				function () use ( $slot ) {
+					return $slot->getContent();
+				},
 				'failed to load content for slot ' . $slot->getRole() . ' of revision '
 				. $slot->getRevision()
 			);
