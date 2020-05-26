@@ -51,7 +51,7 @@ try {
 	echo $templateParser->processTemplate(
 		'NoLocalSettings',
 		[
-			'version' => ( defined( MW_VERSION ) ? MW_VERSION : 'VERSION' ),
+			'version' => ( defined( 'MW_VERSION' ) ? MW_VERSION : 'VERSION' ),
 			'path' => $path,
 			'localSettingsExists' => file_exists( MW_CONFIG_FILE ),
 			'installerStarted' => $installerStarted
