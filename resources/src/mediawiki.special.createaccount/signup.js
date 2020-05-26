@@ -1,6 +1,8 @@
 /*!
  * JavaScript for signup form.
  */
+var HtmlformChecker = require( './HtmlformChecker.js' );
+
 // When sending password by email, hide the password input fields.
 $( function () {
 	// Always required if checked, otherwise it depends, so we use the original
@@ -120,9 +122,9 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		return d.promise( { abort: apiPromise.abort } );
 	}
 
-	usernameChecker = new mw.htmlform.Checker( $usernameInput, checkUsername );
+	usernameChecker = new HtmlformChecker( $usernameInput, checkUsername );
 	usernameChecker.attach();
 
-	passwordChecker = new mw.htmlform.Checker( $passwordInput, checkPassword );
+	passwordChecker = new HtmlformChecker( $passwordInput, checkPassword );
 	passwordChecker.attach( $usernameInput.add( $emailInput ).add( $realNameInput ) );
 } );
