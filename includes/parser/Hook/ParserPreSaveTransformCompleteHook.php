@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use Parser;
 
 /**
- * @deprecated since 1.35
+ * @stable
  * @ingroup Hooks
  */
 interface ParserPreSaveTransformCompleteHook {

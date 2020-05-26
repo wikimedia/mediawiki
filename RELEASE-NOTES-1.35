@@ -789,9 +789,6 @@ because of Phabricator reports.
         Use BeforeParserFetchTemplateAndTitle
     - ParserSectionCreate
         No replacement; <section> tag wrapping will be done by core in future.
-    - ParserPreSaveTransformComplete
-        No replacement; Content::preSaveTransform() provides for customizable
-        PreSaveTransforms
     - BeforeParserrenderImageGallery
         No replacement; MediaHandler provides for customizable media rendering
     - ParserBeforeTidy

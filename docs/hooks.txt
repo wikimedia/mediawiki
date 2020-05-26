@@ -2671,7 +2671,7 @@ $parserOutput: The ParserOutput object.
 &$text: The text being transformed, before core transformations are done.
 &$options: The options array being used for the transformation.
 
-'ParserPreSaveTransformComplete': DEPRECATED since 1.35!
+'ParserPreSaveTransformComplete':
 Called from Parser::preSaveTransform() after
 processing is complete, giving the extension a chance to further modify the
 wikitext.
