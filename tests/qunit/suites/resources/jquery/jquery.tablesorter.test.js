@@ -427,6 +427,16 @@
 		}
 	);
 	tableTest(
+		'Basic planet table: return to initial sort',
+		header,
+		planets,
+		planets,
+		function ( $table ) {
+			$table.tablesorter();
+			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' ).trigger( 'click' );
+		}
+	);
+	tableTest(
 		'Basic planet table: ascending radius',
 		header,
 		planets,
@@ -518,6 +528,9 @@
 			$table.tablesorter(
 				{ sortList: [ { 0: 'desc' }, { 1: 'desc' } ] }
 			);
+
+			// There are three sort orders, so cycle though
+			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 
 			// Pretend to click while pressing the multi-sort key
@@ -1089,7 +1102,8 @@
 		// - remove data, bring back attribute: 2
 		$table.find( 'td:contains(G)' ).removeData( 'sortValue' );
 
-		// Now sort again (twice, so it is back at Ascending)
+		// Now sort again (three times, so it is back at Ascending)
+		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 

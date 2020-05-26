@@ -249,7 +249,7 @@ return [
 	'jquery.tablesorter' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/jquery.tablesorter/jquery.tablesorter.js',
-		'messages' => [ 'sort-descending', 'sort-ascending' ],
+		'messages' => [ 'sort-descending', 'sort-ascending', 'sort-initial' ],
 		'dependencies' => [
 			'jquery.tablesorter.styles',
 			'mediawiki.util',
