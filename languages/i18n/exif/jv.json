@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bennylin",
+			"Diki Ananta",
 			"Meursault2004",
 			"NoiX180",
 			"Pras"
@@ -42,7 +43,7 @@
 	"exif-compressedbitsperpixel": "Modhe komprèsi gambar",
 	"exif-pixelxdimension": "Jembaring gambar",
 	"exif-pixelydimension": "Dhuwuring gambar",
-	"exif-usercomment": "Komentar panganggo",
+	"exif-usercomment": "Komèntar naraguna",
 	"exif-relatedsoundfile": "Barkas swara magepokan",
 	"exif-datetimeoriginal": "Tanggal lan wektu turuné dhata",
 	"exif-datetimedigitized": "Tanggal lan wektu dhigitalisasi",
@@ -344,5 +345,5 @@
 	"exif-urgency-normal": "Sedhengan ($1)",
 	"exif-urgency-low": "Cendhèk ($1)",
 	"exif-urgency-high": "Dhuwur ($1)",
-	"exif-urgency-other": "Prioritas kang ditetepaké panganggo ($1)"
+	"exif-urgency-other": "Prioritas kang ditetepaké naraguna ($1)"
 }

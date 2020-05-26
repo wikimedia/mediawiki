@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"BaRaN6161 TURK",
 			"DannyS712",
 			"Estudyante",
 			"Fitoschido",
@@ -916,7 +917,7 @@
 	"group-bureaucrat": "Mga burokrata",
 	"group-suppress": "Mga suppressor",
 	"group-all": "(ngatanan)",
-	"group-user-member": "{{HENERO:$1|gumaramit}}",
+	"group-user-member": "{{GENDER:$1|gumaramit}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|autoconfirmed user}}",
 	"group-bot-member": "bot",
 	"group-sysop-member": "magdudumara",
@@ -1459,7 +1460,7 @@
 	"mailnologin": "Waray kakadtoan nga address",
 	"mailnologintext": "Kinahanglan nimo nga [[Special:UserLogin|nakalog-in]] ngan may-ada balido nga email address ha imo[[Special:Preferences|mga preperensya]] para makapadangat hin email ngadto ha iba nga mga gumaramit.",
 	"emailuser": "Ig-e-mail ini nga gumaramit",
-	"emailuser-title-target": "Ig-E-mail ini nga {{HENERO:$1|gumaramit}}",
+	"emailuser-title-target": "Ig-E-mail ini nga {{GENDER:$1|gumaramit}}",
 	"emailuser-title-notarget": "Gumaramit han e-mail",
 	"defemailsubject": "{{SITENAME}} e-mail tikang kan gumaramit na hi \"$1\"",
 	"usermaildisabled": "Waray ginpagana an e-mail han gumaramit",
