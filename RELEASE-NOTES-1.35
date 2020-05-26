@@ -527,6 +527,13 @@ because of Phabricator reports.
   no visibilities defined, have been made private to allow signature changes.
 * SpecialNewpages::revisionFromRcResult, which previously was protected, has
   been made private to allow a signature change.
+* DifferenceEngine::$mOldRev and $mNewRev, deprecated for public access in
+  1.32, have been removed.
+* DifferenceEngine::revisionDeleteLink, which was previosuly protected, has
+  been made private to allow a signature change.
+* DifferenceEngine::getParserOutput, which is protected, has had a breaking
+  signature change: the second parameter must be a RevisionRecord object,
+  rather than a Revision object.
 * WikiPage::setLastEdit, which was previously protected, has been made
   private to allow a signature change.
 * Skin::getSkinNameMessages() deprecated in 1.34, has been removed.
