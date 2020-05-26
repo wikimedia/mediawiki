@@ -706,6 +706,7 @@
 	"badsiglength": "Dispenäd olik binon tu lunik.\nMuton labön {{PLURAL:$1|malati|malatis}} läs $1.",
 	"yourgender": "Lio-li buükol ad pabepenön?",
 	"gender-unknown": "Buükob ad no sagön",
+	"gender-notknown": "Redakon padis ela wiki",
 	"gender-male": "Redakom padis ela wiki",
 	"gender-female": "Redakof padis ela wiki",
 	"email": "Ladet leäktronik",
