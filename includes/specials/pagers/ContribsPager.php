@@ -290,9 +290,6 @@ class ContribsPager extends RangeChronologicalPager {
 			if ( isset( $conds['orconds']['actor'] ) ) {
 				// @todo: This will need changing when revision_actor_temp goes away
 				$queryInfo['options']['USE INDEX']['temp_rev_user'] = 'actor_timestamp';
-			} else {
-				$queryInfo['options']['USE INDEX']['revision'] =
-					isset( $conds['orconds']['userid'] ) ? 'user_timestamp' : 'usertext_timestamp';
 			}
 		}
 
