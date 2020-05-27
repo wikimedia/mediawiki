@@ -2444,6 +2444,8 @@
 	"ipb-confirm": "Пацвердзіць блакіроўку",
 	"ipb-sitewide": "Ва ўсім праекце",
 	"ipb-partial": "Частковая",
+	"ipb-sitewide-help": "Усе вікі-старонкі і ўвесь іншы ўнёсак.",
+	"ipb-partial-help": "Канкрэтныя старонкі або прасторы назваў.",
 	"ipb-pages-label": "Старонкі",
 	"ipb-namespaces-label": "Прасторы назваў",
 	"badipaddress": "Недапушчальны адрас IP",
