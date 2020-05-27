@@ -831,7 +831,6 @@ because of Phabricator reports.
   - LogEventsList::getExcludeClause
   - Revision::getComment
   - Revision::getUser
-  - Revision::getUserText
   - WikiPage::getComment
   - WikiPage::getCreator
   - WikiPage::getUser
@@ -918,6 +917,9 @@ because of Phabricator reports.
   - ::setUserIdAndName - use MutableRevisionRecord::setUser instead
   - ::setId - use MutableRevisionRecord::setId instead
   - ::getRecentChange - use RevisionStore::getRecentChange instead
+  - ::getUserText - use RevisionRecord::getUser and then User::getName instead
+  - ::isMinor - use RevisionRecord::isMinor instead
+  - ::isCurrent - use RevisionRecord::isCurrent instead
   - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
       content address, or RevisionRecord::hasSameContent to compare content
   - ::getNext - use RevisionLookup::getNextRevision instead

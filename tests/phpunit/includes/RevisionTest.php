@@ -134,6 +134,8 @@ class RevisionTest extends MediaWikiTestCase {
 		$expectedUserId,
 		$expectedUserName
 	) {
+		$this->hideDeprecated( 'Revision::getUserText' );
+
 		$testUser = $this->getTestUser()->getUser();
 		$this->setMwGlobals( 'wgUser', $testUser );
 		if ( $expectedUserId === null ) {
@@ -213,6 +215,9 @@ class RevisionTest extends MediaWikiTestCase {
 			],
 			function ( RevisionTest $testCase, Revision $rev ) {
 				$testCase->hideDeprecated( 'Revision::getSha1' );
+				$testCase->hideDeprecated( 'Revision::getUserText' );
+				$testCase->hideDeprecated( 'Revision::isMinor' );
+
 				$testCase->assertSame( 42, $rev->getId() );
 				$testCase->assertSame( 23, $rev->getPage() );
 				$testCase->assertSame( '20171017114835', $rev->getTimestamp() );
@@ -240,6 +245,9 @@ class RevisionTest extends MediaWikiTestCase {
 				'rev_comment_cid' => null,
 			],
 			function ( RevisionTest $testCase, Revision $rev ) {
+				$testCase->hideDeprecated( 'Revision::getUserText' );
+				$testCase->hideDeprecated( 'Revision::isMinor' );
+
 				// parent ID may be null
 				$testCase->assertSame( null, $rev->getParentId(), 'revision id' );
 
@@ -327,6 +335,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testSetUserIdAndName( $inputId, $expectedId, $name ) {
 		$this->hideDeprecated( 'Revision::setUserIdAndName' );
+		$this->hideDeprecated( 'Revision::getUserText' );
+
 		$rev = new Revision( [], 0, $this->getMockTitle() );
 		$rev->setUserIdAndName( $inputId, $name );
 		$this->assertSame( $expectedId, $rev->getUser( Revision::RAW ) );
@@ -430,7 +440,9 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testLoadFromTitle() {
 		$this->hideDeprecated( 'Revision::loadFromTitle' );
 		$this->hideDeprecated( 'Revision::getSha1' );
+		$this->hideDeprecated( 'Revision::getUserText' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
+
 		$title = $this->getMockTitle();
 
 		$conditions = [
