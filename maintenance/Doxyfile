@@ -60,7 +60,8 @@ ALIASES                = "type{1}=<b> \1 </b>:" \
                          "codingStandardsIgnoreEnd=" \
                          "codingStandardsIgnoreStart=" \
                          "phan=" \
-                         "suppress="
+                         "suppress=" \
+                         "stable=Stable"
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 OPTIMIZE_FOR_FORTRAN   = NO
