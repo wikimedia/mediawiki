@@ -10,6 +10,8 @@
 
 	"paramvalidator-badbool": "Invalid value \"$2\" for boolean parameter \"$1\". Pass $3 for true, or $5 for false.",
 	"paramvalidator-badexpiry": "Invalid value \"$2\" for expiry parameter \"$1\".",
+	"paramvalidator-badexpiry-duration": "Given value \"$2\" for parameter <var>$1</var> exceeds the maximum of \"$3\".",
+	"paramvalidator-badexpiry-duration-max": "Given value \"$2\" for parameter <var>$1</var> exceeds the maximum of \"$3\". Using maximum instead.",
 	"paramvalidator-badexpiry-past": "Value \"$2\" for expiry parameter \"$1\" is in the past.",
 	"paramvalidator-badfloat": "Invalid value \"$2\" for float parameter \"$1\".",
 	"paramvalidator-badfloat-notfinite": "Value \"$2\" for float parameter \"$1\" is too large or is not a number.",

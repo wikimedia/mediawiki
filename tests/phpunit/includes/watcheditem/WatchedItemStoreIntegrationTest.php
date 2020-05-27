@@ -19,6 +19,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( [
 			'wgWatchlistExpiry' => true,
+			'$wgWatchlistExpiryMaxDuration' => '6 months',
 		] );
 	}
 
@@ -122,9 +123,21 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$initialUserWatchedItems = $store->countWatchedItems( $user );
 
-		$store->addWatch( $user, $title, '20300101000000' );
+		// Watch for a duration greater than the max ($wgWatchlistExpiryMaxDuration),
+		// which should get changed to the max.
+		$expiry = wfTimestamp( TS_MW, strtotime( '10 years' ) );
+		$store->addWatch( $user, $title, $expiry );
+		$this->assertLessThanOrEqual(
+			wfTimestamp( TS_MW, strtotime( '6 months' ) ),
+			$store->loadWatchedItem( $user, $title )->getExpiry()
+		);
+
+		// Valid expiry that's less than the max.
+		$expiry = wfTimestamp( TS_MW, strtotime( '1 week' ) );
+
+		$store->addWatch( $user, $title, $expiry );
 		$this->assertSame(
-			'20300101000000',
+			$expiry,
 			$store->loadWatchedItem( $user, $title )->getExpiry()
 		);
 		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
@@ -133,7 +146,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		// Invalid expiry, nothing should change.
 		$store->addWatch( $user, $title, 'invalid expiry' );
 		$this->assertSame(
-			'20300101000000',
+			$expiry,
 			$store->loadWatchedItem( $user, $title )->getExpiry()
 		);
 		$this->assertEquals( $initialUserWatchedItems + 1, $store->countWatchedItems( $user ) );
@@ -173,7 +186,9 @@ class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 		$title2 = Title::newFromText( 'WatchedItemStoreIntegrationTestPage1' );
 		$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 
-		$timestamp = '20500101000000';
+		// Use a relative timestamp in the near future to ensure we don't exceed the max.
+		// See testWatchAndUnWatchItemWithExpiry() for tests regarding the max duration.
+		$timestamp = wfTimestamp( TS_MW, strtotime( '1 week' ) );
 		$store->addWatchBatchForUser( $user, [ $title1, $title2 ], $timestamp );
 
 		$this->assertSame(

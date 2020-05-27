@@ -18,9 +18,10 @@ class ExpiryDefTest extends TypeDefTestCase {
 	 * is asserted to cause a ValidationException with the given message.
 	 * @param string $value
 	 * @param string $msg
+	 * @param array $settings
 	 * @return array
 	 */
-	private function getValidationAssertion( string $value, string $msg ) {
+	private function getValidationAssertion( string $value, string $msg, array $settings = [] ) {
 		return [
 			$value,
 			new ValidationException(
@@ -28,13 +29,13 @@ class ExpiryDefTest extends TypeDefTestCase {
 				'expiry',
 				$value,
 				[]
-			)
+			),
+			$settings
 		];
 	}
 
 	/**
 	 * @dataProvider provideValidate
-	 * @inheritDoc
 	 */
 	public function testValidate(
 		$value, $expect, array $settings = [], array $options = [], array $expectConds = []
@@ -45,9 +46,16 @@ class ExpiryDefTest extends TypeDefTestCase {
 		} finally {
 			ConvertibleTimestamp::setFakeTime( $reset );
 		}
+		// Reset the time.
+		ConvertibleTimestamp::setFakeTime( false );
 	}
 
 	public function provideValidate() {
+		$settings = [
+			ExpiryDef::PARAM_MAX => '6 months',
+			ExpiryDef::PARAM_USE_MAX => true,
+		];
+
 		return [
 			'Valid infinity' => [ 'indefinite', 'infinity' ],
 			'Invalid expiry' => $this->getValidationAssertion( 'foobar', 'badexpiry' ),
@@ -58,7 +66,8 @@ class ExpiryDefTest extends TypeDefTestCase {
 			),
 			'Expiry in past with negative unix time' => $this->getValidationAssertion(
 				'1969-12-31T23:59:59Z',
-				'badexpiry-past'
+				'badexpiry-past',
+				$settings
 			),
 			'Valid expiry' => [
 				'99990123123456',
@@ -68,6 +77,40 @@ class ExpiryDefTest extends TypeDefTestCase {
 				'1 month',
 				'2019-07-05T19:50:42Z'
 			],
+			'Expiry less than max' => [ '20190701123456', '2019-07-01T12:34:56Z', $settings ],
+			'Relative expiry less than max' => [ '1 day', '2019-06-06T19:50:42Z', $settings ],
+			'Infinity less than max' => [ 'indefinite', 'infinity', $settings ],
+			'Expiry exceeds max' => [
+				'9999-01-23T12:34:56Z',
+				'2019-12-05T19:50:42Z',
+				$settings,
+				[],
+				[
+					[
+						'code' => 'paramvalidator-badexpiry-duration-max',
+						'data' => null,
+					]
+				],
+			],
+			'Relative expiry exceeds max' => [
+				'10 years',
+				'2019-12-05T19:50:42Z',
+				$settings,
+				[],
+				[
+					[
+						'code' => 'paramvalidator-badexpiry-duration-max',
+						'data' => null,
+					]
+				],
+			],
+			'Expiry exceeds max, fatal' => $this->getValidationAssertion(
+				'9999-01-23T12:34:56Z',
+				'paramvalidator-badexpiry-duration',
+				[
+					ExpiryDef::PARAM_MAX => '6 months',
+				]
+			),
 		];
 	}
 
@@ -101,4 +144,18 @@ class ExpiryDefTest extends TypeDefTestCase {
 		];
 	}
 
+	/**
+	 * @covers ExpiryDef::expiryExceedsMax
+	 */
+	public function testExpiryExceedsMax() {
+		$this->assertFalse(
+			ExpiryDef::expiryExceedsMax( '2020-01-23T12:34:56Z', '6 months' )
+		);
+		$this->assertTrue(
+			ExpiryDef::expiryExceedsMax( '9999-01-23T12:34:56Z', '6 months' )
+		);
+		$this->assertFalse(
+			ExpiryDef::expiryExceedsMax( '2020-01-23T12:34:56Z', null )
+		);
+	}
 }

@@ -21,6 +21,7 @@
  */
 
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
  * API module to allow users to watch a page
@@ -33,10 +34,14 @@ class ApiWatch extends ApiBase {
 	/** @var bool Whether watchlist expiries are enabled. */
 	private $expiryEnabled;
 
+	/** @var string Relative maximum expiry. */
+	private $maxDuration;
+
 	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
 		parent::__construct( $mainModule, $moduleName, $modulePrefix );
 
 		$this->expiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->maxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
 	}
 
 	public function execute() {
@@ -177,6 +182,8 @@ class ApiWatch extends ApiBase {
 			],
 			'expiry' => [
 				ParamValidator::PARAM_TYPE => 'expiry',
+				ExpiryDef::PARAM_MAX => $this->maxDuration,
+				ExpiryDef::PARAM_USE_MAX => true,
 			],
 			'unwatch' => false,
 			'continue' => [

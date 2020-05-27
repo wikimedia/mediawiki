@@ -1217,15 +1217,15 @@ return [
 
 	'WatchedItemStore' => function ( MediaWikiServices $services ) : WatchedItemStore {
 		$store = new WatchedItemStore(
+			new ServiceOptions( WatchedItemStore::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig() ),
 			$services->getDBLoadBalancerFactory(),
 			JobQueueGroup::singleton(),
 			$services->getMainObjectStash(),
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
 			$services->getReadOnlyMode(),
-			$services->getMainConfig()->get( 'UpdateRowsPerQuery' ),
 			$services->getNamespaceInfo(),
-			$services->getRevisionLookup(),
-			$services->getMainConfig()->get( 'WatchlistExpiry' )
+			$services->getRevisionLookup()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 

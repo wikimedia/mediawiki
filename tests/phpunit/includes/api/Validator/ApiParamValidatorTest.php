@@ -33,7 +33,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		];
 	}
 
-	public function testKnwonTypes() : void {
+	public function testKnownTypes() : void {
 		[ $validator ] = $this->getValidator( new FauxRequest( [] ) );
 		$this->assertSame(
 			[

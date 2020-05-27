@@ -501,7 +501,7 @@ class ParamValidator {
 	}
 
 	/**
-	 * Fetch and valiate a parameter value using a settings array
+	 * Fetch and validate a parameter value using a settings array
 	 *
 	 * @param string $name Parameter name
 	 * @param array|mixed $settings Default value or an array of settings
@@ -551,7 +551,7 @@ class ParamValidator {
 	}
 
 	/**
-	 * Valiate a parameter value using a settings array
+	 * Validate a parameter value using a settings array
 	 *
 	 * @param string $name Parameter name
 	 * @param null|mixed $value Parameter value

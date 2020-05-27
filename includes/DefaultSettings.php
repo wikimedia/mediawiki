@@ -9517,6 +9517,22 @@ $wgWatchlistExpiry = false;
 $wgWatchlistPurgeRate = 0.1;
 
 /**
+ * Relative maximum duration for watchlist expiries, as accepted by strtotime().
+ * This relates to finite watchlist expiries only. Pages can be watched indefinitely
+ * regardless of what this is set to.
+ *
+ * This is used to ensure the watchlist_expiry table doesn't grow to be too big.
+ *
+ * Only has effect if $wgWatchlistExpiry is true.
+ *
+ * Set to null to allow expiries of any duration.
+ *
+ * @since 1.35
+ * @var string|null
+ */
+$wgWatchlistExpiryMaxDuration = '6 months';
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
