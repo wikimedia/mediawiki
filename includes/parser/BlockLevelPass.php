@@ -320,7 +320,7 @@ class BlockLevelPass {
 					'/<('
 						. "({$blockElems})|\\/({$antiBlockElems})|"
 						// Always suppresses
-						. '\\/?(tr|dt|dd|li)'
+						. '\\/?(tr|caption|dt|dd|li)'
 						. ')\\b/iS',
 					$t
 				);
