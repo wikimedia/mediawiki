@@ -120,6 +120,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			],
 		];
 		if ( $this->title ) {
+			$spamChecker = MediaWikiServices::getInstance()->getSpamChecker();
+
 			$options = $this->getOptionsForTitle( $this->title );
 			if ( empty( $options ) ) {
 				throw new ErrorPageError(
@@ -146,13 +148,14 @@ class SpecialChangeContentModel extends FormSpecialPage {
 				'reason' => [
 					'type' => 'text',
 					'name' => 'reason',
-					'validation-callback' => function ( $reason ) {
+					'validation-callback' => function ( $reason ) use ( $spamChecker ) {
 						if ( $reason === null || $reason === '' ) {
-							// null on form display, or no reason given
+							// Null on form display, or no reason given
 							return true;
 						}
 
-						$match = EditPage::matchSummarySpamRegex( $reason );
+						$match = $spamChecker->checkSummary( $reason );
+
 						if ( $match ) {
 							return $this->msg( 'spamprotectionmatch', $match )->parse();
 						}

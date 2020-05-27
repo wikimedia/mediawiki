@@ -1258,7 +1258,8 @@ return [
 			$services->getPermissionManager(),
 			$services->getRepoGroup(),
 			$services->getContentHandlerFactory(),
-			$services->getRevisionStore()
+			$services->getRevisionStore(),
+			$services->getSpamChecker()
 		);
 	},
 

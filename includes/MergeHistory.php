@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -75,6 +76,9 @@ class MergeHistory {
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
+	/** @var SpamChecker */
+	private $spamChecker;
+
 	/**
 	 * Since 1.35 dependencies are injected and not providing them is hard deprecated; use the
 	 * MergeHistoryFactory service
@@ -87,6 +91,7 @@ class MergeHistory {
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @param RevisionStore|null $revisionStore
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
+	 * @param SpamChecker|null $spamChecker
 	 */
 	public function __construct(
 		Title $source,
@@ -96,7 +101,8 @@ class MergeHistory {
 		PermissionManager $permManager = null,
 		IContentHandlerFactory $contentHandlerFactory = null,
 		RevisionStore $revisionStore = null,
-		WatchedItemStoreInterface $watchedItemStore = null
+		WatchedItemStoreInterface $watchedItemStore = null,
+		SpamChecker $spamChecker = null
 	) {
 		if ( $loadBalancer === null ) {
 			wfDeprecated( __CLASS__ . ' being constructed directly', '1.35' );
@@ -107,6 +113,7 @@ class MergeHistory {
 			$contentHandlerFactory = $services->getContentHandlerFactory();
 			$revisionStore = $services->getRevisionStore();
 			$watchedItemStore = $services->getWatchedItemStore();
+			$spamChecker = $services->getSpamChecker();
 		}
 
 		// Save the parameters
@@ -120,6 +127,7 @@ class MergeHistory {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
 		$this->watchedItemStore = $watchedItemStore;
+		$this->spamChecker = $spamChecker;
 
 		// Max timestamp should be min of destination page
 		$firstDestTimestamp = $this->dbw->selectField(
@@ -224,8 +232,7 @@ class MergeHistory {
 		}
 
 		// Anti-spam
-		// TODO inject a SpamRegexChecker once that is a service
-		if ( EditPage::matchSummarySpamRegex( $reason ) !== false ) {
+		if ( $this->spamChecker->checkSummary( $reason ) !== false ) {
 			// This is kind of lame, won't display nice
 			$status->fatal( 'spamprotectiontext' );
 		}
