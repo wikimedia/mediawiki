@@ -1082,7 +1082,7 @@ return [
 		$contentHandlerFactory = $services->getContentHandlerFactory();
 
 		$registry = new SlotRoleRegistry(
-			$services->getNameTableStoreFactory()->getSlotRoles()
+			$services->getSlotRoleStore()
 		);
 
 		$registry->defineRole( 'main', function () use ( $config, $contentHandlerFactory ) {
