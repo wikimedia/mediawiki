@@ -529,10 +529,13 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get parent revision ID (the original previous page revision)
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @return int|null The ID of the parent revision. 0 indicates that there is no
 	 * parent revision. Null indicates that the parent revision is not known.
 	 */
 	public function getParentId() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mRecord->getParentId();
 	}
 
@@ -731,9 +734,12 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get the deletion bitfield of the revision
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @return int
 	 */
 	public function getVisibility() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mRecord->getVisibility();
 	}
 
@@ -1055,7 +1061,7 @@ class Revision implements IDBAccessObject {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		return RevisionRecord::userCanBitfield( $this->getVisibility(), $field, $user );
+		return RevisionRecord::userCanBitfield( $this->mRecord->getVisibility(), $field, $user );
 	}
 
 	/**

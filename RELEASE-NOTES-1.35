@@ -924,6 +924,8 @@ because of Phabricator reports.
   - ::getUserText - use RevisionRecord::getUser and then User::getName instead
   - ::isMinor - use RevisionRecord::isMinor instead
   - ::isCurrent - use RevisionRecord::isCurrent instead
+  - ::getParentId - use RevisionRecord::getParentId instead
+  - ::getVisibility - use RevisionRecord::getVisibility instead
   - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
       content address, or RevisionRecord::hasSameContent to compare content
   - ::getNext - use RevisionLookup::getNextRevision instead
