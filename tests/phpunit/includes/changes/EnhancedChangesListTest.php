@@ -95,6 +95,19 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 			$this->assertTrue( $rc->getTitle() == 'Cat' || $rc->getTitle() == 'Dog' );
 			return 'Hello world prefix';
 		} );
+
+		$this->setTemporaryHook( 'EnhancedChangesListModifyLineData', function (
+			$enhancedChangesList, &$data, $block, $rc, &$classes, &$attribs
+		) {
+			$data['recentChangesFlags']['minor'] = 1;
+		} );
+
+		$this->setTemporaryHook( 'EnhancedChangesListModifyBlockLineData', function (
+			$enhancedChangesList, &$data, $rcObj
+		) {
+			$data['recentChangesFlags']['bot'] = 1;
+		} );
+
 		$enhancedChangesList->beginRecentChangesList();
 
 		$recentChange = $this->getEditChange( '20131103092153' );
@@ -106,6 +119,9 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 
 		$this->assertRegExp( '/Hello world prefix/', $html );
 
+		// Test EnhancedChangesListModifyLineData hook was run
+		$this->assertRegExp( '/This is a minor edit/', $html );
+
 		// Two separate lines
 		$enhancedChangesList->beginRecentChangesList();
 
@@ -115,6 +131,9 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$enhancedChangesList->recentChangesLine( $recentChange );
 
 		$html = $enhancedChangesList->endRecentChangesList();
+
+		// Test EnhancedChangesListModifyBlockLineData hook was run
+		$this->assertRegExp( '/This edit was performed by a bot/', $html );
 
 		preg_match_all( '/Hello world prefix/', $html, $matches );
 		$this->assertCount( 2, $matches[0] );
