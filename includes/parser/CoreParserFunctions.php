@@ -1168,6 +1168,10 @@ class CoreParserFunctions {
 			}
 			// Get the current revision, ignoring Parser::getRevisionId() being null/old
 			$revisionRecord = $parser->fetchCurrentRevisionRecordOfTitle( $title );
+			if ( !$revisionRecord ) {
+				// Convert `false` error return to `null`
+				$revisionRecord = null;
+			}
 			// Register dependency in templatelinks
 			$parserOutput->addTemplate(
 				$title,
