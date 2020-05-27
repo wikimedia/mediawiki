@@ -92,6 +92,7 @@ use MediaWiki\Shell\CommandFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\SqlBlobStore;
@@ -168,6 +169,10 @@ return [
 		);
 	},
 
+	'ChangeTagDefStore' => function ( MediaWikiServices $services ) : NameTableStore {
+		return $services->getNameTableStoreFactory()->getChangeTagDef();
+	},
+
 	'CommentStore' => function ( MediaWikiServices $services ) : CommentStore {
 		return new CommentStore(
 			$services->getContentLanguage(),
@@ -210,6 +215,10 @@ return [
 	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
 		return $services->getLanguageFactory()->getLanguage(
 			$services->getMainConfig()->get( 'LanguageCode' ) );
+	},
+
+	'ContentModelStore' => function ( MediaWikiServices $services ) : NameTableStore {
+		return $services->getNameTableStoreFactory()->getContentModels();
 	},
 
 	'CryptHKDF' => function ( MediaWikiServices $services ) : CryptHKDF {
@@ -1084,6 +1093,10 @@ return [
 		} );
 
 		return $registry;
+	},
+
+	'SlotRoleStore' => function ( MediaWikiServices $services ) : NameTableStore {
+		return $services->getNameTableStoreFactory()->getSlotRoles();
 	},
 
 	'SpamChecker' => function ( MediaWikiServices $services ) : SpamChecker {

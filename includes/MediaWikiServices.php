@@ -497,7 +497,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return BlobStore
 	 */
 	public function getBlobStore() : BlobStore {
-		return $this->getService( '_SqlBlobStore' );
+		return $this->getService( 'BlobStore' );
 	}
 
 	/**
@@ -554,7 +554,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return NameTableStore
 	 */
 	public function getChangeTagDefStore() : NameTableStore {
-		return $this->getService( 'NameTableStoreFactory' )->getChangeTagDef();
+		return $this->getService( 'ChangeTagDefStore' );
 	}
 
 	/**
@@ -610,7 +610,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return NameTableStore
 	 */
 	public function getContentModelStore() : NameTableStore {
-		return $this->getService( 'NameTableStoreFactory' )->getContentModels();
+		return $this->getService( 'ContentModelStore' );
 	}
 
 	/**
@@ -1164,7 +1164,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return NameTableStore
 	 */
 	public function getSlotRoleStore() : NameTableStore {
-		return $this->getService( 'NameTableStoreFactory' )->getSlotRoles();
+		return $this->getService( 'SlotRoleStore' );
 	}
 
 	/**
