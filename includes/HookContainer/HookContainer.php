@@ -16,6 +16,11 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup Hooks
+ * @defgroup Hooks Hooks
+ * Hooks allow custom code to be executed when an event occurs; this module
+ * includes all hooks provided by MediaWiki Core; for more information, see
+ * https://www.mediawiki.org/wiki/Manual:Hooks.
  */
 
 namespace MediaWiki\HookContainer;
