@@ -702,11 +702,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Graph
 	branch = REL1_34
 	ignore = dirty
-[submodule "extensions/News"]
-	path = extensions/News
-	url = https://github.com/wikimedia/mediawiki-extensions-News
-	branch = REL1_34
-	ignore = dirty
 [submodule "extensions/Spoilers"]
 	path = extensions/Spoilers
 	url = https://github.com/Telshin/Spoilers
