@@ -692,12 +692,22 @@ class EditPage {
 		if ( $revContentModel && $revContentModel !== $this->contentModel ) {
 			$prevRev = null;
 			if ( $this->undidRev ) {
-				$undidRevObj = Revision::newFromId( $this->undidRev );
-				$prevRev = $undidRevObj ? $undidRevObj->getPrevious() : null;
+				$undidRevRecord = $this->revisionStore
+					->getRevisionById( $this->undidRev );
+				$prevRevRecord = $undidRevRecord ?
+					$this->revisionStore->getPreviousRevision( $undidRevRecord ) :
+					null;
+
+				$prevContentModel = $prevRevRecord ?
+					$prevRevRecord
+						->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
+						->getModel() :
+					'';
 			}
+
 			if ( !$this->undidRev
-				|| !$prevRev
-				|| $prevRev->getContentModel() !== $this->contentModel
+				|| !$prevRevRecord
+				|| $prevContentModel !== $this->contentModel
 			) {
 				$this->displayViewSourcePage(
 					$this->getContentObject(),
