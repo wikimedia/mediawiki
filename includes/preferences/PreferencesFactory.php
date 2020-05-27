@@ -52,17 +52,9 @@ use User;
 interface PreferencesFactory {
 
 	/**
-	 * Set the user to whom the preferences belong.
-	 *
-	 * @since 1.35
-	 * @param User $user
-	 */
-	public function setUser( User $user );
-
-	/**
 	 * Get the preferences form for a given user. This method retrieves the form descriptor for the
 	 * user, instantiates a new form using the descriptor and returns the instantiated form object.
-	 * @param User $user Deprecated since 1.35, and will be ignored if $this->setUser() has been used.
+	 * @param User $user
 	 * @param IContextSource $contextSource
 	 * @param string $formClass
 	 * @param array $remove
@@ -77,7 +69,7 @@ interface PreferencesFactory {
 
 	/**
 	 * Get the preferences form descriptor.
-	 * @param User $user Deprecated since 1.35, and will be ignored if $this->setUser() has been used.
+	 * @param User $user
 	 * @param IContextSource $contextSource
 	 * @return mixed[][] An HTMLForm descriptor array.
 	 */

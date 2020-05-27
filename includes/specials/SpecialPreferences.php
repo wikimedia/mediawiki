@@ -110,8 +110,6 @@ class SpecialPreferences extends SpecialPage {
 	 */
 	protected function getFormObject( $user, IContextSource $context ) {
 		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		$preferencesFactory->setUser( $user );
-		// Note that the $user parameter of getForm() is deprecated.
 		$form = $preferencesFactory->getForm( $user, $context, PreferencesFormOOUI::class );
 		return $form;
 	}
