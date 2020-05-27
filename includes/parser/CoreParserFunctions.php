@@ -1394,7 +1394,11 @@ class CoreParserFunctions {
 		}
 		// fetch revision from cache/database and return the value
 		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-user' );
-		if ( $rev === null ) {
+
+		// FIXME what can getCachedRevisionObject return other than RevisionRecord and null?
+		// See T251952 and T253725 - replacing this with `$rev === null` triggers calls to
+		// getUser on a boolean, which shouldn't have been the case
+		if ( !( $rev instanceof RevisionRecord ) ) {
 			return '';
 		}
 		$user = $rev->getUser();
