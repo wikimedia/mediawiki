@@ -21,6 +21,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -88,6 +89,11 @@ class MovePage {
 	 */
 	private $revisionStore;
 
+	/**
+	 * @var SpamChecker
+	 */
+	private $spamChecker;
+
 	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation'
 	];
@@ -105,6 +111,7 @@ class MovePage {
 	 * @param RepoGroup|null $repoGroup
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @param RevisionStore|null $revisionStore
+	 * @param SpamChecker|null $spamChecker
 	 */
 	public function __construct(
 		Title $oldTitle,
@@ -116,25 +123,28 @@ class MovePage {
 		PermissionManager $permMgr = null,
 		RepoGroup $repoGroup = null,
 		IContentHandlerFactory $contentHandlerFactory = null,
-		RevisionStore $revisionStore = null
+		RevisionStore $revisionStore = null,
+		SpamChecker $spamChecker = null
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
+
+		$services = MediaWikiServices::getInstance();
 		$this->options = $options ??
-			new ServiceOptions( self::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig() );
-		$this->loadBalancer =
-			$loadBalancer ?? MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
-		$this->watchedItems =
-			$watchedItems ?? MediaWikiServices::getInstance()->getWatchedItemStore();
-		$this->permMgr = $permMgr ?? MediaWikiServices::getInstance()->getPermissionManager();
-		$this->repoGroup = $repoGroup ?? MediaWikiServices::getInstance()->getRepoGroup();
-		$this->contentHandlerFactory = (
-			$contentHandlerFactory ?? MediaWikiServices::getInstance()->getContentHandlerFactory()
-		);
-		$this->revisionStore =
-			$revisionStore ?? MediaWikiServices::getInstance()->getRevisionStore();
+			new ServiceOptions(
+				self::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			);
+		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
+		$this->watchedItems = $watchedItems ?? $services->getWatchedItemStore();
+		$this->permMgr = $permMgr ?? $services->getPermissionManager();
+		$this->repoGroup = $repoGroup ?? $services->getRepoGroup();
+		$this->contentHandlerFactory =
+			$contentHandlerFactory ?? $services->getContentHandlerFactory();
+
+		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
+		$this->spamChecker = $spamChecker ?? $services->getSpamChecker();
 	}
 
 	/**
@@ -162,7 +172,7 @@ class MovePage {
 			}
 		}
 
-		if ( $reason !== null && EditPage::matchSummarySpamRegex( $reason ) !== false ) {
+		if ( $reason !== null && $this->spamChecker->checkSummary( $reason ) !== false ) {
 			// This is kind of lame, won't display nice
 			$status->fatal( 'spamprotectiontext' );
 		}

@@ -2673,22 +2673,28 @@ ERROR;
 	/**
 	 * Check given input text against $wgSpamRegex, and return the text of the first match.
 	 *
+	 * @deprecated since 1.35, use the new SpamChecker service
+	 *
 	 * @param string $text
 	 *
 	 * @return string|bool Matching string or false
 	 */
 	public static function matchSpamRegex( $text ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getSpamChecker()->checkContent( $text );
 	}
 
 	/**
 	 * Check given input text against $wgSummarySpamRegex, and return the text of the first match.
 	 *
+	 * @deprecated since 1.35, use the new SpamChecker service
+	 *
 	 * @param string $text
 	 *
 	 * @return string|bool Matching string or false
 	 */
 	public static function matchSummarySpamRegex( $text ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getSpamChecker()->checkSummary( $text );
 	}
 

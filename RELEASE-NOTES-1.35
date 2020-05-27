@@ -1058,6 +1058,8 @@ because of Phabricator reports.
 * UserRetrieveNewTalks hook was deprecated without replacement.
 * User::getNewtalk and ::setNewtalk were deprecated. Use service
   TalkPageNotificationManager instead.
+* EditPage::matchSpamRegex and ::matchSummarySpamRegex were hard deprecated in
+  favor of the new SpamChecker service.
 * SpecialPage::setListed() and SpecialPage::listed() were deprecated. Subclass
   UnlistedSpecialPage to set listed as false, and use SpecialPage::isListed()
   to get the value.
