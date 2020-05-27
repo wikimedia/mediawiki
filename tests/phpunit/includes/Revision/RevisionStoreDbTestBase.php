@@ -862,6 +862,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 
 	protected function revisionToRow( Revision $rev, $options = [ 'page', 'user', 'comment' ] ) {
 		$this->hideDeprecated( 'Revision::getSha1' );
+		$this->hideDeprecated( 'Revision::getUserText' );
+		$this->hideDeprecated( 'Revision::isMinor' );
 
 		// XXX: the WikiPage object loads another RevisionRecord from the database. Not great.
 		$page = WikiPage::factory( $rev->getTitle() );
@@ -918,6 +920,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		RevisionRecord $record
 	) {
 		$this->hideDeprecated( 'Revision::getSha1' );
+		$this->hideDeprecated( 'Revision::getUserText' );
+		$this->hideDeprecated( 'Revision::isMinor' );
 
 		$this->assertSame( $rev->getId(), $record->getId() );
 		$this->assertSame( $rev->getPage(), $record->getPageId() );

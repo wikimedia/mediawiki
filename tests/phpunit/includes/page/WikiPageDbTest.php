@@ -1171,6 +1171,7 @@ more stuff
 		$this->hideDeprecated( 'Revision::countByPageId' );
 		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getUserText' );
 
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
