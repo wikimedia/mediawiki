@@ -3469,7 +3469,7 @@
 	"tags-update-remove-not-allowed-multi": "不允許手動移除以下{{PLURAL:$2|標籤|標籤}}：$1",
 	"tags-edit-title": "編輯標籤",
 	"tags-edit-manage-link": "管理標籤",
-	"tags-edit-revision-selected": "已選擇 [[:$2]] 中{{PLURAL:$1|的修訂|的多筆修訂}}：",
+	"tags-edit-revision-selected": "已選擇[[:$2]]中的{{PLURAL:$1|修訂|多筆修訂}}：",
 	"tags-edit-logentry-selected": "{{PLURAL:$1|已選擇日誌項目|已選擇日誌項目}}：",
 	"tags-edit-revision-legend": "加入或移除此標籤自{{PLURAL:$1|此修訂|全部 $1 筆修訂}}",
 	"tags-edit-logentry-legend": "加入或移除此標籤自{{PLURAL:$1|此日誌項目|全部 $1 筆日誌項目}}",
