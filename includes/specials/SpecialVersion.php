@@ -195,7 +195,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Get the "MediaWiki is copyright 2001-20xx by lots of cool guys" text
+	 * Get the "MediaWiki is copyright 2001-20xx by lots of cool folks" text
 	 *
 	 * @return string
 	 */
