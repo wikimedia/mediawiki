@@ -29,6 +29,8 @@ class HtmlCacheUpdater {
 	private $reboundDelay;
 	/** @var int Whether filesystem-based HTML output caching is enabled */
 	private $useFileCache;
+	/** @var int Max seconds for CDN to served cached objects without revalidation */
+	private $cdnMaxAge;
 
 	/** @var int Issue purge immediately and do not schedule a rebound purge */
 	public const PURGE_NAIVE = 0;
@@ -65,13 +67,23 @@ class HtmlCacheUpdater {
 	public const PURGE_URLS_LINKSUPDATE_ONLY = 4;
 
 	/**
+	 * Do not bother purging cache items if the default max cache TTL implies that no objects
+	 * can still be in cache from before the given timestamp.
+	 *
+	 * @var string
+	 */
+	public const UNLESS_CACHE_MTIME_AFTER = 'unless-timestamp-exceeds';
+
+	/**
 	 * @param int $reboundDelay $wgCdnReboundPurgeDelay
 	 * @param bool $useFileCache $wgUseFileCache
+	 * @param int $cdnMaxAge $wgCdnMaxAge
 	 * @internal For use with MediaWikiServices->getHtmlCacheUpdater()
 	 */
-	public function __construct( $reboundDelay, $useFileCache ) {
+	public function __construct( $reboundDelay, $useFileCache, $cdnMaxAge ) {
 		$this->reboundDelay = $reboundDelay;
 		$this->useFileCache = $useFileCache;
+		$this->cdnMaxAge = $cdnMaxAge;
 	}
 
 	/**
@@ -89,8 +101,14 @@ class HtmlCacheUpdater {
 	 * @param string[]|string $urls URL or list of URLs
 	 * @param int $flags Bit field of class PURGE_* constants
 	 *  [Default: HtmlCacheUpdater::PURGE_PRESEND]
+	 * @param mixed[] $unless Optional map of (HtmlCacheUpdater::UNLESS_* constant => value)
 	 */
-	public function purgeUrls( $urls, $flags = self::PURGE_PRESEND ) {
+	public function purgeUrls( $urls, $flags = self::PURGE_PRESEND, array $unless = [] ) {
+		$minFreshCacheMtime = $unless[self::UNLESS_CACHE_MTIME_AFTER] ?? null;
+		if ( $minFreshCacheMtime && time() > ( $minFreshCacheMtime + $this->cdnMaxAge ) ) {
+			return;
+		}
+
 		$urls = is_string( $urls ) ? [ $urls ] : $urls;
 
 		$reboundDelay = $this->fieldHasFlag( $flags, self::PURGE_REBOUND )
@@ -114,8 +132,9 @@ class HtmlCacheUpdater {
 	 * @param Traversable|Title[]|Title $titles Title or iterator yielding Title instances
 	 * @param int $flags Bit field of class PURGE_* constants
 	 *  [Default: HtmlCacheUpdater::PURGE_PRESEND]
+	 * @param mixed[] $unless Optional map of (HtmlCacheUpdater::UNLESS_* constant => value)
 	 */
-	public function purgeTitleUrls( $titles, $flags = self::PURGE_PRESEND ) {
+	public function purgeTitleUrls( $titles, $flags = self::PURGE_PRESEND, array $unless = [] ) {
 		$titles = $titles instanceof Title ? [ $titles ] : $titles;
 
 		if ( $this->useFileCache ) {
@@ -127,12 +146,15 @@ class HtmlCacheUpdater {
 			}
 		}
 
-		$urls = [];
-		foreach ( $titles as $title ) {
-			/** @var Title $title */
-			$urls = array_merge( $urls, $this->getUrls( $title, $flags ) );
+		$minFreshCacheMtime = $unless[self::UNLESS_CACHE_MTIME_AFTER] ?? null;
+		if ( !$minFreshCacheMtime || time() <= ( $minFreshCacheMtime + $this->cdnMaxAge ) ) {
+			$urls = [];
+			foreach ( $titles as $title ) {
+				/** @var Title $title */
+				$urls = array_merge( $urls, $this->getUrls( $title, $flags ) );
+			}
+			$this->purgeUrls( $urls, $flags );
 		}
-		$this->purgeUrls( $urls, $flags );
 	}
 
 	/**
