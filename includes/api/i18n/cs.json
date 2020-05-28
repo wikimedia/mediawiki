@@ -24,7 +24,7 @@
 	"apihelp-main-param-smaxage": "Nastaví HTTP hlavičku pro řízení kešování <code>s-maxage</code> na uvedený počet sekund. Chyby se nekešují nikdy.",
 	"apihelp-main-param-maxage": "Nastaví HTTP hlavičku pro řízení kešování <code>max-age</code> na uvedený počet sekund. Chyby se nekešují nikdy.",
 	"apihelp-main-param-assert": "Pokud je nastaveno na „<kbd>user</kbd>“, ověří, že je uživatel přihlášen, pokud je nastaveno na „<kbd>bot</kbd>“, ověří, že má oprávnění „bot“.",
-	"apihelp-main-param-assertuser": "Ověřit, zda současný uživatel je jmenovaný uživatel.",
+	"apihelp-main-param-assertuser": "Ověřit, že současným uživatelem je uvedený uživatel.",
 	"apihelp-main-param-requestid": "Libovolná zde uvedená hodnota bude zahrnuta v odpovědi. Lze použít pro rozlišení požadavků.",
 	"apihelp-main-param-servedby": "Zahrnout do odpovědi název hostitele, který požadavek obsloužil.",
 	"apihelp-main-param-curtimestamp": "Zahrnout do odpovědi aktuální časové razítko.",
