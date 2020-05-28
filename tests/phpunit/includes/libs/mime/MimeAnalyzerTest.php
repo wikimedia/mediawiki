@@ -208,7 +208,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	 * The empty string is not a MIME type and should not be mapped to a file extension.
 	 */
 	public function testNoEmptyStringMimeType() {
-		$this->assertNull( $this->mimeAnalyzer->getExtensionsForType( '' ) );
+		$this->assertSame( [], $this->mimeAnalyzer->getExtensionsFromMimeType( '' ) );
 	}
 
 	/**
@@ -227,7 +227,8 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 			},
 		] );
 		$this->assertSame( MEDIATYPE_OFFICE, $mimeAnalyzer->findMediaType( '.fake_extension' ) );
-		$this->assertSame( 'fake/mime', $mimeAnalyzer->getTypesForExtension( 'no_such_extension' ) );
+		$this->assertSame(
+			'fake/mime', $mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
 	}
 
 	public function testGetMimeTypesFromExtension() {

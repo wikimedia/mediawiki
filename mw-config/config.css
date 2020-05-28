@@ -242,6 +242,8 @@ body {
 
 .config-help-field-data {
 	display: block;
+	overflow: hidden;
+	min-width: min-content;
 	background-color: #d6f3ff;
 	padding: 5px 8px 4px 8px;
 	border: 1px solid #5dc9f4;

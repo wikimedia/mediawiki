@@ -291,7 +291,7 @@ class FileBackendGroup {
 	public function guessMimeInternal( $storagePath, $content, $fsPath ) {
 		// Trust the extension of the storage path (caller must validate)
 		$ext = FileBackend::extensionFromPath( $storagePath );
-		$type = $this->mimeAnalyzer->guessTypesForExtension( $ext );
+		$type = $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( $ext );
 		// For files without a valid extension (or one at all), inspect the contents
 		if ( !$type && $fsPath ) {
 			$type = $this->mimeAnalyzer->guessMimeType( $fsPath, false );
