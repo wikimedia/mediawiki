@@ -62,7 +62,13 @@ class ExtensionRegistry {
 	];
 
 	/**
-	 * Array of loaded things, keyed by name, values are credits information
+	 * Array of loaded things, keyed by name, values are credits information.
+	 *
+	 * The keys that the credit info arrays may have is defined
+	 * by ExtensionProcessor::CREDIT_ATTRIBS (plus a 'path' key that
+	 * points to the skin or extension JSON file).
+	 *
+	 * This info may be accessed via via ExtensionRegistry::getAllThings.
 	 *
 	 * @var array[]
 	 */
@@ -631,9 +637,9 @@ class ExtensionRegistry {
 	}
 
 	/**
-	 * Get information about all things
+	 * Get credits information about all installed extensions and skins.
 	 *
-	 * @return array[]
+	 * @return array[] Keyed by component name.
 	 */
 	public function getAllThings() {
 		return $this->loaded;

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
@@ -10,8 +11,18 @@ use MediaWiki\MediaWikiServices;
  * @covers ApiQuerySiteinfo
  */
 class ApiQuerySiteinfoTest extends ApiTestCase {
-	// We don't try to test every single thing for every category, just a sample
+	private $originalRegistryLoaded = null;
 
+	protected function tearDown() : void {
+		if ( $this->originalRegistryLoaded !== null ) {
+			$reg = TestingAccessWrapper::newFromObject( ExtensionRegistry::getInstance() );
+			$reg->loaded = $this->originalRegistryLoaded;
+			$this->originalRegistryLoaded = null;
+		}
+		parent::tearDown();
+	}
+
+	// We don't try to test every single thing for every category, just a sample
 	protected function doQuery( $siprop = null, $extraParams = [] ) {
 		$params = [ 'action' => 'query', 'meta' => 'siteinfo' ];
 		if ( $siprop !== null ) {
@@ -426,6 +437,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 				'author' => [ 'John Smith', 'John Smith Jr.', '...' ],
 				'descriptionmsg' => [ 'another-extension-desc', 'param' ] ],
 		] ] );
+		// Make the main registry empty
+		// TODO: Make ExtensionRegistry an injected service?
+		$reg = TestingAccessWrapper::newFromObject( ExtensionRegistry::getInstance() );
+		$this->originalRegistryLoaded = $reg->loaded;
+		$reg->loaded = [];
 
 		$data = $this->doQuery( 'extensions' );
 
