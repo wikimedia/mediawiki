@@ -217,7 +217,11 @@ class MovePage {
 		} elseif ( $this->oldTitle->isExternal() ) {
 			$status->fatal( 'immobile-source-namespace-iw' );
 		} elseif ( !$this->oldTitle->isMovable() ) {
-			$status->fatal( 'immobile-source-namespace', $this->oldTitle->getNsText() );
+			$nsText = $this->oldTitle->getNsText();
+			if ( $nsText === '' ) {
+				$nsText = wfMessage( 'blanknamespace' )->text();
+			}
+			$status->fatal( 'immobile-source-namespace', $nsText );
 		} elseif ( !$this->oldTitle->exists() ) {
 			$status->fatal( 'movepage-source-doesnt-exist' );
 		}
@@ -225,7 +229,11 @@ class MovePage {
 		if ( $this->newTitle->isExternal() ) {
 			$status->fatal( 'immobile-target-namespace-iw' );
 		} elseif ( !$this->newTitle->isMovable() ) {
-			$status->fatal( 'immobile-target-namespace', $this->newTitle->getNsText() );
+			$nsText = $this->newTitle->getNsText();
+			if ( $nsText === '' ) {
+				$nsText = wfMessage( 'blanknamespace' )->text();
+			}
+			$status->fatal( 'immobile-target-namespace', $nsText );
 		}
 		if ( !$this->newTitle->isValid() ) {
 			$status->fatal( 'movepage-invalid-target-title' );
