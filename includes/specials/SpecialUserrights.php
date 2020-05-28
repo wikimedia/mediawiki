@@ -599,7 +599,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Output a form to allow searching for a user
 	 */
-	private function switchForm() {
+	protected function switchForm() {
 		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
 
 		$this->getOutput()->addHTML(
@@ -1032,7 +1032,7 @@ class UserrightsPage extends SpecialPage {
 	 *   'remove-self' => [ removable groups from self ]
 	 *  ]
 	 */
-	private function changeableGroups() {
+	protected function changeableGroups() {
 		return $this->getUser()->changeableGroups();
 	}
 
