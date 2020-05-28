@@ -1746,7 +1746,7 @@ class FileRepo {
 	 * @param string $param
 	 * @return string
 	 */
-	private function paranoidClean( $param ) {
+	public function paranoidClean( $param ) {
 		return '[hidden]';
 	}
 
@@ -1756,7 +1756,7 @@ class FileRepo {
 	 * @param string $param
 	 * @return string
 	 */
-	private function passThrough( $param ) {
+	public function passThrough( $param ) {
 		return $param;
 	}
 
