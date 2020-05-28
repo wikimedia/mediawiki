@@ -20,11 +20,13 @@
 
 namespace MediaWiki\User;
 
+use IDBAccessObject;
+
 /**
  * Provides access to user options
  * @since 1.35
  */
-abstract class UserOptionsLookup {
+abstract class UserOptionsLookup implements IDBAccessObject {
 
 	/**
 	 * Exclude user options that are set to their default value.
@@ -54,6 +56,7 @@ abstract class UserOptionsLookup {
 	 * @param string $oname The option to check
 	 * @param mixed|null $defaultOverride A default value returned if the option does not exist
 	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
+	 * @param int $queryFlags A bit field composed of READ_XXX flags
 	 * @return mixed|null User's current value for the option
 	 * @see getBoolOption()
 	 * @see getIntOption()
@@ -62,7 +65,8 @@ abstract class UserOptionsLookup {
 		UserIdentity $user,
 		string $oname,
 		$defaultOverride = null,
-		bool $ignoreHidden = false
+		bool $ignoreHidden = false,
+		int $queryFlags = self::READ_NORMAL
 	);
 
 	/**
@@ -72,20 +76,31 @@ abstract class UserOptionsLookup {
 	 * @param int $flags Bitwise combination of:
 	 *   UserOptionsManager::EXCLUDE_DEFAULTS  Exclude user options that are set
 	 *                                         to the default value.
+	 * @param int $queryFlags A bit field composed of READ_XXX flags
 	 * @return array
 	 */
-	abstract public function getOptions( UserIdentity $user, int $flags = 0 ): array;
+	abstract public function getOptions(
+		UserIdentity $user,
+		int $flags = 0,
+		int $queryFlags = self::READ_NORMAL
+	): array;
 
 	/**
 	 * Get the user's current setting for a given option, as a boolean value.
 	 *
 	 * @param UserIdentity $user The user to get the option for
 	 * @param string $oname The option to check
+	 * @param int $queryFlags A bit field composed of READ_XXX flags
 	 * @return bool User's current value for the option
 	 * @see getOption()
 	 */
-	public function getBoolOption( UserIdentity $user, string $oname ): bool {
-		return (bool)$this->getOption( $user, $oname );
+	public function getBoolOption(
+		UserIdentity $user,
+		string $oname,
+		int $queryFlags = self::READ_NORMAL
+	): bool {
+		return (bool)$this->getOption(
+			$user, $oname, null, false, $queryFlags );
 	}
 
 	/**
@@ -94,11 +109,18 @@ abstract class UserOptionsLookup {
 	 * @param UserIdentity $user The user to get the option for
 	 * @param string $oname The option to check
 	 * @param int $defaultOverride A default value returned if the option does not exist
+	 * @param int $queryFlags A bit field composed of READ_XXX flags
 	 * @return int User's current value for the option
 	 * @see getOption()
 	 */
-	public function getIntOption( UserIdentity $user, string $oname, int $defaultOverride = 0 ): int {
-		$val = $this->getOption( $user, $oname );
+	public function getIntOption(
+		UserIdentity $user,
+		string $oname,
+		int $defaultOverride = 0,
+		int $queryFlags = self::READ_NORMAL
+	): int {
+		$val = $this->getOption(
+			$user, $oname, $defaultOverride, false, $queryFlags );
 		if ( $val == '' ) {
 			$val = $defaultOverride;
 		}

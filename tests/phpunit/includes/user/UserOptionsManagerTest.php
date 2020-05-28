@@ -220,7 +220,12 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 				}
 			}
 		);
-		$manager->loadUserOptions( $user );
+		$manager->loadUserOptions( $user, UserOptionsManager::READ_LATEST );
 		$this->assertSame( 1, $recursionCounter );
+	}
+
+	public function testSaveOptionsForAnonUser() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->getManager()->saveOptions( $this->getAnon( __METHOD__ ) );
 	}
 }

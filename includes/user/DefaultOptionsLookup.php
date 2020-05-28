@@ -116,7 +116,8 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 		UserIdentity $user,
 		string $oname,
 		$defaultOverride = null,
-		bool $ignoreHidden = false
+		bool $ignoreHidden = false,
+		int $queryFlags = self::READ_NORMAL
 	) {
 		$this->verifyUsable( $user, __METHOD__ );
 		return $this->getDefaultOption( $oname ) ?? $defaultOverride;
@@ -125,7 +126,11 @@ class DefaultOptionsLookup extends UserOptionsLookup {
 	/**
 	 * @inheritDoc
 	 */
-	public function getOptions( UserIdentity $user, int $flags = 0 ): array {
+	public function getOptions(
+		UserIdentity $user,
+		int $flags = 0,
+		int $queryFlags = self::READ_NORMAL
+	): array {
 		$this->verifyUsable( $user, __METHOD__ );
 		if ( $flags & self::EXCLUDE_DEFAULTS ) {
 			return [];
