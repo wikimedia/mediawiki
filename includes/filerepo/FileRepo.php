@@ -1764,10 +1764,11 @@ class FileRepo {
 	 * Create a new fatal error
 	 *
 	 * @param string $message
+	 * @param mixed ...$parameters
 	 * @return Status
 	 */
-	public function newFatal( $message /*, parameters...*/ ) {
-		$status = Status::newFatal( ...func_get_args() );
+	public function newFatal( $message, ...$parameters ) {
+		$status = Status::newFatal( $message, ...$parameters );
 		$status->cleanCallback = $this->getErrorCleanupFunction();
 
 		return $status;
