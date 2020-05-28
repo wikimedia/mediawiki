@@ -134,16 +134,92 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	public function testSaveUserOptionsHookModify() {
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
-			'UserLoadOptions',
+			'UserSaveOptions',
 			function ( User $hookUser, &$options ) use ( $user ) {
 				if ( $hookUser->equals( $user ) ) {
 					$options['from_hook'] = 'value_from_hook';
 				}
+				return true;
 			}
 		);
 		$manager = $this->getManager();
 		$manager->saveOptions( $user );
 		$this->assertSame( 'value_from_hook', $manager->getOption( $user, 'from_hook' ) );
 		$this->assertSame( 'value_from_hook', $this->getManager()->getOption( $user, 'from_hook' ) );
+	}
+
+	/**
+	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
+	 */
+	public function testSaveUserOptionsHookOriginal() {
+		$user = $this->getTestUser()->getUser();
+		$manager = $this->getManager();
+		$originalLanguage = $manager->getOption( $user, 'language' );
+		$manager->setOption( $user, 'language', 'ru' );
+		$this->setTemporaryHook(
+			'UserSaveOptions',
+			function ( User $hookUser, &$options, $originalOptions ) use ( $user, $originalLanguage ) {
+				if ( $hookUser->equals( $user ) ) {
+					$this->assertSame( $originalLanguage, $originalOptions['language'] );
+					$this->assertSame( 'ru', $options['language'] );
+					$options['language'] = 'tr';
+				}
+				return true;
+			}
+		);
+		$manager->saveOptions( $user );
+		$this->assertSame( 'tr', $manager->getOption( $user, 'language' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserOptionsManager::saveOptions
+	 * @covers \MediaWiki\User\UserOptionsManager::loadUserOptions
+	 */
+	public function testLoadOptionsHookReflectsInOriginalOptions() {
+		$user = $this->getTestUser()->getUser();
+		$manager = $this->getManager();
+		$this->setTemporaryHook(
+			'UserLoadOptions',
+			function ( User $hookUser, &$options ) use ( $user ) {
+				if ( $hookUser->equals( $user ) ) {
+					$options['from_load_hook'] = 'from_load_hook';
+				}
+			}
+		);
+		$this->setTemporaryHook(
+			'UserSaveOptions',
+			function ( User $hookUser, &$options, $originalOptions ) use ( $user ) {
+				if ( $hookUser->equals( $user ) ) {
+					$this->assertSame( 'from_load_hook', $options['from_load_hook'] );
+					$this->assertSame( 'from_load_hook', $originalOptions['from_load_hook'] );
+					$options['from_save_hook'] = 'from_save_hook';
+				}
+				return true;
+			}
+		);
+		$manager->saveOptions( $user );
+		$this->assertSame( 'from_load_hook', $manager->getOption( $user, 'from_load_hook' ) );
+		$this->assertSame( 'from_save_hook', $manager->getOption( $user, 'from_save_hook' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserOptionsManager::loadUserOptions
+	 */
+	public function testInfiniteRecursionOnUserLoadOptionsHook() {
+		$user = $this->getTestUser()->getUser();
+		$manager = $this->getManager();
+		$recursionCounter = 0;
+		$this->setTemporaryHook(
+			'UserLoadOptions',
+			function ( User $hookUser ) use ( $user, $manager, &$recursionCounter ) {
+				if ( $hookUser->equals( $user ) ) {
+					$recursionCounter += 1;
+					$this->assertSame( 1, $recursionCounter );
+					$manager->loadUserOptions( $hookUser );
+				}
+			}
+		);
+		$manager->loadUserOptions( $user );
+		$this->assertSame( 1, $recursionCounter );
 	}
 }

@@ -362,18 +362,24 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	 * @internal
 	 */
 	public function saveOptions( UserIdentity $user ) {
+		$userKey = $this->getCacheKey( $user );
 		// Not using getOptions(), to keep hidden preferences in database
 		$saveOptions = $this->loadUserOptions( $user, self::READ_LATEST );
+		$originalOptions = $this->originalOptionsCache[$userKey] ?? [];
 
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
 		// TODO: Deprecate passing User to the hook.
-		if ( !Hooks::run( 'UserSaveOptions', [ User::newFromIdentity( $user ), &$saveOptions ] ) ) {
+		if ( !Hooks::run(
+			'UserSaveOptions',
+			[ User::newFromIdentity( $user ), &$saveOptions, $originalOptions ]
+		) ) {
 			return;
 		}
+		// In case options were modified by the hook
+		$this->optionsCache[$userKey] = $saveOptions;
 
 		$userId = $user->getId();
-
 		$insert_rows = []; // all the new preference rows
 		foreach ( $saveOptions as $key => $value ) {
 			// Don't bother storing default values
@@ -412,7 +418,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		if ( !count( $keysDelete ) && !count( $insert_rows ) ) {
 			return;
 		}
-		$this->originalOptionsCache[$this->getCacheKey( $user )] = null;
+		$this->originalOptionsCache[$userKey] = null;
 
 		if ( count( $keysDelete ) ) {
 			// Do the DELETE by PRIMARY KEY for prior rows.
@@ -477,9 +483,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 			$this->logger->debug( 'Loading options from override cache', [
 				'user_id' => $user->getId()
 			] );
-			foreach ( $this->originalOptionsCache[$userKey] as $key => $value ) {
-				$options[$key] = $value;
-			}
+			return $this->originalOptionsCache[$userKey];
 		} else {
 			if ( !is_array( $data ) ) {
 				$this->logger->debug( 'Loading options from database', [
@@ -494,7 +498,6 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 					__METHOD__
 				);
 
-				$this->originalOptionsCache[$userKey] = [];
 				$data = [];
 				foreach ( $res as $row ) {
 					// Convert '0' to 0. PHP's boolean conversion considers them both
@@ -509,21 +512,23 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 			}
 
 			foreach ( $data as $property => $value ) {
-				$this->originalOptionsCache[$userKey][$property] = $value;
 				$options[$property] = $value;
 			}
 		}
 
 		// Replace deprecated language codes
 		$options['language'] = LanguageCode::replaceDeprecatedCodes( $options['language'] );
-		$this->optionsCache[$userKey] = $options;
-
+		// Need to store what we have so far before the hook to prevent
+		// infinite recursion if the hook attempts to reload options
+		$this->originalOptionsCache[$userKey] = $options;
 		// TODO: Deprecate passing full User object into the hook.
 		Hooks::run(
 			'UserLoadOptions',
-			[ User::newFromIdentity( $user ), &$this->optionsCache[$userKey] ]
+			[ User::newFromIdentity( $user ), &$options ]
 		);
 
+		$this->originalOptionsCache[$userKey] = $options;
+		$this->optionsCache[$userKey] = $options;
 		return $this->optionsCache[$userKey];
 	}
 

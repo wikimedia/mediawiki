@@ -4412,10 +4412,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onUserSaveOptions( $user, &$options ) {
+	public function onUserSaveOptions( $user, &$options, $originalOptions ) {
 		return $this->container->run(
 			'UserSaveOptions',
-			[ $user, &$options ]
+			[ $user, &$options, $originalOptions ]
 		);
 	}
 
