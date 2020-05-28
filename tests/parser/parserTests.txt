@@ -9741,8 +9741,8 @@ Failing to transform badly formed HTML into correct XHTML
 </p>
 !!end
 
-## FIXME: Is Parsoid's acceptance of self-closing html-tags
-## a feature or a bug? See https://phabricator.wikimedia.org/T76962
+## Parsoid's behavior w/ self-closing HTML tags is now a bug;
+## see T134423.  Legacy Parser now implements proper HTML5 semantics.
 !! test
 Handling html with a div self-closing tag
 !! wikitext
@@ -9752,20 +9752,13 @@ Handling html with a div self-closing tag
 <div title=bar />
 <div title=bar/>
 <div title=bar/ >
-!! html/php+tidy
-<div title=""></div>
-<div title=""></div>
+!! html+tidy
 <div title="">
-<div title="bar"></div>
-<div title="bar"></div>
-<div title="bar/"></div></div>
-!! html/parsoid
-<div title="" data-parsoid='{"stx":"html","selfClose":true}'></div>
-<div title="" data-parsoid='{"stx":"html","selfClose":true}'></div>
-<div title="" data-parsoid='{"stx":"html","autoInsertedEnd":true}'>
-<div title="bar" data-parsoid='{"stx":"html","selfClose":true}'></div>
-<div title="bar" data-parsoid='{"stx":"html","selfClose":true}'></div>
-<div title="bar/" data-parsoid='{"stx":"html","autoInsertedEnd":true}'></div></div>
+<div title="">
+<div title="">
+<div title="bar">
+<div title="bar">
+<div title="bar/"></div></div></div></div></div></div>
 !! end
 
 !! test
@@ -19784,8 +19777,7 @@ Self closed html pairs (T7487)
 <center><font id="bug" />Centered text</center>
 <div><font id="bug2" />In div text</div>
 !! html+tidy
-<center><font id="bug"></font>Centered text</center>
-<div><font id="bug2"></font>In div text</div>
+<center><font id="bug">Centered text</font></center><font id="bug"><div><font id="bug2">In div text</font></div></font>
 !! end
 
 !! test
@@ -28251,10 +28243,8 @@ Self-closed tag with broken attribute value quoting
 parsoid=wt2html,html2html
 !! wikitext
 <div title="Hello world />Foo
-!! html/php+tidy
-<div title="Hello world"></div><p>Foo</p>
-!! html/parsoid
-<div title="Hello world " data-parsoid='{"stx":"html","selfClose":true}'></div><p>Foo</p>
+!! html+tidy
+<div title="Hello world">Foo</div>
 !! end
 
 !! test
