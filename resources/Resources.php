@@ -805,11 +805,6 @@ return [
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.notify' => [
-		'deprecated' => 'This dependency is no longer needed, mw.notify() is available by default.',
-		'dependencies' => 'mediawiki.base',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.notification.convertmessagebox' => [
 		'scripts' => 'resources/src/mediawiki.notification.convertmessagebox.js',
 		'dependencies' => [
