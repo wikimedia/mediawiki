@@ -599,7 +599,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendExtensions( $property ) {
 		$data = [];
-		foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $type => $extensions ) {
+		$credits = SpecialVersion::getCredits(
+			ExtensionRegistry::getInstance(),
+			$this->getConfig()
+		);
+		foreach ( $credits as $type => $extensions ) {
 			foreach ( $extensions as $ext ) {
 				$ret = [];
 				$ret['type'] = $type;

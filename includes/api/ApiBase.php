@@ -1942,7 +1942,8 @@ abstract class ApiBase extends ContextSource {
 				'namemsg' => null,
 				'license-name' => null,
 			];
-			foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $group ) {
+			$credits = SpecialVersion::getCredits( ExtensionRegistry::getInstance(), $this->getConfig() );
+			foreach ( $credits as $group ) {
 				foreach ( $group as $ext ) {
 					if ( !isset( $ext['path'] ) || !isset( $ext['name'] ) ) {
 						// This shouldn't happen, but does anyway.
@@ -1956,14 +1957,6 @@ abstract class ApiBase extends ContextSource {
 					self::$extensionInfo[realpath( $extpath ) ?: $extpath] =
 						array_intersect_key( $ext, $keep );
 				}
-			}
-			foreach ( ExtensionRegistry::getInstance()->getAllThings() as $ext ) {
-				$extpath = $ext['path'];
-				if ( !is_dir( $extpath ) ) {
-					$extpath = dirname( $extpath );
-				}
-				self::$extensionInfo[realpath( $extpath ) ?: $extpath] =
-					array_intersect_key( $ext, $keep );
 			}
 		}
 
