@@ -864,6 +864,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'Revision::getUserText' );
 		$this->hideDeprecated( 'Revision::isMinor' );
+		$this->hideDeprecated( 'Revision::getParentId' );
+		$this->hideDeprecated( 'Revision::getVisibility' );
 
 		// XXX: the WikiPage object loads another RevisionRecord from the database. Not great.
 		$page = WikiPage::factory( $rev->getTitle() );
@@ -922,6 +924,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'Revision::getUserText' );
 		$this->hideDeprecated( 'Revision::isMinor' );
+		$this->hideDeprecated( 'Revision::getParentId' );
+		$this->hideDeprecated( 'Revision::getVisibility' );
 
 		$this->assertSame( $rev->getId(), $record->getId() );
 		$this->assertSame( $rev->getPage(), $record->getPageId() );

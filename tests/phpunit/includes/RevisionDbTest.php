@@ -1477,6 +1477,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetVisibility_nothingDeleted() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getVisibility' );
+
 		$rev = $this->testPage->getRevision();
 
 		$this->assertSame( 0, $rev->getVisibility() );
