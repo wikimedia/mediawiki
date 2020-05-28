@@ -75,9 +75,9 @@ abstract class ApiFormatBase extends ApiBase {
 		} elseif ( $this->getIsHtml() ) {
 			return 'api-result.html';
 		} else {
-			$exts = MediaWikiServices::getInstance()->getMimeAnalyzer()
-				->getExtensionsForType( $this->getMimeType() );
-			$ext = $exts ? strtok( $exts, ' ' ) : strtolower( $this->mFormat );
+			$mimeAnalyzer = MediaWikiServices::getInstance()->getMimeAnalyzer();
+			$ext = $mimeAnalyzer->getExtensionFromMimeTypeOrNull( $this->getMimeType() )
+				?? strtolower( $this->mFormat );
 			return "api-result.$ext";
 		}
 	}

@@ -444,7 +444,7 @@ abstract class UploadBase {
 				fclose( $fp );
 
 				$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-				$extMime = $magic->guessTypesForExtension( $this->mFinalExtension );
+				$extMime = $magic->getMimeTypeFromExtensionOrNull( $this->mFinalExtension );
 				$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
 				foreach ( $ieTypes as $ieType ) {
 					if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
@@ -1021,10 +1021,10 @@ abstract class UploadBase {
 			$mime = $magic->guessMimeType( $this->mTempPath );
 			if ( $mime !== 'unknown/unknown' ) {
 				# Get a space separated list of extensions
-				$extList = $magic->getExtensionsForType( $mime );
-				if ( $extList ) {
+				$mimeExt = $magic->getExtensionFromMimeTypeOrNull( $mime );
+				if ( $mimeExt !== null ) {
 					# Set the extension to the canonical extension
-					$this->mFinalExtension = strtok( $extList, ' ' );
+					$this->mFinalExtension = $mimeExt;
 
 					# Fix up the other variables
 					$this->mFilteredName .= ".{$this->mFinalExtension}";

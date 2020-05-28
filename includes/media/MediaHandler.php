@@ -297,9 +297,9 @@ abstract class MediaHandler {
 		if ( !$ext || $magic->isMatchingExtension( $ext, $mime ) === false ) {
 			// The extension is not valid for this MIME type and we do
 			// recognize the MIME type
-			$extensions = $magic->getExtensionsForType( $mime );
-			if ( $extensions ) {
-				return [ strtok( $extensions, ' ' ), $mime ];
+			$knownExt = $magic->getExtensionFromMimeTypeOrNull( $mime );
+			if ( $knownExt !== null ) {
+				return [ $knownExt, $mime ];
 			}
 		}
 

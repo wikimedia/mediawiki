@@ -122,7 +122,7 @@ class StreamFile {
 		// Use the extension only, rather than magic numbers, to avoid opening
 		// up vulnerabilities due to uploads of files with allowed extensions
 		// but disallowed types.
-		$type = $magic->guessTypesForExtension( $ext );
+		$type = $magic->getMimeTypeFromExtensionOrNull( $ext );
 
 		/**
 		 * Double-check some security settings that were done on upload but might

@@ -362,7 +362,7 @@ class DjVuHandler extends ImageHandler {
 		static $mime;
 		if ( !isset( $mime ) ) {
 			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-			$mime = $magic->guessTypesForExtension( $wgDjvuOutputExtension );
+			$mime = $magic->getMimeTypeFromExtensionOrNull( $wgDjvuOutputExtension );
 		}
 
 		return [ $wgDjvuOutputExtension, $mime ];

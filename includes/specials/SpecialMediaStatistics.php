@@ -241,17 +241,15 @@ class SpecialMediaStatistics extends QueryPage {
 	 */
 	private function getExtensionList( $mime ) {
 		$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
-			->getExtensionsForType( $mime );
-		if ( $exts === null ) {
+			->getExtensionsFromMimeType( $mime );
+		if ( !$exts ) {
 			return '';
 		}
-		$extArray = explode( ' ', $exts );
-		$extArray = array_unique( $extArray );
-		foreach ( $extArray as &$ext ) {
+		foreach ( $exts as &$ext ) {
 			$ext = htmlspecialchars( '.' . $ext );
 		}
 
-		return $this->getLanguage()->commaList( $extArray );
+		return $this->getLanguage()->commaList( $exts );
 	}
 
 	/**
