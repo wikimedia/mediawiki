@@ -47,9 +47,11 @@
 		 * Convenience method for `action=watch`.
 		 *
 		 * @inheritdoc #doWatchInternal
+		 * @since 1.35 - expiry parameter can be passed when
+		 * Watchlist Expiry is enabled
 		 */
-		watch: function ( pages ) {
-			return doWatchInternal.call( this, pages );
+		watch: function ( pages, expiry ) {
+			return doWatchInternal.call( this, pages, { expiry: expiry } );
 		},
 
 		/**

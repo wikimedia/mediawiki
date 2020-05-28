@@ -16,7 +16,8 @@
  */
 ( function () {
 	// The name of the page to watch or unwatch
-	var pageTitle = mw.config.get( 'wgRelevantPageName' );
+	var pageTitle = mw.config.get( 'wgRelevantPageName' ),
+		isWatchlistExpiryEnabled = require( './config.json' ).WatchlistExpiry;
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
@@ -183,7 +184,6 @@
 				.done( function ( watchResponse ) {
 					var message,
 						watchlistPopup = null,
-						isWatchlistExpiryEnabled = require( './config.json' ).WatchlistExpiry,
 						otherAction = action === 'watch' ? 'unwatch' : 'watch';
 
 					if ( mwTitle.isTalkPage() ) {
@@ -195,22 +195,33 @@
 					// @since 1.35 - pop up notification will be loaded with OOUI
 					// only if Watchlist Expiry is enabled
 					if ( isWatchlistExpiryEnabled ) {
+
+						if ( action === 'watch' ) { // The message should include `infinite` watch period
+							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
+						}
+
 						mw.loader.using( 'mediawiki.watchstar.widgets' ).done( function ( require ) {
 							var WatchlistExpiryWidget = require( 'mediawiki.watchstar.widgets' );
 
 							if ( !watchlistPopup ) {
-								watchlistPopup = new WatchlistExpiryWidget( {
-									// The following messages can be used here:
-									// * addedwatchtext-talk
-									// * addedwatchtext
-									// * removedwatchtext-talk
-									// * removedwatchtext
-									message: mw.message( message, mwTitle.getPrefixedText() ).parseDom()
-								} );
+								watchlistPopup = new WatchlistExpiryWidget(
+									action,
+									title,
+									{
+										// The following messages can be used here:
+										// * addedwatchindefinitelytext-talk
+										// * addedwatchindefinitelytext
+										// * removedwatchtext-talk
+										// * removedwatchtext
+										message: mw.message( message, mwTitle.getPrefixedText() ).parseDom(),
+										$link: $link,
+										$li: $link.closest( 'li' )
+									} );
 							}
 
 							mw.notify( watchlistPopup.$element, {
 								tag: 'watch-self',
+								autoHideSeconds: 'long',
 								autoHide: true
 							} );
 
