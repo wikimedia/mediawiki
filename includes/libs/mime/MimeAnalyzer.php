@@ -49,11 +49,13 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	protected $mediaTypes = null;
 	/** @var array Map of MIME type aliases */
 	protected $mimeTypeAliases = null;
-	/** @var array Map of MIME types to file extensions (as a space separated list) */
-	protected $mimeToExt = null;
+	/** @var array<string,string[]> Map of MIME types to file extensions */
+	protected $mimeToExts = [];
+	/** @var array<string,string[]> Map of file extensions to MIME types */
+	protected $extToMimes = [];
 
 	/** @var array Map of file extensions types to MIME types (as a space separated list) */
-	public $mExtToMime = null; // legacy name; field accessed by hooks
+	public $mExtToMime = []; // legacy name; field accessed by hooks
 
 	/** @var IEContentAnalyzer */
 	protected $IEAnalyzer;
@@ -105,9 +107,9 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 		$rawTypes = $this->extraTypes;
 		if ( $this->typeFile === self::USE_INTERNAL ) {
-			$this->mimeToExt = MimeMap::MIME_EXTENSIONS;
+			$this->mimeToExts = MimeMap::MIME_EXTENSIONS;
 		} else {
-			$this->mimeToExt = MimeMapMinimal::MIME_EXTENSIONS;
+			$this->mimeToExts = MimeMapMinimal::MIME_EXTENSIONS;
 			if ( $this->typeFile ) {
 				$rawTypes = file_get_contents( $this->typeFile ) . "\n" . $this->extraTypes;
 			}
@@ -117,13 +119,17 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 
 		// Build the reverse mapping (extension => MIME type).
-		foreach ( $this->mimeToExt as $mime => $exts ) {
-			foreach ( explode( ' ', $exts ) as $ext ) {
-				if ( isset( $this->mExtToMime[$ext] ) ) {
-					$this->mExtToMime[$ext] .= " " . $mime;
-				} else {
-					$this->mExtToMime[$ext] = $mime;
-				}
+		foreach ( $this->mimeToExts as $mime => $exts ) {
+			foreach ( $exts as $ext ) {
+				$this->extToMimes[$ext][] = $mime;
+			}
+		}
+
+		// Migrate items from the legacy $this->mExtToMime field.
+		// TODO: Remove this when mExtToMime is finally removed.
+		foreach ( $this->mExtToMime as $ext => $mimes ) {
+			foreach ( explode( ' ', $mimes ) as $mime ) {
+				$this->extToMimes[$ext][] = $mime;
 			}
 		}
 
@@ -171,10 +177,11 @@ class MimeAnalyzer implements LoggerAwareInterface {
 				continue;
 			}
 
-			if ( !empty( $this->mimeToExt[$mime] ) ) {
-				$this->mimeToExt[$mime] .= ' ' . $ext;
-			} else {
-				$this->mimeToExt[$mime] = $ext;
+			$tokens = preg_split( '/\s+/', $s, -1, PREG_SPLIT_NO_EMPTY );
+			if ( count( $tokens ) > 1 ) {
+				$mime = array_shift( $tokens );
+				$this->mimeToExts[$mime] = array_values( array_unique(
+					array_merge( $this->mimeToExts[$mime] ?? [], $tokens ) ) );
 			}
 		}
 	}
@@ -265,59 +272,95 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * separated string or null if the MIME type was unrecognized. Resolves
 	 * MIME type aliases.
 	 *
+	 * @deprecated since 1.35 Use getExtensionsFromMimeType() instead.
 	 * @param string $mime
 	 * @return string|null
 	 */
 	public function getExtensionsForType( $mime ) {
+		$exts = $this->getExtensionsFromMimeType( $mime );
+		return $exts ? implode( ' ', $exts ) : null;
+	}
+
+	/**
+	 * Returns an array of file extensions associated with a given MIME type.
+	 * The returned array is empty if the MIME type was unrecognized. Resolves
+	 * MIME type aliases.
+	 *
+	 * @since 1.35
+	 * @param string $mime
+	 * @return array
+	 */
+	public function getExtensionsFromMimeType( $mime ) {
 		$mime = strtolower( $mime );
-
-		// Check the mime-to-ext map
-		if ( isset( $this->mimeToExt[$mime] ) ) {
-			return $this->mimeToExt[$mime];
-		}
-
-		// Resolve the MIME type to the canonical type
-		if ( isset( $this->mimeTypeAliases[$mime] ) ) {
+		if ( !isset( $this->mimeToExts[$mime] ) && isset( $this->mimeTypeAliases[$mime] ) ) {
 			$mime = $this->mimeTypeAliases[$mime];
-			if ( isset( $this->mimeToExt[$mime] ) ) {
-				return $this->mimeToExt[$mime];
-			}
 		}
+		return $this->mimeToExts[$mime] ?? [];
+	}
 
-		return null;
+	/**
+	 * Returns an array of MIME types associated with a given file extension.
+	 * The returned array is empty if the file extension is not associated with
+	 * any MIME types.
+	 *
+	 * @since 1.35
+	 * @param string $ext
+	 * @return array
+	 */
+	public function getMimeTypesFromExtension( $ext ) {
+		$ext = strtolower( $ext );
+		return $this->extToMimes[$ext] ?? [];
+	}
+
+	/**
+	 * Returns a single MIME type for a given file extension or null if unknown.
+	 * This is always the first type from the list returned by getMimeTypesFromExtension($ext).
+	 *
+	 * @since 1.35
+	 * @param string $ext
+	 * @return string|null
+	 */
+	public function getMimeTypeFromExtensionOrNull( $ext ) {
+		$types = $this->getMimeTypesFromExtension( $ext );
+		return $types[0] ?? null;
+	}
+
+	/**
+	 * Returns a single file extension for a given MIME type or null if unknown.
+	 * This is always the first type from the list returned by getExtensionsFromMimeType($mime).
+	 *
+	 * @deprecated since 1.35 Use getMimeTypeFromExtensionOrNull() instead.
+	 * @param string $ext
+	 * @return string|null
+	 */
+	public function guessTypesForExtension( $ext ) {
+		return $this->getMimeTypeFromExtensionOrNull( $ext );
 	}
 
 	/**
 	 * Returns a list of MIME types for a given file extension as a space
 	 * separated string or null if the extension was unrecognized.
 	 *
+	 * @deprecated since 1.35 Use getMimeTypesFromExtension() instead.
 	 * @param string $ext
 	 * @return string|null
 	 */
 	public function getTypesForExtension( $ext ) {
-		$ext = strtolower( $ext );
-
-		return $this->mExtToMime[$ext] ?? null;
+		$types = $this->getMimeTypesFromExtension( $ext );
+		return $types ? implode( ' ', $types ) : null;
 	}
 
 	/**
-	 * Returns a single MIME type for a given file extension or null if unknown.
-	 * This is always the first type from the list returned by getTypesForExtension($ext).
+	 * Returns a single file extension for a given MIME type or null if unknown.
+	 * This is always the first type from the list returned by getExtensionsFromMimeType($mime).
 	 *
-	 * @param string $ext
+	 * @since 1.35
+	 * @param string $mime
 	 * @return string|null
 	 */
-	public function guessTypesForExtension( $ext ) {
-		$m = $this->getTypesForExtension( $ext );
-		if ( $m === null ) {
-			return null;
-		}
-
-		// TODO: Check if this is needed; strtok( $m, ' ' ) should be sufficient
-		$m = trim( $m );
-		$m = preg_replace( '/\s.*$/', '', $m );
-
-		return $m;
+	public function getExtensionFromMimeTypeOrNull( $mime ) {
+		$exts = $this->getExtensionsFromMimeType( $mime );
+		return $exts[0] ?? null;
 	}
 
 	/**
@@ -330,16 +373,13 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @return bool|null
 	 */
 	public function isMatchingExtension( $extension, $mime ) {
-		$ext = $this->getExtensionsForType( $mime );
+		$exts = $this->getExtensionsFromMimeType( $mime );
 
-		if ( !$ext ) {
+		if ( !$exts ) {
 			return null; // Unknown MIME type
 		}
 
-		$ext = explode( ' ', $ext );
-
-		$extension = strtolower( $extension );
-		return in_array( $extension, $ext );
+		return in_array( strtolower( $extension ), $exts );
 	}
 
 	/**
@@ -421,13 +461,13 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			} else {
 				// Not something we can detect, so simply
 				// trust the file extension
-				$mime = $this->guessTypesForExtension( $ext );
+				$mime = $this->getMimeTypeFromExtensionOrNull( $ext );
 			}
 		} elseif ( $mime === 'application/x-opc+zip' ) {
 			if ( $this->isMatchingExtension( $ext, $mime ) ) {
 				// A known file extension for an OPC file,
 				// find the proper MIME type for that file extension
-				$mime = $this->guessTypesForExtension( $ext );
+				$mime = $this->getMimeTypeFromExtensionOrNull( $ext );
 			} else {
 				$this->logger->info( __METHOD__ .
 					": refusing to guess better type for $mime file, " .
@@ -439,7 +479,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			// If detected as text/plain, and has an extension which is textual
 			// improve to the extension's type. For example, csv and json are often
 			// misdetected as text/plain.
-			$mime = $this->guessTypesForExtension( $ext );
+			$mime = $this->getMimeTypeFromExtensionOrNull( $ext );
 		}
 
 		# Media handling extensions can improve the MIME detected
@@ -799,7 +839,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 					/* A known file extension for an OPC file,
 					 * find the proper mime type for that file extension
 					 */
-					$mime = $this->guessTypesForExtension( $ext );
+					$mime = $this->getMimeTypeFromExtensionOrNull( $ext );
 				} else {
 					$mime = "application/zip";
 				}
@@ -866,7 +906,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * Internal MIME type detection. Detection is done using the fileinfo
 	 * extension if it is available. It can be overriden by callback, which could
 	 * use an external program, for example. If detection fails and $ext is not false,
-	 * the MIME type is guessed from the file extension, using guessTypesForExtension.
+	 * the MIME type is guessed from the file extension, using getMimeTypeFromExtensionOrNull.
 	 *
 	 * If the MIME type is still unknown, getimagesize is used to detect the
 	 * MIME type if the file is an image. If no MIME type can be determined,
@@ -919,7 +959,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 				$this->logger->info( __METHOD__ . ": refusing to guess mime type for .$ext file, "
 					. "we should have recognized it\n" );
 			} else {
-				$m = $this->guessTypesForExtension( $ext );
+				$m = $this->getMimeTypeFromExtensionOrNull( $ext );
 				if ( $m ) {
 					$this->logger->info( __METHOD__ . ": extension mime type of $file: $m\n" );
 					return $m;

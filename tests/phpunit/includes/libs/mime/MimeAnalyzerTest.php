@@ -229,4 +229,26 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( MEDIATYPE_OFFICE, $mimeAnalyzer->findMediaType( '.fake_extension' ) );
 		$this->assertSame( 'fake/mime', $mimeAnalyzer->getTypesForExtension( 'no_such_extension' ) );
 	}
+
+	public function testGetMimeTypesFromExtension() {
+		$this->assertSame(
+			[ 'video/webm', 'audio/webm' ], $this->mimeAnalyzer->getMimeTypesFromExtension( 'webm' ) );
+		$this->assertSame( [], $this->mimeAnalyzer->getMimeTypesFromExtension( 'no_such_extension' ) );
+	}
+
+	public function testGetMimeTypeFromExtensionOrNull() {
+		$this->assertSame( 'video/webm', $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'webm' ) );
+		$this->assertNull( $this->mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
+	}
+
+	public function testGetExtensionsFromMimeType() {
+		$this->assertSame(
+			[ 'sgml', 'sgm' ], $this->mimeAnalyzer->getExtensionsFromMimeType( 'text/sgml' ) );
+		$this->assertSame( [], $this->mimeAnalyzer->getExtensionsFromMimeType( 'fake/mime' ) );
+	}
+
+	public function testGetExtensionFromMimeTypeOrNull() {
+		$this->assertSame( 'sgml', $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'text/sgml' ) );
+		$this->assertNull( $this->mimeAnalyzer->getExtensionFromMimeTypeOrNull( 'fake/mime' ) );
+	}
 }
