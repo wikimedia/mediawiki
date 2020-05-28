@@ -850,8 +850,9 @@ class DifferenceEngine extends ContextSource {
 	 * Build a link to mark a change as patrolled.
 	 *
 	 * Returns empty string if there's either no revision to patrol or the user is not allowed to.
+	 *
 	 * Side effect: When the patrol link is build, this method will call
-	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
+	 * OutputPage::preventClickjacking() and load a JS module.
 	 *
 	 * @return string HTML or empty string
 	 */
@@ -882,7 +883,7 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Returns an array of meta data needed to build a "mark as patrolled" link and
-	 * adds the mediawiki.page.patrol.ajax to the output.
+	 * adds a JS module to the output.
 	 *
 	 * @return array|false An array of meta data for a patrol link (rcid only)
 	 *  or false if no link is needed
@@ -929,7 +930,7 @@ class DifferenceEngine extends ContextSource {
 			if ( $rcid ) {
 				$this->getOutput()->preventClickjacking();
 				if ( $permissionManager->userHasRight( $user, 'writeapi' ) ) {
-					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
+					$this->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
 				}
 
 				return [

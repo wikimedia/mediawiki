@@ -1891,7 +1891,7 @@ class Linker {
 		if ( $context->getUser()->getBoolOption( 'showrollbackconfirmation' ) ) {
 			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 			$stats->increment( 'rollbackconfirmation.event.load' );
-			$context->getOutput()->addModules( 'mediawiki.page.rollback.confirmation' );
+			$context->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
 		}
 
 		return '<span class="mw-rollback-link">' . $inner . '</span>';
