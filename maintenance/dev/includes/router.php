@@ -60,7 +60,7 @@ if ( $ext == 'php' ) {
 	$mime = 'text/plain';
 	// Borrow from MimeAnalyzer
 	foreach ( \Wikimedia\Mime\MimeMap::MIME_EXTENSIONS as $type => $exts ) {
-		if ( in_array( $ext, explode( ' ', $exts ) ) ) {
+		if ( in_array( $ext, $exts ) ) {
 			$mime = $type;
 			break;
 		}
