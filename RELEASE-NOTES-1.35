@@ -594,6 +594,8 @@ because of Phabricator reports.
   ->getMsg() instead.
 * QuickTemplate::msgWiki(), deprecated in 1.33, was removed. Use ->msg()
   instead.
+* SpecialVersion::getExtensionCredits() and SpecialVersion::getSkinCredits()
+  have become private without deprecation.
 * …
 
 === Deprecations in 1.35 ===
