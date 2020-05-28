@@ -117,22 +117,22 @@ class WatchAction extends FormAction {
 	 * @since 1.35
 	 * @todo Move this somewhere better when it's being used in more than just this action.
 	 *
-	 * @param IContextSource $context
+	 * @param MessageLocalizer $msgLocalizer
 	 * @param WatchedItem|bool $watchedItem
 	 *
 	 * @return mixed[] With keys `options` (string[]) and `default` (string).
 	 */
-	public static function getExpiryOptions( IContextSource $context, $watchedItem ) {
-		$expiryOptionsMsg = $context->msg( 'watchlist-expiry-options' )->text();
-		$expiryOptions = XmlSelect::parseOptionsMessage( $expiryOptionsMsg );
+	public static function getExpiryOptions( MessageLocalizer $msgLocalizer, $watchedItem ) {
+		$expiryOptionsMsg = $msgLocalizer->msg( 'watchlist-expiry-options' );
+		$expiryOptionsMsgText = $expiryOptionsMsg->text();
+		$expiryOptions = XmlSelect::parseOptionsMessage( $expiryOptionsMsgText );
 		$default = 'infinite';
 		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() ) {
 			// If it's already being temporarily watched,
 			// add the existing expiry as the default option in the dropdown.
-
 			$expiry = MWTimestamp::getInstance( $watchedItem->getExpiry() );
 			$diffInDays = $watchedItem->getExpiryInDays();
-			$daysLeft = $context->msg( 'watchlist-expiry-days-left', [ $diffInDays ] )->text();
+			$daysLeft = $msgLocalizer->msg( 'watchlist-expiry-days-left', [ $diffInDays ] )->text();
 			$expiryOptions = array_merge(
 				[ $daysLeft => $expiry->getTimestamp( TS_MW ) ],
 				$expiryOptions
