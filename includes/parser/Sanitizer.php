@@ -488,14 +488,10 @@ class Sanitizer {
 	 * @param array|bool $args Arguments for the processing callback
 	 * @param array $extratags For any extra tags to include
 	 * @param array $removetags For any tags (default or extra) to exclude
-	 * @param callable|null $warnCallback (Deprecated) Callback allowing the
-	 *   addition of a tracking category when bad input is encountered.
-	 *   DO NOT ADD NEW PARAMETERS AFTER $warnCallback, since it will be
-	 *   removed shortly.
 	 * @return string
 	 */
 	public static function removeHTMLtags( $text, $processCallback = null,
-		$args = [], $extratags = [], $removetags = [], $warnCallback = null
+		$args = [], $extratags = [], $removetags = []
 	) {
 		$tagData = self::getRecognizedTagData( $extratags, $removetags );
 		$htmlpairs = $tagData['htmlpairs'];
@@ -526,14 +522,9 @@ class Sanitizer {
 					}
 
 					if ( $brace == '/>' && !( isset( $htmlsingle[$t] ) || isset( $htmlsingleonly[$t] ) ) ) {
-						// Eventually we'll just remove the self-closing
-						// slash, in order to be consistent with HTML5
-						// semantics.
-						// $brace = '>';
-						// For now, let's just warn authors to clean up.
-						if ( is_callable( $warnCallback ) ) {
-							call_user_func_array( $warnCallback, [ 'deprecated-self-close-category' ] );
-						}
+						// Remove the self-closing slash, to be consistent
+						// with HTML5 semantics. T134423
+						$brace = '>';
 					}
 					if ( !self::validateTag( $params, $t ) ) {
 						$badtag = true;

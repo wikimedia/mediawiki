@@ -1560,8 +1560,7 @@ class Parser {
 			},
 			false,
 			[],
-			[],
-			[ $this, 'addTrackingCategory' ]
+			[]
 		);
 		Hooks::run( 'InternalParseBeforeLinks', [ &$parser, &$text, &$this->mStripState ] );
 
