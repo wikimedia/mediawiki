@@ -799,4 +799,21 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$this->assertEquals( 'realdb', $lb->resolveDomainID( 'alias-db' ) );
 		$this->assertEquals( "realdb-realprefix_", $lb->resolveDomainID( "alias-db-prefix_" ) );
 	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\ChronologyProtector
+	 * @covers \Wikimedia\Rdbms\LBFactory
+	 */
+	public function testGetChronologyProtectorTouched() {
+		$store = new HashBagOStuff;
+		$lbFactory = $this->newLBFactoryMulti( [
+			'memStash' => $store
+		] );
+		$lbFactory->setRequestInfo( [ 'ChronologyClientId' => 'ii' ] );
+		$key = $store->makeGlobalKey( ChronologyProtector::class,
+			'mtime', 'ii', 'test-db1' );
+		$store->set( $key, 2 );
+		$touched = $lbFactory->getChronologyProtectorTouched();
+		$this->assertEquals( 2, $touched );
+	}
 }

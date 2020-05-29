@@ -330,10 +330,10 @@ interface ILBFactory {
 	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] );
 
 	/**
-	 * @param string $dbName DB master name (e.g. "db1052")
+	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
 	 * @return float|bool UNIX timestamp when client last touched the DB or false if not recent
 	 */
-	public function getChronologyProtectorTouched( $dbName );
+	public function getChronologyProtectorTouched( $domain = false );
 
 	/**
 	 * Disable the ChronologyProtector for all load balancers

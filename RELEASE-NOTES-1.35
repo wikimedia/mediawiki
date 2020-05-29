@@ -644,6 +644,9 @@ because of Phabricator reports.
     - AuthenticationProvider
     - ResourceLoaderModule
     - SearchEngine
+* The parameters to ChronologyProtector::getTouched() and
+  ILBFactory::getChronologyProtectorTouched() were changed without backwards
+  compatibility.
 * …
 
 === Deprecations in 1.35 ===
