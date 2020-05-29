@@ -4181,10 +4181,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onUserClearNewTalkNotification( $user, $oldid ) {
+	public function onUserClearNewTalkNotification( $userIdentity, $oldid ) {
 		return $this->container->run(
 			'UserClearNewTalkNotification',
-			[ $user, $oldid ]
+			[ $userIdentity, $oldid ]
 		);
 	}
 
