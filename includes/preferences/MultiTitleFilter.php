@@ -47,7 +47,7 @@ class MultiTitleFilter implements Filter {
 			return '';
 		}
 		return implode( "\n", array_map( function ( Title $title ) {
-			return $title->getText();
+			return $title->getPrefixedText();
 		}, $titles ) );
 	}
 

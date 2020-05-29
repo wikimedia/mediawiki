@@ -119,7 +119,7 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 		$title = $this->getMockBuilder( Title::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$title->method( 'getText' )->willReturn( $getTextResult );
+		$title->method( 'getPrefixedText' )->willReturn( $getTextResult );
 		$title->method( 'getArticleID' )->willReturn( $articleId );
 		return $title;
 	}
