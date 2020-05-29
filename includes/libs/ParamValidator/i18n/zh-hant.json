@@ -6,6 +6,8 @@
 	},
 	"paramvalidator-badbool": "用於布林值參數「$1」的值「$2」無效。傳遞$3為 true，傳遞$5為 false。",
 	"paramvalidator-badexpiry": "用於逾期參數「$1」的值「$2」無效。",
+	"paramvalidator-badexpiry-duration": "給予參數 <var>$1</var> 的值「$2」超過上限「$3」。",
+	"paramvalidator-badexpiry-duration-max": "給予參數 <var>$1</var> 的值「$2」超過上限「$3」。使用最大值替代。",
 	"paramvalidator-badexpiry-past": "用於逾期參數「$1」的值「$2」是過去的值。",
 	"paramvalidator-badfloat": "用於浮點參數「$1」的值「$2」無效。",
 	"paramvalidator-badfloat-notfinite": "用於浮點參數「$1」的值「$2」太大或不是數字。",

@@ -4,6 +4,8 @@
 	},
 	"paramvalidator-badbool": "Ungültiger Wert „$2“ für den booleschen Parameter „$1“. Übergib $3 für true, oder $5 für false.",
 	"paramvalidator-badexpiry": "Ungültiger Wert „$2“ für den Ablauf-Parameter „$1“.",
+	"paramvalidator-badexpiry-duration": "Der gegebene Wert „$2“ für den Parameter <var>$1<var> überschreitet das Maximum von „$3“.",
+	"paramvalidator-badexpiry-duration-max": "Der gegebene Wert „$2“ für den Parameter <var>$1<var> überschreitet das Maximum von „$3“. Verwende wird stattdessen das Maximum.",
 	"paramvalidator-badexpiry-past": "Der Wert „$2“ für den Ablauf-Parameter „$1“ liegt in der Vergangenheit.",
 	"paramvalidator-badfloat": "Ungültiger Wert „$2“ für den Float-Parameter „$1“.",
 	"paramvalidator-badfloat-notfinite": "Der Wert „$2“ für den Float-Parameter „$1“ ist zu groß oder ist keine Zahl.",

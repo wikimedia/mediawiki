@@ -6,6 +6,8 @@
 	},
 	"paramvalidator-badbool": "\"$1\" boole parametresi için geçersiz \"$2\" değeri. True için $3 veya false için $5 iletin.",
 	"paramvalidator-badexpiry": "\"$1\" sona erme parametresi için geçersiz \"$2\" değeri.",
+	"paramvalidator-badexpiry-duration": "<var>$1</var> parametresi için \"$2\" verilen maksimum \"$3\" değerini aşıyor.",
+	"paramvalidator-badexpiry-duration-max": "Given value \"$2\" for parameter <var>$1</var> exceeds the maximum of \"$3\". Bunun yerine maksimum kullanılıyor.",
 	"paramvalidator-badexpiry-past": "\"$1\" son kullanma parametresi için \"$2\" değeri geçmişte.",
 	"paramvalidator-badfloat": "\"$1\" float parametresi için geçersiz \"$2\" değeri.",
 	"paramvalidator-badfloat-notfinite": "\"$1\" float parametresi için \"$2\" değeri çok büyük veya bir sayı değil.",
