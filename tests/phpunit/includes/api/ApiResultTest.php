@@ -219,8 +219,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			1 => "\xc3\xa1",
 		], $arr );
 
-		$obj = (object)[];
-		$obj->{'1'} = 'one';
+		$obj = (object)[ 1 => 'one' ];
 		$arr = [];
 		ApiResult::setValue( $arr, 'foo', $obj );
 		$this->assertSame( [
@@ -522,8 +521,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		], $result->getResultData() );
 
 		$result = new ApiResult( 8388608 );
-		$obj = (object)[];
-		$obj->{'1'} = 'one';
+		$obj = (object)[ 1 => 'one' ];
 		$arr = [];
 		$result->addValue( $arr, 'foo', $obj );
 		$this->assertSame( [
