@@ -2407,6 +2407,18 @@ it's off to work we go
 </caption></table>
 <p>it's off to work we go
 </p>
+!! html/parsoid
+<table>
+<caption>hi</caption>
+<tbody><tr><td>ho</td></tr>
+</tbody></table>
+
+<table>
+<tbody><tr><td>hi</td></tr>
+</tbody><caption>ho</caption>
+</table>
+
+<p>it's off to work we go</p>
 !! end
 
 ###
@@ -13981,24 +13993,42 @@ Templates: Wiki Tables: 7. Fosterable <ref>s should get fostered
 <ol class="mw-references references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="./Parser_test#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text">foo</span></li></ol>
 !! end
 
+!!article
+Template:UnclosedTableEndsWithTR
+!!text
+{|
+|-
+!!endarticle
+
 !! test
 Templates: Wiki Tables: 8. Fosterable meta-tags should get fostered
 !! wikitext
-{{1x|
-{{{!}}
-{{!}}-}}
+{{UnclosedTableEndsWithTR}}
 <onlyinclude>
 |foo
 </onlyinclude>
-{{!}}}
+|}
+
+<noinclude>
+{{UnclosedTableEndsWithTR}}
+</noinclude>
+|foo
+|}
 !! html/parsoid
-<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n{{{!}}\n{{!}}-"}},"i":0}},"\n&lt;onlyinclude>\n|foo\n&lt;/onlyinclude>\n{{!}}}"]}'>
-</span><meta typeof="mw:Includes/OnlyInclude" about="#mwt1"/><table about="#mwt1">
+<meta typeof="mw:Transclusion mw:Includes/OnlyInclude" about="#mwt1" data-parsoid='{"dsr":[0,64,null,null],"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"UnclosedTableEndsWithTR","href":"./Template:UnclosedTableEndsWithTR"},"params":{},"i":0}},"\n&lt;onlyinclude>\n|foo\n&lt;/onlyinclude>\n|}"]}'/><table about="#mwt1">
+
 <tbody><tr>
 
 <td>foo
 <meta typeof="mw:Includes/OnlyInclude/End"/></td></tr>
 </tbody></tbody></table>
+
+<meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>","dsr":[66,77,null,null]}'/>
+<meta typeof="mw:Transclusion mw:Includes/NoInclude/End" about="#mwt2" data-parsoid='{"dsr":[78,126,null,null],"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"UnclosedTableEndsWithTR","href":"./Template:UnclosedTableEndsWithTR"},"params":{},"i":0}},"\n&lt;/noinclude>\n|foo\n|}"]}'/><table about="#mwt2">
+<tbody><tr>
+
+<td>foo</td></tr>
+</tbody></table>
 !! end
 
 !!test
@@ -31617,33 +31647,6 @@ b
 !! end
 
 !! test
-Empty paragraphs (marked with mw-empty-elt) found in source should not be normalized away
-!! options
-parsoid={
-  "modes": ["html2wt"],
-  "scrubWikitext": true
-}
-!! html/parsoid
-<table>
-<tbody>
-<tr>
-<td><div>foo
-</div>
-<p class="mw-empty-elt"></p>
-</td>
-</tr>
-</tbody>
-<caption></caption>
-</table>
-!! wikitext
-{|
-|<div>foo
-</div>
-|+
-|}
-!! end
-
-!! test
 Templated content should be skipped over by normalization
 !! options
 parsoid={
@@ -31747,6 +31750,14 @@ parsoid=html2wt
 * test
 * 123
 |}
+!! end
+
+!! test
+Newly inserted noinclude tags do not need newlines before/after
+!! html/parsoid
+<p>a<meta typeof="mw:Includes/NoInclude">b<meta typeof="mw:Includes/NoInclude/End">c</p>
+!! wikitext
+a<noinclude>b</noinclude>c
 !! end
 
 # ---------------------------------------------------
