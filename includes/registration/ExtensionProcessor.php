@@ -63,6 +63,7 @@ class ExtensionProcessor implements Processor {
 	 * @var string[]
 	 */
 	protected const CORE_ATTRIBS = [
+		'ParsoidModules',
 		'RestRoutes',
 		'SkinOOUIThemes',
 		'SearchMappings',
