@@ -1325,6 +1325,9 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Generates array of language links for the current page.
+	 * This may includes items added to this section by the SidebarBeforeOutput hook
+	 * (which may not necessarily be language links)
+	 *
 	 * @since 1.35
 	 * @return array
 	 */
@@ -1424,6 +1427,7 @@ abstract class Skin extends ContextSource {
 			);
 			$languageLinks[] = $languageLink;
 		}
+
 		return $languageLinks;
 	}
 
@@ -1586,6 +1590,8 @@ abstract class Skin extends ContextSource {
 	 * The format of the returned array is [ heading => content, ... ], where:
 	 * - heading is the heading of a navigation portlet. It is either:
 	 *   - magic string to be handled by the skins ('SEARCH' / 'LANGUAGES' / 'TOOLBOX' / ...)
+	 *     - Note that 'SEARCH' unlike others is not supported out-of-the-box by the skins.
+	 *     - For it to work, a skin must add custom support for it.
 	 *   - a message name (e.g. 'navigation'), the message should be HTML-escaped by the skin
 	 *   - plain text, which should be HTML-escaped by the skin
 	 * - content is the contents of the portlet. It is either:
@@ -1633,12 +1639,12 @@ abstract class Skin extends ContextSource {
 				]
 			)
 			: $callback();
+
 		$sidebar['TOOLBOX'] = $this->makeToolbox(
 			$this->buildNavUrls(),
 			$this->buildFeedUrls()
 		);
 		$sidebar['LANGUAGES'] = $this->getLanguages();
-
 		// Apply post-processing to the cached value
 		Hooks::run( 'SidebarBeforeOutput', [ $this, &$sidebar ] );
 
