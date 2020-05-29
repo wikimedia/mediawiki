@@ -45,9 +45,10 @@ abstract class BaseTemplate extends QuickTemplate {
 
 	/**
 	 * Create an array of common toolbox items from the data in the quicktemplate
-	 * stored by SkinTemplate.
+	 * stored by SkinTemplate and items added by hook to the 'toolbox' section.
 	 * The resulting array is built according to a format intended to be passed
 	 * through makeListItem to generate the html.
+	 *
 	 * @return array
 	 */
 	public function getToolbox() {
@@ -55,6 +56,12 @@ abstract class BaseTemplate extends QuickTemplate {
 			$this->data['nav_urls'],
 			$this->data['feeds']
 		);
+
+		// Merge content that might be added to the toolbox section by hook
+		if ( isset( $this->data['sidebar']['TOOLBOX'] ) ) {
+			$toolbox = array_merge( $toolbox, $this->data['sidebar']['TOOLBOX'] ?? [] );
+		}
+
 		// Avoid PHP 7.1 warning from passing $this by reference
 		$template = $this;
 		Hooks::run( 'BaseTemplateToolbox', [ &$template, &$toolbox ] );
@@ -70,7 +77,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * @suppress PhanTypeMismatchDimAssignment
 	 * @param array $options (optional) allows disabling certain sidebar elements.
 	 *  The keys `search`, `toolbox` and `languages` are accepted.
 	 * @return array representing the sidebar
