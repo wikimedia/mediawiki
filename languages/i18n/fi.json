@@ -2186,7 +2186,7 @@
 	"linksearch-pat": "Hakuehto:",
 	"linksearch-ns": "Nimiavaruus:",
 	"linksearch-ok": "Hae",
-	"linksearch-text": "Jokerimerkkejä, kuten ”*.wikipedia.org”, voidaan käyttää.\nVaaditaan vähintään ylätason verkkotunnus, esimerkiksi ”*.org”.<br />\n{{PLURAL:$2|Tuettu protokolla|Tuetut protokollat}}: $1 (oletuksena on <code>http://</code>, jos protokollaa ei määritetä).",
+	"linksearch-text": "Jokerimerkkejä, kuten ”*.wikipedia.org”, voidaan käyttää.<br />\n{{PLURAL:$2|Tuettu protokolla|Tuetut protokollat}}: $1 (oletuksena on http://, jos protokollaa ei määritetä).",
 	"linksearch-line": "$1 on linkitetty sivulta $2",
 	"linksearch-error": "Jokerimerkkiä voi käyttää ainoastaan osoitteen alussa.",
 	"listusersfrom": "Käyttäjien tunnukset alkavat kirjaimilla:",
