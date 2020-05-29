@@ -1769,16 +1769,18 @@ abstract class Skin extends ContextSource {
 		$timestamp = $services->getTalkPageNotificationManager()
 			->getLatestSeenMessageTimestamp( $user );
 		$newtalks = !$userHasNewMessages ? [] : [
+			[
 			// TODO: Deprecate adding wiki and link to array and redesign GetNewMessagesAlert hook
 			'wiki' => WikiMap::getCurrentWikiId(),
 			'link' => $user->getTalkPage()->getLocalURL(),
 			'rev' => $timestamp ? $services->getRevisionLookup()
 				->getRevisionByTimestamp( $user->getTalkPage(), $timestamp ) : null
+			]
 		];
 		$out = $this->getOutput();
 
 		// Allow extensions to disable or modify the new messages alert
-		if ( !Hooks::run( 'GetNewMessagesAlert', [ &$newMessagesAlert, [ $newtalks ], $user, $out ] ) ) {
+		if ( !Hooks::run( 'GetNewMessagesAlert', [ &$newMessagesAlert, $newtalks , $user, $out ] ) ) {
 			return '';
 		}
 		if ( $newMessagesAlert ) {
@@ -1787,7 +1789,7 @@ abstract class Skin extends ContextSource {
 
 		if ( $newtalks !== [] ) {
 			$uTalkTitle = $user->getTalkPage();
-			$lastSeenRev = $newtalks['rev'];
+			$lastSeenRev = $newtalks[0]['rev'];
 			$numAuthors = 0;
 			if ( $lastSeenRev !== null ) {
 				$plural = true; // Default if we have a last seen revision: if unknown, use plural
