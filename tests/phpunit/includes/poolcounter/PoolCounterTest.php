@@ -79,6 +79,6 @@ class PoolCounterTest extends MediaWikiTestCase {
 // in which case we could not test the constructor.
 abstract class PoolCounterAbstractMock extends PoolCounter {
 	public function __construct( ...$args ) {
-		call_user_func_array( 'parent::__construct', $args );
+		parent::__construct( ...$args );
 	}
 }

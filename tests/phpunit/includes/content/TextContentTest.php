@@ -85,8 +85,8 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 		if ( $expectedFields ) {
 			foreach ( $expectedFields as $field => $exp ) {
-				$f = 'get' . ucfirst( $field );
-				$v = call_user_func( [ $po, $f ] );
+				$getter = 'get' . ucfirst( $field );
+				$v = $po->$getter();
 
 				if ( is_array( $exp ) ) {
 					$this->assertArrayEquals( $exp, $v );

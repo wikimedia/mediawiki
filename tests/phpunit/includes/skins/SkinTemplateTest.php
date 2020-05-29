@@ -99,7 +99,7 @@ class SkinTemplateTest extends MediaWikiTestCase {
 
 		$modules = $skin->getDefaultModules();
 
-		$actualStylesModule = call_user_func_array( 'array_merge', $modules['styles'] );
+		$actualStylesModule = array_merge( ...array_values( $modules['styles'] ) );
 		$this->assertArraySubmapSame(
 			$expectedModuleStyles,
 			$actualStylesModule,

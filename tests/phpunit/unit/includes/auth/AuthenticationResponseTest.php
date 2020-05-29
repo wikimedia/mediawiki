@@ -20,11 +20,11 @@ class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
 			foreach ( $expect as $field => $value ) {
 				$res->$field = $value;
 			}
-			$ret = call_user_func_array( "MediaWiki\\Auth\\AuthenticationResponse::$constructor", $args );
+			$ret = AuthenticationResponse::$constructor( ...$args );
 			$this->assertEquals( $res, $ret );
 		} else {
 			try {
-				call_user_func_array( "MediaWiki\\Auth\\AuthenticationResponse::$constructor", $args );
+				AuthenticationResponse::$constructor( ...$args );
 				$this->fail( 'Expected exception not thrown' );
 			} catch ( \Exception $ex ) {
 				$this->assertEquals( $expect, $ex );

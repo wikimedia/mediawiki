@@ -184,7 +184,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 			$validValid = $element instanceof $elementClass;
 
 			try {
-				call_user_func( $function, $list, $element );
+				$function( $list, $element );
 				$valid = true;
 			} catch ( InvalidArgumentException $exception ) {
 				$valid = false;

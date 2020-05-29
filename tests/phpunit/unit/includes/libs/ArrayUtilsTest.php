@@ -134,9 +134,7 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideArrayDiffAssocRecursive
 	 */
 	public function testArrayDiffAssocRecursive( $expected, ...$args ) {
-		$this->assertEquals( call_user_func_array(
-			'ArrayUtils::arrayDiffAssocRecursive', $args
-		), $expected );
+		$this->assertEquals( $expected, ArrayUtils::arrayDiffAssocRecursive( ...$args ) );
 	}
 
 	public function provideArrayDiffAssocRecursive() {

@@ -2289,7 +2289,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		// Implicit transaction does not get silently rolled back
 		$this->database->begin( __METHOD__, Database::TRANSACTION_INTERNAL );
-		call_user_func( $doError );
+		$doError();
 		try {
 			$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 			$this->fail( 'Expected exception not thrown' );
@@ -2314,7 +2314,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// Likewise if there were prior writes
 		$this->database->begin( __METHOD__, Database::TRANSACTION_INTERNAL );
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
-		call_user_func( $doError );
+		$doError();
 		try {
 			$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 			$this->fail( 'Expected exception not thrown' );
@@ -2352,7 +2352,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// Rollback doesn't raise a warning
 		$warning = [];
 		$this->database->startAtomic( __METHOD__ );
-		call_user_func( $doError );
+		$doError();
 		$this->database->rollback( __METHOD__ );
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 		$this->assertSame( [], $warning );
@@ -2363,7 +2363,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$warning = [];
 		$this->database->begin( __METHOD__ );
 		$this->database->startAtomic( __METHOD__, Database::ATOMIC_CANCELABLE );
-		call_user_func( $doError );
+		$doError();
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 		$this->database->commit( __METHOD__ );
@@ -2374,7 +2374,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// Commit does raise a warning
 		$warning = [];
 		$this->database->begin( __METHOD__ );
-		call_user_func( $doError );
+		$doError();
 		$this->database->commit( __METHOD__ );
 		$this->assertSame( [ $expectWarning ], $warning );
 		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; COMMIT' );
@@ -2382,7 +2382,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// Deprecation only gets raised once
 		$warning = [];
 		$this->database->begin( __METHOD__ );
-		call_user_func( $doError );
+		$doError();
 		$this->database->delete( 'x', [ 'field' => 1 ], __METHOD__ );
 		$this->database->commit( __METHOD__ );
 		$this->assertSame( [ $expectWarning ], $warning );

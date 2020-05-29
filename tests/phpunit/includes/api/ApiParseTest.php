@@ -114,7 +114,7 @@ class ApiParseTest extends ApiTestCase {
 			$html = preg_replace( $expectedEnd, '', $html );
 		}
 
-		call_user_func( $callback, $expected, $html );
+		$callback( $expected, $html );
 
 		if ( $warnings === null ) {
 			$this->assertCount( 1, $res[0] );

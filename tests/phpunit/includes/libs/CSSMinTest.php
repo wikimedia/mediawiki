@@ -272,7 +272,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin::remapOne
 	 */
 	public function testRemap( $message, $params, $expectedOutput ) {
-		$remapped = call_user_func_array( 'CSSMin::remap', $params );
+		$remapped = CSSMin::remap( ...$params );
 
 		$messageAdd = " Case: $message";
 		$this->assertEquals(
@@ -338,7 +338,7 @@ class CSSMinTest extends MediaWikiTestCase {
 	 * @covers CSSMin
 	 */
 	public function testRemapEmptyUrl( $params, $expected ) {
-		$remapped = call_user_func_array( 'CSSMin::remap', $params );
+		$remapped = CSSMin::remap( ...$params );
 		$this->assertEquals( $expected, $remapped, 'Ignore empty url' );
 	}
 

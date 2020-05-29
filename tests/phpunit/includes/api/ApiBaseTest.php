@@ -23,7 +23,7 @@ class ApiBaseTest extends ApiTestCase {
 	public function testStubMethods( $expected, $method, $args = [] ) {
 		// Some of these are protected
 		$mock = TestingAccessWrapper::newFromObject( new MockApi() );
-		$result = call_user_func_array( [ $mock, $method ], $args );
+		$result = $mock->$method( ...$args );
 		$this->assertSame( $expected, $result );
 	}
 
