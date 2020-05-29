@@ -60,9 +60,9 @@ abstract class UploadBase {
 	protected $mFilteredName;
 	/** @var string|null */
 	protected $mFinalExtension;
-	/** @var LocalFile */
+	/** @var LocalFile|null */
 	protected $mLocalFile;
-	/** @var UploadStashFile */
+	/** @var UploadStashFile|null */
 	protected $mStashFile;
 	/** @var int|null */
 	protected $mFileSize;
