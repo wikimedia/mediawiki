@@ -612,12 +612,10 @@ class HtmlTest extends MediaWikiTestCase {
 			'tel',
 			'color',
 		];
-		$cases = [];
-		foreach ( $types as $type ) {
-			$cases[] = [ $type ];
-		}
 
-		return $cases;
+		foreach ( $types as $type ) {
+			yield [ $type ];
+		}
 	}
 
 	/**
@@ -769,17 +767,7 @@ class HtmlTest extends MediaWikiTestCase {
 			"dropDefaults accepts values given as an array"
 		];
 
-		# Craft the Html elements
-		$ret = [];
-		foreach ( $cases as $case ) {
-			$ret[] = [
-				$case[0],
-				$case[1], $case[2],
-				$case[3] ?? ''
-			];
-		}
-
-		return $ret;
+		return $cases;
 	}
 
 	/**
