@@ -2260,9 +2260,11 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get the revision ID for the last talk page revision viewed by the talk
 	 * page owner.
+	 * @deprecated since 1.35
 	 * @return int|null Revision ID or null
 	 */
 	public function getNewMessageRevisionId() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$newMessageRevisionId = null;
 		$newMessageLinks = $this->getNewMessageLinks();
 
