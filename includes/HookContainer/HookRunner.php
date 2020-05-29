@@ -3424,10 +3424,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onSidebarBeforeOutput( $skin, &$bar ) {
+	public function onSidebarBeforeOutput( $skin, &$sidebar ) {
 		return $this->container->run(
 			'SidebarBeforeOutput',
-			[ $skin, &$bar ]
+			[ $skin, &$sidebar ]
 		);
 	}
 
