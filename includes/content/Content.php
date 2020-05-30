@@ -524,6 +524,7 @@ interface Content {
 	 * that conversion is not supported.
 	 */
 	public function convert( $toModel, $lossy = '' );
+
 	// @todo ImagePage and CategoryPage interfere with per-content action handlers
 	// @todo nice&sane integration of GeSHi syntax highlighting
 	//   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a

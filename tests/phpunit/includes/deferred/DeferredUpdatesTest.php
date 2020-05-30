@@ -363,7 +363,7 @@ class DeferredUpdatesTest extends MediaWikiTestCase {
 			$this->assertEquals( [], $calls );
 			$calls[] = 'oti';
 		} );
-		$this->assertEquals( 1, $dbw->trxLevel() );
+		$this->assertSame( 1, $dbw->trxLevel() );
 		$this->assertEquals( [], $calls );
 
 		$lbFactory->commitMasterChanges( __METHOD__ );

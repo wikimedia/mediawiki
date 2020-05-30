@@ -267,7 +267,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	) {
 		$this->search->setNamespaces( $namespaces );
 		$results = $this->search->completionSearch( $search );
-		$this->assertEquals( 1, $results->getSize() );
+		$this->assertSame( 1, $results->getSize() );
 		$this->assertEquals( $expectedSuggestion, $results->getSuggestions()[0]->getText() );
 	}
 
@@ -391,7 +391,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		$engine->setLimitOffset( 10, 10 );
 		$results = $engine->completionSearch( 'foo' );
-		$this->assertEquals( 1, $results->getSize() );
+		$this->assertSame( 1, $results->getSize() );
 		$this->assertFalse( $results->hasMoreResults() );
 	}
 

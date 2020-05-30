@@ -230,7 +230,7 @@ class MediaWikiServicesTest extends MediaWikiTestCase {
 		$this->assertSame( 0, $serviceCounter, 'No service instance should be created yet.' );
 
 		$oldInstance = $services->getService( 'Test' );
-		$this->assertEquals( 1, $serviceCounter, 'A service instance should exit now.' );
+		$this->assertSame( 1, $serviceCounter, 'A service instance should exit now.' );
 
 		// The old instance should be detached, and destroy() called.
 		$services->resetServiceForTesting( 'Test' );

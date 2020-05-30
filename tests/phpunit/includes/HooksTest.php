@@ -140,12 +140,12 @@ class HooksTest extends MediaWikiTestCase {
 		$bar = 'qaax';
 
 		Hooks::run( 'MediaWikiHooksTest001', [ &$foo, &$bar ] );
-		$this->assertEquals(
+		$this->assertSame(
 			1,
 			$a->calls,
 			'Hooks::run() should run hooks registered via wgHooks as well as Hooks::register'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			1,
 			$b->calls,
 			'Hooks::run() should run hooks registered via wgHooks as well as Hooks::register'

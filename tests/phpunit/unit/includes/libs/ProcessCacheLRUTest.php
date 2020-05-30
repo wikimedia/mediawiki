@@ -103,7 +103,7 @@ class ProcessCacheLRUTest extends PHPUnit\Framework\TestCase {
 
 		// First set just one value
 		$oneCache->set( 'cache-key', 'prop1', 'value1' );
-		$this->assertEquals( 1, $oneCache->getEntriesCount() );
+		$this->assertSame( 1, $oneCache->getEntriesCount() );
 		$this->assertTrue( $oneCache->has( 'cache-key', 'prop1' ) );
 		$this->assertEquals( 'value1', $oneCache->get( 'cache-key', 'prop1' ) );
 	}

@@ -9,13 +9,13 @@ class SearchResultSetTest extends MediaWikiTestCase {
 	public function testIterate() {
 		$result = SearchResult::newFromTitle( Title::newMainPage() );
 		$resultSet = new MockSearchResultSet( [ $result ] );
-		$this->assertEquals( 1, $resultSet->numRows() );
+		$this->assertSame( 1, $resultSet->numRows() );
 		$count = 0;
 		foreach ( $resultSet as $iterResult ) {
 			$this->assertEquals( $result, $iterResult );
 			$count++;
 		}
-		$this->assertEquals( 1, $count );
+		$this->assertSame( 1, $count );
 
 		$this->hideDeprecated( 'BaseSearchResultSet::rewind' );
 		$this->hideDeprecated( 'BaseSearchResultSet::next' );
@@ -25,7 +25,7 @@ class SearchResultSetTest extends MediaWikiTestCase {
 			$this->assertEquals( $result, $iterResult );
 			$count++;
 		}
-		$this->assertEquals( 1, $count );
+		$this->assertSame( 1, $count );
 	}
 
 	/**

@@ -57,13 +57,13 @@ class ClearUserWatchlistJobTest extends MediaWikiTestCase {
 			] )
 		);
 
-		$this->assertEquals( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
+		$this->assertSame( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 6, $watchedItemStore->countWatchedItems( $user ) );
 		$this->runJobs( 1 );
-		$this->assertEquals( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
+		$this->assertSame( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 4, $watchedItemStore->countWatchedItems( $user ) );
 		$this->runJobs( 1 );
-		$this->assertEquals( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
+		$this->assertSame( 1, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );
 		$this->assertEquals( 2, $watchedItemStore->countWatchedItems( $user ) );
 		$this->runJobs( 1 );
 		$this->assertSame( 0, JobQueueGroup::singleton()->getQueueSizes()['clearUserWatchlist'] );

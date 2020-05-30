@@ -25,6 +25,7 @@ class SpecialEditPage extends SpecialRedirectWithAction {
 	public function __construct() {
 		parent::__construct( 'EditPage', 'edit', 'editpage' );
 	}
+
 	// Messages, for grep:
 	// specialeditpage-page
 	// specialeditpage-submit

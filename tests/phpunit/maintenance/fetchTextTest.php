@@ -192,7 +192,7 @@ class FetchTextTest extends MediaWikiTestCase {
 		$this->fetchText->mockStdin( $input );
 		$this->fetchText->execute();
 		$invocations = $this->fetchText->mockGetInvocations();
-		$this->assertEquals( 1, $invocations['getStdin'],
+		$this->assertSame( 1, $invocations['getStdin'],
 			"getStdin invocation counter" );
 		$this->expectOutputString( $expectedOutput );
 	}

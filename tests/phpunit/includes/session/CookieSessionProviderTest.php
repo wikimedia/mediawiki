@@ -92,7 +92,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		);
 		$p->setLogger( new \TestLogger() );
 		$p->setConfig( $config );
-		$this->assertEquals( 1, $p->priority );
+		$this->assertSame( 1, $p->priority );
 		$this->assertEquals( [
 			'callUserSetCookiesHook' => false,
 			'sessionName' => 'CookiePrefix_session',

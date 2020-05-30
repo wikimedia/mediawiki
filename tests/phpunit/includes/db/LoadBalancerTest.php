@@ -73,7 +73,7 @@ class LoadBalancerTest extends MediaWikiTestCase {
 			}
 		] );
 
-		$this->assertEquals( 1, $lb->getServerCount() );
+		$this->assertSame( 1, $lb->getServerCount() );
 		$this->assertFalse( $lb->hasReplicaServers() );
 		$this->assertFalse( $lb->hasStreamingReplicaServers() );
 

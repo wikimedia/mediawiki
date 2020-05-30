@@ -259,7 +259,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			[ 'ir_ipb_id' => $block->getId() ]
 		);
 
-		$this->assertEquals( 1, $result->numRows() );
+		$this->assertSame( 1, $result->numRows() );
 		$row = $result->fetchObject();
 		$this->assertEquals( $block->getId(), $row->ir_ipb_id );
 		$this->assertEquals( $page->getId(), $row->ir_value );
@@ -308,7 +308,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			[ 'ir_ipb_id' => $block->getId() ]
 		);
 
-		$this->assertEquals( 1, $result->numRows() );
+		$this->assertSame( 1, $result->numRows() );
 		$row = $result->fetchObject();
 		$this->assertEquals( $block->getId(), $row->ir_ipb_id );
 		$this->assertEquals( $page->getId(), $row->ir_value );

@@ -549,7 +549,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
 		$this->assertTrue( $insertion, "Insertion failed" );
 		$res = $db->select( 'a', '*' );
-		$this->assertEquals( 1, $db->numFields( $res ), "wrong number of fields" );
+		$this->assertSame( 1, $db->numFields( $res ), "wrong number of fields" );
 
 		$this->assertTrue( $db->close(), "closing database" );
 	}

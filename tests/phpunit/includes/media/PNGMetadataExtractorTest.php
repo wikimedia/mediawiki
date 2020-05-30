@@ -73,7 +73,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 			'Png-native-test.png' );
 
 		$this->assertSame( 0, $meta['frameCount'] );
-		$this->assertEquals( 1, $meta['loopCount'] );
+		$this->assertSame( 1, $meta['loopCount'] );
 		$this->assertSame( 0.0, $meta['duration'] );
 	}
 
@@ -101,7 +101,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	public function testPngBitDepth1() {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'1bit-png.png' );
-		$this->assertEquals( 1, $meta['bitDepth'] );
+		$this->assertSame( 1, $meta['bitDepth'] );
 	}
 
 	public function testPngIndexColour() {

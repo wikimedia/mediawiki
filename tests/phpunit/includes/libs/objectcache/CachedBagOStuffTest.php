@@ -34,8 +34,8 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		for ( $i = 0; $i < 10; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
-			$this->assertEquals( 1, $backend->get( "key$i" ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
+			$this->assertSame( 1, $backend->get( "key$i" ) );
 
 			$cache->delete( "key$i" );
 			$this->assertFalse( $cache->get( "key$i" ) );

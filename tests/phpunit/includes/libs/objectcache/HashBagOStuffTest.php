@@ -49,7 +49,7 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 		$cache = new HashBagOStuff();
 		for ( $i = 0; $i < 10; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
 			$cache->delete( "key$i" );
 			$this->assertFalse( $cache->get( "key$i" ) );
 		}
@@ -62,7 +62,7 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 		$cache = new HashBagOStuff();
 		for ( $i = 0; $i < 10; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
 		}
 		$cache->clear();
 		for ( $i = 0; $i < 10; $i++ ) {
@@ -96,7 +96,7 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 			'Past'
 		);
 
-		$this->assertEquals( 1, $cache->get( 'bar' ), 'Key not expired' );
+		$this->assertSame( 1, $cache->get( 'bar' ), 'Key not expired' );
 		$this->assertFalse( $cache->get( 'baz' ), 'Key expired' );
 	}
 
@@ -109,11 +109,11 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 		$cache = new HashBagOStuff( [ 'maxKeys' => 10 ] );
 		for ( $i = 0; $i < 10; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
 		}
 		for ( $i = 10; $i < 20; $i++ ) {
 			$cache->set( "key$i", 1 );
-			$this->assertEquals( 1, $cache->get( "key$i" ) );
+			$this->assertSame( 1, $cache->get( "key$i" ) );
 			$this->assertFalse( $cache->get( "key" . ( $i - 10 ) ) );
 		}
 	}
@@ -139,7 +139,7 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		// Foo's life should have been extended over Bar
 		foreach ( [ 'foo', 'baz', 'quux' ] as $key ) {
-			$this->assertEquals( 1, $cache->get( $key ), "Kept $key" );
+			$this->assertSame( 1, $cache->get( $key ), "Kept $key" );
 		}
 		$this->assertFalse( $cache->get( 'bar' ), 'Evicted bar' );
 	}
@@ -165,7 +165,7 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		// Foo's life should have been extended over Bar
 		foreach ( [ 'foo', 'baz', 'quux' ] as $key ) {
-			$this->assertEquals( 1, $cache->get( $key ), "Kept $key" );
+			$this->assertSame( 1, $cache->get( $key ), "Kept $key" );
 		}
 		$this->assertFalse( $cache->get( 'bar' ), 'Evicted bar' );
 	}

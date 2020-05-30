@@ -37,7 +37,7 @@ class SpecialPageFactoryTest extends MediaWikiTestCase {
 		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
 		$spf->getNames();
 		$spf->getNames();
-		$this->assertEquals( 1, $count );
+		$this->assertSame( 1, $count );
 	}
 
 	public function newSpecialAllPages() {

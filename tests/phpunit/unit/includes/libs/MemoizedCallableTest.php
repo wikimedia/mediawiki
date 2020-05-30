@@ -76,7 +76,7 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 86400, $memoized->ttl );
 
 		$memoized = TestingAccessWrapper::newFromObject( new MemoizedCallable( 'abs', -10 ) );
-		$this->assertEquals( 1, $memoized->ttl );
+		$this->assertSame( 1, $memoized->ttl );
 	}
 
 	/**

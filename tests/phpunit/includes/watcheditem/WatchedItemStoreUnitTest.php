@@ -1287,7 +1287,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			new TitleValue( 0, 'SomeDbKey' )
 		);
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
-		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
+		$this->assertSame( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
 		$this->assertSame( '20300101000000', $watchedItem->getExpiry() );
 		$this->assertSame( 0, $watchedItem->getLinkTarget()->getNamespace() );
@@ -1479,7 +1479,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			new TitleValue( 0, 'SomeDbKey' )
 		);
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
-		$this->assertEquals( 1, $watchedItem->getUser()->getId() );
+		$this->assertSame( 1, $watchedItem->getUser()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
 		$this->assertSame( '20300101000000', $watchedItem->getExpiry() );
 		$this->assertSame( 0, $watchedItem->getLinkTarget()->getNamespace() );
@@ -2656,7 +2656,7 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 		$this->assertTrue(
 			$store->setNotificationTimestampsForUser( $user, $timestamp )
 		);
-		$this->assertEquals( 1, $callableCallCounter );
+		$this->assertSame( 1, $callableCallCounter );
 	}
 
 	public function testSetNotificationTimestampsForUser_nullTimestamp() {

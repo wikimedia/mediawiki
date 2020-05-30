@@ -100,7 +100,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$session = TestUtils::getDummySession();
 		$backend = TestingAccessWrapper::newFromObject( $session )->backend;
 
-		$this->assertEquals( 1, $session->get( 'foo' ) );
+		$this->assertSame( 1, $session->get( 'foo' ) );
 		$this->assertEquals( 'zero', $session->get( 0 ) );
 		$this->assertFalse( $backend->dirty );
 
@@ -160,7 +160,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$session = TestUtils::getDummySession( null, -1, $logger );
 		$backend = TestingAccessWrapper::newFromObject( $session )->backend;
 
-		$this->assertEquals( 1, $session['foo'] );
+		$this->assertSame( 1, $session['foo'] );
 		$this->assertEquals( 'zero', $session[0] );
 		$this->assertFalse( $backend->dirty );
 
