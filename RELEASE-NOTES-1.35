@@ -235,7 +235,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added wikimedia/parsoid 0.12.0.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuex v3.1.3.
-* Added doctrine/sql-formatter 1.0.0 (dev-only).
+* Added doctrine/sql-formatter 1.1.0 (dev-only).
 * Added pimple/pimple 3.3.0 (dev-only).
 * …
 
