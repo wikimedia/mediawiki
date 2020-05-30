@@ -3071,8 +3071,8 @@ $specialSearch: The SpecialSearch object
 Warning: This hook is run on each display. You should consider to use
 'SkinBuildSidebar' that is aggressively cached.
 $skin: Skin object
-&$bar: Sidebar content
-  Modify $bar to add or modify sidebar portlets.
+&$sidebar: Sidebar content
+  Modify $sidebar to add or modify sidebar portlets.
 
 'SiteNoticeAfter': After the sitenotice/anonnotice is composed.
 &$siteNotice: HTML sitenotice. Alter the contents of $siteNotice to add to/alter
