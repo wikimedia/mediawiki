@@ -830,7 +830,7 @@ because of Phabricator reports.
   changed from public to protected:
   - mTables
 * The UndeleteShowRevision hook has been deprecated.
-* The ArticleRollbackComplete hook has been deprecated. Please use the new
+* The ArticleRollbackComplete hook has been hard deprecated. Please use the new
   RollbackComplete hook instead.
 * The ArticleEditUpdatesDeleteFromRecentchanges hook has been deprecated. Please
   use the RecentChange_save hook or similar instead.
@@ -838,7 +838,7 @@ because of Phabricator reports.
   use the RevisionDataUpdates hook or similar instead.
 * The ArticleRevisionUndeleted hook has been hard deprecated. Please use the
   new RevisionUndeleted hook instead.
-* The NewRevisionFromEditComplete hook has been soft deprecated. Please use
+* The NewRevisionFromEditComplete hook has been hard deprecated. Please use
   the new RevisionFromEditComplete hook instead.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
