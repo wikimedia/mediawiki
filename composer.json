@@ -79,6 +79,7 @@
 		"nikic/php-parser": "4.4.0",
 		"nmred/kafka-php": "0.1.5",
 		"phpunit/phpunit": "^8.5",
+		"pimple/pimple": "3.3.0",
 		"psy/psysh": "0.10.4",
 		"seld/jsonlint": "1.7.1",
 		"symfony/yaml": "~3.4|~4.3|~5.0.5",
