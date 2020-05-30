@@ -4,7 +4,10 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
+ * TODO convert to a pure unit test
+ *
  * @group Database
+ *
  * @author DannyS712
  */
 class ContentModelChangeTest extends MediaWikiTestCase {
@@ -41,6 +44,16 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 		] );
 	}
 
+	private function newContentModelChange(
+		User $user,
+		WikiPage $page,
+		string $newModel
+	) {
+		return MediaWikiServices::getInstance()
+			->getContentModelChangeFactory()
+			->newContentModelChange( $user, $page, $newModel );
+	}
+
 	/**
 	 * Test that the content model needs to change
 	 *
@@ -54,9 +67,8 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 			'Sanity check: `ExistingPage` should be wikitext'
 		);
 
-		$change = new ContentModelChange(
+		$change = $this->newContentModelChange(
 			$this->getTestUser( [ 'editcontentmodel' ] )->getUser(),
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			$wikipage,
 			'wikitext'
 		);
@@ -92,9 +104,8 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 			'Sanity check: `PageWithTextThatIsNotValidJSON` should be wikitext at first'
 		);
 
-		$change = new ContentModelChange(
+		$change = $this->newContentModelChange(
 			$this->getTestUser( [ 'editcontentmodel' ] )->getUser(),
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			$wikipage,
 			'json'
 		);
@@ -135,9 +146,8 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 			}
 		);
 
-		$change = new ContentModelChange(
+		$change = $this->newContentModelChange(
 			$this->getTestUser( [ 'editcontentmodel' ] )->getUser(),
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			$wikipage,
 			'text'
 		);
@@ -186,9 +196,8 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 			}
 		);
 
-		$change = new ContentModelChange(
+		$change = $this->newContentModelChange(
 			$this->getTestUser( [ 'editcontentmodel' ] )->getUser(),
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			$wikipage,
 			'text'
 		);
@@ -230,9 +239,8 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 			'Dummy:NoDirectEditing should start with the `testing` content model'
 		);
 
-		$change = new ContentModelChange(
+		$change = $this->newContentModelChange(
 			$this->getTestUser( [ 'editcontentmodel' ] )->getUser(),
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			$wikipage,
 			'text'
 		);
@@ -256,9 +264,8 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 	public function testCannotApplyTags() {
 		ChangeTags::defineTag( 'edit content model tag' );
 
-		$change = new ContentModelChange(
+		$change = $this->newContentModelChange(
 			$this->getTestUser( [ 'noapplychangetags' ] )->getUser(),
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			$this->getExistingTestPage( 'ExistingPage' ),
 			'text'
 		);
@@ -342,9 +349,13 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 				)
 			);
 
+		$services = MediaWikiServices::getInstance();
 		$change = new ContentModelChange(
-			$user,
+			$services->getContentHandlerFactory(),
+			$services->getHookContainer(),
 			$mock,
+			$services->getRevisionLookup(),
+			$user,
 			$wikipage,
 			$newContentModel
 		);
@@ -372,9 +383,8 @@ class ContentModelChangeTest extends MediaWikiTestCase {
 			->with( $this->equalTo( 'editcontentmodel' ) )
 			->willReturn( true );
 
-		$change = new ContentModelChange(
+		$change = $this->newContentModelChange(
 			$mock,
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			$this->getNonexistingTestPage( 'NonExistingPage' ),
 			'text'
 		);

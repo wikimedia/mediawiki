@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Page;
 
+use ContentModelChange;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
@@ -33,15 +34,17 @@ use MovePage;
 use NamespaceInfo;
 use RepoGroup;
 use Title;
+use User;
 use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
+use WikiPage;
 
 /**
  * Common factory to construct page handling classes.
  *
  * @since 1.35
  */
-class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
+class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFactory, MovePageFactory {
 	/** @var ServiceOptions */
 	private $options;
 
@@ -49,13 +52,13 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 	private $loadBalancer;
 
 	/** @var NamespaceInfo */
-	private $nsInfo;
+	private $namespaceInfo;
 
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
 	/** @var PermissionManager */
-	private $permManager;
+	private $permissionManager;
 
 	/** @var RepoGroup */
 	private $repoGroup;
@@ -79,9 +82,9 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 	public function __construct(
 		ServiceOptions $options,
 		ILoadBalancer $loadBalancer,
-		NamespaceInfo $nsInfo,
+		NamespaceInfo $namespaceInfo,
 		WatchedItemStoreInterface $watchedItemStore,
-		PermissionManager $permManager,
+		PermissionManager $permissionManager,
 		RepoGroup $repoGroup,
 		IContentHandlerFactory $contentHandlerFactory,
 		RevisionStore $revisionStore,
@@ -92,14 +95,36 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 
 		$this->options = $options;
 		$this->loadBalancer = $loadBalancer;
-		$this->nsInfo = $nsInfo;
+		$this->namespaceInfo = $namespaceInfo;
 		$this->watchedItemStore = $watchedItemStore;
-		$this->permManager = $permManager;
+		$this->permissionManager = $permissionManager;
 		$this->repoGroup = $repoGroup;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
 		$this->spamChecker = $spamChecker;
 		$this->hookContainer = $hookContainer;
+	}
+
+	/**
+	 * @param User $user
+	 * @param WikiPage $wikipage
+	 * @param string $newContentModel
+	 * @return ContentModelChange
+	 */
+	public function newContentModelChange(
+		User $user,
+		WikiPage $wikipage,
+		string $newContentModel
+	) : ContentModelChange {
+		return new ContentModelChange(
+			$this->contentHandlerFactory,
+			$this->hookContainer,
+			$this->permissionManager,
+			$this->revisionStore,
+			$user,
+			$wikipage,
+			$newContentModel
+		);
 	}
 
 	/**
@@ -122,7 +147,7 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 			$destination,
 			$timestamp,
 			$this->loadBalancer,
-			$this->permManager,
+			$this->permissionManager,
 			$this->contentHandlerFactory,
 			$this->revisionStore,
 			$this->watchedItemStore,
@@ -141,9 +166,9 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 			$to,
 			$this->options,
 			$this->loadBalancer,
-			$this->nsInfo,
+			$this->namespaceInfo,
 			$this->watchedItemStore,
-			$this->permManager,
+			$this->permissionManager,
 			$this->repoGroup,
 			$this->contentHandlerFactory,
 			$this->revisionStore,

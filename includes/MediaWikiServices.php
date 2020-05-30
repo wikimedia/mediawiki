@@ -46,6 +46,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Mail\IEmailer;
+use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -605,6 +606,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContentLanguage() : Language {
 		return $this->getService( 'ContentLanguage' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return ContentModelChangeFactory
+	 */
+	public function getContentModelChangeFactory() : ContentModelChangeFactory {
+		return $this->getService( 'ContentModelChangeFactory' );
 	}
 
 	/**

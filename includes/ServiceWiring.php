@@ -76,6 +76,7 @@ use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\MessageFormatterFactory;
+use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageCommandFactory;
@@ -220,6 +221,10 @@ return [
 	'ContentLanguage' => function ( MediaWikiServices $services ) : Language {
 		return $services->getLanguageFactory()->getLanguage(
 			$services->getMainConfig()->get( 'LanguageCode' ) );
+	},
+
+	'ContentModelChangeFactory' => function ( MediaWikiServices $services ) : ContentModelChangeFactory {
+		return $services->getService( '_PageCommandFactory' );
 	},
 
 	'ContentModelStore' => function ( MediaWikiServices $services ) : NameTableStore {

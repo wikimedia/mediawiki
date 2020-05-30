@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Api module to change the content model of existing pages
  *
@@ -28,12 +30,13 @@ class ApiChangeContentModel extends ApiBase {
 		$user = $this->getUser();
 
 		$this->checkUserRightsAny( 'editcontentmodel' );
-		$changer = new ContentModelChange(
-			$user,
-			$this->getPermissionManager(),
-			$wikiPage,
-			$newModel
-		);
+		$changer = MediaWikiServices::getInstance()
+			->getContentModelChangeFactory()
+			->newContentModelChange(
+				$user,
+				$wikiPage,
+				$newModel
+			);
 		// Status messages should be apierror-*
 		$changer->setMessagePrefix( 'apierror-' );
 		$errors = $changer->checkPermissions();
