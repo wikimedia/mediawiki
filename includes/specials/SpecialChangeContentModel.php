@@ -208,12 +208,13 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$this->title = Title::newFromText( $data['pagetitle'] );
 		$page = WikiPage::factory( $this->title );
 
-		$changer = new ContentModelChange(
-			$user,
-			MediaWikiServices::getInstance()->getPermissionManager(),
-			$page,
-			$data['model']
-		);
+		$changer = MediaWikiServices::getInstance()
+			->getContentModelChangeFactory()
+			->newContentModelChange(
+				$user,
+				$page,
+				$data['model']
+			);
 
 		$errors = $changer->checkPermissions();
 		if ( $errors ) {

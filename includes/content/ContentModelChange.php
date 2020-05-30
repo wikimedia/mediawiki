@@ -1,7 +1,10 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 
 /**
@@ -15,59 +18,66 @@ use MediaWiki\Revision\SlotRecord;
  */
 class ContentModelChange {
 
-	/**
-	 * @var User user making the change
-	 */
-	private $user;
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
 
-	/**
-	 * @var PermissionManager permission manager to user
-	 */
+	/** @var HookRunner */
+	private $hookRunner;
+
+	/** @var PermissionManager */
 	private $permManager;
 
-	/**
-	 * @var WikiPage
-	 */
+	/** @var RevisionLookup */
+	private $revLookup;
+
+	/** @var User user making the change */
+	private $user;
+
+	/** @var WikiPage */
 	private $page;
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	private $newModel;
 
-	/**
-	 * @var string[] tags to add
-	 */
+	/** @var string[] tags to add */
 	private $tags;
 
-	/**
-	 * @var Content
-	 */
+	/** @var Content */
 	private $newContent;
 
-	/**
-	 * @var int|false latest revision id, or false if creating
-	 */
+	/** @var int|false latest revision id, or false if creating */
 	private $latestRevId;
 
-	/**
-	 * @var string 'new' or 'change'
-	 */
+	/** @var string 'new' or 'change' */
 	private $logAction;
 
-	/**
-	 * @var string 'apierror-' or empty string, for status messages
-	 */
+	/** @var string 'apierror-' or empty string, for status messages */
 	private $msgPrefix;
 
+	/**
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param HookContainer $hookContainer
+	 * @param PermissionManager $permManager
+	 * @param RevisionLookup $revLookup
+	 * @param User $user
+	 * @param WikiPage $page
+	 * @param string $newModel
+	 */
 	public function __construct(
-		User $user,
+		IContentHandlerFactory $contentHandlerFactory,
+		HookContainer $hookContainer,
 		PermissionManager $permManager,
+		RevisionLookup $revLookup,
+		User $user,
 		WikiPage $page,
-		$newModel
+		string $newModel
 	) {
-		$this->user = $user;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->permManager = $permManager;
+		$this->revLookup = $revLookup;
+
+		$this->user = $user;
 		$this->page = $page;
 		$this->newModel = $newModel;
 
@@ -140,11 +150,10 @@ class ContentModelChange {
 	 * @return Status
 	 */
 	private function createNewContent() {
-		$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$contentHandlerFactory = $this->contentHandlerFactory;
 
 		$title = $this->page->getTitle();
-		$latestRevRecord = $revLookup->getRevisionByTitle( $title );
+		$latestRevRecord = $this->revLookup->getRevisionByTitle( $title );
 
 		if ( $latestRevRecord ) {
 			$latestContent = $latestRevRecord->getContent( SlotRecord::MAIN );
@@ -256,7 +265,7 @@ class ContentModelChange {
 
 		$newContent = $this->newContent;
 
-		if ( !Hooks::runner()->onEditFilterMergedContent( $derivativeContext, $newContent,
+		if ( !$this->hookRunner->onEditFilterMergedContent( $derivativeContext, $newContent,
 			$status, $reason, $user, false )
 		) {
 			if ( $status->isGood() ) {
