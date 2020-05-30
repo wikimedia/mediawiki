@@ -191,7 +191,8 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 			$mocks['cache'] ?? $this->getMockCache(),
 			$mocks['readOnlyMode'] ?? $this->getMockReadOnlyMode(),
 			$mocks['nsInfo'] ?? $this->getMockNsInfo(),
-			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup()
+			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
+			$this->createHookContainer()
 		);
 	}
 

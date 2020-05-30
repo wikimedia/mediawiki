@@ -56,7 +56,7 @@ class SpecialShortPages extends QueryPage {
 		$options = [ 'USE INDEX' => [ 'page' => 'page_redirect_namespace_len' ] ];
 
 		// Allow extensions to modify the query
-		Hooks::run( 'ShortPagesQuery', [ &$tables, &$conds, &$joinConds, &$options ] );
+		$this->getHookRunner()->onShortPagesQuery( $tables, $conds, $joinConds, $options );
 
 		return [
 			'tables' => $tables,

@@ -418,7 +418,7 @@ class GitInfo {
 
 		if ( self::$viewers === false ) {
 			self::$viewers = $wgGitRepositoryViewers;
-			Hooks::run( 'GitViewers', [ &self::$viewers ] );
+			Hooks::runner()->onGitViewers( self::$viewers );
 		}
 
 		return self::$viewers;

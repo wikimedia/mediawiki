@@ -24,6 +24,8 @@
 namespace MediaWiki\Session;
 
 use CachedBagOStuff;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
@@ -81,6 +83,9 @@ final class SessionBackend {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/** @var int */
 	private $lifetime;
 
@@ -121,10 +126,12 @@ final class SessionBackend {
 	 * @param SessionInfo $info Session info to populate from
 	 * @param CachedBagOStuff $store Backend data store
 	 * @param LoggerInterface $logger
+	 * @param HookContainer $hookContainer
 	 * @param int $lifetime Session data lifetime in seconds
 	 */
 	public function __construct(
-		SessionId $id, SessionInfo $info, CachedBagOStuff $store, LoggerInterface $logger, $lifetime
+		SessionId $id, SessionInfo $info, CachedBagOStuff $store, LoggerInterface $logger,
+		HookContainer $hookContainer, $lifetime
 	) {
 		$phpSessionHandling = \RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' );
 		$this->usePhpSessionHandling = $phpSessionHandling !== 'disable';
@@ -145,6 +152,7 @@ final class SessionBackend {
 		$this->user = $info->getUserInfo() ? $info->getUserInfo()->getUser() : new User;
 		$this->store = $store;
 		$this->logger = $logger;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->lifetime = $lifetime;
 		$this->provider = $info->getProvider();
 		$this->persist = $info->wasPersisted();
@@ -740,7 +748,7 @@ final class SessionBackend {
 			'persisted' => $this->persist,
 		];
 
-		\Hooks::run( 'SessionMetadata', [ $this, &$metadata, $this->requests ] );
+		$this->hookRunner->onSessionMetadata( $this, $metadata, $this->requests );
 
 		foreach ( $origMetadata as $k => $v ) {
 			if ( $metadata[$k] !== $v ) {

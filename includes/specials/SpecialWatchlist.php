@@ -166,7 +166,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					'queryCallable' => function ( $specialClassName, $ctx, $dbr, &$tables,
 							&$fields, &$conds, &$query_options, &$join_conds ) {
 						$nonRevisionTypes = [ RC_LOG ];
-						Hooks::run( 'SpecialWatchlistGetNonRevisionTypes', [ &$nonRevisionTypes ] );
+						$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes(
+							$nonRevisionTypes );
 						if ( $nonRevisionTypes ) {
 							$conds[] = $dbr->makeList(
 								[

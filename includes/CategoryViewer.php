@@ -19,9 +19,13 @@
  *
  * @file
  */
+
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 
 class CategoryViewer extends ContextSource {
+	use ProtectedHookAccessorTrait;
+
 	/** @var int */
 	public $limit;
 
@@ -194,7 +198,7 @@ class CategoryViewer extends ContextSource {
 
 	private function generateLink( $type, Title $title, $isRedirect, $html = null ) {
 		$link = null;
-		Hooks::run( 'CategoryViewer::generateLink', [ $type, $title, $html, &$link ] );
+		$this->getHookRunner()->onCategoryViewer__generateLink( $type, $title, $html, $link );
 		if ( $link === null ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			if ( $html !== null ) {
@@ -347,7 +351,7 @@ class CategoryViewer extends ContextSource {
 				]
 			);
 
-			Hooks::run( 'CategoryViewer::doCategoryQuery', [ $type, $res ] );
+			$this->getHookRunner()->onCategoryViewer__doCategoryQuery( $type, $res );
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 			$count = 0;

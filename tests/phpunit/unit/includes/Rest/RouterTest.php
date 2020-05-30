@@ -40,7 +40,8 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer( $authError ),
 			$objectFactory,
-			new Validator( $objectFactory, $permissionManager, $request, new User )
+			new Validator( $objectFactory, $permissionManager, $request, new User ),
+			$this->createHookContainer()
 		);
 	}
 

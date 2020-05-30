@@ -187,7 +187,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 			]
 		);
 
-		Hooks::run( 'PrefsEmailAudit', [ $userLatest, $oldaddr, $newaddr ] );
+		$this->getHookRunner()->onPrefsEmailAudit( $userLatest, $oldaddr, $newaddr );
 
 		$userLatest->saveSettings();
 

@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -25,6 +27,7 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Skins
  */
 abstract class QuickTemplate {
+	use ProtectedHookAccessorTrait;
 
 	/**
 	 * @var array

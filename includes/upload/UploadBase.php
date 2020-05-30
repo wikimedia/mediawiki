@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\UserIdentity;
@@ -40,6 +41,8 @@ use MediaWiki\User\UserIdentity;
  * @author Michael Dale
  */
 abstract class UploadBase {
+	use ProtectedHookAccessorTrait;
+
 	/** @var string Local file system path to the file to upload (or a local copy) */
 	protected $mTempPath;
 	/** @var TempFSFile|null Wrapper to handle deleting the temp file */
@@ -189,7 +192,7 @@ abstract class UploadBase {
 
 		// Give hooks the chance to handle this request
 		$className = null;
-		Hooks::run( 'UploadCreateFromRequest', [ $type, &$className ] );
+		Hooks::runner()->onUploadCreateFromRequest( $type, $className );
 		if ( $className === null ) {
 			$className = 'UploadFrom' . $type;
 			wfDebug( __METHOD__ . ": class name: $className\n" );
@@ -502,7 +505,7 @@ abstract class UploadBase {
 		}
 
 		$error = true;
-		Hooks::run( 'UploadVerifyFile', [ $this, $mime, &$error ] );
+		$this->getHookRunner()->onUploadVerifyFile( $this, $mime, $error );
 		if ( $error !== true ) {
 			if ( !is_array( $error ) ) {
 				$error = [ $error ];
@@ -909,7 +912,7 @@ abstract class UploadBase {
 		$props = $this->mFileProps;
 
 		$error = null;
-		Hooks::run( 'UploadVerifyUpload', [ $this, $user, $props, $comment, $pageText, &$error ] );
+		$this->getHookRunner()->onUploadVerifyUpload( $this, $user, $props, $comment, $pageText, $error );
 		if ( $error ) {
 			if ( !is_array( $error ) ) {
 				$error = [ $error ];
@@ -936,9 +939,7 @@ abstract class UploadBase {
 					User::IGNORE_USER_RIGHTS
 				);
 			}
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$uploadBase = $this;
-			Hooks::run( 'UploadComplete', [ &$uploadBase ] );
+			$this->getHookRunner()->onUploadComplete( $this );
 
 			$this->postProcessUpload();
 		}
@@ -1144,7 +1145,7 @@ abstract class UploadBase {
 	protected function runUploadStashFileHook( User $user ) {
 		$props = $this->mFileProps;
 		$error = null;
-		Hooks::run( 'UploadStashFile', [ $this, $user, $props, &$error ] );
+		$this->getHookRunner()->onUploadStashFile( $this, $user, $props, $error );
 		if ( $error && !is_array( $error ) ) {
 			$error = [ $error ];
 		}

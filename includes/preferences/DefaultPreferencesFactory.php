@@ -23,7 +23,6 @@ namespace MediaWiki\Preferences;
 use DateTime;
 use DateTimeZone;
 use Exception;
-use Hooks;
 use Html;
 use HTMLForm;
 use HTMLFormField;
@@ -35,6 +34,8 @@ use LanguageConverter;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -91,6 +92,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var ILanguageConverter */
 	private $languageConverter;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @var array
 	 * @since 1.34
@@ -133,6 +137,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param PermissionManager $permissionManager
 	 * @param ILanguageConverter|null $languageConverter
 	 * @param LanguageNameUtils|null $languageNameUtils
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -142,7 +147,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		NamespaceInfo $nsInfo,
 		PermissionManager $permissionManager,
 		ILanguageConverter $languageConverter = null,
-		LanguageNameUtils $languageNameUtils = null
+		LanguageNameUtils $languageNameUtils = null,
+		HookContainer $hookContainer = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -167,6 +173,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 		}
 		$this->languageNameUtils = $languageNameUtils;
+
+		if ( !$hookContainer ) {
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -216,7 +227,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->watchlistPreferences( $context, $preferences );
 		$this->searchPreferences( $preferences );
 
-		Hooks::run( 'GetPreferences', [ $this->user, &$preferences ] );
+		$this->hookRunner->onGetPreferences( $this->user, $preferences );
 
 		$this->loadPreferenceValues( $context, $preferences );
 		$this->logger->debug( "Created form descriptor for user '{$this->user->getName()}'" );
@@ -1710,10 +1721,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$user->setOption( $key, $value );
 			}
 
-			Hooks::run(
-				'PreferencesFormPreSave',
-				[ $formData, $form, $user, &$result, $oldUserOptions ]
-			);
+			$this->hookRunner->onPreferencesFormPreSave(
+				$formData, $form, $user, $result, $oldUserOptions );
 		}
 
 		$user->saveSettings();

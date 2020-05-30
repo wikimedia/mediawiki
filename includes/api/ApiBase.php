@@ -20,9 +20,11 @@
  * @file
  */
 
+use MediaWiki\Api\ApiHookRunner;
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
@@ -48,6 +50,12 @@ use Wikimedia\Rdbms\IDatabase;
 abstract class ApiBase extends ContextSource {
 
 	use ApiBlockInfoTrait;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var ApiHookRunner */
+	private $hookRunner;
 
 	/**
 	 * @name Old constants for ::getAllowedParams() arrays
@@ -607,6 +615,34 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function getPermissionManager(): PermissionManager {
 		return MediaWikiServices::getInstance()->getPermissionManager();
+	}
+
+	/**
+	 * Get a HookContainer, for running extension hooks or for hook metadata.
+	 *
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		if ( !$this->hookContainer ) {
+			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		return $this->hookContainer;
+	}
+
+	/**
+	 * Get an ApiHookRunner for running core API hooks.
+	 *
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return ApiHookRunner
+	 */
+	protected function getHookRunner() {
+		if ( !$this->hookRunner ) {
+			$this->hookRunner = new ApiHookRunner( $this->getHookContainer() );
+		}
+		return $this->hookRunner;
 	}
 
 	/** @} */
@@ -1320,7 +1356,7 @@ abstract class ApiBase extends ContextSource {
 		// No real need to deduplicate here, ApiErrorFormatter does that for
 		// us (assuming the hook is deterministic).
 		$msgs = [ $this->msg( 'api-usage-mailinglist-ref' ) ];
-		Hooks::run( 'ApiDeprecationHelp', [ &$msgs ] );
+		$this->getHookRunner()->onApiDeprecationHelp( $msgs );
 		if ( count( $msgs ) > 1 ) {
 			$key = '$' . implode( ' $', range( 1, count( $msgs ) ) );
 			$msg = ( new RawMessage( $key ) )->params( $msgs );
@@ -1682,7 +1718,7 @@ abstract class ApiBase extends ContextSource {
 
 		$msgs = [ $summary, $extendedDescription ];
 
-		Hooks::run( 'APIGetDescriptionMessages', [ $this, &$msgs ] );
+		$this->getHookRunner()->onAPIGetDescriptionMessages( $this, $msgs );
 
 		return $msgs;
 	}
@@ -1714,9 +1750,7 @@ abstract class ApiBase extends ContextSource {
 			] + ( $params['token'] ?? [] );
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$apiModule = $this;
-		Hooks::run( 'APIGetAllowedParams', [ &$apiModule, &$params, $flags ] );
+		$this->getHookRunner()->onAPIGetAllowedParams( $this, $params, $flags );
 
 		return $params;
 	}
@@ -1860,7 +1894,7 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 
-		Hooks::run( 'APIGetParamDescriptionMessages', [ $this, &$msgs ] );
+		$this->getHookRunner()->onAPIGetParamDescriptionMessages( $this, $msgs );
 
 		return $msgs;
 	}

@@ -131,7 +131,7 @@ class HTMLFileCache extends FileCacheBase {
 		}
 
 		// Allow extensions to disable caching
-		return Hooks::run( 'HTMLFileCache::useFileCache', [ $context ] );
+		return Hooks::runner()->onHTMLFileCache__useFileCache( $context );
 	}
 
 	/**

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -47,7 +48,8 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 					]
 				] )
 			),
-			$lang
+			$lang,
+			MediaWikiServices::getInstance()->getHookContainer()
 		);
 	}
 

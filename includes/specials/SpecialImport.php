@@ -45,6 +45,8 @@ class SpecialImport extends SpecialPage {
 	private $history = true;
 	private $includeTemplates = false;
 	private $pageLinkDepth;
+
+	/** @var array */
 	private $importSources;
 	private $assignKnownUsers;
 	private $usernamePrefix;
@@ -80,7 +82,11 @@ class SpecialImport extends SpecialPage {
 		$this->getOutput()->addModules( 'mediawiki.special.import' );
 
 		$this->importSources = $this->getConfig()->get( 'ImportSources' );
-		Hooks::run( 'ImportSources', [ &$this->importSources ] );
+		// Avoid phan error by checking the type
+		if ( !is_array( $this->importSources ) ) {
+			throw new UnexpectedValueException( '$wgImportSources must be an array' );
+		}
+		$this->getHookRunner()->onImportSources( $this->importSources );
 
 		$user = $this->getUser();
 		if ( !$this->permManager->userHasAnyRight( $user, 'import', 'importupload' ) ) {

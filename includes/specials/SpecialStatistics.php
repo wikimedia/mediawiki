@@ -64,7 +64,9 @@ class SpecialStatistics extends SpecialPage {
 
 		# Statistic - other
 		$extraStats = [];
-		if ( Hooks::run( 'SpecialStatsAddExtra', [ &$extraStats, $this->getContext() ] ) ) {
+		if ( $this->getHookRunner()->onSpecialStatsAddExtra(
+			$extraStats, $this->getContext() )
+		) {
 			$text .= $this->getOtherStats( $extraStats );
 		}
 

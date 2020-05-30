@@ -27,7 +27,7 @@ use MediaWiki\Linker\LinkTarget;
 /**
  * SlotRoleHandler instances are used to declare the existence and behavior of slot roles.
  * Most importantly, they control which content model can be used for the slot, and how it is
- * represented in the rendered verswion of page content.
+ * represented in the rendered version of page content.
  *
  * @since 1.33
  */

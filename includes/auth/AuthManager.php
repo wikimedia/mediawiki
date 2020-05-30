@@ -24,6 +24,8 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use Psr\Log\LoggerAwareInterface;
@@ -155,6 +157,12 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var CreatedAccountAuthenticationRequest[] */
 	private $createdAccountAuthenticationRequests = [];
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * Get the global AuthManager
 	 * @return AuthManager
@@ -169,17 +177,21 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param Config $config
 	 * @param ObjectFactory $objectFactory
 	 * @param PermissionManager $permManager
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		WebRequest $request,
 		Config $config,
 		ObjectFactory $objectFactory,
-		PermissionManager $permManager
+		PermissionManager $permManager,
+		HookContainer $hookContainer
 	) {
 		$this->request = $request;
 		$this->config = $config;
 		$this->objectFactory = $objectFactory;
 		$this->permManager = $permManager;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->setLogger( new NullLogger() );
 	}
 
@@ -233,6 +245,7 @@ class AuthManager implements LoggerAwareInterface {
 			$provider->setLogger( $this->logger );
 			$provider->setManager( $this );
 			$provider->setConfig( $this->config );
+			$provider->setHookContainer( $this->hookContainer );
 			$id = $provider->getUniqueId();
 			if ( isset( $this->allAuthenticationProviders[$id] ) ) {
 				throw new \RuntimeException(
@@ -336,7 +349,8 @@ class AuthManager implements LoggerAwareInterface {
 			$this->setSessionDataForUser( $user );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( 'AuthManager::authnState' );
-			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
+			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+				$ret, $user, $user->getName(), [] );
 			return $ret;
 		}
 
@@ -352,7 +366,7 @@ class AuthManager implements LoggerAwareInterface {
 				$this->callMethodOnProviders( 7, 'postAuthentication',
 					[ User::newFromName( $guessUserName ) ?: null, $ret ]
 				);
-				\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, null, $guessUserName, [] ] );
+				$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit( $ret, null, $guessUserName, [] );
 				return $ret;
 			}
 		}
@@ -468,7 +482,8 @@ class AuthManager implements LoggerAwareInterface {
 								[ User::newFromName( $guessUserName ) ?: null, $res ]
 							);
 							$session->remove( 'AuthManager::authnState' );
-							\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, null, $guessUserName, [] ] );
+							$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+								$res, null, $guessUserName, [] );
 							return $res;
 						case AuthenticationResponse::ABSTAIN;
 							// Continue loop
@@ -534,7 +549,8 @@ class AuthManager implements LoggerAwareInterface {
 							[ User::newFromName( $guessUserName ) ?: null, $res ]
 						);
 						$session->remove( 'AuthManager::authnState' );
-						\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, null, $guessUserName, [] ] );
+						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+							$res, null, $guessUserName, [] );
 						return $res;
 					case AuthenticationResponse::REDIRECT;
 					case AuthenticationResponse::UI;
@@ -625,7 +641,8 @@ class AuthManager implements LoggerAwareInterface {
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 					$session->remove( 'AuthManager::authnState' );
-					\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
+					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+						$ret, $user, $user->getName(), [] );
 					return $ret;
 				}
 			}
@@ -658,7 +675,8 @@ class AuthManager implements LoggerAwareInterface {
 						$this->logger->debug( "Login failed in secondary authentication by $id" );
 						$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $res ] );
 						$session->remove( 'AuthManager::authnState' );
-						\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $res, $user, $user->getName(), [] ] );
+						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+							$res, $user, $user->getName(), [] );
 						return $res;
 					case AuthenticationResponse::REDIRECT;
 					case AuthenticationResponse::UI;
@@ -694,7 +712,8 @@ class AuthManager implements LoggerAwareInterface {
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( 'AuthManager::authnState' );
 			$this->removeAuthenticationSessionData( null );
-			\Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $ret, $user, $user->getName(), [] ] );
+			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+				$ret, $user, $user->getName(), [] );
 			return $ret;
 		} catch ( \Exception $ex ) {
 			$session->remove( 'AuthManager::authnState' );
@@ -763,9 +782,8 @@ class AuthManager implements LoggerAwareInterface {
 			}
 		}
 
-		\Hooks::run( 'SecuritySensitiveOperationStatus', [
-			&$status, $operation, $session, $timeSinceLogin
-		] );
+		$this->getHookRunner()->onSecuritySensitiveOperationStatus(
+			$status, $operation, $session, $timeSinceLogin );
 
 		// If authentication is not possible, downgrade from "REAUTH" to "FAIL".
 		if ( !$this->canAuthenticateNow() && $status === self::SEC_REAUTH ) {
@@ -1425,7 +1443,7 @@ class AuthManager implements LoggerAwareInterface {
 					// @codeCoverageIgnoreEnd
 				}
 				$this->setDefaultUserOptions( $user, $creator->isAnon() );
-				\Hooks::runWithoutAbort( 'LocalUserCreated', [ $user, false ] );
+				$this->getHookRunner()->onLocalUserCreated( $user, false );
 				$user->saveSettings();
 				$state['userid'] = $user->getId();
 
@@ -1745,7 +1763,7 @@ class AuthManager implements LoggerAwareInterface {
 		// Inform the providers
 		$this->callMethodOnProviders( 6, 'autoCreatedAccount', [ $user, $source ] );
 
-		\Hooks::run( 'LocalUserCreated', [ $user, true ] );
+		$this->getHookRunner()->onLocalUserCreated( $user, true );
 		$user->saveSettings();
 
 		// Update user count
@@ -2322,6 +2340,7 @@ class AuthManager implements LoggerAwareInterface {
 			$provider->setLogger( $this->logger );
 			$provider->setManager( $this );
 			$provider->setConfig( $this->config );
+			$provider->setHookContainer( $this->getHookContainer() );
 			$id = $provider->getUniqueId();
 			if ( isset( $this->allAuthenticationProviders[$id] ) ) {
 				throw new \RuntimeException(
@@ -2409,7 +2428,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		\Wikimedia\ScopedCallback::consume( $delay );
 
-		\Hooks::run( 'UserLoggedIn', [ $user ] );
+		$this->getHookRunner()->onUserLoggedIn( $user );
 	}
 
 	/**
@@ -2464,6 +2483,20 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		self::$instance = null;
+	}
+
+	/**
+	 * @return HookContainer
+	 */
+	private function getHookContainer() {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * @return HookRunner
+	 */
+	private function getHookRunner() {
+		return $this->hookRunner;
 	}
 
 	/** @} */

@@ -20,6 +20,9 @@
  * @file
  * @ingroup Cache
  */
+
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -117,6 +120,8 @@ class MessageCache implements LoggerAwareInterface {
 	protected $languageNameUtils;
 	/** @var LanguageFallback */
 	protected $languageFallback;
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * Get the singleton instance of this class
@@ -161,6 +166,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param LocalisationCache $localisationCache
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LanguageFallback $languageFallback
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		WANObjectCache $wanCache,
@@ -173,7 +179,8 @@ class MessageCache implements LoggerAwareInterface {
 		LanguageFactory $langFactory,
 		LocalisationCache $localisationCache,
 		LanguageNameUtils $languageNameUtils,
-		LanguageFallback $languageFallback
+		LanguageFallback $languageFallback,
+		HookContainer $hookContainer
 	) {
 		$this->wanCache = $wanCache;
 		$this->clusterCache = $clusterCache;
@@ -185,6 +192,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->localisationCache = $localisationCache;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->languageFallback = $languageFallback;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->cache = new MapCacheLRU( 5 ); // limit size for sanity
 
@@ -754,7 +762,7 @@ class MessageCache implements LoggerAwareInterface {
 		$blobStore = MediaWikiServices::getInstance()->getResourceLoader()->getMessageBlobStore();
 		foreach ( $replacements as list( $title, $msg ) ) {
 			$blobStore->updateMessage( $this->contLang->lcfirst( $msg ) );
-			Hooks::run( 'MessageCacheReplace', [ $title, $newTextByTitle[$title] ] );
+			$this->hookRunner->onMessageCacheReplace( $title, $newTextByTitle[$title] );
 		}
 	}
 
@@ -913,7 +921,7 @@ class MessageCache implements LoggerAwareInterface {
 		// Normalise title-case input (with some inlining)
 		$lckey = self::normalizeKey( $key );
 
-		Hooks::run( 'MessageCache::get', [ &$lckey ] );
+		$this->hookRunner->onMessageCache__get( $lckey );
 
 		// Loop through each language in the fallback list until we find something useful
 		$message = $this->getMessageFromFallbackChain(
@@ -1115,7 +1123,7 @@ class MessageCache implements LoggerAwareInterface {
 			if ( $entry === null || substr( $entry, 0, 1 ) !== ' ' ) {
 				// Message does not have a MediaWiki page definition; try hook handlers
 				$message = false;
-				Hooks::run( 'MessagesPreLoad', [ $title, &$message, $code ] );
+				$this->hookRunner->onMessagesPreLoad( $title, $message, $code );
 				if ( $message !== false ) {
 					$this->cache->setField( $code, $title, ' ' . $message );
 				} else {

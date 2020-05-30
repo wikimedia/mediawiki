@@ -116,7 +116,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 * @param Test $test
 	 */
 	public function startTest( Test $test ) : void {
-		Hooks::run( 'MediaWikiPHPUnitTest::startTest', [ $test ] );
+		Hooks::runner()->onMediaWikiPHPUnitTest__startTest( $test );
 		wfDebugLog( $this->logChannel, 'Start test ' . $this->getTestName( $test ) );
 	}
 
@@ -127,7 +127,7 @@ class MediaWikiPHPUnitTestListener implements TestListener {
 	 * @param float $time
 	 */
 	public function endTest( Test $test, float $time ) : void {
-		Hooks::run( 'MediaWikiPHPUnitTest::endTest', [ $test, $time ] );
+		Hooks::runner()->onMediaWikiPHPUnitTest__endTest( $test, $time );
 		wfDebugLog( $this->logChannel, 'End test ' . $this->getTestName( $test ) );
 	}
 }

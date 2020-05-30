@@ -21,6 +21,7 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
 use Wikimedia\Rdbms\Database;
@@ -451,8 +452,8 @@ class ChangeTags {
 			}
 		}
 
-		Hooks::run( 'ChangeTagsAfterUpdateTags', [ $tagsToAdd, $tagsToRemove, $prevTags,
-			$rc_id, $rev_id, $log_id, $params, $rc, $user ] );
+		Hooks::runner()->onChangeTagsAfterUpdateTags( $tagsToAdd, $tagsToRemove, $prevTags,
+			$rc_id, $rev_id, $log_id, $params, $rc, $user );
 
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
@@ -538,7 +539,7 @@ class ChangeTags {
 
 		// to be applied, a tag has to be explicitly defined
 		$allowedTags = self::listExplicitlyDefinedTags();
-		Hooks::run( 'ChangeTagsAllowedAdd', [ &$allowedTags, $tags, $user ] );
+		Hooks::runner()->onChangeTagsAllowedAdd( $allowedTags, $tags, $user );
 		$disallowedTags = array_diff( $tags, $allowedTags );
 		if ( $disallowedTags ) {
 			return self::restrictedTagError( 'tags-apply-not-allowed-one',
@@ -1219,7 +1220,7 @@ class ChangeTags {
 
 		// check with hooks
 		$canCreateResult = Status::newGood();
-		Hooks::run( 'ChangeTagCanCreate', [ $tag, $user, &$canCreateResult ] );
+		Hooks::runner()->onChangeTagCanCreate( $tag, $user, $canCreateResult );
 		return $canCreateResult;
 	}
 
@@ -1291,7 +1292,7 @@ class ChangeTags {
 
 		// give extensions a chance
 		$status = Status::newGood();
-		Hooks::run( 'ChangeTagAfterDelete', [ $tag, &$status ] );
+		Hooks::runner()->onChangeTagAfterDelete( $tag, $status );
 		// let's not allow error results, as the actual tag deletion succeeded
 		if ( !$status->isOK() ) {
 			wfDebug( 'ChangeTagAfterDelete error condition downgraded to warning' );
@@ -1350,7 +1351,7 @@ class ChangeTags {
 			$status = Status::newGood();
 		}
 
-		Hooks::run( 'ChangeTagCanDelete', [ $tag, $user, &$status ] );
+		Hooks::runner()->onChangeTagCanDelete( $tag, $user, $status );
 		return $status;
 	}
 
@@ -1408,18 +1409,20 @@ class ChangeTags {
 	public static function listSoftwareActivatedTags() {
 		// core active tags
 		$tags = self::getSoftwareTags();
-		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		if ( !$hookContainer->isRegistered( 'ChangeTagsListActive' ) ) {
 			return $tags;
 		}
+		$hookRunner = new HookRunner( $hookContainer );
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'active-tags' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				// Ask extensions which tags they consider active
-				Hooks::run( 'ChangeTagsListActive', [ &$tags ] );
+				$hookRunner->onChangeTagsListActive( $tags );
 				return $tags;
 			},
 			[
@@ -1491,17 +1494,19 @@ class ChangeTags {
 	public static function listSoftwareDefinedTags() {
 		// core defined tags
 		$tags = self::getSoftwareTags( true );
-		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		if ( !$hookContainer->isRegistered( 'ListDefinedTags' ) ) {
 			return $tags;
 		}
+		$hookRunner = new HookRunner( $hookContainer );
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'valid-tags-hook' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
-				Hooks::run( 'ListDefinedTags', [ &$tags ] );
+				$hookRunner->onListDefinedTags( $tags );
 				return array_filter( array_unique( $tags ) );
 			},
 			[

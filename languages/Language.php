@@ -23,6 +23,8 @@
  */
 
 use CLDRPluralRuleParser\Evaluator;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -122,6 +124,16 @@ class Language {
 	 * @var LanguageConverterFactory
 	 */
 	private $converterFactory;
+
+	/**
+	 * @var HookContainer
+	 */
+	private $hookContainer;
+
+	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
 
 	/**
 	 * @deprecated since 1.35, use LanguageFactory
@@ -484,13 +496,15 @@ class Language {
 	 * @param LanguageNameUtils|null $langNameUtils
 	 * @param LanguageFallback|null $langFallback
 	 * @param LanguageConverterFactory|null $converterFactory
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		$code = null,
 		LocalisationCache $localisationCache = null,
 		LanguageNameUtils $langNameUtils = null,
 		LanguageFallback $langFallback = null,
-		LanguageConverterFactory $converterFactory = null
+		LanguageConverterFactory $converterFactory = null,
+		HookContainer $hookContainer = null
 	) {
 		if ( !func_num_args() ) {
 			// Old calling convention, deprecated
@@ -505,6 +519,8 @@ class Language {
 			$this->langNameUtils = $services->getLanguageNameUtils();
 			$this->langFallback = $services->getLanguageFallback();
 			$this->converterFactory = $services->getLanguageConverterFactory();
+			$this->hookContainer = $services->getHookContainer();
+			$this->hookRunner = new HookRunner( $this->hookContainer );
 			return;
 		}
 
@@ -518,12 +534,16 @@ class Language {
 			'Parameters cannot be null unless all are omitted' );
 		Assert::parameter( $converterFactory !== null, '$converterFactory',
 			'Parameters cannot be null unless all are omitted' );
+		Assert::parameter( $hookContainer !== null, '$hookContainer',
+			'Parameters cannot be null unless all are omitted' );
 
 		$this->mCode = $code;
 		$this->localisationCache = $localisationCache;
 		$this->langNameUtils = $langNameUtils;
 		$this->langFallback = $langFallback;
 		$this->converterFactory = $converterFactory;
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -589,7 +609,7 @@ class Language {
 			# Re-order by namespace ID number...
 			ksort( $this->namespaceNames );
 
-			Hooks::run( 'LanguageGetNamespaces', [ &$this->namespaceNames ] );
+			$this->getHookRunner()->onLanguageGetNamespaces( $this->namespaceNames );
 		}
 
 		return $this->namespaceNames;
@@ -2527,7 +2547,7 @@ class Language {
 		$offsetRel = $relativeTo->offsetForUser( $user );
 
 		$ts = '';
-		if ( Hooks::run( 'GetHumanTimestamp', [ &$ts, $time, $relativeTo, $user, $this ] ) ) {
+		if ( $this->getHookRunner()->onGetHumanTimestamp( $ts, $time, $relativeTo, $user, $this ) ) {
 			$ts = $this->getHumanTimestampInternal( $time, $relativeTo, $user );
 		}
 
@@ -4939,5 +4959,27 @@ class Language {
 		$index = $this->getPluralRuleIndexNumber( $number );
 		$pluralRuleTypes = $this->getPluralRuleTypes();
 		return $pluralRuleTypes[$index] ?? 'other';
+	}
+
+	/**
+	 * Get a HookContainer, for hook metadata and running extension hooks
+	 *
+	 * @since 1.35
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * Get a HookRunner, for running core hooks
+	 *
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() {
+		return $this->hookRunner;
 	}
 }

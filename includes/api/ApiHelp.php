@@ -620,7 +620,8 @@ class ApiHelp extends ApiBase {
 
 			$module->modifyHelp( $help, $suboptions, $haveModules );
 
-			Hooks::run( 'APIHelpModifyOutput', [ $module, &$help, $suboptions, &$haveModules ] );
+			$module->getHookRunner()->onAPIHelpModifyOutput( $module, $help,
+				$suboptions, $haveModules );
 
 			$out .= implode( "\n", $help );
 		}

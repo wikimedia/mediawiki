@@ -158,7 +158,7 @@ class SpecialBookSources extends SpecialPage {
 		$isbn = self::cleanIsbn( $isbn );
 		# Hook to allow extensions to insert additional HTML,
 		# e.g. for API-interacting plugins and so on
-		Hooks::run( 'BookInformation', [ $isbn, $out ] );
+		$this->getHookRunner()->onBookInformation( $isbn, $out );
 
 		# Check for a local page such as Project:Book_sources and use that if available
 		$page = $this->msg( 'booksources' )->inContentLanguage()->text();

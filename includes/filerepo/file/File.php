@@ -5,6 +5,7 @@
  *
  * Represents files in a repository.
  */
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
@@ -59,6 +60,8 @@ use Wikimedia\AtEase\AtEase;
  * @ingroup FileAbstraction
  */
 abstract class File implements IDBAccessObject {
+	use ProtectedHookAccessorTrait;
+
 	// Bitfield values akin to the Revision deletion constants
 	public const DELETED_FILE = 1;
 	public const DELETED_COMMENT = 2;
@@ -1235,7 +1238,7 @@ abstract class File implements IDBAccessObject {
 			$stats->timing( 'media.thumbnail.generate.store', 1000 * $statTiming );
 
 			// Give extensions a chance to do something with this thumbnail...
-			Hooks::run( 'FileTransformed', [ $this, $thumb, $tmpThumbPath, $thumbPath ] );
+			$this->getHookRunner()->onFileTransformed( $this, $thumb, $tmpThumbPath, $thumbPath );
 		}
 
 		return $thumb;

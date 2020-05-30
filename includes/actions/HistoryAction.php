@@ -70,7 +70,7 @@ class HistoryAction extends FormlessAction {
 
 		$links = [];
 		// Allow extensions to add more links
-		Hooks::run( 'HistoryPageToolLinks', [ $this->getContext(), $linkRenderer, &$links ] );
+		$this->getHookRunner()->onHistoryPageToolLinks( $this->getContext(), $linkRenderer, $links );
 		if ( $links ) {
 			$subtitle .= ''
 				. $this->msg( 'word-separator' )->escaped()
@@ -283,13 +283,9 @@ class HistoryAction extends FormlessAction {
 
 		$out->addHTML( $htmlForm->getHTML( false ) );
 
-		$article = $this->getArticle(); // must be a variable for hook reference
-		Hooks::run(
-			'PageHistoryBeforeList',
-			[
-				&$article,
-				$this->getContext()
-			]
+		$this->getHookRunner()->onPageHistoryBeforeList(
+			$this->getArticle(),
+			$this->getContext()
 		);
 
 		// Create and output the list.

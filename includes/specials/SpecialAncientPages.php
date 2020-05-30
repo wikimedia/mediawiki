@@ -58,7 +58,7 @@ class SpecialAncientPages extends QueryPage {
 		];
 
 		// Allow extensions to modify the query
-		Hooks::run( 'AncientPagesQuery', [ &$tables, &$conds, &$joinConds ] );
+		$this->getHookRunner()->onAncientPagesQuery( $tables, $conds, $joinConds );
 
 		return [
 			'tables' => $tables,

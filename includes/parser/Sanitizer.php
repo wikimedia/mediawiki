@@ -1979,7 +1979,7 @@ class Sanitizer {
 	 */
 	public static function validateEmail( $addr ) {
 		$result = null;
-		if ( !Hooks::run( 'isValidEmailAddr', [ $addr, &$result ] ) ) {
+		if ( !Hooks::runner()->onIsValidEmailAddr( $addr, $result ) ) {
 			return $result;
 		}
 

@@ -21,6 +21,7 @@
  */
 
 use Liuggio\StatsdClient\Sender\SocketSender;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
@@ -33,6 +34,8 @@ use Wikimedia\Rdbms\ILBFactory;
  * The MediaWiki class is the helper class for the index.php entry point.
  */
 class MediaWiki {
+	use ProtectedHookAccessorTrait;
+
 	/** @var IContextSource */
 	private $context;
 	/** @var Config */
@@ -184,8 +187,7 @@ class MediaWiki {
 			$output->setPrintable();
 		}
 
-		$unused = null; // To pass it by reference
-		Hooks::run( 'BeforeInitialize', [ &$title, &$unused, &$output, &$user, $request, $this ] );
+		$this->getHookRunner()->onBeforeInitialize( $title, null, $output, $user, $request, $this );
 
 		// Invalid titles. T23776: The interwikis must redirect even if the page name is empty.
 		if ( $title === null || ( $title->getDBkey() == '' && !$title->isExternal() )
@@ -345,7 +347,7 @@ class MediaWiki {
 			|| ( $request->getCheck( 'title' )
 				&& $title->getPrefixedDBkey() == $request->getVal( 'title' ) )
 			|| count( $request->getValueNames( [ 'action', 'title' ] ) )
-			|| !Hooks::run( 'TestCanonicalRedirect', [ $request, $title, $output ] )
+			|| !$this->getHookRunner()->onTestCanonicalRedirect( $request, $title, $output )
 		) {
 			return false;
 		}
@@ -439,8 +441,8 @@ class MediaWiki {
 			// Give extensions a change to ignore/handle redirects as needed
 			$ignoreRedirect = $target = false;
 
-			Hooks::run( 'InitializeArticleMaybeRedirect',
-				[ &$title, &$request, &$ignoreRedirect, &$target, &$article ] );
+			$this->getHookRunner()->onInitializeArticleMaybeRedirect( $title, $request,
+				$ignoreRedirect, $target, $article );
 			$page = $article->getPage(); // reflect any hook changes
 
 			// Follow redirects only for... redirects.
@@ -487,8 +489,8 @@ class MediaWiki {
 		$title = $this->context->getTitle();
 		$user = $this->context->getUser();
 
-		if ( !Hooks::run( 'MediaWikiPerformAction',
-				[ $output, $article, $title, $user, $request, $this ] )
+		if ( !$this->getHookRunner()->onMediaWikiPerformAction(
+			$output, $article, $title, $user, $request, $this )
 		) {
 			return;
 		}
@@ -931,7 +933,7 @@ class MediaWiki {
 			$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
 
 			// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
-			if ( Hooks::run( 'BeforeHttpsRedirect', [ $this->context, &$redirUrl ] ) ) {
+			if ( $this->getHookRunner()->onBeforeHttpsRedirect( $this->context, $redirUrl ) ) {
 				if ( $request->wasPosted() ) {
 					// This is weird and we'd hope it almost never happens. This
 					// means that a POST came in via HTTP and policy requires us

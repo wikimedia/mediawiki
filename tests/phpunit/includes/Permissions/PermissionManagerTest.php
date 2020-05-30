@@ -735,8 +735,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			),
 			$services->getSpecialPageFactory(),
 			$revisionLookup,
-			MediaWikiServices::getInstance()->getNamespaceInfo(),
-			MediaWikiServices::getInstance()->getBlockErrorFormatter()
+			$services->getNamespaceInfo(),
+			$services->getBlockErrorFormatter(),
+			$services->getHookContainer()
 		);
 		$this->setService( 'PermissionManager', $permissionManager );
 

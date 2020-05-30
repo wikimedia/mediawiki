@@ -177,7 +177,7 @@ class UserPasswordPolicy {
 			$this->policies['default']
 		);
 
-		Hooks::run( 'PasswordPoliciesForUser', [ $user, &$effectivePolicy ] );
+		Hooks::runner()->onPasswordPoliciesForUser( $user, $effectivePolicy );
 
 		return $effectivePolicy;
 	}

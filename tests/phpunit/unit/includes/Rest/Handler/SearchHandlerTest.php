@@ -58,7 +58,8 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		/** @var Language|MockObject $language */
 		$language = $this->createNoOpMock( Language::class );
-		$searchEngineConfig = new \SearchEngineConfig( $config, $language, [] );
+		$hookContainer = $this->createHookContainer();
+		$searchEngineConfig = new \SearchEngineConfig( $config, $language, $hookContainer, [] );
 
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(
@@ -384,29 +385,29 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
 
 		$handler = $this->newHandler( $query, $titleResults, $textResults );
-		$this->setTemporaryHook( 'SearchResultProvideDescription',
-		function ( array $pageIdentities, array &$result ) {
-				foreach ( $pageIdentities as $pageId => $pageIdentity ) {
-					$result[ $pageId ] = 'Description_' . $pageIdentity->getId();
+
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [], [
+			'SearchResultProvideDescription' =>
+				function ( array $pageIdentities, array &$result ) {
+					foreach ( $pageIdentities as $pageId => $pageIdentity ) {
+						$result[ $pageId ] = 'Description_' . $pageIdentity->getId();
+					}
+				},
+			'SearchResultProvideThumbnail' =>
+				function ( array $pageIdentities, array &$result ) {
+					foreach ( $pageIdentities as $pageId => $pageIdentity ) {
+						$result[ $pageId ] = new SearchResultThumbnail(
+							'image/png',
+							2250,
+							100,
+							125,
+							500,
+							'http:/example.org/url_' . $pageIdentity->getId(),
+							null
+						);
+					}
 				}
-		} );
-
-		$this->setTemporaryHook( 'SearchResultProvideThumbnail',
-		function ( array $pageIdentities, array &$result ) {
-			foreach ( $pageIdentities as $pageId => $pageIdentity ) {
-					$result[ $pageId ] = new SearchResultThumbnail(
-						'image/png',
-						2250,
-						100,
-						125,
-						500,
-						'http:/example.org/url_' . $pageIdentity->getId(),
-						null
-					);
-			}
-		} );
-
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request );
+		] );
 
 		$this->assertArrayHasKey( 'pages', $data );
 		$this->assertCount( 2, $data['pages'] );

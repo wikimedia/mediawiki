@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -29,6 +30,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Used to show archived pages and eventually restore them.
  */
 class PageArchive {
+	use ProtectedHookAccessorTrait;
+
 	/** @var Title */
 	protected $title;
 
@@ -548,7 +551,7 @@ class PageArchive {
 			],
 		] );
 
-		Hooks::run( 'ArticleUndeleteLogEntry', [ $this, &$logEntry, $user ] );
+		$this->getHookRunner()->onArticleUndeleteLogEntry( $this, $logEntry, $user );
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
@@ -787,16 +790,12 @@ class PageArchive {
 
 				$restored++;
 
-				Hooks::run( 'RevisionUndeleted', [ $revision, $row->ar_page_id ] );
+				$this->getHookRunner()->onRevisionUndeleted( $revision, $row->ar_page_id );
 
 				// Deprecated since 1.35
 				$legacyRevision = new Revision( $revision );
-				Hooks::run(
-					'ArticleRevisionUndeleted',
-					[ &$this->title, $legacyRevision, $row->ar_page_id ],
-					'1.35'
-				);
-
+				$this->getHookRunner()->onArticleRevisionUndeleted(
+					$this->title, $legacyRevision, $row->ar_page_id );
 				$restoredPages[$row->ar_page_id] = true;
 			}
 
@@ -840,8 +839,8 @@ class PageArchive {
 				);
 			}
 
-			Hooks::run( 'ArticleUndelete',
-				[ &$this->title, $created, $comment, $oldPageId, $restoredPages ] );
+			$this->getHookRunner()->onArticleUndelete(
+				$this->title, $created, $comment, $oldPageId, $restoredPages );
 
 			if ( $this->title->getNamespace() == NS_FILE ) {
 				$job = HTMLCacheUpdateJob::newForBacklinks(

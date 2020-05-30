@@ -181,7 +181,7 @@ class UsersPager extends AlphabeticPager {
 			'conds' => $conds
 		];
 
-		Hooks::run( 'SpecialListusersQueryInfo', [ $this, &$query ] );
+		$this->getHookRunner()->onSpecialListusersQueryInfo( $this, $query );
 
 		return $query;
 	}
@@ -245,7 +245,7 @@ class UsersPager extends AlphabeticPager {
 			' ' . $this->msg( 'listusers-blocked', $userName )->escaped() :
 			'';
 
-		Hooks::run( 'SpecialListusersFormatRow', [ &$item, $row ] );
+		$this->getHookRunner()->onSpecialListusersFormatRow( $item, $row );
 
 		return Html::rawElement( 'li', [], "{$item}{$edits}{$created}{$blocked}" );
 	}
@@ -280,7 +280,7 @@ class UsersPager extends AlphabeticPager {
 
 		// Give extensions a chance to add things like global user group data
 		// into the cache array to ensure proper output later on
-		Hooks::run( 'UsersPagerDoBatchLookups', [ $dbr, $userIds, &$cache, &$groups ] );
+		$this->getHookRunner()->onUsersPagerDoBatchLookups( $dbr, $userIds, $cache, $groups );
 
 		$this->userGroupCache = $cache;
 
@@ -357,7 +357,7 @@ class UsersPager extends AlphabeticPager {
 		];
 
 		$beforeSubmitButtonHookOut = '';
-		Hooks::run( 'SpecialListusersHeaderForm', [ $this, &$beforeSubmitButtonHookOut ] );
+		$this->getHookRunner()->onSpecialListusersHeaderForm( $this, $beforeSubmitButtonHookOut );
 
 		if ( $beforeSubmitButtonHookOut !== '' ) {
 			$formDescriptor[ 'beforeSubmitButtonHookOut' ] = [
@@ -373,7 +373,7 @@ class UsersPager extends AlphabeticPager {
 		];
 
 		$beforeClosingFieldsetHookOut = '';
-		Hooks::run( 'SpecialListusersHeader', [ $this, &$beforeClosingFieldsetHookOut ] );
+		$this->getHookRunner()->onSpecialListusersHeader( $this, $beforeClosingFieldsetHookOut );
 
 		if ( $beforeClosingFieldsetHookOut !== '' ) {
 			$formDescriptor[ 'beforeClosingFieldsetHookOut' ] = [
@@ -420,7 +420,7 @@ class UsersPager extends AlphabeticPager {
 		if ( $this->requestedUser != '' ) {
 			$query['username'] = $this->requestedUser;
 		}
-		Hooks::run( 'SpecialListusersDefaultQuery', [ $this, &$query ] );
+		$this->getHookRunner()->onSpecialListusersDefaultQuery( $this, $query );
 
 		return $query;
 	}

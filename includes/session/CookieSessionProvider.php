@@ -203,7 +203,7 @@ class CookieSessionProvider extends SessionProvider {
 
 		// Legacy hook
 		if ( $this->params['callUserSetCookiesHook'] && !$user->isAnon() ) {
-			\Hooks::run( 'UserSetCookies', [ $user, &$sessionData, &$cookies ], '1.27' );
+			$this->getHookRunner()->onUserSetCookies( $user, $sessionData, $cookies );
 		}
 
 		$options = $this->cookieOptions;

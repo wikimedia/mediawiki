@@ -373,7 +373,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 				}
 				$req = reset( $requests );
 				$status = $authManager->allowsAuthenticationDataChange( $req );
-				Hooks::run( 'ChangeAuthenticationDataAudit', [ $req, $status ] );
+				$this->getHookRunner()->onChangeAuthenticationDataAudit( $req, $status );
 				if ( !$status->isGood() ) {
 					return AuthenticationResponse::newFail( $status->getMessage() );
 				}
@@ -467,7 +467,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			AuthManager::ACTION_CHANGE, AuthManager::ACTION_REMOVE, AuthManager::ACTION_UNLINK
 		];
 		if ( in_array( $this->authAction, $changeActions, true ) && $status && !$status->isOK() ) {
-			Hooks::run( 'ChangeAuthenticationDataAudit', [ reset( $this->authRequests ), $status ] );
+			$this->getHookRunner()->onChangeAuthenticationDataAudit( reset( $this->authRequests ), $status );
 		}
 
 		return $status;
@@ -652,7 +652,8 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 		$requestSnapshot = serialize( $requests );
 		$this->onAuthChangeFormFields( $requests, $fieldInfo, $formDescriptor, $action );
-		\Hooks::run( 'AuthChangeFormFields', [ $requests, $fieldInfo, &$formDescriptor, $action ] );
+		$this->getHookRunner()->onAuthChangeFormFields( $requests, $fieldInfo,
+			$formDescriptor, $action );
 		if ( $requestSnapshot !== serialize( $requests ) ) {
 			LoggerFactory::getInstance( 'authentication' )->warning(
 				'AuthChangeFormFields hook changed auth requests' );

@@ -103,7 +103,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			'ctype', 'maxage', 'smaxage',
 		];
 
-		Hooks::run( "RedirectSpecialArticleRedirectParams", [ &$redirectParams ] );
+		$this->getHookRunner()->onRedirectSpecialArticleRedirectParams( $redirectParams );
 		$this->mAllowedRedirectParams = $redirectParams;
 	}
 

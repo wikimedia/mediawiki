@@ -78,8 +78,9 @@ class ApiUndelete extends ApiBase {
 		}
 
 		if ( $retval[1] ) {
-			Hooks::run( 'FileUndeleteComplete',
-				[ $titleObj, $params['fileids'], $this->getUser(), $params['reason'] ] );
+			$this->getHookRunner()->onFileUndeleteComplete(
+				$titleObj, $params['fileids'],
+				$this->getUser(), $params['reason'] );
 		}
 
 		$this->setWatch( $params['watchlist'], $titleObj );

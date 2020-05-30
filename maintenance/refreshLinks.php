@@ -112,7 +112,7 @@ class RefreshLinks extends Maintenance {
 		}
 
 		// Give extensions a chance to optimize settings
-		Hooks::run( 'MaintenanceRefreshLinksInit', [ $this ] );
+		$this->getHookRunner()->onMaintenanceRefreshLinksInit( $this );
 
 		$what = $redirectsOnly ? "redirects" : "links";
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();

@@ -20,6 +20,7 @@ class ApiStashEditTest extends ApiTestCase {
 			MediaWikiServices::getInstance()->getDBLoadBalancer(),
 			new NullLogger(),
 			new NullStatsdDataFactory(),
+			MediaWikiServices::getInstance()->getHookContainer(),
 			PageEditStash::INITIATOR_USER
 		) );
 		// Clear rate-limiting cache between tests

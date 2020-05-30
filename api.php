@@ -69,7 +69,7 @@ try {
 	$processor = new ApiMain( RequestContext::getMain(), true );
 
 	// Last chance hook before executing the API
-	Hooks::run( 'ApiBeforeMain', [ &$processor ] );
+	Hooks::runner()->onApiBeforeMain( $processor );
 	if ( !$processor instanceof ApiMain ) {
 		throw new MWException( 'ApiBeforeMain hook set $processor to a non-ApiMain class' );
 	}

@@ -41,7 +41,7 @@ abstract class TitleArray implements Iterator {
 	 */
 	public static function newFromResult( $res ) {
 		$array = null;
-		if ( !Hooks::run( 'TitleArrayFromResult', [ &$array, $res ] ) ) {
+		if ( !Hooks::runner()->onTitleArrayFromResult( $array, $res ) ) {
 			return null;
 		}
 		return $array ?? new TitleArrayFromResult( $res );

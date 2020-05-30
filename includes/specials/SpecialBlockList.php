@@ -214,7 +214,7 @@ class SpecialBlockList extends SpecialPage {
 
 		# Check for other blocks, i.e. global/tor blocks
 		$otherBlockLink = [];
-		Hooks::run( 'OtherBlockLogLink', [ &$otherBlockLink, $this->target ] );
+		$this->getHookRunner()->onOtherBlockLogLink( $otherBlockLink, $this->target );
 
 		# Show additional header for the local block only when other blocks exists.
 		# Not necessary in a standard installation without such extensions enabled
@@ -241,7 +241,6 @@ class SpecialBlockList extends SpecialPage {
 				) . "\n"
 			);
 			$list = '';
-			// @phan-suppress-next-line PhanEmptyForeach False positive
 			foreach ( $otherBlockLink as $link ) {
 				$list .= Html::rawElement( 'li', [], $link ) . "\n";
 			}

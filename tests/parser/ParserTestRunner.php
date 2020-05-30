@@ -1134,7 +1134,7 @@ class ParserTestRunner {
 		}
 
 		/** @since 1.20 */
-		Hooks::run( 'ParserTestGlobals', [ &$setup ] );
+		Hooks::runner()->onParserTestGlobals( $setup );
 
 		// Set content language. This invalidates the magic word cache and title services
 		// In addition the ParserFactory needs to be recreated as well.
@@ -1227,7 +1227,7 @@ class ParserTestRunner {
 		// Allow extensions to add to the list of tables to duplicate;
 		// may be necessary if they hook into page save or other code
 		// which will require them while running tests.
-		Hooks::run( 'ParserTestTables', [ &$tables ] );
+		Hooks::runner()->onParserTestTables( $tables );
 
 		return $tables;
 	}

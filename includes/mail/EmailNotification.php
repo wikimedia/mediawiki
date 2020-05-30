@@ -210,7 +210,7 @@ class EmailNotification {
 
 		$formattedPageStatus = [ 'deleted', 'created', 'moved', 'restored', 'changed' ];
 
-		Hooks::run( 'UpdateUserMailerFormattedPageStatus', [ &$formattedPageStatus ] );
+		Hooks::runner()->onUpdateUserMailerFormattedPageStatus( $formattedPageStatus );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
 			throw new MWException( 'Not a valid page status!' );
 		}
@@ -243,7 +243,7 @@ class EmailNotification {
 						// @TODO Partial blocks should not prevent the user from logging in.
 						//       see: https://phabricator.wikimedia.org/T208895
 						&& !( $wgBlockDisablesLogin && $watchingUser->getBlock() )
-						&& Hooks::run( 'SendWatchlistEmailNotification', [ $watchingUser, $title, $this ] )
+						&& Hooks::runner()->onSendWatchlistEmailNotification( $watchingUser, $title, $this )
 					) {
 						$this->compose( $watchingUser, self::WATCHLIST, $messageCache );
 					}
@@ -289,7 +289,7 @@ class EmailNotification {
 			) {
 				if ( !$targetUser->isEmailConfirmed() ) {
 					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
-				} elseif ( !Hooks::run( 'AbortTalkPageEmailNotification', [ $targetUser, $title ] ) ) {
+				} elseif ( !Hooks::runner()->onAbortTalkPageEmailNotification( $targetUser, $title ) ) {
 					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user\n" );
 				} else {
 					wfDebug( __METHOD__ . ": sending talk page update notification\n" );

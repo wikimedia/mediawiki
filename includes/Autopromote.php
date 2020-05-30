@@ -46,7 +46,7 @@ class Autopromote {
 			}
 		}
 
-		Hooks::run( 'GetAutoPromoteGroups', [ $user, &$promote ] );
+		Hooks::runner()->onGetAutoPromoteGroups( $user, $promote );
 
 		return $promote;
 	}
@@ -208,8 +208,8 @@ class Autopromote {
 					->getGroupPermissions( $user->getGroups() ) );
 			default:
 				$result = null;
-				Hooks::run( 'AutopromoteCondition', [ $cond[0],
-					array_slice( $cond, 1 ), $user, &$result ] );
+				Hooks::runner()->onAutopromoteCondition( $cond[0],
+					array_slice( $cond, 1 ), $user, $result );
 				if ( $result === null ) {
 					throw new MWException( "Unrecognized condition {$cond[0]} for autopromotion!" );
 				}

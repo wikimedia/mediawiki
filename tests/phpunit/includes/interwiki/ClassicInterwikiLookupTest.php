@@ -42,6 +42,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
 			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
+			MediaWikiServices::getInstance()->getHookContainer(),
 			60 * 60,
 			false,
 			3,
@@ -156,6 +157,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
 			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
+			MediaWikiServices::getInstance()->getHookContainer(),
 			60 * 60,
 			$cdbFile,
 			3,
@@ -207,6 +209,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
 			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
+			MediaWikiServices::getInstance()->getHookContainer(),
 			60 * 60,
 			$hash,
 			3,
@@ -260,6 +263,7 @@ class ClassicInterwikiLookupTest extends MediaWikiTestCase {
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
 			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
+			MediaWikiServices::getInstance()->getHookContainer(),
 			60 * 60,
 			$hash,
 			3,

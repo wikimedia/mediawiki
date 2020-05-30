@@ -224,7 +224,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		# Try a hook. Called "Bitmap" for historical reasons.
 		/** @var MediaTransformOutput $mto */
 		$mto = null;
-		Hooks::run( 'BitmapHandlerTransform', [ $this, $image, &$scalerParams, &$mto ] );
+		Hooks::runner()->onBitmapHandlerTransform( $this, $image, $scalerParams, $mto );
 		if ( $mto !== null ) {
 			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
 			$scaler = 'hookaborted';
@@ -598,10 +598,8 @@ abstract class TransformationalImageHandler extends ImageHandler {
 
 		# For historical reasons, hook starts with BitmapHandler
 		$checkImageAreaHookResult = null;
-		Hooks::run(
-			'BitmapHandlerCheckImageArea',
-			[ $file, &$params, &$checkImageAreaHookResult ]
-		);
+		Hooks::runner()->onBitmapHandlerCheckImageArea(
+			$file, $params, $checkImageAreaHookResult );
 
 		if ( $checkImageAreaHookResult !== null ) {
 			// was set by hook, so return that value

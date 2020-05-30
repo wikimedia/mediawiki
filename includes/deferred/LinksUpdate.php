@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -34,6 +35,8 @@ use Wikimedia\ScopedCallback;
  * See docs/deferred.txt
  */
 class LinksUpdate extends DataUpdate {
+	use ProtectedHookAccessorTrait;
+
 	// @todo make members protected, but make sure extensions don't break
 
 	/** @var int Page ID of the article linked from */
@@ -169,9 +172,7 @@ class LinksUpdate extends DataUpdate {
 
 		$this->mRecursive = $recursive;
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$linksUpdate = $this;
-		Hooks::run( 'LinksUpdateConstructed', [ &$linksUpdate ] );
+		$this->getHookRunner()->onLinksUpdateConstructed( $this );
 	}
 
 	/**
@@ -189,9 +190,7 @@ class LinksUpdate extends DataUpdate {
 			}
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$linksUpdate = $this;
-		Hooks::run( 'LinksUpdate', [ &$linksUpdate ] );
+		$this->getHookRunner()->onLinksUpdate( $this );
 		$this->doIncrementalUpdate();
 
 		// Commit and release the lock (if set)
@@ -201,9 +200,7 @@ class LinksUpdate extends DataUpdate {
 			$this->getDB(),
 			__METHOD__,
 			function () {
-				// Avoid PHP 7.1 warning from passing $this by reference
-				$linksUpdate = $this;
-				Hooks::run( 'LinksUpdateComplete', [ &$linksUpdate, $this->ticket ] );
+				$this->getHookRunner()->onLinksUpdateComplete( $this, $this->ticket );
 			}
 		) );
 	}
@@ -517,7 +514,7 @@ class LinksUpdate extends DataUpdate {
 		}
 
 		if ( count( $insertions ) ) {
-			Hooks::run( 'LinksUpdateAfterInsert', [ $this, $table, $insertions ] );
+			$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $insertions );
 		}
 	}
 

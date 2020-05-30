@@ -387,9 +387,7 @@ class RecentChange implements Taggable {
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Notify extensions
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$rc = $this;
-		Hooks::run( 'RecentChange_save', [ &$rc ] );
+		Hooks::runner()->onRecentChange_save( $this );
 
 		if ( count( $this->tags ) ) {
 			ChangeTags::addTags( $this->tags, $this->mAttribs['rc_id'],
@@ -408,7 +406,7 @@ class RecentChange implements Taggable {
 
 			// Never send an RC notification email about categorization changes
 			if (
-				Hooks::run( 'AbortEmailNotification', [ $editor, $title, $this ] ) &&
+				Hooks::runner()->onAbortEmailNotification( $editor, $title, $this ) &&
 				$this->mAttribs['rc_type'] != RC_CATEGORIZE
 			) {
 				// @FIXME: This would be better as an extension hook
@@ -564,8 +562,8 @@ class RecentChange implements Taggable {
 			$errors,
 			$permManager->getPermissionErrors( $right, $user, $this->getTitle() )
 		);
-		if ( !Hooks::run( 'MarkPatrolled',
-					[ $this->getAttribute( 'rc_id' ), &$user, false, $auto, &$tags ] )
+		if ( !Hooks::runner()->onMarkPatrolled(
+			$this->getAttribute( 'rc_id' ), $user, false, $auto, $tags )
 		) {
 			$errors[] = [ 'hookaborted' ];
 		}
@@ -588,10 +586,8 @@ class RecentChange implements Taggable {
 		// Log this patrol event
 		PatrolLog::record( $this, $auto, $user, $tags );
 
-		Hooks::run(
-			'MarkPatrolledComplete',
-			[ $this->getAttribute( 'rc_id' ), &$user, false, $auto ]
-		);
+		Hooks::runner()->onMarkPatrolledComplete(
+			$this->getAttribute( 'rc_id' ), $user, false, $auto );
 
 		return [];
 	}

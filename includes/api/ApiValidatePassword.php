@@ -45,7 +45,7 @@ class ApiValidatePassword extends ApiBase {
 			$r['validitymessages'] = $messages;
 		}
 
-		Hooks::run( 'ApiValidatePassword', [ $this, &$r ] );
+		$this->getHookRunner()->onApiValidatePassword( $this, $r );
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $r );
 	}

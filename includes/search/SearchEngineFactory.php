@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\IDatabase;
@@ -16,8 +17,12 @@ class SearchEngineFactory {
 	 */
 	private $config;
 
-	public function __construct( SearchEngineConfig $config ) {
+	/** @var HookContainer */
+	private $hookContainer;
+
+	public function __construct( SearchEngineConfig $config, HookContainer $hookContainer ) {
 		$this->config = $config;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
@@ -54,7 +59,10 @@ class SearchEngineFactory {
 			$args['extraArgs'][] = $lb;
 		}
 
-		return ObjectFactory::getObjectFromSpec( $spec, $args );
+		/** @var SearchEngine $engine */
+		$engine = ObjectFactory::getObjectFromSpec( $spec, $args );
+		$engine->setHookContainer( $this->hookContainer );
+		return $engine;
 	}
 
 	/**

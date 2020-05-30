@@ -79,7 +79,8 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 			'EnableSearchContributorsByIP' => $enableSearchContributorsByIP,
 		] );
 		$lang = $services->getLanguageFactory()->getLanguage( $langCode );
-		$matcher = new SearchNearMatcher( $config, $lang );
+		$hookContainer = $services->getHookContainer();
+		$matcher = new SearchNearMatcher( $config, $lang, $hookContainer );
 		$title = $matcher->getNearMatch( $searchterm );
 		$this->assertEquals( $expected, $title === null ? null : (string)$title );
 	}
@@ -112,7 +113,8 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 		} );
 
 		$lang = $services->getLanguageFactory()->getLanguage( 'en' );
-		$matcher = new SearchNearMatcher( $config, $lang );
+		$hookContainer = $services->getHookContainer();
+		$matcher = new SearchNearMatcher( $config, $lang, $hookContainer );
 		$title = $matcher->getNearMatch( 'Hook' );
 		$this->assertEquals( 'TitleFromHook', $title );
 
@@ -131,7 +133,8 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$lang = $services->getLanguageFactory()->getLanguage( 'en' );
-		$matcher = new SearchNearMatcher( $config, $lang );
+		$hookContainer = $services->getHookContainer();
+		$matcher = new SearchNearMatcher( $config, $lang, $hookContainer );
 		$result = $matcher->getNearMatchResultSet( 'Test Link' );
 		$this->assertSame( 1, $result->numRows() );
 

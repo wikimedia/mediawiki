@@ -22,6 +22,8 @@
  *
  * @file
  */
+
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
@@ -77,6 +79,9 @@ class ProtectionForm {
 	/** @var PermissionManager */
 	private $permManager;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	public function __construct( Article $article ) {
 		// Set instance variables.
 		$this->mArticle = $article;
@@ -84,7 +89,9 @@ class ProtectionForm {
 		$this->mApplicableTypes = $this->mTitle->getRestrictionTypes();
 		$this->mContext = $article->getContext();
 
-		$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$this->permManager = $services->getPermissionManager();
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
@@ -356,7 +363,7 @@ class ProtectionForm {
 		 *             you can also return an array of message name and its parameters
 		 */
 		$errorMsg = '';
-		if ( !Hooks::run( 'ProtectionForm::save', [ $this->mArticle, &$errorMsg, $reasonstr ] ) ) {
+		if ( !$this->hookRunner->onProtectionForm__save( $this->mArticle, $errorMsg, $reasonstr ) ) {
 			if ( $errorMsg == '' ) {
 				$errorMsg = [ 'hookaborted' ];
 			}
@@ -478,7 +485,7 @@ class ProtectionForm {
 			"</td></tr>";
 		}
 		# Give extensions a chance to add items to the form
-		Hooks::run( 'ProtectionForm::buildForm', [ $this->mArticle, &$out ] );
+		$this->hookRunner->onProtectionForm__buildForm( $this->mArticle, $out );
 
 		$out .= Xml::closeElement( 'tbody' ) . Xml::closeElement( 'table' );
 
@@ -656,6 +663,6 @@ class ProtectionForm {
 		$out->addHTML( Xml::element( 'h2', null, $protectLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $out, 'protect', $this->mTitle );
 		# Let extensions add other relevant log extracts
-		Hooks::run( 'ProtectionForm::showLogExtract', [ $this->mArticle, $out ] );
+		$this->hookRunner->onProtectionForm__showLogExtract( $this->mArticle, $out );
 	}
 }

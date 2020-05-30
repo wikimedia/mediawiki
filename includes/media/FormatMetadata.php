@@ -24,6 +24,8 @@
  * @see http://exif.org/Exif2-2.PDF The Exif 2.2 specification
  * @file
  */
+
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -49,6 +51,8 @@ use Wikimedia\Timestamp\TimestampException;
  *   internal methods are private
  */
 class FormatMetadata extends ContextSource {
+	use ProtectedHookAccessorTrait;
+
 	/**
 	 * Only output a single language for multi-language fields
 	 * @var bool
@@ -1618,7 +1622,7 @@ class FormatMetadata extends ContextSource {
 		$cachedValue = $cache->get( $cacheKey );
 		if (
 			$cachedValue
-			&& Hooks::run( 'ValidateExtendedMetadataCache', [ $cachedValue['timestamp'], $file ] )
+			&& $this->getHookRunner()->onValidateExtendedMetadataCache( $cachedValue['timestamp'], $file )
 		) {
 			$extendedMetadata = $cachedValue['data'];
 		} else {
@@ -1702,13 +1706,13 @@ class FormatMetadata extends ContextSource {
 	protected function getExtendedMetadataFromHook( File $file, array $extendedMetadata,
 		&$maxCacheTime
 	) {
-		Hooks::run( 'GetExtendedMetadata', [
-			&$extendedMetadata,
+		$this->getHookRunner()->onGetExtendedMetadata(
+			$extendedMetadata,
 			$file,
 			$this->getContext(),
 			$this->singleLang,
-			&$maxCacheTime
-		] );
+			$maxCacheTime
+		);
 
 		$visible = array_flip( self::getVisibleFields() );
 		foreach ( $extendedMetadata as $key => $value ) {

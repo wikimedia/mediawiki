@@ -171,7 +171,7 @@ class WebResponse {
 
 		$func = $options['raw'] ? 'setrawcookie' : 'setcookie';
 
-		if ( Hooks::run( 'WebResponseSetCookie', [ &$name, &$value, &$expire, &$options ] ) ) {
+		if ( Hooks::runner()->onWebResponseSetCookie( $name, $value, $expire, $options ) ) {
 			// Note: Don't try to move this earlier to reuse it for self::$disableForPostSend,
 			// we need to use the altered values from the hook here. (T198525)
 			$cookie = $options['prefix'] . $name;

@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -46,6 +47,8 @@ class WikiImporter {
 	private $config;
 	/** @var ImportTitleFactory */
 	private $importTitleFactory;
+	/** @var HookRunner */
+	private $hookRunner;
 	/** @var array */
 	private $countableCache = [];
 	/** @var bool */
@@ -66,6 +69,7 @@ class WikiImporter {
 
 		$this->reader = new XMLReader();
 		$this->config = $config;
+		$this->hookRunner = Hooks::runner();
 
 		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
 			stream_wrapper_register( 'uploadsource', UploadSourceAdapter::class );
@@ -431,8 +435,8 @@ class WikiImporter {
 			}
 		}
 
-		return Hooks::run( 'AfterImportPage', [ $title, $foreignTitle, $revCount,
-			$sRevCount, $pageInfo ] );
+		return $this->hookRunner->onAfterImportPage( $title, $foreignTitle,
+			$revCount, $sRevCount, $pageInfo );
 	}
 
 	/**
@@ -597,7 +601,7 @@ class WikiImporter {
 				}
 				$type = $this->reader->nodeType;
 
-				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', [ $this ] ) ) {
+				if ( !$this->hookRunner->onImportHandleToplevelXMLTag( $this ) ) {
 					// Do nothing
 				} elseif ( $tag == 'mediawiki' && $type == XMLReader::END_ELEMENT ) {
 					break;
@@ -679,9 +683,7 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleLogItemXMLTag', [
-				$this, $logInfo
-			] ) ) {
+			if ( !$this->hookRunner->onImportHandleLogItemXMLTag( $this, $logInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$logInfo[$tag] = $this->nodeContents();
@@ -740,9 +742,6 @@ class WikiImporter {
 		return $this->logItemCallback( $revision );
 	}
 
-	/**
-	 * @suppress PhanTypeInvalidDimOffset Phan not reading the reference inside the hook
-	 */
 	private function handlePage() {
 		// Handle page data.
 		$this->debug( "Enter page handler." );
@@ -767,8 +766,7 @@ class WikiImporter {
 			if ( $badTitle ) {
 				// The title is invalid, bail out of this page
 				$skip = true;
-			} elseif ( !Hooks::run( 'ImportHandlePageXMLTag', [ $this,
-						&$pageInfo ] ) ) {
+			} elseif ( !$this->hookRunner->onImportHandlePageXMLTag( $this, $pageInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				// An XML snippet:
@@ -843,9 +841,9 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleRevisionXMLTag', [
-				$this, $pageInfo, $revisionInfo
-			] ) ) {
+			if ( !$this->hookRunner->onImportHandleRevisionXMLTag(
+				$this, $pageInfo, $revisionInfo )
+			) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$revisionInfo[$tag] = $this->nodeContents();
@@ -963,9 +961,7 @@ class WikiImporter {
 
 			$tag = $this->reader->localName;
 
-			if ( !Hooks::run( 'ImportHandleUploadXMLTag', [
-				$this, $pageInfo
-			] ) ) {
+			if ( !$this->hookRunner->onImportHandleUploadXMLTag( $this, $pageInfo ) ) {
 				// Do nothing
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$uploadInfo[$tag] = $this->nodeContents();

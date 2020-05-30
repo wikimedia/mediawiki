@@ -256,9 +256,8 @@ class ContentModelChange {
 
 		$newContent = $this->newContent;
 
-		if ( !Hooks::run( 'EditFilterMergedContent',
-				[ $derivativeContext, $newContent, $status, $reason,
-				$user, false ] )
+		if ( !Hooks::runner()->onEditFilterMergedContent( $derivativeContext, $newContent,
+			$status, $reason, $user, false )
 		) {
 			if ( $status->isGood() ) {
 				// TODO: extensions should really specify an error message

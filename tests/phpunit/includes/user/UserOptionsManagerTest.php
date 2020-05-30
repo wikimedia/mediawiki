@@ -25,7 +25,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 			$this->getDefaultManager( $langCode, $defaultOptionsOverrides ),
 			$services->getLanguageConverterFactory(),
 			$services->getDBLoadBalancer(),
-			new NullLogger()
+			new NullLogger(),
+			$services->getHookContainer()
 		);
 	}
 

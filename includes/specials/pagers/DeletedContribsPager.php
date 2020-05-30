@@ -129,10 +129,8 @@ class DeletedContribsPager extends IndexPager {
 
 		// This hook will allow extensions to add in additional queries, nearly
 		// identical to ContribsPager::reallyDoQuery.
-		Hooks::run(
-			'DeletedContribsPager::reallyDoQuery',
-			[ &$data, $this, $offset, $limit, $order ]
-		);
+		$this->getHookRunner()->onDeletedContribsPager__reallyDoQuery(
+			$data, $this, $offset, $limit, $order );
 
 		$result = [];
 
@@ -261,7 +259,8 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		// Let extensions add data
-		Hooks::run( 'DeletedContributionsLineEnding', [ $this, &$ret, $row, &$classes, &$attribs ] );
+		$this->getHookRunner()->onDeletedContributionsLineEnding(
+			$this, $ret, $row, $classes, $attribs );
 		$attribs = array_filter( $attribs,
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY

@@ -106,7 +106,7 @@ foreach ( $wgOpenSearchTemplates as $type => $template ) {
 
 // Allow hooks to override the suggestion URL settings in a more
 // general way than overriding the whole search engine...
-Hooks::run( 'OpenSearchUrls', [ &$urls ] );
+Hooks::runner()->onOpenSearchUrls( $urls );
 
 foreach ( $urls as $attribs ) {
 	print Xml::element( 'Url', $attribs );

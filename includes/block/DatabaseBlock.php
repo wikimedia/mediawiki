@@ -710,8 +710,7 @@ class DatabaseBlock extends AbstractBlock {
 		if ( $this->isAutoblocking() && $this->getType() == self::TYPE_USER ) {
 			wfDebug( "Doing retroactive autoblocks for " . $this->getTarget() . "\n" );
 
-			$continue = Hooks::run(
-				'PerformRetroactiveAutoblock', [ $this, &$blockIds ] );
+			$continue = Hooks::runner()->onPerformRetroactiveAutoblock( $this, $blockIds );
 
 			if ( $continue ) {
 				self::defaultRetroactiveAutoblock( $this, $blockIds );
@@ -837,10 +836,8 @@ class DatabaseBlock extends AbstractBlock {
 			return false;
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$block = $this;
 		# Allow hooks to cancel the autoblock.
-		if ( !Hooks::run( 'AbortAutoblock', [ $autoblockIP, &$block ] ) ) {
+		if ( !Hooks::runner()->onAbortAutoblock( $autoblockIP, $this ) ) {
 			wfDebug( "Autoblock aborted by hook.\n" );
 			return false;
 		}

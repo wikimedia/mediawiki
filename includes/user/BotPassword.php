@@ -546,7 +546,7 @@ class BotPassword implements IDBAccessObject {
 		} else {
 			$response = AuthenticationResponse::newFail( $status->getMessage() );
 		}
-		Hooks::run( 'AuthManagerLoginAuthenticateAudit', [ $response, $user, $name, $extraData ] );
+		Hooks::runner()->onAuthManagerLoginAuthenticateAudit( $response, $user, $name, $extraData );
 
 		return $status;
 	}

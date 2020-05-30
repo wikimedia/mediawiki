@@ -268,7 +268,7 @@ class ApiMain extends ApiBase {
 		$this->mModuleMgr->addModules( self::$Formats, 'format' );
 		$this->mModuleMgr->addModules( $config->get( 'APIFormatModules' ), 'format' );
 
-		Hooks::run( 'ApiMain::moduleManager', [ $this->mModuleMgr ] );
+		$this->getHookRunner()->onApiMain__moduleManager( $this->mModuleMgr );
 
 		$this->mContinuationManager = null;
 		$this->mEnableWrite = $enableWrite;
@@ -324,7 +324,8 @@ class ApiMain extends ApiBase {
 		}
 
 		// Allow extensions to override.
-		$this->lacksSameOriginSecurity = !Hooks::run( 'RequestHasSameOriginSecurity', [ $request ] );
+		$this->lacksSameOriginSecurity = !$this->getHookRunner()
+			->onRequestHasSameOriginSecurity( $request );
 		return $this->lacksSameOriginSecurity;
 	}
 
@@ -576,7 +577,7 @@ class ApiMain extends ApiBase {
 		}
 
 		// Allow extra cleanup and logging
-		Hooks::run( 'ApiMain::onException', [ $this, $e ] );
+		$this->getHookRunner()->onApiMain__onException( $this, $e );
 
 		// Handle any kind of exception by outputting properly formatted error message.
 		// If this fails, an unhandled exception should be thrown so that global error
@@ -1234,7 +1235,7 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		Hooks::runWithoutAbort( 'ApiMaxLagInfo', [ &$lagInfo ] );
+		$this->getHookRunner()->onApiMaxLagInfo( $lagInfo );
 
 		return $lagInfo;
 	}
@@ -1361,7 +1362,7 @@ class ApiMain extends ApiBase {
 									TS_MW, time() - $config->get( 'CdnMaxAge' )
 								);
 							}
-							Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this->getOutput() ] );
+							$this->getHookRunner()->onOutputPageCheckLastModified( $modifiedTimes, $this->getOutput() );
 							$lastMod = max( $modifiedTimes );
 							$return304 = wfTimestamp( TS_MW, $lastMod ) <= $ts->getTimestamp( TS_MW );
 						}
@@ -1413,7 +1414,7 @@ class ApiMain extends ApiBase {
 
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = 'hookaborted';
-		if ( !Hooks::run( 'ApiCheckCanExecute', [ $module, $user, &$message ] ) ) {
+		if ( !$this->getHookRunner()->onApiCheckCanExecute( $module, $user, $message ) ) {
 			$this->dieWithError( $message );
 		}
 	}
@@ -1581,7 +1582,7 @@ class ApiMain extends ApiBase {
 		}
 
 		$module->execute();
-		Hooks::run( 'APIAfterExecute', [ &$module ] );
+		$this->getHookRunner()->onAPIAfterExecute( $module );
 
 		$this->reportUnusedParams();
 

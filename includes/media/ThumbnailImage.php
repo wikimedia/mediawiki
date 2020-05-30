@@ -211,7 +211,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			$attribs['srcset'] = Html::srcSet( $responsiveUrls );
 		}
 
-		Hooks::run( 'ThumbnailBeforeProduceHTML', [ $this, &$attribs, &$linkAttribs ] );
+		Hooks::runner()->onThumbnailBeforeProduceHTML( $this, $attribs, $linkAttribs );
 
 		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
 	}

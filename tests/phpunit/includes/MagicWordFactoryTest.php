@@ -9,8 +9,11 @@ use MediaWiki\MediaWikiServices;
  */
 class MagicWordFactoryTest extends MediaWikiTestCase {
 	private function makeMagicWordFactory( Language $contLang = null ) {
+		$services = MediaWikiServices::getInstance();
 		return new MagicWordFactory( $contLang ?:
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
+			$services->getLanguageFactory()->getLanguage( 'en' ),
+			$services->getHookContainer()
+		);
 	}
 
 	public function testGetContentLanguage() {

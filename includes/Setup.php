@@ -684,7 +684,7 @@ if ( $wgCommandLineMode ) {
 $wgMemc = ObjectCache::getLocalClusterInstance();
 
 // Most of the config is out, some might want to run hooks here.
-Hooks::run( 'SetupAfterCache' );
+Hooks::runner()->onSetupAfterCache();
 
 /**
  * @var Language $wgContLang

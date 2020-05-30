@@ -90,7 +90,9 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCas
 		$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
 		$permManager = $this->createNoOpMock( PermissionManager::class );
-		$manager = new AuthManager( new \FauxRequest, $config, $objectFactory, $permManager );
+		$hookContainer = $this->createHookContainer();
+		$manager = new AuthManager( new \FauxRequest, $config, $objectFactory,
+			$permManager, $hookContainer );
 		$provider->setManager( $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 

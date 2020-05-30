@@ -25,8 +25,10 @@ namespace MediaWiki\Storage;
 use ActorMigration;
 use BagOStuff;
 use Content;
-use Hooks;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Storage\Hook\ParserOutputStashForEditHook;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use stdClass;
@@ -50,6 +52,8 @@ class PageEditStash {
 	private $logger;
 	/** @var StatsdDataFactoryInterface */
 	private $stats;
+	/** @var ParserOutputStashForEditHook */
+	private $hookRunner;
 	/** @var int */
 	private $initiator;
 
@@ -73,6 +77,7 @@ class PageEditStash {
 	 * @param ILoadBalancer $lb
 	 * @param LoggerInterface $logger
 	 * @param StatsdDataFactoryInterface $stats
+	 * @param HookContainer $hookContainer
 	 * @param int $initiator Class INITIATOR__* constant
 	 */
 	public function __construct(
@@ -80,12 +85,14 @@ class PageEditStash {
 		ILoadBalancer $lb,
 		LoggerInterface $logger,
 		StatsdDataFactoryInterface $stats,
+		HookContainer $hookContainer,
 		$initiator
 	) {
 		$this->cache = $cache;
 		$this->lb = $lb;
 		$this->logger = $logger;
 		$this->stats = $stats;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->initiator = $initiator;
 	}
 
@@ -136,8 +143,8 @@ class PageEditStash {
 
 		if ( $editInfo && $editInfo->output ) {
 			// Let extensions add ParserOutput metadata or warm other caches
-			Hooks::run( 'ParserOutputStashForEdit',
-				[ $page, $content, $editInfo->output, $summary, $user ] );
+			$this->hookRunner->onParserOutputStashForEdit(
+				$page, $content, $editInfo->output, $summary, $user );
 
 			if ( $alreadyCached ) {
 				$logger->debug( "Parser output for key '{cachekey}' already cached.", $context );

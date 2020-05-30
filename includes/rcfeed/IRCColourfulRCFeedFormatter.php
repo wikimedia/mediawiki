@@ -67,7 +67,7 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 				$query .= '&rcid=' . $attribs['rc_id'];
 			}
 
-			Hooks::run( 'IRCLineURL', [ &$url, &$query, $rc ] );
+			Hooks::runner()->onIRCLineURL( $url, $query, $rc );
 			$url .= $query;
 		}
 

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -24,11 +26,23 @@ class SearchNearMatcher {
 	 */
 	private $languageConverter;
 
-	public function __construct( Config $config, Language $lang ) {
+	/**
+	 * @var HookRunner
+	 */
+	private $hookRunner;
+
+	/**
+	 * SearchNearMatcher constructor.
+	 * @param Config $config
+	 * @param Language $lang
+	 * @param HookContainer $hookContainer
+	 */
+	public function __construct( Config $config, Language $lang, HookContainer $hookContainer ) {
 		$this->config = $config;
 		$this->language = $lang;
 		$this->languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
 			->getLanguageConverter( $lang );
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -41,7 +55,7 @@ class SearchNearMatcher {
 	public function getNearMatch( $searchterm ) {
 		$title = $this->getNearMatchInternal( $searchterm );
 
-		Hooks::run( 'SearchGetNearMatchComplete', [ $searchterm, &$title ] );
+		$this->hookRunner->onSearchGetNearMatchComplete( $searchterm, $title );
 		return $title;
 	}
 
@@ -72,7 +86,7 @@ class SearchNearMatcher {
 		}
 
 		$titleResult = null;
-		if ( !Hooks::run( 'SearchGetNearMatchBefore', [ $allSearchTerms, &$titleResult ] ) ) {
+		if ( !$this->hookRunner->onSearchGetNearMatchBefore( $allSearchTerms, $titleResult ) ) {
 			return $titleResult;
 		}
 
@@ -105,7 +119,7 @@ class SearchNearMatcher {
 				return $title;
 			}
 
-			if ( !Hooks::run( 'SearchAfterNoDirectMatch', [ $term, &$title ] ) ) {
+			if ( !$this->hookRunner->onSearchAfterNoDirectMatch( $term, $title ) ) {
 				return $title;
 			}
 
@@ -135,7 +149,7 @@ class SearchNearMatcher {
 
 			// Give hooks a chance at better match variants
 			$title = null;
-			if ( !Hooks::run( 'SearchGetNearMatch', [ $term, &$title ] ) ) {
+			if ( !$this->hookRunner->onSearchGetNearMatch( $term, $title ) ) {
 				return $title;
 			}
 		}

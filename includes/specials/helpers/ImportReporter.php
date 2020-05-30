@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -25,6 +26,8 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class ImportReporter extends ContextSource {
+	use ProtectedHookAccessorTrait;
+
 	private $reason = false;
 	private $logTags = [];
 	private $mOriginalLogCallback = null;
@@ -117,7 +120,8 @@ class ImportReporter extends ContextSource {
 			} else {
 				$pageTitle = $foreignTitle->getFullText();
 				$fullInterwikiPrefix = $this->mInterwiki;
-				Hooks::run( 'ImportLogInterwikiLink', [ &$fullInterwikiPrefix, &$pageTitle ] );
+				$this->getHookRunner()->onImportLogInterwikiLink(
+					$fullInterwikiPrefix, $pageTitle );
 
 				$interwikiTitleStr = $fullInterwikiPrefix . ':' . $pageTitle;
 				$interwiki = '[[:' . $interwikiTitleStr . ']]';
@@ -153,16 +157,14 @@ class ImportReporter extends ContextSource {
 				$page->updateRevisionOn( $dbw, $inserted );
 
 				$fakeTags = [];
-				Hooks::run(
-					'RevisionFromEditComplete',
-					[ $page, $inserted, $latest, $this->getUser(), &$fakeTags ]
+				$this->getHookRunner()->onRevisionFromEditComplete(
+					$page, $inserted, $latest, $this->getUser(), $fakeTags
 				);
 
 				// TODO hard deprecate old hook
 				$nullRevision = new Revision( $inserted );
-				Hooks::run(
-					'NewRevisionFromEditComplete',
-					[ $page, $nullRevision, $latest, $this->getUser(), &$fakeTags ]
+				$this->getHookRunner()->onNewRevisionFromEditComplete(
+					$page, $nullRevision, $latest, $this->getUser(), $fakeTags
 				);
 			}
 

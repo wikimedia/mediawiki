@@ -1364,7 +1364,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		}
 
 		$result = true;
-		Hooks::run( 'TitleIsMovable', [ $this, &$result ] );
+		Hooks::runner()->onTitleIsMovable( $this, $result );
 		return $result;
 	}
 
@@ -2114,9 +2114,7 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		Hooks::run( 'GetFullURL', [ &$titleRef, &$url, $query ] );
+		Hooks::runner()->onGetFullURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -2189,9 +2187,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
 				$url = str_replace( '$1', $dbkey, $wgArticlePath );
-				// Avoid PHP 7.1 warning from passing $this by reference
-				$titleRef = $this;
-				Hooks::run( 'GetLocalURL::Article', [ &$titleRef, &$url ] );
+				Hooks::runner()->onGetLocalURL__Article( $this, $url );
 			} else {
 				global $wgVariantArticlePath, $wgActionPaths;
 				$url = false;
@@ -2238,9 +2234,7 @@ class Title implements LinkTarget, IDBAccessObject {
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}
-			// Avoid PHP 7.1 warning from passing $this by reference
-			$titleRef = $this;
-			Hooks::run( 'GetLocalURL::Internal', [ &$titleRef, &$url, $query ] );
+			Hooks::runner()->onGetLocalURL__Internal( $this, $url, $query );
 
 			// @todo FIXME: This causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
@@ -2253,9 +2247,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			return '/';
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		Hooks::run( 'GetLocalURL', [ &$titleRef, &$url, $query ] );
+		Hooks::runner()->onGetLocalURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -2306,9 +2298,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
 		$url = wfExpandUrl( $server . $this->getLocalURL( $query ), PROTO_HTTP );
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		Hooks::run( 'GetInternalURL', [ &$titleRef, &$url, $query ] );
+		Hooks::runner()->onGetInternalURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -2328,9 +2318,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	public function getCanonicalURL( $query = '', $query2 = false ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$url = wfExpandUrl( $this->getLocalURL( $query ) . $this->getFragmentForURL(), PROTO_CANONICAL );
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$titleRef = $this;
-		Hooks::run( 'GetCanonicalURL', [ &$titleRef, &$url, $query ] );
+		Hooks::runner()->onGetCanonicalURL( $this, $url, $query );
 		return $url;
 	}
 
@@ -2485,7 +2473,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			$types = array_diff( $types, [ 'upload' ] );
 		}
 
-		Hooks::run( 'TitleGetRestrictionTypes', [ $this, &$types ] );
+		Hooks::runner()->onTitleGetRestrictionTypes( $this, $types );
 
 		wfDebug( __METHOD__ . ': applicable restrictions to [[' .
 			$this->getPrefixedText() . ']] are {' . implode( ',', $types ) . "}\n" );
@@ -3955,7 +3943,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	public function exists( $flags = 0 ) {
 		$exists = $this->getArticleID( $flags ) != 0;
-		Hooks::run( 'TitleExists', [ $this, &$exists ] );
+		Hooks::runner()->onTitleExists( $this, $exists );
 		return $exists;
 	}
 
@@ -3988,7 +3976,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		 * @param Title $title
 		 * @param bool|null $isKnown
 		 */
-		Hooks::run( 'TitleIsAlwaysKnown', [ $this, &$isKnown ] );
+		Hooks::runner()->onTitleIsAlwaysKnown( $this, $isKnown );
 
 		if ( $isKnown !== null ) {
 			return $isKnown;
@@ -4360,7 +4348,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		// on the Title object passed in, and should probably
 		// tell the users to run updateCollations.php --force
 		// in order to re-sort existing category relations.
-		Hooks::run( 'GetDefaultSortkey', [ $this, &$unprefixed ] );
+		Hooks::runner()->onGetDefaultSortkey( $this, $unprefixed );
 		if ( $prefix !== '' ) {
 			# Separate with a line feed, so the unprefixed part is only used as
 			# a tiebreaker when two pages have the exact same prefix.
@@ -4556,7 +4544,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			}
 		}
 
-		Hooks::run( 'TitleGetEditNotices', [ $this, $oldid, &$notices ] );
+		Hooks::runner()->onTitleGetEditNotices( $this, $oldid, $notices );
 		return $notices;
 	}
 

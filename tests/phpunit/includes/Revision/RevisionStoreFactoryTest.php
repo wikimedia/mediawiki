@@ -36,7 +36,8 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$this->getMockCommentStore(),
 			ActorMigration::newMigration(),
 			new NullLogger(),
-			$this->getContentHandlerFactory()
+			$this->getContentHandlerFactory(),
+			$this->createHookContainer()
 		);
 		$this->assertTrue( true );
 	}
@@ -61,6 +62,7 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 		$actorMigration = ActorMigration::newMigration();
 		$logger = new NullLogger();
 		$contentHandlerFactory = $this->getContentHandlerFactory();
+		$hookContainer = $this->createHookContainer();
 
 		$factory = new RevisionStoreFactory(
 			$lbFactory,
@@ -71,7 +73,8 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 			$commentStore,
 			$actorMigration,
 			$logger,
-			$contentHandlerFactory
+			$contentHandlerFactory,
+			$hookContainer
 		);
 
 		$store = $factory->getRevisionStore( $dbDomain );
@@ -176,5 +179,4 @@ class RevisionStoreFactoryTest extends \MediaWikiIntegrationTestCase {
 	private function getHashWANObjectCache() {
 		return new WANObjectCache( [ 'cache' => new \HashBagOStuff() ] );
 	}
-
 }

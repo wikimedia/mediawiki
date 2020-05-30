@@ -25,6 +25,8 @@ namespace MediaWiki\Session;
 
 use Config;
 use Language;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use User;
@@ -86,6 +88,12 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	/** @var SessionManager */
 	protected $manager;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/** @var int Session priority. Used for the default newSessionInfo(), but
 	 * could be used by subclasses too.
 	 */
@@ -93,9 +101,9 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 
 	/**
 	 * @note To fully initialize a SessionProvider, the setLogger(),
-	 *  setConfig(), and setManager() methods must be called (and should be
-	 *  called in that order). Failure to do so is liable to cause things to
-	 *  fail unexpectedly.
+	 *  setConfig(), setManager() and setHookContainer() methods must be
+	 *  called (and should be called in that order). Failure to do so is
+	 *  liable to cause things to fail unexpectedly.
 	 */
 	public function __construct() {
 		$this->priority = SessionInfo::MIN_PRIORITY + 10;
@@ -127,6 +135,37 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 */
 	public function getManager() {
 		return $this->manager;
+	}
+
+	/**
+	 * Set the hook container
+	 * @internal
+	 * @param HookContainer $hookContainer
+	 */
+	public function setHookContainer( $hookContainer ) {
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
+	}
+
+	/**
+	 * Get the HookContainer
+	 *
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() : HookContainer {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * Get the HookRunner
+	 *
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 * @since 1.35
+	 * @return HookRunner
+	 */
+	protected function getHookRunner() : HookRunner {
+		return $this->hookRunner;
 	}
 
 	/**

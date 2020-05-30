@@ -469,7 +469,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 			$services->getSlotRoleStore(),
 			$services->getSlotRoleRegistry(),
 			$services->getActorMigration(),
-			$services->getContentHandlerFactory()
+			$services->getContentHandlerFactory(),
+			$services->getHookContainer()
 		);
 
 		$this->setService( 'RevisionStore', $store );

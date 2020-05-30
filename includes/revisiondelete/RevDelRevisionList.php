@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -34,6 +35,8 @@ use Wikimedia\Rdbms\IDatabase;
  * See RevDelRevisionItem and RevDelArchivedRevisionItem for items.
  */
 class RevDelRevisionList extends RevDelList {
+	use ProtectedHookAccessorTrait;
+
 	/** @var int */
 	public $currentRevId;
 
@@ -188,7 +191,8 @@ class RevDelRevisionList extends RevDelList {
 		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		$hcu->purgeTitleUrls( $this->title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 		// Extensions that require referencing previous revisions may need this
-		Hooks::run( 'ArticleRevisionVisibilitySet', [ $this->title, $this->ids, $visibilityChangeMap ] );
+		$this->getHookRunner()->onArticleRevisionVisibilitySet(
+			$this->title, $this->ids, $visibilityChangeMap );
 		MediaWikiServices::getInstance()
 			->getMainWANObjectCache()
 			->touchCheckKey( "RevDelRevisionList:page:{$this->title->getArticleID()}}" );

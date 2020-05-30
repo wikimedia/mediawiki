@@ -64,11 +64,13 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiTes
 		$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
 		$permManager = $this->createNoOpMock( PermissionManager::class );
+		$hookContainer = $this->createHookContainer();
 		$authManager = new AuthManager(
 			new \FauxRequest(),
 			new \HashConfig(),
 			$objectFactory,
-			$permManager
+			$permManager,
+			$hookContainer
 		);
 
 		$creator = $this->getMockBuilder( \User::class )->getMock();

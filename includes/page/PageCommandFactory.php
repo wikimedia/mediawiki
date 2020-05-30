@@ -25,6 +25,7 @@ namespace MediaWiki\Page;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
 use MergeHistory;
@@ -68,6 +69,9 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 	/** @var SpamChecker */
 	private $spamChecker;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation'
 	];
@@ -81,7 +85,8 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 		RepoGroup $repoGroup,
 		IContentHandlerFactory $contentHandlerFactory,
 		RevisionStore $revisionStore,
-		SpamChecker $spamChecker
+		SpamChecker $spamChecker,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -94,6 +99,7 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
 		$this->spamChecker = $spamChecker;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
@@ -141,7 +147,8 @@ class PageCommandFactory implements MergeHistoryFactory, MovePageFactory {
 			$this->repoGroup,
 			$this->contentHandlerFactory,
 			$this->revisionStore,
-			$this->spamChecker
+			$this->spamChecker,
+			$this->hookContainer
 		);
 	}
 }

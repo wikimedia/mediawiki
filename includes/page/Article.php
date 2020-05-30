@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Edit\PreparedEdit;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
@@ -43,6 +44,8 @@ use Wikimedia\Rdbms\IDatabase;
  * moved to separate EditPage and HTMLFileCache classes.
  */
 class Article implements Page {
+	use ProtectedHookAccessorTrait;
+
 	/**
 	 * @var IContextSource|null The context this Article is executed in.
 	 * If null, RequestContext::getMain() is used.
@@ -196,7 +199,7 @@ class Article implements Page {
 		}
 
 		$page = null;
-		Hooks::run( 'ArticleFromTitle', [ &$title, &$page, $context ] );
+		Hooks::runner()->onArticleFromTitle( $title, $page, $context );
 		if ( !$page ) {
 			switch ( $title->getNamespace() ) {
 				case NS_FILE:
@@ -709,9 +712,7 @@ class Article implements Page {
 		while ( !$outputDone && ++$pass ) {
 			switch ( $pass ) {
 				case 1:
-					// Avoid PHP 7.1 warning of passing $this by reference
-					$articlePage = $this;
-					Hooks::run( 'ArticleViewHeader', [ &$articlePage, &$outputDone, &$useParserCache ] );
+					$this->getHookRunner()->onArticleViewHeader( $this, $outputDone, $useParserCache );
 					break;
 				case 2:
 					# Early abort if the page doesn't exist
@@ -774,12 +775,11 @@ class Article implements Page {
 							"<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
 							'clearyourcache'
 						);
-					} elseif ( !Hooks::run( 'ArticleRevisionViewCustom', [
-							$rev,
-							$this->getTitle(),
-							$oldid,
-							$outputPage,
-						] )
+					} elseif ( !$this->getHookRunner()->onArticleRevisionViewCustom(
+						$rev,
+						$this->getTitle(),
+						$oldid,
+						$outputPage )
 					) {
 						// NOTE: sync with hooks called in DifferenceEngine::renderNewRevision()
 						// Allow extensions do their own custom view for certain pages
@@ -1114,12 +1114,9 @@ class Article implements Page {
 		$redirectTargetUrl = $this->getTitle()->getLinkURL( $query );
 
 		if ( isset( $this->mRedirectedFrom ) ) {
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$articlePage = $this;
-
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
-			if ( Hooks::run( 'ArticleViewRedirect', [ &$articlePage ] ) ) {
+			if ( $this->getHookRunner()->onArticleViewRedirect( $this ) ) {
 				$redir = $this->linkRenderer->makeKnownLink(
 					$this->mRedirectedFrom,
 					null,
@@ -1195,7 +1192,7 @@ class Article implements Page {
 		// Show a footer allowing the user to patrol the shown revision or page if possible
 		$patrolFooterShown = $this->showPatrolFooter();
 
-		Hooks::run( 'ArticleViewFooter', [ $this, $patrolFooterShown ] );
+		$this->getHookRunner()->onArticleViewFooter( $this, $patrolFooterShown );
 	}
 
 	/**
@@ -1212,7 +1209,7 @@ class Article implements Page {
 		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol;
 
 		// Allow hooks to decide whether to not output this at all
-		if ( !Hooks::run( 'ArticleShowPatrolFooter', [ $this ] ) ) {
+		if ( !$this->getHookRunner()->onArticleShowPatrolFooter( $this ) ) {
 			return false;
 		}
 
@@ -1437,7 +1434,7 @@ class Article implements Page {
 			}
 		}
 
-		Hooks::run( 'ShowMissingArticle', [ $this ] );
+		$this->getHookRunner()->onShowMissingArticle( $this );
 
 		# Show delete and move logs if there were any such events.
 		# The logging query can DOS the site when bots/crawlers cause 404 floods,
@@ -1453,7 +1450,7 @@ class Article implements Page {
 
 			$conds = [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ];
 			// Give extensions a chance to hide their (unrelated) log entries
-			Hooks::run( 'Article::MissingArticleConditions', [ &$conds, $logTypes ] );
+			$this->getHookRunner()->onArticle__MissingArticleConditions( $conds, $logTypes );
 			LogEventsList::showLogExtract(
 				$outputPage,
 				$logTypes,
@@ -1482,7 +1479,7 @@ class Article implements Page {
 		$outputPage->setIndexPolicy( $policy['index'] );
 		$outputPage->setFollowPolicy( $policy['follow'] );
 
-		$hookResult = Hooks::run( 'BeforeDisplayNoArticleText', [ $this ] );
+		$hookResult = $this->getHookRunner()->onBeforeDisplayNoArticleText( $this );
 
 		if ( !$hookResult ) {
 			return;
@@ -1571,10 +1568,7 @@ class Article implements Page {
 	 * @param int $oldid Revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$articlePage = $this;
-
-		if ( !Hooks::run( 'DisplayOldSubtitle', [ &$articlePage, &$oldid ] ) ) {
+		if ( !$this->getHookRunner()->onDisplayOldSubtitle( $this, $oldid ) ) {
 			return;
 		}
 
@@ -1994,7 +1988,7 @@ class Article implements Page {
 		}
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
-		Hooks::run( 'ArticleConfirmDelete', [ $this, $outputPage, &$reason ] );
+		$this->getHookRunner()->onArticleConfirmDelete( $this, $outputPage, $reason );
 
 		$user = $this->getContext()->getUser();
 		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
@@ -2158,7 +2152,7 @@ class Article implements Page {
 			if ( $status->isGood() ) {
 				$loglink = '[[Special:Log/delete|' . wfMessage( 'deletionlog' )->text() . ']]';
 				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
-				Hooks::run( 'ArticleDeleteAfterSuccess', [ $this->getTitle(), $outputPage ] );
+				$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
 			} else {
 				$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $deleted ) );
 			}
@@ -2237,9 +2231,7 @@ class Article implements Page {
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
-				// Avoid PHP 7.1 warning of passing $this by reference
-				$articlePage = $this;
-				$cacheable = Hooks::run( 'IsFileCacheable', [ &$articlePage ] );
+				$cacheable = $this->getHookRunner()->onIsFileCacheable( $this );
 			}
 		}
 

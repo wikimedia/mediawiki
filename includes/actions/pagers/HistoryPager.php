@@ -112,9 +112,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->tagFilter
 		);
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$historyPager = $this;
-		Hooks::run( 'PageHistoryPager::getQueryInfo', [ &$historyPager, &$queryInfo ] );
+		$this->getHookRunner()->onPageHistoryPager__getQueryInfo( $this, $queryInfo );
 
 		return $queryInfo;
 	}
@@ -146,7 +144,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	protected function doBatchLookups() {
-		if ( !Hooks::run( 'PageHistoryPager::doBatchLookups', [ $this, $this->mResult ] ) ) {
+		if ( !$this->getHookRunner()->onPageHistoryPager__doBatchLookups( $this, $this->mResult ) ) {
 			return;
 		}
 
@@ -482,12 +480,12 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 		// Allow extension to add their own links here
 		// TODO replace hook with one using RevisionRecord
-		Hooks::run( 'HistoryRevisionTools', [
+		$this->getHookRunner()->onHistoryRevisionTools(
 			new Revision( $revRecord ),
-			&$tools,
+			$tools,
 			$previousRevRecord ? new Revision( $previousRevRecord ) : null,
 			$user
-		] );
+		);
 
 		if ( $tools ) {
 			$s2 .= ' ' . Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
@@ -515,7 +513,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$attribs = [ 'data-mw-revid' => $revRecord->getId() ];
 
-		Hooks::run( 'PageHistoryLineEnding', [ $this, &$row, &$s, &$classes, &$attribs ] );
+		$this->getHookRunner()->onPageHistoryLineEnding( $this, $row, $s, $classes, $attribs );
 		$attribs = array_filter( $attribs,
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY

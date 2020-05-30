@@ -72,7 +72,7 @@ class ImagePage extends Article {
 
 		$this->displayImg = $img = false;
 
-		Hooks::run( 'ImagePageFindFile', [ $this, &$img, &$this->displayImg ] );
+		$this->getHookRunner()->onImagePageFindFile( $this, $img, $this->displayImg );
 		if ( !$img ) { // not set by hook?
 			$services = MediaWikiServices::getInstance();
 			$img = $services->getRepoGroup()->findFile( $this->getTitle() );
@@ -187,7 +187,7 @@ class ImagePage extends Article {
 
 		# Allow extensions to add something after the image links
 		$html = '';
-		Hooks::run( 'ImagePageAfterImageLinks', [ $this, &$html ] );
+		$this->getHookRunner()->onImagePageAfterImageLinks( $this, $html );
 		if ( $html ) {
 			$out->addHTML( $html );
 		}
@@ -240,7 +240,7 @@ class ImagePage extends Article {
 			'<li><a href="#filelinks">' . $this->getContext()->msg( 'imagelinks' )->escaped() . '</a></li>',
 		];
 
-		Hooks::run( 'ImagePageShowTOC', [ $this, &$r ] );
+		$this->getHookRunner()->onImagePageShowTOC( $this, $r );
 
 		if ( $metadata ) {
 			$r[] = '<li><a href="#metadata">' .
@@ -360,10 +360,7 @@ class ImagePage extends Article {
 			$filename = wfEscapeWikiText( $this->displayImg->getName() );
 			$linktext = $filename;
 
-			// Avoid PHP 7.1 warning from passing $this by reference
-			$imagePage = $this;
-
-			Hooks::run( 'ImageOpenShowImageInlineBefore', [ &$imagePage, &$out ] );
+			$this->getHookRunner()->onImageOpenShowImageInlineBefore( $this, $out );
 
 			if ( $this->displayImg->allowInlineDisplay() ) {
 				# image

@@ -540,9 +540,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$page = WikiPage::factory( $title );
 			$user = $this->getUser();
 			if ( $action === 'Watch' ) {
-				Hooks::run( 'WatchArticleComplete', [ &$user, &$page ] );
+				$this->getHookRunner()->onWatchArticleComplete( $user, $page );
 			} else {
-				Hooks::run( 'UnwatchArticleComplete', [ &$user, &$page ] );
+				$this->getHookRunner()->onUnwatchArticleComplete( $user, $page );
 			}
 		}
 		return true;
@@ -606,10 +606,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		// Allow subscribers to manipulate the list of watched pages (or use it
 		// to preload lots of details at once)
 		$watchlistInfo = $this->getWatchlistInfo();
-		Hooks::run(
-			'WatchlistEditorBeforeFormRender',
-			[ &$watchlistInfo ]
-		);
+		$this->getHookRunner()->onWatchlistEditorBeforeFormRender( $watchlistInfo );
 
 		foreach ( $watchlistInfo as $namespace => $pages ) {
 			$options = [];
@@ -703,10 +700,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
-		Hooks::run(
-			'WatchlistEditorBuildRemoveLine',
-			[ &$tools, $title, $title->isRedirect(), $this->getSkin(), &$link ]
-		);
+		$this->getHookRunner()->onWatchlistEditorBuildRemoveLine(
+			$tools, $title, $title->isRedirect(), $this->getSkin(), $link );
 
 		if ( $title->isRedirect() ) {
 			// Linker already makes class mw-redirect, so this is redundant

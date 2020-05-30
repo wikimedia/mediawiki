@@ -379,7 +379,7 @@ class UserrightsPage extends SpecialPage {
 				return !in_array( $group, $groups ) || array_key_exists( $group, $groupExpiries );
 			} );
 
-		Hooks::run( 'ChangeUserGroups', [ $this->getUser(), $user, &$add, &$remove ] );
+		$this->getHookRunner()->onChangeUserGroups( $this->getUser(), $user, $add, $remove );
 
 		$oldGroups = $groups;
 		$oldUGMs = $user->getGroupMemberships();
@@ -410,8 +410,8 @@ class UserrightsPage extends SpecialPage {
 		$user->invalidateCache();
 
 		// update groups in external authentication database
-		Hooks::run( 'UserGroupsChanged', [ $user, $add, $remove, $this->getUser(),
-			$reason, $oldUGMs, $newUGMs ] );
+		$this->getHookRunner()->onUserGroupsChanged( $user, $add, $remove,
+			$this->getUser(), $reason, $oldUGMs, $newUGMs );
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );

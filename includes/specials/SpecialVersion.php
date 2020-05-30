@@ -268,7 +268,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		// Allow a hook to add/remove items.
-		Hooks::run( 'SoftwareInfo', [ &$software ] );
+		Hooks::runner()->onSoftwareInfo( $software );
 
 		return $software;
 	}
@@ -352,7 +352,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private static function getMWVersionLinked() {
 		$versionUrl = "";
-		if ( Hooks::run( 'SpecialVersionVersionUrl', [ MW_VERSION, &$versionUrl ] ) ) {
+		if ( Hooks::runner()->onSpecialVersionVersionUrl( MW_VERSION, $versionUrl ) ) {
 			$versionParts = [];
 			preg_match( "/^(\d+\.\d+)/", MW_VERSION, $versionParts );
 			$versionUrl = "https://www.mediawiki.org/wiki/MediaWiki_{$versionParts[1]}";
@@ -414,7 +414,7 @@ class SpecialVersion extends SpecialPage {
 				'other' => wfMessage( 'version-other' )->text(),
 			];
 
-			Hooks::run( 'ExtensionTypes', [ &self::$extensionTypes ] );
+			Hooks::runner()->onExtensionTypes( self::$extensionTypes );
 		}
 
 		return self::$extensionTypes;

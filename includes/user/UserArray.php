@@ -29,7 +29,7 @@ abstract class UserArray implements Iterator {
 	 */
 	public static function newFromResult( $res ) {
 		$userArray = null;
-		if ( !Hooks::run( 'UserArrayFromResult', [ &$userArray, $res ] ) ) {
+		if ( !Hooks::runner()->onUserArrayFromResult( $userArray, $res ) ) {
 			return null;
 		}
 		return $userArray ?? new UserArrayFromResult( $res );

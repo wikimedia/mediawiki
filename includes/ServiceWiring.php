@@ -61,6 +61,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\DeprecatedHooks;
 use MediaWiki\HookContainer\GlobalHookRegistry;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -118,7 +119,8 @@ return [
 			RequestContext::getMain()->getRequest(),
 			$services->getMainConfig(),
 			$services->getObjectFactory(),
-			$services->getPermissionManager()
+			$services->getPermissionManager(),
+			$services->getHookContainer()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;
@@ -131,7 +133,8 @@ return [
 			},
 			$services->getLocalServerObjectCache(),
 			$services->getRepoGroup(),
-			$services->getTitleParser()
+			$services->getTitleParser(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -159,7 +162,8 @@ return [
 				BlockManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
 			),
 			$services->getPermissionManager(),
-			LoggerFactory::getInstance( 'BlockManager' )
+			LoggerFactory::getInstance( 'BlockManager' ),
+			$services->getHookContainer()
 		);
 	},
 
@@ -208,7 +212,8 @@ return [
 
 		return new ContentHandlerFactory(
 			$contentHandlerConfig,
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -392,6 +397,7 @@ return [
 		$config = $services->getMainConfig();
 
 		return new HtmlCacheUpdater(
+			$services->getHookContainer(),
 			$config->get( 'CdnReboundPurgeDelay' ),
 			$config->get( 'UseFileCache' ),
 			$config->get( 'CdnMaxAge' )
@@ -414,6 +420,7 @@ return [
 		return new ClassicInterwikiLookup(
 			$services->getContentLanguage(),
 			$services->getMainWANObjectCache(),
+			$services->getHookContainer(),
 			$config->get( 'InterwikiExpiry' ),
 			$config->get( 'InterwikiCache' ),
 			$config->get( 'InterwikiScopes' ),
@@ -446,7 +453,8 @@ return [
 			$services->getLocalisationCache(),
 			$services->getLanguageNameUtils(),
 			$services->getLanguageFallback(),
-			$services->getLanguageConverterFactory()
+			$services->getLanguageConverterFactory(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -459,10 +467,13 @@ return [
 	},
 
 	'LanguageNameUtils' => function ( MediaWikiServices $services ) : LanguageNameUtils {
-		return new LanguageNameUtils( new ServiceOptions(
-			LanguageNameUtils::CONSTRUCTOR_OPTIONS,
-			$services->getMainConfig()
-		) );
+		return new LanguageNameUtils(
+			new ServiceOptions(
+				LanguageNameUtils::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getHookContainer()
+		);
 	},
 
 	'LinkBatchFactory' => function ( MediaWikiServices $services ) : LinkBatchFactory {
@@ -500,7 +511,8 @@ return [
 			$services->getTitleFormatter(),
 			$services->getLinkCache(),
 			$services->getNamespaceInfo(),
-			$services->getSpecialPageFactory()
+			$services->getSpecialPageFactory(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -534,7 +546,8 @@ return [
 				// T231866: Avoid circular dependency via ResourceLoader.
 				MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
 			} ],
-			$services->getLanguageNameUtils()
+			$services->getLanguageNameUtils(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -551,7 +564,10 @@ return [
 	},
 
 	'MagicWordFactory' => function ( MediaWikiServices $services ) : MagicWordFactory {
-		return new MagicWordFactory( $services->getContentLanguage() );
+		return new MagicWordFactory(
+			$services->getContentLanguage(),
+			$services->getHookContainer()
+		);
 	},
 
 	'MainConfig' => function ( MediaWikiServices $services ) : Config {
@@ -655,7 +671,8 @@ return [
 			$services->getLanguageFactory(),
 			$services->getLocalisationCache(),
 			$services->getLanguageNameUtils(),
-			$services->getLanguageFallback()
+			$services->getLanguageFallback(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -666,12 +683,14 @@ return [
 	'MimeAnalyzer' => function ( MediaWikiServices $services ) : MimeAnalyzer {
 		$logger = LoggerFactory::getInstance( 'Mime' );
 		$mainConfig = $services->getMainConfig();
+		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$params = [
 			'typeFile' => $mainConfig->get( 'MimeTypeFile' ),
 			'infoFile' => $mainConfig->get( 'MimeInfoFile' ),
 			'xmlTypes' => $mainConfig->get( 'XMLMimeTypes' ),
 			'guessCallback' =>
-				function ( $mimeAnalyzer, &$head, &$tail, $file, &$mime ) use ( $logger ) {
+				function ( $mimeAnalyzer, &$head, &$tail, $file, &$mime )
+				use ( $logger, $hookRunner ) {
 					// Also test DjVu
 					$deja = new DjVuImage( $file );
 					if ( $deja->isValid() ) {
@@ -681,18 +700,16 @@ return [
 						return;
 					}
 					// Some strings by reference for performance - assuming well-behaved hooks
-					Hooks::run(
-						'MimeMagicGuessFromContent',
-						[ $mimeAnalyzer, &$head, &$tail, $file, &$mime ]
-					);
+					$hookRunner->onMimeMagicGuessFromContent(
+						$mimeAnalyzer, $head, $tail, $file, $mime );
 				},
-			'extCallback' => function ( $mimeAnalyzer, $ext, &$mime ) {
+			'extCallback' => function ( $mimeAnalyzer, $ext, &$mime ) use ( $hookRunner ) {
 				// Media handling extensions can improve the MIME detected
-				Hooks::run( 'MimeMagicImproveFromExtension', [ $mimeAnalyzer, $ext, &$mime ] );
+				$hookRunner->onMimeMagicImproveFromExtension( $mimeAnalyzer, $ext, $mime );
 			},
-			'initCallback' => function ( $mimeAnalyzer ) {
+			'initCallback' => function ( $mimeAnalyzer ) use ( $hookRunner ) {
 				// Allow media handling extensions adding MIME-types and MIME-info
-				Hooks::run( 'MimeMagicInit', [ $mimeAnalyzer ] );
+				$hookRunner->onMimeMagicInit( $mimeAnalyzer );
 			},
 			'logger' => $logger
 		];
@@ -726,8 +743,10 @@ return [
 	},
 
 	'NamespaceInfo' => function ( MediaWikiServices $services ) : NamespaceInfo {
-		return new NamespaceInfo( new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS,
-			$services->getMainConfig() ) );
+		return new NamespaceInfo(
+			new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getHookContainer()
+		);
 	},
 
 	'NameTableStoreFactory' => function ( MediaWikiServices $services ) : NameTableStoreFactory {
@@ -758,6 +777,7 @@ return [
 			$services->getDBLoadBalancer(),
 			LoggerFactory::getInstance( 'StashEdit' ),
 			$services->getStatsdDataFactory(),
+			$services->getHookContainer(),
 			defined( 'MEDIAWIKI_JOB_RUNNER' ) || $config->get( 'CommandLineMode' )
 				? PageEditStash::INITIATOR_JOB_OR_CLI
 				: PageEditStash::INITIATOR_USER
@@ -775,7 +795,8 @@ return [
 
 		return new ParserCache(
 			$cache,
-			$config->get( 'CacheEpoch' )
+			$config->get( 'CacheEpoch' ),
+			$services->getHookContainer()
 		);
 	},
 
@@ -803,7 +824,8 @@ return [
 			$services->getNamespaceInfo(),
 			LoggerFactory::getInstance( 'Parser' ),
 			$services->getBadFileLookup(),
-			$services->getLanguageConverterFactory()
+			$services->getLanguageConverterFactory(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -822,7 +844,8 @@ return [
 			AuthManager::singleton(),
 			$services->getPermissionManager(),
 			$services->getDBLoadBalancer(),
-			LoggerFactory::getInstance( 'authentication' )
+			LoggerFactory::getInstance( 'authentication' ),
+			$services->getHookContainer()
 		);
 	},
 
@@ -844,7 +867,8 @@ return [
 			$services->getSpecialPageFactory(),
 			$services->getRevisionLookup(),
 			$services->getNamespaceInfo(),
-			$services->getBlockErrorFormatter()
+			$services->getBlockErrorFormatter(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -858,7 +882,8 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getPermissionManager(),
 			$services->getLanguageConverterFactory()->getLanguageConverter(),
-			$services->getLanguageNameUtils()
+			$services->getLanguageNameUtils(),
+			$services->getHookContainer()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 
@@ -916,7 +941,8 @@ return [
 		// Core modules, then extension/skin modules
 		$rl->register( include "$IP/resources/Resources.php" );
 		$rl->register( $modules );
-		Hooks::run( 'ResourceLoaderRegisterModules', [ &$rl ] );
+		$hookRunner = new HookRunner( $services->getHookContainer() );
+		$hookRunner->onResourceLoaderRegisterModules( $rl );
 
 		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
 		$rl->register( 'mediawiki.messagePoster', [
@@ -990,7 +1016,8 @@ return [
 			$services->getCommentStore(),
 			$services->getActorMigration(),
 			LoggerFactory::getInstance( 'RevisionStore' ),
-			$services->getContentHandlerFactory()
+			$services->getContentHandlerFactory(),
+			$services->getHookContainer()
 		);
 
 		return $store;
@@ -1002,12 +1029,16 @@ return [
 		return new SearchEngineConfig(
 			$services->getMainConfig(),
 			$services->getContentLanguage(),
+			$services->getHookContainer(),
 			ExtensionRegistry::getInstance()->getAttribute( 'SearchMappings' )
 		);
 	},
 
 	'SearchEngineFactory' => function ( MediaWikiServices $services ) : SearchEngineFactory {
-		return new SearchEngineFactory( $services->getSearchEngineConfig() );
+		return new SearchEngineFactory(
+			$services->getSearchEngineConfig(),
+			$services->getHookContainer()
+		);
 	},
 
 	'ShellCommandFactory' => function ( MediaWikiServices $services ) : CommandFactory {
@@ -1112,7 +1143,8 @@ return [
 			new ServiceOptions(
 				SpecialPageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -1169,7 +1201,8 @@ return [
 			$services->getService( 'TitleFactory' ),
 			$messageFormatterFactory->getTextFormatter(
 				$services->getContentLanguage()->getCode()
-			)
+			),
+			$services->getHookContainer()
 		);
 	},
 
@@ -1183,7 +1216,8 @@ return [
 			$services->get( '_DefaultOptionsLookup' ),
 			$services->getLanguageConverterFactory(),
 			$services->getDBLoadBalancer(),
-			LoggerFactory::getInstance( 'UserOptionsManager' )
+			LoggerFactory::getInstance( 'UserOptionsManager' ),
+			$services->getHookContainer()
 		);
 	},
 
@@ -1212,6 +1246,7 @@ return [
 			$services->getActorMigration(),
 			$services->getWatchedItemStore(),
 			$services->getPermissionManager(),
+			$services->getHookContainer(),
 			$services->getMainConfig()->get( 'WatchlistExpiry' )
 		);
 	},
@@ -1226,7 +1261,8 @@ return [
 			new HashBagOStuff( [ 'maxKeys' => 100 ] ),
 			$services->getReadOnlyMode(),
 			$services->getNamespaceInfo(),
-			$services->getRevisionLookup()
+			$services->getRevisionLookup(),
+			$services->getHookContainer()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 
@@ -1249,7 +1285,8 @@ return [
 	'_DefaultOptionsLookup' => function ( MediaWikiServices $services ) : DefaultOptionsLookup {
 		return new DefaultOptionsLookup(
 			new ServiceOptions( DefaultOptionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getContentLanguage()
+			$services->getContentLanguage(),
+			$services->getHookContainer()
 		);
 	},
 
@@ -1273,7 +1310,8 @@ return [
 			$services->getRepoGroup(),
 			$services->getContentHandlerFactory(),
 			$services->getRevisionStore(),
-			$services->getSpamChecker()
+			$services->getSpamChecker(),
+			$services->getHookContainer()
 		);
 	},
 

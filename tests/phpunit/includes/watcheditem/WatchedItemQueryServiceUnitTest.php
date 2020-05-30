@@ -78,6 +78,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
 			$this->getMockActorMigration(),
 			$this->getMockWatchedItemStore(),
 			$mockPM ?: $this->getMockPermissionManager(),
+			$this->createHookContainer(),
 			false
 		);
 	}

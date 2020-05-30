@@ -158,7 +158,7 @@ class SpecialSearch extends SpecialPage {
 			// run the No go match hook.
 			$title = Title::newFromText( $term );
 			if ( $title !== null ) {
-				Hooks::run( 'SpecialSearchNogomatch', [ &$title ] );
+				$this->getHookRunner()->onSpecialSearchNogomatch( $title );
 			}
 		}
 
@@ -292,7 +292,7 @@ class SpecialSearch extends SpecialPage {
 			return null;
 		}
 		$url = null;
-		if ( !Hooks::run( 'SpecialSearchGoResult', [ $term, $title, &$url ] ) ) {
+		if ( !$this->getHookRunner()->onSpecialSearchGoResult( $term, $title, $url ) ) {
 			return null;
 		}
 
@@ -338,13 +338,14 @@ class SpecialSearch extends SpecialPage {
 		$formWidget = new MediaWiki\Search\SearchWidgets\SearchFormWidget(
 			$this,
 			$this->searchConfig,
+			$this->getHookContainer(),
 			$this->getSearchProfiles()
 		);
 		$filePrefix = MediaWikiServices::getInstance()->getContentLanguage()->
 			getFormattedNsText( NS_FILE ) . ':';
 		if ( trim( $term ) === '' || $filePrefix === trim( $term ) ) {
 			// Empty query -- straight view of search form
-			if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {
+			if ( !$this->getHookRunner()->onSpecialSearchResultsPrepend( $this, $out, $term ) ) {
 				# Hook requested termination
 				return;
 			}
@@ -365,8 +366,8 @@ class SpecialSearch extends SpecialPage {
 		$engine->setSort( $this->sort );
 		$engine->prefix = $this->mPrefix;
 
-		Hooks::run( 'SpecialSearchSetupEngine', [ $this, $this->profile, $engine ] );
-		if ( !Hooks::run( 'SpecialSearchResultsPrepend', [ $this, $out, $term ] ) ) {
+		$this->getHookRunner()->onSpecialSearchSetupEngine( $this, $this->profile, $engine );
+		if ( !$this->getHookRunner()->onSpecialSearchResultsPrepend( $this, $out, $term ) ) {
 			# Hook requested termination
 			return;
 		}
@@ -451,7 +452,7 @@ class SpecialSearch extends SpecialPage {
 		// Show the create link ahead
 		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 
-		Hooks::run( 'SpecialSearchResults', [ $term, &$titleMatches, &$textMatches ] );
+		$this->getHookRunner()->onSpecialSearchResults( $term, $titleMatches, $textMatches );
 
 		// If we have no results and have not already displayed an error message
 		if ( $num === 0 && !$hasSearchErrors ) {
@@ -464,7 +465,8 @@ class SpecialSearch extends SpecialPage {
 		// Although $num might be 0 there can still be secondary or inline
 		// results to display.
 		$linkRenderer = $this->getLinkRenderer();
-		$mainResultWidget = new FullSearchResultWidget( $this, $linkRenderer );
+		$mainResultWidget = new FullSearchResultWidget(
+			$this, $linkRenderer, $this->getHookContainer() );
 
 		// Default (null) on. Can be explicitly disabled.
 		if ( $engine->getFeatureData( 'enable-new-crossproject-page' ) !== false ) {
@@ -516,7 +518,7 @@ class SpecialSearch extends SpecialPage {
 		// Close <div class='searchresults'>
 		$out->addHTML( "</div>" );
 
-		Hooks::run( 'SpecialSearchResultsAppend', [ $this, $out, $term ] );
+		$this->getHookRunner()->onSpecialSearchResultsAppend( $this, $out, $term );
 	}
 
 	/**
@@ -566,7 +568,7 @@ class SpecialSearch extends SpecialPage {
 			wfEscapeWikiText( $title->getPrefixedText() ),
 			Message::numParam( $num )
 		];
-		Hooks::run( 'SpecialSearchCreateLink', [ $title, &$params ] );
+		$this->getHookRunner()->onSpecialSearchCreateLink( $title, $params );
 
 		// Extensions using the hook might still return an empty $messageName
 		if ( $messageName ) {
@@ -751,7 +753,7 @@ class SpecialSearch extends SpecialPage {
 			]
 		];
 
-		Hooks::run( 'SpecialSearchProfiles', [ &$profiles ] );
+		$this->getHookRunner()->onSpecialSearchProfiles( $profiles );
 
 		foreach ( $profiles as &$data ) {
 			if ( !is_array( $data['namespaces'] ) ) {

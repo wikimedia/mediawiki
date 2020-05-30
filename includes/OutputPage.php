@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
@@ -44,6 +45,8 @@ use Wikimedia\WrappedStringList;
  * @todo document
  */
 class OutputPage extends ContextSource {
+	use ProtectedHookAccessorTrait;
+
 	/** @var string[][] Should be private. Used with addMeta() which adds "<meta>" */
 	protected $mMetatags = [];
 
@@ -345,7 +348,8 @@ class OutputPage extends ContextSource {
 		$this->setContext( $context );
 		$this->CSP = new ContentSecurityPolicy(
 			$context->getRequest()->response(),
-			$context->getConfig()
+			$context->getConfig(),
+			$this->getHookContainer()
 		);
 	}
 
@@ -772,7 +776,7 @@ class OutputPage extends ContextSource {
 				$config->get( 'CdnMaxAge' )
 			) );
 		}
-		Hooks::run( 'OutputPageCheckLastModified', [ &$modifiedTimes, $this ] );
+		$this->getHookRunner()->onOutputPageCheckLastModified( $modifiedTimes, $this );
 
 		$maxModified = max( $modifiedTimes );
 		$this->mLastModified = wfTimestamp( TS_RFC2822, $maxModified );
@@ -1377,12 +1381,9 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$outputPage = $this;
 		# Add the remaining categories to the skin
-		if ( Hooks::run(
-			'OutputPageMakeCategoryLinks',
-			[ &$outputPage, $categories, &$this->mCategoryLinks ] )
+		if ( $this->getHookRunner()->onOutputPageMakeCategoryLinks(
+			$this, $categories, $this->mCategoryLinks )
 		) {
 			$services = MediaWikiServices::getInstance();
 			$linkRenderer = $services->getLinkRenderer();
@@ -1964,10 +1965,8 @@ class OutputPage extends ContextSource {
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
 		$linkFlags = [];
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$outputPage = $this;
-		Hooks::run( 'LanguageLinks', [ $this->getTitle(), &$this->mLanguageLinks, &$linkFlags ] );
-		Hooks::runWithoutAbort( 'OutputPageParserOutput', [ &$outputPage, $parserOutput ] );
+		$this->getHookRunner()->onLanguageLinks( $this->getTitle(), $this->mLanguageLinks, $linkFlags );
+		$this->getHookRunner()->onOutputPageParserOutput( $this, $parserOutput );
 
 		// This check must be after 'OutputPageParserOutput' runs in addParserOutputMetadata
 		// so that extensions may modify ParserOutput to toggle TOC.
@@ -2004,9 +2003,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function addParserOutputText( ParserOutput $parserOutput, $poOptions = [] ) {
 		$text = $parserOutput->getText( $poOptions );
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$outputPage = $this;
-		Hooks::runWithoutAbort( 'OutputPageBeforeHTML', [ &$outputPage, &$text ] );
+		$this->getHookRunner()->onOutputPageBeforeHTML( $this, $text );
 		$this->addHTML( $text );
 	}
 
@@ -2231,7 +2228,7 @@ class OutputPage extends ContextSource {
 				],
 				$config->get( 'CacheVaryCookies' )
 			) ) );
-			Hooks::run( 'GetCacheVaryCookies', [ $this, &self::$cacheVaryCookies ] );
+			$this->getHookRunner()->onGetCacheVaryCookies( $this, self::$cacheVaryCookies );
 		}
 		return self::$cacheVaryCookies;
 	}
@@ -2532,7 +2529,7 @@ class OutputPage extends ContextSource {
 			$redirect = $this->mRedirect;
 			$code = $this->mRedirectCode;
 
-			if ( Hooks::run( "BeforePageRedirect", [ $this, &$redirect, &$code ] ) ) {
+			if ( $this->getHookRunner()->onBeforePageRedirect( $this, $redirect, $code ) ) {
 				if ( $code == '301' || $code == '303' ) {
 					if ( !$config->get( 'DebugRedirects' ) ) {
 						$response->statusHeader( $code );
@@ -2607,11 +2604,9 @@ class OutputPage extends ContextSource {
 
 			MWDebug::addModules( $this );
 
-			// Avoid PHP 7.1 warning of passing $this by reference
-			$outputPage = $this;
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions, adding CSP sources.
-			Hooks::runWithoutAbort( 'BeforePageDisplay', [ &$outputPage, &$sk ] );
+			$this->getHookRunner()->onBeforePageDisplay( $this, $sk );
 
 			$this->CSP->sendHeaders();
 
@@ -2625,7 +2620,7 @@ class OutputPage extends ContextSource {
 
 		try {
 			// This hook allows last minute changes to final overall output by modifying output buffer
-			Hooks::runWithoutAbort( 'AfterFinalPageOutput', [ $this ] );
+			$this->getHookRunner()->onAfterFinalPageOutput( $this );
 		} catch ( Exception $e ) {
 			ob_end_clean(); // bug T129657
 			throw $e;
@@ -3134,7 +3129,7 @@ class OutputPage extends ContextSource {
 
 		// Allow skins and extensions to add body attributes they need
 		$sk->addToBodyAttributes( $this, $bodyAttrs );
-		Hooks::run( 'OutputPageBodyAttributes', [ $this, $sk, &$bodyAttrs ] );
+		$this->getHookRunner()->onOutputPageBodyAttributes( $this, $sk, $bodyAttrs );
 
 		$pieces[] = Html::openElement( 'body', $bodyAttrs );
 
@@ -3379,7 +3374,7 @@ class OutputPage extends ContextSource {
 		// Use the 'ResourceLoaderGetConfigVars' hook if the variable is not
 		// page-dependant but site-wide (without state).
 		// Alternatively, you may want to use OutputPage->addJsConfigVars() instead.
-		Hooks::run( 'MakeGlobalVariablesScript', [ &$vars, $this ] );
+		$this->getHookRunner()->onMakeGlobalVariablesScript( $vars, $this );
 
 		// Merge in variables from addJsConfigVars last
 		return array_merge( $vars, $this->getJsConfigVars() );
@@ -3661,7 +3656,7 @@ class OutputPage extends ContextSource {
 			# Allow extensions to change the list pf feeds. This hook is primarily for changing,
 			# manipulating or removing existing feed tags. If you want to add new feeds, you should
 			# use OutputPage::addFeedLink() instead.
-			Hooks::run( 'AfterBuildFeedLinks', [ &$feedLinks ] );
+			$this->getHookRunner()->onAfterBuildFeedLinks( $feedLinks );
 
 			$tags += $feedLinks;
 		}
@@ -3702,7 +3697,7 @@ class OutputPage extends ContextSource {
 		// (or addHeadItems() for multiple items) method instead.
 		// This hook is provided as a last resort for extensions to modify these
 		// links before the output is sent to client.
-		Hooks::run( 'OutputPageAfterGetHeadLinksArray', [ &$tags, $this ] );
+		$this->getHookRunner()->onOutputPageAfterGetHeadLinksArray( $tags, $this );
 
 		return $tags;
 	}

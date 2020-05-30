@@ -104,7 +104,7 @@ class SpecialUserLogout extends FormSpecialPage {
 		$out = $this->getOutput();
 		// Hook.
 		$injected_html = '';
-		Hooks::run( 'UserLogoutComplete', [ &$user, &$injected_html, $oldName ] );
+		$this->getHookRunner()->onUserLogoutComplete( $user, $injected_html, $oldName );
 		$out->addHTML( $injected_html );
 	}
 

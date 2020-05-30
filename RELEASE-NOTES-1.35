@@ -601,6 +601,49 @@ because of Phabricator reports.
   instead.
 * SpecialVersion::getExtensionCredits() and SpecialVersion::getSkinCredits()
   have become private without deprecation.
+* As part of the migration to a new hook system (T240307), the following classes
+  now require an additional HookContainer constructor parameter:
+    - AuthManager
+    - BadFileLookup
+    - BlockManager
+    - ClassicInterwikiLookup
+    - ContentHandlerFactory
+    - ContentSecurityPolicy
+    - DefaultOptionsManager
+    - DerivedPageDataUpdater
+    - FullSearchResultWidget
+    - HtmlCacheUpdater
+    - LanguageFactory
+    - LanguageNameUtils
+    - LinkRenderer
+    - LinkRendererFactory
+    - LocalisationCache
+    - MagicWordFactory
+    - MessageCache
+    - NamespaceInfo
+    - PageEditStash
+    - PageHandlerFactory
+    - PageUpdater
+    - ParserFactory
+    - PermissionManager
+    - RevisionStore
+    - RevisionStoreFactory
+    - Router
+    - SearchEngineConfig
+    - SearchEngineFactory
+    - SearchFormWidget
+    - SearchNearMatcher
+    - SessionBackend
+    - SpecialPageFactory
+    - UserNameUtils
+    - UserOptionsManager
+    - WatchedItemQueryService
+    - WatchedItemStore
+* The following classes now require setHookContainer() to be called after
+  construction:
+    - AuthenticationProvider
+    - ResourceLoaderModule
+    - SearchEngine
 * …
 
 === Deprecations in 1.35 ===

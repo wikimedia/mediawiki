@@ -107,7 +107,7 @@ class ExternalUserNames {
 			// See if any extension wants to create it.
 			if ( !isset( $this->triedCreations[$name] ) ) {
 				$this->triedCreations[$name] = true;
-				if ( !Hooks::run( 'ImportHandleUnknownUser', [ $name ] ) &&
+				if ( !Hooks::runner()->onImportHandleUnknownUser( $name ) &&
 					User::idFromName( $name, User::READ_LATEST )
 				) {
 					return $name;

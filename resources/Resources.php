@@ -1334,7 +1334,7 @@ return [
 				$magicWords = [
 					'SITENAME' => $config->get( 'Sitename' ),
 				];
-				Hooks::run( 'ResourceLoaderJqueryMsgModuleMagicWords', [ $context, &$magicWords ] );
+				Hooks::runner()->onResourceLoaderJqueryMsgModuleMagicWords( $context, $magicWords );
 
 				return [
 					'allowedHtmlElements' => $allowedHtmlElements,

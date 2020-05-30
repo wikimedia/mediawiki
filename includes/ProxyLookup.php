@@ -79,7 +79,7 @@ class ProxyLookup {
 	 */
 	public function isTrustedProxy( $ip ) {
 		$trusted = $this->isConfiguredProxy( $ip );
-		Hooks::run( 'IsTrustedProxy', [ &$ip, &$trusted ] );
+		Hooks::runner()->onIsTrustedProxy( $ip, $trusted );
 		return $trusted;
 	}
 }

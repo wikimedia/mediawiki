@@ -2128,7 +2128,7 @@ function wfShellWikiCmd( $script, array $parameters = [], array $options = [] ) 
 	global $wgPhpCli;
 	// Give site config file a chance to run the script in a wrapper.
 	// The caller may likely want to call wfBasename() on $script.
-	Hooks::run( 'wfShellWikiCmd', [ &$script, &$parameters, &$options ] );
+	Hooks::runner()->onWfShellWikiCmd( $script, $parameters, $options );
 	$cmd = [ $options['php'] ?? $wgPhpCli ];
 	if ( isset( $options['wrapper'] ) ) {
 		$cmd[] = $options['wrapper'];
@@ -2812,7 +2812,8 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
 			},
 			$services->getLocalServerObjectCache(),
 			$services->getRepoGroup(),
-			$services->getTitleParser()
+			$services->getTitleParser(),
+			$services->getHookContainer()
 		) )->isBadFile( $name, $contextTitle ?: null );
 	}
 	return $services->getBadFileLookup()->isBadFile( $name, $contextTitle ?: null );
@@ -2827,7 +2828,7 @@ function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
  */
 function wfCanIPUseHTTPS( $ip ) {
 	$canDo = true;
-	Hooks::run( 'CanIPUseHTTPS', [ $ip, &$canDo ] );
+	Hooks::runner()->onCanIPUseHTTPS( $ip, $canDo );
 	return (bool)$canDo;
 }
 

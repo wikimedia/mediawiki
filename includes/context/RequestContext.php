@@ -364,7 +364,7 @@ class RequestContext implements IContextSource, MutableContext {
 				// NFC form given this will not convert to normalised form.
 				$code = self::sanitizeLangCode( $code );
 
-				Hooks::run( 'UserGetLanguageObject', [ $user, &$code, $this ] );
+				Hooks::runner()->onUserGetLanguageObject( $user, $code, $this );
 
 				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
 					$this->lang = MediaWikiServices::getInstance()->getContentLanguage();
@@ -395,7 +395,7 @@ class RequestContext implements IContextSource, MutableContext {
 	public function getSkin() {
 		if ( $this->skin === null ) {
 			$skin = null;
-			Hooks::run( 'RequestContextCreateSkin', [ $this, &$skin ] );
+			Hooks::runner()->onRequestContextCreateSkin( $this, $skin );
 			$factory = MediaWikiServices::getInstance()->getSkinFactory();
 
 			if ( $skin instanceof Skin ) {

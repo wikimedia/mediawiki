@@ -329,7 +329,7 @@ class SpecialBlock extends FormSpecialPage {
 		$this->maybeAlterFormDefaults( $a );
 
 		// Allow extensions to add more fields
-		Hooks::run( 'SpecialBlockModifyFormFields', [ $this, &$a ] );
+		$this->getHookRunner()->onSpecialBlockModifyFormFields( $this, $a );
 
 		return $a;
 	}
@@ -478,7 +478,8 @@ class SpecialBlock extends FormSpecialPage {
 				$targetName = $this->target->getName();
 			}
 			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
-			Hooks::run( 'OtherBlockLogLink', [ &$otherBlockMessages, $targetName ] );
+			$this->getHookRunner()->onOtherBlockLogLink(
+				$otherBlockMessages, $targetName );
 
 			if ( count( $otherBlockMessages ) ) {
 				$s = Html::rawElement(
@@ -489,7 +490,6 @@ class SpecialBlock extends FormSpecialPage {
 
 				$list = '';
 
-				// @phan-suppress-next-line PhanEmptyForeach False positive
 				foreach ( $otherBlockMessages as $link ) {
 					$list .= Html::rawElement( 'li', [], $link ) . "\n";
 				}
@@ -919,7 +919,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		$reason = [ 'hookaborted' ];
-		if ( !Hooks::run( 'BlockIp', [ &$block, &$performer, &$reason ] ) ) {
+		if ( !Hooks::runner()->onBlockIp( $block, $performer, $reason ) ) {
 			return $reason;
 		}
 
@@ -1018,7 +1018,7 @@ class SpecialBlock extends FormSpecialPage {
 			$logaction = 'block';
 		}
 
-		Hooks::run( 'BlockIpComplete', [ $block, $performer, $priorBlock ] );
+		Hooks::runner()->onBlockIpComplete( $block, $performer, $priorBlock );
 
 		# Set *_deleted fields if requested
 		if ( $data['HideUser'] ) {

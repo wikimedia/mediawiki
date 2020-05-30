@@ -174,9 +174,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$options['limit'] = $params['limit'];
 
-		Hooks::run( 'ApiQueryWatchlistPrepareWatchedItemQueryServiceOptions', [
-			$this, $params, &$options
-		] );
+		$this->getHookRunner()->onApiQueryWatchlistPrepareWatchedItemQueryServiceOptions(
+			$this, $params, $options );
 
 		$ids = [];
 		$services = MediaWikiServices::getInstance();
@@ -427,9 +426,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$vals['suppressed'] = true;
 		}
 
-		Hooks::run( 'ApiQueryWatchlistExtractOutputData', [
-			$this, $watchedItem, $recentChangeInfo, &$vals
-		] );
+		$this->getHookRunner()->onApiQueryWatchlistExtractOutputData(
+			$this, $watchedItem, $recentChangeInfo, $vals );
 
 		return $vals;
 	}

@@ -32,10 +32,11 @@ use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DBAccessObjectUtils;
-use Hooks;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
@@ -131,6 +132,9 @@ class RevisionStore
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @todo $blobStore should be allowed to be any BlobStore!
 	 *
@@ -148,6 +152,7 @@ class RevisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param ActorMigration $actorMigration
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param HookContainer $hookContainer
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
 	 */
 	public function __construct(
@@ -160,6 +165,7 @@ class RevisionStore
 		SlotRoleRegistry $slotRoleRegistry,
 		ActorMigration $actorMigration,
 		IContentHandlerFactory $contentHandlerFactory,
+		HookContainer $hookContainer,
 		$dbDomain = false
 	) {
 		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
@@ -175,6 +181,7 @@ class RevisionStore
 		$this->dbDomain = $dbDomain;
 		$this->logger = new NullLogger();
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -446,11 +453,11 @@ class RevisionStore
 			);
 		}
 
-		Hooks::run( 'RevisionRecordInserted', [ $rev ] );
+		$this->hookRunner->onRevisionRecordInserted( $rev );
 
 		// Soft deprecated in 1.31, hard deprecated in 1.35
 		$legacyRevision = new Revision( $rev );
-		Hooks::run( 'RevisionInsertComplete', [ &$legacyRevision, null, null ], '1.31' );
+		$this->hookRunner->onRevisionInsertComplete( $legacyRevision, null, null );
 
 		return $rev;
 	}

@@ -158,7 +158,8 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 		$expires = $days ? wfTimestamp( TS_MW, time() + $days * 86400 ) : null;
 
 		// Give extensions a chance to force an expiration
-		\Hooks::run( 'ResetPasswordExpiration', [ \User::newFromName( $username ), &$expires ] );
+		$this->getHookRunner()->onResetPasswordExpiration(
+			\User::newFromName( $username ), $expires );
 
 		return $expires;
 	}

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
 use stdClass;
 use Wikimedia\TestingAccessWrapper;
 
@@ -118,6 +119,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
 			'PasswordAttemptThrottle' => null,
 		] ) );
 		$provider->setManager( AuthManager::singleton() );
+		$provider->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
 
 		$user = \User::newFromName( 'RandomUser' );
 		$creator = \User::newFromName( $creatorname );

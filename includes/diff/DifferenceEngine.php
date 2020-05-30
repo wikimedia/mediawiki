@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -218,6 +219,9 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private $revisionStore;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/** #@- */
 
 	/**
@@ -256,6 +260,7 @@ class DifferenceEngine extends ContextSource {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->contentHandlerFactory = $services->getContentHandlerFactory();
 		$this->revisionStore = $services->getRevisionStore();
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 	}
 
 	/**
@@ -597,10 +602,10 @@ class DifferenceEngine extends ContextSource {
 		$out->setRobotPolicy( 'noindex,nofollow' );
 
 		// Allow extensions to add any extra output here
-		Hooks::run( 'DifferenceEngineShowDiffPage', [ $out ] );
+		$this->hookRunner->onDifferenceEngineShowDiffPage( $out );
 
 		if ( !$this->loadRevisionData() ) {
-			if ( Hooks::run( 'DifferenceEngineShowDiffPageMaybeShowMissingRevision', [ $this ] ) ) {
+			if ( $this->hookRunner->onDifferenceEngineShowDiffPageMaybeShowMissingRevision( $this ) ) {
 				$this->showMissingRevision();
 			}
 			return;
@@ -641,7 +646,7 @@ class DifferenceEngine extends ContextSource {
 			$samePage = true;
 			$oldHeader = '';
 			// Allow extensions to change the $oldHeader variable
-			Hooks::run( 'DifferenceEngineOldHeaderNoOldRev', [ &$oldHeader ] );
+			$this->hookRunner->onDifferenceEngineOldHeaderNoOldRev( $oldHeader );
 		} else {
 			// TODO replace hook with one that uses RevisionRecords
 			// If old or new are falsey, keeps those values
@@ -651,7 +656,7 @@ class DifferenceEngine extends ContextSource {
 			$legacyNewRev = $this->mNewRevisionRecord ?
 				new Revision( $this->mNewRevisionRecord ) :
 				null;
-			Hooks::run( 'DiffViewHeader', [ $this, $legacyOldRev, $legacyNewRev ] );
+			$this->hookRunner->onDiffViewHeader( $this, $legacyOldRev, $legacyNewRev );
 
 			if ( !$this->mOldPage || !$this->mNewPage ) {
 				// XXX say something to the user?
@@ -736,8 +741,8 @@ class DifferenceEngine extends ContextSource {
 				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
 
 			// Allow extensions to change the $oldHeader variable
-			Hooks::run( 'DifferenceEngineOldHeader', [ $this, &$oldHeader, $prevlink, $oldminor,
-				$diffOnly, $ldel, $this->unhide ] );
+			$this->hookRunner->onDifferenceEngineOldHeader(
+				$this, $oldHeader, $prevlink, $oldminor, $diffOnly, $ldel, $this->unhide );
 		}
 
 		$out->addJsConfigVars( [
@@ -775,8 +780,8 @@ class DifferenceEngine extends ContextSource {
 		$legacyNewRev = $this->mNewRevisionRecord ?
 			new Revision( $this->mNewRevisionRecord ) :
 			null;
-		Hooks::run( 'DiffRevisionTools',
-			[ $legacyNewRev, &$revisionTools, $legacyOldRev, $user ] );
+		$this->hookRunner->onDiffRevisionTools(
+			$legacyNewRev, $revisionTools, $legacyOldRev, $user );
 
 		$formattedRevisionTools = [];
 		// Put each one in parentheses (poor man's button)
@@ -805,8 +810,9 @@ class DifferenceEngine extends ContextSource {
 			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
 
 		// Allow extensions to change the $newHeader variable
-		Hooks::run( 'DifferenceEngineNewHeader', [ $this, &$newHeader, $formattedRevisionTools,
-			$nextlink, $rollback, $newminor, $diffOnly, $rdel, $this->unhide ] );
+		$this->hookRunner->onDifferenceEngineNewHeader( $this, $newHeader,
+			$formattedRevisionTools, $nextlink, $rollback, $newminor, $diffOnly,
+			$rdel, $this->unhide );
 
 		# If the diff cannot be shown due to a deleted revision, then output
 		# the diff header and links to unhide (if available)...
@@ -874,8 +880,8 @@ class DifferenceEngine extends ContextSource {
 						]
 					) . ']</span>';
 				// Allow extensions to change the markpatrolled link
-				Hooks::run( 'DifferenceEngineMarkPatrolledLink', [ $this,
-					&$this->mMarkPatrolledLink, $linkInfo['rcid'] ] );
+				$this->hookRunner->onDifferenceEngineMarkPatrolledLink( $this,
+					$this->mMarkPatrolledLink, $linkInfo['rcid'] );
 			}
 		}
 		return $this->mMarkPatrolledLink;
@@ -924,7 +930,7 @@ class DifferenceEngine extends ContextSource {
 			// For example the rcid might be set to zero due to the user
 			// being the same as the performer of the change but an extension
 			// might still want to show it under certain conditions
-			Hooks::run( 'DifferenceEngineMarkPatrolledRCID', [ &$rcid, $this, $change, $user ] );
+			$this->hookRunner->onDifferenceEngineMarkPatrolledRCID( $rcid, $this, $change, $user );
 
 			// Build the link
 			if ( $rcid ) {
@@ -983,7 +989,7 @@ class DifferenceEngine extends ContextSource {
 		$out->addHTML( "<hr class='diff-hr' id='mw-oldid' />
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
-		if ( Hooks::run( 'ArticleContentOnDiff', [ $this, $out ] ) ) {
+		if ( $this->hookRunner->onArticleContentOnDiff( $this, $out ) ) {
 			$this->loadNewText();
 			if ( !$this->mNewPage ) {
 				// New revision is unsaved; bail out.
@@ -996,8 +1002,8 @@ class DifferenceEngine extends ContextSource {
 			$out->setRevisionTimestamp( $this->mNewRevisionRecord->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			if ( !Hooks::run( 'ArticleRevisionViewCustom',
-				[ $this->mNewRevisionRecord, $this->mNewPage, $this->mOldid, $out ] )
+			if ( !$this->hookRunner->onArticleRevisionViewCustom(
+				$this->mNewRevisionRecord, $this->mNewPage, $this->mOldid, $out )
 			) {
 				// Handled by extension
 				// NOTE: sync with hooks called in Article::view()
@@ -1018,8 +1024,8 @@ class DifferenceEngine extends ContextSource {
 				# WikiPage::getParserOutput() should not return false, but just in case
 				if ( $parserOutput ) {
 					// Allow extensions to change parser output here
-					if ( Hooks::run( 'DifferenceEngineRenderRevisionAddParserOutput',
-						[ $this, $out, $parserOutput, $wikiPage ] )
+					if ( $this->hookRunner->onDifferenceEngineRenderRevisionAddParserOutput(
+						$this, $out, $parserOutput, $wikiPage )
 					) {
 						$out->addParserOutput( $parserOutput, [
 							'enableSectionEditLinks' => $this->mNewRevisionRecord->isCurrent()
@@ -1035,7 +1041,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		// Allow extensions to optionally not show the final patrolled link
-		if ( Hooks::run( 'DifferenceEngineRenderRevisionShowFinalPatrolLink' ) ) {
+		if ( $this->hookRunner->onDifferenceEngineRenderRevisionShowFinalPatrolLink() ) {
 			# Add redundant patrol link on bottom...
 			$out->addHTML( $this->markPatrolledLink() );
 		}
@@ -1073,7 +1079,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function showDiff( $otitle, $ntitle, $notice = '' ) {
 		// Allow extensions to affect the output here
-		Hooks::run( 'DifferenceEngineShowDiff', [ $this ] );
+		$this->hookRunner->onDifferenceEngineShowDiff( $this );
 
 		$diff = $this->getDiff( $otitle, $ntitle, $notice );
 		if ( $diff === false ) {
@@ -1164,7 +1170,7 @@ class DifferenceEngine extends ContextSource {
 				$this->mOldRevisionRecord->getId() &&
 				$this->mOldRevisionRecord->getId() == $this->mNewRevisionRecord->getId()
 			) ) {
-				if ( Hooks::run( 'DifferenceEngineShowEmptyOldContent', [ $this ] ) ) {
+				if ( $this->hookRunner->onDifferenceEngineShowEmptyOldContent( $this ) ) {
 					return '';
 				}
 			}
@@ -1217,11 +1223,8 @@ class DifferenceEngine extends ContextSource {
 			$difftext .= $slotDiff;
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$diffEngine = $this;
-
 		// Save to cache for 7 days
-		if ( !Hooks::run( 'AbortDiffCache', [ &$diffEngine ] ) ) {
+		if ( !$this->hookRunner->onAbortDiffCache( $this ) ) {
 			$stats->updateCount( 'diff_cache.uncacheable', 1 );
 		} elseif ( $key !== false && $difftext !== false ) {
 			$stats->updateCount( 'diff_cache.miss', 1 );
@@ -1915,6 +1918,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return array List of two revision ids, older first, later second.
 	 *     Zero signifies invalid argument passed.
 	 *     false signifies that there is no previous/next revision ($old is the oldest/newest one).
+	 * @phan-return (int|false)[]
 	 */
 	public function mapDiffPrevNext( $old, $new ) {
 		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
@@ -1968,10 +1972,8 @@ class DifferenceEngine extends ContextSource {
 			$this->mNewid = 0;
 		}
 
-		Hooks::run(
-			'NewDifferenceEngine',
-			[ $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ]
-		);
+		$this->hookRunner->onNewDifferenceEngine(
+			$this->getTitle(), $this->mOldid, $this->mNewid, $old, $new );
 	}
 
 	/**
@@ -2127,7 +2129,7 @@ class DifferenceEngine extends ContextSource {
 			RevisionRecord::FOR_THIS_USER,
 			$this->getUser()
 		);
-		Hooks::run( 'DifferenceEngineLoadTextAfterNewContentIsLoaded', [ $this ] );
+		$this->hookRunner->onDifferenceEngineLoadTextAfterNewContentIsLoaded( $this );
 		if ( $this->mNewContent === null ) {
 			return false;
 		}
@@ -2157,7 +2159,7 @@ class DifferenceEngine extends ContextSource {
 			$this->getUser()
 		);
 
-		Hooks::run( 'DifferenceEngineAfterLoadNewText', [ $this ] );
+		$this->hookRunner->onDifferenceEngineAfterLoadNewText( $this );
 
 		return true;
 	}

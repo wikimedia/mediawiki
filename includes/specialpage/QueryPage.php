@@ -112,7 +112,7 @@ abstract class QueryPage extends SpecialPage {
 				[ SpecialUnusedTemplates::class, 'Unusedtemplates' ],
 				[ SpecialWithoutInterwiki::class, 'Withoutinterwiki' ],
 			];
-			Hooks::run( 'wgQueryPages', [ &$qp ] );
+			Hooks::runner()->onWgQueryPages( $qp );
 		}
 
 		return $qp;

@@ -23,6 +23,8 @@
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
 use CLDRPluralRuleParser\Evaluator;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use Psr\Log\LoggerInterface;
 
@@ -70,6 +72,9 @@ class LocalisationCache {
 	 * @var LoggerInterface
 	 */
 	private $logger;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var callable[] See comment for parameter in constructor */
 	private $clearStoreCallbacks;
@@ -249,6 +254,7 @@ class LocalisationCache {
 	 *   used to clear other caches that depend on this one, such as ResourceLoader's
 	 *   MessageBlobStore.
 	 * @param LanguageNameUtils $langNameUtils
+	 * @param HookContainer $hookContainer
 	 * @throws MWException
 	 */
 	public function __construct(
@@ -256,7 +262,8 @@ class LocalisationCache {
 		LCStore $store,
 		LoggerInterface $logger,
 		array $clearStoreCallbacks,
-		LanguageNameUtils $langNameUtils
+		LanguageNameUtils $langNameUtils,
+		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -265,6 +272,7 @@ class LocalisationCache {
 		$this->logger = $logger;
 		$this->clearStoreCallbacks = $clearStoreCallbacks;
 		$this->langNameUtils = $langNameUtils;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Keep this separate from $this->options so it can be mutable
 		$this->manualRecache = $options->get( 'manualRecache' );
@@ -957,7 +965,7 @@ class LocalisationCache {
 
 			# Allow extensions an opportunity to adjust the data for this
 			# fallback
-			Hooks::run( 'LocalisationCacheRecacheFallback', [ $this, $csCode, &$csData ] );
+			$this->hookRunner->onLocalisationCacheRecacheFallback( $this, $csCode, $csData );
 
 			# Merge the data for this fallback into the final array
 			if ( $csCode === $code ) {
@@ -1014,7 +1022,7 @@ class LocalisationCache {
 		}
 		# Run hooks
 		$unused = true; // Used to be $purgeBlobs, removed in 1.34
-		Hooks::run( 'LocalisationCacheRecache', [ $this, $code, &$allData, &$unused ] );
+		$this->hookRunner->onLocalisationCacheRecache( $this, $code, $allData, $unused );
 
 		if ( $allData['namespaceNames'] === null ) {
 			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .

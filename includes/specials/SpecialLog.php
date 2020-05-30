@@ -111,10 +111,8 @@ class SpecialLog extends SpecialPage {
 			}
 		} else {
 			// Allow extensions to add relations to their search types
-			Hooks::run(
-				'SpecialLogAddLogSearchRelations',
-				[ $opts->getValue( 'type' ), $this->getRequest(), &$qc ]
-			);
+			$this->getHookRunner()->onSpecialLogAddLogSearchRelations(
+				$opts->getValue( 'type' ), $this->getRequest(), $qc );
 		}
 
 		# Some log types are only for a 'User:' title but we might have been given
@@ -153,7 +151,7 @@ class SpecialLog extends SpecialPage {
 			'rights',
 		];
 
-		Hooks::run( 'GetLogTypesOnUser', [ &$types ] );
+		Hooks::runner()->onGetLogTypesOnUser( $types );
 		return $types;
 	}
 

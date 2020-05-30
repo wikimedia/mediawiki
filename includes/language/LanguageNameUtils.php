@@ -25,8 +25,9 @@
 namespace MediaWiki\Languages;
 
 use HashBagOStuff;
-use Hooks;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWikiTitleCodec;
 use MWException;
 
@@ -79,12 +80,17 @@ class LanguageNameUtils {
 		'UsePigLatinVariant',
 	];
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @param ServiceOptions $options
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( ServiceOptions $options ) {
+	public function __construct( ServiceOptions $options, HookContainer $hookContainer ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -203,7 +209,7 @@ class LanguageNameUtils {
 
 		if ( $inLanguage !== self::AUTONYMS ) {
 			# TODO: also include for self::AUTONYMS, when this code is more efficient
-			Hooks::run( 'LanguageGetTranslatedLanguageNames', [ &$names, $inLanguage ] );
+			$this->hookRunner->onLanguageGetTranslatedLanguageNames( $names, $inLanguage );
 		}
 
 		$mwNames = $this->options->get( 'ExtraLanguageNames' ) + Data\Names::$names;
@@ -291,7 +297,7 @@ class LanguageNameUtils {
 	public function getMessagesFileName( $code ) {
 		global $IP;
 		$file = $this->getFileName( "$IP/languages/messages/Messages", $code, '.php' );
-		Hooks::run( 'Language::getMessagesFileName', [ $code, &$file ] );
+		$this->hookRunner->onLanguage__getMessagesFileName( $code, $file );
 		return $file;
 	}
 

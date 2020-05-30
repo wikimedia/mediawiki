@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
@@ -50,6 +52,9 @@ class NamespaceInfo {
 
 	/** @var ServiceOptions */
 	private $options;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * Definitions of the NS_ constants are in Defines.php
@@ -96,10 +101,12 @@ class NamespaceInfo {
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( ServiceOptions $options ) {
+	public function __construct( ServiceOptions $options, HookContainer $hookContainer ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -134,7 +141,7 @@ class NamespaceInfo {
 		/**
 		 * @since 1.20
 		 */
-		Hooks::run( 'NamespaceIsMovable', [ $index, &$result ] );
+		$this->hookRunner->onNamespaceIsMovable( $index, $result );
 
 		return $result;
 	}
@@ -348,7 +355,7 @@ class NamespaceInfo {
 			if ( is_array( $this->options->get( 'ExtraNamespaces' ) ) ) {
 				$this->canonicalNamespaces += $this->options->get( 'ExtraNamespaces' );
 			}
-			Hooks::run( 'CanonicalNamespaces', [ &$this->canonicalNamespaces ] );
+			$this->hookRunner->onCanonicalNamespaces( $this->canonicalNamespaces );
 		}
 		return $this->canonicalNamespaces;
 	}

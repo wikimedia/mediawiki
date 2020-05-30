@@ -412,10 +412,10 @@ abstract class ApiQueryBase extends ApiBase {
 
 		if ( $hookData !== null && Hooks::isRegistered( 'ApiQueryBaseBeforeQuery' ) ) {
 			$info = $queryBuilder->getQueryInfo();
-			Hooks::run( 'ApiQueryBaseBeforeQuery', [
-				$this, &$info['tables'], &$info['fields'], &$info['conds'],
-				&$info['options'], &$info['join_conds'], &$hookData
-			] );
+			$this->getHookRunner()->onApiQueryBaseBeforeQuery(
+				$this, $info['tables'], $info['fields'], $info['conds'],
+				$info['options'], $info['join_conds'], $hookData
+			);
 			$queryBuilder = $this->getDB()->newSelectQueryBuilder()->queryInfo( $info );
 		}
 
@@ -423,7 +423,7 @@ abstract class ApiQueryBase extends ApiBase {
 		$res = $queryBuilder->fetchResultSet();
 
 		if ( $hookData !== null ) {
-			Hooks::run( 'ApiQueryBaseAfterQuery', [ $this, $res, &$hookData ] );
+			$this->getHookRunner()->onApiQueryBaseAfterQuery( $this, $res, $hookData );
 		}
 
 		return $res;
@@ -443,7 +443,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool Return false if row processing should end with continuation
 	 */
 	protected function processRow( $row, array &$data, array &$hookData ) {
-		return Hooks::run( 'ApiQueryBaseProcessRow', [ $this, $row, &$data, &$hookData ] );
+		return $this->getHookRunner()->onApiQueryBaseProcessRow( $this, $row, $data, $hookData );
 	}
 
 	/** @} */

@@ -21,6 +21,9 @@
  * @ingroup Parser
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+
 /**
  * A factory that stores information about MagicWords, and creates them on demand with caching.
  *
@@ -196,13 +199,18 @@ class MagicWordFactory {
 	/** @var Language */
 	private $contLang;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/** #@- */
 
 	/**
 	 * @param Language $contLang Content language
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( Language $contLang ) {
+	public function __construct( Language $contLang, HookContainer $hookContainer ) {
 		$this->contLang = $contLang;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	public function getContentLanguage() {
@@ -233,7 +241,7 @@ class MagicWordFactory {
 	public function getVariableIDs() {
 		if ( !$this->mVariableIDsInitialised ) {
 			# Get variable IDs
-			Hooks::run( 'MagicWordwgVariableIDs', [ &$this->mVariableIDs ] );
+			$this->hookRunner->onMagicWordwgVariableIDs( $this->mVariableIDs );
 			$this->mVariableIDsInitialised = true;
 		}
 		return $this->mVariableIDs;
@@ -268,7 +276,7 @@ class MagicWordFactory {
 	 */
 	public function getDoubleUnderscoreArray() {
 		if ( $this->mDoubleUnderscoreArray === null ) {
-			Hooks::run( 'GetDoubleUnderscoreIDs', [ &$this->mDoubleUnderscoreIDs ] );
+			$this->hookRunner->onGetDoubleUnderscoreIDs( $this->mDoubleUnderscoreIDs );
 			$this->mDoubleUnderscoreArray = $this->newArray( $this->mDoubleUnderscoreIDs );
 		}
 		return $this->mDoubleUnderscoreArray;

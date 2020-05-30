@@ -25,6 +25,8 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 class ContentSecurityPolicy {
@@ -45,17 +47,24 @@ class ContentSecurityPolicy {
 	/** @var array */
 	private $extraStyleSrc = [];
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @note As a general rule, you would not construct this class directly
 	 *  but use the instance from OutputPage::getCSP()
 	 * @internal
 	 * @param WebResponse $response
 	 * @param Config $mwConfig
+	 * @param HookContainer $hookContainer
 	 * @since 1.35 Method signature changed
 	 */
-	public function __construct( WebResponse $response, Config $mwConfig ) {
+	public function __construct( WebResponse $response, Config $mwConfig,
+		HookContainer $hookContainer
+	) {
 		$this->response = $response;
 		$this->mwConfig = $mwConfig;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -215,8 +224,8 @@ class ContentSecurityPolicy {
 
 		$cssSrc = array_merge( $defaultSrc, $this->extraStyleSrc, [ "'unsafe-inline'" ] );
 
-		Hooks::run( 'ContentSecurityPolicyDefaultSource', [ &$defaultSrc, $policyConfig, $mode ] );
-		Hooks::run( 'ContentSecurityPolicyScriptSource', [ &$scriptSrc, $policyConfig, $mode ] );
+		$this->hookRunner->onContentSecurityPolicyDefaultSource( $defaultSrc, $policyConfig, $mode );
+		$this->hookRunner->onContentSecurityPolicyScriptSource( $scriptSrc, $policyConfig, $mode );
 
 		if ( isset( $policyConfig['report-uri'] ) && $policyConfig['report-uri'] !== true ) {
 			if ( $policyConfig['report-uri'] === false ) {
@@ -282,7 +291,7 @@ class ContentSecurityPolicy {
 			$directives[] = 'report-uri ' . $reportUri;
 		}
 
-		Hooks::run( 'ContentSecurityPolicyDirectives', [ &$directives, $policyConfig, $mode ] );
+		$this->hookRunner->onContentSecurityPolicyDirectives( $directives, $policyConfig, $mode );
 
 		return implode( '; ', $directives );
 	}

@@ -3,8 +3,9 @@
 namespace MediaWiki;
 
 use BagOStuff;
-use Hooks;
 use MalformedTitleException;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use RepoGroup;
 use TitleParser;
@@ -25,6 +26,9 @@ class BadFileLookup {
 	/** @var array|null Parsed blacklist */
 	private $badFiles;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * Do not call directly. Use MediaWikiServices.
 	 *
@@ -32,17 +36,20 @@ class BadFileLookup {
 	 * @param BagOStuff $cache For caching parsed versions of the blacklist
 	 * @param RepoGroup $repoGroup
 	 * @param TitleParser $titleParser
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		callable $blacklistCallback,
 		BagOStuff $cache,
 		RepoGroup $repoGroup,
-		TitleParser $titleParser
+		TitleParser $titleParser,
+		HookContainer $hookContainer
 	) {
 		$this->blacklistCallback = $blacklistCallback;
 		$this->cache = $cache;
 		$this->repoGroup = $repoGroup;
 		$this->titleParser = $titleParser;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -70,7 +77,7 @@ class BadFileLookup {
 
 		// Run the extension hook
 		$bad = false;
-		if ( !Hooks::run( 'BadImage', [ $name, &$bad ] ) ) {
+		if ( !$this->hookRunner->onBadImage( $name, $bad ) ) {
 			return (bool)$bad;
 		}
 

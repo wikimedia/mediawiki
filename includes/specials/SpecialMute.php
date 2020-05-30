@@ -115,7 +115,7 @@ class SpecialMute extends FormSpecialPage {
 		}
 
 		// NOTE: this hook is temporary
-		Hooks::run( 'SpecialMuteSubmit', [ $hookData ] );
+		$this->getHookRunner()->onSpecialMuteSubmit( $hookData );
 
 		return true;
 	}
@@ -194,7 +194,7 @@ class SpecialMute extends FormSpecialPage {
 			];
 		}
 
-		Hooks::run( 'SpecialMuteModifyFormFields', [ $this, &$fields ] );
+		$this->getHookRunner()->onSpecialMuteModifyFormFields( $this, $fields );
 
 		if ( count( $fields ) == 0 ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-no-options' );

@@ -23,6 +23,8 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
@@ -53,6 +55,12 @@ class PasswordReset implements LoggerAwareInterface {
 	/** @var ILoadBalancer */
 	protected $loadBalancer;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * In-process cache for isAllowed lookups, by username.
 	 * Contains a StatusValue object
@@ -74,13 +82,15 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param LoggerInterface|null $logger
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		$config,
 		AuthManager $authManager,
 		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer = null,
-		LoggerInterface $logger = null
+		LoggerInterface $logger = null,
+		HookContainer $hookContainer = null
 	) {
 		$this->config = $config;
 		$this->authManager = $authManager;
@@ -97,6 +107,12 @@ class PasswordReset implements LoggerAwareInterface {
 			$logger = LoggerFactory::getInstance( 'authentication' );
 		}
 		$this->logger = $logger;
+
+		if ( !$hookContainer ) {
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->permissionCache = new MapCacheLRU( 1 );
 	}
@@ -227,7 +243,7 @@ class PasswordReset implements LoggerAwareInterface {
 		// hook assumes that index '0' is defined if $users is not empty.
 		$users = array_values( $users );
 
-		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', [ &$users, $data, &$error ] ) ) {
+		if ( !$this->hookRunner->onSpecialPasswordResetOnSubmit( $users, $data, $error ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
 
@@ -266,7 +282,7 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newGood();
 		}
 
-		Hooks::run( 'User::mailPasswordInternal', [ &$performingUser, &$ip, &$firstUser ] );
+		$this->hookRunner->onUser__mailPasswordInternal( $performingUser, $ip, $firstUser );
 
 		$result = StatusValue::newGood();
 		$reqs = [];

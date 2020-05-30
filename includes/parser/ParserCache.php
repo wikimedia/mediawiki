@@ -21,6 +21,8 @@
  * @ingroup Cache Parser
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -58,6 +60,9 @@ class ParserCache {
 	 */
 	private $cacheEpoch;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * Get an instance of this object
 	 *
@@ -77,11 +82,17 @@ class ParserCache {
 	 *
 	 * @param BagOStuff $cache
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
+	 * @param HookContainer|null $hookContainer
 	 * @throws MWException
 	 */
-	public function __construct( BagOStuff $cache, $cacheEpoch = '20030516000000' ) {
+	public function __construct( BagOStuff $cache, $cacheEpoch = '20030516000000',
+		HookContainer $hookContainer = null
+	) {
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
+		$this->hookRunner = new HookRunner(
+			$hookContainer ?: MediaWikiServices::getInstance()->getHookContainer()
+		);
 	}
 
 	/**
@@ -300,7 +311,7 @@ class ParserCache {
 			);
 			$value = false;
 		} elseif (
-			Hooks::run( 'RejectParserCacheValue', [ $value, $wikiPage, $popts ] ) === false
+			$this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false
 		) {
 			$this->incrementStats( $wikiPage, 'miss.rejected' );
 			wfDebugLog( "ParserCache",
@@ -374,10 +385,8 @@ class ParserCache {
 			// ...and its pointer
 			$this->cache->set( $this->getOptionsKey( $wikiPage ), $optionsKey, $expire );
 
-			Hooks::run(
-				'ParserCacheSaveComplete',
-				[ $this, $parserOutput, $wikiPage->getTitle(), $popts, $revId ]
-			);
+			$this->hookRunner->onParserCacheSaveComplete(
+				$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
 		} elseif ( $expire <= 0 ) {
 			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
 		}

@@ -157,7 +157,7 @@ class ApiQuery extends ApiBase {
 		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
 		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
 
-		Hooks::run( 'ApiQuery::moduleManager', [ $this->mModuleMgr ] );
+		$this->getHookRunner()->onApiQuery__moduleManager( $this->mModuleMgr );
 
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
@@ -261,7 +261,7 @@ class ApiQuery extends ApiBase {
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
 			$module->execute();
-			Hooks::run( 'APIQueryAfterExecute', [ &$module ] );
+			$this->getHookRunner()->onAPIQueryAfterExecute( $module );
 		}
 
 		// Set the cache mode

@@ -21,6 +21,7 @@
 namespace MediaWiki\Linker;
 
 use LinkCache;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use NamespaceInfo;
 use TitleFormatter;
@@ -48,6 +49,11 @@ class LinkRendererFactory {
 	private $nsInfo;
 
 	/**
+	 * @var HookContainer
+	 */
+	private $hookContainer;
+
+	/**
 	 * @var SpecialPageFactory
 	 */
 	private $specialPageFactory;
@@ -58,17 +64,20 @@ class LinkRendererFactory {
 	 * @param LinkCache $linkCache
 	 * @param NamespaceInfo $nsInfo
 	 * @param SpecialPageFactory $specialPageFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		LinkCache $linkCache,
 		NamespaceInfo $nsInfo,
-		SpecialPageFactory $specialPageFactory
+		SpecialPageFactory $specialPageFactory,
+		HookContainer $hookContainer
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->linkCache = $linkCache;
 		$this->nsInfo = $nsInfo;
 		$this->specialPageFactory = $specialPageFactory;
+		$this->hookContainer = $hookContainer;
 	}
 
 	/**
@@ -76,7 +85,8 @@ class LinkRendererFactory {
 	 */
 	public function create() {
 		return new LinkRenderer(
-			$this->titleFormatter, $this->linkCache, $this->nsInfo, $this->specialPageFactory
+			$this->titleFormatter, $this->linkCache, $this->nsInfo, $this->specialPageFactory,
+			$this->hookContainer
 		);
 	}
 
