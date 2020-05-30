@@ -938,9 +938,9 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					// By returning this as replacement for the actual script,
 					// we ensure modules are safe to load in a batch request,
 					// without causing other unrelated modules to break.
-					return 'mw.log.error(' .
-						Xml::encodeJsVar( 'JavaScript parse error: ' . $err->getMessage() ) .
-						');';
+					return 'mw.log.error(' . Xml::encodeJsVar(
+						'JavaScript parse error (scripts need to be valid ECMAScript 5): ' .
+						$err->getMessage() ) . ');';
 				}
 				return $contents;
 			}
