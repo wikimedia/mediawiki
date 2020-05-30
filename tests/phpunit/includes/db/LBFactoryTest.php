@@ -161,7 +161,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory = $this->newLBFactoryMultiLBs();
 		$this->assertSame( 0, $countLBsFunc( $factory ) );
 		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
-		$this->assertEquals( 1, $countLBsFunc( $factory ) );
+		$this->assertSame( 1, $countLBsFunc( $factory ) );
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
 		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.
 		$factory->beginMasterChanges( __METHOD__ );
@@ -173,7 +173,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$factory->getMainLB( 's1wiki' )->getConnection( DB_MASTER );
 		} );
 		$factory->commitMasterChanges( __METHOD__ );
-		$this->assertEquals( 1, $called );
+		$this->assertSame( 1, $called );
 		$this->assertEquals( 2, $countLBsFunc( $factory ) );
 		$factory->shutdown();
 		$factory->closeAll();
@@ -182,7 +182,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$factory = $this->newLBFactoryMultiLBs();
 		$this->assertSame( 0, $countLBsFunc( $factory ) );
 		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
-		$this->assertEquals( 1, $countLBsFunc( $factory ) );
+		$this->assertSame( 1, $countLBsFunc( $factory ) );
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
 		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.hrow
 		// DBTransactionError due to transaction ROUND_* stages being mismatched.
@@ -196,7 +196,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			$factory->getMainLB( 's1wiki' )->getConnection( DB_MASTER );
 		} );
 		$factory->commitMasterChanges( __METHOD__ );
-		$this->assertEquals( 1, $called );
+		$this->assertSame( 1, $called );
 		$this->assertEquals( 2, $countLBsFunc( $factory ) );
 		$factory->shutdown();
 		$factory->closeAll();
@@ -209,7 +209,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 			++$ran;
 		} );
 		$factory->commitAll( __METHOD__ );
-		$this->assertEquals( 1, $ran );
+		$this->assertSame( 1, $ran );
 
 		$factory->shutdown();
 		$factory->closeAll();
@@ -341,7 +341,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$cpIndex = null;
 		$cp->shutdown( null, 'sync', $cpIndex );
 
-		$this->assertEquals( 1, $cpIndex, "CP write index set" );
+		$this->assertSame( 1, $cpIndex, "CP write index set" );
 
 		// (b) Second HTTP request
 

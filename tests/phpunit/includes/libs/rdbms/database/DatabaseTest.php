@@ -517,7 +517,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			$lock = $db->getScopedLockAndFlush( 'meow', __METHOD__, 1 );
 			$this->fail( "Exception not reached" );
 		} catch ( DBUnexpectedError $e ) {
-			$this->assertEquals( 1, $db->trxLevel(), "Transaction not committed." );
+			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
 			$this->assertTrue( $db->lockIsFree( 'meow', __METHOD__ ), 'Lock not acquired' );
 		}
 		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
@@ -531,7 +531,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			$lock = $db->getScopedLockAndFlush( 'meow2', __METHOD__, 1 );
 			$this->fail( "Exception not reached" );
 		} catch ( DBUnexpectedError $e ) {
-			$this->assertEquals( 1, $db->trxLevel(), "Transaction not committed." );
+			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
 			$this->assertTrue( $db->lockIsFree( 'meow2', __METHOD__ ), 'Lock not acquired' );
 		}
 		$db->rollback( __METHOD__ );
@@ -540,7 +540,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertTrue( $db->lockIsFree( 'wuff', __METHOD__ ) );
 		$db->query( "SELECT 1", __METHOD__ );
-		$this->assertEquals( 1, $db->trxLevel() );
+		$this->assertSame( 1, $db->trxLevel() );
 		$lock = $db->getScopedLockAndFlush( 'wuff', __METHOD__, 1 );
 		$this->assertSame( 0, $db->trxLevel() );
 		$this->assertFalse( $db->lockIsFree( 'wuff', __METHOD__ ), 'Lock already acquired' );
@@ -554,7 +554,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			$lock = $db->getScopedLockAndFlush( 'wuff2', __METHOD__, 1 );
 			$this->fail( "Exception not reached" );
 		} catch ( DBUnexpectedError $e ) {
-			$this->assertEquals( 1, $db->trxLevel(), "Transaction not committed." );
+			$this->assertSame( 1, $db->trxLevel(), "Transaction not committed." );
 			$this->assertFalse( $db->lockIsFree( 'wuff2', __METHOD__ ), 'Lock not acquired' );
 		}
 		$db->rollback( __METHOD__ );

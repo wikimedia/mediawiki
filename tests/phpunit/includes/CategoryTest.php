@@ -136,7 +136,7 @@ class CategoryTest extends MediaWikiTestCase {
 			__METHOD__
 		) );
 
-		$this->assertEquals( 1, $category->getID() );
+		$this->assertSame( '1', $category->getID() );
 
 		$dbw->delete( 'category', '*', __METHOD__ );
 	}

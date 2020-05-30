@@ -121,5 +121,5 @@ class ZhConverter extends LanguageConverter {
 	 */
 	public function convertCategoryKey( $key ) {
 		return $this->autoConvert( $key, 'zh' );
- }
+	}
 }

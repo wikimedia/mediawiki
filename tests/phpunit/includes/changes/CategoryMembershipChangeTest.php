@@ -78,7 +78,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$change = $this->newChange();
 		$change->triggerCategoryAddedNotification( Title::newFromText( 'CategoryName', NS_CATEGORY ) );
 
-		$this->assertEquals( 1, self::$notifyCallCounter );
+		$this->assertSame( 1, self::$notifyCallCounter );
 
 		$this->assertTrue( strlen( self::$lastNotifyArgs[0] ) === 14 );
 		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
@@ -89,7 +89,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertSame( 0, self::$lastNotifyArgs[5] );
 		$this->assertSame( 0, self::$lastNotifyArgs[6] );
 		$this->assertNull( self::$lastNotifyArgs[7] );
-		$this->assertEquals( 1, self::$lastNotifyArgs[8] );
+		$this->assertSame( 1, self::$lastNotifyArgs[8] );
 		$this->assertSame( '', self::$lastNotifyArgs[9] );
 		$this->assertSame( 0, self::$lastNotifyArgs[10] );
 	}
@@ -98,7 +98,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$change = $this->newChange();
 		$change->triggerCategoryRemovedNotification( Title::newFromText( 'CategoryName', NS_CATEGORY ) );
 
-		$this->assertEquals( 1, self::$notifyCallCounter );
+		$this->assertSame( 1, self::$notifyCallCounter );
 
 		$this->assertTrue( strlen( self::$lastNotifyArgs[0] ) === 14 );
 		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
@@ -109,7 +109,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$this->assertSame( 0, self::$lastNotifyArgs[5] );
 		$this->assertSame( 0, self::$lastNotifyArgs[6] );
 		$this->assertNull( self::$lastNotifyArgs[7] );
-		$this->assertEquals( 1, self::$lastNotifyArgs[8] );
+		$this->assertSame( 1, self::$lastNotifyArgs[8] );
 		$this->assertSame( '', self::$lastNotifyArgs[9] );
 		$this->assertSame( 0, self::$lastNotifyArgs[10] );
 	}
@@ -121,7 +121,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$change = $this->newChange( $revision );
 		$change->triggerCategoryAddedNotification( Title::newFromText( 'CategoryName', NS_CATEGORY ) );
 
-		$this->assertEquals( 1, self::$notifyCallCounter );
+		$this->assertSame( 1, self::$notifyCallCounter );
 
 		$this->assertTrue( strlen( self::$lastNotifyArgs[0] ) === 14 );
 		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
@@ -144,7 +144,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		$change = $this->newChange( $revision );
 		$change->triggerCategoryRemovedNotification( Title::newFromText( 'CategoryName', NS_CATEGORY ) );
 
-		$this->assertEquals( 1, self::$notifyCallCounter );
+		$this->assertSame( 1, self::$notifyCallCounter );
 
 		$this->assertTrue( strlen( self::$lastNotifyArgs[0] ) === 14 );
 		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );

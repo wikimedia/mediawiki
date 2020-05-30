@@ -2503,7 +2503,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			1,
 			$be->getReadIndexFromParams( [ 'latest' => 1 ] ),
 			'Reads with "latest" flag use backend 1'

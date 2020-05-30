@@ -1982,7 +1982,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
-		$this->assertEquals( 1, $callback4Called );
+		$this->assertSame( 1, $callback4Called );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 4; COMMIT; SELECT 3' );
 
@@ -2003,7 +2003,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
-		$this->assertEquals( 1, $callback4Called );
+		$this->assertSame( 1, $callback4Called );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; RELEASE SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 4; COMMIT; SELECT 3' );
 
@@ -2023,7 +2023,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
-		$this->assertEquals( 1, $callback4Called );
+		$this->assertSame( 1, $callback4Called );
 
 		$callback1Called = null;
 		$callback2Called = null;
@@ -2050,7 +2050,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
-		$this->assertEquals( 1, $callback4Called );
+		$this->assertSame( 1, $callback4Called );
 
 		$callback4Called = 0;
 		$callback5Called = 0;
@@ -2065,8 +2065,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ . '_outer' );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic2; SELECT 4; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; COMMIT' );
-		$this->assertEquals( 1, $callback4Called );
-		$this->assertEquals( 1, $callback5Called );
+		$this->assertSame( 1, $callback4Called );
+		$this->assertSame( 1, $callback5Called );
 
 		$callback4Called = 0;
 		$callback5Called = 0;
@@ -2080,8 +2080,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ . '_outer' );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; RELEASE SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; SELECT 4; COMMIT' );
-		$this->assertEquals( 1, $callback4Called );
-		$this->assertEquals( 1, $callback5Called );
+		$this->assertSame( 1, $callback4Called );
+		$this->assertSame( 1, $callback5Called );
 
 		$callback4Called = 0;
 		$callback5Called = 0;
@@ -2094,8 +2094,8 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ . '_outer' );
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; SELECT 4; COMMIT' );
-		$this->assertEquals( 1, $callback4Called );
-		$this->assertEquals( 1, $callback5Called );
+		$this->assertSame( 1, $callback4Called );
+		$this->assertSame( 1, $callback5Called );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
 		$callback1Called = null;
@@ -2116,7 +2116,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback1Called );
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
-		$this->assertEquals( 1, $callback4Called );
+		$this->assertSame( 1, $callback4Called );
 	}
 
 	/**
@@ -2454,7 +2454,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		try {
 			$this->database->setFlag( IDatabase::DBO_TRX );
 			$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
-			$this->assertEquals( 1, $this->database->trxLevel() );
+			$this->assertSame( 1, $this->database->trxLevel() );
 			$this->database->close();
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBUnexpectedError $ex ) {
@@ -2476,7 +2476,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	public function testPrematureClose4() {
 		$this->database->setFlag( IDatabase::DBO_TRX );
 		$this->database->query( 'SELECT 1', __METHOD__ );
-		$this->assertEquals( 1, $this->database->trxLevel() );
+		$this->assertSame( 1, $this->database->trxLevel() );
 		$this->database->close();
 		$this->database->clearFlag( IDatabase::DBO_TRX );
 

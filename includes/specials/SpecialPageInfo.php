@@ -25,6 +25,7 @@ class SpecialPageInfo extends SpecialRedirectWithAction {
 	public function __construct() {
 		parent::__construct( 'PageInfo', 'info', 'pageinfo' );
 	}
+
 	// Messages, for grep:
 	// specialpageinfo-page
 	// specialpageinfo-submit

@@ -6,6 +6,7 @@
  */
 class LanguageBe_taraskTest extends LanguageClassesTestCase {
 	// phpcs:enable
+
 	/**
 	 * Make sure the language code we are given is indeed
 	 * be-tarask. This is to ensure LanguageClassesTestCase

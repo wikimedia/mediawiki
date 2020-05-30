@@ -230,7 +230,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$n = $res->numRows();
 		$res->free();
 
-		$this->assertEquals( 1, $n, 'pagelinks should contain only one link if PST was not applied' );
+		$this->assertSame( 1, $n, 'pagelinks should contain only one link if PST was not applied' );
 	}
 
 	/**
@@ -299,7 +299,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$n = $res->numRows();
 		$res->free();
 
-		$this->assertEquals( 1, $n, 'pagelinks should contain one link from the page' );
+		$this->assertSame( 1, $n, 'pagelinks should contain one link from the page' );
 
 		# ------------------------
 		$page = new WikiPage( $title );
@@ -1571,23 +1571,23 @@ more stuff
 		// Add an initial category
 		$page->updateCategoryCounts( [ 'A' ], [], 0 );
 
-		$this->assertEquals( 1, Category::newFromName( 'A' )->getPageCount() );
+		$this->assertSame( '1', Category::newFromName( 'A' )->getPageCount() );
 		$this->assertSame( 0, Category::newFromName( 'B' )->getPageCount() );
 		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
 
 		// Add a new category
 		$page->updateCategoryCounts( [ 'B' ], [], 0 );
 
-		$this->assertEquals( 1, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
+		$this->assertSame( '1', Category::newFromName( 'A' )->getPageCount() );
+		$this->assertSame( '1', Category::newFromName( 'B' )->getPageCount() );
 		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
 
 		// Add and remove a category
 		$page->updateCategoryCounts( [ 'C' ], [ 'A' ], 0 );
 
 		$this->assertSame( 0, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertEquals( 1, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertEquals( 1, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( '1', Category::newFromName( 'B' )->getPageCount() );
+		$this->assertSame( '1', Category::newFromName( 'C' )->getPageCount() );
 	}
 
 	public function provideUpdateRedirectOn() {

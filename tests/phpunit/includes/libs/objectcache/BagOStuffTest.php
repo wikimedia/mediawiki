@@ -106,7 +106,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 			$wrapper = TestingAccessWrapper::newFromObject( $this->cache );
 			$this->assertEquals( count( $wrapper->caches ), $calls );
 		} else {
-			$this->assertEquals( 1, $calls );
+			$this->assertSame( 1, $calls );
 		}
 	}
 
@@ -189,13 +189,13 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], 300 );
 		$this->assertTrue( $ok, "TTL bumped for all keys" );
-		$this->assertEquals( 1, $this->cache->get( $key1 ) );
+		$this->assertSame( 1, $this->cache->get( $key1 ) );
 		$this->assertEquals( 2, $this->cache->get( $key2 ) );
 		$this->assertEquals( 3, $this->cache->get( $key3 ) );
 
 		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3, $key4 ], 300 );
 		$this->assertFalse( $ok, "One key missing" );
-		$this->assertEquals( 1, $this->cache->get( $key1 ), "Key still live" );
+		$this->assertSame( 1, $this->cache->get( $key1 ), "Key still live" );
 
 		$now = microtime( true ); // real time
 		$ok = $this->cache->setMulti( [ $key1 => 1, $key2 => 2, $key3 => 3 ] );
@@ -203,7 +203,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 		$ok = $this->cache->changeTTLMulti( [ $key1, $key2, $key3 ], $now + 86400 );
 		$this->assertTrue( $ok, "Expiry set for all keys" );
-		$this->assertEquals( 1, $this->cache->get( $key1 ), "Key still live" );
+		$this->assertSame( 1, $this->cache->get( $key1 ), "Key still live" );
 
 		$this->assertEquals( 2, $this->cache->incr( $key1 ) );
 		$this->assertEquals( 3, $this->cache->incr( $key2 ) );

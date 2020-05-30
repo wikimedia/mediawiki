@@ -421,5 +421,6 @@ class FormOptions implements ArrayAccess {
 	public function offsetUnset( $name ) {
 		$this->delete( $name );
 	}
+
 	/* @} */
 }

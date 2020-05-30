@@ -25,6 +25,7 @@ class SpecialPurge extends SpecialRedirectWithAction {
 	public function __construct() {
 		parent::__construct( 'Purge', 'purge', 'purge' );
 	}
+
 	// Messages, for grep:
 	// specialpurge-page
 	// specialpurge-submit
