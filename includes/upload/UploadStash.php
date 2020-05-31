@@ -471,14 +471,13 @@ class UploadStash {
 	 * XXX this is somewhat redundant with the checks that ApiUpload.php does with incoming
 	 * uploads versus the desired filename. Maybe we can get that passed to us...
 	 * @param string $path
-	 * @throws UploadStashFileException
 	 * @return string
 	 */
 	public static function getExtensionForPath( $path ) {
 		global $wgFileBlacklist;
 		// Does this have an extension?
 		$n = strrpos( $path, '.' );
-		$extension = null;
+
 		if ( $n !== false ) {
 			$extension = $n ? substr( $path, $n + 1 ) : '';
 		} else {
@@ -486,12 +485,6 @@ class UploadStash {
 			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$mimeType = $magic->guessMimeType( $path );
 			$extension = $magic->getExtensionFromMimeTypeOrNull( $mimeType );
-		}
-
-		if ( $extension === null ) {
-			throw new UploadStashFileException(
-				wfMessage( 'uploadstash-no-extension' )
-			);
 		}
 
 		$extension = File::normalizeExtension( $extension );
