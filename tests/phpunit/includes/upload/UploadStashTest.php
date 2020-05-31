@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group Database
  *
@@ -40,16 +38,6 @@ class UploadStashTest extends MediaWikiTestCase {
 		];
 	}
 
-	public function testExceptionNoFileExtension() {
-		$this->setMwGlobals( 'wgUser', self::$users['uploader']->getUser() );
-
-		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
-		$stash = new UploadStash( $repo );
-
-		$this->expectExceptionMessage( wfMessage( 'uploadstash-no-extension' )->text() );
-		$file = $stash->stashFile( $this->tmpFile );
-	}
-
 	public static function provideInvalidRequests() {
 		return [
 			'Check failure on bad wpFileKey' =>
@@ -85,22 +73,5 @@ class UploadStashTest extends MediaWikiTestCase {
 	 */
 	public function testValidRequestWithValidRequests( $request ) {
 		$this->assertTrue( UploadFromStash::isValidRequest( $request ) );
-	}
-
-	public function testExceptionWhenStoreTempFails() {
-		$mockRepoStoreStatusResult = Status::newFatal( 'TEST_ERROR' );
-		$mockRepo = $this->getMockBuilder( FileRepo::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$stash = new UploadStash( $mockRepo );
-		try {
-			$stash->stashFile( $this->tmpFile );
-			$this->fail( 'Expected UploadStashFileException not thrown' );
-		} catch ( UploadStashFileException $e ) {
-			$this->assertInstanceOf( ILocalizedException::class, $e );
-		} catch ( Exception $e ) {
-			$this->fail( 'Unexpected exception class ' . get_class( $e ) );
-		}
 	}
 }

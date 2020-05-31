@@ -1853,7 +1853,6 @@
 	"uploadstash-not-logged-in": "No user is logged in, files must belong to users.",
 	"uploadstash-wrong-owner": "This file ($1) doesn't belong to the current user.",
 	"uploadstash-no-such-key": "No such key ($1), cannot remove.",
-	"uploadstash-no-extension": "Extension is null.",
 	"uploadstash-zero-length": "File is zero length.",
 	"invalid-chunk-offset": "Invalid chunk offset",
 	"img-auth-accessdenied": "Access denied",

@@ -2068,7 +2068,6 @@
 	"uploadstash-not-logged-in": "Error message when a logged out user tries to access a stashed upload.",
 	"uploadstash-wrong-owner": "Error message when a wrong user tries to access a stashed upload.\n\nParameters:\n* $1 - the stash key",
 	"uploadstash-no-such-key": "Error message when a stash key couldn't be found.\n\nParameters:\n* $1 - the stash key",
-	"uploadstash-no-extension": "Error message when a stashed file has no extension.",
 	"uploadstash-zero-length": "Error message when a file has no length (file size is zero).",
 	"invalid-chunk-offset": "Error that can happen if chunks get uploaded out of order.\nAs a result of this error, clients can continue from an offset provided or restart the upload.\nUsed on [[Special:UploadWizard]].",
 	"img-auth-accessdenied": "[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Access Denied\n{{Identical|Access denied}}",
