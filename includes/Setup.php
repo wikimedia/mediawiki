@@ -46,6 +46,8 @@
  *
  * @file
  */
+
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ChronologyProtector;
@@ -664,18 +666,23 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 }
 
 // Useful debug output
-if ( $wgCommandLineMode ) {
-	if ( isset( $self ) ) {
-		wfDebug( "\n\nStart command line script $self\n" );
+( function () {
+	global $wgCommandLineMode, $wgRequest;
+	$logger = LoggerFactory::getInstance( 'wfDebug' );
+	if ( $wgCommandLineMode ) {
+		$self = $_SERVER['PHP_SELF'] ?? '';
+		$logger->debug( "\n\nStart command line script $self" );
+	} else {
+		$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
+		$debug .= "IP: " . $wgRequest->getIP() . "\n";
+		$debug .= "HTTP HEADERS:\n";
+		foreach ( $wgRequest->getAllHeaders() as $name => $value ) {
+			$debug .= "$name: $value\n";
+		}
+		$debug .= "(end headers)";
+		$logger->debug( $debug );
 	}
-} else {
-	$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
-	$debug .= "HTTP HEADERS:\n";
-	foreach ( $wgRequest->getAllHeaders() as $name => $value ) {
-		$debug .= "$name: $value\n";
-	}
-	wfDebug( $debug );
-}
+} )();
 
 /**
  * @var BagOStuff $wgMemc

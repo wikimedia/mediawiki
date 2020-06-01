@@ -965,7 +965,7 @@ class ParserOutput extends CacheTime {
 	 */
 	public function addTrackingCategory( $msg, $title ) {
 		if ( $title->isSpecialPage() ) {
-			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!\n" );
+			wfDebug( __METHOD__ . ": Not adding tracking category $msg to special page!" );
 			return false;
 		}
 
@@ -985,7 +985,7 @@ class ParserOutput extends CacheTime {
 			$this->addCategory( $containerCategory->getDBkey(), $this->getProperty( 'defaultsort' ) ?: '' );
 			return true;
 		} else {
-			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!\n" );
+			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!" );
 			return false;
 		}
 	}

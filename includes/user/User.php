@@ -477,7 +477,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$cache::TTL_HOUR,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
-				wfDebug( "User: cache miss for user {$this->mId}\n" );
+				wfDebug( "User: cache miss for user {$this->mId}" );
 
 				$this->loadFromDatabase( self::READ_NORMAL );
 				$this->loadGroups();
@@ -1628,7 +1628,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return;
 		}
 
-		wfDebug( __METHOD__ . ": checking...\n" );
+		wfDebug( __METHOD__ . ": checking..." );
 
 		// Initialize data...
 		// Otherwise something ends up stomping on $this->mBlockedby when
@@ -1900,7 +1900,7 @@ class User implements IDBAccessObject, UserIdentity {
 			// that $userLimit is also a bool here.
 			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
 			list( $max, $period ) = $userLimit;
-			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s\n" );
+			wfDebug( __METHOD__ . ": effective user limit: $max in {$period}s" );
 			$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $userLimit;
 		}
 
@@ -1942,7 +1942,7 @@ class User implements IDBAccessObject, UserIdentity {
 					"(IP {$this->getRequest()->getIP()}) tripped $key at $count $summary" );
 				$triggered = true;
 			} else {
-				wfDebug( __METHOD__ . ": adding record for $key $summary\n" );
+				wfDebug( __METHOD__ . ": adding record for $key $summary" );
 				if ( $incrBy > 0 ) {
 					$cache->add( $key, 0, intval( $period ) ); // first ping
 				}
@@ -3954,7 +3954,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool A block was spread
 	 */
 	protected function spreadBlock() {
-		wfDebug( __METHOD__ . "()\n" );
+		wfDebug( __METHOD__ . "()" );
 		$this->load();
 		if ( $this->mId == 0 ) {
 			return false;

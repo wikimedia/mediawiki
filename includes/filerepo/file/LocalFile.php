@@ -696,7 +696,7 @@ class LocalFile extends File {
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
 			$this->unlock();
-			wfDebug( __METHOD__ . ": file does not exist, aborting\n" );
+			wfDebug( __METHOD__ . ": file does not exist, aborting" );
 
 			return;
 		}
@@ -709,7 +709,7 @@ class LocalFile extends File {
 
 			return;
 		}
-		wfDebug( __METHOD__ . ': upgrading ' . $this->getName() . " to the current schema\n" );
+		wfDebug( __METHOD__ . ': upgrading ' . $this->getName() . " to the current schema" );
 
 		$dbw->update( 'image',
 			[
@@ -1148,7 +1148,7 @@ class LocalFile extends File {
 			var_export( $files, true ),
 			[ "\n" => '' ]
 		);
-		wfDebug( __METHOD__ . ": $fileListDebug\n" );
+		wfDebug( __METHOD__ . ": $fileListDebug" );
 
 		$purgeList = [];
 		foreach ( $files as $file ) {
@@ -1482,7 +1482,7 @@ class LocalFile extends File {
 
 		# Fail now if the file isn't there
 		if ( !$this->fileExists ) {
-			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!\n" );
+			wfDebug( __METHOD__ . ": File " . $this->getRel() . " went missing!" );
 
 			return Status::newFatal( 'filenotfound', $this->getRel() );
 		}
@@ -1526,7 +1526,7 @@ class LocalFile extends File {
 
 			if ( $row && $row->img_sha1 === $this->sha1 ) {
 				$dbw->endAtomic( __METHOD__ );
-				wfDebug( __METHOD__ . ": File " . $this->getRel() . " already exists!\n" );
+				wfDebug( __METHOD__ . ": File " . $this->getRel() . " already exists!" );
 				$title = Title::newFromText( $this->getName(), NS_FILE );
 				return Status::newFatal( 'fileexists-no-change', $title->getPrefixedText() );
 			}

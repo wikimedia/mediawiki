@@ -482,7 +482,7 @@ class Article implements Page {
 
 				if ( !$this->mRevisionRecord ) {
 					wfDebug( __METHOD__ . " failed to find page data for title " .
-						$this->getTitle()->getPrefixedText() . "\n" );
+						$this->getTitle()->getPrefixedText() );
 
 					// Just for sanity, output for this case is done by showMissingArticle().
 					$this->fetchResult = Status::newFatal( 'noarticletext' );
@@ -493,7 +493,7 @@ class Article implements Page {
 				$this->mRevisionRecord = $this->revisionStore->getRevisionById( $oldid );
 
 				if ( !$this->mRevisionRecord ) {
-					wfDebug( __METHOD__ . " failed to load revision, rev_id $oldid\n" );
+					wfDebug( __METHOD__ . " failed to load revision, rev_id $oldid" );
 
 					$this->fetchResult = Status::newFatal( 'missing-revision', $oldid );
 					$this->applyContentOverride( $this->makeFetchErrorContent() );
@@ -511,7 +511,7 @@ class Article implements Page {
 			$this->getContext()->getUser()
 		) ) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
-				$this->mRevisionRecord->getId() . "\n" );
+				$this->mRevisionRecord->getId() );
 
 			// Just for sanity, output for this case is done by showDeletedRevisionHeader().
 			$this->fetchResult = Status::newFatal( 'rev-deleted-text-permission' );
@@ -638,7 +638,7 @@ class Article implements Page {
 			$this->getTitle()
 		);
 		if ( count( $permErrors ) ) {
-			wfDebug( __METHOD__ . ": denied on secondary read check\n" );
+			wfDebug( __METHOD__ . ": denied on secondary read check" );
 			throw new PermissionsError( 'read', $permErrors );
 		}
 
@@ -646,14 +646,14 @@ class Article implements Page {
 		# getOldID() may as well want us to redirect somewhere else
 		if ( $this->mRedirectUrl ) {
 			$outputPage->redirect( $this->mRedirectUrl );
-			wfDebug( __METHOD__ . ": redirecting due to oldid\n" );
+			wfDebug( __METHOD__ . ": redirecting due to oldid" );
 
 			return;
 		}
 
 		# If we got diff in the query, we want to see a diff page instead of the article.
 		if ( $this->getContext()->getRequest()->getCheck( 'diff' ) ) {
-			wfDebug( __METHOD__ . ": showing diff page\n" );
+			wfDebug( __METHOD__ . ": showing diff page" );
 			$this->showDiffPage();
 
 			return;
@@ -684,7 +684,7 @@ class Article implements Page {
 		if ( $oldid === 0 && $this->mPage->checkTouched() ) {
 			# Try to stream the output from file cache
 			if ( $wgUseFileCache && $this->tryFileCache() ) {
-				wfDebug( __METHOD__ . ": done file cache\n" );
+				wfDebug( __METHOD__ . ": done file cache" );
 				# tell wgOut that output is taken care of
 				$outputPage->disable();
 				$this->mPage->doViewUpdates( $user, $oldid );
@@ -695,7 +695,7 @@ class Article implements Page {
 
 		# Should the parser cache be used?
 		$useParserCache = $this->mPage->shouldCheckParserCache( $parserOptions, $oldid );
-		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
+		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) );
 		if ( $user->getStubThreshold() ) {
 			MediaWikiServices::getInstance()->getStatsdDataFactory()->increment( 'pcache_miss_stub' );
 		}
@@ -717,7 +717,7 @@ class Article implements Page {
 				case 2:
 					# Early abort if the page doesn't exist
 					if ( !$this->mPage->exists() ) {
-						wfDebug( __METHOD__ . ": showing missing article\n" );
+						wfDebug( __METHOD__ . ": showing missing article" );
 						$this->showMissingArticle();
 						$this->mPage->doViewUpdates( $user );
 						return;
@@ -729,10 +729,10 @@ class Article implements Page {
 
 						if ( $this->mParserOutput !== false ) {
 							if ( $oldid ) {
-								wfDebug( __METHOD__ . ": showing parser cache contents for current rev permalink\n" );
+								wfDebug( __METHOD__ . ": showing parser cache contents for current rev permalink" );
 								$this->setOldSubtitle( $oldid );
 							} else {
-								wfDebug( __METHOD__ . ": showing parser cache contents\n" );
+								wfDebug( __METHOD__ . ": showing parser cache contents" );
 							}
 							$outputPage->addParserOutput( $this->mParserOutput, $poOptions );
 							# Ensure that UI elements requiring revision ID have
@@ -755,7 +755,7 @@ class Article implements Page {
 						$this->setOldSubtitle( $oldid );
 
 						if ( !$this->showDeletedRevisionHeader() ) {
-							wfDebug( __METHOD__ . ": cannot view deleted revision\n" );
+							wfDebug( __METHOD__ . ": cannot view deleted revision" );
 							return;
 						}
 					}
@@ -788,7 +788,7 @@ class Article implements Page {
 					break;
 				case 4:
 					# Run the parse, protected by a pool counter
-					wfDebug( __METHOD__ . ": doing uncached parse\n" );
+					wfDebug( __METHOD__ . ": doing uncached parse" );
 
 					$rev = $this->fetchRevisionRecord();
 					$error = null;
@@ -1963,7 +1963,7 @@ class Article implements Page {
 	 * @param string $reason Prefilled reason
 	 */
 	public function confirmDelete( $reason ) {
-		wfDebug( "Article::confirmDelete\n" );
+		wfDebug( "Article::confirmDelete" );
 
 		$title = $this->getTitle();
 		$ctx = $this->getContext();
@@ -2196,7 +2196,7 @@ class Article implements Page {
 		static $called = false;
 
 		if ( $called ) {
-			wfDebug( "Article::tryFileCache(): called twice!?\n" );
+			wfDebug( "Article::tryFileCache(): called twice!?" );
 			return false;
 		}
 
@@ -2204,15 +2204,15 @@ class Article implements Page {
 		if ( $this->isFileCacheable() ) {
 			$cache = new HTMLFileCache( $this->getTitle(), 'view' );
 			if ( $cache->isCacheGood( $this->mPage->getTouched() ) ) {
-				wfDebug( "Article::tryFileCache(): about to load file\n" );
+				wfDebug( "Article::tryFileCache(): about to load file" );
 				$cache->loadFromFileCache( $this->getContext() );
 				return true;
 			} else {
-				wfDebug( "Article::tryFileCache(): starting buffer\n" );
+				wfDebug( "Article::tryFileCache(): starting buffer" );
 				ob_start( [ &$cache, 'saveToFileCache' ] );
 			}
 		} else {
-			wfDebug( "Article::tryFileCache(): not cacheable\n" );
+			wfDebug( "Article::tryFileCache(): not cacheable" );
 		}
 
 		return false;
@@ -2311,7 +2311,7 @@ class Article implements Page {
 			return $this->mContext;
 		} else {
 			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Return RequestContext::getMain(); for sanity\n" );
+				"Return RequestContext::getMain(); for sanity" );
 			return RequestContext::getMain();
 		}
 	}

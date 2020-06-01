@@ -262,7 +262,7 @@ class JobQueueDB extends JobQueue {
 					$method
 				);
 				foreach ( $res as $row ) {
-					wfDebug( "Job with hash '{$row->job_sha1}' is a duplicate.\n" );
+					wfDebug( "Job with hash '{$row->job_sha1}' is a duplicate." );
 					unset( $rowSet[$row->job_sha1] ); // already enqueued
 				}
 			}
@@ -461,7 +461,7 @@ class JobQueueDB extends JobQueue {
 					[ 'job_cmd' => $this->type, 'job_token' => $uuid ], __METHOD__
 				);
 				if ( !$row ) { // raced out by duplicate job removal
-					wfDebug( "Row deleted as duplicate by another process.\n" );
+					wfDebug( "Row deleted as duplicate by another process." );
 				}
 			} else {
 				break; // nothing to do

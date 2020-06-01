@@ -1498,7 +1498,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$shortTitle = $title->getDBkey();
 
 		if ( !$title->exists() ) {
-			wfDebug( __METHOD__ . ": Page doesn't exist any more, bailing out\n" );
+			wfDebug( __METHOD__ . ": Page doesn't exist any more, bailing out" );
 
 			$this->doTransition( 'done' );
 			return;
@@ -1547,7 +1547,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		) {
 			$recipient = User::newFromName( $shortTitle, false );
 			if ( !$recipient ) {
-				wfDebug( __METHOD__ . ": invalid username\n" );
+				wfDebug( __METHOD__ . ": invalid username" );
 			} else {
 				// Allow extensions to prevent user notification
 				// when a new message is added to their talk page
@@ -1562,7 +1562,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 					} elseif ( $recipient->isLoggedIn() ) {
 						$talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
 					} else {
-						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
+						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user" );
 					}
 				}
 			}

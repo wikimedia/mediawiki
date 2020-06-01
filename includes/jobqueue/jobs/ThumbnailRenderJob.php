@@ -104,7 +104,7 @@ class ThumbnailRenderJob extends Job {
 			$thumbUrl = '//' . $wgUploadThumbnailRenderHttpCustomDomain . $parsedUrl['path'];
 		}
 
-		wfDebug( __METHOD__ . ": hitting url {$thumbUrl}\n" );
+		wfDebug( __METHOD__ . ": hitting url {$thumbUrl}" );
 
 		// T203135 We don't wait for the request to complete, as this is mostly fire & forget.
 		// Looking at the HTTP status of requests that take less than 1s is a sanity check.
@@ -120,7 +120,7 @@ class ThumbnailRenderJob extends Job {
 
 		$status = $request->execute();
 		$statusCode = $request->getStatus();
-		wfDebug( __METHOD__ . ": received status {$statusCode}\n" );
+		wfDebug( __METHOD__ . ": received status {$statusCode}" );
 
 		// 400 happens when requesting a size greater or equal than the original
 		// TODO use proper error signaling. 400 could mean a number of other things.

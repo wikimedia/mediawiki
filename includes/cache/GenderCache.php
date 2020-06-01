@@ -89,7 +89,7 @@ class GenderCache {
 			if ( $this->misses >= $this->missLimit && $wgUser->getName() !== $username ) {
 				if ( $this->misses === $this->missLimit ) {
 					$this->misses++;
-					wfDebug( __METHOD__ . ": too many misses, returning default onwards\n" );
+					wfDebug( __METHOD__ . ": too many misses, returning default onwards" );
 				}
 
 				return $this->getDefault();

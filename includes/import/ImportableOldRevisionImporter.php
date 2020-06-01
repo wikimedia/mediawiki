@@ -152,7 +152,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		}
 
 		if ( $changed !== false && $this->doUpdates ) {
-			$this->logger->debug( __METHOD__ . ": running updates\n" );
+			$this->logger->debug( __METHOD__ . ": running updates" );
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
 			// TODO WikiPgae::doEditUpdates is deprecated
 			$page->doEditUpdates(

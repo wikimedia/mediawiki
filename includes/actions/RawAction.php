@@ -165,7 +165,7 @@ class RawAction extends FormlessAction {
 		}
 
 		if ( !$this->getHookRunner()->onRawPageViewBeforeOutput( $this, $text ) ) {
-			wfDebug( __METHOD__ . ": RawPageViewBeforeOutput hook broke raw page output.\n" );
+			wfDebug( __METHOD__ . ": RawPageViewBeforeOutput hook broke raw page output." );
 		}
 
 		echo $text;

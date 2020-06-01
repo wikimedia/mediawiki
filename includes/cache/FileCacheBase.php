@@ -126,7 +126,7 @@ abstract class FileCacheBase {
 		$cachetime = $this->cacheTimestamp();
 		$good = ( $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime );
 		wfDebug( __METHOD__ .
-			": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n" );
+			": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good" );
 
 		return $good;
 	}
@@ -165,7 +165,7 @@ abstract class FileCacheBase {
 
 		$this->checkCacheDirs(); // build parent dir
 		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
-			wfDebug( __METHOD__ . "() failed saving " . $this->cachePath() . "\n" );
+			wfDebug( __METHOD__ . "() failed saving " . $this->cachePath() );
 			$this->mCached = null;
 
 			return false;

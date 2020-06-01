@@ -45,7 +45,7 @@ class UserMailer {
 
 		// Based on the result return an error string,
 		if ( PEAR::isError( $mailResult ) ) {
-			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
+			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() );
 			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
 		} else {
 			return Status::newGood();
@@ -151,7 +151,7 @@ class UserMailer {
 			$body = $body['text'];
 		}
 
-		wfDebug( __METHOD__ . ': sending mail to ' . implode( ', ', $to ) . "\n" );
+		wfDebug( __METHOD__ . ': sending mail to ' . implode( ', ', $to ) );
 
 		// Make sure we have at least one address
 		$has_address = false;
@@ -324,9 +324,9 @@ class UserMailer {
 
 		if ( is_array( $body ) ) {
 			// we are sending a multipart message
-			wfDebug( "Assembling multipart mime email\n" );
+			wfDebug( "Assembling multipart mime email" );
 			if ( !self::isMailMimeUsable() ) {
-				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email.\n" );
+				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email." );
 				// remove the html body for text email fall back
 				$body = $body['text'];
 			} else {
@@ -389,13 +389,13 @@ class UserMailer {
 			// Create the mail object using the Mail::factory method
 			$mail_object = Mail::factory( 'smtp', $wgSMTP );
 			if ( PEAR::isError( $mail_object ) ) {
-				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
+				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() );
 				Wikimedia\restoreWarnings();
 				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
 			}
 			'@phan-var Mail_smtp $mail_object';
 
-			wfDebug( "Sending mail via PEAR::Mail\n" );
+			wfDebug( "Sending mail via PEAR::Mail" );
 
 			$headers['Subject'] = self::quotedPrintable( $subject );
 
@@ -424,7 +424,7 @@ class UserMailer {
 			}
 			$headers = self::arrayToHeaderString( $headers, $endl );
 
-			wfDebug( "Sending mail via internal mail() function\n" );
+			wfDebug( "Sending mail via internal mail() function" );
 
 			self::$mErrorString = '';
 			$html_errors = ini_get( 'html_errors' );
@@ -450,11 +450,11 @@ class UserMailer {
 			ini_set( 'html_errors', $html_errors );
 
 			if ( self::$mErrorString ) {
-				wfDebug( "Error sending mail: " . self::$mErrorString . "\n" );
+				wfDebug( "Error sending mail: " . self::$mErrorString );
 				return Status::newFatal( 'php-mail-error', self::$mErrorString );
 			} elseif ( !$sent ) {
 				// mail function only tells if there's an error
-				wfDebug( "Unknown error sending mail\n" );
+				wfDebug( "Unknown error sending mail" );
 				return Status::newFatal( 'php-mail-error-unknown' );
 			} else {
 				return Status::newGood();

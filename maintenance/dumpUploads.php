@@ -119,7 +119,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 			$rel = wfRelativePath( $filename, $this->mBasePath );
 			$this->output( "$rel\n" );
 		} else {
-			wfDebug( __METHOD__ . ": base file? $name\n" );
+			wfDebug( __METHOD__ . ": base file? $name" );
 		}
 	}
 

@@ -132,14 +132,14 @@ class XCFHandler extends BitmapHandler {
 
 		# Check values
 		if ( $header['magic'] !== 'gimp xcf' ) {
-			wfDebug( __METHOD__ . " '$filename' has invalid magic signature.\n" );
+			wfDebug( __METHOD__ . " '$filename' has invalid magic signature." );
 
 			return false;
 		}
 		# TODO: we might want to check for sane values of width and height
 
 		wfDebug( __METHOD__ .
-			": canvas size of '$filename' is {$header['width']} x {$header['height']} px\n" );
+			": canvas size of '$filename' is {$header['width']} x {$header['height']} px" );
 
 		return $header;
 	}

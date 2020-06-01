@@ -390,7 +390,7 @@ class IcuCollation extends Collation {
 				// Primary collision (two characters with the same sort position).
 				// Keep whichever one sorts first in the main collator.
 				$comp = $this->mainCollator->compare( $letter, $letterMap[$key] );
-				wfDebug( "Primary collision '$letter' '{$letterMap[$key]}' (comparison: $comp)\n" );
+				wfDebug( "Primary collision '$letter' '{$letterMap[$key]}' (comparison: $comp)" );
 				// If that also has a collision, use codepoint as a tiebreaker.
 				if ( $comp === 0 ) {
 					$comp = UtfNormal\Utils::utf8ToCodepoint( $letter ) <=>
@@ -468,7 +468,7 @@ class IcuCollation extends Collation {
 			$prev = $trimmedKey;
 		}
 		foreach ( $duplicatePrefixes as $badKey ) {
-			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters.\n" );
+			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters." );
 			unset( $letterMap[$badKey] );
 			// This code assumes that unsetting does not change sort order.
 		}

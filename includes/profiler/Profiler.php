@@ -140,7 +140,7 @@ abstract class Profiler {
 			return $this->context;
 		} else {
 			wfDebug( __METHOD__ . " called and \$context is null. " .
-				"Return RequestContext::getMain(); for sanity\n" );
+				"Return RequestContext::getMain(); for sanity" );
 			return RequestContext::getMain();
 		}
 	}

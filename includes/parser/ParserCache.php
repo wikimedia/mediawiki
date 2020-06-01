@@ -232,7 +232,7 @@ class ParserCache {
 
 			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
 			$usedOptions = $optionsKey->mUsedOptions;
-			wfDebug( "Parser cache options found.\n" );
+			wfDebug( "Parser cache options found." );
 		} else {
 			if ( $useOutdated < self::USE_ANYTHING ) {
 				return false;
@@ -285,12 +285,12 @@ class ParserCache {
 		/** @var ParserOutput $value */
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( !$value ) {
-			wfDebug( "ParserOutput cache miss.\n" );
+			wfDebug( "ParserOutput cache miss." );
 			$this->incrementStats( $wikiPage, "miss.absent" );
 			return false;
 		}
 
-		wfDebug( "ParserOutput cache found.\n" );
+		wfDebug( "ParserOutput cache found." );
 
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			$this->incrementStats( $wikiPage, "miss.expired" );
@@ -388,7 +388,7 @@ class ParserCache {
 			$this->hookRunner->onParserCacheSaveComplete(
 				$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
 		} elseif ( $expire <= 0 ) {
-			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
+			wfDebug( "Parser output was marked as uncacheable and has not been saved." );
 		}
 	}
 

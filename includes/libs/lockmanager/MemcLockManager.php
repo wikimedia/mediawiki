@@ -148,7 +148,7 @@ class MemcLockManager extends QuorumLockManager {
 				if ( !$ok ) {
 					$status->fatal( 'lockmanager-fail-acquirelock', $path );
 				} else {
-					$this->logger->debug( __METHOD__ . ": acquired lock on key $locksKey.\n" );
+					$this->logger->debug( __METHOD__ . ": acquired lock on key $locksKey." );
 				}
 			}
 		}
@@ -212,7 +212,7 @@ class MemcLockManager extends QuorumLockManager {
 				$ok = $memc->set( $locksKey, $locksHeld, self::MAX_LOCK_TTL );
 			}
 			if ( $ok ) {
-				$this->logger->debug( __METHOD__ . ": released lock on key $locksKey.\n" );
+				$this->logger->debug( __METHOD__ . ": released lock on key $locksKey." );
 			} else {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}

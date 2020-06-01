@@ -249,7 +249,7 @@ class DifferenceEngine extends ContextSource {
 			$this->setContext( $context );
 		}
 
-		wfDebug( "DifferenceEngine old '$old' new '$new' rcid '$rcid'\n" );
+		wfDebug( "DifferenceEngine old '$old' new '$new' rcid '$rcid'" );
 
 		$this->mOldid = $old;
 		$this->mNewid = $new;

@@ -1021,7 +1021,7 @@ class DatabaseSqlite extends Database {
 		if ( $temporary ) {
 			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sql ) ) {
 				$this->queryLogger->debug(
-					"Table $oldName is virtual, can't create a temporary duplicate.\n" );
+					"Table $oldName is virtual, can't create a temporary duplicate." );
 			} else {
 				$sql = str_replace( 'CREATE TABLE', 'CREATE TEMPORARY TABLE', $sql );
 			}

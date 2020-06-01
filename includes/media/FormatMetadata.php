@@ -1059,7 +1059,7 @@ class FormatMetadata extends ContextSource {
 		} elseif ( count( $vals ) === 1 && $type !== 'lang' && isset( $vals[0] ) ) {
 			return $vals[0];
 		} elseif ( count( $vals ) === 0 ) {
-			wfDebug( __METHOD__ . " metadata array with 0 elements!\n" );
+			wfDebug( __METHOD__ . " metadata array with 0 elements!" );
 
 			return ""; // paranoia. This should never happen
 		} else {

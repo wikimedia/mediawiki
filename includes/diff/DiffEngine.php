@@ -354,7 +354,7 @@ class DiffEngine {
 			if ( $this->m * $this->n > $this->tooLong ) {
 				// limit complexity to D^POW_LIMIT for long sequences
 				$this->maxDifferences = floor( $this->maxDifferences ** ( $this->powLimit - 1.0 ) );
-				wfDebug( "Limiting max number of differences to $this->maxDifferences\n" );
+				wfDebug( "Limiting max number of differences to $this->maxDifferences" );
 			}
 
 			/*
@@ -701,7 +701,7 @@ class DiffEngine {
 		$snake0 = $bottoml1 + $most_progress[0];
 		$snake1 = $bottoml2 + $most_progress[1];
 		$snake2 = 0;
-		wfDebug( "Computing the LCS is too expensive. Using a heuristic.\n" );
+		wfDebug( "Computing the LCS is too expensive. Using a heuristic." );
 		$this->heuristicUsed = true;
 
 		return 5; /*

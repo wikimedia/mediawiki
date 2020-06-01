@@ -71,7 +71,7 @@ class WebRequestUpload {
 		# Horrid and evil! Let's try to make some kind of sense of it.
 		$name = Sanitizer::decodeCharReferences( $name );
 		$name = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $name );
-		wfDebug( __METHOD__ . ": {$this->fileInfo['name']} normalized to '$name'\n" );
+		wfDebug( __METHOD__ . ": {$this->fileInfo['name']} normalized to '$name'" );
 		return $name;
 	}
 

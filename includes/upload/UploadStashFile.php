@@ -52,7 +52,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 				( strpos( $path, $repoTempPath ) !== 0 )
 			) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile "
-					. "from a file that should already exist at '$path', but path is not valid\n" );
+					. "from a file that should already exist at '$path', but path is not valid" );
 				throw new UploadStashBadPathException(
 					wfMessage( 'uploadstash-bad-path-invalid' )
 				);
@@ -61,7 +61,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 			// check if path exists! and is a plain file.
 			if ( !$repo->fileExists( $path ) ) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile from "
-					. "a file that should already exist at '$path', but path is not found\n" );
+					. "a file that should already exist at '$path', but path is not found" );
 				throw new UploadStashFileNotFoundException(
 					wfMessage( 'uploadstash-file-not-found-not-exists' )
 				);
@@ -138,7 +138,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return string URL to access thumbnail, or URL with partial path
 	 */
 	public function getThumbUrl( $thumbName = false ) {
-		wfDebug( __METHOD__ . " getting for $thumbName \n" );
+		wfDebug( __METHOD__ . " getting for $thumbName" );
 
 		return $this->getSpecialUrl( 'thumb/' . $this->getUrlName() . '/' . $thumbName );
 	}

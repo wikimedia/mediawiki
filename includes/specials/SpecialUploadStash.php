@@ -378,7 +378,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		if ( isset( $formData['Clear'] ) ) {
 			$stash = MediaWikiServices::getInstance()->getRepoGroup()
 				->getLocalRepo()->getUploadStash( $form->getUser() );
-			wfDebug( 'stash has: ' . print_r( $stash->listFiles(), true ) . "\n" );
+			wfDebug( 'stash has: ' . print_r( $stash->listFiles(), true ) );
 
 			if ( !$stash->clear() ) {
 				return Status::newFatal( 'uploadstash-errclear' );

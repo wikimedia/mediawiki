@@ -67,7 +67,7 @@ class SearchPostgres extends SearchDatabase {
 	 * @return string
 	 */
 	private function parseQuery( $term ) {
-		wfDebug( "parseQuery received: $term \n" );
+		wfDebug( "parseQuery received: $term" );
 
 		# # No backslashes allowed
 		$term = preg_replace( '/\\\/', '', $term );
@@ -117,7 +117,7 @@ class SearchPostgres extends SearchDatabase {
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 		$searchstring = $dbr->addQuotes( $searchstring );
 
-		wfDebug( "parseQuery returned: $searchstring \n" );
+		wfDebug( "parseQuery returned: $searchstring" );
 
 		return $searchstring;
 	}
@@ -186,7 +186,7 @@ class SearchPostgres extends SearchDatabase {
 
 		$query .= $dbr->limitResult( '', $this->limit, $this->offset );
 
-		wfDebug( "searchQuery returned: $query \n" );
+		wfDebug( "searchQuery returned: $query" );
 
 		return $query;
 	}

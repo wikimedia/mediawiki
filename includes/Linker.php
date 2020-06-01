@@ -248,7 +248,7 @@ class Linker {
 		$success = Hooks::runner()->onLinkerMakeExternalImage( $url, $alt, $img );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalImage changed the output of external image "
-				. "with url {$url} and alt text {$alt} to {$img}\n", true );
+				. "with url {$url} and alt text {$alt} to {$img}" );
 			return $img;
 		}
 		return Html::element( 'img',
@@ -311,7 +311,7 @@ class Linker {
 		}
 
 		if ( $file && !$file->allowInlineDisplay() ) {
-			wfDebug( __METHOD__ . ': ' . $title->getPrefixedDBkey() . " does not allow inline display\n" );
+			wfDebug( __METHOD__ . ': ' . $title->getPrefixedDBkey() . " does not allow inline display" );
 			return self::link( $title );
 		}
 
@@ -800,7 +800,7 @@ class Linker {
 			Title::castFromLinkTarget( $title ), $file, $html, $attribs, $ret )
 		) {
 			wfDebug( "Hook LinkerMakeMediaLinkFile changed the output of link "
-				. "with url {$url} and text {$html} to {$ret}\n", true );
+				. "with url {$url} and text {$html} to {$ret}" );
 			return $ret;
 		}
 
@@ -878,7 +878,7 @@ class Linker {
 			$url, $text, $link, $attribs, $linktype );
 		if ( !$success ) {
 			wfDebug( "Hook LinkerMakeExternalLink changed the output of link "
-				. "with url {$url} and text {$text} to {$link}\n", true );
+				. "with url {$url} and text {$text} to {$link}" );
 			return $link;
 		}
 		$attribs['href'] = $url;

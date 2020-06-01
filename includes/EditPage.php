@@ -632,7 +632,7 @@ class EditPage {
 			return;
 		}
 
-		wfDebug( __METHOD__ . ": enter\n" );
+		wfDebug( __METHOD__ . ": enter" );
 
 		$request = $this->context->getRequest();
 		// If they used redlink=1 and the page exists, redirect to the main article
@@ -669,7 +669,7 @@ class EditPage {
 			$this->save ? PermissionManager::RIGOR_SECURE : PermissionManager::RIGOR_FULL
 		);
 		if ( $permErrors ) {
-			wfDebug( __METHOD__ . ": User can't edit\n" );
+			wfDebug( __METHOD__ . ": User can't edit" );
 
 			if ( $this->context->getUser()->getBlock() ) {
 				// Auto-block user's IP if the account was "hard" blocked
@@ -1038,8 +1038,8 @@ class EditPage {
 			}
 			if ( $this->incompleteForm ) {
 				# If the form is incomplete, force to preview.
-				wfDebug( __METHOD__ . ": Form data appears to be incomplete\n" );
-				wfDebug( "POST DATA: " . var_export( $request->getPostValues(), true ) . "\n" );
+				wfDebug( __METHOD__ . ": Form data appears to be incomplete" );
+				wfDebug( "POST DATA: " . var_export( $request->getPostValues(), true ) );
 				$this->preview = true;
 			} else {
 				$this->preview = $request->getCheck( 'wpPreview' );
@@ -1054,14 +1054,14 @@ class EditPage {
 					# if the user hits enter in the comment box.
 					# The unmarked state will be assumed to be a save,
 					# if the form seems otherwise complete.
-					wfDebug( __METHOD__ . ": Passed token check.\n" );
+					wfDebug( __METHOD__ . ": Passed token check." );
 				} elseif ( $this->diff ) {
 					# Failed token check, but only requested "Show Changes".
-					wfDebug( __METHOD__ . ": Failed token check; Show Changes requested.\n" );
+					wfDebug( __METHOD__ . ": Failed token check; Show Changes requested." );
 				} else {
 					# Page might be a hack attempt posted from
 					# an external site. Preview instead of saving.
-					wfDebug( __METHOD__ . ": Failed token check; forcing preview\n" );
+					wfDebug( __METHOD__ . ": Failed token check; forcing preview" );
 					$this->preview = true;
 				}
 			}
@@ -1104,7 +1104,7 @@ class EditPage {
 			}
 		} else {
 			# Not a posted form? Start with nothing.
-			wfDebug( __METHOD__ . ": Not a posted form.\n" );
+			wfDebug( __METHOD__ . ": Not a posted form." );
 			$this->textbox1 = '';
 			$this->summary = '';
 			$this->sectiontitle = '';
@@ -2048,7 +2048,7 @@ ERROR;
 		$user = $this->context->getUser();
 
 		if ( !$this->getHookRunner()->onEditPage__attemptSave( $this ) ) {
-			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
+			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
 			$status->fatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
 			return $status;
@@ -2243,7 +2243,7 @@ ERROR;
 			if ( !$this->permManager->userCan( 'create', $user, $this->mTitle ) ) {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
-				wfDebug( __METHOD__ . ": no create permission\n" );
+				wfDebug( __METHOD__ . ": no create permission" );
 				return $status;
 			}
 
@@ -2292,8 +2292,8 @@ ERROR;
 			$timestamp = $this->page->getTimestamp();
 			$latest = $this->page->getLatest();
 
-			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
-			wfDebug( "revision: {$latest}, editRevId: {$this->editRevId}\n" );
+			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}" );
+			wfDebug( "revision: {$latest}, editRevId: {$this->editRevId}" );
 
 			// An edit conflict is detected if the current revision is different from the
 			// revision that was current when editing was initiated on the client.
@@ -2311,11 +2311,11 @@ ERROR;
 						// This can happen when CDN resends a request after
 						// a timeout but the first one actually went through.
 						wfDebug( __METHOD__
-							. ": duplicate new section submission; trigger edit conflict!\n" );
+							. ": duplicate new section submission; trigger edit conflict!" );
 					} else {
 						// New comment; suppress conflict.
 						$this->isConflict = false;
-						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
+						wfDebug( __METHOD__ . ": conflict suppressed; new section" );
 					}
 				} elseif ( $this->section == ''
 					&& $this->edittime
@@ -2327,7 +2327,7 @@ ERROR;
 					)
 				) {
 					# Suppress edit conflict with self, except for section edits where merging is required.
-					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
+					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user." );
 					$this->isConflict = false;
 				}
 			}
@@ -2344,7 +2344,7 @@ ERROR;
 			if ( $this->isConflict ) {
 				wfDebug( __METHOD__
 					. ": conflict! getting section '{$this->section}' for time '{$this->edittime}'"
-					. " (id '{$this->editRevId}') (article time '{$timestamp}')\n" );
+					. " (id '{$this->editRevId}') (article time '{$timestamp}')" );
 				// @TODO: replaceSectionAtRev() with base ID (not prior current) for ?oldid=X case
 				// ...or disable section editing for non-current revisions (not exposed anyway).
 				if ( $this->editRevId !== null ) {
@@ -2363,7 +2363,7 @@ ERROR;
 					);
 				}
 			} else {
-				wfDebug( __METHOD__ . ": getting section '{$this->section}'\n" );
+				wfDebug( __METHOD__ . ": getting section '{$this->section}'" );
 				$content = $this->page->replaceSectionContent(
 					$this->section,
 					$textbox_content,
@@ -2372,7 +2372,7 @@ ERROR;
 			}
 
 			if ( $content === null ) {
-				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
+				wfDebug( __METHOD__ . ": activating conflict; section replace failed." );
 				$this->isConflict = true;
 				$content = $textbox_content; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
@@ -2380,11 +2380,11 @@ ERROR;
 				if ( $this->mergeChangesIntoContent( $content ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
-					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
+					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge." );
 				} else {
 					$this->section = '';
 					$this->textbox1 = ContentHandler::getContentText( $content );
-					wfDebug( __METHOD__ . ": Keeping edit conflict, failed merge.\n" );
+					wfDebug( __METHOD__ . ": Keeping edit conflict, failed merge." );
 				}
 			}
 

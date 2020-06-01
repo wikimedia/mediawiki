@@ -480,7 +480,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doPrepareInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
-			$this->logger->debug( __METHOD__ . ": iterating over all container shards.\n" );
+			$this->logger->debug( __METHOD__ . ": iterating over all container shards." );
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doPrepareInternal( "{$fullCont}{$suffix}", $dir, $params ) );
@@ -516,7 +516,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doSecureInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
-			$this->logger->debug( __METHOD__ . ": iterating over all container shards.\n" );
+			$this->logger->debug( __METHOD__ . ": iterating over all container shards." );
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doSecureInternal( "{$fullCont}{$suffix}", $dir, $params ) );
@@ -552,7 +552,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doPublishInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
-			$this->logger->debug( __METHOD__ . ": iterating over all container shards.\n" );
+			$this->logger->debug( __METHOD__ . ": iterating over all container shards." );
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doPublishInternal( "{$fullCont}{$suffix}", $dir, $params ) );
@@ -609,7 +609,7 @@ abstract class FileBackendStore extends FileBackend {
 			$status->merge( $this->doCleanInternal( $fullCont, $dir, $params ) );
 			$this->deleteContainerCache( $fullCont ); // purge cache
 		} else { // directory is on several shards
-			$this->logger->debug( __METHOD__ . ": iterating over all container shards.\n" );
+			$this->logger->debug( __METHOD__ . ": iterating over all container shards." );
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
 				$status->merge( $this->doCleanInternal( "{$fullCont}{$suffix}", $dir, $params ) );
@@ -1088,7 +1088,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $shard !== null ) { // confined to a single container/shard
 			return $this->doDirectoryExists( $fullCont, $dir, $params );
 		} else { // directory is on several shards
-			$this->logger->debug( __METHOD__ . ": iterating over all container shards.\n" );
+			$this->logger->debug( __METHOD__ . ": iterating over all container shards." );
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 			$res = false; // response
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
@@ -1124,7 +1124,7 @@ abstract class FileBackendStore extends FileBackend {
 			// File listing is confined to a single container/shard
 			return $this->getDirectoryListInternal( $fullCont, $dir, $params );
 		} else {
-			$this->logger->debug( __METHOD__ . ": iterating over all container shards.\n" );
+			$this->logger->debug( __METHOD__ . ": iterating over all container shards." );
 			// File listing spans multiple containers/shards
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 
@@ -1154,7 +1154,7 @@ abstract class FileBackendStore extends FileBackend {
 			// File listing is confined to a single container/shard
 			return $this->getFileListInternal( $fullCont, $dir, $params );
 		} else {
-			$this->logger->debug( __METHOD__ . ": iterating over all container shards.\n" );
+			$this->logger->debug( __METHOD__ . ": iterating over all container shards." );
 			// File listing spans multiple containers/shards
 			list( , $shortCont, ) = self::splitStoragePath( $params['dir'] );
 

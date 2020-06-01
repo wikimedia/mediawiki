@@ -113,7 +113,7 @@ class JpegHandler extends ExifBitmapHandler {
 		} catch ( Exception $e ) {
 			// BitmapMetadataHandler throws an exception in certain exceptional
 			// cases like if file does not exist.
-			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
 			/* This used to use 0 (ExifBitmapHandler::OLD_BROKEN_FILE) for the cases
 			 *   * No metadata in the file

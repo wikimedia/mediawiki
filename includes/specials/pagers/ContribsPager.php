@@ -765,7 +765,7 @@ class ContribsPager extends RangeChronologicalPager {
 		// receiving empty rows?
 
 		if ( $classes === [] && $attribs === [] && $ret === '' ) {
-			wfDebug( "Dropping Special:Contribution row that could not be formatted\n" );
+			wfDebug( "Dropping Special:Contribution row that could not be formatted" );
 			return "<!-- Could not format Special:Contribution row. -->\n";
 		}
 		$attribs['class'] = $classes;

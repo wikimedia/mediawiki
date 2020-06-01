@@ -561,7 +561,7 @@ abstract class MediaHandler {
 			// property is defined that we don't know about
 			// (not a major issue since such a property would be collapsed
 			// by default).
-			wfDebug( __METHOD__ . ' Unknown metadata name: ' . $id . "\n" );
+			wfDebug( __METHOD__ . ' Unknown metadata name: ' . $id );
 			$name = wfEscapeWikiText( $id );
 		}
 		$array[$visibility][] = [

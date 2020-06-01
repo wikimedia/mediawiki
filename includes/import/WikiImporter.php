@@ -112,17 +112,17 @@ class WikiImporter {
 
 	public function throwXmlError( $err ) {
 		$this->debug( "FAILURE: $err" );
-		wfDebug( "WikiImporter XML error: $err\n" );
+		wfDebug( "WikiImporter XML error: $err" );
 	}
 
 	public function debug( $data ) {
 		if ( $this->mDebug ) {
-			wfDebug( "IMPORT: $data\n" );
+			wfDebug( "IMPORT: $data" );
 		}
 	}
 
 	public function warn( $data ) {
-		wfDebug( "IMPORT: $data\n" );
+		wfDebug( "IMPORT: $data" );
 	}
 
 	public function notice( $msg, ...$params ) {
@@ -131,7 +131,7 @@ class WikiImporter {
 		} else { # No ImportReporter -> CLI
 			// T177997: the command line importers should call setNoticeCallback()
 			// for their own custom callback to echo the notice
-			wfDebug( wfMessage( $msg, $params )->text() . "\n" );
+			wfDebug( wfMessage( $msg, $params )->text() );
 		}
 	}
 

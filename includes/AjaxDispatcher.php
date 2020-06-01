@@ -116,7 +116,7 @@ class AjaxDispatcher {
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !in_array( $this->func_name, $this->config->get( 'AjaxExportList' ) ) ) {
-			wfDebug( __METHOD__ . ' Bad Request for unknown function ' . $this->func_name . "\n" );
+			wfDebug( __METHOD__ . ' Bad Request for unknown function ' . $this->func_name );
 			wfHttpError(
 				400,
 				'Bad Request',
@@ -129,14 +129,14 @@ class AjaxDispatcher {
 				'Forbidden',
 				'You are not allowed to view pages.' );
 		} else {
-			wfDebug( __METHOD__ . ' dispatching ' . $this->func_name . "\n" );
+			wfDebug( __METHOD__ . ' dispatching ' . $this->func_name );
 			try {
 				$result = call_user_func_array( $this->func_name, $this->args );
 
 				if ( $result === false || $result === null ) {
 					wfDebug( __METHOD__ . ' ERROR while dispatching ' .
 						$this->func_name . "(" . var_export( $this->args, true ) . "): " .
-						"no data returned\n" );
+						"no data returned" );
 
 					wfHttpError( 500, 'Internal Error',
 						"{$this->func_name} returned no data" );
@@ -152,12 +152,12 @@ class AjaxDispatcher {
 					$result->sendHeaders();
 					$result->printText();
 
-					wfDebug( __METHOD__ . ' dispatch complete for ' . $this->func_name . "\n" );
+					wfDebug( __METHOD__ . ' dispatch complete for ' . $this->func_name );
 				}
 			} catch ( Exception $e ) {
 				wfDebug( __METHOD__ . ' ERROR while dispatching ' .
 					$this->func_name . "(" . var_export( $this->args, true ) . "): " .
-					get_class( $e ) . ": " . $e->getMessage() . "\n" );
+					get_class( $e ) . ": " . $e->getMessage() );
 
 				if ( !headers_sent() ) {
 					wfHttpError( 500, 'Internal Error',

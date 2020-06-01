@@ -523,7 +523,7 @@ class DatabaseBlock extends AbstractBlock {
 			throw new MWException( 'Cannot insert a block without a blocker set' );
 		}
 
-		wfDebug( __METHOD__ . "; timestamp {$this->mTimestamp}\n" );
+		wfDebug( __METHOD__ . "; timestamp {$this->mTimestamp}" );
 
 		if ( $dbw === null ) {
 			$dbw = wfGetDB( DB_MASTER );
@@ -591,7 +591,7 @@ class DatabaseBlock extends AbstractBlock {
 	 *   ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
 	public function update() {
-		wfDebug( __METHOD__ . "; timestamp {$this->mTimestamp}\n" );
+		wfDebug( __METHOD__ . "; timestamp {$this->mTimestamp}" );
 		$dbw = wfGetDB( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
@@ -708,7 +708,7 @@ class DatabaseBlock extends AbstractBlock {
 		$blockIds = [];
 		# If autoblock is enabled, autoblock the LAST IP(s) used
 		if ( $this->isAutoblocking() && $this->getType() == self::TYPE_USER ) {
-			wfDebug( "Doing retroactive autoblocks for " . $this->getTarget() . "\n" );
+			wfDebug( "Doing retroactive autoblocks for " . $this->getTarget() );
 
 			$continue = Hooks::runner()->onPerformRetroactiveAutoblock( $this, $blockIds );
 
@@ -759,7 +759,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		if ( !$res->numRows() ) {
 			# No results, don't autoblock anything
-			wfDebug( "No IP found to retroactively autoblock\n" );
+			wfDebug( "No IP found to retroactively autoblock" );
 		} else {
 			foreach ( $res as $row ) {
 				if ( $row->rc_ip ) {
@@ -794,7 +794,7 @@ class DatabaseBlock extends AbstractBlock {
 			}
 		);
 
-		wfDebug( "Checking the autoblock whitelist..\n" );
+		wfDebug( "Checking the autoblock whitelist.." );
 
 		foreach ( $lines as $line ) {
 			# List items only
@@ -809,10 +809,10 @@ class DatabaseBlock extends AbstractBlock {
 
 			# Is the IP in this range?
 			if ( IPUtils::isInRange( $ip, $wlEntry ) ) {
-				wfDebug( " IP $ip matches $wlEntry, not autoblocking\n" );
+				wfDebug( " IP $ip matches $wlEntry, not autoblocking" );
 				return true;
 			} else {
-				wfDebug( " No match\n" );
+				wfDebug( " No match" );
 			}
 		}
 
@@ -838,7 +838,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		# Allow hooks to cancel the autoblock.
 		if ( !Hooks::runner()->onAbortAutoblock( $autoblockIP, $this ) ) {
-			wfDebug( "Autoblock aborted by hook.\n" );
+			wfDebug( "Autoblock aborted by hook." );
 			return false;
 		}
 
@@ -861,7 +861,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		# Make a new block object with the desired properties.
 		$autoblock = new DatabaseBlock;
-		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP . "\n" );
+		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP );
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
 		$autoblock->setReason(
@@ -907,11 +907,11 @@ class DatabaseBlock extends AbstractBlock {
 	public function deleteIfExpired() {
 		wfDeprecated( __METHOD__, '1.35' );
 		if ( $this->isExpired() ) {
-			wfDebug( __METHOD__ . " -- deleting\n" );
+			wfDebug( __METHOD__ . " -- deleting" );
 			$this->delete();
 			$retVal = true;
 		} else {
-			wfDebug( __METHOD__ . " -- not expired\n" );
+			wfDebug( __METHOD__ . " -- not expired" );
 			$retVal = false;
 		}
 
@@ -924,7 +924,7 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function isExpired() {
 		$timestamp = wfTimestampNow();
-		wfDebug( __METHOD__ . " checking current " . $timestamp . " vs $this->mExpiry\n" );
+		wfDebug( __METHOD__ . " checking current " . $timestamp . " vs $this->mExpiry" );
 
 		if ( !$this->getExpiry() ) {
 			return false;

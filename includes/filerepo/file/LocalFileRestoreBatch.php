@@ -320,13 +320,13 @@ class LocalFileRestoreBatch {
 		// If store batch is empty (all files are missing), deletion is to be considered successful
 		if ( $status->successCount > 0 || !$storeBatch || $repo->hasSha1Storage() ) {
 			if ( !$exists ) {
-				wfDebug( __METHOD__ . " restored {$status->successCount} items, creating a new current\n" );
+				wfDebug( __METHOD__ . " restored {$status->successCount} items, creating a new current" );
 
 				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => 1 ] ) );
 
 				$this->file->purgeEverything();
 			} else {
-				wfDebug( __METHOD__ . " restored {$status->successCount} as archived versions\n" );
+				wfDebug( __METHOD__ . " restored {$status->successCount} as archived versions" );
 				$this->file->purgeDescription();
 			}
 		}

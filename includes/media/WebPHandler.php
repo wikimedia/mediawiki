@@ -71,7 +71,7 @@ class WebPHandler extends BitmapHandler {
 		Wikimedia\restoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-				wfDebug( __METHOD__ . " invalid WebP metadata\n" );
+				wfDebug( __METHOD__ . " invalid WebP metadata" );
 
 				return self::METADATA_BAD;
 		}
@@ -79,7 +79,7 @@ class WebPHandler extends BitmapHandler {
 		if ( !isset( $data['metadata']['_MW_WEBP_VERSION'] )
 				|| $data['metadata']['_MW_WEBP_VERSION'] != self::_MW_WEBP_VERSION
 		) {
-				wfDebug( __METHOD__ . " old but compatible WebP metadata\n" );
+				wfDebug( __METHOD__ . " old but compatible WebP metadata" );
 
 				return self::METADATA_COMPATIBLE;
 		}

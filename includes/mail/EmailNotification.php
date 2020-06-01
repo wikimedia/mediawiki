@@ -277,26 +277,26 @@ class EmailNotification {
 			$targetUser = User::newFromName( $title->getText() );
 
 			if ( !$targetUser || $targetUser->isAnon() ) {
-				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
+				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist" );
 			} elseif ( $targetUser->getId() == $editor->getId() ) {
-				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
+				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent" );
 			} elseif ( $wgBlockDisablesLogin && $targetUser->getBlock() ) {
 				// @TODO Partial blocks should not prevent the user from logging in.
 				//       see: https://phabricator.wikimedia.org/T208895
-				wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent\n" );
+				wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent" );
 			} elseif ( $targetUser->getOption( 'enotifusertalkpages' )
 				&& ( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) )
 			) {
 				if ( !$targetUser->isEmailConfirmed() ) {
-					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
+					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email" );
 				} elseif ( !Hooks::runner()->onAbortTalkPageEmailNotification( $targetUser, $title ) ) {
-					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user\n" );
+					wfDebug( __METHOD__ . ": talk page update notification is aborted for this user" );
 				} else {
-					wfDebug( __METHOD__ . ": sending talk page update notification\n" );
+					wfDebug( __METHOD__ . ": sending talk page update notification" );
 					return true;
 				}
 			} else {
-				wfDebug( __METHOD__ . ": talk page owner doesn't want notifications\n" );
+				wfDebug( __METHOD__ . ": talk page owner doesn't want notifications" );
 			}
 		}
 		return false;
