@@ -124,6 +124,10 @@ class PHPUnitMaintClass extends Maintenance {
 			exit( 1 );
 		}
 
+		// Start an output buffer to avoid headers being sent by constructors,
+		// data providers, etc. (T206476)
+		ob_start();
+
 		fwrite( STDERR, defined( 'HHVM_VERSION' ) ?
 			'Using HHVM ' . HHVM_VERSION . ' (' . PHP_VERSION . ")\n" :
 			'Using PHP ' . PHP_VERSION . "\n" );
