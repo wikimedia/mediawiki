@@ -214,7 +214,8 @@ return [
 		return new ContentHandlerFactory(
 			$contentHandlerConfig,
 			$services->getObjectFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			LoggerFactory::getInstance( 'ContentHandler' )
 		);
 	},
 

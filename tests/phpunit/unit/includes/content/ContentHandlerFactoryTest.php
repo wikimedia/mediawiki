@@ -2,12 +2,24 @@
 
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LogLevel;
 use Wikimedia\ObjectFactory;
 
 /**
  * @group ContentHandlerFactory
  */
 class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
+
+	/** @var TestLogger */
+	private $logger;
+
+	protected function setUp() : void {
+		parent::setUp();
+
+		$this->logger = new TestLogger( false, function ( $message, $level ) {
+			return $level === LogLevel::INFO ? null : $message;
+		} );
+	}
 
 	public function provideHandlerSpecs() {
 		return [
@@ -44,7 +56,12 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$objectFactory = $this->createMockObjectFactory();
 		$hookContainer = $this->getHookContainer();
 
-		$factory = new ContentHandlerFactory( $handlerSpecs, $objectFactory, $hookContainer );
+		$factory = new ContentHandlerFactory(
+			$handlerSpecs,
+			$objectFactory,
+			$hookContainer,
+			$this->logger
+		);
 		$i = 0;
 		foreach ( $handlerSpecs as $modelID => $handlerSpec ) {
 			$objectFactory
@@ -83,8 +100,12 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		string $contentHandlerClass
 	): void {
 		$contentHandlerExpected = new $contentHandlerClass( 'dummy' );
-		$factory = new ContentHandlerFactory( [], $this->createMockObjectFactory(),
-			$this->getHookContainer() );
+		$factory = new ContentHandlerFactory(
+			[],
+			$this->createMockObjectFactory(),
+			$this->getHookContainer(),
+			$this->logger
+		);
 
 		foreach ( $handlerSpecs as $modelID => $handlerSpec ) {
 			$this->assertFalse( $factory->isDefinedModel( $modelID ) );
@@ -158,8 +179,12 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$objectFactory = $this->createMockObjectFactory();
 		$objectFactory->method( 'createObject' )
 			->willThrowException( $this->createMock( $exceptionClassName ) );
-		$factory = new ContentHandlerFactory( $handlerSpecs, $objectFactory,
-			$this->getHookContainer() );
+		$factory = new ContentHandlerFactory(
+			$handlerSpecs,
+			$objectFactory,
+			$this->getHookContainer(),
+			$this->logger
+		);
 
 		foreach ( $handlerSpecs as $modelID => $handlerSpec ) {
 			try {
@@ -179,8 +204,12 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 */
 	public function testCreateContentHandlerForModelID_callNotExist_throwMWUCMException() {
 		$this->expectException( MWUnknownContentModelException::class );
-		$factory = new ContentHandlerFactory( [], $this->createMockObjectFactory(),
-			$this->getHookContainer() );
+		$factory = new ContentHandlerFactory(
+			[],
+			$this->createMockObjectFactory(),
+			$this->getHookContainer(),
+			$this->logger
+		);
 		$factory->getContentHandler( 'ModelNameNotExist' );
 	}
 
@@ -197,7 +226,12 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$objectFactory
 			->method( 'createObject' )
 			->willReturn( $this->createMock( DummyContentHandlerForTesting::class ) );
-		$factory = new ContentHandlerFactory( [], $objectFactory, $this->getHookContainer() );
+		$factory = new ContentHandlerFactory(
+			[],
+			$objectFactory,
+			$this->getHookContainer(),
+			$this->logger
+		);
 		$this->assertFalse( $factory->isDefinedModel( 'define test' ) );
 
 		$factory->defineContentHandler( 'define test', DummyContentHandlerForTesting::class );
@@ -223,10 +257,15 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	public function testGetContentModels_flow_same(
 		string $name1, string $name2, string $name3, string $name4
 	): void {
-		$factory = new ContentHandlerFactory( [
-			$name1 => DummyContentHandlerForTesting::class,
-			$name2 => DummyContentHandlerForTesting::class,
-		], $this->createMockObjectFactory(), $this->getHookContainer() );
+		$factory = new ContentHandlerFactory(
+			[
+				$name1 => DummyContentHandlerForTesting::class,
+				$name2 => DummyContentHandlerForTesting::class,
+			],
+			$this->createMockObjectFactory(),
+			$this->getHookContainer(),
+			$this->logger
+		);
 		$this->assertArrayEquals(
 			[ $name1, $name2, ],
 			$factory->getContentModels() );
@@ -266,10 +305,15 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	public function testIsDefinedModel_flow_same(
 		string $name1, string $name2, string $name3, string $name4
 	): void {
-		$factory = new ContentHandlerFactory( [
-			$name1 => DummyContentHandlerForTesting::class,
-			$name2 => DummyContentHandlerForTesting::class,
-		], $this->createMockObjectFactory(), $this->getHookContainer() );
+		$factory = new ContentHandlerFactory(
+			[
+				$name1 => DummyContentHandlerForTesting::class,
+				$name2 => DummyContentHandlerForTesting::class,
+			],
+			$this->createMockObjectFactory(),
+			$this->getHookContainer(),
+			$this->logger
+		);
 
 		$this->assertTrue( $factory->isDefinedModel( $name1 ) );
 		$this->assertTrue( $factory->isDefinedModel( $name2 ) );
@@ -317,8 +361,12 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers       \MediaWiki\Content\ContentHandlerFactory::getContentModels
 	 */
 	public function testGetContentModels_empty_empty() {
-		$factory = new ContentHandlerFactory( [], $this->createMockObjectFactory(),
-			$this->getHookContainer() );
+		$factory = new ContentHandlerFactory(
+			[],
+			$this->createMockObjectFactory(),
+			$this->getHookContainer(),
+			$this->logger
+		);
 
 		$this->assertArrayEquals( [], $factory->getContentModels() );
 	}
@@ -348,14 +396,19 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			->method( 'createObject' )
 			->willReturn( $contentHandler3 );
 
-		$factory = new ContentHandlerFactory( [
-			'mock name 1' => function () {
-				// return new DummyContentHandlerForTesting( 'mock 1', [ 'format 1' ] );
-			},
-			'mock name 2' => function () {
-				// return new DummyContentHandlerForTesting( 'mock 0', [ 'format 0' ] );
-			},
-		], $objectFactory, $this->getHookContainer() );
+		$factory = new ContentHandlerFactory(
+			[
+				'mock name 1' => function () {
+					// return new DummyContentHandlerForTesting( 'mock 1', [ 'format 1' ] );
+				},
+				'mock name 2' => function () {
+					// return new DummyContentHandlerForTesting( 'mock 0', [ 'format 0' ] );
+				},
+			],
+			$objectFactory,
+			$this->getHookContainer(),
+			$this->logger
+		);
 
 		$this->assertArrayEquals( [
 			'format 1',
