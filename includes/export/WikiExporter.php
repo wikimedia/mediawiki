@@ -30,6 +30,7 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -78,6 +79,9 @@ class WikiExporter {
 	/** @var array|null */
 	protected $limitNamespaces;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -115,6 +119,7 @@ class WikiExporter {
 		$this->limitNamespaces = $limitNamespaces;
 		$services = MediaWikiServices::getInstance();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->revisionStore = $services->getRevisionStore();
 	}
 
 	/**
@@ -252,9 +257,7 @@ class WikiExporter {
 		$this->author_list = "<contributors>";
 		// rev_deleted
 
-		$revQuery = MediaWikiServices::getInstance()
-			->getRevisionStore()
-			->getQueryInfo( [ 'page' ] );
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
 		$res = $this->db->select(
 			$revQuery['tables'],
 			[
@@ -359,12 +362,8 @@ class WikiExporter {
 	 * @throws Exception
 	 */
 	protected function dumpPages( $cond, $orderRevs ) {
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo(
-			[ 'page' ]
-		);
-		$slotQuery = MediaWikiServices::getInstance()->getRevisionStore()->getSlotsQueryInfo(
-			[ 'content' ]
-		);
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
+		$slotQuery = $this->revisionStore->getSlotsQueryInfo( [ 'content' ] );
 
 		// We want page primary rather than revision.
 		// We also want to join in the slots and content tables.
