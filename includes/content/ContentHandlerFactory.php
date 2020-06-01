@@ -31,6 +31,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MWException;
 use MWUnknownContentModelException;
+use Psr\Log\LoggerInterface;
 use UnexpectedValueException;
 use Wikimedia\ObjectFactory;
 
@@ -52,15 +53,14 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 */
 	private $handlersByModel = [];
 
-	/**
-	 * @var ObjectFactory
-	 */
+	/** @var ObjectFactory */
 	private $objectFactory;
 
-	/**
-	 * @var HookRunner
-	 */
+	/** @var HookRunner */
 	private $hookRunner;
+
+	/** @var LoggerInterface */
+	private $logger;
 
 	/**
 	 * @since 1.35
@@ -71,13 +71,18 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	 *   This array typically comes from $wgContentHandlers.
 	 * @param ObjectFactory $objectFactory
 	 * @param HookContainer $hookContainer
+	 * @param LoggerInterface $logger
 	 */
-	public function __construct( array $handlerSpecs, ObjectFactory $objectFactory,
-		HookContainer $hookContainer
+	public function __construct(
+		array $handlerSpecs,
+		ObjectFactory $objectFactory,
+		HookContainer $hookContainer,
+		LoggerInterface $logger
 	) {
 		$this->handlerSpecs = $handlerSpecs;
 		$this->objectFactory = $objectFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->logger = $logger;
 	}
 
 	/**
@@ -91,8 +96,9 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 		if ( empty( $this->handlersByModel[$modelID] ) ) {
 			$contentHandler = $this->createForModelID( $modelID );
 
-			wfDebugLog( 'ContentHandler',
-				"Registered handler for {$modelID}: " . get_class( $contentHandler ) );
+			$this->logger->info(
+				"Registered handler for {$modelID}: " . get_class( $contentHandler )
+			);
 			$this->handlersByModel[$modelID] = $contentHandler;
 		}
 
