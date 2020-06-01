@@ -1061,6 +1061,7 @@ return [
 			'jquery.accessKeyLabel.js',
 			[ 'name' => 'config.json', 'config' => [
 				'FragmentMode',
+				'GenerateThumbnailOnParse',
 				'LoadScript',
 			] ],
 		],
