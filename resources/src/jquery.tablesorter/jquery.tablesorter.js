@@ -227,12 +227,21 @@
 
 			cache.row.push( $row );
 
+			if ( $row.data( 'initialOrder' ) === undefined ) {
+				$row.data( 'initialOrder', i );
+			}
+
 			for ( j = 0; j < len; j++ ) {
 				cellIndex = $row.data( 'columnToCell' )[ j ];
 				cols.push( parsers[ j ].format( getElementSortKey( $row[ 0 ].cells[ cellIndex ] ) ) );
 			}
 
-			cols.push( cache.normalized.length ); // add position for rowCache
+			// Store the initial sort order, from when the page was loaded
+			cols.push( $row.data( 'initialOrder' ) );
+
+			// Store the current sort order, before rows are re-sorted
+			cols.push( cache.normalized.length );
+
 			cache.normalized.push( cols );
 			cols = null;
 		}
@@ -391,7 +400,7 @@
 					.prop( 'tabIndex', 0 )
 					.attr( {
 						role: 'columnheader button',
-						title: msg[ 1 ]
+						title: msg[ 2 ]
 					} );
 
 				for ( k = 0; k < this.colSpan; k++ ) {
@@ -479,7 +488,7 @@
 		// The following classes are used here:
 		// * headerSortUp
 		// * headerSortDown
-		$headers.removeClass( css ).attr( 'title', msg[ 1 ] );
+		$headers.removeClass( css ).attr( 'title', msg[ 2 ] );
 
 		for ( i = 0, len = list.length; i < len; i++ ) {
 			// The following classes are used here:
@@ -514,10 +523,14 @@
 			}
 		}
 		cache.normalized.sort( function ( array1, array2 ) {
-			var i, col, ret;
+			var i, col, ret, orderIndex;
 			for ( i = 0; i < sortList.length; i++ ) {
 				col = sortList[ i ][ 0 ];
-				if ( sortList[ i ][ 1 ] ) {
+				if ( sortList[ i ][ 1 ] === 2 ) {
+					// initial order
+					orderIndex = array1.length - 2;
+					ret = sortNumeric.call( this, array1[ orderIndex ], array2[ orderIndex ] );
+				} else if ( sortList[ i ][ 1 ] === 1 ) {
 					// descending
 					ret = sortFn[ i ].call( this, array2[ col ], array1[ col ] );
 				} else {
@@ -830,6 +843,7 @@
 			cssHeader: 'headerSort',
 			cssAsc: 'headerSortUp',
 			cssDesc: 'headerSortDown',
+			cssInitial: '',
 			cssChildRow: 'expand-child',
 			sortMultiSortKey: 'shiftKey',
 			unsortableClass: 'unsortable',
@@ -888,10 +902,10 @@
 				$.data( table, 'tablesorter', { config: config } );
 
 				// Get the CSS class names, could be done elsewhere
-				sortCSS = [ config.cssAsc, config.cssDesc ];
+				sortCSS = [ config.cssAsc, config.cssDesc, config.cssInitial ];
 				// Messages tell the user what the *next* state will be
-				// so are in reverse order to the CSS classes.
-				sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-ascending' ) ];
+				// so are shifted by one relative to the CSS classes.
+				sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-initial' ), mw.msg( 'sort-ascending' ) ];
 
 				// Build headers
 				$headers = buildHeaders( table, sortMsg );
@@ -945,7 +959,8 @@
 				$headers.on( 'keypress click', function ( e ) {
 					var cell, $cell, columns, newSortList, i,
 						totalRows,
-						j, s, o;
+						j, s, o,
+						numSortOrders = 3;
 
 					if ( e.type === 'click' && e.target.nodeName.toLowerCase() === 'a' ) {
 						// The user clicked on a link inside a table header.
@@ -977,7 +992,7 @@
 
 						// Get current column sort order
 						$cell.data( {
-							order: $cell.data( 'count' ) % 2,
+							order: $cell.data( 'count' ) % numSortOrders,
 							count: $cell.data( 'count' ) + 1
 						} );
 
@@ -1006,7 +1021,7 @@
 									o = config.headerList[ config.columnToHeader[ s[ 0 ] ] ];
 									if ( isValueInArray( s[ 0 ], newSortList ) ) {
 										$( o ).data( 'count', s[ 1 ] + 1 );
-										s[ 1 ] = $( o ).data( 'count' ) % 2;
+										s[ 1 ] = $( o ).data( 'count' ) % numSortOrders;
 									}
 								}
 							} else {
