@@ -1820,7 +1820,6 @@
 	"uploadstash-not-logged-in": "Neniu ensalutinta uzanto; dosiero devas aparteni al uzanto.",
 	"uploadstash-wrong-owner": "Ĉi tiu dosiero ($1) ne apartenas al la aktuala uzanto.",
 	"uploadstash-no-such-key": "Ŝlosilo $1 ne ekzistas kaj tial ne povas foriĝi.",
-	"uploadstash-no-extension": "Dosiersufikso estas nula.",
 	"uploadstash-zero-length": "Longo de dosiero estas nul.",
 	"invalid-chunk-offset": "Nevalida deŝovo de dosierpeco",
 	"img-auth-accessdenied": "Atingo malpermisita",

@@ -1809,7 +1809,6 @@
 	"uploadstash-not-logged-in": "Nincs bejelentkezett felhasználó. A fájloknak felhasználókhoz kell tartozniuk.",
 	"uploadstash-wrong-owner": "Ez a fájl ($1) nem a jelenlegi felhasználóhoz tartozik.",
 	"uploadstash-no-such-key": "Nincs ilyen kulcs ($1), nem lehet eltávolítani.",
-	"uploadstash-no-extension": "Nincs kiterjesztés.",
 	"uploadstash-zero-length": "A fájl nulla méretű.",
 	"invalid-chunk-offset": "Érvénytelen darab eltolás",
 	"img-auth-accessdenied": "Hozzáférés megtagadva",

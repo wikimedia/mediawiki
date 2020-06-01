@@ -1833,7 +1833,6 @@
 	"uploadstash-not-logged-in": "Cap usuari ha iniciat una sessió. Els fitxers han de pertànyer als usuaris.",
 	"uploadstash-wrong-owner": "Aquest fitxer ($1) no pertany a l'usuari actual.",
 	"uploadstash-no-such-key": "No existeix la clau ($1). No es pot suprimir.",
-	"uploadstash-no-extension": "L’extensió és nul·la.",
 	"uploadstash-zero-length": "El fitxer té mida zero.",
 	"invalid-chunk-offset": "El desplaçament del fragment no és vàlid",
 	"img-auth-accessdenied": "Accés denegat",

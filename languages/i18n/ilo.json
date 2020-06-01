@@ -1632,7 +1632,6 @@
 	"uploadstash-not-logged-in": "Awan ti nakastrek nga agar-aramat, dagiti papeles ket nasken a maitagikua kadagiti agar-aramat.",
 	"uploadstash-wrong-owner": "Daytoy a papeles ($1) ket saan a maitagikua iti agdama nga agar-aramat.",
 	"uploadstash-no-such-key": "Awan ti kasta a tekla ($1), saan a maikkat.",
-	"uploadstash-no-extension": "Awan ti pagpaatiddog.",
 	"uploadstash-zero-length": "Ti papeles ket sero ti kaatiddog.",
 	"invalid-chunk-offset": "Imbalido a pirgis ti timbengan",
 	"img-auth-accessdenied": "Nalibak ti iseserrek",

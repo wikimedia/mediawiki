@@ -6,6 +6,8 @@
 	},
 	"paramvalidator-badbool": "ערך בלתי־תקין \"$2\" עבור פרמטר הבוליאני \"$1\". יש להעביר $3 בשביל אמת, או $5 בשביל שקר.",
 	"paramvalidator-badexpiry": "ערך בלתי־תקין \"$2\" עבור פרמטר התפוגה \"$1\".",
+	"paramvalidator-badexpiry-duration": "הערך \"$2\" שניתן לפרמטר <var>$1</var> עובר את הערך המרבי של \"$3\".",
+	"paramvalidator-badexpiry-duration-max": "הערך \"$2\" שניתן לפרמטר <var>$1</var> עובר את הערך המרבי של \"$3\". הערך המרבי ישמש במקומו.",
 	"paramvalidator-badexpiry-past": "הערך \"$2\" עבור פרמטר התפוגה \"$1\" בעבר.",
 	"paramvalidator-badfloat": "ערך בלתי־תקין \"$2\" עבור פרמטר הנקודה הצפה \"$1\".",
 	"paramvalidator-badfloat-notfinite": "הערך \"$2\" עבור פרמטר הנקודה הצפה \"$1\" גדול מדי או שאינו מספר.",

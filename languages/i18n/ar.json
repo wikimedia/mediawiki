@@ -1848,7 +1848,6 @@
 	"uploadstash-not-logged-in": "لا مستخدم مسجل الدخول، الملفات يجب أن تنتمي إلى مستخدمين.",
 	"uploadstash-wrong-owner": "هذا الملف ($1) لا ينتمي للمستخدم الحالي.",
 	"uploadstash-no-such-key": "لا مفتاح كهذا ($1)، لم يمكن الإزالة.",
-	"uploadstash-no-extension": "الامتداد هو لا شيء.",
 	"uploadstash-zero-length": "الملف طوله صفر.",
 	"invalid-chunk-offset": "قطعة أوفست غير صالحة",
 	"img-auth-accessdenied": "رفض الوصول",

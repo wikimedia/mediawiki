@@ -1780,7 +1780,6 @@
 	"uploadstash-not-logged-in": "Удзельнік не ўвайшоў у сыстэму, файлы мусяць належаць удзельнікам.",
 	"uploadstash-wrong-owner": "Гэты файл ($1) не належыць цяперашняму ўдзельніку.",
 	"uploadstash-no-such-key": "Няма такога ключа ($1), немагчыма выдаліць.",
-	"uploadstash-no-extension": "Пустое пашырэньне.",
 	"uploadstash-zero-length": "Файл мае нулявую даўжыню.",
 	"invalid-chunk-offset": "Няслушнае зрушэньне фрагмэнту",
 	"img-auth-accessdenied": "Доступ забаронены",

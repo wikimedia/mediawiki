@@ -1955,7 +1955,6 @@
 	"uploadstash-not-logged-in": "Aucun utilisateur n’est connecté, les fichiers doivent appartenir à des utilisateurs.",
 	"uploadstash-wrong-owner": "Ce fichier ($1) n’appartient pas à l’utilisateur actuel.",
 	"uploadstash-no-such-key": "Clé introuvable ($1), impossible de supprimer.",
-	"uploadstash-no-extension": "L’extension est nulle.",
 	"uploadstash-zero-length": "La taille du fichier est zéro.",
 	"invalid-chunk-offset": "Décalage de fragment non valide",
 	"img-auth-accessdenied": "Accès refusé",

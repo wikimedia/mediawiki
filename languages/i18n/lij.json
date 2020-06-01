@@ -1780,7 +1780,6 @@
 	"uploadstash-not-logged-in": "Nisciun utente connesso, i file devan apartegnî a-i utenti.",
 	"uploadstash-wrong-owner": "Sto file chie ($1) o no l'aparten a l'utente corente.",
 	"uploadstash-no-such-key": "Nisciun-a ciave ($1), rimossion imposcibbile.",
-	"uploadstash-no-extension": "L'estenscion a l'è nulla.",
 	"uploadstash-zero-length": "O file o g'ha longhessa zero.",
 	"invalid-chunk-offset": "Offset d'a parte non vallido.",
 	"img-auth-accessdenied": "Accesso negou",

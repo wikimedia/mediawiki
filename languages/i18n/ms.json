@@ -1768,7 +1768,6 @@
 	"uploadstash-not-logged-in": "Tiada pengguna melog masuk, fail setentunya milik pengguna.",
 	"uploadstash-wrong-owner": "Fail ini ($1) tidak dimiliki oleh pengguna semasa.",
 	"uploadstash-no-such-key": "Tiada kunci sepertinya ($1), tidak dapat dikeluarkan.",
-	"uploadstash-no-extension": "Sambungan nol.",
 	"uploadstash-zero-length": "Fail berkepanjangan kosong.",
 	"invalid-chunk-offset": "Ofset ketulan tidak sah",
 	"img-auth-accessdenied": "Capaian ditolak",

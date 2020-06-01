@@ -1861,7 +1861,6 @@
 	"uploadstash-not-logged-in": "Não há nenhum utilizador com sessão iniciada; os ficheiros têm de pertencer a utilizadores.",
 	"uploadstash-wrong-owner": "Este ficheiro ($1) não pertence ao utilizador atual.",
 	"uploadstash-no-such-key": "A chave ($1) não existe; não é possível remover.",
-	"uploadstash-no-extension": "A extensão é nula.",
 	"uploadstash-zero-length": "O ficheiro tem tamanho zero.",
 	"invalid-chunk-offset": "Deslocamento de fragmento inválido",
 	"img-auth-accessdenied": "Acesso negado",

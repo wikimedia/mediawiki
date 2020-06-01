@@ -1796,7 +1796,6 @@
 	"uploadstash-not-logged-in": "Ükski kasutaja pole sisse logitud, fail peab kuuluma kasutajatele.",
 	"uploadstash-wrong-owner": "See fail ($1) ei kuulu praegusele kasutajale.",
 	"uploadstash-no-such-key": "Puudub selline võti ($1), ei saa eemaldada.",
-	"uploadstash-no-extension": "Faililaiend puudub.",
 	"uploadstash-zero-length": "Faili suurus on tühiväärtusega.",
 	"invalid-chunk-offset": "Tüki vigane nihe",
 	"img-auth-accessdenied": "Juurdepääs keelatud",

@@ -1876,7 +1876,6 @@
 	"uploadstash-not-logged-in": "Es ist kein Benutzer angemeldet. Dateien müssen zu Benutzern gehören.",
 	"uploadstash-wrong-owner": "Diese Datei ($1) gehört nicht dem aktuellen Benutzer.",
 	"uploadstash-no-such-key": "Kein entsprechender Schlüssel ($1). Entfernen nicht möglich.",
-	"uploadstash-no-extension": "Die Erweiterung hat einen Wert von null.",
 	"uploadstash-zero-length": "Die Datei hat eine Größe von null.",
 	"invalid-chunk-offset": "Ungültiger Startpunkt",
 	"img-auth-accessdenied": "Zugriff verweigert",

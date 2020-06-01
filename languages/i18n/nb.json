@@ -1820,7 +1820,6 @@
 	"uploadstash-not-logged-in": "Ingen bruker er logget inn, filer må tilhøre brukere.",
 	"uploadstash-wrong-owner": "Denne fila ($1) hører ikke til den gjeldende brukeren.",
 	"uploadstash-no-such-key": "Ingen slik nøkkel ($1), kan ikke fjerne.",
-	"uploadstash-no-extension": "Utvidelsen er null.",
 	"uploadstash-zero-length": "Filen har en lengde på null.",
 	"invalid-chunk-offset": "Ugyldig forskyvning av delopplasting",
 	"img-auth-accessdenied": "Ingen tilgang",

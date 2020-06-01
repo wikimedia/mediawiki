@@ -1752,7 +1752,6 @@
 	"uploadstash-not-logged-in": "Δεν υπάρχει συνδεδεμένος χρήστης,οι φάκελλοι πρέπει να ανήκουν σε χρήστες.",
 	"uploadstash-wrong-owner": "Αυτός ο φάκελλος ($1) δεν ανήκει στον παρόντα χρήστη.",
 	"uploadstash-no-such-key": "Δε υπάρχει τέτοιος κωδικός ($1), δεν μπορεί να αφαιρέσει.",
-	"uploadstash-no-extension": "Καμία προέκταση",
 	"uploadstash-zero-length": "Ο φάκελλος είναι κενός.",
 	"invalid-chunk-offset": "Άκυρο κομμάτι όφσετ",
 	"img-auth-accessdenied": "Δεν επετράπη η πρόσβαση",

@@ -1738,7 +1738,6 @@
 	"uploadstash-not-logged-in": "Ingen bruger er logget ind, filer skal tilhøre brugere.",
 	"uploadstash-wrong-owner": "Filen ($1) tilhører ikke den nuværende bruger.",
 	"uploadstash-no-such-key": "Ingen sådan nøgle ($1), kan ikke fjerne.",
-	"uploadstash-no-extension": "Udvidelsen er nul.",
 	"uploadstash-zero-length": "Filen har en længde på nul.",
 	"invalid-chunk-offset": "Ugyldig segmentstart",
 	"img-auth-accessdenied": "Adgang nægtet",

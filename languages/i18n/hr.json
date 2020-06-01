@@ -1662,7 +1662,6 @@
 	"uploadstash-file-not-found-not-exists": "Ne mogu naći putanju ili ovo nije uobičajena datoteka.",
 	"uploadstash-file-too-large": "Ne mogu poslužiti datoteku veću od $1 {{PLURAL:$1|bajta|bajtova}}.",
 	"uploadstash-not-logged-in": "Nije prijavljen ijedan suradnik. Datoteke moraju biti povezane sa suradnicima koji ih postavljaju.",
-	"uploadstash-no-extension": "Nema traženog proširenja.",
 	"uploadstash-zero-length": "Veličina datoteke je nula bajtova.",
 	"invalid-chunk-offset": "Nevaljana točka nastavka snimanja",
 	"img-auth-accessdenied": "Pristup onemogućen",

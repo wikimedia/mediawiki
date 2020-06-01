@@ -1809,7 +1809,6 @@
 	"uploadstash-not-logged-in": "Người dùng chưa đăng nhập, các tập tin phải do người dùng đã đăng nhập tải lên.",
 	"uploadstash-wrong-owner": "Tập tin này ($1) không phải do người dùng hiện tại tải lên.",
 	"uploadstash-no-such-key": "Khóa không tồn tại ($1), không thể xóa.",
-	"uploadstash-no-extension": "Phần mở rộng không có giá trị.",
 	"uploadstash-zero-length": "Tập tin có dung lượng bằng không.",
 	"invalid-chunk-offset": "Khúc lệch (chunk offset) không hợp lệ",
 	"img-auth-accessdenied": "Không cho phép truy cập",

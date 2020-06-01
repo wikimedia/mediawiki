@@ -1529,7 +1529,6 @@
 	"uploadstash-thumbnail": "छवि देखी",
 	"uploadstash-bad-path": "पथ नै अछि ।",
 	"uploadstash-bad-path-unknown-type": "अज्ञात क्रिया \"$1\" ।",
-	"uploadstash-no-extension": "आयतन शून्य छि|",
 	"invalid-chunk-offset": "एकट्ठे अमान्य बौस्तु",
 	"img-auth-accessdenied": "प्रवेश प्रतिबन्धित",
 	"img-auth-notindir": "आग्रह कएल रस्ता विन्यासित उपारोपित निर्देशिकामे नै अछि।",

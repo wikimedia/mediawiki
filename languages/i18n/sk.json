@@ -1802,7 +1802,6 @@
 	"uploadstash-not-logged-in": "Nie je prihlásený žiadny používateľ, súbory musia patriť používateľom.",
 	"uploadstash-wrong-owner": "Tento súbor ($1) nepatrí aktuálnemu používateľovi.",
 	"uploadstash-no-such-key": "Uvedený kľúč ($1) neexistuje, nedá sa odstrániť.",
-	"uploadstash-no-extension": "Prípona je nulová.",
 	"uploadstash-zero-length": "Súbor má nulovú dĺžku.",
 	"invalid-chunk-offset": "Neplatný posun bloku",
 	"img-auth-accessdenied": "Prístup zamietnutý",

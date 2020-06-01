@@ -564,7 +564,7 @@
 	"diff-multi-sameuser": "({{PLURAL:$1|Ene|$1}} modêye{{PLURAL:$1||s}} eturrece{{PLURAL:$1||s}} pa l’&nbsp;minme uzeu nén håynêye{{PLURAL:$1||s}})",
 	"diff-multi-otherusers": "({{PLURAL:$1|Ene|$1}} modêye{{PLURAL:$1||s}} eturrece{{PLURAL:$1||s}} pa {{PLURAL:$2|èn ôte|$2}} uzeu{{PLURAL:$2||s}} nén håyné{{PLURAL:$1||s}})",
 	"searchresults": "Rizultats do cweraedje",
-	"searchresults-title": "Rizultats des rcwerances po «&#x202F;$1&#x202F;»",
+	"searchresults-title": "Rizultats des rcwerances po « $1 »",
 	"titlematches": "Årtikes avou on tite ki corespond",
 	"textmatches": "Årtikes avou do tecse ki corespond",
 	"notextmatches": "Nol årtike avou do tecse ki corespond",

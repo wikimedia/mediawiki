@@ -1784,7 +1784,6 @@
 	"uploadstash-not-logged-in": "Nun hai usuarios con sesión aniciada, los ficheros tienen de pertenecer a usuarios.",
 	"uploadstash-wrong-owner": "Esti ficheru ($1) nun pertenez al usuariu actual.",
 	"uploadstash-no-such-key": "Nun esiste esa clave ($1), nun pudo desaniciase.",
-	"uploadstash-no-extension": "La estensión ye nula.",
 	"uploadstash-zero-length": "El ficheru tien tamañu cero.",
 	"invalid-chunk-offset": "Allugamientu inválidu del fragmentu",
 	"img-auth-accessdenied": "Accesu denegáu",
