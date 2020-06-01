@@ -1654,9 +1654,6 @@ class Parser {
 
 		$this->replaceLinkHoldersPrivate( $text );
 
-		# Clean up special characters, only run once, after doBlockLevels
-		$text = Sanitizer::armorFrenchSpaces( $text );
-
 		/**
 		 * The input doesn't get language converted if
 		 * a) It's disabled
@@ -1681,6 +1678,9 @@ class Parser {
 		}
 
 		$text = $this->mStripState->unstripGeneral( $text );
+
+		# Clean up special characters, only run once, after doBlockLevels
+		$text = Sanitizer::armorFrenchSpaces( $text );
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
