@@ -24,6 +24,7 @@ use CommentStoreComment;
 use IContextSource;
 use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Message;
 use RequestContext;
 use Title;
@@ -372,16 +373,17 @@ abstract class AbstractBlock {
 	 *
 	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
 	 *
-	 * @param string|User|null $target
+	 * @param string|UserIdentity|null $target
 	 * @return array [ User|String|null, int|null ]
 	 */
 	public static function parseTarget( $target ) {
 		# We may have been through this before
-		if ( $target instanceof User ) {
+		if ( $target instanceof UserIdentity ) {
+			$userObj = User::newFromIdentity( $target );
 			if ( IPUtils::isValid( $target->getName() ) ) {
-				return [ $target, self::TYPE_IP ];
+				return [ $userObj, self::TYPE_IP ];
 			} else {
-				return [ $target, self::TYPE_USER ];
+				return [ $userObj, self::TYPE_USER ];
 			}
 		} elseif ( $target === null ) {
 			return [ null, null ];
