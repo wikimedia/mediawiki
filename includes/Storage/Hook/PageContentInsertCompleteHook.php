@@ -8,7 +8,7 @@ use User;
 use WikiPage;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35, use PageSaveComplete
  * @ingroup Hooks
  */
 interface PageContentInsertCompleteHook {

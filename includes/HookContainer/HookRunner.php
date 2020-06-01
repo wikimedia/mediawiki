@@ -525,6 +525,7 @@ class HookRunner implements
 	\MediaWiki\Storage\Hook\PageContentInsertCompleteHook,
 	\MediaWiki\Storage\Hook\PageContentSaveCompleteHook,
 	\MediaWiki\Storage\Hook\PageContentSaveHook,
+	\MediaWiki\Storage\Hook\PageSaveCompleteHook,
 	\MediaWiki\Storage\Hook\ParserOutputStashForEditHook,
 	\MediaWiki\Storage\Hook\RevisionDataUpdatesHook,
 	\MediaWiki\User\Hook\ConfirmEmailCompleteHook,
@@ -2805,6 +2806,16 @@ class HookRunner implements
 		return $this->container->run(
 			'PageRenderingHash',
 			[ &$confstr, $user, &$forOptions ]
+		);
+	}
+
+	public function onPageSaveComplete( $wikiPage, $user, $summary, $flags,
+		$revisionRecord, $originalRevId, $undidRevId
+	) {
+		return $this->container->run(
+			'PageSaveComplete',
+			[ $wikiPage, $user, $summary, $flags, $revisionRecord,
+				$originalRevId, $undidRevId ]
 		);
 	}
 

@@ -1286,16 +1286,29 @@ class PageUpdater {
 				$hints['causeAction'] = 'edit-page';
 				$hints['causeAgent'] = $user->getName();
 
-				$newLegacyRevision = new Revision( $newRevisionRecord );
 				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 
 				// Update links tables, site stats, etc.
 				$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
 				$this->derivedDataUpdater->doUpdates();
 
-				// TODO: replace legacy hook!
+				$created = $hints['created'] ?? false;
+				$flags |= ( $created ? EDIT_NEW : EDIT_UPDATE );
 
-				if ( $hints['created'] ?? false ) {
+				// PageSaveComplete replaces the other two since 1.35
+				$this->hookRunner->onPageSaveComplete(
+					$wikiPage,
+					$user,
+					$summary->text,
+					$flags,
+					$newRevisionRecord,
+					$this->getOriginalRevisionId(),
+					$this->undidRevId
+				);
+
+				// Deprecated since 1.35
+				$newLegacyRevision = new Revision( $newRevisionRecord );
+				if ( $created ) {
 					// Trigger post-create hook
 					$this->hookRunner->onPageContentInsertComplete( $wikiPage, $user,
 						$mainContent, $summary->text, $flags & EDIT_MINOR,

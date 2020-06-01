@@ -1022,6 +1022,8 @@ because of Phabricator reports.
 * WikiPage::$mLastRevision was changed from protected to private.
 * The RevisionInsertComplete hook, soft deprecated in 1.31, now emits
   deprecation warnings.
+* The PageContentInsertComplete and PageContentSaveComplete hooks were
+  deprecated in favor of the new PageSaveComplete hook.
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
 * The JobRunner class has been converted to a service class.
   Direct construction is deprecated, use MediaWikiServices::getJobRunner.
