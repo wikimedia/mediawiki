@@ -1796,7 +1796,6 @@
 	"uploadstash-not-logged-in": "कोई भी उपयोगकर्ता लॉग इन नहीं है, फाइल उपयोगकर्ताओं से संबंधित होनी चाहिए।",
 	"uploadstash-wrong-owner": "यह फ़ाइल ($1) वर्तमान उपयोगकर्ता से संबंधित नहीं है|",
 	"uploadstash-no-such-key": "ऐसी कोई भी कुंजी ($1), नहीं हटा सकते हैं|",
-	"uploadstash-no-extension": "आयतन शून्य है|",
 	"uploadstash-zero-length": "फ़ाइल शून्य लंबाई की है|",
 	"invalid-chunk-offset": "अग्राह्य चंक ऑफ़सेट",
 	"img-auth-accessdenied": "अनुमति नहीं है",

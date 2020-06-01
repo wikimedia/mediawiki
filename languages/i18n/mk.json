@@ -1798,7 +1798,6 @@
 	"uploadstash-not-logged-in": "Нема најавен корисник. Податотеките мора да припаѓаат на корисници.",
 	"uploadstash-wrong-owner": "Оваа податотека ($1) не му припаѓа на тековниот корисник.",
 	"uploadstash-no-such-key": "Нема таков клуч ($1). Не можам да отстранам.",
-	"uploadstash-no-extension": "Наставката е празна.",
 	"uploadstash-zero-length": "Податотеката има нулта должина.",
 	"invalid-chunk-offset": "Неважечка појдовна точка",
 	"img-auth-accessdenied": "Оневозможен пристап",

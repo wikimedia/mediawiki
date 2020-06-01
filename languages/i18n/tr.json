@@ -1878,7 +1878,6 @@
 	"uploadstash-not-logged-in": "Hiçbir kullanıcı oturum açmamış, dosyalar kullanıcılara ait olmalıdır.",
 	"uploadstash-wrong-owner": "Bu dosya ($1) mevcut kullanıcıya ait değil.",
 	"uploadstash-no-such-key": "Böyle bir anahtar ($1) kaldırılamaz.",
-	"uploadstash-no-extension": "Uzantı boş.",
 	"uploadstash-zero-length": "Dosya boyutu sıfır.",
 	"invalid-chunk-offset": "Geçersiz öbek ofseti",
 	"img-auth-accessdenied": "Erişim reddedildi",

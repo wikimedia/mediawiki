@@ -1781,7 +1781,6 @@
 	"uploadstash-not-logged-in": "Nulle usator es in session. Le files debe pertiner a usatores.",
 	"uploadstash-wrong-owner": "Iste file ($1) non pertine al usator actual.",
 	"uploadstash-no-such-key": "Le clave ($1) non existe; impossibile remover lo.",
-	"uploadstash-no-extension": "Le extension es nulle.",
 	"uploadstash-zero-length": "Le file ha un grandor de zero.",
 	"invalid-chunk-offset": "Position de segmento invalide",
 	"img-auth-accessdenied": "Accesso refusate",

@@ -1869,7 +1869,6 @@
 	"uploadstash-not-logged-in": "Er is geen gebruiker aangemeld, bestanden moeten van een gebruiker zijn.",
 	"uploadstash-wrong-owner": "Dit bestand ($1) is niet van de huidige gebruiker.",
 	"uploadstash-no-such-key": "Geen sleutel met deze naam ($1), kan de sleutel niet verwijderen.",
-	"uploadstash-no-extension": "Extensie ontbreekt.",
 	"uploadstash-zero-length": "Bestandsgrootte is nul.",
 	"invalid-chunk-offset": "Ongeldige chunkoffset",
 	"img-auth-accessdenied": "Toegang geweigerd",

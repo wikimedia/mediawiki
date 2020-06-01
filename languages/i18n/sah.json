@@ -1721,7 +1721,6 @@
 	"uploadstash-not-logged-in": "Бэлиэтэммит кыттааччы суох, билэ кыттааччы киэнэ буолуохтаах.",
 	"uploadstash-wrong-owner": "Бу билэ ($1) кыттааччы киэнэ буолбатах.",
 	"uploadstash-no-such-key": "Күлүүс ($1) суох, сотор сатаммат.",
-	"uploadstash-no-extension": "Кэтирээһинэ кураанах.",
 	"uploadstash-zero-length": "Билэ уһуна нуулга тэҥ.",
 	"invalid-chunk-offset": "Бобуллубут сыҕарыйыы",
 	"img-auth-accessdenied": "Киирии бобуллубут",

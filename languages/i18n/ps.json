@@ -1453,7 +1453,6 @@
 	"uploadstash-not-logged-in": "هیڅ کارن نه دی ننوتلي، دوتنې باید د کاروونکو سره تړاو ولري.",
 	"uploadstash-wrong-owner": "دا دوتنه ($1) په اوسني کارن پورې تړاو نلري.",
 	"uploadstash-no-such-key": "نه داسي هیڅ ډول کيلي ($1) نه شي لري کولی.",
-	"uploadstash-no-extension": "تمدید غټ دی.",
 	"uploadstash-zero-length": "دوتنه صفر اوږدوالی لري.",
 	"invalid-chunk-offset": "د ناباوره ټوټې ټکی",
 	"img-auth-accessdenied": "لاسرسی رد شو",

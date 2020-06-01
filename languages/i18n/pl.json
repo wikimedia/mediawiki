@@ -1871,7 +1871,6 @@
 	"uploadstash-not-logged-in": "Użytkownik nie jest zalogowany, a pliki muszą należeć do użytkowników.",
 	"uploadstash-wrong-owner": "Ten plik ($1) nie należy do bieżącego użytkownika.",
 	"uploadstash-no-such-key": "Nie ma takiego klucza ($1), nie można usunąć.",
-	"uploadstash-no-extension": "Rozszerzenie ma wartość zerową.",
 	"uploadstash-zero-length": "Plik ma zerowy rozmiar.",
 	"invalid-chunk-offset": "Nieprawidłowe przesunięcie fragmentu",
 	"img-auth-accessdenied": "Odmowa dostępu",

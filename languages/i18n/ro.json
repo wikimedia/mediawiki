@@ -1773,7 +1773,6 @@
 	"uploadstash-not-logged-in": "Nu există niciun utilizator logat, fișierele trebuie să aparțină unui utilizator.",
 	"uploadstash-wrong-owner": "Fișierul ($1) nu aparține utilizatorului curent.",
 	"uploadstash-no-such-key": "Nu există cheia ($1), nu se poate șterge.",
-	"uploadstash-no-extension": "Extensia este vidă.",
 	"uploadstash-zero-length": "Fișierul are lungime zero.",
 	"invalid-chunk-offset": "Decalaj de segment nevalid",
 	"img-auth-accessdenied": "Acces interzis",

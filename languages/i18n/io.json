@@ -961,7 +961,7 @@
 	"badsiglength": "Vua signaturo es tro longa.\nOl mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.",
 	"yourgender": "Quale vu preferas esar mencionata?",
 	"gender-unknown": "Lor mencionar vu, la programaro uzos sexuo-neutrala vorti tam ofte kam posibla",
-	"gender-notknown": "Lu redaktas pagini Wiki",
+	"gender-notknown": "Lu redaktas wikiopagini",
 	"gender-male": "Ilu redaktas wikiopagini",
 	"gender-female": "Elu redaktas wikiopagini",
 	"prefs-help-gender": "Indikar ica preferajo esas fakultativa.\nLa softwaro uzas ol por mencionar vu al altra uzeri, uzante l'adequata genro gramatikala.\nIca informo videsos publike.",

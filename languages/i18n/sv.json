@@ -1852,7 +1852,6 @@
 	"uploadstash-not-logged-in": "Ingen användare är inloggad, filer måste tillhöra användare.",
 	"uploadstash-wrong-owner": "Denna fil ($1) tillhör inte aktuell användare.",
 	"uploadstash-no-such-key": "Ingen sådan nyckel ($1), kan inte ta bort.",
-	"uploadstash-no-extension": "Tillägget är null.",
 	"uploadstash-zero-length": "Filens längd är noll.",
 	"invalid-chunk-offset": "Ogiltig segmentsförskjutning",
 	"img-auth-accessdenied": "Åtkomst nekad",

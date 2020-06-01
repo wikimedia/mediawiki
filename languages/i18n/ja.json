@@ -1886,7 +1886,6 @@
 	"uploadstash-not-logged-in": "利用者はログインしていません。ファイルは利用者に属している必要があります。",
 	"uploadstash-wrong-owner": "このファイル ($1) は現在の利用者に属していません。",
 	"uploadstash-no-such-key": "そのような鍵（$1）は削除できません。",
-	"uploadstash-no-extension": "拡張機能がnullです。",
 	"uploadstash-zero-length": "ファイルのサイズがゼロです。",
 	"invalid-chunk-offset": "無効なチャンクオフセット",
 	"img-auth-accessdenied": "アクセスが拒否されました",

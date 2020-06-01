@@ -1534,7 +1534,6 @@
 	"uploadstash-bad-path-unknown-type": "Jinis teu dipikanyaho \"$1\".",
 	"uploadstash-bad-path-unrecognized-thumb-name": "Ngaran liwatan teu dipakawawuh.",
 	"uploadstash-file-not-found-no-thumb": "Teu bisa nyomot tampilan saliwat.",
-	"uploadstash-no-extension": "Éksténsi nyamos.",
 	"uploadstash-zero-length": "Berkas mangrupa nol panjang.",
 	"invalid-chunk-offset": "Opsét potongan teu valid",
 	"img-auth-accessdenied": "Aksés ditolak",

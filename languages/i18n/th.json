@@ -1749,7 +1749,6 @@
 	"uploadstash-not-logged-in": "ไม่มีผู้ใช้ใดเข้าสู่ระบบอยู่ ไฟล์จะต้องเป็นของผู้ใช้",
 	"uploadstash-wrong-owner": "ไฟล์นี้ ($1) ไม่ใช่ของผู้ใช้ปัจจุบัน",
 	"uploadstash-no-such-key": "ไม่มีคีย์ดังกล่าว ($1) ไม่สามารถเอาออกได้",
-	"uploadstash-no-extension": "ส่วนขยายเป็น null",
 	"uploadstash-zero-length": "ไฟล์มีความยาวเท่ากับศูนย์",
 	"invalid-chunk-offset": "ออฟเซ็ตของก้อนข้อมูลไม่ถูกต้อง",
 	"img-auth-accessdenied": "การเข้าถึงถูกปฏิเสธ",

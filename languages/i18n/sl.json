@@ -1783,7 +1783,6 @@
 	"uploadstash-not-logged-in": "Noben uporabnik ni prijavljen; datoteke morajo pripadati uporabnikom.",
 	"uploadstash-wrong-owner": "Datoteka ($1) ne pripada trenutnemu uporabniku.",
 	"uploadstash-no-such-key": "Ni takšnega ključa ($1), zato ne moremo odstraniti.",
-	"uploadstash-no-extension": "Ni končnice.",
 	"uploadstash-zero-length": "Datoteka ima nično dolžino.",
 	"invalid-chunk-offset": "Neveljaven odmik delčka",
 	"img-auth-accessdenied": "Dostop zavrnjen",

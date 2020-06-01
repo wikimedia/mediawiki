@@ -1791,7 +1791,6 @@
 	"uploadstash-not-logged-in": "Erabiltzaileak ez du saioa hasi, fitxategiak erabiltzailearenak izan behar dira.",
 	"uploadstash-wrong-owner": "($1) Fitxategia ez da uneko erabiltzailearena.",
 	"uploadstash-no-such-key": "($1) gakorik ez dago, ezin da ezabatu.",
-	"uploadstash-no-extension": "Luzapena nulua da.",
 	"uploadstash-zero-length": "Fitxategiaren luzeera zero da.",
 	"invalid-chunk-offset": "Desplazamendu zati baliogabea",
 	"img-auth-accessdenied": "Sarbide ukatua",

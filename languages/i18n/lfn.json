@@ -1647,7 +1647,6 @@
 	"uploadstash-not-logged-in": "No usor es autenticida; fixes debe parteni a usores.",
 	"uploadstash-wrong-owner": "Esta fix ($1) no parteni a la usor presente.",
 	"uploadstash-no-such-key": "No tal clave ($1); sutrae no es posible.",
-	"uploadstash-no-extension": "La sufisa manca.",
 	"uploadstash-zero-length": "La fix ave zero baites.",
 	"invalid-chunk-offset": "Bloco con numero nonvalida",
 	"img-auth-accessdenied": "Nonasedable",

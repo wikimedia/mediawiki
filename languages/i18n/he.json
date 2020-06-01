@@ -1810,7 +1810,6 @@
 	"uploadstash-not-logged-in": "המשתמש אינו מחובר לחשבון, אך קבצים חייבים להשתייך למשתמשים.",
 	"uploadstash-wrong-owner": "הקובץ ($1) אינו שייך למשתמש הנוכחי.",
 	"uploadstash-no-such-key": "אין מפתח כזה ($1), לא ניתן להסירו.",
-	"uploadstash-no-extension": "הסיומת ריקה.",
 	"uploadstash-zero-length": "הקובץ באורך אפס.",
 	"invalid-chunk-offset": "היסט גוש לא תקין",
 	"img-auth-accessdenied": "הגישה נדחתה",

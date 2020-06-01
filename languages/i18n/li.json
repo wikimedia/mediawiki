@@ -1669,7 +1669,6 @@
 	"uploadstash-not-logged-in": "Geine gebroeker is aangemeld; bestenj mótte van 'ne gebroeker zeen.",
 	"uploadstash-wrong-owner": "Dit bestandj ($1) is neet van d'n hujige gebroeker.",
 	"uploadstash-no-such-key": "Geine sleutel mit deze naam ($1); kan de sleutel neet ewegsjaffe.",
-	"uploadstash-no-extension": "Extensie óntbrèk.",
 	"uploadstash-zero-length": "Bestandjsgruuedje is nól.",
 	"invalid-chunk-offset": "Óngèljige chunckaafzatj",
 	"img-auth-accessdenied": "Toegank geweigerd",

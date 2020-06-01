@@ -1824,7 +1824,6 @@
 	"uploadstash-not-logged-in": "Няма влязъл потребител, а файловете трябва да принадлежат на потребители.",
 	"uploadstash-wrong-owner": "Файлът ($1) не принадлежи на текущия потребител.",
 	"uploadstash-no-such-key": "Няма такъв ключ ($1), не може да бъде премахнат.",
-	"uploadstash-no-extension": "Разширението е нулево.",
 	"uploadstash-zero-length": "Файлът е с нулева дължина.",
 	"invalid-chunk-offset": "Невалидно отместване на фрагмента",
 	"img-auth-accessdenied": "Достъпът е отказан",

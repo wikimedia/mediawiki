@@ -1837,7 +1837,6 @@
 	"uploadstash-not-logged-in": "Tidak ada pengguna yang masuk log, berkas harus dimiliki oleh pengguna.",
 	"uploadstash-wrong-owner": "Berkas ini ($1) tidak dimiliki oleh pengguna yang Anda lihat saat ini.",
 	"uploadstash-no-such-key": "Tidak ada kunci ($1), tidak dapat dihapus.",
-	"uploadstash-no-extension": "Ekstensi nihil.",
 	"uploadstash-zero-length": "Berkas ini berukuran nihil.",
 	"invalid-chunk-offset": "Ofset potongan tidak valid",
 	"img-auth-accessdenied": "Akses ditolak",

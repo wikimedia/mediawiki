@@ -1614,7 +1614,6 @@
 	"uploadstash-bad-path": "路徑唔存在。",
 	"uploadstash-bad-path-invalid": "路徑無效。",
 	"uploadstash-bad-path-unknown-type": "未知嘅類型「$1」。",
-	"uploadstash-no-extension": "副檔名係空嘅。",
 	"uploadstash-zero-length": "檔案長度係零。",
 	"invalid-chunk-offset": "非法偏移塊",
 	"img-auth-accessdenied": "拒絕通行",

@@ -1686,7 +1686,6 @@
 	"uploadstash-not-logged-in": "کوئی بھی صارف لاگ ان نہیں ہے، فائلیں صارفین سے متعلق ہونی چاہئیں۔",
 	"uploadstash-wrong-owner": "یہ فائل ($1) اس صارف سے متعلق نہیں ہے۔",
 	"uploadstash-no-such-key": "ایسی کسی کلید ($1) کو حذف نہیں کیا جا سکتا۔",
-	"uploadstash-no-extension": "توسیع نہیں ہے۔",
 	"uploadstash-zero-length": "فائل کا طول صفر ہے۔",
 	"invalid-chunk-offset": "آفسیٹ کا قطعہ نادرست ہے",
 	"img-auth-accessdenied": "رسائی معطل",

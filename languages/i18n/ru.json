@@ -1924,7 +1924,6 @@
 	"uploadstash-not-logged-in": "Нет авторизованных участников, файлы должны принадлежать участникам.",
 	"uploadstash-wrong-owner": "Этот файл ($1) не принадлежит текущему участнику.",
 	"uploadstash-no-such-key": "Нет ключа ($1), удаление невозможно.",
-	"uploadstash-no-extension": "Пустое расширение.",
 	"uploadstash-zero-length": "Файл нулевой длины.",
 	"invalid-chunk-offset": "Недопустимое смещение фрагмента",
 	"img-auth-accessdenied": "Доступ запрещён",

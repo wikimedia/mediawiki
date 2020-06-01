@@ -1268,7 +1268,6 @@
 	"uploadstash-file-not-found-no-thumb": "تھمب نیل کائنی حاصل کرسڳا۔",
 	"uploadstash-file-not-found-no-local-path": "سکیل تھئے آئٹم کیتے کوئی راہ کائنی۔",
 	"uploadstash-file-not-found-missing-content-type": "لاپتہ مواد قسم ہیڈر.",
-	"uploadstash-no-extension": "توسیع کائنی۔",
 	"uploadstash-zero-length": "فائل دی لمباݨ صفر ہے۔",
 	"invalid-chunk-offset": "آفسیٹ دا ٹوٹا غلط ہے",
 	"img-auth-accessdenied": "رسائی معطل",

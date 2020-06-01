@@ -1751,7 +1751,6 @@
 	"uploadstash-not-logged-in": "Niko nije prijavljen. Datoteke moraju pripadati korisnicima.",
 	"uploadstash-wrong-owner": "Ova datoteka ($1) ne pripada trenutnom korisniku.",
 	"uploadstash-no-such-key": "Nema takvog ključa ($1). Ne mogu ukloniti.",
-	"uploadstash-no-extension": "Dodatak je prazan.",
 	"uploadstash-zero-length": "Datoteka je prazna",
 	"invalid-chunk-offset": "Nevažeća polazna tačka",
 	"img-auth-accessdenied": "Pristup je odbijen",
