@@ -42,10 +42,7 @@
 		// Validate from mw.widgets.TitleWidget
 		this.input.setValidation( this.isQueryValid.bind( this ) );
 
-		if ( this.maxLength !== undefined ) {
-			// maxLength is defined through TitleWidget parent
-			this.input.$input.attr( 'maxlength', this.maxLength );
-		}
+		// TODO limit max tag length to this.maxLength
 
 		// Initialization
 		this.$element

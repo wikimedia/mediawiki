@@ -532,18 +532,27 @@ util = {
 
 	/**
 	 * Parse the URL of an image uploaded to MediaWiki, or a thumbnail for such an image,
-	 * and return the image name and thumbnail size.
-	 * @param {string} url
+	 * and return the image name, thumbnail size and a template that can be used to resize
+	 * the image.
+	 * @param {string} url URL to parse (URL-encoded)
 	 * @return {Object|null} URL data, or null if the URL is not a valid MediaWiki
 	 *   image/thumbnail URL.
 	 * @return {string} return.name File name (same format as Title.getMainText()).
 	 * @return {number} [return.width] Thumbnail width, in pixels. Null when the file is not
 	 *   a thumbnail.
+	 * @return {function(number):string} [return.resizeUrl] A function that takes a width
+	 *   parameter and returns a thumbnail URL (URL-encoded) with that width. The width
+	 *   parameter must be smaller than the width of the original image (or equal to it; that
+	 *   only works if MediaHandler::mustRender returns true for the file). Null when the
+	 *   file in the original URL is not a thumbnail.
+	 *   On wikis with $wgGenerateThumbnailOnParse set to true, this will fall back to using
+	 *   Special:Redirect which is less efficient. Otherwise, it is a direct thumbnail URL.
 	 */
 	parseImageUrl: function ( url ) {
-		var i, name, width, match, decodedUrl,
+		var i, name, decodedName, width, match, strippedUrl,
+			urlTemplate = null,
 			// thumb.php-generated thumbnails
-			// thumb.php?f=<name>[&w=<width>]
+			// thumb.php?f=<name>&w[idth]=<width>[px]
 			thumbPhpRegex = /thumb\.php/,
 			regexes = [
 				// Thumbnails
@@ -557,7 +566,7 @@ util = {
 				/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)$/,
 
 				// Thumbnails in non-hashed upload directories
-				// /<name>/[<options>-]<width>-<name>[.<ext>]
+				// /<name>/[<options>-]<width>-<name*>[.<ext>]
 				/\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})[^\s/]*$/,
 
 				// Full-size images in non-hashed upload directories
@@ -566,14 +575,16 @@ util = {
 			];
 
 		if ( thumbPhpRegex.test( url ) ) {
-			name = mw.util.getParamValue( 'f', url );
+			decodedName = mw.util.getParamValue( 'f', url );
+			name = encodeURIComponent( decodedName );
 			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
+			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
 		} else {
-			decodedUrl = decodeURIComponent( url );
 			for ( i = 0; i < regexes.length; i++ ) {
-				match = decodedUrl.match( regexes[ i ] );
+				match = url.match( regexes[ i ] );
 				if ( match ) {
 					name = match[ 1 ];
+					decodedName = decodeURIComponent( name );
 					width = match[ 2 ] || null;
 					break;
 				}
@@ -581,16 +592,30 @@ util = {
 		}
 
 		if ( name ) {
-			name = name.replace( /_/g, ' ' );
 			if ( width !== null ) {
-				width = parseInt( width, 10 );
-				if ( isNaN( width ) ) {
-					width = null;
-				}
+				width = parseInt( width, 10 ) || null;
+			}
+			if ( config.GenerateThumbnailOnParse ) {
+				// The wiki cannot generate thumbnails on demand. Use a special page - this means
+				// an extra redirect and PHP request, but it will generate the thumbnail if it does
+				// not exist.
+				urlTemplate = mw.util.getUrl( 'Special:Redirect/file/' + decodedName, { width: '{width}' } )
+					// getUrl urlencodes the template variable, fix that
+					.replace( '%7Bwidth%7D', '{width}' );
+			} else if ( width && !urlTemplate ) {
+				// Javascript does not expose regexp capturing group indexes, and the width
+				// part could in theory also occur in the filename so hide that first.
+				strippedUrl = url.replace( name, '{name}' )
+					.replace( name, '{name}' )
+					.replace( width + 'px-', '{width}px-' );
+				urlTemplate = strippedUrl.replace( /\{name\}/g, name );
 			}
 			return {
-				name: name,
-				width: width
+				name: decodedName.replace( /_/g, ' ' ),
+				width: width,
+				resizeUrl: urlTemplate ? function ( width ) {
+					return urlTemplate.replace( '{width}', width );
+				} : null
 			};
 		}
 		return null;
