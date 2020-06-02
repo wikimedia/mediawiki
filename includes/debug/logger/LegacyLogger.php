@@ -173,17 +173,12 @@ class LegacyLogger extends AbstractLogger {
 			&& isset( $context['sql'] )
 		) {
 			// Also give the query information to the MWDebug tools
-			$enabled = MWDebug::query(
+			MWDebug::query(
 				$context['sql'],
 				$context['method'],
 				$context['runtime'],
 				$context['db_host']
 			);
-			if ( $enabled ) {
-				// If we the toolbar was enabled, return early so that we don't
-				// also log the query to the main debug output.
-				return;
-			}
 		}
 
 		// If this is a DB-related error, and the site has $wgDBerrorLog
