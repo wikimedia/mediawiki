@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -135,21 +134,14 @@ class Http {
 	/**
 	 * Get a configured MultiHttpClient
 	 *
-	 * @deprecated since 1.34, construct it directly
+	 * @deprecated since 1.34, use MediaWikiServices::getHttpRequestFactory()->createMultiClient()
 	 * @param array $options
 	 * @return MultiHttpClient
 	 */
 	public static function createMultiClient( array $options = [] ) {
 		wfDeprecated( __METHOD__, '1.34' );
-
-		global $wgHTTPConnectTimeout, $wgHTTPTimeout, $wgHTTPProxy;
-
-		return new MultiHttpClient( $options + [
-			'connTimeout' => $wgHTTPConnectTimeout,
-			'reqTimeout' => $wgHTTPTimeout,
-			'userAgent' => self::userAgent(),
-			'proxy' => $wgHTTPProxy,
-			'logger' => LoggerFactory::getInstance( 'http' )
-		] );
+		global $wgHTTPProxy;
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()
+			->createMultiClient( $options + [ 'proxy' => $wgHTTPProxy ] );
 	}
 }

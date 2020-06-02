@@ -1231,7 +1231,8 @@ return [
 	function ( MediaWikiServices $services ) : VirtualRESTServiceClient {
 		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
 
-		$vrsClient = new VirtualRESTServiceClient( new MultiHttpClient( [] ) );
+		$vrsClient = new VirtualRESTServiceClient(
+			$services->getHttpRequestFactory()->createMultiClient() );
 		foreach ( $config['paths'] as $prefix => $serviceConfig ) {
 			$class = $serviceConfig['class'];
 			// Merge in the global defaults
