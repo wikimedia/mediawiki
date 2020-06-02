@@ -178,6 +178,34 @@
 	order: @order;
 }
 
+// “Clearfix Reloaded” Mixin
+// The mixin is used on a container with floating children.
+// Margin collapsing is a feature, not a bug, hence relying on `display: block` as default.
+// With `.mixin-clearfix( @collapse: false; );` you call it to let `margin`s not collapse.
+// See https://www.cssmojo.com/the-very-latest-clearfix-reloaded/
+// In future we might replace the `&:after` pseudo-element with
+// `display: flow-root;` altogether.
+// Support: Firefox 3.5+, Safari 4+, Chrome, Opera 15+, IE 8+
+.mixin-clearfix( @collapse: true ) {
+	&:after {
+		clear: both;
+
+		// Margin collapsing as feature. Apply it.
+		& when ( @collapse ) {
+			content: '';
+			display: block;
+		}
+	}
+	// Margin collapsing as bug. Prevent it.
+	& when not ( @collapse ) {
+		&:before,
+		&:after {
+			content: '';
+			display: table;
+		}
+	}
+}
+
 /* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
 .mixin-placeholder( @rules ) {
 	// WebKit, Blink, Edge
