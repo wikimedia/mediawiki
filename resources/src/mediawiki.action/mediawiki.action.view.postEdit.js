@@ -65,6 +65,7 @@
 		$( document.body ).prepend( $container );
 	}
 
+	// JS-only flag that allows another module providing a hook handler to suppress the default one.
 	if ( !mw.config.get( 'wgPostEditConfirmationDisabled' ) ) {
 		mw.hook( 'postEdit' ).add( showConfirmation );
 	}
