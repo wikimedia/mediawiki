@@ -1,7 +1,6 @@
 <?php
 
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @group Database
@@ -12,40 +11,9 @@ class DatabaseIntegrationTest extends MediaWikiTestCase {
 	 */
 	protected $db;
 
-	private $functionTest = false;
-
 	protected function setUp() : void {
 		parent::setUp();
 		$this->db = wfGetDB( DB_MASTER );
-	}
-
-	protected function tearDown() : void {
-		parent::tearDown();
-		if ( $this->functionTest ) {
-			$this->dropFunctions();
-			$this->functionTest = false;
-		}
-		$this->db->restoreFlags( IDatabase::RESTORE_INITIAL );
-	}
-
-	public function testStoredFunctions() {
-		if ( !in_array( wfGetDB( DB_MASTER )->getType(), [ 'mysql', 'postgres' ] ) ) {
-			$this->markTestSkipped( 'MySQL or Postgres required' );
-		}
-		global $IP;
-		$this->dropFunctions();
-		$this->functionTest = true;
-		$this->assertTrue(
-			$this->db->sourceFile( "$IP/tests/phpunit/data/db/{$this->db->getType()}/functions.sql" )
-		);
-		$res = $this->db->query( 'SELECT mw_test_function() AS test', __METHOD__ );
-		$this->assertEquals( 42, $res->fetchObject()->test );
-	}
-
-	private function dropFunctions() {
-		$this->db->query( 'DROP FUNCTION IF EXISTS mw_test_function'
-			. ( $this->db->getType() == 'postgres' ? '()' : '' )
-		);
 	}
 
 	public function testUnknownTableCorruptsResults() {
