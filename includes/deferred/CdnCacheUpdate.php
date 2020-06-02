@@ -315,7 +315,8 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 			}
 		}
 
-		$http = new MultiHttpClient( [ 'maxConnsPerHost' => 8, 'usePipelining' => true ] );
+		$http = MediaWikiServices::getInstance()->getHttpRequestFactory()
+			->createMultiClient( [ 'maxConnsPerHost' => 8, 'usePipelining' => true ] );
 		$http->runMulti( $reqs );
 	}
 
