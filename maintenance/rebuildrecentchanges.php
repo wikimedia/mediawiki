@@ -26,6 +26,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -374,7 +375,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * @param ILBFactory $lbFactory
 	 */
 	private function rebuildRecentChangesTablePass4( ILBFactory $lbFactory ) {
-		global $wgUseRCPatrol, $wgUseNPPatrol, $wgMiserMode;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol, $wgMiserMode;
 
 		$dbw = $this->getDB( DB_MASTER );
 
@@ -384,7 +385,7 @@ class RebuildRecentchanges extends Maintenance {
 		# @NOTE: users with 'bot' rights choose when edits are bot edits or not. That information
 		# may be lost at this point (aside from joining on the patrol log table entries).
 		$botgroups = [ 'bot' ];
-		$autopatrolgroups = ( $wgUseRCPatrol || $wgUseNPPatrol ) ?
+		$autopatrolgroups = ( $wgUseRCPatrol || $wgUseNPPatrol || $wgUseFilePatrol ) ?
 			MediaWikiServices::getInstance()->getPermissionManager()
 			->getGroupsWithPermission( 'autopatrol' ) : [];
 
@@ -471,7 +472,14 @@ class RebuildRecentchanges extends Maintenance {
 					];
 
 					if ( !$wgUseRCPatrol ) {
-						$conds['rc_source'] = RecentChange::SRC_NEW;
+						$subConds = [];
+						if ( $wgUseNPPatrol ) {
+							$subConds[] = 'rc_source = ' . $dbw->addQuotes( RecentChange::SRC_NEW );
+						}
+						if ( $wgUseFilePatrol ) {
+							$subConds[] = 'rc_log_type = ' . $dbw->addQuotes( 'upload' );
+						}
+						$conds[] = $dbw->makeList( $subConds, IDatabase::LIST_OR );
 					}
 
 					$dbw->update(
