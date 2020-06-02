@@ -384,6 +384,7 @@
 	"red-link-title": "$1（頁面不存在）",
 	"sort-descending": "降冪排序",
 	"sort-ascending": "昇冪排序",
+	"sort-initial": "首字母排序",
 	"nstab-main": "頁面",
 	"nstab-user": "使用者頁面",
 	"nstab-media": "媒體頁面",

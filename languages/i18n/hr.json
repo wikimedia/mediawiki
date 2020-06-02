@@ -319,6 +319,7 @@
 	"red-link-title": "$1 (stranica ne postoji)",
 	"sort-descending": "Sortiraj silazno",
 	"sort-ascending": "Sortiraj uzlazno",
+	"sort-initial": "Sortiraj predefinirano",
 	"nstab-main": "Stranica",
 	"nstab-user": "{{GENDER:{{BASEPAGENAME}}|Stranica suradnika|Stranica suradnice}}",
 	"nstab-media": "Mediji",

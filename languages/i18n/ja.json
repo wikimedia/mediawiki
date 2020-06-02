@@ -4121,6 +4121,7 @@
 	"unprotected-js": "セキュリティ上の理由から、JavaScriptは保護されていないページからは読み込みできません。MediaWiki: 名前空間内、利用者下位ページのいずれかでのみjavascriptを作成してください。",
 	"userlogout-continue": "ログアウトしますか？",
 	"paramvalidator-baduser": "利用者引数<var>$1</var>の値\"$2\"が不正です。",
+	"paramvalidator-help-type-user": "型: $2{{PLURAL:$3|を使った|のいずれかを使った}}{{PLURAL:$1|1=利用者|2=利用者のリスト}}",
 	"paramvalidator-help-type-user-subtype-name": "利用者名",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP範囲",
