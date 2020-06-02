@@ -369,7 +369,7 @@ return [
 		$dbLoadBalancer = $services->isServiceDisabled( 'DBLoadBalancer' )
 			? null
 			: $services->getDBLoadBalancer();
-		return new GenderCache( $nsInfo, $dbLoadBalancer );
+		return new GenderCache( $nsInfo, $dbLoadBalancer, $services->get( '_DefaultOptionsLookup' ) );
 	},
 
 	'GlobalIdGenerator' => function ( MediaWikiServices $services ) : GlobalIdGenerator {
