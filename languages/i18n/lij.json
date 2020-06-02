@@ -253,7 +253,7 @@
 	"privacy": "Politica in sci dæti privæ",
 	"privacypage": "Project:Politica in scî dæti privæ",
 	"badaccess": "No ti g'hæ o permisso",
-	"badaccess-group0": "No ti g'hæ o permisso pe fâ quest'assion.",
+	"badaccess-group0": "No ti gh'hæ o permisso pe fâ questa açion.",
 	"badaccess-groups": "L'assion che ti vêu fâ a l'è permissa sôlo a-i ûtenti {{PLURAL:$2|do grùppo|de un de sti grùppi}}: $1.",
 	"versionrequired": "Ghe veu a verscion $1 de MediaWiki",
 	"versionrequiredtext": "Pe deuviâ sta pagina ghe veu a versción $1 do software MediaWiki. Amîa [[Special:Version|l'appoxita paggina]].",

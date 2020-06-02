@@ -328,7 +328,7 @@
 	"badarticleerror": "Dat kin op dizze side net dien wurden.",
 	"cannotdelete": "Koe de oantsjutte side of it oantsjutte ôfbyld \"$1\" net fuorthelje. (Faaks hat in oar dat al dien.)",
 	"badtitle": "Misse titel",
-	"badtitletext": "De opfrege sidetitel wie ûnjildich, leech, of in miskeppele yntertaal of ynterwiki titel.",
+	"badtitletext": "De opfrege sidetitel is ûnjildich, leech of in miskeppele yntertaal- as ynterwikititel.\nIt befettet mooglik ien as mear tekens dy't net yn titels brûkt wurde kinne.",
 	"title-invalid-characters": "De opfrege sidetitel befettet ûnjildige tekens: \"$1\".",
 	"perfcached": "Dit is bewarre ynformaasje dy't mooglik ferâldere is. In maksimum fan {{PLURAL:$1|ien resultaat is|$1 resultaten binne}} beskikber yn de cache.",
 	"perfcachedts": "It neikommende is bewarre data, dy't it lêst bywurke is op $2 om $3. In maksimum fan {{PLURAL:$4|ien resultaat is|$4 resultaten binne}} beskikber yn 'e oerslach.",

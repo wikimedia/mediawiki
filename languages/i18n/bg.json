@@ -2592,7 +2592,7 @@
 	"ipusubmit": "Сваляне на блокирането",
 	"unblocked": "[[User:$1|$1]] беше отблокиран.",
 	"unblocked-range": "$1 беше отблокиран",
-	"unblocked-id": "Блокиране № $1 беше премахнато",
+	"unblocked-id": "Блокиране № $1 беше премахнато.",
 	"unblocked-ip": "[[Special:Contributions/$1|$1]] е отблокиран.",
 	"blocklist": "Блокирани потребители",
 	"autoblocklist": "Автоматични блокирания",
