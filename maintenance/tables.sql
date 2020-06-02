@@ -403,7 +403,7 @@ CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
 
 -- User contributions index
-CREATE INDEX /*i*/rev_actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp);
+CREATE INDEX /*i*/rev_actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp,rev_id);
 
 -- Credits index. This is scanned in order to compile credits lists for pages,
 -- in ApiQueryContributors. Also for ApiQueryRevisions if rvuser is specified.
