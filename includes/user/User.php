@@ -4118,19 +4118,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	}
 
 	/**
-	 * Initialize user_editcount from data out of the revision table
-	 *
-	 * @internal This method should not be called outside User/UserEditCountUpdate
-	 * @param IDatabase $dbr Replica database
-	 * @return int Number of edits
-	 */
-	public function initEditCountInternal( IDatabase $dbr ) {
-		return MediaWikiServices::getInstance()
-			->getUserEditTracker()
-			->initializeUserEditCount( $this );
-	}
-
-	/**
 	 * Get the description of a given right
 	 *
 	 * @since 1.29
