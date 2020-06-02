@@ -27,6 +27,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Installer\Services\InstallerDBSupport;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
@@ -141,8 +142,9 @@ class UpdateMediaWiki extends Maintenance {
 		$db = $this->getDB( DB_MASTER );
 
 		# Check to see whether the database server meets the minimum requirements
-		/** @var DatabaseInstaller $dbInstallerClass */
-		$dbInstallerClass = Installer::getDBInstallerClass( $db->getType() );
+		/** @var string|DatabaseInstaller $dbInstallerClass */
+		$dbInstallerClass = InstallerDBSupport::getInstance()
+			->getDBInstallerClass( $db->getType() );
 		$status = $dbInstallerClass::meetsMinimumRequirement( $db->getServerVersion() );
 		if ( !$status->isOK() ) {
 			// This might output some wikitext like <strong> but it should be comprehensible

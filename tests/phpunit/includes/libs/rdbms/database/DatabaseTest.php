@@ -30,9 +30,9 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$m = Database::NEW_UNCONNECTED; // no-connect mode
 		$p = [ 'host' => 'localhost', 'user' => 'me', 'password' => 'myself', 'dbname' => 'i' ];
 
-		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'mysqli', $p, $m ) );
-		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySqli', $p, $m ) );
-		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySQLi', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'mysql', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySql', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySQL', $p, $m ) );
 		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'postgres', $p, $m ) );
 		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'Postgres', $p, $m ) );
 

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\ExtensionInfo;
+use MediaWiki\Installer\Services\InstallerDBSupport;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -416,6 +417,8 @@ class SpecialVersion extends SpecialPage {
 				'antispam' => wfMessage( 'version-antispam' )->text(),
 				'skin' => wfMessage( 'version-skins' )->text(),
 				'api' => wfMessage( 'version-api' )->text(),
+				InstallerDBSupport::EXTENSION_TYPE_DATABASE =>
+					wfMessage( 'version-database' )->text(),
 				'other' => wfMessage( 'version-other' )->text(),
 			];
 

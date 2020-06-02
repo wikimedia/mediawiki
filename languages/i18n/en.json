@@ -3561,6 +3561,7 @@
 	"version-variables": "Variables",
 	"version-editors": "Editors",
 	"version-antispam": "Spam prevention",
+	"version-database": "Custom database support",
 	"version-api": "API",
 	"version-other": "Other",
 	"version-mediahandlers": "Media handlers",

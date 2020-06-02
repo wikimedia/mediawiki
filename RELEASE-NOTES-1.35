@@ -237,6 +237,8 @@ For notes on 1.34.x and older releases, see HISTORY.
   Doing so using that hook is now soft deprecated.
 * A new BlockPermissionChecker service was introduced for checking
   block-related permissions.
+* The support of 'database' type of extensions has been added to allow 3d party
+  databases like Percona be used as storage. See T226857, T253248.
 * …
 
 === External library changes in 1.35 ===
@@ -1243,6 +1245,8 @@ because of Phabricator reports.
   instead.
 * Using Skin::addToBodyAttributes() method to add body attributes has been
   deprecated. Use OutputPageBodyAttributes hook instead.
+* Installer::getDBTypes has been hard deprecated in favor of
+  InstallerDBSupport::getDatabases
 * …
 
 === Other changes in 1.35 ===
