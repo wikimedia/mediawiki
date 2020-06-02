@@ -65,7 +65,9 @@
 		$( document.body ).prepend( $container );
 	}
 
-	mw.hook( 'postEdit' ).add( showConfirmation );
+	if ( !mw.config.get( 'wgPostEditConfirmationDisabled' ) ) {
+		mw.hook( 'postEdit' ).add( showConfirmation );
+	}
 
 	if ( postEdit ) {
 		mw.hook( 'postEdit' ).fire( {
