@@ -100,6 +100,7 @@ use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -1193,6 +1194,13 @@ return [
 		return new ImportableUploadRevisionImporter(
 			$services->getMainConfig()->get( 'EnableUploads' ),
 			LoggerFactory::getInstance( 'UploadRevisionImporter' )
+		);
+	},
+
+	'UserEditTracker' => function ( MediaWikiServices $services ) : UserEditTracker {
+		return new UserEditTracker(
+			$services->getActorMigration(),
+			$services->getDBLoadBalancer()
 		);
 	},
 
