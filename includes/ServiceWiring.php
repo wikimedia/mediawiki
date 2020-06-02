@@ -83,6 +83,7 @@ use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
@@ -235,6 +236,10 @@ return [
 
 	'ContentModelStore' => function ( MediaWikiServices $services ) : NameTableStore {
 		return $services->getNameTableStoreFactory()->getContentModels();
+	},
+
+	'ContributionsLookup' => function ( MediaWikiServices $services ) : ContributionsLookup {
+		return new ContributionsLookup( $services->getRevisionStore() );
 	},
 
 	'CryptHKDF' => function ( MediaWikiServices $services ) : CryptHKDF {

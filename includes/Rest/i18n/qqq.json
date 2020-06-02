@@ -14,6 +14,7 @@
 	"rest-nonexistent-revision": "Error message for REST API debugging, shown when the specified revision does not exist. Parameters:\n* $1 The revision id.",
 	"rest-permission-denied-title": "Error message for REST API debugging, shown if the user doesn't have read access to the specified title. Parameters:\n* $1 The page title",
 	"rest-permission-denied-revision": "Error message for REST API debugging, shown when the user doesn't have access to the specified revision. Parameters:\n* $1: the specified revision.",
+	"rest-permission-denied-anon": "Error message for REST API debugging, shown when the user is anonymous and therefore is denied permission to a resource",
 	"rest-pagehistory-incompatible-params": "Error message for REST API debugging, shown if incompatible parameters are specified.",
 	"rest-pagehistory-param-range-error": "Error message for REST API debugging, shown if a revision id is provided but is out of range.",
 	"rest-pagehistory-timestamp-error": "Error message for REST API debugging, shown if an error occurred loading the timestamp for the specified revision.",
