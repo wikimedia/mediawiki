@@ -65,6 +65,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -1248,6 +1249,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUploadRevisionImporter() : UploadRevisionImporter {
 		return $this->getService( 'UploadRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return UserEditTracker
+	 */
+	public function getUserEditTracker() : UserEditTracker {
+		return $this->getService( 'UserEditTracker' );
 	}
 
 	/**

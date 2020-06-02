@@ -1573,13 +1573,11 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// Replacement of former `$this->mRights = null` line
 		if ( $wgFullyInitialised && $this->mFrom ) {
-			MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache(
-				$this
-			);
-			MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $this );
-			MediaWikiServices::getInstance()
-				->getTalkPageNotificationManager()
-				->clearInstanceCache( $this );
+			$services = MediaWikiServices::getInstance();
+			$services->getPermissionManager()->invalidateUsersRightsCache( $this );
+			$services->getUserOptionsManager()->clearUserOptionsCache( $this );
+			$services->getTalkPageNotificationManager()->clearInstanceCache( $this );
+			$services->getUserEditTracker()->clearUserEditCache( $this );
 		}
 
 		if ( $reloadFrom ) {
@@ -3121,20 +3119,9 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( $this->mEditCount === null ) {
-			/* Populate the count, if it has not been populated yet */
-			$dbr = wfGetDB( DB_REPLICA );
-			// check if the user_editcount field has been initialized
-			$count = $dbr->selectField(
-				'user', 'user_editcount',
-				[ 'user_id' => $this->mId ],
-				__METHOD__
-			);
-
-			if ( $count === null ) {
-				// it has not been initialized. do so.
-				$count = $this->initEditCountInternal( $dbr );
-			}
-			$this->mEditCount = $count;
+			$this->mEditCount = MediaWikiServices::getInstance()
+				->getUserEditTracker()
+				->getUserEditCount( $this );
 		}
 		return (int)$this->mEditCount;
 	}
@@ -4425,7 +4412,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 *  non-existent/anonymous user accounts.
 	 */
 	public function getFirstEditTimestamp() {
-		return $this->getEditTimestamp( true );
+		return MediaWikiServices::getInstance()
+			->getUserEditTracker()
+			->getFirstEditTimestamp( $this );
 	}
 
 	/**
@@ -4436,37 +4425,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 *  non-existent/anonymous user accounts.
 	 */
 	public function getLatestEditTimestamp() {
-		return $this->getEditTimestamp( false );
-	}
-
-	/**
-	 * Get the timestamp of the first or latest edit
-	 *
-	 * @param bool $first True for the first edit, false for the latest one
-	 * @return string|bool Timestamp of first or latest edit, or false for
-	 *  non-existent/anonymous user accounts.
-	 */
-	private function getEditTimestamp( $first ) {
-		if ( $this->getId() == 0 ) {
-			return false; // anons
-		}
-		$dbr = wfGetDB( DB_REPLICA );
-		$actorWhere = ActorMigration::newMigration()->getWhere( $dbr, 'rev_user', $this );
-		$tsField = isset( $actorWhere['tables']['temp_rev_user'] )
-			? 'revactor_timestamp' : 'rev_timestamp';
-		$sortOrder = $first ? 'ASC' : 'DESC';
-		$time = $dbr->selectField(
-			[ 'revision' ] + $actorWhere['tables'],
-			$tsField,
-			[ $actorWhere['conds'] ],
-			__METHOD__,
-			[ 'ORDER BY' => "$tsField $sortOrder" ],
-			$actorWhere['joins']
-		);
-		if ( !$time ) {
-			return false; // no edits
-		}
-		return wfTimestamp( TS_MW, $time );
+		return MediaWikiServices::getInstance()
+			->getUserEditTracker()
+			->getLatestEditTimestamp( $this );
 	}
 
 	/**
@@ -4724,30 +4685,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return int Number of edits
 	 */
 	public function initEditCountInternal( IDatabase $dbr ) {
-		// Pull from a replica DB to be less cruel to servers
-		// Accuracy isn't the point anyway here
-		$actorWhere = ActorMigration::newMigration()->getWhere( $dbr, 'rev_user', $this );
-		$count = (int)$dbr->selectField(
-			[ 'revision' ] + $actorWhere['tables'],
-			'COUNT(*)',
-			[ $actorWhere['conds'] ],
-			__METHOD__,
-			[],
-			$actorWhere['joins']
-		);
-
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->update(
-			'user',
-			[ 'user_editcount' => $count ],
-			[
-				'user_id' => $this->getId(),
-				'user_editcount IS NULL OR user_editcount < ' . (int)$count
-			],
-			__METHOD__
-		);
-
-		return $count;
+		return MediaWikiServices::getInstance()
+			->getUserEditTracker()
+			->initializeUserEditCount( $this );
 	}
 
 	/**
