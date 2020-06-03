@@ -928,6 +928,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->hideDeprecated( 'Revision::isMinor' );
 		$this->hideDeprecated( 'Revision::getParentId' );
 		$this->hideDeprecated( 'Revision::getVisibility' );
+		$this->hideDeprecated( 'Revision::getContentFormat' );
+		$this->hideDeprecated( 'Revision::getContentHandler' );
+		$this->hideDeprecated( 'Revision::getContentModel' );
 
 		$this->assertSame( $rev->getId(), $record->getId() );
 		$this->assertSame( $rev->getPage(), $record->getPageId() );
@@ -2140,6 +2143,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @throws \MWException
 	 */
 	public function testGetContentBlobsForBatch( $slots ) {
+		$this->hideDeprecated( 'Revision::getContentModel' );
+
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
