@@ -21,6 +21,9 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -46,11 +49,12 @@ class CheckBadRedirects extends Maintenance {
 		$this->output( "Found $count redirects.\n" .
 			"Checking for bad redirects:\n\n" );
 
+		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		foreach ( $result as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$rev = Revision::newFromId( $row->page_latest );
-			if ( $rev ) {
-				$target = $rev->getContent()->getRedirectTarget();
+			$revRecord = $revLookup->getRevisionById( $row->page_latest );
+			if ( $revRecord ) {
+				$target = $revRecord->getContent( SlotRecord::MAIN )->getRedirectTarget();
 				if ( !$target ) {
 					$this->output( $title->getPrefixedText() . "\n" );
 				}
