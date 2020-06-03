@@ -1675,14 +1675,14 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( $baseRevId === null || $sectionId === 'new' ) {
 				$oldContent = $this->getContent();
 			} else {
-				$rev = Revision::newFromId( $baseRevId );
-				if ( !$rev ) {
+				$revRecord = $this->getRevisionStore()->getRevisionById( $baseRevId );
+				if ( !$revRecord ) {
 					wfDebug( __METHOD__ . " asked for bogus section (page: " .
 						$this->getId() . "; section: $sectionId)" );
 					return null;
 				}
 
-				$oldContent = $rev->getContent();
+				$oldContent = $revRecord->getContent( SlotRecord::MAIN );
 			}
 
 			if ( !$oldContent ) {
