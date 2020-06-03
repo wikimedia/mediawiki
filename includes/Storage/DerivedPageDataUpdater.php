@@ -806,12 +806,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->revision->setUser( $user );
 
 		// Set up ParserOptions to operate on the new revision
-		$oldCallback = $userPopts->getCurrentRevisionCallback();
-		$userPopts->setCurrentRevisionCallback(
-			function ( Title $parserTitle, $parser = false ) use ( $title, $oldCallback ) {
+		$oldCallback = $userPopts->getCurrentRevisionRecordCallback();
+		$userPopts->setCurrentRevisionRecordCallback(
+			function ( Title $parserTitle, $parser = null ) use ( $title, $oldCallback ) {
 				if ( $parserTitle->equals( $title ) ) {
-					$legacyRevision = new Revision( $this->revision );
-					return $legacyRevision;
+					return $this->revision;
 				} else {
 					return call_user_func( $oldCallback, $parserTitle, $parser );
 				}

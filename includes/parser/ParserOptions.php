@@ -791,6 +791,7 @@ class ParserOptions {
 	 * @return callable
 	 */
 	public function getCurrentRevisionCallback() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$revCb = $this->getOption( 'currentRevisionCallback' );
 
 		// As a temporary measure, while both currentRevisionCallback and
@@ -857,6 +858,7 @@ class ParserOptions {
 	 * @return callable Old value
 	 */
 	public function setCurrentRevisionCallback( $x ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->setOptionLegacy( 'currentRevisionCallback', $x );
 	}
 
@@ -1469,12 +1471,13 @@ class ParserOptions {
 	 * @return ScopedCallback to unset the hook
 	 */
 	public function setupFakeRevision( $title, $content, $user ) {
-		$oldCallback = $this->setCurrentRevisionCallback(
+		$oldCallback = $this->setCurrentRevisionRecordCallback(
 			function (
-				$titleToCheck, $parser = false ) use ( $title, $content, $user, &$oldCallback
+				$titleToCheck, $parser = null ) use ( $title, $content, $user, &$oldCallback
 			) {
 				if ( $titleToCheck->equals( $title ) ) {
-					return new Revision( [
+					// TODO construct a RevisionRecord
+					$rev = new Revision( [
 						'page' => $title->getArticleID(),
 						'user_text' => $user->getName(),
 						'user' => $user->getId(),
@@ -1482,6 +1485,7 @@ class ParserOptions {
 						'title' => $title,
 						'content' => $content
 					] );
+					return $rev->getRevisionRecord();
 				} else {
 					return call_user_func( $oldCallback, $titleToCheck, $parser );
 				}
