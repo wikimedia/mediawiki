@@ -223,10 +223,12 @@ class ChangeTags {
 	 * @param string $tag Tag name.
 	 * @param int $length Maximum length of truncated message, including ellipsis.
 	 * @param IContextSource $context
+	 * @deprecated since 1.35
 	 *
 	 * @return string Truncated long tag description.
 	 */
 	public static function truncateTagDescription( $tag, $length, IContextSource $context ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		// FIXME: Make this accept MessageLocalizer and Language instead of IContextSource
 
 		$originalDesc = self::tagLongDescriptionMessage( $tag, $context );
