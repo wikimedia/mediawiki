@@ -954,6 +954,7 @@ because of Phabricator reports.
   - ::base36Sha1 - use SlotRecord::base36Sha1 instead
   - ::userWasLastToEdit - use RevisionStore::userWasLastToEdit instead
   - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
+  - ::newFromId - use RevisionLookup::getRevisionById instead
   - ::newFromTitle - use RevisionLookup::getRevisionByTitle instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::newFromArchiveRow - use RevisionFactory::newRevisionFromArchiveRow
