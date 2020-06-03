@@ -196,4 +196,37 @@ trait MediaWikiTestCaseTrait {
 			$this->fail( $message );
 		}
 	}
+
+	/**
+	 * @param string $text
+	 * @param array $params
+	 * @return Message|MockObject
+	 * @since 1.35
+	 */
+	protected function getMockMessage( $text = '', $params = [] ) {
+		/** @var MockObject $msg */
+		$msg = $this->getMockBuilder( Message::class )
+			->disableOriginalConstructor()
+			->setMethods( [] )
+			->getMock();
+		$msg->method( 'toString' )->willReturn( $text );
+		$msg->method( '__toString' )->willReturn( $text );
+		$msg->method( 'text' )->willReturn( $text );
+		$msg->method( 'parse' )->willReturn( $text );
+		$msg->method( 'plain' )->willReturn( $text );
+		$msg->method( 'parseAsBlock' )->willReturn( $text );
+		$msg->method( 'escaped' )->willReturn( $text );
+		$msg->method( 'title' )->willReturn( $msg );
+		$msg->method( 'getKey' )->willReturn( $text );
+		$msg->method( 'params' )->willReturn( $msg );
+		$msg->method( 'getParams' )->willReturn( $params );
+		$msg->method( 'rawParams' )->willReturn( $msg );
+		$msg->method( 'inLanguage' )->willReturn( $msg );
+		$msg->method( 'inContentLanguage' )->willReturn( $msg );
+		$msg->method( 'useDatabase' )->willReturn( $msg );
+		$msg->method( 'setContext' )->willReturn( $msg );
+		$msg->method( 'exists' )->willReturn( true );
+		$msg->method( 'content' )->willReturn( new MessageContent( $msg ) );
+		return $msg;
+	}
 }
