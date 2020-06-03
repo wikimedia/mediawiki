@@ -111,8 +111,14 @@ class MediaWiki {
 			$oldid = $oldid ?: $request->getInt( 'diff' );
 			// Allow oldid to override a changed or missing title
 			if ( $oldid ) {
-				$rev = Revision::newFromId( $oldid );
-				$ret = $rev ? $rev->getTitle() : $ret;
+				$revRecord = MediaWikiServices::getInstance()
+					->getRevisionLookup()
+					->getRevisionById( $oldid );
+				if ( $revRecord ) {
+					$ret = Title::newFromLinkTarget(
+						$revRecord->getPageAsLinkTarget()
+					);
+				}
 			}
 		}
 
