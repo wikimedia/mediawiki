@@ -1634,7 +1634,7 @@
 	"recentchangeslinked-summary": "해당 문서에 연결된 문서의 변경사항을 확인하려면 문서 이름을 입력하십시오. (분류에 들어있는 문서를 보려면 {{ns:category}}:분류명으로 입력하십시오). [[Special:Watchlist|내 주시문서 목록]]에 있는 문서의 변경사항은 <strong>굵게</strong> 나타납니다.",
 	"recentchangeslinked-page": "문서 이름:",
 	"recentchangeslinked-to": "해당 문서를 가리키는 문서의 최근 바뀜 보기",
-	"recentchanges-page-added-to-category": "[[:$1]]에 분류를 추가하였습니다",
+	"recentchanges-page-added-to-category": "[[:$1]] 문서에 해당 분류를 추가함",
 	"recentchanges-page-added-to-category-bundled": "[[:$1]] 문서가 분류에 추가되었습니다. [[Special:WhatLinksHere/$1|이 문서는 다른 문서 안에 포함되어 있습니다]]",
 	"recentchanges-page-removed-from-category": "[[:$1]]이(가) 분류에서 제거되었습니다",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] 문서가 분류에서 제거되었습니다. [[Special:WhatLinksHere/$1|이 문서는 다른 문서 안에 포함되어 있습니다]]",

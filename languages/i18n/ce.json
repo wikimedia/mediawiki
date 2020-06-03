@@ -2090,6 +2090,7 @@
 	"blocklist-tempblocks": "ДӀахьулян цхьан ханна йолу блоктохарш",
 	"blocklist-indefblocks": "Къайладаха чакхе-йоцу блоктохарш",
 	"blocklist-addressblocks": "ДӀахулдан цхьайолу IP адресан блоктохарш",
+	"blocklist-type": "Тайпа:",
 	"blocklist-type-opt-all": "Массо а",
 	"blocklist-type-opt-sitewide": "Ерриг а проектехь",
 	"blocklist-type-opt-partial": "Дуьззина доцуш",
