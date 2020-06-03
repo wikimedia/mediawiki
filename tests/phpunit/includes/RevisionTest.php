@@ -218,6 +218,7 @@ class RevisionTest extends MediaWikiTestCase {
 				$testCase->hideDeprecated( 'Revision::getUserText' );
 				$testCase->hideDeprecated( 'Revision::isMinor' );
 				$testCase->hideDeprecated( 'Revision::getParentId' );
+				$testCase->hideDeprecated( 'Revision::isDeleted' );
 
 				$testCase->assertSame( 42, $rev->getId() );
 				$testCase->assertSame( 23, $rev->getPage() );
