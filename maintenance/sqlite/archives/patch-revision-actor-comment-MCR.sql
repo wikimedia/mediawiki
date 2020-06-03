@@ -30,7 +30,7 @@ ALTER TABLE /*_*/revision_tmp RENAME TO /*_*/revision;
 CREATE INDEX /*i*/rev_page_id ON /*_*/revision (rev_page, rev_id);
 CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
-CREATE INDEX /*i*/rev_actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp);
+CREATE INDEX /*i*/rev_actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp,rev_id);
 CREATE INDEX /*i*/rev_page_actor_timestamp ON /*_*/revision (rev_page,rev_actor,rev_timestamp);
 
 COMMIT;
