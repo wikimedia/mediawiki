@@ -3288,7 +3288,7 @@ class HookRunner implements
 	}
 
 	public function onRevisionFromEditComplete( $wikiPage, $rev, $originalRevId, $user, &$tags ) {
-		$this->container->run(
+		return $this->container->run(
 			'RevisionFromEditComplete',
 			[ $wikiPage, $rev, $originalRevId, $user, &$tags ]
 		);
