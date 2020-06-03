@@ -451,6 +451,7 @@
 	"red-link-title": "$1 (page inexistante)",
 	"sort-descending": "Tri décroissant",
 	"sort-ascending": "Tri croissant",
+	"sort-initial": "Tri initial",
 	"nstab-main": "Page",
 	"nstab-user": "Page d’{{GENDER:{{ROOTPAGENAME}}|utilisateur|utilisatrice}}",
 	"nstab-media": "Média",
