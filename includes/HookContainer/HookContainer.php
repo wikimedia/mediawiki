@@ -112,6 +112,7 @@ class HookContainer implements SalvageableService {
 	 *     Hooks::run() legacy $deprecatedVersion parameter. New core code should add deprecated
 	 *     hooks to the DeprecatedHooks::$deprecatedHooks array literal. New extension code should
 	 *     use the DeprecatedHooks attribute.
+	 *   - silent: (bool) If true, do not raise a deprecation warning
 	 * @return bool True if no handler aborted the hook
 	 * @throws UnexpectedValueException if handlers return an invalid value
 	 */
@@ -307,7 +308,7 @@ class HookContainer implements SalvageableService {
 	private function callLegacyHook( string $hook, $handler, array $args, array $options ) {
 		$callback = $handler['callback'];
 		$hookArgs = array_merge( $handler['args'], $args );
-		if ( isset( $options['deprecatedVersion'] ) ) {
+		if ( isset( $options['deprecatedVersion'] ) && empty( $options['silent'] ) ) {
 			wfDeprecated(
 				"$hook hook (used in " . $handler['functionName'] . ")",
 				$options['deprecatedVersion'] ?? false,
@@ -343,11 +344,13 @@ class HookContainer implements SalvageableService {
 		$deprecated = $deprecatedHooks->isHookDeprecated( $hook );
 		if ( $deprecated ) {
 			$info = $deprecatedHooks->getDeprecationInfo( $hook );
-			$deprecatedVersion = $info['deprecatedVersion'] ?? false;
-			$component = $info['component'] ?? false;
-			wfDeprecated(
-				"$hook hook", $deprecatedVersion, $component
-			);
+			if ( empty( $info['silent'] ) ) {
+				$deprecatedVersion = $info['deprecatedVersion'] ?? false;
+				$component = $info['component'] ?? false;
+				wfDeprecated(
+					"$hook hook", $deprecatedVersion, $component
+				);
+			}
 		}
 		$this->legacyRegisteredHandlers[$hook][] = $callback;
 	}
@@ -401,7 +404,8 @@ class HookContainer implements SalvageableService {
 	/**
 	 * Will log a deprecation warning if:
 	 * 1. the hook is marked deprecated
-	 * 2. an extension registers a handler in the new way but does not acknowledge deprecation
+	 * 2. the "silent" flag is absent or false, and
+	 * 3. an extension registers a handler in the new way but does not acknowledge deprecation
 	 */
 	public function emitDeprecationWarnings() {
 		$deprecatedHooks = $this->registry->getDeprecatedHooks();
@@ -409,6 +413,9 @@ class HookContainer implements SalvageableService {
 		foreach ( $registeredHooks as $name => $handlers ) {
 			if ( $deprecatedHooks->isHookDeprecated( $name ) ) {
 				$deprecationInfo = $deprecatedHooks->getDeprecationInfo( $name );
+				if ( !empty( $deprecationInfo['silent'] ) ) {
+					continue;
+				}
 				$version = $deprecationInfo['deprecatedVersion'] ?? '';
 				$component = $deprecationInfo['component'] ?? 'MediaWiki';
 				foreach ( $handlers as $handler ) {

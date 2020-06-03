@@ -178,6 +178,12 @@ class. Hooks declared in extensions may be deprecated by listing them in the
 
 If the `component` is not specified, it defaults to the name of the extension.
 
+The hook interface should be marked as deprecated by adding @deprecated to the
+interface doc comment. The interface doc comment is a better place for
+@deprecated than the method doc comment, because this causes the interface to
+be deprecated for implementation. Deprecating the method only causes calling
+to be deprecated, not handling.
+
 Deprecating a hook in this way activates a migration system called
 **call filtering**. Extensions opt in to call filtering of deprecated hooks by
 **acknowledging** deprecation. An extension acknowledges deprecation with the
@@ -217,3 +223,24 @@ handlers, but deprecation of `Mash` is acknowledged. Thus:
   in Core.
 
 So the call filtering system provides both forwards and backwards compatibility.
+
+### Silent deprecation
+
+Developers sometimes use two stages of deprecation: "soft" deprecation in which
+the deprecated entity is merely discouraged in documentation, and "hard"
+deprecation in which a warning is raised. When you soft-deprecate a hook, it is
+important to register it as deprecated so that call filtering is activated.
+Activating call filtering simplifies the task of migrating extensions to the
+new hook.
+
+To deprecate a hook without raising deprecation warnings, use the "silent" flag:
+
+    "DeprecatedHooks": {
+        "Mash": {
+            "deprecatedVersion": "2.0",
+            "component": "FoodProcessor",
+            "silent": true
+        }
+    }
+
+As with hard deprecation, @deprecated should be added to the interface.

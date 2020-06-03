@@ -417,6 +417,31 @@ namespace MediaWiki\HookContainer {
 			$this->expectDeprecation();
 			$hookContainer->emitDeprecationWarnings();
 		}
+
+		/**
+		 * @covers       \MediaWiki\HookContainer\HookContainer::emitDeprecationWarnings
+		 */
+		public function testEmitDeprecationWarningsSilent() {
+			$hooks = [
+				'FooActionComplete' => [
+					[
+						'handler' => 'FooGlobalFunction',
+						'extensionPath' => 'fake-extension.json'
+					]
+				]
+			];
+			$deprecatedHooksArray = [
+				'FooActionComplete' => [
+					'deprecatedVersion' => '1.35',
+					'silent' => true
+				]
+			];
+
+			$hookContainer = $this->newHookContainer( $hooks, $deprecatedHooksArray );
+
+			$hookContainer->emitDeprecationWarnings();
+			$this->assertTrue( true );
+		}
 	}
 
 	// Mock class for different types of handler functions

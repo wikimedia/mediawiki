@@ -44,7 +44,11 @@ class DeprecatedHooksTest extends MediaWikiUnitTestCase {
 		$allDeprecated = $deprecatedHooks->getDeprecationInfo();
 		$this->assertArrayHasKey( 'FooBaz', $allDeprecated );
 		$this->assertContains(
-			[ 'deprecatedVersion' => '1.31', 'component' => 'ComponentFooBaz' ],
+			[
+				'deprecatedVersion' => '1.31',
+				'component' => 'ComponentFooBaz',
+				'silent' => false
+			],
 			$allDeprecated
 		);
 	}
@@ -55,7 +59,12 @@ class DeprecatedHooksTest extends MediaWikiUnitTestCase {
 	public function testGetDeprecationInfo() {
 		$extDeprecatedHooks = [
 			'FooBar' => [ 'deprecatedVersion' => '1.21', 'component' => 'ComponentFooBar' ],
-			'FooBarBaz' => [ 'deprecatedVersion' => '1.21' ]
+			'FooBarBaz' => [ 'deprecatedVersion' => '1.21' ],
+			'SoftlyDeprecated' => [
+				'deprecatedVersion' => '1.21',
+				'component' => 'ComponentFooBar',
+				'silent' => true
+			]
 		];
 		$deprecatedHooksWrapper = TestingAccessWrapper::newFromObject( new DeprecatedHooks() );
 		$preRegisteredDeprecated = $deprecatedHooksWrapper->deprecatedHooks;
@@ -65,8 +74,22 @@ class DeprecatedHooksTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $deprecatedHooks->getDeprecationInfo( 'FooBazBaz' ) );
 		$this->assertEquals(
 			$hookDeprecationInfo,
-			[ 'deprecatedVersion' => '1.21', 'component' => 'ComponentFooBar' ]
+			[
+				'deprecatedVersion' => '1.21',
+				'component' => 'ComponentFooBar',
+				'silent' => false,
+			]
 		);
+
+		$this->assertEquals(
+			$deprecatedHooks->getDeprecationInfo( 'SoftlyDeprecated' ),
+			[
+				'deprecatedVersion' => '1.21',
+				'component' => 'ComponentFooBar',
+				'silent' => true,
+			]
+		);
+
 		$this->assertCount(
 			count( $preRegisteredDeprecated ) + count( $extDeprecatedHooks ),
 			$deprecatedHooks->getDeprecationInfo()
