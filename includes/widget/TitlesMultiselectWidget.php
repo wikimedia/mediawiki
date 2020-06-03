@@ -15,7 +15,8 @@ class TitlesMultiselectWidget extends TagMultiselectWidget {
 
 	/**
 	 * @param array $config Configuration options
-	 *   - bool $config['showMissing'] Show missing pages
+	 *   - bool $config['showMissing'] Show missing pages in the typeahead dropdown
+	 *     (ie. allow adding pages that don't exist)
 	 *   - bool $config['excludeDynamicNamespaces'] Exclude pages in negative namespaces
 	 */
 	public function __construct( array $config = [] ) {
