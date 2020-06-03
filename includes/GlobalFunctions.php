@@ -961,7 +961,7 @@ function wfDebugMem( $exact = false ) {
 	} else {
 		$mem .= ' B';
 	}
-	wfDebug( "Memory usage: $mem\n" );
+	wfDebug( "Memory usage: $mem" );
 }
 
 /**
@@ -1175,7 +1175,7 @@ function wfGetLangObj( $langcode = false ) {
 	}
 
 	# $langcode is a string, but not a valid language code; use content language.
-	wfDebug( "Invalid language code passed to wfGetLangObj, falling back to content language.\n" );
+	wfDebug( "Invalid language code passed to wfGetLangObj, falling back to content language." );
 	return $services->getContentLanguage();
 }
 
@@ -1326,7 +1326,7 @@ function wfDebugBacktrace( $limit = 0 ) {
 	if ( $disabled === null ) {
 		$disabled = !function_exists( 'debug_backtrace' );
 		if ( $disabled ) {
-			wfDebug( "debug_backtrace() is disabled\n" );
+			wfDebug( "debug_backtrace() is disabled" );
 		}
 	}
 	if ( $disabled ) {
@@ -1464,7 +1464,7 @@ function wfClientAcceptsGzip( $force = false ) {
 					$result = false;
 					return $result;
 				}
-				wfDebug( "wfClientAcceptsGzip: client accepts gzip.\n" );
+				wfDebug( "wfClientAcceptsGzip: client accepts gzip." );
 				$result = true;
 			}
 		}
@@ -1806,7 +1806,7 @@ function wfNegotiateType( $cprefs, $sprefs ) {
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	$ret = MWTimestamp::convert( $outputtype, $ts );
 	if ( $ret === false ) {
-		wfDebug( "wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n" );
+		wfDebug( "wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts" );
 	}
 	return $ret;
 }
@@ -1897,7 +1897,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	}
 
 	if ( $caller !== null ) {
-		wfDebug( "$caller: called wfMkdirParents($dir)\n" );
+		wfDebug( "$caller: called wfMkdirParents($dir)" );
 	}
 
 	if ( strval( $dir ) === '' || is_dir( $dir ) ) {
@@ -1933,7 +1933,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
  * @param string $dir
  */
 function wfRecursiveRemoveDir( $dir ) {
-	wfDebug( __FUNCTION__ . "( $dir )\n" );
+	wfDebug( __FUNCTION__ . "( $dir )" );
 	// taken from https://www.php.net/manual/en/function.rmdir.php#98622
 	if ( is_dir( $dir ) ) {
 		$objects = scandir( $dir );
@@ -2159,7 +2159,7 @@ function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
 	AtEase::restoreWarnings();
 
 	if ( !$haveDiff3 ) {
-		wfDebug( "diff3 not found\n" );
+		wfDebug( "diff3 not found" );
 		return false;
 	}
 
@@ -2215,7 +2215,7 @@ function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
 	unlink( $yourtextName );
 
 	if ( $result === '' && $old !== '' && !$conflict ) {
-		wfDebug( "Unexpected null result from diff3. Command: $cmd\n" );
+		wfDebug( "Unexpected null result from diff3. Command: $cmd" );
 		$conflict = true;
 	}
 	return !$conflict;
@@ -2245,7 +2245,7 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	# This check may also protect against code injection in
 	# case of broken installations.
 	if ( !$haveDiff ) {
-		wfDebug( "diff executable not found\n" );
+		wfDebug( "diff executable not found" );
 		$diffs = new Diff( explode( "\n", $before ), explode( "\n", $after ) );
 		$format = new UnifiedDiffFormatter();
 		return $format->format( $diffs );
@@ -2665,12 +2665,12 @@ function wfMemoryLimit( $newLimit ) {
 	if ( $oldLimit != -1 ) {
 		$newLimit = wfShorthandToInteger( $newLimit );
 		if ( $newLimit == -1 ) {
-			wfDebug( "Removing PHP's memory limit\n" );
+			wfDebug( "Removing PHP's memory limit" );
 			Wikimedia\suppressWarnings();
 			ini_set( 'memory_limit', $newLimit );
 			Wikimedia\restoreWarnings();
 		} elseif ( $newLimit > $oldLimit ) {
-			wfDebug( "Raising PHP's memory limit to $newLimit bytes\n" );
+			wfDebug( "Raising PHP's memory limit to $newLimit bytes" );
 			Wikimedia\suppressWarnings();
 			ini_set( 'memory_limit', $newLimit );
 			Wikimedia\restoreWarnings();

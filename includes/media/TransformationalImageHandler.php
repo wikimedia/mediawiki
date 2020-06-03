@@ -150,7 +150,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} " .
-			"thumbnail at $dstPath using scaler $scalerName\n" );
+			"thumbnail at $dstPath using scaler $scalerName" );
 
 		if ( !$image->mustRender() &&
 			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
@@ -158,7 +158,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			&& !isset( $scalerParams['quality'] )
 		) {
 			# normaliseParams (or the user) wants us to return the unscaled image
-			wfDebug( __METHOD__ . ": returning unscaled image\n" );
+			wfDebug( __METHOD__ . ": returning unscaled image" );
 
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
@@ -175,7 +175,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			wfDebug( __METHOD__ . ": Transforming later per flags.\n" );
+			wfDebug( __METHOD__ . ": Transforming later per flags." );
 			$newParams = [
 				'width' => $scalerParams['clientWidth'],
 				'height' => $scalerParams['clientHeight']
@@ -192,7 +192,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		# Try to make a target path for the thumbnail
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
 			wfDebug( __METHOD__ . ": Unable to create thumbnail destination " .
-				"directory, falling back to client scaling\n" );
+				"directory, falling back to client scaling" );
 
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
@@ -226,7 +226,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		$mto = null;
 		Hooks::runner()->onBitmapHandlerTransform( $this, $image, $scalerParams, $mto );
 		if ( $mto !== null ) {
-			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
+			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto" );
 			$scaler = 'hookaborted';
 		}
 
@@ -519,14 +519,14 @@ abstract class TransformationalImageHandler extends ImageHandler {
 				global $wgImageMagickConvertCommand;
 
 				$cmd = Shell::escape( $wgImageMagickConvertCommand ) . ' -version';
-				wfDebug( $method . ": Running convert -version\n" );
+				wfDebug( $method . ": Running convert -version" );
 				$retval = '';
 				$return = wfShellExecWithStderr( $cmd, $retval );
 				$x = preg_match(
 					'/Version: ImageMagick ([0-9]*\.[0-9]*\.[0-9]*)/', $return, $matches
 				);
 				if ( $x != 1 ) {
-					wfDebug( $method . ": ImageMagick version check failed\n" );
+					wfDebug( $method . ": ImageMagick version check failed" );
 					return false;
 				}
 

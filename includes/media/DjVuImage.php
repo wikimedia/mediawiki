@@ -127,7 +127,7 @@ class DjVuImage {
 		$file = fopen( $this->mFilename, 'rb' );
 		Wikimedia\restoreWarnings();
 		if ( $file === false ) {
-			wfDebug( __METHOD__ . ": missing or failed file read\n" );
+			wfDebug( __METHOD__ . ": missing or failed file read" );
 
 			return false;
 		}
@@ -136,13 +136,13 @@ class DjVuImage {
 		$info = false;
 
 		if ( strlen( $header ) < 16 ) {
-			wfDebug( __METHOD__ . ": too short file header\n" );
+			wfDebug( __METHOD__ . ": too short file header" );
 		} else {
 			$arr = unpack( 'a4magic/a4form/NformLength/a4subtype', $header );
 
 			$subtype = $arr['subtype'];
 			if ( $arr['magic'] != 'AT&T' ) {
-				wfDebug( __METHOD__ . ": not a DjVu file\n" );
+				wfDebug( __METHOD__ . ": not a DjVu file" );
 			} elseif ( $subtype == 'DJVU' ) {
 				// Single-page document
 				$info = $this->getPageInfo( $file );
@@ -150,7 +150,7 @@ class DjVuImage {
 				// Multi-page document
 				$info = $this->getMultiPageInfo( $file, $arr['formLength'] );
 			} else {
-				wfDebug( __METHOD__ . ": unrecognized DJVU file type '{$arr['subtype']}'\n" );
+				wfDebug( __METHOD__ . ": unrecognized DJVU file type '{$arr['subtype']}'" );
 			}
 		}
 		fclose( $file );
@@ -191,18 +191,18 @@ class DjVuImage {
 			if ( $chunk == 'FORM' ) {
 				$subtype = fread( $file, 4 );
 				if ( $subtype == 'DJVU' ) {
-					wfDebug( __METHOD__ . ": found first subpage\n" );
+					wfDebug( __METHOD__ . ": found first subpage" );
 
 					return $this->getPageInfo( $file );
 				}
 				$this->skipChunk( $file, $length - 4 );
 			} else {
-				wfDebug( __METHOD__ . ": skipping '$chunk' chunk\n" );
+				wfDebug( __METHOD__ . ": skipping '$chunk' chunk" );
 				$this->skipChunk( $file, $length );
 			}
 		} while ( $length != 0 && !feof( $file ) && ftell( $file ) - $start < $formLength );
 
-		wfDebug( __METHOD__ . ": multi-page DJVU file contained no pages\n" );
+		wfDebug( __METHOD__ . ": multi-page DJVU file contained no pages" );
 
 		return false;
 	}
@@ -210,19 +210,19 @@ class DjVuImage {
 	private function getPageInfo( $file ) {
 		list( $chunk, $length ) = $this->readChunk( $file );
 		if ( $chunk != 'INFO' ) {
-			wfDebug( __METHOD__ . ": expected INFO chunk, got '$chunk'\n" );
+			wfDebug( __METHOD__ . ": expected INFO chunk, got '$chunk'" );
 
 			return false;
 		}
 
 		if ( $length < 9 ) {
-			wfDebug( __METHOD__ . ": INFO should be 9 or 10 bytes, found $length\n" );
+			wfDebug( __METHOD__ . ": INFO should be 9 or 10 bytes, found $length" );
 
 			return false;
 		}
 		$data = fread( $file, $length );
 		if ( strlen( $data ) < $length ) {
-			wfDebug( __METHOD__ . ": INFO chunk cut off\n" );
+			wfDebug( __METHOD__ . ": INFO chunk cut off" );
 
 			return false;
 		}
@@ -272,7 +272,7 @@ class DjVuImage {
 		# Text layer
 		if ( isset( $wgDjvuTxt ) ) {
 			$cmd = Shell::escape( $wgDjvuTxt ) . ' --detail=page ' . Shell::escape( $this->mFilename );
-			wfDebug( __METHOD__ . ": $cmd\n" );
+			wfDebug( __METHOD__ . ": $cmd" );
 			$retval = '';
 			$txt = wfShellExec( $cmd, $retval, [], [ 'memory' => self::DJVUTXT_MEMORY_LIMIT ] );
 			if ( $retval == 0 ) {
@@ -349,7 +349,7 @@ EOT;
 				}
 
 				if ( preg_match( '/^ *DIRM.*indirect/', $line ) ) {
-					wfDebug( "Indirect multi-page DjVu document, bad for server!\n" );
+					wfDebug( "Indirect multi-page DjVu document, bad for server!" );
 
 					return false;
 				}

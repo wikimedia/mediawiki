@@ -1475,7 +1475,7 @@ class ParserTestRunner {
 				# Under SQLite the searchindex table is virtual and need
 				# to be explicitly destroyed. See T31912
 				# See also MediaWikiTestCase::destroyDB()
-				wfDebug( __METHOD__ . " explicitly destroying sqlite virtual table parsertest_searchindex\n" );
+				wfDebug( __METHOD__ . " explicitly destroying sqlite virtual table parsertest_searchindex" );
 				$this->db->query( "DROP TABLE `parsertest_searchindex`" );
 			}
 			# Don't need to do anything

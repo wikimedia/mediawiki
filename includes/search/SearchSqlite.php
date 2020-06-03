@@ -127,7 +127,7 @@ class SearchSqlite extends SearchDatabase {
 			}
 
 		} else {
-			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'\n" );
+			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'" );
 		}
 
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );

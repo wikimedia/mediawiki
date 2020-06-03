@@ -171,7 +171,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	public static function getTarget( $target, User $sender ) {
 		if ( $target == '' ) {
-			wfDebug( "Target is empty.\n" );
+			wfDebug( "Target is empty." );
 
 			return 'notarget';
 		}
@@ -192,25 +192,25 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	public static function validateTarget( $target, User $sender ) {
 		if ( !$target instanceof User || !$target->getId() ) {
-			wfDebug( "Target is invalid user.\n" );
+			wfDebug( "Target is invalid user." );
 
 			return 'notarget';
 		}
 
 		if ( !$target->isEmailConfirmed() ) {
-			wfDebug( "User has no valid email.\n" );
+			wfDebug( "User has no valid email." );
 
 			return 'noemail';
 		}
 
 		if ( !$target->canReceiveEmail() ) {
-			wfDebug( "User does not allow user emails.\n" );
+			wfDebug( "User does not allow user emails." );
 
 			return 'nowikiemail';
 		}
 
 		if ( !$target->getOption( 'email-allow-new-users' ) && $sender->isNewbie() ) {
-			wfDebug( "User does not allow user emails from new users.\n" );
+			wfDebug( "User does not allow user emails from new users." );
 
 			return 'nowikiemail';
 		}
@@ -221,7 +221,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$lookup = CentralIdLookup::factory();
 			$senderId = $lookup->centralIdFromLocalUser( $sender );
 			if ( $senderId !== 0 && in_array( $senderId, $blacklist ) ) {
-				wfDebug( "User does not allow user emails from this user.\n" );
+				wfDebug( "User does not allow user emails from this user." );
 
 				return 'nowikiemail';
 			}
@@ -261,7 +261,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		if ( $user->isBlockedFromEmailuser() ) {
-			wfDebug( "User is blocked from sending e-mail.\n" );
+			wfDebug( "User is blocked from sending e-mail." );
 
 			return "blockedemailuser";
 		}
@@ -269,7 +269,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// Check the ping limiter without incrementing it - we'll check it
 		// again later and increment it on a successful send
 		if ( $user->pingLimiter( 'emailuser', 0 ) ) {
-			wfDebug( "Ping limiter triggered.\n" );
+			wfDebug( "Ping limiter triggered." );
 
 			return 'actionthrottledtext';
 		}

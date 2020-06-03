@@ -1072,7 +1072,7 @@ class MediaWiki {
 		$lbFactory->commitMasterChanges( __METHOD__ );
 		$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
 
-		wfDebug( "Request ended normally\n" );
+		wfDebug( "Request ended normally" );
 	}
 
 	/**

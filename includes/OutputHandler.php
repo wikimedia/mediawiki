@@ -88,11 +88,11 @@ class OutputHandler {
 	 */
 	private static function handleGzip( $s ) {
 		if ( !function_exists( 'gzencode' ) ) {
-			wfDebug( __METHOD__ . "() skipping compression (gzencode unavailable)\n" );
+			wfDebug( __METHOD__ . "() skipping compression (gzencode unavailable)" );
 			return $s;
 		}
 		if ( headers_sent() ) {
-			wfDebug( __METHOD__ . "() skipping compression (headers already sent)\n" );
+			wfDebug( __METHOD__ . "() skipping compression (headers already sent)" );
 			return $s;
 		}
 
@@ -106,7 +106,7 @@ class OutputHandler {
 		}
 
 		if ( wfClientAcceptsGzip() ) {
-			wfDebug( __METHOD__ . "() is compressing output\n" );
+			wfDebug( __METHOD__ . "() is compressing output" );
 			header( 'Content-Encoding: gzip' );
 			$s = gzencode( $s, 6 );
 		}

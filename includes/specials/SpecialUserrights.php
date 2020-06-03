@@ -413,10 +413,10 @@ class UserrightsPage extends SpecialPage {
 		$this->getHookRunner()->onUserGroupsChanged( $user, $add, $remove,
 			$this->getUser(), $reason, $oldUGMs, $newUGMs );
 
-		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );
-		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );
-		wfDebug( 'oldUGMs: ' . print_r( $oldUGMs, true ) . "\n" );
-		wfDebug( 'newUGMs: ' . print_r( $newUGMs, true ) . "\n" );
+		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) );
+		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) );
+		wfDebug( 'oldUGMs: ' . print_r( $oldUGMs, true ) );
+		wfDebug( 'newUGMs: ' . print_r( $newUGMs, true ) );
 
 		// Only add a log entry if something actually changed
 		if ( $newGroups != $oldGroups || $newUGMs != $oldUGMs ) {

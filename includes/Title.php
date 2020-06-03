@@ -992,7 +992,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				);
 			} catch ( InvalidArgumentException $ex ) {
 				wfDebug( __METHOD__ . ': Can\'t create a TitleValue for [[' .
-					$this->getPrefixedText() . ']]: ' . $ex->getMessage() . "\n" );
+					$this->getPrefixedText() . ']]: ' . $ex->getMessage() );
 			}
 		}
 
@@ -1133,7 +1133,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			$formatter = self::getTitleFormatter();
 			return $formatter->getNamespaceName( $this->mNamespace, $this->mDbkeyform );
 		} catch ( InvalidArgumentException $ex ) {
-			wfDebug( __METHOD__ . ': ' . $ex->getMessage() . "\n" );
+			wfDebug( __METHOD__ . ': ' . $ex->getMessage() );
 			return false;
 		}
 	}
@@ -2476,7 +2476,7 @@ class Title implements LinkTarget, IDBAccessObject {
 		Hooks::runner()->onTitleGetRestrictionTypes( $this, $types );
 
 		wfDebug( __METHOD__ . ': applicable restrictions to [[' .
-			$this->getPrefixedText() . ']] are {' . implode( ',', $types ) . "}\n" );
+			$this->getPrefixedText() . ']] are {' . implode( ',', $types ) . "}" );
 
 		return $types;
 	}

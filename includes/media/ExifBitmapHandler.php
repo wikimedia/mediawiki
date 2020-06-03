@@ -95,7 +95,7 @@ class ExifBitmapHandler extends BitmapHandler {
 		if ( $metadata === self::OLD_BROKEN_FILE ) {
 			# Old special value indicating that there is no Exif data in the file.
 			# or that there was an error well extracting the metadata.
-			wfDebug( __METHOD__ . ": back-compat version\n" );
+			wfDebug( __METHOD__ . ": back-compat version" );
 
 			return self::METADATA_COMPATIBLE;
 		}
@@ -112,12 +112,12 @@ class ExifBitmapHandler extends BitmapHandler {
 				&& $exif['MEDIAWIKI_EXIF_VERSION'] == 1
 			) {
 				// back-compatible but old
-				wfDebug( __METHOD__ . ": back-compat version\n" );
+				wfDebug( __METHOD__ . ": back-compat version" );
 
 				return self::METADATA_COMPATIBLE;
 			}
 			# Wrong (non-compatible) version
-			wfDebug( __METHOD__ . ": wrong version\n" );
+			wfDebug( __METHOD__ . ": wrong version" );
 
 			return self::METADATA_BAD;
 		}

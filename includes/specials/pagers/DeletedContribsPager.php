@@ -267,7 +267,7 @@ class DeletedContribsPager extends IndexPager {
 		);
 
 		if ( $classes === [] && $attribs === [] && $ret === '' ) {
-			wfDebug( "Dropping Special:DeletedContribution row that could not be formatted\n" );
+			wfDebug( "Dropping Special:DeletedContribution row that could not be formatted" );
 			$ret = "<!-- Could not format Special:DeletedContribution row. -->\n";
 		} else {
 			$attribs['class'] = $classes;

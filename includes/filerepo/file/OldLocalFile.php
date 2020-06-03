@@ -300,7 +300,7 @@ class OldLocalFile extends LocalFile {
 
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
-			wfDebug( __METHOD__ . ": file does not exist, aborting\n" );
+			wfDebug( __METHOD__ . ": file does not exist, aborting" );
 
 			return;
 		}
@@ -308,7 +308,7 @@ class OldLocalFile extends LocalFile {
 		$dbw = $this->repo->getMasterDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
-		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema\n" );
+		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema" );
 		$dbw->update( 'oldimage',
 			[
 				'oi_size' => $this->size, // sanity

@@ -548,7 +548,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 					$blobFlags[] = 'gzip';
 				}
 			} else {
-				wfDebug( __METHOD__ . " -- no zlib support, not compressing\n" );
+				wfDebug( __METHOD__ . " -- no zlib support, not compressing" );
 			}
 		}
 		return implode( ',', $blobFlags );

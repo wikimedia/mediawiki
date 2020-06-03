@@ -37,7 +37,7 @@ class GIFHandler extends BitmapHandler {
 			$parsedGIFMetadata = BitmapMetadataHandler::GIF( $filename );
 		} catch ( Exception $e ) {
 			// Broken file?
-			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
 			return self::BROKEN_FILE;
 		}
@@ -141,7 +141,7 @@ class GIFHandler extends BitmapHandler {
 		Wikimedia\restoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-			wfDebug( __METHOD__ . " invalid GIF metadata\n" );
+			wfDebug( __METHOD__ . " invalid GIF metadata" );
 
 			return self::METADATA_BAD;
 		}
@@ -149,7 +149,7 @@ class GIFHandler extends BitmapHandler {
 		if ( !isset( $data['metadata']['_MW_GIF_VERSION'] )
 			|| $data['metadata']['_MW_GIF_VERSION'] != GIFMetadataExtractor::VERSION
 		) {
-			wfDebug( __METHOD__ . " old but compatible GIF metadata\n" );
+			wfDebug( __METHOD__ . " old but compatible GIF metadata" );
 
 			return self::METADATA_COMPATIBLE;
 		}

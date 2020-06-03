@@ -631,7 +631,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		# @todo FIXME: This will not record autoblocks
 		if ( !$this->getTitle() ) {
 			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " .
-				$this->timestamp . "\n" );
+				$this->timestamp );
 			return false;
 		}
 		# Check if it exists already
@@ -649,7 +649,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		if ( $prior ) {
 			wfDebug( __METHOD__
 				. ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp "
-				. $this->timestamp . "\n" );
+				. $this->timestamp );
 			return false;
 		}
 		$data = [

@@ -85,7 +85,7 @@ class ApiUpload extends ApiBase {
 		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
 			// defer verification to background process
 		} else {
-			wfDebug( __METHOD__ . " about to verify\n" );
+			wfDebug( __METHOD__ . " about to verify" );
 			$this->verifyUpload();
 		}
 
@@ -348,7 +348,7 @@ class ApiUpload extends ApiBase {
 			}
 		} catch ( Exception $e ) {
 			$debugMessage = 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage();
-			wfDebug( __METHOD__ . ' ' . $debugMessage . "\n" );
+			wfDebug( __METHOD__ . ' ' . $debugMessage );
 			$status = Status::newFatal( $this->getErrorFormatter()->getMessageFromException(
 				$e, [ 'wrap' => new ApiMessage( 'apierror-stashexception', 'stashfailed' ) ]
 			) );
@@ -367,7 +367,7 @@ class ApiUpload extends ApiBase {
 			// Statuses for it. Just extract the exception details and parse them ourselves.
 			list( $exceptionType, $message ) = $status->getMessage()->getParams();
 			$debugMessage = 'Stashing temporary file failed: ' . $exceptionType . ' ' . $message;
-			wfDebug( __METHOD__ . ' ' . $debugMessage . "\n" );
+			wfDebug( __METHOD__ . ' ' . $debugMessage );
 		}
 
 		// Bad status

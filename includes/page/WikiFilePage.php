@@ -175,7 +175,7 @@ class WikiFilePage extends WikiPage {
 		$this->loadFile();
 
 		if ( $this->mFile->exists() ) {
-			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() . "\n" );
+			wfDebug( 'ImagePage::doPurge purging ' . $this->mFile->getName() );
 			$job = HTMLCacheUpdateJob::newForBacklinks(
 				$this->mTitle,
 				'imagelinks',
@@ -184,7 +184,7 @@ class WikiFilePage extends WikiPage {
 			JobQueueGroup::singleton()->lazyPush( $job );
 		} else {
 			wfDebug( 'ImagePage::doPurge no image for '
-				. $this->mFile->getName() . "; limiting purge to cache only\n" );
+				. $this->mFile->getName() . "; limiting purge to cache only" );
 		}
 
 		// even if the file supposedly doesn't exist, force any cached information
@@ -221,7 +221,7 @@ class WikiFilePage extends WikiPage {
 		$file = $this->mFile;
 
 		if ( !$file instanceof LocalFile ) {
-			wfDebug( __CLASS__ . '::' . __METHOD__ . " is not supported for this file\n" );
+			wfDebug( __CLASS__ . '::' . __METHOD__ . " is not supported for this file" );
 			return TitleArray::newFromResult( new FakeResultWrapper( [] ) );
 		}
 

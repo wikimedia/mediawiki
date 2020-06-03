@@ -130,7 +130,7 @@ class RecompressTracked {
 	}
 
 	public function debug( $msg ) {
-		wfDebug( "$msg\n" );
+		wfDebug( "$msg" );
 		if ( $this->debugLog ) {
 			$this->logToFile( $msg, $this->debugLog );
 		}

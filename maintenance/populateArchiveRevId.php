@@ -235,7 +235,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 		if ( !$rev ) {
 			// Since no revisions are available to copy, generate a dummy
 			// revision to a dummy page, then rollback the commit
-			wfDebug( __METHOD__ . ": No revisions are available to copy\n" );
+			wfDebug( __METHOD__ . ": No revisions are available to copy" );
 
 			$dbw->begin();
 

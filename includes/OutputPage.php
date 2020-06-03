@@ -755,12 +755,12 @@ class OutputPage extends ContextSource {
 	 */
 	public function checkLastModified( $timestamp ) {
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
-			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
+			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP" );
 			return false;
 		}
 		$config = $this->getConfig();
 		if ( !$config->get( 'CachePages' ) ) {
-			wfDebug( __METHOD__ . ": CACHE DISABLED\n" );
+			wfDebug( __METHOD__ . ": CACHE DISABLED" );
 			return false;
 		}
 
@@ -797,7 +797,7 @@ class OutputPage extends ContextSource {
 		Wikimedia\restoreWarnings();
 		if ( !$clientHeaderTime ) {
 			wfDebug( __METHOD__
-				. ": unable to parse the client's If-Modified-Since header: $clientHeader\n" );
+				. ": unable to parse the client's If-Modified-Since header: $clientHeader" );
 			return false;
 		}
 		$clientHeaderTime = wfTimestamp( TS_MW, $clientHeaderTime );
@@ -2246,11 +2246,11 @@ class OutputPage extends ContextSource {
 		$request = $this->getRequest();
 		foreach ( $this->getCacheVaryCookies() as $cookieName ) {
 			if ( $request->getCookie( $cookieName, '', '' ) !== '' ) {
-				wfDebug( __METHOD__ . ": found $cookieName\n" );
+				wfDebug( __METHOD__ . ": found $cookieName" );
 				return true;
 			}
 		}
-		wfDebug( __METHOD__ . ": no cache-varying cookies found\n" );
+		wfDebug( __METHOD__ . ": no cache-varying cookies found" );
 		return false;
 	}
 

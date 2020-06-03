@@ -534,7 +534,7 @@ class PageArchive {
 		// Touch the log!
 
 		if ( !$textRestored && !$filesRestored ) {
-			wfDebug( "Undelete: nothing undeleted...\n" );
+			wfDebug( "Undelete: nothing undeleted..." );
 
 			return false;
 		}
@@ -605,7 +605,7 @@ class PageArchive {
 				__METHOD__ );
 
 			if ( $previousTimestamp === false ) {
-				wfDebug( __METHOD__ . ": existing page refers to a page_latest that does not exist\n" );
+				wfDebug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
 
 				$status = Status::newGood( 0 );
 				$status->warning( 'undeleterevision-missing' );
@@ -648,7 +648,7 @@ class PageArchive {
 
 		$rev_count = $result->numRows();
 		if ( !$rev_count ) {
-			wfDebug( __METHOD__ . ": no revisions to restore\n" );
+			wfDebug( __METHOD__ . ": no revisions to restore" );
 
 			$status = Status::newGood( 0 );
 			$status->warning( "undelete-no-results" );

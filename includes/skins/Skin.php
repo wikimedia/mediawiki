@@ -654,7 +654,7 @@ abstract class Skin extends ContextSource {
 					"</div>\n";
 			}
 		} else {
-			wfDebug( "Hook SkinAfterContent changed output processing.\n" );
+			wfDebug( "Hook SkinAfterContent changed output processing." );
 		}
 
 		return $data;

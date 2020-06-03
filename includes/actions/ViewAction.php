@@ -66,7 +66,7 @@ class ViewAction extends FormlessAction {
 
 			// Send HTTP 304 if the IMS matches or otherwise set expiry/last-modified headers
 			if ( $touched && $this->getOutput()->checkLastModified( $touched ) ) {
-				wfDebug( __METHOD__ . ": done 304\n" );
+				wfDebug( __METHOD__ . ": done 304" );
 				return;
 			}
 		}

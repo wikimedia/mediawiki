@@ -446,7 +446,7 @@ class SkinTemplate extends Skin {
 
 		// original version by hansm
 		if ( !$this->getHookRunner()->onSkinTemplateOutputPageBeforeExec( $this, $tpl ) ) {
-			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
+			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!" );
 		}
 
 		// Set the bodytext to another key so that skins can just output it on its own
@@ -1217,7 +1217,7 @@ class SkinTemplate extends Skin {
 
 				if ( isset( $content_actions[$key] ) ) {
 					wfDebug( __METHOD__ . ": Found a duplicate key for $key while flattening " .
-						"content_navigation into content_actions.\n" );
+						"content_navigation into content_actions." );
 					continue;
 				}
 

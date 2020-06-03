@@ -114,7 +114,7 @@ class JpegMetadataExtractor {
 				if ( $com === $oldCom ) {
 					$segments["COM"][] = $oldCom;
 				} else {
-					wfDebug( __METHOD__ . " Ignoring JPEG comment as is garbage.\n" );
+					wfDebug( __METHOD__ . " Ignoring JPEG comment as is garbage." );
 				}
 			} elseif ( $buffer === "\xE1" ) {
 				// APP1 section (Exif, XMP, and XMP extended)
@@ -134,7 +134,7 @@ class JpegMetadataExtractor {
 					// use trim to remove trailing \0 chars
 					$segments["XMP"] = trim( substr( $temp, 29 ) );
 					wfDebug( __METHOD__ . ' Found XMP section with wrong app identifier '
-						. "Using anyways.\n" );
+						. "Using anyways." );
 				} elseif ( substr( $temp, 0, 6 ) === "Exif\0\0" ) {
 					// Just need to find out what the byte order is.
 					// because php's exif plugin sucks...
@@ -145,7 +145,7 @@ class JpegMetadataExtractor {
 					} elseif ( $byteOrderMarker === 'II' ) {
 						$segments['byteOrder'] = 'LE';
 					} else {
-						wfDebug( __METHOD__ . " Invalid byte ordering?!\n" );
+						wfDebug( __METHOD__ . " Invalid byte ordering?!" );
 					}
 				}
 			} elseif ( $buffer === "\xED" ) {

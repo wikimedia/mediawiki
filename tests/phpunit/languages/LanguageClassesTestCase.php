@@ -59,7 +59,7 @@ abstract class LanguageClassesTestCase extends MediaWikiTestCase {
 			$m[1] = 'en';
 			wfDebug(
 				__METHOD__ . ' could not extract a language name '
-					. 'out of ' . static::class . " failling back to 'en'\n"
+					. 'out of ' . static::class . " failling back to 'en'"
 			);
 		}
 		// @todo validate $m[1] which should be a valid language code

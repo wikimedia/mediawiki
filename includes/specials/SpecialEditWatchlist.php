@@ -478,7 +478,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				list( $title, $namespace, $dbKey ) = $row;
 				$action = $title ? 'cleaning up' : 'deleting';
 				wfDebug( "User {$user->getName()} has broken watchlist item " .
-					"ns($namespace):$dbKey, $action.\n" );
+					"ns($namespace):$dbKey, $action." );
 
 				// NOTE: We *know* that the title is invalid. TitleValue may refuse instantiation.
 				// XXX: We may need an InvalidTitleValue class that allows instantiation of

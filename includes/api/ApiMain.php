@@ -202,7 +202,7 @@ class ApiMain extends ApiBase {
 			// user credentials for security.
 			if ( $this->lacksSameOriginSecurity() ) {
 				global $wgUser;
-				wfDebug( "API: stripping user credentials when the same-origin policy is not applied\n" );
+				wfDebug( "API: stripping user credentials when the same-origin policy is not applied" );
 				$wgUser = new User();
 				$derivativeContext->setUser( $wgUser );
 				$request->response()->header( 'MediaWiki-Login-Suppressed: true' );
@@ -424,7 +424,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function setCacheMode( $mode ) {
 		if ( !in_array( $mode, [ 'private', 'public', 'anon-public-user-private' ] ) ) {
-			wfDebug( __METHOD__ . ": unrecognised cache mode \"$mode\"\n" );
+			wfDebug( __METHOD__ . ": unrecognised cache mode \"$mode\"" );
 
 			// Ignore for forwards-compatibility
 			return;
@@ -433,7 +433,7 @@ class ApiMain extends ApiBase {
 		if ( !$this->getPermissionManager()->isEveryoneAllowed( 'read' ) ) {
 			// Private wiki, only private headers
 			if ( $mode !== 'private' ) {
-				wfDebug( __METHOD__ . ": ignoring request for $mode cache mode, private wiki\n" );
+				wfDebug( __METHOD__ . ": ignoring request for $mode cache mode, private wiki" );
 
 				return;
 			}
@@ -445,11 +445,11 @@ class ApiMain extends ApiBase {
 			// then there's an appropriate Vary header set by whatever set
 			// their non-default language.
 			wfDebug( __METHOD__ . ": downgrading cache mode 'public' to " .
-				"'anon-public-user-private' due to uselang=user\n" );
+				"'anon-public-user-private' due to uselang=user" );
 			$mode = 'anon-public-user-private';
 		}
 
-		wfDebug( __METHOD__ . ": setting cache mode $mode\n" );
+		wfDebug( __METHOD__ . ": setting cache mode $mode" );
 		$this->mCacheMode = $mode;
 	}
 

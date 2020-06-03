@@ -196,7 +196,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			$url = $this->getResponseHeader( "Location" );
 
 			if ( !Http::isValidURI( $url ) ) {
-				$this->logger->debug( __METHOD__ . ": insecure redirection\n" );
+				$this->logger->debug( __METHOD__ . ": insecure redirection" );
 				break;
 			}
 		} while ( true );

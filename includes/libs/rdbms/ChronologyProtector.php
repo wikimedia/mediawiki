@@ -152,7 +152,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$pos = $startupPositions[$masterName] ?? null;
 		if ( $pos instanceof DBMasterPos ) {
-			$this->logger->debug( __METHOD__ . ": pos for DB '$masterName' set to '$pos'\n" );
+			$this->logger->debug( __METHOD__ . ": pos for DB '$masterName' set to '$pos'" );
 			$lb->waitFor( $pos );
 		}
 	}
@@ -179,11 +179,11 @@ class ChronologyProtector implements LoggerAwareInterface {
 		if ( $lb->hasStreamingReplicaServers() ) {
 			$pos = $lb->getReplicaResumePos();
 			if ( $pos ) {
-				$this->logger->debug( __METHOD__ . ": LB for '$masterName' has pos $pos\n" );
+				$this->logger->debug( __METHOD__ . ": LB for '$masterName' has pos $pos" );
 				$this->shutdownPositions[$masterName] = $pos;
 			}
 		} else {
-			$this->logger->debug( __METHOD__ . ": DB '$masterName' touched\n" );
+			$this->logger->debug( __METHOD__ . ": DB '$masterName' touched" );
 		}
 		$this->shutdownTouchDBs[$masterName] = 1;
 	}
@@ -214,14 +214,14 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		if ( $this->shutdownPositions === [] ) {
-			$this->logger->debug( __METHOD__ . ": no master positions to save\n" );
+			$this->logger->debug( __METHOD__ . ": no master positions to save" );
 
 			return []; // nothing to save
 		}
 
 		$this->logger->debug(
 			__METHOD__ . ": saving master pos for " .
-			implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
+			implode( ', ', array_keys( $this->shutdownPositions ) )
 		);
 
 		// CP-protected writes should overwhelmingly go to the master datacenter, so merge the
@@ -253,7 +253,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$bouncedPositions = $this->shutdownPositions;
 			// Raced out too many times or stash is down
 			$this->logger->warning( __METHOD__ . ": failed to save master pos for " .
-				implode( ', ', array_keys( $this->shutdownPositions ) ) . "\n"
+				implode( ', ', array_keys( $this->shutdownPositions ) )
 			);
 		} elseif ( $mode === 'sync' &&
 			$store->getQoS( $store::ATTR_SYNCWRITES ) < $store::QOS_SYNCWRITES_BE
@@ -296,7 +296,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		$this->initialized = true;
-		$this->logger->debug( __METHOD__ . ": client ID is {$this->clientId} (read)\n" );
+		$this->logger->debug( __METHOD__ . ": client ID is {$this->clientId} (read)" );
 
 		if ( $this->wait ) {
 			// If there is an expectation to see master positions from a certain write
@@ -349,10 +349,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 			}
 
 			$this->startupPositions = $data ? $data['positions'] : [];
-			$this->logger->debug( __METHOD__ . ": key is {$this->key} (read)\n" );
+			$this->logger->debug( __METHOD__ . ": key is {$this->key} (read)" );
 		} else {
 			$this->startupPositions = [];
-			$this->logger->debug( __METHOD__ . ": key is {$this->key} (unread)\n" );
+			$this->logger->debug( __METHOD__ . ": key is {$this->key} (unread)" );
 		}
 
 		return $this->startupPositions;

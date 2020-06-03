@@ -256,7 +256,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			$animation_post,
 			[ $this->escapeMagickOutput( $params['dstPath'] ) ] ) );
 
-		wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
+		wfDebug( __METHOD__ . ": running ImageMagick: $cmd" );
 		$retval = 0;
 		$err = wfShellExecWithStderr( $cmd, $retval, $env );
 
@@ -345,7 +345,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			}
 
 			if ( $this->isAnimatedImage( $image ) ) {
-				wfDebug( __METHOD__ . ": Writing animated thumbnail\n" );
+				wfDebug( __METHOD__ . ": Writing animated thumbnail" );
 				// This is broken somehow... can't find out how to fix it
 				$result = $im->writeImages( $params['dstPath'], true );
 			} else {
@@ -381,7 +381,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		$cmd = str_replace( '%s', $src, str_replace( '%d', $dst, $cmd ) ); # Filenames
 		$cmd = str_replace( '%h', Shell::escape( $params['physicalHeight'] ),
 			str_replace( '%w', Shell::escape( $params['physicalWidth'] ), $cmd ) ); # Size
-		wfDebug( __METHOD__ . ": Running custom convert command $cmd\n" );
+		wfDebug( __METHOD__ . ": Running custom convert command $cmd" );
 		$retval = 0;
 		$err = wfShellExecWithStderr( $cmd, $retval );
 
@@ -418,7 +418,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( !isset( $typemap[$params['mimeType']] ) ) {
 			$err = 'Image type not supported';
-			wfDebug( "$err\n" );
+			wfDebug( $err );
 			$errMsg = wfMessage( 'thumbnail_image-type' )->text();
 
 			return $this->getMediaTransformError( $params, $errMsg );
@@ -427,7 +427,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( !function_exists( $loader ) ) {
 			$err = "Incomplete GD library configuration: missing function $loader";
-			wfDebug( "$err\n" );
+			wfDebug( $err );
 			$errMsg = wfMessage( 'thumbnail_gd-library', $loader )->text();
 
 			return $this->getMediaTransformError( $params, $errMsg );
@@ -435,7 +435,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( !file_exists( $params['srcPath'] ) ) {
 			$err = "File seems to be missing: {$params['srcPath']}";
-			wfDebug( "$err\n" );
+			wfDebug( $err );
 			$errMsg = wfMessage( 'thumbnail_image-missing', $params['srcPath'] )->text();
 
 			return $this->getMediaTransformError( $params, $errMsg );
@@ -443,7 +443,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		if ( filesize( $params['srcPath'] ) === 0 ) {
 			$err = "Image file size seems to be zero.";
-			wfDebug( "$err\n" );
+			wfDebug( $err );
 			$errMsg = wfMessage( 'thumbnail_image-size-zero', $params['srcPath'] )->text();
 
 			return $this->getMediaTransformError( $params, $errMsg );
@@ -575,7 +575,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					Shell::escape( $this->escapeMagickInput( $params['srcPath'], $scene ) ) .
 					" -rotate " . Shell::escape( "-$rotation" ) . " " .
 					Shell::escape( $this->escapeMagickOutput( $params['dstPath'] ) );
-				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
+				wfDebug( __METHOD__ . ": running ImageMagick: $cmd" );
 				$retval = 0;
 				$err = wfShellExecWithStderr( $cmd, $retval );
 				if ( $retval !== 0 ) {

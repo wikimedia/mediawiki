@@ -469,7 +469,7 @@ TEXT
 			}
 			$chunk = fread( $input, $this->bufferSize );
 			if ( !xml_parse( $parser, $chunk, feof( $input ) ) ) {
-				wfDebug( "TextDumpPass::readDump encountered XML parsing error\n" );
+				wfDebug( "TextDumpPass::readDump encountered XML parsing error" );
 
 				$byte = xml_get_current_byte_index( $parser );
 				$msg = wfMessage( 'xml-error-string',

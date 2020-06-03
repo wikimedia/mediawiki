@@ -214,7 +214,7 @@ abstract class Action implements MessageLocalizer {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
 		}
-		wfDebug( __METHOD__ . ": no context known, falling back to Article's context.\n" );
+		wfDebug( __METHOD__ . ": no context known, falling back to Article's context." );
 		return $this->getArticle()->getContext();
 	}
 

@@ -95,7 +95,7 @@ class TiffHandler extends ExifBitmapHandler {
 			} catch ( Exception $e ) {
 				// BitmapMetadataHandler throws an exception in certain exceptional
 				// cases like if file does not exist.
-				wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+				wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
 				return ExifBitmapHandler::BROKEN_FILE;
 			}

@@ -119,7 +119,7 @@ class LinkBatch {
 		if ( is_object( $linkTarget ) ) {
 			$this->add( $linkTarget->getNamespace(), $linkTarget->getDBkey() );
 		} else {
-			wfDebug( "Warning: LinkBatch::addObj got invalid LinkTarget object\n" );
+			wfDebug( "Warning: LinkBatch::addObj got invalid LinkTarget object" );
 		}
 	}
 
