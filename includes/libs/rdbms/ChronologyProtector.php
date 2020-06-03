@@ -35,6 +35,8 @@ use Wikimedia\WaitConditionLoop;
  * This helps to ensure a consistent ordering of events as seen by an client
  *
  * Kind of like Hawking's [[Chronology Protection Agency]].
+ *
+ * @internal
  */
 class ChronologyProtector implements LoggerAwareInterface {
 	/** @var BagOStuff */
@@ -269,21 +271,23 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param string $dbName DB master name (e.g. "db1052")
+	 * @param ILoadBalancer $lb The load balancer. Prior to 1.35, the first parameter was the
+	 *   master name.
 	 * @return float|bool UNIX timestamp when client last touched the DB; false if not on record
-	 * @since 1.28
+	 * @since 1.35
 	 */
-	public function getTouched( $dbName ) {
-		return $this->store->get( $this->getTouchedKey( $this->store, $dbName ) );
+	public function getTouched( ILoadBalancer $lb ) {
+		$masterName = $lb->getServerName( $lb->getWriterIndex() );
+		return $this->store->get( $this->getTouchedKey( $this->store, $masterName ) );
 	}
 
 	/**
 	 * @param BagOStuff $store
-	 * @param string $dbName
+	 * @param string $masterName
 	 * @return string
 	 */
-	private function getTouchedKey( BagOStuff $store, $dbName ) {
-		return $store->makeGlobalKey( __CLASS__, 'mtime', $this->clientId, $dbName );
+	private function getTouchedKey( BagOStuff $store, $masterName ) {
+		return $store->makeGlobalKey( __CLASS__, 'mtime', $this->clientId, $masterName );
 	}
 
 	/**
