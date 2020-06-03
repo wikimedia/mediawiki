@@ -685,7 +685,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgField', 'revision', 'rev_content_format' ],
 			[ 'addPgField', 'revision', 'rev_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
 			[ 'addPgField', 'revision', 'rev_actor', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgIndex', 'revision', 'rev_actor_timestamp', '(rev_actor,rev_timestamp)' ],
+			[ 'addPgIndex', 'revision', 'rev_actor_timestamp', '(rev_actor,rev_timestamp,rev_id)' ],
 			[ 'addPgIndex', 'revision', 'rev_page_actor_timestamp', '(rev_page,rev_actor,rev_timestamp)' ],
 			[ 'dropPgField', 'archive', 'ar_text_id' ],
 			[ 'dropPgField', 'archive', 'ar_content_model' ],
