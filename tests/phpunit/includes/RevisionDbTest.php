@@ -547,6 +547,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromId() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::newFromId' );
 
 		$orig = $this->testPage->getRevision();
 		$rev = Revision::newFromId( $orig->getId() );
@@ -608,6 +609,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getPage
 	 */
 	public function testGetPage() {
+		$this->hideDeprecated( 'Revision::newFromId' );
 		$page = $this->testPage;
 
 		$orig = $this->makeRevisionWithProps( [ 'page' => $page->getId() ] );
@@ -622,6 +624,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testIsCurrent() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'Revision::isCurrent' );
+		$this->hideDeprecated( 'Revision::newFromId' );
 
 		$rev1 = $this->testPage->getRevision();
 
