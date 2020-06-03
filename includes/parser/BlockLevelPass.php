@@ -553,7 +553,7 @@ class BlockLevelPass {
 						} else {
 							# ignore the excess close tag, but keep looking for
 							# colons. (This matches Parsoid behavior.)
-							wfDebug( __METHOD__ . ": Invalid input; too many close tags\n" );
+							wfDebug( __METHOD__ . ": Invalid input; too many close tags" );
 						}
 						$state = self::COLON_STATE_TEXT;
 					}
@@ -593,7 +593,7 @@ class BlockLevelPass {
 		if ( $ltLevel > 0 || $lcLevel > 0 ) {
 			wfDebug(
 				__METHOD__ . ": Invalid input; not enough close tags " .
-				"(level $ltLevel/$lcLevel, state $state)\n"
+				"(level $ltLevel/$lcLevel, state $state)"
 			);
 			return false;
 		}

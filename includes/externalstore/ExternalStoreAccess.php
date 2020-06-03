@@ -105,7 +105,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 			$index = mt_rand( 0, count( $tryStores ) - 1 );
 			$storeUrl = $tryStores[$index];
 
-			$this->logger->debug( __METHOD__ . ": trying $storeUrl\n" );
+			$this->logger->debug( __METHOD__ . ": trying $storeUrl" );
 
 			$store = $this->storeFactory->getStoreForUrl( $storeUrl, $params );
 			if ( $store === false ) {

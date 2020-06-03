@@ -318,13 +318,13 @@ class MovePage {
 			$file = $this->repoGroup->getLocalRepo()->newFile( $this->newTitle );
 			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
-				wfDebug( __METHOD__ . ": file exists\n" );
+				wfDebug( __METHOD__ . ": file exists" );
 				return false;
 			}
 		}
 		# Is it a redirect with no history?
 		if ( !$this->newTitle->isSingleRevRedirect() ) {
-			wfDebug( __METHOD__ . ": not a one-rev redirect\n" );
+			wfDebug( __METHOD__ . ": not a one-rev redirect" );
 			return false;
 		}
 		# Get the article text
@@ -344,7 +344,7 @@ class MovePage {
 		if ( $redirTitle ) {
 			if ( $redirTitle->getPrefixedDBkey() !== $this->oldTitle->getPrefixedDBkey() &&
 				$redirTitle->getPrefixedDBkey() !== $this->newTitle->getPrefixedDBkey() ) {
-				wfDebug( __METHOD__ . ": redirect points to other page\n" );
+				wfDebug( __METHOD__ . ": redirect points to other page" );
 				return false;
 			} else {
 				return true;
@@ -352,7 +352,7 @@ class MovePage {
 		} else {
 			# Fail safe (not a redirect after all. strange.)
 			wfDebug( __METHOD__ . ": failsafe: database says " . $this->newTitle->getPrefixedDBkey() .
-				" is a redirect, but it doesn't contain a valid redirect.\n" );
+				" is a redirect, but it doesn't contain a valid redirect." );
 			return false;
 		}
 	}

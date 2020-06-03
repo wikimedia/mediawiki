@@ -242,10 +242,10 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
 
 		if ( $this->parserOutput === false ) {
-			wfDebug( __METHOD__ . ": parser cache miss\n" );
+			wfDebug( __METHOD__ . ": parser cache miss" );
 			return false;
 		} else {
-			wfDebug( __METHOD__ . ": parser cache hit\n" );
+			wfDebug( __METHOD__ . ": parser cache hit" );
 			return true;
 		}
 	}
@@ -258,10 +258,10 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		if ( $this->parserOutput === false ) {
 			wfDebugLog( 'dirty', 'dirty missing' );
-			wfDebug( __METHOD__ . ": no dirty cache\n" );
+			wfDebug( __METHOD__ . ": no dirty cache" );
 			return false;
 		} else {
-			wfDebug( __METHOD__ . ": sending dirty output\n" );
+			wfDebug( __METHOD__ . ": sending dirty output" );
 			wfDebugLog( 'dirty', "dirty output {$this->cacheKey}" );
 			$this->isDirty = true;
 			return true;

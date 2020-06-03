@@ -111,7 +111,7 @@ class BaseDump {
 	}
 
 	protected function debug( $str ) {
-		wfDebug( $str . "\n" );
+		wfDebug( $str );
 		// global $dumper;
 		// $dumper->progress( $str );
 	}

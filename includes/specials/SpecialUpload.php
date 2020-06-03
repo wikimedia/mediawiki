@@ -215,7 +215,7 @@ class SpecialUpload extends SpecialPage {
 		} else {
 			# Backwards compatibility hook
 			if ( !$this->getHookRunner()->onUploadForm_initial( $this ) ) {
-				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form\n" );
+				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
 
 				return;
 			}
@@ -503,7 +503,7 @@ class SpecialUpload extends SpecialPage {
 			return;
 		}
 		if ( !$this->getHookRunner()->onUploadForm_BeforeProcessing( $this ) ) {
-			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
+			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file." );
 			// This code path is deprecated. If you want to break upload processing
 			// do so by hooking into the appropriate hooks in UploadBase::verifyUpload
 			// and UploadBase::verifyFile.

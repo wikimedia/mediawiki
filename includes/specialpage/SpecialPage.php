@@ -691,7 +691,7 @@ class SpecialPage implements MessageLocalizer {
 			return $this->mContext;
 		} else {
 			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Return RequestContext::getMain(); for sanity\n" );
+				"Return RequestContext::getMain(); for sanity" );
 
 			return RequestContext::getMain();
 		}

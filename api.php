@@ -112,7 +112,7 @@ if ( $wgAPIRequestLog ) {
 		$items[] = "failed in ApiBeforeMain";
 	}
 	LegacyLogger::emit( implode( ',', $items ) . "\n", $wgAPIRequestLog );
-	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
+	wfDebug( "Logged API request to $wgAPIRequestLog" );
 }
 
 $mediawiki = new MediaWiki();

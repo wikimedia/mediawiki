@@ -219,7 +219,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @return bool|string The interwiki entry or false if not found
 	 */
 	private function getInterwikiCacheEntry( $prefix ) {
-		wfDebug( __METHOD__ . "( $prefix )\n" );
+		wfDebug( __METHOD__ . "( $prefix )" );
 
 		$wikiId = WikiMap::getCurrentWikiId();
 
@@ -344,7 +344,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 * @return array List of prefixes, where each row is an associative array
 	 */
 	private function getAllPrefixesCached( $local ) {
-		wfDebug( __METHOD__ . "()\n" );
+		wfDebug( __METHOD__ . "()" );
 
 		$wikiId = WikiMap::getCurrentWikiId();
 

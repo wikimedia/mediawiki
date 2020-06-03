@@ -113,7 +113,7 @@ class ImportStreamSource implements ImportSource {
 	 */
 	public static function newFromURL( $url, $method = 'GET' ) {
 		global $wgHTTPImportTimeout;
-		wfDebug( __METHOD__ . ": opening $url\n" );
+		wfDebug( __METHOD__ . ": opening $url" );
 		# Use the standard HTTP fetch function; it times out
 		# quicker and sorts out user-agent problems which might
 		# otherwise prevent importing from large sites, such

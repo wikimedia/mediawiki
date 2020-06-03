@@ -83,11 +83,11 @@ class MediaHandlerFactory {
 			/** @var MediaHandler $handler */
 			$handler = new $class;
 			if ( !$handler->isEnabled() ) {
-				wfDebug( __METHOD__ . ": $class is not enabled\n" );
+				wfDebug( __METHOD__ . ": $class is not enabled" );
 				$handler = false;
 			}
 		} else {
-			wfDebug( __METHOD__ . ": no handler found for $type.\n" );
+			wfDebug( __METHOD__ . ": no handler found for $type." );
 			$handler = false;
 		}
 

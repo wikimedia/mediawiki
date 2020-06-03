@@ -164,7 +164,7 @@ class StubObject {
 					. "\${$this->global}->$name from $caller\n" );
 			}
 			wfDebug( "Unstubbing \${$this->global} on call of "
-				. "\${$this->global}::$name from $caller\n" );
+				. "\${$this->global}::$name from $caller" );
 			$GLOBALS[$this->global] = $this->_newObject();
 			--$recursionLevel;
 			return $GLOBALS[$this->global];

@@ -221,11 +221,11 @@ class DiffHistoryBlob implements HistoryBlob {
 		# Check the checksum if hash extension is available
 		$ofp = $this->xdiffAdler32( $base );
 		if ( $ofp !== false && $ofp !== substr( $diff, 0, 4 ) ) {
-			wfDebug( __METHOD__ . ": incorrect base checksum\n" );
+			wfDebug( __METHOD__ . ": incorrect base checksum" );
 			return false;
 		}
 		if ( $header['csize'] != strlen( $base ) ) {
-			wfDebug( __METHOD__ . ": incorrect base length\n" );
+			wfDebug( __METHOD__ . ": incorrect base length" );
 			return false;
 		}
 
@@ -254,7 +254,7 @@ class DiffHistoryBlob implements HistoryBlob {
 					$out .= substr( $base, $x['off'], $x['csize'] );
 					break;
 				default:
-					wfDebug( __METHOD__ . ": invalid op\n" );
+					wfDebug( __METHOD__ . ": invalid op" );
 					return false;
 			}
 		}

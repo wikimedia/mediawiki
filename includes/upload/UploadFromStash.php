@@ -57,9 +57,9 @@ class UploadFromStash extends UploadBase {
 			$this->stash = $stash;
 		} else {
 			if ( $user ) {
-				wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() . "\n" );
+				wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() );
 			} else {
-				wfDebug( __METHOD__ . " creating new UploadStash instance with no user\n" );
+				wfDebug( __METHOD__ . " creating new UploadStash instance with no user" );
 			}
 
 			$this->stash = new UploadStash( $this->repo, $user );

@@ -466,7 +466,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public static function getMainAndWarn( $func = __METHOD__ ) {
 		wfDebug( $func . ' called without context. ' .
-			"Using RequestContext::getMain() for sanity\n" );
+			"Using RequestContext::getMain() for sanity" );
 
 		return self::getMain();
 	}

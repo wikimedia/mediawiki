@@ -110,14 +110,14 @@ class LocalFileMoveBatch {
 			$bits = explode( '!', $oldName, 2 );
 
 			if ( count( $bits ) != 2 ) {
-				wfDebug( "Old file name missing !: '$oldName' \n" );
+				wfDebug( "Old file name missing !: '$oldName'" );
 				continue;
 			}
 
 			list( $timestamp, $filename ) = $bits;
 
 			if ( $this->oldName != $filename ) {
-				wfDebug( "Old file name doesn't match: '$oldName' \n" );
+				wfDebug( "Old file name doesn't match: '$oldName'" );
 				continue;
 			}
 

@@ -912,7 +912,7 @@ class FileRepo {
 			list( $src, $dstZone, $dstRel ) = $triplet;
 			$srcPath = ( $src instanceof FSFile ) ? $src->getPath() : $src;
 			wfDebug( __METHOD__
-				. "( \$src='$srcPath', \$dstZone='$dstZone', \$dstRel='$dstRel' )\n"
+				. "( \$src='$srcPath', \$dstZone='$dstZone', \$dstRel='$dstRel' )"
 			);
 			// Resolve source path
 			if ( $src instanceof FSFile ) {
@@ -1150,7 +1150,7 @@ class FileRepo {
 
 		$temp = $this->getVirtualUrl( 'temp' );
 		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
-			wfDebug( __METHOD__ . ": Invalid temp virtual URL\n" );
+			wfDebug( __METHOD__ . ": Invalid temp virtual URL" );
 
 			return false;
 		}

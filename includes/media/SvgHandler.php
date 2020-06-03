@@ -47,7 +47,7 @@ class SvgHandler extends ImageHandler {
 	public function isEnabled() {
 		global $wgSVGConverters, $wgSVGConverter;
 		if ( !isset( $wgSVGConverters[$wgSVGConverter] ) ) {
-			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering.\n" );
+			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering." );
 
 			return false;
 		} else {
@@ -351,7 +351,7 @@ class SvgHandler extends ImageHandler {
 					$env['LANG'] = $lang;
 				}
 
-				wfDebug( __METHOD__ . ": $cmd\n" );
+				wfDebug( __METHOD__ . ": $cmd" );
 				$err = wfShellExecWithStderr( $cmd, $retval, $env );
 			}
 		}
@@ -449,7 +449,7 @@ class SvgHandler extends ImageHandler {
 				'message' => $e->getMessage(),
 				'code' => $e->getCode()
 			];
-			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 		}
 
 		return serialize( $metadata );

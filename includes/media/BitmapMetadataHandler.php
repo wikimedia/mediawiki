@@ -68,7 +68,7 @@ class BitmapMetadataHandler {
 			// Error reading the iptc hash information.
 			// This probably means the App13 segment is something other than what we expect.
 			// However, still try to read it, and treat it as if the hash didn't exist.
-			wfDebug( "Error parsing iptc data of file: " . $e->getMessage() . "\n" );
+			wfDebug( "Error parsing iptc data of file: " . $e->getMessage() );
 			$this->iptcType = 'iptc-no-hash';
 		}
 

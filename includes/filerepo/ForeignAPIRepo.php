@@ -274,7 +274,7 @@ class ForeignAPIRepo extends FileRepo {
 		$info = $this->getImageInfo( $data );
 
 		if ( $data && $info && isset( $info['thumburl'] ) ) {
-			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
+			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] );
 			$result = $info;
 
 			return $info['thumburl'];
@@ -307,7 +307,7 @@ class ForeignAPIRepo extends FileRepo {
 		$info = $this->getImageInfo( $data );
 
 		if ( $data && $info && isset( $info['thumberror'] ) ) {
-			wfDebug( __METHOD__ . " got remote thumb error " . $info['thumberror'] . "\n" );
+			wfDebug( __METHOD__ . " got remote thumb error " . $info['thumberror'] );
 
 			return new MediaTransformError(
 				'thumbnail_error_remote',
@@ -353,7 +353,7 @@ class ForeignAPIRepo extends FileRepo {
 			$knownThumbUrls = [];
 		} elseif ( isset( $knownThumbUrls[$sizekey] ) ) {
 			wfDebug( __METHOD__ . ': Got thumburl from local cache: ' .
-				"{$knownThumbUrls[$sizekey]} \n" );
+				"{$knownThumbUrls[$sizekey]}" );
 
 			return $knownThumbUrls[$sizekey];
 		}
@@ -362,7 +362,7 @@ class ForeignAPIRepo extends FileRepo {
 		$foreignUrl = $this->getThumbUrl( $name, $width, $height, $metadata, $params );
 
 		if ( !$foreignUrl ) {
-			wfDebug( __METHOD__ . " Could not find thumburl\n" );
+			wfDebug( __METHOD__ . " Could not find thumburl" );
 
 			return false;
 		}
@@ -370,7 +370,7 @@ class ForeignAPIRepo extends FileRepo {
 		// We need the same filename as the remote one :)
 		$fileName = rawurldecode( pathinfo( $foreignUrl, PATHINFO_BASENAME ) );
 		if ( !$this->validateFilename( $fileName ) ) {
-			wfDebug( __METHOD__ . " The deduced filename $fileName is not safe\n" );
+			wfDebug( __METHOD__ . " The deduced filename $fileName is not safe" );
 
 			return false;
 		}
@@ -382,7 +382,7 @@ class ForeignAPIRepo extends FileRepo {
 		if ( $backend->fileExists( [ 'src' => $localFilename ] )
 			&& isset( $metadata['timestamp'] )
 		) {
-			wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
+			wfDebug( __METHOD__ . " Thumbnail was already downloaded before" );
 			$modified = $backend->getFileTimestamp( [ 'src' => $localFilename ] );
 			$remoteModified = strtotime( $metadata['timestamp'] );
 			$current = time();
@@ -399,7 +399,7 @@ class ForeignAPIRepo extends FileRepo {
 
 		$thumb = self::httpGet( $foreignUrl, 'default', [], $mtime );
 		if ( !$thumb ) {
-			wfDebug( __METHOD__ . " Could not download thumb\n" );
+			wfDebug( __METHOD__ . " Could not download thumb" );
 
 			return false;
 		}
@@ -408,7 +408,7 @@ class ForeignAPIRepo extends FileRepo {
 		$backend->prepare( [ 'dir' => dirname( $localFilename ) ] );
 		$params = [ 'dst' => $localFilename, 'content' => $thumb ];
 		if ( !$backend->quickCreate( $params )->isOK() ) {
-			wfDebug( __METHOD__ . " could not write to thumb path '$localFilename'\n" );
+			wfDebug( __METHOD__ . " could not write to thumb path '$localFilename'" );
 
 			return $foreignUrl;
 		}
@@ -418,7 +418,7 @@ class ForeignAPIRepo extends FileRepo {
 			? $this->wanCache->adaptiveTTL( $mtime, $this->apiThumbCacheExpiry )
 			: $this->apiThumbCacheExpiry;
 		$this->wanCache->set( $key, $knownThumbUrls, $ttl );
-		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
+		wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache" );
 
 		return $localUrl;
 	}
@@ -520,7 +520,7 @@ class ForeignAPIRepo extends FileRepo {
 		$options['timeout'] = $timeout;
 		/* Http::get */
 		$url = wfExpandUrl( $url, PROTO_HTTP );
-		wfDebug( "ForeignAPIRepo: HTTP GET: $url\n" );
+		wfDebug( "ForeignAPIRepo: HTTP GET: $url" );
 		$options['method'] = "GET";
 
 		if ( !isset( $options['timeout'] ) ) {

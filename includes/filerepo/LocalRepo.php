@@ -99,7 +99,7 @@ class LocalRepo extends FileRepo {
 	 */
 	public function cleanupDeletedBatch( array $storageKeys ) {
 		if ( $this->hasSha1Storage() ) {
-			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths\n" );
+			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths" );
 			return Status::newGood();
 		}
 
@@ -117,14 +117,14 @@ class LocalRepo extends FileRepo {
 			$deleted = $this->deletedFileHasKey( $key, 'lock' );
 			$hidden = $this->hiddenFileHasKey( $key, 'lock' );
 			if ( !$deleted && !$hidden ) { // not in use now
-				wfDebug( __METHOD__ . ": deleting $key\n" );
+				wfDebug( __METHOD__ . ": deleting $key" );
 				$op = [ 'op' => 'delete', 'src' => $path ];
 				if ( !$backend->doOperation( $op )->isOK() ) {
 					$status->error( 'undelete-cleanup-error', $path );
 					$status->failCount++;
 				}
 			} else {
-				wfDebug( __METHOD__ . ": $key still in use\n" );
+				wfDebug( __METHOD__ . ": $key still in use" );
 				$status->successCount++;
 			}
 			$dbw->endAtomic( __METHOD__ );
@@ -580,7 +580,7 @@ class LocalRepo extends FileRepo {
 		$this->assertWritableRepo(); // fail out if read-only
 
 		if ( $this->hasSha1Storage() ) {
-			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths\n" );
+			wfDebug( __METHOD__ . ": skipped because storage uses sha1 paths" );
 			return Status::newGood();
 		} else {
 			return parent::$function( ...$args );

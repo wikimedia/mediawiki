@@ -1311,7 +1311,6 @@ class WebRequest {
 			throw new MWException( "Unable to determine IP." );
 		}
 
-		wfDebug( "IP: $ip\n" );
 		$this->ip = $ip;
 		return $ip;
 	}

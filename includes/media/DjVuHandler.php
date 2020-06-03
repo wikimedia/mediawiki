@@ -37,7 +37,7 @@ class DjVuHandler extends ImageHandler {
 	public function isEnabled() {
 		global $wgDjvuRenderer, $wgDjvuDump, $wgDjvuToXML;
 		if ( !$wgDjvuRenderer || ( !$wgDjvuDump && !$wgDjvuToXML ) ) {
-			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump\n" );
+			wfDebug( "DjVu is disabled, please set \$wgDjvuRenderer and \$wgDjvuDump" );
 
 			return false;
 		} else {
@@ -215,7 +215,7 @@ class DjVuHandler extends ImageHandler {
 			$cmd .= " | {$wgDjvuPostProcessor}";
 		}
 		$cmd .= ' > ' . Shell::escape( $dstPath ) . ') 2>&1';
-		wfDebug( __METHOD__ . ": $cmd\n" );
+		wfDebug( __METHOD__ . ": $cmd" );
 		$retval = '';
 		$err = wfShellExec( $cmd, $retval );
 
@@ -303,7 +303,7 @@ class DjVuHandler extends ImageHandler {
 
 		$metadata = $this->getUnserializedMetadata( $image );
 		if ( !$this->isMetadataValid( $image, $metadata ) ) {
-			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow\n" );
+			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow" );
 
 			return false;
 		}
@@ -346,7 +346,7 @@ class DjVuHandler extends ImageHandler {
 				$metaTree = $tree;
 			}
 		} catch ( Exception $e ) {
-			wfDebug( "Bogus multipage XML metadata\n" );
+			wfDebug( "Bogus multipage XML metadata" );
 		}
 		Wikimedia\restoreWarnings();
 
@@ -369,7 +369,7 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	public function getMetadata( $image, $path ) {
-		wfDebug( "Getting DjVu metadata for $path\n" );
+		wfDebug( "Getting DjVu metadata for $path" );
 
 		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
 		if ( $xml === false ) {

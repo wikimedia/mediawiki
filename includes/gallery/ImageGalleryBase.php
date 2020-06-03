@@ -287,7 +287,7 @@ abstract class ImageGalleryBase extends ContextSource {
 			$title = $title->getTitle();
 		}
 		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts, $loading ];
-		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
+		wfDebug( 'ImageGallery::add ' . $title->getText() );
 	}
 
 	/**

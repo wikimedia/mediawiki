@@ -103,7 +103,7 @@ class ParserFactory {
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
-		wfDebug( __CLASS__ . ": using default preprocessor\n" );
+		wfDebug( __CLASS__ . ": using default preprocessor" );
 
 		$this->svcOptions = $svcOptions;
 		$this->magicWordFactory = $magicWordFactory;

@@ -39,7 +39,7 @@ class PNGHandler extends BitmapHandler {
 			$metadata = BitmapMetadataHandler::PNG( $filename );
 		} catch ( Exception $e ) {
 			// Broken file?
-			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
 			return self::BROKEN_FILE;
 		}
@@ -122,7 +122,7 @@ class PNGHandler extends BitmapHandler {
 		Wikimedia\restoreWarnings();
 
 		if ( !$data || !is_array( $data ) ) {
-			wfDebug( __METHOD__ . " invalid png metadata\n" );
+			wfDebug( __METHOD__ . " invalid png metadata" );
 
 			return self::METADATA_BAD;
 		}
@@ -130,7 +130,7 @@ class PNGHandler extends BitmapHandler {
 		if ( !isset( $data['metadata']['_MW_PNG_VERSION'] )
 			|| $data['metadata']['_MW_PNG_VERSION'] != PNGMetadataExtractor::VERSION
 		) {
-			wfDebug( __METHOD__ . " old but compatible png metadata\n" );
+			wfDebug( __METHOD__ . " old but compatible png metadata" );
 
 			return self::METADATA_COMPATIBLE;
 		}

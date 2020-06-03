@@ -570,7 +570,7 @@ class LogEventsList extends ContextSource {
 				$permissions = [ 'deletedhistory' ];
 			}
 			$permissionlist = implode( ', ', $permissions );
-			wfDebug( "Checking for $permissionlist due to $field match on $bitfield\n" );
+			wfDebug( "Checking for $permissionlist due to $field match on $bitfield" );
 			return MediaWikiServices::getInstance()
 				->getPermissionManager()
 				->userHasAnyRight( $user, ...$permissions );

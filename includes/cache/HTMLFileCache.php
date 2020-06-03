@@ -143,7 +143,7 @@ class HTMLFileCache extends FileCacheBase {
 	public function loadFromFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		wfDebug( __METHOD__ . "()\n" );
+		wfDebug( __METHOD__ . "()" );
 		$filename = $this->cachePath();
 
 		if ( $mode === self::MODE_OUTAGE ) {
@@ -161,7 +161,7 @@ class HTMLFileCache extends FileCacheBase {
 				readfile( $filename );
 			} else {
 				/* Send uncompressed */
-				wfDebug( __METHOD__ . " uncompressing cache file and sending it\n" );
+				wfDebug( __METHOD__ . " uncompressing cache file and sending it" );
 				readgzfile( $filename );
 			}
 		} else {

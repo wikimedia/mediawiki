@@ -244,7 +244,7 @@ class DatabasePostgres extends Database {
 			PGSQL_DIAG_SOURCE_FUNCTION
 		];
 		foreach ( $diags as $d ) {
-			$this->queryLogger->debug( sprintf( "PgSQL ERROR(%d): %s\n",
+			$this->queryLogger->debug( sprintf( "PgSQL ERROR(%d): %s",
 				$d, pg_result_error_field( $this->lastResultHandle, $d ) ) );
 		}
 	}
@@ -1428,7 +1428,7 @@ SQL;
 			return true;
 		}
 
-		$this->queryLogger->debug( __METHOD__ . " failed to release lock\n" );
+		$this->queryLogger->debug( __METHOD__ . " failed to release lock" );
 
 		return false;
 	}

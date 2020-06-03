@@ -405,7 +405,7 @@ abstract class File implements IDBAccessObject {
 				return $this->createThumb( $this->getWidth() );
 			} else {
 				wfDebug( __METHOD__ . ': supposed to render ' . $this->getName() .
-					' (' . $this->getMimeType() . "), but can't!\n" );
+					' (' . $this->getMimeType() . "), but can't!" );
 
 				return $this->getUrl(); # hm... return NULL?
 			}
@@ -884,7 +884,6 @@ abstract class File implements IDBAccessObject {
 
 		$type = $this->getMediaType();
 		$mime = $this->getMimeType();
-		# wfDebug( "LocalFile::isSafeFile: type= $type, mime= $mime\n" );
 
 		if ( !$type || $type === MEDIATYPE_UNKNOWN ) {
 			return false; # unknown type, not trusted
@@ -1140,7 +1139,7 @@ abstract class File implements IDBAccessObject {
 					break;
 				}
 				// Check if an up-to-date thumbnail already exists...
-				wfDebug( __METHOD__ . ": Doing stat for $thumbPath\n" );
+				wfDebug( __METHOD__ . ": Doing stat for $thumbPath" );
 				if ( !( $flags & self::RENDER_FORCE ) && $this->repo->fileExists( $thumbPath ) ) {
 					$timestamp = $this->repo->getFileTimestamp( $thumbPath );
 					if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
@@ -1152,7 +1151,7 @@ abstract class File implements IDBAccessObject {
 						break;
 					}
 				} elseif ( $flags & self::RENDER_FORCE ) {
-					wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" );
+					wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE" );
 				}
 
 				// If the backend is ready-only, don't keep generating thumbnails
@@ -2148,7 +2147,7 @@ abstract class File implements IDBAccessObject {
 				$key,
 				$this->repo->descriptionCacheExpiry ?: $cache::TTL_UNCACHEABLE,
 				function ( $oldValue, &$ttl, array &$setOpts ) use ( $renderUrl, $fname ) {
-					wfDebug( "Fetching shared description from $renderUrl\n" );
+					wfDebug( "Fetching shared description from $renderUrl" );
 					$res = MediaWikiServices::getInstance()->getHttpRequestFactory()->
 						get( $renderUrl, [], $fname );
 					if ( !$res ) {

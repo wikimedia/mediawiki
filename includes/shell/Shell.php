@@ -139,7 +139,7 @@ class Shell {
 
 		if ( $disabled === null ) {
 			if ( !function_exists( 'proc_open' ) ) {
-				wfDebug( "proc_open() is disabled\n" );
+				wfDebug( "proc_open() is disabled" );
 				$disabled = true;
 			} else {
 				$disabled = false;

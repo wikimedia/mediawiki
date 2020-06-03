@@ -188,10 +188,10 @@ class BacklinkCache {
 		if ( !$startId && !$endId && is_infinite( $max )
 			&& isset( $this->fullResultCache[$table] )
 		) {
-			wfDebug( __METHOD__ . ": got results from cache\n" );
+			wfDebug( __METHOD__ . ": got results from cache" );
 			$res = $this->fullResultCache[$table];
 		} else {
-			wfDebug( __METHOD__ . ": got results from DB\n" );
+			wfDebug( __METHOD__ . ": got results from DB" );
 			$fromField = $this->getPrefix( $table ) . '_from';
 			$conds = $this->getConditions( $table );
 			// Use the from field in the condition rather than the joined page_id,
@@ -233,7 +233,7 @@ class BacklinkCache {
 				// The full results fit within the limit, so cache them
 				$this->fullResultCache[$table] = $res;
 			} else {
-				wfDebug( __METHOD__ . ": results from DB were uncacheable\n" );
+				wfDebug( __METHOD__ . ": results from DB were uncacheable" );
 			}
 		}
 
@@ -394,7 +394,7 @@ class BacklinkCache {
 	public function partition( $table, $batchSize ) {
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
-			wfDebug( __METHOD__ . ": got from partition cache\n" );
+			wfDebug( __METHOD__ . ": got from partition cache" );
 
 			return $this->partitionCache[$table][$batchSize]['batches'];
 		}
@@ -405,7 +405,7 @@ class BacklinkCache {
 		// 2) ... then try full result cache ...
 		if ( isset( $this->fullResultCache[$table] ) ) {
 			$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
-			wfDebug( __METHOD__ . ": got from full result cache\n" );
+			wfDebug( __METHOD__ . ": got from full result cache" );
 
 			return $cacheEntry['batches'];
 		}
@@ -428,7 +428,7 @@ class BacklinkCache {
 		);
 		if ( is_array( $memcValue ) && ( $curTTL > 0 ) ) {
 			$cacheEntry = $memcValue;
-			wfDebug( __METHOD__ . ": got from memcached $memcKey\n" );
+			wfDebug( __METHOD__ . ": got from memcached $memcKey" );
 
 			return $cacheEntry['batches'];
 		}
@@ -467,7 +467,7 @@ class BacklinkCache {
 		);
 		$this->wanCache->set( $memcKey, $cacheEntry['numRows'], self::CACHE_EXPIRY );
 
-		wfDebug( __METHOD__ . ": got from database\n" );
+		wfDebug( __METHOD__ . ": got from database" );
 
 		return $cacheEntry['batches'];
 	}

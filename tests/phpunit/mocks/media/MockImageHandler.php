@@ -76,7 +76,7 @@ class MockImageHandler {
 			$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
 			&& $scalerParams['physicalHeight'] == $scalerParams['srcHeight']
 		) {
-			wfDebug( __METHOD__ . ": returning unscaled image\n" );
+			wfDebug( __METHOD__ . ": returning unscaled image" );
 			// getClientScalingThumbnailImage is protected
 			return $that->doClientImage( $image, $scalerParams );
 		}

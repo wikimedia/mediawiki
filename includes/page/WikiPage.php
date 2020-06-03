@@ -1251,7 +1251,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		wfDebug( __METHOD__ .
-			': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
+			': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) );
 		if ( $parserOptions->getStubThreshold() ) {
 			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 			$stats->updateCount( 'pcache.miss.stub', 1 );
@@ -1678,7 +1678,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$rev = Revision::newFromId( $baseRevId );
 				if ( !$rev ) {
 					wfDebug( __METHOD__ . " asked for bogus section (page: " .
-						$this->getId() . "; section: $sectionId)\n" );
+						$this->getId() . "; section: $sectionId)" );
 					return null;
 				}
 
@@ -1686,7 +1686,7 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			if ( !$oldContent ) {
-				wfDebug( __METHOD__ . ": no page text\n" );
+				wfDebug( __METHOD__ . ": no page text" );
 				return null;
 			}
 
@@ -2716,7 +2716,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$reason, $user = false, $suppress = false, $u2 = null, &$error = '', User $deleter = null,
 		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
-		wfDebug( __METHOD__ . "\n" );
+		wfDebug( __METHOD__ );
 
 		if ( $user instanceof User ) {
 			$deleter = $user;
@@ -2769,7 +2769,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$reason, $suppress, User $deleter, $tags,
 		$logsubtype, $immediate = false, $webRequestId = null
 	) {
-		wfDebug( __METHOD__ . "\n" );
+		wfDebug( __METHOD__ );
 
 		$status = Status::newGood();
 
