@@ -980,9 +980,11 @@ because of Phabricator reports.
   - ::isCurrent - use RevisionRecord::isCurrent instead
   - ::getParentId - use RevisionRecord::getParentId instead
   - ::getVisibility - use RevisionRecord::getVisibility instead
+  - ::isDeleted - use RevisionRecord::isDeleted instead
   - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
       content address, or RevisionRecord::hasSameContent to compare content
   - ::getNext - use RevisionLookup::getNextRevision instead
+  - ::getPrevious - use RevisionLookup::getPreviousRevision instead
 * The Revision method had a few methods that were previously protected and
   have been made private. They were:
   - ::getRevisionStore

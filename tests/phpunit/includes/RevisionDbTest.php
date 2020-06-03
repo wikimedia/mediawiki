@@ -592,6 +592,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->testPage->doEditContent( $content, __METHOD__ );
 		$this->hideDeprecated( Revision::class . '::newFromPageId' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getPrevious' );
 
 		$rev = Revision::newFromPageId(
 			$this->testPage->getId(),
@@ -649,6 +650,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testGetPrevious() {
 		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getPrevious' );
 
 		$oldestRevision = $this->testPage->getOldestRevision();
 		$latestRevision = $this->testPage->getLatest();
@@ -1223,6 +1225,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( Revision::class . '::loadFromPageId' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getPrevious' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision()->getPrevious(),
 			Revision::loadFromPageId(
@@ -1270,6 +1273,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Revision::loadFromTitle' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getPrevious' );
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$this->assertRevEquals(
 			$this->testPage->getRevision()->getPrevious(),
@@ -1465,6 +1469,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsDeleted_nothingDeleted() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::isDeleted' );
 		$rev = $this->testPage->getRevision();
 
 		$this->assertSame( false, $rev->isDeleted( Revision::DELETED_TEXT ) );

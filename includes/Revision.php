@@ -725,9 +725,12 @@ class Revision implements IDBAccessObject {
 	/**
 	 * @param int $field One of DELETED_* bitfield constants
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @return bool
 	 */
 	public function isDeleted( $field ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mRecord->isDeleted( $field );
 	}
 
@@ -865,9 +868,12 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Get previous revision for this title
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @return Revision|null
 	 */
 	public function getPrevious() {
+		wfDeprecated( __METHOD__, '1.31' );
 		$rec = self::getRevisionLookup()->getPreviousRevision( $this->mRecord );
 		return $rec ? new Revision( $rec, self::READ_NORMAL, $this->getTitle() ) : null;
 	}
