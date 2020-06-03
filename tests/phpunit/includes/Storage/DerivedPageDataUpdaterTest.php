@@ -153,7 +153,10 @@ class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
 		$options2 = $updater->getCanonicalParserOptions();
 
-		$currentRev = call_user_func( $options2->getCurrentRevisionCallback(), $page->getTitle() );
+		$currentRev = call_user_func(
+			$options2->getCurrentRevisionRecordCallback(),
+			$page->getTitle()
+		);
 		$this->assertSame( $rev->getId(), $currentRev->getId() );
 	}
 
