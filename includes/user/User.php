@@ -3341,69 +3341,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
 	public function clearNotification( &$title, $oldid = 0 ) {
-		global $wgUseEnotif, $wgShowUpdatedMarker;
-
-		// Do nothing if the database is locked to writes
-		if ( wfReadOnly() ) {
-			return;
-		}
-
-		// Do nothing if not allowed to edit the watchlist
-		if ( !$this->isAllowed( 'editmywatchlist' ) ) {
-			return;
-		}
-
-		// If we're working on user's talk page, we should update the talk page message indicator
-		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
-			if ( !$this->getHookRunner()->onUserClearNewTalkNotification( $this, $oldid ) ) {
-				return;
-			}
-
-			// Try to update the DB post-send and only if needed...
-			DeferredUpdates::addCallableUpdate( function () use ( $oldid ) {
-				$talkPageNotificationManager = MediaWikiServices::getInstance()
-					->getTalkPageNotificationManager();
-				if ( !$talkPageNotificationManager->userHasNewMessages( $this ) ) {
-					return; // no notifications to clear
-				}
-
-				// Delete the last notifications (they stack up)
-				$talkPageNotificationManager->removeUserHasNewMessages( $this );
-
-				// If there is a new, unseen, revision, use its timestamp
-				if ( $oldid ) {
-					$rl = MediaWikiServices::getInstance()->getRevisionLookup();
-					$oldRev = $rl->getRevisionById( $oldid, Title::READ_LATEST );
-					if ( $oldRev ) {
-						$newRev = $rl->getNextRevision( $oldRev );
-						if ( $newRev ) {
-							$talkPageNotificationManager->setUserHasNewMessages( $this, $newRev );
-						}
-					}
-				}
-			} );
-		}
-
-		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
-			return;
-		}
-
-		if ( $this->isAnon() ) {
-			// Nothing else to do...
-			return;
-		}
-
-		// Only update the timestamp if the page is being watched.
-		// The query to find out if it is watched is cached both in memcached and per-invocation,
-		// and when it does have to be executed, it can be on a replica DB
-		// If this is the user's newtalk page, we always update the timestamp
-		$force = '';
-		if ( $title->getNamespace() == NS_USER_TALK && $title->getText() == $this->getName() ) {
-			$force = 'force';
-		}
-
-		MediaWikiServices::getInstance()->getWatchedItemStore()
-			->resetNotificationTimestamp( $this, $title, $force, $oldid );
+		MediaWikiServices::getInstance()
+			->getWatchlistNotificationManager()
+			->clearTitleUserNotifications( $this, $title, $oldid );
 	}
 
 	/**
@@ -3413,29 +3353,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 */
 	public function clearAllNotifications() {
-		global $wgUseEnotif, $wgShowUpdatedMarker;
-		// Do nothing if not allowed to edit the watchlist
-		if ( wfReadOnly() || !$this->isAllowed( 'editmywatchlist' ) ) {
-			return;
-		}
-
-		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
-			MediaWikiServices::getInstance()
-				->getTalkPageNotificationManager()
-				->removeUserHasNewMessages( $this );
-			return;
-		}
-
-		$id = $this->getId();
-		if ( !$id ) {
-			return;
-		}
-
-		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$watchedItemStore->resetAllNotificationTimestampsForUser( $this );
-
-		// We also need to clear here the "you have new message" notification for the own
-		// user_talk page; it's cleared one page view later in WikiPage::doViewUpdates().
+		MediaWikiServices::getInstance()
+			->getWatchlistNotificationManager()
+			->clearAllUserNotifications( $this );
 	}
 
 	/**
