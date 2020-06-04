@@ -955,21 +955,27 @@ class Revision implements IDBAccessObject {
 	 * data is compressed, and 'utf-8' if we're saving in UTF-8
 	 * mode.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param mixed &$text Reference to a text
 	 * @return string
 	 */
 	public static function compressRevisionText( &$text ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		return self::getBlobStore()->compressData( $text );
 	}
 
 	/**
 	 * Re-converts revision text according to it's flags.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param mixed $text Reference to a text
 	 * @param array $flags Compression flags
 	 * @return string|bool Decompressed text, or false on failure
 	 */
 	public static function decompressRevisionText( $text, $flags ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( $text === false ) {
 			// Text failed to be fetched; nothing to do
 			return false;
