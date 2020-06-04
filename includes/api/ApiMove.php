@@ -28,6 +28,15 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiMove extends ApiBase {
 
+	use ApiWatchlistTrait;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+	}
+
 	public function execute() {
 		$this->useTransactionalTimeLimit();
 
@@ -157,10 +166,11 @@ class ApiMove extends ApiBase {
 		if ( isset( $params['watchlist'] ) ) {
 			$watch = $params['watchlist'];
 		}
+		$watchlistExpiry = $this->getExpiryFromParams( $params );
 
 		// Watch pages
-		$this->setWatch( $watch, $fromTitle, 'watchmoves' );
-		$this->setWatch( $watch, $toTitle, 'watchmoves' );
+		$this->setWatch( $watch, $fromTitle, 'watchmoves', $watchlistExpiry );
+		$this->setWatch( $watch, $toTitle, 'watchmoves', $watchlistExpiry );
 
 		$result->addValue( null, $this->getModuleName(), $r );
 	}
@@ -238,7 +248,7 @@ class ApiMove extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$params = [
 			'from' => null,
 			'fromid' => [
 				ApiBase::PARAM_TYPE => 'integer'
@@ -251,15 +261,13 @@ class ApiMove extends ApiBase {
 			'movetalk' => false,
 			'movesubpages' => false,
 			'noredirect' => false,
-			'watchlist' => [
-				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => [
-					'watch',
-					'unwatch',
-					'preferences',
-					'nochange'
-				],
-			],
+		];
+
+		// Params appear in the docs in the order they are defined,
+		// which is why this is here and not at the bottom.
+		$params += $this->getWatchlistParams();
+
+		return $params + [
 			'ignorewarnings' => false,
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',

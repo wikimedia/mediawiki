@@ -12,6 +12,20 @@ use MediaWiki\Revision\SlotRecord;
  * @covers ApiMove
  */
 class ApiMoveTest extends ApiTestCase {
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->tablesUsed = array_merge(
+			$this->tablesUsed,
+			[ 'watchlist', 'watchlist_expiry' ]
+		);
+
+		$this->setMwGlobals( [
+			'wgWatchlistExpiry' => true,
+		] );
+	}
+
 	/**
 	 * @param string $from Prefixed name of source
 	 * @param string $to Prefixed name of destination
@@ -98,6 +112,24 @@ class ApiMoveTest extends ApiTestCase {
 
 		$this->assertMoved( $name, "$name 2", $id );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
+	}
+
+	public function testMoveAndWatch(): void {
+		$name = ucfirst( __FUNCTION__ );
+		$this->createPage( $name );
+
+		$this->doApiRequestWithToken( [
+			'action' => 'move',
+			'from' => $name,
+			'to' => "$name 2",
+			'watchlist' => 'watch',
+			'watchlistexpiry' => '99990123000000',
+		] );
+
+		$title = Title::newFromText( $name );
+		$title2 = Title::newFromText( "$name 2" );
+		$this->assertTrue( $this->getTestSysop()->getUser()->isTempWatched( $title ) );
+		$this->assertTrue( $this->getTestSysop()->getUser()->isTempWatched( $title2 ) );
 	}
 
 	public function testMoveNonexistent() {

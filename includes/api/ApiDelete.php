@@ -29,6 +29,16 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiDelete extends ApiBase {
+
+	use ApiWatchlistTrait;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+	}
+
 	/**
 	 * Extracts the title and reason from the request parameters and invokes
 	 * the local delete() function with these as arguments. It does not make use of
@@ -91,12 +101,15 @@ class ApiDelete extends ApiBase {
 		} else {
 			$watch = $params['watchlist'];
 		}
-		$this->setWatch( $watch, $titleObj, 'watchdeletion' );
+
+		$watchlistExpiry = $this->getExpiryFromParams( $params );
+		$this->setWatch( $watch, $titleObj, 'watchdeletion', $watchlistExpiry );
 
 		$r = [
 			'title' => $titleObj->getPrefixedText(),
 			'reason' => $reason,
 		];
+
 		if ( $status->hasMessage( 'delete-scheduled' ) ) {
 			$r['scheduled'] = true;
 		}
@@ -200,7 +213,7 @@ class ApiDelete extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$params = [
 			'title' => null,
 			'pageid' => [
 				ApiBase::PARAM_TYPE => 'integer'
@@ -214,15 +227,13 @@ class ApiDelete extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			],
-			'watchlist' => [
-				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => [
-					'watch',
-					'unwatch',
-					'preferences',
-					'nochange'
-				],
-			],
+		];
+
+		// Params appear in the docs in the order they are defined,
+		// which is why this is here and not at the bottom.
+		$params += $this->getWatchlistParams();
+
+		return $params + [
 			'unwatch' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,

@@ -1015,18 +1015,13 @@ class EditPage implements IEditObject {
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 			if ( $this->watchlistExpiryEnabled ) {
-				// Set the watchlistExpiry value: this will either be what's posted by the user,
-				// if we're saving the page; or what's already in the DB, if we're previewing.
-				// The posted value for previewing will be retrieved
-				// separately in $this->getCheckboxesDefinitionForWatchlist().
-				if ( $this->preview ) {
-					$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $this->getTitle() );
-					$this->watchlistExpiry = $watchedItem ? $watchedItem->getExpiry() : null;
-				} else {
-					$expiry = ExpiryDef::normalizeExpiry( $request->getText( 'wpWatchlistExpiry' ) );
-					if ( $expiry !== false ) {
-						$this->watchlistExpiry = $expiry;
-					}
+				// This parsing of the user-posted expiry is done for both preview and saving. This
+				// is necessary because ApiEditPage uses preview when it saves (yuck!). Note that it
+				// only works because the unnormalized value is retrieved again below in
+				// getCheckboxesDefinitionForWatchlist().
+				$expiry = ExpiryDef::normalizeExpiry( $request->getText( 'wpWatchlistExpiry' ) );
+				if ( $expiry !== false ) {
+					$this->watchlistExpiry = $expiry;
 				}
 			}
 
