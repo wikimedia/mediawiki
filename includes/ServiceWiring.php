@@ -1225,6 +1225,8 @@ return [
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
+			$services->getUserEditTracker(),
+			LoggerFactory::getInstance( 'UserGroupManager' ),
 			[ function ( UserIdentity $user ) use ( $services ) {
 				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
 				User::newFromIdentity( $user )->invalidateCache();

@@ -23,6 +23,7 @@ namespace MediaWiki\User;
 use ConfiguredReadOnlyMode;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -41,6 +42,12 @@ class UserGroupManagerFactory {
 	/** @var ILBFactory */
 	private $dbLoadBalancerFactory;
 
+	/** @var UserEditTracker */
+	private $userEditTracker;
+
+	/** @var LoggerInterface */
+	private $logger;
+
 	/** @var callable[] */
 	private $clearCacheCallbacks;
 
@@ -52,6 +59,8 @@ class UserGroupManagerFactory {
 	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
 	 * @param ILBFactory $dbLoadBalancerFactory
 	 * @param HookContainer $hookContainer
+	 * @param UserEditTracker $userEditTracker
+	 * @param LoggerInterface $logger
 	 * @param callable[] $clearCacheCallbacks
 	 */
 	public function __construct(
@@ -59,12 +68,16 @@ class UserGroupManagerFactory {
 		ConfiguredReadOnlyMode $configuredReadOnlyMode,
 		ILBFactory $dbLoadBalancerFactory,
 		HookContainer $hookContainer,
+		UserEditTracker $userEditTracker,
+		LoggerInterface $logger,
 		array $clearCacheCallbacks = []
 	) {
 		$this->options = $options;
 		$this->configuredReadOnlyMode = $configuredReadOnlyMode;
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
 		$this->hookContainer = $hookContainer;
+		$this->userEditTracker = $userEditTracker;
+		$this->logger = $logger;
 		$this->clearCacheCallbacks = $clearCacheCallbacks;
 	}
 
@@ -79,6 +92,8 @@ class UserGroupManagerFactory {
 			$this->configuredReadOnlyMode,
 			$this->dbLoadBalancerFactory,
 			$this->hookContainer,
+			$this->userEditTracker,
+			$this->logger,
 			$this->clearCacheCallbacks,
 			$dbDomain
 		);
