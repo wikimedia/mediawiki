@@ -427,6 +427,9 @@ class ImagePage extends Article {
 
 				$params['width'] = $width;
 				$params['height'] = $height;
+				// Allow the MediaHandler to handle query string parameters on the file page,
+				// e.g. start time for videos (T203994)
+				$params['imagePageRequest'] = $request;
 				$thumbnail = $this->displayImg->transform( $params );
 				Linker::processResponsiveImages( $this->displayImg, $thumbnail, $params );
 
