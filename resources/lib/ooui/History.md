@@ -1,4 +1,22 @@
 # OOUI Release History
+## v0.39.1 / 2020-06-04
+### Styles
+* ToggleButtonWidget: Indicate state when framed is false (Thalia Chan)
+
+### Code
+* MessageWidget: Use child selector in MessageWidget.less (Ed Sanders)
+* MenuSelectWidget: Allow tabbing off immediately if no option is highlighted (Bartosz Dziewoński)
+* MenuSelectWidget: Select current item when tabbing off (Ed Sanders)
+* PopupToolGroup: Announce expanded/collapsed state for screen readers (bkudiess-msft)
+* SearchWidget: Set search results focus owner as the query input (bkudiess-msft)
+* WindowManager: Only rethrow errors (Ed Sanders)
+* Replace more `let`s with `const`s (Ed Sanders)
+* build: Upgrade eslint-config-wikimedia from 0.15.3 to 0.16.0 (James D. Forrester)
+* build: Upgrade mediawiki-codesniffer from v30.0.0 to v31.0.0 (James D. Forrester)
+* demos: Use more practical options for 'ComboBoxInputWidget (filtering on input)' (Bartosz Dziewoński)
+* docs: Document MultilineTextInputWidget resize event (Ed Sanders)
+
+
 ## v0.39.0 / 2020-05-05
 ### Breaking changes
 * [BREAKING CHANGE] LookupElement: Remove `onLookupMenuItemChoose` event (Volker E.)

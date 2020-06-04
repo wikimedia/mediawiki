@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.0
+ * OOUI v0.39.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-05-06T16:18:36Z
+ * Date: 2020-06-04T19:49:41Z
  */
 ( function ( OO ) {
 
@@ -1323,7 +1323,6 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
 	return this.currentWindow;
 };
 
-/* eslint-disable valid-jsdoc */
 /**
  * Open a window.
  *
@@ -1416,22 +1415,26 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 						lifecycle.deferreds.opened.resolve( data );
 						compatOpening.resolve( manager.compatOpened.promise(), data );
 						manager.togglePreventIosScrolling( true );
-					}, function ( err ) {
+					}, function ( dataOrErr ) {
 						lifecycle.deferreds.opened.reject();
 						compatOpening.reject();
 						manager.closeWindow( win );
-						setTimeout( function () {
-							throw err;
-						} );
+						if ( dataOrErr instanceof Error ) {
+							setTimeout( function () {
+								throw dataOrErr;
+							} );
+						}
 					} );
 				}, manager.getReadyDelay() );
-			}, function ( err ) {
+			}, function ( dataOrErr ) {
 				lifecycle.deferreds.opened.reject();
 				compatOpening.reject();
 				manager.closeWindow( win );
-				setTimeout( function () {
-					throw err;
-				} );
+				if ( dataOrErr instanceof Error ) {
+					setTimeout( function () {
+						throw dataOrErr;
+					} );
+				}
 			} );
 		}, manager.getSetupDelay() );
 	} );

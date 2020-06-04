@@ -21,6 +21,7 @@
 	"ooui-dialog-process-dismiss": "Paslēpt",
 	"ooui-dialog-process-retry": "Mēģināt vēlreiz",
 	"ooui-dialog-process-continue": "Turpināt",
+	"ooui-combobox-button-label": "Pārslēgt iespējas",
 	"ooui-selectfile-button-select": "Izvēlies failu",
 	"ooui-selectfile-not-supported": "Failu izvēle nav atbalstīta",
 	"ooui-selectfile-placeholder": "Nav izvēlēts neviens fails",
