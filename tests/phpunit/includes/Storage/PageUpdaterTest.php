@@ -82,8 +82,6 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
 
 		$this->assertFalse( $updater->wasCommitted(), 'wasCommitted' );
-		$this->assertFalse( $updater->getOriginalRevisionId(), 'getOriginalRevisionId' );
-		$this->assertSame( 0, $updater->getUndidRevisionId(), 'getUndidRevisionId' );
 
 		$updater->addTag( 'foo' );
 		$updater->addTags( [ 'bar', 'qux' ] );
@@ -122,6 +120,14 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$this->assertFalse( $updater->isUnchanged(), 'isUnchanged()' );
 		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
 		$this->assertInstanceOf( Revision::class, $updater->getStatus()->value['revision'] );
+
+		// check the EditResult object
+		$this->assertFalse( $updater->getEditResult()->getOriginalRevisionId(),
+			'EditResult::getOriginalRevisionId()' );
+		$this->assertSame( 0, $updater->getEditResult()->getUndidRevId(),
+			'EditResult::getUndidRevId()' );
+		$this->assertTrue( $updater->getEditResult()->isNew(), 'EditResult::isNew()' );
+		$this->assertFalse( $updater->getEditResult()->isRevert(), 'EditResult::isRevert()' );
 
 		$rev = $updater->getNewRevision();
 		$revContent = $rev->getContent( SlotRecord::MAIN );
@@ -184,7 +190,6 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
 
 		$updater->setOriginalRevisionId( 7 );
-		$this->assertSame( 7, $updater->getOriginalRevisionId(), 'getOriginalRevisionId' );
 
 		$this->assertFalse( $updater->hasEditConflict( $parentId ), 'hasEditConflict' );
 		$this->assertTrue( $updater->hasEditConflict( $parentId - 1 ), 'hasEditConflict' );
@@ -209,6 +214,14 @@ class PageUpdaterTest extends MediaWikiTestCase {
 		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
 		$this->assertInstanceOf( Revision::class, $updater->getStatus()->value['revision'] );
 		$this->assertFalse( $updater->isUnchanged(), 'isUnchanged()' );
+
+		// check the EditResult object
+		$this->assertSame( 7, $updater->getEditResult()->getOriginalRevisionId(),
+			'EditResult::getOriginalRevisionId()' );
+		$this->assertSame( 0, $updater->getEditResult()->getUndidRevId(),
+			'EditResult::getUndidRevId()' );
+		$this->assertFalse( $updater->getEditResult()->isNew(), 'EditResult::isNew()' );
+		$this->assertFalse( $updater->getEditResult()->isRevert(), 'EditResult::isRevert()' );
 
 		// TODO: Test null revision (with different user): new revision!
 
