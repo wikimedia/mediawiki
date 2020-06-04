@@ -99,7 +99,7 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 				if ( !in_array( 'external', $arFlags, true ) ) {
 					$data = $blobStore->decompressData( $row->ar_text, $arFlags );
 					if ( $data !== false ) {
-						$flags = Revision::compressRevisionText( $data );
+						$flags = $blobStore->compressData( $data );
 
 						if ( $defaultExternalStore ) {
 							$data = ExternalStore::insertToDefault( $data );

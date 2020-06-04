@@ -564,7 +564,7 @@ class CheckStorage {
 		}
 
 		// Compress the text
-		$flags = Revision::compressRevisionText( $text );
+		$flags = $blobStore->compressData( $text );
 
 		// Update the text row
 		$dbw = wfGetDB( DB_MASTER );

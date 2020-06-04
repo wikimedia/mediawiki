@@ -403,6 +403,9 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::compressRevisionText
 	 */
 	public function testCompressRevisionTextUtf8() {
+		$this->hideDeprecated( 'Revision::compressRevisionText' );
+		$this->hideDeprecated( 'Revision::decompressRevisionText' );
+
 		$row = (object)[ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !" ];
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertTrue( strpos( $row->old_flags, 'utf-8' ) !== false,
@@ -421,6 +424,9 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::compressRevisionText
 	 */
 	public function testCompressRevisionTextUtf8Gzip() {
+		$this->hideDeprecated( 'Revision::compressRevisionText' );
+		$this->hideDeprecated( 'Revision::decompressRevisionText' );
+
 		$this->checkPHPExtension( 'zlib' );
 
 		$blobStore = $this->getBlobStore();
@@ -576,6 +582,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @param mixed $expected
 	 */
 	public function testDecompressRevisionText( $legacyEncoding, $text, $flags, $expected ) {
+		$this->hideDeprecated( 'Revision::decompressRevisionText' );
+
 		$blobStore = $this->getBlobStore();
 		if ( $legacyEncoding ) {
 			$blobStore->setLegacyEncoding( $legacyEncoding );
