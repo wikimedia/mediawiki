@@ -45,12 +45,14 @@ abstract class PoolCounterWork {
 
 	/**
 	 * Actually perform the work, caching it if needed
+	 *
 	 * @return mixed Work result or false
 	 */
 	abstract public function doWork();
 
 	/**
 	 * Retrieve the work from cache
+	 *
 	 * @return mixed Work result or false
 	 */
 	public function getCachedWork() {
@@ -60,9 +62,11 @@ abstract class PoolCounterWork {
 	/**
 	 * A work not so good (eg. expired one) but better than an error
 	 * message.
+	 *
+	 * @param bool $fast True if PoolCounter is requesting a fast stale response (pre-wait)
 	 * @return mixed Work result or false
 	 */
-	public function fallback() {
+	public function fallback( $fast ) {
 		return false;
 	}
 
@@ -70,11 +74,19 @@ abstract class PoolCounterWork {
 	 * Do something with the error, like showing it to the user.
 	 *
 	 * @param Status $status
-	 *
 	 * @return bool
 	 */
 	public function error( $status ) {
 		return false;
+	}
+
+	/**
+	 * Should fast stale mode be used?
+	 *
+	 * @return bool
+	 */
+	protected function isFastStaleEnabled() {
+		return $this->poolCounter->isFastStaleEnabled();
 	}
 
 	/**
@@ -92,8 +104,7 @@ abstract class PoolCounterWork {
 
 	/**
 	 * Get the result of the work (whatever it is), or the result of the error() function.
-	 * This returns the result of the first applicable method that returns a non-false value,
-	 * where the methods are checked in the following order:
+	 * This returns the result of the one of the following methods:
 	 *   - a) doWork()       : Applies if the work is exclusive or no another process
 	 *                         is doing it, and on the condition that either this process
 	 *                         successfully entered the pool or the pool counter is down.
@@ -102,12 +113,35 @@ abstract class PoolCounterWork {
 	 *   - c) fallback()     : Applies for all remaining cases.
 	 * If these all fall through (by returning false), then the result of error() is returned.
 	 *
+	 * In slow stale mode, these three methods are called in the sequence given above, and
+	 * the first non-false response is used.
+	 *
+	 * In fast stale mode, fallback() is called first if the lock acquisition would block.
+	 * If fallback() returns false, the lock is waited on, then the three methods are
+	 * called in the same sequence as for slow stale mode, including potentially calling
+	 * fallback() a second time.
+	 *
 	 * @param bool $skipcache
 	 * @return mixed
 	 */
 	public function execute( $skipcache = false ) {
 		if ( $this->cacheable && !$skipcache ) {
-			$status = $this->poolCounter->acquireForAnyone();
+			if ( $this->isFastStaleEnabled() ) {
+				// In fast stale mode, do not wait if fallback() would succeed.
+				// Try to acquire the lock with timeout=0
+				$status = $this->poolCounter->acquireForAnyone( 0 );
+				if ( $status->isOK() && $status->value === PoolCounter::TIMEOUT ) {
+					// Lock acquisition would block: try fallback
+					$staleResult = $this->fallback( true );
+					if ( $staleResult !== false ) {
+						return $staleResult;
+					}
+					// No fallback available, so wait for the lock
+					$status = $this->poolCounter->acquireForAnyone();
+				} // else behave as if $status were returned in slow mode
+			} else {
+				$status = $this->poolCounter->acquireForAnyone();
+			}
 		} else {
 			$status = $this->poolCounter->acquireForMe();
 		}
@@ -143,7 +177,7 @@ abstract class PoolCounterWork {
 
 			case PoolCounter::QUEUE_FULL:
 			case PoolCounter::TIMEOUT:
-				$result = $this->fallback();
+				$result = $this->fallback( false );
 
 				if ( $result !== false ) {
 					return $result;

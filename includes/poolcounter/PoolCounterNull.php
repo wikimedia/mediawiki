@@ -30,11 +30,11 @@ class PoolCounterNull extends PoolCounter {
 		/* No parameters needed */
 	}
 
-	public function acquireForMe() {
+	public function acquireForMe( $timeout = null ) {
 		return Status::newGood( PoolCounter::LOCKED );
 	}
 
-	public function acquireForAnyone() {
+	public function acquireForAnyone( $timeout = null ) {
 		return Status::newGood( PoolCounter::LOCKED );
 	}
 

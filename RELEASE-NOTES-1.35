@@ -70,6 +70,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   administrators to limit the timeouts used by the HTTP client libraries.
   This only affects callers using HttpRequestFactory and the deprecated
   wrappers in the Http class.
+* Added $wgCdnMaxageStale, which controls the Cache-Control s-maxage header
+  for page views when PoolCounter lock contention indicates that a stale cache
+  entry should be sent.
 * …
 
 ==== Changed configuration ====

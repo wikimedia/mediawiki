@@ -59,6 +59,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/** @var bool */
 	private $isDirty = false;
 
+	/** @var bool */
+	private $isFast = false;
+
 	/** @var Status|bool */
 	private $error = false;
 
@@ -147,6 +150,15 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 */
 	public function getIsDirty() {
 		return $this->isDirty;
+	}
+
+	/**
+	 * Get whether the ParserOutput was retrieved in fast stale mode
+	 *
+	 * @return bool
+	 */
+	public function getIsFastStale() {
+		return $this->isFast;
 	}
 
 	/**
@@ -251,18 +263,44 @@ class PoolWorkArticleView extends PoolCounterWork {
 	}
 
 	/**
+	 * @param bool $fast Fast stale request
 	 * @return bool
 	 */
-	public function fallback() {
+	public function fallback( $fast ) {
 		$this->parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
+
+		$fastMsg = '';
+		if ( $this->parserOutput && $fast ) {
+			/* Check if the stale response is from before the last write to the
+			 * DB by this user. Declining to return a stale response in this
+			 * case ensures that the user will see their own edit after page
+			 * save.
+			 *
+			 * Note that the CP touch time is the timestamp of the shutdown of
+			 * the save request, so there is a bias towards avoiding fast stale
+			 * responses of potentially several seconds.
+			 */
+			$lastWriteTime = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+				->getChronologyProtectorTouched();
+			$cacheTime = MWTimestamp::convert( TS_UNIX, $this->parserOutput->getCacheTime() );
+			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
+				wfDebugLog( 'dirty', "declining to send dirty output since cache time " .
+					$cacheTime . " is before last write time $lastWriteTime" );
+				// Forget this ParserOutput -- we will request it again if
+				// necessary in slow mode. There might be a newer entry
+				// available by that time.
+				$this->parserOutput = false;
+				return false;
+			}
+			$this->isFast = true;
+			$fastMsg = 'fast ';
+		}
 
 		if ( $this->parserOutput === false ) {
 			wfDebugLog( 'dirty', 'dirty missing' );
-			wfDebug( __METHOD__ . ": no dirty cache" );
 			return false;
 		} else {
-			wfDebug( __METHOD__ . ": sending dirty output" );
-			wfDebugLog( 'dirty', "dirty output {$this->cacheKey}" );
+			wfDebugLog( 'dirty', "{$fastMsg}dirty output {$this->cacheKey}" );
 			$this->isDirty = true;
 			return true;
 		}
