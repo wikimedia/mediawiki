@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -176,18 +177,26 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Whether or not the current query needs to use watchlist data: check that the current user can
+	 * use their watchlist and that this special page isn't being transcluded.
+	 *
+	 * @return bool
+	 */
+	private function needsWatchlistFeatures(): bool {
+		return !$this->including()
+			&& $this->getUser()->isLoggedIn()
+			&& MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userHasRight( $this->getUser(), 'viewmywatchlist' );
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	protected function registerFilters() {
 		parent::registerFilters();
 
-		if (
-			!$this->including() &&
-			$this->getUser()->isLoggedIn() &&
-			MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'viewmywatchlist' )
-		) {
+		if ( $this->needsWatchlistFeatures() ) {
 			$this->registerFiltersFromDefinitions( [ $this->watchlistFilterGroupDefinition ] );
 			$watchlistGroup = $this->getFilterGroup( 'watchlist' );
 			$watchlistGroup->getFilter( 'watched' )->setAsSupersetOf(
@@ -266,33 +275,53 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
+	 * Add required values to a query's $tables, $fields, $joinConds, and $conds arrays to join to
+	 * the watchlist and watchlist_expiry tables where appropriate.
+	 *
+	 * @param IDatabase $dbr
+	 * @param string[] &$tables
+	 * @param string[] &$fields
+	 * @param mixed[] &$joinConds
+	 * @param mixed[] &$conds
+	 */
+	protected function addWatchlistJoins( IDatabase $dbr, &$tables, &$fields, &$joinConds, &$conds ) {
+		if ( !$this->needsWatchlistFeatures() ) {
+			return;
+		}
+
+		// Join on watchlist table.
+		$tables[] = 'watchlist';
+		$fields[] = 'wl_user';
+		$fields[] = 'wl_notificationtimestamp';
+		$joinConds['watchlist'] = [ 'LEFT JOIN', [
+			'wl_user' => $this->getUser()->getId(),
+			'wl_title=rc_title',
+			'wl_namespace=rc_namespace'
+		] ];
+
+		// Exclude expired watchlist items.
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+			$tables[] = 'watchlist_expiry';
+			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
+		}
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	protected function doMainQuery( $tables, $fields, $conds, $query_options,
 		$join_conds, FormOptions $opts
 	) {
 		$dbr = $this->getDB();
-		$user = $this->getUser();
 
 		$rcQuery = RecentChange::getQueryInfo();
 		$tables = array_merge( $tables, $rcQuery['tables'] );
 		$fields = array_merge( $rcQuery['fields'], $fields );
 		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
-		// JOIN on watchlist for users
-		if ( $user->isLoggedIn() && MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'viewmywatchlist' )
-		) {
-			$tables[] = 'watchlist';
-			$fields[] = 'wl_user';
-			$fields[] = 'wl_notificationtimestamp';
-			$join_conds['watchlist'] = [ 'LEFT JOIN', [
-				'wl_user' => $user->getId(),
-				'wl_title=rc_title',
-				'wl_namespace=rc_namespace'
-			] ];
-		}
+		// Join with watchlist and watchlist_expiry tables to highlight watched rows.
+		$this->addWatchlistJoins( $dbr, $tables, $fields, $join_conds, $conds );
 
 		// JOIN on page, used for 'last revision' filter highlight
 		$tables[] = 'page';
