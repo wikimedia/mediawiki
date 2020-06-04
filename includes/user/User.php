@@ -3336,6 +3336,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Clear the user's notification timestamp for the given title.
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of the page if it's watched etc.
+	 *
+	 * @deprecated since 1.35
+	 *
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 * @param Title &$title Title of the article to look at
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
@@ -3350,6 +3353,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Resets all of the given user's page-change notification timestamps.
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of any watched page.
+	 *
+	 * @deprecated since 1.35
+	 *
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 */
 	public function clearAllNotifications() {

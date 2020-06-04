@@ -879,7 +879,8 @@ because of Phabricator reports.
 * The following functions all accept an optional user parameter. Not passing a
   user is hard deprecated, and support for calling them without passing a user
   will be removed in 1.36:
-  - Title::getNotificationTimestamp
+  - Title::getNotificationTimestamp (note however that the method is deprecated
+      in its entirely in favor of the new WatchlistNotificationManager service)
   - PatrolLog::record
   - LogEventsList::userCan
   - LogEventsList::userCanBitfield
@@ -1136,6 +1137,9 @@ because of Phabricator reports.
   TalkPageNotificationManager instead.
 * EditPage::matchSpamRegex and ::matchSummarySpamRegex were hard deprecated in
   favor of the new SpamChecker service.
+* Title::getNotificationTimestamp, User::clearNotification, and
+  User::clearAllNotifications were deprecated in favor of the new
+  WatchlistNotificationManager service.
 * SpecialPage::setListed() and SpecialPage::listed() were deprecated. Subclass
   UnlistedSpecialPage to set listed as false, and use SpecialPage::isListed()
   to get the value.
