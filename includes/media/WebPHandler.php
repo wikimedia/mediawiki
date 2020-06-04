@@ -95,23 +95,23 @@ class WebPHandler extends BitmapHandler {
 	 * file is not a valid WebP file.
 	 */
 	public static function extractMetadata( $filename ) {
-		wfDebugLog( 'WebP', __METHOD__ . ": Extracting metadata from $filename\n" );
+		wfDebugLog( 'WebP', __METHOD__ . ": Extracting metadata from $filename" );
 
 		$info = RiffExtractor::findChunksFromFile( $filename, 100 );
 		if ( $info === false ) {
-			wfDebugLog( 'WebP', __METHOD__ . ": Not a valid RIFF file\n" );
+			wfDebugLog( 'WebP', __METHOD__ . ": Not a valid RIFF file" );
 			return false;
 		}
 
 		if ( $info['fourCC'] != 'WEBP' ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': FourCC was not WEBP: ' .
-				bin2hex( $info['fourCC'] ) . " \n" );
+				bin2hex( $info['fourCC'] ) );
 			return false;
 		}
 
 		$metadata = self::extractMetadataFromChunks( $info['chunks'], $filename );
 		if ( !$metadata ) {
-			wfDebugLog( 'WebP', __METHOD__ . ": No VP8 chunks found\n" );
+			wfDebugLog( 'WebP', __METHOD__ . ": No VP8 chunks found" );
 			return false;
 		}
 
@@ -136,7 +136,7 @@ class WebPHandler extends BitmapHandler {
 
 			$chunkHeader = file_get_contents( $filename, false, null,
 				$chunk['start'], self::MINIMUM_CHUNK_HEADER_LENGTH );
-			wfDebugLog( 'WebP', __METHOD__ . ": {$chunk['fourCC']}\n" );
+			wfDebugLog( 'WebP', __METHOD__ . ": {$chunk['fourCC']}" );
 
 			switch ( $chunk['fourCC'] ) {
 				case 'VP8 ':
@@ -168,7 +168,7 @@ class WebPHandler extends BitmapHandler {
 		$syncCode = substr( $header, 11, 3 );
 		if ( $syncCode != "\x9D\x01\x2A" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid sync code: ' .
-				bin2hex( $syncCode ) . "\n" );
+				bin2hex( $syncCode ) );
 			return [];
 		}
 		// Bytes 14-17 are image size
@@ -193,7 +193,7 @@ class WebPHandler extends BitmapHandler {
 		// Byte 8 is 0x2F called the signature
 		if ( $header[8] != "\x2F" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid signature: ' .
-				bin2hex( $header[8] ) . "\n" );
+				bin2hex( $header[8] ) );
 			return [];
 		}
 		// Bytes 9-12 contain the image size
