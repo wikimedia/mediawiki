@@ -50,7 +50,6 @@ class DeprecatedHooks {
 		'ParserBeforeTidy' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserFetchTemplate' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserGetVariableValueVarCache' => [ 'deprecatedVersion' => '1.35' ],
-		'ParserPreSaveTransformComplete' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserSectionCreate' => [ 'deprecatedVersion' => '1.35' ],
 		'RevisionInsertComplete' => [ 'deprecatedVersion' => '1.31' ],
 		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],
