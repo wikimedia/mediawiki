@@ -130,6 +130,16 @@ trait FactoryArgTestTrait {
 		$this->assertFalse( true, "Param $name not received by " . static::getInstanceClass() );
 	}
 
+	/**
+	 * Override to return a list of constructor parameters that are not stored
+	 * in the instance properties directly, so should not be verified with
+	 * assertInstanceReceivedParam.
+	 * @return string[]
+	 */
+	protected function getIgnoredParamNames() {
+		return [ 'hookContainer' ];
+	}
+
 	public function testAllArgumentsWerePassed() {
 		$factoryClass = static::getFactoryClass();
 
@@ -143,7 +153,7 @@ trait FactoryArgTestTrait {
 			$this->createInstanceFromFactory( new $factoryClass( ...array_values( $mocks ) ) );
 
 		foreach ( $mocks as $name => $mock ) {
-			if ( $name === 'hookContainer' ) {
+			if ( in_array( $name, $this->getIgnoredParamNames() ) ) {
 				continue;
 			}
 			$this->assertInstanceReceivedParam( $instance, $name, $mock );

@@ -1337,7 +1337,7 @@ class PermissionManager {
 	 *
 	 * @since 1.34
 	 *
-	 * @param User|null $user
+	 * @param UserIdentity|null $user
 	 */
 	public function invalidateUsersRightsCache( $user = null ) {
 		if ( $user !== null ) {

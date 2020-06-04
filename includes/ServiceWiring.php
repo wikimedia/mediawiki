@@ -101,6 +101,9 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
@@ -1201,6 +1204,25 @@ return [
 		return new UserEditTracker(
 			$services->getActorMigration(),
 			$services->getDBLoadBalancer()
+		);
+	},
+
+	'UserGroupManager' => function ( MediaWikiServices $services ) : UserGroupManager {
+		return $services->getUserGroupManagerFactory()->getUserGroupManager();
+	},
+
+	'UserGroupManagerFactory' => function ( MediaWikiServices $services ) : UserGroupManagerFactory {
+		return new UserGroupManagerFactory(
+			new ServiceOptions(
+				UserGroupManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getConfiguredReadOnlyMode(),
+			$services->getDBLoadBalancerFactory(),
+			$services->getHookContainer(),
+			[ function ( UserIdentity $user ) use ( $services ) {
+				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
+				User::newFromIdentity( $user )->invalidateCache();
+			} ]
 		);
 	},
 
