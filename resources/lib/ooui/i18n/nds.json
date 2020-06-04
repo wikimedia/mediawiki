@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Joachim Mos",
+			"Slomox",
 			"Zylbath"
 		]
 	},
@@ -12,5 +13,6 @@
 	"ooui-dialog-message-reject": "Afbreken",
 	"ooui-dialog-process-error": "Do is wat in'e Büx goan",
 	"ooui-dialog-process-continue": "Wiedermaken",
-	"ooui-selectfile-button-select": "En Datei utwählen"
+	"ooui-selectfile-button-select": "En Datei utwählen",
+	"ooui-field-help": "Hülp"
 }

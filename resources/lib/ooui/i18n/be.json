@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Artificial123",
+			"Artsiom91",
 			"Goshaproject",
 			"Mechanizatar",
 			"Чаховіч Уладзіслаў"
@@ -21,5 +22,6 @@
 	"ooui-dialog-process-continue": "Працягнуць",
 	"ooui-selectfile-button-select": "Выбраць файл",
 	"ooui-selectfile-not-supported": "Выбраны файл не падтрымліваецца",
-	"ooui-selectfile-placeholder": "Файл не выбраны"
+	"ooui-selectfile-placeholder": "Файл не выбраны",
+	"ooui-field-help": "Даведка"
 }
