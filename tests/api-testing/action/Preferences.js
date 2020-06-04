@@ -1,3 +1,5 @@
+'use strict';
+
 const { action, assert } = require( 'api-testing' );
 
 describe( "Changing a user's preferences", function () {

@@ -50,7 +50,7 @@
 		// <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set>
 		/**
 		 * @private
-		 * @class
+		 * @class StringSet
 		 */
 		StringSet = window.Set || function () {
 			var set = Object.create( null );
@@ -491,7 +491,7 @@
 			 *
 			 * See #implement and #execute for exact details on support for script, style and messages.
 			 *
-			 * Format:
+			 *     @example Format:
 			 *
 			 *     {
 			 *         'moduleName': {
@@ -565,7 +565,7 @@
 				 * Typically when a job is created for a module, the job's dependencies contain
 				 * both the required module and all its recursive dependencies.
 				 *
-				 * Format:
+				 *     @example Format:
 				 *
 				 *     {
 				 *         'dependencies': [ module names ],
@@ -1847,6 +1847,7 @@
 				 *
 				 * The #work() method will use this information to split up requests by source.
 				 *
+				 *     @example
 				 *     mw.loader.addSource( { mediawikiwiki: 'https://www.mediawiki.org/w/load.php' } );
 				 *
 				 * @private

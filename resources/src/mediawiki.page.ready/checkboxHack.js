@@ -108,16 +108,20 @@
 
 /**
  * Checkbox hack listener state.
- * @type {Object} CheckboxHackListeners
- * @property {EventListenerOrEventListenerObject} [onUpdateAriaExpandedOnInput]
- * @property {EventListenerOrEventListenerObject} [onToggleOnClick]
- * @property {EventListenerOrEventListenerObject} [onDismissOnClickOutside]
- * @property {EventListenerOrEventListenerObject} [onDismissOnFocusLoss]
+ *
+ * TODO: Change to @-typedef when we switch to JSDoc
+ *
+ * @class {Object} CheckboxHackListeners
+ * @property {Function} [onUpdateAriaExpandedOnInput]
+ * @property {Function} [onToggleOnClick]
+ * @property {Function} [onDismissOnClickOutside]
+ * @property {Function} [onDismissOnFocusLoss]
  * @ignore
  */
 
 /**
  * Revise the aria-expanded state to match the checked state.
+ *
  * @param {HTMLInputElement} checkbox
  * @return {void}
  * @ignore
@@ -129,6 +133,7 @@ function updateAriaExpanded( checkbox ) {
 /**
  * Returns true if the Event's target is an inclusive descendant of any the checkbox hack's
  * constituents (checkbox, button, or target), and false otherwise.
+ *
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  * @param {Node} target
@@ -146,6 +151,7 @@ function containsEventTarget( checkbox, button, target, event ) {
 
 /**
  * Dismiss the target when event is outside the checkbox, button, and target.
+ *
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  * @param {Node} target
@@ -162,6 +168,7 @@ function dismissIfExternalEventTarget( checkbox, button, target, event ) {
 
 /**
  * Update the `aria-expanded` attribute based on checkbox state (target visibility) changes.
+ *
  * @param {HTMLInputElement} checkbox
  * @return {CheckboxHackListeners}
  * @ignore
@@ -175,6 +182,7 @@ function bindUpdateAriaExpandedOnInput( checkbox ) {
 
 /**
  * Manually change the checkbox state to avoid a focus change when using a pointing device.
+ *
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
  * @return {CheckboxHackListeners}
@@ -195,6 +203,7 @@ function bindToggleOnClick( checkbox, button ) {
 /**
  * Dismiss the target when clicking elsewhere and update the `aria-expanded` attribute based on
  * checkbox state (target visibility).
+ *
  * @param {Window} window
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
@@ -211,6 +220,7 @@ function bindDismissOnClickOutside( window, checkbox, button, target ) {
 /**
  * Dismiss the target when focusing elsewhere and update the `aria-expanded` attribute based on
  * checkbox state (target visibility).
+ *
  * @param {Window} window
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button

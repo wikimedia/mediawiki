@@ -1,3 +1,5 @@
+'use strict';
+
 const MWBot = require( 'mwbot' );
 const Page = require( './Page' );
 const MAINPAGE_REQUESTS_MAX_RUNS = 10; // (arbitrary) safe-guard against endless execution

@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require( 'assert' );
 const CreateAccountPage = require( '../pageobjects/createaccount.page' );
 const PreferencesPage = require( '../pageobjects/preferences.page' );

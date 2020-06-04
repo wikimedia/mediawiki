@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require( 'assert' );
 const Api = require( 'wdio-mediawiki/Api' );
 const DeletePage = require( '../pageobjects/delete.page' );
