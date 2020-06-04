@@ -2256,33 +2256,19 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getGroups
 	 */
 	public function testGetGroups() {
-		$user = $this->user;
-		$reflectionClass = new ReflectionClass( 'User' );
-		$reflectionProperty = $reflectionClass->getProperty( 'mLoadedItems' );
-		$reflectionProperty->setAccessible( true );
-		$reflectionProperty->setValue( $user, true );
-		$reflectionProperty = $reflectionClass->getProperty( 'mGroupMemberships' );
-		$reflectionProperty->setAccessible( true );
-		$reflectionProperty->setValue( $user, [ 'a' => 1, 'b' => 2 ] );
-		$this->assertSame( [ 'a', 'b' ], $user->getGroups() );
+		$user = $this->getTestUser( [ 'a', 'b' ] )->getUser();
+		$this->assertArrayEquals( [ 'a', 'b' ], $user->getGroups() );
 	}
 
 	/**
 	 * @covers User::getFormerGroups
 	 */
 	public function testGetFormerGroups() {
-		$user = $this->user;
-		$reflectionClass = new ReflectionClass( 'User' );
-		$reflectionProperty = $reflectionClass->getProperty( 'mFormerGroups' );
-		$reflectionProperty->setAccessible( true );
-		$reflectionProperty->setValue( $user, [ 1, 2, 3 ] );
-		$this->assertSame( [ 1, 2, 3 ], $user->getFormerGroups() );
-		$reflectionProperty->setValue( $user, null );
-		$this->assertSame( [], $user->getFormerGroups() );
+		$user = $this->getTestUser( [ 'a', 'b', 'c' ] )->getUser();
+		$this->assertArrayEquals( [], $user->getFormerGroups() );
 		$user->addGroup( 'test' );
 		$user->removeGroup( 'test' );
-		$reflectionProperty->setValue( $user, null );
-		$this->assertSame( [ 'test' ], $user->getFormerGroups() );
+		$this->assertArrayEquals( [ 'test' ], $user->getFormerGroups() );
 	}
 
 	/**
@@ -2292,13 +2278,10 @@ class UserTest extends MediaWikiTestCase {
 		$user = $this->getTestUser()->getUser();
 		$this->assertSame( [], $user->getGroups() );
 
-		$this->assertTrue( $user->addGroup( 'test', '20010115123456' ) );
-		$this->assertSame( [ 'test' ], $user->getGroups() );
+		$this->assertTrue( $user->addGroup( 'test' ) );
+		$this->assertArrayEquals( [ 'test' ], $user->getGroups() );
 
 		$this->assertTrue( $user->addGroup( 'test2' ) );
-		$this->assertArrayEquals( [ 'test', 'test2' ], $user->getGroups() );
-
-		$this->assertFalse( $user->addGroup( 'test2' ) );
 		$this->assertArrayEquals( [ 'test', 'test2' ], $user->getGroups() );
 
 		$this->setTemporaryHook( 'UserAddGroup', function ( $user, &$group, &$expiry ) {

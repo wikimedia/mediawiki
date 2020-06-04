@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -37,6 +40,8 @@ class UserRightsProxy {
 	private $id;
 	/** @var array */
 	private $newOptions;
+	/** @var UserGroupManager */
+	private $userGroupManager;
 
 	/**
 	 * @see newFromId()
@@ -52,6 +57,9 @@ class UserRightsProxy {
 		$this->name = $name;
 		$this->id = intval( $id );
 		$this->newOptions = [];
+		$this->userGroupManager = MediaWikiServices::getInstance()
+			->getUserGroupManagerFactory()
+			->getUserGroupManager( $dbDomain );
 	}
 
 	/**
@@ -207,7 +215,12 @@ class UserRightsProxy {
 	 * @since 1.29
 	 */
 	public function getGroupMemberships() {
-		return UserGroupMembership::getMembershipsForUser( $this->id, $this->db );
+		// TODO: We are creating an artificial UserIdentity to pass on to the user group manager.
+		// After all the relevant UserGroupMemberships methods are ported into UserGroupManager,
+		// the usages of this class will be changed into usages of the UserGroupManager,
+		// thus the need of this class and the need of this artificial UserIdentityValue will parish.
+		$user = new UserIdentityValue( $this->getId(), $this->getName(), 0 );
+		return $this->userGroupManager->getUserGroupMemberships( $user, IDBAccessObject::READ_LATEST );
 	}
 
 	/**
@@ -218,12 +231,13 @@ class UserRightsProxy {
 	 * @return bool
 	 */
 	public function addGroup( $group, $expiry = null ) {
-		if ( $expiry ) {
-			$expiry = wfTimestamp( TS_MW, $expiry );
-		}
-
-		$ugm = new UserGroupMembership( $this->id, $group, $expiry );
-		return $ugm->insert( true, $this->db );
+		return $this->userGroupManager->addUserToGroup(
+			// TODO: Artificial UserIdentity just for passing the id and name.
+			// see comment in getGroupMemberships.
+			new UserIdentityValue( $this->getId(), $this->getName(), 0 ),
+			$group,
+			$expiry
+		);
 	}
 
 	/**
@@ -233,11 +247,12 @@ class UserRightsProxy {
 	 * @return bool
 	 */
 	public function removeGroup( $group ) {
-		$ugm = UserGroupMembership::getMembership( $this->id, $group, $this->db );
-		if ( !$ugm ) {
-			return false;
-		}
-		return $ugm->delete( $this->db );
+		return $this->userGroupManager->removeUserFromGroup(
+			// TODO: Artificial UserIdentity just for passing the id and name.
+			// see comment in getGroupMemberships.
+			new UserIdentityValue( $this->getId(), $this->getName(), 0 ),
+			$group
+		);
 	}
 
 	/**

@@ -69,7 +69,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Version number to tag cached versions of serialized User objects. Should be increased when
 	 * {@link $mCacheVars} or one of it's members changes.
 	 */
-	private const VERSION = 15;
+	private const VERSION = 16;
 
 	/**
 	 * Exclude user options that are set to their default value.
@@ -108,8 +108,6 @@ class User implements IDBAccessObject, UserIdentity {
 		'mEmailTokenExpires',
 		'mRegistration',
 		'mEditCount',
-		// user_groups table
-		'mGroupMemberships',
 		// actor table
 		'mActorId',
 	];
@@ -143,8 +141,6 @@ class User implements IDBAccessObject, UserIdentity {
 	protected $mRegistration;
 	/** @var int */
 	protected $mEditCount;
-	/** @var UserGroupMembership[] Associative array of (group name => UserGroupMembership object) */
-	protected $mGroupMemberships;
 	// @}
 
 	// @{
@@ -186,12 +182,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @var string
 	 */
 	protected $mBlockreason;
-	/** @var array */
-	protected $mEffectiveGroups;
-	/** @var array */
-	protected $mImplicitGroups;
-	/** @var array */
-	protected $mFormerGroups;
 	/** @var AbstractBlock */
 	protected $mGlobalBlock;
 	/** @var bool */
@@ -471,16 +461,17 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @since 1.25
 	 */
 	protected function loadFromCache() {
+		global $wgFullyInitialised;
+
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$data = $cache->getWithSetCallback(
 			$this->getCacheKey( $cache ),
 			$cache::TTL_HOUR,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $cache, $wgFullyInitialised ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 				wfDebug( "User: cache miss for user {$this->mId}" );
 
 				$this->loadFromDatabase( self::READ_NORMAL );
-				$this->loadGroups();
 
 				$data = [];
 				foreach ( self::$mCacheVars as $name ) {
@@ -489,13 +480,21 @@ class User implements IDBAccessObject, UserIdentity {
 
 				$ttl = $cache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->mTouched ), $ttl );
 
-				// if a user group membership is about to expire, the cache needs to
-				// expire at that time (T163691)
-				foreach ( $this->mGroupMemberships as $ugm ) {
-					if ( $ugm->getExpiry() ) {
-						$secondsUntilExpiry = wfTimestamp( TS_UNIX, $ugm->getExpiry() ) - time();
-						if ( $secondsUntilExpiry > 0 && $secondsUntilExpiry < $ttl ) {
-							$ttl = $secondsUntilExpiry;
+				if ( $wgFullyInitialised ) {
+					$groupMemberships = MediaWikiServices::getInstance()
+						->getUserGroupManager()
+						->getUserGroupMemberships( $this, $this->queryFlagsUsed );
+
+					// if a user group membership is about to expire, the cache needs to
+					// expire at that time (T163691)
+					foreach ( $groupMemberships as $ugm ) {
+						if ( $ugm->getExpiry() ) {
+							$secondsUntilExpiry =
+								wfTimestamp( TS_UNIX, $ugm->getExpiry() ) - time();
+
+							if ( $secondsUntilExpiry > 0 && $secondsUntilExpiry < $ttl ) {
+								$ttl = $secondsUntilExpiry;
+							}
 						}
 					}
 				}
@@ -1176,7 +1175,6 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
 		$this->mRegistration = wfTimestamp( TS_MW );
-		$this->mGroupMemberships = [];
 
 		$this->getHookRunner()->onUserLoadDefaults( $this, $name );
 	}
@@ -1245,7 +1243,7 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Load user and user_group data from the database.
+	 * Load user data from the database.
 	 * $this->mId must be set, this is how the user is identified.
 	 *
 	 * @param int $flags User::READ_* constant bitfield
@@ -1280,7 +1278,6 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $s !== false ) {
 			// Initialise user table data
 			$this->loadFromRow( $s );
-			$this->mGroupMemberships = null; // deferred
 			$this->getEditCount(); // revalidation for nulls
 			return true;
 		}
@@ -1310,8 +1307,6 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		$all = true;
-
-		$this->mGroupMemberships = null; // deferred
 
 		if ( isset( $row->actor_id ) ) {
 			$this->mActorId = (int)$row->actor_id;
@@ -1391,19 +1386,11 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( is_array( $data ) ) {
+
 			if ( isset( $data['user_groups'] ) && is_array( $data['user_groups'] ) ) {
-				if ( $data['user_groups'] === [] ) {
-					$this->mGroupMemberships = [];
-				} else {
-					$firstGroup = reset( $data['user_groups'] );
-					if ( is_array( $firstGroup ) || is_object( $firstGroup ) ) {
-						$this->mGroupMemberships = [];
-						foreach ( $data['user_groups'] as $row ) {
-							$ugm = UserGroupMembership::newFromRow( (object)$row );
-							$this->mGroupMemberships[$ugm->getGroup()] = $ugm;
-						}
-					}
-				}
+				MediaWikiServices::getInstance()
+					->getUserGroupManager()
+					->loadGroupMembershipsFromArray( $this, $data['user_groups'] );
 			}
 			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
 				MediaWikiServices::getInstance()
@@ -1422,19 +1409,6 @@ class User implements IDBAccessObject, UserIdentity {
 		$user->load();
 		foreach ( self::$mCacheVars as $var ) {
 			$this->$var = $user->$var;
-		}
-	}
-
-	/**
-	 * Load the groups from the database if they aren't already loaded.
-	 */
-	private function loadGroups() {
-		if ( $this->mGroupMemberships === null ) {
-			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
-				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_REPLICA );
-			$this->mGroupMemberships = UserGroupMembership::getMembershipsForUser(
-				$this->mId, $db );
 		}
 	}
 
@@ -1566,17 +1540,14 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mDatePreference = null;
 		$this->mBlockedby = -1; # Unset
 		$this->mHash = false;
-		$this->mEffectiveGroups = null;
-		$this->mImplicitGroups = null;
-		$this->mGroupMemberships = null;
 		$this->mEditCount = null;
 
-		// Replacement of former `$this->mRights = null` line
 		if ( $wgFullyInitialised && $this->mFrom ) {
 			$services = MediaWikiServices::getInstance();
 			$services->getPermissionManager()->invalidateUsersRightsCache( $this );
 			$services->getUserOptionsManager()->clearUserOptionsCache( $this );
 			$services->getTalkPageNotificationManager()->clearInstanceCache( $this );
+			$services->getUserGroupManager()->clearCache( $this );
 			$services->getUserEditTracker()->clearUserEditCache( $this );
 		}
 
@@ -3011,73 +2982,61 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the list of explicit group memberships this user has.
 	 * The implicit * and user groups are not included.
 	 *
+	 * @deprecated since 1.35 Use UserGroupManager::getUserGroups instead.
+	 *
 	 * @return string[] Array of internal group names (sorted since 1.33)
 	 */
 	public function getGroups() {
-		$this->load();
-		$this->loadGroups();
-		return array_keys( $this->mGroupMemberships );
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->getUserGroups( $this, $this->queryFlagsUsed );
 	}
 
 	/**
 	 * Get the list of explicit group memberships this user has, stored as
 	 * UserGroupMembership objects. Implicit groups are not included.
 	 *
+	 * @deprecated since 1.35 Use UserGroupManager::getUserGroupMemberships instead
+	 *
 	 * @return UserGroupMembership[] Associative array of (group name => UserGroupMembership object)
 	 * @since 1.29
 	 */
 	public function getGroupMemberships() {
-		$this->load();
-		$this->loadGroups();
-		return $this->mGroupMemberships;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->getUserGroupMemberships( $this, $this->queryFlagsUsed );
 	}
 
 	/**
 	 * Get the list of implicit group memberships this user has.
 	 * This includes all explicit groups, plus 'user' if logged in,
 	 * '*' for all accounts, and autopromoted groups
+	 *
+	 * @deprecated since 1.35 Use UserGroupManager::getUserEffectiveGroups instead
+	 *
 	 * @param bool $recache Whether to avoid the cache
 	 * @return array Array of String internal group names
 	 */
 	public function getEffectiveGroups( $recache = false ) {
-		if ( $recache || $this->mEffectiveGroups === null ) {
-			$this->mEffectiveGroups = array_unique( array_merge(
-				$this->getGroups(), // explicit groups
-				$this->getAutomaticGroups( $recache ) // implicit groups
-			) );
-			// Hook for additional groups
-			$this->getHookRunner()->onUserEffectiveGroups( $this, $this->mEffectiveGroups );
-			// Force reindexation of groups when a hook has unset one of them
-			$this->mEffectiveGroups = array_values( array_unique( $this->mEffectiveGroups ) );
-		}
-		return $this->mEffectiveGroups;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->getUserEffectiveGroups( $this, $this->queryFlagsUsed, $recache );
 	}
 
 	/**
 	 * Get the list of implicit group memberships this user has.
 	 * This includes 'user' if logged in, '*' for all accounts,
 	 * and autopromoted groups
+	 *
+	 * @deprecated since 1.35 Use UserGroupManager::getUserImplicitGroups instead.
+	 *
 	 * @param bool $recache Whether to avoid the cache
 	 * @return array Array of String internal group names
 	 */
 	public function getAutomaticGroups( $recache = false ) {
-		if ( $recache || $this->mImplicitGroups === null ) {
-			$this->mImplicitGroups = [ '*' ];
-			if ( $this->getId() ) {
-				$this->mImplicitGroups[] = 'user';
-
-				$this->mImplicitGroups = array_unique( array_merge(
-					$this->mImplicitGroups,
-					Autopromote::getAutopromoteGroups( $this )
-				) );
-			}
-			if ( $recache ) {
-				// Assure data consistency with rights/groups,
-				// as getEffectiveGroups() depends on this function
-				$this->mEffectiveGroups = null;
-			}
-		}
-		return $this->mImplicitGroups;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->getUserImplicitGroups( $this, $recache );
 	}
 
 	/**
@@ -3087,26 +3046,14 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * The function will not return groups the user had belonged to before MW 1.17
 	 *
+	 * @deprecated since 1.35 Use UserGroupManager::getUserFormerGroups instead.
+	 *
 	 * @return array Names of the groups the user has belonged to.
 	 */
 	public function getFormerGroups() {
-		$this->load();
-
-		if ( $this->mFormerGroups === null ) {
-			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
-				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_REPLICA );
-			$res = $db->select( 'user_former_groups',
-				[ 'ufg_group' ],
-				[ 'ufg_user' => $this->mId ],
-				__METHOD__ );
-			$this->mFormerGroups = [];
-			foreach ( $res as $row ) {
-				$this->mFormerGroups[] = $row->ufg_group;
-			}
-		}
-
-		return $this->mFormerGroups;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->getUserFormerGroups( $this, $this->queryFlagsUsed );
 	}
 
 	/**
@@ -3132,69 +3079,32 @@ class User implements IDBAccessObject, UserIdentity {
 	 * expiry time. (If $expiry is omitted or null, the membership will be altered to
 	 * never expire.)
 	 *
+	 * @deprecated since 1.35 Use UserGroupManager::addUserToGroup instead
+	 *
 	 * @param string $group Name of the group to add
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to
 	 *   wfTimestamp(), or null if the group assignment should not expire
 	 * @return bool
 	 */
 	public function addGroup( $group, $expiry = null ) {
-		$this->load();
-		$this->loadGroups();
-
-		if ( $expiry ) {
-			$expiry = wfTimestamp( TS_MW, $expiry );
-		}
-
-		if ( !$this->getHookRunner()->onUserAddGroup( $this, $group, $expiry ) ) {
-			return false;
-		}
-
-		// create the new UserGroupMembership and put it in the DB
-		$ugm = new UserGroupMembership( $this->mId, $group, $expiry );
-		if ( !$ugm->insert( true ) ) {
-			return false;
-		}
-
-		$this->mGroupMemberships[$group] = $ugm;
-
-		// Refresh the groups caches, and clear the rights cache so it will be
-		// refreshed on the next call to $this->getRights().
-		$this->getEffectiveGroups( true );
-		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache( $this );
-		$this->invalidateCache();
-
-		return true;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->addUserToGroup( $this, $group, $expiry );
 	}
 
 	/**
 	 * Remove the user from the given group.
 	 * This takes immediate effect.
+	 *
+	 * @deprecated since 1.35 Use UserGroupManager::removeUserFromGroup instead.
+	 *
 	 * @param string $group Name of the group to remove
 	 * @return bool
 	 */
 	public function removeGroup( $group ) {
-		$this->load();
-
-		if ( !$this->getHookRunner()->onUserRemoveGroup( $this, $group ) ) {
-			return false;
-		}
-
-		$ugm = UserGroupMembership::getMembership( $this->mId, $group );
-		// delete the membership entry
-		if ( !$ugm || !$ugm->delete() ) {
-			return false;
-		}
-
-		$this->loadGroups();
-		unset( $this->mGroupMemberships[$group] );
-
-		// Refresh the groups caches, and clear the rights cache so it will be
-		// refreshed on the next call to $this->getRights().
-		$this->getEffectiveGroups( true );
-		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache( $this );
-		$this->invalidateCache();
-
-		return true;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->removeUserFromGroup( $this, $group );
 	}
 
 	/**
@@ -4502,14 +4412,13 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
+	 * @deprecated since 1.35, use UserGroupManager::listAllGroups instead
 	 * @return array Array of internal group names
 	 */
 	public static function getAllGroups() {
-		global $wgGroupPermissions, $wgRevokePermissions;
-		return array_values( array_diff(
-			array_merge( array_keys( $wgGroupPermissions ), array_keys( $wgRevokePermissions ) ),
-			self::getImplicitGroups()
-		) );
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->listAllGroups();
 	}
 
 	/**
@@ -4526,13 +4435,13 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get a list of implicit groups
-	 * TODO: Should we deprecate this? It's trivial, but we don't want to encourage use of globals.
-	 *
+	 * @deprecated since 1.35, use UserGroupManager::listAllImplicitGroups() instead
 	 * @return array Array of Strings Array of internal group names
 	 */
 	public static function getImplicitGroups() {
-		global $wgImplicitGroups;
-		return $wgImplicitGroups;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->listAllImplicitGroups();
 	}
 
 	/**
@@ -4809,8 +4718,8 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$groups = [];
 		foreach ( MediaWikiServices::getInstance()
-					  ->getPermissionManager()
-					  ->getGroupsWithPermission( $permission ) as $group ) {
+				->getPermissionManager()
+				->getGroupsWithPermission( $permission ) as $group ) {
 			$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
 		}
 
