@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.0
+ * OOUI v0.39.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-05-06T16:18:36Z
+ * Date: 2020-06-04T19:49:41Z
  */
 ( function ( OO ) {
 
@@ -1091,6 +1091,7 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 
 	/**
 	 * Convert native `scrollLeft` value to a value consistent between browsers. See #getScrollLeft.
+	 *
 	 * @param {number} nativeOffset Native `scrollLeft` value
 	 * @param {HTMLElement|Window} el Element from which the value was obtained
 	 * @return {number}
@@ -1116,6 +1117,7 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 
 	/**
 	 * Convert our normalized `scrollLeft` value to a value for current browser. See #getScrollLeft.
+	 *
 	 * @param {number} normalizedOffset Normalized `scrollLeft` value
 	 * @param {HTMLElement|Window} el Element on which the value will be set
 	 * @return {number}
@@ -7069,9 +7071,9 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 		}
 		return;
 	}
-	// eslint-disable-next-line no-restricted-properties
+	// eslint-disable-next-line es/no-string-fromcodepoint
 	if ( String.fromCodePoint ) {
-		// eslint-disable-next-line no-restricted-properties
+		// eslint-disable-next-line es/no-string-fromcodepoint
 		c = String.fromCodePoint( e.charCode );
 	} else {
 		c = String.fromCharCode( e.charCode );
@@ -7410,7 +7412,7 @@ OO.ui.SelectWidget.prototype.unselectItem = function ( item ) {
  * @fires select
  * @chainable
  * @return {OO.ui.Widget} The widget, for chaining
-*/
+ */
 OO.ui.SelectWidget.prototype.selectItem = function ( item ) {
 	var i, len, selected,
 		changed = false;
@@ -7951,10 +7953,22 @@ OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
-	var currentItem = this.findHighlightedItem() || this.findSelectedItem();
+	var handled = false,
+		selected = this.findSelectedItems(),
+		currentItem = this.findHighlightedItem() || (
+			Array.isArray( selected ) ? selected[ 0 ] : selected
+		);
 
 	if ( !this.isDisabled() && this.isVisible() ) {
 		switch ( e.keyCode ) {
+			case OO.ui.Keys.TAB:
+				if ( currentItem ) {
+					// Was only highlighted, now let's select it. No-op if already selected.
+					this.chooseItem( currentItem );
+					handled = true;
+				}
+				this.toggle( false );
+				break;
 			case OO.ui.Keys.LEFT:
 			case OO.ui.Keys.RIGHT:
 				// Do nothing if a text field is associated, arrow keys will be handled natively
@@ -7963,20 +7977,18 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 				}
 				break;
 			case OO.ui.Keys.ESCAPE:
-			case OO.ui.Keys.TAB:
 				if ( currentItem && !this.multiselect ) {
 					currentItem.setHighlighted( false );
 				}
 				this.toggle( false );
-				// Don't prevent tabbing away, prevent defocusing
-				if ( e.keyCode === OO.ui.Keys.ESCAPE ) {
-					e.preventDefault();
-					e.stopPropagation();
-				}
+				handled = true;
 				break;
 			default:
-				OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
-				return;
+				return OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
+		}
+		if ( handled ) {
+			e.preventDefault();
+			e.stopPropagation();
 		}
 	}
 };
@@ -8621,7 +8633,6 @@ OO.ui.RadioOptionWidget.prototype.setDisabled = function ( disabled ) {
  *     $( document.body ).append( radioSelect.$element );
  *
  * [1]: https://www.mediawiki.org/wiki/OOUI/Widgets/Selects_and_Options
-
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -11650,6 +11661,14 @@ OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config )
 /* Setup */
 
 OO.inheritClass( OO.ui.MultilineTextInputWidget, OO.ui.TextInputWidget );
+
+/* Events */
+
+/**
+ * An `resize` event is emitted when the widget changes size via the autosize functionality.
+ *
+ * @event resize
+ */
 
 /* Static Methods */
 

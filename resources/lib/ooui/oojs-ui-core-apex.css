@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.0
+ * OOUI v0.39.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-05-06T16:18:54Z
+ * Date: 2020-06-04T19:50:07Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -781,7 +781,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   box-sizing: border-box;
   font-weight: bold;
 }
-.oo-ui-messageWidget .oo-ui-labelElement-label {
+.oo-ui-messageWidget > .oo-ui-labelElement-label {
   display: block;
 }
 .oo-ui-messageWidget > .oo-ui-iconElement-icon {

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.0
+ * OOUI v0.39.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-05-06T16:18:36Z
+ * Date: 2020-06-04T19:49:41Z
  */
 ( function ( OO ) {
 
@@ -2001,6 +2001,7 @@ OO.inheritClass( OO.ui.BookletLayout, OO.ui.MenuLayout );
 /**
  * A 'set' event is emitted when a page is {@link #setPage set} to be displayed by the
  * booklet layout.
+ *
  * @event set
  * @param {OO.ui.PageLayout} page Current page
  */
@@ -4203,6 +4204,7 @@ OO.ui.TagItemWidget.prototype.setFixed = function ( state ) {
 
 /**
  * Check whether the item is fixed
+ *
  * @return {boolean}
  */
 OO.ui.TagItemWidget.prototype.isFixed = function () {
@@ -4812,6 +4814,7 @@ OO.ui.TagMultiselectWidget.prototype.setDisabled = function ( isDisabled ) {
 
 /**
  * Respond to tag remove event
+ *
  * @param {OO.ui.TagItemWidget} item Removed tag
  */
 OO.ui.TagMultiselectWidget.prototype.onTagRemove = function ( item ) {
@@ -5962,6 +5965,7 @@ OO.ui.SelectFileWidget.prototype.getFilename = function () {
 
 /**
  * Disable InputWidget#onEdit listener, onFileSelected is used instead.
+ *
  * @inheritdoc
  */
 OO.ui.SelectFileWidget.prototype.onEdit = function () {};
@@ -6208,6 +6212,7 @@ OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 		value: config.value
 	} );
 	this.results = new OO.ui.SelectWidget();
+	this.results.setFocusOwner( this.query.$input );
 	this.$query = $( '<div>' );
 	this.$results = $( '<div>' );
 
