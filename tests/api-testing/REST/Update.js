@@ -1,3 +1,5 @@
+'use strict';
+
 const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'PUT /page/{title}', () => {

@@ -534,6 +534,7 @@ util = {
 	 * Parse the URL of an image uploaded to MediaWiki, or a thumbnail for such an image,
 	 * and return the image name, thumbnail size and a template that can be used to resize
 	 * the image.
+	 *
 	 * @param {string} url URL to parse (URL-encoded)
 	 * @return {Object|null} URL data, or null if the URL is not a valid MediaWiki
 	 *   image/thumbnail URL.

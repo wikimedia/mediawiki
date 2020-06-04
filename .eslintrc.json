@@ -13,5 +13,16 @@
 		"max-len": "off",
 		"mediawiki/valid-package-file-require": "off",
 		"no-jquery/no-global-selector": "off"
+	},
+	"settings": {
+		"jsdoc": {
+			"tagNamePreference": {
+				"this": "context",
+				"context": "context",
+				"alias": "alternateClassName",
+				"alternateClassName": "alternateClassName",
+				"typedef": "type"
+			}
+		}
 	}
 }

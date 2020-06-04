@@ -968,13 +968,19 @@ Title.prototype = {
 };
 
 /**
- * @alias #getPrefixedDb
+ * Alias of mw.Title#getPrefixedDb
+ *
+ * TODO: Use @-alias when we switch to JSDoc
+ *
  * @method
  */
 Title.prototype.toString = Title.prototype.getPrefixedDb;
 
 /**
- * @alias #getPrefixedText
+ * Alias of mw.Title#getPrefixedText
+ *
+ * TODO: Use @-alias when we switch to JSDoc
+ *
  * @method
  */
 Title.prototype.toText = Title.prototype.getPrefixedText;

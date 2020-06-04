@@ -1,3 +1,5 @@
+'use strict';
+
 const { action, assert, utils } = require( 'api-testing' );
 
 describe( 'Listing Users', function () {

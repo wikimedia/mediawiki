@@ -1,3 +1,5 @@
+'use strict';
+
 const { action, assert, REST, utils } = require( 'api-testing' );
 const supertest = require( 'supertest' );
 
