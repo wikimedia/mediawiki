@@ -2521,6 +2521,8 @@
 	"sp-contributions-footer-anon-range": "-",
 	"sp-contributions-footer-newbies": "-",
 	"sp-contributions-outofrange": "Unable to show any results. The requested IP range is larger than the CIDR limit of /$1.",
+	"sp-contributions-concurrency-user": "Sorry, too many requests are being made from your user account. Please try again later.",
+	"sp-contributions-concurrency-ip": "Sorry, too many requests are being made from your IP address. Please try again later.",
 	"whatlinkshere": "What links here",
 	"whatlinkshere-title": "Pages that link to \"$1\"",
 	"whatlinkshere-summary": "",

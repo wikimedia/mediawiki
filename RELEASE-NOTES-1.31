@@ -3,6 +3,8 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.7 ===
+* Per-user concurrency in SpecialContributions can now be limited by setting
+  $wgPoolCounterConf['SpecialContributions'] appropriately.
 
 == MediaWiki 1.31.7 ==
 
