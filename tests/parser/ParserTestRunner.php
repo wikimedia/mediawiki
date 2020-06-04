@@ -842,6 +842,8 @@ class ParserTestRunner {
 				'page_title' => $title->getDBkey(),
 				'page_is_redirect' => 0
 			] );
+
+			// TODO construct a RevisionRecord here instead
 			$rev = new Revision(
 				[
 					'id' => $title->getLatestRevID(),
@@ -854,11 +856,13 @@ class ParserTestRunner {
 				Revision::READ_LATEST,
 				$title
 			);
-			$oldCallback = $options->getCurrentRevisionCallback();
-			$options->setCurrentRevisionCallback(
-				function ( Title $t, $parser ) use ( $title, $rev, $oldCallback ) {
+			$revRecord = $rev->getRevisionRecord();
+
+			$oldCallback = $options->getCurrentRevisionRecordCallback();
+			$options->setCurrentRevisionRecordCallback(
+				function ( Title $t, $parser = null ) use ( $title, $revRecord, $oldCallback ) {
 					if ( $t->equals( $title ) ) {
-						return $rev;
+						return $revRecord;
 					} else {
 						return call_user_func( $oldCallback, $t, $parser );
 					}

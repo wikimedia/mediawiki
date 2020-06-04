@@ -249,8 +249,8 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$oldRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'FAUX' ) );
 
 		$po = new ParserOptions( $frank );
-		$po->setCurrentRevisionCallback( function () use ( $oldRevision ) {
-			return new Revision( $oldRevision );
+		$po->setCurrentRevisionRecordCallback( function () use ( $oldRevision ) {
+			return $oldRevision;
 		} );
 
 		yield 'old with override' => [ $text, $po, 100, 'user:FauxAuthor;id:100;time:20141111111111;' ];
@@ -278,8 +278,8 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$po = new ParserOptions( $frank );
 		$po->setIsPreview( true );
-		$po->setCurrentRevisionCallback( function () use ( $newRevision ) {
-			return new Revision( $newRevision );
+		$po->setCurrentRevisionRecordCallback( function () use ( $newRevision ) {
+			return $newRevision;
 		} );
 
 		yield 'preview' => [
@@ -291,8 +291,8 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		];
 
 		$po = new ParserOptions( $frank );
-		$po->setCurrentRevisionCallback( function () use ( $newRevision ) {
-			return new Revision( $newRevision );
+		$po->setCurrentRevisionRecordCallback( function () use ( $newRevision ) {
+			return $newRevision;
 		} );
 
 		yield 'pre-save' => [
@@ -313,8 +313,8 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$po = new ParserOptions( $frank );
 		$po->setIsPreview( true );
-		$po->setCurrentRevisionCallback( function () use ( $newRevision ) {
-			return new Revision( $newRevision );
+		$po->setCurrentRevisionRecordCallback( function () use ( $newRevision ) {
+			return $newRevision;
 		} );
 
 		yield 'preview with self-transclude' => [ $text, $po, null, '(ONE)#(ONE)(TWO)#' ];

@@ -32,6 +32,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -3422,6 +3423,7 @@ class Parser {
 	 * @return Revision|false
 	 */
 	public function fetchCurrentRevisionOfTitle( Title $title ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$revisionRecord = $this->fetchCurrentRevisionRecordOfTitle( $title );
 		if ( $revisionRecord ) {
 			return new Revision( $revisionRecord );
@@ -3484,6 +3486,7 @@ class Parser {
 	 * @return Revision|bool False if missing
 	 */
 	public static function statelessFetchRevision( Title $title, $parser = false ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionLookup()
 			->getKnownCurrentRevision( $title );
@@ -3564,7 +3567,7 @@ class Parser {
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = [];
-		$rev = null;
+		$revRecord = null;
 
 		# Loop to fetch the article, with up to 1 redirect
 		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
@@ -3587,16 +3590,14 @@ class Parser {
 			# TODO rewrite using only RevisionRecord objects
 			if ( $id ) {
 				$revRecord = $revLookup->getRevisionById( $id );
-				$rev = $revRecord ? new Revision( $revRecord ) : null;
 			} elseif ( $parser ) {
-				$rev = $parser->fetchCurrentRevisionOfTitle( $title );
+				$revRecord = $parser->fetchCurrentRevisionRecordOfTitle( $title );
 			} else {
 				$revRecord = $revLookup->getRevisionByTitle( $title );
-				$rev = $revRecord ? new Revision( $revRecord ) : null;
 			}
-			$rev_id = $rev ? $rev->getId() : 0;
+			$rev_id = $revRecord ? $revRecord->getId() : 0;
 			# If there is no current revision, there is no page
-			if ( $id === false && !$rev ) {
+			if ( $id === false && !$revRecord ) {
 				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 				$linkCache->addBadLinkObj( $title );
 			}
@@ -3606,20 +3607,33 @@ class Parser {
 				'page_id' => $title->getArticleID(),
 				'rev_id' => $rev_id
 			];
-			if ( $rev && !$title->equals( $rev->getTitle() ) ) {
-				# We fetched a rev from a different title; register it too...
-				$deps[] = [
-					'title' => $rev->getTitle(),
-					'page_id' => $rev->getPage(),
-					'rev_id' => $rev_id
-				];
+			if ( $revRecord ) {
+				$revTitle = Title::newFromLinkTarget(
+					$revRecord->getPageAsLinkTarget()
+				);
+				if ( !$title->equals( $revTitle ) ) {
+					# We fetched a rev from a different title; register it too...
+					$deps[] = [
+						'title' => $revTitle,
+						'page_id' => $revRecord->getPageId(),
+						'rev_id' => $rev_id
+					];
+				}
 			}
 
-			if ( $rev ) {
-				$content = $rev->getContent();
+			if ( $revRecord ) {
+				$content = $revRecord->getContent( SlotRecord::MAIN );
 				$text = $content ? $content->getWikitextForTransclusion() : null;
 
-				Hooks::runner()->onParserFetchTemplate( $parser, $title, $rev, $text, $deps );
+				// Hook is deprecated already
+				$legacyRevision = new Revision( $revRecord );
+				Hooks::runner()->onParserFetchTemplate(
+					$parser,
+					$title,
+					$legacyRevision,
+					$text,
+					$deps
+				);
 
 				if ( $text === false || $text === null ) {
 					$text = false;
@@ -3644,8 +3658,11 @@ class Parser {
 			$finalTitle = $title;
 			$title = $content->getRedirectTarget();
 		}
+
+		// TODO return RevisionRecord instead
+		$legacyRevision = $revRecord ? new Revision( $revRecord ) : null;
 		return [
-			'revision' => $rev,
+			'revision' => $legacyRevision,
 			'text' => $text,
 			'finalTitle' => $finalTitle,
 			'deps' => $deps
