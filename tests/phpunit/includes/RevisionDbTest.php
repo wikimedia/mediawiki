@@ -188,6 +188,9 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 	private function assertRevEquals( Revision $orig, Revision $rev = null ) {
 		$this->hideDeprecated( 'Revision::getSha1' );
+		$this->hideDeprecated( 'Revision::getContentFormat' );
+		$this->hideDeprecated( 'Revision::getContentHandler' );
+		$this->hideDeprecated( 'Revision::getContentModel' );
 
 		$this->assertNotNull( $rev, 'missing revision' );
 
@@ -968,6 +971,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContentModel
 	 */
 	public function testGetContentModel( $text, $title, $model, $format, $expectedModel ) {
+		$this->hideDeprecated( 'Revision::getContentModel' );
+
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
 
 		$this->assertEquals( $expectedModel, $rev->getContentModel() );
@@ -977,6 +982,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContentModel
 	 */
 	public function testGetContentModelForEmptyRevision() {
+		$this->hideDeprecated( 'Revision::getContentModel' );
+
 		$rev = new Revision( [], 0, $this->testPage->getTitle() );
 
 		$slotRoleHandler = MediaWikiServices::getInstance()->getSlotRoleRegistry()
@@ -1001,6 +1008,10 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContentFormat
 	 */
 	public function testGetContentFormat( $text, $title, $model, $format, $expectedFormat ) {
+		$this->hideDeprecated( 'Revision::getContentFormat' );
+		$this->hideDeprecated( 'Revision::getContentHandler' );
+		$this->hideDeprecated( 'Revision::getContentModel' );
+
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
 
 		$this->assertEquals( $expectedFormat, $rev->getContentFormat() );
@@ -1010,6 +1021,10 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContentFormat
 	 */
 	public function testGetContentFormatForEmptyRevision() {
+		$this->hideDeprecated( 'Revision::getContentFormat' );
+		$this->hideDeprecated( 'Revision::getContentHandler' );
+		$this->hideDeprecated( 'Revision::getContentModel' );
+
 		$rev = new Revision( [], 0, $this->testPage->getTitle() );
 
 		$slotRoleHandler = MediaWikiServices::getInstance()->getSlotRoleRegistry()
@@ -1035,6 +1050,9 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContentHandler
 	 */
 	public function testGetContentHandler( $text, $title, $model, $format, $expectedClass ) {
+		$this->hideDeprecated( 'Revision::getContentHandler' );
+		$this->hideDeprecated( 'Revision::getContentModel' );
+
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
 
 		$this->assertEquals( $expectedClass, get_class( $rev->getContentHandler() ) );
@@ -1556,6 +1574,9 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testSimpleContentGetters() {
 		$this->hideDeprecated( 'Revision::getSerializedData' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::getContentFormat' );
+		$this->hideDeprecated( 'Revision::getContentHandler' );
+		$this->hideDeprecated( 'Revision::getContentModel' );
 
 		$expectedText = 'testSimpleContentGetters in Revision. Goats love MCR...';
 		$expectedSummary = 'goatlicious testSimpleContentGetters summary';

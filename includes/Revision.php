@@ -799,12 +799,14 @@ class Revision implements IDBAccessObject {
 	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
 	 * is used as a last resort.
 	 *
-	 * @todo drop this, with MCR, there no longer is a single model associated with a revision.
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 *
 	 * @return string The content model id associated with this revision,
 	 *     see the CONTENT_MODEL_XXX constants.
 	 */
 	public function getContentModel() {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		$slot = $this->getMainSlotRaw();
 
 		if ( $slot ) {
@@ -822,12 +824,14 @@ class Revision implements IDBAccessObject {
 	 * If no content format was stored in the database, the default format for this
 	 * revision's content model is returned.
 	 *
-	 * @todo drop this, the format is irrelevant to the revision!
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 *
 	 * @return string The content format id associated with this revision,
 	 *     see the CONTENT_FORMAT_XXX constants.
 	 */
 	public function getContentFormat() {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		$slot = $this->getMainSlotRaw();
 		$format = $slot ? $this->getMainSlotRaw()->getFormat() : null;
 
@@ -842,10 +846,14 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the content handler appropriate for this revision's content model.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @throws MWException
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		return MediaWikiServices::getInstance()
 			->getContentHandlerFactory()
 			->getContentHandler( $this->getContentModel() );
