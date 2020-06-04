@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kkairri"
+		]
+	},
+	"paramvalidator-help-multi-max": "値の最大値は {{PLURAL:$1|$1}}（緩い制限が適用されるクライアントでは{{PLURAL:$2|$2}}）です。",
+	"paramvalidator-help-multi-max-simple": "値の最大値は {{PLURAL:$1|$1}} です。",
+	"paramvalidator-help-multi-all": "すべての値を指定するには、<kbd>$1</kbd>を用いてください。",
+	"paramvalidator-help-required": "このパラメーターは必須です。",
+	"paramvalidator-help-type-boolean": "型: {{PLURAL:$1|1=真偽値|2=真偽値のリスト}}",
+	"paramvalidator-help-type-integer": "型: {{PLURAL:$1|1=整数|2=整数のリスト}}",
+	"paramvalidator-help-type-limit": "型: 整数 または \"max\"",
+	"paramvalidator-help-type-presenceboolean": "型: 真偽値"
+}
