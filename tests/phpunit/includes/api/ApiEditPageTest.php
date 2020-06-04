@@ -30,6 +30,8 @@ class ApiEditPageTest extends ApiTestCase {
 				12312 => 'testing',
 				12314 => 'testing-nontext',
 			],
+			'wgWatchlistExpiry' => true,
+			'wgWatchlistExpiryMaxDuration' => '6 months',
 		] );
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
 			'testing' => 'DummyContentHandlerForTesting',
@@ -38,7 +40,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
-			[ 'change_tag', 'change_tag_def', 'logging' ]
+			[ 'change_tag', 'change_tag_def', 'logging', 'watchlist', 'watchlist_expiry' ]
 		);
 	}
 
@@ -1354,10 +1356,13 @@ class ApiEditPageTest extends ApiTestCase {
 			'title' => $name,
 			'text' => 'Some text',
 			'watch' => '',
+			'watchlistexpiry' => '99990123000000',
 		] );
 
-		$this->assertTrue( Title::newFromText( $name )->exists() );
-		$this->assertTrue( $user->isWatched( Title::newFromText( $name ) ) );
+		$title = Title::newFromText( $name );
+		$this->assertTrue( $title->exists() );
+		$this->assertTrue( $user->isWatched( $title ) );
+		$this->assertTrue( $user->isTempWatched( $title ) );
 	}
 
 	public function testEditUnwatch() {

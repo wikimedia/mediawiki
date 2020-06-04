@@ -35,6 +35,16 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup API
  */
 class ApiEditPage extends ApiBase {
+
+	use ApiWatchlistTrait;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+	}
+
 	public function execute() {
 		$this->useTransactionalTimeLimit();
 
@@ -357,6 +367,7 @@ class ApiEditPage extends ApiBase {
 		}
 
 		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
+		$watchlistExpiry = $params['watchlistexpiry'] ?? null;
 
 		// Deprecated parameters
 		if ( $params['watch'] ) {
@@ -367,6 +378,10 @@ class ApiEditPage extends ApiBase {
 
 		if ( $watch ) {
 			$requestArray['wpWatchthis'] = '';
+
+			if ( $this->watchlistExpiryEnabled && $watchlistExpiry ) {
+				$requestArray['wpWatchlistExpiry'] = $watchlistExpiry;
+			}
 		}
 
 		// Apply change tags
@@ -463,6 +478,14 @@ class ApiEditPage extends ApiBase {
 					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
 						$pageObj->getTimestamp() );
 				}
+
+				if ( $watch ) {
+					$r['watched'] = $status->isOK();
+
+					if ( $this->watchlistExpiryEnabled ) {
+						$r['watchlistexpiry'] = ApiResult::formatExpiry( $watchlistExpiry );
+					}
+				}
 				break;
 
 			default:
@@ -540,7 +563,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$params = [
 			'title' => [
 				ApiBase::PARAM_TYPE => 'string',
 			],
@@ -582,15 +605,13 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			],
-			'watchlist' => [
-				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => [
-					'watch',
-					'unwatch',
-					'preferences',
-					'nochange'
-				],
-			],
+		];
+
+		// Params appear in the docs in the order they are defined,
+		// which is why this is here and not at the bottom.
+		$params += $this->getWatchlistParams();
+
+		return $params + [
 			'md5' => null,
 			'prependtext' => [
 				ApiBase::PARAM_TYPE => 'text',

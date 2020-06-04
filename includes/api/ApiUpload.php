@@ -24,10 +24,20 @@
  * @ingroup API
  */
 class ApiUpload extends ApiBase {
+
+	use ApiWatchlistTrait;
+
 	/** @var UploadBase|UploadFromChunks */
 	protected $mUpload = null;
 
 	protected $mParams;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+	}
 
 	public function execute() {
 		// Check whether upload is enabled
@@ -825,6 +835,7 @@ class ApiUpload extends ApiBase {
 				$this->getWatchlistValue( 'preferences', $file->getTitle(), 'watchcreations' )
 			);
 		}
+		$watchlistExpiry = $this->getExpiryFromParams( $this->mParams );
 
 		// Deprecated parameters
 		if ( $this->mParams['watch'] ) {
@@ -859,6 +870,7 @@ class ApiUpload extends ApiBase {
 					'tags' => $this->mParams['tags'],
 					'text' => $this->mParams['text'],
 					'watch' => $watch,
+					'watchlistexpiry' => $watchlistExpiry,
 					'session' => $this->getContext()->exportSession()
 				]
 			) );
@@ -866,8 +878,14 @@ class ApiUpload extends ApiBase {
 			$result['stage'] = 'queued';
 		} else {
 			/** @var Status $status */
-			$status = $this->mUpload->performUpload( $this->mParams['comment'],
-				$this->mParams['text'], $watch, $this->getUser(), $this->mParams['tags'] );
+			$status = $this->mUpload->performUpload(
+				$this->mParams['comment'],
+				$this->mParams['text'],
+				$watch,
+				$this->getUser(),
+				$this->mParams['tags'],
+				$watchlistExpiry
+			);
 
 			if ( !$status->isGood() ) {
 				$this->dieRecoverableError( $status->getErrors() );
@@ -910,14 +928,17 @@ class ApiUpload extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			],
-			'watchlist' => [
-				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => [
-					'watch',
-					'preferences',
-					'nochange'
-				],
-			],
+		];
+
+		// Params appear in the docs in the order they are defined,
+		// which is why this is here and not at the bottom.
+		$params += $this->getWatchlistParams( [
+			'watch',
+			'preferences',
+			'nochange',
+		] );
+
+		$params += [
 			'ignorewarnings' => false,
 			'file' => [
 				ApiBase::PARAM_TYPE => 'upload',

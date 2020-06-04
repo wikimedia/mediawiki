@@ -28,6 +28,15 @@ use MediaWiki\User\UserIdentity;
  */
 class ApiRollback extends ApiBase {
 
+	use ApiWatchlistTrait;
+
+	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+	}
+
 	/**
 	 * @var Title
 	 */
@@ -82,9 +91,10 @@ class ApiRollback extends ApiBase {
 		}
 
 		$watch = $params['watchlist'] ?? 'preferences';
+		$watchlistExpiry = $this->getExpiryFromParams( $params );
 
 		// Watch pages
-		$this->setWatch( $watch, $titleObj, 'watchrollback' );
+		$this->setWatch( $watch, $titleObj, 'watchrollback', $watchlistExpiry );
 
 		$currentRevisionRecord = $details['current-revision-record'];
 		$targetRevisionRecord = $details['target-revision-record'];
@@ -112,7 +122,7 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return [
+		$params = [
 			'title' => null,
 			'pageid' => [
 				ApiBase::PARAM_TYPE => 'integer'
@@ -129,15 +139,13 @@ class ApiRollback extends ApiBase {
 			],
 			'summary' => '',
 			'markbot' => false,
-			'watchlist' => [
-				ApiBase::PARAM_DFLT => 'preferences',
-				ApiBase::PARAM_TYPE => [
-					'watch',
-					'unwatch',
-					'preferences',
-					'nochange'
-				],
-			],
+		];
+
+		// Params appear in the docs in the order they are defined,
+		// which is why this is here (we want it above the token param).
+		$params += $this->getWatchlistParams();
+
+		return $params + [
 			'token' => [
 				// Standard definition automatically inserted
 				ApiBase::PARAM_HELP_MSG_APPEND => [ 'api-help-param-token-webui' ],
