@@ -216,7 +216,7 @@ class ParserCache {
 				$cacheTime = $optionsKey->getCacheTime();
 				wfDebugLog( "ParserCache",
 					"Parser options key expired, touched {$wikiPage->getTouched()}"
-					. ", epoch {$this->cacheEpoch}, cached $cacheTime\n" );
+					. ", epoch {$this->cacheEpoch}, cached $cacheTime" );
 				return false;
 			} elseif ( $useOutdated < self::USE_OUTDATED &&
 				$optionsKey->isDifferentRevision( $wikiPage->getLatest() )
@@ -225,7 +225,7 @@ class ParserCache {
 				$revId = $wikiPage->getLatest();
 				$cachedRevId = $optionsKey->getCacheRevisionId();
 				wfDebugLog( "ParserCache",
-					"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+					"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId"
 				);
 				return false;
 			}
@@ -297,7 +297,7 @@ class ParserCache {
 			$cacheTime = $value->getCacheTime();
 			wfDebugLog( "ParserCache",
 				"ParserOutput key expired, touched $touched, "
-				. "epoch {$this->cacheEpoch}, cached $cacheTime\n" );
+				. "epoch {$this->cacheEpoch}, cached $cacheTime" );
 			$value = false;
 		} elseif (
 			!$useOutdated
@@ -307,7 +307,7 @@ class ParserCache {
 			$revId = $wikiPage->getLatest();
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebugLog( "ParserCache",
-				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n"
+				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId"
 			);
 			$value = false;
 		} elseif (
@@ -315,7 +315,7 @@ class ParserCache {
 		) {
 			$this->incrementStats( $wikiPage, 'miss.rejected' );
 			wfDebugLog( "ParserCache",
-				"ParserOutput key valid, but rejected by RejectParserCacheValue hook handler.\n"
+				"ParserOutput key valid, but rejected by RejectParserCacheValue hook handler."
 			);
 			$value = false;
 		} else {
@@ -368,10 +368,9 @@ class ParserCache {
 
 			$msg = "Saved in parser cache with key $parserOutputKey" .
 				" and timestamp $cacheTime" .
-				" and revision id $revId" .
-				"\n";
+				" and revision id $revId";
 
-			$parserOutput->mText .= "\n<!-- $msg -->\n";
+			$parserOutput->mText .= "\n<!-- $msg\n -->\n";
 			wfDebug( $msg );
 
 			// Save the parser output
