@@ -70,7 +70,11 @@ class RevisionStoreRecord extends RevisionRecord {
 		$this->mComment = $comment;
 
 		$timestamp = MWTimestamp::convert( TS_MW, $row->rev_timestamp );
-		Assert::parameter( is_string( $timestamp ), '$row->rev_timestamp', 'must be a valid timestamp' );
+		Assert::parameter(
+			is_string( $timestamp ),
+			'$row->rev_timestamp',
+			"must be a valid timestamp (rev_id={$this->mId}, rev_timestamp={$row->rev_timestamp})"
+		);
 
 		$this->mUser = $user;
 		$this->mMinorEdit = boolval( $row->rev_minor_edit );
