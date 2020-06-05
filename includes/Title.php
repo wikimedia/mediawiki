@@ -4180,6 +4180,8 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * Get the timestamp when this page was updated since the user last saw it.
 	 *
+	 * @deprecated since 1.35
+	 *
 	 * @param User|null $user (null defaults to global $wgUser, and is deprecated since 1.35)
 	 * @return string|bool|null String timestamp, false if not watched, null if nothing is unseen
 	 */
