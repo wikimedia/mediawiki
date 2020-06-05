@@ -333,6 +333,7 @@ class LinkRenderer {
 
 	/**
 	 * @param LinkTarget $target
+	 * @param-taint $target none
 	 * @param string|HtmlArmor|null $text
 	 * @param array $extraAttribs
 	 * @param array $query
