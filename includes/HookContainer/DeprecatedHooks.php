@@ -59,6 +59,8 @@ class DeprecatedHooks {
 		'RevisionInsertComplete' => [ 'deprecatedVersion' => '1.31' ],
 		'SecondaryDataUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
 		'SpecialMuteSubmit' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
+		'SkinTemplatePreventOtherActiveTabs' => [ 'deprecatedVersion' => '1.35' ],
+		'SkinTemplateTabAction' => [ 'deprecatedVersion' => '1.35' ],
 		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],
 		'UserRetrieveNewTalks' => [ 'deprecatedVersion' => '1.35' ],
 		'UserSetCookies' => [ 'deprecatedVersion' => '1.27' ],

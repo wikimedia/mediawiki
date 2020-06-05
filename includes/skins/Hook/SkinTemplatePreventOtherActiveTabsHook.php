@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use SkinTemplate;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35 Use SkinTemplateNavigation__Universal instead
  * @ingroup Hooks
  */
 interface SkinTemplatePreventOtherActiveTabsHook {
