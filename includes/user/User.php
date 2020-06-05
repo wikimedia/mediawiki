@@ -3359,6 +3359,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 */
 	public function clearAllNotifications() {
+		wfDeprecated( __METHOD__, '1.35' );
 		MediaWikiServices::getInstance()
 			->getWatchlistNotificationManager()
 			->clearAllUserNotifications( $this );
