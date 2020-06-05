@@ -17,6 +17,37 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 	/**
+	 * @var array Associative array mapping revision number (e.g. 1 for first revision made) to revision record
+	 */
+	private static $storedRevisions;
+
+	/**
+	 * @var \User
+	 */
+	private static $testUser;
+
+	public function addDBDataOnce() {
+		$user = $this->getTestUser()->getUser();
+
+		$clock = (int)ConvertibleTimestamp::now( TS_UNIX );
+		ConvertibleTimestamp::setFakeTime( function () use ( &$clock ) {
+			return ++$clock;
+		} );
+
+		self::$testUser = $user;
+		self::$storedRevisions[1] = $this->editPage( __METHOD__ . '_1', 'Lorem Ipsum 1', 'test', NS_MAIN, $user )
+			->getValue()['revision-record'];
+		self::$storedRevisions[2] = $this->editPage( __METHOD__ . '_2', 'Lorem Ipsum 2', 'test', NS_TALK, $user )
+			->getValue()['revision-record'];
+		self::$storedRevisions[3] = $this->editPage( __METHOD__ . '_2', 'Lorem Ipsum 3', 'test', NS_MAIN, $user )
+			->getValue()['revision-record'];
+		self::$storedRevisions[4] = $this->editPage( __METHOD__ . '_1', 'Lorem Ipsum 4', 'test', NS_TALK, $user )
+			->getValue()['revision-record'];
+
+		ConvertibleTimestamp::setFakeTime( false );
+	}
+
+	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getRevisionsByUser()
 	 */
 	public function testGetListOfRevisionsByUserIdentity() {
@@ -26,32 +57,22 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			return ++$clock;
 		} );
 
-		$user = $this->getTestUser()->getUser();
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 
-		// Sanity check
-		$contribs = $contributionsLookup->getRevisionsByUser( $user, 10 )->getRevisions();
-		$this->assertCount( 0, $contribs );
-		/** @var RevisionRecord $rev1 */
-		/** @var RevisionRecord $rev2 */
-		$rev0 = $this->editPage( __METHOD__, 'Lorem Ipsum 0', 'test', NS_TALK, $user )->getValue()['revision-record'];
-		$rev1 = $this->editPage( __METHOD__, 'Lorem Ipsum 1', 'test', NS_MAIN, $user )->getValue()['revision-record'];
-		$rev2 = $this->editPage( __METHOD__, 'Lorem Ipsum 2', 'test', NS_TALK, $user )->getValue()['revision-record'];
-
-		$contribs = $contributionsLookup->getRevisionsByUser( $user, 2 )->getRevisions();
+		$contribs = $contributionsLookup->getRevisionsByUser( self::$testUser, 2 )->getRevisions();
 
 		$this->assertCount( 2, $contribs );
-		$this->assertSame( $rev2->getId(), $contribs[0]->getId() );
-		$this->assertSame( $rev1->getId(), $contribs[1]->getId() );
+		$this->assertSame( self::$storedRevisions[4]->getId(), $contribs[0]->getId() );
+		$this->assertSame( self::$storedRevisions[3]->getId(), $contribs[1]->getId() );
 		$this->assertInstanceOf( RevisionRecord::class, $contribs[0] );
-		$this->assertEquals( $user->getName(), $contribs[0]->getUser()->getName() );
+		$this->assertEquals( self::$testUser->getName(), $contribs[0]->getUser()->getName() );
 		$this->assertEquals(
-			$rev2->getPageAsLinkTarget()->getPrefixedDBkey(),
+			self::$storedRevisions[4]->getPageAsLinkTarget()->getPrefixedDBkey(),
 			$contribs[0]->getPageAsLinkTarget()->getPrefixedDBkey()
 		);
 		$this->assertEquals(
-			$rev1->getPageAsLinkTarget()->getPrefixedDBkey(),
+			self::$storedRevisions[3]->getPageAsLinkTarget()->getPrefixedDBkey(),
 			$contribs[1]->getPageAsLinkTarget()->getPrefixedDBkey()
 		);
 		// Desc order comes back from db query
@@ -61,48 +82,35 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getRevisionsByUser()
 	 */
 	public function testGetSegmentChain() {
-		$user = $this->getTestUser()->getUser();
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 
-		// Sanity check
-		$contribs = $contributionsLookup->getRevisionsByUser( $user, 2 )->getRevisions();
-		$this->assertCount( 0, $contribs );
-
-		$clock = (int)ConvertibleTimestamp::now( TS_UNIX );
-		ConvertibleTimestamp::setFakeTime( function () use ( &$clock ) {
-			return ++$clock;
-		} );
-
-		/** @var RevisionRecord $rev1 */
-		/** @var RevisionRecord $rev2 */
-
-		$rev1 = $this->editPage( __METHOD__ . '_1', 'Lorem Ipsum 1', 'test', NS_MAIN, $user )
-			->getValue()['revision-record'];
-		$rev2 = $this->editPage( __METHOD__ . '_2', 'Lorem Ipsum 2', 'test', NS_TALK, $user )
-			->getValue()['revision-record'];
-		$rev3 = $this->editPage( __METHOD__ . '_2', 'Lorem Ipsum 3', 'test', NS_MAIN, $user )
-			->getValue()['revision-record'];
-		$rev4 = $this->editPage( __METHOD__ . '_1', 'Lorem Ipsum 4', 'test', NS_TALK, $user )
-			->getValue()['revision-record'];
-
-		// TODO Explore using hard-coded rev. here?
-		$segment1 = $contributionsLookup->getRevisionsByUser( $user, 2 );
+		$segment1 = $contributionsLookup->getRevisionsByUser( self::$testUser, 2 );
 		$this->assertInstanceOf( ContributionsSegment::class, $segment1 );
 		$this->assertCount( 2, $segment1->getRevisions() );
+		$this->assertNotNull( $segment1->getAfter() );
 		$this->assertNotNull( $segment1->getBefore() );
 		$this->assertFalse( $segment1->isOldest() );
 
-		$segment2 = $contributionsLookup->getRevisionsByUser( $user, 2, $segment1->getBefore() );
+		$segment2 = $contributionsLookup->getRevisionsByUser( self::$testUser, 2, $segment1->getBefore() );
 		$this->assertCount( 2, $segment2->getRevisions() );
+		$this->assertNotNull( $segment2->getAfter() );
 		$this->assertNull( $segment2->getBefore() );
 		$this->assertTrue( $segment2->isOldest() );
 
-		$expectedSegmentOneRevisions = [ $rev4, $rev3 ];
-		$expectedSegmentTwoRevisions = [ $rev2, $rev1 ];
+		$segment3 = $contributionsLookup->getRevisionsByUser( self::$testUser, 2, $segment2->getAfter() );
+		$this->assertInstanceOf( ContributionsSegment::class, $segment3 );
+		$this->assertCount( 2, $segment3->getRevisions() );
+		$this->assertNotNull( $segment3->getAfter() );
+		$this->assertNotNull( $segment3->getBefore() );
+		$this->assertFalse( $segment3->isOldest() );
+
+		$expectedSegmentOneRevisions = [ self::$storedRevisions[4], self::$storedRevisions[3] ];
+		$expectedSegmentTwoRevisions = [ self::$storedRevisions[2], self::$storedRevisions[1] ];
 
 		$this->assertSegmentRevisions( $expectedSegmentOneRevisions, $segment1 );
 		$this->assertSegmentRevisions( $expectedSegmentTwoRevisions, $segment2 );
+		$this->assertSegmentRevisions( $expectedSegmentOneRevisions, $segment3 );
 	}
 
 	/**
@@ -110,11 +118,33 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @param ContributionsSegment $segmentObject
 	 */
 	private function assertSegmentRevisions( $expectedRevisions, $segmentObject ) {
-		/** @var RevisionRecord[] $actualSegmentOneRevisions */
-		$actualSegmentOneRevisions = array_values( $segmentObject->getRevisions() );
+		/** @var RevisionRecord[] $actualRevisions */
+		$actualRevisions = array_values( $segmentObject->getRevisions() );
+		$this->assertSameSize( $expectedRevisions, $actualRevisions );
 		foreach ( $expectedRevisions as $idx => $rev ) {
-			$this->assertSame( $rev->getId(), $actualSegmentOneRevisions[$idx]->getId() );
+			$this->assertSame( $rev->getId(), $actualRevisions[$idx]->getId() );
 		}
+	}
+
+	public function provideBadSegmentMarker() {
+	 yield [ '' ];
+	 yield [ '|' ];
+	 yield [ '0' ];
+	 yield [ '9' ];
+	 yield [ 'x|0' ];
+	 yield [ 'x|9' ];
+	 yield [ 'x|x' ];
+	}
+
+	/**
+	 * @dataProvider provideBadSegmentMarker
+	 */
+	public function testBadSegmentMarkerReturnsLatestSegment( $segment ) {
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$contributionsLookup = new ContributionsLookup( $revisionStore );
+		$expectedRevisions = [ self::$storedRevisions[4], self::$storedRevisions[3] ];
+		$segment = $contributionsLookup->getRevisionsByUser( self::$testUser, 2, $segment );
+		$this->assertSegmentRevisions( $expectedRevisions, $segment );
 	}
 
 }
