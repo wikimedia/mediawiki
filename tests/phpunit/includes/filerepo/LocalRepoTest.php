@@ -167,21 +167,25 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::__construct
 	 * @covers ::checkRedirect
 	 * @covers ::getSharedCacheKey
-	 * @covers ::getLocalCacheKey
 	 */
-	public function testCheckRedirect_redirect_noWANCache() {
-		$this->markTestIncomplete( 'WANObjectCache::makeKey is final' );
-
-		$mockWan = $this->getMockBuilder( WANObjectCache::class )
-			->setConstructorArgs( [ [ 'cache' => new EmptyBagOStuff ] ] )
-			->setMethods( [ 'makeKey' ] )
+	public function testCheckRedirectSharedEmptyCache() {
+		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();
+		$mockBag = $this->getMockBuilder( EmptyBagOStuff::class )
+			->onlyMethods( [ 'makeKey', 'makeGlobalKey' ] )
 			->getMock();
-		$mockWan->expects( $this->exactly( 2 ) )->method( 'makeKey' )->withConsecutive(
-			[ 'file_redirect', md5( 'Redirect' ) ],
-			[ 'filerepo', 'local', 'file_redirect', md5( 'Redirect' ) ]
-		)->will( $this->onConsecutiveCalls( false, 'somekey' ) );
+		$mockBag->expects( $this->exactly( 0 ) )
+			->method( 'makeKey' )
+			->withConsecutive(
+				[ 'filerepo-file-redirect', 'local', md5( 'Redirect' ) ]
+			);
+		$mockBag->expects( $this->exactly( 1 ) )
+			->method( 'makeGlobalKey' )
+			->withConsecutive(
+				[ 'filerepo-file-redirect', $dbDomain, 'local', md5( 'Redirect' ) ]
+			);
 
-		$repo = $this->newRepo( [ 'wanCache' => $mockWan ] );
+		$wanCache = new WANObjectCache( [ 'cache' => $mockBag ] );
+		$repo = $this->newRepo( [ 'wanCache' => $wanCache ] );
 
 		$this->editPage( 'File:Redirect', '#REDIRECT [[File:Target]]' );
 		$this->assertEquals( 'File:Target',

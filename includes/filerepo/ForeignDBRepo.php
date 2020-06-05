@@ -52,9 +52,6 @@ class ForeignDBRepo extends LocalRepo {
 	/** @var string */
 	protected $tablePrefix;
 
-	/** @var bool */
-	protected $hasSharedCache;
-
 	/** @var IDatabase */
 	protected $dbConn;
 
@@ -63,14 +60,12 @@ class ForeignDBRepo extends LocalRepo {
 	/** @var callable */
 	protected $fileFromRowFactory = [ ForeignDBFile::class, 'newFromRow' ];
 
-	/** @var string */
-	private $dbDomain;
-
 	/**
 	 * @param array|null $info
 	 */
 	public function __construct( $info ) {
 		parent::__construct( $info );
+
 		'@phan-var array $info';
 		$this->dbType = $info['dbType'];
 		$this->dbServer = $info['dbServer'];
@@ -79,7 +74,7 @@ class ForeignDBRepo extends LocalRepo {
 		$this->dbName = $info['dbName'];
 		$this->dbFlags = $info['dbFlags'];
 		$this->tablePrefix = $info['tablePrefix'];
-		$this->hasSharedCache = $info['hasSharedCache'];
+		$this->hasAccessibleSharedCache = $info['hasSharedCache'];
 
 		$dbDomain = new DatabaseDomain( $this->dbName, null, $this->tablePrefix );
 		$this->dbDomain = $dbDomain->getId();
@@ -115,21 +110,6 @@ class ForeignDBRepo extends LocalRepo {
 		return function ( $index ) use ( $type, $params ) {
 			return Database::factory( $type, $params );
 		};
-	}
-
-	/**
-	 * @return bool
-	 */
-	private function hasSharedCache() {
-		return $this->hasSharedCache;
-	}
-
-	public function getSharedCacheKey( ...$args ) {
-		if ( $this->hasSharedCache() ) {
-			return $this->wanCache->makeGlobalKey( $this->dbDomain, ...$args );
-		} else {
-			return false;
-		}
 	}
 
 	protected function assertWritableRepo() {
