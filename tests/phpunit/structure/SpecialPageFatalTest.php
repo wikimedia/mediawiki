@@ -18,6 +18,9 @@ class SpecialPageFatalTest extends MediaWikiTestCase {
 		parent::setUp();
 		// FIXME: Acknowledge known non-fatal query (T248191)
 		$this->setMwGlobals( 'wgDBerrorLog', false );
+		// Deprecations don't matter for what this test cares about. This made browser tests fail
+		// on many occasions already. (T236809)
+		$this->filterDeprecated( '//' );
 	}
 
 	public function provideSpecialPages() {
