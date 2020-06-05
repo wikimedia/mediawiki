@@ -1,6 +1,6 @@
 <?php
 /**
- * Magic word implementations provided by MediaWiki core
+ * Magic variable implementations provided by MediaWiki core
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,30 +24,31 @@ use MediaWiki\Config\ServiceOptions;
 use Psr\Log\LoggerInterface;
 
 /**
- * Expansions of core magic words, used by the parser.
+ * Expansions of core magic variables, used by the parser.
  * @internal
  * @ingroup Parser
  */
-class CoreMagicWords {
+class CoreMagicVariables {
 	/** @var int Assume that no output will later be saved this many seconds after parsing */
 	private const MAX_TTS = 900;
 
 	/**
-	 * Expand the magic word given by $index.
+	 * Expand the magic variable given by $index.
 	 * @internal
 	 * @param Parser $parser
-	 * @param string $index Magic variable identifier as mapped in MagicWordFactory::$mVariableIDs
-	 * @param int $ts Timestamp to use when expanding magic word
+	 * @param string $id The name of the variable, and equivalently, the magic
+	 *   word ID which was used to match the variable
+	 * @param int $ts Timestamp to use when expanding magic variable
 	 * @param NamespaceInfo $nsInfo The NamespaceInfo to use when expanding
 	 * @param ServiceOptions $svcOptions Service options for the parser
 	 * @param LoggerInterface $logger
 	 * @return string|null The expanded value, or null to indicate the given
-	 *  index wasn't a known magic word.
+	 *  index wasn't a known magic variable.
 	 */
 	public static function expand(
 		// Fundamental options
 		Parser $parser,
-		string $index,
+		string $id,
 		// Context passed over from the parser
 		int $ts,
 		NamespaceInfo $nsInfo,
@@ -57,7 +58,7 @@ class CoreMagicWords {
 		$pageLang = $parser->getFunctionLang();
 		$title = $parser->getTitle();
 
-		switch ( $index ) {
+		switch ( $id ) {
 			case '!':
 				return '|';
 			case 'currentmonth':
@@ -151,7 +152,7 @@ class CoreMagicWords {
 				if (
 					$svcOptions->get( 'MiserMode' ) &&
 					!$parser->getOptions()->getInterfaceMessage() &&
-					// @TODO: disallow this word on all namespaces
+					// @TODO: disallow this variable on all namespaces
 					$nsInfo->isSubject( $namespace )
 				) {
 					// Use a stub result instead of the actual revision ID in order to avoid
@@ -181,27 +182,27 @@ class CoreMagicWords {
 				}
 			case 'revisionday':
 				return strval( (int)self::getRevisionTimestampSubstring(
-					$parser, $logger, 6, 2, self::MAX_TTS, $index
+					$parser, $logger, 6, 2, self::MAX_TTS, $id
 				) );
 			case 'revisionday2':
 				return self::getRevisionTimestampSubstring(
-					$parser, $logger, 6, 2, self::MAX_TTS, $index
+					$parser, $logger, 6, 2, self::MAX_TTS, $id
 				);
 			case 'revisionmonth':
 				return self::getRevisionTimestampSubstring(
-					$parser, $logger, 4, 2, self::MAX_TTS, $index
+					$parser, $logger, 4, 2, self::MAX_TTS, $id
 				);
 			case 'revisionmonth1':
 				return strval( (int)self::getRevisionTimestampSubstring(
-					$parser, $logger, 4, 2, self::MAX_TTS, $index
+					$parser, $logger, 4, 2, self::MAX_TTS, $id
 				) );
 			case 'revisionyear':
 				return self::getRevisionTimestampSubstring(
-					$parser, $logger, 0, 4, self::MAX_TTS, $index
+					$parser, $logger, 0, 4, self::MAX_TTS, $id
 				);
 			case 'revisiontimestamp':
 				return self::getRevisionTimestampSubstring(
-					$parser, $logger, 0, 14, self::MAX_TTS, $index
+					$parser, $logger, 0, 14, self::MAX_TTS, $id
 				);
 			case 'revisionuser':
 				// Inform the edit saving system that getting the canonical output after
@@ -209,7 +210,7 @@ class CoreMagicWords {
 				self::setOutputFlag( $parser, $logger, 'vary-user', '{{REVISIONUSER}} used' );
 				// Note that getRevisionUser() can return null; we need to
 				// be sure to cast this to (an empty) string, since 'null'
-				// means "magic word not handled here".
+				// means "magic variable not handled here".
 				return (string)$parser->getRevisionUser();
 			case 'revisionsize':
 				return (string)$parser->getRevisionSize();
@@ -307,7 +308,7 @@ class CoreMagicWords {
 			case 'cascadingsources':
 				return CoreParserFunctions::cascadingsources( $parser );
 			default:
-				// This is not one of the core magic words
+				// This is not one of the core magic variables
 				return null;
 		}
 	}

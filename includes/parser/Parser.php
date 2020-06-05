@@ -2770,7 +2770,7 @@ class Parser {
 		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
 		$this->hookRunner->onParserGetVariableValueTs( $this, $ts );
 
-		$value = CoreMagicWords::expand(
+		$value = CoreMagicVariables::expand(
 			$this, $index, $ts, $this->nsInfo, $this->svcOptions, $this->logger
 		);
 
@@ -6257,7 +6257,7 @@ class Parser {
 
 	/**
 	 * Sets the flag on the parser output but also does some debug logging.
-	 * Note that there is a copy of this method in CoreMagicWords as well.
+	 * Note that there is a copy of this method in CoreMagicVariables as well.
 	 * @param string $flag
 	 * @param string $reason
 	 */
