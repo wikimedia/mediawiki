@@ -399,6 +399,7 @@
 	"red-link-title": "$1 (página inexistente)",
 	"sort-descending": "Ordenar por ordem descendente",
 	"sort-ascending": "Ordenar por ordem ascendente",
+	"sort-initial": "Classificar inicial",
 	"nstab-main": "Página",
 	"nstab-user": "Página {{GENDER:{{ROOTPAGENAME}}|do usuário|da usuária|do(a) usuário(a)}}",
 	"nstab-media": "Página de mídia",

@@ -3210,7 +3210,7 @@
 	"watchlisttools-view": "आधारित बदलाव देखा जाय",
 	"watchlisttools-edit": "ध्यानसूची देखा जाय अव संपादित कीन जाय",
 	"watchlisttools-raw": "रॉ ध्यानसूची देखा जाय अव संपादित कीन जाय",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|वार्ता]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|बातचीत]])",
 	"timezone-local": "स्थानीय",
 	"duplicate-defaultsort": "'''Warning:''' पुरानी मूल क्रमांकन कुंजी \"$1\" के बजाय अब मूल क्रमांकन कुंजी \"$2\" होगी।",
 	"duplicate-displaytitle": "<strong>चेतावनी:</strong> शीर्षक दिखाएँ \"$2\" पूर्व दिखाए गए शीर्षक \"$1\" पर छा रहा है।",
