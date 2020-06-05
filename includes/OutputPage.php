@@ -3340,7 +3340,7 @@ class OutputPage extends ContextSource {
 			// Get the revision ID of the oldest new message on the user's talk
 			// page. This can be used for constructing new message alerts on
 			// the client side.
-			$userNewMsgRevId = $user->getNewMessageRevisionId();
+			$userNewMsgRevId = $this->getLastSeenUserTalkRevId();
 			// Only occupy precious space in the <head> when it is non-null (T53640)
 			// mw.config.get returns null by default.
 			if ( $userNewMsgRevId ) {
@@ -3381,6 +3381,41 @@ class OutputPage extends ContextSource {
 
 		// Merge in variables from addJsConfigVars last
 		return array_merge( $vars, $this->getJsConfigVars() );
+	}
+
+	/**
+	 * Get the revision ID for the last user talk page revision viewed by the talk page owner.
+	 *
+	 * @return int|null
+	 */
+	private function getLastSeenUserTalkRevId() {
+		$services = MediaWikiServices::getInstance();
+		$user = $this->getUser();
+		$userHasNewMessages = $services
+			->getTalkPageNotificationManager()
+			->userHasNewMessages( $user );
+		if ( !$userHasNewMessages ) {
+			return null;
+		}
+
+		$timestamp = $services
+			->getTalkPageNotificationManager()
+			->getLatestSeenMessageTimestamp( $user );
+
+		if ( !$timestamp ) {
+			return null;
+		}
+
+		$revRecord = $services->getRevisionLookup()->getRevisionByTimestamp(
+			$user->getTalkPage(),
+			$timestamp
+		);
+
+		if ( !$revRecord ) {
+			return null;
+		}
+
+		return $revRecord->getId();
 	}
 
 	/**
