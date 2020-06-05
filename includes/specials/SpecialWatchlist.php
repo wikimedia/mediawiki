@@ -98,7 +98,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			&& $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'token' ) )
 		) {
-			$user->clearAllNotifications();
+			MediaWikiServices::getInstance()
+				->getWatchlistNotificationManager()
+				->clearAllUserNotifications( $user );
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
 
 			return;
