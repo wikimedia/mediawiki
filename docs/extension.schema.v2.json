@@ -883,6 +883,10 @@
 					"component": {
 						"type": "string",
 						"description" : "The component to which the deprecated version relates. If omitted, the extension name will be used."
+					},
+					"silent": {
+						"type": "boolean",
+						"description": "If true, no warning is raised when the hook is called or when a handler is declared. However, call filtering is still activated."
 					}
 				},
 				"required": [
