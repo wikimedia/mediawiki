@@ -373,12 +373,6 @@ class UserGroupManager implements IDBAccessObject {
 		string $expiry = null,
 		bool $allowUpdate = false
 	) : bool {
-		if ( $group === null ) {
-			throw new InvalidArgumentException(
-				'The group parameter can not be null.'
-			);
-		}
-
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
