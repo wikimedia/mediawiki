@@ -63,7 +63,7 @@ class MoveBatch extends Maintenance {
 		chdir( $oldCwd );
 
 		# Options processing
-		$user = $this->getOption( 'u', false );
+		$username = $this->getOption( 'u', false );
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
 		$noredirects = $this->hasOption( 'noredirects' );
@@ -77,14 +77,15 @@ class MoveBatch extends Maintenance {
 		if ( !$file ) {
 			$this->fatalError( "Unable to read file, exiting" );
 		}
-		if ( $user === false ) {
-			$wgUser = User::newSystemUser( 'Move page script', [ 'steal' => true ] );
+		if ( $username === false ) {
+			$user = User::newSystemUser( 'Move page script', [ 'steal' => true ] );
 		} else {
-			$wgUser = User::newFromName( $user );
+			$user = User::newFromName( $username );
 		}
-		if ( !$wgUser ) {
+		if ( !$user ) {
 			$this->fatalError( "Invalid username" );
 		}
+		$wgUser = $user;
 
 		# Setup complete, now start
 		$dbw = $this->getDB( DB_MASTER );
@@ -109,7 +110,7 @@ class MoveBatch extends Maintenance {
 			$this->beginTransaction( $dbw, __METHOD__ );
 			$mp = MediaWikiServices::getInstance()->getMovePageFactory()
 				->newMovePage( $source, $dest );
-			$status = $mp->move( $wgUser, $reason, !$noredirects );
+			$status = $mp->move( $user, $reason, !$noredirects );
 			if ( !$status->isOK() ) {
 				$this->output( "\nFAILED: " . $status->getMessage( false, false, 'en' )->text() );
 			}

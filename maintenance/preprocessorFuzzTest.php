@@ -214,12 +214,14 @@ class PPFuzzTest {
 	public function execute() {
 		global $wgUser;
 
-		$wgUser = new PPFuzzUser;
-		$wgUser->mName = 'Fuzz';
-		$wgUser->mFrom = 'name';
-		$wgUser->ppfz_test = $this;
+		$user = new PPFuzzUser;
+		$user->mName = 'Fuzz';
+		$user->mFrom = 'name';
+		$user->ppfz_test = $this;
 
-		$options = ParserOptions::newFromUser( $wgUser );
+		$wgUser = $user;
+
+		$options = ParserOptions::newFromUser( $user );
 		$options->setTemplateCallback( [ $this, 'templateHook' ] );
 		$options->setTimestamp( wfTimestampNow() );
 		$this->output = call_user_func(
