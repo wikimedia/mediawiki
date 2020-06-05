@@ -21,6 +21,7 @@
 namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
+use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
@@ -33,6 +34,7 @@ use MWTimestamp;
 use TestLogger;
 use User;
 use WebRequest;
+use Wikimedia\Assert\PreconditionException;
 
 /**
  * @covers \MediaWiki\User\UserGroupManager
@@ -89,6 +91,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user';
 		$this->tablesUsed[] = 'user_groups';
 		$this->tablesUsed[] = 'user_former_groups';
+		$this->tablesUsed[] = 'logging';
 		$this->expiryTime = wfTimestamp( TS_MW, time() + 100500 );
 	}
 
@@ -928,6 +931,82 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals(
 			$expected,
 			$manager->getUserAutopromoteOnceGroups( $user, 'EVENT' )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToAutopromoteOnceGroups
+	 */
+	public function testAddUserToAutopromoteOnceGroupsForeignDomain() {
+		$manager = MediaWikiServices::getInstance()
+			->getUserGroupManagerFactory()
+			->getUserGroupManager( 'TEST_DOMAIN' );
+		$user = $this->getTestUser()->getUser();
+		$this->expectException( PreconditionException::class );
+		$this->assertEmpty( $manager->addUserToAutopromoteOnceGroups( $user, 'TEST' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToAutopromoteOnceGroups
+	 */
+	public function testAddUserToAutopromoteOnceGroupsAnon() {
+		$manager = $this->getManager();
+		$anon = new UserIdentityValue( 0, 'TEST', 0 );
+		$this->assertEmpty( $manager->addUserToAutopromoteOnceGroups( $anon, 'TEST' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToAutopromoteOnceGroups
+	 */
+	public function testAddUserToAutopromoteOnceGroupsReadOnly() {
+		$manager = $this->getManager();
+		$user = $this->getTestUser()->getUser();
+		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->assertEmpty( $manager->addUserToAutopromoteOnceGroups( $user, 'TEST' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToAutopromoteOnceGroups
+	 */
+	public function testAddUserToAutopromoteOnceGroupsNoGroups() {
+		$manager = $this->getManager();
+		$user = $this->getTestUser()->getUser();
+		$this->assertEmpty( $manager->addUserToAutopromoteOnceGroups( $user, 'TEST' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToAutopromoteOnceGroups
+	 */
+	public function testAddUserToAutopromoteOnceGroupsSuccess() {
+		$user = $this->getTestUser()->getUser();
+		$manager = $this->getManager( [
+			'AutopromoteOnce' => [ 'EVENT' => [ 'autopromoteonce' => [ APCOND_EDITCOUNT, 0 ] ] ]
+		] );
+		$this->assertNotContains( 'autopromoteonce', $manager->getUserGroups( $user ) );
+		$hookCalled = false;
+		$this->setTemporaryHook(
+			'UserGroupsChanged',
+			function ( User $hookUser, array $added, array $removed ) use ( $user, &$hookCalled ) {
+				$this->assertTrue( $user->equals( $hookUser ) );
+				$this->assertArrayEquals( [ 'autopromoteonce' ], $added );
+				$this->assertEmpty( $removed );
+				$hookCalled = true;
+			}
+		);
+		$manager->addUserToAutopromoteOnceGroups( $user, 'EVENT' );
+		$this->assertContains( 'autopromoteonce', $manager->getUserGroups( $user ) );
+		$this->assertTrue( $hookCalled );
+		$this->assertSelect(
+			'logging',
+			[ 'log_type', 'log_action', 'log_params' ],
+			[ 'log_type' => 'rights' ],
+			[ [ 'rights',
+				'autopromote',
+				LogEntryBase::makeParamBlob( [
+					'4::oldgroups' => [],
+					'5::newgroups' => [ 'autopromoteonce' ],
+				] )
+			] ]
 		);
 	}
 }
