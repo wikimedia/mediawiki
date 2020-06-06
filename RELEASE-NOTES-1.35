@@ -1166,6 +1166,8 @@ because of Phabricator reports.
   selectFields, getMembershipsForUser, getMembership, insert, delete,
   newFromRow, initFromRow, purgeExpired.
   Use the new UserGroupManager service instead.
+* wfWaitForSlaves() has been hard deprecated. Use LBFactory::waitForReplication
+  instead. It was soft deprecated in 1.27.
 * …
 
 === Other changes in 1.35 ===
