@@ -28,6 +28,7 @@ use Wikimedia\Rdbms\DatabaseSqlite;
  *
  * @ingroup Installer
  * @since 1.17
+ * @property Wikimedia\Rdbms\DatabaseSqlite $db
  */
 class SqliteUpdater extends DatabaseUpdater {
 
@@ -293,6 +294,7 @@ class SqliteUpdater extends DatabaseUpdater {
 				'patch-ipblocks-rename-ipb_address.sql' ],
 			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
+			[ 'doFixIpbAddressUniqueIndex' ],
 		];
 	}
 
@@ -323,5 +325,45 @@ class SqliteUpdater extends DatabaseUpdater {
 		} else {
 			$this->output( "...fulltext search table appears to be in order.\n" );
 		}
+	}
+
+	/**
+	 * Check whether an index contain a field
+	 *
+	 * @param string $table Table name
+	 * @param string $index Index name to check
+	 * @param string $field Field that should be in the index
+	 * @return bool
+	 */
+	protected function indexHasField( $table, $index, $field ) {
+		if ( !$this->doTable( $table ) ) {
+			return true;
+		}
+
+		$info = $this->db->indexInfo( $table, $index, __METHOD__ );
+		if ( $info ) {
+			foreach ( $info as $column ) {
+				if ( $column == $field ) {
+					$this->output( "...index $index on table $table includes field $field.\n" );
+					return true;
+				}
+			}
+		}
+		$this->output( "...index $index on table $table has no field $field; added.\n" );
+
+		return false;
+	}
+
+	protected function doFixIpbAddressUniqueIndex() {
+		if ( !$this->indexHasField( 'ipblocks', 'ipb_address_unique', 'ipb_anon_only' ) ) {
+			$this->output( "...ipb_address_unique index up-to-date.\n" );
+			return;
+		}
+
+		$this->applyPatch(
+			'patch-ipblocks-fix-ipb_address_unique.sql',
+			false,
+			'Removing ipb_anon_only column from ipb_address_unique index'
+		);
 	}
 }
