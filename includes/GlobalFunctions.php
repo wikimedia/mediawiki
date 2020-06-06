@@ -2608,6 +2608,7 @@ function wfGetNull() {
 function wfWaitForSlaves(
 	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
 ) {
+	wfDeprecated( __FUNCTION__, '1.27' );
 	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 	if ( $cluster === '*' ) {
