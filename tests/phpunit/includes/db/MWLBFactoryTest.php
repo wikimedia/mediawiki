@@ -19,7 +19,6 @@
  */
 
 use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactorySimple;
 
 /**
@@ -30,38 +29,24 @@ use Wikimedia\Rdbms\LBFactorySimple;
  */
 class MWLBFactoryTest extends MediaWikiTestCase {
 	/**
-	 * @covers       MWLBFactory::getLBFactoryClass()
+	 * @covers MWLBFactory::getLBFactoryClass
 	 * @dataProvider getLBFactoryClassProvider
 	 */
-	public function testGetLBFactoryClass( $expected, $deprecated ) {
-		$mockDB = $this->getMockBuilder( IDatabase::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$config = [
-			'class' => $deprecated,
-			'connection' => $mockDB,
-			# Various other parameters required:
-			'sectionsByDB' => [],
-			'sectionLoads' => [],
-			'serverTemplate' => [],
-		];
-
-		$this->filterDeprecated( '/\$wgLBFactoryConf must be updated/' );
-		$result = MWLBFactory::getLBFactoryClass( $config );
-
-		$this->assertEquals( $expected, $result );
+	public function testGetLBFactoryClass( $config, $expected ) {
+		$this->assertEquals(
+			$expected,
+			MWLBFactory::getLBFactoryClass( $config )
+		);
 	}
 
 	public function getLBFactoryClassProvider() {
-		return [
-			# Format: new class, old class
-			[ Wikimedia\Rdbms\LBFactorySimple::class, 'LBFactory_Simple' ],
-			[ Wikimedia\Rdbms\LBFactorySingle::class, 'LBFactory_Single' ],
-			[ Wikimedia\Rdbms\LBFactoryMulti::class, 'LBFactory_Multi' ],
-			[ Wikimedia\Rdbms\LBFactorySimple::class, 'LBFactorySimple' ],
-			[ Wikimedia\Rdbms\LBFactorySingle::class, 'LBFactorySingle' ],
-			[ Wikimedia\Rdbms\LBFactoryMulti::class, 'LBFactoryMulti' ],
+		yield 'undercore alias default' => [
+			[ 'class' => 'LBFactory_Simple' ],
+			Wikimedia\Rdbms\LBFactorySimple::class,
+		];
+		yield 'short alias multi' => [
+			[ 'class' => 'LBFactoryMulti' ],
+			Wikimedia\Rdbms\LBFactoryMulti::class,
 		];
 	}
 
