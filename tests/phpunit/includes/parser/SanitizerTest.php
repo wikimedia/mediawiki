@@ -185,7 +185,7 @@ class SanitizerTest extends MediaWikiTestCase {
 			'wgFragmentMode' => $config,
 			'wgExternalInterwikiFragmentMode' => $iwFlavor,
 		] );
-		$escaped = call_user_func( $func, $id, $mode );
+		$escaped = $func( $id, $mode );
 		self::assertEquals( $expected, $escaped );
 	}
 

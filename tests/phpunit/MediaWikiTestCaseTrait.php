@@ -154,10 +154,7 @@ trait MediaWikiTestCaseTrait {
 			$actual = array_values( $actual );
 		}
 
-		call_user_func_array(
-			[ $this, 'assertEquals' ],
-			array_merge( [ $expected, $actual ], array_slice( func_get_args(), 4 ) )
-		);
+		$this->assertEquals( $expected, $actual, ...array_slice( func_get_args(), 4 ) );
 	}
 
 	/**

@@ -279,7 +279,7 @@ class AuthenticationRequestTest extends \MediaWikiTestCase {
 		$ret = $mock->loadFromSubmission( $data );
 		if ( is_array( $expectState ) ) {
 			$this->assertTrue( $ret );
-			$expect = call_user_func( [ get_class( $mock ), '__set_state' ], $expectState );
+			$expect = $mock::__set_state( $expectState );
 			$this->assertEquals( $expect, $mock );
 		} else {
 			$this->assertFalse( $ret );

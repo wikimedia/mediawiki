@@ -864,7 +864,7 @@ class ParserTestRunner {
 					if ( $t->equals( $title ) ) {
 						return $revRecord;
 					} else {
-						return call_user_func( $oldCallback, $t, $parser );
+						return $oldCallback( $t, $parser );
 					}
 				}
 			);

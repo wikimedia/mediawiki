@@ -21,7 +21,7 @@ class ShellTest extends MediaWikiTestCase {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test requires a POSIX environment.' );
 		}
-		$this->assertSame( $expected, call_user_func_array( [ Shell::class, 'escape' ], $args ) );
+		$this->assertSame( $expected, Shell::escape( ...$args ) );
 	}
 
 	public function provideEscape() {

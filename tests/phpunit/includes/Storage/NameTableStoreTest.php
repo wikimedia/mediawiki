@@ -90,7 +90,7 @@ class NameTableStoreTest extends MediaWikiTestCase {
 			$mock->expects( is_int( $count ) ? $this->exactly( $count ) : $this->any() )
 				->method( $method )
 				->willReturnCallback( function ( ...$args ) use ( $method ) {
-					return call_user_func_array( [ $this->db, $method ], $args );
+					return $this->db->$method( ...$args );
 				} );
 		}
 		return $mock;

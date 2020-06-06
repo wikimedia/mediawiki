@@ -34,7 +34,8 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 	private $collect = false;
 	private $collectContext = false;
 	private $buffer = [];
-	private $filter = null;
+	/** @var callable|null */
+	private $filter;
 
 	/**
 	 * @param bool $collect Whether to collect logs. @see setCollect()
@@ -91,7 +92,7 @@ class TestLogger extends \Psr\Log\AbstractLogger {
 		$message = trim( $message );
 
 		if ( $this->filter ) {
-			$message = call_user_func( $this->filter, $message, $level, $context );
+			$message = ( $this->filter )( $message, $level, $context );
 			if ( $message === null ) {
 				return;
 			}

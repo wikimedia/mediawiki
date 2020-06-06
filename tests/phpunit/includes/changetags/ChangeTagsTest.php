@@ -32,10 +32,8 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		ChangeTags::updateTags( [ 'foo', 'bar' ], [], $rcId );
 		// HACK resolve deferred group concats (see comment in provideModifyDisplayQuery)
 		if ( isset( $modifiedQuery['fields']['ts_tags'] ) ) {
-			$modifiedQuery['fields']['ts_tags'] = call_user_func_array(
-				[ wfGetDB( DB_REPLICA ), 'buildGroupConcatField' ],
-				$modifiedQuery['fields']['ts_tags']
-			);
+			$modifiedQuery['fields']['ts_tags'] = wfGetDB( DB_REPLICA )
+				->buildGroupConcatField( ...$modifiedQuery['fields']['ts_tags'] );
 		}
 		if ( isset( $modifiedQuery['exception'] ) ) {
 			$this->expectException( $modifiedQuery['exception'] );

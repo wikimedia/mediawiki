@@ -51,18 +51,14 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		foreach ( $args as $arg ) {
 			$expectArgs[] = $this->identicalTo( $arg );
 		}
-		$tmp = call_user_func_array( [ $tmp, 'with' ], $expectArgs );
+		$tmp = $tmp->with( ...$expectArgs );
 
 		$retval = new \stdClass;
 		$tmp->will( $this->returnValue( $retval ) );
 
 		$session = TestUtils::getDummySession( $mock, 42 );
 
-		if ( $ret ) {
-			$this->assertSame( $retval, call_user_func_array( [ $session, $m ], $args ) );
-		} else {
-			$this->assertNull( call_user_func_array( [ $session, $m ], $args ) );
-		}
+		$this->assertSame( $ret ? $retval : null, $session->$m( ...$args ) );
 
 		// Trigger Session destructor
 		$session = null;

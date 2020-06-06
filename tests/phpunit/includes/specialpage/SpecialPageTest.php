@@ -73,10 +73,7 @@ class SpecialPageTest extends MediaWikiTestCase {
 		$this->expectExceptionMessage( $expected );
 
 		// $specialPage->requireLogin( [ $reason [, $title ] ] )
-		call_user_func_array(
-			[ $specialPage, 'requireLogin' ],
-			array_filter( [ $reason, $title ] )
-		);
+		$specialPage->requireLogin( ...array_filter( [ $reason, $title ] ) );
 	}
 
 	public function requireLoginAnonProvider() {

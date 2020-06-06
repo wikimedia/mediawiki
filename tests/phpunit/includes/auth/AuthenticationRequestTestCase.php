@@ -89,7 +89,7 @@ abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
 		$ret = $instance->loadFromSubmission( $data );
 		if ( is_array( $expectState ) ) {
 			$this->assertTrue( $ret );
-			$expect = call_user_func( [ get_class( $instance ), '__set_state' ], $expectState );
+			$expect = $instance::__set_state( $expectState );
 			$this->assertEquals( $expect, $instance );
 		} else {
 			$this->assertFalse( $ret );

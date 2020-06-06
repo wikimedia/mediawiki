@@ -443,7 +443,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase 
 		$testUser = $this->getMutableTestUser();
 		$user = $testUser->getUser()->getName();
 		if ( is_callable( $usernameTransform ) ) {
-			$user = call_user_func( $usernameTransform, $user );
+			$user = $usernameTransform( $user );
 		}
 		$cuser = ucfirst( $user );
 		$oldpass = $testUser->getPassword();

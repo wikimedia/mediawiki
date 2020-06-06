@@ -122,7 +122,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testConstructorParams( $expected, $args ) {
 		$msg = new Message( 'imasomething' );
 
-		$returned = call_user_func_array( [ $msg, 'params' ], $args );
+		$returned = $msg->params( ...$args );
 
 		$this->assertSame( $msg, $returned );
 		$this->assertSame( $expected, $msg->getParams() );

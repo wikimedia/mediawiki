@@ -326,7 +326,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		$this->expectException( BadMethodCallException::class );
 		$this->expectExceptionMessage( "Attempt to use PHP session management" );
-		call_user_func_array( [ $handler, $method ], $args );
+		$handler->$method( ...$args );
 	}
 
 	public static function provideDisabled() {
@@ -350,7 +350,7 @@ class PHPSessionHandlerTest extends MediaWikiTestCase {
 
 		$this->expectException( UnexpectedValueException::class );
 		$this->expectExceptionMessageMatches( "/: Wrong instance called!$/" );
-		call_user_func_array( [ $handler, $method ], $args );
+		$handler->$method( ...$args );
 	}
 
 	public static function provideWrongInstance() {

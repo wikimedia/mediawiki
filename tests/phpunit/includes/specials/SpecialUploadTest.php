@@ -6,7 +6,7 @@ class SpecialUploadTest extends MediaWikiTestCase {
 	 * @dataProvider provideGetInitialPageText
 	 */
 	public function testGetInitialPageText( $expected, $inputParams ) {
-		$result = call_user_func_array( [ 'SpecialUpload', 'getInitialPageText' ], $inputParams );
+		$result = SpecialUpload::getInitialPageText( ...$inputParams );
 		$this->assertEquals( $expected, $result );
 	}
 

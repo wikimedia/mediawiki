@@ -19,7 +19,7 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 	public function testTimestampedUID( $method, $digitlen, $bits, $tbits, $hostbits ) {
 		$gen = $this->getGlobalIdGenerator();
 
-		$id = call_user_func( [ $gen, $method ] );
+		$id = $gen->$method();
 		$this->assertTrue( ctype_digit( $id ), "UID made of digit characters" );
 		$this->assertLessThanOrEqual( $digitlen, strlen( $id ),
 			"UID has the right number of digits" );
@@ -28,7 +28,7 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 
 		$ids = [];
 		for ( $i = 0; $i < 300; $i++ ) {
-			$ids[] = call_user_func( [ $gen, $method ] );
+			$ids[] = $gen->$method();
 		}
 
 		$lastId = array_shift( $ids );

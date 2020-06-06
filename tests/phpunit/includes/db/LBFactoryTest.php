@@ -261,6 +261,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$m2Pos = new MySQLMasterPos( 'db1064-bin.002400/794074907', $now );
 
 		// Master DB 1
+		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB1 */
 		$mockDB1 = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -279,8 +280,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb1->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
 				function () use ( $mockDB1 ) {
 					$p = 0;
-					$p |= call_user_func( [ $mockDB1, 'writesOrCallbacksPending' ] );
-					$p |= call_user_func( [ $mockDB1, 'lastDoneWrites' ] );
+					$p |= $mockDB1->writesOrCallbacksPending();
+					$p |= $mockDB1->lastDoneWrites();
 
 					return (bool)$p;
 				}
@@ -289,6 +290,7 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb1->method( 'getReplicaResumePos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Master DB 2
+		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB2 */
 		$mockDB2 = $this->getMockBuilder( IDatabase::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -307,8 +309,8 @@ class LBFactoryTest extends MediaWikiTestCase {
 		$lb2->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
 			function () use ( $mockDB2 ) {
 				$p = 0;
-				$p |= call_user_func( [ $mockDB2, 'writesOrCallbacksPending' ] );
-				$p |= call_user_func( [ $mockDB2, 'lastDoneWrites' ] );
+				$p |= $mockDB2->writesOrCallbacksPending();
+				$p |= $mockDB2->lastDoneWrites();
 
 				return (bool)$p;
 			}
