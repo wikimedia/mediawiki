@@ -712,8 +712,12 @@ class UserrightsPage extends SpecialPage {
 			$grouplist .= '<p>' . $systemusernote . "</p>\n";
 		}
 
-		// Only add an email link if the user is not a system user
-		$flags = $systemUser ? 0 : Linker::TOOL_LINKS_EMAIL;
+		// Add an email link if the user is a local user and can receive email.
+		$flags = 0;
+		if ( $isUserInstance && $user->canReceiveEmail() ) {
+			$flags = Linker::TOOL_LINKS_EMAIL;
+		}
+
 		$userToolLinks = Linker::userToolLinks(
 			$user->getId(),
 			$user->getName(),
