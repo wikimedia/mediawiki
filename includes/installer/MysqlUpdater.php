@@ -425,6 +425,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 			[ 'doLanguageLinksLengthSync' ],
+			[ 'doFixIpbAddressUniqueIndex' ],
 		];
 	}
 
@@ -469,7 +470,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			foreach ( $info as $row ) {
 				if ( $row->Column_name == $field ) {
 					$this->output( "...index $index on table $table includes field $field.\n" );
-
 					return true;
 				}
 			}
@@ -1193,6 +1193,19 @@ class MysqlUpdater extends DatabaseUpdater {
 				$this->output( "...$field is up-to-date.\n" );
 			}
 		}
+	}
+
+	protected function doFixIpbAddressUniqueIndex() {
+		if ( !$this->indexHasField( 'ipblocks', 'ipb_address_unique', 'ipb_anon_only' ) ) {
+			$this->output( "...ipb_address_unique index up-to-date.\n" );
+			return;
+		}
+
+		$this->applyPatch(
+			'patch-ipblocks-fix-ipb_address_unique.sql',
+			false,
+			'Removing ipb_anon_only column from ipb_address_unique index'
+		);
 	}
 
 	protected function doUserNewTalkTimestampNotNull() {

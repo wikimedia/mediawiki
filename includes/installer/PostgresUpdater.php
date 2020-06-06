@@ -359,10 +359,9 @@ class PostgresUpdater extends DatabaseUpdater {
 				[ 'ipb_address', 'text_ops', 'btree', 0 ],
 				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
 				[ 'ipb_auto', 'int2_ops', 'btree', 0 ],
-				[ 'ipb_anon_only', 'int2_ops', 'btree', 0 ],
 			],
 			'CREATE UNIQUE INDEX ipb_address_unique ' .
-				'ON ipblocks (ipb_address,ipb_user,ipb_auto,ipb_anon_only)' ],
+				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
 
 			[ 'checkIwlPrefix' ],
 
