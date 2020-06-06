@@ -186,6 +186,7 @@ $specialPageAliases = [
 	'Specialpages'              => [ 'Spesialsider' ],
 	'Statistics'                => [ 'Statistikk' ],
 	'Tags'                      => [ 'Tagger' ],
+	'TrackingCategories'        => [ 'Sporingskategorier' ],
 	'Unblock'                   => [ 'Avblokker' ],
 	'Uncategorizedcategories'   => [ 'Ukategoriserte_kategorier' ],
 	'Uncategorizedimages'       => [ 'Ukategoriserte_filer', 'Ukategoriserte_bilder' ],
