@@ -122,6 +122,10 @@ class NamespaceInfoTest extends MediaWikiTestCase {
 	 * @param bool $allowImageMoving
 	 */
 	public function testIsMovable( $expected, $ns, $allowImageMoving = true ) {
+		if ( $allowImageMoving === false ) {
+			$this->hideDeprecated( 'Setting $wgAllowImageMoving to false' );
+		}
+
 		$obj = $this->newObj( [ 'AllowImageMoving' => $allowImageMoving ] );
 		$this->assertSame( $expected, $obj->isMovable( $ns ) );
 	}
