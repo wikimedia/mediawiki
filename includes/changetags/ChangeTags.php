@@ -398,7 +398,7 @@ class ChangeTags {
 					[ 'ctd_name' => $tagsToAdd ],
 					$fname
 				);
-			} );
+			}, $fname );
 
 			$tagsRows = [];
 			foreach ( $tagsToAdd as $tag ) {
@@ -449,7 +449,7 @@ class ChangeTags {
 							[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
 							$fname
 						);
-					} );
+					}, $fname );
 				}
 			}
 		}

@@ -188,7 +188,7 @@ class Pingback {
 	private function getOrCreatePingbackId() {
 		if ( !$this->id ) {
 			$id = wfGetDB( DB_REPLICA )->selectField(
-				'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ] );
+				'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
 
 			if ( $id == false ) {
 				$id = MWCryptRand::generateHex( 32 );
@@ -202,7 +202,7 @@ class Pingback {
 
 				if ( !$dbw->affectedRows() ) {
 					$id = $dbw->selectField(
-						'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ] );
+						'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
 				}
 			}
 

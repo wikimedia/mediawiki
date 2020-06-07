@@ -2828,7 +2828,7 @@ class WikiPage implements Page, IDBAccessObject {
 				continue;
 			}
 			if ( $dbw->trxLevel() ) {
-				$dbw->commit();
+				$dbw->commit( __METHOD__ );
 			}
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			$lbFactory->waitForReplication();

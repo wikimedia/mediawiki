@@ -967,7 +967,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				]
 			) );
 			// Automatically create the objectcache table for sqlite as needed
-			if ( $conn->getType() === 'sqlite' && !$conn->tableExists( 'objectcache' ) ) {
+			if ( $conn->getType() === 'sqlite' && !$conn->tableExists( 'objectcache', __METHOD__ ) ) {
 				$this->initSqliteDatabase( $conn );
 			}
 			$this->conns[$shardIndex] = $conn;
@@ -1049,11 +1049,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @throws DBError
 	 */
 	private function initSqliteDatabase( IMaintainableDatabase $db ) {
-		if ( $db->tableExists( 'objectcache' ) ) {
+		if ( $db->tableExists( 'objectcache', __METHOD__ ) ) {
 			return;
 		}
 		// Use one table for SQLite; sharding does not seem to have much benefit
-		$db->query( "PRAGMA journal_mode=WAL" ); // this is permanent
+		$db->query( "PRAGMA journal_mode=WAL", __METHOD__ ); // this is permanent
 		$db->startAtomic( __METHOD__ ); // atomic DDL
 		try {
 			$encTable = $db->tableName( 'objectcache' );
@@ -1066,7 +1066,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				")",
 				__METHOD__
 			);
-			$db->query( "CREATE INDEX $encExptimeIndex ON $encTable (exptime)" );
+			$db->query( "CREATE INDEX $encExptimeIndex ON $encTable (exptime)", __METHOD__ );
 			$db->endAtomic( __METHOD__ );
 		} catch ( DBError $e ) {
 			$db->rollback( __METHOD__ );
@@ -1084,7 +1084,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
 					$encBaseTable = $db->tableName( 'objectcache' );
 					$encShardTable = $db->tableName( $this->getTableNameByShard( $i ) );
-					$db->query( "CREATE TABLE $encShardTable LIKE $encBaseTable" );
+					$db->query( "CREATE TABLE $encShardTable LIKE $encBaseTable", __METHOD__ );
 				}
 			}
 		}

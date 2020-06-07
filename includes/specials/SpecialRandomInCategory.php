@@ -168,21 +168,21 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			$up = false;
 		}
 
-		$row = $this->selectRandomPageFromDB( $rand, $offset, $up );
+		$row = $this->selectRandomPageFromDB( $rand, $offset, $up, __METHOD__ );
 
 		// Try again without the timestamp offset (wrap around the end)
 		if ( !$row ) {
-			$row = $this->selectRandomPageFromDB( false, $offset, $up );
+			$row = $this->selectRandomPageFromDB( false, $offset, $up, __METHOD__ );
 		}
 
 		// Maybe the category is really small and offset too high
 		if ( !$row ) {
-			$row = $this->selectRandomPageFromDB( $rand, 0, $up );
+			$row = $this->selectRandomPageFromDB( $rand, 0, $up, __METHOD__ );
 		}
 
 		// Just get the first entry.
 		if ( !$row ) {
-			$row = $this->selectRandomPageFromDB( false, 0, true );
+			$row = $this->selectRandomPageFromDB( false, 0, true, __METHOD__ );
 		}
 
 		if ( $row ) {

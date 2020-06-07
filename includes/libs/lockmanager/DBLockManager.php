@@ -223,7 +223,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	public function __destruct() {
 		$this->releaseAllLocks();
 		foreach ( $this->conns as $db ) {
-			$db->close();
+			$db->close( __METHOD__ );
 		}
 	}
 }

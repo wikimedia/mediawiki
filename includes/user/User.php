@@ -677,7 +677,8 @@ class User implements IDBAccessObject, UserIdentity {
 			[
 				'user_email_token' => md5( $code ),
 				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
-			]
+			],
+			__METHOD__
 		);
 
 		return $id ? self::newFromId( $id ) : null;

@@ -107,7 +107,7 @@ class CloneDatabase {
 			# Create new table
 			wfDebug( __METHOD__ . " duplicating $oldTableName to $newTableName" );
 			$this->db->duplicateTableStructure(
-				$oldTableName, $newTableName, $this->useTemporaryTables );
+				$oldTableName, $newTableName, $this->useTemporaryTables, __METHOD__ );
 		}
 	}
 
@@ -119,7 +119,7 @@ class CloneDatabase {
 		if ( $dropTables ) {
 			$this->db->tablePrefix( $this->newTablePrefix );
 			foreach ( $this->tablesToClone as $tbl ) {
-				$this->db->dropTable( $tbl );
+				$this->db->dropTable( $tbl, __METHOD__ );
 			}
 		}
 		$this->db->tablePrefix( $this->oldTablePrefix );

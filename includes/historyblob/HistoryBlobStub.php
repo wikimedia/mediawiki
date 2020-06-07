@@ -87,7 +87,8 @@ class HistoryBlobStub {
 			$row = $dbr->selectRow(
 				'text',
 				[ 'old_flags', 'old_text' ],
-				[ 'old_id' => $this->mOldId ]
+				[ 'old_id' => $this->mOldId ],
+				__METHOD__
 			);
 
 			if ( !$row ) {

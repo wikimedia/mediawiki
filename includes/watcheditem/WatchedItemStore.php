@@ -283,7 +283,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			// First fetch the wl_ids.
 			$wlIds = $dbw->selectFieldValues( 'watchlist', 'wl_id', [
 				'wl_user' => $user->getId()
-			] );
+			], __METHOD__ );
 
 			if ( $wlIds ) {
 				// Delete rows from both the watchlist and watchlist_expiry tables.
@@ -508,7 +508,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 					'wl_user' => $user->getId(),
 					'wl_namespace' => $namespace,
 					'wl_title' => $toDelete
-				] );
+				], __METHOD__ );
 
 				if ( $wlIds ) {
 					// Delete rows from both the watchlist and watchlist_expiry tables.
@@ -1099,7 +1099,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			'watchlist_expiry',
 			$weRows,
 			'we_item',
-			[ 'we_expiry' => $expiry ]
+			[ 'we_expiry' => $expiry ],
+			__METHOD__
 		);
 
 		return $dbw->affectedRows();
@@ -1166,7 +1167,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 						'wl_user' => $user->getId(),
 						'wl_namespace' => $namespace,
 						'wl_title' => $toUpdate
-					]
+					],
+					__METHOD__
 				);
 				$affectedSinceWait += $dbw->affectedRows();
 				// Wait for replication every time we've touched updateRowsPerQuery rows
