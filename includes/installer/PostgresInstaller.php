@@ -247,7 +247,7 @@ class PostgresInstaller extends DatabaseInstaller {
 					 */
 					$conn = $status->value;
 					$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
-					$conn->query( "SET ROLE $safeRole" );
+					$conn->query( "SET ROLE $safeRole", __METHOD__ );
 				}
 
 				return $status;
@@ -517,7 +517,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		if ( !$conn->schemaExists( $schema ) ) {
 			try {
-				$conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser" );
+				$conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser", __METHOD__ );
 			} catch ( DBQueryError $e ) {
 				return Status::newFatal( 'config-install-pg-schema-failed',
 					$this->getVar( '_InstallUser' ), $schema );
@@ -606,7 +606,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 		'@phan-var DatabasePostgres $conn';
 
-		if ( $conn->tableExists( 'archive' ) ) {
+		if ( $conn->tableExists( 'archive', __METHOD__ ) ) {
 			$status->warning( 'config-install-tables-exist' );
 			$this->enableLB();
 

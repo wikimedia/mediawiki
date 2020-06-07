@@ -1122,7 +1122,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doNonUniquePlTlIl() {
-		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace' );
+		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace', __METHOD__ );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
 			$this->output( "...pl_namespace, tl_namespace, il_to indices are already non-UNIQUE.\n" );
 
@@ -1180,7 +1180,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		foreach ( $sync as $s ) {
 			$table = $this->db->tableName( $s['table'] );
 			$field = $s['field'];
-			$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE '$field'" );
+			$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE '$field'", __METHOD__ );
 			$row = $this->db->fetchObject( $res );
 
 			if ( $row && $row->Type !== "varbinary(35)" ) {
@@ -1231,7 +1231,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doIwlinksIndexNonUnique() {
-		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from' );
+		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from', __METHOD__ );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
 			$this->output( "...iwl_prefix_title_from index is already non-UNIQUE.\n" );
 
@@ -1289,12 +1289,12 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doRevisionPageRevIndexNonUnique() {
 		if ( !$this->doTable( 'revision' ) ) {
 			return true;
-		} elseif ( !$this->db->indexExists( 'revision', 'rev_page_id' ) ) {
+		} elseif ( !$this->db->indexExists( 'revision', 'rev_page_id', __METHOD__ ) ) {
 			$this->output( "...rev_page_id index not found on revision.\n" );
 			return true;
 		}
 
-		if ( !$this->db->indexUnique( 'revision', 'rev_page_id' ) ) {
+		if ( !$this->db->indexUnique( 'revision', 'rev_page_id', __METHOD__ ) ) {
 			$this->output( "...rev_page_id index already non-unique.\n" );
 			return true;
 		}
@@ -1308,7 +1308,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doExtendCommentLengths() {
 		$table = $this->db->tableName( 'revision' );
-		$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE 'rev_comment'" );
+		$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE 'rev_comment'", __METHOD__ );
 		$row = $this->db->fetchObject( $res );
 
 		if ( $row && ( $row->Type !== "varbinary(767)" || $row->Default !== "" ) ) {

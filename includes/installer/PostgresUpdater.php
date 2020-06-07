@@ -738,9 +738,13 @@ SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
 		AND attrelid=pg_class.oid AND attnum > 0
 		AND relname=%s AND nspname=%s
 END;
-		$res = $this->db->query( sprintf( $q,
-			$this->db->addQuotes( $table ),
-			$this->db->addQuotes( $this->db->getCoreSchema() ) ) );
+		$res = $this->db->query(
+			sprintf( $q,
+				$this->db->addQuotes( $table ),
+				$this->db->addQuotes( $this->db->getCoreSchema() )
+			),
+			__METHOD__
+		);
 		if ( !$res ) {
 			return null;
 		}
@@ -771,7 +775,8 @@ END;
 				$q,
 				$this->db->addQuotes( $this->db->getCoreSchema() ),
 				$this->db->addQuotes( $idx )
-			)
+			),
+			__METHOD__
 		);
 		if ( !$res ) {
 			return null;
@@ -793,7 +798,7 @@ SELECT attname FROM pg_class, pg_attribute
 		AND attnum=%d
 		AND attrelid=pg_class.oid
 END;
-			$r2 = $this->db->query( sprintf( $query, $rid ) );
+			$r2 = $this->db->query( sprintf( $query, $rid ), __METHOD__ );
 			if ( !$r2 ) {
 				return null;
 			}
@@ -819,7 +824,8 @@ END;
 				$q,
 				$this->db->addQuotes( $this->db->getCoreSchema() ),
 				$this->db->addQuotes( $fkey )
-			)
+			),
+			__METHOD__
 		);
 		$row = $this->db->fetchRow( $r );
 		if ( !$row ) {
@@ -842,7 +848,8 @@ END;
 				$this->db->addQuotes( $this->db->getCoreSchema() ),
 				$this->db->addQuotes( $table ),
 				$this->db->addQuotes( $rule )
-			)
+			),
+			__METHOD__
 		);
 		$row = $this->db->fetchRow( $r );
 		if ( !$row ) {
@@ -857,10 +864,10 @@ END;
 		if ( !$this->db->sequenceExists( $ns ) ) {
 			$this->output( "Creating sequence $ns\n" );
 			if ( $pkey !== false ) {
-				$this->db->query( "CREATE SEQUENCE $ns OWNED BY $table.$pkey" );
+				$this->db->query( "CREATE SEQUENCE $ns OWNED BY $table.$pkey", __METHOD__ );
 				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
 			} else {
-				$this->db->query( "CREATE SEQUENCE $ns" );
+				$this->db->query( "CREATE SEQUENCE $ns", __METHOD__ );
 			}
 		}
 	}
@@ -868,7 +875,7 @@ END;
 	protected function dropSequence( $table, $ns ) {
 		if ( $this->db->sequenceExists( $ns ) ) {
 			$this->output( "Dropping sequence $ns\n" );
-			$this->db->query( "DROP SEQUENCE $ns CASCADE" );
+			$this->db->query( "DROP SEQUENCE $ns CASCADE", __METHOD__ );
 		}
 	}
 
@@ -880,23 +887,23 @@ END;
 		}
 		if ( $this->db->sequenceExists( $old ) ) {
 			$this->output( "Renaming sequence $old to $new\n" );
-			$this->db->query( "ALTER SEQUENCE $old RENAME TO $new" );
+			$this->db->query( "ALTER SEQUENCE $old RENAME TO $new", __METHOD__ );
 		}
 	}
 
 	protected function setSequenceOwner( $table, $pkey, $seq ) {
 		if ( $this->db->sequenceExists( $seq ) ) {
 			$this->output( "Setting sequence $seq owner to $table.$pkey\n" );
-			$this->db->query( "ALTER SEQUENCE $seq OWNED BY $table.$pkey" );
+			$this->db->query( "ALTER SEQUENCE $seq OWNED BY $table.$pkey", __METHOD__ );
 		}
 	}
 
 	protected function renameTable( $old, $new, $patch = false ) {
-		if ( $this->db->tableExists( $old ) ) {
+		if ( $this->db->tableExists( $old, __METHOD__ ) ) {
 			$this->output( "Renaming table $old to $new\n" );
 			$old = $this->db->realTableName( $old, "quoted" );
 			$new = $this->db->realTableName( $new, "quoted" );
-			$this->db->query( "ALTER TABLE $old RENAME TO $new" );
+			$this->db->query( "ALTER TABLE $old RENAME TO $new", __METHOD__ );
 			if ( $patch !== false ) {
 				$this->applyPatch( $patch );
 			}
@@ -934,7 +941,7 @@ END;
 			return true;
 		}
 
-		$this->db->query( "ALTER INDEX $old RENAME TO $new" );
+		$this->db->query( "ALTER INDEX $old RENAME TO $new", __METHOD__ );
 		return true;
 	}
 
@@ -946,7 +953,7 @@ END;
 			return;
 		} else {
 			$this->output( "Dropping column '$table.$field'\n" );
-			$this->db->query( "ALTER TABLE $table DROP COLUMN $field" );
+			$this->db->query( "ALTER TABLE $table DROP COLUMN $field", __METHOD__ );
 		}
 	}
 
@@ -958,7 +965,7 @@ END;
 			return;
 		} else {
 			$this->output( "Adding column '$table.$field'\n" );
-			$this->db->query( "ALTER TABLE $table ADD $field $type" );
+			$this->db->query( "ALTER TABLE $table ADD $field $type", __METHOD__ );
 		}
 	}
 
@@ -978,12 +985,12 @@ END;
 				$res = [];
 				if ( preg_match( '/DEFAULT (.+)/', $default, $res ) ) {
 					$sqldef = "ALTER TABLE $table ALTER $field SET DEFAULT $res[1]";
-					$this->db->query( $sqldef );
+					$this->db->query( $sqldef, __METHOD__ );
 					$default = preg_replace( '/\s*DEFAULT .+/', '', $default );
 				}
 				$sql .= " USING $default";
 			}
-			$this->db->query( $sql );
+			$this->db->query( $sql, __METHOD__ );
 		}
 	}
 
@@ -1000,19 +1007,19 @@ END;
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		} else {
 			$this->output( "Purging data from cache table '$table'\n" );
-			$this->db->query( "DELETE from $table" );
+			$this->db->query( "DELETE from $table", __METHOD__ );
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
 			if ( strlen( $default ) ) {
 				$res = [];
 				if ( preg_match( '/DEFAULT (.+)/', $default, $res ) ) {
 					$sqldef = "ALTER TABLE $table ALTER $field SET DEFAULT $res[1]";
-					$this->db->query( $sqldef );
+					$this->db->query( $sqldef, __METHOD__ );
 					$default = preg_replace( '/\s*DEFAULT .+/', '', $default );
 				}
 				$sql .= " USING $default";
 			}
-			$this->db->query( $sql );
+			$this->db->query( $sql, __METHOD__ );
 		}
 	}
 
@@ -1021,7 +1028,7 @@ END;
 		if ( $info && $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );
 			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT "
-				. $this->db->addQuotes( $default ) );
+				. $this->db->addQuotes( $default ), __METHOD__ );
 		}
 	}
 
@@ -1035,7 +1042,7 @@ END;
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info->defaultValue() !== false ) {
 			$this->output( "Removing '$table.$field' default value\n" );
-			$this->db->query( "ALTER TABLE $table ALTER $field DROP DEFAULT" );
+			$this->db->query( "ALTER TABLE $table ALTER $field DROP DEFAULT", __METHOD__ );
 		}
 	}
 
@@ -1049,9 +1056,9 @@ END;
 			if ( $null === 'NOT NULL' ) {
 				$this->output( "Changing '$table.$field' to not allow NULLs\n" );
 				if ( $update ) {
-					$this->db->query( "UPDATE $table SET $field = DEFAULT WHERE $field IS NULL" );
+					$this->db->query( "UPDATE $table SET $field = DEFAULT WHERE $field IS NULL", __METHOD__ );
 				}
-				$this->db->query( "ALTER TABLE $table ALTER $field SET NOT NULL" );
+				$this->db->query( "ALTER TABLE $table ALTER $field SET NOT NULL", __METHOD__ );
 			} else {
 				$this->output( "...column '$table.$field' is already set as NULL\n" );
 			}
@@ -1059,7 +1066,7 @@ END;
 			# # It's NOT NULL - does it need to be NULL?
 			if ( $null === 'NULL' ) {
 				$this->output( "Changing '$table.$field' to allow NULLs\n" );
-				$this->db->query( "ALTER TABLE $table ALTER $field DROP NOT NULL" );
+				$this->db->query( "ALTER TABLE $table ALTER $field DROP NOT NULL", __METHOD__ );
 			} else {
 				$this->output( "...column '$table.$field' is already set as NOT NULL\n" );
 			}
@@ -1067,21 +1074,21 @@ END;
 	}
 
 	protected function addPgIndex( $table, $index, $type, $unique = false ) {
-		if ( $this->db->indexExists( $table, $index ) ) {
+		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
 			$this->output( "Creating index '$index' on table '$table' $type\n" );
 			$unique = $unique ? 'UNIQUE' : '';
-			$this->db->query( "CREATE $unique INDEX $index ON $table $type" );
+			$this->db->query( "CREATE $unique INDEX $index ON $table $type", __METHOD__ );
 		}
 	}
 
 	protected function addPgExtIndex( $table, $index, $type ) {
-		if ( $this->db->indexExists( $table, $index ) ) {
+		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} elseif ( preg_match( '/^\(/', $type ) ) {
 			$this->output( "Creating index '$index' on table '$table'\n" );
-			$this->db->query( "CREATE INDEX $index ON $table $type" );
+			$this->db->query( "CREATE INDEX $index ON $table $type", __METHOD__ );
 		} else {
 			$this->applyPatch( $type, true, "Creating index '$index' on table '$table'" );
 		}
@@ -1123,7 +1130,7 @@ END;
 			$this->output( "...Adding value '$value' to enum type $type.\n" );
 			$etype = $this->db->addIdentifierQuotes( $type );
 			$evalue = $this->db->addQuotes( $value );
-			$this->db->query( "ALTER TYPE $etype ADD VALUE $evalue" );
+			$this->db->query( "ALTER TYPE $etype ADD VALUE $evalue", __METHOD__ );
 		}
 	}
 
@@ -1139,7 +1146,7 @@ END;
 			$this->output( "Dropping foreign key constraint on '$table.$field'\n" );
 			$conclause = "CONSTRAINT \"$conname\"";
 			$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
-			$this->db->query( $command );
+			$this->db->query( $command, __METHOD__ );
 		} else {
 			$this->output( "...foreign key constraint on '$table.$field' already does not exist\n" );
 		}
@@ -1161,7 +1168,7 @@ END;
 		if ( $fi->conname() ) {
 			$conclause = "CONSTRAINT \"$conname\"";
 			$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
-			$this->db->query( $command );
+			$this->db->query( $command, __METHOD__ );
 		} else {
 			$this->output( "Column '$table.$field' does not have a foreign key " .
 				"constraint, will be added\n" );
@@ -1170,18 +1177,18 @@ END;
 		$command =
 			"ALTER TABLE $table ADD $conclause " .
 			"FOREIGN KEY ($field) REFERENCES $clause DEFERRABLE INITIALLY DEFERRED";
-		$this->db->query( $command );
+		$this->db->query( $command, __METHOD__ );
 	}
 
 	protected function convertArchive2() {
-		if ( $this->db->tableExists( "archive2" ) ) {
+		if ( $this->db->tableExists( "archive2", __METHOD__ ) ) {
 			if ( $this->db->ruleExists( 'archive', 'archive_insert' ) ) {
 				$this->output( "Dropping rule 'archive_insert'\n" );
-				$this->db->query( 'DROP RULE archive_insert ON archive' );
+				$this->db->query( 'DROP RULE archive_insert ON archive', __METHOD__ );
 			}
 			if ( $this->db->ruleExists( 'archive', 'archive_delete' ) ) {
 				$this->output( "Dropping rule 'archive_delete'\n" );
-				$this->db->query( 'DROP RULE archive_delete ON archive' );
+				$this->db->query( 'DROP RULE archive_delete ON archive', __METHOD__ );
 			}
 			$this->applyPatch(
 				'patch-remove-archive2.sql',
@@ -1196,10 +1203,10 @@ END;
 	protected function checkOiDeleted() {
 		if ( $this->db->fieldInfo( 'oldimage', 'oi_deleted' )->type() !== 'smallint' ) {
 			$this->output( "Changing 'oldimage.oi_deleted' to type 'smallint'\n" );
-			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT" );
+			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT", __METHOD__ );
 			$this->db->query(
-				"ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)" );
-			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted SET DEFAULT 0" );
+				"ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)", __METHOD__ );
+			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted SET DEFAULT 0", __METHOD__ );
 		} else {
 			$this->output( "...column 'oldimage.oi_deleted' is already of type 'smallint'\n" );
 		}
@@ -1212,17 +1219,17 @@ END;
 		} else {
 			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey" ) ) {
 				$this->db->query(
-					"ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey" );
+					"ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey", __METHOD__ );
 			}
 			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey_cascade" ) ) {
 				$this->db->query(
-					"ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey_cascade" );
+					"ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey_cascade", __METHOD__ );
 			}
 			$this->output( "Making foreign key on table 'oldimage' (to image) a cascade delete/update\n" );
 			$this->db->query(
 				"ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascaded " .
 				"FOREIGN KEY (oi_name) REFERENCES image(img_name) " .
-				"ON DELETE CASCADE ON UPDATE CASCADE" );
+				"ON DELETE CASCADE ON UPDATE CASCADE", __METHOD__ );
 		}
 	}
 
@@ -1239,9 +1246,9 @@ END;
 	}
 
 	protected function dropPgIndex( $table, $index ) {
-		if ( $this->db->indexExists( $table, $index ) ) {
+		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "Dropping obsolete index '$index'\n" );
-			$this->db->query( "DROP INDEX \"" . $index . "\"" );
+			$this->db->query( "DROP INDEX \"" . $index . "\"", __METHOD__ );
 		}
 	}
 
@@ -1249,7 +1256,7 @@ END;
 		$pu = $this->db->indexAttributes( $index );
 		if ( !empty( $pu ) && $pu != $should_be ) {
 			$this->output( "Dropping obsolete version of index '$index'\n" );
-			$this->db->query( "DROP INDEX \"" . $index . "\"" );
+			$this->db->query( "DROP INDEX \"" . $index . "\"", __METHOD__ );
 			$pu = [];
 		} else {
 			$this->output( "...no need to drop index '$index'\n" );
@@ -1257,14 +1264,14 @@ END;
 
 		if ( empty( $pu ) ) {
 			$this->output( "Creating index '$index'\n" );
-			$this->db->query( $good_def );
+			$this->db->query( $good_def, __METHOD__ );
 		} else {
 			$this->output( "...index '$index' exists\n" );
 		}
 	}
 
 	protected function checkRevUserFkey() {
-		if ( !$this->db->fieldExists( 'revision', 'rev_user' ) ) {
+		if ( !$this->db->fieldExists( 'revision', 'rev_user', __METHOD__ ) ) {
 			/* Do nothing */
 		} elseif ( $this->fkeyDeltype( 'revision_rev_user_fkey' ) == 'r' ) {
 			$this->output( "...constraint 'revision_rev_user_fkey' is ON DELETE RESTRICT\n" );
@@ -1278,7 +1285,7 @@ END;
 	}
 
 	protected function checkIwlPrefix() {
-		if ( $this->db->indexExists( 'iwlinks', 'iwl_prefix' ) ) {
+		if ( $this->db->indexExists( 'iwlinks', 'iwl_prefix', __METHOD__ ) ) {
 			$this->applyPatch(
 				'patch-rename-iwl_prefix.sql',
 				false,
