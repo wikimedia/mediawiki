@@ -43,7 +43,7 @@ class UpdateRestrictions extends Maintenance {
 		$dbw = $this->getDB( DB_MASTER );
 		$batchSize = $this->getBatchSize();
 
-		if ( !$dbw->tableExists( 'page_restrictions' ) ) {
+		if ( !$dbw->tableExists( 'page_restrictions', __METHOD__ ) ) {
 			$this->fatalError( "page_restrictions table does not exist" );
 		}
 

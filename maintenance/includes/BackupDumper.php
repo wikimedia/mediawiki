@@ -388,7 +388,7 @@ abstract class BackupDumper extends Maintenance {
 
 	public function __destruct() {
 		if ( isset( $this->lb ) ) {
-			$this->lb->closeAll();
+			$this->lb->closeAll( __METHOD__ );
 		}
 	}
 

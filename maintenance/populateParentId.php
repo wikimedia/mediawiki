@@ -50,7 +50,7 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$batchSize = $this->getBatchSize();
 		$db = $this->getDB( DB_MASTER );
-		if ( !$db->tableExists( 'revision' ) ) {
+		if ( !$db->tableExists( 'revision', __METHOD__ ) ) {
 			$this->error( "revision table does not exist" );
 
 			return false;

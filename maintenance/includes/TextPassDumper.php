@@ -217,7 +217,7 @@ TEXT
 	protected function rotateDb() {
 		// Cleaning up old connections
 		if ( isset( $this->lb ) ) {
-			$this->lb->closeAll();
+			$this->lb->closeAll( __METHOD__ );
 			unset( $this->lb );
 		}
 

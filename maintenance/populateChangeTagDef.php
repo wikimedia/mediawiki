@@ -75,7 +75,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 		$dbr = $this->lbFactory->getMainLB()->getConnection( DB_REPLICA );
 
 		$userTags = null;
-		if ( $dbr->tableExists( 'valid_tag' ) ) {
+		if ( $dbr->tableExists( 'valid_tag', __METHOD__ ) ) {
 			$userTags = $dbr->selectFieldValues(
 				'valid_tag',
 				'vt_tag',

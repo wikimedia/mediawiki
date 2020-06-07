@@ -45,7 +45,8 @@ class RenameRestrictions extends Maintenance {
 		$dbm->update(
 			'page_restrictions',
 			[ 'pr_level' => $newLevel ],
-			[ 'pr_level' => $oldLevel ]
+			[ 'pr_level' => $oldLevel ],
+			__METHOD__
 		);
 	}
 

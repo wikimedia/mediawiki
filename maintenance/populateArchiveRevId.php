@@ -49,8 +49,8 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 	 * @return bool
 	 */
 	public static function isNewInstall( IDatabase $dbw ) {
-		return $dbw->selectRowCount( 'archive' ) === 0 &&
-			$dbw->selectRowCount( 'revision' ) === 1;
+		return $dbw->selectRowCount( 'archive', '*', [], __METHOD__ ) === 0 &&
+			$dbw->selectRowCount( 'revision', '*', [], __METHOD__ ) === 1;
 	}
 
 	protected function getUpdateKey() {
@@ -237,7 +237,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			// revision to a dummy page, then rollback the commit
 			wfDebug( __METHOD__ . ": No revisions are available to copy" );
 
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 
 			// Make a title and revision and insert them
 			$title = Title::newFromText( "PopulateArchiveRevId_4b05b46a81e29" );
@@ -263,7 +263,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 				[ 'ORDER BY' => 'rev_timestamp ASC' ]
 			);
 
-			$dbw->rollback();
+			$dbw->rollback( __METHOD__ );
 		}
 		if ( !$rev ) {
 			// This should never happen.

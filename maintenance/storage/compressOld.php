@@ -424,7 +424,8 @@ class CompressOld extends Maintenance {
 									'old_flags' => 'external,utf-8',
 								], [ /* WHERE */
 									'old_id' => $stub->getReferrer(),
-								]
+								],
+								__METHOD__
 							);
 						}
 					} else {
@@ -435,7 +436,8 @@ class CompressOld extends Maintenance {
 								'old_flags' => 'object,utf-8',
 							], [ /* WHERE */
 								'old_id' => $primaryOldid
-							]
+							],
+							__METHOD__
 						);
 
 						# Store the stub objects
@@ -448,7 +450,8 @@ class CompressOld extends Maintenance {
 										'old_flags' => 'object,utf-8',
 									], [ /* WHERE */
 										'old_id' => $revs[$i + $j]->old_id
-									]
+									],
+									__METHOD__
 								);
 							}
 						}

@@ -112,7 +112,8 @@ class RebuildRecentchanges extends Maintenance {
 			[
 				'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 				'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) )
-			]
+			],
+			__METHOD__
 		);
 		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
