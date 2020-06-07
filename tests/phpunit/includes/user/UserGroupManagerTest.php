@@ -21,10 +21,12 @@
 namespace MediaWiki\Tests\User;
 
 use HashConfig;
+use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use User;
 
@@ -39,7 +41,10 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	/** @var string */
 	private $expiryTime;
 
-	private function getManager( array $configOverrides = [] ) : UserGroupManager {
+	private function getManager(
+		array $configOverrides = [],
+		callable $callback = null
+	) : UserGroupManager {
 		$services = MediaWikiServices::getInstance();
 		return new UserGroupManager(
 			new ServiceOptions(
@@ -58,7 +63,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			),
 			$services->getConfiguredReadOnlyMode(),
 			$services->getDBLoadBalancerFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$callback ? [ $callback ] : []
 		);
 	}
 
@@ -154,10 +160,22 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			]
 		] );
 		$user = $this->getTestUser()->getUser();
+		$this->assertArrayEquals(
+			[ '*', 'user' ],
+			$manager->getUserImplicitGroups( $user )
+		);
+		$this->assertArrayEquals(
+			[ '*', 'user' ],
+			$manager->getUserEffectiveGroups( $user )
+		);
 		$user->confirmEmail();
 		$this->assertArrayEquals(
 			[ '*', 'user', 'dummy' ],
-			$manager->getUserImplicitGroups( $user )
+			$manager->getUserImplicitGroups( $user, true )
+		);
+		$this->assertArrayEquals(
+			[ '*', 'user', 'dummy' ],
+			$manager->getUserEffectiveGroups( $user )
 		);
 
 		$user = $this->getTestUser( [ 'dummy' ] )->getUser();
@@ -230,6 +248,27 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\User\UserGroupManager::addUserToGroup
 	 */
+	public function testAddUserToGroupReadonly() {
+		$user = $this->getTestUser()->getUser();
+		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$manager = $this->getManager();
+		$this->assertFalse( $manager->addUserToGroup( $user, 'test' ) );
+		$this->assertNotContains( 'test', $manager->getUserGroups( $user ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToGroup
+	 */
+	public function testAddUserToGroupAnon() {
+		$manager = $this->getManager();
+		$anon = new UserIdentityValue( 0, 'Anon', 0 );
+		$this->expectException( InvalidArgumentException::class );
+		$manager->addUserToGroup( $anon, 'test' );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::addUserToGroup
+	 */
 	public function testAddUserToGroupHookAbort() {
 		$manager = $this->getManager();
 		$user = $this->getTestUser()->getUser();
@@ -294,6 +333,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$manager->getUserGroupMemberships( $user ) );
 		$this->assertContains( self::GROUP,
 			$manager->getUserFormerGroups( $user ) );
+		$this->assertContains( self::GROUP,
+			$manager->getUserFormerGroups( $user ) ); // From cache
 	}
 
 	/**
@@ -335,6 +376,35 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\User\UserGroupManager::removeUserFromGroup
+	 */
+	public function testRemoveUserFromGroupReadOnly() {
+		$user = $this->getTestUser( [ 'test' ] )->getUser();
+		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$manager = $this->getManager();
+		$this->assertFalse( $manager->removeUserFromGroup( $user, 'test' ) );
+		$this->assertContains( 'test', $manager->getUserGroups( $user ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::removeUserFromGroup
+	 */
+	public function testRemoveUserFromGroupCallback() {
+		$user = $this->getTestUser( [ 'test' ] )->getUser();
+		$calledCount = 0;
+		$callback = function ( UserIdentity $callbackUser ) use ( $user, &$calledCount ) {
+			$this->assertTrue( $callbackUser->equals( $user ) );
+			$calledCount += 1;
+		};
+		$manager = $this->getManager( [], $callback );
+		$this->assertTrue( $manager->removeUserFromGroup( $user, 'test' ) );
+		$this->assertNotContains( 'test', $manager->getUserGroups( $user ) );
+		$this->assertSame( 1, $calledCount );
+		$this->assertFalse( $manager->removeUserFromGroup( $user, 'test' ) );
+		$this->assertSame( 1, $calledCount );
+	}
+
+	/**
 	 * @covers \MediaWiki\User\UserGroupManager::purgeExpired
 	 */
 	public function testPurgeExpired() {
@@ -349,6 +419,15 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotContains( 'expired', $manager->getUserGroups( $user ) );
 		$this->assertArrayNotHasKey( 'expired', $manager->getUserGroupMemberships( $user ) );
 		$this->assertContains( 'expired', $manager->getUserFormerGroups( $user ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::purgeExpired
+	 */
+	public function testPurgeExpiredReadOnly() {
+		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$manager = $this->getManager();
+		$this->assertFalse( $manager->purgeExpired() );
 	}
 
 	/**
