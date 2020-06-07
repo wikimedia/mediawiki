@@ -43,7 +43,9 @@ class CheckBadRedirects extends Maintenance {
 		$result = $dbr->select(
 			[ 'page' ],
 			[ 'page_namespace', 'page_title', 'page_latest' ],
-			[ 'page_is_redirect' => 1 ] );
+			[ 'page_is_redirect' => 1 ],
+			__METHOD__
+		);
 
 		$count = $result->numRows();
 		$this->output( "Found $count redirects.\n" .

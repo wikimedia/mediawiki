@@ -364,7 +364,7 @@ class RefreshLinks extends Maintenance {
 					$field,
 					[
 						self::intervalCond( $dbr, $field, $tableStart, $end ),
-						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id' )})",
+						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id', [], __METHOD__ )})",
 					],
 					__METHOD__,
 					[ 'DISTINCT', 'ORDER BY' => $field, 'LIMIT' => $batchSize ]

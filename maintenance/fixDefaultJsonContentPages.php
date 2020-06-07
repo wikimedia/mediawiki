@@ -114,7 +114,8 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 					$dbw->update(
 						'revision',
 						[ 'rev_content_model' => CONTENT_MODEL_WIKITEXT ],
-						[ 'rev_page' => $row->page_id, 'rev_id' => $chunk ]
+						[ 'rev_page' => $row->page_id, 'rev_id' => $chunk ],
+						__METHOD__
 					);
 					$lbFactory->waitForReplication();
 				}

@@ -47,20 +47,22 @@ class UpdateLogging {
 		$logging_1_10 = $this->dbw->tableName( 'logging_1_10' );
 		$logging_pre_1_10 = $this->dbw->tableName( 'logging_pre_1_10' );
 
-		if ( $this->dbw->tableExists( 'logging_pre_1_10' ) && !$this->dbw->tableExists( 'logging' ) ) {
+		if ( $this->dbw->tableExists( 'logging_pre_1_10', __METHOD__ )
+			&& !$this->dbw->tableExists( 'logging', __METHOD__ )
+		) {
 			# Fix previous aborted run
 			echo "Cleaning up from previous aborted run\n";
 			$this->dbw->query( "RENAME TABLE $logging_pre_1_10 TO $logging", __METHOD__ );
 		}
 
-		if ( $this->dbw->tableExists( 'logging_pre_1_10' ) ) {
+		if ( $this->dbw->tableExists( 'logging_pre_1_10', __METHOD__ ) ) {
 			echo "This script has already been run to completion\n";
 
 			return;
 		}
 
 		# Create the target table
-		if ( !$this->dbw->tableExists( 'logging_1_10' ) ) {
+		if ( !$this->dbw->tableExists( 'logging_1_10', __METHOD__ ) ) {
 			global $wgDBTableOptions;
 
 			$sql = <<<EOT

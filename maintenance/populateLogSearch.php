@@ -57,7 +57,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$batchSize = $this->getBatchSize();
 		$db = $this->getDB( DB_MASTER );
-		if ( !$db->tableExists( 'log_search' ) ) {
+		if ( !$db->tableExists( 'log_search', __METHOD__ ) ) {
 			$this->error( "log_search does not exist" );
 
 			return false;
@@ -73,7 +73,7 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 		// This maintenance script is for updating pre-1.16 to 1.16. The target_author_id and
 		// target_author_ip relations it adds will later be migrated to target_author_actor by
 		// migrateActors.php. If the schema is already 1.34, we should have nothing to do.
-		if ( !$db->fieldExists( 'logging', 'log_user' ) ) {
+		if ( !$db->fieldExists( 'logging', 'log_user', __METHOD__ ) ) {
 			$this->output(
 				"This does not appear to be an upgrade from MediaWiki pre-1.16 "
 				. "(logging.log_user does not exist).\n"
@@ -116,7 +116,9 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 							// Clean up the row...
 							$db->update( 'logging',
 								[ 'log_params' => implode( ',', $params ) ],
-								[ 'log_id' => $row->log_id ] );
+								[ 'log_id' => $row->log_id ],
+								__METHOD__
+							);
 						}
 					}
 					$items = explode( ',', $params[1] );
@@ -135,7 +137,8 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					$userIds = $userIPs = [];
 					$sres = $db->select( $table,
 						[ $userField, $userTextField ],
-						[ $field => $items ]
+						[ $field => $items ],
+						__METHOD__
 					);
 					foreach ( $sres as $srow ) {
 						if ( $srow->$userField > 0 ) {
@@ -162,7 +165,8 @@ class PopulateLogSearch extends LoggedUpdateMaintenance {
 					$userIds = $userIPs = [];
 					$sres = $db->select( 'logging',
 						[ 'log_user', 'log_user_text' ],
-						[ 'log_id' => $items ]
+						[ 'log_id' => $items ],
+						__METHOD__
 					);
 					foreach ( $sres as $srow ) {
 						if ( $srow->log_user > 0 ) {

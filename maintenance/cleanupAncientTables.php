@@ -83,7 +83,7 @@ class CleanupAncientTables extends Maintenance {
 			if ( $db->indexExists( 'text', $index, __METHOD__ ) ) {
 				$this->output( "Dropping index $index from the text table..." );
 				$db->query( "DROP INDEX " . $db->addIdentifierQuotes( $index )
-					. " ON " . $db->tableName( 'text' ) );
+					. " ON " . $db->tableName( 'text' ), __METHOD__ );
 				$this->output( "done.\n" );
 			}
 		}
@@ -102,7 +102,7 @@ class CleanupAncientTables extends Maintenance {
 			if ( $db->fieldExists( 'text', $field, __METHOD__ ) ) {
 				$this->output( "Dropping the $field field from the text table..." );
 				$db->query( "ALTER TABLE  " . $db->tableName( 'text' )
-					. " DROP COLUMN " . $db->addIdentifierQuotes( $field ) );
+					. " DROP COLUMN " . $db->addIdentifierQuotes( $field ), __METHOD__ );
 				$this->output( "done.\n" );
 			}
 		}

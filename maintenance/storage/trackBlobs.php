@@ -92,9 +92,9 @@ class TrackBlobs {
 
 	private function initTrackingTable() {
 		$dbw = wfGetDB( DB_MASTER );
-		if ( $dbw->tableExists( 'blob_tracking' ) ) {
-			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_tracking' ) );
-			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_orphans' ) );
+		if ( $dbw->tableExists( 'blob_tracking', __METHOD__ ) ) {
+			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_tracking' ), __METHOD__ );
+			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_orphans' ), __METHOD__ );
 		}
 		$dbw->sourceFile( __DIR__ . '/blob_tracking.sql' );
 	}
@@ -330,7 +330,7 @@ class TrackBlobs {
 			if ( $table === null ) {
 				$table = 'blobs';
 			}
-			if ( !$extDB->tableExists( $table ) ) {
+			if ( !$extDB->tableExists( $table, __METHOD__ ) ) {
 				echo "No blobs table on cluster $cluster\n";
 				continue;
 			}
