@@ -1975,7 +1975,6 @@ class User implements IDBAccessObject, UserIdentity {
 
 		$keys = [];
 		$id = $this->getId();
-		$userLimit = false;
 		$isNewbie = $this->isNewbie();
 		$cache = ObjectCache::getLocalClusterInstance();
 
@@ -1984,9 +1983,6 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( isset( $limits['anon'] ) ) {
 				$keys[$cache->makeKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 			}
-		} elseif ( isset( $limits['user'] ) ) {
-			// limits for logged-in users
-			$userLimit = $limits['user'];
 		}
 
 		if ( $isNewbie ) {
@@ -2005,20 +2001,27 @@ class User implements IDBAccessObject, UserIdentity {
 			}
 		}
 
-		// Check for group-specific permissions
-		// If more than one group applies, use the group with the highest limit ratio (max/period)
-		foreach ( $this->getGroups() as $group ) {
-			if ( isset( $limits[$group] ) ) {
-				if ( $userLimit === false
-					|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
-				) {
-					$userLimit = $limits[$group];
-				}
-			}
+		// determine the "per user account" limit
+		$userLimit = false;
+		if ( $id !== 0 && isset( $limits['user'] ) ) {
+			// default limit for logged-in users
+			$userLimit = $limits['user'];
 		}
 		// limits for newbie logged-in users (overrides all the normal user limits)
 		if ( $id !== 0 && $isNewbie && isset( $limits['newbie'] ) ) {
 			$userLimit = $limits['newbie'];
+		} else {
+			// Check for group-specific limits
+			// If more than one group applies, use the highest allowance (if higher than the default)
+			foreach ( $this->getGroups() as $group ) {
+				if ( isset( $limits[$group] ) ) {
+					if ( $userLimit === false
+						|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
+					) {
+						$userLimit = $limits[$group];
+					}
+				}
+			}
 		}
 
 		// Set the user limit key
