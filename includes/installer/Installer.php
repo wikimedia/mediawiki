@@ -445,8 +445,9 @@ abstract class Installer {
 			}
 		);
 
-		$wgUser = User::newFromId( 0 );
-		RequestContext::getMain()->setUser( $wgUser );
+		$user = User::newFromId( 0 );
+		$wgUser = $user;
+		RequestContext::getMain()->setUser( $user );
 
 		$this->settings = $this->internalDefaults;
 
@@ -467,7 +468,7 @@ abstract class Installer {
 		}
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
-		$this->parserOptions = new ParserOptions( $wgUser ); // language will be wrong :(
+		$this->parserOptions = new ParserOptions( $user ); // language will be wrong :(
 		// Don't try to access DB before user language is initialised
 		$this->setParserLanguage( $mwServices->getLanguageFactory()->getLanguage( 'en' ) );
 	}
