@@ -27,10 +27,6 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
 	}
 
-	public function tearDown() : void {
-		parent::tearDown();
-	}
-
 	/**
 	 * Make a stashedit API call with suitable default parameters
 	 *
