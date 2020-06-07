@@ -231,7 +231,7 @@ class Pingback {
 		$json = FormatJson::encode( $data );
 		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
 		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
-		return MediaWikiServices::getInstance()->getHttpRequestFactory()->post( $url ) !== null;
+		return MediaWikiServices::getInstance()->getHttpRequestFactory()->post( $url, [], __METHOD__ ) !== null;
 	}
 
 	/**

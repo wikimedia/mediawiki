@@ -492,7 +492,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			}
 
 			$httpRequest = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
-				$url, $reqOptions );
+				$url, $reqOptions, __METHOD__ );
 			$sv = $httpRequest->execute()->getStatusValue();
 
 			$respHeaders = array_map(
