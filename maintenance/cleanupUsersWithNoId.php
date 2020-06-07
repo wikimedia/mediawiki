@@ -133,8 +133,8 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 		}
 
 		$dbw = $this->getDB( DB_MASTER );
-		if ( !$dbw->fieldExists( $table, $idField ) ||
-			!$dbw->fieldExists( $table, $nameField )
+		if ( !$dbw->fieldExists( $table, $idField, __METHOD__ ) ||
+			!$dbw->fieldExists( $table, $nameField, __METHOD__ )
 		) {
 			$this->output( "Skipping $table, fields $idField and/or $nameField do not exist\n" );
 			return;

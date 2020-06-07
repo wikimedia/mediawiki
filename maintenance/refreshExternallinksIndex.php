@@ -52,7 +52,7 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$dbw = $this->getDB( DB_MASTER );
-		if ( !$dbw->tableExists( 'externallinks' ) ) {
+		if ( !$dbw->tableExists( 'externallinks', __METHOD__ ) ) {
 			$this->error( "externallinks table does not exist" );
 			return false;
 		}

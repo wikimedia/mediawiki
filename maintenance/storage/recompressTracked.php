@@ -203,7 +203,7 @@ class RecompressTracked {
 	 */
 	private function checkTrackingTable() {
 		$dbr = wfGetDB( DB_REPLICA );
-		if ( !$dbr->tableExists( 'blob_tracking' ) ) {
+		if ( !$dbr->tableExists( 'blob_tracking', __METHOD__ ) ) {
 			$this->critical( "Error: blob_tracking table does not exist" );
 
 			return false;

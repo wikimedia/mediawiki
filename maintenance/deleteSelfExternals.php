@@ -74,7 +74,7 @@ class DeleteSelfExternals extends Maintenance {
 				$q = $db->limitResult( "DELETE /* deleteSelfExternals */ FROM externallinks WHERE $cond",
 					$this->mBatchSize );
 				$this->output( "Deleting a batch\n" );
-				$db->query( $q );
+				$db->query( $q, __METHOD__ );
 			} while ( $db->affectedRows() );
 		}
 	}

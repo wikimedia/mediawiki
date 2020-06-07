@@ -111,12 +111,14 @@ class FindOrphanedFiles extends Maintenance {
 					$dbr->selectSQLText(
 						'image',
 						[ 'name' => 'img_name', 'old' => 0 ],
-						$imgIN ? [ 'img_name' => $imgIN ] : '1=0'
+						$imgIN ? [ 'img_name' => $imgIN ] : '1=0',
+						__METHOD__
 					),
 					$dbr->selectSQLText(
 						'oldimage',
 						[ 'name' => 'oi_archive_name', 'old' => 1 ],
-						$oiWheres ? $dbr->makeList( $oiWheres, LIST_OR ) : '1=0'
+						$oiWheres ? $dbr->makeList( $oiWheres, LIST_OR ) : '1=0',
+						__METHOD__
 					)
 				],
 				$dbr::UNION_ALL
