@@ -141,7 +141,8 @@ class RecentChangesUpdateJob extends Job {
 		// Get the last-updated timestamp for the cache
 		$cTime = $dbw->selectField( 'querycache_info',
 			'qci_timestamp',
-			[ 'qci_type' => 'activeusers' ]
+			[ 'qci_type' => 'activeusers' ],
+			__METHOD__
 		);
 		$cTimeUnix = $cTime ? wfTimestamp( TS_UNIX, $cTime ) : 1;
 

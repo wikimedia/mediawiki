@@ -191,10 +191,10 @@ class SearchSqlite extends SearchDatabase {
 		$filteredTerm =
 			$this->filter( MediaWikiServices::getInstance()->getContentLanguage()->lc( $term ) );
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
-		$resultSet = $dbr->query( $this->getQuery( $filteredTerm, $fulltext ) );
+		$resultSet = $dbr->query( $this->getQuery( $filteredTerm, $fulltext ), __METHOD__ );
 
 		$total = null;
-		$totalResult = $dbr->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
+		$totalResult = $dbr->query( $this->getCountQuery( $filteredTerm, $fulltext ), __METHOD__ );
 		$row = $totalResult->fetchObject();
 		if ( $row ) {
 			$total = intval( $row->c );

@@ -132,7 +132,8 @@ class CategoryMembershipChangeJob extends Job {
 					[
 						'rc_this_oldid = rev_id',
 						'rc_source' => RecentChange::SRC_CATEGORIZE,
-					]
+					],
+					__METHOD__
 				) . ')'
 			],
 			__METHOD__,

@@ -667,7 +667,8 @@ class RevisionStore
 					$dbw->onTransactionResolution(
 						function ( $trigger, IDatabase $dbw ) use ( $fname ) {
 							$dbw->unlock( 'fix-for-T202032', $fname );
-						}
+						},
+						__METHOD__
 					);
 
 					$dbw->delete( 'revision', [ 'rev_id' => $revisionRow['rev_id'] ], __METHOD__ );
@@ -682,12 +683,14 @@ class RevisionStore
 					// And we have to use raw SQL to bypass the "aggregation used with a locking SELECT" warning
 					// that's for non-MySQL DBs.
 					$row1 = $dbw->query(
-						$dbw->selectSQLText( 'archive', [ 'v' => "MAX(ar_rev_id)" ], '', __METHOD__ ) . ' FOR UPDATE'
+						$dbw->selectSQLText( 'archive', [ 'v' => "MAX(ar_rev_id)" ], '', __METHOD__ ) . ' FOR UPDATE',
+						__METHOD__
 					)->fetchObject();
 
 					$row2 = $dbw->query(
 						$dbw->selectSQLText( 'slots', [ 'v' => "MAX(slot_revision_id)" ], '', __METHOD__ )
-							. ' FOR UPDATE'
+							. ' FOR UPDATE',
+						__METHOD__
 					)->fetchObject();
 
 					$maxRevId = max(

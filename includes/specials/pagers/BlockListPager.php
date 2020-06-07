@@ -390,7 +390,8 @@ class BlockListPager extends TablePager {
 			[
 				'ipb_auto' => '1',
 				'ipb_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() ),
-			]
+			],
+			__METHOD__
 		);
 		if ( $res ) {
 			return $res;
