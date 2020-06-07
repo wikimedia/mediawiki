@@ -10,14 +10,6 @@ use Wikimedia\TestingAccessWrapper;
  * @coversDefaultClass MediaWiki\Languages\LanguageConverterFactory
  */
 class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
-	protected function setUp() : void {
-		parent::setUp();
-	}
-
-	protected function tearDown() : void {
-		parent::tearDown();
-	}
-
 	/**
 	 * @covers ::__construct
 	 * @covers ::classFromCode
