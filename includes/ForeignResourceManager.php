@@ -19,6 +19,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -185,7 +186,8 @@ class ForeignResourceManager {
 			return $data;
 		}
 
-		$req = MWHttpRequest::factory( $src, [ 'method' => 'GET', 'followRedirects' => false ] );
+		$req = MediaWikiServices::getInstance()->getHttpRequestFactory()
+			->create( $src, [ 'method' => 'GET', 'followRedirects' => false ], __METHOD__ );
 		if ( !$req->execute()->isOK() ) {
 			throw new Exception( "Failed to download resource at {$src}" );
 		}
