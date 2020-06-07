@@ -136,7 +136,7 @@ class SearchPostgres extends SearchDatabase {
 		# # We need a separate query here so gin does not complain about empty searches
 		$sql = "SELECT to_tsquery($searchstring)";
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
-		$res = $dbr->query( $sql );
+		$res = $dbr->query( $sql, __METHOD__ );
 		if ( !$res ) {
 			# # TODO: Better output (example to catch: one 'two)
 			die( "Sorry, that was not a valid search string. Please go back and try again" );
@@ -208,7 +208,7 @@ class SearchPostgres extends SearchDatabase {
 			" ORDER BY old_rev_text_id DESC OFFSET 1)";
 
 		$dbw = $this->lb->getConnectionRef( DB_MASTER );
-		$dbw->query( $sql );
+		$dbw->query( $sql, __METHOD__ );
 
 		return true;
 	}

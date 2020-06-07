@@ -533,7 +533,7 @@ class JobQueueDB extends JobQueue {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		try {
-			$dbw->delete( 'job', [ 'job_cmd' => $this->type ] );
+			$dbw->delete( 'job', [ 'job_cmd' => $this->type ], __METHOD__ );
 		} catch ( DBError $e ) {
 			throw $this->getDBException( $e );
 		}
@@ -592,7 +592,7 @@ class JobQueueDB extends JobQueue {
 		$scope = $this->getScopedNoTrxFlag( $dbr );
 		try {
 			return new MappedIterator(
-				$dbr->select( 'job', self::selectFields(), $conds ),
+				$dbr->select( 'job', self::selectFields(), $conds, __METHOD__ ),
 				function ( $row ) {
 					return $this->jobFromRow( $row );
 				}

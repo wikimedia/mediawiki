@@ -203,7 +203,7 @@ class NameTableStore {
 				$dbw = $this->getDBConnection( DB_MASTER );
 				$dbw->onTransactionPreCommitOrIdle( function () {
 					$this->cache->delete( $this->getCacheKey() );
-				} );
+				}, __METHOD__ );
 			}
 			$this->tableCache = $table;
 		}
@@ -234,7 +234,7 @@ class NameTableStore {
 		$this->tableCache = $this->loadTable( $dbw );
 		$dbw->onTransactionPreCommitOrIdle( function () {
 			$this->cache->reap( $this->getCacheKey(), INF );
-		} );
+		}, __METHOD__ );
 
 		return $this->tableCache;
 	}

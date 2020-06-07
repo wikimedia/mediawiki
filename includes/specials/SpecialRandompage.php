@@ -115,7 +115,7 @@ class RandomPage extends SpecialPage {
 			return $title;
 		}
 
-		$row = $this->selectRandomPageFromDB( $randstr );
+		$row = $this->selectRandomPageFromDB( $randstr, __METHOD__ );
 
 		/* If we picked a value that was higher than any in
 		 * the DB, wrap around and select the page with the
@@ -125,7 +125,7 @@ class RandomPage extends SpecialPage {
 		 * causes anyway.  Trust me, I'm a mathematician. :)
 		 */
 		if ( !$row ) {
-			$row = $this->selectRandomPageFromDB( "0" );
+			$row = $this->selectRandomPageFromDB( "0", __METHOD__ );
 		}
 
 		if ( $row ) {

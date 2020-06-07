@@ -141,7 +141,8 @@ class ForeignDBFile extends LocalFile {
 			[
 				'page_namespace' => NS_FILE,
 				'page_title' => $this->title->getDBkey()
-			]
+			],
+			__METHOD__
 		);
 		if ( $touched === false ) {
 			return false; // no description page
@@ -186,7 +187,8 @@ class ForeignDBFile extends LocalFile {
 			[
 				'page_namespace' => NS_FILE,
 				'page_title' => $this->title->getDBkey()
-			]
+			],
+			__METHOD__
 		);
 
 		if ( $pageId !== false ) {

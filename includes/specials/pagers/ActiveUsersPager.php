@@ -131,7 +131,7 @@ class ActiveUsersPager extends UsersPager {
 				  ->userHasRight( $this->getUser(), 'hideuser' )
 		) {
 			$conds[] = 'NOT EXISTS (' . $dbr->selectSQLText(
-					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ]
+					'ipblocks', '1', [ 'ipb_user=user_id', 'ipb_deleted' => 1 ], __METHOD__
 				) . ')';
 		}
 		$subquery = $dbr->buildSelectSubquery( $tables, $fields, $conds, $fname, $options, $jconds );
