@@ -225,39 +225,39 @@ class MWExceptionHandler {
 			case E_WARNING:
 			case E_CORE_WARNING:
 			case E_COMPILE_WARNING:
-				$levelName = 'Warning';
+				$prefix = 'PHP Warning: ';
 				$severity = LogLevel::ERROR;
 				break;
 			case E_NOTICE:
-				$levelName = 'Notice';
+				$prefix = 'PHP Notice: ';
 				$severity = LogLevel::ERROR;
 				break;
 			case E_USER_NOTICE:
 				// Used by wfWarn(), MWDebug::warning()
-				$levelName = 'Notice';
+				$prefix = 'PHP Notice: ';
 				$severity = LogLevel::WARNING;
 				break;
 			case E_USER_WARNING:
 				// Used by wfWarn(), MWDebug::warning()
-				$levelName = 'Warning';
+				$prefix = 'PHP Warning: ';
 				$severity = LogLevel::WARNING;
 				break;
 			case E_STRICT:
-				$levelName = 'Strict Standards';
+				$prefix = 'PHP Strict Standards: ';
 				$severity = LogLevel::WARNING;
 				break;
 			case E_DEPRECATED:
 			case E_USER_DEPRECATED:
-				$levelName = 'Deprecated';
+				$prefix = 'PHP Deprecated: ';
 				$severity = LogLevel::WARNING;
 				break;
 			default:
-				$levelName = 'Unknown error';
+				$prefix = 'PHP Unknown error: ';
 				$severity = LogLevel::ERROR;
 				break;
 		}
 
-		$e = new ErrorException( "PHP $levelName: $message", 0, $level, $file, $line );
+		$e = new ErrorException( $prefix . $message, 0, $level, $file, $line );
 		self::logError( $e, 'error', $severity, self::CAUGHT_BY_HANDLER );
 
 		// If $wgPropagateErrors is true return false so PHP shows/logs the error normally.
