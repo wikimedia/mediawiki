@@ -528,7 +528,7 @@
 	"databaseerror-function": "Identifies, in the list of technical details, the function that tried to execute the database query.\nParameters:\n* $1 - Name of function\n{{Identical|Function}}",
 	"databaseerror-error": "Identifies, in the list of technical details, the error message the database server returned.\nParameters:\n* $1 - Error message from the database server, probably in English\n{{Identical|Error}}",
 	"transaction-duration-limit-exceeded": "Plain text error shown when DB updates take too long. Parameters:\n* $1 - time spent in database updates\n* $2 - maximum number of seconds allowed in database updates",
-	"laggedslavemode": "Used as warning when getting the timestamp of the latest version, if in LaggedSlaveMode.",
+	"laggedreplicamode": "Used as warning when getting the timestamp of the latest version, if in LaggedReplicaMode.",
 	"readonly": "Used as title of error message when database is locked.",
 	"enterlockreason": "For developers when locking the database",
 	"readonlytext": "Used as error message when the database is locked. Parameters:\n* $1 - explanation e.g. \"The wiki is currently in read-only mode\"",
