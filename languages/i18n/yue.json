@@ -936,7 +936,7 @@
 	"search-redirect": "（由$1跳轉過來）",
 	"search-section": "(小節 $1)",
 	"search-category": "（類 $1）",
-	"search-file-match": "（夾啱樓案内容）",
+	"search-file-match": "（符合檔案內容）",
 	"search-suggest": "你係唔係搵: $1",
 	"search-rewritten": "顯示緊 $1 嘅搵嘢結果，而唔係 $2 嘅。",
 	"search-interwiki-caption": "兄弟計劃嘅結果",
