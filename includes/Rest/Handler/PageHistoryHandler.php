@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use GuzzleHttp\Psr7\Uri;
 use IDBAccessObject;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -394,22 +393,17 @@ class PageHistoryHandler extends SimpleHandler {
 			$queryParts['filter'] = $params['filter'];
 		}
 
-		$path = '/page/' . urlencode( $titleObj->getPrefixedDBkey() ) . '/history';
-		$url = $this->getRouter()->getRouteUrl( $path, $queryParts );
-		$uri = new Uri( $url );
+		$pathParams = [ 'title' => $titleObj->getPrefixedDBkey() ];
 
-		$response['latest'] = $url;
+		$response['latest'] = $this->getRouteUrl( $pathParams, $queryParts );
+
 		if ( isset( $older ) ) {
-			$response['older'] = '' . Uri::withQueryValues(
-				$uri,
-				$queryParts + [ 'older_than' => $older ]
-			);
+			$response['older'] =
+				$this->getRouteUrl( $pathParams, $queryParts + [ 'older_than' => $older ] );
 		}
 		if ( isset( $newer ) ) {
-			$response['newer'] = '' . Uri::withQueryValues(
-				$uri,
-				$queryParts + [ 'newer_than' => $newer ]
-			);
+			$response['newer'] =
+				$this->getRouteUrl( $pathParams, $queryParts + [ 'newer_than' => $newer ] );
 		}
 
 		return $response;

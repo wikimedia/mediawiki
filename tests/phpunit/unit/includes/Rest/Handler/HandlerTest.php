@@ -46,6 +46,68 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertInstanceOf( Router::class, $handler->getRouter() );
 	}
 
+	public function provideGetRouteUrl() {
+		yield 'empty' => [
+			'/test',
+			[],
+			[],
+			'/test'
+		];
+		yield 'path params' => [
+			'/test/{foo}/{bar}',
+			[ 'foo' => 'Kittens', 'bar' => 'mew' ],
+			[],
+			'/test/Kittens/mew'
+		];
+		yield 'missing path params' => [
+			'/test/{foo}/{bar}',
+			[ 'bar' => 'mew' ],
+			[],
+			'/test/{foo}/mew'
+		];
+		yield 'path param encoding' => [
+			'/test/{foo}',
+			[ 'foo' => 'ä/+/&/?/{}/#/%' ],
+			[],
+			'/test/%C3%A4%2F%2B%2F%26%2F%3F%2F%7B%7D%2F%23%2F%25'
+		];
+		yield 'recursive path params' => [
+			'/test/{foo}/{bar}',
+			[ 'foo' => '{bar}', 'bar' => 'mew' ],
+			[],
+			'/test/%7Bbar%7D/mew'
+		];
+		yield 'query params' => [
+			'/test',
+			[],
+			[ 'foo' => 'Kittens', 'bar' => 'mew' ],
+			'/test?foo=Kittens&bar=mew'
+		];
+		yield 'query param encoding' => [
+			'/test',
+			[],
+			[ 'foo' => 'ä/+/&/?/{}/#/%' ],
+			'/test?foo=%C3%A4%2F%2B%2F%26%2F%3F%2F%7B%7D%2F%23%2F%25'
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetRouteUrl
+	 *
+	 * @param string $path
+	 * @param string[] $pathParams
+	 * @param string[] $queryParams
+	 * @param string $expected
+	 */
+	public function testGetRouteUrl( $path, $pathParams, $queryParams, $expected ) {
+		$handler = $this->newHandler();
+		$request = new RequestData();
+		$this->initHandler( $handler, $request, [ 'path' => $path ] );
+		$handler = TestingAccessWrapper::newFromObject( $handler );
+		$url = $handler->getRouteUrl( $pathParams, $queryParams );
+		$this->assertStringEndsWith( $expected, $url );
+	}
+
 	public function testGetResponseFactory() {
 		$handler = $this->newHandler();
 		$this->initHandler( $handler, new RequestData() );
