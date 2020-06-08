@@ -8,7 +8,7 @@ use MediaWiki\MediaWikiServices;
  */
 class BadFileLookupTest extends MediaWikiUnitTestCase {
 	/** Shared with GlobalWithDBTest */
-	public const BLACKLIST = <<<WIKITEXT
+	public const BAD_FILE_LIST = <<<WIKITEXT
 Comment line, no effect [[File:Good.jpg]]
  * Indented list is also a comment [[File:Good.jpg]]
 * [[File:Bad.jpg]] except [[Nasty page]]
@@ -127,7 +127,7 @@ WIKITEXT;
 	public function testIsBadFile( $name, $title, $expected ) {
 		$bfl = new BadFileLookup(
 			function () {
-				return self::BLACKLIST;
+				return self::BAD_FILE_LIST;
 			},
 			new EmptyBagOStuff,
 			$this->getMockRepoGroup(),
@@ -146,7 +146,7 @@ WIKITEXT;
 	public function testIsBadFile_nullRepoGroup( $name, $title, $expected ) {
 		$bfl = new BadFileLookup(
 			function () {
-				return self::BLACKLIST;
+				return self::BAD_FILE_LIST;
 			},
 			new EmptyBagOStuff,
 			$this->getMockRepoGroupNull(),
