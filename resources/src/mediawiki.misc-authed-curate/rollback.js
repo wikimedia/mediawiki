@@ -2,8 +2,12 @@
  * JavaScript for rollback confirmation prompt
  */
 ( function () {
+	if ( Number( mw.user.options.get( 'showrollbackconfirmation' ) ) !== 1 ) {
+		// Support both 1 or "1" (T54542)
+		return;
+	}
 
-	var postRollback = function ( url ) {
+	function postRollback( url ) {
 		$( '<form>' )
 			.attr( {
 				action: url,
@@ -11,7 +15,7 @@
 			} )
 			.appendTo( document.body )
 			.trigger( 'submit' );
-	};
+	}
 
 	$( '#mw-content-text' ).confirmable( {
 		i18n: {
