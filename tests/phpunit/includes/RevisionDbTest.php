@@ -753,6 +753,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Revision::getTextId' );
 		$this->hideDeprecated( 'Revision::newNullRevision' );
 		$this->hideDeprecated( 'Revision::getSha1' );
+		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
@@ -1088,6 +1089,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testGetContent( $text, $title, $model, $format,
 		$audience, $expectedSerialization
 	) {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
 		$content = $rev->getContent( $audience );
 
@@ -1101,6 +1104,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContent
 	 */
 	public function testGetContent_failure() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$rev = new Revision( [
 			'page' => $this->testPage->getId(),
 			'content_model' => $this->testPage->getContentModel(),
@@ -1164,6 +1169,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContent
 	 */
 	public function testGetContentClone() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$content = new RevisionTestModifyableContent( "foo" );
 
 		$rev = new Revision(
@@ -1200,6 +1207,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getContent
 	 */
 	public function testGetContentUncloned() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$rev = $this->newTestRevision( "hello", "testGetContentUncloned_dummy", CONTENT_MODEL_WIKITEXT );
 		$content = $rev->getContent( Revision::RAW );
 		$content2 = $rev->getContent( Revision::RAW );
@@ -1573,10 +1582,11 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSimpleContentGetters() {
 		$this->hideDeprecated( 'Revision::getSerializedData' );
-		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'Revision::getContentFormat' );
 		$this->hideDeprecated( 'Revision::getContentHandler' );
 		$this->hideDeprecated( 'Revision::getContentModel' );
+		$this->hideDeprecated( 'Revision::getContent' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$expectedText = 'testSimpleContentGetters in Revision. Goats love MCR...';
 		$expectedSummary = 'goatlicious testSimpleContentGetters summary';

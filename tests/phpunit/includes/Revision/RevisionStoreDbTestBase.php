@@ -982,6 +982,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
 	 */
 	public function testNewRevisionFromRowAndSlots_getQueryInfo() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'o-ö';
 		/** @var Revision $rev */
@@ -1027,6 +1029,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
 	 */
 	public function testNewRevisionFromRow_getQueryInfo() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'a-ä';
 		/** @var Revision $rev */
@@ -1059,6 +1063,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'a-ä';
 		/** @var Revision $rev */
@@ -1082,6 +1088,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_anonEdit_legacyEncoding() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'a-ä';
@@ -1106,6 +1114,8 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_userEdit() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		/** @var Revision $rev */
