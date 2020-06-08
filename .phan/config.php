@@ -23,10 +23,8 @@ $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.
 
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
-	function_exists( 'wikidiff2_do_diff' ) ? [] : [ '.phan/stubs/wikidiff.php' ],
 	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],
 	defined( 'PASSWORD_ARGON2ID' ) ? [] : [ '.phan/stubs/password.php' ],
-	class_exists( ExcimerProfiler::class ) ? [] : [ '.phan/stubs/excimer.php' ],
 	class_exists( ValueError::class ) ? [] : [ '.phan/stubs/ValueError.php' ],
 	[
 		// This makes constants and globals known to Phan before processing all other files.
@@ -53,6 +51,7 @@ $cfg['analyzed_file_extensions'] = array_merge(
 
 $cfg['autoload_internal_extension_signatures'] = [
 	'dom' => '.phan/internal_stubs/dom.phan_php',
+	'excimer' => '.phan/internal_stubs/excimer.php',
 	'imagick' => '.phan/internal_stubs/imagick.phan_php',
 	'intl' => '.phan/internal_stubs/intl.phan_php',
 	'memcached' => '.phan/internal_stubs/memcached.phan_php',
@@ -63,6 +62,7 @@ $cfg['autoload_internal_extension_signatures'] = [
 	'sockets' => '.phan/internal_stubs/sockets.phan_php',
 	'sqlsrv' => '.phan/internal_stubs/sqlsrv.phan_php',
 	'tideways' => '.phan/internal_stubs/tideways.phan_php',
+	'wikidiff2' => '.phan/internal_stubs/wikidiff.php'
 ];
 
 $cfg['directory_list'] = [
