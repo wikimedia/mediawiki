@@ -3511,6 +3511,7 @@
 	"specialmute-label-mute-email": "Utišavanje obavijesti o e-porukama navedene suradnice / navedenog suradnika",
 	"specialmute-header": "Molimo Vas, odaberite Vaše postavke utišavanja obavijesti za suradnicu/suradnika <b>{{BIDI:[[User:$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Suradničko ime koje ste tražili nije moguće pronaći.",
+	"specialmute-error-no-options": "Mogućnosti utišavanja nisu dostupne. Navedeno može biti slučaj jer niste potvrdili adresu e-pošte, odnosno jer je administrator wikija onemogućio mogućnosti e-pošte i/ili onemogućio popis zabranjenih adresa na ovome wikiju.",
 	"specialmute-email-footer": "Za upravljanje postavkama e-pošte suradnice/suradnika {{BIDI:$2}}, molimo Vas, pođite na <$1>.",
 	"specialmute-login-required": "Molimo Vas, prijavite se da biste promijenili postavke.",
 	"mute-preferences": "Postavke utišavanja",

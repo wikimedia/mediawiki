@@ -377,6 +377,7 @@
 	"red-link-title": "$1 (strona nie istnieje)",
 	"sort-descending": "Sortuj malejąco",
 	"sort-ascending": "Sortuj rosnąco",
+	"sort-initial": "Sortuj domyślnie",
 	"nstab-main": "Strona",
 	"nstab-user": "{{GENDER:{{BASEPAGENAME}}|Strona użytkownika|Strona użytkowniczki}}",
 	"nstab-media": "Plik",

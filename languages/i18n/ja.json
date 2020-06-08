@@ -4040,7 +4040,7 @@
 	"authform-notoken": "トークンがありません",
 	"authform-wrongtoken": "不正なトークンです",
 	"specialpage-securitylevel-not-allowed-title": "このページは利用できません",
-	"specialpage-securitylevel-not-allowed": "あなたが同一人であるか確認できないため、このページを利用することはできません。",
+	"specialpage-securitylevel-not-allowed": "申し訳ありませんが、本人確認ができなかったため、このページは利用できません。",
 	"authpage-cannot-login": "ログインを開始できません。",
 	"authpage-cannot-login-continue": "ログインを続行できません。セッションがタイムアウトした可能性が高いです。",
 	"authpage-cannot-create": "アカウントの作成を開始できません。",

@@ -3326,7 +3326,7 @@
 	"logentry-non-editing-block-block": "$1 {{GENDER:$2|ห้าม}} {{GENDER:$4|$3}} มิให้กระทำการที่มิใช่การแก้ไขที่กำหนด โดยมีเวลาหมดอายุ $5 $6",
 	"logentry-non-editing-block-reblock": "$1 {{GENDER:$2|เปลี่ยน}}ค่าการบล็อกสำหรับ {{GENDER:$4|$3}} มิให้กระทำการที่มิใช่การแก้ไขที่กำหนด โดยมีเวลาหมดอายุ $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|บล็อก}} {{GENDER:$4|$3}} $3 โดยมีเวลาหมดอายุ $5 $6",
-	"logentry-suppress-reblock": "$1 เปลี่ยนการตั้งค่าการบล็อกสำหรับ $3 โดยมีเวลาหมดอายุ $5 $6",
+	"logentry-suppress-reblock": "$1 ได้{{GENDER:$2|เปลี่ยนแปลง}}การตั้งค่าบล็อคสำหรับ {{GENDER:$4|$3}} โดยหมดอายุใน $5 $6",
 	"logentry-merge-merge": "$1 {{GENDER:$2|ผสาน}} $3 เข้ากับ $4 (รุ่นถึง $5)",
 	"logentry-move-move": "$1 ย้ายหน้า $3 ไปยัง $4",
 	"logentry-move-move-noredirect": "$1 ย้ายหน้า $3 ไปยัง $4 โดยไม่สร้างหน้าเปลี่ยนทางตามมา",

@@ -3,12 +3,15 @@
 		"authors": [
 			"Gomoko",
 			"Orlodrim",
+			"Pamputt",
 			"Thibaut120094",
 			"Wladek92"
 		]
 	},
 	"paramvalidator-badbool": "Valeur « $2 » non valide pour le paramètre booléen « $1 ». Passer $3 pour vrai, ou $5 pour faux.",
 	"paramvalidator-badexpiry": "Valeur « $2 » non valide pour le paramètre d’expiration « $1 ».",
+	"paramvalidator-badexpiry-duration": "La valeur « $2 » donnée pour le paramètre <var>$1</var> dépasse le maximum de « $3 ».",
+	"paramvalidator-badexpiry-duration-max": "La valeur « $2 » donnée pour le paramètre <var>$1</var> dépasse le maximum de « $3 ». Utilisation de la valeur maximale à la place.",
 	"paramvalidator-badexpiry-past": "La valeur « $2 » pour le paramètre d’expiration « $1 » est dans le passé.",
 	"paramvalidator-badfloat": "Valeur « $2 » non valide pour le paramètre flottant « $1 ».",
 	"paramvalidator-badfloat-notfinite": "La valeur « $2 » pour le paramètre flottant « $1 » est trop grande ou n’est pas un nombre.",
