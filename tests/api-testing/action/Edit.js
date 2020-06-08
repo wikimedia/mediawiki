@@ -378,4 +378,50 @@ describe( 'The edit action', function testEditAction() {
 		}, 'POST' );
 		assert.equal( error.code, 'badmd5' );
 	} );
+	it( 'should override the text parameter with the appendtext parameter', async () => {
+		const page = utils.title( 'Page_' );
+		const text = 'A text that is to be overriden';
+		const bottom = 'This text should override the text parameter';
+
+		await Clark.edit( page, {
+			text: text,
+			appendtext: bottom
+		} );
+
+		const pageContent = await Clark.getHtml( page );
+		assert.notInclude( pageContent, text );
+		assert.include( pageContent, bottom );
+	} );
+
+	it( 'should override the text parameter with the prependtext parameter', async () => {
+		const page = utils.title( 'Page_' );
+		const text = 'A text that is to be overriden';
+		const top = 'This text should override the text parameter';
+
+		await Clark.edit( page, {
+			text: text,
+			prependtext: top
+		} );
+
+		const pageContent = await Clark.getHtml( page );
+		assert.notInclude( pageContent, text );
+		assert.include( pageContent, top );
+	} );
+
+	it( 'should override the text parameter with the appendtext and prependtext parameters', async () => {
+		const page = utils.title( 'Page_' );
+		const text = 'A text that is to be overriden';
+		const top = 'This text should override the text parameter on top';
+		const bottom = 'This text should override the text parameter at the end';
+
+		await Clark.edit( page, {
+			text: text,
+			prependtext: top,
+			appendtext: bottom
+		} );
+
+		const pageContent = await Clark.getHtml( page );
+		assert.notInclude( pageContent, text );
+		assert.include( pageContent, top + bottom );
+	} );
 } );

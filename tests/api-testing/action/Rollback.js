@@ -72,4 +72,122 @@ describe( 'The rollback action', function testEditRollback() {
 
 		assert.equal( error.code, 'permissiondenied' );
 	} );
+
+	it( 'should undo the last edit on the page using the pageid parameter', async () => {
+		const title = utils.title( 'Rollback_' );
+
+		const firstEdit = await alice.edit( title, { text: 'One', summary: 'first' } );
+		const secondEdit = await bob.edit( title, { text: 'Two', summary: 'second' } );
+
+		const result = await mindy.action( 'rollback', {
+			pageid: firstEdit.pageid,
+			user: bob.username,
+			summary: 'revert',
+			token: await mindy.token( 'rollback' )
+		}, 'POST' );
+
+		const rev = await mindy.getRevision( title );
+
+		assert.sameTitle( result.rollback.title, title );
+		assert.equal( result.rollback.old_revid, secondEdit.newrevid );
+		assert.equal( rev.revid, result.rollback.revid );
+	} );
+
+	it( 'should throw an error with code missingparam when neither pageid nor title is provided for a rollback action', async () => {
+		const title = utils.title( 'Rollback_' );
+
+		await alice.edit( title, { text: 'One', summary: 'first' } );
+		await bob.edit( title, { text: 'Two', summary: 'second' } );
+
+		const error = await mindy.actionError( 'rollback', {
+			user: bob.username,
+			summary: 'revert',
+			token: await mindy.token( 'rollback' )
+		}, 'POST' );
+
+		assert.equal( error.code, 'missingparam' );
+	} );
+
+	it( 'should throw an error with code notoken when the token parameter is not provided for a rollback action', async () => {
+		const title = utils.title( 'Rollback_' );
+
+		await alice.edit( title, { text: 'One', summary: 'first' } );
+		await bob.edit( title, { text: 'Two', summary: 'second' } );
+
+		const error = await mindy.actionError( 'rollback', {
+			title: title,
+			user: bob.username,
+			summary: 'revert'
+		}, 'POST' );
+
+		assert.equal( error.code, 'missingparam' );
+	} );
+
+	it( 'should throw an error with code nouser when a user is not provided for a rollback action', async () => {
+		const title = utils.title( 'Rollback_' );
+
+		await alice.edit( title, { text: 'One', summary: 'first' } );
+		await bob.edit( title, { text: 'Two', summary: 'second' } );
+
+		const error = await mindy.actionError( 'rollback', {
+			title: title,
+			summary: 'revert',
+			token: await mindy.token( 'rollback' )
+		}, 'POST' );
+
+		assert.equal( error.code, 'missingparam' );
+	} );
+
+	it( 'should throw an error with code onlyauthor if the page has only one author', async () => {
+		const title = utils.title( 'Rollback_' );
+
+		await alice.edit( title, { text: 'One', summary: 'first' } );
+
+		const error = await mindy.actionError( 'rollback', {
+			title: title,
+			user: alice.username,
+			summary: 'revert',
+			token: await mindy.token( 'rollback' )
+		}, 'POST' );
+
+		assert.equal( error.code, 'onlyauthor' );
+	} );
+
+	it( 'should throw an error with code mustpostparams when the request to the API is not a post request', async () => {
+		const title = utils.title( 'Rollback_' );
+
+		await alice.edit( title, { text: 'One', summary: 'first' } );
+		await bob.edit( title, { text: 'Two', summary: 'second' } );
+
+		const error = await mindy.actionError( 'rollback', {
+			title: title,
+			user: bob.username,
+			summary: 'revert',
+			token: await mindy.token( 'rollback' )
+		} );
+
+		assert.equal( error.code, 'mustpostparams' );
+	} );
+
+	it( 'should mark the revert as a bot edit', async () => {
+		const title = utils.title( 'Rollback_' );
+
+		const firstEdit = await alice.edit( title, { text: 'One', summary: 'first' } );
+		const secondEdit = await bob.edit( title, { text: 'Two', summary: 'second' } );
+
+		const result = await mindy.action( 'rollback', {
+			pageid: firstEdit.pageid,
+			user: bob.username,
+			summary: 'revert',
+			markbot: true,
+			token: await mindy.token( 'rollback' )
+		}, 'POST' );
+
+		const recentChanges = await mindy.getChangeEntry( { rctitle: title } );
+
+		assert.exists( recentChanges.bot );
+		assert.sameTitle( result.rollback.title, title );
+		assert.equal( result.rollback.old_revid, secondEdit.newrevid );
+		assert.equal( recentChanges.revid, result.rollback.revid );
+	} );
 } );
