@@ -6,8 +6,7 @@
 	],
 	"globals": {
 		"require": "readonly",
-		"module": "readonly",
-		"OO": "readonly"
+		"module": "readonly"
 	},
 	"rules": {
 		"max-len": "off",
