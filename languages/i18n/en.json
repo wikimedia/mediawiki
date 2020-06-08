@@ -320,7 +320,7 @@
 	"missing-article": "The database did not find the text of a page that it should have found, named \"$1\" $2.\n\nThis is usually caused by following an outdated diff or history link to a page that has been deleted.\n\nIf this is not the case, you may have found a bug in the software.\nPlease report this to an [[Special:ListUsers/sysop|administrator]], making note of the URL.",
 	"missingarticle-rev": "(revision#: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",
-	"readonly_lag": "The database has been automatically locked while the slave database servers catch up to the master",
+	"readonly_lag": "The database has been automatically locked while the replica database servers catch up to the master",
 	"nonwrite-api-promise-error" : "The 'Promise-Non-Write-API-Action' HTTP header was sent but the request was to an API write module.",
 	"internalerror": "Internal error",
 	"internalerror_info": "Internal error: $1",
