@@ -5,7 +5,8 @@
  * edit section link.
  */
 ( function () {
-	if ( !parseInt( mw.user.options.get( 'editsectiononrightclick' ), 10 ) ) {
+	if ( Number( mw.user.options.get( 'editsectiononrightclick' ) ) !== 1 ) {
+		// Support both 1 or "1" (T54542)
 		return;
 	}
 

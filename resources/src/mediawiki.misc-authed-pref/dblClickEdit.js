@@ -2,9 +2,16 @@
  * Enable double-click-to-edit functionality.
  */
 ( function () {
-	if ( !parseInt( mw.user.options.get( 'editondblclick' ), 10 ) ) {
+	if ( Number( mw.user.options.get( 'editondblclick' ) ) !== 1 ) {
+		// Support both 1 or "1" (T54542)
 		return;
 	}
+
+	if ( mw.config.get( 'wgAction' ) !== 'view' ) {
+		// Only trigger during view action.
+		return;
+	}
+
 	$( function () {
 		$( '#mw-content-text' ).on( 'dblclick', function ( e ) {
 			// Trigger native HTMLElement click instead of opening URL (T45052)
