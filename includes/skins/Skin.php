@@ -946,7 +946,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		if ( MediaWikiServices::getInstance()->getDBLoadBalancer()->getLaggedReplicaMode() ) {
-			$s .= ' <strong>' . $this->msg( 'laggedslavemode' )->parse() . '</strong>';
+			$s .= ' <strong>' . $this->msg( 'laggedreplicamode' )->parse() . '</strong>';
 		}
 
 		return $s;
