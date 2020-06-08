@@ -21,8 +21,8 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$user = new User();
 		$user->setName( '127.0.0.1' );
 
-		$this->context = new RequestContext( new FauxRequest() );
-		$this->context->setTitle( Title::newFromText( 'Test' ) );
+		$this->context = new RequestContext();
+		$this->context->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
 		$this->context->setUser( $user );
 
 		$this->setMwGlobals( [
@@ -217,7 +217,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 		$content = $this->newContent( $text );
 
-		$v = $content->isCountable( $hasLinks, $this->context->getTitle() );
+		$v = $content->isCountable( $hasLinks );
 
 		$this->assertEquals(
 			$expected,
