@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class CloneDatabase {
@@ -132,10 +133,19 @@ class CloneDatabase {
 	 * @return void
 	 */
 	public static function changePrefix( $prefix ) {
-		global $wgDBprefix;
+		global $wgDBprefix, $wgDBname;
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lbFactory->setLocalDomainPrefix( $prefix );
+
+		$aliases = [
+			$wgDBname => $lbFactory->getLocalDomainID()
+		];
+		$lbFactory->setDomainAliases( $aliases );
+		$lbFactory->forEachLB( function ( ILoadBalancer $lb ) use ( $aliases ) {
+			$lb->setDomainAliases( $aliases );
+		} );
+
 		$wgDBprefix = $prefix;
 	}
 }
