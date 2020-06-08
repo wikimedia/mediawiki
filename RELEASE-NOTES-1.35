@@ -1173,6 +1173,11 @@ because of Phabricator reports.
   Use the new UserGroupManager service instead.
 * wfWaitForSlaves() has been hard deprecated. Use LBFactory::waitForReplication
   instead. It was soft deprecated in 1.27.
+* BaseTemplate::getAfterPortlet and ::renderAfterPortlet have been deprecated in
+  favor of the Skin::getAfterPortlet method. Skin::getAfterPortlet does not wrap
+  the result in a div, callers are responsible for that.
+  The hook BaseTemplateAfterPortlet, called by both methods has been deprecated
+  as well and is replaced by SkinAfterPortlet.
 * …
 
 === Other changes in 1.35 ===

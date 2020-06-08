@@ -2423,4 +2423,22 @@ abstract class Skin extends ContextSource {
 				throw new MWException( 'Unknown mode passed to BaseTemplate::makeSearchButton' );
 		}
 	}
+
+	/**
+	 * Allows extensions to hook into known portlets and add stuff to them.
+	 * Unlike its BaseTemplate counterpart, this method does not wrap the html
+	 * provided by the hook in a div.
+	 *
+	 * @param string $name
+	 *
+	 * @return string html
+	 * @since 1.35
+	 */
+	public function getAfterPortlet( string $name ) : string {
+		$html = '';
+
+		$this->getHookRunner()->onSkinAfterPortlet( $this, $name, $html );
+
+		return $html;
+	}
 }

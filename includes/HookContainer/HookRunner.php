@@ -506,6 +506,7 @@ class HookRunner implements
 	\MediaWiki\Session\Hook\SessionMetadataHook,
 	\MediaWiki\Session\Hook\UserSetCookiesHook,
 	\MediaWiki\Shell\Hook\WfShellWikiCmdHook,
+	\MediaWiki\Skins\Hook\SkinAfterPortletHook,
 	\MediaWiki\SpecialPage\Hook\AuthChangeFormFieldsHook,
 	\MediaWiki\SpecialPage\Hook\ChangeAuthenticationDataAuditHook,
 	\MediaWiki\SpecialPage\Hook\ChangesListSpecialPageQueryHook,
@@ -3463,6 +3464,13 @@ class HookRunner implements
 		return $this->container->run(
 			'SkinAfterContent',
 			[ &$data, $skin ]
+		);
+	}
+
+	public function onSkinAfterPortlet( $skin, $portlet, &$html ) {
+		return $this->container->run(
+			'SkinAfterPortlet',
+			[ $skin, $portlet, &$html ]
 		);
 	}
 

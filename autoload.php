@@ -1104,6 +1104,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Mail\\IEmailer' => __DIR__ . '/includes/mail/IEmailer.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
 	'MediaWiki\\ShellDisabledError' => __DIR__ . '/includes/exception/ShellDisabledError.php',
+	'MediaWiki\\Skins\\Hook\\SkinAfterPortletHook' => __DIR__ . '/includes/skins/Hook/SkinAfterPortletHook.php',
 	'MediaWiki\\Special\\SpecialPageFactory' => __DIR__ . '/includes/specialpage/SpecialPageFactory.php',
 	'MediaWiki\\Storage\\IncompleteRevisionException' => __DIR__ . '/includes/Revision/IncompleteRevisionException.php',
 	'MediaWiki\\Storage\\MutableRevisionRecord' => __DIR__ . '/includes/Revision/MutableRevisionRecord.php',
