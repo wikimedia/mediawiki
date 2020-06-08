@@ -293,8 +293,6 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		// PreferencesFactory and UserOptionsManager. See T250822
 		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
 		$user = User::newFromIdentity( $userIdentity );
-		$preferencesFactory->setUser( $user );
-		// Note that the $user parameter of getFormDescriptor() is deprecated.
 		$prefs = $preferencesFactory->getFormDescriptor( $user, $context );
 		$mapping = [];
 
