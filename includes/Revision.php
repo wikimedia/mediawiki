@@ -754,6 +754,8 @@ class Revision implements IDBAccessObject {
 	 * If the specified audience does not have the ability to view this
 	 * revision, or the content could not be loaded, null will be returned.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param int $audience One of:
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to $user
@@ -764,6 +766,8 @@ class Revision implements IDBAccessObject {
 	 * @return Content|null
 	 */
 	public function getContent( $audience = self::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		global $wgUser;
 
 		if ( $audience === self::FOR_THIS_USER && !$user ) {

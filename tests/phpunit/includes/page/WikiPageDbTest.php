@@ -240,6 +240,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	public function testDoEditContent() {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
 		$this->hideDeprecated( 'Revision::getSha1' );
+		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$this->setMwGlobals( 'wgPageCreationLog', true );
@@ -724,7 +725,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::getRevision
 	 */
 	public function testGetRevision() {
+		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$page = $this->newPage( __METHOD__ );
 
 		$rev = $page->getRevision();

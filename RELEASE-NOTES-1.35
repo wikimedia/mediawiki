@@ -991,6 +991,7 @@ because of Phabricator reports.
   - ::getUserText - use RevisionRecord::getUser and then User::getName instead
   - ::isMinor - use RevisionRecord::isMinor instead
   - ::isCurrent - use RevisionRecord::isCurrent instead
+  - ::getContent - use RevisionRecord::getContent instead
   - ::getContentModel - use SlotRecord::getModel instead
   - ::getContentFormat - use SlotRecord::getFormat instead, with a fallback
        to ContentHandler::getDefaultFormat

@@ -67,6 +67,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testConstructFromArray( $rowArray ) {
 		$this->hideDeprecated( 'Revision::getContentModel' );
+		$this->hideDeprecated( 'Revision::getContent' );
 
 		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
@@ -79,6 +80,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromEmptyArray() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$rev = new Revision( [], 0, $this->getMockTitle() );
 		$this->assertNull( $rev->getContent(), 'no content object should be available' );
 	}
@@ -669,6 +672,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getContent
 	 */
 	public function testGetContent() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$title = $this->getMockTitle();
 
 		$rec = new MutableRevisionRecord( $title );
@@ -685,6 +690,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getContent
 	 */
 	public function testGetContent_failure() {
+		$this->hideDeprecated( 'Revision::getContent' );
+
 		$title = $this->getMockTitle();
 
 		$rec = $this->getMockBuilder( RevisionRecord::class )
