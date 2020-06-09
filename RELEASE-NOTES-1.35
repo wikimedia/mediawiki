@@ -118,6 +118,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   Configure the ParserFactory service in order to customize the Parser used.
 * $wgAutoloadAttemptLowercase has been deprecated and the default value changed
   to false.
+* $wgAllowImageMoving - This configuration is now deprecated. Use
+  $wgGroupPermissions instead; eg, to revoke sysop's ability to move images use
+  $wgGroupPermissions['sysop']['movefile'] = false.
 * …
 
 ==== Removed configuration ====
