@@ -76,9 +76,9 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 		return false;
 	}
 
-	public function fallback() {
+	public function fallback( $fast ) {
 		if ( $this->fallback ) {
-			return ( $this->fallback )();
+			return ( $this->fallback )( $fast );
 		}
 		return false;
 	}
