@@ -308,7 +308,7 @@
 	"databaseerror-query": "Sykopdracht: $1",
 	"databaseerror-function": "Funksje: $1",
 	"databaseerror-error": "Flater: $1",
-	"laggedreplicamode": "!!FUZZY!!<strong>Warskôging:</strong> Mûglik binne resinte bewurkings noch net trochfierd.",
+	"laggedreplicamode": "<strong>Warskôging:</strong> Mûglik binne resinte bewurkings noch net trochfierd.",
 	"readonly": "Databank is 'Net-skriuwe'.",
 	"enterlockreason": "Skriuw wêrom de databank 'net-skriuwe' makke is, en hoenear't men wêr nei alle gedachten wer skriuwe kin.",
 	"readonlytext": "De databank is op it stuit skoattele foar nije ynbring en oare wizigings, faaks foar gewoan databankûnderhâld, wêrnei't dat wer normaal wurkje sil.\n\nDe systeembehearder dy't it skoattele joech dizze taljochting: $1",
