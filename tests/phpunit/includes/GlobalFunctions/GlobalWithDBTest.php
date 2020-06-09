@@ -42,6 +42,7 @@ class GlobalWithDBTest extends MediaWikiTestCase {
 		// Enable messages from MediaWiki namespace
 		MediaWikiServices::getInstance()->getMessageCache()->enable();
 
+		$this->hideDeprecated( 'wfIsBadImage' );
 		$this->assertEquals( $expected, wfIsBadImage( $name, $title ) );
 	}
 }
