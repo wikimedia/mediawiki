@@ -157,7 +157,10 @@ trait HandlerTestTrait {
 	) {
 		$response = $this->executeHandler( $handler, $request, $config, $hooks );
 
-		$this->assertTrue( $response->getStatusCode() >= 200 && $response->getStatusCode() < 300 );
+		$this->assertTrue(
+			$response->getStatusCode() >= 200 && $response->getStatusCode() < 300,
+			'Status should be in 2xx range.'
+		);
 		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );
 
 		$data = json_decode( $response->getBody(), true );
