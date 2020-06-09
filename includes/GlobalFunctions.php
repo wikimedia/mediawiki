@@ -2802,6 +2802,7 @@ function wfUnpack( $format, $data, $length = false ) {
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false ) {
+	wfDeprecated( __FUNCTION__, '1.34' );
 	$services = MediaWikiServices::getInstance();
 	return $services->getBadFileLookup()->isBadFile( $name, $contextTitle ?: null );
 }
