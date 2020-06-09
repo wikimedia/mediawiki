@@ -312,7 +312,7 @@
 	"databaseerror-function": "Functie: $1",
 	"databaseerror-error": "Fout: $1",
 	"transaction-duration-limit-exceeded": "Dees transactie ($1) is aafgebraoke ómdet de limiet van $2 {{PLURAL:$2|sekónd}} is bereik. Hiemit waere groeate achterstenj bie 't replicere verkómme. \nWens se mieë items tegeliekertied bewirks, perbeer 't den in mieër klein opdrachte te doon.",
-	"laggedslavemode": "Waarsjoewing: de pagina kin verauwerd zien.",
+	"laggedreplicamode": "Waarsjoewing: de pagina kin verauwerd zien.",
 	"readonly": "Database geblokkeerd",
 	"enterlockreason": "Gaef 'n rae veur de blokkering en wie lank 't dinkelik zal dore. De ingegaeve rae zal aan de gebroekers getuind waere.",
 	"readonlytext": "De database van is geblokkeerd veur bewirkinge, waorsjienelik veur besjtandsongerhaud. Nao aafloup waert de functionaliteit weer hersteld.\n\nDe verantwoordelike systeembeheerder gaof de volgende rae op: $1",

@@ -326,7 +326,7 @@
 	"databaseerror-query": "Fyrirspurn: $1",
 	"databaseerror-function": "Aðgerð: $1",
 	"databaseerror-error": "Villa: $1",
-	"laggedslavemode": "Viðvörun: Síðan inniheldur ekki nýjustu uppfærslur.",
+	"laggedreplicamode": "Viðvörun: Síðan inniheldur ekki nýjustu uppfærslur.",
 	"readonly": "Gagnagrunnur læstur",
 	"enterlockreason": "Gefðu fram ástæðu fyrir læsingunni, og einnig áætlun\nun hvenær læsingunni verðu aflétt",
 	"readonlytext": "Læst hefur verið fyrir gerð nýrra síða og breytinga í gagnagrunninum, líklega vegna viðhalds, en eftir það mun hann starfa eðlilega.\n\nKerfisstjórinn sem læsti honum gaf þessa skýringu: $1",

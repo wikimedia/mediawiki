@@ -254,7 +254,7 @@
 	"nospecialpagetext": "<strong>Ju apruupene Spezioalsiede is nit deer.</strong>\n\nAal ferföichboare Spezioalsieden sunt in ju [[Special:SpecialPages|Lieste fon do Spezioalsieden]] tou fienden.",
 	"error": "Failer",
 	"databaseerror": "Failer in ju Doatenboank",
-	"laggedslavemode": "Woarskauenge: Ju anwiesde Siede kon unner Umstande do jungste Beoarbaidengen noch nit be-ienhoolde.",
+	"laggedreplicamode": "Woarskauenge: Ju anwiesde Siede kon unner Umstande do jungste Beoarbaidengen noch nit be-ienhoolde.",
 	"readonly": "Doatenboank is speerd",
 	"enterlockreason": "Reek n Gruund ien, wieruum ju Doatenboank speerd wäide skuul un ne Ouskätsenge uur ju Duur fon ju Speerenge",
 	"readonlytext": "Ju Doatenboank is apstuuns foar Annerengen un näie Iendraage speerd.\n\nAs Gruund wuude anroat: $1",

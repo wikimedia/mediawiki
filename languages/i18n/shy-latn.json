@@ -292,7 +292,7 @@
 	"databaseerror-query": "Tuttra : $1",
 	"databaseerror-function": "Tuccḍa: $1",
 	"databaseerror-error": "Agul: $1",
-	"laggedslavemode": "<strong>Aɣtal:</strong> Ahat asebter ur yesɛi ara akk ibeddlen imaynuten.",
+	"laggedreplicamode": "<strong>Aɣtal:</strong> Ahat asebter ur yesɛi ara akk ibeddlen imaynuten.",
 	"readonly": "Database d tamsekkert",
 	"enterlockreason": "Ini ayɣer tsekkreḍ database, ini daɣen melmi ara ad ifukk asekker",
 	"readonlytext": "Taffa n isefka teskweṛ akka tura ɣef sebba n kra n inekcam d usnifel-nniḍen, ahat ɣef kra n uxeddim n uṣeggem, ticki ifuk ad tuɣal.\n\nAndbal n unagraw iṣekṛen taffa yenna-d acimi: $1",

@@ -255,7 +255,7 @@
 	"nosuchspecialpage": "I n'y o poin chot éspéchiale pache-lo",
 	"error": "Bérlurache",
 	"databaseerror": "Bérlurache din l'database",
-	"laggedslavemode": "'''Afute:''' Pététe éq l'pache-lo n'o poin chés darins canjemints.",
+	"laggedreplicamode": "'''Afute:''' Pététe éq l'pache-lo n'o poin chés darins canjemints.",
 	"missing-article": "El base éd dounées n'o poin treuvé ech teske d'eune pache éq ale d'vroait treuver, aveuc ch'nom  \"$1\" $2. <br />  Généralemint, ch'est pasqué in o sui eune anthieusse diff o bin un histourique érlié aveuc eune pache défachée.\n\nSi s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <br /> I feut signaler ch'probléme-lo à un [[Special:ListUsers/sysop|administrateu]], aveuc l'URL.",
 	"missingarticle-rev": "(révision#: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",

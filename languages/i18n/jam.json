@@ -250,7 +250,7 @@
 	"nospecialpagetext": "<strong>Yu rikwes a invalid peshal piej.</strong>\n\nA lis a valid peshal piej kiahn fain a [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Era",
 	"databaseerror": "Dietabies era",
-	"laggedslavemode": "'''Waanin:''' Piej maita no kantien riisant opdiet.",
+	"laggedreplicamode": "'''Waanin:''' Piej maita no kantien riisant opdiet.",
 	"readonly": "Dietabies lak",
 	"enterlockreason": "Enta a riizn fi di lak, inkluudn a estimet a wen di lak wi riliis",
 	"readonlytext": "Di dietabies korantli lak gens nyuu enchri ahn ada madifikieshan, prabli fi ruutiin dietabies mientenans, iwi bak tu naamal afta.\n\nDi adminischrieta uu laki aafa dis explanieshan: $1",

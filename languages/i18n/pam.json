@@ -252,7 +252,7 @@
 	"nospecialpagetext": "<strong>E ustu ing aduan mung bulung a makabukud.</strong>\n\nAting tala da reng bulung a makabukud king [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Mali",
 	"databaseerror": "Pamagkamali king database (simpanan)",
-	"laggedslavemode": "Kapiadian: Mapaliaring ala lu king bulung deng pekatauling mibayu.",
+	"laggedreplicamode": "Kapiadian: Mapaliaring ala lu king bulung deng pekatauling mibayu.",
 	"readonly": "Makasara ya ing database",
 	"enterlockreason": "Ibie me ing sangkan ning pamaniara, pati ing tantia nung kapilan ya milako iti",
 	"readonlytext": "Kasalungsungan yang makasara ing database kareng bayung ambag at aliwa pang pamagbayu, mapalyaring para king karaniwan a pamaniamasan king database; mibalik ya king normal kaibat na niti.\n\nIni ing sangkan a binie ning talapanibalang minyara: $1",

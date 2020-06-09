@@ -295,7 +295,7 @@
 	"databaseerror-query": "Fyrispurningur: $1",
 	"databaseerror-function": "Funksjón: $1",
 	"databaseerror-error": "Feilur: $1",
-	"laggedslavemode": "'''Ávaring:''' Síðan inniheldur møguliga ikki nýggjar dagføringar.",
+	"laggedreplicamode": "'''Ávaring:''' Síðan inniheldur møguliga ikki nýggjar dagføringar.",
 	"readonly": "Dátubasan er stongd fyri skriving",
 	"enterlockreason": "Skriva eina orsøk fyri at stongja síðuna fyri skriving, saman við einari meting av, nær ið síðan verður lást upp aftur",
 	"readonlytext": "↓ Dátugrunnurin er í løtuni stongdur fyri nýggjum rættingum, óiva orsakað av vanligum viðlíkahaldi av dátugrunninum, eftir hetta verður alt vanligt aftur.\n\nUmboðsstjórin (administratorurin) sum stongdi dátugrunnin gav hesa frágreiðingina: $1",

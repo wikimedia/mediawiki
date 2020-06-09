@@ -334,7 +334,7 @@
 	"databaseerror-function": "Funcție: $1",
 	"databaseerror-error": "Eroare: $1",
 	"transaction-duration-limit-exceeded": "Pentru a evita crearea unei mari întârzieri de replicare, această tranzacție a fost abandonată, deoarece durata de scriere ($1) a depășit limita de $2 {{PLURAL:$2|secundă|secunde|de secunde}}.\nDacă modificați simultan mai multe elemente, încercați să efectuați operațiunea în mai multe etape.",
-	"laggedslavemode": "<strong>Atenție:</strong> Pagina nu conține ultimele modificări.",
+	"laggedreplicamode": "<strong>Atenție:</strong> Pagina nu conține ultimele modificări.",
 	"readonly": "Baza de date este blocată la scriere",
 	"enterlockreason": "Precizează motivul pentru blocare, incluzând o estimare a termenului de deblocare",
 	"readonlytext": "Baza de date este momentan blocată pentru intrări noi și alte modificări, probabil pentru o operațiune de mentenanță de rutină, după care va reveni la starea normală.\n\nAdministratorul care a blocat-o a oferit această explicație: $1",

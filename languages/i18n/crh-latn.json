@@ -256,7 +256,7 @@
 	"nospecialpagetext": "<strong>Tapılmağan bir mahsus saifege kirdiñiz.</strong>\n\nBar olğan bütün mahsus saifelerni [[Special:SpecialPages|{{int:specialpages}}]] saifesinde körip olursıñız.",
 	"error": "Hata",
 	"databaseerror": "Malümat bazasınıñ hatası",
-	"laggedslavemode": "Diqqat! Bu saifede soñki yañaruv olmay bile.",
+	"laggedreplicamode": "Diqqat! Bu saifede soñki yañaruv olmay bile.",
 	"readonly": "Malümat bazası kilitlendi",
 	"enterlockreason": "Blok etüvniñ sebebini ve devamını kirsetiñiz.",
 	"readonlytext": "Plan işlemelerinden sebep malümat bazası vaqtınca blok etildi. İşlemeler tamamlanğan soñ normal alına qaytacaq.\n\nMalümat bazasını kilitlegen idareciniñ añlatması: $1",

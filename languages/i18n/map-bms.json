@@ -301,7 +301,7 @@
 	"databaseerror-function": "Fungsine:$1",
 	"databaseerror-error": "Eror:$1",
 	"transaction-duration-limit-exceeded": "Nggo ngindari nciptakna replikasi lag duwur, transaksi iki dibatalna sebab durasi write ($1) nglewihi $2 {{PLURAL: $ 2 | detik | detik}} batas. Angger Rikangowah akeh item sekaligus,jajal ngelakokna beberapa operasi sing lewih cilik nggo gantine.",
-	"laggedslavemode": "'''Pènget:''' Kaca kiye mbokmenawa isiné dudu pangowahan pungkasan.",
+	"laggedreplicamode": "'''Pènget:''' Kaca kiye mbokmenawa isiné dudu pangowahan pungkasan.",
 	"readonly": "Basis data dikunci",
 	"enterlockreason": "Lebokna alesan panguncèn, kalebu uga prakiran kapan kunci bakal dibuka",
 	"readonlytext": "Basis data agi dikonci sekang inputan anyar lan modifikasi liyane, ndeyane agi ana perawatan basis data, seuwise kuwe toli bakal mbalik normal maning.\n\nAdministrator sing ngunci kiye aweh katerangan kaya kiye: $1",

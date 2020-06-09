@@ -323,7 +323,7 @@
 	"databaseerror-function": "Funksie: $1",
 	"databaseerror-error": "Fout: $1",
 	"transaction-duration-limit-exceeded": "Hierdie transaksie is gestaak omdat die skryfduur($1) die limiet van  $2 sekondes oorskry het om te verhoed dat 'n hoë replikasievertraging ontstaan.\nAs u baie items gelyktydig verander, probeer eerder veelvuldige kleiner bewerkings.",
-	"laggedslavemode": "Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.",
+	"laggedreplicamode": "Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.",
 	"readonly": "Databasis gesluit",
 	"enterlockreason": "Rede vir die sluiting,\nen beraming van wanneer ontsluiting sal plaasvind",
 	"readonlytext": "Die databasis is tans gesluit vir nuwe artikelwysigings, waarskynlik vir roetine onderhoud,\nwaarna dit terug sal wees na normaal.\n\nDie administrateur wat dit gesluit het se verduideliking: $1",

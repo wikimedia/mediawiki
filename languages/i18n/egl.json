@@ -288,7 +288,7 @@
 	"databaseerror-query": "Istrusiòun SQL: $1",
 	"databaseerror-function": "Funsiòun: $1",
 	"databaseerror-error": "Erōr: $1",
-	"laggedslavemode": "'''Atèinti:''' la pàgina la pré avèir mìa al revisiòun pió nōv.",
+	"laggedreplicamode": "'''Atèinti:''' la pàgina la pré avèir mìa al revisiòun pió nōv.",
 	"readonly": "'Database' bluchê",
 	"enterlockreason": "Scréver al mutîv dal blôch, precişêr quând a 's pèinsa che 'l vègna tôt via.",
 	"readonlytext": "In cól mumèint ché al databêş l'é bluchê e an 's pōlen fêr né zûnti né mudéfichi. Al blôch ed sôlit l'é lighê a 'na revişiòun normêla e quând la srà finîda al gnirà sbluchê. \n\nL'aminitradōr dal sistēma ch' l'à urdnê 'l blôch l'à dê cla spiegasiòun ché: $1",

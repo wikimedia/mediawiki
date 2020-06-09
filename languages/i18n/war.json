@@ -306,7 +306,7 @@
 	"databaseerror-function": "Function: $1",
 	"databaseerror-error": "Sayop: $1",
 	"transaction-duration-limit-exceeded": "Basi malikyan in paghimo hin hitaas nga pagreplicar nga pagka-iha, gin-abort iní nga ginbuhat tungod kay an kaiha han write ($1) naglabaw han $2 ka segundo nga limit.\nKun nagbabalhin ka hin damo nga butang hin durungan, pagsari hin pagbuhat hin pipira nga talagudti nga mga operasyon lugod.",
-	"laggedslavemode": "Pahimatngon: It pakli bangin waray mga kabag-ohan nga bag-o.",
+	"laggedreplicamode": "Pahimatngon: It pakli bangin waray mga kabag-ohan nga bag-o.",
 	"readonly": "Gintrankahan an database",
 	"enterlockreason": "Pagbutang hin rason para han pagtrangka, upod hin banabana kon san-o kukuha-on an pagtrangka",
 	"readonlytext": "An database in nakatrangka yana ha bag-o nga mga entrada ngan iba nga mga modipikasyon, tungod siguro ha routine database maintenance, kahuman ini in mabalik ha normal.\n\nAn system administrator nga nagtrangka hini in naghatag hini nga kasayoran: $1",

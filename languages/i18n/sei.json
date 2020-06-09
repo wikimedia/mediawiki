@@ -206,7 +206,7 @@
 	"nospecialpagetext": "<strong>Meccan páhina extrava invalida.</strong>\n\nMeccan páhina extrava valide pac [[Special:SpecialPages]] iti.",
 	"error": "Römj",
 	"databaseerror": "Römjde database",
-	"laggedslavemode": "Attencion: Páhina necoccebj updatenám cmaa.",
+	"laggedreplicamode": "Attencion: Páhina necoccebj updatenám cmaa.",
 	"readonly": "Database protectáme",
 	"enterlockreason": "Enterom raede lockom zo, includom estimacionde janxepe lockom zo releasom",
 	"readonlytext": "Database zo coccebj locköx cmaade hunticpatlöx, posde maintenancede database, normal returnöx 'depre.\n\nSysop zo locköx zo xuniim jan rae': $1",

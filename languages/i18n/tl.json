@@ -325,7 +325,7 @@
 	"databaseerror-function": "Tungkulin: $1",
 	"databaseerror-error": "Depekto: $1",
 	"transaction-duration-limit-exceeded": "Para maiwasan ang kabagalan, ang transaksyong ito ay nabigo dahil ang tagal ng pagsulat ($1) ay lumagpas sa $2 segundong hangganan.\nKung ikaw ay nagbabago ng mga maraming bagay ng sabay-sabay, subukang gumawa na lamang ng mga maliliit na operasyon.",
-	"laggedslavemode": "'''Babala:''' Maaaring hindi naglalaman ang pahina ng mga huling dagdag.",
+	"laggedreplicamode": "'''Babala:''' Maaaring hindi naglalaman ang pahina ng mga huling dagdag.",
 	"readonly": "Nakakandado ang kalipunan ng datos",
 	"enterlockreason": "Maglagay ng dahilan sa pagkakandado, kasama ang taya kung kailan magtatapos ang pagkakandado",
 	"readonlytext": "Kasalukuyang nakakandado ang kalipunan ng datos para sa mga bagong entrada at iba pang mga pagbabago, marahil para sa gawaing pampagpapanatili ng kalipunan ng datos, magbabalik ito sa normal pagkaraan nito.\n\nNagbigay ng ganitong dahilan ang tagapangasiwang nagkandado nito: $1",

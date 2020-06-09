@@ -278,7 +278,7 @@
 	"databaseerror-query": "Nīnau: $1",
 	"databaseerror-function": "Hana: $1",
 	"databaseerror-error": "Hewa: $1",
-	"laggedslavemode": "<strong>E akahele:</strong> ʻAʻole loaʻa paha i ka ʻaoʻao na hoʻouka hou hou.",
+	"laggedreplicamode": "<strong>E akahele:</strong> ʻAʻole loaʻa paha i ka ʻaoʻao na hoʻouka hou hou.",
 	"readonly": "Laka ‘ia ka hōkeo ‘ikepili",
 	"enterlockreason": "E kikokiko i kekahi kumu no ka laka, a hoʻokomo pū i ka pau ana o kēlā laka",
 	"readonlytext": "Ke laka nei ka hōkeo ʻikepili i kēia manawa no nā hana hou a me nā kāloli ʻē aʻe no kekahi mālama hōkeo ʻikepili hōʻoia hou a hou paha a e hele a maʻamau i ka pau ana.\n\nUa hāʻawi ke kahu i laka i kēia kumu: $1",

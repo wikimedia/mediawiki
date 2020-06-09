@@ -310,7 +310,7 @@
 	"databaseerror-function": "Pungsi: $1",
 	"databaseerror-error": "Pelih: $1",
 	"transaction-duration-limit-exceeded": "Mangde nénten katunda saduran sané tegeh, kiriman puniki kawangdeang mawanin galah nyurat ($1) ngliwatin wates $2 ring limit dauh.\nYéning ragané jagi nguah akéh ring galah sané masikian, ngiring laksanayang ring karya sané alitan.",
-	"laggedslavemode": "Pangeling: Kaca asané nénten kadagingin uahan pinih anyar.",
+	"laggedreplicamode": "Pangeling: Kaca asané nénten kadagingin uahan pinih anyar.",
 	"readonly": "Basis data kakunci",
 	"enterlockreason": "Asukan napi sané ngawinan penguncian, rumasuk kirang langkung ring galah napu kunci jagi kabuka",
 	"readonlytext": "Basis data kantun kakunci ring masukan miwah uahan sané anyar, asané pamecikan basis data, sasampun keadaan jagi normal sakadi sadurungnyané. \n\nPrajuru sané nglaksanayang panguncian ngemaang daging sakadi punika: $1",

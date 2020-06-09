@@ -295,7 +295,7 @@
 	"databaseerror-query": "استفسار: $1",
 	"databaseerror-function": "ڪاڄ: $1",
 	"databaseerror-error": "چُڪَ: $1",
-	"laggedslavemode": "<strong>چتاءُ:</strong> صفحو شايد ھاڻوڪيون جدتون نہ رکندو ھجي.",
+	"laggedreplicamode": "<strong>چتاءُ:</strong> صفحو شايد ھاڻوڪيون جدتون نہ رکندو ھجي.",
 	"readonly": "اعدادخانو بنديل",
 	"missingarticle-rev": "(ڀيرو#: $1)",
 	"missingarticle-diff": "(تفاوت: $1، $2)",

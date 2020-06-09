@@ -268,7 +268,7 @@
 	"nospecialpagetext": "<strong>Vus avais tschertgà ina pagina speziala che n'exista betg.</strong>\n\nIna glista da las paginas spezialas existentas chattais vus sut [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Errur",
 	"databaseerror": "Sbagl da la datoteca",
-	"laggedslavemode": "Attenziun: La pagina mussada na cuntign eventualmain betg anc las ultimas midadas.",
+	"laggedreplicamode": "Attenziun: La pagina mussada na cuntign eventualmain betg anc las ultimas midadas.",
 	"readonly": "Banca da datas bloccada",
 	"enterlockreason": "Inditgescha ina raschun per la bloccada da la banca da datas ed il temp cura che ti quintas che la bloccada po vegnir annullada",
 	"readonlytext": "La banca da datas è actualmain bloccada per novas endataziuns u modificaziuns. Emprova pli tard anc ina giada. \n\nL'adminstratur che ha bloccà la banca da datas ha inditgà suandant motiv: $1",

@@ -307,7 +307,7 @@
 	"databaseerror-query": "Wotprašenje: $1",
 	"databaseerror-function": "Funkcija: $1",
 	"databaseerror-error": "Zmylk: $1",
-	"laggedslavemode": "'''Kedźbu:''' Je móžno, zo strona žane zaktualizowanja njewobsahuje.",
+	"laggedreplicamode": "'''Kedźbu:''' Je móžno, zo strona žane zaktualizowanja njewobsahuje.",
 	"readonly": "Datowa banka je zawrjena",
 	"enterlockreason": "Zapodaj přičinu za zawrjenje a přibližny čas, hdy budźe zawrjenje zběhnjene",
 	"readonlytext": "Datowa banka je tuchwilu za nowe zapiski a druhe změny zawrjena, najskerje wothladowanskich dźěłow dla; po jich zakónčenju budźe wšitko zaso normalne.\n\nSystemowy administrator, kiž je datowu banku zawrěł, je slědowacu přičinu podał: $1",

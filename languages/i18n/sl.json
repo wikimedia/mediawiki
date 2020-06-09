@@ -313,7 +313,7 @@
 	"databaseerror-function": "Funkcija: $1",
 	"databaseerror-error": "Napaka: $1",
 	"transaction-duration-limit-exceeded": "V izogib ustvarjanju visokega zamika replikacije smo transakcijo prekinili, saj je trajanje zapisovanja ($1) preseglo omejitev $2 {{PLURAL:$2|sekunda|sekundi|sekunde|sekund}}.\nČe naenkrat spreminjate več predmetov, poskusite izvesti več manjših operacij.",
-	"laggedslavemode": "'''Opozorilo:''' Stran morda ne vsebuje najnovejših posodobitev.",
+	"laggedreplicamode": "'''Opozorilo:''' Stran morda ne vsebuje najnovejših posodobitev.",
 	"readonly": "Zbirka podatkov je zaklenjena",
 	"enterlockreason": "Vnesite razlog za zaklenitev in oceno, kdaj bo urejanje spet mogoče",
 	"readonlytext": "Zbirka podatkov je za urejanja in druge spremembe začasno zaklenjena, najverjetneje zaradi rutinskega vzdrževanja zbirke, po katerem bo nazaj v normalnem stanju.\n\nSistemski skrbnik, ki jo je zaklenil, je podal naslednjo razlago: $1",

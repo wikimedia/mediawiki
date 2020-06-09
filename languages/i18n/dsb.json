@@ -293,7 +293,7 @@
 	"databaseerror-query": "Wótpšašanje: $1",
 	"databaseerror-function": "Funkcija: $1",
 	"databaseerror-error": "Zmólka: $1",
-	"laggedslavemode": "Glědaj: Jo móžno, až pokazany bok nejaktualnjejše změny njewopśimjejo.",
+	"laggedreplicamode": "Glědaj: Jo móžno, až pokazany bok nejaktualnjejše změny njewopśimjejo.",
 	"readonly": "Datowa banka jo zacynjona",
 	"enterlockreason": "Pšosym zapódaj pśicynu za zacynjenje datoweje banki a informaciju, ga buźo zasej pśistupna",
 	"readonlytext": "Datowa banka jo wochylu za nowe zapiski a druge změny zacynjona, nejskerjej dla wótwardowańskich źěłow. Pšosym wopytaj pózdźej hyšći raz.\n\nAdministrator, kenž jo ju zacynił, jo pódał toś tu pśicynu: $1",

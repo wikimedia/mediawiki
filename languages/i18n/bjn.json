@@ -284,7 +284,7 @@
 	"nospecialpagetext": "<strong>Pian maminta halaman istimiwa nang kada sah.</strong>\nDaptar halaman istimiwa sah kawa diugai pada [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Kasalahan",
 	"databaseerror": "Kasalahan Basisdata",
-	"laggedslavemode": "'''Paringatan:''' Tungkaran ngini tagasnya kada baisi paubahan pahanyarnya.",
+	"laggedreplicamode": "'''Paringatan:''' Tungkaran ngini tagasnya kada baisi paubahan pahanyarnya.",
 	"readonly": "Basisdata tasunduk",
 	"enterlockreason": "Buati sabuting alasan manyunduk, tamasuk jua wayah kapan handak dibuka pulang sundukannya.",
 	"readonlytext": "Basisdata lagi disunduk gasan masukan hanyar wan paubahan lain, pinanya pang lagi ada jadwal paharaguan basis data, limbah ngini akan babulik nangkaya biasa.\n\nPambakal nang manyunduk mamadahi nangkaini: $1",

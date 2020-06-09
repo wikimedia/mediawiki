@@ -263,7 +263,7 @@
 	"nospecialpagetext": "<strong>Solicitou ua páigina special ambálida.</strong>\n\nAncontra ua lhista de las páiginas speciales bálidas an [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Erro",
 	"databaseerror": "Erro na base de dados",
-	"laggedslavemode": "Abiso: La páigina poderá nun cuntener las redadeiras atualizaçones.",
+	"laggedreplicamode": "Abiso: La páigina poderá nun cuntener las redadeiras atualizaçones.",
 	"readonly": "Base de dados bloquiada",
 	"missing-article": "La base de dados nun achou l testo dua páigina que deberie tener achado, cul nome \"$1\" $2.\n\nEsto normalmente ye por bias de la besita a ua lhigaçon zatualizada ó de stória dua páigina que fui apagada.\n\nSe nun fur este l causo, tu puodes tener ancuntrado algun porblema ne l software.\nPor fabor, diç esto a un [[Special:ListUsers/sysop|admenistrador]], dezindo la lhigaçon.",
 	"missingarticle-rev": "(rebison#: $1)",

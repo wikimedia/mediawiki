@@ -304,7 +304,7 @@
 	"databaseerror-query": "Æsce: $1",
 	"databaseerror-function": "Wice: $1",
 	"databaseerror-error": "Wōg: $1",
-	"laggedslavemode": "'''Warnung:''' Wēnunga næbbe se tramet nīwlīca nīwunga.",
+	"laggedreplicamode": "'''Warnung:''' Wēnunga næbbe se tramet nīwlīca nīwunga.",
 	"readonly": "Ġifhord locen",
 	"enterlockreason": "Wrīt race þǣre forwiernunge and apinsunge þæs tīman on þǣm bēo sēo forwiernung forlǣten",
 	"readonlytext": "Se gecyþneshord is nu gelocen wiþ niwu þing and gewrixlungu, ic gewene þe swylc biþ for gecyþneshorduphealde, þæræfter wille he beon eft gewuna.\n\nSe gesamnungþegn se loced hine geaf þas glesing: $1",

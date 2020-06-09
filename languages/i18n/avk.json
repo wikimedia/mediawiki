@@ -278,7 +278,7 @@
 	"databaseerror-query": "Kucilara : $1",
 	"databaseerror-function": "Fli : $1",
 	"databaseerror-error": "Rokla : $1",
-	"laggedslavemode": "Obral : bu va ironakaf tuenakseem rotir meruldar",
+	"laggedreplicamode": "Obral : bu va ironakaf tuenakseem rotir meruldar",
 	"readonly": "Beta elekana nuskera va origak",
 	"enterlockreason": "Va elekaradanda is uldinera va elekaracek bazel",
 	"readonlytext": "Les ajouts et mises à jour sur la base de donnée {{SITENAME}} sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l'ordre. Voici la raison pour laquelle l'administrateur a bloqué la base :\n<p>$1",

@@ -318,7 +318,7 @@
 	"databaseerror-function": "Arc'hwel : $1",
 	"databaseerror-error": "Fazi : $1",
 	"transaction-duration-limit-exceeded": "Kuit da lakaat kreskiñ betek re an termen respont eo bet nullet an treuzgread-mañ rak aet e oa ar pad skrivañ ($1) en tu all d'ar vevenn a $2 eilenn.\nM'emaoc'h o cheñch kalz elfennoù war un dro klaskit kentoc'h troc'hañ anezho e meur a oberiadenn disteroc'h.",
-	"laggedslavemode": "Diwallit : marteze a-walc'h n'emañ ket ar c'hemmoù diwezhañ war ar bajenn-mañ",
+	"laggedreplicamode": "Diwallit : marteze a-walc'h n'emañ ket ar c'hemmoù diwezhañ war ar bajenn-mañ",
 	"readonly": "Hizivadurioù stanket war ar bank roadennoù",
 	"enterlockreason": "Merkit perak eo stanket hag istimit pegeit e chomo evel-henn",
 	"readonlytext": "Evit poent n'haller ket ouzhpennañ pe gemmañ netra en diaz roadennoù mui. Un tamm kempenn boutin d'an diaz moarvat. Goude-se e vo plaen an traoù en-dro.\n\nSetu displegadenn ar merour bet prennet an diaz gantañ : $1",

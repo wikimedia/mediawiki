@@ -321,7 +321,7 @@
 	"databaseerror-function": "Function: $1",
 	"databaseerror-error": "Mistake: $1",
 	"transaction-duration-limit-exceeded": "Tae avite creautin heich replication lag, this transaction wis abortit acause the write duration ($1) exceedit the $2 seicont leemit.\nIf ye are chyngin mony items at ance, try daein multiple smawer operations insteid.",
-	"laggedslavemode": "<strong>Warnishment:</strong> Page micht naw contain recent updates",
+	"laggedreplicamode": "<strong>Warnishment:</strong> Page micht naw contain recent updates",
 	"readonly": "Database lockit",
 	"enterlockreason": "Enter ae raeson fer the lock, inclædin aen estimate o whan the lock'll be lowsed",
 	"readonlytext": "The database is currently lockit tae new entries an ither modifications, probably for routine database mainteenance, efter that it will be back tae normal.\n\nThe seestem admeenistrator wha lockit it offered this expleenation: $1",

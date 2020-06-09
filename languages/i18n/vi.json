@@ -342,7 +342,7 @@
 	"databaseerror-function": "Hàm: $1",
 	"databaseerror-error": "Lỗi: $1",
 	"transaction-duration-limit-exceeded": "Để tránh việc tăng độ trễ sao chép quá mức, giao dịch này bị hủy bỏ vì thời gian ghi ($1) vượt quá giới hạn là $2 giây.\nNếu bạn muốn thay đổi nhiều mục cùng lúc, hãy thay bằng nhiều tác vụ nhỏ hơn.",
-	"laggedslavemode": "Cảnh báo: Trang có thể chưa được cập nhật.",
+	"laggedreplicamode": "Cảnh báo: Trang có thể chưa được cập nhật.",
 	"readonly": "Cơ sở dữ liệu bị khóa",
 	"enterlockreason": "Nêu lý do khóa, cùng với thời hạn khóa",
 	"readonlytext": "Cơ sở dữ liệu hiện đã bị khóa không nhận trang mới và các điều chỉnh khác, có lẽ để bảo trì cơ sở dữ liệu định kỳ, một thời gian ngắn nữa nó sẽ trở lại bình thường.\n\nQuản trị viên hệ thống khi khóa nó đã đưa ra lời giải thích sau: $1",

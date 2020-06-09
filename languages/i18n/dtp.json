@@ -272,7 +272,7 @@
 	"databaseerror-query": "Timuhot: $1",
 	"databaseerror-function": "Gunoon: $1",
 	"databaseerror-error": "Silap: $1",
-	"laggedslavemode": "'''Panansarahan:''' Awu moti kaanto nopinwoguan suang do bolikon diti.",
+	"laggedreplicamode": "'''Panansarahan:''' Awu moti kaanto nopinwoguan suang do bolikon diti.",
 	"readonly": "Nokunsian databing",
 	"enterlockreason": "Posuango sabab do mongunsi, poobion do gisom soira oukaban kunsi",
 	"readonlytext": "Databing diti nokunsian mantad monuang-suang om nogi pinsimbanan, koubasan do maso doropion, nga koguli miagal kasari do opongoh po ilo.\n\nMandur di minongunsi minomisunud do: $1",

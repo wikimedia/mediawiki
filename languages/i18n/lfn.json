@@ -306,7 +306,7 @@
 	"databaseerror-function": "Funsiona: $1",
 	"databaseerror-error": "Era: $1",
 	"transaction-duration-limit-exceeded": "Per evita causa un pausa longa de copia, esta interata ia es abortada car la scrive ($1) ia dura plu ca la limita de {{PLURAL:$2|secondo|secondos}}.",
-	"laggedslavemode": "<strong>Avisa:</strong> Cisa la paje no conteni cambias resente.",
+	"laggedreplicamode": "<strong>Avisa:</strong> Cisa la paje no conteni cambias resente.",
 	"readonly": "La banco de datos es cluida",
 	"enterlockreason": "Tape un razona per la semafor, incluinte un estima de cuando lo va es sutraeda",
 	"readonlytext": "La banco de datos es aora cluida per entradas nova e otra cambias, probable per permete mantenis normal, pos cual lo va funsiona denova normal.\nLa dirijor ci ia clui lo ia ofre esta esplica: $1",

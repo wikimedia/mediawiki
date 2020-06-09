@@ -276,7 +276,7 @@
 	"databaseerror-query": "Ecmine: $1",
 	"databaseerror-function": "Funkcii:$1",
 	"databaseerror-error": "Petuz: $1",
-	"laggedslavemode": "Varutuz: voib olda, lehtpolen versijal ei ole jäl'gmäižid ližadusid.",
+	"laggedreplicamode": "Varutuz: voib olda, lehtpolen versijal ei ole jäl'gmäižid ližadusid.",
 	"readonly": "Andmusiden baz om luklostadud",
 	"enterlockreason": "Kirjutagat sü da pandud blokiruindan strok",
 	"missing-article": "Andmuzbazaspäi ei ole löutud ectud lehtpolen tekst: $1 $2.\n\nMugoi situacii sündub tobjimalaz, konz kävutai ladib lähtta lehtpolen toižetuzistorijaha vanhtunut i čutud kosketustme.\n\nKu azj ei ole neciš, ka tö, nägub, olet löudnuded vigan programmas. Olgat hüväd, kirjutagat necen polhe [[Special:ListUsers/sysop|administratorale]].\nLižakat URL.",

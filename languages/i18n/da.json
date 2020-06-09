@@ -375,7 +375,7 @@
 	"databaseerror-function": "Funktion: $1",
 	"databaseerror-error": "Fejl: $1",
 	"transaction-duration-limit-exceeded": "For at undgå høj replikationsforsinkelse blev denne transaktion afbrudt, fordi tiden det tog at lagre ($1) oversteg grænsen på $2 {{PLURAL:$2|sekund|sekunder}}.\nHvis du er ved at ændre mange emner på en gang, så prøv at udføre flere mindre operationer i stedet.",
-	"laggedslavemode": "<strong>Advarsel:</strong> Siden indeholder muligvis ikke de nyeste ændringer.",
+	"laggedreplicamode": "<strong>Advarsel:</strong> Siden indeholder muligvis ikke de nyeste ændringer.",
 	"readonly": "Databasen er låst",
 	"enterlockreason": "Skriv en begrundelse for låsningen, inklusive en vurdering af hvornår den vil blive ophævet igen",
 	"readonlytext": "Databasen er i øjeblikket låst for nye poster og andre ændringer, formentlig pga. rutinemæssig databasevedligeholdelse, hvorefter den vil være tilbage til normalen.\n\nDen systemadministrator, som låste den, gav denne forklaring: $1",

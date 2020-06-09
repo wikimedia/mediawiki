@@ -297,7 +297,7 @@
 	"databaseerror-query": "Teunanyöng: $1",
 	"databaseerror-function": "Guna: $1",
 	"databaseerror-error": "Salah: $1",
-	"laggedslavemode": "Peuneugah: Laman nyoë kadang hana neuubah barô",
+	"laggedreplicamode": "Peuneugah: Laman nyoë kadang hana neuubah barô",
 	"readonly": "Basis data geurôk",
 	"enterlockreason": "Pasoë dalèh neurôk ngön pajan jeuët geupeuhah",
 	"readonlytext": "Basis data hat nyoë geurôk keu teunamöng barô ngön geunantoë la'én, kadang keu peulara basis data rutin, lheuëh nyan barô lagèë biasa teuma.\n\nUreueng urôh nyang rôk nyoe geupeutaba jeuneulaih nyoe: $1",

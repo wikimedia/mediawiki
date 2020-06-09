@@ -243,7 +243,7 @@
 	"nospecialpagetext": "<strong>Je ei een onbestaende speciaole pagina opevrogen.</strong>\n\nEen lieste mie speciaole pagina’s sti op [[Special:SpecialPages|speciaole pagina’s]].",
 	"error": "Fout",
 	"databaseerror": "Databasefout",
-	"laggedslavemode": "Waerschuwieng: de pahina zou verouwerd kunn'n zien.",
+	"laggedreplicamode": "Waerschuwieng: de pahina zou verouwerd kunn'n zien.",
 	"readonly": "Database heblokkeerd",
 	"enterlockreason": "Heef een reeën op voe de blokkaode en heef op wunnir a die warschijnlijk wor opeheven",
 	"readonlytext": "De database is heblokkeerd voe bewerkiengen, warschijnlijk voe rehulier databaseonderoud. Nae afrondieng wor de functionaliteit hersteld.\n\nDe beheêrder ei de volhende reeën opeheven: $1",

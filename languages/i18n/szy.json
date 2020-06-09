@@ -291,7 +291,7 @@
 	"databaseerror-function": "sakapaluwaluway: $1",
 	"databaseerror-error": "mungangaw: $1",
 	"transaction-duration-limit-exceeded": "saka miliyas kayadah sapahalhal mautang, zayhan suliten a tuki ($1) mangasiw $2 beit a kelec, tina saungay mapateziptu. \namahica kisu misumad yadah kasacacay sacacay, kapah mitanam mawawada’ mikawaw.",
-	"laggedslavemode": "<strong> patalaw:</strong> kasabelih hakay caay yamalyilu capi demiad misabaluh.",
+	"laggedreplicamode": "<strong> patalaw:</strong> kasabelih hakay caay yamalyilu capi demiad misabaluh.",
 	"readonly": "pamutektu sulu nu nasulitan",
 	"enterlockreason": "pisuliten pamutek a mahicaay, yamalyilu sausi miliyaw mawawah a tuki",
 	"readonlytext": "nasulitan-sulu pamutek ayza, la’cus cunusen saca misumad tu kalunasulitan, imahini hakay miteka laliday a nasulitan-sulu masanga’ay a kawaw, mapahezektusa kapahtu masasa malecek. \n\npamutek nasulitan-sulu a sisetyimo mikuwanay buhci tu kamu: $1",

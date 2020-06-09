@@ -318,7 +318,7 @@
 	"databaseerror-function": "功能: $1",
 	"databaseerror-error": "出錯：$1",
 	"transaction-duration-limit-exceeded": "因为写入辰光（$1）超过了$2秒个限制，为防止创建大量复制延迟，此次处理已被中止。如果侬正拉同时更改交关多项目，请尝试进行多次小规模操作。",
-	"laggedslavemode": "<strong>警告：</strong>页面可能弗包括最近个更新。",
+	"laggedreplicamode": "<strong>警告：</strong>页面可能弗包括最近个更新。",
 	"readonly": "數據庫鎖牢",
 	"enterlockreason": "请输入锁定个原因，包括预计解锁个辰光",
 	"readonlytext": "数据库目前锁牢勒上，禁止输入新内容及更改，箇蛮有可能是因为数据库拉许维修，完成仔即可恢复。\n\n系统管理员有如下解释：$1",

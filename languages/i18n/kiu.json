@@ -256,7 +256,7 @@
 	"nospecialpagetext": "<strong>Sıma pela xususiya de nêvêrdiye kerde ra.</strong>\n\nJü lista pelunê vêrdoğu bınê [[Special:SpecialPages|{{int:specialpages}}]] de vênina.",
 	"error": "Xeta",
 	"databaseerror": "Xeta panga daeyu",
-	"laggedslavemode": "Teme: Beno ke vurnaisê peyêni pele de niyê.",
+	"laggedreplicamode": "Teme: Beno ke vurnaisê peyêni pele de niyê.",
 	"readonly": "Panga daeyu kılit kerdiya",
 	"enterlockreason": "Serba kılit-kerdişi jü sebeb bıde ke, kılitkerdis texminen key beno ra",
 	"readonlytext": "Panga daeyu nustunê newun u vurnaisunê binu rê kılita, seba ke bena pak, hama badêna oncia normal gurina.\n\nİdarekeru ra kami ke kılit kerda, na tesrih aseno: $1",

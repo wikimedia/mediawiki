@@ -252,7 +252,7 @@
 	"nospecialpagetext": "<strong>ለማይኖር ልዩ ገጽ ጠይቀዋል።</strong>\n\nየሚኖሩ ልዩ ገጾች ዝርዝር በ[[Special:SpecialPages|{{int:specialpages}}]] ሊገኝ ይችላል።",
 	"error": "ስኅተት",
 	"databaseerror": "የመረጃ-ቤት ስህተት",
-	"laggedslavemode": "ማስጠንቀቂያ፦ ምናልባት የቅርብ ለውጦች በገጹ ላይ አይታዩም።",
+	"laggedreplicamode": "ማስጠንቀቂያ፦ ምናልባት የቅርብ ለውጦች በገጹ ላይ አይታዩም።",
 	"readonly": "መረጃ-ቤት ተቆልፏል",
 	"enterlockreason": "የመቆለፉን ምክንያትና የሚያልቅበትን ሰዓት (በግምት) ይጻፉ።",
 	"readonlytext": "መረጃ-ቤቱ አሁን ከመቀየር ተቆልፏል። ይህ ለተራ አጠባበቅ ብቻ መሆኑ አይቀርም። ከዚያ በኋላ እንደ ወትሮ ሁኔታ ይኖራል።\n\nየቆለፉት መጋቢ ይህንን መግለጫ አቀረቡ፦ $1",

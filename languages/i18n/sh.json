@@ -319,7 +319,7 @@
 	"databaseerror-function": "Funkcija: $1",
 	"databaseerror-error": "Greška: $1",
 	"transaction-duration-limit-exceeded": "Da se izbjegne veliko zaostajanje odgovorâ, transakcija je prekinuta zato što prekoračeno je trajanje zapisivanja ($1), ograničeno {{PLURAL:$2|jednom sekundom|$2 sekunde|$2 sekundi}}.\nAko mijenjate više stavki odjednom, uradite ovo na više navrata umjesto zajednički.",
-	"laggedslavemode": "'''Upozorenje''': Stranica ne mora sadržavati posljednja ažuriranja.",
+	"laggedreplicamode": "'''Upozorenje''': Stranica ne mora sadržavati posljednja ažuriranja.",
 	"readonly": "Baza podataka je zaključana",
 	"enterlockreason": "Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja",
 	"readonlytext": "Baza je trenutno zaključana za nove unose i ostale izmjene, vjerovatno zbog rutinskog održavanja, posle čega će biti vraćena u uobičajeno stanje.\n\nSistemski administrator koji ju je zaključao je ponudio ovo objašnjenje: $1",

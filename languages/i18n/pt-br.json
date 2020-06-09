@@ -423,7 +423,7 @@
 	"databaseerror-function": "Função: $1",
 	"databaseerror-error": "Erro: $1",
 	"transaction-duration-limit-exceeded": "Para evitar um aumento excessivo no atraso da replicação, esta operação foi abortada porque a duração de gravação ($1) excedeu o limite de $2 {{PLURAL:$2|segundo|segundos}}. Se você está alterando muitos itens de uma vez, tente fazer várias operações menores em vez disso.",
-	"laggedslavemode": "<strong>Aviso:</strong> a página poderá não conter atualizações recentes.",
+	"laggedreplicamode": "<strong>Aviso:</strong> a página poderá não conter atualizações recentes.",
 	"readonly": "Banco de dados trancado",
 	"enterlockreason": "Insira um motivo para o bloqueio, incluindo uma estimativa de quando ocorrerá o desbloqueio",
 	"readonlytext": "O banco de dados está atualmente bloqueado para novos artigos e outras modificações, provavelmente por uma manutenção de rotina de banco de dados, após o que estará de volta ao normal.\n\nO administrador do sistema que fez o bloqueio oferece a seguinte explicação: $1",

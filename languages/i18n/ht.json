@@ -301,7 +301,7 @@
 	"databaseerror-query": "Rekèt: $1",
 	"databaseerror-function": "Fonksyon: $1",
 	"databaseerror-error": "Erè: $1",
-	"laggedslavemode": "'''Atansyon:''' paj sa a kapab pa anrejistre modifikasyon ki fèk fèt yo.",
+	"laggedreplicamode": "'''Atansyon:''' paj sa a kapab pa anrejistre modifikasyon ki fèk fèt yo.",
 	"readonly": "Bazdone a fèmen toutbon.",
 	"enterlockreason": "Bay yon rezon pou fème bazdone a ak yon estimasyon ki lè w ap ouvri l ankò",
 	"readonlytext": "Bazdone a fèmen kounye a, nou pa kapab ajoute pyès done ladan l. Sanble se pou pèmèt jesyon l; apre sa, l ap reprann sèvis li.\n\nAdministratè a ki te fèmen l bay rezon sa a : $1",

@@ -313,7 +313,7 @@
 	"databaseerror-query": "Requèsta : $1",
 	"databaseerror-function": "Foncion : $1",
 	"databaseerror-error": "Error : $1",
-	"laggedslavemode": "<strong>Atencion :</strong> Aquesta pagina pòt conténer pas totes los darrièrs cambiaments efectuats.",
+	"laggedreplicamode": "<strong>Atencion :</strong> Aquesta pagina pòt conténer pas totes los darrièrs cambiaments efectuats.",
 	"readonly": "Mesas a jorn blocadas sus la basa de donadas",
 	"enterlockreason": "Indicatz la rason del verrolhatge, e mai una estimacion de sa durada",
 	"readonlytext": "Los empeutons e mesas a jorn de la basa de donadas son actualament blocats, probablament per permetre la mantenença de la basa, aprèp aquò, tot dintrarà dins l'òrdre.\n\nL’administrator qu'a verrolhat la basa de donadas a balhat l’explicacion seguenta :<br /> $1",

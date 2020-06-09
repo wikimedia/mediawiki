@@ -399,7 +399,7 @@
 	"databaseerror-function": "Functie: $1",
 	"databaseerror-error": "Fout: $1",
 	"transaction-duration-limit-exceeded": "Deze transactie ($1) is afgebroken omdat de limiet van $2 {{PLURAL:$2|seconde|seconden}} is bereikt. Hiermee worden grote achterstanden bij het repliceren voorkomen. \nWanneer u meerdere items tegelijk bewerkt, probeer het dan in meerdere kleinere opdrachten te doen.",
-	"laggedslavemode": "<strong>Waarschuwing:</strong> in deze pagina zijn recente wijzigingen mogelijk nog niet verwerkt.",
+	"laggedreplicamode": "<strong>Waarschuwing:</strong> in deze pagina zijn recente wijzigingen mogelijk nog niet verwerkt.",
 	"readonly": "Database geblokkeerd",
 	"enterlockreason": "Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven",
 	"readonlytext": "De database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud. Na afronding wordt de functionaliteit hersteld.\n\nDe systeembeheerder heeft de volgende reden opgegeven: $1",

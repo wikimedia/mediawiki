@@ -349,7 +349,7 @@
 	"databaseerror-function": "Funksjon: $1",
 	"databaseerror-error": "Feil: $1",
 	"transaction-duration-limit-exceeded": "For å unngå høye replikeringsforsinkelser ble denne transaksjonen avsluttet på grunn av at tiden det tok å lagre ($1) oversteg maksimumsgrensen på $2 {{PLURAL:$2|sekund|sekunder}}.\nHvis du endrer på mange ting på en gang, prøv å dele dette opp i mindre operasjoner.",
-	"laggedslavemode": "<strong>Advarsel:</strong> Dette kan være en eldre versjon av siden.",
+	"laggedreplicamode": "<strong>Advarsel:</strong> Dette kan være en eldre versjon av siden.",
 	"readonly": "Databasen er skrivebeskyttet",
 	"enterlockreason": "Skriv en begrunnelse for skrivebeskyttelsen, inkludert et estimat for når den blir opphevet",
 	"readonlytext": "Databasen er for øyeblikket skrivebeskyttet, sannsynligvis på grunn av rutinemessig vedlikehold.\n\nAdministratoren som låste databasen ga forklaringen: $1",

@@ -311,7 +311,7 @@
 	"databaseerror-function": "Function: $1",
 	"databaseerror-error": "Error: $1",
 	"transaction-duration-limit-exceeded": "A fin de evitar un grande retardo de replication, iste transaction ha essite abortate perque le duration de scriptura ($1) excedeva le limite de $2 {{PLURAL:$2|secunda|secundas}}.\nSi tu modifica multe elementos insimul, tenta facer plure operationes minor in loco de un grande.",
-	"laggedslavemode": "Attention: Es possibile que le pagina non contine actualisationes recente.",
+	"laggedreplicamode": "Attention: Es possibile que le pagina non contine actualisationes recente.",
 	"readonly": "Base de datos blocate",
 	"enterlockreason": "Describe le motivo del blocada, includente un estimation\nde quando illo essera terminate",
 	"readonlytext": "In iste momento le base de datos es blocate contra nove entratas e altere modificationes, probabilemente pro mantenentia routinari, post le qual le base de datos essera de novo accessibile.\n\nLe administrator responsabile pro le blocada ha fornite iste explication: $1",

@@ -313,7 +313,7 @@
 	"databaseerror-function": "Funzione: $1",
 	"databaseerror-error": "Sbaglio: $1",
 	"transaction-duration-limit-exceeded": "Pe' putè scanzà 'e crià n'auto tiempo e replica, sta transazziona fuje fernuta pecché pe' tramente ca se faceva chesto ($1) s'appassaje 'o lemmeto 'e $2 {{PLURAL:$2|secondo|secunde}}.\nSi state a cagnà nu cuofeno 'elemente a na vota, tentate e fà nu cuofeno 'operaziune cchiù piccerille mmece.",
-	"laggedslavemode": "'''Attenzione:''' 'a paggena putesse nun fà vedé ll'aggiornamento cchiù recente.",
+	"laggedreplicamode": "'''Attenzione:''' 'a paggena putesse nun fà vedé ll'aggiornamento cchiù recente.",
 	"readonly": "Database arrestato",
 	"enterlockreason": "Miette 'o mutivo 'e blocco, nzieme a 'o mumento quanno se penza ca 'o blocco se sarrà fernuto",
 	"readonlytext": "Mo mmo 'o database s'è arrestato pe n'operazione semprice 'e manutenzione e nun se ponno azzeccà cagnamiente o pàggene nove. Quanno sarrà fernuta, atanno 'a paggena addeventarrà nurmale.\n\nL'ammenistratore 'e sistema c'ha fatto 'o blocco, nce dà sta spiegazione: $1",

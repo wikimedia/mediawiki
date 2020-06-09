@@ -238,7 +238,7 @@
 	"nospecialpagetext": "<strong>Şumo sahifai viƶaero darxost kardaed, ki nodurust ast.</strong>\n\nFehristi sahifahoi viƶai durustro metavoned dar inço [[Special:SpecialPages|{{int:specialpages}}]] nigared.",
 	"error": "Iştiboh",
 	"databaseerror": "Xatoi bojgohi doda",
-	"laggedslavemode": "Huşdor: Sahifa mumkin ast rūzrasonihoi oxirro dar bar nagirad.",
+	"laggedreplicamode": "Huşdor: Sahifa mumkin ast rūzrasonihoi oxirro dar bar nagirad.",
 	"readonly": "Bojgohi doda qufl şudaast",
 	"enterlockreason": "Dalelero baroi qufl kardan zikr kuned, va taqriban vaqti az qufl ozod şudanaşro ham zikr kuned",
 	"readonlytext": "Pojgohi doda dar holi hozir dar barobari taƣjirot va eçodi sahifaho qufl şudaast, ehtimolan on baroi ta'miri pojgohi doda va rasidagihoe ma'mul ast, ki ba'd az ançomi on vaz' ba holati oddī boz xohad gaşt.\n\nTavzehi mudire, ki onro qufl kardaast badin şarh ast: $1",

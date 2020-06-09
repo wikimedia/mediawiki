@@ -331,7 +331,7 @@
 	"databaseerror-function": "Funksiya: $1",
 	"databaseerror-error": "Xəta: $1",
 	"transaction-duration-limit-exceeded": "Yüksək replikasiya xətası yaratmamaq üçün əməliyyat ləğv edildi, çünki yazılma müddəti ($1) $2 limitini keçmişdir.\nBir anda bir çox şeyi dəyişdirirsinizsə, bunun yerinə kiçik əməliyyatlar etməyə çalışın.",
-	"laggedslavemode": "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
+	"laggedreplicamode": "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
 	"readonly": "Verilənlər bazası bloklanıb",
 	"enterlockreason": "Bloklamanın səbəbini və nəzərdə tutulan müddətini qeyd edin",
 	"readonlytext": "Verilənlər bazası ehtimal ki, planlaşdırılmış təmir işləri ilə əlaqədar müvəqqəti olaraq yeni məqalələr və dəyişikliklər üçün bağlanmışdır və təmirdən sonra açılacaqdır.\nVerilənlər bazasını bloklayan idarəçi bunu belə izah edib: $1",

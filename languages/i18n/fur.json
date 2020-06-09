@@ -297,7 +297,7 @@
 	"databaseerror-function": "Funzion $1",
 	"databaseerror-error": "Erôr: $1",
 	"transaction-duration-limit-exceeded": "Par evitâ masse ritart te rispueste, cheste operazion è je stade fermade par vie che la durade dal timp di scriture ($1) al à passât il limit di $2 {{PLURAL:$2|secont|seconts}}.\nSe si stan modificant tancj elements in un colp al sarès di provâ a fâ la stesse operazion cun mancul elements a la volte.",
-	"laggedslavemode": "Atenzion: La pagjine podarès no segnalâ inzornaments recents.",
+	"laggedreplicamode": "Atenzion: La pagjine podarès no segnalâ inzornaments recents.",
 	"readonly": "Base di dâts blocade",
 	"enterlockreason": "Scrivi il motîf dal bloc e indicâ cuant che al varès di jessi gjavât.",
 	"readonlytext": "La base di dâts pal moment e je blocade e no si puedin zontâ vôs e fâ modifichis, probabilmentri pe normâl manutenzion de base di dâts, une volte finide dut al tornarà normâl.\n\nL'aministradôr che al à metût il bloc al à scrit cheste motivazion: $1",

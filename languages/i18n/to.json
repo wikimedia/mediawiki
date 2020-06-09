@@ -187,7 +187,7 @@
 	"nosuchspecialpage": "Hala ha peesi makehe pehē",
 	"error": "Halaʻi",
 	"databaseerror": "Halaʻi tānekingaʻilo",
-	"laggedslavemode": "Tokanga: Mahalo pē ʻoku ʻikai ha toki fakafoʻou ʻi loto peesi.",
+	"laggedreplicamode": "Tokanga: Mahalo pē ʻoku ʻikai ha toki fakafoʻou ʻi loto peesi.",
 	"readonly": "ʻOku lokaʻi ʻa e tānekingaʻilo",
 	"readonlytext": "ʻOku lokaʻi ʻa e tānekingaʻilo he taimí ni (ʻoku ikai te ke lava fatu) maʻa e monomono fakatānekingaʻilo tuʻumaʻu. ʻOsi ia ʻe foki ia ki hono faʻafai.\n\nKo e pule, naʻe lokaʻi ia, ʻoku pehē: $1",
 	"readonly_lag": "Naʻe lokaʻi fakamīsini ʻa e tānekingaʻiló ni lolotonga he fetulitlui hake ʻo e tauhia pōpula mo e tauhia pule",

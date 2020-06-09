@@ -314,7 +314,7 @@
 	"databaseerror-query": "Arcesta: $1",
 	"databaseerror-function": "Fonsion: $1",
 	"databaseerror-error": "Eror: $1",
-	"laggedslavemode": "'''Avis:''' la pàgina a podrìa ëdcò nen mostré le modìfiche pi recente.",
+	"laggedreplicamode": "'''Avis:''' la pàgina a podrìa ëdcò nen mostré le modìfiche pi recente.",
 	"readonly": "Acess a la base ëd dat sërà për chèich temp.",
 	"enterlockreason": "Che a buta na rason për ël blocagi, con andrinta data e ora ëd quand che a stima che a sarà gavà.",
 	"readonlytext": "La base ëd dat për adess a l'é blocà, e as peulo pa fesse nì dle neuve imission, nì dle modìfiche, con tute le probabilità për n'operassion ëd manutension dël servent. Se a l'é parèj, motobin ampressa la base a sarà torna duvèrta.\n\nL'aministrator che a l'ha blocala a l'ha lassà sta spiegassion: $1",

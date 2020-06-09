@@ -278,7 +278,7 @@
 	"databaseerror": "Åk n' a nén stî avou l' båze di dnêyes",
 	"databaseerror-function": "Fonccion : $1",
 	"databaseerror-error": "Aroke: $1",
-	"laggedslavemode": "Asteme: I s' pout ki l' pådje n' åye nén co les dierins candjmints.",
+	"laggedreplicamode": "Asteme: I s' pout ki l' pådje n' åye nén co les dierins candjmints.",
 	"readonly": "Li båze di dnêyes est aclawêye",
 	"missing-article": "Li båze di dnêyes n' a nén trové l' tecse d' ene pådje k' åreut dvou esse trovêye, lomêye «$1» $2.\n\nÇoula arive cwand on shût on loyén po ene diferince k' est houte ou viè l' istwere d' ene pådej disfacêye.\n\nSi c' est nén çoula, motoit k' vos avoz trové on bug dins l' programe.\nAdon dijhoz l' a on [[Special:ListUsers/sysop|manaedjeu]], sins rovyî d' mete li hårdêye (URL) ki mostere l' aroke.",
 	"missingarticle-rev": "(l° del modêye: $1)",

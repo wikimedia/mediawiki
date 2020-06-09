@@ -302,7 +302,7 @@
 	"databaseerror-query": "Ombi: $1",
 	"databaseerror-function": "Kutendakazi: $1",
 	"databaseerror-error": "Hitilafu: $1",
-	"laggedslavemode": "'''Ilani:'''Labda masahihisho ya hivi karibuni bado hayajaonekana.",
+	"laggedreplicamode": "'''Ilani:'''Labda masahihisho ya hivi karibuni bado hayajaonekana.",
 	"readonly": "Hifadhidata imefungika",
 	"enterlockreason": "Ingiza sababu za kufunga, pamoja na makisio yake lini itafunguliwa",
 	"readonlytext": "Kihifadhidata kwa sasa umefungwa kwa maingizo mapya na matengenezo mengine, yamkini kwa ajili ya utaratibu wa matengenezo ya kawaida, baada ya hilo itarudi katika hali yake ya kawaida.\n\nMkabidhi aliyeifunga ametoa maelezo haya: $1",

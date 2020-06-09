@@ -383,7 +383,7 @@
 	"databaseerror-function": "Função: $1",
 	"databaseerror-error": "Erro: $1",
 	"transaction-duration-limit-exceeded": "Para evitar grandes atrasos na replicação, esta operação foi cancelada porque a duração de gravação ($1) excedeu o limite de $2 {{PLURAL:$2|segundo|segundos}}. Se está a mudar muitos objetos de uma só vez, tente desmultiplicar a operação em várias de menor dimensão.",
-	"laggedslavemode": "<strong>Aviso:</strong> A página pode não conter as atualizações mais recentes.",
+	"laggedreplicamode": "<strong>Aviso:</strong> A página pode não conter as atualizações mais recentes.",
 	"readonly": "Base de dados bloqueada (limitada a leituras)",
 	"enterlockreason": "Introduza um motivo para bloquear, incluindo uma estimativa de quando será desbloqueada",
 	"readonlytext": "A base de dados está atualmente bloqueada para novas entradas e outras modificações, provavelmente para uma manutenção de rotina, após a qual voltará à sua normalidade.\n\nO administrador que a bloqueou deu a seguinte explicação: $1",

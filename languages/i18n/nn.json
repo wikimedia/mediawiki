@@ -319,7 +319,7 @@
 	"databaseerror-query": "Spørjing: $1",
 	"databaseerror-function": "Funksjon: $1",
 	"databaseerror-error": "Feil: $1",
-	"laggedslavemode": "Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.",
+	"laggedreplicamode": "Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.",
 	"readonly": "Databasen er skriveverna",
 	"enterlockreason": "Skriv ein grunn for vernet, inkludert eit overslag for kva tid det vil bli oppheva",
 	"readonlytext": "Databasen er nett no skriveverna for nye oppslag og andre endringar, truleg for rutinemessig vedlikehald. Etterpå vil han opnast att. Administratoren som verna han gav denne forklaringa:\n\n$1",

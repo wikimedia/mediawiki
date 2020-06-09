@@ -296,7 +296,7 @@
 	"databaseerror-query": "Ajụjụ:$1",
 	"databaseerror-function": "Ọrụ:$1",
 	"databaseerror-error": "Mmejọ:$1",
-	"laggedslavemode": "'''Gé ntị:''' Ihüá nwèríkí bu na o nwéghị ihe gáránirú na ógè nso.",
+	"laggedreplicamode": "'''Gé ntị:''' Ihüá nwèríkí bu na o nwéghị ihe gáránirú na ógè nso.",
 	"readonly": "Njikota ómárí gbachịrị",
 	"missing-article": "Njidé uche nsónùsòrò ènwéghịki tuó mkpụrụ edemede nke ihü nke áhù o kwèshírí hü, nke ha gùrù \"$1\" $2.\n\nIhe méré na mgbe ndiá bu ihe diff dáfùrù na ógè ndụ ya ma jikodo ákíkó mbu nke ótù ihü à gbákáshíálá.\n\nÓ bú nà ọ búghị ihe mèrè, ȯ nwèríkí bu Í gbákọtàrà àkà na áká nsónùsòrò.\nBiko chi ihe á na áká [[Special:ListUsers/sysop|onye íshí]], dètú URL.",
 	"missingarticle-rev": "(nlèwáriá#: $1)",

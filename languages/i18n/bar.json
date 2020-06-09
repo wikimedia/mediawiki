@@ -286,7 +286,7 @@
 	"error": "Feeler",
 	"databaseerror": "Feeler in da Daatenbånk",
 	"databaseerror-textcl": "Die Datenbank hots zerhaun.",
-	"laggedslavemode": "'''Ochtung:''' De åzoagte Seiten kunnterd unter Umständ ned d' letzden Beorweitungen enthoiden.",
+	"laggedreplicamode": "'''Ochtung:''' De åzoagte Seiten kunnterd unter Umständ ned d' letzden Beorweitungen enthoiden.",
 	"readonly": "Daatenbånk gsperrd",
 	"enterlockreason": "Bittscheh gib an Grund å, warum de Daatenbånk gsperrd wern soi und a Obschätzung ywer de Dauer voh da Sperrung",
 	"readonlytext": "De Daatenbånk is vurywergeehend fyr Neieihtreeg und Änderrungen gsperrd. Bittschee vasuchs spaader nuamoi.\n\nGrund voh da Sperrung: $1",

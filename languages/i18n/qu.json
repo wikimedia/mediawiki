@@ -288,7 +288,7 @@
 	"databaseerror-query": "Maskana: $1",
 	"databaseerror-function": "Ruray paqtachi: $1",
 	"databaseerror-error": "Pantasqa: $1",
-	"laggedslavemode": "'''Paqtataq''': Kay p'anqapiqa manaraqchá kachkanchu aswan qayna musuqchasqakuna.",
+	"laggedreplicamode": "'''Paqtataq''': Kay p'anqapiqa manaraqchá kachkanchu aswan qayna musuqchasqakuna.",
 	"readonly": "Willañiqintinqa hark'asqam",
 	"enterlockreason": "Qillqamuy imarayku hark'asqa karqan, hayk'appas manañachá hark'asqachu kanqa",
 	"readonlytext": "Kay {{SITENAME}} nisqap willañiqintintaqa manam hukchayta, manam chayman qillqamuyta saqillanchu, mit'awa kakuchiyraykuchá, chaymantataqchá allin kanqa.\nHark'aq kamachiqqa umallirqan kaytam nispa:\n<p>$1",

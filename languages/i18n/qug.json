@@ -228,7 +228,7 @@
 	"nosuchaction": "Kay rurayta illanmi",
 	"error": "Pantay",
 	"databaseerror": "Yachayyuk ukupi pantay",
-	"laggedslavemode": "'''Rikupay''': Kay pankapi, shina kakpi, mushuk killkaykuna illankacha.",
+	"laggedreplicamode": "'''Rikupay''': Kay pankapi, shina kakpi, mushuk killkaykuna illankacha.",
 	"missing-article": "Hatun kamupi shuk killkayta mana tarin, shinapash chay killkayta tiyanami kan. Paypa chay shutima kan : «$1» $2.\nIcha shuk ñawpak pachamanta ''diff'' ñamana tiyanchu, icha kay tinkika shuk pichashka pankapa shutimi kan. \nMana shina kakpi, shuk [[Special:ListUsers/sysop|kamachyik]]man willapay, payta URL killkata willapay.",
 	"missingarticle-rev": "(Killkay#: $1)",
 	"internalerror": "Antawa ukupi pantay tiyarka",

@@ -312,7 +312,7 @@
 	"databaseerror-function": "Funciono: $1",
 	"databaseerror-error": "Eroro:$1",
 	"transaction-duration-limit-exceeded": "Por preventar lentigo en la sistemo pro la modifiki, la registrago interruptesis, pro la tempo demandata por registrago ($1) superirar la duesma limito, $2.\nSe vu deziras modifikar multa detali quik, facez plura kurta modifiki, ne unika longa modifiko.",
-	"laggedslavemode": "<strong>Averto:</strong> La pagino povas ne kontenar la maxim recenta modifiki.",
+	"laggedreplicamode": "<strong>Averto:</strong> La pagino povas ne kontenar la maxim recenta modifiki.",
 	"readonly": "Datumaro esas blokusita",
 	"enterlockreason": "Explikez la motivo por la blokuso, inkluzante\nevaluo pri kande eventos la desblokuso",
 	"readonlytext": "La datumaro nuntempe esas klozata por nova modifiki, probable pro facesar manteni rutinala. Pos la manteni, ol retrovenos a la normala stando.\n\nL'administranto di la sistemo qua klozis la datumaro explikis to: $1",

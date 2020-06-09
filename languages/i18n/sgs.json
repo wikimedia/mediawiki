@@ -283,7 +283,7 @@
 	"databaseerror-query": "Ožprašīms: $1",
 	"databaseerror-function": "Paskėrtės: $1",
 	"databaseerror-error": "Klaida: $1",
-	"laggedslavemode": "Atėduos: Poslapie gal' nesmatītė vielībiausiu pakeitėmu.",
+	"laggedreplicamode": "Atėduos: Poslapie gal' nesmatītė vielībiausiu pakeitėmu.",
 	"readonly": "Doumenū bazė ožrakėnta",
 	"enterlockreason": "Iveskėt ožrakėnėma prižasti, tēpuogi kumet daugmaž bus atrokėnta",
 	"readonlytext": "Doumenū bazė daba īr ožrakinta naujėm irašam a kėtėm keitėmam,\nmažo doumenū bazės techninē pruofilaktėkā,\npu tuo viskos grīš i sava viežės.\nOžrakėnosė admėnėstratuorė douts rakėnėma paaiškėnėms: $1",

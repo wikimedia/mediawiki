@@ -278,7 +278,7 @@
 	"databaseerror-query": "КIэупчIэн: $1",
 	"databaseerror-function": "Функцие: $1",
 	"databaseerror-error": "Хэукъоныгъэ: $1",
-	"laggedslavemode": "<strong>Сакъ:</strong> НэкIубгъом имылъын лъэкIыщт хэIэзэныкIэмэ ащыщ.",
+	"laggedreplicamode": "<strong>Сакъ:</strong> НэкIубгъом имылъын лъэкIыщт хэIэзэныкIэмэ ащыщ.",
 	"readonly": "Датэбазэр гъэпытагъэ",
 	"missingarticle-rev": "(версиеу № $1)",
 	"missingarticle-diff": "(Зэгъапш: $1, $2)",

@@ -318,7 +318,7 @@
 	"databaseerror-query": "प्रश्नः: $1",
 	"databaseerror-function": "नियोज्यम्: $1",
 	"databaseerror-error": "दोषः: $1",
-	"laggedslavemode": "<strong>पूर्वसूचना :</strong>\nसद्यः परिवर्तनानि अत्र न स्युः ।",
+	"laggedreplicamode": "<strong>पूर्वसूचना :</strong>\nसद्यः परिवर्तनानि अत्र न स्युः ।",
 	"readonly": "दत्तांशनिधिः (database) कीलितः",
 	"enterlockreason": "कीलनस्य कारणं ददातु, कीलनं कियान् कालः भविष्यति इति च लिखतु ।",
 	"readonlytext": "नवीनदत्तांशप्रवेशाय (database entry) सद्यः दत्तांशः स्थगितः । नियमितव्यवस्थीकरणानन्तरं पुनः निवेशाय अवकाशः भवति । $1",

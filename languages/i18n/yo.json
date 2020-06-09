@@ -304,7 +304,7 @@
 	"databaseerror-query": "Ìtọrọ: $1",
 	"databaseerror-function": "Ìmúṣiṣẹ́: $1",
 	"databaseerror-error": "Àṣìṣe: $1",
-	"laggedslavemode": "<strong>Ìkìlọ̀:</strong> Ojúewé le mọ́ nìí àwọn àtúnṣe tuntun.",
+	"laggedreplicamode": "<strong>Ìkìlọ̀:</strong> Ojúewé le mọ́ nìí àwọn àtúnṣe tuntun.",
 	"readonly": "Ìtìpadé ibùdó dátà",
 	"enterlockreason": "Ẹ ṣàlàyé ìtìpa náà, àti ìgbàtí ẹ rò pé ìtìpa náà yíò kúrò.",
 	"readonlytext": "Ibùdó dátà tijẹ́ títìpa lásìkò yìí sí àwọn ìkówọlé tuntun àti sí àwọn àtúnṣe míràn, bóyá fún ìṣètọ́jú ibùdó dátà gbogbo ìgbà, lẹ́yìn èyí yíò padà sí ní ṣiṣẹ́.\n\nOlùmójútó tó tìípa ṣe àlàyé yìí: $1",

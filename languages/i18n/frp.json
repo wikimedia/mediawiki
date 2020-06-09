@@ -297,7 +297,7 @@
 	"databaseerror-function": "Fonccion : $1",
 	"databaseerror-error": "Fôta : $1",
 	"transaction-duration-limit-exceeded": "Por èvitar na trop fôrt’ôgmentacion du dèlê de rèplicacion, cela transaccion est étâye anulâye, lo temps d’ècritura ($1) at dèpassâ la limita de $2 second{{PLURAL:$2|a|es}}.\nSe vos chèrchiéd a changiér un mouél de piéces en mémo temps, pletout èprovâd de fâre l’opèracion en doux-três ètapes.",
-	"laggedslavemode": "<strong>Atencion :</strong> cela pâge pôt pas contegnir los fins dèrriérs changements fêts.",
+	"laggedreplicamode": "<strong>Atencion :</strong> cela pâge pôt pas contegnir los fins dèrriérs changements fêts.",
 	"readonly": "Bâsa de balyês cotâye",
 	"enterlockreason": "Buchiéd na rêson du vèrroly et pués un’èstimacion de son temps",
 	"readonlytext": "Ora la bâsa de balyês est cotâye por de novèles entrês et d’ôtros changements, de sûr por na rotina d’entretin, dês cen tot tornerat en ôrdre.\n\nL’administrator sistèmo que l’at cotâ at balyê cel’èxplicacion : $1",

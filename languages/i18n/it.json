@@ -429,7 +429,7 @@
 	"databaseerror-function": "Funzione: $1",
 	"databaseerror-error": "Errore: $1",
 	"transaction-duration-limit-exceeded": "Per evitare un alto ritardo di replica, questa operazione è stata interrotta perché la durata del tempo di scrittura ($1) ha superato il limite di $2 {{PLURAL:$2|secondo|secondi}}.\nSe si stanno modificando molti elementi in una sola volta, prova a fare più operazioni con pochi elementi alla volta.",
-	"laggedslavemode": "<strong>Attenzione:</strong> la pagina potrebbe non riportare gli aggiornamenti più recenti.",
+	"laggedreplicamode": "<strong>Attenzione:</strong> la pagina potrebbe non riportare gli aggiornamenti più recenti.",
 	"readonly": "Database bloccato",
 	"enterlockreason": "Indicare il motivo del blocco, specificando il momento in cui è presumibile che venga rimosso",
 	"readonlytext": "In questo momento il database è bloccato e non sono possibili aggiunte o modifiche alle pagine. Il blocco è di solito legato a operazioni di manutenzione ordinaria, al termine delle quali il database è di nuovo accessibile.\n\nL'amministratore di sistema che ha imposto il blocco ha fornito questa spiegazione: $1",

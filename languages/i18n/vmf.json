@@ -210,7 +210,7 @@
 	"nospecialpagetext": "<strong>Duu hasch â sôndâr-sajdn ôôgruufn, dii wo uugildich is.</strong>\n\nÂ lsidn mid richdichn sôndâr-sajdn findsch undâr [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Feelâr",
 	"databaseerror": "Feelâr fon dr Daadnbangg",
-	"laggedslavemode": "'''Achdung:''' Filajchd dsajchd dii sajdn noch ned ales, was indswischn gändârd wôrn is.",
+	"laggedreplicamode": "'''Achdung:''' Filajchd dsajchd dii sajdn noch ned ales, was indswischn gändârd wôrn is.",
 	"readonly": "Di daadnbangg is gschbärd.",
 	"enterlockreason": "Bide schrajb, wisoo dii daadnbangg gschbärd wärn sol, un wi lang des dan dauârn mechd.",
 	"readonlytext": "Di daadnbangg is grôôd gschbärd, alsâ ghamâr nids naj râjschrajwn odr ändrn. Brobiir's hald schbäädr noch âmôôl.\n\nGschbärd is se desdâweechn: $1",

@@ -316,7 +316,7 @@
 	"databaseerror-function": "Funktion: $1",
 	"databaseerror-error": "Fähler: $1",
 	"transaction-duration-limit-exceeded": "Go ne großi Verzegerig in dr Datereplikation z vermyyde, isch die Transaktion abbroche wore. D Schrybduur ($1) het d Gränze vu $2 Sekunden iberschritte. Wänn du vyl Objäkt uf s Mol ändere duesch, versuech statt däm, d Änderige uf mehreri Operationen ufzdeile.",
-	"laggedslavemode": "Warnig: di letschte Änderige wäre u. U. nonig aazeigt!",
+	"laggedreplicamode": "Warnig: di letschte Änderige wäre u. U. nonig aazeigt!",
 	"readonly": "Datebank isch gsperrt",
 	"enterlockreason": "Bitte gib e Grund y, worum d Datebank soll gsperrt wäre un e Yschätzig wie lang si soll gsperrt blybe",
 	"readonlytext": "D Datebank isch e Zyt lang gsperrt fir Nejyytreg un Änderige. Bitte versuech s speter no mol.\n\nGrund vu dr Sperrig: $1",

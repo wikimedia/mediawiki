@@ -290,7 +290,7 @@
 	"databaseerror-function": "$1:ꯊꯧꯔꯝ",
 	"databaseerror-error": "ꯑꯁꯣꯏꯕꯥ: $1",
 	"transaction-duration-limit-exceeded": "To avoid creating high replication lag, this transaction was aborted because the write duration ($1) exceeded the $2 second limit.\nIf you are changing many items at once, try doing multiple smaller operations instead.",
-	"laggedslavemode": "<strong>Warning:</strong> Page may not contain recent updates.",
+	"laggedreplicamode": "!!FUZZY!!<strong>Warning:</strong> Page may not contain recent updates.",
 	"readonly": "ꯗꯇꯥꯕꯦꯁ ꯊꯤꯡꯖꯤꯟꯂꯦ",
 	"enterlockreason": "ꯊꯤꯡꯖꯤꯟꯕꯒꯤ ꯃꯔꯝꯗꯨ ꯍꯥꯞꯄꯨ, ꯑꯦꯁꯇꯤꯃꯦꯠꯀꯥ ꯂꯣꯏꯅꯅ ꯍꯣꯔꯦꯟ ꯊꯤꯡꯖꯤꯟꯂꯤꯕꯗꯨ ꯊꯥꯗꯣꯧꯂꯕꯥ ꯃꯇꯝꯐꯥꯑꯣ",
 	"readonlytext": "The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.\n\nThe system administrator who locked it offered this explanation: $1",

@@ -366,7 +366,7 @@
 	"databaseerror-function": "Toiminto (funktio): $1",
 	"databaseerror-error": "Virhe: $1",
 	"transaction-duration-limit-exceeded": "Korkean toistoviiveen välttämiseksi tämä transaktio keskeytettiin, koska kirjoituksen pituus ($1) ylitti $2 sekunnin rajan.\nJos muutat monia kohteita samaan aikaan, voit yrittää operaation halkaisemista pienempiin osiin.",
-	"laggedslavemode": "'''Varoitus:''' Sivu ei välttämättä sisällä viimeisimpiä muutoksia.",
+	"laggedreplicamode": "'''Varoitus:''' Sivu ei välttämättä sisällä viimeisimpiä muutoksia.",
 	"readonly": "Tietokanta on lukittu",
 	"enterlockreason": "Anna lukituksen syy sekä sen arvioitu poistamisaika",
 	"readonlytext": "Tietokanta on tällä hetkellä lukittu. Uusia sivuja ei voi luoda eikä muitakaan muutoksia tehdä. Syynä on todennäköisesti rutiininomainen tietokannan huoltaminen.\n\nTietokannan lukinneen palvelinjärjestelmän ylläpitäjän antama selitys on: $1",
