@@ -34,6 +34,7 @@ use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
@@ -983,7 +984,13 @@ class PageUpdater {
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 
 		// Update article, but only if changed.
-		$status = Status::newGood( [ 'new' => false, 'revision' => null, 'revision-record' => null ] );
+		$status = Status::newGood(
+			new DeprecatablePropertyArray(
+				[ 'new' => false, 'revision' => null, 'revision-record' => null ],
+				[], // TODO: [ 'revision' => '1.35' ],
+				__METHOD__ . ' status'
+			)
+		);
 
 		$oldRev = $this->grabParentRevision();
 		$oldid = $oldRev ? $oldRev->getId() : 0;
@@ -1139,7 +1146,13 @@ class PageUpdater {
 			throw new PageUpdateException( 'Must provide a main slot when creating a page!' );
 		}
 
-		$status = Status::newGood( [ 'new' => true, 'revision' => null, 'revision-record' => null ] );
+		$status = Status::newGood(
+			new DeprecatablePropertyArray(
+				[ 'new' => true, 'revision' => null, 'revision-record' => null ],
+				[], // TODO: [ 'revision' => '1.35' ],
+				__METHOD__ . ' status'
+			)
+		);
 
 		$newRevisionRecord = $this->makeNewRevision(
 			$summary,
