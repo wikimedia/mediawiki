@@ -59,6 +59,7 @@ class Names {
 		'ak' => 'Akan', # Akan
 		'aln' => 'Gegë', # Gheg Albanian
 		'als' => 'Alemannisch', # Alemannic -- not a valid code, for compatibility. See gsw.
+		'alt' => 'тÿштÿк алтай тил', # Southern Altai, T254854
 		'am' => 'አማርኛ', # Amharic
 		'ami' => 'Pangcah', # Amis
 		'an' => 'aragonés', # Aragonese
