@@ -154,6 +154,10 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isMovable( $index ) {
+		if ( !$this->options->get( 'AllowImageMoving' ) ) {
+			wfDeprecated( 'Setting $wgAllowImageMoving to false', '1.35' );
+		}
+
 		$result = $index >= NS_MAIN &&
 			( $index != NS_FILE || $this->options->get( 'AllowImageMoving' ) );
 
