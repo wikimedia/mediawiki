@@ -1062,7 +1062,7 @@ CREATE TABLE /*_*/ipblocks_restrictions (
   -- The restriction type id.
   ir_type tinyint(1) NOT NULL,
 
-  -- The restriction id that corrposponds to the type. Typically a Page ID or a
+  -- The restriction id that corresponds to the type. Typically a Page ID or a
   -- Namespace ID.
   ir_value int NOT NULL,
 

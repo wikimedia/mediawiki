@@ -658,7 +658,7 @@ class OutputPage extends ContextSource {
 	 * Add or replace a head item to the output
 	 *
 	 * Whenever possible, use more specific options like ResourceLoader modules,
-	 * OutputPage::addLink(), OutputPage::addMetaLink() and OutputPage::addFeedLink()
+	 * OutputPage::addLink(), OutputPage::addMeta() and OutputPage::addFeedLink()
 	 * Fallback options for those are: OutputPage::addStyle, OutputPage::addScript(),
 	 * OutputPage::addInlineScript() and OutputPage::addInlineStyle()
 	 * This would be your very LAST fallback.
