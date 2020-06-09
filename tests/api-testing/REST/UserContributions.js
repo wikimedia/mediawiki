@@ -8,9 +8,12 @@ describe( 'GET /me/contributions', () => {
 	const arnoldsRevisions = [];
 	const arnoldsEdits = [];
 	let arnold;
+	let arnoldAction;
+	let samAction;
 
 	before( async () => {
-		const arnoldAction = await action.user( 'arnold' );
+		samAction = await action.user( 'sam', [ 'suppress' ] );
+		arnoldAction = await action.user( 'arnold' );
 		arnold = clientFactory.getRESTClient( basePath, arnoldAction );
 
 		let page = utils.title( 'UserContribution_' );
@@ -171,6 +174,46 @@ describe( 'GET /me/contributions', () => {
 
 		const { body: latestSegment4 } = await req.get( finalSegment.latest );
 		assert.deepEqual( latestSegment, latestSegment4 );
+	} );
+
+	it( 'Does not return suppressed revisions when requesting user does not have appropriate permissions', async () => {
+		const { body: preDeleteBody } = await arnold.get( '/me/contributions?limit=10' );
+		assert.lengthOf( preDeleteBody.revisions, 5 );
+
+		const pageToDelete = utils.title( 'UserContribution_' );
+
+		const editToDelete = await arnoldAction.edit( pageToDelete, [ { text: 'Delete me 1' } ] );
+		await arnoldAction.edit( pageToDelete, [ { text: 'Delete me 2' } ] );
+
+		await samAction.action( 'revisiondelete',
+			{
+				type: 'revision',
+				token: await samAction.token(),
+				target: editToDelete.title,
+				hide: 'content|comment|user',
+				ids: editToDelete.newrevid
+			},
+			'POST'
+		);
+
+		// Users without appropriate permissions cannot see suppressed revisions (even their own)
+		const { body: arnoldGetBody } = await arnold.get( '/me/contributions?limit=10' );
+		assert.lengthOf( arnoldGetBody.revisions, 6 );
+
+		await samAction.action( 'revisiondelete',
+			{
+				type: 'revision',
+				token: await samAction.token(),
+				target: editToDelete.title,
+				show: 'content|comment|user',
+				ids: editToDelete.newrevid
+			},
+			'POST'
+		);
+
+		// Users with appropriate permissions can see suppressed revisions
+		const { body: arnoldGetBody2 } = await arnold.get( '/me/contributions?limit=10' );
+		assert.lengthOf( arnoldGetBody2.revisions, 7 );
 	} );
 
 } );

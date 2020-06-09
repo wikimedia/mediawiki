@@ -108,7 +108,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$limit = $request->getQueryParams()['limit'] ?? self::DEFAULT_LIMIT;
 		$segment = $request->getQueryParams()['segment'] ?? null;
 		$mockContributionsLookup->method( 'getRevisionsByUser' )
-			->with( $user, $limit, $segment )
+			->with( $user, $limit, $user, $segment )
 			->willReturn( $fakeSegment );
 
 		$handler = new UserContributionsHandler( $mockContributionsLookup );
