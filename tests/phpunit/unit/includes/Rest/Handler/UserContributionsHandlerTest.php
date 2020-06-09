@@ -44,13 +44,12 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	private function newHandler( $numRevisions = 5 ) {
 		/** @var MockObject|ContributionsLookup $mockContributionsLookup */
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
-			[ 'getRevisionsByUser', 'getParentRevisionSizes' ]
+			[ 'getRevisionsByUser' ]
 		);
 		$user = new UserIdentityValue( 0, 'test', 0 );
 		$fakeRevisions = $this->makeFakeRevisions( $user, $numRevisions, 2 );
 		$fakeSegment = $this->makeSegment( $fakeRevisions );
 		$mockContributionsLookup->method( 'getRevisionsByUser' )->willReturn( $fakeSegment );
-		$mockContributionsLookup->method( 'getParentRevisionSizes' )->willReturn( [] );
 		$handler = new UserContributionsHandler( $mockContributionsLookup );
 		return $handler;
 	}
@@ -65,6 +64,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	public function testThatAnonymousUserReturns401() {
 		$handler = $this->newHandler();
 		$request = new RequestData( [] );
+		RequestContext::getMain()->setUser( new User() );
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException( new MessageValue( 'rest-permission-denied-anon' ), 401 )
