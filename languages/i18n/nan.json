@@ -307,7 +307,7 @@
 	"databaseerror-function": "功能：$1",
 	"databaseerror-error": "chhò-gō͘",
 	"transaction-duration-limit-exceeded": "Ūi tio̍h mài sán-seng koân liōng ê têng-hok iân-sî, pún kài choán-sàng in-ūi sia-ji̍p sî-kan ($1) chhiau-kòe {{PLURAL:$2|bió-cheng}} ê chè-hān, í-keng hong hòng-khì.\nNā chún lí sī beh chi̍t kái kái-tōng kúi--a-ê hāng-bo̍k, chhì ēng chē pái sió chhau-chok khòaⁿ-māi.",
-	"laggedslavemode": "'''提醒：'''頁內容可能毋是上新的。",
+	"laggedreplicamode": "'''提醒：'''頁內容可能毋是上新的。",
 	"readonly": "Chu-liāu-khò· só tiâu leh",
 	"enterlockreason": "Phah beh hong-só ê lí-iû, pau-koah ko͘-kè siáⁿ-mi̍h sî-chūn ē kái-tû hong-só.",
 	"readonlytext": "Chu-liāu-khò͘ hiān-chú-sî só tiâu leh, bô khai-hòng hō͘ lâng siu-kái. Che tāi-khài sī in-ūi teh pān chéng-pī khang-khòe, goân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. \n\nHū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1",

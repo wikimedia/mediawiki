@@ -274,7 +274,7 @@
 	"nospecialpagetext": "<strong>Disse Spezialsied gifft dat nich.</strong>\n\nEn List vun de Spezialsieden gifft dat ünner [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Fehler",
 	"databaseerror": "Fehler in de Datenbank",
-	"laggedslavemode": "Wohrschau: Disse Siet is villicht nich mehr op den ne’esten Stand.",
+	"laggedreplicamode": "Wohrschau: Disse Siet is villicht nich mehr op den ne’esten Stand.",
 	"readonly": "Datenbank is sparrt",
 	"enterlockreason": "Giff den Grund an, worüm de Datenbank sparrt warrn schall un taxeer, wo lang de Sparr duert",
 	"readonlytext": "De Datenbank vun {{SITENAME}} is opstunns sparrt. Versöök dat later noch eenmal, duert meist nich lang, denn geiht dat wedder.\n\nAs Grund för de Sparr is angeven: $1",

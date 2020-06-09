@@ -369,7 +369,7 @@
 	"databaseerror-function": "Fungsi: $1",
 	"databaseerror-error": "Kesalahan: $1",
 	"transaction-duration-limit-exceeded": "Untuk mencegah penundaan replikasi yang tinggi, pengiriman ini dibatalkan karena durasi tulis ($1) melebihi batas $2 {{PLURAL:$2|detik|detik}}.\nJika Anda ingin mengganti banyak butir sekaligus, cobalah melakukan dalam operasi yang lebih kecil.",
-	"laggedslavemode": "Peringatan: Halaman mungkin tidak berisi perubahan terbaru.",
+	"laggedreplicamode": "Peringatan: Halaman mungkin tidak berisi perubahan terbaru.",
 	"readonly": "Basis data dikunci",
 	"enterlockreason": "Masukkan alasan penguncian, termasuk perkiraan kapan kunci akan dibuka",
 	"readonlytext": "Basis data sedang dikunci terhadap masukan dan perubahan baru, mungkin dalam pembenahan basis data, setelah selesai keadaan akan normal sedia kala. \n\nPengurus yang melakukan penguncian memberikan penjelasan sebagai berikut: $1",

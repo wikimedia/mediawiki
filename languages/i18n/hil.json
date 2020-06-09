@@ -282,7 +282,7 @@
 	"nospecialpagetext": "<strong>Indi nagaka-igo ang imo ginpangayo nga espesyal nga panid.</strong>\n\nMay lista sang mga nagaka-igo nga mga espesyal nga mga panid sa [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Sala/Eror",
 	"databaseerror": "May sala sa database",
-	"laggedslavemode": "'''Pahibalo:''' Ang panid indi dapat maka-angkon sang mga ulihe nga pagbag-o.",
+	"laggedreplicamode": "'''Pahibalo:''' Ang panid indi dapat maka-angkon sang mga ulihe nga pagbag-o.",
 	"readonly": "Naka-kandado ang database",
 	"enterlockreason": "Magbutang sang rason para sa pagkandado, upod na ang paghaum-haom kon san-o ang kandado pagabuksan",
 	"readonlytext": "Ang database karon nakakandado sa mga bag-o nga sinulatan kag iban pa nga pagbag-o, mahimo nga bangud sa isa ka pagmentinar sang database, nga kon matapos mabalik naman sa normal.\n\nAng may awtoridad nga nagkandado sini naghatag sang pagpaathag nga amo sini: $1",

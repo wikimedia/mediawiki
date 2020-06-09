@@ -222,7 +222,7 @@
 	"nospecialpagetext": "<strong>Jaramsız arnaýı betti suradıñız.</strong>\n\nJaramdı arnaýı bet tizimin [[{{#special:Specialpages}}|{{int:specialpages}}]] degennen taba alasız.",
 	"error": "Qate",
 	"databaseerror": "Derekqor qatesi",
-	"laggedslavemode": "Qulaqtandırw: Bette jwıqtağı jañalawlar bolmawı mümkin.",
+	"laggedreplicamode": "Qulaqtandırw: Bette jwıqtağı jañalawlar bolmawı mümkin.",
 	"readonly": "Derekqorı qulıptalğan",
 	"enterlockreason": "Qulıptaw sebebin, qaý waqıtqa deýin qulıptalğanın kiristirip, engiziñiz",
 	"readonlytext": "Bul derekqor jañadan jazw jäne basqa özgerister jasawdan ağımda qulıptalınğan, mümkin künde-kün derekqordı baptaw üşin, bunı bitirgennen soñ qalıptı iske qaýtarıladı.\n\nQulıptağan äkimşi bunı bılaý tüsindiredi: $1",

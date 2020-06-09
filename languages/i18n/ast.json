@@ -311,7 +311,7 @@
 	"databaseerror-function": "Función: $1",
 	"databaseerror-error": "Error: $1",
 	"transaction-duration-limit-exceeded": "Para evitar crear un gran atrasu na replicación, esta transaición albortóse porque la duración de la escritura ($1) pasó la llende de $2 {{PLURAL:$2|segundu|segundos}}.\nSi tas cambiando munchos oxetos al mesmu tiempu, intenta meyor facer operaciones múltiples más pequeñes.",
-	"laggedslavemode": "<strong>Avisu:</strong> Escurque esta páxina nun tenga anovamientos de recién.",
+	"laggedreplicamode": "<strong>Avisu:</strong> Escurque esta páxina nun tenga anovamientos de recién.",
 	"readonly": "Base de datos candada",
 	"enterlockreason": "Introduz un motivu pal candáu, amestando una estimación de cuándo va tener llugar el descandáu",
 	"readonlytext": "Nestos momentos la base de datos ta candada pa nueves entraes y otros cambios, seique por un mantenimientu de rutina, y n'acabando too volverá a la normalidá.\n\nL'alministrador del sistema que la candó conseñó esti motivu: $1",

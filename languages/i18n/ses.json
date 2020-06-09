@@ -302,7 +302,7 @@
 	"databaseerror-query": "Hãayan: $1",
 	"databaseerror-function": "Goymee: $1",
 	"databaseerror-error": "Firka: $1",
-	"laggedslavemode": "<strong>Yaamar:</strong> A ga hin ka tee taagandiri korawey šii moɲoo ra.",
+	"laggedreplicamode": "<strong>Yaamar:</strong> A ga hin ka tee taagandiri korawey šii moɲoo ra.",
 	"readonly": "Bayrayhugu kufalante",
 	"enterlockreason": "Dalin dam kaŋ kufaloo se, sanda ka žimam waati kaŋ kufaloo ka feera",
 	"readonlytext": "Dabariɲaa juwalkaa kaŋ n'a kufal na daliloo woo noo: $1",

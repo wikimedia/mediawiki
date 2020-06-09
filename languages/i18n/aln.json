@@ -260,7 +260,7 @@
 	"nospecialpagetext": "<strong>Keni kërkue nji faqe speciale jovalide.</strong>\n\nLista e faqeve speciale valide gjindet te [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Gabim",
 	"databaseerror": "Gabim në databazë",
-	"laggedslavemode": "'''Kujdes:''' Kjo faqe mundet mos me përmbajtë ndryshime të reja.",
+	"laggedreplicamode": "'''Kujdes:''' Kjo faqe mundet mos me përmbajtë ndryshime të reja.",
 	"readonly": "Databaza âsht e bllokueme",
 	"enterlockreason": "Futni një arsye për bllokimin, gjithashtu futni edhe kohën se kur pritet të çbllokohet",
 	"readonlytext": "Databaza e {{SITENAME}} âsht e bllokueme dhe nuk lejon redaktime, me gjasë për mirëmbajtje rutinore, mbas së cillës do të kthehet në gjendje normale.\n\nAdministruesi, i cilli e ka bllokue dha këtë arsye: $1",

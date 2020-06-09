@@ -262,7 +262,7 @@
 	"nospecialpagetext": "<strong>Waxaana weydiisay bog khaas ah oosan jirin.</strong>\n\nWaxaa meeshaan ka heli kartaa liiska bogyaasha khaaska ah oo jiro  [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Qalad",
 	"databaseerror": "Qalad ka dhacday database;ka",
-	"laggedslavemode": "Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku soo kordhin.",
+	"laggedreplicamode": "Digniin: Waxaa lagayaabaa bogaan in uusan wax cusub ku soo kordhin.",
 	"readonly": "Databaska waa la xiray",
 	"enterlockreason": "Ku qor sababta loo xiraayo, kuna siidar waqtigii la soo fasaxaayo maqaalka.",
 	"missing-article": "Database-ka ma soo helin qoraalkii bogga oo laga rabay in oo soo helo, oo la dhoho  \"$1\" $2.\n\nWaxaan oo kale waxaa sabab ugu ah soo raacida linkiga duqoobay ee duwanaan ama taariikh oo kula xiriirtay bog la tirtitay.\nHadii ee sidaas eheen, waxaa laga yaabaa in software-ka aad qalad ka heshay.\nFadlan u sheek [[Special:ListUsers/sysop|maamulaha]], kana digtooneesii URL-ka.",

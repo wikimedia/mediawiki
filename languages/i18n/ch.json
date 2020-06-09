@@ -213,7 +213,7 @@
 	"nosuchaction": "Tåya' na aksion taiguenao",
 	"nosuchspecialpage": "Tåya' na påhinan espesiat taiguenao",
 	"error": "Linachi",
-	"laggedslavemode": "Adahi: Buente ha' tataigue i tinilaika gi halacha.",
+	"laggedreplicamode": "Adahi: Buente ha' tataigue i tinilaika gi halacha.",
 	"missing-article": "Ti ha sodda' i database i palabras i pahina ni debi di u sodda', i mafa'na'an \"$1\" $2.\n\nTenga, masusesedi este yanggen un klik i ti fafacho'cho' na diff pat historia na inachetton i pahina ni mana'suha.\n\nYanggen ti este i rason, buente mañodda' hao \"bug\" gi \"software\".\n\nPot fabot ripotta este para un [[Special:ListUsers/sysop|administrator]], ya un nota i URL.",
 	"missingarticle-rev": "(tinilaika#: $1)",
 	"missingarticle-diff": "(Dif: $1, $2)",

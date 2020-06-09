@@ -300,7 +300,7 @@
 	"databaseerror-query": "Usisa: $1",
 	"databaseerror-function": "Annong: $1",
 	"databaseerror-error": "Biddut: $1",
-	"laggedslavemode": "<strong>Ballaag:</strong> Ti panid ket mabalin a saan nga aglaon kadagiti kinaudi a panagpabaro.",
+	"laggedreplicamode": "<strong>Ballaag:</strong> Ti panid ket mabalin a saan nga aglaon kadagiti kinaudi a panagpabaro.",
 	"readonly": "Narikepan ti database",
 	"enterlockreason": "Agikabil ti rason para iti pannakarikep, mangiraman ti maysa a karkulo no kaanonto a malukatan",
 	"readonlytext": "Ti database ket agdama a narikpan kadagiti baro a panagikabil ken panagbaliw, mabalin a gapu dagiti kadawyan a pagsimpa, kalpasanna a normalto nga agsubli.\n\nTi administrador ti sistema a nangrikep ket nangited iti daytoy a palawag: $1",

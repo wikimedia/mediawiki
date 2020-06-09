@@ -303,7 +303,7 @@
 	"databaseerror-query": "Zapëtanié: $1",
 	"databaseerror-function": "Fùnkcëjô: $1",
 	"databaseerror-error": "Fela: $1",
-	"laggedslavemode": "<strong>Bôczënk:</strong> Na starna mòże nie zamëkac w se nônowszich aktualizacëjów.",
+	"laggedreplicamode": "<strong>Bôczënk:</strong> Na starna mòże nie zamëkac w se nônowszich aktualizacëjów.",
 	"readonly": "Baza pòdôwków je zablokòwónô",
 	"enterlockreason": "Pòdôj przëczënã zablokòwaniô pòdôwkòwi bazë ë termin ji òdblokòwaniô",
 	"missing-article": "W baze pòdôwków felëje zamkłosc starnë \"$1\" $2.\n\nZwëczajno je to sparłãczoné òdsélaniém do nieaktualnégò lënka nierównoscë dwóch wersëjów starnë abò do rëmniãti wersëji starnë.\n\nJeżlë tak nie je, mòżlëwé je, że je to problem sparłãczony z felą w softwôrze.\nMòże to zgłoszëc [[Special:ListUsers/sysop|sprôwnikòwi]], pòdając adresã URL.",

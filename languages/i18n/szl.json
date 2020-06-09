@@ -292,7 +292,7 @@
 	"databaseerror-query": "Zapytańe: $1",
 	"databaseerror-function": "Funkcyjo: $1",
 	"databaseerror-error": "Feler: $1",
-	"laggedslavemode": "Dej pozůr: Ta zajta może ńy mjeć nojnowszych aktualizacyjůw.",
+	"laggedreplicamode": "Dej pozůr: Ta zajta może ńy mjeć nojnowszych aktualizacyjůw.",
 	"readonly": "Baza danych je zawarto",
 	"enterlockreason": "Naszkryflej sam powůd zawarćo bazy danych a za wjela (myńi-wjyncyj) ja uodymkńesz",
 	"readonlytext": "Baza danych je terŏzki zawartŏ na nowe informacyje i pōmiynianie przōdzij wkludzōnych. Je to nojpewnij skuli czynności administracyjnych. Po jejich skōńczyniu baza bydzie nazŏd fungować.\nAdministratōr, kery zablokowoł bazã, doł takie tuplikowaniy:<br /> $1",

@@ -242,7 +242,7 @@
 	"nospecialpagetext": "<strong>Onoonyezza olupapula olwawule olutaliwo.</strong>\n\nKu lupapula \"[[Special:SpecialPages|{{int:specialpages}}]]\" kuliko olukalala lw'empapula enjawule.",
 	"error": "Kiremya",
 	"databaseerror": "Waliwo kiremya ku ggwanika lya data",
-	"laggedslavemode": "'''Kulabula:''' Olupapula luyinza obutabaamu ebyakalukyusibwamu.",
+	"laggedreplicamode": "'''Kulabula:''' Olupapula luyinza obutabaamu ebyakalukyusibwamu.",
 	"readonly": "Eggwanika lya data terikkiriza kulikyusamu",
 	"enterlockreason": "Wandikawo ensonga esibizza eggwanika lya data, nga olaga ddi lw'olisuubira okusumululwa",
 	"readonlytext": "Eggwanika lya data lino ku ssaawa eno terikkiriza okulikyusamu. Kino kitera okubawo nga balikolako, balyoke balisumulule.<br />\n<br />\nKuno kwe kunnyonyola kw'omuteesiteesi eyalisibye: $1",

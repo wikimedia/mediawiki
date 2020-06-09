@@ -333,7 +333,7 @@
 	"databaseerror-function": "Funtzioa: $1",
 	"databaseerror-error": "Akatsa: $1",
 	"transaction-duration-limit-exceeded": "Errepikapenaren atzerapen handia ez sortzeko, transakzio hau bertan behera utzi da idazketa-iraupena ($1) $2 bigarren muga gainditzen duelako.\nElementu asko aldi berean aldatzen ari bazara, saiatu aldi berean eragiketa multzo txikiagoa eginez.",
-	"laggedslavemode": "'''Oharra:''' Baliteke orri honetan azken aldaketak jasota ez egotea.",
+	"laggedreplicamode": "'''Oharra:''' Baliteke orri honetan azken aldaketak jasota ez egotea.",
 	"readonly": "Datu-basea blokeatuta dago",
 	"enterlockreason": "Zehaztu blokeatzeko arrazoia, noiz kenduko den jakinaraziz",
 	"readonlytext": "Datu-basea artikulu berriak sortu edo aldaketak ez egiteko blokeatuta dago, seguruenik mantenu lanak direla-eta. Blokeo hori kentzerakoan beti bezala egongo da berriz.\n\nBlokeatu duen administratzaileak azalpen hau eman du: $1",

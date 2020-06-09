@@ -299,7 +299,7 @@
 	"databaseerror-function": "Fongsyon : $1",
 	"databaseerror-error": "Lérò : $1",
 	"transaction-duration-limit-exceeded": "Pou évité roun tròp fò logmantasyon di délè di réplikasyon, sa tranzagsyon té fika annilé pas douré-a di lékritir ($1) dépasé limit-a di $2 ségonn. Si zòt ka sasé à modifyé oun gran nonm di éléman similtannéman, éséyé plito di éfègtchwé lopérasyon-an an plizyò létap pli piti.",
-	"laggedslavemode": "Panga, sa paj pa pouvé kontni tout dannyé modifikasyon-yan ki éfègtchwé",
+	"laggedreplicamode": "Panga, sa paj pa pouvé kontni tout dannyé modifikasyon-yan ki éfègtchwé",
 	"readonly": "Baz di data vérouyé",
 	"enterlockreason": "Endiké rézon-an di vérouyaj ensi ki roun èstimasyon di so douré",
 	"readonlytext": "Ajou-ya ké mizajou-ya di baz di data fika atchwèlman bloké, probabman pou pèrmèt mentnans-a di baz-a, apré sa, tout bagaj ké rantré annòrd.\n\nAdministratò sistenm-an ki vérouyé baz di data fourni lèsplikasyon-an ki ka swiv :<br /> $1",

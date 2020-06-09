@@ -248,7 +248,7 @@
 	"error": "Errori",
 	"databaseerror": "Errori di la bancadati",
 	"databaseerror-error": "Errori: $1",
-	"laggedslavemode": "Attinzioni: la pàgina pudia no cuntinì l'aggiornamenti più rizzenti.",
+	"laggedreplicamode": "Attinzioni: la pàgina pudia no cuntinì l'aggiornamenti più rizzenti.",
 	"readonly": "Bancadati broccadda",
 	"enterlockreason": "Indica lu mutibu di lu broccu, ippizzifichendi candu po’ assé chi venghia buggaddu.",
 	"readonlytext": "Attuarmenti la bancadati è broccadda e nò so pussìbiri aggiunti o mudìfigghi a li pàgini. Lu broccu soritamenti è liaddu a operazioni di manutinzioni urdhinària, a lu tèimmini di li quari la bancadati è di nobu mudifiggabiri.\n\nL'amministhradori di sisthema chi l'à broccadda à lassaddu chistha giusthifiggazioni: $1",

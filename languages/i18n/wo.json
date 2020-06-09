@@ -248,7 +248,7 @@
 	"nospecialpagetext": "<strong>Da nga laaj aw xëtu jagleel wu wiki bi xamul.</strong>\n\nAb limu xëti jagleel yépp, ma nees na koo gis ci [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Njuumte",
 	"databaseerror": "Njuumtey dàttub njoxe bi",
-	"laggedslavemode": "Moytul, wii xët man naa bañ a man dékku coppite yi ñu mujjee def",
+	"laggedreplicamode": "Moytul, wii xët man naa bañ a man dékku coppite yi ñu mujjee def",
 	"readonly": "Dàttub njoxe bi dañu koo caabi",
 	"enterlockreason": "Biralal ngirtey tëj gi ak diir bi mu war a amee",
 	"readonlytext": "Ci jamono jii yokk yeek coppitey xët yi jàppandiwuñu ndax dàttub njoxe bi dañu koo caabi, xéj-na dañoo nekk ciy liggéey, su ñu noppee rekk dàttub njoxe bi baaxaat.\nYorkat bi def caabi ji, joxe na yii lay :$1",

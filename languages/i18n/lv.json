@@ -329,7 +329,7 @@
 	"databaseerror-function": "Funkcija: $1",
 	"databaseerror-error": "Kļūda: $1",
 	"transaction-duration-limit-exceeded": "Lai izvairītos no augstas replicēšanas kļūdas izveides, šī transakcija tika priekšlaikus pārtraukta, jo rakstīšanas ilgums ($1) pārsniedza $2 otro ierobežojumu.\nJa vienlaikus maināt daudzus vienumus, mēģiniet veikt vairākas mazākas operācijas.",
-	"laggedslavemode": "Uzmanību: Iespējams, šajā lapā nav redzami nesen izdarītie papildinājumi.",
+	"laggedreplicamode": "Uzmanību: Iespējams, šajā lapā nav redzami nesen izdarītie papildinājumi.",
 	"readonly": "Datubāze bloķēta",
 	"enterlockreason": "Ievadiet bloķēšanas iemeslu, ieskaitot aplēses, kad bloķēšana tiks beigta.",
 	"readonlytext": "Datubāze šobrīd ir bloķēta jaunu ierakstu izveidošanai un citām izmaiņām, visticamāk, kārtējā datubāzes uzturēšanas pasākuma dēļ, pēc kura tā tiks atjaunota normālā stāvoklī.\n\nSistēmas administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu: $1",

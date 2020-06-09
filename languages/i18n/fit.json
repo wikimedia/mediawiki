@@ -299,7 +299,7 @@
 	"databaseerror-function": "fynkeeri (funktio): $1",
 	"databaseerror-error": "Virhe: $1",
 	"transaction-duration-limit-exceeded": "Korkean toistoviiveen välttämiseksi tämä transaktio keskeytethiin, koska kirjoituksen pituus ($1) ylitti $2 sekunnin rajan.\nJos muutat monia kohteita samaan aikhaan, voit yrittää operaation halkaisemista pienemphiin oshiin.",
-	"laggedslavemode": "'''Varoitus:''' Sivu ei välttämättä sisälä viimeisimpiä muutoksia.",
+	"laggedreplicamode": "'''Varoitus:''' Sivu ei välttämättä sisälä viimeisimpiä muutoksia.",
 	"readonly": "Taattapaasi lukittu",
 	"enterlockreason": "Anna lukituksen syy sekä sen arvioitu poistamisaika",
 	"readonlytext": "Tietokanta oon tälä hetkelä lukittu. Uusia sivuja ei voi tehä eikä muitakhaan muutoksia tehä. Syynä oon todennäköisesti rutiininomainen tietokannan huoltaminen.\n\nTietokannan lukinneen palvelinjärjestelmän ylläpitäjän antama selitys on: $1",

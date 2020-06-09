@@ -278,7 +278,7 @@
 	"error": "Error",
 	"databaseerror": "Error d'a base de datos",
 	"databaseerror-error": "Error: $1",
-	"laggedslavemode": "Pare cuenta: podrían faltar as zagueras edicions d'ista pachina.",
+	"laggedreplicamode": "Pare cuenta: podrían faltar as zagueras edicions d'ista pachina.",
 	"readonly": "Base de datos bloqueyata",
 	"enterlockreason": "Esplique a causa d'o bloqueyo, incluyendo una estimación de quán se producirá o desbloqueyo",
 	"readonlytext": "A base de datos de {{SITENAME}} ye bloqueyata temporalment, probablement por mantenimiento rutinario, dimpués d'ixo tornará a la normalidat.\nL'almenistrador que la bloqueyó dió ista esplicación:\n<p>$1",

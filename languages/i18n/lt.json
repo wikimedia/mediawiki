@@ -338,7 +338,7 @@
 	"databaseerror-function": "Paskirtis: $1",
 	"databaseerror-error": "Klaida: $1",
 	"transaction-duration-limit-exceeded": "Kad išvengtume didelio kopijavimo trukdžio, ši transakcija buvo atšaukta, nes įrašimo trukmė ($1) viršijo $2 {{PLURAL:$2|sekundės|sekundžių}} limitą.\nJeigu keičiate daug elementų vienu metu, vietoje to bandykite atlikti daug smulkesnių operacijų.",
-	"laggedslavemode": "Dėmesio: Puslapyje gali nesimatyti naujausių pakeitimų.",
+	"laggedreplicamode": "Dėmesio: Puslapyje gali nesimatyti naujausių pakeitimų.",
 	"readonly": "Duomenų bazė užrakinta",
 	"enterlockreason": "Įveskite užrakinimo priežastį, taip pat datą, kada bus atrakinta",
 	"readonlytext": "Duomenų bazė šiuo metu yra užrakinta naujiems įrašams ar kitiems keitimams,greičiausiai duomenų bazės techninei profilaktikai,\npo kurios viskas vėl veiks kaip įprasta.\n\nUžrakinusiojo sistemos administratoriaus pateiktas paaiškinimas: $1",

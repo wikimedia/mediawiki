@@ -337,7 +337,7 @@
 	"databaseerror-function": "Funkcia: $1",
 	"databaseerror-error": "Chyba: $1",
 	"transaction-duration-limit-exceeded": "Aby predišlo veľkému oneskoreniu pri replikácii, táto transakcia bola prerušená, pretože doba jej zápisu ($1) prekročila limit $2 sekúnd.\nAk robíte naraz veľa zmien, skúste radšej robiť viacero menších operácií.",
-	"laggedslavemode": "Upozornenie: Je možné, že stránka neobsahuje posledné aktualizácie.",
+	"laggedreplicamode": "Upozornenie: Je možné, že stránka neobsahuje posledné aktualizácie.",
 	"readonly": "Databáza je zamknutá",
 	"enterlockreason": "Zadajte dôvod požadovaného zamknutia vrátane odhadu, kedy očakávate odomknutie",
 	"readonlytext": "Databáza je momentálne zamknutá, nové stránky a úpravy sú zablokované, pravdepodobne z dôvodu údržby databázy. Po skončení tejto údržby bude {{SITENAME}} opäť fungovať normálne.\n\nSprávca, ktorý nariadil uzamknutie, uvádza tento dôvod: $1",

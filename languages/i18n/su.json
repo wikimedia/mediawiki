@@ -306,7 +306,7 @@
 	"databaseerror-query": "Kueri: $1",
 	"databaseerror-function": "Fungsi: $1",
 	"databaseerror-error": "Eror: $1",
-	"laggedslavemode": "Awas: kandungan kaca bisa baé teu mutahir.",
+	"laggedreplicamode": "Awas: kandungan kaca bisa baé teu mutahir.",
 	"readonly": "pangkalan data dikonci",
 	"enterlockreason": "Asupkeun alesan pikeun ngonci, kaasup kira-kira iraha konci ieu rék dibuka",
 	"readonlytext": "pangkalan data kiwar keur di konci pikeun éntri anyar sarta parobahan séjénna, meureun pikeun pangropéa pangkalan datarutin, nu satutasna mah bakal normal deui. Sistim kuncén nu ngonci ngécéskeun kieu:\n\n$1",

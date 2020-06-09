@@ -300,7 +300,7 @@
 	"databaseerror-query": "کیوری: $1",
 	"databaseerror-function": "فنکشن:$ 1",
 	"databaseerror-error": "نقص: $1",
-	"laggedslavemode": "Warning: Page may not contain recent updates.\nخبردار: منکھن شیر کہ صفحہا موجودہ بتاریخہ جات شامل نو بونی",
+	"laggedreplicamode": "Warning: Page may not contain recent updates.\nخبردار: منکھن شیر کہ صفحہا موجودہ بتاریخہ جات شامل نو بونی",
 	"readonly": "ڈیٹابیسا قلف لیگی شیر",
 	"enterlockreason": "قلفو بچے کیہ وجہ درج کورے، بشمولِ تخمینہ کہ قلفو کیاوت کھولاو کورونو بوئے",
 	"readonlytext": "ڈیٹابیس  شاید معمولو اصلاحو بچے نوغ اندراجاتن اوچے خور ترمیماتن بچے قلف کورونو بیتی شیر ھیغار آچی ھیہ عام حالتہ گوی.\nمنتظم، کا کہ قلف لیگیے آسور، ھیہ تفصیلو فراہم کوری آسور: $1",

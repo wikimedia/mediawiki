@@ -312,7 +312,7 @@
 	"databaseerror-function": "Kaam: $1",
 	"databaseerror-error": "Galti: $1",
 	"transaction-duration-limit-exceeded": "High replication lag se bache ke khatir, ii transaction ke abort kar dewa gais hae kaheki write duration ($1) exceeded the $2 {{PLURAL:$2|second|seconds}} limit.\nIf you are changing many items at once, try doing multiple smaller operations instead.",
-	"laggedslavemode": "Chetawni: Panna me nawaa badlao sait nai hoi.",
+	"laggedreplicamode": "Chetawni: Panna me nawaa badlao sait nai hoi.",
 	"readonly": "Database band hai",
 	"enterlockreason": "Band kare ke kaaran likho, aur ii bhi likho ki kab khola jaai.",
 	"readonlytext": "Database abhi nawaa badlao khatir band hai, saait database me mamuli kaam khatir, lekin iske baad fir pahile jaise chale lagi.\n\nJon administrator database ke band karis rahaa, ii kaaran diis hai: $1",

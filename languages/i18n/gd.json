@@ -309,7 +309,7 @@
 	"databaseerror-function": "Foincsean: $1",
 	"databaseerror-error": "Mearachd: $1",
 	"transaction-duration-limit-exceeded": "Airson replication lag àrd a sheachnadh, sguireadh dhen tar-chur seo nuair a chaidh faid an sgrìobhaidh ($1) seachad air a’ chrìoch dhe $2.",
-	"laggedslavemode": "<strong>Rabhadh:</strong> Faodaidh nach eil ùrachaidhean a rinneadh o chionn ghoirid a' nochdadh san duilleag.",
+	"laggedreplicamode": "<strong>Rabhadh:</strong> Faodaidh nach eil ùrachaidhean a rinneadh o chionn ghoirid a' nochdadh san duilleag.",
 	"readonly": "Stòr-dàta glaiste",
 	"enterlockreason": "Cuir a-steach adhbhar a' ghlais, a' gabhail a-steach tuairmeas air fuasgladh a' ghlais.",
 	"readonlytext": "Tha an stòr-dàta glaiste do chlàir ùra ’s mùthaidhean eile, ma dh’fhaoidte air sgàth obair-chàraidh chunbhalach an stòir-dhàta ’s bidh e mar as àbhaist às dèidh sin.\n\nThuirt rianadair an t-siostaim a ghlas e na leanas: $1",

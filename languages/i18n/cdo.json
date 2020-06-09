@@ -309,7 +309,7 @@
 	"databaseerror-query": "查詢語句：$1",
 	"databaseerror-function": "函數名：$1",
 	"databaseerror-error": "錯誤信息：$1",
-	"laggedslavemode": "'''警告：'''頁面可能無最近其更新。",
+	"laggedreplicamode": "'''警告：'''頁面可能無最近其更新。",
 	"readonly": "數據庫乞鎖起咯",
 	"enterlockreason": "拍入汝鎖定數據庫其原因，包括汝估計其釋放鎖其時間",
 	"readonlytext": "數據庫茲滿乞儂鎖定了，𣍐使寫新條目或者做修改。有可能是日常維護，之後就會正常。\n\n\n鎖起數據庫其系統管理員總款解釋：$1",

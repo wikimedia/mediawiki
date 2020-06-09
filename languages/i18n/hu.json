@@ -348,7 +348,7 @@
 	"databaseerror-function": "Függvény: $1",
 	"databaseerror-error": "Hiba: $1",
 	"transaction-duration-limit-exceeded": "A nagy késleltetési idő elkerülése érdekében ez a művelet megszakadt, mert az írási idő ($1) meghaladta a(z) $2 másodperces korlátot.\nAmennyiben sok elemet szeretnél egyszerre megváltoztatni, próbálkozz inkább többször kevesebb művelettel.",
-	"laggedslavemode": "'''Figyelem:''' Ez a lap nem feltétlenül tartalmazza a legfrissebb változtatásokat!",
+	"laggedreplicamode": "'''Figyelem:''' Ez a lap nem feltétlenül tartalmazza a legfrissebb változtatásokat!",
 	"readonly": "Az adatbázis le van zárva",
 	"enterlockreason": "Add meg a lezárás okát, valamint egy becslést, hogy mikor lesz a lezárásnak vége",
 	"readonlytext": "A wiki adatbázisa ideiglenesen le van zárva (valószínűleg adatbázis-karbantartás miatt). A lezárás időtartama alatt a lapok nem szerkeszthetők, és új szócikk sem hozható létre, az oldalakat azonban lehet böngészni.\n\nAz a rendszer-adminisztrátor, aki lezárta az adatbázist, az alábbi indoklást adta: $1",

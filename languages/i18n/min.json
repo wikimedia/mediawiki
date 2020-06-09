@@ -315,7 +315,7 @@
 	"databaseerror-function": "Fungsi: $1",
 	"databaseerror-error": "تېروتنه: $1",
 	"transaction-duration-limit-exceeded": "Untuak mancagah panundoan replikasi nan tinggi, pangiriman ko dibatalan karano lamo panulihan $1 malabiahi bateh $2.\nJiko sanak nio maubah banyak hal dalam sakali ubah, cubo lakuan dalam operasi nan labiah ketek.",
-	"laggedslavemode": "Paringatan: Laman mungkin indak barisi parubahan tabaru.",
+	"laggedreplicamode": "Paringatan: Laman mungkin indak barisi parubahan tabaru.",
 	"readonly": "Basis data dikunci",
 	"enterlockreason": "Masuakkan alasan panguncian, tamasuak pakiraan bilo kunci akan dibuka",
 	"readonlytext": "Basis data sadang dikunci sainggo indak bisa ditambahan isi atau parubahan baru, kamungkinan untuak pambanahan basis data. Salapeh salasai, inyo akan baliak ka kaadaan nan samulo.\n\nManuruik panguruih sistem nan mangunci: <p>$1",

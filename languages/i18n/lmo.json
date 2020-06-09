@@ -294,7 +294,7 @@
 	"databaseerror-query": "Ricérca: $1",
 	"databaseerror-function": "Funsiù: $1",
 	"databaseerror-error": "Erur: $1",
-	"laggedslavemode": "<strong>Ocio:</strong> Pöl das che la pàgina la g'hape gnemò dét i agiurnamèncc piö nöf.",
+	"laggedreplicamode": "<strong>Ocio:</strong> Pöl das che la pàgina la g'hape gnemò dét i agiurnamèncc piö nöf.",
 	"readonly": "Database blucaa",
 	"enterlockreason": "Indicà el mutìf del bloch e specificà el momènt che se pènsa de tiràl vià",
 	"readonlytext": "Adès come adès el database l'è blocàt e se pöl mìa fà mudìfiche a le pàgine gne creàn de nöe. El bloch de sòlet el depènt de operasiù de maütensiù del database. Se pödarà turnà a doprà 'l database quan che le operasiù de manütensiù le sarà finìde.\n\nL'aministradur del sistéma che g'ha blocàt el database el g'ha dat chèsta spiegasiù: $1",

@@ -229,7 +229,7 @@
 	"nospecialpagetext": "<strong>U kombele tluka ro hlawuleka ro ka ri nga ri kona.</strong>\n\nVona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Xihoxo",
 	"databaseerror": "Xihoxo xo Database",
-	"laggedslavemode": "Warning: Page may not contain recent updates.",
+	"laggedreplicamode": "Warning: Page may not contain recent updates.",
 	"readonly": "Database locked",
 	"enterlockreason": "Enter a reason for the lock, including an estimate of when the lock will be released",
 	"readonlytext": "The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.\n\nThe administrator who locked it offered this explanation: $1",

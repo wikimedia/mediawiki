@@ -310,7 +310,7 @@
 	"databaseerror-function": "Funktjuun: $1",
 	"databaseerror-error": "Feeler: $1",
 	"transaction-duration-limit-exceeded": "Transaktjuun ütj technisk grünjer ufbreegen. Det skriiwdüür ($1) wiar linger üs $2 {{PLURAL:$2|sekund|sekunden}}.\nWan dü flook objekten anerst, dial det ap tu letjer aktjuunen.",
-	"laggedslavemode": "'''Paase üüb:''' Ferlicht wiset detdiar sidj ei a leetst stant.",
+	"laggedreplicamode": "'''Paase üüb:''' Ferlicht wiset detdiar sidj ei a leetst stant.",
 	"readonly": "Dootenbeenk speret.",
 	"enterlockreason": "Wees so gud an du en grünj uun, huaram det dootenbeenk speret wurd skal, an hü loong det (amanbi) speret wurd skal.",
 	"readonlytext": "Det dootenbeenk as iarst ans speret för nei iindracher an feranrangen. Ferschük det leeder man noch ans.\n\nGrünj för't sperin: $1",

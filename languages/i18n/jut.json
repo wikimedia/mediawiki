@@ -288,7 +288,7 @@
 	"databaseerror-query": "Forspöyrgsel: $1",
 	"databaseerror-function": "Funksjon: $1",
 	"databaseerror-error": "Fejl: $1",
-	"laggedslavemode": "'''Bemærk:''' Den wisen siid inholje muliwis ett di nysti øndrenge.",
+	"laggedreplicamode": "'''Bemærk:''' Den wisen siid inholje muliwis ett di nysti øndrenge.",
 	"readonly": "Databasi ä skriiwbeskøtten",
 	"enterlockreason": "Skriiw en begrunjels for skriiwbeskøttelsen, mä samt en wurdiireng å, nær skriiwbeskøttelsen ophäws idjen",
 	"readonlytext": "Databasi ä i yeblikke låsen for nyj poste å anje øndrenge, sånnsynliwis for rutinmæssi databaseweliholjels, hworette den will wær tebag te normal.\n\nAdministratori som hår låsen, djij forklarengen: $1",

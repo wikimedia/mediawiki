@@ -306,7 +306,7 @@
 	"databaseerror-query": "Hapot: $1",
 	"databaseerror-function": "Punksyon: $1",
 	"databaseerror-error": "Kasalaan: $1",
-	"laggedslavemode": "Patanid: An pahina pwedeng dai nin pagbabâgo sa ngonyan.",
+	"laggedreplicamode": "Patanid: An pahina pwedeng dai nin pagbabâgo sa ngonyan.",
 	"readonly": "Nakakandado na datos-sarayan",
 	"enterlockreason": "Magkaag tabì nin rason sa pagkandado, asin ikalkulo kun nuarin bubukasón an kandado",
 	"readonlytext": "Sarado mùna an base nin datos sa mga bàgong entrada asin iba pang mga pagribay, pwede gayod sa rutinang pagmantenir kan base nin datos, despues, mabalik na ini sa normal.\n\nIni an eksplikasyon kan tagamató na nagkandado kaini: $1",

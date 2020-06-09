@@ -291,7 +291,7 @@
 	"databaseerror-query": "Perräküsümine: $1",
 	"databaseerror-function": "Ülesannõq: $1",
 	"databaseerror-error": "Viga: $1",
-	"laggedslavemode": "Hoiatus: Taa lehe pääl pruugi-i ollaq perämäidsi muutmiisi.",
+	"laggedreplicamode": "Hoiatus: Taa lehe pääl pruugi-i ollaq perämäidsi muutmiisi.",
 	"readonly": "Teedüskogo kirotuskaitsõ all",
 	"enterlockreason": "Kirodaq lukkupandmisõ põhjus ja ligikaudnõ vallalõvõtmisõ aig",
 	"readonlytext": "Teedüskogo om kirotuskaitsõ all, arvadaq niikavvas ku tedä parandõdas.\nKõrraldaja, kiä taa kirotuskaitsõ alaq võtt', and' sääntse selgütüse:\n<p>$1",

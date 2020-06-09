@@ -300,7 +300,7 @@
 	"databaseerror-query": "Query: $1",
 	"databaseerror-function": "Funzioni: $1",
 	"databaseerror-error": "Erruri: $1",
-	"laggedslavemode": "Accura: La pàggina putissi nun ripurtari l'aggiurnamenti cchiù ricenti.",
+	"laggedreplicamode": "Accura: La pàggina putissi nun ripurtari l'aggiurnamenti cchiù ricenti.",
 	"readonly": "Basi di dati bluccata",
 	"enterlockreason": "Spiega lu mutivu dû bloccu, spicificannu na stima di quannu veni livatu.",
 	"readonlytext": "Com'a ora la basi di dati è bluccata e nun sunnu pussìbbili junti o canciamenti; lu mutivu prubbàbbili è la manutinzioni ordinaria, finuta la quali la basi di dati torna nurmali.\n\nL'amministraturi chi la bluccau desi sta spigazzioni: $1",

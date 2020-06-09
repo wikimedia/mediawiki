@@ -251,7 +251,7 @@
 	"nospecialpagetext": "<strong>Bar bolmadyk bir ýörite sahypa girdiňiz.</strong>\n\nBar bolan ähli ýörite sahypalary [[Special:SpecialPages|ýörite sahypalar]] sahypasynda görüp bilersiňiz.",
 	"error": "Säwlik",
 	"databaseerror": "Maglumat bazasynyň säwligi",
-	"laggedslavemode": "Duýduryş: Sahypada soňky täzelemeler ýok bolmagy ahmal.",
+	"laggedreplicamode": "Duýduryş: Sahypada soňky täzelemeler ýok bolmagy ahmal.",
 	"readonly": "Maglumat bazasy gulplandy",
 	"enterlockreason": "Gulplamak üçin bir sebäp görkeziň. Gulpuň haçan açyljakdygy barada takmynan bir sene ýazyň.",
 	"readonlytext": "Maglumat bazasyndaky adaty abatlaýyş hyzmatlary zerarly, wagtlaýynça täze makala goşmaklyk hem-de üýtgeşme girizmeklik gulplandy. Gysga salymyň içinde öňküsi ýaly bolar.\n\nMaglumat bazasyny gulplan administratoryň düşündirişi: $1",

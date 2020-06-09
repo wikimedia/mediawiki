@@ -246,7 +246,7 @@
 	"nospecialpagetext": "<strong>Nagpangayo ikaw sang inbalido nga pinasahi nga pahina.</strong>\n\nAng listahan sang inbalido nga mga pinasahi nga pahina makit-an sa [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Sala",
 	"databaseerror": "Diperensya sa database",
-	"laggedslavemode": "Pahibalo: Posible nga wala unod ang pahina sang mga yanda nga bag-ong nadugang.",
+	"laggedreplicamode": "Pahibalo: Posible nga wala unod ang pahina sang mga yanda nga bag-ong nadugang.",
 	"readonly": "Nakakandado ang database",
 	"enterlockreason": "Maghatag sang kabangdanan sa pagkakandado, upod ang bana-bana kung san-o ang kandado ibuy-an",
 	"readonlytext": "Nakakandado yanda ang kalipunan sang datos para sa mga bago nga entrada kag iban pa nga mga pagbag-o, seguro para sa ulubrahon nga pangapagpasakdag sang kalipunan sang datos, magabalik ini sa normal pagkaagi sini.\n\nNaghatag sang mini nga rason ang tagadumala nga nagkandado sini: $1",

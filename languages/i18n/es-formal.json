@@ -189,7 +189,7 @@
 	"databaseerror-function": "Función: $1",
 	"databaseerror-error": "Error: $1",
 	"transaction-duration-limit-exceeded": "Con el fin de evitar un aumento excesivo del retardo de replicación, se anuló esta transacción porque la duración de escritura ($1) excedió el límite de $2 {{PLURAL:$2|segundo|segundos}}.\nSi está cambiando muchos elementos a la vez, trate de hacer operaciones similares más pequeñas.",
-	"laggedslavemode": "<strong>Aviso:</strong> la página puede no contener las actualizaciones más recientes.",
+	"laggedreplicamode": "<strong>Aviso:</strong> la página puede no contener las actualizaciones más recientes.",
 	"readonly": "Base de datos bloqueada",
 	"enterlockreason": "Proporcione el motivo del bloqueo, así como una estimación de cuándo se producirá el desbloqueo",
 	"readonlytext": "Actualmente la base de datos no permite nuevas entradas u otras modificaciones, probablemente por mantenimiento rutinario, tras lo cual volverá a la normalidad.\n\nLa explicación dada por el administrador que la bloqueó fue: $1",

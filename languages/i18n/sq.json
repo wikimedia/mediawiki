@@ -334,7 +334,7 @@
 	"databaseerror-function": "Funksioni: $1",
 	"databaseerror-error": "Gabimi: $1",
 	"transaction-duration-limit-exceeded": "Për të shmangur krijimin e vonesës së lartë të replikimit, ky transaksion u ndërpre, sepse kohëzgjatja e shkrimit ($1) tejkalonte limitin e dytë prej $2.\nNëse je duke ndryshuar shumë artikuj në të njëjtën kohë, në vend të kësaj provo t'i bësh disa operacione të vogla.",
-	"laggedslavemode": "'''Kujdes:''' Kjo faqe nuk mund të ketë përditësimet e fundit.",
+	"laggedreplicamode": "'''Kujdes:''' Kjo faqe nuk mund të ketë përditësimet e fundit.",
 	"readonly": "Databaza e kyçur",
 	"enterlockreason": "Shëno arsyen e kyçjes, gjithashtu shëno se kur mund të hapet.",
 	"readonlytext": "Databaza për momentin është mbyllur për redaktime dhe ndryshime të reja, ndoshta për shkak të rutinës së mirëmbajtjes. Pas përfundimit të mirëmbajtjes databaza do të hapet përsëri.\n\nAdministratori që e mbylli dha këtë arsye: $1",

@@ -316,7 +316,7 @@
 	"databaseerror-query": "Kuwèri: $1",
 	"databaseerror-function": "Fungsi: $1",
 	"databaseerror-error": "Masalah: $1",
-	"laggedslavemode": "Pènget: Kaca iki bokmanawa isiné dudu pangowahan pungkasan.",
+	"laggedreplicamode": "Pènget: Kaca iki bokmanawa isiné dudu pangowahan pungkasan.",
 	"readonly": "Umpak data kagembok",
 	"enterlockreason": "Isi alesan ngreksa, kalebu rencana kapan pareksané bakal dibukak",
 	"readonlytext": "Juru administrasi sistem kang ngunci iku medhar mangkéné: $1",

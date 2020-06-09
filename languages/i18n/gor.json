@@ -299,7 +299,7 @@
 	"databaseerror-function": "Huna: $1",
 	"databaseerror-error": "Tilala: $1",
 	"transaction-duration-limit-exceeded": "Untuk mencegah penundaan replikasi yang tinggi, pengiriman ini dibatalkan karena durasi tulis ($1) melebihi batas $2 {{PLURAL:$2|detik|detik}}.\nJika Anda ingin mengganti banyak butir sekaligus, cobalah melakukan dalam operasi yang lebih kecil.",
-	"laggedslavemode": "<strong>Warning:</strong> Halaman kira ja o tuwango u lobohuwa.",
+	"laggedreplicamode": "<strong>Warning:</strong> Halaman kira ja o tuwango u lobohuwa.",
 	"readonly": "Basis data unti-unti",
 	"enterlockreason": "Masowa alasani longunti wawu omoluwa u'unti hu'oolo",
 	"missingarticle-rev": "(biloli'o#1:$1)",

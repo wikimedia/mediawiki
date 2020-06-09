@@ -352,7 +352,7 @@
 	"databaseerror-function": "Funkcio: $1",
 	"databaseerror-error": "Eraro: $1",
 	"transaction-duration-limit-exceeded": "Por eviti la kreadon de ege longzn atendotempon de replikado, ĉi tiu transakcio estis ĉesigita, ĉar la skribdaŭro ($1) superis la limon de $2 {{plural:$2|sekundo|sekundoj}}.",
-	"laggedslavemode": "Averto: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.",
+	"laggedreplicamode": "Averto: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.",
 	"readonly": "Datumbazo ŝlosita",
 	"enterlockreason": "Bonvolu klarigi, kial oni ŝlosos la datumbazon, kaj\nla antaŭviditan momenton de malŝlosado.",
 	"readonlytext": "La datumbazo estas nuntempe ŝlosita kontraŭ novaj aldonaj kaj aliaj ŝanĝoj, verŝajne pro kutima bontenado de la datumbazo, post kio ĝi denove normale funkcios.\n\nLa sistema administranto, kiu ŝlosis ĝin, donis ĉi tiun klarigon: $1",

@@ -327,7 +327,7 @@
 	"databaseerror-query": "查詢: $1",
 	"databaseerror-function": "功能: $1",
 	"databaseerror-error": "出錯: $1",
-	"laggedslavemode": "警告：呢頁可能未包括最新嘅更新。",
+	"laggedreplicamode": "警告：呢頁可能未包括最新嘅更新。",
 	"readonly": "資料庫鎖咗",
 	"enterlockreason": "輸入鎖資料庫嘅原因，同埋預計幾耐後會解鎖",
 	"readonlytext": "{{SITENAME}}資料庫而家鎖住咗，唔改得；可能因為維修緊。搞掂就會正常返。\n\n系統管理員嘅解釋： $1",

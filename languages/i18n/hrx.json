@@ -282,7 +282,7 @@
 	"databaseerror-query": "Abfroch: $1",
 	"databaseerror-function": "Funktion: $1",
 	"databaseerror-error": "Fehler: $1",
-	"laggedslavemode": "'''Achtung:''' Die oongezeicht Seit könnte unner Umstände net die letzte Beoorbeitunge enthalte.",
+	"laggedreplicamode": "'''Achtung:''' Die oongezeicht Seit könnte unner Umstände net die letzte Beoorbeitunge enthalte.",
 	"readonly": "Datebank gesperrt",
 	"enterlockreason": "Bitte geb en Grund ren, waroom die Datebank gesperrt werre soll und en Abschätzung üwer die Dauer von der Sperrung",
 	"readonlytext": "Die Datebank ist voarüwergehend für Neiinträche und Ännrunge gesperrt. Bitte versuche es später nochmo.\n\nGrund für der Sperrung: $1",

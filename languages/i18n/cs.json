@@ -345,7 +345,7 @@
 	"databaseerror-function": "Funkce: $1",
 	"databaseerror-error": "Chyba: $1",
 	"transaction-duration-limit-exceeded": "Aby nevznikalo velké replikační zpoždění, byla transakce přerušena, protože trvání zápisu ($1) překročilo {{PLURAL:$2|$2sekundový}} limit.\nPokud měníte mnoho položek najednou, zkuste místo toho provést několik menších operací.",
-	"laggedslavemode": "<strong>Upozornění:</strong> Stránka nemusí být aktuální.",
+	"laggedreplicamode": "<strong>Upozornění:</strong> Stránka nemusí být aktuální.",
 	"readonly": "Databáze je uzamčena",
 	"enterlockreason": "Udejte důvod zamčení, včetně odhadu, za jak dlouho dojde k odemčení",
 	"readonlytext": "Databáze je nyní uzamčena, takže nelze ukládat nové doplňky a změny. Důvodem je pravděpodobně pravidelná údržba, po které se vše vrátí do normálního stavu.\n\nSprávce serveru, který databázi zamkl, poskytl toto zdůvodnění: $1",

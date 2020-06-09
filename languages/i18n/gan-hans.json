@@ -255,7 +255,7 @@
 	"nospecialpagetext": "<strong>倷要求𠮶特殊页冇有用。</strong>\n\n[[Special:SpecialPages]]上寻得到用得上𠮶特殊页。",
 	"error": "错误",
 	"databaseerror": "数据库错误",
-	"laggedslavemode": "警告：页面可能冇有新近内容。",
+	"laggedreplicamode": "警告：页面可能冇有新近内容。",
 	"readonly": "数据库上正锁啰",
 	"enterlockreason": "请输入锁到数据库𠮶理由，包括预计几时间解锁",
 	"readonlytext": "数据库上嘞锁改伓正，可能佢正维修中，搞正嘞仰上会还原。管理员𠮶解释： $1",

@@ -316,7 +316,7 @@
 	"databaseerror-function": "Ffwythiant: $1",
 	"databaseerror-error": "Gwall: $1",
 	"transaction-duration-limit-exceeded": "Oherwydd y 'lag' hirach nag arfer, daethpwyd a'r cais hwn i ben, gan fod yr amser sgwennu ($1) yn hirach na $2 - yr ail gyfnod hiraf a ganiateir.\n\nOs ydych yn newid llawer o bethau ar yr un pryd yna, beth am geisio newid llai o bethau?",
-	"laggedslavemode": "Rhybudd: hwyrach nad yw'r dudalen yn cynnwys diwygiadau diweddar.",
+	"laggedreplicamode": "Rhybudd: hwyrach nad yw'r dudalen yn cynnwys diwygiadau diweddar.",
 	"readonly": "Databas ar glo",
 	"enterlockreason": "Rhowch eglurhad dros gloi'r databas, ac amcangyfrif hyd at pa bryd y bydd y databas dan glo",
 	"readonlytext": "Mae'r databas ar glo; nid yw'n bosib cadw erthyglau newydd na gwneud unrhyw newid arall. Mae'n debygol fod hyn er mwyn cynnal a chadw'r databas -- fe fydd ar gael eto cyn bo hir.\n\nRhoddwyd y rheswm canlynol gan y gweinyddwr a'i glodd: $1",

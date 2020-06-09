@@ -248,7 +248,7 @@
 	"nospecialpagetext": "<strong>倷要求嗰特殊頁冇有用。</strong>\n\n[[Special:SpecialPages]]上尋得到用得上嗰特殊頁。",
 	"error": "錯誤",
 	"databaseerror": "資料庫錯誤",
-	"laggedslavemode": "警告：頁面可能冇有新近內容。",
+	"laggedreplicamode": "警告：頁面可能冇有新近內容。",
 	"readonly": "資料庫上正鎖哩",
 	"enterlockreason": "請輸入鎖到資料庫嗰理由，包括預計幾時間解鎖",
 	"readonlytext": "資料庫上嘞鎖改伓正，可能佢正維修中，搞正嘞仰上會還原。管理員嗰解釋： $1",

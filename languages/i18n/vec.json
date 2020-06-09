@@ -327,7 +327,7 @@
 	"databaseerror-function": "Funsion: $1",
 	"databaseerror-error": "Eror: $1",
 	"transaction-duration-limit-exceeded": "Par evitar n'alto ritardo de replica, sta operasion l'è sta interrota parché ea durata del tenpo de scritura ($1) l'ha superà el limite de $2 {{PLURAL:$2|secondo|secondi}}.\nSe te se drio modificar tanti elementi en na sola olta, proa a far più operasioni co pochi elementi.",
-	"laggedslavemode": "<strong>Òcio:</strong> ƚa pàgina ƚa podaria no riportare i axornamenti pì resenti.",
+	"laggedreplicamode": "<strong>Òcio:</strong> ƚa pàgina ƚa podaria no riportare i axornamenti pì resenti.",
 	"readonly": "Database blocà",
 	"enterlockreason": "Indicare el motivo del bloco, spesifegando el momento in cui xè presumibiłe che el venga rimoso",
 	"readonlytext": "En sto momento el database xe blocà e no xe disponibiƚi xonte o modifeghe a ƚe pàgine. El bloco xè de soƚito ƚegà a operasion de manutension ordinaria, al termine de ƚe cuaƚi el database xè da novo acesibiƚe.\n\nL'aministradore de sistema che ga imposto el bloco ga fornìo sta spiegasion: $1",

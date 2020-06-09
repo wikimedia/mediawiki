@@ -331,7 +331,7 @@
 	"databaseerror-function": "फङ्सन : $1",
 	"databaseerror-error": "त्रुटि: $1",
 	"transaction-duration-limit-exceeded": "To avoid creating high replication lag, this transaction was aborted because the write duration ($1) exceeded the $2 second limit.\nIf you are changing many items at once, try doing multiple smaller operations instead.",
-	"laggedslavemode": "<strong>चेतावनी:</strong> पृष्ठमा हालका अद्यतनहरू नहुनसक्छन् ।",
+	"laggedreplicamode": "<strong>चेतावनी:</strong> पृष्ठमा हालका अद्यतनहरू नहुनसक्छन् ।",
 	"readonly": "डेटाबेस बन्द गरिएको छ",
 	"enterlockreason": "ताल्चा मार्नुको कारण दिनुहोस्, साथै ताल्चा हटाउने समयको अवधि अनुमान लगाउनुहोस्।",
 	"readonlytext": "सम्भवतः नियमित डेटाबेस रेखदेखको कारण अहिलेलाई नयाँ डेटाबेस प्रविष्टी र अन्य संशोधनहरू बन्द राखिएको छ, जसलाई पछिबाट सामान्य गरिनेछ। \nप्रबन्धक जसले यो बन्द गरेका छन्, यो स्पष्टीकरण दिएका छन्: $1",

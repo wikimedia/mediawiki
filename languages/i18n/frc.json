@@ -261,7 +261,7 @@
 	"error": "Erreur",
 	"databaseerror": "Erreur de la base d'information",
 	"databaseerror-error": "Erreur: $1",
-	"laggedslavemode": "Avertissement: La page est peut-être pas renouvelée.",
+	"laggedreplicamode": "Avertissement: La page est peut-être pas renouvelée.",
 	"readonly": "La base d'information est barrée.",
 	"enterlockreason": "Écrire une raison pour le barrage avec un temps estimé\nd'équand le barrage va être ôté.",
 	"readonlytext": "À présent, la base d'information est barrée aux nouveaux changements, peut-être pour le soutien habituel de la base d'information, et ça va retourner à normal t'à l'heure.\n\nL'administrateur qui l'a barrée a donné cette explication: $1",

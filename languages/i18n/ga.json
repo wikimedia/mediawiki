@@ -277,7 +277,7 @@
 	"error": "Earráid",
 	"databaseerror": "Earráid sa bhunachar sonraí",
 	"databaseerror-error": "Earráid: $1",
-	"laggedslavemode": "Rabhadh: B'fhéidir nach bhfuil na nuashonrúcháin is déanaí le feiceáil ar an leathanach seo.",
+	"laggedreplicamode": "Rabhadh: B'fhéidir nach bhfuil na nuashonrúcháin is déanaí le feiceáil ar an leathanach seo.",
 	"readonly": "Bunachar sonraí faoi ghlas",
 	"enterlockreason": "Iontráil cúis don glasáil, agus meastachán\nden uair a díghlasálfar an bunachar sonraí.",
 	"readonlytext": "Tá an bunachar sonraí glasáilte anois agus ní féidir iontrálacha nua ná athruithe eile a dhéanamh. Gach seans go bhfuil gnáthchothabháil ar siúl, agus beidh gach rud ar ais mar a bhí nuair a bheidh sin thart.\n\nThug an riarthóir a ghlasáil é an míniú seo:\n$1",

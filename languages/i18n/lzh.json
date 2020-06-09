@@ -318,7 +318,7 @@
 	"databaseerror-query": "尋：$1",
 	"databaseerror-function": "功能：$1",
 	"databaseerror-error": "錯：$1",
-	"laggedslavemode": "警告：此頁不新。",
+	"laggedreplicamode": "警告：此頁不新。",
 	"readonly": "鎖庫藏",
 	"enterlockreason": "何以鎖之？何日啟之？",
 	"readonlytext": "鎖者曰：「$1」，庫藏鎖矣，撰纂謝焉。",

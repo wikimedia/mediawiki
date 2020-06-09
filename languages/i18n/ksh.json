@@ -305,7 +305,7 @@
 	"databaseerror-function": "Fonxjuhn: $1",
 	"databaseerror-error": "Fähler: $1",
 	"transaction-duration-limit-exceeded": "Domedd et Dahtebangk-Koppehre zoh doll henger her hengk, ham_mer heh dä Vörjang affjebroche, weijl dä met $1 de zweijte Jräns vun $2 övverschredde hät.\n\nWann De vill Saache op eijmohl aam Änndere bes, versöhk ens schtatt dämm en Aanzahl kleijnere Ännderonge.",
-	"laggedslavemode": "<strong>Opjepass:</strong> Künnt sin, dat heh nit dä neuste Stand vun dä Sigg aanjezeich weed.",
+	"laggedreplicamode": "<strong>Opjepass:</strong> Künnt sin, dat heh nit dä neuste Stand vun dä Sigg aanjezeich weed.",
 	"readonly": "De Daatebank es jesperrt",
 	"enterlockreason": "Jevv aan, woröm un för wie lang dat de Daatebank jesperrt wääde soll",
 	"readonlytext": "De Dahtebangk es jeschpächt. Neu Saache dren avschpeijschere jeiht jrahd nit, un et Ändere och nit. Künnt sin wähje en rutihnemähßejje Waadong, un dernoh es alles widder zerögg op Nommahl.\n\nDä Verantwootlesche doför hät beim Deeschmaache als Jrond aanjejovve: „$1“.",

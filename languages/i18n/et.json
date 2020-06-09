@@ -327,7 +327,7 @@
 	"databaseerror-function": "Funktsioon: $1",
 	"databaseerror-error": "Tõrge: $1",
 	"transaction-duration-limit-exceeded": "Selleks et vältida tiražeerimise suurt mahajäämust, on see tehing katkestatud, kuna kirjutamise kestus ($1) ületas {{PLURAL:$2|$2}} sekundi piirangut.\nKui muudad korraga palju üksusi, siis proovi selle asemel teha mitu väiksemat toimingut.",
-	"laggedslavemode": "Hoiatus: Leheküljel võivad puududa viimased uuendused.",
+	"laggedreplicamode": "Hoiatus: Leheküljel võivad puududa viimased uuendused.",
 	"readonly": "Andmebaas lukustatud",
 	"enterlockreason": "Sisesta lukustamise põhjus ning juurdepääsu taastamise ligikaudne aeg",
 	"readonlytext": "Andmebaas on praegu lukustatud. Uusi sissekandeid ja muid muudatusi ei saa teha. Tõenäoliselt toimub andmebaasi plaanipärane hooldus, mille järel tavaline olukord taastub.\nSüsteemiadministraator, kes andmebaasi lukustas, andis järgmise selgituse: $1",

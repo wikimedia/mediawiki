@@ -326,7 +326,7 @@
 	"databaseerror-function": "Fungsi: $1",
 	"databaseerror-error": "Ralat: $1",
 	"transaction-duration-limit-exceeded": "Demi mengelakkan terjadinya kelewatan pengulangan yang tinggi, transaksi ini dibatalkan kerana tempoh menulis ($1) telah melebihi had $2 saat.",
-	"laggedslavemode": "Amaran: Laman ini mungkin bukan yang terkini.",
+	"laggedreplicamode": "Amaran: Laman ini mungkin bukan yang terkini.",
 	"readonly": "Pangkalan data dikunci",
 	"enterlockreason": "Sila nyatakan sebab penguncian dan jangkaan\nbila kunci ini akan dibuka.",
 	"readonlytext": "Pangkalan data telah dikunci daripada penyertaan baru dan perubahan-perubahan lain, mungkin untuk penyenggaraan pangkalan data yang rutin, dan akan dibuka semula selepas ia disiapkan.\n\nPenyelia yang menguncinya telah memberi penjelasan ini: $1",

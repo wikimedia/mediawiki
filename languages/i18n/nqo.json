@@ -299,7 +299,7 @@
 	"databaseerror-query": "ߢߌ߬ߣߌ߲߬ߞߊ߬ߟߌ $1",
 	"databaseerror-function": "ߗߋߘߊ $1",
 	"databaseerror-error": "ߝߎ߬ߕߎ߲߬ߕߌ: $1",
-	"laggedslavemode": "<strong>ߖߊ߲߬ߓߌ߬ߟߊ߬ߟߌ</strong> ߟߏ߲ߘߐߦߊߟߌ߫ ߞߎߘߊ߫ ߛߌ߫ ߕߍ߫ ߞߐߜߍ ߘߐ߫.",
+	"laggedreplicamode": "<strong>ߖߊ߲߬ߓߌ߬ߟߊ߬ߟߌ</strong> ߟߏ߲ߘߐߦߊߟߌ߫ ߞߎߘߊ߫ ߛߌ߫ ߕߍ߫ ߞߐߜߍ ߘߐ߫.",
 	"readonly": "ߓߟߏߡߟߊ ߝߊ߲ ߛߐ߰ߣߍ߲߫",
 	"enterlockreason": "ߛߐ߰ߟߌ ߞߎ߲߭ ߠߊߘߏ߲߬߸ ߞߵߏ߬ ߟߊ߫ ߛߐ߰ߟߌ ߓߊ߲߫ ߕߎߡߊ߫ ߖߊ߬ߕߋߡߌ߬ߘߊ߬ߣߍ߲ ߞߊ߲߬.",
 	"missingarticle-rev": "(ߡߛߊ߬ߦߌ߲߬ߠߌ߲#:$1)",

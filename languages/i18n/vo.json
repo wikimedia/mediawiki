@@ -267,7 +267,7 @@
 	"databaseerror": "Pöl in nünodem",
 	"databaseerror-function": "Dunod: $1",
 	"databaseerror-error": "Pöl: $1",
-	"laggedslavemode": "Nuned: pad ba labon votükamis brefabüik",
+	"laggedreplicamode": "Nuned: pad ba labon votükamis brefabüik",
 	"readonly": "Vük pefärmükon",
 	"enterlockreason": "Penolös kodi löka, keninükamü täxet dula onik e dela, kü pomoükon",
 	"readonlytext": "Vük pefärmükon: yegeds e votükams nuliks no kanons padakipön. Atos ejenon bo pro kosididaduns, pos kels vük ogeikon ad stad kösömik.\n\nGuvan, kel äfärmükon vüki, äplänon osi ön mod sököl: $1",

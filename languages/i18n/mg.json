@@ -303,7 +303,7 @@
 	"databaseerror-function": "Lefa: $1",
 	"databaseerror-error": "Hadisoana: $1",
 	"transaction-duration-limit-exceeded": "Mba tsy hisian'ny fihalavan'ny fotoam-pandikana be loatra, dia nofoanana ity asa ity satria nihoatra ny fetra $2 {{PLURAL:$2}}segondra ny fotoana nalain'ny asa fanoratana ($1 s). Raha manova zavatra mibolongana be indray mandeha ianao dia zarazarao ho kelikely ny zavatra ataonao.",
-	"laggedslavemode": "Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io",
+	"laggedreplicamode": "Fampitandremana: Mety ho tsy nisy fanovana vao haingana angamba io pejy io",
 	"readonly": "Mihidy ny banky angona",
 	"enterlockreason": "Manomeza antony hanidiana ny pejy, ahitana ny fotoana tokony hamahana izay fihidiana izay",
 	"readonlytext": "Mihidy ny banky angona ka tsy afaka anaovana fanovana na fanampiana vaovao. Azo inoana fa asa fikolokoloana mahazatra ihany io ka rehefa vita izay asa izay dia hverina amin'ny laoniny izy.\n\nNy mpitantana nanidy azy dia nametraka ito fanazavana ito: $1",

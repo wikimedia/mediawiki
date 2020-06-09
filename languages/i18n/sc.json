@@ -303,7 +303,7 @@
 	"databaseerror-query": "Rechesta: $1",
 	"databaseerror-function": "Funtzione: $1",
 	"databaseerror-error": "Faddina: $1",
-	"laggedslavemode": "<strong>Atentzione:</strong> Sa pàgina podet non cuntènnere sos agiornamentos prus novos.",
+	"laggedreplicamode": "<strong>Atentzione:</strong> Sa pàgina podet non cuntènnere sos agiornamentos prus novos.",
 	"readonly": "Database blocadu",
 	"enterlockreason": "Inserta su motivu de su blocu, ispetzifichende su momentu probàbile chi su blocu at a acabbare",
 	"readonlytext": "In custu momentu su database est bloccadu dae aciunturas e àteras modificas, probabilmente pro ordinaria manutentzione a su database, a pustis de custas at a èssere normale torra.\n\nS'amministradore chi dd'at bloccadu at donadu custa ispiegatzione: $1",

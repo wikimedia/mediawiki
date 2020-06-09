@@ -328,7 +328,7 @@
 	"databaseerror-function": "Función: $1",
 	"databaseerror-error": "Erro: $1",
 	"transaction-duration-limit-exceeded": "Para evitar crear un grande atraso na replicación, esta transacción abortouse xa que a duración de escritura ($1) excedeu o límite de $2 segundos.\nSe está a cambiar moitos obxectos ao mesmo tempo, procure facer operacións múltiples máis pequenas no seu lugar.",
-	"laggedslavemode": "'''Aviso:''' A páxina pode non conter as actualizacións recentes.",
+	"laggedreplicamode": "'''Aviso:''' A páxina pode non conter as actualizacións recentes.",
 	"readonly": "Base de datos pechada",
 	"enterlockreason": "Dea unha razón para o peche, incluíndo unha estimación de até cando se manterá",
 	"readonlytext": "Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probablemente debido a procesos de mantemento, tralos que volverá á normalidade.\n\nO administrador do sistema que a pechou deu esta explicación: $1",

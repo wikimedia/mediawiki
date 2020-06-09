@@ -263,7 +263,7 @@
 	"nospecialpagetext": "<strong>Nu desisti esa páhina especial.</strong>\n\nPueis alcuentral una lista colas páhinas especialis desistentis en [[Special:SpecialPages]].",
 	"error": "Marru",
 	"databaseerror": "Marru ena basi e datus",
-	"laggedslavemode": "Avisu: Es posibri que la páhina nu esté atualizá.",
+	"laggedreplicamode": "Avisu: Es posibri que la páhina nu esté atualizá.",
 	"readonly": "Basi e datus atarugá",
 	"enterlockreason": "Escrebi una razón pal tarugu, i cuandu esti\nsedrá esborrau",
 	"readonlytext": "La basi e datus está atualmenti atarugá, siguramenti pol mantenimientu rutinariu. Cuandu s´acabihin los chambus, la güiqui gorverá a la normaliá.\n\nLa razón dá pol el alministraol que pusu el tarugu es: $1",

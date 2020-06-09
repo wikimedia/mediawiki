@@ -253,7 +253,7 @@
 	"databaseerror": "Tlahcuilōltzintlān īahcuallo",
 	"databaseerror-query": "Tlahtlanilli: $1",
 	"databaseerror-error": "Ahiuhcayotl $1",
-	"laggedslavemode": "Xiquitta: huel ahmo ia achi yancuīc in tlapatlaliztli inīn zāzanilco.",
+	"laggedreplicamode": "Xiquitta: huel ahmo ia achi yancuīc in tlapatlaliztli inīn zāzanilco.",
 	"readonly": "Mactzīntlantli tzahtzacticah",
 	"missingarticle-rev": "(tlachiyaliztli ītlapōhual: $1)",
 	"missingarticle-diff": "(Ahneneuh.: $1, $2)",

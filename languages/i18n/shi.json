@@ -263,7 +263,7 @@
 	"error": "ⵜⴰⵣⴳⵍⵜ",
 	"databaseerror": "ⵜⴰⵣⴳⵍⵜ ⴳ ⵜⴰⵙⵉⵍⴰ ⵏ ⵉⵙⴼⴽⴰ",
 	"databaseerror-error": "ⴰⵣⴳⴳⴰⵍ: $1",
-	"laggedslavemode": "Ḥan tasnayad ur gis graygan ambddel amaynu.",
+	"laggedreplicamode": "Ḥan tasnayad ur gis graygan ambddel amaynu.",
 	"readonly": "ⵜⴰⵙⵉⵍⴰ ⵏ ⵉⵙⴼⴽⴰ ⵉⵜⵜⵡⴰⵔⴳⵍⵏ",
 	"missing-article": "lqaa'ida n lbayanat ortofa nass ad gh tawriqt  liss ikhssa asti taf limism \"$1\" $2.\n\nghikad artitsbib  igh itabaa lfrq aqdim nghd tarikh artawi skra nsfha ityohyadn.\n\nighor iga lhal ghika ati ran taft kra lkhata gh lbarnamaj.\n\nini mayad ikra [[Special:ListUsers/sysop|lmodir]] tfktas ladriss ntwriqt an.",
 	"missingarticle-rev": "(ⵓⵟⵟⵓⵏ ⵏ ⵓⵣⵣⵔⴰⵢ : $1)",

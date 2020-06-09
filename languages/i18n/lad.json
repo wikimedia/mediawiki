@@ -279,7 +279,7 @@
 	"databaseerror-query": "Demanda: $1",
 	"databaseerror-function": "Fonksyon: $1",
 	"databaseerror-error": "Yerro: $1",
-	"laggedslavemode": "'''Aviso:''' Puede ke la pajina no kontiene las aktualizasyones mas resientes.",
+	"laggedreplicamode": "'''Aviso:''' Puede ke la pajina no kontiene las aktualizasyones mas resientes.",
 	"readonly": "Base de datos blokeada",
 	"enterlockreason": "Eskrive un razon por el blokeo,incluyendo un estimasyon de kuando libera el blokeo",
 	"readonlytext": "La base de datos esta blokeada a muevas entradas i otras modifikasyones,probablemente para mantenemento rutinas, Kuando akava se enkontra dispozible.\n\nEl administrador ke blokeo dio esta esplikasyon: $1",

@@ -288,7 +288,7 @@
 	"databaseerror-query": "chhà-chhìm:$1",
 	"databaseerror-function": "kûng-nèn:$1",
 	"databaseerror-error": "chho-ngu:$1",
-	"laggedslavemode": "<strong>Kín-ko:</strong> Ya̍p-mien khó-nèn m̀ pâu-hàm chui-khiûn ke kiên-sîn.",
+	"laggedreplicamode": "<strong>Kín-ko:</strong> Ya̍p-mien khó-nèn m̀ pâu-hàm chui-khiûn ke kiên-sîn.",
 	"readonly": "Sú-kí-khù fûn ngìn só-thin",
 	"enterlockreason": "Chhiáng khim-ngi̍p kim-chṳ́ fóng-mun ngièn-yîn, pâu-koat kû-kie chhùng-sîn khôi-piong ke sṳ̀-kiên",
 	"readonlytext": "數據庫今下禁止輸入新內容撈更改，\n邇好有可能係由於數據庫維修緊，完成後就會恢復。\n\n管理員有下背嘅解釋：$1",

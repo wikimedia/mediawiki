@@ -281,7 +281,7 @@
 	"error": "ຂໍ້ຜິດພາດ",
 	"databaseerror": "ມີຂໍ້ຜິດພາດກ່ຽວກັບຖານຂໍ້ມູນ",
 	"databaseerror-error": "ຂໍ້ຜິດພາດ: $1",
-	"laggedslavemode": "<strong>ຄຳເຕືອນ:</strong> ໜ້ານີ້ອາດຈະບໍ່ລວມຂໍ້ມູນລ້າສຸດ.",
+	"laggedreplicamode": "<strong>ຄຳເຕືອນ:</strong> ໜ້ານີ້ອາດຈະບໍ່ລວມຂໍ້ມູນລ້າສຸດ.",
 	"readonly": "ຖານຂໍ້ມູນຖືກລັອກ",
 	"enterlockreason": "ກະລຸນາຂຽນເຫດຜົນໃນການລັອກ, ລວມທັງປະມານເວລາທີ່ຈະປົດລັອກ",
 	"missingarticle-diff": "(ສ່ວນຕ່າງ: $1, $2)",

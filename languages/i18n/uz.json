@@ -294,7 +294,7 @@
 	"databaseerror-query": "So‘rov: $1",
 	"databaseerror-function": "Funktsiya: $1",
 	"databaseerror-error": "Xato: $1",
-	"laggedslavemode": "'''Diqqat:''' sahifada oxirgi yangilanishlar koʻrsatilmagan boʻlishi mumkin.",
+	"laggedreplicamode": "'''Diqqat:''' sahifada oxirgi yangilanishlar koʻrsatilmagan boʻlishi mumkin.",
 	"readonly": "Maʼlumotlar bazasiga yozish toʻsilgan",
 	"missingarticle-rev": "(versiya №: $1)",
 	"missingarticle-diff": "(Farq: $1, $2)",

@@ -376,7 +376,7 @@
 	"databaseerror-function": "함수: $1",
 	"databaseerror-error": "오류: $1",
 	"transaction-duration-limit-exceeded": "쓰기 시간($1)이 $2 초 제한을 초과하였으므로 이 트랜잭션은 중단되었습니다. 이는 높은 수준의 반복 지연을 피하기 위해서입니다.\n한 번에 수많은 항목을 변경하려면, 작업을 여러 작은 단위로 나누어 시도하십시오.",
-	"laggedslavemode": "<strong>경고:</strong> 문서가 최근에 바뀐 내용을 포함하지 않을 수도 있습니다.",
+	"laggedreplicamode": "<strong>경고:</strong> 문서가 최근에 바뀐 내용을 포함하지 않을 수도 있습니다.",
 	"readonly": "데이터베이스 잠김",
 	"enterlockreason": "데이터베이스를 잠그는 이유와 예상되는 기간을 적어 주세요.",
 	"readonlytext": "데이터베이스가 잠겨 있어서 문서를 편집할 수 없습니다. 데이터베이스 관리가 끝난 후에는 정상으로 돌아올 것입니다.\n\n시스템 관리자가 데이터베이스를 잠글 때 남긴 메시지는 다음과 같습니다: $1",

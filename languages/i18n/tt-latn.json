@@ -261,7 +261,7 @@
 	"databaseerror": "Mäğlümatlar bazasında xata",
 	"databaseerror-function": "Funktsiä: $1",
 	"databaseerror-error": "Xata: $1",
-	"laggedslavemode": "İğtibar: bittä soñğı yañartular kürsätelmägän bulırğa mömkin.",
+	"laggedreplicamode": "İğtibar: bittä soñğı yañartular kürsätelmägän bulırğa mömkin.",
 	"readonly": "Mäğlümatlar bazasına yazu yabılğan",
 	"enterlockreason": "Yabılu säbäben häm waqıtın kürsätegez.",
 	"readonlytext": "Mäğlümat bazası xäzerge waqıtta yaña bitlär yasawdan häm başqa üzgärtülärdän yabılğan. Bu planlaştırılğan xezmät kürsätü säbäple bulırğa mömkin.\nYabuçı operator tübändäge añlatmanı qaldırğan:\n$1",

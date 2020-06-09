@@ -308,7 +308,7 @@
 	"databaseerror-query": "Ufro: $1",
 	"databaseerror-function": "Funktioun: $1",
 	"databaseerror-error": "Feeler: $1",
-	"laggedslavemode": "'''Opgepasst:''' Dës Säit ass net onbedéngt um neiste Stand.",
+	"laggedreplicamode": "'''Opgepasst:''' Dës Säit ass net onbedéngt um neiste Stand.",
 	"readonly": "D'Datebank ass gespaart",
 	"enterlockreason": "Gitt wgl. e Grond u firwat d'Datebank gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",
 	"readonlytext": "D'Datebank ass elo fir all Ännerunge gespaart, warscheinlech wéinst Maintenance vun der Datebank, duerno ass erëm alles beim Alen.\n\nDe System-Administrateur, dee se gespaart huet, huet dës Erklärung uginn: $1",

@@ -295,7 +295,7 @@
 	"databaseerror-query": "Pirs: $1",
 	"databaseerror-function": "Fonksiyon: $1",
 	"databaseerror-error": "Çewtî:$1",
-	"laggedslavemode": "'''Zanibe:''' Dibe ku di vê rûpelê de rojanekirinên dawî nîn bin.",
+	"laggedreplicamode": "'''Zanibe:''' Dibe ku di vê rûpelê de rojanekirinên dawî nîn bin.",
 	"readonly": "Bingeha daneyan hatiye girtin",
 	"enterlockreason": "Sedemeke bestinê binivîse, herwiha demeke texmînkirî ji bo vebûna bestinê binivîse!",
 	"readonlytext": "Bingeha daneyên {{SITENAME}} ji bo guherandinan û gotarên nû hatiye girtin, paşê wê ew vegere halê xwe yê normal.\n\nSedema girtinê yê rêvebirê ku vê girtiye ev e: $1",

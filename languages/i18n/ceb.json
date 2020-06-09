@@ -248,7 +248,7 @@
 	"nospecialpagetext": "<strong>Mihangyo ikaw sa inbalidong espesyal nga panid.</strong>\n\nAng lista sa mga balidong espesyal nga mga panid makita sa [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Sayop",
 	"databaseerror": "Sayop sa database",
-	"laggedslavemode": "Pahibalo: Mahimong dili mahiapil sa panid ang mga bag-ong kausaban.",
+	"laggedreplicamode": "Pahibalo: Mahimong dili mahiapil sa panid ang mga bag-ong kausaban.",
 	"readonly": "Gitrangkahan ang database",
 	"enterlockreason": "Pagbutang og rason para sa lock, apil ang banabana kon kanus-a ma-release ang lock",
 	"readonlytext": "Kasamtangang naka-lock ang database sa mga bag-ong entrada ug uban pang modipikasyon, siguro tungod sa routine nga pag-meynteyn sa database, human niini mobalik na kini sa normal.\n\nAng tagdumala nga nag-lock niini mihatag niining eksplanasyon: $1",

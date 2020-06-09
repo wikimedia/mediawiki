@@ -315,7 +315,7 @@
 	"databaseerror-function": "Fonsion: $1",
 	"databaseerror-error": "Erô: $1",
 	"transaction-duration-limit-exceeded": "Pe evitâ un âto ritardo de replica, questa opiaçion a l'è stæta interotta perché a duata do tempo de scrittûa ($1) a l'ha superòu o limmite de $2 {{PLURAL:$2|segondo|segondi}}.\nSe t'ê apreuvo a cangiâ tante cöse inte 'na vòtta sôla, preuva invece a cangiâ pöche cöse in tante vòtte.",
-	"laggedslavemode": "'''Atension:''' a pagina a poriéva no riportâ i agiornamenti ciù recenti.",
+	"laggedreplicamode": "'''Atension:''' a pagina a poriéva no riportâ i agiornamenti ciù recenti.",
 	"readonly": "Database bloccòu",
 	"enterlockreason": "Scrivi o motivo do blòcco, e 'na stimma de quande o saiâ rimòsso",
 	"readonlytext": "Po-u momento o database o l'è bloccòu a-e neuve azonte e modifiche, fòscia pe 'na manutension ordenaia do database, doppo a quæ o saiâ torna accescibile.\n\nL'amministratô ch'o l'ha misso o blòcco o l'ha dæto sta spiegassion: $1",
