@@ -51,6 +51,7 @@ use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
+use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRenderer;
@@ -626,6 +627,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContentModelStore() : NameTableStore {
 		return $this->getService( 'ContentModelStore' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return ContributionsLookup
+	 */
+	public function getContributionsLookup() : ContributionsLookup {
+		return $this->getService( 'ContributionsLookup' );
 	}
 
 	/**

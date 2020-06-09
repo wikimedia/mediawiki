@@ -11,6 +11,7 @@
 	"rest-nonexistent-title": "The specified title ($1) does not exist",
 	"rest-nonexistent-title-revision": "The specified revision ($1) does not exist for the specified page ($2)",
 	"rest-nonexistent-revision": "The specified revision ($1) does not exist",
+	"rest-permission-denied-anon": "Not accessible by anonymous user",
 	"rest-permission-denied-title": "The user does not have rights to read title ($1)",
 	"rest-permission-denied-revision": "User doesn't have access to the requested revision ($1).",
 	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" and \"newer_than\" cannot both be specified",
