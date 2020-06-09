@@ -206,6 +206,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * @deprecated since 1.35 use Skin::getAfterPortlet directly
 	 * @param string $name
 	 */
 	protected function renderAfterPortlet( $name ) {
@@ -214,6 +215,8 @@ abstract class BaseTemplate extends QuickTemplate {
 
 	/**
 	 * Allows extensions to hook into known portlets and add stuff to them
+	 *
+	 * @deprecated since 1.35 use Skin::getAfterPortlet directly
 	 *
 	 * @param string $name
 	 *
@@ -224,6 +227,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		$html = '';
 		$content = '';
 		$this->getHookRunner()->onBaseTemplateAfterPortlet( $this, $name, $content );
+		$content .= $this->getSkin()->getAfterPortlet( $name );
 
 		if ( $content !== '' ) {
 			$html = Html::rawElement(

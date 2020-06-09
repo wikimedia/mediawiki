@@ -3094,6 +3094,11 @@ the text you're going to add.
 &$data: (string) Text to be printed out directly (without parsing)
 $skin: Skin object
 
+'SkinAfterPortlet': Allows injecting custom HTML after the portlet.
+$skin: Skin object
+$portlet: string portlet name
+&$html: string
+
 'SkinBuildSidebar': At the end of Skin::buildSidebar().
 $skin: Skin object
 &$bar: Sidebar contents

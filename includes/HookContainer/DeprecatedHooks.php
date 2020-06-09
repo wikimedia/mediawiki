@@ -44,6 +44,7 @@ class DeprecatedHooks {
 		'ArticleEditUpdatesDeleteFromRecentchanges' => [ 'deprecatedVersion' => '1.35' ],
 		'ArticleRevisionUndeleted' => [ 'deprecatedVersion' => '1.35' ],
 		'ArticleRollbackComplete' => [ 'deprecatedVersion' => '1.35' ],
+		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'BeforeParserrenderImageGallery' => [ 'deprecatedVersion' => '1.35' ],
 		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
 		'LinkBegin' => [ 'deprecatedVersion' => '1.28' ],
