@@ -24,7 +24,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-use MediaWiki\BadFileLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -2800,23 +2799,10 @@ function wfUnpack( $format, $data, $length = false ) {
  *
  * @param string $name The image name to check
  * @param Title|bool $contextTitle The page on which the image occurs, if known
- * @param string|null $blacklist Wikitext of a file blacklist
  * @return bool
  */
-function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
+function wfIsBadImage( $name, $contextTitle = false ) {
 	$services = MediaWikiServices::getInstance();
-	if ( $blacklist !== null ) {
-		wfDeprecated( __FUNCTION__ . ' with $blacklist parameter', '1.34' );
-		return ( new BadFileLookup(
-			function () use ( $blacklist ) {
-				return $blacklist;
-			},
-			$services->getLocalServerObjectCache(),
-			$services->getRepoGroup(),
-			$services->getTitleParser(),
-			$services->getHookContainer()
-		) )->isBadFile( $name, $contextTitle ?: null );
-	}
 	return $services->getBadFileLookup()->isBadFile( $name, $contextTitle ?: null );
 }
 

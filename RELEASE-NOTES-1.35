@@ -660,6 +660,7 @@ because of Phabricator reports.
 * The parameters to ChronologyProtector::getTouched() and
   ILBFactory::getChronologyProtectorTouched() were changed without backwards
   compatibility.
+* The deprecated $blacklist parameter to wfIsBadImage() has been removed.
 * …
 
 === Deprecations in 1.35 ===
