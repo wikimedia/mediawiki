@@ -808,7 +808,10 @@ abstract class UploadBase {
 		$warnings = [];
 
 		if ( $wgUploadSizeWarning && ( $fileSize > $wgUploadSizeWarning ) ) {
-			$warnings['large-file'] = [ $wgUploadSizeWarning, $fileSize ];
+			$warnings['large-file'] = [
+				Message::sizeParam( $wgUploadSizeWarning ),
+				Message::sizeParam( $fileSize ),
+			];
 		}
 
 		if ( $fileSize == 0 ) {
