@@ -2901,6 +2901,14 @@ $wgCdnMaxAge = 18000;
 $wgCdnMaxageLagged = 30;
 
 /**
+ * Cache timeout when delivering a stale ParserCache response due to PoolCounter
+ * contention.
+ *
+ * @since 1.35
+ */
+$wgCdnMaxageStale = 10;
+
+/**
  * Cache TTL for the user agent sent as max-age, for logged out users.
  * Only applies if $wgUseCdn is false.
  * @see $wgUseCdn

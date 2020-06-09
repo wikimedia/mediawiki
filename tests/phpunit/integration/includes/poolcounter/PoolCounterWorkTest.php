@@ -248,6 +248,6 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $worker->cacheable );
 		$this->assertFalse( $worker->getCachedWork() );
 		$this->assertFalse( $worker->error( Status::newFatal( 'apierror' ) ) );
-		$this->assertFalse( $worker->fallback() );
+		$this->assertFalse( $worker->fallback( false ) );
 	}
 }

@@ -24,11 +24,11 @@ class MockPoolCounterFailing extends PoolCounter {
 	public function __construct() {
 	}
 
-	public function acquireForMe() {
+	public function acquireForMe( $timeout = null ) {
 		return Status::newGood( PoolCounter::QUEUE_FULL );
 	}
 
-	public function acquireForAnyone() {
+	public function acquireForAnyone( $timeout = null ) {
 		return Status::newGood( PoolCounter::QUEUE_FULL );
 	}
 

@@ -622,7 +622,7 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUseFileCache;
+		global $wgUseFileCache, $wgCdnMaxageStale;
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -807,11 +807,14 @@ class Article implements Page {
 						$error = $poolArticleView->getError();
 						$this->mParserOutput = $poolArticleView->getParserOutput() ?: null;
 
-						# Don't cache a dirty ParserOutput object
+						# Cache stale ParserOutput object with a short expiry
 						if ( $poolArticleView->getIsDirty() ) {
-							$outputPage->setCdnMaxage( 0 );
+							$outputPage->setCdnMaxage( $wgCdnMaxageStale );
+							$outputPage->setLastModified( $this->mParserOutput->getCacheTime() );
+							$staleReason = $poolArticleView->getIsFastStale()
+								? 'pool contention' : 'pool overload';
 							$outputPage->addHTML( "<!-- parser cache is expired, " .
-								"sending anyway due to pool overload-->\n" );
+								"sending anyway due to $staleReason-->\n" );
 						}
 					} else {
 						$ok = false;
