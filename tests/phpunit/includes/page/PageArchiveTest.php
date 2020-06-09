@@ -364,8 +364,8 @@ class PageArchiveTest extends MediaWikiTestCase {
 		$user = $this->getTestUser()->getUser();
 		$status = $page->doEditContent( $content, 'testing', EDIT_NEW, false, $user );
 
-		/** @var Revision $newRev */
-		$newRev = $status->value['revision'];
+		/** @var RevisionRecord $newRevRecord */
+		$newRevRecord = $status->value['revision-record'];
 
 		// force the revision timestamp
 		$newTimestamp = wfTimestamp(
@@ -376,7 +376,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 		$this->db->update(
 			'revision',
 			[ 'rev_timestamp' => $this->db->timestamp( $newTimestamp ) ],
-			[ 'rev_id' => $newRev->getId() ]
+			[ 'rev_id' => $newRevRecord->getId() ]
 		);
 
 		// check that we don't get the existing revision too soon.
@@ -392,7 +392,7 @@ class PageArchiveTest extends MediaWikiTestCase {
 
 		$rev = $this->archivedPage->getPreviousRevision( $afterNewTimestamp );
 		$this->assertNotNull( $rev );
-		$this->assertSame( $newRev->getId(), $rev->getId() );
+		$this->assertSame( $newRevRecord->getId(), $rev->getId() );
 	}
 
 }

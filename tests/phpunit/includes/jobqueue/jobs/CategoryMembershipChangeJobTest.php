@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * @covers CategoryMembershipChangeJob
  *
@@ -48,11 +50,11 @@ class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
 			ContentHandler::makeContent( $text, $this->title ),
 			__METHOD__
 		);
-		/** @var Revision $revision */
-		$revision = $editResult->value['revision'];
+		/** @var RevisionRecord $revisionRecord */
+		$revisionRecord = $editResult->value['revision-record'];
 		$this->runJobs();
 
-		return $revision->getId();
+		return $revisionRecord->getId();
 	}
 
 	/**
