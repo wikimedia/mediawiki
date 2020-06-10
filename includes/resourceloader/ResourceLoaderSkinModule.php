@@ -99,7 +99,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-ordered-lists.less' ],
 		],
 		'i18n-all-lists-margins' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/i18n-lists.less' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/i18n-all-lists-margins.less' ],
 		],
 		'i18n-headings' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-headings.less' ],
