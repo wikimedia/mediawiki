@@ -445,6 +445,7 @@ class Sanitizer {
 			];
 
 			if ( $wgAllowImageTag ) {
+				wfDeprecated( 'Setting $wgAllowImageTag to true', '1.35' );
 				$htmlsingle[] = 'img';
 				$htmlsingleonly[] = 'img';
 			}
