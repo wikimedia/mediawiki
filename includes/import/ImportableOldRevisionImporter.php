@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -137,14 +138,25 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$revisionRecord->setMinorEdit( $importableRevision->getMinor() );
 		$revisionRecord->setPageId( $pageId );
 
-		$inserted = MediaWikiServices::getInstance()
-			->getRevisionStore()
-			->insertRevisionOn( $revisionRecord, $dbw );
+		$latestRevId = $page->getLatest();
 
-		$revObject = new Revision( $inserted );
-
-		// TODO WikiPage::updateIfNewerOn is deprecated
-		$changed = $page->updateIfNewerOn( $dbw, $revObject );
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$inserted = $revisionStore->insertRevisionOn( $revisionRecord, $dbw );
+		if ( $latestRevId ) {
+			// If not found (false), cast to 0 so that the page is updated
+			// Just to be on the safe side, even though it should always be found
+			$latestRevTimestamp = (int)$revisionStore->getTimestampFromId(
+				$latestRevId,
+				RevisionStore::READ_LATEST
+			);
+		} else {
+			$latestRevTimestamp = 0;
+		}
+		if ( $importableRevision->getTimestamp() > $latestRevTimestamp ) {
+			$changed = $page->updateRevisionOn( $dbw, $inserted, $latestRevId );
+		} else {
+			$changed = false;
+		}
 
 		$tags = $importableRevision->getTags();
 		if ( $tags !== [] ) {
@@ -154,7 +166,8 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		if ( $changed !== false && $this->doUpdates ) {
 			$this->logger->debug( __METHOD__ . ": running updates" );
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
-			// TODO WikiPgae::doEditUpdates is deprecated
+			// TODO WikiPage::doEditUpdates is deprecated
+			$revObject = new Revision( $inserted );
 			$page->doEditUpdates(
 				$revObject,
 				$user,
