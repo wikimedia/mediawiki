@@ -5,7 +5,7 @@ const supertest = require( 'supertest' );
 
 describe( 'POST /page', () => {
 	// NOTE: the /page/{title} endpoint (PageSourceHandler) has to go to v1 first!
-	const client = new REST( 'rest.php/coredev/v0' );
+	const client = new REST();
 	let mindy, anon, anonToken;
 
 	before( async () => {
@@ -58,7 +58,7 @@ describe( 'POST /page', () => {
 			assert.nestedProperty( header, 'location' );
 			const encodedTitle = encodeURI( title );
 			const normalizedLocation = header.location.replace( /\+/g, '%20' );
-			assert.match( normalizedLocation, new RegExp( `^https?://.*/coredev/v0/page/${encodedTitle}$` ) );
+			assert.match( normalizedLocation, new RegExp( `^https?://.*/v1/page/${encodedTitle}$` ) );
 			checkEditResponse( title, reqBody, editBody );
 
 			// follow redirect

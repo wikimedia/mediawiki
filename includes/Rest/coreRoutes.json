@@ -58,5 +58,103 @@
 			"SearchEngineConfig"
 		],
 		"mode": "completion"
+	},
+	{
+		"path": "/v1/page/{title}/links/language",
+		"class": "MediaWiki\\Rest\\Handler\\LanguageLinksHandler",
+		"services": [
+			"DBLoadBalancer",
+			"LanguageNameUtils",
+			"PermissionManager",
+			"TitleFormatter",
+			"TitleParser"
+		]
+	},
+	{
+		"path": "/v1/page/{title}",
+		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter"
+		]
+	},
+	{
+		"path": "/v1/page/{title}/bare",
+		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter",
+			"VirtualRESTServiceClient"
+		],
+		"format": "bare"
+	},
+	{
+		"path": "/v1/page/{title}/html",
+		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter",
+			"VirtualRESTServiceClient"
+		],
+		"format": "html"
+	},
+	{
+		"path": "/v1/page/{title}/with_html",
+		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter",
+			"VirtualRESTServiceClient"
+		],
+		"format": "with_html"
+	},
+	{
+		"path": "/v1/page/{title}/links/media",
+		"class": "MediaWiki\\Rest\\Handler\\MediaLinksHandler",
+		"services": [
+			"PermissionManager",
+			"DBLoadBalancer",
+			"RepoGroup"
+		]
+	},
+	{
+		"path": "/v1/file/{title}",
+		"class": "MediaWiki\\Rest\\Handler\\MediaFileHandler",
+		"services": [
+			"PermissionManager",
+			"RepoGroup"
+		]
+	},
+	{
+		"method": "PUT",
+		"path": "/v1/page/{title}",
+		"class": "MediaWiki\\Rest\\Handler\\UpdateHandler",
+		"services": [
+			"MainConfig",
+			"ContentHandlerFactory",
+			"TitleParser",
+			"TitleFormatter",
+			"RevisionStore"
+		]
+	},
+	{
+		"method": "POST",
+		"path": "/v1/page",
+		"class": "MediaWiki\\Rest\\Handler\\CreationHandler",
+		"services": [
+			"MainConfig",
+			"ContentHandlerFactory",
+			"TitleParser",
+			"TitleFormatter",
+			"RevisionStore"
+		]
 	}
 ]
