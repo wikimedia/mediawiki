@@ -2222,11 +2222,15 @@ class User implements IDBAccessObject, UserIdentity {
 	 *     rev: The last talk page revision that the user has seen or null. This
 	 *         is useful for building diff links.
 	 * If there are no new messages, it returns an empty array.
+	 *
+	 * @deprecated since 1.35
+	 *
 	 * @note This function was designed to accomodate multiple talk pages, but
 	 * currently only returns a single link and revision.
 	 * @return array[]
 	 */
 	public function getNewMessageLinks() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$talks = [];
 		if ( !$this->getHookRunner()->onUserRetrieveNewTalks( $this, $talks ) ) {
 			return $talks;
