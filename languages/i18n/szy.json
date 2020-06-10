@@ -4,6 +4,7 @@
 			"Akamycoco",
 			"Benel",
 			"Bunukwiki",
+			"DannyS712",
 			"Matma Rex",
 			"Tokoabibi",
 			"Xiplus"
@@ -680,7 +681,7 @@
 	"content-json-empty-object": "inayi’ay a tuutuud",
 	"content-json-empty-array": "inayi’ay a papazengan tu nisulitan",
 	"deprecated-self-close-category": "pisaungay la’cus Self-closed HTML aazihen-paya a kasabelih",
-	"deprecated-self-close-category-desc": "kasabelih yamalyilu la’cusay a Self-closed HTML aazihen-paya, tinaku <code>&lt;b/></code> or <code>&lt;span/></code>. uyniyay aazihen-paya a muse  amasumad malecad lalkuan nu HTML5，sisa wikitext a misaungay a pakayzaan mapasatezep tuway.",
+	"deprecated-self-close-category-desc": "kasabelih yamalyilu la’cusay a Self-closed HTML aazihen-paya, tinaku <code>&lt;b/></code> or <code>&lt;span/></code>. uyniyay aazihen-paya a muse amasumad malecad lalkuan nu HTML5，sisa wikitext a misaungay a pakayzaan mapasatezep tuway.",
 	"duplicate-args-warning": "<strong>patalaw:</strong> [[:$1]] miawza [[:$2]] a \"$3\" aazihen-sulyang pisaungay mangsiw tu cacay，pisaungay dada’ nipabeli sazikuzay a aazihen-sulyang sulyang.",
 	"duplicate-args-category": "anu taazihan-mitudung muawaw haw pisaungay misaliyaway a aazihen-sulyang a kasabelih",
 	"duplicate-args-category-desc": "kya kasabelih yamalyilu misaliyaw pisaungay aazihen-sulyang a taazihan mitudung miawza, tinaku <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> saca  <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

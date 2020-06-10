@@ -77,6 +77,7 @@
 	"tog-norollbackdiff": "Ne prikazuj razliku nakon izvršenog vraćanja",
 	"tog-useeditwarning": "Upozori me kad napuštam stranicu za izmjene bez sačuvanih promjena",
 	"tog-prefershttps": "Uvijek koristi sigurnu vezu dok sam prijavljen",
+	"tog-showrollbackconfirmation": "Zahtijevaj potvrdu za vraćanje izmjena",
 	"underline-always": "Uvijek",
 	"underline-never": "Nikad",
 	"underline-default": "Prema predodređenim postavkama teme ili preglednika",

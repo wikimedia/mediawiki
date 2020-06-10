@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DannyS712",
 			"Derbeth",
 			"Dundak",
 			"Fitoschido",
@@ -707,7 +708,7 @@
 	"unsupported-content-diff": "Přirunanje wersijow so za strony wobsahoweho modela $1 njepodpěruje.",
 	"unsupported-content-diff2": "Přirunanje wersijow mjez wobsahowymaj modelomaj $1 a $2 so na tutym wikiju njepodpěruje.",
 	"deprecated-self-close-category": "Strony, kotrež wužiwaja njepłaćiwe, sebi same začinjace HTML-elementy",
-	"deprecated-self-close-category-desc": "Tuta strona wobsahuje njepłaćiwe, sebi same začinjace HTML-elementy kaž  <code>&lt;b/></code> abo <code>&lt;span/></code>. Zadźerženje tutych elementow budźe so bórze změnić, zo by ze specifikaciju HTML5 konsistentne było, tak zo je jich wužiwanje we wikiteksće zastarske.",
+	"deprecated-self-close-category-desc": "Tuta strona wobsahuje njepłaćiwe, sebi same začinjace HTML-elementy kaž <code>&lt;b/></code> abo <code>&lt;span/></code>. Zadźerženje tutych elementow budźe so bórze změnić, zo by ze specifikaciju HTML5 konsistentne było, tak zo je jich wužiwanje we wikiteksće zastarske.",
 	"duplicate-args-warning": "<strong>Kedźbu:</strong> [[:$1]] woła [[:$2]] z wjace hač jednej hódnotu za parameter „$3“. Jeničce poslednja zapodata hódnota so wužiwa.",
 	"duplicate-args-category": "Strony, kotrež wužiwaja dwójne argumenty w zasadźenych předłohach",
 	"duplicate-args-category-desc": "Tuta strona wobsahuje zasadźene předłohi, kotrež wužiwaja duplikaty wěstych argumentow, tak kaž <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> abo <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

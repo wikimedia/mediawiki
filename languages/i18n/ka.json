@@ -1572,7 +1572,7 @@
 	"uploaded-script-svg": "ნაპოვნია \"$1\" ელემენტი ატვირთულ SVG ფაილში.",
 	"uploaded-hostile-svg": "ატვირთულ SVG-ფაილის style ელემენტში ნაპოვნია საფრთხის შემცვლელი CSS-ის კოდი.",
 	"uploaded-event-handler-on-svg": "event-handler ატრიბუტების <code>$1=\"$2\"</code> დანიშნვნა არ არის დაშვებული SVG ფაილებში.",
-	"uploaded-href-attribute-svg": "<a>ელემნტები შესაძლოა დაუკავშირდნენ (href) მონაცემებს: (embedded file), http://, https://, ან ფრანგემენტს (#, same-document). სხვა ელემენტებისათვის, როგორიცაა <image>, მხოლოდ მონაცემი: და ფრანგმენტი არის ნებადართული. სცადეთ გამოიყენოთ embedding images, როდესაც აკეთებთ თქვენი SVG-ის ექსპორტს.  ნაპოვნია <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-href-attribute-svg": "<a>ელემნტები შესაძლოა დაუკავშირდნენ (href) მონაცემებს: (embedded file), http://, https://, ან ფრანგემენტს (#, same-document). სხვა ელემენტებისათვის, როგორიცაა <image>, მხოლოდ მონაცემი: და ფრანგმენტი არის ნებადართული. სცადეთ გამოიყენოთ embedding images, როდესაც აკეთებთ თქვენი SVG-ის ექსპორტს. ნაპოვნია <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "ნაპოვნია href საშიშ მონაცემში: URI <code>&lt;$1 $2=\"$3\"&gt;</code> ატვირთულ SVG ფაილში.",
 	"uploaded-animate-svg": "ნაპოვნია \"animate\" ტეგი, რომელიც შესაძლოა ცვლის href-ს, \"from\" ატრიბუტის, <code>&lt;$1 $2=\"$3\"&gt;</code>, გამოყენებით ატვირთულ SVG ფაილში.",
 	"uploaded-setting-event-handler-svg": "event-handler ატრიბუტების დანიშვნა დაბლოკილია, ნაპოვნია <code>&lt;$1 $2=\"$3\"&gt;</code> ატვირთულ SVG ფაილში.",

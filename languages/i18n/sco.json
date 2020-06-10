@@ -723,7 +723,7 @@
 	"content-json-empty-array": "Emptie array",
 	"unsupported-content-model": "<strong>Wairnin:</strong> Content model $1 isna supportit on this wiki.",
 	"deprecated-self-close-category": "Pages uising invalid sel-closed HTML tags",
-	"deprecated-self-close-category-desc": "The page conteens invalid sel-closed HTML tags, sic as <code>&lt;b/></code> or <code>&lt;span/></code>.  The behavior o thir will cheenge suin tae be conseestent wi the HTML5 specification, sae thair uise in wikitext is deprecatit.",
+	"deprecated-self-close-category-desc": "The page conteens invalid sel-closed HTML tags, sic as <code>&lt;b/></code> or <code>&lt;span/></code>. The behavior o thir will cheenge suin tae be conseestent wi the HTML5 specification, sae thair uise in wikitext is deprecatit.",
 	"duplicate-args-warning": "<strong>Wairnin:</strong> [[:$1]] is cryin [[:$2]] wi mair nor ane vailyie for the \"$3\" parameter. Anerly the last value providit will be uised.",
 	"duplicate-args-category": "Pages uisin dupleecate arguments in template caws",
 	"duplicate-args-category-desc": "The page contains template caws that uise dupleecates o arguments, lik <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

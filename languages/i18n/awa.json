@@ -3,6 +3,7 @@
 		"authors": [
 			"1AnuraagPandey",
 			"1PandeyAnurag",
+			"Ajaywikia",
 			"Ajeetsinghawadh",
 			"Ajeetsinghawadhi",
 			"Amire80",
@@ -3621,7 +3622,7 @@
 	"limitreport-expensivefunctioncount-value": "$1/$2",
 	"limitreport-unstrip-depth": "Unstrip recursion depth",
 	"limitreport-unstrip-depth-value": "$1/$2",
-	"limitreport-unstrip-size": "Unstrip post-expand size",
+	"limitreport-unstrip-size": "Unstrip पोस्ट-एक्सपैंड साइज",
 	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|बाइट|बाइट्स}}",
 	"expandtemplates": "साँचा विस्तार",
 	"expand_templates_intro": "यह विशेष पृष्ठ पाठ इनपुट लेता है और सभी साँचों को विस्तृत करता है।\nयह <code><nowiki>{{</nowiki>#language:…}}</code> जैसे पार्सर फंक्शनों और\n<code><nowiki>{{</nowiki>CURRENTDAY}}</code> जैसे वेरियेबलों को भी विस्तृत करता है।\nयह दोहरे कोष्ठकों में दिया लगभग सब कुछ विस्तृत करता है।",

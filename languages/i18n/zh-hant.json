@@ -415,7 +415,7 @@
 	"missing-article": "資料庫查無預期的頁面文字，名稱為 \"$1\" $2。\n\n通常是因您連結到了已被刪除的差異或歷史頁面。\n\n若您所遇到的不是這個情況，您可能是發現軟體問題。\n請記錄 URL 位址，並向 [[Special:ListUsers/sysop|管理員]] 回報此問題。",
 	"missingarticle-rev": "(修訂#：$1)",
 	"missingarticle-diff": "(差異：$1, $2)",
-	"readonly_lag": "資料庫已自動鎖定，正在等候次要資料庫同步資料到主要資料庫",
+	"readonly_lag": "資料庫已自動鎖定，複寫資料庫正與主要資料庫同步",
 	"nonwrite-api-promise-error": "非寫入 API 動作 'Promise-Non-Write-API-Action' HTTP 標頭已送出但請求被送至 API 寫入模組。",
 	"internalerror": "內部錯誤",
 	"internalerror_info": "內部錯誤：$1",

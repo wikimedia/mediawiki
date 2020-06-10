@@ -321,7 +321,7 @@
 	"missing-article": "'U database non ge iacchije 'u teste de 'na pàgene ca avesse acchià, nnomenete \"$1\" $2.\n\nStu fatte pò succedere quanne le collegaminde 'mbrà le differenze o le cunde non ge sonde aggiornete sus a 'na pàgene ca ha state scangellete.\n\nCe quiste non g'è 'u case, tu pò essere ca è 'cchiate 'nu bochere jndr'à 'u software.\nPe piacere manne 'na comunicazzione a 'n'[[Special:ListUsers/sysop|amministratore]], mettène jndr'à note pure l'URL.",
 	"missingarticle-rev": "(versione#: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",
-	"readonly_lag": "'U database ha state automaticamende blocchete purcè le server de le database ca depennene da 'u master onne sciute in eccezzione",
+	"readonly_lag": "'U database ha state automaticamende bloccate purcè le server de le database de repliche ca depennene da 'u master onne sciute in eccezzione",
 	"nonwrite-api-promise-error": "Ha state mannate a 'ndestazione HTTP 'Promise-Non-Write-API-Action', ma 'a richieste ere de 'nu module API de scritture.",
 	"internalerror": "Errore inderne",
 	"internalerror_info": "Errore inderne: $1",
