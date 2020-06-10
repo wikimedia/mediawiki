@@ -978,69 +978,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Only remaining use is in McrRevisionStoreDbTest
-	 *
-	 * TODO replace the use in McrRevisionStoreDbTest and remove
-	 */
-	protected function assertRevisionRecordMatchesRevision(
-		Revision $rev,
-		RevisionRecord $record
-	) {
-		$this->hideDeprecated( 'Revision::getSha1' );
-		$this->hideDeprecated( 'Revision::getUserText' );
-		$this->hideDeprecated( 'Revision::isMinor' );
-		$this->hideDeprecated( 'Revision::getParentId' );
-		$this->hideDeprecated( 'Revision::getVisibility' );
-		$this->hideDeprecated( 'Revision::getContentFormat' );
-		$this->hideDeprecated( 'Revision::getContentHandler' );
-		$this->hideDeprecated( 'Revision::getContentModel' );
-
-		$this->assertSame( $rev->getId(), $record->getId() );
-		$this->assertSame( $rev->getPage(), $record->getPageId() );
-		$this->assertSame( $rev->getTimestamp(), $record->getTimestamp() );
-		$this->assertSame( $rev->getUserText(), $record->getUser()->getName() );
-		$this->assertSame( $rev->getUser(), $record->getUser()->getId() );
-		$this->assertSame( $rev->isMinor(), $record->isMinor() );
-		$this->assertSame( $rev->getVisibility(), $record->getVisibility() );
-		$this->assertSame( $rev->getSize(), $record->getSize() );
-		/**
-		 * @note As of MW 1.31, the database schema allows the parent ID to be
-		 * NULL to indicate that it is unknown.
-		 */
-		$expectedParent = $rev->getParentId();
-		if ( $expectedParent === null ) {
-			$expectedParent = 0;
-		}
-		$this->assertSame( $expectedParent, $record->getParentId() );
-		$this->assertSame( $rev->getSha1(), $record->getSha1() );
-		$this->assertSame( $rev->getComment(), $record->getComment()->text );
-		$this->assertSame( $rev->getContentFormat(),
-			$record->getContent( SlotRecord::MAIN )->getDefaultFormat() );
-		$this->assertSame( $rev->getContentModel(), $record->getContent( SlotRecord::MAIN )->getModel() );
-		$this->assertLinkTargetsEqual( $rev->getTitle(), $record->getPageAsLinkTarget() );
-
-		$revRec = $rev->getRevisionRecord();
-		$revMain = $revRec->getSlot( SlotRecord::MAIN );
-		$recMain = $record->getSlot( SlotRecord::MAIN );
-
-		$this->assertSame( $revMain->hasOrigin(), $recMain->hasOrigin(), 'hasOrigin' );
-		$this->assertSame( $revMain->hasAddress(), $recMain->hasAddress(), 'hasAddress' );
-		$this->assertSame( $revMain->hasContentId(), $recMain->hasContentId(), 'hasContentId' );
-
-		if ( $revMain->hasOrigin() ) {
-			$this->assertSame( $revMain->getOrigin(), $recMain->getOrigin(), 'getOrigin' );
-		}
-
-		if ( $revMain->hasAddress() ) {
-			$this->assertSame( $revMain->getAddress(), $recMain->getAddress(), 'getAddress' );
-		}
-
-		if ( $revMain->hasContentId() ) {
-			$this->assertSame( $revMain->getContentId(), $recMain->getContentId(), 'getContentId' );
-		}
-	}
-
-	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
 	 */
