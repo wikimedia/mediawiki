@@ -86,15 +86,18 @@ class ApiRollback extends ApiBase {
 		// Watch pages
 		$this->setWatch( $watch, $titleObj, 'watchrollback' );
 
+		$currentRevisionRecord = $details['current']->getRevisionRecord();
+		$targetRevisionRecord = $details['target']->getRevisionRecord();
+
 		$info = [
 			'title' => $titleObj->getPrefixedText(),
-			'pageid' => (int)$details['current']->getPage(),
+			'pageid' => $currentRevisionRecord->getPageId(),
 			'summary' => $details['summary'],
 			'revid' => (int)$details['newid'],
 			// The revision being reverted (previously the current revision of the page)
-			'old_revid' => (int)$details['current']->getID(),
+			'old_revid' => $currentRevisionRecord->getID(),
 			// The revision being restored (the last revision before revision(s) by the reverted user)
-			'last_revid' => (int)$details['target']->getID()
+			'last_revid' => $targetRevisionRecord->getID()
 		];
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $info );
