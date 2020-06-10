@@ -657,8 +657,9 @@ class Sanitizer {
 	 *
 	 * @param array $attribs
 	 * @param array $allowed List of allowed attribute names,
-	 *   either as a sequential array of valid attribute names or
 	 *   as an associative array where keys give valid attribute names
+	 *   (since 1.34).  Before 1.35, passing a sequential array of
+	 *   valid attribute names was permitted but that is now deprecated.
 	 * @return array
 	 *
 	 * @todo Check for legal values where the DTD limits things.
@@ -666,9 +667,9 @@ class Sanitizer {
 	 */
 	public static function validateAttributes( $attribs, $allowed ) {
 		if ( isset( $allowed[0] ) ) {
-			// We would like to eventually deprecate calling this
-			// function with a sequential array, but for now just
-			// convert it.
+			// Calling this function with a sequential array is
+			// deprecated.  For now just convert it.
+			wfDeprecated( __METHOD__ . ' with sequential array', '1.35' );
 			$allowed = array_flip( $allowed );
 		}
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
