@@ -957,7 +957,7 @@ because of Phabricator reports.
   RevisionRecord object; passing a Revision is hard deprecated.
 * User::updateNewtalk now accepts as its optional third parameter a
   RevisionRecord object; passing a Revision is hard deprecated.
-* User::getNewMessageRevisionId was hard deprecated.
+* User::getNewMessageRevisionId and ::getNewMessageLinks were hard deprecated.
 * DifferenceEngine::getRevisionHeader now accepts a RevisionRecord as its
   first parameter; passing a Revision is hard deprecated.
 * WikiPage::doDeleteUpdates now accepts as its optional third parameter

@@ -2768,6 +2768,7 @@ class UserTest extends MediaWikiTestCase {
 	 * @covers User::getNewMessageRevisionId
 	 */
 	public function testGetNewMessageLinks() {
+		$this->hideDeprecated( 'User::getNewMessageLinks' );
 		$this->hideDeprecated( 'User::getNewMessageRevisionId' );
 
 		$user = $this->getTestUser()->getUser();
