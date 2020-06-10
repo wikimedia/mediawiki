@@ -205,8 +205,11 @@ class ParserOptions {
 	 * Allow all external images inline?
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
+	 * @deprecated since 1.35; per-parser configuration of image handling via
+	 * parser options is deprecated. Use site configuration.
 	 */
 	public function setAllowExternalImages( $x ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->setOptionLegacy( 'allowExternalImages', $x );
 	}
 
@@ -228,8 +231,11 @@ class ParserOptions {
 	 *
 	 * @param string|string[]|null $x New value (null is no change)
 	 * @return string|string[] Old value
+	 * @deprecated since 1.35; per-parser configuration of image handling via
+	 * parser options is deprecated. Use site configuration.
 	 */
 	public function setAllowExternalImagesFrom( $x ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->setOptionLegacy( 'allowExternalImagesFrom', $x );
 	}
 
@@ -245,8 +251,11 @@ class ParserOptions {
 	 * Use the on-wiki external image whitelist?
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
+	 * @deprecated since 1.35; per-parser configuration of image handling via
+	 * parser options is deprecated. Use site configuration.
 	 */
 	public function setEnableImageWhitelist( $x ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->setOptionLegacy( 'enableImageWhitelist', $x );
 	}
 
