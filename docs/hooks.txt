@@ -2540,6 +2540,15 @@ the key.
 $user: User (object) requesting the page
 &$forOptions: array of options the hash is for
 
+'PageMoveComplete': After moving an article (title), post-commit.
+$old: LinkTarget for the old title
+$nt: LinkTarget for the new title
+$user: UserIdentity for the user who did the move
+$pageid: database ID of the page that's been moved
+$redirid: database ID of the created redirect
+$reason: reason for the move
+$revisionRecord: the RevisionRecord created by the move
+
 'PageViewUpdates': Allow database (or other) changes to be made after a
 page view is seen by MediaWiki.  Note this does not capture views made
 via external caches such as Squid.
@@ -3505,7 +3514,8 @@ $old: old title
 $nt: new title
 $user: user who does the move
 
-'TitleMoveComplete': After moving an article (title), post-commit.
+'TitleMoveComplete': DEPRECATED since 1.35! Use PageMoveComplete
+After moving an article (title), post-commit.
 [&]$old: old title
 [&]$nt: new title
 [&]$user: user who did the move
@@ -3514,7 +3524,8 @@ $redirid: database ID of the created redirect
 $reason: reason for the move
 $revision: the Revision created by the move
 
-'TitleMoveCompleting': After moving an article (title), pre-commit.
+'TitleMoveCompleting': DEPRECATED since 1.35! Use PageMoveComplete
+After moving an article (title), pre-commit.
 $old: old title
 $nt: new title
 $user: user who did the move

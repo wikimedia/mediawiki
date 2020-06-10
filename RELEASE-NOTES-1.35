@@ -857,6 +857,8 @@ because of Phabricator reports.
   new RevisionUndeleted hook instead.
 * The NewRevisionFromEditComplete hook has been hard deprecated. Please use
   the new RevisionFromEditComplete hook instead.
+* The TitleMoveCompleting and TitleMoveComplete hooks have been soft deprecated.
+  Please use the new PageMoveComplete hook instead.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
 * The SquidPurgeClient and SquidPurgeClientPool classes have been deprecated.
