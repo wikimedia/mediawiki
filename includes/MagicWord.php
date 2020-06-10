@@ -49,7 +49,10 @@ use MediaWiki\MediaWikiServices;
  * ];
  * @endcode
  *
- * For magic words which are also Parser variables, add a MagicWordwgVariableIDs
+ * For magic words which name Parser double underscore names, add a
+ * GetDoubleUnderscoreIDs hook. Use string keys.
+ *
+ * For magic words which name Parser magic variables, add a GetMagicVariableIDs
  * hook. Use string keys.
  *
  * @ingroup Parser

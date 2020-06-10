@@ -182,6 +182,7 @@ class HookRunner implements
 	\MediaWiki\Hook\GetLocalURL__ArticleHook,
 	\MediaWiki\Hook\GetLocalURL__InternalHook,
 	\MediaWiki\Hook\GetLogTypesOnUserHook,
+	\MediaWiki\Hook\GetMagicVariableIDsHook,
 	\MediaWiki\Hook\GetMetadataVersionHook,
 	\MediaWiki\Hook\GetNewMessagesAlertHook,
 	\MediaWiki\Hook\GetRelativeTimestampHook,
@@ -1910,6 +1911,13 @@ class HookRunner implements
 		return $this->container->run(
 			'GetLogTypesOnUser',
 			[ &$types ]
+		);
+	}
+
+	public function onGetMagicVariableIDs( &$variableIDs ) {
+		return $this->container->run(
+			'GetMagicVariableIDs',
+			[ &$variableIDs ]
 		);
 	}
 
