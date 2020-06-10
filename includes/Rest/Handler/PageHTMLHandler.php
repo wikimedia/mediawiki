@@ -19,7 +19,6 @@ use UIDGenerator;
 use VirtualRESTServiceClient;
 use WebRequest;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A handler that returns Parsoid HTML for the following routes:
@@ -126,11 +125,10 @@ class PageHTMLHandler extends LatestPageContentHandler {
 
 	/**
 	 * @param string $title
-	 * @param string $htmlType
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
-	public function run( string $title, string $htmlType ): Response {
+	public function run( string $title ): Response {
 		$titleObj = $this->getTitle();
 		if ( !$titleObj || !$titleObj->getArticleID() ) {
 			throw new LocalizedHttpException(
@@ -154,6 +152,7 @@ class PageHTMLHandler extends LatestPageContentHandler {
 			);
 		}
 
+		$htmlType = $this->getHtmlType();
 		switch ( $htmlType ) {
 			case 'bare':
 				$body = $this->constructMetadata( $titleObj, $revision );
@@ -192,8 +191,7 @@ class PageHTMLHandler extends LatestPageContentHandler {
 		if ( !$title || !$title->getArticleID() || !$this->isAccessible( $title ) ) {
 			return null;
 		}
-
-		if ( $this->getValidatedParams()['html_type'] === 'bare' ) {
+		if ( $this->getHtmlType() === 'bare' ) {
 			return '"' . $this->getLatestRevision()->getId() . '"';
 		}
 
@@ -211,7 +209,7 @@ class PageHTMLHandler extends LatestPageContentHandler {
 			return null;
 		}
 
-		if ( $this->getValidatedParams()['html_type'] === 'bare' ) {
+		if ( $this->getHtmlType() === 'bare' ) {
 			return $this->getLatestRevision()->getTimestamp();
 		}
 
@@ -231,13 +229,7 @@ class PageHTMLHandler extends LatestPageContentHandler {
 		return UIDGenerator::getTimestampFromUUIDv1( $etagComponents[1] ) ?: null;
 	}
 
-	public function getParamSettings(): array {
-		$parentSettings = parent::getParamSettings();
-		$parentSettings['html_type'] = [
-			self::PARAM_SOURCE => 'path',
-			ParamValidator::PARAM_TYPE => [ 'bare', 'html', 'with_html' ],
-			ParamValidator::PARAM_REQUIRED => true,
-		];
-		return $parentSettings;
+	private function getHtmlType(): string {
+		return $this->getConfig()['format'];
 	}
 }
