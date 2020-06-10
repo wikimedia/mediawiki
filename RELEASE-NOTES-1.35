@@ -905,7 +905,6 @@ because of Phabricator reports.
   user is passed, they fallback to $wgUser. Not passing a user when
   one is needed is deprecated
   - LogEventsList::getExcludeClause
-  - Revision::getComment
   - Revision::getUser
   - WikiPage::getComment
   - WikiPage::getCreator
@@ -957,7 +956,7 @@ because of Phabricator reports.
   RevisionRecord object; passing a Revision is hard deprecated.
 * User::updateNewtalk now accepts as its optional third parameter a
   RevisionRecord object; passing a Revision is hard deprecated.
-* User::getNewMessageRevisionId was hard deprecated.
+* User::getNewMessageRevisionId and ::getNewMessageLinks were hard deprecated.
 * DifferenceEngine::getRevisionHeader now accepts a RevisionRecord as its
   first parameter; passing a Revision is hard deprecated.
 * WikiPage::doDeleteUpdates now accepts as its optional third parameter
@@ -995,7 +994,9 @@ because of Phabricator reports.
   - ::setUserIdAndName - use MutableRevisionRecord::setUser instead
   - ::setId - use MutableRevisionRecord::setId instead
   - ::getRecentChange - use RevisionStore::getRecentChange instead
+  - ::getPage - use RevisionRecord::getPageId instead
   - ::getUserText - use RevisionRecord::getUser and then User::getName instead
+  - ::getComment - use RevisionRecord::getComment instead
   - ::isMinor - use RevisionRecord::isMinor instead
   - ::isCurrent - use RevisionRecord::isCurrent instead
   - ::getContent - use RevisionRecord::getContent instead
@@ -1053,7 +1054,7 @@ because of Phabricator reports.
 * LESS `.background-image-svg-quick()` mixin from 'mediawiki.mixins.less' is
   deprecated and should be removed in 1.36.
 * The following methods were deprecated:
-  - Title::getFirstRevision
+  - Title::getFirstRevision (hard deprecated)
   - Title::getEarliestRevTime
   - WikiPage::getOldestRevision (hard deprecated)
   - Article::getOldestRevision (hard deprecated)

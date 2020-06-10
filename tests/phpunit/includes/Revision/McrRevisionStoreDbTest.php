@@ -301,13 +301,12 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 			false,
 			$this->getTestUser()->getUser()
 		)->value['revision-record'];
-		$revObj1 = new Revision( $revRecord1 );
 
-		$invalidRow = $this->revisionToRow( $revObj1 );
+		$invalidRow = $this->revisionRecordToRow( $revRecord1 );
 		$invalidRow->rev_id = 100500;
 		$result = MediaWikiServices::getInstance()->getRevisionStore()
 			->newRevisionsFromBatch(
-				[ $this->revisionToRow( $revObj1 ), $invalidRow ],
+				[ $this->revisionRecordToRow( $revRecord1 ), $invalidRow ],
 				[
 					'slots' => [ SlotRecord::MAIN ],
 					'content' => true
@@ -316,7 +315,7 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$this->assertFalse( $result->isGood() );
 		$this->assertNotEmpty( $result->getErrors() );
 		$records = $result->getValue();
-		$this->assertRevisionRecordMatchesRevision( $revObj1, $records[$revRecord1->getId()] );
+		$this->assertRevisionRecordsEqual( $revRecord1, $records[$revRecord1->getId()] );
 		$this->assertSame( $text . '1',
 			$records[$revRecord1->getId()]->getContent( SlotRecord::MAIN )->serialize() );
 		$this->assertEquals( $page->getTitle()->getDBkey(),

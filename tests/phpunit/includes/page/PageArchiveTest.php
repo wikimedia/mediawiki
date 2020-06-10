@@ -317,6 +317,8 @@ class PageArchiveTest extends MediaWikiTestCase {
 	 * @covers PageArchive::getRevision
 	 */
 	public function testGetRevision() {
+		$this->hideDeprecated( 'Revision::getPage' );
+
 		$rev = $this->archivedPage->getRevision( $this->ipRev->getTimestamp() );
 		$this->assertNotNull( $rev );
 		$this->assertSame( $this->pageId, $rev->getPage() );
@@ -329,7 +331,9 @@ class PageArchiveTest extends MediaWikiTestCase {
 	 * @covers PageArchive::getRevision
 	 */
 	public function testGetArchivedRevision() {
+		$this->hideDeprecated( 'Revision::getPage' );
 		$this->hideDeprecated( 'PageArchive::getArchivedRevision' );
+
 		$rev = $this->archivedPage->getArchivedRevision( $this->ipRev->getId() );
 		$this->assertNotNull( $rev );
 		$this->assertSame( $this->ipRev->getTimestamp(), $rev->getTimestamp() );

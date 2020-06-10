@@ -1875,6 +1875,7 @@ more stuff
 		$reason,
 		$expectedComment
 	) {
+		$this->hideDeprecated( 'Revision::getComment' );
 		$this->hideDeprecated( 'WikiPage::insertProtectNullRevision' );
 		$this->setContentLang( 'qqx' );
 
