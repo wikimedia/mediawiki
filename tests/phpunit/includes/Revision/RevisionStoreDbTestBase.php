@@ -872,6 +872,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->hideDeprecated( 'Revision::getVisibility' );
 		$this->hideDeprecated( 'Revision::getPage' );
 		$this->hideDeprecated( 'Revision::getComment' );
+		$this->hideDeprecated( 'Revision::getSize' );
 
 		// XXX: the WikiPage object loads another RevisionRecord from the database. Not great.
 		$page = WikiPage::factory( $rev->getTitle() );

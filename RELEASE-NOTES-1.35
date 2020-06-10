@@ -997,6 +997,7 @@ because of Phabricator reports.
   - ::getPage - use RevisionRecord::getPageId instead
   - ::getUserText - use RevisionRecord::getUser and then User::getName instead
   - ::getComment - use RevisionRecord::getComment instead
+  - ::getSize - use RevisionRecord::getSize instead
   - ::isMinor - use RevisionRecord::isMinor instead
   - ::isCurrent - use RevisionRecord::isCurrent instead
   - ::getContent - use RevisionRecord::getContent instead

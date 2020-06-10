@@ -1141,6 +1141,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetSize
 	 */
 	public function testGetSize( $text, $model, $expected_size ) {
+		$this->hideDeprecated( 'Revision::getSize' );
+
 		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSize', $model );
 		$this->assertEquals( $expected_size, $rev->getSize() );
 	}

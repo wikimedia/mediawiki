@@ -545,9 +545,12 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the length of the text in this revision, or null if unknown.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @return int|null
 	 */
 	public function getSize() {
+		wfDeprecated( __METHOD__, '1.31' );
 		try {
 			return $this->mRecord->getSize();
 		} catch ( RevisionAccessException $ex ) {
