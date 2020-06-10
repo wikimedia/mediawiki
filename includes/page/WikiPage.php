@@ -1502,16 +1502,21 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function updateIfNewerOn( $dbw, $revision ) {
+		$revisionRecord = $revision->getRevisionRecord();
+
 		$row = $dbw->selectRow(
 			[ 'revision', 'page' ],
 			[ 'rev_id', 'rev_timestamp', 'page_is_redirect' ],
 			[
 				'page_id' => $this->getId(),
-				'page_latest=rev_id' ],
-			__METHOD__ );
+				'page_latest=rev_id'
+			],
+			__METHOD__
+		);
 
 		if ( $row ) {
-			if ( MWTimestamp::convert( TS_MW, $row->rev_timestamp ) >= $revision->getTimestamp() ) {
+			$rowTimestamp = MWTimestamp::convert( TS_MW, $row->rev_timestamp );
+			if ( $rowTimestamp >= $revisionRecord->getTimestamp() ) {
 				return false;
 			}
 			$prev = $row->rev_id;
@@ -1524,7 +1529,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$ret = $this->updateRevisionOn(
 			$dbw,
-			$revision->getRevisionRecord(),
+			$revisionRecord,
 			$prev,
 			$lastRevIsRedirect
 		);
