@@ -39,17 +39,17 @@ class ApiParseTest extends ApiTestCase {
 		$title = Title::newFromText( __CLASS__ );
 
 		$status = $this->editPage( __CLASS__, 'Test for revdel' );
-		self::$pageId = $status->value['revision']->getPage();
-		self::$revIds['revdel'] = $status->value['revision']->getId();
+		self::$pageId = $status->value['revision-record']->getPageId();
+		self::$revIds['revdel'] = $status->value['revision-record']->getId();
 
 		$status = $this->editPage( __CLASS__, 'Test for suppressed' );
-		self::$revIds['suppressed'] = $status->value['revision']->getId();
+		self::$revIds['suppressed'] = $status->value['revision-record']->getId();
 
 		$status = $this->editPage( __CLASS__, 'Test for oldid' );
-		self::$revIds['oldid'] = $status->value['revision']->getId();
+		self::$revIds['oldid'] = $status->value['revision-record']->getId();
 
 		$status = $this->editPage( __CLASS__, 'Test for latest' );
-		self::$revIds['latest'] = $status->value['revision']->getId();
+		self::$revIds['latest'] = $status->value['revision-record']->getId();
 
 		$this->revisionDelete( self::$revIds['revdel'] );
 		$this->revisionDelete(
@@ -295,10 +295,10 @@ class ApiParseTest extends ApiTestCase {
 
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
-			"Missing content for page ID {$status->value['revision']->getPage()}."
+			"Missing content for page ID {$status->value['revision-record']->getPageId()}."
 		);
 
-		$this->db->delete( 'revision', [ 'rev_id' => $status->value['revision']->getId() ] );
+		$this->db->delete( 'revision', [ 'rev_id' => $status->value['revision-record']->getId() ] );
 
 		// Suppress warning in WikiPage::getContentModel
 		Wikimedia\suppressWarnings();
@@ -372,7 +372,8 @@ class ApiParseTest extends ApiTestCase {
 	public function testFollowedRedirectById() {
 		$name = ucfirst( __FUNCTION__ );
 
-		$id = $this->editPage( $name, "#REDIRECT [[$name 2]]" )->value['revision']->getPage();
+		$id = $this->editPage( $name, "#REDIRECT [[$name 2]]" )
+			->value['revision-record']->getPageId();
 		$this->editPage( "$name 2", "Some ''text''" );
 
 		$res = $this->doApiRequest( [
@@ -401,7 +402,7 @@ class ApiParseTest extends ApiTestCase {
 	public function testNonRedirectByIdOk() {
 		$name = ucfirst( __FUNCTION__ );
 
-		$id = $this->editPage( $name, "Some ''text''" )->value['revision']->getPage();
+		$id = $this->editPage( $name, "Some ''text''" )->value['revision-record']->getPageId();
 
 		$res = $this->doApiRequest( [
 			'action' => 'parse',
