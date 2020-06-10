@@ -2782,18 +2782,18 @@ class UserTest extends MediaWikiTestCase {
 
 		$status = $this->editPage( $userTalk->getPrefixedText(), 'Message one' );
 		$this->assertTrue( $status->isGood(), 'Sanity: create revision 1 of user talk' );
-		/** @var Revision $firstRev */
-		$firstRev = $status->getValue()['revision'];
+		/** @var RevisionRecord $firstRevRecord */
+		$firstRevRecord = $status->getValue()['revision-record'];
 		$status = $this->editPage( $userTalk->getPrefixedText(), 'Message two' );
 		$this->assertTrue( $status->isGood(), 'Sanity: create revision 2 of user talk' );
-		/** @var Revision $secondRev */
-		$secondRev = $status->getValue()['revision'];
+		/** @var RevisionRecord $secondRevRecord */
+		$secondRevRecord = $status->getValue()['revision-record'];
 
-		$user->setNewtalk( true, $secondRev->getRevisionRecord() );
+		$user->setNewtalk( true, $secondRevRecord );
 		$links = $user->getNewMessageLinks();
 		$this->assertTrue( count( $links ) > 0, 'Must have new message links' );
 		$this->assertSame( $userTalk->getLocalURL(), $links[0]['link'] );
-		$this->assertSame( $firstRev->getId(), $links[0]['rev']->getId() );
-		$this->assertSame( $firstRev->getId(), $user->getNewMessageRevisionId() );
+		$this->assertSame( $firstRevRecord->getId(), $links[0]['rev']->getId() );
+		$this->assertSame( $firstRevRecord->getId(), $user->getNewMessageRevisionId() );
 	}
 }
