@@ -227,6 +227,7 @@ class RevisionTest extends MediaWikiTestCase {
 				$testCase->hideDeprecated( 'Revision::getPage' );
 				$testCase->hideDeprecated( 'Revision::getComment' );
 				$testCase->hideDeprecated( 'Revision::getSize' );
+				$testCase->hideDeprecated( 'Revision::getTimestamp' );
 
 				$testCase->assertSame( 42, $rev->getId() );
 				$testCase->assertSame( 23, $rev->getPage() );
@@ -260,6 +261,7 @@ class RevisionTest extends MediaWikiTestCase {
 				$testCase->hideDeprecated( 'Revision::getParentId' );
 				$testCase->hideDeprecated( 'Revision::getVisibility' );
 				$testCase->hideDeprecated( 'Revision::getComment' );
+				$testCase->hideDeprecated( 'Revision::getTimestamp' );
 
 				// parent ID may be null
 				$testCase->assertSame( null, $rev->getParentId(), 'revision id' );
@@ -464,6 +466,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->hideDeprecated( 'Revision::getParentId' );
 		$this->hideDeprecated( 'Revision::getComment' );
 		$this->hideDeprecated( 'Revision::getSize' );
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTitle' );
 
 		$title = $this->getMockTitle();

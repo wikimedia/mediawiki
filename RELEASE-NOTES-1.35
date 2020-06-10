@@ -1000,6 +1000,7 @@ because of Phabricator reports.
   - ::getSize - use RevisionRecord::getSize instead
   - ::isMinor - use RevisionRecord::isMinor instead
   - ::isCurrent - use RevisionRecord::isCurrent instead
+  - ::getTimestamp - use RevisionRecord::getTimestamp instead
   - ::getContent - use RevisionRecord::getContent instead
   - ::getContentModel - use SlotRecord::getModel instead
   - ::getContentFormat - use SlotRecord::getFormat instead, with a fallback

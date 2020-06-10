@@ -869,9 +869,12 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @return string
 	 */
 	public function getTimestamp() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mRecord->getTimestamp();
 	}
 

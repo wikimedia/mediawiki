@@ -1964,7 +1964,9 @@ more stuff
 	 * @covers WikiPage::updateIfNewerOn
 	 */
 	public function testUpdateIfNewerOn_olderRevision() {
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
 		$initialRevision = $page->getRevision();
@@ -1999,7 +2001,9 @@ more stuff
 	 * @covers WikiPage::updateIfNewerOn
 	 */
 	public function testUpdateIfNewerOn_newerRevision() {
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
 		$initialRevision = $page->getRevision();
