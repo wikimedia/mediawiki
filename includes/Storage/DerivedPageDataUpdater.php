@@ -1434,7 +1434,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 
 		$legacyUser = User::newFromIdentity( $this->user );
-		$legacyRevision = new Revision( $this->revision );
 
 		$userParserOptions = ParserOptions::newFromUser( $legacyUser );
 		// Decide whether to save the final canonical parser ouput based on the fact that

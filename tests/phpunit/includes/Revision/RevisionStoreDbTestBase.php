@@ -413,7 +413,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	}
 
 	protected function assertRevisionExistsInDatabase( RevisionRecord $rev ) {
-		$row = $this->revisionToRow( new Revision( $rev ), [] );
+		$row = $this->revisionRecordToRow( $rev, [] );
 
 		// unset nulled fields
 		unset( $row->rev_content_model );
@@ -862,66 +862,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
 		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
-	}
-
-	protected function revisionToRow( Revision $rev, $options = [ 'page', 'user', 'comment' ] ) {
-		$this->hideDeprecated( 'Revision::getSha1' );
-		$this->hideDeprecated( 'Revision::getUserText' );
-		$this->hideDeprecated( 'Revision::isMinor' );
-		$this->hideDeprecated( 'Revision::getParentId' );
-		$this->hideDeprecated( 'Revision::getVisibility' );
-		$this->hideDeprecated( 'Revision::getPage' );
-		$this->hideDeprecated( 'Revision::getComment' );
-		$this->hideDeprecated( 'Revision::getSize' );
-
-		// XXX: the WikiPage object loads another RevisionRecord from the database. Not great.
-		$page = WikiPage::factory( $rev->getTitle() );
-
-		$fields = [
-			'rev_id' => (string)$rev->getId(),
-			'rev_page' => (string)$rev->getPage(),
-			'rev_timestamp' => $this->db->timestamp( $rev->getTimestamp() ),
-			'rev_user_text' => (string)$rev->getUserText(),
-			'rev_user' => (string)$rev->getUser() ?: null,
-			'rev_minor_edit' => $rev->isMinor() ? '1' : '0',
-			'rev_deleted' => (string)$rev->getVisibility(),
-			'rev_len' => (string)$rev->getSize(),
-			'rev_parent_id' => (string)$rev->getParentId(),
-			'rev_sha1' => (string)$rev->getSha1(),
-		];
-
-		if ( in_array( 'page', $options ) ) {
-			$fields += [
-				'page_namespace' => (string)$page->getTitle()->getNamespace(),
-				'page_title' => $page->getTitle()->getDBkey(),
-				'page_id' => (string)$page->getId(),
-				'page_latest' => (string)$page->getLatest(),
-				'page_is_redirect' => $page->isRedirect() ? '1' : '0',
-				'page_len' => (string)$page->getContent()->getSize(),
-			];
-		}
-
-		if ( in_array( 'user', $options ) ) {
-			$fields += [
-				'user_name' => (string)$rev->getUserText(),
-			];
-		}
-
-		if ( in_array( 'comment', $options ) ) {
-			$fields += [
-				'rev_comment_text' => $rev->getComment(),
-				'rev_comment_data' => null,
-				'rev_comment_cid' => null,
-			];
-		}
-
-		if ( $rev->getId() ) {
-			$fields += [
-				'rev_id' => (string)$rev->getId(),
-			];
-		}
-
-		return (object)$fields;
 	}
 
 	protected function revisionRecordToRow( RevisionRecord $revRecord, $options = [ 'page', 'user', 'comment' ] ) {
