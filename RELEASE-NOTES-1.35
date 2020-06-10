@@ -257,7 +257,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
-* pear/mail_mime was upgraded from 1.10.2 to 1.10.7.
+* pear/mail_mime was upgraded from 1.10.2 to 1.10.8.
 * wikimedia/less.php was upgraded from 1.8.0 to 3.0.0.
 * Updated oojs from 3.0.0 to 5.0.0.
 * Updated OOUI from 0.35.1 to 0.39.2.
@@ -265,7 +265,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated jQuery from v3.3.1 to v3.4.1.
 * Updated jQuery Migrate from v3.0.1 to v3.1.0.
 * Updated wikimedia/assert from 0.2.2 to 0.5.0.
-* Updated pear/net_smtp from 1.8.1 from to 1.9.0.
+* Updated pear/net_smtp from 1.8.1 from to 1.9.1.
 * Updated psr/log from 1.0.2 to 1.1.3.
 * Updated jquery.i18n from 1.0.5 to 1.0.7.
 * Updated guzzlehttp/guzzle from 6.3.3 to 6.5.4.
