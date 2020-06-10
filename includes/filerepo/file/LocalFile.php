@@ -23,6 +23,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -1706,18 +1707,18 @@ class LocalFile extends File {
 							$user
 						);
 
-						if ( isset( $status->value['revision'] ) ) {
-							/** @var Revision $rev */
-							$rev = $status->value['revision'];
+						if ( isset( $status->value['revision-record'] ) ) {
+							/** @var RevisionRecord $revRecord */
+							$revRecord = $status->value['revision-record'];
 							// Associate new page revision id
-							$logEntry->setAssociatedRevId( $rev->getId() );
+							$logEntry->setAssociatedRevId( $revRecord->getId() );
 						}
 						// This relies on the resetArticleID() call in WikiPage::insertOn(),
 						// which is triggered on $descTitle by doEditContent() above.
-						if ( isset( $status->value['revision'] ) ) {
-							/** @var Revision $rev */
-							$rev = $status->value['revision'];
-							$updateLogPage = $rev->getPage();
+						if ( isset( $status->value['revision-record'] ) ) {
+							/** @var RevisionRecord $revRecord */
+							$revRecord = $status->value['revision-record'];
+							$updateLogPage = $revRecord->getPageId();
 						}
 					} else {
 						# Existing file page: invalidate description page cache
