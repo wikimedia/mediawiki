@@ -2450,7 +2450,8 @@ $categories: associative array, keys are category names, values are category
 [&]$out: OutputPage instance (object)
 $parserOutput: parserOutput instance being added in $out
 
-'PageContentInsertComplete': After a new article is created.
+'PageContentInsertComplete': DEPRECATED since 1.35, use PageSaveComplete instead.
+After a new article is created.
 [&]$wikiPage: WikiPage created
 [&]$user: User creating the article
 $content: New content as a Content object
@@ -2483,7 +2484,8 @@ $section: Previously the section number being edited. Currently unused, always n
 [&]$status: StatusValue object for the hook handlers resulting status. Either set $status->fatal() or
   return false to abort the save action.
 
-'PageContentSaveComplete': After an article has been updated.
+'PageContentSaveComplete':  DEPRECATED since 1.35, use PageSaveComplete instead.
+After an article has been updated.
 [&]$wikiPage: WikiPage modified
 [&]$user: User performing the modification
 $content: New content, as a Content object
