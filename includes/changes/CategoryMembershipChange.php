@@ -69,19 +69,18 @@ class CategoryMembershipChange {
 	 */
 	public function __construct( Title $pageTitle, $revision = null ) {
 		$this->pageTitle = $pageTitle;
-		if ( $revision === null ) {
-			$this->timestamp = wfTimestampNow();
-		} else {
-			$this->timestamp = $revision->getTimestamp();
-		}
 		if ( $revision instanceof Revision ) {
 			wfDeprecated(
 				'Revision for ' . __METHOD__,
 				'1.35'
 			);
-			$this->revision = $revision->getRevisionRecord();
+			$revision = $revision->getRevisionRecord();
+		}
+		$this->revision = $revision;
+		if ( $revision === null ) {
+			$this->timestamp = wfTimestampNow();
 		} else {
-			$this->revision = $revision;
+			$this->timestamp = $revision->getTimestamp();
 		}
 		$this->newForCategorizationCallback = [ RecentChange::class, 'newForCategorization' ];
 	}
