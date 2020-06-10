@@ -4585,11 +4585,11 @@ $wgAllowExternalImagesFrom = '';
 
 /**
  * If $wgAllowExternalImages is false, you can allow an on-wiki
- * whitelist of regular expression fragments to match the image URL
+ * allow list of regular expression fragments to match the image URL
  * against. If the image matches one of the regular expression fragments,
- * The image will be displayed.
+ * the image will be displayed.
  *
- * Set this to true to enable the on-wiki whitelist (MediaWiki:External image whitelist)
+ * Set this to true to enable the on-wiki allow list (MediaWiki:External image whitelist)
  * Or false to disable it
  *
  * @since 1.14
@@ -5407,7 +5407,7 @@ $wgBlockDisablesLogin = false;
  * $wgWhitelistRead = array ( "Main Page", "Wikipedia:Help");
  * @endcode
  *
- * Special:Userlogin and Special:ChangePassword are always whitelisted.
+ * Special:Userlogin and Special:ChangePassword are always allowed.
  *
  * @note This will only work if $wgGroupPermissions['*']['read'] is false --
  * see below. Otherwise, ALL pages are accessible, regardless of this setting.
@@ -5434,8 +5434,8 @@ $wgWhitelistRead = false;
  * @endcode
  *
  * @note Unless ^ and/or $ is specified, a regular expression might match
- * pages not intended to be whitelisted.  The above example will also
- * whitelist a page named 'Security Main Page'.
+ * pages not intended to be allowed.  The above example will also
+ * allow a page named 'Security Main Page'.
  *
  * @par Example:
  * To allow reading any page starting with 'User' regardless of the case:
@@ -6133,7 +6133,7 @@ $wgRateLimits = [
 
 /**
  * Array of IPs / CIDR ranges which should be excluded from rate limits.
- * This may be useful for whitelisting NAT gateways for conferences, etc.
+ * This may be useful for allowing NAT gateways for conferences, etc.
  */
 $wgRateLimitsExcludedIPs = [];
 
