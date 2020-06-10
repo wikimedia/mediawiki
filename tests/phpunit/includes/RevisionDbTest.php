@@ -191,6 +191,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Revision::getContentFormat' );
 		$this->hideDeprecated( 'Revision::getContentHandler' );
 		$this->hideDeprecated( 'Revision::getContentModel' );
+		$this->hideDeprecated( 'Revision::getPage' );
 
 		$this->assertNotNull( $rev, 'missing revision' );
 
@@ -208,8 +209,10 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRecentChange() {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
-		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'Revision::getUserText' );
+		$this->hideDeprecated( 'Revision::getPage' );
+		$this->hideDeprecated( 'Revision::getComment' );
+		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$rev = $this->testPage->getRevision();
 		$recentChange = $rev->getRecentChange();
@@ -513,6 +516,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromArchiveRowOverrides() {
 		$this->hideDeprecated( 'Revision::newFromArchiveRow' );
+		$this->hideDeprecated( 'Revision::getComment' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$page = $this->createPage(
@@ -613,6 +617,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetPage() {
 		$this->hideDeprecated( 'Revision::newFromId' );
+		$this->hideDeprecated( 'Revision::getPage' );
 		$page = $this->testPage;
 
 		$orig = $this->makeRevisionWithProps( [ 'page' => $page->getId() ] );
@@ -1524,6 +1529,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getComment
 	 */
 	public function testGetComment_notDeleted() {
+		$this->hideDeprecated( 'Revision::getComment' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$expectedSummary = 'goatlicious summary';
 
@@ -1608,6 +1614,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::newKnownCurrent
 	 */
 	public function testNewKnownCurrent() {
+		$this->hideDeprecated( 'Revision::getPage' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		// Setup the services
 		$this->overrideMwServices();
