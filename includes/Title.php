@@ -3726,6 +3726,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return Revision|null If page doesn't exist
 	 */
 	public function getFirstRevision( $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
 		$rev = MediaWikiServices::getInstance()
 			->getRevisionLookup()

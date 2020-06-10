@@ -1053,7 +1053,7 @@ because of Phabricator reports.
 * LESS `.background-image-svg-quick()` mixin from 'mediawiki.mixins.less' is
   deprecated and should be removed in 1.36.
 * The following methods were deprecated:
-  - Title::getFirstRevision
+  - Title::getFirstRevision (hard deprecated)
   - Title::getEarliestRevTime
   - WikiPage::getOldestRevision (hard deprecated)
   - Article::getOldestRevision (hard deprecated)
