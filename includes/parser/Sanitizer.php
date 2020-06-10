@@ -48,11 +48,12 @@ class Sanitizer {
 	private const ELEMENT_BITS_REGEX = '!^(/?)([A-Za-z][^\t\n\v />\0]*+)([^>]*?)(/?>)([^<]*)$!';
 
 	/**
-	 * Blacklist for evil uris like javascript:
-	 * WARNING: DO NOT use this in any place that actually requires blacklisting
-	 * for security reasons. There are NUMEROUS[1] ways to bypass blacklisting, the
-	 * only way to be secure from javascript: uri based xss vectors is to whitelist
-	 * things that you know are safe and deny everything else.
+	 * Pattern matching evil uris like javascript:
+	 * WARNING: DO NOT use this in any place that actually requires denying
+	 * certain URIs for security reasons. There are NUMEROUS[1] ways to bypass
+	 * pattern-based deny lists; the only way to be secure from javascript:
+	 * uri based xss vectors is to allow only things that you know are safe
+	 * and deny everything else.
 	 * [1]: http://ha.ckers.org/xss.html
 	 */
 	private const EVIL_URI_PATTERN = '!(^|\s|\*/\s*)(javascript|vbscript)([^\w]|$)!i';
@@ -1907,7 +1908,7 @@ class Sanitizer {
 
 			// Characters that will be ignored in IDNs.
 			// https://tools.ietf.org/html/rfc3454#section-3.1
-			// Strip them before further processing so blacklists and such work.
+			// Strip them before further processing so deny lists and such work.
 			$strip = "/
 				\\s|          # general whitespace
 				\xc2\xad|     # 00ad SOFT HYPHEN
