@@ -893,14 +893,14 @@ class MovePage {
 
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
-		// TODO cleanup hooks and use of $nullRevisionObj
-		$nullRevisionObj = new Revision( $nullRevision );
 		$fakeTags = [];
 		$this->hookRunner->onRevisionFromEditComplete(
 			$newpage, $nullRevision, $nullRevision->getParentId(), $user, $fakeTags );
 
-		// TODO hard deprecate hook
+		// TODO cleanup hooks and use of $nullRevisionObj
 		$nullRevisionObj = new Revision( $nullRevision );
+
+		// TODO hard deprecate hook
 		$this->hookRunner->onNewRevisionFromEditComplete(
 			$newpage, $nullRevisionObj, $nullRevision->getParentId(), $user, $fakeTags );
 
