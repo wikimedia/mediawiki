@@ -22,7 +22,7 @@
 
 use Cdb\Reader as CdbReader;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\PasswordBlacklist;
+use Wikimedia\CommonPasswords\CommonPasswords;
 
 /**
  * Functions to check passwords against a policy requirement.
@@ -205,9 +205,9 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Ensure the password isn't in the list of passwords blacklisted by the
-	 * wikimedia/password-blacklist library, which contains (as of 0.1.4) the
-	 * 100.000 top passwords from SecLists (as a Bloom filter, with an
+	 * Ensure the password isn't in the list of common passwords by the
+	 * wikimedia/common-passwords library, which contains (as of 0.2.0) the
+	 * 100,000 top passwords from SecLists (as a Bloom filter, with an
 	 * 0.000001 false positive ratio).
 	 *
 	 * @param bool $policyVal Whether to apply this policy
@@ -218,10 +218,10 @@ class PasswordPolicyChecks {
 	 *
 	 * @return Status
 	 */
-	public static function checkPasswordNotInLargeBlacklist( $policyVal, User $user, $password ) {
+	public static function checkPasswordNotInCommonList( $policyVal, User $user, $password ) {
 		$status = Status::newGood();
-		if ( $policyVal && PasswordBlacklist\PasswordBlacklist::isBlacklisted( $password ) ) {
-			$status->error( 'passwordinlargeblacklist' );
+		if ( $policyVal && CommonPasswords::isCommon( $password ) ) {
+			$status->error( 'passwordincommonlist' );
 		}
 
 		return $status;

@@ -197,7 +197,7 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 		$this->assertSame( $expected, $status->isGood() );
 	}
 
-	public static function provideLargeBlacklist() {
+	public static function provideCommonList() {
 		return [
 			[ false, 'testpass' ],
 			[ false, 'password' ],
@@ -208,12 +208,12 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers PasswordPolicyChecks::checkPasswordNotInLargeBlacklist
-	 * @dataProvider provideLargeBlacklist
+	 * @covers PasswordPolicyChecks::checkPasswordNotInCommonList
+	 * @dataProvider provideCommonList
 	 */
 	public function testCheckNotInLargeBlacklist( $expected, $password ) {
 		$user = User::newFromName( 'username' );
-		$status = PasswordPolicyChecks::checkPasswordNotInLargeBlacklist( true, $user, $password );
+		$status = PasswordPolicyChecks::checkPasswordNotInCommonList( true, $user, $password );
 		$this->assertSame( $expected, $status->isGood() );
 	}
 
