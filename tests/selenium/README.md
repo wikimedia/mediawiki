@@ -37,13 +37,7 @@ environments this is probably set already. On macOS, set it to a dummy value lik
 
 #### Video recording
 
-To capture a video, the tests have to run in the context of an X11 server, with the `DISPLAY`
-environment variable set to its display name. If the shell has no X11 server or if you want
-to hide the output, you can also launch a virtual X11 display using Xvfb. Recording videos
-is currently supported only on Linux, and is triggered by the `DISPLAY` value starting with
-a colon (as Xvfb typically would). For example:
-
-    DISPLAY=:2 npm run selenium
+[wdio-video-reporter](https://www.npmjs.com/package/wdio-video-reporter) is used to record videos. All videos will be stored by default in the `tests/selenium/log` directory. This can be overridden by setting the `LOG_DIR` environment variable. To record videos only for failed tests, set the `saveAllVideos = false` in `tests/selenium/wdio.conf.js` file.
 
 #### Filter
 
