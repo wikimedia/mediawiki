@@ -3645,15 +3645,18 @@ class Parser {
 				$content = $revRecord->getContent( SlotRecord::MAIN );
 				$text = $content ? $content->getWikitextForTransclusion() : null;
 
-				// Hook is deprecated already
-				$legacyRevision = new Revision( $revRecord );
-				Hooks::runner()->onParserFetchTemplate(
-					$parser,
-					$title,
-					$legacyRevision,
-					$text,
-					$deps
-				);
+				// Hook is hard deprecated since 1.35
+				if ( Hooks::isRegistered( 'ParserFetchTemplate' ) ) {
+					// Only create the Revision object if needed
+					$legacyRevision = new Revision( $revRecord );
+					Hooks::runner()->onParserFetchTemplate(
+						$parser,
+						$title,
+						$legacyRevision,
+						$text,
+						$deps
+					);
+				}
 
 				if ( $text === false || $text === null ) {
 					$text = false;
