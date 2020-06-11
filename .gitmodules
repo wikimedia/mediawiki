@@ -26,9 +26,6 @@
 	path = extensions/cldr
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/cldr.git
 	branch = REL1_31
-[submodule "extensions/ContributionTracking"]
-	path = extensions/ContributionTracking
-	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContributionTracking.git
 [submodule "extensions/DonationInterface"]
 	path = extensions/DonationInterface
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DonationInterface.git
