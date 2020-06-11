@@ -3,7 +3,8 @@
 		"authors": [
 			"Gutsul",
 			"Amir E. Aharoni (amir.aharoni@mail.huji.ac.il)",
-			"Eugene Gvozdetsky (epgvozdet@gmail.com)"
+			"Eugene Gvozdetsky (epgvozdet@gmail.com)",
+			"Base"
 		],
 		"comment": "These rules don't cover the whole grammar of the language, and are intended only for names of languages and Wikimedia projects."
 	},
@@ -15,6 +16,9 @@
 	],
 	"accusative": [
 		[ "(.+)ія$", "$1ію" ]
+	],
+	"locative": [
+		[ "(.+)$", "у $1" ]
 	],
 	"languagegen": [
 		[ "@metadata", [
