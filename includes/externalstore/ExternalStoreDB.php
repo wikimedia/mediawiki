@@ -177,6 +177,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @deprecated since 1.34
 	 */
 	public function getSlave( $cluster ) {
+		wfDeprecated( '1.34', __METHOD__ );
 		return $this->getReplica( $cluster );
 	}
 
