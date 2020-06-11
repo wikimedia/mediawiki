@@ -49,6 +49,7 @@ class DeprecatedHooks {
 		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
 		'LinkBegin' => [ 'deprecatedVersion' => '1.28' ],
 		'LinkEnd' => [ 'deprecatedVersion' => '1.28' ],
+		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'NewRevisionFromEditComplete' => [ 'deprecatedVersion' => '1.35' ],
 		'PageContentInsertComplete' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],

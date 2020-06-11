@@ -1087,7 +1087,9 @@ because of Phabricator reports.
 * The ParserGetVariableValueVarCache hook has been deprecated.
 * When using the ParserGetVariableValueSwitch hook, the following unusual
   uses have been deprecated: modifying the passed $magicWordId or failing to
-  cache the returned value in $variableCache.
+  cache the returned value in $variableCache.  The related
+  MagicWordwgVariableIDs hook has been deprecated and renamed; use
+  the GetMagicVariableIDs hook instead.
 * The following Parser properties have been deprecated:
   - ::$mTagHooks
   - ::$mFunctionHooks

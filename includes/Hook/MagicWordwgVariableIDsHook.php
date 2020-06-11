@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35, use GetMagicVariableIDsHook instead.
  * @ingroup Hooks
  */
 interface MagicWordwgVariableIDsHook {

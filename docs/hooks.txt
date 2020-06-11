@@ -1612,9 +1612,9 @@ $refreshCache: If set, refreshes the diff cache
 $unhide: If set, allow viewing deleted revs
 &$differenceEngine: The difference engine object to be used for the diff
 
-'GetDoubleUnderscoreIDs': Modify the list of behavior switch (double
-underscore) magic words. Called by MagicWord.
-&$doubleUnderscoreIDs: array of strings
+'GetDoubleUnderscoreIDs': Modify the list of behavior switches (double
+underscore). Called by MagicWordFactory.
+&$doubleUnderscoreIDs: array of magic word identifiers
 
 'GetExtendedMetadata': Get extended file metadata for the API
 &$combinedMeta: Array of the form:
@@ -1685,6 +1685,9 @@ $query: query options as string passed to Title::getLocalURL()
 
 'GetLogTypesOnUser': Add log types where the target is a userpage
 &$types: Array of log types
+
+'GetMagicVariableIDs': Modify the list of magic variables.
+&$variableIDs: array of magic word identifiers
 
 'GetMetadataVersion': Modify the image metadata version currently in use. This
 is used when requesting image metadata from a ForeignApiRepo. Media handlers
