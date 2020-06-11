@@ -64,7 +64,7 @@ class MwSql extends Maintenance {
 			$lb = $lbFactory->getMainLB( $wiki );
 		}
 		// Figure out which server to use
-		$replicaDB = $this->getOption( 'replicadb', $this->getOption( 'slave', '' ) );
+		$replicaDB = $this->getOption( 'replicadb', '' );
 		if ( $replicaDB === 'any' ) {
 			$index = DB_REPLICA;
 		} elseif ( $replicaDB !== '' ) {
