@@ -268,10 +268,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			throw new InvalidArgumentException( "A module may not set both 'scripts' and 'packageFiles'" );
 		}
 		if ( isset( $options['packageFiles'] ) && isset( $options['skinScripts'] ) ) {
-			throw new InvalidArgumentException(
-				"SkinScripts cannot be used alongside packageFiles. " .
-				"PackageFiles and skinScripts are incompatible."
-			);
+			throw new InvalidArgumentException( "Options 'skinScripts' and 'packageFiles' cannot be used together." );
 		}
 		if ( $hasTemplates ) {
 			$this->dependencies[] = 'mediawiki.template';
