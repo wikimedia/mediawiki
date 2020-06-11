@@ -1391,7 +1391,11 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( isset( $data['user_groups'] ) && is_array( $data['user_groups'] ) ) {
 				MediaWikiServices::getInstance()
 					->getUserGroupManager()
-					->loadGroupMembershipsFromArray( $this, $data['user_groups'] );
+					->loadGroupMembershipsFromArray(
+						$this,
+						$data['user_groups'],
+						$this->queryFlagsUsed
+					);
 			}
 			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
 				MediaWikiServices::getInstance()
@@ -3043,7 +3047,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public function getAutomaticGroups( $recache = false ) {
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
-			->getUserImplicitGroups( $this, $recache );
+			->getUserImplicitGroups( $this, $this->queryFlagsUsed, $recache );
 	}
 
 	/**
