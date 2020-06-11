@@ -173,30 +173,6 @@ class PasswordPolicyChecksTest extends MediaWikiTestCase {
 		];
 	}
 
-	public static function providePopularBlacklist() {
-		return [
-			[ false, 'sitename' ],
-			[ false, 'password' ],
-			[ false, '12345' ],
-			[ true, 'hqY98gCZ6qM8s8' ],
-		];
-	}
-
-	/**
-	 * @covers PasswordPolicyChecks::checkPopularPasswordBlacklist
-	 * @dataProvider providePopularBlacklist
-	 */
-	public function testCheckPopularPasswordBlacklist( $expected, $password ) {
-		global $IP;
-		$this->setMwGlobals( [
-			'wgSitename' => 'sitename',
-			'wgPopularPasswordFile' => "$IP/includes/password/commonpasswords.cdb"
-		] );
-		$user = User::newFromName( 'username' );
-		$status = PasswordPolicyChecks::checkPopularPasswordBlacklist( PHP_INT_MAX, $user, $password );
-		$this->assertSame( $expected, $status->isGood() );
-	}
-
 	public static function provideCommonList() {
 		return [
 			[ false, 'testpass' ],
