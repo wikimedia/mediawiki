@@ -22,6 +22,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LogLevel;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DBQueryError;
 
 /**
  * Handler class for MWExceptions
@@ -450,6 +451,10 @@ TXT;
 	/**
 	 * Get a message formatting the throwable message and its origin.
 	 *
+	 * Despite the method name, this is not used for logging.
+	 * It is only used for HTML or CLI output, by MWExceptionRenderer
+	 * and MWException::getText, respectively.
+	 *
 	 * @since 1.22
 	 * @param Throwable $e
 	 * @return string
@@ -461,6 +466,12 @@ TXT;
 		$line = $e->getLine();
 		$message = $e->getMessage();
 		$url = self::getURL() ?: '[no req]';
+
+		if ( $e instanceof DBQueryError ) {
+			$message = "A database query error has occurred. Did you forget to run"
+				. " your application's database schema updater after upgrading?\n\n"
+				. $message;
+		}
 
 		return "[$id] $url   $type from line $line of $file: $message";
 	}
