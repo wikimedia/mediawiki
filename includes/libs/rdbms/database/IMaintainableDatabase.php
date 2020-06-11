@@ -306,10 +306,11 @@ interface IMaintainableDatabase extends IDatabase {
 	 *
 	 * @param string $table
 	 * @param string $index
+	 * @param string $fname Calling function name
 	 *
 	 * @return bool
 	 */
-	public function indexUnique( $table, $index );
+	public function indexUnique( $table, $index, $fname = __METHOD__ );
 
 	/**
 	 * mysql_fetch_field() wrapper

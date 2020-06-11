@@ -2246,7 +2246,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function indexExists( $table, $index, $fname = __METHOD__ ) {
-		if ( !$this->tableExists( $table ) ) {
+		if ( !$this->tableExists( $table, $fname ) ) {
 			return null;
 		}
 
@@ -2260,8 +2260,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	abstract public function tableExists( $table, $fname = __METHOD__ );
 
-	public function indexUnique( $table, $index ) {
-		$indexInfo = $this->indexInfo( $table, $index );
+	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
+		$indexInfo = $this->indexInfo( $table, $index, $fname );
 
 		if ( !$indexInfo ) {
 			return null;

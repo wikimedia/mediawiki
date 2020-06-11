@@ -101,7 +101,7 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function indexUnique( $table, $index ) {
+	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
