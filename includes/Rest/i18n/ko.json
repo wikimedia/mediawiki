@@ -7,6 +7,7 @@
 	"rest-no-match": "요청된 상대 경로($1)는 알려진 핸들러와 일치하지 않습니다",
 	"rest-nonexistent-title": "지정한 주제($1)가 존재하지 않습니다.",
 	"rest-nonexistent-revision": "요청한 판($1)이 존재하지 않습니다",
+	"rest-permission-denied-anon": "익명 사용자에 의해 접근 불가",
 	"rest-permission-denied-title": "사용자는 제목($1)을 읽을 권한이 없습니다",
 	"rest-permission-denied-revision": "사용자는 요청된 판($1)의 접근 권한이 없습니다.",
 	"rest-pagehistory-param-range-error": "판 id는 0보다 커야 합니다",

@@ -476,7 +476,7 @@
 	"databaseerror-function": "Fonction : $1",
 	"databaseerror-error": "Erreur : $1",
 	"transaction-duration-limit-exceeded": "Pour éviter une trop forte augmentation du délai de réplication, cette transaction a été annulée car la durée d’écriture ($1) a dépassé la limite de $2 seconde{{PLURAL:$2||s}}. Si vous cherchez à modifier un grand nombre d’éléments simultanément, essayez plutôt d’effectuer l’opération en plusieurs étapes plus petites.",
-	"laggedreplicamode": "Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées",
+	"laggedreplicamode": "<strong>Attention</strong> : cette page peut ne pas contenir les toutes dernières modifications effectuées",
 	"readonly": "Base de données verrouillée",
 	"enterlockreason": "Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée",
 	"readonlytext": "Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.\n\nL’administrateur système ayant verrouillé la base de données a fourni l’explication suivante :<br /> $1",

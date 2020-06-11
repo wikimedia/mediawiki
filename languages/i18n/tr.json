@@ -784,7 +784,7 @@
 	"editing": "\"$1\" sayfasını değiştirmektesiniz",
 	"edit-textarea-aria-label": "Vikimetin kaynak editörü",
 	"creating": "$1 sayfasını oluşturuyorsunuz",
-	"editingsection": "\"$1\" sayfasında değiştirmektesiniz (bölüm)",
+	"editingsection": "\"$1\" sayfasında bölüm değiştirmektesiniz",
 	"editingcomment": "$1 değiştiriliyor (yeni bölüm)",
 	"editconflict": "Değişiklik çakışması: $1",
 	"explainconflict": "Siz düzenlemeye başladığınızdan beri başka biri bu sayfayı değiştirdi.\nÜst metin alanı, sayfa metnini o anda var olduğu gibi içerir.\nYaptığınız değişiklikler alt metin alanında gösterilir.\nDeğişikliklerinizi mevcut metinde birleştirmeniz gerekecek.\n\"$1\" tuşuna bastığınızda üst metin alanındaki metin <strong>yalnızca</strong> kaydedilir.",

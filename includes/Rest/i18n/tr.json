@@ -11,6 +11,7 @@
 	"rest-nonexistent-title": "Belirtilen başlık ($1) mevcut değil",
 	"rest-nonexistent-title-revision": "Belirtilen revizyon ($1) belirtilen sayfa için mevcut değil ($2)",
 	"rest-nonexistent-revision": "İstenen revizyon ($1) mevcut değil",
+	"rest-permission-denied-anon": "Anonim kullanıcı tarafından erişilemiyor",
 	"rest-permission-denied-title": "Kullanıcının başlık okuma hakkı yok ($1)",
 	"rest-permission-denied-revision": "Kullanıcının istenen revizyona erişimi yok ($1).",
 	"rest-pagehistory-incompatible-params": "\"older_than\" ve \"newer_than\" parametrelerinin her ikisi de belirtilemez",
