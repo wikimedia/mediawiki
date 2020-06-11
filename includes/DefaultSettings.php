@@ -4603,6 +4603,7 @@ $wgEnableImageWhitelist = false;
  * will allow anyone with editing rights to snoop on your visitors' IP
  * addresses and so forth, if they wanted to, by inserting links to images on
  * sites they control.
+ * @deprecated since 1.35; register an extension tag named <img> instead.
  */
 $wgAllowImageTag = false;
 

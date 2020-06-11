@@ -124,6 +124,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * $wgAllowImageMoving - This configuration is now deprecated. Use
   $wgGroupPermissions instead; eg, to revoke sysop's ability to move images use
   $wgGroupPermissions['sysop']['movefile'] = false.
+* $wgAllowImageTag - This configuration is now deprecated; future parsers will
+  not support direct use of the HTML <img> tag in wikitext.
 * …
 
 ==== Removed configuration ====
