@@ -3438,11 +3438,11 @@ class Parser {
 	 * where possible, rather than getting the revisions themselves. This
 	 * method also caches its results, so using it benefits performance.
 	 *
-	 * This can return false if the callback returns false
+	 * This can return null if the callback returns false
 	 *
 	 * @since 1.35
 	 * @param Title $title
-	 * @return RevisionRecord|false
+	 * @return RevisionRecord|null
 	 */
 	public function fetchCurrentRevisionRecordOfTitle( Title $title ) {
 		$cacheKey = $title->getPrefixedDBkey();
@@ -3450,14 +3450,19 @@ class Parser {
 			$this->currentRevisionCache = new MapCacheLRU( 100 );
 		}
 		if ( !$this->currentRevisionCache->has( $cacheKey ) ) {
-			$this->currentRevisionCache->set( $cacheKey,
+			$revisionRecord =
 				// Defaults to Parser::statelessFetchRevisionRecord()
 				call_user_func(
 					$this->mOptions->getCurrentRevisionRecordCallback(),
 					$title,
 					$this
-				)
-			);
+				);
+			if ( !$revisionRecord ) {
+				// Parser::statelessFetchRevisionRecord() can return false;
+				// normalize it to null.
+				$revisionRecord = null;
+			}
+			$this->currentRevisionCache->set( $cacheKey, $revisionRecord );
 		}
 		return $this->currentRevisionCache->get( $cacheKey );
 	}
