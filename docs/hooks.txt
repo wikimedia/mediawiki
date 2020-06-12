@@ -3169,8 +3169,9 @@ subPageSubtitle() will run.
 $skin: Skin object
 $out: OutputPage object
 
-'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink': After creating the "permanent
-link" tab.
+'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink': DEPRECATED since 1.35! Use
+SidebarBeforeOutput.
+After creating the "permanent link" tab.
 [&]$sktemplate: SkinTemplate object
 &$nav_urls: array of tabs
 &$revid: The revision id of the permanent link
