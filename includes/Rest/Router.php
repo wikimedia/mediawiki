@@ -4,7 +4,6 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
-use GuzzleHttp\Psr7\Uri;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
@@ -240,21 +239,19 @@ class Router {
 	 * Returns a full URL for the given route.
 	 * Intended for use in redirects.
 	 *
-	 * @param string $route the route, with any necessary URL encoding already applied
-	 * @param array $query
+	 * @param string $route
+	 * @param array $pathParams
+	 * @param array $queryParams
 	 *
 	 * @return false|string
 	 */
-	public function getRouteUrl( $route, $query = [] ) {
-		$url = $this->baseUrl . $this->rootPath . $route;
-
-		if ( $query ) {
-			$uri = new Uri( $url );
-			$uri = Uri::withQueryValues( $uri, $query );
-			$url = "$uri";
+	public function getRouteUrl( $route, $pathParams = [], $queryParams = [] ) {
+		foreach ( $pathParams as $param => $value ) {
+			$route = str_replace( '{' . $param . '}', urlencode( $value ), $route );
 		}
 
-		return $url;
+		$url = $this->baseUrl . $this->rootPath . $route;
+		return wfAppendQuery( $url, $queryParams );
 	}
 
 	/**

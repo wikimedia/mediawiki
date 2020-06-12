@@ -137,26 +137,29 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function provideGetRouteUrl() {
-		yield 'empty' => [ '' ];
-		yield 'simple route' => [ '/foo/bar' ];
-		yield 'simple route with query' => [ '/foo/bar', [ 'x' => '1', 'y' => '2' ] ];
-		yield 'strange chars' => [ '/foo+bar', [ 'x' => '#', 'y' => '%' ] ];
+		yield 'empty' => [ '', '', [], [] ];
+		yield 'simple route' => [ '/foo/bar', '/foo/bar' ];
+		yield 'simple route with query' => [ '/foo/bar', '/foo/bar?x=1&y=2', [ 'x' => '1', 'y' => '2' ] ];
+		yield 'simple route with strange query chars' =>
+			[ '/foo+bar', '/foo+bar?x=%23&y=%25&z=%2B', [ 'x' => '#', 'y' => '%', 'z' => '+' ] ];
+		yield 'route with simple path params' => [ '/foo/{test}/baz', '/foo/bar/baz', [], [ 'test' => 'bar' ] ];
+		yield 'route with strange path params' => [ '/foo/{test}/baz', '/foo/b%2Bz/baz', [], [ 'test' => 'b+z' ] ];
+		yield 'route with simple path params and query' =>
+			[ '/foo/{test}/baz', '/foo/bar/baz?x=1', [ 'x' => '1' ], [ 'test' => 'bar' ] ];
 	}
 
 	/**
 	 * @dataProvider provideGetRouteUrl
 	 */
-	public function testGetRouteUrl( $route, $query = [] ) {
+	public function testGetRouteUrl( $route, $expectedUrl, $query = [], $path = [] ) {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/route' ) ] );
 		$router = $this->createRouter( $request );
 
-		$url = $router->getRouteUrl( $route, $query );
+		$url = $router->getRouteUrl( $route, $path, $query );
 		$this->assertRegExp( '!^https?://[\w.]+/!', $url );
 
 		$uri = new Uri( $url );
-
-		$this->assertSame( wfArrayToCgi( $query ), $uri->getQuery() );
-		$this->assertStringContainsString( $route, $uri->getPath() );
+		$this->assertStringContainsString( $expectedUrl, $uri );
 	}
 
 }
