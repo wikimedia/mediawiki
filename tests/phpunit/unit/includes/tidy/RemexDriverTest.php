@@ -159,6 +159,11 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 			'<p>a</p>'
 		],
 		[
+			'<span> is not a splittable tag',
+			'<span>x<div>a</div>y</span> <span>x<div></div>y</span>',
+			'<span>x<div>a</div>y</span> <span>x<div></div>y</span>',
+		],
+		[
 			'<span> is not a splittable tag, but gets p-wrapped in simple wrapping scenarios',
 			'<span>a</span>',
 			'<p><span>a</span></p>'
