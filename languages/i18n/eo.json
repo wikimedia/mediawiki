@@ -800,8 +800,6 @@
 	"unsupported-content-model": "<strong>Averto:</strong> Enhava modelo $1 ne estas subtenata en tiu ĉi vikio.",
 	"unsupported-content-diff": "Histori-malsamoj ne estas subtenataj por la enhava modelo $1.",
 	"unsupported-content-diff2": "Histori-malsamoj inter la enhavaj modeloj $1 kaj $2 ne estas subtenataj en tiu ĉi vikio.",
-	"deprecated-self-close-category": "Paĝoj kun nevalida memferma HTML‑etikedo",
-	"deprecated-self-close-category-desc": "La paĝo enhavas nevalidajn memfermajn HTML-markojn, tiajn kiel <code>&lt;b/></code> aŭ <code>&lt;span/></code>. Ilia konduto baldaŭ estos ŝanĝita por esti kongrua kun la specifiko de HTML5, tial ilia uzo en vikia teksto estas malrekomendata.",
 	"duplicate-args-warning": "'''Averto:''' [[:$1]] vokas al [[:$2]] kun pli ol unu valoro por la parametro \"$3\". Nur la lasta liverita valoro estos uzata.",
 	"duplicate-args-category": "Paĝoj kun pluroblaj argumentoj en ŝablonvokoj",
 	"duplicate-args-category-desc": "La paĝo enhavas uzon de ŝablono kun pluroble uzitaj argumentoj, kiel ekzemple <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> aŭ <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

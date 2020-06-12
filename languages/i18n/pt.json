@@ -836,8 +836,6 @@
 	"unsupported-content-model": "<strong>Aviso:</strong> O modelo de conteúdo $1 não é suportado nesta wiki.",
 	"unsupported-content-diff": "As diferenças entre edições não são suportadas para o modelo de conteúdo $1.",
 	"unsupported-content-diff2": "As diferenças entre edições dos modelos de conteúdo $1 e $2 não são suportadas nesta wiki.",
-	"deprecated-self-close-category": "Páginas com etiquetas HTML autofechadas inválidas",
-	"deprecated-self-close-category-desc": "Esta página contém etiquetas HTML autofechadas, que são inválidas, tais como <code>&lt;b/></code> e <code>&lt;span/></code>. O comportamento destas etiquetas será alterado em breve, para ser consistente com a especificação HTML5, pelo que o seu uso no texto wiki foi descontinuado.",
 	"duplicate-args-warning": "<strong>Aviso:</strong> [[:$1]] chama [[:$2]] com mais de um valor para o parâmetro \"$3\". Somente o último valor fornecido será utilizado.",
 	"duplicate-args-category": "Páginas com argumentos de predefinições duplicados",
 	"duplicate-args-category-desc": "A página contém chamadas de predefinições que passam à predefinição argumentos duplicados, tais como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ou <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

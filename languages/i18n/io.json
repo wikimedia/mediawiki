@@ -731,7 +731,6 @@
 	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "vakua objekto",
 	"content-json-empty-array": "vakua tabelo",
-	"deprecated-self-close-category": "Pagini qui uzas nevalida etiketi HTML por klozajo",
 	"duplicate-args-category": "Pagini kun argumenti duopligita che shabloni",
 	"language-converter-depth-warning": "La limito di profundeso dil linguo-konvertilo superiresis ($1)",
 	"node-count-exceeded-warning": "La pagino superiras la maxima nombro di nodi permisebla",

@@ -735,7 +735,6 @@
 	"content-model-css": "சிஎஸ்எஸ்",
 	"content-json-empty-object": "காலி பொருள்",
 	"content-json-empty-array": "காலி அணி",
-	"deprecated-self-close-category": "தவறாக சுய மூடப்பட்ட HTML குறிச்சொற்களை பயன்படுத்தும் பக்கங்கள்",
 	"duplicate-args-category": "வார்ப்புரு அழைப்பில் ஒத்த விவாதங்களை கொண்ட பக்கங்கள்",
 	"duplicate-args-category-desc": "இப்பக்கம் விவாதங்களின் ஒத்த வடிவங்களைப் பயன்படுத்தும் வார்ப்புருக்களை, எடுத்துக்காட்டக <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code> கொண்டுள்ளது.",
 	"expensive-parserfunction-warning": "எச்சரிக்கை: இப்பக்கம் அதிகளவு இலக்கணப் பாகுபடுத்திச் சார்புகளைக் கொண்டுள்ளது.\n\nஇது $2 {{PLURAL:$2|சார்புக்கும்|சார்புகளுக்கும் }} குறைவான இலக்கணப் பாகுபடுத்திச் சார்புகளைக் கொண்டிருக்க வேண்டும், ஆனால் தற்போது இதில் {{PLURAL:$1|$1 சார்பு|$1 சார்புகள்}} உள்ளன.",

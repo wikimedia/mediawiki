@@ -796,8 +796,6 @@
 	"unsupported-content-model": "<strong>Figyelem:</strong> A következő tartalommodell nem támogatott ezen a wikin: $1.",
 	"unsupported-content-diff": "A változatok közötti eltérés megjelenítése nem támogatott a(z) $1 tartalommodellben.",
 	"unsupported-content-diff2": "A(z) $1 és $2 tartalommodellek közötti eltérések megjelenítése nem támogatott ezen a wikin.",
-	"deprecated-self-close-category": "Érvénytelen önzáró HTML-címkéket használó lapok",
-	"deprecated-self-close-category-desc": "A lap érvénytelen önzáró HTML-címkéket használ (pl. <code>&lt;b/></code> vagy <code>&lt;span/></code>). Ezeknek a működése hamarosan meg fog változni a HTML5 szabvánnyal összhangban lévőre, ezért a wikiszövegben való használatuk elavult.",
 	"duplicate-args-warning": "<strong>Figyelmeztetés:</strong> A(z) [[:$1]] lap dupla értékkel hívja meg a(z) [[:$2]] sablont („$3” paraméter). Csak az utolsó érték lesz felhasználva.",
 	"duplicate-args-category": "Dupla paramétermegadást tartalmazó lapok",
 	"duplicate-args-category-desc": "Az oldal olyan sablon hívásokat tartalmaz, amely ugyanazt a paramétert használja, például <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

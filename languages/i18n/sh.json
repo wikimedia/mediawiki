@@ -756,8 +756,6 @@
 	"unsupported-content-model": "<strong>Upozorenje:</strong> Sadržajni model $1 nije podržan na ovom wikiju.",
 	"unsupported-content-diff": "Razlike nisu podržane za sadržajni model $1.",
 	"unsupported-content-diff2": "Razlike između sadržajnih modela $1 i $2 nisu podržane na ovom wikiju.",
-	"deprecated-self-close-category": "Stranice s neispravnim samozatvorenim HTML oznakama",
-	"deprecated-self-close-category-desc": "Stranica sadrži neispravne samozatvorene HTML oznake, kao što su <code>&lt;b/></code> ili <code>&lt;span/></code>. Njihovo funkcioniranje uskoro će se promijeniti da bude u skladu sa specifikacijama za HTML5. Ovo znači da su zastarjeli i ne bi se trebali upotrebljavati u wikitekstu.",
 	"duplicate-args-warning": "<strong>Upozorenje:</strong> [[:$1]] poziva na [[:$2]] sa više od jedne vrijednosti za parametar \"$3\". Koristit će se samo posljednja navedena vrijednost.",
 	"duplicate-args-category": "Stranice sa istim argumentima kod poziva šablona",
 	"duplicate-args-category-desc": "Stranica sadrži pozive šablona koji koriste argumente dvojnike, kao što su <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ili <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

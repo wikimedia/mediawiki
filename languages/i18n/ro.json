@@ -766,8 +766,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Obiect vid",
 	"content-json-empty-array": "Matrice vidă",
-	"deprecated-self-close-category": "Pagini care utilizează taguri HTML cu auto-închidere invalide",
-	"deprecated-self-close-category-desc": "Pagina conține taguri HTML auto-închise invalide, cum ar fi <code>&lt;b/></code> sau <code>&lt;span/></code>. \nComportamentul acestora se va schimba în curând pentru a fi în concordanță cu specificația HTML5, astfel încât utilizarea lor în wikitext este depreciată.",
 	"duplicate-args-warning": "<strong>Atenție:</strong> [[:$1]] apelează [[:$2]] cu mai mult de o valoare pentru parametrul „$3”. Se va lua în calcul doar ultima valoare specificată.",
 	"duplicate-args-category": "Pagini care folosesc argumente duplicate în apelarea formatelor",
 	"duplicate-args-category-desc": "Pagina conține apelări ale formatelor care folosesc argumente duplicate, cum ar fi <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> sau <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

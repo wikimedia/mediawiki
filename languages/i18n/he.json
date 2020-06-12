@@ -789,8 +789,6 @@
 	"unsupported-content-model": "<strong>אזהרה:</strong> מודל התוכן $1 אינו נתמך באתר הוויקי הזה.",
 	"unsupported-content-diff": "השוואה בין גרסאות אינה נתמכת במודל התוכן $1.",
 	"unsupported-content-diff2": "השוואה בין גרסאות ממודל התוכן $1 לגרסאות ממודל התוכן $2 אינה נתמכת באתר הוויקי הזה.",
-	"deprecated-self-close-category": "דפים שמשתמשים בתגיות HTML עם סגירה עצמית בלתי־תקינה",
-	"deprecated-self-close-category-desc": "הדף מכיל תגיות HTML עם סגירה עצמית בלתי־תקינה, כגון <code dir=\"ltr\">&lt;b/></code> או <code dir=\"ltr\">&lt;span/></code>. ההתנהגות של תגיות אלה תשתנה בקרוב לצורך תאימות עם מפרט HTML5, ולכן יש להימנע משימוש בהן בקוד ויקי.",
 	"duplicate-args-warning": "<strong>אזהרה:</strong> [[:$1]] קורא לדף [[:$2]] עם יותר מערך אחד עבור הפרמטר \"$3\". ייעשה שימוש רק בערך האחרון.",
 	"duplicate-args-category": "דפים שמשתמשים בפרמטרים כפולים בקריאות לתבניות",
 	"duplicate-args-category-desc": "הדף מכיל קריאות לתבניות שמשתמשות בפרמטרים כפולים, כגון <code><nowiki>{{תאריך|יום=1|יום=2}}</nowiki></code> או <code><nowiki>{{שעה|חמש|1=שש}}</nowiki></code>.",

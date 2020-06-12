@@ -849,8 +849,6 @@
 	"unsupported-content-model": "<strong>Let op:</strong> het inhoudsmodel $1 wordt niet ondersteunt op deze wiki.",
 	"unsupported-content-diff": "Wijzigingen worden niet ondersteund door het inhoudsmodel $1.",
 	"unsupported-content-diff2": "Wijzigingen tussen de inhoudsmodellen $1 en $2 worden niet ondersteund op deze wiki.",
-	"deprecated-self-close-category": "Pagina's met ongeldige zelfsluitende HTML-tags",
-	"deprecated-self-close-category-desc": "De pagina bevat ongeldige zelf-afgesloten HTML-tags, zoals <code>&lt;b/&gt;</code> of <code>&lt;span/&gt;</code>. Het gedrag van deze tags zal binnenkort veranderd worden zodat dit overeenkomt met de HTML5-specificatie, dus het gebruik hiervan is verouderd en wordt afgeraden.",
 	"duplicate-args-warning": "<strong>Waarschuwing:</strong> [[:$1]] roept [[:$2]] aan met meer dan één waarde voor de parameter \"$3\". Alleen de laatste waarde wordt gebruikt.",
 	"duplicate-args-category": "Pagina's met dubbele sjabloonparameters",
 	"duplicate-args-category-desc": "De pagina bevat aanroepen van sjablonen waarin hetzelfde argument meerdere keren wordt gebruikt, bijvoorbeeld <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> of <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

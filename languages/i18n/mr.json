@@ -755,7 +755,6 @@
 	"content-model-css": "सीएसएस",
 	"content-json-empty-object": "रिक्त उद्दीष्ट",
 	"content-json-empty-array": "रिकामा चतुष्कोन(array)",
-	"deprecated-self-close-category": "अवैध स्वयमावृत्त एचटीएमएल खूणपताका वापरणारी पाने",
 	"duplicate-args-warning": "<strong>इशारा:</strong> [[:$1]] हा [[:$2]] ला \"$3\" प्राचलासाठी, एकाधिक किंमतींसमवेत हाक देत आहे.दिलेली शेवटची किंमतच वापरल्या जाईल.",
 	"duplicate-args-category": "साचास हाक देण्यात पाने द्विरुक्त कारणमीमांसा(arguments) वापरत आहेत.",
 	"duplicate-args-category-desc": "या पानात साच्याची ती हाक(calls) आहे ज्यात द्विरुक्त कारणमिमांसेचा (arguments)वापर करण्यात आला आहे,जसे<code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> किंवा <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

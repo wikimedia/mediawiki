@@ -752,8 +752,6 @@
 	"content-model-css": "سی ایس ایس",
 	"content-json-empty-object": "خالی آبجیکٹ",
 	"content-json-empty-array": "خالی ایرے",
-	"deprecated-self-close-category": "صفحات مع نادرست ایچ ٹی ایم ایل ٹیگ",
-	"deprecated-self-close-category-desc": "اس صفحہ میں ایچ ٹی ایم ایل کے نادرست ٹیگ مثلاً <code>&lt;b/></code> or <code>&lt;span/></code> استعمال کیے گئے ہیں۔ چونکہ ایچ ٹی ایم ایل 5 میں ان ٹیگوں کا رویہ تبدیل ہو جائے گا، لہذا ویکی متن میں ان کا استعمال متروک ہو چکا ہے۔",
 	"duplicate-args-warning": "<strong>انتباہ:</strong> [[:$1]] پیرامیٹر \"$3\" کی قدر کے ساتھ [[:$2]] کو طلب کررہا ہے۔ محض آخر میں دی گئی قدر دوبارہ استعمال کی ہوگی۔",
 	"duplicate-args-category": "سانچے میں دوہرے آرگومنٹ کے حامل صفحات",
 	"duplicate-args-category-desc": "وہ صفحات جن میں مکرر یا دوہرے آرگومنٹ مستعمل ہیں، مثلاً <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> یا <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>۔",

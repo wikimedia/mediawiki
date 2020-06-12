@@ -739,8 +739,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "ცარიელი ობიექტი",
 	"content-json-empty-array": "ცარიელი ტაბლო",
-	"deprecated-self-close-category": "გვერდები, რომლებიც იყენებენ არავალიდურ თვითდახურვად HTML ტეგებს",
-	"deprecated-self-close-category-desc": "გვერდი შეიცვას არასწორ თვითდახურვად HTML-ტეგებს, როგორიცაა<code>&lt;b/></code> ან <code>&lt;span/></code>. ამ ტეგების ქცევა სულ მალე შეიცვლება HTML5-ის სპეციფიკის გათვალისწინებით, ამიტომ მათი გამოყენება ვიკიტექსტში არ არის მიზანშეწონილი.",
 	"duplicate-args-warning": "<strong>გაფრთხილება:</strong> [[:$1]] იძახებს [[:$2]]-ის \"$3\" პარამეტრის ერთზე მეტ მნიშვნელობას. აისახება მხოლოდ ბოლოს გამოყენებული მნიშვნელობა.",
 	"duplicate-args-category": "გვერდები, რომლებიც იყენებენ დუბლიკატ არგუმენტებს თარგების გამოძახებისას",
 	"duplicate-args-category-desc": "გვერდები, რომლებიც იყენებენ დუბლიკატ არგუმენტებს თარგების გამოძახებისას, როგორებიც არის <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ან <code><nowiki>{{foo|bar|1=bar}}</nowiki></code>.",

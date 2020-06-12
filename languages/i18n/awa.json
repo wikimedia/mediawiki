@@ -763,8 +763,6 @@
 	"unsupported-content-model": "<strong>चेतावनी:</strong> सामग्री मॉडल $1 एह विकी पय समर्थित नहीं अहै।",
 	"unsupported-content-diff": "सामग्री मॉडल $1 के बरे Diffs कय समर्थन नही करत।",
 	"unsupported-content-diff2": "एह विकी पय सामग्री मॉडल $1 अउर $2 के बीच कय Diffs समर्थित नही अहै।",
-	"deprecated-self-close-category": "अमान्य खुदै-बंद HTML टैग कय उपयोग करय वाले पृष्ठ",
-	"deprecated-self-close-category-desc": "इस पृष्ठ में स्वयं-बंद ऍचटीएमएल चिप्पियाँ समाहित हैं जैसे <code>&lt;b/></code> अथवा <code>&lt;span/></code> आदि। इनका व्यवहार जल्दी ही ऍचटीएमएल५ विनिर्देशों के अनुरूप परिवर्तित हो जायेगा अतः विकि-पाठ में इनके प्रयोग को न करने की सलाह दी जाती है।",
 	"duplicate-args-warning": "<strong>चेतावनी:</strong> [[:$1]] प्राचल \"$3\" के लिए [[:$2]] को एक से अधिक बार काम में ले रहा है। केवल अन्त में दिया गया मान ही काम में लिया जायेगा।",
 	"duplicate-args-category": "टेम्पलेट कॉल में डुप्लिकेट तर्क का उपयोग करते हुए पन्ने",
 	"duplicate-args-category-desc": "पेज जैसे तर्कों के डुप्लिकेट का उपयोग करने वाले टेम्पलेट कॉल, जैसे <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> और <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

@@ -748,7 +748,6 @@
 	"unsupported-content-model": "<strong>Attenziò:</strong> 'u modelle de condenute $1 non g'è supportate jndr'à sta uicchi.",
 	"unsupported-content-diff": "Le differenze non ge sò supportate pu modelle de condenute $1.",
 	"unsupported-content-diff2": "Le differenze 'mbrà le modelle de condenute $1 e $2 non ge sò supportate sus a sta uicchi.",
-	"deprecated-self-close-category": "Lè pàggene ca ausane le tag HTML auto-achiuse invalide",
 	"duplicate-args-warning": "<strong>Attenziò:</strong> [[:$1]] ste chiame [[:$2]] cu cchiù de 'nu valore pu parametre \"$3\". Sulamende l'urteme valore date avène ausate.",
 	"duplicate-args-category": "Pàggene ca ausane le argumende a doppie jndr'à le chiamate d'u template",
 	"duplicate-args-category-desc": "'A pàgene téne chiamate a template ca ausane arguminde a doppie, cumme <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

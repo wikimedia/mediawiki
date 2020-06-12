@@ -784,8 +784,6 @@
 	"unsupported-content-model": "<strong>Tembe :</strong> Zerrekê modeli $1 rê na wiki de desteg nêdano.",
 	"unsupported-content-diff": "Zerrekê modeli $1 dı vurnayışa rê desteg deyeno.",
 	"unsupported-content-diff2": "Modelê zerreki na wiki dê vurnayışê mabênê $1 u $2 de pheşti nêgênê .",
-	"deprecated-self-close-category": "Pelê ke nêraverde etiketanê HTML karnenê",
-	"deprecated-self-close-category-desc": "Pela, <code>&lt;b/></code> ya zi <code>&lt;span/></code> zey ney ho bı ho nêraverde etiketanê HTML ihtiwa keno. Muameley ninan gorey HTML5 direjtifiya do bıvurneyo, coki ra wikitext de karnayışi, tedawul ra dariyayê.",
 	"duplicate-args-warning": "<strong>Tembe:</strong>[[:$1]] şablonê [[:$2]] seba parametrey \"$3\" yew ra zêde erc ra veyndano. Teyna erco peyên do bıkariyo.",
 	"duplicate-args-category": "Pelê ke vurnayışanê şablonanê tekrarına karnenê",
 	"duplicate-args-category-desc": "Zerrekê şablonan de veng kerdışê karnayışi rê nê koda karneyêno <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

@@ -820,8 +820,6 @@
 	"unsupported-content-model": "<strong> Peringatan: </strong> Model konten $1 tidak didukung di wiki ini.",
 	"unsupported-content-diff": "Beda tidak didukung untuk model konten $1.",
 	"unsupported-content-diff2": "Perbedaan antara model konten $1 dan $2 tidak didukung di wiki ini.",
-	"deprecated-self-close-category": "Halaman yang menggunakan tag HTML tertutup-sendiri tidak sah",
-	"deprecated-self-close-category-desc": "Halaman ini mengandung tag HTML tertutup-sendiri yang tidak sah, seperti <code>&lt;b/></code> atau <code>&lt;span/></code>. Perilaku tag seperti ini akan segera berubah agar konsisten dengan spesifikasi HTML5, jadi penggunaannya dalam teks wiki tidak lagi disarankan.",
 	"duplicate-args-warning": "<strong>Peringatan:</strong> [[:$1]] memanggil [[:$2]] dengan nilai lebih dari satu untuk parameter \"$3\". Hanya nilai terakhir yang tersedia yang akan digunakan.",
 	"duplicate-args-category": "Halaman dengan argumen ganda di pemanggilan templat",
 	"duplicate-args-category-desc": "Halaman ini berisi pemanggilan templat yang menggunakan argumen ganda, seperti <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> atau <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

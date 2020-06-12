@@ -721,7 +721,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Eidelen Objet",
 	"content-json-empty-array": "Eidel Tabell",
-	"deprecated-self-close-category": "Säiten déi net valabel 'self-closed' HTML-Tags benotzen",
 	"duplicate-args-warning": "<strong>Opgepasst:</strong> [[:$1]] rifft [[:$2]] mat méi wéi engem Wäert fir de Parameter \"$3\" op. Nëmmen de leschte Wäert gëtt benotzt.",
 	"duplicate-args-category": "Säiten, déi duebel Argumenter a Schablounenopriff gebrauchen",
 	"expensive-parserfunction-warning": "'''Opgepasst:'' Dës Säit huet ze vill Ufroe vu komplexe Parserfunktiounen.\n\nEt däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|ass et $1 Ufro|sinn et $1 Ufroe}}.",

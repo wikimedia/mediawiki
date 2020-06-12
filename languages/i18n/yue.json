@@ -740,8 +740,6 @@
 	"content-model-css": "層疊樣式表",
 	"content-json-empty-object": "吉嘅嘢",
 	"content-json-empty-array": "吉嘅陣列",
-	"deprecated-self-close-category": "用無效自己閂嘅HTML標籤嘅頁面",
-	"deprecated-self-close-category-desc": "版面含有無效嘅自封閉（self-closed）HTML標籤，例如<code>&lt;b/></code>或者係<code>&lt;span/></code>。呢啲標籤嘅顯示結果好快會轉成符合HTML5規格，所以wikitext度嘅呢種用法已經停用。",
 	"duplicate-args-warning": "<strong>警告：</strong> [[:$1]]調用咗[[:$2]]並且指定咗多過一個值畀「$3」呢個參數，祇有最後一次指定嘅值會用到。",
 	"duplicate-args-category": "模用重複參數嘅版面",
 	"duplicate-args-category-desc": "呢版調用模嗰陣用咗重複嘅參數，好似<code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code>或者<code><nowiki>{{foo|bar|1=baz}}</nowiki></code>噉。",

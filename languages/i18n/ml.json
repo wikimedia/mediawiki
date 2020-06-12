@@ -752,7 +752,6 @@
 	"content-model-css": "സി.എസ്.എസ്.",
 	"content-json-empty-object": "ശൂന്യമായ ഒബ്‌ജെക്റ്റ്",
 	"content-json-empty-array": "അറേ ശൂന്യമാണ്",
-	"deprecated-self-close-category": "അസാധുവായ സ്വയം-അടയ്ക്കൽ എച്ച്.റ്റി.എം.എൽ. റ്റാഗുകൾ ഉപയോഗിക്കുന്ന താളുകൾ",
 	"duplicate-args-warning": "<strong>മുന്നറിയിപ്പ്:</strong> [[:$1]], [[:$2]] എന്നതിനെ വിളിക്കുമ്പോൾ \"$3\" എന്ന ചരത്തിന് ഒന്നിലധികം വിലകൾ നൽകിയിട്ടുണ്ട്. നൽകിയ വിലകളിൽ അവസാനത്തേതുമാത്രം ഉപയോഗിക്കുന്നതാണ്.",
 	"duplicate-args-category": "ഫലകങ്ങൾ വിളിക്കുമ്പോൾ ചരങ്ങൾ ആവർത്തിച്ചുപയോഗിക്കുന്ന താളുകൾ",
 	"duplicate-args-category-desc": "താളിൽ ഫലകങ്ങൾ വിളിക്കുമ്പോൾ ചരങ്ങൾ അതായത് <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> അല്ലെങ്കിൽ <code><nowiki>{{foo|bar|1=baz}}</nowiki></code> എന്ന രീതിയിൽ.",

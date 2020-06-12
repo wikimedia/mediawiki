@@ -706,8 +706,6 @@
 	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Ojeto vacua",
 	"content-json-empty-array": "Lista vacua",
-	"deprecated-self-close-category": "Pajes con eticetas HTML autocluinte nonvalida",
-	"deprecated-self-close-category-desc": "La paje conteni eticetas HTML autocluinte nonvalida, como <code>&lt;b/></code> o <code>&lt;span/></code>. La condui de estas va cambia en la futur prosima per coere con la spesifa HTML5, donce on desaproba usa los en vicitesto.",
 	"duplicate-args-warning": "<strong>Averti:</strong> [[:$1]] clama [[:$2]] con plu ca un valua per la parametre \"$3\". Sola la valua final furnida va es usada.",
 	"duplicate-args-category": "Pajes con parametres duplida en clamas de stensil",
 	"duplicate-args-category-desc": "La paje conteni clamas de stensil cual dupli sua parametres, como en <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

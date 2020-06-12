@@ -765,7 +765,6 @@
 	"content-json-empty-object": "Prazan objekat",
 	"content-json-empty-array": "Prazan niz",
 	"unsupported-content-model": "<strong>Upozorenje:</strong> Model sadržaja $1 nije podržan na ovom vikiju.",
-	"deprecated-self-close-category": "Stranice koje koriste nevalidne samozatvarajuće HTML tagove",
 	"duplicate-args-warning": "<strong>Upozorenje:</strong> [[:$1]] poziva [[:$2]] sa više od jedne vrednosti za parametar „$3“. Samo poslednja navedena vrednost će biti korišćena.",
 	"duplicate-args-category": "Stranice s dupliranim argumentima kod poziva šablona",
 	"duplicate-args-category-desc": "Stranica sadrži pozive šablona koji koriste dvostruke argumente, kao što su <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ili <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

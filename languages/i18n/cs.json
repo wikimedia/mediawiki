@@ -794,8 +794,6 @@
 	"unsupported-content-model": "<strong>Varování:</strong> Model obsahu $1 není na této wiki podporován.",
 	"unsupported-content-diff": "Rozdíly obsahů s modelem $1 nejsou podporovány.",
 	"unsupported-content-diff2": "Rozdíly mezi obsahy s modely $1 a $2 nejsou na této wiki podporovány.",
-	"deprecated-self-close-category": "Stránky s neplatnými sebeuzavírajícími HTML značkami",
-	"deprecated-self-close-category-desc": "Stránka obsahuje neplatné sebeuzavírající HTML značky, například <code>&lt;b/></code> nebo <code>&lt;span/></code>. Jejich chování se v zájmu konzistence se specifikací HTML5 brzy změní, proto je jejich použití ve wikitextu zastaralé.",
 	"duplicate-args-warning": "<strong>Upozornění:</strong> Stránka [[:$1]] volá [[:$2]] s více než jednou hodnotou parametru „$3“. Použije se jen poslední uvedená hodnota.",
 	"duplicate-args-category": "Stránky s duplicitními argumenty ve voláních šablon",
 	"duplicate-args-category-desc": "Stránka obsahuje volání šablony, které používá duplicitní argumenty, např. <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> nebo <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

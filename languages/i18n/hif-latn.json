@@ -710,8 +710,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Khaali object",
 	"content-json-empty-array": "Khaali array",
-	"deprecated-self-close-category": "Panna, jon ki invalid self-closed HTML tags, ke use kare hai",
-	"deprecated-self-close-category-desc": "Panna me, invalid self-closed HTML tags hai, jaise ki <code>&lt;b/></code> nai to <code>&lt;span/></code>. The behavior of these will change soon to be consistent with the HTML5 specification, so their use in wikitext is deprecated.",
 	"duplicate-args-warning": "<strong>Chetauni:</strong> [[:$1]] is calling [[:$2]] with more than one value for the \"$3\" parameter. Only the last value provided will be used.",
 	"duplicate-args-category": "Panna jiske tamplate call me duplicate argument hae",
 	"duplicate-args-category-desc": "Panna me template calls hae jisme duplicate arguments hae, jaise ki <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

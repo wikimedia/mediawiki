@@ -770,8 +770,6 @@
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Prazan objekt",
 	"content-json-empty-array": "Prazno polje",
-	"deprecated-self-close-category": "Stranice s krivo zatvorenim HTML oznakama‎",
-	"deprecated-self-close-category-desc": "Stranica sadrži neispravne samozatvorene HTML oznake, kao što su <code>&lt;b/></code> ili <code>&lt;span/></code>. Njihovo funkcioniranje uskoro će se promijeniti kako bi bilo u skladu sa specifikacijama za HTML5, što znači da su zastarjele i ne bi se trebale upotrebljavati u wikitekstu.",
 	"duplicate-args-warning": "<strong>Upozorenje:</strong> [[:$1]] poziva na [[:$2]] s više od jedne vrijednosti za parametar \"$3\". Rabit će se samo posljednja navedena vrijednost.",
 	"duplicate-args-category": "Stranice u kojima se ponavljaju argumenti u predlošcima",
 	"expensive-parserfunction-warning": "Upozorenje: Ova stranica sadrži previše opterećujućih poziva parserskih funkcija\n\nTrebala bi imati manje od $2 {{PLURAL:$2|poziva|poziva}}, sada ima {{PLURAL:$1|$1 poziv|$1 poziva}}.",

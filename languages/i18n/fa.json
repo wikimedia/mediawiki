@@ -816,8 +816,6 @@
 	"content-model-css": "سی‌اس‌اس",
 	"content-json-empty-object": "ابجکت خالی",
 	"content-json-empty-array": "آرایهٔ خالی",
-	"deprecated-self-close-category": "صفحه از برچسب اچ‌تی‌ام‌ال بسته‌شدهٔ نامجاز استفاده می‌کند",
-	"deprecated-self-close-category-desc": "صفحه دارای برچسب اچ‌تی‌ام‌ال self-closed است مانند <code>&lt;b/></code> یا <code>&lt;span/></code>. عملکرد این برچسب‌ها در اچ‌تی‌ام‌ال۵ تغییر می‌کند در نتیجه استفاده از آنها در ویکی‌متن منسوخ و بی‌اثر است.",
 	"duplicate-args-warning": "<strong>هشدار:</strong> [[:$1]] [[:$2]] را با بیش از یک مقدار برای پارامتر «$3» صدا می‌زند. فقط آخرین مقدار داده شده استفاده خواهد شد.",
 	"duplicate-args-category": "صفحه‌های دارای آرگومان تکراری در فراخوانی الگو",
 	"duplicate-args-category-desc": "صفحاتی که دارای آرگومان تکراری هستند مانند، <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> یا <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

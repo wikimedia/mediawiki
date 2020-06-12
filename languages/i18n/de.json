@@ -851,8 +851,6 @@
 	"unsupported-content-model": "<strong>Warnung:</strong> Das Inhaltsmodell $1 wird auf diesem Wiki nicht unterstützt.",
 	"unsupported-content-diff": "Versionsvergleiche werden für Seiten des Inhaltsmodells $1 nicht unterstützt.",
 	"unsupported-content-diff2": "Versionsvergleiche zwischen den Inhaltsmodellen $1 und $2 werden auf diesem Wiki nicht unterstützt.",
-	"deprecated-self-close-category": "Seiten, die ungültige selbstschließende HTML-Tags verwenden",
-	"deprecated-self-close-category-desc": "Die Seite enthält ungültige selbstschließende HTML-Tags wie <code>&lt;b/></code> oder <code>&lt;span/></code>. Das Verhalten dieser Tags wird bald geändert, um mit der HTML5-Spezifikation konsistent zu sein, so dass ihre Verwendung im Wikitext veraltet ist.",
 	"duplicate-args-warning": "<strong>Warnung:</strong> [[:$1]] ruft [[:$2]] mit mehr als einem Wert für den Parameter „$3“ auf. Nur der letzte angegebene Wert wird verwendet.",
 	"duplicate-args-category": "Seiten, die doppelte Argumente in Vorlagenaufrufen verwenden",
 	"duplicate-args-category-desc": "Die Seite enthält Vorlagenaufrufe, die Duplikate von Argumenten verwenden, wie <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> oder <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

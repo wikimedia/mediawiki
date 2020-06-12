@@ -536,7 +536,6 @@
 	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Nedaca",
 	"content-json-empty-array": "Nedafa wafra",
-	"deprecated-self-close-category": "Bu dem meenafa HTML arttcala",
 	"duplicate-args-warning": "<strong>OBRAL</strong> [[:$1]] va [[:$2]] rozar, kan loa tanoya voda mu \"$3\" dor. Ant bocafa deana voda zo saveter.",
 	"duplicate-args-category": "Bu favesu va jontolayana rustoda ta tezarozara",
 	"expensive-parserfunction-category": "Bu dem slika rozara va exulerafli",

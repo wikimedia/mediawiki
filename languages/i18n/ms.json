@@ -759,8 +759,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objek kosong",
 	"content-json-empty-array": "Tatasusunan kosong",
-	"deprecated-self-close-category": "Laman menggunakan teg HTML tertutup sendiri yang tidak sah.",
-	"deprecated-self-close-category-desc": "Laman mengandungi teg HTML tertutup sendiri, seperti <code>&lt;b/></code> atau <code>&lt;span/></code>. Ragam mereka akan berubah tidak lama lagi kepada yang lebih konsisten dengan spesifikasi HTML5, supaya penggunaan mereka dalam teks wiki diusangkan.",
 	"duplicate-args-warning": "<strong>Amaran:</strong> [[:$1]] sedang memanggil [[:$2]] dengan lebih daripada satu nilai untuk parameter \"$3\". Hanya nilai terakhir yang diberikan akan digunakan.",
 	"duplicate-args-category": "Laman yang menggunakan argumen pendua dalam panggilan templat",
 	"duplicate-args-category-desc": "Laman ini mengandungi panggilan templat yang menggunakan pendua argumen seperti <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> atau <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

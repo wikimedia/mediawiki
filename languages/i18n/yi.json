@@ -711,7 +711,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "ליידיגער אביעקט",
 	"content-json-empty-array": "ליידיגער אריי",
-	"deprecated-self-close-category": "בלעטער וואס ניצן אומגילטיגע אליין־פֿאַרמאַכטע HTML טאַגן",
 	"duplicate-args-warning": "<strong>ווארענונג:</strong> [[:$1]] רופט [[:$2]] מיט מער ווי איין ווערט פארן פאראמעטער \"$3\". נאר דעם לעצטן ווערט וועט מען ניצן.",
 	"duplicate-args-category": "בלעטער וואס ניצן געטאפלטע ארגומענטן אין א מוסטער־רוף",
 	"duplicate-args-category-desc": "דער בלאט אנטהאלט מוסטער־אויפרופן וואס ניצן דופליקאטן פון ארגומענטן, ווי למשל <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

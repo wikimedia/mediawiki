@@ -657,7 +657,6 @@
 	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Буш объект",
 	"content-json-empty-array": "Буш массив",
-	"deprecated-self-close-category": "Үзлегеннән ябылучы HTML-тегларны кулланучы битләр",
 	"duplicate-args-category": "Калыпны чакыруда кабатлап торган аргументларны кулланган битләр",
 	"expensive-parserfunction-warning": "<strong>Игътибар:</strong>  бу биттә хәтерне еш кулланучы функцияләр артык күп.\n\nБиттә {{PLURAL:$2|$2 эш куллану}} рөхсәт ителгән очракта, монда $1 {{PLURAL:$1|эш башкарыла}}.",
 	"expensive-parserfunction-category": "Хәтерне еш кулланучы функцияләр күп булган битләр",

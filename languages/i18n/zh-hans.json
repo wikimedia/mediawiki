@@ -886,8 +886,6 @@
 	"unsupported-content-model": "<strong>警告：</strong>内容模型$1在此wiki上不支持。",
 	"unsupported-content-diff": "内容模型$1不支持显示差异。",
 	"unsupported-content-diff2": "本wiki不支持显示$1和$2两个内容模型之间的差异。",
-	"deprecated-self-close-category": "使用无效自封闭HTML标签的页面",
-	"deprecated-self-close-category-desc": "页面包含无效的自封闭HTML标签，例如<code>&lt;b/></code>或<code>&lt;span/></code>。这些标签的行为将很快被更改以与HTML5规格相一致，所以它们在wiki文本中的使用已弃用。",
 	"duplicate-args-warning": "<strong>警告：</strong>[[:$1]]正在调用超过一个[[:$2]]中“$3”参数的值。只有最后提供的值会被使用。",
 	"duplicate-args-category": "调用重复模板参数的页面",
 	"duplicate-args-category-desc": "页面包含调用了重复参数的模板，例如<code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code>或<code><nowiki>{{foo|bar|1=baz}}</nowiki></code>。",

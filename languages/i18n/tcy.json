@@ -729,8 +729,6 @@
 	"content-model-javascript": "ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್",
 	"content-json-empty-object": "ಖಾಲಿ ವಿಸಯೊ",
 	"content-json-empty-array": "ಖಾಲಿ ಪರಿವ್ಯೂಹ",
-	"deprecated-self-close-category": "ಅಮಾನ್ಯ ತಾನೇಮುಚ್ಚಿನ ಎಚ್ಟಿಎಂಎಲ್ HTML ಕುಚ್ಚಿಲೆನ್ ಬಳಸುನ ಪುಟೊಲು",
-	"deprecated-self-close-category-desc": "ಪುಟೊಟು ಅಮಾನ್ಯ ತಾನೇಮುಚ್ಚಿನ, <code>&lt;b/></code> ಇಜಿಂಡ <code>&lt;span/></code>. ರೀತಿದ ಎಚ್ಟಿಎಂಎಲ್ HTML ಕುಚ್ಚಿಲು ಉಂಡು. ವಿಕಿಪಟ್ಯೊಡು ಇಂಚಿನ ಬಳಕೆ ಅಸಮ್ಮತ, ದೇಗಿನ್ನಗ ಎಚ್ಟಿಎಂಎಲ್ ೫ (HTML5) ವಿಶಿಷ್ಟಾಂಶೊಗು ಅನುಗುಣವಾದ್ ಉಂದೆಕ್ಲೆನ ಸ್ವಭಾವ ಬೇಗನೆ ಬದಲಾವರೆ ಉಂಡು.",
 	"duplicate-args-warning": "<strong>ಎಚ್ಚರಿಗೆ:</strong> [[:$1]] ಒಂಜೆರ್ದ್ ಎಚ್ಚ ಮೌಲ್ಯದ \"$3\" ಪಾರಮಾನ ಸೇರೊಂದು  [[:$2]] ನು ಲೆಪ್ಪುಂಡು. ಕಡೇಟ್ ಕೊರಿನ ಮೌಲ್ಯೊನು ಮಾತ್ರಾ ಬಳಕೆ ಮಲ್ಪುಂಡು.",
 	"duplicate-args-category": "ಚಿತಪಲಕ ಲೆಪ್ಪುಲೆಡ್ ಇರ್ಪಡಿ ವಾದೊಲೆನ್ ಬಳಸುನ ಪುಟೊಲು",
 	"duplicate-args-category-desc": "ಪುಟೊಟು  ಇರ್ಪಡಿ ವಾದೊಲೆನ್ ಬಳಸುನ ಚಿತಪಲಕ ಲೆಪ್ಪುಲು ಉಂಡು. ಇಂಚಿತ್ತಿನವು:\n <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ಇಜಿಂಡ <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

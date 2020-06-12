@@ -719,8 +719,6 @@
 	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Laeg objek",
 	"content-json-empty-array": "Laege rits",
-	"deprecated-self-close-category": "Pagina's mit óngeljige zelfsloetende HTML-tags",
-	"deprecated-self-close-category-desc": "De pagina bevat óngeljige zelf-aafgeslaote HTML-tags, wie <code>&lt;b/&gt;</code> of <code>&lt;span/&gt;</code>. 't Gedraag van dees tags zal binnekort waere verangerd zodet dit euvereinkumpt miet de HTML5-specificatie, dus 't gebroek hievan is verajerd en weurt aafgeraoje.",
 	"duplicate-args-warning": "<strong>Waorsjoewing:</strong> [[:$1]] reup [[:$2]] aan mit mieër es ein waerd veur de paramaeter \"$3\". Allein de litste waerd weurt gebroek.",
 	"duplicate-args-category": "Pagina's mit dóbbel sjebloonparamaeters",
 	"duplicate-args-category-desc": "De pagina bevat aanreup van sjeblone worin 'tzelfde argument versjillende kieëre weurt gebroek, wie <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> of <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

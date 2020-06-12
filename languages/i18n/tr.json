@@ -855,8 +855,6 @@
 	"unsupported-content-model": "<strong>Uyarı:</strong> İçerik modeli bu vikide $1 desteklenmemektedir",
 	"unsupported-content-diff": "İçerik modeli $1 için değişiklikler desteklenmemektedir.",
 	"unsupported-content-diff2": "İçerik modeli $1 ve $2 değişiklikler bu vikide desteklenmemektedir.",
-	"deprecated-self-close-category": "Kendiliğinden geçersiz HTML etiketlerini kullanan sayfalar",
-	"deprecated-self-close-category-desc": "Sayfa, <code>&lt;b/></code> veya <code>&lt;span/></code> gibi kendiliğinden geçersiz HTML etiketleri içeriyor. Bunların davranışları yakında HTML5 belirtimiyle tutarlı olacak şekilde değişecektir, bu nedenle vikimetindeki kullanımları, kullanımdan kaldırılır.",
 	"duplicate-args-warning": "<strong>Uyarı:</strong>[[:$1]] [[:$2]] şablonunu \"$3\" parametresi için birden fazla değer çağırıyor. Sadece sağlanan son değer kullanılacak.",
 	"duplicate-args-category": "Yinelenen şablon değişkenleri kullanan sayfalar",
 	"duplicate-args-category-desc": "Sayfada içeren şablonları çağırmak için bu terimler <code><nowiki>{{örnek|bar=1|bar=2}}</nowiki></code> veya <code><nowiki>{{örnek|bar|1=baz}}</nowiki></code> gibi kullanılır.",

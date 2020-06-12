@@ -723,8 +723,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objècte void",
 	"content-json-empty-array": "Tablèu void",
-	"deprecated-self-close-category": "Paginas qu'utilizan d'etiquetas HTML autotampadas pas validas",
-	"deprecated-self-close-category-desc": "La pagina conten d'etiquetas HTML autotampadas pas validas, coma <code>&lt;b/></code> o <code>&lt;span/></code>. Lo comportament d'aquò cambiarà lèu per respectar l'especificacion HTML5, adonc lor emplec en wikitext es despreciat.",
 	"duplicate-args-warning": "<strong>Attention:</strong> [[:$1]] crida [[:$2]] amb mai d'una valor pel paramètre \"$3\". S'emplegarà solament  la darrièra valor provesida.",
 	"duplicate-args-category": "Paginas utilizant d'arguments duplicats dins los apèls de modèl",
 	"duplicate-args-category-desc": "La pagina conten de cridas a patrons qu'emplagan d'arguments duplicats, coma  <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

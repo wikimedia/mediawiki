@@ -927,8 +927,6 @@
 	"unsupported-content-model": "<strong>Attention :</strong> le modèle de contenu $1 n’est pas pris en charge sur ce wiki.",
 	"unsupported-content-diff": "Les diffs ne sont pas pris en charge pour le modèle de contenu $1.",
 	"unsupported-content-diff2": "Les diffs entre les modèles de contenu $1 et $2 ne sont pas pris en charge par ce wiki.",
-	"deprecated-self-close-category": "Pages utilisant des balises HTML auto-fermantes non valides",
-	"deprecated-self-close-category-desc": "La page contient des balises HTML auto-fermantes non valides, comme <code>&lt;b/></code> ou <code>&lt;span/></code>. Le comportement de celles-ci changera prochainement pour être en accord avec la spécification HTML5, donc leur utilisation dans le wikicode est désormais désuète.",
 	"duplicate-args-warning": "<strong>Avertissement :</strong> [[:$1]] appelle [[:$2]] avec plus d'une valeur pour le paramètre « $3 ». Seule la dernière valeur fournie sera utilisée.",
 	"duplicate-args-category": "Pages utilisant des arguments dupliqués dans les appels de modèle",
 	"duplicate-args-category-desc": "La page contient des appels de modèle qui utilisent des arguments dupliqués, comme <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ou <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
