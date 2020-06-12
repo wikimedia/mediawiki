@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1476,16 +1478,13 @@ class ParserOptions {
 				$titleToCheck, $parser = null ) use ( $title, $content, $user, &$oldCallback
 			) {
 				if ( $titleToCheck->equals( $title ) ) {
-					// TODO construct a RevisionRecord
-					$rev = new Revision( [
-						'page' => $title->getArticleID(),
-						'user_text' => $user->getName(),
-						'user' => $user->getId(),
-						'parent_id' => $title->getLatestRevID(),
-						'title' => $title,
-						'content' => $content
-					] );
-					return $rev->getRevisionRecord();
+					$revRecord = new MutableRevisionRecord( $title );
+					$revRecord->setContent( SlotRecord::MAIN, $content );
+					$revRecord->setUser( $user );
+					$revRecord->setTimestamp( MWTimestamp::now( TS_MW ) );
+					$revRecord->setPageId( $title->getArticleID() );
+					$revRecord->setParentId( $title->getLatestRevID() );
+					return $revRecord;
 				} else {
 					return call_user_func( $oldCallback, $titleToCheck, $parser );
 				}

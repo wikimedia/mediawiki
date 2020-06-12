@@ -733,7 +733,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Dim gwrthrych",
 	"content-json-empty-array": "Rhesi gwag",
-	"deprecated-self-close-category": "Tudalennau gyda tagiau HTML annilys.",
 	"duplicate-args-warning": "<strong>Rhybudd:</strong> Mae [[:$1]] yn galw [[:$2]] gyda mwy nag un gwerthrif (''value'') i baramedr \"$3\". Dim ond y gwerthrif diwethaf gaiff ei ddefnyddio.",
 	"duplicate-args-category": "Tudalennau gyda meysydd deublyg yn y Nodion",
 	"duplicate-args-category-desc": "Mae'r dudalen hon yn cynnwys meysydd yn y Nodion, ddwy waith e.e.  <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> neu <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

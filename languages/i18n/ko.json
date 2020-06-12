@@ -824,8 +824,6 @@
 	"unsupported-content-model": "<strong>경고:</strong> $1 콘텐츠 모델은 이 위키에서 지원되지 않습니다.",
 	"unsupported-content-diff": "차이 비교는 콘텐츠 모델 $1에서 지원되지 않습니다.",
 	"unsupported-content-diff2": "콘텐츠 모델 $1, $2 간의 차이 비교는 이 위키에서 지원되지 않습니다.",
-	"deprecated-self-close-category": "유효하지 않은, 스스로 닫는 HTML 태그를 사용하고 있는 문서",
-	"deprecated-self-close-category-desc": "이 문서는 <code>&lt;b/></code>나 <code>&lt;span/></code>와 같은 유효하지 않은, 스스로 닫는 HTML 태그를 포함하고 있습니다. 이 태그들의 동작은 곧 HTML5 사양과 일관되도록 변경될 예정이므로 위키텍스트에서 이것들을 사용하는 것은 권장되지 않습니다.",
 	"duplicate-args-warning": "<strong>경고:</strong> [[:$1]] 문서는 [[:$2]]에 \"$3\" 변수를 하나보다 더 많이 입력했습니다. 마지막으로 주어진 값만이 유효합니다.",
 	"duplicate-args-category": "중복된 인수를 사용한 틀의 호출을 포함한 문서",
 	"duplicate-args-category-desc": "문서에 <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code>나 <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>와 같은, 인수를 중복하여 사용한 틀 호출을 포함합니다.",

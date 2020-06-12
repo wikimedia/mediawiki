@@ -737,8 +737,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Кураанах эбийиэк",
 	"content-json-empty-array": "Кураанах массив",
-	"deprecated-self-close-category": "Манна көҥүллэммэт бэйэтэ сабыллар HTML-тиэктэри туттар сирэйдэр",
-	"deprecated-self-close-category-desc": "Манна көҥүллэммэт бэйэтэ сабыллар HTML-тиэктэр бааллар, холобур <code>&lt;b/></code> биитэр <code>&lt;span/></code>. Сотору кэминэн HTML5 ирдэбилигэр сөп түбэһиннэрэ, дьайыылара уларыйыа. Онон маннык эргэрбит тиэктэри туттубакка буола сатаа.",
 	"duplicate-args-warning": "<strong>Болҕой:</strong> «$3» параметр бииртэн ордук эрэ буоллаҕына [[:$1]] маны [[:$2]] холбуур. Кэлиҥҥи эрэ сыыппара туһаныллыа.",
 	"duplicate-args-category": "Халыыптары ыҥырарга хатыланар аргуменнардаах сирэйдэр",
 	"duplicate-args-category-desc": "Халыыптары ыҥырарга хатыланар аргуменнардаах сирэйдэр, холобур маннык <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

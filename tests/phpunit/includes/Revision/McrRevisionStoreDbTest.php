@@ -10,7 +10,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
-use Revision;
 use StatusValue;
 use TextContent;
 use Title;
@@ -363,7 +362,7 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$wrappedRevStore->blobStore = $mockBlobStore;
 
 		$result = $revStore->newRevisionsFromBatch(
-			[ $this->revisionToRow( new Revision( $revRecord1 ) ) ],
+			[ $this->revisionRecordToRow( $revRecord1 ) ],
 			[
 				'slots' => [ SlotRecord::MAIN ],
 				'content' => true

@@ -182,6 +182,7 @@ class HookRunner implements
 	\MediaWiki\Hook\GetLocalURL__ArticleHook,
 	\MediaWiki\Hook\GetLocalURL__InternalHook,
 	\MediaWiki\Hook\GetLogTypesOnUserHook,
+	\MediaWiki\Hook\GetMagicVariableIDsHook,
 	\MediaWiki\Hook\GetMetadataVersionHook,
 	\MediaWiki\Hook\GetNewMessagesAlertHook,
 	\MediaWiki\Hook\GetRelativeTimestampHook,
@@ -261,6 +262,7 @@ class HookRunner implements
 	\MediaWiki\Hook\PageHistoryLineEndingHook,
 	\MediaWiki\Hook\PageHistoryPager__doBatchLookupsHook,
 	\MediaWiki\Hook\PageHistoryPager__getQueryInfoHook,
+	\MediaWiki\Hook\PageMoveCompleteHook,
 	\MediaWiki\Hook\PageRenderingHashHook,
 	\MediaWiki\Hook\ParserAfterParseHook,
 	\MediaWiki\Hook\ParserAfterStripHook,
@@ -525,6 +527,7 @@ class HookRunner implements
 	\MediaWiki\Storage\Hook\PageContentInsertCompleteHook,
 	\MediaWiki\Storage\Hook\PageContentSaveCompleteHook,
 	\MediaWiki\Storage\Hook\PageContentSaveHook,
+	\MediaWiki\Storage\Hook\PageSaveCompleteHook,
 	\MediaWiki\Storage\Hook\ParserOutputStashForEditHook,
 	\MediaWiki\Storage\Hook\RevisionDataUpdatesHook,
 	\MediaWiki\User\Hook\ConfirmEmailCompleteHook,
@@ -1913,6 +1916,13 @@ class HookRunner implements
 		);
 	}
 
+	public function onGetMagicVariableIDs( &$variableIDs ) {
+		return $this->container->run(
+			'GetMagicVariableIDs',
+			[ &$variableIDs ]
+		);
+	}
+
 	public function onGetMetadataVersion( &$version ) {
 		return $this->container->run(
 			'GetMetadataVersion',
@@ -2801,10 +2811,27 @@ class HookRunner implements
 		);
 	}
 
+	public function onPageMoveComplete( $old, $new, $user, $pageid, $redirid, $reason, $revision ) {
+		return $this->container->run(
+			'PageMoveComplete',
+			[ $old, $new, $user, $pageid, $redirid, $reason, $revision ]
+		);
+	}
+
 	public function onPageRenderingHash( &$confstr, $user, &$forOptions ) {
 		return $this->container->run(
 			'PageRenderingHash',
 			[ &$confstr, $user, &$forOptions ]
+		);
+	}
+
+	public function onPageSaveComplete( $wikiPage, $user, $summary, $flags,
+		$revisionRecord, $originalRevId, $undidRevId
+	) {
+		return $this->container->run(
+			'PageSaveComplete',
+			[ $wikiPage, $user, $summary, $flags, $revisionRecord,
+				$originalRevId, $undidRevId ]
 		);
 	}
 

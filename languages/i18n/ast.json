@@ -759,8 +759,6 @@
 	"unsupported-content-model": "<strong>Atención:</strong> El modelu de conteníu $1 nun tien encontu nesta wiki.",
 	"unsupported-content-diff": "Nun hai encontu de diffs pal modelu de conteníu $1.",
 	"unsupported-content-diff2": "Esta wiki nun tien encontu pa diffs ente los modelos de conteníu $1 y $2.",
-	"deprecated-self-close-category": "Páxines qu'utilicen etiquetes HTML autozarraes inválides",
-	"deprecated-self-close-category-desc": "Esta páxina contien etiquetes HTML autozarraes inválides, tales como <code>&lt;b/></code> o <code>&lt;span/></code>. El comportamientu d'estes va camudar llueu pa ser coherente cola especificación d'HTML5, polo qu'el so usu nel testu wiki ta en desusu.",
 	"duplicate-args-warning": "<strong>Avisu:</strong> [[:$1]] llama a [[:$2]] con más d'un valor pal parámetru «$3». Sólo va usase l'últimu valor dau.",
 	"duplicate-args-category": "Páxines con argumentos duplicaos nes llamaes a plantíes",
 	"duplicate-args-category-desc": "La páxina contien llamaes a plantíes qu'usen argumentos duplicaos, como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

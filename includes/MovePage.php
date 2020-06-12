@@ -694,6 +694,8 @@ class MovePage {
 			}
 		}
 
+		// Deprecated since 1.35, use PageMoveComplete
+		// TODO hard deprecate
 		$nullRevisionObj = new Revision( $nullRevision );
 		$this->hookRunner->onTitleMoveCompleting(
 			$this->oldTitle, $this->newTitle,
@@ -706,14 +708,28 @@ class MovePage {
 			new AtomicSectionUpdate(
 				$dbw,
 				__METHOD__,
-				function () use ( $user, $pageid, $redirid, $reason, $nullRevisionObj ) {
+				function () use ( $user, $pageid, $redirid, $reason, $nullRevision ) {
+					$this->hookRunner->onPageMoveComplete(
+						$this->oldTitle,
+						$this->newTitle,
+						$user,
+						$pageid,
+						$redirid,
+						$reason,
+						$nullRevision
+					);
+
+					$nullRevisionObj = new Revision( $nullRevision );
+					// Deprecated since 1.35, use PageMoveComplete
+					// TODO hard deprecate
 					$this->hookRunner->onTitleMoveComplete(
 						$this->oldTitle,
 						$this->newTitle,
 						$user, $pageid,
 						$redirid,
 						$reason,
-						$nullRevisionObj );
+						$nullRevisionObj
+					);
 				}
 			)
 		);
@@ -893,14 +909,14 @@ class MovePage {
 
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
-		// TODO cleanup hooks and use of $nullRevisionObj
-		$nullRevisionObj = new Revision( $nullRevision );
 		$fakeTags = [];
 		$this->hookRunner->onRevisionFromEditComplete(
 			$newpage, $nullRevision, $nullRevision->getParentId(), $user, $fakeTags );
 
-		// TODO hard deprecate hook
+		// TODO cleanup hooks and use of $nullRevisionObj
 		$nullRevisionObj = new Revision( $nullRevision );
+
+		// TODO hard deprecate hook
 		$this->hookRunner->onNewRevisionFromEditComplete(
 			$newpage, $nullRevisionObj, $nullRevision->getParentId(), $user, $fakeTags );
 

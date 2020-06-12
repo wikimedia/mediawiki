@@ -704,8 +704,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Awan linaon a banag",
 	"content-json-empty-array": "Awan linaon a rimpuok",
-	"deprecated-self-close-category": "Pampanid nga agus-usar kadagiti imbalido a bukod nga agrikrikep nga etiketa ti HTML",
-	"deprecated-self-close-category-desc": "Ti panid ket aglaon kadagiti imbalido a bukod nga agrikrikep nga etiketa ti HTML, a kas ti <code>&lt;b/></code> wenno <code>&lt;span/></code>.  Agbaliwton ti panagkukua dagitoy tapno maitunos iti espesipikasion ti HTML5, isu a nasukatanen ti usarda iti wikitext.",
 	"duplicate-args-warning": "<strong>Ballaag:</strong> Tawtawagan ti [[:$1]] ti [[:$2]] iti ad-adu ngem maysa a pateg para iti parametro \"$3\". Mausarto laeng ti naudi a naited a pateg.",
 	"duplicate-args-category": "Pampanid nga agus-usar kadagiti duplikado nga argumento kadagiti panagtawag ti plantilia",
 	"duplicate-args-category-desc": "Ti panid ket aglaon kadagiti panagtawag ti plantilia nga agus-usar kadagiti duplikado dagiti argumento, a kas ti <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> wenno <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

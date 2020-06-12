@@ -796,8 +796,6 @@
 	"unsupported-content-model": "<strong>Warning:</strong> Content model $1 is not supported on this wiki.",
 	"unsupported-content-diff": "Diffs are not supported for content model $1.",
 	"unsupported-content-diff2": "Diffs between the content models $1 and $2 are not supported on this wiki.",
-	"deprecated-self-close-category": "Pages using invalid self-closed HTML tags",
-	"deprecated-self-close-category-desc": "The page contains invalid self-closed HTML tags, such as <code>&lt;b/></code> or <code>&lt;span/></code>. The behavior of these will change soon to be consistent with the HTML5 specification, so their use in wikitext is deprecated.",
 	"duplicate-args-warning": "<strong>Warning:</strong> [[:$1]] is calling [[:$2]] with more than one value for the \"$3\" parameter. Only the last value provided will be used.",
 	"duplicate-args-category": "Pages using duplicate arguments in template calls",
 	"duplicate-args-category-desc": "The page contains template calls that use duplicates of arguments, such as <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

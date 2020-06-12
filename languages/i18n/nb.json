@@ -797,8 +797,6 @@
 	"unsupported-content-model": "<strong>Advarsel:</strong> Innholdsmodellen $1 støttes ikke på denne wikien.",
 	"unsupported-content-diff": "Differ støttes ikke for innholdsmodellen $1.",
 	"unsupported-content-diff2": "Differ mellom innholdsmodellene $1 og $2 støttes ikke på denne wikien.",
-	"deprecated-self-close-category": "Sider som bruker ugyldige selvlukkende HTML-tagger.",
-	"deprecated-self-close-category-desc": "Siden inneholder ugyldige selvlukkende HTML-tagger som <code>&lt;b /></code> or <code>&lt;span /></code>. Oppførselen til disse blir snart endret for å være i samsvar med HTML-spesifikasjonen, og da vil de ikke kunne brukes i wikitekst.",
 	"duplicate-args-warning": "<strong>Advarsel:</strong> [[:$1]] kaller [[:$2]] med mer enn én verdi for parameteren «$3». Bare den sist angitte verdien blir brukt.",
 	"duplicate-args-category": "Sider med duplikatargumenter i malkall",
 	"duplicate-args-category-desc": "Denne siden inneholder malkall med duplikatparametre, som <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> eller <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

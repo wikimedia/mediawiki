@@ -124,6 +124,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * $wgAllowImageMoving - This configuration is now deprecated. Use
   $wgGroupPermissions instead; eg, to revoke sysop's ability to move images use
   $wgGroupPermissions['sysop']['movefile'] = false.
+* $wgAllowImageTag - This configuration is now deprecated; future parsers will
+  not support direct use of the HTML <img> tag in wikitext.
 * …
 
 ==== Removed configuration ====
@@ -857,6 +859,8 @@ because of Phabricator reports.
   new RevisionUndeleted hook instead.
 * The NewRevisionFromEditComplete hook has been hard deprecated. Please use
   the new RevisionFromEditComplete hook instead.
+* The TitleMoveCompleting and TitleMoveComplete hooks have been soft deprecated.
+  Please use the new PageMoveComplete hook instead.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
 * The SquidPurgeClient and SquidPurgeClientPool classes have been deprecated.
@@ -997,8 +1001,10 @@ because of Phabricator reports.
   - ::getPage - use RevisionRecord::getPageId instead
   - ::getUserText - use RevisionRecord::getUser and then User::getName instead
   - ::getComment - use RevisionRecord::getComment instead
+  - ::getSize - use RevisionRecord::getSize instead
   - ::isMinor - use RevisionRecord::isMinor instead
   - ::isCurrent - use RevisionRecord::isCurrent instead
+  - ::getTimestamp - use RevisionRecord::getTimestamp instead
   - ::getContent - use RevisionRecord::getContent instead
   - ::getContentModel - use SlotRecord::getModel instead
   - ::getContentFormat - use SlotRecord::getFormat instead, with a fallback
@@ -1023,6 +1029,8 @@ because of Phabricator reports.
 * WikiPage::$mLastRevision was changed from protected to private.
 * The RevisionInsertComplete hook, soft deprecated in 1.31, now emits
   deprecation warnings.
+* The PageContentInsertComplete and PageContentSaveComplete hooks were
+  deprecated in favor of the new PageSaveComplete hook.
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
 * The JobRunner class has been converted to a service class.
   Direct construction is deprecated, use MediaWikiServices::getJobRunner.
@@ -1081,7 +1089,9 @@ because of Phabricator reports.
 * The ParserGetVariableValueVarCache hook has been deprecated.
 * When using the ParserGetVariableValueSwitch hook, the following unusual
   uses have been deprecated: modifying the passed $magicWordId or failing to
-  cache the returned value in $variableCache.
+  cache the returned value in $variableCache.  The related
+  MagicWordwgVariableIDs hook has been deprecated and renamed; use
+  the GetMagicVariableIDs hook instead.
 * The following Parser properties have been deprecated:
   - ::$mTagHooks
   - ::$mFunctionHooks

@@ -27,7 +27,7 @@ For a write query, use something like:
 $dbw = wfGetDB( DB_MASTER );
 $dbw->insert( /* ...see docs... */ );
 ```
-We use the convention `$dbr` for read and `$dbw` for write to help you keep track of whether the database object is a slave (read-only) or a master (read/write). If you write to a slave, the world will explode. Or to be precise, a subsequent write query which succeeded on the master may fail when replicated to the slave due to a unique key collision. Replication on the slave will stop and it may take hours to repair the database and get it back online. Setting `read_only` in `my.cnf` on the slave will avoid this scenario, but given the dire consequences, we prefer to have as many checks as possible.
+We use the convention `$dbr` for read and `$dbw` for write to help you keep track of whether the database object is a replica (read-only) or a master (read/write). If you write to a replica, the world will explode. Or to be precise, a subsequent write query which succeeded on the master may fail when propagated to the replica due to a unique key collision. Replication will then stop and it may take hours to repair the database and get it back online. Setting `read_only` in `my.cnf` on the replica will avoid this scenario, but given the dire consequences, we prefer to have as many checks as possible.
 
 We provide a `query()` function for raw SQL, but the wrapper functions like `select()` and `insert()` are usually more convenient. They take care of things like table prefixes and escaping for you. If you really need to make your own SQL, please read the documentation for `tableName()` and `addQuotes()`. You will need both of them.
 
@@ -38,19 +38,19 @@ MediaWiki developers who need to write DB queries should have some understanding
 
 ## Replication
 
-The largest installation of MediaWiki, Wikimedia, uses a large set of slave MySQL servers replicating writes made to a master MySQL server. It is important to understand the issues associated with this setup if you want to write code destined for Wikipedia.
+The largest installation of MediaWiki, Wikimedia, uses a large set of replica MySQL servers replicating writes made to a master MySQL server. It is important to understand the issues associated with this setup if you want to write code destined for Wikipedia.
 
 It's often the case that the best algorithm to use for a given task depends on whether or not replication is in use. Due to our unabashed Wikipedia-centrism, we often just use the replication-friendly version, but if you like, you can use `LoadBalancer::getServerCount() > 1` to check to see if replication is in use.
 
 ## Lag
 
-Lag primarily occurs when large write queries are sent to the master. Writes on the master are executed in parallel, but they are executed in serial when they are replicated to the slaves. The master writes the query to the binlog when the transaction is committed. The slaves poll the binlog and start executing the query as soon as it appears. They can service reads while they are performing a write query, but will not read anything more from the binlog and thus will perform no more writes. This means that if the write query runs for a long time, the slaves will lag behind the master for the time it takes for the write query to complete.
+Lag primarily occurs when large write queries are sent to the master. Writes on the master are executed in parallel, but they are executed in serial when they are replicated to the replicas. The master writes the query to the binlog when the transaction is committed. The replicas poll the binlog and start executing the query as soon as it appears. They can service reads while they are performing a write query, but will not read anything more from the binlog and thus will perform no more writes. This means that if the write query runs for a long time, the replicas will lag behind the master for the time it takes for the write query to complete.
 
-Lag can be exacerbated by high read load. MediaWiki's load balancer will stop sending reads to a slave when it is lagged by more than 30 seconds. If the load ratios are set incorrectly, or if there is too much load generally, this may lead to a slave permanently hovering around 30 seconds lag.
+Lag can be exacerbated by high read load. MediaWiki's load balancer will stop sending reads to a replica when it is lagged by more than 30 seconds. If the load ratios are set incorrectly, or if there is too much load generally, this may lead to a replica permanently hovering around 30 seconds lag.
 
-If all slaves are lagged by more than 30 seconds, MediaWiki will stop writing to the database. All edits and other write operations will be refused, with an error returned to the user. This gives the slaves a chance to catch up. Before we had this mechanism, the slaves would regularly lag by several minutes, making review of recent edits difficult.
+If all replicas are lagged by more than 30 seconds, MediaWiki will stop writing to the database. All edits and other write operations will be refused, with an error returned to the user. This gives the replicas a chance to catch up. Before we had this mechanism, the replicas would regularly lag by several minutes, making review of recent edits difficult.
 
-In addition to this, MediaWiki attempts to ensure that the user sees events occurring on the wiki in chronological order. A few seconds of lag can be tolerated, as long as the user sees a consistent picture from subsequent requests. This is done by saving the master binlog position in the session, and then at the start of each request, waiting for the slave to catch up to that position before doing any reads from it. If this wait times out, reads are allowed anyway, but the request is considered to be in "lagged slave mode". Lagged slave mode can be checked by calling `LoadBalancer::getLaggedReplicaMode()`. The only practical consequence at present is a warning displayed in the page footer.
+In addition to this, MediaWiki attempts to ensure that the user sees events occurring on the wiki in chronological order. A few seconds of lag can be tolerated, as long as the user sees a consistent picture from subsequent requests. This is done by saving the master binlog position in the session, and then at the start of each request, waiting for the replica to catch up to that position before doing any reads from it. If this wait times out, reads are allowed anyway, but the request is considered to be in "lagged replica mode". Lagged replica mode can be checked by calling `LoadBalancer::getLaggedReplicaMode()`. The only practical consequence at present is a warning displayed in the page footer.
 
 ## Lag avoidance
 
@@ -61,11 +61,11 @@ To avoid excessive lag, queries which write large numbers of rows should be spli
 Despite our best efforts, it's not practical to guarantee a low-lag environment. Lag will usually be less than one second, but may occasionally be up to 30 seconds. For scalability, it's very important to keep load on the master low, so simply sending all your queries to the master is not the answer. So when you have a genuine need for up-to-date data, the following approach is advised:
 
 1) Do a quick query to the master for a sequence number or timestamp
-2) Run the full query on the slave and check if it matches the data you got
+2) Run the full query on the replica and check if it matches the data you got
 from the master
 3) If it doesn't, run the full query on the master
 
-To avoid swamping the master every time the slaves lag, use of this approach should be kept to a minimum. In most cases you should just read from the slave and let the user deal with the delay.
+To avoid swamping the master every time the replicas lag, use of this approach should be kept to a minimum. In most cases you should just read from the replica and let the user deal with the delay.
 
 ## Lock contention
 

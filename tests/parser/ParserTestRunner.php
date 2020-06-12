@@ -27,6 +27,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -843,20 +845,12 @@ class ParserTestRunner {
 				'page_is_redirect' => 0
 			] );
 
-			// TODO construct a RevisionRecord here instead
-			$rev = new Revision(
-				[
-					'id' => $title->getLatestRevID(),
-					'page' => $title->getArticleID(),
-					'user' => $user,
-					'content' => $content,
-					'timestamp' => $this->getFakeTimestamp(),
-					'title' => $title
-				],
-				Revision::READ_LATEST,
-				$title
-			);
-			$revRecord = $rev->getRevisionRecord();
+			$revRecord = new MutableRevisionRecord( $title );
+			$revRecord->setContent( SlotRecord::MAIN, $content );
+			$revRecord->setUser( $user );
+			$revRecord->setTimestamp( strval( $this->getFakeTimestamp() ) );
+			$revRecord->setPageId( $title->getArticleID() );
+			$revRecord->setId( $title->getLatestRevID() );
 
 			$oldCallback = $options->getCurrentRevisionRecordCallback();
 			$options->setCurrentRevisionRecordCallback(

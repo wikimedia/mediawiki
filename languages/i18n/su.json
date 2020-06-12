@@ -697,7 +697,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Obyék kosong",
 	"content-json-empty-array": "Larik kosong",
-	"deprecated-self-close-category": "Kaca nu maké tag HTML katutup-sorangan teu sah",
 	"duplicate-args-warning": "<strong>Awas:</strong> [[:$1]] nyalukan [[:$2]] ku leuwih ti hiji ajén pikeun paraméter \"$3\". Ngan ajén panungtung anu bakal dipaké.",
 	"duplicate-args-category": "Kaca maké argumén ganda dina caluk citakan",
 	"duplicate-args-category-desc": "Éta kaca ngandung caluk citakan anu maké argumén ganda, kawas <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> atawa <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

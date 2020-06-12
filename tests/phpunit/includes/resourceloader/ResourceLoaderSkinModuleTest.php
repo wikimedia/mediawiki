@@ -365,4 +365,31 @@ CSS
 			],
 		];
 	}
+
+	/**
+	 * Covers ResourceLoaderSkinModule::FEATURE_FILES, but not annotatable.
+	 *
+	 * @dataProvider provideFeatureFiles
+	 * @coversNothing
+	 *
+	 * @param string $file
+	 */
+	public function testFeatureFilesExist( string $file ) : void {
+		$this->assertFileExists( $file );
+	}
+
+	public function provideFeatureFiles() : Generator {
+		global $IP;
+
+		$featureFiles = ( new ReflectionClass( ResourceLoaderSkinModule::class ) )
+			->getConstant( 'FEATURE_FILES' );
+
+		foreach ( $featureFiles as $feature => $files ) {
+			foreach ( $files as $media => $stylesheets ) {
+				foreach ( $stylesheets as $stylesheet ) {
+					yield "$feature: $media: $stylesheet" => [ "$IP/$stylesheet" ];
+				}
+			}
+		}
+	}
 }

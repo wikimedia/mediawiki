@@ -88,7 +88,7 @@ class DatabasePostgres extends Database {
 			);
 		}
 
-		$this->close();
+		$this->close( __METHOD__ );
 
 		$this->server = $server;
 		$this->user = $user;
@@ -1162,7 +1162,8 @@ SQL;
 				'rulename' => $rule,
 				'tablename' => $table,
 				'schemaname' => $this->getCoreSchemas()
-			]
+			],
+			__METHOD__
 		);
 
 		return $exists === $rule;

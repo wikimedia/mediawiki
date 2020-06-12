@@ -1612,9 +1612,9 @@ $refreshCache: If set, refreshes the diff cache
 $unhide: If set, allow viewing deleted revs
 &$differenceEngine: The difference engine object to be used for the diff
 
-'GetDoubleUnderscoreIDs': Modify the list of behavior switch (double
-underscore) magic words. Called by MagicWord.
-&$doubleUnderscoreIDs: array of strings
+'GetDoubleUnderscoreIDs': Modify the list of behavior switches (double
+underscore). Called by MagicWordFactory.
+&$doubleUnderscoreIDs: array of magic word identifiers
 
 'GetExtendedMetadata': Get extended file metadata for the API
 &$combinedMeta: Array of the form:
@@ -1685,6 +1685,9 @@ $query: query options as string passed to Title::getLocalURL()
 
 'GetLogTypesOnUser': Add log types where the target is a userpage
 &$types: Array of log types
+
+'GetMagicVariableIDs': Modify the list of magic variables.
+&$variableIDs: array of magic word identifiers
 
 'GetMetadataVersion': Modify the image metadata version currently in use. This
 is used when requesting image metadata from a ForeignApiRepo. Media handlers
@@ -2450,7 +2453,8 @@ $categories: associative array, keys are category names, values are category
 [&]$out: OutputPage instance (object)
 $parserOutput: parserOutput instance being added in $out
 
-'PageContentInsertComplete': After a new article is created.
+'PageContentInsertComplete': DEPRECATED since 1.35, use PageSaveComplete instead.
+After a new article is created.
 [&]$wikiPage: WikiPage created
 [&]$user: User creating the article
 $content: New content as a Content object
@@ -2483,7 +2487,8 @@ $section: Previously the section number being edited. Currently unused, always n
 [&]$status: StatusValue object for the hook handlers resulting status. Either set $status->fatal() or
   return false to abort the save action.
 
-'PageContentSaveComplete': After an article has been updated.
+'PageContentSaveComplete':  DEPRECATED since 1.35, use PageSaveComplete instead.
+After an article has been updated.
 [&]$wikiPage: WikiPage modified
 [&]$user: User performing the modification
 $content: New content, as a Content object
@@ -2539,6 +2544,15 @@ the key.
 &$confstr: reference to a hash key string which can be modified
 $user: User (object) requesting the page
 &$forOptions: array of options the hash is for
+
+'PageMoveComplete': After moving an article (title), post-commit.
+$old: LinkTarget for the old title
+$nt: LinkTarget for the new title
+$user: UserIdentity for the user who did the move
+$pageid: database ID of the page that's been moved
+$redirid: database ID of the created redirect
+$reason: reason for the move
+$revisionRecord: the RevisionRecord created by the move
 
 'PageViewUpdates': Allow database (or other) changes to be made after a
 page view is seen by MediaWiki.  Note this does not capture views made
@@ -3505,7 +3519,8 @@ $old: old title
 $nt: new title
 $user: user who does the move
 
-'TitleMoveComplete': After moving an article (title), post-commit.
+'TitleMoveComplete': DEPRECATED since 1.35! Use PageMoveComplete
+After moving an article (title), post-commit.
 [&]$old: old title
 [&]$nt: new title
 [&]$user: user who did the move
@@ -3514,7 +3529,8 @@ $redirid: database ID of the created redirect
 $reason: reason for the move
 $revision: the Revision created by the move
 
-'TitleMoveCompleting': After moving an article (title), pre-commit.
+'TitleMoveCompleting': DEPRECATED since 1.35! Use PageMoveComplete
+After moving an article (title), pre-commit.
 $old: old title
 $nt: new title
 $user: user who did the move

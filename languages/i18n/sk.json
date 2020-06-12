@@ -784,8 +784,6 @@
 	"unsupported-content-model": "<strong>Varovánie:</strong> Model obsahu $1 nie je na tejto wiki podporovaný.",
 	"unsupported-content-diff": "Rozdiely obsahov s modelom $1 nie sú podporované.",
 	"unsupported-content-diff2": "Rozdiely medzi obsahmi s modelmi $1 a $2 nie sú na tejto wiki podporované.",
-	"deprecated-self-close-category": "Stránky s neplatnými samouzavrenými HTML značkami",
-	"deprecated-self-close-category-desc": "Stránka obsahuje neplatné samouzatvárajúce HTML značky, napr. <code>&lt;b/></code> alebo <code>&lt;span/></code>. Ich správanie sa v záujme konzistencie so špecifikáciou HTML5 čoskoro zmení a použitie je preto vo wikitexte zastarané.",
 	"duplicate-args-warning": "<strong>Upozornenie:</strong> Stránka [[:$1]] volá [[:$2]] s viacerými hodnotami parametra „$3“. Použitá bude len posledná odovzdaná hodnota.",
 	"duplicate-args-category": "Stránky s duplicitnými parametrami pri volaniach šablón",
 	"duplicate-args-category-desc": "Stránka obsahuje volania šablóny používajúce duplicitné parametere, ako napríklad <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> alebo <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

@@ -695,7 +695,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tom matrise",
-	"deprecated-self-close-category": "Sider som nyttar ugyldige sjølvlukkande HTML-merke.",
 	"duplicate-args-warning": "<strong>Åtvaring:</strong> [[:$1]] kallar [[:$2]] med meir enn éin verdi for argumentet «$3». Berre den sist oppgjevne verdien vert nytta.",
 	"expensive-parserfunction-warning": "Åtvaring: Denne sida inneheld for mange prosesskrevande parserfunksjonar.\n\nDet burde vere færre enn {{PLURAL:$2|$2|$2}}, men er no {{PLURAL:$1|$1|$1}}.",
 	"expensive-parserfunction-category": "Sider med for mange prosesskrevande parserfunksjonar",

@@ -21,7 +21,7 @@
 		]
 	},
 	{
-		"path": "/coredev/v0/page/{title}/{html_type}",
+		"path": "/coredev/v0/page/{title}/bare",
 		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 		"services": [
 			"MainConfig",
@@ -29,7 +29,32 @@
 			"RevisionLookup",
 			"TitleFormatter",
 			"VirtualRESTServiceClient"
-		]
+		],
+		"format": "bare"
+	},
+	{
+		"path": "/coredev/v0/page/{title}/html",
+		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter",
+			"VirtualRESTServiceClient"
+		],
+		"format": "html"
+	},
+	{
+		"path": "/coredev/v0/page/{title}/with_html",
+		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"services": [
+			"MainConfig",
+			"PermissionManager",
+			"RevisionLookup",
+			"TitleFormatter",
+			"VirtualRESTServiceClient"
+		],
+		"format": "with_html"
 	},
 	{
 		"path": "/coredev/v0/page/{title}/links/media",

@@ -745,8 +745,6 @@
 	"unsupported-content-model": "<strong>Attenziò:</strong> 'o modello $1 nun è suppuntato ngopp' 'a sta wiki.",
 	"unsupported-content-diff": "Diffs nun songo suppuntate p' 'o modello $1.",
 	"unsupported-content-diff2": "Diffs nfra 'e mudelli $1 e $2 nun sò suppuntati ngoppo 'a sta wiki.",
-	"deprecated-self-close-category": "Paggene ausanno nu tag HTML auto-nchiuse nun valido",
-	"deprecated-self-close-category-desc": "'A paggena cuntenesse tag HTML auto-nchiuse nun valide, comme <code>&lt;b/></code> o <code>&lt;span/></code>. 'O cumpurtamento 'e chiste cagnarrà priesto pe' se ffà cuerente a le specifiche HTML5, è pecchesto ca mò nun è cunzigliato (deprecato) ll'uso 'e chiste dint' 'o wikitesto.",
 	"duplicate-args-warning": "<strong>Attenziò:</strong> [[:$1]] sta chiammanno [[:$2]] cu cchiù 'e nu volore p' 'o parametro \"$3\". Surtanto ll'urdemo valore s'auserrà.",
 	"duplicate-args-category": "Paggene c'ausano argomiente dupprecate dint' 'e chiammate a 'e mudelle",
 	"duplicate-args-category-desc": "'A paggena tene chiammate a mudelle c'ausassero argomiente dupprecate, comme p'esempio <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

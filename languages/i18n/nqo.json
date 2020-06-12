@@ -670,8 +670,6 @@
 	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "ߊ߬ ߘߐߞߏߟߏ߲ ߠߋ߬",
 	"content-json-empty-array": "ߥߟߊ߬ߟߋ߲߬ ߘߐߞߏߟߏ߲",
-	"deprecated-self-close-category": "ߞߐߜߍ ߣߌ߲߬ ߦߋ߫ ߖߘߍ߬-ߘߊ߬ߕߎ߲߰ HTML ߟߊߓߊ߯ߙߊ߫ ߟߊ߫.",
-	"deprecated-self-close-category-desc": "ߖߘߍ߬-ߘߊ߬ߕߎ߲߰ HTML ߘߎ߲ߛߓߍ߫ ߓߍ߲߬ߓߊߟߌ ߟߋ߬ ߦߋ߫ ߞߐߜߍ ߣߌ߲߬ ߘߐ߫߸ ߦߏ߫ <code>&lt;b/></code>ߥߟߊ߫<code>&lt;span/></code>.ߏ߬ ߢߝߍߕߊ߯ߟߌ ߘߌ߫ ߣߊ߬ ߦߟߍ߬ߡߊ߲߬ ߖߏߣߊ߫ ߞߊ߬ ߞߍ߫ HTLM5 ߘߎ߲߬ߘߎ߬ߡߦߊ߬ߟߌ ߘߌ߫߸ ߏ߬ ߘߐ߫ ߊ߬ߟߎ߬ ߥߞߌ߫ ߛߓߍߟߌ ߟߊߜߎ߬ߝߎ߲߬ߣߍ߲ ߠߋ߬.",
 	"duplicate-args-warning": "<strong>ߖߊ߬ߛߙߋ߬ߡߊ߬ߟߊ</strong> [[:$1]] ߦߋ߫ ߞߟߌ߫ ߟߊ߫ [[:$2]] ߞߊ߬ ߕߊ߬ߡߌ߲߬ ߡߐ߬ߟߐ߲߬ ߞߋߟߋ߲߫ ߠߊ߫  \"$3\" ߘߊߘߐߓߍ߲ߠߌ߲ ߘߐ߫.ߡߐ߬ߟߐ߲߬ ߡߊߛߐߣߍ߲ ߞߐߟߕߊ ߘߐߙߐ߲߫ ߠߋ߬ ߟߊߓߊ߯ߙߊ߫ ߕߐ߫.",
 	"duplicate-args-category": "ߞߐߜߍ ߦߋ߫ ߘߊߘߐߡߌߘߊߞߎ߲ߢߊ߫ ߓߊߟߌߣߍ߲ ߠߎ߬ ߟߊߓߊ߯ߙߊ߫ ߟߊ߫ ߞߙߊߞߏ ߞߟߌߟߌ ߘߐ߫",
 	"duplicate-args-category-desc": "ߞߙߊߞߏ ߞߟߌߟߌ ߟߎ߬ ߦߋ߫ ߞߐߜߍ ߘߐ߫߸ ߡߍ߲ ߠߎ߬ ߦߋ߫ ߘߊߘߐߡߌߘߊߞߎ߲ߢߊ߫ ߓߊߟߌߣߍ߲ ߠߎ߬ ߟߊߓߊ߯ߙߊ߫ ߟߊ߫߸ ߦߏ߫ <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ߥߟߊ߫ <code><nowiki>{{foo|bar|1=baz}}<nowiki></code>.",

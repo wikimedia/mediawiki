@@ -119,7 +119,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
-		$this->close();
+		$this->close( __METHOD__ );
 
 		if ( $schema !== null ) {
 			throw $this->newExceptionAfterConnectError( "Got schema '$schema'; not supported." );
@@ -1547,7 +1547,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @since 1.22
 	 */
 	public function isView( $name, $prefix = null ) {
-		return in_array( $name, $this->listViews( $prefix ) );
+		return in_array( $name, $this->listViews( $prefix, __METHOD__ ) );
 	}
 
 	protected function isTransactableQuery( $sql ) {

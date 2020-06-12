@@ -777,8 +777,6 @@
 	"unsupported-content-model": "<strong>Atención:</strong> nesta wiki non se admite o modelo de contidos $1.</strong>",
 	"unsupported-content-diff": "Non se admiten as diferenzas entre edicións no modelo de contidos $1.",
 	"unsupported-content-diff2": "As diferenzas entre edicións dos modelos de contido $1 e $2 non están soportadas nesta wiki.",
-	"deprecated-self-close-category": "Páxinas que usan etiquetas HTML de auto-pechado non válidas",
-	"deprecated-self-close-category-desc": "A páxina contén algunha etiqueta HTML de auto-pechado non válida, como <code>&lt;b/></code> ou <code>&lt;span/></code>. O comportamento destas etiquetas vai cambiar axiña para gardar a consistencia coa especificación HTML5, polo que cómpre desbotar o seu uso no texto wiki.",
 	"duplicate-args-warning": "<strong>Atención:</strong> \"[[:$1]]\" está chamando a \"[[:$2]]\" con máis dun valor para o parámetro \"$3\". Só se usará o último valor proporcionado.",
 	"duplicate-args-category": "Páxinas con argumentos duplicados nas chamadas aos modelos",
 	"duplicate-args-category-desc": "Esta páxina contén as chamadas aos modelos que utilizan argumentos duplicados, como <code><nowiki>{{exemplo|bar=1|bar=2}}</nowiki></code> ou <code><nowiki>{{exemplo|bar|1=baz}}</nowiki></code>.",

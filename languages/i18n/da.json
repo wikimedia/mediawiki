@@ -808,8 +808,6 @@
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Tomt objekt",
 	"content-json-empty-array": "Tomt matrix",
-	"deprecated-self-close-category": "Sider, der bruger ugyldige, selvlukkende HTML-tags",
-	"deprecated-self-close-category-desc": "Siden bruger ugyldige selvlukkende HTML tags, som <code>&lt;b/></code> eller <code>&lt;span/></code>. De vil snart blive ændret i overensstemmelse med HTML5-specifikationen, så de ikke kan bruges i wikitext.",
 	"duplicate-args-warning": "<strong>Advarsel</strong>: [[:$1]] kalder [[:$2]] med mere end en værdi for \"$3\"-parameteren. Kun den sidst angivne værdi vil blive brugt.",
 	"duplicate-args-category": "Sider der bruger samme argument mere end en gang i en skabelon",
 	"duplicate-args-category-desc": "Siden indeholder en skabelon hvor et argument er brugt mere end en gang, som <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> eller <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

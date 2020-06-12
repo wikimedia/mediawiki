@@ -696,8 +696,6 @@
 	"content-model-json": "<i lang=\"en\" xml:lang=\"en\" title=\"JavaScript Object Notation\">JSON</i>",
 	"content-json-empty-object": "Nix dren",
 	"content-json-empty-array": "Nix dren",
-	"deprecated-self-close-category": "Sigge med onjölltejje <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i>-Befähle, di en sesch sällf ze Äng jonn.",
-	"deprecated-self-close-category-desc": "De Sigg hädd onjölltejje <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i>-Befähle, di en sesch sällf ze Äng jonn. Beijshpelle sin <code>&lt;b/></code> udder <code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;span/></code>. Wat di donn, weed bahl esu verännert, dat se mem <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language Version 5\">HTML5</i> zesamme paße, woh mer se en Wikkitäx it bruche sullt.",
 	"duplicate-args-warning": "<strong>Opjepaß:</strong> [[:$1]] röhf [[:$2]] met mih wi eijnem Wäät för der Parramehter „$3“ op. Blohß der läzde Wäät vun dänne weed opjenumme un jebruch.",
 	"duplicate-args-category": "Sigge met dubbelt aanjejovve Parramehtere för Schablohne.",
 	"duplicate-args-category-desc": "Sigge met Oprohve vun Schablohne met dubbelt aanjejovve Parramehtere dren, alsu esu jät wi <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> un <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

@@ -742,8 +742,6 @@
 	"unsupported-content-model": "<strong>Varoitus:</strong> Sisältömallia $1 ei tueta tässä wikissä.",
 	"unsupported-content-diff": "eroa ei tueta sisältömallile $1.",
 	"unsupported-content-diff2": "eroa tokymenttaanien välissä $1 ja $2 ei ole tuettu tässä wikissä",
-	"deprecated-self-close-category": "Sivut, joissa on virheelisiä itsensäsulkevia HTML-tageja",
-	"deprecated-self-close-category-desc": "Sivulla oon virheellisiä ittensäsulkevia HTML-tageja, niin ko <code>&lt;b/></code> tai <code>&lt;span/></code>. Niien käyttäytyminen muuttuu pian HTML5:n määritysten mukaiseksi, joten niien käyttö wikitekstissä oon vanhentunut.",
 	"duplicate-args-warning": "<strong>Varoitus:</strong> [[:$1]] kuttuu mallinetta [[:$2]] niin, ette parametrille ”$3” oon annettu enemmän ko yksi arvo. Ainoasthaan viimeksi annettu arvo otethaan huomihoon.",
 	"duplicate-args-category": "Sivut, jokka käyttävät kaksinkertaisia argumentteja mallinekutsuissa",
 	"duplicate-args-category-desc": "Tämä sivu sisältää sellaisia mallinekuttuja, jokka käyttävät kaksi kertaa samaa argumenttia kuten <nowiki>{{foo|bar=1|bar=2}}</nowiki></code> tai <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

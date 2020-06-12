@@ -702,7 +702,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Leesag objekt",
 	"content-json-empty-array": "Leesag array",
-	"deprecated-self-close-category": "Sidjen, diar ei tuläät HTML-tags brük",
 	"duplicate-args-warning": "<strong>Paase üüb:</strong> [[:$1]] rept [[:$2]] mä muar üs ään wäärs för di parameter „$3“ ap. Bluas di leetst wäärs woort brükt.",
 	"duplicate-args-category": "Sidjen, diar dobelt argumenten uun föörlaagen aprep.",
 	"duplicate-args-category-desc": "Detdair sidj rept föörlaagen ap, diar dobelt argumenten brük, so üs <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> of <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

@@ -763,8 +763,6 @@
 	"unsupported-content-model": "<strong>Увага:</strong> Мадэль змесціва $1 не падтрымліваецца на гэтай вікі.",
 	"unsupported-content-diff": "Адрозненні не падтрымліваюцца для мадэлі змесціва $1.",
 	"unsupported-content-diff2": "Адрозненні між мадэлямі змесціва $1 і $2 не падтрымліваюцца на гэтай вікі.",
-	"deprecated-self-close-category": "Старонкі з недапушчальнымі самазакрытымі HTML-тэгамі",
-	"deprecated-self-close-category-desc": "Старонка ўтрымлівае недапушчальныя самазакрытыя HTML-тэгі, такія як <code>&lt;b/></code> ці <code>&lt;span/></code>. Іх паводзіны ў хуткім часе будуць зменены ў адпаведнасці з спецыфікацыяй HTML5, таму іх ужыванне ў вікітэксце лічыцца састарэлым.",
 	"duplicate-args-warning": "<strong>Увага:</strong> [[:$1]] выклікае [[:$2]] з больш чым адным значэннем для параметра \"$3\". Толькі апошняе з пададзеных значэнняў будзе ўжытае.",
 	"duplicate-args-category": "Старонкі, якія выкарыстоўваюць задубляваныя параметры ў шаблонах",
 	"duplicate-args-category-desc": "Старонка ўтрымлівае шаблоны з задубляванымі параметрамі, напрыклад, <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> або <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
@@ -2878,6 +2876,7 @@
 	"pageinfo-category-files": "Колькасць файлаў",
 	"pageinfo-user-id": "Ідэнтыфікатар удзельніка",
 	"pageinfo-file-hash": "Хэш-значэнне",
+	"pageinfo-view-protect-log": "Глядзець журнал аховы для гэтай старонкі.",
 	"markaspatrolleddiff": "Пазначыць як ухваленае",
 	"markaspatrolledtext": "Пазначыць старонку як ухваленую",
 	"markaspatrolledtext-file": "Пазначыць версію файла як ухваленую",
@@ -3287,7 +3286,7 @@
 	"htmlform-int-toolow": "Пададзенае значэнне меншае за мінімум $1",
 	"htmlform-int-toohigh": "Пададзенае значэнне большае за максімум $1",
 	"htmlform-required": "Гэтае значэнне неабходнае",
-	"htmlform-submit": "Падаць",
+	"htmlform-submit": "Захаваць",
 	"htmlform-reset": "Адкаціць змяненні",
 	"htmlform-selectorother-other": "Рознае",
 	"htmlform-no": "Не",
@@ -3657,5 +3656,6 @@
 	"passwordpolicies-group": "Група",
 	"passwordpolicies-policies": "Палітыкі",
 	"passwordpolicies-policyflag-forcechange": "мусіць быць зменены пры ўваходзе",
-	"passwordpolicies-policyflag-suggestchangeonlogin": "прапанаваць змяненне пры ўваходзе"
+	"passwordpolicies-policyflag-suggestchangeonlogin": "прапанаваць змяненне пры ўваходзе",
+	"userlogout-continue": "Вы хочаце выйсці?"
 }

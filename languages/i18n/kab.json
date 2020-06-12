@@ -690,7 +690,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Asentel d ilem",
 	"content-json-empty-array": "Talfelwit d tilemt",
-	"deprecated-self-close-category": "Asebter iseqdacen yir tiṛekkizin HTM tumdilin tiwurmanin",
 	"expensive-parserfunction-warning": "'''Ɣur-wet :''' Asebter agi yesɛa aṭas n tiɣriwin ar tiseɣnin ɣlayen n umsisleḍ taseddast.\nIlaq ad i sɛu ddaw n  $2 {{PLURAL:$2|tiɣri|tiɣriwin }}, wannag tura {{PLURAL:$1|tella $1 tiɣri|llant $1 tiɣriwin}}.",
 	"expensive-parserfunction-category": "Isebtar yesɛan aṭas tiɣriwin ɣlayen n tiseeɣnin n umsisleḍ taseddast",
 	"post-expand-template-inclusion-warning": "Ɣur-wet : Asebter agi yesɛa aṭas tilɣatin. Kra n tilɣatin ur zemrent ara ad seqdacent.",

@@ -789,8 +789,6 @@
 	"unsupported-content-model": "<strong>Chú ý:</strong> Wiki này không hỗ trợ mô hình nội dung $1.",
 	"unsupported-content-diff": "Mô hình nội dung $1 không hỗ trợ khác biệt.",
 	"unsupported-content-diff2": "Wiki này không hỗ trợ khác biệt giữa các mô hình nội dung $1 và $2.",
-	"deprecated-self-close-category": "Trang có thẻ HTML tự đóng không hợp lệ",
-	"deprecated-self-close-category-desc": "Trang này chứa thẻ HTML tự đóng không hợp lệ, ví dụ <code>&lt;b/></code> hoặc <code>&lt;span/></code>. Tí nữa cách trình bày các thẻ này sẽ thay đổi để tuân theo tiêu chuẩn HTML5, nên sự sử dụng chúng trong mã wiki bị phản đối.",
 	"duplicate-args-warning": "<strong>Cảnh báo:</strong> [[:$1]] đang gọi  [[:$2]] với nhiều hơn một giá trị cho thông số “$3”. Chỉ giá trị cuối cùng mới được sử dụng.",
 	"duplicate-args-category": "Trang đưa đối số thừa vào bản mẫu",
 	"duplicate-args-category-desc": "Trang đưa một đối số nhiều lần vào một bản mẫu được nhúng, thí dụ <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> hoặc <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

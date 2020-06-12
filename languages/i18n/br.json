@@ -3,6 +3,7 @@
 		"authors": [
 			"Als-Holder",
 			"Candalua",
+			"DannyS712",
 			"Dishual",
 			"Fitoschido",
 			"Fohanno",
@@ -740,8 +741,6 @@
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Elfenn goullo",
 	"content-json-empty-array": "Taolenn c'houllo",
-	"deprecated-self-close-category": "Pajennoù a ra gant tikedennoù HTML emserriñ direizh",
-	"deprecated-self-close-category-desc": "Er bajenn-mañ ez eus tikedennoù HTML emserriñ, evel <code>&lt;b/></code> pe <code>&lt;span/></code>.  Cheñch a raio o emzalc'h a-raok pell evit bezañ diouzh an erbedadennoù HTML5. Gant se eo dispredet implijout anezho er wikitestenn.",
 	"duplicate-args-warning": "<strong>Taolit evezh : Emañ </strong> [[:$1]] o c'hervel [[:$2]] gant muioc'h eget un talvoud evit an arventenn \"$3\". N'eus nemet an talvoud pourchaset da ziwezhañ a vo implijet.",
 	"duplicate-args-category": "Pajennoù a ra gant arguzennoù eilet er galvoù patrom",
 	"duplicate-args-category-desc": "Er bajenn-mañ ez eus galvoù patroù a ra gant arguzennoù eilet, evel <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> pe <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

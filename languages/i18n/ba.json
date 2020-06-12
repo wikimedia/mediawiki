@@ -720,8 +720,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Буш объект",
 	"content-json-empty-array": "Буш массив",
-	"deprecated-self-close-category": "Үҙенән-үҙе ябыла торған HTML-тегтарҙы ҡулланған биттәр",
-	"deprecated-self-close-category-desc": "Был биттең үҙенән-үҙе ябыла торған, мәҫәлән <code>&lt;b/></code> йәки <code>&lt;span/></code> кеүек HTML-тегтары бар. Тиҙҙән уларҙың тәъҫире, HTML5 спецификацияһына ярашлы булыу өсөн, үҙгәрәсәк. Шуға ла был иҫкергән тегтарҙы вики-текста ҡулланмау хәйерлерәк.",
 	"duplicate-args-warning": "<strong>Иғтибар:</strong> [[:$1]] берәүҙән артыҡ [[:$2]]  параметры  «$3» менән саҡыра. Һуңғы дәүмәл ҡулланыласаҡ.",
 	"duplicate-args-category": "Ҡалыпты сығарғанда ҡабатланған аргументтарҙы ҡулланған биттәр",
 	"duplicate-args-category-desc": "Түбәндәге ҡабатланған аргументтары <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> или <code><nowiki>{{foo|bar|1=bar}}</nowiki></code> булған ҡалыпты сығарыу эстәлекле биттәр.",

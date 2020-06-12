@@ -171,7 +171,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$user->confirmEmail();
 		$this->assertArrayEquals(
 			[ '*', 'user', 'dummy' ],
-			$manager->getUserImplicitGroups( $user, true )
+			$manager->getUserImplicitGroups( $user, UserGroupManager::READ_NORMAL, true )
 		);
 		$this->assertArrayEquals(
 			[ '*', 'user', 'dummy' ],
@@ -308,6 +308,26 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\User\UserGroupManager::getUserGroupMemberships
+	 */
+	public function testGetUserGroupMembershipsForAnon() {
+		$manager = $this->getManager();
+		$anon = new UserIdentityValue( 0, 'Anon', 0 );
+
+		$this->assertEmpty( $manager->getUserGroupMemberships( $anon ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::getUserFormerGroups
+	 */
+	public function testGetUserFormerGroupsForAnon() {
+		$manager = $this->getManager();
+		$anon = new UserIdentityValue( 0, 'Anon', 0 );
+
+		$this->assertEmpty( $manager->getUserFormerGroups( $anon ) );
+	}
+
+	/**
 	 * @covers \MediaWiki\User\UserGroupManager::removeUserFromGroup
 	 * @covers \MediaWiki\User\UserGroupManager::getUserFormerGroups
 	 * @covers \MediaWiki\User\UserGroupManager::getUserGroups
@@ -384,6 +404,16 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->removeUserFromGroup( $user, 'test' ) );
 		$this->assertContains( 'test', $manager->getUserGroups( $user ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserGroupManager::removeUserFromGroup
+	 */
+	public function testRemoveUserFromGroupAnon() {
+		$manager = $this->getManager();
+		$anon = new UserIdentityValue( 0, 'Anon', 0 );
+		$this->expectException( InvalidArgumentException::class );
+		$manager->removeUserFromGroup( $anon, 'test' );
 	}
 
 	/**
@@ -467,7 +497,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$row->ug_user = $user->getId();
 		$row->ug_group = 'test';
 		$row->ug_expiry = null;
-		$manager->loadGroupMembershipsFromArray( $user, [ $row ] );
+		$manager->loadGroupMembershipsFromArray( $user, [ $row ], UserGroupManager::READ_NORMAL );
 		$memberships = $manager->getUserGroupMemberships( $user );
 		$this->assertCount( 1, $memberships );
 		$this->assertArrayHasKey( 'test', $memberships );

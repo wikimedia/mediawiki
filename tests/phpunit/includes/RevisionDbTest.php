@@ -192,6 +192,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Revision::getContentHandler' );
 		$this->hideDeprecated( 'Revision::getContentModel' );
 		$this->hideDeprecated( 'Revision::getPage' );
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 
 		$this->assertNotNull( $rev, 'missing revision' );
 
@@ -212,6 +213,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'Revision::getUserText' );
 		$this->hideDeprecated( 'Revision::getPage' );
 		$this->hideDeprecated( 'Revision::getComment' );
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$rev = $this->testPage->getRevision();
@@ -797,6 +799,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::insertOn
 	 */
 	public function testInsertOn() {
+		$this->hideDeprecated( 'Revision::getTimestamp' );
+
 		$ip = '2600:387:ed7:947e:8c16:a1ad:dd34:1dd7';
 
 		$orig = $this->makeRevisionWithProps( [
@@ -829,6 +833,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	public function testUserWasLastToEdit( $sinceIdx, $expectedLast ) {
 		$this->hideDeprecated( 'Revision::userWasLastToEdit' );
 		$this->hideDeprecated( 'Revision::insertOn' );
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$userA = User::newFromName( "RevisionStorageTest_userA" );
 		$userB = User::newFromName( "RevisionStorageTest_userB" );
 
@@ -1141,6 +1146,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetSize
 	 */
 	public function testGetSize( $text, $model, $expected_size ) {
+		$this->hideDeprecated( 'Revision::getSize' );
+
 		$rev = $this->newTestRevision( $text, 'RevisionTest_testGetSize', $model );
 		$this->assertEquals( $expected_size, $rev->getSize() );
 	}
@@ -1324,7 +1331,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::loadFromTimestamp()
 	 */
 	public function testLoadFromTimestamp() {
-		$this->hideDeprecated( Revision::class . '::loadFromTimestamp' );
+		$this->hideDeprecated( 'Revision::loadFromTimestamp' );
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTimestamp' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
@@ -1462,6 +1470,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Revision::getTimestamp
 	 */
 	public function testGetTimestamp() {
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$testTimestamp = wfTimestampNow();
 

@@ -10,6 +10,7 @@
 	"rest-nonexistent-title": "Der angegebene Titel ($1) existiert nicht",
 	"rest-nonexistent-title-revision": "Die angegebene Version ($1) existiert nicht für die angegebene Seite ($2)",
 	"rest-nonexistent-revision": "Die angegebene Version ($1) existiert nicht",
+	"rest-permission-denied-anon": "Für nicht angemeldete Benutzer nicht zugänglich",
 	"rest-permission-denied-title": "Der Benutzer hat keine Rechte zum Lesen des Titels ($1)",
 	"rest-permission-denied-revision": "Der Benutzer hat keinen Zugriff auf die angeforderte Version ($1).",
 	"rest-pagehistory-incompatible-params": "Die Parameter \"older_than\" und \"newer_than\" können nicht beide angegeben werden.",

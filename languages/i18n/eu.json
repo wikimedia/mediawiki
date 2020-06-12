@@ -778,8 +778,6 @@
 	"unsupported-content-model": "<strong>Abisua:</strong> $1 eduki-eredua ez da onartzen wiki honetan.",
 	"unsupported-content-diff": "Diffak ez dira onartzen $1 eduki-eredurako.",
 	"unsupported-content-diff2": "Diff -ak $1 eta $2 eduki-ereduen artean ez dira onartzen wiki honetan.",
-	"deprecated-self-close-category": "HTML etiketen itxiera propio ez-baliagarria erabiltzen duten orrialdeak",
-	"deprecated-self-close-category-desc": "Orriak HTML etiketa autoitxi baliogabeak dauzka, adibidez <code>&lt;b/></code> edo <code>&lt;span/></code>. Hauen jarrera HTML5 zehaztapenekin bat egiteko goiz aldatuko dira, zaharkiturik geratzen direla wikitestuan.",
 	"duplicate-args-warning": "<strong>Oharra:</strong> [[:$1]]k [[:$2]] \"$3\" parametroarentzako balio bat baino gehiagorekin deitzen ari da. Emandako azken balioa bakarrik erabiliko da.",
 	"duplicate-args-category": "Txantiloi-deietan argumentu bikoiztuak erabiltzen dituzten orrialdeak",
 	"duplicate-args-category-desc": "Orriak argumentu bikoitzak erabiltzen dituzten txantiloien deiak ditu, hala nola <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> edo <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

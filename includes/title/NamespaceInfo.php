@@ -138,7 +138,13 @@ class NamespaceInfo {
 	 * @return int Cleaned up namespace index
 	 */
 	private function makeValidNamespace( $index, $method ) {
-		if ( !( is_int( $index ) || ctype_digit( $index ) ) ) {
+		if ( !(
+			is_int( $index )
+			// Namespace index numbers as strings
+			|| ctype_digit( $index )
+			// Negative numbers as strings
+			|| ( $index[0] === '-' && ctype_digit( substr( $index, 1 ) ) )
+		) ) {
 			throw new InvalidArgumentException(
 				"$method called with non-integer (" . gettype( $index ) . ") namespace '$index'"
 			);

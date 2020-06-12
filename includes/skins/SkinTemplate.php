@@ -419,8 +419,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
 		$tpl->set( 'printfooter', $this->printSource() );
 		// Wrap the bodyText with #mw-content-text element
-		$out->mBodytext = $this->wrapHTML( $title, $out->mBodytext );
-		$tpl->set( 'bodytext', $out->mBodytext );
+		$tpl->set( 'bodytext', $this->wrapHTML( $title, $out->getHTML() ) );
 
 		$tpl->set( 'language_urls', $this->getLanguages() ?: false );
 

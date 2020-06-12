@@ -710,7 +710,6 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Zavatra foana",
 	"content-json-empty-array": "Tabilao foana",
-	"deprecated-self-close-category": "Pejy mampiasa balizy HTML mihidy ho azy izay tsy azo raisina",
 	"duplicate-args-category": "Pejy mampiasa dika mitovy hevitra amin'ny fiantsoana endrika",
 	"expensive-parserfunction-warning": "Tandremo : Betsaka loatra ny fanantsoana ny tao parser.\n\nTsy maintsy latsaky ny $2 ny tao, kanefa misy $1. {{PLURAL:$2||}}",
 	"expensive-parserfunction-category": "Pejy mampiasa be loatra ny tao parser",

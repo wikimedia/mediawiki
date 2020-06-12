@@ -11,6 +11,7 @@
 	"rest-nonexistent-title": "הכותרת שצוינה ($1) אינה קיימת",
 	"rest-nonexistent-title-revision": "הגרסה שצוינה ($1) אינה קיימת עבור הדף שצוין ($2)",
 	"rest-nonexistent-revision": "הגרסה שצוינה ($1) אינה קיימת",
+	"rest-permission-denied-anon": "לא נגיש למשתמש אלמוני",
 	"rest-permission-denied-title": "למשתמש אין הרשאה לקרוא כותרת ($1)",
 	"rest-permission-denied-revision": "למשתמש אין גישה לגרסה המבוקשת ($1).",
 	"rest-pagehistory-incompatible-params": "לא ניתן לציין בו זמנית את שני הפרמטרים \"older_than\" ו־\"newer_than\"",

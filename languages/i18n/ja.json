@@ -855,8 +855,6 @@
 	"unsupported-content-model": "<strong>警告:</strong> コンテンツモデル$1はこのウィキではサポートしていません。",
 	"unsupported-content-diff": "コンテンツモデル$1の差分はサポートしていません",
 	"unsupported-content-diff2": "コンテンツモデル$1と$2間の差分はこのウィキではサポートしていません。",
-	"deprecated-self-close-category": "無効な自己終了HTMLタグを使用しているページ",
-	"deprecated-self-close-category-desc": "<code>&lt;b/></code> や <code>&lt;span/></code> 等の無効な自己終了HTMLタグを含むページ。これらのタグはまもなく HTML5 の仕様に準拠する動作へと変更されるため、ウィキテキスト内での使用は非推奨となりました。",
 	"duplicate-args-warning": "<strong>警告:</strong> [[:$1]]は複数の「$3」パラメーターを伴って[[:$2]]を呼び出しています。提供されている最後の値のみが使用されます。",
 	"duplicate-args-category": "テンプレート呼び出しで引数が重複しているページ",
 	"duplicate-args-category-desc": "引数が重複したテンプレート呼び出しを含むページ。例: <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code>、<code><nowiki>{{foo|bar|1=baz}}</nowiki></code>",

@@ -134,7 +134,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	protected function open( $server, $user, $pass, $dbName, $schema, $tablePrefix ) {
-		$this->close();
+		$this->close( __METHOD__ );
 
 		// Note that for SQLite, $server, $user, and $pass are ignored
 
@@ -317,7 +317,7 @@ class DatabaseSqlite extends Database {
 		) ) {
 			$cachedResult = 'FTS3';
 		}
-		$db->close();
+		$db->close( __METHOD__ );
 
 		return $cachedResult;
 	}
@@ -1061,7 +1061,7 @@ class DatabaseSqlite extends Database {
 
 			$sql .= '(' . implode( ',', $fields ) . ')';
 
-			$this->query( $sql );
+			$this->query( $sql, __METHOD__ );
 		}
 
 		return $res;
@@ -1148,7 +1148,7 @@ class DatabaseSqlite extends Database {
 				$params['dbname'] !== $this->getDBname() &&
 				!isset( $this->sessionAttachedDbs[$params['dbname']] )
 			) {
-				$this->attachDatabase( $params['dbname'] );
+				$this->attachDatabase( $params['dbname'], false, __METHOD__ );
 				$this->sessionAttachedDbs[$params['dbname']] = true;
 			}
 		}

@@ -850,8 +850,6 @@
 	"unsupported-content-model": "<strong>Uwaga:</strong> Model zawartości $1 nie jest wspierany na tej wiki.",
 	"unsupported-content-diff": "Różnice dla modelu zawartości $1 nie są wspierane.",
 	"unsupported-content-diff2": "Różnice pomiędzy modelem zawartości $1 a $2 nie są wspierane na tej wiki.",
-	"deprecated-self-close-category": "Strony zawierające nieprawidłowe samozamykające się znaczniki HTML",
-	"deprecated-self-close-category-desc": "Strona zawiera samozamykające się znaczniki HTML, takie jak <code>&lt;b/></code> lub <code>&lt;span/></code>. Ich zachowanie zmieni się na dostosowane do specyfikacji HTML5, więc ich użycie w wikikodzie jest zdeprecjonowane.",
 	"duplicate-args-warning": "<strong>Ostrzeżenie:</strong> [[:$1]] wywołuje [[:$2]] z więcej niż jedną wartością dla parametru \"$3\". Tylko ostatnia podana wartość zostanie użyta.",
 	"duplicate-args-category": "Strony zawierające wywołania szablonów z parametrami o takich samych nazwach",
 	"duplicate-args-category-desc": "Strona zawiera szablony, które używają duplikatów argumentów, jak <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> lub <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",

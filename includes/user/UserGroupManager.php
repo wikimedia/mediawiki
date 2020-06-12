@@ -88,6 +88,19 @@ class UserGroupManager implements IDBAccessObject {
 	private $userGroupCache = [];
 
 	/**
+	 * @var array An assoc. array that stores query flags used to retrieve user groups
+	 * from the database and is stored in the following format:
+	 *
+	 * userKey => [
+	 *   'implicit' => implicit groups query flag
+	 *   'effective' => effective groups query flag
+	 *   'membership' => membership groups query flag
+	 *   'former' => former groups query flag
+	 * ]
+	 */
+	private $queryFlagsUsedForCaching = [];
+
+	/**
 	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
 	 * @param ILBFactory $loadBalancerFactory
@@ -164,19 +177,20 @@ class UserGroupManager implements IDBAccessObject {
 	 * @internal for use by the User object only
 	 * @param UserIdentity $user
 	 * @param array $userGroups an array of database query results
+	 * @param int $queryFlags
 	 */
 	public function loadGroupMembershipsFromArray(
 		UserIdentity $user,
-		array $userGroups
+		array $userGroups,
+		int $queryFlags = self::READ_NORMAL
 	) {
-		$userKey = $this->getCacheKey( $user );
-
-		$this->userGroupCache[$userKey]['membership'] = [];
+		$membershipGroups = [];
 		reset( $userGroups );
 		foreach ( $userGroups as $row ) {
 			$ugm = $this->newGroupMembershipFromRow( $row );
-			$this->userGroupCache[ $userKey ]['membership'][ $ugm->getGroup() ] = $ugm;
+			$membershipGroups[ $ugm->getGroup() ] = $ugm;
 		}
+		$this->setCache( $user, 'membership', $membershipGroups, $queryFlags );
 	}
 
 	/**
@@ -186,12 +200,20 @@ class UserGroupManager implements IDBAccessObject {
 	 * and autopromoted groups
 	 *
 	 * @param UserIdentity $user
+	 * @param int $queryFlags
 	 * @param bool $recache Whether to avoid the cache
 	 * @return string[] internal group names
 	 */
-	public function getUserImplicitGroups( UserIdentity $user, bool $recache = false ) : array {
+	public function getUserImplicitGroups(
+		UserIdentity $user,
+		int $queryFlags = self::READ_NORMAL,
+		bool $recache = false
+	)  : array {
 		$userKey = $this->getCacheKey( $user );
-		if ( $recache || !isset( $this->userGroupCache[$userKey]['implicit'] ) ) {
+		if ( $recache ||
+			!isset( $this->userGroupCache[$userKey]['implicit'] ) ||
+			!$this->canUseCachedValues( $user, 'implicit', $queryFlags )
+		) {
 			$groups = [ '*' ];
 			if ( $user->isRegistered() ) {
 				$groups[] = 'user';
@@ -203,11 +225,11 @@ class UserGroupManager implements IDBAccessObject {
 					Autopromote::getAutopromoteGroups( User::newFromIdentity( $user ) )
 				) );
 			}
-			$this->userGroupCache[$userKey]['implicit'] = $groups;
+			$this->setCache( $user, 'implicit', $groups, $queryFlags );
 			if ( $recache ) {
 				// Assure data consistency with rights/groups,
 				// as getEffectiveGroups() depends on this function
-				unset( $this->userGroupCache[$userKey]['effective'] );
+				$this->clearUserCacheForGroup( $user, 'effective' );
 			}
 		}
 		return $this->userGroupCache[$userKey]['implicit'];
@@ -230,15 +252,15 @@ class UserGroupManager implements IDBAccessObject {
 		bool $recache = false
 	) : array {
 		$userKey = $this->getCacheKey( $user );
-		// Ignore cache is the $recache flag is set, query flags = READ_NORMAL
+		// Ignore cache if the $recache flag is set, cached values can not be used
 		// or the cache value is missing
-		if ( $recache
-			|| $queryFlags !== self::READ_NORMAL
-			|| !isset( $this->userGroupCache[$userKey]['effective'] )
+		if ( $recache ||
+			!$this->canUseCachedValues( $user, 'effective', $queryFlags ) ||
+			!isset( $this->userGroupCache[$userKey]['effective'] )
 		) {
 			$groups = array_unique( array_merge(
 				$this->getUserGroups( $user, $queryFlags ), // explicit groups
-				$this->getUserImplicitGroups( $user, $recache ) // implicit groups
+				$this->getUserImplicitGroups( $user, $queryFlags, $recache ) // implicit groups
 			) );
 			// TODO: Deprecate passing out user object in the hook by introducing
 			// an alternative hook
@@ -249,7 +271,8 @@ class UserGroupManager implements IDBAccessObject {
 				$this->hookRunner->onUserEffectiveGroups( $userObj, $groups );
 			}
 			// Force reindexation of groups when a hook has unset one of them
-			$this->userGroupCache[$userKey]['effective'] = array_values( array_unique( $groups ) );
+			$effectiveGroups = array_values( array_unique( $groups ) );
+			$this->setCache( $user, 'effective', $effectiveGroups, $queryFlags );
 		}
 		return $this->userGroupCache[$userKey]['effective'];
 	}
@@ -271,8 +294,15 @@ class UserGroupManager implements IDBAccessObject {
 	) : array {
 		$userKey = $this->getCacheKey( $user );
 
-		if ( isset( $this->userGroupCache[$userKey]['former'] ) ) {
+		if ( $this->canUseCachedValues( $user, 'former', $queryFlags ) &&
+			isset( $this->userGroupCache[$userKey]['former'] )
+		) {
 			return $this->userGroupCache[$userKey]['former'];
+		}
+
+		if ( !$user->isRegistered() ) {
+			// Anon users don't have groups stored in the database
+			return [];
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
@@ -282,10 +312,11 @@ class UserGroupManager implements IDBAccessObject {
 			[ 'ufg_user' => $user->getId() ],
 			__METHOD__
 		);
-		$this->userGroupCache[$userKey]['former'] = [];
+		$formerGroups = [];
 		foreach ( $res as $row ) {
-			$this->userGroupCache[$userKey]['former'][] = $row->ufg_group;
+			$formerGroups[] = $row->ufg_group;
 		}
+		$this->setCache( $user, 'former', $formerGroups, $queryFlags );
 
 		return $this->userGroupCache[$userKey]['former'];
 	}
@@ -319,13 +350,16 @@ class UserGroupManager implements IDBAccessObject {
 	) : array {
 		$userKey = $this->getCacheKey( $user );
 
-		// Return cached value (if any) only if the query flags are for READ_NORMAL
-		// otherwise - ignore cache
-		if ( $queryFlags === self::READ_NORMAL
-			&& isset( $this->userGroupCache[$userKey]['membership'] )
+		if ( $this->canUseCachedValues( $user, 'membership', $queryFlags ) &&
+			isset( $this->userGroupCache[$userKey]['membership'] )
 		) {
 			/** @suppress PhanTypeMismatchReturn */
 			return $this->userGroupCache[$userKey]['membership'];
+		}
+
+		if ( !$user->isRegistered() ) {
+			// Anon users don't have groups stored in the database
+			return [];
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
@@ -348,7 +382,8 @@ class UserGroupManager implements IDBAccessObject {
 		}
 		ksort( $ugms );
 
-		$this->userGroupCache[$userKey]['membership'] = $ugms;
+		$this->setCache( $user, 'membership', $ugms, $queryFlags );
+
 		return $ugms;
 	}
 
@@ -470,6 +505,7 @@ class UserGroupManager implements IDBAccessObject {
 	 *
 	 * @param UserIdentity $user
 	 * @param string $group Name of the group to remove
+	 * @throws InvalidArgumentException
 	 * @return bool
 	 */
 	public function removeUserFromGroup( UserIdentity $user, string $group ) : bool {
@@ -485,6 +521,13 @@ class UserGroupManager implements IDBAccessObject {
 
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
+		}
+
+		if ( !$user->isRegistered() ) {
+			throw new InvalidArgumentException(
+				'UserGroupManager::removeUserFromGroup() needs a positive user ID. ' .
+				'Perhaps removeUserFromGroup() was called before the user was added to the database.'
+			);
 		}
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER, [], $this->dbDomain );
@@ -614,6 +657,33 @@ class UserGroupManager implements IDBAccessObject {
 	public function clearCache( UserIdentity $user ) {
 		$userKey = $this->getCacheKey( $user );
 		unset( $this->userGroupCache[$userKey] );
+		unset( $this->queryFlagsUsedForCaching[$userKey] );
+	}
+
+	/**
+	 * Sets cached group memberships and query flags for a given user
+	 *
+	 * @param UserIdentity $user
+	 * @param string $group
+	 * @param array $groupValue
+	 * @param int $queryFlags
+	 */
+	private function setCache( UserIdentity $user, string $group, array $groupValue, int $queryFlags ) {
+		$userKey = $this->getCacheKey( $user );
+		$this->userGroupCache[$userKey][$group] = $groupValue;
+		$this->queryFlagsUsedForCaching[$userKey][$group] = $queryFlags;
+	}
+
+	/**
+	 * Clears a cached group membership and query key for a given user
+	 *
+	 * @param UserIdentity $user
+	 * @param string $group
+	 */
+	private function clearUserCacheForGroup( UserIdentity $user, string $group ) {
+		$userKey = $this->getCacheKey( $user );
+		unset( $this->userGroupCache[$userKey][$group] );
+		unset( $this->queryFlagsUsedForCaching[$userKey][$group] );
 	}
 
 	/**
@@ -632,5 +702,26 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	private function getCacheKey( UserIdentity $user ) : string {
 		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
+	}
+
+	/**
+	 * Determines if it's ok to use cached options values for a given user and query flags
+	 * @param UserIdentity $user
+	 * @param string $group
+	 * @param int $queryFlags
+	 * @return bool
+	 */
+	private function canUseCachedValues( UserIdentity $user, string $group, int $queryFlags ) : bool {
+		if ( !$user->isRegistered() ) {
+			// Anon users don't have groups stored in the database,
+			// so $queryFlags are ignored.
+			return true;
+		}
+		if ( $queryFlags >= self::READ_LOCKING ) {
+			return false;
+		}
+		$userKey = $this->getCacheKey( $user );
+		$queryFlagsUsed = $this->queryFlagsUsedForCaching[$userKey][$group] ?? self::READ_NONE;
+		return $queryFlagsUsed >= $queryFlags;
 	}
 }

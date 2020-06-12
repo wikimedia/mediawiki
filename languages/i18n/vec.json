@@ -268,7 +268,7 @@
 	"ok": "OK",
 	"pagetitle": "$1 - {{SITENAME}}",
 	"backlinksubtitle": "← $1",
-	"retrievedfrom": "Cavà fora da \"$1\"",
+	"retrievedfrom": "Traesto fora da \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Te ghè}} $1 ($2).",
 	"youhavenewmessagesfromusers": "Te ghè $1 da {{PLURAL:$3|n'altro utente|$3 utenti}} ($2).",
 	"youhavenewmessagesmanyusers": "Te ghè $1 da vari utenti ($2).",

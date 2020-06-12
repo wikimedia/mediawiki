@@ -759,8 +759,6 @@
 	"unsupported-content-model": "<strong>Attention:</strong> Le modello de contento $1 non es supportate sur iste wiki.",
 	"unsupported-content-diff": "Non es possibile monstrar differentias pro contento del modello $1.",
 	"unsupported-content-diff2": "Non es possibile monstrar differentias inter contento del modellos $1 e $2 sur iste wiki.",
-	"deprecated-self-close-category": "Paginas que usa etiquettas HTML auto-claudite non valide",
-	"deprecated-self-close-category-desc": "Le pagina contine etiquettas HTML auto-claudite non valide, como <code>&lt;b/></code> o <code>&lt;span/></code>. Le comportamento de istes cambiara proximemente pro esser in accordo con le specification HTML5, dunque lor uso in wikitexto es obsolete.",
 	"duplicate-args-warning": "<strong>Attention:</strong> [[:$1]] appella [[:$2]] con plure valores pro le parametro \"$3\". Solmente le ultime valor fornite essera usate.",
 	"duplicate-args-category": "Paginas que usa parametros duplicate in appellos de patrono",
 	"duplicate-args-category-desc": "Le pagina contine appellos de patrono que usa duplicatos de parametros, como per exemplo <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> or <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
