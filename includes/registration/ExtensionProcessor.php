@@ -230,6 +230,13 @@ class ExtensionProcessor implements Processor {
 			$this->extractConfig1( $info );
 		}
 
+		// Record the extension name in the ParsoidModules property
+		if ( isset( $info['ParsoidModules'] ) ) {
+			foreach ( $info['ParsoidModules'] as &$module ) {
+				$module['name'] = $name;
+			}
+		}
+
 		if ( $version === 2 ) {
 			$this->extractAttributes( $path, $info );
 		}
