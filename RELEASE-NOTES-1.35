@@ -1191,6 +1191,8 @@ because of Phabricator reports.
   the result in a div, callers are responsible for that.
   The hook BaseTemplateAfterPortlet, called by both methods has been deprecated
   as well and is replaced by SkinAfterPortlet.
+* Autopromote class has been soft deprecated and it's methods moved into
+  UserGroupManager.
 * …
 
 === Other changes in 1.35 ===

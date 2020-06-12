@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User;
 
-use Autopromote;
 use ConfiguredReadOnlyMode;
 use DBAccessObjectUtils;
 use DeferredUpdates;
@@ -30,10 +29,14 @@ use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
+use Sanitizer;
 use User;
 use UserGroupExpiryJob;
 use UserGroupMembership;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -45,6 +48,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class UserGroupManager implements IDBAccessObject {
 
 	public const CONSTRUCTOR_OPTIONS = [
+		'Autopromote',
+		'AutopromoteOnce',
+		'EmailAuthentication',
 		'ImplicitGroups',
 		'GroupPermissions',
 		'RevokePermissions',
@@ -67,6 +73,12 @@ class UserGroupManager implements IDBAccessObject {
 
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
+
+	/** @var UserEditTracker */
+	private $userEditTracker;
+
+	/** @var LoggerInterface */
+	private $logger;
 
 	/** @var callable[] */
 	private $clearCacheCallbacks;
@@ -105,6 +117,8 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
 	 * @param ILBFactory $loadBalancerFactory
 	 * @param HookContainer $hookContainer
+	 * @param UserEditTracker $userEditTracker
+	 * @param LoggerInterface $logger
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|bool $dbDomain
 	 */
@@ -113,6 +127,8 @@ class UserGroupManager implements IDBAccessObject {
 		ConfiguredReadOnlyMode $configuredReadOnlyMode,
 		ILBFactory $loadBalancerFactory,
 		HookContainer $hookContainer,
+		UserEditTracker $userEditTracker,
+		LoggerInterface $logger,
 		array $clearCacheCallbacks = [],
 		$dbDomain = false
 	) {
@@ -122,6 +138,8 @@ class UserGroupManager implements IDBAccessObject {
 		$this->loadBalancer = $loadBalancerFactory->getMainLB( $dbDomain );
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userEditTracker = $userEditTracker;
+		$this->logger = $logger;
 		// Can't just inject ROM since we LB can be for foreign wiki
 		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $this->loadBalancer );
 		$this->clearCacheCallbacks = $clearCacheCallbacks;
@@ -220,9 +238,7 @@ class UserGroupManager implements IDBAccessObject {
 
 				$groups = array_unique( array_merge(
 					$groups,
-					// XXX: the User is necessary to pass it to the `GetAutoPromoteGroups` hook
-					// within the `getAutopromoteGroups` method
-					Autopromote::getAutopromoteGroups( User::newFromIdentity( $user ) )
+					$this->getUserAutopromoteGroups( $user )
 				) );
 			}
 			$this->setCache( $user, 'implicit', $groups, $queryFlags );
@@ -319,6 +335,204 @@ class UserGroupManager implements IDBAccessObject {
 		$this->setCache( $user, 'former', $formerGroups, $queryFlags );
 
 		return $this->userGroupCache[$userKey]['former'];
+	}
+
+	/**
+	 * Get the groups for the given user based on $wgAutopromote.
+	 *
+	 * @param UserIdentity $user The user to get the groups for
+	 * @return array Array of groups to promote to.
+	 *
+	 * @see $wgAutopromote
+	 */
+	public function getUserAutopromoteGroups( UserIdentity $user ) : array {
+		$promote = [];
+		// TODO: remove the need for the full user object
+		$userObj = User::newFromIdentity( $user );
+		foreach ( $this->options->get( 'Autopromote' ) as $group => $cond ) {
+			if ( $this->recCheckCondition( $cond, $userObj ) ) {
+				$promote[] = $group;
+			}
+		}
+
+		$this->hookRunner->onGetAutoPromoteGroups( $userObj, $promote );
+		return $promote;
+	}
+
+	/**
+	 * Get the groups for the given user based on the given criteria.
+	 *
+	 * Does not return groups the user already belongs to or has once belonged.
+	 *
+	 * @param UserIdentity $user The user to get the groups for
+	 * @param string $event Key in $wgAutopromoteOnce (each event has groups/criteria)
+	 *
+	 * @return array Groups the user should be promoted to.
+	 *
+	 * @see $wgAutopromoteOnce
+	 */
+	public function getUserAutopromoteOnceGroups(
+		UserIdentity $user,
+		string $event
+	) : array {
+		$autopromoteOnce = $this->options->get( 'AutopromoteOnce' );
+		$promote = [];
+
+		if ( isset( $autopromoteOnce[$event] ) && count( $autopromoteOnce[$event] ) ) {
+			$currentGroups = $this->getUserGroups( $user );
+			$formerGroups = $this->getUserFormerGroups( $user );
+			// TODO: remove the need for the full user object
+			$userObj = User::newFromIdentity( $user );
+			foreach ( $autopromoteOnce[$event] as $group => $cond ) {
+				// Do not check if the user's already a member
+				if ( in_array( $group, $currentGroups ) ) {
+					continue;
+				}
+				// Do not autopromote if the user has belonged to the group
+				if ( in_array( $group, $formerGroups ) ) {
+					continue;
+				}
+				// Finally - check the conditions
+				if ( $this->recCheckCondition( $cond, $userObj ) ) {
+					$promote[] = $group;
+				}
+			}
+		}
+
+		return $promote;
+	}
+
+	/**
+	 * Recursively check a condition.  Conditions are in the form
+	 *   [ '&' or '|' or '^' or '!', cond1, cond2, ... ]
+	 * where cond1, cond2, ... are themselves conditions; *OR*
+	 *   APCOND_EMAILCONFIRMED, *OR*
+	 *   [ APCOND_EMAILCONFIRMED ], *OR*
+	 *   [ APCOND_EDITCOUNT, number of edits ], *OR*
+	 *   [ APCOND_AGE, seconds since registration ], *OR*
+	 *   similar constructs defined by extensions.
+	 * This function evaluates the former type recursively, and passes off to
+	 * checkCondition for evaluation of the latter type.
+	 *
+	 * @param mixed $cond A condition, possibly containing other conditions
+	 * @param User $user The user to check the conditions against
+	 * @return bool Whether the condition is true
+	 */
+	private function recCheckCondition( $cond, User $user ) : bool {
+		$validOps = [ '&', '|', '^', '!' ];
+
+		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
+			// Recursive condition
+			if ( $cond[0] == '&' ) { // AND (all conds pass)
+				foreach ( array_slice( $cond, 1 ) as $subcond ) {
+					if ( !$this->recCheckCondition( $subcond, $user ) ) {
+						return false;
+					}
+				}
+
+				return true;
+			} elseif ( $cond[0] == '|' ) { // OR (at least one cond passes)
+				foreach ( array_slice( $cond, 1 ) as $subcond ) {
+					if ( $this->recCheckCondition( $subcond, $user ) ) {
+						return true;
+					}
+				}
+
+				return false;
+			} elseif ( $cond[0] == '^' ) { // XOR (exactly one cond passes)
+				if ( count( $cond ) > 3 ) {
+					$this->logger->warning(
+						'recCheckCondition() given XOR ("^") condition on three or more conditions.' .
+						' Check your $wgAutopromote and $wgAutopromoteOnce settings.'
+					);
+				}
+				return $this->recCheckCondition( $cond[1], $user )
+					xor $this->recCheckCondition( $cond[2], $user );
+			} elseif ( $cond[0] == '!' ) { // NOT (no conds pass)
+				foreach ( array_slice( $cond, 1 ) as $subcond ) {
+					if ( $this->recCheckCondition( $subcond, $user ) ) {
+						return false;
+					}
+				}
+
+				return true;
+			}
+		}
+		// If we got here, the array presumably does not contain other conditions;
+		// it's not recursive. Pass it off to checkCondition.
+		if ( !is_array( $cond ) ) {
+			$cond = [ $cond ];
+		}
+
+		return $this->checkCondition( $cond, $user );
+	}
+
+	/**
+	 * As recCheckCondition, but *not* recursive.  The only valid conditions
+	 * are those whose first element is one of APCOND_* defined in Defines.php.
+	 * Other types will throw an exception if no extension evaluates them.
+	 *
+	 * @param array $cond A condition, which must not contain other conditions
+	 * @param User $user The user to check the condition against
+	 * @return bool Whether the condition is true for the user
+	 * @throws InvalidArgumentException if autopromote condition was not recognized.
+	 */
+	private function checkCondition( array $cond, User $user ) : bool {
+		if ( count( $cond ) < 1 ) {
+			return false;
+		}
+
+		switch ( $cond[0] ) {
+			case APCOND_EMAILCONFIRMED:
+				if ( Sanitizer::validateEmail( $user->getEmail() ) ) {
+					if ( $this->options->get( 'EmailAuthentication' ) ) {
+						return (bool)$user->getEmailAuthenticationTimestamp();
+					} else {
+						return true;
+					}
+				}
+				return false;
+			case APCOND_EDITCOUNT:
+				$reqEditCount = $cond[1];
+
+				// T157718: Avoid edit count lookup if specified edit count is 0 or invalid
+				if ( $reqEditCount <= 0 ) {
+					return true;
+				}
+				return $user->isRegistered() && $this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
+			case APCOND_AGE:
+				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
+				return $age >= $cond[1];
+			case APCOND_AGE_FROM_EDIT:
+				$age = time() - (int)wfTimestampOrNull(
+					TS_UNIX, $this->userEditTracker->getFirstEditTimestamp( $user ) );
+				return $age >= $cond[1];
+			case APCOND_INGROUPS:
+				$groups = array_slice( $cond, 1 );
+				return count( array_intersect( $groups, $this->getUserGroups( $user ) ) ) == count( $groups );
+			case APCOND_ISIP:
+				return $cond[1] == $user->getRequest()->getIP();
+			case APCOND_IPINRANGE:
+				return IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
+			case APCOND_BLOCKED:
+				return $user->getBlock() && $user->getBlock()->isSitewide();
+			case APCOND_ISBOT:
+				// TODO: Injecting permission manager will cause a cyclic dependency. T254537
+				return in_array( 'bot', MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->getGroupPermissions( $this->getUserGroups( $user ) ) );
+			default:
+				$result = null;
+				$this->hookRunner->onAutopromoteCondition( $cond[0],
+					array_slice( $cond, 1 ), $user, $result );
+				if ( $result === null ) {
+					throw new InvalidArgumentException(
+						"Unrecognized condition {$cond[0]} for autopromotion!"
+					);
+				}
+
+				return (bool)$result;
+		}
 	}
 
 	/**
