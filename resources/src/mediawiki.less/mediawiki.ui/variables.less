@@ -33,7 +33,7 @@
 @colorGray12: #c8ccd1;
 @colorGray14: #eaecf0;
 @colorGray15: #f8f9fa; // lightest
-@colorBaseInverted: #fff;
+@color-base--inverted: #fff;
 
 // Semantic colors
 @background-color-base: #fff;
@@ -66,8 +66,6 @@
 @colorButtonTextActive: @colorGray1;
 @colorDisabledText: @colorGray7;
 @color-base--subtle: @colorGray7;
-// Deprecated in MW v1.35.0
-@colorNeutral: @color-base--subtle;
 
 // Messages
 // Messages: Error
@@ -98,8 +96,6 @@
 @border-color-base: #a2a9b1;
 @borderColorInputBinaryChecked: @colorProgressive;
 @borderColorInputBinaryActive: @colorProgressiveActive;
-// Deprecated in MW v1.35.0
-@colorFieldBorder: @border-color-base;
 
 // Border styles
 @border-style-base: solid;
@@ -112,13 +108,11 @@
 
 // Border radius to be used to buttons and inputs
 @border-radius-base: 2px;
-// Deprecated in MW v1.35.0
-@borderRadius: @border-radius-base;
 
 // Box shadows
 @boxShadowWidget: inset 0 0 0 1px transparent;
 @boxShadowWidgetFocus: inset 0 0 0 1px @colorProgressive;
-@boxShadowProgressiveFocus: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @colorBaseInverted;
+@boxShadowProgressiveFocus: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @color-base--inverted;
 @boxShadowInputBinaryActive: inset 0 0 0 1px @colorProgressiveActive;
 
 // Icon related variables
@@ -127,3 +121,12 @@
 
 // Form input sizes, equal to OOUI at 14px base font-size
 @sizeInputBinary: 1.5625em;
+
+/**
+ * Deprecated variables
+ */
+// Deprecated in MW v1.35.0
+@colorBaseInverted: @color-base--inverted;
+@colorNeutral: @color-base--subtle;
+@colorFieldBorder: @border-color-base;
+@borderRadius: @border-radius-base;
