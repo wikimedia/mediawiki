@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to get information about a list of users
@@ -171,7 +172,10 @@ class ApiQueryUsers extends ApiQueryBase {
 				$this->addTables( 'user_groups' );
 				$this->addJoinConds( [ 'user_groups' => [ 'JOIN', 'ug_user=user_id' ] ] );
 				$this->addFields( [ 'user_name' ] );
-				$this->addFields( UserGroupMembership::selectFields() );
+				$this->addFields( MediaWikiServices::getInstance()
+					->getUserGroupManager()
+					->getQueryInfo()['fields']
+				);
 				$this->addWhere( 'ug_expiry IS NULL OR ug_expiry >= ' .
 					$db->addQuotes( $db->timestamp() ) );
 				$userGroupsRes = $this->select( __METHOD__ );

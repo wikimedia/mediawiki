@@ -262,16 +262,19 @@ class UsersPager extends AlphabeticPager {
 
 		// Lookup groups for all the users
 		$dbr = wfGetDB( DB_REPLICA );
+		$groupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+		$groupsQueryInfo = $groupManager->getQueryInfo();
 		$groupRes = $dbr->select(
-			'user_groups',
-			UserGroupMembership::selectFields(),
+			$groupsQueryInfo['tables'],
+			$groupsQueryInfo['fields'],
 			[ 'ug_user' => $userIds ],
-			__METHOD__
+			__METHOD__,
+			$groupsQueryInfo['joins']
 		);
 		$cache = [];
 		$groups = [];
 		foreach ( $groupRes as $row ) {
-			$ugm = UserGroupMembership::newFromRow( $row );
+			$ugm = $groupManager->newGroupMembershipFromRow( $row );
 			if ( !$ugm->isExpired() ) {
 				$cache[$row->ug_user][$row->ug_group] = $ugm;
 				$groups[$row->ug_group] = true;
