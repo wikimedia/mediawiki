@@ -79,10 +79,10 @@ class LocalFileDeleteBatch {
 			$suppress = $param4;
 		} else {
 			// Old signature
-			wfDeprecated(
-				__CLASS__ .
-				' being constructed without passing a user as the second parameter.' .
-				' See T245710 for more',
+			wfDeprecatedMsg(
+				'Construction of ' . __CLASS__ . ' without passing a user as ' .
+				'the second parameter was deprecated in MediaWiki 1.35. ' .
+				'See T245710 for more',
 				'1.35'
 			);
 

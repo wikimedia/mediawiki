@@ -1716,9 +1716,10 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		if ( $deprecatedIPEntries ) {
-			wfDeprecated(
-				'IP addresses in the keys of $wgProxyList (found the following IP addresses in keys: ' .
-				implode( ', ', $deprecatedIPEntries ) . ', please move them to values)', '1.30' );
+			wfDeprecatedMsg(
+				'Use of IP addresses in the keys of $wgProxyList is deprecated since MediaWiki 1.30. ' .
+				'Found the following IP addresses in keys: ' . implode( ', ', $deprecatedIPEntries ) .
+				', please move them to values.', '1.30', false, false );
 		}
 
 		$proxyListIPSet = new IPSet( $resultProxyList );

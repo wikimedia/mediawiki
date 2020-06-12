@@ -2265,7 +2265,9 @@ class OutputPage extends ContextSource {
 	 */
 	public function addVaryHeader( $header, array $option = null ) {
 		if ( $option !== null && count( $option ) > 0 ) {
-			wfDeprecated( 'addVaryHeader $option is ignored', '1.34' );
+			wfDeprecatedMsg(
+				'The $option parameter to addVaryHeader is ignored since MediaWiki 1.34',
+				'1.34' );
 		}
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
 			$this->mVaryHeader[$header] = null;

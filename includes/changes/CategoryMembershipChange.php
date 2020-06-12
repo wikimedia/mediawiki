@@ -70,8 +70,9 @@ class CategoryMembershipChange {
 	public function __construct( Title $pageTitle, $revision = null ) {
 		$this->pageTitle = $pageTitle;
 		if ( $revision instanceof Revision ) {
-			wfDeprecated(
-				'Revision for ' . __METHOD__,
+			wfDeprecatedMsg(
+				'Passing a Revision for the $revision parameter to ' . __METHOD__ .
+				' was deprecated in MediaWiki 1.35',
 				'1.35'
 			);
 			$revision = $revision->getRevisionRecord();

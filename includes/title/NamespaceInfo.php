@@ -161,7 +161,8 @@ class NamespaceInfo {
 	 */
 	public function isMovable( $index ) {
 		if ( !$this->options->get( 'AllowImageMoving' ) ) {
-			wfDeprecated( 'Setting $wgAllowImageMoving to false', '1.35' );
+			wfDeprecatedMsg( 'Setting $wgAllowImageMoving to false was deprecated in MediaWiki 1.35',
+				'1.35', false, false );
 		}
 
 		$result = $index >= NS_MAIN &&

@@ -414,7 +414,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				// Ugh. Either a raw HTML string, or something that's supposed
 				// to be treated like one.
 				$type = is_object( $error ) ? get_class( $error ) : gettype( $error );
-				wfDeprecated( "EmailUser hook returning a $type as \$error", '1.29' );
+				wfDeprecatedMsg( "An EmailUser hook returned a $type as \$error, " .
+					"this is deprecated since MediaWiki 1.29",
+					'1.29', false, false );
 				return Status::newFatal( new ApiRawMessage(
 					[ '$1', Message::rawParam( (string)$error ) ], 'hookaborted'
 				) );

@@ -47,7 +47,7 @@ class MWLBFactoryTest extends MediaWikiTestCase {
 			'serverTemplate' => [],
 		];
 
-		$this->hideDeprecated( '$wgLBFactoryConf must be updated. See RELEASE-NOTES for details' );
+		$this->filterDeprecated( '/\$wgLBFactoryConf must be updated/' );
 		$result = MWLBFactory::getLBFactoryClass( $config );
 
 		$this->assertEquals( $expected, $result );

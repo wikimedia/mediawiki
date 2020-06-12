@@ -97,13 +97,15 @@ class PasswordReset implements LoggerAwareInterface {
 		$this->permissionManager = $permissionManager;
 
 		if ( !$loadBalancer ) {
-			wfDeprecated( 'Not passing LoadBalancer to ' . __METHOD__, '1.34' );
+			wfDeprecatedMsg( 'Not passing LoadBalancer to ' . __METHOD__ .
+				' was deprecated in MediaWiki 1.34', '1.34' );
 			$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		}
 		$this->loadBalancer = $loadBalancer;
 
 		if ( !$logger ) {
-			wfDeprecated( 'Not passing LoggerInterface to ' . __METHOD__, '1.34' );
+			wfDeprecatedMsg( 'Not passing LoggerInterface to ' . __METHOD__ .
+				' was deprecated in MediaWiki 1.34', '1.34' );
 			$logger = LoggerFactory::getInstance( 'authentication' );
 		}
 		$this->logger = $logger;

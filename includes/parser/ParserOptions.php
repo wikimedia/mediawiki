@@ -311,7 +311,7 @@ class ParserOptions {
 	 */
 	public function setTidy( $x ) {
 		if ( !$x ) {
-			wfDeprecated( 'disabling tidy', '1.33' );
+			wfDeprecatedMsg( 'Disabling tidy is deprecated since MediaWiki 1.33', '1.33' );
 		}
 		return $this->setOptionLegacy( 'tidy', $x );
 	}

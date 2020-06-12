@@ -72,7 +72,7 @@ class MergeHistoryTest extends MediaWikiTestCase {
 	 * @covers MergeHistory::isValidMerge
 	 */
 	public function testIsValidMergeRevisionLimit() {
-		$this->hideDeprecated( 'MergeHistory being constructed directly' );
+		$this->filterDeprecated( '/Direct construction of MergeHistory/' );
 
 		$limit = MergeHistory::REVISION_LIMIT;
 
@@ -143,7 +143,7 @@ class MergeHistoryTest extends MediaWikiTestCase {
 		$timestamp = false;
 
 		// Old method: No dependencies injected
-		$this->hideDeprecated( 'MergeHistory being constructed directly' );
+		$this->filterDeprecated( '/Direct construction of MergeHistory/' );
 		$mergeHistory = new MergeHistory( $source, $destination, $timestamp );
 		$this->assertInstanceOf(
 			MergeHistory::class,

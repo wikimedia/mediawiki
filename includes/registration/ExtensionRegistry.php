@@ -348,9 +348,10 @@ class ExtensionRegistry {
 			}
 
 			if ( !isset( $info['manifest_version'] ) ) {
-				wfDeprecated(
-					"{$info['name']}'s extension.json or skin.json does not have manifest_version",
-					'1.29'
+				wfDeprecatedMsg(
+					"{$info['name']}'s extension.json or skin.json does not have manifest_version, " .
+					'this is deprecated since MediaWiki 1.29',
+					'1.29', false, false
 				);
 				$warnings = true;
 				// For backwards-compatibility, assume a version of 1

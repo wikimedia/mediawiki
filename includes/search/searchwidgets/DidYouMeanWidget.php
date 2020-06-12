@@ -60,9 +60,10 @@ class DidYouMeanWidget {
 			// was only documented but not enforced previously emit a
 			// deprecation warning and in the future we can simply fail on bad
 			// inputs
-			wfDeprecated(
-				get_class( $resultSet ) . '::getQueryAfterRewriteSnippet returning empty snippet',
-				'1.34'
+			wfDeprecatedMsg(
+				get_class( $resultSet ) . '::getQueryAfterRewriteSnippet returning empty snippet ' .
+				'was deprecated in MediaWiki 1.35',
+				'1.34', false, false
 			);
 			$snippet = $resultSet->getQueryAfterRewrite();
 		}
@@ -109,9 +110,10 @@ class DidYouMeanWidget {
 			// was only documented but not enforced previously emit a
 			// deprecation warning and in the future we can simply fail on bad
 			// inputs
-			wfDeprecated(
-				get_class( $resultSet ) . '::getSuggestionSnippet returning empty snippet',
-				'1.34'
+			wfDeprecatedMsg(
+				get_class( $resultSet ) . '::getSuggestionSnippet returning empty snippet ' .
+				'was deprecated in MediaWiki 1.35',
+				'1.34', false, false
 			);
 			$snippet = $resultSet->getSuggestionSnippet();
 		}

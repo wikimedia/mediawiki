@@ -47,8 +47,9 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	public function __construct( array $params ) {
 		// for backwards compatibility:
 		if ( isset( $params['URL'] ) ) {
-			wfDeprecated(
-				'Using all-caps URL parameter to $wgVirtualRestConfig', '1.35'
+			wfDeprecatedMsg(
+				'Using all-caps URL parameter to $wgVirtualRestConfig ' .
+				'was deprecated in MediaWiki 1.35', '1.35'
 			);
 			$params['url'] = $params['URL'];
 			unset( $params['URL'] );

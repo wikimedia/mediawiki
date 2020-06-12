@@ -1038,6 +1038,32 @@ function wfDeprecated( $function, $version = false, $component = false, $callerO
 }
 
 /**
+ * Log a deprecation warning with arbitrary message text. A caller
+ * description will be appended. If the message has already been sent for
+ * this caller, it won't be sent again.
+ *
+ * Although there are component and version parameters, they are not
+ * automatically appended to the message. The message text should include
+ * information about when the thing was deprecated. The component and version
+ * are just used to implement $wgDeprecationReleaseLimit.
+ *
+ * @since 1.35
+ *
+ * @param string $msg The message
+ * @param string|false $version Version of MediaWiki that the function
+ *    was deprecated in.
+ * @param string|bool $component Component to which the function belongs.
+ *    If false, it is assumed the function is in MediaWiki core.
+ * @param int|false $callerOffset How far up the call stack is the original
+ *    caller. 2 = function that called the function that called us. If false,
+ *    the caller description will not be appended.
+ */
+function wfDeprecatedMsg( $msg, $version = false, $component = false, $callerOffset = 2 ) {
+	MWDebug::deprecatedMsg( $msg, $version, $component,
+		$callerOffset === false ? false : $callerOffset + 1 );
+}
+
+/**
  * Send a warning either to the debug log or in a PHP error depending on
  * $wgDevelopmentWarnings. To log warnings in production, use wfLogWarning() instead.
  *
