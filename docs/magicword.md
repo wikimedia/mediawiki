@@ -1,67 +1,34 @@
 Magic Words
 ====================================
 
-Magic Words are some phrases used in the wikitext. They are used for two things:
-* Variables (like {{PAGENAME}}, {{SERVER}}, ...): part of wikitext, that looks
-  like templates but that don't accept any parameter.
-* Parser functions (like {{fullurl:...}}, {{#special:...}}): behaves like
-  functions and accepts parameters.
+Magic words are localizable keywords used in wikitext. They are used for many
+small fragments of text, including:
 
-The localized arrays keys are the internal name, and the values are an array,
-which include their case-sensitivity and their alias forms. The first form
-defined is used by the program, for example, when moving a page and its old name
-should include #REDIRECT.
+* The names of parser functions e.g. `{{urlencode:...}}`
+* The names of variables, e.g. `{{CURRENTDAY}}`
+* Double-underscore behavior switches, e.g. `__NOTOC__`
+* Image link parameter names
 
-They can be added in several arrays:
-* By adding a file to **$wgExtensionMessagesFiles** and defining there **$magicWords**.
-  This array is associative with the language code in the first dimension key
-  and then a "normal" array of magic words.
-* Localized arrays (**languages/messages/LanguageXX.php**) include their different
-  names to be used by the users.
+Magic words have a synonym list, with the canonical English word always present,
+and a case sensitivity flag. The MagicWord class provides facilities for
+matching a magic word by converting it to a regex.
 
-To add a new variable, you should use the **MagicWordwgVariableIDs** hook to add
-the internal name to the **$magicWords** array. You'll need to define the value of
-the variable with the **ParserGetVariableValueSwitch** hook.
+A magic word has a unique ID. Often, the ID is the canonical English synonym in
+lowercase.
 
-For example to add a new variable:
+To add a magic word in an extension, add a file to the **ExtensionMessagesFiles**
+attribute in extension.json,
+and in that file, set a variable called **$magicWords**. This array is associative
+with the language code in the first dimension key and an ID in the second key. The
+third level array is numerically indexed: the element with key 0 contains the case
+sensitivity flag, with 0 for case-insensitive and 1 for case-sensitive. The
+subsequent elements of the array are the synonyms in the relevant language.
 
-Create a file called **ExtensionName.i18n.magic.php** with the following contents:
+To add a magic word in core, add it to $magicWords in MessagesEn.php, following the
+comment there.
 
-```php
-<?php
-
-$magicWords = [];
-
-$magicWords['en'] = [
-	// Case sensitive.
-	'mag_custom' => [ 1, 'CUSTOM' ],
-];
-
-$magicWords['es'] = [
-	'mag_custom' => [ 1, 'ADUANERO' ],
-];
-
-
-$wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
-$wgHooks['MagicWordwgVariableIDs'][] = 'wfAddCustomMagicWordID';
-$wgHooks['ParserGetVariableValueSwitch'][] = 'wfGetCustomMagicWordValue';
-
-function wfAddCustomMagicWordID( &$magicWords ) {
-	$magicWords[] = 'mag_custom';
-	return true;
-}
-
-function wfGetCustomMagicWordValue( $parser, &$variableCache, $magicWordId, &$ret ){
-	if( $magicWordId == 'mag_custom' ){
-		$ret = $variableCache['mag_custom'] = "Custom value";
-	}
-	return true;
-}
-```
-
-And to add a new parser function:
-
-Create a file called **ExtensionName.i18n.magic.php** with the following contents:
+For example, to add a new parser function in an extension: create a file called
+**ExtensionName.i18n.magic.php** with the following contents:
 
 ```php
 <?php
@@ -76,23 +43,40 @@ $magicWords['en'] = [
 $magicWords['es'] = [
 	'mag_custom' => [ 0, 'aduanero' ],
 ];
+```
 
+Then in extension.json:
 
-$wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
-$wgHooks['ParserFirstCallInit'][] = 'wfRegisterCustomMagicWord';
-
-function wfRegisterCustomMagicWord( $parser ){
-	$parser->setFunctionHook( 'mag_custom', 'wfGetCustomMagicWordValue' );
-	return true;
-}
-
-function wfGetCustomMagicWordValue( $parser, $var1, $var2 ){
-	return "custom: var1 is $var1, var2 is $var2";
+```json
+{
+	"ExtensionMessagesFiles": {
+		"ExtensionNameMagic": "ExtensionName.i18n.magic.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "MyExtensionHooks::onParserFirstCallInit"
+	}
 }
 ```
 
-Note: the **ParserFirstCallInit** hook is only available since 1.12. To work with
-an older version, you'll need to use an extension function.
+It is important that the key "ExtensionNameMagic" is unique. It must not be used
+by another extension.
+
+And in the class file:
+
+```php
+<?php
+
+class MyExtensionHooks {
+	public static function onParserFirstCallInit( $parser ) {
+		$parser->setFunctionHook( 'mag_custom', [ self::class, 'expandCustom' ] );
+		return true;
+	}
+
+	public static function expandCustom( $parser, $var1, $var2 ) {
+		return "custom: var1 is $var1, var2 is $var2";
+	}
+}
+```
 
 - Online documentation (contains more informations):
 - Magic words: <https://www.mediawiki.org/wiki/Manual:Magic_words>
