@@ -47,7 +47,6 @@ class TrackingCategories {
 		'node-count-exceeded-category',
 		'expansion-depth-exceeded-category',
 		'restricted-displaytitle-ignored',
-		'deprecated-self-close-category',
 		'template-loop-category',
 	];
 
