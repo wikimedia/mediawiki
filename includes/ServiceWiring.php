@@ -102,6 +102,7 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
@@ -1211,6 +1212,10 @@ return [
 			$services->getActorMigration(),
 			$services->getDBLoadBalancer()
 		);
+	},
+
+	'UserFactory' => function ( MediaWikiServices $services ) : UserFactory {
+		return new UserFactory();
 	},
 
 	'UserGroupManager' => function ( MediaWikiServices $services ) : UserGroupManager {
