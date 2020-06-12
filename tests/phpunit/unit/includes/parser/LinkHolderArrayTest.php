@@ -15,11 +15,13 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 	public function testMerge() {
 		$link1 = new LinkHolderArray(
 			$this->createMock( Parser::class ),
-			$this->createMock( ILanguageConverter::class )
+			$this->createMock( ILanguageConverter::class ),
+			$this->createHookContainer()
 		);
 		$link2 = new LinkHolderArray(
 			$this->createMock( Parser::class ),
-			$this->createMock( ILanguageConverter::class )
+			$this->createMock( ILanguageConverter::class ),
+			$this->createHookContainer()
 		);
 
 		$link1->internals = [
@@ -141,7 +143,8 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 	public function testClear() {
 		$linkHolderArray = new LinkHolderArray(
 			$this->createMock( Parser::class ),
-			$this->createMock( ILanguageConverter::class )
+			$this->createMock( ILanguageConverter::class ),
+			$this->createHookContainer()
 		);
 		$linkHolderArray->internals = [ 'dummy data' ];
 		$linkHolderArray->interwikis = [ 'dummy data' ];
@@ -166,7 +169,8 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 	) {
 		$linkHolderArray = new LinkHolderArray(
 			$this->createMock( Parser::class ),
-			$this->createMock( ILanguageConverter::class )
+			$this->createMock( ILanguageConverter::class ),
+			$this->createHookContainer()
 		);
 
 		$this->assertSame(
@@ -233,7 +237,8 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 	) {
 		$link = new LinkHolderArray(
 			$this->createMock( Parser::class ),
-			$this->createMock( ILanguageConverter::class )
+			$this->createMock( ILanguageConverter::class ),
+			$this->createHookContainer()
 		);
 		$title = $this->createMock( Title::class );
 		$title->method( 'isExternal' )->willReturn( true );
