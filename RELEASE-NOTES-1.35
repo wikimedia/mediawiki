@@ -1197,6 +1197,9 @@ because of Phabricator reports.
   use SidebarBeforeOutput hook. The toolbox data itself is available in a
   sidebar data array which you can get from any class that's extending
   QuickTemplate.
+* SkinTemplateBuildNavUrlsNav_urlsAfterPermalink hook has been deprecated.
+  Use SidebarBeforeOutput hook and get the revision id from the OutputPage
+  object.
 * …
 
 === Other changes in 1.35 ===
