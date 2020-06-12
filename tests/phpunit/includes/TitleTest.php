@@ -483,8 +483,16 @@ class TitleTest extends MediaWikiTestCase {
 	public static function provideBaseTitleCases() {
 		return [
 			# Title, expected base, optional message
+			[ 'User:John_Doe', 'John Doe' ],
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ],
 			[ 'User:Foo / Bar / Baz', 'Foo / Bar ' ],
+			[ 'User:Foo/', 'Foo' ],
+			[ 'User:Foo/Bar/', 'Foo/Bar' ],
+			[ 'User:/', '/' ],
+			[ 'User://', '/' ],
+			[ 'User:/oops/', '/oops' ],
+			[ 'User:/Ramba/Zamba/Mamba/', '/Ramba/Zamba/Mamba' ],
+			[ 'User://x//y//z//', '//x//y//z/' ],
 		];
 	}
 
@@ -517,10 +525,18 @@ class TitleTest extends MediaWikiTestCase {
 	public static function provideRootTitleCases() {
 		return [
 			# Title, expected base, optional message
+			[ 'User:John_Doe', 'John Doe' ],
 			[ 'User:John_Doe/subOne/subTwo', 'John Doe' ],
 			[ 'User:Foo / Bar / Baz', 'Foo ' ],
-			[ 'Talk:////', '////' ],
-			[ 'Template:////', '////' ],
+			[ 'User:Foo/', 'Foo' ],
+			[ 'User:Foo/Bar/', 'Foo' ],
+			[ 'User:/', '/' ],
+			[ 'User://', '/' ],
+			[ 'User:/oops/', '/oops' ],
+			[ 'User:/Ramba/Zamba/Mamba/', '/Ramba' ],
+			[ 'User://x//y//z//', '//x' ],
+			[ 'Talk:////', '///' ],
+			[ 'Template:////', '///' ],
 			[ 'Template:Foo////', 'Foo' ],
 			[ 'Template:Foo////Bar', 'Foo' ],
 		];
@@ -542,8 +558,14 @@ class TitleTest extends MediaWikiTestCase {
 	public static function provideSubpageTitleCases() {
 		return [
 			# Title, expected base, optional message
+			[ 'User:John_Doe', '' ],
 			[ 'User:John_Doe/subOne/subTwo', 'subTwo' ],
 			[ 'User:John_Doe/subOne', 'subOne' ],
+			[ 'User:/', '' ],
+			[ 'User://', '' ],
+			[ 'User:/oops/', '' ],
+			[ 'User:/Ramba/Zamba/Mamba/', '' ],
+			[ 'User://x//y//z//', '' ],
 		];
 	}
 
