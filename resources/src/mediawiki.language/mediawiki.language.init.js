@@ -40,7 +40,7 @@
 		 *  - `bcp47Map`
 		 *  - `languageNames`
 		 *
-		 * @property
+		 * @property {Object}
 		 */
 		data: {},
 

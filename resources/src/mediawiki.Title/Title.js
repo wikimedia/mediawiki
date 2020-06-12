@@ -37,49 +37,49 @@ var toUpperMap,
 	/**
 	 * @private
 	 * @static
-	 * @property NS_MAIN
+	 * @property {number} NS_MAIN
 	 */
 	NS_MAIN = namespaceIds[ '' ],
 
 	/**
 	 * @private
 	 * @static
-	 * @property NS_TALK
+	 * @property {number} NS_TALK
 	 */
 	NS_TALK = namespaceIds.talk,
 
 	/**
 	 * @private
 	 * @static
-	 * @property NS_SPECIAL
+	 * @property {number} NS_SPECIAL
 	 */
 	NS_SPECIAL = namespaceIds.special,
 
 	/**
 	 * @private
 	 * @static
-	 * @property NS_MEDIA
+	 * @property {number} NS_MEDIA
 	 */
 	NS_MEDIA = namespaceIds.media,
 
 	/**
 	 * @private
 	 * @static
-	 * @property NS_FILE
+	 * @property {number} NS_FILE
 	 */
 	NS_FILE = namespaceIds.file,
 
 	/**
 	 * @private
 	 * @static
-	 * @property FILENAME_MAX_BYTES
+	 * @property {number} FILENAME_MAX_BYTES
 	 */
 	FILENAME_MAX_BYTES = 240,
 
 	/**
 	 * @private
 	 * @static
-	 * @property TITLE_MAX_BYTES
+	 * @property {number} TITLE_MAX_BYTES
 	 */
 	TITLE_MAX_BYTES = 255,
 
@@ -154,7 +154,7 @@ var toUpperMap,
 	 *
 	 * @private
 	 * @static
-	 * @property sanitationRules
+	 * @property {Object[]} sanitationRules
 	 */
 	sanitationRules = [
 		// "signature"

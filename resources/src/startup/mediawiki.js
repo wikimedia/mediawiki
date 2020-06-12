@@ -537,7 +537,7 @@
 			 *    The module was registered client-side and requested, but the server denied knowledge
 			 *    of the module's existence.
 			 *
-			 * @property
+			 * @property {Object}
 			 * @private
 			 */
 			var registry = Object.create( null ),
@@ -1741,7 +1741,7 @@
 				 * state; it is not a public interface for modifying the registry.
 				 *
 				 * @see #registry
-				 * @property
+				 * @property {Object}
 				 * @private
 				 */
 				moduleRegistry: registry,
@@ -1750,7 +1750,7 @@
 				 * Exposed for testing and debugging only.
 				 *
 				 * @see #batchRequest
-				 * @property
+				 * @property {number}
 				 * @private
 				 */
 				maxQueryLength: $VARS.maxQueryLength,

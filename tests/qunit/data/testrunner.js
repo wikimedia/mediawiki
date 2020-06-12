@@ -10,6 +10,9 @@
 	 *   hooks object statically and passes it to multiple QUnit.module() calls.
 	 * - Supporting QUnit 1.x 'setup' and 'teardown' hooks
 	 *   (deprecated in QUnit 1.16, removed in QUnit 2).
+	 *
+	 * @param {Object} localEnv
+	 * @return {Object}
 	 */
 	function makeSafeEnv( localEnv ) {
 		var wrap = localEnv ? Object.create( localEnv ) : {};
@@ -363,6 +366,7 @@
 	 * Gets structure of node for this HTML.
 	 *
 	 * @param {string} html HTML markup for one or more nodes.
+	 * @return {Object}
 	 */
 	function getHtmlStructure( html ) {
 		var el = $( '<div>' ).append( html )[ 0 ];
