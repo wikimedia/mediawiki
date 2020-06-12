@@ -69,7 +69,15 @@ class UserFactory implements IDBAccessObject {
 	 * @return User
 	 */
 	public function newFromUserIdentity( UserIdentity $userIdentity ) : User {
-		return User::newFromIdentity( $userIdentity );
+		if ( $userIdentity instanceof User ) {
+			return $userIdentity;
+		}
+
+		return $this->newFromAnyId(
+			$userIdentity->getId() === 0 ? null : $userIdentity->getId(),
+			$userIdentity->getName() === '' ? null : $userIdentity->getName(),
+			$userIdentity->getActorId() === 0 ? null : $userIdentity->getActorId()
+		);
 	}
 
 	/**
