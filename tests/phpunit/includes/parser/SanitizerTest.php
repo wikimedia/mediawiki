@@ -145,16 +145,16 @@ class SanitizerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideAttributeWhitelist
-	 * @covers Sanitizer::attributeWhitelistInternal
+	 * @dataProvider provideAttributesAllowed
+	 * @covers Sanitizer::attributesAllowedInternal
 	 */
-	public function testAttributeWhitelistInternal( $element, $attribs ) {
+	public function testAttributesAllowedInternal( $element, $attribs ) {
 		$sanitizer = TestingAccessWrapper::newFromClass( Sanitizer::class );
-		$actual = $sanitizer->attributeWhitelistInternal( $element );
+		$actual = $sanitizer->attributesAllowedInternal( $element );
 		$this->assertArrayEquals( $attribs, array_keys( $actual ) );
 	}
 
-	public function provideAttributeWhitelist() {
+	public function provideAttributesAllowed() {
 		/** [ <element>, [ <good attribute 1>, <good attribute 2>, ...] ] */
 		return [
 			[ 'math', [ 'class', 'style', 'id', 'title' ] ],

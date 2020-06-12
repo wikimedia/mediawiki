@@ -632,7 +632,7 @@ class Sanitizer {
 	 * Take an array of attribute names and values and normalize or discard
 	 * illegal values for the given element type.
 	 *
-	 * - Discards attributes not on a whitelist for the given element
+	 * - Discards attributes not allowed for the given element
 	 * - Unsafe style attributes are discarded
 	 * - Invalid id attributes are re-encoded
 	 *
@@ -645,19 +645,19 @@ class Sanitizer {
 	 */
 	public static function validateTagAttributes( $attribs, $element ) {
 		return self::validateAttributes( $attribs,
-			self::attributeWhitelistInternal( $element ) );
+			self::attributesAllowedInternal( $element ) );
 	}
 
 	/**
 	 * Take an array of attribute names and values and normalize or discard
-	 * illegal values for the given whitelist.
+	 * illegal values.
 	 *
-	 * - Discards attributes not on the given whitelist
+	 * - Discards attributes not on the given list
 	 * - Unsafe style attributes are discarded
 	 * - Invalid id attributes are re-encoded
 	 *
 	 * @param array $attribs
-	 * @param array $whitelist List of allowed attribute names,
+	 * @param array $allowed List of allowed attribute names,
 	 *   either as a sequential array of valid attribute names or
 	 *   as an associative array where keys give valid attribute names
 	 * @return array
@@ -665,12 +665,12 @@ class Sanitizer {
 	 * @todo Check for legal values where the DTD limits things.
 	 * @todo Check for unique id attribute :P
 	 */
-	public static function validateAttributes( $attribs, $whitelist ) {
-		if ( isset( $whitelist[0] ) ) {
+	public static function validateAttributes( $attribs, $allowed ) {
+		if ( isset( $allowed[0] ) ) {
 			// We would like to eventually deprecate calling this
 			// function with a sequential array, but for now just
 			// convert it.
-			$whitelist = array_flip( $whitelist );
+			$allowed = array_flip( $allowed );
 		}
 		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
 
@@ -692,7 +692,7 @@ class Sanitizer {
 			#   colons.
 			if ( (
 				!preg_match( '/^data-[^:]*$/i', $attribute ) &&
-				!array_key_exists( $attribute, $whitelist )
+				!array_key_exists( $attribute, $allowed )
 			) || self::isReservedDataAttribute( $attribute ) ) {
 				continue;
 			}
@@ -941,7 +941,7 @@ class Sanitizer {
 	 * values that could trigger problems.
 	 *
 	 * - Normalizes attribute names to lowercase
-	 * - Discards attributes not on a whitelist for the given element
+	 * - Discards attributes not allowed for the given element
 	 * - Turns broken or invalid entities into plaintext
 	 * - Double-quotes all attribute values
 	 * - Attributes without values are given the name as attribute
@@ -1594,29 +1594,29 @@ class Sanitizer {
 	}
 
 	/**
-	 * Fetch the whitelist of acceptable attributes for a given element name.
+	 * Fetch the list of acceptable attributes for a given element name.
 	 *
 	 * @param string $element
 	 * @return array An associative array where keys are acceptable attribute
 	 *   names
 	 */
-	private static function attributeWhitelistInternal( $element ) {
-		$list = self::setupAttributeWhitelistInternal();
+	private static function attributesAllowedInternal( $element ) {
+		$list = self::setupAttributesAllowedInternal();
 		return $list[$element] ?? [];
 	}
 
 	/**
 	 * Foreach array key (an allowed HTML element), return an array
-	 * of allowed attributes
+	 * of allowed attributes.
 	 * @return array An associative array: keys are HTML element names;
 	 *   values are associative arrays where the keys are allowed attribute
 	 *   names.
 	 */
-	private static function setupAttributeWhitelistInternal() {
-		static $whitelist;
+	private static function setupAttributesAllowedInternal() {
+		static $allowed;
 
-		if ( $whitelist !== null ) {
-			return $whitelist;
+		if ( $allowed !== null ) {
+			return $allowed;
 		}
 
 		// For lookup efficiency flip each attributes array so the keys are
@@ -1679,7 +1679,7 @@ class Sanitizer {
 
 		# Numbers refer to sections in HTML 4.01 standard describing the element.
 		# See: https://www.w3.org/TR/html4/
-		$whitelist = [
+		$allowed = [
 			# 7.5.4
 			'div'        => $block,
 			'center'     => $common, # deprecated
@@ -1772,8 +1772,8 @@ class Sanitizer {
 			'th'         => $merge( $common, $tablecell, $tablealign ),
 
 			# 12.2
-			# NOTE: <a> is not allowed directly, but the attrib
-			# whitelist is used from the Parser object
+			# NOTE: <a> is not allowed directly, but this list of allowed
+			# attributes is used from the Parser object
 			'a'          => $merge( $common, [ 'href', 'rel', 'rev' ] ), # rel/rev esp. for RDFa
 
 			# 13.2
@@ -1841,7 +1841,7 @@ class Sanitizer {
 			'link' => $merge( [], [ 'itemprop', 'href', 'title' ] ),
 		];
 
-		return $whitelist;
+		return $allowed;
 	}
 
 	/**
