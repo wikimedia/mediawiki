@@ -26,6 +26,7 @@ use DeferredUpdates;
 use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
+use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -36,6 +37,8 @@ use Sanitizer;
 use User;
 use UserGroupExpiryJob;
 use UserGroupMembership;
+use WikiMap;
+use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILBFactory;
@@ -50,6 +53,7 @@ class UserGroupManager implements IDBAccessObject {
 	public const CONSTRUCTOR_OPTIONS = [
 		'Autopromote',
 		'AutopromoteOnce',
+		'AutopromoteOnceLogInRC',
 		'EmailAuthentication',
 		'ImplicitGroups',
 		'GroupPermissions',
@@ -533,6 +537,78 @@ class UserGroupManager implements IDBAccessObject {
 
 				return (bool)$result;
 		}
+	}
+
+	/**
+	 * Add the user to the group if he/she meets given criteria.
+	 *
+	 * Contrary to autopromotion by $wgAutopromote, the group will be
+	 *   possible to remove manually via Special:UserRights. In such case it
+	 *   will not be re-added automatically. The user will also not lose the
+	 *   group if they no longer meet the criteria.
+	 *
+	 * @param UserIdentity $user User to add to the groups
+	 * @param string $event Key in $wgAutopromoteOnce (each event has groups/criteria)
+	 *
+	 * @return array Array of groups the user has been promoted to.
+	 *
+	 * @see $wgAutopromoteOnce
+	 */
+	public function addUserToAutopromoteOnceGroups(
+		UserIdentity $user,
+		string $event
+	) : array {
+		Assert::precondition(
+			!$this->dbDomain || WikiMap::isCurrentWikiDbDomain( $this->dbDomain ),
+			__METHOD__ . " is not supported for foreign domains: {$this->dbDomain} used"
+		);
+
+		if ( $this->readOnlyMode->isReadOnly() || !$user->getId() ) {
+			return [];
+		}
+
+		$toPromote = $this->getUserAutopromoteOnceGroups( $user, $event );
+		if ( $toPromote === [] ) {
+			return [];
+		}
+
+		$userObj = User::newFromIdentity( $user );
+		if ( !$userObj->checkAndSetTouched() ) {
+			return []; // raced out (bug T48834)
+		}
+
+		$oldGroups = $this->getUserGroups( $user ); // previous groups
+		$oldUGMs = $this->getUserGroupMemberships( $user );
+		foreach ( $toPromote as $group ) {
+			$this->addUserToGroup( $user, $group );
+		}
+		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
+		$newUGMs = $this->getUserGroupMemberships( $user );
+
+		// update groups in external authentication database
+		// TODO: deprecate passing full User object to hook
+		$this->hookRunner->onUserGroupsChanged(
+			$userObj,
+			$toPromote, [],
+			false,
+			false,
+			$oldUGMs,
+			$newUGMs
+		);
+
+		$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( $userObj->getUserPage() );
+		$logEntry->setParameters( [
+			'4::oldgroups' => $oldGroups,
+			'5::newgroups' => $newGroups,
+		] );
+		$logid = $logEntry->insert();
+		if ( $this->options->get( 'AutopromoteOnceLogInRC' ) ) {
+			$logEntry->publish( $logid );
+		}
+
+		return $toPromote;
 	}
 
 	/**
