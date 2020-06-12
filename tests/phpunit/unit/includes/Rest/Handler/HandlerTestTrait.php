@@ -118,6 +118,9 @@ trait HandlerTestTrait {
 	private function executeHandler( Handler $handler, RequestInterface $request,
 		$config = [], $hooks = []
 	) {
+		// supply defaults for required fields in $config
+		$config += [ 'path' => '/test' ];
+
 		$this->initHandler( $handler, $request, $config, $hooks );
 		$this->validateHandler( $handler );
 

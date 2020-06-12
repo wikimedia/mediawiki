@@ -30,6 +30,7 @@ class ContributionsLookup {
 	private function getPagerParams( $limit, $segment ) {
 		return [
 			'limit' => $limit,
+			'offset' => $segment,
 		];
 	}
 
@@ -69,7 +70,13 @@ class ContributionsLookup {
 			}
 		}
 
-		return new ContributionsSegment( $revisions, null, null );
-	}
+		$pagingQueries = $pager->getPagingQueries();
 
+		$after = $pagingQueries['prev']['offset'] ?? null; // later in time
+		$before = $pagingQueries['next']['offset'] ?? null; // earlier in time
+		$flags = [
+			'oldest' => !$before
+		];
+		return new ContributionsSegment( $revisions, $before, $after, $flags );
+	}
 }
