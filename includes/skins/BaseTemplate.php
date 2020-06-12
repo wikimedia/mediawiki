@@ -49,6 +49,9 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * The resulting array is built according to a format intended to be passed
 	 * through makeListItem to generate the html.
 	 *
+	 * @deprecated since 1.35. To add items to the toolbox, use SidebarBeforeOutput
+	 * hook. To get the toolbox only use $this->data['sidebar']['TOOLBOX'], if you are
+	 * extending this class.
 	 * @return array
 	 */
 	public function getToolbox() {
