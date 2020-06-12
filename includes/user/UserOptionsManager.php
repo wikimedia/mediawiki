@@ -25,7 +25,7 @@ use HTMLCheckMatrix;
 use HTMLFormField;
 use HTMLMultiSelectField;
 use IContextSource;
-use IDBAccessObject;
+use InvalidArgumentException;
 use LanguageCode;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -41,7 +41,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * A service class to control user options
  * @since 1.35
  */
-class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
+class UserOptionsManager extends UserOptionsLookup {
 
 	public const CONSTRUCTOR_OPTIONS = [
 		'HiddenPrefs'
@@ -70,6 +70,9 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 
 	/** @var HookRunner */
 	private $hookRunner;
+
+	/** @var array Query flags used to retrieve options from database */
+	private $queryFlagsUsedForCaching = [];
 
 	/**
 	 * @param ServiceOptions $options
@@ -117,7 +120,8 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		UserIdentity $user,
 		string $oname,
 		$defaultOverride = null,
-		bool $ignoreHidden = false
+		bool $ignoreHidden = false,
+		int $queryFlags = self::READ_NORMAL
 	) {
 		# We want 'disabled' preferences to always behave as the default value for
 		# users, even if they have set the option explicitly in their settings (ie they
@@ -128,7 +132,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 			return $this->defaultOptionsLookup->getDefaultOption( $oname );
 		}
 
-		$options = $this->loadUserOptions( $user );
+		$options = $this->loadUserOptions( $user, $queryFlags );
 		if ( array_key_exists( $oname, $options ) ) {
 			return $options[$oname];
 		}
@@ -138,8 +142,12 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	/**
 	 * @inheritDoc
 	 */
-	public function getOptions( UserIdentity $user, int $flags = 0 ): array {
-		$options = $this->loadUserOptions( $user );
+	public function getOptions(
+		UserIdentity $user,
+		int $flags = 0,
+		int $queryFlags = self::READ_NORMAL
+	): array {
+		$options = $this->loadUserOptions( $user, $queryFlags );
 
 		# We want 'disabled' preferences to always behave as the default value for
 		# users, even if they have set the option explicitly in their settings (ie they
@@ -170,7 +178,10 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	 * @param mixed $val New value to set
 	 */
 	public function setOption( UserIdentity $user, string $oname, $val ) {
-		$this->loadUserOptions( $user );
+		// In case the options are modified, we need to refetch
+		// latest options in case they were not fetched from master
+		// so that we don't get a race condition trying to save modified options.
+		$this->loadUserOptions( $user, self::READ_LATEST );
 
 		// Explicitly NULL values should refer to defaults
 		if ( $val === null ) {
@@ -367,6 +378,10 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	 * @internal
 	 */
 	public function saveOptions( UserIdentity $user ) {
+		if ( !$user->isRegistered() ) {
+			throw new InvalidArgumentException( __METHOD__ . ' was called on anon user' );
+		}
+
 		$userKey = $this->getCacheKey( $user );
 		// Not using getOptions(), to keep hidden preferences in database
 		$saveOptions = $this->loadUserOptions( $user, self::READ_LATEST );
@@ -451,6 +466,13 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	}
 
 	/**
+	 * Loads user options either from cache or from the database.
+	 *
+	 * @note Query flags are ignored for anons, since they do not have any
+	 * options stored in the database. If the UserIdentity was itself
+	 * obtained from a replica and doesn't have ID set due to replication lag,
+	 * it will be treated as anon regardless of the query flags passed here.
+	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
 	 * @param array|null $data preloaded row from the user_properties table
@@ -463,7 +485,9 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		array $data = null
 	): array {
 		$userKey = $this->getCacheKey( $user );
-		if ( isset( $this->optionsCache[$userKey] ) ) {
+		if ( $this->canUseCachedValues( $user, $queryFlags )
+			&& isset( $this->optionsCache[$userKey] )
+		) {
 			return $this->optionsCache[$userKey];
 		}
 
@@ -483,7 +507,9 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 
 		// In case options were already loaded from the database before and no options
 		// changes were saved to the database, we can use the cached original options.
-		if ( isset( $this->originalOptionsCache[$userKey] ) ) {
+		if ( $this->canUseCachedValues( $user, $queryFlags )
+			&& isset( $this->originalOptionsCache[$userKey] )
+		) {
 			$this->logger->debug( 'Loading options from override cache', [
 				'user_id' => $user->getId()
 			] );
@@ -525,6 +551,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		// Need to store what we have so far before the hook to prevent
 		// infinite recursion if the hook attempts to reload options
 		$this->originalOptionsCache[$userKey] = $options;
+		$this->queryFlagsUsedForCaching[$userKey] = $queryFlags;
 		// TODO: Deprecate passing full User object into the hook.
 		$this->hookRunner->onUserLoadOptions(
 			User::newFromIdentity( $user ), $options
@@ -532,6 +559,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 
 		$this->originalOptionsCache[$userKey] = $options;
 		$this->optionsCache[$userKey] = $options;
+
 		return $this->optionsCache[$userKey];
 	}
 
@@ -544,6 +572,7 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 		$cacheKey = $this->getCacheKey( $user );
 		$this->optionsCache[$cacheKey] = null;
 		$this->originalOptionsCache[$cacheKey] = null;
+		$this->queryFlagsUsedForCaching[$cacheKey] = null;
 	}
 
 	/**
@@ -562,5 +591,25 @@ class UserOptionsManager extends UserOptionsLookup implements IDBAccessObject {
 	private function getDBForQueryFlags( $queryFlags ): IDatabase {
 		list( $mode, ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
 		return $this->loadBalancer->getConnectionRef( $mode, [] );
+	}
+
+	/**
+	 * Determines if it's ok to use cached options values for a given user and query flags
+	 * @param UserIdentity $user
+	 * @param int $queryFlags
+	 * @return bool
+	 */
+	private function canUseCachedValues( UserIdentity $user, int $queryFlags ) : bool {
+		if ( !$user->isRegistered() ) {
+			// Anon users don't have options stored in the database,
+			// so $queryFlags are ignored.
+			return true;
+		}
+		if ( $queryFlags >= self::READ_LOCKING ) {
+			return false;
+		}
+		$userKey = $this->getCacheKey( $user );
+		$queryFlagsUsed = $this->queryFlagsUsedForCaching[$userKey] ?? self::READ_NONE;
+		return $queryFlagsUsed >= $queryFlags;
 	}
 }
