@@ -67,6 +67,7 @@ use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserNameUtils;
@@ -1269,6 +1270,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserEditTracker() : UserEditTracker {
 		return $this->getService( 'UserEditTracker' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return UserFactory
+	 */
+	public function getUserFactory() : UserFactory {
+		return $this->getService( 'UserFactory' );
 	}
 
 	/**
