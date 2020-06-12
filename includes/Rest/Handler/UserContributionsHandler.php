@@ -9,6 +9,8 @@ use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
 use RequestContext;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * @since 1.35
@@ -19,6 +21,9 @@ class UserContributionsHandler extends Handler {
 	 * @var ContributionsLookup
 	 */
 	private $contributionsLookup;
+
+	/** Hard limit results to 20 revisions */
+	private const MAX_LIMIT = 20;
 
 	public function __construct( ContributionsLookup $contributionsLookup ) {
 		$this->contributionsLookup = $contributionsLookup;
@@ -38,13 +43,14 @@ class UserContributionsHandler extends Handler {
 		}
 
 		// can make it segment_size per ticket, but wanted to be consistent with search endpoint.
-		$limit = 2;
-		$segment = '';
+		$limit = $this->getValidatedParams()['limit'];
+		$segment = $this->getValidatedParams()['segment'];
 		$contributionsSegment = $this->contributionsLookup->getRevisionsByUser( $user, $limit, $segment );
 
 		$revisions = $this->getRevisionsList( $contributionsSegment );
+		$urls = $this->constructURLs( $contributionsSegment );
 
-		$response = [ 'revisions' => $revisions ];
+		$response = $urls + [ 'revisions' => $revisions ];
 
 		return $response;
 	}
@@ -73,6 +79,43 @@ class UserContributionsHandler extends Handler {
 			];
 		}
 		return $revisionsData;
+	}
+
+	/**
+	 * @param ContributionsSegment $segment
+	 *
+	 * @return string[]
+	 */
+	private function constructURLs( ContributionsSegment $segment ) {
+		$limit = $this->getValidatedParams()['limit'];
+		$urls = [];
+
+		if ( $segment->isOldest() ) {
+			$urls['older'] = null;
+		} else {
+			$query = [ 'limit' => $limit, 'segment' => $segment->getBefore() ];
+			$urls['older'] = $this->getRouteUrl( [], $query );
+		}
+
+		return $urls;
+	}
+
+	public function getParamSettings() {
+		return [
+			'limit' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => self::MAX_LIMIT,
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => self::MAX_LIMIT,
+			],
+			'segment' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+			],
+		];
 	}
 
 }
