@@ -1429,49 +1429,13 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @return array Array of groups the user has been promoted to.
 	 *
+	 * @deprecated since 1.35 Use UserGroupManager::addUserToAutopromoteOnceGroups
 	 * @see $wgAutopromoteOnce
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
-		global $wgAutopromoteOnceLogInRC;
-
-		if ( wfReadOnly() || !$this->getId() ) {
-			return [];
-		}
-
-		$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
-		if ( $toPromote === [] ) {
-			return [];
-		}
-
-		if ( !$this->checkAndSetTouched() ) {
-			return []; // raced out (bug T48834)
-		}
-
-		$oldGroups = $this->getGroups(); // previous groups
-		$oldUGMs = $this->getGroupMemberships();
-		foreach ( $toPromote as $group ) {
-			$this->addGroup( $group );
-		}
-		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
-		$newUGMs = $this->getGroupMemberships();
-
-		// update groups in external authentication database
-		$this->getHookRunner()->onUserGroupsChanged( $this, $toPromote, [],
-			false, false, $oldUGMs, $newUGMs );
-
-		$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
-		$logEntry->setPerformer( $this );
-		$logEntry->setTarget( $this->getUserPage() );
-		$logEntry->setParameters( [
-			'4::oldgroups' => $oldGroups,
-			'5::newgroups' => $newGroups,
-		] );
-		$logid = $logEntry->insert();
-		if ( $wgAutopromoteOnceLogInRC ) {
-			$logEntry->publish( $logid );
-		}
-
-		return $toPromote;
+		return MediaWikiServices::getInstance()
+			->getUserGroupManager()
+			->addUserToAutopromoteOnceGroups( $this, $event );
 	}
 
 	/**
@@ -1498,10 +1462,11 @@ class User implements IDBAccessObject, UserIdentity {
 	 * On success, the mTouched field is updated.
 	 * The user serialization cache is always cleared.
 	 *
+	 * @internal
 	 * @return bool Whether user_touched was actually updated
 	 * @since 1.26
 	 */
-	protected function checkAndSetTouched() {
+	public function checkAndSetTouched() {
 		$this->load();
 
 		if ( !$this->mId ) {

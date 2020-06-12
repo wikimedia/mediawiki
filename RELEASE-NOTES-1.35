@@ -1178,8 +1178,8 @@ because of Phabricator reports.
 * ChangeTags::truncateTagDescription() has been deprecated.
 * The following methods of the User class are deprecated: getGroups,
   getGroupMemberships, getEffectiveGroups, getAutomaticGroups,
-  addGroup, removeGroup, getFormerGroups, getAllGroups, getImplicitGroups.
-  Use the new UserGroupManager service instead.
+  addGroup, removeGroup, getFormerGroups, getAllGroups, getImplicitGroups,
+  addAutopromoteOnceGroups. Use the new UserGroupManager service instead.
 * The following methods of the UserGroupMembership class were deprecated:
   selectFields, getMembershipsForUser, getMembership, insert, delete,
   newFromRow, initFromRow, purgeExpired.
