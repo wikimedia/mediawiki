@@ -1059,6 +1059,8 @@ because of Phabricator reports.
   other than Article is deprecated.
 * Action::page property is deprecated for direct access.
   Use Action::getArticle or Action::getWikiPage instead.
+* LESS `.background-image-svg()` mixin from 'mediawiki.mixins.less' is
+  deprecated and should be removed in 1.36.
 * LESS `.background-image-svg-quick()` mixin from 'mediawiki.mixins.less' is
   deprecated and should be removed in 1.36.
 * The following methods were deprecated:
