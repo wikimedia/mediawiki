@@ -179,6 +179,7 @@ $wgAutoloadClasses += [
 	'LanguageConverterTestTrait' => "$testDir/phpunit/languages/LanguageConverterTestTrait.php",
 
 	# tests/phpunit/includes/libs
+	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",
 	'GenericArrayObjectTest' => "$testDir/phpunit/includes/libs/GenericArrayObjectTest.php",
 	'Wikimedia\ParamValidator\TypeDef\TypeDefTestCase' => "$testDir/phpunit/includes/libs/ParamValidator/TypeDef/TypeDefTestCase.php",
 
