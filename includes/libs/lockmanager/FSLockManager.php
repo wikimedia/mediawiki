@@ -60,7 +60,7 @@ class FSLockManager extends LockManager {
 		parent::__construct( $config );
 
 		$this->lockDir = $config['lockDirectory'];
-		$this->isWindows = ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' );
+		$this->isWindows = ( PHP_OS_FAMILY === 'Windows' );
 	}
 
 	/**

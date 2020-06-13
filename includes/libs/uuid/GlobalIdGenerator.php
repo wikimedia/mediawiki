@@ -645,7 +645,7 @@ class GlobalIdGenerator {
 		// Try to get some ID that uniquely identifies this machine (RFC 4122)...
 		if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 			AtEase::suppressWarnings();
-			if ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' ) {
+			if ( PHP_OS_FAMILY === 'Windows' ) {
 				// https://technet.microsoft.com/en-us/library/bb490913.aspx
 				$csv = trim( ( $this->shellCallback )( 'getmac /NH /FO CSV' ) );
 				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );

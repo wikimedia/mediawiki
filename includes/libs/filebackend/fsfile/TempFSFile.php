@@ -92,7 +92,7 @@ class TempFSFile extends FSFile {
 		// the current process.
 		// The user is included as if various scripts are run by different users they will likely
 		// not be able to access each others temporary files.
-		if ( strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN' ) {
+		if ( PHP_OS_FAMILY === 'Windows' ) {
 			$tmp = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'mwtmp-' . get_current_user();
 			if ( !is_dir( $tmp ) ) {
 				mkdir( $tmp );

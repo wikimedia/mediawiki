@@ -77,7 +77,7 @@ class FSFileBackend extends FileBackendStore {
 	/** @var string Required OS username to own files */
 	protected $fileOwner;
 
-	/** @var bool Simpler version of PHP_OS_FAMILY (PHP 7.2) */
+	/** @var bool Simpler version of PHP_OS_FAMILY */
 	protected $os;
 	/** @var string OS username running this script */
 	protected $currentUser;
@@ -98,9 +98,9 @@ class FSFileBackend extends FileBackendStore {
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 
-		if ( substr( PHP_OS, 0, 3 ) === 'WIN' || PHP_OS === 'Windows' ) {
+		if ( PHP_OS_FAMILY === 'Windows' ) {
 			$this->os = 'Windows';
-		} elseif ( substr( PHP_OS, 0, -3 ) === 'BSD' || PHP_OS === 'Darwin' ) {
+		} elseif ( PHP_OS_FAMILY === 'BSD' || PHP_OS_FAMILY === 'Darwin' ) {
 			$this->os = 'BSD';
 		} else {
 			$this->os = 'Linux';
