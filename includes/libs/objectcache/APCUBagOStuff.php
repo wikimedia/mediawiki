@@ -130,6 +130,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
+		$init = is_int( $init ) ? $init : $value;
 		// Use apcu 5.1.12 $ttl argument if apcu_inc() will initialize to $init:
 		// https://www.php.net/manual/en/function.apcu-inc.php
 		if ( $value === $init && $this->useIncrTTLArg ) {
