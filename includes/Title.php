@@ -1833,7 +1833,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * @return string The prefixed title, with underscores and
 	 *  any interwiki and namespace prefixes
-	 * @return-taint tainted
 	 */
 	public function getPrefixedDBkey() {
 		$s = $this->prefix( $this->mDbkeyform );
@@ -1846,7 +1845,6 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * This is the form usually used for display
 	 *
 	 * @return string The prefixed title, with spaces
-	 * @return-taint tainted
 	 */
 	public function getPrefixedText() {
 		if ( $this->prefixedText === null ) {
