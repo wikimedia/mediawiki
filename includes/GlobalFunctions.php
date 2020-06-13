@@ -1841,11 +1841,7 @@ function wfTimestampNow() {
  * @return bool True if it's Windows, false otherwise.
  */
 function wfIsWindows() {
-	static $isWindows = null;
-	if ( $isWindows === null ) {
-		$isWindows = strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN';
-	}
-	return $isWindows;
+	return PHP_OS_FAMILY === 'Windows';
 }
 
 /**
