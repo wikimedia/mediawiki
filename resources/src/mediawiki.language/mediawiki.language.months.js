@@ -40,7 +40,7 @@
 	 * - `keys`: object with three keys like the above, containing zero-indexed arrays of message keys
 	 *   for appropriate messages which can be passed to mw.msg.
 	 *
-	 * @property
+	 * @property {Object}
 	 * @member mw.language
 	 */
 	mw.language.months = {

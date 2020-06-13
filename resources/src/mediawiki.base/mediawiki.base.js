@@ -245,7 +245,7 @@
 	 * want to add a new global, or the global is bad and needs containment
 	 * or wrapping.
 	 *
-	 * @property
+	 * @property {Object}
 	 */
 	mw.libs = {};
 
