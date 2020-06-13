@@ -2641,7 +2641,7 @@
 	"unblock-summary": "",
 	"blockip": "Block {{GENDER:$1|user}}",
 	"blockiptext": "Use the form below to block write access from a specific IP address or username.\nThis should be done only to prevent vandalism, and in accordance with [[{{MediaWiki:Policy-url}}|policy]].\nFill in a specific reason below (for example, citing particular pages that were vandalized).\nYou can block IP address ranges using the [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] syntax; the largest allowed range is /$1 for IPv4 and /$2 for IPv6.",
-	"ipaddressorusername": "IP address or username:",
+	"ipaddressorusername": "IP address, username or block ID:",
 	"ipbreason": "Reason:",
 	"ipbreason-dropdown": "*Common block reasons\n** Inserting false information\n** Removing content from pages\n** Spamming links to external sites\n** Inserting nonsense/gibberish into pages\n** Intimidating behavior/harassment\n** Abusing multiple accounts\n** Unacceptable username",
 	"ipb-hardblock": "Apply block to logged-in users from this IP address",
