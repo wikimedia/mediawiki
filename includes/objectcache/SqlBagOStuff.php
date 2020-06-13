@@ -62,7 +62,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/** @var string */
 	protected $tableName = 'objectcache';
 	/** @var bool */
-	protected $replicaOnly = false;
+	protected $replicaOnly;
 
 	/** @var IMaintainableDatabase[] Map of (shard index => DB handle) */
 	protected $conns;
@@ -172,8 +172,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		if ( isset( $params['shards'] ) ) {
 			$this->numTableShards = intval( $params['shards'] );
 		}
-		// Backwards-compatibility for < 1.34
-		$this->replicaOnly = $params['replicaOnly'] ?? ( $params['slaveOnly'] ?? false );
+		$this->replicaOnly = $params['replicaOnly'] ?? false;
 	}
 
 	/**
