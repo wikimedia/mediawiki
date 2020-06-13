@@ -65,6 +65,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox = array_merge( $toolbox, $this->data['sidebar']['TOOLBOX'] ?? [] );
 		}
 
+		// T253416: Deprecated hook
 		$this->getHookRunner()->onBaseTemplateToolbox( $this, $toolbox );
 		return $toolbox;
 	}

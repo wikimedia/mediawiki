@@ -799,7 +799,8 @@ $template: BaseTemplate
 $portlet: string portlet name
 &$html: string
 
-'BaseTemplateToolbox': Called by BaseTemplate when building the $toolbox array
+'BaseTemplateToolbox': DEPRECATED since 1.35!
+Called by BaseTemplate when building the $toolbox array
 and returning it for the skin to output. You can add items to the toolbox while
 still letting the skin make final decisions on skin-specific markup conventions
 using this hook.

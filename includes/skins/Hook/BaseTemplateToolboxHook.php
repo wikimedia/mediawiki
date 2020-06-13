@@ -5,7 +5,7 @@ namespace MediaWiki\Hook;
 use BaseTemplate;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35
  * @ingroup Hooks
  */
 interface BaseTemplateToolboxHook {
