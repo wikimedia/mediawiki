@@ -815,16 +815,6 @@ CREATE INDEX site_protocol ON sites (site_protocol);
 CREATE INDEX site_domain ON sites (site_domain);
 CREATE INDEX site_forward ON sites (site_forward);
 
-CREATE TABLE site_identifiers (
-  si_site   INTEGER NOT NULL,
-  si_type   TEXT    NOT NULL,
-  si_key    TEXT    NOT NULL,
-
-  PRIMARY KEY (si_type, si_key)
-);
-CREATE INDEX si_site ON site_identifiers (si_site);
-CREATE INDEX si_key ON site_identifiers (si_key);
-
 CREATE SEQUENCE watchlist_expiry_we_item_seq;
 CREATE TABLE watchlist_expiry (
   we_item   INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('watchlist_expiry_we_item_seq'),
