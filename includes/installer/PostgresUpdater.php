@@ -691,6 +691,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgField', 'archive', 'ar_content_format' ],
 			[ 'changeField', 'updatelog', 'ul_key', 'varchar(255)', '' ],
 			[ 'changeField', 'updatelog', 'ul_value', 'BYTEA', '' ],
+			[ 'changeField', 'site_identifiers', 'si_type', 'BYTEA', '' ],
+			[ 'changeField', 'site_identifiers', 'si_key', 'BYTEA', '' ],
 		];
 	}
 

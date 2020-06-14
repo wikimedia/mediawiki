@@ -2,6 +2,14 @@
 -- Source: maintenance/tables.json
 -- Do not modify this file directly.
 -- See https://www.mediawiki.org/wiki/Manual:Schema_changes
+CREATE TABLE /*_*/site_identifiers (
+  si_type BLOB NOT NULL,
+  si_key BLOB NOT NULL,
+  si_site INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(si_type, si_key)
+);
+CREATE INDEX site_ids_site ON /*_*/site_identifiers (si_site);
+CREATE INDEX site_ids_key ON /*_*/site_identifiers (si_key);
 CREATE TABLE /*_*/updatelog (
   ul_key VARCHAR(255) NOT NULL,
   ul_value BLOB DEFAULT NULL,
