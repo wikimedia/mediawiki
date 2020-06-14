@@ -81,6 +81,12 @@ class GenerateSchemaSql extends Maintenance {
 			$sql = $sql . implode( ";\n\n", $tables ) . ';';
 			$sql = ( new SqlFormatter( new NullHighlighter() ) )->format( $sql );
 		}
+
+		// Remove table prefixes from Postgres schema, people should not set it
+		// but better safe than sorry.
+		if ( $this->getOption( 'type', 'mysql' ) === 'postgres' ) {
+			$sql = str_replace( "\n/*_*/\n", ' ', $sql );
+		}
 		// Until the linting issue is resolved
 		// https://github.com/doctrine/sql-formatter/issues/53
 		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );
