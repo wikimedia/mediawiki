@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class ApiStashEditTest extends ApiTestCase {
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setService( 'PageEditStash', new PageEditStash(
 			new HashBagOStuff( [] ),

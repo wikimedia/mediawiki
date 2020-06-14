@@ -48,7 +48,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		return self::$mockRecentChange;
 	}
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		self::$notifyCallCounter = 0;
 		self::$mockRecentChange = $this->createMock( RecentChange::class );

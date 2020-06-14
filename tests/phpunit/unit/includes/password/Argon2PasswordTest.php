@@ -10,7 +10,7 @@
  */
 class Argon2PasswordTest extends PasswordTestCase {
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		if ( !defined( 'PASSWORD_ARGON2I' ) ) {
 			$this->markTestSkipped( 'Argon2 support not found' );

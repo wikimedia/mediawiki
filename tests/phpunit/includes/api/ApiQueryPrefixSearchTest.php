@@ -10,7 +10,7 @@
 class ApiQueryPrefixSearchTest extends ApiTestCase {
 	private const TEST_QUERY = 'unittest';
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgSearchType' => MockCompletionSearchEngine::class,

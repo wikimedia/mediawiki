@@ -16,7 +16,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		return new SpecialUnblock();
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		$this->db->delete( 'ipblocks', '*', __METHOD__ );
 	}
 

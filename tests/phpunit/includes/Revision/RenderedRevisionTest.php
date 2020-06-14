@@ -33,7 +33,7 @@ class RenderedRevisionTest extends MediaWikiTestCase {
 	/** @var callable */
 	private $combinerCallback;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->combinerCallback = function ( RenderedRevision $rr, array $hints = [] ) {

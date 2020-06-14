@@ -142,7 +142,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $result->numRows() );
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		Title::clearCaches();
 		parent::tearDown();
 	}

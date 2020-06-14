@@ -60,7 +60,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 */
 	private $testPage;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->tablesUsed[] = 'archive';
 		$this->tablesUsed[] = 'page';

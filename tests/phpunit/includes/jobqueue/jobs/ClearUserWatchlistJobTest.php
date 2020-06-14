@@ -13,7 +13,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ClearUserWatchlistJobTest extends MediaWikiTestCase {
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		self::$users['ClearUserWatchlistJobTestUser']
 			= new TestUser( 'ClearUserWatchlistJobTestUser' );

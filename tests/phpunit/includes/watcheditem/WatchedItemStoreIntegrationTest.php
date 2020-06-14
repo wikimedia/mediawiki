@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		self::$users['WatchedItemStoreIntegrationTestUser']
 			= new TestUser( 'WatchedItemStoreIntegrationTestUser' );
