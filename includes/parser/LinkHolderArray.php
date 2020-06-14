@@ -282,15 +282,15 @@ class LinkHolderArray {
 				$query = $entry['query'] ?? [];
 				$key = "$ns:$index";
 				$searchkey = "<!--LINK'\" $key-->";
-				$displayText = $entry['text'];
+				$displayTextHtml = $entry['text'];
 				if ( isset( $entry['selflink'] ) ) {
-					$replacePairs[$searchkey] = Linker::makeSelfLinkObj( $title, $displayText, $query );
+					$replacePairs[$searchkey] = Linker::makeSelfLinkObj( $title, $displayTextHtml, $query );
 					continue;
 				}
-				if ( $displayText === '' ) {
+				if ( $displayTextHtml === '' ) {
 					$displayText = null;
 				} else {
-					$displayText = new HtmlArmor( $displayText );
+					$displayText = new HtmlArmor( $displayTextHtml );
 				}
 				if ( !isset( $colours[$pdbk] ) ) {
 					$colours[$pdbk] = 'new';
