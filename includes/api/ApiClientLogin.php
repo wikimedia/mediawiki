@@ -43,7 +43,7 @@ class ApiClientLogin extends ApiBase {
 			$this->getModuleName(),
 			$this->getModulePath(),
 			AuthManager::ACTION_LOGIN,
-			self::needsToken(),
+			$this->needsToken(),
 		] );
 		return $msgs;
 	}
