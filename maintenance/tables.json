@@ -1,1 +1,20 @@
-[]
+[
+	{
+		"name": "updatelog",
+		"comment": "A table to log updates, one text key row per update.",
+		"columns": [
+			{
+				"name": "ul_key",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ul_value",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": false }
+			}
+		],
+		"indexes": [],
+		"pk": [ "ul_key" ]
+	}
+]
