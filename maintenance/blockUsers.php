@@ -128,7 +128,7 @@ class BlockUsers extends Maintenance {
 				continue;
 			}
 
-			$priorBlock = $user->getBlock();
+			$priorBlock = DatabaseBlock::newFromTarget( $user );
 			if ( $priorBlock === null ) {
 				$block = new DatabaseBlock();
 			} elseif ( $reblock ) {
