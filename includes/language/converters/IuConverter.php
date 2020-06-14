@@ -33,7 +33,8 @@
  *
  * @ingroup Language
  */
-class IuConverter extends LanguageConverter {
+class IuConverter extends LanguageConverterSpecific {
+
 	protected $mDoContentConvert;
 
 	public $mToLatin = [
@@ -109,32 +110,6 @@ class IuConverter extends LanguageConverter {
 			'ike-latn' => new ReplacementArray( $this->mToLatin ),
 			'iu' => new ReplacementArray()
 		];
-	}
-
-	/**
-	 * A function wrapper:
-	 *   - if there is no selected variant, leave the link
-	 *     names as they were
-	 *   - do not try to find variants for usernames
-	 *
-	 * @param string &$link
-	 * @param Title &$nt
-	 * @param bool $ignoreOtherCond
-	 */
-	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		// check for user namespace
-		if ( is_object( $nt ) ) {
-			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
-				return;
-			}
-		}
-
-		$oldlink = $link;
-		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
-			$link = $oldlink;
-		}
 	}
 
 	/**

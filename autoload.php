@@ -740,6 +740,7 @@ $wgAutoloadLocalClasses = [
 	'LanguageBs' => __DIR__ . '/languages/classes/LanguageBs.php',
 	'LanguageCode' => __DIR__ . '/includes/language/LanguageCode.php',
 	'LanguageConverter' => __DIR__ . '/languages/LanguageConverter.php',
+	'LanguageConverterSpecific' => __DIR__ . '/languages/LanguageConverterSpecific.php',
 	'LanguageCu' => __DIR__ . '/languages/classes/LanguageCu.php',
 	'LanguageDsb' => __DIR__ . '/languages/classes/LanguageDsb.php',
 	'LanguageEn' => __DIR__ . '/languages/classes/LanguageEn.php',

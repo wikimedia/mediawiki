@@ -26,7 +26,11 @@
  *
  * @ingroup Language
  */
-class KuConverter extends LanguageConverter {
+class KuConverter extends LanguageConverterSpecific {
+
+	/**
+	 * @var string[]
+	 */
 	public $mArabicToLatin = [
 		'ب' => 'b', 'ج' => 'c', 'چ' => 'ç', 'د' => 'd', 'ف' => 'f', 'گ' => 'g', 'ھ' => 'h',
 		'ہ' => 'h', 'ه' => 'h', 'ح' => 'h', 'ژ' => 'j', 'ك' => 'k', 'ک' => 'k', 'ل' => 'l',
@@ -69,6 +73,9 @@ class KuConverter extends LanguageConverter {
 		'٩' => '9', # U+0669
 	];
 
+	/**
+	 * @var string[]
+	 */
 	public $mLatinToArabic = [
 		'b' => 'ب', 'c' => 'ج', 'ç' => 'چ', 'd' => 'د', 'f' => 'ف', 'g' => 'گ',
 		'h' => 'ه', 'j' => 'ژ', 'k' => 'ک', 'l' => 'ل',
@@ -163,32 +170,6 @@ class KuConverter extends LanguageConverter {
 			'ku-arab' => new ReplacementArray( $this->mLatinToArabic ),
 			'ku' => new ReplacementArray()
 		];
-	}
-
-	/**
-	 * A function wrapper:
-	 *   - if there is no selected variant, leave the link
-	 *     names as they were
-	 *   - do not try to find variants for usernames
-	 *
-	 * @param string &$link
-	 * @param Title &$nt
-	 * @param bool $ignoreOtherCond
-	 */
-	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		// check for user namespace
-		if ( is_object( $nt ) ) {
-			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
-				return;
-			}
-		}
-
-		$oldlink = $link;
-		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
-			$link = $oldlink;
-		}
 	}
 
 	/**
