@@ -1561,7 +1561,6 @@ class Parser {
 			function ( &$text, $frame = false ) {
 				$text = $this->replaceVariables( $text, $frame );
 				$text = $this->mStripState->unstripBoth( $text );
-				return $text;
 			},
 			false,
 			[],
