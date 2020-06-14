@@ -1403,7 +1403,6 @@ class Linker {
 						$linkText = $text;
 						$linkTarget = Linker::normalizeSubpageLink( $title, $match[1], $linkText );
 
-						Title::newFromText( $linkTarget );
 						try {
 							$target = $services->getTitleParser()->
 								parseTitle( $linkTarget );
