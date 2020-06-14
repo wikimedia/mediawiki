@@ -34,7 +34,7 @@ use RemexHtml\TreeBuilder\TreeBuilder;
  * Parser for Vue single file components (.vue files). See parse() for usage.
  *
  * @ingroup ResourceLoader
- * @since 1.35
+ * @internal For use within ResourceLoaderFileModule.
  */
 class VueComponentParser {
 	/**
