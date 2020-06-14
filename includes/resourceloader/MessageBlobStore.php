@@ -36,18 +36,13 @@ use Wikimedia\Rdbms\Database;
  * @since 1.17
  */
 class MessageBlobStore implements LoggerAwareInterface {
-
 	/** @var ResourceLoader */
 	private $resourceloader;
 
-	/**
-	 * @var LoggerInterface
-	 */
+	/** @var LoggerInterface */
 	protected $logger;
 
-	/**
-	 * @var WANObjectCache
-	 */
+	/** @var WANObjectCache */
 	protected $wanCache;
 
 	/**
@@ -169,8 +164,8 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 *
 	 * @param string $key Message key
 	 */
-	public function updateMessage( $key ) {
-		$moduleNames = $this->getResourceLoader()->getModulesByMessage( $key );
+	public function updateMessage( $key ) : void {
+		$moduleNames = $this->resourceloader->getModulesByMessage( $key );
 		foreach ( $moduleNames as $moduleName ) {
 			// Uses a holdoff to account for database replica DB lag (for MessageCache)
 			$this->wanCache->touchCheckKey( $this->wanCache->makeKey( __CLASS__, $moduleName ) );
@@ -200,14 +195,6 @@ class MessageBlobStore implements LoggerAwareInterface {
 		//   in cache contexts (e.g. languages, skins). Setting a hold-off on this key could
 		//   cause a cache stampede since no values would be stored for several seconds.
 		$cache->touchCheckKey( $cache->makeGlobalKey( __CLASS__ ), $cache::HOLDOFF_TTL_NONE );
-	}
-
-	/**
-	 * @since 1.27
-	 * @return ResourceLoader
-	 */
-	protected function getResourceLoader() {
-		return $this->resourceloader;
 	}
 
 	/**

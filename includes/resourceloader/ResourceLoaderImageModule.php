@@ -26,7 +26,6 @@
  * @since 1.25
  */
 class ResourceLoaderImageModule extends ResourceLoaderModule {
-
 	/** @var array */
 	protected $definition;
 
@@ -235,7 +234,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return ResourceLoaderImage|null
 	 */
-	public function getImage( $name, ResourceLoaderContext $context ) {
+	public function getImage( $name, ResourceLoaderContext $context ) : ?ResourceLoaderImage {
 		$this->loadFromDefinition();
 		$images = $this->getImages( $context );
 		return $images[$name] ?? null;
@@ -246,7 +245,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return ResourceLoaderImage[] Array keyed by image name
 	 */
-	public function getImages( ResourceLoaderContext $context ) {
+	public function getImages( ResourceLoaderContext $context ) : array {
 		$skin = $context->getSkin();
 		if ( $this->imageObjects === null ) {
 			$this->loadFromDefinition();
@@ -294,7 +293,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string[]
 	 */
-	public function getGlobalVariants( ResourceLoaderContext $context ) {
+	public function getGlobalVariants( ResourceLoaderContext $context ) : array {
 		$skin = $context->getSkin();
 		if ( $this->globalVariants === null ) {
 			$this->loadFromDefinition();
@@ -306,7 +305,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 				$this->variants[$skin] = $this->variants['default'] ?? [];
 			}
 			foreach ( $this->variants[$skin] as $name => $config ) {
-				if ( isset( $config['global'] ) && $config['global'] ) {
+				if ( $config['global'] ?? false ) {
 					$this->globalVariants[$skin][] = $name;
 				}
 			}
@@ -319,7 +318,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	public function getStyles( ResourceLoaderContext $context ) {
+	public function getStyles( ResourceLoaderContext $context ) : array {
 		$this->loadFromDefinition();
 
 		// Build CSS rules
@@ -395,7 +394,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param string $fallback Fallback URI
 	 * @return string[] CSS declarations to use given URIs as background-image
 	 */
-	protected function getCssDeclarations( $primary, $fallback ) {
+	protected function getCssDeclarations( $primary, $fallback ) : array {
 		$primaryUrl = CSSMin::buildUrlValue( $primary );
 		$fallbackUrl = CSSMin::buildUrlValue( $fallback );
 		return [
@@ -472,7 +471,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *
 	 * @param array $options Module definition
 	 * @param string|null $localBasePath Path to use if not provided in module definition. Defaults
-	 *     to $IP
+	 *  to $IP.
 	 * @return string Local base path
 	 */
 	public static function extractLocalBasePath( array $options, $localBasePath = null ) {
