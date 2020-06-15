@@ -2073,9 +2073,10 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
 	 *
-	 * @deprecated since 1.32, use DerivedPageDataUpdater::doUpdates instead.
+	 * @deprecated since 1.32 (soft), use DerivedPageDataUpdater::doUpdates instead.
 	 *
-	 * @param Revision $revision
+	 * @param Revision|RevisionRecord $revisionRecord since 1.35, can be a RevisionRecord
+	 *   object, and passing a Revision is hard deprecated
 	 * @param User $user User object that did the revision
 	 * @param array $options Array of options, following indexes are used:
 	 * - changed: bool, whether the revision changed the content (default true)
@@ -2094,17 +2095,20 @@ class WikiPage implements Page, IDBAccessObject {
 	 *  - causeAgent: name of the user who caused the update. See DataUpdate::getCauseAgent().
 	 *    (string, defaults to the passed user)
 	 */
-	public function doEditUpdates( Revision $revision, User $user, array $options = [] ) {
+	public function doEditUpdates( $revisionRecord, User $user, array $options = [] ) {
+		if ( $revisionRecord instanceof Revision ) {
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+			$revisionRecord = $revisionRecord->getRevisionRecord();
+		}
+
 		$options += [
 			'causeAction' => 'edit-page',
 			'causeAgent' => $user->getName(),
 		];
 
-		$revision = $revision->getRevisionRecord();
+		$updater = $this->getDerivedDataUpdater( $user, $revisionRecord );
 
-		$updater = $this->getDerivedDataUpdater( $user, $revision );
-
-		$updater->prepareUpdate( $revision, $options );
+		$updater->prepareUpdate( $revisionRecord, $options );
 
 		$updater->doUpdates();
 	}

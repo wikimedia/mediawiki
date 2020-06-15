@@ -2,6 +2,7 @@
 
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -192,7 +193,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	/**
 	 * @covers WikiPage::doEditUpdates
 	 */
-	public function testDoEditUpdates() {
+	public function testDoEditUpdates_revision() {
+		$this->hideDeprecated( 'WikiPage::doEditUpdates with a Revision object' );
+
 		$user = $this->getTestUser()->getUser();
 
 		// NOTE: if site stats get out of whack and drop below 0,
@@ -222,6 +225,49 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 
 		$page->doEditUpdates( $revision, $user );
+
+		// TODO: test various options; needs temporary hooks
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$res = $dbr->select( 'pagelinks', '*', [ 'pl_from' => $page->getId() ] );
+		$n = $res->numRows();
+		$res->free();
+
+		$this->assertSame( 1, $n, 'pagelinks should contain only one link if PST was not applied' );
+	}
+
+	/**
+	 * @covers WikiPage::doEditUpdates
+	 */
+	public function testDoEditUpdates() {
+		$user = $this->getTestUser()->getUser();
+
+		// NOTE: if site stats get out of whack and drop below 0,
+		// that causes a DB error during tear-down. So bump the
+		// numbers high enough to not drop below 0.
+		$siteStatsUpdate = SiteStatsUpdate::factory(
+			[ 'edits' => 1000, 'articles' => 1000, 'pages' => 1000 ]
+		);
+		$siteStatsUpdate->doUpdate();
+
+		$page = $this->createPage( __METHOD__, __METHOD__ );
+
+		$comment = CommentStoreComment::newUnsavedComment( __METHOD__ );
+
+		$contentHandler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
+		// PST turns [[|foo]] into [[foo]]
+		$content = $contentHandler->unserializeContent( __METHOD__ . ' [[|foo]][[bar]]' );
+
+		$revRecord = new MutableRevisionRecord( $page->getTitle() );
+		$revRecord->setContent( SlotRecord::MAIN, $content );
+		$revRecord->setUser( $user );
+		$revRecord->setTimestamp( '20170707040404' );
+		$revRecord->setPageId( $page->getId() );
+		$revRecord->setId( 9989 );
+		$revRecord->setMinorEdit( true );
+		$revRecord->setComment( $comment );
+
+		$page->doEditUpdates( $revRecord, $user );
 
 		// TODO: test various options; needs temporary hooks
 
