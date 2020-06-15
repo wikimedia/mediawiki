@@ -126,7 +126,7 @@ class CLIParser extends Maintenance {
 	 * @return ParserOutput
 	 */
 	protected function parse( $wikitext ) {
-		$options = ParserOptions::newCanonical();
+		$options = ParserOptions::newCanonical( 'canonical' );
 		$options->setOption( 'enableLimitReport', false );
 		return $this->parser->parse(
 			$wikitext,

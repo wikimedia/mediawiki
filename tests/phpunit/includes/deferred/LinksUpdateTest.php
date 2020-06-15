@@ -208,7 +208,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$title,
-			$wikiPage->getParserOutput( ParserOptions::newCanonical() ),
+			$wikiPage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
 			Title::newFromText( 'Category:Foo' ),
 			[ [ 'Foo', '[[:Testing]] added to category' ] ]
 		);
@@ -218,7 +218,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$title,
-			$wikiPage->getParserOutput( ParserOptions::newCanonical() ),
+			$wikiPage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
 			Title::newFromText( 'Category:Foo' ),
 			[
 				[ 'Foo', '[[:Testing]] added to category' ],
@@ -228,7 +228,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$title,
-			$wikiPage->getParserOutput( ParserOptions::newCanonical() ),
+			$wikiPage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
 			Title::newFromText( 'Category:Bar' ),
 			[
 				[ 'Bar', '[[:Testing]] added to category' ],
@@ -252,7 +252,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$templateTitle,
-			$templatePage->getParserOutput( ParserOptions::newCanonical() ),
+			$templatePage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
 			Title::newFromText( 'Baz' ),
 			[]
 		);
@@ -262,7 +262,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$templateTitle,
-			$templatePage->getParserOutput( ParserOptions::newCanonical() ),
+			$templatePage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
 			Title::newFromText( 'Baz' ),
 			[ [
 				'Baz',

@@ -45,6 +45,8 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	public function testNewCanonical() {
+		$this->hideDeprecated( 'ParserOptions::newCanonical with no user' );
+
 		$user = $this->getMutableTestUser()->getUser();
 		$userLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'fr' );
 		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
@@ -110,7 +112,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	 * @param array $options Options to set
 	 */
 	public function testIsSafeToCache( $expect, $options ) {
-		$popt = ParserOptions::newCanonical();
+		$popt = ParserOptions::newCanonical( 'canonical' );
 		foreach ( $options as $name => $value ) {
 			$popt->setOption( $name, $value );
 		}
@@ -154,7 +156,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$this->setMwGlobals( $globals );
 		$this->setTemporaryHook( 'PageRenderingHash', $hookFunc );
 
-		$popt = ParserOptions::newCanonical();
+		$popt = ParserOptions::newCanonical( 'canonical' );
 		foreach ( $options as $name => $value ) {
 			$popt->setOption( $name, $value );
 		}
@@ -221,7 +223,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 
 		self::clearCache();
 
-		$popt = ParserOptions::newCanonical();
+		$popt = ParserOptions::newCanonical( 'canonical' );
 		$popt->registerWatcher( function () {
 			$this->fail( 'Watcher should not have been called' );
 		} );
@@ -236,14 +238,14 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	}
 
 	public function testGetInvalidOption() {
-		$popt = ParserOptions::newCanonical();
+		$popt = ParserOptions::newCanonical( 'canonical' );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Unknown parser option bogus" );
 		$popt->getOption( 'bogus' );
 	}
 
 	public function testSetInvalidOption() {
-		$popt = ParserOptions::newCanonical();
+		$popt = ParserOptions::newCanonical( 'canonical' );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Unknown parser option bogus" );
 		$popt->setOption( 'bogus', true );
@@ -258,8 +260,8 @@ class ParserOptionsTest extends MediaWikiTestCase {
 			$classWrapper->lazyOptions = $oldLazy;
 		} );
 
-		$popt1 = ParserOptions::newCanonical();
-		$popt2 = ParserOptions::newCanonical();
+		$popt1 = ParserOptions::newCanonical( 'canonical' );
+		$popt2 = ParserOptions::newCanonical( 'canonical' );
 		$this->assertTrue( $popt1->matches( $popt2 ) );
 
 		$popt1->enableLimitReport( true );
@@ -274,14 +276,15 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$classWrapper->lazyOptions += [ __METHOD__ => function () use ( &$ctr ) {
 			return ++$ctr;
 		} ];
-		$popt1 = ParserOptions::newCanonical();
-		$popt2 = ParserOptions::newCanonical();
+		$popt1 = ParserOptions::newCanonical( 'canonical' );
+		$popt2 = ParserOptions::newCanonical( 'canonical' );
 		$this->assertFalse( $popt1->matches( $popt2 ) );
 
 		ScopedCallback::consume( $reset );
 	}
 
 	public function testMatchesForCacheKey() {
+		$this->hideDeprecated( 'ParserOptions::newCanonical with no user' );
 		$cOpts = ParserOptions::newCanonical( null, 'en' );
 
 		$uOpts = ParserOptions::newFromAnon();
