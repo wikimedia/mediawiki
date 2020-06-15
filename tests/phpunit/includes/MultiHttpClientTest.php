@@ -179,14 +179,11 @@ class MultiHttpClientTest extends MediaWikiTestCase {
 
 	public static function provideMultiHttpTimeout() {
 		return [
-			'default 10/900' => [
+			'default 10/30' => [
 				[],
 				[],
-				// This can be changed per a re-evaluation of T226979, but if
-				// it's less than 2/3 then the default tests below would have
-				// to be updated
 				10,
-				900
+				30
 			],
 			'constructor override' => [
 				[ 'connTimeout' => 2, 'reqTimeout' => 3 ],
