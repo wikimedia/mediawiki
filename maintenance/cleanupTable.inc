@@ -37,18 +37,22 @@ class TableCleanup extends Maintenance {
 	];
 
 	protected $dryrun = false;
-	public $batchSize = 100;
-	public $reportInterval = 100;
+	protected $reportInterval = 100;
 
 	protected $processed, $updated, $count, $startTime, $table;
 
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'dry-run', 'Perform a dry run' );
+		$this->addOption( 'reporting-interval', 'How often to print status line' );
+		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
 		global $wgUser;
+
+		$this->reportInterval = $this->getOption( 'reporting-interval', $this->reportInterval );
+
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
 			$wgUser = User::newFromName( 'Conversion script' );
@@ -124,7 +128,7 @@ class TableCleanup extends Maintenance {
 		$indexConds = [];
 		$options = [
 			'ORDER BY' => implode( ',', $index ),
-			'LIMIT' => $this->batchSize
+			'LIMIT' => $this->getBatchSize()
 		];
 		$callback = [ $this, $params['callback'] ];
 
@@ -140,7 +144,7 @@ class TableCleanup extends Maintenance {
 				call_user_func( $callback, $row );
 			}
 
-			if ( $res->numRows() < $this->batchSize ) {
+			if ( $res->numRows() < $this->getBatchSize() ) {
 				// Done
 				break;
 			}
