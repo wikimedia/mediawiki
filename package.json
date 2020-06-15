@@ -40,6 +40,7 @@
     "qunit": "2.10.0",
     "stylelint-config-wikimedia": "0.10.1",
     "wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
+    "wdio-video-reporter": "3.0.0",
     "webdriverio": "6.1.12"
   }
 }
