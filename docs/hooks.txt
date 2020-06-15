@@ -3209,11 +3209,13 @@ page output.
 [&]$sktemplate: SkinTemplate object
 [&]$tpl: QuickTemplate engine object
 
-'SkinTemplatePreventOtherActiveTabs': Use this to prevent showing active tabs.
+'SkinTemplatePreventOtherActiveTabs': DEPRECATED since 1.35!
+Use SkinTemplateNavigation__Universal. Use this to prevent showing active tabs.
 [&]$sktemplate: SkinTemplate object
 &$res: set to true to prevent active tabs
 
-'SkinTemplateTabAction': Override SkinTemplate::tabAction().
+'SkinTemplateTabAction': DEPRECATED since 1.35!
+Use SkinTemplateNavigation__Universal. Override SkinTemplate::tabAction().
 You can either create your own array, or alter the parameters for
 the normal one.
 [&]$sktemplate: The SkinTemplate instance.
