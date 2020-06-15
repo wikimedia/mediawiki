@@ -2979,7 +2979,7 @@
 	"tooltip-ca-nstab-main": "本文を閲覧",
 	"tooltip-ca-nstab-user": "利用者ページを表示",
 	"tooltip-ca-nstab-media": "メディアページを表示",
-	"tooltip-ca-nstab-special": "これは特別ページですので、編集はできません。",
+	"tooltip-ca-nstab-special": "これは特別ページです。編集はできません。",
 	"tooltip-ca-nstab-project": "プロジェクトページを表示",
 	"tooltip-ca-nstab-image": "ファイルページを表示",
 	"tooltip-ca-nstab-mediawiki": "システムメッセージを表示",

@@ -467,7 +467,7 @@
 	"userlogin-yourname-ph": "사용자 이름을 입력하세요",
 	"createacct-another-username-ph": "사용자 이름을 입력하세요",
 	"yourpassword": "비밀번호:",
-	"prefs-help-yourpassword": "계정 복구가 활성화되었습니다. $1 (에)서 더 많은 설정을 보세요.",
+	"prefs-help-yourpassword": "계정 복구가 활성화되었습니다. $1에서 더 많은 설정을 살펴보세요.",
 	"userlogin-yourpassword": "비밀번호",
 	"userlogin-yourpassword-ph": "비밀번호를 입력하세요",
 	"createacct-yourpassword-ph": "비밀번호를 입력하세요",

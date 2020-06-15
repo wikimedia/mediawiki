@@ -842,7 +842,7 @@
 	"last": "előző",
 	"page_first": "első",
 	"page_last": "utolsó",
-	"histlegend": "Eltérések kijelölése: jelöld ki az összehasonlítandó változatokat, majd nyomd meg az Enter billentyűt, vagy az alul lévő gombot.<br />\nJelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltérés az előző változattól, a = apró szerkesztés",
+	"histlegend": "Eltérések kijelölése: jelöld ki az összehasonlítandó változatokat, majd nyomd meg az Enter billentyűt, vagy az alul lévő gombot.<br />\nJelmagyarázat: <strong>({{int:cur}})</strong> = eltérés az aktuális változattól, <strong>({{int:last}})</strong> = eltérés az előző változattól, <strong>{{int:minoreditletter}}</strong> = apró szerkesztés",
 	"history-fieldset-title": "Változatok szűrése",
 	"history-show-deleted": "Csak a törölt változatok",
 	"histfirst": "legelső",

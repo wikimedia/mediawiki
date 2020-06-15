@@ -2589,7 +2589,7 @@
 	"unblock": "Gebruiker deblokkeren",
 	"blockip": "{{GENDER:$1|Gebruiker}} blokkeren",
 	"blockiptext": "Gebruik het onderstaande formulier om schrijftoegang voor een gebruiker of IP-adres in te trekken.\nDoe dit alleen als bescherming tegen vandalisme en in overeenstemming met het [[{{MediaWiki:Policy-url}}|beleid]].\nGeef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).\nU kunt IP-ranges blokkeren door gebruik te maken van de [https://nl.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-syntaxis, tot een maximum range van /$1 voor IPv4 en /$2 voor IPv6.",
-	"ipaddressorusername": "IP-adres of gebruikersnaam:",
+	"ipaddressorusername": "IP-adres, gebruikersnaam of blokkade-ID:",
 	"ipbreason": "Reden:",
 	"ipbreason-dropdown": "*Veelvoorkomende redenen voor blokkades\n** Foutieve informatie invoeren\n** Informatie uit pagina's verwijderen\n** Veelvuldig koppelingen naar externe websites plaatsen\n** Nonsens/gebrabbel in pagina's opnemen\n** Intimiderend gedragen/anderen lastigvallen\n** Van meerdere accounts misbruik maken\n** Een onaanvaardbare gebruikersnaam kiezen",
 	"ipb-hardblock": "Deze blokkade ook toepassen op aangemelde gebruikers die van dit IP-adres gebruik maken",

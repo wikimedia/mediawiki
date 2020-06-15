@@ -1557,6 +1557,7 @@
 	"booksources-search": "Fittex",
 	"booksources-text": "Hawn taħt hawn lista ta' ħoloq għal siti oħrajn li jbiegħu kotba ġodda u wżati, u jistgħu jkollhom aktar informazzjoni dwar il-kotba li qiegħed tfittex:",
 	"booksources-invalid-isbn": "L-ISBN li ngħata jidher li mhuwiex validu; iċċekkja għal xi żbalji mis-sors oriġinali.",
+	"magiclink-tracking-isbn": "Paġni li jużaw ħoloq maġiċi tal-ISBN",
 	"specialloguserlabel": "Azzjoni effettwata minn:",
 	"speciallogtitlelabel": "Azzjoni effetwata fuq:",
 	"log": "Reġistri",
@@ -1834,7 +1835,7 @@
 	"undelete-error-long": "Kien hemm problemi waqt il-fajl kien qiegħed jiġi rkuprat:\n\n$1",
 	"undelete-show-file-confirm": "Inti ċert li trid tara reviżjoni imħassra tal-fajl \"<nowiki>$1</nowiki>\" ta' nhar $2, fil-ħin ta' $3?",
 	"undelete-show-file-submit": "Iva",
-	"namespace": "Spazju tal-ismijiet:",
+	"namespace": "Spazju tal-isem:",
 	"invert": "Aqleb l-għażla",
 	"tooltip-invert": "Agħżel din il-kaxxa biex taħbi l-modifiki lejn paġni li jinsabu fl-ispazji tal-isem magħżula (u l-ispazju tal-isem assoċjat jekk hu magħżul)",
 	"tooltip-whatlinkshere-invert": "Agħżel din il-kaxxa biex taħbi l-ħoloq lejn paġni fl-ispazju tal-isem magħżul.",
@@ -2797,5 +2798,6 @@
 	"mw-widgets-dateinput-placeholder-day": "SSSS-XX-ĠĠ",
 	"mw-widgets-dateinput-placeholder-month": "SSSS-XX",
 	"mw-widgets-mediasearch-noresults": "L-ebda riżultat ma nstab.",
+	"date-range-from": "Mid-data:",
 	"date-range-to": "Sad-data:"
 }

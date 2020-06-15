@@ -341,7 +341,7 @@
 	"missing-article": "Banqa, pela be nameyê \"$1\" $2 ke gani bıbo, nêdiye.\n\nEna belki seba yew vurnayışo kıhan ya zi tarixê gıreyê yew pele esteriya.\n\nEke wına niyo, belki ''software'' de yew xeta esta.\nKerem kerên, naye be nameyê ''URL''yi yew [[Special:ListUsers/sysop|karber]]i ra vacên.",
 	"missingarticle-rev": "(rewizyon#: $1)",
 	"missingarticle-diff": "(Ferq: $1, $2)",
-	"readonly_lag": "Daegeh (database) otomatikmen kılit bi, sureo ke  daegehê bınêni resay daegehê serêni.",
+	"readonly_lag": "Daegeh (database) otomatikmen kılit bi, sureo ke  dargehê bınêni resay dargehê serêni.",
 	"nonwrite-api-promise-error": "HTTP malumatê serni 'Promise-Non-Write-API-Action' rışiya, lakin waştış yew nuştışê modulê API rê biyo.",
 	"internalerror": "Xeta zerreki",
 	"internalerror_info": "Xeta zerreki: $1",
