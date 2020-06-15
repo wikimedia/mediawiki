@@ -384,6 +384,8 @@ because of Phabricator reports.
   deprecated in 1.34, have been removed. Use "jquery.ui" instead.
 * (T235457) The "user.tokens" module has been removed.
   Use "user.options" instead.
+* (T251855) The mw.Map#exists method in JavaScript no longer supports checking
+  multiple keys. This affects mw.config.exists() and mw.user.tokens.exists().
 * The internal variable $constructorOptions for the Parser & SpecialPageFactory,
   exposed only for integration purposes, are now each replaced by a const called
   CONSTRUCTOR_OPTIONS. This was a breaking change made without deprecation.
