@@ -143,7 +143,9 @@ abstract class Skin extends ContextSource {
 	/**
 	 * @since 1.31
 	 * @param string|null|array $options Options for the skin can be an array since 1.35.
-	 *  When an array is passed `name` represents skinname, and `styles` represents
+	 *  When an array is passed `name` represents skinname,
+	 *  `scripts` represents an array of ResourceLoader script modules
+	 *  and `styles` represents
 	 *  an array of ResourceLoader style modules to load on all pages.
 	 */
 	public function __construct( $options = null ) {
@@ -210,6 +212,8 @@ abstract class Skin extends ContextSource {
 			],
 			// modules relating to search functionality
 			'search' => [],
+			// Skins can register their own scripts
+			'skin' => $this->options['scripts'] ?? [],
 			// modules relating to functionality relating to watching an article
 			'watch' => [],
 			// modules which relate to the current users preferences
