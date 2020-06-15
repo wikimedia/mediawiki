@@ -527,6 +527,9 @@ because of Phabricator reports.
   parameter. Passing a user was deprecated in 1.33.
 * Sanitizer::setupAttributeWhitelist() and Sanitizer::attributeWhitelist(),
   deprecated in 1.34, have been removed. They should not have been public.
+* Passing a sequential array as the second parameter to
+  Sanitizer::validateAttributes() has been deprecated; use an associative
+  array where keys are the allowed attributes.
 * The $warnCallback parameter to Sanitizer::removeHTMLtags, deprecated since
   its introduction in 1.28, has been removed.
 * SpecialRecentChanges::filterByCategories(), deprecated in 1.31, was removed.
