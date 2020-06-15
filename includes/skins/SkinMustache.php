@@ -72,7 +72,13 @@ class SkinMustache extends SkinTemplate {
 		$config = $this->getConfig();
 
 		return [
+			// Array objects
+			'array-indicators' => $this->getIndicatorsData(
+				$out->getIndicators()
+			),
+			// Data objects
 			'data-search-box' => $this->buildSearchProps(),
+			// HTML strings
 			'html-headelement' => $out->headElement( $this ),
 			'html-bodycontent' => $this->wrapHTML( $title, $out->mBodytext ),
 			'html-catlinks' => $this->getCategories(),
