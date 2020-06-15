@@ -3065,7 +3065,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public function addGroup( $group, $expiry = null ) {
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
-			->addUserToGroup( $this, $group, $expiry );
+			->addUserToGroup( $this, $group, $expiry, true );
 	}
 
 	/**
