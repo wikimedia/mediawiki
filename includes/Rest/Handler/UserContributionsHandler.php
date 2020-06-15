@@ -36,6 +36,7 @@ class UserContributionsHandler extends Handler {
 	public function execute() {
 		// TODO: Implement execute() method.
 		$user = RequestContext::getMain()->getUser();
+
 		if ( $user->isAnon() ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-permission-denied-anon' ), 401
@@ -97,6 +98,17 @@ class UserContributionsHandler extends Handler {
 			$urls['older'] = $this->getRouteUrl( [], $query );
 		}
 
+		// FIXME: Without this if/else Router::getRouteUrl() performs differently in the tests
+		// FIXME: than the actual implementation. Need to fix HandlerTestTrait::getRouteUrl first.
+		if ( !count( $segment->getRevisions() ) ) {
+			$query = [ 'limit' => $limit ];
+		} else {
+			$query = [ 'limit' => $limit, 'segment' => $segment->getAfter() ];
+		}
+		$urls['newer'] = $this->getRouteUrl( [], $query );
+
+		$query = [ 'limit' => $limit ];
+		$urls['latest'] = $this->getRouteUrl( [], $query );
 		return $urls;
 	}
 
@@ -114,6 +126,7 @@ class UserContributionsHandler extends Handler {
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => ''
 			],
 		];
 	}
