@@ -10,6 +10,7 @@
 	"rest-nonexistent-title": "Укажаниот наслов ($1) не постои",
 	"rest-nonexistent-title-revision": "Укажаната преработка ($1) не постои за дадената страница ($2)",
 	"rest-nonexistent-revision": "Укажаната преработка ($1) не постои",
+	"rest-permission-denied-anon": "Недостапно за анонимен корисник",
 	"rest-permission-denied-title": "Корисникот нема право да го чита насловот ($1)",
 	"rest-permission-denied-revision": "Корисникот нема пристап до побараната преработка ($1).",
 	"rest-pagehistory-incompatible-params": "Не може да бидат укажани параметрите „older_than“ и „newer_than“ истовремено",

@@ -2615,7 +2615,7 @@
 	"unblock": "Sblocca utente",
 	"blockip": "Blocca {{GENDER:$1|utente}}",
 	"blockiptext": "Usa il modulo sottostante per bloccare l'accesso in scrittura a uno specifico indirizzo IP o a un utente registrato.\nIl blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza delle [[{{MediaWiki:Policy-url}}|regole di {{SITENAME}}]].\nIndica il motivo specifico per il quale si procede al blocco (per esempio, citando i titoli di eventuali pagine oggetto di vandalismo).\nPuoi bloccare intervalli di IP utilizzando la sintassi [https://it.wikipedia.org/wiki/CIDR CIDR]; l'intervallo più ampio consentito è /$1 per IPv4 e /$2 per IPv6.",
-	"ipaddressorusername": "Indirizzo IP o nome utente:",
+	"ipaddressorusername": "Indirizzo IP, nome utente o ID blocco:",
 	"ipbreason": "Motivo:",
 	"ipbreason-dropdown": "*Motivazioni più comuni per i blocchi\n** Inserimento di informazioni false\n** Rimozione di contenuti dalle pagine\n** Collegamenti promozionali a siti esterni\n** Inserimento di contenuti privi di senso\n** Comportamenti intimidatori o molestie\n** Uso indebito di utenze multiple\n** Nome utente non consono",
 	"ipb-hardblock": "Applica blocco agli utenti registrati da questo indirizzo IP",

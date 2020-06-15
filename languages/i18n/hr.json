@@ -2330,7 +2330,7 @@
 	"unblock": "Deblokiraj suradnika",
 	"blockip": "Blokiraj {{GENDER:$1|suradnika|suradnicu}}",
 	"blockiptext": "Koristite donji obrazac za blokiranje pristupa radnjama pojedinih suradnika ili IP adresa, a koje uključuju zapisivanje.\nPrethodno navedeno biste trebali raditi samo radi sprječavanja vandalizma i u skladu\ns [[{{MediaWiki:Policy-url}}|pravilima]].\nUpišite i konkretan razlog za ovo blokiranje (na primjer, navedite poimence stranice koje su vandalizirane).\nMožete blokirati i opsege IP-adresa rabeći sintaksu [https://hr.wikipedia.org/wiki/CIDR CIDR-a]; najveći dopušteni opseg je /$1 za IPv4 i /$2 za IPv6.",
-	"ipaddressorusername": "IP adresa ili suradničko ime",
+	"ipaddressorusername": "IP adresa, suradničko ime ili identifikator (ID) blokade",
 	"ipbreason": "Razlog:",
 	"ipbreason-dropdown": "*Najčešći razlozi za blokiranje\n** Netočne informacije\n** Uklanjanje sadržaja stranica\n** Postavljanje ''spam'' vanjskih poveznica\n** Grafiti\n** Osobni napadi (ili napadačko ponašanje)\n** Čarapare (zloporaba više suradničkih računa)\n** Neprihvatljivo suradničko ime",
 	"ipb-hardblock": "Blokiraj prijavljene suradnike s ove IP adrese",

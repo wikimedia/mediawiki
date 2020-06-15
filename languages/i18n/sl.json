@@ -2501,7 +2501,7 @@
 	"unblock": "Odblokiraj uporabnika",
 	"blockip": "Blokiraj {{GENDER:$1|uporabnika|uporabnico}}",
 	"blockiptext": "Naslednji obrazec vam omogoča, da določenemu IP-naslovu ali uporabniškemu imenu preprečite urejanje.\nTo storimo le zaradi zaščite pred nepotrebnim uničevanjem in po [[{{MediaWiki:Policy-url}}|pravilih]].\nVnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotrebnem kvaril).\nBlokirate lahko razpone IP s skladnjo[https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; najširši dovoljen razpon je /$1 za IPv4 in /$2 za IPv6.",
-	"ipaddressorusername": "IP-naslov ali uporabniško ime",
+	"ipaddressorusername": "IP-naslov, uporabniško ime ali ID blokade:",
 	"ipbreason": "Razlog:",
 	"ipbreason-dropdown": "*Razlogi za blokado\n** vandalizem\n** dodajanje napačnih/lažnih podatkov\n** brisanje strani\n** dodajanje nepotrebnih zunanjih povezav\n** dodajanje neumnosti v besedilo\n** nadlegovanje/osebni napadi\n** neprimerno uporabniško ime",
 	"ipb-hardblock": "Uveljavi blokado prijavljenim uporabnikom s tem IP-naslovom",

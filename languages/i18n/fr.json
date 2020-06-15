@@ -2682,7 +2682,7 @@
 	"unblock": "Débloquer l’utilisateur",
 	"blockip": "Bloquer l’utilisat{{GENDER:$1|eur|rice}}",
 	"blockiptext": "Utilisez le formulaire ci-dessous pour bloquer les tentatives de modification faites à partir d’une adresse IP spécifique ou d’un nom d’utilisateur.\nUne telle mesure ne devrait être prise que pour prévenir le vandalisme et en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].\nDonnez ci-dessous un motif précis (par exemple en citant les pages qui ont été vandalisées).\nVous pouvez bloquer des plages d’adresses IP en utilisant la syntaxe [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] ; la plus grande plage autorisée est /$1 pour IPv4 et /$2 pour IPv6.",
-	"ipaddressorusername": "Adresse IP ou nom d’utilisateur :",
+	"ipaddressorusername": "Adresse IP, nom d’utilisateur ou ID bloqué :",
 	"ipbreason": "Motif :",
 	"ipbreason-dropdown": "* Motifs de blocage les plus fréquents :\n** insertion de fausses informations,\n** suppression injustifiée de contenu des pages,\n** insertion répétée de liens externes publicitaires (pollupostage),\n** insertion de contenu sans aucun sens et de déchets dans les pages,\n** tentative d’intimidation ou de harcèlement,\n** abus d’utilisation de comptes multiples,\n** nom d’utilisateur inacceptable, injurieux ou diffamant.",
 	"ipb-hardblock": "Appliquer le blocage aux utilisateurs connectés en utilisant cette adresse IP",
