@@ -26,5 +26,12 @@
 		> .oo-ui-inputWidget-input {
 			font-size: 13px;
 		}
+
+		// Single-line only, preserve original height to avoid
+		// reflow when toggling (T246136) and to align with buttons
+		// in ActionFieldLayout
+		> input.oo-ui-inputWidget-input {
+			height: 32px; // 18px original line-height + 12px padding + 2px border
+		}
 	}
 }
