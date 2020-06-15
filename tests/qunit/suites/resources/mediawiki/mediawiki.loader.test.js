@@ -465,10 +465,10 @@
 			},
 			{
 				css: [
-					'@import url(\''
-						+ urlStyleTest( '.mw-test-implement-import', 'float', 'right' )
-						+ '\');\n'
-						+ '.mw-test-implement-import { text-align: center; }'
+					'@import url(\'' +
+						urlStyleTest( '.mw-test-implement-import', 'float', 'right' ) +
+						'\');\n' +
+						'.mw-test-implement-import { text-align: center; }'
 				]
 			}
 		);
