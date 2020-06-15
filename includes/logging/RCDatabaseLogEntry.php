@@ -26,6 +26,8 @@
 /**
  * A subclass of DatabaseLogEntry for objects constructed from entries in the
  * recentchanges table (rather than the logging table).
+ *
+ * This class should only be used in context of the LogFormatter class.
  */
 class RCDatabaseLogEntry extends DatabaseLogEntry {
 
@@ -39,16 +41,6 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	public function getAssociatedRevId() {
 		return $this->row->rc_this_oldid;
-	}
-
-	/**
-	 * Get the rev_id associated to the parent revision
-	 * @since 1.35
-	 *
-	 * @return string
-	 */
-	public function getParentRevId() {
-		return $this->row->rc_last_oldid;
 	}
 
 	public function getType() {
