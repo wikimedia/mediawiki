@@ -102,8 +102,6 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				threshold: 2
 			} );
 
-		assert.expect( 15 );
-
 		// Add providers to queue
 		queue.setProviders( providers );
 
@@ -173,8 +171,6 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				new EmptyResourceProvider(),
 				new SingleResultResourceProvider()
 			];
-
-		assert.expect( 1 );
 
 		// Make the delay higher
 		providers.forEach( function ( provider ) {
