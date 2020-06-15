@@ -33,9 +33,9 @@
 	 * @return {string} Such as 'data/foo.js?131031765087663960'
 	 */
 	QUnit.fixurl = function ( value ) {
-		return value + ( /\?/.test( value ) ? '&' : '?' )
-			+ String( new Date().getTime() )
-			+ String( parseInt( Math.random() * 100000, 10 ) );
+		return value + ( /\?/.test( value ) ? '&' : '?' ) +
+			String( new Date().getTime() ) +
+			String( parseInt( Math.random() * 100000, 10 ) );
 	};
 
 	/**
