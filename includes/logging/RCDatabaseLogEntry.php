@@ -26,6 +26,8 @@
 /**
  * A subclass of DatabaseLogEntry for objects constructed from entries in the
  * recentchanges table (rather than the logging table).
+ *
+ * This class should only be used in context of the LogFormatter class.
  */
 class RCDatabaseLogEntry extends DatabaseLogEntry {
 
