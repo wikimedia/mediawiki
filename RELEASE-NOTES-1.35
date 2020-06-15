@@ -896,6 +896,7 @@ because of Phabricator reports.
   ::getArchivedRevisionRecord method.
 * PageArchive::undelete is hard deprecated. Instead, use ::undeleteAsUser
   and pass a User object.
+* PageArchive::getRevision is hard deprecated.
 * EditPage::getBaseRevision was hard deprecated. Instead, use the new
   ::getExpectedParentRevision method.
 * The public variable EditPage::$mBaseRevision was hard deprecated.
