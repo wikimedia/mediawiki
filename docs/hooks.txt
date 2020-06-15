@@ -3228,7 +3228,9 @@ $checkEdit: Whether or not the action=edit query should be added if appropriate.
 &$text: Link text.
 &$result: Complete assoc. array if you want to return true.
 
-'SkinTemplateToolboxEnd': Called by SkinTemplate skins after toolbox links have
+'SkinTemplateToolboxEnd': DEPRECATED since 1.35
+Use SidebarBeforeOutPut instead.
+Called by SkinTemplate skins after toolbox links have
 been rendered (useful for adding more).
 [&]$sk: The QuickTemplate based skin template running the hook.
 $dummy: Called when SkinTemplateToolboxEnd is used from a BaseTemplate skin,
