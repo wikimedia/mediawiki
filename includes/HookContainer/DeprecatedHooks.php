@@ -67,6 +67,7 @@ class DeprecatedHooks {
 		'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplatePreventOtherActiveTabs' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateTabAction' => [ 'deprecatedVersion' => '1.35' ],
+		'SkinTemplateToolboxEnd' => [ 'deprecatedVersion' => '1.35' ],
 		'TitleMoveComplete' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'TitleMoveCompleting' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],

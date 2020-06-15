@@ -1217,6 +1217,8 @@ because of Phabricator reports.
   that's extending QuickTemplate class. The hook associated with this method,
   BaseTemplateToolbox, has been hard deprecated. To add items to the toolbox,
   use SidebarBeforeOutput hook instead.
+* SkinTemplateToolboxEnd hook has been deprecated. Use SidebarBeforeOutput hook
+  instead.
 * …
 
 === Other changes in 1.35 ===
