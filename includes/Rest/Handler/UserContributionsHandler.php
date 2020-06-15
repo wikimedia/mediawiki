@@ -45,8 +45,9 @@ class UserContributionsHandler extends Handler {
 
 		$limit = $this->getValidatedParams()['limit'];
 		$segment = $this->getValidatedParams()['segment'];
+		$tag = $this->getValidatedParams()['tag'];
 		$contributionsSegment =
-			$this->contributionsLookup->getContributions( $user, $limit, $user, $segment );
+			$this->contributionsLookup->getContributions( $user, $limit, $user, $segment, $tag );
 
 		$revisions = $this->getRevisionsList( $contributionsSegment );
 		$urls = $this->constructURLs( $contributionsSegment );
@@ -91,25 +92,17 @@ class UserContributionsHandler extends Handler {
 	 */
 	private function constructURLs( ContributionsSegment $segment ) {
 		$limit = $this->getValidatedParams()['limit'];
+		$tag = $this->getValidatedParams()['tag'];
 		$urls = [];
+		$query = [ 'limit' => $limit, 'tag' => $tag ];
 
 		if ( $segment->isOldest() ) {
 			$urls['older'] = null;
 		} else {
-			$query = [ 'limit' => $limit, 'segment' => $segment->getBefore() ];
-			$urls['older'] = $this->getRouteUrl( [], $query );
+			$urls['older'] = $this->getRouteUrl( [], $query + [ 'segment' => $segment->getBefore() ] );
 		}
 
-		// FIXME: Without this if/else Router::getRouteUrl() performs differently in the tests
-		// FIXME: than the actual implementation. Need to fix HandlerTestTrait::getRouteUrl first.
-		if ( !count( $segment->getRevisions() ) ) {
-			$query = [ 'limit' => $limit ];
-		} else {
-			$query = [ 'limit' => $limit, 'segment' => $segment->getAfter() ];
-		}
-		$urls['newer'] = $this->getRouteUrl( [], $query );
-
-		$query = [ 'limit' => $limit ];
+		$urls['newer'] = $this->getRouteUrl( [], $query + [ 'segment' => $segment->getAfter() ] );
 		$urls['latest'] = $this->getRouteUrl( [], $query );
 		return $urls;
 	}
@@ -129,6 +122,12 @@ class UserContributionsHandler extends Handler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => ''
+			],
+			'tag' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => null,
 			],
 		];
 	}

@@ -55,6 +55,18 @@ class ChangeTags {
 	];
 
 	/**
+	 * If true, this class attempts to avoid reopening database tables within the same query,
+	 * to avoid the "Can't reopen table" error when operating on temporary tables while running
+	 * tests.
+	 *
+	 * @see https://phabricator.wikimedia.org/T256006
+	 * @see 1.35
+	 *
+	 * @var bool
+	 */
+	public static $avoidReopeningTablesForTesting = false;
+
+	/**
 	 * Loads defined core tags, checks for invalid types (if not array),
 	 * and filters for supported and enabled (if $all is false) tags only.
 	 *
@@ -811,8 +823,33 @@ class ChangeTags {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 
-			$tables[] = 'change_tag';
-			$join_conds['change_tag'] = [ 'JOIN', $join_cond ];
+			$tagTable = 'change_tag';
+			if ( self::$avoidReopeningTablesForTesting && defined( 'MW_PHPUNIT_TEST' ) ) {
+				$db = wfGetDB( DB_REPLICA );
+
+				if ( $db->getType() === 'mysql' ) {
+					// When filtering by tag, we are using the change_tag table twice:
+					// Once in a join for filtering, and once in a sub-query to list all
+					// tags for each revision. This does not work with temporary tables
+					// on some versions of MySQL, which causes phpunit tests to fail.
+					// As a hacky workaround, we copy the temporary table, and join
+					// against the copy. It is acknowledge that this is quite horrific.
+					// Discuss at T256006.
+
+					$tagTable = 'change_tag_for_display_query';
+					$db->query(
+						'CREATE TEMPORARY TABLE IF NOT EXISTS ' . $db->tableName( $tagTable )
+						. ' LIKE ' . $db->tableName( 'change_tag' )
+					);
+					$db->query(
+						'INSERT IGNORE INTO ' . $db->tableName( $tagTable )
+						. ' SELECT * FROM ' . $db->tableName( 'change_tag' )
+					);
+				}
+			}
+
+			$tables[] = $tagTable;
+			$join_conds[$tagTable] = [ 'JOIN', $join_cond ];
 			$filterTagIds = [];
 			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			foreach ( (array)$filter_tag as $filterTagName ) {

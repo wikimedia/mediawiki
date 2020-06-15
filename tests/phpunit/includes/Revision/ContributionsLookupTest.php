@@ -39,6 +39,21 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	private static $storedTags;
 
+	private const TAG1 = 'test-ContributionsLookup-1';
+	private const TAG2 = 'test-ContributionsLookup-2';
+
+	public function setUp() : void {
+		parent::setUp();
+
+		// Work around T256006
+		ChangeTags::$avoidReopeningTablesForTesting = true;
+	}
+
+	public function tearDown() : void {
+		ChangeTags::$avoidReopeningTablesForTesting = false;
+		parent::tearDown();
+	}
+
 	public function addDBDataOnce() {
 		$user = $this->getTestUser()->getUser();
 
@@ -61,16 +76,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		self::$storedRevisions[4] = $this->editPage( __METHOD__ . '_2', $revisionText[4], 'test', NS_TALK, $user )
 			->getValue()['revision-record'];
 
-		$tag1 = 'test-ContributionsLookup-1';
-		$tag2 = 'test-ContributionsLookup-2';
-
-		ChangeTags::defineTag( $tag1 );
-		ChangeTags::defineTag( $tag2 );
+		ChangeTags::defineTag( self::TAG1 );
+		ChangeTags::defineTag( self::TAG2 );
 
 		self::$storedTags = [
 			1 => [],
-			2 => [ $tag1, $tag2 ],
-			3 => [ $tag2 ],
+			2 => [ self::TAG1, self::TAG2 ],
+			3 => [ self::TAG2 ],
 			4 => [],
 		];
 
@@ -161,6 +173,34 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 		// Desc order comes back from db query
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
+	 */
+	public function testGetListOfRevisionsFilteredByTag() {
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$contributionsLookup = new ContributionsLookup( $revisionStore );
+
+		$target = self::$testUser;
+		$performer = self::$testUser;
+
+		$segment1 =
+			$contributionsLookup->getContributions( $target, 10, $performer, '', self::TAG1 );
+
+		$this->assertSegmentRevisions( [ 2 ], $segment1 );
+		$this->assertTrue( $segment1->isOldest() );
+
+		$segment2 =
+			$contributionsLookup->getContributions( $target, 10, $performer, '', self::TAG2 );
+
+		$this->assertSegmentRevisions( [ 3, 2 ], $segment2 );
+		$this->assertTrue( $segment1->isOldest() );
+
+		$segment0 =
+			$contributionsLookup->getContributions( $target, 10, $performer, '', 'not-a-tag' );
+
+		$this->assertEmpty( $segment0->getRevisions() );
 	}
 
 	/**
