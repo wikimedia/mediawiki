@@ -828,6 +828,10 @@ because of Phabricator reports.
   - Parser::firstCallInit() has been deprecated. The parser is initialized
     fully on construction and so ::firstCallInit() no longer has any effect
     when manually invoked.
+  - ParserOptions::setAllowExternalImages(), ::setAllowExternalImagesFrom(),
+    and ::setEnableImageWhitelist() have been deprecated.  Future parsers
+    will not allow per-parser configuration of image filtering; use
+    site configuration instead.
   - ParserOptions::getTidy() and ParserOptions::setTidy() have been deprecated.
     These options no longer have any effect.
   - Most methods of MWTidy, except for MWTidy::tidy(), have been deprecated;
