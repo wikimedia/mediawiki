@@ -1095,7 +1095,7 @@ return [
 		return new CachingSiteStore( $rawSiteStore, $cache );
 	},
 
-	/** @suppress PhanTypeInvalidCallableArraySize - https://github.com/phan/phan/issues/1648 */
+	/** @suppress PhanTypeInvalidCallableArrayKey */
 	'SkinFactory' => function ( MediaWikiServices $services ) : SkinFactory {
 		$factory = new SkinFactory( $services->getObjectFactory() );
 
@@ -1116,11 +1116,23 @@ return [
 
 		// Register a hidden "fallback" skin
 		$factory->register( 'fallback', 'Fallback', [
-			'class' => SkinFallback::class
+			'class' => SkinFallback::class,
+			'args' => [
+				[
+					'styles' => [ 'mediawiki.skinning.interface' ],
+					'templateDirectory' => __DIR__ . '/skins/templates/fallback',
+				]
+			]
 		] );
 		// Register a hidden skin for api output
 		$factory->register( 'apioutput', 'ApiOutput', [
-			'class' => SkinApi::class
+			'class' => SkinApi::class,
+			'args' => [
+				[
+					'styles' => [ 'mediawiki.skinning.interface' ],
+					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
+				]
+			]
 		] );
 
 		return $factory;

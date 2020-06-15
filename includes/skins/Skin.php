@@ -45,6 +45,10 @@ abstract class Skin extends ContextSource {
 	 */
 	protected $skinname = null;
 
+	/**
+	 * @var array Skin options passed into constructor
+	 */
+	protected $options = [];
 	protected $mRelevantTitle = null;
 	protected $mRelevantUser = null;
 
@@ -138,11 +142,20 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @since 1.31
-	 * @param string|null $skinname
+	 * @param string|null|array $options Options for the skin can be an array since 1.35.
+	 *  When an array is passed `name` represents skinname, and `styles` represents
+	 *  an array of ResourceLoader style modules to load on all pages.
 	 */
-	public function __construct( $skinname = null ) {
-		if ( is_string( $skinname ) ) {
-			$this->skinname = $skinname;
+	public function __construct( $options = null ) {
+		if ( is_string( $options ) ) {
+			$this->skinname = $options;
+		} elseif ( $options ) {
+			$this->options = $options;
+			$name = $options['name'] ?? null;
+			// Note: skins might override the public $skinname method instead
+			if ( $name ) {
+				$this->skinname = $name;
+			}
 		}
 	}
 
@@ -182,6 +195,7 @@ abstract class Skin extends ContextSource {
 			// Unlike other keys in $modules, this is an associative array
 			// where each key is its own group pointing to a list of modules
 			'styles' => [
+				'skin' => $this->options['styles'] ?? [],
 				'core' => [],
 				'content' => [],
 				'syndicate' => [],
@@ -2412,7 +2426,6 @@ abstract class Skin extends ContextSource {
 				unset( $buttonAttrs['width'] );
 				unset( $buttonAttrs['height'] );
 				$imgAttrs = [
-					/* @phan-suppress-next-line PhanTypeInvalidDimOffset */
 					'src' => $attrs['src'],
 					'alt' => $attrs['alt'] ?? $this->msg( 'searchbutton' )->text(),
 					'width' => $attrs['width'] ?? null,

@@ -72,8 +72,17 @@ class SkinFactory {
 	 * @throws InvalidArgumentException If an invalid callback is provided
 	 */
 	public function register( $name, $displayName, $spec ) {
-		if ( !is_array( $spec ) && !is_callable( $spec ) ) {
-			throw new InvalidArgumentException( 'Invalid callback provided' );
+		if ( !is_callable( $spec ) ) {
+			if ( is_array( $spec ) ) {
+				if ( !isset( $spec['args'] ) ) {
+					// make sure name option is set:
+					$spec['args'] = [
+						[ 'name' => $name ]
+					];
+				}
+			} else {
+				throw new InvalidArgumentException( 'Invalid callback provided' );
+			}
 		}
 		$this->factoryFunctions[$name] = $spec;
 		$this->displayNames[$name] = $displayName;
@@ -105,7 +114,6 @@ class SkinFactory {
 			[
 				'allowCallable' => true,
 				'assertClass' => Skin::class,
-				'extraArgs' => [ $name ]
 			]
 		);
 	}

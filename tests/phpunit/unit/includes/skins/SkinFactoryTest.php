@@ -95,8 +95,8 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$args = [];
 		$factory = new SkinFactory( new ObjectFactory( $serviceContainer ) );
 		$factory->register( 'testfallback', 'TestFallback', [
-			'factory' => function ( $name, $services ) use ( &$args ) {
-				$args = [ $name, $services ];
+			'factory' => function ( $service, $options ) use ( &$args ) {
+				$args = [ $service, $options ];
 				return new SkinFallback();
 			},
 			'services' => [
@@ -107,8 +107,8 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$skin = $factory->makeSkin( 'testfallback' );
 		$this->assertInstanceOf( SkinFallback::class, $skin );
 		$this->assertEquals( 'fallback', $skin->getSkinName() );
-		$this->assertSame( 'testfallback', $args[0] );
-		$this->assertSame( $serviceInstance, $args[1] );
+		$this->assertSame( 'testfallback', $args[1]['name'] );
+		$this->assertSame( $serviceInstance, $args[0] );
 	}
 
 	/**

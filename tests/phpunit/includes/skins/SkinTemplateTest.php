@@ -13,7 +13,9 @@ class SkinTemplateTest extends MediaWikiTestCase {
 	 */
 	public function testMakeListItem( $expected, $key, array $item, array $options, $message ) {
 		$template = $this->getMockForAbstractClass( BaseTemplate::class );
-		$template->set( 'skin', new SkinFallback() );
+		$template->set( 'skin', new SkinFallback( [
+			'templateDirectory' => __DIR__,
+		] ) );
 
 		$this->assertEquals(
 			$expected,
