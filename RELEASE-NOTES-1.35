@@ -1057,6 +1057,8 @@ because of Phabricator reports.
   well as suitable replacements, are noted below:
   - ArticleRevisionUndeleted (hard deprecated, use the RevisionUndeleted hook)
   - ArticleRollbackComplete (hard deprecated, use the RollbackComplete hook)
+  - DiffRevisionTools (soft deprecated, use the DiffTools hook)
+  - HistoryRevisionTools (soft deprecated, use the HistoryTools hook)
   - NewRevisionFromEditComplete (hard deprecated, use the
       RevisionFromEditComplete hook).
   - PageContentInsertComplete (soft deprecated, use the PageSaveComplete hook)

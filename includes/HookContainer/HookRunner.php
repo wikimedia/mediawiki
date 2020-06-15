@@ -75,6 +75,7 @@ class HookRunner implements
 	\MediaWiki\Diff\Hook\DifferenceEngineShowEmptyOldContentHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineViewHeaderHook,
 	\MediaWiki\Diff\Hook\DiffRevisionToolsHook,
+	\MediaWiki\Diff\Hook\DiffToolsHook,
 	\MediaWiki\Diff\Hook\DiffViewHeaderHook,
 	\MediaWiki\Diff\Hook\NewDifferenceEngineHook,
 	\MediaWiki\Hook\AbortEmailNotificationHook,
@@ -188,6 +189,7 @@ class HookRunner implements
 	\MediaWiki\Hook\GitViewersHook,
 	\MediaWiki\Hook\HistoryPageToolLinksHook,
 	\MediaWiki\Hook\HistoryRevisionToolsHook,
+	\MediaWiki\Hook\HistoryToolsHook,
 	\MediaWiki\Hook\ImageBeforeProduceHTMLHook,
 	\MediaWiki\Hook\ImgAuthBeforeStreamHook,
 	\MediaWiki\Hook\ImgAuthModifyHeadersHook,
@@ -1495,6 +1497,13 @@ class HookRunner implements
 		);
 	}
 
+	public function onDiffTools( $newRevRecord, &$links, $oldRevRecord, $userIdentity ) {
+		return $this->container->run(
+			'DiffTools',
+			[ $newRevRecord, &$links, $oldRevRecord, $userIdentity ]
+		);
+	}
+
 	public function onDiffViewHeader( $diff, $oldRev, $newRev ) {
 		return $this->container->run(
 			'DiffViewHeader',
@@ -2013,6 +2022,13 @@ class HookRunner implements
 		return $this->container->run(
 			'HistoryRevisionTools',
 			[ $rev, &$links, $prevRev, $user ]
+		);
+	}
+
+	public function onHistoryTools( $revRecord, &$links, $prevRevRecord, $userIdentity ) {
+		return $this->container->run(
+			'HistoryTools',
+			[ $revRecord, &$links, $prevRevRecord, $userIdentity ]
 		);
 	}
 

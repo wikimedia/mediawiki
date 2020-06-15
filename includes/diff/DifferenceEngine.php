@@ -775,7 +775,14 @@ class DifferenceEngine extends ContextSource {
 		$rdel = $this->revisionDeleteLink( $this->mNewRevisionRecord );
 
 		# Allow extensions to define their own revision tools
-		# TODO use RevisionRecord
+		$this->hookRunner->onDiffTools(
+			$this->mOldRevisionRecord,
+			$revisionTools,
+			$this->mNewRevisionRecord,
+			$user
+		);
+
+		# Hook deprecated since 1.35
 		$legacyOldRev = $this->mOldRevisionRecord ?
 			new Revision( $this->mOldRevisionRecord ) :
 			null;

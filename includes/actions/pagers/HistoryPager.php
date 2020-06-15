@@ -479,7 +479,14 @@ class HistoryPager extends ReverseChronologicalPager {
 			}
 		}
 		// Allow extension to add their own links here
-		// TODO replace hook with one using RevisionRecord
+		$this->getHookRunner()->onHistoryTools(
+			$revRecord,
+			$tools,
+			$previousRevRecord,
+			$user
+		);
+
+		// Deprecated since 1.35
 		$this->getHookRunner()->onHistoryRevisionTools(
 			new Revision( $revRecord ),
 			$tools,
