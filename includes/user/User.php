@@ -588,15 +588,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return User
 	 */
 	public static function newFromIdentity( UserIdentity $identity ) {
-		if ( $identity instanceof User ) {
-			return $identity;
-		}
-
-		return self::newFromAnyId(
-			$identity->getId() === 0 ? null : $identity->getId(),
-			$identity->getName() === '' ? null : $identity->getName(),
-			$identity->getActorId() === 0 ? null : $identity->getActorId()
-		);
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromUserIdentity( $identity );
 	}
 
 	/**
