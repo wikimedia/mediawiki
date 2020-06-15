@@ -66,6 +66,7 @@ class PPFuzzTester {
 		}
 		$overallStart = microtime( true );
 		$reportInterval = 1000;
+		// @phan-suppress-next-line PhanInfiniteLoop
 		for ( $i = 1; true; $i++ ) {
 			$t = -microtime( true );
 			try {

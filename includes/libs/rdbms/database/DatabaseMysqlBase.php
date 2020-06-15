@@ -164,6 +164,8 @@ abstract class DatabaseMysqlBase extends Database {
 				$set[] = $this->addIdentifierQuotes( $var ) . ' = ' . $val;
 			}
 
+			// @phan-suppress-next-next-line PhanRedundantCondition
+			// If kept for safety and to avoid broken query
 			if ( $set ) {
 				$this->query(
 					'SET ' . implode( ', ', $set ),

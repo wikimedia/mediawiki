@@ -257,6 +257,7 @@ class BlockLogFormatter extends LogFormatter {
 			];
 
 			if ( !is_array( $params['6:array:flags'] ) ) {
+				// @phan-suppress-next-line PhanSuspiciousValueComparison
 				$params['6:array:flags'] = $params['6:array:flags'] === ''
 					? []
 					: explode( ',', $params['6:array:flags'] );

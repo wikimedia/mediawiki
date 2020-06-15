@@ -2975,6 +2975,7 @@ class Parser {
 		$profileSection = null; // profile templates
 
 		# SUBST
+		// @phan-suppress-next-line PhanRedundantCondition
 		if ( !$found ) {
 			$substMatch = $this->mSubstWords->matchStartAndRemove( $part1 );
 
@@ -5323,9 +5324,11 @@ class Parser {
 		}
 
 		# Process alignment parameters
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $params['horizAlign'] ) {
 			$params['frame']['align'] = key( $params['horizAlign'] );
 		}
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $params['vertAlign'] ) {
 			$params['frame']['valign'] = key( $params['vertAlign'] );
 		}

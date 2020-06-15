@@ -284,6 +284,7 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 		}
 
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( empty( $r ) ) {
 			return '';
 		} else {

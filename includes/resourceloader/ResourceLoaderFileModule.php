@@ -730,7 +730,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected static function collateFilePathListByOption( array $list, $option, $default ) {
 		$collatedFiles = [];
-		foreach ( (array)$list as $key => $value ) {
+		foreach ( $list as $key => $value ) {
 			if ( is_int( $key ) ) {
 				// File name as the value
 				if ( !isset( $collatedFiles[$default] ) ) {

@@ -784,6 +784,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( !$row ) {
 			// No user. Create it?
+			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( !$options['create'] ) {
 				// No.
 				return null;
@@ -832,6 +833,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( !$user->isSystemUser() ) {
 			// User exists. Steal it?
+			// @phan-suppress-next-line PhanRedundantCondition
 			if ( !$options['steal'] ) {
 				return null;
 			}

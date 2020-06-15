@@ -1311,6 +1311,7 @@ class ApiMain extends ApiBase {
 			[ '' ]
 		);
 		if ( $ifNoneMatch ) {
+			// @phan-suppress-next-line PhanImpossibleTypeComparison
 			if ( $ifNoneMatch === [ '*' ] ) {
 				// API responses always "exist"
 				$etag = '*';

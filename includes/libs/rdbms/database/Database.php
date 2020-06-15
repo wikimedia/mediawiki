@@ -3931,6 +3931,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					}
 				}
 			}
+			// @phan-suppress-next-line PhanImpossibleConditionInLoop
 		} while ( count( $this->trxIdleCallbacks ) );
 
 		if ( $e instanceof Throwable ) {
@@ -3967,6 +3968,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$e = $e ?: $ex;
 				}
 			}
+			// @phan-suppress-next-line PhanImpossibleConditionInLoop
 		} while ( count( $this->trxPreCommitCallbacks ) );
 
 		if ( $e instanceof Throwable ) {
@@ -4006,6 +4008,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$notCancelled[] = $entry;
 				}
 			}
+			// @phan-suppress-next-line PhanImpossibleConditionInLoop
 		} while ( count( $this->trxSectionCancelCallbacks ) );
 		$this->trxSectionCancelCallbacks = $notCancelled;
 

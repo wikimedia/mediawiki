@@ -2129,6 +2129,7 @@ ERROR;
 
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
+				// @phan-suppress-next-line PhanSuspiciousValueComparison
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
@@ -2190,6 +2191,7 @@ ERROR;
 			}
 
 			// If sectiontitle is set, use it, otherwise use the summary as the section title.
+			// @phan-suppress-next-line PhanSuspiciousValueComparison
 			if ( $this->sectiontitle !== '' ) {
 				$sectionTitle = $this->sectiontitle;
 			} else {

@@ -279,6 +279,7 @@ class DeferredUpdates {
 						$guiEx = $guiEx ?: ( $e instanceof ErrorPageError ? $e : null );
 						$exception = $exception ?: $e;
 						// Do the subqueue updates for $update until there are none
+						// @phan-suppress-next-line PhanImpossibleConditionInLoop
 						while ( $stackEntry['subqueue'] ) {
 							$duChild = reset( $stackEntry['subqueue'] );
 							$duChildKey = key( $stackEntry['subqueue'] );

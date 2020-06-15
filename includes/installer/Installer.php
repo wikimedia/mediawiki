@@ -1519,7 +1519,7 @@ abstract class Installer {
 		$data = $registry->readFromQueue( $queue );
 		$wgAutoloadClasses += $data['globals']['wgAutoloadClasses'];
 
-		// @phan-suppress-next-line PhanUndeclaredVariable $wgHooks is set by DefaultSettings
+		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is set by DefaultSettings
 		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
 
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {

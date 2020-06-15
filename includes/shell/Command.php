@@ -198,7 +198,7 @@ class Command {
 	 * @return $this
 	 */
 	public function input( ?string $inputString ): Command {
-		$this->inputString = $inputString === null ? null : (string)$inputString;
+		$this->inputString = $inputString;
 
 		return $this;
 	}
@@ -534,6 +534,7 @@ class Command {
 			$this->logger->warning( "$logMsg: {command}", [ 'command' => $cmd ] );
 		}
 
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $buffers[2] && $this->doLogStderr ) {
 			$this->logger->error( "Error running {command}: {error}", [
 				'command' => $cmd,

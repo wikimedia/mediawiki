@@ -1602,6 +1602,7 @@ abstract class Maintenance {
 			$encCommand = Shell::escape( $command );
 			$line = Shell::escape( "$bash -c $encCommand", $retval, [], [ 'walltime' => 0 ] );
 
+			// @phan-suppress-next-line PhanImpossibleCondition,PhanSuspiciousValueComparison
 			if ( $retval == 0 ) {
 				return $line;
 			} elseif ( $retval == 127 ) {

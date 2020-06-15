@@ -541,6 +541,7 @@ define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 MWExceptionHandler::installHandler();
 
 // T30798: $wgServer must be explicitly set
+// @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
 if ( $wgServer === false ) {
 	throw new FatalError(
 		'$wgServer must be set in LocalSettings.php. ' .
