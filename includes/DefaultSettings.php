@@ -4830,8 +4830,12 @@ $wgCentralIdLookupProvider = 'local';
  *		commonly chosen. Set to integer n to ban the top n passwords.
  *		If you want to ban all common passwords on file, use the
  *		PHP_INT_MAX constant.
- *		Deprecated since 1.33. Use PasswordNotInLargeBlacklist instead.
+ *		Deprecated since 1.33. Use PasswordNotInCommonList instead.
  *	- PasswordNotInLargeBlacklist - Password not in best practices list of
+ *		100,000 commonly used passwords. Due to the size of the list this
+ *		is a probabilistic test.
+ *		Deprecated since 1.35, use PasswordNotInCommonList instead.
+ *	- PasswordNotInCommonList - Password not in best practices list of
  *		100,000 commonly used passwords. Due to the size of the list this
  *		is a probabilistic test.
  *
@@ -4873,7 +4877,7 @@ $wgPasswordPolicy = [
 			],
 			'PasswordCannotMatchBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 			'MaximalPasswordLength' => [ 'value' => 4096, 'suggestChangeOnLogin' => true ],
-			'PasswordNotInLargeBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
+			'PasswordNotInCommonList' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 		],
 	],
 	'checks' => [
@@ -4885,7 +4889,8 @@ $wgPasswordPolicy = [
 		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
 		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist',
-		'PasswordNotInLargeBlacklist' => 'PasswordPolicyChecks::checkPasswordNotInLargeBlacklist',
+		'PasswordNotInLargeBlacklist' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
+		'PasswordNotInCommonList' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
 	],
 ];
 

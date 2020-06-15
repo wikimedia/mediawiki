@@ -123,4 +123,54 @@ describe( 'GET /me/contributions', () => {
 		const { status: maxLimitStatus } = await arnold.get( '/me/contributions?limit=30' );
 		assert.equal( maxLimitStatus, 400 );
 	} );
+
+	it( 'Can fetch a chain of segments following the "newer" field in the response', async () => {
+		const req = clientFactory.getHttpClient( arnold );
+
+		// get latest segment
+		const { body: latestSegment } = await arnold.get( `/me/contributions?limit=${limit}` );
+		assert.property( latestSegment, 'newer' );
+
+		// get next older segment
+		const { body: olderSegment } = await req.get( latestSegment.older );
+		assert.property( olderSegment, 'newer' );
+
+		// get the final segment
+		const { body: finalSegment } = await req.get( olderSegment.older );
+		assert.property( finalSegment, 'newer' );
+
+		// Follow the chain of "newer" links back to the latest segment
+		const { body: olderSegment2 } = await req.get( finalSegment.newer );
+		assert.deepEqual( olderSegment, olderSegment2 );
+
+		const { body: latestSegment2 } = await req.get( olderSegment.newer );
+		assert.deepEqual( latestSegment, latestSegment2 );
+	} );
+
+	it( 'Returns a valid link to the latest segment', async () => {
+		const req = clientFactory.getHttpClient( arnold );
+
+		// get latest segment
+		const { body: latestSegment } = await arnold.get( `/me/contributions?limit=${limit}` );
+		assert.property( latestSegment, 'latest' );
+
+		// get next older segment
+		const { body: olderSegment } = await req.get( latestSegment.older );
+		assert.property( olderSegment, 'latest' );
+
+		// get the final segment
+		const { body: finalSegment } = await req.get( olderSegment.older );
+		assert.property( finalSegment, 'latest' );
+
+		// Follow all the "newer" links
+		const { body: latestSegment2 } = await req.get( finalSegment.latest );
+		assert.deepEqual( latestSegment, latestSegment2 );
+
+		const { body: latestSegment3 } = await req.get( olderSegment.latest );
+		assert.deepEqual( latestSegment, latestSegment3 );
+
+		const { body: latestSegment4 } = await req.get( finalSegment.latest );
+		assert.deepEqual( latestSegment, latestSegment4 );
+	} );
+
 } );

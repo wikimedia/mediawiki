@@ -58,8 +58,9 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	private function makeSegment( $revisions, $flags = [] ) {
 		if ( $revisions !== [] ) {
 			$latestRevision = $revisions[ count( $revisions ) - 1 ];
-			$before = $latestRevision->getTimestamp();
-			$after = null;
+			$earliestRevision = $revisions[0];
+			$before = 'before|' . $latestRevision->getTimestamp();
+			$after = 'after|' . $earliestRevision->getTimestamp();
 			return new ContributionsSegment( $revisions, $before, $after, $flags );
 		}
 		return new ContributionsSegment( $revisions, null, null, $flags );
@@ -67,8 +68,23 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 
 	public function provideTestThatParametersAreHandledCorrectly() {
 		yield [
-			new RequestData( [ 'queryParams' => [ 'segment' => '20200101000005', 'limit' => self::DEFAULT_LIMIT ] ] )
+			new RequestData(
+				[
+					'queryParams' => [
+						'segment' => 'before|20200101000005',
+						'limit' => self::DEFAULT_LIMIT
+					]
+				]
+			)
 		];
+		yield [ new RequestData(
+			[
+				'queryParams' => [
+					'segment' => 'after|20200101000001',
+					'limit' => self::DEFAULT_LIMIT
+				]
+			]
+		) ];
 		yield [ new RequestData(
 			[ 'queryParams' => [ 'limit' => self::DEFAULT_LIMIT ] ]
 		) ];
@@ -85,7 +101,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$user = $this->makeMockUser( false );
 		RequestContext::getMain()->setUser( $user );
 
-		$fakeRevisions = $this->makeFakeRevisions( $user, 5, self::DEFAULT_LIMIT ); // make 5 fake revisions
+		$fakeRevisions = $this->makeFakeRevisions( $user, 5, self::DEFAULT_LIMIT );
 
 		$fakeSegment = $this->makeSegment( $fakeRevisions );
 
@@ -113,8 +129,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$this->expectExceptionObject(
 			new LocalizedHttpException( new MessageValue( 'rest-permission-denied-anon' ), 401 )
 		);
-		$response = $this->executeHandler( $handler, $request );
-		$this->assertSame( 401, $response->getStatusCode() );
+		$this->executeHandler( $handler, $request );
 	}
 
 	private function makeMockUser( $anon ) {
@@ -126,16 +141,20 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	public function provideThatResponseConformsToSchema() {
 		$basePath = 'https://wiki.example.com/rest/me/contributions';
 		yield [ 0,
-			[ 'oldest' => true ],
+			[ 'newest' => true, 'oldest' => true ],
 			[
 				'older' => null,
+				'newer' => $basePath . '?limit=20',
+				'latest' => $basePath . '?limit=20',
 				'revisions' => []
 			]
 		];
 		yield [ 1,
-			[ 'oldest' => true ],
+			[ 'newest' => true, 'oldest' => true ],
 			[
 				'older' => null,
+				'newer' => $basePath . '?limit=20&segment=after%7C20200101000001',
+				'latest' => $basePath . '?limit=20',
 				'revisions' => [
 					[
 						'id' => 1,
@@ -152,9 +171,11 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 			]
 		];
 		yield [ 5,
-			[],
+			[ 'newest' => true ],
 			[
-				'older' => $basePath . '?limit=20&segment=20200101000004',
+				'older' => $basePath . '?limit=20&segment=before%7C20200101000004',
+				'newer' => $basePath . '?limit=20&segment=after%7C20200101000005',
+				'latest' => $basePath . '?limit=20',
 				'revisions' => [
 					[
 						'id' => 5,
