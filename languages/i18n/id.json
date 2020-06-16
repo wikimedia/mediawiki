@@ -535,7 +535,7 @@
 	"passwordtooshort": "Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}}.",
 	"passwordtoolong": "Passwords tidak boleh lebih dari {{PLURAL:$1|1 karakter|$1 karakter}}.",
 	"passwordtoopopular": "Kata sandi yang umum tidak dapat digunakan. Silakan pilih kata sandi yang lebih sukar diterka.",
-	"passwordinlargeblacklist": "Kata sandi yang dimasukkan ada dalam senarai kata sandi yang sangat umum digunakan. Silakan pilih kata sandi yang lebih unik.",
+	"passwordincommonlist": "Kata sandi yang dimasukkan ada dalam senarai kata sandi yang sangat umum digunakan. Silakan pilih kata sandi yang lebih unik.",
 	"password-name-match": "Kata sandi Anda harus berbeda dari nama pengguna Anda.",
 	"password-substring-username-match": "Kata sandi Anda tidak boleh muncul dalam nama pengguna Anda.",
 	"password-login-forbidden": "Penggunaan nama pengguna dan sandi ini telah dilarang.",

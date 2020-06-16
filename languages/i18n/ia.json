@@ -476,7 +476,7 @@
 	"passwordtooshort": "Le contrasignos debe continer al minus {{PLURAL:$1|1 character|$1 characteres}}.",
 	"passwordtoolong": "Le contrasignos non pote esser plus longe de {{PLURAL:$1|1 character|$1 characteres}}.",
 	"passwordtoopopular": "Contrasignos habitual non pote esser usate. Per favor, elige un contrasigno plus difficile a divinar.",
-	"passwordinlargeblacklist": "Le contrasigno entrate se trova in un lista de contrasignos multo commun. Per favor, elige un contrasigno plus unic.",
+	"passwordincommonlist": "Le contrasigno entrate se trova in un lista de contrasignos multo commun. Per favor, elige un contrasigno plus unic.",
 	"password-name-match": "Tu contrasigno debe esser differente de tu nomine de usator.",
 	"password-substring-username-match": "Le contrasigno non debe apparer in le nomine de usator.",
 	"password-login-forbidden": "Le uso de iste nomine de usator e contrasigno ha essite prohibite.",

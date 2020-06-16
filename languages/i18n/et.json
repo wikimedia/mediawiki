@@ -493,7 +493,7 @@
 	"passwordtooshort": "Parool peab koosnema vähemalt {{PLURAL:$1|ühest|$1}} tähemärgist.",
 	"passwordtoolong": "Parool ei saa olla pikem kui {{PLURAL:$1|üks märk|$1 märk}}.",
 	"passwordtoopopular": "Liiga levinud paroole ei saa kasutada. Palun vali parool, mida on keerulisem ära arvata.",
-	"passwordinlargeblacklist": "Sisestatud parool on väga sageli kasutatud paroolide loendis. Palun vali haruldasem parool.",
+	"passwordincommonlist": "Sisestatud parool on väga sageli kasutatud paroolide loendis. Palun vali haruldasem parool.",
 	"password-name-match": "Parool peab kasutajanimest erinema.",
 	"password-substring-username-match": "Parool ei tohi olla osa sinu kasutajanimest.",
 	"password-login-forbidden": "Selle kasutajanime ja parooli kasutamine on keelatud.",

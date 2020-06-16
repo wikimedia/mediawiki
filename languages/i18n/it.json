@@ -595,7 +595,7 @@
 	"passwordtooshort": "Le password devono contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.",
 	"passwordtoolong": "La password non può contenere più di {{PLURAL:$1|1 carattere|$1 caratteri}}.",
 	"passwordtoopopular": "Password comuni non possono essere usate. Scegli una password più difficile da indovinare.",
-	"passwordinlargeblacklist": "La password inserita è nell'elenco delle password utilizzate più comunemente. Si prega di scegliere una password più unica.",
+	"passwordincommonlist": "La password inserita è nell'elenco delle password utilizzate più comunemente. Si prega di scegliere una password più unica.",
 	"password-name-match": "La password deve essere diversa dal nome utente.",
 	"password-login-forbidden": "L'uso di questo nome utente e password è stato proibito.",
 	"mailmypassword": "Reimposta password",

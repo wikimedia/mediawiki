@@ -515,7 +515,7 @@
 	"passwordtooshort": "Passord må ha minst {{PLURAL:$1|ett tegn|$1 tegn}}.",
 	"passwordtoolong": "Passord kan ikke overskride {{PLURAL:$1|ett tegn|$1 tegn}}.",
 	"passwordtoopopular": "Hyppig brukte passord kan ikke brukes. Vennligst bruk et mer unikt passord.",
-	"passwordinlargeblacklist": "Passordet du skrev inn er på en liste over veldig vanlige passord. Velg et mer unikt passord.",
+	"passwordincommonlist": "Passordet du skrev inn er på en liste over veldig vanlige passord. Velg et mer unikt passord.",
 	"password-name-match": "Passord og brukernavn kan ikke være det samme.",
 	"password-substring-username-match": "Passordet ditt kan ikke gjenfinnes i brukernavnet ditt.",
 	"password-login-forbidden": "Bruken av dette brukernavnet og passordet er forbudt.",

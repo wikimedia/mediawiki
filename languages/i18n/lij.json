@@ -481,7 +481,7 @@
 	"passwordtooshort": "E password devan aveighe aomanco {{PLURAL:$1|1 carattere|$1 caratteri}}.",
 	"passwordtoolong": "A poula segretta a no peu contegnî ciù de {{PLURAL:$1|1 carattere|$1 caratteri}}.",
 	"passwordtoopopular": "No se peu deuviâ de paòle segrette tròppo ordenaie. Pe piaxei çernitene unn-a ciù particolâ.",
-	"passwordinlargeblacklist": "Questa pòula segrétta a l'é inte 'na lista de passwords molto comûni. Pe piaxéi çèrnite 'na pòula segrétta ciù originâle",
+	"passwordincommonlist": "Questa pòula segrétta a l'é inte 'na lista de passwords molto comûni. Pe piaxéi çèrnite 'na pòula segrétta ciù originâle",
 	"password-name-match": "A password a dev'ese despægia da-o nomme utente.",
 	"password-substring-username-match": "A to password a no deve aparî into to nomme utente.",
 	"password-login-forbidden": "L'utilizzo de sto nomme utente e password o l'è stæto proibio.",

@@ -547,7 +547,7 @@
 	"passwordtooshort": "Lösenord måste innehålla minst {{PLURAL:$1|$1 tecken}}.",
 	"passwordtoolong": "Lösenord kan inte vara längre än {{PLURAL:$1|1 tecken|$1 tecken}}.",
 	"passwordtoopopular": "Vanliga lösenord kan inte användas. Välj ett lösenord som är svårare att gissa.",
-	"passwordinlargeblacklist": "Det angivna lösenordet är med i en lista över mycket vanliga lösenord. Välj ett unikare lösenord.",
+	"passwordincommonlist": "Det angivna lösenordet är med i en lista över mycket vanliga lösenord. Välj ett unikare lösenord.",
 	"password-name-match": "Ditt lösenord måste vara olikt ditt användarnamn.",
 	"password-substring-username-match": "Ditt lösenord får inte återfinnas i ditt användarnamn.",
 	"password-login-forbidden": "Användningen av dessa användarnamn och lösenord har förbjudits.",

@@ -513,7 +513,7 @@
 	"passwordtooshort": "A jelszónak legalább $1 karakterből kell állnia.",
 	"passwordtoolong": "A jelszó nem lehet hosszabb $1 karakternél.",
 	"passwordtoopopular": "A gyakran használt jelszavak nem használhatók. Válassz olyan jelszót, amit nehezebb kitalálni.",
-	"passwordinlargeblacklist": "A megadott jelszó szerepel a gyakran használt jelszavak listáján. Kérlek, válassz egyedibb jelszót.",
+	"passwordincommonlist": "A megadott jelszó szerepel a gyakran használt jelszavak listáján. Kérlek, válassz egyedibb jelszót.",
 	"password-name-match": "A jelszavadnak különböznie kell a szerkesztőnevedtől.",
 	"password-substring-username-match": "A jelszavad nem fordulhat elő a felhasználónevedben.",
 	"password-login-forbidden": "Ezen felhasználónév és jelszó használata tiltott.",

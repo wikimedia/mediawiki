@@ -476,7 +476,7 @@
 	"passwordtooshort": "Le password onne a essere almene {{PLURAL:$1|1 carattere|$1 carattere}}.",
 	"passwordtoolong": "Le password non ge ponne essere cchiù longhe de {{PLURAL:$1|1 carattere}}.",
 	"passwordtoopopular": "Password comuni non ge ponne essere ausate. Scacchie 'na password cchiù difficile da 'nduvenà.",
-	"passwordinlargeblacklist": "'A passuord mise ste jndr'à l'elenghe de le passuord ausate de cchiù. Pe piacere scacchie 'na passuord cchiù secure.",
+	"passwordincommonlist": "'A passuord mise ste jndr'à l'elenghe de le passuord ausate de cchiù. Pe piacere scacchie 'na passuord cchiù secure.",
 	"password-name-match": "'A password toje adda essere diverse da 'u nome utende tue.",
 	"password-login-forbidden": "L'ause de stu nome utende e passuord onne state vietate.",
 	"mailmypassword": "Azzere 'a passuord",

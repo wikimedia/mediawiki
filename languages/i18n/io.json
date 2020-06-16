@@ -475,7 +475,7 @@
 	"passwordtooshort": "Pasovorti mustas kontenar adminime {{PLURAL:$1|1 signo|$1 signi}}.",
 	"passwordtoolong": "Pasovorti ne mustas esar plu longa kam {{PLURAL:$1|1 litero|$1 literi}}.",
 	"passwordtoopopular": "Pasovorti tre facila ne povas uzesar. Voluntez selektar pasovorto nefacila por divinar.",
-	"passwordinlargeblacklist": "La pasovorto quon vu selektis esas tre ordinare uzata e/o facila por deskovrar. Voluntez selektar plu bona pasovorto.",
+	"passwordincommonlist": "La pasovorto quon vu selektis esas tre ordinare uzata e/o facila por deskovrar. Voluntez selektar plu bona pasovorto.",
 	"password-name-match": "Pasovorto mustas diferar de vua uzeronomo.",
 	"password-login-forbidden": "La uzo di ita uzeronomo e pasovorto es interdiktita.",
 	"mailmypassword": "Sendez nova pasovorto per e-posto",

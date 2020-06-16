@@ -668,7 +668,7 @@
 	"passwordtooshort": "Las contraseñas deben tener al menos {{PLURAL:$1|1 carácter|$1 caracteres}}.",
 	"passwordtoolong": "Las contraseñas no deben tener más de {{PLURAL:$1|1 carácter|$1 caracteres}}.",
 	"passwordtoopopular": "No es posible utilizar las contraseñas más comunes. Elige una que sea más difícil de descifrar.",
-	"passwordinlargeblacklist": "La contraseña usada está en la lista de contraseñas más usadas. Por favor selecciona una contraseña única.",
+	"passwordincommonlist": "La contraseña usada está en la lista de contraseñas más usadas. Por favor selecciona una contraseña única.",
 	"password-name-match": "Tu contraseña debe ser diferente de tu nombre de usuario.",
 	"password-substring-username-match": "Tu contraseña no debe aparecer dentro de tu nombre de usuario.",
 	"password-login-forbidden": "El uso de este nombre de usuario y contraseña han sido prohibidos.",

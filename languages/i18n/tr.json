@@ -571,7 +571,7 @@
 	"passwordtooshort": "Parolalar en az {{PLURAL:$1|1 karakter|$1 karakter}} uzunluğunda olmalı.",
 	"passwordtoolong": "Parolalar {{PLURAL:$1|1 karakterden|$1 karakterden}} uzun olamaz.",
 	"passwordtoopopular": "Genel olarak seçilen parolalar kullanılamaz. Lütfen tahmin edilmesi daha zor bir parola seçin.",
-	"passwordinlargeblacklist": "Girilen parola çok sık kullanılan parlanın bir listesidir. Lütfen daha benzersiz bir parola seçin.",
+	"passwordincommonlist": "Girilen parola çok sık kullanılan parlanın bir listesidir. Lütfen daha benzersiz bir parola seçin.",
 	"password-name-match": "Parolanız kullanıcı adınızdan farklı olmalıdır.",
 	"password-substring-username-match": "Parolanız kullanıcı adınızda görünmemelidir.",
 	"password-login-forbidden": "Bu kullanıcı adı ve parolanın kullanımı yasaklanmıştır.",

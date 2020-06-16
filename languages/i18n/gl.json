@@ -493,7 +493,7 @@
 	"passwordtooshort": "Os contrasinais deben conter, como mínimo, {{PLURAL:$1|1 carácter|$1 caracteres}}.",
 	"passwordtoolong": "Os contrasinais non poden ser máis longo de {{PLURAL:$1|1 carácter|$1 caracteres}}.",
 	"passwordtoopopular": "Non pode utilizar un contrasinal dos habitualmente elixidos pola xente. Por favor, escolla un contrasinal que sexa máis complicada de adiviñar.",
-	"passwordinlargeblacklist": "O contrasinal usado está na lista de contrasinais máis usados. Por favor seleccione un contrasinal menos común.",
+	"passwordincommonlist": "O contrasinal usado está na lista de contrasinais máis usados. Por favor seleccione un contrasinal menos común.",
 	"password-name-match": "O seu contrasinal debe ser diferente do seu nome de usuario.",
 	"password-substring-username-match": "O seu contrasinal non debe estar dentro do seu nome de usuario.",
 	"password-login-forbidden": "O uso deste nome de usuario e contrasinal foi prohibido.",

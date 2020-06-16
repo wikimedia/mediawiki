@@ -510,7 +510,7 @@
 	"passwordtooshort": "Heslo musí být dlouhé nejméně $1 {{PLURAL:$1|znak|znaky|znaků}}.",
 	"passwordtoolong": "Hesla nemohou být delší než {{PLURAL:$1|1 znak|$1 znaky|$1 znaků}}.",
 	"passwordtoopopular": "Není možné používat běžně vybíraná hesla. Prosím vyberte si heslo, které je složitější uhodnout.",
-	"passwordinlargeblacklist": "Zadané heslo je uvedeno na seznamu velmi často používaných hesel. Zvolte si prosím unikátnější heslo.",
+	"passwordincommonlist": "Zadané heslo je uvedeno na seznamu velmi často používaných hesel. Zvolte si prosím unikátnější heslo.",
 	"password-name-match": "Vaše heslo nesmí být stejné jako uživatelské jméno.",
 	"password-substring-username-match": "Heslo nesmí být ve vašem uživatelském jméně.",
 	"password-login-forbidden": "Použití tohoto uživatelského jména a hesla bylo zakázáno.",

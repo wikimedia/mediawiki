@@ -498,7 +498,7 @@
 	"passwordtooshort": "Fjalëkalimi juaj është i pavlefshëm ose tepër i shkurtër. Ai duhet të ketë së paku {{PLURAL:$1|1 shkronjë|$1 shkronja}} dhe duhet të jetë i ndryshëm nga emri i përdoruesit.",
 	"passwordtoolong": "Fjalëkalimet nuk mund të jenë më të gjatë se {{PLURAL:$1|1 karakter|$1 karaktere}}.",
 	"passwordtoopopular": "Ky fjalëkalim është shumë i zakonshëm e për pasojë shumë i lehtë për t'u gjetur. Ju lutem, zgjidhni një fjalëkalim më të veçantë.",
-	"passwordinlargeblacklist": "Fjalëkalimi që sapo vendosët është pjesë e një liste me fjalëkalime shumë të zakonshëm.\n\nJu lutemi, zgjidhni një fjalëkalim më të veçantë.",
+	"passwordincommonlist": "Fjalëkalimi që sapo vendosët është pjesë e një liste me fjalëkalime shumë të zakonshëm.\n\nJu lutemi, zgjidhni një fjalëkalim më të veçantë.",
 	"password-name-match": "Fjalëkalimi juaj duhet të jetë i ndryshëm nga emri juaj.",
 	"password-substring-username-match": "Fjalëkalimi yt nuk duhet të shfaqet te emri juaj i përdoruesit.",
 	"password-login-forbidden": "Përdorimi i kësaj nofke dhe fjalëkalimi është i ndaluar.",

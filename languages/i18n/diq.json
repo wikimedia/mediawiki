@@ -499,7 +499,7 @@
 	"passwordtooshort": "Paroley gani tewr senık be {{PLURAL:$1|1 karakter|$1 karakteran}} derg bê.",
 	"passwordtoolong": "Paroleyi be {{PLURAL:$1|1 karakter|$1 karakteran}} ra derg nêbenê.",
 	"passwordtoopopular": "Paroleyanê kehanan rê icazet çıniyo. Kerem ke, yew parolaya çetıne weçine.",
-	"passwordinlargeblacklist": "Parolaya ke şıma kerda cı zaf karnıyaya. Parolaya bêemsal cı kerê",
+	"passwordincommonlist": "Parolaya ke şıma kerda cı zaf karnıyaya. Parolaya bêemsal cı kerê",
 	"password-name-match": "Parola u nameyê şıma gani zeypê (seypê) nêbo.",
 	"password-substring-username-match": "Parolay şıma wa namey de nêaso",
 	"password-login-forbidden": "Nameyê nê karberi û gurenayışê parola biyo qedeğen.",

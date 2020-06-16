@@ -531,7 +531,7 @@
 	"passwordtooshort": "La contrasenya ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}}.",
 	"passwordtoolong": "La contrasenya ha de tenir un màxim {{PLURAL:$1|d'un caràcter|de $1 caràcters}}.",
 	"passwordtoopopular": "No poden utilitzar-se contrasenyes d'ús habitual. Trieu una contrasenya que sigui més difícil d'endevinir.",
-	"passwordinlargeblacklist": "La contrasenya introduïda es troba en una llista de contrasenyes més freqüents. Trieu-ne una que sigui més única.",
+	"passwordincommonlist": "La contrasenya introduïda es troba en una llista de contrasenyes més freqüents. Trieu-ne una que sigui més única.",
 	"password-name-match": "La contrasenya ha de ser diferent del vostre nom d'usuari.",
 	"password-substring-username-match": "La contrasenya no ha d'aparèixer dins del nom d'usuari.",
 	"password-login-forbidden": "No és permès d'utilitzar aquest nom d'usuari i contrasenya.",

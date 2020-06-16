@@ -566,7 +566,7 @@
 	"passwordtooshort": "Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.",
 	"passwordtoolong": "Hasło nie może być dłuższe niż  {{PLURAL:$1|1 znak|$1 znaków}}.",
 	"passwordtoopopular": "Często wybierane hasła nie mogą być stosowane. Proszę wybrać hasło bardziej unikalne.",
-	"passwordinlargeblacklist": "Wprowadzone hasło jest na liście najczęściej używanych haseł. Prosimy wybrać mniej popularne hasło.",
+	"passwordincommonlist": "Wprowadzone hasło jest na liście najczęściej używanych haseł. Prosimy wybrać mniej popularne hasło.",
 	"password-name-match": "Hasło musi być inne niż nazwa użytkownika.",
 	"password-substring-username-match": "Twoje hasło nie może znajdować się jednocześnie w nazwie użytkownika.",
 	"password-login-forbidden": "Wykorzystanie tej nazwy użytkownika lub hasła zostało zabronione.",

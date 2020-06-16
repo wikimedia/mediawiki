@@ -496,7 +496,7 @@
 	"passwordtooshort": "Lozinka mora imati najmanje {{PLURAL:$1|jedan znak|$1 znaka|$1 znakova}}.",
 	"passwordtoolong": "Lozinke ne mogu biti duže od {{PLURAL:$1|$1 znaka|$1 znakova}}.",
 	"passwordtoopopular": "Nije moguće koristiti često odabrane lozinke. Odaberite lozinku koju je teže pogoditi.",
-	"passwordinlargeblacklist": "Unesena lozinka je na spisku veoma često korišćenih lozinki. Odaberite jedinstveniju lozinku.",
+	"passwordincommonlist": "Unesena lozinka je na spisku veoma često korišćenih lozinki. Odaberite jedinstveniju lozinku.",
 	"password-name-match": "Lozinka se mora razlikovati od korisničkog imena.",
 	"password-login-forbidden": "Korišćenje ovog korisničkog imena i lozinke je zabranjeno.",
 	"mailmypassword": "Resetuj lozinku",
