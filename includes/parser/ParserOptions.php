@@ -1126,7 +1126,8 @@ class ParserOptions {
 	 *  - If an IContextSource, the options are initialized based on the source's User and Language.
 	 *  - If the string 'canonical', the options are initialized with an anonymous user and
 	 *    the content language.
-	 *  - If a User or null, the options are initialized for that User (or $wgUser if null).
+	 *  - If a User or null, the options are initialized for that User
+	 *      falls back to $wgUser if null; fallback is deprecated since 1.35
 	 *    'userlang' is taken from the $userLang parameter, defaulting to $wgLang if that is null.
 	 * @param Language|StubObject|null $userLang (see above)
 	 * @return ParserOptions
@@ -1137,6 +1138,9 @@ class ParserOptions {
 		} elseif ( $context === 'canonical' ) {
 			$ret = self::newFromAnon();
 		} elseif ( $context instanceof User || $context === null ) {
+			if ( $context === null ) {
+				wfDeprecated( __METHOD__ . ' with no user', '1.35' );
+			}
 			$ret = new self( $context, $userLang );
 		} else {
 			throw new InvalidArgumentException(

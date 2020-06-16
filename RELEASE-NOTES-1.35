@@ -1154,6 +1154,8 @@ because of Phabricator reports.
   Previously, the third parameter was unused. Using the old signature is
   hard deprecated.
 * Passing Article to ParserCache::get() was deprecated
+* ParserOptions::newCanonical() with no first parameter, or null as the first
+  parameter, which falls back to using global $wgUser, is hard deprecated.
 * Parser::fetchCurrentRevisionOfTitle, ::statelessFetchRevision, and
   ::getRevisionObject were hard deprecated in favor of the new
   ::fetchCurrentRevisionRecordOfTitle, ::statelessFetchRevisionRecord,
