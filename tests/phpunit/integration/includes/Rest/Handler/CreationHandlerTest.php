@@ -268,7 +268,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 201, $response->getStatusCode() );
 		$this->assertSame(
 			// NOTE: Prefix hard coded in a fake for Router::getRouteUrl() in HandlerTestTrait
-			'https://wiki.example.com/rest/coredev/v0/page/Foo',
+			'https://wiki.example.com/rest/v1/page/Foo',
 			$response->getHeaderLine( 'Location' )
 		);
 		$this->assertSame( 'application/json', $response->getHeaderLine( 'Content-Type' ) );

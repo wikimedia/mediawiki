@@ -109,7 +109,7 @@ class CreationHandler extends EditHandler {
 		);
 
 		$title = urlencode( $this->getTitleParameter() );
-		$url = $this->getRouter()->getRouteUrl( '/coredev/v0/page/' . $title );
+		$url = $this->getRouter()->getRouteUrl( '/v1/page/' . $title );
 		$response->setHeader( 'Location', $url );
 	}
 
