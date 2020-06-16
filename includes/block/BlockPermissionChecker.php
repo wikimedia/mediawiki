@@ -90,7 +90,7 @@ class BlockPermissionChecker {
 		}
 
 		if (
-			$this->target instanceof User &&
+			$this->target instanceof UserIdentity &&
 			$this->target->getId() === $this->performer->getId()
 		) {
 			// Blocked admin is trying to alter their own block
@@ -108,7 +108,7 @@ class BlockPermissionChecker {
 		}
 
 		if (
-			$this->target instanceof User &&
+			$this->target instanceof UserIdentity &&
 			$this->performer->blockedBy() === $this->target->getName()
 		) {
 			// T150826: Blocked admins can always block the admin who blocked them
