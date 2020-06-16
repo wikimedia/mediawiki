@@ -178,7 +178,7 @@ abstract class UploadBase {
 	 *
 	 * @param WebRequest &$request
 	 * @param string|null $type
-	 * @return null|UploadBase
+	 * @return null|self
 	 */
 	public static function createFromRequest( &$request, $type = null ) {
 		$type = $type ?: $request->getVal( 'wpSourceType', 'File' );
@@ -191,6 +191,7 @@ abstract class UploadBase {
 		$type = ucfirst( $type );
 
 		// Give hooks the chance to handle this request
+		/** @var self|null $className */
 		$className = null;
 		Hooks::runner()->onUploadCreateFromRequest( $type, $className );
 		if ( $className === null ) {
@@ -202,16 +203,16 @@ abstract class UploadBase {
 		}
 
 		// Check whether this upload class is enabled
-		if ( !call_user_func( [ $className, 'isEnabled' ] ) ) {
+		if ( !$className::isEnabled() ) {
 			return null;
 		}
 
 		// Check whether the request is valid
-		if ( !call_user_func( [ $className, 'isValidRequest' ], $request ) ) {
+		if ( !$className::isValidRequest( $request ) ) {
 			return null;
 		}
 
-		/** @var UploadBase $handler */
+		/** @var self $handler */
 		$handler = new $className;
 
 		$handler->initializeFromRequest( $request );
@@ -1487,8 +1488,8 @@ abstract class UploadBase {
 			[ $this, 'checkSvgScriptCallback' ],
 			true,
 			[
-				'processing_instruction_handler' => 'UploadBase::checkSvgPICallback',
-				'external_dtd_handler' => 'UploadBase::checkSvgExternalDTD',
+				'processing_instruction_handler' => [ __CLASS__, 'checkSvgPICallback' ],
+				'external_dtd_handler' => [ __CLASS__, 'checkSvgExternalDTD' ],
 			]
 		);
 		if ( $check->wellFormed !== true ) {
