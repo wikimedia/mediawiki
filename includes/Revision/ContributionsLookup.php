@@ -6,6 +6,7 @@ use ContribsPager;
 use FauxRequest;
 use MediaWiki\User\UserIdentity;
 use RequestContext;
+use User;
 
 /**
  * @since 1.35
@@ -62,25 +63,28 @@ class ContributionsLookup {
 	}
 
 	/**
-	 * @param UserIdentity $user
-	 *
-	 * @param int $limit
+	 * @param UserIdentity $target the user from whom to retrieve contributions
+	 * @param int $limit the maximum number of revisions to return
+	 * @param User $performer the user used for permission checks
 	 * @param string $segment
+	 *
 	 * @return ContributionsSegment
+	 * @throws \MWException
 	 */
 	public function getRevisionsByUser(
-		UserIdentity $user,
+		UserIdentity $target,
 		int $limit,
+		User $performer,
 		string $segment = ''
 	): ContributionsSegment {
-		// FIXME: set acting user
 		$context = new RequestContext();
+		$context->setUser( $performer );
 		$paramArr = $this->getPagerParams( $limit, $segment );
 		$context->setRequest( new FauxRequest( $paramArr ) );
 
 		// TODO: explore moving this to factory method for testing
 		$pager = new ContribsPager( $context, [
-			'target' => $user->getName(),
+			'target' => $target->getName(),
 		] );
 		$revisions = [];
 		$count = 0;

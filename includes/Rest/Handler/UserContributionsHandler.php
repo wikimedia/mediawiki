@@ -46,7 +46,8 @@ class UserContributionsHandler extends Handler {
 		// can make it segment_size per ticket, but wanted to be consistent with search endpoint.
 		$limit = $this->getValidatedParams()['limit'];
 		$segment = $this->getValidatedParams()['segment'];
-		$contributionsSegment = $this->contributionsLookup->getRevisionsByUser( $user, $limit, $segment );
+		$contributionsSegment =
+			$this->contributionsLookup->getRevisionsByUser( $user, $limit, $user, $segment );
 
 		$revisions = $this->getRevisionsList( $contributionsSegment );
 		$urls = $this->constructURLs( $contributionsSegment );
