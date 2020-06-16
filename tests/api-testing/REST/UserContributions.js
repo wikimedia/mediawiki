@@ -1,18 +1,18 @@
 'use strict';
 const { REST, assert, action, utils, clientFactory } = require( 'api-testing' );
 
-describe( 'GET /me/contributions', () => {
+describe( 'GET contributions', () => {
 	const basePath = 'rest.php/coredev/v0';
 	const anon = new REST( basePath );
 	const limit = 2;
 	const arnoldsRevisions = [];
 	const arnoldsEdits = [];
 	const arnoldsTags = [];
-	let arnold;
-	let arnoldAction;
-	let samAction;
+	let arnold, beth, mindy;
+	let arnoldAction, samAction, mindyAction;
 	const revisionText = { 0: '12345678', 1: 'A', 2: 'ABCD', 3: 'AB', 4: 'ABCDEFGH', 5: 'A' };
 	const expectedRevisionDeltas = { 1: 1, 2: -4, 3: 1, 4: 4, 5: -1 };
+	let editToDelete;
 
 	before( async () => {
 		// Sam will be the same Sam for all tests, even in other files
@@ -21,7 +21,14 @@ describe( 'GET /me/contributions', () => {
 		// Arnold will be a different Arnold every time
 		arnoldAction = await action.getAnon();
 		await arnoldAction.account( 'Arnold_' );
+
+		// Beth will be a different Beth every time
+		const bethAction = await action.getAnon();
+		await bethAction.account( 'Beth_' );
+
 		arnold = clientFactory.getRESTClient( basePath, arnoldAction );
+		mindy = clientFactory.getRESTClient( basePath, mindyAction );
+		beth = clientFactory.getRESTClient( basePath, bethAction );
 
 		const oddEditsPage = utils.title( 'UserContribution_' );
 		const evenEditsPage = utils.title( 'UserContribution_' );
@@ -29,12 +36,10 @@ describe( 'GET /me/contributions', () => {
 		// Create a tag.
 		await action.makeTag( 'api-test' );
 
-		// bob makes 1 edit
-		const bobAction = await action.bob();
-		await bobAction.edit( evenEditsPage, [ {
-			text: revisionText[ 0 ],
-			summary: 'Bob made revision 1'
-		} ] );
+		// Beth makes 2 edits, the first one is later suppressed
+		const pageToDelete = utils.title( 'UserContribution_' );
+		editToDelete = await bethAction.edit( pageToDelete, [ { text: 'Beth edit 1' } ] );
+		await bethAction.edit( pageToDelete, [ { text: 'Beth edit 2' } ] );
 
 		// arnold makes 5 edits
 		let page;
@@ -51,19 +56,8 @@ describe( 'GET /me/contributions', () => {
 		}
 	} );
 
-	it( 'Returns status 401 for anon', async () => {
-		const { status, body } = await anon.get( '/me/contributions' );
-		assert.equal( status, 401 );
-		assert.nestedProperty( body, 'messageTranslations' );
-	} );
-
-	it( 'Returns status OK', async () => {
-		const response = await arnold.get( '/me/contributions' );
-		assert.equal( response.status, 200 );
-	} );
-
-	it( 'Returns a list of arnold\'s edits', async () => {
-		const { status, body } = await arnold.get( `/me/contributions?limit=${limit}` );
+	const testGetEdits = async ( client, endpoint ) => {
+		const { status, body } = await client.get( endpoint, { limit } );
 		assert.equal( status, 200 );
 
 		// assert body has property revisions
@@ -103,12 +97,12 @@ describe( 'GET /me/contributions', () => {
 		revisions.forEach( ( rev ) => {
 			assert.property( arnoldsRevisions, rev.id );
 		} );
-	} );
+	};
 
-	it( 'Returns a list filtered by tag', async () => {
+	const testGetEditsByTag = async ( client, endpoint ) => {
 		const taggedRevisions = [ arnoldsEdits[ 1 ], arnoldsEdits[ 3 ], arnoldsEdits[ 5 ] ];
 
-		const { status, body } = await arnold.get( '/me/contributions?tag=api-test' );
+		const { status, body } = await client.get( endpoint, { tag: 'api-test' } );
 		assert.equal( status, 200 );
 
 		// assert body has property revisions
@@ -125,11 +119,11 @@ describe( 'GET /me/contributions', () => {
 		assert.equal( revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
 		assert.equal( revisions[ 1 ].id, arnoldsEdits[ 3 ].newrevid );
 		assert.equal( revisions[ 2 ].id, arnoldsEdits[ 1 ].newrevid );
-	} );
+	};
 
-	it( 'Can fetch a chain of segments following the "older" field in the response', async () => {
+	const testPagingForward = async ( client, endpoint ) => {
 		// get latest segment
-		const { body: latestSegment } = await arnold.get( `/me/contributions?limit=${limit}` );
+		const { body: latestSegment } = await client.get( endpoint, { limit } );
 		assert.property( latestSegment, 'older' );
 		assert.property( latestSegment, 'revisions' );
 		assert.isArray( latestSegment.revisions );
@@ -143,7 +137,7 @@ describe( 'GET /me/contributions', () => {
 		assert.deepEqual( latestSegment.revisions[ 1 ].tags, arnoldsTags[ 4 ] );
 
 		// get older segment, using full url
-		const req = clientFactory.getHttpClient( arnold );
+		const req = clientFactory.getHttpClient( client );
 
 		const { body: olderSegment } = await req.get( latestSegment.older );
 		assert.property( olderSegment, 'older' );
@@ -169,21 +163,13 @@ describe( 'GET /me/contributions', () => {
 		assert.equal( finalSegment.revisions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
 
 		assert.deepEqual( finalSegment.revisions[ 0 ].tags, arnoldsTags[ 1 ] );
-	} );
+	};
 
-	it( 'Returns 400 if segment size is out of bounds', async () => {
-		const { status: minLimitStatus } = await arnold.get( '/me/contributions?limit=0' );
-		assert.equal( minLimitStatus, 400 );
-
-		const { status: maxLimitStatus } = await arnold.get( '/me/contributions?limit=30' );
-		assert.equal( maxLimitStatus, 400 );
-	} );
-
-	it( 'Can fetch a chain of segments following the "newer" field in the response', async () => {
-		const req = clientFactory.getHttpClient( arnold );
+	const testPagingBackwards = async ( client, endpoint ) => {
+		const req = clientFactory.getHttpClient( client );
 
 		// get latest segment
-		const { body: latestSegment } = await arnold.get( `/me/contributions?limit=${limit}` );
+		const { body: latestSegment } = await client.get( endpoint, { limit } );
 		assert.property( latestSegment, 'newer' );
 
 		// get next older segment
@@ -200,13 +186,13 @@ describe( 'GET /me/contributions', () => {
 
 		const { body: latestSegment2 } = await req.get( olderSegment.newer );
 		assert.deepEqual( latestSegment, latestSegment2 );
-	} );
+	};
 
-	it( 'Returns a valid link to the latest segment', async () => {
-		const req = clientFactory.getHttpClient( arnold );
+	const testHasLatest = async ( client, endpoint ) => {
+		const req = clientFactory.getHttpClient( client );
 
 		// get latest segment
-		const { body: latestSegment } = await arnold.get( `/me/contributions?limit=${limit}` );
+		const { body: latestSegment } = await client.get( endpoint, { limit } );
 		assert.property( latestSegment, 'latest' );
 
 		// get next older segment
@@ -224,13 +210,13 @@ describe( 'GET /me/contributions', () => {
 		assert.deepEqual( latestSegment.latest, finalSegment.latest );
 		assert.deepEqual( latestSegment.latest, olderSegment.latest );
 
-	} );
+	};
 
-	it( 'Segment links preserve tag filtering', async () => {
-		const req = clientFactory.getHttpClient( arnold );
+	const testPreserveTagFilter = async ( client, endpoint ) => {
+		const req = clientFactory.getHttpClient( client );
 
 		// get latest segment
-		const { body: latestSegment } = await arnold.get( '/me/contributions?limit=2&tag=api-test' );
+		const { body: latestSegment } = await client.get( endpoint, { limit: 2, tag: 'api-test' } );
 
 		// assert body.revisions has the latest revisions that have the "api-test" tag (odd edits)
 		assert.equal( latestSegment.revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
@@ -250,16 +236,9 @@ describe( 'GET /me/contributions', () => {
 
 		// assert that the "latest" links also preserve the "tag" parameter
 		assert.deepEqual( finalSegment.latest, latestSegment.latest );
-	} );
+	};
 
-	it( 'Does not return suppressed revisions when requesting user does not have appropriate permissions', async () => {
-		const { body: preDeleteBody } = await arnold.get( '/me/contributions?limit=10' );
-		assert.lengthOf( preDeleteBody.revisions, 5 );
-
-		const pageToDelete = utils.title( 'UserContribution_' );
-		const editToDelete = await arnoldAction.edit( pageToDelete, [ { text: 'Delete me 1' } ] );
-		await arnoldAction.edit( pageToDelete, [ { text: 'Delete me 2' } ] );
-
+	const testSuppressedRevisions = async ( client, endpoint ) => {
 		await samAction.action( 'revisiondelete',
 			{
 				type: 'revision',
@@ -272,8 +251,8 @@ describe( 'GET /me/contributions', () => {
 		);
 
 		// Users without appropriate permissions cannot see suppressed revisions (even their own)
-		const { body: arnoldGetBody } = await arnold.get( '/me/contributions?limit=10' );
-		assert.lengthOf( arnoldGetBody.revisions, 6 );
+		const { body: clientGetBody } = await client.get( endpoint );
+		assert.lengthOf( clientGetBody.revisions, 1 );
 
 		await samAction.action( 'revisiondelete',
 			{
@@ -287,8 +266,144 @@ describe( 'GET /me/contributions', () => {
 		);
 
 		// Users with appropriate permissions can see suppressed revisions
-		const { body: arnoldGetBody2 } = await arnold.get( '/me/contributions?limit=10' );
-		assert.lengthOf( arnoldGetBody2.revisions, 7 );
+		const { body: clientGetBody2 } = await client.get( endpoint );
+		assert.lengthOf( clientGetBody2.revisions, 2 );
+	};
+
+	describe( 'GET /me/contributions', () => {
+		const endpoint = '/me/contributions';
+
+		it( 'Returns status 401 for anon', async () => {
+			const response = await anon.get( endpoint );
+			assert.equal( response.status, 401 );
+			assert.nestedProperty( response.body, 'messageTranslations' );
+		} );
+
+		it( 'Returns status OK', async () => {
+			const response = await arnold.get( endpoint );
+			assert.equal( response.status, 200 );
+		} );
+
+		it( 'Returns 400 if segment size is out of bounds', async () => {
+			const { status: minLimitStatus } = await arnold.get( endpoint, { limit: 0 } );
+			assert.equal( minLimitStatus, 400 );
+
+			const { status: maxLimitStatus } = await arnold.get( endpoint, { limit: 30 } );
+			assert.equal( maxLimitStatus, 400 );
+		} );
+
+		it( 'Returns a list of the user\'s own edits', async () => {
+			await testGetEdits( arnold, endpoint );
+		} );
+
+		it( 'Returns edits filtered by tag', async () => {
+			await testGetEditsByTag( arnold, endpoint );
+		} );
+
+		it( 'Can fetch a chain of segments following the "older" field in the response', async () => {
+			await testPagingForward( arnold, endpoint );
+		} );
+
+		it( 'Can fetch a chain of segments following the "newer" field in the response', async () => {
+			await testPagingBackwards( arnold, endpoint );
+		} );
+
+		it( 'Returns a valid link to the latest segment', async () => {
+			await testHasLatest( arnold, endpoint );
+		} );
+
+		it( 'Does not return suppressed revisions when requesting user does not have appropriate permissions', async () => {
+			// Note that the suppressed revisions are Beth's contributions.
+			await testSuppressedRevisions( beth, endpoint );
+		} );
+
+		it( 'Segment link preserves tag filtering', async () => {
+			await testPreserveTagFilter( arnold, endpoint );
+		} );
+	} );
+
+	describe( 'GET /user/{name}/contributions', () => {
+		let endpoint;
+
+		before( () => {
+			endpoint = `/user/${arnold.username}/contributions`;
+		} );
+
+		it( 'Returns 400 if segment size is out of bounds', async () => {
+			const { status: minLimitStatus } = await arnold.get( endpoint, { limit: 0 } );
+			assert.equal( minLimitStatus, 400 );
+
+			const { status: maxLimitStatus } = await arnold.get( endpoint, { limit: 30 } );
+			assert.equal( maxLimitStatus, 400 );
+		} );
+
+		it( 'Returns 400 if user name is invalid', async () => {
+			const xyzzy = '|||'; // an invalid user name
+			const xendpoint = `/user/${xyzzy}/contributions`;
+			const response = await anon.get( xendpoint );
+			assert.equal( response.status, 400 );
+		} );
+
+		it( 'Returns 400 if user name is empty', async () => {
+			const xendpoint = '/user//contributions';
+			const response = await anon.get( xendpoint );
+			assert.equal( response.status, 400 );
+		} );
+
+		it( 'Returns 404 if user is unknown', async () => {
+			const xyzzy = utils.uniq(); // a non-existing user name
+			const xendpoint = `/user/${xyzzy}/contributions`;
+			const response = await anon.get( xendpoint );
+			assert.equal( response.status, 404 );
+		} );
+
+		it( 'Returns 200 if user is an IP address', async () => {
+			const xyzzy = '127.111.222.111';
+			const xendpoint = `/user/${xyzzy}/contributions`;
+			const response = await anon.get( xendpoint );
+			assert.equal( response.status, 200 );
+
+			assert.property( response.body, 'revisions' );
+			assert.deepEqual( response.body.revisions, [] );
+		} );
+
+		it( 'Anon gets a list of arnold\'s edits', async () => {
+			await testGetEdits( anon, endpoint );
+		} );
+
+		it( 'Returns Arnold\'s edits filtered by tag', async () => {
+			await testGetEditsByTag( anon, endpoint );
+		} );
+
+		it( 'Arnold gets a list of arnold\'s edits', async () => {
+			await testGetEdits( arnold, endpoint );
+		} );
+
+		it( 'Mindy gets a list of arnold\'s edits', async () => {
+			await testGetEdits( mindy, endpoint );
+		} );
+
+		it( 'Can fetch a chain of segments following the "older" field in the response', async () => {
+			await testPagingForward( anon, endpoint );
+		} );
+
+		it( 'Can fetch a chain of segments following the "newer" field in the response', async () => {
+			await testPagingBackwards( anon, endpoint );
+		} );
+
+		it( 'Returns a valid link to the latest segment', async () => {
+			await testHasLatest( anon, endpoint );
+		} );
+
+		it( 'Does not return suppressed revisions when requesting user does not have appropriate permissions', async () => {
+			// Note that the suppressed revisions are Beth's contributions.
+			const bethsEndpoint = `/user/${beth.username}/contributions`;
+			await testSuppressedRevisions( anon, bethsEndpoint );
+		} );
+
+		it( 'Segment link preserves tag filtering', async () => {
+			await testPreserveTagFilter( anon, endpoint );
+		} );
 	} );
 
 } );
