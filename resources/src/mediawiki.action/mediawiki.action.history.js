@@ -8,7 +8,7 @@ $( function () {
 
 	/**
 	 * @ignore
-	 * @context {Element} input
+	 * @this {Element} input
 	 * @param {jQuery.Event} e
 	 * @return {boolean} False to cancel the default event
 	 */
