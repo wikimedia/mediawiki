@@ -3,7 +3,7 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'PUT /page/{title}', () => {
-	const client = new REST( 'rest.php/coredev/v0' );
+	const client = new REST();
 	let mindy, anon, anonToken;
 
 	before( async () => {

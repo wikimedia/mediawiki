@@ -4,7 +4,7 @@ const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'Page Source', () => {
 	const page = utils.title( 'PageSource ' );
-	const client = new REST( 'rest.php/coredev/v0' );
+	const client = new REST();
 	const anon = action.getAnon();
 
 	before( async () => {
