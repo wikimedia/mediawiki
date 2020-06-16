@@ -38,10 +38,14 @@ class UserFactory implements IDBAccessObject {
 	/**
 	 * @see User::newFromName
 	 * @param string $name
-	 * @param string $validate
+	 * @param string $validate Validation strategy, one of the UserNameUtils::RIGOR_*
+	 *  constants. For no validation, use UserNameUtils::RIGOR_NONE.
 	 * @return User|bool
 	 */
-	public function newFromName( string $name, string $validate = 'valid' ) {
+	public function newFromName(
+		string $name,
+		string $validate = UserNameUtils::RIGOR_VALID
+	) {
 		return User::newFromName( $name, $validate );
 	}
 
