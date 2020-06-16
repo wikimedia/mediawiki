@@ -65,12 +65,12 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $result->expected, $result->actual );
 	}
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		$this->ptTeardownScope = $this->ptRunner->staticSetup();
 		$this->hideDeprecated( 'Hooks::clear' );
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );
 		}

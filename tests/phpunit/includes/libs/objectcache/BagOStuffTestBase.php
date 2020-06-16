@@ -492,7 +492,7 @@ abstract class BagOStuffTestBase extends MediaWikiTestCase {
 		$this->assertTrue( $this->cache->unlock( $key2 ) );
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) );
 		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) . ':lock' );
 

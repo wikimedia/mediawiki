@@ -437,7 +437,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		Title::clearCaches();
 		parent::tearDown();
 	}

@@ -138,7 +138,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 		}
 	}
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		wfDebug( __METHOD__ );
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
@@ -162,7 +162,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 		$this->ptTeardownScope = $teardown;
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		wfDebug( __METHOD__ );
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );

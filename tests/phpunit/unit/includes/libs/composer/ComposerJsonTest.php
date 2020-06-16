@@ -4,7 +4,7 @@ class ComposerJsonTest extends PHPUnit\Framework\TestCase {
 
 	private $json, $json2;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->json = __DIR__ . "/../../../../data/composer/composer.json";
 		$this->json2 = __DIR__ . "/../../../../data/composer/new-composer.json";

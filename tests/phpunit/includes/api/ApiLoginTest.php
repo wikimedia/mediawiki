@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ApiLogin
  */
 class ApiLoginTest extends ApiTestCase {
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'bot_passwords';

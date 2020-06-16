@@ -38,7 +38,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 	/** @var Config */
 	protected $config;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->context = new RequestContext();
 		$this->context->setTitle( Title::newFromText( self::class ) );

@@ -4,7 +4,7 @@ use Wikimedia\TestingAccessWrapper;
 
 class ImagePageTest extends MediaWikiMediaTestCase {
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		$this->setMwGlobals( 'wgImageLimits', [
 			[ 320, 240 ],
 			[ 640, 480 ],

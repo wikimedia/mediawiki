@@ -31,7 +31,7 @@ use MediaWiki\MediaWikiServices;
  */
 class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

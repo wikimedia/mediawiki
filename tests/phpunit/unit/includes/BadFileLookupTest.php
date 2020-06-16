@@ -113,7 +113,7 @@ WIKITEXT;
 		return MediaWikiServices::getInstance()->getHookContainer();
 	}
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->setTemporaryHook( 'BadImage', __CLASS__ . '::badImageHook' );

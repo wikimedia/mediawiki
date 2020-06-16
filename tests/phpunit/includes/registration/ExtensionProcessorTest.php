@@ -9,7 +9,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 
 	private $dir, $dirname;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->dir = $this->getCurrentDir();
 		$this->dirname = dirname( $this->dir );

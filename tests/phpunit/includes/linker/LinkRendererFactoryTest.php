@@ -37,7 +37,7 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	 */
 	private $hookContainer;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$services = MediaWikiServices::getInstance();

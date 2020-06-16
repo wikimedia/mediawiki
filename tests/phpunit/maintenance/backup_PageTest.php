@@ -32,7 +32,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->addTestPages();
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		parent::tearDown();
 
 		if ( isset( $this->streamingLoadBalancer ) ) {

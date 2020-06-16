@@ -19,13 +19,13 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	/** @var BlockRestrictionStore */
 	protected $blockRestrictionStore;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		parent::tearDown();
 		$this->resetTables();
 	}
