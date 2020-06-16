@@ -5,5 +5,12 @@
 		"services": [
 			"ContributionsLookup"
 		]
+	},
+	{
+		"path": "/coredev/v0/me/contributions/count",
+		"class": "MediaWiki\\Rest\\Handler\\ContributionsCountHandler",
+		"services": [
+			"ContributionsLookup"
+		]
 	}
 ]

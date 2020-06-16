@@ -15,8 +15,12 @@ describe( 'GET /me/contributions', () => {
 	const expectedRevisionDeltas = { 1: 1, 2: -4, 3: 1, 4: 4, 5: -1 };
 
 	before( async () => {
-		samAction = await action.user( 'sam', [ 'suppress' ] );
-		arnoldAction = await action.user( 'arnold' );
+		// Sam will be the same Sam for all tests, even in other files
+		samAction = await action.user( 'Sam', [ 'suppress' ] );
+
+		// Arnold will be a different Arnold every time
+		arnoldAction = await action.getAnon();
+		await arnoldAction.account( 'Arnold_' );
 		arnold = clientFactory.getRESTClient( basePath, arnoldAction );
 
 		const oddEditsPage = utils.title( 'UserContribution_' );
