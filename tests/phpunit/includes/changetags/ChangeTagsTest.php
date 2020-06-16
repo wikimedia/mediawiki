@@ -8,7 +8,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ChangeTagsTest extends MediaWikiTestCase {
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'change_tag';

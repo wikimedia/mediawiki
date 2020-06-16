@@ -29,7 +29,7 @@ class ExtensionJsonValidationTest extends PHPUnit\Framework\TestCase {
 	 */
 	protected $validator;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->validator = new ExtensionJsonValidator( [ $this, 'markTestSkipped' ] );

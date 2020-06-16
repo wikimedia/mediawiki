@@ -8,7 +8,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgServer' => 'http://acme.test',

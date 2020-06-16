@@ -13,7 +13,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	protected $user_comment;
 	protected $context;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		$this->title = Title::newFromText( 'SomeTitle' );

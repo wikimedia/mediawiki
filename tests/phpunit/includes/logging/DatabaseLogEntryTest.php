@@ -4,7 +4,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 class DatabaseLogEntryTest extends MediaWikiTestCase {
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 
 		// These services cache their joins
@@ -12,7 +12,7 @@ class DatabaseLogEntryTest extends MediaWikiTestCase {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'ActorMigration' );
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		parent::tearDown();
 
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'CommentStore' );

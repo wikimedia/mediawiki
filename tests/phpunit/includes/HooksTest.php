@@ -6,7 +6,7 @@ use Wikimedia\ScopedCallback;
 
 class HooksTest extends MediaWikiTestCase {
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		global $wgHooks;
 		parent::setUp();
 		unset( $wgHooks['MediaWikiHooksTest001'] );

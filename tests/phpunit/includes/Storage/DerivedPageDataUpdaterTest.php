@@ -33,7 +33,7 @@ use WikitextContent;
  */
 class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
 
-	public function setUp(): void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'page';

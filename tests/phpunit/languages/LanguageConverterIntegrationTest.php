@@ -22,7 +22,7 @@ class LanguageConverterIntegrationTest extends MediaWikiTestCase {
 		return $this->factory->getLanguageConverter( $language );
 	}
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		$this->factory = new LanguageConverterFactory( false, function () {
 			$language = MediaWikiServices::getInstance()->getContentLanguage();
 		} );

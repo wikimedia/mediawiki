@@ -14,7 +14,7 @@ use PHPUnit\Framework\AssertionFailedError;
 class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 	use MediaWikiCoversValidator;
 
-	public function setUp(): void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'user_newtalk';
 	}

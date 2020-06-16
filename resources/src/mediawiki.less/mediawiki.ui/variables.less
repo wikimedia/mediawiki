@@ -20,10 +20,11 @@
  */
 @width-breakpoint-desktop: 1000px;
 
-// Colors for use in mediawiki.ui and elsewhere
+// Colors for use in mediawiki.ui
 
-// Although this defines many shades, be parsimonious in your own use of grays.
-// Prefer semantic color names such as `@colorText` below.
+// All `@colorGray*` variables are only for reference.
+// They will be replaced by WikimediaUI Base variables.
+// Use semantic color names such as `@color-base` below.
 @colorGray1: #000; // darkest
 @colorGray2: #202122;
 @colorGray4: #404244;
@@ -33,9 +34,8 @@
 @colorGray12: #c8ccd1;
 @colorGray14: #eaecf0;
 @colorGray15: #f8f9fa; // lightest
-@color-base--inverted: #fff;
 
-// Semantic colors
+// Background colors
 @background-color-base: #fff;
 // Blue; for contextual use of a continuing action
 @colorProgressive: #36c;
@@ -57,26 +57,26 @@
 // Used in mixins to lighten contextual colors by the same amount (eg. hover)
 @colorLightenPercentage: 13.5%;
 
-// Text colors
-@colorText: @colorGray2;
-@colorTextEmphasized: @colorGray1;
-@colorTextLight: @colorGray5;
+// Colors
+@color-base: @colorGray2;
+@color-base--emphasized: @colorGray1;
+@color-base--inverted: #fff;
+@color-base--subtle: @colorGray7;
 @colorButtonText: @colorGray2;
 @colorButtonTextHighlight: @colorGray4;
 @colorButtonTextActive: @colorGray1;
 @colorDisabledText: @colorGray7;
-@color-base--subtle: @colorGray7;
 
 // Messages
 // Messages: Error
 @backgroundColorError: #fee7e6;
-// Use only for inlined messages, boxed messages require `@colorTextEmphasized` for
+// Use only for inlined messages, boxed messages require `@color-base--emphasized` for
 // minimum contrast ratio.
 @colorError: #d33;
 @borderColorError: @colorError;
 // Messages: Warning
 @backgroundColorWarning: #fef6e7;
-@colorWarning: @colorTextEmphasized;
+@colorWarning: @color-base--emphasized;
 @borderColorWarning: #fc3;
 // Messages: Success
 @backgroundColorSuccess: #d5fdf4;
@@ -126,6 +126,9 @@
  * Deprecated variables
  */
 // Deprecated in MW v1.35.0
+@colorText: @color-base;
+@colorTextEmphasized: @color-base--emphasized;
+@colorTextLight: @color-base--subtle;
 @colorBaseInverted: @color-base--inverted;
 @colorNeutral: @color-base--subtle;
 @colorFieldBorder: @border-color-base;

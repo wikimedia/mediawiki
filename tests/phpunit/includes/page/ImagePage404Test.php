@@ -8,7 +8,7 @@ class ImagePage404Test extends MediaWikiMediaTestCase {
 		return parent::getRepoOptions() + [ 'transformVia404' => true ];
 	}
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		$this->setMwGlobals( 'wgImageLimits', [
 			[ 320, 240 ],
 			[ 640, 480 ],

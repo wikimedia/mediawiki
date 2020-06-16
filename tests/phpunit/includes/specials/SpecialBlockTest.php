@@ -23,7 +23,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 	}
 
-	public function tearDown() : void {
+	protected function tearDown() : void {
 		parent::tearDown();
 		$this->resetTables();
 	}

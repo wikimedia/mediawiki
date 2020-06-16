@@ -325,12 +325,7 @@ class XmlTypeCheck {
 		$callbackReturn = false;
 
 		if ( is_callable( $this->filterCallback ) ) {
-			$callbackReturn = call_user_func(
-				$this->filterCallback,
-				$name,
-				$attribs,
-				$data
-			);
+			$callbackReturn = ( $this->filterCallback )( $name, $attribs, $data );
 		}
 		if ( $callbackReturn ) {
 			// Filter hit!
@@ -354,8 +349,8 @@ class XmlTypeCheck {
 	private function processingInstructionHandler( $target, $data ) {
 		$callbackReturn = false;
 		if ( $this->parserOptions['processing_instruction_handler'] ) {
-			$callbackReturn = call_user_func(
-				$this->parserOptions['processing_instruction_handler'],
+			// @phan-suppress-next-line PhanTypeInvalidCallable false positive
+			$callbackReturn = $this->parserOptions['processing_instruction_handler'](
 				$target,
 				$data
 			);
@@ -383,7 +378,7 @@ class XmlTypeCheck {
 		$callbackReturn = false;
 
 		if ( $generalCallback ) {
-			$callbackReturn = call_user_func( $generalCallback, $dtd );
+			$callbackReturn = $generalCallback( $dtd );
 		}
 		if ( $callbackReturn ) {
 			// Filter hit!
@@ -394,8 +389,7 @@ class XmlTypeCheck {
 
 		$parsedDTD = $this->parseDTD( $dtd );
 		if ( $externalCallback && isset( $parsedDTD['type'] ) ) {
-			$callbackReturn = call_user_func(
-				$externalCallback,
+			$callbackReturn = $externalCallback(
 				$parsedDTD['type'],
 				$parsedDTD['publicid'] ?? null,
 				$parsedDTD['systemid'] ?? null

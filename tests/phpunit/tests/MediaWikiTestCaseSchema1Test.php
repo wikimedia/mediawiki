@@ -12,7 +12,7 @@ class MediaWikiTestCaseSchema1Test extends MediaWikiTestCase {
 
 	public static $hasRun = false;
 
-	public function setUp() : void {
+	protected function setUp() : void {
 		parent::setUp();
 		// FIXME: fails under postgres
 		$this->markTestSkippedIfDbType( 'postgres' );
