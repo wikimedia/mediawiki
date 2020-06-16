@@ -28,6 +28,7 @@ use MediaHandlerFactory;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
+use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
@@ -531,6 +532,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlockManager() : BlockManager {
 		return $this->getService( 'BlockManager' );
+	}
+
+	/**
+	 * @since 1.35
+	 * @return BlockPermissionCheckerFactory
+	 */
+	public function getBlockPermissionCheckerFactory() : BlockPermissionCheckerFactory {
+		return $this->getService( 'BlockPermissionCheckerFactory' );
 	}
 
 	/**
