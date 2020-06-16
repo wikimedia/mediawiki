@@ -1,12 +1,10 @@
 {
 	"extends": [
-		"wikimedia/server"
+		"wikimedia/server",
+		"wikimedia/mocha"
 	],
-	"env": {
-		"mocha": true
-	},
 	"rules": {
 		"camelcase": "off",
-		"require-atomic-updates": "off"
+		"mocha/no-setup-in-describe": "off"
 	}
 }

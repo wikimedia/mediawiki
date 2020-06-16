@@ -91,7 +91,7 @@ describe( 'Page History', () => {
 
 	} );
 
-	describe( 'Revision deletion and un-deletion', async () => {
+	describe( 'Revision deletion and un-deletion', () => {
 		let edits;
 		it( 'Should get total number of edits and editors when edits are hidden and shown', async () => {
 			edits = await setupDeletedPage();
