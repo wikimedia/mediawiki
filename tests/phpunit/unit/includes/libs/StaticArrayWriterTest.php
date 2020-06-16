@@ -30,6 +30,7 @@ class StaticArrayWriterTest extends PHPUnit\Framework\TestCase {
 			'baz' => 'rawr',
 			"they're" => '"quoted properly"',
 			'nested' => [ 'elements', 'work' ],
+			'intlike' => [ '050' => true, '101' => true, '221B' => true ],
 			'and' => [ 'these' => 'do too' ],
 		];
 		$writer = new StaticArrayWriter();
@@ -46,6 +47,11 @@ return [
 	'nested' => [
 		0 => 'elements',
 		1 => 'work',
+	],
+	'intlike' => [
+		'050' => true,
+		101 => true,
+		'221B' => true,
 	],
 	'and' => [
 		'these' => 'do too',
