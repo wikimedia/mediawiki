@@ -940,8 +940,9 @@ because of Phabricator reports.
   WikiPage::doDeleteArticleReal.
 * Article::getComment is deprecated. Instead, use WikiPage::getComment.
 * Article::getCreator is deprecated. Instead, use WikiPage::getCreator.
-* Article::updateRevisionOn and Article::updateIfNewerOn are deprecated.
-  Instead, use WikiPage::updateRevisionOn.
+* Article::updateRevisionOn() and ::updateIfNewerOn(), and
+  WikiPage::updateIfNewerOn() are deprecated. Instead, use
+  WikiPage::updateRevisionOn().
 * Article::getUser is deprecated. Instead, use WikiPage::getUser.
 * Article::getUserText is deprecated. Instead, use WikiPage::getUserText.
 * Article::prepareContentForEdit is hard deprecated. Instead, use

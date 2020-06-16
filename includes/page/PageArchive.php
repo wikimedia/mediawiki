@@ -837,9 +837,31 @@ class PageArchive {
 		// Was anything restored at all?
 		if ( $restored ) {
 			$created = (bool)$newid;
-			// Attach the latest revision to the page...
-			// XXX: updateRevisionOn should probably move into a PageStore service.
-			$wasnew = $article->updateIfNewerOn( $dbw, $legacyRevision );
+
+			$latestRevId = $article->getLatest();
+			if ( $latestRevId ) {
+				// If not found (false), cast to 0 so that the page is updated
+				// Just to be on the safe side, even though it should always be found
+				$latestRevTimestamp = (int)$revisionStore->getTimestampFromId(
+					$latestRevId,
+					RevisionStore::READ_LATEST
+				);
+			} else {
+				$latestRevTimestamp = 0;
+			}
+
+			if ( $revision->getTimestamp() > $latestRevTimestamp ) {
+				// Attach the latest revision to the page...
+				// XXX: updateRevisionOn should probably move into a PageStore service.
+				$wasnew = $article->updateRevisionOn(
+					$dbw,
+					$revision,
+					$latestRevId
+				);
+			} else {
+				$wasnew = false;
+			}
+
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
 				// TODO: use DerivedPageDataUpdater from If610c68f4912e!
