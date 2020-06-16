@@ -4826,11 +4826,6 @@ $wgCentralIdLookupProvider = 'local';
  *		(contained within) the username.
  *	- PasswordCannotMatchBlacklist - Username/password combination cannot
  *		match a blacklist of default passwords used by MediaWiki in the past.
- *	- PasswordCannotBePopular - Blacklist passwords which are known to be
- *		commonly chosen. Set to integer n to ban the top n passwords.
- *		If you want to ban all common passwords on file, use the
- *		PHP_INT_MAX constant.
- *		Deprecated since 1.33. Use PasswordNotInCommonList instead.
  *	- PasswordNotInLargeBlacklist - Password not in best practices list of
  *		100,000 commonly used passwords. Due to the size of the list this
  *		is a probabilistic test.
@@ -4888,7 +4883,6 @@ $wgPasswordPolicy = [
 			'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
 		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
-		'PasswordCannotBePopular' => 'PasswordPolicyChecks::checkPopularPasswordBlacklist',
 		'PasswordNotInLargeBlacklist' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
 		'PasswordNotInCommonList' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
 	],
@@ -9181,20 +9175,6 @@ $wgVirtualRestConfig = [
  * @since 1.26
  */
 $wgSearchRunSuggestedQuery = true;
-
-/**
- * Where popular password file is located.
- *
- * Default in core contains 10,000 most popular. This config
- * allows you to change which file, in case you want to generate
- * a password file with > 10000 entries in it.
- *
- * @see maintenance/createCommonPasswordCdb.php
- * @since 1.27
- * @deprecated since 1.33
- * @var string path to file
- */
-$wgPopularPasswordFile = __DIR__ . '/password/commonpasswords.cdb';
 
 /*
  * Max time (in seconds) a user-generated transaction can spend in writes.

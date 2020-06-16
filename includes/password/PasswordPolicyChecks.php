@@ -20,7 +20,6 @@
  * @file
  */
 
-use Cdb\Reader as CdbReader;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\CommonPasswords\CommonPasswords;
 
@@ -150,55 +149,6 @@ class PasswordPolicyChecks {
 			// Example from ApiChangeAuthenticationRequest
 			if ( hash_equals( 'ExamplePassword', $password ) ) {
 				$status->error( 'password-login-forbidden' );
-			}
-		}
-		return $status;
-	}
-
-	/**
-	 * Ensure that password isn't in top X most popular passwords, as defined by
-	 * $wgPopularPasswordFile.
-	 *
-	 * @param int $policyVal Cut off to use. Will automatically shrink to the max
-	 *   supported for error messages if set to more than max number of passwords on file,
-	 *   so you can use the PHP_INT_MAX constant here safely.
-	 * @param User $user
-	 * @param string $password
-	 * @since 1.27
-	 * @deprecated since 1.33
-	 * @return Status
-	 * @see $wgPopularPasswordFile
-	 */
-	public static function checkPopularPasswordBlacklist( $policyVal, User $user, $password ) {
-		global $wgPopularPasswordFile, $wgSitename;
-		$status = Status::newGood();
-		if ( $policyVal > 0 ) {
-			$langEn = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
-			$passwordKey = $langEn->lc( trim( $password ) );
-
-			// People often use the name of the current site, which won't be
-			// in the common password file. Also check '' for people who use
-			// just whitespace.
-			$sitename = $langEn->lc( trim( $wgSitename ) );
-			$hardcodedCommonPasswords = [ '', 'wiki', 'mediawiki', $sitename ];
-			if ( in_array( $passwordKey, $hardcodedCommonPasswords ) ) {
-				$status->error( 'passwordtoopopular' );
-				return $status;
-			}
-
-			// This could throw an exception, but there's not a good way
-			// of failing gracefully, if say the file is missing, so just
-			// let the exception fall through.
-			// Format of cdb file is mapping password => popularity rank.
-			// See maintenance/createCommonPasswordCdb.php
-			$db = CdbReader::open( $wgPopularPasswordFile );
-
-			$res = $db->get( $passwordKey );
-			if ( $res && (int)$res <= $policyVal ) {
-				// Note: If you want to find the true number of common
-				// passwords stored (for reporting the error), you have to take
-				// the max of the policyVal and $db->get( '_TOTALENTRIES' ).
-				$status->error( 'passwordtoopopular' );
 			}
 		}
 		return $status;
