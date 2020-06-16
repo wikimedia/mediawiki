@@ -1409,6 +1409,7 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
+	 * @deprecated since 1.35
 	 * @param string $oldver
 	 * @param string $desc
 	 * @param string $license
@@ -1421,6 +1422,7 @@ class LocalFile extends File {
 	 */
 	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( !$user ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -1441,6 +1443,7 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
+	 * @deprecated since 1.35
 	 * @param string $oldver
 	 * @param string $comment
 	 * @param string $pageText
@@ -1457,11 +1460,44 @@ class LocalFile extends File {
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
+		// TODO check all callers and hard deprecate
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
 		}
+		return $this->recordUpload3(
+			$oldver, $comment, $pageText,
+			$user, $props, $timestamp, $tags,
+			$createNullRevision, $revert
+		);
+	}
 
+	/**
+	 * Record a file upload in the upload log and the image table (version 3)
+	 * @since 1.35
+	 * @param string $oldver
+	 * @param string $comment
+	 * @param string $pageText
+	 * @param User $user
+	 * @param bool|array $props
+	 * @param string|bool $timestamp
+	 * @param string[] $tags
+	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
+	 *   upload, see T193621
+	 * @param bool $revert If this file upload is a revert
+	 * @return Status
+	 */
+	public function recordUpload3(
+		string $oldver,
+		string $comment,
+		string $pageText,
+		User $user,
+		$props = false,
+		$timestamp = false,
+		$tags = [],
+		bool $createNullRevision = true,
+		bool $revert = false
+	) : Status {
 		$dbw = $this->repo->getMasterDB();
 
 		# Imports or such might force a certain timestamp; otherwise we generate
