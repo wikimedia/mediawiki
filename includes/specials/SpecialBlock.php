@@ -1153,57 +1153,17 @@ class SpecialBlock extends FormSpecialPage {
 	 *
 	 * T208965: Partially blocked admins can block and unblock others as normal.
 	 *
-	 * @param User|int|string|null $target Target to block or unblock; could be a User object,
-	 *   or a user ID or username, or null when the target is not known yet (e.g. when
+	 * @param User|string|null $target Target to block or unblock; could be a User object,
+	 *   or username/IP address, or null when the target is not known yet (e.g. when
 	 *   displaying Special:Block)
 	 * @param User $performer User doing the request
 	 * @return bool|string True or error message key
 	 */
 	public static function checkUnblockSelf( $target, User $performer ) {
-		if ( is_int( $target ) ) {
-			$target = User::newFromId( $target );
-		} elseif ( is_string( $target ) ) {
-			$target = User::newFromName( $target );
-		}
-		if ( $performer->getBlock() ) {
-			if ( !$performer->getBlock()->isSitewide() ) {
-				# Allow user to block other users while they are subject to partial block
-				return true;
-			}
-
-			if ( $target instanceof User && $target->getId() == $performer->getId() ) {
-				# User is trying to unblock themselves
-				if ( MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $performer, 'unblockself' )
-				) {
-					return true;
-					# User blocked themselves and is now trying to reverse it
-				} elseif ( $performer->blockedBy() === $performer->getName() ) {
-					return true;
-				} else {
-					return 'ipbnounblockself';
-				}
-			} elseif (
-				$target instanceof User &&
-				$performer->getBlock() instanceof DatabaseBlock &&
-				$performer->getBlock()->getBy() &&
-				$performer->getBlock()->getBy() === $target->getId()
-			) {
-				// Allow users to block the user that blocked them.
-				// This is to prevent a situation where a malicious user
-				// blocks all other users. This way, the non-malicious
-				// user can block the malicious user back, resulting
-				// in a stalemate.
-				return true;
-			} else {
-				// User is trying to block/unblock someone else while
-				// they have sitewide block on themselves.
-				return 'ipbblocked';
-			}
-		} else {
-			return true;
-		}
+		return MediaWikiServices::getInstance()
+			->getBlockPermissionCheckerFactory()
+			->newBlockPermissionChecker( $target, $performer )
+			->checkBlockPermissions();
 	}
 
 	/**

@@ -49,6 +49,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\BadFileLookup;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
+use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
@@ -172,6 +173,14 @@ return [
 			$services->getPermissionManager(),
 			LoggerFactory::getInstance( 'BlockManager' ),
 			$services->getHookContainer()
+		);
+	},
+
+	'BlockPermissionCheckerFactory' => function (
+		MediaWikiServices $services
+	) : BlockPermissionCheckerFactory {
+		return new BlockPermissionCheckerFactory(
+			$services->getPermissionManager()
 		);
 	},
 
