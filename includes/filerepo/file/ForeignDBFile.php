@@ -51,6 +51,7 @@ class ForeignDBFile extends LocalFile {
 	}
 
 	/**
+	 * @deprecated since 1.35
 	 * @param string $oldver
 	 * @param string $desc
 	 * @param string $license
@@ -64,6 +65,7 @@ class ForeignDBFile extends LocalFile {
 	 */
 	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->readOnlyError();
 	}
 

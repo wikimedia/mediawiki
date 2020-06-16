@@ -241,17 +241,32 @@ class PageArchive {
 	/**
 	 * Return a Revision object containing data for the deleted revision.
 	 *
-	 * @deprecated since 1.32, use getArchivedRevisionRecord() instead.
+	 * @deprecated since 1.32 (soft), 1.35 (hard)
+	 * Use getArchivedRevisionRecord() instead if a revision id is available
 	 *
 	 * @param string $timestamp
 	 * @return Revision|null
 	 */
 	public function getRevision( $timestamp ) {
+		wfDeprecated( __METHOD__, '1.32' );
+		$revRecord = $this->getRevisionRecordByTimestamp( $timestamp );
+		return $revRecord ? new Revision( $revRecord ) : null;
+	}
+
+	/**
+	 * Return a RevisionRecord object containing data for the deleted revision.
+	 *
+	 * @internal only for use in SpecialUndelete
+	 *
+	 * @param string $timestamp
+	 * @return RevisionRecord|null
+	 */
+	public function getRevisionRecordByTimestamp( $timestamp ) {
 		$dbr = wfGetDB( DB_REPLICA );
 		$rec = $this->getRevisionByConditions(
 			[ 'ar_timestamp' => $dbr->timestamp( $timestamp ) ]
 		);
-		return $rec ? new Revision( $rec ) : null;
+		return $rec;
 	}
 
 	/**

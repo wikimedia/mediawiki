@@ -274,7 +274,11 @@ class SpecialUndelete extends SpecialPage {
 		foreach ( $this->getRequest()->getValues() as $key => $val ) {
 			$matches = [];
 			if ( preg_match( "/^ts(\d{14})$/", $key, $matches ) ) {
-				$revisions[$archive->getRevision( $matches[1] )->getId()] = 1;
+				$revisionRecord = $archive->getRevisionRecordByTimestamp( $matches[1] );
+				if ( $revisionRecord ) {
+					// Can return null
+					$revisions[ $revisionRecord->getId() ] = 1;
+				}
 			}
 		}
 
