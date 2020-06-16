@@ -95,11 +95,12 @@ class BlockPermissionChecker {
 		) {
 			// Blocked admin is trying to alter their own block
 
-			// Self-blocked admins can always remove their block
+			// Self-blocked admins can always remove or alter their block
 			if ( $this->performer->blockedBy() === $this->performer->getName() ) {
 				return true;
 			}
 
+			// Users with 'unblockself' right can unblock themselves or alter their own block
 			if ( $this->permissionManager->userHasRight( $this->performer, 'unblockself' ) ) {
 				return true;
 			} else {
