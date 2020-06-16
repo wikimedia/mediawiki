@@ -1422,13 +1422,13 @@ class LocalFile extends File {
 			// Once the second operation goes through, then the current version was
 			// updated and we must therefore update the DB too.
 			$oldver = $status->value;
-			$uploadStatus = $this->recordUpload2(
+			$uploadStatus = $this->recordUpload3(
 				$oldver,
 				$comment,
 				$pageText,
+				$user,
 				$props,
 				$timestamp,
-				$user,
 				$tags,
 				$createNullRevision,
 				$revert
@@ -1483,7 +1483,7 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35 (hard deprecated since 1.36)
 	 * @param string $oldver
 	 * @param string $comment
 	 * @param string $pageText
@@ -1500,7 +1500,7 @@ class LocalFile extends File {
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
-		// TODO check all callers and hard deprecate
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
