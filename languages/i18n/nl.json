@@ -565,7 +565,7 @@
 	"passwordtooshort": "Wachtwoorden moeten uit minstens {{PLURAL:$1|$1 teken|$1 tekens}} bestaan.",
 	"passwordtoolong": "Wachtwoorden kunnen niet langer zijn dan {{PLURAL:$1|één teken|$1 tekens}}.",
 	"passwordtoopopular": "Veel gekozen wachtwoorden kunnen niet worden gebruikt. Kies een wachtwoord dat lastiger kan worden geraden.",
-	"passwordinlargeblacklist": "Het ingevoerde wachtwoord bevindt zich in een lijst met gangbare wachtwoorden. Kies een origineler en derhalve veiliger wachtwoord.",
+	"passwordincommonlist": "Het ingevoerde wachtwoord bevindt zich in een lijst met gangbare wachtwoorden. Kies een origineler en derhalve veiliger wachtwoord.",
 	"password-name-match": "Uw wachtwoord en uw gebruikersnaam mogen niet overeenkomen.",
 	"password-substring-username-match": "Uw wachtwoord mag niet voorkomen in uw gebruikersnaam.",
 	"password-login-forbidden": "Het gebruik van deze gebruikersnaam met dit wachtwoord is niet toegestaan.",

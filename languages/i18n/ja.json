@@ -570,7 +570,7 @@
 	"passwordtooshort": "パスワードは {{PLURAL:$1|$1 文字}}以上にしてください。",
 	"passwordtoolong": "パスワードは {{PLURAL:$1|$1 文字}}以下にしてください。",
 	"passwordtoopopular": "選択したパスワードはありきたりであるため使用することはできません。簡単に思いつかないようなパスワードを選択してください。",
-	"passwordinlargeblacklist": "入力されたパスワードは、非常に一般的に使用されているパスワードのリストにあります。よりユニークなパスワードを選択してください。",
+	"passwordincommonlist": "入力されたパスワードは、非常に一般的に使用されているパスワードのリストにあります。よりユニークなパスワードを選択してください。",
 	"password-name-match": "パスワードは利用者名とは異なる必要があります。",
 	"password-substring-username-match": "パスワードに利用者名を含めないでください。",
 	"password-login-forbidden": "この利用者名とパスワードの使用は禁止されています。",

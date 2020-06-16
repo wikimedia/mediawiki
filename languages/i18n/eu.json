@@ -498,7 +498,7 @@
 	"passwordtooshort": "Pasahitzek {{PLURAL:$1|karaktere 1|$1 karaktere}} gutxienez eduki behar dituzte.",
 	"passwordtoolong": "Pasahitzak ezin dira {{PLURAL:$1|karaktere bat|$1 karaktere}} baino luzeagoak izan.",
 	"passwordtoopopular": "Ezin dira pasahitz ohikoenak erabili. Aukera ezazu asmatzeko zailagoa den pasahitz bat.",
-	"passwordinlargeblacklist": "Sartu duzun pasahitza pasahitza oso erabilien zerrenda batean dago. Mesedez, erabili ezazu hain ohikoa ez den bat.",
+	"passwordincommonlist": "Sartu duzun pasahitza pasahitza oso erabilien zerrenda batean dago. Mesedez, erabili ezazu hain ohikoa ez den bat.",
 	"password-name-match": "Zure pasahitza ezin da zure erabiltzaile-izen bera izan.",
 	"password-substring-username-match": "Zure pasahitza ez da agertuko zure erabiltzaile-izena gabe",
 	"password-login-forbidden": "Erabiltzaile izen eta pasahitz hau erabiltzea debekaturik dago.",

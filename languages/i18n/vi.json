@@ -507,7 +507,7 @@
 	"passwordtooshort": "Mật khẩu phải có ít nhất {{PLURAL:$1|1 ký tự|$1 ký tự}}.",
 	"passwordtoolong": "Mật khẩu không thể dài hơn {{PLURAL:$1|1 ký tự|$1 ký tự}}.",
 	"passwordtoopopular": "Bạn không thể sử dụng một mật khẩu phổ biến. Bạn nên chọn một loại mật khẩu khó đoán.",
-	"passwordinlargeblacklist": "Mật khẩu vừa nhập là một mật khẩu rất phổ biến. Vui lòng chọn một mật khẩu độc nhất.",
+	"passwordincommonlist": "Mật khẩu vừa nhập là một mật khẩu rất phổ biến. Vui lòng chọn một mật khẩu độc nhất.",
 	"password-name-match": "Mật khẩu của bạn phải khác với tên người dùng của bạn.",
 	"password-substring-username-match": "Bạn không được sử dụng tên người dùng làm một bộ phận của mật khẩu.",
 	"password-login-forbidden": "Tên đăng nhập và mật khẩu này đã bị cấm không được sử dụng.",

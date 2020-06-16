@@ -517,7 +517,7 @@
 	"passwordtooshort": "Pasvortoj devas esti longaj almenaŭ  $1 {{PLURAL:$1|1 signon|$1 signojn}}.",
 	"passwordtoolong": "Pasvortoj ne povas esti pli longaj ol {{PLURAL:$1|1 signo|$1 signoj}}.",
 	"passwordtoopopular": "Ne eblas uzi kutimajn pasvortojn. Bonvolu uzi pasvorton, kiu estas malpli facile divenebla.",
-	"passwordinlargeblacklist": "La enigita pasvorto estas en listo de tre ofte uzita pasvortojn. Bonvolu elekti pli unikan pasvorton.",
+	"passwordincommonlist": "La enigita pasvorto estas en listo de tre ofte uzita pasvortojn. Bonvolu elekti pli unikan pasvorton.",
 	"password-name-match": "Via pasvorto devas nepre malsami vian uzantnomon.",
 	"password-substring-username-match": "Via pasvorto ne rajtas esti en via uzantonomo.",
 	"password-login-forbidden": "Estas malpermesite uzi ĉi tiun uzantnomon kaj pasvorton.",

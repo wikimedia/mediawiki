@@ -476,7 +476,7 @@
 	"passwordtooshort": "'E password hann'avé minimo {{PLURAL:$1|nu carattere|$1 carattere}}.",
 	"passwordtoolong": "'E password nun ponno essere cchiù luonghe 'e {{PLURAL:$1|nu carattere|$1 carattere}}.",
 	"passwordtoopopular": "'E parole comune nun se ponno ausà comme password. Scigliteve na password cchiù tosta.",
-	"passwordinlargeblacklist": "'A password c'aie scritto sta int'a lista 'e password cchiù ausate. Pe piacere, piglia na password cchiù speciàle.",
+	"passwordincommonlist": "'A password c'aie scritto sta int'a lista 'e password cchiù ausate. Pe piacere, piglia na password cchiù speciàle.",
 	"password-name-match": "'A password adda essere diverza 'a 'o nomme utente.",
 	"password-login-forbidden": "L'uso 'e stu nomme utente e password è stato proibito.",
 	"mailmypassword": "Riabbìa 'a password",

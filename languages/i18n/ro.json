@@ -495,7 +495,7 @@
 	"passwordtooshort": "Parola trebuie să aibă cel puțin {{PLURAL:$1|1 caracter|$1 caractere|$1 de caractere}}.",
 	"passwordtoolong": "Parolele nu pot fi mai lungi de {{PLURAL:$1|un caracter|$1 caractere|$1 de caractere}}.",
 	"passwordtoopopular": "Parolele comune nu pot fi utilizate. Alegeți o parolă mai greu de ghicit.",
-	"passwordinlargeblacklist": "Parola introdusă este inclusă într-o listă de parole des folosite. Vă rugăm să alegeți o parolă diferită.",
+	"passwordincommonlist": "Parola introdusă este inclusă într-o listă de parole des folosite. Vă rugăm să alegeți o parolă diferită.",
 	"password-name-match": "Parola dumneavoastră trebuie să fie diferită de numele de utilizator.",
 	"password-login-forbidden": "Utilizarea acestui nume de utilizator și a acestei parole este interzisă.",
 	"mailmypassword": "Resetează parola",

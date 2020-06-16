@@ -550,7 +550,7 @@
 	"passwordtooshort": "A palavra-passe deve ter no mínimo $1 {{PLURAL:$1|carácter|caracteres}}.",
 	"passwordtoolong": "A palavra-passe não pode exceder $1 {{PLURAL:$1|carácter|caracteres}}.",
 	"passwordtoopopular": "Não podem ser usadas palavras-passe vulgares. Escolha uma palavra-passe mais difícil de adivinhar, por favor.",
-	"passwordinlargeblacklist": "A palavra-passe que introduziu consta numa lista de palavras-passe usadas com muita frequência. Escolha uma palavra-passe menos vulgar, por favor.",
+	"passwordincommonlist": "A palavra-passe que introduziu consta numa lista de palavras-passe usadas com muita frequência. Escolha uma palavra-passe menos vulgar, por favor.",
 	"password-name-match": "A sua palavra-passe tem de ser diferente do seu nome de utilizador.",
 	"password-substring-username-match": "A sua palavra-passe não pode estar contida no seu nome de utilizador.",
 	"password-login-forbidden": "Foi proibido o uso deste nome de utilizador e palavra-passe.",

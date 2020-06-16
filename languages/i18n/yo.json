@@ -458,7 +458,7 @@
 	"passwordtooshort": "Ọ̀rọ̀ìpamọ́ kò gbọ́dọ̀ dín ju {{PLURAL:$1|àmìlẹ́tà kan|àmìlẹ́tà $1}} lọ.",
 	"passwordtoolong": "Àwọn àmììwọlé kò le pọ̀ ju {{PLURAL:$1|àmìlẹ́tà kan|àmìlẹ́tà $1}} lọ.",
 	"passwordtoopopular": "Ẹ kò le lo àwọn ọ̀rọ̀ìpamọ́ tó wọ́pọ̀. Ẹ jọ̀wọ́ ẹ mú ọ̀rọ̀ìpamọ́ tló ṣọ̀rọ láti fura sí.",
-	"passwordinlargeblacklist": "Ọ̀rọ̀ìpamọ́ tí ẹ kọ wà nínú àtòjọ àwọn ọ̀rọ̀ìpamọ́ tó wọ́pọ̀. Ẹ jọ̀wọ́ ẹ mú ọ̀rọ̀ìpamọ́ tó jẹ́ ìkan ṣoṣo.",
+	"passwordincommonlist": "Ọ̀rọ̀ìpamọ́ tí ẹ kọ wà nínú àtòjọ àwọn ọ̀rọ̀ìpamọ́ tó wọ́pọ̀. Ẹ jọ̀wọ́ ẹ mú ọ̀rọ̀ìpamọ́ tó jẹ́ ìkan ṣoṣo.",
 	"password-name-match": "Ọ̀rọ̀ìpamọ́ yín gbọ́dọ̀ yàtọ̀ sí orúkọ oníṣe yín.",
 	"password-login-forbidden": "Lílo orúkọ oníṣe àti ọ̀rọ̀ìpamọ́ yìí ti jẹ́ dídálẹ́kun.",
 	"mailmypassword": "Ìtúntò ọ̀rọ̀ìpamọ́",

@@ -479,7 +479,7 @@
 	"passwordtooshort": "Lozinka mora imati najmanje {{PLURAL:$1|1 znak|$1 znaka|$1 znakova}}.",
 	"passwordtoolong": "Lozinke ne mogu biti duže od {{PLURAL:$1|jednog znaka|$1 znaka|$1 znakova}}.",
 	"passwordtoopopular": "Ovo je često korištena lozinka i ne može se koristiti. Molimo Vas da izaberete jaču lozinku.",
-	"passwordinlargeblacklist": "Unesena lozinka nalazi se na spisku veoma često upotrebljavanih. Izaberite jedinstveniju lozinku.",
+	"passwordincommonlist": "Unesena lozinka nalazi se na spisku veoma često upotrebljavanih. Izaberite jedinstveniju lozinku.",
 	"password-name-match": "Vaša lozinka mora biti različita od Vašeg korisničkog imena.",
 	"password-substring-username-match": "Lozinka se ne smije nalaziti u korisničkom imenu.",
 	"password-login-forbidden": "Korištenje ovih korisničkih imena i šifara je zabranjeo.",

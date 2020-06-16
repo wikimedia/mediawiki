@@ -476,7 +476,7 @@
 	"passwordtooshort": "Les contraseñes han de tener polo menos {{PLURAL:$1|1 caráuter|$1 caráuteres}}.",
 	"passwordtoolong": "Les contraseñes nun puen ser mayores de {{PLURAL:$1|1 caráuter|$1 caráuteres}}.",
 	"passwordtoopopular": "Les contraseñes más escoyíes de vezu nun pueden usase. Escueye una contraseña más difícil d'aldovinar.",
-	"passwordinlargeblacklist": "La contraseña qu'escribisti ta na llista de contraseñes más usaes. Escueyi una contraseña menos corriente.",
+	"passwordincommonlist": "La contraseña qu'escribisti ta na llista de contraseñes más usaes. Escueyi una contraseña menos corriente.",
 	"password-name-match": "La contraseña tien de ser distinta del nome d'usuariu.",
 	"password-substring-username-match": "La contraseña nun tien d'apaecer dientro del to nome d'usuariu.",
 	"password-login-forbidden": "Ta torgao usar esti nome d'usuariu y contraseña.",

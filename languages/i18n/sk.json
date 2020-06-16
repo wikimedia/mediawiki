@@ -502,7 +502,7 @@
 	"passwordtooshort": "Heslo musí mať dĺžku aspoň $1 {{PLURAL:$1|znak|znaky|znakov}}.",
 	"passwordtoolong": "Heslá nemôžu byť dlhšie než {{PLURAL:$1|1 znak|$1 znaky|$1 znakov}}.",
 	"passwordtoopopular": "Nie je možné použiť priveľmi frekventované heslá. Zvoľte si, prosím, iné heslo, ktoré je zložitejšie uhádnuť.",
-	"passwordinlargeblacklist": "Zadané heslo je uvedené na zozname veľmi často používaných hesiel. Zvoľte si, prosím, unikátnejšie heslo.",
+	"passwordincommonlist": "Zadané heslo je uvedené na zozname veľmi často používaných hesiel. Zvoľte si, prosím, unikátnejšie heslo.",
 	"password-name-match": "Vaše heslo musí byť iné ako vaše používateľské meno.",
 	"password-substring-username-match": "Vaše heslo nesmie byť vo vašom používateľskom mene.",
 	"password-login-forbidden": "Použitie tohto používateľského mena a hesla bolo zakázané.",

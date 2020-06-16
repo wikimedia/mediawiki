@@ -493,7 +493,7 @@
 	"passwordtooshort": "Tava parole ir pārāk īsa.\nTajā jābūt vismaz {{PLURAL:$1|$1 zīmēm|1 zīmei|$1 zīmēm}}.",
 	"passwordtoolong": "Paroles nevar būt garākas par {{PLURAL:$1|$1 simboliem|$1 simbolu|$1 simboliem}}.",
 	"passwordtoopopular": "Bieži lietotas paroles nevar izmantot. Lūdzu, izvēlies paroli, ko ir grūtāk uzminēt.",
-	"passwordinlargeblacklist": "Ievadītā parole ir bieži izmantoto paroļu sarakstā. Lūdzu, izvēlies unikālāku paroli.",
+	"passwordincommonlist": "Ievadītā parole ir bieži izmantoto paroļu sarakstā. Lūdzu, izvēlies unikālāku paroli.",
 	"password-name-match": "Tava parole nedrīkst būt tāda pati kā tavs lietotājvārds.",
 	"password-substring-username-match": "Tava parole nedrīkst parādīties lietotājvārdā.",
 	"password-login-forbidden": "Šī lietotājvārda un paroles izmantošana ir aizliegta.",

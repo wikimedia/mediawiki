@@ -641,7 +641,7 @@
 	"passwordtooshort": "Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.",
 	"passwordtoolong": "Les mots de passe ne peuvent pas dépasser $1 caractère{{PLURAL:$1||s}}.",
 	"passwordtoopopular": "Les mots de passe trop courants ne peuvent pas être utilisés. Veuillez choisir un mot de passe plus difficile à deviner.",
-	"passwordinlargeblacklist": "Le mot de passe entré appartient à une liste très courante de mots de passe utilisés. Veuillez choisir un mot de passe plus unique.",
+	"passwordincommonlist": "Le mot de passe entré appartient à une liste très courante de mots de passe utilisés. Veuillez choisir un mot de passe plus unique.",
 	"password-name-match": "Votre mot de passe doit être différent de votre nom d’utilisateur.",
 	"password-substring-username-match": "Votre mot de passe ne doit pas apparaître dans votre nom d’utilisateur.",
 	"password-login-forbidden": "L’utilisation de ce nom d’utilisateur ou de ce mot de passe a été interdite.",

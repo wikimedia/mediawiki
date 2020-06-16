@@ -589,7 +589,7 @@
 	"passwordtooshort": "As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.",
 	"passwordtoolong": "Senhas não podem ser maiores do que {{PLURAL:$1|1 caractere|$1 caracteres}}.",
 	"passwordtoopopular": "Não podem ser usadas senha vulgares. Escolha uma palavra-passe mais difícil de adivinhar, por favor.",
-	"passwordinlargeblacklist": "A senha digitada está na lista de senhas comumente usadas. Por favor, escolha uma senha mais exclusiva.",
+	"passwordincommonlist": "A senha digitada está na lista de senhas comumente usadas. Por favor, escolha uma senha mais exclusiva.",
 	"password-name-match": "A sua senha deve ser diferente do seu nome de usuário.",
 	"password-substring-username-match": "Sua senha não deve aparecer dentro do seu nome de usuário.",
 	"password-login-forbidden": "O uso deste nome de usuário e senha foi desautorizado.",
