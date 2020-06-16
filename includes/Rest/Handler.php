@@ -86,12 +86,7 @@ abstract class Handler {
 	 */
 	protected function getRouteUrl( $pathParams = [], $queryParams = [] ): string {
 		$path = $this->getConfig()['path'];
-
-		foreach ( $pathParams as $param => $value ) {
-			$path = str_replace( '{' . $param . '}', urlencode( $value ), $path );
-		}
-
-		return $this->router->getRouteUrl( $path, $queryParams );
+		return $this->router->getRouteUrl( $path, $pathParams, $queryParams );
 	}
 
 	/**
