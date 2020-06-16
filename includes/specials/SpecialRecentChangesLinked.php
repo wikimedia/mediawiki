@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * This is to display changes made to all articles linked in an article.
  *
@@ -91,20 +89,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$select = array_merge( $rcQuery['fields'], $select );
 		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
-		// left join with watchlist table to highlight watched rows
-		$uid = $this->getUser()->getId();
-		if ( $uid && MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'viewmywatchlist' )
-		) {
-			$tables[] = 'watchlist';
-			$select[] = 'wl_user';
-			$join_conds['watchlist'] = [ 'LEFT JOIN', [
-				'wl_user' => $uid,
-				'wl_title=rc_title',
-				'wl_namespace=rc_namespace'
-			] ];
-		}
+		// Join with watchlist and watchlist_expiry tables to highlight watched rows.
+		$this->addWatchlistJoins( $dbr, $tables, $fields, $join_conds, $conds );
 
 		// JOIN on page, used for 'last revision' filter highlight
 		$tables[] = 'page';
