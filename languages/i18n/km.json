@@ -446,7 +446,6 @@
 	"wrongpasswordempty": "ពាក្យសម្ងាត់មិនបានវាយបញ្ចូលទេ។\n\nសូមព្យាយាម​ម្តងទៀត។",
 	"passwordtooshort": "ពាក្យសម្ងាត់ត្រូវ​មាន​យ៉ាងតិចណាស់​ {{PLURAL:$1|១ តួអក្សរ|$1តួអក្សរ}}។",
 	"passwordtoolong": "ពាក្យសម្ងាត់មិនអាចវែងជាង{{PLURAL:$1|1 តួ|$1 តួ}}ទេ។",
-	"passwordtoopopular": "ពាក្យសម្ងាត់ដែលមានគេប្រើជាទូទៅមិនអាចប្រើបានទេ។ សូមជ្រើសរើសពាក្យសម្ងាត់ដែលគេពិបាកស្មានដឹងជាងនេះ។",
 	"passwordincommonlist": "ពាក្យសម្ងាត់ដែលអ្នកបានវាយបញ្ចូលជាពាក្យសម្ងាត់ដែលគេនិយមប្រើជាទូទៅ។ សូមជ្រើសរើសពាក្យសម្ងាត់ផ្សេងដែលខុសពីគេ។",
 	"password-name-match": "ពាក្យសម្ងាត់ត្រូវតែខុសគ្នាពីអត្តនាមរបស់អ្នក។",
 	"password-substring-username-match": "ពាក្យសម្ងាត់របស់អ្នកមិនត្រូវដូចពាក្យក្នុងអត្តនាមរបស់អ្នកទេ។",
@@ -2752,6 +2751,5 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "ពាក្យសម្ងាត់មិនត្រូវដូចគ្នានឹងអត្តនាមទេ",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "ពាក្យសម្ងាត់មិនត្រូវដូចពាក្យសម្ងាត់ក្នុងបញ្ជីខ្មៅទេ",
 	"passwordpolicies-policy-maximalpasswordlength": "ពាក្យសម្ងាត់ត្រូវតែខ្លីជាង $1 {{PLURAL:$1|តួអក្សរ|តួអក្សរ}}",
-	"passwordpolicies-policy-passwordcannotbepopular": "ពាក្យសម្ងាត់មិនត្រូវ{{PLURAL:$1|ជាពាក្យសម្ងាត់គេនិយមប្រើ|នៅក្នុងបញ្ជីពាក្យសម្ងាត់គេនិយមប្រើទាំង$1}}ទេ",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "ពាក្យសម្ងាត់មិនត្រូវនៅក្នុងបញ្ជីពាក្យសម្ងាត់ដែលគេប្រើជាទូទៅទាំង១០០០០០ទេ។"
 }

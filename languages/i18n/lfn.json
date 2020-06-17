@@ -457,7 +457,6 @@
 	"wrongpasswordempty": "La clave es vacua. Per favore, atenta denova.",
 	"passwordtooshort": "Claves debe ave {{PLURAL:$1|1 sinia|$1 sinias}}, a la min.",
 	"passwordtoolong": "Claves no pote ave plu ca {{PLURAL:$1|1 sinia|$1 sinias}}.",
-	"passwordtoopopular": "Tu no pote usa un clave cual es comun elejeda. Per favore, eleje un plu unica.",
 	"password-name-match": "Tua clave debe es diferente de tua nom de usor.",
 	"password-login-forbidden": "La usa de esta nom de usor e clave es proibida.",
 	"mailmypassword": "Reinisia tua clave",

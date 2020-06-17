@@ -459,7 +459,6 @@
 	"wrongpasswordempty": "گذرواژه‌ای که وارد کرده‌اید، خالی است.\nلطفاً دوباره تلاش کنید.",
 	"passwordtooshort": "گذرواژه باید دست‌کم {{PLURAL:$1|۱ حرف|$1 حرف}} داشته باشد.",
 	"passwordtoolong": "گذرواژه نمی تواند حروفش بیشتر از {{PLURAL:$1|۱ حرف|$1 حرف}}  باشد.",
-	"passwordtoopopular": "Commonly chosen passwords cannot be used. Please choose a more unique password.",
 	"password-name-match": "گذرواژهٔ شما باید با نام کاربری شما تفاوت داشته باشد.",
 	"password-login-forbidden": "استفاده از این نام کاربری و گذرواژه ممنوع است.",
 	"mailmypassword": "دووارة رمز نؤیسائن",

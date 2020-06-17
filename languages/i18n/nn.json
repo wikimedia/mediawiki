@@ -473,7 +473,6 @@
 	"wrongpasswordempty": "Du oppgav ikkje noko passord. Ver venleg og prøv igjen.",
 	"passwordtooshort": "Passord må innehalda minst {{PLURAL:$1|eitt teikn|$1 teikn}}.",
 	"passwordtoolong": "Passord kan ikkje vera lengre enn {{PLURAL:$1|eitt|$1}} teikn.",
-	"passwordtoopopular": "Alminneleg valde passord kan ikkje nyttast. Ver god å velja eit passord som er vanskelegare å gissa.",
 	"passwordincommonlist": "Passordet du skreiv inn er på ei liste over særs vanlege passord. Du må velja eit meir særeige passord.",
 	"password-name-match": "Passordet ditt lyt vera noko anna enn brukarnamnet ditt.",
 	"password-login-forbidden": "Bruk av dette brukarnamnet og passordet er vorte forbode.",

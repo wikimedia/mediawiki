@@ -460,7 +460,6 @@
 	"wrongpasswordempty": "An tigaman-pagsulod nga ginbutang in waray sulod.\nAlayon pagutro pagbutang.",
 	"passwordtooshort": "An tigaman-pagsulod dapat diri maubos hit {{PLURAL:$1|1 nga agi|$1 nga agi}}.",
 	"passwordtoolong": "It mga password in diri puydi mas huruhilaba hin {{PLURAL:$1|1 ka karakter|$1 ka mga karakter}}.",
-	"passwordtoopopular": "Iton agsob pinipili nga mga tigaman-pagsulod in diri puydi gamiton. Alayon pagpili hin makurukuri matighan nga tigaman-pagsulod.",
 	"passwordincommonlist": "An ginbutang nga tigaman-pansulod aada hin talaan hin agsob ginagamit hin duro nga mga tigaman-pansulod. Alayon pagpili hin mas naiiba nga tigaman-pansulod.",
 	"password-name-match": "An imo tigaman-pagsulod in kinahanglan iba ha imo agnay-hiton-gumaramit.",
 	"password-login-forbidden": "An paggamit hini nga agnay-hit-gumaramit ngan tigaman-pagsulod in diri gintutugotan.",

@@ -461,7 +461,6 @@
 	"wrongpassword": "Isem n useqdac neɣ awal n uɛeddi yeɣleḍ. Ɛreḍ daɣen.",
 	"wrongpasswordempty": "Awal n tbaḍnit ulac-it. Ɛreḍ daɣen.",
 	"passwordtooshort": "Awal-ik (im) n uɛaddi ilaq ad i sɛu adday {{PLURAL:$1|1 asekkil|$1 isekkilen}}.",
-	"passwordtoopopular": "Awalen n uɛeddi i yettwassen ur zmiren ara ad ttwasqedcen. Ttxil fren awal n uɛeddi i yuɛren ad d-yettwaf.",
 	"passwordincommonlist": "Teskecmeḍ isem n uɛeddi i yellan deg wumuɣ n yismawen n uɛeddi i yettwaseqdacen. Ttxil fren awal n uɛeddi ara yilin d asuf.",
 	"password-name-match": "Ilaq awal n uɛaddi ad yili imeẓli s-isem n useqdac.",
 	"password-login-forbidden": "aseqdac agi d awal n uɛaddi agi d-izenbigen.",

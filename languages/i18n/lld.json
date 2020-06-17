@@ -374,7 +374,7 @@
 	"nextn-title": "$1 {{PLURAL:$1|L proscimo resultat|I proscimi resultac}}",
 	"shown-title": "Mostra $1 {{PLURAL:$1|resultat|resultac}} per plata",
 	"viewprevnext": "Ciara ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "<strong>Te chësta wiki él na plata che á inom \"[[:$1]]\" on this wiki.</strong> {{PLURAL:$2|0=|Ciara ince ai atri resultac ciafá.}}",
+	"searchmenu-exists": "<strong>Te chësta wiki él na plata che á inom \"[[:$1]]\".</strong> {{PLURAL:$2|0=|Ciara ince ai atri resultac ciafá.}}",
 	"searchmenu-new": "<strong>Cheriëia la plata \"[[:$1]]\" sön chësta wiki!</strong> {{PLURAL:$2|0=|Ciari ince ala plata ciafada tres tüa archirida.|Ciari ince ai resultac dla archirida.}}",
 	"searchprofile-articles": "Plates de contenut",
 	"searchprofile-images": "Multimedia",

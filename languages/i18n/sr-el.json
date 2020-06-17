@@ -495,7 +495,6 @@
 	"wrongpasswordempty": "Niste uneli lozinku. Pokušajte ponovo.",
 	"passwordtooshort": "Lozinka mora imati najmanje {{PLURAL:$1|jedan znak|$1 znaka|$1 znakova}}.",
 	"passwordtoolong": "Lozinke ne mogu biti duže od {{PLURAL:$1|$1 znaka|$1 znakova}}.",
-	"passwordtoopopular": "Nije moguće koristiti često odabrane lozinke. Odaberite lozinku koju je teže pogoditi.",
 	"passwordincommonlist": "Unesena lozinka je na spisku veoma često korišćenih lozinki. Odaberite jedinstveniju lozinku.",
 	"password-name-match": "Lozinka se mora razlikovati od korisničkog imena.",
 	"password-login-forbidden": "Korišćenje ovog korisničkog imena i lozinke je zabranjeno.",
@@ -3884,7 +3883,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "Lozinka ne sme biti ista kao korisničko ime",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Lozinka se ne može podudarati sa lozinkama na crnom spisku",
 	"passwordpolicies-policy-maximalpasswordlength": "Lozinka mora da bude kraća od $1 {{PLURAL:$1|znaka|znakova}}",
-	"passwordpolicies-policy-passwordcannotbepopular": "Lozinka ne sme biti {{PLURAL:$1|poznata lozinka|na spisku $1 poznatih lozinki}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Lozinka ne sme biti na spisku 100.000 najčešće korišćenih lozinki.",
 	"unprotected-js": "Iz bezbednosnih razloga, javaskript ne može da se učita sa nezaštićene stranice. Samo napravite javaskript u imenskom prostoru „Medijaviki:” ili kao korisničku podstranicu"
 }

@@ -389,7 +389,6 @@
 	"wrongpasswordempty": "Slaptažuodis dīks īr. Pamiegīkat apent.",
 	"passwordtooshort": "Tamstas slaptažuodis nier tinkoms aba par tromps īr. Ons tor būtė nuors {{PLURAL:$1|1 sėmbuolė|$1 sėmbuoliu}} ėlgoma.",
 	"passwordtoolong": "Slaptažuodis negal būtė ėlgesnis kāp {{PLURAL:$1|1 znuoks|$1 znuokā|$1 znuoku}}.",
-	"passwordtoopopular": "Tonkē nauduojami slaptažuodē natink. Somīslėkėt kuoki tās godresni slaptažuodi.",
 	"password-name-match": "Tamstas slaptažuodis tor skirtėis nu Tamstas nauduotuojė varda.",
 	"password-login-forbidden": "Tuo nauduotuojė varda ė slaptažuodė nauduojėms nie galėms.",
 	"mailmypassword": "Atgamintė slaptažuodi",

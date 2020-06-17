@@ -536,7 +536,6 @@
 	"wrongpasswordempty": "Du glemte at indtaste adgangskode. Prøv igen.",
 	"passwordtooshort": "Adgangskoden skal mindst være på $1 {{PLURAL:$1|tegn|tegn}}.",
 	"passwordtoolong": "Adgangskoden må ikke være længere end {{PLURAL:$1|1 tegn|$1 tegn}}.",
-	"passwordtoopopular": "Almindeligt brugte adgangskoder, kan ikke bruges. Vælg venligst en adgangskode der er sværere at gætte.",
 	"passwordincommonlist": "Adgangskoden der blev indtastet er på en liste over nogle meget almindeligt brugte adgangskoder. Vælg venligst en mere unik adgangskode",
 	"password-name-match": "Adgangskoden må ikke være det samme som brugernavnet.",
 	"password-login-forbidden": "Brugen af dette brugernavn og adgangskode er blevet forbudt.",

@@ -461,7 +461,6 @@
 	"wrongpasswordempty": "Koi password nai likha gais hai. Fir se kosis karo.",
 	"passwordtooshort": "Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.",
 	"passwordtoolong": "Password {{PLURAL:$1|1 character|$1 characters}} se lamba nai rahe sake hai.",
-	"passwordtoopopular": "Sadharan password ke nai kaam me lawa jaae sake hai. Meharbani kar ke aur tagrra password ke choose karo.",
 	"password-name-match": "Aap ke password ke aap ke username se different rahe ke chaahi.",
 	"password-login-forbidden": "Ii sadasya ke naam aur password ke kaam me laae ke ijaajat nai hae.",
 	"mailmypassword": "Password ke badlo",

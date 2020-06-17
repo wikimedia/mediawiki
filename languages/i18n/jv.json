@@ -467,7 +467,6 @@
 	"wrongpasswordempty": "Tembung sandi kosong. Jajalen manèh.",
 	"passwordtooshort": "Tembung sesinglon paling sethithik cacahé {{PLURAL:$1|1 aksara|$1 aksara}}.",
 	"passwordtoolong": "Tembung sandi ora kena munjuli {{PLURAL:$1|1 pralambang|$1 pralambang}}.",
-	"passwordtoopopular": "Tembung sandi kang wis lumrah ora kena koanggo. Mangga pilih tembung sandi kang angèl kabedhèk.",
 	"password-name-match": "Tembung sandimu kudu béda saka jeneng naragunamu.",
 	"password-login-forbidden": "Panganggoning jeneng naraguna lan tembung sandi iki dilarang.",
 	"mailmypassword": "Balèni gawé tembung sandi",

@@ -2981,7 +2981,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "Пароль декъашхочун цӀерах тера хила ца еза",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Пароль Ӏаьржачу могӀаман юкъахь йолучарех тера хила ца еза",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль $1 {{PLURAL:$1|символал}} йоца хила ца еза",
-	"passwordpolicies-policy-passwordcannotbepopular": "Пароль дукха {{PLURAL:$1|лелош йолчарех хила ца еза}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Пароль цхьанайогӀуш хила цаеза 100 000 дукха лелош йолучу паролашца.",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "болхболича чекхбаккха хийцам"
 }

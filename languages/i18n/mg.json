@@ -460,7 +460,6 @@
 	"wrongpasswordempty": "Tsy nampiditra tenimiafina ianao, azafady mba avereno indray.",
 	"passwordtooshort": "{{PLURAL:}}Fohy loatra io tenimiafina io.\nFarafahakeliny tokony hisy litera $1 ny tenimiafina.",
 	"passwordtoolong": "Tsy azo atao ho lava noho ny soratra {{PLURAL:$1|iray|$1}} ny tenimiafina.",
-	"passwordtoopopular": "Tsy azo ampiasana ny tenimiafina ampiasaina matetika. Misafidiana tenimiafina sarotra vinavinaina kokoa.",
 	"passwordincommonlist": "Anaty lisitra tenimiafina tena ampiasaina matetika ilay tenimiafina natsofokao. Mampiasà tenimiafina tokana kokoa azafady.",
 	"password-name-match": "Tsy maintsy samihafa ny solonanaranao sy ny tenimiafinao tompoko.",
 	"password-login-forbidden": "Norarana ny fampiasana io anaram-pikambana ary io tenimiafina io.",

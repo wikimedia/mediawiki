@@ -471,7 +471,6 @@
 	"wrongpasswordempty": "The trystwird ye entered is blank. Please gie it anither shot.",
 	"passwordtooshort": "Yer password is ower short.\nIt maun hae at laest {{PLURAL:$1|1 chairacter|$1 chairacters}}.",
 	"passwordtoolong": "Passwirds canna be langer nor {{PLURAL:$1|1 character|$1 characters}}.",
-	"passwordtoopopular": "Commonly chosen tryst-wirds canna be uised. Please chuise a mair unique tryst-wird.",
 	"password-name-match": "Yer trystwird maun be different fae yer uisername.",
 	"password-login-forbidden": "The uise o this uisername an trystwird haes been ferbidden.",
 	"mailmypassword": "Reset password",

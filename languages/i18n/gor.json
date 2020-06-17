@@ -433,7 +433,6 @@
 	"wrongpasswordempty": "Yi'o diipo lopotuwoto tahe u'unti.\nToduwoolo mocoba pe'eentapo.",
 	"passwordtooshort": "Tahu u'unti musti mohelu {{PLURAL:$1|1 karakterter|$1 karakter}}.",
 	"passwordtoolong": "Tahe u'unti ja mowali limbata to {{PLURAL:$1|1 karakter|$1 karakter}}.",
-	"passwordtoopopular": "Tahe u'unti biasa u ja mowali pomake. Toduwoolo molulawota u ngopohiya.",
 	"password-name-match": "Tahe u'unti musti hihihede monto tanggulo ta ohu'uwo.",
 	"password-login-forbidden": "Tanggulo ta ohu'uwo wau tahe u'unti botiye ja mowali pomake.",
 	"mailmypassword": "Popobohuwa tahe u'unti",

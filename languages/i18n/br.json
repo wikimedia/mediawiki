@@ -478,7 +478,6 @@
 	"wrongpasswordempty": "Ger-tremen ebet. Lakait unan mar plij.",
 	"passwordtooshort": "{{PLURAL:$1|1 arouezenn|$1 arouezenn}} hir a rank bezañ ar gerioù-tremen da nebeutañ.",
 	"passwordtoolong": "N'hall ket ar gerioù-tremen bezañ enno ouzhpenn $1 {{PLURAL:$1|1 arouezenn|$1 arouezenn}}.",
-	"passwordtoopopular": "N'haller ket ober gant gerioù-kuzh boutin betek re. Grit gant ur ger-tremen diaesoc'h da gavout.",
 	"password-name-match": "Rankout a ra ho ker-tremen bezañ disheñvel diouzh hoc'h anv implijer.",
 	"password-substring-username-match": "Arabat d'ho ker-tremen dont war wel en hoc'h anv implijer.",
 	"password-login-forbidden": "Berzet eo ober gant an anv implijer hag ar ger-tremen-mañ.",

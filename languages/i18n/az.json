@@ -490,7 +490,6 @@
 	"wrongpasswordempty": "Parol boş. Təkrar yazın.",
 	"passwordtooshort": "Parolda ən azı {{PLURAL:$1|1 hərf yaxud simvol|$1 hərf yaxud simvol}} olmalıdır.",
 	"passwordtoolong": "Parolda ən azı {{PLURAL:$1|1 hərf yaxud simvol|$1 hərf yaxud simvol}} olmalıdır.",
-	"passwordtoopopular": "Çox istifadə edilən parollar seçilə bilməz. Xahiş edirik təxmin edilməsi daha çətin olan bir parol seçin.",
 	"passwordincommonlist": "Daxil edilən parol çox istifadə edilən parolların siyahısında mövcuddur. Xahiş edirik daha bənzərsiz parol seçin.",
 	"password-name-match": "Parol adınızdan fərqli olmalıdır.",
 	"password-login-forbidden": "Bu istifadəçi adından və paroldan istifadə qadağan olunub.",

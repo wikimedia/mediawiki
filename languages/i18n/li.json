@@ -463,7 +463,6 @@
 	"wrongpasswordempty": "'t Ingegaeve wachwoord waor laeg. Perbeer 't obbenuujts.",
 	"passwordtooshort": "Dien wachwaord is te kort. 't Mót minstes oet {{PLURAL:$1|1 teike|$1 teikes}} besjtaon.",
 	"passwordtoolong": "Wachwäörd kónne neet lenger zeen es {{PLURAL:$1|ei teike| $1 teikes}}.",
-	"passwordtoopopular": "Dök-gekaoze wachwäörd kan me neet gebroeke. Kees 'n eige wachwaord det lestiger is de raoje.",
 	"password-name-match": "Die wachwaord mót anges zeen es diene gebroekersnaam.",
 	"password-login-forbidden": "'t Gebroek van deze gebroekersnaam mit dit wachwoord is neet toegesjtange.",
 	"mailmypassword": "Mail mich e nuuj wachwaord",

@@ -456,7 +456,6 @@
 	"wrongpasswordempty": "Ou rantré pyès modipas.\nSouplé, éséyé òkò.",
 	"passwordtooshort": "Ou modipas divèt kontni onmwen $1 karagtèr{{PLURAL:$1|}}.",
 	"passwordtoolong": "Modipas-ya pa pouvé dépasé $1 karagtèr{{PLURAL:$1|}}.",
-	"passwordtoopopular": "Modipas ki tròp kouran pa pouvé fika itilizé. Souplé, chwézi roun modipas ki pi difisil pou sonjé.",
 	"password-name-match": "Ou modipas divèt fika diféran ké ou non di itilizatò.",
 	"password-login-forbidden": "Litilizasyon-an di sa non d'itilizatò oben di sa modipas sa entèrdi.",
 	"mailmypassword": "Réynisyalizé modipas-a",

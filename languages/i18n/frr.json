@@ -459,7 +459,6 @@
 	"wrongpasswordempty": "Dü heest nian paaswurd iinden.\nFerschük det man noch ans.",
 	"passwordtooshort": "Paaswurden skel tumanst {{PLURAL:$1|1 tiaken|$1 tiakens}} lung wees.",
 	"passwordtoolong": "Paaswurden kön ei linger üs {{PLURAL:$1|1 tiaken|$1 tiakens}} wees.",
-	"passwordtoopopular": "Flooksis brükt paaswurden san ei tuläät. Wees so gud an schük en ööder, muar aparte paaswurd ütj.",
 	"password-name-match": "Dü könst dan brükernööm ei üs paaswurd nem.",
 	"password-login-forbidden": "Didiar brükernööm mä detdiar paaswurd as ei tuläät.",
 	"mailmypassword": "Paaswurd turagsaat",

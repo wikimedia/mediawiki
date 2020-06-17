@@ -449,7 +449,6 @@
 	"wrongpasswordempty": "Dat Passwood ka'mer nit fottlooße. Jetz muss De et noch ens versöke.",
 	"passwordtooshort": "En Paßwööter {{PLURAL:$1|moß|möße|moß}} winnichstens {{PLURAL:$1|ei|$1|kei}} Zeiche, {{PLURAL:$1|Zeffer|Zeffere|Zeffere}}, udder Bochstave dren sin.",
 	"passwordtoolong": "Paßwööter künnne nit länge sin wi {{PLURAL:$1|ein|$1|Noll}} Zeische.",
-	"passwordtoopopular": "Esu en jewöhnejje Paßwööter nämme mer nit aan. Söhk Der jädd uß, wat nit jehder_ein alle nahßlangs nemmp.",
 	"password-name-match": "Ding Poßwoot moß anders wi Dinge Name als ene Metmaacher sin.",
 	"password-login-forbidden": "Dä Zohjang met däm Metmaacher-Name un däm Paßwoot es verbodde.",
 	"mailmypassword": "Lohß jonn!",
