@@ -69,7 +69,7 @@ class DeprecatedHooks {
 		'SkinTemplateTabAction' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateToolboxEnd' => [ 'deprecatedVersion' => '1.35' ],
 		'TitleMoveComplete' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
-		'TitleMoveCompleting' => [ 'deprecatedVersion' => '1.35' ],
+		'TitleMoveCompleting' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],
 		'UserRetrieveNewTalks' => [ 'deprecatedVersion' => '1.35' ],
 		'UserSetCookies' => [ 'deprecatedVersion' => '1.27' ],
