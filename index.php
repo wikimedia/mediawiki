@@ -11,8 +11,8 @@
 // -------------------------------------------------
 
 /**
- * The main web entry point for MediaWiki. It handles all web requests for
- * navigations from web browsers.
+ * The main web entry point for web browser navigations, usually via an
+ * Action or SpecialPage subclass.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

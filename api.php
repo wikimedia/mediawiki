@@ -1,6 +1,7 @@
 <?php
 /**
- * The web entry point for all Action API queries.
+ * The web entry point for all %Action API queries, handled by ApiMain
+ * and ApiBase subclasses.
  *
  * This is used by bots to fetch content and information about the wiki,
  * its pages, and its users. See <https://www.mediawiki.org/wiki/API> for more

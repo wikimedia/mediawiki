@@ -1,8 +1,10 @@
 <?php
 /**
  * The web entry point to be used as 404 handler behind a web server rewrite
- * rule for media thumbnails. This script will interpret a request URL
- * like `/w/images/thumb/a/a9/Example.jpg/50px-Example.jpg` and treat it as
+ * rule for media thumbnails, internally handled via thumb.php.
+ *
+ * This script will interpret a request URL like
+ * `/w/images/thumb/a/a9/Example.jpg/50px-Example.jpg` and treat it as
  * if it was a request to thumb.php with the relevant query parameters filled
  * out. See also $wgGenerateThumbnailOnParse.
  *
