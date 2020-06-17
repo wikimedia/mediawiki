@@ -2711,15 +2711,19 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testUpdateNotificationTimestamp_watchersExist() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectFieldValues' )
 			->with(
-				'watchlist',
+				[ 'watchlist', 'watchlist_expiry' ],
 				'wl_user',
 				[
 					'wl_user != 1',
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
-					'wl_notificationtimestamp IS NULL'
+					'wl_notificationtimestamp IS NULL',
+					'we_expiry IS NULL OR we_expiry > 20200101000000',
 				]
 			)
 			->will( $this->returnValue( [ '2', '3' ] ) );
@@ -2755,16 +2759,23 @@ class WatchedItemStoreUnitTest extends MediaWikiTestCase {
 	public function testUpdateNotificationTimestamp_noWatchers() {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
+			->method( 'addQuotes' )
+			->willReturn( '20200101000000' );
+		$mockDb->expects( $this->once() )
 			->method( 'selectFieldValues' )
 			->with(
-				'watchlist',
+				[ 'watchlist', 'watchlist_expiry' ],
 				'wl_user',
 				[
 					'wl_user != 1',
 					'wl_namespace' => 0,
 					'wl_title' => 'SomeDbKey',
-					'wl_notificationtimestamp IS NULL'
-				]
+					'wl_notificationtimestamp IS NULL',
+					'we_expiry IS NULL OR we_expiry > 20200101000000',
+				],
+				'WatchedItemStore::updateNotificationTimestamp',
+				[],
+				[ 'watchlist_expiry' => [ 'LEFT JOIN', 'wl_id = we_item' ] ]
 			)
 			->will(
 				$this->returnValue( [] )
