@@ -10,9 +10,9 @@ use MediaWiki\User\UserIdentity;
  * @stable for implementation
  * @ingroup Hooks
  */
-interface PageMoveCompleteHook {
+interface PageMoveCompletingHook {
 	/**
-	 * This hook is called after moving an article (title), post-commit
+	 * This hook is called after moving an article (title), pre-commit
 	 *
 	 * @since 1.35
 	 *
@@ -26,7 +26,7 @@ interface PageMoveCompleteHook {
 	 * @return bool|void True or no return value to continue or false stop other hook handlers,
 	 *     doesn't abort the move itself
 	 */
-	public function onPageMoveComplete( $old, $new, $user, $pageid, $redirid,
+	public function onPageMoveCompleting( $old, $new, $user, $pageid, $redirid,
 		$reason, $revision
 	);
 }
