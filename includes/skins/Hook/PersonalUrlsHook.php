@@ -20,7 +20,7 @@ interface PersonalUrlsHook {
 	 * @param Title &$title Current page
 	 * @param SkinTemplate $skin SkinTemplate object providing context (e.g. to check if the user is
 	 *   logged in, etc.)
-	 * @return bool|void This hook must not abort, it must return true or null.
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onPersonalUrls( &$personal_urls, &$title, $skin );
+	public function onPersonalUrls( &$personal_urls, &$title, $skin ) : void;
 }

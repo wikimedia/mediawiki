@@ -18,7 +18,7 @@ interface SkinTemplateNavigationHook {
 	 * @param SkinTemplate $sktemplate
 	 * @param array &$links Structured navigation links. This is used to alter the navigation for
 	 *   skins which use buildNavigationUrls such as Vector.
-	 * @return bool|void This hook must not abort; it must return true or no return value
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onSkinTemplateNavigation( $sktemplate, &$links );
+	public function onSkinTemplateNavigation( $sktemplate, &$links ) : void;
 }

@@ -18,7 +18,7 @@ interface AfterFinalPageOutputHook {
 	 * @since 1.35
 	 *
 	 * @param OutputPage $output The OutputPage object where output() was called
-	 * @return bool|void This hook must not abort; it must return true or no return value
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onAfterFinalPageOutput( $output );
+	public function onAfterFinalPageOutput( $output ) : void;
 }

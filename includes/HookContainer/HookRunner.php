@@ -628,8 +628,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onAfterFinalPageOutput( $output ) {
-		return $this->container->run(
+	public function onAfterFinalPageOutput( $output ) : void {
+		$this->container->run(
 			'AfterFinalPageOutput',
 			[ $output ],
 			[ 'abortable' => false ]
@@ -985,8 +985,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onBeforePageDisplay( $out, $skin ) {
-		return $this->container->run(
+	public function onBeforePageDisplay( $out, $skin ) : void {
+		$this->container->run(
 			'BeforePageDisplay',
 			[ $out, $skin ],
 			[ 'abortable' => false ]
@@ -2492,8 +2492,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onManualLogEntryBeforePublish( $logEntry ) {
-		return $this->container->run(
+	public function onManualLogEntryBeforePublish( $logEntry ) : void {
+		$this->container->run(
 			'ManualLogEntryBeforePublish',
 			[ $logEntry ],
 			[ 'abortable' => false ]
@@ -2728,8 +2728,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onOutputPageParserOutput( $out, $parserOutput ) {
-		return $this->container->run(
+	public function onOutputPageParserOutput( $out, $parserOutput ) : void {
+		$this->container->run(
 			'OutputPageParserOutput',
 			[ $out, $parserOutput ],
 			[ 'abortable' => false ]
@@ -2983,8 +2983,8 @@ class HookRunner implements
 
 	public function onParserOutputPostCacheTransform( $parserOutput, &$text,
 		&$options
-	) {
-		return $this->container->run(
+	) : void {
+		$this->container->run(
 			'ParserOutputPostCacheTransform',
 			[ $parserOutput, &$text, &$options ],
 			[ 'abortable' => false ]
@@ -3044,8 +3044,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onPersonalUrls( &$personal_urls, &$title, $skin ) {
-		return $this->container->run(
+	public function onPersonalUrls( &$personal_urls, &$title, $skin ) : void {
+		$this->container->run(
 			'PersonalUrls',
 			[ &$personal_urls, &$title, $skin ],
 			[ 'abortable' => false ]
@@ -3563,24 +3563,24 @@ class HookRunner implements
 		);
 	}
 
-	public function onSkinTemplateNavigation( $sktemplate, &$links ) {
-		return $this->container->run(
+	public function onSkinTemplateNavigation( $sktemplate, &$links ) : void {
+		$this->container->run(
 			'SkinTemplateNavigation',
 			[ $sktemplate, &$links ],
 			[ 'abortable' => false ]
 		);
 	}
 
-	public function onSkinTemplateNavigation__SpecialPage( $sktemplate, &$links ) {
-		return $this->container->run(
+	public function onSkinTemplateNavigation__SpecialPage( $sktemplate, &$links ) : void {
+		$this->container->run(
 			'SkinTemplateNavigation::SpecialPage',
 			[ $sktemplate, &$links ],
 			[ 'abortable' => false ]
 		);
 	}
 
-	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ) {
-		return $this->container->run(
+	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ) : void {
+		$this->container->run(
 			'SkinTemplateNavigation::Universal',
 			[ $sktemplate, &$links ],
 			[ 'abortable' => false ]
