@@ -2033,21 +2033,17 @@ abstract class Skin extends ContextSource {
 	 */
 	public function makeToolbox( $navUrls, $feedUrls ) {
 		$toolbox = [];
-		if ( isset( $navUrls['whatlinkshere'] )
-			&& $navUrls['whatlinkshere']
-		) {
+		if ( $navUrls['whatlinkshere'] ?? null ) {
 			$toolbox['whatlinkshere'] = $navUrls['whatlinkshere'];
 			$toolbox['whatlinkshere']['id'] = 't-whatlinkshere';
 		}
-		if ( isset( $navUrls['recentchangeslinked'] )
-			&& $navUrls['recentchangeslinked']
-		) {
+		if ( $navUrls['recentchangeslinked'] ?? null ) {
 			$toolbox['recentchangeslinked'] = $navUrls['recentchangeslinked'];
 			$toolbox['recentchangeslinked']['msg'] = 'recentchangeslinked-toolbox';
 			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
 			$toolbox['recentchangeslinked']['rel'] = 'nofollow';
 		}
-		if ( isset( $feedUrls ) && $feedUrls ) {
+		if ( $feedUrls ?? null ) {
 			$toolbox['feeds']['id'] = 'feedlinks';
 			$toolbox['feeds']['links'] = [];
 			foreach ( $feedUrls as $key => $feed ) {
@@ -2061,22 +2057,22 @@ abstract class Skin extends ContextSource {
 		foreach ( [ 'contributions', 'log', 'blockip', 'emailuser', 'mute',
 			'userrights', 'upload', 'specialpages' ] as $special
 		) {
-			if ( isset( $navUrls[$special] ) && $navUrls[$special] ) {
+			if ( $navUrls[$special] ?? null ) {
 				$toolbox[$special] = $navUrls[$special];
 				$toolbox[$special]['id'] = "t-$special";
 			}
 		}
-		if ( isset( $navUrls['print'] ) && $navUrls['print'] ) {
+		if ( $navUrls['print'] ?? null ) {
 			$toolbox['print'] = $navUrls['print'];
 			$toolbox['print']['id'] = 't-print';
 			$toolbox['print']['rel'] = 'alternate';
 			$toolbox['print']['msg'] = 'printableversion';
 		}
-		if ( isset( $navUrls['permalink'] ) && $navUrls['permalink'] ) {
+		if ( $navUrls['permalink'] ?? null ) {
 			$toolbox['permalink'] = $navUrls['permalink'];
 			$toolbox['permalink']['id'] = 't-permalink';
 		}
-		if ( isset( $navUrls['info'] ) && $navUrls['info'] ) {
+		if ( $navUrls['info'] ?? null ) {
 			$toolbox['info'] = $navUrls['info'];
 			$toolbox['info']['id'] = 't-info';
 		}
