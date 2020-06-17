@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Debug\DeprecatablePropertyArray;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Debug\DeprecatablePropertyArray
@@ -15,8 +14,9 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 	 * @param callable $callback
 	 */
 	public function testDeprecationWarning( callable $callback, string $message ) {
-		$GLOBALS['wgDevelopmentWarnings'] = false;
-		$this->assertDeprecationWarningIssued( $callback, $message );
+		$this->expectDeprecation();
+		$this->expectDeprecationMessage( $message );
+		$callback();
 	}
 
 	public function provideDeprecationWarning() {
@@ -79,22 +79,5 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'test_value', $array[0] );
 		unset( $array[0] );
 		$this->assertFalse( isset( $array[0] ) );
-	}
-
-	/**
-	 * Assert that $expectedMessage deprecation warning was emitted while
-	 * executing the $callback.
-	 * @param callable $callback
-	 * @param string $expectedMessage
-	 */
-	protected function assertDeprecationWarningIssued(
-		callable $callback,
-		string $expectedMessage
-	) {
-		MWDebug::clearLog();
-		$callback();
-		$wrapper = TestingAccessWrapper::newFromClass( MWDebug::class );
-		$this->assertCount( 1, $wrapper->deprecationWarnings );
-		$this->assertArrayHasKey( $expectedMessage, $wrapper->deprecationWarnings );
 	}
 }
