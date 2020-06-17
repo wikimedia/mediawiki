@@ -1495,13 +1495,15 @@ class WikiPage implements Page, IDBAccessObject {
 	 * If the given revision is newer than the currently set page_latest,
 	 * update the page record. Otherwise, do nothing.
 	 *
-	 * @deprecated since 1.24, use updateRevisionOn instead
+	 * @deprecated since 1.24 (soft), 1.35 (hard), use updateRevisionOn instead
 	 *
 	 * @param IDatabase $dbw
 	 * @param Revision $revision
 	 * @return bool
 	 */
 	public function updateIfNewerOn( $dbw, $revision ) {
+		wfDeprecated( __METHOD__, '1.24' );
+
 		$revisionRecord = $revision->getRevisionRecord();
 
 		$row = $dbw->selectRow(
