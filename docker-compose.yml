@@ -7,7 +7,7 @@
 version: '3.7'
 services:
   mediawiki:
-    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-xdebug:0.3.0
+    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-xdebug:0.4.0
     ports:
       - "${MW_DOCKER_PORT:-8080}:8080"
     volumes:
@@ -24,3 +24,10 @@ services:
       MW_SITENAME: 'MediaWiki'
       MW_LOG_DIR: /var/www/html/cache
       XDEBUG_CONFIG: ${XDEBUG_CONFIG}
+  mediawiki-jobrunner:
+    image: docker-registry.wikimedia.org/dev/stretch-php72-jobrunner:0.0.1
+    volumes:
+      - ./:/var/www/html:cached
+    environment:
+      MW_LOG_DIR: /var/www/html/cache
+      MW_INSTALL_PATH: /var/www/html
