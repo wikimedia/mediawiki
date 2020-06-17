@@ -1843,7 +1843,6 @@
 	"uploadstash-file-not-found": "Key \"$1\" not found in stash.",
 	"uploadstash-file-not-found-no-thumb": "Could not obtain thumbnail.",
 	"uploadstash-file-not-found-no-local-path": "No local path for scaled item.",
-	"uploadstash-file-not-found-no-object": "Couldn't create local file object for thumbnail.",
 	"uploadstash-file-not-found-no-remote-thumb": "Fetching thumbnail failed: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Missing content-type header.",
 	"uploadstash-file-not-found-not-exists": "Cannot find path, or not a plain file.",
