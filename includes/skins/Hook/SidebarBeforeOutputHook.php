@@ -18,7 +18,7 @@ interface SidebarBeforeOutputHook {
 	 *
 	 * @param Skin $skin
 	 * @param array &$sidebar Sidebar content. Modify $sidebar to add or modify sidebar portlets.
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @return void This hook must not abort; it must not return value.
 	 */
-	public function onSidebarBeforeOutput( $skin, &$sidebar );
+	public function onSidebarBeforeOutput( $skin, &$sidebar ): void;
 }
