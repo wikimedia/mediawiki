@@ -52,6 +52,15 @@ class WatchedItem {
 	private $expiry;
 
 	/**
+	 * Used to calculate how many days are remaining until a watched item will expire.
+	 * Uses a different algorithm from Language::getDurationIntervals for calculating
+	 * days remaining in an interval of time
+	 *
+	 * @since 1.35
+	 */
+	private const SECONDS_IN_A_DAY = 86400;
+
+	/**
 	 * @param UserIdentity $user
 	 * @param LinkTarget $linkTarget
 	 * @param null|string $notificationTimestamp the value of the wl_notificationtimestamp field
@@ -125,5 +134,25 @@ class WatchedItem {
 
 		$unix = MWTimestamp::convert( TS_UNIX, $this->getExpiry() );
 		return $unix < wfTimestamp();
+	}
+
+	/**
+	 * Function that returns how many days remain until a watched item will expire.
+	 *
+	 * @since 1.35
+	 *
+	 * @return int
+	 */
+	public function getExpiryInDays(): int {
+		$unixTimeExpiry = MWTimestamp::convert( TS_UNIX, $this->getExpiry() );
+		$diffInSeconds = $unixTimeExpiry - wfTimestamp();
+
+		$diffInDays = $diffInSeconds / self::SECONDS_IN_A_DAY;
+
+		if ( $diffInDays < 1 ) {
+			return 0;
+		}
+
+		return (int)ceil( $diffInDays );
 	}
 }

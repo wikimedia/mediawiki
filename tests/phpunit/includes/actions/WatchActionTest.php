@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @covers WatchAction
@@ -19,6 +20,11 @@ class WatchActionTest extends MediaWikiTestCase {
 	 */
 	private $testWikiPage;
 
+	/**
+	 * @var IContextSource
+	 */
+	private $context;
+
 	protected function setUp() : void {
 		parent::setUp();
 
@@ -26,6 +32,7 @@ class WatchActionTest extends MediaWikiTestCase {
 		$this->testWikiPage = new WikiPage( $testTitle );
 		$testContext = new DerivativeContext( RequestContext::getMain() );
 		$testContext->setTitle( $testTitle );
+		$this->context = $testContext;
 		$this->watchAction = new WatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
@@ -354,6 +361,79 @@ class WatchActionTest extends MediaWikiTestCase {
 		$status = WatchAction::doWatchOrUnwatch( false, $this->watchAction->getTitle(), $user );
 
 		$this->assertTrue( $status->isGood() );
+	}
+
+	/**
+	 * @covers WatchAction::getExpiryOptions()
+	 */
+	public function testGetExpiryOptions() {
+		// Fake current time to be 2020-06-10T00:00:00Z
+		$fakeTime = ConvertibleTimestamp::setFakeTime( '20200610000000' );
+		$user = $this->getUser();
+		$target = new TitleValue( 0, 'SomeDbKey' );
+
+		$optionsNoExpiry = WatchAction::getExpiryOptions( $this->context, false );
+		$expectedNoExpiry = [
+			'options' => [
+				'Permanently' => 'infinite',
+				'1 week' => '1 week',
+				'1 month' => '1 month',
+				'3 months' => '3 months',
+				'6 months' => '6 months'
+			],
+			'default' => 'infinite'
+		];
+
+		$this->assertSame( $expectedNoExpiry, $optionsNoExpiry );
+
+		// Adding a watched item with an expiry a month from the frozen time
+		$watchedItemMonth = new WatchedItem( $user, $target, null, '20200710000000' );
+		$optionsExpiryOneMonth = WatchAction::getExpiryOptions( $this->context, $watchedItemMonth );
+		$expectedExpiryOneMonth = [
+			'options' => [
+				'30 days left' => '1594339200',
+				'Permanently' => 'infinite',
+				'1 week' => '1 week',
+				'1 month' => '1 month',
+				'3 months' => '3 months',
+				'6 months' => '6 months'
+			],
+			'default' => '1594339200'
+		];
+
+		$this->assertSame( $expectedExpiryOneMonth, $optionsExpiryOneMonth );
+
+		// Adding a watched item with an expiry 7 days from the frozen time
+		$watchedItemWeek = new WatchedItem( $user, $target, null, '20200617000000' );
+		$optionsExpiryOneWeek = WatchAction::getExpiryOptions( $this->context, $watchedItemWeek );
+		$expectedOneWeek = [
+			'options' => [
+				'7 days left' => '1592352000',
+				'Permanently' => 'infinite',
+				'1 week' => '1 week',
+				'1 month' => '1 month',
+				'3 months' => '3 months',
+				'6 months' => '6 months'
+			],
+			'default' => '1592352000'
+		];
+
+		$this->assertSame( $expectedOneWeek, $optionsExpiryOneWeek );
+
+		// Case for when WatchedItem is true
+		$optionsNoExpiryWIFalse = WatchAction::getExpiryOptions( $this->context, true );
+		$expectedNoExpiryWIFalse = [
+			'options' => [
+				'Permanently' => 'infinite',
+				'1 week' => '1 week',
+				'1 month' => '1 month',
+				'3 months' => '3 months',
+				'6 months' => '6 months'
+			],
+			'default' => 'infinite'
+		];
+
+		$this->assertSame( $expectedNoExpiryWIFalse, $optionsNoExpiryWIFalse );
 	}
 
 	/**

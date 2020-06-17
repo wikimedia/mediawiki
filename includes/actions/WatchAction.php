@@ -99,11 +99,7 @@ class WatchAction extends FormAction {
 		}
 
 		// Otherwise, use a select-list of expiries.
-		$expiry = false;
-		if ( $this->watchedItem && $this->watchedItem->getExpiry() ) {
-			$expiry = $this->watchedItem->getExpiry();
-		}
-		$expiryOptions = static::getExpiryOptions( $this->getContext(), $expiry );
+		$expiryOptions = static::getExpiryOptions( $this->getContext(),  $this->watchedItem );
 		return [
 			$this->expiryFormFieldName => [
 				'type' => 'select',
@@ -118,25 +114,24 @@ class WatchAction extends FormAction {
 	 * Get options and default for a watchlist expiry select list. If an expiry time is provided, it
 	 * will be added to the top of the list as 'x days left'.
 	 *
+	 * @since 1.35
 	 * @todo Move this somewhere better when it's being used in more than just this action.
 	 *
 	 * @param IContextSource $context
-	 * @param string $expiryTime
+	 * @param WatchedItem|bool $watchedItem
 	 *
 	 * @return mixed[] With keys `options` (string[]) and `default` (string).
 	 */
-	public static function getExpiryOptions( IContextSource $context, $expiryTime = false ) {
+	public static function getExpiryOptions( IContextSource $context, $watchedItem ) {
 		$expiryOptionsMsg = $context->msg( 'watchlist-expiry-options' )->text();
 		$expiryOptions = XmlSelect::parseOptionsMessage( $expiryOptionsMsg );
 		$default = 'infinite';
-		if ( $expiryTime ) {
+		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() ) {
 			// If it's already being temporarily watched,
 			// add the existing expiry as the default option in the dropdown.
-			$expiry = MWTimestamp::getInstance( $expiryTime );
-			$diffInSeconds = $expiry->getTimestamp() - wfTimestamp();
-			$diffInDays = $context
-				->getLanguage()
-				->getDurationIntervals( $diffInSeconds, [ 'days' ] )[ 'days' ];
+
+			$expiry = MWTimestamp::getInstance( $watchedItem->getExpiry() );
+			$diffInDays = $watchedItem->getExpiryInDays();
 			$daysLeft = $context->msg( 'watchlist-expiry-days-left', [ $diffInDays ] )->text();
 			$expiryOptions = array_merge(
 				[ $daysLeft => $expiry->getTimestamp() ],
