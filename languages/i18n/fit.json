@@ -463,7 +463,6 @@
 	"wrongpasswordempty": "Et voi antaa tyhjää salasanaa.",
 	"passwordtooshort": "Salasanan häätyy olla vähinthään {{PLURAL:$1|yhen merkin pittuinen|$1 merkkiä pitkä}}.",
 	"passwordtoolong": "Salasanat saa olla eninthään $1 {{PLURAL:$1|merkin}} pituisia.",
-	"passwordtoopopular": "Tavanomaisen kaltaisia salasanoja ei saa käyttää. Valitte salasana, joka oon vaikeampi arvata.",
 	"passwordincommonlist": "Annettu salasana oon erittäin yleisesti käytettyjen salasanojen listala. Valitte yksilöllisempi salasana.",
 	"password-name-match": "Salasanasi häätyy olla eri ko käyttäjänimesi.",
 	"password-substring-username-match": "Käyttäjätunnuksesi ei saa sisältää salasanaasi.",

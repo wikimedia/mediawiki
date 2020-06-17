@@ -458,7 +458,6 @@
 	"wrongpasswordempty": "Cha do chuir thu a-steach facal-faire.\nFeuch ris a-rithist.",
 	"passwordtooshort": "Feumaidh faclan-faire a bhith {{PLURAL:$1|$1 charactar|$1 charactar|$1 caractaran|$1 caractar}} a dh'fhaid air a' char as lugha.",
 	"passwordtoolong": "Chan fhaod faclan-faire a bhith nas fhaide na {{PLURAL:$1|1 charactar|$1 charactar|$1 caractaran|$1 caractar}}.",
-	"passwordtoopopular": "Chan fhaodar faclan-faire cumanta a chleachdadh. Tagh rudeigin nach eil cho cumanta.",
 	"password-name-match": "Chan fhaod am facal-faire 's an t-ainm-cleachdaiche agad a bhith co-ionnann.",
 	"password-login-forbidden": "Tha an t-ainm-cleachdaiche 's am facal-faire seo toirmisgte.",
 	"mailmypassword": "Ath-shuidhich am facal-faire",

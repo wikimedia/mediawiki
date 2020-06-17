@@ -480,7 +480,6 @@
 	"wrongpasswordempty": "Roedd y cyfrinair yn wag. Rhowch gynnig arall arni.",
 	"passwordtooshort": "Mae'n rhaid fod gan gyfrinair o leia $1 {{PLURAL:$1|nod}}.",
 	"passwordtoolong": "Ni chaiff cyfrinair fod yn hirach na {{PLURAL:$1|1 llythyren|$1 llythyren}}.",
-	"passwordtoopopular": "Chewch chi ddim defnyddio cyfrineiriau cyffredin. Dewisiwch un unigryw a gwahanol!",
 	"passwordincommonlist": "Mae'r cyfrinair yma ar restr o rai sy'n rhy gyffredin o'r hanner. dewisiwch un mwy unigryw, gwahanol.",
 	"password-name-match": "Rhaid i'ch cyfrinair a'ch enw defnyddiwr fod yn wahanol i'w gilydd.",
 	"password-substring-username-match": "Rhaid i'ch cyfrinair beidio ag ymddangos yn eich enw defnyddiwr.",

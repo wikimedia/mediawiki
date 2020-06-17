@@ -490,7 +490,6 @@
 	"wrongpasswordempty": "ఖాళీ సంకేతపదం ఇచ్చారు. మళ్ళీ ప్రయత్నించండి.",
 	"passwordtooshort": "సంకేతపదం కనీసం {{PLURAL:$1|1 అక్షరం|$1 అక్షరాల}} నిడివి ఉండాలి.",
 	"passwordtoolong": "సంకేతపదం పొడవు {{PLURAL:$1|1 అక్షరం|$1 అక్షరాల}} కన్నా ఎక్కువ ఉండకూడదు.",
-	"passwordtoopopular": "సాధారణంగా వాడే సంకేతపదాలను వాడే వీల్లేదు. ఊహించడానికి కష్టమైన సంకేతపదాన్ని ఎంచుకోండి.",
 	"passwordincommonlist": "మీరిచ్చిన సంకేతపదం సర్వసామాన్యంగా వాడే సంకేతపదాల జాబితాలో ఉంది. మరింత అరుదైన సంకేతపదాన్ని ఎంచుకోండి.",
 	"password-name-match": "మీ సంకేతపదం మీ వాడుకరిపేరుకి భిన్నంగా ఉండాలి.",
 	"password-login-forbidden": "ఈ వాడుకరిపేరు, సంకేతపదాలను ఉపయోగించడం నిషిద్ధం.",
@@ -3584,6 +3583,5 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "లాగినవ్వాలంటే సంకేతపదం కనీసం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు ఉండాలి",
 	"passwordpolicies-policy-passwordcannotmatchusername": "సంకేతపదం, వాడుకరిపేరూ ఒకటే ఉండే వీల్లేదు.",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "సంకేతపదం నిషేధించిన సంకేతపదాలతో సరిపోలరాదు",
-	"passwordpolicies-policy-maximalpasswordlength": "సంకేతపదం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు కంటే తక్కువ ఉండాలి",
-	"passwordpolicies-policy-passwordcannotbepopular": "సంకేతపదం {{PLURAL:$1|ప్రజాదరణ పొందిన సంకేతపదం కారాదు|ప్రజాదరణ పొందిన $1 సంకేతపదాల్లో ఉండరాదు}}"
+	"passwordpolicies-policy-maximalpasswordlength": "సంకేతపదం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు కంటే తక్కువ ఉండాలి"
 }

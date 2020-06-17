@@ -434,7 +434,6 @@
 	"wrongpasswordempty": "nasuliten a mima inayi’.\npitaneng aca.",
 	"passwordtooshort": "numisu a mima sainayi’ay maydih {{PLURAL:$1|$1 tatebanan nu nisulitan}}",
 	"passwordtoolong": "mima la’cus matabesiw {{PLURAL:$1|$1 tatebanan nu nisulitan}}.",
-	"passwordtoopopular": "amana pisaungay sawsawni maazihay a mima，pipili’en pisaungay uzumaay a mima.",
 	"password-name-match": "mima nu misu la’cus kalecad tu misaungayay a kalungangan",
 	"password-login-forbidden": "tina misaungayay a kalungangan  atu mima masatezep pisaungay tuway.",
 	"mailmypassword": "miliyaw miteka setin mima",

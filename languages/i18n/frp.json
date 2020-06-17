@@ -435,7 +435,6 @@
 	"wrongpasswordempty": "Lo contresegno buchiê ére vouedo.\nSe vos plét, tornâd èprovar.",
 	"passwordtooshort": "Voutron contresegno dêt contegnir por lo muens $1 caractèro{{PLURAL:$1||s}}.",
 	"passwordtoolong": "Los contresegnos pôvont pas dèpassar {{PLURAL:$1|1 caractèro|$1 caractèros}}.",
-	"passwordtoopopular": "Los contresegnos trop corents pôvont pas étre empleyês. Se vos plét, chouèsésséd-nen yon ples originâl.",
 	"password-name-match": "Voutron contresegno dêt étre difèrent de voutron nom d’utilisator.",
 	"password-login-forbidden": "L’usâjo de cél nom d’utilisator et de cél contresegno est étâ dèfendu.",
 	"mailmypassword": "Rebetar a zérô lo contresegno",

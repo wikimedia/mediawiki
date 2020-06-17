@@ -504,7 +504,6 @@
 	"wrongpasswordempty": "परवलीचा शब्द कोरा आहे; पुन्हा प्रयत्न करा.",
 	"passwordtooshort": "तुमच्या परवलीच्या शब्दात किमान {{PLURAL:$1|१ अक्षर |$1 अक्षरे}} हवे/हवीत.",
 	"passwordtoolong": "परवलीचा शब्द हा {{PLURAL:$1|१ वर्ण पेक्षा|$1 वर्णांपेक्षा}} लांबीचा नको.",
-	"passwordtoopopular": "सर्वसामान्यपणे वापरण्यात येणारे परवलीचे शब्द वापरल्या जाऊ शकत नाहीत.कृपया असा परवलीचा शब्द निवडा ज्याचा अंदाज लावणे कठिण असेल.",
 	"password-name-match": "आपला परवलीचा शब्द हा आपल्या सदस्यनावापेक्षा वेगळा हवा.",
 	"password-login-forbidden": "या सदस्यनामाचा व परवलीच्या शब्दाचा वापर निषिद्ध आहे.",
 	"mailmypassword": "नवीन परवलीचा शब्द पुनर्स्थापित(रिसेट) करा",
@@ -3303,6 +3302,5 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "परवलीचा शब्द हा सदस्यनाव असू शकत नाही",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "परवलीच्या शब्दाचे,विशिष्ट काळ्या यादीत टाकलेल्या परवलीच्या शब्दाशी अनुरूपन (मॅच) असू शकत नाही.",
 	"passwordpolicies-policy-maximalpasswordlength": "परवलीचा शब्द हा $1 {{PLURAL:$1|अक्षरापेक्षा|अक्षरांपेक्षा}} कमी लांबीचा हवा",
-	"passwordpolicies-policy-passwordcannotbepopular": "परवलीचा शब्द हा {{PLURAL:$1|the popular password|$1 प्रसिद्ध शब्दांच्या यादीतील असू शकत नाही}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "परवलीचा शब्द हा १,००,००० सामान्यरित्या वापरण्यात येणाऱ्या परवलीच्या शब्दांच्या यादीत नको."
 }

@@ -486,7 +486,6 @@
 	"wrongpasswordempty": "Kata laluan yang dimasukkan adalah kosong. Sila cuba lagi.",
 	"passwordtooshort": "Kata laluan mestilah sekurang-kurangnya {{PLURAL:$1|1 aksara|$1 aksara}}.",
 	"passwordtoolong": "Kata laluan tidak boleh melebihi $1 aksara.",
-	"passwordtoopopular": "Kata laluan yang biasa dipilih tidak boleh digunakan. Sila pilih kata laluan yang lebih susah untuk diteka.",
 	"passwordincommonlist": "Kata laluan yang dimasukkan terdapat dalam senarai kata laluan yang sangat umum digunakan. Sila pilih kata laluan yang lebih unik.",
 	"password-name-match": "Kata laluan anda mesti berbeza daripada nama pengguna anda.",
 	"password-login-forbidden": "Penggunaan nama pengguna dan kata laluan ini adalah dilarang.",

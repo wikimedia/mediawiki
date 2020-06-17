@@ -487,7 +487,6 @@
 	"wrongpasswordempty": "Įvestas slaptažodis yra tuščias. Pamėginkite vėl.",
 	"passwordtooshort": "Slaptažodžiai turi būti bent $1 {{PLURAL:$1|simbolio|simbolių|simbolių}} ilgio.",
 	"passwordtoolong": "Slaptažodžiai negali būti ilgesni nei {{PLURAL:$1|1 simbolis|$1 simboliai|$1 simbolių}}.",
-	"passwordtoopopular": "Dažnai pasirenkami slaptažodžiai negali būti naudojami. Prašome pasirinkti slaptažodį kurį sunkiau atspėti.",
 	"password-name-match": "Jūsų slaptažodis turi skirtis nuo jūsų naudotojo vardo.",
 	"password-login-forbidden": "Šito naudotojo vardo ir slaptažodžio naudojimas yra uždraustas.",
 	"mailmypassword": "Atkurti slaptažodį",

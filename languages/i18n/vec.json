@@ -491,7 +491,6 @@
 	"wrongpasswordempty": "No xé sta inseria na ciave. Riproa.",
 	"passwordtooshort": "Łe password e ga da contegnere almanco {{PLURAL:$1|1 caratere|$1 carateri}}.",
 	"passwordtoolong": "Ła ciave no ła połe tegnere pì de {{PLURAL:$1|1 caratare|$1 caratari}}.",
-	"passwordtoopopular": "Ciave comuni no łe połe esare doparae. Scrivi na ciave pì difiçiłe da deçifrare",
 	"passwordincommonlist": "La ciave scrivesta ła xé in te ła lista de łe ciave pì doparae. \nTe se prega de métarghine una pì conplicada",
 	"password-name-match": "Ła ciave ła ga da esare difarente dal nome utente.",
 	"password-substring-username-match": "Ła to ciave no ła ga da esarghe in tel nome utente",

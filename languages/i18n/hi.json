@@ -553,7 +553,6 @@
 	"wrongpasswordempty": "कूटशब्द खाली है।\nपुनः यत्न करें।",
 	"passwordtooshort": "आपका कूटशब्द कम से कम {{PLURAL:$1|1 अक्षर|$1 अक्षरों}} का होना चाहिये।",
 	"passwordtoolong": "पासवर्ड {{PLURAL:$1|1 वर्ण|$1 वर्णों}} से ज़्यादा लम्बे नही हो सकते।",
-	"passwordtoopopular": "आप आम पासवर्ड नहीं चुन सकते हैं। कृपया कठिन पासवर्ड चुनें।",
 	"passwordincommonlist": "आपके द्वारा भरा गया पासवर्ड बहुत सामान्य रूप से प्रयोग होने वाले पासवर्डों की सूची में है। कृपया और अधिक अद्वितीय पासवर्ड चुने।",
 	"password-name-match": "आपका कूटशब्द आपके सदस्यनाम से भिन्न होना चाहिए।",
 	"password-login-forbidden": "इस सदस्यनाम और कूटशब्द का उपयोग वर्जित है।",
@@ -3838,7 +3837,6 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "पासवर्ड सदस्यनाम के समान नहीं हो सकता",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "पासवर्ड विशेष कालीसूची में डाले गये पासवर्डों के समान नहीं हो सकता",
 	"passwordpolicies-policy-maximalpasswordlength": "पासवर्ड $1 {{PLURAL:$1|अक्षर|अक्षरों}} से कम लम्बा होना चाहिये",
-	"passwordpolicies-policy-passwordcannotbepopular": "पासवर्ड {{PLURAL:$1|सामान्य रूप से प्रयोग होने वाले पासवर्ड में|$1 सामान्य पासवर्डों की सूची में}} नहीं हो सकता।",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "पासवर्ड सामान्य रूप से उपयोग होने वाले 1,00,000 पासवर्डों की सूची में नहीं हो सकता।",
 	"deflate-invaliddeflate": "Content provided is not properly deflated",
 	"unprotected-js": "सुरक्षा कारणों से जावास्क्रिप्ट असुरक्षित पन्नों से लोड नहीं किया जा सका। कृपया जावास्क्रिप्ट केवल मीडियाविकि में बनाये:नामस्थान या सदस्य उपपृष्ठ"

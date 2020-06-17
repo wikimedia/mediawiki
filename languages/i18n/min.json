@@ -477,7 +477,6 @@
 	"wrongpasswordempty": "Sanak indak mamasuakan kato sandi. Cubolah baliak.",
 	"passwordtooshort": "Kato sandi paliang indak harus tadiri dari {{PLURAL:$1|$1 karakter}}.",
 	"passwordtoolong": "Kato sandi indak buliah labiah dari {{PLURAL:$1|1 character|$1 characters}}.",
-	"passwordtoopopular": "Kato sandi nan umum indak dapek digunoan. Mohon piliah kato sandi nan labiah sulik untuak ditakok.",
 	"passwordincommonlist": "Kato sandi nan dimasuakan adolah kato sandi nan umum. Mohon gunoan kato sandi nan labiah unik.",
 	"password-name-match": "Kato sandi Sanak harus babedo dari namo pangguno Sanak.",
 	"password-login-forbidden": "Panggunoan namo pangguno dan sandi ko alah dilarang.",

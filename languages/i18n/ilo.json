@@ -451,7 +451,6 @@
 	"wrongpasswordempty": "Blanko ti naikabil a kontrasenias. \nPangngaasi a padasen manen.",
 	"passwordtooshort": "Dagiti kontrasenias ket nasken a saan a basbasit ngem {{PLURAL:$1|1 a karakter|$1 a karkarakter}}.",
 	"passwordtoolong": "Dagiti kontrasenias ket nasken a saan nga at-atiddog ngem {{PLURAL:$1|1 a karakter|$1 a karkarakter}}.",
-	"passwordtoopopular": "Saan a mabalin a mausar dagiti kadawyan a mapilpili a kontrasenias. Pangngaasi nga agpili iti kontrasenias a narigrigat a mapugtuan.",
 	"password-name-match": "Nasken a ti kontrasenias ket maigiddiat manipud iti naganmo.",
 	"password-login-forbidden": "Naipariten ti panagusar iti daytoy a nagan ti agar-aramat ken kontrasenias.",
 	"mailmypassword": "Isaad manen ti kontrasenias",
@@ -3528,6 +3527,5 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Ti kontrasenias ket nasken a saan a basbassit ngem $1 a {{PLURAL:$1|karakter|karkarakter}} iti kaatiddog tapno makabaelan ti sumrek",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Ti kontrasenia ket saan a mabalin a kapada a kas ti nagan ti agar-aramat",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Ti kontrasenias ket saan a mabalin a maipada kadagiti naiparit a kontrasenias",
-	"passwordpolicies-policy-maximalpasswordlength": "Ti kontrasenias ket nasken a basbassit ngem $1 a {{PLURAL:$1|karakter|karkarakter}} iti kaatiddog",
-	"passwordpolicies-policy-passwordcannotbepopular": "Ti kontrasenias ket saan a mabalin {{PLURAL:$1|a ti popular a kontrasenias|nga adda iti listaan dagiti $1 a popular a kontrasenias}}"
+	"passwordpolicies-policy-maximalpasswordlength": "Ti kontrasenias ket nasken a basbassit ngem $1 a {{PLURAL:$1|karakter|karkarakter}} iti kaatiddog"
 }

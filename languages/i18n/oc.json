@@ -463,7 +463,6 @@
 	"wrongpasswordempty": "Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.",
 	"passwordtooshort": "Vòstre senhal deu conténer al mens {{PLURAL:$1|1 caractèr|$1 caractèrs}}.",
 	"passwordtoolong": "Mots de passa pòdon pas aver mai de  {{PLURAL:$1|1 caractèr|$1 caractèrs}}.",
-	"passwordtoopopular": "Es pas possible d'utilizar mots de passa fòrça comuns. Vos cal causir un mot de passa mai malaisit  de deschifrar.",
 	"password-name-match": "Vòstre senhal deu èsser diferent de vòstre nom d’utilizaire.",
 	"password-login-forbidden": "L'usatge d'aquestes nom d'utilizaire e senhal es pas autorisat",
 	"mailmypassword": "Reïnicializar lo senhal",

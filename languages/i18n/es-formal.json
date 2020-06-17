@@ -8,6 +8,7 @@
 			"La Mantis",
 			"Macofe",
 			"MarcoAurelio",
+			"Whytheonlyone",
 			"XanaG"
 		]
 	},
@@ -198,6 +199,7 @@
 	"internalerror_info": "Error interno: $1",
 	"viewsource": "Ver código",
 	"actionthrottledtext": "Como medida contra los abusos, la acción que está realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y ha excedido ese límite.\nPor favor inténtelo de nuevo en unos minutos.",
+	"protectedpagetext": "#REDIRECT[[MediaWiki:Protectedpagetext/es]]",
 	"viewsourcetext": "Puede ver y copiar el código fuente de esta página.",
 	"viewyourtext": "Puede ver y copiar el código de <strong>sus ediciones</strong> en esta página.",
 	"protectedinterface": "Esta página proporciona el texto de la interfaz del software en este wiki, y está protegida para prevenir el abuso.\nPara agregar o cambiar las traducciones para todos los wikis, use [https://translatewiki.net/ translatewiki.net], el proyecto de localización de MediaWiki.",

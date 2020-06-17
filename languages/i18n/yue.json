@@ -483,7 +483,6 @@
 	"wrongpasswordempty": "你都未入密碼，唔該再試多次啦。",
 	"passwordtooshort": "你嘅密碼最少要有$1個半形字元。",
 	"passwordtoolong": "密碼唔可以長過{{PLURAL:$1|1個字元|$1個字元}}。",
-	"passwordtoopopular": "呢個密碼太常見，唔俾用。唔該揀個難估啲嘅密碼。",
 	"password-name-match": "你嘅密碼一定要同你嘅用戶名唔一樣。",
 	"password-login-forbidden": "呢個用戶名同密碼嘅利用係被禁止嘅。",
 	"mailmypassword": "重設密碼",
@@ -3166,6 +3165,5 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "密碼唔可以同用戶名一樣",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "密碼唔可以同列入咗黑名單嘅密碼一樣",
 	"passwordpolicies-policy-maximalpasswordlength": "密碼一定要短過$1個{{PLURAL:$1|字元}}長",
-	"passwordpolicies-policy-passwordcannotbepopular": "密碼唔可以{{PLURAL:$1|係最常見嘅密碼|喺最常見嘅$1個密碼一覽度}}",
 	"unprotected-js": "基於安全理由，JavaScript唔可以由未保護嘅版載入。請淨係喺MediaWiki: 空間名或者係用戶子頁度開JavaScript。"
 }

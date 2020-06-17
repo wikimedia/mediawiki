@@ -454,7 +454,6 @@
 	"wrongpasswordempty": "Sandina can kaeusian. Cobaan deui!",
 	"passwordtooshort": "Sandina kudu diwangun ku sahanteuna {{PLURAL:$1|1 karakter|$1 karakter}}.",
 	"passwordtoolong": "Kecap sandi teu bisa leuwih ti {{PLURAL:$1|1 karakter|$1 karakter}}.",
-	"passwordtoopopular": "Kecap sandi nu guyub teu bisa dipaké. Mangga pilih kecap sandi nu béda.",
 	"password-name-match": "Kecap sandi anjeun kudu béda ti sandiasma.",
 	"password-login-forbidden": "Sandiasma jeung sandina teu bisa dipaké.",
 	"mailmypassword": "Setél ulang kecap sandi",

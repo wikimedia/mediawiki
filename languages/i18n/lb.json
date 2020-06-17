@@ -465,7 +465,6 @@
 	"wrongpasswordempty": "D'Passwuert dat Dir aginn hutt war eidel.\nProbéiert wgl. nach eng Kéier.",
 	"passwordtooshort": "Passwierder musse mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.",
 	"passwordtoolong": "Passwierder kënnen net méi laang wéi {{PLURAL:$1|1 Zeeche|$1 Zeeche}} sinn.",
-	"passwordtoopopular": "Dacks gewielt Passwierder kënnen net benotzt ginn. Sicht Iech wgl. e méi spezifescht Passwuert dat méi schwéier gerode gi kann.",
 	"passwordincommonlist": "D'Passwuert dat Dir aginn hutt ass an enger Lëscht vu ganz dacks benotzte Passwierder. Sicht wgl. ee méi e personaliséiert Passwuert.",
 	"password-name-match": "Äert Passwuert muss verschidde vun Ärem Benotzernumm sinn.",
 	"password-substring-username-match": "Äert Passwuert däerf keen Deel vun Ärem Benotzernumm sinn.",

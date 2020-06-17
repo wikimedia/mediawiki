@@ -479,7 +479,6 @@
 	"wrongpasswordempty": "Walang laman ang ipinasok na password.\nPakisubok muli.",
 	"passwordtooshort": "Ang mga password ay kailangan di bababa sa $1 karakter.",
 	"passwordtoolong": "Ang mga password ay hindi maaaring mas mahaba sa {{PLURAL:$1|1 panitik|$1 panitik}}.",
-	"passwordtoopopular": "Hindi maaaring gamitin ang mga piniling pangkaraniwang password. Mangyaring pumili ng higit na natatanging password na mahirap hulaan.",
 	"password-name-match": "Dapat magkaiba ang password mo sa bansag o username mo.",
 	"password-login-forbidden": "Ipinagbabawal ang paggamit ng ganitong pangalan ng tagagamit at password.",
 	"mailmypassword": "Baguhin ang password",

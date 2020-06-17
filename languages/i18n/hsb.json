@@ -467,7 +467,6 @@
 	"wrongpasswordempty": "Hesło, kotrež sy zapodał, běše prózdne. Prošu spytaj hišće raz.",
 	"passwordtooshort": "Hesła dyrbja znajmjeńša {{PLURAL:$1|1 znamješko|$1 znamješce|$1 znamješka|$1 znamješkow}} měć.",
 	"passwordtoolong": "Hesła njesmědźa dlěše jako {{PLURAL:$1|1 znamješko|$1 znamješce|$1 znamješka|$1 znamješkow}} być.",
-	"passwordtoopopular": "Husto wubrane hesła njedadźa so wužiwać. Prošu wubjer hesło, kotrež njeda so tak lochko wuhódać.",
 	"passwordincommonlist": "Zapodate hesło namaka so na lisćinje jara husto trjebanych hesłow. Prošu wubjer sej jónkrótniše hesło.",
 	"password-name-match": "Twoje hesło dyrbi so wot twojeho wužiwarskeho mjena rozeznać.",
 	"password-login-forbidden": "Wužiwanje tutoho wužiwarskeho mjena a heska je zakazane.",

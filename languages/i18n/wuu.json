@@ -481,7 +481,6 @@
 	"wrongpasswordempty": "输入个密码为空。请重试。",
 	"passwordtooshort": "密码起码要$1个字符。",
 	"passwordtoolong": "密码弗能超过{{PLURAL:$1|$1个字符}}。",
-	"passwordtoopopular": "弗能使用普遍选择个密码。请选择更难猜出个密码。",
 	"passwordincommonlist": "输入个密码拉交关常用个密码列表中。请选择一个更独特个密码。",
 	"password-name-match": "密码弗好搭户名一样。",
 	"password-substring-username-match": "侬个密码弗能出现拉用户名里。",

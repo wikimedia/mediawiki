@@ -408,7 +408,6 @@
 	"wrongpasswordempty": "Þū ne write nǣnig þafungword. \nSēc þū eft lā.",
 	"passwordtooshort": "Þafungword sculon habban læst {{PLURAL:$1|1 stafan|$1 stafena}}.",
 	"passwordtoolong": "Þafungword ne cunnon wesan lengran þonne {{PLURAL:$1|1 stafa|$1 stafena}}.",
-	"passwordtoopopular": "Swiðe gewunelice gelēafnesword ne mæg man brūcan. Cies anliepe gelēafnesword.",
 	"password-name-match": "Þīn þafungword sceal wesan ungelīc þīnum brūcendes naman.",
 	"password-login-forbidden": "Sēo nytt þisses brūcendes naman and þafungwordes nis gelīfed.",
 	"mailmypassword": "Settan þafungword eft",
