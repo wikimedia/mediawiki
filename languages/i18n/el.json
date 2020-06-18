@@ -3682,6 +3682,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Το συνθηματικό δεν μπορεί να είναι ακριβώς ίδιο με κάποιο από τα συνθηματικά που βρίσκονται σε μαύρη λίστα",
 	"passwordpolicies-policy-maximalpasswordlength": "Το συνθηματικό πρέπει να έχει μήκος λιγότερο από $1 {{PLURAL:$1|χαρακτήρα|χαρακτήρες}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Το συνθηματικό δεν μπορεί να είναι στην λίστα των 100.000 συνηθέστερα χρησιμοποιούμενων συνθηματικών.",
+	"passwordpolicies-policy-passwordnotincommonlist": "Το συνθηματικό δεν μπορεί να είναι στην λίστα των 100.000 συνηθέστερα χρησιμοποιούμενων συνθηματικών.",
 	"passwordpolicies-policyflag-forcechange": "πρέπει να αλλαχθεί κατά τη σύνδεση",
 	"unprotected-js": "Για λόγους ασφαλείας δεν μπορεί να φορτωθεί JavaScript από μη προστατευμένες σελίδες. Παρακαλούμε δημιουργήστε javascript μόνο στον ονοματοχώρο MediaWiki: ή ως υποσελίδα χρήστη",
 	"userlogout-continue": "Θέλετε να αποσυνδεθείτε;",

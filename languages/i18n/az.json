@@ -737,6 +737,7 @@
 	"postedit-confirmation-created": "Səhifə yaradıldı.",
 	"postedit-confirmation-saved": "Redaktəniz qeyd edildi.",
 	"edit-already-exists": "Yeni səhifəni yaratmaq mümkün deyil.\nBelə ki, bu adda səhifə artıq mövcuddur.",
+	"invalid-content-data": "Yanlış məzmun məlumatları",
 	"content-not-allowed-here": "\"$1\" tərkibi [[:$2]] səhifəsi üçün icazə verilmir.",
 	"slot-name-main": "Əsas",
 	"content-model-wikitext": "vikimətn",
