@@ -47,6 +47,7 @@ class DeprecatedHooks {
 		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'BaseTemplateToolbox' => [ 'deprecatedVersion' => '1.35' ],
 		'BeforeParserrenderImageGallery' => [ 'deprecatedVersion' => '1.35' ],
+		'DiffViewHeader' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
 		'LinkBegin' => [ 'deprecatedVersion' => '1.28' ],
 		'LinkEnd' => [ 'deprecatedVersion' => '1.28' ],

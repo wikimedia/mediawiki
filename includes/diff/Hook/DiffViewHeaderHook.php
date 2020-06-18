@@ -6,7 +6,7 @@ use DifferenceEngine;
 use Revision;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35, use DifferenceEngineViewHeader
  * @ingroup Hooks
  */
 interface DiffViewHeaderHook {
