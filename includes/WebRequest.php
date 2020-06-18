@@ -428,8 +428,7 @@ class WebRequest {
 			}
 		} else {
 			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-			$data = $contLang ? $contLang->normalize( $data ) :
-				UtfNormal\Validator::cleanUp( $data );
+			$data = $contLang->normalize( $data );
 		}
 		return $data;
 	}
