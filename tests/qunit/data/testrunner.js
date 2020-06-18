@@ -38,10 +38,6 @@
 			String( parseInt( Math.random() * 100000, 10 ) );
 	};
 
-	/**
-	 * Configuration
-	 */
-
 	// For each test that is asynchronous, allow this time to pass before
 	// killing the test and assuming timeout failure.
 	QUnit.config.testTimeout = 60 * 1000;
@@ -60,12 +56,10 @@
 		value: 'true'
 	} );
 
-	/**
-	 * SinonJS
-	 *
-	 * Glue code for nicer integration with QUnit setup/teardown
-	 * Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
-	 */
+	// SinonJS
+	//
+	// Glue code for nicer integration with QUnit setup/teardown
+	// Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
 	sinon.assert.fail = function ( msg ) {
 		QUnit.assert.ok( false, msg );
 	};

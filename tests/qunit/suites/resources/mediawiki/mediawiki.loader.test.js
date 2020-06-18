@@ -47,6 +47,12 @@
 	 * when the url is loaded, but that is fragile since it doesn't monitor the
 	 * same request as the css @import, and Safari 4 has issues with
 	 * onerror/onload not being fired at all in weird cases like this.
+	 *
+	 * @param {Object} assert QUnit test assertion context
+	 * @param {jQuery} $element
+	 * @param {string} prop
+	 * @param {string} val
+	 * @param {Function} fn
 	 */
 	function assertStyleAsync( assert, $element, prop, val, fn ) {
 		var styleTestStart,

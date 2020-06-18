@@ -2,7 +2,8 @@
 	"extends": [
 		"wikimedia/client",
 		"wikimedia/jquery",
-		"wikimedia/mediawiki"
+		"wikimedia/mediawiki",
+		"wikimedia/jsduck"
 	],
 	"globals": {
 		"require": "readonly",
@@ -12,14 +13,5 @@
 		"max-len": "off",
 		"mediawiki/valid-package-file-require": "off",
 		"no-jquery/no-global-selector": "off"
-	},
-	"settings": {
-		"jsdoc": {
-			"tagNamePreference": {
-				"alias": "alternateClassName",
-				"alternateClassName": "alternateClassName",
-				"typedef": "type"
-			}
-		}
 	}
 }
