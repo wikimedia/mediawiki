@@ -920,7 +920,7 @@ class MovePage {
 		$this->hookRunner->onNewRevisionFromEditComplete(
 			$newpage, $nullRevisionObj, $nullRevision->getParentId(), $user, $fakeTags );
 
-		$newpage->doEditUpdates( $nullRevisionObj, $user,
+		$newpage->doEditUpdates( $nullRevision, $user,
 			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
 
 		WikiPage::onArticleCreate( $nt );
@@ -960,9 +960,8 @@ class MovePage {
 				$this->hookRunner->onNewRevisionFromEditComplete(
 					$redirectArticle, $redirectRevisionObj, false, $user, $fakeTags );
 
-				// TODO WikiPage::doEditUpdates is deprecated
 				$redirectArticle->doEditUpdates(
-					$redirectRevisionObj,
+					$inserted,
 					$user,
 					[ 'created' => true ]
 				);
