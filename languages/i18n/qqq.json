@@ -2058,7 +2058,6 @@
 	"uploadstash-file-not-found": "Error message when a stashed file can't be found.\n\nParameters:\n* $1 - the stash key",
 	"uploadstash-file-not-found-no-thumb": "Error message when no thumbnail could be generated.",
 	"uploadstash-file-not-found-no-local-path": "Error message when no locally generated thumbnail can be found.",
-	"uploadstash-file-not-found-no-object": "Error message when no local thumbnail object can be created.",
 	"uploadstash-file-not-found-no-remote-thumb": "Error message when a thumbnail could not be retrieved from a remote server.\n\nParameters:\n* $1 - error details\n* $2 - remote url",
 	"uploadstash-file-not-found-missing-content-type": "Error message when a thumbnail from a remote server is missing the content-type header.",
 	"uploadstash-file-not-found-not-exists": "Error message when a stashed file doesn't exist.",

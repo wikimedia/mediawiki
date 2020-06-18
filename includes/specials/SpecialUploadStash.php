@@ -214,11 +214,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// n.b. MIME type may be different from original (ogx original -> jpeg thumb)
 		$thumbFile = new UnregisteredLocalFile( false,
 			$this->stash->repo, $thumbnailImage->getStoragePath(), false );
-		if ( !$thumbFile ) {
-			throw new UploadStashFileNotFoundException(
-				$this->msg( 'uploadstash-file-not-found-no-object' )
-			);
-		}
 
 		$this->outputLocalFile( $thumbFile );
 	}
