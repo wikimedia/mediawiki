@@ -95,7 +95,7 @@ describe( 'POST /page', () => {
 		} );
 	} );
 
-	describe( 'request validation', async () => {
+	describe( 'request validation', () => {
 		const title = utils.title( 'Edit Test ' );
 
 		const reqBody = {

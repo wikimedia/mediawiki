@@ -47,7 +47,7 @@ describe( 'Revision', () => {
 		} );
 	} );
 
-	describe( 'GET /revision/{id}/bare', async () => {
+	describe( 'GET /revision/{id}/bare', () => {
 		it( 'should successfully get information about revision', async () => {
 			const page = utils.title( 'Revision' );
 			const { newrevid, pageid, param_summary } = await mindy.edit( page, {
