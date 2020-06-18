@@ -3158,8 +3158,8 @@ class Title implements LinkTarget, IDBAccessObject {
 			return $this->mArticleID;
 		}
 
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		if ( $flags & self::GAID_FOR_UPDATE ) {
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			$oldUpdate = $linkCache->forUpdate( true );
 			$linkCache->clearLink( $this );
 			$this->mArticleID = $linkCache->addLinkObj( $this );
@@ -3171,6 +3171,7 @@ class Title implements LinkTarget, IDBAccessObject {
 			$this->mArticleID = -1;
 			$this->mArticleID = (int)$this->loadFieldFromDB( 'page_id', $flags );
 		} elseif ( $this->mArticleID == -1 ) {
+			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 		}
 
