@@ -72,18 +72,17 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			// of the filename below
 			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
 			$lb = $linkBatchFactory->newLinkBatch();
-			foreach ( $this->mImages as $img ) {
-				$lb->addObj( $img[0] );
+			foreach ( $this->mImages as [ $title, /* see below */ ] ) {
+				$lb->addObj( $title );
 			}
 			$lb->execute();
 		}
 
 		$lang = $this->getRenderLang();
 		# Output each image...
-		foreach ( $this->mImages as $pair ) {
+		foreach ( $this->mImages as [ $nt, $text, $alt, $link, $handlerOpts, $loading ] ) {
 			// "text" means "caption" here
 			/** @var Title $nt */
-			list( $nt, $text, $alt, $link, $handlerOpts, $loading ) = $pair;
 
 			$descQuery = false;
 			if ( $nt->getNamespace() === NS_FILE ) {
@@ -103,8 +102,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			}
 
 			$params = $this->getThumbParams( $img );
-			// $pair[4] is per image handler options
-			$transformOptions = $params + $pair[4];
+			$transformOptions = $params + $handlerOpts;
 
 			$thumb = false;
 

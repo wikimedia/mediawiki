@@ -66,9 +66,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	public function testMapDiffPrevNext() {
 		$cases = $this->getMapDiffPrevNextCases();
 
-		foreach ( $cases as $case ) {
-			list( $expected, $old, $new, $message ) = $case;
-
+		foreach ( $cases as [ $expected, $old, $new, $message ] ) {
 			$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
 			$diffMap = $diffEngine->mapDiffPrevNext( $old, $new );
 			$this->assertEquals( $expected, $diffMap, $message );
@@ -88,9 +86,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	public function testLoadRevisionData() {
 		$cases = $this->getLoadRevisionDataCases();
 
-		foreach ( $cases as $testName => $case ) {
-			list( $expectedOld, $expectedNew, $expectedRet, $old, $new ) = $case;
-
+		foreach ( $cases as $testName => [ $expectedOld, $expectedNew, $expectedRet, $old, $new ] ) {
 			$diffEngine = new DifferenceEngine( $this->context, $old, $new, 2, true, false );
 			$ret = $diffEngine->loadRevisionData();
 			$ret2 = $diffEngine->loadRevisionData();

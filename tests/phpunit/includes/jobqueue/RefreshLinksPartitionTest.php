@@ -21,8 +21,7 @@ class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 	public function testRefreshLinks( $ns, $dbKey, $pages ) {
 		$title = Title::makeTitle( $ns, $dbKey );
 
-		foreach ( $pages as $page ) {
-			list( $bns, $bdbkey ) = $page;
+		foreach ( $pages as [ $bns, $bdbkey ] ) {
 			$bpage = WikiPage::factory( Title::makeTitle( $bns, $bdbkey ) );
 			$content = ContentHandler::makeContent( "[[{$title->getPrefixedText()}]]", $bpage->getTitle() );
 			$bpage->doEditContent( $content, "test" );

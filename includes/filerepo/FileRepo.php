@@ -1496,8 +1496,7 @@ class FileRepo {
 		$backend = $this->backend; // convenience
 		$operations = [];
 		// Validate filenames and create archive directories
-		foreach ( $sourceDestPairs as $pair ) {
-			list( $srcRel, $archiveRel ) = $pair;
+		foreach ( $sourceDestPairs as [ $srcRel, $archiveRel ] ) {
 			if ( !$this->validateFilename( $srcRel ) ) {
 				throw new MWException( __METHOD__ . ':Validation error in $srcRel' );
 			} elseif ( !$this->validateFilename( $archiveRel ) ) {

@@ -42,8 +42,7 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 	public function testMultipleFileHash( $files ) {
 		$fileNames = [];
 		$hashes = [];
-		foreach ( $files as $fileInfo ) {
-			list( $fileName, $contents ) = $fileInfo;
+		foreach ( $files as [ $fileName, $contents ] ) {
 			$fileNames[] = $fileName;
 			$hashes[] = md5( $contents );
 		}

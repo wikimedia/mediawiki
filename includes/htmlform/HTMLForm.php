@@ -1197,8 +1197,7 @@ class HTMLForm extends ContextSource {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
-		foreach ( $this->mHiddenFields as $data ) {
-			list( $value, $attribs ) = $data;
+		foreach ( $this->mHiddenFields as [ $value, $attribs ] ) {
 			$html .= Html::hidden( $attribs['name'], $value, $attribs ) . "\n";
 		}
 

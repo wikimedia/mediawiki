@@ -590,8 +590,7 @@ class NamespaceDupes extends Maintenance {
 			[ 'templatelinks', 'tl' ],
 			[ 'imagelinks', 'il' ]
 		];
-		foreach ( $fromNamespaceTables as $tableInfo ) {
-			list( $table, $fieldPrefix ) = $tableInfo;
+		foreach ( $fromNamespaceTables as [ $table, $fieldPrefix ] ) {
 			$dbw->update( $table,
 				// SET
 				[ "{$fieldPrefix}_from_namespace" => $newLinkTarget->getNamespace() ],

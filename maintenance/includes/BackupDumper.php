@@ -193,9 +193,7 @@ abstract class BackupDumper extends Maintenance {
 		$this->schemaVersion = WikiExporter::schemaVersion();
 
 		$options = $this->orderedOptions;
-		foreach ( $options as $arg ) {
-			list( $opt, $param ) = $arg;
-
+		foreach ( $options as [ $opt, $param ] ) {
 			switch ( $opt ) {
 				case 'plugin':
 					$val = explode( ':', $param, 2 );
