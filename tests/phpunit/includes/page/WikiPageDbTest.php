@@ -288,6 +288,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'WikiPage::prepareContentForEdit with a Revision object' );
 
 		$this->setMwGlobals( 'wgPageCreationLog', true );
 
