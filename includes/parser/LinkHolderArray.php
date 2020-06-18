@@ -130,12 +130,11 @@ class LinkHolderArray {
 	 *
 	 * @param Title $nt
 	 * @param string $text
-	 * @param array $query [optional]
 	 * @param string $trail [optional]
 	 * @param string $prefix [optional]
 	 * @return string
 	 */
-	public function makeHolder( Title $nt, $text = '', $query = [], $trail = '', $prefix = '' ) {
+	public function makeHolder( Title $nt, $text = '', $trail = '', $prefix = '' ) {
 		# Separate the link trail from the rest of the link
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 
@@ -145,9 +144,6 @@ class LinkHolderArray {
 			'text' => $prefix . $text . $inside,
 			'pdbk' => $nt->getPrefixedDBkey(),
 		];
-		if ( $query !== [] ) {
-			$entry['query'] = $query;
-		}
 
 		$this->size++;
 		if ( $nt->isExternal() ) {

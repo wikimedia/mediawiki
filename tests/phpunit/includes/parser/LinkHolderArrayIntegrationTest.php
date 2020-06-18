@@ -62,7 +62,6 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		$result = $link->makeHolder(
 			$title,
 			'test1 text',
-			[ 'mock query' ],
 			'test2 trail',
 			'test3 prefix'
 		);
@@ -76,7 +75,6 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 						'title' => $title,
 						'text' => 'test3 prefixtest1 texttest',
 						'pdbk' => $nsText,
-						'query' => [ 'mock query' ],
 					],
 				],
 				$link->interwikis
@@ -90,7 +88,6 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 							'title' => $title,
 							'text' => 'test3 prefixtest1 texttest',
 							'pdbk' => $nsText,
-							'query' => [ 'mock query' ],
 						],
 					],
 				],
