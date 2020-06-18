@@ -149,17 +149,16 @@ class LinkHolderArray {
 			$entry['query'] = $query;
 		}
 
+		$this->size++;
 		if ( $nt->isExternal() ) {
 			// Use a globally unique ID to keep the objects mergable
 			$this->interwikis[$key] = $entry;
-			$retVal = "<!--IWLINK'\" $key-->{$trail}";
+			return "<!--IWLINK'\" $key-->{$trail}";
 		} else {
 			$ns = $nt->getNamespace();
 			$this->internals[$ns][$key] = $entry;
-			$retVal = "<!--LINK'\" $ns:$key-->{$trail}";
+			return "<!--LINK'\" $ns:$key-->{$trail}";
 		}
-		$this->size++;
-		return $retVal;
 	}
 
 	/**
