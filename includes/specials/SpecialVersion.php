@@ -137,33 +137,38 @@ class SpecialVersion extends SpecialPage {
 				break;
 
 			case 'license':
-				$wikiText = '{{int:version-license-not-found}}';
+				$out->setPageTitle( $this->msg( 'version-license-title', $extName ) );
+
+				$licenseFound = false;
+
 				if ( $extName === 'MediaWiki' ) {
-					$wikiText = file_get_contents( $IP . '/COPYING' );
+					$out->addWikiTextAsInterface(
+						file_get_contents( $IP . '/COPYING' )
+					);
+					$licenseFound = true;
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
 					$files = ExtensionInfo::getLicenseFileNames( dirname( $extNode['path'] ) );
 
 					if ( count( $files ) ) {
-						// Only replace '{{int:version-license-not-found}}' if we have files
-						$wikiText = '';
+						$licenseFound = true;
 						foreach ( $files as $file ) {
-							$fileText = file_get_contents( $file );
-							$wikiText .= Html::element(
-								'pre',
-								[
-									'lang' => 'en',
-									'dir' => 'ltr',
-								],
-								$fileText
+							$out->addWikiTextAsInterface(
+								Html::element(
+									'pre',
+									[
+										'lang' => 'en',
+										'dir' => 'ltr',
+									],
+									file_get_contents( $file )
+								)
 							);
 						}
 					}
 				}
-
-				$out->setPageTitle( $this->msg( 'version-license-title', $extName ) );
-				$out->addWikiTextAsInterface( $wikiText );
+				if ( !$licenseFound ) {
+					$out->addWikiTextAsInterface( '{{int:version-license-not-found}}' );
+				}
 				break;
-
 			default:
 				$out->addModuleStyles( 'mediawiki.special.version' );
 				$out->addWikiTextAsInterface(
