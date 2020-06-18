@@ -68,11 +68,13 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	protected function alterForm( HTMLForm $form ) {
-		if ( !$this->title ) {
-			$form->setMethod( 'GET' );
-		}
-
 		$this->addHelpLink( 'Help:ChangeContentModel' );
+
+		if ( $this->title ) {
+			$form->setFormIdentifier( 'modelform' );
+		} else {
+			$form->setFormIdentifier( 'titleform' );
+		}
 
 		// T120576
 		$form->setSubmitTextMsg( 'changecontentmodel-submit' );
@@ -83,11 +85,6 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	public function validateTitle( $title ) {
-		if ( !$title ) {
-			// No form input yet
-			return true;
-		}
-
 		// Already validated by HTMLForm, but if not, throw
 		// an exception instead of a fatal
 		$titleObj = Title::newFromTextThrow( $title );
@@ -193,17 +190,6 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		if ( $data['pagetitle'] === '' ) {
-			// Initial form view of special page, pass
-			return false;
-		}
-
-		// At this point, it has to be a POST request. This is enforced by HTMLForm,
-		// but lets be safe verify that.
-		if ( !$this->getRequest()->wasPosted() ) {
-			throw new RuntimeException( "Form submission was not POSTed" );
-		}
-
 		$user = $this->getUser();
 		$this->title = Title::newFromText( $data['pagetitle'] );
 		$page = WikiPage::factory( $this->title );
