@@ -866,7 +866,7 @@ class PageArchive {
 				// Update site stats, link tables, etc
 				// TODO: use DerivedPageDataUpdater from If610c68f4912e!
 				$article->doEditUpdates(
-					$legacyRevision,
+					$revision,
 					User::newFromName( $revision->getUser( RevisionRecord::RAW )->getName(), false ),
 					[
 						'created' => $created,

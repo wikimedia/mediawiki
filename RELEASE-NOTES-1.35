@@ -960,6 +960,9 @@ because of Phabricator reports.
   from the current revision.
 * Article::doDeleteUpdates and ::doEditUpdates are deprecated. Instead,
   use WikiPage::doDeleteUpdates and ::doEditUpdates.
+* WikiPage::doEditUpdates previously accepted a Revision object as its first
+  parameter. It now accepts RevisionRecord objects, and passing Revision
+  objects is deprecated.
 * Article::getRevisionFetched is deprecated. Instead, use the
   fetchRevisionRecord method, which has been converted from protected to
   public.

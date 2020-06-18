@@ -166,10 +166,8 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		if ( $changed !== false && $this->doUpdates ) {
 			$this->logger->debug( __METHOD__ . ": running updates" );
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
-			// TODO WikiPage::doEditUpdates is deprecated
-			$revObject = new Revision( $inserted );
 			$page->doEditUpdates(
-				$revObject,
+				$inserted,
 				$user,
 				[ 'created' => $created, 'oldcountable' => 'no-change' ]
 			);
