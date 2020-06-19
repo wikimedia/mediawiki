@@ -1869,7 +1869,6 @@
 	"uploadstash-file-not-found": "\"$1\" anahtarı, saklama içinde bulunamadı.",
 	"uploadstash-file-not-found-no-thumb": "Küçük resim alınamadı.",
 	"uploadstash-file-not-found-no-local-path": "Ölçeklenmiş öge için yerel yol yok.",
-	"uploadstash-file-not-found-no-object": "Küçük resim için yerel dosya nesnesi oluşturulamadı.",
 	"uploadstash-file-not-found-no-remote-thumb": "Küçük resim alma başarısız oldu: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Eksik içerik tipi başlığı.",
 	"uploadstash-file-not-found-not-exists": "Düz bir dosya bulunamıyor veya bulunamıyor.",

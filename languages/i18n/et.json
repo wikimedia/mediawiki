@@ -1786,7 +1786,6 @@
 	"uploadstash-file-not-found": "Peithoidlas ei leidu võtit \"$1\".",
 	"uploadstash-file-not-found-no-thumb": "Pisipilti ei õnnestu hankida.",
 	"uploadstash-file-not-found-no-local-path": "Mastaabitud elemendi kohalikku teed ei leitud.",
-	"uploadstash-file-not-found-no-object": "Pisipildi kohalikku failiobjekti ei õnnestunud luua.",
 	"uploadstash-file-not-found-no-remote-thumb": "Pisipilti ei õnnestunud hankida: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Sisutüübi päis puudub.",
 	"uploadstash-file-not-found-not-exists": "Ei õnnestunud leida teed või faili ennast.",

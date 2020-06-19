@@ -1833,7 +1833,6 @@
 	"uploadstash-file-not-found": "저장소에서 \"$1\" 키를 찾지 못했습니다.",
 	"uploadstash-file-not-found-no-thumb": "섬네일을 가져오지 못했습니다.",
 	"uploadstash-file-not-found-no-local-path": "썸네일을 가르키는 로컬 경로가 없습니다.",
-	"uploadstash-file-not-found-no-object": "섬네일을 위한 로컬 파일 객체를 만들 수 없습니다.",
 	"uploadstash-file-not-found-no-remote-thumb": "섬네일 가져오기를 실패했습니다: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "content-type 헤더가 없습니다.",
 	"uploadstash-file-not-found-not-exists": "경로를 찾을 수 없거나 단순 파일이 아닙니다.",

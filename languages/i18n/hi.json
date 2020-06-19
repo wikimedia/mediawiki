@@ -1785,7 +1785,6 @@
 	"uploadstash-file-not-found": "छिपाने की जगह में कुंजी \"$1\" नहीं मिली|",
 	"uploadstash-file-not-found-no-thumb": "थंबनेल प्राप्त नहीं किया जा सका|",
 	"uploadstash-file-not-found-no-local-path": "स्केल की गयी वस्तु के लिए कोई स्थानीय पथ नहीं है|",
-	"uploadstash-file-not-found-no-object": "थंबनेल के लिए स्थानीय फ़ाइल ऑब्जेक्ट नहीं बना सके।",
 	"uploadstash-file-not-found-no-remote-thumb": "थंबनेल प्राप्त करना विफल: $1\nयूआरएल = $2",
 	"uploadstash-file-not-found-missing-content-type": "सामग्री प्रकार हैडर अनुपलब्ध|",
 	"uploadstash-file-not-found-not-exists": "पथ नहीं मिल सकता, न ही सादी फाइल|",

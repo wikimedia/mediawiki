@@ -1817,7 +1817,6 @@
 	"uploadstash-file-not-found": "کلید «$1» در انبار یافت نشد.",
 	"uploadstash-file-not-found-no-thumb": "امکان گرفتن بندانگشتی نیست.",
 	"uploadstash-file-not-found-no-local-path": "مسیر محلی برای آیتم مقایس‌شده وجود ندارد.",
-	"uploadstash-file-not-found-no-object": "امکان ساخت شیء پروندهٔ محلی برای بندانگشتی وجود ندارد.",
 	"uploadstash-file-not-found-no-remote-thumb": "دریافت بندانگشتی با مشکل مواجه شد:$1\nنشانی = $2",
 	"uploadstash-file-not-found-missing-content-type": "سرآیند نوع-محتوی یافت نشد.",
 	"uploadstash-file-not-found-not-exists": "امکان یافتن مسیر نیست، یا فایل ساده نیست.",

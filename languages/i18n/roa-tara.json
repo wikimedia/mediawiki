@@ -1673,7 +1673,6 @@
 	"uploadstash-file-not-found": "Chiave \"$1\" non acchiate jndr'à scorte.",
 	"uploadstash-file-not-found-no-thumb": "No ge se pò avè 'a miniature.",
 	"uploadstash-file-not-found-no-local-path": "Nisciune percorse locale pa vôsce in scale.",
-	"uploadstash-file-not-found-no-object": "Non ge pozze ccrejà 'nu oggette file locale pa miniature.",
 	"uploadstash-file-not-found-no-remote-thumb": "Recupere d'a miniature schiute a male: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "'Ndestazione content-type mangande.",
 	"uploadstash-file-not-found-not-exists": "Non ge pozze acchià 'u percorse, o non g'è 'nu file de teste.",

@@ -1867,7 +1867,6 @@
 	"uploadstash-file-not-found": "在儲藏裡找不到鍵「$1」。",
 	"uploadstash-file-not-found-no-thumb": "無法獲得縮圖。",
 	"uploadstash-file-not-found-no-local-path": "沒有用於縮放項目的本地路徑。",
-	"uploadstash-file-not-found-no-object": "無法建立用於縮圖的本地檔案物件。",
 	"uploadstash-file-not-found-no-remote-thumb": "取得縮圖失敗：$1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "缺少 content-type header。",
 	"uploadstash-file-not-found-not-exists": "找不到路徑，或不是純檔案。",

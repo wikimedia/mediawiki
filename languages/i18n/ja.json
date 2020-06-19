@@ -1875,7 +1875,6 @@
 	"uploadstash-file-not-found": "キー「$1」はスタッシュに存在しません。",
 	"uploadstash-file-not-found-no-thumb": "サムネイルを取得できませんでした。",
 	"uploadstash-file-not-found-no-local-path": "スケーリングされた項目のローカルパスはありません。",
-	"uploadstash-file-not-found-no-object": "サムネイルのローカルファイルオブジェクトを作成できませんでした。",
 	"uploadstash-file-not-found-no-remote-thumb": "サムネイルの取得に失敗しました:$1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "コンテンツタイプヘッダーがありません。",
 	"uploadstash-file-not-found-not-exists": "パスが見つからないか、またはプレーンファイルではありません。",

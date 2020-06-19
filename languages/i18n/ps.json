@@ -1444,7 +1444,6 @@
 	"uploadstash-file-not-found": "په \"$1\" کي فلش ونه موندل شو.",
 	"uploadstash-file-not-found-no-thumb": "تڼۍ ونه موندل شوه.",
 	"uploadstash-file-not-found-no-local-path": "د وړ شوي توکي لپاره محلي لاره نشته.",
-	"uploadstash-file-not-found-no-object": "د تاليف لپاره د ځایي دوتنې اعتراض نشي جوړولی.",
 	"uploadstash-file-not-found-no-remote-thumb": "د تڼۍ په ترلاسه کولو کې پاتې راغلي:$1\nنښاني= $2",
 	"uploadstash-file-not-found-missing-content-type": "ورک شوي مواد - د سرلیک ډول.",
 	"uploadstash-file-not-found-not-exists": "لاره نشي موندل کیدی، یا په یو ساده ډول دوتنه نشته.",

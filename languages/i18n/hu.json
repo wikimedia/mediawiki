@@ -1798,7 +1798,6 @@
 	"uploadstash-file-not-found": "A(z) „$1” kulcs nem található a tárolóban.",
 	"uploadstash-file-not-found-no-thumb": "A bélyegkép lekérése sikertelen.",
 	"uploadstash-file-not-found-no-local-path": "Nincs helyi útvonal az átméretezett elemhez.",
-	"uploadstash-file-not-found-no-object": "A bélyegkép helyi fájlobjektumának létrehozása sikertelen.",
 	"uploadstash-file-not-found-no-remote-thumb": "A bélyegkép lekérése sikertelen: $1\nURL: $2",
 	"uploadstash-file-not-found-missing-content-type": "A Content-Type (tartalomtípus) fejléc hiányzik.",
 	"uploadstash-file-not-found-not-exists": "Az útvonal nem található, vagy nem egy egyszerű fájl.",

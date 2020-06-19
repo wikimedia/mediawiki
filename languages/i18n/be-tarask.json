@@ -1772,7 +1772,6 @@
 	"uploadstash-file-not-found": "Ключ «$1» ня знойдзены ў схованцы.",
 	"uploadstash-file-not-found-no-thumb": "Не атрымалася здабыць мініятуру.",
 	"uploadstash-file-not-found-no-local-path": "Няма лякальнага шляху да маштабаванага элемэнту.",
-	"uploadstash-file-not-found-no-object": "Не атрымалася стварыць лякальны аб’ект файлу для мініятуры.",
 	"uploadstash-file-not-found-no-remote-thumb": "Памылка атрыманьня мініятуры: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Адсутнічае загаловак тыпу зьместу.",
 	"uploadstash-file-not-found-not-exists": "Не атрымалася знайсьці шлях, ці не зьяўляецца простым файлам.",

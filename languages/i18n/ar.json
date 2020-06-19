@@ -1838,7 +1838,6 @@
 	"uploadstash-file-not-found": "المفتاح \"$1\" لم يتم العثور عليه في الستاش.",
 	"uploadstash-file-not-found-no-thumb": "لم يمكن الحصول على تصغير.",
 	"uploadstash-file-not-found-no-local-path": "لا مسار محلي للعنصر المصغر.",
-	"uploadstash-file-not-found-no-object": "لم يمكن إنشاء كائن ملف محلي للتصغير.",
 	"uploadstash-file-not-found-no-remote-thumb": "الحصول على التصغير فشل: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "رأس مفقود لنوع المحتوى.",
 	"uploadstash-file-not-found-not-exists": "لم يمكن العثور على المسار، أو ليس ملف صريح.",

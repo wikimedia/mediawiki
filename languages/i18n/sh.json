@@ -1753,7 +1753,6 @@
 	"uploadstash-file-not-found": "Ključ \"$1\" nije pronađen u skladištu.",
 	"uploadstash-file-not-found-no-thumb": "Nisam mogao dobiti minijaturu.",
 	"uploadstash-file-not-found-no-local-path": "Nema mjesne putanje za umanjeni element.",
-	"uploadstash-file-not-found-no-object": "Ne mogu napraviti mjesni datotečni objekat za minijaturu.",
 	"uploadstash-file-not-found-no-remote-thumb": "Nije uspjelo dobavljanje minijature: $1\nurl = $2",
 	"uploadstash-file-not-found-missing-content-type": "Nedostaje zaglavlje za sadržajni tip.",
 	"uploadstash-file-not-found-not-exists": "Nisam mogao pronaći putanju ili prostu datoteku.",

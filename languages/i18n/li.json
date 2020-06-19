@@ -1658,7 +1658,6 @@
 	"uploadstash-file-not-found": "Sleutel \"$1\" neet gevónje in d'n opslaag.",
 	"uploadstash-file-not-found-no-thumb": "Kós geine miniatuur verkriege.",
 	"uploadstash-file-not-found-no-local-path": "Gei lokaal paad veur gesjaold plaetje.",
-	"uploadstash-file-not-found-no-object": "Kós gei lokaal bestandjsveurwerp veur de miniatuur aanmake.",
 	"uploadstash-file-not-found-no-remote-thumb": "Ophaole van de miniatuur mislök: $1\nurl = $2",
 	"uploadstash-file-not-found-missing-content-type": "\"content-type\"-kopteks óntbrèk.",
 	"uploadstash-file-not-found-not-exists": "Kan 't paad neet vinje of 't bestandj is geine platten teks.",

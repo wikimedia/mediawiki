@@ -1770,7 +1770,6 @@
 	"uploadstash-file-not-found": "Le clave \"$1\" non se trova in reserva.",
 	"uploadstash-file-not-found-no-thumb": "Non poteva obtener le miniatura.",
 	"uploadstash-file-not-found-no-local-path": "Il non ha cammino local pro le objecto redimensionate.",
-	"uploadstash-file-not-found-no-object": "Non poteva un objecto de file local pro le miniatura.",
 	"uploadstash-file-not-found-no-remote-thumb": "Recuperation de miniatura fallite: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Capite content-type mancante.",
 	"uploadstash-file-not-found-not-exists": "Non pote trovar le cammino, o non es un file simple.",

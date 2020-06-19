@@ -1780,7 +1780,6 @@
 	"uploadstash-file-not-found": "'$1' giltza ez da biltegian aurkitu.",
 	"uploadstash-file-not-found-no-thumb": "Miniaturarik ezin izan da lortu.",
 	"uploadstash-file-not-found-no-local-path": "Eskalatutako elementuarentzako bide lokalik ez.",
-	"uploadstash-file-not-found-no-object": "Ezin izan da fitxategi-objektu lokala sortu miniaturarako.",
 	"uploadstash-file-not-found-no-remote-thumb": "Ezin izan da kuadro txikia eskuratu: $1\nURLa = $2",
 	"uploadstash-file-not-found-missing-content-type": "Eduki-motako goiburua falta da.",
 	"uploadstash-file-not-found-not-exists": "Ezin da bidea aurkitu, edo ez da fitxategi arrunta.",

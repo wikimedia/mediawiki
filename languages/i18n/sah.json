@@ -1710,7 +1710,6 @@
 	"uploadstash-file-not-found": "«$1» күлүүс көстүбэтэ.",
 	"uploadstash-file-not-found-no-thumb": "Ойуучааны ылар табыллыбата.",
 	"uploadstash-file-not-found-no-local-path": "Масштаабтаммыт ойуу сытар сирэ көстүбэтэ.",
-	"uploadstash-file-not-found-no-object": "Ойуучаан билэтин эбийиэгин оҥорор сатаммата.",
 	"uploadstash-file-not-found-no-remote-thumb": "Эскиис сатаан хостоммото: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Content-type аат көстүбэтэ.",
 	"uploadstash-file-not-found-not-exists": "Билэ сытар сирэ көстүбэтэ эбэтэр өйдөммөтө.",

@@ -1773,7 +1773,6 @@
 	"uploadstash-file-not-found": "Ključa »$1« nismo našli v shrambi.",
 	"uploadstash-file-not-found-no-thumb": "Ne moremo pridobiti sličice.",
 	"uploadstash-file-not-found-no-local-path": "Za pomanjšano zadevo ni lokalne poti.",
-	"uploadstash-file-not-found-no-object": "Ne moremo ustvariti lokalnega objekta datoteke za sličico.",
 	"uploadstash-file-not-found-no-remote-thumb": "Pridobivanje sličice je spodletelo: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Manjkajoča glava content-type.",
 	"uploadstash-file-not-found-not-exists": "Ne moremo najti poti ali surove datoteke.",

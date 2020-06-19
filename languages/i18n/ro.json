@@ -1763,7 +1763,6 @@
 	"uploadstash-file-not-found": "Cheia „$1” nu a fost găsită în locația temporară.",
 	"uploadstash-file-not-found-no-thumb": "Nu pot obține miniatura.",
 	"uploadstash-file-not-found-no-local-path": "Nu există un director local pentru elementul scalat.",
-	"uploadstash-file-not-found-no-object": "Nu pot crea o copie locală pentru miniatură.",
 	"uploadstash-file-not-found-no-remote-thumb": "Obținerea miniaturii a ușuat: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Lipsește antetul content-type.",
 	"uploadstash-file-not-found-not-exists": "Nu pot găsi calea, sau nu este un fișier normal.",

@@ -1827,7 +1827,6 @@
 	"uploadstash-file-not-found": "Avainta ”$1” ei löytynyt kätköstä.",
 	"uploadstash-file-not-found-no-thumb": "Pienoiskuvaa ei voitu saada.",
 	"uploadstash-file-not-found-no-local-path": "Skaalatulla kohteella ei ole paikallista polkua.",
-	"uploadstash-file-not-found-no-object": "Ei voitu luoda paikallista tiedostokohdetta pienoiskuvalle.",
 	"uploadstash-file-not-found-no-remote-thumb": "Pienoiskuvan haku epäonnistui: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Puuttuva sisältötyypin ylätunniste",
 	"uploadstash-file-not-found-not-exists": "Polkua ei löytynyt, tai ei selkotiedosto.",

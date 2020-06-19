@@ -1729,7 +1729,6 @@
 	"uploadstash-refresh": "Абнавіць спіс файлаў",
 	"uploadstash-thumbnail": "паказаць мініяцюру",
 	"uploadstash-file-not-found-no-local-path": "Не знойдзена лакальнага шляху да отмасштабированному файлу.",
-	"uploadstash-file-not-found-no-object": "Не атрымалася стварыць аб’ект лакальнага файла для мініяцюры.",
 	"uploadstash-file-not-found-missing-content-type": "Адсутнічае загаловак content-type.",
 	"uploadstash-file-not-found-not-exists": "Шлях не знойдзены, альбо файл незразумелы.",
 	"invalid-chunk-offset": "Недапушчальнае зрушэнне фрагмента",

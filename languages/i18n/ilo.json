@@ -1621,7 +1621,6 @@
 	"uploadstash-file-not-found": "Ti tekla ti \"$1\" ket saan a mabirukan iti stash.",
 	"uploadstash-file-not-found-no-thumb": "Saan a makaala iti bassit a ladawan.",
 	"uploadstash-file-not-found-no-local-path": "Awan ti lokal a dalan para iti nagantingan a banag.",
-	"uploadstash-file-not-found-no-object": "Saan a makapartuat iti banag ti lokal a papeles para iti bassit a ladawan.",
 	"uploadstash-file-not-found-no-remote-thumb": "Napaay ti panagala iti bassit a ladawan: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Awan ti paulo ti kita ti linaon.",
 	"uploadstash-file-not-found-not-exists": "Saan a mabirukan ti dalan, wenno saan a naranas a papeles.",

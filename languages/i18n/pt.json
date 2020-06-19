@@ -1852,7 +1852,6 @@
 	"uploadstash-file-not-found": "A chave \"$1\" não foi encontrada na área de ficheiros escondidos.",
 	"uploadstash-file-not-found-no-thumb": "Não foi possível obter a miniatura.",
 	"uploadstash-file-not-found-no-local-path": "Não existe um caminho local para o elemento redimensionado.",
-	"uploadstash-file-not-found-no-object": "Não foi possível criar um objeto ficheiro local para a miniatura.",
 	"uploadstash-file-not-found-no-remote-thumb": "A obtenção da miniatura falhou: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Cabeçalho content-type em falta.",
 	"uploadstash-file-not-found-not-exists": "Não é possível encontrar o caminho, ou o ficheiro não é normal.",

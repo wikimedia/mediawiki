@@ -1798,7 +1798,6 @@
 	"uploadstash-file-not-found": "Không tìm thấy chìa khóa “$1” trong hàng đợi.",
 	"uploadstash-file-not-found-no-thumb": "Không thể tải hình thu nhỏ.",
 	"uploadstash-file-not-found-no-local-path": "Không tìm thấy đường dẫn trên máy cho hình nhỏ.",
-	"uploadstash-file-not-found-no-object": "Không tạo được đối tượng tập tin cục bộ cho hình thu nhỏ.",
 	"uploadstash-file-not-found-no-remote-thumb": "Nạp hình thu nhỏ thất bại: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Thiếu đầu đề kiểu-nội-dung (content-type).",
 	"uploadstash-file-not-found-not-exists": "Không tìm thấy đường dẫn hoặc không phải là tập tin thuần túy.",

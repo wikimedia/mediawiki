@@ -1636,7 +1636,6 @@
 	"uploadstash-file-not-found": "Clave \"$1\" no ia es trovada en la pendentes.",
 	"uploadstash-file-not-found-no-thumb": "La imajeta no ia pote es otenida.",
 	"uploadstash-file-not-found-no-local-path": "No adirije local per la ojeto regrandida.",
-	"uploadstash-file-not-found-no-object": "La fix local per la imajeta no ia pote es creada.",
 	"uploadstash-file-not-found-no-remote-thumb": "Retrae de imajeta ia fali: $1 URL = $2",
 	"uploadstash-file-not-found-missing-content-type": "La xapo \"Content-Type\" manca.",
 	"uploadstash-file-not-found-not-exists": "La adirije no es trovable, o la fix no es plata.",

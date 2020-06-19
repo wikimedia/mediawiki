@@ -1796,7 +1796,6 @@
 	"uploadstash-file-not-found": "A chave \"$1\" non se atopou na reserva.",
 	"uploadstash-file-not-found-no-thumb": "Non se puido obter a miniatura.",
 	"uploadstash-file-not-found-no-local-path": "Non hai unha ruta local para o elemento redimensionado.",
-	"uploadstash-file-not-found-no-object": "Non se puido crear o obxecto do ficheiro local para a miniatura.",
 	"uploadstash-file-not-found-no-remote-thumb": "Fallou a obtención de miniatura: $1\nurl = $2",
 	"uploadstash-file-not-found-missing-content-type": "Falta cabeceira de tipo de contido.",
 	"uploadstash-file-not-found-not-exists": "Non se pode atopar a ruta, ou non é un ficheiro plano.",
