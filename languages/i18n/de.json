@@ -1866,7 +1866,6 @@
 	"uploadstash-file-not-found": "Der Schlüssel „$1“ wurde nicht im Speicher gefunden.",
 	"uploadstash-file-not-found-no-thumb": "Das Vorschaubild konnte nicht abgerufen werden.",
 	"uploadstash-file-not-found-no-local-path": "Kein lokaler Pfad für das skalierte Element.",
-	"uploadstash-file-not-found-no-object": "Es kann kein lokales Dateiobjekt für das Vorschaubild erstellt werden.",
 	"uploadstash-file-not-found-no-remote-thumb": "Das Abrufen des Vorschaubildes ist fehlgeschlagen: $1\nURL: $2",
 	"uploadstash-file-not-found-missing-content-type": "Fehlender Inhaltstyp-Header.",
 	"uploadstash-file-not-found-not-exists": "Der Pfad konnte nicht gefunden werden oder die Datei ist nicht eindeutig.",

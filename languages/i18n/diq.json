@@ -1801,7 +1801,6 @@
 	"uploadstash-file-not-found": "Kılitê \"$1\", tedey şeveki de nêvineya.",
 	"uploadstash-file-not-found-no-thumb": "Resımo werdi nêgêriya.",
 	"uploadstash-file-not-found-no-local-path": "Setnaye obcey rê lokal ray çıniya.",
-	"uploadstash-file-not-found-no-object": "Seba resimê werdi rê obcey Dosya lokali nêvırazeno",
 	"uploadstash-file-not-found-no-remote-thumb": "Resmo qıckek nêgêriya:$1\nURL =$2",
 	"uploadstash-file-not-found-missing-content-type": "Kemi tewrê sernamey zerreki",
 	"uploadstash-file-not-found-not-exists": "Dosyaya duz çıniya ya zi nêvineyaya",

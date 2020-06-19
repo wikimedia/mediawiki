@@ -1814,7 +1814,6 @@
 	"uploadstash-file-not-found": "Не е открит ключ „$1“ във временното хранилище.",
 	"uploadstash-file-not-found-no-thumb": "Миниатюрата не може да бъде получена.",
 	"uploadstash-file-not-found-no-local-path": "Няма локален път за мащабиран обект.",
-	"uploadstash-file-not-found-no-object": "Локалният файлов обект за миниатюрата не може да бъде създаден.",
 	"uploadstash-file-not-found-no-remote-thumb": "Извличането на миниатюрата се провали: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Липсваща заглавка за типа на съдържанието.",
 	"uploadstash-file-not-found-not-exists": "Не може да бъде намерен пътят или файлът не е обикновен (plain).",

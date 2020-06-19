@@ -1788,7 +1788,6 @@
 	"uploadstash-file-not-found": "Клучот „$1“ не е пронајден во складот.",
 	"uploadstash-file-not-found-no-thumb": "Не можев да ја добијам минијатурата.",
 	"uploadstash-file-not-found-no-local-path": "Нема месна патека за размеруван елемент.",
-	"uploadstash-file-not-found-no-object": "Не можам да создадам месен податотечен објект за минијатурата.",
 	"uploadstash-file-not-found-no-remote-thumb": "Не успеа добивањето на минијатурата: $1\nurl = $2",
 	"uploadstash-file-not-found-missing-content-type": "Недостасува заглавието за содржински тип.",
 	"uploadstash-file-not-found-not-exists": "Не можав да ја најдам патеката или простата податотека.",

@@ -1730,7 +1730,6 @@
 	"uploadstash-bad-path": "Sti findes ikke.",
 	"uploadstash-bad-path-invalid": "Stien er ugyldig.",
 	"uploadstash-bad-path-unknown-type": "Ukendt type »$1«.",
-	"uploadstash-file-not-found-no-object": "Kunne ikke oprette lokalt filobjekt for miniaturebillede.",
 	"uploadstash-file-too-large": "Kan ikke behandle en fil der er større end $1 bytes.",
 	"uploadstash-not-logged-in": "Ingen bruger er logget ind, filer skal tilhøre brugere.",
 	"uploadstash-wrong-owner": "Filen ($1) tilhører ikke den nuværende bruger.",

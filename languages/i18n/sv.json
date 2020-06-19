@@ -1843,7 +1843,6 @@
 	"uploadstash-file-not-found": "Nyckeln \"$1\" hittades inte i stash.",
 	"uploadstash-file-not-found-no-thumb": "Kunde inte hämta miniatyrbild.",
 	"uploadstash-file-not-found-no-local-path": "Ingen lokal sökväg för nedskalat objekt.",
-	"uploadstash-file-not-found-no-object": "Kunde inte skapa lokalt filobjekt för miniatyr.",
 	"uploadstash-file-not-found-no-remote-thumb": "Misslyckades att hämta miniatyrbild: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Header för content-type saknas.",
 	"uploadstash-file-not-found-not-exists": "Kan inte hitta sökvägen eller filen.",

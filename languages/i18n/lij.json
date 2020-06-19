@@ -1771,7 +1771,6 @@
 	"uploadstash-file-not-found": "A ciave \"$1\" into stash a no gh'è.",
 	"uploadstash-file-not-found-no-thumb": "Imposcibbile otegnî a miniatua.",
 	"uploadstash-file-not-found-no-local-path": "Nisciun percorso locale pe l'elemento scalou.",
-	"uploadstash-file-not-found-no-object": "Imposcibbile creâ l'oggetto de file locale pe l'anteprimma.",
 	"uploadstash-file-not-found-no-remote-thumb": "Recuppero da miniatua fallio: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Intestassion content-type mancante.",
 	"uploadstash-file-not-found-not-exists": "No se troeuva o percorso, ò che donque o no l'è 'n file.",

@@ -1528,7 +1528,6 @@
 	"uploadstash-bad-path-unknown-type": "Nezināms tips \"$1\".",
 	"uploadstash-bad-path-unrecognized-thumb-name": "Neatpazīts sīktēla nosaukums.",
 	"uploadstash-file-not-found-no-thumb": "Nevarēja iegūt sīkbildi.",
-	"uploadstash-file-not-found-no-object": "Nevarēja izveidot lokālā faila objektu sīktēlam.",
 	"uploadstash-zero-length": "Faila garums ir nulle.",
 	"img-auth-accessdenied": "Pieeja liegta",
 	"img-auth-nofile": "Fails \"$1\" nepastāv.",

@@ -1788,7 +1788,6 @@
 	"uploadstash-file-not-found": "লুক্কায়িত স্থানে \"$1\" চাবি পাওয়া যায়নি।",
 	"uploadstash-file-not-found-no-thumb": "সংক্ষিপ্ত চিত্রও পাওয়া যায়নি।",
 	"uploadstash-file-not-found-no-local-path": "স্কেল করা আইটেমের জন্য কোনো স্থানীয় পথ নেই।",
-	"uploadstash-file-not-found-no-object": "সংক্ষিপ্ত চিত্রের সংশ্লিষ্ট স্থানীয় ফাইলের সামগ্রী তৈরি করা যায়নি।",
 	"uploadstash-file-not-found-no-remote-thumb": "থাম্বনেইল আনা ব্যর্থ হয়েছে: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "সামগ্রীর-ধরনের শিরোনাম অনুপস্থিত।",
 	"uploadstash-file-not-found-not-exists": "পথ পাওয়া যাচ্ছে না, অথবা ফাইল স্বাভাবিক নয়।",

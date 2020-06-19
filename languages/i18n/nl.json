@@ -1860,7 +1860,6 @@
 	"uploadstash-file-not-found": "Sleutel \"$1\" niet gevonden in de opslag.",
 	"uploadstash-file-not-found-no-thumb": "Kon geen miniatuur verkrijgen.",
 	"uploadstash-file-not-found-no-local-path": "Geen lokaal pad voor geschaalde afbeelding.",
-	"uploadstash-file-not-found-no-object": "Kan geen lokaal bestandsobject voor het miniatuur aanmaken.",
 	"uploadstash-file-not-found-no-remote-thumb": "Ophalen van het miniatuur mislukt: $1\nurl = $2",
 	"uploadstash-file-not-found-missing-content-type": "content-type koptekst ontbreekt.",
 	"uploadstash-file-not-found-not-exists": "Kan het pad niet vinden, of het bestand is geen platte tekst.",

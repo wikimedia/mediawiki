@@ -1654,7 +1654,6 @@
 	"uploadstash-bad-path-unrecognized-thumb-name": "Neprepoznano ime sličice.",
 	"uploadstash-file-not-found-no-thumb": "Ne mogu dobiti minijaturu.",
 	"uploadstash-file-not-found-no-local-path": "Nema lokalne putanje za umanjenu stavku.",
-	"uploadstash-file-not-found-no-object": "Ne mogu načiniti lokalni podatkovni objekt za minijaturu.",
 	"uploadstash-file-not-found-no-remote-thumb": "Dobavljanje minijature nije uspjelo: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Nedostaje zaglavlje za vrstu sadržaja.",
 	"uploadstash-file-not-found-not-exists": "Ne mogu naći putanju ili ovo nije uobičajena datoteka.",

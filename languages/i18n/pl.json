@@ -1861,7 +1861,6 @@
 	"uploadstash-file-not-found": "Klucz \"$1\" nie został znaleziony w schowku.",
 	"uploadstash-file-not-found-no-thumb": "Nie można uzyskać miniaturki.",
 	"uploadstash-file-not-found-no-local-path": "Brak lokalnej ścieżki dla skalowanego elementu.",
-	"uploadstash-file-not-found-no-object": "Nie można utworzyć lokalnego obiektu pliku dla miniatury.",
 	"uploadstash-file-not-found-no-remote-thumb": "Nie udało się pobrać miniatury: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Brakuje nagłówka content-type.",
 	"uploadstash-file-not-found-not-exists": "Nie można znaleźć ścieżki ani zwykłego pliku.",

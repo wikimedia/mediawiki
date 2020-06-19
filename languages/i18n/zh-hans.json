@@ -1906,7 +1906,6 @@
 	"uploadstash-file-not-found": "在暂存处找不到关键字“$1”。",
 	"uploadstash-file-not-found-no-thumb": "无法获得缩略图。",
 	"uploadstash-file-not-found-no-local-path": "没有用于缩放项目的本地路径。",
-	"uploadstash-file-not-found-no-object": "无法创建用于缩略图的本地文件对象。",
 	"uploadstash-file-not-found-no-remote-thumb": "取得缩略图失败：$1\nURL = $2。",
 	"uploadstash-file-not-found-missing-content-type": "缺少内容类型标头。",
 	"uploadstash-file-not-found-not-exists": "找不到路径，或不是纯文件。",

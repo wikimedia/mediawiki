@@ -1850,7 +1850,6 @@
 	"uploadstash-file-not-found": "Ключ «$1» не знайдено у тимчасовому сховищі.",
 	"uploadstash-file-not-found-no-thumb": "Не вдалось отримати мініатюру.",
 	"uploadstash-file-not-found-no-local-path": "Немає локального шляху для масштабованого елементу.",
-	"uploadstash-file-not-found-no-object": "Не вдалось створити локальний об'єкт файлу для мініатюри.",
 	"uploadstash-file-not-found-no-remote-thumb": "Отримання мініатюри не вдалось: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Відсутній заголовок content-type.",
 	"uploadstash-file-not-found-not-exists": "Не вдалось отримати шлях, або не простий файл.",

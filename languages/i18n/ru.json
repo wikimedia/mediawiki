@@ -1913,7 +1913,6 @@
 	"uploadstash-file-not-found": "Ключ «$1» не найден во временном хранилище.",
 	"uploadstash-file-not-found-no-thumb": "Не удалось получить миниатюру.",
 	"uploadstash-file-not-found-no-local-path": "Не найдено локального пути к отмасштабированному изображению.",
-	"uploadstash-file-not-found-no-object": "Не удалось создать объект локального файла для миниатюры.",
 	"uploadstash-file-not-found-no-remote-thumb": "Извлечение эскиза не удалось: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Отсутствует заголовок content-type.",
 	"uploadstash-file-not-found-not-exists": "Путь не найден или файл непонятен.",

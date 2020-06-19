@@ -1800,7 +1800,6 @@
 	"uploadstash-file-not-found": "המפתח \"$1\" לא נמצא במאגר הקבצים.",
 	"uploadstash-file-not-found-no-thumb": "לא ניתן לייצר קובץ ממוזער.",
 	"uploadstash-file-not-found-no-local-path": "אין נתיב מקומי לפריט בגודל שונה.",
-	"uploadstash-file-not-found-no-object": "לא ניתן היה לייצר אובייקט של קובץ מקומי עבור הקובץ הממוזער.",
 	"uploadstash-file-not-found-no-remote-thumb": "מציאת הקובץ הממוזער נכשלה: $1\nכתובת ה־URL היא $2",
 	"uploadstash-file-not-found-missing-content-type": "חסרה כותרת Content-type.",
 	"uploadstash-file-not-found-not-exists": "לא ניתן היה למצוא את הנתיב, או שהנתיב אינו קובץ פשוט.",

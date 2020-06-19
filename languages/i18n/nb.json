@@ -1811,7 +1811,6 @@
 	"uploadstash-file-not-found": "Nøkkelen «$1» ble ikke funnet i stash.",
 	"uploadstash-file-not-found-no-thumb": "Kunne ikke hente miniatyrbilde.",
 	"uploadstash-file-not-found-no-local-path": "Ingen lokal sti for skalert element.",
-	"uploadstash-file-not-found-no-object": "Kunne ikke opprette lokalt filobjekt for miniatyrbilde.",
 	"uploadstash-file-not-found-no-remote-thumb": "Henting av miniatyrbilde feilet: $1\nurl = $2",
 	"uploadstash-file-not-found-missing-content-type": "Mangler content-type-header.",
 	"uploadstash-file-not-found-not-exists": "Kan ikke finne sti eller fil.",

@@ -1809,7 +1809,6 @@
 	"uploadstash-file-not-found": "Ŝlosilo \"$1\" ne troviĝis en konservejo.",
 	"uploadstash-file-not-found-no-thumb": "Ne povis akiri miniaturon.",
 	"uploadstash-file-not-found-no-local-path": "Neniu loka dosierindiko por malpligrandigitaĵo.",
-	"uploadstash-file-not-found-no-object": "Ne povis krei lokan dosieran objekton por miniaturo.",
 	"uploadstash-file-not-found-no-remote-thumb": "Akirado de miniaturo malsukcesis: $1\nRetadreso = $2",
 	"uploadstash-file-not-found-missing-content-type": "Ĉapo Content-Type mankas.",
 	"uploadstash-file-not-found-not-exists": "Dosierindiko aŭ ne troviĝis, aŭ ne indikas ordinaran dosieron",

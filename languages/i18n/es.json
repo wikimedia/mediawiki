@@ -1971,7 +1971,6 @@
 	"uploadstash-file-not-found": "No se encuentra la clave «$1» en el almacén provisional.",
 	"uploadstash-file-not-found-no-thumb": "No se pudo obtener la miniatura.",
 	"uploadstash-file-not-found-no-local-path": "Sin ruta local para el elemento escalado.",
-	"uploadstash-file-not-found-no-object": "No se pudo crear el objeto del archivo local para la miniatura.",
 	"uploadstash-file-not-found-no-remote-thumb": "Falló la recuperación de miniaturas: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Una etiqueta de contenido falta",
 	"uploadstash-file-not-found-not-exists": "No puede encontrar el camino, o no un fichero simple.",

@@ -1827,7 +1827,6 @@
 	"uploadstash-bad-path-bad-format": "La clau «$1» no està en un format adequat.",
 	"uploadstash-file-not-found-no-thumb": "No s'ha pogut obtenir una miniatura.",
 	"uploadstash-file-not-found-no-local-path": "No hi ha cap camí local per a l'element escalat.",
-	"uploadstash-file-not-found-no-object": "No s'ha pogut crear l'objecte del fitxer local per a la miniatura.",
 	"uploadstash-file-not-found-no-remote-thumb": "Ha fallat la recuperació de la miniatura: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Manca una capçalera de tipus de contingut.",
 	"uploadstash-file-not-found-not-exists": "No es pot trobar el camí, o bé no és un fitxer pla.",

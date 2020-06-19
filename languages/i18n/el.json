@@ -1776,7 +1776,6 @@
 	"uploadstash-file-not-found": "Το κλειδί «$1» δεν βρέθηκε στο απόθεμα.",
 	"uploadstash-file-not-found-no-thumb": "Δεν μπόρεσε να αποκτήσει το ''thumbnail''.",
 	"uploadstash-file-not-found-no-local-path": "Δεν υπάρχει τρόπος τοπικά για το κλιμακούμενο αντικείμενο",
-	"uploadstash-file-not-found-no-object": "Δεν μπόρεσε να δημιουργήσει τοπικό φάκελλο ''thumbnail''.",
 	"uploadstash-file-not-found-no-remote-thumb": "Η προσκόμιση του ''thumnail'' απέτυχε:$1\nURL=$2",
 	"uploadstash-file-not-found-missing-content-type": "Λείπει τίτλος περιεχομένου",
 	"uploadstash-file-not-found-not-exists": "Δεν μπορεί να βρει τον τρόπο, ή όχι έναν κανονικό φάκελλο.",

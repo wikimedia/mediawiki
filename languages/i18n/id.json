@@ -1838,7 +1838,6 @@
 	"uploadstash-file-not-found": "Kunci \"$1\" tidak ditemukan dalam penyimpanan.",
 	"uploadstash-file-not-found-no-thumb": "Tidak dapat mendapatkan gambar mini.",
 	"uploadstash-file-not-found-no-local-path": "Tidak ada jalur lokal untuk benda yang diskalakan.",
-	"uploadstash-file-not-found-no-object": "Tidak dapat membuat objek berkas lokal untuk thumbnail.",
 	"uploadstash-file-not-found-no-remote-thumb": "Memproses gambar mini gagal: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Tajuk berjenis konten tidak ditemukan.",
 	"uploadstash-file-not-found-not-exists": "Tidak dapat menemukan jalur, atau bukan merupakan berkas polos.",

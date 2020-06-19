@@ -1947,7 +1947,6 @@
 	"uploadstash-file-not-found": "La clé « $1 » n’a pas été trouvée dans la réserve.",
 	"uploadstash-file-not-found-no-thumb": "Impossible d’obtenir une vignette.",
 	"uploadstash-file-not-found-no-local-path": "Aucun chemin local pour l’élément mis à l’échelle.",
-	"uploadstash-file-not-found-no-object": "Impossible de créer l’objet fichier local pour la vignette.",
 	"uploadstash-file-not-found-no-remote-thumb": "La récupération de la vignette a échoué : $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Entête « Content-Type: » manquant.",
 	"uploadstash-file-not-found-not-exists": "Impossible de trouver le chemin, ou bien ce n’est pas un fichier.",

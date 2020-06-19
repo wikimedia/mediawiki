@@ -1889,7 +1889,6 @@
 	"uploadstash-file-not-found": "La chiave \"$1\" non è stata trovata nello stash",
 	"uploadstash-file-not-found-no-thumb": "Non è stato possibile ottenere la miniatura.",
 	"uploadstash-file-not-found-no-local-path": "Nessun percorso locale per l'elemento scalato.",
-	"uploadstash-file-not-found-no-object": "Impossibile creare un oggetto del file locale per l'anteprima.",
 	"uploadstash-file-not-found-no-remote-thumb": "Recupero della miniatura fallito: $1\nURL = $2",
 	"uploadstash-file-not-found-missing-content-type": "Intestazione del content-type mancante.",
 	"uploadstash-file-not-found-not-exists": "Non riesco a trovare un percorso o un file.",
