@@ -55,45 +55,6 @@ class BsWebInstaller extends WebInstaller {
 	}
 
 	/**
-	 * Finds extensions that follow the format /extensions/Name/Name.php,
-	 * and returns an array containing the value for 'Name' for each found extension.
-	 *
-	 * @return array
-	 */
-	public function findExtensions( $directory = 'extensions' ) {
-		if ( $this->getVar( 'IP' ) === null ) {
-			return [];
-		}
-
-		$extDir = $this->getVar( 'IP' ) . '/' . $directory;
-		if ( !is_readable( $extDir ) || !is_dir( $extDir ) ) {
-			return [];
-		}
-
-		// extensions -> extension.json, skins -> skin.json
-		list( $directory, $sSubPath ) = explode( '/', "$directory/" );
-		$jsonFile = substr( $directory, 0, strlen( $directory ) -1 ) . '.json';
-
-		$dh = opendir( $extDir );
-		$exts = [];
-		while ( ( $file = readdir( $dh ) ) !== false ) {
-			if ( !is_dir( "$extDir/$file" ) ) {
-				continue;
-			}
-			if ( file_exists( "$extDir/$file/$jsonFile" ) || file_exists( "$extDir/$file/$file.php" ) || file_exists( "$extDir/$file/$file.setup.php" ) ) {
-				if( !empty($sSubPath) ) {
-					$file = "$sSubPath/$file";
-				}
-				$exts[$file] = [];
-			}
-		}
-		closedir( $dh );
-		ksort( $exts );
-
-		return $exts;
-	}
-
-	/**
 	 * Installs the auto-detected extensions.
 	 * @override Added "$IP/LocalSettings.BlueSpice.php"
 	 * @return Status
