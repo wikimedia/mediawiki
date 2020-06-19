@@ -752,7 +752,7 @@ class ChangesList extends ContextSource {
 				$user = new UserIdentityValue(
 					(int)$rc->mAttribs['rc_user'],
 					$rc->mAttribs['rc_user_text'],
-					(int)$rc->mAttribs['rc_actor'] ?? 0
+					(int)( $rc->mAttribs['rc_actor'] ?? 0 )
 				);
 				$revRecord->setUser( $user );
 
