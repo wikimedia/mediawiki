@@ -147,8 +147,8 @@ abstract class MWLBFactory {
 					$lbConf['serverTemplate']['schema'] = $options->get( 'DBmwschema' );
 				}
 				$lbConf['serverTemplate']['sqlMode'] = $options->get( 'SQLMode' );
+				$serversCheck = [ $lbConf['serverTemplate'] ];
 			}
-			$serversCheck = [ $lbConf['serverTemplate'] ] ?? [];
 		}
 
 		self::assertValidServerConfigs(

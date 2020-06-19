@@ -271,15 +271,11 @@ class RedisConnectionPool implements LoggerAwareInterface {
 			return false;
 		}
 
-		if ( $conn ) {
-			$conn->setOption( Redis::OPT_READ_TIMEOUT, $this->readTimeout );
-			$conn->setOption( Redis::OPT_SERIALIZER, $this->serializer );
-			$this->connections[$server][] = [ 'conn' => $conn, 'free' => false ];
+		$conn->setOption( Redis::OPT_READ_TIMEOUT, $this->readTimeout );
+		$conn->setOption( Redis::OPT_SERIALIZER, $this->serializer );
+		$this->connections[$server][] = [ 'conn' => $conn, 'free' => false ];
 
-			return new RedisConnRef( $this, $server, $conn, $logger );
-		} else {
-			return false;
-		}
+		return new RedisConnRef( $this, $server, $conn, $logger );
 	}
 
 	/**
