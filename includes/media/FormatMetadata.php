@@ -800,7 +800,7 @@ class FormatMetadata extends ContextSource {
 						}
 						if ( is_numeric( $val ) ) {
 							$fNumber = 2 ** ( $val / 2 );
-							if ( $fNumber !== false ) {
+							if ( is_finite( $fNumber ) ) {
 								$val = $this->msg( 'exif-maxaperturevalue-value',
 									$this->formatNum( $val ),
 									$this->formatNum( $fNumber, 2 )
