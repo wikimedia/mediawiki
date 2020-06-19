@@ -209,11 +209,11 @@ class CacheHelper implements ICacheHelper {
 				reset( $this->cachedChunks );
 				$itemKey = key( $this->cachedChunks );
 
-				if ( !is_int( $itemKey ) ) {
+				if ( $itemKey === null ) {
+					wfWarn( "Attempted to get an item while the queue is empty in " . __METHOD__ );
+				} elseif ( !is_int( $itemKey ) ) {
 					wfWarn( "Attempted to get item with non-numeric key while " .
 						"the next item in the queue has a key ($itemKey) in " . __METHOD__ );
-				} elseif ( $itemKey === null ) {
-					wfWarn( "Attempted to get an item while the queue is empty in " . __METHOD__ );
 				} else {
 					$value = array_shift( $this->cachedChunks );
 				}
