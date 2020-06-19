@@ -574,7 +574,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Load the styles of one or more ResourceLoader modules on this page.
+	 * Load the styles of one or more style-only ResourceLoader modules on this page.
 	 *
 	 * Module styles added through this function will be loaded as a stylesheet,
 	 * using a standard `<link rel=stylesheet>` HTML tag, rather than as a combined
