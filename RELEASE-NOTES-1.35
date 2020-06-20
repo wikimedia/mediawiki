@@ -766,6 +766,11 @@ because of Phabricator reports.
   getSubitemList() methods directly.
 * OutputPage::getCSPNonce() is deprecated, use OutputPage::getCSP()->getNonce()
   instead.
+* DerivedPageDataUpdater::prepareUpdate accepted as its second parameter an
+  optional array of options. Specifying the value of the `oldrevision` key of
+  the array to be a Revision object, rather than a RevisionRecord object, is
+  hard deprecated. The same applies to the options parameter in
+  WikiPage::doEditUpdates.
 * Skin::makeI18nUrl() and makeNSUrl() have been deprecated, no longer used.
 * Title::countAuthorsBetween and Title::getAuthorsBetween were hard deprecated.
   Use respective methods in RevisionStore instead.
