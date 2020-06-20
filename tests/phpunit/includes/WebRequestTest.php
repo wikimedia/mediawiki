@@ -605,6 +605,9 @@ class WebRequestTest extends MediaWikiTestCase {
 		return [
 			[ '', [], 'Empty Accept-Language header' ],
 			[ 'en', [ 'en' => 1 ], 'One language' ],
+			[ 'en;q=', [ 'en' => 1 ], 'Empty q= defaults to 1' ],
+			[ 'en;q=0, de;q=0. pt;q=0.0 it;q=0.0000', [], 'Zeros to be skipped' ],
+			[ 'EN;Q=1.0009', [ 'en' => '1.000' ], 'Limited to max. 3 decimal places' ],
 			[ 'en, ar', [ 'en' => 1, 'ar' => 1 ], 'Two languages listed in appearance order.' ],
 			[
 				'zh-cn,zh-tw',
