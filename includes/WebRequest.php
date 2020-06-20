@@ -1168,8 +1168,12 @@ class WebRequest {
 	 * @return array [ languageCode => q-value ] sorted by q-value in
 	 *   descending order then appearing time in the header in ascending order.
 	 * May contain the "language" '*', which applies to languages other than those explicitly listed.
-	 * This is aligned with rfc2616 section 14.4
-	 * Preference for earlier languages appears in rfc3282 as an extension to HTTP/1.1.
+	 *
+	 * This logic is aligned with RFC 7231 section 5 (previously RFC 2616 section 14),
+	 * at <https://tools.ietf.org/html/rfc7231#section-5.3.5>.
+	 *
+	 * Earlier languages in the list are preferred as per the RFC 23282 extension to HTTP/1.1,
+	 * at <https://tools.ietf.org/html/rfc3282>.
 	 */
 	public function getAcceptLang() {
 		// Modified version of code found at
@@ -1183,36 +1187,28 @@ class WebRequest {
 		$acceptLang = strtolower( $acceptLang );
 
 		// Break up string into pieces (languages and q factors)
-		$lang_parse = null;
-		preg_match_all(
-			'/([a-z]{1,8}(-[a-z]{1,8})*|\*)\s*(;\s*q\s*=\s*(1(\.0{0,3})?|0(\.[0-9]{0,3})?)?)?/',
+		if ( !preg_match_all(
+			'/([a-z]{1,8}(?:-[a-z]{1,8})*|\*)\s*(?:;\s*q\s*=\s*(1(?:\.0{0,3})?|0(?:\.[0-9]{0,3})?)?)?/',
 			$acceptLang,
-			$lang_parse
-		);
-
-		if ( !count( $lang_parse[1] ) ) {
+			$matches,
+			PREG_SET_ORDER
+		) ) {
 			return [];
 		}
 
-		$langcodes = $lang_parse[1];
-		$qvalues = $lang_parse[4];
-		$indices = range( 0, count( $lang_parse[1] ) - 1 );
-
-		// Set default q factor to 1
-		foreach ( $indices as $index ) {
-			if ( $qvalues[$index] === '' ) {
-				$qvalues[$index] = 1;
-			} elseif ( $qvalues[$index] == 0 ) {
-				unset( $langcodes[$index], $qvalues[$index], $indices[$index] );
+		// Create a list like "en" => 0.8
+		$langs = [];
+		foreach ( $matches as $match ) {
+			$languageCode = $match[1];
+			// When not present, the default value is 1
+			$qValue = $match[2] ?? 1;
+			if ( $qValue > 0 ) {
+				$langs[$languageCode] = $qValue;
 			}
 		}
 
-		// Sort list. First by $qvalues, then by order. Reorder $langcodes the same way
-		array_multisort( $qvalues, SORT_DESC, SORT_NUMERIC, $indices, $langcodes );
-
-		// Create a list like "en" => 0.8
-		$langs = array_combine( $langcodes, $qvalues );
-
+		// Sort list by qValue
+		arsort( $langs, SORT_NUMERIC );
 		return $langs;
 	}
 
