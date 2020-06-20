@@ -134,9 +134,9 @@ class RollbackAction extends FormAction {
 			$errMsg = array_shift( $errArray );
 			$this->getOutput()->addWikiMsgArray( $errMsg, $errArray );
 
-			if ( isset( $data['current'] ) ) {
+			if ( isset( $data['current-revision-record'] ) ) {
 				/** @var RevisionRecord $current */
-				$current = $data['current']->getRevisionRecord();
+				$current = $data['current-revision-record'];
 
 				if ( $current->getComment() != null ) {
 					$this->getOutput()->addWikiMsg(
@@ -165,8 +165,8 @@ class RollbackAction extends FormAction {
 		}
 
 		/** @var RevisionRecord $current */
-		$current = $data['current']->getRevisionRecord();
-		$target = $data['target']->getRevisionRecord();
+		$current = $data['current-revision-record'];
+		$target = $data['target-revision-record'];
 		$newId = $data['newid'];
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );

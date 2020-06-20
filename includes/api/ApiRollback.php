@@ -86,8 +86,8 @@ class ApiRollback extends ApiBase {
 		// Watch pages
 		$this->setWatch( $watch, $titleObj, 'watchrollback' );
 
-		$currentRevisionRecord = $details['current']->getRevisionRecord();
-		$targetRevisionRecord = $details['target']->getRevisionRecord();
+		$currentRevisionRecord = $details['current-revision-record'];
+		$targetRevisionRecord = $details['target-revision-record'];
 
 		$info = [
 			'title' => $titleObj->getPrefixedText(),
