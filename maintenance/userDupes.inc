@@ -39,14 +39,18 @@ class UserDupes {
 	 * @var IMaintainableDatabase
 	 */
 	private $db;
+	/** @var int */
 	private $reassigned;
+	/** @var int */
 	private $trimmed;
+	/** @var int */
 	private $failed;
+	/** @var callable */
 	private $outputCallback;
 
 	/**
 	 * @param IMaintainableDatabase &$database
-	 * @param callback $outputCallback
+	 * @param callable $outputCallback
 	 */
 	public function __construct( &$database, $outputCallback ) {
 		$this->db = $database;
