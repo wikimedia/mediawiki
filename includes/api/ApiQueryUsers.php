@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to get information about a list of users
@@ -297,7 +298,8 @@ class ApiQueryUsers extends ApiQueryBase {
 					} else {
 						$data[$u]['missing'] = true;
 						if ( isset( $this->prop['cancreate'] ) ) {
-							$status = MediaWiki\Auth\AuthManager::singleton()->canCreateAccount( $u );
+							$status = MediaWikiServices::getInstance()->getAuthManager()
+								->canCreateAccount( $u );
 							$data[$u]['cancreate'] = $status->isGood();
 							if ( !$status->isGood() ) {
 								$data[$u]['cancreateerror'] = $this->getErrorFormatter()->arrayFromStatus( $status );
