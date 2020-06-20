@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A query action to return meta information about AuthManager state.
@@ -36,9 +37,8 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$helper = new ApiAuthManagerHelper( $this );
-
-		$manager = AuthManager::singleton();
+		$manager = MediaWikiServices::getInstance()->getAuthManager();
+		$helper = new ApiAuthManagerHelper( $this, $manager );
 		$ret = [
 			'canauthenticatenow' => $manager->canAuthenticateNow(),
 			'cancreateaccounts' => $manager->canCreateAccounts(),
