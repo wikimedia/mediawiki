@@ -632,10 +632,6 @@ __INDEXATTR__;
 		array $selectOptions,
 		$selectJoinConds
 	) {
-		if ( !is_array( $insertOptions ) ) {
-			$insertOptions = [ $insertOptions ];
-		}
-
 		if ( in_array( 'IGNORE', $insertOptions ) ) {
 			if ( $this->getServerVersion() >= 9.5 ) {
 				// Use "ON CONFLICT DO" if we have it for IGNORE
