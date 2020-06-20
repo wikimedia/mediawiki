@@ -1200,15 +1200,12 @@ class Message implements MessageSpecifier, Serializable {
 			} elseif ( isset( $param['list'] ) ) {
 				return $this->formatListParam( $param['list'], $param['type'], $format );
 			} else {
-				if ( !is_scalar( $param ) ) {
-					$param = serialize( $param );
-				}
 				LoggerFactory::getInstance( 'Bug58676' )->warning(
 					'Invalid parameter for message "{msgkey}": {param}',
 					[
 						'exception' => new Exception,
 						'msgkey' => $this->getKey(),
-						'param' => htmlspecialchars( $param ),
+						'param' => htmlspecialchars( serialize( $param ) ),
 					]
 				);
 

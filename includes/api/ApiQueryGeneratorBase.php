@@ -35,9 +35,6 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 *        by calling getPageSet() when in generator mode.
 	 */
 	public function setGeneratorMode( ApiPageSet $generatorPageSet ) {
-		if ( $generatorPageSet === null ) {
-			ApiBase::dieDebug( __METHOD__, 'Required parameter missing - $generatorPageSet' );
-		}
 		$this->mGeneratorPageSet = $generatorPageSet;
 	}
 
