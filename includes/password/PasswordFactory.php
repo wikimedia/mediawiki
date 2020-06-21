@@ -139,7 +139,7 @@ final class PasswordFactory {
 	 * @throws PasswordError If hash is invalid or type is not recognized
 	 */
 	public function newFromCiphertext( ?string $hash ) : Password {
-		if ( $hash === null || $hash === false || $hash === '' ) {
+		if ( $hash === null || $hash === '' ) {
 			return new InvalidPassword( $this, [ 'type' => '' ], null );
 		} elseif ( $hash[0] !== ':' ) {
 			throw new PasswordError( 'Invalid hash given' );
