@@ -68,6 +68,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testConstructFromArray( $rowArray ) {
 		$this->hideDeprecated( 'Revision::getContentModel' );
 		$this->hideDeprecated( 'Revision::getContent' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 
 		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
 		$this->assertNotNull( $rev->getContent(), 'no content object available' );
@@ -81,6 +82,7 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testConstructFromEmptyArray() {
 		$this->hideDeprecated( 'Revision::getContent' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 
 		$rev = new Revision( [], 0, $this->getMockTitle() );
 		$this->assertNull( $rev->getContent(), 'no content object should be available' );
@@ -140,6 +142,7 @@ class RevisionTest extends MediaWikiTestCase {
 		$expectedUserName
 	) {
 		$this->hideDeprecated( 'Revision::getUserText' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 
 		$testUser = $this->getTestUser()->getUser();
 		$this->setMwGlobals( 'wgUser', $testUser );
@@ -186,6 +189,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromArrayThrowsExceptions( $rowArray, Exception $expectedException ) {
+		$this->hideDeprecated( 'Revision::__construct with an array' );
+
 		$this->expectException( get_class( $expectedException ) );
 		$this->expectExceptionMessage( $expectedException->getMessage() );
 		$this->expectExceptionCode( $expectedException->getCode() );
@@ -197,6 +202,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromNothing() {
+		$this->hideDeprecated( 'Revision::__construct with an array' );
+
 		$this->expectException( InvalidArgumentException::class );
 		new Revision( [] );
 	}
@@ -283,6 +290,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray
 	 */
 	public function testConstructFromRow( array $arrayData, callable $assertions ) {
+		$this->hideDeprecated( 'Revision::__construct with an object' );
+
 		$row = (object)$arrayData;
 		$rev = new Revision( $row, 0, $this->getMockTitle() );
 		$assertions( $this, $rev );
@@ -319,6 +328,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @covers Revision::getId
 	 */
 	public function testGetId( $rowArray, $expectedId ) {
+		$this->hideDeprecated( 'Revision::__construct with an array' );
+
 		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
 		$this->assertEquals( $expectedId, $rev->getId() );
 	}
@@ -334,6 +345,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testSetId( $input, $expected ) {
 		$this->hideDeprecated( 'Revision::setId' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
+
 		$rev = new Revision( [], 0, $this->getMockTitle() );
 		$rev->setId( $input );
 		$this->assertSame( $expected, $rev->getId() );
@@ -351,6 +364,7 @@ class RevisionTest extends MediaWikiTestCase {
 	public function testSetUserIdAndName( $inputId, $expectedId, $name ) {
 		$this->hideDeprecated( 'Revision::setUserIdAndName' );
 		$this->hideDeprecated( 'Revision::getUserText' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 
 		$rev = new Revision( [], 0, $this->getMockTitle() );
 		$rev->setUserIdAndName( $inputId, $name );
@@ -370,6 +384,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 */
 	public function testGetParentId( $rowArray, $expected ) {
 		$this->hideDeprecated( 'Revision::getParentId' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
+
 		$rev = new Revision( $rowArray, 0, $this->getMockTitle() );
 		$this->assertSame( $expected, $rev->getParentId() );
 	}

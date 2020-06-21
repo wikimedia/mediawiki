@@ -992,6 +992,7 @@ because of Phabricator reports.
 * Global $wgUser variable was soft deprecated.
 * The Revision class was soft deprecated entirely in 1.31. Specific methods
   have now been individually hard deprecated:
+  - ::__construct with either an object or an array
   - ::newFromId - use RevisionLookup::getRevisionById instead
   - ::newFromTitle - use RevisionLookup::getRevisionByTitle instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
