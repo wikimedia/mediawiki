@@ -1070,7 +1070,6 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  */
 function wfLogProfilingData() {
 	$context = RequestContext::getMain();
-	$request = $context->getRequest();
 
 	$profiler = Profiler::instance();
 	$profiler->setContext( $context );
