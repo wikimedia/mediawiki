@@ -48,6 +48,8 @@ THIS IS NOT A RELEASE YET
   includes/DevelopmentSettings.php.
 * (T232568) SpecialUserrights: If a viewer lacks `hideuser`, ignore hidden
   users.
+* (T255918, CVE-2020-25812) SECURITY: Unescaped message used in HTML on
+  Special:Contributions.
 
 == MediaWiki 1.34.2 ==
 
