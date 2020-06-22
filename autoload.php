@@ -1787,7 +1787,6 @@ $wgAutoloadLocalClasses = [
 	'WebInstallerOptions' => __DIR__ . '/includes/installer/WebInstallerOptions.php',
 	'WebInstallerOutput' => __DIR__ . '/includes/installer/WebInstallerOutput.php',
 	'WebInstallerPage' => __DIR__ . '/includes/installer/WebInstallerPage.php',
-	'WebInstallerReadme' => __DIR__ . '/includes/installer/WebInstallerReadme.php',
 	'WebInstallerReleaseNotes' => __DIR__ . '/includes/installer/WebInstallerReleaseNotes.php',
 	'WebInstallerRestart' => __DIR__ . '/includes/installer/WebInstallerRestart.php',
 	'WebInstallerUpgrade' => __DIR__ . '/includes/installer/WebInstallerUpgrade.php',
