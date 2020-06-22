@@ -71,7 +71,7 @@ class ContributionsLookup {
 	 * @return ContributionsSegment
 	 * @throws \MWException
 	 */
-	public function getRevisionsByUser(
+	public function getContributions(
 		UserIdentity $target,
 		int $limit,
 		User $performer,

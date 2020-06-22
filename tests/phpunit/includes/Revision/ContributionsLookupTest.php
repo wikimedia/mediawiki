@@ -49,7 +49,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Revision\ContributionsLookup::getRevisionsByUser()
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetListOfRevisionsByUserIdentity() {
 		$clock = (int)ConvertibleTimestamp::now( TS_UNIX );
@@ -63,7 +63,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$performer = self::$testUser;
 
 		$contribs =
-			$contributionsLookup->getRevisionsByUser( self::$testUser, 2, $performer )->getRevisions();
+			$contributionsLookup->getContributions( self::$testUser, 2, $performer )->getRevisions();
 
 		$this->assertCount( 2, $contribs );
 		$this->assertSame( self::$storedRevisions[4]->getId(), $contribs[0]->getId() );
@@ -82,13 +82,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Revision\ContributionsLookup::getRevisionsByUser()
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetSegmentChain() {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 
-		$segment1 = $contributionsLookup->getRevisionsByUser( self::$testUser, 2, self::$testUser );
+		$segment1 = $contributionsLookup->getContributions( self::$testUser, 2, self::$testUser );
 		$this->assertInstanceOf( ContributionsSegment::class, $segment1 );
 		$this->assertCount( 2, $segment1->getRevisions() );
 		$this->assertNotNull( $segment1->getAfter() );
@@ -96,14 +96,14 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $segment1->isOldest() );
 
 		$segment2 =
-			$contributionsLookup->getRevisionsByUser( self::$testUser, 2, self::$testUser, $segment1->getBefore() );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment1->getBefore() );
 		$this->assertCount( 2, $segment2->getRevisions() );
 		$this->assertNotNull( $segment2->getAfter() );
 		$this->assertNull( $segment2->getBefore() );
 		$this->assertTrue( $segment2->isOldest() );
 
 		$segment3 =
-			$contributionsLookup->getRevisionsByUser( self::$testUser, 2, self::$testUser, $segment2->getAfter() );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment2->getAfter() );
 		$this->assertInstanceOf( ContributionsSegment::class, $segment3 );
 		$this->assertCount( 2, $segment3->getRevisions() );
 		$this->assertNotNull( $segment3->getAfter() );
@@ -148,7 +148,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 		$expectedRevisions = [ self::$storedRevisions[4], self::$storedRevisions[3] ];
-		$segment = $contributionsLookup->getRevisionsByUser( self::$testUser, 2, self::$testUser, $segment );
+		$segment = $contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment );
 		$this->assertSegmentRevisions( $expectedRevisions, $segment );
 	}
 
@@ -172,11 +172,11 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 2, $this->db->affectedRows() );
 
 		// anons should not see suppressed contribs
-		$contribs = $contributionsLookup->getRevisionsByUser( $editingUser, 10, $anon );
+		$contribs = $contributionsLookup->getContributions( $editingUser, 10, $anon );
 		$this->assertCount( 2, $contribs->getRevisions() );
 
 		// sysop also gets suppressed contribs
-		$contribs = $contributionsLookup->getRevisionsByUser( $editingUser, 10, $sysop );
+		$contribs = $contributionsLookup->getContributions( $editingUser, 10, $sysop );
 		$this->assertCount( 4, $contribs->getRevisions() );
 	}
 
