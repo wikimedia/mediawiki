@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
@@ -70,7 +69,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
 			new LoggedServiceOptions( self::$serviceOptionsAccessLog,
 				DefaultPreferencesFactory::CONSTRUCTOR_OPTIONS, $this->config ),
 			$language,
-			AuthManager::singleton(),
+			$services->getAuthManager(),
 			$services->getLinkRenderer(),
 			$mockNsInfo,
 			$mockPM,
