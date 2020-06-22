@@ -1649,8 +1649,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return DBError
 	 */
 	private function getQueryExceptionAndLog( $error, $errno, $sql, $fname ) {
+		// Information that instances of the same problem have in common should
+		// not be normalized (T255202).
 		$this->queryLogger->error(
-			"{fname}\t{db_server}\t{errno}\t{error}\t{sql1line}",
+			"Error $errno from $fname, {error} {sql1line} {db_server}",
 			$this->getLogContext( [
 				'method' => __METHOD__,
 				'errno' => $errno,
