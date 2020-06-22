@@ -329,7 +329,7 @@ class PageUpdater {
 	 *
 	 * This method MUST not be called after saveRevision() was called!
 	 *
-	 * The current revision determined by the first call to this methods effectively acts a
+	 * The current revision determined by the first call to this method effectively acts a
 	 * compare-and-swap (CAS) token which is checked by saveRevision(), which fails if any
 	 * concurrent updates created a new revision.
 	 *
