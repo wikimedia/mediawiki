@@ -493,36 +493,12 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * This will be called by OutputPage::headElement when it is creating the
-	 * "<body>" tag, skins can override it if they have a need to add in any
-	 * body attributes or classes of their own.
-	 * @param OutputPage $out
-	 * @param array &$bodyAttrs
-	 */
-	public function addToBodyAttributes( $out, &$bodyAttrs ) {
-		// does nothing by default
-	}
-
-	/**
 	 * URL to the default square logo (1x key)
 	 * Please use ResourceLoaderSkinModule::getAvailableLogos
 	 * @return string
 	 */
 	protected function getLogo() {
 		return ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
-	}
-
-	/**
-	 * Whether the logo should be preloaded with an HTTP link header or not
-	 *
-	 * @deprecated since 1.32 Redundant. It now happens automatically based on whether
-	 *  the skin loads a stylesheet based on ResourceLoaderSkinModule, which all
-	 *  skins that use wgLogos in CSS do, and other's would not.
-	 * @since 1.29
-	 * @return bool
-	 */
-	public function shouldPreloadLogo() {
-		return false;
 	}
 
 	/**

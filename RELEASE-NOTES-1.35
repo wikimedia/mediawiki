@@ -576,6 +576,7 @@ because of Phabricator reports.
 * Skin::getSkinNameMessages() deprecated in 1.34, has been removed.
 * Skin::escapeSearchLink() deprecated in 1.34, has been removed, use
   Skin::getSearchLink() instead.
+* Skin::shouldPreloadLogo() deprecated in  1.32, has been removed.
 * Revision::loadFromId and RevisionStore::loadRevisionFromId have been
   removed.
 * OutputPage::parserOptions doesn't accept an $options parameter anymore.
@@ -1240,6 +1241,8 @@ because of Phabricator reports.
   use SidebarBeforeOutput hook instead.
 * SkinTemplateToolboxEnd hook has been deprecated. Use SidebarBeforeOutput hook
   instead.
+* Using Skin::addToBodyAttributes() method to add body attributes has been
+  deprecated. Use OutputPageBodyAttributes hook instead.
 * …
 
 === Other changes in 1.35 ===
