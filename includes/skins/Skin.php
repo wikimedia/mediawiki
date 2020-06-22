@@ -493,17 +493,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * This will be called by OutputPage::headElement when it is creating the
-	 * "<body>" tag, skins can override it if they have a need to add in any
-	 * body attributes or classes of their own.
-	 * @param OutputPage $out
-	 * @param array &$bodyAttrs
-	 */
-	public function addToBodyAttributes( $out, &$bodyAttrs ) {
-		// does nothing by default
-	}
-
-	/**
 	 * URL to the default square logo (1x key)
 	 * Please use ResourceLoaderSkinModule::getAvailableLogos
 	 * @return string

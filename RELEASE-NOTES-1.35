@@ -1241,6 +1241,8 @@ because of Phabricator reports.
   use SidebarBeforeOutput hook instead.
 * SkinTemplateToolboxEnd hook has been deprecated. Use SidebarBeforeOutput hook
   instead.
+* Using Skin::addToBodyAttributes() method to add body attributes has been
+  deprecated. Use OutputPageBodyAttributes hook instead.
 * …
 
 === Other changes in 1.35 ===
