@@ -3,8 +3,18 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.7 ===
-* Per-user concurrency in SpecialContributions can now be limited by setting
-  $wgPoolCounterConf['SpecialContributions'] appropriately.
+* (T199809) Don't invalidate BotPasswords if a password reset email is sent.
+* (T247017) PasswordReset performance improvements.
+* (T250568) Work around change in SimpleXMLElement behavior introduced in PHP
+  7.3.17.
+* Remove some rotten and out of date documentation.
+* (T252311) Improvements to some older SQLite update patches.
+* (T240307) Minor fixes to extension.schema.v2.json and extension.schema.v1.json.
+* (T199474) Set rc_patrolled to 2 for autopatrolled changes in
+  rebuildrecentchanges.php.
+* (T206476) Call ob_start() before running tests.
+* (T234450) Per-user concurrency in SpecialContributions can now be limited by
+  setting $wgPoolCounterConf['SpecialContributions'] appropriately.
 
 == MediaWiki 1.31.7 ==
 
