@@ -130,41 +130,31 @@ class LinkHolderArray {
 	 *
 	 * @param Title $nt
 	 * @param string $text
-	 * @param array $query [optional]
 	 * @param string $trail [optional]
 	 * @param string $prefix [optional]
 	 * @return string
 	 */
-	public function makeHolder( $nt, $text = '', $query = [], $trail = '', $prefix = '' ) {
-		if ( !is_object( $nt ) ) {
-			# Fail gracefully
-			$retVal = "<!-- ERROR -->{$prefix}{$text}{$trail}";
+	public function makeHolder( Title $nt, $text = '', $trail = '', $prefix = '' ) {
+		# Separate the link trail from the rest of the link
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
+
+		$key = $this->parent->nextLinkID();
+		$entry = [
+			'title' => $nt,
+			'text' => $prefix . $text . $inside,
+			'pdbk' => $nt->getPrefixedDBkey(),
+		];
+
+		$this->size++;
+		if ( $nt->isExternal() ) {
+			// Use a globally unique ID to keep the objects mergable
+			$this->interwikis[$key] = $entry;
+			return "<!--IWLINK'\" $key-->{$trail}";
 		} else {
-			# Separate the link trail from the rest of the link
-			list( $inside, $trail ) = Linker::splitTrail( $trail );
-
-			$key = $this->parent->nextLinkID();
-			$entry = [
-				'title' => $nt,
-				'text' => $prefix . $text . $inside,
-				'pdbk' => $nt->getPrefixedDBkey(),
-			];
-			if ( $query !== [] ) {
-				$entry['query'] = $query;
-			}
-
-			if ( $nt->isExternal() ) {
-				// Use a globally unique ID to keep the objects mergable
-				$this->interwikis[$key] = $entry;
-				$retVal = "<!--IWLINK'\" $key-->{$trail}";
-			} else {
-				$ns = $nt->getNamespace();
-				$this->internals[$ns][$key] = $entry;
-				$retVal = "<!--LINK'\" $ns:$key-->{$trail}";
-			}
-			$this->size++;
+			$ns = $nt->getNamespace();
+			$this->internals[$ns][$key] = $entry;
+			return "<!--LINK'\" $ns:$key-->{$trail}";
 		}
-		return $retVal;
 	}
 
 	/**

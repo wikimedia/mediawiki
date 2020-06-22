@@ -220,38 +220,6 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideMakeHolder_withWrongNs
-	 * @covers LinkHolderArray::makeHolder
-	 *
-	 * @param $ns
-	 */
-	public function testMakeHolder_withWrongNs( $ns ) {
-		$linkHolderArray = new LinkHolderArray(
-			$this->createMock( Parser::class ),
-			$this->createMock( ILanguageConverter::class )
-		);
-		$result = $linkHolderArray->makeHolder(
-			$ns,
-			'test text',
-			[],
-			'test trail',
-			'test prefix'
-		);
-
-		$this->assertSame(
-			'<!-- ERROR -->test prefixtest texttest trail',
-			$result
-		);
-	}
-
-	public function provideMakeHolder_withWrongNs() {
-		yield [ 'dummy string' ];
-		yield [ null ];
-		yield [ false ];
-		yield [ 123 ];
-	}
-
-	/**
 	 * @dataProvider provideReplace_external
 	 * @covers LinkHolderArray::replace
 	 * @covers LinkHolderArray::replaceInterwiki

@@ -2684,7 +2684,7 @@ class Parser {
 				$s .= $this->makeKnownLinkHolder( $nt, $text, $trail, $prefix );
 			} else {
 				# Links will be added to the output link list after checking
-				$s .= $holders->makeHolder( $nt, $text, [], $trail, $prefix );
+				$s .= $holders->makeHolder( $nt, $text, $trail, $prefix );
 			}
 		}
 		return $holders;
