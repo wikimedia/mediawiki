@@ -25,7 +25,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -63,17 +62,19 @@ class FindBadBlobs extends Maintenance {
 		parent::__construct();
 
 		$this->setBatchSize( 1000 );
-		$this->addDescription( 'Scan for bad content blobs' );
-		$this->addOption( 'from-date', 'Start scanning revisions at the given date. '
+		$this->addDescription( 'Find and mark bad content blobs. '
+			. 'Use --scan-from to find revisions with bad blobs, use --mark to mark them.' );
+		$this->addOption( 'scan-from', 'Start scanning revisions at the given date. '
 			. 'Format: Anything supported by MediaWiki, e.g. YYYYMMDDHHMMSS or YYYY-MM-DD_HH:MM:SS',
 			false, true );
-		$this->addOption( 'revisions', 'A list of revision IDs to scan, separated by comma or colon '
-			. 'or whitespace. Revisions belonging to deleted pages will work. '
+		$this->addOption( 'revisions', 'A list of revision IDs to process, separated by comma or '
+			. 'colon or whitespace. Revisions belonging to deleted pages will work. '
 			. 'If set to "-" IDs are read from stdin, one per line.', false, true );
-		$this->addOption( 'limit', 'Maximum number of revisions to scan. Default: 1000', false, true );
+		$this->addOption( 'limit', 'Maximum number of revisions for --scan-from to scan. '
+			. 'Default: 1000', false, true );
 		$this->addOption( 'mark', 'Mark the blob as "known bad", to avoid errors when '
 			. 'attempting to read it. The value given is the reason for marking the blob as bad, '
-			. 'typically a ticket ID', false, true );
+			. 'typically a ticket ID. Requires --revisions to also be set.', false, true );
 	}
 
 	public function initializeServices(
@@ -94,7 +95,7 @@ class FindBadBlobs extends Maintenance {
 	 * @return string
 	 */
 	private function getStartTimestamp() {
-		$tsOpt = $this->getOption( 'from-date' );
+		$tsOpt = $this->getOption( 'scan-from' );
 		if ( strlen( $tsOpt ) < 14 ) {
 			$this->fatalError( 'Bad timestamp: ' . $tsOpt
 				. ', please provide time and date down to the second.' );
@@ -144,10 +145,19 @@ class FindBadBlobs extends Maintenance {
 		$this->initializeServices();
 
 		if ( $this->hasOption( 'revisions' ) ) {
+			if ( $this->hasOption( 'scan-from' ) ) {
+				$this->fatalError( 'Cannot use --revisions together with --scan-from' );
+			}
+
 			$ids = $this->getRevisionIds();
 
 			$count = $this->scanRevisionsById( $ids );
-		} elseif ( $this->hasOption( 'from-date' ) ) {
+		} elseif ( $this->hasOption( 'scan-from' ) ) {
+			if ( $this->hasOption( 'mark' ) ) {
+				$this->fatalError( 'Cannot use --mark with --scan-from, '
+					. 'use --revisions to specify revisions to mark.' );
+			}
+
 			$fromTimestamp = $this->getStartTimestamp();
 			$total = $this->getOption( 'limit', 1000 );
 
@@ -156,13 +166,23 @@ class FindBadBlobs extends Maintenance {
 			$this->output( "The range of archive rows scanned is based on the range of revision IDs "
 				. "scanned in the revision table.\n" );
 		} else {
-			$this->fatalError( 'Must specify either --revisions or --from-date' );
+			if ( $this->hasOption( 'mark' ) ) {
+				$this->fatalError( 'The --mark must be used together with --revisions' );
+			} else {
+				$this->fatalError( 'Must specify one of --revisions or --scan-from' );
+			}
 		}
 
 		if ( $this->hasOption( 'mark' ) ) {
-			$this->output( "Marked $count bad revisions\n" );
+			$this->output( "Marked $count bad revisions.\n" );
 		} else {
-			$this->output( "Found $count bad revisions\n" );
+			$this->output( "Found $count bad revisions.\n" );
+
+			if ( $count > 0 ) {
+				$this->output( "On a unix/linux environment, you can use grep and cut to list of IDs\n" );
+				$this->output( "that can then be used with the --revisions option. E.g.\n" );
+				$this->output( "  grep '!.*Bad blob address' | cut -s -f 3\n" );
+			}
 		}
 	}
 
@@ -425,6 +445,10 @@ class FindBadBlobs extends Maintenance {
 			$count += $this->checkSlot( $rev, $slot );
 		}
 
+		if ( $count === 0 && $this->hasOption( 'mark' ) ) {
+			$this->output( "\t# No bad blob found on revision {$rev->getId()}, skipped!\n" );
+		}
+
 		return $count;
 	}
 
@@ -437,19 +461,22 @@ class FindBadBlobs extends Maintenance {
 	private function checkSlot( RevisionRecord $rev, SlotRecord $slot ) {
 		$address = $slot->getAddress();
 		$error = null;
+		$type = null;
 
 		try {
 			$this->blobStore->getBlob( $address );
 			// nothing to do
 			return 0;
-		} catch ( BlobAccessException $ex ) {
+		} catch ( Exception $ex ) {
 			$error = $ex->getMessage();
-		} catch ( ExternalStoreException $ex ) {
-			$error = $ex->getMessage();
+			$type = get_class( $ex );
 		}
 
+		// NOTE: output the revision ID again at the end in a separate column for easy processing
+		// via the "cut" shell command.
 		$this->output( "\t! Found bad blob on revision {$rev->getId()} ({$slot->getRole()} slot): "
-			. "content_id={$slot->getContentId()}, address=<{$slot->getAddress()}>, error='$error'\n" );
+			. "content_id={$slot->getContentId()}, address=<{$slot->getAddress()}>, "
+			. "error='$error', type='$type'. ID:\t{$rev->getId()}\n" );
 
 		if ( $this->hasOption( 'mark' ) ) {
 			$newAddress = $this->markBlob( $rev, $slot, $error );
