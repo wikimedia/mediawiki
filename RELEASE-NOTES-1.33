@@ -3,10 +3,23 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.33.3 ===
-
+* (T247017) PasswordReset performance improvements.
 * The MultiHttpClient code will fallover to non-curl if curl_multi* is blocked.
-* Per-user concurrency in SpecialContributions can now be limited by setting
-  $wgPoolCounterConf['SpecialContributions'] appropriately.
+* (T250568) Work around change in SimpleXMLElement behavior introduced in PHP
+  7.3.17.
+* Remove some rotten and out of date documentation.
+* (T252311) Improvements to some older SQLite update patches.
+* (T240307) Minor fixes to extension.schema.v2.json and
+  extension.schema.v1.json.
+* rdbms: Add callback for atomic section cancellation.
+* (T191668) NameTableStoreTest::getCallCheckingDb simplification.
+* Make NameTableStore use LoadBalancer::getConnectionRef().
+* (T224949) NameTableStore: ensure consistency upon rollback.
+* (T199474) Set rc_patrolled to 2 for autopatrolled changes in
+  rebuildrecentchanges.php.
+* (T229461) Update the change_tag table in rebuildrecentchanges.php.
+* (T234450) Per-user concurrency in SpecialContributions can now be limited by
+  setting $wgPoolCounterConf['SpecialContributions'] appropriately.
 
 == MediaWiki 1.33.3 ==
 
