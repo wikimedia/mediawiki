@@ -34,6 +34,8 @@ for use in production.
   cleanupTable.inc.
 * (T263606) Set fake time, to avoid flaky tests.
 * (T261325) Add FindMissingActors script.
+* (T255918, CVE-2020-25812) SECURITY: Unescaped message used in HTML on
+  Special:Contributions.
 
 == MediaWiki 1.35.0-rc.3 ==
 
