@@ -2060,9 +2060,9 @@ class Title implements LinkTarget, IDBAccessObject {
 	 */
 	private static function fixUrlQueryArgs( $query, $query2 = false ) {
 		if ( $query2 !== false ) {
-			wfDeprecated( "Title::get{Canonical,Full,Link,Local,Internal}URL " .
-				"method called with a second parameter is deprecated. Add your " .
-				"parameter to an array passed as the first parameter.", "1.19" );
+			wfDeprecatedMsg( "Title::get{Canonical,Full,Link,Local,Internal}URL " .
+				"method called with a second parameter is deprecated since MediaWiki 1.19. " .
+				"Add your parameter to an array passed as the first parameter.", "1.19" );
 		}
 		if ( is_array( $query ) ) {
 			$query = wfArrayToCgi( $query );

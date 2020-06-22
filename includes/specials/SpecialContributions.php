@@ -656,9 +656,9 @@ class SpecialContributions extends IncludableSpecialPage {
 					'section' => 'contribs-top',
 				];
 				wfDeprecated(
-					__METHOD__ .
-					' returning string[]',
-					'1.33'
+					'A SpecialContributions::getForm::filters hook handler returned ' .
+					'an array of strings, this is deprecated since MediaWiki 1.33',
+					'1.33', false, false
 				);
 			} else {
 				// Preferred append method.

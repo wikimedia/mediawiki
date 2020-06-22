@@ -225,15 +225,53 @@ class MWDebug {
 	public static function deprecated( $function, $version = false,
 		$component = false, $callerOffset = 2
 	) {
-		$callerDescription = self::getCallerDescription( $callerOffset );
-		$callerFunc = $callerDescription['func'];
+		if ( $version ) {
+			$component = $component ?: 'MediaWiki';
+			$msg = "Use of $function was deprecated in $component $version.";
+		} else {
+			$msg = "Use of $function is deprecated.";
+		}
+		self::deprecatedMsg( $msg, $version, $component, $callerOffset + 1 );
+	}
+
+	/**
+	 * Log a deprecation warning with arbitrary message text. A caller
+	 * description will be appended. If the message has already been sent for
+	 * this caller, it won't be sent again.
+	 *
+	 * Although there are component and version parameters, they are not
+	 * automatically appended to the message. The message text should include
+	 * information about when the thing was deprecated.
+	 *
+	 * @since 1.35
+	 *
+	 * @param string $msg The message
+	 * @param string|false $version Version of MediaWiki that the function
+	 *    was deprecated in.
+	 * @param string|bool $component Component to which the function belongs.
+	 *    If false, it is assumed the function is in MediaWiki core.
+	 * @param int|false $callerOffset How far up the call stack is the original
+	 *    caller. 2 = function that called the function that called us. If false,
+	 *    the caller description will not be appended.
+	 */
+	public static function deprecatedMsg( $msg, $version = false,
+		$component = false, $callerOffset = 2
+	) {
+		if ( $callerOffset === false ) {
+			$callerFunc = '';
+			$rawMsg = $msg;
+		} else {
+			$callerDescription = self::getCallerDescription( $callerOffset );
+			$callerFunc = $callerDescription['func'];
+			$rawMsg = self::formatCallerDescription( $msg, $callerDescription );
+		}
 
 		$sendToLog = true;
 
 		// Check to see if there already was a warning about this function
-		if ( isset( self::$deprecationWarnings[$function][$callerFunc] ) ) {
+		if ( isset( self::$deprecationWarnings[$msg][$callerFunc] ) ) {
 			return;
-		} elseif ( isset( self::$deprecationWarnings[$function] ) ) {
+		} elseif ( isset( self::$deprecationWarnings[$msg] ) ) {
 			if ( self::$enabled ) {
 				$sendToLog = false;
 			} else {
@@ -241,7 +279,7 @@ class MWDebug {
 			}
 		}
 
-		self::$deprecationWarnings[$function][$callerFunc] = true;
+		self::$deprecationWarnings[$msg][$callerFunc] = true;
 
 		if ( $version ) {
 			global $wgDeprecationReleaseLimit;
@@ -257,22 +295,18 @@ class MWDebug {
 					$sendToLog = false;
 				}
 			}
-
-			$component = $component ?: 'MediaWiki';
-			$msg = "Use of $function was deprecated in $component $version.";
-		} else {
-			$msg = "Use of $function is deprecated.";
 		}
 
 		self::sendRawDeprecated(
-			self::formatCallerDescription( $msg, $callerDescription ),
+			$rawMsg,
 			$sendToLog,
 			$callerFunc );
 	}
 
 	/**
 	 * Send a raw deprecation message to the log and the debug toolbar,
-	 * without filtering of duplicate messages.
+	 * without filtering of duplicate messages. A caller description will
+	 * not be appended.
 	 *
 	 * @param string $msg The complete message including relevant caller information.
 	 * @param bool $sendToLog If true, the message will be sent to the debug

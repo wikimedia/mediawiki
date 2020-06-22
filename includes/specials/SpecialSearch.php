@@ -378,8 +378,9 @@ class SpecialSearch extends SpecialPage {
 
 		$rewritten = $engine->replacePrefixes( $term );
 		if ( $rewritten !== $term ) {
-			wfDeprecated( 'SearchEngine::replacePrefixes() (overridden by ' .
-						  get_class( $engine ) . ')', '1.32' );
+			wfDeprecatedMsg( 'SearchEngine::replacePrefixes()  was overridden by ' .
+				get_class( $engine ) . ', this is deprecated since MediaWiki 1.32',
+				'1.32', false, false );
 		}
 
 		// fetch search results

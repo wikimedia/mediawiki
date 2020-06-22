@@ -67,8 +67,9 @@ class FileDeleteForm {
 		$this->file = $file;
 
 		if ( $user === null ) {
-			wfDeprecated(
-				__CLASS__ . ' being constructing without a $user parameter',
+			wfDeprecatedMsg(
+				'Construction of ' . __CLASS__ . ' without a $user parameter ' .
+				'was deprecated in MediaWiki 1.35',
 				'1.35'
 			);
 			global $wgUser;

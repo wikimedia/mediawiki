@@ -83,8 +83,9 @@ class HTMLInfoField extends HTMLFormField {
 	public function getOOUI( $value ) {
 		if ( !empty( $this->mParams['rawrow'] ) ) {
 			if ( !( $value instanceof OOUI\FieldLayout ) ) {
-				wfDeprecated( __METHOD__ . ": 'default' parameter as a string when using" .
-					"'rawrow' (must be a FieldLayout or subclass)", '1.32' );
+				wfDeprecatedMsg( __METHOD__ . ": 'default' parameter as a string when using " .
+					"'rawrow' was deprecated in MediaWiki 1.32 (must be a FieldLayout or subclass)",
+					'1.32' );
 			}
 			return $value;
 		}

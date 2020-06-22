@@ -105,7 +105,8 @@ class MergeHistory {
 		SpamChecker $spamChecker = null
 	) {
 		if ( $loadBalancer === null ) {
-			wfDeprecated( __CLASS__ . ' being constructed directly', '1.35' );
+			wfDeprecatedMsg( 'Direct construction of ' . __CLASS__ .
+				' was deprecated in MediaWiki 1.35', '1.35' );
 			$services = MediaWikiServices::getInstance();
 
 			$loadBalancer = $services->getDBLoadBalancer();

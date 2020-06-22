@@ -2780,14 +2780,17 @@ class Parser {
 			$this->hookRunner->onParserGetVariableValueSwitch( $this,
 				$this->mVarCache, $index, $ret, $frame );
 				if ( $index !== $originalIndex ) {
-					wfDeprecated(
-						'ParserGetVariableValueSwitch modifying $index', '1.35'
+					wfDeprecatedMsg(
+						'A ParserGetVariableValueSwitch hook handler modified $index, ' .
+						'this is deprecated since MediaWiki 1.35',
+						'1.35', false, false
 					);
 				}
 				if ( !isset( $this->mVarCache[$originalIndex] ) ||
 					$this->mVarCache[$originalIndex] !== $ret ) {
-					wfDeprecated(
-						'ParserGetVariableValueSwitch bypassing cache', '1.35'
+					wfDeprecatedMsg(
+						'A ParserGetVariableValueSwitch hook handler bypassed the cache, ' .
+						'this is deprecated since MediaWiki 1.35', '1.35', false, false
 					);
 				}// FIXME: in the future, don't give this hook unrestricted
 			// access to mVarCache; we can cache it ourselves by falling

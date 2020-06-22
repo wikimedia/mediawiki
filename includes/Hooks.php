@@ -47,8 +47,9 @@ class Hooks {
 	 */
 	public static function register( $name, $callback ) {
 		if ( !defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' ) ) {
-			wfDeprecated( 'Registering handler for ' . $name .
-				' before MediaWiki bootstrap complete', '1.35' );
+			wfDeprecatedMsg( 'Registering handler for ' . $name .
+				' before MediaWiki bootstrap complete was deprecated in MediaWiki 1.35',
+				'1.35' );
 		}
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$hookContainer->register( $name, $callback );

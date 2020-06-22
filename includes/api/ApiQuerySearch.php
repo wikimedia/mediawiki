@@ -68,8 +68,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$nquery = $search->replacePrefixes( $query );
 		if ( $nquery !== $query ) {
 			$query = $nquery;
-			wfDeprecated( 'SearchEngine::replacePrefixes() (overridden by ' .
-						  get_class( $search ) . ')', '1.32' );
+			wfDeprecatedMsg( 'SearchEngine::replacePrefixes() is overridden by ' .
+				get_class( $search ) . ', this was deprecated in MediaWiki 1.32',
+				'1.32' );
 		}
 		// Perform the actual search
 		if ( $what == 'text' ) {

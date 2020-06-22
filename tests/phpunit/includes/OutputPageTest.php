@@ -2183,7 +2183,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			->will( $this->returnValue( $cookies ) );
 		TestingAccessWrapper::newFromObject( $op )->mVaryHeader = [];
 
-		$this->hideDeprecated( 'addVaryHeader $option is ignored' );
+		$this->filterDeprecated( '/The \$option parameter to addVaryHeader is ignored/' );
 		foreach ( $calls as $call ) {
 			$op->addVaryHeader( ...$call );
 		}

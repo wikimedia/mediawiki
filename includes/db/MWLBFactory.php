@@ -313,11 +313,12 @@ abstract class MWLBFactory {
 		$class = $config['class'];
 
 		if ( isset( $bcClasses[$class] ) ) {
-			$class = $bcClasses[$class];
-			wfDeprecated(
-				'$wgLBFactoryConf must be updated. See RELEASE-NOTES for details',
+			wfDeprecatedMsg(
+				'$wgLBFactoryConf must be updated. ' .
+				"The class $class was renamed to {$bcClasses[$class]} in MediaWiki 1.23.",
 				'1.23'
 			);
+			$class = $bcClasses[$class];
 		}
 
 		// For configuration backward compatibility after moving classes to namespaces (1.29)

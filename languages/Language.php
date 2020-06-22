@@ -70,7 +70,9 @@ class Language {
 	 */
 	public function __get( string $name ) {
 		if ( $name == "mConverter" ) {
-			wfDeprecated( 'Language::mConverter', '1.35' );
+			wfDeprecatedMsg(
+				'Access to Language::$mConverter was deprecated in MediaWiki 1.35',
+				'1.35' );
 			return $this->getConverter();
 		}
 		throw new RuntimeException( "Cannot get '$name' property." );
@@ -3036,14 +3038,14 @@ class Language {
 	protected function transformUsingPairFile( $file, $string, $basePath = null ) {
 		if ( isset( $this->transformData[$file] ) ) {
 			wfDeprecated(
-				__METHOD__ . ' structure of $transformData is changed',
+				'Modification of Language::$transformData is deprecated since MediaWiki 1.35',
 				'1.35'
 			);
 			return $this->transformData[$file]->replace( $string );
 		}
 
 		if ( $basePath === null ) {
-			wfDeprecated( __METHOD__ . ' $basePath is required', '1.35' );
+			wfDeprecated( __METHOD__ . ' without $basePath', '1.35' );
 			global $IP;
 			$basePath = $IP;
 		}

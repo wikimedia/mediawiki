@@ -2329,7 +2329,8 @@ class Article implements Page {
 	 * @return mixed
 	 */
 	public function __get( $fname ) {
-		wfDeprecated( __METHOD__ . " Access to raw $fname field", '1.35' );
+		wfDeprecatedMsg( "Accessing Article::\$$fname is deprecated since MediaWiki 1.35",
+			'1.35' );
 
 		if ( $fname === 'mRevision' ) {
 			$record = $this->fetchRevisionRecord(); // Ensure that it is loaded
@@ -2352,7 +2353,8 @@ class Article implements Page {
 	 * @param mixed $fvalue New value
 	 */
 	public function __set( $fname, $fvalue ) {
-		wfDeprecated( __METHOD__ . " Access to raw $fname field", '1.35' );
+		wfDeprecatedMsg( "Setting Article::\$$fname is deprecated since MediaWiki 1.35",
+			'1.35' );
 
 		if ( $fname === 'mRevision' ) {
 			$this->mRevisionRecord = $fvalue ?
