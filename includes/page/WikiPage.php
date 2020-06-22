@@ -1820,6 +1820,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @deprecated since 1.32, use PageUpdater::saveRevision instead. Note that the new method
 	 * expects callers to take care of checking EDIT_MINOR against the minoredit right, and to
 	 * apply the autopatrol right as appropriate.
+	 * @note since 1.36 ::doUserEditContent is available as an interim replacement
 	 *
 	 * @param Content $content New content
 	 * @param string|CommentStoreComment $summary Edit summary
@@ -1883,14 +1884,90 @@ class WikiPage implements Page, IDBAccessObject {
 		Content $content, $summary, $flags = 0, $originalRevId = false,
 		User $user = null, $serialFormat = null, $tags = [], $undidRevId = 0
 	) {
-		global $wgUser, $wgUseNPPatrol, $wgUseRCPatrol;
-
-		if ( !( $summary instanceof CommentStoreComment ) ) {
-			$summary = CommentStoreComment::newUnsavedComment( trim( $summary ) );
-		}
+		global $wgUser;
 
 		if ( !$user ) {
 			$user = $wgUser;
+		}
+
+		return $this->doUserEditContent(
+			$content, $user, $summary, $flags, $originalRevId, $tags, $undidRevId
+		);
+	}
+
+	/**
+	 * Change an existing article or create a new article. Updates RC and all necessary caches,
+	 * optionally via the deferred update array.
+	 *
+	 * @deprecated since 1.36, use PageUpdater::saveRevision instead. Note that the new method
+	 * expects callers to take care of checking EDIT_MINOR against the minoredit right, and to
+	 * apply the autopatrol right as appropriate.
+	 *
+	 * @param Content $content New content
+	 * @param User $user The user doing the edit
+	 * @param string|CommentStoreComment $summary Edit summary
+	 * @param int $flags Bitfield:
+	 *      EDIT_NEW
+	 *          Article is known or assumed to be non-existent, create a new one
+	 *      EDIT_UPDATE
+	 *          Article is known or assumed to be pre-existing, update it
+	 *      EDIT_MINOR
+	 *          Mark this edit minor, if the user is allowed to do so
+	 *      EDIT_SUPPRESS_RC
+	 *          Do not log the change in recentchanges
+	 *      EDIT_FORCE_BOT
+	 *          Mark the edit a "bot" edit regardless of user rights
+	 *      EDIT_AUTOSUMMARY
+	 *          Fill in blank summaries with generated text where possible
+	 *      EDIT_INTERNAL
+	 *          Signal that the page retrieve/save cycle happened entirely in this request.
+	 *
+	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
+	 * article will be detected. If EDIT_UPDATE is specified and the article
+	 * doesn't exist, the function will return an edit-gone-missing error. If
+	 * EDIT_NEW is specified and the article does exist, an edit-already-exists
+	 * error will be returned. These two conditions are also possible with
+	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
+	 *
+	 * @param bool|int $originalRevId: The ID of an original revision that the edit
+	 * restores or repeats. The new revision is expected to have the exact same content as
+	 * the given original revision. This is used with rollbacks and with dummy "null" revisions
+	 * which are created to record things like page moves.
+	 * @param array|null $tags Change tags to apply to this edit
+	 * Callers are responsible for permission checks
+	 * (with ChangeTags::canAddTagsAccompanyingChange)
+	 * @param int $undidRevId Id of revision that was undone or 0
+	 *
+	 * @throws MWException
+	 * @return Status Possible errors:
+	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
+	 *       set the fatal flag of $status.
+	 *     edit-gone-missing: In update mode, but the article didn't exist.
+	 *     edit-conflict: In update mode, the article changed unexpectedly.
+	 *     edit-no-change: Warning that the text was the same as before.
+	 *     edit-already-exists: In creation mode, but the article already exists.
+	 *
+	 *  Extensions may define additional errors.
+	 *
+	 *  $return->value will contain an associative array with members as follows:
+	 *     new: Boolean indicating if the function attempted to create a new article.
+	 *     revision-record: The revision record object for the inserted revision, or null.
+	 *
+	 * @since 1.36
+	 */
+	public function doUserEditContent(
+		Content $content,
+		User $user,
+		$summary,
+		$flags = 0,
+		$originalRevId = false,
+		$tags = [],
+		$undidRevId = 0
+	) {
+		global $wgUseNPPatrol, $wgUseRCPatrol;
+
+		if ( !( $summary instanceof CommentStoreComment ) ) {
+			$summary = CommentStoreComment::newUnsavedComment( trim( $summary ) );
 		}
 
 		// TODO: this check is here for backwards-compatibility with 1.31 behavior.
@@ -1904,7 +1981,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$slotsUpdate = new RevisionSlotsUpdate();
 		$slotsUpdate->modifyContent( SlotRecord::MAIN, $content );
 
-		// NOTE: while doEditContent() executes, callbacks to getDerivedDataUpdater and
+		// NOTE: while doUserEditContent() executes, callbacks to getDerivedDataUpdater and
 		// prepareContentForEdit will generally use the DerivedPageDataUpdater that is also
 		// used by this PageUpdater. However, there is no guarantee for this.
 		$updater = $this->newPageUpdater( $user, $slotsUpdate );

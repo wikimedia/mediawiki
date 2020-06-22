@@ -328,6 +328,15 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.36 ===
+* WikiPage::doEditContent() is now deprecated. Use
+  WikiPage::doUserEditContent() instead. Note that doEditContent() was also
+  deprecated in 1.32 for unrelated reasons and doUserEditContent() is
+  deprecated for other reasons, however, using doUserEditContent() is
+  recommended over using doEditContent().
+* WikiPage::doUserEditContent() is now deprecated. Use
+  PageUpdater::saveRevision instead. Note that the new method expects callers
+  to take care of checking EDIT_MINOR against the minoredit right, and to apply
+  the autopatrol right as appropriate.
 * LocalFile::recordUpload2, soft deprecated in 1.35, now emits deprecation
   warnings. Use ::recordUpload3 instead.
 * The User class, which was marked as @newable in 1.35, is no longer newable,
