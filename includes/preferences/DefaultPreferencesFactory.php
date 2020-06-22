@@ -1773,10 +1773,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$context = $form->getContext();
 			$urlOptions = [];
 
-			if ( $res === 'eauth' ) {
-				$urlOptions['eauth'] = 1;
-			}
-
 			$urlOptions += $form->getExtraSuccessRedirectParameters();
 
 			$url = $form->getTitle()->getFullURL( $urlOptions );
