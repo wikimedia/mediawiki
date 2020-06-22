@@ -12,6 +12,7 @@ THIS IS NOT A RELEASE YET
 * (T240307) Minor fixes to extension.schema.v2.json and extension.schema.v1.json.
 * (T199474) Set rc_patrolled to 2 for autopatrolled changes in
   rebuildrecentchanges.php.
+* (T229461) Update the change_tag table in rebuildrecentchanges.php.
 * (T206476) Call ob_start() before running tests.
 * (T234450) Per-user concurrency in SpecialContributions can now be limited by
   setting $wgPoolCounterConf['SpecialContributions'] appropriately.
