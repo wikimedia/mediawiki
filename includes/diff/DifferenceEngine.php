@@ -1226,16 +1226,14 @@ class DifferenceEngine extends ContextSource {
 		// Save to cache for 7 days
 		if ( !$this->hookRunner->onAbortDiffCache( $this ) ) {
 			$stats->updateCount( 'diff_cache.uncacheable', 1 );
-		} elseif ( $key !== false && $difftext !== false ) {
+		} elseif ( $key !== false ) {
 			$stats->updateCount( 'diff_cache.miss', 1 );
 			$cache->set( $key, $difftext, 7 * 86400 );
 		} else {
 			$stats->updateCount( 'diff_cache.uncacheable', 1 );
 		}
 		// localise line numbers and title attribute text
-		if ( $difftext !== false ) {
-			$difftext = $this->localiseDiff( $difftext );
-		}
+		$difftext = $this->localiseDiff( $difftext );
 
 		return $difftext;
 	}
