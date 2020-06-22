@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"DannyS712",
+			"GwikorFrank",
 			"Kernoweger",
 			"Kw-Moon",
 			"MF-Warburg",
@@ -41,7 +42,7 @@
 	"tog-showhiddencats": "Diskwedhes klassys kudhys",
 	"tog-useeditwarning": "Gul ow gwarnya pan gyssiv folen janjya gans chanjyow nag yw gwithys",
 	"underline-always": "Pub prys",
-	"underline-never": "Jammes",
+	"underline-never": "Nevra",
 	"underline-default": "Defowt an beurel po an grohen",
 	"editfont-monospace": "Font unnspasys",
 	"editfont-sansserif": "Font sans-serif",

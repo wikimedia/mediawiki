@@ -3443,7 +3443,7 @@
 	"tags-source-none": "لم يعد قيد الاستخدام",
 	"tags-edit": "عدل",
 	"tags-delete": "احذف",
-	"tags-activate": "نشط",
+	"tags-activate": "تنشيط",
 	"tags-deactivate": "تعطيل",
 	"tags-hitcount": "{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}",
 	"tags-manage-no-permission": "ليس لديك صلاحية إدارة وسوم التغيير.",

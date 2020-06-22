@@ -2668,7 +2668,7 @@
 	"ipblocklist-legend": "ブロックされている利用者の検索",
 	"blocklist-userblocks": "アカウントのブロックを非表示",
 	"blocklist-tempblocks": "期限付きブロックを非表示",
-	"blocklist-indefblocks": "無期限ブロックを隠す",
+	"blocklist-indefblocks": "無期限ブロックを非表示",
 	"blocklist-addressblocks": "単一 IP のブロックを非表示",
 	"blocklist-type": "種類:",
 	"blocklist-type-opt-all": "すべて",

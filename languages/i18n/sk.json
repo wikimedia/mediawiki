@@ -844,6 +844,7 @@
 	"history-feed-item-nocomment": "$1 na $2",
 	"history-feed-empty": "Požadovaná stránka neexistuje.\nMožno bola zmazaná z wiki alebo premenovaná.\nSkúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.",
 	"history-edit-tags": "Upraviť značky vybraných revízií",
+	"history-empty": "Žiadne zodpovedajúce úpravy neboli nájdené.",
 	"rev-deleted-comment": "(zhrnutie úprav odstránené)",
 	"rev-deleted-user": "(používateľské meno odstránené)",
 	"rev-deleted-event": "(činnosť odstránená zo záznamu)",

@@ -33,7 +33,7 @@
 	"apihelp-block-summary": "Zablokovat uživatele.",
 	"apihelp-block-param-user": "Uživatelské jméno, IP adresa nebo rozsah IP adres, které chcete zablokovat. Nelze použít dohromady s <var>$1userid</var>.",
 	"apihelp-block-param-reason": "Důvod bloku.",
-	"apihelp-block-param-anononly": "Zablokovat pouze anonymní uživatele (tj. zakázat editovat anonymně z této IP).",
+	"apihelp-block-param-anononly": "Zablokovat pouze neregistrované uživatele (tj. zakázat editovat anonymně z této IP).",
 	"apihelp-block-param-nocreate": "Nedovolit registraci nových uživatelů.",
 	"apihelp-block-param-noemail": "Zakázat uživateli posílat e-maily prostřednictvím wiki. (Vyžaduje oprávnění „<code>blockemail</code>“.)",
 	"apihelp-block-param-hidename": "Skrýt uživatelské jméno v knize zablokování. (Vyžaduje oprávnění <code>hideuser</code>.)",

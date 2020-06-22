@@ -512,6 +512,7 @@
 	"edit-gone-missing": "No s'ha puesto esviellar a pachina.\nPareix que la hesen borrau.",
 	"edit-conflict": "Conflicto d'edición.",
 	"edit-no-change": "S'ha ignorato a suya edición, pos no s'ha feito garra cambeo ta o texto.",
+	"postedit-confirmation-saved": "S'ha alzau a suya edición.",
 	"edit-already-exists": "No s'ha puesto creyar una pachina nueva.\nYa existe.",
 	"editwarning-warning": "Si sale d'ista pachina perderá totz os cambios que haiga feito. Si tiene una cuenta d'usuario, puet eliminar ista alvertencia en a sección «Caixa d'edición» d'as suyas preferencies.",
 	"expensive-parserfunction-warning": "Pare cuenta: Ista pachina tiene masiadas cridas ta funcions de preproceso (parser functions) costosas.\n\nHabría de tener-ne menos de {{PLURAL:$2|$2|$2}}, y por agora en tiene {{PLURAL:$1|$1|$1}}.",

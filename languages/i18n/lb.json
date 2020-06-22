@@ -2283,7 +2283,7 @@
 	"unblock": "D'Spär vum Benotzer ophiewen",
 	"blockip": "{{GENDER:$1|Benotzer}} spären",
 	"blockiptext": "Benotzt dëse Formulaire fir eng spezifesch IP-Adress oder e Benotzernumm ze spären.\nDëst soll nëmmen am Fall vu Vandalismus gemaach ginn, en accordance mat den [[{{MediaWiki:Policy-url}}|interne Richtlinnen]].\nGitt e spezifesche Grond un (zum Beispill Säite wou Vandalismus virgefall ass).\nDir kënnt IP-Beräicher spären an deem Dir d' [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] Syntax benotzt; de gréissten erlaabte Beräich as  /$1 fir IPv4 an /$2 fir IPv6",
-	"ipaddressorusername": "IP-Adress oder Benotzernumm:",
+	"ipaddressorusername": "IP-Adress, Benotzernumm oder ID vun der Spär:",
 	"ipbreason": "Grond:",
 	"ipbreason-dropdown": "*Heefeg Ursaache fir Benotzer ze spären:\n**Bewosst falsch Informatiounen an eng oder méi Säite gesat\n**Ouni Grond Inhalt vu Säite geläscht\n**Spam-Verknëppunge mat externe Säiten\n**Topereien an d'Säite gesat\n**Beleidegt oder bedreet aner Mataarbechter\n**Mëssbrauch vu verschiddene Benotzernimm\n**Net akzeptabele Benotzernumm",
 	"ipb-hardblock": "D'Spär op ageloggt Benotzer vun dëser IP-Adress uwenden",
