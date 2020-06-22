@@ -455,9 +455,10 @@ class SpecialPageFactory {
 			$rec = $specialPageList[$realName];
 
 			if ( $rec instanceof SpecialPage ) {
-				wfDeprecated(
-					"a SpecialPage instance (for $realName) in " .
-					'$wgSpecialPages or from the SpecialPage_initList hook',
+				wfDeprecatedMsg(
+					"A SpecialPage instance for $realName was found in " .
+					'$wgSpecialPages or came from a SpecialPage_initList hook handler, ' .
+					'this was deprecated in MediaWiki 1.34',
 					'1.34'
 				);
 

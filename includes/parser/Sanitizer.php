@@ -445,7 +445,8 @@ class Sanitizer {
 			];
 
 			if ( $wgAllowImageTag ) {
-				wfDeprecated( 'Setting $wgAllowImageTag to true', '1.35' );
+				wfDeprecatedMsg( 'Setting $wgAllowImageTag to true ' .
+					'is deprecated since MediaWiki 1.35', '1.35', false, false );
 				$htmlsingle[] = 'img';
 				$htmlsingleonly[] = 'img';
 			}

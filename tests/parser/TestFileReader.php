@@ -84,22 +84,31 @@ class TestFileReader {
 		$nonTidySection = $this->checkSection(
 			[ 'html/php+untidy', 'html+untidy' ], false );
 		if ( $this->format < 2 ) {
-			wfDeprecated( "parserTest v1: $this->file", '1.35' );
+			wfDeprecatedMsg(
+				"The parserTest v1 file format was deprecated in MediaWiki 1.35 " .
+				"(used in {$this->file})", '1.35', false, false );
 			if ( $nonTidySection === false ) {
 				// untidy by default
 				$nonTidySection = $output;
 			}
 		} else {
 			if ( $this->checkSection( [ 'input' ], false ) ) {
-				wfDeprecated( 'input section in parserTest', '1.35' );
+				wfDeprecatedMsg(
+					"The input section in parserTest files was deprecated in MediaWiki 1.35 " .
+					"(used in {$this->file})",
+					'1.35', false, false );
 			}
 			if ( $this->checkSection( [ 'result' ], false ) ) {
-				wfDeprecated( 'result section in parserTest', '1.35' );
+				wfDeprecatedMsg(
+					"The result section in parserTest files was deprecated in MediaWiki 1.35 " .
+					"(used in {$this->file})",
+					'1.35', false, false );
 			}
 			if ( $output && $tidySection ) {
-				wfDeprecated(
-					'untidy section should be renamed at ' .
-					"{$this->file}:{$this->sectionLineNum['test']}", '1.35'
+				wfDeprecatedMsg(
+					'The untidy section of parserTest files was deprecated in MediaWiki 1.35, ' .
+					"it should be renamed at {$this->file}:{$this->sectionLineNum['test']}",
+					'1.35', false, false
 				);
 			}
 			if ( $tidySection === false ) {
@@ -109,7 +118,11 @@ class TestFileReader {
 			if ( $nonTidySection && !$tidySection ) {
 				// Tests with a "without tidy" section but no "with tidy" section
 				// are deprecated!
-				wfDeprecated( "test without tidy at {$this->file}:{$this->sectionLineNum['test']}", '1.35' );
+				wfDeprecatedMsg(
+					'Parser tests with a "without tidy" section but no "with tidy" ' .
+					 ' section were deprecated in MediaWiki 1.35. Found at ' .
+					"{$this->file}:{$this->sectionLineNum['test']}",
+					'1.35', false, false );
 			}
 		}
 
@@ -169,7 +182,9 @@ class TestFileReader {
 			} else {
 				// We can no longer run the non-tidy test, and we don't have
 				// a tidy alternative.
-				wfDeprecated( 'skipping non-tidy test', '1.35' );
+				wfDeprecatedMsg( "Skipping non-tidy test {$data['test']} " .
+					"since it was removed in MediaWiki 1.35, and there is no tidy subtest",
+					'1.35', false, false );
 			}
 		} elseif ( $tidySection !== false ) {
 			// No need to override desc when there is no subtest
