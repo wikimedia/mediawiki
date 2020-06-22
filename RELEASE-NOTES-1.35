@@ -687,7 +687,6 @@ because of Phabricator reports.
 * The PHPUnit4And6Compat class, used to provide compatibility with PHPUnit 4, is
   now deprecated. MediaWiki support for PHPUnit 4 ended with the removal of HHVM
   support.
-* Revision::getRevisionText(), deprecated in 1.32, now emits deprecation alerts.
 * LockManagerGroup::getDefault() and LockManagerGroup::getAny() are deprecated.
   They seem to be unused. Just use get() directly, and catch any exception.
 * AbstractBlock::getPermissionsError and AbstractBlock::getBlockErrorParams are
@@ -867,22 +866,13 @@ because of Phabricator reports.
   - mVarSeparatorPattern
   changed from public to protected:
   - mTables
-* The UndeleteShowRevision hook has been deprecated.
-* The ArticleRollbackComplete hook has been hard deprecated. Please use the new
-  RollbackComplete hook instead.
 * The ArticleEditUpdatesDeleteFromRecentchanges hook has been deprecated. Please
   use the RecentChange_save hook or similar instead.
 * The ArticleEditUpdates hook has been deprecated. Please
   use the RevisionDataUpdates hook or similar instead.
-* The ArticleRevisionUndeleted hook has been hard deprecated. Please use the
-  new RevisionUndeleted hook instead.
-* The NewRevisionFromEditComplete hook has been hard deprecated. Please use
-  the new RevisionFromEditComplete hook instead.
 * The SkinTemplatePreventOtherActiveTabs and SkinTemplateTabAction hooks have
   been hard deprecated. Please use the SkinTemplateNavigation__Universal hook
   instead.
-* The TitleMoveCompleting and TitleMoveComplete hooks have been soft deprecated.
-  Please use the new PageMoveComplete hook instead.
 * ResourceLoaderFileModule::compileLessFile() has been deprecated, use
   ResourceLoaderFileModule::compileLessString() instead
 * The SquidPurgeClient and SquidPurgeClientPool classes have been deprecated.
@@ -1001,55 +991,57 @@ because of Phabricator reports.
 * Global $wgUser variable was soft deprecated.
 * The Revision class was soft deprecated entirely in 1.31. Specific methods
   have now been individually hard deprecated:
-  - ::getSerializedData - use SlotRecord::getContent for retrieving a
-      content object, and Content::serialize for the serialized form
-  - ::getSha1 - use RevisionRecord::getSha1 instead
-  - ::base36Sha1 - use SlotRecord::base36Sha1 instead
-  - ::userWasLastToEdit - use RevisionStore::userWasLastToEdit instead
-  - ::userCan and userCanBitfield - use RevisionRecord::userCanBitfield instead
   - ::newFromId - use RevisionLookup::getRevisionById instead
   - ::newFromTitle - use RevisionLookup::getRevisionByTitle instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
   - ::newFromArchiveRow - use RevisionFactory::newRevisionFromArchiveRow
-  - ::newNullRevision - use RevisionStore::newNullRevision
-  - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
-  - ::loadFromPageId - use RevisionStore::getRevisionByPageId instead
-  - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead
-  - ::loadFromTimestamp - use RevisionStore::getRevisionByTimestamp instead
-  - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
-  - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
   - ::newFromRow - use RevisionStore::newRevisionFromRow instead
-  - ::newKnownCurrent - use RevisionStore::getKnownCurrentRevision instead
-  - ::insertOn - use RevisionStore::insertRevisionOn instead
-  - ::getParentLengths - use RevisionStore::getRevisionSizes instead
-  - ::setTitle - the method was previously a no-op
+  - ::loadFromPageId - use RevisionStore::getRevisionByPageId instead
+  - ::loadFromTitle - use RevisionStore::getRevisionByTitle instead
+  - ::loadFromTimestamp - use RevisionStore::getRevisionByTimestamp instead
   - ::getQueryInfo - use RevisionStore::getQueryInfo instead
   - ::getArchiveQueryInfo - use RevisionStore::getArchiveQueryInfo instead
-  - ::isUnpatrolled - use RevisionStore::getRcIdIfUnpatrolled instead
-  - ::setUserIdAndName - use MutableRevisionRecord::setUser instead
+  - ::getParentLengths - use RevisionStore::getRevisionSizes instead
   - ::setId - use MutableRevisionRecord::setId instead
-  - ::getRecentChange - use RevisionStore::getRecentChange instead
+  - ::setUserIdAndName - use MutableRevisionRecord::setUser instead
+  - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
+      content address, or RevisionRecord::hasSameContent to compare content
+  - ::getParentId - use RevisionRecord::getParentId instead
+  - ::getSize - use RevisionRecord::getSize instead
+  - ::getSha1 - use RevisionRecord::getSha1 instead
+  - ::setTitle - the method was previously a no-op
   - ::getPage - use RevisionRecord::getPageId instead
   - ::getUserText - use RevisionRecord::getUser and then User::getName instead
   - ::getComment - use RevisionRecord::getComment instead
-  - ::getSize - use RevisionRecord::getSize instead
   - ::isMinor - use RevisionRecord::isMinor instead
-  - ::isCurrent - use RevisionRecord::isCurrent instead
-  - ::getTimestamp - use RevisionRecord::getTimestamp instead
+  - ::isUnpatrolled - use RevisionStore::getRcIdIfUnpatrolled instead
+  - ::getRecentChange - use RevisionStore::getRecentChange instead
+  - ::isDeleted - use RevisionRecord::isDeleted instead
+  - ::getVisibility - use RevisionRecord::getVisibility instead
   - ::getContent - use RevisionRecord::getContent instead
+  - ::getSerializedData - use SlotRecord::getContent for retrieving a
+      content object, and Content::serialize for the serialized form
   - ::getContentModel - use SlotRecord::getModel instead
   - ::getContentFormat - use SlotRecord::getFormat instead, with a fallback
        to ContentHandler::getDefaultFormat
   - ::getContentHandler - use ContentHandlerFactory::getContentHandler instead
-  - ::getParentId - use RevisionRecord::getParentId instead
-  - ::getVisibility - use RevisionRecord::getVisibility instead
-  - ::isDeleted - use RevisionRecord::isDeleted instead
-  - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
-      content address, or RevisionRecord::hasSameContent to compare content
+  - ::getTimestamp - use RevisionRecord::getTimestamp instead
+  - ::isCurrent - use RevisionRecord::isCurrent instead
+  - ::getPrevious - use RevisionLookup::getPreviousRevision instead
+  - ::getNext - use RevisionLookup::getNextRevision instead
+  - ::getRevisionText - use RevisionRecord::getContent instead
   - ::compressRevisionText - use SqlBlobStore::compressData instead
   - ::decompressRevisionText - use SqlBlobStore::decompressData instead
-  - ::getNext - use RevisionLookup::getNextRevision instead
-  - ::getPrevious - use RevisionLookup::getPreviousRevision instead
+  - ::insertOn - use RevisionStore::insertRevisionOn instead
+  - ::base36Sha1 - use SlotRecord::base36Sha1 instead
+  - ::newNullRevision - use RevisionStore::newNullRevision
+  - ::userCan - use RevisionRecord::userCanBitfield instead
+  - ::userCanBitfield - use RevisionRecord::userCanBitfield instead
+  - ::getTimestampFromId - use RevisionStore::getTimestampFromId instead
+  - ::countByPageId - use RevisionStore::countRevisionsByPageId instead
+  - ::countByTitle - use RevisionStore::countRevisionsByTitle instead
+  - ::userWasLastToEdit - use RevisionStore::userWasLastToEdit instead
+  - ::newKnownCurrent - use RevisionStore::getKnownCurrentRevision instead
 * The Revision method had a few methods that were previously protected and
   have been made private. They were:
   - ::getRevisionStore
@@ -1057,11 +1049,25 @@ because of Phabricator reports.
   - ::getRevisionFactory
   - ::getBlobStore
   The $mRecord variable was also changed from protected to private.
+* Multiple hooks that include Revision objects were deprecated. The hooks, as
+  well as suitable replacements, are noted below:
+  - ArticleRevisionUndeleted (hard deprecated, use the RevisionUndeleted hook)
+  - ArticleRollbackComplete (hard deprecated, use the RollbackComplete hook)
+  - NewRevisionFromEditComplete (hard deprecated, use the
+      RevisionFromEditComplete hook).
+  - PageContentInsertComplete (soft deprecated, use the PageSaveComplete hook)
+  - PageContentSaveComplete (soft deprecated, use the PageSaveComplete hook)
+  - RevisionInsertComplete (soft deprecated in 1.31, now emits deprecation
+      warnings)
+  - TitleMoveCompleting (soft deprecated, use the PageMoveComplete hook)
+  - TitleMoveComplete (soft deprecated, use the PageMoveComplete hook)
+  - UndeleteShowRevision (hard deprecated)
+* The following RevisionStore methods were deprecated:
+  - ::loadRevisionFromTitle
+  - ::loadRevisionFromTimestamp
+  - ::loadRevisionFromPageId
+  - ::listRevisionSizes
 * WikiPage::$mLastRevision was changed from protected to private.
-* The RevisionInsertComplete hook, soft deprecated in 1.31, now emits
-  deprecation warnings.
-* The PageContentInsertComplete and PageContentSaveComplete hooks were
-  deprecated in favor of the new PageSaveComplete hook.
 * RecentChange::markPatrolled was deprecated. Use ::doMarkPatrolled instead.
 * The JobRunner class has been converted to a service class.
   Direct construction is deprecated, use MediaWikiServices::getJobRunner.
@@ -1070,8 +1076,6 @@ because of Phabricator reports.
   constructor instead.
 * LogEventsList::typeAction accepts an optional right to check against as
   the fourth parameter. Specifying such a right is deprecated.
-* RevisionStore::loadRevisionFromTitle, ::loadRevisionFromTimestamp,
-  ::loadRevisionFromPageId, and ::listRevisionSizes were deprecated.
 * SkinTemplate::makeArticleUrlDetails has been deprecated, no longer used.
 * Passing a Revision object into CategoryMembershipChange constructor is
   deprecated. Pass a RevisionRecord instead.
