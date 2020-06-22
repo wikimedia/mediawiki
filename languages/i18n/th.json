@@ -1980,7 +1980,7 @@
 	"protectedtitles-summary": "หน้านี้แสดงรายการชื่อที่ปัจจุบันถูกป้องกันมิให้สร้าง สำหรับรายการหน้าที่มีอยู่ที่ถูกล็อก ดู [[{{#special:ProtectedPages}}|{{int:protectedpages}}]]",
 	"protectedtitlesempty": "ปัจจุบันไม่มีหัวเรื่องที่ได้รับการป้องกันด้วยตัวแปรเสริมเหล่านี้",
 	"protectedtitles-submit": "แสดงชื่อเรื่อง",
-	"listusers": "รายชื่อผู้ใช้",
+	"listusers": "รายการผู้ใช้",
 	"listusers-editsonly": "แสดงเฉพาะผู้ใช้ที่มีการแก้ไข",
 	"listusers-temporarygroupsonly": "แสดงเฉพาะผู้ใช้ในกลุ่มผู้ใช้ชั่วคราว",
 	"listusers-creationsort": "เรียงตามวันสร้าง",
