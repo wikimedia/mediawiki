@@ -1784,7 +1784,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$cache = ObjectCache::getLocalClusterInstance();
 
 		if ( $id == 0 ) {
-			// limits for anons
+			// "shared anon" limit, for all anons combined
 			if ( isset( $limits['anon'] ) ) {
 				$keys[$cache->makeKey( 'limiter', $action, 'anon' )] = $limits['anon'];
 			}
@@ -1793,19 +1793,18 @@ class User implements IDBAccessObject, UserIdentity {
 			$userLimit = $limits['user'];
 		}
 
-		// limits for anons and for newbie logged-in users
 		if ( $isNewbie ) {
-			// ip-based limits
+			// "per ip" limit for anons and newbie users
 			if ( isset( $limits['ip'] ) ) {
 				$ip = $this->getRequest()->getIP();
-				$keys["mediawiki:limiter:$action:ip:$ip"] = $limits['ip'];
+				$keys[$cache->makeGlobalKey( 'limiter', $action, 'ip', $ip )] = $limits['ip'];
 			}
-			// subnet-based limits
+			// "per subnet" limit for anons and newbie users
 			if ( isset( $limits['subnet'] ) ) {
 				$ip = $this->getRequest()->getIP();
 				$subnet = IPUtils::getSubnet( $ip );
 				if ( $subnet !== false ) {
-					$keys["mediawiki:limiter:$action:subnet:$subnet"] = $limits['subnet'];
+					$keys[$cache->makeGlobalKey( 'limiter', $action, 'subnet', $subnet )] = $limits['subnet'];
 				}
 			}
 		}
@@ -1821,8 +1820,7 @@ class User implements IDBAccessObject, UserIdentity {
 				}
 			}
 		}
-
-		// limits for newbie logged-in users (override all the normal user limits)
+		// limits for newbie logged-in users (overrides all the normal user limits)
 		if ( $id !== 0 && $isNewbie && isset( $limits['newbie'] ) ) {
 			$userLimit = $limits['newbie'];
 		}
@@ -1843,7 +1841,7 @@ class User implements IDBAccessObject, UserIdentity {
 			// ignore if user limit is more permissive
 			if ( $isNewbie || $userLimit === false
 				|| $limits['ip-all'][0] / $limits['ip-all'][1] > $userLimit[0] / $userLimit[1] ) {
-				$keys["mediawiki:limiter:$action:ip-all:$ip"] = $limits['ip-all'];
+				$keys[$cache->makeGlobalKey( 'limiter', $action, 'ip-all', $ip )] = $limits['ip-all'];
 			}
 		}
 
@@ -1856,7 +1854,7 @@ class User implements IDBAccessObject, UserIdentity {
 				if ( $isNewbie || $userLimit === false
 					|| $limits['ip-all'][0] / $limits['ip-all'][1]
 					> $userLimit[0] / $userLimit[1] ) {
-					$keys["mediawiki:limiter:$action:subnet-all:$subnet"] = $limits['subnet-all'];
+					$keys[$cache->makeGlobalKey( 'limiter', $action, 'subnet-all', $subnet )] = $limits['subnet-all'];
 				}
 			}
 		}
