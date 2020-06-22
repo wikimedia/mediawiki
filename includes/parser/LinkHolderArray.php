@@ -42,7 +42,6 @@ class LinkHolderArray {
 	 * @var Parser
 	 */
 	public $parent;
-	protected $tempIdOffset;
 
 	/**
 	 * Current language converter
@@ -60,7 +59,7 @@ class LinkHolderArray {
 	 * @param ILanguageConverter|null $languageConverter
 	 * @param HookContainer|null $hookContainer
 	 */
-	public function __construct( $parent, ILanguageConverter $languageConverter = null,
+	public function __construct( Parser $parent, ILanguageConverter $languageConverter = null,
 		HookContainer $hookContainer = null
 	) {
 		$this->parent = $parent;
@@ -144,6 +143,7 @@ class LinkHolderArray {
 			# Separate the link trail from the rest of the link
 			list( $inside, $trail ) = Linker::splitTrail( $trail );
 
+			$key = $this->parent->nextLinkID();
 			$entry = [
 				'title' => $nt,
 				'text' => $prefix . $text . $inside,
@@ -155,11 +155,9 @@ class LinkHolderArray {
 
 			if ( $nt->isExternal() ) {
 				// Use a globally unique ID to keep the objects mergable
-				$key = $this->parent->nextLinkID();
 				$this->interwikis[$key] = $entry;
 				$retVal = "<!--IWLINK'\" $key-->{$trail}";
 			} else {
-				$key = $this->parent->nextLinkID();
 				$ns = $nt->getNamespace();
 				$this->internals[$ns][$key] = $entry;
 				$retVal = "<!--LINK'\" $ns:$key-->{$trail}";
@@ -263,7 +261,7 @@ class LinkHolderArray {
 			}
 			unset( $res );
 		}
-		if ( count( $linkcolour_ids ) ) {
+		if ( $linkcolour_ids !== [] ) {
 			// pass an array of page_ids to an extension
 			$this->hookRunner->onGetLinkColours( $linkcolour_ids, $colours, $this->parent->getTitle() );
 		}
@@ -280,8 +278,7 @@ class LinkHolderArray {
 				$pdbk = $entry['pdbk'];
 				$title = $entry['title'];
 				$query = $entry['query'] ?? [];
-				$key = "$ns:$index";
-				$searchkey = "<!--LINK'\" $key-->";
+				$searchkey = "<!--LINK'\" $ns:$index-->";
 				$displayTextHtml = $entry['text'];
 				if ( isset( $entry['selflink'] ) ) {
 					$replacePairs[$searchkey] = Linker::makeSelfLinkObj( $title, $displayTextHtml, $query );
@@ -295,16 +292,15 @@ class LinkHolderArray {
 				if ( !isset( $colours[$pdbk] ) ) {
 					$colours[$pdbk] = 'new';
 				}
-				$attribs = [];
 				if ( $colours[$pdbk] == 'new' ) {
 					$linkCache->addBadLinkObj( $title );
 					$output->addLink( $title, 0 );
 					$link = $linkRenderer->makeBrokenLink(
-						$title, $displayText, $attribs, $query
+						$title, $displayText, [], $query
 					);
 				} else {
 					$link = $linkRenderer->makePreloadedLink(
-						$title, $displayText, $colours[$pdbk], $attribs, $query
+						$title, $displayText, $colours[$pdbk], [], $query
 					);
 				}
 
@@ -387,7 +383,6 @@ class LinkHolderArray {
 		// Now do the conversion and explode string to text of titles
 		$titlesAllVariants = $this->languageConverter->
 			autoConvertToAllVariants( rtrim( $titlesToBeConverted, "\0" ) );
-		$allVariantsName = array_keys( $titlesAllVariants );
 		foreach ( $titlesAllVariants as &$titlesVariant ) {
 			$titlesVariant = explode( "\0", $titlesVariant );
 		}
@@ -400,8 +395,8 @@ class LinkHolderArray {
 			$ns = $title->getNamespace();
 			$text = $title->getText();
 
-			foreach ( $allVariantsName as $variantName ) {
-				$textVariant = $titlesAllVariants[$variantName][$i];
+			foreach ( $titlesAllVariants as $variantName => $textVariants ) {
+				$textVariant = $textVariants[$i];
 				if ( $textVariant === $text ) {
 					continue;
 				}
@@ -498,7 +493,7 @@ class LinkHolderArray {
 			$this->hookRunner->onGetLinkColours( $linkcolour_ids, $colours, $this->parent->getTitle() );
 
 			// rebuild the categories in original order (if there are replacements)
-			if ( count( $varCategories ) > 0 ) {
+			if ( $varCategories !== [] ) {
 				$newCats = [];
 				$originalCats = $output->getCategories();
 				foreach ( $originalCats as $cat => $sortkey ) {
