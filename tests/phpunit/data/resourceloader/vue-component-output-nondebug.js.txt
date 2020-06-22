@@ -5,4 +5,4 @@ module.exports = {
 		};
 	}
 };;
-module.exports.template = "<div class=\"mw-vue-test\"><p>Hello\\n<\/p><p>{{ hello }}<\/p><pre>\n\t\t\tfoo\\\n\t\t\tbar\n\t\t<\/pre><\/div>";
+module.exports.template = "<div class=\"mw-vue-test\"><p>Hello\\n<\/p> <p>{{ hello }}<\/p> <pre>\t\t\tfoo\\\n\t\t\tbar\n\t\t<\/pre><\/div>";

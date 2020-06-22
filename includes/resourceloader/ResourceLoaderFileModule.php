@@ -1332,17 +1332,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			}
 			if ( $fileInfo['type'] === 'script-vue' ) {
 				try {
-					$parsedComponent = $this->getVueComponentParser()->parse( $fileInfo['content'] );
+					$parsedComponent = $this->getVueComponentParser()->parse(
+						$fileInfo['content'],
+						[ 'minifyTemplate' => !$context->getDebug() ]
+					);
 				} catch ( Exception $e ) {
 					$msg = "Error parsing file '$fileName' in module '{$this->getName()}': " .
 						$e->getMessage();
 					$this->getLogger()->error( $msg );
 					throw new RuntimeException( $msg );
 				}
-				$template = $context->getDebug() ?
-					$parsedComponent['rawTemplate'] :
-					$parsedComponent['template'];
-				$encodedTemplate = json_encode( $template );
+				$encodedTemplate = json_encode( $parsedComponent['template'] );
 				if ( $context->getDebug() ) {
 					// Replace \n (backslash-n) with space + backslash-newline in debug mode
 					// We only replace \n if not preceded by a backslash, to avoid breaking '\\n'
