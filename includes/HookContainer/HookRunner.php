@@ -2826,12 +2826,11 @@ class HookRunner implements
 	}
 
 	public function onPageSaveComplete( $wikiPage, $user, $summary, $flags,
-		$revisionRecord, $originalRevId, $undidRevId
+		$revisionRecord, $editResult
 	) {
 		return $this->container->run(
 			'PageSaveComplete',
-			[ $wikiPage, $user, $summary, $flags, $revisionRecord,
-				$originalRevId, $undidRevId ]
+			[ $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult ]
 		);
 	}
 

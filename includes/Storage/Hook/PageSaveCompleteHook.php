@@ -3,6 +3,7 @@
 namespace MediaWiki\Storage\Hook;
 
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
 use WikiPage;
 
@@ -21,10 +22,9 @@ interface PageSaveCompleteHook {
 	 * @param string $summary Edit summary/comment
 	 * @param int $flags Flags passed to WikiPage::doEditContent()
 	 * @param RevisionRecord $revisionRecord New RevisionRecord of the article
-	 * @param int|bool $originalRevId If the edit restores or repeats an earlier revision (such as a
-	 *   rollback or a null revision), the ID of that earlier revision. False otherwise.
-	 *   (Used to be called $baseRevId.)
-	 * @param int $undidRevId Rev ID (or 0) this edit undid
+	 * @param EditResult $editResult Object storing information about the effects of this edit,
+	 *   including which edits were reverted and which edit is this based on (for reverts and null
+	 *   edits).
 	 * @return bool|void True or no return value to continue or false to stop other hook handlers
 	 *    from being called; save cannot be aborted
 	 */
@@ -34,7 +34,6 @@ interface PageSaveCompleteHook {
 		$summary,
 		$flags,
 		$revisionRecord,
-		$originalRevId,
-		$undidRevId
+		$editResult
 	);
 }
