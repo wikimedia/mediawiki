@@ -251,7 +251,6 @@ class ApiOpenSearch extends ApiBase {
 					if ( is_string( $r['extract'] ) && $r['extract'] !== '' ) {
 						$item['Description'] = $r['extract'];
 					}
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					if ( is_array( $r['image'] ) && isset( $r['image']['source'] ) ) {
 						$item['Image'] = array_intersect_key( $r['image'], $imageKeys );
 					}

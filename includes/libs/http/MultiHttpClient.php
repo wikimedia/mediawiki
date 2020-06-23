@@ -414,7 +414,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 				if ( $hasOutputStream ) {
 					return fwrite( $req['stream'], $data );
 				} else {
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$req['response']['body'] .= $data;
 
 					return strlen( $data );

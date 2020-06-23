@@ -391,7 +391,6 @@ $wgSkipSkins[] = 'apioutput';
 if ( $wgLocalInterwiki ) {
 	// Hard deprecated in 1.34.
 	wfDeprecated( '$wgLocalInterwiki – use $wgLocalInterwikis instead', '1.23' );
-	// @phan-suppress-next-line PhanUndeclaredVariableDim
 	array_unshift( $wgLocalInterwikis, $wgLocalInterwiki );
 }
 

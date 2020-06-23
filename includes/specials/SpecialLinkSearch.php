@@ -182,6 +182,7 @@ class SpecialLinkSearch extends QueryPage {
 		}
 
 		$orderBy = [];
+		// @phan-suppress-next-line PhanTypeMismatchDimFetch
 		if ( !isset( $this->mungedQuery['el_index_60'] ) ) {
 			$orderBy[] = 'el_index_60';
 		}

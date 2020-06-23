@@ -358,7 +358,6 @@ class CopyFileBackend extends Maintenance {
 			// backends in FileBackendMultiWrite (since they get writes second, they have
 			// higher timestamps). However, when copying the other way, this hits loads of
 			// false positives (possibly 100%) and wastes a bunch of time on GETs/PUTs.
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$same = ( $srcStat['mtime'] <= $dstStat['mtime'] );
 		} else {
 			// This is the slowest method which does many per-file HEADs (unless an object

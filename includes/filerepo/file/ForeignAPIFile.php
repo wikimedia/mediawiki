@@ -75,7 +75,6 @@ class ForeignAPIFile extends File {
 				? count( $data['query']['redirects'] ) - 1
 				: -1;
 			if ( $lastRedirect >= 0 ) {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$newtitle = Title::newFromText( $data['query']['redirects'][$lastRedirect]['to'] );
 				$img = new self( $newtitle, $repo, $info, true );
 				$img->redirectedFrom( $title->getDBkey() );
