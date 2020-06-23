@@ -1,6 +1,6 @@
 == MediaWiki 1.31.8 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.7 ===
 * (T199809) Don't invalidate BotPasswords if a password reset email is sent.
