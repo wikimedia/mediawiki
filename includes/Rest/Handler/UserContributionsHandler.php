@@ -47,7 +47,7 @@ class UserContributionsHandler extends Handler {
 		$limit = $this->getValidatedParams()['limit'];
 		$segment = $this->getValidatedParams()['segment'];
 		$contributionsSegment =
-			$this->contributionsLookup->getRevisionsByUser( $user, $limit, $user, $segment );
+			$this->contributionsLookup->getContributions( $user, $limit, $user, $segment );
 
 		$revisions = $this->getRevisionsList( $contributionsSegment );
 		$urls = $this->constructURLs( $contributionsSegment );
