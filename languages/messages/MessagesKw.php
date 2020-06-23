@@ -17,8 +17,6 @@
  * @author Scryfer
  */
 
-$fallback = 'br, cy';
-
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Arbennek',
