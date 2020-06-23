@@ -19,7 +19,8 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( 'wgLinkHolderBatchSize', $global );
 		$linkHolderArray = new LinkHolderArray(
 			$this->createMock( Parser::class ),
-			$this->createMock( ILanguageConverter::class )
+			$this->createMock( ILanguageConverter::class ),
+			$this->createHookContainer()
 		);
 		$linkHolderArray->size = $size;
 
@@ -48,7 +49,8 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 	) {
 		$link = new LinkHolderArray(
 			$this->createMock( Parser::class ),
-			$this->createMock( ILanguageConverter::class )
+			$this->createMock( ILanguageConverter::class ),
+			$this->createHookContainer()
 		);
 		$parser = $this->createMock( Parser::class );
 		$parser->method( 'nextLinkID' )->willReturn( 'dummy link' );
