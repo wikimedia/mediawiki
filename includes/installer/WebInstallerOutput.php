@@ -291,7 +291,6 @@ class WebInstallerOutput {
 	// Section 2: Installer pages
 	echo '<div class="portal"><div class="body"><ul>';
 	foreach ( [
-		'config-sidebar-readme' => 'Readme',
 		'config-sidebar-relnotes' => 'ReleaseNotes',
 		'config-sidebar-license' => 'Copying',
 		'config-sidebar-upgrade' => 'UpgradeDoc',
