@@ -198,15 +198,10 @@ class LogEventsList extends ContextSource {
 	 * @return array Form descriptor
 	 */
 	private function getFiltersDesc( $filter ) {
-		$options = [];
+		$optionsMsg = [];
 		$default = [];
 		foreach ( $filter as $type => $val ) {
-			$message = $this->msg( "logeventslist-{$type}-log" );
-			// FIXME: Remove this check once T199657 is fully resolved.
-			if ( !$message->exists() ) {
-				$message = $this->msg( "log-show-hide-{$type}" )->params( $this->msg( 'show' )->text() );
-			}
-			$options[ $message->text() ] = $type;
+			$optionsMsg["logeventslist-{$type}-log"] = $type;
 
 			if ( $val === false ) {
 				$default[] = $type;
@@ -216,7 +211,7 @@ class LogEventsList extends ContextSource {
 			'class' => 'HTMLMultiSelectField',
 			'label-message' => 'logeventslist-more-filters',
 			'flatlist' => true,
-			'options' => $options,
+			'options-messages' => $optionsMsg,
 			'default' => $default,
 		];
 	}
