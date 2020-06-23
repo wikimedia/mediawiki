@@ -885,7 +885,7 @@
 	"undo-failure": "Değişikliklerin çakışması nedeniyle geri alma işlemi başarısız oldu.",
 	"undo-main-slot-only": "Düzenleme, ana alanın dışındaki içeriği içerdiği için geri alınamaz.",
 	"undo-norev": "Değişiklik geri alınamaz çünkü ya silinmiş ya da varolmamaktadır.",
-	"undo-nochange": "Düzeltme zaten geri alınmış.",
+	"undo-nochange": "Değişiklik zaten geri alınmış.",
 	"undo-summary": "$1 değişikliği [[Special:Contributions/$2|$2]] ([[User talk:$2|mesaj]]) tarafından geri alındı.",
 	"undo-summary-anon": "[[Special:Contributions/$2|$2]] tarafından yapılan değişiklik $1 geri alındı",
 	"undo-summary-import": "[[:$2|$3]] kullanıcı tarafından içe aktarılan $1 düzeltmesini geri alındı",

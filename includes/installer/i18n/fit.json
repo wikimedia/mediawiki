@@ -12,7 +12,6 @@
 	"config-page-dbconnect": "Taattapaasiin yhistäminen",
 	"config-page-dbsettings": "Taattapaasin inställninkit",
 	"config-page-options": "Inställninkit",
-	"config-page-readme": "Lue miut",
 	"config-no-db": "Sopivaa taattapaasiajuria ei löytynyt! Sinun häätyy asentaa taattapaasiajuri PHP:lle.\n{{PLURAL:$2|Seuraava taattapaasityyppi on tuettu|Seuraavat taattapaasityypit ovat tuettuja}}: $1.\n\nJos koostit PHP:n itte, määritä se uuesti taattapaasikyntin ollessa käytössä, esimerkiksi kootilla <code>./configure --with-mysqli</code>.\nJos asensit PHP:n Debian- tai Ubuntu-pakkauksesta, sinun on myös asennettava esimerkiksi <code>php-mysql</code>-pakkaus.",
 	"config-db-type": "Taattapaasin tyyppi:",
 	"config-db-host": "Taattapaasipalvelin:",

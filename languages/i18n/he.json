@@ -2123,7 +2123,7 @@
 	"logeventslist-more-filters": "הצגת יומנים נוספים:",
 	"logeventslist-patrol-log": "יומן שינויים בדוקים",
 	"logeventslist-tag-log": "יומן תגיות",
-	"logeventslist-newusers-log": "יומן רישום משתמשים",
+	"logeventslist-newusers-log": "יומן יצירת משתמשים",
 	"all-logs-page": "כל היומנים הציבוריים",
 	"alllogstext": "זוהי תצוגה משולבת של כל סוגי היומנים הזמינים ב{{GRAMMAR:תחילית|{{SITENAME}}}}.\nניתן לצמצם את התצוגה על־ידי בחירת סוג היומן, שם המשתמש (תלוי־רישיות) או הדף המושפע (גם כן תלוי־רישיות).",
 	"logempty": "אין פריטים תואמים ביומן.",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"129femtoseconds",
 			"2nd-player",
 			"Aefgh39622",
 			"Afaz",
@@ -2610,7 +2611,7 @@
 	"unblock": "利用者のブロックを解除",
 	"blockip": "{{GENDER:$1|利用者}}をブロック",
 	"blockiptext": "以下のフォームを使用して、指定したIPアドレスまたは利用者からの書き込みアクセスをブロックできます。\nこのような措置は、荒らしからの防御の目的のみに行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。\n以下にブロックの理由を具体的に書いてください (例えば、荒らされたページへの言及など)。\n[https://ja.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] 構文を使用して、IP 範囲をブロックできます。許可された最大の範囲は、IPv4 の場合は /$1、IPv6 の場合は /$2 です。",
-	"ipaddressorusername": "IPアドレスまたは利用者名:",
+	"ipaddressorusername": "IPアドレス、利用者名またはブロックID:",
 	"ipbreason": "理由:",
 	"ipbreason-dropdown": "*よくあるブロック理由\n** 虚偽情報の挿入\n** ページから内容の除去\n** 外部サイトへのスパムリンク追加\n** ページへ無意味な/意味不明な内容の挿入\n** 威圧的な態度/嫌がらせ\n** 複数アカウントの不正利用\n** 不適切な利用者名",
 	"ipb-hardblock": "このIPアドレスからのログイン利用者に編集ブロックを適用",
