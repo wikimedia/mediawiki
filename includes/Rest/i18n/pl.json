@@ -28,9 +28,9 @@
 	"rest-compare-inaccessible": "Wersja podana przez parametr $1 nie jest publicznie dostępna.",
 	"rest-compare-wrong-content": "Slot $1 wersji podanej przez parametr $2 posiada typ treści, który nie może zostać zamieniony na tekst.",
 	"rest-compare-wikidiff2": "Ten endpoint wymaga oprogramowania wikidiff2 w wersji 1.9.0 lub nowszej.",
-	"rest-pagehistorycount-too-many-revisions": "Podany tytuł zawiera za dużo rewizji w celu odzyskania tej liczby.",
-	"rest-search-error": "Błąd, kiedy zwracając wyszukiwanie wyników: $1",
-	"rest-page-source-type-error": "Ten kontent typu żądanego źródła strony jest niewspierane",
+	"rest-pagehistorycount-too-many-revisions": "Podany tytuł zawiera za dużo wersji aby móc pobrać tę liczbę.",
+	"rest-search-error": "Błąd podczas zwracania wyników wyszukiwania: $1",
+	"rest-page-source-type-error": "Typ zawartości żądanej strony źródłowej jest niewspierany",
 	"rest-bad-content-model": "Zły model zawartości: $1",
 	"rest-cannot-load-file": "Plik o tytule „$1” nie mógł zostać wczytany."
 }

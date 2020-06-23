@@ -454,7 +454,7 @@
 	"portal": "Display name for the 'Community portal', shown in the sidebar menu of all pages. The target page is meant to be a portal for users where useful links are to be found about the wiki's operation.\n\nSee also:\n* {{msg-mw|Portal}}\n* {{msg-mw|Portal-url}}\n* {{msg-mw|Accesskey-n-portal}}\n* {{msg-mw|Tooltip-n-portal}}",
 	"portal-url": "{{doc-important|Do not change the <code>Project:</code> part.}}\nDescription: The URL of the community portal. This is shown in the sidebar by default (removed on translatewiki.net).\n\nSee also:\n* {{msg-mw|Portal}}\n* {{msg-mw|Portal-url}}\n* {{msg-mw|Accesskey-n-portal}}\n* {{msg-mw|Tooltip-n-portal}}",
 	"privacy": "Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].\n{{Identical|Privacy policy}}",
-	"privacypage": "{{doc-important|Do not change the <code>Project:</code> part.}}\nUsed as page for that contains the privacy policy. Used at the bottom of every page on the wiki.\n\nExample: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].",
+	"privacypage": "{{doc-important|Do not change the <code>Project:</code> part.}}\nUsed as a link target to the page that contains the privacy policy. Used at the bottom of every page on the wiki.\n\nExample: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].",
 	"badaccess": "Title shown within page indicating unauthorized access.\n{{Identical|Permission error}}",
 	"badaccess-group0": "Shown when you are not allowed to do something.",
 	"badaccess-groups": "Error message when you aren't allowed to do something. Parameters:\n* $1 - a list of groups\n* $2 - the number of groups",
