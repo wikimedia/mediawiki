@@ -42,7 +42,6 @@ class ReleaseNotesTest extends MediaWikiTestCase {
 			"FAQ",
 			"HISTORY",
 			"INSTALL",
-			"README",
 			"SECURITY",
 		];
 
