@@ -234,7 +234,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 		}
 
-		if ( $content && $content->isRedirect() ) {
+		if ( $content->isRedirect() ) {
 			if ( $maxRedirects === null ) {
 				$maxRedirects = $this->getConfig()->get( 'MaxRedirects' ) ?: 0;
 			}
