@@ -293,46 +293,26 @@ abstract class MWLBFactory {
 	}
 
 	/**
-	 * Returns the LBFactory class to use and the load balancer configuration.
+	 * Decide which LBFactory class to use.
 	 *
-	 * @todo instead of this, use a ServiceContainer for managing the different implementations.
-	 *
+	 * @internal For use by ServiceWiring
 	 * @param array $config (e.g. $wgLBFactoryConf)
 	 * @return string Class name
-	 * @internal For use with service wiring
 	 */
 	public static function getLBFactoryClass( array $config ) {
-		// For configuration backward compatibility after removing
-		// underscores from class names in MediaWiki 1.23.
-		$bcClasses = [
-			'LBFactory_Simple' => 'LBFactorySimple',
-			'LBFactory_Single' => 'LBFactorySingle',
-			'LBFactory_Multi' => 'LBFactoryMulti'
-		];
-
-		$class = $config['class'];
-
-		if ( isset( $bcClasses[$class] ) ) {
-			wfDeprecatedMsg(
-				'$wgLBFactoryConf must be updated. ' .
-				"The class $class was renamed to {$bcClasses[$class]} in MediaWiki 1.23.",
-				'1.23'
-			);
-			$class = $bcClasses[$class];
-		}
-
-		// For configuration backward compatibility after moving classes to namespaces (1.29)
 		$compat = [
+			// For LocalSettings.php compat after removing underscores (since 1.23).
+			'LBFactory_Single' => Wikimedia\Rdbms\LBFactorySingle::class,
+			'LBFactory_Simple' => Wikimedia\Rdbms\LBFactorySimple::class,
+			'LBFactory_Multi' => Wikimedia\Rdbms\LBFactoryMulti::class,
+			// For LocalSettings.php compat after moving classes to namespaces (since 1.29).
 			'LBFactorySingle' => Wikimedia\Rdbms\LBFactorySingle::class,
 			'LBFactorySimple' => Wikimedia\Rdbms\LBFactorySimple::class,
 			'LBFactoryMulti' => Wikimedia\Rdbms\LBFactoryMulti::class
 		];
 
-		if ( isset( $compat[$class] ) ) {
-			$class = $compat[$class];
-		}
-
-		return $class;
+		$class = $config['class'];
+		return $compat[$class] ?? $class;
 	}
 
 	/**
