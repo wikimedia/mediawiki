@@ -1322,8 +1322,7 @@ class PageUpdater {
 					$summary->text,
 					$flags,
 					$newRevisionRecord,
-					$editResult->getOriginalRevisionId(),
-					$editResult->getUndidRevId()
+					$editResult
 				);
 
 				// Deprecated since 1.35
