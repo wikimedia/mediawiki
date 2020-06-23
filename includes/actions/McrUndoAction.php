@@ -9,6 +9,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\EditResult;
 
 /**
  * Temporary action for MCR undos
@@ -335,7 +336,7 @@ class McrUndoAction extends FormAction {
 			}
 
 			$updater->setOriginalRevisionId( false );
-			$updater->setUndidRevisionId( $this->undo );
+			$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo, $this->undoafter );
 
 			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 

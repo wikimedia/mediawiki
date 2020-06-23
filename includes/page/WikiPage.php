@@ -32,6 +32,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\DerivedPageDataUpdater;
+use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use Wikimedia\Assert\Assert;
@@ -1949,7 +1950,10 @@ class WikiPage implements Page, IDBAccessObject {
 		$updater = $this->newPageUpdater( $user, $slotsUpdate );
 		$updater->setContent( SlotRecord::MAIN, $content );
 		$updater->setOriginalRevisionId( $originalRevId );
-		$updater->setUndidRevisionId( $undidRevId );
+
+		if ( $undidRevId !== 0 ) {
+			$updater->markAsRevert( EditResult::REVERT_UNDO, $undidRevId );
+		}
 
 		$needsPatrol = $wgUseRCPatrol || ( $wgUseNPPatrol && !$this->exists() );
 
@@ -3352,10 +3356,6 @@ class WikiPage implements Page, IDBAccessObject {
 		$targetContent = $target->getContent( SlotRecord::MAIN );
 		$changingContentModel = $targetContent->getModel() !== $currentContent->getModel();
 
-		if ( in_array( 'mw-rollback', ChangeTags::getSoftwareTags() ) ) {
-			$tags[] = 'mw-rollback';
-		}
-
 		// Build rollback revision:
 		// Restore old content
 		// TODO: MCR: test this once we can store multiple slots
@@ -3372,8 +3372,17 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$updater->setOriginalRevisionId( $target->getId() );
-		// Do not call setUndidRevisionId(), that causes an extra "mw-undo" tag to be added (T190374)
-		$updater->addTags( $tags );
+		$oldestRevertedRevision = $this->getRevisionStore()->getNextRevision(
+			$target,
+			RevisionStore::READ_LATEST
+		);
+		if ( $oldestRevertedRevision !== null ) {
+			$updater->markAsRevert(
+				EditResult::REVERT_ROLLBACK,
+				$oldestRevertedRevision->getId(),
+				$current->getId()
+			);
+		}
 
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
@@ -3389,6 +3398,11 @@ class WikiPage implements Page, IDBAccessObject {
 		$rev = $updater->saveRevision(
 			CommentStoreComment::newUnsavedComment( $summary ),
 			$flags
+		);
+
+		$tags = array_merge(
+			$tags ?: [],
+			$updater->getEditResult()->getRevertTags()
 		);
 
 		// Set patrolling and bot flag on the edits, which gets rollbacked.

@@ -143,19 +143,9 @@ class PageUpdater {
 	private $ajaxEditStash = true;
 
 	/**
-	 * @var bool|int
-	 */
-	private $originalRevId = false;
-
-	/**
 	 * @var array
 	 */
 	private $tags = [];
-
-	/**
-	 * @var int
-	 */
-	private $undidRevId = 0;
 
 	/**
 	 * @var RevisionSlotsUpdate
@@ -166,6 +156,16 @@ class PageUpdater {
 	 * @var Status|null
 	 */
 	private $status = null;
+
+	/**
+	 * @var EditResultBuilder
+	 */
+	private $editResultBuilder;
+
+	/**
+	 * @var EditResult|null
+	 */
+	private $editResult = null;
 
 	/**
 	 * @param User $user
@@ -199,6 +199,10 @@ class PageUpdater {
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
+		$this->editResultBuilder = new EditResultBuilder(
+			$this->revisionStore,
+			ChangeTags::getSoftwareTags()
+		);
 	}
 
 	/**
@@ -428,16 +432,6 @@ class PageUpdater {
 	}
 
 	/**
-	 * Returns the ID of an earlier revision that is being repeated or restored by this update.
-	 *
-	 * @return bool|int The original revision id, or false if no earlier revision is known to be
-	 * repeated or restored by this update.
-	 */
-	public function getOriginalRevisionId() {
-		return $this->originalRevId;
-	}
-
-	/**
 	 * Sets the ID of an earlier revision that is being repeated or restored by this update.
 	 * The new revision is expected to have the exact same content as the given original revision.
 	 * This is used with rollbacks and with dummy "null" revisions which are created to record
@@ -449,30 +443,41 @@ class PageUpdater {
 	 * is known to be repeated or restored by this update.
 	 */
 	public function setOriginalRevisionId( $originalRevId ) {
-		Assert::parameterType( 'integer|boolean', $originalRevId, '$originalRevId' );
-		$this->originalRevId = $originalRevId;
+		$this->editResultBuilder->setOriginalRevisionId( $originalRevId );
 	}
 
 	/**
-	 * Returns the revision ID set by setUndidRevisionId(), indicating what revision is being
-	 * undone by this edit.
+	 * Marks this edit as a revert and applies relevant information.
+	 * Will also cause the PageUpdater to add a relevant change tag when saving the edit.
+	 * Will do nothing if $oldestRevertedRevId is 0.
 	 *
-	 * @return int
+	 * @param int $revertMethod The method used to make the revert:
+	 *        REVERT_UNDO, REVERT_ROLLBACK or REVERT_MANUAL
+	 * @param int $oldestRevertedRevId The ID of the oldest revision that was reverted.
+	 * @param int $newestRevertedRevId The ID of the newest revision that was reverted. This
+	 *        parameter is optional, default value is $oldestRevertedRevId
+	 *
+	 * @see EditResultBuilder::markAsRevert()
 	 */
-	public function getUndidRevisionId() {
-		return $this->undidRevId;
+	public function markAsRevert(
+		int $revertMethod,
+		int $oldestRevertedRevId,
+		int $newestRevertedRevId = 0
+	) {
+		$this->editResultBuilder->markAsRevert(
+			$revertMethod, $oldestRevertedRevId, $newestRevertedRevId
+		);
 	}
 
 	/**
-	 * Sets the ID of revision that was undone by the present update.
-	 * This is used with the "undo" action, and is expected to hold the oldest revision ID
-	 * in case more then one revision is being undone.
+	 * Returns the EditResult associated with this PageUpdater.
+	 * Will return null if PageUpdater::saveRevision() wasn't called yet.
+	 * Will also return null if the update was not successful.
 	 *
-	 * @param int $undidRevId
+	 * @return EditResult|null
 	 */
-	public function setUndidRevisionId( $undidRevId ) {
-		Assert::parameterType( 'integer', $undidRevId, '$undidRevId' );
-		$this->undidRevId = $undidRevId;
+	public function getEditResult() : ?EditResult {
+		return $this->editResult;
 	}
 
 	/**
@@ -514,6 +519,7 @@ class PageUpdater {
 	 */
 	private function computeEffectiveTags( $flags ) {
 		$tags = $this->tags;
+		$editResult = $this->getEditResult();
 
 		foreach ( $this->slotsUpdate->getModifiedRoles() as $role ) {
 			$old_content = $this->getParentContent( $role );
@@ -529,10 +535,7 @@ class PageUpdater {
 			}
 		}
 
-		// Check for undo tag
-		if ( $this->undidRevId !== 0 && in_array( 'mw-undo', ChangeTags::getSoftwareTags() ) ) {
-			$tags[] = 'mw-undo';
-		}
+		$tags = array_merge( $tags, $editResult->getRevertTags() );
 
 		return array_unique( $tags );
 	}
@@ -973,6 +976,19 @@ class PageUpdater {
 	}
 
 	/**
+	 * Builds the EditResult for this update.
+	 * Should be called by either doModify or doCreate.
+	 *
+	 * @param RevisionRecord $revision
+	 * @param bool $isNew
+	 */
+	private function buildEditResult( RevisionRecord $revision, bool $isNew ) {
+		$this->editResultBuilder->setRevisionRecord( $revision );
+		$this->editResultBuilder->setIsNew( $isNew );
+		$this->editResult = $this->editResultBuilder->buildEditResult();
+	}
+
+	/**
 	 * @param CommentStoreComment $summary The edit summary
 	 * @param User $user The revision's author
 	 * @param int $flags EXIT_XXX constants
@@ -1013,6 +1029,7 @@ class PageUpdater {
 			return $status;
 		}
 
+		$this->buildEditResult( $newRevisionRecord, false );
 		$now = $newRevisionRecord->getTimestamp();
 
 		// XXX: we may want a flag that allows a null revision to be forced!
@@ -1053,15 +1070,16 @@ class PageUpdater {
 				throw new PageUpdateException( "Failed to update page row to use new revision." );
 			}
 
+			$editResult = $this->getEditResult();
 			$tags = $this->computeEffectiveTags( $flags );
 			$this->hookRunner->onRevisionFromEditComplete(
-				$wikiPage, $newRevisionRecord, $this->getOriginalRevisionId(), $user, $tags
+				$wikiPage, $newRevisionRecord, $editResult->getOriginalRevisionId(), $user, $tags
 			);
 
 			// TODO: replace legacy hook!
 			$newLegacyRevision = new Revision( $newRevisionRecord );
 			$this->hookRunner->onNewRevisionFromEditComplete(
-				$wikiPage, $newLegacyRevision, $this->getOriginalRevisionId(), $user, $tags );
+				$wikiPage, $newLegacyRevision, $editResult->getOriginalRevisionId(), $user, $tags );
 
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1165,6 +1183,7 @@ class PageUpdater {
 			return $status;
 		}
 
+		$this->buildEditResult( $newRevisionRecord, true );
 		$now = $newRevisionRecord->getTimestamp();
 
 		$dbw = $this->getDBConnectionRef( DB_MASTER );
@@ -1287,6 +1306,7 @@ class PageUpdater {
 				$hints['causeAgent'] = $user->getName();
 
 				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
+				$editResult = $this->getEditResult();
 
 				// Update links tables, site stats, etc.
 				$this->derivedDataUpdater->prepareUpdate( $newRevisionRecord, $hints );
@@ -1302,8 +1322,8 @@ class PageUpdater {
 					$summary->text,
 					$flags,
 					$newRevisionRecord,
-					$this->getOriginalRevisionId(),
-					$this->undidRevId
+					$editResult->getOriginalRevisionId(),
+					$editResult->getUndidRevId()
 				);
 
 				// Deprecated since 1.35
@@ -1319,7 +1339,7 @@ class PageUpdater {
 				$this->hookRunner->onPageContentSaveComplete( $wikiPage, $user, $mainContent,
 					$summary->text, $flags & EDIT_MINOR, null,
 					null, $flags, $newLegacyRevision, $status,
-					$this->getOriginalRevisionId(), $this->undidRevId );
+					$editResult->getOriginalRevisionId(), $editResult->getUndidRevId() );
 			}
 		);
 	}
