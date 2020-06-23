@@ -3263,7 +3263,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// User name given should match up with the top revision.
 		// If the revision's user is not visible, then $from should be empty.
 		if ( $from !== ( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' ) ) {
-			$resultDetails = [ 'current' => $legacyCurrent ];
+			$resultDetails = [
+				'current' => $legacyCurrent,
+				'current-revision-record' => $current,
+			];
 			return [ [ 'alreadyrolled',
 				htmlspecialchars( $this->mTitle->getPrefixedText() ),
 				htmlspecialchars( $fromP ),
@@ -3441,7 +3444,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Report if the edit was not created because it did not change the content.
 		if ( $updater->isUnchanged() ) {
-			$resultDetails = [ 'current' => $legacyCurrent ];
+			$resultDetails = [
+				'current' => $legacyCurrent,
+				'current-revision-record' => $current,
+			];
 			return [ [ 'alreadyrolled',
 					htmlspecialchars( $this->mTitle->getPrefixedText() ),
 					htmlspecialchars( $fromP ),
@@ -3467,7 +3473,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$revId = $rev->getId();
 
-		// Soft deprecated in 1.35
+		// Hard deprecated in 1.35
 		$this->getHookRunner()->onArticleRollbackComplete( $this, $guser,
 			$legacyTarget, $legacyCurrent );
 
@@ -3476,7 +3482,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$resultDetails = [
 			'summary' => $summary,
 			'current' => $legacyCurrent,
+			'current-revision-record' => $current,
 			'target' => $legacyTarget,
+			'target-revision-record' => $target,
 			'newid' => $revId,
 			'tags' => $tags
 		];
