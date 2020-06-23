@@ -36,6 +36,8 @@ for use in production.
 * (T261325) Add FindMissingActors script.
 * (T255918, CVE-2020-25812) SECURITY: Unescaped message used in HTML on
   Special:Contributions.
+* (T256171, CVE-2020-25815) SECURITY: Unescaped message used in HTML within
+  LogEventsList.
 
 == MediaWiki 1.35.0-rc.3 ==
 
