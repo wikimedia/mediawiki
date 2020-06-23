@@ -1,6 +1,6 @@
 == MediaWiki 1.33.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.33 branch.
 
 === Changes since MediaWiki 1.33.3 ===
 * (T247017) PasswordReset performance improvements.
