@@ -195,6 +195,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	public function testDoEditUpdates_revision() {
 		$this->hideDeprecated( 'WikiPage::doEditUpdates with a Revision object' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 
 		$user = $this->getTestUser()->getUser();
 
@@ -1949,6 +1950,7 @@ more stuff
 	public function testUpdateRevisionOn_existingPage() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'WikiPage::updateRevisionOn with a Revision object' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
@@ -1981,6 +1983,7 @@ more stuff
 	 */
 	public function testUpdateRevisionOn_NonExistingPage() {
 		$this->hideDeprecated( 'WikiPage::updateRevisionOn with a Revision object' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
@@ -2012,6 +2015,7 @@ more stuff
 	 */
 	public function testUpdateIfNewerOn_olderRevision() {
 		$this->hideDeprecated( 'Revision::getTimestamp' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'WikiPage::updateIfNewerOn' );
 
@@ -2050,6 +2054,7 @@ more stuff
 	 */
 	public function testUpdateIfNewerOn_newerRevision() {
 		$this->hideDeprecated( 'Revision::getTimestamp' );
+		$this->hideDeprecated( 'Revision::__construct with an array' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'WikiPage::updateIfNewerOn' );
 
