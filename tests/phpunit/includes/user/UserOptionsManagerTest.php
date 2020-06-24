@@ -228,4 +228,21 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$this->expectException( InvalidArgumentException::class );
 		$this->getManager()->saveOptions( $this->getAnon( __METHOD__ ) );
 	}
+
+	/**
+	 * @covers \MediaWiki\User\UserOptionsManager::resetOptions
+	 */
+	public function testUserOptionsSaveAfterReset() {
+		$user = $this->getTestUser()->getUser();
+		$manager = $this->getManager();
+		$manager->setOption( $user, 'test_option', 'test_value' );
+		$manager->saveOptions( $user );
+		$manager->clearUserOptionsCache( $user );
+		$this->assertSame( 'test_value', $manager->getOption( $user, 'test_option' ) );
+		$manager->resetOptions( $user, RequestContext::getMain(), 'all' );
+		$this->assertNull( $manager->getOption( $user, 'test_option' ) );
+		$manager->saveOptions( $user );
+		$manager->clearUserOptionsCache( $user );
+		$this->assertNull( $manager->getOption( $user, 'test_option' ) );
+	}
 }
