@@ -776,9 +776,9 @@ class DifferenceEngine extends ContextSource {
 
 		# Allow extensions to define their own revision tools
 		$this->hookRunner->onDiffTools(
-			$this->mOldRevisionRecord,
-			$revisionTools,
 			$this->mNewRevisionRecord,
+			$revisionTools,
+			$this->mOldRevisionRecord,
 			$user
 		);
 
