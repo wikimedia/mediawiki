@@ -5655,10 +5655,8 @@ class Parser {
 			}
 		}
 
-		if ( is_string( $outText ) ) {
-			# Re-insert stripped tags
-			$outText = rtrim( $this->mStripState->unstripBoth( $outText ) );
-		}
+		# Re-insert stripped tags
+		$outText = rtrim( $this->mStripState->unstripBoth( $outText ) );
 
 		return $outText;
 	}
