@@ -582,7 +582,7 @@ if ( $wgPageLanguageUseDB ) {
 }
 
 if ( $wgCookieSecure === 'detect' ) {
-	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
+	$wgCookieSecure = $wgForceHTTPS || ( WebRequest::detectProtocol() === 'https' );
 }
 
 if ( $wgProfileOnly ) {
