@@ -726,7 +726,7 @@
 			"type": "object"
 		},
 		"Hooks": {
-			"type": [ "string", "object" ],
+			"type": "object",
 			"description": "Hooks this extension uses (mapping of hook name to callback)"
 		},
 		"JobClasses": {
@@ -950,6 +950,10 @@
 					"args": {
 						"type": "array",
 						"description": "The arguments passed to the handler constructor or factory"
+					},
+					"services": {
+						"type": "array",
+						"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
 					}
 				}
 			}

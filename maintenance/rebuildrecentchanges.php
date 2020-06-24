@@ -170,6 +170,15 @@ class RebuildRecentchanges extends Maintenance {
 					+ $actorMigration->getInsertValues( $dbw, 'rc_user', $user ),
 				__METHOD__
 			);
+
+			$rcid = $dbw->insertId();
+			$dbw->update(
+				'change_tag',
+				[ 'ct_rc_id' => $rcid ],
+				[ 'ct_rev_id' => $row->rev_id ],
+				__METHOD__
+			);
+
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
 				$lbFactory->waitForReplication();
 			}
@@ -326,7 +335,7 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_title' => $row->log_title,
 					'rc_minor' => 0,
 					'rc_bot' => 0,
-					'rc_patrolled' => 1,
+					'rc_patrolled' => $row->log_type == 'upload' ? 0 : 2,
 					'rc_new' => 0,
 					'rc_this_oldid' => 0,
 					'rc_last_oldid' => 0,
@@ -342,6 +351,14 @@ class RebuildRecentchanges extends Maintenance {
 					'rc_deleted' => $row->log_deleted
 				] + $commentStore->insert( $dbw, 'rc_comment', $comment )
 					+ $actorMigration->getInsertValues( $dbw, 'rc_user', $user ),
+				__METHOD__
+			);
+
+			$rcid = $dbw->insertId();
+			$dbw->update(
+				'change_tag',
+				[ 'ct_rc_id' => $rcid ],
+				[ 'ct_log_id' => $row->log_id ],
 				__METHOD__
 			);
 
@@ -448,11 +465,12 @@ class RebuildRecentchanges extends Maintenance {
 				foreach ( $actorQuery['orconds'] as $cond ) {
 					$dbw->update(
 						'recentchanges',
-						[ 'rc_patrolled' => 1 ],
+						[ 'rc_patrolled' => 2 ],
 						[
 							$cond,
 							'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffFrom ) ),
 							'rc_timestamp < ' . $dbw->addQuotes( $dbw->timestamp( $this->cutoffTo ) ),
+							'rc_patrolled' => 0
 						],
 						__METHOD__
 					);

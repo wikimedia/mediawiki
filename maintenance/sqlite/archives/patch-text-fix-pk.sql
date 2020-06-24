@@ -29,8 +29,8 @@ CREATE TABLE /*_*/text_tmp (
   old_flags tinyblob NOT NULL
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=10240;
 
-INSERT INTO /*_*/text_tmp
-	SELECT * FROM /*_*/text;
+INSERT INTO /*_*/text_tmp(old_id, old_text, old_flags)
+	SELECT old_id, old_text, old_flags FROM /*_*/text;
 
 DROP TABLE /*_*/text;
 

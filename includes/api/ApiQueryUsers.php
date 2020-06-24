@@ -329,7 +329,6 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 			}
 
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $data[$u] );
 			if ( !$fit ) {
 				if ( $useNames ) {

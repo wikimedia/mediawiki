@@ -176,7 +176,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @return bool true if curl is available, false otherwise.
 	 */
 	protected function isCurlEnabled() {
-		return extension_loaded( 'curl' );
+		// Explicitly test if curl_multi* is blocked, as some users' hosts provide
+		// them with a modified curl with the multi-threaded parts removed(!)
+		return extension_loaded( 'curl' ) && function_exists( 'curl_multi_init' );
 	}
 
 	/**
@@ -412,7 +414,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 				if ( $hasOutputStream ) {
 					return fwrite( $req['stream'], $data );
 				} else {
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$req['response']['body'] .= $data;
 
 					return strlen( $data );

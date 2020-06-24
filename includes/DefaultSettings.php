@@ -3759,14 +3759,17 @@ $wgLegacyJavaScriptGlobals = true;
 /**
  * ResourceLoader will not generate URLs whose query string is more than
  * this many characters long, and will instead use multiple requests with
- * shorter query strings. This degrades performance, but may be needed based
- * on the query string limit supported by your web server and/or your user's
- * web browsers.
+ * shorter query strings. Using multiple requests may degrade performance,
+ * but may be needed based on the query string limit supported by your web
+ * server and/or your user's web browsers.
  *
+ * Default: `2000`.
+ *
+ * @see ResourceLoaderStartUpModule::getMaxQueryLength
  * @since 1.17
  * @var int
  */
-$wgResourceLoaderMaxQueryLength = 2000;
+$wgResourceLoaderMaxQueryLength = false;
 
 /**
  * If set to true, JavaScript modules loaded from wiki pages will be parsed

@@ -44,6 +44,7 @@ class LoadMonitorMySQL extends LoadMonitor {
 
 	protected function getWeightScale( $index, IDatabase $conn = null ) {
 		if ( !$conn ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentReal
 			return parent::getWeightScale( $index, $conn );
 		}
 

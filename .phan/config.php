@@ -101,6 +101,9 @@ $cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
 	//after dropping HHVM
 	// approximate error count: 110
 	"PhanParamTooMany", // False positives with variargs. Unsuppress after dropping HHVM
+	// New errors in phan 0.8.0, see T256088
+	'PhanTypeArraySuspiciousNullable',
+	'PhanEmptyForeach',
 ] );
 
 // This helps a lot in discovering bad code, but unfortunately it will always fail for

@@ -11,8 +11,8 @@ CREATE TABLE /*_*/site_identifiers_tmp (
   PRIMARY KEY (si_type, si_key)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/site_identifiers_tmp
-	SELECT * FROM /*_*/site_identifiers;
+INSERT INTO /*_*/site_identifiers_tmp(si_site, si_type, si_key)
+	SELECT si_site, si_type, si_key FROM /*_*/site_identifiers;
 
 DROP TABLE /*_*/site_identifiers;
 

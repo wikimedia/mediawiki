@@ -2179,6 +2179,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, self::LIST_SET );
 
+		// @phan-suppress-next-line PhanTypeComparisonFromArray
 		if ( $conds !== [] && $conds !== '*' ) {
 			$sql .= " WHERE " . $this->makeList( $conds, self::LIST_AND );
 		}

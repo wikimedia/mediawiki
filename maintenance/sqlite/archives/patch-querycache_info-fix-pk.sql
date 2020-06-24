@@ -7,8 +7,8 @@ CREATE TABLE /*_*/querycache_info_tmp (
   qci_timestamp binary(14) NOT NULL default '19700101000000'
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/querycache_info_tmp
-	SELECT * FROM /*_*/querycache_info;
+INSERT INTO /*_*/querycache_info_tmp(qci_type, qci_timestamp)
+	SELECT qci_type, qci_timestamp FROM /*_*/querycache_info;
 
 DROP TABLE /*_*/querycache_info;
 

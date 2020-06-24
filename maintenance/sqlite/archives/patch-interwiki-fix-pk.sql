@@ -21,8 +21,8 @@ CREATE TABLE /*_*/interwiki_tmp (
   iw_trans tinyint NOT NULL default 0
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/interwiki_tmp
-	SELECT * FROM /*_*/interwiki;
+INSERT INTO /*_*/interwiki_tmp(iw_prefix, iw_url, iw_api, iw_wikiid, iw_local, iw_local, iw_trans)
+	SELECT iw_prefix, iw_url, iw_api, iw_wikiid, iw_local, iw_local, iw_trans FROM /*_*/interwiki;
 
 DROP TABLE /*_*/interwiki;
 

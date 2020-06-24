@@ -58,7 +58,7 @@ class UpdateExtensionJsonSchema extends Maintenance {
 					$json['config'][$name] = [ 'value' => $value ];
 					if ( isset( $value[ExtensionRegistry::MERGE_STRATEGY] ) ) {
 						$json['config'][$name]['merge_strategy'] = $value[ExtensionRegistry::MERGE_STRATEGY];
-						unset( $value[ExtensionRegistry::MERGE_STRATEGY] );
+						unset( $json['config'][$name]['value'][ExtensionRegistry::MERGE_STRATEGY] );
 					}
 					if ( isset( $config["@$name"] ) ) {
 						// Put 'description' first for better human-legibility.

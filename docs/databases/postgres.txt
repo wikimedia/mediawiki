@@ -1,6 +1,5 @@
 This document describes the state of Postgres support in MediaWiki.
 
-
 == Overview ==
 
 Support for PostgreSQL has been available since version 1.7
@@ -10,14 +9,9 @@ Still, it is probably the most supported database after MySQL.
 Much of the work in making MediaWiki database-agnostic came
 about through the work of creating Postgres support.
 
-
 == Required versions ==
 
-The current minimum version of PostgreSQL for MediaWiki is 8.1.
-It is expected that this will be raised to 8.3 at some point,
-as 8.1 and 8.2 are nearing end of life.
-
-
+The current minimum version of PostgreSQL for MediaWiki is 9.2
 
 == Database schema ==
 
@@ -80,7 +74,6 @@ referenced directly by the code (unlike sequence names). Most of
 the indexes in the file as of this writing are there due to production
 testing of expensive queries on a busy wiki.
 
-
 == Keeping in sync with tables.sql ==
 
 The script maintenance/postgres/compare_schemas.pl should be
@@ -91,18 +84,16 @@ itself. This script has also been very useful in finding problems
 in maintenance/tables.sql itself, as it is very strict in the
 format it expects things to be in. :)
 
-
 == MySQL differences ==
 
-The major differences between MySQL and Postgres are represented as 
-methods in the Database class. For example, implicitGroupby() is 
-true for MySQL and false for Postgres. This means that in those 
-places where the code does not add all the non-aggregate items 
-from the SELECT clause to the GROUP BY, we can add them in, but in 
-a conditional manner with the above method, as simply adding them 
-all in to the main query may cause performance problems with 
+The major differences between MySQL and Postgres are represented as
+methods in the Database class. For example, implicitGroupby() is
+true for MySQL and false for Postgres. This means that in those
+places where the code does not add all the non-aggregate items
+from the SELECT clause to the GROUP BY, we can add them in, but in
+a conditional manner with the above method, as simply adding them
+all in to the main query may cause performance problems with
 MySQL.
-
 
 == Getting help ==
 
