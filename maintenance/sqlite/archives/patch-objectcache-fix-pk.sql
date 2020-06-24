@@ -4,8 +4,8 @@ CREATE TABLE /*_*/objectcache_tmp (
   exptime datetime
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/objectcache_tmp
-	SELECT * FROM /*_*/objectcache;
+INSERT INTO /*_*/objectcache_tmp(keyname, "value", exptime)
+	SELECT keyname, "value", exptime FROM /*_*/objectcache;
 
 DROP TABLE /*_*/objectcache;
 

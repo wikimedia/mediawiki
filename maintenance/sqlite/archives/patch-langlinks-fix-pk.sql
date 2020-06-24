@@ -10,8 +10,8 @@ CREATE TABLE /*_*/langlinks_tmp (
   PRIMARY KEY (ll_from,ll_lang)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/langlinks_tmp
-	SELECT * FROM /*_*/langlinks;
+INSERT INTO /*_*/langlinks_tmp(ll_from, ll_lang, ll_title)
+	SELECT ll_from, ll_lang, ll_title FROM /*_*/langlinks;
 
 DROP TABLE /*_*/langlinks;
 

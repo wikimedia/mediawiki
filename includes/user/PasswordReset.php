@@ -122,10 +122,9 @@ class PasswordReset implements LoggerAwareInterface {
 	 *
 	 * @since 1.29 Fourth argument for displayPassword removed.
 	 * @param User $performingUser The user that does the password reset
-	 * @param string $username The user whose password is reset
-	 * @param string $email Alternative way to specify the user
-	 * @return StatusValue Will contain the passwords as a username => password array if the
-	 *   $displayPassword flag was set
+	 * @param string|null $username The user whose password is reset
+	 * @param string|null $email Alternative way to specify the user
+	 * @return StatusValue
 	 * @throws LogicException When the user is not allowed to perform the action
 	 * @throws MWException On unexpected DB errors
 	 */
@@ -227,7 +226,6 @@ class PasswordReset implements LoggerAwareInterface {
 			'requestingUser' => $performingUser->getName(),
 			'targetUsername' => $username,
 			'targetEmail' => $email,
-			'actualUser' => $firstUser->getName(),
 		];
 
 		if ( !$result->isGood() ) {
@@ -238,17 +236,12 @@ class PasswordReset implements LoggerAwareInterface {
 			return $result;
 		}
 
-		$passwords = [];
-		foreach ( $reqs as $req ) {
-			$this->authManager->changeAuthenticationData( $req );
-		}
-
-		$this->logger->info(
-			"{requestingUser} did password reset of {actualUser}",
-			$logContext
+		DeferredUpdates::addUpdate(
+			new SendPasswordResetEmailUpdate( $this->authManager, $reqs, $logContext ),
+			DeferredUpdates::POSTSEND
 		);
 
-		return StatusValue::newGood( $passwords );
+		return StatusValue::newGood();
 	}
 
 	/**

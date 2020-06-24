@@ -25,8 +25,8 @@ CREATE TABLE /*_*/site_stats_tmp (
   ss_images int default 0
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/site_stats_tmp
-	SELECT * FROM /*_*/site_stats;
+INSERT INTO /*_*/site_stats_tmp(ss_row_id, ss_total_edits, ss_good_articles, ss_total_pages, ss_users, ss_active_users, ss_images)
+	SELECT ss_row_id, ss_total_edits, ss_good_articles, ss_total_pages, ss_users, ss_active_users, ss_images FROM /*_*/site_stats;
 
 DROP TABLE /*_*/site_stats;
 

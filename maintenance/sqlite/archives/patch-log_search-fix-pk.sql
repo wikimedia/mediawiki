@@ -8,8 +8,8 @@ CREATE TABLE /*_*/log_search_tmp (
   PRIMARY KEY (ls_field,ls_value,ls_log_id)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/log_search_tmp
-	SELECT * FROM /*_*/log_search;
+INSERT INTO /*_*/log_search_tmp(ls_field, ls_value, ls_log_id)
+	SELECT ls_field, ls_value, ls_log_id FROM /*_*/log_search;
 
 DROP TABLE /*_*/log_search;
 
