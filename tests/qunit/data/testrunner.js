@@ -260,7 +260,7 @@
 					$.each( $.timers, function ( i, timer ) {
 						var node = timer.elem, attribs = {};
 						// eslint-disable-next-line no-jquery/no-each-util
-						$.each( node.attributes, function ( i, attrib ) {
+						$.each( node.attributes, function ( j, attrib ) {
 							attribs[ attrib.name ] = attrib.value;
 						} );
 						mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +

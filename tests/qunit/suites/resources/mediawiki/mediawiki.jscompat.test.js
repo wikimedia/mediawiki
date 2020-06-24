@@ -40,10 +40,8 @@
 	*/
 
 	QUnit.test( 'Stripping of single initial newline from textarea\'s literal contents (T14130)', function ( assert ) {
-		var maxn, n,
-			expected, $textarea;
-
-		maxn = 4;
+		var i, expected, $textarea,
+			maxN = 4;
 
 		function repeat( str, n ) {
 			var out;
@@ -56,14 +54,14 @@
 			}
 		}
 
-		for ( n = 0; n < maxn; n++ ) {
-			expected = repeat( '\n', n ) + 'some text';
+		for ( i = 0; i < maxN; i++ ) {
+			expected = repeat( '\n', i ) + 'some text';
 
 			$textarea = $( '<textarea>\n' + expected + '</textarea>' );
-			assert.strictEqual( $textarea.val(), expected, 'Expecting ' + n + ' newlines (HTML contained ' + ( n + 1 ) + ')' );
+			assert.strictEqual( $textarea.val(), expected, 'Expecting ' + i + ' newlines (HTML contained ' + ( i + 1 ) + ')' );
 
 			$textarea = $( '<textarea>' ).val( expected );
-			assert.strictEqual( $textarea.val(), expected, 'Expecting ' + n + ' newlines (from DOM set with ' + n + ')' );
+			assert.strictEqual( $textarea.val(), expected, 'Expecting ' + i + ' newlines (from DOM set with ' + i + ')' );
 		}
 	} );
 }() );

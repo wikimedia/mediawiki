@@ -4,7 +4,7 @@
 			return new Array( multiplier + 1 ).join( input );
 		},
 		// See also TitleTest.php#testSecureAndSplit
-		cases = {
+		sharedCases = {
 			valid: [
 				'Sandbox',
 				'A "B"',
@@ -135,32 +135,32 @@
 
 	QUnit.test( 'constructor', function ( assert ) {
 		var i, title;
-		for ( i = 0; i < cases.valid.length; i++ ) {
-			title = new mw.Title( cases.valid[ i ] );
+		for ( i = 0; i < sharedCases.valid.length; i++ ) {
+			title = new mw.Title( sharedCases.valid[ i ] );
 		}
-		for ( i = 0; i < cases.invalid.length; i++ ) {
-			title = cases.invalid[ i ];
+		for ( i = 0; i < sharedCases.invalid.length; i++ ) {
+			title = sharedCases.invalid[ i ];
 			// eslint-disable-next-line no-loop-func
 			assert.throws( function () {
 				return new mw.Title( title );
-			}, cases.invalid[ i ] );
+			}, sharedCases.invalid[ i ] );
 		}
 	} );
 
 	QUnit.test( 'newFromText', function ( assert ) {
 		var i;
-		for ( i = 0; i < cases.valid.length; i++ ) {
+		for ( i = 0; i < sharedCases.valid.length; i++ ) {
 			assert.strictEqual(
-				typeof mw.Title.newFromText( cases.valid[ i ] ),
+				typeof mw.Title.newFromText( sharedCases.valid[ i ] ),
 				'object',
-				cases.valid[ i ]
+				sharedCases.valid[ i ]
 			);
 		}
-		for ( i = 0; i < cases.invalid.length; i++ ) {
+		for ( i = 0; i < sharedCases.invalid.length; i++ ) {
 			assert.strictEqual(
-				mw.Title.newFromText( cases.invalid[ i ] ),
+				mw.Title.newFromText( sharedCases.invalid[ i ] ),
 				null,
-				cases.invalid[ i ]
+				sharedCases.invalid[ i ]
 			);
 		}
 	} );
