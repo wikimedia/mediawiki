@@ -2548,7 +2548,16 @@ $user: User (object) requesting the page
 
 'PageMoveComplete': After moving an article (title), post-commit.
 $old: LinkTarget for the old title
-$nt: LinkTarget for the new title
+$new: LinkTarget for the new title
+$user: UserIdentity for the user who did the move
+$pageid: database ID of the page that's been moved
+$redirid: database ID of the created redirect
+$reason: reason for the move
+$revisionRecord: the RevisionRecord created by the move
+
+'PageMoveCompleting': After moving an article (title), pre-commit
+$old: LinkTarget for the old title
+$new: LinkTarget for the new title
 $user: UserIdentity for the user who did the move
 $pageid: database ID of the page that's been moved
 $redirid: database ID of the created redirect
@@ -3535,7 +3544,7 @@ $redirid: database ID of the created redirect
 $reason: reason for the move
 $revision: the Revision created by the move
 
-'TitleMoveCompleting': DEPRECATED since 1.35! Use PageMoveComplete
+'TitleMoveCompleting': DEPRECATED since 1.35! Use PageMoveCompleting
 After moving an article (title), pre-commit.
 $old: old title
 $nt: new title

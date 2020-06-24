@@ -264,6 +264,7 @@ class HookRunner implements
 	\MediaWiki\Hook\PageHistoryPager__doBatchLookupsHook,
 	\MediaWiki\Hook\PageHistoryPager__getQueryInfoHook,
 	\MediaWiki\Hook\PageMoveCompleteHook,
+	\MediaWiki\Hook\PageMoveCompletingHook,
 	\MediaWiki\Hook\PageRenderingHashHook,
 	\MediaWiki\Hook\ParserAfterParseHook,
 	\MediaWiki\Hook\ParserAfterStripHook,
@@ -2838,6 +2839,13 @@ class HookRunner implements
 	public function onPageMoveComplete( $old, $new, $user, $pageid, $redirid, $reason, $revision ) {
 		return $this->container->run(
 			'PageMoveComplete',
+			[ $old, $new, $user, $pageid, $redirid, $reason, $revision ]
+		);
+	}
+
+	public function onPageMoveCompleting( $old, $new, $user, $pageid, $redirid, $reason, $revision ) {
+		return $this->container->run(
+			'PageMoveCompleting',
 			[ $old, $new, $user, $pageid, $redirid, $reason, $revision ]
 		);
 	}
