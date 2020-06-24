@@ -73,6 +73,9 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added $wgCdnMaxageStale, which controls the Cache-Control s-maxage header
   for page views when PoolCounter lock contention indicates that a stale cache
   entry should be sent.
+* Added $wgForceHTTPS, which makes the HTTP to HTTPS redirect be unconditional
+  and suppresses various hacks needed to support mixed HTTP/HTTPS wikis. We
+  recommend this be set to true on pure HTTPS wikis.
 * …
 
 ==== Changed configuration ====
@@ -1270,6 +1273,9 @@ because of Phabricator reports.
   deprecated. Use OutputPageBodyAttributes hook instead.
 * Installer::getDBTypes has been hard deprecated in favor of
   InstallerDBSupport::getDatabases
+* The hooks BeforeHttpsRedirect, CanIPUseHTTPS and UserRequiresHTTPS were
+  deprecated, as part of a long-term plan to remove support for mixed
+  HTTP/HTTPS wikis.
 * …
 
 === Other changes in 1.35 ===
