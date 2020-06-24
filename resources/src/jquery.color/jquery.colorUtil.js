@@ -210,7 +210,7 @@
 			if ( s === 0 ) {
 				r = g = b = l; // achromatic
 			} else {
-				hue2rgb = function ( p, q, t ) {
+				hue2rgb = function ( t ) {
 					if ( t < 0 ) {
 						t += 1;
 					}
@@ -231,9 +231,9 @@
 
 				q = l < 0.5 ? l * ( 1 + s ) : l + s - l * s;
 				p = 2 * l - q;
-				r = hue2rgb( p, q, h + 1 / 3 );
-				g = hue2rgb( p, q, h );
-				b = hue2rgb( p, q, h - 1 / 3 );
+				r = hue2rgb( h + 1 / 3 );
+				g = hue2rgb( h );
+				b = hue2rgb( h - 1 / 3 );
 			}
 
 			return [ r * 255, g * 255, b * 255 ];

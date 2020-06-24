@@ -78,9 +78,9 @@
 				switch ( op ) {
 					case 'AND':
 						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( !funcs[ i ]() ) {
+							var j;
+							for ( j = 0; j < l; j++ ) {
+								if ( !funcs[ j ]() ) {
 									return false;
 								}
 							}
@@ -90,9 +90,9 @@
 
 					case 'OR':
 						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( funcs[ i ]() ) {
+							var j;
+							for ( j = 0; j < l; j++ ) {
+								if ( funcs[ j ]() ) {
 									return true;
 								}
 							}
@@ -102,9 +102,9 @@
 
 					case 'NAND':
 						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( !funcs[ i ]() ) {
+							var j;
+							for ( j = 0; j < l; j++ ) {
+								if ( !funcs[ j ]() ) {
 									return true;
 								}
 							}
@@ -114,9 +114,9 @@
 
 					case 'NOR':
 						func = function () {
-							var i;
-							for ( i = 0; i < l; i++ ) {
-								if ( funcs[ i ]() ) {
+							var j;
+							for ( j = 0; j < l; j++ ) {
+								if ( funcs[ j ]() ) {
 									return false;
 								}
 							}

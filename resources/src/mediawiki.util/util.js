@@ -614,8 +614,8 @@ util = {
 			return {
 				name: decodedName.replace( /_/g, ' ' ),
 				width: width,
-				resizeUrl: urlTemplate ? function ( width ) {
-					return urlTemplate.replace( '{width}', width );
+				resizeUrl: urlTemplate ? function ( w ) {
+					return urlTemplate.replace( '{width}', w );
 				} : null
 			};
 		}
