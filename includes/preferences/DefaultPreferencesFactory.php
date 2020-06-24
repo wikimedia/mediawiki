@@ -100,6 +100,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'EnotifRevealEditorAddress',
 		'EnotifUserTalk',
 		'EnotifWatchlist',
+		'ForceHTTPS',
 		'HiddenPrefs',
 		'ImageLimits',
 		'LanguageCode',
@@ -416,7 +417,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 		// Only show prefershttps if secure login is turned on
-		if ( $this->options->get( 'SecureLogin' ) && $canIPUseHTTPS ) {
+		if ( !$this->options->get( 'ForceHTTPS' )
+			&& $this->options->get( 'SecureLogin' )
+			&& $canIPUseHTTPS
+		) {
 			$defaultPreferences['prefershttps'] = [
 				'type' => 'toggle',
 				'label-message' => 'tog-prefershttps',

@@ -106,7 +106,7 @@ class CookieSessionProvider extends SessionProvider {
 			'prefix' => $config->get( 'CookiePrefix' ),
 			'path' => $config->get( 'CookiePath' ),
 			'domain' => $config->get( 'CookieDomain' ),
-			'secure' => $config->get( 'CookieSecure' ),
+			'secure' => $config->get( 'CookieSecure' ) || $this->config->get( 'ForceHTTPS' ),
 			'httpOnly' => $config->get( 'CookieHttpOnly' ),
 			'sameSite' => $config->get( 'CookieSameSite' ),
 		];
@@ -217,10 +217,8 @@ class CookieSessionProvider extends SessionProvider {
 
 		$forceHTTPS = $session->shouldForceHTTPS() || $user->requiresHTTPS();
 		if ( $forceHTTPS ) {
-			// Don't set the secure flag if the request came in
-			// over "http", for backwards compat.
-			// @todo Break that backwards compat properly.
-			$options['secure'] = $this->config->get( 'CookieSecure' );
+			$options['secure'] = $this->config->get( 'CookieSecure' )
+				|| $this->config->get( 'ForceHTTPS' );
 		}
 
 		$response->setCookie( $this->params['sessionName'], $session->getId(), null,
@@ -270,7 +268,8 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	/**
-	 * Set the "forceHTTPS" cookie
+	 * Set the "forceHTTPS" cookie, unless $wgForceHTTPS prevents it.
+	 *
 	 * @param bool $set Whether the cookie should be set or not
 	 * @param SessionBackend|null $backend
 	 * @param WebRequest $request
@@ -278,6 +277,10 @@ class CookieSessionProvider extends SessionProvider {
 	protected function setForceHTTPSCookie(
 		$set, SessionBackend $backend = null, WebRequest $request
 	) {
+		if ( $this->config->get( 'ForceHTTPS' ) ) {
+			// No need to send a cookie if the wiki is always HTTPS (T256095)
+			return;
+		}
 		$response = $request->response();
 		if ( $set ) {
 			if ( $backend->shouldRememberUser() ) {
