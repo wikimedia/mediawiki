@@ -33,6 +33,7 @@ use DeferredUpdates;
 use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
@@ -75,6 +76,15 @@ use WikiPage;
  * @phan-file-suppress PhanTypeArraySuspiciousNullable Cannot read type of $this->status->value
  */
 class PageUpdater {
+
+	/**
+	 * Options that have to be present in the ServiceOptions object passed to the constructor.
+	 *
+	 * @since 1.35
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		'ManualRevertSearchRadius'
+	];
 
 	/**
 	 * @var User
@@ -176,6 +186,7 @@ class PageUpdater {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
+	 * @param ServiceOptions $serviceOptions
 	 */
 	public function __construct(
 		User $user,
@@ -185,8 +196,11 @@ class PageUpdater {
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		ServiceOptions $serviceOptions
 	) {
+		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
 		$this->user = $user;
 		$this->wikiPage = $wikiPage;
 		$this->derivedDataUpdater = $derivedDataUpdater;
@@ -201,7 +215,9 @@ class PageUpdater {
 		$this->slotsUpdate = new RevisionSlotsUpdate();
 		$this->editResultBuilder = new EditResultBuilder(
 			$this->revisionStore,
-			ChangeTags::getSoftwareTags()
+			ChangeTags::getSoftwareTags(),
+			$loadBalancer,
+			$serviceOptions
 		);
 	}
 

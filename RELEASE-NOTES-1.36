@@ -24,6 +24,11 @@ For notes on 1.35.x and older releases, see HISTORY.
 …
 
 ==== New configuration ====
+* $wgManualRevertSearchRadius – this introduces a new feature that marks edits
+  as reverts if they restore the page to an exact previous state. This
+  configuration variable sets the maximum number of revisions of a page that
+  will be checked against every new edit. Set this to 0 to disable the feature
+  entirely.
 * …
 
 ==== Changed configuration ====
