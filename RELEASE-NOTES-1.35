@@ -1064,7 +1064,7 @@ because of Phabricator reports.
   - ArticleRevisionUndeleted (hard deprecated, use the RevisionUndeleted hook)
   - ArticleRollbackComplete (hard deprecated, use the RollbackComplete hook)
   - DiffRevisionTools (hard deprecated, use the DiffTools hook)
-  - DiffViewHeader (soft deprecated, use the DifferenceEngineViewHeader hook)
+  - DiffViewHeader (hard deprecated, use the DifferenceEngineViewHeader hook)
   - HistoryRevisionTools (hard deprecated, use the HistoryTools hook)
   - NewRevisionFromEditComplete (hard deprecated, use the
       RevisionFromEditComplete hook).
