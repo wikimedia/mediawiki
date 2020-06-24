@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.1
+ * OOUI v0.39.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-06-04T19:50:07Z
+ * Date: 2020-06-24T07:11:12Z
  */
 .oo-ui-icon-arrowNext {
   background-image: url('themes/wikimediaui/images/icons/arrowNext-ltr.png');
@@ -67,6 +67,30 @@
 .oo-ui-image-progressive.oo-ui-icon-draggable {
   background-image: url('themes/wikimediaui/images/icons/draggable-progressive.png');
   background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/draggable-progressive.svg');
+}
+.oo-ui-icon-doubleChevronEnd {
+  background-image: url('themes/wikimediaui/images/icons/doubleChevronEnd-ltr.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/doubleChevronEnd-ltr.svg');
+}
+.oo-ui-image-invert.oo-ui-icon-doubleChevronEnd {
+  background-image: url('themes/wikimediaui/images/icons/doubleChevronEnd-ltr-invert.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/doubleChevronEnd-ltr-invert.svg');
+}
+.oo-ui-image-progressive.oo-ui-icon-doubleChevronEnd {
+  background-image: url('themes/wikimediaui/images/icons/doubleChevronEnd-ltr-progressive.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/doubleChevronEnd-ltr-progressive.svg');
+}
+.oo-ui-icon-doubleChevronStart {
+  background-image: url('themes/wikimediaui/images/icons/doubleChevronStart-ltr.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/doubleChevronStart-ltr.svg');
+}
+.oo-ui-image-invert.oo-ui-icon-doubleChevronStart {
+  background-image: url('themes/wikimediaui/images/icons/doubleChevronStart-ltr-invert.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/doubleChevronStart-ltr-invert.svg');
+}
+.oo-ui-image-progressive.oo-ui-icon-doubleChevronStart {
+  background-image: url('themes/wikimediaui/images/icons/doubleChevronStart-ltr-progressive.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/doubleChevronStart-ltr-progressive.svg');
 }
 .oo-ui-icon-expand {
   background-image: url('themes/wikimediaui/images/icons/expand.png');
@@ -3384,6 +3408,18 @@
   background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/mapTrail-progressive.svg');
 }
 
+.oo-ui-icon-userAdd {
+  background-image: url('themes/wikimediaui/images/icons/userAdd-ltr.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/userAdd-ltr.svg');
+}
+.oo-ui-image-invert.oo-ui-icon-userAdd {
+  background-image: url('themes/wikimediaui/images/icons/userAdd-ltr-invert.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/userAdd-ltr-invert.svg');
+}
+.oo-ui-image-progressive.oo-ui-icon-userAdd {
+  background-image: url('themes/wikimediaui/images/icons/userAdd-ltr-progressive.png');
+  background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/userAdd-ltr-progressive.svg');
+}
 .oo-ui-icon-userAnonymous {
   background-image: url('themes/wikimediaui/images/icons/userAnonymous.png');
   background-image: linear-gradient(transparent, transparent), /* @embed */ url('themes/wikimediaui/images/icons/userAnonymous.svg');

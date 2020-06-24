@@ -25,6 +25,12 @@
 		}
 	},
 	"images": {
+		"userAdd": {
+			"file": {
+				"ltr": "images/icons/userAdd-ltr.svg",
+				"rtl": "images/icons/userAdd-rtl.svg"
+			}
+		},
 		"userAnonymous": {
 			"file": "images/icons/userAnonymous.svg"
 		},

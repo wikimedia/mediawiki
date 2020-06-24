@@ -260,7 +260,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * pear/mail_mime was upgraded from 1.10.2 to 1.10.7.
 * wikimedia/less.php was upgraded from 1.8.0 to 3.0.0.
 * Updated oojs from 3.0.0 to 5.0.0.
-* Updated OOUI from 0.35.1 to 0.39.1.
+* Updated OOUI from 0.35.1 to 0.39.2.
 * zordius/lightncandy was upgraded from 0.23.0 to 1.2.5.
 * Updated jQuery from v3.3.1 to v3.4.1.
 * Updated jQuery Migrate from v3.0.1 to v3.1.0.

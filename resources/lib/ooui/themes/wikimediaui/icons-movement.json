@@ -46,6 +46,18 @@
 		"draggable": {
 			"file": "images/icons/draggable.svg"
 		},
+		"doubleChevronEnd": {
+			"file": {
+				"ltr": "images/icons/doubleChevronEnd-ltr.svg",
+				"rtl": "images/icons/doubleChevronEnd-rtl.svg"
+			}
+		},
+		"doubleChevronStart": {
+			"file": {
+				"ltr": "images/icons/doubleChevronStart-ltr.svg",
+				"rtl": "images/icons/doubleChevronStart-rtl.svg"
+			}
+		},
 		"expand": {
 			"file": "images/icons/expand.svg"
 		},
