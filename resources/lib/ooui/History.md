@@ -1,4 +1,24 @@
 # OOUI Release History
+## v0.39.2 / 2020-06-23
+### Styles
+* WikimediaUI theme: Update ProgressbarWidget with new design (Volker E.)
+* icons: Add 'doubleChevronStart' and 'doubleChevronEnd' (Volker E.)
+* icons: Upstream 'userAdd' icon from Flow (Ed Sanders)
+
+### Code
+* DropdownWidget: Fix dropdown not announcing selected option (bkudiess-msft)
+* Element: Fix `getClosestScrollableContainer` when body has overflow (Ed Sanders)
+* FieldLayout: Fix `aria-labelledby` for DropdownWidgets (Bartosz Dziewoński)
+* MultilineTextInput: Add 'force' param to adjustSize (Ed Sanders)
+* Remove reference to old valid-jsdoc rule (Ed Sanders)
+* icons: Re-crush via SVGO (Volker E.)
+* build: Ensure --no-sandbox gets passed along to chromium (Kunal Mehta)
+* build: Switch to headless browsers (Kunal Mehta)
+* build: Update eslint-config-wikimedia to 0.16.2 (Ed Sanders)
+* build: Updating composer dependencies (Umherirrender)
+* build: Upgrade eslint-config-wikimedia from 0.16.0 to 0.16.1 (James D. Forrester)
+
+
 ## v0.39.1 / 2020-06-04
 ### Styles
 * ToggleButtonWidget: Indicate state when framed is false (Thalia Chan)

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.1
+ * OOUI v0.39.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-06-04T19:50:07Z
+ * Date: 2020-06-24T07:11:12Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -2101,7 +2101,8 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   max-width: 50em;
   background-color: #fff;
   border: 1px solid #a2a9b1;
-  border-radius: 2px;
+  border-radius: 1em;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 }
 .oo-ui-progressBarWidget-bar {
