@@ -22,6 +22,7 @@
  */
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -3525,7 +3526,18 @@ class Parser {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
-		$rev = $stuff['revision'] ?? null;
+		if ( isset( $stuff['revision-record'] ) ) {
+			$revRecord = $stuff['revision-record'];
+		} else {
+			// Triggers deprecation warnings via DeprecatablePropertyArray
+			$rev = $stuff['revision'] ?? null;
+			if ( $rev instanceof Revision ) {
+				$revRecord = $rev->getRevisionRecord();
+			} else {
+				$revRecord = null;
+			}
+		}
+
 		$text = $stuff['text'];
 		if ( is_string( $stuff['text'] ) ) {
 			// We use U+007F DELETE to distinguish strip markers from regular text
@@ -3534,11 +3546,10 @@ class Parser {
 		$finalTitle = $stuff['finalTitle'] ?? $title;
 		foreach ( ( $stuff['deps'] ?? [] ) as $dep ) {
 			$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
-			if ( $dep['title']->equals( $this->getTitle() ) && $rev instanceof Revision ) {
+			if ( $dep['title']->equals( $this->getTitle() ) && $revRecord instanceof RevisionRecord ) {
 				// Self-transclusion; final result may change based on the new page version
-				// FIXME $templateCb shouldn't return Revisions
 				try {
-					$sha1 = $rev->getRevisionRecord()->getSha1();
+					$sha1 = $revRecord->getSha1();
 				} catch ( RevisionAccessException $e ) {
 					$sha1 = null;
 				}
@@ -3568,7 +3579,7 @@ class Parser {
 	 * @param Title $title
 	 * @param bool|Parser $parser
 	 *
-	 * @return array
+	 * @return array|DeprecatablePropertyArray
 	 */
 	public static function statelessFetchTemplate( $title, $parser = false ) {
 		$text = $skip = false;
@@ -3666,14 +3677,22 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 
-		// TODO return RevisionRecord instead
+		// TODO once the Revision class is ready for hard deprecation, use a callback
+		// to create the Revision object
 		$legacyRevision = $revRecord ? new Revision( $revRecord ) : null;
-		return [
+		$retValues = [
 			'revision' => $legacyRevision,
+			'revision-record' => $revRecord ?: false, // So isset works
 			'text' => $text,
 			'finalTitle' => $finalTitle,
 			'deps' => $deps
 		];
+		$propertyArray = new DeprecatablePropertyArray(
+			$retValues,
+			[], // TODO [ 'revision' => '1.35' ],
+			__METHOD__
+		);
+		return $propertyArray;
 	}
 
 	/**

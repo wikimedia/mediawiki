@@ -1188,6 +1188,9 @@ because of Phabricator reports.
 * ParserOptions::getCurrentRevisionCallback and ::setCurrentRevisionCallback
   were hard deprecated in favor of the new ::getCurrentRevisionRecordCallback
   and ::setCurrentRevisionRecordCallback methods respectively.
+* Parser::statelessFetchTemplate returns an array; accessing the Revision
+  object returned (via the `revision` key to the array) is deprecated. Instead,
+  use `revision-record` to retrieve the equivalent RevisionRecord.
 * Page interface was deprecated. Use Article or WikiPage instead.
 * The following DatabaseBlock methods are deprecated because they are no longer
   needed in core: chooseBlock, fromMaster, deleteIfExpired.
