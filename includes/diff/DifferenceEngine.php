@@ -648,7 +648,9 @@ class DifferenceEngine extends ContextSource {
 			// Allow extensions to change the $oldHeader variable
 			$this->hookRunner->onDifferenceEngineOldHeaderNoOldRev( $oldHeader );
 		} else {
-			// TODO replace hook with one that uses RevisionRecords
+			$this->hookRunner->onDifferenceEngineViewHeader( $this );
+
+			// DiffViewHeader hook is soft deprecated since 1.35
 			// If old or new are falsey, keeps those values
 			$legacyOldRev = $this->mOldRevisionRecord ?
 				new Revision( $this->mOldRevisionRecord ) :

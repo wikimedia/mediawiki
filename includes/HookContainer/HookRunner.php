@@ -73,6 +73,7 @@ class HookRunner implements
 	\MediaWiki\Diff\Hook\DifferenceEngineShowDiffPageHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineShowDiffPageMaybeShowMissingRevisionHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineShowEmptyOldContentHook,
+	\MediaWiki\Diff\Hook\DifferenceEngineViewHeaderHook,
 	\MediaWiki\Diff\Hook\DiffRevisionToolsHook,
 	\MediaWiki\Diff\Hook\DiffViewHeaderHook,
 	\MediaWiki\Diff\Hook\NewDifferenceEngineHook,
@@ -1476,6 +1477,13 @@ class HookRunner implements
 	public function onDifferenceEngineShowEmptyOldContent( $differenceEngine ) {
 		return $this->container->run(
 			'DifferenceEngineShowEmptyOldContent',
+			[ $differenceEngine ]
+		);
+	}
+
+	public function onDifferenceEngineViewHeader( $differenceEngine ) {
+		return $this->container->run(
+			'DifferenceEngineViewHeader',
 			[ $differenceEngine ]
 		);
 	}
