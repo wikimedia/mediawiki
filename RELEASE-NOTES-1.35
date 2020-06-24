@@ -944,6 +944,9 @@ because of Phabricator reports.
 * Article::getUserText is deprecated. Instead, use WikiPage::getUserText.
 * Article::prepareContentForEdit is hard deprecated. Instead, use
   WikiPage::prepareContentForEdit.
+* WikiPage::prepareContentForEdit previously accepted either a Revision or a
+  RevisionRecord object as its optional second parameter. Passing a Revision
+  is now hard deprecated.
 * Article::getUndoContent and WikiPage::getUndoContent are hard deprecated.
   Instead, use ContentHandler::getUndoContent.
 * Passing Revision objects to ContentHandler::getUndoContent is hard deprecated.

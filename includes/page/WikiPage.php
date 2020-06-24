@@ -2022,7 +2022,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param Content $content
 	 * @param Revision|RevisionRecord|null $revision Revision object.
-	 *        Used with vary-revision or vary-revision-id.
+	 *        Used with vary-revision or vary-revision-id. Passing a Revision object
+	 *        is hard deprecated since 1.35;
 	 * @param User|null $user
 	 * @param string|null $serialFormat IGNORED
 	 * @param bool $useCache Check shared prepared edit cache
@@ -2046,6 +2047,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $revision !== null ) {
 			if ( $revision instanceof Revision ) {
+				wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 				$revision = $revision->getRevisionRecord();
 			} elseif ( !( $revision instanceof RevisionRecord ) ) {
 				throw new InvalidArgumentException(
