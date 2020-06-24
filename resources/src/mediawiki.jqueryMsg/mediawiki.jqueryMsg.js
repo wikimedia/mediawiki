@@ -352,7 +352,7 @@ mw.jqueryMsg.Parser.prototype = {
 			htmlAttributeEquals, openHtmlStartTag, optionalForwardSlash, openHtmlEndTag, closeHtmlTag,
 			openExtlink, closeExtlink, wikilinkContents, openWikilink, closeWikilink, templateName, pipe, colon,
 			templateContents, openTemplate, closeTemplate,
-			nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, result,
+			nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, res,
 			settings = this.settings,
 			concat = Array.prototype.concat;
 
@@ -393,16 +393,16 @@ mw.jqueryMsg.Parser.prototype = {
 		 * @return {string|null}
 		 */
 		function sequence( ps ) {
-			var i, res,
+			var i, r,
 				originalPos = pos,
 				result = [];
 			for ( i = 0; i < ps.length; i++ ) {
-				res = ps[ i ]();
-				if ( res === null ) {
+				r = ps[ i ]();
+				if ( r === null ) {
 					pos = originalPos;
 					return null;
 				}
-				result.push( res );
+				result.push( r );
 			}
 			return result;
 		}
@@ -871,23 +871,23 @@ mw.jqueryMsg.Parser.prototype = {
 		colon = makeStringParser( ':' );
 		templateContents = choice( [
 			function () {
-				var res = sequence( [
+				var result = sequence( [
 					// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
 					// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
 					choice( [ templateWithReplacement, templateWithOutReplacement, templateWithOutFirstParameter ] ),
 					nOrMore( 0, templateParam )
 				] );
-				return res === null ? null : res[ 0 ].concat( res[ 1 ] );
+				return result === null ? null : result[ 0 ].concat( result[ 1 ] );
 			},
 			function () {
-				var res = sequence( [
+				var result = sequence( [
 					templateName,
 					nOrMore( 0, templateParam )
 				] );
-				if ( res === null ) {
+				if ( result === null ) {
 					return null;
 				}
-				return [ res[ 0 ] ].concat( res[ 1 ] );
+				return [ result[ 0 ] ].concat( result[ 1 ] );
 			}
 		] );
 		openTemplate = makeStringParser( '{{' );
@@ -942,17 +942,17 @@ mw.jqueryMsg.Parser.prototype = {
 		// I am deferring the work of turning it into prototypes & objects. It's quite fast enough
 		// finally let's do some actual work...
 
-		result = start( this.settings.onlyCurlyBraceTransform ? curlyBraceTransformExpression : expression );
+		res = start( this.settings.onlyCurlyBraceTransform ? curlyBraceTransformExpression : expression );
 
 		/*
 		 * For success, the p must have gotten to the end of the input
 		 * and returned a non-null.
 		 * n.b. This is part of language infrastructure, so we do not throw an internationalizable message.
 		 */
-		if ( result === null || pos !== input.length ) {
+		if ( res === null || pos !== input.length ) {
 			throw new Error( 'Parse error at position ' + pos.toString() + ' in input: ' + input );
 		}
-		return result;
+		return res;
 	}
 
 };
@@ -984,8 +984,7 @@ mw.jqueryMsg.HtmlEmitter = function ( language, magic ) {
 	 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
 	 */
 	this.emit = function ( node, replacements ) {
-		var ret, subnodes, operation,
-			jmsg = this;
+		var ret, subnodes, operation;
 		switch ( typeof node ) {
 			case 'string':
 			case 'number':
@@ -1296,8 +1295,8 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 
 		// Remove explicit plural forms from the forms. They were set undefined in the above loop.
 		// eslint-disable-next-line no-jquery/no-map-util
-		forms = $.map( forms, function ( form ) {
-			return form;
+		forms = $.map( forms, function ( f ) {
+			return f;
 		} );
 
 		return this.language.convertPlural( count, forms, explicitPluralForms );
