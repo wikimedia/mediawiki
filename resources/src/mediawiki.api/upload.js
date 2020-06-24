@@ -178,8 +178,7 @@
 				tokenPromise = $.Deferred(),
 				api = this,
 				deferred = $.Deferred(),
-				nonce = getNonce(),
-				id = 'uploadframe-' + nonce,
+				id = 'uploadframe-' + getNonce(),
 				$form = $( '<form>' ),
 				iframe = getNewIframe( id ),
 				$iframe = $( iframe );
@@ -234,8 +233,8 @@
 			file.name = 'file';
 
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( data, function ( key, val ) {
-				$form.append( getHiddenInput( key, val ) );
+			$.each( data, function ( k, v ) {
+				$form.append( getHiddenInput( k, v ) );
 			} );
 
 			if ( !data.filename && !data.stash ) {
@@ -362,10 +361,10 @@
 				// 47. This'll work around it, but comes with the drawback of
 				// having to properly relay the results to the returned promise.
 				// eslint-disable-next-line no-loop-func
-				promise.done( function ( start, end, next, result ) {
+				promise.done( function ( s, e, n, result ) {
 					var filekey = result.upload.filekey;
-					active = this.uploadChunk( file, data, start, end, filekey, chunkRetries )
-						.done( end === file.size ? deferred.resolve : next.resolve )
+					active = this.uploadChunk( file, data, s, e, filekey, chunkRetries )
+						.done( e === file.size ? deferred.resolve : n.resolve )
 						.fail( deferred.reject )
 						.progress( deferred.notify );
 				// start, end & next must be bound to closure, or they'd have

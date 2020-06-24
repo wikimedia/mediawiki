@@ -245,9 +245,9 @@
 			xhr = $.ajax( ajaxOptions )
 				// If AJAX fails, reject API call with error code 'http'
 				// and details in second argument.
-				.fail( function ( xhr, textStatus, exception ) {
+				.fail( function ( jqXHR, textStatus, exception ) {
 					apiDeferred.reject( 'http', {
-						xhr: xhr,
+						xhr: jqXHR,
 						textStatus: textStatus,
 						exception: exception
 					} );
@@ -332,8 +332,8 @@
 							// Try again, once
 							params.token = undefined;
 							abortable = null;
-							return api.getToken( tokenType, assertParams ).then( function ( token ) {
-								params.token = token;
+							return api.getToken( tokenType, assertParams ).then( function ( t ) {
+								params.token = t;
 								if ( aborted ) {
 									return abortedPromise;
 								}

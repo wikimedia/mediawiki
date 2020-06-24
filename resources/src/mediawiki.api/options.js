@@ -85,21 +85,21 @@
 					}
 				} else {
 					if ( value !== null ) {
-						promise = promise.then( function ( name, value ) {
+						promise = promise.then( function ( n, v ) {
 							return this.postWithToken( 'csrf', {
 								formatversion: 2,
 								action: 'options',
-								optionname: name,
-								optionvalue: value
+								optionname: n,
+								optionvalue: v
 							} );
 						}.bind( this, name, value ) );
 					} else {
 						// Omitting value resets the option
-						promise = promise.then( function ( name ) {
+						promise = promise.then( function ( n ) {
 							return this.postWithToken( 'csrf', {
 								formatversion: 2,
 								action: 'options',
-								optionname: name
+								optionname: n
 							} );
 						}.bind( this, name ) );
 					}

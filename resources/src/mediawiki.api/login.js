@@ -30,14 +30,14 @@
 				.then( function ( data ) {
 					params.lgtoken = data.login.token;
 					innerPromise = api.post( params )
-						.then( function ( data ) {
+						.then( function ( response ) {
 							var code;
-							if ( data.login.result !== 'Success' ) {
+							if ( response.login.result !== 'Success' ) {
 								// Set proper error code whenever possible
-								code = data.error && data.error.code || 'unknown';
-								return $.Deferred().reject( code, data );
+								code = response.error && response.error.code || 'unknown';
+								return $.Deferred().reject( code, response );
 							}
-							return data;
+							return response;
 						} );
 					return innerPromise;
 				} )
