@@ -8,8 +8,8 @@ CREATE TABLE /*_*/module_deps_tmp (
   PRIMARY KEY (md_module,md_skin)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/module_deps_tmp
-	SELECT * FROM /*_*/module_deps;
+INSERT INTO /*_*/module_deps_tmp(md_module, md_skin, md_deps)
+	SELECT md_module, md_skin, md_deps FROM /*_*/module_deps;
 
 DROP TABLE /*_*/module_deps;
 

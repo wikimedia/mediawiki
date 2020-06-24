@@ -882,8 +882,11 @@ class AuthManager implements LoggerAwareInterface {
 	 * returned success.
 	 *
 	 * @param AuthenticationRequest $req
+	 * @param bool $isAddition Set true if this represents an addition of
+	 *  credentials rather than a change. The main difference is that additions
+	 *  should not invalidate BotPasswords. If you're not sure, leave it false.
 	 */
-	public function changeAuthenticationData( AuthenticationRequest $req ) {
+	public function changeAuthenticationData( AuthenticationRequest $req, $isAddition = false ) {
 		$this->logger->info( 'Changing authentication data for {user} class {what}', [
 			'user' => is_string( $req->username ) ? $req->username : '<no name>',
 			'what' => get_class( $req ),
@@ -893,7 +896,9 @@ class AuthManager implements LoggerAwareInterface {
 
 		// When the main account's authentication data is changed, invalidate
 		// all BotPasswords too.
-		\BotPassword::invalidateAllPasswordsForUser( $req->username );
+		if ( !$isAddition ) {
+			\BotPassword::invalidateAllPasswordsForUser( $req->username );
+		}
 	}
 
 	/**@}*/

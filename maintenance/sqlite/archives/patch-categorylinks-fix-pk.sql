@@ -40,8 +40,8 @@ CREATE TABLE /*_*/categorylinks_tmp (
   PRIMARY KEY (cl_from,cl_to)
 ) /*$wgDBTableOptions*/;
 
-INSERT INTO /*_*/categorylinks_tmp
-	SELECT *
+INSERT INTO /*_*/categorylinks_tmp(cl_from, cl_to, cl_sortkey, cl_sortkey_prefix, cl_timestamp, cl_collation, cl_type)
+	SELECT cl_from, cl_to, cl_sortkey, cl_sortkey_prefix, cl_timestamp, cl_collation, cl_type
 		FROM /*_*/categorylinks;
 
 DROP TABLE /*_*/categorylinks;
