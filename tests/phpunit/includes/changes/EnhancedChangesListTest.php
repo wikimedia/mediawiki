@@ -254,6 +254,7 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		MWTimestamp::setFakeTime( '20200505000000' );
 		$enhancedChangesList = $this->newEnhancedChangesList();
 		$enhancedChangesList->getOutput()->enableOOUI();
+		$enhancedChangesList->setWatchlistDivs( true );
 
 		$row = (object)[
 			'rc_namespace' => NS_MAIN,

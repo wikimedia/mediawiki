@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -49,5 +50,47 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 				false,
 			],
 		];
+	}
+
+	public function testAddWatchlistJoins() {
+		// Edit a test page so that it shows up in RC.
+		$testTitle = Title::newFromText( 'Test page' );
+		$testPage = WikiPage::factory( $testTitle );
+		$testPage->doEditContent( ContentHandler::makeContent( 'Test content', $testTitle ), '' );
+
+		// Set up RC.
+		$context = new RequestContext;
+		$context->setTitle( Title::newFromText( __METHOD__ ) );
+		$context->setUser( $this->getTestUser()->getUser() );
+		$context->setRequest( new FauxRequest );
+
+		// Confirm that the test page is in RC.
+		$rc1 = new SpecialRecentChanges;
+		$rc1->setContext( $context );
+		$rc1->execute( null );
+		$this->assertStringContainsString( 'Test page', $rc1->getOutput()->getHTML() );
+		$this->assertStringContainsString( 'mw-changeslist-line-not-watched', $rc1->getOutput()->getHTML() );
+
+		// Watch the page, and check that it's now watched in RC.
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$watchedItemStore->addWatch( $context->getUser(), $testTitle );
+		$rc2 = new SpecialRecentChanges;
+		$rc2->setContext( $context );
+		$rc2->execute( null );
+		$this->assertStringContainsString( 'Test page', $rc2->getOutput()->getHTML() );
+		$this->assertStringContainsString( 'mw-changeslist-line-watched', $rc2->getOutput()->getHTML() );
+
+		// Force a past expiry date on the watchlist item.
+		$db = wfGetDB( DB_MASTER );
+		$queryConds = [ 'wl_namespace' => $testTitle->getNamespace(), 'wl_title' => $testTitle->getDBkey() ];
+		$watchedItemId = $db->selectField( 'watchlist', 'wl_id', $queryConds );
+		$db->update( 'watchlist_expiry', [ 'we_expiry' => '20200101000000' ], [ 'we_item' => $watchedItemId ] );
+
+		// Check that the page is still in RC, but that it's no longer watched.
+		$rc3 = new SpecialRecentChanges;
+		$rc3->setContext( $context );
+		$rc3->execute( null );
+		$this->assertStringContainsString( 'Test page', $rc3->getOutput()->getHTML() );
+		$this->assertStringContainsString( 'mw-changeslist-line-not-watched', $rc3->getOutput()->getHTML() );
 	}
 }
