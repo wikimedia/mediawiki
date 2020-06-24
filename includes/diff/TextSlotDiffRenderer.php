@@ -227,11 +227,11 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 			$tempFile1 = fopen( $tempName1, "w" );
 			if ( !$tempFile1 ) {
-				return false;
+				throw new Exception( "Could not create temporary file $tempName1 for external diffing" );
 			}
 			$tempFile2 = fopen( $tempName2, "w" );
 			if ( !$tempFile2 ) {
-				return false;
+				throw new Exception( "Could not create temporary file $tempName2 for external diffing" );
 			}
 			fwrite( $tempFile1, $oldText );
 			fwrite( $tempFile2, $newText );
