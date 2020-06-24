@@ -1899,8 +1899,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $fromReplica = true ) {
-		return $this->getBlock( $fromReplica ) instanceof AbstractBlock &&
-			$this->getBlock()->appliesToRight( 'edit' );
+		return $this->getBlock( $fromReplica ) instanceof AbstractBlock;
 	}
 
 	/**
