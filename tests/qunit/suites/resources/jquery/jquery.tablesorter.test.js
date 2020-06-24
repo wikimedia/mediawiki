@@ -1,5 +1,5 @@
 ( function () {
-	var header = [ 'Planet', 'Radius (km)' ],
+	var planetHeader = [ 'Planet', 'Radius (km)' ],
 
 		// Data set "planets"
 		mercury = [ 'Mercury', '2439.7' ],
@@ -289,7 +289,7 @@
 
 		$table.find( 'tbody' ).find( 'tr' ).each( function ( i, tr ) {
 			var row = [];
-			$( tr ).find( 'td,th' ).each( function ( i, td ) {
+			$( tr ).find( 'td,th' ).each( function ( j, td ) {
 				row.push( $( td ).text() );
 			} );
 			data.push( row );
@@ -364,7 +364,7 @@
 
 	tableTest(
 		'Basic planet table: sorting initially - ascending by name',
-		header,
+		planetHeader,
 		planets,
 		planetsAscName,
 		function ( $table ) {
@@ -375,7 +375,7 @@
 	);
 	tableTest(
 		'Basic planet table: sorting initially - descending by radius',
-		header,
+		planetHeader,
 		planets,
 		reversed( planetsAscRadius ),
 		function ( $table ) {
@@ -386,7 +386,7 @@
 	);
 	tableTest(
 		'Basic planet table: ascending by name',
-		header,
+		planetHeader,
 		planets,
 		planetsAscName,
 		function ( $table ) {
@@ -396,7 +396,7 @@
 	);
 	tableTest(
 		'Basic planet table: ascending by name a second time',
-		header,
+		planetHeader,
 		planets,
 		planetsAscName,
 		function ( $table ) {
@@ -406,7 +406,7 @@
 	);
 	tableTest(
 		'Basic planet table: ascending by name (multiple clicks)',
-		header,
+		planetHeader,
 		planets,
 		planetsAscName,
 		function ( $table ) {
@@ -418,7 +418,7 @@
 	);
 	tableTest(
 		'Basic planet table: descending by name',
-		header,
+		planetHeader,
 		planets,
 		reversed( planetsAscName ),
 		function ( $table ) {
@@ -428,7 +428,7 @@
 	);
 	tableTest(
 		'Basic planet table: return to initial sort',
-		header,
+		planetHeader,
 		planets,
 		planets,
 		function ( $table ) {
@@ -438,7 +438,7 @@
 	);
 	tableTest(
 		'Basic planet table: ascending radius',
-		header,
+		planetHeader,
 		planets,
 		planetsAscRadius,
 		function ( $table ) {
@@ -448,7 +448,7 @@
 	);
 	tableTest(
 		'Basic planet table: descending radius',
-		header,
+		planetHeader,
 		planets,
 		reversed( planetsAscRadius ),
 		function ( $table ) {
@@ -458,7 +458,7 @@
 	);
 	tableTest(
 		'Sorting multiple columns by passing sort list',
-		header,
+		planetHeader,
 		simple,
 		simpleAsc,
 		function ( $table ) {
@@ -472,7 +472,7 @@
 	);
 	tableTest(
 		'Sorting multiple columns by programmatically triggering sort()',
-		header,
+		planetHeader,
 		simple,
 		simpleDescasc,
 		function ( $table ) {
@@ -487,7 +487,7 @@
 	);
 	tableTest(
 		'Reset to initial sorting by triggering sort() without any parameters',
-		header,
+		planetHeader,
 		simple,
 		simpleAsc,
 		function ( $table ) {
@@ -508,7 +508,7 @@
 	);
 	tableTest(
 		'Sort via click event after having initialized the tablesorter with initial sorting',
-		header,
+		planetHeader,
 		simple,
 		simpleDescasc,
 		function ( $table ) {
@@ -520,7 +520,7 @@
 	);
 	tableTest(
 		'Multi-sort via click event after having initialized the tablesorter with initial sorting',
-		header,
+		planetHeader,
 		simple,
 		simpleAsc,
 		function ( $table ) {
@@ -540,7 +540,7 @@
 		}
 	);
 	QUnit.test( 'Reset sorting making table appear unsorted', function ( assert ) {
-		var $table = tableCreate( header, simple );
+		var $table = tableCreate( planetHeader, simple );
 		$table.tablesorter(
 			{ sortList: [
 				{ 0: 'desc' },
@@ -630,7 +630,7 @@
 	);
 
 	QUnit.test( 'Basic planet table: one unsortable column', function ( assert ) {
-		var $table = tableCreate( header, planets ),
+		var $table = tableCreate( planetHeader, planets ),
 			$cell;
 		$table.find( 'tr > th' ).eq( 0 ).addClass( 'unsortable' );
 
@@ -787,7 +787,7 @@
 	);
 
 	QUnit.test( 'Rowspan not exploded on init', function ( assert ) {
-		var $table = tableCreate( header, planets );
+		var $table = tableCreate( planetHeader, planets );
 
 		// Modify the table to have a multiple-row-spanning cell:
 		// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
@@ -818,7 +818,7 @@
 
 	tableTest(
 		'Basic planet table: same value for multiple rows via rowspan',
-		header,
+		planetHeader,
 		planets,
 		planetsRowspan,
 		function ( $table ) {
@@ -836,7 +836,7 @@
 	);
 	tableTest(
 		'Basic planet table: same value for multiple rows via rowspan (sorting initially)',
-		header,
+		planetHeader,
 		planets,
 		planetsRowspan,
 		function ( $table ) {
@@ -855,7 +855,7 @@
 	);
 	tableTest(
 		'Basic planet table: Same value for multiple rows via rowspan II',
-		header,
+		planetHeader,
 		planets,
 		planetsRowspanII,
 		function ( $table ) {
@@ -898,7 +898,7 @@
 
 	tableTest(
 		'Handling of .sortbottom',
-		header,
+		planetHeader,
 		planets.concat( planetsTotal ),
 		planetsAscName,
 		function ( $table ) {
@@ -910,7 +910,7 @@
 
 	tableTest(
 		'Handling of .sorttop',
-		header,
+		planetHeader,
 		planetsTotal.concat( planets ),
 		planetsAscName,
 		function ( $table ) {
@@ -997,7 +997,7 @@
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( i, td ) {
+			$( tr ).find( 'td' ).each( function ( j, td ) {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
@@ -1044,7 +1044,7 @@
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( i, td ) {
+			$( tr ).find( 'td' ).each( function ( j, td ) {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
@@ -1109,7 +1109,7 @@
 
 		data = [];
 		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( i, td ) {
+			$( tr ).find( 'td' ).each( function ( j, td ) {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()

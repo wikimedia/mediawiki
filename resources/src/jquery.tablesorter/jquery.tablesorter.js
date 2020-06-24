@@ -175,7 +175,7 @@
 		var sortType, len, j, parser,
 			rows = table.tBodies[ 0 ].rows,
 			config = $( table ).data( 'tablesorter' ).config,
-			parsers = [];
+			cachedParsers = [];
 
 		if ( rows[ 0 ] ) {
 			len = config.columns;
@@ -190,10 +190,10 @@
 					parser = detectParserForColumn( table, rows, j );
 				}
 
-				parsers.push( parser );
+				cachedParsers.push( parser );
 			}
 		}
-		return parsers;
+		return cachedParsers;
 	}
 
 	/* Other utility functions */
@@ -202,8 +202,8 @@
 		var i, j, $row, cols,
 			totalRows = ( table.tBodies[ 0 ] && table.tBodies[ 0 ].rows.length ) || 0,
 			config = $( table ).data( 'tablesorter' ).config,
-			parsers = config.parsers,
-			len = parsers.length,
+			cachedParsers = config.parsers,
+			len = cachedParsers.length,
 			cellIndex,
 			cache = {
 				row: [],
@@ -233,7 +233,7 @@
 
 			for ( j = 0; j < len; j++ ) {
 				cellIndex = $row.data( 'columnToCell' )[ j ];
-				cols.push( parsers[ j ].format( getElementSortKey( $row[ 0 ].cells[ cellIndex ] ) ) );
+				cols.push( cachedParsers[ j ].format( getElementSortKey( $row[ 0 ].cells[ cellIndex ] ) ) );
 			}
 
 			// Store the initial sort order, from when the page was loaded
@@ -512,30 +512,30 @@
 	function multisort( table, sortList, cache ) {
 		var i,
 			sortFn = [],
-			parsers = $( table ).data( 'tablesorter' ).config.parsers;
+			cachedParsers = $( table ).data( 'tablesorter' ).config.parsers;
 
 		for ( i = 0; i < sortList.length; i++ ) {
 			// Android doesn't support Intl.Collator
-			if ( window.Intl && Intl.Collator && parsers[ sortList[ i ][ 0 ] ].type === 'text' ) {
+			if ( window.Intl && Intl.Collator && cachedParsers[ sortList[ i ][ 0 ] ].type === 'text' ) {
 				sortFn[ i ] = sortText;
 			} else {
 				sortFn[ i ] = sortNumeric;
 			}
 		}
 		cache.normalized.sort( function ( array1, array2 ) {
-			var i, col, ret, orderIndex;
-			for ( i = 0; i < sortList.length; i++ ) {
-				col = sortList[ i ][ 0 ];
-				if ( sortList[ i ][ 1 ] === 2 ) {
+			var n, col, ret, orderIndex;
+			for ( n = 0; n < sortList.length; n++ ) {
+				col = sortList[ n ][ 0 ];
+				if ( sortList[ n ][ 1 ] === 2 ) {
 					// initial order
 					orderIndex = array1.length - 2;
 					ret = sortNumeric.call( this, array1[ orderIndex ], array2[ orderIndex ] );
-				} else if ( sortList[ i ][ 1 ] === 1 ) {
+				} else if ( sortList[ n ][ 1 ] === 1 ) {
 					// descending
-					ret = sortFn[ i ].call( this, array2[ col ], array1[ col ] );
+					ret = sortFn[ n ].call( this, array2[ col ], array1[ col ] );
 				} else {
 					// ascending
-					ret = sortFn[ i ].call( this, array1[ col ], array2[ col ] );
+					ret = sortFn[ n ].call( this, array1[ col ], array2[ col ] );
 				}
 				if ( ret !== 0 ) {
 					return ret;
@@ -645,15 +645,15 @@
 		// account colspans. We also cache the rowIndex to avoid having to take
 		// cell.parentNode.rowIndex in the sorting function below.
 		$table.find( '> tbody > tr' ).each( function () {
-			var i,
+			var c,
 				col = 0,
 				len = this.cells.length;
-			for ( i = 0; i < len; i++ ) {
-				$( this.cells[ i ] ).data( 'tablesorter', {
+			for ( c = 0; c < len; c++ ) {
+				$( this.cells[ c ] ).data( 'tablesorter', {
 					realCellIndex: col,
 					realRowIndex: this.rowIndex
 				} );
-				col += this.cells[ i ].colSpan;
+				col += this.cells[ c ].colSpan;
 			}
 		} );
 
@@ -674,8 +674,8 @@
 				}
 				return ret;
 			} );
-			rowspanCells.forEach( function ( cell ) {
-				$.data( cell, 'tablesorter' ).needResort = false;
+			rowspanCells.forEach( function ( cellNode ) {
+				$.data( cellNode, 'tablesorter' ).needResort = false;
 			} );
 		}
 		resortCells();
@@ -957,7 +957,7 @@
 				// Apply event handling to headers
 				// this is too big, perhaps break it out?
 				$headers.on( 'keypress click', function ( e ) {
-					var cell, $cell, columns, newSortList, i,
+					var cell, $cell, columns, newSortList, col,
 						totalRows,
 						j, s, o,
 						numSortOrders = 3;
@@ -1003,7 +1003,7 @@
 							return [ c, $cell.data( 'order' ) ];
 						} );
 						// Index of first column belonging to this header
-						i = columns[ 0 ];
+						col = columns[ 0 ];
 
 						if ( !e[ config.sortMultiSortKey ] ) {
 							// User only wants to sort on one column set
@@ -1013,7 +1013,7 @@
 							// Multi column sorting
 							// It is not possible for one column to belong to multiple headers,
 							// so this is okay - we don't need to check for every value in the columns array
-							if ( isValueInArray( i, config.sortList ) ) {
+							if ( isValueInArray( col, config.sortList ) ) {
 								// The user has clicked on an already sorted column.
 								// Reverse the sorting direction for all tables.
 								for ( j = 0; j < config.sortList.length; j++ ) {
