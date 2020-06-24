@@ -92,10 +92,10 @@ describe( 'Page History', () => {
 	} );
 
 	describe( 'Revision deletion and un-deletion', () => {
-		let edits;
+		let deleteEdits;
 		it( 'Should get total number of edits and editors when edits are hidden and shown', async () => {
-			edits = await setupDeletedPage();
-			const { editOne } = edits;
+			deleteEdits = await setupDeletedPage();
+			const { editOne } = deleteEdits;
 
 			// Populate cache
 			const { body, status } = await client.get( `/page/${titleToDelete}/history/counts/edits` );
@@ -152,7 +152,7 @@ describe( 'Page History', () => {
 
 		it( 'Should update last-modified header after revision deletion', async () => {
 			const { headers } = await client.get( `/page/${titleToDelete}/history/counts/edits` );
-			const { editTwo } = edits;
+			const { editTwo } = deleteEdits;
 			assert.containsAllKeys( headers, [ 'last-modified' ] );
 			const lastTouchedTS = Date.parse( editTwo.newtimestamp );
 			const headerLastModTS = Date.parse( headers[ 'last-modified' ] );

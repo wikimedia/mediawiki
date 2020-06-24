@@ -127,18 +127,17 @@ describe( 'PUT /page/{title}', () => {
 	} );
 
 	describe( 'request validation', () => {
-		const title = utils.title( 'Edit Test ' );
-
-		const reqBody = {
-			token: anonToken,
-			source: 'Lörem Ipsüm',
-			comment: 'tästing',
-			content_model: 'wikitext'
-		};
-
 		const requiredProps = [ 'source', 'comment' ];
 
 		requiredProps.forEach( ( missingPropName ) => {
+			const title = utils.title( 'Edit Test ' );
+			const reqBody = {
+				token: anonToken,
+				source: 'Lörem Ipsüm',
+				comment: 'tästing',
+				content_model: 'wikitext'
+			};
+
 			it( `should fail when ${missingPropName} is missing from the request body`, async () => {
 				const incompleteBody = { ...reqBody };
 				delete incompleteBody[ missingPropName ];
