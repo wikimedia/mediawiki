@@ -40,5 +40,21 @@
 			updateFont( !!+mw.user.options.get( 'fancysig' ) );
 		}
 
+		// Highlight lint errors
+		$root.find( '[data-mw-lint-error-location]' ).each( function () {
+			var
+				$item = $( this ),
+				location = $item.data( 'mw-lint-error-location' ),
+				button = new OO.ui.ButtonWidget( {
+					label: mw.msg( 'prefs-signature-highlight-error' )
+				} );
+
+			button.on( 'click', function () {
+				signatureInput.selectRange( location[ 0 ], location[ 1 ] );
+			} );
+
+			$item.append( button.$element );
+		} );
+
 	} );
 }() );

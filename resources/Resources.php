@@ -2005,6 +2005,7 @@ return [
 		],
 		'messages' => [
 			'prefs-tabs-navigation-hint',
+			'prefs-signature-highlight-error',
 			'prefswarning-warning',
 			'saveprefs',
 			'savedprefs',

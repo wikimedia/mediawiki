@@ -31,6 +31,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -378,6 +379,7 @@ class Parser {
 		'Server',
 		'ServerName',
 		'ShowHostnames',
+		'SignatureValidation',
 		'Sitename',
 		'StylePath',
 		'TranscludeCacheExpiry',
@@ -4604,13 +4606,26 @@ class Parser {
 			$this->logger->debug( __METHOD__ . ": $username has overlong signature." );
 		} elseif ( $fancySig !== false ) {
 			# Sig. might contain markup; validate this
-			if ( $this->validateSig( $nickname ) !== false ) {
+			$isValid = $this->validateSig( $nickname ) !== false;
+
+			# New validator
+			$sigValidation = $this->svcOptions->get( 'SignatureValidation' );
+			if ( $isValid && $sigValidation === 'disallow' ) {
+				$validator = new SignatureValidator(
+					$user,
+					null,
+					$this->mOptions
+				);
+				$isValid = !$validator->validateSignature( $nickname );
+			}
+
+			if ( $isValid ) {
 				# Validated; clean up (if needed) and return it
 				return $this->cleanSig( $nickname, true );
 			} else {
 				# Failed to validate; fall back to the default
 				$nickname = $username;
-				$this->logger->debug( __METHOD__ . ": $username has bad XML tags in signature." );
+				$this->logger->debug( __METHOD__ . ": $username has invalid signature." );
 			}
 		}
 

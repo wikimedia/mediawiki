@@ -70,6 +70,12 @@ class ParserOutput extends CacheTime {
 	public $mLinks = [];
 
 	/**
+	 * @var array Keys are DBKs for the links to special pages in the document.
+	 * @since 1.35
+	 */
+	public $mLinksSpecial = [];
+
+	/**
 	 * @var array 2-D map of NS/DBK to ID for the template references.
 	 *  ID=zero for broken.
 	 */
@@ -574,6 +580,14 @@ class ParserOutput extends CacheTime {
 		return $this->mLinks;
 	}
 
+	/**
+	 * @return array Keys are DBKs for the links to special pages in the document
+	 * @since 1.35
+	 */
+	public function &getLinksSpecial() {
+		return $this->mLinksSpecial;
+	}
+
 	public function &getTemplates() {
 		return $this->mTemplates;
 	}
@@ -821,8 +835,9 @@ class ParserOutput extends CacheTime {
 			// Normalize this pseudo-alias if it makes it down here...
 			$ns = NS_FILE;
 		} elseif ( $ns == NS_SPECIAL ) {
-			// We don't record Special: links currently
+			// We don't want to record Special: links in the database, so put them in a separate place.
 			// It might actually be wise to, but we'd need to do some normalization.
+			$this->mLinksSpecial[$dbk] = 1;
 			return;
 		} elseif ( $dbk === '' ) {
 			// Don't record self links -  [[#Foo]]
