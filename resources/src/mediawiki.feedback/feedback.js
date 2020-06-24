@@ -320,8 +320,8 @@
 						inprop: 'url',
 						formatversion: 2,
 						titles: data.settings.title.getPrefixedText()
-					} ).then( function ( data ) {
-						dialog.feedbackPageUrl = OO.getProp( data, 'query', 'pages', 0, 'canonicalurl' );
+					} ).then( function ( response ) {
+						dialog.feedbackPageUrl = OO.getProp( response, 'query', 'pages', 0, 'canonicalurl' );
 					} );
 				} else {
 					this.feedbackPageUrl = data.settings.title.getUrl();

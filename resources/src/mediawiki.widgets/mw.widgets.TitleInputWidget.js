@@ -136,9 +136,9 @@
 		// Parent method
 		value = mw.widgets.TitleInputWidget.parent.prototype.cleanUpValue.call( this, value );
 
-		return trimByteLength( this.value, value, this.maxLength, function ( value ) {
-			var title = widget.getMWTitle( value );
-			return title ? title.getMain() : value;
+		return trimByteLength( this.value, value, this.maxLength, function ( val ) {
+			var title = widget.getMWTitle( val );
+			return title ? title.getMain() : val;
 		} ).newVal;
 	};
 

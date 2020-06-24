@@ -114,7 +114,7 @@
 		 * Construct the HTML for the debugging toolbar
 		 */
 		buildHtml: function () {
-			var $container, $bits, panes, id, gitInfoText, $gitInfo;
+			var $container, $bits, panes, paneId, gitInfoText, $gitInfo;
 
 			$container = $( '<div>' )
 				.attr( {
@@ -228,13 +228,13 @@
 				includes: this.buildIncludesPane()
 			};
 
-			for ( id in panes ) {
+			for ( paneId in panes ) {
 				$( '<div>' )
 					.prop( {
 						className: 'mw-debug-pane',
-						id: 'mw-debug-pane-' + id
+						id: 'mw-debug-pane-' + paneId
 					} )
-					.append( panes[ id ] )
+					.append( panes[ paneId ] )
 					.appendTo( $container );
 			}
 
