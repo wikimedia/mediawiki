@@ -19,9 +19,9 @@
 	function addChars( $input, charstr ) {
 		var c, len;
 
-		function x( $input, i ) {
+		function x( $el, i ) {
 			// Add character to the value
-			return $input.val() + charstr.charAt( i );
+			return $el.val() + charstr.charAt( i );
 		}
 
 		for ( c = 0, len = charstr.length; c < len; c += 1 ) {
