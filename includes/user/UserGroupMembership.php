@@ -119,6 +119,7 @@ class UserGroupMembership {
 	 * @deprecated since 1.35, use UserGroupMembership constructor instead
 	 */
 	public static function newFromRow( $row ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return new self(
 			(int)$row->ug_user,
 			$row->ug_group,
@@ -134,6 +135,7 @@ class UserGroupMembership {
 	 * @deprecated since 1.35, use UserGroupManager::getQueryInfo instead
 	 */
 	public static function selectFields() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getUserGroupManager()->getQueryInfo()['fields'];
 	}
 
@@ -147,6 +149,7 @@ class UserGroupMembership {
 	 * @deprecated since 1.35, use UserGroupManager::removeUserFromGroup instead
 	 */
 	public function delete( IDatabase $dbw = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->removeUserFromGroup(
@@ -172,6 +175,7 @@ class UserGroupMembership {
 	 * @deprecated since 1.35, use UserGroupManager::addUserToGroup instead
 	 */
 	public function insert( $allowUpdate = false, IDatabase $dbw = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->addUserToGroup(
@@ -204,6 +208,7 @@ class UserGroupMembership {
 	 * @deprecated since 1.35, use UserGroupManager::purgeExpired instead
 	 */
 	public static function purgeExpired() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->purgeExpired();
@@ -220,6 +225,7 @@ class UserGroupMembership {
 	 * @deprecated since 1.35, use UserGroupManager::getUserGroupMemberships instead
 	 */
 	public static function getMembershipsForUser( $userId, IDatabase $db = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserGroupMemberships(
@@ -244,6 +250,7 @@ class UserGroupMembership {
 	 * @deprecated since 1.35, use UserGroupManager::getUserGroupMemberships instead
 	 */
 	public static function getMembership( $userId, $group, IDatabase $db = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$ugms = MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserGroupMemberships(
