@@ -3,6 +3,9 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.8 ===
+* Added $wgForceHTTPS, which makes the HTTP to HTTPS redirect be unconditional
+  and suppresses various hacks needed to support mixed HTTP/HTTPS wikis. We
+  recommend this be set to true on pure HTTPS wikis.
 
 == MediaWiki 1.31.8 ==
 
