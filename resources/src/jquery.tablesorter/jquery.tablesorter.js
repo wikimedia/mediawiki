@@ -172,14 +172,13 @@
 	}
 
 	function buildParserCache( table, $headers ) {
-		var sortType, len, j, parser,
+		var sortType, j, parser,
 			rows = table.tBodies[ 0 ].rows,
 			config = $( table ).data( 'tablesorter' ).config,
 			cachedParsers = [];
 
 		if ( rows[ 0 ] ) {
-			len = config.columns;
-			for ( j = 0; j < len; j++ ) {
+			for ( j = 0; j < config.columns; j++ ) {
 				parser = false;
 				sortType = $headers.eq( config.columnToHeader[ j ] ).data( 'sortType' );
 				if ( sortType !== undefined ) {
@@ -203,7 +202,6 @@
 			totalRows = ( table.tBodies[ 0 ] && table.tBodies[ 0 ].rows.length ) || 0,
 			config = $( table ).data( 'tablesorter' ).config,
 			cachedParsers = config.parsers,
-			len = cachedParsers.length,
 			cellIndex,
 			cache = {
 				row: [],
@@ -231,7 +229,7 @@
 				$row.data( 'initialOrder', i );
 			}
 
-			for ( j = 0; j < len; j++ ) {
+			for ( j = 0; j < cachedParsers.length; j++ ) {
 				cellIndex = $row.data( 'columnToCell' )[ j ];
 				cols.push( cachedParsers[ j ].format( getElementSortKey( $row[ 0 ].cells[ cellIndex ] ) ) );
 			}
@@ -483,14 +481,14 @@
 	}
 
 	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {
-		var i, len;
+		var i;
 		// Remove all header information and reset titles to default message
 		// The following classes are used here:
 		// * headerSortUp
 		// * headerSortDown
 		$headers.removeClass( css ).attr( 'title', msg[ 2 ] );
 
-		for ( i = 0, len = list.length; i < len; i++ ) {
+		for ( i = 0; i < list.length; i++ ) {
 			// The following classes are used here:
 			// * headerSortUp
 			// * headerSortDown
@@ -646,9 +644,8 @@
 		// cell.parentNode.rowIndex in the sorting function below.
 		$table.find( '> tbody > tr' ).each( function () {
 			var c,
-				col = 0,
-				len = this.cells.length;
-			for ( c = 0; c < len; c++ ) {
+				col = 0;
+			for ( c = 0; c < this.cells.length; c++ ) {
 				$( this.cells[ c ] ).data( 'tablesorter', {
 					realCellIndex: col,
 					realRowIndex: this.rowIndex
