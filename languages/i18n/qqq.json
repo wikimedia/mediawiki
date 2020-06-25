@@ -4021,6 +4021,8 @@
 	"diff-form-revid": "Label for the field of the new revision in the comparison for [[Special:Diff]]",
 	"diff-form-submit": "Submit button on [[Special:Diff]]",
 	"diff-form-summary": "{{doc-specialpagesummary|diff}}",
+	"diff-form-other-revid": "Label for the other options on [[Special:Diff]]",
+	"diff-form-error-revid": "Error message on [[Special:Diff]] for non-numeric input",
 	"permanentlink": "The title of [[Special:PermanentLink]]\n{{Identical|Permalink}}",
 	"permanentlink-revid": "Label for the field for the revision ID in [[Special:PermanentLink]]\n{{Identical|Revision ID}}",
 	"permanentlink-submit": "Submit button on [[Special:PermanentLink]]",
