@@ -988,8 +988,6 @@ because of Phabricator reports.
 * All methods of the old SpecialPageFactory, deprecated in 1.32, were hard
   deprecated. Instead, get a SpecialPageFactory from MediaWikiServices and
   use its methods.
-* User::setNewtalk now accepts as its optional second parameter a
-  RevisionRecord object; passing a Revision is hard deprecated.
 * User::updateNewtalk now accepts as its optional third parameter a
   RevisionRecord object; passing a Revision is hard deprecated.
 * User::getNewMessageRevisionId and ::getNewMessageLinks were hard deprecated.
@@ -1210,7 +1208,7 @@ because of Phabricator reports.
   setOption, listOptionKinds, getOptionKinds, resetOptions. Use corresponding
   methods in UserOptionsLookup or UserOptionsManager service classes instead.
 * UserRetrieveNewTalks hook was deprecated without replacement.
-* User::getNewtalk and ::setNewtalk were deprecated. Use service
+* User::getNewtalk and ::setNewtalk were hard deprecated. Use service
   TalkPageNotificationManager instead.
 * EditPage::matchSpamRegex and ::matchSummarySpamRegex were hard deprecated in
   favor of the new SpamChecker service.

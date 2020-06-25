@@ -2168,6 +2168,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if the user has new messages
 	 */
 	public function getNewtalk() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getTalkPageNotificationManager()
 			->userHasNewMessages( $this );
@@ -2252,13 +2253,13 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Update the 'You have new messages!' status.
 	 * @param bool $val Whether the user has new messages
 	 * @param RevisionRecord|Revision|null $curRev New, as yet unseen revision of the
-	 *   user talk page. Ignored if null or !$val; passing a Revision is deprecated since 1.35.
+	 *   user talk page. Ignored if null or !$val
 	 * @deprecated since 1.35 Use TalkPageNotificationManager::setUserHasNewMessages or
 	 *   TalkPageNotificationManager::removeUserHasNewMessages
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $curRev && $curRev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$curRev = $curRev->getRevisionRecord();
 		}
 		if ( $val ) {
