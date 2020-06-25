@@ -1071,7 +1071,7 @@ because of Phabricator reports.
   - PageContentInsertComplete (soft deprecated, use the PageSaveComplete hook)
   - PageContentSaveComplete (soft deprecated, use the PageSaveComplete hook)
   - RevisionInsertComplete (soft deprecated in 1.31, now hard deprecated)
-  - TitleMoveCompleting (soft deprecated, use the PageMoveCompleting hook)
+  - TitleMoveCompleting (hard deprecated, use the PageMoveCompleting hook)
   - TitleMoveComplete (soft deprecated, use the PageMoveComplete hook)
   - UndeleteShowRevision (hard deprecated)
 * The following RevisionStore methods were deprecated:
