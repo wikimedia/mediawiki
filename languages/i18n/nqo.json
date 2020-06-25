@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"BaRaN6161 TURK",
 			"Babamamadidiane",
 			"Babamamadidianee",
 			"Fitoschido",
@@ -671,7 +672,7 @@
 	"content-json-empty-array": "ߥߟߊ߬ߟߋ߲߬ ߘߐߞߏߟߏ߲",
 	"duplicate-args-warning": "<strong>ߖߊ߬ߛߙߋ߬ߡߊ߬ߟߊ</strong> [[:$1]] ߦߋ߫ ߞߟߌ߫ ߟߊ߫ [[:$2]] ߞߊ߬ ߕߊ߬ߡߌ߲߬ ߡߐ߬ߟߐ߲߬ ߞߋߟߋ߲߫ ߠߊ߫  \"$3\" ߘߊߘߐߓߍ߲ߠߌ߲ ߘߐ߫.ߡߐ߬ߟߐ߲߬ ߡߊߛߐߣߍ߲ ߞߐߟߕߊ ߘߐߙߐ߲߫ ߠߋ߬ ߟߊߓߊ߯ߙߊ߫ ߕߐ߫.",
 	"duplicate-args-category": "ߞߐߜߍ ߦߋ߫ ߘߊߘߐߡߌߘߊߞߎ߲ߢߊ߫ ߓߊߟߌߣߍ߲ ߠߎ߬ ߟߊߓߊ߯ߙߊ߫ ߟߊ߫ ߞߙߊߞߏ ߞߟߌߟߌ ߘߐ߫",
-	"duplicate-args-category-desc": "ߞߙߊߞߏ ߞߟߌߟߌ ߟߎ߬ ߦߋ߫ ߞߐߜߍ ߘߐ߫߸ ߡߍ߲ ߠߎ߬ ߦߋ߫ ߘߊߘߐߡߌߘߊߞߎ߲ߢߊ߫ ߓߊߟߌߣߍ߲ ߠߎ߬ ߟߊߓߊ߯ߙߊ߫ ߟߊ߫߸ ߦߏ߫ <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ߥߟߊ߫ <code><nowiki>{{foo|bar|1=baz}}<nowiki></code>.",
+	"duplicate-args-category-desc": "ߞߙߊߞߏ ߞߟߌߟߌ ߟߎ߬ ߦߋ߫ ߞߐߜߍ ߘߐ߫߸ ߡߍ߲ ߠߎ߬ ߦߋ߫ ߘߊߘߐߡߌߘߊߞߎ߲ߢߊ߫ ߓߊߟߌߣߍ߲ ߠߎ߬ ߟߊߓߊ߯ߙߊ߫ ߟߊ߫߸ ߦߏ߫ <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ߥߟߊ߫ <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "<strong>ߖߊ߬ߛߙߋ߬ߡߊ߬ߟߊ</strong> ߞߐߜߍ ߣߌ߲߬ ߞߣߐߘߐ ߟߎ߬ ߘߐߞߍ߫ ߣߍ߲߫ ߞߎߙߎ߲ߞߎߙߎ߲ߟߊ߲߫ ߘߊߜߍߟߍ߲ߓߊ ߟߎ߬ ߗߋߘߊ ߞߟߌߟߌ ߟߎ߬ ߟߋ߬ ߟߊ߫. \n\nߕߎ߬ߡߊ߬ߘߐ߫ ߊ߬ ߘߌ߫ ߞߍ߫ $2 ߘߎ߰ߟߊ߫ \n{{PLURAL:$2|ߞߟߌߟߌ|ߞߟߌߟߌ ߟߎ߬}}߸ ߘߌ߫ ߞߍ߫ {{PLURAL:$1|ߦߋ߫ ߞߟߌߟߌ $1 ߟߋ߬ ߘߌ߫ ߡߎ߬ߕߎ߲߬|ߦߋ߫ ߞߟߌߟߌ ߟߎ߬ $1 ߟߋ߬ ߘߌ߫ ߡߎ߬ߕߎ߲߬}}.",
 	"parser-template-loop-warning": "ߞߙߊ߬ߞߏ ߞߐ߬ߘߙߍ ߓߘߊ߫ ߖߏ߰ߛߌ߬: [[$1]]",
 	"template-loop-category": "ߞߙߊ߬ߞߏ ߞߐ߬ߘߙߍ ߦߋ߫ ߞߐߜߍ ߡߍ߲ ߠߎ߬ ߠߊ߫",
