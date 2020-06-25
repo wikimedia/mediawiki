@@ -268,7 +268,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated pear/net_smtp from 1.8.1 from to 1.9.0.
 * Updated psr/log from 1.0.2 to 1.1.3.
 * Updated jquery.i18n from 1.0.5 to 1.0.7.
-* Updated guzzlehttp/guzzle from 6.3.3 to 6.5.3.
+* Updated guzzlehttp/guzzle from 6.3.3 to 6.5.4.
 * Updated wikimedia/xmp-reader from 0.6.3 to 0.7.0.
   Fixes error log spam with too-large XMP data, and adds support for GPano tags.
 * Updated wikimedia/base-convert from v2.0.0 to v2.0.1.
