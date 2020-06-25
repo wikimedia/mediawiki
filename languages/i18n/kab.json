@@ -968,6 +968,7 @@
 	"prefs-help-signature": "Iwenniten ɣef isebtar n umeslay ilaq ad illin zmelen s « <nowiki>~~~~</nowiki> », sakin ad i sɛu aselkat ɣer azmul inek/inem dɣa azmez d usrag.",
 	"badsig": "Azmul mačči d ṣaḥiḥ; Ssenqed tags n HTML.",
 	"badsiglength": "Azmul inek/inem, teɣwzi-s tameqqṛant aṭas.\nUr ilaq ara ad i sɛu ugar n $1 {{PLURAL:$1|asekkil|isekkilen}}.",
+	"linter-pager-tidy-whitespace-bug-details": "Abug n usekkil amellal Tidy",
 	"yourgender": "Amek i tebɣiḍ ad n-ini fellak(m) ?",
 	"gender-unknown": "Ur bɣiɣ ara ad iniɣ",
 	"gender-male": "Yebeddel isebtar n wiki",

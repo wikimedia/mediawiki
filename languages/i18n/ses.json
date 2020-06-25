@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"BaRaN6161 TURK",
 			"DannyS712",
 			"Fitoschido",
 			"Macofe",
@@ -822,7 +823,7 @@
 	"prevn-title": "{{PLURAL:$1|hunyan}} $1 bisante",
 	"nextn-title": "jine {{PLURAL:$1|hunyan}} $1",
 	"shown-title": "Cebe {{PLURAL:$1|hunyan}} $1 moo ra",
-	"viewprevnext": "Guna ($1 {{hoobu-fayakaw}} $2) ($3)",
+	"viewprevnext": "Guna ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "<strong>Moo goo kaŋ maaɲoo ti \"[[:$1]]\" wikiyoo woo ga.</strong> {{PLURAL:$2|0=|Guna da ceeci hunyan taney kaŋ fatta.}}",
 	"searchmenu-new": "<strong>Moɲoo tee \"[[:$1]]\" wikiyoo woo ga!</strong> {{PLURAL:$2|0=|Guna da moɲoo kaŋ duwandi nda war ceeciroo.|Guna da ceeci hunyan kaŋ fatta.}}",
 	"searchprofile-articles": "Gundekuna moɲey",

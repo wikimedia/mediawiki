@@ -1137,6 +1137,8 @@
 	"prefs-help-signature": "Kommentit keskustelusivuilla allekirjoitetaan merkinnällä <nowiki>~~~~</nowiki>, joka muuntuu allekirjoitukseksi ja aikaleimaksi.",
 	"badsig": "Allekirjoitus ei kelpaa.",
 	"badsiglength": "Allekirjoitus on liian pitkä – sen on oltava alle $1 {{PLURAL:$1|merkki|merkkiä}}.",
+	"linter-pager-deletable-table-tag-details": "Table-tagi, joka pitäisi poistaa",
+	"linter-pager-missing-end-tag-details": "Missing end tag",
 	"yourgender": "Mikä seuraavista kuvaa sinua?",
 	"gender-unknown": "Kun ohjelmisto mainitsee sinut, sinusta pyritään käyttämään ilmaisuja, jotka eivät määritä sukupuoltasi",
 	"gender-notknown": "En halua mainita",

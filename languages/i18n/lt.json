@@ -1048,6 +1048,7 @@
 	"prefs-help-signature": "Komentarai aptarimų puslapiuose turėtų būti pasirašyti su „<nowiki>~~~~</nowiki>“, kuris bus paverstas į jūsų parašą ir laiką.",
 	"badsig": "Neteisingas parašas; patikrinkite HTML žymes.",
 	"badsiglength": "Jūsų parašas per ilgas.\nJį turi sudaryti ne daugiau kaip $1 {{PLURAL:$1|simbolis|simboliai|simbolių}}.",
+	"linter-pager-missing-end-tag-details": "Trūksta pabaigos žymės",
 	"yourgender": "Lytis:",
 	"gender-unknown": "Jus minėdama programinė įranga naudos kuo neutralesnės giminės žodžius",
 	"gender-male": "Vyras",

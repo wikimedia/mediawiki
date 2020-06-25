@@ -1047,6 +1047,7 @@
 	"prefs-help-signature": "Komentari na stranicama za razgovor trebaju biti potpisani sa \"<nowiki>~~~~</nowiki>\" koje će biti pretvoreno u vaš potpis i vrijeme.",
 	"badsig": "Loš sirovi potpis.\nProvjerite HTML tagove.",
 	"badsiglength": "Vaš potpis je predug.\nMora biti manji od $1 {{PLURAL:$1|znaka|znaka|znakova}}.",
+	"linter-pager-tidy-font-bug-details": "Oznaka font pokušava promijeniti boju linka",
 	"yourgender": "Kako želite da se predstavite?",
 	"gender-unknown": "Kad Vas spominje, softver će koristiti rodno neutralne riječi kad god je to moguće",
 	"gender-notknown": "Ova osoba uređuje wiki stranice",
