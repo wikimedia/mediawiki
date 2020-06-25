@@ -22,7 +22,7 @@
  * @ingroup ResourceLoader
  * @internal
  */
-class ResourceLoaderMwUrlModule extends ResourceLoaderFileModule {
+class ResourceLoaderMwUrlModule {
 
 	/**
 	 * @internal
