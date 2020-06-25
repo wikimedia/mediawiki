@@ -87,6 +87,7 @@ class ContributionsLookup {
 			'target' => $target->getName(),
 		] );
 		$revisions = [];
+		$tags = [];
 		$count = 0;
 		if ( $pager->getNumRows() > 0 ) {
 			foreach ( $pager->mResult as $row ) {
@@ -98,6 +99,8 @@ class ContributionsLookup {
 				// TODO: pre-load title batch?
 				$revision = $this->revisionStore->newRevisionFromRow( $row, 0 );
 				$revisions[] = $revision;
+				$tags[ $row->rev_id ] =
+					$row->ts_tags ? explode( ',', $row->ts_tags ) : [];
 			}
 		}
 
@@ -122,6 +125,6 @@ class ContributionsLookup {
 			$revisions = array_reverse( $revisions );
 		}
 
-		return new ContributionsSegment( $revisions, $before, $after, $flags );
+		return new ContributionsSegment( $revisions, $tags, $before, $after, $flags );
 	}
 }

@@ -14,6 +14,11 @@ class ContributionsSegment {
 	private $revisions;
 
 	/**
+	 * @var string[][]
+	 */
+	private $tags;
+
+	/**
 	 * @var string|null
 	 */
 	private $before;
@@ -32,6 +37,7 @@ class ContributionsSegment {
 	 * ContributionsSegment constructor.
 	 *
 	 * @param RevisionRecord[] $revisions
+	 * @param string[][] $tags An associative array mapping revision IDs to lists of tag names.
 	 * @param string|null $before
 	 * @param string|null $after
 	 * @param array $flags Is an associative array, known fields are:
@@ -40,14 +46,27 @@ class ContributionsSegment {
 	 */
 	public function __construct(
 		array $revisions,
+		array $tags,
 		?string $before,
 		?string $after,
 		array $flags = []
 	) {
 		$this->revisions = $revisions;
+		$this->tags = $tags;
 		$this->before = $before;
 		$this->after = $after;
 		$this->flags = $flags;
+	}
+
+	/**
+	 * Returns an associative array mapping revision IDs to lists of tag names.
+	 *
+	 * @param int $revId a revision ID
+	 *
+	 * @return string[]
+	 */
+	public function getTagsForRevision( $revId ): array {
+		return $this->tags[$revId] ?? [];
 	}
 
 	/**

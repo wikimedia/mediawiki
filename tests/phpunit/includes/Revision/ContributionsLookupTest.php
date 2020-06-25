@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Revision;
 
+use ChangeTags;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
@@ -18,7 +19,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @var array Associative array mapping revision number (e.g. 1 for first revision made) to revision record
+	 * @var RevisionRecord[] Associative array mapping revision number (e.g. 1 for first
+	 *      revision made) to revision record
 	 */
 	private static $storedRevisions;
 
@@ -26,6 +28,11 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @var \User
 	 */
 	private static $testUser;
+
+	/**
+	 * @var string[][]
+	 */
+	private static $storedTags;
 
 	public function addDBDataOnce() {
 		$user = $this->getTestUser()->getUser();
@@ -45,6 +52,28 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		self::$storedRevisions[4] = $this->editPage( __METHOD__ . '_1', 'Lorem Ipsum 4', 'test', NS_TALK, $user )
 			->getValue()['revision-record'];
 
+		$tag1 = 'test-ContributionsLookup-1';
+		$tag2 = 'test-ContributionsLookup-2';
+
+		ChangeTags::defineTag( $tag1 );
+		ChangeTags::defineTag( $tag2 );
+
+		self::$storedTags = [
+			1 => [],
+			2 => [ $tag1, $tag2 ],
+			3 => [ $tag2 ],
+			4 => [],
+		];
+
+		foreach ( self::$storedTags as $idx => $tags ) {
+			if ( !$tags ) {
+				continue;
+			}
+
+			$revId = self::$storedRevisions[$idx]->getId();
+			ChangeTags::addTags( $tags, null, $revId );
+		}
+
 		ConvertibleTimestamp::setFakeTime( false );
 	}
 
@@ -52,33 +81,15 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetListOfRevisionsByUserIdentity() {
-		$clock = (int)ConvertibleTimestamp::now( TS_UNIX );
-
-		ConvertibleTimestamp::setFakeTime( function () use ( &$clock ) {
-			return ++$clock;
-		} );
-
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
 		$performer = self::$testUser;
 
-		$contribs =
-			$contributionsLookup->getContributions( self::$testUser, 2, $performer )->getRevisions();
+		$segment =
+			$contributionsLookup->getContributions( self::$testUser, 2, $performer );
 
-		$this->assertCount( 2, $contribs );
-		$this->assertSame( self::$storedRevisions[4]->getId(), $contribs[0]->getId() );
-		$this->assertSame( self::$storedRevisions[3]->getId(), $contribs[1]->getId() );
-		$this->assertInstanceOf( RevisionRecord::class, $contribs[0] );
-		$this->assertEquals( self::$testUser->getName(), $contribs[0]->getUser()->getName() );
-		$this->assertEquals(
-			self::$storedRevisions[4]->getPageAsLinkTarget()->getPrefixedDBkey(),
-			$contribs[0]->getPageAsLinkTarget()->getPrefixedDBkey()
-		);
-		$this->assertEquals(
-			self::$storedRevisions[3]->getPageAsLinkTarget()->getPrefixedDBkey(),
-			$contribs[1]->getPageAsLinkTarget()->getPrefixedDBkey()
-		);
 		// Desc order comes back from db query
+		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
 	}
 
 	/**
@@ -110,35 +121,47 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $segment3->getBefore() );
 		$this->assertFalse( $segment3->isOldest() );
 
-		$expectedSegmentOneRevisions = [ self::$storedRevisions[4], self::$storedRevisions[3] ];
-		$expectedSegmentTwoRevisions = [ self::$storedRevisions[2], self::$storedRevisions[1] ];
-
-		$this->assertSegmentRevisions( $expectedSegmentOneRevisions, $segment1 );
-		$this->assertSegmentRevisions( $expectedSegmentTwoRevisions, $segment2 );
-		$this->assertSegmentRevisions( $expectedSegmentOneRevisions, $segment3 );
+		$this->assertSegmentRevisions( [ 4, 3 ], $segment1 );
+		$this->assertSegmentRevisions( [ 2, 1 ], $segment2 );
+		$this->assertSegmentRevisions( [ 4, 3 ], $segment3 );
 	}
 
 	/**
-	 * @param RevisionRecord[] $expectedRevisions
+	 * @param int[] $expectedRevisions A list of indexes into self::$storedRevisions
 	 * @param ContributionsSegment $segmentObject
 	 */
 	private function assertSegmentRevisions( $expectedRevisions, $segmentObject ) {
-		/** @var RevisionRecord[] $actualRevisions */
-		$actualRevisions = array_values( $segmentObject->getRevisions() );
-		$this->assertSameSize( $expectedRevisions, $actualRevisions );
-		foreach ( $expectedRevisions as $idx => $rev ) {
-			$this->assertSame( $rev->getId(), $actualRevisions[$idx]->getId() );
+		$revisions = $segmentObject->getRevisions();
+
+		$this->assertSameSize( $expectedRevisions, $revisions );
+
+		foreach ( $expectedRevisions as $idx => $editNumber ) {
+			$expected = self::$storedRevisions[$editNumber];
+			$actual = $revisions[$idx];
+			$this->assertSame( $expected->getId(), $actual->getId() );
+			$this->assertSame( $expected->getPageId(), $actual->getPageId() );
+			$this->assertSame(
+				$expected->getPageAsLinkTarget()->getPrefixedDBkey(),
+				$actual->getPageAsLinkTarget()->getPrefixedDBkey()
+			);
+
+			$expectedUser = $expected->getUser( RevisionRecord::RAW )->getName();
+			$actualUser = $actual->getUser( RevisionRecord::RAW )->getName();
+			$this->assertSame( $expectedUser, $actualUser );
+
+			$expectedTags = self::$storedTags[ $editNumber ];
+			$this->assertRevisionTags( $expectedTags, $segmentObject, $actual );
 		}
 	}
 
 	public function provideBadSegmentMarker() {
-	 yield [ '' ];
-	 yield [ '|' ];
-	 yield [ '0' ];
-	 yield [ '9' ];
-	 yield [ 'x|0' ];
-	 yield [ 'x|9' ];
-	 yield [ 'x|x' ];
+		yield [ '' ];
+		yield [ '|' ];
+		yield [ '0' ];
+		yield [ '9' ];
+		yield [ 'x|0' ];
+		yield [ 'x|9' ];
+		yield [ 'x|x' ];
 	}
 
 	/**
@@ -147,9 +170,9 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	public function testBadSegmentMarkerReturnsLatestSegment( $segment ) {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
-		$expectedRevisions = [ self::$storedRevisions[4], self::$storedRevisions[3] ];
+
 		$segment = $contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment );
-		$this->assertSegmentRevisions( $expectedRevisions, $segment );
+		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
 	}
 
 	public function testPermissionChecksAreApplied() {
@@ -172,12 +195,29 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 2, $this->db->affectedRows() );
 
 		// anons should not see suppressed contribs
-		$contribs = $contributionsLookup->getContributions( $editingUser, 10, $anon );
-		$this->assertCount( 2, $contribs->getRevisions() );
+		$segment = $contributionsLookup->getContributions( $editingUser, 10, $anon );
+		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
 
 		// sysop also gets suppressed contribs
-		$contribs = $contributionsLookup->getContributions( $editingUser, 10, $sysop );
-		$this->assertCount( 4, $contribs->getRevisions() );
+		$segment = $contributionsLookup->getContributions( $editingUser, 10, $sysop );
+		$this->assertSegmentRevisions( [ 4, 3, 2, 1 ], $segment );
+	}
+
+	/**
+	 * @param array $expectedTags
+	 * @param ContributionsSegment $segmentObject
+	 * @param RevisionRecord $actual
+	 */
+	private function assertRevisionTags(
+		array $expectedTags,
+		ContributionsSegment $segmentObject,
+		RevisionRecord $actual
+	): void {
+		// FIXME: fails under postgres, see T195807
+		if ( $this->db->getType() !== 'postgres' ) {
+			$actualTags = $segmentObject->getTagsForRevision( $actual->getId() );
+			$this->assertArrayEquals( $expectedTags, $actualTags );
+		}
 	}
 
 }

@@ -42,28 +42,28 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		return array_slice( $revisions, $segment - 1, $limit );
 	}
 
-	private function newHandler( $numRevisions = 5, $flags = [] ) {
+	private function newHandler( $numRevisions = 5, $tags = [], $flags = [] ) {
 		/** @var MockObject|ContributionsLookup $mockContributionsLookup */
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
-			[ 'getRevisionsByUser' ]
+			[ 'getContributions' ]
 		);
 		$user = new UserIdentityValue( 0, 'test', 0 );
 		$fakeRevisions = $this->makeFakeRevisions( $user, $numRevisions, 2 );
-		$fakeSegment = $this->makeSegment( $fakeRevisions, $flags );
-		$mockContributionsLookup->method( 'getRevisionsByUser' )->willReturn( $fakeSegment );
+		$fakeSegment = $this->makeSegment( $fakeRevisions, $tags, $flags );
+		$mockContributionsLookup->method( 'getContributions' )->willReturn( $fakeSegment );
 		$handler = new UserContributionsHandler( $mockContributionsLookup );
 		return $handler;
 	}
 
-	private function makeSegment( $revisions, $flags = [] ) {
+	private function makeSegment( $revisions, array $tags = [], array $flags = [] ) {
 		if ( $revisions !== [] ) {
 			$latestRevision = $revisions[ count( $revisions ) - 1 ];
 			$earliestRevision = $revisions[0];
 			$before = 'before|' . $latestRevision->getTimestamp();
 			$after = 'after|' . $earliestRevision->getTimestamp();
-			return new ContributionsSegment( $revisions, $before, $after, $flags );
+			return new ContributionsSegment( $revisions, $tags, $before, $after, $flags );
 		}
-		return new ContributionsSegment( $revisions, null, null, $flags );
+		return new ContributionsSegment( $revisions, $tags, null, null, $flags );
 	}
 
 	public function provideTestThatParametersAreHandledCorrectly() {
@@ -96,7 +96,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testThatParametersAreHandledCorrectly( RequestInterface $request ) {
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
-			[ 'getRevisionsByUser' ]
+			[ 'getContributions' ]
 		);
 		$user = $this->makeMockUser( false );
 		RequestContext::getMain()->setUser( $user );
@@ -107,7 +107,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 
 		$limit = $request->getQueryParams()['limit'] ?? self::DEFAULT_LIMIT;
 		$segment = $request->getQueryParams()['segment'] ?? null;
-		$mockContributionsLookup->method( 'getRevisionsByUser' )
+		$mockContributionsLookup->method( 'getContributions' )
 			->with( $user, $limit, $user, $segment )
 			->willReturn( $fakeSegment );
 
@@ -141,6 +141,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	public function provideThatResponseConformsToSchema() {
 		$basePath = 'https://wiki.example.com/rest/me/contributions';
 		yield [ 0,
+			[],
 			[ 'newest' => true, 'oldest' => true ],
 			[
 				'older' => null,
@@ -150,6 +151,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 			]
 		];
 		yield [ 1,
+			[ 1 => [ 'frob' ] ],
 			[ 'newest' => true, 'oldest' => true ],
 			[
 				'older' => null,
@@ -161,6 +163,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'comment' => 'Edit 1',
 						'timestamp' => '2020-01-01T00:00:01Z',
 						'size' => 256,
+						'tags' => [ 'frob' ],
 						'page' => [
 							'id' => 1,
 							'key' => 'Main_Page',
@@ -171,6 +174,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 			]
 		];
 		yield [ 5,
+			[ 5 => [ 'frob', 'nitz' ] ],
 			[ 'newest' => true ],
 			[
 				'older' => $basePath . '?limit=20&segment=before%7C20200101000004',
@@ -182,6 +186,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'comment' => 'Edit 5',
 						'timestamp' => '2020-01-01T00:00:05Z',
 						'size' => 256,
+						'tags' => [ 'frob', 'nitz' ],
 						'page' => [
 							'id' => 1,
 							'key' => 'Main_Page',
@@ -193,6 +198,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'comment' => 'Edit 4',
 						'timestamp' => '2020-01-01T00:00:04Z',
 						'size' => 256,
+						'tags' => [],
 						'page' => [
 							'id' => 1,
 							'key' => 'Main_Page',
@@ -207,8 +213,8 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideThatResponseConformsToSchema
 	 */
-	public function testThatResponseConformsToSchema( $numRevisions, $flags, $expectedResponse ) {
-		$handler = $this->newHandler( $numRevisions, $flags );
+	public function testThatResponseConformsToSchema( $numRevisions, $tags, $flags, $expectedResponse ) {
+		$handler = $this->newHandler( $numRevisions, $tags, $flags );
 		$request = new RequestData( [] );
 
 		$user = $this->makeMockUser( false );
