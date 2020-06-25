@@ -330,11 +330,17 @@ class WebInstaller extends Installer {
 			return true;
 		}
 
+		// Use secure cookies if we are on HTTPS
+		$options = [];
+		if ( $this->request->getProtocol() === 'https' ) {
+			$options['cookie_secure'] = '1';
+		}
+
 		$this->phpErrors = [];
 		set_error_handler( [ $this, 'errorHandler' ] );
 		try {
 			session_name( 'mw_installer_session' );
-			session_start();
+			session_start( $options );
 		} catch ( Exception $e ) {
 			restore_error_handler();
 			throw $e;
