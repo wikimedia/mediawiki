@@ -43,5 +43,12 @@ wfEntryPointCheck( 'html', dirname( $_SERVER['SCRIPT_NAME'] ) );
 
 require __DIR__ . '/includes/WebStart.php';
 
-$mediaWiki = new MediaWiki();
-$mediaWiki->run();
+wfIndexMain();
+
+function wfIndexMain() {
+	// @todo Deprecate global $mediaWiki
+	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+	global $mediaWiki;
+	$mediaWiki = new MediaWiki();
+	$mediaWiki->run();
+}
