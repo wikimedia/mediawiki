@@ -79,13 +79,17 @@ $wgVersion = MW_VERSION;
  */
 $wgSitename = 'MediaWiki';
 
-/**
- * When the wiki is running behind a proxy and this is set to true, assumes that the proxy exposes
- * the wiki on the standard ports (443 for https and 80 for http).
- * @var bool
- * @since 1.26
+/************************************************************************//**
+ * @name   Server URLs and file paths
+ *
+ * In this section, a "path" is usually a host-relative URL, i.e. a URL without
+ * the host part, that starts with a slash. In most cases a full URL is also
+ * acceptable. A "directory" is a local file path.
+ *
+ * In both paths and directories, trailing slashes should not be included.
+ *
+ * @{
  */
-$wgAssumeProxiesUseDefaultProtocolPorts = true;
 
 /**
  * URL of the server.
@@ -120,10 +124,26 @@ $wgCanonicalServer = false;
  */
 $wgServerName = false;
 
-/************************************************************************//**
- * @name   Script path settings
- * @{
+/**
+ * When the wiki is running behind a proxy and this is set to true, assumes that the proxy exposes
+ * the wiki on the standard ports (443 for https and 80 for http).
+ * @var bool
+ * @since 1.26
  */
+$wgAssumeProxiesUseDefaultProtocolPorts = true;
+
+/**
+ * For installations where the canonical server is HTTP but HTTPS is optionally
+ * supported, you can specify a non-standard HTTPS port here. $wgServer should
+ * be a protocol-relative URL.
+ *
+ * If HTTPS is always used, just specify the port number in $wgServer.
+ *
+ * @see https://phabricator.wikimedia.org/T67184
+ *
+ * @since 1.24
+ */
+$wgHttpsPort = 443;
 
 /**
  * The path we should point to.
@@ -158,24 +178,6 @@ $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'isapi' ) === false );
 
 /** @} */
-
-/************************************************************************//**
- * @name   URLs and file paths
- *
- * These various web and file path variables are set to their defaults
- * in Setup.php if they are not explicitly set from LocalSettings.php.
- *
- * These will relatively rarely need to be set manually, unless you are
- * splitting style sheets or images outside the main document root.
- *
- * In this section, a "path" is usually a host-relative URL, i.e. a URL without
- * the host part, that starts with a slash. In most cases a full URL is also
- * acceptable. A "directory" is a local file path.
- *
- * In both paths and directories, trailing slashes should not be included.
- *
- * @{
- */
 
 /**
  * The URL path to index.php.
@@ -9080,19 +9082,6 @@ $wgSiteTypes = [
  * @since 1.23
  */
 $wgPagePropsHaveSortkey = true;
-
-/**
- * For installations where the canonical server is HTTP but HTTPS is optionally
- * supported, you can specify a non-standard HTTPS port here. $wgServer should
- * be a protocol-relative URL.
- *
- * If HTTPS is always used, just specify the port number in $wgServer.
- *
- * @see https://phabricator.wikimedia.org/T67184
- *
- * @since 1.24
- */
-$wgHttpsPort = 443;
 
 /**
  * Secret for session storage.
