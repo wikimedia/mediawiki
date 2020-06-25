@@ -619,8 +619,8 @@ because of Phabricator reports.
 * GenderCache::doTitlesArray no longer accepts string values in its $titles
   array parameter. Use Title objects (or other LinkTarget) instead.
 * Unused CommentStore::MAX_COMMENT_LENGTH has been removed.
-* User::checkTemporaryPassword(), deprecated in 1.27, was removed. Use
-  AuthManager instead.
+* User::checkTemporaryPassword() and User::checkPassword(), deprecated in 1.27,
+  were removed. Use AuthManager instead.
 * All constants and class functions now have explicit visibility modifiers. This
   means, per [[mw:Stable interface policy]], that these should now be considered
   stable. This also helps MW align with PSR 2 and PSR 12. This was done based on
