@@ -2417,19 +2417,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Set the password and reset the random token unconditionally.
-	 *
-	 * @deprecated since 1.27, use AuthManager instead
-	 * @param string|null $str New password to set or null to set an invalid
-	 *  password hash meaning that the user will not be able to log in
-	 *  through the web interface.
-	 */
-	public function setInternalPassword( $str ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		$this->setPasswordInternal( $str );
-	}
-
-	/**
 	 * Actually set the password and such
 	 * @since 1.27 cannot set a password for a user not in the database
 	 * @param string|null $str New password to set or null to set an invalid

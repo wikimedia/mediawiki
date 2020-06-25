@@ -682,6 +682,8 @@ because of Phabricator reports.
 * The deprecated $blacklist parameter to wfIsBadImage() has been removed.
 * SpecialBlock::checkUnblockSelf no longer accepts an integer representing
   an user ID as part of ongoing refactoring of SpecialBlock class.
+* User::setInternalPassword(), deprecated in 1.27, has been removed.
+  Use AuthManager instead.
 * …
 
 === Deprecations in 1.35 ===
