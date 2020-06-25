@@ -985,7 +985,6 @@
 	"prefs-help-signature": "Pamanggih dina kaca sawala/obrolan kudu ditandaan \"<nowiki>~~~~</nowiki>\" nu bakal robah jadi tanda tangan anjeun jeung titimangsana.",
 	"badsig": "Parafna teu valid; pariksa tag HTML-na geura.",
 	"badsiglength": "Tawis leungeun panjang teuing. Kuduna kurang ti $1 {{PLURAL:$1|karaktér|karaktér}}.",
-	"linter-pager-deletable-table-tag-details": "Ciciri tabél kuduna dipupus",
 	"yourgender": "Anjeun leuwih resep didéskripsikeunna kumaha?",
 	"gender-unknown": "Nalika nyebut anjeun, pakakas lemes bakal ngagunakeun kekecapan nu nétral waktu diperlukeun",
 	"gender-male": "Manéhna ngédit kaca wiki",

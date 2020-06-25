@@ -1053,8 +1053,6 @@
 	"prefs-help-signature": "Dleout a rafe an evezhiadennoù war ar pajennoù kaozeal bezañ sinet gant \"<nowiki>~~~~</nowiki>\" a vo treuzfurmet en ho sinadur hag euriet.",
 	"badsig": "Direizh eo ho sinadur kriz; gwiriit ho palizennoù HTML.",
 	"badsiglength": "Re hir eo ho sinadur.\nDre ret e rank bezañ nebeutoc'h eget {{PLURAL:$1|arouezenn|arouezenn}} ennañ.",
-	"linter-pager-deletable-table-tag-details": "Balizenn taolenn a zlefe bezañ lamet",
-	"linter-pager-misnested-tag-details": "Balizenn emboested fall",
 	"yourgender": "Penaos eo plij deoc'h bezañ deskrivet ?",
 	"gender-unknown": "Pa vo graet anv ac'hanoc'h gant ar meziant e vo graet gant gerioù dic'hour bep tro ma vo posupl",
 	"gender-notknown": "Kemmañ a reont pajennoù er wiki",

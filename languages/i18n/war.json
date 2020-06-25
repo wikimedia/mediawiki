@@ -1597,7 +1597,7 @@
 	"contributions-title": "Mga amot han gumaramit para ha $1",
 	"mycontris": "Mga ámot nakon",
 	"anoncontribs": "Mga amot",
-	"contribsub2": "Para {{GENDER:$3|$1}} ($2)",
+	"contribsub2": "Para {{HENERO:$3|$1}} ($2)",
 	"nocontribs": "Waray pagliwat an nabilngan han nauyon hini nga criteria.",
 	"uctop": "pagkayana",
 	"month": "Tikang ha bulan (ngan uruunhan):",

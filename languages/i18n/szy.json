@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Akamycoco",
-			"BaRaN6161 TURK",
 			"Benel",
 			"Bunukwiki",
 			"DannyS712",
@@ -130,9 +129,9 @@
 	"category-empty": "<em>tina kakuniza ayza caay yamalyilu kasabelih saca myiti.</em>",
 	"hidden-categories": "{{PLURAL:$1|midimut kakuniza}}",
 	"hidden-category-category": "midimut kakuniza",
-	"category-subcat-count": "{{PLURAL:$2|uyni kakuniza hatiza ku cacay yamalyilu sailuc-kakuniza. kina kakuniza yamalyilu isasa $2 a sailuc-kasasizuma, ilabu {{PLURAL:$1}} mahiza ku isasaay}}",
+	"category-subcat-count": "{{PLURAL:$2|uyni kakuniza hatiza ku cacay yamalyilu sailuc-kakuniza. kina kakuniza yamalyilu isasa $2 a sailuc-kasasizuma, ilabu {{PLURAL：$1}}mahiza ku isasaay}}",
 	"category-subcat-count-limited": "uyni kakuniza yamalyilu isasa’ay {{PLURAL:$1|sailuc-kakuniza}}.",
-	"category-article-count": "{{PLURAL:$2|uyni kakuniza hatiza ku cacay yamalyilu sailuc-kakuniza. kina kakuniza yamalyilu isasa $2 a sailuc-kasasizuma, ilabu {{PLURAL$1}}mahiza ku isasaay}}",
+	"category-article-count": "{{PLURAL:$2|uyni kakuniza hatiza ku cacay yamalyilu sailuc-kakuniza. kina kakuniza yamalyilu isasa $2 a sailuc-kasasizuma, ilabu {{PLURAL：$1}}mahiza ku isasaay}}",
 	"category-article-count-limited": "isasa’ay a {{PLURAL:$1|kasabelih ku}} i masitudungay a kakuniza.",
 	"category-file-count": "{{PLURAL:$2|kakuniza yamalyilu isasaay a cacay ku tangan. kakuniza yamalyilu isasaay izaway $1 ku tangan, pulung $2 makalaan.}}",
 	"listingcontinuesabbrev": "palalid",

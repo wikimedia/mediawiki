@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Aguve",
-			"BaRaN6161 TURK",
 			"Cbrown1023",
 			"Enock4seth",
 			"Hello903hello",
@@ -367,7 +366,7 @@
 	"lineno": "Fli $1:",
 	"compareselectedversions": "Tsɔ esiwo netia la tsɔ kpli wonɔewo",
 	"editundo": "gbugbɔe",
-	"diff-multi-sameuser": "({{PLURAL:$1|Ezalãa ƒe numetoto ɖeka|$1 intermediate revisions}} medze o)",
+	"diff-multi-sameuser": "({{AGBƆSƆSƆTƆ:$1|Ezalãa ƒe numetoto ɖeka|$1 intermediate revisions}} medze o)",
 	"searchresults": "Nusiwo nedi",
 	"searchresults-title": "Nusiwo wofɔ le \"$1\" didi me",
 	"notextmatches": "Axa aɖeke ƒe nyawo mesɔ kple esiawo o.",
@@ -630,7 +629,7 @@
 	"tooltip-summary": "Ŋlɔ numeɖeɖe kpui aɖe",
 	"simpleantispam-label": "Ŋkuléle ɖe Anti-spam ŋu.\nŊlɔ esia <strong> ɖe eme ke menye esia </strong> o!",
 	"pageinfo-subpages-name": "Axa sia ƒe axamexɛwo ƒe xexlẽme",
-	"pageinfo-magic-words": "Madziki {{PLURAL:$1|nya|nyawo}} ($1)",
+	"pageinfo-magic-words": "Madziki {{GBƆSƆSƆTƆ:$1|nya|nyawo}} ($1)",
 	"pageinfo-toolboxlink": "Axaa ŋuti nyatakaka",
 	"previousdiff": "← Tata xoxoa",
 	"nextdiff": "Tɔtrɔ yeyea →",
@@ -656,7 +655,7 @@
 	"tag-list-wrapper": "[[Tɔxɛ: Desidenyawo|{{PLURAL:$1|Desidenya|Desidenyawo}}]]: $2",
 	"tags-edit": "trɔ asi le eŋu",
 	"logentry-move-move": "$1 {{ŊUTSU/NYƆNU:$2|moved}} axa $3 yi $4",
-	"logentry-newusers-create": "Ezazãŋkɔ $1 la {{GENDER:$2|wɔ vɔ}}",
+	"logentry-newusers-create": "Ezazãŋkɔ $1 la {{AMENYENYE:$2|wɔ vɔ}}",
 	"logentry-upload-upload": "Nedze",
 	"searchsuggest-search": "Di {{SITENAME}}",
 	"expand_templates_preview": "Kpɔe do ŋgɔ"

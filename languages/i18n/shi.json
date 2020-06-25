@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Amara-Amaziɣ",
-			"BaRaN6161 TURK",
 			"Dalinanir",
 			"DannyS712",
 			"Ebe123",
@@ -379,7 +378,7 @@
 	"template-semiprotected": "Azin-ugdal",
 	"hiddencategories": "ⵜⵍⵍⴰ ⵜⴰⵙⵏⴰ ⴰⴷ ⵖ {{PLURAL:$1|1 ⵜⴰⴳⴳⴰⵢⵜ ⵉⵏⵜⵍⵏ|$1 ⵜⴰⴳⴳⴰⵢⵉⵏ ⵏⵜⵍⵏⵉⵏ}}:",
 	"permissionserrors": "ⵜⴰⵣⴳⵍⵜ ⵖ ⵜⵓⵔⴰⴳⵜ",
-	"permissionserrorstext-withaction": "Urak ittuyskar  {{PLURAL:||e|(e)}} s $2, bac {{PLURAL:$1|s wacku yad|iwackutn ad}} :",
+	"permissionserrorstext-withaction": "Urak ittuyskar  {{IGGUT:||e|(e)}} s $2, bac {{PLURAL:$1|s wacku yad|iwackutn ad}} :",
 	"recreate-moveddeleted-warn": "<strong>ⵔⴰⵔ ⵜⴰⵖⴹⴼⵜ: ⵀⴰ ⵜ ⴰⵔ ⴷⴰⵖ ⵜⵙⵏⵓⵍⴼⵓⵜ ⵢⴰⵜ ⵜⴰⵙⵏⴰ ⵢⴰⴷ ⵉⵜⵜⵡⴰⴽⴽⵙⵏ.</strong>\n\nYou should consider whether it is appropriate to continue editing this page.\nⴰⵍⵓⴳ ⵏ ⵡⵓⴽⵓⵙ ⴷ ⵓⵙⵎⵓⵜⵜⵉ ⵏ ⵜⴰⵙⵏⴰ ⴰⴷ ⵜⵜⵢⴰⵡⴼⵙⵔⵏ ⴷⴷⴰⵡ ⴰⵙ for convenience:",
 	"moveddeleted-notice": "ⵜⴻⵜⵜⵡⴰⴽⴽⵙ ⵜⴰⵙⵏⴰ ⴰⴷ.\nⵜⵓⴽⴽⵙⴰ, ⴰⴼⵔⴰⴳ, ⴷ ⵓⵙⵎⵓⵜⵜⵉ ⵏ ⵜⴰⵙⵏⴰ ⵍⵍⴰⵏ ⴷⴷⴰⵡ‒ⴰⵙ for reference.",
 	"log-fulllog": "Zṛ anɣmas izun (usmmid)",
