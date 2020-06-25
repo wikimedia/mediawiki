@@ -18,9 +18,9 @@ interface ParserOutputPostCacheTransformHook {
 	 * @param ParserOutput $parserOutput
 	 * @param string &$text Text being transformed, before core transformations are done
 	 * @param array &$options Options array being used for the transformation
-	 * @return bool|void This hook must not abort, it must return true or null.
+	 * @return void This hook must not abort, it must return no value
 	 */
 	public function onParserOutputPostCacheTransform( $parserOutput, &$text,
 		&$options
-	);
+	) : void;
 }
