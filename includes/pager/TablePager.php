@@ -112,7 +112,6 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
 	protected function getStartBody() {
@@ -164,7 +163,6 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * @protected
 	 * @return string
 	 */
 	protected function getEndBody() {
@@ -446,8 +444,6 @@ abstract class TablePager extends IndexPager {
 	 * The current result row is available as $this->mCurrentRow, in case you
 	 * need more context.
 	 *
-	 * @protected
-	 *
 	 * @param string $name The database field name
 	 * @param string $value The value retrieved from the database
 	 */
@@ -459,8 +455,6 @@ abstract class TablePager extends IndexPager {
 	 * Note that this field will only be sorted on if isFieldSortable returns
 	 * true for this field. If not (e.g. paginating on multiple columns), this
 	 * should return empty string, and getIndexField should be overridden.
-	 *
-	 * @protected
 	 *
 	 * @return string
 	 */

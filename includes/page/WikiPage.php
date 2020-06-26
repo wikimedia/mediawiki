@@ -54,29 +54,36 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @var Title
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mTitle = null;
 
 	/**
 	 * @var bool
-	 * @protected
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mDataLoaded = false;
 
 	/**
 	 * @var bool
-	 * @protected
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mIsRedirect = false;
 
 	/**
 	 * @var int|false False means "not loaded"
-	 * @protected
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mLatest = false;
 
 	/**
 	 * @var PreparedEdit|false Map of cache fields (text, parser output, ect) for a proposed/new edit
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mPreparedEdit = false;
 
