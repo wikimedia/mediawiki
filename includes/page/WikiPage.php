@@ -1921,7 +1921,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 *  $return->value will contain an associative array with members as follows:
 	 *     new: Boolean indicating if the function attempted to create a new article.
-	 *     revision: The revision object for the inserted revision, or null.
+	 *     revision: The revision object for the inserted revision, or null. Trying to access
+	 *       this Revision object is deprecated since 1.35
+	 *     revision-record: The RevisionRecord object for the inserted revision, or null.
 	 *
 	 * @since 1.21
 	 * @throws MWException

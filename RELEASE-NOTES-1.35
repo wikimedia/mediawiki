@@ -1204,6 +1204,10 @@ because of Phabricator reports.
 * Parser::statelessFetchTemplate returns an array; accessing the Revision
   object returned (via the `revision` key to the array) is deprecated. Instead,
   use `revision-record` to retrieve the equivalent RevisionRecord.
+* WikiPage::doEditContent returns an array, and PageUpdater::getStatus returns
+  a Status object with an array value. For both of those arrays, accessing the
+  Revision object returned (via the `revision` key to the array) is deprecated.
+  Instead, use `revision-record` to retrieve the equivalent RevisionRecord.
 * Page interface was deprecated. Use Article or WikiPage instead.
 * The following DatabaseBlock methods are deprecated because they are no longer
   needed in core: chooseBlock, fromMaster, deleteIfExpired.

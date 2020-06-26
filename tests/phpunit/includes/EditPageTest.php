@@ -291,7 +291,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
 			) use ( &$checkId ) {
-				$checkId = $status->value['revision']->getId();
+				$checkId = $status->value['revision-record']->getId();
 				// types/refs checked
 			} ],
 		] );
@@ -332,7 +332,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
 			) use ( &$checkIds ) {
-				$checkIds[] = $status->value['revision']->getId();
+				$checkIds[] = $status->value['revision-record']->getId();
 				// types/refs checked
 			} ],
 		] );
@@ -388,7 +388,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
 			) use ( &$checkIds ) {
-				$checkIds[] = $status->value['revision']->getId();
+				$checkIds[] = $status->value['revision-record']->getId();
 				// types/refs checked
 			} ],
 		] );
@@ -442,7 +442,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
 			) use ( &$checkIds ) {
-				$checkIds[] = $status->value['revision']->getId();
+				$checkIds[] = $status->value['revision-record']->getId();
 				// types/refs checked
 			} ],
 		] );
