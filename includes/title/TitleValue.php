@@ -65,7 +65,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * Only public to share cache with TitleFormatter
 	 *
-	 * @private
+	 * @internal
 	 * @var string
 	 */
 	public $prefixedText = null;

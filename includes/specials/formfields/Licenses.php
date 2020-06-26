@@ -88,7 +88,7 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @private
+	 * @internal
 	 */
 	protected function makeLines() {
 		$levels = [];

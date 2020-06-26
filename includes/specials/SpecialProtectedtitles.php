@@ -111,7 +111,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @param string $type
 	 * @param string $level
 	 * @return string
-	 * @private
+	 * @internal
 	 */
 	private function showOptions( $namespace, $type, $level ) {
 		$formDescriptor = [
@@ -138,7 +138,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	/**
 	 * @param string $pr_level Determines which option is selected as default
 	 * @return string|array
-	 * @private
+	 * @internal
 	 */
 	private function getLevelMenu( $pr_level ) {
 		// Temporary array

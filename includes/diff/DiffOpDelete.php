@@ -29,7 +29,7 @@
  * Extends DiffOp. Used to mark strings that have been
  * deleted from the first string array.
  *
- * @private
+ * @internal
  * @ingroup DifferenceEngine
  */
 class DiffOpDelete extends DiffOp {

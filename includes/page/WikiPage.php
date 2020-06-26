@@ -1463,7 +1463,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param null|bool $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
 	 * @return bool True on success, false on failure
-	 * @private
+	 * @internal
 	 */
 	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
 		// Always update redirects (target link might have changed)

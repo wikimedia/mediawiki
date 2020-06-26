@@ -29,7 +29,7 @@
  * Extends DiffOp. Used to mark strings that have been
  * copied from one string array to the other.
  *
- * @private
+ * @internal
  * @ingroup DifferenceEngine
  */
 class DiffOpCopy extends DiffOp {

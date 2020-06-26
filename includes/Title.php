@@ -69,7 +69,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	/**
 	 * @name Private member variables
 	 * Please use the accessor functions instead.
-	 * @private
+	 * @internal
 	 */
 	// @{
 
@@ -143,7 +143,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 *
 	 * Only public to share cache with TitleFormatter
 	 *
-	 * @private
+	 * @internal
 	 * @var string|null
 	 */
 	public $prefixedText = null;
@@ -1778,7 +1778,7 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * or Title::createFragmentTarget().
 	 * Still in active use privately.
 	 *
-	 * @private
+	 * @internal
 	 * @param string $fragment Text
 	 */
 	public function setFragment( $fragment ) {

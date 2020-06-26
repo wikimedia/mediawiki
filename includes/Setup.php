@@ -445,7 +445,7 @@ if ( $wgEnableEmail ) {
 
 /**
  * Definitions of the NS_ constants are in Defines.php
- * @private
+ * @internal
  */
 $wgCanonicalNamespaceNames = NamespaceInfo::CANONICAL_NAMES;
 
