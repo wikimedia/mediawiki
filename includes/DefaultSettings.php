@@ -4827,7 +4827,10 @@ $wgCentralIdLookupProvider = 'local';
  *	- PasswordCannotBeSubstringInUsername - Password cannot be a substring
  *		(contained within) the username.
  *	- PasswordCannotMatchBlacklist - Username/password combination cannot
- *		match a blacklist of default passwords used by MediaWiki in the past.
+ *		match a list of default passwords used by MediaWiki in the past.
+ *		Deprecated since 1.35, use PasswordCannotMatchDefaults instead.
+ *	- PasswordCannotMatchDefaults - Username/password combination cannot
+ *		match a list of default passwords used by MediaWiki in the past.
  *	- PasswordNotInLargeBlacklist - Password not in best practices list of
  *		100,000 commonly used passwords. Due to the size of the list this
  *		is a probabilistic test.
@@ -4872,7 +4875,7 @@ $wgPasswordPolicy = [
 				'value' => true,
 				'suggestChangeOnLogin' => true
 			],
-			'PasswordCannotMatchBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
+			'PasswordCannotMatchDefaults' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 			'MaximalPasswordLength' => [ 'value' => 4096, 'suggestChangeOnLogin' => true ],
 			'PasswordNotInCommonList' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 		],
@@ -4883,7 +4886,8 @@ $wgPasswordPolicy = [
 		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 		'PasswordCannotBeSubstringInUsername' =>
 			'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
-		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
+		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
+		'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
 		'PasswordNotInLargeBlacklist' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
 		'PasswordNotInCommonList' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',

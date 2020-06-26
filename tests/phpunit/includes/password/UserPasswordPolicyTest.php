@@ -50,7 +50,7 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 		'default' => [
 			'MinimalPasswordLength' => 4,
 			'MinimumPasswordLengthToLogin' => 1,
-			'PasswordCannotMatchBlacklist' => true,
+			'PasswordCannotMatchDefaults' => true,
 			'MaximalPasswordLength' => 4096,
 			// test null handling
 			'PasswordCannotMatchUsername' => null,
@@ -64,7 +64,7 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 		'PasswordCannotBeSubstringInUsername' =>
 			'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
-		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
+		'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
 	];
 
