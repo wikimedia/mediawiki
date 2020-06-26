@@ -42,28 +42,28 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		return array_slice( $revisions, $segment - 1, $limit );
 	}
 
-	private function newHandler( $numRevisions = 5, $tags = [], $flags = [] ) {
+	private function newHandler( $numRevisions = 5, $tags = [], $deltas = [], $flags = [] ) {
 		/** @var MockObject|ContributionsLookup $mockContributionsLookup */
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
 			[ 'getContributions' ]
 		);
 		$user = new UserIdentityValue( 0, 'test', 0 );
 		$fakeRevisions = $this->makeFakeRevisions( $user, $numRevisions, 2 );
-		$fakeSegment = $this->makeSegment( $fakeRevisions, $tags, $flags );
+		$fakeSegment = $this->makeSegment( $fakeRevisions, $tags, $deltas, $flags );
 		$mockContributionsLookup->method( 'getContributions' )->willReturn( $fakeSegment );
 		$handler = new UserContributionsHandler( $mockContributionsLookup );
 		return $handler;
 	}
 
-	private function makeSegment( $revisions, array $tags = [], array $flags = [] ) {
+	private function makeSegment( $revisions, array $tags = [], $deltas = [], array $flags = [] ) {
 		if ( $revisions !== [] ) {
 			$latestRevision = $revisions[ count( $revisions ) - 1 ];
 			$earliestRevision = $revisions[0];
 			$before = 'before|' . $latestRevision->getTimestamp();
 			$after = 'after|' . $earliestRevision->getTimestamp();
-			return new ContributionsSegment( $revisions, $tags, $before, $after, $flags );
+			return new ContributionsSegment( $revisions, $tags, $before, $after, $deltas, $flags );
 		}
-		return new ContributionsSegment( $revisions, $tags, null, null, $flags );
+		return new ContributionsSegment( $revisions, $tags, null, null, $deltas, $flags );
 	}
 
 	public function provideTestThatParametersAreHandledCorrectly() {
@@ -102,7 +102,6 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		RequestContext::getMain()->setUser( $user );
 
 		$fakeRevisions = $this->makeFakeRevisions( $user, 5, self::DEFAULT_LIMIT );
-
 		$fakeSegment = $this->makeSegment( $fakeRevisions );
 
 		$limit = $request->getQueryParams()['limit'] ?? self::DEFAULT_LIMIT;
@@ -142,6 +141,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$basePath = 'https://wiki.example.com/rest/me/contributions';
 		yield [ 0,
 			[],
+			[],
 			[ 'newest' => true, 'oldest' => true ],
 			[
 				'older' => null,
@@ -152,6 +152,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		];
 		yield [ 1,
 			[ 1 => [ 'frob' ] ],
+			[ 1 => 256 ],
 			[ 'newest' => true, 'oldest' => true ],
 			[
 				'older' => null,
@@ -162,6 +163,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'id' => 1,
 						'comment' => 'Edit 1',
 						'timestamp' => '2020-01-01T00:00:01Z',
+						'delta' => 256,
 						'size' => 256,
 						'tags' => [ 'frob' ],
 						'page' => [
@@ -175,6 +177,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		];
 		yield [ 5,
 			[ 5 => [ 'frob', 'nitz' ] ],
+			[ 1 => 256, 2 => 256, 3 => 256, 4 => null, 5 => 256 ],
 			[ 'newest' => true ],
 			[
 				'older' => $basePath . '?limit=20&segment=before%7C20200101000004',
@@ -185,6 +188,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'id' => 5,
 						'comment' => 'Edit 5',
 						'timestamp' => '2020-01-01T00:00:05Z',
+						'delta' => 256,
 						'size' => 256,
 						'tags' => [ 'frob', 'nitz' ],
 						'page' => [
@@ -197,6 +201,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 						'id' => 4,
 						'comment' => 'Edit 4',
 						'timestamp' => '2020-01-01T00:00:04Z',
+						'delta' => null,
 						'size' => 256,
 						'tags' => [],
 						'page' => [
@@ -213,8 +218,8 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideThatResponseConformsToSchema
 	 */
-	public function testThatResponseConformsToSchema( $numRevisions, $tags, $flags, $expectedResponse ) {
-		$handler = $this->newHandler( $numRevisions, $tags, $flags );
+	public function testThatResponseConformsToSchema( $numRevisions, $tags, $deltas, $flags, $expectedResponse ) {
+		$handler = $this->newHandler( $numRevisions, $tags, $deltas, $flags );
 		$request = new RequestData( [] );
 
 		$user = $this->makeMockUser( false );

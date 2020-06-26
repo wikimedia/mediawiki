@@ -63,7 +63,7 @@ class ContributionsSegmentTest extends \MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsSegment
 	 */
 	public function testFlags( $flags ) {
-		$contributionsSegment = new ContributionsSegment( [], [], null, null, $flags );
+		$contributionsSegment = new ContributionsSegment( [], [], null, null, [], $flags );
 		$this->assertSame( $flags['newest'] ?? false, $contributionsSegment->isNewest() );
 		$this->assertSame( $flags['oldest'] ?? false, $contributionsSegment->isOldest() );
 	}

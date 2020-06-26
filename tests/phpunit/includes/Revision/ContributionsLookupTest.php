@@ -30,6 +30,11 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	private static $testUser;
 
 	/**
+	 * @var int[][]
+	 */
+	private static $storedDeltas;
+
+	/**
 	 * @var string[][]
 	 */
 	private static $storedTags;
@@ -43,13 +48,17 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		} );
 
 		self::$testUser = $user;
-		self::$storedRevisions[1] = $this->editPage( __METHOD__ . '_1', 'Lorem Ipsum 1', 'test', NS_MAIN, $user )
+		$revisionText = [ 1 => 'Lorem', 2 => 'Lorem Ipsum', 3 => 'Lor', 4 => 'Lorem' ];
+		// maps $storedRevision revision number to delta of revision length from its parent
+		self::$storedDeltas = [ 1 => 5, 2 => 11, 3 => -2, 4 => -6 ];
+
+		self::$storedRevisions[1] = $this->editPage( __METHOD__ . '_1', $revisionText[1], 'test', NS_MAIN, $user )
 			->getValue()['revision-record'];
-		self::$storedRevisions[2] = $this->editPage( __METHOD__ . '_2', 'Lorem Ipsum 2', 'test', NS_TALK, $user )
+		self::$storedRevisions[2] = $this->editPage( __METHOD__ . '_2', $revisionText[2], 'test', NS_TALK, $user )
 			->getValue()['revision-record'];
-		self::$storedRevisions[3] = $this->editPage( __METHOD__ . '_2', 'Lorem Ipsum 3', 'test', NS_MAIN, $user )
+		self::$storedRevisions[3] = $this->editPage( __METHOD__ . '_1', $revisionText[3], 'test', NS_MAIN, $user )
 			->getValue()['revision-record'];
-		self::$storedRevisions[4] = $this->editPage( __METHOD__ . '_1', 'Lorem Ipsum 4', 'test', NS_TALK, $user )
+		self::$storedRevisions[4] = $this->editPage( __METHOD__ . '_2', $revisionText[4], 'test', NS_TALK, $user )
 			->getValue()['revision-record'];
 
 		$tag1 = 'test-ContributionsLookup-1';
@@ -75,6 +84,68 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		}
 
 		ConvertibleTimestamp::setFakeTime( false );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
+	 */
+	public function testGetDeltas() {
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$contributionsLookup = new ContributionsLookup( $revisionStore );
+		$performer = self::$testUser;
+
+		$segment =
+			$contributionsLookup->getContributions( self::$testUser, 10, $performer );
+
+		// Contributions are returned in descending order.
+		$revIds = array_map(
+			function ( RevisionRecord $rev ) {
+				return $rev->getId();
+			},
+			$segment->getRevisions()
+		);
+
+		$this->assertEquals( $segment->getDeltaForRevision( $revIds[0] ), self::$storedDeltas[ 4 ] );
+		$this->assertEquals( $segment->getDeltaForRevision( $revIds[1] ), self::$storedDeltas[ 3 ] );
+		$this->assertEquals( $segment->getDeltaForRevision( $revIds[2] ), self::$storedDeltas[ 2 ] );
+		$this->assertEquals( $segment->getDeltaForRevision( $revIds[3] ), self::$storedDeltas[ 1 ] );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
+	 */
+	public function testGetUnknownDeltas() {
+		$user = $this->getTestUser()->getUser();
+		$performer = $user;
+
+		$rev1 = $this->editPage( __METHOD__ . '_1', 'foo', 'test', NS_MAIN, $user )
+			->getValue()['revision-record'];
+		$rev2 = $this->editPage( __METHOD__ . '_2', 'bar', 'test', NS_TALK, $user )
+			->getValue()['revision-record'];
+
+		// Parent of revision 1 is not in revision table (deleted)
+		$this->db->update(
+			'revision',
+			[ 'rev_parent_id' => $rev2->getId() + 100 ],
+			[ 'rev_id' => $rev1->getId() ],
+			__METHOD__
+		);
+		// Parent of revision 2 is unknown
+		$this->db->update(
+			'revision',
+			[ 'rev_parent_id' => null ],
+			[ 'rev_id' => $rev2->getId() ],
+			__METHOD__
+		);
+
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$contributionsLookup = new ContributionsLookup( $revisionStore );
+
+		$segment =
+			$contributionsLookup->getContributions( $user, 10, $performer );
+
+		$this->assertNull( $segment->getDeltaForRevision( $rev1->getId() ) );
+		$this->assertNull( $segment->getDeltaForRevision( $rev2->getId() ) );
 	}
 
 	/**
@@ -138,8 +209,8 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		foreach ( $expectedRevisions as $idx => $editNumber ) {
 			$expected = self::$storedRevisions[$editNumber];
 			$actual = $revisions[$idx];
-			$this->assertSame( $expected->getId(), $actual->getId() );
-			$this->assertSame( $expected->getPageId(), $actual->getPageId() );
+			$this->assertSame( $expected->getId(), $actual->getId(), 'rev_id' );
+			$this->assertSame( $expected->getPageId(), $actual->getPageId(), 'rev_page_id' );
 			$this->assertSame(
 				$expected->getPageAsLinkTarget()->getPrefixedDBkey(),
 				$actual->getPageAsLinkTarget()->getPrefixedDBkey()
@@ -151,6 +222,10 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 			$expectedTags = self::$storedTags[ $editNumber ];
 			$this->assertRevisionTags( $expectedTags, $segmentObject, $actual );
+
+			$expectedDelta = self::$storedDeltas[$editNumber];
+			$actualDelta = $segmentObject->getDeltaForRevision( $actual->getId() );
+			$this->assertSame( $expectedDelta, $actualDelta, 'delta' );
 		}
 	}
 
