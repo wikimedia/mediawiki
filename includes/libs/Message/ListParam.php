@@ -6,11 +6,15 @@ namespace Wikimedia\Message;
  * Value object representing a message parameter that consists of a list of values.
  *
  * Message parameter classes are pure value objects and are safely newable.
+ *
+ * @newable
  */
 class ListParam extends MessageParam {
 	private $listType;
 
 	/**
+	 * @stable for calling.
+	 *
 	 * @param string $listType One of the ListType constants.
 	 * @param (MessageParam|MessageValue|string|int|float)[] $elements Values in the list.
 	 *  Values that are not instances of MessageParam are wrapped using ParamType::TEXT.

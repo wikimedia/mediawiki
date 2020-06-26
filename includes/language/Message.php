@@ -155,6 +155,7 @@ use MediaWiki\MediaWikiServices;
  * @see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
+ * @newable
  * @ingroup Language
  */
 class Message implements MessageSpecifier, Serializable {
@@ -238,6 +239,7 @@ class Message implements MessageSpecifier, Serializable {
 	protected $message;
 
 	/**
+	 * @stable for calling
 	 * @since 1.17
 	 * @param string|string[]|MessageSpecifier $key Message key, or array of
 	 * message keys to try and use the first non-empty message for, or a

@@ -30,6 +30,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Content object for CSS pages.
  *
+ * @newable
  * @ingroup Content
  */
 class CssContent extends TextContent {
@@ -40,6 +41,7 @@ class CssContent extends TextContent {
 	private $redirectTarget = false;
 
 	/**
+	 * @stable for calling
 	 * @param string $text CSS code.
 	 * @param string $modelId the content content model
 	 */

@@ -21,6 +21,8 @@
 /**
  * MediaWiki exception
  *
+ * @newable
+ *
  * @ingroup Exception
  */
 class MWException extends Exception {

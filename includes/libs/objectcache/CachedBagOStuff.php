@@ -31,6 +31,7 @@
  * * Locks go to the backend cache (with MultiWriteBagOStuff, it would wind
  *   up going to the HashBagOStuff used for the in-memory cache).
  *
+ * @newable
  * @ingroup Cache
  */
 class CachedBagOStuff extends BagOStuff {
@@ -40,6 +41,7 @@ class CachedBagOStuff extends BagOStuff {
 	protected $procCache;
 
 	/**
+	 * @stable for calling
 	 * @param BagOStuff $backend Permanent backend to use
 	 * @param array $params Parameters for HashBagOStuff
 	 */

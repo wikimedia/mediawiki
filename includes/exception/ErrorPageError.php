@@ -21,6 +21,8 @@
 /**
  * An error page which can definitely be safely rendered using the OutputPage.
  *
+ * @newable
+ *
  * @since 1.7
  * @ingroup Exception
  */
@@ -31,6 +33,8 @@ class ErrorPageError extends MWException implements ILocalizedException {
 
 	/**
 	 * Note: these arguments are keys into wfMessage(), not text!
+	 *
+	 * @stable for calling
 	 *
 	 * @param string|Message $title Message key (string) for page title, or a Message object
 	 * @param string|Message $msg Message key (string) for error text, or a Message object

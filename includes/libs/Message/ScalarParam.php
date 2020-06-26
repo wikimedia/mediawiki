@@ -6,10 +6,14 @@ namespace Wikimedia\Message;
  * Value object representing a message parameter holding a single value.
  *
  * Message parameter classes are pure value objects and are safely newable.
+ *
+ * @newable
  */
 class ScalarParam extends MessageParam {
 	/**
 	 * Construct a text parameter
+	 *
+	 * @stable for calling.
 	 *
 	 * @param string $type One of the ParamType constants.
 	 * @param string|int|float|MessageValue $value

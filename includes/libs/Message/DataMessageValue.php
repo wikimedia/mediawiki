@@ -17,6 +17,8 @@ namespace Wikimedia\Message;
  * `[ 0 => new ScalarParam( ParamType::TEXT, 1 ), 1 => new ScalarParam( ParamType::TEXT, 10 ) ]`.
  *
  * DataMessageValues are pure value objects and are safely newable.
+ *
+ * @newable
  */
 class DataMessageValue extends MessageValue {
 	/** @var string */
@@ -26,6 +28,8 @@ class DataMessageValue extends MessageValue {
 	private $data;
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param string $key
 	 * @param (MessageParam|MessageValue|string|int|float)[] $params
 	 * @param string|null $code String representing the concept behind
