@@ -54,7 +54,7 @@ class SignatureValidator {
 	 * @return string[]|bool If localizer is defined: List of errors, as HTML (empty array for no errors)
 	 *   If localizer is not defined: True if there are errors, false if there are no errors
 	 */
-	public function validateSignature( $signature ) {
+	public function validateSignature( string $signature ) {
 		$pstSignature = $this->applyPreSaveTransform( $signature );
 		if ( !$pstSignature ) {
 			// Return early because the rest of the validation uses wikitext parsing, which requires
@@ -150,10 +150,10 @@ class SignatureValidator {
 
 	/**
 	 * @param string $signature
-	 * @return false|string Signature with PST applied, or false if applying PST yields wikitext that
+	 * @return string|bool Signature with PST applied, or false if applying PST yields wikitext that
 	 *     would change if PST was applied again
 	 */
-	protected function applyPreSaveTransform( $signature ) {
+	protected function applyPreSaveTransform( string $signature ) {
 		// This may be called by the Parser when it's displaying a signature, so we need a new instance
 		$parser = MediaWikiServices::getInstance()->getParser()->getFreshParser();
 
@@ -187,7 +187,7 @@ class SignatureValidator {
 	 * @param string $signature
 	 * @return array Array of error objects returned by Parsoid's lint API (empty array for no errors)
 	 */
-	protected function checkLintErrors( $signature ) {
+	protected function checkLintErrors( string $signature ) : array {
 		// Real check for mismatched HTML tags in the *output*.
 		// This has to use Parsoid because PHP Parser doesn't produce this information,
 		// it just fixes up the result quietly.
@@ -237,7 +237,7 @@ class SignatureValidator {
 	 * @param string $signature
 	 * @return bool Whether signature contains required links
 	 */
-	protected function checkUserLinks( $signature ) {
+	protected function checkUserLinks( string $signature ) : bool {
 		// This may be called by the Parser when it's displaying a signature, so we need a new instance
 		$parser = MediaWikiServices::getInstance()->getParser()->getFreshParser();
 
@@ -276,12 +276,12 @@ class SignatureValidator {
 	}
 
 	// Adapted from the Linter extension
-	private function getLintErrorLocation( $lintError ) {
+	private function getLintErrorLocation( array $lintError ) : array {
 		return array_slice( $lintError['dsr'], 0, 2 );
 	}
 
 	// Adapted from the Linter extension
-	private function getLintErrorDetails( $lintError ) {
+	private function getLintErrorDetails( array $lintError ) : string {
 		[ 'type' => $type, 'params' => $params ] = $lintError;
 
 		if ( $type === 'bogus-image-options' && isset( $params['items'] ) ) {
