@@ -78,8 +78,10 @@ class ContributionsSegmentTest extends \MediaWikiUnitTestCase {
 		$before = 'before';
 		$after = 'after';
 		$tags = [ 3 => [ 'frob' ] ];
+		$deltas = [ 3 => -7, 5 => null ];
 
-		$contributionsSegment = new ContributionsSegment( $revisionRecords, $tags, $before, $after, [] );
+		$contributionsSegment =
+			new ContributionsSegment( $revisionRecords, $tags, $before, $after, $deltas );
 		$this->assertSame( $revisionRecords, $contributionsSegment->getRevisions() );
 		$this->assertSame( $tags[3], $contributionsSegment->getTagsForRevision( 3 ) );
 		$this->assertSame( [], $contributionsSegment->getTagsForRevision( 17 ) );
@@ -87,5 +89,8 @@ class ContributionsSegmentTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( $after, $contributionsSegment->getAfter() );
 		$this->assertFalse( $contributionsSegment->isNewest(), 'isNewest' );
 		$this->assertFalse( $contributionsSegment->isOldest(), 'isOldest' );
+		$this->assertSame( $deltas[3], $contributionsSegment->getDeltaForRevision( 3 ) );
+		$this->assertNull( $contributionsSegment->getDeltaForRevision( 5 ) );
+		$this->assertNull( $contributionsSegment->getDeltaForRevision( 77 ) );
 	}
 }
