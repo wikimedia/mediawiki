@@ -1023,7 +1023,7 @@
 				function countValues( value, array ) {
 					var count, n;
 					count = 0;
-					for ( n = 0; n < array.length; i++ ) {
+					for ( n = 0; n < array.length; n++ ) {
 						if ( array[ n ] === value ) {
 							count++;
 						}
