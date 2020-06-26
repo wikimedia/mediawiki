@@ -2228,10 +2228,7 @@ class OutputPage extends ContextSource {
 				],
 				$config->get( 'CacheVaryCookies' )
 			) ) );
-			// FIXME Temporary hack for T254079
-			$cacheVaryCookies = self::$cacheVaryCookies;
-			$this->getHookRunner()->onGetCacheVaryCookies( $this, $cacheVaryCookies );
-			self::$cacheVaryCookies = $cacheVaryCookies;
+			$this->getHookRunner()->onGetCacheVaryCookies( $this, self::$cacheVaryCookies );
 		}
 		return self::$cacheVaryCookies;
 	}
