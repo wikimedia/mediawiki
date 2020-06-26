@@ -20,6 +20,7 @@
  * @file
  * @ingroup Installer
  */
+use MediaWiki\Installer\Services\InstallerDBSupport;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -195,8 +196,8 @@ abstract class DatabaseUpdater {
 		Maintenance $maintenance = null
 	) {
 		$type = $db->getType();
-		if ( in_array( $type, Installer::getDBTypes() ) ) {
-			$class = ucfirst( $type ) . 'Updater';
+		if ( InstallerDBSupport::getInstance()->hasDatabase( $type ) ) {
+			$class = InstallerDBSupport::getInstance()->getDBUpdaterClass( $type );
 
 			return new $class( $db, $shared, $maintenance );
 		} else {

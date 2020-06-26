@@ -821,6 +821,29 @@ class LocalisationCache {
 	}
 
 	/**
+	 * @var string[]
+	 */
+	private $messagesDirs = [];
+
+	/**
+	 * @var string[]
+	 */
+	private $additionalMessagesDirs = [];
+
+	/**
+	 * Add additional path for looking for i18n localization messages
+	 *
+	 * @internal for Installer with DbType extensions
+	 * @since 1.35
+	 *
+	 * @param string $name
+	 * @param string $path
+	 */
+	public function addMessagesDir( string $name, string $path ) : void {
+		$this->additionalMessagesDirs[$name] = $path;
+	}
+
+	/**
 	 * Gets the combined list of messages dirs from
 	 * core and extensions
 	 *
@@ -837,7 +860,7 @@ class LocalisationCache {
 			'rest' => "$IP/includes/Rest/i18n",
 			'oojs-ui' => "$IP/resources/lib/ooui/i18n",
 			'paramvalidator' => "$IP/includes/libs/ParamValidator/i18n",
-		] + $this->options->get( 'MessagesDirs' );
+		] + $this->options->get( 'MessagesDirs' ) + $this->additionalMessagesDirs;
 	}
 
 	/**

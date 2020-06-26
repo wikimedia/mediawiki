@@ -19,6 +19,8 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Installer\Services\InstallerDBSupport;
+
 class WebInstallerExistingWiki extends WebInstallerPage {
 
 	/**
@@ -140,7 +142,7 @@ class WebInstallerExistingWiki extends WebInstallerPage {
 	protected function handleExistingUpgrade( $vars ) {
 		// Check $wgDBtype
 		if ( !isset( $vars['wgDBtype'] ) ||
-			!in_array( $vars['wgDBtype'], Installer::getDBTypes() )
+			!InstallerDBSupport::getInstance()->hasDatabase( $vars['wgDBtype'] )
 		) {
 			return Status::newFatal( 'config-localsettings-connection-error', '' );
 		}
