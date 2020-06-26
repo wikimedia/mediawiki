@@ -146,7 +146,8 @@ class FileRepo {
 
 	/**
 	 * @var string
-	 * @protected Use $this->getName(). Public for back-compat only
+	 * @note Use $this->getName(). Public for back-compat only
+	 * @todo make protected
 	 */
 	public $name;
 

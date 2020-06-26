@@ -505,7 +505,7 @@ final class SessionBackend {
 
 	/**
 	 * Fetch provider metadata
-	 * @protected For use by SessionProvider subclasses only
+	 * @note For use by SessionProvider subclasses only
 	 * @return array|null
 	 */
 	public function getProviderMetadata() {
@@ -514,7 +514,7 @@ final class SessionBackend {
 
 	/**
 	 * Set provider metadata
-	 * @protected For use by SessionProvider subclasses only
+	 * @note For use by SessionProvider subclasses only
 	 * @param array|null $metadata
 	 */
 	public function setProviderMetadata( $metadata ) {

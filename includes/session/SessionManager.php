@@ -955,7 +955,8 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Reset the internal caching for unit testing
-	 * @protected Unit tests only
+	 * @note Unit tests only
+	 * @internal
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {

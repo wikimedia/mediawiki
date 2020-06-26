@@ -2267,7 +2267,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Store authentication in the current session
-	 * @protected For use by AuthenticationProviders
+	 * @note For use by AuthenticationProviders only
 	 * @param string $key
 	 * @param mixed $data Must be serializable
 	 */
@@ -2283,7 +2283,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Fetch authentication data from the current session
-	 * @protected For use by AuthenticationProviders
+	 * @note For use by AuthenticationProviders only
 	 * @param string $key
 	 * @param mixed|null $default
 	 * @return mixed
@@ -2299,7 +2299,7 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Remove authentication data
-	 * @protected For use by AuthenticationProviders
+	 * @note For use by AuthenticationProviders
 	 * @param string|null $key If null, all data is removed
 	 */
 	public function removeAuthenticationSessionData( $key ) {
@@ -2473,7 +2473,8 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Reset the internal caching for unit testing
-	 * @protected Unit tests only
+	 * @note Unit tests only
+	 * @internal
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
