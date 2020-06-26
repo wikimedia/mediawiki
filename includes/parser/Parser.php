@@ -535,7 +535,7 @@ class Parser {
 	/**
 	 * Clear Parser state
 	 *
-	 * @private
+	 * @internal
 	 */
 	public function clearState() {
 		$this->firstCallInit();
@@ -1523,7 +1523,7 @@ class Parser {
 	 * Helper function for parse() that transforms wiki markup into half-parsed
 	 * HTML. Only called for $mOutputType == self::OT_HTML.
 	 *
-	 * @private
+	 * @internal
 	 *
 	 * @param string $text The text to parse
 	 * @param-taint $text escapes_html
@@ -1814,7 +1814,7 @@ class Parser {
 	 * @param int $numPostProto
 	 *   The number of characters after the protocol.
 	 * @return string HTML
-	 * @private
+	 * @internal
 	 */
 	private function makeFreeExternalLink( $url, $numPostProto ) {
 		$trail = '';
@@ -2740,7 +2740,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @param bool $linestart Whether or not this is at the start of a line.
-	 * @private
+	 * @internal
 	 * @return string The lists rendered as HTML
 	 * @deprecated since 1.35, will not be supported in future parsers
 	 */

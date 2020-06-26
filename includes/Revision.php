@@ -359,7 +359,7 @@ class Revision implements IDBAccessObject {
 	 * Since 1.35, constructing with anything other than a RevisionRecord is hard deprecated
 	 * (since 1.31 the entire class is deprecated)
 	 *
-	 * @private
+	 * @internal
 	 */
 	public function __construct( $row, $queryFlags = 0, Title $title = null ) {
 		global $wgUser;

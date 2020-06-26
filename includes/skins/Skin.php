@@ -1114,7 +1114,7 @@ abstract class Skin extends ContextSource {
 	 * This may include an 'oldid' specifier, if the current page view is such.
 	 *
 	 * @return array
-	 * @private
+	 * @internal
 	 */
 	public function editUrlOptions() {
 		$options = [ 'action' => 'edit' ];

@@ -40,7 +40,7 @@ class MWCallableUpdate
 	}
 
 	/**
-	 * @private This method is public so that it works with onTransactionResolution()
+	 * @internal This method is public so that it works with onTransactionResolution()
 	 * @param int $trigger
 	 */
 	public function cancelOnRollback( $trigger ) {

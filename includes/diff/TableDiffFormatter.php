@@ -27,7 +27,7 @@
 /**
  * MediaWiki default table style diff formatter
  * @todo document
- * @private
+ * @internal
  * @ingroup DifferenceEngine
  */
 class TableDiffFormatter extends DiffFormatter {

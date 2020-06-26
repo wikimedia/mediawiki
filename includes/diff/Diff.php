@@ -26,7 +26,7 @@
 
 /**
  * Class representing a 'diff' between two sequences of strings.
- * @private
+ * @internal
  * @ingroup DifferenceEngine
  */
 class Diff {

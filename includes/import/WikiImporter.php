@@ -538,7 +538,7 @@ class WikiImporter {
 	 * Fetches text contents of the current element, assuming
 	 * no sub-elements or such scary things.
 	 * @return string
-	 * @private
+	 * @internal
 	 */
 	public function nodeContents() {
 		if ( $this->reader->isEmptyElement ) {

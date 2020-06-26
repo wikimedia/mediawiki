@@ -28,7 +28,7 @@ namespace MediaWiki\Diff;
 /**
  * Stores, escapes and formats the results of word-level diff
  *
- * @private
+ * @internal
  * @ingroup DifferenceEngine
  */
 class WordAccumulator {

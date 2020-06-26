@@ -1410,7 +1410,7 @@ class Sanitizer {
 	 *
 	 * @param string $text
 	 * @return string
-	 * @private
+	 * @internal
 	 */
 	public static function normalizeCharReferences( $text ) {
 		return preg_replace_callback(
@@ -1566,7 +1566,7 @@ class Sanitizer {
 	 * character reference, otherwise U+FFFD REPLACEMENT CHARACTER.
 	 * @param int $codepoint
 	 * @return string
-	 * @private
+	 * @internal
 	 */
 	private static function decodeChar( $codepoint ) {
 		if ( self::validateCodepoint( $codepoint ) ) {

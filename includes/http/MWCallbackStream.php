@@ -27,7 +27,7 @@ use Psr\Http\Message\StreamInterface;
  * "callback" option, for backward compatibility.  Newer code that uses GuzzleHttpRequest
  * should consider using the "sink" option instead.
  *
- * @private for use by GuzzleHttpRequest only
+ * @internal for use by GuzzleHttpRequest only
  * @since 1.33
  * @property StreamInterface $stream Defined in StreamDecoratorTrait via `@property`, not read
  *  by phan
