@@ -18,6 +18,9 @@
  * @file
  */
 
+/**
+ * @stable for implementing
+ */
 interface MessageSpecifier {
 	/**
 	 * Returns the message key

@@ -23,6 +23,8 @@
 /**
  * Interface for configuration instances
  *
+ * @stable for implementation
+ *
  * @since 1.23
  */
 interface Config {

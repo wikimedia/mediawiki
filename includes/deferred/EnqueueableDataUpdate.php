@@ -5,6 +5,8 @@
  * Such updates must be representable using IJobSpecification, so that
  * they can be serialized into jobs and enqueued for later execution
  *
+ * @stable for implementation
+ *
  * @since 1.27
  */
 interface EnqueueableDataUpdate {
