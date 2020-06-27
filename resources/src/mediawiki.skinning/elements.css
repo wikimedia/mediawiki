@@ -93,7 +93,7 @@ a.new:visited,
 
 /* Inline Elements */
 img {
-	border: 0;
+	border: 0; /* FIXME: Remove after adding 'normalize.less' added to all 'elements.less' calling skins. */
 	vertical-align: middle;
 }
 
@@ -194,6 +194,8 @@ dd {
 	margin-bottom: 0.1em;
 }
 
+/* FIXME: Duplicated ruleset if skins using ResourceLoaderSkinModule
+load the features `normalize` and `elements`. */
 pre,
 code,
 tt,

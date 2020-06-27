@@ -84,14 +84,14 @@ input[ dir='rtl' ] {
 }
 
 /* Default style for semantic tags */
-abbr[ title ],
+abbr[ title ], /* Note: Duplicate ruleset if skins load `normalize` and `legacy`. */
 .explain[ title ] {
 	border-bottom: 1px dotted;
 	cursor: help;
 }
 
 @supports ( text-decoration: underline dotted ) {
-	abbr[ title ],
+	abbr[ title ], /* FIXME: Remove similar to `abbr` above. */
 	.explain[ title ] {
 		border-bottom: 0;
 		text-decoration: underline dotted;
@@ -614,7 +614,7 @@ table.floatleft {
 }
 
 /* Prevent citations and subscripts from interfering with the line-height */
-sup,
+sup, /* FIXME: Remove after adding 'normalize.less' added to all 'legacy.less' calling skins. */
 sub {
 	line-height: 1;
 }
