@@ -479,7 +479,7 @@ class RemexCompatMunger implements TreeHandler {
 	}
 
 	public function doctype( $name, $public, $system, $quirks, $sourceStart, $sourceLength ) {
-		$this->serializer->doctype( $name, $public,  $system, $quirks,
+		$this->serializer->doctype( $name, $public, $system, $quirks,
 			$sourceStart, $sourceLength );
 	}
 

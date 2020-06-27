@@ -935,13 +935,17 @@ class SpecialPage implements MessageLocalizer {
 	 * @param string|bool $subpage Optional param for specifying subpage
 	 * @return string
 	 */
-	protected function buildPrevNextNavigation( $offset, $limit,
-											 array $query = [], $atend = false, $subpage = false
+	protected function buildPrevNextNavigation(
+		$offset,
+		$limit,
+		array $query = [],
+		$atend = false,
+		$subpage = false
 	) {
 		$title = $this->getPageTitle( $subpage );
 		$prevNext = new PrevNextNavigationRenderer( $this );
 
-		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query,  $atend );
+		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query, $atend );
 	}
 
 	/**

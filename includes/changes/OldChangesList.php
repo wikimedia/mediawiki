@@ -69,7 +69,7 @@ class OldChangesList extends ChangesList {
 		$html = $this->getHighlightsContainerDiv() . $html;
 		$attribs['class'] = implode( ' ', $classes );
 
-		return $dateheader . Html::rawElement( 'li', $attribs,  $html ) . "\n";
+		return $dateheader . Html::rawElement( 'li', $attribs, $html ) . "\n";
 	}
 
 	/**

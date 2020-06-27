@@ -1753,11 +1753,11 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testIsEveryoneAllowed() {
 		$result = MediaWikiServices::getInstance()->getPermissionManager()
-								   ->isEveryoneAllowed( 'editmyoptions' );
+			->isEveryoneAllowed( 'editmyoptions' );
 		$this->assertTrue( $result );
 
 		$result = MediaWikiServices::getInstance()->getPermissionManager()
-								   ->isEveryoneAllowed( 'test' );
+			->isEveryoneAllowed( 'test' );
 		$this->assertFalse( $result );
 	}
 

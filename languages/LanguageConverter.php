@@ -97,9 +97,14 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param array $flags Defining the custom strings that maps to the flags
 	 * @param array $manualLevel Limit for supported variants
 	 */
-	public function __construct( $langobj, $maincode, $variants = [],
-								$variantfallbacks = [], $flags = [],
-								$manualLevel = [] ) {
+	public function __construct(
+		$langobj,
+		$maincode,
+		$variants = [],
+		$variantfallbacks = [],
+		$flags = [],
+		$manualLevel = []
+	) {
 		global $wgDisabledVariants;
 
 		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );

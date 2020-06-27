@@ -104,7 +104,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 			'1 week ago'
 		);
 
-		$result1 = $queryService->getWatchedItemsWithRecentChangeInfo( $user,  $options, $startFrom );
+		$result1 = $queryService->getWatchedItemsWithRecentChangeInfo( $user, $options, $startFrom );
 		$this->assertCount( $initialCount + 1, $result1 );
 
 		// Add another of each type of item, and make sure the new results are as expected.

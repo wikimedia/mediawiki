@@ -99,7 +99,7 @@ class WatchAction extends FormAction {
 		}
 
 		// Otherwise, use a select-list of expiries.
-		$expiryOptions = static::getExpiryOptions( $this->getContext(),  $this->watchedItem );
+		$expiryOptions = static::getExpiryOptions( $this->getContext(), $this->watchedItem );
 		return [
 			$this->expiryFormFieldName => [
 				'type' => 'select',

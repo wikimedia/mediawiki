@@ -132,7 +132,7 @@ class ChangeTags {
 
 		$markers = $context->msg( 'tag-list-wrapper' )
 			->numParams( count( $displayTags ) )
-			->rawParams( implode( ' ',  $displayTags ) )
+			->rawParams( implode( ' ', $displayTags ) )
 			->parse();
 		$markers = Xml::tags( 'span', [ 'class' => 'mw-tag-markers' ], $markers );
 

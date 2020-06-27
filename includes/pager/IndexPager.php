@@ -921,12 +921,16 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param bool $atend Optional param for specified if this is the last page
 	 * @return string
 	 */
-	protected function buildPrevNextNavigation( Title $title, $offset, $limit,
-												array $query = [], $atend = false
+	protected function buildPrevNextNavigation(
+		Title $title,
+		$offset,
+		$limit,
+		array $query = [],
+		$atend = false
 	) {
 		$prevNext = new PrevNextNavigationRenderer( $this );
 
-		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query,  $atend );
+		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query, $atend );
 	}
 
 	protected function getLinkRenderer() {

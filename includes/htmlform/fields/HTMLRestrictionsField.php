@@ -81,7 +81,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 		if ( is_string( $value ) ) {
 			// MWRestrictions::newFromArray failed; one of the IP ranges must be invalid
 			$status = Status::newGood();
-			foreach ( explode( "\n",  $value ) as $range ) {
+			foreach ( explode( "\n", $value ) as $range ) {
 				if ( !IPUtils::isIPAddress( $range ) ) {
 					$status->fatal( 'restrictionsfield-badip', $range );
 				}
