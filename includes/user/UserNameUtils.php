@@ -24,11 +24,12 @@ namespace MediaWiki\User;
 
 use InvalidArgumentException;
 use Language;
+use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use Psr\Log\LoggerInterface;
-use TitleFactory;
+use TitleParser;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
@@ -67,9 +68,9 @@ class UserNameUtils {
 	private $logger;
 
 	/**
-	 * @var TitleFactory
+	 * @var TitleParser
 	 */
-	private $titleFactory;
+	private $titleParser;
 
 	/**
 	 * @var ITextFormatter
@@ -90,7 +91,7 @@ class UserNameUtils {
 	 * @param ServiceOptions $options
 	 * @param Language $contentLang
 	 * @param LoggerInterface $logger
-	 * @param TitleFactory $titleFactory
+	 * @param TitleParser $titleParser
 	 * @param ITextFormatter $textFormatter the text formatter for the current content language
 	 * @param HookContainer $hookContainer
 	 */
@@ -98,7 +99,7 @@ class UserNameUtils {
 		ServiceOptions $options,
 		Language $contentLang,
 		LoggerInterface $logger,
-		TitleFactory $titleFactory,
+		TitleParser $titleParser,
 		ITextFormatter $textFormatter,
 		HookContainer $hookContainer
 	) {
@@ -106,7 +107,7 @@ class UserNameUtils {
 		$this->options = $options;
 		$this->contentLang = $contentLang;
 		$this->logger = $logger;
-		$this->titleFactory = $titleFactory;
+		$this->titleParser = $titleParser;
 		$this->textFormatter = $textFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
@@ -134,10 +135,15 @@ class UserNameUtils {
 
 		// Ensure that the name can't be misresolved as a different title,
 		// such as with extra namespace keys at the start.
-		$title = $this->titleFactory->newFromText( $name );
+		try {
+			$title = $this->titleParser->parseTitle( $name );
+		} catch ( MalformedTitleException $_ ) {
+			$title = null;
+		}
+
 		if ( $title === null
 			|| $title->getNamespace()
-			|| strcmp( $name, $title->getPrefixedText() )
+			|| strcmp( $name, $title->getText() )
 		) {
 			return false;
 		}
@@ -267,7 +273,11 @@ class UserNameUtils {
 
 		// Clean up name according to title rules,
 		// but only when validation is requested (T14654)
-		$title = $this->titleFactory->newFromText( $name, NS_USER );
+		try {
+			$title = $this->titleParser->parseTitle( $name, NS_USER );
+		} catch ( MalformedTitleException $_ ) {
+			$title = null;
+		}
 
 		// Check for invalid titles
 		if ( $title === null
