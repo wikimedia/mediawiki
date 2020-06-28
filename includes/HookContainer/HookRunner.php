@@ -3483,10 +3483,11 @@ class HookRunner implements
 		);
 	}
 
-	public function onSidebarBeforeOutput( $skin, &$sidebar ) {
-		return $this->container->run(
+	public function onSidebarBeforeOutput( $skin, &$sidebar ) : void {
+		$this->container->run(
 			'SidebarBeforeOutput',
-			[ $skin, &$sidebar ]
+			[ $skin, &$sidebar ],
+			[ 'abortable' => false ]
 		);
 	}
 
