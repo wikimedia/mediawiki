@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest;
 use EmptyBagOStuff;
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\EntryPoint;
@@ -79,7 +80,9 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			RequestContext::getMain(),
 			$request,
 			$webResponse,
-			$this->createRouter( $request ) );
+			$this->createRouter( $request ),
+			$this->createMock( ServiceOptions::class )
+		);
 		$entryPoint->execute();
 		$this->assertTrue( true );
 	}
@@ -105,7 +108,9 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			RequestContext::getMain(),
 			$request,
 			$this->createWebResponse(),
-			$this->createRouter( $request ) );
+			$this->createRouter( $request ),
+			$this->createMock( ServiceOptions::class )
+		);
 		ob_start();
 		$entryPoint->execute();
 		$this->assertSame( 'hello', ob_get_clean() );
