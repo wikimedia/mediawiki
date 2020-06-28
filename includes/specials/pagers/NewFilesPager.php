@@ -170,15 +170,29 @@ class NewFilesPager extends RangeChronologicalPager {
 		return $this->gallery->toHTML();
 	}
 
+	protected function doBatchLookups() {
+		$userIds = [];
+		$this->mResult->seek( 0 );
+		foreach ( $this->mResult as $row ) {
+			$userIds[] = $row->img_user;
+		}
+		// Do a link batch query for names and userpages
+		UserCache::singleton()->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
+	}
+
 	public function formatRow( $row ) {
 		$name = $row->img_name;
-		$user = User::newFromId( $row->img_user );
+		$username = UserCache::singleton()->getUserName( $row->img_user, $row->img_user_text );
 
 		$title = Title::makeTitle( NS_FILE, $name );
-		$ul = $this->getLinkRenderer()->makeLink(
-			$user->getUserPage(),
-			$user->getName()
-		);
+		if ( ExternalUserNames::isExternal( $username ) ) {
+			$ul = htmlspecialchars( $username );
+		} else {
+			$ul = $this->getLinkRenderer()->makeLink(
+				Title::makeTitle( NS_USER, $username ),
+				$username
+			);
+		}
 		$time = $this->getLanguage()->userTimeAndDate( $row->img_timestamp, $this->getUser() );
 
 		$this->gallery->add(
