@@ -1,6 +1,12 @@
-== MediaWiki 1.31.8 ==
+== MediaWiki 1.31.9 ==
 
 THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.31.8 ===
+
+== MediaWiki 1.31.8 ==
+
+This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.7 ===
 * (T199809) Don't invalidate BotPasswords if a password reset email is sent.
@@ -16,6 +22,8 @@ THIS IS NOT A RELEASE YET
 * (T206476) Call ob_start() before running tests.
 * (T234450) Per-user concurrency in SpecialContributions can now be limited by
   setting $wgPoolCounterConf['SpecialContributions'] appropriately.
+* (T248947) SECURITY: img_auth.php may leak private extension images into the
+  public cache.
 
 == MediaWiki 1.31.7 ==
 
