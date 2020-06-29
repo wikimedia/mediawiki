@@ -25,6 +25,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -44,9 +45,17 @@ class GenderCache {
 	/** @var ILoadBalancer|null */
 	private $loadBalancer;
 
-	public function __construct( NamespaceInfo $nsInfo = null, ILoadBalancer $loadBalancer = null ) {
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
+	public function __construct(
+		NamespaceInfo $nsInfo = null,
+		ILoadBalancer $loadBalancer = null,
+		UserOptionsLookup $userOptionsLookup = null
+	) {
 		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
 		$this->loadBalancer = $loadBalancer;
+		$this->userOptionsLookup = $userOptionsLookup ?? MediaWikiServices::getInstance()->getUserOptionsLookup();
 	}
 
 	/**
@@ -65,7 +74,7 @@ class GenderCache {
 	 */
 	protected function getDefault() {
 		if ( $this->default === null ) {
-			$this->default = User::getDefaultOption( 'gender' );
+			$this->default = $this->userOptionsLookup->getDefaultOption( 'gender' );
 		}
 
 		return $this->default;
