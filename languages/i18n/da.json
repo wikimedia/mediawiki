@@ -1426,7 +1426,7 @@
 	"rcfilters-search-placeholder": "Filtrer ændringer (brug menuen eller søg på filternavn)",
 	"rcfilters-search-placeholder-mobile": "Filtre",
 	"rcfilters-invalid-filter": "Ugyldigt filter",
-	"rcfilters-empty-filter": "Ingen aktive filtre. All bidrag vises.",
+	"rcfilters-empty-filter": "Ingen aktive filtre. Alle bidrag vises.",
 	"rcfilters-filterlist-title": "Filtre",
 	"rcfilters-filterlist-whatsthis": "Hvordan virker disse?",
 	"rcfilters-filterlist-feedbacklink": "Fortæl os hvad du synes om disse filtreringsværktøjer",
@@ -2170,7 +2170,7 @@
 	"notvisiblerev": "Versionen er blevet slettet",
 	"watchlist-details": "{{PLURAL:$1|$1 side er|$1 sider er}} på din overvågningsliste (plus diskussionssider).",
 	"wlheader-enotif": "E-mail-underretning er slået til.",
-	"wlheader-showupdated": "Sider, der er ændret siden dit sidste besøg, er vist med '''fed skrift'''.",
+	"wlheader-showupdated": "Sider, der er ændret siden dit sidste besøg, er vist med <strong>fed skrift</strong>.",
 	"wlnote": "Nedenfor ses {{PLURAL:$1|den seneste ændring|de seneste <strong>$1</strong> ændringer}} i {{PLURAL:$2|den sidste time|de sidste <strong>$2</strong> timer}} op til den $3 kl. $4.",
 	"watchlist-hide": "Skjul",
 	"watchlist-submit": "Vis",
@@ -3526,5 +3526,7 @@
 	"passwordpolicies-policies": "Politikker",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Adgangskoden kan ikke være det samme som brugernavnet",
 	"userlogout-continue": "Ønsker du at logge af?",
-	"paramvalidator-help-type-user-subtype-name": "brugernavn"
+	"paramvalidator-help-type-user-subtype-name": "brugernavn",
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"paramvalidator-help-type-user-subtype-cidr": "IP-interval"
 }
