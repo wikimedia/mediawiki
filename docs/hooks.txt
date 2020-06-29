@@ -3213,8 +3213,8 @@ after variants have been added.
 &$links: Structured navigation links. This is used to alter the navigation for
   skins which use buildNavigationUrls such as Vector.
 
-'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage() starts
-page output.
+'SkinTemplateOutputPageBeforeExec': DEPRECATED since 1.35.
+Before SkinTemplate::outputPage() starts page output.
 [&]$sktemplate: SkinTemplate object
 [&]$tpl: QuickTemplate engine object
 

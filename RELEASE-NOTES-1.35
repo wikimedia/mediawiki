@@ -239,7 +239,7 @@ For notes on 1.34.x and older releases, see HISTORY.
   to the <html> element on page load.
 * The SkinAddFooterLinks hook is added to allow extensions to add items to skin
   footers. Previously this had to be done via SkinTemplateOutputPageBeforeExec.
-  Doing so using that hook is now soft deprecated.
+  Doing so using that hook is now hard deprecated.
 * A new BlockPermissionChecker service was introduced for checking
   block-related permissions.
 * The support of 'database' type of extensions has been added to allow 3d party
@@ -1260,6 +1260,10 @@ because of Phabricator reports.
   that's extending QuickTemplate class. The hook associated with this method,
   BaseTemplateToolbox, has been hard deprecated. To add items to the toolbox,
   use SidebarBeforeOutput hook instead.
+* The SkinTemplateOutputPageBeforeExec hook is deprecated.
+  The page [[mw:Manual:Hooks/SkinTemplateOutputPageBeforeExec]] and T60137
+  for recommendations for alternative approaches based on how developers
+  previously used this hook.
 * SkinTemplateToolboxEnd hook has been deprecated. Use SidebarBeforeOutput hook
   instead.
 * Using Skin::addToBodyAttributes() method to add body attributes has been

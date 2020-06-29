@@ -68,6 +68,7 @@ class DeprecatedHooks {
 		'SecondaryDataUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
 		'SpecialMuteSubmit' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink' => [ 'deprecatedVersion' => '1.35' ],
+		'SkinTemplateOutputPageBeforeExec' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplatePreventOtherActiveTabs' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateTabAction' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateToolboxEnd' => [ 'deprecatedVersion' => '1.35' ],
