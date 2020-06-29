@@ -100,14 +100,16 @@ class EmailNotification {
 	 * @param bool $minorEdit
 	 * @param bool $oldid (default: false)
 	 * @param string $pageStatus (default: 'changed')
+	 * @return bool Whether an email job was created or not.
+	 * @since 1.35 returns a boolean indicating whether an email job was created.
 	 */
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary,
 		$minorEdit, $oldid = false, $pageStatus = 'changed'
-	) {
+	): bool {
 		global $wgEnotifMinorEdits, $wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
 		if ( $title->getNamespace() < 0 ) {
-			return;
+			return false;
 		}
 
 		// update wl_notificationtimestamp for watchers
@@ -158,6 +160,8 @@ class EmailNotification {
 				]
 			) );
 		}
+
+		return $sendEmail;
 	}
 
 	/**
