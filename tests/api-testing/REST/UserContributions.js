@@ -7,32 +7,44 @@ describe( 'GET /me/contributions', () => {
 	const limit = 2;
 	const arnoldsRevisions = [];
 	const arnoldsEdits = [];
+	const arnoldsTags = [];
 	let arnold;
 	let arnoldAction;
 	let samAction;
+	const revisionText = { 0: '12345678', 1: 'A', 2: 'ABCD', 3: 'AB', 4: 'ABCDEFGH', 5: 'A' };
+	const expectedRevisionDeltas = { 1: 1, 2: -4, 3: 1, 4: 4, 5: -1 };
 
 	before( async () => {
 		samAction = await action.user( 'sam', [ 'suppress' ] );
 		arnoldAction = await action.user( 'arnold' );
 		arnold = clientFactory.getRESTClient( basePath, arnoldAction );
 
-		let page = utils.title( 'UserContribution_' );
+		const oddEditsPage = utils.title( 'UserContribution_' );
+		const evenEditsPage = utils.title( 'UserContribution_' );
+
+		// Create a tag.
+		await action.makeTag( 'api-test' );
 
 		// bob makes 1 edit
 		const bobAction = await action.bob();
-		await bobAction.edit( page, [ { text: 'Bob revision 1', summary: 'Bob made revision 1' } ] );
+		await bobAction.edit( evenEditsPage, [ {
+			text: revisionText[ 0 ],
+			summary: 'Bob made revision 1'
+		} ] );
 
+		// arnold makes 5 edits
+		let page;
 		for ( let i = 1; i <= 5; i++ ) {
-			const revData = await arnoldAction.edit( page, { text: `Alice revision ${i}`, summary: `Alice made revision ${i}` } );
+			const oddEdit = i % 2;
+			const tags = oddEdit ? 'api-test' : null;
+			page = oddEdit ? oddEditsPage : evenEditsPage;
+			arnoldsTags[ i ] = tags ? tags.split( '|' ) : [];
+
+			const revData = await arnoldAction.edit( page, { text: revisionText[ i ], tags } );
 			await utils.sleep();
 			arnoldsRevisions[ revData.newrevid ] = revData;
 			arnoldsEdits[ i ] = revData;
-			page = utils.title( 'UserContribution_' );
 		}
-
-		// ensure current user has more than one edit
-		// ensure user with revisions for 3 segments + a buffer
-		// add edits by a second user
 	} );
 
 	it( 'Returns status 401 for anon', async () => {
@@ -64,18 +76,24 @@ describe( 'GET /me/contributions', () => {
 
 		// assert body.revisions object schema is correct
 		assert.hasAllDeepKeys( revisions[ 0 ], [
-			'id', 'comment', 'timestamp', 'size', 'page'
+			'id', 'comment', 'timestamp', 'delta', 'size', 'page', 'tags'
 		] );
 
 		assert.equal( revisions[ 0 ].page.key, utils.dbkey( lastRevision.title ) );
 		assert.equal( revisions[ 0 ].page.title, lastRevision.title );
 		assert.equal( revisions[ 0 ].comment, lastRevision.param_summary );
 		assert.equal( revisions[ 0 ].timestamp, lastRevision.newtimestamp );
+		assert.equal( revisions[ 0 ].size, revisionText[ 5 ].length );
+		assert.equal( revisions[ 0 ].delta, expectedRevisionDeltas[ 5 ] );
 		assert.isOk( Date.parse( revisions[ 0 ].timestamp ) );
 		assert.isNotOk( Date.parse( 'xyz' ) );
+		assert.isArray( revisions[ 0 ].tags );
 
 		assert.isAbove( Date.parse( revisions[ 0 ].timestamp ),
 			Date.parse( revisions[ 1 ].timestamp ) );
+
+		assert.equal( revisions[ 1 ].size, revisionText[ 4 ].length );
+		assert.equal( revisions[ 1 ].delta, expectedRevisionDeltas[ 4 ] );
 
 		// assert body.revisions contains edits only by one user
 		revisions.forEach( ( rev ) => {
@@ -95,6 +113,9 @@ describe( 'GET /me/contributions', () => {
 		assert.equal( latestSegment.revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
 		assert.equal( latestSegment.revisions[ 1 ].id, arnoldsEdits[ 4 ].newrevid );
 
+		assert.deepEqual( latestSegment.revisions[ 0 ].tags, arnoldsTags[ 5 ] );
+		assert.deepEqual( latestSegment.revisions[ 1 ].tags, arnoldsTags[ 4 ] );
+
 		// get older segment, using full url
 		const req = clientFactory.getHttpClient( arnold );
 
@@ -108,6 +129,9 @@ describe( 'GET /me/contributions', () => {
 		assert.equal( olderSegment.revisions[ 0 ].id, arnoldsEdits[ 3 ].newrevid );
 		assert.equal( olderSegment.revisions[ 1 ].id, arnoldsEdits[ 2 ].newrevid );
 
+		assert.deepEqual( olderSegment.revisions[ 0 ].tags, arnoldsTags[ 3 ] );
+		assert.deepEqual( olderSegment.revisions[ 1 ].tags, arnoldsTags[ 2 ] );
+
 		// get the next older segment
 		const { body: finalSegment } = await req.get( olderSegment.older );
 		assert.propertyVal( finalSegment, 'older', null );
@@ -117,6 +141,8 @@ describe( 'GET /me/contributions', () => {
 
 		// assert body.revisions has the correct content
 		assert.equal( finalSegment.revisions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
+
+		assert.deepEqual( finalSegment.revisions[ 0 ].tags, arnoldsTags[ 1 ] );
 	} );
 
 	it( 'Returns 400 if segment size is out of bounds', async () => {
@@ -181,7 +207,6 @@ describe( 'GET /me/contributions', () => {
 		assert.lengthOf( preDeleteBody.revisions, 5 );
 
 		const pageToDelete = utils.title( 'UserContribution_' );
-
 		const editToDelete = await arnoldAction.edit( pageToDelete, [ { text: 'Delete me 1' } ] );
 		await arnoldAction.edit( pageToDelete, [ { text: 'Delete me 2' } ] );
 

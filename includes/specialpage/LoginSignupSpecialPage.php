@@ -117,7 +117,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Load data from request.
-	 * @private
+	 * @internal
 	 * @param string $subPage Subpage of Special:Userlogin
 	 */
 	protected function load( $subPage ) {
@@ -513,7 +513,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @throws MWException
 	 * @throws PermissionsError
 	 * @throws ReadOnlyError
-	 * @private
+	 * @internal
 	 */
 	protected function mainLoginForm( array $requests, $msg = '', $msgtype = 'error' ) {
 		$user = $this->getUser();

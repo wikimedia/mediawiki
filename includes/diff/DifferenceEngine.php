@@ -648,7 +648,9 @@ class DifferenceEngine extends ContextSource {
 			// Allow extensions to change the $oldHeader variable
 			$this->hookRunner->onDifferenceEngineOldHeaderNoOldRev( $oldHeader );
 		} else {
-			// TODO replace hook with one that uses RevisionRecords
+			$this->hookRunner->onDifferenceEngineViewHeader( $this );
+
+			// DiffViewHeader hook is soft deprecated since 1.35
 			// If old or new are falsey, keeps those values
 			$legacyOldRev = $this->mOldRevisionRecord ?
 				new Revision( $this->mOldRevisionRecord ) :
@@ -773,7 +775,14 @@ class DifferenceEngine extends ContextSource {
 		$rdel = $this->revisionDeleteLink( $this->mNewRevisionRecord );
 
 		# Allow extensions to define their own revision tools
-		# TODO use RevisionRecord
+		$this->hookRunner->onDiffTools(
+			$this->mNewRevisionRecord,
+			$revisionTools,
+			$this->mOldRevisionRecord ?: null,
+			$user
+		);
+
+		# Hook deprecated since 1.35
 		$legacyOldRev = $this->mOldRevisionRecord ?
 			new Revision( $this->mOldRevisionRecord ) :
 			null;
@@ -1226,16 +1235,14 @@ class DifferenceEngine extends ContextSource {
 		// Save to cache for 7 days
 		if ( !$this->hookRunner->onAbortDiffCache( $this ) ) {
 			$stats->updateCount( 'diff_cache.uncacheable', 1 );
-		} elseif ( $key !== false && $difftext !== false ) {
+		} elseif ( $key !== false ) {
 			$stats->updateCount( 'diff_cache.miss', 1 );
 			$cache->set( $key, $difftext, 7 * 86400 );
 		} else {
 			$stats->updateCount( 'diff_cache.uncacheable', 1 );
 		}
 		// localise line numbers and title attribute text
-		if ( $difftext !== false ) {
-			$difftext = $this->localiseDiff( $difftext );
-		}
+		$difftext = $this->localiseDiff( $difftext );
 
 		return $difftext;
 	}

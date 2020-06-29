@@ -401,7 +401,7 @@ final class SessionManager implements SessionManagerInterface {
 	 * The intention is that the named account will never again be usable for
 	 * normal login (i.e. there is no way to undo the prevention of access).
 	 *
-	 * @private For use from \User::newSystemUser only
+	 * @internal For use from \User::newSystemUser only
 	 * @param string $username
 	 */
 	public function preventSessionsForUser( $username ) {
@@ -415,7 +415,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Test if a user is prevented
-	 * @private For use from SessionBackend only
+	 * @internal For use from SessionBackend only
 	 * @param string $username
 	 * @return bool
 	 */
@@ -464,7 +464,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Save all active sessions on shutdown
-	 * @private For internal use with register_shutdown_function()
+	 * @internal For internal use with register_shutdown_function()
 	 */
 	public function shutdown() {
 		if ( $this->allSessionBackends ) {
@@ -832,7 +832,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Create a Session corresponding to the passed SessionInfo
-	 * @private For use by a SessionProvider that needs to specially create its
+	 * @internal For use by a SessionProvider that needs to specially create its
 	 *  own Session. Most session providers won't need this.
 	 * @param SessionInfo $info
 	 * @param WebRequest $request
@@ -893,7 +893,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Deregister a SessionBackend
-	 * @private For use from \MediaWiki\Session\SessionBackend only
+	 * @internal For use from \MediaWiki\Session\SessionBackend only
 	 * @param SessionBackend $backend
 	 */
 	public function deregisterSessionBackend( SessionBackend $backend ) {
@@ -911,7 +911,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Change a SessionBackend's ID
-	 * @private For use from \MediaWiki\Session\SessionBackend only
+	 * @internal For use from \MediaWiki\Session\SessionBackend only
 	 * @param SessionBackend $backend
 	 */
 	public function changeBackendId( SessionBackend $backend ) {
@@ -946,7 +946,7 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Call setters on a PHPSessionHandler
-	 * @private Use PhpSessionHandler::install()
+	 * @internal Use PhpSessionHandler::install()
 	 * @param PHPSessionHandler $handler
 	 */
 	public function setupPHPSessionHandler( PHPSessionHandler $handler ) {
@@ -955,7 +955,8 @@ final class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Reset the internal caching for unit testing
-	 * @protected Unit tests only
+	 * @note Unit tests only
+	 * @internal
 	 */
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {

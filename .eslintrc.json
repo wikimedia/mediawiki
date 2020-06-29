@@ -12,6 +12,7 @@
 	"rules": {
 		"max-len": "off",
 		"mediawiki/valid-package-file-require": "off",
-		"no-jquery/no-global-selector": "off"
+		"no-jquery/no-global-selector": "off",
+		"no-shadow": "error"
 	}
 }

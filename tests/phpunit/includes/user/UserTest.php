@@ -542,7 +542,7 @@ class UserTest extends MediaWikiTestCase {
 						'MinimalPasswordLength' => 6,
 						'PasswordCannotMatchUsername' => true,
 						'PasswordCannotBeSubstringInUsername' => true,
-						'PasswordCannotMatchBlacklist' => true,
+						'PasswordCannotMatchDefaults' => true,
 						'MaximalPasswordLength' => 40,
 					],
 				],
@@ -552,7 +552,7 @@ class UserTest extends MediaWikiTestCase {
 					'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 					'PasswordCannotBeSubstringInUsername' =>
 						'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
-					'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
+					'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
 					'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
 				],
 			],
@@ -2736,6 +2736,8 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	private function doTestNewTalk( User $user ) {
+		$this->hideDeprecated( 'User::getNewtalk' );
+		$this->hideDeprecated( 'User::setNewtalk' );
 		$this->assertFalse( $user->getNewtalk(), 'Should be false before updated' );
 		$user->setNewtalk( true );
 		$this->assertTrue( $user->getNewtalk(), 'Should be true after updated' );
@@ -2770,6 +2772,7 @@ class UserTest extends MediaWikiTestCase {
 	public function testGetNewMessageLinks() {
 		$this->hideDeprecated( 'User::getNewMessageLinks' );
 		$this->hideDeprecated( 'User::getNewMessageRevisionId' );
+		$this->hideDeprecated( 'User::setNewtalk' );
 
 		$user = $this->getTestUser()->getUser();
 		$userTalk = $user->getTalkPage();

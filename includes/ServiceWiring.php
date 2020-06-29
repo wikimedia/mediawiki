@@ -388,7 +388,7 @@ return [
 		$dbLoadBalancer = $services->isServiceDisabled( 'DBLoadBalancer' )
 			? null
 			: $services->getDBLoadBalancer();
-		return new GenderCache( $nsInfo, $dbLoadBalancer );
+		return new GenderCache( $nsInfo, $dbLoadBalancer, $services->get( '_DefaultOptionsLookup' ) );
 	},
 
 	'GlobalIdGenerator' => function ( MediaWikiServices $services ) : GlobalIdGenerator {
@@ -822,7 +822,8 @@ return [
 		return new ParserCache(
 			$cache,
 			$config->get( 'CacheEpoch' ),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getStatsdDataFactory()
 		);
 	},
 
@@ -1268,7 +1269,7 @@ return [
 			),
 			$services->getContentLanguage(),
 			LoggerFactory::getInstance( 'UserNameUtils' ),
-			$services->getService( 'TitleFactory' ),
+			$services->getTitleParser(),
 			$messageFormatterFactory->getTextFormatter(
 				$services->getContentLanguage()->getCode()
 			),

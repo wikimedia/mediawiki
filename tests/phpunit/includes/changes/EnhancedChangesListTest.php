@@ -249,4 +249,46 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		return $method->invokeArgs( $enhancedChangesList, [ $cacheEntry ] );
 	}
 
+	public function testExpiringWatchlistItem(): void {
+		// Set current time to 2020-05-05.
+		MWTimestamp::setFakeTime( '20200505000000' );
+		$enhancedChangesList = $this->newEnhancedChangesList();
+		$enhancedChangesList->getOutput()->enableOOUI();
+
+		$row = (object)[
+			'rc_namespace' => NS_MAIN,
+			'rc_title' => '',
+			'rc_timestamp' => '20150921134808',
+			'rc_deleted' => '',
+			'rc_comment_text' => 'comment',
+			'rc_comment_data' => null,
+			'rc_user' => $this->getTestUser()->getUser()->getId(),
+			'we_expiry' => '20200101000000',
+		];
+		$rc = RecentChange::newFromRow( $row );
+
+		// Make sure it doesn't output anything for a past expiry.
+		$html1 = $enhancedChangesList->getWatchlistExpiry( $rc );
+		$this->assertSame( '', $html1 );
+
+		// Check a future expiry for the right tooltip text.
+		$rc->watchlistExpiry = '20200512000000';
+		$html2 = $enhancedChangesList->getWatchlistExpiry( $rc );
+		$this->assertStringContainsString( "title='7 days left in your watchlist'", $html2 );
+
+		// Check that multiple changes on the same day all get the clock icon.
+		$enhancedChangesList->beginRecentChangesList();
+		// 1. Expire on 2020-06-01 (27 days):
+		$rc1 = $this->getEditChange( '20200501000001', __METHOD__ . '1' );
+		$rc1->watchlistExpiry = '20200601000000';
+		$enhancedChangesList->recentChangesLine( $rc1 );
+		// 2. Expire on 2020-06-08 (34 days):
+		$rc2 = $this->getEditChange( '20200501000002', __METHOD__ . '2' );
+		$rc2->watchlistExpiry = '20200608000000';
+		$enhancedChangesList->recentChangesLine( $rc2 );
+		// Get and test the HTML.
+		$html3 = $enhancedChangesList->endRecentChangesList();
+		$this->assertStringContainsString( '27 days left in your watchlist', $html3 );
+		$this->assertStringContainsString( '34 days left in your watchlist', $html3 );
+	}
 }

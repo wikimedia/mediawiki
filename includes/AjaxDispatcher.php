@@ -123,7 +123,8 @@ class AjaxDispatcher {
 				"unknown function " . $this->func_name
 			);
 		} elseif ( !$permissionManager->isEveryoneAllowed( 'read' ) &&
-				   !$permissionManager->userHasRight( $user, 'read' ) ) {
+			!$permissionManager->userHasRight( $user, 'read' )
+		) {
 			wfHttpError(
 				403,
 				'Forbidden',

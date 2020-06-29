@@ -73,7 +73,9 @@ class HookRunner implements
 	\MediaWiki\Diff\Hook\DifferenceEngineShowDiffPageHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineShowDiffPageMaybeShowMissingRevisionHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineShowEmptyOldContentHook,
+	\MediaWiki\Diff\Hook\DifferenceEngineViewHeaderHook,
 	\MediaWiki\Diff\Hook\DiffRevisionToolsHook,
+	\MediaWiki\Diff\Hook\DiffToolsHook,
 	\MediaWiki\Diff\Hook\DiffViewHeaderHook,
 	\MediaWiki\Diff\Hook\NewDifferenceEngineHook,
 	\MediaWiki\Hook\AbortEmailNotificationHook,
@@ -187,6 +189,7 @@ class HookRunner implements
 	\MediaWiki\Hook\GitViewersHook,
 	\MediaWiki\Hook\HistoryPageToolLinksHook,
 	\MediaWiki\Hook\HistoryRevisionToolsHook,
+	\MediaWiki\Hook\HistoryToolsHook,
 	\MediaWiki\Hook\ImageBeforeProduceHTMLHook,
 	\MediaWiki\Hook\ImgAuthBeforeStreamHook,
 	\MediaWiki\Hook\ImgAuthModifyHeadersHook,
@@ -261,6 +264,7 @@ class HookRunner implements
 	\MediaWiki\Hook\PageHistoryPager__doBatchLookupsHook,
 	\MediaWiki\Hook\PageHistoryPager__getQueryInfoHook,
 	\MediaWiki\Hook\PageMoveCompleteHook,
+	\MediaWiki\Hook\PageMoveCompletingHook,
 	\MediaWiki\Hook\PageRenderingHashHook,
 	\MediaWiki\Hook\ParserAfterParseHook,
 	\MediaWiki\Hook\ParserAfterStripHook,
@@ -628,8 +632,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onAfterFinalPageOutput( $output ) {
-		return $this->container->run(
+	public function onAfterFinalPageOutput( $output ) : void {
+		$this->container->run(
 			'AfterFinalPageOutput',
 			[ $output ],
 			[ 'abortable' => false ]
@@ -985,8 +989,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onBeforePageDisplay( $out, $skin ) {
-		return $this->container->run(
+	public function onBeforePageDisplay( $out, $skin ) : void {
+		$this->container->run(
 			'BeforePageDisplay',
 			[ $out, $skin ],
 			[ 'abortable' => false ]
@@ -1480,10 +1484,24 @@ class HookRunner implements
 		);
 	}
 
+	public function onDifferenceEngineViewHeader( $differenceEngine ) {
+		return $this->container->run(
+			'DifferenceEngineViewHeader',
+			[ $differenceEngine ]
+		);
+	}
+
 	public function onDiffRevisionTools( $newRev, &$links, $oldRev, $user ) {
 		return $this->container->run(
 			'DiffRevisionTools',
 			[ $newRev, &$links, $oldRev, $user ]
+		);
+	}
+
+	public function onDiffTools( $newRevRecord, &$links, $oldRevRecord, $userIdentity ) {
+		return $this->container->run(
+			'DiffTools',
+			[ $newRevRecord, &$links, $oldRevRecord, $userIdentity ]
 		);
 	}
 
@@ -2008,6 +2026,13 @@ class HookRunner implements
 		);
 	}
 
+	public function onHistoryTools( $revRecord, &$links, $prevRevRecord, $userIdentity ) {
+		return $this->container->run(
+			'HistoryTools',
+			[ $revRecord, &$links, $prevRevRecord, $userIdentity ]
+		);
+	}
+
 	public function onHtmlCacheUpdaterAppendUrls( $title, $mode, &$append ) {
 		return $this->container->run(
 			'HtmlCacheUpdaterAppendUrls',
@@ -2492,8 +2517,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onManualLogEntryBeforePublish( $logEntry ) {
-		return $this->container->run(
+	public function onManualLogEntryBeforePublish( $logEntry ) : void {
+		$this->container->run(
 			'ManualLogEntryBeforePublish',
 			[ $logEntry ],
 			[ 'abortable' => false ]
@@ -2728,8 +2753,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onOutputPageParserOutput( $out, $parserOutput ) {
-		return $this->container->run(
+	public function onOutputPageParserOutput( $out, $parserOutput ) : void {
+		$this->container->run(
 			'OutputPageParserOutput',
 			[ $out, $parserOutput ],
 			[ 'abortable' => false ]
@@ -2814,6 +2839,13 @@ class HookRunner implements
 	public function onPageMoveComplete( $old, $new, $user, $pageid, $redirid, $reason, $revision ) {
 		return $this->container->run(
 			'PageMoveComplete',
+			[ $old, $new, $user, $pageid, $redirid, $reason, $revision ]
+		);
+	}
+
+	public function onPageMoveCompleting( $old, $new, $user, $pageid, $redirid, $reason, $revision ) {
+		return $this->container->run(
+			'PageMoveCompleting',
 			[ $old, $new, $user, $pageid, $redirid, $reason, $revision ]
 		);
 	}
@@ -2982,8 +3014,8 @@ class HookRunner implements
 
 	public function onParserOutputPostCacheTransform( $parserOutput, &$text,
 		&$options
-	) {
-		return $this->container->run(
+	) : void {
+		$this->container->run(
 			'ParserOutputPostCacheTransform',
 			[ $parserOutput, &$text, &$options ],
 			[ 'abortable' => false ]
@@ -3043,8 +3075,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onPersonalUrls( &$personal_urls, &$title, $skin ) {
-		return $this->container->run(
+	public function onPersonalUrls( &$personal_urls, &$title, $skin ) : void {
+		$this->container->run(
 			'PersonalUrls',
 			[ &$personal_urls, &$title, $skin ],
 			[ 'abortable' => false ]
@@ -3451,10 +3483,11 @@ class HookRunner implements
 		);
 	}
 
-	public function onSidebarBeforeOutput( $skin, &$sidebar ) {
-		return $this->container->run(
+	public function onSidebarBeforeOutput( $skin, &$sidebar ) : void {
+		$this->container->run(
 			'SidebarBeforeOutput',
-			[ $skin, &$sidebar ]
+			[ $skin, &$sidebar ],
+			[ 'abortable' => false ]
 		);
 	}
 
@@ -3562,24 +3595,24 @@ class HookRunner implements
 		);
 	}
 
-	public function onSkinTemplateNavigation( $sktemplate, &$links ) {
-		return $this->container->run(
+	public function onSkinTemplateNavigation( $sktemplate, &$links ) : void {
+		$this->container->run(
 			'SkinTemplateNavigation',
 			[ $sktemplate, &$links ],
 			[ 'abortable' => false ]
 		);
 	}
 
-	public function onSkinTemplateNavigation__SpecialPage( $sktemplate, &$links ) {
-		return $this->container->run(
+	public function onSkinTemplateNavigation__SpecialPage( $sktemplate, &$links ) : void {
+		$this->container->run(
 			'SkinTemplateNavigation::SpecialPage',
 			[ $sktemplate, &$links ],
 			[ 'abortable' => false ]
 		);
 	}
 
-	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ) {
-		return $this->container->run(
+	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ) : void {
+		$this->container->run(
 			'SkinTemplateNavigation::Universal',
 			[ $sktemplate, &$links ],
 			[ 'abortable' => false ]

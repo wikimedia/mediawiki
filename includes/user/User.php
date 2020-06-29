@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\Auth\AuthenticationRequest;
-use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
@@ -1899,8 +1898,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $fromReplica = true ) {
-		return $this->getBlock( $fromReplica ) instanceof AbstractBlock &&
-			$this->getBlock()->appliesToRight( 'edit' );
+		return $this->getBlock( $fromReplica ) instanceof AbstractBlock;
 	}
 
 	/**
@@ -2170,6 +2168,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool True if the user has new messages
 	 */
 	public function getNewtalk() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getTalkPageNotificationManager()
 			->userHasNewMessages( $this );
@@ -2254,13 +2253,13 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Update the 'You have new messages!' status.
 	 * @param bool $val Whether the user has new messages
 	 * @param RevisionRecord|Revision|null $curRev New, as yet unseen revision of the
-	 *   user talk page. Ignored if null or !$val; passing a Revision is deprecated since 1.35.
+	 *   user talk page. Ignored if null or !$val
 	 * @deprecated since 1.35 Use TalkPageNotificationManager::setUserHasNewMessages or
 	 *   TalkPageNotificationManager::removeUserHasNewMessages
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $curRev && $curRev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$curRev = $curRev->getRevisionRecord();
 		}
 		if ( $val ) {
@@ -2416,19 +2415,6 @@ class User implements IDBAccessObject, UserIdentity {
 	public function setPassword( $str ) {
 		wfDeprecated( __METHOD__, '1.27' );
 		return $this->setPasswordInternal( $str );
-	}
-
-	/**
-	 * Set the password and reset the random token unconditionally.
-	 *
-	 * @deprecated since 1.27, use AuthManager instead
-	 * @param string|null $str New password to set or null to set an invalid
-	 *  password hash meaning that the user will not be able to log in
-	 *  through the web interface.
-	 */
-	public function setInternalPassword( $str ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		$this->setPasswordInternal( $str );
 	}
 
 	/**
@@ -3839,39 +3825,6 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isNewbie() {
 		return !$this->isAllowed( 'autoconfirmed' );
-	}
-
-	/**
-	 * Check to see if the given clear-text password is one of the accepted passwords
-	 * @deprecated since 1.27, use AuthManager instead
-	 * @param string $password User password
-	 * @return bool True if the given password is correct, otherwise False
-	 */
-	public function checkPassword( $password ) {
-		wfDeprecated( __METHOD__, '1.27' );
-
-		$manager = MediaWikiServices::getInstance()->getAuthManager();
-		$reqs = AuthenticationRequest::loadRequestsFromSubmission(
-			$manager->getAuthenticationRequests( AuthManager::ACTION_LOGIN ),
-			[
-				'username' => $this->getName(),
-				'password' => $password,
-			]
-		);
-		$res = $manager->beginAuthentication( $reqs, 'null:' );
-		switch ( $res->status ) {
-			case AuthenticationResponse::PASS:
-				return true;
-			case AuthenticationResponse::FAIL:
-				// Hope it's not a PreAuthenticationProvider that failed...
-				LoggerFactory::getInstance( 'authentication' )
-					->info( __METHOD__ . ': Authentication failed: ' . $res->message->plain() );
-				return false;
-			default:
-				throw new BadMethodCallException(
-					'AuthManager returned a response unsupported by ' . __METHOD__
-				);
-		}
 	}
 
 	/**

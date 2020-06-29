@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 	var ApiSandbox, Util, WidgetMethods, Validators,
-		$content, panel, booklet, oldhash, windowManager,
+		panel, booklet, oldhash, windowManager,
 		formatDropdown,
 		api = new mw.Api(),
 		bookletPages = [],
@@ -277,8 +277,8 @@
 			multi: function () {
 				var map = this.paramInfo.submodules,
 					v = this.isDisabled() ? this.paramInfo.default : this.getApiValue();
-				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( v ) {
-					return { value: v, path: map[ v ] };
+				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( val ) {
+					return { value: val, path: map[ val ] };
 				} );
 			}
 		},
@@ -488,7 +488,7 @@
 						required: Util.apiBool( pi.required )
 					} );
 					widget.setValidation( function ( value ) {
-						var n, pi = this.paramInfo;
+						var n, info = this.paramInfo;
 
 						if ( value === 'max' ) {
 							return true;
@@ -496,7 +496,7 @@
 							n = +value;
 							return !isNaN( n ) && isFinite( n ) &&
 								Math.floor( n ) === n &&
-								n >= pi.min && n <= pi.apiSandboxMax;
+								n >= info.min && n <= info.apiSandboxMax;
 						}
 					} );
 					pi.min = pi.min || 0;
@@ -802,9 +802,8 @@
 		 * Automatically called on $.ready()
 		 */
 		init: function () {
-			var $toolbar;
-
-			$content = $( '#mw-apisandbox' );
+			var $toolbar,
+				$content = $( '#mw-apisandbox' );
 
 			windowManager = new OO.ui.WindowManager();
 			$( document.body ).append( windowManager.$element );
@@ -1022,10 +1021,10 @@
 
 				// Count how many times `value` occurs in `array`.
 				function countValues( value, array ) {
-					var count, i;
+					var count, n;
 					count = 0;
-					for ( i = 0; i < array.length; i++ ) {
-						if ( array[ i ] === value ) {
+					for ( n = 0; n < array.length; n++ ) {
+						if ( array[ n ] === value ) {
 							count++;
 						}
 					}
@@ -1169,16 +1168,16 @@
 					}
 				} )
 					.catch( function ( code, data, result, jqXHR ) {
-						var deferred = $.Deferred();
+						var d = $.Deferred();
 
 						if ( code !== 'http' ) {
 							// Not really an error, work around mw.Api thinking it is.
-							deferred.resolve( result, jqXHR );
+							d.resolve( result, jqXHR );
 						} else {
 							// Just forward it.
-							deferred.reject.apply( deferred, arguments );
+							d.reject.apply( d, arguments );
 						}
-						return deferred.promise();
+						return d.promise();
 					} )
 					.then( function ( data, jqXHR ) {
 						var m, loadTime, button, clear,
@@ -1284,7 +1283,7 @@
 		 * pages and then re-submits the query.
 		 */
 		fixTokenAndResend: function () {
-			var page, subpages, i, k,
+			var page, subpages, i, key,
 				ok = true,
 				tokenWait = { dummy: true },
 				checkPages = [ pages.main ],
@@ -1303,11 +1302,11 @@
 				page = checkPages.shift();
 
 				if ( page.tokenWidget ) {
-					k = page.apiModule + page.tokenWidget.paramInfo.name;
-					tokenWait[ k ] = page.tokenWidget.fetchToken();
-					tokenWait[ k ]
-						.done( success.bind( page.tokenWidget, k ) )
-						.fail( failure.bind( page.tokenWidget, k ) );
+					key = page.apiModule + page.tokenWidget.paramInfo.name;
+					tokenWait[ key ] = page.tokenWidget.fetchToken();
+					tokenWait[ key ]
+						.done( success.bind( page.tokenWidget, key ) )
+						.fail( failure.bind( page.tokenWidget, key ) );
 				}
 
 				subpages = page.getSubpages();
@@ -1609,11 +1608,11 @@
 
 		// This bit duplicates the PHP logic in ApiBase::extractRequestParams().
 		// If you update this, see if that needs updating too.
-		toProcess = pi.templatedparameters.map( function ( p ) {
+		toProcess = pi.templatedparameters.map( function ( info ) {
 			return {
-				name: prefix + p.name,
-				info: p,
-				vars: $.extend( {}, p.templatevars ),
+				name: prefix + info.name,
+				info: info,
+				vars: $.extend( {}, info.templatevars ),
 				usedVars: []
 			};
 		} );

@@ -54,29 +54,36 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @var Title
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mTitle = null;
 
 	/**
 	 * @var bool
-	 * @protected
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mDataLoaded = false;
 
 	/**
 	 * @var bool
-	 * @protected
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mIsRedirect = false;
 
 	/**
 	 * @var int|false False means "not loaded"
-	 * @protected
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mLatest = false;
 
 	/**
 	 * @var PreparedEdit|false Map of cache fields (text, parser output, ect) for a proposed/new edit
+	 * @todo make protected
+	 * @note for access by subclasses only
 	 */
 	public $mPreparedEdit = false;
 
@@ -1463,7 +1470,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param null|bool $lastRevIsRedirect If given, will optimize adding and
 	 *   removing rows in redirect table.
 	 * @return bool True on success, false on failure
-	 * @private
+	 * @internal
 	 */
 	public function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
 		// Always update redirects (target link might have changed)
@@ -2022,7 +2029,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 *
 	 * @param Content $content
 	 * @param Revision|RevisionRecord|null $revision Revision object.
-	 *        Used with vary-revision or vary-revision-id.
+	 *        Used with vary-revision or vary-revision-id. Passing a Revision object
+	 *        is hard deprecated since 1.35;
 	 * @param User|null $user
 	 * @param string|null $serialFormat IGNORED
 	 * @param bool $useCache Check shared prepared edit cache
@@ -2046,6 +2054,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		if ( $revision !== null ) {
 			if ( $revision instanceof Revision ) {
+				wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 				$revision = $revision->getRevisionRecord();
 			} elseif ( !( $revision instanceof RevisionRecord ) ) {
 				throw new InvalidArgumentException(
@@ -2089,7 +2098,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * - created: bool, whether the revision created the page (default false)
 	 * - moved: bool, whether the page was moved (default false)
 	 * - restored: bool, whether the page was undeleted (default false)
-	 * - oldrevision: Revision object for the pre-update revision (default null)
+	 * - oldrevision: RevisionRecord object for the pre-update revision (default null)
+	 *     can also be a Revision object, but that is deprecated since 1.35
 	 * - oldcountable: bool, null, or string 'no-change' (default null):
 	 *   - bool: whether the page was counted as an article before that
 	 *     revision, only used in changed is true and created is false
@@ -2105,6 +2115,14 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $revisionRecord instanceof Revision ) {
 			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revisionRecord = $revisionRecord->getRevisionRecord();
+		}
+		if ( isset( $options['oldrevision'] ) && $options['oldrevision'] instanceof Revision ) {
+			wfDeprecated(
+				__METHOD__ . ' with the `oldrevision` option being a ' .
+				'Revision object',
+				'1.35'
+			);
+			$options['oldrevision'] = $options['oldrevision']->getRevisionRecord();
 		}
 
 		$options += [
@@ -3263,7 +3281,10 @@ class WikiPage implements Page, IDBAccessObject {
 		// User name given should match up with the top revision.
 		// If the revision's user is not visible, then $from should be empty.
 		if ( $from !== ( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' ) ) {
-			$resultDetails = [ 'current' => $legacyCurrent ];
+			$resultDetails = [
+				'current' => $legacyCurrent,
+				'current-revision-record' => $current,
+			];
 			return [ [ 'alreadyrolled',
 				htmlspecialchars( $this->mTitle->getPrefixedText() ),
 				htmlspecialchars( $fromP ),
@@ -3441,7 +3462,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Report if the edit was not created because it did not change the content.
 		if ( $updater->isUnchanged() ) {
-			$resultDetails = [ 'current' => $legacyCurrent ];
+			$resultDetails = [
+				'current' => $legacyCurrent,
+				'current-revision-record' => $current,
+			];
 			return [ [ 'alreadyrolled',
 					htmlspecialchars( $this->mTitle->getPrefixedText() ),
 					htmlspecialchars( $fromP ),
@@ -3467,7 +3491,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$revId = $rev->getId();
 
-		// Soft deprecated in 1.35
+		// Hard deprecated in 1.35
 		$this->getHookRunner()->onArticleRollbackComplete( $this, $guser,
 			$legacyTarget, $legacyCurrent );
 
@@ -3476,7 +3500,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$resultDetails = [
 			'summary' => $summary,
 			'current' => $legacyCurrent,
+			'current-revision-record' => $current,
 			'target' => $legacyTarget,
+			'target-revision-record' => $target,
 			'newid' => $revId,
 			'tags' => $tags
 		];

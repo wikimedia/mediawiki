@@ -1074,7 +1074,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * - created: bool, whether the revision created the page (default false)
 	 * - moved: bool, whether the page was moved (default false)
 	 * - restored: bool, whether the page was undeleted (default false)
-	 * - oldrevision: Revision object for the pre-update revision (default null)
+	 * - oldrevision: RevisionRecord object for the pre-update revision (default null)
+	 *     can also be a Revision object, which is deprecated since 1.35
 	 * - triggeringUser: The user triggering the update (UserIdentity, defaults to the
 	 *   user who created the revision)
 	 * - oldredirect: bool, null, or string 'no-change' (default null):
@@ -1099,9 +1100,16 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *    of ParserOutput objects. (default: null) (since 1.33)
 	 */
 	public function prepareUpdate( RevisionRecord $revision, array $options = [] ) {
+		if ( isset( $options['oldrevision'] ) && $options['oldrevision'] instanceof Revision ) {
+			wfDeprecated(
+				__METHOD__ . ' with the `oldrevision` option being a ' .
+				'Revision object',
+				'1.35'
+			);
+			$options['oldrevision'] = $options['oldrevision']->getRevisionRecord();
+		}
 		Assert::parameter(
 			!isset( $options['oldrevision'] )
-			|| $options['oldrevision'] instanceof Revision
 			|| $options['oldrevision'] instanceof RevisionRecord,
 			'$options["oldrevision"]',
 			'must be a RevisionRecord (or Revision)'
@@ -1147,7 +1155,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$oldId = $this->pageState['oldId'] ?? 0;
 			$this->options['newrev'] = ( $revision->getId() !== $oldId );
 		} elseif ( isset( $this->options['oldrevision'] ) ) {
-			/** @var Revision|RevisionRecord $oldRev */
+			/** @var RevisionRecord $oldRev */
 			$oldRev = $this->options['oldrevision'];
 			$oldId = $oldRev->getId();
 			$this->options['newrev'] = ( $revision->getId() !== $oldId );
@@ -1215,9 +1223,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 				if ( isset( $this->options['oldrevision'] ) ) {
 					$rev = $this->options['oldrevision'];
-					$this->pageState['oldRevision'] = $rev instanceof Revision
-						? $rev->getRevisionRecord()
-						: $rev;
+					$this->pageState['oldRevision'] = $rev;
 				}
 			} else {
 				// This is a null-edit, so the old revision IS the new revision!

@@ -8,7 +8,7 @@ use Title;
 
 class ContributionsSegmentTest extends \MediaWikiUnitTestCase {
 
-	public function provideContruction() {
+	public function provideFlags() {
 		yield [
 			[]
 		];
@@ -59,21 +59,38 @@ class ContributionsSegmentTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideContruction
+	 * @dataProvider provideFlags
 	 * @covers \MediaWiki\Revision\ContributionsSegment
 	 */
-	public function testConstruction( $flags ) {
+	public function testFlags( $flags ) {
+		$contributionsSegment = new ContributionsSegment( [], [], null, null, [], $flags );
+		$this->assertSame( $flags['newest'] ?? false, $contributionsSegment->isNewest() );
+		$this->assertSame( $flags['oldest'] ?? false, $contributionsSegment->isOldest() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\ContributionsSegment
+	 */
+	public function testConstruction() {
 		$mockTitle = $this->createNoOpMock( Title::class, [ 'getArticleID' ] );
 		$mockTitle->method( 'getArticleID' )->willReturn( 1 );
 		$revisionRecords = [ new MutableRevisionRecord( $mockTitle ), new MutableRevisionRecord( $mockTitle ) ];
 		$before = 'before';
 		$after = 'after';
+		$tags = [ 3 => [ 'frob' ] ];
+		$deltas = [ 3 => -7, 5 => null ];
 
-		$contributionsSegment = new ContributionsSegment( $revisionRecords, $before, $after, $flags );
+		$contributionsSegment =
+			new ContributionsSegment( $revisionRecords, $tags, $before, $after, $deltas );
 		$this->assertSame( $revisionRecords, $contributionsSegment->getRevisions() );
+		$this->assertSame( $tags[3], $contributionsSegment->getTagsForRevision( 3 ) );
+		$this->assertSame( [], $contributionsSegment->getTagsForRevision( 17 ) );
 		$this->assertSame( $before, $contributionsSegment->getBefore() );
 		$this->assertSame( $after, $contributionsSegment->getAfter() );
-		$this->assertSame( $flags['newest'] ?? false, $contributionsSegment->isNewest() );
-		$this->assertSame( $flags['oldest'] ?? false, $contributionsSegment->isOldest() );
+		$this->assertFalse( $contributionsSegment->isNewest(), 'isNewest' );
+		$this->assertFalse( $contributionsSegment->isOldest(), 'isOldest' );
+		$this->assertSame( $deltas[3], $contributionsSegment->getDeltaForRevision( 3 ) );
+		$this->assertNull( $contributionsSegment->getDeltaForRevision( 5 ) );
+		$this->assertNull( $contributionsSegment->getDeltaForRevision( 77 ) );
 	}
 }

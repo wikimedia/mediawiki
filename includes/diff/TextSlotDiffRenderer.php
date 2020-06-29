@@ -243,7 +243,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 			$exitCode = $result->getExitCode();
 			if ( $exitCode !== 0 ) {
 				throw new Exception( "External diff command returned code {$exitCode}. Stderr: "
-									 . wfEscapeWikiText( $result->getStderr() )
+					. wfEscapeWikiText( $result->getStderr() )
 				);
 			}
 			$difftext = $result->getStdout();

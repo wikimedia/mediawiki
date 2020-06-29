@@ -525,7 +525,7 @@ class CategoryViewer extends ContextSource {
 	 * @param array $articles_start_char
 	 * @param int $cutoff
 	 * @return string
-	 * @private
+	 * @internal
 	 */
 	private function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
 		$list = '';
@@ -556,7 +556,7 @@ class CategoryViewer extends ContextSource {
 	 * @param string[] $articles HTML links to each article
 	 * @param string[] $articles_start_char The header characters for each article
 	 * @return string HTML to output
-	 * @private
+	 * @internal
 	 */
 	public static function columnList( $articles, $articles_start_char ) {
 		$columns = array_combine( $articles, $articles_start_char );
@@ -597,7 +597,7 @@ class CategoryViewer extends ContextSource {
 	 * @param string[] $articles HTML links to each article
 	 * @param string[] $articles_start_char The header characters for each article
 	 * @return string HTML to output
-	 * @private
+	 * @internal
 	 */
 	public static function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";

@@ -1073,7 +1073,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * distinguish them from MIME types.
 	 *
 	 * This function relies on the mapping defined by $this->mMediaTypes
-	 * @private
+	 * @internal
 	 * @param string $extMime
 	 * @return int|string
 	 */

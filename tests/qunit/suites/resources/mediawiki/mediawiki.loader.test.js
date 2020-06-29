@@ -144,10 +144,10 @@
 			[ 'test.set.circleC', '0', [ 'test.set.circleA' ] ]
 		] );
 		mw.loader.using( 'test.set.circleC' ).then(
-			function done() {
+			function () {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
-			function fail( e ) {
+			function ( e ) {
 				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
 		)
@@ -174,10 +174,10 @@
 			[ 'test.shim.circleC', '0', [ 'test.shim.circleA' ] ]
 		] );
 		mw.loader.using( 'test.shim.circleC' ).then(
-			function done() {
+			function () {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
-			function fail( e ) {
+			function ( e ) {
 				assert.ok( /Circular/.test( String( e ) ), 'Detect circular dependency' );
 			}
 		)
@@ -240,10 +240,10 @@
 		var done = assert.async();
 
 		mw.loader.using( 'test.using.unreg' ).then(
-			function done() {
+			function () {
 				assert.ok( false, 'Unexpected resolution, expected error.' );
 			},
-			function fail( e ) {
+			function ( e ) {
 				assert.ok( /Unknown/.test( String( e ) ), 'Detect unknown dependency' );
 			}
 		).always( done );

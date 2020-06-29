@@ -132,7 +132,7 @@ class MagicWord {
 
 	/**
 	 * Preliminary initialisation
-	 * @private
+	 * @internal
 	 */
 	public function initRegex() {
 		// Sort the synonyms by length, descending, so that the longest synonym

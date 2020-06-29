@@ -21,7 +21,7 @@
     "@wdio/mocha-framework": "6.1.8",
     "@wdio/sauce-service": "6.1.9",
     "@wdio/sync": "6.1.8",
-    "api-testing": "1.1.0",
+    "api-testing": "1.2.0",
     "eslint-config-wikimedia": "0.16.2",
     "grunt": "1.1.0",
     "grunt-banana-checker": "0.9.0",

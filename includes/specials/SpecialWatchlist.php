@@ -106,6 +106,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			return;
 		}
 
+		// Enable OOUI for the clock icon.
+		if ( $config->get( 'WatchlistExpiry' ) ) {
+			$output->enableOOUI();
+		}
+
 		parent::execute( $subpage );
 
 		if ( $this->isStructuredFilterUiEnabled() ) {
@@ -379,6 +384,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
 			$tables[] = 'watchlist_expiry';
+			$fields[] = 'we_expiry';
 			$join_conds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
 			$conds[] = 'we_expiry IS NULL OR we_expiry > ' . $dbr->addQuotes( $dbr->timestamp() );
 		}

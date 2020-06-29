@@ -31,7 +31,7 @@ class AutoLoader {
 	protected static $autoloadLocalClassesLower = null;
 
 	/**
-	 * @private Only public for ExtensionRegistry
+	 * @internal Only public for ExtensionRegistry
 	 * @var string[] Namespace (ends with \) => Path (ends with /)
 	 */
 	public static $psr4Namespaces = [];
@@ -122,7 +122,7 @@ class AutoLoader {
 	 * The namespaces should follow the PSR-4 standard for autoloading
 	 *
 	 * @see <https://www.php-fig.org/psr/psr-4/>
-	 * @private Only public for usage in AutoloadGenerator
+	 * @internal Only public for usage in AutoloadGenerator
 	 * @codeCoverageIgnore
 	 * @since 1.31
 	 * @return string[]

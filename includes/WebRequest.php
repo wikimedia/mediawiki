@@ -419,7 +419,7 @@ class WebRequest {
 	 *
 	 * @param string|array $data
 	 * @return array|string Cleaned-up version of the given
-	 * @private
+	 * @internal
 	 */
 	public function normalizeUnicode( $data ) {
 		if ( is_array( $data ) ) {
@@ -834,7 +834,7 @@ class WebRequest {
 	/**
 	 * Set the session for this request
 	 * @since 1.27
-	 * @private For use by MediaWiki\Session classes only
+	 * @internal For use by MediaWiki\Session classes only
 	 * @param SessionId $sessionId
 	 */
 	public function setSessionId( SessionId $sessionId ) {
@@ -844,7 +844,7 @@ class WebRequest {
 	/**
 	 * Get the session id for this request, if any
 	 * @since 1.27
-	 * @private For use by MediaWiki\Session classes only
+	 * @internal For use by MediaWiki\Session classes only
 	 * @return SessionId|null
 	 */
 	public function getSessionId() {

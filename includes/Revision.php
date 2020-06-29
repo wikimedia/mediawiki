@@ -356,7 +356,10 @@ class Revision implements IDBAccessObject {
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
-	 * @private
+	 * Since 1.35, constructing with anything other than a RevisionRecord is hard deprecated
+	 * (since 1.31 the entire class is deprecated)
+	 *
+	 * @internal
 	 */
 	public function __construct( $row, $queryFlags = 0, Title $title = null ) {
 		global $wgUser;
@@ -364,6 +367,7 @@ class Revision implements IDBAccessObject {
 		if ( $row instanceof RevisionRecord ) {
 			$this->mRecord = $row;
 		} elseif ( is_array( $row ) ) {
+			wfDeprecated( __METHOD__ . ' with an array', '1.31' );
 			// If no user is specified, fall back to using the global user object, to stay
 			// compatible with pre-1.31 behavior.
 			if ( !isset( $row['user'] ) && !isset( $row['user_text'] ) ) {
@@ -376,6 +380,7 @@ class Revision implements IDBAccessObject {
 				$this->ensureTitle( $row, $queryFlags, $title )
 			);
 		} elseif ( is_object( $row ) ) {
+			wfDeprecated( __METHOD__ . ' with an object', '1.31' );
 			$this->mRecord = self::getRevisionFactory()->newRevisionFromRow(
 				$row,
 				$queryFlags,

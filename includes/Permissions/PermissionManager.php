@@ -528,8 +528,8 @@ class PermissionManager {
 			# If the user is allowed to read pages, he is allowed to read all pages
 			$whitelisted = true;
 		} elseif ( $this->isSameSpecialPage( 'Userlogin', $title )
-				   || $this->isSameSpecialPage( 'PasswordReset', $title )
-				   || $this->isSameSpecialPage( 'Userlogout', $title )
+			|| $this->isSameSpecialPage( 'PasswordReset', $title )
+			|| $this->isSameSpecialPage( 'Userlogout', $title )
 		) {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
@@ -803,11 +803,14 @@ class PermissionManager {
 				// User can't move anything
 				$errors[] = [ 'movenotallowed' ];
 			} elseif ( !$this->userHasRight( $user, 'move-rootuserpages' )
-					   && $title->getNamespace() == NS_USER && !$isSubPage ) {
+				&& $title->getNamespace() == NS_USER
+				&& !$isSubPage
+			) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-user-page' ];
 			} elseif ( !$this->userHasRight( $user, 'move-categorypages' )
-					   && $title->getNamespace() == NS_CATEGORY ) {
+				&& $title->getNamespace() == NS_CATEGORY
+			) {
 				// Show category page-specific message only if the user can move other pages
 				$errors[] = [ 'cant-move-to-category-page' ];
 			}
@@ -861,7 +864,8 @@ class PermissionManager {
 			if ( !$this->userHasRight( $user, $right ) ) {
 				$errors[] = [ 'protectedpagetext', $right, $action ];
 			} elseif ( $title->areRestrictionsCascading() &&
-					   !$this->userHasRight( $user, 'protect' ) ) {
+				!$this->userHasRight( $user, 'protect' )
+			) {
 				$errors[] = [ 'protectedpagetext', 'protect', $action ];
 			}
 		}
@@ -1377,7 +1381,7 @@ class PermissionManager {
 		$groupPermissions = $this->options->get( 'GroupPermissions' );
 		$revokePermissions = $this->options->get( 'RevokePermissions' );
 		return isset( $groupPermissions[$group][$role] ) && $groupPermissions[$group][$role] &&
-			   !( isset( $revokePermissions[$group][$role] ) && $revokePermissions[$group][$role] );
+			!( isset( $revokePermissions[$group][$role] ) && $revokePermissions[$group][$role] );
 	}
 
 	/**

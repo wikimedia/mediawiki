@@ -124,16 +124,20 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check if username and password are on a blacklist of past MediaWiki default passwords.
+	 * Check if username and password are on a list of past MediaWiki default passwords.
 	 * @param bool $policyVal true to force compliance.
 	 * @param User $user
 	 * @param string $password
 	 * @return Status error if username and password match, and policy is true
 	 */
-	public static function checkPasswordCannotMatchBlacklist( $policyVal, User $user, $password ) {
+	public static function checkPasswordCannotMatchDefaults( $policyVal, User $user, $password ) {
 		static $blockedLogins = [
-			'Useruser' => 'Passpass', 'Useruser1' => 'Passpass1', # r75589
-			'Apitestsysop' => 'testpass', 'Apitestuser' => 'testpass' # r75605
+			// r75589
+			'Useruser' => 'Passpass',
+			'Useruser1' => 'Passpass1',
+			// r75605
+			'Apitestsysop' => 'testpass',
+			'Apitestuser' => 'testpass',
 		];
 
 		$status = Status::newGood();

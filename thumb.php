@@ -36,21 +36,25 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
 }
 require __DIR__ . '/includes/WebStart.php';
 
-// Don't use fancy MIME detection, just check the file extension for jpg/gif/png
-$wgTrivialMimeDetection = true;
+wfThumbMain();
 
-if ( defined( 'THUMB_HANDLER' ) ) {
-	// Called from thumb_handler.php via 404; extract params from the URI...
-	wfThumbHandle404();
-} else {
-	// Called directly, use $_GET params
-	wfStreamThumb( $wgRequest->getQueryValuesOnly() );
+function wfThumbMain() {
+	global $wgTrivialMimeDetection, $wgRequest;
+
+	// Don't use fancy MIME detection, just check the file extension for jpg/gif/png
+	$wgTrivialMimeDetection = true;
+
+	if ( defined( 'THUMB_HANDLER' ) ) {
+		// Called from thumb_handler.php via 404; extract params from the URI...
+		wfThumbHandle404();
+	} else {
+		// Called directly, use $_GET params
+		wfStreamThumb( $wgRequest->getQueryValuesOnly() );
+	}
+
+	$mediawiki = new MediaWiki();
+	$mediawiki->doPostOutputShutdown();
 }
-
-$mediawiki = new MediaWiki();
-$mediawiki->doPostOutputShutdown();
-
-// --------------------------------------------------------------------------
 
 /**
  * Handle a thumbnail request via thumbnail file URL

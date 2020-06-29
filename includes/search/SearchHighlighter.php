@@ -417,7 +417,6 @@ class SearchHighlighter {
 	 * @param int &$contextchars Length of snippet
 	 * @param array &$out Map for highlighted snippets
 	 * @param array &$offsets Map of starting points of snippets
-	 * @protected
 	 */
 	private function process( $pattern, $extracts, &$linesleft, &$contextchars, &$out, &$offsets ) {
 		if ( $linesleft == 0 ) {
@@ -458,7 +457,6 @@ class SearchHighlighter {
 
 	/**
 	 * Basic wikitext removal
-	 * @protected
 	 * @param string $text
 	 * @return mixed
 	 */

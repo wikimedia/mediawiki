@@ -21,7 +21,7 @@ interface ApiMaxLagInfoHook {
 	 *      replication lag or "jobqueue" for job queue size converted to pseudo-seconds
 	 *
 	 *   You can also add more fields that are returned to the user in the API response.
-	 * @return bool|void True or no return value. This hook must not abort.
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onApiMaxLagInfo( &$lagInfo );
+	public function onApiMaxLagInfo( &$lagInfo ) : void;
 }

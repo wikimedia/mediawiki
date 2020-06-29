@@ -71,7 +71,7 @@ class ContributionsLookup {
 	 * @return ContributionsSegment
 	 * @throws \MWException
 	 */
-	public function getRevisionsByUser(
+	public function getContributions(
 		UserIdentity $target,
 		int $limit,
 		User $performer,
@@ -87,6 +87,7 @@ class ContributionsLookup {
 			'target' => $target->getName(),
 		] );
 		$revisions = [];
+		$tags = [];
 		$count = 0;
 		if ( $pager->getNumRows() > 0 ) {
 			foreach ( $pager->mResult as $row ) {
@@ -98,8 +99,12 @@ class ContributionsLookup {
 				// TODO: pre-load title batch?
 				$revision = $this->revisionStore->newRevisionFromRow( $row, 0 );
 				$revisions[] = $revision;
+				$tags[ $row->rev_id ] =
+					$row->ts_tags ? explode( ',', $row->ts_tags ) : [];
 			}
 		}
+
+		$deltas = $this->getContributionDeltas( $revisions );
 
 		$flags = [
 			'newest' => $pager->mIsFirst,
@@ -121,7 +126,38 @@ class ContributionsLookup {
 		if ( $paramArr['dir'] === 'prev' ) {
 			$revisions = array_reverse( $revisions );
 		}
+		return new ContributionsSegment( $revisions, $tags, $before, $after,  $deltas, $flags );
+	}
 
-		return new ContributionsSegment( $revisions, $before, $after, $flags );
+	/**
+	 * Gets size deltas of a revision and its parent revision
+	 * @param RevisionRecord[] $revisions
+	 * @return int[] Associative array of revision ids and their deltas.
+	 *  If revision is the first on a page, delta is revision size.
+	 *  If parent revision is unknown, delta is null.
+	 */
+	private function getContributionDeltas( $revisions ) {
+		// SpecialContributions uses the size of the revision if the parent revision is unknown. Cases include:
+		// - revision has been deleted
+		// - parent rev id has not been populated (this is the case for very old revisions)
+		$parentIds = [];
+		foreach ( $revisions as $revision ) {
+			$revId = $revision->getId();
+			$parentIds[$revId] = $revision->getParentId();
+		}
+		$parentSizes = $this->revisionStore->getRevisionSizes( $parentIds );
+		$deltas = [];
+		foreach ( $revisions as $revision ) {
+			$parentId = $revision->getParentId();
+			if ( $parentId === 0 ) { // first revision on a page
+				$delta = $revision->getSize();
+			} elseif ( !isset( $parentSizes[$parentId] ) ) { // parent revision is either deleted or untracked
+				$delta = null;
+			} else {
+				$delta = $revision->getSize() - $parentSizes[$parentId];
+			}
+			$deltas[ $revision->getId() ] = $delta;
+		}
+		return $deltas;
 	}
 }

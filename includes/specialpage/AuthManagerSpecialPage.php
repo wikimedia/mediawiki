@@ -475,7 +475,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 
 	/**
 	 * Submit handler callback for HTMLForm
-	 * @private
+	 * @internal
 	 * @param array $data Submitted data
 	 * @return Status
 	 */

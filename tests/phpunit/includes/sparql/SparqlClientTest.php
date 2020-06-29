@@ -156,7 +156,7 @@ JSON;
 	 */
 	public function testOptions( $sparql, $options, $timeout, $expectedUrl, $expectedOptions ) {
 		$requestFactory = $this->createMock( HttpRequestFactory::class );
-		$client = new SparqlClient( 'http://acme.test/',  $requestFactory );
+		$client = new SparqlClient( 'http://acme.test/', $requestFactory );
 
 		$request = $this->getRequestMock( '{}' );
 

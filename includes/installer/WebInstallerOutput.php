@@ -33,7 +33,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @ingroup Installer
  * @since 1.17
- * @private
+ * @internal
  */
 class WebInstallerOutput {
 

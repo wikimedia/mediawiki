@@ -131,6 +131,20 @@ function updateAriaExpanded( checkbox ) {
 }
 
 /**
+ * setCheckedState() is called when a user event on some element other than the checkbox
+ * should result in changing the checkbox state.
+ *
+ * @param {HTMLInputElement} checkbox
+ * @param {boolean} checked
+ * @return {void}
+ * @ignore
+ */
+function setCheckedState( checkbox, checked ) {
+	checkbox.checked = checked;
+	updateAriaExpanded( checkbox );
+}
+
+/**
  * Returns true if the Event's target is an inclusive descendant of any the checkbox hack's
  * constituents (checkbox, button, or target), and false otherwise.
  *
@@ -151,6 +165,7 @@ function containsEventTarget( checkbox, button, target, event ) {
 
 /**
  * Dismiss the target when event is outside the checkbox, button, and target.
+ * In simple terms this closes the target (menu, typically) when clicking somewhere else.
  *
  * @param {HTMLInputElement} checkbox
  * @param {HTMLElement} button
@@ -160,9 +175,8 @@ function containsEventTarget( checkbox, button, target, event ) {
  * @ignore
  */
 function dismissIfExternalEventTarget( checkbox, button, target, event ) {
-	if ( !containsEventTarget( checkbox, button, target, event ) ) {
-		checkbox.checked = false;
-		updateAriaExpanded( checkbox );
+	if ( checkbox.checked && !containsEventTarget( checkbox, button, target, event ) ) {
+		setCheckedState( checkbox, false );
 	}
 }
 
@@ -193,8 +207,7 @@ function bindToggleOnClick( checkbox, button ) {
 		// Do not allow the browser to handle the checkbox. Instead, manually toggle it which does
 		// not alter focus.
 		event.preventDefault();
-		checkbox.checked = !checkbox.checked;
-		updateAriaExpanded( checkbox );
+		setCheckedState( checkbox, !checkbox.checked );
 	}
 	button.addEventListener( 'click', listener, true );
 	return { onToggleOnClick: listener };

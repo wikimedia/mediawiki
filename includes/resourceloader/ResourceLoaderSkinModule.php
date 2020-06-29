@@ -91,6 +91,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
 		],
+		'html5' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/html5-ie11.css' ],
+		],
 		'legacy' => [
 			'print' => [ 'resources/src/mediawiki.skinning/commonPrint.css' ],
 			'screen' => [ 'resources/src/mediawiki.skinning/legacy.less' ],

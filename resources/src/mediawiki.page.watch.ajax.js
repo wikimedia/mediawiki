@@ -16,7 +16,7 @@
  */
 ( function () {
 	// The name of the page to watch or unwatch
-	var title = mw.config.get( 'wgRelevantPageName' );
+	var pageTitle = mw.config.get( 'wgRelevantPageName' );
 
 	/**
 	 * Update the link text, link href attribute and (if applicable)
@@ -60,7 +60,7 @@
 			.text( mw.msg( msgKey ) )
 			.attr( 'title', mw.msg( 'tooltip-ca-' + action ) )
 			.updateTooltipAccessKeys()
-			.attr( 'href', mw.util.getUrl( title, { action: action } ) );
+			.attr( 'href', mw.util.getUrl( pageTitle, { action: action } ) );
 
 		// Most common ID style
 		if ( $li.prop( 'id' ) === 'ca-' + otherAction ) {
@@ -122,7 +122,7 @@
 		}
 		if ( $links.length ) {
 			// eslint-disable-next-line no-use-before-define
-			watchstar( $links, title, function ( $link, isWatched ) {
+			watchstar( $links, pageTitle, function ( $link, isWatched ) {
 				// Update the "Watch this page" checkbox on action=edit when the
 				// page is watched or unwatched via the tab (T14395).
 				$( '#wpWatchthis' ).prop( 'checked', isWatched === true );

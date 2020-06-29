@@ -151,7 +151,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Set the manager, store, and logger
-	 * @private Use self::install().
+	 * @internal Use self::install().
 	 * @param SessionManagerInterface $manager
 	 * @param BagOStuff $store
 	 * @param LoggerInterface $logger
@@ -173,7 +173,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Initialize the session (handler)
-	 * @private For internal use only
+	 * @internal For internal use only
 	 * @param string $save_path Path used to store session files (ignored)
 	 * @param string $session_name Session name (ignored)
 	 * @return true
@@ -190,7 +190,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Close the session (handler)
-	 * @private For internal use only
+	 * @internal For internal use only
 	 * @return true
 	 */
 	public function close() {
@@ -203,7 +203,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Read session data
-	 * @private For internal use only
+	 * @internal For internal use only
 	 * @param string $id Session id
 	 * @return string Session data
 	 */
@@ -228,7 +228,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Write session data
-	 * @private For internal use only
+	 * @internal For internal use only
 	 * @param string $id Session id
 	 * @param string $dataStr Session data. Not that you should ever call this
 	 *   directly, but note that this has the same issues with code injection
@@ -337,7 +337,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Destroy a session
-	 * @private For internal use only
+	 * @internal For internal use only
 	 * @param string $id Session id
 	 * @return true
 	 */
@@ -357,7 +357,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	/**
 	 * Execute garbage collection.
-	 * @private For internal use only
+	 * @internal For internal use only
 	 * @param int $maxlifetime Maximum session life time (ignored)
 	 * @return true
 	 * @codeCoverageIgnore See T135576

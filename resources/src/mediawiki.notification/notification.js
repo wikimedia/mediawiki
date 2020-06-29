@@ -286,7 +286,7 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset, notif,
+		var offset,
 			isFloating = false;
 
 		function updateAreaMode() {
@@ -334,6 +334,7 @@
 		// Must be in the next frame to avoid synchronous layout
 		// computation from offset()/getBoundingClientRect().
 		rAF( function () {
+			var notif;
 			offset = $area.offset();
 
 			// Initial mode (reads, and then maybe writes)

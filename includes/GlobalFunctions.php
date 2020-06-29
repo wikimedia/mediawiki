@@ -1252,7 +1252,7 @@ function wfMessageFallback( ...$keys ) {
  * @param string $message
  * @param array $args
  * @return string
- * @private
+ * @internal
  */
 function wfMsgReplaceArgs( $message, $args ) {
 	# Fix windows line-endings
@@ -1733,7 +1733,7 @@ function wfAcceptToPrefs( $accept, $def = '*/*' ) {
  * @param string $type
  * @param array $avail
  * @return string
- * @private
+ * @internal
  */
 function mimeTypeMatch( $type, $avail ) {
 	if ( array_key_exists( $type, $avail ) ) {

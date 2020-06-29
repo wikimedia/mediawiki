@@ -77,7 +77,7 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 		$parserWrapper = TestingAccessWrapper::newFromObject( $parser );
 		$factoryWrapper = TestingAccessWrapper::newFromObject( $factory );
 		$this->assertSame(
-			$factoryWrapper->languageConverterFactory,  $parserWrapper->languageConverterFactory
+			$factoryWrapper->languageConverterFactory, $parserWrapper->languageConverterFactory
 		);
 		$this->assertSame(
 			$factory, $parserWrapper->factory

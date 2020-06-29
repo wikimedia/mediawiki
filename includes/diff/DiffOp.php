@@ -31,7 +31,7 @@
  * The classes that extend DiffOp are: DiffOpCopy, DiffOpDelete, DiffOpAdd and
  * DiffOpChange. FakeDiffOp also extends DiffOp, but it is not located in this file.
  *
- * @private
+ * @internal
  * @ingroup DifferenceEngine
  */
 abstract class DiffOp {

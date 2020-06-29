@@ -206,7 +206,7 @@ final class SessionBackend {
 
 	/**
 	 * Deregister a Session
-	 * @private For use by \MediaWiki\Session\Session::__destruct() only
+	 * @internal For use by \MediaWiki\Session\Session::__destruct() only
 	 * @param int $index
 	 */
 	public function deregisterSession( $index ) {
@@ -219,7 +219,7 @@ final class SessionBackend {
 
 	/**
 	 * Shut down a session
-	 * @private For use by \MediaWiki\Session\SessionManager::shutdown() only
+	 * @internal For use by \MediaWiki\Session\SessionManager::shutdown() only
 	 */
 	public function shutdown() {
 		$this->save( true );
@@ -236,7 +236,7 @@ final class SessionBackend {
 
 	/**
 	 * Fetch the SessionId object
-	 * @private For internal use by WebRequest
+	 * @internal For internal use by WebRequest
 	 * @return SessionId
 	 */
 	public function getSessionId() {
@@ -505,7 +505,7 @@ final class SessionBackend {
 
 	/**
 	 * Fetch provider metadata
-	 * @protected For use by SessionProvider subclasses only
+	 * @note For use by SessionProvider subclasses only
 	 * @return array|null
 	 */
 	public function getProviderMetadata() {
@@ -514,7 +514,7 @@ final class SessionBackend {
 
 	/**
 	 * Set provider metadata
-	 * @protected For use by SessionProvider subclasses only
+	 * @note For use by SessionProvider subclasses only
 	 * @param array|null $metadata
 	 */
 	public function setProviderMetadata( $metadata ) {
@@ -539,7 +539,7 @@ final class SessionBackend {
 	 * Note the caller is responsible for calling $this->dirty() if anything in
 	 * the array is changed.
 	 *
-	 * @private For use by \MediaWiki\Session\Session only.
+	 * @internal For use by \MediaWiki\Session\Session only.
 	 * @return array
 	 */
 	public function &getData() {
@@ -571,7 +571,7 @@ final class SessionBackend {
 
 	/**
 	 * Mark data as dirty
-	 * @private For use by \MediaWiki\Session\Session only.
+	 * @internal For use by \MediaWiki\Session\Session only.
 	 */
 	public function dirty() {
 		$this->dataDirty = true;

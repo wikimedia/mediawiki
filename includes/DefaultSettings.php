@@ -79,13 +79,17 @@ $wgVersion = MW_VERSION;
  */
 $wgSitename = 'MediaWiki';
 
-/**
- * When the wiki is running behind a proxy and this is set to true, assumes that the proxy exposes
- * the wiki on the standard ports (443 for https and 80 for http).
- * @var bool
- * @since 1.26
+/************************************************************************//**
+ * @name   Server URLs and file paths
+ *
+ * In this section, a "path" is usually a host-relative URL, i.e. a URL without
+ * the host part, that starts with a slash. In most cases a full URL is also
+ * acceptable. A "directory" is a local file path.
+ *
+ * In both paths and directories, trailing slashes should not be included.
+ *
+ * @{
  */
-$wgAssumeProxiesUseDefaultProtocolPorts = true;
 
 /**
  * URL of the server.
@@ -120,10 +124,26 @@ $wgCanonicalServer = false;
  */
 $wgServerName = false;
 
-/************************************************************************//**
- * @name   Script path settings
- * @{
+/**
+ * When the wiki is running behind a proxy and this is set to true, assumes that the proxy exposes
+ * the wiki on the standard ports (443 for https and 80 for http).
+ * @var bool
+ * @since 1.26
  */
+$wgAssumeProxiesUseDefaultProtocolPorts = true;
+
+/**
+ * For installations where the canonical server is HTTP but HTTPS is optionally
+ * supported, you can specify a non-standard HTTPS port here. $wgServer should
+ * be a protocol-relative URL.
+ *
+ * If HTTPS is always used, just specify the port number in $wgServer.
+ *
+ * @see https://phabricator.wikimedia.org/T67184
+ *
+ * @since 1.24
+ */
+$wgHttpsPort = 443;
 
 /**
  * The path we should point to.
@@ -158,24 +178,6 @@ $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'isapi' ) === false );
 
 /** @} */
-
-/************************************************************************//**
- * @name   URLs and file paths
- *
- * These various web and file path variables are set to their defaults
- * in Setup.php if they are not explicitly set from LocalSettings.php.
- *
- * These will relatively rarely need to be set manually, unless you are
- * splitting style sheets or images outside the main document root.
- *
- * In this section, a "path" is usually a host-relative URL, i.e. a URL without
- * the host part, that starts with a slash. In most cases a full URL is also
- * acceptable. A "directory" is a local file path.
- *
- * In both paths and directories, trailing slashes should not be included.
- *
- * @{
- */
 
 /**
  * The URL path to index.php.
@@ -4825,7 +4827,10 @@ $wgCentralIdLookupProvider = 'local';
  *	- PasswordCannotBeSubstringInUsername - Password cannot be a substring
  *		(contained within) the username.
  *	- PasswordCannotMatchBlacklist - Username/password combination cannot
- *		match a blacklist of default passwords used by MediaWiki in the past.
+ *		match a list of default passwords used by MediaWiki in the past.
+ *		Deprecated since 1.35, use PasswordCannotMatchDefaults instead.
+ *	- PasswordCannotMatchDefaults - Username/password combination cannot
+ *		match a list of default passwords used by MediaWiki in the past.
  *	- PasswordNotInLargeBlacklist - Password not in best practices list of
  *		100,000 commonly used passwords. Due to the size of the list this
  *		is a probabilistic test.
@@ -4870,7 +4875,7 @@ $wgPasswordPolicy = [
 				'value' => true,
 				'suggestChangeOnLogin' => true
 			],
-			'PasswordCannotMatchBlacklist' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
+			'PasswordCannotMatchDefaults' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 			'MaximalPasswordLength' => [ 'value' => 4096, 'suggestChangeOnLogin' => true ],
 			'PasswordNotInCommonList' => [ 'value' => true, 'suggestChangeOnLogin' => true ],
 		],
@@ -4881,7 +4886,8 @@ $wgPasswordPolicy = [
 		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
 		'PasswordCannotBeSubstringInUsername' =>
 			'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
-		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
+		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
+		'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
 		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
 		'PasswordNotInLargeBlacklist' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
 		'PasswordNotInCommonList' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
@@ -5178,6 +5184,25 @@ $wgPasswordResetRoutes = [
  * Maximum number of Unicode characters in signature
  */
 $wgMaxSigChars = 255;
+
+/**
+ * Behavior of signature validation. Allowed values are:
+ *  - 'warning' - invalid signatures cause a warning to be displayed on the preferences page, but
+ *    they are still used when signing comments; new invalid signatures can still be saved as normal
+ *  - 'new' - existing invalid signatures behave as above; new invalid signatures can't be saved
+ *  - 'disallow' - existing invalid signatures are no longer used when signing comments; new invalid
+ *    signatures can't be saved
+ *
+ * @since 1.35
+ */
+$wgSignatureValidation = 'warning';
+
+/**
+ * List of lint error codes which don't cause signature validation to fail.
+ *
+ * @since 1.35
+ */
+$wgSignatureAllowedLintErrors = [ 'obsolete-tag' ];
 
 /**
  * Maximum number of bytes in username. You want to run the maintenance
@@ -9061,19 +9086,6 @@ $wgSiteTypes = [
  * @since 1.23
  */
 $wgPagePropsHaveSortkey = true;
-
-/**
- * For installations where the canonical server is HTTP but HTTPS is optionally
- * supported, you can specify a non-standard HTTPS port here. $wgServer should
- * be a protocol-relative URL.
- *
- * If HTTPS is always used, just specify the port number in $wgServer.
- *
- * @see https://phabricator.wikimedia.org/T67184
- *
- * @since 1.24
- */
-$wgHttpsPort = 443;
 
 /**
  * Secret for session storage.

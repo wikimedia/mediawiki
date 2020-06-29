@@ -30,14 +30,14 @@ class SpecialMute extends FormSpecialPage {
 
 	private const PAGE_NAME = 'Mute';
 
-	/** @var User */
+	/** @var User|null */
 	private $target;
 
 	/** @var int */
 	private $targetCentralId;
 
 	/** @var bool */
-	private $enableUserEmailBlacklist;
+	private $enableUserEmailMuteList;
 
 	/** @var bool */
 	private $enableUserEmail;
@@ -48,7 +48,7 @@ class SpecialMute extends FormSpecialPage {
 	public function __construct() {
 		// TODO: inject all these dependencies once T222388 is resolved
 		$config = RequestContext::getMain()->getConfig();
-		$this->enableUserEmailBlacklist = $config->get( 'EnableUserEmailBlacklist' );
+		$this->enableUserEmailMuteList = $config->get( 'EnableUserEmailBlacklist' );
 		$this->enableUserEmail = $config->get( 'EnableUserEmail' );
 
 		$this->centralIdLookup = CentralIdLookup::factory();
@@ -105,7 +105,7 @@ class SpecialMute extends FormSpecialPage {
 	public function onSubmit( array $data, HTMLForm $form = null ) {
 		$hookData = [];
 		foreach ( $data as $userOption => $value ) {
-			$hookData[$userOption]['before'] = $this->isTargetBlacklisted( $userOption );
+			$hookData[$userOption]['before'] = $this->isTargetMuted( $userOption );
 			if ( $value ) {
 				$this->muteTarget( $userOption );
 			} else {
@@ -128,20 +128,27 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
+	 * @return User|null $target
+	 */
+	public function getTarget(): ?User {
+		return $this->target;
+	}
+
+	/**
 	 * Un-mute target
 	 *
-	 * @param string $userOption up_property key that holds the blacklist
+	 * @param string $userOption up_property key that holds the list of muted users
 	 */
 	private function unmuteTarget( $userOption ) {
-		$blacklist = $this->getBlacklist( $userOption );
+		$muteList = $this->getMuteList( $userOption );
 
-		$key = array_search( $this->targetCentralId, $blacklist );
+		$key = array_search( $this->targetCentralId, $muteList );
 		if ( $key !== false ) {
-			unset( $blacklist[$key] );
-			$blacklist = implode( "\n", $blacklist );
+			unset( $muteList[$key] );
+			$muteList = implode( "\n", $muteList );
 
 			$user = $this->getUser();
-			$user->setOption( $userOption, $blacklist );
+			$user->setOption( $userOption, $muteList );
 			$user->saveSettings();
 		}
 	}
@@ -152,14 +159,14 @@ class SpecialMute extends FormSpecialPage {
 	 */
 	private function muteTarget( $userOption ) {
 		// avoid duplicates just in case
-		if ( !$this->isTargetBlacklisted( $userOption ) ) {
-			$blacklist = $this->getBlacklist( $userOption );
+		if ( !$this->isTargetMuted( $userOption ) ) {
+			$muteList = $this->getMuteList( $userOption );
 
-			$blacklist[] = $this->targetCentralId;
-			$blacklist = implode( "\n", $blacklist );
+			$muteList[] = $this->targetCentralId;
+			$muteList = implode( "\n", $muteList );
 
 			$user = $this->getUser();
-			$user->setOption( $userOption, $blacklist );
+			$user->setOption( $userOption, $muteList );
 			$user->saveSettings();
 		}
 	}
@@ -183,14 +190,17 @@ class SpecialMute extends FormSpecialPage {
 	protected function getFormFields() {
 		$fields = [];
 		if (
-			$this->enableUserEmailBlacklist &&
+			$this->enableUserEmailMuteList &&
 			$this->enableUserEmail &&
 			$this->getUser()->getEmailAuthenticationTimestamp()
 		) {
 			$fields['email-blacklist'] = [
 				'type' => 'check',
-				'label-message' => 'specialmute-label-mute-email',
-				'default' => $this->isTargetBlacklisted( 'email-blacklist' ),
+				'label-message' => [
+					'specialmute-label-mute-email',
+					$this->getTarget() ? $this->getTarget()->getName() : ''
+				],
+				'default' => $this->isTargetMuted( 'email-blacklist' ),
 			];
 		}
 
@@ -220,21 +230,31 @@ class SpecialMute extends FormSpecialPage {
 	 * @param string $userOption
 	 * @return bool
 	 */
+	public function isTargetMuted( $userOption ) {
+		$muteList = $this->getMuteList( $userOption );
+		return in_array( $this->targetCentralId, $muteList, true );
+	}
+
+	/**
+	 * @deprecated since 1.35, use isTargetMuted
+	 *
+	 * @param string $userOption
+	 * @return bool
+	 */
 	public function isTargetBlacklisted( $userOption ) {
-		$blacklist = $this->getBlacklist( $userOption );
-		return in_array( $this->targetCentralId, $blacklist, true );
+		return $this->isTargetMuted( $userOption );
 	}
 
 	/**
 	 * @param string $userOption
 	 * @return array
 	 */
-	private function getBlacklist( $userOption ) {
-		$blacklist = $this->getUser()->getOption( $userOption );
-		if ( !$blacklist ) {
+	private function getMuteList( $userOption ) {
+		$muteList = $this->getUser()->getOption( $userOption );
+		if ( !$muteList ) {
 			return [];
 		}
 
-		return MultiUsernameFilter::splitIds( $blacklist );
+		return MultiUsernameFilter::splitIds( $muteList );
 	}
 }

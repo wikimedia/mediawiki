@@ -11,6 +11,7 @@
 			"Shirayuki",
 			"Sujiniku",
 			"Takot",
+			"Tmv",
 			"Translatealcd"
 		]
 	},
@@ -27,6 +28,7 @@
 	"ooui-dialog-process-dismiss": "閉じる",
 	"ooui-dialog-process-retry": "もう一度お試しください",
 	"ooui-dialog-process-continue": "続行",
+	"ooui-combobox-button-label": "オプションの切り替え",
 	"ooui-selectfile-button-select": "ファイルを選択",
 	"ooui-selectfile-not-supported": "ファイルの選択はサポートされていません",
 	"ooui-selectfile-placeholder": "ファイルが選択されていません",

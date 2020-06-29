@@ -29,7 +29,7 @@ class MWBasicRequestAuthorizer extends BasicRequestAuthorizer {
 
 	protected function isReadAllowed() {
 		return $this->permissionManager->isEveryoneAllowed( 'read' )
-		   || $this->isAllowed( 'read' );
+			|| $this->isAllowed( 'read' );
 	}
 
 	protected function isWriteAllowed() {

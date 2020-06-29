@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
+use OOUI\IconWidget;
 use Wikimedia\Rdbms\IResultWrapper;
 
 class ChangesList extends ContextSource {
@@ -538,6 +539,9 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Get the HTML link to the changed page, possibly with a prefix from hook handlers, and a
+	 * suffix for temporarily watched items.
+	 *
 	 * @param RecentChange &$rc
 	 * @param bool $unpatrolled
 	 * @param bool $watched
@@ -569,7 +573,43 @@ class ChangesList extends ContextSource {
 		$this->getHookRunner()->onChangesListInsertArticleLink( $this, $articlelink,
 			$s, $rc, $unpatrolled, $watched );
 
-		return "{$s} {$articlelink}";
+		// Watchlist expiry icon.
+		$watchlistExpiry = '';
+		if ( isset( $rc->watchlistExpiry ) && $rc->watchlistExpiry ) {
+			$watchlistExpiry = $this->getWatchlistExpiry( $rc );
+		}
+
+		return "{$s} {$articlelink}{$watchlistExpiry}";
+	}
+
+	/**
+	 * Get HTML to display the clock icon for watched items that have a watchlist expiry time.
+	 * @since 1.35
+	 * @param RecentChange $recentChange
+	 * @return string The HTML to display an indication of the expiry time.
+	 */
+	public function getWatchlistExpiry( RecentChange $recentChange ): string {
+		$item = WatchedItem::newFromRecentChange( $recentChange, $this->getUser() );
+		// Guard against expired items, even though they shouldn't come here.
+		if ( $item->isExpired() ) {
+			return '';
+		}
+		$daysLeft = $item->getExpiryInDays();
+		$daysLeftMsg = $this->msg( 'watchlist-expires-in', $daysLeft );
+		// Matching widget is also created in ChangesListSpecialPage, for the legend.
+		$widget = new IconWidget( [
+			'icon' => 'clock',
+			'title' => $daysLeftMsg->text(),
+			'classes' => [ 'mw-changesList-watchlistExpiry' ],
+		] );
+		// Add labels for assistive technologies.
+		$widget->setAttributes( [
+			'role' => 'img',
+			'aria-label' => $this->msg( 'watchlist-expires-in-aria-label' )->text(),
+		] );
+		// Add spaces around the widget (the page title is to one side,
+		// and a semicolon or opening-parenthesis to the other).
+		return " $widget ";
 	}
 
 	/**
@@ -581,12 +621,15 @@ class ChangesList extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	public function getTimestamp( $rc ) {
+		// This uses the semi-colon separator unless there's a watchlist expiry date for the entry,
+		// because in that case the timestamp is preceeded by a clock icon.
 		// A space is important after mw-changeslist-separator--semicolon to make sure
 		// that whatever comes before it is distinguishable.
 		// (Otherwise your have the text of titles pushing up against the timestamp)
 		// A specific element is used for this purpose as `mw-changeslist-date` is used in a variety
 		// of other places with a different position and the information proceeding getTimestamp can vary.
-		return '<span class="mw-changeslist-separator--semicolon"></span> ' .
+		$separatorClass = $rc->watchlistExpiry ? 'mw-changeslist-separator' : 'mw-changeslist-separator--semicolon';
+		return Html::element( 'span', [ 'class' => $separatorClass ] ) . ' ' .
 			'<span class="mw-changeslist-date">' .
 			htmlspecialchars( $this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],

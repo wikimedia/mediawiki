@@ -22,6 +22,7 @@
  */
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -30,6 +31,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -377,6 +379,7 @@ class Parser {
 		'Server',
 		'ServerName',
 		'ShowHostnames',
+		'SignatureValidation',
 		'Sitename',
 		'StylePath',
 		'TranscludeCacheExpiry',
@@ -532,7 +535,7 @@ class Parser {
 	/**
 	 * Clear Parser state
 	 *
-	 * @private
+	 * @internal
 	 */
 	public function clearState() {
 		$this->firstCallInit();
@@ -1520,7 +1523,7 @@ class Parser {
 	 * Helper function for parse() that transforms wiki markup into half-parsed
 	 * HTML. Only called for $mOutputType == self::OT_HTML.
 	 *
-	 * @private
+	 * @internal
 	 *
 	 * @param string $text The text to parse
 	 * @param-taint $text escapes_html
@@ -1811,7 +1814,7 @@ class Parser {
 	 * @param int $numPostProto
 	 *   The number of characters after the protocol.
 	 * @return string HTML
-	 * @private
+	 * @internal
 	 */
 	private function makeFreeExternalLink( $url, $numPostProto ) {
 		$trail = '';
@@ -2737,7 +2740,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @param bool $linestart Whether or not this is at the start of a line.
-	 * @private
+	 * @internal
 	 * @return string The lists rendered as HTML
 	 * @deprecated since 1.35, will not be supported in future parsers
 	 */
@@ -3525,7 +3528,18 @@ class Parser {
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
-		$rev = $stuff['revision'] ?? null;
+		if ( isset( $stuff['revision-record'] ) ) {
+			$revRecord = $stuff['revision-record'];
+		} else {
+			// Triggers deprecation warnings via DeprecatablePropertyArray
+			$rev = $stuff['revision'] ?? null;
+			if ( $rev instanceof Revision ) {
+				$revRecord = $rev->getRevisionRecord();
+			} else {
+				$revRecord = null;
+			}
+		}
+
 		$text = $stuff['text'];
 		if ( is_string( $stuff['text'] ) ) {
 			// We use U+007F DELETE to distinguish strip markers from regular text
@@ -3534,11 +3548,10 @@ class Parser {
 		$finalTitle = $stuff['finalTitle'] ?? $title;
 		foreach ( ( $stuff['deps'] ?? [] ) as $dep ) {
 			$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
-			if ( $dep['title']->equals( $this->getTitle() ) && $rev instanceof Revision ) {
+			if ( $dep['title']->equals( $this->getTitle() ) && $revRecord instanceof RevisionRecord ) {
 				// Self-transclusion; final result may change based on the new page version
-				// FIXME $templateCb shouldn't return Revisions
 				try {
-					$sha1 = $rev->getRevisionRecord()->getSha1();
+					$sha1 = $revRecord->getSha1();
 				} catch ( RevisionAccessException $e ) {
 					$sha1 = null;
 				}
@@ -3568,7 +3581,7 @@ class Parser {
 	 * @param Title $title
 	 * @param bool|Parser $parser
 	 *
-	 * @return array
+	 * @return array|DeprecatablePropertyArray
 	 */
 	public static function statelessFetchTemplate( $title, $parser = false ) {
 		$text = $skip = false;
@@ -3666,14 +3679,22 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 
-		// TODO return RevisionRecord instead
+		// TODO once the Revision class is ready for hard deprecation, use a callback
+		// to create the Revision object
 		$legacyRevision = $revRecord ? new Revision( $revRecord ) : null;
-		return [
+		$retValues = [
 			'revision' => $legacyRevision,
+			'revision-record' => $revRecord ?: false, // So isset works
 			'text' => $text,
 			'finalTitle' => $finalTitle,
 			'deps' => $deps
 		];
+		$propertyArray = new DeprecatablePropertyArray(
+			$retValues,
+			[], // TODO [ 'revision' => '1.35' ],
+			__METHOD__
+		);
+		return $propertyArray;
 	}
 
 	/**
@@ -4585,13 +4606,26 @@ class Parser {
 			$this->logger->debug( __METHOD__ . ": $username has overlong signature." );
 		} elseif ( $fancySig !== false ) {
 			# Sig. might contain markup; validate this
-			if ( $this->validateSig( $nickname ) !== false ) {
+			$isValid = $this->validateSig( $nickname ) !== false;
+
+			# New validator
+			$sigValidation = $this->svcOptions->get( 'SignatureValidation' );
+			if ( $isValid && $sigValidation === 'disallow' ) {
+				$validator = new SignatureValidator(
+					$user,
+					null,
+					$this->mOptions
+				);
+				$isValid = !$validator->validateSignature( $nickname );
+			}
+
+			if ( $isValid ) {
 				# Validated; clean up (if needed) and return it
 				return $this->cleanSig( $nickname, true );
 			} else {
 				# Failed to validate; fall back to the default
 				$nickname = $username;
-				$this->logger->debug( __METHOD__ . ": $username has bad XML tags in signature." );
+				$this->logger->debug( __METHOD__ . ": $username has invalid signature." );
 			}
 		}
 
@@ -5636,10 +5670,8 @@ class Parser {
 			}
 		}
 
-		if ( is_string( $outText ) ) {
-			# Re-insert stripped tags
-			$outText = rtrim( $this->mStripState->unstripBoth( $outText ) );
-		}
+		# Re-insert stripped tags
+		$outText = rtrim( $this->mStripState->unstripBoth( $outText ) );
 
 		return $outText;
 	}

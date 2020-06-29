@@ -85,4 +85,23 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$gender = $genderCache->getGenderOf( "$username/subpage" );
 		$this->assertEquals( $gender, $expectedGender, "GenderCache must strip of subpages" );
 	}
+
+	/**
+	 * GenderCache must work without database (like Installer)
+	 * @coversNothing
+	 */
+	public function testWithoutDB() {
+		self::overrideMwServices();
+
+		$services = MediaWikiServices::getInstance();
+		$services->disableService( 'DBLoadBalancer' );
+		$services->disableService( 'DBLoadBalancerFactory' );
+
+		// Make sure the disable works
+		$this->assertTrue( $services->isServiceDisabled( 'DBLoadBalancer' ) );
+
+		// Test, if it is possible to create the gender cache
+		$genderCache = $services->getGenderCache();
+		$this->assertInstanceOf( GenderCache::class, $genderCache );
+	}
 }

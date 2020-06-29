@@ -83,7 +83,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Returns the SessionId object
-	 * @private For internal use by WebRequest
+	 * @internal For internal use by WebRequest
 	 * @return SessionId
 	 */
 	public function getSessionId() {
@@ -242,7 +242,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Fetch provider metadata
-	 * @protected For use by SessionProvider subclasses only
+	 * @note For use by SessionProvider subclasses only
 	 * @return mixed
 	 */
 	public function getProviderMetadata() {

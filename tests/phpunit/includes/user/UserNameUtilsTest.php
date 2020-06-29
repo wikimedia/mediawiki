@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -50,9 +51,7 @@ class UserNameUtilsTest extends MediaWikiTestCase {
 			$logger = new NullLogger();
 		}
 
-		// It is almost impossible to mock the TitleFactory, so relying on the real
-		// one. Once its possible to mock, this should be converted to a unit test.
-		$titleFactory = new TitleFactory();
+		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
 
 		if ( $textFormatter === null ) {
 			$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
@@ -64,7 +63,7 @@ class UserNameUtilsTest extends MediaWikiTestCase {
 			$serviceOptions,
 			$contentLang,
 			$logger,
-			$titleFactory,
+			$titleParser,
 			$textFormatter,
 			$hookContainer
 		);

@@ -1559,7 +1559,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @param WebRequest &$request
 	 * @return bool
-	 * @private
+	 * @internal
 	 */
 	public function tokenOk( &$request ) {
 		$token = $request->getVal( 'wpEditToken' );

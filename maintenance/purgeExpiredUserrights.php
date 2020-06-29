@@ -20,6 +20,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /*
@@ -36,7 +38,7 @@ class PurgeExpiredUserrights extends Maintenance {
 
 	public function execute() {
 		$this->output( "Purging expired user rights...\n" );
-		$res = UserGroupMembership::purgeExpired();
+		$res = MediaWikiServices::getInstance()->getUserGroupManager()->purgeExpired();
 		if ( $res === false ) {
 			$this->output( "Purging failed.\n" );
 		} else {

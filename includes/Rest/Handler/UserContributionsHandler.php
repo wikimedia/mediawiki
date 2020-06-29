@@ -43,11 +43,10 @@ class UserContributionsHandler extends Handler {
 			);
 		}
 
-		// can make it segment_size per ticket, but wanted to be consistent with search endpoint.
 		$limit = $this->getValidatedParams()['limit'];
 		$segment = $this->getValidatedParams()['segment'];
 		$contributionsSegment =
-			$this->contributionsLookup->getRevisionsByUser( $user, $limit, $user, $segment );
+			$this->contributionsLookup->getContributions( $user, $limit, $user, $segment );
 
 		$revisions = $this->getRevisionsList( $contributionsSegment );
 		$urls = $this->constructURLs( $contributionsSegment );
@@ -66,13 +65,15 @@ class UserContributionsHandler extends Handler {
 	 */
 	private function getRevisionsList( ContributionsSegment $segment ) : array {
 		$revisionsData = [];
-
 		foreach ( $segment->getRevisions() as $revision ) {
+			$id = $revision->getId();
 			$revisionsData[] = [
-				"id" => $revision->getId(),
+				"id" => $id,
 				"comment" => $revision->getComment()->text,
 				"timestamp" => wfTimestamp( TS_ISO_8601, $revision->getTimestamp() ),
+				"delta" => $segment->getDeltaForRevision( $id ) ,
 				"size" => $revision->getSize(),
+				"tags" => $segment->getTagsForRevision( $id ),
 				"page" => [
 					"id" => $revision->getPageId(),
 					"key" => $revision->getPageAsLinkTarget()->getDBkey(),

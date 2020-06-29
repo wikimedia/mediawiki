@@ -1114,7 +1114,7 @@ abstract class Skin extends ContextSource {
 	 * This may include an 'oldid' specifier, if the current page view is such.
 	 *
 	 * @return array
-	 * @private
+	 * @internal
 	 */
 	public function editUrlOptions() {
 		$options = [ 'action' => 'edit' ];
@@ -2078,18 +2078,36 @@ abstract class Skin extends ContextSource {
 	 */
 	final public function getIndicatorsHTML( $indicators ) {
 		$out = "<div class=\"mw-indicators mw-body-content\">\n";
-		foreach ( $indicators as $id => $content ) {
+		foreach ( $this->getIndicatorsData( $indicators ) as $indicatorData ) {
 			$out .= Html::rawElement(
 				'div',
 				[
-					'id' => Sanitizer::escapeIdForAttribute( "mw-indicator-$id" ),
-					'class' => 'mw-indicator',
+					'id' => $indicatorData['id'],
+					'class' => $indicatorData['class']
 				],
-				$content
+				$indicatorData['html']
 			) . "\n";
 		}
 		$out .= "</div>\n";
 		return $out;
+	}
+
+	/**
+	 * Return an array of indicator data.
+	 * Can be used by subclasses but should not be extended.
+	 * @param array $indicators return value of OutputPage::getIndicators
+	 * @return array
+	 */
+	protected function getIndicatorsData( $indicators ) {
+		$indicatorData = [];
+		foreach ( $indicators as $id => $content ) {
+			$indicatorData[] = [
+				'id' => Sanitizer::escapeIdForAttribute( "mw-indicator-$id" ),
+				'class' => 'mw-indicator',
+				'html' => $content,
+			];
+		}
+		return $indicatorData;
 	}
 
 	/**

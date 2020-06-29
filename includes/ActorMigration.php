@@ -109,7 +109,7 @@ class ActorMigration {
 	private $stage;
 
 	/**
-	 * @private
+	 * @internal
 	 * @param int $stage
 	 */
 	public function __construct( $stage ) {

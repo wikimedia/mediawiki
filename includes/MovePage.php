@@ -694,8 +694,12 @@ class MovePage {
 			}
 		}
 
-		// Deprecated since 1.35, use PageMoveComplete
-		// TODO hard deprecate
+		$this->hookRunner->onPageMoveCompleting(
+			$this->oldTitle, $this->newTitle,
+			$user, $pageid, $redirid, $reason, $nullRevision
+		);
+
+		// Deprecated since 1.35, use PageMoveCompleting
 		$nullRevisionObj = new Revision( $nullRevision );
 		$this->hookRunner->onTitleMoveCompleting(
 			$this->oldTitle, $this->newTitle,
@@ -741,7 +745,7 @@ class MovePage {
 	 * Move a file associated with a page to a new location.
 	 * Can also be used to revert after a DB failure.
 	 *
-	 * @private
+	 * @internal
 	 * @param Title $oldTitle Old location to move the file from.
 	 * @param Title $newTitle New location to move the file to.
 	 * @return Status

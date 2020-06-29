@@ -56,7 +56,7 @@ final class SessionId {
 
 	/**
 	 * Set the ID
-	 * @private For use by \MediaWiki\Session\SessionManager only
+	 * @internal For use by \MediaWiki\Session\SessionManager only
 	 * @param string $id
 	 */
 	public function setId( $id ) {

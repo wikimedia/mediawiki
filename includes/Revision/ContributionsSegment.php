@@ -14,6 +14,11 @@ class ContributionsSegment {
 	private $revisions;
 
 	/**
+	 * @var string[][]
+	 */
+	private $tags;
+
+	/**
 	 * @var string|null
 	 */
 	private $before;
@@ -26,28 +31,51 @@ class ContributionsSegment {
 	/**
 	 * @var array
 	 */
+	private $deltas;
+
+	/**
+	 * @var array
+	 */
 	private $flags;
 
 	/**
 	 * ContributionsSegment constructor.
 	 *
 	 * @param RevisionRecord[] $revisions
+	 * @param string[][] $tags An associative array mapping revision IDs to lists of tag names.
 	 * @param string|null $before
 	 * @param string|null $after
+	 * @param array $deltas An associative array mapping a revision Id to the difference in size of this revision
+	 * and its parent revision. Values may be null if the size difference is unknown.
 	 * @param array $flags Is an associative array, known fields are:
 	 *  - newest: bool indicating whether this segment is the newest in time
 	 *  - oldest: bool indicating whether this segment is the oldest in time
 	 */
 	public function __construct(
 		array $revisions,
+		array $tags,
 		?string $before,
 		?string $after,
+		array $deltas = [],
 		array $flags = []
 	) {
 		$this->revisions = $revisions;
+		$this->tags = $tags;
 		$this->before = $before;
 		$this->after = $after;
+		$this->deltas = $deltas;
 		$this->flags = $flags;
+	}
+
+	/**
+	 * Returns an associative array mapping revision IDs to lists of tag names.
+	 *
+	 * @param int $revId a revision ID
+	 *
+	 * @return string[]
+	 */
+	public function getTagsForRevision( $revId ): array {
+		return $this->tags[$revId] ?? [];
 	}
 
 	/**
@@ -69,6 +97,16 @@ class ContributionsSegment {
 	 */
 	public function getAfter(): ?string {
 		return $this->after;
+	}
+
+	/**
+	 * Returns the difference in size of the given revision and its parent revision.
+	 * Returns null if the size difference is unknown.
+	 * @param int $revid Revision id
+	 * @return int|null
+	 */
+	public function getDeltaForRevision( int $revid ): ?int {
+		return $this->deltas[$revid] ?? null;
 	}
 
 	/**

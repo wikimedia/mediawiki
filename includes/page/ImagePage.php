@@ -893,8 +893,6 @@ EOT
 			Html::openElement( 'ul',
 				[ 'class' => 'mw-imagepage-linkstoimage' ] ) . "\n"
 		);
-		$count = 0;
-
 		// Sort the list by namespace:title
 		usort( $rows, [ $this, 'compare' ] );
 
@@ -963,7 +961,7 @@ EOT
 		$res->free();
 
 		// Add a links to [[Special:Whatlinkshere]]
-		if ( $count > $limit ) {
+		if ( $currentCount > $limit ) {
 			$out->addWikiMsg( 'morelinkstoimage', $this->getTitle()->getPrefixedDBkey() );
 		}
 		$out->addHTML( Html::closeElement( 'div' ) . "\n" );

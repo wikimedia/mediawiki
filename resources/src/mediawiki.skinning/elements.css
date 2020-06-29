@@ -112,29 +112,32 @@ h4,
 h5,
 h6 {
 	color: #000;
-	background: none;
-	font-weight: normal;
 	margin: 0;
-	overflow: hidden;
 	padding-top: 0.5em;
 	padding-bottom: 0.17em;
-	border-bottom: 1px solid #a2a9b1;
+	overflow: hidden;
 }
 
-h1 {
-	font-size: 188%;
-}
-
+h1,
 h2 {
-	font-size: 150%;
+	margin-bottom: 0.6em;
+	border-bottom: 1px solid #a2a9b1;
 }
 
 h3,
 h4,
-h5,
-h6 {
-	border-bottom: 0;
-	font-weight: bold;
+h5 {
+	margin-bottom: 0.3em;
+}
+
+h1 {
+	font-size: 188%;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 150%;
+	font-weight: normal;
 }
 
 h3 {
@@ -151,18 +154,6 @@ h5 {
 
 h6 {
 	font-size: 100%;
-}
-
-/* Some space under the headers in the content area */
-h1,
-h2 {
-	margin-bottom: 0.6em;
-}
-
-h3,
-h4,
-h5 {
-	margin-bottom: 0.3em;
 }
 
 p {

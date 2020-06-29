@@ -23,6 +23,10 @@ class SkinMustacheTest extends MediaWikiTestCase {
 		$mock = $this->createMock( OutputPage::class );
 		$mock->method( 'getHTML' )
 			->willReturn( $html );
+		$mock->method( 'getIndicators' )
+			->willReturn( [
+				'id' => '<a>indicator</a>'
+			] );
 		$mock->method( 'getTitle' )
 			->willReturn( $title );
 		$mock->method( 'getIndicators' )
@@ -53,6 +57,7 @@ class SkinMustacheTest extends MediaWikiTestCase {
 				} else {
 					$this->assertStringStartsWith(
 						'array-',
+						$key,
 						"Template data that is a flat array should be associated with a key prefixed `array-` ($key)"
 					);
 				}

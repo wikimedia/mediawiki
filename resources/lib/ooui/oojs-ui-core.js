@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.1
+ * OOUI v0.39.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-06-04T19:49:41Z
+ * Date: 2020-06-24T07:10:53Z
  */
 ( function ( OO ) {
 
@@ -1199,7 +1199,8 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 /**
  * Get the root scrollable element of given element's document.
  *
- * On Blink-based browsers (Chrome etc.), `document.documentElement` can't be used to get or set
+ * Support: Chrome <= 60
+ * On older versions of Blink, `document.documentElement` can't be used to get or set
  * the scrollTop property; instead we have to use `document.body`. Changing and testing the value
  * lets us use 'body' or 'documentElement' based on what is working.
  *
@@ -1207,8 +1208,7 @@ OO.ui.Element.static.getDimensions = function ( el ) {
  *
  * @static
  * @param {HTMLElement} el Element to find root scrollable parent for
- * @return {HTMLElement} Scrollable parent, `document.body` or `document.documentElement`
- *     depending on browser
+ * @return {HTMLBodyElement|HTMLHtmlElement} Scrollable parent, `<body>` or `<html>`
  */
 OO.ui.Element.static.getRootScrollableElement = function ( el ) {
 	var scrollTop, body;
@@ -1244,24 +1244,24 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
  */
 OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) {
 	var i, val,
+		doc = el.ownerDocument,
+		rootScrollableElement = this.getRootScrollableElement( el ),
 		// Browsers do not correctly return the computed value of 'overflow' when 'overflow-x' and
 		// 'overflow-y' have different values, so we need to check the separate properties.
 		props = [ 'overflow-x', 'overflow-y' ],
 		$parent = $( el ).parent();
 
+	if ( el === doc.documentElement ) {
+		return rootScrollableElement;
+	}
+
 	if ( dimension === 'x' || dimension === 'y' ) {
 		props = [ 'overflow-' + dimension ];
 	}
 
-	// Special case for the document root (which doesn't really have any scrollable container,
-	// since it is the ultimate scrollable container, but this is probably saner than null or
-	// exception).
-	if ( $( el ).is( 'html, body' ) ) {
-		return this.getRootScrollableElement( el );
-	}
-
-	while ( $parent.length ) {
-		if ( $parent[ 0 ] === this.getRootScrollableElement( el ) ) {
+	// The parent of <html> is the document, so check we haven't traversed that far
+	while ( $parent.length && $parent[ 0 ] !== doc ) {
+		if ( $parent[ 0 ] === rootScrollableElement ) {
 			return $parent[ 0 ];
 		}
 		i = props.length;
@@ -1274,13 +1274,19 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 			// when using built-in find functionality.
 			// This could cause funny issues...
 			if ( val === 'auto' || val === 'scroll' ) {
-				return $parent[ 0 ];
+				if ( $parent[ 0 ] === doc.body ) {
+					// If overflow is set on <body>, return the rootScrollableElement
+					// (<body> or <html>) as <body> may not be scrollable.
+					return rootScrollableElement;
+				} else {
+					return $parent[ 0 ];
+				}
 			}
 		}
 		$parent = $parent.parent();
 	}
 	// The element is unattached... return something mostly sane
-	return this.getRootScrollableElement( el );
+	return rootScrollableElement;
 };
 
 /**
@@ -1852,6 +1858,19 @@ OO.ui.Widget.prototype.getInputId = function () {
  * directly.
  */
 OO.ui.Widget.prototype.simulateLabelClick = function () {
+};
+
+/**
+ * Set the element with the given ID as a label for this widget.
+ *
+ * @param {string|null} id
+ */
+OO.ui.Widget.prototype.setLabelledBy = function ( id ) {
+	if ( id ) {
+		this.$element.attr( 'aria-labelledby', id );
+	} else {
+		this.$element.removeAttr( 'aria-labelledby' );
+	}
 };
 
 /**
@@ -2854,6 +2873,18 @@ OO.ui.mixin.LabelElement.prototype.setLabelElement = function ( $label ) {
 
 	this.$label = $label.addClass( 'oo-ui-labelElement-label' );
 	this.setLabelContent( this.label );
+};
+
+/**
+ * Set the 'id' attribute of the label element.
+ *
+ * @param {string} id
+ * @chainable
+ * @return {OO.ui.mixin.LabelElement} The element, for chaining
+ */
+OO.ui.mixin.LabelElement.prototype.setLabelId = function ( id ) {
+	this.$label.attr( 'id', id );
+	return this;
 };
 
 /**
@@ -8350,6 +8381,8 @@ OO.ui.MenuSelectWidget.prototype.scrollToTop = function () {
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
+	var labelId;
+
 	// Configuration initialization
 	config = $.extend( { indicator: 'down' }, config );
 
@@ -8392,6 +8425,8 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	} );
 
 	// Initialization
+	labelId = OO.ui.generateElementId();
+	this.setLabelId( labelId );
 	this.$label
 		.attr( {
 			role: 'textbox',
@@ -8405,7 +8440,8 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 			'aria-autocomplete': 'list',
 			'aria-expanded': 'false',
 			'aria-haspopup': 'true',
-			'aria-owns': this.menu.getElementId()
+			'aria-owns': this.menu.getElementId(),
+			'aria-labelledby': labelId
 		} );
 	this.$element
 		.addClass( 'oo-ui-dropdownWidget' )
@@ -8510,6 +8546,19 @@ OO.ui.DropdownWidget.prototype.onKeyDown = function ( e ) {
 	) {
 		this.menu.toggle();
 		return false;
+	}
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.DropdownWidget.prototype.setLabelledBy = function ( id ) {
+	var labelId = this.$label.attr( 'id' );
+
+	if ( id ) {
+		this.$handle.attr( 'aria-labelledby', id + ' ' + labelId );
+	} else {
+		this.$handle.attr( 'aria-labelledby', labelId );
 	}
 };
 
@@ -10201,6 +10250,13 @@ OO.ui.DropdownInputWidget.prototype.blur = function () {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.DropdownInputWidget.prototype.setLabelledBy = function ( id ) {
+	this.dropdownWidget.setLabelledBy( id );
+};
+
+/**
  * RadioInputWidget creates a single radio button. Because radio buttons are usually used as a set,
  * in most cases you will want to use a {@link OO.ui.RadioSelectWidget radio select}
  * with {@link OO.ui.RadioOptionWidget radio options} instead of this class. For more information,
@@ -11729,14 +11785,15 @@ OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
  * This only affects multiline inputs that are {@link #autosize autosized}.
  *
  * @chainable
+ * @param {boolean} [force] Force an update, even if the value hasn't changed
  * @return {OO.ui.Widget} The widget, for chaining
  * @fires resize
  */
-OO.ui.MultilineTextInputWidget.prototype.adjustSize = function () {
+OO.ui.MultilineTextInputWidget.prototype.adjustSize = function ( force ) {
 	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError,
 		idealHeight, newHeight, scrollWidth, property;
 
-	if ( this.$input.val() !== this.valCache ) {
+	if ( force || this.$input.val() !== this.valCache ) {
 		if ( this.autosize ) {
 			this.$clone
 				.val( this.$input.val() )
@@ -12247,7 +12304,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 		// We can't use `label for` with non-form elements, use `aria-labelledby` instead
 		id = OO.ui.generateElementId();
 		this.$label.attr( 'id', id );
-		this.fieldWidget.$element.attr( 'aria-labelledby', id );
+		this.fieldWidget.setLabelledBy( id );
 
 		// Forward clicks on the label to the widget, like `label for` would do
 		this.$label.on( 'click', function () {

@@ -273,7 +273,7 @@ class XmlDumpWriter {
 	/**
 	 * Closes a "<page>" section on the output stream.
 	 *
-	 * @private
+	 * @internal
 	 * @return string
 	 */
 	public function closePage() {
