@@ -1242,16 +1242,29 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		UserIdentity $editor, LinkTarget $target, $timestamp
 	) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
+		$selectTables = [ 'watchlist' ];
+		$selectConds = [
+			'wl_user != ' . intval( $editor->getId() ),
+			'wl_namespace' => $target->getNamespace(),
+			'wl_title' => $target->getDBkey(),
+			'wl_notificationtimestamp IS NULL',
+		];
+		$selectJoin = [];
+
+		if ( $this->expiryEnabled ) {
+			$selectTables[] = 'watchlist_expiry';
+			$selectConds[] = 'we_expiry IS NULL OR we_expiry > ' .
+				$dbw->addQuotes( $dbw->timestamp() );
+			$selectJoin = [ 'watchlist_expiry' => [ 'LEFT JOIN', 'wl_id = we_item' ] ];
+		}
+
 		$uids = $dbw->selectFieldValues(
-			'watchlist',
+			$selectTables,
 			'wl_user',
-			[
-				'wl_user != ' . intval( $editor->getId() ),
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
-				'wl_notificationtimestamp IS NULL',
-			],
-			__METHOD__
+			$selectConds,
+			__METHOD__,
+			[],
+			$selectJoin
 		);
 
 		$watchers = array_map( 'intval', $uids );
