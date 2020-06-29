@@ -6995,6 +6995,9 @@ $wgSearchForwardUrl = null;
  * Search form behavior.
  * - true = use Go & Search buttons
  * - false = use Go button & Advanced search link
+ *
+ * @deprecated since 1.35. Individual skin may optionally continue
+ * supporting it as a local skin config variable.
  */
 $wgUseTwoButtonsSearchForm = true;
 

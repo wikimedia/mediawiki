@@ -126,6 +126,11 @@ For notes on 1.34.x and older releases, see HISTORY.
   $wgGroupPermissions['sysop']['movefile'] = false.
 * $wgAllowImageTag - This configuration is now deprecated; future parsers will
   not support direct use of the HTML <img> tag in wikitext.
+* $wgUseTwoButtonsSearchForm has been deprecated. If you're relying on this in
+  your skin and want maintain that, you should convert the variable to your own
+  skin config variable. If you're relying on it to make site configuration, you
+  should check individual skins to see whether they have local skin config for
+  the feature and use that.
 * …
 
 ==== Removed configuration ====
