@@ -13,20 +13,28 @@
 		var $diff;
 
 		/**
-		 * Fired when wiki content is being added to the DOM
+		 * Fired for wiki content that is or will be rendered somewhere on the page.
 		 *
-		 * It is encouraged to fire it before the main DOM is changed (when $content
-		 * is still detached).  However, this order is not defined either way, so you
-		 * should only rely on $content itself.
+		 * Use this hook if you need to enhance or modify parts of a wiki page.
 		 *
-		 * This includes the ready event on a page load (including post-edit loads)
-		 * and when content has been previewed with LivePreview.
+		 * This hook should be used instead of `$.ready` as otherwise you will
+		 * miss content that is rendered without a browser reload. For example,
+		 * during a JavaScript-based live preview, or after saving an edit with
+		 * VisualEditor.
+		 *
+		 * Keep in mind:
+		 * - The `$content` might represent content that is not yet publicly saved,
+		 *   such as during a (personal) preview.
+		 * - The `$content` might represent only a small portion of the page,
+		 *   for example when editing a section, or after an extension inserts
+		 *   or lazy-loads additional content.
+		 * - The `$content` element might be detached (invisible) when the hook runs.
+		 *   This has the benefit of allowing you to modify the content beforehand,
+		 *   which avoids "flash" or other visual disruption afterwards.
 		 *
 		 * @event wikipage_content
 		 * @member mw.hook
-		 * @param {jQuery} $content The most appropriate element containing the content,
-		 *   such as #mw-content-text (regular content root) or #wikiPreview (live preview
-		 *   root)
+		 * @param {jQuery} $content An element containing wiki content.
 		 */
 		mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
 
