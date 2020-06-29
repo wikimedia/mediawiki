@@ -202,7 +202,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 			}
 		}
 
-		if ( !$hasSections ) {
+		if ( !$hasSections && $out ) {
 			// Directly return the only OOUI\CheckboxMultiselectInputWidget.
 			// This allows it to be made infusable and later tweaked by JS code.
 			return $out[ 0 ];
