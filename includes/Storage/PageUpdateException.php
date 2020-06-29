@@ -27,6 +27,7 @@ use RuntimeException;
 /**
  * Exception representing a failure to update a page entry.
  *
+ * @newable
  * @since 1.32
  */
 class PageUpdateException extends RuntimeException {

@@ -23,7 +23,14 @@ namespace MediaWiki\Diff;
 
 use Exception;
 
+/**
+ * @newable
+ */
 class ComplexityException extends Exception {
+
+	/**
+	 * @stable for calling
+	 */
 	public function __construct() {
 		parent::__construct( 'Diff is too complex to generate' );
 	}

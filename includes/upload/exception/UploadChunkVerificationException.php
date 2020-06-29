@@ -21,6 +21,9 @@
  * @ingroup Upload
  */
 
+/**
+ * @newable
+ */
 class UploadChunkVerificationException extends MWException {
 	public $msg;
 

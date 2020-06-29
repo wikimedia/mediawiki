@@ -21,6 +21,7 @@
  */
 
 /**
+ * @newable
  * @ingroup SpecialPage
  * @ingroup Upload
  */
