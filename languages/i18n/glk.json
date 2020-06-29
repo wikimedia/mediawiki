@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"AminSanaei",
+			"BaRaN6161 TURK",
 			"Fitoschido",
 			"Macofe",
 			"Mehtab ahmed",
@@ -386,9 +387,9 @@
 	"prefs-preview": "پيشادئن",
 	"userrights": "کارگيرˇ دسفارسˇ کياگري",
 	"userrights-lookup-user": "کارگيري پأره'نˇ کياگري",
-	"editusergroup": "{{جنس:$1|کارگيري}}پأره'نˇ دچينواچين",
+	"editusergroup": "کارگيريپأره'نˇ دچينواچين",
 	"editinguser": "{{GENDER:$1|کارگير}} <strong>[[User:$1|$1]]</strong> $2 کارگيري دسفأرسؤنه عوضأؤدن",
-	"saveusergroups": "{{جنس:$1|کارگيري}} پأره'نه ذخيره گۊدن",
+	"saveusergroups": "{{GENDER:$1|کارگيري}} پأره'نه ذخيره گۊدن",
 	"group": "پأره:",
 	"group-user": "کارگيرؤن",
 	"group-autoconfirmed": "تأىيد بۊبؤ کارگيرؤن",
@@ -399,7 +400,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|تأييد بۊبؤ کارگير}}",
 	"group-sysop-member": "{{GENDER:$1|کيا}}",
 	"group-bureaucrat-member": "{{GENDER:$1|شأردوير}}",
-	"group-suppress-member": "{{جنس:$1|دۊخۊسانگر}}",
+	"group-suppress-member": "{{GENDER:$1|دۊخۊسانگر}}",
 	"grouppage-user": "{{ns:project}}:کارگيرؤن",
 	"grouppage-autoconfirmed": "{{ns:project}}:تأييد بۊبؤ کارگيرؤن",
 	"grouppage-sysop": "{{ns:project}}:کيا'ن",

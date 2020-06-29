@@ -1081,6 +1081,7 @@
 	"prefs-help-signature": "Komentari na stranicama za razgovor trebaju biti potpisani sa „<nowiki>~~~~</nowiki>” koje će biti konvertovano u vaš potpis i vremensku oznaku.",
 	"badsig": "Nevažeći neobrađeni potpis.\nProverite HTML tagove.",
 	"badsiglength": "Vaš potpis je predugačak.\nNe sme biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.",
+	"linter-pager-missing-end-tag-details": "Nedostaje zatvarajući tag",
 	"yourgender": "Kako želite da se predstavite?",
 	"gender-unknown": "Kad vas pominje, softver će koristiti rodno neutralne reči kad god je to moguće",
 	"gender-notknown": "Oni uređuju viki stranice",
