@@ -6,7 +6,11 @@ use QuickTemplate;
 use SkinTemplate;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35. See
+ * https://www.mediawiki.org/wiki/Manual:Hooks/SkinTemplateOutputPageBeforeExec
+ * for migration notes.
+ * @see https://phabricator.wikimedia.org/T60137 for details on the deprecation
+ *
  * @ingroup Hooks
  */
 interface SkinTemplateOutputPageBeforeExecHook {
