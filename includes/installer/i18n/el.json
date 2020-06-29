@@ -10,6 +10,7 @@
 			"KATRINE1993",
 			"Macofe",
 			"Nikosgranturismogt",
+			"Norhorn",
 			"Protnet",
 			"Stam.nikos",
 			"ZaDiak"
@@ -52,7 +53,7 @@
 	"config-restart": "Ναι, επανεκκίνηση",
 	"config-welcome": "=== Έλεγχοι του περιβάλλοντος ===\nΤώρα θα γίνουν βασικοί έλεγχοι για να δούμε αν αυτό το περιβάλλον είναι κατάλληλο για την εγκατάσταση του MediaWiki.\nΘυμηθείτε να συμπεριλάβετε αυτές τις πληροφορίες εάν αναζητήσετε υποστήριξη για να ολοκληρώσετε την εγκατάσταση.",
 	"config-welcome-section-copyright": "=== Πνευματικά δικαιώματα και όροι ===\n\n$1\n\nΑυτό το πρόγραμμα είναι ελεύθερο λογισμικό· μπορείτε να το αναδιανείμετε ή/και να το τροποποιήσετε υπό τους όρους της Γενικής Άδειας Δημόσιας Χρήσης GNU, όπως αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού· είτε της έκδοσης 2 της Άδειας, είτε (κατ' επιλογήν σας) οποιασδήποτε μεταγενέστερης έκδοσης.\n\nΑυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά <strong>χωρίς καμία εγγύηση</strong>· χωρίς καν τη σιωπηρή εγγύηση της <strong>εμπορευσιμότητας</strong> ή <strong>καταλληλότητας για συγκεκριμένο σκοπό</strong>.\nΔείτε τη Γενική Άδεια Δημόσιας Χρήσης GNU για περισσότερες λεπτομέρειες.\n\nΘα πρέπει να έχετε παραλάβει [$2 ένα αντίγραφο της Γενικής Άδειας Δημόσιας Χρήσης GNU] μαζί με αυτό το πρόγραμμα· αν όχι, στείλτε ένα γράμμα στο Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, ή [https://www.gnu.org/copyleft/gpl.html διαβάστε το διαδικτυακά].",
-	"config-sidebar": "* [https://www.mediawiki.org Αρχική MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Οδηγός Χρήστη]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Οδηγός Διαχειριστή]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Συχνές ερωτήσεις]\n----\n* <doclink href=\"Readme\">Διαβάστε με</doclink>\n* <doclink href=\"ReleaseNotes\">Σημειώσεις έκδοσης</doclink>\n* <doclink href=\"Copying\">Αντιγραφή</doclink>\n* <doclink href=\"UpgradeDoc\">Αναβάθμιση</doclink>",
+	"config-sidebar": "* [https://www.mediawiki.org Αρχική σελίδα MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Οδηγός Χρήστη]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Οδηγός Διαχειριστή]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Συχνές ερωτήσεις]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Communication Αναζήτηση βοήθειας]\n* [https://phabricator.wikimedia.org/ Παρακολούθηση σφαλμάτων]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute Συνεισφορά]",
 	"config-env-good": "Το περιβάλλον έχει ελεγχθεί.\nΜπορείτε να εγκαταστήσετε το MediaWiki.",
 	"config-env-bad": "Το περιβάλλον έχει ελεγχθεί.\nΔεν μπορείτε να εγκαταστήσετε το MediaWiki.",
 	"config-env-php": "H PHP $1 είναι εγκατεστημένη.",

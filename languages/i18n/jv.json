@@ -993,6 +993,7 @@
 	"prefs-help-signature": "Tanggepan ing kaca parembugan kudu ditapakasmani mawa \"<nowiki>~~~~</nowiki>\", kang bakal salin dadi tapak asma lan tandha wektuné panjenengan.",
 	"badsig": "Tapak astanipun klèntu; cèk rambu HTML.",
 	"badsiglength": "Tapak asta panjenengan kedawan.\nAja luwih saka {{PLURAL:$1|karakter|karakter}}.",
+	"linter-pager-obsolete-tag-details": "Tenger HTML lawas",
 	"yourgender": "Kapriyé kowé ngandharaké awakmu dhéwé?",
 	"gender-unknown": "Nalika nyebut panjenengan, piranti alusé bakal nganggo tembung kang nétral jèndher sabisané",
 	"gender-male": "Lanang",
