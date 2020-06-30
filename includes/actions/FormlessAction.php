@@ -23,6 +23,8 @@
 /**
  * An action which just does something, without showing a form first.
  *
+ * @stable for subclassing
+ *
  * @ingroup Actions
  */
 abstract class FormlessAction extends Action {
@@ -34,6 +36,9 @@ abstract class FormlessAction extends Action {
 	 */
 	abstract public function onView();
 
+	/**
+	 * @stable for overriding
+	 */
 	public function show() {
 		$this->setHeaders();
 
