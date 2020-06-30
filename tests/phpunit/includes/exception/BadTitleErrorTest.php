@@ -3,7 +3,7 @@
  * @covers BadTitleError
  * @author Addshore
  */
-class BadTitleErrorTest extends MediaWikiTestCase {
+class BadTitleErrorTest extends MediaWikiIntegrationTestCase {
 
 	public function testExceptionSetsStatusCode() {
 		$this->setMwGlobals( 'wgOut', $this->getMockWgOut() );

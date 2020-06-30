@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Revision;
 
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Revision;
 
 /**
@@ -13,7 +13,7 @@ use Revision;
  * @group Storage
  * @group Database
  */
-class RevisionQueryInfoTest extends MediaWikiTestCase {
+class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 
 	protected function getRevisionQueryFields( $returnTextIdField = true ) {
 		$fields = [

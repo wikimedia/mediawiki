@@ -5,7 +5,7 @@
  * @group Http
  * @group small
  */
-class HttpTest extends MediaWikiTestCase {
+class HttpTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers Http::getProxy

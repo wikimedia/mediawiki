@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers CentralIdLookup
  * @group Database
  */
-class CentralIdLookupTest extends MediaWikiTestCase {
+class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function testFactory() {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );

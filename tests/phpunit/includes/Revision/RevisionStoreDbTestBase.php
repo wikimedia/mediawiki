@@ -23,7 +23,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
@@ -48,7 +48,7 @@ use WikitextContent;
  * @group Database
  * @group RevisionStore
  */
-abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
+abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var Title
@@ -1902,7 +1902,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiTestCase {
 	 * @return bool|RevisionStoreRecord the revision created, or false if missing
 	 */
 	private function createRevisionStoreCacheRecord( $page, $store ) {
-		$user = MediaWikiTestCase::getMutableTestUser()->getUser();
+		$user = MediaWikiIntegrationTestCase::getMutableTestUser()->getUser();
 		$updater = $page->newPageUpdater( $user );
 		$updater->setContent( SlotRecord::MAIN, new WikitextContent( __METHOD__ ) );
 		$summary = CommentStoreComment::newUnsavedComment( __METHOD__ );

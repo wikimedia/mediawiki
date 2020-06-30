@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ExtensionProcessor
  */
-class ExtensionProcessorTest extends MediaWikiTestCase {
+class ExtensionProcessorTest extends MediaWikiIntegrationTestCase {
 
 	private $dir, $dirname;
 

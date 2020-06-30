@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
  * TODO: refactor encodeJsVar() tests to be one method with a provider
  * @group Xml
  */
-class XmlTest extends MediaWikiTestCase {
+class XmlTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

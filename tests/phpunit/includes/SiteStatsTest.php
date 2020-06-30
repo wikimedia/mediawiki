@@ -1,6 +1,6 @@
 <?php
 
-class SiteStatsTest extends MediaWikiTestCase {
+class SiteStatsTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers SiteStats::jobs

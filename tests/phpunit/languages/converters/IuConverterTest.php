@@ -4,7 +4,7 @@
  * @group Language
  * @covers IuConverter
  */
-class IuConverterTest extends MediaWikiTestCase {
+class IuConverterTest extends MediaWikiIntegrationTestCase {
 
 	use LanguageConverterTestTrait;
 

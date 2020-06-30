@@ -10,7 +10,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Container\ContainerInterface;
 use User;
 use Wikimedia\ObjectFactory;
@@ -23,7 +23,7 @@ use Wikimedia\ObjectFactory;
  * @covers \MediaWiki\Rest\BasicAccess\BasicRequestAuthorizer
  * @covers \MediaWiki\Rest\BasicAccess\MWBasicRequestAuthorizer
  */
-class MWBasicRequestAuthorizerTest extends MediaWikiTestCase {
+class MWBasicRequestAuthorizerTest extends MediaWikiIntegrationTestCase {
 	private function createRouter( $userRights, $request ) {
 		$user = User::newFromName( 'Test user' );
 		$objectFactory = new ObjectFactory(

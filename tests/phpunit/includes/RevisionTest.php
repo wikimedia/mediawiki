@@ -15,7 +15,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  * Test cases in RevisionTest should not interact with the Database.
  * For test cases that need Database interaction see RevisionDbTestBase.
  */
-class RevisionTest extends MediaWikiTestCase {
+class RevisionTest extends MediaWikiIntegrationTestCase {
 
 	public function provideConstructFromArray() {
 		yield 'with text' => [

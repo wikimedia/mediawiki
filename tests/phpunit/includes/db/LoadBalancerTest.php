@@ -34,7 +34,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group medium
  * @covers \Wikimedia\Rdbms\LoadBalancer
  */
-class LoadBalancerTest extends MediaWikiTestCase {
+class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	private function makeServerConfig( $flags = DBO_DEFAULT ) {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 

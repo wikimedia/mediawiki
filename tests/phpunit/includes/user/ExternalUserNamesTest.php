@@ -5,7 +5,7 @@ use MediaWiki\Interwiki\InterwikiLookup;
 /**
  * @covers ExternalUserNames
  */
-class ExternalUserNamesTest extends MediaWikiTestCase {
+class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 
 	public function provideGetUserLinkTitle() {
 		return [

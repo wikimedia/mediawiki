@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group ResourceLoader
  */
-class ResourceLoaderSkinModuleTest extends MediaWikiTestCase {
+class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideGetAvailableLogos() {
 		return [

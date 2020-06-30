@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use Maintenance;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
-abstract class MaintenanceBaseTestCase extends MediaWikiTestCase {
+abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * The main Maintenance instance that is used for testing, wrapped and mockable.

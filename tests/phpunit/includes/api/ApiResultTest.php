@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
  * @covers ApiResult
  * @group API
  */
-class ApiResultTest extends MediaWikiTestCase {
+class ApiResultTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ApiResult

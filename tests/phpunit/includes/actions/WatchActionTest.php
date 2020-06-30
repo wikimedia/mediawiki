@@ -8,7 +8,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * @group Action
  */
-class WatchActionTest extends MediaWikiTestCase {
+class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var WatchAction

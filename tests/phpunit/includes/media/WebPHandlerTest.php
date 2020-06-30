@@ -3,7 +3,7 @@
 /**
  * @covers WebPHandler
  */
-class WebPHandlerTest extends MediaWikiTestCase {
+class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 		// Allocated file for testing

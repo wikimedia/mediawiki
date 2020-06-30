@@ -149,7 +149,7 @@ class ApiParseTest extends ApiTestCase {
 	/**
 	 * Set up a skin for testing.
 	 *
-	 * @todo Should this code be in MediaWikiTestCase or something?
+	 * @todo Should this code be in MediaWikiIntegrationTestCase or something?
 	 */
 	protected function setupSkin() {
 		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ) );

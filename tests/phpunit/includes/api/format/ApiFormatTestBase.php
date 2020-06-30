@@ -1,6 +1,6 @@
 <?php
 
-abstract class ApiFormatTestBase extends MediaWikiTestCase {
+abstract class ApiFormatTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Name of the formatter being tested

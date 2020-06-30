@@ -8,7 +8,7 @@
  * @license GPL-2.0-or-later
  * @group Database
  */
-class SpecialRedirectTest extends MediaWikiTestCase {
+class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
 
 	protected $tablesUsed = [ 'user' ];
 

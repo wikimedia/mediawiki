@@ -24,7 +24,7 @@
  * @group GlobalFunctions
  * @covers ::wfParseUrl
  */
-class WfParseUrlTest extends MediaWikiTestCase {
+class WfParseUrlTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 

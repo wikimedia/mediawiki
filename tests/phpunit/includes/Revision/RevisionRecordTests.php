@@ -18,7 +18,7 @@ use Title;
 /**
  * @covers \MediaWiki\Revision\RevisionRecord
  *
- * @note Expects to be used in classes that extend MediaWikiTestCase.
+ * @note Expects to be used in classes that extend MediaWikiIntegrationTestCase.
  */
 trait RevisionRecordTests {
 

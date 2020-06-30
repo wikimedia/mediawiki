@@ -1,6 +1,6 @@
 <?php
 
-class MediaWikiTest extends MediaWikiTestCase {
+class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	private $oldServer, $oldGet, $oldPost;
 
 	protected function setUp() : void {

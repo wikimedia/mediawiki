@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @group Output
  */
-class OutputPageTest extends MediaWikiTestCase {
+class OutputPageTest extends MediaWikiIntegrationTestCase {
 	private const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	private const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
 

@@ -21,7 +21,7 @@ use MediaWiki\MediaWikiServices;
  * }
  * @endcode
  */
-abstract class LanguageClassesTestCase extends MediaWikiTestCase {
+abstract class LanguageClassesTestCase extends MediaWikiIntegrationTestCase {
 	/**
 	 * Internal language object
 	 *

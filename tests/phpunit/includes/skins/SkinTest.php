@@ -3,7 +3,7 @@
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
 
-class SkinTest extends MediaWikiTestCase {
+class SkinTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers Skin::getDefaultModules

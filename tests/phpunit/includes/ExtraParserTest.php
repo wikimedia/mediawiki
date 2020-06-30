@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group Database
  */
-class ExtraParserTest extends MediaWikiTestCase {
+class ExtraParserTest extends MediaWikiIntegrationTestCase {
 
 	/** @var ParserOptions */
 	protected $options;

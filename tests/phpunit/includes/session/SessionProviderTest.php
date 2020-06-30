@@ -3,7 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers MediaWiki\Session\SessionProvider
  */
-class SessionProviderTest extends MediaWikiTestCase {
+class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	public function testBasics() {
 		$manager = new SessionManager();

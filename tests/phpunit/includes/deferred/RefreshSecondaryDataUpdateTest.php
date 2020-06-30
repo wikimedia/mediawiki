@@ -9,7 +9,7 @@ use Wikimedia\ScopedCallback;
 /**
  * @covers RefreshSecondaryDataUpdate
  */
-class RefreshSecondaryDataUpdateTest extends MediaWikiTestCase {
+class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 	public function testSuccess() {
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();

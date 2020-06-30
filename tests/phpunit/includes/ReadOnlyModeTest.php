@@ -6,7 +6,7 @@
  * @covers ReadOnlyMode
  * @covers ConfiguredReadOnlyMode
  */
-class ReadOnlyModeTest extends MediaWikiTestCase {
+class ReadOnlyModeTest extends MediaWikiIntegrationTestCase {
 	public function provider() {
 		$rawTests = [
 			'None of anything' => [

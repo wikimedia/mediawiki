@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @covers ListToggle
  */
-class ListToggleTest extends MediaWikiTestCase {
+class ListToggleTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ListToggle::__construct

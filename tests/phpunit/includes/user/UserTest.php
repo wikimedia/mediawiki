@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  */
-class UserTest extends MediaWikiTestCase {
+class UserTest extends MediaWikiIntegrationTestCase {
 
 	/** Constant for self::testIsBlockedFrom */
 	private const USER_TALK_PAGE = '<user talk page>';

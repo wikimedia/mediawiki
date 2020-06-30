@@ -11,7 +11,7 @@ use MediaWiki\Revision\RevisionRecord;
  * @license GPL-2.0-or-later
  * @author Addshore
  */
-class CategoryMembershipChangeJobTest extends MediaWikiTestCase {
+class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 
 	private const TITLE_STRING = 'UTCatChangeJobPage';
 

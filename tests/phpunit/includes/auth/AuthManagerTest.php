@@ -29,7 +29,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\AuthManager
  */
-class AuthManagerTest extends \MediaWikiTestCase {
+class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	/** @var WebRequest */
 	protected $request;
 	/** @var Config */

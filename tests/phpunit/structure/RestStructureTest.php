@@ -14,7 +14,7 @@ use Wikimedia\TestingAccessWrapper;
  * - path parameters not in path are not required
  * - do not have inconsistencies in the parameter definitions
  */
-class RestStructureTest extends MediaWikiTestCase {
+class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 	/** @var Router */
 	private static $router;

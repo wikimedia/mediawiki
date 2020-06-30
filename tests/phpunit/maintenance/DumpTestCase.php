@@ -25,7 +25,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	/**
 	 * exception to be rethrown once in sound PHPUnit surrounding
 	 *
-	 * As the current MediaWikiTestCase::run is not robust enough to recover
+	 * As the current MediaWikiIntegrationTestCase::run is not robust enough to recover
 	 * from thrown exceptions directly, we cannot throw frow within
 	 * self::addDBData, although it would be appropriate. Hence, we catch the
 	 * exception and store it until we are in setUp and may finally rethrow

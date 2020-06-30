@@ -3,7 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use Wikimedia\TestingAccessWrapper;
 
@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers MediaWiki\Session\BotPasswordSessionProvider
  */
-class BotPasswordSessionProviderTest extends MediaWikiTestCase {
+class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	private $config;
 

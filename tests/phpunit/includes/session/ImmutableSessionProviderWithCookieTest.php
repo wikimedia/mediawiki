@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Session;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use User;
 use Wikimedia\TestingAccessWrapper;
 
@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers MediaWiki\Session\ImmutableSessionProviderWithCookie
  */
-class ImmutableSessionProviderWithCookieTest extends MediaWikiTestCase {
+class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCase {
 
 	private function getProvider( $name, $prefix = null ) {
 		$config = new \HashConfig();

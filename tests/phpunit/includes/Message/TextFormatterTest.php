@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Message;
 
 use MediaWiki\Message\Converter;
 use MediaWiki\Message\TextFormatter;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Message;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -17,7 +17,7 @@ use Wikimedia\Message\ScalarParam;
  * @covers \Wikimedia\Message\ScalarParam
  * @covers \Wikimedia\Message\MessageParam
  */
-class TextFormatterTest extends MediaWikiTestCase {
+class TextFormatterTest extends MediaWikiIntegrationTestCase {
 	private function createTextFormatter( $langCode,
 		$includeWikitext = false,
 		$format = Message::FORMAT_TEXT

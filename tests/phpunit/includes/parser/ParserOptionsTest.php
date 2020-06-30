@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ParserOptions
  */
-class ParserOptionsTest extends MediaWikiTestCase {
+class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 
 	private static function clearCache() {
 		$wrap = TestingAccessWrapper::newFromClass( ParserOptions::class );

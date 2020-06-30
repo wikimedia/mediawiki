@@ -3,7 +3,7 @@
 /**
  * @covers MigrateFileRepoLayout
  */
-class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
+class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 	protected $tmpPrefix;
 	protected $migratorMock;
 	protected $tmpFilepath;

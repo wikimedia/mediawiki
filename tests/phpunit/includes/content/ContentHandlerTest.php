@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group ContentHandler
  * @group Database
  */
-class ContentHandlerTest extends MediaWikiTestCase {
+class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider
  */
-class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 
 	private $manager = null;
 	private $config = null;

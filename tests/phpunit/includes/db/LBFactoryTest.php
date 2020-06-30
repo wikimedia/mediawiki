@@ -41,7 +41,7 @@ use Wikimedia\Rdbms\MySQLMasterPos;
  * @covers \Wikimedia\Rdbms\LBFactorySimple
  * @covers \Wikimedia\Rdbms\LBFactoryMulti
  */
-class LBFactoryTest extends MediaWikiTestCase {
+class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\LBFactory::getLocalDomainID()
 	 * @covers \Wikimedia\Rdbms\LBFactory::resolveDomainID()

@@ -1,6 +1,6 @@
 <?php
 
-class SearchResultSetTest extends MediaWikiTestCase {
+class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers SearchResultSet::getIterator
 	 * @covers BaseSearchResultSet::next

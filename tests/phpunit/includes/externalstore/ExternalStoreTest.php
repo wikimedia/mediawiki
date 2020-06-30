@@ -1,6 +1,6 @@
 <?php
 
-class ExternalStoreTest extends MediaWikiTestCase {
+class ExternalStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ExternalStore::fetchFromURL

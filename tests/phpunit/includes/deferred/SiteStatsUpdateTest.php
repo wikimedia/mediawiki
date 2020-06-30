@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  */
-class SiteStatsUpdateTest extends MediaWikiTestCase {
+class SiteStatsUpdateTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers SiteStatsUpdate::factory
 	 * @covers SiteStatsUpdate::merge

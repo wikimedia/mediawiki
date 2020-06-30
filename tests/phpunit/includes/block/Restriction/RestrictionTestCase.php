@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Block\Restriction;
 /**
  * @group Blocking
  */
-abstract class RestrictionTestCase extends \MediaWikiTestCase {
+abstract class RestrictionTestCase extends \MediaWikiIntegrationTestCase {
 	public function testConstruct() {
 		$class = $this->getClass();
 		$restriction = new $class( 1, 2 );

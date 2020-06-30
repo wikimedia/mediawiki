@@ -4,7 +4,7 @@
  * @group Language
  * @covers KkConverter
  */
-class KkConverterTest extends MediaWikiTestCase {
+class KkConverterTest extends MediaWikiIntegrationTestCase {
 
 	use LanguageConverterTestTrait;
 

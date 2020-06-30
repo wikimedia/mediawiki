@@ -6,7 +6,7 @@ namespace MediaWiki\Auth;
  * @group AuthManager
  * @covers \MediaWiki\Auth\AuthenticationRequest
  */
-class AuthenticationRequestTest extends \MediaWikiTestCase {
+class AuthenticationRequestTest extends \MediaWikiIntegrationTestCase {
 	public function testBasics() {
 		$mock = $this->getMockForAbstractClass( AuthenticationRequest::class );
 

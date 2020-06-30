@@ -24,7 +24,7 @@
  *
  * @group Title
  */
-class NaiveImportTitleFactoryTest extends MediaWikiTestCase {
+class NaiveImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Base class that store and restore the Language objects
  */
-abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
+abstract class MediaWikiLangTestCase extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		global $wgLanguageCode;
 

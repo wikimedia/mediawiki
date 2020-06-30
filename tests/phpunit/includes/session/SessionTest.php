@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Session;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use User;
 use Wikimedia\TestingAccessWrapper;
@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Session
  * @covers MediaWiki\Session\Session
  */
-class SessionTest extends MediaWikiTestCase {
+class SessionTest extends MediaWikiIntegrationTestCase {
 
 	public function testClear() {
 		$session = TestUtils::getDummySession();

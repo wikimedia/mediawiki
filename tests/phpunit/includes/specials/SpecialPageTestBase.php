@@ -11,7 +11,7 @@
  * @author Addshore
  * @author Thiemo Kreuz
  */
-abstract class SpecialPageTestBase extends MediaWikiTestCase {
+abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 
 	private $obLevel;
 

@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @covers SpecialGoToInterwiki
  */
-class SpecialGoToInterwikiTest extends MediaWikiTestCase {
+class SpecialGoToInterwikiTest extends MediaWikiIntegrationTestCase {
 
 	public function testExecute() {
 		$this->setService( 'InterwikiLookup', new InterwikiLookupAdapter(

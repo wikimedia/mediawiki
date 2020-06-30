@@ -4,7 +4,7 @@
  * @group Language
  * @covers ZhConverter
  */
-class ZhConverterTest extends MediaWikiTestCase {
+class ZhConverterTest extends MediaWikiIntegrationTestCase {
 
 	use LanguageConverterTestTrait;
 

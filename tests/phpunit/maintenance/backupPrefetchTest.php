@@ -4,13 +4,13 @@ namespace MediaWiki\Tests\Maintenance;
 
 use BaseDump;
 use MediaWiki\Storage\SlotRecord;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Dump
  * @covers BaseDump
  */
-class BaseDumpTest extends MediaWikiTestCase {
+class BaseDumpTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var BaseDump The BaseDump instance used within a test.

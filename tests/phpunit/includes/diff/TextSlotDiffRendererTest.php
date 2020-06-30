@@ -6,7 +6,7 @@ use Wikimedia\Assert\ParameterTypeException;
 /**
  * @covers TextSlotDiffRenderer
  */
-class TextSlotDiffRendererTest extends MediaWikiTestCase {
+class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetExtraCacheKeys() {
 		$slotDiffRenderer = $this->getTextSlotDiffRenderer();

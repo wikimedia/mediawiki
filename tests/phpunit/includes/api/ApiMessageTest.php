@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group API
  */
-class ApiMessageTest extends MediaWikiTestCase {
+class ApiMessageTest extends MediaWikiIntegrationTestCase {
 
 	private function compareMessages( Message $msg, Message $msg2 ) {
 		$this->assertSame( $msg->getKey(), $msg2->getKey(), 'getKey' );

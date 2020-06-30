@@ -5,7 +5,7 @@ namespace MediaWiki\Auth;
 /**
  * @group AuthManager
  */
-abstract class AuthenticationRequestTestCase extends \MediaWikiTestCase {
+abstract class AuthenticationRequestTestCase extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array $args

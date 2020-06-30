@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group AuthManager
  * @covers \MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider
  */
-class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action

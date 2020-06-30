@@ -4,7 +4,7 @@
  * @covers CryptHKDF
  * @covers MWCryptHKDF
  */
-class MWCryptHKDFTest extends MediaWikiTestCase {
+class MWCryptHKDFTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

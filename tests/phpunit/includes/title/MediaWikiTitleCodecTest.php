@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  * @group Database
  *        ^--- needed because of global state in
  */
-class MediaWikiTitleCodecTest extends MediaWikiTestCase {
+class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

@@ -1,6 +1,6 @@
 <?php
 
-class SpecialUploadTest extends MediaWikiTestCase {
+class SpecialUploadTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers SpecialUpload::getInitialPageText
 	 * @dataProvider provideGetInitialPageText

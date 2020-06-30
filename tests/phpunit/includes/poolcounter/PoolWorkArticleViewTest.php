@@ -9,7 +9,7 @@ use MediaWiki\Revision\SlotRecord;
  * @covers PoolWorkArticleView
  * @group Database
  */
-class PoolWorkArticleViewTest extends MediaWikiTestCase {
+class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 
 	private function makeRevision( WikiPage $page, $text ) {
 		$user = $this->getTestUser()->getUser();

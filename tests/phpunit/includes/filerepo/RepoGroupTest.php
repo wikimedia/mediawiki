@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @covers RepoGroup
  */
-class RepoGroupTest extends MediaWikiTestCase {
+class RepoGroupTest extends MediaWikiIntegrationTestCase {
 
 	public function testHasForeignRepoNegative() {
 		$this->setMwGlobals( 'wgForeignFileRepos', [] );

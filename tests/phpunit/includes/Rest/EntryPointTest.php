@@ -24,7 +24,7 @@ use Wikimedia\ObjectFactory;
  * @covers \MediaWiki\Rest\EntryPoint
  * @covers \MediaWiki\Rest\Router
  */
-class EntryPointTest extends \MediaWikiTestCase {
+class EntryPointTest extends \MediaWikiIntegrationTestCase {
 	private static $mockHandler;
 
 	private function createRouter( RequestInterface $request ) {

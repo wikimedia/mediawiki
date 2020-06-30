@@ -20,7 +20,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers Parser::expandMagicVariable
  */
-class MagicVariableTest extends MediaWikiTestCase {
+class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var Parser
 	 */

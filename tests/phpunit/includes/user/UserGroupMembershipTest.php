@@ -2,7 +2,7 @@
 
 use Wikimedia\Assert\ParameterTypeException;
 
-class UserGroupMembershipTest extends MediaWikiTestCase {
+class UserGroupMembershipTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

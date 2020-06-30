@@ -9,7 +9,7 @@ use MediaWiki\MediaWikiServices;
  * @author Antoine Musso
  * @group Database
  */
-class SpecialSearchTest extends MediaWikiTestCase {
+class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers SpecialSearch::load

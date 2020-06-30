@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @copyright © 2012, Niklas Laxström
  * @copyright © 2012, Santhosh Thottingal
  */
-class ResourcesTest extends MediaWikiTestCase {
+class ResourcesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideMediaStylesheets

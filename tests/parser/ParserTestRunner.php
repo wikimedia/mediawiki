@@ -1242,10 +1242,10 @@ class ParserTestRunner {
 	 * be called at the start of each test if more isolation is desired.
 	 *
 	 * @todo This is basically an unrefactored copy of
-	 * MediaWikiTestCase::setupAllTestDBs. They should be factored out somehow.
+	 * MediaWikiIntegrationTestCase::setupAllTestDBs. They should be factored out somehow.
 	 *
-	 * Do not call this function from a MediaWikiTestCase subclass, since
-	 * MediaWikiTestCase does its own DB setup. Instead use setDatabase().
+	 * Do not call this function from a MediaWikiIntegrationTestCase subclass, since
+	 * MediaWikiIntegrationTestCase does its own DB setup. Instead use setDatabase().
 	 *
 	 * @see staticSetup() for more information about setup/teardown
 	 *
@@ -1258,7 +1258,7 @@ class ParserTestRunner {
 		$this->db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
 		$dbType = $this->db->getType();
 
-		$suspiciousPrefixes = [ 'parsertest_', MediaWikiTestCase::DB_PREFIX ];
+		$suspiciousPrefixes = [ 'parsertest_', MediaWikiIntegrationTestCase::DB_PREFIX ];
 		if ( in_array( $wgDBprefix, $suspiciousPrefixes ) ) {
 			throw new MWException( "\$wgDBprefix=$wgDBprefix suggests DB setup is already done" );
 		}
@@ -1472,7 +1472,7 @@ class ParserTestRunner {
 			if ( $this->db->getType() == 'sqlite' ) {
 				# Under SQLite the searchindex table is virtual and need
 				# to be explicitly destroyed. See T31912
-				# See also MediaWikiTestCase::destroyDB()
+				# See also MediaWikiIntegrationTestCase::destroyDB()
 				wfDebug( __METHOD__ . " explicitly destroying sqlite virtual table parsertest_searchindex" );
 				$this->db->query( "DROP TABLE `parsertest_searchindex`" );
 			}

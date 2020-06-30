@@ -4,7 +4,7 @@ use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Error\Deprecated;
 use Wikimedia\ScopedCallback;
 
-class HooksTest extends MediaWikiTestCase {
+class HooksTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		global $wgHooks;

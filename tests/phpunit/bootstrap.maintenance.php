@@ -27,7 +27,7 @@ register_shutdown_function( function () {
 	// - allow extensions to delete any temporary tables they created.
 	// - restore ability to connect to the real database,
 	//   (for logging profiling data).
-	MediaWikiTestCase::teardownTestDB();
+	MediaWikiIntegrationTestCase::teardownTestDB();
 
 	// Log profiling data, e.g. in the database or UDP
 	wfLogProfilingData();

@@ -5,7 +5,7 @@ use Wikimedia\Rdbms\Database;
 /**
  * @group Database
  */
-class DatabaseIntegrationTest extends MediaWikiTestCase {
+class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var Database
 	 */

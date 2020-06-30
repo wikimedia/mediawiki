@@ -8,7 +8,7 @@ use MediaWiki\MediaWikiServices;
  * @group MediaWiki
  * @group Database
  */
-class ClassicInterwikiLookupTest extends MediaWikiTestCase {
+class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 
 	private function populateDB( $iwrows ) {
 		$dbw = wfGetDB( DB_MASTER );

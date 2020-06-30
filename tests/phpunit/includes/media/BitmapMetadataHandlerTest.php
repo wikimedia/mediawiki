@@ -3,7 +3,7 @@
 /**
  * @group Media
  */
-class BitmapMetadataHandlerTest extends MediaWikiTestCase {
+class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

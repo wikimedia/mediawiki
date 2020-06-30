@@ -9,7 +9,7 @@ use MediaWiki\MediaWikiServices;
  * @group Blocking
  * @coversDefaultClass \MediaWiki\Block\BlockErrorFormatter
  */
-class BlockErrorFormatterTest extends MediaWikiTestCase {
+class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideTestGetMessage
 	 * @covers ::getMessage

@@ -2,14 +2,14 @@
 
 namespace MediaWiki\Session;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Session
  * @group Database
  * @covers MediaWiki\Session\SessionInfo
  */
-class SessionInfoTest extends MediaWikiTestCase {
+class SessionInfoTest extends MediaWikiIntegrationTestCase {
 
 	public function testBasics() {
 		$anonInfo = UserInfo::newAnonymous();

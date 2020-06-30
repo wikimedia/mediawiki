@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @coversDefaultClass \MediaWiki\Block\BlockManager
  */
-class BlockManagerTest extends MediaWikiTestCase {
+class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 
 	/** @var User */

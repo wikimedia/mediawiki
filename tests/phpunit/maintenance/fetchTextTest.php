@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Maintenance;
 use ContentHandler;
 use FetchText;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use MWException;
 use PHPUnit\Framework\ExpectationFailedException;
 use Title;
@@ -80,7 +80,7 @@ class SemiMockedFetchText extends FetchText {
  * @group Dump
  * @covers FetchText
  */
-class FetchTextTest extends MediaWikiTestCase {
+class FetchTextTest extends MediaWikiIntegrationTestCase {
 
 	// We add 5 Revisions for this test. Their corresponding text id's
 	// are stored in the following 5 variables.
@@ -91,7 +91,7 @@ class FetchTextTest extends MediaWikiTestCase {
 	protected static $textId5;
 
 	/**
-	 * @var Exception|null As the current MediaWikiTestCase::run is not
+	 * @var Exception|null As the current MediaWikiIntegrationTestCase::run is not
 	 * robust enough to recover from thrown exceptions directly, we cannot
 	 * throw frow within addDBData, although it would be appropriate. Hence,
 	 * we catch the exception and store it until we are in setUp and may

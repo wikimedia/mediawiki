@@ -3,7 +3,7 @@
 /**
  * @covers ConverterRule
  */
-class ConverterRuleTest extends MediaWikiTestCase {
+class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 
 	public function testParseEmpty() {
 		$converter = new EnConverter( new Language() );

@@ -4,7 +4,7 @@
  * @group Database
  * @covers SpecialMIMESearch
  */
-class SpecialMIMESearchTest extends MediaWikiTestCase {
+class SpecialMIMESearchTest extends MediaWikiIntegrationTestCase {
 
 	/** @var SpecialMIMESearch */
 	private $page;

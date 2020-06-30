@@ -47,7 +47,7 @@ class TestSetup {
 		// Make sure all caches and stashes are either disabled or use
 		// in-process cache only to prevent tests from using any preconfigured
 		// cache meant for the local wiki from outside the test run.
-		// See also MediaWikiTestCase::run() which mocks CACHE_DB and APC.
+		// See also MediaWikiIntegrationTestCase::run() which mocks CACHE_DB and APC.
 
 		// Disabled in DefaultSettings, override local settings
 		$wgMainWANCache =

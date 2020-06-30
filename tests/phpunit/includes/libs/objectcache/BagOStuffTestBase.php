@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group BagOStuff
  * @covers BagOStuff
  */
-abstract class BagOStuffTestBase extends MediaWikiTestCase {
+abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	/** @var BagOStuff */
 	private $cache;
 

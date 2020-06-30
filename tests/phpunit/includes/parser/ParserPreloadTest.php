@@ -21,7 +21,7 @@ use MediaWiki\MediaWikiServices;
  * @covers PPNode_Hash_Array
  * @covers PPNode_Hash_Attr
  */
-class ParserPreloadTest extends MediaWikiTestCase {
+class ParserPreloadTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var Parser
 	 */

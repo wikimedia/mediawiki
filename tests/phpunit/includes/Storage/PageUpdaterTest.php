@@ -8,7 +8,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use RecentChange;
 use Revision;
@@ -23,7 +23,7 @@ use WikiPage;
  * @covers \MediaWiki\Storage\PageUpdater
  * @group Database
  */
-class PageUpdaterTest extends MediaWikiTestCase {
+class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();
