@@ -30,6 +30,8 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * It provides some common functionality such as constructing various SQL
  * queries.
  *
+ * @stable for subclassing
+ *
  * @ingroup API
  */
 abstract class ApiQueryBase extends ApiBase {
@@ -43,6 +45,7 @@ abstract class ApiQueryBase extends ApiBase {
 	private $queryBuilder;
 
 	/**
+	 * @stable for calling
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
 	 * @param string $paramPrefix
@@ -67,6 +70,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Public caching will only be allowed if *all* the modules that supply
 	 * data for a given request return a cache mode of public.
 	 *
+	 * @stable for overriding
 	 * @param array $params
 	 * @return string
 	 */
@@ -81,6 +85,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Note this only makes sense for 'prop' modules, as 'list' and 'meta'
 	 * modules should not be using the pageset.
 	 *
+	 * @stable for overriding
 	 * @param ApiPageSet $pageSet
 	 */
 	public function requestExtraData( $pageSet ) {
@@ -108,6 +113,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Get the Query database connection (read-only)
+	 * @stable for overriding
 	 * @return IDatabase
 	 */
 	protected function getDB() {
@@ -133,6 +139,7 @@ abstract class ApiQueryBase extends ApiBase {
 
 	/**
 	 * Get the PageSet object to work on
+	 * @stable for overriding
 	 * @return ApiPageSet
 	 */
 	protected function getPageSet() {

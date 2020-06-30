@@ -32,6 +32,8 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 /**
  * A base class for functions common to producing a list of revisions.
  *
+ * @stable for subclassing
+ *
  * @ingroup API
  */
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
@@ -655,6 +657,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
+	/**
+	 * @stable for overriding
+	 * @param array $params
+	 *
+	 * @return string
+	 */
 	public function getCacheMode( $params ) {
 		if ( $this->userCanSeeRevDel() ) {
 			return 'private';
@@ -663,6 +671,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		return 'public';
 	}
 
+	/**
+	 * @stable for overriding
+	 * @return array
+	 * @throws MWException
+	 */
 	public function getAllowedParams() {
 		$slotRoles = MediaWikiServices::getInstance()->getSlotRoleRegistry()->getKnownRoles();
 		sort( $slotRoles, SORT_STRING );

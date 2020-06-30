@@ -21,6 +21,8 @@
  */
 
 /**
+ * @stable for subclassing
+ *
  * @ingroup API
  */
 abstract class ApiQueryGeneratorBase extends ApiQueryBase {
