@@ -18,10 +18,10 @@ interface ResourceLoaderJqueryMsgModuleMagicWordsHook {
 	 * @since 1.35
 	 * @param ResourceLoaderContext $context
 	 * @param string[] &$magicWords Associative array mapping all-caps magic word to a string value
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @return void This hook must not abort, it must return no value
 	 */
 	public function onResourceLoaderJqueryMsgModuleMagicWords(
 		ResourceLoaderContext $context,
 		array &$magicWords
-	);
+	) : void;
 }

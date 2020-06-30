@@ -15,7 +15,6 @@ interface ResourceLoaderTestModulesHook {
 	 * other test-only resources.
 	 *
 	 * @since 1.35
-	 *
 	 * @param array &$testModules One array of modules per test framework.
 	 *   The modules array follows the same format as `$wgResourceModules`.
 	 *   For example:
@@ -26,7 +25,7 @@ interface ResourceLoaderTestModulesHook {
 	 *   		'dependencies' => [ 'ext.Example.foo' ]
 	 *   	 ];
 	 * @param ResourceLoader $rl
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl );
+	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl ) : void;
 }

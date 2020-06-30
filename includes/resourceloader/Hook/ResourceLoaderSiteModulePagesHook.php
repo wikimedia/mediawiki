@@ -15,7 +15,7 @@ interface ResourceLoaderSiteModulePagesHook {
 	 * @since 1.35
 	 * @param string $skin Current skin key
 	 * @param array &$pages Array of pages and their types
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderSiteModulePages( $skin, array &$pages );
+	public function onResourceLoaderSiteModulePages( $skin, array &$pages ) : void;
 }

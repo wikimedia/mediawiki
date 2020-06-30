@@ -15,9 +15,8 @@ interface ResourceLoaderRegisterModulesHook {
 	 * loader request or generating HTML output.
 	 *
 	 * @since 1.35
-	 *
-	 * @param ResourceLoader $resourceLoader
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @param ResourceLoader $rl
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderRegisterModules( $resourceLoader );
+	public function onResourceLoaderRegisterModules( ResourceLoader $rl ) : void;
 }
