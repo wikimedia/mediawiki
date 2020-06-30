@@ -1220,8 +1220,6 @@ more stuff
 	 */
 	public function testDoRollback() {
 		$this->hideDeprecated( 'Revision::countByPageId' );
-		$this->hideDeprecated( 'Revision::getSha1' );
-		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'Revision::getUserText' );
 
 		$admin = $this->getTestSysop()->getUser();
@@ -1285,12 +1283,14 @@ more stuff
 		}
 
 		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( $rev2->getSha1(), $page->getRevision()->getSha1(),
+		$this->assertEquals(
+			$rev2->getRevisionRecord()->getSha1(),
+			$page->getRevisionRecord()->getSha1(),
 			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getText() );
 
 		$rc = MediaWikiServices::getInstance()->getRevisionStore()->getRecentChange(
-			$page->getRevision()->getRevisionRecord()
+			$page->getRevisionRecord()
 		);
 
 		$this->assertNotNull( $rc, 'RecentChanges entry' );
@@ -2014,18 +2014,16 @@ more stuff
 	 * @covers WikiPage::updateIfNewerOn
 	 */
 	public function testUpdateIfNewerOn_olderRevision() {
-		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( 'Revision::__construct with an array' );
-		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'WikiPage::updateIfNewerOn' );
 
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
-		$initialRevision = $page->getRevision();
+		$initialRevisionRecord = $page->getRevisionRecord();
 
 		$olderTimeStamp = wfTimestamp(
 			TS_MW,
-			wfTimestamp( TS_UNIX, $initialRevision->getTimestamp() ) - 1
+			wfTimestamp( TS_UNIX, $initialRevisionRecord->getTimestamp() ) - 1
 		);
 
 		$olderRevision = new Revision(
@@ -2053,18 +2051,16 @@ more stuff
 	 * @covers WikiPage::updateIfNewerOn
 	 */
 	public function testUpdateIfNewerOn_newerRevision() {
-		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( 'Revision::__construct with an array' );
-		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'WikiPage::updateIfNewerOn' );
 
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
-		$initialRevision = $page->getRevision();
+		$initialRevisionRecord = $page->getRevisionRecord();
 
 		$newerTimeStamp = wfTimestamp(
 			TS_MW,
-			wfTimestamp( TS_UNIX, $initialRevision->getTimestamp() ) + 1
+			wfTimestamp( TS_UNIX, $initialRevisionRecord->getTimestamp() ) + 1
 		);
 
 		$newerRevision = new Revision(
