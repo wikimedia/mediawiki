@@ -30,6 +30,7 @@ use Wikimedia\ObjectFactory;
  * Note that cache key construction will use the first cache backend in the list,
  * so make sure that the other backends can handle such keys (e.g. via encoding).
  *
+ * @newable
  * @ingroup Cache
  */
 class MultiWriteBagOStuff extends BagOStuff {
@@ -44,7 +45,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	private static $UPGRADE_TTL = 3600;
 
 	/**
-	 * $params include:
+	 * @stable for calling
+	 * @param array $params
 	 *   - caches: A numbered array of either ObjectFactory::getObjectFromSpec
 	 *      arrays yielding BagOStuff objects or direct BagOStuff objects.
 	 *      If using the former, the 'args' field *must* be set.
@@ -60,7 +62,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *      safe to use for modules when cached values: are immutable,
 	 *      invalidation uses logical TTLs, invalidation uses etag/timestamp
 	 *      validation against the DB, or merge() is used to handle races.
-	 * @param array $params
 	 * @phan-param array{caches:array<int,array|BagOStuff>,replication:string} $params
 	 * @throws InvalidArgumentException
 	 */

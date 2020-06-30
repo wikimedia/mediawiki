@@ -26,6 +26,11 @@
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
 
+/**
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should become a stateless service eventually.
+ */
 class GitInfo {
 
 	/**
@@ -59,6 +64,7 @@ class GitInfo {
 	private static $viewers = false;
 
 	/**
+	 * @stable for calling
 	 * @param string $repoDir The root directory of the repo where .git can be found
 	 * @param bool $usePrecomputed Use precomputed information if available
 	 * @see precomputeValues

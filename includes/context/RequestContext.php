@@ -30,6 +30,10 @@ use Wikimedia\ScopedCallback;
 
 /**
  * Group all the pieces relevant to the context of a request into one instance
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should use a factory in the future and should be narrowed
+ *       down to not expose heavy weight objects.
  */
 class RequestContext implements IContextSource, MutableContext {
 	/**

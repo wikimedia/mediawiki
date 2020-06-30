@@ -26,6 +26,7 @@
 
 /**
  * A pseudo-formatter that just passes along the Diff::$edits array
+ * @newable
  * @ingroup DifferenceEngine
  */
 class ArrayDiffFormatter extends DiffFormatter {

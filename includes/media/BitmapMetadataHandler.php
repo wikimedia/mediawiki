@@ -32,6 +32,10 @@ use Wikimedia\XMPReader\Reader as XMPReader;
  * and the various metadata extractors.
  *
  * @todo Other image formats.
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should become a stateless service, or a handler managed
+ *       registry for metadata handlers for different file types.
  * @ingroup Media
  */
 class BitmapMetadataHandler {

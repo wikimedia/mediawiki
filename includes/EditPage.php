@@ -53,6 +53,11 @@ use Wikimedia\ScopedCallback;
  *
  * Surgeon General's Warning: prolonged exposure to this class is known to cause
  * headaches, which may be fatal.
+ *
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should be split up into service objects and command objects
+ *       in the future (T157658).
  */
 class EditPage implements IEditObject {
 	use DeprecationHelper;
@@ -444,6 +449,7 @@ class EditPage implements IEditObject {
 	private $revisionStore;
 
 	/**
+	 * @stable for calling
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
