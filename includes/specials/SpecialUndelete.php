@@ -430,17 +430,16 @@ class SpecialUndelete extends SpecialPage {
 		) {
 			return;
 		}
-		$rev = $archive->getRevision( $timestamp );
+		$revRecord = $archive->getRevisionRecordByTimestamp( $timestamp );
 
 		$out = $this->getOutput();
 		$user = $this->getUser();
 
-		if ( !$rev ) {
+		if ( !$revRecord ) {
 			$out->addWikiMsg( 'undeleterevision-missing' );
 
 			return;
 		}
-		$revRecord = $rev->getRevisionRecord();
 
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			if ( !RevisionRecord::userCanBitfield(
@@ -530,6 +529,7 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( '</div>' );
 
 		// Hook needs a Revision, but its deprecated, so that is fine
+		$rev = new Revision( $revRecord );
 		if ( !$this->getHookRunner()->onUndeleteShowRevision( $this->mTargetObj, $rev ) ) {
 			return;
 		}
