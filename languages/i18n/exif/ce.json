@@ -48,7 +48,7 @@
 	"exif-subsectimeoriginal": "Оригинал хенан секундан дакъа",
 	"exif-subsectimedigitized": "Терахьийн хенан секундан дакъа",
 	"exif-exposuretime": "Сурт доккхуш йолу серлон хьал",
-	"exif-exposuretime-format": "$1 ($2) чура",
+	"exif-exposuretime-format": "$1 ($2) чуьра",
 	"exif-fnumber": "Диафрагмин дукхалла",
 	"exif-exposureprogram": "Экспозицин программа",
 	"exif-isospeedratings": "ISO серло хааялар",
