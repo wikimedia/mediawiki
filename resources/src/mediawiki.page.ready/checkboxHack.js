@@ -73,16 +73,16 @@
  *     type="checkbox"
  *     id="sidebar-checkbox"
  *     class="mw-checkbox-hack-checkbox"
- *     role="button"
- *     {{#visible}}checked{{/visible}}
- *     aria-labelledby="sidebar-button"
- *     aria-controls="sidebar">
+ *     {{#visible}}checked{{/visible}}>
  * <!-- ... -->
  * <label
  *     id="sidebar-button"
  *     class="mw-checkbox-hack-button"
- *     for="sidebar-checkbox">
- *     Click to expand navigation menu
+ *     for="sidebar-checkbox"
+ *     role="button"
+ *     aria-expanded="true||false"
+ *     aria-controls="#sidebar">
+ *     Toggle navigation menu
  * </label>
  * <!-- ... -->
  * <ul id="sidebar" class="mw-checkbox-hack-target">
@@ -120,14 +120,15 @@
  */
 
 /**
- * Revise the aria-expanded state to match the checked state.
+ * Revise the button's `aria-expanded` state to match the checked state.
  *
  * @param {HTMLInputElement} checkbox
+ * @param {HTMLElement} button
  * @return {void}
  * @ignore
  */
-function updateAriaExpanded( checkbox ) {
-	checkbox.setAttribute( 'aria-expanded', checkbox.checked.toString() );
+function updateAriaExpanded( checkbox, button ) {
+	button.setAttribute( 'aria-expanded', checkbox.checked.toString() );
 }
 
 /**
@@ -135,13 +136,14 @@ function updateAriaExpanded( checkbox ) {
  * should result in changing the checkbox state.
  *
  * @param {HTMLInputElement} checkbox
+ * @param {HTMLElement} button
  * @param {boolean} checked
  * @return {void}
  * @ignore
  */
-function setCheckedState( checkbox, checked ) {
+function setCheckedState( checkbox, button, checked ) {
 	checkbox.checked = checked;
-	updateAriaExpanded( checkbox );
+	updateAriaExpanded( checkbox, button );
 }
 
 /**
@@ -176,7 +178,7 @@ function containsEventTarget( checkbox, button, target, event ) {
  */
 function dismissIfExternalEventTarget( checkbox, button, target, event ) {
 	if ( checkbox.checked && !containsEventTarget( checkbox, button, target, event ) ) {
-		setCheckedState( checkbox, false );
+		setCheckedState( checkbox, button, false );
 	}
 }
 
@@ -184,11 +186,12 @@ function dismissIfExternalEventTarget( checkbox, button, target, event ) {
  * Update the `aria-expanded` attribute based on checkbox state (target visibility) changes.
  *
  * @param {HTMLInputElement} checkbox
+ * @param {HTMLElement} button
  * @return {CheckboxHackListeners}
  * @ignore
  */
-function bindUpdateAriaExpandedOnInput( checkbox ) {
-	var listener = updateAriaExpanded.bind( undefined, checkbox );
+function bindUpdateAriaExpandedOnInput( checkbox, button ) {
+	var listener = updateAriaExpanded.bind( undefined, checkbox, button );
 	// Whenever the checkbox state changes, update the `aria-expanded` state.
 	checkbox.addEventListener( 'input', listener );
 	return { onUpdateAriaExpandedOnInput: listener };
@@ -207,7 +210,7 @@ function bindToggleOnClick( checkbox, button ) {
 		// Do not allow the browser to handle the checkbox. Instead, manually toggle it which does
 		// not alter focus.
 		event.preventDefault();
-		setCheckedState( checkbox, !checkbox.checked );
+		setCheckedState( checkbox, button, !checkbox.checked );
 	}
 	button.addEventListener( 'click', listener, true );
 	return { onToggleOnClick: listener };
