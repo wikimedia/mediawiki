@@ -52,6 +52,8 @@ use Wikimedia\Assert\Assert;
  * type), but wikitext content may be represented by a DOM or AST structure in
  * the future.
  *
+ * @stable for subclassing
+ *
  * @ingroup Content
  */
 abstract class ContentHandler {
@@ -348,6 +350,8 @@ abstract class ContentHandler {
 	 * and a list of supported formats. Values for the parameters are typically
 	 * provided as literals by subclass's constructors.
 	 *
+	 * @stable for calling
+	 *
 	 * @param string $modelId (use CONTENT_MODEL_XXX constants).
 	 * @param string[] $formats List for supported serialization formats
 	 *    (typically as MIME types)
@@ -359,6 +363,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Serializes a Content object of the type supported by this ContentHandler.
+	 *
+	 * @stable for overriding
 	 *
 	 * @since 1.21
 	 *
@@ -374,6 +380,8 @@ abstract class ContentHandler {
 	 * Subclasses may override this to perform transformations such as conversion
 	 * of legacy formats or filtering of internal meta-data.
 	 *
+	 * @stable for overriding
+	 *
 	 * @param string $blob The blob to be exported
 	 * @param string|null $format The blob's serialization format
 	 *
@@ -386,6 +394,7 @@ abstract class ContentHandler {
 	/**
 	 * Unserializes a Content object of the type supported by this ContentHandler.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param string $blob Serialized form of the content
@@ -400,6 +409,7 @@ abstract class ContentHandler {
 	 * Apply import transformation (per default, returns $blob unchanged).
 	 * This gives subclasses an opportunity to transform data blobs on import.
 	 *
+	 * @stable for overriding
 	 * @since 1.24
 	 *
 	 * @param string $blob
@@ -415,6 +425,7 @@ abstract class ContentHandler {
 	 * Creates an empty Content object of the type supported by this
 	 * ContentHandler.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @return Content
@@ -431,6 +442,7 @@ abstract class ContentHandler {
 	 * Note that subclasses that override this method to return a Content object
 	 * should also override supportsRedirects() to return true.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param Title $destination The page to redirect to.
@@ -475,6 +487,7 @@ abstract class ContentHandler {
 	 * serializeContent() and unserializeContent() methods of this
 	 * ContentHandler.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @return string[] List of serialization formats as MIME type like strings
@@ -490,6 +503,7 @@ abstract class ContentHandler {
 	 * This default implementation will return the first element of the array
 	 * of formats that was passed to the constructor.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @return string The name of the default serialization format as a MIME type
@@ -505,6 +519,7 @@ abstract class ContentHandler {
 	 * Note that if $format is null, this method always returns true, because
 	 * null means "use the default format".
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param string $format The serialization format to check
@@ -541,6 +556,7 @@ abstract class ContentHandler {
 	 * (and only when) $wgActions[$action] === true. This allows subclasses
 	 * to override the default action handlers.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @return array An array mapping action names (typically "view", "edit", "history" etc.) to
@@ -594,7 +610,10 @@ abstract class ContentHandler {
 
 	/**
 	 * Get an appropriate SlotDiffRenderer for this content model.
+	 *
+	 * @stable for overriding
 	 * @since 1.32
+	 *
 	 * @param IContextSource $context
 	 * @param array $options of the slot diff renderer (optional)
 	 * @return SlotDiffRenderer
@@ -631,8 +650,11 @@ abstract class ContentHandler {
 
 	/**
 	 * Return the SlotDiffRenderer appropriate for this content handler.
+	 * @stable for overriding
+	 *
 	 * @param IContextSource $context
 	 * @param array $options
+	 *
 	 * @return SlotDiffRenderer
 	 */
 	protected function getSlotDiffRendererWithOptions( IContextSource $context, $options = [] ) {
@@ -681,6 +703,7 @@ abstract class ContentHandler {
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param Title $title The page to determine the language for.
@@ -721,6 +744,7 @@ abstract class ContentHandler {
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param Title $title The page to determine the language for.
@@ -756,6 +780,8 @@ abstract class ContentHandler {
 	 * @note this calls the ContentHandlerCanBeUsedOn hook which may be used to override which
 	 * content model can be used where.
 	 *
+	 * @stable for overriding
+	 *
 	 * @see SlotRoleHandler::isAllowedModel
 	 *
 	 * @param Title $title The page's title.
@@ -773,6 +799,7 @@ abstract class ContentHandler {
 	/**
 	 * Returns the name of the diff engine to use.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @return string
@@ -787,6 +814,7 @@ abstract class ContentHandler {
 	 *
 	 * This default implementation always returns false.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param Content $oldContent The page's previous content.
@@ -812,6 +840,7 @@ abstract class ContentHandler {
 	/**
 	 * Return type of change if one exists for the given edit.
 	 *
+	 * @stable for overriding
 	 * @since 1.31
 	 *
 	 * @param Content|null $oldContent The previous text of the page.
@@ -879,6 +908,7 @@ abstract class ContentHandler {
 	/**
 	 * Return an applicable auto-summary if one exists for the given edit.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param Content|null $oldContent The previous text of the page.
@@ -962,6 +992,7 @@ abstract class ContentHandler {
 	/**
 	 * Return an applicable tag if one exists for the given edit or return null.
 	 *
+	 * @stable for overriding
 	 * @since 1.31
 	 *
 	 * @param Content|null $oldContent The previous text of the page.
@@ -998,6 +1029,7 @@ abstract class ContentHandler {
 	/**
 	 * Auto-generates a deletion reason
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param Title $title The page's title
@@ -1113,6 +1145,7 @@ abstract class ContentHandler {
 	 * between $undo and $undoafter. Revisions must belong to the same page,
 	 * must exist and must not be deleted.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 * @since 1.32 accepts Content objects for all parameters instead of Revision objects.
 	 *  Passing Revision objects is deprecated.
@@ -1191,6 +1224,7 @@ abstract class ContentHandler {
 	 * Returns true for content models that support caching using the
 	 * ParserCache mechanism. See WikiPage::shouldCheckParserCache().
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @return bool Always false.
@@ -1206,6 +1240,8 @@ abstract class ContentHandler {
 	 * Content models that return true here should also implement
 	 * Content::getSection, Content::replaceSection, etc. to handle sections..
 	 *
+	 * @stable for overriding
+	 *
 	 * @return bool Always false.
 	 */
 	public function supportsSections() {
@@ -1215,6 +1251,8 @@ abstract class ContentHandler {
 	/**
 	 * Returns true if this content model supports categories.
 	 * The default implementation returns true.
+	 *
+	 * @stable for overriding
 	 *
 	 * @return bool Always true.
 	 */
@@ -1229,6 +1267,8 @@ abstract class ContentHandler {
 	 * Content models that return true here should also implement
 	 * ContentHandler::makeRedirectContent to return a Content object.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return bool Always false.
 	 */
 	public function supportsRedirects() {
@@ -1238,6 +1278,8 @@ abstract class ContentHandler {
 	/**
 	 * Return true if this content model supports direct editing, such as via EditPage.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return bool Default is false, and true for TextContent and it's derivatives.
 	 */
 	public function supportsDirectEditing() {
@@ -1246,6 +1288,8 @@ abstract class ContentHandler {
 
 	/**
 	 * Whether or not this content model supports direct editing via ApiEditPage
+	 *
+	 * @stable for overriding
 	 *
 	 * @return bool Default is false, and true for TextContent and derivatives.
 	 */
@@ -1258,6 +1302,8 @@ abstract class ContentHandler {
 	 *
 	 * @todo Expose title, redirect, namespace, text, source_text, text_bytes
 	 *       field mappings here. (see T142670 and T143409)
+	 *
+	 * @stable for overriding
 	 *
 	 * @param SearchEngine $engine
 	 * @return SearchIndexField[] List of fields this content handler can provide.
@@ -1314,6 +1360,8 @@ abstract class ContentHandler {
 	 * as representation of this document.
 	 * Overriding class should call parent function or take care of calling
 	 * the SearchDataForIndex hook.
+	 * @stable for overriding
+	 *
 	 * @param WikiPage $page Page to index
 	 * @param ParserOutput $output
 	 * @param SearchEngine $engine Search engine for which we are indexing
@@ -1352,6 +1400,8 @@ abstract class ContentHandler {
 	 * Produce page output suitable for indexing.
 	 *
 	 * Specific content handlers may override it if they need different content handling.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param WikiPage $page
 	 * @param ParserCache|null $cache
@@ -1414,6 +1464,8 @@ abstract class ContentHandler {
 	 * of $content. This allows existing ParserOutput objects to be re-used, while avoiding
 	 * creating a ParserOutput when none is needed.
 	 *
+	 * @stable for overriding
+	 *
 	 * @param Title $title The title of the page to supply the updates for
 	 * @param Content $content The content to generate data updates for.
 	 * @param string $role The role (slot) in which the content is being used. Which updates
@@ -1451,6 +1503,8 @@ abstract class ContentHandler {
 	 *
 	 * @note Implementations should not rely on the page's current content, but rather the current
 	 * state of the secondary data store.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param Title $title The title of the page to supply the updates for
 	 * @param string $role The role (slot) in which the content is being used. Which updates
