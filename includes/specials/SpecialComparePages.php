@@ -68,11 +68,11 @@ class SpecialComparePages extends SpecialPage {
 		$form = HTMLForm::factory( 'ooui', [
 			'Page1' => [
 				'type' => 'title',
+				'exists' => true,
 				'name' => 'page1',
 				'label-message' => 'compare-page1',
 				'size' => '40',
 				'section' => 'page1',
-				'validation-callback' => [ $this, 'checkExistingTitle' ],
 				'required' => false,
 			],
 			'Revision1' => [
@@ -86,10 +86,10 @@ class SpecialComparePages extends SpecialPage {
 			'Page2' => [
 				'type' => 'title',
 				'name' => 'page2',
+				'exists' => true,
 				'label-message' => 'compare-page2',
 				'size' => '40',
 				'section' => 'page2',
-				'validation-callback' => [ $this, 'checkExistingTitle' ],
 				'required' => false,
 			],
 			'Revision2' => [
@@ -164,27 +164,6 @@ class SpecialComparePages extends SpecialPage {
 		}
 
 		return null;
-	}
-
-	/**
-	 * @internal Callback for HTMLForm
-	 * @param string|null $value
-	 * @param array $alldata
-	 * @return string|bool
-	 */
-	public function checkExistingTitle( $value, $alldata ) {
-		if ( $value === '' || $value === null ) {
-			return true;
-		}
-		$title = Title::newFromText( $value );
-		if ( !$title instanceof Title ) {
-			return $this->msg( 'compare-invalid-title' )->parseAsBlock();
-		}
-		if ( !$title->exists() ) {
-			return $this->msg( 'compare-title-not-exists' )->parseAsBlock();
-		}
-
-		return true;
 	}
 
 	/**
