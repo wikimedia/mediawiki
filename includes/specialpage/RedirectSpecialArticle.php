@@ -82,9 +82,17 @@
  *    }
  * @endcode
  *
+ * @stable for subclassing
+ *
  * @ingroup SpecialPage
  */
 abstract class RedirectSpecialArticle extends RedirectSpecialPage {
+
+	/**
+	 * @stable for calling
+	 *
+	 * @param string $name
+	 */
 	public function __construct( $name ) {
 		parent::__construct( $name );
 		$redirectParams = [

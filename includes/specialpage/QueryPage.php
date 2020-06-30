@@ -31,6 +31,9 @@ use Wikimedia\Rdbms\IResultWrapper;
  * This is a class for doing query pages; since they're almost all the same,
  * we factor out some of the functionality into a superclass, and let
  * subclasses derive from it.
+ *
+ * @stable for subclassing
+ *
  * @ingroup SpecialPage
  */
 abstract class QueryPage extends SpecialPage {
@@ -174,6 +177,7 @@ abstract class QueryPage extends SpecialPage {
 	 * If this function is not overridden or returns something other than
 	 * an array, getSQL() will be used instead. This is for backwards
 	 * compatibility only and is strongly deprecated.
+	 * @stable for overriding
 	 * @return array
 	 * @since 1.18
 	 */
@@ -197,6 +201,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Subclasses return an array of fields to order by here. Don't append
 	 * DESC to the field names, that'll be done automatically if
 	 * sortDescending() returns true.
+	 * @stable for overriding
 	 * @return string[]
 	 * @since 1.18
 	 */
@@ -211,6 +216,7 @@ abstract class QueryPage extends SpecialPage {
 	 * NOTE: formatRow() may get timestamps in TS_MW (mysql), TS_DB (pgsql)
 	 *       or TS_UNIX (querycache) format, so be sure to always run them
 	 *       through wfTimestamp()
+	 * @stable for overriding
 	 * @return bool
 	 * @since 1.18
 	 */
@@ -221,6 +227,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Override to sort by increasing values
 	 *
+	 * @stable for overriding
 	 * @return bool
 	 */
 	protected function sortDescending() {
@@ -232,6 +239,7 @@ abstract class QueryPage extends SpecialPage {
 	 * don't let it run in miser mode. $wgDisableQueryPages causes all query
 	 * pages to be declared expensive. Some query pages are always expensive.
 	 *
+	 * @stable for overriding
 	 * @return bool
 	 */
 	public function isExpensive() {
@@ -242,6 +250,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Is the output of this query cacheable? Non-cacheable expensive pages
 	 * will be disabled in miser mode and will not have their results written
 	 * to the querycache table.
+	 * @stable for overriding
 	 * @return bool
 	 * @since 1.18
 	 */
@@ -253,6 +262,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Whether or not the output of the page in question is retrieved from
 	 * the database cache.
 	 *
+	 * @stable for overriding
 	 * @return bool
 	 */
 	public function isCached() {
@@ -262,6 +272,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Sometime we don't want to build rss / atom feeds.
 	 *
+	 * @stable for overriding
 	 * @return bool
 	 */
 	public function isSyndicated() {
@@ -282,6 +293,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * The content returned by this function will be output before any result
 	 *
+	 * @stable for overriding
 	 * @return string
 	 */
 	protected function getPageHeader() {
@@ -304,6 +316,7 @@ abstract class QueryPage extends SpecialPage {
 	 * as an associative array. They will be encoded and added to the paging
 	 * links (prev/next/lengths).
 	 *
+	 * @stable for overriding
 	 * @return array
 	 */
 	protected function linkParameters() {
@@ -312,6 +325,8 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Clear the cache and save new results
+	 *
+	 * @stable for overriding
 	 *
 	 * @param int|bool $limit Limit for SQL statement
 	 * @param bool $ignoreErrors Whether to ignore database errors
@@ -394,6 +409,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Get a DB connection to be used for slow recache queries
+	 * @stable for overriding
 	 * @return IDatabase
 	 */
 	protected function getRecacheDB() {
@@ -419,6 +435,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Run the query and return the result
+	 * @stable for overriding
 	 * @param int|bool $limit Numerical limit or false for no limit
 	 * @param int|bool $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
@@ -485,6 +502,8 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Fetch the query results from the query cache
+	 * @stable for overriding
+	 *
 	 * @param int|bool $limit Numerical limit or false for no limit
 	 * @param int|bool $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
@@ -526,6 +545,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Return the order fields for fetchFromCache. Default is to always use
 	 * "ORDER BY value" which was the default prior to this function.
+	 * @stable for overriding
 	 * @return array
 	 * @since 1.29
 	 */
@@ -595,6 +615,7 @@ abstract class QueryPage extends SpecialPage {
 	 * Most QueryPage subclasses use inefficient paging, so limit the max amount we return
 	 * This matters for uncached query pages that might otherwise accept an offset of 3 million
 	 *
+	 * @stable for overriding
 	 * @since 1.27
 	 * @return int
 	 */
@@ -606,6 +627,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
+	 * @stable for overriding
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
@@ -725,6 +747,8 @@ abstract class QueryPage extends SpecialPage {
 	 * Format and output report results using the given information plus
 	 * OutputPage
 	 *
+	 * @stable for overriding
+	 *
 	 * @param OutputPage $out OutputPage to print to
 	 * @param Skin $skin User skin to use
 	 * @param IDatabase $dbr Database (read) connection to use
@@ -779,6 +803,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Do any necessary preprocessing of the result object.
+	 * @stable for overriding
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
