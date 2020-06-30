@@ -26,13 +26,13 @@ class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 	];
 
 	/**
-	 * Pages whose query use the same DB table more than once.
+	 * Names of pages whose query use the same DB table more than once.
 	 * This is used to skip testing those pages when run against a MySQL backend
-	 * which does not support reopening a temporary table. See upstream bug:
-	 * https://bugs.mysql.com/bug.php?id=10327
+	 * which does not support reopening a temporary table.
+	 * For more info, see https://phabricator.wikimedia.org/T256006
 	 */
 	protected $reopensTempTable = [
-		BrokenRedirects::class,
+		'BrokenRedirects',
 	];
 
 	/**
