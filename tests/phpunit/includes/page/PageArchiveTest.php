@@ -317,12 +317,11 @@ class PageArchiveTest extends MediaWikiTestCase {
 	 * @covers PageArchive::getRevision
 	 */
 	public function testGetRevision() {
-		$this->hideDeprecated( 'Revision::getPage' );
 		$this->hideDeprecated( 'PageArchive::getRevision' );
 
 		$rev = $this->archivedPage->getRevision( $this->ipRev->getTimestamp() );
 		$this->assertNotNull( $rev );
-		$this->assertSame( $this->pageId, $rev->getPage() );
+		$this->assertSame( $this->pageId, $rev->getRevisionRecord()->getPageId() );
 
 		$rev = $this->archivedPage->getRevision( '22991212115555' );
 		$this->assertNull( $rev );
@@ -346,14 +345,14 @@ class PageArchiveTest extends MediaWikiTestCase {
 	 * @covers PageArchive::getArchivedRevision
 	 */
 	public function testGetArchivedRevision() {
-		$this->hideDeprecated( 'Revision::getPage' );
-		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( 'PageArchive::getArchivedRevision' );
 
 		$rev = $this->archivedPage->getArchivedRevision( $this->ipRev->getId() );
 		$this->assertNotNull( $rev );
-		$this->assertSame( $this->ipRev->getTimestamp(), $rev->getTimestamp() );
-		$this->assertSame( $this->pageId, $rev->getPage() );
+
+		$revRecord = $rev->getRevisionRecord();
+		$this->assertSame( $this->ipRev->getTimestamp(), $revRecord->getTimestamp() );
+		$this->assertSame( $this->pageId, $revRecord->getPageId() );
 
 		$rev = $this->archivedPage->getArchivedRevision( 632546 );
 		$this->assertNull( $rev );
