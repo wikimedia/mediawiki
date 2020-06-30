@@ -5200,6 +5200,7 @@ $wgSignatureValidation = 'warning';
 /**
  * List of lint error codes which don't cause signature validation to fail.
  *
+ * @see https://www.mediawiki.org/wiki/Help:Lint_errors
  * @since 1.35
  */
 $wgSignatureAllowedLintErrors = [ 'obsolete-tag' ];
