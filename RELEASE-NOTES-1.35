@@ -255,6 +255,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 ==== New external libraries ====
 * Added wikimedia/ip-utils 1.0.0.
 * Added wikimedia/parsoid 0.12.0.
+* Added wikimedia/services 2.0.1.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.
 * Added vuex v3.1.3.
