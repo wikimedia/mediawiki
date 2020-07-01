@@ -2416,10 +2416,13 @@ class WikiPage implements Page, IDBAccessObject {
 			$this->getHookRunner()->onRevisionFromEditComplete(
 				$this, $nullRevisionRecord, $latest, $user, $tags );
 
-			// TODO hard deprecate
-			$nullRevision = new Revision( $nullRevisionRecord );
-			$this->getHookRunner()->onNewRevisionFromEditComplete(
-				$this, $nullRevision, $latest, $user, $tags );
+			// Hook is hard deprecated since 1.35
+			if ( $this->getHookContainer()->isRegistered( 'NewRevisionFromEditComplete' ) ) {
+				// Only create the Revision object if neeed
+				$nullRevision = new Revision( $nullRevisionRecord );
+				$this->getHookRunner()->onNewRevisionFromEditComplete(
+					$this, $nullRevision, $latest, $user, $tags );
+			}
 
 			$this->getHookRunner()->onArticleProtectComplete( $this, $user, $limit, $reason );
 		} else { // Protection of non-existing page (also known as "title protection")
@@ -3502,9 +3505,13 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$revId = $rev->getId();
 
-		// Hard deprecated in 1.35
-		$this->getHookRunner()->onArticleRollbackComplete( $this, $guser,
-			$legacyTarget, $legacyCurrent );
+		// Hook is hard deprecated since 1.35
+		if ( $this->getHookContainer()->isRegistered( 'ArticleRollbackComplete' ) ) {
+			// TODO only create the Revision objects if needed, both here
+			// and for DeprecatablePropertyArray
+			$this->getHookRunner()->onArticleRollbackComplete( $this, $guser,
+				$legacyTarget, $legacyCurrent );
+		}
 
 		$this->getHookRunner()->onRollbackComplete( $this, $guser, $target, $current );
 

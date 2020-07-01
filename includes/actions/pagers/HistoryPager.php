@@ -486,13 +486,16 @@ class HistoryPager extends ReverseChronologicalPager {
 			$user
 		);
 
-		// Deprecated since 1.35
-		$this->getHookRunner()->onHistoryRevisionTools(
-			new Revision( $revRecord ),
-			$tools,
-			$previousRevRecord ? new Revision( $previousRevRecord ) : null,
-			$user
-		);
+		// Hook is deprecated since 1.35
+		if ( $this->getHookContainer()->isRegistered( 'HistoryRevisionTools' ) ) {
+			// Only create the Revision objects if needed
+			$this->getHookRunner()->onHistoryRevisionTools(
+				new Revision( $revRecord ),
+				$tools,
+				$previousRevRecord ? new Revision( $previousRevRecord ) : null,
+				$user
+			);
+		}
 
 		if ( $tools ) {
 			$s2 .= ' ' . Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );

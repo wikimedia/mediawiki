@@ -528,10 +528,16 @@ class SpecialUndelete extends SpecialPage {
 		);
 		$out->addHTML( '</div>' );
 
-		// Hook needs a Revision, but its deprecated, so that is fine
-		$rev = new Revision( $revRecord );
-		if ( !$this->getHookRunner()->onUndeleteShowRevision( $this->mTargetObj, $rev ) ) {
-			return;
+		// Hook hard deprecated since 1.35
+		if ( $this->getHookContainer()->isRegistered( 'UndeleteShowRevision' ) ) {
+			// Only create the Revision object if needed
+			$rev = new Revision( $revRecord );
+			if ( !$this->getHookRunner()->onUndeleteShowRevision(
+				$this->mTargetObj,
+				$rev
+			) ) {
+				return;
+			}
 		}
 
 		if ( $this->mPreview || !$isText ) {

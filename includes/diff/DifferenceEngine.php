@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -222,6 +223,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/** #@- */
 
 	/**
@@ -260,7 +264,8 @@ class DifferenceEngine extends ContextSource {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->contentHandlerFactory = $services->getContentHandlerFactory();
 		$this->revisionStore = $services->getRevisionStore();
-		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->hookContainer = $services->getHookContainer();
+		$this->hookRunner = new HookRunner( $this->hookContainer );
 	}
 
 	/**
@@ -650,15 +655,22 @@ class DifferenceEngine extends ContextSource {
 		} else {
 			$this->hookRunner->onDifferenceEngineViewHeader( $this );
 
-			// DiffViewHeader hook is soft deprecated since 1.35
-			// If old or new are falsey, keeps those values
-			$legacyOldRev = $this->mOldRevisionRecord ?
-				new Revision( $this->mOldRevisionRecord ) :
-				null;
-			$legacyNewRev = $this->mNewRevisionRecord ?
-				new Revision( $this->mNewRevisionRecord ) :
-				null;
-			$this->hookRunner->onDiffViewHeader( $this, $legacyOldRev, $legacyNewRev );
+			// DiffViewHeader hook is hard deprecated since 1.35
+			if ( $this->hookContainer->isRegistered( 'DiffViewHeader' ) ) {
+				// Only create the Revision object if needed
+				// If old or new are falsey, use null
+				$legacyOldRev = $this->mOldRevisionRecord ?
+					new Revision( $this->mOldRevisionRecord ) :
+					null;
+				$legacyNewRev = $this->mNewRevisionRecord ?
+					new Revision( $this->mNewRevisionRecord ) :
+					null;
+				$this->hookRunner->onDiffViewHeader(
+					$this,
+					$legacyOldRev,
+					$legacyNewRev
+				);
+			}
 
 			if ( !$this->mOldPage || !$this->mNewPage ) {
 				// XXX say something to the user?
@@ -783,14 +795,21 @@ class DifferenceEngine extends ContextSource {
 		);
 
 		# Hook deprecated since 1.35
-		$legacyOldRev = $this->mOldRevisionRecord ?
-			new Revision( $this->mOldRevisionRecord ) :
-			null;
-		$legacyNewRev = $this->mNewRevisionRecord ?
-			new Revision( $this->mNewRevisionRecord ) :
-			null;
-		$this->hookRunner->onDiffRevisionTools(
-			$legacyNewRev, $revisionTools, $legacyOldRev, $user );
+		if ( $this->hookContainer->isRegistered( 'DiffRevisionTools' ) ) {
+			# Only create the Revision objects if they are needed
+			$legacyOldRev = $this->mOldRevisionRecord ?
+				new Revision( $this->mOldRevisionRecord ) :
+				null;
+			$legacyNewRev = $this->mNewRevisionRecord ?
+				new Revision( $this->mNewRevisionRecord ) :
+				null;
+			$this->hookRunner->onDiffRevisionTools(
+				$legacyNewRev,
+				$revisionTools,
+				$legacyOldRev,
+				$user
+			);
+		}
 
 		$formattedRevisionTools = [];
 		// Put each one in parentheses (poor man's button)

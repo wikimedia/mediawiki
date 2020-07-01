@@ -1076,10 +1076,18 @@ class PageUpdater {
 				$wikiPage, $newRevisionRecord, $editResult->getOriginalRevisionId(), $user, $tags
 			);
 
-			// TODO: replace legacy hook!
-			$newLegacyRevision = new Revision( $newRevisionRecord );
-			$this->hookRunner->onNewRevisionFromEditComplete(
-				$wikiPage, $newLegacyRevision, $editResult->getOriginalRevisionId(), $user, $tags );
+			// Hook is hard deprecated since 1.35
+			if ( $this->hookContainer->isRegistered( 'NewRevisionFromEditComplete' ) ) {
+				// Only create Revision object if needed
+				$newLegacyRevision = new Revision( $newRevisionRecord );
+				$this->hookRunner->onNewRevisionFromEditComplete(
+					$wikiPage,
+					$newLegacyRevision,
+					$editResult->getOriginalRevisionId(),
+					$user,
+					$tags
+				);
+			}
 
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1221,10 +1229,18 @@ class PageUpdater {
 			$wikiPage, $newRevisionRecord, false, $user, $tags
 		);
 
-		// TODO: replace legacy hook!
-		$newLegacyRevision = new Revision( $newRevisionRecord );
-		$this->hookRunner->onNewRevisionFromEditComplete(
-			$wikiPage, $newLegacyRevision, false, $user, $tags );
+		// Hook is deprecated since 1.35
+		if ( $this->hookContainer->isRegistered( 'NewRevisionFromEditComplete' ) ) {
+			// ONly create Revision object if needed
+			$newLegacyRevision = new Revision( $newRevisionRecord );
+			$this->hookRunner->onNewRevisionFromEditComplete(
+				$wikiPage,
+				$newLegacyRevision,
+				false,
+				$user,
+				$tags
+			);
+		}
 
 		// Update recentchanges
 		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1331,6 +1347,13 @@ class PageUpdater {
 				);
 
 				// Both hooks are hard deprecated since 1.35
+				if ( !$this->hookContainer->isRegistered( 'PageContentInsertComplete' )
+					&& !$this->hookContainer->isRegistered( 'PageContentSaveComplete' )
+				) {
+					// Don't go on to create a Revision unless its needed
+					return;
+				}
+
 				$newLegacyRevision = new Revision( $newRevisionRecord );
 				if ( $created ) {
 					// Trigger post-create hook

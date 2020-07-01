@@ -1689,15 +1689,19 @@ class LocalFile extends File {
 						$tags
 					);
 
-					// TODO hard deprecate
-					$nullRevision = new Revision( $inserted );
-					$this->getHookRunner()->onNewRevisionFromEditComplete(
-						$wikiPage,
-						$nullRevision,
-						$inserted->getParentId(),
-						$user,
-						$tags
-					);
+					// Hook is hard deprecated since 1.35
+					if ( $this->getHookContainer()->isRegistered( 'NewRevisionFromEditComplete' ) ) {
+						// Only create the Revision object if needed
+						$nullRevision = new Revision( $inserted );
+						$this->getHookRunner()->onNewRevisionFromEditComplete(
+							$wikiPage,
+							$nullRevision,
+							$inserted->getParentId(),
+							$user,
+							$tags
+						);
+					}
+
 					$wikiPage->updateRevisionOn( $dbw, $inserted );
 					// Associate null revision id
 					$logEntry->setAssociatedRevId( $inserted->getId() );
