@@ -1039,9 +1039,8 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.cookie',
-			// The two user.* modules are not used by mediawiki.user itself,
-			// but kept as explicit dependencies because they provide part
-			// of the mw.user API that consumers of this module expect.
+			// user.options is not directly used in mediawiki.user, but it
+			// provides part of the mw.user API that consumers expect
 			'user.options',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
