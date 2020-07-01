@@ -3679,9 +3679,9 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 
-		// TODO once the Revision class is ready for hard deprecation, use a callback
-		// to create the Revision object
-		$legacyRevision = $revRecord ? new Revision( $revRecord ) : null;
+		$legacyRevision = function () use ( $revRecord ) {
+			return $revRecord ? new Revision( $revRecord ) : null;
+		};
 		$retValues = [
 			'revision' => $legacyRevision,
 			'revision-record' => $revRecord ?: false, // So isset works
@@ -3691,7 +3691,7 @@ class Parser {
 		];
 		$propertyArray = new DeprecatablePropertyArray(
 			$retValues,
-			[], // TODO [ 'revision' => '1.35' ],
+			[ 'revision' => '1.35' ],
 			__METHOD__
 		);
 		return $propertyArray;
