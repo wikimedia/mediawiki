@@ -61,6 +61,8 @@ class CoreMagicVariables {
 		switch ( $id ) {
 			case '!':
 				return '|';
+			case '=':
+				return '=';
 			case 'currentmonth':
 				return $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'm' ), true );
 			case 'currentmonth1':
