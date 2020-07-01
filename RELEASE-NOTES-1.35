@@ -1128,7 +1128,9 @@ because of Phabricator reports.
   Use RevisionStore::getFirstRevision instead.
 * WikiPage::commitRollback and ::doRollback are declared to be internal
   in preparation for breaking changes. Neither method has any known
-  callers outside of MediaWiki core.
+  callers outside of MediaWiki core. Both methods modify an array passed
+  by reference ($resultDetails) - accessing the Revision objects added to
+  that array (using the keys `current` and `target`) is also deprecated.
 * The following Linker methods previously accepted Revision objects as
   parameters. They now accept either Revision or RevisionRecord objects.
   Passing a Revision object is hard deprecated.
