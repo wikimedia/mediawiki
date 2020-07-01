@@ -2892,7 +2892,7 @@
 	"confirm-purge-bottom": "Čišćenje stranice čisti priručnu memoriju i prikazuje trenutačnu inačicu stranice.",
 	"confirm-watch-button": "U redu",
 	"confirm-watch-top": "Dodati ovu stranicu na Vaš popis praćenja?",
-	"watchlist-expires-in": "Preostalo je {{PLURAL:$1|$1 dan|$1 dana}} prisutnosti u Vašem popisu praćenih stranica",
+	"watchlist-expires-in": "{{PLURAL:$1|Preostalo je $1 dan|Preostala su $1 dana}} prisutnosti u Vašem popisu praćenih stranica",
 	"watchlist-expires-in-aria-label": "Istječuća stavka popisa praćenih stranica",
 	"confirm-watch-button-expiry": "Prati",
 	"confirm-unwatch-button": "U redu",
