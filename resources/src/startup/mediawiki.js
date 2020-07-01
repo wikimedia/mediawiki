@@ -1128,7 +1128,7 @@
 				var el = document.createElement( 'link' );
 
 				el.rel = 'stylesheet';
-				if ( media && media !== 'all' ) {
+				if ( media ) {
 					el.media = media;
 				}
 				// If you end up here from an IE exception "SCRIPT: Invalid property value.",
