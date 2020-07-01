@@ -841,7 +841,40 @@ class WebRequest {
 			global $wgCookiePrefix;
 			$prefix = $wgCookiePrefix;
 		}
-		return $this->getGPCVal( $_COOKIE, $prefix . $key, $default );
+		$name = $prefix . $key;
+		// Work around mangling of $_COOKIE
+		$name = strtr( $name, '.', '_' );
+		if ( isset( $_COOKIE[$name] ) ) {
+			return $_COOKIE[$name];
+		} else {
+			return $default;
+		}
+	}
+
+	/**
+	 * Get a cookie set with SameSite=None possibly with a legacy fallback cookie.
+	 *
+	 * @param string $key The name of the cookie
+	 * @param string $prefix A prefix to use, empty by default
+	 * @param mixed|null $default What to return if the value isn't found
+	 * @return mixed Cookie value or $default if the cookie is not set
+	 */
+	public function getCrossSiteCookie( $key, $prefix = '', $default = null ) {
+		global $wgUseSameSiteLegacyCookies;
+		$name = $prefix . $key;
+		// Work around mangling of $_COOKIE
+		$name = strtr( $name, '.', '_' );
+		if ( isset( $_COOKIE[$name] ) ) {
+			return $_COOKIE[$name];
+		}
+		if ( $wgUseSameSiteLegacyCookies ) {
+			$legacyName = $prefix . "ss0-" . $key;
+			$legacyName = strtr( $legacyName, '.', '_' );
+			if ( isset( $_COOKIE[$legacyName] ) ) {
+				return $_COOKIE[$legacyName];
+			}
+		}
+		return $default;
 	}
 
 	/**

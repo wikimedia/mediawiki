@@ -21,6 +21,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'CookieDomain' => 'CookieDomain',
 			'CookieSecure' => true,
 			'CookieHttpOnly' => true,
+			'CookieSameSite' => '',
 			'SessionName' => false,
 			'CookieExpiration' => 100,
 			'ExtendedLoginCookieExpiration' => 200,
@@ -104,6 +105,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'domain' => 'CookieDomain',
 			'secure' => true,
 			'httpOnly' => true,
+			'sameSite' => '',
 		], $p->cookieOptions );
 
 		$config->set( 'SessionName', 'SessionName' );
@@ -123,6 +125,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'domain' => 'CookieDomain',
 			'secure' => true,
 			'httpOnly' => true,
+			'sameSite' => '',
 		], $p->cookieOptions );
 
 		$p = TestingAccessWrapper::newFromObject( new CookieSessionProvider( [
@@ -134,6 +137,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 				'domain' => 'XDomain',
 				'secure' => 'XSecure',
 				'httpOnly' => 'XHttpOnly',
+				'sameSite' => 'XSameSite',
 			],
 			'sessionName' => 'XSession',
 		] ) );
@@ -150,6 +154,7 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 			'domain' => 'XDomain',
 			'secure' => 'XSecure',
 			'httpOnly' => 'XHttpOnly',
+			'sameSite' => 'XSameSite',
 		], $p->cookieOptions );
 	}
 
