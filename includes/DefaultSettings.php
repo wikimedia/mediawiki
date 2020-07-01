@@ -6065,6 +6065,28 @@ $wgCookiePrefix = false;
 $wgCookieHttpOnly = true;
 
 /**
+ * The SameSite cookie attribute used for login cookies. This can be "Lax",
+ * "Strict", "None" or empty/null to omit the attribute.
+ *
+ * This only applies to login cookies, since the correct value for other
+ * cookies depends on what kind of cookie it is.
+ *
+ * @since 1.34.2
+ * @var string|null
+ */
+$wgCookieSameSite = null;
+
+/**
+ * If true, when a cross-site cookie with SameSite=None is sent, a legacy
+ * cookie with an "ss0" prefix will also be sent, without SameSite=None. This
+ * is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
+ *
+ * @since 1.34.2
+ * @var bool
+ */
+$wgUseSameSiteLegacyCookies = false;
+
+/**
  * A list of cookies that vary the cache (for use by extensions)
  */
 $wgCacheVaryCookies = [];
