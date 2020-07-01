@@ -1862,4 +1862,18 @@ abstract class Installer {
 		set_time_limit( 0 );
 		Wikimedia\restoreWarnings();
 	}
+
+	/**
+	 * Return the name of the extension selected to provide the database or null
+	 * if the database is provided by core.
+	 *
+	 * @return string|null
+	 */
+	public function getUsedExtensionName() : ?string {
+		if ( empty( $this->settings['wgDBtype'] ) ) {
+			return null;
+		}
+		return $this->installerDbSupport
+			->getExtensionNameForDatabase( $this->settings['wgDBtype'] );
+	}
 }

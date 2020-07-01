@@ -545,6 +545,10 @@ class WebInstallerOptions extends WebInstallerPage {
 				$extsToInstall[] = $ext;
 			}
 		}
+		$dbext = $this->parent->getUsedExtensionName();
+		if ( $dbext ) {
+			$extsToInstall[] = $dbext;
+		}
 		$this->parent->setVar( '_Extensions', $extsToInstall );
 
 		if ( $this->getVar( '_MainCacheType' ) == 'memcached' ) {
