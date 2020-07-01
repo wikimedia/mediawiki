@@ -3522,6 +3522,8 @@
 	"diff-form-oldid": "Alte Versionskennung (optional)",
 	"diff-form-revid": "Versionskennung des Unterschieds",
 	"diff-form-submit": "Unterschiede anzeigen",
+	"diff-form-other-revid": "Versions-ID",
+	"diff-form-error-revid": "Numerische Versions-ID eingeben",
 	"permanentlink": "Permanenter Link",
 	"permanentlink-revid": "Versionskennung",
 	"permanentlink-submit": "Gehe zu Version",
