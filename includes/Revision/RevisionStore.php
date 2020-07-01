@@ -132,6 +132,9 @@ class RevisionStore
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -181,6 +184,7 @@ class RevisionStore
 		$this->dbDomain = $dbDomain;
 		$this->logger = new NullLogger();
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -456,8 +460,11 @@ class RevisionStore
 		$this->hookRunner->onRevisionRecordInserted( $rev );
 
 		// Soft deprecated in 1.31, hard deprecated in 1.35
-		$legacyRevision = new Revision( $rev );
-		$this->hookRunner->onRevisionInsertComplete( $legacyRevision, null, null );
+		if ( $this->hookContainer->isRegistered( 'RevisionInsertComplete' ) ) {
+			// Only create the Revision object if its needed
+			$legacyRevision = new Revision( $rev );
+			$this->hookRunner->onRevisionInsertComplete( $legacyRevision, null, null );
+		}
 
 		return $rev;
 	}

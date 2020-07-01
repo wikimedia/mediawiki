@@ -391,14 +391,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$optionsExpiryOneMonth = WatchAction::getExpiryOptions( $this->context, $watchedItemMonth );
 		$expectedExpiryOneMonth = [
 			'options' => [
-				'30 days left' => '1594339200',
+				'30 days left' => '20200710000000',
 				'Permanently' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
 				'6 months' => '6 months'
 			],
-			'default' => '1594339200'
+			'default' => '20200710000000'
 		];
 
 		$this->assertSame( $expectedExpiryOneMonth, $optionsExpiryOneMonth );
@@ -408,14 +408,14 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$optionsExpiryOneWeek = WatchAction::getExpiryOptions( $this->context, $watchedItemWeek );
 		$expectedOneWeek = [
 			'options' => [
-				'7 days left' => '1592352000',
+				'7 days left' => '20200617000000',
 				'Permanently' => 'infinite',
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
 				'6 months' => '6 months'
 			],
-			'default' => '1592352000'
+			'default' => '20200617000000'
 		];
 
 		$this->assertSame( $expectedOneWeek, $optionsExpiryOneWeek );
@@ -434,6 +434,17 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->assertSame( $expectedNoExpiryWIFalse, $optionsNoExpiryWIFalse );
+	}
+
+	/**
+	 * @covers WatchAction::doWatchOrUnwatch()
+	 */
+	public function testDoWatchOrUnwatchWithExpiry() {
+		// Already watched, but we're adding an expiry so 'addWatch' should be called.
+		$user = $this->getUser( true, true, [ 'editmywatchlist' ] );
+		$user->expects( $this->once() )->method( 'addWatch' );
+		$status = WatchAction::doWatchOrUnwatch( true, $this->watchAction->getTitle(), $user, '1 week' );
+		$this->assertTrue( $status->isGood() );
 	}
 
 	/**

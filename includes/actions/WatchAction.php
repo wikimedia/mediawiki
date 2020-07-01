@@ -134,10 +134,10 @@ class WatchAction extends FormAction {
 			$diffInDays = $watchedItem->getExpiryInDays();
 			$daysLeft = $context->msg( 'watchlist-expiry-days-left', [ $diffInDays ] )->text();
 			$expiryOptions = array_merge(
-				[ $daysLeft => $expiry->getTimestamp() ],
+				[ $daysLeft => $expiry->getTimestamp( TS_MW ) ],
 				$expiryOptions
 			);
-			$default = $expiry->getTimestamp();
+			$default = $expiry->getTimestamp( TS_MW );
 		}
 		return [
 			'options' => $expiryOptions,
@@ -161,19 +161,30 @@ class WatchAction extends FormAction {
 	/**
 	 * Watch or unwatch a page
 	 * @since 1.22
+	 * @since 1.35 New $expiry parameter.
 	 * @param bool $watch Whether to watch or unwatch the page
 	 * @param Title $title Page to watch/unwatch
 	 * @param User $user User who is watching/unwatching
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 * @return Status
 	 */
-	public static function doWatchOrUnwatch( $watch, Title $title, User $user ) {
-		if ( $user->isLoggedIn() &&
-			$user->isWatched( $title, User::IGNORE_USER_RIGHTS ) != $watch
-		) {
+	public static function doWatchOrUnwatch(
+		$watch,
+		Title $title,
+		User $user,
+		string $expiry = null
+	) {
+		// User must be logged in, and either changing the watch state or at least the expiry.
+		if ( !$user->isLoggedIn() ) {
+			return Status::newGood();
+		}
+		$changingWatchStatus = $user->isWatched( $title, User::IGNORE_USER_RIGHTS ) !== $watch;
+		if ( $expiry !== null || $changingWatchStatus ) {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {
-				return self::doWatch( $title, $user, User::IGNORE_USER_RIGHTS );
+				return self::doWatch( $title, $user, User::IGNORE_USER_RIGHTS, $expiry );
 			} else {
 				return self::doUnwatch( $title, $user );
 			}

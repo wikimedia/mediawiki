@@ -3645,15 +3645,18 @@ class Parser {
 				$content = $revRecord->getContent( SlotRecord::MAIN );
 				$text = $content ? $content->getWikitextForTransclusion() : null;
 
-				// Hook is deprecated already
-				$legacyRevision = new Revision( $revRecord );
-				Hooks::runner()->onParserFetchTemplate(
-					$parser,
-					$title,
-					$legacyRevision,
-					$text,
-					$deps
-				);
+				// Hook is hard deprecated since 1.35
+				if ( Hooks::isRegistered( 'ParserFetchTemplate' ) ) {
+					// Only create the Revision object if needed
+					$legacyRevision = new Revision( $revRecord );
+					Hooks::runner()->onParserFetchTemplate(
+						$parser,
+						$title,
+						$legacyRevision,
+						$text,
+						$deps
+					);
+				}
 
 				if ( $text === false || $text === null ) {
 					$text = false;
@@ -3679,9 +3682,9 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 
-		// TODO once the Revision class is ready for hard deprecation, use a callback
-		// to create the Revision object
-		$legacyRevision = $revRecord ? new Revision( $revRecord ) : null;
+		$legacyRevision = function () use ( $revRecord ) {
+			return $revRecord ? new Revision( $revRecord ) : null;
+		};
 		$retValues = [
 			'revision' => $legacyRevision,
 			'revision-record' => $revRecord ?: false, // So isset works
@@ -3691,7 +3694,7 @@ class Parser {
 		];
 		$propertyArray = new DeprecatablePropertyArray(
 			$retValues,
-			[], // TODO [ 'revision' => '1.35' ],
+			[ 'revision' => '1.35' ],
 			__METHOD__
 		);
 		return $propertyArray;
