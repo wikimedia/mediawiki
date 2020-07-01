@@ -1078,11 +1078,11 @@ because of Phabricator reports.
   - HistoryRevisionTools (hard deprecated, use the HistoryTools hook)
   - NewRevisionFromEditComplete (hard deprecated, use the
       RevisionFromEditComplete hook).
-  - PageContentInsertComplete (soft deprecated, use the PageSaveComplete hook)
-  - PageContentSaveComplete (soft deprecated, use the PageSaveComplete hook)
+  - PageContentInsertComplete (hard deprecated, use the PageSaveComplete hook)
+  - PageContentSaveComplete (hard deprecated, use the PageSaveComplete hook)
   - RevisionInsertComplete (soft deprecated in 1.31, now hard deprecated)
   - TitleMoveCompleting (hard deprecated, use the PageMoveCompleting hook)
-  - TitleMoveComplete (soft deprecated, use the PageMoveComplete hook)
+  - TitleMoveComplete (hard deprecated, use the PageMoveComplete hook)
   - UndeleteShowRevision (hard deprecated)
 * The following RevisionStore methods were deprecated:
   - ::loadRevisionFromTitle
