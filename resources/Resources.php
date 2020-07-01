@@ -1936,7 +1936,6 @@ return [
 		],
 		'messages' => [
 			'markedaspatrollednotify',
-			'markedaspatrollederrornotify',
 			'rollback-confirmation-confirm',
 			'rollback-confirmation-yes',
 			'rollback-confirmation-no',
