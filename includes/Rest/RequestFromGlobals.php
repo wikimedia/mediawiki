@@ -33,7 +33,31 @@ class RequestFromGlobals extends RequestBase {
 
 	public function getUri() {
 		if ( $this->uri === null ) {
-			$this->uri = new Uri( \WebRequest::getGlobalRequestURL() );
+			$requestUrl = \WebRequest::getGlobalRequestURL();
+
+			// Uri constructor will throw exception if parse_url() fails to parse
+			// the $requestUrl. This will happen if the URL is relative and contains
+			// colon-number pattern that looks like a port.
+			//
+			// Since $requestUrl here is absolute-path references so all titles that
+			// contain colon followed by a number would be inacessible if the exception
+			// occurs. To forestall the exception we temporarily turn the request URL
+			// into to absolute form before instantiating the Uri and we turn it back to
+			// its absolute-path reference form afterwards. T256831.
+			$needsAbsoluteUrl = parse_url( $requestUrl ) === false;
+
+			if ( $needsAbsoluteUrl ) {
+				$requestUrl = \WebRequest::detectProtocol() === 'http'
+					? wfGetServerUrl( PROTO_HTTP ) . $requestUrl
+					: wfGetServerUrl( PROTO_HTTPS ) . $requestUrl;
+
+				// Instantiates Uri and remove the temporary host and scheme that
+				// we added to turn the URL back to its absolute-path reference form.
+				$uriInstance = new Uri( $requestUrl );
+				$this->uri = $uriInstance->withScheme( '' )->withHost( '' );
+			} else {
+				$this->uri = new Uri( $requestUrl );
+			}
 		}
 		return $this->uri;
 	}
