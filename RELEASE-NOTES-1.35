@@ -1196,6 +1196,9 @@ because of Phabricator reports.
   the second parameter, and the suppression option the third parameter.
   Previously, the third parameter was unused. Using the old signature is
   hard deprecated.
+* ApiQueryRevisions::getRollbackToken, which has been soft deprecated since
+  1.24, accepted as its third parameter a Revision object. It now accepts
+  a RevisionRecord, and passing a Revision is hard deprecated.
 * Passing Article to ParserCache::get() was deprecated
 * ParserOptions::newCanonical() with no first parameter, or null as the first
   parameter, which falls back to using global $wgUser, is hard deprecated.

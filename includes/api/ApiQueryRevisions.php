@@ -72,10 +72,15 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 * @deprecated since 1.24
 	 * @param int $pageid
 	 * @param Title $title
-	 * @param Revision $rev
+	 * @param RevisionRecord|Revision $rev (passing a Revision hard deprecated since 1.35)
 	 * @return bool|string
 	 */
 	public static function getRollbackToken( $pageid, $title, $rev ) {
+		if ( $rev instanceof Revision ) {
+			// Don't actually need to use the Revision(Record), just emit warnings
+			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
+		}
+
 		global $wgUser;
 		if ( !MediaWikiServices::getInstance()->getPermissionManager()
 				->userHasRight( $wgUser, 'rollback' ) ) {
@@ -420,10 +425,26 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 				if ( $this->token !== null ) {
 					$title = Title::newFromLinkTarget( $revision->getPageAsLinkTarget() );
-					$revisionCompat = new Revision( $revision );
 					$tokenFunctions = $this->getTokenFunctions();
 					foreach ( $this->token as $t ) {
-						$val = call_user_func( $tokenFunctions[$t], $title->getArticleID(), $title, $revisionCompat );
+						if ( $t === 'rollback' ) {
+							$val = call_user_func(
+								$tokenFunctions[$t],
+								$title->getArticleID(),
+								$title,
+								$revision
+							);
+						} else {
+							// Token function added via APIQueryRevisionsTokens,
+							// Hook is hard deprecated, so any use of
+							// Revision objects is okay
+							$val = call_user_func(
+								$tokenFunctions[$t],
+								$title->getArticleID(),
+								$title,
+								new Revision( $revision )
+							);
+						}
 						if ( $val === false ) {
 							$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 						} else {
