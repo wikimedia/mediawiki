@@ -3807,6 +3807,8 @@
 	"diff-form-revid": "Revision ID of difference",
 	"diff-form-submit": "Show differences",
 	"diff-form-summary": "",
+	"diff-form-other-revid": "Revision ID",
+	"diff-form-error-revid": "Input numeric revision ID",
 	"permanentlink": "Permanent link",
 	"permanentlink-revid": "Revision ID",
 	"permanentlink-submit": "Go to revision",
