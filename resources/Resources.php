@@ -1152,7 +1152,10 @@ return [
 	],
 	'mediawiki.action.edit.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.styles.less',
+		'styles' => [
+			'resources/src/mediawiki.action/mediawiki.action.edit.styles.less',
+			'resources/src/mediawiki.action/mediawiki.action.edit.checkboxes.less',
+		]
 	],
 	'mediawiki.action.edit.collapsibleFooter' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.js',
@@ -1256,6 +1259,13 @@ return [
 			'editwarning-warning',
 			// editwarning-warning uses {{int:prefs-editing}}
 			'prefs-editing'
+		],
+	],
+	'mediawiki.action.edit.watchlistExpiry' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.watchlistExpiry.js',
+		'dependencies' => [
+			'oojs-ui-core'
 		],
 	],
 	'mediawiki.action.view.filepage' => [

@@ -10,7 +10,8 @@ use EditPage;
  */
 interface EditPageGetCheckboxesDefinitionHook {
 	/**
-	 * Use this hook to modify the edit checkboxes below the textarea in the edit form.
+	 * Use this hook to modify the edit checkboxes and other form fields
+	 * below the textarea in the edit form.
 	 *
 	 * @since 1.35
 	 *
