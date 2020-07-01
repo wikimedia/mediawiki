@@ -2056,7 +2056,8 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		$lastSlashPos = $this->findSubpageDivider( $text, -1 );
 		if ( $lastSlashPos === false ) {
-			return '';
+			// T256922 - Return the title text if no subpages
+			return $text;
 		}
 		return substr( $text, $lastSlashPos + 1 );
 	}
