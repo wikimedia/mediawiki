@@ -22,6 +22,7 @@
 
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
@@ -3283,10 +3284,14 @@ class WikiPage implements Page, IDBAccessObject {
 		// User name given should match up with the top revision.
 		// If the revision's user is not visible, then $from should be empty.
 		if ( $from !== ( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' ) ) {
-			$resultDetails = [
-				'current' => $legacyCurrent,
-				'current-revision-record' => $current,
-			];
+			$resultDetails = new DeprecatablePropertyArray(
+				[
+					'current' => $legacyCurrent,
+					'current-revision-record' => $current,
+				],
+				[], // TODO [ 'current' => '1.35' ],
+				__METHOD__
+			);
 			return [ [ 'alreadyrolled',
 				htmlspecialchars( $this->mTitle->getPrefixedText() ),
 				htmlspecialchars( $fromP ),
@@ -3464,10 +3469,14 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Report if the edit was not created because it did not change the content.
 		if ( $updater->isUnchanged() ) {
-			$resultDetails = [
-				'current' => $legacyCurrent,
-				'current-revision-record' => $current,
-			];
+			$resultDetails = new DeprecatablePropertyArray(
+				[
+					'current' => $legacyCurrent,
+					'current-revision-record' => $current,
+				],
+				[], // TODO [ 'current' => '1.35' ],
+				__METHOD__
+			);
 			return [ [ 'alreadyrolled',
 					htmlspecialchars( $this->mTitle->getPrefixedText() ),
 					htmlspecialchars( $fromP ),
@@ -3499,15 +3508,19 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$this->getHookRunner()->onRollbackComplete( $this, $guser, $target, $current );
 
-		$resultDetails = [
-			'summary' => $summary,
-			'current' => $legacyCurrent,
-			'current-revision-record' => $current,
-			'target' => $legacyTarget,
-			'target-revision-record' => $target,
-			'newid' => $revId,
-			'tags' => $tags
-		];
+		$resultDetails = new DeprecatablePropertyArray(
+			[
+				'summary' => $summary,
+				'current' => $legacyCurrent,
+				'current-revision-record' => $current,
+				'target' => $legacyTarget,
+				'target-revision-record' => $target,
+				'newid' => $revId,
+				'tags' => $tags
+			],
+			[], // TODO [ 'current' => '1.35', 'target' => '1.35' ],
+			__METHOD__
+		);
 
 		// TODO: make this return a Status object and wrap $resultDetails in that.
 		return [];
