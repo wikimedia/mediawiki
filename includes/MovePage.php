@@ -725,7 +725,6 @@ class MovePage {
 
 					$nullRevisionObj = new Revision( $nullRevision );
 					// Deprecated since 1.35, use PageMoveComplete
-					// TODO hard deprecate
 					$this->hookRunner->onTitleMoveComplete(
 						$this->oldTitle,
 						$this->newTitle,

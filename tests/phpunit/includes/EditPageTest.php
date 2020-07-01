@@ -277,6 +277,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePage(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
+		$this->hideDeprecated( 'PageContentInsertComplete hook' );
+		$this->hideDeprecated( 'PageContentSaveComplete hook' );
+
 		$checkId = null;
 
 		$this->setMwGlobals( 'wgHooks', [
@@ -319,6 +322,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePageTrx(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
+		$this->hideDeprecated( 'PageContentInsertComplete hook' );
+		$this->hideDeprecated( 'PageContentSaveComplete hook' );
+
 		$checkIds = [];
 		$this->setMwGlobals( 'wgHooks', [
 			'PageContentInsertComplete' => [ function (
@@ -374,6 +380,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage
 	 */
 	public function testUpdatePage() {
+		$this->hideDeprecated( 'PageContentInsertComplete hook' );
+		$this->hideDeprecated( 'PageContentSaveComplete hook' );
+
 		$checkIds = [];
 
 		$this->setMwGlobals( 'wgHooks', [
@@ -423,6 +432,8 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage
 	 */
 	public function testUpdatePageTrx() {
+		$this->hideDeprecated( 'PageContentSaveComplete hook' );
+
 		$text = "one";
 		$edit = [
 			'wpTextbox1' => $text,

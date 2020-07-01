@@ -1330,7 +1330,7 @@ class PageUpdater {
 					$editResult
 				);
 
-				// Deprecated since 1.35
+				// Both hooks are hard deprecated since 1.35
 				$newLegacyRevision = new Revision( $newRevisionRecord );
 				if ( $created ) {
 					// Trigger post-create hook
