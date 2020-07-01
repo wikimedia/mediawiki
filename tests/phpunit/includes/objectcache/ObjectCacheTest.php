@@ -1,6 +1,6 @@
 <?php
 
-class ObjectCacheTest extends MediaWikiTestCase {
+class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		// Parent calls ObjectCache::clear() among other things

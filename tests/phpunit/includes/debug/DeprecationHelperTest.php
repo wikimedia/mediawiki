@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers DeprecationHelper
  */
-class DeprecationHelperTest extends MediaWikiTestCase {
+class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 
 	/** @var TestDeprecatedClass */
 	private $testClass;

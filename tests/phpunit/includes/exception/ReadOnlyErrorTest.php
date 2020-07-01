@@ -4,7 +4,7 @@
  * @covers ReadOnlyError
  * @author Addshore
  */
-class ReadOnlyErrorTest extends MediaWikiTestCase {
+class ReadOnlyErrorTest extends MediaWikiIntegrationTestCase {
 
 	public function testConstruction() {
 		$e = new ReadOnlyError();

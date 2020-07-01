@@ -1,6 +1,6 @@
 <?php
 
-class FileRepoTest extends MediaWikiTestCase {
+class FileRepoTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers FileRepo::__construct

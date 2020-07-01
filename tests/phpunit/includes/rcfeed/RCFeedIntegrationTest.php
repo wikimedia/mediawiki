@@ -9,7 +9,7 @@
  * @covers MachineReadableRCFeedFormatter
  * @covers RCFeed
  */
-class RCFeedIntegrationTest extends MediaWikiTestCase {
+class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [

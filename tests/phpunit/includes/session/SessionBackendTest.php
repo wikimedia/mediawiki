@@ -5,7 +5,7 @@ namespace MediaWiki\Session;
 use Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use User;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\TestingAccessWrapper;
@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers MediaWiki\Session\SessionBackend
  */
-class SessionBackendTest extends MediaWikiTestCase {
+class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	private const SESSIONID = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
 	/** @var SessionManager */

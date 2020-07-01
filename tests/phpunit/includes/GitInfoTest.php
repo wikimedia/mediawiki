@@ -2,7 +2,7 @@
 /**
  * @covers GitInfo
  */
-class GitInfoTest extends MediaWikiTestCase {
+class GitInfoTest extends MediaWikiIntegrationTestCase {
 
 	private static $tempDir;
 

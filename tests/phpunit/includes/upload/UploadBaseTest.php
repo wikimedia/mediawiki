@@ -3,7 +3,7 @@
 /**
  * @group Upload
  */
-class UploadBaseTest extends MediaWikiTestCase {
+class UploadBaseTest extends MediaWikiIntegrationTestCase {
 
 	/** @var UploadTestHandler */
 	protected $upload;

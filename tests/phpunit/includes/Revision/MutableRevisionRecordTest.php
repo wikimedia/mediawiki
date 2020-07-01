@@ -11,7 +11,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use TextContent;
 use Title;
 use User;
@@ -21,7 +21,7 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\MutableRevisionRecord
  * @covers \MediaWiki\Revision\RevisionRecord
  */
-class MutableRevisionRecordTest extends MediaWikiTestCase {
+class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 
 	use RevisionRecordTests;
 

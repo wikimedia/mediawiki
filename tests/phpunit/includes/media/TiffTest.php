@@ -3,7 +3,7 @@
 /**
  * @group Media
  */
-class TiffTest extends MediaWikiTestCase {
+class TiffTest extends MediaWikiIntegrationTestCase {
 
 	/** @var TiffHandler */
 	protected $handler;

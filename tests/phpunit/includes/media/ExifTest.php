@@ -4,7 +4,7 @@
  * @group Media
  * @covers Exif
  */
-class ExifTest extends MediaWikiTestCase {
+class ExifTest extends MediaWikiIntegrationTestCase {
 
 	/** @var string */
 	protected $mediaPath;

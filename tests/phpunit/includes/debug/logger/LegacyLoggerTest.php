@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Logger;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 
-class LegacyLoggerTest extends MediaWikiTestCase {
+class LegacyLoggerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers MediaWiki\Logger\LegacyLogger::interpolate

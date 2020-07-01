@@ -3,7 +3,7 @@
 /**
  * @covers UnsupportedSlotDiffRenderer
  */
-class UnsupportedSlotDiffRendererTest extends MediaWikiTestCase {
+class UnsupportedSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 
 	public function provideDiff() {
 		$oldContent = new TextContent( 'Kittens' );

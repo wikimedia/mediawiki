@@ -24,7 +24,7 @@
  *
  * @group Title
  */
-class NaiveForeignTitleFactoryTest extends MediaWikiTestCase {
+class NaiveForeignTitleFactoryTest extends MediaWikiIntegrationTestCase {
 
 	public function basicProvider() {
 		return [

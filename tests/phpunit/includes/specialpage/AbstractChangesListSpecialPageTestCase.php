@@ -6,7 +6,7 @@
  *
  * @group Database
  */
-abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiTestCase {
+abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrationTestCase {
 	// Must be initialized by subclass
 	/**
 	 * @var ChangesListSpecialPage

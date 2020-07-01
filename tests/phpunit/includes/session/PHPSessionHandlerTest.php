@@ -3,7 +3,7 @@
 namespace MediaWiki\Session;
 
 use BadMethodCallException;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use UnexpectedValueException;
 use Wikimedia\TestingAccessWrapper;
@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Session
  * @covers MediaWiki\Session\PHPSessionHandler
  */
-class PHPSessionHandlerTest extends MediaWikiTestCase {
+class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function getResetter( &$rProp = null ) {
 		$reset = [];

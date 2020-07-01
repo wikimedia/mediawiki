@@ -7,7 +7,7 @@ use MediaWiki\MediaWikiServices;
  * @group medium
  * @group Database
  */
-class JobQueueTest extends MediaWikiTestCase {
+class JobQueueTest extends MediaWikiIntegrationTestCase {
 	protected $key;
 	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
 

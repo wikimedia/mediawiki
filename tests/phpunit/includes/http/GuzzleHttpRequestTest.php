@@ -14,7 +14,7 @@ use GuzzleHttp\Psr7\Response;
  * @covers GuzzleHttpRequest
  * @covers MWHttpRequest
  */
-class GuzzleHttpRequestTest extends MediaWikiTestCase {
+class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	/** @var int[] */
 	private $timeoutOptions = [
 		'timeout' => 1,

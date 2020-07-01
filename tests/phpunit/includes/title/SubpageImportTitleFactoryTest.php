@@ -24,7 +24,7 @@
  *
  * @group Title
  */
-class SubpageImportTitleFactoryTest extends MediaWikiTestCase {
+class SubpageImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

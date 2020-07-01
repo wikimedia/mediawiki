@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 /**
  * @group Database
  */
-class MovePageTest extends MediaWikiTestCase {
+class MovePageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * The only files that exist are 'File:Existent.jpg', 'File:Existent2.jpg', and
 	 * 'File:Existent-file-no-page.jpg'. Calling unexpected methods causes a test failure.

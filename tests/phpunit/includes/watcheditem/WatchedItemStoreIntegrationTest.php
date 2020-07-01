@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @covers WatchedItemStore
  */
-class WatchedItemStoreIntegrationTest extends MediaWikiTestCase {
+class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

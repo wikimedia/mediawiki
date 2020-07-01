@@ -4,7 +4,7 @@ namespace MediaWiki\Session;
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use User;
 use Wikimedia\TestingAccessWrapper;
@@ -14,7 +14,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Session\CookieSessionProvider
  */
-class CookieSessionProviderTest extends MediaWikiTestCase {
+class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	private function getConfig() {
 		return new \HashConfig( [

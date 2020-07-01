@@ -7,7 +7,7 @@ use SebastianBergmann\FileIterator\Facade;
  * not just style issues.
  */
 
-class StructureTest extends MediaWikiTestCase {
+class StructureTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Verify all files that appear to be tests have file names ending in
 	 * Test.  If the file names do not end in Test, they will not be run.

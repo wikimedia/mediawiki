@@ -4,7 +4,7 @@
  * @group Language
  * @covers ShiConverter
  */
-class ShiConverterTest extends MediaWikiTestCase {
+class ShiConverterTest extends MediaWikiIntegrationTestCase {
 
 	use LanguageConverterTestTrait;
 

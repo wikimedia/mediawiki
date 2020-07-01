@@ -6,7 +6,7 @@
  * @file
  */
 
-class MWExceptionTest extends MediaWikiTestCase {
+class MWExceptionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers MWException

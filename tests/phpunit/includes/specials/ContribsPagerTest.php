@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  */
-class ContribsPagerTest extends MediaWikiTestCase {
+class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var ContribsPager */
 	private $pager;
 

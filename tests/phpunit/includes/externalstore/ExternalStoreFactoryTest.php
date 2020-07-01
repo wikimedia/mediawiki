@@ -6,7 +6,7 @@ use Wikimedia\Rdbms\LBFactory;
  * @covers ExternalStoreFactory
  * @covers ExternalStoreAccess
  */
-class ExternalStoreFactoryTest extends MediaWikiTestCase {
+class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 
 	use MediaWikiCoversValidator;
 

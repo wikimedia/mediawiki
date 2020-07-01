@@ -4,7 +4,7 @@
  * @group Language
  * @covers SrConverter
  */
-class SrConverterTest extends MediaWikiTestCase {
+class SrConverterTest extends MediaWikiIntegrationTestCase {
 
 	use LanguageConverterTestTrait;
 

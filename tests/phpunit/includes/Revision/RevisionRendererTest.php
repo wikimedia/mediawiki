@@ -15,7 +15,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -27,7 +27,7 @@ use WikitextContent;
 /**
  * @covers \MediaWiki\Revision\RevisionRenderer
  */
-class RevisionRendererTest extends MediaWikiTestCase {
+class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param int $articleId

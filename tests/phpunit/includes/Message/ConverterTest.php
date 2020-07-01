@@ -4,14 +4,14 @@ namespace MediaWiki\Tests\Message;
 
 use InvalidArgumentException;
 use MediaWiki\Message\Converter;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Message;
 use Wikimedia\Message\MessageValue;
 
 /**
  * @covers \MediaWiki\Message\Converter
  */
-class ConverterTest extends MediaWikiTestCase {
+class ConverterTest extends MediaWikiIntegrationTestCase {
 
 	public function testCreateMessage() {
 		$converter = new Converter();

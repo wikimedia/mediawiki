@@ -9,14 +9,14 @@ use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Title;
 use Wikimedia\Assert\PostconditionException;
 
 /**
  * @covers \MediaWiki\Revision\SlotRoleRegistry
  */
-class SlotRoleRegistryTest extends MediaWikiTestCase {
+class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @return Title

@@ -12,7 +12,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
  * @license GPL-2.0-or-later
  * @author Thiemo Kreuz
  */
-class ActionTest extends MediaWikiTestCase {
+class ActionTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

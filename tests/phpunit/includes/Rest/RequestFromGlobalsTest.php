@@ -8,7 +8,7 @@ use MediaWiki\Rest\RequestFromGlobals;
 /**
  * @covers \MediaWiki\Rest\RequestFromGlobals
  */
-class RequestFromGlobalsTest extends MediaWikiTestCase {
+class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var RequestFromGlobals
 	 */

@@ -4,7 +4,7 @@
  * @group GlobalFunctions
  * @covers ::wfShellExec
  */
-class WfShellExecTest extends MediaWikiTestCase {
+class WfShellExecTest extends MediaWikiIntegrationTestCase {
 	public function testT69870() {
 		if ( wfIsWindows() ) {
 			// T209159: Anonymous pipe under Windows does not support asynchronous read and write,

@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
  * @group GlobalFunctions
  * @group Database
  */
-class GlobalWithDBTest extends MediaWikiTestCase {
+class GlobalWithDBTest extends MediaWikiIntegrationTestCase {
 	private function setUpBadImageTests( $name ) {
 		if ( in_array( $name, [
 			'Hook bad.jpg',

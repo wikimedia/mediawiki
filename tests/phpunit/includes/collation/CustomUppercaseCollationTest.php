@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @covers CustomUppercaseCollation
  */
-class CustomUppercaseCollationTest extends MediaWikiTestCase {
+class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		$this->collation = new CustomUppercaseCollation( [

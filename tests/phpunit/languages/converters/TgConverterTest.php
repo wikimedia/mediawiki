@@ -4,7 +4,7 @@
  * @group Language
  * @covers TgConverter
  */
-class TgConverterTest extends MediaWikiTestCase {
+class TgConverterTest extends MediaWikiIntegrationTestCase {
 	use LanguageConverterTestTrait;
 
 	/**

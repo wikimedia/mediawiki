@@ -4,7 +4,7 @@
  * @group FileRepo
  * @group medium
  */
-class StoreBatchTest extends MediaWikiTestCase {
+class StoreBatchTest extends MediaWikiIntegrationTestCase {
 
 	protected $createdFiles;
 	protected $date;

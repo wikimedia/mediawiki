@@ -12,7 +12,7 @@ use MediaWiki\MediaWikiServices;
  * @since 1.32
  * @author Addshore
  */
-class SpecialPageFatalTest extends MediaWikiTestCase {
+class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

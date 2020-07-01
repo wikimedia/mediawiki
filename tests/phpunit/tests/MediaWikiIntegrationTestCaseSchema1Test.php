@@ -3,12 +3,12 @@
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
- * @covers MediaWikiTestCase
+ * @covers MediaWikiIntegrationTestCase
  *
  * @group Database
- * @group MediaWikiTestCaseTest
+ * @group MediaWikiIntegrationTestCaseTest
  */
-class MediaWikiTestCaseSchema1Test extends MediaWikiTestCase {
+class MediaWikiIntegrationTestCaseSchema1Test extends MediaWikiIntegrationTestCase {
 
 	public static $hasRun = false;
 
@@ -20,22 +20,22 @@ class MediaWikiTestCaseSchema1Test extends MediaWikiTestCase {
 
 	public function getSchemaOverrides( IMaintainableDatabase $db ) {
 		return [
-			'create' => [ 'MediaWikiTestCaseTestTable', 'imagelinks' ],
+			'create' => [ 'MediaWikiIntegrationTestCaseTestTable', 'imagelinks' ],
 			'drop' => [ 'oldimage' ],
 			'alter' => [ 'pagelinks' ],
-			'scripts' => [ __DIR__ . '/MediaWikiTestCaseSchemaTest.sql' ]
+			'scripts' => [ __DIR__ . '/MediaWikiIntegrationTestCaseSchemaTest.sql' ]
 		];
 	}
 
-	public function testMediaWikiTestCaseSchemaTestOrder() {
+	public function testMediaWikiIntegrationTestCaseSchemaTestOrder() {
 		// The test must be run before the second test
 		self::$hasRun = true;
 		$this->assertTrue( self::$hasRun );
 	}
 
 	public function testTableWasCreated() {
-		// Make sure MediaWikiTestCaseTestTable was created.
-		$this->assertTrue( $this->db->tableExists( 'MediaWikiTestCaseTestTable' ) );
+		// Make sure MediaWikiIntegrationTestCaseTestTable was created.
+		$this->assertTrue( $this->db->tableExists( 'MediaWikiIntegrationTestCaseTestTable' ) );
 	}
 
 	public function testTableWasDropped() {

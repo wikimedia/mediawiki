@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Session;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use User;
 
 /**
@@ -10,7 +10,7 @@ use User;
  * @group Database
  * @covers MediaWiki\Session\UserInfo
  */
-class UserInfoTest extends MediaWikiTestCase {
+class UserInfoTest extends MediaWikiIntegrationTestCase {
 
 	public function testNewAnonymous() {
 		$userinfo = UserInfo::newAnonymous();

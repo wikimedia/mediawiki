@@ -22,14 +22,14 @@ namespace MediaWiki\Tests\EditPage;
 
 use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Title;
 use User;
 
 /**
  * @covers \MediaWiki\EditPage\TextboxBuilder
  */
-class TextboxBuilderTest extends MediaWikiTestCase {
+class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 
 	public function provideAddNewLineAtEnd() {
 		return [

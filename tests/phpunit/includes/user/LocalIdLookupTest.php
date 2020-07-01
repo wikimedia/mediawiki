@@ -7,7 +7,7 @@ use MediaWiki\MediaWikiServices;
  * @covers LocalIdLookup
  * @group Database
  */
-class LocalIdLookupTest extends MediaWikiTestCase {
+class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	private $localUsers = [];
 
 	protected function setUp() : void {

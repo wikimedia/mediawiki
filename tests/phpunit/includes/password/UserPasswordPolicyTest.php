@@ -24,7 +24,7 @@
  * @group Database
  * @covers UserPasswordPolicy
  */
-class UserPasswordPolicyTest extends MediaWikiTestCase {
+class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 
 	protected $tablesUsed = [ 'user', 'user_groups' ];
 

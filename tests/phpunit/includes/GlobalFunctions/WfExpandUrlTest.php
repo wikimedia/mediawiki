@@ -3,7 +3,7 @@
  * @group GlobalFunctions
  * @covers ::wfExpandUrl
  */
-class WfExpandUrlTest extends MediaWikiTestCase {
+class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideExpandableUrls
 	 */

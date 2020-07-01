@@ -3,7 +3,7 @@
 /**
  * @covers Parser::__construct
  */
-class ParserTest extends MediaWikiTestCase {
+class ParserTest extends MediaWikiIntegrationTestCase {
 	public function provideConstructorArguments() {
 		// Create a mock Config object that will satisfy ServiceOptions::__construct
 		$mockConfig = $this->createMock( 'Config' );

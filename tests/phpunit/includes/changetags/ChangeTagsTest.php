@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
  * @covers ChangeTags
  * @group Database
  */
-class ChangeTagsTest extends MediaWikiTestCase {
+class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

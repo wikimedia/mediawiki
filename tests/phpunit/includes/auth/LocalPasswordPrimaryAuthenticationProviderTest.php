@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider
  */
-class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 
 	private $manager = null;
 	private $config = null;

@@ -5,7 +5,7 @@ use MediaWiki\User\UserEditTracker;
 /**
  * @covers Autopromote
  */
-class AutopromoteTest extends MediaWikiTestCase {
+class AutopromoteTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * T157718: Verify Autopromote does not perform edit count lookup if requirement is 0 or invalid
 	 *

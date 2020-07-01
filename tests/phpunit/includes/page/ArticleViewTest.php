@@ -9,7 +9,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 /**
  * @covers \Article::view()
  */
-class ArticleViewTest extends MediaWikiTestCase {
+class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

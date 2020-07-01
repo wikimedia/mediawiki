@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ApiBlockInfoTrait
  */
-class ApiBlockInfoTraitTest extends MediaWikiTestCase {
+class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideGetBlockDetails
 	 */

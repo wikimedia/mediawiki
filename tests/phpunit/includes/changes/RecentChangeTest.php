@@ -6,7 +6,7 @@ use Wikimedia\ScopedCallback;
 /**
  * @group Database
  */
-class RecentChangeTest extends MediaWikiTestCase {
+class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	protected $title;
 	protected $target;
 	protected $user;

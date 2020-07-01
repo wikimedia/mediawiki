@@ -3,7 +3,7 @@
 /**
  * @group Media
  */
-class BitmapScalingTest extends MediaWikiTestCase {
+class BitmapScalingTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

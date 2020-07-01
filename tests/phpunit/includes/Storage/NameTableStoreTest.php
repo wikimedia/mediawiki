@@ -8,7 +8,7 @@ use HashBagOStuff;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use RuntimeException;
@@ -23,7 +23,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Storage\NameTableStore
  */
-class NameTableStoreTest extends MediaWikiTestCase {
+class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		$this->tablesUsed[] = 'slot_roles';

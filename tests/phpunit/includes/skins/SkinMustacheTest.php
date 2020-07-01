@@ -7,7 +7,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  *
  * @group Output
  */
-class SkinMustacheTest extends MediaWikiTestCase {
+class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @return MockObject|OutputPage

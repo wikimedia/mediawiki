@@ -6,7 +6,7 @@
  * @license GPL-2.0-or-later
  * @author Gergő Tisza
  */
-class HTMLFormTest extends MediaWikiTestCase {
+class HTMLFormTest extends MediaWikiIntegrationTestCase {
 
 	private function newInstance() {
 		$context = new RequestContext();

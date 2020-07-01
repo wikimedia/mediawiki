@@ -4,7 +4,7 @@
  * @group Database
  * @group Category
  */
-class CategoryTest extends MediaWikiTestCase {
+class CategoryTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 

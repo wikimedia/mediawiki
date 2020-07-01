@@ -10,7 +10,7 @@ use Psr\Log\NullLogger;
  * @covers LocalisationCache
  * @author Niklas Laxström
  */
-class LocalisationCacheTest extends MediaWikiTestCase {
+class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 		$this->setMwGlobals( [

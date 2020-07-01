@@ -9,7 +9,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @covers SpecialChangeContentModel
  */
-class SpecialChangeContentModelTest extends MediaWikiTestCase {
+class SpecialChangeContentModelTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \SpecialChangeContentModel::__construct

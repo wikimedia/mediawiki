@@ -25,7 +25,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\SpecialPage\SpecialPageFactory
  * @group SpecialPage
  */
-class SpecialPageFactoryTest extends MediaWikiTestCase {
+class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testHookNotCalledTwice() {
 		$count = 0;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [

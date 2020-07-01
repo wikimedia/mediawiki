@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ChangesListFilter
  */
-class ChangesListFilterTest extends MediaWikiTestCase {
+class ChangesListFilterTest extends MediaWikiIntegrationTestCase {
 	protected $group;
 
 	protected function setUp() : void {

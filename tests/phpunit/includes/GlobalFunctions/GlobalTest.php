@@ -7,7 +7,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @group GlobalFunctions
  */
-class GlobalTest extends MediaWikiTestCase {
+class GlobalTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 

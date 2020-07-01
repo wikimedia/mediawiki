@@ -28,7 +28,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Preferences
  * @coversDefaultClass MediaWiki\Preferences\DefaultPreferencesFactory
  */
-class DefaultPreferencesFactoryTest extends \MediaWikiTestCase {
+class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 
 	/** @var IContextSource */

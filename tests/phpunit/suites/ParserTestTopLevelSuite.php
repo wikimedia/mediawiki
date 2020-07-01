@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestSuite;
 use Wikimedia\ScopedCallback;
 
 /**
- * The UnitTest must be either a class that inherits from MediaWikiTestCase
+ * The UnitTest must be either a class that inherits from MediaWikiIntegrationTestCase
  * or a class that provides a public static suite() method which returns
  * an PHPUnit\Framework\Test object
  *
@@ -144,18 +144,18 @@ class ParserTestTopLevelSuite extends TestSuite {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$db = $lb->getConnection( DB_MASTER );
 		$type = $db->getType();
-		$prefix = MediaWikiTestCase::DB_PREFIX;
+		$prefix = MediaWikiIntegrationTestCase::DB_PREFIX;
 		$this->oldTablePrefix = $db->tablePrefix();
-		MediaWikiTestCase::setupTestDB( $db, $prefix );
+		MediaWikiIntegrationTestCase::setupTestDB( $db, $prefix );
 		CloneDatabase::changePrefix( $prefix );
 
 		$this->ptRunner->setDatabase( $db );
 
-		MediaWikiTestCase::resetNonServiceCaches();
+		MediaWikiIntegrationTestCase::resetNonServiceCaches();
 
-		MediaWikiTestCase::installMockMwServices();
+		MediaWikiIntegrationTestCase::installMockMwServices();
 		$teardown = new ScopedCallback( function () {
-			MediaWikiTestCase::restoreMwServices();
+			MediaWikiIntegrationTestCase::restoreMwServices();
 		} );
 
 		$teardown = $this->ptRunner->setupUploads( $teardown );

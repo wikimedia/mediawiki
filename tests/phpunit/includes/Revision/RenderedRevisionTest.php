@@ -16,7 +16,7 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -28,7 +28,7 @@ use WikitextContent;
 /**
  * @covers \MediaWiki\Revision\RenderedRevision
  */
-class RenderedRevisionTest extends MediaWikiTestCase {
+class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 	/** @var callable */
 	private $combinerCallback;

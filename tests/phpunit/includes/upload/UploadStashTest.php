@@ -5,7 +5,7 @@
  *
  * @covers UploadStash
  */
-class UploadStashTest extends MediaWikiTestCase {
+class UploadStashTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var TestUser[] Array of UploadStashTestUser
 	 */

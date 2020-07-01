@@ -3,7 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 
-abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
+abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 	// Version hash for a blank file module.
 	// Result of ResourceLoader::makeHash(), ResourceLoaderTestModule
 	// and ResourceLoaderFileModule::getDefinitionSummary().

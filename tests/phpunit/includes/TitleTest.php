@@ -8,7 +8,7 @@ use MediaWiki\MediaWikiServices;
  * @group Database
  * @group Title
  */
-class TitleTest extends MediaWikiTestCase {
+class TitleTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 

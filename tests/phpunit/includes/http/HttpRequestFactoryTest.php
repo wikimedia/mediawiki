@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers MediaWiki\Http\HttpRequestFactory
  */
-class HttpRequestFactoryTest extends MediaWikiTestCase {
+class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @return HttpRequestFactory

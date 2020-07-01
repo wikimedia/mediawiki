@@ -1,6 +1,6 @@
 <?php
 
-class MailAddressTest extends MediaWikiTestCase {
+class MailAddressTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers MailAddress::__construct

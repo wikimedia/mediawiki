@@ -4,7 +4,7 @@
  * @group Media
  * @covers PNGMetadataExtractor
  */
-class PNGMetadataExtractorTest extends MediaWikiTestCase {
+class PNGMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

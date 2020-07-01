@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @group ContentHandlerFactory
  */
-class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWikiTestCase {
+class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();

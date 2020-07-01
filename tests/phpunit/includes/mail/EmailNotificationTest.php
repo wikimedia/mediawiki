@@ -2,7 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-class EmailNotificationTest extends MediaWikiTestCase {
+class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 
 	protected $emailNotification;
 
