@@ -38,6 +38,9 @@ class CookieSessionProvider extends SessionProvider {
 	protected $params = [];
 	protected $cookieOptions = [];
 
+	/** @var bool */
+	protected $useCrossSiteCookies;
+
 	/**
 	 * @param array $params Keys include:
 	 *  - priority: (required) Priority of the returned sessions
@@ -50,6 +53,7 @@ class CookieSessionProvider extends SessionProvider {
 	 *    - domain: Cookie domain, defaults to $wgCookieDomain
 	 *    - secure: Cookie secure flag, defaults to $wgCookieSecure
 	 *    - httpOnly: Cookie httpOnly flag, defaults to $wgCookieHttpOnly
+	 *    - sameSite: Cookie SameSite attribute, defaults to $wgCookieSameSite
 	 */
 	public function __construct( $params = [] ) {
 		parent::__construct();
@@ -91,6 +95,8 @@ class CookieSessionProvider extends SessionProvider {
 				$config->get( 'SessionName' ) ?: $config->get( 'CookiePrefix' ) . '_session',
 		];
 
+		$this->useCrossSiteCookies = strcasecmp( $config->get( 'CookieSameSite' ), 'none' ) === 0;
+
 		// @codeCoverageIgnoreStart
 		$this->cookieOptions += [
 			// @codeCoverageIgnoreEnd
@@ -99,6 +105,7 @@ class CookieSessionProvider extends SessionProvider {
 			'domain' => $config->get( 'CookieDomain' ),
 			'secure' => $config->get( 'CookieSecure' ) || $this->config->get( 'ForceHTTPS' ),
 			'httpOnly' => $config->get( 'CookieHttpOnly' ),
+			'sameSite' => $config->get( 'CookieSameSite' ),
 		];
 	}
 
@@ -346,7 +353,11 @@ class CookieSessionProvider extends SessionProvider {
 	 * @return mixed
 	 */
 	protected function getCookie( $request, $key, $prefix, $default = null ) {
-		$value = $request->getCookie( $key, $prefix, $default );
+		if ( $this->useCrossSiteCookies ) {
+			$value = $request->getCrossSiteCookie( $key, $prefix, $default );
+		} else {
+			$value = $request->getCookie( $key, $prefix, $default );
+		}
 		if ( $value === 'deleted' ) {
 			// PHP uses this value when deleting cookies. A legitimate cookie will never have
 			// this value (usernames start with uppercase, token is longer, other auth cookies
