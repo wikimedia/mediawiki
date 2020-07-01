@@ -5,7 +5,7 @@
  * @group medium
  * @group Database
  */
-class RefreshLinksPartitionTest extends MediaWikiTestCase {
+class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 

@@ -20,7 +20,7 @@ use Wikimedia\TestingAccessWrapper;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-class ContentHandlerSanityTest extends MediaWikiTestCase {
+class ContentHandlerSanityTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideHandlers() {
 		$models = ContentHandler::getContentModels();

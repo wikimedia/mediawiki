@@ -48,7 +48,7 @@ class ExtensionsTestSuite extends TestSuite {
  * Needed to avoid warnings like 'No tests found in class "ExtensionsTestSuite".'
  * when no extensions with tests are used.
  */
-class DummyExtensionsTest extends MediaWikiTestCase {
+class DummyExtensionsTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @coversNothing
 	 */

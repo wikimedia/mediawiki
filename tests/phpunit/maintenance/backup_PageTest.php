@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Maintenance;
 
 use DumpBackup;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -57,7 +57,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$db = $this->streamingLoadBalancer->getConnection( DB_REPLICA );
 
 		// Make sure the DB connection has the fake table clones and the fake table prefix
-		MediaWikiTestCase::setupDatabaseWithTestPrefix( $db );
+		MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $db );
 
 		// Make sure the DB connection has all the test data
 		$this->copyTestData( $this->db, $db );

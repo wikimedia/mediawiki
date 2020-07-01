@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
  * @license GPL-2.0-or-later
  * @author Addshore
  */
-class ClearUserWatchlistJobTest extends MediaWikiTestCase {
+class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

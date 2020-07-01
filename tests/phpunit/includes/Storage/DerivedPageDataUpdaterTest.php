@@ -14,7 +14,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\RevisionSlotsUpdate;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use MWCallableUpdate;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -31,7 +31,7 @@ use WikitextContent;
  *
  * @covers \MediaWiki\Storage\DerivedPageDataUpdater
  */
-class DerivedPageDataUpdaterTest extends MediaWikiTestCase {
+class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();

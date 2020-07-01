@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
  * @license GPL-2.0-or-later
  * @author Addshore
  */
-class RefreshLinksJobTest extends MediaWikiTestCase {
+class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

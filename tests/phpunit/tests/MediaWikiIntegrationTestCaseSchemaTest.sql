@@ -1,4 +1,4 @@
-CREATE TABLE /*_*/MediaWikiTestCaseTestTable (
+CREATE TABLE /*_*/MediaWikiIntegrationTestCaseTestTable (
   id INT NOT NULL,
   name VARCHAR(20) NOT NULL,
   PRIMARY KEY (id)

@@ -3,7 +3,7 @@
 /**
  * @author Addshore
  */
-class JobTest extends MediaWikiTestCase {
+class JobTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestToString

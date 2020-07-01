@@ -20,7 +20,7 @@
  * @file
  */
 
-class PasswordPolicyChecksTest extends MediaWikiTestCase {
+class PasswordPolicyChecksTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers PasswordPolicyChecks::checkMinimalPasswordLength

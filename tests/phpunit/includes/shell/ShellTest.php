@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Shell\Shell
  * @group Shell
  */
-class ShellTest extends MediaWikiTestCase {
+class ShellTest extends MediaWikiIntegrationTestCase {
 
 	public function testIsDisabled() {
 		$this->assertIsBool( Shell::isDisabled() ); // sanity

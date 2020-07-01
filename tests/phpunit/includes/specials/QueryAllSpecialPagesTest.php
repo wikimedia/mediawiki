@@ -13,7 +13,7 @@ use MediaWiki\MediaWikiServices;
  * @group Database
  * @covers QueryPage<extended>
  */
-class QueryAllSpecialPagesTest extends MediaWikiTestCase {
+class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var SpecialPage[]

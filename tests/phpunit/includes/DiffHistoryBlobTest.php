@@ -1,6 +1,6 @@
 <?php
 
-class DiffHistoryBlobTest extends MediaWikiTestCase {
+class DiffHistoryBlobTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

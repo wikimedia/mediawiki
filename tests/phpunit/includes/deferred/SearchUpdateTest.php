@@ -3,7 +3,7 @@
 /**
  * @group Search
  */
-class SearchUpdateTest extends MediaWikiTestCase {
+class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var SearchUpdate

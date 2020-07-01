@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group API
  */
-class ApiStructureTest extends MediaWikiTestCase {
+class ApiStructureTest extends MediaWikiIntegrationTestCase {
 
 	/** @var ApiMain */
 	private static $main;

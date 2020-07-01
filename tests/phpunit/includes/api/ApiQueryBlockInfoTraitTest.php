@@ -8,7 +8,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * @covers ApiQueryBlockInfoTrait
  */
-class ApiQueryBlockInfoTraitTest extends MediaWikiTestCase {
+class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 
 	public function testUsesApiBlockInfoTrait() {
 		$this->assertTrue( method_exists( ApiQueryBlockInfoTrait::class, 'getBlockDetails' ),

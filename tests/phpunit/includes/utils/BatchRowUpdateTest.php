@@ -9,7 +9,7 @@
  * @covers BatchRowIterator
  * @covers BatchRowWriter
  */
-class BatchRowUpdateTest extends MediaWikiTestCase {
+class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 
 	public function testWriterBasicFunctionality() {
 		$db = $this->mockDb( [ 'update' ] );

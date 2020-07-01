@@ -5,7 +5,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 /**
  * @covers ExternalStoreAccess
  */
-class ExternalStoreAccessTest extends MediaWikiTestCase {
+class ExternalStoreAccessTest extends MediaWikiIntegrationTestCase {
 
 	use MediaWikiCoversValidator;
 

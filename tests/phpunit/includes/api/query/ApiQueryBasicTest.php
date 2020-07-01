@@ -34,7 +34,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	/**
 	 * Create a set of pages. These must not change, otherwise the tests might give wrong results.
 	 *
-	 * @see MediaWikiTestCase::addDBDataOnce()
+	 * @see MediaWikiIntegrationTestCase::addDBDataOnce()
 	 */
 	public function addDBDataOnce() {
 		try {

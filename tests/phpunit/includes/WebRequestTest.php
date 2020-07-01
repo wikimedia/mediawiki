@@ -3,7 +3,7 @@
 /**
  * @group WebRequest
  */
-class WebRequestTest extends MediaWikiTestCase {
+class WebRequestTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

@@ -3,7 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Error\Notice;
 
-class HtmlTest extends MediaWikiTestCase {
+class HtmlTest extends MediaWikiIntegrationTestCase {
 	private $restoreWarnings;
 
 	protected function setUp() : void {

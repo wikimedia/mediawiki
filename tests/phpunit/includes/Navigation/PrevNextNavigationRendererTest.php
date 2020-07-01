@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers \MediaWiki\Navigation\PrevNextNavigationRenderer
  */
-class PrevNextNavigationRendererTest extends MediaWikiTestCase {
+class PrevNextNavigationRendererTest extends MediaWikiIntegrationTestCase {
 
 	public function provideBuildPrevNextNavigation() {
 		yield [ 0, 20, false, false ];

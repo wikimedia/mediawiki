@@ -5,7 +5,7 @@
  * @todo Split tests into providers and test methods
  */
 
-class LocalFileTest extends MediaWikiTestCase {
+class LocalFileTest extends MediaWikiIntegrationTestCase {
 	private static function getDefaultInfo() {
 		return [
 			'name' => 'test',

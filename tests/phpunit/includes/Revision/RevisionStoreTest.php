@@ -9,7 +9,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\SqlBlobStore;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use WANObjectCache;
 use Wikimedia\Rdbms\IDatabase;
@@ -20,7 +20,7 @@ use Wikimedia\Rdbms\MaintainableDBConnRef;
 /**
  * Tests RevisionStore
  */
-class RevisionStoreTest extends MediaWikiTestCase {
+class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param LoadBalancer $loadBalancer

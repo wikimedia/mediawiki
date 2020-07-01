@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers WatchedItemQueryService
  */
-class WatchedItemQueryServiceUnitTest extends MediaWikiTestCase {
+class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @return MockObject|CommentStore

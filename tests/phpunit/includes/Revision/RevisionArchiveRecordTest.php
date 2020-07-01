@@ -10,7 +10,7 @@ use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use TextContent;
 use Title;
 
@@ -18,7 +18,7 @@ use Title;
  * @covers \MediaWiki\Revision\RevisionArchiveRecord
  * @covers \MediaWiki\Revision\RevisionRecord
  */
-class RevisionArchiveRecordTest extends MediaWikiTestCase {
+class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 
 	use RevisionRecordTests;
 

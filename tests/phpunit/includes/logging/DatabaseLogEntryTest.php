@@ -3,7 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
-class DatabaseLogEntryTest extends MediaWikiTestCase {
+class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 

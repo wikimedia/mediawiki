@@ -7,7 +7,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @author Derick N. Alangi
  */
-class MagicWordFactoryTest extends MediaWikiTestCase {
+class MagicWordFactoryTest extends MediaWikiIntegrationTestCase {
 	private function makeMagicWordFactory( Language $contLang = null ) {
 		$services = MediaWikiServices::getInstance();
 		return new MagicWordFactory( $contLang ?:

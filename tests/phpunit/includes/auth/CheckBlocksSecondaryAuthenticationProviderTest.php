@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider
  */
-class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	public function testConstructor() {
 		$provider = new CheckBlocksSecondaryAuthenticationProvider();
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );

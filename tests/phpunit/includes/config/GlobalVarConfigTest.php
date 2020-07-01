@@ -1,6 +1,6 @@
 <?php
 
-class GlobalVarConfigTest extends MediaWikiTestCase {
+class GlobalVarConfigTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers GlobalVarConfig::newInstance

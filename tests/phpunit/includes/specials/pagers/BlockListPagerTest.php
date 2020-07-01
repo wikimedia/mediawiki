@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @coversDefaultClass BlockListPager
  */
-class BlockListPagerTest extends MediaWikiTestCase {
+class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var LinkRenderer

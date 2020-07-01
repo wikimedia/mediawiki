@@ -7,19 +7,19 @@ use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWikiTestCase
- * @group MediaWikiTestCaseTest
+ * @covers MediaWikiIntegrationTestCase
+ * @group MediaWikiIntegrationTestCaseTest
  * @group Database
  *
  * @author Addshore
  */
-class MediaWikiTestCaseTest extends MediaWikiTestCase {
+class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	private static $startGlobals = [
-		'MediaWikiTestCaseTestGLOBAL-ExistingString' => 'foo',
-		'MediaWikiTestCaseTestGLOBAL-ExistingStringEmpty' => '',
-		'MediaWikiTestCaseTestGLOBAL-ExistingArray' => [ 1, 'foo' => 'bar' ],
-		'MediaWikiTestCaseTestGLOBAL-ExistingArrayEmpty' => [],
+		'MediaWikiIntegrationTestCaseTestGLOBAL-ExistingString' => 'foo',
+		'MediaWikiIntegrationTestCaseTestGLOBAL-ExistingStringEmpty' => '',
+		'MediaWikiIntegrationTestCaseTestGLOBAL-ExistingArray' => [ 1, 'foo' => 'bar' ],
+		'MediaWikiIntegrationTestCaseTestGLOBAL-ExistingArrayEmpty' => [],
 	];
 
 	public static function setUpBeforeClass() : void {
@@ -48,8 +48,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideExistingKeysAndNewValues
 	 *
-	 * @covers MediaWikiTestCase::setMwGlobals
-	 * @covers MediaWikiTestCase::tearDown
+	 * @covers MediaWikiIntegrationTestCase::setMwGlobals
+	 * @covers MediaWikiIntegrationTestCase::tearDown
 	 */
 	public function testSetGlobalsAreRestoredOnTearDown( $globalKey, $newValue ) {
 		$this->setMwGlobals( $globalKey, $newValue );
@@ -69,8 +69,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MediaWikiTestCase::setMwGlobals
-	 * @covers MediaWikiTestCase::tearDown
+	 * @covers MediaWikiIntegrationTestCase::setMwGlobals
+	 * @covers MediaWikiIntegrationTestCase::tearDown
 	 */
 	public function testSetNonExistentGlobalsAreUnsetOnTearDown() {
 		$globalKey = 'abcdefg1234567';
@@ -110,8 +110,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MediaWikiTestCase::setLogger
-	 * @covers MediaWikiTestCase::restoreLoggers
+	 * @covers MediaWikiIntegrationTestCase::setLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger() {
 		$logger1 = LoggerFactory::getInstance( 'foo' );
@@ -125,8 +125,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MediaWikiTestCase::setLogger
-	 * @covers MediaWikiTestCase::restoreLoggers
+	 * @covers MediaWikiIntegrationTestCase::setLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger() {
 		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
@@ -139,8 +139,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MediaWikiTestCase::setLogger
-	 * @covers MediaWikiTestCase::restoreLoggers
+	 * @covers MediaWikiIntegrationTestCase::setLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice() {
 		$logger1 = LoggerFactory::getInstance( 'baz' );
@@ -153,8 +153,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MediaWikiTestCase::setNullLogger
-	 * @covers MediaWikiTestCase::restoreLoggers
+	 * @covers MediaWikiIntegrationTestCase::setNullLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testNullLogger_createAndRemove() {
 		$this->setNullLogger( 'tocreate' );
@@ -169,8 +169,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MediaWikiTestCase::setNullLogger
-	 * @covers MediaWikiTestCase::restoreLoggers
+	 * @covers MediaWikiIntegrationTestCase::setNullLogger
+	 * @covers MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testNullLogger_mutateAndRestore() {
 		// Don't rely on the $wgDebugLogGroups and $wgDebugLogFile settings in
@@ -203,8 +203,8 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MediaWikiTestCase::setupDatabaseWithTestPrefix
-	 * @covers MediaWikiTestCase::copyTestData
+	 * @covers MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix
+	 * @covers MediaWikiIntegrationTestCase::copyTestData
 	 */
 	public function testCopyTestData() {
 		$this->markTestSkippedIfDbType( 'sqlite' );
@@ -224,7 +224,7 @@ class MediaWikiTestCaseTest extends MediaWikiTestCase {
 		$this->assertNotSame( $this->db, $db );
 
 		// Make sure the DB connection has the fake table clones and the fake table prefix
-		MediaWikiTestCase::setupDatabaseWithTestPrefix( $db, $this->dbPrefix(), false );
+		MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $db, $this->dbPrefix(), false );
 
 		$this->assertSame( $this->db->tablePrefix(), $db->tablePrefix(), 'tablePrefix' );
 

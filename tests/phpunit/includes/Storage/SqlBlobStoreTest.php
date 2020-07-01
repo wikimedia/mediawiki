@@ -10,7 +10,7 @@ use LoadBalancer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use TitleValue;
 use WANObjectCache;
 use Wikimedia\AtEase\AtEase;
@@ -19,7 +19,7 @@ use Wikimedia\AtEase\AtEase;
  * @covers \MediaWiki\Storage\SqlBlobStore
  * @group Database
  */
-class SqlBlobStoreTest extends MediaWikiTestCase {
+class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param WANObjectCache|null $cache

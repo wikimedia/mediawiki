@@ -3,7 +3,7 @@
 /**
  * @covers ApiOpenSearch
  */
-class ApiOpenSearchTest extends MediaWikiTestCase {
+class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 	public function testGetAllowedParams() {
 		$config = $this->replaceSearchEngineConfig();
 		$config->expects( $this->any() )

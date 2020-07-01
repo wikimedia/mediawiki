@@ -2,7 +2,7 @@
 /**
  * Specificly for testing Media handlers. Sets up a FileRepo backend
  */
-abstract class MediaWikiMediaTestCase extends MediaWikiTestCase {
+abstract class MediaWikiMediaTestCase extends MediaWikiIntegrationTestCase {
 
 	/** @var FileRepo */
 	protected $repo;

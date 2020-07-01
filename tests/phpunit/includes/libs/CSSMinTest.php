@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group ResourceLoader
  * @group CSSMin
  */
-class CSSMinTest extends MediaWikiTestCase {
+class CSSMinTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

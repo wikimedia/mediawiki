@@ -10,7 +10,7 @@ use MediaWiki\Permissions\PermissionManager;
  *
  * @author DannyS712
  */
-class ContentModelChangeTest extends MediaWikiTestCase {
+class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

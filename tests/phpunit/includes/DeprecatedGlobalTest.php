@@ -23,7 +23,7 @@ use PHPUnit\Framework\Error\Deprecated;
 /**
  * @covers DeprecatedGlobal
  */
-class DeprecatedGlobalTest extends MediaWikiTestCase {
+class DeprecatedGlobalTest extends MediaWikiIntegrationTestCase {
 	private $oldErrorLevel;
 
 	protected function setUp() : void {

@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers SwiftFileBackendFileList
  * @covers SwiftFileBackendList
  */
-class SwiftFileBackendTest extends MediaWikiTestCase {
+class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	/** @var TestingAccessWrapper|SwiftFileBackend */
 	private $backend;
 

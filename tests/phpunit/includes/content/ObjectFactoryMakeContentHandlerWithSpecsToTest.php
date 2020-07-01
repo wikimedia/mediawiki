@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @group ContentHandlerFactory
  */
-class ObjectFactoryMakeContentHandlerWithSpecsToTest extends MediaWikiTestCase {
+class ObjectFactoryMakeContentHandlerWithSpecsToTest extends MediaWikiIntegrationTestCase {
 
 	private $createObjectOptions = [
 		'assertClass' => ContentHandler::class,

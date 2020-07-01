@@ -9,7 +9,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers BotPassword
  * @group Database
  */
-class BotPasswordTest extends MediaWikiTestCase {
+class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 	/** @var TestUser */
 	private $testUser;

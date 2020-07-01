@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DBSiteStoreTest extends MediaWikiTestCase {
+class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @return DBSiteStore

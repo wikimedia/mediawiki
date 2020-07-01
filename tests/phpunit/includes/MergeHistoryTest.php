@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @group Database
  */
-class MergeHistoryTest extends MediaWikiTestCase {
+class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Make some pages to work with

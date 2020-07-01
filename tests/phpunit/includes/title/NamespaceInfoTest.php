@@ -10,7 +10,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 
-class NamespaceInfoTest extends MediaWikiTestCase {
+class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 
 	/**********************************************************************************************

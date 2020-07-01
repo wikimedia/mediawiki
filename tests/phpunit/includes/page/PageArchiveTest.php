@@ -7,7 +7,7 @@ use Wikimedia\IPUtils;
 /**
  * @group Database
  */
-class PageArchiveTest extends MediaWikiTestCase {
+class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var int

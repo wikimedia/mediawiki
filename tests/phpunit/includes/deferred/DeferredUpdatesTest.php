@@ -2,7 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-class DeferredUpdatesTest extends MediaWikiTestCase {
+class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers DeferredUpdates::addUpdate

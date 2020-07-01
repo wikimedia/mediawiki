@@ -6,7 +6,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -15,7 +15,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @covers MediaWiki\Storage\NameTableStoreFactory
  * @group Database
  */
-class NameTableStoreFactoryTest extends MediaWikiTestCase {
+class NameTableStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @return MockObject|ILoadBalancer
 	 */

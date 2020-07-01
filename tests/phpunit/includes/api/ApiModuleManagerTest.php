@@ -10,7 +10,7 @@ use Wikimedia\ObjectFactory;
  * @group Database
  * @group medium
  */
-class ApiModuleManagerTest extends MediaWikiTestCase {
+class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 
 	private function getModuleManager() {
 		$request = new FauxRequest();

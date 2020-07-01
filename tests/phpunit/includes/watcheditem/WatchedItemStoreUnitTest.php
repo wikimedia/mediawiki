@@ -16,7 +16,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @covers WatchedItemStore
  */
-class WatchedItemStoreUnitTest extends MediaWikiTestCase {
+class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @return MockObject|IDatabase

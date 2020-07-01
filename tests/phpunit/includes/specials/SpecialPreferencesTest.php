@@ -12,7 +12,7 @@
  *
  * @covers SpecialPreferences
  */
-class SpecialPreferencesTest extends MediaWikiTestCase {
+class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Make sure a nickname which is longer than $wgMaxSigChars

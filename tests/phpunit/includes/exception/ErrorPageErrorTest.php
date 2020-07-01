@@ -4,7 +4,7 @@
  * @covers ErrorPageError
  * @author Addshore
  */
-class ErrorPageErrorTest extends MediaWikiTestCase {
+class ErrorPageErrorTest extends MediaWikiIntegrationTestCase {
 
 	public function testConstruction() {
 		$mockMessage = $this->getMockMessage();

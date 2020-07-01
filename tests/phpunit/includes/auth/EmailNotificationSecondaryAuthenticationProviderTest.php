@@ -10,7 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers \MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider
  */
-class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiTestCase {
+class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	public function testConstructor() {
 		$config = new \HashConfig( [
 			'EnableEmail' => true,

@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\ThrottlePreAuthenticationProvider
  */
-class ThrottlePreAuthenticationProviderTest extends \MediaWikiTestCase {
+class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	public function testConstructor() {
 		$provider = new ThrottlePreAuthenticationProvider();
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );

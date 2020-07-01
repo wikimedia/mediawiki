@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * @group Language
  */
-class LanguageConverterIntegrationTest extends MediaWikiTestCase {
+class LanguageConverterIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	/** @var LanguageConverterFactory */
 	private $factory;

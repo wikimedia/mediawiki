@@ -9,7 +9,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  */
-class DatabasePostgresTest extends MediaWikiTestCase {
+class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 
 	private function doTestInsertIgnore() {
 		$fname = __METHOD__;

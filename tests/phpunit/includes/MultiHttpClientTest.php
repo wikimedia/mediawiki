@@ -7,7 +7,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  *
  * @covers MultiHttpClient
  */
-class MultiHttpClientTest extends MediaWikiTestCase {
+class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	/** @var MultiHttpClient|MockObject */
 	protected $client;
 

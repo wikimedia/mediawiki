@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ChangesListStringOptionsFilterGroup
  */
-class ChangesListStringOptionsFilterGroupTest extends MediaWikiTestCase {
+class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCase {
 
 	public function testIsFullCoverage() {
 		$falseGroup = TestingAccessWrapper::newFromObject(

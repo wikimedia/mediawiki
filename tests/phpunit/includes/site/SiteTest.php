@@ -26,7 +26,7 @@
  *
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SiteTest extends MediaWikiTestCase {
+class SiteTest extends MediaWikiIntegrationTestCase {
 
 	public function instanceProvider() {
 		return $this->arrayWrap( TestSites::getSites() );

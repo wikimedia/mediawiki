@@ -5,7 +5,7 @@
  *
  * @group API
  */
-class ApiPrefixUniquenessTest extends MediaWikiTestCase {
+class ApiPrefixUniquenessTest extends MediaWikiIntegrationTestCase {
 
 	public function testPrefixes() {
 		$main = new ApiMain( new FauxRequest() );

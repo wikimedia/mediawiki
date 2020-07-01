@@ -3,7 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
-class ContentSecurityPolicyTest extends MediaWikiTestCase {
+class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	/** @var ContentSecurityPolicy */
 	private $csp;
 

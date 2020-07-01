@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class DifferenceEngineTest extends MediaWikiTestCase {
+class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 
 	protected $context;
 

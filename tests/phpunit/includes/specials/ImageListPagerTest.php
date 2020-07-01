@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @group Database
  */
-class ImageListPagerTest extends MediaWikiTestCase {
+class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers ImageListPager::formatValue
 	 */

@@ -6,7 +6,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ExtensionRegistry
  */
-class ExtensionRegistryTest extends MediaWikiTestCase {
+class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 
 	private $dataDir;
 

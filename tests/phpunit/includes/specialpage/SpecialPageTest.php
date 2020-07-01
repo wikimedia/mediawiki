@@ -10,7 +10,7 @@ use PHPUnit\Framework\Error\Notice;
  *
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SpecialPageTest extends MediaWikiTestCase {
+class SpecialPageTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();

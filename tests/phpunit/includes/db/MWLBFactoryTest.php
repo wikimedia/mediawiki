@@ -27,7 +27,7 @@ use Wikimedia\Rdbms\LBFactorySimple;
  * @covers \Wikimedia\Rdbms\LBFactorySimple
  * @covers \Wikimedia\Rdbms\LBFactoryMulti
  */
-class MWLBFactoryTest extends MediaWikiTestCase {
+class MWLBFactoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers MWLBFactory::getLBFactoryClass
 	 * @dataProvider getLBFactoryClassProvider

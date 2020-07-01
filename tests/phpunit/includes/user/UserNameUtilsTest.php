@@ -13,7 +13,7 @@ use Wikimedia\Message\MessageValue;
  * @covers MediaWiki\User\UserNameUtils
  * @author DannyS712
  */
-class UserNameUtilsTest extends MediaWikiTestCase {
+class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 
 	private function getUCFirstLanguageMock() {
 		// Used by a number of tests

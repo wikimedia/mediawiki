@@ -9,7 +9,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group AuthManager
  * @covers \MediaWiki\Auth\AbstractAuthenticationProvider
  */
-class AbstractAuthenticationProviderTest extends \MediaWikiTestCase {
+class AbstractAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	public function testAbstractAuthenticationProvider() {
 		$provider = $this->getMockForAbstractClass( AbstractAuthenticationProvider::class );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );

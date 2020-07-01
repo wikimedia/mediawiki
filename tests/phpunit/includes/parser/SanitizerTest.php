@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Sanitizer
  */
-class SanitizerTest extends MediaWikiTestCase {
+class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	protected function tearDown() : void {
 		MWTidy::destroySingleton();

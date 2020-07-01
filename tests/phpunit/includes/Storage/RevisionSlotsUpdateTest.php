@@ -8,13 +8,13 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use WikitextContent;
 
 /**
  * @covers \MediaWiki\Storage\RevisionSlotsUpdate
  */
-class RevisionSlotsUpdateTest extends MediaWikiTestCase {
+class RevisionSlotsUpdateTest extends MediaWikiIntegrationTestCase {
 
 	public function provideNewFromRevisionSlots() {
 		$slotA = SlotRecord::newUnsaved( 'A', new WikitextContent( 'A' ) );

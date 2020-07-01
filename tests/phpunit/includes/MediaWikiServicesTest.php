@@ -10,7 +10,7 @@ use Wikimedia\Services\ServiceDisabledException;
  *
  * @group MediaWiki
  */
-class MediaWikiServicesTest extends MediaWikiTestCase {
+class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 	private $deprecatedServices = [];
 
 	/**

@@ -6,11 +6,11 @@ use InvalidArgumentException;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\SlotRecord;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use TextContent;
 use WikitextContent;
 
-class RevisionSlotsTest extends MediaWikiTestCase {
+class RevisionSlotsTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param SlotRecord[] $slots

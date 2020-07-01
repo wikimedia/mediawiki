@@ -1,6 +1,6 @@
 <?php
 
-class CdnCacheUpdateTest extends MediaWikiTestCase {
+class CdnCacheUpdateTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers CdnCacheUpdate::merge

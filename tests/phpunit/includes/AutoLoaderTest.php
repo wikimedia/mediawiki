@@ -3,7 +3,7 @@
 /**
  * @covers AutoLoader
  */
-class AutoLoaderTest extends MediaWikiTestCase {
+class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 
 	private $oldPsr4;
 

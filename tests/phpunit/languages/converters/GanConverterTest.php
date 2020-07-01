@@ -4,7 +4,7 @@
  * @group Language
  * @covers GanConverter
  */
-class GanConverterTest extends MediaWikiTestCase {
+class GanConverterTest extends MediaWikiIntegrationTestCase {
 
 	use LanguageConverterTestTrait;
 

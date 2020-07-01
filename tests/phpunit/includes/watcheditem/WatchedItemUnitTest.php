@@ -6,7 +6,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * @covers WatchedItem
  */
-class WatchedItemUnitTest extends MediaWikiTestCase {
+class WatchedItemUnitTest extends MediaWikiIntegrationTestCase {
 
 	public function testIsExpired() {
 		$user = new UserIdentityValue( 7, 'MockUser', 0 );

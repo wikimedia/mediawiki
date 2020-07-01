@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group AuthManager
  * @covers \MediaWiki\Auth\Throttler
  */
-class ThrottlerTest extends \MediaWikiTestCase {
+class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 	public function testConstructor() {
 		$cache = new \HashBagOStuff();
 		$logger = $this->getMockBuilder( AbstractLogger::class )
