@@ -303,4 +303,56 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 			],
 		];
 	}
+
+	/**
+	 * @dataProvider provideCartesianProduct
+	 * @covers ArrayUtils::cartesianProduct
+	 */
+	public function testCartesianProduct( $inputs, $expected ) {
+		$result = ArrayUtils::cartesianProduct( ...$inputs );
+		$this->assertSame( $expected, $result );
+	}
+
+	public function provideCartesianProduct() {
+		$ab = [ 'a', 'b' ];
+		$cd = [ 'c', 'd' ];
+		$ac = [ 'a', 'c' ];
+		$ad = [ 'a', 'd' ];
+		$bc = [ 'b', 'c' ];
+		$bd = [ 'b', 'd' ];
+
+		return [
+			'no inputs' => [
+				[],
+				[]
+			],
+			'one empty input' => [
+				[ [] ],
+				[]
+			],
+			'one non-empty input' => [
+				[ $ab ],
+				[ [ 'a' ], [ 'b' ] ]
+			],
+			'non-empty times empty' => [
+				[ $ab, [] ],
+				[]
+			],
+			'empty times non-empty' => [
+				[ [], $ab ],
+				[]
+			],
+			'ab x cd' => [
+				[ $ab, $cd ],
+				[ $ac, $ad, $bc, $bd ]
+			],
+			'keys are ignored' => [
+				[
+					[ 99 => 'a', 98 => 'b' ],
+					[ 97 => 'c', 96 => 'd' ],
+				],
+				[ $ac, $ad, $bc, $bd ]
+			],
+		];
+	}
 }

@@ -80,7 +80,8 @@ class SessionInfo {
 	 *  - persisted: (bool) Whether this session was persisted
 	 *  - remembered: (bool) Whether the verified user was remembered.
 	 *    Defaults to true.
-	 *  - forceHTTPS: (bool) Whether to force HTTPS for this session
+	 *  - forceHTTPS: (bool) Whether to force HTTPS for this session. This is
+	 *    ignored if $wgForceHTTPS is true.
 	 *  - metadata: (array) Provider metadata, to be returned by
 	 *    Session::getProviderMetadata(). See SessionProvider::mergeMetadata()
 	 *    and SessionProvider::refreshSessionInfo().
@@ -271,7 +272,9 @@ class SessionInfo {
 	}
 
 	/**
-	 * Whether this session should only be used over HTTPS
+	 * Whether this session should only be used over HTTPS. This should be
+	 * ignored if $wgForceHTTPS is true.
+	 *
 	 * @return bool
 	 */
 	final public function forceHTTPS() {
