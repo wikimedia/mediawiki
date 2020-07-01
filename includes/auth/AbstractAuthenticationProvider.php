@@ -28,6 +28,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * A base class that implements some of the boilerplate for an AuthenticationProvider
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
@@ -51,6 +52,10 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 		$this->manager = $manager;
 	}
 
+	/**
+	 * @stable for overriding
+	 * @param Config $config
+	 */
 	public function setConfig( Config $config ) {
 		$this->config = $config;
 	}

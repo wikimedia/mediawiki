@@ -27,6 +27,8 @@ use Status;
 
 /**
  * Basic framework for a primary authentication provider that uses passwords
+ *
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
@@ -39,6 +41,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	private $passwordFactory = null;
 
 	/**
+	 * @stable for calling
 	 * @param array $params Settings
 	 *  - authoritative: Whether this provider should ABSTAIN (false) or FAIL
 	 *    (true) on password failure
@@ -139,6 +142,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	/**
 	 * Get password reset data, if any
 	 *
+	 * @stable for overriding
 	 * @param string $username
 	 * @param mixed $data
 	 * @return object|null { 'hard' => bool, 'msg' => Message }
@@ -150,6 +154,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 	/**
 	 * Get expiration date for a new password, if any
 	 *
+	 * @stable for overriding
 	 * @param string $username
 	 * @return string|null
 	 */
@@ -164,6 +169,13 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 		return $expires;
 	}
 
+	/**
+	 * @stable for overriding
+	 * @param string $action
+	 * @param array $options
+	 *
+	 * @return AuthenticationRequest[]
+	 */
 	public function getAuthenticationRequests( $action, array $options ) {
 		switch ( $action ) {
 			case AuthManager::ACTION_LOGIN:

@@ -31,6 +31,7 @@ use Message;
  * An AuthenticationRequest represents a set of form fields that are needed on
  * and provided from a login, account creation, password change or similar form.
  *
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
@@ -83,6 +84,7 @@ abstract class AuthenticationRequest {
 	 * This value might be exposed to the user in web forms so it should not
 	 * contain private information.
 	 *
+	 * @stable for overriding
 	 * @return string
 	 */
 	public function getUniqueId() {
@@ -134,6 +136,7 @@ abstract class AuthenticationRequest {
 	 * individual subclasses, but the contents of the array should be primitive types so that they
 	 * can be transformed into JSON or similar formats.
 	 *
+	 * @stable for overriding
 	 * @return array A (possibly nested) array with primitive types
 	 */
 	public function getMetadata() {
@@ -148,6 +151,7 @@ abstract class AuthenticationRequest {
 	 * to $this->$key. Most subclasses won't need to override this; if you do override it,
 	 * make sure to always return false if self::getFieldInfo() returns an empty array.
 	 *
+	 * @stable for overriding
 	 * @param array $data Submitted data as an associative array (keys will correspond
 	 *   to getFieldInfo())
 	 * @return bool Whether the request data was successfully loaded
@@ -218,6 +222,8 @@ abstract class AuthenticationRequest {
 	 * and ACTION_REMOVE and for requests returned in
 	 * AuthenticationResponse::$linkRequest to create useful user interfaces.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return Message[] with the following keys:
 	 *  - provider: A Message identifying the service that provides
 	 *    the credentials, e.g. the name of the third party authentication
@@ -235,6 +241,7 @@ abstract class AuthenticationRequest {
 
 	/**
 	 * Update a set of requests with form submit data, discarding ones that fail
+	 *
 	 * @param AuthenticationRequest[] $reqs
 	 * @param array $data
 	 * @return AuthenticationRequest[]
