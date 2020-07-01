@@ -1542,11 +1542,14 @@ class ApiMain extends ApiBase {
 			$this->mPrinter = $this->createPrinterByName( $params['format'] );
 		}
 
-		if ( $request->getProtocol() === 'http' && (
-			$request->getSession()->shouldForceHTTPS() ||
-			( $this->getUser()->isLoggedIn() &&
-				$this->getUser()->requiresHTTPS() )
-		) ) {
+		if ( $request->getProtocol() === 'http' &&
+			(
+				$this->getConfig()->get( 'ForceHTTPS' ) ||
+				$request->getSession()->shouldForceHTTPS() ||
+				( $this->getUser()->isLoggedIn() &&
+					$this->getUser()->requiresHTTPS() )
+			)
+		) {
 			$this->addDeprecation( 'apiwarn-deprecation-httpsexpected', 'https-expected' );
 		}
 	}

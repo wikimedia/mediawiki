@@ -3,13 +3,15 @@
 namespace MediaWiki\Hook;
 
 /**
- * @stable for implementation
+ * @deprecated since 1.35
  * @ingroup Hooks
  */
 interface CanIPUseHTTPSHook {
 	/**
 	 * Use this hook to determine whether the client at a given source IP is likely
 	 * to be able to access the wiki via HTTPS.
+	 *
+	 * @deprecated since 1.35 This feature will be removed. All clients should use HTTPS.
 	 *
 	 * @since 1.35
 	 *

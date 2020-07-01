@@ -290,6 +290,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'WikiPage::prepareContentForEdit with a Revision object' );
+		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
+		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
 
 		$this->setMwGlobals( 'wgPageCreationLog', true );
 
@@ -411,6 +413,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doEditContent
 	 */
 	public function testDoEditContent_twice() {
+		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status exists 'revision'" );
+		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status exists 'revision'" );
+
 		$title = Title::newFromText( __METHOD__ );
 		$page = WikiPage::factory( $title );
 		$content = ContentHandler::makeContent( '$1 van $2', $title );
@@ -1221,6 +1226,8 @@ more stuff
 	public function testDoRollback() {
 		$this->hideDeprecated( 'Revision::countByPageId' );
 		$this->hideDeprecated( 'Revision::getUserText' );
+		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
+		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
 
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();

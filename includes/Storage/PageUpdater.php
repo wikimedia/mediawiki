@@ -1003,7 +1003,7 @@ class PageUpdater {
 		$status = Status::newGood(
 			new DeprecatablePropertyArray(
 				[ 'new' => false, 'revision' => null, 'revision-record' => null ],
-				[], // TODO: [ 'revision' => '1.35' ],
+				[ 'revision' => '1.35' ],
 				__METHOD__ . ' status'
 			)
 		);
@@ -1109,8 +1109,10 @@ class PageUpdater {
 			// Return the new revision to the caller
 			$status->value['revision-record'] = $newRevisionRecord;
 
-			// TODO: globally replace usages of 'revision' with getNewRevision()
-			$status->value['revision'] = $newLegacyRevision;
+			// Deprecated via DeprecatablePropertyArray
+			$status->value['revision'] = function () use ( $newRevisionRecord ) {
+				return new Revision( $newRevisionRecord );
+			};
 		} else {
 			// T34948: revision ID must be set to page {{REVISIONID}} and
 			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
@@ -1167,7 +1169,7 @@ class PageUpdater {
 		$status = Status::newGood(
 			new DeprecatablePropertyArray(
 				[ 'new' => true, 'revision' => null, 'revision-record' => null ],
-				[], // TODO: [ 'revision' => '1.35' ],
+				[ 'revision' => '1.35' ],
 				__METHOD__ . ' status'
 			)
 		);
@@ -1262,9 +1264,12 @@ class PageUpdater {
 		$dbw->endAtomic( __METHOD__ );
 
 		// Return the new revision to the caller
-		// TODO: globally replace usages of 'revision' with getNewRevision()
-		$status->value['revision'] = $newLegacyRevision;
 		$status->value['revision-record'] = $newRevisionRecord;
+
+		// Deprecated via DeprecatablePropertyArray
+		$status->value['revision'] = function () use ( $newRevisionRecord ) {
+			return new Revision( $newRevisionRecord );
+		};
 
 		// Do secondary updates once the main changes have been committed...
 		DeferredUpdates::addUpdate(
