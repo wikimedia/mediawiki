@@ -19,7 +19,7 @@ interface ResourceLoaderForeignApiModulesHook {
 	 * @param string[] &$dependencies List of modules that mediawiki.ForeignApi should
 	 *   depend on
 	 * @param ResourceLoaderContext|null $context
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderForeignApiModules( &$dependencies, $context );
+	public function onResourceLoaderForeignApiModules( &$dependencies, $context ) : void;
 }

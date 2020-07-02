@@ -3222,54 +3222,61 @@ class HookRunner implements
 		);
 	}
 
-	public function onResourceLoaderForeignApiModules( &$dependencies, $context ) {
-		return $this->container->run(
+	public function onResourceLoaderForeignApiModules( &$dependencies, $context ) : void {
+		$this->container->run(
 			'ResourceLoaderForeignApiModules',
-			[ &$dependencies, $context ]
+			[ &$dependencies, $context ],
+			[ 'abortable' => false ]
 		);
 	}
 
-	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ) {
-		return $this->container->run(
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ) : void {
+		$this->container->run(
 			'ResourceLoaderGetConfigVars',
-			[ &$vars, $skin, $config ]
+			[ &$vars, $skin, $config ],
+			[ 'abortable' => false ]
 		);
 	}
 
 	public function onResourceLoaderJqueryMsgModuleMagicWords( ResourceLoaderContext $context,
 		array &$magicWords
-	) {
-		return $this->container->run(
+	) : void {
+		$this->container->run(
 			'ResourceLoaderJqueryMsgModuleMagicWords',
-			[ $context, &$magicWords ]
+			[ $context, &$magicWords ],
+			[ 'abortable' => false ]
 		);
 	}
 
-	public function onResourceLoaderRegisterModules( $resourceLoader ) {
-		return $this->container->run(
+	public function onResourceLoaderRegisterModules( ResourceLoader $rl ) : void {
+		$this->container->run(
 			'ResourceLoaderRegisterModules',
-			[ $resourceLoader ]
+			[ $rl ],
+			[ 'abortable' => false ]
 		);
 	}
 
-	public function onResourceLoaderSiteModulePages( $skin, array &$pages ) {
-		return $this->container->run(
+	public function onResourceLoaderSiteModulePages( $skin, array &$pages ) : void {
+		$this->container->run(
 			'ResourceLoaderSiteModulePages',
-			[ $skin, &$pages ]
+			[ $skin, &$pages ],
+			[ 'abortable' => false ]
 		);
 	}
 
-	public function onResourceLoaderSiteStylesModulePages( $skin, array &$pages ) {
-		return $this->container->run(
+	public function onResourceLoaderSiteStylesModulePages( $skin, array &$pages ) : void {
+		$this->container->run(
 			'ResourceLoaderSiteStylesModulePages',
-			[ $skin, &$pages ]
+			[ $skin, &$pages ],
+			[ 'abortable' => false ]
 		);
 	}
 
-	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl ) {
-		return $this->container->run(
+	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl ) : void {
+		$this->container->run(
 			'ResourceLoaderTestModules',
-			[ &$testModules, $rl ]
+			[ &$testModules, $rl ],
+			[ 'abortable' => false ]
 		);
 	}
 
