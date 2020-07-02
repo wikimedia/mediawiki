@@ -558,14 +558,15 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public static function provideSubpageTitleCases() {
 		return [
 			# Title, expected base, optional message
-			[ 'User:John_Doe', '' ],
+			[ 'User:John_Doe', 'John Doe' ],
 			[ 'User:John_Doe/subOne/subTwo', 'subTwo' ],
 			[ 'User:John_Doe/subOne', 'subOne' ],
-			[ 'User:/', '' ],
+			[ 'User:/', '/' ],
 			[ 'User://', '' ],
 			[ 'User:/oops/', '' ],
 			[ 'User:/Ramba/Zamba/Mamba/', '' ],
 			[ 'User://x//y//z//', '' ],
+			[ 'Template:Foo', 'Foo' ]
 		];
 	}
 
