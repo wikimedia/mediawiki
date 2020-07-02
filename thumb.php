@@ -1,6 +1,7 @@
 <?php
 /**
- * The web entry point for retreiving media thumbnails.
+ * The web entry point for retrieving media thumbnails, created by a MediaHandler
+ * subclass or proxy request if FileRepo::getThumbProxyUrl is configured.
  *
  * This script may also resize an image on-demand, if it isn't found in the
  * configured FileBackend storage.

@@ -1,7 +1,7 @@
 <?php
 /**
- * The web entry point for ResourceLoader. It serves static CSS and JavaScript
- * assets for web browsers.
+ * The web entry point for ResourceLoader, which serves static CSS/JavaScript
+ * via ResourceLoaderModule subclasses.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
