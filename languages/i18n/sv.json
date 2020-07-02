@@ -3074,7 +3074,6 @@
 	"markedaspatrollederrortext": "Det går inte att markera som patrullerad utan att ange version.",
 	"markedaspatrollederror-noautopatrol": "Du har inte tillåtelse att markera dina egna redigeringar som patrullerade.",
 	"markedaspatrollednotify": "Denna ändring till $1 har markerats som patrullerad.",
-	"markedaspatrollederrornotify": "Markering som patrullerad misslyckades.",
 	"patrol-log-page": "Patrulleringslogg",
 	"patrol-log-header": "Detta är en logg över patrullerade sidversioner.",
 	"confirm-markpatrolled-button": "OK",

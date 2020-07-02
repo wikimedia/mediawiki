@@ -3031,7 +3031,6 @@
 	"markedaspatrollederrortext": "Cómpre especificar unha revisión para marcala como revisada.",
 	"markedaspatrollederror-noautopatrol": "Non está permitido marcar as edicións propias como revisadas.",
 	"markedaspatrollednotify": "A modificación feita en \"$1\" marcouse como revisada.",
-	"markedaspatrollederrornotify": "Erro ao marcar como revisada.",
 	"patrol-log-page": "Rexistro de revisións patrulladas",
 	"patrol-log-header": "Este é un rexistro das revisións patrulladas.",
 	"confirm-markpatrolled-button": "Aceptar",

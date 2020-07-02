@@ -2242,7 +2242,6 @@
 	"markedaspatrollederror": "Yoxlanmadı",
 	"markedaspatrollederror-noautopatrol": "Öz dəyişikliklərinizi yoxlayıb işarələyə bilməzsiniz.",
 	"markedaspatrollednotify": "\"$1\" səhifəsindəki bu redaktə patrullanmış kimi işarələndi.",
-	"markedaspatrollederrornotify": "Patrullanma uğursuz oldu.",
 	"patrol-log-page": "Patrul qeydləri",
 	"patrol-log-header": "Bu yoxlanmış dəyişikliklərin gündəliyidir.",
 	"deletedrevision": "Köhnə versiyaları silindi $1.",

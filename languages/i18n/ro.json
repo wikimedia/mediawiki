@@ -2960,7 +2960,6 @@
 	"markedaspatrollederrortext": "Trebuie să specificați o versiune care să fie marcată ca verificată.",
 	"markedaspatrollederror-noautopatrol": "Nu puteți marca propriile modificări ca verificate.",
 	"markedaspatrollednotify": "Această modificare la $1 a fost marcată ca patrulată.",
-	"markedaspatrollederrornotify": "Marcarea ca patrulată a eșuat.",
 	"patrol-log-page": "Jurnal verificări",
 	"patrol-log-header": "Aceasta este o listă a tuturor versiunilor marcate ca verificate.",
 	"confirm-markpatrolled-button": "OK",

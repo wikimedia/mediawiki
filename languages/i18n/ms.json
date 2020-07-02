@@ -2891,7 +2891,6 @@
 	"markedaspatrollederrortext": "Anda perlu menyatakan semakan untuk ditanda ronda.",
 	"markedaspatrollederror-noautopatrol": "Anda tidak dibenarkan menanda ronda perubahan anda sendiri.",
 	"markedaspatrollednotify": "Perubahan pada $1 ini telah ditandai sebagai dironda.",
-	"markedaspatrollederrornotify": "Penandaan sebagai dironda gagal.",
 	"patrol-log-page": "Log pemeriksaan",
 	"patrol-log-header": "Yang berikut ialah log rondaan bagi semakan.",
 	"deletedrevision": "Menghapuskan semakan lama $1.",

@@ -1957,7 +1957,6 @@
 	"markedaspatrollederrortext": "Անհրաժեշտ է ընտրել տարբերակ՝ որպես ստուգված նշելու համար։",
 	"markedaspatrollederror-noautopatrol": "Ձեզ չի թույլատրվում ձեր կատարած փոփոխությունները նշել որպես ստուգված։",
 	"markedaspatrollednotify": "Այս փոփոխությունը $1 էջում նշվել է ստուգված",
-	"markedaspatrollederrornotify": "Ստուգված նշել չհաջողվեց։",
 	"patrol-log-page": "Պարեկման տեղեկամատյան",
 	"confirm-markpatrolled-button": "Լավ",
 	"deletedrevision": "Ջնջված է հին տարբերակը $1",

@@ -2786,7 +2786,6 @@
 	"markedaspatrollederrortext": "Tu nesesa spesifa cual revisa tu vole marca como patruliada.",
 	"markedaspatrollederror-noautopatrol": "Tu no es permeteda a marca tua propre cambias como patruliada.",
 	"markedaspatrollednotify": "Esta cambia a $1 es marcada como patruliada.",
-	"markedaspatrollederrornotify": "La marca como patruliada ia fali.",
 	"patrol-log-page": "Arcivo de patrulias",
 	"patrol-log-header": "Esta es un rejistra de revisas patruliada.",
 	"confirm-markpatrolled-button": "Oce",

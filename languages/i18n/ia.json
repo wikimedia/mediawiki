@@ -2970,7 +2970,6 @@
 	"markedaspatrollederrortext": "Tu debe specificar un version a marcar como patruliate.",
 	"markedaspatrollederror-noautopatrol": "Tu non es permittite a marcar tu proprie modificationes como patruliate.",
 	"markedaspatrollednotify": "Iste modification de $1 ha essite marcate como patruliate.",
-	"markedaspatrollederrornotify": "Le marcar como patruliate ha fallite.",
 	"patrol-log-page": "Registro de patrulia",
 	"patrol-log-header": "Isto es un registro de versiones patruliate.",
 	"confirm-markpatrolled-button": "OK",

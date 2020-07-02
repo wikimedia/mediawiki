@@ -2686,7 +2686,6 @@
 	"markedaspatrollederrortext": "你需要指定一個修訂用嚟將佢標示做已巡查嘅。",
 	"markedaspatrollederror-noautopatrol": "你係唔准去標示你自己嘅更改做已巡查嘅。",
 	"markedaspatrollednotify": "$1 嘅呢次修改已經標做睇過。",
-	"markedaspatrollederrornotify": "標做睇過失敗。",
 	"patrol-log-page": "巡查日誌",
 	"patrol-log-header": "呢個係已經巡查過嘅日誌。",
 	"confirm-markpatrolled-button": "好",

@@ -2702,7 +2702,6 @@
 	"markedaspatrollederrortext": "गस्त घातल्याची खूण करण्याकरिता तुम्हाला एक आवर्तन नमूद करावे लागेल.",
 	"markedaspatrollederror-noautopatrol": "तुम्हाला स्वत:च्याच बदलांवर गस्त घातल्याची खूण करण्याची परवानगी नाही.",
 	"markedaspatrollednotify": "$1 वरील बदल 'पहारा दिला' म्हणून अंकित केले आहेत.",
-	"markedaspatrollederrornotify": "'पहारा दिला' म्हणून अंकित करणे विफल झाले.",
 	"patrol-log-page": "टेहळणीतील नोंदी",
 	"patrol-log-header": "ही पाहणीनंतरच्या निरीक्षणाची नोंद आहे.",
 	"confirm-markpatrolled-button": "ठीक आहे",

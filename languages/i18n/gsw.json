@@ -2396,7 +2396,6 @@
 	"markedaspatrollederrortext": "Du muesch e Syteänderig uswehle.",
 	"markedaspatrollederror-noautopatrol": "S isch nit erlaubt, eigeni Bearbeitige as kontrolliert z markiere.",
 	"markedaspatrollednotify": "Die Änderig an $1 isch as kontrolliert markiert wore.",
-	"markedaspatrollederrornotify": "D Markierig als kontrolliert isch nid glunge.",
 	"patrol-log-page": "Kontroll-Logbuech",
 	"patrol-log-header": "Des isch s Kontroll-Logbuech.",
 	"deletedrevision": "alti Version: $1",

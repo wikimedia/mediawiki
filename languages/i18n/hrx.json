@@ -2192,7 +2192,6 @@
 	"markedaspatrollederrortext": "Du musst en Seiteännrung auswähle.",
 	"markedaspatrollederror-noautopatrol": "Es ist net erlaubt, eichne Beoorbeitunge als wie kontrolliert zu markiere.",
 	"markedaspatrollednotify": "Die Ännrung an $1 woard als wie kontrolliert markiert.",
-	"markedaspatrollederrornotify": "Der Versuch, die Version als wie kontrolliert se markiere, ist fehlgeschlooht.",
 	"patrol-log-page": "Kontroll-Logbuch",
 	"patrol-log-header": "Das ist das Kontroll-Logbuch.",
 	"deletedrevision": "alte Version $1 abgewischt",

@@ -2619,7 +2619,6 @@
 	"markedaspatrollederrortext": "Ye need tae speceefie ae reveesion tae maurk aes patrowed.",
 	"markedaspatrollederror-noautopatrol": "Ye'r na permitit tae maurk yer ain chynges aes patrowed.",
 	"markedaspatrollednotify": "This chynge til $1 haes been maurked aes patrowed.",
-	"markedaspatrollederrornotify": "Maurking aes patrowed failed.",
 	"patrol-log-page": "Patrow log",
 	"patrol-log-header": "This is ae log o patrowed reveesions.",
 	"confirm-markpatrolled-button": "OK",

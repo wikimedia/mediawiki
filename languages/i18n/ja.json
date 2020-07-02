@@ -3117,7 +3117,6 @@
 	"markedaspatrollederrortext": "巡回済みにするには、版を指定する必要があります。",
 	"markedaspatrollederror-noautopatrol": "あなたには自分の編集を巡回済みにする権限がありません。",
 	"markedaspatrollednotify": "$1 へのこの変更を巡回済みにしました。",
-	"markedaspatrollederrornotify": "巡回済みにするのに失敗しました。",
 	"patrol-log-page": "巡回記録",
 	"patrol-log-header": "以下は巡回された版の記録です。",
 	"confirm-markpatrolled-button": "OK",

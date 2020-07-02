@@ -2318,7 +2318,6 @@
 	"rcpatroldisabledtext": "د وروستني بدلونونو څارنې ځانتيا دم گړۍ ناچارنه شوې.",
 	"markedaspatrollederror": "د څارل شوي په توگه نه په نښه کېږي",
 	"markedaspatrollednotify": "$1 کې دا بدلون د څارل شوي په توگه په نښه شوی.",
-	"markedaspatrollederrornotify": "د څارل شوي په توگه په نښه کول نابريال شو.",
 	"patrol-log-page": "د څارنې يادښت",
 	"patrol-log-header": "دا د څارل شويو مخکتنو يو يادښت دی.",
 	"confirm-markpatrolled-button": "ښه",

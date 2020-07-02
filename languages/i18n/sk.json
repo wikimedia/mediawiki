@@ -3007,7 +3007,6 @@
 	"markedaspatrollederrortext": "Musíte zvoliť revíziu, ktorá má byť označená ako preverená.",
 	"markedaspatrollederror-noautopatrol": "Nemáte povolené označovať vlastné úpravy ako preverené.",
 	"markedaspatrollednotify": "Táto úprava stránky $1 bola označená ako preverená.",
-	"markedaspatrollederrornotify": "Nepodarilo sa označiť ako preverené.",
 	"patrol-log-page": "Záznam preverených úprav",
 	"patrol-log-header": "Toto je záznam preverených revízií.",
 	"confirm-markpatrolled-button": "OK",

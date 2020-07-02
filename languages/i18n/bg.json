@@ -3037,7 +3037,6 @@
 	"markedaspatrollederrortext": "Необходимо е да се посочи редакция, която да бъде отбелязана като патрулирана.",
 	"markedaspatrollederror-noautopatrol": "Не е разрешено да маркирате своите редакции като патрулирани.",
 	"markedaspatrollednotify": "Редакцията на $1 беше отбелязана като патрулирана.",
-	"markedaspatrollederrornotify": "Неуспешно отбелязване на редакция като патрулирана.",
 	"patrol-log-page": "Дневник на патрула",
 	"patrol-log-header": "Тази страница е дневник на патрулираните версии.",
 	"confirm-markpatrolled-button": "Добре",

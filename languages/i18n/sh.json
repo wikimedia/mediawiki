@@ -2945,7 +2945,6 @@
 	"markedaspatrollederrortext": "Morate naglasiti reviziju koju treba označiti kao patroliranu.",
 	"markedaspatrollederror-noautopatrol": "Ne možete da označite svoje izmene patroliranim.",
 	"markedaspatrollednotify": "Ova izmjena stranice $1 označena je kao patrolirana.",
-	"markedaspatrollederrornotify": "Nije uspjelo označavanje ove stranice kao patrolirane.",
 	"patrol-log-page": "Evidencija patroliranja",
 	"patrol-log-header": "Ovdje se nalazi evidencija patroliranih revizija.",
 	"confirm-markpatrolled-button": "U redu",

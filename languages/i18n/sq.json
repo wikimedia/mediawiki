@@ -2643,7 +2643,6 @@
 	"markedaspatrollederrortext": "Duhet të përcaktoni versionin për tu shënuar i patrulluar.",
 	"markedaspatrollederror-noautopatrol": "Ju nuk lejoheni të shënoni ndryshimet tuaj si të patrolluara.",
 	"markedaspatrollednotify": "Ky ndryshim i $1 është shënuar si i patrulluar.",
-	"markedaspatrollederrornotify": "Shënimi si i patrulluar dështoi.",
 	"patrol-log-page": "Regjistri i patrollimeve",
 	"patrol-log-header": "Këto janë të dhëna të revizioneve të patrulluara.",
 	"confirm-markpatrolled-button": "Në rregull",

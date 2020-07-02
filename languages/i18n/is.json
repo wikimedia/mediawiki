@@ -2762,7 +2762,6 @@
 	"markedaspatrollederrortext": "Þú verður að velja breytingu til að merkja sem yfirfarið.",
 	"markedaspatrollederror-noautopatrol": "Þú hefur ekki réttindi til að merkja eigin breytingar sem yfirfarnar.",
 	"markedaspatrollednotify": "Þessi breyting á $1 hefur verið merkt sem yfirfarin.",
-	"markedaspatrollederrornotify": "Mistókst að merkja síðuna sem yfirfarna.",
 	"patrol-log-page": "Yfirferðarskrá",
 	"patrol-log-header": "Þetta er skrá yfir yfirfarnar breytingar.",
 	"confirm-markpatrolled-button": "Í lagi",

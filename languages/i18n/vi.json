@@ -3015,7 +3015,6 @@
 	"markedaspatrollederrortext": "Bạn phải chọn phiên bản để đánh dấu tuần tra.",
 	"markedaspatrollederror-noautopatrol": "Bạn không được đánh dấu tuần tra vào sửa đổi của bạn.",
 	"markedaspatrollednotify": "Đã được đánh dấu tuần tra vào thay đổi tại $1.",
-	"markedaspatrollederrornotify": "Đánh dấu tuần tra bị thất bại.",
 	"patrol-log-page": "Nhật trình tuần tra",
 	"patrol-log-header": "Đây là nhật trình tuần tra phiên bản.",
 	"confirm-markpatrolled-button": "OK",

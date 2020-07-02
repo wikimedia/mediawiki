@@ -2805,7 +2805,6 @@
 	"markedaspatrollederrortext": "Jums reikia nurodyti versiją, kurią pažymėti kaip patikrintą.",
 	"markedaspatrollederror-noautopatrol": "Jums neleidžiama pažymėti savo paties keitimų kaip patikrintų.",
 	"markedaspatrollednotify": "$1 keitimas pažymėtas patikrintu.",
-	"markedaspatrollederrornotify": "Nepavyko pažymėti kaip patikrinto.",
 	"patrol-log-page": "Patikrinimų sąrašas",
 	"patrol-log-header": "Tai patvirtintų versijų sąrašas.",
 	"confirm-markpatrolled-button": "GERAI",

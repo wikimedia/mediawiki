@@ -3145,7 +3145,6 @@
 	"markedaspatrollederrortext": "Você precisa de especificar uma revisão para poder marcar como verificado.",
 	"markedaspatrollederror-noautopatrol": "Você não está autorizado a marcar suas próprias edições como edições patrulhadas.",
 	"markedaspatrollednotify": "Esta alteração em $1 foi marcada como patrulhada.",
-	"markedaspatrollederrornotify": "Falha ao marcar como patrulhada.",
 	"patrol-log-page": "Registro de edições patrulhadas",
 	"patrol-log-header": "Este é um registro de edições patrulhadas.",
 	"confirm-markpatrolled-button": "OK",

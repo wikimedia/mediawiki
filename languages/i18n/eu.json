@@ -2971,7 +2971,6 @@
 	"markedaspatrollederrortext": "Patruilatutzat markatzeko berrikuspen bat hautatu behar duzu.",
 	"markedaspatrollederror-noautopatrol": "Ez daukazu zeure aldaketak patruilatutzat markatzeko baimenik.",
 	"markedaspatrollednotify": "«$1» orriari egindako aldaketa patruilatutzat markatu da.",
-	"markedaspatrollederrornotify": "Patruilatu gisa markatzean akatsa egon da.",
 	"patrol-log-page": "Patrullatze loga",
 	"patrol-log-header": "Hau patruliatutako aldaketen log bat da.",
 	"confirm-markpatrolled-button": "Ados",

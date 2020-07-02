@@ -3082,7 +3082,6 @@
 	"markedaspatrollederrortext": "É necessário especificar uma edição a ser marcada como patrulhada.",
 	"markedaspatrollederror-noautopatrol": "Não está autorizado a marcar as suas próprias edições como edições patrulhadas.",
 	"markedaspatrollednotify": "Esta mudança em $1 foi marcada como patrulhada.",
-	"markedaspatrollederrornotify": "A marcação como patrulhada falhou.",
 	"patrol-log-page": "Registo de edições patrulhadas",
 	"patrol-log-header": "Este é um registo de edições patrulhadas.",
 	"confirm-markpatrolled-button": "OK",

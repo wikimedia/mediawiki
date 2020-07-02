@@ -3013,7 +3013,6 @@
 	"markedaspatrollederrortext": "Meg kell adnod egy ellenőrzöttként megjelölt változatot.",
 	"markedaspatrollederror-noautopatrol": "A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.",
 	"markedaspatrollednotify": "$1 változtatása ellenőrzöttnek lett jelölve.",
-	"markedaspatrollederrornotify": "Nem sikerült ellenőrzöttnek jelölni.",
 	"patrol-log-page": "Ellenőrzési napló (patrol)",
 	"patrol-log-header": "Ez az ellenőrzött változatok naplója.",
 	"confirm-markpatrolled-button": "OK",

@@ -3047,7 +3047,6 @@
 	"markedaspatrollederrortext": "Cal que especifiqueu una versió per a marcar-la com a supervisada.",
 	"markedaspatrollederror-noautopatrol": "No podeu marcar les vostres pròpies modificacions com a supervisades.",
 	"markedaspatrollednotify": "Aquesta modificació a $1 ha estat marcada com a patrullada.",
-	"markedaspatrollederrornotify": "Ha fallat la marca com a patrullat.",
 	"patrol-log-page": "Registre de supervisió",
 	"patrol-log-header": "Això és un registre de les revisions patrullades.",
 	"confirm-markpatrolled-button": "D'acord",
