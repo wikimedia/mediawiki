@@ -2161,7 +2161,7 @@ return [
 	],
 	'mediawiki.special.userlogin.signup.styles' => [
 		'styles' => [
-			'resources/src/mediawiki.special.userlogin.signup.styles/signup.css',
+			'resources/src/mediawiki.special.userlogin.signup.styles/signup.less',
 		],
 	],
 	'mediawiki.special.userrights' => [
