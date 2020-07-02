@@ -73,8 +73,8 @@ class InstallerExtensionRegistration {
 			!empty( $extJsonOptions['AutoloadClasses'] )
 			&& is_array( $extJsonOptions['AutoloadClasses'] )
 		) {
-			foreach ( $extJsonOptions['AutoloadClasses'] as $extensionName => $path ) {
-				$wgAutoloadLocalClasses[$extensionName] = "$extPath/$path";
+			foreach ( $extJsonOptions['AutoloadClasses'] as $className => $fileName ) {
+				$wgAutoloadLocalClasses[$className] = "$extPath/$fileName";
 			}
 		}
 	}
