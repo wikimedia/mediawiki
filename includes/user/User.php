@@ -2409,61 +2409,6 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Set the password and reset the random token.
-	 * Calls through to authentication plugin if necessary;
-	 * will have no effect if the auth plugin refuses to
-	 * pass the change through or if the legal password
-	 * checks fail.
-	 *
-	 * As a special case, setting the password to null
-	 * wipes it, so the account cannot be logged in until
-	 * a new password is set, for instance via e-mail.
-	 *
-	 * @deprecated since 1.27, use AuthManager instead
-	 * @param string $str New password to set
-	 * @throws PasswordError On failure
-	 * @return bool
-	 */
-	public function setPassword( $str ) {
-		wfDeprecated( __METHOD__, '1.27' );
-		return $this->setPasswordInternal( $str );
-	}
-
-	/**
-	 * Actually set the password and such
-	 * @since 1.27 cannot set a password for a user not in the database
-	 * @param string|null $str New password to set or null to set an invalid
-	 *  password hash meaning that the user will not be able to log in
-	 *  through the web interface.
-	 * @return bool Success
-	 */
-	private function setPasswordInternal( $str ) {
-		$manager = MediaWikiServices::getInstance()->getAuthManager();
-
-		// If the user doesn't exist yet, fail
-		if ( !$manager->userExists( $this->getName() ) ) {
-			throw new LogicException( 'Cannot set a password for a user that is not in the database.' );
-		}
-
-		$status = $this->changeAuthenticationData( [
-			'username' => $this->getName(),
-			'password' => $str,
-			'retype' => $str,
-		] );
-		if ( !$status->isGood() ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
-				->info( __METHOD__ . ': Password change rejected: '
-					. $status->getWikiText( null, null, 'en' ) );
-			return false;
-		}
-
-		$this->setOption( 'watchlisttoken', false );
-		SessionManager::singleton()->invalidateSessionsForUser( $this );
-
-		return true;
-	}
-
-	/**
 	 * Changes credentials of the user.
 	 *
 	 * This is a convenience wrapper around AuthManager::changeAuthenticationData.
