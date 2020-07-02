@@ -195,7 +195,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	public function testDoEditUpdates_revision() {
 		$this->hideDeprecated( 'WikiPage::doEditUpdates with a Revision object' );
-		$this->hideDeprecated( 'Revision::__construct with an array' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 
 		$user = $this->getTestUser()->getUser();
 
@@ -288,6 +289,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
 		$this->hideDeprecated( 'Revision::getSha1' );
 		$this->hideDeprecated( 'Revision::getContent' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getId' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'WikiPage::prepareContentForEdit with a Revision object' );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
@@ -779,6 +783,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetRevision() {
 		$this->hideDeprecated( 'Revision::getContent' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getId' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$page = $this->newPage( __METHOD__ );
@@ -1179,6 +1185,8 @@ more stuff
 	 * @covers WikiPage::getOldestRevision
 	 */
 	public function testGetOldestRevision() {
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getId' );
 		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
@@ -1226,6 +1234,8 @@ more stuff
 	public function testDoRollback() {
 		$this->hideDeprecated( 'Revision::countByPageId' );
 		$this->hideDeprecated( 'Revision::getUserText' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
 
@@ -1319,6 +1329,7 @@ more stuff
 	 */
 	public function testDoRollbackFailureSameContent() {
 		$this->hideDeprecated( 'Revision::getSha1' );
+		$this->hideDeprecated( 'Revision::__construct' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 
 		$admin = $this->getTestSysop()->getUser();
@@ -1931,6 +1942,7 @@ more stuff
 		$expectedComment
 	) {
 		$this->hideDeprecated( 'Revision::getComment' );
+		$this->hideDeprecated( 'Revision::__construct' );
 		$this->hideDeprecated( 'WikiPage::insertProtectNullRevision' );
 		$this->setContentLang( 'qqx' );
 
@@ -1957,7 +1969,9 @@ more stuff
 	public function testUpdateRevisionOn_existingPage() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( 'WikiPage::updateRevisionOn with a Revision object' );
-		$this->hideDeprecated( 'Revision::__construct with an array' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
+		$this->hideDeprecated( 'Revision::getId' );
 
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
@@ -1990,7 +2004,9 @@ more stuff
 	 */
 	public function testUpdateRevisionOn_NonExistingPage() {
 		$this->hideDeprecated( 'WikiPage::updateRevisionOn with a Revision object' );
-		$this->hideDeprecated( 'Revision::__construct with an array' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
+		$this->hideDeprecated( 'Revision::getId' );
 
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
@@ -2021,7 +2037,8 @@ more stuff
 	 * @covers WikiPage::updateIfNewerOn
 	 */
 	public function testUpdateIfNewerOn_olderRevision() {
-		$this->hideDeprecated( 'Revision::__construct with an array' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 		$this->hideDeprecated( 'WikiPage::updateIfNewerOn' );
 
 		$user = $this->getTestSysop()->getUser();
@@ -2058,7 +2075,8 @@ more stuff
 	 * @covers WikiPage::updateIfNewerOn
 	 */
 	public function testUpdateIfNewerOn_newerRevision() {
-		$this->hideDeprecated( 'Revision::__construct with an array' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 		$this->hideDeprecated( 'WikiPage::updateIfNewerOn' );
 
 		$user = $this->getTestSysop()->getUser();
@@ -2452,6 +2470,8 @@ more stuff
 	 */
 	public function testGetDerivedDataUpdater() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 		$admin = $this->getTestSysop()->getUser();
 
 		/** @var object $page */

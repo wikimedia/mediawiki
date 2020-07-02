@@ -176,6 +176,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCreateRevision() {
 		$this->hideDeprecated( 'ContribsPager::tryToCreateValidRevision' );
+		$this->hideDeprecated( 'Revision::__construct' );
 
 		$pager = new ContribsPager( new RequestContext(), [
 			'target' => '116.17.184.5/32',
