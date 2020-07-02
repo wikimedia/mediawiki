@@ -46,6 +46,7 @@ class BenchIfSwitch extends Benchmarker {
 
 	/**
 	 * bench function 1
+	 * @suppress PhanSuspiciousValueComparison
 	 */
 	protected function doElseIf() {
 		$a = 'z';

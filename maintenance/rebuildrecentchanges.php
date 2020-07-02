@@ -391,6 +391,7 @@ class RebuildRecentchanges extends Maintenance {
 			->getGroupsWithPermission( 'autopatrol' ) : [];
 
 		# Flag our recent bot edits
+		// @phan-suppress-next-line PhanRedundantCondition
 		if ( $botgroups ) {
 			$this->output( "Flagging bot account edits...\n" );
 

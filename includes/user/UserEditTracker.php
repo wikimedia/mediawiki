@@ -108,7 +108,7 @@ class UserEditTracker {
 			[ 'user_editcount' => $count ],
 			[
 				'user_id' => $user->getId(),
-				'user_editcount IS NULL OR user_editcount < ' . (int)$count
+				'user_editcount IS NULL OR user_editcount < ' . $count
 			],
 			__METHOD__
 		);

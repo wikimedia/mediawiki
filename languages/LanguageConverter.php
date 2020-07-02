@@ -744,12 +744,13 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$out = '';
 		$length = strlen( $text );
 		$shouldConvert = !$this->guessVariant( $text, $variant );
-		$continue = 1;
+		$continue = true;
 
 		$noScript = '<script.*?>.*?<\/script>(*SKIP)(*FAIL)';
 		$noStyle = '<style.*?>.*?<\/style>(*SKIP)(*FAIL)';
 		// phpcs:ignore Generic.Files.LineLength
 		$noHtml = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)(*SKIP)(*FAIL)';
+		// @phan-suppress-next-line PhanRedundantConditionInLoop
 		while ( $startPos < $length && $continue ) {
 			$continue = preg_match(
 				// Only match -{ outside of html.
