@@ -67,19 +67,19 @@ class InstallerDBSupport {
 			'installer' => MysqlInstaller::class,
 			'updater' => MysqlUpdater::class,
 			'driver' => DatabaseMysqli::class,
-			'extension' => 'core'
+			'extension' => null
 		],
 		'postgres' => [
 			'installer' => PostgresInstaller::class,
 			'updater' => PostgresUpdater::class,
 			'driver' => DatabasePostgres::class,
-			'extension' => 'core'
+			'extension' => null
 		],
 		'sqlite' => [
 			'installer' => SqliteInstaller::class,
 			'updater' => SqliteUpdater::class,
 			'driver' => DatabaseSqlite::class,
-			'extension' => 'core'
+			'extension' => null
 		]
 	];
 
@@ -296,7 +296,7 @@ class InstallerDBSupport {
 	 */
 	public function getExtensionNameForDatabase(
 		string $database
-	): string {
+	): ?string {
 		if ( !isset( $this->databaseInfo[strtolower( $database )] ) ) {
 			throw new InvalidArgumentException( __METHOD__ .
 				" no registered database found for type '$database'" );
