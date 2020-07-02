@@ -3086,7 +3086,6 @@
 	"markedaspatrollederrortext": "Ви повинні зазначити версію, яка буде позначена як перевірена.",
 	"markedaspatrollederror-noautopatrol": "Вам не дозволено позначати власні редагування як перевірені.",
 	"markedaspatrollednotify": "Цю зміну у «$1» було позначено як відпатрульовану.",
-	"markedaspatrollederrornotify": "Не вдалося поставити позначку про патрулювання.",
 	"patrol-log-page": "Журнал патрулювання",
 	"patrol-log-header": "Це журнал перевірених змін.",
 	"confirm-markpatrolled-button": "OK",

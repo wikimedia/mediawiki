@@ -2836,7 +2836,6 @@
 	"markedaspatrollederrortext": "თქვენ უნდა მონიშნოთ ვერსია, რომელიც პატრულირებულად ჩაითვლება.",
 	"markedaspatrollederror-noautopatrol": "თქვენ ვერ მონიშნავთ თქვენივე შესწორებებს პატრულირებულად.",
 	"markedaspatrollednotify": "ეს ცვლილება გვერდზე „$1“ პატრულირებულად მოინიშნა.",
-	"markedaspatrollederrornotify": "პატრულირებულად მონიშვნა ვერ მოხერხდა.",
 	"patrol-log-page": "პატრულირების ჟურნალი",
 	"patrol-log-header": "ეს არის პატრულირებულ ვერსიათა ჟურნალი.",
 	"confirm-markpatrolled-button": "კარგი",

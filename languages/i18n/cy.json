@@ -2651,7 +2651,6 @@
 	"markedaspatrollederrortext": "Rhaid nodi'r union olygiad sydd angen marc ymweliad patrôl.",
 	"markedaspatrollederror-noautopatrol": "Ni chaniateir i chi farcio'ch newidiadau eich hunan fel rhai derbyniol.",
 	"markedaspatrollednotify": "Nodwyd bod y newid hwn i $1 wedi derbyn ymweliad patrôl.",
-	"markedaspatrollederrornotify": "Methwyd rhoi marc ymweliad patrôl arni.",
 	"patrol-log-page": "Lòg patrolio",
 	"patrol-log-header": "Mae'r lòg hwn yn dangos y golygiadau sydd wedi derbyn ymweliad patrôl.",
 	"confirm-markpatrolled-button": "Iawn",

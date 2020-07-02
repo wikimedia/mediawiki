@@ -3001,7 +3001,6 @@
 	"markedaspatrollederrortext": "পরীক্ষিত বলে চিহ্নিত করতে আপনাকে একটি সংস্করণ নির্দিষ্ট  করতে হবে।",
 	"markedaspatrollederror-noautopatrol": "আপনার নিজের পাতাকে পরীক্ষিত বলে চিহ্নিত করার অনুমতি আপনার নেই।",
 	"markedaspatrollednotify": "$1 এর পরিবর্তন পরীক্ষিত হিসাবে চিহ্নিত করা হয়েছে।",
-	"markedaspatrollederrornotify": "পরীক্ষিত হিসাবে চিহ্নিত করতে ব্যর্থ।",
 	"patrol-log-page": "পরীক্ষণ লগ",
 	"patrol-log-header": "এটি যাচাইকৃত রিভিশনের তালিকা।",
 	"confirm-markpatrolled-button": "ঠিক আছে",

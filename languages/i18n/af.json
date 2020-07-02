@@ -2413,7 +2413,6 @@
 	"markedaspatrollederrortext": "U moet 'n weergawe spesifiseer om as gekontroleerd te merk.",
 	"markedaspatrollederror-noautopatrol": "U kan nie u eie veranderinge as gekontroleerd merk nie.",
 	"markedaspatrollednotify": "Hierdie wysiging aan $1 is as gekontroleerd gemerk.",
-	"markedaspatrollederrornotify": "Merk as gekontroleerd het misluk.",
 	"patrol-log-page": "Kontroleringslogboek",
 	"patrol-log-header": "Die logboek wys weergawes wat as gekontroleer gemerk is.",
 	"confirm-markpatrolled-button": "OK",

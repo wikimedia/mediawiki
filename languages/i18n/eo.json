@@ -3021,7 +3021,6 @@
 	"markedaspatrollederrortext": "Vi devas specifi version por marki kiel pripatrolitan.",
 	"markedaspatrollederror-noautopatrol": "Vi ne rajtas marki viajn proprajn ŝanĝojn kiel pripatrolitajn.",
 	"markedaspatrollednotify": "Ĉi tiun ŝanĝon al $1 markis kiel pripatrolitan.",
-	"markedaspatrollederrornotify": "Malsukcesis marki la dosieron kiel pripatrolitan.",
 	"patrol-log-page": "Protokolo pri patrolado",
 	"patrol-log-header": "Jen protokolo de pripatrolitaj versioj.",
 	"confirm-markpatrolled-button": "Ek!",

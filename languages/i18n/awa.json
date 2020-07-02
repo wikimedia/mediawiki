@@ -2991,7 +2991,6 @@
 	"markedaspatrollederrortext": "जाँचा हुआ चिन्हित करने के लिये आपको एक अवतरण चुनना होगा।",
 	"markedaspatrollederror-noautopatrol": "आपको अपने बदलाव परीक्षित करने की अनुमति नहीं है।",
 	"markedaspatrollednotify": "$1 पृष्ठ में किया गया ये बदलाव जाँचा हुआ चिन्हित कर दिया गया है।",
-	"markedaspatrollederrornotify": "जाँचा हुआ चिन्हित करना असफल रहा।",
 	"patrol-log-page": "परीक्षण लॉग",
 	"patrol-log-header": "यह परीक्षित अवतरणों की लॉग है।",
 	"confirm-markpatrolled-button": "ठीक है",

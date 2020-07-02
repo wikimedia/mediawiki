@@ -3040,7 +3040,6 @@
 	"markedaspatrollederrortext": "Du må spesifisere en versjon å merke som patruljert.",
 	"markedaspatrollederror-noautopatrol": "Du har ikke lov å merke dine egne endringer som patruljerte.",
 	"markedaspatrollednotify": "Denne endringen av $1 har blitt patruljert.",
-	"markedaspatrollederrornotify": "Patruljering feilet.",
 	"patrol-log-page": "Patruljeringslogg",
 	"patrol-log-header": "Dette er en logg over patruljerte sideversjoner.",
 	"confirm-markpatrolled-button": "OK",

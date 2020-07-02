@@ -2441,7 +2441,6 @@
 	"markedaspatrollederrortext": "دەبێ پێداچوونەوەیەک دەستنیشان بکەی ھەتا وەک پاس دراو نیشان بکرێ.",
 	"markedaspatrollederror-noautopatrol": "ناتوانی گۆڕانکارییەکانی خۆت وەک پاس دراو نیشان بکەی.",
 	"markedaspatrollednotify": "ئەم گۆڕانکارییە لەسەر $1 وەک پاس دراو نیشان کرا.",
-	"markedaspatrollederrornotify": "نیشانکردن وەک پاس دراو سەرکەوتوو نەبوو.",
 	"patrol-log-page": "لۆگی پاسدان",
 	"patrol-log-header": "ئەمە لۆگێکی پێداچوونەوە پاس دراوەکانە.",
 	"confirm-markpatrolled-button": "باشە",

@@ -2058,7 +2058,6 @@
 	"markedaspatrollederrortext": "Tú mást velja eina versjón fyri at merkja hana sum eftirhugda.",
 	"markedaspatrollederror-noautopatrol": "Tú hevur ikki loyvi til at merkja tína egnu broyting sum kannaða.",
 	"markedaspatrollednotify": "Henda broytingin til $1 er blivið merkt sum eftirkannað.",
-	"markedaspatrollederrornotify": "Tað miseydnaðist at merkja sum eftirkannað.",
 	"patrol-log-page": "Eftirlitsloggur",
 	"patrol-log-header": "Hetta er ein loggur yvir patruljeraðum síðuversjónum.",
 	"deletedrevision": "Slettaði gamla síðuversjón $1",

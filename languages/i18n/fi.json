@@ -3046,7 +3046,6 @@
 	"markedaspatrollederrortext": "Tarkastetuksi merkittävää versiota ei ole määritelty.",
 	"markedaspatrollederror-noautopatrol": "Et voi merkitä omia muutoksiasi tarkastetuiksi.",
 	"markedaspatrollednotify": "Tämä muutos sivuun $1 on merkitty tarkastetuksi.",
-	"markedaspatrollederrornotify": "Tarkastetuksi merkitseminen epäonnistui.",
 	"patrol-log-page": "Muutostentarkastusloki",
 	"patrol-log-header": "Tämä on loki tarkastetuista muutoksista.",
 	"confirm-markpatrolled-button": "OK",

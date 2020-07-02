@@ -2314,7 +2314,6 @@
 	"markedaspatrollederrortext": "Мусите зволити ревізію, котра має быти означена як перевірена.",
 	"markedaspatrollederror-noautopatrol": "Не маєте дозволене означовати властны едітованя як перевірены.",
 	"markedaspatrollednotify": "Гевся зміна сторінкы $1 была означена як одпратролована.",
-	"markedaspatrollederrornotify": "Не вдало ся поставити позначку про патролёваня",
 	"patrol-log-page": "Книга перевіреных едітовань",
 	"patrol-log-header": "Тото є книга перевіреных верзій.",
 	"deletedrevision": "Змазана стара ревізія $1",

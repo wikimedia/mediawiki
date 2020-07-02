@@ -2529,7 +2529,6 @@
 	"markedaspatrollederrortext": "Du må markere ein versjon for å kunne godkjenne.",
 	"markedaspatrollederror-noautopatrol": "Ein har ikkje høve til å merkje sine eigne endringar som godkjende.",
 	"markedaspatrollednotify": "Endringa på $1 vart merkt som patruljert.",
-	"markedaspatrollederrornotify": "Det gjekk ikkje å merkja endringa som patruljert.",
 	"patrol-log-page": "Patruljeringslogg",
 	"patrol-log-header": "Dette er ein logg over patruljerte sideversjonar.",
 	"confirm-markpatrolled-top": "Merk versjon $3 av $2 som patruljert?",

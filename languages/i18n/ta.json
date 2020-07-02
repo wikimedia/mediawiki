@@ -2541,7 +2541,6 @@
 	"markedaspatrollederrortext": "ரோந்திட்டதாக குறிக்க நீங்கள் திருத்தமொன்றைக் குறிப்பிட வேண்டும்.",
 	"markedaspatrollederror-noautopatrol": "உமது மாற்றங்களை நீரே ரோந்திட்டதாக குறிக்க அனுமதி கிடையாது.",
 	"markedaspatrollednotify": "$1 இல் மேற்கொள்ளப்பட்ட இம்மாற்றம் கண்காணிக்கப்பட்டதாய்க் குறிக்கப்பட்டது.",
-	"markedaspatrollederrornotify": "சுற்றுக்காவல் தோல்வியடைந்ததாக குறிக்கப்பட்டது.",
 	"patrol-log-page": "சுற்றுக்காவல் பதிகை",
 	"patrol-log-header": "இது ரோந்து செய்யப்பட்ட  பரிசீலனைகளுக்கான  குறிப்பேடு.",
 	"confirm-markpatrolled-button": "சரி",

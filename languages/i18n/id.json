@@ -3070,7 +3070,6 @@
 	"markedaspatrollederrortext": "Anda harus menentukan satu revisi untuk ditandai sebagai yang dipatroli.",
 	"markedaspatrollederror-noautopatrol": "Anda tidak diizinkan menandai suntingan Anda sendiri dipatroli.",
 	"markedaspatrollednotify": "Perubahan ini untuk $1 telah ditandai terpatroli.",
-	"markedaspatrollederrornotify": "Menandai sebagai terpatroli gagal.",
 	"patrol-log-page": "Log patroli",
 	"patrol-log-header": "Ini adalah log revisi terpatroli.",
 	"confirm-markpatrolled-button": "OK",

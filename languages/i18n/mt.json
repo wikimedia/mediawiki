@@ -2294,7 +2294,6 @@
 	"markedaspatrollederrortext": "Int trid tispeċifika r-reviżjoni li trida tkun verifikata.",
 	"markedaspatrollederror-noautopatrol": "Int m'għandhekx id-drittijiet neċessarji biex timmarka l-modifiki tiegħek bħala verifikati.",
 	"markedaspatrollednotify": "Din il-bidla fuq $1 ġiet immarkata bħala verifikata.",
-	"markedaspatrollederrornotify": "L-ivverifikar tal-modifika falla.",
 	"patrol-log-page": "Modifiki verifikati",
 	"patrol-log-header": "Dan huwa reġistru ta' reviżjonijiet verifikati.",
 	"deletedrevision": "Reviżjoni preċedenti, mħassra: $1",

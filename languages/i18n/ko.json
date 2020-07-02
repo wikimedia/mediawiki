@@ -3065,7 +3065,6 @@
 	"markedaspatrollederrortext": "점검한 것으로 표시할 판을 지정해야 합니다.",
 	"markedaspatrollederror-noautopatrol": "자신의 편집은 스스로 점검할 수 없습니다.",
 	"markedaspatrollednotify": "$1에 대한 바뀜을 점검한 것으로 표시했습니다.",
-	"markedaspatrollederrornotify": "점검한 것으로 표시를 실패했습니다.",
 	"patrol-log-page": "점검 기록",
 	"patrol-log-header": "문서 점검에 대한 기록입니다.",
 	"confirm-markpatrolled-button": "확인",

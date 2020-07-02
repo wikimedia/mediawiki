@@ -3159,7 +3159,6 @@
 	"markedaspatrollederrortext": "Вы должны указать версию, которая будет отмечена как проверенная.",
 	"markedaspatrollederror-noautopatrol": "Вам не разрешено отмечать собственные правки как проверенные.",
 	"markedaspatrollednotify": "Это изменение на странице «$1» было отмечено как проверенное.",
-	"markedaspatrollederrornotify": "Отметить изменение как проверенное не удалось.",
 	"patrol-log-page": "Журнал патрулирования",
 	"patrol-log-header": "Это журнал патрулированных версий.",
 	"confirm-markpatrolled-button": "OK",

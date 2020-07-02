@@ -3027,7 +3027,6 @@
 	"markedaspatrollederrortext": "باید یک نسخه را مشخص کنید تا برچسب گشت بخورد.",
 	"markedaspatrollederror-noautopatrol": "شما نمی‌توانید به تغییرات انجام شده توسط خودتان برچسب گشت بزنید.",
 	"markedaspatrollednotify": "این تغییر روی $1 برچسب گشت خورد.",
-	"markedaspatrollederrornotify": "زدن برچسب گشت، ناموفق بود.",
 	"patrol-log-page": "سیاههٔ گشت",
 	"patrol-log-header": "این سیاهه‌ای از ویرایش‌های گشت‌خورده است.",
 	"confirm-markpatrolled-button": "تأیید",

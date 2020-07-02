@@ -2979,7 +2979,6 @@
 	"markedaspatrollederrortext": "Določite redakcijo, ki jo želite označiti kot pregledano.",
 	"markedaspatrollederror-noautopatrol": "Svojih urejanj vam ni dovoljeno označiti kot nadzorovanih.",
 	"markedaspatrollednotify": "Ta sprememba $1 je bila označena kot nadzorovana.",
-	"markedaspatrollederrornotify": "Označevanje kot nadzorovano ni uspelo.",
 	"patrol-log-page": "Dnevnik patrulje",
 	"patrol-log-header": "To je dnevnik nadzorovanih redakcij.",
 	"confirm-markpatrolled-button": "V redu",

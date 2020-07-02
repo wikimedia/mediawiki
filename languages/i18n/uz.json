@@ -1377,7 +1377,6 @@
 	"markaspatrolledtext": "Bu sahifani tekshirilgan deb belgilash",
 	"markedaspatrolledtext": "[[:$1]] sahifasining ushbu versiyasi tekshirilgan deb belgilandi.",
 	"markedaspatrollednotify": "„$1“ sahifasidagi ushbu oʻzgarish tekshirilgan deb belgilandi.",
-	"markedaspatrollederrornotify": "Oʻzgarishni tekshirilgan deb belgilab boʻlmadi.",
 	"patrol-log-page": "Patrullash qaydlari",
 	"previousdiff": "← Avvalgi tahrir",
 	"nextdiff": "Keyingi tahrir →",

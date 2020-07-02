@@ -2385,7 +2385,6 @@
 	"markedaspatrollederrortext": "Тексерілді деп белгілеу үшін түзетуді келтіріңіз.",
 	"markedaspatrollederror-noautopatrol": "Өз жасаған өзгерістеріңізді зерттелді деп белгілей алмайсыз.",
 	"markedaspatrollednotify": "$1 бетіндегі бұл өзгеріс тексерілді деп белгіленді.",
-	"markedaspatrollederrornotify": "Тексерілді деп белгіленбеді.",
 	"patrol-log-page": "Тексеру журналы",
 	"patrol-log-header": "Бұл тексерілген нұсқалар журналы",
 	"deletedrevision": "Ескі түзетуін жойды: $1",

@@ -2818,7 +2818,6 @@
 	"markedaspatrollederrortext": "Morate izabrati izmjenu koju želite označiti patroliranom.",
 	"markedaspatrollederror-noautopatrol": "Nije Vam dopušteno da vlastite izmjene označavate patroliranim.",
 	"markedaspatrollednotify": "Ova izmjena na stranici $1 označena je kao patrolirana.",
-	"markedaspatrollederrornotify": "Označavanje stranice pregledanom nije uspjelo.",
 	"patrol-log-page": "Zapisnik patroliranja",
 	"patrol-log-header": "Ovo je zapisnik patroliranih izmjena.",
 	"confirm-markpatrolled-button": "U redu",

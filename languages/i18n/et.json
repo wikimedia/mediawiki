@@ -3025,7 +3025,6 @@
 	"markedaspatrollederrortext": "Vajalik on määrata, milline versioon märkida kontrollituks.",
 	"markedaspatrollederror-noautopatrol": "Sul pole lubatud enda muudatusi kontrollituks märkida.",
 	"markedaspatrollednotify": "See muudatus leheküljel $1 on märgitud kontrollituks.",
-	"markedaspatrollederrornotify": "Kontrollituks märkimine ebaõnnestus.",
 	"patrol-log-page": "Kontrollimislogi",
 	"patrol-log-header": "See on kontrollitud redaktsioonide logi.",
 	"confirm-markpatrolled-button": "Sobib",

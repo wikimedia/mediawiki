@@ -2699,7 +2699,6 @@
 	"markedaspatrollederrortext": "Vos cal seleccionar una version per poder la marcar coma pas vandalizada.",
 	"markedaspatrollederror-noautopatrol": "Avètz pas lo dreit de marcar vòstras pròprias modificacions coma susvelhadas.",
 	"markedaspatrollednotify": "Aquesta modificacion de $1 es estada marcada coma relegida.",
-	"markedaspatrollederrornotify": "Fracàs del marcatge coma contrarotlat.",
 	"patrol-log-page": "Istoric de las versions patrolhadas",
 	"patrol-log-header": "Vaquí un jornal de las versions patrolhadas.",
 	"confirm-markpatrolled-button": "D'acòrdi",

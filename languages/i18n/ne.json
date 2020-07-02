@@ -2569,7 +2569,6 @@
 	"markedaspatrollederrortext": "गस्ती गरिएको भनि चिनो लगाउनको निम्ती संस्करण खुलाउनु पर्छ ।",
 	"markedaspatrollederror-noautopatrol": "तपाईं आफ्नै सम्पादनलाई गस्ती गरिएको भनि चिनो लगाउन सक्नुहुन्न ।",
 	"markedaspatrollednotify": "$1 मा गरिएको यो परिवर्तनलाई गस्ति गरिएको चिन्ह लगाइएको छ ।",
-	"markedaspatrollederrornotify": "गस्ती अङ्कित गर्न विफल।",
 	"patrol-log-page": "निगरानीको लग",
 	"patrol-log-header": "गस्ती गरिएका संस्करणहरूको लग यस प्रकार रहेका छन् ।",
 	"confirm-markpatrolled-button": "ठीक छ",

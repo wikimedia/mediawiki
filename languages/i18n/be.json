@@ -2887,7 +2887,6 @@
 	"markedaspatrollederrortext": "Трэба паказаць тую версію, якую жадаеце пазначыць ухваленай.",
 	"markedaspatrollederror-noautopatrol": "Вам не дазволена значыць уласныя праўкі як ухваленыя.",
 	"markedaspatrollednotify": "Змена ў $1 пазначана як ухваленая.",
-	"markedaspatrollederrornotify": "Не ўдалося пазначыць як ухваленую.",
 	"patrol-log-page": "Журнал ухваленых",
 	"patrol-log-header": "Журнал ухваленых версій",
 	"confirm-markpatrolled-button": "Добра",

@@ -2951,7 +2951,6 @@
 	"markedaspatrollederrortext": "Πρέπει να ορίσετε μια αναθεώρηση για να σημανθεί ως υπό περιπολία",
 	"markedaspatrollederror-noautopatrol": "Δεν επιτρέπεται να σημάνετε τις δικές σας αλλάγες ως υπό περιπολία.",
 	"markedaspatrollednotify": "Αυτή η αλλαγή σε $1 έχει επισημανθεί ως ελεγμένη.",
-	"markedaspatrollederrornotify": "Σήμανση ως ελεγμένη απέτυχε.",
 	"patrol-log-page": "Καταγραφές ελέγχων επεξεργασιών",
 	"patrol-log-header": "Αυτό είναι μητρώο ελεγμένων αναθεωρήσεων.",
 	"confirm-markpatrolled-button": "Εντάξει",

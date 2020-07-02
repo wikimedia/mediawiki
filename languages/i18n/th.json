@@ -2889,7 +2889,6 @@
 	"markedaspatrollederrortext": "คุณจำเป็นต้องระบุรุ่นการแก้ไขที่กำหนดว่าตรวจสอบแล้ว",
 	"markedaspatrollederror-noautopatrol": "คุณไม่สามารถทำเครื่องหมายการแก้ไขของคุณเองว่าตรวจสอบแล้ว",
 	"markedaspatrollednotify": "การเปลี่ยนแปลงไปยัง $1 ถูกทำเครื่องหมายว่าตรวจสอบแล้ว",
-	"markedaspatrollederrornotify": "การทำเครื่องหมายว่าตรวจสอบแล้วล้มเหลว",
 	"patrol-log-page": "ปูมการตรวจสอบ",
 	"patrol-log-header": "หน้านี้คือปูมรุ่นการแก้ไขที่กำหนดว่าตรวจสอบแล้ว",
 	"confirm-markpatrolled-button": "ตกลง",
