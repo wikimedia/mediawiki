@@ -28,7 +28,7 @@
  *
  * @ingroup Language
  */
-class CrhConverter extends LanguageConverter {
+class CrhConverter extends LanguageConverterSpecific {
 	// Defines working character ranges
 
 	// Cyrillic
@@ -177,32 +177,6 @@ class CrhConverter extends LanguageConverter {
 		list( $this->mCyrl2LatnExceptions, $this->mLatn2CyrlExceptions,
 			$this->mCyrl2LatnPatterns, $this->mLatn2CyrlPatterns, $this->mCyrlCleanUpRegexes ) =
 			$crhExceptions->loadExceptions( self::L_LC . self::C_LC, self::L_UC . self::C_UC );
-	}
-
-	/**
-	 * A function wrapper:
-	 *   - if there is no selected variant, leave the link
-	 *     names as they were
-	 *   - do not try to find variants for usernames
-	 *
-	 * @param string &$link
-	 * @param Title &$nt
-	 * @param bool $ignoreOtherCond
-	 */
-	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		// check for user namespace
-		if ( is_object( $nt ) ) {
-			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
-				return;
-			}
-		}
-
-		$oldlink = $link;
-		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
-			$link = $oldlink;
-		}
 	}
 
 	/**

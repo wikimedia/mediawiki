@@ -30,7 +30,11 @@
  *
  * @ingroup Language
  */
-class SrConverter extends LanguageConverter {
+class SrConverter extends LanguageConverterSpecific {
+
+	/**
+	 * @var string[]
+	 */
 	public $mToLatin = [
 		'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd',
 		'ђ' => 'đ', 'е' => 'e', 'ж' => 'ž', 'з' => 'z', 'и' => 'i',
@@ -47,6 +51,9 @@ class SrConverter extends LanguageConverter {
 		'Х' => 'H', 'Ц' => 'C', 'Ч' => 'Č', 'Џ' => 'Dž', 'Ш' => 'Š',
 	];
 
+	/**
+	 * @var string[]
+	 */
 	public $mToCyrillics = [
 		'a' => 'а', 'b' => 'б', 'c' => 'ц', 'č' => 'ч', 'ć' => 'ћ',
 		'd' => 'д', 'dž' => 'џ', 'đ' => 'ђ', 'e' => 'е', 'f' => 'ф',
@@ -91,32 +98,6 @@ class SrConverter extends LanguageConverter {
 			'sr-el' => new ReplacementArray( $this->mToLatin ),
 			'sr' => new ReplacementArray()
 		];
-	}
-
-	/**
-	 * A function wrapper:
-	 *   - if there is no selected variant, leave the link
-	 *     names as they were
-	 *   - do not try to find variants for usernames
-	 *
-	 * @param string &$link
-	 * @param Title &$nt
-	 * @param bool $ignoreOtherCond
-	 */
-	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		// check for user namespace
-		if ( is_object( $nt ) ) {
-			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
-				return;
-			}
-		}
-
-		$oldlink = $link;
-		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
-			$link = $oldlink;
-		}
 	}
 
 	/**

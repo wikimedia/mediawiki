@@ -34,7 +34,7 @@ define( 'H_HAMZA', 'ٴ' ); # U+0674 ARABIC LETTER HIGH HAMZA
  *
  * @ingroup Language
  */
-class KkConverter extends LanguageConverter {
+class KkConverter extends LanguageConverterSpecific {
 
 	protected $mCyrl2Latn, $mLatn2Cyrl, $mCyLa2Arab;
 
@@ -218,32 +218,6 @@ class KkConverter extends LanguageConverter {
 			'/r/ui' => 'ر', '/s/ui' => 'س', '/ş/ui' => 'ش', '/t/ui' => 'ت',
 			'/v/ui' => 'ۆ', '/w/ui' => 'ۋ', '/x/ui' => 'ح', '/z/ui' => 'ز',*/
 		];
-	}
-
-	/**
-	 * A function wrapper:
-	 *  - if there is no selected variant, leave the link
-	 *    names as they were
-	 *  - do not try to find variants for usernames
-	 *
-	 * @param string &$link
-	 * @param Title &$nt
-	 * @param bool $ignoreOtherCond
-	 */
-	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		// check for user namespace
-		if ( is_object( $nt ) ) {
-			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
-				return;
-			}
-		}
-
-		$oldlink = $link;
-		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
-			$link = $oldlink;
-		}
 	}
 
 	/**
