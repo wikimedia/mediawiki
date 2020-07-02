@@ -3711,6 +3711,8 @@
 	"tag-mw-rollback-description": "Edits that roll back previous edits using the rollback link",
 	"tag-mw-undo": "Undo",
 	"tag-mw-undo-description": "Edits that undo previous edits using the undo link",
+	"tag-mw-manual-revert": "Manual revert",
+	"tag-mw-manual-revert-description": "Edits that manually restore the page to an exact previous state",
 	"tags-title": "Tags",
 	"tags-intro": "This page lists the tags that the software may mark an edit with, and their meaning.",
 	"tags-tag": "Tag name",

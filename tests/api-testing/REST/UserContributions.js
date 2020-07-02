@@ -133,8 +133,11 @@ describe( 'GET contributions', () => {
 		assert.equal( latestSegment.revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
 		assert.equal( latestSegment.revisions[ 1 ].id, arnoldsEdits[ 4 ].newrevid );
 
-		assert.deepEqual( latestSegment.revisions[ 0 ].tags, arnoldsTags[ 5 ] );
-		assert.deepEqual( latestSegment.revisions[ 1 ].tags, arnoldsTags[ 4 ] );
+		// Check whether the tags we applied manually are present.
+		// MediaWiki can add additional software tags (such as mw-manual-revert),
+		// hence the subarray check.
+		assert.includeMembers( latestSegment.revisions[ 0 ].tags, arnoldsTags[ 5 ] );
+		assert.includeMembers( latestSegment.revisions[ 1 ].tags, arnoldsTags[ 4 ] );
 
 		// get older segment, using full url
 		const req = clientFactory.getHttpClient( client );
@@ -149,8 +152,8 @@ describe( 'GET contributions', () => {
 		assert.equal( olderSegment.revisions[ 0 ].id, arnoldsEdits[ 3 ].newrevid );
 		assert.equal( olderSegment.revisions[ 1 ].id, arnoldsEdits[ 2 ].newrevid );
 
-		assert.deepEqual( olderSegment.revisions[ 0 ].tags, arnoldsTags[ 3 ] );
-		assert.deepEqual( olderSegment.revisions[ 1 ].tags, arnoldsTags[ 2 ] );
+		assert.includeMembers( olderSegment.revisions[ 0 ].tags, arnoldsTags[ 3 ] );
+		assert.includeMembers( olderSegment.revisions[ 1 ].tags, arnoldsTags[ 2 ] );
 
 		// get the next older segment
 		const { body: finalSegment } = await req.get( olderSegment.older );
@@ -162,7 +165,7 @@ describe( 'GET contributions', () => {
 		// assert body.revisions has the correct content
 		assert.equal( finalSegment.revisions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
 
-		assert.deepEqual( finalSegment.revisions[ 0 ].tags, arnoldsTags[ 1 ] );
+		assert.deepEqual( finalSegment.revisions[ 0 ].tags.sort(), arnoldsTags[ 1 ].sort() );
 	};
 
 	const testPagingBackwards = async ( client, endpoint ) => {

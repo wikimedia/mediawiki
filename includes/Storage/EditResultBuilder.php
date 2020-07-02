@@ -38,6 +38,16 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class EditResultBuilder {
 
+	/**
+	 * A mapping from EditResult's revert methods to relevant change tags.
+	 * For use by getRevertTags()
+	 */
+	private const REVERT_METHOD_TO_CHANGE_TAG = [
+		EditResult::REVERT_UNDO => 'mw-undo',
+		EditResult::REVERT_ROLLBACK => 'mw-rollback',
+		EditResult::REVERT_MANUAL => 'mw-manual-revert'
+	];
+
 	/** @var RevisionRecord|null */
 	private $revisionRecord = null;
 
@@ -325,16 +335,12 @@ class EditResultBuilder {
 	 * @return string[]
 	 */
 	private function getRevertTags() : array {
-		if ( $this->revertMethod === EditResult::REVERT_UNDO &&
-			in_array( 'mw-undo', $this->softwareTags )
-		) {
-			return [ 'mw-undo' ];
-		} elseif ( $this->revertMethod === EditResult::REVERT_ROLLBACK &&
-			in_array( 'mw-rollback', $this->softwareTags )
-		) {
-			return [ 'mw-rollback' ];
+		if ( isset( self::REVERT_METHOD_TO_CHANGE_TAG[$this->revertMethod] ) ) {
+			$revertTag = self::REVERT_METHOD_TO_CHANGE_TAG[$this->revertMethod];
+			if ( in_array( $revertTag, $this->softwareTags ) ) {
+				return [ $revertTag ];
+			}
 		}
-
 		return [];
 	}
 }

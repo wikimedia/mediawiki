@@ -392,7 +392,8 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 			"mw-blank",
 			"mw-replace",
 			"mw-rollback",
-			"mw-undo"
+			"mw-undo",
+			"mw-manual-revert"
 		];
 	}
 }
