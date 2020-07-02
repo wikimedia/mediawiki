@@ -59,9 +59,12 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
-
-		return $this->client->get( $this->validateKeyEncoding( $key ), $casToken );
+		// T257003: only require "gets" (instead of "get") when a CAS token is needed
+		return $getToken
+			? $this->client->get( $this->validateKeyEncoding( $key ), $casToken )
+			: $this->client->get( $this->validateKeyEncoding( $key ) );
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {

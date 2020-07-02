@@ -62,11 +62,12 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
 		$blob = apcu_fetch( $key . self::KEY_SUFFIX );
 		$value = $this->nativeSerialize ? $blob : $this->unserialize( $blob );
-		if ( $value !== false ) {
+		if ( $getToken && $value !== false ) {
 			$casToken = $blob; // don't bother hashing this
 		}
 

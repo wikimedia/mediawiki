@@ -89,6 +89,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
 		$conn = $this->getConnection( $key );
@@ -99,7 +100,9 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		$e = null;
 		try {
 			$value = $conn->get( $key );
-			$casToken = $value;
+			if ( $getToken && $value !== false ) {
+				$casToken = $value;
+			}
 			$result = $this->unserialize( $value );
 		} catch ( RedisException $e ) {
 			$result = false;

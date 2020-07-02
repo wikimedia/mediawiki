@@ -65,6 +65,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
 		if ( !$this->hasKey( $key ) || $this->expire( $key ) ) {
@@ -76,7 +77,9 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		unset( $this->bag[$key] );
 		$this->bag[$key] = $temp;
 
-		$casToken = $this->bag[$key][self::KEY_CAS];
+		if ( $getToken ) {
+			$casToken = $this->bag[$key][self::KEY_CAS];
+		}
 
 		return $this->bag[$key][self::KEY_VAL];
 	}

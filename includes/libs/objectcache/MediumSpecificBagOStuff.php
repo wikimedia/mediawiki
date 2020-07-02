@@ -61,6 +61,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var string Component to use for key construction of blob segment keys */
 	private const SEGMENT_COMPONENT = 'segment';
 
+	/** @var int Idiom for doGet() to return extra information by reference */
+	protected const PASS_BY_REF = -1;
+
 	/**
 	 * @see BagOStuff::__construct()
 	 * Additional $params options include:
@@ -151,7 +154,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/**
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @param mixed|null &$casToken Token to use for check-and-set comparisons
+	 * @param mixed|null &$casToken cas() token if MediumSpecificBagOStuff::PASS_BY_REF [returned]
 	 * @return mixed Returns false on failure or if the item does not exist
 	 */
 	abstract protected function doGet( $key, $flags = 0, &$casToken = null );
@@ -275,7 +278,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	final protected function mergeViaCas( $key, callable $callback, $exptime, $attempts, $flags ) {
 		$attemptsLeft = $attempts;
 		do {
-			$token = null; // passed by reference
+			$token = self::PASS_BY_REF; // passed by reference
 			// Get the old value and CAS token from cache
 			$this->clearLastError();
 			$currentValue = $this->resolveSegments(
@@ -366,7 +369,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			return false; // non-blocking
 		}
 
-		$curCasToken = null; // passed by reference
+		$curCasToken = self::PASS_BY_REF; // passed by reference
 		$this->clearLastError();
 		$this->doGet( $key, self::READ_LATEST, $curCasToken );
 		if ( is_object( $curCasToken ) ) {

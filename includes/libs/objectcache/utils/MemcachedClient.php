@@ -465,6 +465,8 @@ class MemcachedClient {
 	 * @return mixed
 	 */
 	public function get( $key, &$casToken = null ) {
+		$getToken = ( func_num_args() >= 2 );
+
 		if ( $this->_debug ) {
 			$this->_debugprint( "get($key)" );
 		}
@@ -491,7 +493,8 @@ class MemcachedClient {
 			$this->stats['get'] = 1;
 		}
 
-		$cmd = "gets $key\r\n";
+		$cmd = $getToken ? "gets" : "get";
+		$cmd .= " $key\r\n";
 		if ( !$this->_fwrite( $sock, $cmd ) ) {
 			return false;
 		}
@@ -551,7 +554,7 @@ class MemcachedClient {
 		$gather = array();
 		// Send out the requests
 		foreach ( $socks as $sock ) {
-			$cmd = 'gets';
+			$cmd = 'get';
 			foreach ( $sock_keys[intval( $sock )] as $key ) {
 				$cmd .= ' ' . $key;
 			}
@@ -565,7 +568,7 @@ class MemcachedClient {
 		// Parse responses
 		$val = array();
 		foreach ( $gather as $sock ) {
-			$this->_load_items( $sock, $val, $casToken );
+			$this->_load_items( $sock, $val );
 		}
 
 		if ( $this->_debug ) {
@@ -968,7 +971,7 @@ class MemcachedClient {
 				 * to stop reading (right after "END") and we return right after that.
 				 */
 				return false;
-			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+) (\d+)$/', $decl, $match ) ) {
+			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+)(?: (\d+))?$/', $decl, $match ) ) {
 				/*
 				 * Read all data returned. This can be either one or multiple values.
 				 * Save all that data (in an array) to be processed later: we'll first
@@ -980,7 +983,7 @@ class MemcachedClient {
 					$match[1], // rkey
 					$match[2], // flags
 					$match[3], // len
-					$match[4], // casToken
+					$match[4] ?? null, // casToken (appears with "gets" but not "get")
 					$this->_fread( $sock, $match[3] + 2 ), // data
 				);
 			} elseif ( $decl == "END" ) {
@@ -993,7 +996,7 @@ class MemcachedClient {
 				 * meaningful return values.
 				 */
 				foreach ( $results as $vars ) {
-					list( $rkey, $flags, $len, $casToken, $data ) = $vars;
+					list( $rkey, $flags, /* length */, $casToken, $data ) = $vars;
 
 					if ( $data === false || substr( $data, -2 ) !== "\r\n" ) {
 						$this->_handle_error( $sock,

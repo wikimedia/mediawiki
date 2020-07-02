@@ -259,14 +259,16 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
 		$blobs = $this->fetchBlobMulti( [ $key ] );
 		if ( array_key_exists( $key, $blobs ) ) {
 			$blob = $blobs[$key];
 			$value = $this->unserialize( $blob );
-
-			$casToken = ( $value !== false ) ? $blob : null;
+			if ( $getToken && $value !== false ) {
+				$casToken = $blob;
+			}
 
 			return $value;
 		}
