@@ -53,7 +53,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.17
  */
 class ResourceLoaderWikiModule extends ResourceLoaderModule {
-
 	// Origin defaults to users with sitewide authority
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 

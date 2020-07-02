@@ -23,9 +23,7 @@
  * @internal
  */
 class ResourceLoaderMwUrlModule {
-
 	/**
-	 * @internal
 	 * @param string $content JavaScript RegExp content with additional whitespace
 	 *  and named capturing group allowed, which will be stripped.
 	 * @return string JavaScript code

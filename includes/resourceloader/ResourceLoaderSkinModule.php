@@ -214,7 +214,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * Helper method for getPreloadLinks()
 	 * @return array
 	 */
-	private function getLogoPreloadlinks() {
+	private function getLogoPreloadlinks() : array {
 		$logo = $this->getLogoData( $this->getConfig() );
 
 		$logosPerDppx = [];
@@ -298,7 +298,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * @param array &$styles Associative array, keys are strings (media queries),
 	 *   values are strings or arrays
 	 */
-	private function normalizeStyles( array &$styles ) {
+	private function normalizeStyles( array &$styles ) : void {
 		foreach ( $styles as $key => $val ) {
 			if ( !is_array( $val ) ) {
 				$styles[$key] = [ $val ];
@@ -316,7 +316,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 *  - wordmark: a rectangle logo (wordmark) for print media and skins which desire
 	 *      horizontal logo (optional)
 	 */
-	public static function getAvailableLogos( $conf ) {
+	public static function getAvailableLogos( $conf ) : array {
 		$logos = $conf->get( 'Logos' );
 		if ( $logos === false ) {
 			// no logos were defined... this will either

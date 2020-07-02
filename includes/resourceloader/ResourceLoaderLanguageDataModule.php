@@ -28,7 +28,6 @@ use MediaWiki\MediaWikiServices;
  * @internal
  */
 class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
-
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
@@ -38,7 +37,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderFileModule {
 	 * @param string $langCode
 	 * @return array
 	 */
-	public static function getData( $langCode ) {
+	public static function getData( $langCode ) : array {
 		$language = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $langCode );
 		return [

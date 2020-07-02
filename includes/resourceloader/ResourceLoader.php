@@ -1119,10 +1119,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Handle exception display.
 	 *
-	 * @param Exception $e Exception to be shown to the user
+	 * @param Throwable $e Exception to be shown to the user
 	 * @return string Sanitized text in a CSS/JS comment that can be returned to the user
 	 */
-	public static function formatException( $e ) {
+	public static function formatException( Throwable $e ) {
 		return self::makeComment( self::formatExceptionNoComment( $e ) );
 	}
 
@@ -1130,10 +1130,10 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Handle exception display.
 	 *
 	 * @since 1.25
-	 * @param Exception $e Exception to be shown to the user
+	 * @param Throwable $e Exception to be shown to the user
 	 * @return string Sanitized text that can be returned to the user
 	 */
-	protected static function formatExceptionNoComment( $e ) {
+	protected static function formatExceptionNoComment( Throwable $e ) {
 		global $wgShowExceptionDetails;
 
 		if ( !$wgShowExceptionDetails ) {
@@ -1511,7 +1511,7 @@ MESSAGE;
 	 *
 	 * @param array &$array
 	 */
-	private static function trimArray( array &$array ) {
+	private static function trimArray( array &$array ) : void {
 		$i = count( $array );
 		while ( $i-- ) {
 			if ( $array[$i] === null
