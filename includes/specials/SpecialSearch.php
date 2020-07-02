@@ -572,6 +572,7 @@ class SpecialSearch extends SpecialPage {
 		$this->getHookRunner()->onSpecialSearchCreateLink( $title, $params );
 
 		// Extensions using the hook might still return an empty $messageName
+		// @phan-suppress-next-line PhanRedundantCondition Set by hook
 		if ( $messageName ) {
 			$this->getOutput()->wrapWikiMsg( "<p class=\"$linkClass\">\n$1</p>", $params );
 		} else {

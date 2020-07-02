@@ -49,6 +49,7 @@ class DatabaseLag extends Maintenance {
 			}
 			$this->output( "\n" );
 
+			// @phan-suppress-next-line PhanInfiniteLoop
 			while ( 1 ) {
 				$lags = $lb->getLagTimes();
 				unset( $lags[0] );

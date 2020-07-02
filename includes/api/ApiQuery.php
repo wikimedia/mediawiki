@@ -347,6 +347,7 @@ class ApiQuery extends ApiBase {
 
 		$values = $pageSet->getNormalizedTitlesAsResult( $result );
 		if ( $values ) {
+			// @phan-suppress-next-line PhanRedundantCondition
 			$fit = $fit && $result->addValue( 'query', 'normalized', $values );
 		}
 		$values = $pageSet->getConvertedTitlesAsResult( $result );

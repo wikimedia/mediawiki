@@ -793,6 +793,7 @@ class Title implements LinkTarget, IDBAccessObject {
 				$out .= $r2;
 			}
 		}
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $ord1 < 0x80 ) {
 			$out .= $r1;
 		}

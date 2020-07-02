@@ -426,6 +426,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					break;
 
 				default:
+					// @phan-suppress-next-line PhanImpossibleCondition
 					$this->dieContinueUsageIf( true );
 			}
 
@@ -456,6 +457,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				// It didn't fit. Add elements one by one until the
 				// result is full.
 				ksort( $this->resultArr );
+				// @phan-suppress-next-line PhanSuspiciousValueComparison
 				if ( count( $this->cont ) >= 7 ) {
 					$startAt = $this->cont[6];
 				} else {
@@ -481,6 +483,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					$hasRedirs = false;
 					$redirLinks = isset( $arr['redirlinks'] ) ? (array)$arr['redirlinks'] : [];
 					ksort( $redirLinks );
+					// @phan-suppress-next-line PhanSuspiciousValueComparisonInLoop
 					if ( count( $this->cont ) >= 8 && $pageID == $startAt ) {
 						$redirStartAt = $this->cont[7];
 					} else {

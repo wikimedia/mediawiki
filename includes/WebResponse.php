@@ -156,7 +156,7 @@ class WebResponse {
 			wfDebugLog( 'cookie', 'ignored post-send cookie {cookie}', 'all', [
 				'cookie' => $cookie,
 				'data' => [
-					'name' => (string)$cookie,
+					'name' => $cookie,
 					'value' => (string)$value,
 					'expire' => (int)$expire,
 					'path' => (string)$options['path'],
@@ -176,7 +176,7 @@ class WebResponse {
 			// we need to use the altered values from the hook here. (T198525)
 			$cookie = $options['prefix'] . $name;
 			$data = [
-				'name' => (string)$cookie,
+				'name' => $cookie,
 				'value' => (string)$value,
 				'expire' => (int)$expire,
 				'path' => (string)$options['path'],

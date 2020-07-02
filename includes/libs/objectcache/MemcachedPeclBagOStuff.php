@@ -145,6 +145,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		if ( $params['serializer'] === 'php' ) {
 			$options[Memcached::OPT_SERIALIZER] = Memcached::SERIALIZER_PHP;
 		} elseif ( $params['serializer'] === 'igbinary' ) {
+			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( !Memcached::HAVE_IGBINARY ) {
 				throw new RuntimeException(
 					__CLASS__ . ': the igbinary extension is not available ' .

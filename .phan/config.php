@@ -89,11 +89,6 @@ $cfg['exclude_analysis_directory_list'] = [
 	'includes/libs/objectcache/utils/MemcachedClient.php',
 ];
 
-// This helps a lot in discovering bad code, but unfortunately it will always fail for
-// hooks + pass by reference, see phan issue #2943.
-// @todo Enable when the issue above is resolved and we update our config!
-$cfg['redundant_condition_detection'] = false;
-
 // These are too spammy for now. TODO enable
 $cfg['null_casts_as_any_type'] = true;
 $cfg['scalar_implicit_cast'] = true;

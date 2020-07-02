@@ -119,7 +119,9 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 				$this->getHookRunner()->onAddNewAccount( $user, $byEmail );
 
 				$out = $this->getOutput();
+				// @phan-suppress-next-line PhanImpossibleCondition
 				$out->setPageTitle( $this->msg( $byEmail ? 'accmailtitle' : 'accountcreated' ) );
+				// @phan-suppress-next-line PhanImpossibleCondition
 				if ( $byEmail ) {
 					$out->addWikiMsg( 'accmailtext', $user->getName(), $user->getEmail() );
 				} else {

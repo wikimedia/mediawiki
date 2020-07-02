@@ -1872,8 +1872,8 @@ class Language {
 	 * @return string
 	 */
 	private static function hebrewYearStart( $year ) {
-		$a = intval( ( 12 * ( $year - 1 ) + 17 ) % 19 );
-		$b = intval( ( $year - 1 ) % 4 );
+		$a = ( 12 * ( $year - 1 ) + 17 ) % 19;
+		$b = ( $year - 1 ) % 4;
 		$m = 32.044093161144 + 1.5542417966212 * $a + $b / 4.0 - 0.0031777940220923 * ( $year - 1 );
 		if ( $m < 0 ) {
 			$m--;
@@ -1884,7 +1884,7 @@ class Language {
 		}
 		$m -= $Mar;
 
-		$c = intval( ( $Mar + 3 * ( $year - 1 ) + 5 * $b + 5 ) % 7 );
+		$c = ( $Mar + 3 * ( $year - 1 ) + 5 * $b + 5 ) % 7;
 		if ( $c == 0 && $a > 11 && $m >= 0.89772376543210 ) {
 			$Mar++;
 		} elseif ( $c == 1 && $a > 6 && $m >= 0.63287037037037 ) {
@@ -2171,6 +2171,7 @@ class Language {
 			}
 		}
 
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $data[0] == 'System' || $tz == '' ) {
 			# Global offset in minutes.
 			$minDiff = $wgLocalTZoffset;
@@ -3794,6 +3795,7 @@ class Language {
 			if ( $tagType == 0 && $lastCh != '/' ) {
 				$openTags[] = $tag; // tag opened (didn't close itself)
 			} elseif ( $tagType == 1 ) {
+				// @phan-suppress-next-line PhanRedundantCondition
 				if ( $openTags && $tag == $openTags[count( $openTags ) - 1] ) {
 					array_pop( $openTags ); // tag closed
 				}

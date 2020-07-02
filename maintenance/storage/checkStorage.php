@@ -360,12 +360,14 @@ class CheckStorage {
 
 		print "\n\nErrors:\n";
 		foreach ( $this->errors as $name => $errors ) {
+			// @phan-suppress-next-line PhanImpossibleConditionInLoop
 			if ( count( $errors ) ) {
 				$description = $this->errorDescriptions[$name];
 				echo "$description: " . implode( ',', array_keys( $errors ) ) . "\n";
 			}
 		}
 
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( count( $this->errors['restore text'] ) && $fix ) {
 			if ( (string)$xml !== '' ) {
 				$this->restoreText( array_keys( $this->errors['restore text'] ), $xml );

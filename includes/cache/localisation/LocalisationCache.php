@@ -565,6 +565,7 @@ class LocalisationCache {
 				}
 			}
 		} elseif ( $_fileType == 'aliases' ) {
+			// @phan-suppress-next-line PhanImpossibleCondition May be set in included file
 			if ( isset( $aliases ) ) {
 				$data['aliases'] = $aliases;
 			}
@@ -890,6 +891,7 @@ class LocalisationCache {
 		}
 
 		# Fill in the fallback if it's not there already
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( ( $coreData['fallback'] === null || $coreData['fallback'] === false ) && $code === 'en' ) {
 			$coreData['fallback'] = false;
 			$coreData['originalFallbackSequence'] = $coreData['fallbackSequence'] = [];
@@ -999,6 +1001,7 @@ class LocalisationCache {
 						continue;
 					}
 
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					if ( $allData[$key] === null || $this->isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $allData[$key], $csData[$key] );
 					}
