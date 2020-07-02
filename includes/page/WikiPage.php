@@ -3281,7 +3281,10 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$currentEditorForPublic = $current->getUser( RevisionRecord::FOR_PUBLIC );
-		$legacyCurrent = new Revision( $current );
+		$legacyCurrentCallback = function () use ( $current ) {
+			// Only created when needed
+			return new Revision( $current );
+		};
 		$from = str_replace( '_', ' ', $fromP );
 
 		// User name given should match up with the top revision.
@@ -3289,10 +3292,10 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $from !== ( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' ) ) {
 			$resultDetails = new DeprecatablePropertyArray(
 				[
-					'current' => $legacyCurrent,
+					'current' => $legacyCurrentCallback,
 					'current-revision-record' => $current,
 				],
-				[], // TODO [ 'current' => '1.35' ],
+				[ 'current' => '1.35' ],
 				__METHOD__
 			);
 			return [ [ 'alreadyrolled',
@@ -3348,7 +3351,6 @@ class WikiPage implements Page, IDBAccessObject {
 				$summary = wfMessage( 'revertpage' );
 			}
 		}
-		$legacyTarget = new Revision( $target );
 		$targetEditorForPublic = $target->getUser( RevisionRecord::FOR_PUBLIC );
 
 		// Allow the custom summary to use the same args as the default message
@@ -3474,16 +3476,16 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $updater->isUnchanged() ) {
 			$resultDetails = new DeprecatablePropertyArray(
 				[
-					'current' => $legacyCurrent,
+					'current' => $legacyCurrentCallback,
 					'current-revision-record' => $current,
 				],
-				[], // TODO [ 'current' => '1.35' ],
+				[ 'current' => '1.35' ],
 				__METHOD__
 			);
 			return [ [ 'alreadyrolled',
-					htmlspecialchars( $this->mTitle->getPrefixedText() ),
-					htmlspecialchars( $fromP ),
-					htmlspecialchars( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' )
+				htmlspecialchars( $this->mTitle->getPrefixedText() ),
+				htmlspecialchars( $fromP ),
+				htmlspecialchars( $currentEditorForPublic ? $currentEditorForPublic->getName() : '' )
 			] ];
 		}
 
@@ -3507,25 +3509,30 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Hook is hard deprecated since 1.35
 		if ( $this->getHookContainer()->isRegistered( 'ArticleRollbackComplete' ) ) {
-			// TODO only create the Revision objects if needed, both here
-			// and for DeprecatablePropertyArray
+			// Only create the Revision objects if needed
+			$legacyCurrent = new Revision( $current );
+			$legacyTarget = new Revision( $target );
 			$this->getHookRunner()->onArticleRollbackComplete( $this, $guser,
 				$legacyTarget, $legacyCurrent );
 		}
 
 		$this->getHookRunner()->onRollbackComplete( $this, $guser, $target, $current );
 
+		$legacyTargetCallback = function () use ( $target ) {
+			// Only create the Revision object if needed
+			return new Revision( $target );
+		};
 		$resultDetails = new DeprecatablePropertyArray(
 			[
 				'summary' => $summary,
-				'current' => $legacyCurrent,
+				'current' => $legacyCurrentCallback,
 				'current-revision-record' => $current,
-				'target' => $legacyTarget,
+				'target' => $legacyTargetCallback,
 				'target-revision-record' => $target,
 				'newid' => $revId,
 				'tags' => $tags
 			],
-			[], // TODO [ 'current' => '1.35', 'target' => '1.35' ],
+			[ 'current' => '1.35', 'target' => '1.35' ],
 			__METHOD__
 		);
 
