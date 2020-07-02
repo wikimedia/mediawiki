@@ -1283,8 +1283,13 @@ class RevisionStore
 		}
 
 		if ( !isset( $slots[SlotRecord::MAIN] ) ) {
+			$this->logger->info(
+				__METHOD__ . ': Main slot of revision {revid} not found in database. See T212428.',
+				[ 'revid' => $revId, ]
+			);
+
 			throw new RevisionAccessException(
-				'Main slot of revision ' . $revId . ' not found in database!'
+				'Main slot of revision not found in database. See T212428.'
 			);
 		}
 
