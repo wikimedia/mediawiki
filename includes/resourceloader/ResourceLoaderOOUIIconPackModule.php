@@ -37,12 +37,12 @@ class ResourceLoaderOOUIIconPackModule extends ResourceLoaderOOUIImageModule {
 		$this->definition['themeImages'] = 'icons';
 	}
 
-	private function getIcons() {
+	private function getIcons() : array {
 		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Checked in the constructor
 		return $this->definition['icons'];
 	}
 
-	protected function loadOOUIDefinition( $theme, $unused ) {
+	protected function loadOOUIDefinition( $theme, $unused ) : array {
 		// This is shared between instances of this class, so we only have to load the JSON files once
 		static $data = [];
 

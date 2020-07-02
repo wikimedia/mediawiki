@@ -37,7 +37,6 @@ use MediaWiki\MediaWikiServices;
  * @since 1.17
  */
 class ResourceLoaderFileModule extends ResourceLoaderModule {
-
 	/** @var string Local base path, see __construct() */
 	protected $localBasePath = '';
 
@@ -178,7 +177,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $missingLocalFileRefs = [];
 
 	/**
-	 * @var VueComponentParser Lazy-created by getVueComponentParser()
+	 * @var VueComponentParser|null Lazy-created by getVueComponentParser()
 	 */
 	protected $vueComponentParser = null;
 

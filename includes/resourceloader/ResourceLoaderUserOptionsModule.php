@@ -29,7 +29,6 @@
  * @internal
  */
 class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
-
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
 	protected $targets = [ 'desktop', 'mobile' ];

@@ -28,7 +28,6 @@ use Wikimedia\WrappedStringList;
  * @since 1.28
  */
 class ResourceLoaderClientHtml {
-
 	/** @var ResourceLoaderContext */
 	private $context;
 
@@ -75,7 +74,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param array $vars Array of key/value pairs
 	 */
-	public function setConfig( array $vars ) {
+	public function setConfig( array $vars ) : void {
 		foreach ( $vars as $key => $value ) {
 			$this->config[$key] = $value;
 		}
@@ -86,7 +85,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param string[] $modules Array of module names
 	 */
-	public function setModules( array $modules ) {
+	public function setModules( array $modules ) : void {
 		$this->modules = $modules;
 	}
 
@@ -95,7 +94,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param string[] $modules Array of module names
 	 */
-	public function setModuleStyles( array $modules ) {
+	public function setModuleStyles( array $modules ) : void {
 		$this->moduleStyles = $modules;
 	}
 
@@ -106,7 +105,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param array<string,string> $states Module state keyed by module name
 	 */
-	public function setExemptStates( array $states ) {
+	public function setExemptStates( array $states ) : void {
 		$this->exemptStates = $states;
 	}
 
@@ -350,7 +349,7 @@ JAVASCRIPT;
 		return WrappedString::join( "\n", $chunks );
 	}
 
-	private function getContext( $group, $type ) {
+	private function getContext( $group, $type ) : ResourceLoaderContext {
 		return self::makeContext( $this->context, $group, $type );
 	}
 
@@ -360,7 +359,7 @@ JAVASCRIPT;
 
 	private static function makeContext( ResourceLoaderContext $mainContext, $group, $type,
 		array $extraQuery = []
-	) {
+	) : DerivativeResourceLoaderContext {
 		// Allow caller to setVersion() and setModules()
 		$ret = new DerivativeResourceLoaderContext( $mainContext );
 		// Set 'only' if not combined

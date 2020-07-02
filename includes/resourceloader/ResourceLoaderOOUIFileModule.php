@@ -55,7 +55,7 @@ class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 	 * @param string $which 'scripts' or 'styles'
 	 * @return array
 	 */
-	private function getSkinSpecific( $module, $which ) {
+	private function getSkinSpecific( $module, $which ) : array {
 		$themes = self::getSkinThemeMap();
 
 		return array_combine(
@@ -77,7 +77,7 @@ class ResourceLoaderOOUIFileModule extends ResourceLoaderFileModule {
 	 * @param array &$skinSpecific
 	 * @param array $extraSkinSpecific
 	 */
-	private function extendSkinSpecific( array &$skinSpecific, array $extraSkinSpecific ) {
+	private function extendSkinSpecific( array &$skinSpecific, array $extraSkinSpecific ) : void {
 		// For each skin where skinStyles/skinScripts are defined, add our ones at the beginning
 		foreach ( $skinSpecific as $skin => $files ) {
 			if ( !is_array( $files ) ) {

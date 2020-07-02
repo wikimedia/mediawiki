@@ -34,10 +34,9 @@ use RemexHtml\TreeBuilder\TreeBuilder;
  * Parser for Vue single file components (.vue files). See parse() for usage.
  *
  * @ingroup ResourceLoader
- * @since 1.35
+ * @internal For use within ResourceLoaderFileModule.
  */
 class VueComponentParser {
-
 	/**
 	 * Parse a Vue single file component, and extract the script, template and style parts.
 	 *
@@ -130,7 +129,7 @@ class VueComponentParser {
 	 * @param array $allowedAttributes Attributes the node is allowed to have
 	 * @throws Exception If the node has an attribute it's not allowed to have
 	 */
-	private function validateAttributes( DOMNode $node, array $allowedAttributes ) {
+	private function validateAttributes( DOMNode $node, array $allowedAttributes ) : void {
 		if ( $allowedAttributes ) {
 			foreach ( $node->attributes as $attr ) {
 				if ( !in_array( $attr->name, $allowedAttributes ) ) {
@@ -152,7 +151,7 @@ class VueComponentParser {
 	 * @param DOMNode $templateNode The <template> node
 	 * @throws Exception If the contents of the <template> node are invalid
 	 */
-	private function validateTemplateTag( DOMNode $templateNode ) {
+	private function validateTemplateTag( DOMNode $templateNode ) : void {
 		// Verify that the <template> tag only contains one tag, and put it in $rootTemplateNode
 		// We can't use ->childNodes->length === 1 here because whitespace shows up as text nodes,
 		// and comments are also allowed.
