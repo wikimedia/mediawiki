@@ -25,6 +25,8 @@ use Wikimedia\WrappedStringList;
  * New base template for a skin's template extended from QuickTemplate
  * this class features helper methods that provide common ways of interacting
  * with the data stored in the QuickTemplate
+ *
+ * @stable for subclassing
  */
 abstract class BaseTemplate extends QuickTemplate {
 

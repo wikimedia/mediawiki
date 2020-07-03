@@ -24,6 +24,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Generic wrapper for template functions, with interface
  * compatible with what we use of PHPTAL 0.7.
+ * @stable for subclassing
  * @ingroup Skins
  */
 abstract class QuickTemplate {
