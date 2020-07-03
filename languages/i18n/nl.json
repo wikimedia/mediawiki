@@ -2985,6 +2985,7 @@
 	"tooltip-diff": "Weergeven welke wijzigingen u aan de tekst hebt gemaakt",
 	"tooltip-compareselectedversions": "De verschillen tussen de geselecteerde versies van deze pagina bekijken.",
 	"tooltip-watch": "Deze pagina aan uw volglijst toevoegen",
+	"tooltip-watchlist-expiry": "Deze pagina tijdelijk aan uw volglijst toevoegen",
 	"tooltip-watchlistedit-normal-submit": "Pagina's verwijderen",
 	"tooltip-watchlistedit-raw-submit": "Volglijst bijwerken",
 	"tooltip-recreate": "Deze pagina opnieuw aanmaken ondanks eerdere verwijdering",

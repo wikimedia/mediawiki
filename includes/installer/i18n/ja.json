@@ -145,7 +145,7 @@
 	"config-connection-error": "$1。\n\n以下のホスト名、ユーザー名、パスワードを確認してから再度試してください。データベースホストとして「localhost」を使用している場合は、代わりに 「127.0.0.1」を使用してください（またはその逆）。",
 	"config-invalid-schema": "「$1」は MediaWiki のスキーマとして無効です。\n半角の英数字 (a-z、A-Z、0-9)、アンダースコア (_) のみを使用してください。",
 	"config-postgres-old": "PostgreSQL $1 以降が必要です。ご使用中の PostgreSQL は $2 です。",
-	"config-sqlite-name-help": "あなたのウェキと同一性のある名前を選んでください。\n空白およびハイフンは使用しないでください。\nSQLiteのデータファイル名として使用されます。",
+	"config-sqlite-name-help": "ウィキを識別する名前を選んでください。\n空白およびハイフンは使用しないでください。\nこれはSQLiteデータベースのファイル名として使用されます。",
 	"config-sqlite-parent-unwritable-group": "データ ディレクトリ <code><nowiki>$1</nowiki></code> を作成できません。ウェブ サーバーは親ディレクトリ <code><nowiki>$2</nowiki></code> に書き込めませんでした。\n\nインストーラーは、ウェブ サーバーの実行ユーザーを特定しました。\n続行するには、ディレクトリ <code><nowiki>$3</nowiki></code> に書き込めるようにしてください。\nUnix または Linux であれば、以下を実行してください:\n\n<pre>cd $2\nmkdir $3\nchgrp $4 $3\nchmod g+w $3</pre>",
 	"config-sqlite-parent-unwritable-nogroup": "データ ディレクトリ <code><nowiki>$1</nowiki></code> を作成できません。ウェブ サーバーは、親ディレクトリ <code><nowiki>$2</nowiki></code> に書き込めませんでした。\n\nインストーラーは、ウェブ サーバーの実行ユーザーを特定できませんでした。\n続行するには、ディレクトリ <code><nowiki>$3</nowiki></code> に、ウェブ サーバー (と、あらゆる人々!) がグローバルに書き込めるようにしてください。\nUnix または Linux では、以下を実行してください:\n\n<pre>cd $2\nmkdir $3\nchmod a+w $3</pre>",
 	"config-sqlite-mkdir-error": "データ ディレクトリ「$1」を作成する際にエラーが発生しました。\n場所を確認してから、再度試してください。",

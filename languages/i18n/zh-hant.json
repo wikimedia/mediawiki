@@ -3002,6 +3002,7 @@
 	"tooltip-diff": "顯示您對內容所做的變更",
 	"tooltip-compareselectedversions": "查閱此頁面兩個已選擇的修訂間的差異",
 	"tooltip-watch": "加入此頁面至您的監視清單",
+	"tooltip-watchlist-expiry": "暫時將此頁面添加到您的監視清單",
 	"tooltip-watchlistedit-normal-submit": "移除標題",
 	"tooltip-watchlistedit-raw-submit": "更新監視清單",
 	"tooltip-recreate": "無論是否被刪除，重新建立該頁面。",

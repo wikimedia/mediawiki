@@ -2936,6 +2936,7 @@
 	"tooltip-diff": "הצגת השינויים שביצעת בטקסט",
 	"tooltip-compareselectedversions": "הצגת ההבדלים בין שתי הגרסאות שנבחרו",
 	"tooltip-watch": "הוספת דף זה לרשימת המעקב שלך",
+	"tooltip-watchlist-expiry": "להוסיף את הדף הזה זמנית לרשימת המעקב שלך",
 	"tooltip-watchlistedit-normal-submit": "הסרת הדפים",
 	"tooltip-watchlistedit-raw-submit": "עדכון רשימת המעקב",
 	"tooltip-recreate": "יצירת הדף מחדש למרות שהוא נמחק",

@@ -3003,6 +3003,7 @@
 	"tooltip-diff": "Metin üzerinde yaptığınız değişiklikleri gösterir",
 	"tooltip-compareselectedversions": "Bu sayfanın seçilmiş iki sürümü arasındaki farkları gör",
 	"tooltip-watch": "Sayfayı izleme listenize ekleyin",
+	"tooltip-watchlist-expiry": "Bu sayfayı geçici olarak izleme listenize ekleyin",
 	"tooltip-watchlistedit-normal-submit": "Başlıkları kaldır",
 	"tooltip-watchlistedit-raw-submit": "İzleme listesini güncelle",
 	"tooltip-recreate": "Silinmiş olmasına rağmen sayfayı geri getir",

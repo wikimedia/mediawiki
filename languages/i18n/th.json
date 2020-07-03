@@ -3366,6 +3366,7 @@
 	"feedback-subject": "เรื่อง:",
 	"feedback-submit": "ตกลง",
 	"feedback-thanks": "ขอบคุณ! ผลป้อนกลับของคุณถูกโพสต์ไปยังหน้า \"[$2 $1]\" แล้ว",
+	"feedback-thanks-title": "ขอขอบคุณ!",
 	"searchsuggest-search": "ค้นหา {{SITENAME}}",
 	"searchsuggest-containing": "มี...",
 	"api-error-emptypage": "ไม่อนุญาตให้สร้างหน้าใหม่ที่ว่าง",
