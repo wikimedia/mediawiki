@@ -1303,3 +1303,7 @@
 	branch = master
 	ignore = dirty
 
+[submodule "extensions/extensions/UserFunctions"]
+	path = extensions/extensions/UserFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-UserFunctions
+	branch = REL1_34
