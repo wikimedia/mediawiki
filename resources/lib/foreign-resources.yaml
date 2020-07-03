@@ -93,11 +93,6 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
 
-html5shiv:
-  type: file
-  src: https://raw.githubusercontent.com/aFarkas/html5shiv/3.7.3/src/html5shiv.js
-  integrity: sha384-RPXhaTf22QktT8KTwZ6bUz/C+7CnccaIw5W/y/t0FW5WSDGj3wc3YtRIJC0w47in
-
 jquery:
   type: multi-file
   files:

@@ -464,9 +464,8 @@ JAVASCRIPT;
 						} elseif ( $context->getRaw() ) {
 							// This request is asking for the module to be delivered standalone,
 							// (aka "raw") without communicating to any mw.loader client.
-							// Use cases:
+							// For:
 							// - startup (naturally because this is what will define mw.loader)
-							// - html5shiv (loads synchronously in old IE before the async startup module arrives)
 							$chunk = Html::element( 'script', [
 								'async' => true,
 								'src' => $url
