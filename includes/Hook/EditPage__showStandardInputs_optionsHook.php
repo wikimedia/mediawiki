@@ -18,7 +18,7 @@ interface EditPage__showStandardInputs_optionsHook {
 	 *
 	 * @param EditPage $editor
 	 * @param OutputPage $out OutputPage instance to write to
-	 * @param string &$tabindex HTML tabindex of the last edit check/button
+	 * @param int &$tabindex HTML tabindex of the last edit check/button
 	 * @return bool|void Return value is ignored; this hook should always return true
 	 */
 	public function onEditPage__showStandardInputs_options( $editor, $out,
