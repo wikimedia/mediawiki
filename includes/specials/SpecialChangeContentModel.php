@@ -144,6 +144,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 				],
 				'reason' => [
 					'type' => 'text',
+					'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 					'name' => 'reason',
 					'validation-callback' => function ( $reason ) use ( $spamChecker ) {
 						if ( $reason === null || $reason === '' ) {
