@@ -221,7 +221,6 @@ $magicWords = [
 	'toc'                     => [ 0, '__TOC__' ],
 	'noeditsection'           => [ 0, '__NOEDITSECTION__' ],
 	'!'                       => [ 1, '!' ],
-	'='                       => [ 1, '=' ],
 	'currentmonth'            => [ 1, 'CURRENTMONTH', 'CURRENTMONTH2' ],
 	'currentmonth1'           => [ 1, 'CURRENTMONTH1' ],
 	'currentmonthname'        => [ 1, 'CURRENTMONTHNAME' ],

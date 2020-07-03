@@ -43,7 +43,6 @@ class MagicWordFactory {
 	/** @var string[] */
 	private $mVariableIDs = [
 		'!',
-		'=',
 		'currentmonth',
 		'currentmonth1',
 		'currentmonthname',
