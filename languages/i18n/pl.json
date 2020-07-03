@@ -2986,6 +2986,7 @@
 	"tooltip-diff": "Pokaż zmiany wykonane w tekście",
 	"tooltip-compareselectedversions": "Pokazuje różnice między dwiema wybranymi wersjami tej strony.",
 	"tooltip-watch": "Dodaj tę stronę do listy obserwowanych",
+	"tooltip-watchlist-expiry": "Tymczasowo dodaj tę stronę do listy obserwowanych",
 	"tooltip-watchlistedit-normal-submit": "Usuń zaznaczone z listy obserwowanych",
 	"tooltip-watchlistedit-raw-submit": "Uaktualnij listę obserwowanych",
 	"tooltip-recreate": "Utwórz stronę pomimo jej wcześniejszego usunięcia.",

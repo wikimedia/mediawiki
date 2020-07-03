@@ -3088,6 +3088,7 @@
 	"tooltip-diff": "Afficher les modifications que vous avez apportées au texte",
 	"tooltip-compareselectedversions": "Afficher les différences entre les deux versions sélectionnées de cette page",
 	"tooltip-watch": "Ajouter cette page à votre liste de suivi",
+	"tooltip-watchlist-expiry": "Ajouter temporairement cette page à votre liste de suivi",
 	"tooltip-watchlistedit-normal-submit": "Enlever les titres",
 	"tooltip-watchlistedit-raw-submit": "Mettre à jour la liste de suivi",
 	"tooltip-recreate": "Recréer la page même si celle-ci a été supprimée",
