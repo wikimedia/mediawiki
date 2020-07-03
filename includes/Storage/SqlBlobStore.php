@@ -525,7 +525,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @note direct use is deprecated!
 	 * @todo make this private, there should be no need to use this method outside this class.
 	 *
-	 * @param mixed &$blob Reference to a text
+	 * @param string &$blob
 	 *
 	 * @return string
 	 */
