@@ -62,7 +62,9 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 
 		$page = WikiPage::factory( $title );
 		self::$pageRev = $page->getRevisionRecord();
-		self::$revUser = User::newFromIdentity( self::$pageRev->getUser( Revision::RAW ) );
+		self::$revUser = User::newFromIdentity(
+			self::$pageRev->getUser( RevisionRecord::RAW )
+		);
 	}
 
 	private function newChange( RevisionRecord $revision = null ) {

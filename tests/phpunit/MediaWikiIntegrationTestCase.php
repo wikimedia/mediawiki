@@ -6,6 +6,7 @@ use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
@@ -2380,12 +2381,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Revision-deletes a revision.
 	 *
 	 * @param RevisionRecord|int $rev Revision to delete
-	 * @param array $value Keys are Revision::DELETED_* flags.  Values are 1 to set the bit, 0 to
-	 *   clear, -1 to leave alone.  (All other values also clear the bit.)
+	 * @param array $value Keys are RevisionRecord::DELETED_* flags.  Values are 1 to set the bit,
+	 *   0 to clear, -1 to leave alone.  (All other values also clear the bit.)
 	 * @param string $comment Deletion comment
 	 */
 	protected function revisionDelete(
-		$rev, array $value = [ Revision::DELETED_TEXT => 1 ], $comment = ''
+		$rev, array $value = [ RevisionRecord::DELETED_TEXT => 1 ], $comment = ''
 	) {
 		if ( is_int( $rev ) ) {
 			$rev = MediaWikiServices::getInstance()

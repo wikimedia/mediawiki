@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\IDatabase;
@@ -1071,7 +1072,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 				[ 'actormigration' => 'table' ],
 				[
 					'actormigration_conds',
-					'(rc_deleted & ' . Revision::DELETED_USER . ') != ' . Revision::DELETED_USER,
+					'(rc_deleted & ' . RevisionRecord::DELETED_USER . ') != ' . RevisionRecord::DELETED_USER,
 					'(rc_type != ' . RC_LOG . ') OR ((rc_deleted & ' . LogPage::DELETED_ACTION . ') != ' .
 						LogPage::DELETED_ACTION . ')'
 				],
@@ -1083,8 +1084,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 				[ 'actormigration' => 'table' ],
 				[
 					'actormigration_conds',
-					'(rc_deleted & ' . ( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ) . ') != ' .
-						( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ),
+					'(rc_deleted & ' . ( RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ) . ') != ' .
+						( RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ),
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
@@ -1097,8 +1098,8 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiIntegrationTestCase {
 				[ 'actormigration' => 'table' ],
 				[
 					'actormigration_conds',
-					'(rc_deleted & ' . ( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ) . ') != ' .
-						( Revision::DELETED_USER | Revision::DELETED_RESTRICTED ),
+					'(rc_deleted & ' . ( RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ) . ') != ' .
+						( RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ),
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'

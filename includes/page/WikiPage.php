@@ -791,9 +791,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Get the content of the current revision. No side-effects...
 	 *
 	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to $wgUser
-	 *   Revision::RAW              get the text regardless of permissions
+	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
+	 *   RevisionRecord::FOR_THIS_USER    to be displayed to $wgUser
+	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return Content|null The content of the current revision
@@ -831,9 +831,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to the given user
-	 *   Revision::RAW              get the text regardless of permissions
+	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
+	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
+	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
 	 * @return int User ID for the user that made the last article revision
@@ -859,9 +859,9 @@ class WikiPage implements Page, IDBAccessObject {
 	/**
 	 * Get the User object of the user who created the page
 	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to the given user
-	 *   Revision::RAW              get the text regardless of permissions
+	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
+	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
+	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
 	 * @return User|null
@@ -885,9 +885,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to the given user
-	 *   Revision::RAW              get the text regardless of permissions
+	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
+	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
+	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
 	 * @return string Username of the user that made the last article revision
@@ -912,9 +912,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 	/**
 	 * @param int $audience One of:
-	 *   Revision::FOR_PUBLIC       to be displayed to all users
-	 *   Revision::FOR_THIS_USER    to be displayed to the given user
-	 *   Revision::RAW              get the text regardless of permissions
+	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
+	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
+	 *   RevisionRecord::RAW              get the text regardless of permissions
 	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (not passing for FOR_THIS_USER is deprecated since 1.35)
 	 * @return string|null Comment stored for the last article revision, or null if the specified
