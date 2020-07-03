@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Tests for MediaWiki api.php?action=edit.
@@ -177,7 +178,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 		$this->assertSame( 'Success', $re['edit']['result'] );
 		$newtext = WikiPage::factory( Title::newFromText( $name ) )
-			->getContent( Revision::RAW )
+			->getContent( RevisionRecord::RAW )
 			->getText();
 		$this->assertSame( "==section 1==\nnew content 1\n\n==section 2==\ncontent2", $newtext );
 
@@ -217,7 +218,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( 'Success', $re['edit']['result'] );
 		// Check the page text is correct
 		$text = WikiPage::factory( Title::newFromText( $name ) )
-			->getContent( Revision::RAW )
+			->getContent( RevisionRecord::RAW )
 			->getText();
 		$this->assertSame( "== header ==\n\ntest", $text );
 
@@ -233,7 +234,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertSame( 'Success', $re2['edit']['result'] );
 		$text = WikiPage::factory( Title::newFromText( $name ) )
-			->getContent( Revision::RAW )
+			->getContent( RevisionRecord::RAW )
 			->getText();
 		$this->assertSame( "== header ==\n\ntest\n\n== header ==\n\ntest", $text );
 	}
@@ -731,7 +732,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$list = RevisionDeleter::createList( 'revision',
 			RequestContext::getMain(), $titleObj, [ $revId1 ] );
 		$list->setVisibility( [
-			'value' => [ Revision::DELETED_TEXT => 1 ],
+			'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
 			'comment' => 'Bye-bye',
 		] );
 

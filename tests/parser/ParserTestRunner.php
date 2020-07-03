@@ -28,6 +28,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
@@ -1658,7 +1659,7 @@ class ParserTestRunner {
 		$page->loadPageData( 'fromdbmaster' );
 
 		if ( $page->exists() ) {
-			$content = $page->getContent( Revision::RAW );
+			$content = $page->getContent( RevisionRecord::RAW );
 			// Only reject the title, if the content/content model is different.
 			// This makes it easier to create Template:(( or Template:)) in different extensions
 			if ( $newContent->equals( $content ) ) {

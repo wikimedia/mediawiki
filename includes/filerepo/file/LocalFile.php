@@ -24,6 +24,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -2213,7 +2214,7 @@ class LocalFile extends File {
 		}
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$revision = $store->getRevisionByTitle( $this->title, 0, Revision::READ_NORMAL );
+		$revision = $store->getRevisionByTitle( $this->title, 0, RevisionStore::READ_NORMAL );
 		if ( !$revision ) {
 			return false;
 		}
