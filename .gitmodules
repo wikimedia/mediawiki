@@ -1302,8 +1302,7 @@
 	url = https://github.com/SemanticMediaWiki/Mermaid.git
 	branch = master
 	ignore = dirty
-
-[submodule "extensions/extensions/UserFunctions"]
-	path = extensions/extensions/UserFunctions
+[submodule "extensions/UserFunctions"]
+	path = extensions/UserFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-UserFunctions
 	branch = REL1_34
