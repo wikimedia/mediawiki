@@ -9,6 +9,7 @@
  * - implement a constructor
  * - declare utility methods
  *
+ * @stable for subclassing
  * @ingroup Search
  */
 abstract class BaseSearchResultSet implements ISearchResultSet {
