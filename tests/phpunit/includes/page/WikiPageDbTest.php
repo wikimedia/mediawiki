@@ -3,6 +3,7 @@
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -642,17 +643,17 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 
 		$this->assertNull(
-			$page->getContent( Revision::FOR_PUBLIC ),
+			$page->getContent( RevisionRecord::FOR_PUBLIC ),
 			"WikiPage::getContent should return null after the page was suppressed for general users"
 		);
 
 		$this->assertNull(
-			$page->getContent( Revision::FOR_THIS_USER, $this->getTestUser()->getUser() ),
+			$page->getContent( RevisionRecord::FOR_THIS_USER, $this->getTestUser()->getUser() ),
 			"WikiPage::getContent should return null after the page was suppressed for individual users"
 		);
 
 		$this->assertNull(
-			$page->getContent( Revision::FOR_THIS_USER, $user ),
+			$page->getContent( RevisionRecord::FOR_THIS_USER, $user ),
 			"WikiPage::getContent should return null after the page was suppressed even for a sysop"
 		);
 	}
@@ -1948,7 +1949,7 @@ more stuff
 		);
 
 		$this->assertTrue( $result instanceof Revision );
-		$this->assertSame( $expectedComment, $result->getComment( Revision::RAW ) );
+		$this->assertSame( $expectedComment, $result->getComment( RevisionRecord::RAW ) );
 	}
 
 	/**

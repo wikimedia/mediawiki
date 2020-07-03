@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * @group API
  * @group Database
@@ -89,9 +91,9 @@ class ApiComparePagesTest extends ApiTestCase {
 			[ self::$repl['revB2'] ]
 		)->setVisibility( [
 			'value' => [
-				Revision::DELETED_TEXT => 1,
-				Revision::DELETED_USER => 1,
-				Revision::DELETED_COMMENT => 1,
+				RevisionRecord::DELETED_TEXT => 1,
+				RevisionRecord::DELETED_USER => 1,
+				RevisionRecord::DELETED_COMMENT => 1,
 			],
 			'comment' => 'Test for ApiComparePages',
 		] );
@@ -103,9 +105,9 @@ class ApiComparePagesTest extends ApiTestCase {
 			[ self::$repl['revB3'] ]
 		)->setVisibility( [
 			'value' => [
-				Revision::DELETED_USER => 1,
-				Revision::DELETED_COMMENT => 1,
-				Revision::DELETED_RESTRICTED => 1,
+				RevisionRecord::DELETED_USER => 1,
+				RevisionRecord::DELETED_COMMENT => 1,
+				RevisionRecord::DELETED_RESTRICTED => 1,
 			],
 			'comment' => 'Test for ApiComparePages',
 		] );

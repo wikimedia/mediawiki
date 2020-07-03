@@ -1444,8 +1444,8 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Get the current content of the page. This is basically similar to
-	 * WikiPage::getContent( Revision::RAW ) except that when the page doesn't exist an empty
-	 * content object is returned instead of null.
+	 * WikiPage::getContent( RevisionRecord::RAW ) except that when the page doesn't
+	 * exist an empty content object is returned instead of null.
 	 *
 	 * @since 1.21
 	 * @return Content

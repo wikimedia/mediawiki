@@ -1562,7 +1562,7 @@ class User implements IDBAccessObject, UserIdentity {
 			return;
 		}
 
-		wfDebug( __METHOD__ . ": checking..." );
+		wfDebug( __METHOD__ . ": checking blocked status for " . $this->getName() );
 
 		// Initialize data...
 		// Otherwise something ends up stomping on $this->mBlockedby when

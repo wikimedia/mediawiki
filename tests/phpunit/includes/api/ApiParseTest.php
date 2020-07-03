@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Revision\RevisionRecord;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
 
@@ -54,7 +55,10 @@ class ApiParseTest extends ApiTestCase {
 		$this->revisionDelete( self::$revIds['revdel'] );
 		$this->revisionDelete(
 			self::$revIds['suppressed'],
-			[ Revision::DELETED_TEXT => 1, Revision::DELETED_RESTRICTED => 1 ]
+			[
+				RevisionRecord::DELETED_TEXT => 1,
+				RevisionRecord::DELETED_RESTRICTED => 1
+			]
 		);
 
 		Title::clearCaches(); // Otherwise it has the wrong latest revision for some reason
