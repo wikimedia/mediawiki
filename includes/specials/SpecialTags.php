@@ -94,6 +94,7 @@ class SpecialTags extends SpecialPage {
 				],
 				'Reason' => [
 					'type' => 'text',
+					'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 					'label' => $this->msg( 'tags-create-reason' )->plain(),
 					'size' => 50,
 				],

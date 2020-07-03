@@ -974,7 +974,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 *
-	 * @param mixed &$text Reference to a text
+	 * @param string &$text
 	 * @return string
 	 */
 	public static function compressRevisionText( &$text ) {
@@ -987,7 +987,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 *
-	 * @param mixed $text Reference to a text
+	 * @param string|false $text
 	 * @param array $flags Compression flags
 	 * @return string|bool Decompressed text, or false on failure
 	 */
