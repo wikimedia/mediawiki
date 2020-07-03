@@ -86,6 +86,12 @@ Template:pipe
 |
 !! endarticle
 
+!! article
+Template:=
+!! text
+<nowiki>=</nowiki>
+!! endarticle
+
 !!article
 MediaWiki:bad image list
 !!text
