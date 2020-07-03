@@ -195,7 +195,7 @@ class EditResultBuilder {
 			return false;
 		}
 
-		return $this->revisionRecord->getSha1() === $this->getOriginalRevision()->getSha1();
+		return $this->revisionRecord->hasSameContent( $this->getOriginalRevision() );
 	}
 
 	/**
