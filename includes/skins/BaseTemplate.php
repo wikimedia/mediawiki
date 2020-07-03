@@ -328,22 +328,19 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		if ( $option == 'icononly' ) {
 			// Unset any icons which don't have an image
-			foreach ( $footericons as &$footerIconsBlock ) {
+			foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
 				foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
 					if ( !is_string( $footerIcon ) && !isset( $footerIcon['src'] ) ) {
 						unset( $footerIconsBlock[$footerIconKey] );
 					}
 				}
-			}
-			// Redo removal of any empty blocks
-			foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
-				if ( count( $footerIconsBlock ) <= 0 ) {
+				if ( $footerIconsBlock === [] ) {
 					unset( $footericons[$footerIconsKey] );
 				}
 			}
 		} elseif ( $option == 'nocopyright' ) {
 			unset( $footericons['copyright']['copyright'] );
-			if ( count( $footericons['copyright'] ) <= 0 ) {
+			if ( $footericons['copyright'] === [] ) {
 				unset( $footericons['copyright'] );
 			}
 		}
