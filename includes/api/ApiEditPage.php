@@ -306,9 +306,11 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpSectionTitle'] = $params['sectiontitle'];
 		}
 
-		// TODO: Pass along information from 'undoafter' as well
 		if ( $params['undo'] > 0 ) {
 			$requestArray['wpUndidRevision'] = $params['undo'];
+		}
+		if ( $params['undoafter'] > 0 ) {
+			$requestArray['wpUndoAfter'] = $params['undoafter'];
 		}
 
 		// Skip for baserevid == null or '' or '0' or 0

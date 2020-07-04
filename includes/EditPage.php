@@ -392,6 +392,7 @@ class EditPage implements IEditObject {
 	/* $didSave should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
 	public $undidRev = 0;
+	public $undoAfter = 0;
 
 	public $suppressIntro = false;
 
@@ -963,6 +964,10 @@ class EditPage implements IEditObject {
 			if ( $undidRev ) {
 				$this->undidRev = $undidRev;
 			}
+			$undoAfter = $request->getInt( 'wpUndoAfter' );
+			if ( $undoAfter ) {
+				$this->undoAfter = $undoAfter;
+			}
 
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
@@ -1397,8 +1402,9 @@ class EditPage implements IEditObject {
 									$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
 										->inContentLanguage()->text() . $this->summary;
 								}
-								$this->undidRev = $undo;
 							}
+							$this->undidRev = $undo;
+							$this->undoAfter = $undoafter;
 							$this->formtype = 'diff';
 						}
 					}
@@ -2448,7 +2454,7 @@ ERROR;
 			$content,
 			$this->summary,
 			$flags,
-			false,
+			$this->undoAfter ?: false,
 			$user,
 			$content->getDefaultFormat(),
 			$this->changeTags,
@@ -3074,6 +3080,9 @@ ERROR;
 
 		if ( $this->undidRev ) {
 			$out->addHTML( Html::hidden( 'wpUndidRevision', $this->undidRev ) );
+		}
+		if ( $this->undoAfter ) {
+			$out->addHTML( Html::hidden( 'wpUndoAfter', $this->undoAfter ) );
 		}
 
 		if ( $this->selfRedirect ) {
