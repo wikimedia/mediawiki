@@ -502,8 +502,11 @@ class InfoAction extends FormlessAction {
 			$protections = $title->getRestrictions( $restrictionType );
 
 			if ( !$protections ) {
-				// Allow all users
-				$message = $this->msg( 'protect-default' )->escaped();
+				$message = $this->getNamespaceProtectionMessage( $title );
+				if ( $message === null ) {
+					// Allow all users
+					$message = $this->msg( 'protect-default' )->escaped();
+				}
 			} else {
 				// @fixme Is it really intentional to allow keys containing ", "? Instead, should
 				// we always use protect-fallback if $protections has 2 or more elements?
@@ -731,6 +734,44 @@ class InfoAction extends FormlessAction {
 		}
 
 		return $pageInfo;
+	}
+
+	/**
+	 * Get namespace protection message for title or null if no namespace protection
+	 * has been applied
+	 *
+	 * @param Title $title
+	 * @return ?string HTML
+	 */
+	protected function getNamespaceProtectionMessage( Title $title ) : ?string {
+		$rights = [];
+		if ( $title->isRawHtmlMessage() ) {
+			$rights[] = 'editsitecss';
+			$rights[] = 'editsitejs';
+		} elseif ( $title->isSiteCssConfigPage() ) {
+			$rights[] = 'editsitecss';
+		} elseif ( $title->isSiteJsConfigPage() ) {
+			$rights[] = 'editsitejs';
+		} elseif ( $title->isSiteJsonConfigPage() ) {
+			$rights[] = 'editsitejson';
+		} elseif ( $title->isUserCssConfigPage() ) {
+			$rights[] = 'editusercss';
+		} elseif ( $title->isUserJsConfigPage() ) {
+			$rights[] = 'edituserjs';
+		} elseif ( $title->isUserJsonConfigPage() ) {
+			$rights[] = 'edituserjson';
+		} else {
+			$namespaceProtection = $this->context->getConfig()->get( 'NamespaceProtection' );
+			$right = $namespaceProtection[$title->getNamespace()] ?? null;
+			if ( $right ) {
+				$rights[] = $right;
+			}
+		}
+		if ( $rights ) {
+			return $this->msg( 'protect-fallback', $this->getLanguage()->commaList( $rights ) )->parse();
+		} else {
+			return null;
+		}
 	}
 
 	/**
