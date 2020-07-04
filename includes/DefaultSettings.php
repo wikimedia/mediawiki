@@ -6331,6 +6331,8 @@ $wgGrantPermissions['createaccount']['createaccount'] = true;
 
 $wgGrantPermissions['privateinfo']['viewmyprivateinfo'] = true;
 
+$wgGrantPermissions['mergehistory']['mergehistory'] = true;
+
 /**
  * @var array Map of grants to their UI grouping
  * @since 1.27
@@ -6365,6 +6367,7 @@ $wgGrantPermissionGroups = [
 	'protect'             => 'administration',
 	'oversight'           => 'administration',
 	'createaccount'       => 'administration',
+	'mergehistory'        => 'administration',
 
 	'highvolume'          => 'high-volume',
 

@@ -62,7 +62,7 @@ class MWGrants {
 		// grant-highvolume, grant-oversight, grant-patrol, grant-protect,
 		// grant-rollback, grant-sendemail, grant-uploadeditmovefile,
 		// grant-uploadfile, grant-basic, grant-viewdeleted,
-		// grant-viewmywatchlist, grant-createaccount
+		// grant-viewmywatchlist, grant-createaccount, grant-mergehistory
 		$msg = wfMessage( "grant-$grant" );
 		if ( $lang !== null ) {
 			if ( is_string( $lang ) ) {
