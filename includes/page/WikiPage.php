@@ -1898,15 +1898,17 @@ class WikiPage implements Page, IDBAccessObject {
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
 	 * @param bool|int $originalRevId: The ID of an original revision that the edit
-	 * restores or repeats. The new revision is expected to have the exact same content as
-	 * the given original revision. This is used with rollbacks and with dummy "null" revisions
-	 * which are created to record things like page moves.
+	 * restores or repeats. This is used with reverts and with dummy "null" revisions
+	 * which are created to record things like page moves. The new revision does not
+	 * have to have the exact same content as the given original revision, an additional
+	 * check is made to determine whether these edits really match. In case they don't,
+	 * $originalRevId is set to false by this method.
 	 * @param User|null $user The user doing the edit
 	 * @param string|null $serialFormat IGNORED.
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
-	 * @param int $undidRevId Id of revision that was undone or 0
+	 * @param int $undidRevId Id of the last revision that was undone or 0
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
@@ -1958,10 +1960,41 @@ class WikiPage implements Page, IDBAccessObject {
 		// used by this PageUpdater. However, there is no guarantee for this.
 		$updater = $this->newPageUpdater( $user, $slotsUpdate );
 		$updater->setContent( SlotRecord::MAIN, $content );
-		$updater->setOriginalRevisionId( $originalRevId );
 
-		if ( $undidRevId !== 0 ) {
+		$revisionStore = $this->getRevisionStore();
+		$originalRevision = $revisionStore->getRevisionById( $originalRevId );
+		if ( $originalRevision && $undidRevId !== 0 ) {
+			// Mark it as a revert if it's an undo
+			$oldestRevertedRev = $revisionStore->getNextRevision( $originalRevision );
+			if ( $oldestRevertedRev ) {
+				$updater->markAsRevert(
+					EditResult::REVERT_UNDO,
+					$oldestRevertedRev->getId(),
+					$undidRevId
+				);
+			} else {
+				// We can't find the oldest reverted revision for some reason
+				$updater->markAsRevert( EditResult::REVERT_UNDO, $undidRevId );
+			}
+		} elseif ( $undidRevId !== 0 ) {
+			// It's an undo, but the original revision is not specified, fall back to just
+			// marking it as an undo with one revision undone.
 			$updater->markAsRevert( EditResult::REVERT_UNDO, $undidRevId );
+			// Try finding the original revision ID by assuming it's the one before the edit
+			// that is being undone. If the bet fails, $originalRevision is ignored anyway, so
+			// no damage is done.
+			$undidRevision = $revisionStore->getRevisionById( $undidRevId );
+			if ( $undidRevision ) {
+				$originalRevision = $revisionStore->getPreviousRevision( $undidRevision );
+			}
+		}
+
+		// Make sure original revision's content is the same as the new content and save the
+		// original revision ID.
+		if ( $originalRevision &&
+			$originalRevision->getContent( SlotRecord::MAIN )->equals( $content )
+		) {
+			$updater->setOriginalRevisionId( $originalRevision->getId() );
 		}
 
 		$needsPatrol = $wgUseRCPatrol || ( $wgUseNPPatrol && !$this->exists() );
