@@ -38,7 +38,7 @@ use Wikimedia\AtEase\AtEase;
  * @see Database
  */
 abstract class DatabaseMysqlBase extends Database {
-	/** @var MysqlMasterPos */
+	/** @var MySQLMasterPos */
 	protected $lastKnownReplicaPos;
 	/** @var string Method to detect replica DB lag */
 	protected $lagDetectionMethod;
