@@ -901,9 +901,12 @@ class MovePage {
 			true,
 			$user
 		);
-		if ( !is_object( $nullRevision ) ) {
-			throw new MWException( 'Failed to create null revision while moving page ID '
-				. $oldid . ' to ' . $nt->getPrefixedDBkey() );
+		if ( $nullRevision === null ) {
+			$id = $nt->getArticleID( Title::READ_EXCLUSIVE );
+			$msg = 'Failed to create null revision while moving page ID ' .
+				$oldid . ' to ' . $nt->getPrefixedDBkey() . " (page ID $id)";
+
+			throw new MWException( $msg );
 		}
 
 		$nullRevision = $this->revisionStore->insertRevisionOn( $nullRevision, $dbw );

@@ -909,6 +909,14 @@ class RevisionStore
 		);
 
 		if ( !$pageLatest ) {
+			$id = $title->getArticleID( self::READ_EXCLUSIVE );
+			$msg = 'T235589: Failed to select table row during null revision creation' .
+				" Page id '$pageId' does not exist. Maybe it is different from '$id'?";
+			$this->logger->error(
+				$msg,
+				[ 'exception' => new RuntimeException( $msg ) ]
+			);
+
 			return null;
 		}
 
