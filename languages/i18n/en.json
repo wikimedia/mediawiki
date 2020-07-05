@@ -2537,7 +2537,7 @@
 	"protect-existing-expiry-infinity": "Existing expiration time: infinite",
 	"protect-otherreason": "Other/additional reason:",
 	"protect-otherreason-op": "Other reason",
-	"protect-dropdown": "*Common protection reasons\n** Excessive vandalism\n** Excessive spamming\n** Counter-productive edit warring\n** High traffic page",
+	"protect-dropdown": "*Common protection reasons\n** Excessive vandalism\n** Excessive spamming\n** Edit warring\n** High traffic page",
 	"protect-edit-reasonlist": "Edit protection reasons",
 	"protect-expiry-options": "1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite",
 	"restriction-type": "Permission:",
