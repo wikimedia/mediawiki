@@ -101,6 +101,28 @@ describe( 'GET /me/contributions', () => {
 		} );
 	} );
 
+	it( 'Returns a list filtered by tag', async () => {
+		const taggedRevisions = [ arnoldsEdits[ 1 ], arnoldsEdits[ 3 ], arnoldsEdits[ 5 ] ];
+
+		const { status, body } = await arnold.get( '/me/contributions?tag=api-test' );
+		assert.equal( status, 200 );
+
+		// assert body has property revisions
+		assert.property( body, 'revisions' );
+		const { revisions } = body;
+
+		// assert body.revisions length
+		assert.lengthOf( revisions, taggedRevisions.length );
+
+		// assert that there are no more revisions found
+		assert.propertyVal( body, 'older', null );
+
+		// assert body.revisions has the correct content
+		assert.equal( revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
+		assert.equal( revisions[ 1 ].id, arnoldsEdits[ 3 ].newrevid );
+		assert.equal( revisions[ 2 ].id, arnoldsEdits[ 1 ].newrevid );
+	} );
+
 	it( 'Can fetch a chain of segments following the "older" field in the response', async () => {
 		// get latest segment
 		const { body: latestSegment } = await arnold.get( `/me/contributions?limit=${limit}` );
@@ -192,14 +214,38 @@ describe( 'GET /me/contributions', () => {
 		assert.property( finalSegment, 'latest' );
 
 		// Follow all the "newer" links
-		const { body: latestSegment2 } = await req.get( finalSegment.latest );
+		const { body: latestSegment2 } = await req.get( latestSegment.latest );
 		assert.deepEqual( latestSegment, latestSegment2 );
 
-		const { body: latestSegment3 } = await req.get( olderSegment.latest );
+		assert.deepEqual( latestSegment.latest, finalSegment.latest );
+		assert.deepEqual( latestSegment.latest, olderSegment.latest );
+
+	} );
+
+	it( 'Segment links preserve tag filtering', async () => {
+		const req = clientFactory.getHttpClient( arnold );
+
+		// get latest segment
+		const { body: latestSegment } = await arnold.get( '/me/contributions?limit=2&tag=api-test' );
+
+		// assert body.revisions has the latest revisions that have the "api-test" tag (odd edits)
+		assert.equal( latestSegment.revisions[ 0 ].id, arnoldsEdits[ 5 ].newrevid );
+		assert.equal( latestSegment.revisions[ 1 ].id, arnoldsEdits[ 3 ].newrevid );
+
+		// get the final segment
+		const { body: finalSegment } = await req.get( latestSegment.older );
+
+		// assert body.revisions has the oldest revisions that have the "api-test" tag (odd edits)
+		assert.equal( finalSegment.revisions[ 0 ].id, arnoldsEdits[ 1 ].newrevid );
+
+		const { body: latestSegment2 } = await req.get( finalSegment.newer );
+		assert.deepEqual( latestSegment, latestSegment2 );
+
+		const { body: latestSegment3 } = await req.get( latestSegment.latest );
 		assert.deepEqual( latestSegment, latestSegment3 );
 
-		const { body: latestSegment4 } = await req.get( finalSegment.latest );
-		assert.deepEqual( latestSegment, latestSegment4 );
+		// assert that the "latest" links also preserve the "tag" parameter
+		assert.deepEqual( finalSegment.latest, latestSegment.latest );
 	} );
 
 	it( 'Does not return suppressed revisions when requesting user does not have appropriate permissions', async () => {
