@@ -8861,7 +8861,7 @@ $wgShellLocale = 'C.UTF-8';
  * @since 1.31
  * @var string|bool
  */
-$wgShellRestrictionMethod = false;
+$wgShellRestrictionMethod = 'autodetect';
 
 /** @} */ # End shell }
 
