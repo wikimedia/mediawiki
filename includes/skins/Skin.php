@@ -657,9 +657,12 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Generate debug data HTML for displaying at the bottom of the main content
 	 * area.
+	 *
 	 * @return string HTML containing debug data, if enabled (otherwise empty).
+	 * @deprecated since 1.35. Call MWDebug::getHTMLDebugLog() directly.
 	 */
 	protected function generateDebugHTML() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MWDebug::getHTMLDebugLog();
 	}
 

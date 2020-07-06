@@ -66,30 +66,27 @@ class SkinMustache extends SkinTemplate {
 	 */
 	public function getTemplateData() {
 		$out = $this->getOutput();
-		$name = $this->skinname;
-		$title = $out->getTitle();
-		$subtitle = $out->getSubtitle();
+		$name = $this->getSkinName();
 		$config = $this->getConfig();
+		$tail = [
+			MWDebug::getDebugHTML( $this->getContext() ),
+			$this->bottomScripts(),
+			wfReportTime( $out->getCSP()->getNonce() ),
+			MWDebug::getHTMLDebugLog()
+		];
 
 		return [
 			// Array objects
-			'array-indicators' => $this->getIndicatorsData(
-				$out->getIndicators()
-			),
+			'array-indicators' => $this->getIndicatorsData( $out->getIndicators() ),
 			// Data objects
 			'data-search-box' => $this->buildSearchProps(),
 			// HTML strings
 			'html-headelement' => $out->headElement( $this ),
-			'html-bodycontent' => $this->wrapHTML( $title, $out->mBodytext ),
+			'html-bodycontent' => $this->wrapHTML( $out->getTitle(), $out->getHTML() ),
 			'html-catlinks' => $this->getCategories(),
 			'html-title' => $out->getPageTitle(),
-			'html-subtitle' => $subtitle,
-			// From BaseTemplate::getTrail (handles bottom JavaScript)
-			'html-printtail' => WrappedString::join( "\n", [
-				MWDebug::getDebugHTML( $this->getContext() ),
-				$this->bottomScripts(),
-				wfReportTime( $out->getCSP()->getNonce() )
-			] ) . '</body></html>',
+			'html-subtitle' => $out->getSubtitle(),
+			'html-printtail' => WrappedString::join( "\n", $tail ) . '</body></html>',
 		];
 	}
 
