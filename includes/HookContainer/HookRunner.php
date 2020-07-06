@@ -523,6 +523,7 @@ class HookRunner implements
 	\MediaWiki\Storage\Hook\ArticleEditUpdatesDeleteFromRecentchangesHook,
 	\MediaWiki\Storage\Hook\ArticleEditUpdatesHook,
 	\MediaWiki\Storage\Hook\ArticlePrepareTextForEditHook,
+	\MediaWiki\Storage\Hook\BeforeRevertedTagUpdateHook,
 	\MediaWiki\Storage\Hook\MultiContentSaveHook,
 	\MediaWiki\Storage\Hook\PageContentInsertCompleteHook,
 	\MediaWiki\Storage\Hook\PageContentSaveCompleteHook,
@@ -1033,6 +1034,17 @@ class HookRunner implements
 		return $this->container->run(
 			'BeforeResetNotificationTimestamp',
 			[ &$userObj, &$titleObj, $force, &$oldid ]
+		);
+	}
+
+	public function onBeforeRevertedTagUpdate( $wikiPage, $user,
+		$summary, $flags, $revisionRecord, $editResult, &$approved
+	) : void {
+		$this->container->run(
+			'BeforeRevertedTagUpdate',
+			[ $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult,
+				&$approved ],
+			[ 'abortable' => false ]
 		);
 	}
 

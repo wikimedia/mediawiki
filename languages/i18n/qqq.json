@@ -3940,6 +3940,8 @@
 	"tag-mw-undo-description": "Description for \"undo\" change tag",
 	"tag-mw-manual-revert": "Change tag for manually restoring the page to an exact previous state",
 	"tag-mw-manual-revert-description": "Description for \"manual revert\" change tag",
+	"tag-mw-reverted": "Change tag for edits that were later reverted by a different edit",
+	"tag-mw-reverted-description": "Description for \"reverted\" change tag",
 	"tags-title": "The title of [[Special:Tags]].\n{{Identical|Tag}}",
 	"tags-intro": "Explanation on top of [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].",
 	"tags-tag": "Caption of a column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].",

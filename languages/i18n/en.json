@@ -3724,6 +3724,8 @@
 	"tag-mw-undo-description": "Edits that undo previous edits using the undo link",
 	"tag-mw-manual-revert": "Manual revert",
 	"tag-mw-manual-revert-description": "Edits that manually restore the page to an exact previous state",
+	"tag-mw-reverted": "Reverted",
+	"tag-mw-reverted-description": "Edits that were later reverted by a different edit",
 	"tags-title": "Tags",
 	"tags-intro": "This page lists the tags that the software may mark an edit with, and their meaning.",
 	"tags-tag": "Tag name",

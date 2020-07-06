@@ -7462,10 +7462,11 @@ $wgUseTagFilter = true;
  * - 'mw-rollback': Edit is a rollback, made through the rollback link or rollback API
  * - 'mw-undo': Edit made through an undo link
  * - 'mw-manual-revert': Edit that restored the page to an exact previous state
+ * - 'mw-reverted': Edit that was later reverted by another edit
  *
  * @var array
  * @since 1.31
- * @since 1.36 Added 'mw-manual-revert'
+ * @since 1.36 Added 'mw-manual-revert' and 'mw-reverted'
  */
 $wgSoftwareTags = [
 	'mw-contentmodelchange' => true,
@@ -7477,6 +7478,7 @@ $wgSoftwareTags = [
 	'mw-rollback' => true,
 	'mw-undo' => true,
 	'mw-manual-revert' => true,
+	'mw-reverted' => true,
 ];
 
 /**
@@ -7971,6 +7973,7 @@ $wgJobClasses = [
 	'userGroupExpiry' => UserGroupExpiryJob::class,
 	'clearWatchlistNotifications' => ClearWatchlistNotificationsJob::class,
 	'userOptionsUpdate' => UserOptionsUpdateJob::class,
+	'revertedTagUpdate' => RevertedTagUpdateJob::class,
 	'enqueue' => EnqueueJob::class, // local queue for multi-DC setups
 	'null' => NullJob::class,
 	'userEditCountInit' => UserEditCountInitJob::class,
@@ -9619,6 +9622,21 @@ $wgManualRevertSearchRadius = 15;
  * @var bool
  */
 $wgAllowCrossOrigin = false;
+
+/**
+ * Maximum depth (revision count) of reverts that will have their reverted edits marked
+ * with the mw-reverted change tag. Reverts deeper than that will not have any edits
+ * marked as reverted at all.
+ *
+ * Large values can lead to lots of revisions being marked as "reverted", which may appear
+ * confusing to users.
+ *
+ * Setting this to 0 will disable the reverted tag entirely.
+ *
+ * @since 1.36
+ * @var int
+ */
+$wgRevertedTagMaxDepth = 15;
 
 /**
  * For really cool vim folding this needs to be at the end:

@@ -100,9 +100,11 @@ use MediaWiki\Shell\CommandFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
+use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
@@ -1028,6 +1030,23 @@ return [
 		}
 
 		return $rl;
+	},
+
+	'RevertedTagUpdateManager' => function ( MediaWikiServices $services ) : RevertedTagUpdateManager {
+		$editResultCache = new EditResultCache(
+			$services->getMainObjectStash(),
+			$services->getDBLoadBalancer(),
+			new ServiceOptions(
+				EditResultCache::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
+		);
+
+		return new RevertedTagUpdateManager(
+			$editResultCache,
+			// TODO: should be replaced with proper service injection
+			JobQueueGroup::singleton()
+		);
 	},
 
 	'RevisionFactory' => function ( MediaWikiServices $services ) : RevisionFactory {
