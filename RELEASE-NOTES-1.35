@@ -125,6 +125,9 @@ For notes on 1.34.x and older releases, see HISTORY.
   (e.g. [ '127.0.0.1' => 'bad-ip' ]) for $wgProxyList has been removed. This
   was deprecated since 1.30. Please convert these arrays to indexed/sequential
   ones (e.g. [ '127.0.0.1' ]).
+* $wgShellRestrictionMethod - This now defaults to 'autodetect', which will
+  enable sandboxing for shell commands using firejail, if it's installed. To
+  disable restrictions, set it to false.
 
 ==== Removed configuration ====
 * $wgSysopEmailBans — This setting, deprecated in 1.34, was removed. To let
@@ -688,6 +691,9 @@ because of Phabricator reports.
 * The populateContentModel.php maintenance script was removed. It has
   been replaced by the populateContentTables.php script.
 * The findHooks.php maintenance script, for the old hooks system, was removed.
+* (T257278) Calling MediaWiki\Shell\Command::restrict() will now overwrite
+  any previous restrictions rather than adding to them, making it possible to
+  disable the default restrictions.
 * …
 
 === Deprecations in 1.35 ===
