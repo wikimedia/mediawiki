@@ -1,0 +1,89 @@
+/**
+ * MediaWiki style sheet for addressing (normalizing) browser bugs and inconsistencies.
+ *
+ * Meant for normalizing elements and attribute selectors used by MediaWiki.
+ * General element styles and element-bound classes belong to 'elements.css'.
+ * If adding/changing rules, please consult https://github.com/necolas/normalize.css v7.0.0
+ * which this file is heavily inspired from, additionally orients on our
+ * Basic (Grade C) supported browsers.
+ * See https://www.mediawiki.org/wiki/Compatibility#Browser_support_matrix
+ */
+
+body {
+	// Support all browser: Remove the margin (opinionated).
+	margin: 0;
+}
+
+// Sectioning and grouping elements
+
+main {
+	// Support IE 9-11: Add the correct display.
+	// Note: Support for IE <= 8 is provided by html5shiv.js.
+	display: block;
+}
+
+hr {
+	// Support Firefox: Add the correct box sizing.
+	box-sizing: content-box;
+	height: 0;
+	// Support Edge and IE: Show the overflow.
+	overflow: visible;
+}
+
+// Inline elements
+
+abbr[ title ] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+
+@supports ( text-decoration: underline dotted ) {
+	abbr[ title ] {
+		// Support Chrome 57- and Firefox 39-: Remove the bottom border.
+		border-bottom: 0;
+		// Support Chrome, Edge, IE, Opera, and Safari: Add the correct text decoration.
+		text-decoration: underline dotted;
+	}
+}
+
+pre,
+code,
+tt,
+kbd,
+samp {
+	// Support Blink, Gecko, Webkit: Correct the inheritance and scaling of font size
+	// in all browsers for monospace font. See T176636.
+	font-family: monospace, monospace;
+}
+
+sub,
+sup {
+	// Prevent citations and subscripts from interfering with the line height.
+	line-height: 1;
+}
+
+// Embedded content
+
+img {
+	// Support IE 8-10: Remove the border on images inside links.
+	border: 0;
+}
+
+// Forms and form elements
+
+button::-moz-focus-inner,
+[ type='button' ]::-moz-focus-inner,
+[ type='reset' ]::-moz-focus-inner,
+[ type='submit' ]::-moz-focus-inner {
+	// Support Firefox: Remove the inner border and padding.
+	border-style: none; // stylelint-disable-line declaration-property-value-blacklist
+	padding: 0;
+}
+
+legend {
+	// Support IE: Correct the color inheritance from `fieldset` elements.
+	color: inherit;
+	// Support all browsers: Remove the padding so developers are not caught out when they
+	// zero out `fieldset` elements in all browsers.
+	padding: 0;
+}
