@@ -41,6 +41,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 *     Adds CSS to style an element with class `mw-wiki-logo` using the value of wgLogo.
 	 *     This is enabled by default if no features are added.
 	 *
+	 * "normalize":
+	 *     Styles needed to normalize rendering across different browser rendering engines.
+	 *     All to address bugs and common browser inconsistencies for skins and extensions.
+	 *     Inspired by necolas' normalize.css. This is meant to be kept lean,
+	 *     basic styling beyond normalization should live in one of the following modules.
+	 *
 	 * "elements":
 	 *     The base level that only contains the most basic of common skin styles.
 	 *     Only styles for single elements are included, no styling for complex structures like the
@@ -87,6 +93,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		],
 		'interface' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.css' ],
+		],
+		'normalize' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/normalize.less' ],
 		],
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
