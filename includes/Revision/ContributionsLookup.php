@@ -67,6 +67,7 @@ class ContributionsLookup {
 	 * @param int $limit the maximum number of revisions to return
 	 * @param User $performer the user used for permission checks
 	 * @param string $segment
+	 * @param string|null $tag
 	 *
 	 * @return ContributionsSegment
 	 * @throws \MWException
@@ -75,7 +76,8 @@ class ContributionsLookup {
 		UserIdentity $target,
 		int $limit,
 		User $performer,
-		string $segment = ''
+		string $segment = '',
+		string $tag = null
 	): ContributionsSegment {
 		$context = new RequestContext();
 		$context->setUser( $performer );
@@ -85,6 +87,7 @@ class ContributionsLookup {
 		// TODO: explore moving this to factory method for testing
 		$pager = new ContribsPager( $context, [
 			'target' => $target->getName(),
+			'tagfilter' => $tag,
 		] );
 		$revisions = [];
 		$tags = [];

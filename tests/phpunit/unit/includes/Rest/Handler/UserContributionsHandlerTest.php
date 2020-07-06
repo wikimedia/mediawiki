@@ -88,6 +88,9 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		yield [ new RequestData(
 			[ 'queryParams' => [ 'limit' => self::DEFAULT_LIMIT ] ]
 		) ];
+		yield [ new RequestData(
+			[ 'queryParams' => [ 'tag' => 'test', 'limit' => 7 ] ]
+		) ];
 	}
 
 	/**
@@ -106,8 +109,9 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 
 		$limit = $request->getQueryParams()['limit'] ?? self::DEFAULT_LIMIT;
 		$segment = $request->getQueryParams()['segment'] ?? null;
+		$tag = $request->getQueryParams()['tag'] ?? null;
 		$mockContributionsLookup->method( 'getContributions' )
-			->with( $user, $limit, $user, $segment )
+			->with( $user, $limit, $user, $segment, $tag )
 			->willReturn( $fakeSegment );
 
 		$handler = new UserContributionsHandler( $mockContributionsLookup );
@@ -143,6 +147,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 			[],
 			[],
 			[ 'newest' => true, 'oldest' => true ],
+			[],
 			[
 				'older' => null,
 				'newer' => $basePath . '?limit=20',
@@ -150,14 +155,27 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 				'revisions' => []
 			]
 		];
+		yield [ 0,
+			[],
+			[],
+			[ 'newest' => true, 'oldest' => true ],
+			[ 'tag' => 'test' ],
+			[
+				'older' => null,
+				'newer' => $basePath . '?limit=20&tag=test',
+				'latest' => $basePath . '?limit=20&tag=test',
+				'revisions' => []
+			]
+		];
 		yield [ 1,
 			[ 1 => [ 'frob' ] ],
 			[ 1 => 256 ],
 			[ 'newest' => true, 'oldest' => true ],
+			[ 'limit' => 7 ],
 			[
 				'older' => null,
-				'newer' => $basePath . '?limit=20&segment=after%7C20200101000001',
-				'latest' => $basePath . '?limit=20',
+				'newer' => $basePath . '?limit=7&segment=after%7C20200101000001',
+				'latest' => $basePath . '?limit=7',
 				'revisions' => [
 					[
 						'id' => 1,
@@ -179,10 +197,11 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 			[ 5 => [ 'frob', 'nitz' ] ],
 			[ 1 => 256, 2 => 256, 3 => 256, 4 => null, 5 => 256 ],
 			[ 'newest' => true ],
+			[ 'tag' => 'test' ],
 			[
-				'older' => $basePath . '?limit=20&segment=before%7C20200101000004',
-				'newer' => $basePath . '?limit=20&segment=after%7C20200101000005',
-				'latest' => $basePath . '?limit=20',
+				'older' => $basePath . '?limit=20&tag=test&segment=before%7C20200101000004',
+				'newer' => $basePath . '?limit=20&tag=test&segment=after%7C20200101000005',
+				'latest' => $basePath . '?limit=20&tag=test',
 				'revisions' => [
 					[
 						'id' => 5,
@@ -218,9 +237,16 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideThatResponseConformsToSchema
 	 */
-	public function testThatResponseConformsToSchema( $numRevisions, $tags, $deltas, $flags, $expectedResponse ) {
+	public function testThatResponseConformsToSchema(
+		$numRevisions,
+		$tags,
+		$deltas,
+		$flags,
+		$query,
+		$expectedResponse
+	) {
 		$handler = $this->newHandler( $numRevisions, $tags, $deltas, $flags );
-		$request = new RequestData( [] );
+		$request = new RequestData( [ 'queryParams' => $query ] );
 
 		$user = $this->makeMockUser( false );
 		RequestContext::getMain()->setUser( $user );
@@ -231,10 +257,3 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( $expectedResponse, $response );
 	}
 }
-
-// Returns a list of page revisions by the current logged-in user
-// There is a stable chronological order allowing the client to request
-// the next or previous segments such that the client will eventually receive all contributions
-// Returned list must segmented based on a LIMIT
-// Response object must be JSON
-// Response object must contain the following fields:
