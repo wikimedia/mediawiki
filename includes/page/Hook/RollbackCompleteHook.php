@@ -7,7 +7,7 @@ use MediaWiki\User\UserIdentity;
 use WikiPage;
 
 /**
- * @stable to implement
+ * @deprecated since 1.36, use PageSaveComplete
  * @ingroup Hooks
  */
 interface RollbackCompleteHook {

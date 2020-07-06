@@ -7,7 +7,7 @@ use User;
 use WikiPage;
 
 /**
- * @deprecated since 1.35. Use RollbackComplete instead.
+ * @deprecated since 1.35. Use PageSaveComplete instead.
  * @ingroup Hooks
  */
 interface ArticleRollbackCompleteHook {
