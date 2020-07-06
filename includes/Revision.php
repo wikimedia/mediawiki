@@ -35,6 +35,7 @@ use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @deprecated since 1.31, use RevisionRecord, RevisionStore, and BlobStore instead.
+ * Hard deprecated since 1.35
  */
 class Revision implements IDBAccessObject {
 
@@ -362,12 +363,13 @@ class Revision implements IDBAccessObject {
 	 * @internal
 	 */
 	public function __construct( $row, $queryFlags = 0, Title $title = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
+
 		global $wgUser;
 
 		if ( $row instanceof RevisionRecord ) {
 			$this->mRecord = $row;
 		} elseif ( is_array( $row ) ) {
-			wfDeprecated( __METHOD__ . ' with an array', '1.31' );
 			// If no user is specified, fall back to using the global user object, to stay
 			// compatible with pre-1.31 behavior.
 			if ( !isset( $row['user'] ) && !isset( $row['user_text'] ) ) {
@@ -380,7 +382,6 @@ class Revision implements IDBAccessObject {
 				$this->ensureTitle( $row, $queryFlags, $title )
 			);
 		} elseif ( is_object( $row ) ) {
-			wfDeprecated( __METHOD__ . ' with an object', '1.31' );
 			$this->mRecord = self::getRevisionFactory()->newRevisionFromRow(
 				$row,
 				$queryFlags,
@@ -441,18 +442,23 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 * @return RevisionRecord
 	 */
 	public function getRevisionRecord() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mRecord;
 	}
 
 	/**
 	 * Get revision ID
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @return int|null
 	 */
 	public function getId() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return $this->mRecord->getId();
 	}
 
@@ -583,11 +589,14 @@ class Revision implements IDBAccessObject {
 	 * Returns the title of the page associated with this entry.
 	 * Since 1.31, this will never return null.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * Will do a query, when title is not set and id is given.
 	 *
 	 * @return Title
 	 */
 	public function getTitle() {
+		wfDeprecated( __METHOD__, '1.31' );
 		$linkTarget = $this->mRecord->getPageAsLinkTarget();
 		return Title::newFromLinkTarget( $linkTarget );
 	}
@@ -628,6 +637,8 @@ class Revision implements IDBAccessObject {
 	 * If the specified audience does not have access to it, zero will be
 	 * returned.
 	 *
+	 * @deprecated since 1.31 (soft), 1.35 (hard)
+	 *
 	 * @param int $audience One of:
 	 *   Revision::FOR_PUBLIC       to be displayed to all users
 	 *   Revision::FOR_THIS_USER    to be displayed to the given user
@@ -637,11 +648,8 @@ class Revision implements IDBAccessObject {
 	 * @return int
 	 */
 	public function getUser( $audience = self::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.31' );
 		if ( $audience === self::FOR_THIS_USER && !$user ) {
-			wfDeprecated(
-				__METHOD__ . ' using FOR_THIS_USER without a user',
-				'1.35'
-			);
 			global $wgUser;
 			$user = $wgUser;
 		}

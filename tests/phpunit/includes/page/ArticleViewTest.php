@@ -60,6 +60,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetOldId() {
 		$this->hideDeprecated( 'Article::getRevisionFetched' );
+		$this->hideDeprecated( 'Revision::__construct' );
 
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );

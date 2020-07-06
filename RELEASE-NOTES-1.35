@@ -945,7 +945,6 @@ because of Phabricator reports.
   user is passed, they fallback to $wgUser. Not passing a user when
   one is needed is deprecated
   - LogEventsList::getExcludeClause
-  - Revision::getUser
   - WikiPage::getComment
   - WikiPage::getCreator
   - WikiPage::getUser
@@ -1013,9 +1012,9 @@ because of Phabricator reports.
 * WikiPage::onArticleEdit now accepts as its optional second parameter
   a RevisionRecord object; passing a Revision is hard deprecated.
 * Global $wgUser variable was soft deprecated.
-* The Revision class was soft deprecated entirely in 1.31. Specific methods
+* The Revision class was soft deprecated entirely in 1.31. All methods
   have now been individually hard deprecated:
-  - ::__construct with either an object or an array
+  - ::__construct - create MutableRevisionRecord objects instead
   - ::newFromId - use RevisionLookup::getRevisionById instead
   - ::newFromTitle - use RevisionLookup::getRevisionByTitle instead
   - ::newFromPageId - use RevisionStore::getRevisionByPageId instead
@@ -1027,6 +1026,8 @@ because of Phabricator reports.
   - ::getQueryInfo - use RevisionStore::getQueryInfo instead
   - ::getArchiveQueryInfo - use RevisionStore::getArchiveQueryInfo instead
   - ::getParentLengths - use RevisionStore::getRevisionSizes instead
+  - ::getRevisionRecord - no replacement
+  - ::getId - use RevisionRecord::getId instead
   - ::setId - use MutableRevisionRecord::setId instead
   - ::setUserIdAndName - use MutableRevisionRecord::setUser instead
   - ::getTextId - use SlotRecord::getContentAddress for retrieving an actual
@@ -1034,8 +1035,10 @@ because of Phabricator reports.
   - ::getParentId - use RevisionRecord::getParentId instead
   - ::getSize - use RevisionRecord::getSize instead
   - ::getSha1 - use RevisionRecord::getSha1 instead
+  - ::getTitle - use RevisionRecord::getPageAsLinkTarget instead
   - ::setTitle - the method was previously a no-op
   - ::getPage - use RevisionRecord::getPageId instead
+  - ::getUser - use RevisionRecord::getUser and then User::getId instead
   - ::getUserText - use RevisionRecord::getUser and then User::getName instead
   - ::getComment - use RevisionRecord::getComment instead
   - ::isMinor - use RevisionRecord::isMinor instead

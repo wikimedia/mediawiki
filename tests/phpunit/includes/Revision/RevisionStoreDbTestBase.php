@@ -714,6 +714,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRecentChange() {
 		$this->hideDeprecated( 'Revision::getRecentChange' );
+		$this->hideDeprecated( 'Revision::__construct' );
 
 		$page = $this->getTestPage();
 		$content = new WikitextContent( __METHOD__ );
@@ -2107,6 +2108,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetContentBlobsForBatch( $slots ) {
 		$this->hideDeprecated( 'Revision::getContentModel' );
+		$this->hideDeprecated( 'Revision::__construct' );
 
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
