@@ -439,7 +439,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'headelement', $out->headElement( $this ) );
 
 		$tpl->set( 'debug', '' );
-		$tpl->set( 'debughtml', $this->generateDebugHTML() );
+		$tpl->set( 'debughtml', MWDebug::getHTMLDebugLog() );
 		$tpl->set( 'reporttime', wfReportTime( $out->getCSP()->getNonce() ) );
 
 		// original version by hansm

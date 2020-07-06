@@ -1293,6 +1293,8 @@ because of Phabricator reports.
 * The hooks BeforeHttpsRedirect, CanIPUseHTTPS and UserRequiresHTTPS were
   deprecated, as part of a long-term plan to remove support for mixed
   HTTP/HTTPS wikis.
+* Skin::generateDebugHTML() has been hard deprecated. Call
+  MWDebug::getHTMLDebugLog() directly.
 * …
 
 === Other changes in 1.35 ===
