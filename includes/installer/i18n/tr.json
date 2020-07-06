@@ -195,7 +195,7 @@
 	"config-pingback-help": "Bu seçeneği seçerseniz, MediaWiki periyodik olarak bu MediaWiki örneği hakkındaki temel verilerle https://www.mediawiki.org adresine ping atın. Bu veriler örneğin sistem türünü, PHP versiyonunu ve seçilen veritabanı arka ucunu içerir. Wikimedia Vakfı, gelecekteki gelişim çabalarına rehberlik etmek için bu verileri MediaWiki geliştiricileriyle paylaşmaktadır. Sisteminiz için aşağıdaki veriler gönderilecektir:\n<pre>$1</pre>",
 	"config-almost-done": "Neredeyse bitirdiniz!\nŞimdi kalan yapılandırmaları atlayın ve vikiyi şimdi yükleyin.",
 	"config-optional-continue": "Bana daha fazla soru sor.",
-	"config-optional-skip": "Şimdiden sıkıldım, sadece vikiyi yükle.",
+	"config-optional-skip": "Şimdiden sıkıldım, yalnızca vikiyi yükle.",
 	"config-profile": "Kullanıcı hakları profili:",
 	"config-profile-wiki": "Vikiyi aç",
 	"config-profile-no-anon": "Hesap oluşturmak gerekli",

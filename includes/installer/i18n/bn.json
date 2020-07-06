@@ -41,6 +41,7 @@
 	"config-page-existingwiki": "ইতিমধ্যেই থাকা উইকি",
 	"config-help-restart": "আপনি কী সকল সংরক্ষিত উপাত্ত পরিষ্কার করতে যা আপনি প্রবেশ করিয়েছিলেন এবং ইন্সটালেশন ব্যবস্থা পুনরায় আরম্ভ করতে চান?",
 	"config-restart": "হ্যাঁ, পুনরায় চালু করুন",
+	"config-sidebar": "* [https://www.mediawiki.org মিডিয়াউইকি প্রধান পাতা]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents ব্যবহারকারী নির্দেশিকা]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents প্রশাসক নির্দেশিকা]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ প্রাজিপ্র]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Communication সাহায্য পান]\n* [https://phabricator.wikimedia.org/ সমস্যা অনুসরণ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute অবদান]",
 	"config-sidebar-upgrade": "হালনাগাদকরণ",
 	"config-env-php": "পিএইচপি $1 ইন্সটল করা হয়েছে।",
 	"config-memory-raised": "পিএইচপির <code>memory_limit</code> হচ্ছে $1, বৃদ্ধি পেয়ে $2 হয়েছে।",
