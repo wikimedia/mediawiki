@@ -318,6 +318,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRevision() {
 		$this->hideDeprecated( 'PageArchive::getRevision' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 
 		$rev = $this->archivedPage->getRevision( $this->ipRev->getTimestamp() );
 		$this->assertNotNull( $rev );
@@ -346,6 +348,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetArchivedRevision() {
 		$this->hideDeprecated( 'PageArchive::getArchivedRevision' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 
 		$rev = $this->archivedPage->getArchivedRevision( $this->ipRev->getId() );
 		$this->assertNotNull( $rev );
@@ -363,6 +367,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetPreviousRevision() {
 		$this->hideDeprecated( 'PageArchive::getPreviousRevision' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getId' );
 
 		$rev = $this->archivedPage->getPreviousRevision( $this->ipRev->getTimestamp() );
 		$this->assertNotNull( $rev );

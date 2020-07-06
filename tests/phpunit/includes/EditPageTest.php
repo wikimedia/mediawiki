@@ -277,6 +277,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePage(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
+		$this->hideDeprecated( 'Revision::__construct' );
 		$this->hideDeprecated( 'PageContentInsertComplete hook' );
 		$this->hideDeprecated( 'PageContentSaveComplete hook' );
 
@@ -322,6 +323,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePageTrx(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
+		$this->hideDeprecated( 'Revision::__construct' );
 		$this->hideDeprecated( 'PageContentInsertComplete hook' );
 		$this->hideDeprecated( 'PageContentSaveComplete hook' );
 
@@ -380,6 +382,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage
 	 */
 	public function testUpdatePage() {
+		$this->hideDeprecated( 'Revision::__construct' );
 		$this->hideDeprecated( 'PageContentInsertComplete hook' );
 		$this->hideDeprecated( 'PageContentSaveComplete hook' );
 
@@ -432,6 +435,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage
 	 */
 	public function testUpdatePageTrx() {
+		$this->hideDeprecated( 'Revision::__construct' );
 		$this->hideDeprecated( 'PageContentSaveComplete hook' );
 
 		$text = "one";

@@ -33,6 +33,8 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->hideDeprecated( 'Revision::newFromId' );
 		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'Revision::getComment' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getUser' );
 
 		$user = self::$users['sysop']->getUser();
 		$revid = array_shift( $this->revs );

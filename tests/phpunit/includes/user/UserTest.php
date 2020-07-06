@@ -2797,6 +2797,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'User::getNewMessageLinks' );
 		$this->hideDeprecated( 'User::getNewMessageRevisionId' );
 		$this->hideDeprecated( 'User::setNewtalk' );
+		$this->hideDeprecated( 'Revision::__construct' );
+		$this->hideDeprecated( 'Revision::getId' );
 
 		$user = $this->getTestUser()->getUser();
 		$userTalk = $user->getTalkPage();

@@ -74,6 +74,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
+		$this->hideDeprecated( 'Revision::__construct' );
 
 		$user = $this->getTestUser()->getUser();
 
@@ -180,6 +181,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
+		$this->hideDeprecated( 'Revision::__construct' );
 
 		$user = $this->getTestUser()->getUser();
 
