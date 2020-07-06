@@ -118,7 +118,10 @@ class EditPage implements IEditObject {
 	/** @var bool New page or new section */
 	public $isNew = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $deletedSinceEdit;
 
 	/** @var string */
@@ -130,31 +133,58 @@ class EditPage implements IEditObject {
 	 */
 	public $firsttime;
 
-	/** @var bool|stdClass */
+	/**
+	 * @var bool|stdClass
+	 * @internal
+	 */
 	public $lastDelete;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $mTokenOk = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $mTokenOkExceptSuffix = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $mTriedSave = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $incompleteForm = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $tooBig = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $missingComment = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $missingSummary = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $allowBlankSummary = false;
 
 	/** @var bool */
@@ -169,16 +199,25 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	protected $allowSelfRedirect = false;
 
-	/** @var string */
+	/**
+	 * @var string
+	 * @internal
+	 */
 	public $autoSumm = '';
 
 	/** @var string */
 	private $hookError = '';
 
-	/** @var ParserOutput */
+	/**
+	 * @var ParserOutput
+	 * @internal
+	 */
 	public $mParserOutput;
 
-	/** @var bool Has a summary been preset using GET parameter &summary= ? */
+	/**
+	 * @var bool Has a summary been preset using GET parameter &summary= ?
+	 * @internal
+	 */
 	public $hasPresetSummary = false;
 
 	/**
@@ -213,10 +252,16 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	public $diff = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $minoredit = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $watchthis = false;
 
 	/** @var bool Corresponds to $wgWatchlistExpiry */
@@ -228,7 +273,10 @@ class EditPage implements IEditObject {
 	/** @var string|null The expiry time of the watch item, or null if it is not watched temporarily. */
 	private $watchlistExpiry;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $recreate = false;
 
 	/** @var string
@@ -242,7 +290,9 @@ class EditPage implements IEditObject {
 	/** @var string */
 	public $summary = '';
 
-	/** @var bool
+	/**
+	 * @var bool
+	 * @internal
 	 * If true, hide the summary field.
 	 */
 	public $nosummary = false;
@@ -284,20 +334,31 @@ class EditPage implements IEditObject {
 	 */
 	public $oldid = 0;
 
-	/** @var int Revision ID the edit is based on, adjusted when an edit conflict is resolved.
+	/**
+	 * @var int Revision ID the edit is based on, adjusted when an edit conflict is resolved.
+	 * @internal
 	 * @see $editRevId
 	 * @see $oldid
 	 * @see getparentRevId()
 	 */
 	public $parentRevId = 0;
 
-	/** @var string */
+	/**
+	 * @var string
+	 * @internal
+	 */
 	public $editintro = '';
 
-	/** @var int|null */
+	/**
+	 * @var int|null
+	 * @internal
+	 */
 	public $scrolltop = null;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @internal
+	 */
 	public $markAsBot = true;
 
 	/** @var string */
