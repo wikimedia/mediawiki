@@ -125,7 +125,9 @@
 			watchstar( $links, pageTitle, function ( $link, isWatched ) {
 				// Update the "Watch this page" checkbox on action=edit when the
 				// page is watched or unwatched via the tab (T14395).
-				$( '#wpWatchthis' ).prop( 'checked', isWatched === true );
+				if ( document.getElementById( 'wpWatchthisWidget' ) ) {
+					OO.ui.infuse( '#wpWatchthisWidget' ).setSelected( isWatched === true );
+				}
 			} );
 		}
 	}

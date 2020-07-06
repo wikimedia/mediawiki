@@ -82,7 +82,7 @@ class LinkHolderArray {
 	 */
 	public function __destruct() {
 		// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
-		foreach ( $this as $name => $value ) {
+		foreach ( $this as $name => $_ ) {
 			unset( $this->$name );
 		}
 	}
@@ -194,10 +194,8 @@ class LinkHolderArray {
 		$lb->setCaller( __METHOD__ );
 
 		foreach ( $this->internals as $ns => $entries ) {
-			foreach ( $entries as $entry ) {
+			foreach ( $entries as [ 'title' => $title, 'pdbk' => $pdbk ] ) {
 				/** @var Title $title */
-				$title = $entry['title'];
-				$pdbk = $entry['pdbk'];
 
 				# Skip invalid entries.
 				# Result will be ugly, but prevents crash.
@@ -358,14 +356,13 @@ class LinkHolderArray {
 			if ( $ns == NS_SPECIAL ) {
 				continue;
 			}
-			foreach ( $entries as $index => $entry ) {
-				$pdbk = $entry['pdbk'];
+			foreach ( $entries as $index => [ 'title' => $title, 'pdbk' => $pdbk ] ) {
 				// we only deal with new links (in its first query)
 				if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
-					$titlesAttrs[] = [ $index, $entry['title'] ];
+					$titlesAttrs[] = [ $index, $title ];
 					// separate titles with \0 because it would never appears
 					// in a valid title
-					$titlesToBeConverted .= $entry['title']->getText() . "\0";
+					$titlesToBeConverted .= $title->getText() . "\0";
 				}
 			}
 		}
@@ -379,9 +376,8 @@ class LinkHolderArray {
 
 		// Then add variants of links to link batch
 		$parentTitle = $this->parent->getTitle();
-		foreach ( $titlesAttrs as $i => $attrs ) {
+		foreach ( $titlesAttrs as $i => [ $index, $title ] ) {
 			/** @var Title $title */
-			list( $index, $title ) = $attrs;
 			$ns = $title->getNamespace();
 			$text = $title->getText();
 
