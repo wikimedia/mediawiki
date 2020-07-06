@@ -81,6 +81,7 @@ class ContributionsLookup {
 	): ContributionsSegment {
 		$context = new RequestContext();
 		$context->setUser( $performer );
+		// FIXME: filter by tags
 		$paramArr = $this->getPagerParams( $limit, $segment );
 		$context->setRequest( new FauxRequest( $paramArr ) );
 
@@ -162,5 +163,41 @@ class ContributionsLookup {
 			$deltas[ $revision->getId() ] = $delta;
 		}
 		return $deltas;
+	}
+
+	/**
+	 * Returns the number of edits by the given user.
+	 *
+	 * @param UserIdentity $user
+	 * @param User $performer the user used for permission checks
+	 *
+	 * @return int
+	 */
+	public function getRevisionCountByUser( UserIdentity $user, User $performer ): int {
+		// FIXME: filter by tags
+		$context = new RequestContext();
+		$context->setUser( $performer );
+		$context->setRequest( new FauxRequest( [] ) );
+
+		// TODO: explore moving this to factory method for testing
+		$pager = new ContribsPager( $context, [
+			'target' => $user->getName(),
+		] );
+
+		$query = $pager->getQueryInfo();
+
+		$count = $pager->mDb->selectField(
+			$query['tables'],
+			'COUNT(*)',
+			$query['conds'],
+			__METHOD__,
+			[],
+			$query['join_conds']
+		);
+
+		// FIXME: this count does not include contributions that extensions would be injecting
+		//   via the ContribsPager__reallyDoQuery.
+
+		return (int)$count;
 	}
 }
