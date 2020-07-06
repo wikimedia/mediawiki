@@ -139,7 +139,7 @@ class SignatureValidator {
 			if ( $this->localizer ) {
 				$userText = wfEscapeWikiText( $this->user->getName() );
 				$linkWikitext = $this->localizer->msg( 'signature', $userText, $userText )->inContentLanguage()->text();
-				$errors[] = $this->localizer->msg( 'badsiglinks', wfEscapeWikitext( $linkWikitext ) )->parse();
+				$errors[] = $this->localizer->msg( 'badsiglinks', wfEscapeWikiText( $linkWikitext ) )->parse();
 			} else {
 				$errors = true;
 			}
