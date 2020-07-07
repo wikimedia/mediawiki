@@ -1,3 +1,14 @@
+.mw-notification-area-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	/* Set a height to avoid a scrollbar on the page.
+	/* We do not want the overlay to expand all the way to the bottom
+	*/
+	height: 300px;
+	pointer-events: none;
+}
+
 .mw-notification-area {
 	top: 0;
 	right: 0;
@@ -8,6 +19,7 @@
 	z-index: 10000;
 	/* Avoid horizontal scrollbar on fade in and on fade out */
 	overflow: hidden;
+	height: 100%;
 }
 
 .mw-notification {
@@ -23,6 +35,7 @@
 	transform: translateX( 35px );
 	-webkit-transition: opacity 0.35s ease-in-out, -webkit-transform 0.35s ease-in-out;
 	transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
+	pointer-events: auto;
 }
 
 .mw-notification-visible {
