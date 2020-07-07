@@ -8,6 +8,7 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\ContributionsLookup;
 use RequestContext;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @since 1.35
@@ -35,11 +36,23 @@ class ContributionsCountHandler extends Handler {
 			);
 		}
 
-		$count = $this->contributionsLookup->getRevisionCountByUser( $user, $user );
+		$tag = $this->getValidatedParams()['tag'];
+		$count = $this->contributionsLookup->getContributionCount( $user, $user, $tag );
 
 		$response = [ 'count' => $count ];
 
 		return $response;
+	}
+
+	public function getParamSettings() {
+		return [
+			'tag' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+				ParamValidator::PARAM_DEFAULT => null,
+			],
+		];
 	}
 
 }

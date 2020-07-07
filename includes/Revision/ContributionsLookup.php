@@ -81,7 +81,7 @@ class ContributionsLookup {
 	): ContributionsSegment {
 		$context = new RequestContext();
 		$context->setUser( $performer );
-		// FIXME: filter by tags
+
 		$paramArr = $this->getPagerParams( $limit, $segment );
 		$context->setRequest( new FauxRequest( $paramArr ) );
 
@@ -170,11 +170,11 @@ class ContributionsLookup {
 	 *
 	 * @param UserIdentity $user
 	 * @param User $performer the user used for permission checks
+	 * @param string|null $tag
 	 *
 	 * @return int
 	 */
-	public function getRevisionCountByUser( UserIdentity $user, User $performer ): int {
-		// FIXME: filter by tags
+	public function getContributionCount( UserIdentity $user, User $performer, $tag = null ): int {
 		$context = new RequestContext();
 		$context->setUser( $performer );
 		$context->setRequest( new FauxRequest( [] ) );
@@ -182,6 +182,7 @@ class ContributionsLookup {
 		// TODO: explore moving this to factory method for testing
 		$pager = new ContribsPager( $context, [
 			'target' => $user->getName(),
+			'tagfilter' => $tag,
 		] );
 
 		$query = $pager->getQueryInfo();
