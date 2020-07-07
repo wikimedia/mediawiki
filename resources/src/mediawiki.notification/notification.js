@@ -286,7 +286,7 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset,
+		var offset, $overlay,
 			isFloating = false;
 
 		function updateAreaMode() {
@@ -305,8 +305,11 @@
 		$area = $( '.mw-notification-area[data-mw="interface"]' ).first();
 		if ( !$area.length ) {
 			$area = $( '<div>' ).addClass( 'mw-notification-area' );
-			// Prepend the notification area to the content area
-			mw.util.$content.prepend( $area );
+			// Create overlay div for the notification area
+			$overlay = $( '<div>' ).addClass( 'mw-notification-area-overlay' );
+			// Append the notification area to the overlay wrapper area
+			$overlay.append( $area );
+			mw.util.$content.prepend( $overlay );
 		}
 		$area
 			.addClass( 'mw-notification-area-layout' )
