@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 use MediaWiki\Rest\Handler\ContributionsCountHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Revision\ContributionsLookup;
 use PHPUnit\Framework\MockObject\MockObject;
 use RequestContext;
@@ -21,11 +22,47 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 	private function newHandler( $numRevisions = 5 ) {
 		/** @var MockObject|ContributionsLookup $mockContributionsLookup */
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
-			[ 'getRevisionCountByUser' ]
+			[ 'getContributionCount' ]
 		);
-		$mockContributionsLookup->method( 'getRevisionCountByUser' )->willReturn( $numRevisions );
+		$mockContributionsLookup->method( 'getContributionCount' )->willReturn( $numRevisions );
 		$handler = new ContributionsCountHandler( $mockContributionsLookup );
 		return $handler;
+	}
+
+	public function provideTestThatParametersAreHandledCorrectly() {
+		yield [ new RequestData( [] ) ];
+		yield [ new RequestData(
+			[ 'queryParams' => [ 'tag' => 'test' ] ]
+		) ];
+		yield [ new RequestData(
+			[ 'queryParams' => [ 'tag' => null ] ]
+		) ];
+		yield [ new RequestData(
+			[ 'queryParams' => [ 'tag' => '' ] ]
+		) ];
+	}
+
+	/**
+	 * @param RequestInterface $request
+	 * @dataProvider provideTestThatParametersAreHandledCorrectly
+	 */
+	public function testThatParametersAreHandledCorrectly( RequestInterface $request ) {
+		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
+			[ 'getContributionCount' ]
+		);
+		$user = $this->makeMockUser( false );
+		RequestContext::getMain()->setUser( $user );
+
+		$tag = $request->getQueryParams()['tag'] ?? null;
+		$mockContributionsLookup->method( 'getContributionCount' )
+			->with( $user, $user, $tag )
+			->willReturn( 123 );
+
+		$handler = new ContributionsCountHandler( $mockContributionsLookup );
+
+		$response = $this->executeHandler( $handler, $request );
+
+		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public function testThatAnonymousUserReturns401() {

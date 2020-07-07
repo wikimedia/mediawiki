@@ -291,13 +291,27 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Revision\ContributionsLookup::getRevisionCountByUser()
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributionCount()
 	 */
 	public function testGetCountOfRevisionsByUserIdentity() {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$contributionsLookup = new ContributionsLookup( $revisionStore );
-		$count = $contributionsLookup->getRevisionCountByUser( self::$testUser, self::$testUser );
+		$count = $contributionsLookup->getContributionCount( self::$testUser, self::$testUser );
 		$this->assertSame( count( self::$storedRevisions ), $count );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributionCount()
+	 */
+	public function testGetCountOfRevisionsByUserAndTag() {
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$contributionsLookup = new ContributionsLookup( $revisionStore );
+		$count = $contributionsLookup->getContributionCount(
+			self::$testUser,
+			self::$testUser,
+			self::TAG2
+		);
+		$this->assertSame( 2, $count );
 	}
 
 	public function testPermissionChecksAreApplied() {
@@ -323,14 +337,14 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$segment = $contributionsLookup->getContributions( $editingUser, 10, $anon );
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
 
-		$count = $contributionsLookup->getRevisionCountByUser( $editingUser, $anon );
+		$count = $contributionsLookup->getContributionCount( $editingUser, $anon );
 		$this->assertSame( 2, $count );
 
 		// sysop also gets suppressed contribs
 		$segment = $contributionsLookup->getContributions( $editingUser, 10, $sysop );
 		$this->assertSegmentRevisions( [ 4, 3, 2, 1 ], $segment );
 
-		$count = $contributionsLookup->getRevisionCountByUser( $editingUser, $sysop );
+		$count = $contributionsLookup->getContributionCount( $editingUser, $sysop );
 		$this->assertSame( 4, $count );
 	}
 

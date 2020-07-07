@@ -3,10 +3,9 @@ const { REST, assert, action, utils, clientFactory } = require( 'api-testing' );
 
 describe( 'GET /me/contributions/count', () => {
 	const basePath = 'rest.php/coredev/v0';
-	const arnoldsEdits = [];
+	let arnold;
 	let arnoldAction;
 	let samAction;
-	let arnold;
 
 	before( async () => {
 		// Sam will be the same Sam for all tests, even in other files
@@ -17,20 +16,25 @@ describe( 'GET /me/contributions/count', () => {
 		await arnoldAction.account( 'Arnold_' );
 		arnold = clientFactory.getRESTClient( basePath, arnoldAction );
 
-		let page = utils.title( 'UserContribution_' );
+		const oddEditsPage = utils.title( 'UserContribution_' );
+		const evenEditsPage = utils.title( 'UserContribution_' );
+
+		// Create a tag.
+		await action.makeTag( 'api-test' );
 
 		// bob makes 1 edit
 		const bobAction = await action.bob();
-		await bobAction.edit( page, [ { text: 'Bob revision 1', summary: 'Bob made revision 1' } ] );
+		await bobAction.edit( evenEditsPage, [ { summary: 'Bob made revision 1' } ] );
 
+		// arnold makes 2 edits
+		let page;
 		for ( let i = 1; i <= 2; i++ ) {
-			const revData = await arnoldAction.edit(
-				page,
-				{ text: `Arnold's revision ${i}`, summary: `Arnold made revision ${i}` }
-			);
+			const oddEdit = i % 2;
+			const tags = oddEdit ? 'api-test' : null;
+			page = oddEdit ? oddEditsPage : evenEditsPage;
+
+			await arnoldAction.edit( page, { tags } );
 			await utils.sleep();
-			arnoldsEdits[ i ] = revData;
-			page = utils.title( 'UserContribution_' );
 		}
 	} );
 
@@ -95,7 +99,11 @@ describe( 'GET /me/contributions/count', () => {
 	} );
 
 	it( 'Returns the number of arnold\'s edits filtered by tag', async () => {
-		// TBD
+		const { status, body } = await arnold.get( '/me/contributions/count', { tag: 'api-test' } );
+		assert.equal( status, 200 );
+
+		// assert body has property count with the correct number of tagged edits
+		assert.propertyVal( body, 'count', 1 );
 	} );
 
 } );
