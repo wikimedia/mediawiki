@@ -27,6 +27,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * Library for creating and parsing MW-style timestamps. Based on the JS
  * library that does the same thing.
  *
+ * @newable
+ *
  * @since 1.20
  */
 class MWTimestamp extends ConvertibleTimestamp {

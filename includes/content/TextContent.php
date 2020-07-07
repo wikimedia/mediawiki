@@ -32,6 +32,7 @@ use MediaWiki\MediaWikiServices;
  *
  * TextContent instances are immutable
  *
+ * @newable
  * @ingroup Content
  */
 class TextContent extends AbstractContent {
@@ -42,6 +43,7 @@ class TextContent extends AbstractContent {
 	protected $mText;
 
 	/**
+	 * @stable for calling
 	 * @param string $text
 	 * @param string $model_id
 	 * @throws MWException

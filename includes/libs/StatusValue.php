@@ -37,6 +37,7 @@
  *
  * The use of Message objects should be avoided when serializability is needed.
  *
+ * @newable
  * @since 1.25
  */
 class StatusValue {

@@ -20,6 +20,7 @@
 
 /**
  * Extension of RawMessage implementing IApiMessage
+ * @newable
  * @since 1.25
  * @ingroup API
  */
@@ -27,6 +28,7 @@ class ApiRawMessage extends RawMessage implements IApiMessage {
 	use ApiMessageTrait;
 
 	/**
+	 * @stable for calling
 	 * @param RawMessage|string|array $msg
 	 *  - RawMessage: is cloned
 	 *  - array: first element is $key, rest are $params to RawMessage::__construct

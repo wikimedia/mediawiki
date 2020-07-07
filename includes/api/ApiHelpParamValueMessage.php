@@ -27,6 +27,7 @@
  * include markup wikitext while still keeping the
  * 'APIGetParamDescriptionMessages' hook simple.
  *
+ * @newable
  * @since 1.25
  * @ingroup API
  */
@@ -38,6 +39,7 @@ class ApiHelpParamValueMessage extends Message {
 
 	/**
 	 * @see Message::__construct
+	 * @stable for calling
 	 *
 	 * @param string $paramValue Parameter value being documented
 	 * @param string $text Message to use.

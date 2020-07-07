@@ -21,6 +21,7 @@ namespace Wikimedia;
 /**
  * Format a static PHP array to be written to a file
  *
+ * @newable
  * @since 1.32
  */
 class StaticArrayWriter {

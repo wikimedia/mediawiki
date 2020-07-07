@@ -22,6 +22,7 @@
  */
 
 /**
+ * @newable
  * @ingroup Cache
  */
 class FileDependency extends CacheDependency {
@@ -30,6 +31,8 @@ class FileDependency extends CacheDependency {
 
 	/**
 	 * Create a file dependency
+	 *
+	 * @stable for calling
 	 *
 	 * @param string $filename The name of the file, preferably fully qualified
 	 * @param null|bool|int $timestamp The unix last modified timestamp, or false if the

@@ -30,6 +30,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Content for JavaScript pages.
  *
+ * @newable
  * @ingroup Content
  */
 class JavaScriptContent extends TextContent {
@@ -40,6 +41,7 @@ class JavaScriptContent extends TextContent {
 	private $redirectTarget = false;
 
 	/**
+	 * @stable for calling
 	 * @param string $text JavaScript code.
 	 * @param string $modelId the content model name
 	 */
