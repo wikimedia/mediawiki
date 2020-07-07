@@ -242,14 +242,29 @@ class Command {
 	}
 
 	/**
-	 * Set additional restrictions for this request
+	 * Set restrictions for this request, overwriting any previously set restrictions.
+	 *
+	 * Add the "no network" restriction:
+	 * @code
+	 * 	$command->restrict( Shell::RESTRICT_DEFAULT | Shell::NO_NETWORK );
+	 * @endcode
+	 *
+	 * Allow LocalSettings.php access:
+	 * @code
+	 * 	$command->restrict( Shell::RESTRICT_DEFAULT & ~Shell::NO_LOCALSETTINGS );
+	 * @endcode
+	 *
+	 * Disable all restrictions:
+	 * @code
+	 *  $command->restrict( Shell::RESTRICT_NONE );
+	 * @endcode
 	 *
 	 * @since 1.31
 	 * @param int $restrictions
 	 * @return $this
 	 */
 	public function restrict( $restrictions ) {
-		$this->restrictions |= $restrictions;
+		$this->restrictions = $restrictions;
 
 		return $this;
 	}

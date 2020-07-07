@@ -181,8 +181,8 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * Ensure that it's possible to disable the default shell restrictions
 	 * @see T257278
-	 * @group Broken
 	 */
 	public function testDisablingRestrictions() {
 		$command = TestingAccessWrapper::newFromObject( new Command() );
