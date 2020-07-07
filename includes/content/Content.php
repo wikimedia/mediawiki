@@ -30,6 +30,7 @@
  * Base interface for content objects.
  *
  * @ingroup Content
+ * @unstable for implementation, extensions should extend AbstractContent instead.
  */
 interface Content {
 

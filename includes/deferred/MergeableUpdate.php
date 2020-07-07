@@ -13,6 +13,8 @@
  *
  * The purges for urls A and B will all happen after the $deleteContentUrlsB update.
  *
+ * @stable for implementation
+ *
  * @since 1.27
  */
 interface MergeableUpdate extends DeferrableUpdate {

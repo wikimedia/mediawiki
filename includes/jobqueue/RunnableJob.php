@@ -29,6 +29,8 @@
  * loaded by the application for the local DB domain. In that case, the general-purpose
  * JobSpecification class can be used instead.
  *
+ * @stable for implementation
+ *
  * @ingroup JobQueue
  * @since 1.33
  */

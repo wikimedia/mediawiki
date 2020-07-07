@@ -8,6 +8,8 @@ use Serializable;
  * An object representing a master or replica DB position in a replicated setup.
  *
  * The implementation details of this opaque type are up to the database subclass.
+ *
+ * @stable for implementation
  */
 interface DBMasterPos extends Serializable {
 	/**

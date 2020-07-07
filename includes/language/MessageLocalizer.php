@@ -21,6 +21,8 @@
 /**
  * Interface for localizing messages in MediaWiki
  *
+ * @stable for implementing
+ *
  * @since 1.30
  * @ingroup Language
  */

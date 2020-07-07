@@ -50,6 +50,8 @@
  *   - e) otherwise, do the updates
  *   - f) Commit transaction
  *
+ * @stable for implementation
+ *
  * @since 1.20
  */
 interface IDBAccessObject {

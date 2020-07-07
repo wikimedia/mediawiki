@@ -21,6 +21,8 @@
 /**
  * Interface for MediaWiki-localized exceptions
  *
+ * @stable for implementation
+ *
  * @since 1.29
  * @ingroup Exception
  */

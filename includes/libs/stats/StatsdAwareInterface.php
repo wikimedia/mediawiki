@@ -5,6 +5,8 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 /**
  * Describes a Statsd aware interface
  *
+ * @stable for implementation
+ *
  * @since 1.27
  * @author Addshore
  */
