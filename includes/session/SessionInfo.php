@@ -27,6 +27,9 @@ namespace MediaWiki\Session;
  * Value object returned by SessionProvider
  *
  * This holds the data necessary to construct a Session.
+ * May require services to be injected into the constructor.
+ *
+ * @newable
  *
  * @ingroup Session
  * @since 1.27
@@ -69,6 +72,8 @@ class SessionInfo {
 	private $providerMetadata = null;
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param int $priority Session priority
 	 * @param array $data
 	 *  - provider: (SessionProvider|null) If not given, the provider will be

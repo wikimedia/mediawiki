@@ -23,6 +23,7 @@
 
 /**
  * @todo document, briefly.
+ * @newable
  * @ingroup Parser
  */
 class StripState {
@@ -40,6 +41,8 @@ class StripState {
 	protected $sizeLimit = 5000000;
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param Parser|null $parser
 	 * @param array $options
 	 */

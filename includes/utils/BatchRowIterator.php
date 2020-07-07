@@ -3,11 +3,6 @@
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Allows iterating a large number of rows in batches transparently.
- * By default when iterated over returns the full query result as an
- * array of rows.  Can be wrapped in RecursiveIteratorIterator to
- * collapse those arrays into a single stream of rows queried in batches.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,6 +20,15 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * @file
  * @ingroup Maintenance
+ */
+
+/**
+ * Allows iterating a large number of rows in batches transparently.
+ * By default when iterated over returns the full query result as an
+ * array of rows.  Can be wrapped in RecursiveIteratorIterator to
+ * collapse those arrays into a single stream of rows queried in batches.
+ *
+ * @newable
  */
 class BatchRowIterator implements RecursiveIterator {
 
@@ -85,6 +89,8 @@ class BatchRowIterator implements RecursiveIterator {
 	protected $options = [];
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param IDatabase $db The database to read from
 	 * @param string|array $table The name or names of the table to read from
 	 * @param string|array $primaryKey The name or names of the primary key columns

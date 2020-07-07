@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Content object for wiki text pages.
  *
+ * @newable
  * @ingroup Content
  */
 class WikitextContent extends TextContent {
@@ -47,6 +48,11 @@ class WikitextContent extends TextContent {
 	 */
 	private $previousParseStackTrace = null;
 
+	/**
+	 * @stable for calling
+	 *
+	 * @param string $text
+	 */
 	public function __construct( $text ) {
 		parent::__construct( $text, CONTENT_MODEL_WIKITEXT );
 	}

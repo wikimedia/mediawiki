@@ -23,6 +23,8 @@
 /**
  * Marks HTML that shouldn't be escaped
  *
+ * @newable
+ *
  * @since 1.28
  */
 class HtmlArmor {
@@ -33,6 +35,8 @@ class HtmlArmor {
 	private $value;
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param string|null $value
 	 */
 	public function __construct( $value ) {

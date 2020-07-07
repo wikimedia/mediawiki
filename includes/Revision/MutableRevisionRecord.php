@@ -36,6 +36,8 @@ use Wikimedia\Assert\Assert;
  * Mutable RevisionRecord implementation, for building new revision entries programmatically.
  * Provides setters for all fields.
  *
+ * @newable
+ *
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\MutableRevisionRecord
  * @property MutableRevisionSlots $mSlots
@@ -70,6 +72,8 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
+	 *
+	 * @stable for calling.
 	 *
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.

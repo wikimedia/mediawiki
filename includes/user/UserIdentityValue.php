@@ -27,6 +27,8 @@ use Wikimedia\Assert\Assert;
 /**
  * Value object representing a user's identity.
  *
+ * @newable
+ *
  * @since 1.31
  */
 class UserIdentityValue implements UserIdentity {
@@ -47,6 +49,8 @@ class UserIdentityValue implements UserIdentity {
 	private $actor;
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param int $id
 	 * @param string $name
 	 * @param int $actor

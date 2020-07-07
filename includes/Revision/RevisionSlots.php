@@ -33,6 +33,8 @@ use Wikimedia\Assert\Assert;
  * If audience checks are desired, use RevisionRecord::getSlot() or RevisionRecord::getContent()
  * instead.
  *
+ * @newable
+ *
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionSlots
  */
@@ -42,6 +44,8 @@ class RevisionSlots {
 	protected $slots;
 
 	/**
+	 * @stable for calling.
+	 *
 	 * @param SlotRecord[]|callable $slots SlotRecords,
 	 *        or a callback that returns such a structure.
 	 */

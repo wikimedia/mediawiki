@@ -32,6 +32,8 @@ namespace MediaWiki\Session;
  * can't just hold the ID as a string because we need to be able to update the
  * ID when SessionBackend::resetId() is called.
  *
+ * @newable
+ *
  * @ingroup Session
  * @since 1.27
  */
@@ -40,6 +42,8 @@ final class SessionId {
 	private $id;
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param string $id
 	 */
 	public function __construct( $id ) {

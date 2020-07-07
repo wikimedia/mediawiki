@@ -38,6 +38,8 @@ use MediaWiki\MediaWikiServices;
  * unconditionally, i.e. both on success and on failure -- so that the
  * developer of the calling code is reminded that the function can fail, and
  * so that a lack of error-handling will be explicit.
+ *
+ * @newable
  */
 class Status extends StatusValue {
 	/** @var callable|false */
