@@ -731,6 +731,7 @@
 	"apihelp-unblock-summary": "Odblokuj użytkownika.",
 	"apihelp-unblock-param-id": "ID blokady do zdjęcia (uzyskane z <kbd>list=blocks</kbd>). Nie może być użyte wraz z <var>$1user</var>.",
 	"apihelp-unblock-param-user": "Użytkownik, którego chcesz odblokować. Nie może być użyty z <var>$1id</var>.",
+	"apihelp-unblock-param-userid": "Zamiast tego podaj <kbd>$1user=#<var>ID</var></kbd>.",
 	"apihelp-unblock-param-reason": "Powód odblokowania.",
 	"apihelp-undelete-param-title": "Tytuł strony do przywrócenia.",
 	"apihelp-undelete-param-reason": "Powód przywracania.",

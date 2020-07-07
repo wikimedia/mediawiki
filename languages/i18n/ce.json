@@ -166,7 +166,7 @@
 	"navigation-heading": "Навигацин меню",
 	"errorpagetitle": "ГӀалат",
 	"returnto": "ЮхагӀо оцу агӀоне $1.",
-	"tagline": "Гlирс хlокхуьна бу {{grammar:genitive|{{SITENAME}}}}",
+	"tagline": "{{grammar:genitive|{{SITENAME}}}} чуьра гӀирс",
 	"help": "ГӀо",
 	"help-mediawiki": "MediaWiki гӀо",
 	"search": "Лахар",

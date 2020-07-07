@@ -1390,6 +1390,7 @@
 	"grant-editpage": "Vorhandene Seiten bearbeiten",
 	"grant-editprotected": "Geschützte Seiten bearbeiten",
 	"grant-highvolume": "Massenbearbeitungen",
+	"grant-mergehistory": "Versionsgeschichten vereinen",
 	"grant-oversight": "Benutzer verstecken und Versionen unterdrücken",
 	"grant-patrol": "Änderungen an Seiten kontrollieren",
 	"grant-privateinfo": "Auf private Informationen zugreifen",

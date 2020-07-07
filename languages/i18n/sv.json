@@ -1359,6 +1359,7 @@
 	"grant-editpage": "Redigera befintliga sidor",
 	"grant-editprotected": "Redigera skyddade sidor",
 	"grant-highvolume": "Hög volymsredigering",
+	"grant-mergehistory": "Sammanfoga sidhistoriker",
 	"grant-oversight": "Dölj användare och censurera versioner",
 	"grant-patrol": "Patrullera ändringar på sidor",
 	"grant-privateinfo": "Få tillgång till privat information",

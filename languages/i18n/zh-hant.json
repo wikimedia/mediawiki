@@ -1393,6 +1393,7 @@
 	"grant-editpage": "編輯現有的頁面",
 	"grant-editprotected": "編輯受保護的頁面",
 	"grant-highvolume": "大量編輯",
+	"grant-mergehistory": "合併頁面歷史",
 	"grant-oversight": "隱藏使用者和禁止顯示修訂",
 	"grant-patrol": "巡邏頁面的變更",
 	"grant-privateinfo": "存取隱私資訊",
