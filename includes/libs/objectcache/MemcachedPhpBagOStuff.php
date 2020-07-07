@@ -61,66 +61,73 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
+
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+
 		// T257003: only require "gets" (instead of "get") when a CAS token is needed
 		return $getToken
-			? $this->client->get( $this->validateKeyEncoding( $key ), $casToken )
-			: $this->client->get( $this->validateKeyEncoding( $key ) );
+			? $this->client->get( $routeKey, $casToken )
+			: $this->client->get( $routeKey );
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->set(
-			$this->validateKeyEncoding( $key ),
-			$value,
-			$this->fixExpiry( $exptime )
-		);
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+
+		return $this->client->set( $routeKey, $value, $this->fixExpiry( $exptime ) );
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
-		return $this->client->delete( $this->validateKeyEncoding( $key ) );
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+
+		return $this->client->delete( $routeKey );
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->add(
-			$this->validateKeyEncoding( $key ),
-			$value,
-			$this->fixExpiry( $exptime )
-		);
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+
+		return $this->client->add( $routeKey, $value, $this->fixExpiry( $exptime ) );
 	}
 
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->client->cas(
-			$casToken,
-			$this->validateKeyEncoding( $key ),
-			$value,
-			$this->fixExpiry( $exptime )
-		);
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+
+		return $this->client->cas( $casToken, $routeKey,	$value, $this->fixExpiry( $exptime ) );
 	}
 
 	public function incr( $key, $value = 1, $flags = 0 ) {
-		$n = $this->client->incr( $this->validateKeyEncoding( $key ), $value );
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+		$n = $this->client->incr( $routeKey, $value );
 
 		return ( $n !== false && $n !== null ) ? $n : false;
 	}
 
 	public function decr( $key, $value = 1, $flags = 0 ) {
-		$n = $this->client->decr( $this->validateKeyEncoding( $key ), $value );
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+		$n = $this->client->decr( $routeKey, $value );
 
 		return ( $n !== false && $n !== null ) ? $n : false;
 	}
 
 	protected function doChangeTTL( $key, $exptime, $flags ) {
-		return $this->client->touch(
-			$this->validateKeyEncoding( $key ),
-			$this->fixExpiry( $exptime )
-		);
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+
+		return $this->client->touch( $routeKey, $this->fixExpiry( $exptime ) );
 	}
 
 	protected function doGetMulti( array $keys, $flags = 0 ) {
+		$routeKeys = [];
 		foreach ( $keys as $key ) {
-			$this->validateKeyEncoding( $key );
+			$routeKeys[] = $this->validateKeyAndPrependRoute( $key );
 		}
 
-		return $this->client->get_multi( $keys );
+		$resByRouteKey = $this->client->get_multi( $routeKeys );
+
+		$res = [];
+		foreach ( $resByRouteKey as $routeKey => $value ) {
+			$res[$this->stripRouteFromKey( $routeKey )] = $value;
+		}
+
+		return $res;
 	}
 
 	protected function serialize( $value ) {
