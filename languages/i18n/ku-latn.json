@@ -746,6 +746,8 @@
 	"prefs-info": "Agahiyên sereke",
 	"prefs-i18n": "Navneteweyîkirin",
 	"prefs-signature": "Îmze",
+	"prefs-signature-highlight-error": "Cihê xetayê nîşan bide",
+	"prefs-signature-error-details": "Zêdetir hîn bibe",
 	"prefs-dateformat": "Formata dîrokê",
 	"prefs-timeoffset": "Cudahiya demê",
 	"prefs-advancedediting": "Vebijarkên gelemperî",
