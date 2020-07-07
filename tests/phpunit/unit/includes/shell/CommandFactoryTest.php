@@ -41,8 +41,11 @@ class CommandFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers MediaWiki\Shell\CommandFactory::create
 	 */
 	public function testFirejailCreate() {
-		$factory = new CommandFactory( [], false, 'firejail' );
-		$factory->setLogger( new NullLogger() );
-		$this->assertInstanceOf( FirejailCommand::class, $factory->create() );
+		$mock = $this->getMockBuilder( CommandFactory::class )
+			->setConstructorArgs( [ [], false, 'firejail' ] )
+			->setMethods( [ 'findFirejail' ] )
+			->getMock();
+		$mock->method( 'findFirejail' )->willReturn( '/usr/bin/firejail' );
+		$this->assertInstanceOf( FirejailCommand::class, $mock->create() );
 	}
 }
