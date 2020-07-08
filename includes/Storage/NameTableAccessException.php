@@ -27,6 +27,7 @@ use RuntimeException;
 /**
  * Exception representing a failure to look up a row from a name table.
  *
+ * @newable
  * @since 1.31
  */
 class NameTableAccessException extends RuntimeException {

@@ -23,6 +23,7 @@
  *
  * If possible, use ApiBase::dieWithError() instead of throwing this directly.
  *
+ * @newable
  * @ingroup API
  */
 class ApiUsageException extends MWException implements ILocalizedException {
@@ -31,6 +32,8 @@ class ApiUsageException extends MWException implements ILocalizedException {
 	protected $status;
 
 	/**
+	 *
+	 * @stable for calling
 	 * @param ApiBase|null $module API module responsible for the error, if known
 	 * @param StatusValue $status Status holding errors
 	 * @param int $httpCode HTTP error code to use

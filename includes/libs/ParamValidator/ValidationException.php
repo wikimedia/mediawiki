@@ -9,6 +9,7 @@ use Wikimedia\Message\DataMessageValue;
 /**
  * Error reporting for ParamValidator
  *
+ * @newable
  * @since 1.34
  * @unstable
  */
@@ -27,6 +28,7 @@ class ValidationException extends UnexpectedValueException {
 	protected $settings;
 
 	/**
+	 * @stable for calling
 	 * @param DataMessageValue $failureMessage Failure message.
 	 * @param string $name Parameter name being validated
 	 * @param mixed $value Value of the parameter

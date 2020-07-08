@@ -23,6 +23,7 @@
 /**
  * Exceptions for config failures
  *
+ * @newable
  * @since 1.23
  */
 class ConfigException extends LogicException {

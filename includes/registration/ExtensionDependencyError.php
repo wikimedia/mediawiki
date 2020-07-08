@@ -19,6 +19,7 @@
  */
 
 /**
+ * @newable
  * @since 1.31
  */
 class ExtensionDependencyError extends Exception {
