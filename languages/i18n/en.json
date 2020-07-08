@@ -2049,6 +2049,7 @@
 	"brokenredirectstext": "The following redirects link to non-existent pages:",
 	"brokenredirects-edit": "edit",
 	"brokenredirects-delete": "delete",
+	"brokenredirects-delete-reason": "",
 	"withoutinterwiki": "Pages without language links",
 	"withoutinterwiki-summary": "The following pages do not link to other language versions.",
 	"withoutinterwiki-legend": "Prefix",
