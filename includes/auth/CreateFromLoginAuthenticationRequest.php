@@ -28,6 +28,7 @@ namespace MediaWiki\Auth;
  * may be passed to AuthManager::beginAuthentication() or
  * AuthManager::beginAccountCreation() anyway.
  *
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
@@ -41,6 +42,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	public $maybeLink = [];
 
 	/**
+	 * @stable for calling
 	 * @param AuthenticationRequest|null $createRequest A request to use to
 	 *  begin creating the account
 	 * @param AuthenticationRequest[] $maybeLink Additional accounts to link
@@ -54,10 +56,18 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 		$this->username = $createRequest ? $createRequest->username : null;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getFieldInfo() {
 		return [];
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function loadFromSubmission( array $data ) {
 		return true;
 	}
@@ -65,6 +75,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	/**
 	 * Indicate whether this request contains any state for the specified
 	 * action.
+	 * @stable for overriding
 	 * @param string $action One of the AuthManager::ACTION_* constants
 	 * @return bool
 	 */
@@ -82,6 +93,7 @@ class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
 	/**
 	 * Indicate whether this request contains state for the specified
 	 * action sufficient to replace other primary-required requests.
+	 * @stable for overriding
 	 * @param string $action One of the AuthManager::ACTION_* constants
 	 * @return bool
 	 */

@@ -24,6 +24,7 @@ namespace MediaWiki\Auth;
 /**
  * A base class that implements some of the boilerplate for a SecondaryAuthenticationProvider
  *
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
@@ -31,19 +32,32 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 	implements SecondaryAuthenticationProvider
 {
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function continueSecondaryAuthentication( $user, array $reqs ) {
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function postAuthentication( $user, AuthenticationResponse $response ) {
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function providerAllowsPropertyChange( $property ) {
 		return true;
 	}
 
 	/**
 	 * @inheritDoc
+	 * @stable for overriding
 	 * @note Reimplement this if self::getAuthenticationRequests( AuthManager::ACTION_REMOVE )
 	 *  doesn't return requests that will revoke all access for the user.
 	 */
@@ -57,30 +71,58 @@ abstract class AbstractSecondaryAuthenticationProvider extends AbstractAuthentic
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function providerAllowsAuthenticationDataChange(
 		AuthenticationRequest $req, $checkData = true
 	) {
 		return \StatusValue::newGood( 'ignored' );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		return \StatusValue::newGood();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function continueSecondaryAccountCreation( $user, $creator, array $reqs ) {
 		throw new \BadMethodCallException( __METHOD__ . ' is not implemented.' );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response ) {
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		return \StatusValue::newGood();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function autoCreatedAccount( $user, $source ) {
 	}
 }

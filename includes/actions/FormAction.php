@@ -23,12 +23,15 @@
 /**
  * An action which shows a form and does something based on the input from the form
  *
+ * @stable for subclassing
+ *
  * @ingroup Actions
  */
 abstract class FormAction extends Action {
 
 	/**
 	 * Get an HTMLForm descriptor array
+	 * @stable for overriding
 	 * @return array
 	 */
 	protected function getFormFields() {
@@ -38,6 +41,7 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Add pre- or post-text to the form
+	 * @stable for overriding
 	 * @return string HTML which will be sent to $form->addPreText()
 	 */
 	protected function preText() {
@@ -45,6 +49,7 @@ abstract class FormAction extends Action {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return string
 	 */
 	protected function postText() {
@@ -53,6 +58,7 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Play with the HTMLForm if you need to more substantially
+	 * @stable for overriding
 	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
@@ -60,6 +66,7 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Whether the form should use OOUI
+	 * @stable for overriding
 	 * @return bool
 	 */
 	protected function usesOOUI() {
@@ -68,6 +75,7 @@ abstract class FormAction extends Action {
 
 	/**
 	 * Get the HTMLForm to control behavior
+	 * @stable for overriding
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {
@@ -140,6 +148,7 @@ abstract class FormAction extends Action {
 	 * form (delete, protect, etc) and to do something exciting on 'success', be that
 	 * display something new or redirect to somewhere.  Some actions have more exotic
 	 * behavior, but that's what subclassing is for :D
+	 * @stable for overriding
 	 */
 	public function show() {
 		$this->setHeaders();
@@ -153,6 +162,10 @@ abstract class FormAction extends Action {
 		}
 	}
 
+	/**
+	 * @stable for overriding
+	 * @return bool
+	 */
 	public function doesWrites() {
 		return true;
 	}

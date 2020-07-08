@@ -21,5 +21,8 @@
  * @ingroup Upload
  */
 
+/**
+ * @newable
+ */
 class UploadChunkZeroLengthFileException extends MWException {
 }

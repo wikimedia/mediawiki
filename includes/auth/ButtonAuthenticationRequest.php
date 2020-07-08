@@ -26,6 +26,7 @@ use RawMessage;
 
 /**
  * This is an authentication request that just implements a simple button.
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
@@ -40,6 +41,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 	protected $help;
 
 	/**
+	 * @stable for calling
 	 * @param string $name Button name
 	 * @param Message $label Button label
 	 * @param Message $help Button help
@@ -52,10 +54,18 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 		$this->required = $required ? self::REQUIRED : self::OPTIONAL;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getUniqueId() {
 		return parent::getUniqueId() . ':' . $this->name;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getFieldInfo() {
 		return [
 			$this->name => [
@@ -82,6 +92,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 
 	/**
 	 * @codeCoverageIgnore
+	 * @stable for overriding
 	 * @param array $data
 	 * @return AuthenticationRequest|static
 	 */

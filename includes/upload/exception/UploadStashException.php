@@ -21,6 +21,7 @@
  */
 
 /**
+ * @newable
  * @ingroup Upload
  */
 class UploadStashException extends MWException implements ILocalizedException {

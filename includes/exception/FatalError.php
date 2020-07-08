@@ -29,6 +29,7 @@
  * It is intended for early installation and configuration problems where
  * the exception is all the site administrator needs to know.
  *
+ * @newable
  * @since 1.7
  * @ingroup Exception
  */

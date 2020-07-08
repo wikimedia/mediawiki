@@ -25,6 +25,7 @@ use MediaWiki\Linker\LinkRenderer;
 
 /**
  * Table-based display with a user-selectable sort order
+ * @stable for subclassing
  * @ingroup Pager
  */
 abstract class TablePager extends IndexPager {
@@ -34,6 +35,12 @@ abstract class TablePager extends IndexPager {
 	/** @var stdClass */
 	protected $mCurrentRow;
 
+	/**
+	 * @stable for calling
+	 *
+	 * @param IContextSource|null $context
+	 * @param LinkRenderer|null $linkRenderer
+	 */
 	public function __construct( IContextSource $context = null, LinkRenderer $linkRenderer = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
@@ -112,6 +119,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return string
 	 */
 	protected function getStartBody() {
@@ -163,6 +171,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return string
 	 */
 	protected function getEndBody() {
@@ -180,6 +189,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @param stdClass $row
 	 * @return string HTML
 	 */
@@ -207,6 +217,8 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a class name to be applied to the given row.
 	 *
+	 * @stable for overriding
+	 *
 	 * @param object $row The database result row
 	 * @return string
 	 */
@@ -216,6 +228,8 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * Get attributes to be applied to the given row.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param object $row The database result row
 	 * @return array Array of attribute => value
@@ -242,6 +256,8 @@ abstract class TablePager extends IndexPager {
 	 * take this as an excuse to hardcode styles; use classes and
 	 * CSS instead.  Row context is available in $this->mCurrentRow
 	 *
+	 * @stable for overriding
+	 *
 	 * @param string $field The column
 	 * @param string $value The cell contents
 	 * @return array Array of attr => value
@@ -252,6 +268,7 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * @inheritDoc
+	 * @stable for overriding
 	 */
 	public function getIndexField() {
 		return $this->mSort;
@@ -259,6 +276,8 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * TablePager relies on `mw-datatable` for styling, see T214208
+	 *
+	 * @stable for overriding
 	 * @return string
 	 */
 	protected function getTableClass() {
@@ -266,6 +285,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return string
 	 */
 	protected function getNavClass() {
@@ -273,6 +293,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return string
 	 */
 	protected function getSortHeaderClass() {
@@ -281,6 +302,8 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * A navigation bar with images
+	 *
+	 * @stable for overriding
 	 * @return string HTML
 	 */
 	public function getNavigationBar() {
@@ -324,6 +347,8 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * ResourceLoader modules that must be loaded to provide correct styling for this pager
+	 *
+	 * @stable for overriding
 	 * @since 1.24
 	 * @return string[]
 	 */

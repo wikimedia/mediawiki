@@ -95,8 +95,9 @@ class VueComponentParser {
 	 * @return DOMDocument
 	 */
 	private function parseHTML( $html ) : DOMDocument {
-		$domBuilder = new DOMBuilder();
-		$tokenizer = new Tokenizer( new Dispatcher( new TreeBuilder( $domBuilder ) ), $html );
+		$domBuilder = new DOMBuilder( [ 'suppressHtmlNamespace' => true ] );
+		$treeBuilder = new TreeBuilder( $domBuilder, [ 'ignoreErrors' => true ] );
+		$tokenizer = new Tokenizer( new Dispatcher( $treeBuilder ), $html, [ 'ignoreErrors' => true ] );
 		$tokenizer->execute();
 		return $domBuilder->getFragment();
 	}
@@ -202,7 +203,7 @@ class VueComponentParser {
 	 * Get the HTML contents of the <template> tag, optionally minifed.
 	 *
 	 * To work around a bug in PHP's DOMDocument where attributes like @click get mangled,
-	 * we re-parse the entire file using a Remex parse+serialie pipeline, with a custom dispatcher
+	 * we re-parse the entire file using a Remex parse+serialize pipeline, with a custom dispatcher
 	 * to zoom in on just the contents of the <template> tag, and a custom formatter for minification.
 	 * Keeping everything in Remex and never converting it to DOM avoids the attribute mangling issue.
 	 *
@@ -214,10 +215,10 @@ class VueComponentParser {
 		$serializer = new Serializer( $this->newTemplateFormatter( $minify ) );
 		$tokenizer = new Tokenizer(
 			$this->newFilteringDispatcher(
-				new TreeBuilder( $serializer ),
+				new TreeBuilder( $serializer, [ 'ignoreErrors' => true ] ),
 				'template'
 			),
-			$html
+			$html, [ 'ignoreErrors' => true ]
 		);
 		$tokenizer->execute( [ 'fragmentNamespace' => HTMLData::NS_HTML, 'fragmentName' => 'template' ] );
 		return trim( $serializer->getResult() );

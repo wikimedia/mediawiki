@@ -24,12 +24,21 @@
 /**
  * Basic media transform error class
  *
+ * @newable
  * @ingroup Media
  */
 class MediaTransformError extends MediaTransformOutput {
 	/** @var Message */
 	private $msg;
 
+	/**
+	 * @stable for calling
+	 *
+	 * @param string $msg
+	 * @param int $width
+	 * @param int $height
+	 * @param mixed ...$args
+	 */
 	public function __construct( $msg, $width, $height, ...$args ) {
 		$this->msg = wfMessage( $msg )->params( $args );
 		$this->width = intval( $width );

@@ -21,6 +21,7 @@
 /**
  * Basic localized exception.
  *
+ * @newable
  * @since 1.29
  * @ingroup Exception
  * @note Don't use this in a situation where MessageCache is not functional.
@@ -30,6 +31,7 @@ class LocalizedException extends Exception implements ILocalizedException {
 	protected $messageSpec;
 
 	/**
+	 * @stable for calling
 	 * @param string|array|MessageSpecifier $messageSpec See Message::newFromSpecifier
 	 * @param int $code
 	 * @param Throwable|null $previous The previous exception used for the exception

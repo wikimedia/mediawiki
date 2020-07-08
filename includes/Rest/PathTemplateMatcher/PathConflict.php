@@ -4,12 +4,22 @@ namespace MediaWiki\Rest\PathTemplateMatcher;
 
 use Exception;
 
+/**
+ * @newable
+ */
 class PathConflict extends Exception {
 	public $newTemplate;
 	public $newUserData;
 	public $existingTemplate;
 	public $existingUserData;
 
+	/**
+	 * @stable for calling
+	 *
+	 * @param string $template
+	 * @param mixed $userData
+	 * @param array $existingNode
+	 */
 	public function __construct( $template, $userData, $existingNode ) {
 		$this->newTemplate = $template;
 		$this->newUserData = $userData;

@@ -25,6 +25,7 @@ use RuntimeException;
 
 /**
  * Database error base class
+ * @newable
  * @ingroup Database
  */
 class DBError extends RuntimeException {
@@ -33,6 +34,7 @@ class DBError extends RuntimeException {
 
 	/**
 	 * Construct a database error
+	 * @stable for calling
 	 * @param IDatabase|null $db Object which threw the error
 	 * @param string $error A simple error message to be used for debugging
 	 * @param \Throwable|null $prev Previous throwable

@@ -175,7 +175,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param string $data Text to filter, such as JavaScript or CSS text
 	 * @param array<string,bool> $options Keys:
 	 *  - (bool) cache: Whether to allow caching this data. Default: true.
-	 * @return string Filtered data, or a comment containing an error message
+	 * @return string Filtered data or unfiltered data
 	 */
 	public static function filter( $filter, $data, array $options = [] ) {
 		if ( strpos( $data, self::FILTER_NOMIN ) !== false ) {
@@ -183,7 +183,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		if ( isset( $options['cache'] ) && $options['cache'] === false ) {
-			return self::applyFilter( $filter, $data );
+			return self::applyFilter( $filter, $data ) ?? $data;
 		}
 
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
@@ -215,7 +215,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * @param string $filter
 	 * @param string $data
-	 * @return string
+	 * @return string|null
 	 */
 	private static function applyFilter( $filter, $data ) {
 		$data = trim( $data );

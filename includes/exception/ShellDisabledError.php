@@ -23,9 +23,14 @@ namespace MediaWiki;
 use Exception;
 
 /**
+ * @newable
  * @since 1.30
  */
 class ShellDisabledError extends Exception {
+
+	/**
+	 * @stable for calling
+	 */
 	public function __construct() {
 		parent::__construct( 'Unable to run external programs, proc_open() is disabled' );
 	}
