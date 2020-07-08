@@ -3044,9 +3044,6 @@ section).
   wikimedia/testing-access-wrapper and renamed \Wikimedia\TestingAccessWrapper.
 * Purtle, a fast, lightweight RDF generator.
 
-==== Removed and replaced external libraries ====
-* …
-
 === Bug fixes in 1.30 ===
 * (T151633) Ordered list items use now Devanagari digits in Nepalese
   (thanks to Sfic)
