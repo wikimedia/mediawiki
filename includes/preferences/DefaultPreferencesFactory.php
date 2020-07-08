@@ -1586,6 +1586,19 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			return true;
 		}
 
+		if ( $sigValidation === 'new' || $sigValidation === 'disallow' ) {
+			// Validate everything
+			$validator = new SignatureValidator(
+				$form->getUser(),
+				$form->getContext(),
+				ParserOptions::newFromContext( $form->getContext() )
+			);
+			$errors = $validator->validateSignature( $signature );
+			if ( $errors ) {
+				return $errors;
+			}
+		}
+
 		// Quick check for mismatched HTML tags in the input.
 		// Note that this is easily fooled by wikitext templates or bold/italic markup.
 		// We're only keeping this until Parsoid is integrated and guaranteed to be available.
@@ -1594,15 +1607,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			return $form->msg( 'badsig' )->escaped();
 		}
 
-		if ( $sigValidation === 'new' || $sigValidation === 'disallow' ) {
-			// Validate everything
-			$validator = new SignatureValidator(
-				$form->getUser(),
-				$form->getContext(),
-				ParserOptions::newFromContext( $form->getContext() )
-			);
-			return $validator->validateSignature( $signature ) ?: true;
-		}
 		return true;
 	}
 
