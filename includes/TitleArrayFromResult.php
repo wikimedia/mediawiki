@@ -26,6 +26,11 @@
 
 use Wikimedia\Rdbms\IResultWrapper;
 
+/**
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should probably become part of the TitleFactory service.
+ */
 class TitleArrayFromResult extends TitleArray implements Countable {
 	/** @var IResultWrapper */
 	public $res;
@@ -34,6 +39,11 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 
 	public $current;
 
+	/**
+	 * @stable for calling
+	 *
+	 * @param IResultWrapper $res
+	 */
 	public function __construct( $res ) {
 		$this->res = $res;
 		$this->key = 0;

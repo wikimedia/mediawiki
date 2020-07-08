@@ -50,6 +50,11 @@ use Wikimedia\ScopedCallback;
  * whether a database query is needed. Most of the settings needed
  * for rendering normal pages are set in the cookie to minimize use
  * of the database.
+ *
+ * @newable
+ * @note marked as newable in 1.35 because the canonical way to construct an
+ *       anonymous (IP) user is to call the constructor directly. A factory
+ *       method for that purpose should be added to TitleFactory, see T257464.
  */
 class User implements IDBAccessObject, UserIdentity {
 	use ProtectedHookAccessorTrait;
@@ -218,6 +223,8 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Lightweight constructor for an anonymous user.
 	 * Use the User::newFrom* factory functions for other kinds of users.
+	 *
+	 * @stable for calling
 	 *
 	 * @see newFromName()
 	 * @see newFromId()

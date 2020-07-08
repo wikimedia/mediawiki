@@ -1,5 +1,5 @@
 {{int:version-credits-summary}} <!--
-MediaWiki 1.34 is a collaborative project released under the
+MediaWiki 1.35 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 
@@ -8,12 +8,15 @@ The following list can be found parsed under Special:Version/Credits -->
 == Contributors ==
 <!-- Updates to this list made with maintenance/updateCredits.php -->
 <!-- BEGIN CONTRIBUTOR LIST -->
+* 4shadoww
 * aalekhN
 * Aaron Ball
 * Aaron Pramana
+* Aaron S. Hawley
 * Aaron Schulz
 * Aarti Dwivedi
 * Aashaka Shah
+* Abbe98
 * abhinand
 * Abhishek Das
 * Abián
@@ -27,11 +30,13 @@ The following list can be found parsed under Special:Version/Credits -->
 * Adrian Heine
 * Adrian Lang
 * Ævar Arnfjörð Bjarmason
+* Aezell
 * Aftab
 * Agabi10
 * Agbad
 * Ahmad Sherif
 * Ajayrahul P
+* Akinwale Alagbe
 * Alangi Derick
 * Albert221
 * Alejandro Mery
@@ -48,6 +53,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Alexander Sigachov
 * Alexandre Emsenhuber
 * Alexia E. Smith
+* AlQaholic007
 * Amalthea
 * Amir E. Aharoni
 * Amir Sarabadani
@@ -69,6 +75,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Andrius R
 * andymw
 * Angela Beesley Starling
+* ankit
 * ankur
 * Antoine Musso
 * Antoni Siek
@@ -79,10 +86,15 @@ The following list can be found parsed under Special:Version/Credits -->
 * Aran Dunkley
 * Arash Boostani
 * Arcane21
+* arcayn
 * Ariel Glenn
 * Arlo Breault
 * Arne Heizmann
+* AronDemian
+* ArtBaltai
 * Arthur Richards
+* arttsymbar
+* Arturek1
 * Aryeh Gregor
 * Asher Feldman
 * Asier Lostalé
@@ -108,6 +120,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Billinghurst
 * billm
 * Bjornskjald
+* bkudiess-msft
 * blackspirit96
 * blotmandroid
 * Bogdan Stancescu
@@ -116,6 +129,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Brad Jorsch
 * Brandon Black
 * Brandon Harris
+* BrandonXLF
 * brendajerop
 * Brennen Bearnes
 * Brent G
@@ -152,6 +166,8 @@ The following list can be found parsed under Special:Version/Credits -->
 * ckoerner
 * Clara Andrew-Wani
 * clarakosi
+* cobaltcigs
+* Cole White
 * Conrad Irwin
 * Cormac Parle
 * cryptocoryne
@@ -180,6 +196,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Darkdragon09
 * DaSch
 * datguy
+* Dave Pifke
 * David Barratt
 * David Baumgarten
 * David Causse
@@ -284,6 +301,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Hagar Shilo
 * Haikal Izzuddin
 * HakanIST
+* Hank Hulet
 * Happy-melon
 * haritha28
 * Harry Burt
@@ -291,6 +309,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Hector A Escobedo
 * Helder
 * Henning Snater
+* hmonroy
 * Hojjat
 * Holger Knust
 * Hoto Cocoa
@@ -298,11 +317,13 @@ The following list can be found parsed under Special:Version/Credits -->
 * Hydriz
 * Ian Baker
 * Ian Marlier
+* IijimaYun
 * Ilmari Karonen
 * Inez Korczyński
 * IoannisKydonis
 * Ireas
 * isarra
+* Itamar Givon
 * Ivan Lanin
 * Jack D. Pond
 * Jack Phoenix
@@ -331,6 +352,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Jason Richey
 * JasonCoombs
 * Jayprakash12345
+* Jeena Huneidi
 * Jeff Hobson
 * Jeff Janes
 * jeff303
@@ -380,6 +402,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Katie Filbert
 * KeerthanaS
 * Kevin Israel
+* kevinbazira
 * Kghbln
 * Kim Eik
 * Kim Hyun-Joon
@@ -399,7 +422,9 @@ The following list can be found parsed under Special:Version/Credits -->
 * Lee Worden
 * Lejonel
 * lekshmi
+* lens0021
 * Leo Koppelkamm
+* leo60228
 * Leon Liesener
 * Leon Weber
 * Leonardo Gregianin
@@ -419,6 +444,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Luc Van Oostenryck
 * Lucas Garczewski
 * Lucas Werkmeister
+* Lucas Werkmeister (WMDE)
 * Luigi Corsaro
 * Luis Felipe Schenone
 * LukBukkit
@@ -427,6 +453,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Lupin
 * Lupo
 * lwelling
+* lziad
 * m4tx
 * Madman
 * madurangasiriwardena
@@ -434,6 +461,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Mahuton
 * mainframe98
 * Mako Bates
+* Manuel Alcaraz Zambrano
 * Manuel Menal
 * Manuel Schneider
 * Marc Ordinas i Llopis
@@ -477,6 +505,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * mayankmadan
 * Mehmet Mert Yıldıran
 * Melos
+* Memmie Lenglet
 * Meno25
 * merl
 * Merlijn S. van Deen
@@ -503,6 +532,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Mogmog123
 * Mohamed Magdy
 * Molly White
+* montehurd
 * Moriel Schottlender
 * Moritz Oberhauser
 * Mormegil
@@ -510,6 +540,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * MR70
 * MrBlueSky
 * MrPete
+* mszabo-wikia
 * Mukunda Modell
 * MusikAnimal
 * Mwalker
@@ -536,6 +567,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Niharika Kohli
 * Nik Everett
 * Nikita Rana
+* Nikki Nikkhoui
 * Niklas Laxström
 * Nikola Kovacs
 * Nikola Smolenski
@@ -579,6 +611,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Peter Coombe
 * Peter Gehres
 * Peter Hedenskog
+* Peter Ovchyn
 * Peter Potrowl
 * Petr Bena
 * Petr Kadlec
@@ -587,6 +620,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Phantom42
 * Philip Tzou
 * physikerwelt (Moritz Schubotz)
+* Pierre Boutet
 * PieRRoMaN
 * Pikne
 * Piotr Miazga
@@ -619,6 +653,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * René Kijewski
 * Reza
 * rgcjonas
+* RhinosF1
 * Ricordisamoa
 * rillke
 * River Tarnell
@@ -641,6 +676,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Roman Tsukanov
 * Rotem Liss
 * Rowan Collins
+* Ruben Barkow-Kuder
 * runntb
 * Russ Nelson
 * Russell Blau
@@ -654,7 +690,9 @@ The following list can be found parsed under Special:Version/Credits -->
 * Ryan Schmidt
 * ryan10145
 * S Page
+* Sahajsk`
 * Saint Johann
+* Sakretsu
 * Salvatore Ingala
 * Sam Reed
 * Sam Smith
@@ -683,6 +721,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Shane Gibbons
 * Shane King
 * shanika
+* shcherba
 * Shinjiman
 * shirayuki
 * Shreyas Minocha
@@ -692,6 +731,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Simon Legner
 * Simon Walker
 * Smriti Singh
+* Sohom Datta
 * Solitarius
 * Sorawee Porncharoenwase
 * Søren Løvborg
@@ -716,6 +756,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Strainu
 * Subin Siby
 * Subramanya Sastry
+* suecarmol
 * Sumit Asthana
 * superyetkin
 * Suriyaa Kudo
@@ -723,6 +764,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Szymon Świerkosz
 * T. Bayer
 * T.D. Corell
+* Taavi Väänänen
 * tacsipacsi
 * Tarquin
 * TerraCodes
@@ -750,6 +792,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * tjlsangria
 * Tjones
 * TK-999
+* Tobi_406
 * Tobias Gritschacher
 * Tom Arrow
 * Tom Gilder
@@ -775,11 +818,14 @@ The following list can be found parsed under Special:Version/Credits -->
 * utkarsh95
 * Valerio Bozzolan
 * Van de Bugger
+* Varun Das
+* Vas Jaremchuk
 * Vedmaka
 * Viačeslav
 * Victor Barbu
 * Victor Porton
 * Victor Vasiliev
+* vidhi-mody
 * Ville Stadista
 * Vincent Privat
 * vinithegit
@@ -804,6 +850,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Yogesh K S
 * Yongmin Hong
 * yoonghm
+* Yuki Shira
 * Yuri Astrakhan
 * Yuriy Shnitkovskiy
 * Yusuke Matsubara
@@ -816,6 +863,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Zhuyifei1999
 * Zoranzoki21
 * Zppix
+* Þjarkur
 * محمد شعیب
 * 星耀晨曦
 <!-- END CONTRIBUTOR LIST -->

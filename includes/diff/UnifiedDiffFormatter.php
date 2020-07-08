@@ -26,6 +26,7 @@
 
 /**
  * A formatter that outputs unified diffs
+ * @newable
  * @ingroup DifferenceEngine
  */
 class UnifiedDiffFormatter extends DiffFormatter {

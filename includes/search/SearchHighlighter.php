@@ -26,6 +26,9 @@ use MediaWiki\MediaWikiServices;
 /**
  * Highlight bits of wikitext
  *
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should use a factory in the future.
  * @ingroup Search
  */
 class SearchHighlighter {
@@ -35,6 +38,7 @@ class SearchHighlighter {
 	protected $mCleanWikitext = true;
 
 	/**
+	 * @stable for calling
 	 * @warning If you pass false to this constructor, then
 	 *  the caller is responsible for HTML escaping.
 	 * @param bool $cleanupWikitext

@@ -39,6 +39,9 @@ use Wikimedia\Timestamp\TimestampException;
  * case any internal exceptions will not be handled but passed up to the caller.
  * After successful execution, use getResult() for the resulting data.
  *
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should use a factory in the future.
  * @ingroup API
  */
 class ApiMain extends ApiBase {
@@ -168,6 +171,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
+	 * @stable for calling
 	 * @param IContextSource|WebRequest|null $context If this is an instance of
 	 *    FauxRequest, errors are thrown and no printing occurs
 	 * @param bool $enableWrite Should be set to true if the api may modify data

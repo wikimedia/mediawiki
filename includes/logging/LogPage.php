@@ -29,6 +29,10 @@ use MediaWiki\MediaWikiServices;
  * Class to simplify the use of log pages.
  * The logs are now kept in a table which is easier to manage and trim
  * than ever-growing wiki pages.
+ *
+ * @newable
+ * @note marked as newable in 1.35 for lack of a better alternative,
+ *       but should become a stateless service, use use the command pattern.
  */
 class LogPage {
 	public const DELETED_ACTION = 1;
@@ -75,6 +79,7 @@ class LogPage {
 	private $target;
 
 	/**
+	 * @stable for calling
 	 * @param string $type One of '', 'block', 'protect', 'rights', 'delete',
 	 *   'upload', 'move'
 	 * @param bool $rc Whether to update recent changes as well as the logging table
