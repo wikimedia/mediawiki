@@ -27,7 +27,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
 // The point of this class is to be a wrapper around super globals
@@ -156,9 +155,7 @@ class WebRequest {
 			if ( !preg_match( '!^https?://!', $url ) ) {
 				$url = 'http://unused' . $url;
 			}
-			AtEase::suppressWarnings();
 			$a = parse_url( $url );
-			AtEase::restoreWarnings();
 			if ( !$a ) {
 				return [];
 			}
