@@ -673,6 +673,11 @@ class Article implements Page {
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$poOptions['enableSectionEditLinks'] = false;
+			$outputPage->prependHTML(
+				Html::warningBox(
+					$outputPage->msg( 'printableversion-deprecated-warning' )->escaped()
+				)
+			);
 		} elseif ( $this->viewIsRenderAction || !$this->isCurrent() ||
 			!$this->permManager->quickUserCan( 'edit', $user, $this->getTitle() )
 		) {
