@@ -23,10 +23,16 @@ namespace MediaWiki\Auth;
 
 /**
  * AuthenticationRequest to ensure something with a username is present
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
 class UsernameAuthenticationRequest extends AuthenticationRequest {
+
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getFieldInfo() {
 		return [
 			'username' => [

@@ -23,6 +23,7 @@ namespace MediaWiki\Auth;
 
 /**
  * Returned from account creation to allow for logging into the created account
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
@@ -33,11 +34,16 @@ class CreatedAccountAuthenticationRequest extends AuthenticationRequest {
 	/** @var int User id */
 	public $id;
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getFieldInfo() {
 		return [];
 	}
 
 	/**
+	 * @stable for calling
 	 * @param int $id User id
 	 * @param string $name Username
 	 */

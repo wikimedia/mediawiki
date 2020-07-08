@@ -23,6 +23,8 @@ namespace MediaWiki\Auth;
 
 /**
  * A base class that implements some of the boilerplate for a PreAuthenticationProvider
+ *
+ * @stable for subclassing
  * @ingroup Auth
  * @since 1.27
  */
@@ -30,32 +32,64 @@ abstract class AbstractPreAuthenticationProvider extends AbstractAuthenticationP
 	implements PreAuthenticationProvider
 {
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getAuthenticationRequests( $action, array $options ) {
 		return [];
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function testForAuthentication( array $reqs ) {
 		return \StatusValue::newGood();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function postAuthentication( $user, AuthenticationResponse $response ) {
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function testForAccountCreation( $user, $creator, array $reqs ) {
 		return \StatusValue::newGood();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function testUserForCreation( $user, $autocreate, array $options = [] ) {
 		return \StatusValue::newGood();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function postAccountCreation( $user, $creator, AuthenticationResponse $response ) {
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function testForAccountLink( $user ) {
 		return \StatusValue::newGood();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function postAccountLink( $user, AuthenticationResponse $response ) {
 	}
 
