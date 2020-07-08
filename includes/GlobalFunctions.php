@@ -767,12 +767,11 @@ function wfUrlProtocolsWithoutProtRel() {
 /**
  * parse_url() work-alike, but non-broken.  Differences:
  *
- * 1) Does not raise warnings on bad URLs (just returns false).
- * 2) Handles protocols that don't use :// (e.g., mailto: and news:, as well as
+ * 1) Handles protocols that don't use :// (e.g., mailto: and news:, as well as
  *    protocol-relative URLs) correctly.
- * 3) Adds a "delimiter" element to the array (see (2)).
- * 4) Verifies that the protocol is on the $wgUrlProtocols whitelist.
- * 5) Rejects some invalid URLs that parse_url doesn't, e.g. the empty string or URLs starting with
+ * 2) Adds a "delimiter" element to the array (see (2)).
+ * 3) Verifies that the protocol is on the $wgUrlProtocols whitelist.
+ * 4) Rejects some invalid URLs that parse_url doesn't, e.g. the empty string or URLs starting with
  *    a line feed character.
  *
  * @param string $url A URL to parse
@@ -799,9 +798,7 @@ function wfParseUrl( $url ) {
 	if ( $wasRelative ) {
 		$url = "http:$url";
 	}
-	AtEase::suppressWarnings();
 	$bits = parse_url( $url );
-	AtEase::restoreWarnings();
 	// parse_url() returns an array without scheme for some invalid URLs, e.g.
 	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
 	if ( !$bits || !isset( $bits['scheme'] ) ) {
