@@ -283,7 +283,9 @@ class MWDebug {
 
 		if ( $version ) {
 			global $wgDeprecationReleaseLimit;
-			if ( $wgDeprecationReleaseLimit && $component === false ) {
+
+			$component = $component ?: 'MediaWiki';
+			if ( $wgDeprecationReleaseLimit && $component === 'MediaWiki' ) {
 				# Strip -* off the end of $version so that branches can use the
 				# format #.##-branchname to avoid issues if the branch is merged into
 				# a version of MediaWiki later than what it was branched from
@@ -300,7 +302,8 @@ class MWDebug {
 		self::sendRawDeprecated(
 			$rawMsg,
 			$sendToLog,
-			$callerFunc );
+			$callerFunc
+		);
 	}
 
 	/**
