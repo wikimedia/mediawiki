@@ -1298,6 +1298,7 @@
 	"grant-editpage": "Redigere eksisterende sider",
 	"grant-editprotected": "Redigere beskyttede sider",
 	"grant-highvolume": "Højvolumen-redigering",
+	"grant-mergehistory": "Sammenflet sidehistorikker",
 	"grant-oversight": "Skjule brugere og undertrykke revisioner",
 	"grant-patrol": "Patruljere sideændringer",
 	"grant-privateinfo": "Tilgå private oplysninger",
