@@ -37,6 +37,8 @@ use MediaWiki\MediaWikiServices;
  * Actions generally fall into two groups: the show-a-form-then-do-something-with-the-input
  * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
  * patrol, etc). The FormAction and FormlessAction classes represent these two groups.
+ *
+ * @stable for subclassing
  */
 abstract class Action implements MessageLocalizer {
 
@@ -331,6 +333,8 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Only public since 1.21
 	 *
+	 * @stable for calling
+	 *
 	 * @param Article|WikiPage|Page $page
 	 * 	Calling with anything other then Article is deprecated since 1.35
 	 * @param IContextSource|null $context
@@ -386,6 +390,7 @@ abstract class Action implements MessageLocalizer {
 	 * Get the permission required to perform this action.  Often, but not always,
 	 * the same as the action name
 	 * @since 1.17
+	 * @stable for overriding
 	 *
 	 * @return string|null
 	 */
@@ -398,6 +403,7 @@ abstract class Action implements MessageLocalizer {
 	 * overridden by sub-classes with more complicated permissions schemes.  Failures here
 	 * must throw subclasses of ErrorPageError
 	 * @since 1.17
+	 * @stable for overriding
 	 *
 	 * @param User $user
 	 * @throws UserBlockedError|ReadOnlyError|PermissionsError
@@ -438,6 +444,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Whether this action requires the wiki not to be locked
 	 * @since 1.17
+	 * @stable for overriding
 	 *
 	 * @return bool
 	 */
@@ -448,6 +455,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Whether this action can still be executed by a blocked user
 	 * @since 1.17
+	 * @stable for overriding
 	 *
 	 * @return bool
 	 */
@@ -458,6 +466,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Set output headers for noindexing etc.  This function will not be called through
 	 * the execute() entry point, so only put UI-related stuff in here.
+	 * @stable for overriding
 	 * @since 1.17
 	 */
 	protected function setHeaders() {
@@ -471,6 +480,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Returns the name that goes in the \<h1\> page title
 	 *
+	 * @stable for overriding
 	 * @return string
 	 */
 	protected function getPageTitle() {
@@ -480,6 +490,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * Returns the description that goes below the \<h1\> tag
 	 * @since 1.17
+	 * @stable for overriding
 	 *
 	 * @return string HTML
 	 */
@@ -532,6 +543,7 @@ abstract class Action implements MessageLocalizer {
 	 * Indicates whether this action may perform database writes
 	 * @return bool
 	 * @since 1.27
+	 * @stable for overriding
 	 */
 	public function doesWrites() {
 		return false;
