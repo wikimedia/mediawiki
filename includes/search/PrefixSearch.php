@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
  * names that match. Used largely by the OpenSearch implementation.
  * @deprecated Since 1.27, Use SearchEngine::defaultPrefixSearch or SearchEngine::completionSearch
  *
+ * @stable for subclassing
  * @ingroup Search
  */
 abstract class PrefixSearch {

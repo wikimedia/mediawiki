@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Contain a class for special pages
+ * @stable for subclassing
  * @ingroup Search
  */
 abstract class SearchEngine {
@@ -83,7 +84,7 @@ abstract class SearchEngine {
 	 * Perform a full text search query and return a result set.
 	 * If full text searches are not supported or disabled, return null.
 	 *
-	 * As of 1.32 overriding this function is deprecated. It will
+	 * @note As of 1.32 overriding this function is deprecated. It will
 	 * be converted to final in 1.34. Override self::doSearchText().
 	 *
 	 * @param string $term Raw search term
@@ -97,6 +98,8 @@ abstract class SearchEngine {
 
 	/**
 	 * Perform a full text search query and return a result set.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param string $term Raw search term
 	 * @return ISearchResultSet|Status|null
@@ -113,7 +116,7 @@ abstract class SearchEngine {
 	 * The results returned by this methods are only sugegstions and
 	 * may not end up being shown to the user.
 	 *
-	 * As of 1.32 overriding this function is deprecated. It will
+	 * @note As of 1.32 overriding this function is deprecated. It will
 	 * be converted to final in 1.34. Override self::doSearchArchiveTitle().
 	 *
 	 * @param string $term Raw search term
@@ -126,6 +129,8 @@ abstract class SearchEngine {
 
 	/**
 	 * Perform a title search in the article archive.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param string $term Raw search term
 	 * @return Status
@@ -140,7 +145,7 @@ abstract class SearchEngine {
 	 * If title searches are not supported or disabled, return null.
 	 * STUB
 	 *
-	 * As of 1.32 overriding this function is deprecated. It will
+	 * @note As of 1.32 overriding this function is deprecated. It will
 	 * be converted to final in 1.34. Override self::doSearchTitle().
 	 *
 	 * @param string $term Raw search term
@@ -154,6 +159,8 @@ abstract class SearchEngine {
 
 	/**
 	 * Perform a title-only search query and return a result set.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param string $term Raw search term
 	 * @return ISearchResultSet|null
@@ -199,6 +206,8 @@ abstract class SearchEngine {
 
 	/**
 	 * @since 1.18
+	 * @stable for overriding
+	 *
 	 * @param string $feature
 	 * @return bool
 	 */
@@ -325,6 +334,8 @@ abstract class SearchEngine {
 	 * might support more. The default in all implementations must be 'relevance.'
 	 *
 	 * @since 1.25
+	 * @stable for overriding
+	 *
 	 * @return string[] the valid sort directions for setSort
 	 */
 	public function getValidSorts() {
@@ -552,6 +563,9 @@ abstract class SearchEngine {
 	 * Perform a completion search.
 	 * Does not resolve namespaces and does not check variants.
 	 * Search engine implementations may want to override this function.
+	 *
+	 * @stable for overriding
+	 *
 	 * @param string $search
 	 * @return SearchSuggestionSet
 	 */
@@ -591,6 +605,8 @@ abstract class SearchEngine {
 
 	/**
 	 * Perform a completion search with variants.
+	 * @stable for overriding
+	 *
 	 * @param string $search
 	 * @return SearchSuggestionSet
 	 */
@@ -734,6 +750,8 @@ abstract class SearchEngine {
 	 * - default: set to true if this profile is the default
 	 *
 	 * @since 1.28
+	 * @stable for overriding
+	 *
 	 * @param string $profileType the type of profiles
 	 * @param User|null $user the user requesting the list of profiles
 	 * @return array|null the list of profiles or null if none available
@@ -746,6 +764,8 @@ abstract class SearchEngine {
 	/**
 	 * Create a search field definition.
 	 * Specific search engines should override this method to create search fields.
+	 * @stable for overriding
+	 *
 	 * @param string $name
 	 * @param string $type One of the types in SearchIndexField::INDEX_TYPE_*
 	 * @return SearchIndexField
