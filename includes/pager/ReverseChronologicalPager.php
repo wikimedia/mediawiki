@@ -23,6 +23,7 @@ use Wikimedia\Timestamp\TimestampException;
 /**
  * Efficient paging for SQL queries.
  * IndexPager with a formatted navigation bar.
+ * @stable for subclassing
  * @ingroup Pager
  */
 abstract class ReverseChronologicalPager extends IndexPager {
@@ -35,6 +36,10 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	/** @var int */
 	public $mDay;
 
+	/**
+	 * @stable for overriding
+	 * @return string
+	 */
 	public function getNavigationBar() {
 		if ( !$this->isNavigationBarShown() ) {
 			return '';
@@ -68,6 +73,8 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	/**
 	 * Set and return the mOffset timestamp such that we can get all revisions with
 	 * a timestamp up to the specified parameters.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param int $year Year up to which we want revisions
 	 * @param int $month Month up to which we want revisions
