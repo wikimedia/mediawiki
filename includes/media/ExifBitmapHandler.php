@@ -67,9 +67,9 @@ class ExifBitmapHandler extends BitmapHandler {
 
 		// ContactInfo also has to be dealt with specially
 		if ( isset( $metadata['Contact'] ) ) {
-			$metadata['Contact'] =
-				$formatter->collapseContactInfo(
-					$metadata['Contact'] );
+			$metadata['Contact'] = $formatter->collapseContactInfo(
+				is_array( $metadata['Contact'] ) ? $metadata['Contact'] : [ $metadata['Contact'] ]
+			);
 		}
 
 		foreach ( $metadata as &$val ) {

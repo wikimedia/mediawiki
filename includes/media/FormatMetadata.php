@@ -1453,7 +1453,7 @@ class FormatMetadata extends ContextSource {
 	 * Format the contact info field into a single value.
 	 *
 	 * This function might be called from
-	 * JpegHandler::convertMetadataVersion which is why it is
+	 * ExifBitmapHandler::convertMetadataVersion which is why it is
 	 * public.
 	 *
 	 * @param array $vals Array with fields of the ContactInfo
@@ -1463,7 +1463,7 @@ class FormatMetadata extends ContextSource {
 	 * @return string HTML-ish looking wikitext
 	 * @since 1.23 no longer static
 	 */
-	public function collapseContactInfo( $vals ) {
+	public function collapseContactInfo( array $vals ) {
 		if ( !( isset( $vals['CiAdrExtadr'] )
 			|| isset( $vals['CiAdrCity'] )
 			|| isset( $vals['CiAdrCtry'] )
