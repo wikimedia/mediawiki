@@ -172,6 +172,7 @@
 	"history_small": "history",
 	"updatedmarker": "updated since your last visit",
 	"printableversion": "Printable version",
+	"printableversion-deprecated-warning": "The printable version is no longer supported and may have rendering errors. Please update your browser bookmarks and please use the default browser print function instead.",
 	"permalink": "Permanent link",
 	"print": "Print",
 	"view": "View",

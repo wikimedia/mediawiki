@@ -1379,6 +1379,7 @@ because of Phabricator reports.
     replaced by rev_actor referencing actor.actor_id.
   Note that archive.ar_user, archive.ar_user_text, and archive.ar_comment
   had already been removed in previous releases.
+* The printableversion has been marked as deprecated per T167956.
 
 == Compatibility ==
 MediaWiki 1.35 requires PHP 7.2.22 or later, and the following PHP extensions:
