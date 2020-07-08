@@ -29,11 +29,8 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @return MediaWikiServices
 	 */
-	private function newMediaWikiServices( Config $config = null ) {
-		if ( $config === null ) {
-			$config = $this->newTestConfig();
-		}
-
+	private function newMediaWikiServices() {
+		$config = $this->newTestConfig();
 		$instance = new MediaWikiServices( $config );
 
 		// Load the default wiring from the specified files.
