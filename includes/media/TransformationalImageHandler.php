@@ -31,11 +31,14 @@ use MediaWiki\Shell\Shell;
 /**
  * Handler for images that need to be transformed
  *
+ * @stable for subclassing
+ *
  * @since 1.24
  * @ingroup Media
  */
 abstract class TransformationalImageHandler extends ImageHandler {
 	/**
+	 * @stable for overriding
 	 * @param File $image
 	 * @param array &$params Transform parameters. Entries with the keys 'width'
 	 * and 'height' are the respective screen width and height, while the keys
@@ -96,6 +99,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * This sets up various parameters, and then calls a helper method
 	 * based on $this->getScalerType in order to scale the image.
+	 * @stable for overriding
 	 *
 	 * @param File $image
 	 * @param string $dstPath
@@ -324,6 +328,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Get a ThumbnailImage that respresents an image that will be scaled
 	 * client side
 	 *
+	 * @stable for overriding
 	 * @param File $image File associated with this thumbnail
 	 * @param array $scalerParams Array with scaler params
 	 * @return ThumbnailImage
@@ -344,6 +349,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * This is a stub method. The real method is in BitmapHander.
 	 *
+	 * @stable for overriding
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
@@ -358,6 +364,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * This is a stub method. The real method is in BitmapHander.
 	 *
+	 * @stable for overriding
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
@@ -372,6 +379,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * This is a stub method. The real method is in BitmapHander.
 	 *
+	 * @stable for overriding
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
@@ -539,6 +547,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Returns whether the current scaler supports rotation.
 	 *
 	 * @since 1.24 No longer static
+	 * @stable for overriding
 	 * @return bool
 	 */
 	public function canRotate() {
@@ -549,6 +558,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Should we automatically rotate an image based on exif
 	 *
 	 * @since 1.24 No longer static
+	 * @stable for overriding
 	 * @see $wgEnableAutoRotation
 	 * @return bool Whether auto rotation is enabled
 	 */
@@ -561,6 +571,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * This is a stub. See BitmapHandler::rotate.
 	 *
+	 * @stable for overriding
 	 * @param File $file
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
@@ -576,6 +587,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Returns whether the file needs to be rendered. Returns true if the
 	 * file requires rotation and we are able to rotate it.
 	 *
+	 * @stable for overriding
 	 * @param File $file
 	 * @return bool
 	 */
@@ -588,6 +600,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * Runs the 'BitmapHandlerCheckImageArea' hook.
 	 *
+	 * @stable for overriding
 	 * @param File $file
 	 * @param array &$params
 	 * @return bool

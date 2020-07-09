@@ -24,10 +24,14 @@
 /**
  * Media handler abstract base class for images
  *
+ * @stable for subclassing
+ *
  * @ingroup Media
  */
 abstract class ImageHandler extends MediaHandler {
 	/**
+	 * @inheritDoc
+	 * @stable for overriding
 	 * @param File $file
 	 * @return bool
 	 */
@@ -35,10 +39,19 @@ abstract class ImageHandler extends MediaHandler {
 		return ( $file->getWidth() && $file->getHeight() );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 * @return string[]
+	 */
 	public function getParamMap() {
 		return [ 'img_width' => 'width' ];
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function validateParam( $name, $value ) {
 		if ( in_array( $name, [ 'width', 'height' ] ) ) {
 			if ( $value <= 0 ) {
@@ -51,6 +64,10 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function makeParamString( $params ) {
 		if ( isset( $params['physicalWidth'] ) ) {
 			$width = $params['physicalWidth'];
@@ -65,6 +82,10 @@ abstract class ImageHandler extends MediaHandler {
 		return "{$width}px";
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function parseParamString( $str ) {
 		$m = false;
 		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
@@ -74,11 +95,17 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	protected function getScriptParams( $params ) {
 		return [ 'width' => $params['width'] ];
 	}
 
 	/**
+	 * @inheritDoc
+	 * @stable for overriding
 	 * @param File $image
 	 * @param array &$params
 	 * @return bool
@@ -184,6 +211,8 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
+	 * @inheritDoc
+	 * @stable for overriding
 	 * @param File $image
 	 * @param string $script
 	 * @param array $params
@@ -200,6 +229,10 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getImageSize( $image, $path ) {
 		Wikimedia\suppressWarnings();
 		$gis = getimagesize( $path );
@@ -213,6 +246,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * Intended for animated GIFs to multiply by the number of frames.
 	 *
 	 * If the file doesn't support a notion of "area" return 0.
+	 * @stable for overriding
 	 *
 	 * @param File $image
 	 * @return int
@@ -222,6 +256,8 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
+	 * @inheritDoc
+	 * @stable for overriding
 	 * @param File $file
 	 * @return string
 	 */
@@ -235,6 +271,8 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
+	 * @inheritDoc
+	 * @stable for overriding
 	 * @param File $file
 	 * @return string
 	 */
@@ -256,6 +294,8 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	/**
+	 * @inheritDoc
+	 * @stable for overriding
 	 * @param File $file
 	 * @return string
 	 */
@@ -270,6 +310,10 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function sanitizeParamsForBucketing( $params ) {
 		$params = parent::sanitizeParamsForBucketing( $params );
 
