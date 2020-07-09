@@ -84,6 +84,9 @@
 		this.setLang( config.lang || 'en' );
 		this.$results.prepend( this.recentUploadsMessage.$element, this.noItemsMessage.$element );
 		this.$element.addClass( 'mw-widget-mediaSearchWidget' );
+
+		this.query.$input.attr( 'aria-label', mw.msg( 'mw-widgets-mediasearch-input-placeholder' ) );
+		this.results.$element.attr( 'aria-label', mw.msg( 'mw-widgets-mediasearch-results-aria-label' ) );
 	};
 
 	/* Inheritance */

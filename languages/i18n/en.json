@@ -4142,6 +4142,7 @@
 	"mw-widgets-mediasearch-input-placeholder": "Search for media",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Your}} recent uploads",
 	"mw-widgets-mediasearch-noresults": "No results found.",
+	"mw-widgets-mediasearch-results-aria-label": "Media search results",
 	"mw-widgets-table-row-delete": "Delete row",
 	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
 	"mw-widgets-titleinput-description-redirect": "redirect to $1",

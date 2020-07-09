@@ -4358,6 +4358,7 @@
 	"mw-widgets-mediasearch-input-placeholder": "Place holder text for media search input",
 	"mw-widgets-mediasearch-recent-uploads": "Heading for section showing a user's recent uploads",
 	"mw-widgets-mediasearch-noresults": "Label notifying the user no results were found for the media search.",
+	"mw-widgets-mediasearch-results-aria-label": "Used by screen readers to help visually impaired audience to identify the media search results widget",
 	"mw-widgets-table-row-delete": "Tooltip for the delete row button in table widgets",
 	"mw-widgets-titleinput-description-new-page": "Description label for a new page in the title input widget.",
 	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget.",
