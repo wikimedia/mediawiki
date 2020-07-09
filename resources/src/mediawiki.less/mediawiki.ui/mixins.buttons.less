@@ -33,19 +33,19 @@
 .mw-ui-button-states() {
 	// Make sure that `color` isn't inheriting from user-agent styles
 	&:visited {
-		color: @colorButtonText;
+		color: @color-base;
 	}
 
 	&:hover {
 		background-color: @background-color-base;
-		color: @colorGray4;
+		color: @color-base--hover;
 		border-color: @colorGray10;
 	}
 
 	&:focus {
 		background-color: @background-color-base;
 		// Make sure that `color` isn't inheriting from user-agent styles
-		color: @colorButtonText;
+		color: @color-base;
 		border-color: @colorProgressive;
 		box-shadow: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @background-color-base;
 		outline-width: 0;
@@ -60,7 +60,7 @@
 	&:active,
 	&.is-on {
 		background-color: @colorGray12;
-		color: @colorGray1;
+		color: @color-base--active;
 		border-color: @colorGray7;
 		box-shadow: none;
 	}
