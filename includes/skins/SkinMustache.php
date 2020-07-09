@@ -17,7 +17,7 @@
  *
  * @file
  */
-use Wikimedia\WrappedString;
+use Wikimedia\WrappedStringList;
 
 /**
  * Generic template for use with Mustache templates.
@@ -66,27 +66,32 @@ class SkinMustache extends SkinTemplate {
 	 */
 	public function getTemplateData() {
 		$out = $this->getOutput();
-		$name = $this->getSkinName();
-		$config = $this->getConfig();
 		$tail = [
 			MWDebug::getDebugHTML( $this->getContext() ),
 			$this->bottomScripts(),
 			wfReportTime( $out->getCSP()->getNonce() ),
-			MWDebug::getHTMLDebugLog()
+			MWDebug::getHTMLDebugLog() . '</body></html>',
 		];
 
 		return [
 			// Array objects
 			'array-indicators' => $this->getIndicatorsData( $out->getIndicators() ),
+
 			// Data objects
 			'data-search-box' => $this->buildSearchProps(),
+
 			// HTML strings
 			'html-headelement' => $out->headElement( $this ),
+			'html-sitenotice' => $this->getSiteNotice() ?: '',
+			'html-title' => $out->getPageTitle(),
+			'html-subtitle' => $this->prepareSubtitle(),
 			'html-bodycontent' => $this->wrapHTML( $out->getTitle(), $out->getHTML() ),
 			'html-catlinks' => $this->getCategories(),
-			'html-title' => $out->getPageTitle(),
-			'html-subtitle' => $out->getSubtitle(),
-			'html-printtail' => WrappedString::join( "\n", $tail ) . '</body></html>',
+			'html-aftercontent' => $this->afterContentHook(),
+			'html-undelete' => $this->prepareUndeleteLink() ?: null,
+			'html-userlangattributes' => $this->prepareUserLanguageAttributes(),
+			'html-printfooter' => $this->printSource(),
+			'html-printtail' => WrappedStringList::join( "\n", $tail ),
 		];
 	}
 
