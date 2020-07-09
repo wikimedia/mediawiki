@@ -103,6 +103,8 @@ class EditResult {
 	 * The same as getOldestRevertedRevisionId if only a single revision was
 	 * reverted. Returns null if the edit was not a revert.
 	 *
+	 * @see EditResult::isRevert() for information on how a revert is defined
+	 *
 	 * @return int|null
 	 */
 	public function getNewestRevertedRevisionId() : ?int {
@@ -113,6 +115,8 @@ class EditResult {
 	 * Returns the ID of the oldest revision that was reverted by this edit.
 	 * The same as getOldestRevertedRevisionId if only a single revision was
 	 * reverted. Returns null if the edit was not a revert.
+	 *
+	 * @see EditResult::isRevert() for information on how a revert is defined
 	 *
 	 * @return int|null
 	 */
@@ -136,6 +140,8 @@ class EditResult {
 	/**
 	 * Returns the ID of an earlier revision that is being repeated or restored.
 	 *
+	 * The original revision's content should match the new revision exactly.
+	 *
 	 * @return bool|int The original revision id, or false if no earlier revision is known to be
 	 * repeated or restored.
 	 * The old PageUpdater::getOriginalRevisionId() returned false in such cases. This value would
@@ -156,7 +162,18 @@ class EditResult {
 	}
 
 	/**
-	 * Whether the edit was a revert, not necessarily exact
+	 * Whether the edit was a revert, not necessarily exact.
+	 *
+	 * An edit is considered a revert if it either:
+	 * - Restores the page to an exact previous state (rollbacks, manual reverts and some undos).
+	 *   E.g. for edits A B C D, edits C and D are reverted.
+	 * - Undoes some edits made previously, but automatic conflict resolution is done and
+	 *   possibly additional changes are made by the reverting user (undo).
+	 *   E.g. for edits A B C D, edits B and C are reverted.
+	 *
+	 * To check whether the edit was an exact revert, please use the isExactRevert() method.
+	 * The getRevertMethod() will provide additional information about which kind of revert
+	 * was made.
 	 *
 	 * @return bool
 	 */
@@ -169,6 +186,8 @@ class EditResult {
 	 * Returns null if the edit was not a revert.
 	 *
 	 * Possible values: REVERT_UNDO, REVERT_ROLLBACK, REVERT_MANUAL
+	 *
+	 * @see EditResult::isRevert()
 	 *
 	 * @return int|null
 	 */
@@ -187,7 +206,8 @@ class EditResult {
 	}
 
 	/**
-	 * An edit is a null edit if the original revision is equal to the parent revision.
+	 * An edit is a null edit if the original revision is equal to the parent revision,
+	 * i.e. no changes were made.
 	 *
 	 * @return bool
 	 */
