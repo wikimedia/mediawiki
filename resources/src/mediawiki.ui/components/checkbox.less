@@ -28,7 +28,7 @@
 // </div>
 .mw-ui-checkbox {
 	display: inline-block;
-	line-height: @sizeInputBinary;
+	line-height: @size-input-binary;
 	vertical-align: middle;
 }
 
@@ -49,8 +49,8 @@
 		display: table-cell;
 		position: relative;
 		// Ensure the invisible input takes up the required `width` & `height`
-		width: @sizeInputBinary;
-		height: @sizeInputBinary;
+		width: @size-input-binary;
+		height: @size-input-binary;
 		// Support: Firefox mobile to override user-agent stylesheet, see T73750
 		max-width: none;
 		margin: 0;
@@ -78,9 +78,9 @@
 			// Ensure alignment of checkbox to middle of the text in long labels, see T85241
 			top: 50%;
 			left: 0;
-			width: @sizeInputBinary;
-			height: @sizeInputBinary;
-			margin-top: -( @sizeInputBinary / 2 );
+			width: @size-input-binary;
+			height: @size-input-binary;
+			margin-top: -( @size-input-binary / 2 );
 			border: 1px solid @colorGray7;
 			border-radius: @border-radius-base;
 		}
