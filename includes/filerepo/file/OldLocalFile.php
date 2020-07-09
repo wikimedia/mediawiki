@@ -27,6 +27,7 @@ use MediaWiki\Revision\RevisionRecord;
 /**
  * Class to represent a file in the oldimage table
  *
+ * @stable for subclassing
  * @ingroup FileAbstraction
  */
 class OldLocalFile extends LocalFile {
@@ -39,6 +40,7 @@ class OldLocalFile extends LocalFile {
 	public const CACHE_VERSION = 1;
 
 	/**
+	 * @stable for overriding
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 * @param string|int|null $time
@@ -55,6 +57,8 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
+	 * @stable for overriding
+	 *
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 * @param string $archiveName
@@ -65,6 +69,8 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
+	 * @stable for overriding
+	 *
 	 * @param stdClass $row
 	 * @param FileRepo $repo
 	 * @return static
@@ -80,6 +86,8 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * Create a OldLocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param string $sha1 Base-36 SHA-1
 	 * @param LocalRepo $repo
@@ -110,6 +118,8 @@ class OldLocalFile extends LocalFile {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new oldlocalfile object.
 	 * @since 1.31
+	 * @stable for overriding
+	 *
 	 * @param string[] $options
 	 *   - omit-lazy: Omit fields that are lazily cached.
 	 * @return array[] With three keys:
@@ -152,6 +162,8 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 * @param string|int|null $time Timestamp or null to load by archive name
@@ -168,6 +180,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return bool
 	 */
 	protected function getCacheKey() {
@@ -175,6 +188,7 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return string
 	 */
 	public function getArchiveName() {
@@ -199,6 +213,10 @@ class OldLocalFile extends LocalFile {
 		return $this->exists() && !$this->isDeleted( File::DELETED_FILE );
 	}
 
+	/**
+	 * @stable for overriding
+	 * @param int $flags
+	 */
 	protected function loadFromDB( $flags = 0 ) {
 		$this->dataLoaded = true;
 
@@ -230,6 +248,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * Load lazy file metadata from the DB
+	 * @stable for overriding
 	 */
 	protected function loadExtraFromDB() {
 		$this->extraDataLoaded = true;
@@ -272,7 +291,10 @@ class OldLocalFile extends LocalFile {
 		}
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	protected function getCacheFields( $prefix = 'img_' ) {
 		$fields = parent::getCacheFields( $prefix );
 		$fields[] = $prefix . 'archive_name';
@@ -283,6 +305,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * @return string
+	 * @stable for overriding
 	 */
 	public function getRel() {
 		return $this->getArchiveRel( $this->getArchiveName() );
@@ -290,11 +313,15 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * @return string
+	 * @stable for overriding
 	 */
 	public function getUrlRel() {
 		return $this->getArchiveRel( rawurlencode( $this->getArchiveName() ) );
 	}
 
+	/**
+	 * @stable for overriding
+	 */
 	public function upgradeRow() {
 		$this->loadFromFile();
 
@@ -400,6 +427,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * Record a file upload in the oldimage table, without adding log entries.
+	 * @stable for overriding
 	 *
 	 * @param string $srcPath File system path to the source file
 	 * @param string $archiveName The archive name of the file

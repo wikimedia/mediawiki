@@ -33,6 +33,7 @@ use MediaWiki\MediaWikiServices;
  * TextContent instances are immutable
  *
  * @newable
+ * @stable for subclassing
  * @ingroup Content
  */
 class TextContent extends AbstractContent {
@@ -74,6 +75,13 @@ class TextContent extends AbstractContent {
 		return $this; # NOTE: this is ok since TextContent are immutable.
 	}
 
+	/**
+	 * @stable for overriding
+	 *
+	 * @param int $maxlength
+	 *
+	 * @return string
+	 */
 	public function getTextForSummary( $maxlength = 250 ) {
 		$text = $this->getText();
 
@@ -86,6 +94,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text's size in bytes.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return int
 	 */
 	public function getSize() {
@@ -97,6 +107,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns true if this content is not a redirect, and $wgArticleCountMethod
 	 * is "any".
+	 *
+	 * @stable for overriding
 	 *
 	 * @param bool|null $hasLinks If it is known whether this content contains links,
 	 * provide this information here, to avoid redundant parsing to find out.
@@ -132,6 +144,9 @@ class TextContent extends AbstractContent {
 	 * Returns the text represented by this Content object, as a string.
 	 *
 	 * @since 1.33
+	 * @note This method should not be overwritten by subclasses. If a subclass find itself in
+	 * need to override this method, it should probably not be based on TextContent, but
+	 * should rather extend AbstractContent instead.
 	 *
 	 * @return string The raw text.
 	 */
@@ -142,6 +157,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return string The raw text.
 	 */
 	public function getTextForSearchIndex() {
@@ -151,6 +168,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns attempts to convert this content object to wikitext,
 	 * and then returns the text string. The conversion may be lossy.
+	 *
+	 * @stable for overriding
 	 *
 	 * @note this allows any text-based content to be transcluded as if it was wikitext.
 	 *
@@ -191,6 +210,8 @@ class TextContent extends AbstractContent {
 	 * At a minimum, subclasses should make sure to call TextContent::normalizeLineEndings()
 	 * either directly or part of Parser::preSaveTransform().
 	 *
+	 * @stable for overriding
+	 *
 	 * @param Title $title
 	 * @param User $user
 	 * @param ParserOptions $popts
@@ -207,6 +228,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * Diff this content object with another content object.
 	 *
+	 * @stable for overriding
 	 * @since 1.21
 	 *
 	 * @param Content $that The other content object to compare this content object to.
@@ -249,6 +271,8 @@ class TextContent extends AbstractContent {
 	 * Subclasses may override this to provide custom content processing.
 	 * For custom HTML generation alone, it is sufficient to override getHtml().
 	 *
+	 * @stable for overriding
+	 *
 	 * @param Title $title Context title for parsing
 	 * @param int $revId Revision ID (for {{REVISIONID}})
 	 * @param ParserOptions $options
@@ -284,6 +308,8 @@ class TextContent extends AbstractContent {
 	 * If further information is to be derived from the content (such as
 	 * categories), the fillParserOutput() method can be overridden instead.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return string An HTML representation of the content
 	 */
 	protected function getHtml() {
@@ -298,6 +324,8 @@ class TextContent extends AbstractContent {
 	/**
 	 * This implementation provides lossless conversion between content models based
 	 * on TextContent.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param string $toModel The desired content model, use the CONTENT_MODEL_XXX flags.
 	 * @param string $lossy Flag, set to "lossy" to allow lossy conversion. If lossy conversion is not
