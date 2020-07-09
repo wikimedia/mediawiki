@@ -82,7 +82,7 @@ class SkinMustache extends SkinTemplate {
 
 			// HTML strings
 			'html-headelement' => $out->headElement( $this ),
-			'html-sitenotice' => $this->getSiteNotice() ?: '',
+			'html-sitenotice' => $this->getSiteNotice(),
 			'html-title' => $out->getPageTitle(),
 			'html-subtitle' => $this->prepareSubtitle(),
 			'html-bodycontent' => $this->wrapHTML( $out->getTitle(), $out->getHTML() ),
