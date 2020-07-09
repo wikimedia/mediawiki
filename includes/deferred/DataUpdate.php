@@ -24,6 +24,8 @@
 /**
  * Abstract base class for update jobs that do something with some secondary
  * data extracted from article.
+ *
+ * @stable for subclassing
  */
 abstract class DataUpdate implements DeferrableUpdate {
 	/** @var mixed Result from LBFactory::getEmptyTransactionTicket() */
@@ -33,6 +35,9 @@ abstract class DataUpdate implements DeferrableUpdate {
 	/** @var string Short update cause user description */
 	protected $causeAgent = 'unknown';
 
+	/**
+	 * @stable for calling
+	 */
 	public function __construct() {
 		// noop
 	}

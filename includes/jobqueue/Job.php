@@ -25,6 +25,8 @@
  * Class to both describe a background job and handle jobs.
  * To push jobs onto queues, use JobQueueGroup::singleton()->push();
  *
+ * @stable for subclassing
+ *
  * @ingroup JobQueue
  */
 abstract class Job implements RunnableJob {
@@ -110,6 +112,8 @@ abstract class Job implements RunnableJob {
 	}
 
 	/**
+	 * @stable for calling
+	 *
 	 * @param string $command
 	 * @param array|Title|null $params
 	 */
@@ -151,12 +155,17 @@ abstract class Job implements RunnableJob {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function hasExecutionFlag( $flag ) {
 		return ( $this->executionFlags & $flag ) === $flag;
 	}
 
 	/**
-	 * @return string
+	 * @inheritDoc
+	 * @stable for overriding
 	 */
 	public function getType() {
 		return $this->command;
@@ -170,13 +179,15 @@ abstract class Job implements RunnableJob {
 	}
 
 	/**
-	 * @return array
+	 * @inheritDoc
+	 * @stable for overriding
 	 */
 	public function getParams() {
 		return $this->params;
 	}
 
 	/**
+	 * @stable for overriding
 	 * @param string|null $field Metadata field or null to get all the metadata
 	 * @return mixed|null Value; null if missing
 	 * @since 1.33
@@ -190,6 +201,7 @@ abstract class Job implements RunnableJob {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @param string $field Key name to set the value for
 	 * @param mixed $value The value to set the field for
 	 * @return mixed|null The prior field value; null if missing
@@ -207,6 +219,7 @@ abstract class Job implements RunnableJob {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return int|null UNIX timestamp to delay running this job until, otherwise null
 	 * @since 1.22
 	 */
@@ -226,10 +239,18 @@ abstract class Job implements RunnableJob {
 			: null;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getRequestId() {
 		return $this->params['requestId'] ?? null;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getReadyTimestamp() {
 		return $this->getReleaseTimestamp() ?: $this->getQueuedTimestamp();
 	}
@@ -243,16 +264,26 @@ abstract class Job implements RunnableJob {
 	 * network partitions and fail-over. Thus, additional locking is needed to
 	 * enforce mutual exclusion if this is really needed.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return bool
 	 */
 	public function ignoreDuplicates() {
 		return $this->removeDuplicates;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function allowRetries() {
 		return true;
 	}
 
+	/**
+	 * @stable for overriding
+	 * @return int
+	 */
 	public function workItemCount() {
 		return 1;
 	}
@@ -263,6 +294,7 @@ abstract class Job implements RunnableJob {
 	 * only checked if ignoreDuplicates() returns true, meaning that duplicate
 	 * jobs are supposed to be ignored.
 	 *
+	 * @stable for overriding
 	 * @return array Map of key/values
 	 * @since 1.21
 	 */
@@ -314,6 +346,7 @@ abstract class Job implements RunnableJob {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @see JobQueue::deduplicateRootJob()
 	 * @return array
 	 * @since 1.21
@@ -326,6 +359,7 @@ abstract class Job implements RunnableJob {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @see JobQueue::deduplicateRootJob()
 	 * @return bool
 	 * @since 1.22
@@ -336,6 +370,7 @@ abstract class Job implements RunnableJob {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @see JobQueue::deduplicateRootJob()
 	 * @return bool Whether this is job is a root job
 	 */
@@ -353,12 +388,20 @@ abstract class Job implements RunnableJob {
 		$this->teardownCallbacks[] = $callback;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function teardown( $status ) {
 		foreach ( $this->teardownCallbacks as $callback ) {
 			call_user_func( $callback, $status );
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function toString() {
 		$paramString = '';
 		if ( $this->params ) {
@@ -419,6 +462,10 @@ abstract class Job implements RunnableJob {
 		$this->error = $error;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function getLastError() {
 		return $this->error;
 	}

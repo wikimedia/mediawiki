@@ -73,6 +73,7 @@ use WebRequest;
  * session cookie names should be used for different providers to avoid
  * collisions.
  *
+ * @stable for subclassing
  * @ingroup Session
  * @since 1.27
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
@@ -100,6 +101,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	protected $priority;
 
 	/**
+	 * @stable for calling
 	 * @note To fully initialize a SessionProvider, the setLogger(),
 	 *  setConfig(), setManager() and setHookContainer() methods must be
 	 *  called (and should be called in that order). Failure to do so is
@@ -198,6 +200,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * Return null if such a session cannot be created. This base
 	 * implementation assumes that it only makes sense if a session ID can be
 	 * persisted and changing users is allowed.
+	 * @stable for overriding
 	 *
 	 * @note For use by \MediaWiki\Session\SessionManager only
 	 * @param string|null $id ID to force for the new session
@@ -228,6 +231,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 *
 	 * The default implementation checks that anything in both arrays is
 	 * identical, then returns $providedMetadata.
+	 * @stable for overriding
 	 *
 	 * @note For use by \MediaWiki\Session\SessionManager only
 	 * @param array $savedMetadata Saved provider metadata
@@ -258,6 +262,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * This is similar in purpose to the 'SessionCheckInfo' hook, and also
 	 * allows for updating the provider metadata. On failure, the provider is
 	 * expected to write an appropriate message to its logger.
+	 * @stable for overriding
 	 *
 	 * @note For use by \MediaWiki\Session\SessionManager only
 	 * @param SessionInfo $info Any changes by mergeMetadata() will already be reflected here.
@@ -328,6 +333,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * Returns the duration (in seconds) for which users will be remembered when
 	 * Session::setRememberUser() is set. Null means setting the remember flag will
 	 * have no effect (and endpoints should not offer that option).
+	 * @stable for overriding
 	 * @return int|null
 	 */
 	public function getRememberUserDuration() {
@@ -338,6 +344,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * Notification that the session ID was reset
 	 *
 	 * No need to persist here, persistSession() will be called if appropriate.
+	 * @stable for overriding
 	 *
 	 * @note For use by \MediaWiki\Session\SessionBackend only
 	 * @param SessionBackend $session Session to persist
@@ -407,6 +414,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * User::idFromName( $username ) === 0); the name should still be
 	 * prevented, if applicable.
 	 *
+	 * @stable for overriding
 	 * @note For use by \MediaWiki\Session\SessionManager only
 	 * @param string $username
 	 */
@@ -425,6 +433,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * cookie (and doesn't use User::getToken() to implement it), it should
 	 * reset whatever token it does use here.
 	 *
+	 * @stable for overriding
 	 * @note For use by \MediaWiki\Session\SessionManager only
 	 * @param User $user
 	 */
@@ -444,6 +453,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * Note that the $options parameter to addVaryHeader has been deprecated
 	 * since 1.34, and should be `null` or an empty array.
 	 *
+	 * @stable for overriding
 	 * @note For use by \MediaWiki\Session\SessionManager only
 	 * @return array
 	 */
@@ -453,6 +463,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 
 	/**
 	 * Return the list of cookies that need varying on.
+	 * @stable for overriding
 	 * @note For use by \MediaWiki\Session\SessionManager only
 	 * @return string[]
 	 */
@@ -462,6 +473,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 
 	/**
 	 * Get a suggested username for the login form
+	 * @stable for overriding
 	 * @note For use by \MediaWiki\Session\SessionBackend only
 	 * @param WebRequest $request
 	 * @return string|null
@@ -477,6 +489,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * by certain methods; you probably want to use this with MWGrants. The returned
 	 * rights will be intersected with the user's actual rights.
 	 *
+	 * @stable for overriding
 	 * @param SessionBackend $backend
 	 * @return null|string[] Allowed user rights, or null to allow all.
 	 */
@@ -508,6 +521,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * determine the message key. For example, MediaWiki\Session\CookieSessionProvider
 	 * produces 'sessionprovider-mediawiki-session-cookiesessionprovider'.
 	 *
+	 * @stable for overriding
 	 * @note If self::__toString() is overridden, this will likely need to be
 	 *  overridden as well.
 	 * @warning This will be called early during MediaWiki startup. Do not
@@ -521,6 +535,10 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 		);
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function describe( Language $lang ) {
 		$msg = $this->describeMessage();
 		$msg->inLanguage( $lang );
@@ -530,6 +548,10 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 		return $msg->plain();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable for overriding
+	 */
 	public function whyNoSession() {
 		return null;
 	}
@@ -537,6 +559,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	/**
 	 * Most session providers require protection against CSRF attacks (usually via CSRF tokens)
 	 *
+	 * @stable for overriding
 	 * @return bool false
 	 */
 	public function safeAgainstCsrf() {
