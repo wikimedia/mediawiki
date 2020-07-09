@@ -32,6 +32,8 @@ use MediaWiki\MediaWikiServices;
  * to the computations individual esi snippets need. Most importantly no body
  * parsing for most of those of course.
  *
+ * @stable for subclassing
+ *
  * @ingroup Skins
  */
 class SkinTemplate extends Skin {
@@ -129,6 +131,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Initialize various variables and generate the template
+	 * @stable for overriding
 	 */
 	public function outputPage() {
 		Profiler::instance()->setAllowOutput();
