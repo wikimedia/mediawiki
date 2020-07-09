@@ -105,12 +105,12 @@
 
 			&:active + label:before {
 				background-color: @colorProgressiveActive;
-				border-color: @borderColorInputBinaryActive;
+				border-color: @border-color-input-binary--active;
 			}
 
 			&:checked {
 				& + label:before {
-					border-color: @borderColorInputBinaryChecked;
+					border-color: @border-color-input-binary--checked;
 				}
 
 				&:focus + label:after {
@@ -123,12 +123,12 @@
 
 				&:active {
 					& + label:before {
-						border-color: @borderColorInputBinaryActive;
-						box-shadow: @boxShadowInputBinaryActive;
+						border-color: @border-color-input-binary--active;
+						box-shadow: @box-shadow-input-binary--active;
 					}
 
 					& + label:after {
-						border-color: @borderColorInputBinaryActive;
+						border-color: @border-color-input-binary--active;
 					}
 				}
 			}

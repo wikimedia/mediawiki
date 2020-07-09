@@ -115,19 +115,19 @@
 
 			&:active + label:before {
 				background-color: @colorProgressiveActive;
-				border-color: @borderColorInputBinaryActive;
-				box-shadow: @boxShadowInputBinaryActive;
+				border-color: @border-color-input-binary--active;
+				box-shadow: @box-shadow-input-binary--active;
 			}
 
 			&:checked {
 				& + label:before {
-					background-color: @backgroundColorInputBinaryChecked;
-					border-color: @borderColorInputBinaryChecked;
+					background-color: @background-color-input-binary--checked;
+					border-color: @border-color-input-binary--checked;
 				}
 
 				&:focus + label:before {
-					background-color: @backgroundColorInputBinaryChecked;
-					border-color: @borderColorInputBinaryChecked;
+					background-color: @background-color-input-binary--checked;
+					border-color: @border-color-input-binary--checked;
 					box-shadow: @boxShadowProgressiveFocus;
 				}
 
@@ -137,8 +137,8 @@
 				}
 
 				&:active + label:before {
-					background-color: @backgroundColorInputBinaryActive;
-					border-color: @borderColorInputBinaryActive;
+					background-color: @background-color-input-binary--active;
+					border-color: @border-color-input-binary--active;
 				}
 			}
 		}
