@@ -17,8 +17,8 @@
 // <input class="mw-ui-input" placeholder="Enter your name">
 // <textarea class="mw-ui-input">Text here</textarea>
 .mw-ui-input {
-	background-color: #fff;
-	color: @colorGray1;
+	background-color: @background-color-base;
+	color: @color-base--emphasized;
 	.box-sizing( border-box );
 	display: block;
 	width: 100%;
@@ -34,7 +34,7 @@
 
 	// Normalize & style placeholder text, see T139034
 	.mixin-placeholder( {
-		color: @colorGray7;
+		color: @color-placeholder;
 		opacity: 1;
 	} );
 
