@@ -38,7 +38,7 @@
 .client-js .mw-ui-radio:not( #noop ) {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
-	line-height: @sizeInputBinary;
+	line-height: @size-input-binary;
 
 	* {
 		// reset font sizes (see T74727)
@@ -48,8 +48,8 @@
 
 	[ type='radio' ] {
 		// ensure the invisible radio takes up the required width
-		width: @sizeInputBinary;
-		height: @sizeInputBinary;
+		width: @size-input-binary;
+		height: @size-input-binary;
 		// This is needed for Firefox mobile (See T73750 to workaround default Firefox stylesheet)
 		max-width: none;
 		margin: 0;
@@ -67,8 +67,8 @@
 				.box-sizing( border-box );
 				position: absolute;
 				left: 0;
-				width: @sizeInputBinary;
-				height: @sizeInputBinary;
+				width: @size-input-binary;
+				height: @size-input-binary;
 				border: 1px solid @colorGray7;
 				border-radius: 100%;
 			}
@@ -77,9 +77,9 @@
 			&:after {
 				content: ' ';
 				position: absolute;
-				top: 2px; // `px` unit due to pixel rounding error when using `@sizeInputBinary / 4`
+				top: 2px; // `px` unit due to pixel rounding error when using `@size-input-binary / 4`
 				left: 2px;
-				width: 1.14285em; // equals `@sizeInputBinary - 4px`
+				width: 1.14285em; // equals `@size-input-binary - 4px`
 				height: 1.14285em;
 				border: 1px solid transparent;
 				border-radius: 100%;
