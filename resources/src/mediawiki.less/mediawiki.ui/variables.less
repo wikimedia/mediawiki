@@ -54,14 +54,13 @@
 
 // Colors
 @color-base: @colorGray2;
+@color-base--hover: @colorGray4;
+@color-base--active: @colorGray1;
 @color-base--emphasized: @colorGray1;
 @color-base--inverted: #fff;
 @color-base--subtle: @colorGray7;
+@color-base--disabled: @colorGray7;
 @color-placeholder: @colorGray7;
-@colorButtonText: @colorGray2;
-@colorButtonTextHighlight: @colorGray4;
-@colorButtonTextActive: @colorGray1;
-@colorDisabledText: @colorGray7;
 
 // Messages
 // Messages: Error
@@ -126,6 +125,10 @@
 @colorTextLight: @color-base--subtle;
 @colorBaseInverted: @color-base--inverted;
 @colorNeutral: @color-base--subtle;
+@colorButtonText: @color-base;
+@colorButtonTextHighlight: @color-base--hover;
+@colorButtonTextActive: @color-base--active;
+@colorDisabledText: @color-base--disabled;
 @colorFieldBorder: @border-color-base;
 @colorPlaceholder: @color-placeholder;
 // Used in mixins to darken contextual colors by the same amount (eg. focus)

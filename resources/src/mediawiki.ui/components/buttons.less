@@ -23,7 +23,7 @@
 // </div>
 .mw-ui-button {
 	background-color: @colorGray15;
-	color: @colorButtonText;
+	color: @color-base;
 	.mw-ui-button();
 	.mw-ui-button-states();
 
@@ -57,25 +57,25 @@
 		background-color: transparent;
 		// Quiet buttons all start gray, and reveal
 		// progressive/destructive color on hover and active.
-		color: @colorButtonText;
+		color: @color-base;
 		border-color: transparent;
 
 		&:hover {
 			background-color: transparent;
-			color: @colorButtonTextHighlight;
+			color: @color-base--hover;
 			border-color: transparent;
 			box-shadow: none;
 		}
 
 		&:active {
 			background-color: transparent;
-			color: @colorButtonTextActive;
+			color: @color-base--active;
 			border-color: transparent;
 		}
 
 		&:focus {
 			background-color: transparent;
-			color: @colorButtonText;
+			color: @color-base;
 			border-color: transparent;
 			box-shadow: none;
 		}
@@ -84,7 +84,7 @@
 		&:disabled:hover,
 		&:disabled:active {
 			background-color: transparent;
-			color: @colorDisabledText;
+			color: @color-base--disabled;
 			border-color: transparent;
 		}
 	}
