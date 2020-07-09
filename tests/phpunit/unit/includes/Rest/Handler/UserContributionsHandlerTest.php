@@ -10,8 +10,10 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
 use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserNameUtils;
 use PHPUnit\Framework\MockObject\MockObject;
 use RequestContext;
 use User;
@@ -24,7 +26,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
 
-	private const DEFAULT_LIMIT = 2;
+	private const DEFAULT_LIMIT = 20;
 
 	private function makeFakeRevisions( UserIdentity $user, int $numRevs, int $limit, int $segment = 1 ) {
 		$revisions = [];
@@ -42,17 +44,96 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		return array_slice( $revisions, $segment - 1, $limit );
 	}
 
-	private function newHandler( $numRevisions = 5, $tags = [], $deltas = [], $flags = [] ) {
+	/**
+	 * @param int $numRevisions
+	 * @param array $tags
+	 * @param array $deltas
+	 * @param array $flags
+	 *
+	 * @return ContributionsLookup|MockObject
+	 */
+	private function newContributionsLookup( $numRevisions = 5, $tags = [], $deltas = [], $flags = [] ) {
 		/** @var MockObject|ContributionsLookup $mockContributionsLookup */
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
 			[ 'getContributions' ]
 		);
+
 		$user = new UserIdentityValue( 0, 'test', 0 );
 		$fakeRevisions = $this->makeFakeRevisions( $user, $numRevisions, 2 );
 		$fakeSegment = $this->makeSegment( $fakeRevisions, $tags, $deltas, $flags );
 		$mockContributionsLookup->method( 'getContributions' )->willReturn( $fakeSegment );
-		$handler = new UserContributionsHandler( $mockContributionsLookup );
-		return $handler;
+
+		return $mockContributionsLookup;
+	}
+
+	/**
+	 * Returns a mock ContributionLookup that asserts getContributions()
+	 * is called with the same params that were originally passed into the request.
+	 * @param RequestInterface $request
+	 *
+	 * @return ContributionsLookup|MockObject
+	 */
+	private function newContributionsLookupForRequest( RequestInterface $request, $target, $performer ) {
+		$limit = $request->getQueryParams()['limit'] ?? self::DEFAULT_LIMIT;
+		$segment = $request->getQueryParams()['segment'] ?? '';
+		$tag = $request->getQueryParams()['tag'] ?? null;
+
+		$fakeRevisions = $this->makeFakeRevisions( $target, 5, $limit );
+		$fakeSegment = $this->makeSegment( $fakeRevisions );
+
+		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
+			[ 'getContributions' ]
+		);
+		$mockContributionsLookup->method( 'getContributions' )
+			->willReturnCallback(
+				function (
+					$actualTarget,
+					$actualLimit,
+					$actualPerformer,
+					$actualSegment,
+					$actualTag
+				) use ( $target, $limit, $performer, $segment, $tag, $fakeSegment ) {
+					$this->assertSame( $target->getName(), $actualTarget->getName() );
+					$this->assertSame( $limit, $actualLimit );
+					$this->assertSame( $performer->getName(), $actualPerformer->getName() );
+					$this->assertSame( $segment, $actualSegment );
+					$this->assertSame( $tag, $actualTag );
+					return $fakeSegment;
+				}
+			);
+
+		return $mockContributionsLookup;
+	}
+
+	/**
+	 * @param ContributionsLookup $contributionsLookup
+	 *
+	 * @return UserContributionsHandler
+	 */
+	private function newHandler( ContributionsLookup $contributionsLookup = null ) {
+		if ( !$contributionsLookup ) {
+			$contributionsLookup = $this->newContributionsLookup();
+		}
+
+		$mockUserFactory = $this->createNoOpMock( UserFactory::class,
+			[ 'newFromName' ]
+		);
+		$mockUserFactory->method( 'newFromName' )
+			->willReturnCallback( [ $this, 'makeMockUser' ] );
+
+		$mockUserNameUtils = $this->createNoOpMock( UserNameUtils::class,
+			[ 'isIP' ]
+		);
+		$mockUserNameUtils->method( 'isIP' )
+			->willReturnCallback( function ( $name ) {
+				return $name === '127.0.0.1';
+			} );
+
+		return new UserContributionsHandler(
+			$contributionsLookup,
+			$mockUserFactory,
+			$mockUserNameUtils
+		);
 	}
 
 	private function makeSegment( $revisions, array $tags = [], $deltas = [], array $flags = [] ) {
@@ -66,57 +147,47 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		return new ContributionsSegment( $revisions, $tags, null, null, $deltas, $flags );
 	}
 
-	public function provideTestThatParametersAreHandledCorrectly() {
-		yield [
-			new RequestData(
-				[
-					'queryParams' => [
-						'segment' => 'before|20200101000005',
-						'limit' => self::DEFAULT_LIMIT
-					]
-				]
-			)
-		];
-		yield [ new RequestData(
-			[
-				'queryParams' => [
-					'segment' => 'after|20200101000001',
-					'limit' => self::DEFAULT_LIMIT
-				]
-			]
-		) ];
-		yield [ new RequestData(
-			[ 'queryParams' => [ 'limit' => self::DEFAULT_LIMIT ] ]
-		) ];
-		yield [ new RequestData(
-			[ 'queryParams' => [ 'tag' => 'test', 'limit' => 7 ] ]
-		) ];
+	public function provideValidQueryParameters() {
+		yield [ [] ];
+		yield [ [ 'limit' => self::DEFAULT_LIMIT ] ];
+		yield [ [ 'tag' => 'test', 'limit' => 7 ] ];
+		yield [ [ 'segment' => 'before|20200101000005' ] ];
+		yield [ [ 'segment' => 'after|20200101000001' ] ];
 	}
 
 	/**
-	 * @param RequestInterface $request
-	 * @dataProvider provideTestThatParametersAreHandledCorrectly
+	 * @param array $queryParams
+	 * @dataProvider provideValidQueryParameters
 	 */
-	public function testThatParametersAreHandledCorrectly( RequestInterface $request ) {
-		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
-			[ 'getContributions' ]
-		);
-		$user = $this->makeMockUser( false );
+	public function testThatParametersAreHandledCorrectlyForMeEndpoint( $queryParams ) {
+		$request = new RequestData( [ 'queryParams' => $queryParams ] );
+		$user = $this->makeMockUser( 'Arnold' );
+
+		$mockContributionsLookup = $this->newContributionsLookupForRequest( $request, $user, $user );
+		$handler = $this->newHandler( $mockContributionsLookup );
+
 		RequestContext::getMain()->setUser( $user );
+		$response = $this->executeHandler( $handler, $request, [ 'mode' => 'me' ] );
 
-		$fakeRevisions = $this->makeFakeRevisions( $user, 5, self::DEFAULT_LIMIT );
-		$fakeSegment = $this->makeSegment( $fakeRevisions );
+		$this->assertSame( 200, $response->getStatusCode() );
+	}
 
-		$limit = $request->getQueryParams()['limit'] ?? self::DEFAULT_LIMIT;
-		$segment = $request->getQueryParams()['segment'] ?? null;
-		$tag = $request->getQueryParams()['tag'] ?? null;
-		$mockContributionsLookup->method( 'getContributions' )
-			->with( $user, $limit, $user, $segment, $tag )
-			->willReturn( $fakeSegment );
+	/**
+	 * @param array $queryParams
+	 * @dataProvider provideValidQueryParameters
+	 */
+	public function testThatParametersAreHandledCorrectlyForUserEndpoint( $queryParams ) {
+		$target = new UserIdentityValue( 7, 'Test', 7 );
+		$performer = $this->makeMockUser( 'Arnold' );
 
-		$handler = new UserContributionsHandler( $mockContributionsLookup );
+		$pathParams = [ 'name' => $target->getName() ];
+		$request = new RequestData( [ 'queryParams' => $queryParams, 'pathParams' => $pathParams ] );
 
-		$response = $this->executeHandler( $handler, $request );
+		$mockContributionsLookup = $this->newContributionsLookupForRequest( $request, $target, $performer );
+		$handler = $this->newHandler( $mockContributionsLookup );
+
+		RequestContext::getMain()->setUser( $performer );
+		$response = $this->executeHandler( $handler, $request, [ 'mode' => 'name' ] );
 
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
@@ -124,20 +195,73 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	public function testThatAnonymousUserReturns401() {
 		$handler = $this->newHandler();
 		$request = new RequestData( [] );
-		RequestContext::getMain()->setUser( new User() );
 
-		$user = $this->makeMockUser( true );
+		$user = $this->makeMockUser( '127.0.0.1' );
 		RequestContext::getMain()->setUser( $user );
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException( new MessageValue( 'rest-permission-denied-anon' ), 401 )
 		);
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [ 'mode' => 'me' ] );
 	}
 
-	private function makeMockUser( $anon ) {
-		$user = $this->createNoOpMock( User::class, [ 'isAnon' ] );
-		$user->method( 'isAnon' )->willReturn( $anon );
+	public function testThatInvalidUserReturns400() {
+		$handler = $this->newHandler();
+		$request = new RequestData( [ 'pathParams' => [ 'name' => 'B/A/D' ] ] );
+
+		$user = $this->makeMockUser( 'Arnold' );
+		RequestContext::getMain()->setUser( $user );
+
+		$this->expectExceptionObject(
+			new LocalizedHttpException( new MessageValue( 'rest-invalid-user' ), 400 )
+		);
+		$this->executeHandler( $handler, $request, [ 'mode' => 'user' ] );
+	}
+
+	public function testThatUnknownUserReturns404() {
+		$handler = $this->newHandler();
+		$request = new RequestData( [ 'pathParams' => [ 'name' => 'UNKNOWN' ] ] );
+
+		$user = $this->makeMockUser( 'Arnold' );
+		RequestContext::getMain()->setUser( $user );
+
+		$this->expectExceptionObject(
+			new LocalizedHttpException( new MessageValue( 'rest-nonexistent-user' ), 404 )
+		);
+		$this->executeHandler( $handler, $request, [ 'mode' => 'user' ] );
+	}
+
+	public function testThatIpUserReturns200() {
+		$handler = $this->newHandler();
+		$request = new RequestData( [ 'pathParams' => [ 'name' => '127.0.0.1' ] ] );
+
+		$user = $this->makeMockUser( 'Arnold' );
+		RequestContext::getMain()->setUser( $user );
+
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [ 'mode' => 'user' ] );
+		$this->assertArrayHasKey( 'revisions', $data );
+	}
+
+	public function makeMockUser( $name ) {
+		$isIP = ( $name === '127.0.0.1' );
+		$isBad = ( $name === 'B/A/D' );
+		$isUnknown = ( $name === 'UNKNOWN' );
+		$isAnon = $isIP || $isBad || $isUnknown;
+
+		if ( $isBad ) {
+			// per the contract of UserFactory::newFromName
+			return false;
+		}
+
+		$user = $this->createNoOpMock(
+			User::class,
+			[ 'isAnon', 'getId', 'getName', 'isRegistered', 'isLoggedIn' ]
+		);
+		$user->method( 'isAnon' )->willReturn( $isAnon );
+		$user->method( 'isRegistered' )->willReturn( !$isAnon );
+		$user->method( 'isLoggedIn' )->willReturn( !$isAnon );
+		$user->method( 'getId' )->willReturn( $isAnon ? 0 : 7 );
+		$user->method( 'getName' )->willReturn( $name );
 		return $user;
 	}
 
@@ -245,13 +369,14 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$query,
 		$expectedResponse
 	) {
-		$handler = $this->newHandler( $numRevisions, $tags, $deltas, $flags );
+		$lookup = $this->newContributionsLookup( $numRevisions, $tags, $deltas, $flags );
+		$handler = $this->newHandler( $lookup );
 		$request = new RequestData( [ 'queryParams' => $query ] );
 
-		$user = $this->makeMockUser( false );
+		$user = $this->makeMockUser( 'Arnold' );
 		RequestContext::getMain()->setUser( $user );
 
-		$config = [ 'path' => '/me/contributions' ];
+		$config = [ 'path' => '/me/contributions', 'mode' => 'me' ];
 
 		$response = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
 		$this->assertSame( $expectedResponse, $response );

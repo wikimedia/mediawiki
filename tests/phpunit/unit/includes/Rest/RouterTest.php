@@ -139,11 +139,16 @@ class RouterTest extends \MediaWikiUnitTestCase {
 	public function provideGetRouteUrl() {
 		yield 'empty' => [ '', '', [], [] ];
 		yield 'simple route' => [ '/foo/bar', '/foo/bar' ];
-		yield 'simple route with query' => [ '/foo/bar', '/foo/bar?x=1&y=2', [ 'x' => '1', 'y' => '2' ] ];
+		yield 'simple route with query' =>
+			[ '/foo/bar', '/foo/bar?x=1&y=2', [ 'x' => '1', 'y' => '2' ] ];
 		yield 'simple route with strange query chars' =>
 			[ '/foo+bar', '/foo+bar?x=%23&y=%25&z=%2B', [ 'x' => '#', 'y' => '%', 'z' => '+' ] ];
-		yield 'route with simple path params' => [ '/foo/{test}/baz', '/foo/bar/baz', [], [ 'test' => 'bar' ] ];
-		yield 'route with strange path params' => [ '/foo/{test}/baz', '/foo/b%2Bz/baz', [], [ 'test' => 'b+z' ] ];
+		yield 'route with simple path params' =>
+			[ '/foo/{test}/baz', '/foo/bar/baz', [], [ 'test' => 'bar' ] ];
+		yield 'route with strange path params' =>
+			[ '/foo/{test}/baz', '/foo/b%25%2F%2Bz/baz', [], [ 'test' => 'b%/+z' ] ];
+		yield 'space in path does not become a plus' =>
+			[ '/foo/{test}/baz', '/foo/b%20z/baz', [], [ 'test' => 'b z' ] ];
 		yield 'route with simple path params and query' =>
 			[ '/foo/{test}/baz', '/foo/bar/baz?x=1', [ 'x' => '1' ], [ 'test' => 'bar' ] ];
 	}

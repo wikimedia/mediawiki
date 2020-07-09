@@ -247,7 +247,9 @@ class Router {
 	 */
 	public function getRouteUrl( $route, $pathParams = [], $queryParams = [] ) {
 		foreach ( $pathParams as $param => $value ) {
-			$route = str_replace( '{' . $param . '}', urlencode( $value ), $route );
+			// NOTE: we use rawurlencode here, since execute() uses rawurldecode().
+			// Spaces in path params must be encoded to %20 (not +).
+			$route = str_replace( '{' . $param . '}', rawurlencode( $value ), $route );
 		}
 
 		$url = $this->baseUrl . $this->rootPath . $route;
@@ -310,6 +312,7 @@ class Router {
 			}
 		}
 
+		// Use rawurldecode so a "+" in path params is not interpreted as a space character.
 		$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
 		$handler = $this->createHandler( $request, $match['userData'] );
 
