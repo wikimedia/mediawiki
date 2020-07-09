@@ -724,7 +724,7 @@
 	"preview": "預覽",
 	"showpreview": "顯示預覽",
 	"showdiff": "顯示變更",
-	"blankarticle": "<strong>警告：</strong>您正在建立的頁面是空白的。\n如果您再按一下\"$1\"，將建立沒有任何內容的頁面。",
+	"blankarticle": "<strong>警告：</strong>您正在建立的頁面是空白的。如果您再按一下「$1」，將建立沒有任何內容的頁面。",
 	"anoneditwarning": "<strong>警告：</strong>您尚未登入。 若您進行任何的編輯您的 IP 位址將會被公開。 若您 <strong>[$1 登入]</strong> 或 <strong>[$2 建立帳號]</strong>，您的編輯將會以您的使用者名稱標示，並能擁有另外的益處。",
 	"anonpreviewwarning": "您尚未登入。儲存頁面會將您的 IP 位址記錄在此頁面的編輯歷史中。",
 	"missingsummary": "<strong>提醒：</strong>您未填寫編輯摘要。\n若您再點選 \"$1\" 一次，將略過摘要直接儲存您的編輯。",

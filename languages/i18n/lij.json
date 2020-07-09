@@ -1591,7 +1591,7 @@
 	"upload-permitted": "{{PLURAL:$2|Tipo de file consentio|Tipi de file consentii}}: $1.",
 	"upload-preferred": "{{PLURAL:$2|Tipo de file consegiou|Tipi de file consegiæ}}: $1.",
 	"upload-prohibited": "{{PLURAL:$2|Tipo de file non consentio|Tipi de file non consentii}}: $1.",
-	"uploadlogpage": "Log di file caregæ",
+	"uploadlogpage": "File caregæ",
 	"uploadlogpagetext": "De sotta gh'è una lista di urtimi file caregæ.\nConsultâ a [[Special:NewFiles|galleria di noeuvi file]] pe 'na vixon d'insemme.",
 	"filename": "Nomme do file",
 	"filedesc": "Detàggi",

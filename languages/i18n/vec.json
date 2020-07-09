@@ -721,7 +721,7 @@
 	"content-json-empty-object": "Ojeto vodo",
 	"content-json-empty-array": "Array vodo",
 	"expensive-parserfunction-warning": "<strong>Òcio:</strong> Sta pàgina ƚa contien de ƚe chiamate de funsion al parser masa onerose.\n\nDovarìa èsarghe manco de $2 {{PLURAL:$2|chiamata|chiamate}}, {{PLURAL:$1|ghe ne xe}} $1.",
-	"expensive-parserfunction-category": "Pàgina co chiamate de funsion al parser masa onerose",
+	"expensive-parserfunction-category": "Voxe co ciamade de funsion de parsefegasion masa oneroxe",
 	"post-expand-template-inclusion-warning": "<strong>Òcio:</strong> ƚa dimension de inclusion dei modèi ƚa xe massa granda.\nAlcuni modèi no i sarà mìa inclusi.",
 	"post-expand-template-inclusion-category": "Pagine in do che la dimension de inclusion dei modèi la xe massa granda",
 	"post-expand-template-argument-warning": "<strong>Òcio:</strong> Sta pàgina ƚa contien almanco on argomento de modèl che el ga na dimension de espansion masa granda.\nSti argomenti i xe stà omesi.",
