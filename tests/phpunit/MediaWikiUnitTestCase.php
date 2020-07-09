@@ -31,6 +31,7 @@ use Wikimedia\ObjectFactory;
  * Extend this class if you are testing classes which use dependency injection and do not access
  * global functions, variables, services or a storage backend.
  *
+ * @stable for subclassing
  * @since 1.34
  */
 abstract class MediaWikiUnitTestCase extends TestCase {
@@ -62,6 +63,9 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		];
 	}
 
+	/**
+	 * @stable for overriding
+	 */
 	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 
@@ -119,6 +123,9 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		] ) );
 	}
 
+	/**
+	 * @stable for overriding
+	 */
 	protected function tearDown() : void {
 		// Quick reset between tests
 		foreach ( $GLOBALS as $key => $_ ) {
@@ -134,6 +141,9 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		parent::tearDown();
 	}
 
+	/**
+	 * @stable for overriding
+	 */
 	public static function tearDownAfterClass() : void {
 		// Remove globals created by the test
 		foreach ( $GLOBALS as $key => $_ ) {

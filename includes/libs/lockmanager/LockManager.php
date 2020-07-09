@@ -41,6 +41,7 @@ use Wikimedia\WaitConditionLoop;
  *
  * Subclasses should avoid throwing exceptions at all costs.
  *
+ * @stable for subclassing
  * @ingroup LockManager
  * @since 1.19
  */
@@ -74,6 +75,7 @@ abstract class LockManager {
 
 	/**
 	 * Construct a new instance from configuration
+	 * @stable for calling
 	 *
 	 * @param array $config Parameters include:
 	 *   - domain  : Domain (usually wiki ID) that all resources are relative to [optional]
@@ -215,6 +217,7 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::lockByType()
+	 * @stable for overriding
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
 	 * @since 1.22
@@ -249,6 +252,7 @@ abstract class LockManager {
 
 	/**
 	 * @see LockManager::unlockByType()
+	 * @stable for overriding
 	 * @param array $pathsByType Map of LockManager::LOCK_* constants to lists of paths
 	 * @return StatusValue
 	 * @since 1.22

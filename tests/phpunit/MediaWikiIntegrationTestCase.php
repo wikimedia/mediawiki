@@ -25,6 +25,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * Consider using MediaWikiUnitTestCase and mocking dependencies if your code uses dependency
  * injection and does not access any globals.
+ *
+ * @stable for subclassing
  */
 abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
@@ -155,6 +157,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		'postgres',
 	];
 
+	/**
+	 * @stable for calling
+	 */
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
@@ -174,6 +179,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
+	/**
+	 * @stable for overriding
+	 */
 	public static function setUpBeforeClass() : void {
 		global $IP;
 		parent::setUpBeforeClass();
@@ -1336,6 +1344,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @see resetDB()
 	 *
 	 * @since 1.27
+	 * @stable for overriding
 	 */
 	public function addDBDataOnce() {
 	}
@@ -1348,6 +1357,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @see resetDB()
 	 *
 	 * @since 1.18
+	 * @stable for overriding
 	 */
 	public function addDBData() {
 	}
@@ -1621,6 +1631,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * by the 'scripts', even if the test is only interested in a subset of them, otherwise
 	 * the overrides may not be fully cleaned up, leading to errors later.
 	 *
+	 * @stable for overriding
 	 * @param IMaintainableDatabase $db The DB connection to use for the mock schema.
 	 *        May be used to check the current state of the schema, to determine what
 	 *        overrides are needed.

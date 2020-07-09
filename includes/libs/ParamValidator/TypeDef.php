@@ -12,6 +12,7 @@ use Wikimedia\Message\MessageValue;
  * passed to ParamValidator::getValue(), ParamValidator::validateValue(), and the like
  * and is intended for communication of non-global state to the Callbacks.
  *
+ * @stable for subclassing
  * @since 1.34
  * @unstable
  */
@@ -20,6 +21,11 @@ abstract class TypeDef {
 	/** @var Callbacks */
 	protected $callbacks;
 
+	/**
+	 * @stable for calling
+	 *
+	 * @param Callbacks $callbacks
+	 */
 	public function __construct( Callbacks $callbacks ) {
 		$this->callbacks = $callbacks;
 	}
@@ -84,6 +90,7 @@ abstract class TypeDef {
 
 	/**
 	 * Get the value from the request
+	 * @stable for overriding
 	 *
 	 * @note Only override this if you need to use something other than
 	 *  $this->callbacks->getValue() to fetch the value. Reformatting from a
@@ -125,6 +132,7 @@ abstract class TypeDef {
 
 	/**
 	 * Normalize a settings array
+	 * @stable for overriding
 	 * @param array $settings
 	 * @return array
 	 */
@@ -141,6 +149,8 @@ abstract class TypeDef {
 	 * The rest of the code should generally be more permissive.
 	 *
 	 * @see ParamValidator::checkSettings()
+	 * @stable for overriding
+	 *
 	 * @param string $name Parameter name
 	 * @param array|mixed $settings Default value or an array of settings
 	 *  using PARAM_* constants.
@@ -164,6 +174,7 @@ abstract class TypeDef {
 	 * This is primarily intended for documentation and implementation of
 	 * PARAM_ALL; it is the responsibility of the TypeDef to ensure that validate()
 	 * accepts the values returned here.
+	 * @stable for overriding
 	 *
 	 * @param string $name Parameter name being validated.
 	 * @param array $settings Parameter settings array.
@@ -202,6 +213,7 @@ abstract class TypeDef {
 	 *
 	 * This is intended to handle PARAM constants specific to this class. It
 	 * generally shouldn't handle constants defined on ParamValidator itself.
+	 * @stable for overriding
 	 *
 	 * @param string $name Parameter name.
 	 * @param array $settings Parameter settings array.
@@ -228,6 +240,7 @@ abstract class TypeDef {
 	 *
 	 * MessageValues describing any other constraints applied via PARAM
 	 * constants specific to this class should also be returned.
+	 * @stable for overriding
 	 *
 	 * @param string $name Parameter name being described.
 	 * @param array $settings Parameter settings array.
