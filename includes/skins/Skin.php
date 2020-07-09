@@ -1945,7 +1945,7 @@ abstract class Skin extends ContextSource {
 				}
 			}
 			if ( $siteNotice === false ) {
-				$siteNotice = $this->getCachedNotice( 'default' );
+				$siteNotice = $this->getCachedNotice( 'default' ) ?: '';
 			}
 		}
 
