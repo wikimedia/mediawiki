@@ -53,6 +53,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * ideally accept a RepoGroup in its constructor and then, use $this->repoGroup->findFile()
  * and $this->repoGroup->getLocalRepo()->newFile().
  *
+ * @stable for subclassing
  * @ingroup FileAbstraction
  */
 class LocalFile extends File {
@@ -149,6 +150,8 @@ class LocalFile extends File {
 	 *
 	 * Note: $unused param is only here to avoid an E_STRICT
 	 *
+	 * @stable for overriding
+	 *
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 * @param null $unused
@@ -162,6 +165,8 @@ class LocalFile extends File {
 	/**
 	 * Create a LocalFile from a title
 	 * Do not call this except from inside a repo class.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param stdClass $row
 	 * @param FileRepo $repo
@@ -179,6 +184,8 @@ class LocalFile extends File {
 	/**
 	 * Create a LocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param string $sha1 Base-36 SHA-1
 	 * @param LocalRepo $repo
@@ -208,6 +215,8 @@ class LocalFile extends File {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new localfile object.
 	 * @since 1.31
+	 * @stable for overriding
+	 *
 	 * @param string[] $options
 	 *   - omit-lazy: Omit fields that are lazily cached.
 	 * @return array[] With three keys:
@@ -250,6 +259,8 @@ class LocalFile extends File {
 
 	/**
 	 * Do not call this except from inside a repo class.
+	 * @stable for calling
+	 *
 	 * @param Title $title
 	 * @param FileRepo $repo
 	 */
@@ -276,6 +287,7 @@ class LocalFile extends File {
 	/**
 	 * Get the memcached key for the main data for this file, or false if
 	 * there is no access to the shared cache.
+	 * @stable for overriding
 	 * @return string|bool
 	 */
 	protected function getCacheKey() {
@@ -387,6 +399,7 @@ class LocalFile extends File {
 
 	/**
 	 * Returns the list of object properties that are included as-is in the cache.
+	 * @stable for overriding
 	 * @param string $prefix Must be the empty string
 	 * @return string[]
 	 * @since 1.31 No longer accepts a non-empty $prefix
@@ -426,6 +439,7 @@ class LocalFile extends File {
 
 	/**
 	 * Load file metadata from the DB
+	 * @stable for overriding
 	 * @param int $flags
 	 */
 	protected function loadFromDB( $flags = 0 ) {
@@ -459,6 +473,7 @@ class LocalFile extends File {
 	/**
 	 * Load lazy file metadata from the DB.
 	 * This covers fields that are sometimes not cached.
+	 * @stable for overriding
 	 */
 	protected function loadExtraFromDB() {
 		if ( !$this->title ) {
@@ -605,6 +620,7 @@ class LocalFile extends File {
 
 	/**
 	 * Load file metadata from a DB result row
+	 * @stable for overriding
 	 *
 	 * @param object $row
 	 * @param string $prefix
@@ -624,6 +640,7 @@ class LocalFile extends File {
 
 	/**
 	 * Load file metadata from cache or DB, unless already loaded
+	 * @stable for overriding
 	 * @param int $flags
 	 */
 	public function load( $flags = 0 ) {
@@ -689,6 +706,7 @@ class LocalFile extends File {
 
 	/**
 	 * Fix assorted version-related problems with the image row by reloading it from the file
+	 * @stable for overriding
 	 */
 	public function upgradeRow() {
 		$this->lock();
@@ -743,6 +761,7 @@ class LocalFile extends File {
 	 * If 'mime' is given, it will be split into major_mime/minor_mime.
 	 * If major_mime/minor_mime are given, $this->mime will also be set.
 	 *
+	 * @stable for overriding
 	 * @param array $info
 	 */
 	protected function setProps( $info ) {
@@ -784,6 +803,7 @@ class LocalFile extends File {
 	/**
 	 * Checks if this file exists in its parent repo, as referenced by its
 	 * virtual URL.
+	 * @stable for overriding
 	 *
 	 * @return bool
 	 */
@@ -798,6 +818,7 @@ class LocalFile extends File {
 
 	/**
 	 * Return the width of the image
+	 * @stable for overriding
 	 *
 	 * @param int $page
 	 * @return int
@@ -830,6 +851,7 @@ class LocalFile extends File {
 
 	/**
 	 * Return the height of the image
+	 * @stable for overriding
 	 *
 	 * @param int $page
 	 * @return int
@@ -862,6 +884,7 @@ class LocalFile extends File {
 
 	/**
 	 * Returns user who uploaded the file
+	 * @stable for overriding
 	 *
 	 * @param string $type 'text', 'id', or 'object'
 	 * @return int|string|User
@@ -895,6 +918,7 @@ class LocalFile extends File {
 
 	/**
 	 * Get short description URL for a file based on the page ID.
+	 * @stable for overriding
 	 *
 	 * @return string|null
 	 * @since 1.27
@@ -917,6 +941,7 @@ class LocalFile extends File {
 
 	/**
 	 * Get handler-specific metadata
+	 * @stable for overriding
 	 * @return string
 	 */
 	public function getMetadata() {
@@ -925,6 +950,7 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return int
 	 */
 	public function getBitDepth() {
@@ -935,6 +961,7 @@ class LocalFile extends File {
 
 	/**
 	 * Returns the size of the image file, in bytes
+	 * @stable for overriding
 	 * @return int
 	 */
 	public function getSize() {
@@ -945,6 +972,7 @@ class LocalFile extends File {
 
 	/**
 	 * Returns the MIME type of the file.
+	 * @stable for overriding
 	 * @return string
 	 */
 	public function getMimeType() {
@@ -956,6 +984,7 @@ class LocalFile extends File {
 	/**
 	 * Returns the type of the media in the file.
 	 * Use the value returned by this function with the MEDIATYPE_xxx constants.
+	 * @stable for overriding
 	 * @return string
 	 */
 	public function getMediaType() {
@@ -972,6 +1001,7 @@ class LocalFile extends File {
 
 	/**
 	 * Returns true if the file exists on disk.
+	 * @stable for overriding
 	 * @return bool Whether file exist on disk.
 	 */
 	public function exists() {
@@ -992,6 +1022,7 @@ class LocalFile extends File {
 
 	/**
 	 * Get all thumbnail names previously generated for this file
+	 * @stable for overriding
 	 * @param string|bool $archiveName Name of an archive file, default false
 	 * @return array First element is the base dir, then files in that base dir.
 	 */
@@ -1026,6 +1057,7 @@ class LocalFile extends File {
 
 	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the CDN.
+	 * @stable for overriding
 	 *
 	 * @param array $options An array potentially with the key forThumbRefresh.
 	 *
@@ -1051,6 +1083,7 @@ class LocalFile extends File {
 
 	/**
 	 * Delete cached transformed files for an archived version only.
+	 * @stable for overriding
 	 * @param string $archiveName Name of the archived file
 	 */
 	public function purgeOldThumbnails( $archiveName ) {
@@ -1076,6 +1109,7 @@ class LocalFile extends File {
 
 	/**
 	 * Delete cached transformed files for the current version only.
+	 * @stable for overriding
 	 * @param array $options
 	 * @phan-param array{forThumbRefresh?:bool} $options
 	 */
@@ -1115,6 +1149,7 @@ class LocalFile extends File {
 
 	/**
 	 * Prerenders a configurable set of thumbnails
+	 * @stable for overriding
 	 *
 	 * @since 1.28
 	 */
@@ -1142,6 +1177,7 @@ class LocalFile extends File {
 
 	/**
 	 * Delete a list of thumbnails visible at urls
+	 * @stable for overriding
 	 * @param string $dir Base dir of the files.
 	 * @param array $files Array of strings: relative filenames (to $dir)
 	 */
@@ -1179,6 +1215,7 @@ class LocalFile extends File {
 	/** purgeEverything inherited */
 
 	/**
+	 * @stable for overriding
 	 * @param int|null $limit Optional: Limit to number of results
 	 * @param string|int|null $start Optional: Timestamp, start from
 	 * @param string|int|null $end Optional: Timestamp, end at
@@ -1241,6 +1278,7 @@ class LocalFile extends File {
 	 *  0      return line for current version
 	 *  1      query for old versions, return first one
 	 *  2, ... return next old version from above query
+	 * @stable for overriding
 	 * @return stdClass|bool
 	 */
 	public function nextHistoryLine() {
@@ -1289,6 +1327,7 @@ class LocalFile extends File {
 
 	/**
 	 * Reset the history pointer to the first element of the history
+	 * @stable for overriding
 	 */
 	public function resetHistory() {
 		$this->historyLine = 0;
@@ -1476,6 +1515,7 @@ class LocalFile extends File {
 	/**
 	 * Record a file upload in the upload log and the image table (version 3)
 	 * @since 1.35
+	 * @stable for overriding
 	 * @param string $oldver
 	 * @param string $comment
 	 * @param string $pageText
@@ -1856,6 +1896,7 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
+	 * @stable for overriding
 	 * @param string|FSFile $src Local filesystem path or virtual URL to the source image
 	 * @param int $flags A bitwise combination of:
 	 *     File::DELETE_SOURCE    Delete the source file, i.e. move rather than copy
@@ -1874,6 +1915,7 @@ class LocalFile extends File {
 	 * The archive name should be passed through to recordUpload for database
 	 * registration.
 	 *
+	 * @stable for overriding
 	 * @param string|FSFile $src Local filesystem path or virtual URL to the source image
 	 * @param string $dstRel Target relative path
 	 * @param int $flags A bitwise combination of:
@@ -1945,6 +1987,7 @@ class LocalFile extends File {
 	 * Cache purging is done; checks for validity
 	 * and logging are caller's responsibility
 	 *
+	 * @stable for overriding
 	 * @param Title $target New file name
 	 * @return Status
 	 */
@@ -2029,6 +2072,7 @@ class LocalFile extends File {
 	 * and removes the database rows.
 	 *
 	 * Cache purging is done; logging is caller's responsibility.
+	 * @stable for overriding
 	 *
 	 * @param string $reason
 	 * @param User $user
@@ -2110,6 +2154,7 @@ class LocalFile extends File {
 	 * Delete an old version of the file.
 	 *
 	 * @since 1.35
+	 * @stable for overriding
 	 *
 	 * Moves the file into an archive directory (or deletes it)
 	 * and removes the database row.
@@ -2152,6 +2197,7 @@ class LocalFile extends File {
 	 * Permissions and logging are left to the caller.
 	 *
 	 * May throw database exceptions on error.
+	 * @stable for overriding
 	 *
 	 * @param array $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
@@ -2190,6 +2236,7 @@ class LocalFile extends File {
 
 	/**
 	 * Get the URL of the file description page.
+	 * @stable for overriding
 	 * @return string|bool
 	 */
 	public function getDescriptionUrl() {
@@ -2204,6 +2251,7 @@ class LocalFile extends File {
 	 * Get the HTML text of the description page
 	 * This is not used by ImagePage for local files, since (among other things)
 	 * it skips the parser cache.
+	 * @stable for overriding
 	 *
 	 * @param Language|null $lang What language to get description in (Optional)
 	 * @return string|false
@@ -2232,6 +2280,7 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @param int $audience
 	 * @param User|null $user
 	 * @return string
@@ -2250,6 +2299,7 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return bool|string
 	 */
 	public function getTimestamp() {
@@ -2259,6 +2309,7 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return bool|string
 	 */
 	public function getDescriptionTouched() {
@@ -2282,6 +2333,7 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @return string
 	 */
 	public function getSha1() {
