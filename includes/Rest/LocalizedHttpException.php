@@ -15,7 +15,7 @@ class LocalizedHttpException extends HttpException {
 	 *
 	 * @param MessageValue $messageValue
 	 * @param int $code
-	 * @param null $errorData
+	 * @param array|null $errorData
 	 */
 	public function __construct( MessageValue $messageValue, $code = 500, $errorData = null ) {
 		parent::__construct(
