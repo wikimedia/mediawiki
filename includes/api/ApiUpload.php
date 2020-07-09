@@ -74,20 +74,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		// Check if the uploaded file is sane
-		if ( $this->mParams['chunk'] ) {
-			$maxSize = UploadBase::getMaxUploadSize();
-			if ( $this->mParams['filesize'] > $maxSize ) {
-				$this->dieWithError( 'file-too-large' );
-			}
-			if ( !$this->mUpload->getTitle() ) {
-				$this->dieWithError( 'illegal-filename' );
-			}
-		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
-			// defer verification to background process
-		} else {
-			wfDebug( __METHOD__ . " about to verify" );
-			$this->verifyUpload();
-		}
+		$this->verifyUpload();
 
 		// Check if the user has the rights to modify or overwrite the requested title
 		// (This check is irrelevant if stashing is already requested, since the errors
@@ -585,9 +572,35 @@ class ApiUpload extends ApiBase {
 	 * Performs file verification, dies on error.
 	 */
 	protected function verifyUpload() {
-		$verification = $this->mUpload->verifyUpload();
-		if ( $verification['status'] === UploadBase::OK ) {
-			return;
+		if ( $this->mParams['chunk'] ) {
+			$maxSize = UploadBase::getMaxUploadSize();
+			if ( $this->mParams['filesize'] > $maxSize ) {
+				$this->dieWithError( 'file-too-large' );
+			}
+			if ( !$this->mUpload->getTitle() ) {
+				$this->dieWithError( 'illegal-filename' );
+			}
+			// file will be assembled after having uploaded the last chunk,
+			// so we can only validate the name at this point
+			$verification = $this->mUpload->validateName();
+			if ( $verification === true ) {
+				return;
+			}
+		} elseif ( $this->mParams['async'] && $this->mParams['filekey'] ) {
+			// file will be assembled in a background process, so we
+			// can only validate the name at this point
+			// file verification will happen in background process
+			$verification = $this->mUpload->validateName();
+			if ( $verification === true ) {
+				return;
+			}
+		} else {
+			wfDebug( __METHOD__ . " about to verify" );
+
+			$verification = $this->mUpload->verifyUpload();
+			if ( $verification['status'] === UploadBase::OK ) {
+				return;
+			}
 		}
 
 		$this->checkVerification( $verification );
