@@ -51,48 +51,54 @@ class SkinMustache extends SkinTemplate {
 	 */
 	public function generateHTML() {
 		$this->setupTemplateContext();
-		$templateParser = $this->getTemplateParser();
-		return $templateParser->processTemplate(
-			$this->options['template'] ?? 'skin',
-			$this->getTemplateData()
-		);
+		$out = $this->getOutput();
+		$tp = $this->getTemplateParser();
+		$template = $this->options['template'] ?? 'skin';
+
+		$html = $out->headElement( $this );
+		$html .= $tp->processTemplate( $template, $this->getTemplateData() );
+		$html .= $this->tailElement( $out );
+
+		return $html;
 	}
 
 	/**
 	 * Subclasses may extend this method to add additional
 	 * template data.
 	 *
+	 * The data keys should be valid English words. Compound words should
+	 * be hypenated except if they are normally written as one word. Each
+	 * key should be prefixed with a type hint, this may be enforced by the
+	 * class PHPUnit test.
+	 *
+	 * Plain strings are prefixed with 'html-', plain arrays with 'array-'
+	 * and complex array data with 'data-'. 'is-' and 'has-' prefixes can
+	 * be used for boolean variables.
+	 *
 	 * @return array Data for a mustache template
 	 */
 	public function getTemplateData() {
 		$out = $this->getOutput();
-		$tail = [
-			MWDebug::getDebugHTML( $this->getContext() ),
-			$this->bottomScripts(),
-			wfReportTime( $out->getCSP()->getNonce() ),
-			MWDebug::getHTMLDebugLog() . '</body></html>',
-		];
+		$printSource = Html::rawElement( 'div', [ 'class' => 'printfooter' ], $this->printSource() );
+		$bodyContent = $out->getHTML() . "\n" . $printSource;
 
-		return [
+		$data = [
 			// Array objects
 			'array-indicators' => $this->getIndicatorsData( $out->getIndicators() ),
-
 			// Data objects
 			'data-search-box' => $this->buildSearchProps(),
-
 			// HTML strings
-			'html-headelement' => $out->headElement( $this ),
-			'html-sitenotice' => $this->getSiteNotice(),
+			'html-site-notices' => $this->getSiteNotice(),
 			'html-title' => $out->getPageTitle(),
 			'html-subtitle' => $this->prepareSubtitle(),
-			'html-bodycontent' => $this->wrapHTML( $out->getTitle(), $out->getHTML() ),
-			'html-catlinks' => $this->getCategories(),
-			'html-aftercontent' => $this->afterContentHook(),
-			'html-undelete' => $this->prepareUndeleteLink() ?: null,
-			'html-userlangattributes' => $this->prepareUserLanguageAttributes(),
-			'html-printfooter' => $this->printSource(),
-			'html-printtail' => WrappedStringList::join( "\n", $tail ),
+			'html-body-content' => $this->wrapHTML( $out->getTitle(), $bodyContent ),
+			'html-categories' => $this->getCategories(),
+			'html-after-content' => $this->afterContentHook(),
+			'html-undelete-link' => $this->prepareUndeleteLink(),
+			'html-user-language-attributes' => $this->prepareUserLanguageAttributes(),
 		];
+
+		return $data;
 	}
 
 	/**
@@ -100,6 +106,7 @@ class SkinMustache extends SkinTemplate {
 	 */
 	private function buildSearchProps() : array {
 		$config = $this->getConfig();
+
 		$props = [
 			'form-action' => $config->get( 'Script' ),
 			'html-button-search-fallback' => $this->makeSearchButton(
@@ -114,6 +121,27 @@ class SkinMustache extends SkinTemplate {
 			'msg-search' => $this->msg( 'search' )->text(),
 			'page-title' => SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey(),
 		];
+
 		return $props;
+	}
+
+	/**
+	 * The final bits that go to the bottom of a page
+	 * HTML document including the closing tags
+	 *
+	 * @param OutputPage $out
+	 * @return string
+	 */
+	private function tailElement( $out ) {
+		$tail = [
+			MWDebug::getDebugHTML( $this ),
+			$this->bottomScripts(),
+			wfReportTime( $out->getCSP()->getNonce() ),
+			MWDebug::getHTMLDebugLog()
+			. Html::closeElement( 'body' )
+			. Html::closeElement( 'html' )
+		];
+
+		return WrappedStringList::join( "\n", $tail );
 	}
 }
