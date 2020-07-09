@@ -114,6 +114,8 @@
  * @class {Object} CheckboxHackListeners
  * @property {Function} [onUpdateAriaExpandedOnInput]
  * @property {Function} [onToggleOnClick]
+ * @property {Function} [onToggleOnSpaceEnter]
+ * @property {Function} [onKeydownSpaceEnter]
  * @property {Function} [onDismissOnClickOutside]
  * @property {Function} [onDismissOnFocusLoss]
  * @ignore
@@ -244,6 +246,39 @@ function bindToggleOnClick( checkbox, button ) {
 }
 
 /**
+ * Manually change the checkbox state when the button is focused and SPACE is pressed.
+ *
+ * @param {HTMLInputElement} checkbox
+ * @param {HTMLElement} button
+ * @return {CheckboxHackListeners}
+ * @ignore
+ */
+function bindToggleOnSpaceEnter( checkbox, button ) {
+
+	function onToggleOnSpaceEnter( /** @type {KeyboardEvent} */ event ) {
+		// Only handle SPACE and ENTER.
+		if ( event.key !== ' ' && event.key !== 'Enter' ) {
+			return;
+		}
+		event.preventDefault();
+		setCheckedState( checkbox, !checkbox.checked );
+	}
+
+	function onKeydownSpaceEnter( /** @type {KeyboardEvent} */ event ) {
+		// Only catch SPACE and ENTER.
+		if ( event.key !== ' ' && event.key !== 'Enter' ) {
+			return;
+		}
+		// Do not allow the browser to page down.
+		event.preventDefault();
+	}
+
+	button.addEventListener( 'keydown', onKeydownSpaceEnter, true );
+	button.addEventListener( 'keyup', onToggleOnSpaceEnter, true );
+	return { onToggleOnSpaceEnter: onToggleOnSpaceEnter, onKeydownSpaceEnter: onKeydownSpaceEnter };
+}
+
+/**
  * Dismiss the target when clicking elsewhere and update the `aria-expanded` attribute based on
  * checkbox state (target visibility).
  *
@@ -297,9 +332,14 @@ function bindDismissOnFocusLoss( window, checkbox, button, target ) {
  * @ignore
  */
 function bind( window, checkbox, button, target ) {
+	var spaceHandlers = bindToggleOnSpaceEnter( checkbox, button );
+	// ES6: return Object.assign( bindToggleOnSpaceEnter( checkbox, button ), ... );
+	// https://caniuse.com/#feat=mdn-javascript_builtins_object_assign
 	return {
 		onUpdateAriaExpandedOnInput: bindUpdateAriaExpandedOnInput( checkbox ).onUpdateAriaExpandedOnInput,
 		onToggleOnClick: bindToggleOnClick( checkbox, button ).onToggleOnClick,
+		onToggleOnSpaceEnter: spaceHandlers.onToggleOnSpaceEnter,
+		onKeydownSpaceEnter: spaceHandlers.onKeydownSpaceEnter,
 		onDismissOnClickOutside: bindDismissOnClickOutside( window, checkbox, button, target ).onDismissOnClickOutside,
 		onDismissOnFocusLoss: bindDismissOnFocusLoss( window, checkbox, button, target ).onDismissOnFocusLoss
 	};
@@ -327,6 +367,12 @@ function unbind( window, checkbox, button, listeners ) {
 	if ( listeners.onToggleOnClick ) {
 		button.removeEventListener( 'click', listeners.onToggleOnClick );
 	}
+	if ( listeners.onToggleOnSpaceEnter ) {
+		button.removeEventListener( 'keyup', listeners.onToggleOnSpaceEnter );
+	}
+	if ( listeners.onKeydownSpaceEnter ) {
+		button.removeEventListener( 'keydown', listeners.onKeydownSpaceEnter );
+	}
 	if ( listeners.onUpdateAriaExpandedOnInput ) {
 		checkbox.removeEventListener( 'input', listeners.onUpdateAriaExpandedOnInput );
 	}
@@ -336,6 +382,7 @@ module.exports = {
 	updateAriaExpanded: updateAriaExpanded,
 	bindUpdateAriaExpandedOnInput: bindUpdateAriaExpandedOnInput,
 	bindToggleOnClick: bindToggleOnClick,
+	bindToggleOnSpaceEnter: bindToggleOnSpaceEnter,
 	bindDismissOnClickOutside: bindDismissOnClickOutside,
 	bindDismissOnFocusLoss: bindDismissOnFocusLoss,
 	bind: bind,

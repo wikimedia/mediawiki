@@ -79,8 +79,8 @@
 @borderColorSuccess: @colorSuccess;
 
 // UI colors
-@backgroundColorInputBinaryChecked: @colorProgressive;
-@backgroundColorInputBinaryActive: @colorProgressiveActive;
+@background-color-input-binary--active: @colorProgressiveActive;
+@background-color-input-binary--checked: @colorProgressive;
 @colorShadow: @colorGray14;
 
 // Border
@@ -88,8 +88,8 @@
 
 // Border colors
 @border-color-base: #a2a9b1;
-@borderColorInputBinaryChecked: @colorProgressive;
-@borderColorInputBinaryActive: @colorProgressiveActive;
+@border-color-input-binary--active: @colorProgressiveActive;
+@border-color-input-binary--checked: @colorProgressive;
 
 // Border styles
 @border-style-base: solid;
@@ -107,7 +107,7 @@
 @boxShadowWidget: inset 0 0 0 1px transparent;
 @boxShadowWidgetFocus: inset 0 0 0 1px @colorProgressive;
 @boxShadowProgressiveFocus: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @color-base--inverted;
-@boxShadowInputBinaryActive: inset 0 0 0 1px @colorProgressiveActive;
+@box-shadow-input-binary--active: inset 0 0 0 1px @colorProgressiveActive;
 
 // Icon related variables
 @iconSize: 1.5em;
@@ -136,6 +136,14 @@
 // Used in mixins to lighten contextual colors by the same amount (eg. hover)
 @colorLightenPercentage: 13.5%;
 
+@backgroundColorInputBinaryChecked: @background-color-input-binary--checked;
+@backgroundColorInputBinaryActive: @background-color-input-binary--active;
+
 @sizeInputBinary: @size-input-binary;
 
+@borderColorInputBinaryChecked: @border-color-input-binary--checked;
+@borderColorInputBinaryActive: @border-color-input-binary--active;
+
 @borderRadius: @border-radius-base;
+
+@boxShadowInputBinaryActive: @box-shadow-input-binary--active;
