@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.2
+ * OOUI v0.39.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-06-24T07:11:12Z
+ * Date: 2020-07-10T06:32:25Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -536,9 +536,6 @@
   float: left;
 }
 .oo-ui-outlineControlsWidget-movers {
-  float: right;
-}
-.oo-ui-outlineControlsWidget-movers .oo-ui-buttonWidget {
   float: right;
 }
 .oo-ui-outlineControlsWidget-items > .oo-ui-buttonWidget,

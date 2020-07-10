@@ -1,4 +1,26 @@
 # OOUI Release History
+## v0.39.3 / 2020-07-09
+### Styles
+* WikimediaUI theme: Add button focus for Windows high contrast mode (bkudiess-msft)
+* icons: Follow-up a04f40b4: Remove obsolete 'toc' files (Volker E.)
+* icons: Re-crush SVGs (Volker E.)
+
+### Code
+* Avoid using the global document in Element.js (Ed Sanders)
+* Fix: Focus automatically on help pop dialog when help button is clicked (Akinwale Alagbe)
+* Make SelectFileInputWidget's "clear" indicator accessible (bkudiess-msft)
+* OutlineControlsWidget:  Fix outline controls focus order (bkudiess-msft)
+* PopupWidget: Notify caller when popup widget closes (Akinwale Alagbe)
+* SelectFileInputWidget: Remove unused styles (Bartosz Dziewoński)
+* WikimediaUI theme: Use WikimediaUI Base `size*` variables (Volker E.)
+* Window: Fixed loss of focus when navigating with shift + tab key (Akinwale Alagbe)
+* build: Update WikimediaUI Base to latest v.0.16.0 (Volker E.)
+* docs: Add documentation for PopupWidget's new event (Bartosz Dziewoński)
+* demos: Remove some dead code (Bartosz Dziewoński)
+* icons: Fix 'articlesSearch-ltr' title (James D. Forrester)
+* tests: Re-enable more test cases for SearchInputWidget (Bartosz Dziewoński)
+
+
 ## v0.39.2 / 2020-06-23
 ### Styles
 * WikimediaUI theme: Update ProgressbarWidget with new design (Volker E.)

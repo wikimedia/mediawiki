@@ -1,7 +1,9 @@
 /**
- * WikimediaUI Base v0.15.0
+ * WikimediaUI Base v0.16.0
  * Wikimedia Foundation user interface base variables
- * See https://design.wikimedia.org/style-guide/
+ * https://gerrit.wikimedia.org/r/plugins/gitiles/wikimedia-ui-base/
+ *
+ * See also https://design.wikimedia.org/style-guide/
  */
 
 // == Breakpoints ==
@@ -69,6 +71,9 @@
 @background-color-framed--active: @wmui-color-base70;
 // 'Filled' UI elements (Checkboxes, Radios, ProgressBars…)
 @background-color-filled--disabled: @wmui-color-base70;
+// Binary Input elements (Checkboxes, Radios, Toggle Switches)
+@background-color-input-binary--active: @color-primary--active;
+@background-color-input-binary--checked: @color-primary;
 // Toolbar and Tools
 @background-color-toolbar:        @background-color-base;
 @background-color-tool--hover:    @background-color-base--hover;
@@ -139,14 +144,15 @@
 
 
 // == Box Model properties ==
-// `@*size` variables are used for `*width` & `*height` properties
+// `@*size` variables are used for `*width` & `*height` properties.
+@min-size-base:                   32px; // Values used for `min-*` are defined in `px`, see T130691.
 @size-base:                       32px;
 
-@min-size-icon:                   20px; // values used for `min-*` are defined in `px`, see T130691
-@min-size-indicator:              12px;
-
+@min-size-icon:                   20px;
 @size-icon:                       20px;
+@min-size-indicator:              12px;
 @size-indicator:                  12px;
+@size-input-binary:               20px;
 @size-tool:                       42px;
 
 // Max Widths
@@ -159,6 +165,7 @@
 @border-base:                     @border-width-base @border-style-base @border-color-base;
 @border-dialog:                   @border-base;
 @border-menu:                     @border-base;
+@border-input-binary:             @border-width-base @border-style-base @border-color-input-binary;
 // User system messages (errors, warnings, successes, notices)
 @border-error:                    @border-width-base @border-style-base @color-error;
 @border-warning:                  @border-width-base @border-style-base @wmui-color-yellow50;
@@ -170,10 +177,14 @@
 @border-color-base--active:       @wmui-color-base30;
 @border-color-base--disabled:     @wmui-color-base70;
 @border-color-filled--disabled:   @color-filled--disabled;
-@border-color-primary--active:    #859dcc;
-@border-color-destructive--active: #b77c79;
+@border-color-primary--active:    @color-primary--active;
+@border-color-destructive--active: @color-destructive--active;
 @border-color-inset--focus:       @color-base--inverted;
+@border-color-input-binary:       @border-color-base--active;
+@border-color-input-binary--active: @color-primary--active;
+@border-color-input-binary--checked: @color-primary;
 @border-color-heading:            @wmui-color-base70;
+@border-color-divider:            @wmui-color-base50;
 @border-color-wikitable:          rgba( 84, 89, 93, 0.3 ); // See T168029
 // Border Styles
 @border-style-base:               solid;
@@ -181,6 +192,7 @@
 @border-width-base:               1px;
 // Border Radius
 @border-radius-base:              2px;
+@border-radius-circle:            50%;
 
 // Box Shadows
 @box-shadow-base--focus:          inset 0 0 0 1px @wmui-color-accent50;
@@ -208,6 +220,13 @@
 // Provide better operating system-specific monospace stack, see T209915.
 @font-family-monospace:           'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
 @font-family-monospace--fallback: monospace, monospace; // See T176636.
+// Font Weights
+@font-weight-base:                @font-weight-normal;
+// See https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight#Common_weight_name_mapping
+@font-weight-hairline:            100;
+@font-weight-normal:              400;
+@font-weight-semi-bold:           600;
+@font-weight-bold:                700;
 // Line Heights
 @line-height-base:                1.6;
 @line-height-heading:             1.25;
