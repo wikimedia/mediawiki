@@ -2,11 +2,16 @@
 
 namespace Wikimedia\Rdbms;
 
+/**
+ * @newable
+ * @stable for subclassing
+ */
 class Blob implements IBlob {
 	/** @var string */
 	protected $data;
 
 	/**
+	 * @stable for calling
 	 * @param string $data
 	 */
 	public function __construct( $data ) {

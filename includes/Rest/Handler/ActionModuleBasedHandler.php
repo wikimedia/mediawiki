@@ -23,6 +23,8 @@ use Wikimedia\Message\ScalarParam;
 
 /**
  * Base class for REST handlers that are implemented by mapping to an existing ApiModule.
+ *
+ * @stable for subclassing
  */
 abstract class ActionModuleBasedHandler extends Handler {
 
@@ -191,6 +193,8 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 * Subclasses overriding this method should call this method in the parent class,
 	 * to preserve baseline behavior.
 	 *
+	 * @stable for overriding
+	 *
 	 * @param WebResponse $actionModuleResponse
 	 * @param array $actionModuleResult
 	 * @param Response $response
@@ -211,6 +215,8 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 * typically based on $msg->getApiCode(). Subclasses overriding this method must
 	 * always either throw an exception, or call this method in the parent class,
 	 * which then throws an exception.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param IApiMessage $msg A message object representing an error in an action module,
 	 *        typically from calling getStatusValue()->getErrorsByType( 'error' ) on

@@ -23,18 +23,30 @@
  *
  * This is a wrapper that will call the EditPage class or a custom editor from an extension.
  *
+ * @stable for subclasssing
  * @ingroup Actions
  */
 class EditAction extends FormlessAction {
 
+	/**
+	 * @stable for overriding
+	 * @return string
+	 */
 	public function getName() {
 		return 'edit';
 	}
 
+	/**
+	 * @stable for overriding
+	 * @return string|null
+	 */
 	public function onView() {
 		return null;
 	}
 
+	/**
+	 * @stable for overriding
+	 */
 	public function show() {
 		$this->useTransactionalTimeLimit();
 

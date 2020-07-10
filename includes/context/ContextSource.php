@@ -25,7 +25,6 @@ use MediaWiki\MediaWikiServices;
  * member variable and provide accessors to it.
  *
  * @stable for subclassing
- *
  * @since 1.18
  */
 abstract class ContextSource implements IContextSource {
@@ -124,6 +123,7 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
+	 * @stable for overriding
 	 * @since 1.18
 	 * @stable for overriding
 	 * @return User
