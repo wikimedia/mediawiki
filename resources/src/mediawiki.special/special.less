@@ -1,6 +1,7 @@
 /*!
  * Styles shared across various special pages.
  */
+@import 'mediawiki.ui/variables.less';
 @import 'mediawiki.mixins.less';
 
 /* stylelint-disable selector-class-pattern */
@@ -95,6 +96,12 @@
 /* Special:EditWatchlist */
 .watchlistredir {
 	font-style: italic;
+}
+
+/* Special:EditWatchlist */
+.watchlistexpiry-msg {
+	margin-left: 0.3em;
+	color: @color-base--subtle;
 }
 
 /* Special:EmailUser */

@@ -2399,6 +2399,8 @@
 	"notanarticle": "Not a content page",
 	"notvisiblerev": "The last revision by a different user has been deleted",
 	"watchlist-details": "{{PLURAL:$1|$1 page is|$1 pages are}} on your Watchlist (plus talk pages).",
+	"watchlist-expiring-msg": "{{PLURAL:$1|1 day|$1 days}} left in your watchlist",
+	"watchlist-expiring-hours-msg": "A few hours left",
 	"wlheader-enotif": "Email notification is enabled.",
 	"wlheader-showupdated": "Pages that have been changed since you last visited them are shown in <strong>bold</strong>.",
 	"wlnote": "Below {{PLURAL:$1|is the last change|are the last <strong>$1</strong> changes}} in the last {{PLURAL:$2|hour|<strong>$2</strong> hours}}, as of $3, $4.",
