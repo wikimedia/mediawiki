@@ -104,9 +104,9 @@
 @border-radius-base: 2px;
 
 // Box shadows
-@boxShadowWidget: inset 0 0 0 1px transparent;
-@boxShadowWidgetFocus: inset 0 0 0 1px @colorProgressive;
-@boxShadowProgressiveFocus: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @color-base--inverted;
+@box-shadow-base: inset 0 0 0 1px transparent;
+@box-shadow-base--focus: inset 0 0 0 1px @colorProgressive;
+@box-shadow-primary--focus: inset 0 0 0 1px @colorProgressive, inset 0 0 0 2px @color-base--inverted;
 @box-shadow-input-binary--active: inset 0 0 0 1px @colorProgressiveActive;
 
 // Icon related variables
@@ -152,4 +152,7 @@
 
 @borderRadius: @border-radius-base;
 
+@boxShadowWidget: @box-shadow-base;
+@boxShadowWidgetFocus: @box-shadow-base--focus;
+@boxShadowProgressiveFocus: @box-shadow-primary--focus;
 @boxShadowInputBinaryActive: @box-shadow-input-binary--active;

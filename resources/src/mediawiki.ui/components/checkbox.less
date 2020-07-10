@@ -106,7 +106,7 @@
 			// `:focus` has to come first, otherwise a specificity race with `:hover:focus` etc is necessary
 			&:focus + label:before {
 				border-color: @colorProgressive;
-				box-shadow: @boxShadowWidgetFocus;
+				box-shadow: @box-shadow-base--focus;
 			}
 
 			&:hover + label:before {
@@ -128,7 +128,7 @@
 				&:focus + label:before {
 					background-color: @background-color-input-binary--checked;
 					border-color: @border-color-input-binary--checked;
-					box-shadow: @boxShadowProgressiveFocus;
+					box-shadow: @box-shadow-primary--focus;
 				}
 
 				&:hover + label:before {
