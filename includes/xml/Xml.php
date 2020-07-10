@@ -555,7 +555,10 @@ class Xml {
 			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
 				# A new group is starting...
 				$value = trim( substr( $value, 1 ) );
-				$optgroup = $value;
+				# Do not use the value for 'other' as option group - T251351
+				$optgroup = isset( $params['other'] ) && $params['other'] === $value
+					? false
+					: $value;
 			} elseif ( substr( $value, 0, 2 ) == '**' ) {
 				# groupmember
 				$opt = trim( substr( $value, 2 ) );
