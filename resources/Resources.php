@@ -2754,6 +2754,7 @@ return [
 		'messages' => [
 			'ooui-field-help',
 			'ooui-combobox-button-label',
+			'ooui-popup-widget-close-button-aria-label'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
