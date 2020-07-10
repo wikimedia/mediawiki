@@ -257,9 +257,6 @@ For notes on 1.34.x and older releases, see HISTORY.
   EditPageGetCheckboxesDefinition hook. Handlers of this hook are no longer
   restricted to defining checkboxes. See the documentation of
   EditPage::getCheckboxesDefinition() for more details.
-* New flag File::RENDER_TMP was added in order to allow
-  File::generateAndSaveThumb and File::trasform to render a thumbnail without
-  saving it to the storage.
 * …
 
 === External library changes in 1.35 ===
