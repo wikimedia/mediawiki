@@ -22,6 +22,7 @@
  */
 
 /**
+ * @newable
  * @ingroup JobQueue
  * @since 1.22
  */

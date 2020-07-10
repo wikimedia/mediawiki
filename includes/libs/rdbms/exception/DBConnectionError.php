@@ -21,10 +21,12 @@
 namespace Wikimedia\Rdbms;
 
 /**
+ * @newable
  * @ingroup Database
  */
 class DBConnectionError extends DBExpectedError {
 	/**
+	 * @stable for calling
 	 * @param IDatabase|null $db Object throwing the error
 	 * @param string $error Error text
 	 */

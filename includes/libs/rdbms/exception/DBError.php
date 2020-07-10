@@ -26,6 +26,7 @@ use RuntimeException;
 /**
  * Database error base class
  * @newable
+ * @stable for subclassing
  * @ingroup Database
  */
 class DBError extends RuntimeException {

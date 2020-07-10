@@ -23,6 +23,8 @@ namespace Wikimedia\Rdbms;
 
 /**
  * @ingroup Database
+ * @newable
+ * @stable for subclassing
  */
 class DBQueryError extends DBExpectedError {
 	/** @var string */
@@ -35,6 +37,7 @@ class DBQueryError extends DBExpectedError {
 	public $fname;
 
 	/**
+	 * @stable for calling
 	 * @param IDatabase $db
 	 * @param string $error
 	 * @param int|string $errno
