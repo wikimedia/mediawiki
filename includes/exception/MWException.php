@@ -22,6 +22,7 @@
  * MediaWiki exception
  *
  * @newable
+ * @stable for subclassing
  *
  * @ingroup Exception
  */
@@ -43,6 +44,8 @@ class MWException extends Exception {
 	/**
 	 * Whether to log this exception in the exception debug log.
 	 *
+	 * @stable for overriding
+	 *
 	 * @since 1.23
 	 * @return bool
 	 */
@@ -52,6 +55,8 @@ class MWException extends Exception {
 
 	/**
 	 * Can the extension use the Message class/wfMessage to get i18n-ed messages?
+	 *
+	 * @stable for overriding
 	 *
 	 * @return bool
 	 */
@@ -100,6 +105,8 @@ class MWException extends Exception {
 	 * backtrace to the error, otherwise show a message to ask to set it to true
 	 * to show that information.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return string Html to output
 	 */
 	public function getHTML() {
@@ -135,6 +142,8 @@ class MWException extends Exception {
 	 * If $wgShowExceptionDetails is true, return a text message with a
 	 * backtrace to the error.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return string
 	 */
 	public function getText() {
@@ -152,6 +161,8 @@ class MWException extends Exception {
 	/**
 	 * Return the title of the page when reporting this error in a HTTP response.
 	 *
+	 * @stable for overriding
+	 *
 	 * @return string
 	 */
 	public function getPageTitle() {
@@ -160,6 +171,7 @@ class MWException extends Exception {
 
 	/**
 	 * Output the exception report using HTML.
+	 * @stable for overriding
 	 */
 	public function reportHTML() {
 		global $wgOut, $wgSitename;
@@ -199,6 +211,8 @@ class MWException extends Exception {
 	/**
 	 * Output a report about the exception and takes care of formatting.
 	 * It will be either HTML or plain text based on isCommandLine().
+	 *
+	 * @stable for overriding
 	 */
 	public function report() {
 		global $wgMimeType;

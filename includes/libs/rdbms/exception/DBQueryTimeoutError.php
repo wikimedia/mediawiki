@@ -24,9 +24,20 @@ namespace Wikimedia\Rdbms;
 /**
  * Error thrown when a query times out
  *
+ * @newable
  * @ingroup Database
  */
 class DBQueryTimeoutError extends DBQueryError {
+
+	/**
+	 * @stable for calling
+	 *
+	 * @param IDatabase $db
+	 * @param string $error
+	 * @param int|string $errno
+	 * @param string $sql
+	 * @param string $fname
+	 */
 	public function __construct( IDatabase $db, $error, $errno, $sql, $fname ) {
 		$message = "A database query timeout has occurred. \n" .
 			 "Query: $sql\n" .

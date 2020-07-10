@@ -22,12 +22,14 @@
 namespace Wikimedia\Rdbms;
 
 /**
+ * @newable
  * @ingroup Database
  * @since 1.34
  */
 class DBQueryDisconnectedError extends DBQueryError {
 
 	/**
+	 * @stable for calling
 	 * @param IDatabase $db
 	 * @param string $error
 	 * @param int|string $errno

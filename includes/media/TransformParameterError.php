@@ -24,9 +24,16 @@
 /**
  * Shortcut class for parameter validation errors
  *
+ * @newable
  * @ingroup Media
  */
 class TransformParameterError extends MediaTransformError {
+
+	/**
+	 * @stable for calling
+	 *
+	 * @param array $params
+	 */
 	public function __construct( $params ) {
 		parent::__construct( 'thumbnail_error',
 			max( $params['width'] ?? 0, 120 ),

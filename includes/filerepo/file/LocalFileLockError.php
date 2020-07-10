@@ -21,7 +21,17 @@
  * @ingroup FileAbstraction
  */
 
+/**
+ * @newable
+ * @stable for subclassing
+ */
 class LocalFileLockError extends ErrorPageError {
+
+	/**
+	 * @stable for calling
+	 *
+	 * @param Status $status
+	 */
 	public function __construct( Status $status ) {
 		parent::__construct(
 			'actionfailed',
