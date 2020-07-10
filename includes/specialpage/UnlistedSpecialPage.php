@@ -24,9 +24,20 @@
 /**
  * Shortcut to construct a special page which is unlisted by default.
  *
+ * @stable for subclassing
+ *
  * @ingroup SpecialPage
  */
 class UnlistedSpecialPage extends SpecialPage {
+
+	/**
+	 * @stable for calling
+	 *
+	 * @param string $name
+	 * @param string $restriction
+	 * @param bool $function
+	 * @param string $file
+	 */
 	public function __construct( $name, $restriction = '', $function = false, $file = 'default' ) {
 		parent::__construct( $name, $restriction, false, $function, $file );
 	}

@@ -17,6 +17,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @stable for subclassing
+ *
  * @file
  * @ingroup SpecialPage
  * @author DannyS712
@@ -24,6 +26,13 @@
 abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	protected $action, $msgPrefix;
 
+	/**
+	 * @stable for calling
+	 *
+	 * @param string $name
+	 * @param string $action
+	 * @param string $msgPrefix
+	 */
 	public function __construct( $name, $action, $msgPrefix ) {
 		parent::__construct( $name );
 		$this->action = $action;
@@ -42,6 +51,9 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 		return true;
 	}
 
+	/**
+	 * @stable for overriding
+	 */
 	protected function showNoRedirectPage() {
 		$this->setHeaders();
 		$this->outputHeader();
@@ -66,6 +78,13 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 		$form->show();
 	}
 
+	/**
+	 * @stable for overriding
+	 *
+	 * @param array $formData
+	 *
+	 * @return Status|null
+	 */
 	public function onFormSubmit( $formData ) {
 		$title = $formData['page'];
 		try {
@@ -78,10 +97,18 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 		$this->getOutput()->redirect( $url );
 	}
 
+	/**
+	 * @stable for overriding
+	 * @return bool
+	 */
 	public function isListed() {
 		return true;
 	}
 
+	/**
+	 * @stable for overriding
+	 * @return string
+	 */
 	protected function getGroupName() {
 		return 'redirects';
 	}
