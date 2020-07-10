@@ -2,11 +2,12 @@
 
 /**
  * @newable
+ * @stable to extend
  */
 class HTMLFormFieldRequiredOptionsException extends MWException {
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 *
 	 * @param HTMLFormField $field
 	 * @param array $missing

@@ -2,8 +2,15 @@
 
 /**
  * A select dropdown field.  Basically a wrapper for Xmlselect class
+ *
+ * @stable to extend
  */
 class HTMLSelectField extends HTMLFormField {
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -20,6 +27,10 @@ class HTMLSelectField extends HTMLFormField {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getInputHTML( $value ) {
 		$select = new XmlSelect( $this->mName, $this->mID, strval( $value ) );
 
@@ -42,6 +53,10 @@ class HTMLSelectField extends HTMLFormField {
 		return $select->getHTML();
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getInputOOUI( $value ) {
 		$disabled = false;
 		$allowedParams = [ 'tabindex' ];
@@ -66,6 +81,10 @@ class HTMLSelectField extends HTMLFormField {
 		] + $attribs );
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	protected function shouldInfuseOOUI() {
 		return true;
 	}

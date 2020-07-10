@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * @stable to extend
+ */
 class HTMLEditTools extends HTMLFormField {
 	public function getInputHTML( $value ) {
 		return '';

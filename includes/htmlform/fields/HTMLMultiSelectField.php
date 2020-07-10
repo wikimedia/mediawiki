@@ -2,9 +2,13 @@
 
 /**
  * Multi-select field
+ *
+ * @stable to extend
  */
 class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable {
 	/**
+	 * @stable to call
+	 *
 	 * @param array $params
 	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
 	 *   - dropdown: If given, the options will be displayed inside a dropdown with a text field that
@@ -31,6 +35,10 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -54,6 +62,10 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getInputHTML( $value ) {
 		if ( isset( $this->mParams['dropdown'] ) ) {
 			$this->mParent->getOutput()->addModules( 'jquery.chosen' );
@@ -65,6 +77,15 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		return $html;
 	}
 
+	/**
+	 * @stable to override
+	 *
+	 * @param array $options
+	 * @param mixed $value
+	 *
+	 * @return string
+	 * @throws MWException
+	 */
 	public function formatOptions( $options, $value ) {
 		$html = '';
 
@@ -121,6 +142,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 
 	/**
 	 * Get options and make them into arrays suitable for OOUI.
+	 * @stable to override
 	 * @throws MWException
 	 */
 	public function getOptionsOOUI() {
@@ -134,6 +156,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * Returns OOUI\CheckboxMultiselectInputWidget for fields that only have one section,
 	 * string otherwise.
 	 *
+	 * @stable to override
 	 * @since 1.28
 	 * @param string[] $value
 	 * @return string|OOUI\CheckboxMultiselectInputWidget
@@ -212,6 +235,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	}
 
 	/**
+	 * @stable to override
 	 * @param WebRequest $request
 	 *
 	 * @return string|array
@@ -231,10 +255,18 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function getDefault() {
 		return $this->mDefault ?? [];
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	public function filterDataForSubmit( $data ) {
 		$data = HTMLFormField::forceToStringRecursive( $data );
 		$options = HTMLFormField::flattenOptions( $this->getOptions() );
@@ -247,6 +279,10 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		return $res;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	protected function needsLabel() {
 		return false;
 	}

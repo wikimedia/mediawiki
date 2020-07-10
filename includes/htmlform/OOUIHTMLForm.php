@@ -23,11 +23,16 @@
 
 /**
  * Compact stacked vertical format for forms, implemented using OOUI widgets.
+ *
+ * @stable to extend
  */
 class OOUIHTMLForm extends HTMLForm {
 	private $oouiErrors;
 	private $oouiWarnings;
 
+	/*
+	 * @stable to call
+	 */
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();

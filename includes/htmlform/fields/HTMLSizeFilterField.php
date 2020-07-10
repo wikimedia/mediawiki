@@ -7,6 +7,9 @@
  *
  * Minimum size limits are represented using a positive integer, while maximum
  * size limits are represented using a negative integer.
+ *
+ * @stable to extend
+ *
  */
 class HTMLSizeFilterField extends HTMLIntField {
 	public function getSize() {
@@ -41,6 +44,10 @@ class HTMLSizeFilterField extends HTMLIntField {
 		return $html;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
 	protected function getInputWidget( $params ) {
 		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.SizeFilterWidget.styles' );
 
