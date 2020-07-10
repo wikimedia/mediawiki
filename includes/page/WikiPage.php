@@ -3432,11 +3432,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$flags
 		);
 
-		$tags = array_merge(
-			$tags ?: [],
-			$updater->getEditResult()->getRevertTags()
-		);
-
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
 		// This is done even on edit failure to have patrolling in that case (T64157).
 		$set = [];
@@ -3521,6 +3516,12 @@ class WikiPage implements Page, IDBAccessObject {
 			// Only create the Revision object if needed
 			return new Revision( $target );
 		};
+
+		$tags = array_merge(
+			$tags ?: [],
+			$updater->getEditResult()->getRevertTags()
+		);
+
 		$resultDetails = new DeprecatablePropertyArray(
 			[
 				'summary' => $summary,
