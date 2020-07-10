@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.2
+ * OOUI v0.39.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-06-24T07:10:53Z
+ * Date: 2020-07-10T06:31:58Z
  */
 ( function ( OO ) {
 
@@ -544,6 +544,7 @@ OO.ui.msg.messages = {
 	"ooui-selectfile-not-supported": "File selection is not supported",
 	"ooui-selectfile-placeholder": "No file is selected",
 	"ooui-selectfile-dragdrop-placeholder": "Drop file here",
+	"ooui-popup-widget-close-button-aria-label": "Close",
 	"ooui-field-help": "Help"
 };
 
@@ -563,6 +564,9 @@ OO.ui.msg.messages = {
  * @singleton
  */
 OO.ui.mixin = {};
+
+// getDocument( element ) is preferrable to window.document
+/* global document:off */
 
 /**
  * Each Element represents a rendering in the DOM—a button or an icon, for example, or anything
@@ -590,6 +594,8 @@ OO.ui.mixin = {};
  *  Data can also be specified with the #setData method.
  */
 OO.ui.Element = function OoUiElement( config ) {
+	var doc;
+
 	if ( OO.ui.isDemo ) {
 		this.initialConfig = config;
 	}
@@ -601,10 +607,11 @@ OO.ui.Element = function OoUiElement( config ) {
 	this.visible = true;
 	this.data = config.data;
 	this.$element = config.$element ||
-		$( document.createElement( this.getTagName() ) );
+		$( window.document.createElement( this.getTagName() ) );
 	this.elementGroup = null;
 
 	// Initialization
+	doc = OO.ui.Element.static.getDocument( this.$element );
 	if ( Array.isArray( config.classes ) ) {
 		this.$element.addClass( config.classes );
 	}
@@ -622,7 +629,7 @@ OO.ui.Element = function OoUiElement( config ) {
 			if ( typeof v === 'string' ) {
 				// Escape string so it is properly represented in HTML.
 				// Don't create empty text nodes for empty strings.
-				return v ? document.createTextNode( v ) : undefined;
+				return v ? doc.createTextNode( v ) : undefined;
 			} else if ( v instanceof OO.ui.HtmlSnippet ) {
 				// Bypass escaping.
 				return v.toString();
@@ -688,22 +695,22 @@ OO.ui.Element.static.infuse = function ( node, config ) {
  * extra property so that only the top-level invocation touches the DOM.
  *
  * @private
- * @param {HTMLElement|jQuery} node
+ * @param {HTMLElement|jQuery} elem
  * @param {Object} [config] Configuration options
  * @param {jQuery.Promise} [domPromise] A promise that will be resolved
  *     when the top-level widget of this infusion is inserted into DOM,
- *     replacing the original node; only used internally.
+ *     replacing the original element; only used internally.
  * @return {OO.ui.Element}
  */
-OO.ui.Element.static.unsafeInfuse = function ( node, config, domPromise ) {
+OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	// look for a cached result of a previous infusion.
-	var error, data, cls, parts, obj, top, state, infusedChildren,
-		$elem = $( node ),
+	var error, data, cls, parts, obj, top, state, infusedChildren, doc,
+		$elem = $( elem ),
 		id = $elem.attr( 'id' );
 
 	if ( !$elem.length ) {
-		if ( node && node.selector ) {
-			error = 'Widget not found: ' + node.selector;
+		if ( elem && elem.selector ) {
+			error = 'Widget not found: ' + elem.selector;
 		} else {
 			error = 'Widget not found';
 		}
@@ -712,6 +719,7 @@ OO.ui.Element.static.unsafeInfuse = function ( node, config, domPromise ) {
 	if ( $elem[ 0 ].$oouiInfused ) {
 		$elem = $elem[ 0 ].$oouiInfused;
 	}
+	doc = this.getDocument( $elem );
 	data = $elem.data( 'ooui-infused' );
 	if ( data ) {
 		// cached!
@@ -767,9 +775,9 @@ OO.ui.Element.static.unsafeInfuse = function ( node, config, domPromise ) {
 	data = OO.copy( data, null, function deserialize( value ) {
 		var infused;
 		if ( OO.isPlainObject( value ) ) {
-			if ( value.tag && document.getElementById( value.tag ) ) {
+			if ( value.tag && doc.getElementById( value.tag ) ) {
 				infused = OO.ui.Element.static.unsafeInfuse(
-					document.getElementById( value.tag ), config, domPromise
+					doc.getElementById( value.tag ), config, domPromise
 				);
 				infusedChildren.push( infused );
 				// Flatten the structure
@@ -977,7 +985,7 @@ OO.ui.Element.static.getRelativePosition = function ( $element, $anchor ) {
 		iframePos = $( iframe ).offset();
 		pos.left += iframePos.left;
 		pos.top += iframePos.top;
-		elementDocument = iframe.ownerDocument;
+		elementDocument = this.getDocument( iframe );
 	}
 	pos.left -= anchorPos.left;
 	pos.top -= anchorPos.top;
@@ -992,7 +1000,7 @@ OO.ui.Element.static.getRelativePosition = function ( $element, $anchor ) {
  * @return {Object} Dimensions object with `top`, `left`, `bottom` and `right` properties
  */
 OO.ui.Element.static.getBorders = function ( el ) {
-	var doc = el.ownerDocument,
+	var doc = this.getDocument( el ),
 		win = doc.defaultView,
 		style = win.getComputedStyle( el, null ),
 		$el = $( el ),
@@ -1018,7 +1026,7 @@ OO.ui.Element.static.getBorders = function ( el ) {
  */
 OO.ui.Element.static.getDimensions = function ( el ) {
 	var $el, $win,
-		doc = el.ownerDocument || el.document,
+		doc = this.getDocument( el ),
 		win = doc.defaultView;
 
 	if ( win === el || el === doc.documentElement ) {
@@ -1084,7 +1092,7 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 	}
 
 	function isRoot( el ) {
-		return el.window === el ||
+		return el === el.window ||
 			el === el.ownerDocument.body ||
 			el === el.ownerDocument.documentElement;
 	}
@@ -1211,10 +1219,11 @@ OO.ui.Element.static.getDimensions = function ( el ) {
  * @return {HTMLBodyElement|HTMLHtmlElement} Scrollable parent, `<body>` or `<html>`
  */
 OO.ui.Element.static.getRootScrollableElement = function ( el ) {
-	var scrollTop, body;
+	var scrollTop, body,
+		doc = this.getDocument( el );
 
 	if ( OO.ui.scrollableElement === undefined ) {
-		body = el.ownerDocument.body;
+		body = doc.body;
 		scrollTop = body.scrollTop;
 		body.scrollTop = 1;
 
@@ -1228,7 +1237,7 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
 		}
 	}
 
-	return el.ownerDocument[ OO.ui.scrollableElement ];
+	return doc[ OO.ui.scrollableElement ];
 };
 
 /**
@@ -1244,7 +1253,7 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
  */
 OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) {
 	var i, val,
-		doc = el.ownerDocument,
+		doc = this.getDocument( el ),
 		rootScrollableElement = this.getRootScrollableElement( el ),
 		// Browsers do not correctly return the computed value of 'overflow' when 'overflow-x' and
 		// 'overflow-y' have different values, so we need to check the separate properties.
@@ -1329,8 +1338,8 @@ OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
 	container = config.scrollContainer || (
 		elOrPosition instanceof HTMLElement ?
 			this.getClosestScrollableContainer( elOrPosition, config.direction ) :
-			// No scrollContainer or element
-			this.getClosestScrollableContainer( document.body )
+			// No scrollContainer or element, use global document
+			this.getClosestScrollableContainer( window.document.body )
 	);
 	$container = $( container );
 	containerDimensions = this.getDimensions( container );
@@ -5581,6 +5590,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.anchored = false;
 	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
+	this.onTabKeyDownHandler = this.onTabKeyDown.bind( this );
 
 	// Initialization
 	this.setSize( config.width, config.height );
@@ -5611,7 +5621,9 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 		if ( !config.hideCloseButton ) {
 			this.closeButton = new OO.ui.ButtonWidget( {
 				framed: false,
-				icon: 'close'
+				icon: 'close',
+				label: OO.ui.msg( 'ooui-popup-widget-close-button-aria-label' ),
+				invisibleLabel: true
 			} );
 			this.closeButton.connect( this, {
 				click: 'onCloseButtonClick'
@@ -5651,6 +5663,12 @@ OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.FloatableElement );
  * @event ready
  *
  * The popup is ready: it is visible and has been positioned and clipped.
+ */
+
+/**
+ * @event closing
+ *
+ * The popup is no longer visible.
  */
 
 /* Methods */
@@ -5744,6 +5762,19 @@ OO.ui.PopupWidget.prototype.unbindDocumentKeyDownListener = function () {
 };
 
 /**
+ * Handles Tab key down events.
+ *
+ * @private
+ * @param {KeyboardEvent} e Key down event
+ */
+OO.ui.PopupWidget.prototype.onTabKeyDown = function ( e ) {
+	if ( !e.shiftKey && e.which === OO.ui.Keys.TAB ) {
+		e.preventDefault();
+		this.toggle( false );
+	}
+};
+
+/**
  * Show, hide, or toggle the visibility of the anchor.
  *
  * @param {boolean} [show] Show anchor, omit to toggle
@@ -5803,7 +5834,8 @@ OO.ui.PopupWidget.prototype.hasAnchor = function () {
  * @inheritdoc
  */
 OO.ui.PopupWidget.prototype.toggle = function ( show ) {
-	var change, normalHeight, oppositeHeight, normalWidth, oppositeWidth;
+	var change, normalHeight, oppositeHeight, normalWidth,
+		oppositeWidth, $lastFocusableElement;
 	show = show === undefined ? !this.isVisible() : !!show;
 
 	change = show !== this.isVisible();
@@ -5829,10 +5861,20 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 	if ( change ) {
 		this.togglePositioning( show && !!this.$floatableContainer );
 
+		// Find the last focusable element in the popup widget
+		$lastFocusableElement = OO.ui.findFocusable( this.$element, true );
+
 		if ( show ) {
 			if ( this.autoClose ) {
 				this.bindDocumentMouseDownListener();
 				this.bindDocumentKeyDownListener();
+
+				// Bind a keydown event to the last focusable element
+				// If user presses the tab key on this item, dismiss the popup and
+				// take focus back to the caller, ideally the caller implements this functionality
+				// This is to prevent illogical focus order, which is a common accessibility pitfall.
+				// Alternative Fix: Implement focus trap for popup widget.
+				$lastFocusableElement.on( 'keydown', this.onTabKeyDownHandler );
 			}
 			this.updateDimensions();
 			this.toggleClipping( true );
@@ -5890,9 +5932,18 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 		} else {
 			this.toggleClipping( false );
 			if ( this.autoClose ) {
+				// Remove binded keydown event from the last focusable element when popup closes
+				$lastFocusableElement.off( 'keydown', this.onTabKeyDownHandler );
+
 				this.unbindDocumentMouseDownListener();
 				this.unbindDocumentKeyDownListener();
 			}
+
+			// This is so we can restore focus to the parent when the pop widget dismisses
+			// Also, we're emitting an event
+			// so we don't have to tie this implementation to the caller.
+			// Let the caller handle this details.
+			this.emit( 'closing' );
 		}
 	}
 
@@ -11566,12 +11617,16 @@ OO.ui.SearchInputWidget = function OoUiSearchInputWidget( config ) {
 		change: 'onChange'
 	} );
 	this.$indicator.on( 'click', this.onIndicatorClick.bind( this ) );
+	this.$indicator.on( 'keydown', this.onIndicatorKeyDown.bind( this ) );
 
 	// Initialization
 	this.updateSearchIndicator();
 	this.connect( this, {
 		disable: 'onDisable'
 	} );
+	this.$indicator
+		.attr( 'tabindex', -1 )
+		.attr( 'role', 'button' );
 };
 
 /* Setup */
@@ -11586,6 +11641,21 @@ OO.inheritClass( OO.ui.SearchInputWidget, OO.ui.TextInputWidget );
  */
 OO.ui.SearchInputWidget.prototype.getSaneType = function () {
 	return 'search';
+};
+
+/**
+ * Handle key down events on the indicator
+ *
+ * @param {jQuery.Event} e KeyDown event
+ * @return {boolean}
+ */
+OO.ui.SearchInputWidget.prototype.onIndicatorKeyDown = function ( e ) {
+	if ( e.keyCode === OO.ui.Keys.ENTER ) {
+		// Clear the text field
+		this.setValue( '' );
+		this.focus();
+		return false;
+	}
 };
 
 /**
@@ -11613,6 +11683,7 @@ OO.ui.SearchInputWidget.prototype.updateSearchIndicator = function () {
 		this.setIndicator( null );
 	} else {
 		this.setIndicator( 'clear' );
+		this.$indicator.attr( 'aria-label', OO.ui.msg( 'ooui-item-remove' ) );
 	}
 };
 
@@ -12585,6 +12656,17 @@ OO.ui.FieldLayout.prototype.createHelpElement = function ( help, $overlay ) {
 			label: OO.ui.msg( 'ooui-field-help' ),
 			invisibleLabel: true
 		} );
+
+		helpWidget.popup.on( 'ready', function () {
+			var $popupElement = helpWidget.popup.$element;
+			$popupElement.attr( 'tabindex', 0 );
+			$popupElement.trigger( 'focus' );
+		} );
+
+		helpWidget.popup.on( 'closing', function () {
+			helpWidget.$button.trigger( 'focus' );
+		} );
+
 		if ( help instanceof OO.ui.HtmlSnippet ) {
 			helpWidget.getPopup().$body.html( help.toString() );
 		} else {
@@ -13527,6 +13609,8 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 	} ).setIcon( config.icon );
 	// Set tabindex manually on $input as $tabIndexed has been overridden
 	this.info.$input.attr( 'tabindex', -1 );
+	// This indicator serves as the only way to clear the file, so it must be keyboard-accessible
+	this.info.$indicator.attr( 'tabindex', 0 );
 
 	// Parent constructor
 	OO.ui.SelectFileInputWidget.super.call( this, config );

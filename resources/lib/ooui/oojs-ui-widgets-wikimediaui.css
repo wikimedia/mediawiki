@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.2
+ * OOUI v0.39.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2020 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-06-24T07:11:12Z
+ * Date: 2020-07-10T06:32:25Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
@@ -232,6 +232,7 @@
 .oo-ui-buttonSelectWidget.oo-ui-widget-enabled:focus .oo-ui-buttonOptionWidget.oo-ui-optionWidget-selected .oo-ui-buttonElement-button {
   border-color: #36c;
   box-shadow: inset 0 0 0 1px #36c, inset 0 0 0 2px #fff;
+  outline: 1px solid transparent;
 }
 .oo-ui-buttonSelectWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonSelectWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active {
@@ -594,9 +595,6 @@
   float: left;
 }
 .oo-ui-outlineControlsWidget-movers {
-  float: right;
-}
-.oo-ui-outlineControlsWidget-movers .oo-ui-buttonWidget {
   float: right;
 }
 .oo-ui-outlineControlsWidget-items > .oo-ui-buttonWidget,
