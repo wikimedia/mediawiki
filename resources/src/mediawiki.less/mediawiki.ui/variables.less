@@ -110,8 +110,8 @@
 @box-shadow-input-binary--active: inset 0 0 0 1px @colorProgressiveActive;
 
 // Icon related variables
-@iconSize: 1.5em;
-@iconGutterWidth: 1em;
+@size-icon: 1.5em;
+@width-icon-gutter: 1em;
 
 // Form input sizes, equal to OOUI at 14px base font-size
 @size-input-binary: 1.5625em;
@@ -136,6 +136,9 @@
 @colorDarkenPercentage: 13.5%;
 // Used in mixins to lighten contextual colors by the same amount (eg. hover)
 @colorLightenPercentage: 13.5%;
+
+@iconSize: @size-icon;
+@iconGutterWidth: @width-icon-gutter;
 
 @backgroundColorInputBinaryChecked: @background-color-input-binary--checked;
 @backgroundColorInputBinaryActive: @background-color-input-binary--active;
