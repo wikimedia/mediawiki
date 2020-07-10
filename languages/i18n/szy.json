@@ -1657,7 +1657,7 @@
 	"withoutinterwiki-legend": "saayaway a sulit",
 	"withoutinterwiki-submit": "paazih",
 	"fewestrevisions": "sainayi'ay masumaday nu kasabelih",
-	"nbytes": "$1 {{PLURAL:$1|wyiyincu}}",
+	"nbytes": "$1{{PLURAL:$1|wyiyincu}}",
 	"ncategories": "{{PLURAL:$1|kakuniza}}",
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki masasiket}}",
 	"nlinks": "$1 {{PLURAL:$1|masasiket}}",

@@ -2357,7 +2357,7 @@
 	"changecontentmodel-model-label": "পাতার বিষয়বস্তুর প্রতিরূপ:",
 	"changecontentmodel-reason-label": "কারণ:",
 	"changecontentmodel-submit": "পরিবর্তন করুন",
-	"changecontentmodel-success-title": "বিষয়বস্তুর প্রতিরূপ পরিবর্তিত হয়েছিলো",
+	"changecontentmodel-success-title": "বিষয়বস্তুর প্রতিরূপ পরিবর্তিত হয়েছে",
 	"changecontentmodel-success-text": "[[:$1]]-এর বিষয়বস্তুর ধরন পরিবর্তন হয়েছে।",
 	"changecontentmodel-cannot-convert": "[[:$1]] পাতার বিষয়বস্তু $2-এর ধরনে রূপান্তরিত করা সম্ভব নয়।",
 	"changecontentmodel-nodirectediting": "$1 বিষয়বস্তুর রূপ সরাসরি সম্পাদনা করা সমর্থন করে না",

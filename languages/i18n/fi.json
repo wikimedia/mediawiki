@@ -3949,6 +3949,7 @@
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "Salasana ei saa olla mustalla listalla",
 	"passwordpolicies-policy-maximalpasswordlength": "Salasanan tulee olla lyhyempi kuin $1 {{PLURAL:$1|merkki|merkkiä}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "Salasana ei voi olla 100,000 yleisimmin käytetyn joukossa.",
+	"passwordpolicies-policy-passwordnotincommonlist": "Salasana ei voi olla 100,000 yleisimmin käytetyn joukossa.",
 	"passwordpolicies-policyflag-forcechange": "täytyy vaihtaa kirjautuessa",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "ehdota vaihtamista kirjautuessa",
 	"deflate-invaliddeflate": "Annettua sisältöä ei ole tyhjennetty kunnolla",
@@ -3957,5 +3958,6 @@
 	"paramvalidator-help-type-user-subtype-name": "käyttäjänimi",
 	"paramvalidator-help-type-user-subtype-ip": "IP-osoite",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-osoiteavaruus",
+	"paramvalidator-help-type-user-subtype-interwiki": "interwikinimi (esim. \"prefix>EsimerkkiNimi\")",
 	"paramvalidator-help-type-user-subtype-id": "käyttäjän tunnistenumero (esim. \"#12345\")"
 }
