@@ -25,6 +25,7 @@
  * Basic media transform error class
  *
  * @newable
+ * @stable for subclassing
  * @ingroup Media
  */
 class MediaTransformError extends MediaTransformOutput {
@@ -70,6 +71,11 @@ class MediaTransformError extends MediaTransformOutput {
 		return true;
 	}
 
+	/**
+	 * @stable for overriding
+	 *
+	 * @return int
+	 */
 	public function getHttpStatusCode() {
 		return 500;
 	}

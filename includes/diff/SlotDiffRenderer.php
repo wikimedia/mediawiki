@@ -34,6 +34,7 @@ use Wikimedia\Assert\Assert;
  * overriding ContentHandler::getSlotDiffRendererInternal. Other extensions that want to interfere
  * with diff generation in some way can use the GetSlotDiffRenderer hook.
  *
+ * @stable for subclassing
  * @ingroup DifferenceEngine
  */
 abstract class SlotDiffRenderer {
@@ -50,6 +51,7 @@ abstract class SlotDiffRenderer {
 
 	/**
 	 * Add modules needed for correct styling/behavior of the diff.
+	 * @stable for overriding
 	 * @param OutputPage $output
 	 */
 	public function addModules( OutputPage $output ) {
@@ -57,6 +59,7 @@ abstract class SlotDiffRenderer {
 
 	/**
 	 * Return any extra keys to split the diff cache by.
+	 * @stable for overriding
 	 * @return array
 	 */
 	public function getExtraCacheKeys() {
