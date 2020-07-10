@@ -32,6 +32,7 @@ use User;
 use Wikimedia\IPUtils;
 
 /**
+ * @note Extensions should not subclass this, as MediaWiki currently does not support custom block types.
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock {
