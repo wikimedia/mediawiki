@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Special page for listing the articles with the fewest revisions.
@@ -100,6 +102,16 @@ class SpecialFewestRevisions extends QueryPage {
 		) . $redirect;
 
 		return $this->getLanguage()->specialList( $plink, $nlink );
+	}
+
+	/**
+	 * Cache page existence for performance
+	 *
+	 * @param IDatabase $db
+	 * @param IResultWrapper $res
+	 */
+	protected function preprocessResults( $db, $res ) {
+		$this->executeLBFromResultWrapper( $res );
 	}
 
 	protected function getGroupName() {
