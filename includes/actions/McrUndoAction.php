@@ -323,6 +323,8 @@ class McrUndoAction extends FormAction {
 
 		$newRev = $this->getNewRevision();
 		if ( !$newRev->hasSameContent( $curRev ) ) {
+			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+
 			// Copy new slots into the PageUpdater, and remove any removed slots.
 			// TODO: This interface is awful, there should be a way to just pass $newRev.
 			// TODO: MCR: test this once we can store multiple slots
@@ -335,8 +337,24 @@ class McrUndoAction extends FormAction {
 				}
 			}
 
-			$updater->setOriginalRevisionId( false );
-			$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo, $this->undoafter );
+			// The revision we revert to is specified by the undoafter param.
+			// $oldRev is not null, we check this and more in getNewRevision()
+			$oldRev = $revisionStore->getRevisionById( $this->undoafter );
+			$oldestRevertedRev = $revisionStore->getNextRevision( $oldRev );
+			if ( $oldestRevertedRev ) {
+				$updater->markAsRevert(
+					EditResult::REVERT_UNDO,
+					$oldestRevertedRev->getId(),
+					$this->undo
+				);
+			} else {
+				// fallback in case something goes wrong
+				$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo );
+			}
+			// Set the original revision ID if this is an exact revert.
+			if ( $oldRev->hasSameContent( $newRev ) ) {
+				$updater->setOriginalRevisionId( $oldRev->getId() );
+			}
 
 			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
