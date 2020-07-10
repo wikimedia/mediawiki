@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * Variant of QueryPage which formats the result as a simple link to the page
  *
+ * @stable for subclassing
  * @ingroup SpecialPage
  */
 abstract class PageQueryPage extends QueryPage {
@@ -34,6 +35,8 @@ abstract class PageQueryPage extends QueryPage {
 	 * Run a LinkBatch to pre-cache LinkCache information,
 	 * like page existence and information for stub color and redirect hints.
 	 * This should be done for live data and cached data.
+	 *
+	 * @stable for overriding
 	 *
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
@@ -44,6 +47,8 @@ abstract class PageQueryPage extends QueryPage {
 
 	/**
 	 * Format the result as a simple link to the page
+	 *
+	 * @stable for overriding
 	 *
 	 * @param Skin $skin
 	 * @param object $row Result row

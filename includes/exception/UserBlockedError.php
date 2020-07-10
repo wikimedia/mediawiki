@@ -24,11 +24,13 @@ use MediaWiki\MediaWikiServices;
 /**
  * Show an error when the user tries to do something whilst blocked.
  *
+ * @newable
  * @since 1.18
  * @ingroup Exception
  */
 class UserBlockedError extends ErrorPageError {
 	/**
+	 * @stable for calling
 	 * @param AbstractBlock $block
 	 * @param User|null $user
 	 * @param Language|null $language

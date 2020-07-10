@@ -25,6 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
  * Replacement for wfHttpError().
  *
  * @newable
+ * @stable for subclassing
  * @since 1.19
  * @ingroup Exception
  */

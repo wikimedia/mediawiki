@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * Class definition for a wanted query page like
  * WantedPages, WantedTemplates, etc
+ * @stable for subclassing
  * @ingroup SpecialPage
  */
 abstract class WantedQueryPage extends QueryPage {
@@ -40,6 +41,7 @@ abstract class WantedQueryPage extends QueryPage {
 
 	/**
 	 * Cache page existence for performance
+	 * @stable for overriding
 	 * @param IDatabase $db
 	 * @param IResultWrapper $res
 	 */
@@ -53,6 +55,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * kluge for Special:WantedFiles, which may contain false
 	 * positives for files that exist e.g. in a shared repo (bug
 	 * 6220).
+	 * @stable for overriding
 	 * @return bool
 	 */
 	protected function forceExistenceCheck() {
@@ -61,6 +64,8 @@ abstract class WantedQueryPage extends QueryPage {
 
 	/**
 	 * Format an individual result
+	 *
+	 * @stable for overriding
 	 *
 	 * @param Skin $skin Skin to use for UI elements
 	 * @param object $result Result row
@@ -96,6 +101,8 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @note This will only be run if the page is cached (ie $wgMiserMode = true)
 	 *   unless forceExistenceCheck() is true.
 	 * @since 1.24
+	 * @stable for overriding
+	 *
 	 * @param Title $title
 	 * @return bool
 	 */
@@ -119,6 +126,7 @@ abstract class WantedQueryPage extends QueryPage {
 	/**
 	 * Order by title for pages with the same number of links to them
 	 *
+	 * @stable for overriding
 	 * @return array
 	 * @since 1.29
 	 */
@@ -132,6 +140,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * Do NOT change this to true unless you remove the phrase DESC in getOrderFiels above.
 	 * If you do a database error will be thrown due to double adding DESC to query!
 	 *
+	 * @stable for overriding
 	 * @return bool
 	 * @since 1.29
 	 */
@@ -141,6 +150,7 @@ abstract class WantedQueryPage extends QueryPage {
 
 	/**
 	 * Also use the order fields returned by getOrderFields when fetching from the cache.
+	 * @stable for overriding
 	 * @return array
 	 * @since 1.29
 	 */

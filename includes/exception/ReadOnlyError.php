@@ -22,10 +22,15 @@
  * Show an error when the wiki is locked/read-only and the user tries to do
  * something that requires write access.
  *
+ * @newable
  * @since 1.18
  * @ingroup Exception
  */
 class ReadOnlyError extends ErrorPageError {
+
+	/**
+	 * @stable for calling
+	 */
 	public function __construct() {
 		parent::__construct(
 			'readonly',

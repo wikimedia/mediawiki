@@ -22,6 +22,7 @@
 namespace Wikimedia\Rdbms;
 
 /**
+ * @newable
  * @ingroup Database
  */
 class DBTransactionSizeError extends DBTransactionError {

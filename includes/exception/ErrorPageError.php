@@ -22,6 +22,7 @@
  * An error page which can definitely be safely rendered using the OutputPage.
  *
  * @newable
+ * @stable for subclassing
  *
  * @since 1.7
  * @ingroup Exception
@@ -66,6 +67,13 @@ class ErrorPageError extends MWException implements ILocalizedException {
 		return wfMessage( $this->msg, $this->params );
 	}
 
+	/**
+	 * @stable for overriding
+	 * @param int $action
+	 *
+	 * @throws FatalError
+	 * @throws MWException
+	 */
 	public function report( $action = self::SEND_OUTPUT ) {
 		if ( self::isCommandLine() || defined( 'MW_API' ) ) {
 			parent::report();

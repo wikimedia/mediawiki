@@ -22,6 +22,7 @@
  * Basic localized exception.
  *
  * @newable
+ * @stable for subclassing
  * @since 1.29
  * @ingroup Exception
  * @note Don't use this in a situation where MessageCache is not functional.

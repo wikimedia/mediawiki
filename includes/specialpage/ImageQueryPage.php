@@ -28,6 +28,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Variant of QueryPage which uses a gallery to output results, thus
  * suited for reports generating images
  *
+ * @stable for subclassing
+ *
  * @ingroup SpecialPage
  * @author Rob Church <robchur@gmail.com>
  */
@@ -35,6 +37,8 @@ abstract class ImageQueryPage extends QueryPage {
 	/**
 	 * Format and output report results using the given information plus
 	 * OutputPage
+	 *
+	 * @stable for overriding
 	 *
 	 * @param OutputPage $out OutputPage to print to
 	 * @param Skin $skin User skin to use [unused]
@@ -66,12 +70,22 @@ abstract class ImageQueryPage extends QueryPage {
 		}
 	}
 
+	/**
+	 * @stable for overriding
+	 *
+	 * @param Skin $skin
+	 * @param object $result
+	 *
+	 * @return bool|string
+	 */
 	protected function formatResult( $skin, $result ) {
 		return false;
 	}
 
 	/**
 	 * Get additional HTML to be shown in a results' cell
+	 *
+	 * @stable for overriding
 	 *
 	 * @param object $row Result row
 	 * @return string

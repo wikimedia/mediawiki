@@ -26,6 +26,8 @@ use MessageSpecifier;
  * Base class for the more common types of database errors. These are known to occur
  * frequently, so we try to give friendly error messages for them.
  *
+ * @newable
+ * @stable for subclassing
  * @ingroup Database
  * @since 1.23
  */
@@ -34,6 +36,7 @@ class DBExpectedError extends DBError implements MessageSpecifier {
 	protected $params;
 
 	/**
+	 * @stable for calling
 	 * @param IDatabase|null $db
 	 * @param string $error
 	 * @param array $params
