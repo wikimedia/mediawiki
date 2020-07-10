@@ -22,6 +22,7 @@
  */
 
 /**
+ * @stable for subclassing
  * @ingroup Cache
  */
 abstract class CacheDependency {
@@ -32,6 +33,7 @@ abstract class CacheDependency {
 
 	/**
 	 * Hook to perform any expensive pre-serialize loading of dependency values.
+	 * @stable for overriding
 	 */
 	public function loadDependencyValues() {
 	}
