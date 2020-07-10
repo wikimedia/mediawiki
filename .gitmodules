@@ -1310,3 +1310,7 @@
 	path = extensions/TreeAndMenu
 	url = https://gitlab.com/organicdesign/TreeAndMenu
 	branch = master
+[submodule "extensions/Lingo"]
+	path = extensions/Lingo
+	url = https://github.com/wikimedia/mediawiki-extensions-Lingo
+	branch = REL1_34
