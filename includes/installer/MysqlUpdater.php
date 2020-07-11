@@ -407,7 +407,14 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropField', 'change_tag', 'ct_tag', 'patch-drop-ct_tag.sql' ],
 			[ 'dropTable', 'valid_tag' ],
 			[ 'dropTable', 'tag_summary' ],
-			[ 'dropField', 'protected_titles', 'pt_reason', 'patch-drop-comment-fields.sql' ],
+			[ 'dropField', 'archive', 'ar_comment', 'patch-archive-drop-ar_comment.sql' ],
+			[ 'dropField', 'ipblocks', 'ipb_reason', 'patch-ipblocks-drop-ipb_reason.sql' ],
+			[ 'dropField', 'image', 'img_description', 'patch-image-drop-img_description.sql' ],
+			[ 'dropField', 'oldimage', 'oi_description', 'patch-oldimage-drop-oi_description.sql' ],
+			[ 'dropField', 'filearchive', 'fa_description', 'patch-filearchive-drop-fa_description.sql' ],
+			[ 'dropField', 'recentchanges', 'rc_comment', 'patch-recentchanges-drop-rc_comment.sql' ],
+			[ 'dropField', 'logging', 'log_comment', 'patch-logging-drop-log_comment.sql' ],
+			[ 'dropField', 'protected_titles', 'pt_reason', 'patch-protected_titles-drop-pt_reason.sql' ],
 			[ 'modifyTable', 'job', 'patch-job-params-mediumblob.sql' ],
 
 			// 1.34
