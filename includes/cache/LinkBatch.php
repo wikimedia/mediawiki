@@ -216,7 +216,8 @@ class LinkBatch {
 				$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
 				$ids[$pdbk] = $row->page_id;
 			} else {
-				wfLogWarning( __METHOD__ . ': encountered invalid title: ' . $row->page_title );
+				wfLogWarning( __METHOD__ . ': encountered invalid title: ' .
+					$row->page_namespace . '-' . $row->page_title );
 			}
 
 			unset( $remaining[$row->page_namespace][$row->page_title] );
@@ -229,11 +230,10 @@ class LinkBatch {
 				if ( $title ) {
 					$cache->addBadLinkObj( $title );
 					$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
+					$ids[$pdbk] = 0;
 				} else {
-					wfLogWarning( __METHOD__ . ': encountered invalid title: ' . $row->page_title );
+					wfLogWarning( __METHOD__ . ': encountered invalid title: ' . $ns . '-' . $dbkey );
 				}
-
-				$ids[$pdbk] = 0;
 			}
 		}
 
