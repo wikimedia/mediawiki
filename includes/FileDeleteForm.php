@@ -304,8 +304,16 @@ class FileDeleteForm {
 			$this->prepareMessage( 'filedelete-intro' ) ) ]
 		);
 
+		$suppressAllowed = $permissionManager->userHasRight( $this->user, 'suppressrevision' );
+		$dropDownReason = $wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->text();
+		// Add additional specific reasons for suppress
+		if ( $suppressAllowed ) {
+			$dropDownReason .= "\n" . $wgOut->msg( 'filedelete-reason-dropdown-suppress' )
+				->inContentLanguage()->text();
+		}
+
 		$options = Xml::listDropDownOptions(
-			$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->text(),
+			$dropDownReason,
 			[ 'other' => $wgOut->msg( 'filedelete-reason-otherlist' )->inContentLanguage()->text() ]
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
@@ -344,7 +352,7 @@ class FileDeleteForm {
 			]
 		);
 
-		if ( $permissionManager->userHasRight( $this->user, 'suppressrevision' ) ) {
+		if ( $suppressAllowed ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
@@ -419,10 +427,20 @@ class FileDeleteForm {
 		);
 
 		if ( $permissionManager->userHasRight( $this->user, 'editinterface' ) ) {
+			$link = '';
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-			$link = $linkRenderer->makeKnownLink(
+			if ( $suppressAllowed ) {
+				$link .= $linkRenderer->makeKnownLink(
+					$wgOut->msg( 'filedelete-reason-dropdown-suppress' )->inContentLanguage()->getTitle(),
+					$wgOut->msg( 'filedelete-edit-reasonlist-suppress' )->text(),
+					[],
+					[ 'action' => 'edit' ]
+				);
+				$link .= $wgOut->msg( 'pipe-separator' )->escaped();
+			}
+			$link .= $linkRenderer->makeKnownLink(
 				$wgOut->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle(),
-				wfMessage( 'filedelete-edit-reasonlist' )->text(),
+				$wgOut->msg( 'filedelete-edit-reasonlist' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
