@@ -79,6 +79,8 @@ $wgVersion = MW_VERSION;
  */
 $wgSitename = 'MediaWiki';
 
+/** @} */
+
 /************************************************************************//**
  * @name   Server URLs and file paths
  *
@@ -196,8 +198,6 @@ $wgScriptPath = '/wiki';
 $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
 	( strpos( PHP_SAPI, 'isapi' ) === false );
-
-/** @} */
 
 /**
  * The URL path to index.php.
